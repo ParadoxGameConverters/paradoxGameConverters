@@ -15,6 +15,11 @@ copy "Data_Files\culture_map.txt" "release\culture_map.txt"
 copy "Data_Files\personality_map.txt" "release\personality_map.txt"
 copy "Data_Files\background_map.txt" "release\background_map.txt"
 copy "Data_Files\FAQ.txt" "release\FAQ.txt"
+copy "Data_Files\airTEMPLATE.lua" "release\airTEMPLATE.lua"
+copy "Data_Files\autoexecTEMPLATE.lua" "release\autoexecTEMPLATE.lua"
+copy "Data_Files\infatryTEMPLATE.lua" "release\infatryTEMPLATE.lua"
+copy "Data_Files\shipTemplate.lua" "release\shipTemplate.lua"
+copy "Data_Files\tankTemplate.lua" "release\tankTemplate.lua"
 
 del release\changelog.txt
 git log --oneline --decorate >> release/log.txt
@@ -34,6 +39,8 @@ mkdir "release\blankMod\output\history\units"
 mkdir "release\blankMod\output\history\wars"
 mkdir "release\blankMod\output\events"
 mkdir "release\blankMod\output\decisions"
+mkdir "release\blankMod\output\script"
+mkdir "release\blankMod\output\script\country"
 
 xcopy "Data_Files\history\provinces" "release\blankmod\output\history\provinces" /Y /E /I
 xcopy "Data_Files\countries" "release\blankmod\output\common\countries" /Y /E /I

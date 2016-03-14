@@ -1,4 +1,4 @@
-
+--modified for random hoi
 --Reference for the index numbers of laws
 --
 local _OPEN_SOCIETY_ = 1
@@ -139,7 +139,7 @@ function Mobilization(minister)
 						end
 						
 						if liThreat > 30 then
-							if CalculateWarDesirability(ai, loCountry, ministerTag) > 70 then
+							if CalculateWarDesirability(ai, loCountry, ministerCountry) > 70 then
 								ai:Post(CToggleMobilizationCommand(ministerTag, true))
 							end
 						end
@@ -151,9 +151,12 @@ function Mobilization(minister)
 end
 function Puppets(minister, ministerTag, ministerCountry)
 	-- Puppets are country specific AI countries will not release them automatically and must be scripted
-    if ministerCountry:CanCreatePuppet() then
-        Utils.CallCountryAI( ministerTag, "HandlePuppets", minister )
-    end
+	
+	--TODO randomhoi ?
+	
+   -- if ministerCountry:CanCreatePuppet() then
+       -- Utils.CallCountryAI( ministerTag, "HandlePuppets", minister )
+   -- end
 end
 function Laws(minister)
 	local ministerTag = minister:GetCountryTag()
@@ -224,6 +227,8 @@ function OfficeManagement(minister)
 	-- Each position has an index, a callback function, a government position index, and a list of available CMinister objects
 	-- We assert the existance of 8 changeable positions, and bind them to a lua callback function
 	local laPositions = {}
+	laPositions[_HEAD_OF_STATE_] = {Callback=Head, GovPosition = nil, AvailableMinisters = {}}
+	laPositions[_HEAD_OF_GOVERNMENT_] = {Callback=Head, GovPosition = nil, AvailableMinisters = {}}
 	laPositions[_CHIEF_OF_AIR_] = {Callback=ChiefOfAir, GovPosition = nil, AvailableMinisters = {}}
 	laPositions[_CHIEF_OF_NAVY_] = {Callback=ChiefOfNavy, GovPosition = nil, AvailableMinisters = {}}
 	laPositions[_CHIEF_OF_ARMY_] = {Callback=ChiefOfArmy, GovPosition = nil, AvailableMinisters = {}}
@@ -293,10 +298,50 @@ function OfficeManagement_PickMinister(ai, ministerTag, ministerCountry, vaMinis
 --################
 -- Office Management sub-methods
 --################
+
+function Head(ai, ministerTag, ministerCountry, vaMinisters, voPosition)
+	local laPersonalityScore = {}
+	
+			laPersonalityScore["capitalist_roader"] = 90 	
+			laPersonalityScore["silent_workhorse"] = 75 
+			laPersonalityScore["stern_imperialist"] = 70 
+			laPersonalityScore["die_hard_reformer"] = 60 
+			laPersonalityScore["smiling_oilman"] = 55 
+			laPersonalityScore["corporate_suit"] = 54 
+			laPersonalityScore["benevolent_gentleman"] = 50 
+			laPersonalityScore["political_protege"] = 44 
+			laPersonalityScore["old_air_marshal"] = 43 
+			laPersonalityScore["old_admiral"] = 42
+			laPersonalityScore["old_general"] = 41 	
+			laPersonalityScore["popular_figurehead"] = 40 
+			laPersonalityScore["the_monkey_king"] = 39 
+			laPersonalityScore["father_of_his_country"] = 38
+			laPersonalityScore["power_hungry_demagogue"] = 34 
+			laPersonalityScore["resigned_generalissimo"] = 30 
+			laPersonalityScore["the_divinely_anointed"] = 29 		 
+			laPersonalityScore["weary_stiff_neck"] = 25 
+			laPersonalityScore["insignificant_layman"] = 20 
+			laPersonalityScore["ambitious_union_boss"] = 19 
+			laPersonalityScore["the_ambitious_colonel"] = 18 
+			laPersonalityScore["barking_buffoon"] = 15 
+			laPersonalityScore["ruthless_powermonger"] = 10 
+			laPersonalityScore["naive_optimist"] = 9 
+			laPersonalityScore["flamboyant_tough_guy"] = 8 
+			laPersonalityScore["happy_amateur"] = 7 
+			laPersonalityScore["heir_apparent"] = 6				
+			laPersonalityScore["culture_warrior"] = 5
+			laPersonalityScore["autocratic_charmer"] = 4
+			laPersonalityScore["backroom_backstabber"] = 2 
+			laPersonalityScore["pig_headed_isolationist"] = 1 			
+
+	
+	OfficeManagement_PickMinister(ai, ministerTag, ministerCountry, vaMinisters, voPosition, laPersonalityScore, "Call_Head") 
+end
+
 function MinisterOfSecurity(ai, ministerTag, ministerCountry, vaMinisters, voPosition)
 	local laPersonalityScore = {}
 
-	if not(Utils.HasCountryAIFunction(ministerTag, "Call_MinisterOfSecurity")) then
+--	if not(Utils.HasCountryAIFunction(ministerTag, "Call_MinisterOfSecurity")) then
 		if ministerCountry:IsAtWar() then 
 			laPersonalityScore["man_of_the_people"] = 70 
 			laPersonalityScore["efficient_sociopath"] = 60 
@@ -314,7 +359,7 @@ function MinisterOfSecurity(ai, ministerTag, ministerCountry, vaMinisters, voPos
 			laPersonalityScore["prince_of_terror"] = 20 
 			laPersonalityScore["back_stabber"] = 10 
 		end 
-	end
+--	end
 	
 	OfficeManagement_PickMinister(ai, ministerTag, ministerCountry, vaMinisters, voPosition, laPersonalityScore, "Call_MinisterOfSecurity") 
 end
@@ -329,10 +374,10 @@ function ArmamentMinister(ai, ministerTag, ministerCountry, vaMinisters, voPosit
 		lbResourceShort = true
 	end
 	
-	if not(Utils.HasCountryAIFunction(ministerTag, "Call_ArmamentMinister")) then
+--	if not(Utils.HasCountryAIFunction(ministerTag, "Call_ArmamentMinister")) then
 		if lbResourceShort then
-			laPersonalityScore["military_entrepreneur"] = 150 
-			laPersonalityScore["resource_industrialist"] = 140 
+			laPersonalityScore["resource_industrialist"] = 150 
+			laPersonalityScore["military_entrepreneur"] = 140 
 			laPersonalityScore["administrative_genius"] = 130 
 			laPersonalityScore["laissez_faires_capitalist"] = 120 
 			laPersonalityScore["theoretical_scientist"] = 110 
@@ -344,14 +389,17 @@ function ArmamentMinister(ai, ministerTag, ministerCountry, vaMinisters, voPosit
 			laPersonalityScore["strategic_air_proponent"] = 50 
 			laPersonalityScore["submarine_proponent"] = 40 
 			laPersonalityScore["tank_proponent"] = 30 
+			laPersonalityScore["brilliant_engineer"] = 25 	
 			laPersonalityScore["corrupt_kleptocrat"] = 20 
 			laPersonalityScore["crooked_kleptocrat"] = 10 		
-		else
+		else			
 			laPersonalityScore["administrative_genius"] = 150 
-			laPersonalityScore["resource_industrialist"] = 140 
+			laPersonalityScore["resource_industrialist"] = 140 	
 			laPersonalityScore["laissez_faires_capitalist"] = 130 
 			laPersonalityScore["military_entrepreneur"] = 120 
 			laPersonalityScore["theoretical_scientist"] = 110 
+			laPersonalityScore["space_enthusiast"] = 105 
+			laPersonalityScore["amoral_technocrat"] = 102 			
 			laPersonalityScore["infantry_proponent"] = 100 
 			laPersonalityScore["air_to_ground_proponent"] = 90 
 			laPersonalityScore["air_superiority_proponent"] = 80 
@@ -360,17 +408,18 @@ function ArmamentMinister(ai, ministerTag, ministerCountry, vaMinisters, voPosit
 			laPersonalityScore["strategic_air_proponent"] = 50 
 			laPersonalityScore["submarine_proponent"] = 40 
 			laPersonalityScore["tank_proponent"] = 30 
+			laPersonalityScore["brilliant_engineer"] = 25 			 
 			laPersonalityScore["corrupt_kleptocrat"] = 20 
 			laPersonalityScore["crooked_kleptocrat"] = 10 
 		end
-	end
+--	end
 	
 	OfficeManagement_PickMinister(ai, ministerTag, ministerCountry, vaMinisters, voPosition, laPersonalityScore, "Call_ArmamentMinister") 
 end
 function ForeignMinister(ai, ministerTag, ministerCountry, vaMinisters, voPosition)
 	local laPersonalityScore = {}
 	
-	if not(Utils.HasCountryAIFunction(ministerTag, "Call_ForeignMinister")) then
+--	if not(Utils.HasCountryAIFunction(ministerTag, "Call_ForeignMinister")) then
 		local lsFaction = tostring(ministerCountry:GetFaction():GetTag()) 
 		local lbIsArwar = ministerCountry:IsAtWar() 
           
@@ -392,14 +441,14 @@ function ForeignMinister(ai, ministerTag, ministerCountry, vaMinisters, voPositi
 		end 
 		
 		laPersonalityScore["iron_fisted_brute"] = 10 
-	end
+--	end
 	
 	OfficeManagement_PickMinister(ai, ministerTag, ministerCountry, vaMinisters, voPosition, laPersonalityScore, "Call_ForeignMinister") 
 end
 function ChiefOfStaff(ai, ministerTag, ministerCountry, vaMinisters, voPosition)
 	local laPersonalityScore = {} 
 	
-	if not(Utils.HasCountryAIFunction(ministerTag, "Call_ChiefOfStaff")) then
+--	if not(Utils.HasCountryAIFunction(ministerTag, "Call_ChiefOfStaff")) then
 		if ministerCountry:IsAtWar() then 
 			local liManpower = ministerCountry:GetManpower():Get() 
 
@@ -423,60 +472,60 @@ function ChiefOfStaff(ai, ministerTag, ministerCountry, vaMinisters, voPosition)
 			laPersonalityScore["school_of_manoeuvre"] = 20 
 			laPersonalityScore["school_of_psychology"] = 10 
 		end 
-	end
+--	end
 	
 	OfficeManagement_PickMinister(ai, ministerTag, ministerCountry, vaMinisters, voPosition, laPersonalityScore, "Call_ChiefOfStaff") 
 end
 function MinisterOfIntelligence(ai, ministerTag, ministerCountry, vaMinisters, voPosition)
 	local laPersonalityScore = {} 
 	
-	if not(Utils.HasCountryAIFunction(ministerTag, "Call_MinisterOfIntelligence")) then
+--	if not(Utils.HasCountryAIFunction(ministerTag, "Call_MinisterOfIntelligence")) then
 		laPersonalityScore["dismal_enigma"] = 60 
 		laPersonalityScore["research_specialist"] = 50 
 		laPersonalityScore["naval_intelligence_specialist"] = 40 
 		laPersonalityScore["technical_specialist"] = 30 
 		laPersonalityScore["industrial_specialist"] = 20 
 		laPersonalityScore["political_specialist"] = 10 
-	end
+--	end
 
 	OfficeManagement_PickMinister(ai, ministerTag, ministerCountry, vaMinisters, voPosition, laPersonalityScore, "Call_MinisterOfIntelligence") 
 end
 function ChiefOfArmy(ai, ministerTag, ministerCountry, vaMinisters, voPosition)
 	local laPersonalityScore = {} 
 	
-	if not(Utils.HasCountryAIFunction(ministerTag, "Call_ChiefOfArmy")) then
+--	if not(Utils.HasCountryAIFunction(ministerTag, "Call_ChiefOfArmy")) then
 		laPersonalityScore["guns_and_butter_doctrine"] = 50 
 		laPersonalityScore["static_defence_doctrine"] = 40 
 		laPersonalityScore["decisive_battle_doctrine"] = 30 
 		laPersonalityScore["elastic_defence_doctrine"] = 20 
 		laPersonalityScore["armoured_spearhead_doctrine"] = 10 
-	end
+--	end
 
 	OfficeManagement_PickMinister(ai, ministerTag, ministerCountry, vaMinisters, voPosition, laPersonalityScore, "Call_ChiefOfArmy") 
 end
 function ChiefOfNavy(ai, ministerTag, ministerCountry, vaMinisters, voPosition)
 	local laPersonalityScore = {}
 	
-	if not(Utils.HasCountryAIFunction(ministerTag, "Call_ChiefOfNavy")) then
+--	if not(Utils.HasCountryAIFunction(ministerTag, "Call_ChiefOfNavy")) then
 		laPersonalityScore["decisive_naval_battle_doctrine"] = 50 
 		laPersonalityScore["indirect_approach_doctrine"] = 40 
 		laPersonalityScore["open_seas_doctrine"] = 30 
 		laPersonalityScore["base_control_doctrine"] = 20 
 		laPersonalityScore["power_projection_doctrine"] = 10 
-	end
+--	end
 
 	OfficeManagement_PickMinister(ai, ministerTag, ministerCountry, vaMinisters, voPosition, laPersonalityScore, "Call_ChiefOfNavy") 
 end
 function ChiefOfAir(ai, ministerTag, ministerCountry, vaMinisters, voPosition)
 	local laPersonalityScore = {} 
 	
-	if not(Utils.HasCountryAIFunction(ministerTag, "Call_ChiefOfAir")) then
+--	if not(Utils.HasCountryAIFunction(ministerTag, "Call_ChiefOfAir")) then
 		laPersonalityScore["air_superiority_doctrine"] = 50 
 		laPersonalityScore["army_aviation_doctrine"] = 40 
 		laPersonalityScore["naval_aviation_doctrine"] = 30 
 		laPersonalityScore["carpet_bombing_doctrine"] = 20 
 		laPersonalityScore["vertical_envelopment_doctrine"] = 10
-	end
+--	end
 
 	OfficeManagement_PickMinister(ai, ministerTag, ministerCountry, vaMinisters, voPosition, laPersonalityScore, "Call_ChiefOfAir") 
 end
@@ -492,11 +541,27 @@ function ConscriptionLaw(ministerTag, ministerCountry, voCurrentLaw)
 	local liIndex = voCurrentLaw:GetIndex() + 1
 	local loNewLaw = nil
 	
-	if liIndex < CLawDataBase.GetNumberOfLaws() then
+	if ((liIndex < CLawDataBase.GetNumberOfLaws()) and (ministerCountry:GetTotalIC() > 25)) then
 		loNewLaw = CLawDataBase.GetLaw(liIndex)
 		if not(voCurrentLaw:GetGroup():GetIndex() == loNewLaw:GetGroup():GetIndex()) then 
 			return nil
 		end
+	else
+		if ministerCountry:GetTotalIC() < 26 then
+			if liIndex > 8 then
+				loNewLaw = CLawDataBase.GetLaw(8)
+				if not(voCurrentLaw:GetGroup():GetIndex() == loNewLaw:GetGroup():GetIndex()) then 
+					return nil
+				end
+			end
+			
+	
+		end
+			
+	end
+	
+	if (loNewLaw == nil) then
+		return nil
 	end
 
 	if loNewLaw:ValidFor(ministerTag) then

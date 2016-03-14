@@ -268,6 +268,36 @@ void HoI3World::output() const
 	fprintf(allCountriesFile, "\n");
 	fclose(allCountriesFile);
 
+	// output autoexec.lua
+	FILE* autoexec;
+	if (fopen_s(&autoexec, ("Output\\" + Configuration::getOutputName() + "\\script\\autoexec.lua").c_str(), "w") != 0)
+	{
+		LOG(LogLevel::Error) << "Could not create autoexec.lua";
+		exit(-1);
+	}
+
+	ifstream sourceFile;
+	sourceFile.open("autoexecTEMPLATE.lua", ifstream::in);
+	if (!sourceFile.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not open autoexecTEMPLATE.lua";
+		exit(-1);
+	}
+	while (!sourceFile.eof())
+	{
+		string line;
+		getline(sourceFile, line);
+		fprintf(autoexec, "%s\n", line.c_str());
+	}
+	sourceFile.close();
+
+	for (auto country: potentialCountries)
+	{
+		fprintf(autoexec, "require('%s')\n", country->getTag().c_str());
+	}
+	fprintf(autoexec, "\n");
+	fclose(autoexec);
+
 	// Create localisations for all new countries. We don't actually know the names yet so we just use the tags as the names.
 	LOG(LogLevel::Debug) << "Writing localisation text";
 	string localisationPath = "Output\\" + Configuration::getOutputName() + "\\localisation";

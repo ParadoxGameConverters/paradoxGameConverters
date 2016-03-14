@@ -59,5 +59,6 @@ LowTartare		- Graphics
 ChortlingGnome		- Graphics
 Magc8Ball		- Graphics
 
-
  - AND ALL THE OTHERS WHO GAVE THEIR INPUT ON THE FORUM -
+
+Special thanks to SuiciSpai, who allowed us to use scripts from Random Scenario

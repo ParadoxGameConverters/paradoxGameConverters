@@ -287,6 +287,8 @@ void HoI3Country::output() const
 	}
 	fprintf(output, "}\n");
 	fclose(output);
+
+	outputAIScript();
 }
 
 
@@ -1632,6 +1634,70 @@ void HoI3Country::outputLocalisation(FILE* output) const
 	localisation.WriteToStream(localisationStream);
 	std::string localisationString = localisationStream.str();
 	fwrite(localisationString.c_str(), sizeof(std::string::value_type), localisationString.size(), output);
+}
+
+
+void HoI3Country::outputAIScript() const
+{
+	FILE* output;
+	if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\script\\country\\" + tag + ".lua").c_str(), "w") != 0)
+	{
+		LOG(LogLevel::Error) << "Could not create country script file for " << tag;
+		exit(-1);
+	}
+
+	fprintf(output, "local P = {}\n");
+	fprintf(output, "AI_%s = P\n", tag.c_str());
+
+	ifstream sourceFile;
+	if (false) // air template
+	{
+		sourceFile.open("airTEMPLATE.lua", ifstream::in);
+		if (!sourceFile.is_open())
+		{
+			LOG(LogLevel::Error) << "Could not open airTEMPLATE.lua";
+			exit(-1);
+		}
+	}
+	else if (false)	// sea template
+	{
+		sourceFile.open("shipTemplate.lua", ifstream::in);
+		if (!sourceFile.is_open())
+		{
+			LOG(LogLevel::Error) << "Could not open shipTemplate.lua";
+			exit(-1);
+		}
+	}
+	else if (false) // tank template
+	{
+		sourceFile.open("tankTemplate.lua", ifstream::in);
+		if (!sourceFile.is_open())
+		{
+			LOG(LogLevel::Error) << "Could not open tankTemplate.lua";
+			exit(-1);
+		}
+	}	
+	else	// infantry template
+	{
+		sourceFile.open("infatryTEMPLATE.lua", ifstream::in);
+		if (!sourceFile.is_open())
+		{
+			LOG(LogLevel::Error) << "Could not open infatryTEMPLATE.lua";
+			exit(-1);
+		}
+	}
+
+	while (!sourceFile.eof())
+	{
+		string line;
+		getline(sourceFile, line);
+		fprintf(output, "%s\n", line.c_str());
+	}
+	sourceFile.close();
+
+	fprintf(output, "return AI_%s\n", tag.c_str());
+
+	fclose(output);
 }
 
 

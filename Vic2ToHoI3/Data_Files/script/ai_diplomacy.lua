@@ -1,3 +1,5 @@
+--modified for randomhoi
+
 require('utils')
 
 function CalculateAlignmentFactor(voAI, country1, country2)
@@ -131,7 +133,7 @@ function DiploScore_InviteToFaction(voAI, voActorTag, voRecipientTag, voObserver
 			if loTarget:IsValid() and loDiploStatus:HasWar() then
 				-- We both have a war with the same country
 				if loDiploScoreObj.ministerCountry:GetRelation(loTarget):HasWar() then
-					loDiploScoreObj.Score = 50
+					loDiploScoreObj.Score = 70
 					break
 				end
 			end					
@@ -145,7 +147,7 @@ function DiploScore_InviteToFaction(voAI, voActorTag, voRecipientTag, voObserver
                                                     (100 - loDiploScoreObj.TargetNeutrality) * 300 / 10000
 	-- only join allies if not maximum neutrality country. those join when attacked
 	if (loDiploScoreObj.TargetCountry:GetTotalIC() < 50) and (loDiploScoreObj.Faction == loAllies) then
-		if loDiploScoreObj.TargetCountry:GetNeutrality():Get() > 89 then
+		if loDiploScoreObj.TargetCountry:GetNeutrality():Get() > 79 then
 			loDiploScoreObj.Score = 0
 		end
 	end
@@ -155,16 +157,16 @@ function DiploScore_InviteToFaction(voAI, voActorTag, voRecipientTag, voObserver
 		-- check if safe (quick check if it can even happy to save call time
 		if loDiploScoreObj.Score > 40 then
 			if loDiploScoreObj.TargetCountry:GetTotalIC() > 50 or loDiploScoreObj.TargetCountry:IsLandSafeToJoin( loDiploScoreObj.Faction )  then
-				loDiploScoreObj.Score = loDiploScoreObj.Score + 25
+				loDiploScoreObj.Score = loDiploScoreObj.Score + 35
 			else
-				loDiploScoreObj.Score = loDiploScoreObj.Score - 100
+				loDiploScoreObj.Score = loDiploScoreObj.Score - 80
 			end
 		end
 	else
-		loDiploScoreObj.Score = loDiploScoreObj.Score - 80 -- we'll only join if attacked pretty much, bar a small chance
+		loDiploScoreObj.Score = loDiploScoreObj.Score - 60 -- we'll only join if attacked pretty much, bar a small chance
 	end		
 
-	loDiploScoreObj.Score = Utils.CallGetScoreAI(voRecipientTag, 'DiploScore_InviteToFaction', loDiploScoreObj)
+	--loDiploScoreObj.Score = Utils.CallGetScoreAI(voRecipientTag, 'DiploScore_InviteToFaction', loDiploScoreObj)
 
 	return loDiploScoreObj.Score
 end
@@ -314,34 +316,43 @@ end
 
 function CalculateWarDesirability(voAI, country, target)
 	local score = 0
+	
+	
+	
+	local actorCountry = voAI:GetCountry()
 	local countryTag = country:GetCountryTag()
-	local targetCountry = target:GetCountry()
+	local targetCountry = target;
 	local strategy = country:GetStrategy()
+	
+		--Utils.LUA_DEBUGOUT("1")
+		
+	--local loRelations = actorCountry:GetRelation(target:GetCountryTag)
+	--local threatCountry = loRelations:GetThreat():Get() * CalculateAlignmentFactor(voAI, actorCountry, recipientCountry)
+		
+	--local threatCountry = loRelations:GetThreat():Get() * CalculateAlignmentFactor(voAI, actorCountry, recipientCountry)
 
 	-- can we even declare war?
-	if not voAI:CanDeclareWar( countryTag, target ) then
+	if not voAI:CanDeclareWar( countryTag, target:GetCountryTag() ) then
+	--Utils.LUA_DEBUGOUT("2")
 	  return 0
 	end
 
 	--Utils.LUA_DEBUGOUT("we can declare war: " .. tostring(minister:GetCountryTag()) .. " -> " .. tostring(target) )
 
 
-	local antagonism = strategy:GetAntagonism(target);
-	local friendliness = strategy:GetFriendliness(target);
-
-	-- dont declare war on people we like
-	if friendliness > 0 and antagonism < 1 then
-		return 0
-	end
-
+	local antagonism = strategy:GetAntagonism(countryTag);
+	local friendliness = strategy:GetFriendliness(countryTag);
+--Utils.LUA_DEBUGOUT("3")
 	-- no suicide :S
 	if country:GetNumberOfControlledProvinces() < targetCountry:GetNumberOfControlledProvinces() / 4 then
 		return 0
 	end
 
 	-- watch out if we have bad intel, should be infiltrating more
-	local intel = CAIIntel(countryTag, target)
+	--local intel = CAIIntel(countryTag, target)
+		local intel = CAIIntel(countryTag, target:GetCountryTag() )
 	if intel:GetFactor() < 0.1 then
+	--Utils.LUA_DEBUGOUT("4")
 		return 0
 	end
 
@@ -350,18 +361,187 @@ function CalculateWarDesirability(voAI, country, target)
 	local ourStrength = intel:CalculateOurMilitaryStrength()
 	local strengthFactor = ourStrength / theirStrength
 
-	if strengthFactor < 1.0 then
-		score = score - 75 * (1.0 - strengthFactor)
-	else
-		score = score + 20 * (strengthFactor - 1.0)
-	end
 
-	-- personality
-	if strategy:IsMilitarist() then
-		score = score * 1.3
+	if strengthFactor < 0.7 then
+		score = (score - 100)
+	elseif strengthFactor < 1.0 then
+		score = (score - 75) 
+	elseif strengthFactor > 1.3 then
+		score = score + 60
+	else
+		score = score + 40
 	end
 	
-	return Utils.CallScoredCountryAI(countryTag, 'CalculateWarDesirability', score, voAI, country, target)
+		-- dont declare war on people we like, only if we are really willing to
+	if friendliness > 0 and antagonism < 1 then
+		score = score - 200 
+	end
+
+
+	--Utils.LUA_DEBUGOUT("5")
+	
+	if targetCountry:IsAtWar()  then
+		score = score + 40
+	end
+	
+	if intel:GetFactor() < 0.3 then
+		score = score - 20
+	end
+
+	if friendliness < 0 then
+		score = score + 20
+	end
+	
+	
+	if antagonism > 1 then
+		score = score + 30
+	end
+	
+	
+	if country:IsNonExileNeighbour( target:GetCountryTag()) then
+		if targetCountry:GetActingCapitalLocation():GetContinent() == actorCountry:GetActingCapitalLocation():GetContinent() then
+			score = score + 100
+		else
+			if voAI:GetCurrentDate():GetYear() <= 1939 then
+				score = score - 100
+			else
+				score = score + 50
+			end
+		end
+			
+	elseif targetCountry:GetActingCapitalLocation():GetContinent() == actorCountry:GetActingCapitalLocation():GetContinent() then
+		 if voAI:GetCurrentDate():GetYear() <= 1939 then
+				score = score - 500
+		else
+				score = score + 50
+		end
+	else 
+		if voAI:GetCurrentDate():GetYear() <= 1940 then
+			score = score - 600
+		else	
+			score = score - 50
+		end	
+	end
+	
+	  local manpower = targetCountry:HasExtraManpowerLeft()
+	 local manpowerOur = actorCountry:HasExtraManpowerLeft()
+
+	 if score > 50 then
+		 if not manpower and manpowerOur then
+			 score = score + 20
+		 end		 
+	 end
+	 
+	
+	local numallies = targetCountry:GetNumOfAllies()
+	
+	if numallies == nil then
+		score = score + 30
+	else
+		if numallies < 1 then
+			 score = score + 30
+		elseif numallies < 2 then
+			score = score + 15
+		elseif numallies < 3 then
+			 score = score - 20
+		elseif numallies < 4 then
+			 score = score - 40
+		else
+			 score = score - 70
+		end
+	end
+	
+	if (targetCountry:HasFaction() and (country:GetNumOfAllies() < 2 and not country:HasFaction())) then
+		score = score - 60
+	end
+	
+	
+	
+
+	
+	--if threatCountry < 10 then
+	--	score = score * 0.9
+	--end
+
+	--if threatCountry < 20 then
+	--	score = score * 0.95
+	--end
+	
+	--if threatCountry < 30 then
+	--	score = score * 0.95
+	--end
+
+
+	--if threatCountry > 40  then
+	--	score = score * 1.1
+	--end
+
+	--if threatCountry > 80  then
+	--	score = score * 1.1
+	--end
+
+	--if threatCountry > 100  then
+	--	score = score * 1.2
+	--end
+	
+	if country:HasFaction() and not targetCountry:HasFaction()  then
+		score = score * 1.2
+	end
+	 
+		-- personality
+	if strategy:IsMilitarist() then
+		score = score * 1.1
+	end
+
+
+	
+	local effectiveNeutrality = country:GetEffectiveNeutrality():Get()
+	 local effectiveNeutralityTarget = target:GetEffectiveNeutrality():Get()
+	
+	 if effectiveNeutrality >40 then
+		 score = score * 0.9
+	 end 
+	
+	 if effectiveNeutrality >30 then
+		 score = score * 0.95
+	 end 
+	
+	 if effectiveNeutrality <20 then
+		 score = score * 1.1
+	 end 
+	
+	 if effectiveNeutrality <10 then
+		 score = score * 1.2
+	 end 
+	
+	 if effectiveNeutralityTarget >40 then
+		 score = score * 0.9
+	 end 
+	
+	 if effectiveNeutralityTarget >30 then
+		 score = score * 0.95
+	 end 
+	
+	 if effectiveNeutralityTarget <20 then
+		 score = score * 1.05
+	 end 
+	
+	 if effectiveNeutralityTarget <10 then
+		 score = score * 1.1
+	 end
+	 
+	 
+	
+	 
+	 if not manpowerOur then
+	 	score = score - 200
+	 end
+
+	 if score > 100 then
+		score = 100
+	 end
+	
+	return score
 
 end
 

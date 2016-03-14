@@ -384,7 +384,10 @@ function P.CreateUnit(voType, vIC, viUnitQuantity, voProductionData, vaSupportUn
 		
 		-- Setup Parameter defaults
 		if voType.Serial == nil then voType.Serial = 1 end
-		if voType.Support == nil then voType.Support = 0 end
+		if voType.Support == nil then voType.Support = 0 end	
+		--else
+			--voType.Support = 1 	
+		--end
 	
 		local liUnitMPcost = loUnitType:GetBuildCostMP():Get()
 		local liManpowerCostByUnit = ((liUnitMPcost * voType.Size) + liSecManpowerCost)
@@ -458,12 +461,20 @@ function P.CreateUnit(voType, vIC, viUnitQuantity, voProductionData, vaSupportUn
 
 				local loBuildOrder = SubUnitList()
 				-- Add the amount of brigades requested of the main type
-				for m = 1, voType.Size, 1 do
-					SubUnitList.Append( loBuildOrder, loUnitType )
-				end
+			for m = 1, voType.Size, 1 do
+					--if ( m <3) then
+						SubUnitList.Append( loBuildOrder, loUnitType )
+					--else 
+						--if (voProductionData.IsFirepower ) then
+						--	SubUnitList.Append( loBuildOrder, loUnitType )
+					--	end
+					--end
+					--Utils.LUA_DEBUGOUT(	tostring("AAA"))	
+			end
 
 				-- Check to see if there is a secondary main
 				if not(loSecUnitType == nil) then
+			--	Utils.LUA_DEBUGOUT(	tostring("BBB"))	
 					SubUnitList.Append( loBuildOrder, loSecUnitType )
 				end
 				
@@ -471,26 +482,33 @@ function P.CreateUnit(voType, vIC, viUnitQuantity, voProductionData, vaSupportUn
 				--   updated the vIC total for the minor unit being attached
 				if laAttachUnitArray ~= nil then
 					for x = 1, voType.Support do
-						local liTotalSupportUnits = table.getn(laAttachUnitArray)
+						--if ( x == 2 and not voProductionData.IsFirepower) then
+							--tests
+						--else
+					
+							local liTotalSupportUnits = table.getn(laAttachUnitArray)
 
-						if liTotalSupportUnits > 0 then
-							local loSupportUnit = (math.random(liTotalSupportUnits))
-							local liManpowerCostBySubUnit = laAttachUnitArray[loSupportUnit]:GetBuildCostMP():Get()
-							
-							-- Enough MP so attach the support unit
-							if liManpowerLeft > liManpowerCostBySubUnit then
-								SubUnitList.Append( loBuildOrder, laAttachUnitArray[loSupportUnit] )
-								vIC = vIC - (voProductionData.ministerCountry:GetBuildCostIC( laAttachUnitArray[loSupportUnit], 1, lbReserve ):Get())
-								liManpowerLeft = liManpowerLeft - liManpowerCostBySubUnit
+							if liTotalSupportUnits > 0 then
+								local loSupportUnit = (math.random(liTotalSupportUnits))
+								local liManpowerCostBySubUnit = laAttachUnitArray[loSupportUnit]:GetBuildCostMP():Get()
+								
+								
+								
+								-- Enough MP so attach the support unit
+								if liManpowerLeft > liManpowerCostBySubUnit then
+									SubUnitList.Append( loBuildOrder, laAttachUnitArray[loSupportUnit] )
+									vIC = vIC - (voProductionData.ministerCountry:GetBuildCostIC( laAttachUnitArray[loSupportUnit], 1, lbReserve ):Get())
+									liManpowerLeft = liManpowerLeft - liManpowerCostBySubUnit
+								end
+								
+								-- Remove the unit from the array so it will not get 2 of the same support units
+								table.remove(laAttachUnitArray, loSupportUnit)
+								
+							-- No Minors so exit out
+							else
+								x = voType.Support + 1
 							end
-							
-							-- Remove the unit from the array so it will not get 2 of the same support units
-							table.remove(laAttachUnitArray, loSupportUnit)
-							
-						-- No Minors so exit out
-						else
-							x = voType.Support + 1
-						end
+						--end
 					end
 				end
 					
