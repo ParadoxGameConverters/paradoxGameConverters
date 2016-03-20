@@ -724,13 +724,50 @@
 	link = { vic = 2445 hoi = 10179 hoi = 10178 hoi = 10190 }	# Uberaba -> Aracatuba, Maracaju, Presidente Prudente
 	link = { vic = 2446 hoi = 10180 }	# São João del Rey -> Ribeirão Preto
 	# Mato Grosso
-	# Santa Cruz
+	link = { vic = 2416 hoi = 10189 hoi = 10188 hoi = 10201 }	# Dourados -> Dourados, Porto Murtinho, Bela Vista
+	link = { vic = 2417 hoi = 10123 hoi = 10095 }	# Vila Bela -> Pontes e Lacerda, Iriri
+	link = { vic = 2418 hoi = 10135 hoi = 10167 }	# Cuiabá -> Jacaré, Cuiabá
+	link = { vic = 2419 hoi = 10166 hoi = 10154 hoi = 10143 hoi = 10155 hoi = 10177 hoi = 10176 hoi = 10165 }	# Corumbá -> Caxim, Corumbá, Càceres, Porto Jofre, Aquidauana, Porto Murtinho, Bodoquena
+	link = { vic = 2420 hoi = 10223 hoi = 10210 }	# Iguatemi -> Amambaí, Caracol
+	link = { vic = 2421 hoi = 10156 }	# Vila Boa -> Campo Grande
+	link = { vic = 2422 hoi = 10124 }	# Aganja -> Rondonópolis
+	link = { vic = 2550 hoi = 10108 hoi = 10109 }	# Forte do Príncipe -> Ariquemes, Ji Paranà
 	# Bahia
+	link = { vic = 2436 hoi = 10098 }	# Salvador de Bahia -> Salvador
+	link = { vic = 2437 hoi = 10083 hoi = 10097 hoi = 10082 hoi = 10111 hoi = 10125 }	# Juazeiro -> Paulo Afonso, Petrolina, São Raimundo Nonato, Formosa, Bonfinópolis de Minas
+	link = { vic = 2438 hoi = 10136 hoi = 10145 hoi = 10157 }	# Vila do Barra -> Patos de Minas, Paineiras, Uberaba
+	link = { vic = 2439 hoi = 10112 hoi = 10138 }	# Porto Seguro -> Ilhéus, Caravelas
+	link = { vic = 2440 hoi = 10126 }	# Vitória da Conquista -> Senhor do Bonfim
 	# Pernambuco
+	link = { vic = 2432 vic = 2428 hoi = 10063 }	# Recife, Paraíba -> Recife
+	link = { vic = 2433 hoi = 10072 hoi = 10062 }	# Cabrobo -> Garanhuns, Salgueiro
+	link = { vic = 2435 vic = 2434 hoi = 10084 }	# Aracaju, Maceió -> Maceió
 	# Rio Grande do Norte
+	link = { vic = 2426 hoi = 10020 }	# Teresina -> Parnaíba
+	link = { vic = 2427 hoi = 10034 hoi = 10053 hoi = 10071 hoi = 10061 }	# Oeiras -> Piripiri, Picos, Paulistana, Floriano
+	link = { vic = 2429 hoi = 10035 hoi = 10011 hoi = 10026 }	# Fortaleza -> Fortaleza, Camocim, Sobral
+	link = { vic = 2430 hoi = 10045 hoi = 10054 }	# Crato -> Iguatu, Juazeiro do Norte
+	link = { vic = 2431 hoi = 10036 hoi = 10046 hoi = 10027 }	# Natal -> Natal, Campina Grande, Mossoró
 	# Maranhao
+	link = { vic = 2410 hoi = 9994 hoi = 10000 hoi = 9993 }	# Belém -> Braganca, Belém, Breves
+	link = { vic = 2411 vic = 2600 hoi = 10237 }	# Santarém, Altamira -> Itaituba
+	link = { vic = 2413 hoi = 10033 }	# Marabá -> Marabá
+	link = { vic = 2423 hoi = 10096 hoi = 10110 }	# Palmas -> Santa Filomena, Goiânia
+	link = { vic = 2424 hoi = 10010 hoi = 10001 }	# São Luís -> São Luis, Pinheiro
+	link = { vic = 2425 hoi = 10009 hoi = 10019 hoi = 10044 hoi = 10025 }	# Chapada -> Paragominas, Santa Inés, Grajaú, Codó
 	# Para
+	link = { vic = 2402 hoi = 9965 }	# Manaus -> Santarém
+	link = { vic = 2408 hoi = 9976 }	# Oriximina -> Yaripo
+	link = { vic = 2412 vic = 2415 hoi = 9985 }	# Óbidos, Macapá -> Macapá
+	link = { vic = 2414 hoi = 9966 }	# Amapá -> Calcoene
 	# Amazonas
+	link = { vic = 2401 hoi = 10018 }	# Marabitanas -> Benjamin Constant
+	link = { vic = 2403 hoi = 9931 }	# Cachoeira -> Boa Vista
+	link = { vic = 2404 hoi = 10141 hoi = 10222 }	# Tefe -> Rio Branco, Porto Velho
+	link = { vic = 2405 hoi = 10081 hoi = 10199 }	# Borba -> Curuá, Manaus
+	link = { vic = 2407 hoi = 10032 }	# Tabatinga -> Cruzeiro do Sul
+	link = { vic = 2532 hoi = 10211 }	# Forte São Joaquim -> Nova Paraiso
+	link = { vic = 2549 hoi = 10060 }	# Tarauacá -> Foz do Breu
 	# #######
 	# Europe
 	# #######
@@ -1772,43 +1809,6 @@
 	link = { vic = 2681 hoi = 8123 hoi = 8101 hoi = 8111 hoi = 8134 hoi = 8146 hoi = 8171 hoi = 8158 hoi = 8145 hoi = 8133 }	# Kikkiakki -> Noril'sk, Nadym, Nojabr'sk, Igarka, Sneznogorsk, Aleksandrovskoe, Niznevartovsk, Megion, Ul't Yagun
 	link = { vic = 2646 hoi = 8122 hoi = 8132 hoi = 8121 hoi = 8143 hoi = 8144 hoi = 8157 hoi = 8169 hoi = 8156 hoi = 8155 hoi = 8131 hoi = 8142 hoi = 8154 hoi = 8120 hoi = 8130 }	# Ases Igan -> Fedorovskiy, Numto, Mankova, Pyt Yakh, Surgut, Langepas, Neftejugansk, Gornyj, Tavinsk, Kondinskoye, Sentyabr'skiy, Rymovy, Nefteyugansk, Novyy Urengoy
 	link = { vic = 1065 hoi = 8109 hoi = 8098 hoi = 8099 hoi = 8110 }	# Nizhnevartovsk -> Kutop'jugan, Jamalo Nenetskij, Noviy Urengoy, Zapadno Sibirskaja Ravnina
-	link = { vic = 2431 hoi = 10036 hoi = 10046 hoi = 10027 }	# Natal -> Natal, Campina Grande, Mossoró
-	link = { vic = 2428 vic = 2432 vic = 2434 hoi = 10063 }	# Paraíba, Recife, Maceió -> Recife
-	link = { vic = 2435 hoi = 10084 }	# Aracaju -> Maceió
-	link = { vic = 2429 hoi = 10035 hoi = 10011 hoi = 10026 }	# Fortaleza -> Fortaleza, Camocim, Sobral
-	link = { vic = 2426 hoi = 10020 }	# Teresina -> Parnaíba
-	link = { vic = 2424 hoi = 10010 hoi = 10001 }	# São Luís -> São Luis, Pinheiro
-	link = { vic = 2410 vic = 2411 hoi = 9994 hoi = 10000 hoi = 9993 }	# MANY-TO-MANY: Belém, Santarém -> Braganca, Belém, Breves
-	link = { vic = 2415 vic = 2414 hoi = 9966 }	# Macapá, Amapá -> Calcoene
-	link = { vic = 2412 hoi = 9985 }	# Óbidos -> Macapá
-	link = { vic = 2436 hoi = 10098 }	# Salvador de Bahia -> Salvador
-	link = { vic = 2439 hoi = 10112 hoi = 10138 }	# Porto Seguro -> Ilhéus, Caravelas
-	link = { vic = 2408 hoi = 9976 }	# Oriximina -> Yaripo
-	link = { vic = 2532 hoi = 10211 }	# Forte São Joaquim -> Nova Paraiso
-	link = { vic = 2401 hoi = 10018 }	# Marabitanas -> Benjamin Constant
-	link = { vic = 2403 hoi = 9931 hoi = 10222 hoi = 10199 }	# Cachoeira -> Boa Vista, Porto Velho, Manaus
-	link = { vic = 2402 hoi = 9965 }	# Manaus -> Santarém
-	link = { vic = 2407 hoi = 10032 }	# Tabatinga -> Cruzeiro do Sul
-	link = { vic = 2549 hoi = 10141 }	# Tarauacá -> Rio Branco
-	link = { vic = 2404 hoi = 10108 hoi = 10109 hoi = 10081 }	# Tefe -> Ariquemes, Ji Paranà, Curuá
-	link = { vic = 2405 hoi = 10237 }	# Borba -> Itaituba
-	link = { vic = 2425 hoi = 10009 hoi = 10019 hoi = 10044 hoi = 10025 }	# Chapada -> Paragominas, Santa Inés, Grajaú, Codó
-	link = { vic = 2430 hoi = 10045 hoi = 10054 }	# Crato -> Iguatu, Juazeiro do Norte
-	link = { vic = 2433 hoi = 10072 hoi = 10062 }	# Cabrobo -> Garanhuns, Salgueiro
-	link = { vic = 2437 hoi = 10083 hoi = 10097 hoi = 10082 hoi = 10111 hoi = 10125 }	# Juazeiro -> Paulo Afonso, Petrolina, São Raimundo Nonato, Formosa, Bonfinópolis de Minas
-	link = { vic = 2440 hoi = 10126 }	# Vitória da Conquista -> Senhor do Bonfim
-	link = { vic = 2427 hoi = 10034 hoi = 10053 hoi = 10071 hoi = 10061 }	# Oeiras -> Piripiri, Picos, Paulistana, Floriano
-	link = { vic = 2600 vic = 2413 hoi = 10033 }	# Altamira, Marabá -> Marabá
-	link = { vic = 2423 hoi = 10096 hoi = 10110 }	# Palmas -> Santa Filomena, Goiânia
-	link = { vic = 2438 hoi = 10136 hoi = 10145 hoi = 10157 }	# Vila do Barra -> Patos de Minas, Paineiras, Uberaba
-	# 
-	link = { vic = 2422 hoi = 10124 }	# Aganja -> Rondonópolis
-	link = { vic = 2418 hoi = 10135 }	# Cuiabá -> Jacaré
-	link = { vic = 2417 hoi = 10167 }	# Vila Bela -> Cuiabá
-	link = { vic = 2550 hoi = 10095 }	# Forte do Príncipe -> Iriri
-	link = { vic = 2421 hoi = 10156 }	# Vila Boa -> Campo Grande
-	link = { vic = 2419 hoi = 10166 }	# Corumbá -> Caxim
-	link = { vic = 2416 vic = 2420 hoi = 10189 }	# Dourados, Iguatemi -> Dourados
 	# Asia
 	# Russia
 	# Middle East
@@ -3366,4 +3366,7 @@
 	link = { vic = 3107 hoi = 14142 }	# Lake Bajkal -> Lake Baikal
 	link = { vic = 3118 hoi = 14135 }	# Lake Winnipeg -> Lake Winnipeg
 	link = { vic = 3106 hoi = 14141 }	# Lake Balchasj -> Lake Balkhash
+	link = { vic = 2133 hoi = 10488 }	# South Georgia -> South Georgia
+	# Dropped lakes
+	link = { vic = 3109 vic = 3227 vic = 3228 vic = 3229 vic = 3239 vic = 3240 }	# Lake Titicaca, Great Slave Lake, Lake Athabasca, Reindeer Lake, Lake Champlain, Lake Poopo -> DROPPED
 }
