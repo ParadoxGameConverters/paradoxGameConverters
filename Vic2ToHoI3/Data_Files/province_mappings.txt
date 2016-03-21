@@ -1769,7 +1769,7 @@
 	link = { vic = 1058 hoi = 8234 hoi = 8211 hoi = 6674 hoi = 6681 hoi = 8313 hoi = 6688 hoi = 6695 hoi = 8340 hoi = 8314 hoi = 8341 hoi = 8287 hoi = 8261 hoi = 8286 }	# Ekaterinburg -> Pervoural'sk, Sverdlovsk, Kyshtym, Tiriyanski, Zlatoust, Magnitogorsk, Verkhne Uralsk, Argajas, Teca, Brodokalmak, Chelyabinsk, Kamensk Ural'skij, Verhnij Sysert
 	link = { vic = 1059 hoi = 6711 hoi = 6720 hoi = 6738 hoi = 6729 hoi = 6721 hoi = 6730 hoi = 8392 hoi = 6739 hoi = 6750 hoi = 6740 hoi = 8366 hoi = 6704 hoi = 6712 }	# Chelyabinsk -> Arkaim, Nakhtobyl, Dzhetygara, Tselinnoye, Rudniy, Kustanay, Safakulevo, Kushmurun, Ostrova, Leninskoye, Kopeysk, Troitsk, Kartaly
 	link = { vic = 1060 hoi = 6748 hoi = 6758 hoi = 6769 hoi = 6759 hoi = 6749 hoi = 6760 hoi = 6770 hoi = 6781 hoi = 6771 hoi = 6761 hoi = 6751 hoi = 6772 hoi = 6782 hoi = 6792 }	# Orsk -> Ozhernyy, Yasnyy, Svetlyy, Dombarovskiy, Dulino, Shiyli, Suykbulak, Kustakamir, Kocherdyk, Nizhnetobolnoye, Sadovoye, Temiyakovo, Uznagash, Ykasitesh
-	link = { hoi = 8094 hoi = 8103 hoi = 8115 }	# NOTHING -> Shaytanovka, Ust' Un'ya, An'judin
+	#link = { hoi = 8094 hoi = 8103 hoi = 8115 }	# NOTHING -> Shaytanovka, Ust' Un'ya, An'judin
 	# RussiaFarEast
 	link = { vic = 1088 hoi = 6875 hoi = 7120 }	# Shumshu -> Ostrov Paramusir, Ostrov Urup
 	link = { vic = 1074 hoi = 8536 hoi = 8669 hoi = 8227 hoi = 6854 }	# Petropavlovsk -> Petropavlovsk Kamcackij, Ust' Kamchatsk, Kikhchik, Komandorskiye Ostrova

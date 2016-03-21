@@ -449,7 +449,7 @@ struct MTo1ProvinceComp
 	int totalPopulation;
 };
 
-
+#pragma optimize("",off)
 void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, CountryMapping countryMap, const HoI3AdjacencyMapping &HoI3AdjacencyMap)
 {
 	for (auto provItr: provinces)
@@ -590,6 +590,11 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 		{
 			V2Province* sourceProvince	= sourceWorld.getProvince(srcProvinceNum);
 
+			if (sourceProvince == NULL)
+			{
+				continue;
+			}
+
 			// source provinces from other owners should not contribute to the destination province
 			if (countryMap[sourceProvince->getOwnerString()] != provItr->second->getOwner())
 			{
@@ -679,7 +684,7 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 		}
 	}
 }
-
+#pragma optimize("",on)
 
 void HoI3World::convertTechs(V2World& sourceWorld)
 {
