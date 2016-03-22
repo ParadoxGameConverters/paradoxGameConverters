@@ -1397,8 +1397,8 @@
 	link = { vic = 671 hoi = 3037 hoi = 3105 }	# Botosani -> Dorohoi, Botosani
 	link = { vic = 670 hoi = 3240 hoi = 3173 hoi = 3375 hoi = 3306 }	# Iasi -> Vaslui, Husi, Bârlad, Iasi
 	link = { vic = 673 hoi = 3445 hoi = 3305 }	# Galati -> Galati, Tecuci
-	link = { vic = 676 hoi = 3308 hoi = 3241 hoi = 3038 hoi = 3307 hoi = 3174 }	# Chisinau -> Ermoclia, Bender, Chisinau, Cahul, Tiraspol
-	link = { vic = 677 hoi = 3172 hoi = 3106 hoi = 2838 hoi = 2969 }	# Balti -> Balti, Orhei, Rybnica, Soroca
+	link = { vic = 676 hoi = 3308 hoi = 3241 hoi = 3038 hoi = 3307 }	# Chisinau -> Ermoclia, Bender, Chisinau, Cahul
+	link = { vic = 677 hoi = 3172 hoi = 3106 hoi = 2969 }	# Balti -> Balti, Orhei, Soroca
 	# Transylvania
 	link = { vic = 653 hoi = 3572 hoi = 3640 hoi = 3774 }	# Resicabánya -> Resita, Caransebes, Mehadia
 	link = { vic = 652 hoi = 3573 hoi = 3505 hoi = 3706 hoi = 3506 hoi = 3639 hoi = 3438 }	# Temesvar -> Arad, Sânnicolau Mare, Timisoara, Lipova, Lugoj, Faget
@@ -1515,7 +1515,7 @@
 	# Zaporozhia, Bessarabia
 	link = { vic = 678 hoi = 3377 hoi = 3446 hoi = 3513 hoi = 3512 hoi = 3376 }	# Izmail -> Cetatea Alba, Kilia, Ismail, Reni, Artsyz
 	link = { vic = 968 hoi = 3242 hoi = 3309 hoi = 3243 hoi = 2523 }	# Odessa -> Illichivsk, Odessa, Ochakiv, Berezanka
-	link = { vic = 969 hoi = 3107 hoi = 2971 hoi = 3040 hoi = 3041 hoi = 3108 hoi = 3175 hoi = 2905 hoi = 3039 hoi = 2904 hoi = 3109 hoi = 2907 hoi = 2973 hoi = 2906 }	# Pervomaisk -> Ananyiv, Balta, Pervomaysk, Kotovsk, Lyubashivka, Berezivka, Budei, Kodyma, Ulyanovka, Rozdilna, Veselynove, Arbuzynka, Lypnyazhka
+	link = { vic = 969 hoi = 3107 hoi = 2971 hoi = 3040 hoi = 3041 hoi = 3108 hoi = 3175 hoi = 2905 hoi = 3039 hoi = 2904 hoi = 3109 hoi = 2907 hoi = 2973 hoi = 2906 hoi = 3174 hoi = 2838 }	# Pervomaisk -> Ananyiv, Balta, Pervomaysk, Kotovsk, Lyubashivka, Berezivka, Budei, Kodyma, Ulyanovka, Rozdilna, Veselynove, Arbuzynka, Lypnyazhka, Tiraspol, Rybnica
 	link = { vic = 970 hoi = 3176 hoi = 3244 hoi = 3111 hoi = 3177 hoi = 2586 hoi = 2647 hoi = 3110 hoi = 3043 }	# Nikolaev -> Nova Odesa, Mykolaiv, Dobre, Snihurivka, Novovorontsovka, Yelanets, Bashtanka, Novy Buh
 	link = { vic = 971 hoi = 2975 hoi = 2778 hoi = 2909 hoi = 2715 hoi = 2714 hoi = 3044 hoi = 2716 }	# Krivoy Rog -> Kryvyy Rih, Piatykhatky, Dniprodzerzhynsk, Soljonoje, Kamianka, Nikopol, Ordzhonikidze
 	link = { vic = 972 hoi = 2843 hoi = 2976 hoi = 2910 hoi = 2779 hoi = 2719 hoi = 2652 hoi = 2977 }	# Ekaterinoslav -> Dnipropetrovsk, Zaporizhzhya, Synelnykove, Pavlohrad, Pokrovske, Rozivka, Polohy
@@ -1542,7 +1542,7 @@
 	# Stavropol, Balkaria, Kalmykia
 	link = { vic = 1050 hoi = 3123 hoi = 3255 hoi = 3390 hoi = 3321 hoi = 3388 hoi = 3457 hoi = 3522 hoi = 3587 hoi = 3387 hoi = 3320 hoi = 3253 hoi = 3252 hoi = 3187 hoi = 3185 hoi = 3251 hoi = 3318 hoi = 3386 hoi = 3455 hoi = 3385 hoi = 3250 hoi = 3586 hoi = 3316 hoi = 3716 hoi = 3383 hoi = 3588 hoi = 3650 hoi = 3523 hoi = 3459 hoi = 3590 hoi = 3589 hoi = 3460 hoi = 3525 hoi = 3056 }	# Stavropol -> Turksad, Chograyskiy, Velichaevskoye, Olgino, Sotnikovskoye, Petrovskoye, Georgiyevsk, Nevinnomysskaya, Blagodarnoye, Divnoe, Krasny Manych, Ipatovo, Kendzhe Kulag, Krasnogvardeyskoye, Izobilnoye, Tuguluk, Voroshilovsk, Sultan, Novy Yankul, Novoaleksandrovskaya, Kursavka, Severnoye, Kislovodsk, Yessentuki, Mineralnye Vody, Pjatigorsk, Kommayak, Arzgir, Budennovsk, Vorontsovo Alexandrovskoye, Makhmud Mekteb, Mirnyy, Manych
 	link = { vic = 1056 hoi = 3852 hoi = 3783 hoi = 3718 hoi = 3784 hoi = 3717 hoi = 3651 hoi = 3319 hoi = 3520 }	# Pyatigorsk -> Tashly Tala, Bezengi, Terek, Sadon, Dokshukino, Nalchik, Prokhladny, Nizhniy Baksan
-	link = { vic = 1041 hoi = 3129 hoi = 3464 hoi = 3529 hoi = 3594 hoi = 3462 hoi = 3194 hoi = 3259 hoi = 3325 hoi = 3392 hoi = 3324 hoi = 3258 hoi = 3193 hoi = 3128 hoi = 3061 hoi = 2992 hoi = 2926 hoi = 2730 hoi = 2796 hoi = 2860 hoi = 2795 hoi = 2729 hoi = 2664 hoi = 2598 hoi = 2475 hoi = 2474 hoi = 2415 hoi = 2357 hoi = 2414 hoi = 2356 hoi = 2413 hoi = 2355 hoi = 2412 hoi = 2531 hoi = 2471 hoi = 2472 hoi = 2533 hoi = 2595 hoi = 2532 hoi = 2594 hoi = 2659 hoi = 2725 hoi = 2791 hoi = 2790 hoi = 2855 hoi = 2921 hoi = 2987 hoi = 3055 hoi = 3124 hoi = 2988 hoi = 3057 hoi = 2989 hoi = 2922 hoi = 2856 hoi = 2726 hoi = 2660 hoi = 2661 hoi = 2727 hoi = 2596 hoi = 2473 hoi = 2534 hoi = 2662 hoi = 2535 hoi = 2663 hoi = 2597 hoi = 2728 hoi = 2794 hoi = 2859 hoi = 2924 hoi = 3059 hoi = 2990 hoi = 2858 hoi = 2793 hoi = 2857 hoi = 2792 hoi = 2923 hoi = 3058 hoi = 3125 hoi = 3191 hoi = 3257 hoi = 3192 hoi = 3126 hoi = 3127 hoi = 2991 hoi = 2925 hoi = 2665 hoi = 2599 hoi = 2536 hoi = 2358 hoi = 2416 hoi = 3060 hoi = 3120 hoi = 3186 hoi = 3121 hoi = 3190 hoi = 3323 hoi = 3189 hoi = 3188 hoi = 3256 hoi = 3118 hoi = 2411 }	# Elitsa -> Mikhaylovka, Astrahan, Kuryk, Bandar e Shah, Artezian, Kirovskiy, Bakhtemir, Lagan, Zvezdnyy, Sultan, Liman, Olya, Kamyzyak, Nachalovo, Raznochinovka, Shungay, Kaysatskoye, Dzhanibek, Saykin, Put Ilicha, Zolotari, Staraya Ivantsovka, Gmelinka, Kharkovka, Levuchnovka, Berezhnovka, Kamyshin, Gornyy Balyklev, Kotovo, Olkhovka, Kireevo, Obraztsy, Gumrak, Gorodishche, Dubovka, Olkhovka, Log, Frolovo, Novyy Rogachik, Lugovoy, Abganerovo, Ketchenery, Kanukovo, Kichkino, Kegulta, Tarata, Bogorodskoye, Baga Burul, Sharva, Yashkul, Privolnyy, Altn Bulg, Druzhnyy, Solodniki, Krasnoarmeysk, Kapustin Yar, Akhtuba, Gorniy Balikley, Kamysin, Nikolayeskaya Sloboda, Dubovka, Meliorator, Krasnoselets, Alexandrovka, Demidov, Kharabali, Kolobovka, Tabun Aral, Saygachny, Smushkovoye, Enotaevka, Tsagan Aman, Stalingrad, Chernyy Yar, Kharba, Utta, Khargata, Ozernyy, Tsuva, Zenzeli, Atsan Khuduk, Lineynoye, Nizhnevolzhskoye, Simkin, Bolchevik, Pallasovka, Vodyanka, Lugovskoye, Staraya Poltavka, Fort Aleksandrovsky, Bashanta, Manychskoye, Uralan, Raduzhny, Elista, Pervomayskiy, Priyutnoye, Vorobevka, Kormovoye, Nikolskoye
+	link = { vic = 1041 hoi = 3129 hoi = 3464 hoi = 3462 hoi = 3194 hoi = 3259 hoi = 3325 hoi = 3392 hoi = 3324 hoi = 3258 hoi = 3193 hoi = 3128 hoi = 3061 hoi = 2992 hoi = 2926 hoi = 2730 hoi = 2796 hoi = 2860 hoi = 2795 hoi = 2729 hoi = 2664 hoi = 2598 hoi = 2475 hoi = 2474 hoi = 2415 hoi = 2357 hoi = 2414 hoi = 2356 hoi = 2413 hoi = 2355 hoi = 2412 hoi = 2531 hoi = 2471 hoi = 2472 hoi = 2533 hoi = 2595 hoi = 2532 hoi = 2594 hoi = 2659 hoi = 2725 hoi = 2791 hoi = 2790 hoi = 2855 hoi = 2921 hoi = 2987 hoi = 3055 hoi = 3124 hoi = 2988 hoi = 3057 hoi = 2989 hoi = 2922 hoi = 2856 hoi = 2726 hoi = 2660 hoi = 2661 hoi = 2727 hoi = 2596 hoi = 2473 hoi = 2534 hoi = 2662 hoi = 2535 hoi = 2663 hoi = 2597 hoi = 2728 hoi = 2794 hoi = 2859 hoi = 2924 hoi = 3059 hoi = 2990 hoi = 2858 hoi = 2793 hoi = 2857 hoi = 2792 hoi = 2923 hoi = 3058 hoi = 3125 hoi = 3191 hoi = 3257 hoi = 3192 hoi = 3126 hoi = 3127 hoi = 2991 hoi = 2925 hoi = 2665 hoi = 2599 hoi = 2536 hoi = 2358 hoi = 2416 hoi = 3120 hoi = 3186 hoi = 3121 hoi = 3190 hoi = 3323 hoi = 3189 hoi = 3188 hoi = 3256 hoi = 3118 hoi = 2411 }	# Elitsa -> Mikhaylovka, Astrahan, Artezian, Kirovskiy, Bakhtemir, Lagan, Zvezdnyy, Sultan, Liman, Olya, Kamyzyak, Nachalovo, Raznochinovka, Shungay, Kaysatskoye, Dzhanibek, Saykin, Put Ilicha, Zolotari, Staraya Ivantsovka, Gmelinka, Kharkovka, Levuchnovka, Berezhnovka, Kamyshin, Gornyy Balyklev, Kotovo, Olkhovka, Kireevo, Obraztsy, Gumrak, Gorodishche, Dubovka, Olkhovka, Log, Frolovo, Novyy Rogachik, Lugovoy, Abganerovo, Ketchenery, Kanukovo, Kichkino, Kegulta, Tarata, Bogorodskoye, Baga Burul, Sharva, Yashkul, Privolnyy, Altn Bulg, Druzhnyy, Solodniki, Krasnoarmeysk, Kapustin Yar, Akhtuba, Gorniy Balikley, Kamysin, Nikolayeskaya Sloboda, Dubovka, Meliorator, Krasnoselets, Alexandrovka, Demidov, Kharabali, Kolobovka, Tabun Aral, Saygachny, Smushkovoye, Enotaevka, Tsagan Aman, Stalingrad, Chernyy Yar, Kharba, Utta, Khargata, Ozernyy, Tsuva, Zenzeli, Atsan Khuduk, Lineynoye, Nizhnevolzhskoye, Simkin, Bolchevik, Pallasovka, Vodyanka, Lugovskoye, Staraya Poltavka, Bashanta, Manychskoye, Uralan, Raduzhny, Elista, Pervomayskiy, Priyutnoye, Vorobevka, Kormovoye, Nikolskoye
 	# Dagestan
 	link = { vic = 1054 hoi = 3785 hoi = 3925 hoi = 3853 hoi = 3719 hoi = 3652 hoi = 3389 }	# Vladikavkaz -> Sagol, Ordzhonikidze, Alagir, Mozdok, Malgobek, Karabulakskaya
 	link = { vic = 1055 hoi = 3653 hoi = 3786 hoi = 3787 hoi = 3855 hoi = 7105 hoi = 3591 hoi = 3592 }	# Grozny -> Urus Martan, Goragorskiy, Shali, Borzoy, Groznyj, Alpatovo, Gudermes
@@ -1598,7 +1598,7 @@
 	link = { vic = 876 hoi = 4619 hoi = 4620 hoi = 4673 hoi = 4727 hoi = 4779 hoi = 4728 hoi = 4780 hoi = 4507 hoi = 4564 hoi = 4618 hoi = 4675 hoi = 4566 hoi = 4729 }	# Ankara -> Ankara, Sulakyurt, Polatli, Sülüklü, Kulu, Kirikkale, Nevsehir, Orta, Gerede, Güdül, Delice, Kizirlirmak, Kirsehir
 	link = { vic = 877 hoi = 4380 hoi = 4445 hoi = 4509 hoi = 4621 hoi = 4676 hoi = 4511 hoi = 4381 }	# Amasya -> Amasya, Corum, Iskilip, Sungurlu, Yozgat, Kaynar, Turhal
 	link = { vic = 878 hoi = 4973 hoi = 4929 hoi = 4781 hoi = 4730 hoi = 4782 hoi = 4731 hoi = 4677 }	# Kayseri -> Eregli, Camardi, Kayseri, Hasbek, Kahramanmaras, Afsin, Göksun
-	link = { vic = 894 hoi = 4975 hoi = 4882 hoi = 4930 }	# Adana -> Osmaniye, Kozan, Bahce
+	link = { vic = 894 hoi = 4975 hoi = 4882 hoi = 4930 hoi = 4974 }	# Adana -> Osmaniye, Kozan, Bahce, Adana
 	link = { vic = 896 hoi = 4931 hoi = 4832 hoi = 4783 hoi = 4624 hoi = 4678 }	# Marash -> Islahye, Pazarcik, Adiyaman, Elazig, Malatya
 	link = { vic = 898 hoi = 4884 hoi = 4883 hoi = 7354 }	# Antep -> Sanliurfa, Gaziantep, Derik
 	# Trabzon
@@ -1637,7 +1637,7 @@
 	link = { vic = 1009 hoi = 1319 hoi = 1408 hoi = 1274 hoi = 1273 hoi = 1318 hoi = 1230 hoi = 1363 hoi = 1233 hoi = 1275 hoi = 1190 hoi = 1149 hoi = 1189 hoi = 1232 hoi = 1320 }	# Borodino -> Nikolskoye, Volokolamsk, Ruza, Novodugino, Sukhoverkovo, Sychevka, Lotoshino, Khimki, Istra, Klin, Novozavidovskiy, Kozlovo, Vysokovsk, Zvenigorod
 	link = { vic = 1010 hoi = 1453 hoi = 1452 hoi = 1108 hoi = 1496 hoi = 1450 hoi = 1364 hoi = 1365 hoi = 1321 }	# Kaluga -> Obninsk, Juhnov, Myatlevo, Ugra, Viaz'ma, Mozhaysk, Naro Fominsk, Odintsovo
 	link = { vic = 1014 hoi = 1493 hoi = 1535 hoi = 1147 hoi = 1494 hoi = 1449 hoi = 1187 hoi = 1272 hoi = 1448 }	# Vyazma -> Yartsevo, Dorogobuz, Ozernyy, Safonovo, Izdeshkovo, Dukovshchina, Belyy, Holm Zirkovskij
-	link = { vic = 1015 hoi = 1540 hoi = 1497 hoi = 1539 hoi = 1641 hoi = 1587 hoi = 1642 hoi = 1640 hoi = 1584 }	# Peremyshl -> Bytosh, Spas Demensk, Mozhaysk, Kozelsk, Ekimovichi, Belev, Sukhinichi, Yelnya
+	link = { vic = 1015 hoi = 1540 hoi = 1497 hoi = 1539 hoi = 1641 hoi = 1587 hoi = 1642 hoi = 1640 hoi = 1584 hoi = 1637 }	# Peremyshl -> Bytosh, Spas Demensk, Mozhaysk, Kozelsk, Ekimovichi, Belev, Sukhinichi, Yelnya, Roslavl
 	# Karelia
 	link = { vic = 988 hoi = 474 hoi = 437 hoi = 407 hoi = 379 hoi = 355 hoi = 378 hoi = 405 hoi = 406 hoi = 306 hoi = 287 hoi = 166 hoi = 269 hoi = 354 hoi = 353 hoi = 330 hoi = 331 }	# Povyents -> Avdeevo, Yangozero, Peschanoe, Kyappaselga, Danilovo, Gabselga, Medvezhegorsk, Sungu, Padany, Segezha, Unezhma, Yelmozero, Maselskaya, Pryakkila, Kolezhma, Chelmuzhi
 	link = { vic = 995 hoi = 473 hoi = 544 hoi = 583 hoi = 620 hoi = 621 hoi = 436 hoi = 108 hoi = 254 hoi = 545 hoi = 622 hoi = 584 hoi = 225 hoi = 582 hoi = 508 hoi = 377 }	# Petrozavorsk -> Pryazha, Olonets, Podporozhe, Svirstroy, Gomorovichi, Petrozadovsk, Ladva, Kotkozero, Sheltozero, Oshta, Klimovskaya, Tokari, Vidlica, Veshkelitsy, Pyalozero
@@ -1687,33 +1687,33 @@
 	# Astrakhan
 	link = { vic = 1036 hoi = 2995 hoi = 2733 hoi = 2798 hoi = 2862 hoi = 2863 hoi = 2994 hoi = 2928 hoi = 3130 hoi = 2731 hoi = 2797 hoi = 2861 hoi = 2927 hoi = 2993 hoi = 3062 hoi = 2667 hoi = 2732 hoi = 2666 hoi = 2601 }	# Astrakhan -> Aybas, Tash, Dzhanatala, Borli, Uyali, Azgir, Noviy Ushtagan, Priozerniy, Zhiyenbat, Zhetibay, Urda, Terekiy, Tyuligen, Kharbali, Beketay, Aybash, Burli, Bisen
 	link = { vic = 1039 hoi = 2063 hoi = 2006 hoi = 2064 hoi = 2123 hoi = 2065 hoi = 2124 hoi = 2125 hoi = 2183 hoi = 2242 hoi = 2298 hoi = 2241 hoi = 2297 hoi = 2182 hoi = 2354 hoi = 2240 hoi = 2181 hoi = 2296 hoi = 2239 hoi = 2353 hoi = 2295 hoi = 2180 hoi = 2238 hoi = 2352 hoi = 2294 hoi = 2237 hoi = 2179 hoi = 2122 hoi = 2121 hoi = 2178 hoi = 2177 hoi = 2236 hoi = 2293 hoi = 2066 hoi = 2126 hoi = 2184 hoi = 2299 hoi = 2243 hoi = 2244 hoi = 2185 hoi = 2300 hoi = 2127 hoi = 2068 hoi = 2301 hoi = 2245 hoi = 2187 hoi = 2128 hoi = 2186 hoi = 2129 }	# Tsaritsyn -> Novonikolaevskiy, Mazurka, Balzer, Kikvidse, Pichurino, Samoylovka, Lemeshkino, Rudnya, Krasniy Yar, Popki, Lopukhovka, Danilovka, Morets, Bulgurino, Elan, Preobrazhenskaya, Trostyanskiy, Novoanninskiy, Mikhailovka, Trekhlozhinskiy, Zelenyy, Alekseevskaya, Kozlov, Ostrovkhov, Nekhaevskiy, Lukovskaya, Deminskiy, Uryupinsk, Manino, Buturlinovka, Kalach, Dinamo, Aleksandrovka, Medveditsa, Elshanka, Umet, Shcherbatovka, Krivoyar, Zeleneiy Dol, Tsikovo, Krasnoarmeysk, Saratov, Dyakovka, Mokrous, Penzenka, Sovetskoye, Krasniy Kut, Lubimovo
-	link = { vic = 1040 hoi = 2417 hoi = 2360 hoi = 2418 hoi = 2477 hoi = 2419 hoi = 2478 hoi = 2538 hoi = 2537 hoi = 2476 hoi = 2600 hoi = 2359 hoi = 2302 hoi = 2246 hoi = 2303 hoi = 2361 hoi = 2362 hoi = 2539 hoi = 2602 }	# Zarevka -> Agafonoyka, Stalinsk, Alexandrov Gai, Kaztalovka, Furmanovo, Zhulduz, Tlinshe, Torgun, Zernovoy, Agartu, Chkalovo, Novotulka, Krasnyanka, Bessonovka, Peschahniy Mar, Aram Khardak, Karasu, Pyatimarskoye
+	link = { vic = 1040 hoi = 2417 hoi = 2360 hoi = 2418 hoi = 2477 hoi = 2419 hoi = 2478 hoi = 2538 hoi = 2537 hoi = 2476 hoi = 2600 hoi = 2359 hoi = 2302 hoi = 2246 hoi = 2303 hoi = 2361 hoi = 2362 hoi = 2539 hoi = 2602 hoi = 2420 }	# Zarevka -> Agafonoyka, Stalinsk, Alexandrov Gai, Kaztalovka, Furmanovo, Zhulduz, Tlinshe, Torgun, Zernovoy, Agartu, Chkalovo, Novotulka, Krasnyanka, Bessonovka, Peschahniy Mar, Aram Khardak, Karasu, Pyatimarskoye, Krasnogorskoye
 	# Nenetsia
 	link = { vic = 985 hoi = 131 hoi = 167 hoi = 409 hoi = 186 }	# Mezen -> Vizhas, Mezen, Yuromsk, Vozhgorskoe
 	link = { vic = 986 hoi = 358 hoi = 79 hoi = 132 }	# Naryn Mar -> Indiga, Bugrino, Sula
 	link = { vic = 2589 hoi = 96 }	# Shoyna -> Khabarovka
-	link = { vic = 2687 hoi = 8104 hoi = 385 }	# Amderma -> Chernaya, Denisovka
+	link = { vic = 2687 hoi = 8104 hoi = 385 hoi = 717 hoi = 413 }	# Amderma -> Chernaya, Denisovka, Vorkuta, Makarikha
 	link = { vic = 2688 hoi = 336 }	# Inta -> Naryan Mar
 	link = { vic = 2699 hoi = 97 hoi = 513 }	# Izhma -> Burduy, Ust Tsilma
 	# Perm
-	link = { vic = 1026 hoi = 6644 hoi = 1290 hoi = 6668 hoi = 6658 hoi = 6662 hoi = 8191 hoi = 8138 hoi = 8137 hoi = 8149 hoi = 8125 hoi = 8136 hoi = 1285 hoi = 1244 hoi = 8233 hoi = 8259 hoi = 1516 hoi = 1424 hoi = 1510 hoi = 1284 }	# Perm -> Urzum, Sura, Buinsk, Svijaga, Nurlaty, Perm, Burmantovo, Porog, Meldino, Troicko Pecorsk, Vojvoz, Lebjaz'e, Pozva, Cajkovskij, Sarapul, Tagay, Djurtjuli, Glazov, Suna
+	link = { vic = 1026 hoi = 6644 hoi = 1290 hoi = 6668 hoi = 6658 hoi = 6662 hoi = 8191 hoi = 8138 hoi = 8137 hoi = 8149 hoi = 8125 hoi = 8136 hoi = 1285 hoi = 1244 hoi = 8233 hoi = 8259 hoi = 1516 hoi = 1424 hoi = 1510 hoi = 1284 hoi = 8115 hoi = 8150 hoi = 8162 hoi = 8151 hoi = 8163 hoi = 8175 hoi = 8192 hoi = 8176 hoi = 8210 hoi = 8260 hoi = 8285 hoi = 8234 }	# Perm -> Urzum, Sura, Buinsk, Svijaga, Nurlaty, Perm, Burmantovo, Porog, Meldino, Troicko Pecorsk, Vojvoz, Lebjaz'e, Pozva, Cajkovskij, Sarapul, Tagay, Djurtjuli, Glazov, Suna, An'judin, Ust' Man'ja, Berezniki, Nizhnaya Tura, Ust Uls, Lys'va, Niznij Tagil, Kirovgrad, Salja, Acit, Krasnoufimsk, Pervoural'sk
 	link = { vic = 1029 hoi = 845 hoi = 641 hoi = 805 hoi = 6630 hoi = 889 hoi = 6628 hoi = 764 hoi = 972 hoi = 930 hoi = 1012 hoi = 1088 hoi = 1125 hoi = 1007 hoi = 1013 hoi = 8174 hoi = 8190 hoi = 6640 hoi = 927 hoi = 6637 hoi = 890 hoi = 6636 hoi = 966 hoi = 6634 hoi = 6633 hoi = 8161 hoi = 8148 hoi = 6631 hoi = 489 hoi = 884 }	# Glasov -> Morovo, Tyla Lol, Khalturin, Panin, Pinjug, Severnaja Dvina, Sol'vycegodsk, Yakshanga, Luza, Krasnoe, Kotel'nic, Vahtan, Citajevo, Ob''jacevo, Kudymkar, Kirovo Cepeck, Kirov, Letka, Orlov, Vizinga, Podz, Kojgorodok, Kazim, Teplogorka, Ust' Kulom, Puzla, Storozevsk, Syktyvkar, Chernorechenskiy
 	link = { vic = 1031 hoi = 1420 hoi = 6654 hoi = 1292 hoi = 1207 hoi = 6642 hoi = 6646 hoi = 6639 hoi = 1200 hoi = 6650 hoi = 1119 hoi = 8209 hoi = 6657 hoi = 6647 hoi = 6651 hoi = 6655 }	# Sarapul -> Zelenodol'sk, Volzsk, Kuzener, Morki, Jaransk, Tuza, Arbaz, Sovetsk, Bol'saja Atnja, Vjatka, Izevsk, Urmary, Nolinsk, Arsk, Privolzhskiy
-	link = { vic = 2689 hoi = 552 hoi = 708 hoi = 593 }	# Mulda -> Chibya, Oshkurya, Porog
-	link = { vic = 2700 hoi = 8092 hoi = 8113 hoi = 6625 hoi = 8124 hoi = 6629 hoi = 8114 hoi = 8102 hoi = 6627 hoi = 6626 hoi = 634 hoi = 836 hoi = 563 hoi = 525 hoi = 602 hoi = 564 hoi = 603 hoi = 562 hoi = 601 hoi = 639 hoi = 640 hoi = 600 }	# Usogorsk -> Niznij Odes, Ust' Nem, Pozheg, Mikun', Ezva, Sindor, Kanava, Zesan, Kerchemskoe, Pezmog, Storochevsk, Ust' Kulom, Kortkeros, Kvasskiy Mis, Komi, Severniyy, Belorechenskiy, Ust Erga, Cherevkovo, Purgalo, Ust'ja
+	link = { vic = 2689 hoi = 552 hoi = 708 hoi = 593 hoi = 8093 hoi = 524 hoi = 8116 hoi = 8126 hoi = 8094 hoi = 8103 hoi = 8092 }	# Mulda -> Chibya, Oshkurya, Porog, Ust Usa, Inta, Ugolny, Njaksimvol', Shaytanovka, Ust' Un'ya, Niznij Odes
+	link = { vic = 2700 hoi = 8113 hoi = 6625 hoi = 8124 hoi = 6629 hoi = 8114 hoi = 8102 hoi = 6627 hoi = 6626 hoi = 634 hoi = 836 hoi = 563 hoi = 525 hoi = 602 hoi = 564 hoi = 603 hoi = 562 hoi = 601 hoi = 639 hoi = 640 hoi = 600 }	# Usogorsk -> Ust' Nem, Pozheg, Mikun', Ezva, Sindor, Kanava, Zesan, Kerchemskoe, Pezmog, Storochevsk, Ust' Kulom, Kortkeros, Kvasskiy Mis, Komi, Severniyy, Belorechenskiy, Ust Erga, Cherevkovo, Purgalo, Ust'ja
 	# Samara (less Orsk)
 	link = { vic = 1034 hoi = 6700 hoi = 6691 hoi = 1720 hoi = 1661 hoi = 6699 hoi = 6706 hoi = 1780 hoi = 1560 hoi = 1607 hoi = 1721 hoi = 1660 hoi = 1606 hoi = 1659 }	# Samara -> Sizran, Kuzkino, Sengiley, Nagatkino, Terenga, Novospasskoye, Kuzovatovo, Stogovka, Khvostikha, Golovino, Barysh, Noviy Dol, Chuvaskhaya Reshetka
 	link = { vic = 1035 hoi = 1718 hoi = 1719 hoi = 1779 hoi = 1839 hoi = 1605 hoi = 1557 hoi = 1604 hoi = 1603 hoi = 1657 hoi = 1602 hoi = 1554 hoi = 1898 hoi = 1838 hoi = 1778 hoi = 6708 }	# Syzran -> Voronovka, Golovtsevo, Popovka, Khvalynsk, Saransk, Yurlovka, Stawropol Volshskiy, Sengiley, Syzran, Barysh, Inza, Shirokiy Buerak, Selitba, Cherkasskoye, Kuybyshev
-	link = { vic = 1042 hoi = 6672 hoi = 6684 hoi = 6685 hoi = 6679 hoi = 6678 hoi = 6686 hoi = 6692 hoi = 1082 hoi = 1160 hoi = 1555 hoi = 6669 hoi = 6680 hoi = 6673 hoi = 6693 }	# Ufa -> Bolshiye Tarkhany, Mamykovo, Melekes, Nurlat, Kargali, Isakly, Stavropol na Volge, Tinchali, Tsilina, Cheremushki, Ufa, Oktjabr'skij, Al'met'evsk, Abdulino
+	link = { vic = 1042 hoi = 6672 hoi = 6684 hoi = 6685 hoi = 6679 hoi = 6678 hoi = 6686 hoi = 6692 hoi = 1082 hoi = 1160 hoi = 1555 hoi = 6669 hoi = 6680 hoi = 6673 hoi = 6693 hoi = 1380 hoi = 6674 hoi = 6681 hoi = 6688 hoi = 1513 hoi = 6687 hoi = 6694 }	# Ufa -> Bolshiye Tarkhany, Mamykovo, Melekes, Nurlat, Kargali, Isakly, Stavropol na Volge, Tinchali, Tsilina, Cheremushki, Ufa, Oktjabr'skij, Al'met'evsk, Abdulino, Magnitogorsk, Kyshtym, Tiriyanski, Magnitogorsk, Beloretsk, Sibaj, Askirovo
 	link = { vic = 1043 hoi = 1781 hoi = 1841 hoi = 6715 hoi = 6733 hoi = 1902 hoi = 2017 hoi = 2133 hoi = 2074 hoi = 1961 hoi = 2132 hoi = 2016 hoi = 2073 hoi = 2015 hoi = 1960 hoi = 1901 hoi = 1840 hoi = 1900 hoi = 1959 hoi = 1899 hoi = 6754 hoi = 2191 }	# Busuluk -> Sayman, Kanadey, Staraya Kulatka, Perelyyub, Pavlovka, Grachev Kust, Kunakbayev, Rakhmanovka, Yablonoviy Gai, Karlovka, Klevenka, Chapayevskiy, Razdolnoye, Bolshaya Tavolozhka, Znamenskiy, Nikolayevka, Pugachev, Maloperekopnoye, Novonikolayevskiy, Mashtakov, Tarakhova
-	link = { vic = 1044 hoi = 6726 hoi = 6717 hoi = 6701 hoi = 6709 hoi = 6707 hoi = 6716 hoi = 6725 hoi = 6724 hoi = 6734 hoi = 6744 hoi = 1658 }	# Orenburg -> Aleksandrovka, Borskoe, Otradnyj, Buguruslan, Kuznetsk, Capaevsk, Buzuluk, Radishchevo, Pestravka, Bol 'soj Irgiz, Papuzi
+	link = { vic = 1044 hoi = 6726 hoi = 6717 hoi = 6701 hoi = 6709 hoi = 6707 hoi = 6716 hoi = 6725 hoi = 6724 hoi = 6734 hoi = 6744 hoi = 1658 hoi = 6702 hoi = 6718 hoi = 6736 hoi = 6747 hoi = 6737 hoi = 6727 hoi = 6719 hoi = 6728 hoi = 6710 hoi = 6703 }	# Orenburg -> Aleksandrovka, Borskoe, Otradnyj, Buguruslan, Kuznetsk, Capaevsk, Buzuluk, Radishchevo, Pestravka, Bol 'soj Irgiz, Papuzi, Verhne Avzjan, Kumertau, Gaj, Novoorsk, Aymagambetov, Krasnojarskij, Baymak, Khedibinsk, Juldybajevo, Sibay
 	# Uralsk (the European parts)
 	link = { vic = 1182 hoi = 6909 hoi = 6888 hoi = 14099 hoi = 6932 hoi = 3065 hoi = 3064 hoi = 6887 hoi = 2996 hoi = 2930 hoi = 6889 hoi = 6863 hoi = 6864 hoi = 6843 hoi = 6842 hoi = 2864 hoi = 6825 hoi = 6799 hoi = 2734 hoi = 2480 hoi = 2668 hoi = 2929 hoi = 3197 hoi = 3131 hoi = 2799 hoi = 2540 hoi = 2479 hoi = 6786 hoi = 2421 }	# Guryev -> Munayly, Kul'sary, Dossor Kulsary, Koschagyl, Baychunas, Atyrauskaya, Koshkar, Dossor, Makat, Shirkala, Komsomol'skiy, Mukur, Sagyz, Peski Taysoygan, Zelenoye, Uil, Aralsor, Bazarchulan, Aksayk, Inder, Ryn Peski, Zhaltyr, Kyzylbas, Novaya Kazanka, Inderborskiy, Ushenino, Bolshaya Chagan, Dzhangala
 	link = { vic = 2610 hoi = 6776 hoi = 6755 hoi = 6745 hoi = 6735 hoi = 6746 hoi = 6757 hoi = 6767 hoi = 6756 hoi = 6766 hoi = 6777 hoi = 6800 hoi = 6787 hoi = 6812 hoi = 6813 hoi = 6826 hoi = 2603 hoi = 6765 }	# Uralsk -> Ural, Ural'sk, Dar'inskoye, Novosergievka, Orenburg, Kuvandyk, Akbulak, Aksay, Shalkar, Sol' Ileck, Shubarkuduk, Karatobe, Itmurinkol', Miyaly, Sagiz, Chapyev, Peremetnoye
 	# UNDONE
 	link = { vic = 1876 hoi = 10631 }	# Cape Verde -> Cape Verde Islands
 	# Russia
-	link = { vic = 2614 hoi = 717 hoi = 413 hoi = 524 hoi = 416 }	# Mordiyakha -> Vorkuta, Makarikha, Inta, Inta
+	link = { vic = 2614 hoi = 920 }	# Mordiyakha -> Muzhi
 	link = { vic = 1205 hoi = 7357 hoi = 7347 hoi = 7108 hoi = 7254 hoi = 7309 hoi = 7272 hoi = 7227 hoi = 7202 hoi = 7177 hoi = 7203 hoi = 7228 hoi = 7255 hoi = 7291 hoi = 7271 hoi = 7253 hoi = 7290 hoi = 7308 hoi = 7334 hoi = 7322 }	# Kyzyl Arvat -> Esenguly, Sharlouk, Nizh Aydere, Garrygala, Gyzylarbat, Vpadina Assake Audan, Chink Kaplankyr, Tamdy, Krasnovodsk, Solonchak Kendyrlisor, Uval Muzbel', Darvaza, Gory Koymatdag, Solonchak Shokozakhly, Zaliv Kara Bogaz Gol, Nefte Dag, Nebitdag, Bugdayli, Karagez
 	link = { vic = 1204 hoi = 7335 hoi = 7323 hoi = 9022 hoi = 7181 hoi = 7310 hoi = 7292 hoi = 7273 hoi = 7256 hoi = 7293 hoi = 7205 hoi = 7229 }	# Ashkhabad -> Ashgabat, Yelbarsli, Kaka, Chaacha, Murzechirla, Kazy, Yerbent, Urgench, Gaz Achak, Khorazm, Dashoguz
 	link = { vic = 1206 hoi = 9051 hoi = 9078 hoi = 9132 hoi = 9107 hoi = 9079 hoi = 9053 hoi = 9024 hoi = 9052 hoi = 8998 hoi = 9023 hoi = 8997 hoi = 7274 hoi = 8972 hoi = 7206 hoi = 7230 hoi = 7231 hoi = 8902 hoi = 8947 hoi = 8973 hoi = 8999 hoi = 7158 hoi = 8948 hoi = 8923 hoi = 8924 hoi = 8949 hoi = 8974 }	# Merv -> Tedzhenstroy, Mary, Kala I Mor, Tagtabazar, Mukry, Karshi, Navoi, Turkmenabat, Bukhara, Cheshme, Yelbarsli, Gazli, Gory Kul'dzhuktau, Gory Auminzatau, Dzhangel'dy, Zarafshan, Yaksha, Vpadina Ayakagytma, Nurata, Samarkand, Gora Khayatbashi, Tomenaryk, Aydarly, Kentau, Suzak, Zhanatas
@@ -1740,7 +1740,7 @@
 	link = { vic = 2697 hoi = 8542 hoi = 8504 hoi = 8572 hoi = 8604 hoi = 8466 hoi = 8503 hoi = 8540 hoi = 8436 }	# Magdagachi -> Skovorodino, Urusha, Yerofey Pavlovich, Mogocha, Solov'evsk, Berezitovyy, Silka, Bomnaksk
 	# Back to Russia
 	link = { vic = 1016 hoi = 1761 hoi = 1820 hoi = 1939 hoi = 1700 hoi = 1760 hoi = 1819 hoi = 1879 hoi = 1936 hoi = 1992 hoi = 1940 hoi = 1759 hoi = 1817 hoi = 1503 hoi = 1500 hoi = 2050 }	# Bryansk -> Novozybkov, Belye Berega, Navlja, Duderovskiy, Mglin, Brjansk, Pochep, Klintsy, Starodub, Chausy, Krasnaya Gora, Kletnja, Rechitza, Zhisdra, Trubchevsk
-	link = { vic = 1194 hoi = 6908 hoi = 6933 hoi = 6957 hoi = 7035 hoi = 7067 hoi = 7129 hoi = 7178 hoi = 7153 hoi = 7086 hoi = 7051 hoi = 6999 hoi = 6978 hoi = 7018 hoi = 7034 hoi = 7050 hoi = 7066 hoi = 7107 hoi = 7128 hoi = 7085 hoi = 6934 }	# Aqtau -> Karaton, Barankul, Say Utes, Zharmysh Ondy, Uval Karabaut, Mangistauskaya, Peski Karynzharyk, Karadzhary, Ozen, Shetpe, Sor Mertvyy Kultuk, Prorva, Zaliv Komsomolets, Kyzan, Aksu, Geksay, Bekdash, Fetisovo, Aktau, Beyneu
+	link = { vic = 1194 hoi = 6908 hoi = 6933 hoi = 6957 hoi = 7035 hoi = 7067 hoi = 7129 hoi = 7178 hoi = 7153 hoi = 7086 hoi = 7051 hoi = 6999 hoi = 6978 hoi = 7018 hoi = 7034 hoi = 7050 hoi = 7066 hoi = 7107 hoi = 7128 hoi = 6934 hoi = 3063 hoi = 3262 hoi = 3132 hoi = 3196 hoi = 3395 hoi = 7085 hoi = 3060 hoi = 3529 }	# Aqtau -> Karaton, Barankul, Say Utes, Zharmysh Ondy, Uval Karabaut, Mangistauskaya, Peski Karynzharyk, Karadzhary, Ozen, Shetpe, Sor Mertvyy Kultuk, Prorva, Zaliv Komsomolets, Kyzan, Aksu, Geksay, Bekdash, Fetisovo, Beyneu, Beyneu, Prorva, Kultay, Tenga, Munayshi, Aktau, Fort Aleksandrovsky, Kuryk
 	link = { vic = 1192 hoi = 6958 hoi = 7052 hoi = 7019 hoi = 6979 hoi = 7000 hoi = 7036 }	# Nukus -> Izyndy, Uchsay, Zhaslyk, Ustyurt Plateau, Karakalpakiya, Vostochnyy Chink Ustyurta
 	link = { vic = 1191 hoi = 7053 hoi = 7069 hoi = 7088 hoi = 7110 hoi = 7131 }	# Khiva -> Taldyk, Akkala, Zheleznodorozhny, Takhtakupyr, Amudar'ya
 	link = { vic = 1196 hoi = 7180 hoi = 7204 hoi = 7155 hoi = 7179 hoi = 7130 hoi = 7154 hoi = 7109 hoi = 7068 hoi = 7087 }	# Dashhowuz -> Mangit, Keneurgench, Nukus, Zaunguzskiye Karakumy, Kegeyli, Oktyah'sk, Shumanay, Muynak, Shor Barsa Kel'mes
@@ -1760,16 +1760,16 @@
 	link = { vic = 2611 hoi = 8488 hoi = 8450 hoi = 6793 hoi = 6783 hoi = 6762 hoi = 8419 hoi = 8525 hoi = 6773 hoi = 6848 hoi = 6869 hoi = 6894 hoi = 6915 hoi = 6940 hoi = 6963 hoi = 6916 hoi = 6895 hoi = 6870 hoi = 6849 hoi = 6831 hoi = 6850 hoi = 6820 hoi = 6794 hoi = 6806 hoi = 6819 hoi = 6832 hoi = 6833 hoi = 6871 hoi = 6896 hoi = 6941 }	# Turgay -> Peski, Shumikha, Utyatskoye, Tobol, Sanatornaya, Kustapay, Lukino, Lesnikovo, Abaj, Syrta, Nikhnaya, Yasnaya, Ulutau, Nikoskiy, Romanovo, Novokaminka, Yalym, Kadim, Radimski, Gladkovskoye, Kamyshnoye, Baraba, Nagorskoye, Vadyova, Boronoye, Yaroslavskoye, Pishchal'noye, Arkalyk, Koskol'
 	link = { vic = 2612 hoi = 6917 hoi = 6942 hoi = 6943 hoi = 8761 hoi = 6987 hoi = 6965 hoi = 8787 hoi = 7026 hoi = 6986 hoi = 7006 hoi = 6964 hoi = 6985 }	# Aktash -> Imeni Matrosova, Algabas, Tengiz, Shakhtinsk, Tikenekty, Sarykenggir, Atasu, Karytim, Karazhal, Kyzl Zhar, Zhayrang, Satbaev
 	link = { vic = 1181 hoi = 8626 hoi = 8593 hoi = 8657 hoi = 8625 hoi = 8684 hoi = 8656 hoi = 8592 hoi = 8624 hoi = 8683 hoi = 8709 hoi = 8735 hoi = 8708 hoi = 8655 hoi = 8591 hoi = 6898 hoi = 6853 hoi = 6918 hoi = 6873 hoi = 6835 hoi = 6852 hoi = 6897 hoi = 6872 hoi = 8590 hoi = 6834 hoi = 6808 hoi = 6795 hoi = 6807 hoi = 6821 hoi = 6851 }	# Qaraganda -> Culym, Kujbysev, Karasuk, Kachiry, Pavlodar, Stepnogorsk, Kishkenekol', Makinsk, Astana, Karaganda, Temirtau, Sonaly, Voznesenka, Shchushinsk, Krasnozamenskoye, Bratskoye, Ladyzhenka, Sochinskoye, Marinkova, Sergeyevka, Salgaj, Gararinskiyj, Atbasar, Kiyma, Shashke, Makushino, Obukhovo, Isimskoye, Nakhimovskiy
-	link = { vic = 2685 hoi = 11391 hoi = 8096 hoi = 8117 hoi = 8105 hoi = 8095 hoi = 8126 hoi = 8116 }	# Muzhi -> Polnovat, Berezovo, Aneyevy, Sartyn'ya, Vanzetur, Njaksimvol', Ugolny
-	link = { vic = 1062 hoi = 8118 hoi = 8129 hoi = 8141 hoi = 8166 hoi = 8179 hoi = 8214 hoi = 8237 hoi = 8213 hoi = 8236 hoi = 8235 hoi = 8193 hoi = 8176 hoi = 8151 hoi = 8127 hoi = 8128 hoi = 8152 hoi = 8139 hoi = 8164 hoi = 8165 hoi = 8177 hoi = 8212 hoi = 8194 hoi = 8153 hoi = 8140 hoi = 8178 hoi = 8195 hoi = 8263 }	# Berezov -> Punga, Nyagan, Khanty Mansysk, Salym, Vagay, Chernoye, Zavodo Petrovskiy, Tjumen, Butka, Irbit, Rezh, Kirovgrad, Nizhnaya Tura, Uray, Priob'e, Nerga, Verkhoturye, Makhnevo, Mezhdurechenskiy, Alapaevsk, Tyurinsk, Tavda, Uvat, Levshinskiy, Tobol'sk, Yarkovo, Jalutoroysk
+	link = { vic = 2685 hoi = 11391 hoi = 8096 hoi = 8117 hoi = 8105 hoi = 8095 }	# Muzhi -> Polnovat, Berezovo, Aneyevy, Sartyn'ya, Vanzetur
+	link = { vic = 1062 hoi = 8118 hoi = 8129 hoi = 8141 hoi = 8166 hoi = 8179 hoi = 8214 hoi = 8237 hoi = 8213 hoi = 8236 hoi = 8235 hoi = 8193 hoi = 8127 hoi = 8128 hoi = 8152 hoi = 8139 hoi = 8164 hoi = 8165 hoi = 8177 hoi = 8212 hoi = 8194 hoi = 8153 hoi = 8140 hoi = 8178 hoi = 8195 hoi = 8263 }	# Berezov -> Punga, Nyagan, Khanty Mansysk, Salym, Vagay, Chernoye, Zavodo Petrovskiy, Tjumen, Butka, Irbit, Rezh, Uray, Priob'e, Nerga, Verkhoturye, Makhnevo, Mezhdurechenskiy, Alapaevsk, Tyurinsk, Tavda, Uvat, Levshinskiy, Tobol'sk, Yarkovo, Jalutoroysk
 	link = { vic = 1061 hoi = 8238 hoi = 8290 hoi = 8343 hoi = 8394 hoi = 8420 hoi = 8393 hoi = 8367 hoi = 8315 hoi = 8288 hoi = 8262 hoi = 8264 hoi = 8289 hoi = 8342 hoi = 8316 hoi = 8368 }	# Tyumen -> Petropavlovka, Karasul, Ishim, Sinitsyna, Lebyazhye, Kurgan, Sumiha, Galkino, Sadrinsk, Dalmatovo, Dmitriyevka, Korkino, Kargapol'e, Topolevka, Kazanskoye
 	link = { vic = 2683 hoi = 8220 hoi = 8201 hoi = 8184 hoi = 8200 hoi = 8183 hoi = 8170 hoi = 8199 hoi = 8241 hoi = 8293 hoi = 8320 hoi = 8268 hoi = 8218 hoi = 8242 hoi = 8219 hoi = 8243 hoi = 8269 hoi = 8294 }	# Bakchar -> Kikkiakki, Star. Zasol'nyy, Tol'ka, Nazino, Sart'egan, Pasol, Orekhovo, Bylino, Muromka, Kotovka, Sred. Vasyugan, Novyy Put', Kargasok, Lokonto Pugol, Ases Egan, Korliki, Vasjugan
 	link = { vic = 1066 hoi = 8182 hoi = 8198 hoi = 8181 hoi = 8168 hoi = 8167 hoi = 8196 hoi = 8215 hoi = 8197 hoi = 8180 hoi = 8216 hoi = 8217 hoi = 8267 hoi = 8240 }	# Tobolsk -> Ugut, Mamontovo, Hanty Mansijsk, Kuznetsovo, Nikolsk, Orekhovo, Vikulovo, Tevriz, Ust Ishim, Kalashnikovo, Multanovy, Kaymysovy, Kolosovka
 	link = { vic = 2686 hoi = 8454 hoi = 8397 hoi = 8423 hoi = 8371 hoi = 8346 hoi = 8319 hoi = 8345 hoi = 8292 hoi = 8318 hoi = 8266 hoi = 8239 hoi = 8265 hoi = 8291 hoi = 8344 hoi = 8317 hoi = 8369 }	# Ishim -> Timofeevka, Kurnevo, Muromtsevo, Volkovo, Bakino, Pervomayskiy, Proletarka, Taurova, Despodzinovka, Kraychikovo, Borodinka, Oshchepkovo, Kytyrly, Tyukalinsk, Krutinka, Maslyanskiy
-	link = { vic = 1058 hoi = 8234 hoi = 8211 hoi = 6674 hoi = 6681 hoi = 8313 hoi = 6688 hoi = 6695 hoi = 8340 hoi = 8314 hoi = 8341 hoi = 8287 hoi = 8261 hoi = 8286 }	# Ekaterinburg -> Pervoural'sk, Sverdlovsk, Kyshtym, Tiriyanski, Zlatoust, Magnitogorsk, Verkhne Uralsk, Argajas, Teca, Brodokalmak, Chelyabinsk, Kamensk Ural'skij, Verhnij Sysert
+	link = { vic = 1058 hoi = 8211 hoi = 8313 hoi = 6695 hoi = 8340 hoi = 8314 hoi = 8341 hoi = 8287 hoi = 8261 hoi = 8286 }	# Ekaterinburg -> Sverdlovsk, Zlatoust, Verkhne Uralsk, Argajas, Teca, Brodokalmak, Chelyabinsk, Kamensk Ural'skij, Verhnij Sysert
 	link = { vic = 1059 hoi = 6711 hoi = 6720 hoi = 6738 hoi = 6729 hoi = 6721 hoi = 6730 hoi = 8392 hoi = 6739 hoi = 6750 hoi = 6740 hoi = 8366 hoi = 6704 hoi = 6712 }	# Chelyabinsk -> Arkaim, Nakhtobyl, Dzhetygara, Tselinnoye, Rudniy, Kustanay, Safakulevo, Kushmurun, Ostrova, Leninskoye, Kopeysk, Troitsk, Kartaly
 	link = { vic = 1060 hoi = 6748 hoi = 6758 hoi = 6769 hoi = 6759 hoi = 6749 hoi = 6760 hoi = 6770 hoi = 6781 hoi = 6771 hoi = 6761 hoi = 6751 hoi = 6772 hoi = 6782 hoi = 6792 }	# Orsk -> Ozhernyy, Yasnyy, Svetlyy, Dombarovskiy, Dulino, Shiyli, Suykbulak, Kustakamir, Kocherdyk, Nizhnetobolnoye, Sadovoye, Temiyakovo, Uznagash, Ykasitesh
-	#link = { hoi = 8094 hoi = 8103 hoi = 8115 }	# NOTHING -> Shaytanovka, Ust' Un'ya, An'judin
+	# link = { hoi = 8094 hoi = 8103 hoi = 8115 }	# NOTHING -> Shaytanovka, Ust' Un'ya, An'judin
 	# RussiaFarEast
 	link = { vic = 1088 hoi = 6875 hoi = 7120 }	# Shumshu -> Ostrov Paramusir, Ostrov Urup
 	link = { vic = 1074 hoi = 8536 hoi = 8669 hoi = 8227 hoi = 6854 }	# Petropavlovsk -> Petropavlovsk Kamcackij, Ust' Kamchatsk, Kikhchik, Komandorskiye Ostrova
@@ -1788,7 +1788,7 @@
 	link = { vic = 2664 vic = 2665 vic = 2619 vic = 2621 hoi = 11369 hoi = 8324 }	# MANY-TO-MANY: Oyotuni, Chokurdakh, Abiy, Srednekolymsk -> Verkhoyansk, Niznejansk
 	link = { vic = 2647 vic = 2667 hoi = 706 }	# Yansk, Bulun -> Tit Ary
 	link = { vic = 2652 vic = 2670 hoi = 10677 }	# Kular, Tiksi -> Ust' Olenek
-	link = { vic = 2659 vic = 3230 hoi = 674 }	# Napalkovo, Gulf of Ob -> Salegard
+	link = { vic = 2659 hoi = 674 }	# Napalkovo -> Salegard
 	link = { vic = 2680 vic = 2658 hoi = 595 }	# Dudinka, Kheta -> Tarko Sale
 	link = { vic = 2673 hoi = 959 }	# Olenyok -> Tajmyr
 	link = { vic = 2653 hoi = 10676 }	# Saskylah -> Poluostrov Tajmyr
@@ -1823,8 +1823,8 @@
 	link = { vic = 2693 hoi = 10681 }	# Uchami -> Novyj Urengoj
 	link = { vic = 2657 hoi = 1111 }	# Svetlogorsk -> Obskaja Guba
 	link = { vic = 2615 hoi = 8108 }	# Krasnoselkup -> Japtiksale
-	link = { vic = 2613 hoi = 11366 }	# Nyda -> Yamalia
-	link = { vic = 2684 hoi = 673 }	# Yar Sale -> Laborovaja
+	link = { vic = 2613 hoi = 11366 hoi = 673 }	# Nyda -> Yamalia, Laborovaja
+	link = { vic = 2684 hoi = 416 }	# Yar Sale -> Inta
 	link = { vic = 2682 hoi = 8100 }	# Aksarka -> Protochnyye
 	link = { vic = 2701 vic = 2694 vic = 2677 vic = 1076 vic = 2656 hoi = 918 }	# Surinda, Vanavara, Dotkon, Bratsk, Tayimba -> Novyj Kajak
 	link = { vic = 1063 hoi = 8496 hoi = 8458 hoi = 8427 hoi = 8401 hoi = 8428 hoi = 8402 hoi = 8351 hoi = 8377 hoi = 8403 hoi = 8352 hoi = 8325 hoi = 8298 hoi = 8350 hoi = 8323 hoi = 8297 hoi = 8272 hoi = 8246 hoi = 8296 hoi = 8244 hoi = 8271 hoi = 8245 }	# Tomsk -> Severo Enisejskij, Monastyrka, Staroverovskiy, Indygin, Vorogovo, Polichet, Podbel', Tunga, Pridorozhnyy, Naduy, Sumarokovo, Burnyy, Komsa, Urlyukov, Lebed, Bakhta, Kochumdek, Zubrekovksiy, Ratta, Ust' Ozernoye, Borodino
@@ -2532,7 +2532,7 @@
 	link = { vic = 2775 hoi = 10594 }	# Gulf of Odessa -> Mouth of the Danube
 	link = { vic = 2774 hoi = 10593 hoi = 10595 }	# Gulf of Varna -> Bulgarian Coast, Southwestern Black Sea
 	link = { vic = 2773 hoi = 11382 hoi = 10592 }	# Sea of Marmara -> The Bosphorus, Sea of Marmara
-	link = { vic = 2779 hoi = 14138 hoi = 14137 hoi = 14136 hoi = 14139 }	# Caspian Sea -> Eastern Caspian Sea, Western Caspian Sea, Northern Caspian Sea, Southern Caspian Sea
+	link = { vic = 2779 hoi = 14138 hoi = 14136 hoi = 14139 hoi = 14137 }	# Caspian Sea -> Eastern Caspian Sea, Northern Caspian Sea, Southern Caspian Sea, Western Caspian Sea
 	link = { vic = 2770 hoi = 10586 hoi = 10587 hoi = 11452 }	# Gulf of Cyprus -> Gulf of Iskenderun, Gulf of Antalya, Coast of Lebanon
 	link = { vic = 2769 hoi = 10585 hoi = 11453 hoi = 11454 }	# Palestinian Coast -> Coast of Palestine, Coast of Sinai, Eastern Mediterranean Sea
 	link = { vic = 2771 hoi = 10589 }	# Sea of Crete -> Dodecanneso
@@ -2676,16 +2676,16 @@
 	link = { vic = 3096 hoi = 12302 hoi = 12297 hoi = 12298 hoi = 12195 hoi = 12196 hoi = 12202 }	# Wharton Basin -> South Central Investigator Ridge, Southern Cocos Islands, Northeastern Cocos Plateau, Eastern Cocos Plateau, Nortern Cocos Plateau, Northern Cocos Islands
 	link = { vic = 3097 hoi = 12199 hoi = 12198 hoi = 12197 hoi = 12200 hoi = 12201 }	# Northern Cocos Plateau -> West Central Ninety East Ridge, Central Ninety East Ridge, West Central Cocos Plateau, Northwestern Cocos Plateau, Souththern Cocos Basin
 	# Middle East land
-	link = { vic = 917 hoi = 5567 }	# Jerusalem -> Jerusalem
+	link = { vic = 917 hoi = 5567 hoi = 5593 }	# Jerusalem -> Jerusalem, Bethlehem
 	link = { vic = 1154 hoi = 5679 hoi = 5689 hoi = 5680 hoi = 5690 hoi = 9510 hoi = 9572 }	# Tabuk -> Al Bad', Tabuk, Duba, Al Wajh, Umm Lajj, Yanbu' al Bahr
 	link = { vic = 908 hoi = 7496 }	# Amman -> Amman
-	link = { vic = 902 hoi = 5332 }	# Damascus -> Damascus
+	link = { vic = 902 hoi = 5332 hoi = 5382 hoi = 7434 }	# Damascus -> Damascus, As Suwayda, Af Tanf
 	link = { vic = 922 hoi = 5647 }	# Aqaba -> Al 'Aqabah
 	link = { vic = 921 hoi = 5592 hoi = 5615 hoi = 5633 }	# Beersheba -> Kurnuo, Abda, Elat
 	link = { vic = 913 hoi = 5299 }	# Beirut -> Beirut
 	link = { vic = 918 hoi = 5512 }	# Nablus -> Ramallah
 	link = { vic = 920 hoi = 5566 hoi = 5565 hoi = 5591 }	# Gaza -> Gaza, Hebron, El'Auja
-	link = { vic = 911 hoi = 7501 hoi = 5616 hoi = 5593 hoi = 5646 hoi = 5634 hoi = 7506 }	# Maan -> Dhiban, El Kerak, Bethlehem, Ma'an, Ramla, Jebel et Tubeiq
+	link = { vic = 911 hoi = 7501 hoi = 5616 hoi = 5646 hoi = 5634 hoi = 7506 }	# Maan -> Dhiban, El Kerak, Ma'an, Ramla, Jebel et Tubeiq
 	link = { vic = 919 hoi = 5489 hoi = 5535 }	# Jaffa -> Beersheba, Tel Aviv Yafo
 	link = { vic = 916 hoi = 5466 hoi = 5447 hoi = 5431 hoi = 5415 }	# Acre -> Ashdod, Nablus, Nazareth, Hadera
 	link = { vic = 915 hoi = 5360 hoi = 5399 }	# Sidon -> Soûr, Haifa
@@ -2693,9 +2693,9 @@
 	link = { vic = 905 hoi = 5140 hoi = 5082 }	# Latakia -> Tartus, Al Ladhiqiyah
 	link = { vic = 900 hoi = 4976 hoi = 5014 hoi = 5049 }	# Antioch -> Iskenderun, Kirikhan, Antakya
 	link = { vic = 897 hoi = 7374 hoi = 4567 hoi = 4829 }	# Aleppo -> Aleppo, Al Raqqah, Khirbat Isriyah
-	link = { vic = 909 hoi = 7416 }	# Jerash -> An Nabk
-	link = { vic = 912 hoi = 5270 }	# Baalbeck -> Al Qusayr
-	link = { vic = 903 hoi = 5205 hoi = 4830 }	# Homs -> Hims, Tadmur
+	link = { vic = 909 }	# Jerash -> DROPPED
+	link = { vic = 912 }	# Baalbeck -> DROPPED
+	link = { vic = 903 hoi = 5205 hoi = 4830 hoi = 5270 hoi = 7416 }	# Homs -> Hims, Tadmur, Al Qusayr, An Nabk
 	link = { vic = 904 hoi = 7389 hoi = 4881 }	# Hama -> Hamah, Arak
 	link = { vic = 910 hoi = 7491 hoi = 9278 hoi = 7475 hoi = 7485 }	# Ruwayshid -> El Qatrani, Al Hamad, Qasr el Azraq, Ez Zarqa
 	link = { vic = 906 hoi = 5490 hoi = 5467 hoi = 7466 hoi = 7456 }	# Suwayda -> Jenin, Es Salt, Irbid, Qual'at el Magraq'
@@ -2734,7 +2734,7 @@
 	link = { vic = 930 hoi = 9280 hoi = 9247 hoi = 9214 hoi = 9183 }	# Kut -> Amara, Al Amarah, Balad Ruz, Qaraghan
 	link = { vic = 928 hoi = 4622 hoi = 9155 }	# Mendeli -> Sulaymani, Kirkuk
 	link = { vic = 901 hoi = 5173 hoi = 9073 hoi = 4510 hoi = 9125 hoi = 7382 hoi = 7375 hoi = 7365 hoi = 7355 }	# Dayr al-Zour -> Al Qamishi, Tall Birak, Ash Shaddadah, Dayr az Zawr, Buhayrat al Asad, Kubar, Al Hasakah, Senyurt
-	link = { vic = 907 hoi = 7397 hoi = 7403 hoi = 7434 hoi = 5382 }	# Palmyra -> Palmyra, Al Basir, Af Tanf, As Suwayda
+	link = { vic = 907 hoi = 7397 hoi = 7403 }	# Palmyra -> Palmyra, Al Basir
 	link = { vic = 924 hoi = 9048 }	# Arbil -> Duhok
 	link = { vic = 923 hoi = 4446 hoi = 9100 hoi = 4831 }	# Mosul -> Tal Afar, Mosul, Tikrit
 	link = { vic = 925 hoi = 9126 }	# Kirkuk -> Erbil
@@ -2750,16 +2750,16 @@
 	link = { vic = 1150 hoi = 9076 hoi = 9050 }	# Bojnurd -> Gonbad e Kavus, Shirvan
 	link = { vic = 1147 hoi = 9106 hoi = 9077 hoi = 9161 hoi = 9131 }	# Mashhad -> Mashhad, Yerbent, Kashmar, Soltanabad
 	link = { vic = 1148 hoi = 9219 hoi = 9285 hoi = 9314 hoi = 9284 hoi = 9252 }	# Birjand -> Gerimenj, Birjand, Ambar, Darband, Borun
-	link = { vic = 1115 hoi = 9129 }	# Sari -> Sari
-	link = { vic = 1114 hoi = 9103 }	# Noshehr -> Chalus
+	link = { vic = 1115 hoi = 9129 hoi = 7333 hoi = 3594 }	# Sari -> Sari, Babolsar, Bandar e Shah
+	link = { vic = 1114 hoi = 9103 hoi = 7356 }	# Noshehr -> Chalus, Ramsar
 	link = { vic = 1113 hoi = 7383 hoi = 7376 }	# Rasht -> Rasht, Hashtpar
-	link = { vic = 1112 hoi = 9102 hoi = 7366 }	# Ardabil -> Ardabil, Garmi
-	link = { vic = 1109 hoi = 8995 hoi = 7225 }	# Khvoy -> Urmia, Marand
-	link = { vic = 1110 vic = 3232 hoi = 4625 }	# Urumia, Lake Urmia -> Tabriz
-	link = { vic = 1108 hoi = 9049 }	# Tabriz -> Maku
-	link = { vic = 1111 hoi = 9074 }	# Mahabad -> Orumiyeh
+	link = { vic = 1112 hoi = 7366 hoi = 7346 hoi = 7270 hoi = 8996 }	# Ardabil -> Garmi, Ardabil, Meshgin Shahr, Persabad
+	link = { vic = 1109 hoi = 7225 hoi = 9049 }	# Khvoy -> Marand, Maku
+	link = { vic = 1110 hoi = 8995 }	# Urumia -> Urmia
+	link = { vic = 1108 hoi = 3854 hoi = 4625 }	# Tabriz -> Ahar, Tabriz
+	link = { vic = 1111 hoi = 9074 hoi = 9020 }	# Mahabad -> Orumiyeh, Mahabad
 	link = { vic = 1124 hoi = 9128 }	# Qazvin -> Qazvin
-	link = { vic = 1123 hoi = 9075 }	# Zanjan -> Mianeh
+	link = { vic = 1123 hoi = 9075 hoi = 9102 }	# Zanjan -> Mianeh, Ardabil
 	link = { vic = 1118 hoi = 9101 }	# Sanandaj -> Yengejeh
 	link = { vic = 1122 hoi = 4568 hoi = 9156 hoi = 9127 }	# Hamadan -> Qorveh, Sanandaj, Zanjan
 	link = { vic = 1125 hoi = 9185 }	# Qom -> Oom
@@ -3394,5 +3394,5 @@
 	link = { vic = 3106 hoi = 14141 }	# Lake Balchasj -> Lake Balkhash
 	link = { vic = 2133 hoi = 10488 }	# South Georgia -> South Georgia
 	# Dropped lakes
-	link = { vic = 3109 vic = 3227 vic = 3228 vic = 3229 vic = 3239 vic = 3240 vic = 3231 }	# Lake Titicaca, Great Slave Lake, Lake Athabasca, Reindeer Lake, Lake Champlain, Lake Poopo, Lake Van -> DROPPED
+	link = { vic = 3109 vic = 3227 vic = 3228 vic = 3229 vic = 3239 vic = 3240 vic = 3231 vic = 3230 vic = 3232 }	# Lake Titicaca, Great Slave Lake, Lake Athabasca, Reindeer Lake, Lake Champlain, Lake Poopo, Lake Van, Gulf of Ob, Lake Urmia -> DROPPED
 }
