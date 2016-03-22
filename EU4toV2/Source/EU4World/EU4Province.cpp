@@ -612,12 +612,12 @@ void EU4Province::determineProvinceWeight()
 	// manpower
 	manpower_weight *= 25;
 	manpower_weight += manpower_modifier;
-	manpower_weight *= ((1 + manpower_modifier) / 1005);
+	manpower_weight *= ((1 + manpower_modifier) / 25); ## should work now as intended
 
 	//LOG(LogLevel::Info) << "Manpower Weight: " << manpower_weight;
 
 	double total_tx = (baseTax + building_tx_income) * (1.0 + building_tx_eff + 0.15);
-	double production_eff_tech = 1.0;
+	double production_eff_tech = 0.5; ## used to be 1.0
 
 	double total_trade_value = ((getTradeGoodPrice() * goods_produced) + trade_value) * (1 + trade_value_eff);
 	double production_income = total_trade_value * (1 + production_eff_tech + production_eff);
@@ -641,8 +641,8 @@ void EU4Province::determineProvinceWeight()
 	provMPWeight			= manpower_weight;
 	provTradeGoodWeight	= trade_goods_weight;
 
-	totalWeight = building_weight  + ((2 * baseTax) + (2 * baseProd) + (2 * manpower) + manpower_weight + trade_goods_weight + production_income + total_tx);
-
+	totalWeight = building_weight  + ((1 * baseTax) + (1 * baseProd) + (1 * manpower) + manpower_weight + trade_goods_weight + production_income + total_tx);
+	//i would change dev effect to 1, but your choice
 	if (owner == NULL)
 	{
 		totalWeight = 0;
@@ -1649,7 +1649,7 @@ vector<double> EU4Province::getProvBuildingWeight() const
 
 	if (hasBuilding("grand_shipyard"))
 	{
-		building_weight += 5.2;
+		building_weight += 4.8; ## i must mixed something up
 	}
 
 	if (hasBuilding("temple"))
