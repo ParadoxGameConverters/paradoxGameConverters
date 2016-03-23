@@ -449,7 +449,7 @@ struct MTo1ProvinceComp
 	int totalPopulation;
 };
 
-#pragma optimize("",off)
+
 void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, CountryMapping countryMap, const HoI3AdjacencyMapping &HoI3AdjacencyMap)
 {
 	for (auto provItr: provinces)
@@ -684,7 +684,7 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 		}
 	}
 }
-#pragma optimize("",on)
+
 
 void HoI3World::convertTechs(V2World& sourceWorld)
 {
@@ -1757,5 +1757,14 @@ void HoI3World::checkAllProvincesMapped(const provinceMapping& provinceMap)
 		{
 			LOG(LogLevel::Warning) << "No mapping for HoI3 province " << i->first;
 		}
+	}
+}
+
+
+void HoI3World::setAIFocuses(const AIFocusModifiers& focusModifiers)
+{
+	for (auto countryItr: countries)
+	{
+		countryItr.second->setAIFocuses(focusModifiers);
 	}
 }

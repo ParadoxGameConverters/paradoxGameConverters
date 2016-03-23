@@ -122,5 +122,20 @@ void initNamesMapping(Object* obj, namesMapping& namesMap);
 typedef map<string, vector<string>> portraitMapping; // <graphical culture, valid portraits>
 void initPortraitMapping(Object* obj, portraitMapping& portraitMap);
 
+// AI focus
+typedef enum {
+	SEA_FOCUS,
+	TANK_FOCUS,
+	AIR_FOCUS,
+	INF_FOCUS
+} AIFocusType;
+typedef struct {
+	double	modifierAmount;
+	string	modifierType;
+	string	modifierRequirement;
+} AIFocusModifier;
+typedef map<AIFocusType, vector<AIFocusModifier>> AIFocusModifiers;
+void initAIFocusModifiers(Object* obj, AIFocusModifiers& modifiers);
+
 
 #endif // MAPPER_H

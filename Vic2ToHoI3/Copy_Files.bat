@@ -20,6 +20,7 @@ copy "Data_Files\autoexecTEMPLATE.lua" "release\autoexecTEMPLATE.lua"
 copy "Data_Files\infatryTEMPLATE.lua" "release\infatryTEMPLATE.lua"
 copy "Data_Files\shipTemplate.lua" "release\shipTemplate.lua"
 copy "Data_Files\tankTemplate.lua" "release\tankTemplate.lua"
+copy "Data_Files\ai_focus.txt" "release\ai_focus.txt"
 
 del release\changelog.txt
 git log --oneline --decorate >> release/log.txt

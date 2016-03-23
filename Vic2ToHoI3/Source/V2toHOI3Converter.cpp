@@ -341,6 +341,22 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	backgroundMap seaBackgroundMap;
 	initLeaderBackgroundMap(obj->getLeaves()[0], landBackgroundMap, seaBackgroundMap);
 
+	// parse AI focus data
+	LOG(LogLevel::Info) << "Parsing AI focuses";
+	obj = doParseFile("ai_focus.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file ai_focus.txt";
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse ai_focus.txt";
+		return 1;
+	}
+	AIFocusModifiers focusModifiers;
+	initAIFocusModifiers(obj, focusModifiers);
+
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
 	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
@@ -359,6 +375,8 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	destWorld.generateLeaders(leaderTraits, namesMap, portraitMap);
 	LOG(LogLevel::Info) << "Converting victory points";
 	destWorld.convertVictoryPoints(sourceWorld, countryMap);
+	LOG(LogLevel::Info) << "Setting AI focuses";
+	destWorld.setAIFocuses(focusModifiers);
 
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";

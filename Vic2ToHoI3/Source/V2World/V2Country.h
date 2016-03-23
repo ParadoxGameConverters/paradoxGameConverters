@@ -89,6 +89,7 @@ class V2Country
 		vector<V2Leader*>				getLeaders()													const { return leaders; }
 		double							getRevanchism()												const { return revanchism; }
 		double							getWarExhaustion()											const { return warExhaustion; }
+		string							getTechSchool()												const { return techSchool; }
 
 		string							getReform(string reform) const;
 		string							getName(const string& language) const;
@@ -144,6 +145,7 @@ class V2Country
 		unsigned	int					rulingPartyId;
 		vector<unsigned int>			activeParties;
 		int								greatNationRanking;
+		string							techSchool;
 
 		// Localisation attributes
 		string name;			// the name of this country

@@ -592,3 +592,53 @@ void initPortraitMapping(Object* obj, portraitMapping& portraitMap)
 		portraitMap.insert(make_pair(groupsItr->getKey(), portraits));
 	}
 }
+
+
+void initAIFocusModifiers(Object* obj, AIFocusModifiers& modifiers)
+{
+	vector<Object*> focusesObj = obj->getLeaves();
+	for (auto focusesItr: focusesObj)
+	{
+		pair<AIFocusType, vector<AIFocusModifier>> newFocus;
+		string focusName = focusesItr->getKey();
+		if (focusName == "sea_focus")
+		{
+			newFocus.first = SEA_FOCUS;
+		}
+		else if (focusName == "tank_focus")
+		{
+			newFocus.first = TANK_FOCUS;
+		}
+		else if (focusName == "air_focus")
+		{
+			newFocus.first = AIR_FOCUS;
+		}
+		else if (focusName == "inf_focus")
+		{
+			newFocus.first = INF_FOCUS;
+		}
+
+		vector<Object*> modifiersObj = focusesItr->getLeaves();
+		for (auto modifiersItr: modifiersObj)
+		{
+			AIFocusModifier newModifier;
+
+			vector<Object*> modifierItems = modifiersItr->getLeaves();
+
+			if (modifierItems.size() > 0)
+			{
+				string factorStr = modifierItems[0]->getLeaf();
+				newModifier.modifierAmount = atof(factorStr.c_str());
+			}
+			if (modifierItems.size() > 1)
+			{
+				newModifier.modifierType			= modifierItems[1]->getKey();
+				newModifier.modifierRequirement	= modifierItems[1]->getLeaf();
+			}
+
+			newFocus.second.push_back(newModifier);
+		}
+
+		modifiers.insert(newFocus);
+	}
+}

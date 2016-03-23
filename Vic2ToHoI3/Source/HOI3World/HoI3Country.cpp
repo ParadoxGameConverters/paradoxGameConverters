@@ -94,6 +94,11 @@ HoI3Country::HoI3Country(string _tag, string _commonCountryFile, HoI3World* _the
 	neutrality		= 50;
 	nationalUnity	= 70;
 
+	seaModifier		= 1.0;
+	tankModifier	= 1.0;
+	airModifier		= 1.0;
+	infModifier		= 1.0;
+
 	training_laws					= "minimal_training";
 	press_laws						= "censored_press";
 	industrial_policy_laws		= "consumer_product_orientation";
@@ -1009,6 +1014,75 @@ void HoI3Country::generateLeaders(leaderTraitsMap leaderTraits, const namesMappi
 }
 
 
+void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
+{
+	for (auto currentModifier: focusModifiers)
+	{
+		double modifierAmount = 1.0;
+		for (auto modifier: currentModifier.second)
+		{
+			bool modifierActive = false;
+			if (modifier.modifierType == "lacks_port")
+			{
+				modifierActive = true;
+				for (auto province: provinces)
+				{
+					if (province.second->hasNavalBase())
+					{
+						modifierActive = false;
+					}
+				}
+			}
+			else if (modifier.modifierType == "tech_school")
+			{
+				if (modifier.modifierRequirement == srcCountry->getTechSchool())
+				{
+					modifierActive = true;
+				}
+			}
+			else if (modifier.modifierType == "coast_border_percent")
+			{
+				int navalBases = 0;
+				for (auto province: provinces)
+				{
+					if (province.second->hasNavalBase())
+					{
+						navalBases++;
+					}
+				}
+				if ((1.0 * navalBases / provinces.size()) >= atof(modifier.modifierRequirement.c_str()))
+				{
+					modifierActive = true;
+				}
+			}
+
+			if (modifierActive)
+			{
+				modifierAmount *= modifier.modifierAmount;
+			}
+		}
+
+		if (currentModifier.first == SEA_FOCUS)
+		{
+			seaModifier = modifierAmount;
+		}
+		else if (currentModifier.first == TANK_FOCUS)
+		{
+			tankModifier = modifierAmount;
+		}
+		else if (currentModifier.first == AIR_FOCUS)
+		{
+			airModifier = modifierAmount;
+		}
+		else if (currentModifier.first == INF_FOCUS)
+		{
+			infModifier = modifierAmount;
+		}
+	}
+}
+
+
+
 void HoI3Country::addProvince(HoI3Province* _province)
 {
 	provinces.insert(make_pair(_province->getNum(), _province));
@@ -1650,7 +1724,8 @@ void HoI3Country::outputAIScript() const
 	fprintf(output, "AI_%s = P\n", tag.c_str());
 
 	ifstream sourceFile;
-	if (false) // air template
+	LOG(LogLevel::Debug) << tag << ": air modifier - " << airModifier << ", tankModifier - " << tankModifier << ", seaModifier - " << seaModifier << ", infModifier - " << infModifier;
+	if ((airModifier > seaModifier) && (airModifier > tankModifier) && (airModifier > infModifier)) // air template
 	{
 		sourceFile.open("airTEMPLATE.lua", ifstream::in);
 		if (!sourceFile.is_open())
@@ -1659,7 +1734,7 @@ void HoI3Country::outputAIScript() const
 			exit(-1);
 		}
 	}
-	else if (false)	// sea template
+	else if ((seaModifier > tankModifier) && (seaModifier > infModifier))	// sea template
 	{
 		sourceFile.open("shipTemplate.lua", ifstream::in);
 		if (!sourceFile.is_open())
@@ -1668,7 +1743,7 @@ void HoI3Country::outputAIScript() const
 			exit(-1);
 		}
 	}
-	else if (false) // tank template
+	else if (tankModifier > infModifier) // tank template
 	{
 		sourceFile.open("tankTemplate.lua", ifstream::in);
 		if (!sourceFile.is_open())

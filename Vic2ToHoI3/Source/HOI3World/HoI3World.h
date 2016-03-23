@@ -44,6 +44,7 @@ class HoI3World {
 		void				generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
 		void				consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap);
 		void				convertVictoryPoints(const V2World& sourceWorld, CountryMapping countryMap);
+		void				setAIFocuses(const AIFocusModifiers& focusModifiers);
 
 		map<string, HoI3Country*>	getPotentialCountries()	const;
 

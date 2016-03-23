@@ -69,6 +69,7 @@ class HoI3Country
 		void	initFromHistory();
 		void	consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry);
 		void	generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
+		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
 		
 		void	setTechnology(string tech, int level);
 		void	addProvince(HoI3Province* _province);
@@ -131,6 +132,12 @@ class HoI3Country
 		vector<HoI3Minister>				rulingMinisters;
 		vector<HoI3Leader>				leaders;
 		string								graphicalCulture;
+
+		// AI focus modifiers
+		double	seaModifier;
+		double	tankModifier;
+		double	airModifier;
+		double	infModifier;
 
 		// laws
 		string				civil_law;

@@ -243,11 +243,17 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName)
 	}
 
 	leaders.clear();
-	vector<Object*> leaderObj = obj->getValue("leader");	// the object sholding the leaders
+	vector<Object*> leaderObj = obj->getValue("leader");	// the objects holding the leaders
 	for (auto itr: leaderObj)
 	{
 		V2Leader* leader = new V2Leader(itr);
 		leaders.push_back(leader);
+	}
+
+	vector<Object*> techSchoolObj = obj->getValue("schools");	// the objects holding the tech school
+	if (techSchoolObj.size() > 0)
+	{
+		techSchool = techSchoolObj[0]->getLeaf();
 	}
 
 	// read in states
