@@ -1013,7 +1013,7 @@ void HoI3Country::generateLeaders(leaderTraitsMap leaderTraits, const namesMappi
 	}
 }
 
-
+#pragma optimize("", off)
 void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 {
 	for (auto currentModifier: focusModifiers)
@@ -1055,6 +1055,38 @@ void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 					modifierActive = true;
 				}
 			}
+			else if (modifier.modifierType == "navy_tech_ahead")
+			{
+				// todo: navy_tech_ahead AI focus modifier
+			}
+			else if (modifier.modifierType == "capital_region")
+			{
+				// todo: capital_region AI focus modifier
+			}
+			else if (modifier.modifierType == "ship_composition_percent")
+			{
+				int totalUnits		= 0;
+				int numSeaUnits	= 0;
+				for (auto army: srcCountry->getArmies())
+				{
+					for (auto regiment: army->getRegiments())
+					{
+						totalUnits++;
+						string type = regiment.getType();
+						if (
+								(type == "artillery") || (type == "cavalry") || (type == "cuirassier") || (type == "dragoon") || (type == "engineer") || 
+								(type == "guard") || (type == "hussar") || (type == "infantry") || (type == "irregular") || (type == "plane") || (type == "tank")
+							)
+						{
+							numSeaUnits++;
+						}
+					}
+				}
+				if ((1.0 * numSeaUnits / totalUnits) > atof(modifier.modifierRequirement.c_str()))
+				{
+					modifierActive = true;
+				}
+			}
 
 			if (modifierActive)
 			{
@@ -1080,8 +1112,7 @@ void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 		}
 	}
 }
-
-
+#pragma optimize("", on)
 
 void HoI3Country::addProvince(HoI3Province* _province)
 {
