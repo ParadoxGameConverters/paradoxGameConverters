@@ -1108,6 +1108,27 @@ void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 					modifierActive = true;
 				}
 			}
+			else if (modifier.modifierType == "plane_composition_percent")
+			{
+				int totalUnits	= 0;
+				int numPlanes	= 0;
+				for (auto army: srcCountry->getArmies())
+				{
+					for (auto regiment: army->getRegiments())
+					{
+						totalUnits++;
+						string type = regiment.getType();
+						if (type == "plane")
+						{
+							numPlanes++;
+						}
+					}
+				}
+				if ((1.0 * numPlanes / totalUnits) > atof(modifier.modifierRequirement.c_str()))
+				{
+					modifierActive = true;
+				}
+			}
 
 			if (modifierActive)
 			{
