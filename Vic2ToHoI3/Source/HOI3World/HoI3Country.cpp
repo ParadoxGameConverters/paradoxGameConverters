@@ -1087,6 +1087,27 @@ void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 					modifierActive = true;
 				}
 			}
+			else if (modifier.modifierType == "tank_composition_percent")
+			{
+				int totalUnits	= 0;
+				int numTanks	= 0;
+				for (auto army: srcCountry->getArmies())
+				{
+					for (auto regiment: army->getRegiments())
+					{
+						totalUnits++;
+						string type = regiment.getType();
+						if (type == "tank")
+						{
+							numTanks++;
+						}
+					}
+				}
+				if ((1.0 * numTanks / totalUnits) > atof(modifier.modifierRequirement.c_str()))
+				{
+					modifierActive = true;
+				}
+			}
 
 			if (modifierActive)
 			{
