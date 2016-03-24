@@ -41,7 +41,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName)
+V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs)
 {
 	tag = obj->getKey();
 	provinces.clear();
@@ -72,6 +72,19 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName)
 	if (techsObj.size() > 0)
 	{
 		techs = techsObj[0]->getKeys();
+	}
+	numArmyTechs	= 0;
+	numNavyTechs	= 0;
+	for (auto tech: techs)
+	{
+		if (armyTechs.find(tech) != armyTechs.end())
+		{
+			 numArmyTechs++;
+		}
+		if (navyTechs.find(tech) != navyTechs.end())
+		{
+			 numNavyTechs++;
+		}
 	}
 
 	inventions.clear();

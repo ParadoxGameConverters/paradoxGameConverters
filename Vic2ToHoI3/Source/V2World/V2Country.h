@@ -33,7 +33,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Localisation.h"
 #include "V2Province.h"
 #include <vector>
+#include <map>
 #include <set>
+#include <string>
 using namespace std;
 
 
@@ -57,7 +59,7 @@ typedef struct V2State
 class V2Country
 {
 	public:
-		V2Country(Object* obj, const inventionNumToName& iNumToName);
+		V2Country(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs);
 
 		void								addProvince(int num, V2Province* _province)		{ provinces.insert(make_pair(num, _province)); }
 		void								setColor(Color newColor)					{ color = newColor; }
@@ -75,6 +77,8 @@ class V2Country
 		string							getTag()															const { return tag; }
 		string							getPrimaryCulture()											const { return primaryCulture; }
 		vector<string>					getInventions()												const { return inventions; }
+		int								getNumArmyTechs()												const { return numArmyTechs; }
+		int								getNumNavyTechs()												const { return numNavyTechs; }
 		string							getGovernment()												const { return government; }
 		int								getCapital()													const { return capital; }
 		vector<string>					getTechs()														const { return techs; }
@@ -130,6 +134,8 @@ class V2Country
 		string							primaryCulture;
 		vector<string>					techs;
 		vector<string>					inventions;
+		int								numArmyTechs;
+		int								numNavyTechs;
 		string							government;
 		map<string,V2Relations*>	relations;
 		vector<V2Army*>				armies;

@@ -44,7 +44,7 @@ struct	V2Party;
 class V2World
 {
 	public:
-		V2World(Object* obj, const inventionNumToName& iNumToName);
+		V2World(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs);
 
 		V2Country*					getCountry(string tag) const;
 		void							removeCountry(string tag);

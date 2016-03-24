@@ -132,6 +132,27 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	inventionNumToName iNumToname;
 	getInventionNums(iNumToname);
 
+	// parse technologies
+	LOG(LogLevel::Info) << "Parsing Vic2 technologies";
+	map<string, string> armyTechs;
+	obj = doParseFile((Configuration::getV2Path() + "\\technologies\\army_tech.txt").c_str());
+	if (obj != NULL)
+	{
+		for (auto tech: obj->getLeaves())
+		{
+			armyTechs.insert(make_pair(tech->getKey(), tech->getKey()));
+		}
+	}
+	map<string, string> navyTechs;
+	obj = doParseFile((Configuration::getV2Path() + "\\technologies\\navy_tech.txt").c_str());
+	if (obj != NULL)
+	{
+		for (auto tech: obj->getLeaves())
+		{
+			navyTechs.insert(make_pair(tech->getKey(), tech->getKey()));
+		}
+	}
+
 	//get output name
 	const int slash	= V2SaveFileName.find_last_of("\\");				// the last slash in the save's filename
 	string outputName = V2SaveFileName.substr(slash + 1, V2SaveFileName.length());
@@ -172,7 +193,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 
 	// Construct world from V2 save.
 	LOG(LogLevel::Info) << "Building world";
-	V2World sourceWorld(obj, iNumToname);
+	V2World sourceWorld(obj, iNumToname, armyTechs, navyTechs);
 
 	// Read all localisations.
 	LOG(LogLevel::Info) << "Reading localisation";

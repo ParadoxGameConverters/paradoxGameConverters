@@ -1057,7 +1057,10 @@ void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 			}
 			else if (modifier.modifierType == "navy_tech_ahead")
 			{
-				// todo: navy_tech_ahead AI focus modifier
+				if ((srcCountry->getNumNavyTechs() - srcCountry->getNumArmyTechs()) >= atoi(modifier.modifierRequirement.c_str()))
+				{
+					modifierActive = true;
+				}
 			}
 			else if (modifier.modifierType == "capital_region")
 			{

@@ -19,7 +19,7 @@ sea_focus = {
 	# Countries that have prioritized sea techs over land techs should get sea.
 	modifier = {
 		factor = 2.0
-		navy_tech_ahead = 5
+		navy_tech_ahead = 1
 	}
 	# Pacific States with a port should get Sea
 	modifier = {
