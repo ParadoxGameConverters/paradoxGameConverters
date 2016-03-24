@@ -13,7 +13,8 @@
             <friendlyName>Vic2 Mods</friendlyName>
             <description>Vic2 mods to use for conversion (mods require manual conversion)</description>
             <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
-            <value>{ }</value>
+			<useCurlyBraces>true</useCurlyBraces>
+            <value></value>
           </preference>
 		  <preference>
             <name>faction_leader</name>
@@ -39,21 +40,24 @@
             <friendlyName>Axis faction</friendlyName>
             <description>The axis faction when manually converting factions</description>
             <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
-            <value>{ }</value>
+			<useCurlyBraces>true</useCurlyBraces>
+            <value></value>
           </preference>
 		  <preference>
             <name>allies_faction</name>
             <friendlyName>Allies faction</friendlyName>
             <description>The allies faction when manually converting factions</description>
             <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
-            <value>{ }</value>
+			<useCurlyBraces>true</useCurlyBraces>
+            <value></value>
           </preference>
 		  <preference>
             <name>comintern_faction</name>
             <friendlyName>Comintern faction</friendlyName>
             <description>The comintern faction when manually converting factions</description>
             <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
-            <value>{ }</value>
+			<useCurlyBraces>true</useCurlyBraces>
+            <value></value>
           </preference>
           <preference>
             <name>min_infrastructure</name>
