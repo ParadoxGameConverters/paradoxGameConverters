@@ -24,7 +24,7 @@ sea_focus = {
 	# Pacific States with a port should get Sea
 	modifier = {
 		factor = 20.0
-		capital_region = oceania
+		capital_continent = oceania
 	}
 	# Countries that have ships as a high enough percentage of their forces should get Sea
 	modifier = {

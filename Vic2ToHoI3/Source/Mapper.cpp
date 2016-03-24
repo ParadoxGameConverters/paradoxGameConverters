@@ -169,13 +169,13 @@ void initContinentMap(Object* obj, continentMapping& continentMap)
 {
 	continentMap.clear();
 	vector<Object*> continentObjs = obj->getLeaves();	// the continents
-	for (unsigned int i = 0; i < continentObjs.size(); i++)
+	for (auto continentObj: continentObjs)
 	{
-		string continent = continentObjs[i]->getKey();	// the current continent
-		vector<string> provinceNums = continentObjs[i]->getTokens();	// the province numbers in this continent
-		for (unsigned int j = 0; j < provinceNums.size(); j++)
+		string continent = continentObj->getKey();	// the current continent
+		vector<Object*> provinceObjs = continentObj->getValue("provinces");	// the province numbers in this continent
+		for (auto provinceStr: provinceObjs[0]->getTokens())
 		{
-			const int province = atoi(provinceNums[j].c_str());	// the current province
+			const int province = atoi(provinceStr.c_str());	// the current province num
 			continentMap.insert( make_pair(province, continent) );
 		}
 	}

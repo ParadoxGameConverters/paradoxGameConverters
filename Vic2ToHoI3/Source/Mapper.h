@@ -57,7 +57,7 @@ typedef vector< vector<adjacency> > HoI3AdjacencyMapping;
 HoI3AdjacencyMapping initHoI3AdjacencyMap();
 
 
-typedef map<int, string>	continentMapping;	// <province, continent>
+typedef map<int, string> continentMapping;	// <province, continent>
 void initContinentMap(Object* obj, continentMapping& continentMap);
 
 

@@ -59,7 +59,7 @@ typedef struct V2State
 class V2Country
 {
 	public:
-		V2Country(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs);
+		V2Country(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs, const continentMapping& continentMap);
 
 		void								addProvince(int num, V2Province* _province)		{ provinces.insert(make_pair(num, _province)); }
 		void								setColor(Color newColor)					{ color = newColor; }
@@ -81,6 +81,7 @@ class V2Country
 		int								getNumNavyTechs()												const { return numNavyTechs; }
 		string							getGovernment()												const { return government; }
 		int								getCapital()													const { return capital; }
+		string							getCapitalContinent()										const { return capitalContinent; }
 		vector<string>					getTechs()														const { return techs; }
 		Color								getColor()														const { return color; }
 		string							getName()														const { return name; }
@@ -131,6 +132,7 @@ class V2Country
 		map<int, V2Province*>		provinces;	// ID, province
 		vector<V2Province*>			cores;
 		int								capital;
+		string							capitalContinent;
 		string							primaryCulture;
 		vector<string>					techs;
 		vector<string>					inventions;

@@ -1013,7 +1013,7 @@ void HoI3Country::generateLeaders(leaderTraitsMap leaderTraits, const namesMappi
 	}
 }
 
-#pragma optimize("", off)
+
 void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 {
 	for (auto currentModifier: focusModifiers)
@@ -1062,9 +1062,12 @@ void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 					modifierActive = true;
 				}
 			}
-			else if (modifier.modifierType == "capital_region")
+			else if (modifier.modifierType == "capital_continent")
 			{
-				// todo: capital_region AI focus modifier
+				if (srcCountry->getCapitalContinent() == modifier.modifierRequirement)
+				{
+					modifierActive = true;
+				}
 			}
 			else if (modifier.modifierType == "ship_composition_percent")
 			{
@@ -1175,7 +1178,7 @@ void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 		}
 	}
 }
-#pragma optimize("", on)
+
 
 void HoI3Country::addProvince(HoI3Province* _province)
 {

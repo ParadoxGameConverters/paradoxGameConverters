@@ -41,7 +41,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs)
+V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs, const continentMapping& continentMap)
 {
 	tag = obj->getKey();
 	provinces.clear();
@@ -64,6 +64,12 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 
 	vector<Object*> capitalObj = obj->getValue("capital");	// the object holding the capital
 	(capitalObj.size() > 0) ? capital = atoi(capitalObj[0]->getLeaf().c_str()) : capital = 0;
+
+	auto continent = continentMap.find(capital);
+	if (continent != continentMap.end())
+	{
+		capitalContinent = continent->second;
+	}
 
 	vector<Object*> primaryCultureObj = obj->getValue("primary_culture");	// the object holding the primary culture
 	(primaryCultureObj.size() > 0) ? primaryCulture = primaryCultureObj[0]->getLeaf().c_str() : primaryCulture = "";
