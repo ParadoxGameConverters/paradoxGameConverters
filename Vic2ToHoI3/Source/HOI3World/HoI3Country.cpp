@@ -1129,6 +1129,20 @@ void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 					modifierActive = true;
 				}
 			}
+			else if (modifier.modifierType == "manpower_to_IC_ratio")
+			{
+				double totalManpower	= 0.0;
+				double totalIC			= 0.0;
+				for (auto province: provinces)
+				{
+					totalManpower	+= province.second->getManpower();
+					totalIC			+= province.second->getActualIndustry();
+				}
+				if ((totalManpower / totalIC) > atof(modifier.modifierRequirement.c_str()))
+				{
+					modifierActive = true;
+				}
+			}
 
 			if (modifierActive)
 			{
