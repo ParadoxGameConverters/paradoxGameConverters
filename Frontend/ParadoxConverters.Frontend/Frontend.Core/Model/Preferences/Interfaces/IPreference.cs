@@ -40,6 +40,14 @@ namespace Frontend.Core.Model.Preferences.Interfaces
         bool HasDirectlyEditableValue { get; set; }
 
         /// <summary>
+        ///     Gets or sets a value indicating whether this preference should be output with curly brackets instead of quotes
+        /// </summary>
+        /// <value>
+        ///     <c>true</c> if yes; otherwise, <c>false</c>.
+        /// </value>
+        bool useCurlyBraces { get; set; }
+
+        /// <summary>
         ///     Gets a value indicating whether this preference has a set of predefined choices.
         /// </summary>
         /// <value>

@@ -38,6 +38,9 @@ namespace Frontend.Core.Factories
                     preference.HasDirectlyEditableValue = XElementHelper.ReadBoolValue(foundPreference,
                         "hasDirectlyEditableValue", false);
 
+                    preference.useCurlyBraces = XElementHelper.ReadBoolValue(foundPreference,
+                        "useCurlyBraces", false);
+
                     category.Preferences.Add(preference);
                 };
 

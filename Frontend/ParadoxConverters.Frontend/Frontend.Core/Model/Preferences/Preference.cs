@@ -100,6 +100,14 @@ namespace Frontend.Core.Model.Preferences
         public bool HasDirectlyEditableValue { get; set; }
 
         /// <summary>
+        ///     Gets or sets a value indicating whether this preference should be output with curly brackets instead of quotes
+        /// </summary>
+        /// <value>
+        ///     <c>true</c> if yes; otherwise, <c>false</c>.
+        /// </value>
+        public bool useCurlyBraces { get; set; }
+
+        /// <summary>
         ///     Gets a value indicating whether this preference has a set of predefined choices.
         /// </summary>
         /// <value>
@@ -185,7 +193,14 @@ namespace Frontend.Core.Model.Preferences
 
             AppendEntries(sb);
 
-            sb.AppendLine("\t" + Name + " = \"" + Value + "\"");
+            if (useCurlyBraces)
+            {
+                sb.AppendLine("\t" + Name + " = {" + Value + "}");
+            }
+            else
+            {
+                sb.AppendLine("\t" + Name + " = \"" + Value + "\"");
+            }
 
             return sb.ToString();
         }
