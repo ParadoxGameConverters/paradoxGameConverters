@@ -1143,6 +1143,10 @@ void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 					modifierActive = true;
 				}
 			}
+			else if (modifier.modifierType == "default")
+			{
+				modifierActive = true;
+			}
 
 			if (modifierActive)
 			{

@@ -59,5 +59,6 @@ inf_focus = {
 	# Inf should be the default if other conditions aren't met
 	modifier = {
 		factor = 1.25
+		default = true
 	}
 }
