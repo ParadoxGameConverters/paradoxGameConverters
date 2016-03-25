@@ -592,9 +592,9 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 			const vector<adjacency> adjacencies = HoI3AdjacencyMap[mapping.first];
 			for (auto adj: adjacencies)
 			{
-				V2Province*	province				= sourceWorld.getProvince(mapping.first);
-				V2Province* adjacentProvince	= sourceWorld.getProvince(adj.to);
-				if ((province != NULL) && (province->getOwner() != NULL) && (adjacentProvince != NULL) && (adjacentProvince->getOwner() != NULL) && (province->getOwner() != adjacentProvince->getOwner()))
+				auto province				= provinces.find(mapping.first);
+				auto adjacentProvince	= provinces.find(adj.to);
+				if ((province != provinces.end()) && (adjacentProvince != provinces.end()) && (province->second->getOwner() != adjacentProvince->second->getOwner()))
 				{
 					borderProvince = true;
 					break;
