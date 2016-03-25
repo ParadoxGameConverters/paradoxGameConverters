@@ -391,7 +391,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "Converting countries";
 	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
 	LOG(LogLevel::Info) << "Converting provinces";
-	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, HoI3AdjacencyMap);
+	destWorld.convertProvinces(sourceWorld, provinceMap, inverseProvinceMap, countryMap, HoI3AdjacencyMap);
 	destWorld.consolidateProvinceItems(inverseProvinceMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld, countryMap);

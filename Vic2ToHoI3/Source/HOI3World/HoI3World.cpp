@@ -450,7 +450,7 @@ struct MTo1ProvinceComp
 };
 
 
-void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, CountryMapping countryMap, const HoI3AdjacencyMapping &HoI3AdjacencyMap)
+void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, inverseProvinceMapping inverseProvinceMap, CountryMapping countryMap, const HoI3AdjacencyMapping &HoI3AdjacencyMap)
 {
 	for (auto provItr: provinces)
 	{
@@ -560,6 +560,22 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 		}
 	}
 
+	// convert naval bases. There should only be one per Vic2 naval base
+	for (auto mapping: inverseProvinceMap)
+	{
+		auto sourceProvince = sourceWorld.getProvince(mapping.first);
+		int navalBaseLevel = sourceProvince->getNavalBase();
+		navalBaseLevel = max(0, (navalBaseLevel - 3) * 2 + 1);
+		if (mapping.second.size() > 0)
+		{
+			auto destProvince = provinces.find(mapping.second[0]);
+			if (destProvince != provinces.end())
+			{
+				destProvince->second->requireNavalBase(navalBaseLevel);
+			}
+		}
+	}
+
 	// now that all provinces have had owners and cores set, convert their other items
 	for (auto mapping: provinceMap)
 	{
@@ -604,9 +620,7 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 			// convert forts, naval bases, and infrastructure
 			int fortLevel = sourceProvince->getFort();
 			fortLevel = max(0, (fortLevel - 5) * 2 + 1);
-			int navalBaseLevel = sourceProvince->getNavalBase();
-			navalBaseLevel = max(0, (navalBaseLevel - 3) * 2 + 1);
-			if (navalBaseLevel > 0)
+			if (provItr->second->getNavalBase() > 0)
 			{
 				provItr->second->requireCoastalFort(fortLevel);
 			}
@@ -614,7 +628,6 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 			{
 				provItr->second->requireLandFort(fortLevel);
 			}
-			provItr->second->requireNavalBase(navalBaseLevel);
 			provItr->second->requireInfrastructure((int)Configuration::getMinInfra());
 			if (sourceProvince->getInfra() > 0) // No infra stays at minInfra
 			{
