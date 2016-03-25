@@ -832,19 +832,6 @@ vector<int> HoI3World::getPortProvinces(vector<int> locationCandidates)
 
 void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inverseProvinceMap)
 {
-	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in a non-port province, HoI3 can crash....
-	vector<int> port_whitelist;
-	{
-		int temp = 0;
-		ifstream s("port_whitelist.txt");
-		while (s.good() && !s.eof())
-		{
-			s >> temp;
-			port_whitelist.push_back(temp);
-		}
-		s.close();
-	}
-
 	// get the unit mappings
 	map<string, multimap<HoI3RegimentType, unsigned> > unitTypeMap; // <vic, hoi>
 	Object* obj = doParseFile("unit_mapping.txt");
@@ -978,14 +965,6 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 			if (locationCandidates.size() > 0)
 			{
 				selectedLocation = locationCandidates[rand() % locationCandidates.size()];
-				if (oldArmy->getNavy() && usePort)
-				{
-					vector<int>::iterator white = std::find(port_whitelist.begin(), port_whitelist.end(), selectedLocation);
-					if (white == port_whitelist.end())
-					{
-						LOG(LogLevel::Debug) << "Assigning navy to non - whitelisted port province " << selectedLocation << ". If you encounter crashes, try blacklisting this province.";
-					}
-				}
 				destArmy.setLocation(selectedLocation);
 				map<int, HoI3Province*>::iterator pitr = provinces.find(selectedLocation);
 
