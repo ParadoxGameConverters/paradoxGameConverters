@@ -1024,6 +1024,10 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 					mainRegiments.push_back(regiment);
 				}
 			}
+			if (mainRegiments.size() * 3 < supportRegiments.size())
+			{
+				LOG(LogLevel::Warning) << "Too many support units in " << itr->first << "'s army \"" << oldArmy->getName() << "\"";
+			}
 			if (mainRegiments.size() > 0)
 			{
 				double ratio = supportRegiments.size() / mainRegiments.size();
@@ -1045,7 +1049,6 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 					sourceRegiments.push_back(regiment);
 				}
 			}
-
 
 			// convert the regiments
 			for (auto regItr: sourceRegiments)
