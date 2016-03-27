@@ -130,22 +130,6 @@ void CountryMapping::CreateMapping(const V2World& srcWorld, const HoI3World& des
 					LogMapping(V2Tag, HoI3Tag, "default HoI3 country");
 				}
 			}
-			// 10/10/2014 BE: Commented out the following, as I don't like it.
-			//if (!mapped)
-			//{	// None of the HoI3 tags in our rule correspond to an actual HoI3 country, so we just use the first unused HoI3 tag.
-			//	for (vector<string>::const_iterator j = possibleHoI3Tags.begin(); j != possibleHoI3Tags.end() && !mapped; ++j)
-			//	{
-			//		const std::string& HoI3Tag = *j;
-			//		if (V2TagToHoI3TagMap.right.find(HoI3Tag) == V2TagToHoI3TagMap.right.end())
-			//		{
-			//			mapped = true;
-			//			V2TagToHoI3TagMap.left.insert(make_pair(V2Tag, HoI3Tag));
-			//			LogMapping(V2Tag, HoI3Tag, "mapping rule, not a HoI3 country");
-			//		}
-			//	}
-			//	// It's possible to get here if all the HoI3 tags for this V2 tag have already been used - we fallback
-			//	// on the same case as V2 tags without rules.
-			//}
 		}
 		if (!mapped)
 		{	// Either the V2 tag had no mapping rule or no HoI3 tag from its mapping rule could be used. 

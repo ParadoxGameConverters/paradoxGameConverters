@@ -126,7 +126,7 @@ V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<string, 
 		}
 	}
 
-	// BE: Cull countries with neither cores nor owned provinces (i.e. dead countries and uncreated dominions)
+	// Cull countries with neither cores nor owned provinces (i.e. dead countries and uncreated dominions)
 	removeEmptyNations();
 
 	// Diplomacy

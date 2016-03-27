@@ -118,7 +118,6 @@
     <ClCompile Include="Source\Mapper.cpp" />
     <ClCompile Include="Source\Parsers\Object.cpp" />
     <ClCompile Include="Source\Parsers\Parser.cpp" />
-    <ClCompile Include="Source\tempFuncs.cpp" />
     <ClCompile Include="Source\V2World\V2Army.cpp" />
     <ClCompile Include="Source\V2World\V2Country.cpp" />
     <ClCompile Include="Source\V2World\V2Diplomacy.cpp" />

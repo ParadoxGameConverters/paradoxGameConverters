@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -157,7 +157,7 @@ void HoI3RegGroup::output(FILE* out, int indentlevel /* = 0*/) const
 			LOG(LogLevel::Error) << "Internal error: unexpected force type!";
 	}
 	fprintf(out, "%s\tname=\"%s\"\n", indent, name.c_str());
-	if (force_type == air || (force_type == navy && !at_sea)) // BE: TODO: Handle case when navy is at sea
+	if (force_type == air || (force_type == navy && !at_sea))
 	{
 		fprintf(out, "%s\tbase = %d\n", indent, location);
 	}
@@ -170,10 +170,6 @@ void HoI3RegGroup::output(FILE* out, int indentlevel /* = 0*/) const
 	{
 		itr->output(out, indentlevel + 1);
 	}
-	/*if (force_type == navy)
-	{
-		fprintf(out, "%s\tat_sea=%d\n", indent, at_sea);
-	}*/
 
 	for (vector<HoI3RegGroup>::const_iterator itr = children.begin(); itr != children.end(); ++itr)
 	{

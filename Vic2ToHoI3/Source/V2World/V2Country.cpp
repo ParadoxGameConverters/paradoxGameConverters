@@ -48,9 +48,9 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 	cores.clear();
 	adjective = tag;
 
-	greatNationRanking = -1; // BE: Default to not great nation. This is set later in V2World.
+	greatNationRanking = -1; // Default to not great nation. This is set later in V2World.
 
-	vector<Object*> nameObj = obj->getValue("domain_region");	// BE: the region name for dynamically generated dominions
+	vector<Object*> nameObj = obj->getValue("domain_region");	// the region name for dynamically generated dominions
 	if (!nameObj.empty())
 	{
 		name = nameObj[0]->getLeaf().c_str();

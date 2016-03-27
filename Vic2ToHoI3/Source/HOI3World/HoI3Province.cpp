@@ -40,7 +40,6 @@ HoI3Province::HoI3Province(string _filename)
 	num					= 0;
 	name					= "";
 	owner					= "";
-	//controller			= "";
 	points = 0;
 	metal = 0.0;
 	oil = 0.0;
@@ -105,17 +104,9 @@ HoI3Province::HoI3Province(string _filename)
 		{
 			industry = atoi((*itr)->getLeaf().c_str());
 		}
-		else if ((*itr)->getKey() == "controller")
-		{
-			//controller = (*itr)->getLeaf().c_str();
-		}
 		else if ((*itr)->getKey() == "add_core")
 		{
 			cores.push_back((*itr)->getLeaf());
-		}
-		else
-		{
-			//log("Unknown key - %s\n", (*itr)->getKey().c_str());
 		}
 	}
 }

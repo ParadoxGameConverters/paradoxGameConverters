@@ -246,7 +246,7 @@ void HoI3World::output() const
 		country.outputToCommonCountriesFile(allCountriesFile);
 	}
 
-	// BE: There are bugs and crashes if all potential vanilla HoI3 countries are not in the common\countries.txt file
+	// There are bugs and crashes if all potential vanilla HoI3 countries are not in the common\countries.txt file
 	// Also, the Rebels are to be included
 	for (vector<HoI3Country*>::const_iterator i = potentialCountries.begin(); i != potentialCountries.end(); i++)
 	{
@@ -1105,12 +1105,6 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 					}
 				}
 
-				// This should not happen, but just in case...
-				//if (destTypeItr == hoiMapList.end())
-				//{
-				//	destTypeItr = hoiMapList.begin();
-				//}
-
 				destReg.setType(destTypeItr->first);
 				destReg.setHistoricalModel(destTypeItr->second);
 
@@ -1349,7 +1343,6 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 		}
 
 		// Comintern get a boost to its membership for being internationalistic
-		// BE: TODO If comintern is empty, find the next best leader
 		// Go through all stalinist, leninist countries and add them to comintern if they're not hostile to leader
 		for (map<string, HoI3Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 		{
@@ -1658,24 +1651,6 @@ void HoI3World::convertDiplomacy(V2World& sourceWorld, CountryMapping countryMap
 			continue;
 		}
 
-		// BE: Superfluous?
-		//HoI3Relations* r1 = hoi3Country1->second->getRelations(HoI3Tag2);
-		//if (!r1)
-		//{
-		//	r1 = new HoI3Relations(HoI3Tag2);
-		//	hoi3Country1->second->addRelation(r1);
-		//}
-		//HoI3Relations* r2 = hoi3Country2->second->getRelations(HoI3Tag1);
-		//if (!r2)
-		//{
-		//	r2 = new HoI3Relations(HoI3Tag1);
-		//	hoi3Country2->second->addRelation(r2);
-		//}
-
-		// XXX: unhandled V2 diplo types:
-		// casus_belli: -> threat maybe?
-		// warsubsidy: probably just drop, maybe cash trade...
-
 		// shared diplo types
 		if ((itr->type == "alliance") || (itr->type == "vassal"))
 		{
@@ -1692,10 +1667,6 @@ void HoI3World::convertDiplomacy(V2World& sourceWorld, CountryMapping countryMap
 				hoi3Country1->second->editAllies().insert(HoI3Tag2);
 			}
 		}
-
-		// XXX: unhandled HoI3 diplo types:
-		// trade: probably just omit
-		// influence: <- influence maybe?
 	}
 
 	// Relations and guarantees

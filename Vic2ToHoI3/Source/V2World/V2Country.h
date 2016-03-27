@@ -103,7 +103,7 @@ class V2Country
 
 		void setLocalisationName(const string& language, const string& name)
 		{
-			if (this->name != "") // BE: Domains have their name set from domain_region
+			if (this->name != "") // Domains have their name set from domain_region
 			{
 				namesByLanguage[language] = this->name;
 			}
@@ -115,7 +115,7 @@ class V2Country
 		}
 		void setLocalisationAdjective(const string& language, const string& adjective)
 		{
-			if (this->adjective != "") // BE: Domains have their adjective set from domain_region
+			if (this->adjective != "") // Domains have their adjective set from domain_region
 			{
 				adjectivesByLanguage[language] = this->adjective;
 			}

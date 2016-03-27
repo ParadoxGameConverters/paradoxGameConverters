@@ -301,33 +301,6 @@ governmentMapping initGovernmentMap(Object* obj)
 		governmentMap.push_back(gov);
 	}
 
-	//governmentMapping governmentMap;				// the government mapping
-
-	//vector<Object*> links = obj->getLeaves();	// rules for the government mapping
-	//for (vector<Object*>::iterator i = links.begin(); i != links.end(); i++)
-	//{
-	//	vector<Object*>	governments	= (*i)->getLeaves();	// the items for this rule
-	//	string				dstGovernment;							// the HoI3 government
-	//	vector<string>		srcGovernments;						// the V2 governments
-
-	//	for (vector<Object*>::iterator j = governments.begin(); j != governments.end(); j++)
-	//	{
-	//		if ( (*j)->getKey() == "hoi" )
-	//		{
-	//			dstGovernment = (*j)->getLeaf();
-	//		}
-	//		if ( (*j)->getKey() == "vic" )
-	//		{
-	//			srcGovernments.push_back( (*j)->getLeaf() );
-	//		}
-	//	}
-
-	//	for (vector<string>::iterator j = srcGovernments.begin(); j != srcGovernments.end(); j++)
-	//	{
-	//		governmentMap.insert(make_pair((*j), dstGovernment));
-	//	}
-	//}
-
 	return governmentMap;
 }
 

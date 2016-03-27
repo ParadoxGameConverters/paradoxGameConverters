@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -37,22 +37,21 @@ class HoI3Relations
 	public:
 		HoI3Relations(string newTag);
 		HoI3Relations(string newTag, V2Relations* oldRelations);
-		//void output(FILE* out) const;
 
-		string	getTag()			const { return tag; };
-		int		getRelations()	const { return value; };
-		bool getGuarantee() const { return guarantee; };
-		date getLastWar() const { return lastWar; };
-		date getTruceUntil() const { return truceUntil; };
-		bool atWar() const { return lastWar > truceUntil; };
+		string	getTag()				const { return tag; };
+		int		getRelations()		const { return value; };
+		bool		getGuarantee()		const { return guarantee; };
+		date		getLastWar()		const { return lastWar; };
+		date		getTruceUntil()	const { return truceUntil; };
+		bool		atWar()				const { return lastWar > truceUntil; };
 	private:
 		string	tag;
 		int		value;
 		bool		militaryAccess;
 		date		lastSendDiplomat;
 		date		lastWar;
-		date truceUntil;
-		bool guarantee;
+		date		truceUntil;
+		bool		guarantee;
 };
 
 

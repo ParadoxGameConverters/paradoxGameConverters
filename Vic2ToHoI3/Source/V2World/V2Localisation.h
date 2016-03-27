@@ -52,7 +52,6 @@ public:
 	// Converts the country file name
 	std::string convertCountryFileName(const std::string) const;
 
-	// BE: Copied from EU4Localisation for V2toHoI3
 	// Adds all localisations found in the specified file. The file should begin with
 	// a line like "l_english:" to indicate what language the texts are in.
 	void ReadFromFile(const std::string& fileName);

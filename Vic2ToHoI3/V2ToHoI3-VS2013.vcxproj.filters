@@ -8,7 +8,6 @@
     <ClCompile Include="Source\GovernmentMapper.cpp" />
     <ClCompile Include="Source\Log.cpp" />
     <ClCompile Include="Source\Mapper.cpp" />
-    <ClCompile Include="Source\tempFuncs.cpp" />
     <ClCompile Include="Source\WinUtils.cpp" />
     <ClCompile Include="Source\HOI3World\HoI3Alignment.cpp">
       <Filter>HOI3World</Filter>

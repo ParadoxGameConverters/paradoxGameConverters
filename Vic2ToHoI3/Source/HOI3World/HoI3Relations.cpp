@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -48,17 +48,4 @@ HoI3Relations::HoI3Relations(string newTag, V2Relations* oldRelations)
 	truceUntil = oldRelations->getTruceUntil();
 	guarantee = (oldRelations->getLevel() >= 4);
 }
-
-
-//void HoI3Relations::output(FILE* out) const
-//{
-//	fprintf(out, "\t%s=\n", tag.c_str());
-//	fprintf(out, "\t{\n");
-//	fprintf(out, "\t\tvalue=%d\n", value);
-//	if (militaryAccess)
-//	{
-//		fprintf(out, "\t\tmilitary_access=yes\n");
-//	}
-//	fprintf(out, "\t}\n");
-//}
 
