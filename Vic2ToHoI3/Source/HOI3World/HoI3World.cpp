@@ -820,7 +820,7 @@ vector<int> HoI3World::getPortProvinces(vector<int> locationCandidates)
 	for (auto litr: locationCandidates)
 	{
 		map<int, HoI3Province*>::const_iterator provinceItr = provinces.find(litr);
-		if (provinceItr != provinces.end() && provinceItr->second->hasNavalBase()) // BE: Add? && provinceItr->second->isNotBlacklistedPort()
+		if (provinceItr != provinces.end() && provinceItr->second->hasNavalBase())
 		{
 			newLocationCandidates.push_back(litr);
 		}
@@ -830,7 +830,7 @@ vector<int> HoI3World::getPortProvinces(vector<int> locationCandidates)
 }
 
 
-void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inverseProvinceMap)
+void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inverseProvinceMap, const HoI3AdjacencyMapping& HoI3AdjacencyMap)
 {
 	// get the unit mappings
 	map<string, multimap<HoI3RegimentType, unsigned> > unitTypeMap; // <vic, hoi>
@@ -951,17 +951,37 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 				if (pitr != provinces.end() && pitr->second->isLand())
 				{
 					usePort = true;
-					locationCandidates = getPortProvinces(locationCandidates);
-					if (locationCandidates.size() == 0)
+					vector<int> portLocationCandidates = getPortProvinces(locationCandidates);
+					if (portLocationCandidates.size() == 0)
 					{
-						LOG(LogLevel::Warning) << "Navy " << oldArmy->getName() << " assigned to V2 province " << oldArmy->getLocation() << " which has no corresponding HoI3 port provinces; placing units in the production queue.";
-						destArmy.setProductionQueue(true);
+						// if none of the mapped provinces are ports, try to push the navy out to sea
+						for (auto candidate: locationCandidates)
+						{
+							if (HoI3AdjacencyMap.size() > static_cast<unsigned int>(candidate))
+							{
+								auto newCandidates = HoI3AdjacencyMap[candidate];
+								for (auto newCandidate: newCandidates)
+								{
+									auto candidateProvince = provinces.find(newCandidate.to);
+									if (candidateProvince == provinces.end())	// if this was not an imported province but has an adjacency, we can assume it's a sea province
+									{
+										portLocationCandidates.push_back(newCandidate.to);
+									}
+								}
+							}
+						}
+						if (portLocationCandidates.size() == 0)
+						{
+							LOG(LogLevel::Warning) << "Navy " << oldArmy->getName() << " assigned to V2 province " << oldArmy->getLocation() << " which has no corresponding HoI3 port provinces; placing units in the production queue.";
+							destArmy.setProductionQueue(true);
+						}
 					}
+					locationCandidates = portLocationCandidates;
 				}
 			}
 
 			int selectedLocation;
-			HoI3Province* locationProvince;
+			HoI3Province* locationProvince = NULL;
 			if (locationCandidates.size() > 0)
 			{
 				selectedLocation = locationCandidates[rand() % locationCandidates.size()];
@@ -972,7 +992,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 				{
 					locationProvince = pitr->second;
 				}
-				else
+				else if (!oldArmy->getNavy())
 				{
 					LOG(LogLevel::Warning) << "HoI3 Province for ID: " << selectedLocation << " not found. Placing units in the production queue";
 					destArmy.setProductionQueue(true);
@@ -1070,7 +1090,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 			// add the converted units to the country
 			if (!destArmy.isEmpty() && !destArmy.getProductionQueue())
 			{
-				if (oldArmy->getNavy() && locationProvince->isLand())
+				if ((oldArmy->getNavy()) && (locationProvince != NULL) && (locationProvince->isLand()))
 				{
 					// make sure a naval base is waiting for them
 					locationProvince->requireNavalBase(min(10, locationProvince->getNavalBase() + destArmy.size()));

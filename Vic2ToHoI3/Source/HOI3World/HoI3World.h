@@ -39,7 +39,7 @@ class HoI3World {
 		void				convertTechs(V2World& sourceWorld);
 		void				output() const;
 		void				convertDiplomacy(V2World& sourceWorld, CountryMapping countryMap);
-		void				convertArmies(V2World& sourceWorld, inverseProvinceMapping inverseProvinceMap);
+		void				convertArmies(V2World& sourceWorld, inverseProvinceMapping inverseProvinceMap, const HoI3AdjacencyMapping& HoI3AdjacencyMap);
 		void				configureFactions(const V2World &sourceWorld, const CountryMapping& countryMap);
 		void				generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
 		void				consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap);
