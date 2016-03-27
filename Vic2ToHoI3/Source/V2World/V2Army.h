@@ -62,12 +62,12 @@ class V2Army // also Navy
 		double					getSupplies()	const { return supplies; };
 		int						getAtSea()		const { return at_sea; };
 		int						getLocation()	const { return location; };
-		vector<V2Regiment>	getRegiments()	const { return regiments; };
+		vector<V2Regiment*>	getRegiments()	const { return regiments; };
 
 	private:
 		string					name;
 		int						location;
-		vector<V2Regiment>	regiments;
+		vector<V2Regiment*>	regiments;
 		double					supplies;
 		int						at_sea;
 		bool						isNavy;

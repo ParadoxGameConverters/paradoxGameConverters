@@ -1009,13 +1009,13 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 			}
 
 			// reorder the regiments to avoid zero-width units in HoI3
-			vector<V2Regiment> sourceRegiments = oldArmy->getRegiments();
+			vector<V2Regiment*> sourceRegiments = oldArmy->getRegiments();
 
-			vector<V2Regiment> supportRegiments;
-			vector<V2Regiment> mainRegiments;
+			vector<V2Regiment*> supportRegiments;
+			vector<V2Regiment*> mainRegiments;
 			for (auto regiment: sourceRegiments)
 			{
-				if ((regiment.getType() == "artillery") || (regiment.getType() == "engineer"))
+				if ((regiment->getType() == "artillery") || (regiment->getType() == "engineer"))
 				{
 					supportRegiments.push_back(regiment);
 				}
@@ -1048,15 +1048,15 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 
 
 			// convert the regiments
-			for (vector<V2Regiment>::iterator ritr = sourceRegiments.begin(); ritr != sourceRegiments.end(); ++ritr)
+			for (auto regItr: sourceRegiments)
 			{
 				HoI3Regiment destReg;
-				destReg.setName(ritr->getName());
+				destReg.setName(regItr->getName());
 
-				map<string, multimap<HoI3RegimentType, unsigned> >::iterator typeMap = unitTypeMap.find(ritr->getType());
+				map<string, multimap<HoI3RegimentType, unsigned> >::iterator typeMap = unitTypeMap.find(regItr->getType());
 				if (typeMap == unitTypeMap.end())
 				{
-					LOG(LogLevel::Debug) << "Regiment " << ritr->getName() << " has unmapped unit type " << ritr->getType() << ", dropping.";
+					LOG(LogLevel::Debug) << "Regiment " << regItr->getName() << " has unmapped unit type " << regItr->getType() << ", dropping.";
 					continue;
 				}
 				else if (typeMap->second.empty()) // Silently skip the ones that have no mapping
@@ -1065,7 +1065,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 				}
 
 				const multimap<HoI3RegimentType, unsigned>& hoiMapList = typeMap->second;
-				unsigned destMapIndex = typeCount[ritr->getType()]++ % hoiMapList.size();
+				unsigned destMapIndex = typeCount[regItr->getType()]++ % hoiMapList.size();
 				multimap<HoI3RegimentType, unsigned>::const_iterator destTypeItr = hoiMapList.begin();
 
 				// Count down from destMapIndex to iterate to the correct destination type
@@ -1088,7 +1088,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 
 						++skippedCount;
 						++destTypeItr;
-						++typeCount[ritr->getType()];
+						++typeCount[regItr->getType()];
 						if (destTypeItr == hoiMapList.end())
 						{
 							destTypeItr = hoiMapList.begin();
@@ -1097,7 +1097,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 
 					if (skippedCount == hoiMapList.size())
 					{
-						LOG(LogLevel::Warning) << "Regiment " << ritr->getName() << " has unit type " << ritr->getType() << ", but it is mapped only to units exclusive to other countries. Dropping.";
+						LOG(LogLevel::Warning) << "Regiment " << regItr->getName() << " has unit type " << regItr->getType() << ", but it is mapped only to units exclusive to other countries. Dropping.";
 						continue;
 					}
 				}
