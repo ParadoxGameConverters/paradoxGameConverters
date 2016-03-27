@@ -10,7 +10,6 @@ A: Be careful where you're putting the mods. They seem to work best when put in 
 Q: I'm trying to convert a EU4 To Vic2 game and keep getting an error. What do I do?
 A: You need to include the Vic2 mod from the EU4 to Vic2 converter to properly convert these games.
 
-Q: How do I convert with Vic2 mods?
-A: You must manually convert, and will need to properly set the Vic2 mods setting, as described on this page:
-	https://github.com/Idhrendur/paradoxGameConverters/wiki/Vic2-To-HoI3%3A-Configuration-Settings
+Q: Countries have the wrong flags in the conversion. How do I fix this?
+A: Go to 'My Documents\Paradox Interactive\Hearts of Iron III\gfx' and delete the 'flags' folder.
 
