@@ -1008,8 +1008,46 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 				destAirForce.setLocation(selectedLocation);
 			}
 
-			// convert the regiments
+			// reorder the regiments to avoid zero-width units in HoI3
 			vector<V2Regiment> sourceRegiments = oldArmy->getRegiments();
+
+			vector<V2Regiment> supportRegiments;
+			vector<V2Regiment> mainRegiments;
+			for (auto regiment: sourceRegiments)
+			{
+				if ((regiment.getType() == "artillery") || (regiment.getType() == "engineer"))
+				{
+					supportRegiments.push_back(regiment);
+				}
+				else
+				{
+					mainRegiments.push_back(regiment);
+				}
+			}
+			if (mainRegiments.size() > 0)
+			{
+				double ratio = supportRegiments.size() / mainRegiments.size();
+				sourceRegiments.clear();
+				unsigned int j = 0;
+				for (unsigned int i = 0; i < mainRegiments.size(); i++)
+				{
+					for (; j < (i + 1) * ratio; j++)
+					{
+						sourceRegiments.push_back(supportRegiments[j]);
+					}
+					sourceRegiments.push_back(mainRegiments[i]);
+				}
+			}
+			else
+			{
+				for (auto regiment: supportRegiments)
+				{
+					sourceRegiments.push_back(regiment);
+				}
+			}
+
+
+			// convert the regiments
 			for (vector<V2Regiment>::iterator ritr = sourceRegiments.begin(); ritr != sourceRegiments.end(); ++ritr)
 			{
 				HoI3Regiment destReg;
