@@ -1,0 +1,256 @@
+color = { 216  108  75 }
+graphical_culture = Japanese
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1st DPRK Infantry Division" "2nd DPRK Infantry Division" "3rd DPRK Infantry Division" "4th DPRK Infantry Division" "5th DPRK Infantry Division" "6th DPRK Infantry Division" "7th DPRK Infantry Division" "8th DPRK Infantry Division" "9th DPRK Infantry Division" "10th DPRK Infantry Division" "11th DPRK Infantry Division" 
+		"12th DPRK Infantry Division" "13th DPRK Infantry Division" "14th DPRK Infantry Division" "15th DPRK Infantry Division" "16th DPRK Infantry Division" "17th DPRK Infantry Division" "18th DPRK Infantry Division" "19th DPRK Infantry Division" "20th DPRK Infantry Division" 
+	}
+	cavalry_brigade = {
+		"1st DPRK Cavalry Division" "2nd DPRK Cavalry Division" "3rd DPRK Cavalry Division" "4th DPRK Cavalry Division" "5th DPRK Cavalry Division" "6th DPRK Cavalry Division" "7th DPRK Cavalry Division" "8th DPRK Cavalry Division" "9th DPRK Cavalry Division" "10th DPRK Cavalry Division" 
+	}
+	motorized_brigade = {
+		"1st DPRK Infantry Division" "2nd DPRK Infantry Division" "3rd DPRK Infantry Division" "1st DPRK Infantry Division" "2nd DPRK Infantry Division" "3rd DPRK Infantry Division" "4th DPRK Infantry Division" "5th DPRK Infantry Division" "6th DPRK Infantry Division" 
+	}
+	mechanized_brigade = {
+		"1st DPRK Infantry Division" "2nd DPRK Infantry Division" "3rd DPRK Infantry Division" "1st DPRK Infantry Division" "2nd DPRK Infantry Division" "3rd DPRK Infantry Division" "4th DPRK Infantry Division" "5th DPRK Infantry Division" "6th DPRK Infantry Division" "7th DPRK Infantry Division" "8th DPRK Infantry Division" 
+		"9th DPRK Infantry Division" "10th DPRK Infantry Division" 
+	}
+	light_armor_brigade = {
+		"1st DPRK Armoured Division" "2nd DPRK Armoured Division" "3rd DPRK Armoured Division" "4th DPRK Armoured Division" "5th DPRK Armoured Division" "6th DPRK Armoured Division" "7th DPRK Armoured Division" "8th DPRK Armoured Division" "9th DPRK Armoured Division" "10th DPRK Armoured Division" "11th DPRK Armoured Division" 
+		"12th DPRK Armoured Division" "14th DPRK Armoured Division" "15th DPRK Armoured Division" 
+	}
+	armor_brigade = {
+		"1st Armoured Division" "2nd DPRK Armoured Division" "3rd DPRK Armoured Division" "4th DPRK Armoured Division" "5th DPRK Armoured Division" "6th DPRK Armoured Division" "7th DPRK Armoured Division" "8th DPRK Armoured Division" "9th DPRK Armoured Division" "10th DPRK Armoured Division" "11th DPRK Armoured Division" 
+		"12th DPRK Armoured Division" "14th DPRK Armoured Division" "15th DPRK Armoured Division" 
+	}
+	paratrooper_brigade = {
+		"1st DPRK Airborne Division" "2nd DPRK Airborne Division" "3rd DPRK Airborne Division" "4th DPRK Airborne Division" "5th DPRK Airborne Division" "6th DPRK Airborne Division" "7th DPRK Airborne Division" "8th DPRK Airborne Division" "9th DPRK Airborne Division" "10th DPRK Airborne Division" 
+	}
+	marine_brigade = {
+		"1st DPRK Marine Division" "2nd DPRK Marine Division" "3rd DPRK Marine Division" "4th DPRK Marine Division" "5th DPRK Marine Division" "6th DPRK Marine Division" "7th DPRK Marine Division" "8th DPRK Marine Division" "9th DPRK Marine Division" "10th DPRK Marine Division" 
+	}
+	bergsjaeger_brigade = {
+		"1st DPRK Mountain Division" "2nd DPRK Mountain Division" "3rd DPRK Mountain Division" "4th DPRK Mountain Division" "5th DPRK Mountain Division" "8th DPRK Mountain Division" "10th DPRK Mountain Division" "11th DPRK Mountain Division" "12th DPRK Mountain Division" 
+	}
+	garrison_brigade = {
+		"1st DPRK Garrison Division" "2nd DPRK Garrison Division" "3rd DPRK Garrison Division" "4th DPRK Garrison Division" "5th DPRK Garrison Division" "6th DPRK Garrison Division" "7th DPRK Garrison Division" "8th DPRK Garrison Division" "9th DPRK Garrison Division" "10th DPRK Garrison Division" "11th DPRK Garrison Division" 
+		"12th DPRK Garrison Division" "13th DPRK Garrison Division" "14th DPRK Garrison Division" "15th DPRK Garrison Division" "16th DPRK Garrison Division" "17th DPRK Garrison Division" "18th DPRK Garrison Division" "19th DPRK Garrison Division" "20th DPRK Garrison Division" 
+	}
+	hq_brigade = {
+		"1st DPRK Army" "2nd DPRK Army" "3rd DPRK Army" "4th DPRK Army" "5th DPRK Army" 
+	}
+	militia_brigade = {
+		"1st Infantry Division" "2nd Infantry Division" "3rd Infantry Division" "4th Infantry Division" "5th Infantry Division" "6th Infantry Division" "7th Infantry Division" "8th Infantry Division" "9th Infantry Division" "10th Infantry Division" "11th Infantry Division" 
+		"12th Infantry Division" "13th Infantry Division" "14th Infantry Division" "15th Infantry Division" "16th Infantry Division" "17th Infantry Division" "18th Infantry Division" "19th Infantry Division" "20th Infantry Division" "21st Infantry Division" "22nd Infantry Division" 
+		"23rd Infantry Division" "24th Infantry Division" "25th Infantry Division" "26th Infantry Division" "27th Infantry Division" "28th Infantry Division" "29th Infantry Division" "30th Infantry Division" 
+	}
+	multi_role = {
+		"No.1 Group DPRKAF" "No.2 Group DPRKAF" "No.3 Group DPRKAF" "No.4 Group DPRKAF" "No.5 Group DPRKAF" "No.7 Group DPRKAF" "No.8 Group DPRKAF" "No.9 Group DPRKAF" "No.10 Group DPRKAF" "No.11 Group DPRKAF" "No.12 Group DPRKAF" 
+		"No.13 Group DPRKAF" "No.14 Group DPRKAF" "No.15 Group DPRKAF" "No.16 Group DPRKAF" "No.17 Group DPRKAF" "No.18 Group DPRKAF" "No.19 Group DPRKAF" "No.20 Group DPRKAF" 
+	}
+	interceptor = {
+		"No.1 Group DPRKAF" "No.2 Group DPRKAF" "No.3 Group DPRKAF" "No.4 Group DPRKAF" "No.5 Group DPRKAF" "No.7 Group DPRKAF" "No.8 Group DPRKAF" "No.9 Group DPRKAF" "No.10 Group DPRKAF" "No.11 Group DPRKAF" "No.12 Group DPRKAF" 
+		"No.13 Group DPRKAF" "No.14 Group DPRKAF" "No.15 Group DPRKAF" "No.16 Group DPRKAF" "No.17 Group DPRKAF" "No.18 Group DPRKAF" "No.19 Group DPRKAF" "No.20 Group DPRKAF" 
+	}
+	strategic_bomber = {
+		"No.1 Group DPRKAF" "No.2 Group DPRKAF" "No.6 Group DPRKAF" "No.3 Group DPRKAF" "No.4 Group DPRKAF" "No.7 Group DPRKAF" "No.8 Group DPRKAF" "No.9 Group DPRKAF" "No.10 Group DPRKAF" "No.11 Group DPRKAF" "No.12 Group DPRKAF" 
+		"No.13 Group DPRKAF" "No.14 Group DPRKAF" "No.15 Group DPRKAF" "No.16 Group DPRKAF" "No.17 Group DPRKAF" "No.18 Group DPRKAF" "No.19 Group DPRKAF" "No.20 Group DPRKAF" 
+	}
+	tactical_bomber = {
+		"No.1 Group DPRKAF" "No.2 Group DPRKAF" "No.6 Group DPRKAF" "No.3 Group DPRKAF" "No.4 Group DPRKAF" "No.7 Group DPRKAF" "No.8 Group DPRKAF" "No.9 Group DPRKAF" "No.10 Group DPRKAF" "No.11 Group DPRKAF" "No.12 Group DPRKAF" 
+		"No.13 Group DPRKAF" "No.14 Group DPRKAF" "No.15 Group DPRKAF" "No.16 Group DPRKAF" "No.17 Group DPRKAF" "No.18 Group DPRKAF" "No.19 Group DPRKAF" "No.20 Group DPRKAF" 
+	}
+	naval_bomber = {
+		"No.1 Group DPRKAF" "No.2 Group DPRKAF" "No.3 Group DPRKAF" "No.4 Group DPRKAF" "No.5 Group DPRKAF" "No.7 Group DPRKAF" "No.8 Group DPRKAF" "No.9 Group DPRKAF" "No.10 Group DPRKAF" 
+	}
+	cas = {
+		"No.1 Group DPRKAF" "No.2 Group DPRKAF" "No.6 Group DPRKAF" "No.3 Group DPRKAF" "No.4 Group DPRKAF" "No.7 Group DPRKAF" "No.8 Group DPRKAF" "No.9 Group DPRKAF" "No.10 Group DPRKAF" "No.11 Group DPRKAF" "No.12 Group DPRKAF" 
+		"No.13 Group DPRKAF" "No.14 Group DPRKAF" "No.15 Group DPRKAF" "No.16 Group DPRKAF" "No.17 Group DPRKAF" "No.18 Group DPRKAF" "No.19 Group DPRKAF" "No.20 Group DPRKAF" 
+	}
+	transport_plane = {
+		"No.1 Group DPRKAF" "No.2 Group DPRKAF" "No.3 Group DPRKAF" "No.4 Group DPRKAF" "No.5 Group DPRKAF" "No.7 Group DPRKAF" "No.8 Group DPRKAF" "No.9 Group DPRKAF" "No.10 Group DPRKAF" 
+	}
+	battleship = {
+		"Independence" "Freedom" "Liberty" "Victory" 
+	}
+	light_cruiser = {
+		"Independence" "Freedom" "Liberty" "Victory" 
+	}
+	heavy_cruiser = {
+		"Independence" "Freedom" "Liberty" "Victory" 
+	}
+	battlecruiser = {
+		"Independence" "Freedom" "Liberty" "Victory" 
+	}
+	destroyer = {
+		"1st DPRK Destroyer Division" "2nd DPRK Destroyer Division" "3rd DPRK Destroyer Division" "4th DPRK Destroyer Division" "5th DPRK Destroyer Division" "6th DPRK Destroyer Division" "7th DPRK Destroyer Division" "8th DPRK Destroyer Division" "9th DPRK Destroyer Division" "10th DPRK Destroyer Division" 
+	}
+	carrier = {
+		"Independence" "Freedom" "Liberty" "Victory" 
+	}
+	submarine = {
+		"1st DPRK Submarine Division" "2nd DPRK Submarine Division" "3rd DPRK Submarine Division" "4th DPRK Submarine Division" "5th DPRK Submarine Division" "6th DPRK Submarine Division" "7th DPRK Submarine Division" "8th DPRK Submarine Division" "9th DPRK Submarine Division" "10th DPRK Submarine Division" 
+	}
+	transport_ship = {
+		"1st DPRK Transport Division" "2nd DPRK Transport Division" "3rd DPRK Transport Division" "4th DPRK Transport Division" "5th DPRK Transport Division" "6th DPRK Transport Division" "7th DPRK Transport Division" "8th DPRK Transport Division" "9th DPRK Transport Division" "10th DPRK Transport Division" 
+	}
+
+}
+
+ministers = {
+	579001 = {
+		name = "Kim Il Sung"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M579001
+		head_of_state = power_hungry_demagogue
+		head_of_government = backroom_backstabber
+		minister_of_security = prince_of_terror
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	579003 = {
+		name = "Nam Il"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M579003
+		foreign_minister = general_staffer
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	579004 = {
+		name = "Cho Man-sik"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M578005
+		armament_minister = laissez_faires_capitalist
+		start_date = 1936.1.1
+	}
+	579006 = {
+		name = "Xiao Jinguang"
+		ideology = stalinist
+		loyalty = 0.25
+		picture = M579006
+		minister_of_intelligence = research_specialist
+		start_date = 1936.1.1
+	}
+	579007 = {
+		name = "Song Shilun"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M579007
+		chief_of_staff = school_of_fire_support
+		start_date = 1936.1.1
+	}
+	579009 = {
+		name = "Liu Xiyuan"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M579009
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1936.1.1
+	}
+	579010 = {
+		name = "Li Kenong"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M579010
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1936.1.1
+	}
+	579011 = {
+		name = "Yi Tong-whi"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M578014
+		head_of_state = barking_buffoon
+		start_date = 1936.1.1
+	}
+	579012 = {
+		name = "Kim Chang Kim"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M578016
+		head_of_government = flamboyant_tough_guy
+		start_date = 1936.1.1
+	}
+	579013 = {
+		name = "Kim Yong Chol"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M579013
+		foreign_minister = great_compromiser
+		start_date = 1936.1.1
+	}
+	579014 = {
+		name = "Park Hyong Yong"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M578012
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	579015 = {
+		name = "Chi Chun Chung"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M578017
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	579016 = {
+		name = "Youn Min Ho"
+		ideology = stalinist
+		loyalty = 0.25
+		picture = M579016
+		minister_of_intelligence = technical_specialist
+		start_date = 1936.1.1
+	}
+	579018 = {
+		name = "Kim Il-chol"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M579018
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	579019 = {
+		name = "Ryoo Jung Sip"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M579019
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	579020 = {
+		name = "Park Min Kyung"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M579020
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1936.1.1
+	}
+}

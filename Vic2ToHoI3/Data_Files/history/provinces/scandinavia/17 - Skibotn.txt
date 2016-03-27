@@ -1,0 +1,10 @@
+owner = NOR
+controller = NOR
+add_core = NOR
+
+infra = 2
+
+terrain = arctic
+1941.6.22 = {
+	controller = GER
+}

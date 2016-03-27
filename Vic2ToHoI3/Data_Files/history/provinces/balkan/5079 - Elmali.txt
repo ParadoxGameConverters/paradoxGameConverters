@@ -1,0 +1,5 @@
+owner = TUR
+controller = TUR
+add_core = TUR
+
+infra = 4

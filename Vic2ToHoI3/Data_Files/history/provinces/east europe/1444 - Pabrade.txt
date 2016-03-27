@@ -1,0 +1,14 @@
+owner = POL
+controller = POL
+add_core = POL
+add_core = LIT
+
+infra = 6
+1940.5.10 = {
+	owner = SOV
+	controller = SOV
+	remove_core = POL
+}
+1941.12.7 = {
+	controller = GER
+}

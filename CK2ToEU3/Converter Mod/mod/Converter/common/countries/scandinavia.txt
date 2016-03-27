@@ -1,0 +1,166 @@
+# Scandinavian Union
+	 
+graphical_culture = latingfx	 
+	 
+color = { 62  122  189 }
+
+historical_ideas = {
+	merchant_adventures
+	shrewd_commerce_practise
+	national_conscripts
+	national_trade_policy
+	military_drill
+	glorious_arms
+	national_bank
+	grand_army
+	cabinet
+	bill_of_rights
+	scientific_revolution
+	napoleonic_warfare
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	dutch_maurician
+	french_caracolle
+	swedish_galoop
+	swedish_gustavian
+	swedish_caroline
+	swedish_arme_blanche
+	prussian_uhlan
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Christian #0" = 55
+	"Karl #0" = 50
+	"Gustav #0" = 40
+	"Fredrik #0" = 35
+	"Håkon #0" = 30
+	"Erik #0" = 25
+	"Olav #0" = 15
+	"Gustav #0 Adolf" = 15
+	"Karl #0 Gustav" = 15
+	"Karl #0 Johan" = 15
+	"Johan #0" = 10
+	"Knut #0" = 5
+	"Harald #0" = 5
+	"Christina #0" = -15
+	"Margareta #0" = -15
+	"Ulrika #0" = -10
+	"Eleonora #0" = -5
+	"Adolf #0" = 0
+	"Alfred #0" = 0
+	"August #0" = 0
+	"Axel #0" = 0
+	"Bengt #0" = 0
+	"Birger #0" = 0
+	"Björn #0" = 0
+	"Edvard #0" = 0
+	"Einar #0" = 0
+	"Folke #0" = 0
+	"Gottfrid #0" = 0
+	"Gunnar #0" = 0
+	"Henrik #0" = 0
+	"Inge #0" = 0
+	"Jakob #0" = 0
+	"Lars #0" = 0
+	"Ludvig #0" = 0
+	"Magnus #0" = 0
+	"Mikael #0" = 0
+	"Nils #0" = 0
+	"Olof #0" = 0
+	"Oskar #0" = 0
+	"Patrik #0" = 0
+	"Pontus #0" = 0
+	"Rangvald #0" = 0
+	"Rettil #0" = 0
+	"Sigismund #0" = 0
+	"Sigvard #0" = 0
+	"Simon #0" = 0
+	"Sven #0" = 0
+	"Tomas #0" = 0
+	"Ulrik #0" = 0
+	"Waldemar #0" = 0
+}
+	 
+leader_names = {
+	Andersson Armfeldt "von Ascheberg" Adlercreutz Adlersparre Alkmaar Anckarström
+	Bagge Banér Bielke Brahe
+	Cronstedt
+	"von Döbeln" Dahlbergh Dufwa
+	Engelbrekt Eriksson Ehrensvärd "von Essen" Eka Ehrenstrahl
+	Fleming "von Fersen"
+ 	Gadh Grip "af Gennäs" "de la Gardie" Gyllenhielm Gathenhielm Gustavsson
+	Horn Hård Hahn Hastfer Hjärne
+	Jägerhorn
+	Königsmarck Klingspor
+	Lewenhaupt Leijonhufvud Liljencrantz Lindschöld
+	Oxenstierna
+	Palmstruch Piper Prinz
+	Rehnskiöld Ribbing
+	Stenbock Sandels Skytte Sture
+	"Tre Rosor" Torstensson "af Trolle" Toll
+	Wrangel Wachtmeister Wallenberg
+	Åkerhielm
+	Adeler Ahlefeldt Akeleye Amundsen Arenstorff 
+	Bille Bolt Brockenhuus
+	Christiansen
+	Daa
+	Ebbesen Eberstein Ellbrecht 
+	Falkenskjold Fischer
+	Galt Gersdorff Gjedde Gyldenløve Gyldenstjerne Gøye
+	Harboe Hardenberg Holstein Huitfeldt Høegh
+	Jensen Juel
+	Krabbe Krag Krumpen Knudtzon Kvistgaard Kaas
+	Lingby Lunge Lützow Løvenørn
+	Moltke Moth Munk
+	Norby
+	Pedersen Povlsen Pallesen Pil
+	Rantzau Reventlow Rosenkrantz Rosenørn
+	Schlentz Schack Scholten Sehested Skram
+	Thomsen "von Trampe" Trolle
+	Ulfeldt
+}
+
+ship_names = {
+	Akilles Amarant Andromeda Anklam Bohus "Böse Lejon" Calmar Camilla Carolus Charlotte Cossacken 
+	Crono-Solen David Disa Draken Drottningen Elefanten Elfsborg Elisabet Engel "Engel Gabriel" 
+	Enighet Euridice Falk Fenix Finland "Flygande Wargen" Fortuna Fredrika "Fredrika Amalia" 
+	Fröija Galathe "Gamla Fortuna" "Gamla Rikssvärdet" "Gotha Lejon" Grip Gustavus "Gyllende Lejon" 
+	Göta Göteborg Halland Havsfru Hektor Herkules Hieronymus Hjalmar Hök Illerim Ingeborg Jomfru 
+	Jupiter Jägare "Kalmar Nyckel" Kalmarkastell Karlskrona Kronan Laxen Leopard Lejon Lodbrok 
+	Mars Mercurius Morgonstjärna Norden Nordstjärna Nyckeln Nyland Oden Pelikanen Postillion 
+	"Prins Carl" Prinsessan Regina Rosa Skåne Småland Solen "St. Erik" "St. Göran" "St. Johannes" 
+	"St. Thomas" Starkoster Stenbock Stockholm "Stora Cronan" Svan "Svenska Falk" "Svenska Lejonet" 
+	Sverige Svärdet Södermanland Tapper Thetis Tigern "Tre Kronor" Troilus Ulrica Uppland 
+	Vasen Victoria Warberg Wasa Wenden Werden Vestervik Wästmanland Victoria Witduve Öland Örn
+	Achilles "Arche Noa" Arken Beskjermer "Byens Løffue" Caritas "Charlotte Amalie" 
+	Christiania Christiansand Christiansø "Christianus IV" "Christianus V" Churprindsen 
+	Concordia Cæsar Dannebroge David Delmenhorst Ditmarsken Draken "Dronning Louisa" 
+	Ebenetzer Elefanten Enighed "Engelske Fortuna" Enhiørningen Fides Flores 
+	"Flygende Hjorten" Fortuna "Fredericus III" "Fredericus IV" Fyen Gravenstein Griffe 
+	Gyldenløve Hannibal Havfru Havhest Havmand Hector Hercules "Hertug Olufs Pincke" 
+	Hiælperen Hjort Høyenhald Hummer "Hvide Ørn" Højenhald Island Jernvågen Jægermester 
+	Justitia "Kongens Jagt Krone" "Kronet Fisk" Lamprenen Leopard Lindorm Loss Lovisa 
+	"Løvendals Gallej" Makaløs Mars Merkurius Morian Najaden Nelleblad Neptunus 
+	"Norske Løve" Oldenborg Papegoye Patienta Pelican Phønix "Prinds Carl" 
+	"Prinds Christian" "Prinds Christian" "Prinds Wilhelm" Raae Samson Solen 
+	"Sophia Amalia" "Sophia Hedvig" "St. Erik" "St. Georg" "St. Oluf" Stormar Stralsund 
+	Svaerdfisk Svan "Svenske Jomfru" Søridder Tomler "To Løver" "Tre Løver" Trefoldighed 
+	Victoria Vindhunden Wenden Ørnen
+	Ålvik
+	Bergen
+	Engan
+	Kristiansund
+	Molde
+	Oslo
+	Roan
+	Stavanger Sula
+	Trondheim
+}

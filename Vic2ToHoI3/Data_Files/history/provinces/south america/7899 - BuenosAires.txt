@@ -1,0 +1,14 @@
+owner = ARG
+controller = ARG
+add_core = ARG
+points = 6
+metal = 10.00
+energy = 20.00
+rare_materials = 6.00
+industry = 10
+anti_air = 5
+infra = 6
+air_base = 3
+naval_base = 5
+manpower = 8.00
+leadership = 0.80

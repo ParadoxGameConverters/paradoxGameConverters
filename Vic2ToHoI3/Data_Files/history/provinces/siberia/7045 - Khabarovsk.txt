@@ -1,0 +1,9 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+
+points = 3
+energy = 12.00
+infra = 7
+manpower = 4.00
+leadership = 0.08

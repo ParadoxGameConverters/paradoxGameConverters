@@ -1,0 +1,12 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+add_core = JOR
+points = 1
+energy = 1.00
+crude_oil = 8.00
+industry = 2
+infra = 8
+manpower = 1.00
+leadership = 0.20
+infra = 2

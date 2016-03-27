@@ -1,0 +1,131 @@
+country_decisions = {
+
+	make_st_petersburg_capital = {
+		potential = {
+			tag = RUS
+			owns = 33
+			NOT = { capital = 33 }
+			NOT = { has_country_flag = relocated_capital_st_petersburg }
+		}
+		allow = {
+			#war = no
+			treasury = 300
+		}
+		effect = {
+			set_country_flag = relocated_capital_st_petersburg
+			stability = 3
+			capital = 33
+			add_core = 33
+			prestige = 0.10
+			treasury = -200
+			33 = {
+				change_province_name = "St. Petersburg"
+				rename_capital = "St. Petersburg"
+			 	base_tax = 5 
+			 	change_manpower = 2
+				culture = russian
+				citysize = 20000
+				owner = {
+					random_owned = { 
+						limit = { owner = { religion = catholic } }
+						33 = { religion = catholic }
+					}
+					random_owned = { 
+						limit = { owner = { religion = protestant } }
+						33 = { religion = protestant }
+					}
+					random_owned = { 
+						limit = { owner = { religion = reformed } }
+						33 = { religion = reformed }
+					}
+					random_owned = { 
+						limit = { owner = { religion = orthodox } }
+						33 = { religion = orthodox }
+					}
+					random_owned = { 
+						limit = { owner = { religion = sunni } }
+						33 = { religion = sunni }
+					}
+					random_owned = { 
+						limit = { owner = { religion = shiite } }
+						33 = { religion = shiite }
+					}
+					random_owned = { 
+						limit = { owner = { religion = buddhism } }
+						33 = { religion = buddhism }
+					}
+					random_owned = { 
+						limit = { owner = { religion = hinduism } }
+						33 = { religion = hinduism }
+					}
+					random_owned = { 
+						limit = { owner = { religion = confucianism } }
+						33 = { religion = confucianism }
+					}
+					random_owned = { 
+						limit = { owner = { religion = shinto } }
+						33 = { religion = shinto }
+					}
+					random_owned = { 
+						limit = { owner = { religion = animism } }
+						33 = { religion = animism }
+					}
+					random_owned = { 
+						limit = { owner = { religion = shamanism } }
+						33 = { religion = shamanism }
+					}
+				}
+
+			 }
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	establish_siberian_frontier = {
+		potential = {
+			tag = RUS
+			year = 1500
+			NOT = { conquistador = 1 }
+			NOT = { idea = quest_for_the_new_world }
+			western_siberia = { owned_by = THIS }
+			NOT = { eastern_siberia = { has_discovered = THIS } }
+		}
+		allow = {
+			war = no
+			treasury = 20
+		}
+		effect = {
+			treasury = -10
+			create_conquistador = 5
+			colonists = 1
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	establish_russian_patriarchate = {
+		potential = {
+			tag = RUS
+			NOT = { has_country_modifier = russian_patriarchate }
+			religion = orthodox
+		}
+		allow = {
+			war = no
+			NOT = { 151 = { owned_by = BYZ } }
+			prestige = 0.2
+			innovative_narrowminded = 2
+		}
+		effect = {
+			add_country_modifier = {
+				name = "russian_patriarchate"
+				duration = -1
+			}		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	
+}

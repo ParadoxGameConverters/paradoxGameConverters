@@ -1,0 +1,6 @@
+owner = IRE
+controller = IRE
+add_core = IRE
+
+metal = 2.00
+infra = 6

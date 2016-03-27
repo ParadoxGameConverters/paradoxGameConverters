@@ -1,0 +1,112 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 241  252  151 }
+
+historical_ideas = {
+	merchant_adventures
+	patron_of_art
+	shrewd_commerce_practise
+	national_trade_policy
+	national_bank
+	national_conscripts
+	engineer_corps 
+	military_drill
+	smithian_economics
+	scientific_revolution
+	espionage
+	bureaucracy
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	italian_condotta
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Francesco #0" = 100
+	"Alfonso #0" = 80
+	"Ercole #0" = 60
+	"Niccolò #2" = 20
+	"Rinaldo #2" = 20
+	"Borso #0" = 20
+	"Cesare #0" = 20
+	"Ferdinando #0" = 20
+	"Leonello #0" = 20
+	"Obizzo #3" = 15
+	"Alberto #1 Carlo" = 15
+	"Alessandro #0" = 15
+	"Almerigo #0" = 15
+	"Luigi #0" = 15
+	"Sigismondo #0" = 15
+	"Tebaldo #0" = 15
+	"Benedetto #0" = 10
+	"Bonifazio #0" = 10
+	"Carlo #0" = 10
+	"Carlo Alessandro #0" = 10
+	"Clemente #0" = 10
+	"Filiberto #0" = 10
+	"Foresto #0" = 10
+	"Gian Federico #0" = 10
+	"Ippolito #0" = 10
+	"Massimiliano #0" = 10
+	"Azzo #8" = 5
+	"Aldobrandino #3" = 5
+	"Agostino #0" = 0
+	"Cosimo #0" = 0
+	"Davide #0" = 0
+	"Ennio #0" = 0
+	"Fulgenzio #0" = 0
+	"Giulio #0" = 0
+	"Lazzaro #0" = 0
+	"Nicola #0" = 0
+	"Prospero #0" = 0
+	"Renato #0" = 0
+	"Torquato #0" = 0
+	"Vincenzo #0" = 0
+}
+
+leader_names = {
+        Allegri "d'Appiani d'Aragona" Araldini "di Ardizzone" Ariosto Avanzini
+	Bacciochi Barberini Battisti Boiardo Boncompagni Boncompagni-Ludovisi
+	Calcagnini Catena Colonna "del Cossa" d'Este Farini "di Farnese" "di Ferrari"
+	Giardini Grandi Graziosi Gualandelli Gucciardini Loschi
+	Malmussi Marescalchi Menotti Mitelli Montecuccoli Montefeltro Nardi Nobili
+	Ordelaffi Pavironica Peretti Pico Pio Rangoni "de Roberti" Rossetti
+	Santarosa "di Sauli" Tassoni "de Tolomei" "della Torre" Tura Viridis Zini
+}
+
+ship_names = {
+	Albareto "Anselmo da Campione"
+	Baggiovara "Borso d'Este" 
+	Ca'Fusara Cicerone Cittanova Cognento Collegara 
+	Este
+	"Fiumi Panaro" "Fiumi Secchia"
+	Ganaceto
+	Lanfranco Lesignana Leodoino
+	Marzaglia 
+	Navicello Nonantola
+	"Obizzo d'Este"  
+	Portile 
+	"re Enzo"
+	"Santa Maria della Pomposa" "Sant'Agostino" Sant'Ambrogio "Santo Anselmo"
+	"San Damaso" "San Donnino" "San Francesco" "San Geminiano" 
+	"Tre Olmi" 
+	Villanova  
+}
+
+army_names = {
+	"Armata di $PROVINCE$"
+}

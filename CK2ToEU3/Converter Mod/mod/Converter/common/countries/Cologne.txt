@@ -1,0 +1,100 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 84  124  48 }
+
+historical_ideas = {
+	church_attendance_duty
+	merchant_adventures
+	patron_of_art
+	military_drill
+	national_bank
+	national_conscripts
+	national_trade_policy
+	cabinet
+	smithian_economics
+	scientific_revolution
+	bureaucracy
+	engineer_corps
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Hermann #3" = 40
+	"Friedrich #2" = 40
+	"Gebhard #0" = 40
+	"Adolf #2" = 20
+	"Dietrich #1" = 20
+	"Philipp #1" = 20
+	"Anton #0" = 20
+	"Anton Viktor #0" = 20
+	"Clemens August #0" = 20
+	"Ernst #0" = 20
+	"Ferdinand #0" = 20
+	"Maximilian Franz #0" = 20
+	"Maximilian Friedrich #0" = 20
+	"Maximilian Heinrich #0" = 20
+	"Joseph Clemens #0" = 20
+	"Rupprecht #0" = 20
+	"Salentin #0" = 20
+	"Engelbert #3" = 15
+	"Heinrich #2" = 15
+	"Siegfried #2" = 15
+	"Konrad #1" = 15
+	"Kuno #1" = 15
+	"Walram #1" = 15
+	"Wikbold #1" = 15
+	"Wilhelm #1" = 15
+	"Bruno #4" = 10
+	"Adam #0" = 0
+	"Alfred #0" = 0
+	"Christian #0" = 0
+	"Dominik #0" = 0
+	"Gottlob #0" = 0
+	"Günther #0" = 0
+	"Hans #0" = 0
+	"Hyeronimus #0" = 0
+	"Jürgen #0" = 0
+	"Karl #0" = 0
+	"Paul #0" = 0
+	"Rudolf #0" = 0
+	"Theodor #0" = 0
+	"Tobias #0" = 0
+}
+
+leader_names = {
+	Baten Bühmer Bombeck Breucker Buschmann Diekmann
+	Eckrath Fischedick Fortkamp Boymann Bremer
+	Lohmann Perdekamp Grüter Hegemann Kappenberg
+	Hegemann Knümann Leggewe Liesenfeld Limberg 
+	Glaser Lochtkemper Lohe Nathrath Ortmann 
+	Pickenbrock Sankühler Springmann Stratmann
+	Stenkhoff "von Wedich" Wessels "von Westerburg"
+}
+
+ship_names = {
+	"Erzbischof Brun" "Erbischof Anno" "Bischof Hildebold"
+	"Erzbischof Gunthar" "Erzbischof Gero" "Rainald von Dassel"
+	"Engelbert II" "Konrad Hochstaden" Rhein Erft Agger
+}
+
+army_names = {
+	"Erzbischofliche Garde" "Armee von $PROVINCE$" 
+}

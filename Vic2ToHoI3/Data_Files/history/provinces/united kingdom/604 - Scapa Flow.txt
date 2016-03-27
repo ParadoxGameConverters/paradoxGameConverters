@@ -1,0 +1,15 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+anti_air = 4
+infra = 8
+air_base = 4
+naval_base = 10
+
+1938.1.1 = {
+	radar_station = 1
+}
+
+1939.1.1 = {
+	radar_station = 3
+}

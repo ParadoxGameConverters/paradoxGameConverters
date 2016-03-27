@@ -1,0 +1,7 @@
+owner = CAN
+controller = CAN
+add_core = CAN
+
+infra = 6
+
+infra = 6

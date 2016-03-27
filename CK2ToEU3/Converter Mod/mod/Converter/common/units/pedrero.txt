@@ -1,0 +1,11 @@
+# Pedrero
+
+type = artillery
+
+maneuver = 2
+offensive_morale = 1
+defensive_morale = 2
+offensive_fire = 2
+defensive_fire = 3
+offensive_shock = 1
+defensive_shock = 2

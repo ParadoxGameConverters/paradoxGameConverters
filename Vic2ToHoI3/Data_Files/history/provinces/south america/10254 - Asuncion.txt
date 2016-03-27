@@ -1,0 +1,13 @@
+owner = PAR
+controller = PAR
+add_core = PAR
+points = 1
+metal = 5.00
+energy = 10.00
+rare_materials = 3.00
+industry = 5
+anti_air = 1
+infra = 4
+air_base = 4
+manpower = 4.00
+leadership = 0.40

@@ -1,0 +1,123 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 179  128  104 }
+
+historical_ideas = {
+	national_conscripts
+	espionage
+	military_drill
+	national_trade_policy
+	patron_of_art
+	grand_army
+	bureaucracy
+	national_bank
+	cabinet
+	humanist_tolerance
+	glorious_arms
+}
+
+historical_units = {
+	chinese_longspear
+	eastern_bow
+	chinese_footsoldier
+	chinese_steppe
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	manchu_banner
+	han_banner
+	asian_musketeer
+	chinese_dragoon
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+	reformed_manchu_rifle
+}
+
+monarch_names = {
+	"Yongli #0" = 20
+	"Shaowu #0" = 20
+	"Longwu #0" = 20
+	"Hongguang #0" = 20
+	"Chongzhen #0" = 20
+	"Tianqi #0" = 20
+	"Taichang #0" = 20
+	"Wanli #0" = 20
+	"Longqing #0" = 20
+	"Jiajing #0" = 20
+	"Zhengde #0" = 20
+	"Hongzhi #0" = 20
+	"Chenghua #0" = 20
+	"Tianshun #0" = 20
+	"Jingtai #0" = 20
+	"Zhengtong #0" = 20
+	"Xuande #0" = 20
+	"Hongxi #0" = 20
+	"Yongle #0" = 20
+	"Biao #0" = 10
+	"Yuyuan #0" = 10
+	"Gaoxu #0" = 10
+	"Gaozhi #0" = 10
+	"Youxue #0" = 10
+	"Makata #0" = -5
+	"Ching-Tuan #0" = -5
+	"Yungan #0" = -5
+	"Harishu #0" = -5
+	"Ninde #0" = -5
+	"Yiping #0" = -5
+	"Lean #0" = -5
+	"Qin #0" = 5
+	"Youji #0" = 5
+	"Youmo #0" = 5
+	"Youjian #0" = 5
+	"Youyi #0" = 5
+	"Youshan #0" = 5
+	"Jianwan #1" = 1
+	"Hongwu #1" = 1
+	"Chonghuan #0" = 0
+	"Guozhu #0" = 0
+	"He #0" = 0
+	"Houlong #0" = 0
+	"Jian #0" = 0
+	"Juzheng #0" = 0
+	"Loi #0" = 0
+	"Qian #0" = 0
+	"Rusong #0" = 0
+	"Shen #0" = 0
+	"Sheng #0" = 0
+	"Xiaoru #0" = 0
+	"Xusheng #0" = 0
+	"Yinlong #0" = 0
+	"Zhizhang #0" = 0
+	"Zhongxian #0" = 0
+}
+
+leader_names = {
+	Hao
+	Song
+	Xuan
+	Menglin
+	Zongyan
+	Yan
+	Lin
+	Ting
+	Shixian
+	Mingtai
+}
+
+ship_names = {
+	Gaodi Huidi Wendi Zhaodi Zhangdi "Da Ming Guo"
+	Beijing "Zeng He" Ji'nan Nanjing Hangzhou 
+	Wuchang Fuzhou Nanchang Guilin Guangzhou
+	Guiyang Yunnan Chendo Xi'an Taiyuan "Huang He"
+	"Chang Jiang" "Xijiang" "Kung-fu tzu" Mencius
+	"Xun Zi" "Yan Hui" "Min Sun" "Ran Geng" "Ran Yong"
+	"Zi-you" "Zi-lu" "Zi-wo" "Zi-gong" "Yan Yan"
+	"Zi-xia" "Zi-zhang" "Zeng Shen" "Dantai Mieming"
+	"Fu Buji" "Yuan Xian" "Gungye Chang" "Nangong Guo"
+	"Gongxi Ai" "Zeng Dian" "Yan Wuyao" "Shang Zhu"
+	"Gao Chai" "Qidiao Kai" "Gongbo Liao" "Sima Geng"
+	"Fan Xu" "You Ruo" "Gongxi Chi" "Wuma Shi" "Liang Zhan"
+	"Yan Xing" "Ran Ru" "Cao Xu" "Bo Qian" "Gongsun Long"
+}

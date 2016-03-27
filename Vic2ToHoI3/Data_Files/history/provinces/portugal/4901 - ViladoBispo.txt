@@ -1,0 +1,9 @@
+owner = POR
+controller = POR
+add_core = POR
+
+infra = 7
+
+infra = 6
+
+infra = 6

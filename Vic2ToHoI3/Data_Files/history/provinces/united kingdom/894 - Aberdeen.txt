@@ -1,0 +1,10 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+metal = 1.00
+energy = 2.00
+industry = 2
+infra = 6
+manpower = 1.00
+naval_base = 5
+leadership = 0.25

@@ -1,0 +1,12 @@
+owner = NZL
+controller = NZL
+add_core = NZL
+points = 1
+metal = 1.00
+energy = 2.00
+rare_materials = 0.5
+industry = 1
+infra = 6
+manpower = 1.00
+leadership = 0.10
+naval_base = 5

@@ -1,0 +1,16 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+
+coastal_fort = 1
+anti_air = 1
+infra = 7
+industry = 1
+naval_base = 4
+
+1943.2.1 = {
+	controller = GER
+}
+1943.2.14  = {
+	controller = SOV
+}

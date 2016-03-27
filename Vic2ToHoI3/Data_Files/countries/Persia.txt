@@ -1,0 +1,676 @@
+color = { 71  113  97 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1. Dastebandi Sarbaze Piyade" "2. Dastebandi Sarbaze Piyade" "3. Dastebandi Sarbaze Piyade" "4. Dastebandi Sarbaze Piyade" "5. Dastebandi Sarbaze Piyade" "6. Dastebandi Sarbaze Piyade" "7. Dastebandi Sarbaze Piyade" "8. Dastebandi Sarbaze Piyade" "9. Dastebandi Sarbaze Piyade" "10. Dastebandi Sarbaze Piyade" "11. Dastebandi Sarbaze Piyade" 
+		"12. Dastebandi Sarbaze Piyade" "13. Dastebandi Sarbaze Piyade" "14. Dastebandi Sarbaze Piyade" "15. Dastebandi Sarbaze Piyade" "16. Dastebandi Sarbaze Piyade" "17. Dastebandi Sarbaze Piyade" "18. Dastebandi Sarbaze Piyade" "19. Dastebandi Sarbaze Piyade" "20. Dastebandi Sarbaze Piyade" "21. Dastebandi Sarbaze Piyade" "22. Dastebandi Sarbaze Piyade" 
+		"23. Dastebandi Sarbaze Piyade" "24. Dastebandi Sarbaze Piyade" "25. Dastebandi Sarbaze Piyade" "26. Dastebandi Sarbaze Piyade" "27. Dastebandi Sarbaze Piyade" "28. Dastebandi Sarbaze Piyade" "29. Dastebandi Sarbaze Piyade" "30. Dastebandi Sarbaze Piyade" "31. Dastebandi Sarbaze Piyade" "32. Dastebandi Sarbaze Piyade" "33. Dastebandi Sarbaze Piyade" 
+		"34. Dastebandi Sarbaze Piyade" "35. Dastebandi Sarbaze Piyade" 
+	}
+	cavalry_brigade = {
+		"1. Dastebandi Savareh" "2. Dastebandi Savareh" "3. Dastebandi Savareh" "4. Dastebandi Savareh" "5. Dastebandi Savareh" "6. Dastebandi Savareh" "7. Dastebandi Savareh" "8. Dastebandi Savareh" "9. Dastebandi Savareh" "10. Dastebandi Savareh" 
+	}
+	motorized_brigade = {
+		"1. Dastebandi Piyadeh Kamiyon" "2. Dastebandi Piyadeh Kamiyon" "3. Dastebandi Piyadeh Kamiyon" "4. Dastebandi Piyadeh Kamiyon" "5. Dastebandi Piyadeh Kamiyon" "6. Dastebandi Piyadeh Kamiyon" "7. Dastebandi Piyadeh Kamiyon" "8. Dastebandi Piyadeh Kamiyon" "9. Dastebandi Piyadeh Kamiyon" "10. Dastebandi Piyadeh Kamiyon" 
+	}
+	mechanized_brigade = {
+		"1. Dastebandi Mekanizeh" "2. Dastebandi Mekanizeh" "3. Dastebandi Mekanizeh" "4. Dastebandi Mekanizeh" "5. Dastebandi Mekanizeh" "6. Dastebandi Mekanizeh" "7. Dastebandi Mekanizeh" "8. Dastebandi Mekanizeh" "9. Dastebandi Mekanizeh" "10. Dastebandi Mekanizeh" 
+	}
+	light_armor_brigade = {
+		"1. Dastebandi Zereh" "2. Dastebandi Zereh" "3. Dastebandi Zereh" "4. Dastebandi Zereh" "5. Dastebandi Zereh" "6. Dastebandi Zereh" "7. Dastebandi Zereh" "8. Dastebandi Zereh" "9. Dastebandi Zereh" "10. Dastebandi Zereh" 
+	}
+	armor_brigade = {
+		"1. Dastebandi Zereh" "2. Dastebandi Zereh" "3. Dastebandi Zereh" "4. Dastebandi Zereh" "5. Dastebandi Zereh" "6. Dastebandi Zereh" "7. Dastebandi Zereh" "8. Dastebandi Zereh" "9. Dastebandi Zereh" "10. Dastebandi Zereh" 
+	}
+	paratrooper_brigade = {
+		"1. Baxs Chatrbaz Hava" "2. Baxs Chatrbaz Hava" "3. Baxs Chatrbaz Hava" "4. Baxs Chatrbaz Hava" "5. Baxs Chatrbaz Hava" "6. Baxs Chatrbaz Hava" "7. Baxs Chatrbaz Hava" "8. Baxs Chatrbaz Hava" "9. Baxs Chatrbaz Hava" "10. Baxs Chatrbaz Hava" 
+	}
+	marine_brigade = {
+		"1. Baxs Piyadeh Niru Daryai" "2. Baxs Piyadeh Niru Daryai" "3. Baxs Piyadeh Niru Daryai" "4. Baxs Piyadeh Niru Daryai" "5. Baxs Piyadeh Niru Daryai" "6. Baxs Piyadeh Niru Daryai" "7. Baxs Piyadeh Niru Daryai" "8. Baxs Piyadeh Niru Daryai" "9. Baxs Piyadeh Niru Daryai" "10. Baxs Piyadeh Niru Daryai" 
+	}
+	bergsjaeger_brigade = {
+		"1. Baxs Kuhnabard" "2. Baxs Kuhnabard" "3. Baxs Kuhnabard" "4. Baxs Kuhnabard" "5. Baxs Kuhnabard" "6. Baxs Kuhnabard" "7. Baxs Kuhnabard" "8. Baxs Kuhnabard" "9. Baxs Kuhnabard" "10. Baxs Kuhnabard" "11. Baxs Kuhnabard" 
+		"12. Baxs Kuhnabard" "13. Baxs Kuhnabard" "14. Baxs Kuhnabard" "15. Baxs Kuhnabard" 
+	}
+	garrison_brigade = {
+		"21. Dastebandi Sarbaze Piyade" "22. Dastebandi Sarbaze Piyade" "23. Dastebandi Sarbaze Piyade" "24. Dastebandi Sarbaze Piyade" "25. Dastebandi Sarbaze Piyade" "26. Dastebandi Sarbaze Piyade" "27. Dastebandi Sarbaze Piyade" "28. Dastebandi Sarbaze Piyade" "29. Dastebandi Sarbaze Piyade" "30. Dastebandi Sarbaze Piyade" "31. Dastebandi Sarbaze Piyade" 
+		"32. Dastebandi Sarbaze Piyade" "33. Dastebandi Sarbaze Piyade" "34. Dastebandi Sarbaze Piyade" "35. Dastebandi Sarbaze Piyade" 
+	}
+	hq_brigade = {
+		"1. Artes" "2. Artes" "3. Artes" "4. Artes" "5. Artes" 
+	}
+	militia_brigade = {
+		"1. Dastebandi Sahrbani" "2. Dastebandi Sahrbani" "3. Dastebandi Sahrbani" "4. Dastebandi Sahrbani" "5. Dastebandi Sahrbani" "6. Dastebandi Sahrbani" "7. Dastebandi Sahrbani" "8. Dastebandi Sahrbani" "9. Dastebandi Sahrbani" "10. Dastebandi Sahrbani" "11. Dastebandi Sahrbani" 
+		"12. Dastebandi Sahrbani" "13. Dastebandi Sahrbani" "14. Dastebandi Sahrbani" "15. Dastebandi Sahrbani" "16. Dastebandi Sahrbani" "17. Dastebandi Sahrbani" "18. Dastebandi Sahrbani" "19. Dastebandi Sahrbani" "20. Dastebandi Sahrbani" "21. Dastebandi Sahrbani" "22. Dastebandi Sahrbani" 
+		"23. Dastebandi Sahrbani" "24. Dastebandi Sahrbani" "25. Dastebandi Sahrbani" 
+	}
+	multi_role = {
+		"1. Daste Barangixtan" "2. Daste Barangixtan" "3. Daste Barangixtan" "4. Daste Barangixtan" "5. Daste Barangixtan" "6. Daste Barangixtan" "7. Daste Barangixtan" "8. Daste Barangixtan" "9. Daste Barangixtan" "10. Daste Barangixtan" 
+	}
+	interceptor = {
+		"1. Daste Barangixtan" "2. Daste Barangixtan" "3. Daste Barangixtan" "4. Daste Barangixtan" "5. Daste Barangixtan" "6. Daste Barangixtan" "7. Daste Barangixtan" "8. Daste Barangixtan" "9. Daste Barangixtan" "10. Daste Barangixtan" 
+	}
+	strategic_bomber = {
+		"1. Daste Bombon Razmarayi" "2. Daste Bombon Razmarayi" "3. Daste Bombon Razmarayi" "4. Daste Bombon Razmarayi" "5. Daste Bombon Razmarayi" "6. Daste Bombon Razmarayi" "7. Daste Bombon Razmarayi" "8. Daste Bombon Razmarayi" "9. Daste Bombon Razmarayi" "10. Daste Bombon Razmarayi" 
+	}
+	tactical_bomber = {
+		"1. Daste Bombon Kardani" "2. Daste Bombon Kardani" "3. Daste Bombon Kardani" "4. Daste Bombon Kardani" "5. Daste Bombon Kardani" "6. Daste Bombon Kardani" "7. Daste Bombon Kardani" "8. Daste Bombon Kardani" "9. Daste Bombon Kardani" "10. Daste Bombon Kardani" 
+	}
+	naval_bomber = {
+		"1. Daste Daryayi Bombon" "2. Daste Daryayi Bombon" "3. Daste Daryayi Bombon" "4. Daste Daryayi Bombon" "5. Daste Daryayi Bombon" "6. Daste Daryayi Bombon" "7. Daste Daryayi Bombon" "8. Daste Daryayi Bombon" "9. Daste Daryayi Bombon" "10. Daste Daryayi Bombon" "1. Daste Azdar Bombon" 
+		"2. Daste Azdar Bombon" "3. Daste Azdar Bombon" "4. Daste Azdar Bombon" "5. Daste Azdar Bombon" "6. Daste Azdar Bombon" "7. Daste Azdar Bombon" "8. Daste Azdar Bombon" "9. Daste Azdar Bombon" "10. Daste Azdar Bombon" 
+	}
+	cas = {
+		"1. Daste Sirje Raftan Bombon" "2. Daste Sirje Raftan Bombon" "3. Daste Sirje Raftan Bombon" "4. Daste Sirje Raftan Bombon" "5. Daste Sirje Raftan Bombon" "6. Daste Sirje Raftan Bombon" "7. Daste Sirje Raftan Bombon" "8. Daste Sirje Raftan Bombon" "9. Daste Sirje Raftan Bombon" "10. Daste Sirje Raftan Bombon" 
+	}
+	transport_plane = {
+		"1. Daste Barbari Hava" "2. Daste Barbari Hava" "3. Daste Barbari Hava" "4. Daste Barbari Hava" "5. Daste Barbari Hava" "6. Daste Barbari Hava" 
+	}
+	battleship = {
+		"IS Palang" "IS Babr" "IS Shir" "IS Paykan" 
+	}
+	light_cruiser = {
+		"IS Palang" "IS Babr" "IS Shir" "IS Paykan" "IS Ababil" "IS Simorgh" 
+	}
+	heavy_cruiser = {
+		"ISPalang" "IS Babr" "IS Shir" "IS Paykan" "IS Ababil" "IS Simorgh" 
+	}
+	battlecruiser = {
+		"IS Palang" "IS Babr" "IS Shir" "IS Paykan" 
+	}
+	destroyer = {
+		"1. Kabud Azdar" "2. Kabud Azdar" "3. Kabud Azdar" "4. Kabud Azdar" "5. Kabud Azdar" "6. Kabud Azdar" "7. Kabud Azdar" "8. Kabud Azdar" "9. Kabud Azdar" "10. Kabud Azdar" 
+	}
+	carrier = {
+		"IS Palang" "IS Babr" "IS Shir" "IS Paykan" 
+	}
+	escort_carrier = {
+		"IS Saam" "IS Zaal" "IS Rostam" "IS Faramarz" 
+	}
+	submarine = {
+		"1. Kabud Ziredayayi" "2. Kabud Ziredayayi" "3. Kabud Ziredayayi" "4. Kabud Ziredayayi" "5. Kabud Ziredayayi" "6. Kabud Ziredayayi" "7. Kabud Ziredayayi" "8. Kabud Ziredayayi" "9. Kabud Ziredayayi" "10. Kabud Ziredayayi" 
+	}
+	transport_ship = {
+		"1. Kabud Tarabari" "2. Kabud Tarabari" "3. Kabud Tarabari" "4. Kabud Tarabari" "5. Kabud Tarabari" "6. Kabud Tarabari" "7. Kabud Tarabari" "8. Kabud Tarabari" "9. Kabud Tarabari" "10. Kabud Tarabari" 
+	}
+
+}
+
+ministers = {
+	53001 = {
+		name = "Reza Pahlavi"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M53001
+		head_of_state = resigned_generalissimo
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	53002 = {
+		name = "Mahmud Jam"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M53002
+		head_of_government = silent_workhorse
+		start_date = 1936.1.1
+	}
+	53003 = {
+		name = "Inoyatullah Khan Sami"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M53003
+		foreign_minister = great_compromiser
+		start_date = 1936.1.1
+	}
+	53004 = {
+		name = "Ahmad Khan Nakhjaavan"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M53004
+		armament_minister = battle_fleet_proponent
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	53005 = {
+		name = "Ali Akbar Deiva"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M53005
+		minister_of_security = back_stabber
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	53006 = {
+		name = "Reza Mizani"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M53006
+		minister_of_intelligence = naval_intelligence_specialist
+		armament_minister = resource_industrialist
+		chief_of_staff = school_of_mass_combat
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	53008 = {
+		name = "Abdolreza Afkhami"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M53008
+		chief_of_army = static_defence_doctrine
+		armament_minister = military_entrepreneur
+		start_date = 1936.1.1
+	}
+	53009 = {
+		name = "Ahmad Mira Khosravani"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M53009
+		chief_of_navy = indirect_approach_doctrine
+		armament_minister = submarine_proponent
+		start_date = 1936.1.1
+	}
+	53010 = {
+		name = "Ahmad Khan Nakhjavan"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M53004
+		chief_of_air = naval_aviation_doctrine
+		armament_minister = air_to_sea_proponent
+		start_date = 1936.1.1
+	}
+	53031 = {
+		name = "Mohammed Reza Pahlavi"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M53011
+		head_of_state = benevolent_gentleman
+		head_of_state = autocratic_charmer
+		chief_of_staff = school_of_defence
+		start_date = 1941.1.1
+	}
+	53033 = {
+		name = "Ahmad Matin-Daftary"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M53033
+		head_of_government = naive_optimist
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1939.1.1
+	}
+	53034 = {
+		name = "Ali Khan Mansour"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M53034
+		head_of_government = old_general
+		start_date = 1940.1.1
+	}
+	53035 = {
+		name = "Mohammed Ali Foroughi"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M53015
+		head_of_government = political_protege
+		minister_of_security = crime_fighter
+		start_date = 1941.1.1
+	}
+	53036 = {
+		name = "Ali Zohayli"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M53036
+		head_of_government = smiling_oilman
+		foreign_minister = iron_fisted_brute
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1943.1.1
+	}
+	53037 = {
+		name = "Ahmeed Qawan as Saltana"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M53037
+		head_of_government = happy_amateur
+		foreign_minister = ideological_crusader
+		start_date = 1942.1.1
+	}
+	53038 = {
+		name = "Mohammed Said Maraghei"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M53038
+		head_of_government = silent_workhorse
+		foreign_minister = great_compromiser
+		head_of_government = flamboyant_tough_guy
+		start_date = 1944.1.1
+	}
+	53039 = {
+		name = "Sayed Morteza Khan Bayat"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M53039
+		head_of_government = flamboyant_tough_guy
+		start_date = 1944.1.1
+	}
+	53040 = {
+		name = "Ibrahim Hakimi al Mulk"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M53040
+		head_of_government = backroom_backstabber
+		start_date = 1945.1.1
+	}
+	53041 = {
+		name = "Muhsin Sadr al Araf"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M53041
+		head_of_government = corporate_suit
+		start_date = 1945.1.1
+	}
+	53042 = {
+		name = "Mustafa Adil"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M53042
+		foreign_minister = biased_intellectual
+		start_date = 1937.1.1
+	}
+	53043 = {
+		name = "Miria Muhsin Khan"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M53043
+		foreign_minister = ideological_crusader
+		start_date = 1938.1.1
+	}
+	53045 = {
+		name = "Muzzafar Alam"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M53045
+		foreign_minister = apologetic_clerk
+		start_date = 1939.1.1
+	}
+	53046 = {
+		name = "Ibrahim Alam"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M53046
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1940.1.1
+	}
+	53047 = {
+		name = "Amari Jawad"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M53047
+		foreign_minister = biased_intellectual
+		start_date = 1940.1.1
+	}
+	53051 = {
+		name = "Nusrullah Intizam"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M53051
+		foreign_minister = biased_intellectual
+		start_date = 1944.1.1
+	}
+	53052 = {
+		name = "Anushirvan Sepahbody"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M53052
+		foreign_minister = apologetic_clerk
+		armament_minister = administrative_genius
+		start_date = 1945.1.1
+	}
+	53053 = {
+		name = "Abul Qasim Najm"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M53053
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1945.1.1
+	}
+	53055 = {
+		name = "Mohammed Mossadeq"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M53013
+		foreign_minister = the_cloak_n_dagger_schemer
+		minister_of_intelligence = research_specialist
+		head_of_government = smiling_oilman
+		start_date = 1946.1.1
+	}
+	53057 = {
+		name = "Mirza Riza Arfa Dowleh"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M53057
+		armament_minister = infantry_proponent
+		minister_of_security = back_stabber
+		start_date = 1937.1.1
+	}
+	53058 = {
+		name = "Alfred Rudolph Zimmermann"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M53014
+		armament_minister = laissez_faires_capitalist
+		minister_of_intelligence = industrial_specialist
+		start_date = 1938.1.1
+	}
+	53062 = {
+		name = "Mohammed Nakhjavani"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M53062
+		armament_minister = tank_proponent
+		chief_of_army = armoured_spearhead_doctrine
+		chief_of_air = air_superiority_doctrine
+		start_date = 1940.1.1
+	}
+	53063 = {
+		name = "Morteza Yazdi"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M53024
+		armament_minister = air_superiority_proponent
+		start_date = 1940.1.1
+	}
+	53064 = {
+		name = "Sayyid al-Din Tabataba'i"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M53012
+		armament_minister = battle_fleet_proponent
+		start_date = 1941.1.1
+	}
+	53065 = {
+		name = "Zoka Dowleh"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M53065
+		armament_minister = theoretical_scientist
+		armament_minister = tank_proponent
+		start_date = 1943.1.1
+	}
+	53066 = {
+		name = "Mohammed Bahrami"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M53026
+		armament_minister = strategic_air_proponent
+		minister_of_security = compassionate_gentleman
+		minister_of_intelligence = political_specialist
+		start_date = 1944.1.1
+	}
+	53068 = {
+		name = "Ja'fer Pishevari"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M53023
+		armament_minister = resource_industrialist
+		foreign_minister = iron_fisted_brute
+		start_date = 1945.1.1
+	}
+	53070 = {
+		name = "Soleiman Mirza"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M53022
+		minister_of_security = crime_fighter
+		head_of_government = happy_amateur
+		start_date = 1936.1.1
+	}
+	53072 = {
+		name = "Ali Mansour"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M53034
+		minister_of_security = man_of_the_people
+		head_of_government = political_protege
+		start_date = 1938.1.1
+	}
+	53073 = {
+		name = "Hussein Khan Ala"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M53073
+		minister_of_security = silent_lawyer
+		head_of_government = backroom_backstabber
+		start_date = 1939.1.1
+	}
+	53075 = {
+		name = "Eraj Eskandari"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M53025
+		minister_of_security = prince_of_terror
+		start_date = 1942.1.1
+	}
+	53076 = {
+		name = "Edward G.V.S. Lord Derby"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M53076
+		minister_of_security = efficient_sociopath
+		start_date = 1941.1.1
+	}
+	53077 = {
+		name = "Mehdi Manjarani"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M53077
+		minister_of_security = prince_of_terror
+		start_date = 1945.1.1
+	}
+	53078 = {
+		name = "Abolhassan Hakimi"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M53078
+		minister_of_security = back_stabber
+		start_date = 1945.1.1
+	}
+	53079 = {
+		name = "Hossein Arfazni"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M53079
+		minister_of_security = silent_lawyer
+		start_date = 1946.1.1
+	}
+	53080 = {
+		name = "Muhammed Reza Pahlavi"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M53011
+		minister_of_intelligence = political_specialist
+		start_date = 1937.1.1
+	}
+	53081 = {
+		name = "Dinshah Irani"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M53021
+		minister_of_intelligence = technical_specialist
+		head_of_state = stern_imperialist
+		start_date = 1938.1.1
+	}
+	53084 = {
+		name = "Ali Sepahbodi Qajar"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M53084
+		minister_of_intelligence = dismal_enigma
+		start_date = 1941.1.1
+	}
+	53085 = {
+		name = "Sir Neville Grantleigh"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M53085
+		minister_of_intelligence = industrial_specialist
+		start_date = 1941.1.1
+	}
+	53086 = {
+		name = "Abdol Hossein Sardarie"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M53086
+		minister_of_intelligence = dismal_enigma
+		start_date = 1945.1.1
+	}
+	53087 = {
+		name = "Abdollah Entezam"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M53087
+		minister_of_intelligence = technical_specialist
+		start_date = 1945.1.1
+	}
+	53088 = {
+		name = "Ovassaq al-Doleh Noorie"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M53088
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1945.1.1
+	}
+	53091 = {
+		name = "Hassan Majid Firooz"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M53028
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		start_date = 1939.1.1
+	}
+	53093 = {
+		name = "Ali Khan Nakziam"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M53027
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1943.1.1
+	}
+	53095 = {
+		name = "Hossein Afkhami"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M53017
+		chief_of_staff = school_of_fire_support
+		start_date = 1945.1.1
+	}
+	53096 = {
+		name = "Mir Afkhami"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M53018
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1938.1.1
+	}
+	53098 = {
+		name = "Azram Mir Ghani"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M53098
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1941.1.1
+	}
+	53100 = {
+		name = "Hedayat Gilanshah"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M53100
+		chief_of_army = decisive_battle_doctrine
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1945.1.1
+	}
+	53102 = {
+		name = "Schapur Khisrabadi"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M53102
+		chief_of_navy = open_seas_doctrine
+		start_date = 1939.1.1
+	}
+	53103 = {
+		name = "Mohammed Mir Mohanna"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M53029
+		chief_of_navy = power_projection_doctrine
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1941.1.1
+	}
+	53105 = {
+		name = "Mohammed Moini"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M53020
+		chief_of_navy = indirect_approach_doctrine
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1945.1.1
+	}
+	53106 = {
+		name = "Sadegh Khan Koopal"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M53106
+		chief_of_air = army_aviation_doctrine
+		start_date = 1937.1.1
+	}
+	53111 = {
+		name = "Abdol Hossein Hajir"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M53111
+		head_of_government = happy_amateur
+		foreign_minister = ideological_crusader
+		start_date = 1948.1.1
+	}
+	53114 = {
+		name = "Ali Razmara"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M53114
+		head_of_government = old_air_marshal
+		chief_of_staff = school_of_psychology
+		chief_of_air = army_aviation_doctrine
+		start_date = 1950.1.1
+	}
+	53117 = {
+		name = "Fazlollah Zahedi"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M53117
+		head_of_government = old_general
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1953.1.1
+	}
+}

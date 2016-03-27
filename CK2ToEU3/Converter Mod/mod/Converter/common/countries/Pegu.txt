@@ -1,0 +1,71 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 109  168  127 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill
+	battlefield_commisions
+	shrewd_commerce_practise
+	grand_army
+	merchant_adventures
+	national_trade_policy
+	engineer_corps
+	cabinet
+	bureaucracy
+	espionage
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Razadarit #0" = 20
+	"Binnya Dammayaza #0" = 20
+	"Binnya Ran #0" = 20
+	"Binnya Waru #0" = 20
+	"Binnya Kyan #0" = 20
+	"Mawdaw #0" = 20
+	"Shin Sawbu #0" = 20
+	"Dimmazedi #0" = 20
+	"Takayutpi #0" = 10
+	"Smim Sawhtut #0" = 20
+	"Smim Htaw #0" = 20
+	"Binnya Dala #0" = 10
+}
+
+leader_names = {
+	Min
+	Myo
+	Than
+	Bourey
+	Rangsey
+	Nardu
+	Cobar
+	Leura
+	Mani
+	Than
+}
+
+ship_names = {
+	Ceylon 
+	"Khu Bua"
+	Lavo
+	Ramanadesa Rajadhirat
+	Menam
+	"Nakhon Pathom"
+	Pegu
+	Suwannaphum
+	"U Thong"
+}

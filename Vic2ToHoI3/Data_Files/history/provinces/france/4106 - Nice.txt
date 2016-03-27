@@ -1,0 +1,26 @@
+owner = FRA
+controller = FRA
+add_core = FRA
+
+points = 2
+infra = 9
+land_fort = 5
+naval_base = 2
+
+1940.6.22 = {
+	owner = VIC
+	controller = VIC
+	add_core = VIC
+}
+
+1942.11.12 = {
+	owner = FRA
+	controller = GER
+}
+1943.2.1 = { anti_air = 1 coastal_fort = 2 }
+
+1944.6.20 = { anti_air = 2 coastal_fort = 3 }
+
+1944.12.01 = {
+	controller = USA
+}

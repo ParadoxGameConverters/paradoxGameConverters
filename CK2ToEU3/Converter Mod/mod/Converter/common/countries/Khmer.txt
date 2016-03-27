@@ -1,0 +1,88 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 127  180  60 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill 
+	battlefield_commisions
+	colonial_ventures
+	grand_army
+	espionage
+	merchant_adventures
+	engineer_corps
+	national_trade_policy 
+	bureaucracy
+	shrewd_commerce_practise
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Ponthea Yat #0" = 5
+	"Narayana Ramadhipati #0" = 5
+	"Sri Bodhya #0" = 5
+	"Dharmara Jhadiraja #0" = 5
+	"Srey Sukonthor #0" = 10
+	"Nay Kan #0" = 10
+	"Ang Chan #0" = 10
+	"Barom Reachea #0" = 50
+        "Chettha #0" = 50
+        "Reamea Chung Prei #0" = 10
+        "Chao Ponhea Nhom #0" = 10
+	"Ponhem To #0" = 10
+	"Ponhea Nu #0" = 10
+	"Chan Rama Thupdey #0" = 10
+        "Ponhea To #0" = 10
+        "Outey #0" = 25
+	"Ponhea To #0" = 10
+	"Ang Non #0" = 25
+	"Ang Ton #0" = 25
+	"Ang Chei #0" = 25
+	"Ang Em #0" = 10
+	"Thommo Reachea #1" = 20
+	"Satha #1" = 10
+        "Ang Tong #0" = 10
+}
+
+leader_names = {
+	Kong
+	Chheng
+	Yim
+	Long
+	Sok
+	Khlaut
+	Dim
+	Arun
+	Vana
+	Chan
+}
+
+ship_names = {
+	Angkor "Angkor Thom" "Angkor Wat"
+	Bayon Baphuon Bati "Banteay Srei"
+	"Banteay Kdei" "Banteay Chmar" "Beng Melea"
+	Isanapura
+	"Koh Ker" "Kra Isthmus" "Kompong Svay" "Koh Kor"
+	Mekong "Muang Sing" "Muang Tam"
+	"Neak Pean"
+	Phimai "Preah Ko" "Phnom Bakheng" "Phra Phang Sam Yod" "Phnom Rung"
+	"Phnom Chisor" "Preah Vihear" "Prasat Kamphaeng Yai"
+	"Roy Et"
+	Sikhoraphum "Srah Srang"
+	"Ta Keo" "Ta Prohm" "Tonle Sap"
+	Vyadhapura "Vat Banon" "Vat Nokor" "Vat Phu"
+	Zhenla
+}

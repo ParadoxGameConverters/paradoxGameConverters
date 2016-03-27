@@ -1,0 +1,10 @@
+owner = ECU
+controller = ECU
+add_core = ECU
+add_core = PRU
+
+infra = 2
+1941.7.31 = {
+	owner = PRU
+	controller = PRU
+} 

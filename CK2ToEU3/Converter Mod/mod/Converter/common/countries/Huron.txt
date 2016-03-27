@@ -1,0 +1,64 @@
+#Country Name: Please see filename.
+
+graphical_culture = northamericagfx
+
+color = { 178  139  60 }
+
+historical_ideas = {
+	humanist_tolerance
+	national_conscripts
+	battlefield_commisions
+	grand_army
+	national_trade_policy
+	military_drill
+	cabinet
+	engineer_corps
+	bill_of_rights
+	patron_of_art
+	smithian_economics
+	bureaucracy
+}
+
+historical_units = {
+	native_indian_archer
+	native_indian_tribal_warfare
+	algonkin_tomahawk_charge
+	native_indian_horsemen
+	huron_arquebusier
+	commanche_swarm
+	native_indian_mountain_warfare
+	american_western_franchise_warfare
+}
+
+monarch_names = {
+	"Ahatsistari #0" = 20
+	"Dannaconna #0" = 20
+	"Adario #0" = 20
+	"Dunquat #0" = 20
+	"Tarhe #0" = 20
+	"Eustache #0" = 10
+}
+
+leader_names = {
+             Andiata Angoutenc Anonatea Arendaonatia Arente Arontaen Anioton Ahiragenrega Ahondihronon Andachkhrob Antouaronon Aondironon Atiaonrek Atirhagenrat Atiraguenrek Attiragenrega Attiuoaisgon
+             Cahiague Carhagouha Carmaron Contarea Conchake Chequamegon
+             Ekiodatsaan Endarahy Iahenhouton
+             Junqueindundeh Junundat
+             Karenhassa Kakouagoga Kandouche Kehesetoa Khioetoa
+             Oeniro Onentisati Ossossane Oukhahitoua
+             Scanonaerat Sunyendeand Skenchioe
+             Teanaustayae Teandewiata Tonache Teadeouita Teanhatenaron Tondakhra Tiedonderoga Touaguainchain Tarhetown Teotoguiaton
+}
+
+ship_names = {
+	Arendarhonon Attigneenongnahac Attignawantan Ataronchronon Arendiwane
+	Hochelaga
+	Karegnondi
+	Losheka
+	Ossossane onitariio
+	Simcoe
+	Tahontaenrat Tuendawie
+	Wendake
+	"Che'estaheh Saundustee"
+	Qusquasrundee
+}

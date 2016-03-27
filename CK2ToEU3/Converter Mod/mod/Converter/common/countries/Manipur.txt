@@ -1,0 +1,86 @@
+#Country Name: Please see filename.
+
+graphical_culture = indiangfx
+
+color = { 149  191  117 }
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	glorious_arms
+	military_drill
+	battlefield_commisions
+	shrewd_commerce_practise
+	merchant_adventures
+	engineer_corps
+	espionage
+	national_trade_policy
+	national_bank
+	cabinet
+}
+
+historical_units = {
+	indian_footsoldier
+	rajput_hill_fighters
+	indian_arquebusier
+	mughal_musketeer
+	mughal_mansabdar
+	indian_elephant
+	indian_shock_cavalry
+	rajput_musketeer
+	reformed_mughal_musketeer
+	reformed_mughal_mansabdar
+	indian_rifle
+}
+
+monarch_names = {
+	"Pengshiba #0" = 10
+	"Ningthou Khomba #0" = 10
+	"Senbi Kiyaamba #0" = 10
+	"Koiremba #0" = 10
+	"Chingkhong Lamgai Ngamba #0" = 10
+	"Nongyin Phaaba #0" = 10
+	"Senbi Khomba #0" = 10
+	"Taangjaamba #0" = 10
+	"Chalaamba #0" = 10
+	"Munghaamba #0" = 10
+	"Khagemba #0" = 10
+	"Khunjaoba #0" = 10
+	"Paikhomba #0" = 10
+	"Charairongba #0" = 10
+	"Paamheiba #0" = 10
+	"Chit Sai #0" = 10
+	"Bhorot Sai #0" = 10
+	"Maraamba #0" = 10
+	"Chingthang Khomba #0" = 10
+	"Labeinachandra #0" = 10
+	"Maramaba #0" = 10
+	"Madhuchandra #0" = 10
+	"Chourjit #0" = 10
+	"Marjit #0" = 10
+}
+
+leader_names = {
+	Shubol
+	Chandrakirti
+	Ganavira
+	Marjit
+	Charajit
+	Pitambara
+	Moduchandra
+	Harshachandra
+	Nara
+	Devendra
+}
+
+ship_names = {
+	"Chingri Mach"  Devi "Durga Ma" Ganga
+	"Hilsa Mach" "Ilish Mach" Imphal Iril
+	Jalangi Machli "Kali Ma" "Kali Meghana"
+	"Kali Nauk" Kongba Kushiari "Lal Nauk"
+	"Loki Devi" "Manasa Devi" Meghna Nambul
+	"Nil Nauk" "Nil Sagor" Padma "Parvati Devi"
+	"Rui Mach" Saraswoti "Sagorer Bahini"
+	Shakti "Shaktir Nauk" "Shasti Ma"
+	Surma Trishool "Uma Devi"
+}    

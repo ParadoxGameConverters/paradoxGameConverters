@@ -1,0 +1,104 @@
+#Country Name: Please see filename.
+
+graphical_culture = easterngfx
+
+color = { 211  172  185 }
+
+historical_ideas = {
+	church_attendance_duty
+	national_conscripts
+	espionage
+	military_drill
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	national_trade_policy	
+	grand_army
+	national_bank
+	glorious_arms
+	bureaucracy
+}
+
+historical_units = {
+	eastern_medieval_infantry
+	eastern_knights
+	slavic_stradioti
+	eastern_militia
+	ottoman_spahi
+	ottoman_sekban
+	ottoman_reformed_spahi
+	ottoman_reformed_janissary
+	ottoman_toprakli_hit_and_run
+	ottoman_nizami_cedid
+	ottoman_toprakli_dragoon
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	ottoman_new_model
+	ottoman_lancer
+}
+
+monarch_names = {
+	"Carlo #0" = 40
+	"Leonardo #1" = 20
+	"Giovanni #1" = 10
+	"Antonio #0" = 10
+	"Carlo Antonio #0" = 10
+	"Restaiano Gioachinno #0" = 10
+	"Akakios #0" = 0
+        "Alexandros #0" = 0
+	"Anargyros #0" = 0
+	"Anastasios #0" = 0
+        "Andreas #0" = 0
+	"Angelos #0" = 0
+        "Aniketos #0" = 0
+	"Apostolos #0" = 0
+	"Argyros #0" = 0
+	"Athanasios #0" = 0
+	"Charalampos #0" = 0
+	"Chrysanthos #0" = 0
+	"Demetrios #0" = 0
+        "Dimosthenes #0" = 0
+	"Dionysios #0" = 0
+	"Dorotheos #0" = 0
+	"Efsthathios #0" = 0
+	"Eleftherios #0" = 0
+        "Elias #0" = 0
+	"Emmanouil #0" = 0
+	"Evangelos #0" = 0
+	"Georgios #0" = 0
+	"Gregorios #0" = 0
+	"Ioannes #0" = 0
+	"Konstantinos #0" = 0
+        "Nikodemos #0" = 0
+	"Pavlos #0" = 0
+	"Petros #0" = 0
+	"Philippos #0" = 0
+	"Photios #0" = 0
+	"Stephanos #0" = 0
+	"Theophylaktos #0" = 0
+	"Vasilis #0" = 0
+	"Vlasis #0" = 0
+}
+
+leader_names = { 
+	Balbi Bouas 
+	Capodistria 
+	Fadrigue Flamburiari
+	Gentilini Giallina Giorgio
+	Kourkoumelis
+	Marmora Minotto
+	Soranzo 
+	Pieri Prosalendi
+	Sordina Spathas
+	Theotokis Tocco
+	Voulgaris
+	Zorzi
+}
+
+ship_names = {
+	"Akra Mounta" "Akra Liakas" "Akra Gerogompos" "Akra Agiou Andreou"
+	"Kaplos Lagana" "Kolpos Argostolion" "Kolpos Myrtou" Kefallonia 
+	"Prothumos Zakynthou"
+	"Steno Ithoakis"
+}

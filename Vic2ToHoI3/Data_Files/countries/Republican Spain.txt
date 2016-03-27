@@ -1,0 +1,1463 @@
+color = { 242  205  94 }
+graphical_culture = Generic
+
+last_election = 1932.2.16
+duration = 48
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1a División de Infantería" "2a División de Infantería" "3a División de Infantería" "4a División de Infantería" "5a División de Infantería" "6a División de Infantería" "7a División de Infantería" "8a División de Infantería" "9a División de Infantería" "10a División de Infantería" "Circunscripción Occidental" 
+		"Circunscripción Oriental" "Legion del Sahara" "11a División de Infantería" "12a División de Infantería" "13a División de Infantería" "14a División de Infantería" "15a División de Infantería" "16a División de Infantería" "17a División de Infantería" "18a División de Infantería" "19a División de Infantería" 
+		"20a División de Infantería" "21a División de Infantería" "22a División de Infantería" "23a División de Infantería" "24a División de Infantería" "25a División de Infantería" "26a División de Infantería" "27a División de Infantería" "28a División de Infantería" "29a División de Infantería" "30a División de Infantería" 
+			}
+	cavalry_brigade = {
+		"1a División de Caballería" "2a División de Caballería" "3a División de Caballería" "4a División de Caballería" "5a División de Caballería" "6a División de Caballería" "7a División de Caballería" "8a División de Caballería" "9a División de Caballería" "10a División de Caballería" 
+	}
+	motorized_brigade = {
+		"1a División Motorizada" "2a División Motorizada" "3a División Motorizada" "4a División Motorizada" "5a División Motorizada" "6a División Motorizada" "7a División Motorizada" "8a División Motorizada" "9a División Motorizada" "10a División Motorizada" "11a División Motorizada" 
+		"12a División Motorizada" "13a División Motorizada" "14a División Motorizada" "15a División Motorizada" "16a División Motorizada" "17a División Motorizada" "18a División Motorizada" "19a División Motorizada" "20a División Motorizada" 
+	}
+	mechanized_brigade = {
+		"1a División Mecanizada" "2a División Mecanizada" "3a División Mecanizada" "4a División Mecanizada" "5a División Mecanizada" "6a División Mecanizada" "7a División Mecanizada" "8a División Mecanizada" "9a División Mecanizada" "10a División Mecanizada" "11a División Mecanizada" 
+		"12a División Mecanizada" "13a División Mecanizada" "14a División Mecanizada" "15a División Mecanizada" "16a División Mecanizada" "17a División Mecanizada" "18a División Mecanizada" "19a División Mecanizada" "20a División Mecanizada" 
+	}
+	light_armor_brigade = {
+		"Autoametralladoras-cañon" "1a División Blindada" "2a División Blindada" "3a Div. Blindada 'Brunete'" "4a Div. Blindada 'Belchite'" "5a Div. Blindada 'Teruel'" "6a Div. Blindada 'Ebro'" "7a División Blindada" "8a División Blindada" "9a División Blindada" "10a División Blindada" 
+		"11a División Blindada" "12a División Blindada" "13a División Blindada" "14a División Blindada" "15a División Blindada" "16a División Blindada" "17a División Blindada" "18a División Blindada" "19a División Blindada" "20a División Blindada" 
+	}
+	armor_brigade = {
+		"Autoametralladoras-cañon" "1a División Blindada" "2a División Blindada" "3a Div. Blindada 'Brunete'" "4a Div. Blindada 'Belchite'" "5a Div. Blindada 'Teruel'" "6a Div. Blindada 'Ebro'" "7a División Blindada" "8a División Blindada" "9a División Blindada" "10a División Blindada" 
+		"11a División Blindada" "12a División Blindada" "13a División Blindada" "14a División Blindada" "15a División Blindada" "16a División Blindada" "17a División Blindada" "18a División Blindada" "19a División Blindada" "20a División Blindada" 
+	}
+	paratrooper_brigade = {
+		"1a División Aerotransportada" "2a División Aerotransportada" "3a División Aerotransportada" "4a División Aerotransportada" "5a División Aerotransportada" "6a División Aerotransportada" "7a División Aerotransportada" "8a División Aerotransportada" "9a División Aerotransportada" "10a División Aerotransportada" 
+	}
+	marine_brigade = {
+		"1a División de Infantería de Marina" "2a División de Infantería de Marina" "3a División de Infantería de Marina" "4a División de Infantería de Marina" "5a División de Infantería de Marina" "6a División de Infantería de Marina" "7a División de Infantería de Marina" "8a División de Infantería de Marina" "9a División de Infantería de Marina" "10a División de Infantería de Marina" 
+	}
+	bergsjaeger_brigade = {
+		"1a Cazadores de Montaña" "2a Cazadores de Montaña" "3a Cazadores de Montaña" "4a Cazadores de Montaña" "5a Cazadores de Montaña" "6a Cazadores de Montaña" "7a Cazadores de Montaña" "8a Cazadores de Montaña" "9a Cazadores de Montaña" "10a Cazadores de Montaña" 
+	}
+	garrison_brigade = {
+		"1a División de Infantería" "2a División de Infantería" "3a División de Infantería" "4a División de Infantería" "5a División de Infantería" "6a División de Infantería" "7a División de Infantería" "8a División de Infantería" "9a División de Infantería" "10a División de Infantería" "Circunscripción Occidental" 
+		"Circunscripción Oriental" "Legion del Sahara" "11a División de Infantería" "12a División de Infantería" "13a División de Infantería" "14a División de Infantería" "15a División de Infantería" "16a División de Infantería" "17a División de Infantería" "18a División de Infantería" "19a División de Infantería" 
+		"20a División de Infantería" "21a División de Infantería" "22a División de Infantería" "23a División de Infantería" "24a División de Infantería" "25a División de Infantería" "26a División de Infantería" "27a División de Infantería" "28a División de Infantería" "29a División de Infantería" "30a División de Infantería" 
+			}
+	hq_brigade = {
+		"Cuartel General 1er Ejército" "Cuartel General 2o Ejército" "Cuartel General 3er Ejército" "Cuartel General 4o Ejército" "Cuartel General 5o Ejército" "Cuartel General 6o Ejército" "Cuartel General 7o Ejército" "Cuartel General 8o Ejército" "Cuartel General 9o Ejército" "Cuartel General 10o Ejército" 
+	}
+	militia_brigade = {
+		"Columna Durruti" "Columna Ascaso" "Columna de Hierro" "Columna Rojinegra" "Columna Galán" "Columna Rico" "Columna Mangada" "Columna Libertad" "Columna Barceló" "Columna Cavada" "Columna Enciso" 
+		"Columna Palacios" "Columna Kleber" "Columna Bueno" "Sección Francesa" "1a División de Guardia Republicana" "2a División de Guardia Republicana" "3a División de Guardia Republicana" "4a División de Guardia Republicana" "5a División de Guardia Republicana" "6a División de Guardia Republicana" "7a División de Guardia Republicana" 
+		"8a División de Guardia Republicana" "9a División de Guardia Republicana" "10a División de Guardia Republicana" "11a División de Guardia Republicana" "12a División de Guardia Republicana" "13a División de Guardia Republicana" "14a División de Guardia Republicana" "15a División de Guardia Republicana" 
+	}
+	multi_role = {
+		"1er Grupo Caza FARE 'Alas Rojas'" "Grupo n.1 Caza FARE 'Leones Rojos'" "Grupo n.3 de Caza FARE 'Malraux'" "Grupo n.4 de Caza FARE" "Grupo n.5 de Caza FARE" "Grupo n.6 de Caza FARE" "Grupo n.7 de Caza FARE" "Grupo n.8 de Caza FARE" "Grupo n.9 de Caza FARE" "Grupo n.10 de Caza FARE" "Grupo n.11 de Caza FARE" 
+		"Grupo n.12 de Caza FARE" "Grupo n.13 de Caza FARE" "Grupo n.14 de Caza FARE" "Grupo n.15 de Caza FARE" "Grupo n.16 de Caza FARE" "Grupo n.17 de Caza FARE" "Grupo n.18 de Caza FARE" "Grupo n.19 de Caza FARE" "Grupo n.20 de Caza FARE" 
+	}
+	interceptor = {
+		"1er Grupo Caza FARE 'Alas Rojas'" "Grupo n.1 Caza FARE 'Leones Rojos'" "Grupo n.3 de Caza FARE 'Malraux'" "Grupo n.4 de Caza FARE" "Grupo n.5 de Caza FARE" "Grupo n.6 de Caza FARE" "Grupo n.7 de Caza FARE" "Grupo n.8 de Caza FARE" "Grupo n.9 de Caza FARE" "Grupo n.10 de Caza FARE" "Grupo n.11 de Caza FARE" 
+		"Grupo n.12 de Caza FARE" "Grupo n.13 de Caza FARE" "Grupo n.14 de Caza FARE" "Grupo n.15 de Caza FARE" "Grupo n.16 de Caza FARE" "Grupo n.17 de Caza FARE" "Grupo n.18 de Caza FARE" "Grupo n.19 de Caza FARE" "Grupo n.20 de Caza FARE" 
+	}
+	strategic_bomber = {
+		"Grupo Estratégico n.1 FARE" "Grupo Estratégico n.2 FARE" "Grupo Estratégico n.3 FARE" "Grupo Estratégico n.4 FARE" "Grupo Estratégico n.5 FARE" "Grupo Estratégico n.6 FARE" "Grupo Estratégico n.7 FARE" "Grupo Estratégico n.8 FARE" "Grupo Estratégico n.9 FARE" "Grupo Estratégico n.10 FARE" "Grupo Estratégico n.11 FARE" 
+		"Grupo Estratégico n.12 FARE" "Grupo Estratégico n.13 FARE" "Grupo Estratégico n.14 FARE" "Grupo Estratégico n.15 FARE" 
+	}
+	tactical_bomber = {
+		"Grupo Táctico n.1 FARE 'Potez'" "Grupo Táctico n.2 FARE 'Marcel-Bloch'" "Grupo Táctico n.3 FARE" "Grupo Táctico n.4 FARE" "Grupo Táctico n.5 FARE" "Grupo Táctico n.6 FARE" "Grupo Táctico n.7 FARE" "Grupo Táctico n.8 FARE" "Grupo Táctico n.9 FARE" "Grupo Táctico n.10 FARE" "Grupo Táctico n.11 FARE" 
+		"Grupo Táctico n.12 FARE" "Grupo Táctico n.13 FARE" "Grupo Táctico n.14 FARE" "Grupo Táctico n.15 FARE" "Grupo Táctico n.16 FARE" "Grupo Táctico n.17 FARE" "Grupo Táctico n.18 FARE" "Grupo Táctico n.19 FARE" "Grupo Táctico n.20 FARE" 
+	}
+	naval_bomber = {
+		"Grupo n.1 de Bombardeo Naval" "Grupo n.2 de Bombardeo Naval" "Grupo n.3 de Bombardeo Naval" "Grupo n.4 de Bombardeo Naval" "Grupo n.5 de Bombardeo Naval" "Grupo n.6 de Bombardeo Naval" "Grupo n.7 de Bombardeo Naval" "Grupo n.8 de Bombardeo Naval" "Grupo n.9 de Bombardeo Naval" "Grupo n.10 de Bombardeo Naval" "Grupo n.11 de Bombardeo Naval" 
+		"Grupo n.12 de Bombardeo Naval" "Grupo n.13 de Bombardeo Naval" "Grupo n.14 de Bombardeo Naval" "Grupo n.15 de Bombardeo Naval" 
+	}
+	cas = {
+		"Grupo n.1 de Bombardeo FARE" "Grupo n.2 de Bombardeo FARE" "Grupo n.3 de Bombardeo FARE" "Grupo n.4 de Bombardeo FARE" "Grupo n.5 de Bombardeo FARE" "Grupo n.6 de Bombardeo FARE" "Grupo n.7 de Bombardeo FARE" "Grupo n.8 de Bombardeo FARE" "Grupo n.9 de Bombardeo FARE" "Grupo n.10 de Bombardeo FARE" "Grupo n.11 de Bombardeo FARE" 
+		"Grupo n.12 de Bombardeo FARE" "Grupo n.13 de Bombardeo FARE" "Grupo n.14 de Bombardeo FARE" "Grupo n.15 de Bombardeo FARE" "Grupo n.16 de Bombardeo FARE" "Grupo n.17 de Bombardeo FARE" "Grupo n.18 de Bombardeo FARE" "Grupo n.19 de Bombardeo FARE" "Grupo n.20 de Bombardeo FARE" 
+	}
+	transport_plane = {
+		"Grupo n.1 de Transporte" "Grupo n.2 de Transporte" "Grupo n.3 de Transporte" "Grupo n.4 de Transporte" "Grupo n.5 de Transporte" "Grupo n.6 de Transporte" "Grupo n.7 de Transporte" "Grupo n.8 de Transporte" "Grupo n.9 de Transporte" "Grupo n.10 de Transporte" 
+	}
+	battleship = {
+		"ARE Lepanto" "ARE Bailén" "ARE Libertad" 
+	}
+	light_cruiser = {
+		"ARE Baleares" "ARE Almirante Cervera" "ARE Miguel de Cervantes" "ARE Canarias" "ARE Blas de Lezo" "ARE Méndez Núñez" "ARE Sevilla" "ARE Huelva" "ARE Vizcaya" "ARE Granada" 
+	}
+	heavy_cruiser = {
+		"ARE Baleares" "ARE Almirante Cervera" "ARE Miguel de Cervantes" "ARE Canarias" "ARE Blas de Lezo" "ARE Méndez Núñez" "ARE Sevilla" "ARE Huelva" "ARE Vizcaya" "ARE Granada" 
+	}
+	battlecruiser = {
+		"ARE Lepanto" "ARE Bailén" "ARE Libertad" 
+	}
+	destroyer = {
+		"Flotilla de Escolta" "Flotilla de Destructores n.1" "Flotilla de Destructores n.2" "Flotilla de Destructores n.3" "Flotilla de Destructores n.4" "Flotilla de Destructores n.5" "Flotilla de Destructores n.6" "Flotilla de Destructores n.7" "Flotilla de Destructores n.8" "Flotilla de Destructores n.9" "Flotilla de Destructores n.10" 
+		"Flotilla de Destructores n.11" "Flotilla de Destructores n.12" "Flotilla de Destructores n.13" "Flotilla de Destructores n.14" "Flotilla de Destructores n.15" 
+	}
+	carrier = {
+		"ARE República" "ARE Victoria" 
+	}
+	submarine = {
+		"S101 Flotilla" "S102 Flotilla" "S103 Flotilla" "S104 Flotilla" "S105 Flotilla" "S106 Flotilla" "S107 Flotilla" "S108 Flotilla" "S109 Flotilla" "S110 Flotilla" "S111 Flotilla" 
+		"S112 Flotilla" "S113 Flotilla" "S114 Flotilla" "S115 Flotilla" 
+	}
+	transport_ship = {
+		"1a Flotilla de Transporte Naval" "2a Flotilla de Transporte Naval" "3a Flotilla de Transporte Naval" "4a Flotilla de Transporte Naval" "5a Flotilla de Transporte Naval" "6a Flotilla de Transporte Naval" "7a Flotilla de Transporte Naval" "8a Flotilla de Transporte Naval" "91a Flotilla de Transporte Naval" "10a Flotilla de Transporte Naval" "11a Flotilla de Transporte Naval" 
+		"12a Flotilla de Transporte Naval" "13a Flotilla de Transporte Naval" "14a Flotilla de Transporte Naval" "15a Flotilla de Transporte Naval" 
+	}
+
+}
+
+ministers = {
+	11001 = {
+		name = "Niceto Alcalá-Zamora"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M11001
+		head_of_state = weary_stiff_neck
+		foreign_minister = great_compromiser
+		start_date = 1936.1.1
+	}
+	11002 = {
+		name = "Manuel Portela Valladares"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M11002
+		head_of_government = naive_optimist
+		minister_of_security = silent_lawyer
+		head_of_government = naive_optimist
+		start_date = 1936.1.1
+	}
+	11003 = {
+		name = "Joaquín Urzaiz Cadaval"
+		ideology = market_liberal
+		loyalty = 0.50
+		picture = M11003
+		foreign_minister = apologetic_clerk
+		start_date = 1936.1.1
+	}
+	11004 = {
+		name = "José Mendizábal y Bonilla"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M11004
+		armament_minister = infantry_proponent
+		start_date = 1936.1.1
+	}
+	11006 = {
+		name = "Juan Hernández Sarabia"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M11006
+		minister_of_intelligence = technical_specialist
+		minister_of_intelligence = technical_specialist
+		chief_of_staff = school_of_fire_support
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	11007 = {
+		name = "José Miaja Menant"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M11007
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	11008 = {
+		name = "Nicolás Molero Lobo"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M11008
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	11009 = {
+		name = "Antonio Azarola Gresillón"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M11009
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1936.1.1
+	}
+	11010 = {
+		name = "Miguel Nuñez de Prado"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M11010
+		chief_of_air = naval_aviation_doctrine
+		armament_minister = air_to_sea_proponent
+		start_date = 1936.1.1
+	}
+	11033 = {
+		name = "Manuel Azaña Díaz"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M11033
+		head_of_state = pig_headed_isolationist
+		head_of_government = silent_workhorse
+		foreign_minister = iron_fisted_brute
+		armament_minister = theoretical_scientist
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	11034 = {
+		name = "Augusto Barcia Trelles"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M11034
+		head_of_state = insignificant_layman
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	11038 = {
+		name = "Álvaro de Albornoz Liminiana"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11038
+		head_of_state = power_hungry_demagogue
+		start_date = 1938.1.1
+	}
+	11039 = {
+		name = "Francisco Largo Caballero"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M11039
+		head_of_state = barking_buffoon
+		head_of_government = smiling_oilman
+		armament_minister = resource_industrialist
+		start_date = 1938.1.1
+	}
+	11040 = {
+		name = "Comité Central de la CNT-FAI"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M11040
+		head_of_state = insignificant_layman
+		start_date = 1938.1.1
+	}
+	11041 = {
+		name = "Diego Martínez Barrio"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M11041
+		head_of_state = benevolent_gentleman
+		head_of_government = backroom_backstabber
+		foreign_minister = the_cloak_n_dagger_schemer
+		minister_of_security = prince_of_terror
+		start_date = 1939.1.1
+	}
+	11042 = {
+		name = "José Díaz Ramos"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M11021
+		head_of_state = barking_buffoon
+		head_of_government = ambitious_union_boss
+		minister_of_security = man_of_the_people
+		start_date = 1939.1.1
+	}
+	11044 = {
+		name = "Julián Besteiro Fernández"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11044
+		head_of_state = insignificant_layman
+		foreign_minister = apologetic_clerk
+		start_date = 1945.1.1
+	}
+	11046 = {
+		name = "Juan Negrín López"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11046
+		head_of_state = die_hard_reformer
+		head_of_government = naive_optimist
+		armament_minister = administrative_genius
+		start_date = 1936.1.1
+	}
+	11049 = {
+		name = "Dolores Ibáurri Gómez"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M11049
+		head_of_state = ruthless_powermonger
+		foreign_minister = iron_fisted_brute
+		minister_of_security = efficient_sociopath
+		start_date = 1942.1.1
+	}
+	11051 = {
+		name = "Alejandro Lerroux García"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M11051
+		head_of_state = insignificant_layman
+		armament_minister = administrative_genius
+		minister_of_security = crooked_kleptocrat
+		minister_of_intelligence = dismal_enigma
+		start_date = 1942.1.1
+	}
+	11053 = {
+		name = "Juan III"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M11011
+		head_of_state = benevolent_gentleman
+		head_of_state = benevolent_gentleman
+		start_date = 1944.1.1
+	}
+	11059 = {
+		name = "Santiago Carrillo Solares"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M11059
+		head_of_government = political_protege
+		foreign_minister = the_cloak_n_dagger_schemer
+		minister_of_security = prince_of_terror
+		minister_of_intelligence = political_specialist
+		start_date = 1942.1.1
+	}
+	11061 = {
+		name = "Joaquín Ascaso Budriá"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M11061
+		head_of_government = happy_amateur
+		armament_minister = military_entrepreneur
+		start_date = 1938.1.1
+	}
+	11063 = {
+		name = "Luis Jiménez de Asúa"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11063
+		head_of_government = ambitious_union_boss
+		start_date = 1939.1.1
+	}
+	11065 = {
+		name = "Indalencio Prieto Tuero"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M11065
+		head_of_government = political_protege
+		armament_minister = military_entrepreneur
+		start_date = 1939.1.1
+	}
+	11066 = {
+		name = "Santiago Casares Quiroga"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M11066
+		head_of_government = corporate_suit
+		foreign_minister = apologetic_clerk
+		armament_minister = submarine_proponent
+		minister_of_security = prince_of_terror
+		chief_of_navy = power_projection_doctrine
+		start_date = 1936.1.1
+	}
+	11067 = {
+		name = "José Giral Pereira"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M11067
+		head_of_government = naive_optimist
+		foreign_minister = biased_intellectual
+		armament_minister = battle_fleet_proponent
+		minister_of_intelligence = technical_specialist
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	11071 = {
+		name = "José María Gil-Robles Quiñones"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M11012
+		head_of_government = political_protege
+		head_of_government = flamboyant_tough_guy
+		armament_minister = military_entrepreneur
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	11072 = {
+		name = "Claudio Sánchez Albornoz"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M11072
+		head_of_government = smiling_oilman
+		foreign_minister = ideological_crusader
+		start_date = 1939.1.1
+	}
+	11073 = {
+		name = "Miguel Maura Gamazo"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M11073
+		head_of_government = corporate_suit
+		minister_of_security = compassionate_gentleman
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1942.1.1
+	}
+	11075 = {
+		name = "Jesús Hernández y Tomás"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M11023
+		foreign_minister = ideological_crusader
+		armament_minister = theoretical_scientist
+		minister_of_intelligence = technical_specialist
+		start_date = 1936.1.1
+	}
+	11077 = {
+		name = "Margarita Nelken"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M11077
+		foreign_minister = biased_intellectual
+		minister_of_security = compassionate_gentleman
+		start_date = 1939.1.1
+	}
+	11078 = {
+		name = "Julio Álvarez del Vayo"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M11078
+		foreign_minister = ideological_crusader
+		foreign_minister = ideological_crusader
+		start_date = 1940.1.1
+	}
+	11080 = {
+		name = "Andreu Nin i Pérez"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M11080
+		foreign_minister = the_cloak_n_dagger_schemer
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	11081 = {
+		name = "Joaquin Maurín Juliá"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M11081
+		foreign_minister = ideological_crusader
+		armament_minister = tank_proponent
+		start_date = 1937.1.1
+	}
+	11082 = {
+		name = "Eduardo de Guzmán"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M11082
+		foreign_minister = great_compromiser
+		minister_of_security = silent_lawyer
+		start_date = 1938.1.1
+	}
+	11083 = {
+		name = "José Peirats"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M11083
+		foreign_minister = apologetic_clerk
+		start_date = 1939.1.1
+	}
+	11084 = {
+		name = "Diego Abad de Santillán"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M11084
+		foreign_minister = biased_intellectual
+		start_date = 1940.1.1
+	}
+	11085 = {
+		name = "Fernando de los Ríos Urruti"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11085
+		foreign_minister = the_cloak_n_dagger_schemer
+		armament_minister = strategic_air_proponent
+		start_date = 1936.1.1
+	}
+	11086 = {
+		name = "Victoria Kent"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11086
+		foreign_minister = great_compromiser
+		minister_of_security = man_of_the_people
+		start_date = 1938.1.1
+	}
+	11088 = {
+		name = "Alvaro de Albornoz Liminiana"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M11045
+		foreign_minister = biased_intellectual
+		minister_of_intelligence = dismal_enigma
+		start_date = 1940.1.1
+	}
+	11091 = {
+		name = "Lluis Companys i Jover"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M11091
+		foreign_minister = iron_fisted_brute
+		chief_of_navy = decisive_naval_battle_doctrine
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1937.1.1
+	}
+	11093 = {
+		name = "Sebastián Pozas Perea"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M11093
+		foreign_minister = general_staffer
+		minister_of_security = crime_fighter
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		start_date = 1939.1.1
+	}
+	11095 = {
+		name = "Bibiano Fernández Ossorio"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M11095
+		foreign_minister = great_compromiser
+		armament_minister = infantry_proponent
+		start_date = 1940.1.1
+	}
+	11101 = {
+		name = "Diego Hidalgo Dúran"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M11101
+		foreign_minister = general_staffer
+		armament_minister = military_entrepreneur
+		minister_of_intelligence = technical_specialist
+		chief_of_air = air_superiority_doctrine
+		start_date = 1939.1.1
+	}
+	11102 = {
+		name = "Salvador de Madariaga"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M11102
+		foreign_minister = great_compromiser
+		start_date = 1940.1.1
+	}
+	11103 = {
+		name = "F. López Goicoechea Inchaurrandieta"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M11103
+		foreign_minister = ideological_crusader
+		start_date = 1941.1.1
+	}
+	11104 = {
+		name = "Ricardo Samper Ibáñez"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M11104
+		foreign_minister = biased_intellectual
+		minister_of_intelligence = political_specialist
+		start_date = 1943.1.1
+	}
+	11105 = {
+		name = "Ángel Osorio y Gallardo"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M11105
+		foreign_minister = biased_intellectual
+		armament_minister = theoretical_scientist
+		minister_of_security = prince_of_terror
+		start_date = 1936.1.1
+	}
+	11107 = {
+		name = "Manuel de Irujo y Ollo"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M11107
+		foreign_minister = the_cloak_n_dagger_schemer
+		minister_of_security = man_of_the_people
+		start_date = 1938.1.1
+	}
+	11108 = {
+		name = "Jaume Aiguader y Miró"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M11108
+		foreign_minister = apologetic_clerk
+		start_date = 1939.1.1
+	}
+	11110 = {
+		name = "José Martínez de Velasco"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M11110
+		foreign_minister = iron_fisted_brute
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	11111 = {
+		name = "Manuel Jímenez Fernández"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M11013
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1941.1.1
+	}
+	11112 = {
+		name = "Emilio de Palacios y Fau"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M11112
+		foreign_minister = ideological_crusader
+		start_date = 1943.1.1
+	}
+	11113 = {
+		name = "Luis Luciá Luciá"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M11113
+		foreign_minister = biased_intellectual
+		armament_minister = resource_industrialist
+		minister_of_intelligence = industrial_specialist
+		start_date = 1945.1.1
+	}
+	11114 = {
+		name = "Vicente Uribe Galdeano"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M11114
+		armament_minister = administrative_genius
+		minister_of_security = man_of_the_people
+		chief_of_navy = base_control_doctrine
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1936.1.1
+	}
+	11115 = {
+		name = "Juan Comorera y Soler"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M11026
+		armament_minister = resource_industrialist
+		minister_of_intelligence = dismal_enigma
+		start_date = 1938.1.1
+	}
+	11116 = {
+		name = "Etelvino Vega Martínez"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M11116
+		armament_minister = tank_proponent
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1939.1.1
+	}
+	11117 = {
+		name = "Enrique Castro Delgado"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M11024
+		armament_minister = infantry_proponent
+		start_date = 1941.1.1
+	}
+	11119 = {
+		name = "Juan López Sánchez"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M11119
+		armament_minister = resource_industrialist
+		minister_of_intelligence = industrial_specialist
+		chief_of_navy = indirect_approach_doctrine
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	11120 = {
+		name = "Ángel Pestaña"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M11120
+		armament_minister = air_to_ground_proponent
+		minister_of_intelligence = political_specialist
+		start_date = 1937.1.1
+	}
+	11123 = {
+		name = "Juan Peiró Belis"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M11123
+		armament_minister = administrative_genius
+		chief_of_navy = base_control_doctrine
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1942.1.1
+	}
+	11124 = {
+		name = "Federica Monsteny Mané"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M11124
+		armament_minister = theoretical_scientist
+		minister_of_intelligence = technical_specialist
+		start_date = 1943.1.1
+	}
+	11125 = {
+		name = "Ricardo Sanz García"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M11125
+		armament_minister = infantry_proponent
+		minister_of_intelligence = research_specialist
+		start_date = 1944.1.1
+	}
+	11127 = {
+		name = "Belamino Tomás Álvarez"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11127
+		armament_minister = resource_industrialist
+		start_date = 1938.1.1
+	}
+	11132 = {
+		name = "Felix Gordón Ordás"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11132
+		armament_minister = laissez_faires_capitalist
+		minister_of_intelligence = industrial_specialist
+		start_date = 1943.1.1
+	}
+	11133 = {
+		name = "Todolfo Llopis Férrandiz"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11133
+		armament_minister = infantry_proponent
+		start_date = 1944.1.1
+	}
+	11135 = {
+		name = "Francisco Méndez Aspe"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M11135
+		armament_minister = resource_industrialist
+		minister_of_intelligence = political_specialist
+		start_date = 1938.1.1
+	}
+	11139 = {
+		name = "José Larraz Lopez"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M11139
+		armament_minister = tank_proponent
+		start_date = 1941.1.1
+	}
+	11140 = {
+		name = "José Prat García"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M11140
+		armament_minister = laissez_faires_capitalist
+		start_date = 1942.1.1
+	}
+	11142 = {
+		name = "Carles Pi i Suñer"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M11142
+		armament_minister = administrative_genius
+		start_date = 1945.1.1
+	}
+	11144 = {
+		name = "Bernardo Giner de los Ríos García"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M11144
+		armament_minister = theoretical_scientist
+		start_date = 1937.1.1
+	}
+	11145 = {
+		name = "Emilio Herrera"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M11145
+		armament_minister = air_superiority_proponent
+		chief_of_air = army_aviation_doctrine
+		start_date = 1939.1.1
+	}
+	11146 = {
+		name = "Lluis Nicolau d'Olwer"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M11146
+		armament_minister = resource_industrialist
+		start_date = 1940.1.1
+	}
+	11150 = {
+		name = "José Yanguas Messía"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M11150
+		armament_minister = administrative_genius
+		start_date = 1936.1.1
+	}
+	11152 = {
+		name = "Manuel Carrasco i Formiguera"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M11152
+		armament_minister = laissez_faires_capitalist
+		start_date = 1938.1.1
+	}
+	11155 = {
+		name = "Joaquín Chapaprieta Torregosa"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M11155
+		armament_minister = resource_industrialist
+		minister_of_intelligence = industrial_specialist
+		start_date = 1945.1.1
+	}
+	11156 = {
+		name = "José Calvo-Sotelo"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M11014
+		armament_minister = laissez_faires_capitalist
+		start_date = 1936.1.1
+	}
+	11159 = {
+		name = "José María Quinones de Leon"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M11159
+		armament_minister = tank_proponent
+		minister_of_security = prince_of_terror
+		start_date = 1938.1.1
+	}
+	11160 = {
+		name = "Juan March Ordinas"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M11160
+		armament_minister = administrative_genius
+		minister_of_intelligence = dismal_enigma
+		start_date = 1939.1.1
+	}
+	11163 = {
+		name = "Valentín González González"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M11163
+		minister_of_security = back_stabber
+		start_date = 1938.1.1
+	}
+	11166 = {
+		name = "Antonio Mije"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M11166
+		minister_of_security = prince_of_terror
+		start_date = 1941.1.1
+	}
+	11167 = {
+		name = "Joaquín Grimau García"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M11167
+		minister_of_security = efficient_sociopath
+		start_date = 1942.1.1
+	}
+	11169 = {
+		name = "José Expósito Leiva"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M11169
+		minister_of_security = silent_lawyer
+		start_date = 1936.1.1
+	}
+	11170 = {
+		name = "Melchor Rodríguez de Galdeano"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M11170
+		minister_of_security = crime_fighter
+		start_date = 1937.1.1
+	}
+	11174 = {
+		name = "Juan García Oliver"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M11174
+		minister_of_security = man_of_the_people
+		start_date = 1942.1.1
+	}
+	11175 = {
+		name = "Buenaventura Durruti Dumange"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M11175
+		minister_of_security = prince_of_terror
+		chief_of_staff = school_of_defence
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1945.1.1
+	}
+	11176 = {
+		name = "Julián Zugazagoitia Mendieta"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11176
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	11177 = {
+		name = "Ángel Galarza y Gago"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11177
+		minister_of_security = prince_of_terror
+		start_date = 1936.1.1
+	}
+	11178 = {
+		name = "Antonio Ortega Gutiérrez"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11178
+		minister_of_security = efficient_sociopath
+		start_date = 1937.1.1
+	}
+	11179 = {
+		name = "Ramon Gonzalez Peña"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M11179
+		minister_of_security = crime_fighter
+		start_date = 1938.1.1
+	}
+	11181 = {
+		name = "Wenceslao Carrillo Forjador"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M11181
+		minister_of_security = man_of_the_people
+		start_date = 1941.1.1
+	}
+	11183 = {
+		name = "Amós Salvador Carreras"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M11183
+		minister_of_security = man_of_the_people
+		start_date = 1938.1.1
+	}
+	11185 = {
+		name = "Marcelino Domingo Sanjuán"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M11185
+		minister_of_security = compassionate_gentleman
+		start_date = 1943.1.1
+	}
+	11188 = {
+		name = "Julio López Olivan"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M11188
+		minister_of_security = back_stabber
+		start_date = 1938.1.1
+	}
+	11189 = {
+		name = "Pablo de Azcárate y Flores"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M11189
+		minister_of_security = man_of_the_people
+		start_date = 1938.1.1
+	}
+	11194 = {
+		name = "Federico Escofet Alsina"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M11194
+		minister_of_security = crime_fighter
+		start_date = 1941.1.1
+	}
+	11197 = {
+		name = "Mariano Gómez"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M11197
+		minister_of_security = crime_fighter
+		start_date = 1946.1.1
+	}
+	11198 = {
+		name = "Tomás Garciano Goñi"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M11015
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	11200 = {
+		name = "Rafael Videlia Rubio"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M11200
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	11203 = {
+		name = "Daniel Ortega Martínez"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M11203
+		minister_of_intelligence = research_specialist
+		start_date = 1941.1.1
+	}
+	11206 = {
+		name = "Mariano Vázquez Rodríguez"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M11206
+		minister_of_intelligence = dismal_enigma
+		chief_of_air = air_superiority_doctrine
+		start_date = 1937.1.1
+	}
+	11209 = {
+		name = "Julian Gorkin Gómez García"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M11209
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1943.1.1
+	}
+	11211 = {
+		name = "Gustavo Durán Martínez"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11211
+		minister_of_intelligence = research_specialist
+		chief_of_staff = school_of_psychology
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1936.1.1
+	}
+	11215 = {
+		name = "Manuel Torres Campaña"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M11215
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	11217 = {
+		name = "Benjamín Balboa López"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M11217
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1938.1.1
+	}
+	11218 = {
+		name = "Josep Tarradellas y Joan"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M11218
+		minister_of_intelligence = industrial_specialist
+		start_date = 1939.1.1
+	}
+	11221 = {
+		name = "Manuel Estrada Manchón"
+		ideology = social_liberal
+		loyalty = 0.50
+		picture = M11219
+		minister_of_intelligence = research_specialist
+		chief_of_staff = school_of_psychology
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	11228 = {
+		name = "Manuel Matallana Gómez"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M11228
+		minister_of_intelligence = research_specialist
+		start_date = 1941.1.1
+	}
+	11230 = {
+		name = "Luis Orgaz Yoldi"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M11016
+		minister_of_intelligence = research_specialist
+		start_date = 1936.1.1
+	}
+	11234 = {
+		name = "Frank Ryan"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M11234
+		chief_of_staff = school_of_mass_combat
+		start_date = 1936.1.1
+	}
+	11235 = {
+		name = "Emilio Kléber"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M11235
+		chief_of_staff = school_of_defence
+		start_date = 1937.1.1
+	}
+	11236 = {
+		name = "Enrique Líster Forján"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M11236
+		chief_of_staff = school_of_psychology
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1938.1.1
+	}
+	11237 = {
+		name = "Juan Modesto Guilloto"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M11237
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1938.1.1
+	}
+	11238 = {
+		name = "Antonio Cordón García"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M11238
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		start_date = 1938.1.1
+	}
+	11239 = {
+		name = "Manuel Tagüeña Lacorte"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M11027
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1939.1.1
+	}
+	11240 = {
+		name = "Francisco Galán Rodríguez"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M11240
+		chief_of_staff = school_of_fire_support
+		chief_of_navy = open_seas_doctrine
+		start_date = 1939.1.1
+	}
+	11241 = {
+		name = "Vicente Guarner Vivancos"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M11241
+		chief_of_staff = school_of_fire_support
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	11242 = {
+		name = "Miguel García Vivancos"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M11242
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1937.1.1
+	}
+	11243 = {
+		name = "Francisco Ascaso Budría"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M11243
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1938.1.1
+	}
+	11244 = {
+		name = "Cipriano Mera Sanz"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M11244
+		chief_of_staff = school_of_psychology
+		chief_of_army = static_defence_doctrine
+		start_date = 1941.1.1
+	}
+	11247 = {
+		name = "Vicente Rojo Lluch"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11247
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1937.1.1
+	}
+	11249 = {
+		name = "Arturo Mena Roig"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11249
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1938.1.1
+	}
+	11250 = {
+		name = "Juan Perea Capulino"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11250
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		start_date = 1939.1.1
+	}
+	11253 = {
+		name = "Enrique Jurado Barrio"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M11253
+		chief_of_staff = school_of_fire_support
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1938.1.1
+	}
+	11254 = {
+		name = "Carlos Masquelet Lacaci"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M11254
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		start_date = 1941.1.1
+	}
+	11255 = {
+		name = "Luis Castelló Pantoja"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M11255
+		chief_of_staff = school_of_psychology
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1945.1.1
+	}
+	11256 = {
+		name = "Toribio Martínez Cabrera"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M11252
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	11262 = {
+		name = "Domingo Batet Mestre"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M11262
+		chief_of_staff = school_of_psychology
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1940.1.1
+	}
+	11264 = {
+		name = "Luís Orgaz Yoldi"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M11016
+		chief_of_staff = school_of_defence
+		start_date = 1942.1.1
+	}
+	11265 = {
+		name = "Joaquin Fanjul Goñi"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M11265
+		chief_of_staff = school_of_psychology
+		chief_of_army = static_defence_doctrine
+		start_date = 1943.1.1
+	}
+	11290 = {
+		name = "José Antonio de Aguirre y Lecube"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M11290
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	11294 = {
+		name = "Antonio Aranda Mata"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M11018
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	11299 = {
+		name = "Pedro Fernández Checa"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M11299
+		chief_of_navy = decisive_naval_battle_doctrine
+		chief_of_air = army_aviation_doctrine
+		start_date = 1938.1.1
+	}
+	11301 = {
+		name = "Pedro Prado Mendizábal"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M11301
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1939.1.1
+	}
+	11304 = {
+		name = "Bruno Alonso"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11304
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	11305 = {
+		name = "Joaquín Julio Maurín"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11305
+		chief_of_navy = power_projection_doctrine
+		start_date = 1937.1.1
+	}
+	11306 = {
+		name = "Luís González Ubieta"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11306
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1938.1.1
+	}
+	11307 = {
+		name = "Indalecio Prieto Tuero"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11307
+		chief_of_navy = open_seas_doctrine
+		chief_of_air = army_aviation_doctrine
+		start_date = 1939.1.1
+	}
+	11308 = {
+		name = "Andres Saborit Colomer"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11308
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1940.1.1
+	}
+	11314 = {
+		name = "Antonio Ruíz Funes-García"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M11314
+		chief_of_navy = base_control_doctrine
+		start_date = 1939.1.1
+	}
+	11316 = {
+		name = "Miguel Buiza Palacios"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M11311
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1936.1.1
+	}
+	11319 = {
+		name = "Francisco Nunez de Olaneta"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M11019
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	11321 = {
+		name = "Ignacio Hidalgo de Cisneros"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11030
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+	11326 = {
+		name = "Ventura Gassol Rovíra"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M11326
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1939.1.1
+	}
+	11329 = {
+		name = "Trifon Gómez San José"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M11329
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1937.1.1
+	}
+	11332 = {
+		name = "Felipe Díaz Sandino"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M11332
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	11334 = {
+		name = "Ángel Camacho Benítez"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M11334
+		chief_of_air = air_superiority_doctrine
+		start_date = 1938.1.1
+	}
+	11335 = {
+		name = "Julio Just Gímeno"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M11335
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1941.1.1
+	}
+	11336 = {
+		name = "María Lejarraga de Martínez"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M11336
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1943.1.1
+	}
+	11340 = {
+		name = "Alfredo Kindelán Duany"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M11020
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1936.1.1
+	}
+}
+

@@ -1,0 +1,41 @@
+# These are the changes made since patch 1.4 for HoI 3
+#####################################
+
+Spy AI
+- New zone system in, AI will concentrate more on its neighbors and the contenent its capital is based on.
+- AI will be more passive with its spies when at peace so as to not try and push people to join their enemies.
+
+Production AI
+- Country specific files can now overide the LUA production, by type, and design its own units)
+
+Tech AI
+- Country specific weights can now be set in the LUA files (or use defaults)
+- Country specific ignore techs can be set in the Country specific AI LUA files (if not it will use defaults).
+
+
+######################
+Tech AI
+- Tuned the AI to get a more accurate count of how many research slots it has based on the slider shifts withought having to wait for the next tick.
+
+RC9
+- Tech AI has a new weight system for research techs (Major powers get a specific one for each) to may rules to put in notes.
+- Slider AI had the values Diplomacy and NCO fliped which was causing them to set them incorectly.
+- Redid the Slider distribution code to be a little more simpler. AI will concentrate way more on research now.
+
+Production
+
+RC9
+- USA will build more ships in the early years (even if it fails MP checks) as long as it has more than 100 MP
+- Changed order prio on what units to build first over others.
+- Fixed an issue where transport ships where not being built in serial runs
+- If there is IC left over after doing AI build requests the AI will build a few extra units based on what was not asked for!
+- AI will build buildings now if IC is available but it was not able to meet manpower checks (gives it somethign to do with it).
+- Building functionality was moved into a seperate method to make it easier to call.
+- More performance IC checks added into the begining of the method.
+- AI is now limited to building 2 of each building type at the same time.
+- AI will now build a max of 5 AA in a province.
+- AI will now build no more than 2 coastal forts in a single province (same with Radar Stations)
+- China, France and Russia will no longer build coastal forts
+- Fixed a bug where the cost of the minor attachments was not being calculated corectly when the AI was trying to figure out how much it was using.
+- Added a manpower check for major powers building buildings. If the AI is low on manpower the limits placed on how many buildings he builds will be removed.
+- Any country that has over 50 IC will create full divisions, if they are less than 50 then single brigades will be built 

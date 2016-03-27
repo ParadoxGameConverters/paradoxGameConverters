@@ -1,0 +1,19 @@
+owner = CSX
+
+controller = CSX
+
+add_core = CSX
+add_core = CHI
+add_core = CHC
+infra = 5
+
+infra = 5
+
+infra = 5
+1938.5.9 = {
+
+	controller = JAP
+
+}
+
+1938.9.1 = { owner = JAP }

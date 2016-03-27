@@ -1,0 +1,64 @@
+sea_focus = {
+	# countries with no sea port should not get Sea
+	modifier = {
+		factor = 0
+		lacks_port = true
+	}
+	# countries that have prioritised sea tech school should get Sea
+	modifier = {
+		factor = 1.5
+		tech_school = naval_tech_school
+	}
+	# Countries with lots of coast (in comparison to their land borders) should get Sea
+	#	thanks to limitations with Vic2 saves, we can only identify ports, so this actually checks against the number of provinces with ports
+	modifier = {
+		factor = 2.0
+		#coast_border_percent = 0.50 # this is what we would use if we could tell what was a coastal province or not
+		coast_border_percent = 0.10
+	}
+	# Countries that have prioritized sea techs over land techs should get sea.
+	modifier = {
+		factor = 2.0
+		navy_tech_ahead = 1
+	}
+	# Pacific States with a port should get Sea
+	modifier = {
+		factor = 20.0
+		capital_continent = oceania
+	}
+	# Countries that have ships as a high enough percentage of their forces should get Sea
+	modifier = {
+		factor = 2.0
+		ship_composition_percent = 0.25
+	}
+}
+
+tank_focus = {
+	# Countries that have tanks as a high enough percentage of their land forces should get Tank
+	modifier = {
+		factor = 10.0
+		tank_composition_percent = 0.10
+	}
+}
+
+air_focus = {
+	# Countries that have planes as a high enough percentage of their land forces should get Air
+	modifier = {
+		factor = 10.0
+		plane_composition_percent = 0.10
+	}
+}
+
+inf_focus = {
+	# Post-conversion industry score compared to manpower. Low value should force "inf" focus
+	modifer = {
+		factor = 5.0
+		manpower_to_IC_ratio = 1.0
+	}
+	
+	# Inf should be the default if other conditions aren't met
+	modifier = {
+		factor = 1.25
+		default = true
+	}
+}

@@ -1,0 +1,11 @@
+# This file maps buildings from eu4 into the ones the ones in v2
+
+buildingMap = {
+
+# eu4 Military Buildings/Infrastructure --> v2 Province Improvements
+
+link = { v2 = fort eu4 = fort6 }
+link = { v2 = naval_base eu4 = grand_shipyard }
+link = { v2 = railroad eu4 = road_network }
+
+}

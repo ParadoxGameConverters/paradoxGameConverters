@@ -1,0 +1,98 @@
+#Country Name: Please see filename.
+
+graphical_culture = africangfx
+
+color = { 97  98  195 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	national_conscripts
+	merchant_adventures
+	military_drill
+	national_trade_policy
+	battlefield_commisions
+	engineer_corps
+	grand_army
+	espionage
+	cabinet
+	bureaucracy
+	glorious_arms
+}
+
+historical_units = {
+	african_spearmen
+	songhai_tribal_warfare
+	niger_kongolese_forest_warfare
+	niger_kongolese_gunpowder_warfare
+	westernized_niger_kongolese
+	niger_kongolese_guerilla_warfare
+}
+
+monarch_names = {
+	"Beriguwiemda #0" = 40
+	"Zolgo #0" = 20
+	"Zongman #0" = 20
+	"Nengmitoni #0" = 20
+	"Dimani #0" = 20
+	"Yanza #0" = 20
+	"Dariziogo #0" = 20
+	"Luro #0" = 20
+	"Tutugri #0" = 20
+	"Zagale #0" = 20
+	"Zokuli #0" = 20
+	"Gungoble #0" = 20
+	"Boadu Akofu Berempon #0" = 20
+	"Boa Amponsem #0" = 20
+	"Ntim Gyakari #0" = 20
+	"Ose Tutu #0" = 20
+	"Opoku Fofie #0" = 20
+	"Opoku Ware #0" = 20
+	"Kusi Obodum #0" = 20
+	"Osei Bonsu #0" = 0
+	"Osei Kojo #0" = 20
+	"Osei Kwame #0" = 20
+	"Osei Fofie #0" = 20
+	"Osei Bonsu #0" = 20
+	"Osei Yaw #0" = 20
+	"Kwaku Dua #0" = 20
+	"Salifu Saatankugri #0" = 0
+	"Mahama Kuluguba #0" = 0
+	"Nyagse #0" = 0
+	"Zulande #0" = 0
+	"Zangina #0" = 0
+	"Andan Sigili #0" = 0
+	"Jimli #0" = 0
+	"Zibirim #0" = 0
+	"Gariba #0" = 0
+	"Yakuba #0" = 0
+	"Ayekeraa #0" = 0
+	"Kokobo #0" = 0
+	"Ahaha #0" = 0
+	"Warembe Ampen #0" = 0
+	"Agyinamoa #0" = 0
+	"Twum #0" = 0
+	"Kobla Amana #0" = 0
+	"Akenten #0" = 0
+	"Obiri Yeboa #0" = 0
+	"Opoku #0" = 0
+	"Antwi #0" = 0
+}
+
+leader_names = {
+	Addy
+	Afrifa
+	Sadami
+	Sabah
+	Zakari
+	Offei
+	Donkor
+	Akoto
+	Sribor
+	Moyoyo
+}
+
+ship_names = {
+	Nyame "Asase Yaa" Bia Tano
+	Dwoada Benada Wukuada Yawoada
+	Fiada Memeneda Kwasiada
+}

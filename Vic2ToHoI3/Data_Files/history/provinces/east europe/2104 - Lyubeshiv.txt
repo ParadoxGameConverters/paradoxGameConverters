@@ -1,0 +1,16 @@
+owner = POL
+controller = POL
+add_core = POL
+
+infra = 3
+
+1940.5.10 = {
+	owner = SOV
+	controller = SOV
+}
+1941.12.7 = {
+	controller = GER
+}
+1944.4.30 = {
+	controller = SOV
+}

@@ -1,0 +1,97 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 79 139 99 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	national_conscripts
+	merchant_adventures
+	humanist_tolerance
+	patron_of_art
+	national_bank
+	national_trade_policy
+	ecumenism
+	cabinet
+	smithian_economics
+	military_drill
+	engineer_corps
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	prussian_frederickian
+	prussian_uhlan
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Otto #0" = 60
+	"Heinrich #5" = 40
+	"Ernst #0" = 40
+	"Friedrich #2" = 20
+	"Bernhard #1" = 20
+	"August #0" = 20
+	"Christian #0" = 20
+	"Christian Ludwig #0" = 20
+	"Ernst August #0" = 20
+	"Franz #0" = 20
+	"Georg #0 Wilhelm" = 20
+	"Georg #0" = 20
+	"Johann Friedrich #0" = 20
+	"Magnus #2" = 10
+	"Franz Otto #0" = 10
+	"Johann #0" = 10
+	"Alexander #0" = 0
+	"Alois #0" = 0
+	"Anton #0" = 0
+	"Bruno #0" = 0
+	"Clemens #0" = 0
+	"Denis #0" = 0
+	"Gerfried #0" = 0
+	"Gottfried #0" = 0
+	"Günther #0" = 0
+	"Helmut #0" = 0
+	"Herbert #0" = 0
+	"Ignatz #0" = 0
+	"Isidor #0" = 0
+	"Jakob #0" = 0
+	"Konstantin #0" = 0
+	"Kuno #0" = 0
+	"Markus #0" = 0
+	"Martin #0" = 0
+	"Oskar #0" = 0
+	"Reinhard #0" = 0
+	"Silvester #0" = 0
+	"Stefan #0" = 0
+	"Viktor #0" = 0
+	"Waldemar #0" = 0
+}
+
+leader_names = {
+	Ahlers Martin Pielken Reinbeck Sölter "von Hodenberg"
+	Westermann Basedow Beuß Bostelmann Breden Burmeister
+	Dietz Döpner Flathmann Garbade Gefken Gehrken 
+}
+
+ship_names = {
+	"Markgraf Billung" "Bischof Amelung"
+	"St. Michaelis" "Luniburcs" "Herzog Otto"
+	Kalkberg Illmenau "Herzog Wilhelm"
+	"Magnus Torquatus" "Herzog Ernst"
+}
+
+army_names = {
+	"Armee von $PROVINCE$" 
+}

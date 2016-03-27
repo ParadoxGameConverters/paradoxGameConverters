@@ -1,0 +1,15 @@
+owner = HOL
+controller = HOL
+add_core = HOL
+infra = 7
+naval_base = 2
+
+1941.6.22 = {
+	controller = GER
+}
+
+1943.2.1 = { coastal_fort = 1 }
+
+1944.12.01 = {
+	controller = USA
+}

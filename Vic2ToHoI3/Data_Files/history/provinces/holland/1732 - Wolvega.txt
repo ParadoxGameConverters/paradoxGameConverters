@@ -1,0 +1,11 @@
+owner = HOL
+controller = HOL
+add_core = HOL
+
+infra = 9
+
+infra = 8
+1941.6.22 = {
+	controller = GER
+
+}

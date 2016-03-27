@@ -1,0 +1,7 @@
+owner = TAN
+controller = TAN
+add_core = TAN
+infra = 4
+manpower = 3.00
+leadership = 0.30
+points = 1

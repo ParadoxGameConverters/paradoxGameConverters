@@ -1,0 +1,618 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration Comment="This file is used to build the configuration parth of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
+  <!--This part contains the game configurations-->
+  <gameConfigurations>
+    <!--List of source games-->
+    <sourceGameConfigurations>
+      <sourceGameConfiguration>
+        <name>CrusaderKings2</name>
+        <friendlyName>Crusader Kings 2</friendlyName>
+        <steamId>203770</steamId>
+        <defaultSaveGameLocationType>WindowsUsersFolder</defaultSaveGameLocationType>
+        <defaultSaveGameSubLocation>\Paradox Interactive\Crusader Kings II\save games</defaultSaveGameSubLocation>
+        <defaultModFolderLocationType>WindowsUsersFolder</defaultModFolderLocationType>
+        <defaultModFolderLocation>\Paradox Interactive\Crusader Kings II\mod</defaultModFolderLocation>
+        <configurationFileDirectoryTagName>CK2directory</configurationFileDirectoryTagName>
+        <configurationFileModDirectoryTagName>CK2ModPath</configurationFileModDirectoryTagName>
+        <currentModTagName>CK2Mod</currentModTagName>
+        <saveGameExtension>.ck2</saveGameExtension>
+        <supportedMods>
+          <supportedMod>
+            <modName>CK2Plus</modName>
+          </supportedMod>
+        </supportedMods>
+      </sourceGameConfiguration>
+    </sourceGameConfigurations>
+    <!--List of target games-->
+    <targetGameConfigurations>
+      <targetGameConfiguration>
+        <name>EuropaUniversalis3</name>
+        <friendlyName>Europa Universalis 3</friendlyName>
+        <steamId>25800</steamId>
+        <nonsteamRegistryName>Europa Universalis III</nonsteamRegistryName>
+        <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
+        <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
+        <configurationFileDirectoryTagName>EU3directory</configurationFileDirectoryTagName>
+        <defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
+        <defaultModFolderLocation>\mod</defaultModFolderLocation>
+        <saveGameExtension>.eu3</saveGameExtension>
+      </targetGameConfiguration>
+    </targetGameConfigurations>
+  </gameConfigurations>
+  <!--This part contains the various options that will be displayed as preferences in the converter ui, and outputted as configuration.txt as input for the converter itself-->
+  <converterOptions>
+    <categories>
+      <category>
+        <friendlyName>Tech Options</friendlyName>
+        <preferences>
+          <preference>
+            <name>techGroupMethod</name>
+            <friendlyName>Tech group method</friendlyName>
+            <description>The method by which tech groups are determined</description>
+            <entryOptions>
+              <entryOption>
+                <name>learningRate</name>
+                <friendlyName>Learning rate</friendlyName>
+                <description>Use the CK2 learning rate to determine tech groups</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>culturalTech</name>
+                <friendlyName>Cultural tech</friendlyName>
+                <description>Use the amount of tech gained in CK2, broken down by relious and culture groups, to determine tech. NOTE: do not use this option along with mods, as it relies heavily on default religions and cultures</description>
+              </entryOption>
+            </entryOptions>
+          </preference>
+        </preferences>
+      </category>
+      <category>
+        <friendlyName>Economy</friendlyName>
+        <preferences>
+          <preference>
+            <name>proxyMultiplierMethod</name>
+            <friendlyName>Proxy Multiplier Method</friendlyName>
+            <description>if a holding is a ruler's capital, all proxies get a multiplier</description>
+            <entryOptions>
+              <entryOption>
+                <name>ones</name>
+                <friendlyName>Ones</friendlyName>
+                <description>the multiplier is always one (no changes)</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>counting</name>
+                <friendlyName>Counting</friendlyName>
+                <description>
+                  - counts have a multiplier of 2 - dukes have a multiplier of 3 - kings have a multiplier of 4 - emperors have a multiplier of 5
+                </description>
+              </entryOption>
+              <entryOption>
+                <name>exponential</name>
+                <friendlyName>Exponential</friendlyName>
+                <description>
+                  - dukes have a multiplier of 4 - kings have a multiplier of 8 - emperors have a multiplier of 16
+                </description>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>multipleProvsMethod</name>
+            <friendlyName>Multiple provinces merge method</friendlyName>
+            <description>if multiple CK2 provinces become one EU3 province, which method used to get all the proxies</description>
+            <entryOptions>
+              <entryOption>
+                <name>sum</name>
+                <friendlyName>Sum</friendlyName>
+                <description>Just sum all the relevant data</description>
+              </entryOption>
+              <entryOption>
+                <name>average</name>
+                <friendlyName>Average</friendlyName>
+                <description>Get the average of all the relevant data</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>manpower</name>
+            <friendlyName>Manpower</friendlyName>
+            <description>Manpower conversion method</description>
+            <entryOptions>
+              <entryOption>
+                <name>historical</name>
+                <friendlyName>Historical</friendlyName>
+                <description>Just import the manpower from the EU3 directory</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>converted</name>
+                <friendlyName>Converted</friendlyName>
+                <description>Convert the manpower from the CK2 game</description>
+              </entryOption>
+              <entryOption>
+                <name>blended</name>
+                <friendlyName>Blended</friendlyName>
+                <description>A combination of historical and converted</description>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>manpowerblendamount</name>
+            <friendlyName>Manpower Blend Amount</friendlyName>
+            <description>The amount of manpower that is historical when blended manpower is used</description>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>0.5</value>
+            <minValue>0</minValue>
+            <maxValue>1</maxValue>
+          </preference>
+          <preference>
+            <name>basetax</name>
+            <friendlyName>Base tax</friendlyName>
+            <description>Base Tax conversion method</description>
+            <entryOptions>
+              <entryOption>
+                <name>historical</name>
+                <friendlyName>Historical</friendlyName>
+                <description>just import the manpower from the EU3 history</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>converted</name>
+                <friendlyName>Converted</friendlyName>
+                <description>convert the manpower from the CK2 game</description>
+              </entryOption>
+              <entryOption>
+                <name>blended</name>
+                <friendlyName>Blended</friendlyName>
+                <description>a combination of historical and converted</description>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>basetaxblendamount</name>
+            <friendlyName>Base Tax Blend Amount</friendlyName>
+            <description>the amount of basetax that is historical when blended basetax is used</description>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>0.5</value>
+            <minValue>0</minValue>
+            <maxValue>1</maxValue>
+          </preference>
+          <preference>
+            <name>populationblendamount</name>
+            <friendlyName>Population blend amount</friendlyName>
+            <description>the amount of population that is historical when blended population is used</description>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>0.9</value>
+            <minValue>0</minValue>
+            <maxValue>1</maxValue>
+          </preference>
+          <preference>
+            <name>population</name>
+            <friendlyName>Population</friendlyName>
+            <description></description>
+            <entryOptions>
+              <entryOption>
+                <name>historical</name>
+                <friendlyName>Historical</friendlyName>
+                <description>just import the manpower from the EU3 history</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>converted</name>
+                <friendlyName>Converted</friendlyName>
+                <description>convert the manpower from the CK2 game</description>
+              </entryOption>
+              <entryOption>
+                <name>blended</name>
+                <friendlyName>Blended</friendlyName>
+                <description>90% of population is historical, 10% is converted</description>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>HRETitle</name>
+            <friendlyName>HRE Title</friendlyName>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <description></description>
+            <value>e_hre</value>
+          </preference>
+          <preference>
+            <name>mergeTitles</name>
+            <friendlyName>Merge Titles</friendlyName>
+            <description>specifies what to do when a single character holds multiple titles at the same tier</description>
+            <entryOptions>
+              <entryOption>
+                <name>never</name>
+                <friendlyName>Never</friendlyName>
+                <description>titles remain independent, but ruled by a common ruler (PU)</description>
+              </entryOption>
+              <entryOption>
+                <name>inheritance</name>
+                <friendlyName>Inheritance</friendlyName>
+                <description>titles are merged if and only if the inheritance laws GUARANTEE common rulership. this means: same succession and gender laws, no gavelkind, no elective.</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>always</name>
+                <friendlyName>Always</friendlyName>
+                <description>titles are merged wherever possible</description>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>vassalScore</name>
+            <friendlyName>Vassal Score</friendlyName>
+            <description></description>
+            <minValue>0</minValue>
+            <maxValue>100000</maxValue>
+            <value>4950</value>
+            <!--I would suggest updating this if you change the default option below-->
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <!--<allowDirectOverride>true</allowDirectOverride>-->
+            <!--This element is only necessary when having BOTH a list of pre-defined options and a directly editable value-->
+            <entryOptions>
+              <entryOption>
+                <name>1800</name>
+                <friendlyName>1800</friendlyName>
+                <description>all vassals become vassals in EU3</description>
+              </entryOption>
+              <entryOption>
+                <name>2800</name>
+                <friendlyName>2800</friendlyName>
+                <description>all vassals become vassals in EU3 and the liege gets cores</description>
+              </entryOption>
+              <entryOption>
+                <name>3900</name>
+                <friendlyName>3900</friendlyName>
+                <description>all vassals are absorbed in EU3, but cores remain</description>
+              </entryOption>
+              <entryOption>
+                <name>4950</name>
+                <friendlyName>4950</friendlyName>
+                <description>all vassals are absorbed in EU3, and cores are removed</description>
+                <isDefault>true</isDefault>
+                <!--I would suggest updating the value on the parent preference as well.-->
+              </entryOption>
+            </entryOptions>
+          </preference>
+        </preferences>
+      </category>
+      <category>
+        <friendlyName>EU 3 Options</friendlyName>
+        <preferences>
+          <preference>
+            <name>advisors</name>
+            <friendlyName>Advisors</friendlyName>
+            <description></description>
+            <entryOptions>
+              <entryOption>
+                <name>normal</name>
+                <friendlyName>Normal</friendlyName>
+                <description></description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>historical</name>
+                <friendlyName>Historical</friendlyName>
+                <description></description>
+              </entryOption>
+              <entryOption>
+                <name>event</name>
+                <friendlyName>Event</friendlyName>
+                <description></description>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>leaders</name>
+            <friendlyName>Leaders</friendlyName>
+            <description></description>
+            <entryOptions>
+              <entryOption>
+                <name>normal</name>
+                <friendlyName>Normal</friendlyName>
+                <description></description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>historical</name>
+                <friendlyName>Historical</friendlyName>
+                <description></description>
+              </entryOption>
+              <entryOption>
+                <name>event</name>
+                <friendlyName>Event</friendlyName>
+                <description></description>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>colonists</name>
+            <friendlyName>Colonits</friendlyName>
+            <description></description>
+            <entryOptions>
+              <entryOption>
+                <name>normal</name>
+                <friendlyName>Normal</friendlyName>
+                <description></description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>free</name>
+                <friendlyName>Free</friendlyName>
+                <description></description>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>merchants</name>
+            <friendlyName>Merchants</friendlyName>
+            <description></description>
+            <entryOptions>
+              <entryOption>
+                <name>normal</name>
+                <friendlyName>Normal</friendlyName>
+                <description></description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>free</name>
+                <friendlyName>Free</friendlyName>
+                <description></description>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>missionaries</name>
+            <friendlyName>Missionaries</friendlyName>
+            <description></description>
+            <entryOptions>
+              <entryOption>
+                <name>normal</name>
+                <friendlyName>Normal</friendlyName>
+                <description></description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>free</name>
+                <friendlyName>Free</friendlyName>
+                <description></description>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>inflation</name>
+            <friendlyName>Inflation</friendlyName>
+            <description></description>
+            <entryOptions>
+              <entryOption>
+                <name>normal</name>
+                <friendlyName>Normal</friendlyName>
+                <description></description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>none</name>
+                <friendlyName>None</friendlyName>
+                <description></description>
+              </entryOption>
+              <entryOption>
+                <name>from gold</name>
+                <friendlyName>From Gold</friendlyName>
+                <description></description>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>colonist_size</name>
+            <friendlyName>Colonist Size</friendlyName>
+            <description></description>
+            <entryOptions>
+              <entryOption>
+                <name>normal</name>
+                <friendlyName>Normal</friendlyName>
+                <description></description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>200</name>
+                <friendlyName>200</friendlyName>
+                <description></description>
+              </entryOption>
+              <entryOption>
+                <name>300</name>
+                <friendlyName>300</friendlyName>
+                <description></description>
+              </entryOption>
+              <entryOption>
+                <name>400</name>
+                <friendlyName>400</friendlyName>
+                <description></description>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>difficulty</name>
+            <friendlyName>Difficulty</friendlyName>
+            <description></description>
+            <entryOptions>
+              <entryOption>
+                <name>very easy</name>
+                <friendlyName>Very Easy</friendlyName>
+                <description></description>
+                <isDefault></isDefault>
+              </entryOption>
+              <entryOption>
+                <name>easy</name>
+                <friendlyName>Easy</friendlyName>
+                <description></description>
+                <isDefault></isDefault>
+              </entryOption>
+              <entryOption>
+                <name>normal</name>
+                <friendlyName>Normal</friendlyName>
+                <description></description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>hard</name>
+                <friendlyName>Hard</friendlyName>
+                <description></description>
+                <isDefault></isDefault>
+              </entryOption>
+              <entryOption>
+                <name>very hard</name>
+                <friendlyName>Very Hard</friendlyName>
+                <description></description>
+                <isDefault></isDefault>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>AI_aggressiveness</name>
+            <friendlyName>AI aggressiveness</friendlyName>
+            <description></description>
+            <entryOptions>
+              <entryOption>
+                <name>low</name>
+                <friendlyName>Low</friendlyName>
+                <description></description>
+                <isDefault></isDefault>
+              </entryOption>
+              <entryOption>
+                <name>normal</name>
+                <friendlyName>Normal</friendlyName>
+                <description></description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>high</name>
+                <friendlyName>High</friendlyName>
+                <description></description>
+                <isDefault></isDefault>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>land_spread</name>
+            <friendlyName>Spread of land procinces</friendlyName>
+            <description></description>
+            <entryOptions>
+              <entryOption>
+                <name>25</name>
+                <friendlyName>25</friendlyName>
+                <description></description>
+                <isDefault></isDefault>
+              </entryOption>
+              <entryOption>
+                <name>normal (50)</name>
+                <friendlyName>Normal (50)</friendlyName>
+                <description></description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>75</name>
+                <friendlyName>75</friendlyName>
+                <description></description>
+                <isDefault></isDefault>
+              </entryOption>
+              <entryOption>
+                <name>100</name>
+                <friendlyName>100</friendlyName>
+                <description></description>
+                <isDefault></isDefault>
+              </entryOption>
+              <entryOption>
+                <name>200</name>
+                <friendlyName>200</friendlyName>
+                <description></description>
+                <isDefault></isDefault>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>sea_spread</name>
+            <friendlyName>Spread of sea provinces</friendlyName>
+            <description></description>
+            <entryOptions>
+              <entryOption>
+                <name>25</name>
+                <friendlyName>25</friendlyName>
+                <description></description>
+                <isDefault></isDefault>
+              </entryOption>
+              <entryOption>
+                <name>normal (50)</name>
+                <friendlyName>Normal (50)</friendlyName>
+                <description></description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>75</name>
+                <friendlyName>75</friendlyName>
+                <description></description>
+                <isDefault></isDefault>
+              </entryOption>
+              <entryOption>
+                <name>100</name>
+                <friendlyName>100</friendlyName>
+                <description></description>
+                <isDefault></isDefault>
+              </entryOption>
+              <entryOption>
+                <name>200</name>
+                <friendlyName>200</friendlyName>
+                <description></description>
+                <isDefault></isDefault>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>spies</name>
+            <friendlyName>Spies</friendlyName>
+            <description></description>
+            <entryOptions>
+              <entryOption>
+                <name>normal</name>
+                <friendlyName>Normal</friendlyName>
+                <description></description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>free</name>
+                <friendlyName>Free</friendlyName>
+                <description></description>
+                <isDefault></isDefault>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>lucky_nations</name>
+            <friendlyName>Lucky nations</friendlyName>
+            <description></description>
+            <entryOptions>
+              <entryOption>
+                <name>historical</name>
+                <friendlyName>Historical</friendlyName>
+                <description></description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>random</name>
+                <friendlyName>Random</friendlyName>
+                <description></description>
+                <isDefault></isDefault>
+              </entryOption>
+              <entryOption>
+                <name>none</name>
+                <friendlyName>None</friendlyName>
+                <description></description>
+                <isDefault></isDefault>
+              </entryOption>
+            </entryOptions>
+          </preference>
+        </preferences>
+      </category>
+    </categories>
+  </converterOptions>
+</configuration>

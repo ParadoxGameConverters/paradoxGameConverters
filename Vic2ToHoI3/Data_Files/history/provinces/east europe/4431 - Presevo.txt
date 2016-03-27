@@ -1,0 +1,9 @@
+owner = YUG
+controller = YUG
+add_core = YUG
+add_core = BUL
+
+infra = 6
+1941.6.22 = {
+	controller = BUL
+}

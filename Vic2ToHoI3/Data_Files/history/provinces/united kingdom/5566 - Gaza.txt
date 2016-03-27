@@ -1,0 +1,10 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+add_core = PAL
+infra = 6
+infra = 4
+
+infra = 6
+
+infra = 4

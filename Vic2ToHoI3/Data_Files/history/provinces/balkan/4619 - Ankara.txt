@@ -1,0 +1,16 @@
+owner = TUR
+controller = TUR
+add_core = TUR
+
+points = 2
+metal = 3.00
+energy = 11.00
+rare_materials = 5.00
+industry = 6
+anti_air = 4
+infra = 6
+air_base = 2
+manpower = 6.00
+leadership = 0.60
+
+infra = 6

@@ -1,0 +1,30 @@
+owner = YUG
+controller = YUG
+add_core = YUG
+add_core = ITA
+
+points = 1
+metal = 1.00
+energy = 2.00
+industry = 2
+anti_air = 2
+infra = 7
+air_base = 2
+naval_base = 3
+manpower = 1.00
+leadership = 0.10
+
+infra = 7
+1941.4.10 = {
+	owner = CRO
+	controller = CRO
+	add_core = CRO
+} # The Treaty of Rome
+1941.5.18 = {
+	owner = ITA
+	controller = ITA
+} # The Treaty of Rome
+1944.6.20 = {
+	owner = CRO
+	controller = CRO
+}

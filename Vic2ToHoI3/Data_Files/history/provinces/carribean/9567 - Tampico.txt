@@ -1,0 +1,9 @@
+owner = MEX
+controller = MEX
+add_core = MEX
+crude_oil = 10.00
+air_base = 2
+naval_base = 4
+infra = 6
+
+terrain = woods

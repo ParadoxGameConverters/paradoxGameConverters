@@ -1,0 +1,235 @@
+# This culture map contains one to one and many to one culture conversions.
+
+cultureMap = {
+
+# Germanic - pommeranian, prussian, hannoverian, hessian, saxon, rheinlaender, bavarian, austrian, dutch, flemish
+
+link = { v2 = north_german eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 = saxon  }
+link = { v2 = swiss eu4 = rheinlaender owner = SWI }
+link = { v2 = south_german eu4 = rheinlaender }
+link = { v2 = south_german eu4 = hessian eu4 = bavarian eu4 = austrian }
+link = { v2 = dutch eu4 = dutch }
+link = { v2 = flemish eu4 = flemish }
+
+# Scandinavian - swedish, danish, norwegian
+
+link = { v2 = swedish eu4 = swedish }
+link = { v2 = danish eu4 = danish }
+link = { v2 = norwegian eu4 = norwegian }
+
+# British - english, american, scottish
+
+link = { v2 = british eu4 = english eu4 = scottish }
+link = { v2 = yankee eu4 = american }
+
+# Gaelic - welsh, breton, irish
+
+link = { v2 = british eu4 = welsh eu4 = breton }
+link = { v2 = irish eu4 = irish }
+
+# Latin - lombard, umbrian, sicilian
+
+link = { v2 = north_italian eu4 = lombard eu4 = umbrian }
+link = { v2 = south_italian eu4 = sicilian }
+
+# Iberian - castillian, catalan, galician, andalucian, portugese, maltese
+
+link = { v2 = spanish eu4 = castillian eu4 = galician eu4 = andalucian }
+link = { v2 = catalan eu4 = catalan }
+link = { v2 = portuguese eu4 = portugese }
+link = { v2 = maltese eu4 = maltese }
+
+# French - cosmopolitan_french, gascon, normand, aquitaine, burgundian, occitain, wallonian
+
+link = { v2 = french eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain }
+link = { v2 = wallonian eu4 = wallonian }
+
+# Basque Group - basque
+
+link = { v2 = basque eu4 = basque }
+
+# Finno Urgic - finnish, estonian, sapmi, ingrian, karelian, uralic
+
+link = { v2 = finnish eu4 = finnish eu4 = ingrian eu4 = karelian }
+link = { v2 = sami eu4 = sapmi }
+link = { v2 = estonian eu4 = estonian }
+link = { v2 = ugrian eu4 = uralic }
+
+# South Slav2 - croatian, serbian, bulgarian, romanian, albanian
+
+link = { v2 = croat eu4 = croatian }
+link = { v2 = serb eu4 = serbian }
+link = { v2 = bulgarian eu4 = bulgarian }
+link = { v2 = albanian eu4 = albanian }
+link = { v2 = romanian eu4 = romanian }
+
+# West Slav2 - czech, polish, hungarian, schlesian
+
+link = { v2 = hungarian eu4 = hungarian }
+link = { v2 = polish eu4 = polish eu4 = schlesian }
+link = { v2 = czech eu4 = czech }
+
+# East Slav2 - russian, byelorussian, ruthenian
+
+link = { v2 = russian eu4 = russian eu4 = ruthenian }
+link = { v2 = byelorussian eu4 = byelorussian }
+
+# Baltic - lithuanian, old_prussian, latvian
+
+link = { v2 = lithuanian eu4 = lithuanian }
+link = { v2 = latvian eu4 = latvian eu4 = old_prussian }
+
+# Byzantine - greek, georgian, armenian
+
+link = { v2 = greek eu4 = greek }
+link = { v2 = georgian eu4 = georgian }
+link = { v2 = armenian eu4 = armenian }
+
+# Turko Semitic	- maghreb_arabic, al_misr_arabic, al_suryah_arabic, al_iraqiya_arabic, bedouin_arabic, berber, turkish
+
+link = { v2 = maghrebi eu4 = maghreb_arabic }
+link = { v2 = misri eu4 = al_misr_arabic eu4 = al_suryah_arabic }
+link = { v2 = mashriqi eu4 = al_iraqiya_arabic }
+link = { v2 = bedouin eu4 = bedouin_arabic }
+link = { v2 = berber eu4 = berber }
+link = { v2 = turkish eu4 = turkish }
+
+# Iranian - persian, east_persian, baluchi
+
+link = { v2 = persian eu4 = persian }
+link = { v2 = pashtun eu4 = east_persian }
+link = { v2 = baluchi eu4 = baluchi }
+
+# Altaic - azerbadjani, turkmeni, mongol, uzbehk, khazak, kirgiz, siberian, yakut, tartar
+
+link = { v2 = azerbaijani eu4 = azerbadjani }
+link = { v2 = turkmen eu4 = turkmeni }
+link = { v2 = mongol eu4 =  mongol }
+link = { v2 = uzbek eu4 = uzbehk }
+link = { v2 = kazak eu4 = khazak }
+link = { v2 = kirgiz eu4 = kirgiz }
+link = { v2 = siberian eu4 = siberian }
+link = { v2 = yakut eu4 = yakut }
+link = { v2 = tatar eu4 = tartar }
+
+# Central American - zapotek, mayan, aztek
+
+link = { v2 = zapotec eu4 = zapotek }
+link = { v2 = mayan eu4 = mayan }
+link = { v2 = nahua eu4 = aztek }
+
+# South American - inca, guarani, aimara, amazonian, patagonian, guajiro, teremembe, tupinamba, mataco
+
+link = { v2 = tarascan eu4 = inca }
+link = { v2 = guarani eu4 = guarani }
+link = { v2 = aimara eu4 = aimara }
+link = { v2 = amazonian eu4 = amazonian }
+link = { v2 = patagonian eu4 = patagonian }
+link = { v2 = guajiro eu4 = guajiro }
+link = { v2 = tupinamba eu4 = tupinamba }
+link = { v2 = native_american_minor eu4 = teremembe eu4 = mataco }
+
+# Carribean - arawak, carib
+
+link = { v2 = native_american_minor eu4 = arawak eu4 = carib }
+
+# North American - dakota, cherokee, pueblo, aleutian, inuit, cree, iroquis, huron, navajo, shawnee, delaware, creek
+
+link = { v2 = dakota eu4 = dakota }
+link = { v2 = cherokee eu4 = cherokee }
+link = { v2 = pueblo eu4 = pueblo }
+link = { v2 = inuit eu4 = inuit }
+link = { v2 = cree eu4 = cree }
+link = { v2 = metis eu4 = iroquis eu4 = huron eu4 = shawnee eu4 = creek }
+link = { v2 = navajo eu4 = navajo }
+link = { v2 = native_american_minor eu4 = aleutian eu4 = delaware }
+
+# East Asian - japanese, manchu, chihan, cantonese, korean
+
+link = { v2 = japanese eu4 = japanese }
+link = { v2 = manchu eu4 = manchu }
+link = { v2 = beifaren eu4 = chihan }
+link = { v2 = nanfaren eu4 = cantonese }
+link = { v2 = korean eu4 = korean }
+
+# Mon Khmer - khmer, mon, vietnamese
+
+link = { v2 = vietnamese eu4 = vietnamese }
+link = { v2 = khmer eu4 = khmer }
+link = { v2 = asian_minor eu4 = mon }
+
+# Malay - polynesian, cham, malayan, filipino, madagascan, sulawesi
+
+link = { v2 = polynesian eu4 = polynesian }
+link = { v2 = asian_minor eu4 = cham eu4 = sulawesi }
+link = { v2 = malay eu4 = malayan }
+link = { v2 = filipino eu4 = filipino }
+link = { v2 = african_minor eu4 = madagascan }
+
+# Thai - central_thai, lao, northern_thai, shan
+
+link = { v2 = thai eu4 = central_thai eu4 = northern_thai }
+link = { v2 = lao eu4 = lao }
+link = { v2 = shan eu4 = shan }
+
+# Burman - burmese, tibetan, chin
+
+link = { v2 = burmese eu4 = burmese }
+link = { v2 = tibetan eu4 = tibetan }
+link = { v2 = asian_minor eu4 = chin }
+
+# Pacific - papuan, aboriginal, melanesian, moluccan
+
+link = { v2 = aborigine eu4 = aboriginal }
+link = { v2 = melanesian eu4 = melanesian eu4 = papuan }
+link = { v2 = moluccan eu4 = moluccan }
+
+# Eastern Aryan - assamese, bengali, bihari, nepali, oriya, sinhala
+
+link = { v2 = assamese eu4 = assamese }
+link = { v2 = bengali eu4 = bengali }
+link = { v2 = bihari eu4 = bihari }
+link = { v2 = nepali eu4 = nepali }
+link = { v2 = oriya eu4 = oriya }
+link = { v2 = sinhala eu4 = sinhala }
+
+# Hindusthani - avadhi, kanauji, panjabi, kashmiri
+
+link = { v2 = avadhi eu4 = avadhi }
+link = { v2 = kanauji eu4 = kanauji }
+link = { v2 = panjabi eu4 = panjabi }
+link = { v2 = kashmiri eu4 = kashmiri }
+
+# Western Aryan - gujarati, marathi, sindhi, rajput
+
+link = { v2 = gujarati eu4 = gujarati }
+link = { v2 = marathi eu4 = marathi }
+link = { v2 = sindi eu4 = sindhi }
+link = { v2 = rajput eu4 = rajput }
+
+# Dravidian - kannada, malayalam, tamil, telegu
+
+link = { v2 = kannada eu4 = kannada }
+link = { v2 = malayalam eu4 = malayalam }
+link = { v2 = tamil eu4 = tamil }
+link = { v2 = telegu eu4 = telegu }
+
+# African - madagasque, tuareg, senegambian, dyola, nubian, somali, bantu, swahili, ethiopian, kongolese, shona, mali, yorumba, aka, ashanti
+
+link = { v2 = malagasy eu4 = madagasque }
+link = { v2 = tuareg eu4 = tuareg }
+link = { v2 = african_minor eu4 = senegambian eu4 = bantu }
+link = { v2 = dyula eu4 = dyola }
+link = { v2 = sudanese eu4 = nubian }
+link = { v2 = somali eu4 = somali }
+link = { v2 = swahili eu4 = swahili }
+link = { v2 = oromo eu4 = ethiopian }
+link = { v2 = bakongo eu4 = kongolese }
+link = { v2 = shona eu4 = shona }
+link = { v2 = bambara eu4 = mali }
+link = { v2 = yoruba eu4 = yorumba }
+link = { v2 = akan eu4 = aka eu4 = ashanti }
+
+}
+
+ 

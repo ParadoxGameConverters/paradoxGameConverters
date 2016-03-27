@@ -1,0 +1,10 @@
+owner = JAP
+controller = JAP
+add_core = JAP
+add_core = KOR
+industry = 1
+infra = 3
+manpower = 1.00
+leadership = 0.20
+
+infra = 4

@@ -1,0 +1,99 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 118  193  153 }
+
+historical_ideas = {
+	merchant_adventures
+	national_conscripts
+	military_drill
+	patron_of_art
+	shrewd_commerce_practise 
+	national_trade_policy
+	cabinet
+	national_bank 
+	smithian_economics
+	scientific_revolution
+	grand_army
+	revolution_and_counter
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	french_bluecoat
+	french_dragoon
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Jean #3" = 20
+	"Antoine #0" = 20
+	"Philippe #0" = 20
+	"Jeanne #0" = -15
+	"Guillaume #0" = 15
+	"Geoffroi #3" = 5
+	"Henri #3" = 5
+	"Wenceslas #1" = 5
+	"Charles #1" = 5
+	"Lambert #1" = 5
+	"Antoon #0" = 0
+	"Christiaan #0" = 0
+	"Christian #0" = 0
+	"Ernest #0" = 0
+	"Frédéric #0" = 0
+	"Frederik #0" = 0
+	"Gaspard #0" = 0
+	"Gérard #0" = 0
+	"Gerhard #0" = 0
+	"Godfried #0" = 0
+	"Guillaume #0" = 0
+	"Hughes #0" = 0
+	"Jan #0" = 0
+	"Joachim #0" = 0
+	"Johannes #0" = 0
+	"Karel #0" = 0
+	"Kasper #0" = 0
+	"Léonard #0" = 0
+	"Lodewijk #0" = 0
+	"Louis #0" = 0
+	"Michaël #0" = 0
+	"Michel #0" = 0
+	"Orland #0" = 0
+	"Robert #0" = 0
+	"Roeland #0" = 0
+	"Roger #0" = 0
+	"Rutger #0" = 0
+	"Thomas #0" = 0
+	"Vincent #0" = 0
+	"Willem #0" = 0
+}
+
+leader_names = {
+	Orthellius Mons Quellinus "de Houtman" Albers
+	"van Meteren" "de leeuw" "van der Most" "van Egmont"
+	"van Noort" Bielmacker Camper "de Avesnes" "van Kahlden"
+	Leschwein Maas "van Loewen" Debruyne Aylett Jansen "van Wyhe" 
+}
+
+ship_names = { 
+	Brussel
+	Dender Doornik
+	Edingen
+	"Godfried I"
+	"Hendrik I" "Hendrik van Leuven" "Hertog Jan" "Hertogin Johanna" 
+	"Jan I" 
+	Mechelen 
+	Namen 
+	"Filips van Saint-Pol"
+	Zenne 
+}

@@ -1,0 +1,72 @@
+province_decisions = {
+	eng_corps_boost = {
+		potential = {
+			owner = { idea =  engineer_corps }
+			NOT = { has_province_modifier = local_fortress }
+			NOT = {has_province_modifier = fort_in_disrepair }
+			has_building = fort1
+		}
+		allow = {
+			owner = { 
+			war = no
+			treasury = 100
+			}
+		}
+		effect = {
+			owner = {
+				treasury = -100
+			}
+			add_province_modifier = {
+				name = "local_fortress"
+				duration = 3650
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				any_neighbor_province = {
+				owner = {
+					not = { 
+						relation = { who = this value = 0 } 
+						truce_with = THIS
+					}
+				}
+			}
+		}
+	}
+	}
+	eng_corps_repair = {
+		potential = {
+			owner = { idea =  engineer_corps }
+			has_province_modifier = fort_in_disrepair
+			has_building = fort1
+		}
+		allow = {
+			owner = { 
+			war = no
+			treasury = 50
+			}
+		}
+		effect = {
+			owner = {
+				treasury = -50
+			}
+			remove_province_modifier = fort_in_disrepair
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 1
+				any_neighbor_province = {
+				owner = {
+					not = { 
+						relation = { who = this value = 0 } 
+						truce_with = THIS
+					}
+					}
+				}
+			}
+		}
+	}
+}

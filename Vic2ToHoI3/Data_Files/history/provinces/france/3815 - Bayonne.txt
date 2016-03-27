@@ -1,0 +1,19 @@
+owner = FRA
+controller = FRA
+add_core = FRA
+
+infra = 4
+
+infra = 7
+naval_base = 2
+
+1941.6.22 = {
+	controller = GER
+}
+1943.2.1 = { coastal_fort = 2 }
+
+1944.6.20 = { anti_air = 2 coastal_fort = 3 }
+
+1944.12.01 = {
+	controller = USA
+}

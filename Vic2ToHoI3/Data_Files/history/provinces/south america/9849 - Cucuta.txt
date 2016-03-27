@@ -1,0 +1,5 @@
+owner = COL
+controller = COL
+add_core = COL
+points = 2
+infra = 4

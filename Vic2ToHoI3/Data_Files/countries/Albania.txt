@@ -1,0 +1,662 @@
+color = { 152  130  191 }
+graphical_culture = Italian
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"I Këmbësori Pjesëtim" "II Këmbësori Pjesëtim" "III Këmbësori Pjesëtim" "IV Këmbësori Pjesëtim" "V Këmbësori Pjesëtim" "VI Këmbësori Pjesëtim" "VII Këmbësori Pjesëtim" "VIII Këmbësori Pjesëtim" "IX Këmbësori Pjesëtim" "X Këmbësori Pjesëtim" "XI Këmbësori Pjesëtim" 
+		"XII Këmbësori Pjesëtim" 
+	}
+	cavalry_brigade = {
+		"I Kavaleri Pjesëtim" "II Kavaleri Pjesëtim" "III Kavaleri Pjesëtim" "IV Kavaleri Pjesëtim" "V Kavaleri Pjesëtim" "VI Kavaleri Pjesëtim" "VII Kavaleri Pjesëtim" "VIII Kavaleri Pjesëtim" 
+	}
+	motorized_brigade = {
+		"I Këmbësori Pje. përdor Kamion" "II Këmbësori Pje. përdor Kamion" "III Këmbësori Pje. përdor Kamion" "IV Këmbësori Pje. përdor Kamion" "V Këmbësori Pje. përdor Kamion" 
+	}
+	mechanized_brigade = {
+		"I Këmb. Pje. për. Kamion Mekanik" "II Këmb. Pje. për. Kamion Mekanik" "III Këmb. Pje. për. Kamion Mekanik" "IV Këmb. Pje. për. Kamion Mekanik" "V Këmb. Pje. për. Kamion Mekanik" 
+	}
+	light_armor_brigade = {
+		"I Koracë Pjesëtim" "II Koracë Pjesëtim" "III Koracë Pjesëtim" "IV Koracë Pjesëtim" "V Koracë Pjesëtim" 
+	}
+	armor_brigade = {
+		"I Koracë Pjesëtim" "II Koracë Pjesëtim" "III Koracë Pjesëtim" "IV Koracë Pjesëtim" "V Koracë Pjesëtim" 
+	}
+	paratrooper_brigade = {
+		"I Ushtar përdor Aviacion Pjesëtim" "II Ushtar përdor Aviacion Pjesëtim" "III Ushtar përdor Aviacion Pjesëtim" "IV Ushtar përdor Aviacion Pjesëtim" "V Ushtar përdor Aviacion Pjesëtim" 
+	}
+	marine_brigade = {
+		"I Marinë Këmbësori Pjesëtim" "II Marinë Këmbësori Pjesëtim" "III Marinë Këmbësori Pjesëtim" "IV Marinë Këmbësori Pjesëtim" "V Marinë Këmbësori Pjesëtim" 
+	}
+	bergsjaeger_brigade = {
+		"I Bjeshkë Këmbësori Pjesëtim" "II Bjeshkë Këmbësori Pjesëtim" "III Bjeshkë Këmbësori Pjesëtim" "IV Bjeshkë Këmbësori Pjesëtim" "V Bjeshkë Këmbësori Pjesëtim" 
+	}
+	garrison_brigade = {
+		"I Këmbësori Pjesëtim" "II Këmbësori Pjesëtim" "III Këmbësori Pjesëtim" "IV Këmbësori Pjesëtim" "V Këmbësori Pjesëtim" "VI Këmbësori Pjesëtim" "VII Këmbësori Pjesëtim" "VIII Këmbësori Pjesëtim" "IX Këmbësori Pjesëtim" "X Këmbësori Pjesëtim" "XI Këmbësori Pjesëtim" 
+		"XII Këmbësori Pjesëtim" 
+	}
+	hq_brigade = {
+		"I. Shqiperia Armé" "II. Shqiperia Armé" "III. Shqiperia Armé" "IV. Shqiperia Armé" "V. Shqiperia Armé" "VI. Shqiperia Armé" "VII. Shqiperia Armé" "VIII. Shqiperia Armé" "IX. Shqiperia Armé" "X. Shqiperia Armé" 
+	}
+	militia_brigade = {
+		"I Polici Këmbësori Pjesëtim" "II Polici Këmbësori Pjesëtim" "III Polici Këmbësori Pjesëtim" "IV Polici Këmbësori Pjesëtim" "V Polici Këmbësori Pjesëtim" "VI Polici Këmbësori Pjesëtim" "VII Polici Këmbësori Pjesëtim" "VIII Polici Këmbësori Pjesëtim" "IX Polici Këmbësori Pjesëtim" "X Polici Këmbësori Pjesëtim" 
+	}
+	multi_role = {
+		"1. Avion Luftarak Grup" "2. Avion Luftarak Grup" "3. Avion Luftarak Grup" "4. Avion Luftarak Grup" "5. Avion Luftarak Grup" 
+	}
+	interceptor = {
+		"1. Avion Luftarak Grup" "2. Avion Luftarak Grup" "3. Avion Luftarak Grup" "4. Avion Luftarak Grup" "5. Avion Luftarak Grup" 
+	}
+	strategic_bomber = {
+		"1. Grup Avion Luftarak Strategejik" "2. Grup Avion Luftarak Strategejik" "3. Grup Avion Luftarak Strategejik" "4. Grup Avion Luftarak Strategejik" "5. Grup Avion Luftarak Strategejik" 
+	}
+	tactical_bomber = {
+		"1. Grup Avion Luftarak Taktikë" "2. Grup Avion Luftarak Taktikë" "3. Grup Avion Luftarak Taktikë" "4. Grup Avion Luftarak Taktikë" "5. Grup Avion Luftarak Taktikë" 
+	}
+	naval_bomber = {
+		"1. Naval Bombardoj Avion Grup" "2. Naval Bombardoj Avion Grup" "3. Naval Bombardoj Avion Grup" "4. Naval Bombardoj Avion Grup" "5. Naval Bombardoj Avion Grup" "1. Naval Torpetz Avion Grup" "2. Naval Torpetz Avion Grup" "3. Naval Torpetz Avion Grup" "4. Naval Torpetz Avion Grup" "5. Naval Torpetz Avion Grup" 
+	}
+	cas = {
+		"1. Zhujtem Bombardoj Avion Grup" "2. Zhujtem Bombardoj Avion Grup" "3. Zhujtem Bombardoj Avion Grup" "4. Zhujtem Bombardoj Avion Grup" "5. Zhujtem Bombardoj Avion Grup" 
+	}
+	transport_plane = {
+		"1. Transportoj Avion Grup" "2. Transportoj Avion Grup" "3. Transportoj Avion Grup" 
+	}
+	battleship = {
+		"Shqipëri" "Tiranë" 
+	}
+	light_cruiser = {
+		"Vlora" "Korca" "Berati" "Durresi" "Elbasani" 
+	}
+	heavy_cruiser = {
+		"Vlora" "Korca" "Berati" "Durresi" "Elbasani" 
+	}
+	battlecruiser = {
+		"Shqipëri" "Tiranë" 
+	}
+	destroyer = {
+		"Gjirokastra edhe Grup" "Corovoda edhe Grup" "Cakrani edhe Grup" "Vithkuni edhe Grup" "Pogradeci edhe Grup" "Oriku edhe Grup" "Himara edhe Grup" 
+	}
+	carrier = {
+		"Skanderbej" 
+	}
+	submarine = {
+		"Delfin edhe Grup" "Salmon edhe Grup" "Ngjalë edhe Grup" "Troftë edhe Grup" "Midhje edhe Grup" "Gaforre edhe Grup" "1. Nendetëse Flöte" "2. Nendetëse Flöte" 
+	}
+	transport_ship = {
+		"1. Transportoj Marinë Naval" "2. Transportoj Marinë Naval" "3. Transportoj Marinë Naval" "4. Transportoj Marinë Naval" "5. Transportoj Marinë Naval" "6. Transportoj Marinë Naval" 
+	}
+
+}
+
+
+ministers = {
+	32001 = {
+		name = "Zog I"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M32001
+		head_of_state = insignificant_layman
+		minister_of_intelligence = research_specialist
+		start_date = 1936.1.1
+	}
+	32002 = {
+		name = "Midhat Frashëri"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M32002
+		head_of_government = corporate_suit
+		start_date = 1936.1.1
+	}
+	32003 = {
+		name = "Fuat Aslam"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M32003
+		foreign_minister = apologetic_clerk
+		minister_of_intelligence = research_specialist
+		start_date = 1936.1.1
+	}
+	32004 = {
+		name = "Ruok Geraj"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M32004
+		armament_minister = corrupt_kleptocrat
+		start_date = 1936.1.1
+	}
+	32005 = {
+		name = "Jocelyn Percy"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M32005
+		minister_of_security = prince_of_terror
+		chief_of_air = army_aviation_doctrine
+		armament_minister = air_to_ground_proponent
+		start_date = 1936.1.1
+	}
+	32007 = {
+		name = "Qemal Komani"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M32007
+		chief_of_staff = school_of_defence
+		minister_of_intelligence = dismal_enigma
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1936.1.1
+	}
+	32008 = {
+		name = "Stefkhi Shatun"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M32008
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	32009 = {
+		name = "Quamar Pakazi"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M32009
+		chief_of_navy = indirect_approach_doctrine
+		armament_minister = submarine_proponent
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1936.1.1
+	}
+	32041 = {
+		name = "Tefik Mborja"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M32021
+		head_of_state = pig_headed_isolationist
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1939.1.1
+	}
+	32042 = {
+		name = "Ibrahim Bicaku"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M32042
+		head_of_state = stern_imperialist
+		minister_of_security = prince_of_terror
+		start_date = 1942.1.1
+	}
+	32043 = {
+		name = "Fiqri Dine"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M32043
+		head_of_state = die_hard_reformer
+		foreign_minister = great_compromiser
+		armament_minister = corrupt_kleptocrat
+		chief_of_air = army_aviation_doctrine
+		start_date = 1944.1.1
+	}
+	32044 = {
+		name = "Theofan Noli"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M32011
+		head_of_state = weary_stiff_neck
+		head_of_government = naive_optimist
+		start_date = 1936.1.1
+	}
+	32045 = {
+		name = "Llazar Fundua"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M32013
+		head_of_state = popular_figurehead
+		foreign_minister = great_compromiser
+		start_date = 1941.1.1
+	}
+	32046 = {
+		name = "Rexhep Mitrovica"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M32046
+		head_of_state = insignificant_layman
+		foreign_minister = apologetic_clerk
+		armament_minister = air_to_sea_proponent
+		minister_of_intelligence = political_specialist
+		chief_of_staff = school_of_mass_combat
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1944.1.1
+	}
+	32047 = {
+		name = "Shefqet Vërlaci"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M32047
+		head_of_state = autocratic_charmer
+		head_of_government = flamboyant_tough_guy
+		armament_minister = laissez_faires_capitalist
+		chief_of_staff = school_of_psychology
+		start_date = 1939.1.1
+	}
+	32048 = {
+		name = "Eqrem Libohova"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M32048
+		head_of_state = power_hungry_demagogue
+		head_of_government = corporate_suit
+		armament_minister = tank_proponent
+		minister_of_security = man_of_the_people
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1942.1.1
+	}
+	32049 = {
+		name = "Omer Nishani"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M32032
+		head_of_state = resigned_generalissimo
+		head_of_government = silent_workhorse
+		foreign_minister = ideological_crusader
+		minister_of_security = back_stabber
+		start_date = 1936.1.1
+	}
+	32050 = {
+		name = "Sejfulla Malëshova"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M32050
+		head_of_state = popular_figurehead
+		head_of_government = naive_optimist
+		armament_minister = submarine_proponent
+		start_date = 1945.1.1
+	}
+	32051 = {
+		name = "Enver Hoxha"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M32051
+		head_of_state = ruthless_powermonger
+		head_of_government = backroom_backstabber
+		armament_minister = infantry_proponent
+		chief_of_navy = open_seas_doctrine
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1947.1.1
+	}
+	32052 = {
+		name = "Kostaq Kota"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M32052
+		head_of_government = smiling_oilman
+		armament_minister = strategic_air_proponent
+		minister_of_security = crime_fighter
+		start_date = 1939.1.1
+	}
+	32053 = {
+		name = "Jup Kazazi"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M32015
+		head_of_government = happy_amateur
+		minister_of_security = crooked_kleptocrat
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1941.1.1
+	}
+	32054 = {
+		name = "Mehdi Frashëri"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M32054
+		head_of_government = corporate_suit
+		foreign_minister = apologetic_clerk
+		start_date = 1944.1.1
+	}
+	32056 = {
+		name = "Xhafer Ypi"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M32056
+		head_of_government = political_protege
+		armament_minister = tank_proponent
+		minister_of_intelligence = research_specialist
+		start_date = 1941.1.1
+	}
+	32057 = {
+		name = "Mustafa Mërlika"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M32057
+		head_of_government = happy_amateur
+		minister_of_security = back_stabber
+		chief_of_army = static_defence_doctrine
+		start_date = 1944.1.1
+	}
+	32066 = {
+		name = "Nazim Dedolli"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M32066
+		foreign_minister = iron_fisted_brute
+		minister_of_security = efficient_sociopath
+		chief_of_staff = school_of_fire_support
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1944.1.1
+	}
+	32068 = {
+		name = "Theofan S. Noli"
+		ideology = social_conservative
+		loyalty = 0.25
+		picture = M32068
+		foreign_minister = ideological_crusader
+		start_date = 1940.1.1
+	}
+	32069 = {
+		name = "Ali Kelmendi"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M32031
+		foreign_minister = iron_fisted_brute
+		start_date = 1942.1.1
+	}
+	32071 = {
+		name = "Shefqet Shkupi"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M32071
+		foreign_minister = biased_intellectual
+		armament_minister = battle_fleet_proponent
+		minister_of_security = man_of_the_people
+		start_date = 1944.1.1
+	}
+	32073 = {
+		name = "Hasan Begolli"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M32073
+		foreign_minister = biased_intellectual
+		minister_of_intelligence = political_specialist
+		chief_of_navy = power_projection_doctrine
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1941.1.1
+	}
+	32074 = {
+		name = "Kol Bibë Mirakaj"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M32074
+		foreign_minister = general_staffer
+		minister_of_security = crooked_kleptocrat
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1942.1.1
+	}
+	32075 = {
+		name = "Nuhi Berisha"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M32075
+		foreign_minister = iron_fisted_brute
+		minister_of_security = compassionate_gentleman
+		minister_of_intelligence = industrial_specialist
+		chief_of_air = army_aviation_doctrine
+		start_date = 1943.1.1
+	}
+	32077 = {
+		name = "Hassan Shqabi"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M32077
+		foreign_minister = iron_fisted_brute
+		minister_of_security = compassionate_gentleman
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1942.1.1
+	}
+	32078 = {
+		name = "Essad Pacha"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M32036
+		foreign_minister = apologetic_clerk
+		armament_minister = corrupt_kleptocrat
+		minister_of_intelligence = dismal_enigma
+		start_date = 1944.1.1
+	}
+	32081 = {
+		name = "Sthfphen Delvinë"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M32020
+		armament_minister = air_to_sea_proponent
+		chief_of_navy = base_control_doctrine
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1941.1.1
+	}
+	32082 = {
+		name = "Ismael Ghaxa"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M32029
+		armament_minister = battle_fleet_proponent
+		chief_of_navy = open_seas_doctrine
+		start_date = 1942.1.1
+	}
+	32085 = {
+		name = "Haxhi Lleshi"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M32014
+		armament_minister = laissez_faires_capitalist
+		minister_of_security = efficient_sociopath
+		start_date = 1936.1.1
+	}
+	32090 = {
+		name = "Hajrë Dizdari"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M32090
+		armament_minister = military_entrepreneur
+		minister_of_intelligence = technical_specialist
+		chief_of_staff = school_of_defence
+		chief_of_army = decisive_battle_doctrine
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1944.1.1
+	}
+	32091 = {
+		name = "Xhelal Mitrovica"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M32091
+		armament_minister = infantry_proponent
+		minister_of_security = crooked_kleptocrat
+		minister_of_intelligence = dismal_enigma
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = guns_and_butter_doctrine
+		chief_of_navy = base_control_doctrine
+		chief_of_air = air_superiority_doctrine
+		start_date = 1945.1.1
+	}
+	32092 = {
+		name = "Maliq Bushati"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M32024
+		armament_minister = corrupt_kleptocrat
+		minister_of_security = crooked_kleptocrat
+		minister_of_intelligence = research_specialist
+		start_date = 1939.1.1
+	}
+	32094 = {
+		name = "Omer Bikacu"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M32084
+		armament_minister = resource_industrialist
+		start_date = 1942.1.1
+	}
+	32098 = {
+		name = "Nano Xhana"
+		ideology = stalinist
+		loyalty = 0.50
+		picture = M32098
+		armament_minister = air_to_sea_proponent
+		minister_of_intelligence = research_specialist
+		start_date = 1943.1.1
+	}
+	32102 = {
+		name = "Midhat Bej Frashëri"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M32002
+		minister_of_security = compassionate_gentleman
+		minister_of_security = compassionate_gentleman
+		start_date = 1940.1.1
+	}
+	32107 = {
+		name = "Nexhip Deva"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M32107
+		minister_of_security = silent_lawyer
+		chief_of_navy = power_projection_doctrine
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1946.1.1
+	}
+	32109 = {
+		name = "Halil Nergutti"
+		ideology = social_liberal
+		loyalty = 0.50
+		picture = M32109
+		minister_of_security = crime_fighter
+		chief_of_navy = power_projection_doctrine
+		start_date = 1941.1.1
+	}
+	32118 = {
+		name = "Pandi Kristo"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M32035
+		minister_of_security = prince_of_terror
+		start_date = 1939.1.1
+	}
+	32121 = {
+		name = "Zuhdi Shabani"
+		ideology = stalinist
+		loyalty = 0.50
+		picture = M32121
+		minister_of_security = crime_fighter
+		minister_of_intelligence = political_specialist
+		chief_of_staff = school_of_manoeuvre
+		chief_of_air = army_aviation_doctrine
+		start_date = 1943.1.1
+	}
+	32122 = {
+		name = "Aziz Sulejmani"
+		ideology = stalinist
+		loyalty = 0.50
+		picture = M32040
+		minister_of_security = crooked_kleptocrat
+		chief_of_army = armoured_spearhead_doctrine
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1944.1.1
+	}
+	32123 = {
+		name = "Hajrë Fetahu"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M32039
+		minister_of_security = man_of_the_people
+		chief_of_navy = decisive_naval_battle_doctrine
+		chief_of_air = air_superiority_doctrine
+		start_date = 1945.1.1
+	}
+	32127 = {
+		name = "Ahmad Zhahir"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M32127
+		minister_of_intelligence = technical_specialist
+		chief_of_air = air_superiority_doctrine
+		start_date = 1944.1.1
+	}
+	32140 = {
+		name = "Abaz Kupi"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M32129
+		minister_of_intelligence = industrial_specialist
+		start_date = 1942.1.1
+	}
+	32149 = {
+		name = "Sokrat Agolli"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M32149
+		chief_of_staff = school_of_psychology
+		chief_of_army = guns_and_butter_doctrine
+		chief_of_air = army_aviation_doctrine
+		start_date = 1944.1.1
+	}
+	32153 = {
+		name = "Kristo Cajupi"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M32145
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = static_defence_doctrine
+		start_date = 1942.1.1
+	}
+	32154 = {
+		name = "Mehmet Shehu"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M32017
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1939.1.1
+	}
+	32156 = {
+		name = "Prenk Pervizi"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M32156
+		chief_of_staff = school_of_fire_support
+		chief_of_army = elastic_defence_doctrine
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1944.1.1
+	}
+	32157 = {
+		name = "Selim Moishiou"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M32018
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1938.1.1
+	}
+	32161 = {
+		name = "Alexander Mori"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M32161
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1944.1.1
+	}
+}
+

@@ -1,0 +1,10 @@
+owner = SCH
+controller = SCH
+add_core = SCH
+
+industry = 3
+land_fort = 5
+anti_air = 3
+infra = 10
+manpower = 1.00
+leadership = 0.10

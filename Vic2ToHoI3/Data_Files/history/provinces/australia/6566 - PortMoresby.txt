@@ -1,0 +1,18 @@
+owner = AST
+
+controller = AST
+
+add_core = AST
+points = 2
+anti_air = 1
+infra = 4
+air_base = 2
+naval_base = 4
+1941.1.1 = {
+	radar_station = 1
+}
+1944.6.20 = {
+	owner = USA
+	controller = USA
+	add_core = USA
+}

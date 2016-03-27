@@ -1,0 +1,6 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+
+infra = 6
+naval_base = 2

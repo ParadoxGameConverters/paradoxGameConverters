@@ -1,0 +1,7 @@
+owner = SWE
+controller = SWE
+add_core = SWE
+
+terrain = mountain
+
+infra = 1

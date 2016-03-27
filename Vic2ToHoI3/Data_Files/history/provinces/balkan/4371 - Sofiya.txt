@@ -1,0 +1,14 @@
+owner = BUL
+controller = BUL
+add_core = BUL
+
+points = 1
+metal = 10.00
+energy = 16.00
+rare_materials = 4.00
+industry = 9
+anti_air = 2
+infra = 6
+manpower = 6.00
+leadership = 0.60
+air_base = 2

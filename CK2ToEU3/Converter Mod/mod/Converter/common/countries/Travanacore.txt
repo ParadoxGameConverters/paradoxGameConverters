@@ -1,0 +1,85 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 134  166  117 }
+
+historical_ideas = {
+	national_conscripts
+	military_drill
+	glorious_arms
+	battlefield_commisions
+	shrewd_commerce_practise
+	grand_army
+	merchant_adventures
+	engineer_corps
+	espionage
+	national_trade_policy
+	cabinet
+	national_bank
+}
+
+historical_units = {
+	indian_footsoldier
+	indian_archers
+	indian_arquebusier
+	mughal_mansabdar
+	indian_elephant
+	indian_shock_cavalry
+	rajput_musketeer
+	south_indian_musketeer
+	reformed_mughal_musketeer
+	reformed_mughal_mansabdar
+	tipu_sultan_rocket
+	indian_rifle
+}
+
+monarch_names = {
+	"Chera Udaya Varma #0" = 20
+	"Venad Mootha Raja #0" = 20
+	"Sri Vira Martanda Varma #0" = 20
+	"Aditya Varma #0" = 40
+	"Maharaj Bala Rama Varma #0" = 20
+	"Maharaj Martanda Varma #0" = 20
+	"Raja Ravi Varma #0" = 20
+	"Sri Vira Kulasekhara #0" = 20
+	"Kerala Varma #0" = 20
+	"Udaya Martanda Varma #0" = 20
+	"Gouri Laksmi Bai #0" = 20
+	"Gouri Parvati Bai #0" = 20
+	"Ravi Varma #0" = 40
+	"Kotha Aditya Varma #0" = 10
+	"Ravi Ravi Varma #0" = 10
+	"Ravi Kerala Varma #1" = 10
+	"Rama Kerala Varma #0" = 10
+	"Rama Varma #0" = 40
+	"Unni Kerala Varma #0" = 10
+	"Sri Vira Udaya Varma #0" = 10
+	"Sri Vira Kerala Varma #0" = 10
+	"Sri Vira Ravi Varma #0" = 10
+	"Ummayama Rani #0" = -10
+	"Marthanda Vamra #0" = 10
+}
+
+leader_names = {
+	Nimesh
+	Mirajkar
+	Kishen
+	Nishtha
+	Mahankali
+	Darsha
+	Choudhari
+	Joardar
+	Nalini
+	Pandya
+}
+
+ship_names = {
+	Achankoil Amirtha Amman Arul
+	Bharatapuzha Chalakudy Chaliyar
+	Chellam Devi Durga Gayatri Iniya
+	Kadalundy Lakshmi Madhu Meenakshi
+	Nalini Pamba Parvati Periyar
+	Ponni Radha Ratri Sarasvati
+	Sita Tamarai Venbenad
+}

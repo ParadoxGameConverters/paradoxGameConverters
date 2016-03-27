@@ -1,0 +1,12 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+add_core = EGY
+points = 2
+energy = 1.00
+rare_materials = 1.00
+industry = 1
+anti_air = 2
+infra = 6
+manpower = 1.00
+leadership = 0.25

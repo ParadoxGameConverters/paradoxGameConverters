@@ -1,0 +1,12 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+
+metal = 3.00
+energy = 3.00
+rare_materials = 2.00
+
+industry = 3
+manpower = 3.5
+leadership = 0.23
+infra = 5

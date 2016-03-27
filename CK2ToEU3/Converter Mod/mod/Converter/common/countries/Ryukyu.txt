@@ -1,0 +1,106 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 90  138  133 }
+
+historical_ideas = {
+	merchant_adventures  
+	shrewd_commerce_practise
+	excellent_shipwrights 
+	superior_seamanship
+	national_trade_policy
+	sea_hawks
+	national_conscripts
+	naval_fighting_instruction
+	military_drill
+	naval_glory
+	engineer_corps
+	battlefield_commisions
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+}
+
+monarch_names = {
+	"Bunei #0" = 30
+	"Sho Shisho #0" = 30
+	"Sho Hashi #0" = 30
+	"Sho Chu #0" = 30
+	"Sho Shitatsu #0" = 30
+	"Sho Kimpuku #0" = 30
+	"Sei #0" = 40
+	"Toku #0" = 20
+	"En Kanamura #0" = 20
+	"Sen-i #0" = 20
+	"Gen #0" = 20
+	"Ei #0" = 20
+	"Nei #0" = 20
+	"Ho #0" = 20
+	"Jo-Ken #0" = 20
+	"Shitsu #0" = 20
+	"Tei #0" = 20
+	"Eki #0" = 20
+	"Kei #0" = 20
+	"Boku #0" = 20
+	"On #0" = 20
+ 	"Ko #0" = 20
+	"Shoken #0" = 5
+	"Taikyu #1" = 1
+	"Shiatsu #1" = 1
+	"Cho #1" = 1
+	"Hashi #1" = 1
+	"Shisho #1" = 1
+	"Chokei #0" = 0
+	"Chuji #0" = 0
+	"Ekei #0" = 0
+	"Genta #0" = 0
+	"Hanzo #0" = 0
+	"Inori #0" = 0
+	"Kaishu #0" = 0
+	"Karou #0" = 0
+	"Kenji #0" = 0
+	"Mugen #0" = 0
+	"Nagato #0" = 0
+	"Noboru #0" = 0
+	"Shojiro #0" = 0
+	"Soun #0" = 0
+	"Takeo #0" = 0
+	"Yayoi #0" = 0
+}
+
+leader_names = {
+	Chin
+	Feng
+	Haga
+	Cai
+	Handa
+	Ke
+	Hojo
+	Hou
+	Hiro
+	Sa
+}      
+
+ship_names = {
+	Bunei
+	Chuzan
+	Eiso Eiji
+	Gusuku Gihon
+	Hokuzan
+	Nanzan Naha Nakijin 
+	Sho Shuri Shunten Sei Satto
+	Taisei Tamagusuku
+	"Sho En" "Sho Shin" "Sho Hashi" "Shun Bajunki"
+	"Sho Shisho" "Sho Chu" "Sho Shitatsu"
+	"Sho Kinpuku" "Sho Taikyu" "Sho Toku" "Sho Sen'i"
+	"Sho Sei" "Sho Gen" "Sho Ei"
+	"Sho Nei" "Sho Ho" "Sho Ken" "Sho Shitsu"
+}

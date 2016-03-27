@@ -1,0 +1,20 @@
+owner = CGX
+controller = CGX
+
+add_core = CGX
+
+add_core = CHC
+add_core = CHI
+points = 2
+metal = 10.00
+energy = 20.00
+rare_materials = 5.00
+industry = 6
+infra = 7
+air_base = 3
+naval_base = 8
+manpower = 17.00
+leadership = 0.70
+
+1936.5.12 = { 	owner = CHI} 
+1938.10.12 = { controller = JAP }

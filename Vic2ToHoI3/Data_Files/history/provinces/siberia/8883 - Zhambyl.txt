@@ -1,0 +1,5 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+rare_materials = 40.00
+infra = 4

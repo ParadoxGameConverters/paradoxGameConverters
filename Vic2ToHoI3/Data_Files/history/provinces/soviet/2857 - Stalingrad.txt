@@ -1,0 +1,15 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+points = 10
+energy = 1.00
+industry = 3
+anti_air = 2
+infra = 7
+air_base = 2
+manpower = 3.00
+leadership = 0.08
+strategic_resource = automotive_industry
+
+1943.2.1 = { controller = GER }
+1943.2.2 = { controller = SOV }

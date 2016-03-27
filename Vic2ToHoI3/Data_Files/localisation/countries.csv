@@ -1,0 +1,323 @@
+xxxx;;;;;;;;;;;;;;x
+SOV;Russia;Russie;Russland;;Rusia;;;;;;;;;x
+CHI;China;Chine;China;;China;;;;;;;;;x
+SPR;Spain;Espagne;Spanien;;España;;;;;;;;;x
+SOV_ADJ;Russian;Russe;Russisch;;Rusa;;;;;;;;;x
+REB;Partisans;Partisans;Partisanen;;Partisanos;;;;;;;;;x
+GER;Germany;Allemagne;Deutschland;;Alemania;;;;;;;;;x
+ENG;United Kingdom;Royaume-Uni;Großbritannien;;Reino Unido;;;;;;;;;x
+USA;USA;USA;USA;;EE. UU.;;;;;;;;;x
+JAP;Japan;Japon;Japan;;Japón;;;;;;;;;x
+FRA;France;France;Frankreich;;Francia;;;;;;;;;x
+ITA;Italy;Italie;Italien;;Italia;;;;;;;;;x
+DEN;Denmark;Danemark;Dänemark;;Dinamarca;;;;;;;;;x
+ICL;Iceland;Islande;Island;;Islandia;;;;;;;;;x
+EST;Estonia;Estonie;Estland;;Estonia;;;;;;;;;x
+FIN;Finland;Finlande;Finnland;;Finlandia;;;;;;;;;x
+LAT;Latvia;Lettonie;Lettland;;Letonia;;;;;;;;;x
+LIT;Lithuania;Lituanie;Litauen;;Lituania;;;;;;;;;x
+NOR;Norway;Norvège;Norwegen;;Noruega;;;;;;;;;x
+SCA;Scandinavia;Scandinavie;Skandinavien;;Escandinavia;;;;;;;;;x
+SWE;Sweden;Suède;Schweden;;Suecia;;;;;;;;;x
+BEL;Belgium;Belgique;Belgien;;Bélgica;;;;;;;;;x
+FLA;Flanders;Flandres;Flandern;;Flandes;;;;;;;;;x
+HOL;Netherlands;Pays-Bas;Niederlande;;Países Bajos;;;;;;;;;x
+IRE;Ireland;Irlande;Irland;;Irlanda;;;;;;;;;x
+LUX;Luxemburg;Luxembourg;Luxemburg;;Luxemburgo;;;;;;;;;x
+SCO;Scotland;Écosse;Schottland;;Escocia;;;;;;;;;x
+VIC;Vichy France;France de Vichy ;Vichy-Frankreich;;Francia de Vichy;;;;;;;;;x
+WLL;Wallonia;Wallonie;Wallonien;;Valonia;;;;;;;;;x
+AUS;Austria;Autriche;Österreich;;Austria;;;;;;;;;x
+CZE;Czechoslovakia;Tchécoslovaquie;Tschechoslowakei;;Checoslovaquia;;;;;;;;;x
+CRO;Croatia;Croatie;Kroatien;;Croacia;;;;;;;;;x
+DDR;DDR;RDA;DDR;;RDA;;;;;;;;;x
+DFR;FRG;RFA;BRD;;RFA;;;;;;;;;x
+HUN;Hungary;Hongrie;Ungarn;;Hungría;;;;;;;;;x
+POL;Poland;Pologne;Polen;;Polonia;;;;;;;;;x
+ROM;Romania;Roumanie;Rumänien;;Rumania;;;;;;;;;x
+SLO;Slovakia;Slovaquie;Slowakei;;Eslovaquia;;;;;;;;;x
+SLV;Slovenia;Slovénie;Slowenien;;Eslovenia;;;;;;;;;x
+SCH;Switzerland;Suisse;Schweiz;;Suiza;;;;;;;;;x
+EUS;Euskadi;Euskadie;Euskadi;;Euskadi;;;;;;;;;x
+POR;Portugal;Portugal;Portugal;;Portugal;;;;;;;;;x
+RSI;Italian Social Republic;République sociale d'Italie;Soz. Rep. Italien;;República Socialista Italiana;;;;;;;;;x
+SPA;Nationalist Spain;Espagne nationaliste;Nat. Spanien;;España Nacional;;;;;;;;;x
+ALB;Albania;Albanie;Albanien;;Albania;;;;;;;;;x
+BOS;Bosnia;Bosnie;Bosnien;;Bosnia;;;;;;;;;x
+BUL;Bulgaria;Bulgarie;Bulgarien;;Bulgaria;;;;;;;;;x
+GRE;Greece;Grèce;Griechenland;;Grecia;;;;;;;;;x
+MTN;Montenegro;Monténégro;Montenegro;;Montenegro;;;;;;;;;x
+SER;Serbia;Serbie;Serbien;;Serbia;;;;;;;;;x
+YUG;Yugoslavia;Yougoslavie;Jugoslawien;;Yugoslavia;;;;;;;;;x
+BLR;Byelorussia;Biélorussie;Weißrussland;;Bielorrusia;;;;;;;;;x
+PRI;Primorsk;Primorsk;Primorsk;;Primorsk;;;;;;;;;x
+RUS;Russia;Russie;Russland;;Rusia;;;;;;;;;x
+SIB;Siberia;Sibérie;Siberien;;Siberia;;;;;;;;;x
+TAN;Tannu Tuva;Tannou-Touva;Tannu-Tuwa;;Tannu Tuva;;;;;;;;;x
+TRA;Transural Republic;République Trans-ouralienne;Republik Transural;;República Transural;;;;;;;;;x
+UKR;Ukraine;Ukraine;Ukraine;;Ucrania;;;;;;;;;x
+AFG;Afghanistan;Afghanistan;Afghanistan;;Afganistán;;;;;;;;;x
+ARA;Arab Federation;Fédération arabe;Arabische Föderation;;Federación Árabe;;;;;;;;;x
+ARM;Armenia;Arménie;Armenien;;Armenia;;;;;;;;;x
+AZB;Azerbaijan;Azerbaïdjan;Aserbaidschan;;Azerbaiyán;;;;;;;;;x
+CYP;Cyprus;Chypre;Zypern;;Chipre;;;;;;;;;x
+GEO;Georgia;Géorgie;Georgien;;Georgia;;;;;;;;;x
+IRQ;Iraq;Iraq;Irak;;Irak;;;;;;;;;x
+ISR;Israel;Israël;Israel;;Israel;;;;;;;;;x
+JOR;Jordan;Jordanie;Jordanien;;Jordán;;;;;;;;;x
+LEB;Lebanon;Liban;Libanon;;Líbano;;;;;;;;;x
+OMN;Oman;Oman;Oman;;Omán;;;;;;;;;x
+OTT;Ottoman Empire;Empire ottoman;Ottomanisches Reich;;Imperio Otomano;;;;;;;;;x
+PAL;Palestine;Palestine;Palästina;;Palestina;;;;;;;;;x
+PER;Persia;Perse;Persien;;Persia;;;;;;;;;x
+SAU;Saudi Arabia;Arabie Saoudite;Saudi-Arabien;;Arabia Saudí;;;;;;;;;x
+SYR;Syria;Syrie;Syrien;;Siria;;;;;;;;;x
+TUR;Turkey;Turquie;Türkei;;Turquía;;;;;;;;;x
+YEM;Yemen;Yémen;Jemen;;Yemen;;;;;;;;;x
+KAZ;Kazakhstan;Kazakhstan;Kasachstan;;Kazajstán;;;;;;;;;x
+KUR;Kurdistan;Kurdistan;Kurdistan;;Kurdistán;;;;;;;;;x
+KYG;Kyrgyzstan;Kirghizistan;Kirgisistan;;Kirguizistán;;;;;;;;;x
+TAJ;Tajikistan;Tadjikistan;Tadschikistan;;Tayikistán;;;;;;;;;x
+TRK;Turkmenistan;Turkménistan;Turkmenistan;;Turkmenistán;;;;;;;;;x
+UZB;Uzbekistan;Ouzbékistan;Usbekistan;;Uzbekistán;;;;;;;;;x
+BHU;Bhutan;Bhoutan;Bhutan;;Bután;;;;;;;;;x
+IND;India;Inde;Indien;;India;;;;;;;;;x
+NEP;Nepal;Népal;Nepal;;Nepal;;;;;;;;;x
+PAK;Pakistan;Pakistan;Pakistan;;Pakistán;;;;;;;;;x
+CGX;Guangxi Clique;Clique de Guangxi;Guangxi-Clique;;Camarilla de Guangxi;;;;;;;;;x
+CHC;Communist China;Chine communiste;Kom. China;;China Comunista;;;;;;;;;x
+CSX;Shanxi;Shanxi;Shanxi;;Shansi;;;;;;;;;x
+CXB;Xibei San Ma;Xibei San Ma;Xibei San Ma;;Xibei San Ma;;;;;;;;;x
+CYN;Yunnan;Yunnan;Yunnan;;Yunnan;;;;;;;;;x
+KOR;Korea;Corée;Korea;;Corea;;;;;;;;;x
+MAN;Manchukuo;Manchukuo;Manchukuo;;Manchuria;;;;;;;;;x
+MEN;Mengkukuo;Mengkukuo;Mengkukuo;;Mengkukuo;;;;;;;;;x
+MON;Mongolia;Mongolie;Mongolei;;Mongolia;;;;;;;;;x
+PRK;People's Republic of Korea;République populaire de Corée;Volksrepublik Korea;;República Popular de Corea;;;;;;;;;x
+SIK;Sinkiang;Sinkiang;Sinkiang;;Xinjiang;;;;;;;;;x
+TIB;Tibet;Tibet;Tibet;;Tíbet;;;;;;;;;x
+BRU;Brunei;Brunei;Brunei;;Brunei;;;;;;;;;x
+BUR;Burma;Birmanie;Burma;;Birmania;;;;;;;;;x
+CMB;Cambodia;Cambodge;Kambodscha;;Camboya;;;;;;;;;x
+IDC;Indochina;Indochine;Indochina;;Indochina;;;;;;;;;x
+INO;Indonesia;Indonésie ;Indonesien;;Indonesia;;;;;;;;;x
+LAO;Laos;Laos;Laos;;Laos;;;;;;;;;x
+MLY;Malaysia;Malaisie;Malaysia;;Malasia;;;;;;;;;x
+PHI;Philippines;Philippines;Philippinen;;Filipinas;;;;;;;;;x
+SAR;Sarawak;Sarawak;Sarawak;;Sarawak;;;;;;;;;x
+SIA;Siam;Siam;Siam;;Siam;;;;;;;;;x
+VIE;Vietnam;Vietnam;Vietnam;;Vietnam;;;;;;;;;x
+ALG;Algeria;Algérie;Algerien;;Argelia;;;;;;;;;x
+EGY;Egypt;Égypte;Ägypten;;Egipto;;;;;;;;;x
+LBY;Libya;Lybie;Libyen;;Libia;;;;;;;;;x
+MOR;Morocco;Maroc;Marokko;;Marruecos;;;;;;;;;x
+SUD;Sudan;Soudan;Sudan;;Sudán;;;;;;;;;x
+TUN;Tunisia;Tunisie;Tunesien;;Túnez;;;;;;;;;x
+BEN;Benin-Sahel;Bénin-Sahel;Benin-Sahel;;Benin-Sahel;;;;;;;;;x
+GLD;Gold Coast;Côte d'Or;Goldküste;;Costa de Oro;;;;;;;;;x
+GUI;Guinea;Guinée;Guinea;;Guinea;;;;;;;;;x
+LIB;Liberia;Libéria;Liberia;;Liberia;;;;;;;;;x
+MAL;Union of Mali;Mali;Mali-Union;;Unión de Malí;;;;;;;;;x
+NIG;Nigeria;Nigéria;Nigeria;;Nigeria;;;;;;;;;x
+SIE;Sierra Leone;Sierra Leone;Sierra Leone;;Sierra Leona;;;;;;;;;x
+KON;Congo;Congo;Kongo;;El Congo;;;;;;;;;x
+EAF;East African Union;Union Est-Africaine;Ostafrikanische Union;;Unión Africana Oriental;;;;;;;;;x
+ETH;Ethiopia;Éthiopie;Äthiopien;;Etiopía;;;;;;;;;x
+GAB;Gabon;Gabon;Gabun;;Gabón;;;;;;;;;x
+CAM;Cameroon;Cameroun;Kamerun;;Camerún;;;;;;;;;x
+SOM;Somalia;Somalie;Somalia;;Somalia;;;;;;;;;x
+ANG;Angola;Angola;Angola;;Angola;;;;;;;;;x
+EQA;Equatorial Africa;Afrique Équatoriale;Äquatorialafrika;;África Ecuatorial;;;;;;;;;x
+MAD;Madagascar;Madagascar;Madagaskar;;Madagascar;;;;;;;;;x
+MOZ;Mozambique;Mozambique;Mosambik;;Mozambique;;;;;;;;;x
+NAM;Namibia;Namibie;Namibia;;Namibia;;;;;;;;;x
+RHO;Rhodesia;Rhodésie;Rhodesien;;Rhodesia;;;;;;;;;x
+SAF;South Africa;Afrique du Sud;Südafrika;;Sudáfrica;;;;;;;;;x
+AST;Australia;Australie;Australien;;Australia;;;;;;;;;x
+NZL;New Zealand;Nouvelle-Zélande;Neuseeland;;Nueva Zelanda;;;;;;;;;x
+CAL;California;Californie;Kalifornien;;California;;;;;;;;;x
+CAN;Canada;Canada;Kanada;;Canadá;;;;;;;;;x
+CSA;Confederate States;États Confédérés;Konföderierte Staaten;;Estados Confederados;;;;;;;;;x
+QUE;Quebec;Québec;Quebec;;Québec;;;;;;;;;x
+CUB;Cuba;Cuba;Kuba;;Cuba;;;;;;;;;x
+COS;Costa Rica;Costa Rica;Costa Rica;;Costa Rica;;;;;;;;;x
+DOM;Dominican Republic;Rep. Dominicaine;Dominikanische Rep.;;República Dominicana;;;;;;;;;x
+GUA;Guatemala;Guatémala;Guatemala;;Guatemala;;;;;;;;;x
+HAI;Haiti;Haïti;Haiti;;Haití;;;;;;;;;x
+HON;Honduras;Honduras;Honduras;;Honduras;;;;;;;;;x
+NIC;Nicaragua;Nicaragua;Nicaragua;;Nicaragua;;;;;;;;;x
+PAN;Panama;Panama;Panama;;Panamá;;;;;;;;;x
+SAL;El Salvador;Salvador;El Salvador;;El Salvador;;;;;;;;;x
+ARG;Argentina;Argentine;Argentinien;;Argentina;;;;;;;;;x
+BOL;Bolivia;Bolivie;Bolivien;;Bolivia;;;;;;;;;x
+BRA;Brazil;Brésil;Brasilien;;Brasil;;;;;;;;;x
+CHL;Chile;Chili;Chile;;Chile;;;;;;;;;x
+COL;Colombia;Colombie;Kolumbien;;Colombia;;;;;;;;;x
+ECU;Ecuador;Équateur;Ekuador;;Ecuador;;;;;;;;;x
+GUY;Guyana;Guyane;Guyana;;Guayana;;;;;;;;;x
+MEX;Mexico;Mexique;Mexiko;;México;;;;;;;;;x
+PAR;Paraguay;Paraguay;Paraguay;;Paraguay;;;;;;;;;x
+PRU;Peru;Pérou;Peru;;Perú;;;;;;;;;x
+TEX;Texas;Texas;Texas;;Texas;;;;;;;;;x
+URU;Uruguay;Uruguay;Uruguay;;Uruguay;;;;;;;;;x
+VEN;Venezuela;Vénézuela;Venezuela;;Venezuela;;;;;;;;;x
+REB_ADJ;Partisans;Partisans;Partisanen;;Partisanos;;;;;;;;;x
+GER_ADJ;German;Allemand;Deutsch;;Alemana;;;;;;;;;x
+ENG_ADJ;British;Britannique;Britisch;;Británica;;;;;;;;;x
+USA_ADJ;American;Américain;Amerikanisch;;Americana;;;;;;;;;x
+JAP_ADJ;Japanese;Japonais;Japanisch;;Japonesa;;;;;;;;;x
+FRA_ADJ;French;Français;Französisch;;Francesa;;;;;;;;;x
+ITA_ADJ;Italian;Italien;Italienisch;;Italiana;;;;;;;;;x
+DEN_ADJ;Danish;Danois;Dänisch;;Danesa;;;;;;;;;x
+ICL_ADJ;Icelandic;Islandais;Isländisch;;Islandesa;;;;;;;;;x
+EST_ADJ;Estonian;Estonien;Estnisch;;Estonia;;;;;;;;;x
+FIN_ADJ;Finnish;Finlandais;Finnisch;;Finlandesa;;;;;;;;;x
+LAT_ADJ;Latvian;Letton;Lettisch;;Letona;;;;;;;;;x
+LIT_ADJ;Lithunian;Lituanien;Litauisch;;Lituana;;;;;;;;;x
+NOR_ADJ;Norwegian;Norvégien;Norwegisch;;Noruega;;;;;;;;;x
+SCA_ADJ;Scandinavian;Scandinave;Skandinavisch;;Escandinava;;;;;;;;;x
+SWE_ADJ;Swedish;Suédois;Schwedisch;;Sueca;;;;;;;;;x
+BEL_ADJ;Belgian;Belge;Belgisch;;Belga;;;;;;;;;x
+FLA_ADJ;FLemmish;Flamand;Flämisch;;Flamenca;;;;;;;;;x
+HOL_ADJ;Dutch;Néerlandais;Holländisch;;Holandesa;;;;;;;;;x
+IRE_ADJ;Irish;Irlandais;Irisch;;Irlandesa;;;;;;;;;x
+LUX_ADJ;Luxemburgian;Luxembourgeois;Luxemburgisch;;Luxemburguesa;;;;;;;;;x
+SCO_ADJ;Scottish;Écossais;Schottisch;;Escocesa;;;;;;;;;x
+VIC_ADJ;Vichy French;Français de Vichy;Vichy-Französisch;;Francesa de Vichy;;;;;;;;;x
+WLL_ADJ;Wallonian;Wallon;Wallonisch;;Valona;;;;;;;;;x
+AUS_ADJ;Austrian;Autrichien;Österreichisch;;Austríaca;;;;;;;;;x
+CZE_ADJ;Czech;Tchèque;Tschechisch;;Checa;;;;;;;;;x
+CRO_ADJ;Croatian;Croate;Kroatisch;;Croata;;;;;;;;;x
+DDR_ADJ;East German;Allemand de l'Est;Ostdeutsch;;Alemana oriental;;;;;;;;;x
+DFR_ADJ;West German;Allemand de l'Ouest;Westdeutsch;;Alemana occidental;;;;;;;;;x
+HUN_ADJ;Hungarian;Hongrois;Ungarisch;;Húngara;;;;;;;;;x
+POL_ADJ;Polish;Polonais;Polnisch;;Polaca;;;;;;;;;x
+ROM_ADJ;Romanian;Roumain;Rumänisch;;Rumana;;;;;;;;;x
+SLO_ADJ;Slovak ;Slovaque;Slowakisch;;Eslovaca ;;;;;;;;;x
+SLV_ADJ;Slovenian;Slovène;Slowenisch;;Eslovena;;;;;;;;;x
+SCH_ADJ;Swiss;Suisse;Schweizerisch;;Suiza;;;;;;;;;x
+EUS_ADJ;Basque;Basque;Baskisch;;Vasca;;;;;;;;;x
+POR_ADJ;Portugese;Portugais;Portugiesisch;;Portuguesa;;;;;;;;;x
+RSI_ADJ;Italian Socialist Republic;Italien;Sozialistische Republik Italien;;De la República Socialista Italiana;;;;;;;;;x
+SPA_ADJ;Spanish;Espagnol;Spanisch;;Spanish;;;;;;;;;x
+SPR_ADJ;Spanish;Espagnol;Spanisch;;Spanish;;;;;;;;;x
+ALB_ADJ;Albanian;Albanais;Albanisch;;Alana;;;;;;;;;x
+BOS_ADJ;Bosnian;Bosniaque;Bosnisch;;Bosnia;;;;;;;;;x
+BUL_ADJ;Bulgarian;Bulgare;Bulgarisch;;Búlgara;;;;;;;;;x
+GRE_ADJ;Greek;Grec;Griechisch;;Griega;;;;;;;;;x
+MTN_ADJ;Montenegren;Monténégrin;Montenegrinisch;;Montenegrina;;;;;;;;;x
+SER_ADJ;Serb;Serbe;Serbisch;;Serbia;;;;;;;;;x
+YUG_ADJ;Yugoslav;Yougoslave;Jugoslawisch;;Yugoslava;;;;;;;;;x
+BLR_ADJ;Byelorussian;Biélorusse;Weißrussisch;;Bielorrusa;;;;;;;;;x
+PRI_ADJ;Primoniski;Primonisk;Primoniski;;Primoriesa ;;;;;;;;;x
+RUS_ADJ;Russian;Russe;Russisch;;Rusa;;;;;;;;;x
+SIB_ADJ;Siberian;Sibérien;Sibirisch;;Siberiana;;;;;;;;;x
+TAN_ADJ;Tannu Tuvan;Touvain;Tannu-Tuwanisch;;Tuvana;;;;;;;;;x
+TRA_ADJ;Transualian;Transouralien;Transuralisch;;Transualiana;;;;;;;;;x
+UKR_ADJ;Ukrainian;Ukrainien;Ukrainisch;;Ucraniana;;;;;;;;;x
+AFG_ADJ;Afghan;Afghan;Afghanisch;;Afgana;;;;;;;;;x
+ARA_ADJ;Arabic;Arabe;Arabisch;;Árabe;;;;;;;;;x
+ARM_ADJ;Armenian;Arménien;Armenisch;;Armenia;;;;;;;;;x
+AZB_ADJ;Azerbaijani;Azéri;Aserbaidschanisch;;Azerbaiyana;;;;;;;;;x
+CYP_ADJ;Cypriot;Chypriote;Zypriotisch;;Chipriota;;;;;;;;;x
+GEO_ADJ;Georgian;Géorgien;Georgisch;;Georgiana;;;;;;;;;x
+IRQ_ADJ;Iraqi;Iraquien;Irakisch;;Iraquí;;;;;;;;;x
+ISR_ADJ;Israeli;Israélien;Israelisch;;Israelí;;;;;;;;;x
+JOR_ADJ;Jordanian;Jordanien;Jordanisch;;Jordana;;;;;;;;;x
+LEB_ADJ;Lebanese;Libanais;Libanesisch;;Libanesa;;;;;;;;;x
+OMN_ADJ;Omani;Omanais;Omanisch;;Omaní;;;;;;;;;x
+OTT_ADJ;Ottoman;Ottoman;Ottomanisch;;Otomano;;;;;;;;;x
+PAL_ADJ;Palestinian;Palestinien;Palästinensisch;;Palestina;;;;;;;;;x
+PER_ADJ;Persian;Perse;Persisch;;Persa;;;;;;;;;x
+SAU_ADJ;Saudi;Saudien;Saudisch;;Saudí;;;;;;;;;x
+SYR_ADJ;Syrian;Syrien;Syrisch;;Siria;;;;;;;;;x
+TUR_ADJ;Turkish;Turc;Türkisch;;Turca;;;;;;;;;x
+YEM_ADJ;Yemini;Yéménite;Jemenitisch;;Yemení;;;;;;;;;x
+KAZ_ADJ;Kazakh;Kazakh;Kasachisch;;Kazaka;;;;;;;;;x
+KUR_ADJ;Kurdish;Kurde;Kurdisch;;Curda;;;;;;;;;x
+KYG_ADJ;Kyrgyz;Kirghiz;Kirgisisch;;Kirguistana;;;;;;;;;x
+TAJ_ADJ;Tajik;Tadjik;Tadschikisch;;Tayika;;;;;;;;;x
+TRK_ADJ;Turkmen;Turkmène;Turkmenisch;;Turkmen;;;;;;;;;x
+UZB_ADJ;Uzbek;Ouzbek;Usbekisch;;Uzbeka;;;;;;;;;x
+BHU_ADJ;Bhutanese;Bhoutanais;Bhutanisch;;Butanesa;;;;;;;;;x
+IND_ADJ;Indian;Indien;Indisch;;India;;;;;;;;;x
+NEP_ADJ;Nepali;Népalais;Nepalesisch;;Nepalí;;;;;;;;;x
+PAK_ADJ;Pakistani;Pakistanais;Pakistanisch;;Pakistaní;;;;;;;;;x
+CGX_ADJ;Guangxi ;Guangxi;Guangxi ;;Guangxi ;;;;;;;;;x
+CHC_ADJ;Chinese;Chinois;Chinesisch;;China;;;;;;;;;x
+CHI_ADJ;Chinese;Chinois;Chinesisch;;China;;;;;;;;;x
+CSX_ADJ;Shanxi;Shanxi;Shanxi;;Shansi;;;;;;;;;x
+CXB_ADJ;Xibei San Ma;Xibei San Ma;Xibei San Ma;;Xibei San Ma;;;;;;;;;x
+CYN_ADJ;Yunnan;Yunnan;Yunnanesisch;;Yunnan;;;;;;;;;x
+KOR_ADJ;Korean;Coréen;Koreanisch;;Coreana;;;;;;;;;x
+MAN_ADJ;Manchurian ;Mandchou;Mandschurisch;;Manchú ;;;;;;;;;x
+MEN_ADJ;Inner Mongolian ;Mongol;Innermongolisch ;;Mongola interior ;;;;;;;;;x
+MON_ADJ;Mongolian;Mongol;Mongolisch;;Mongola;;;;;;;;;x
+PRK_ADJ;North Korean;Nord-Coréen;Nordkoreanisch;;Coreana del norte;;;;;;;;;x
+SIK_ADJ;Sinkiang;Singkiang;Sinkiang;;Xinjiang;;;;;;;;;x
+TIB_ADJ;Tibetan;Tibétain;Tibetisch;;Tibetana;;;;;;;;;x
+BRU_ADJ;Brunei;Brunéien;Brunei;;Brunei;;;;;;;;;x
+BUR_ADJ;Burmese;Birman;Burmesisch;;Birmana;;;;;;;;;x
+CMB_ADJ;Cambodian;Cambodgien;Kambodschanisch;;Camboyana;;;;;;;;;x
+IDC_ADJ;Indochinese;Indochinois;Indochinesisch;;Indochina;;;;;;;;;x
+INO_ADJ;Indonesian;Indonésien;Indonesisch;;Indonesia;;;;;;;;;x
+LAO_ADJ;Laotian;Laotien;Laotisch;;Laosiana;;;;;;;;;x
+MLY_ADJ;Malayan;Malais;Malaiisch;;Malayamesa;;;;;;;;;x
+PHI_ADJ;Philippino;Philippin;Philippinisch;;Filipina;;;;;;;;;x
+SAR_ADJ;Sarwak;Sarawak;Sarawakisch;;Sarawak;;;;;;;;;x
+SIA_ADJ;Siamese;Siamois;Siamesisch;;Siamesa;;;;;;;;;x
+VIE_ADJ;Vietnamese;Vietnamien;Vietnamesisch;;Vietnamita;;;;;;;;;x
+ALG_ADJ;Algerian;Algérien;Algerisch;;Argelina;;;;;;;;;x
+EGY_ADJ;Egyptian;Égyptien;Ägyptisch;;Egipcia;;;;;;;;;x
+LBY_ADJ;Libyan;Libyen;Libyisch;;Libia;;;;;;;;;x
+MOR_ADJ;Moroccan;Marocain;Marokkanisch;;Marroquí;;;;;;;;;x
+SUD_ADJ;Sudanese;Soudanais;Sudanesisch;;Sudanesa;;;;;;;;;x
+TUN_ADJ;Tunisian;Tunisien;Tunesisch;;Tunecina;;;;;;;;;x
+BEN_ADJ;Beninese;Béninois;Beninisch;;Beninesa;;;;;;;;;x
+GLD_ADJ;Gold Coastian;De la Côte d'Or;Goldküste;;De Costa de Oro;;;;;;;;;x
+GUI_ADJ;Guinean;Guinéen;Guianisch;;Guineana;;;;;;;;;x
+LIB_ADJ;Liberian;Libérien;Liberianisch;;Liberiana;;;;;;;;;x
+MAL_ADJ;Malian;Malien;Malisch;;Malí;;;;;;;;;x
+NIG_ADJ;Nigerian;Nigérien;Nigerianisch;;Nigeriana;;;;;;;;;x
+SIE_ADJ;Sierra Leonian;Sierra-Léonien;Sierraleonisch;;Sierraleonesa;;;;;;;;;x
+KON_ADJ;Congolese;Congolais;Kongolesisch;;Congoleña;;;;;;;;;x
+EAF_ADJ;East African ;Est-Africain;Ostafrikanisch ;;Africana del Este ;;;;;;;;;x
+ETH_ADJ;Ethiopian;Éthiopien;Äthiopisch;;Etíope;;;;;;;;;x
+GAB_ADJ;Gabonese;Gabonais;Gabunesisch;;Gabonesa;;;;;;;;;x
+CAM_ADJ;Cameroonian;Camerounais;Kamerunisch;;Cameruniana;;;;;;;;;x
+SOM_ADJ;Somalian;Somalien;Somalisch;;Somalí;;;;;;;;;x
+ANG_ADJ;Angolian;Angolais;Angolanisch;;Angoleña;;;;;;;;;x
+EQA_ADJ;Equitorial African;Africain d'Afrique Équatoriale;Äquatorialafrikanisch;;Africana ecuatorial;;;;;;;;;x
+MAD_ADJ;Madagascarian;Malgache;Madegassisch;;Malgache;;;;;;;;;x
+MOZ_ADJ;Mozambiquian;Mozambiquois;Mosambikisch;;Mozambiqueña;;;;;;;;;x
+NAM_ADJ;Namibian;Namibien;Namibisch;;Namibia;;;;;;;;;x
+RHO_ADJ;Rhodesian;Rhodésien;Rhodesisch;;Rodesia;;;;;;;;;x
+SAF_ADJ;South African;Sud-africain;Südafrikanisch;;Sudafricana;;;;;;;;;x
+AST_ADJ;Australian;Australien;Australisch;;Australiana;;;;;;;;;x
+NZL_ADJ;New Zealand;Néo-zélandais;Neuseeländisch;;Nueva Zelanda;;;;;;;;;x
+CAL_ADJ;Californian;Californien;Kalifornisch;;Calaforiana;;;;;;;;;x
+CAN_ADJ;Canadian;Canadien;Kanadisch;;Canadiense;;;;;;;;;x
+CSA_ADJ;Confederate;Confédéré;Konföderiert;;Confederada;;;;;;;;;x
+QUE_ADJ;Quebec;Québécois;Quebeckisch;;Québec;;;;;;;;;x
+CUB_ADJ;Cuban;Cubain;Kubanisch;;Cubana;;;;;;;;;x
+COS_ADJ;Costa Rican;Costaricain;Costaricanisch;;Costarricense;;;;;;;;;x
+DOM_ADJ;Dominican;Dominicain;Dominikanisch;;Dominicana;;;;;;;;;x
+GUA_ADJ;Guatemalan;Guatémaltèque;Guatemalisch;;Guatemalteca;;;;;;;;;x
+HAI_ADJ;Haitian;Haïtien;Haitisch;;Haitiana;;;;;;;;;x
+HON_ADJ;Hondurian;Hondurien;Honduranisch;;Hondureña;;;;;;;;;x
+NIC_ADJ;Nicaraguan;Texan;Nicaraguanisch;;Nicaragüense;;;;;;;;;x
+PAN_ADJ;Panamanian;Panaméen;Panamaisch;;Panameña;;;;;;;;;x
+SAL_ADJ;El Salvadorian;Salvadorien;El Salvadorianisch;;Salvadoreña;;;;;;;;;x
+ARG_ADJ;Argentinian;Argentin;Argentinisch;;Argentina;;;;;;;;;x
+BOL_ADJ;Bolivian;Bolivien;Bolivianisch;;Boliviana;;;;;;;;;x
+BRA_ADJ;Brazilian;Brésilien;Brasilianisch;;Brasileña;;;;;;;;;x
+CHL_ADJ;Chilean;Chilien;Chilenisch;;Chilena;;;;;;;;;x
+COL_ADJ;Colombian;Colombien;Kolumbianisch;;Colombiana;;;;;;;;;x
+ECU_ADJ;Ecuadorian;Équatorien;Ekuadorianisch;;Ecuatoriana;;;;;;;;;x
+GUY_ADJ;Guyanan;Guyanais;Guianisch;;Guayanesa;;;;;;;;;x
+MEX_ADJ;Mexican;Mexicain;Mexikanisch;;Mexicana;;;;;;;;;x
+PAR_ADJ;Paraguayan;Paraguayen;Paraguayisch;;Paraguaya;;;;;;;;;x
+PRU_ADJ;Peruvian;Péruvien;Peruanisch;;Peruana;;;;;;;;;x
+TEX_ADJ;Texan;Texan;Texanisch;;Texana;;;;;;;;;x
+URU_ADJ;Uruguayan;Uruguayen;Uruguayisch;;Uruguaya;;;;;;;;;x
+VEN_ADJ;Venezuelan;Vénézuélien;Venezuelanisch;;Venezolana;;;;;;;;;x

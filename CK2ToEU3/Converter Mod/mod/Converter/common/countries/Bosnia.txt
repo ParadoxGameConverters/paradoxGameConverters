@@ -1,0 +1,106 @@
+#Country Name: Please see filename
+
+graphical_culture = easterngfx
+
+color = { 240  167  130 }
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	glorious_arms
+	military_drill
+	espionage
+	battlefield_commisions
+	engineer_corps
+	national_trade_policy
+	cabinet
+	shrewd_commerce_practise
+	merchant_adventures
+	improved_foraging
+}
+
+historical_units = {
+	eastern_medieval_infantry
+	eastern_knights
+	slavic_stradioti
+	eastern_militia
+	ottoman_sekban
+	ottoman_reformed_spahi
+	ottoman_reformed_janissary
+	ottoman_toprakli_hit_and_run
+	ottoman_nizami_cedid
+	ottoman_toprakli_dragoon
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	ottoman_new_model
+	ottoman_lancer
+}
+
+monarch_names = {
+	"Stjepan Tvrtko #1" = 20
+	"Stjepan Ostoja #0" = 20
+	"Stjepan Ostojic #0" = 20
+	"Stjepan Tomas #0" = 20
+	"Stjepan Tomasevic #0" = 20
+	"Radivoj #0" = 15
+	"Shimun #0" = 15
+	"Djuradj #5" = 10
+	"Tvrtko #0" = 10
+	"Matija #0" = 10
+	"Stjepan #2" = 5
+	"Aleksandar #0" = 0
+	"Andrija #0" = 0
+	"Antonije #0" = 0
+	"Bogdan #0" = 0
+	"Bojan #0" = 0
+	"Borislav #0" = 0
+	"Danijel #0" = 0
+	"Darko #0" = 0
+	"Dubravko #0" = 0
+	"Goran #0" = 0
+	"Grgur #0" = 0
+	"Ivan #0" = 0
+	"Jadranko #0" = 0
+	"Josip #0" = 0
+	"Ljubomir #0" = 0
+	"Marijan #0" = 0
+	"Meho #0" = 0
+	"Mihajlo #0" = 0
+	"Nikola #0" = 0
+	"Obrad #0" = 0
+	"Pavle #0" = 0
+	"Petar #0" = 0
+	"Srecko #0" = 0
+	"Teodor #0" = 0
+	"Vasilije #0" = 0
+	"Viktor #0" = 0
+	"Vuk #0" = 0
+	"Zoran #0" = 0
+	"Zvonomir #0" = 0
+}
+
+leader_names = {
+	Babonic Balsic Branivojevic 
+	Dragisic
+	Gradascevic 
+	Hrvatinic
+	Isakovic
+	Kosaca Kotromanic
+	Nelipic
+	Pavlovic
+	Radinovic 
+	Sankovic Santic Sokolovic Subic
+	Tvrtkovic
+	Vukasin Vukcic Vukovic 
+}
+
+ship_names = {
+	Bosna Bosni
+	Dalmacija
+	"Gazi Husrev-beg"
+	"Kotromanici" "Kulin ban"
+	Miljacka
+	Sarajevo "Stjepan II"
+	"Tvrtko I"
+}

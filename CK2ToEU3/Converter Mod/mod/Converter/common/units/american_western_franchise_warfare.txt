@@ -1,0 +1,12 @@
+# American Western Franchise Warfare
+
+unit_type = new_world
+type = infantry	
+
+maneuver = 1
+offensive_morale = 7
+defensive_morale = 5
+offensive_fire = 7
+defensive_fire = 3
+offensive_shock = 7
+defensive_shock = 3

@@ -1,0 +1,107 @@
+#Country Name: Please see filename.
+
+graphical_culture = easterngfx
+
+color = { 211  207  173 }
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	glorious_arms
+	military_drill
+	espionage
+	battlefield_commisions
+	engineer_corps
+	national_trade_policy
+	cabinet
+	shrewd_commerce_practise
+	national_bank
+	scientific_revolution
+}
+
+historical_units = {
+	eastern_medieval_infantry
+	eastern_knights
+	slavic_stradioti
+	eastern_militia
+	ottoman_sekban
+	ottoman_reformed_spahi
+	ottoman_reformed_janissary
+	ottoman_toprakli_hit_and_run
+	ottoman_nizami_cedid
+	ottoman_toprakli_dragoon
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	ottoman_new_model
+	ottoman_lancer
+}
+
+monarch_names = {
+	"Janos #0" = 60
+	"István #0" = 60
+	"Mihály #0" = 50
+	"Ferenc #0" = 40
+	"Gábor #0" = 40
+	"György #0" = 40
+	"Ákos #0" = 20
+	"András #0" = 20
+	"Krisztóf #0" = 20
+	"Lancu #0" = 20
+	"Lorand #0" = 20
+	"Stibor #0" = 20
+	"Zsigmond #0" = 20
+	"Boldiszár #0" = 15
+	"Imre #0" = 15
+	"Leopold #0" = 15
+	"Samuel #0" = 15
+	"Sándor #0" = 15
+	"Miklós #0" = 10
+	"Tamás #0" = 10
+	"Ardojan #0" = 0
+	"Amasztáz #0" = 0
+	"Barnabás #0" = 0
+	"Betalan #0" = 0
+	"Dávid #0" = 0
+	"Dömötör #0" = 0
+	"Edvárd #0" = 0
+	"Ernö #0" = 0
+	"Iszák #0" = 0
+	"Jószef #0" = 0
+	"Kálmán #0" = 0
+	"Kázmér #0" = 0
+	"Kelemen #0" = 0
+	"Lörinc #0" = 0
+	"Lukäcs #0" = 0
+	"Márk #0" = 0
+	"Oszkár #0" = 0
+	"Péter #0" = 0
+	"Simon #0" = 0
+	"Vencel #0" = 0
+}
+
+leader_names = {
+	Alvinczy Apafi
+	Báthory Bethlen Bocskai "von Brukenthal"
+	Dózsa 
+	Gyulai
+	"von Harteneck"
+	Kemény
+	Lackovic Lázár
+	Rákóczy Rhédey
+	Sasul
+	Thököly 
+	Zabanius Zápolya Zrinyi
+}
+
+ship_names = {
+	Gyula
+	"Roland Borsza"
+	"Ladislas Kan"
+	"Antal Budai Nagy"
+	"Hunyadi Janos"
+	Vaskapu Varna
+	Mercurius
+	Leustachius
+	Legforus
+}

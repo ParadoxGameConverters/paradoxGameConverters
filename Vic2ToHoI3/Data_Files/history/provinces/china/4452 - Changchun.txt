@@ -1,0 +1,13 @@
+owner = MAN
+controller = MAN
+add_core = MAN
+add_core = CHC
+add_core = CHI
+
+metal = 9.00
+energy = 16.00
+rare_materials = 3.00
+industry = 6
+infra = 5
+manpower = 9.00
+leadership = 0.90

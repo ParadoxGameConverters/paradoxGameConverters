@@ -1,0 +1,11 @@
+# Swivel Cannon
+
+type = artillery
+
+maneuver = 2
+offensive_morale = 4
+defensive_morale = 4
+offensive_fire = 3
+defensive_fire = 3
+offensive_shock = 2
+defensive_shock = 2

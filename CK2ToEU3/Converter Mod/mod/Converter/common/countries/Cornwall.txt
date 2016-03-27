@@ -1,0 +1,122 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 255  87  127 }
+
+historical_ideas = {
+	excellent_shipwrights
+	bill_of_rights
+	superior_seamanship
+	merchant_adventures
+	naval_glory
+	cabinet
+	national_bank
+	espionage  
+	smithian_economics
+	ecumenism
+	glorious_arms
+	napoleonic_warfare
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_longbow
+	gaelic_mercenary
+	gaelic_free_shooter
+	irish_charge
+	anglofrench_line
+	british_redcoat
+	british_hussar
+	british_square
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Conan #2" = 20
+	"Hoel #2" = 20
+	"Cador #1" = 20
+	"Duncan #1" = 20
+	"Howel #1" = 20
+	"Ricatus #1" = 20
+	"Arthnou #1" = 15
+	"Coll #1" = 15
+	"Gerens #1" = 10
+	"Gwefawr #0" = 10
+	"Massen #1" = 10
+	"Daveth #0" = 0
+	"Jago #0" = 0
+	"Jory #0" = 0
+	"Jowan #0" = 0
+	"Margh #0" = 0
+	"Myghal #0" = 0
+	"Pasco #0" = 0
+	"Piran #0" = 0
+	"Alan #0" = 0
+	"Colan #0" = 0
+	"Digory #0" = 0
+	"Gawen #0" = 0
+	"Kenver #0" = 0
+	"Kenwyn #0" = 0
+	"Kitto #0" = 0
+	"Maban #0" = 0
+	"Madern #0" = 0
+	"Melor #0" = 0
+	"Meriasek #0" = 0
+	"Peder #0" = 0
+	"Perran #0" = 0
+	"Petrok #0" = 0
+	"Ruan Talan #0" = 0
+	"Talek #0" = 0
+	"Tomas #0" = 0
+	"Uther #0" = 0
+	"Wella #0" = 0
+	"Yestin #0" = 0
+	"Ythel #0" = 0
+}
+
+leader_names = { 
+	Arthur Audley
+	Boscawen
+	Carew Chynoweth Clemow Collett Connor Cornish Curnow
+	Davy Drake Drew
+	Endean
+	Flamank Furze
+	Gwynn
+	Hale
+	Innes
+	Jago James Jenner Jolley Joseph
+	Keverne
+	Lanyon Locke Lyon
+	Menhenick 
+	Oates
+	Pascoe Penberthy Pendennis Penhaligon Pentreath Pethick Polwin
+	Quintrell
+	Roscarrock Rosewarne
+	"St Aubyn" Sweet
+	Trehearne Trelawny Trescothick Trevelyan Trevithick Tyrell
+	Warren Weekes
+}
+
+ship_names = {
+        Arthur
+        Bodmin Bolster Brutus
+        Chough Corineus Cormoran Cornishman
+        Dumnonia
+        Excalibur
+        Falmouth
+        Galahad Gawain Guinevere
+        "Hal-an-Tow" Helston
+        Kernow "King Mark"
+        Lancelot Launceston Lizard Lostwithiel Lyonesse
+        Marazion Mousehole
+        Pendragon Penzance Porthleven
+        Restormel
+        Scillonian "St Ives" "St Michael" "St Petroc" "St Pirin" Stannary
+        Tamar Tintagel Trelawny Truro
+        Whitsand
+}

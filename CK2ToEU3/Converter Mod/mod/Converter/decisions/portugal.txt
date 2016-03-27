@@ -1,0 +1,50 @@
+country_decisions = {
+
+
+	establish_afonsine_ordinances = {
+		potential = {
+			tag = POR
+			NOT = { has_country_modifier = afonsine_ordinances }
+		}
+		allow = {
+			ADM = 6
+			government_tech = 4
+		}
+		effect = {
+			stability = -1
+			add_country_modifier = {
+				name = "afonsine_ordinances"
+				duration = -1
+			}		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+
+	remember_the_navigator = {
+		potential = {
+			tag = POR
+			NOT = { has_country_modifier = legacy_of_the_navigator }
+	
+		}
+		allow = {
+			has_discovered = 367
+			has_discovered = 368
+			naval_tech  = 6
+		}
+		effect = {	
+			add_country_modifier = {
+				name = "legacy_of_the_navigator"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}	
+	
+
+}
+
+

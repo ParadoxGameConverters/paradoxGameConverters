@@ -1,0 +1,8 @@
+owner = CAN
+controller = CAN
+add_core = CAN
+points = 1
+rare_materials = 3.00
+anti_air = 2
+infra = 8
+air_base = 4

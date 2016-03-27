@@ -1,0 +1,76 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = chinesegfx
+
+color = { 137  183  124 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill
+	battlefield_commisions
+	shrewd_commerce_practise
+	grand_army
+	merchant_adventures
+	national_trade_policy
+	engineer_corps
+	cabinet
+	divine_supremacy
+	bureaucracy
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Jayajyotimalla #0" = 10
+	"Jayayakshamalla #0" = 10
+	"Ratmamalla #0" = 10
+	"Suryamalla #0" = 10
+	"Amaramalla #0" = 10
+	"Narendramalla #0" = 10
+	"Mahendramalla #0" = 10
+	"Sadashivamalla #0" = 10
+	"Shivasimhamalla #0" = 10
+	"Lakshminarasimhamalla #0" = 10
+	"Pratapamalla #0" = 10
+	"Jayanripendramalla #0" = 10
+	"Parthivendramalla #0" = 10
+	"Bhupendramalla #0" = 10
+	"Bhaskaramalla #0" = 10
+	"Mahendrasimhamalla #0" = 10
+	"Jayaprakasamalla #0" = 10
+}
+
+leader_names = {
+	Bahadur
+	Bikram
+	Chauhans
+	Chhettri
+	Dev
+	Gorka
+	Katoch
+	Koirala
+	Magar
+	Rana
+	Shah
+	Yadav
+}
+
+ship_names = {
+	Arun Behri "Bhote Kosi" Devi
+	"Dudh Kosi" Durga Gayatri Jalsena
+	"Kala Jahazi" "Kali Gandaki" Karnali
+	Lakshmi "Lal Jahazi" Narayani Nausena
+	"Nav ka Yudh" "Nila Jahazi" Parvati
+	Radha Rapti Ratri Sagar "Sapt Kosi"
+	Sarasvati Sita Seti "Sun Kosi" Trishuli
+}

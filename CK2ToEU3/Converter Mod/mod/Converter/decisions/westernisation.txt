@@ -1,0 +1,288 @@
+country_decisions = {
+
+	eastern_westernisation = {
+		potential = {
+			OR = {
+				technology_group = eastern
+				technology_group = ottoman
+			}
+		}
+		allow = {
+			any_neighbor_country = {
+				technology_group = western
+				tech_difference = 20
+			}
+			NOT = { centralization_decentralization = -1 }
+			NOT = { innovative_narrowminded = -2 }
+			stability = 3
+			ADM = 6
+		}
+		effect = {
+			#Set new flag
+			set_country_flag = hidden_tooltip
+			random_owned = {
+				limit = {
+					owner = {
+						has_country_flag = hidden_tooltip
+						technology_group = eastern
+					}
+				}
+				owner = { set_country_flag = western_from_eastern }
+			}
+			random_owned = {
+				limit = {
+					owner = {
+						has_country_flag = hidden_tooltip
+						technology_group = ottoman
+					}
+				}
+				owner = { set_country_flag = western_from_ottoman }
+			}
+			clr_country_flag = hidden_tooltip
+			#Remove any old flags
+			clr_country_flag = eastern_from_muslim
+			technology_group = western
+			random_owned = {
+				base_tax = 1
+			}
+			innovative_narrowminded = -1
+			stability = -5
+			add_country_modifier = {
+				name = "western_influences"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	muslim_westernisation = {
+		potential = {
+			technology_group = muslim
+		}
+		allow = {
+			any_neighbor_country = {
+				OR = {
+					technology_group = western
+					technology_group = eastern
+				}
+				tech_difference = 20
+			}
+			NOT = { centralization_decentralization = -1 }
+			NOT = { innovative_narrowminded = -2 }
+			stability = 3
+			ADM = 6
+		}
+		effect = {
+			#Set new flag
+			set_country_flag = eastern_from_muslim
+			#Remove any old flags
+			clr_country_flag = muslim_from_sub_saharan
+			clr_country_flag = muslim_from_new_world
+			clr_country_flag = muslim_from_indian
+			clr_country_flag = muslim_from_chinese
+			clr_country_flag = muslim_from_nomad_group
+			technology_group = eastern
+			random_owned = {
+				base_tax = 1
+				change_manpower = 1
+			}
+			innovative_narrowminded = -1
+			stability = -5
+			add_country_modifier = {
+				name = "western_influences"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	rotw_westernisation = {
+		potential = {
+			OR = {
+				technology_group = sub_saharan
+				technology_group = new_world
+				technology_group = indian
+				technology_group = chinese
+				technology_group = nomad_group
+			}
+		}
+		allow = {
+			any_neighbor_country = {
+				OR = {
+					technology_group = western
+					technology_group = eastern
+					technology_group = ottoman
+					technology_group = muslim
+				}
+				tech_difference = 25
+			}
+			NOT = { centralization_decentralization = -1 }
+			NOT = { innovative_narrowminded = -2 }
+			stability = 3
+			ADM = 6
+		}
+		effect = {
+			set_country_flag = hidden_tooltip
+			random_owned = {
+				limit = {
+					owner = {
+						has_country_flag = hidden_tooltip
+						technology_group = sub_saharan
+					}
+				}
+				owner = { set_country_flag = muslim_from_sub_saharan }
+			}
+			random_owned = {
+				limit = {
+					owner = {
+						has_country_flag = hidden_tooltip
+						technology_group = new_world
+					}
+				}
+				owner = { set_country_flag = muslim_from_new_world }
+			}
+			random_owned = {
+				limit = {
+					owner = {
+						has_country_flag = hidden_tooltip
+						technology_group = indian
+					}
+				}
+				owner = { set_country_flag = muslim_from_indian }
+			}
+			random_owned = {
+				limit = {
+					owner = {
+						has_country_flag = hidden_tooltip
+						technology_group = chinese
+					}
+				}
+				owner = { set_country_flag = muslim_from_chinese }
+			}
+			random_owned = {
+				limit = {
+					owner = {
+						has_country_flag = hidden_tooltip
+						technology_group = nomad_group
+					}
+				}
+				owner = { set_country_flag = muslim_from_nomad_group }
+			}
+			clr_country_flag = hidden_tooltip
+			technology_group = muslim
+			random_owned = {
+				base_tax = 1
+				change_manpower = 1
+			}
+			innovative_narrowminded = -1
+			stability = -5
+			remove_faction = temples
+			remove_faction = bureaucrats
+			remove_faction = enuchs			
+			add_country_modifier = {
+				name = "western_influences"
+				duration = -1
+			}
+			
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	military_modernization_muslim = {
+		potential = {
+			technology_group = muslim
+			NOT = {
+				OR = {
+					unit_type = muslim
+					unit_type = western
+					unit_type = eastern
+				}
+			}
+		}
+		allow = {
+			stability = 3
+			NOT = { centralization_decentralization = -2 }
+			ADM = 7
+			NOT = { has_country_modifier = resist_western_influences }
+		}
+		effect = {
+			unit_type = muslim
+			stability = -6
+			centralization_decentralization = 2
+			add_country_modifier = {
+				name = "action_and_reaction"
+				duration = 730
+			}
+			remove_country_modifier = "western_influences"
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	military_modernization_eastern = {
+		potential = {
+			technology_group = eastern
+			NOT = {
+				OR = {
+					unit_type = eastern
+					unit_type = western
+				}
+			}
+		}
+		allow = {
+			stability = 3
+			NOT = { centralization_decentralization = -3 }
+			ADM = 7
+			NOT = { has_country_modifier = resist_western_influences }
+		}
+		effect = {
+			unit_type = eastern			
+			stability = -6
+			centralization_decentralization = 2
+			add_country_modifier = {
+				name = "action_and_reaction"
+				duration = 1095
+			}
+			remove_country_modifier = "western_influences"
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	military_modernization_western = {
+		potential = {
+			technology_group = western
+			NOT = {
+				unit_type = western
+			}
+		}
+		allow = {
+			stability = 3
+			NOT = { centralization_decentralization = -4 }
+			ADM = 7
+			NOT = { has_country_modifier = resist_western_influences }
+		}
+		effect = {
+			unit_type = western
+			stability = -6
+			centralization_decentralization = 2
+			add_country_modifier = {
+				name = "action_and_reaction"
+				duration = 1460
+			}
+			remove_country_modifier = "western_influences"
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+}

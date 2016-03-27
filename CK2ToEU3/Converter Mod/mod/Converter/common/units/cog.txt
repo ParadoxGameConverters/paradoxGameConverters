@@ -1,0 +1,6 @@
+#Cog
+type = transport
+
+hull_size = 20
+base_cannons = 10
+sail_speed = 5

@@ -1,0 +1,78 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 186  14  92 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill 
+	battlefield_commisions
+	colonial_ventures
+	grand_army
+	espionage
+	merchant_adventures
+	engineer_corps
+	national_trade_policy
+	bureaucracy
+	cabinet
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Thai Tong #0" = 20
+	"Nguyen Duc Trung #0" = 20
+	"Nguyen Van-Lang #0" = 20
+	"Nguyen Hoang Du #0" = 20
+	"Nguyen Kim #0" = 20
+	"Nguyen Hoang #0" = 20
+	"Nguyen Phuc-Nguyen #0" = 20
+	"Nguyen Phuc-Lan #0" = 20
+	"Nguyen Phuc-Tan #0" = 20
+	"Nguyen Phuc-Tran #0" = 20
+	"Nguyen Phuc-Chu #0" = 20
+	"Nguyen Phuc-Khoat #0" = 20
+	"Nguyen Phuc-Thuan #0" = 20
+	"Nguyen Phuc-Anh #0" = 20
+	"Nguyen Van-Hue #0" = 20
+	"Nguyen Quang-Toan #0" = 20
+	"Vi Muc De #0" = 20
+	"Hien Tong #0" = 20
+	"Thanh Tong #0" = 20
+	"Nahn Tong #0" = 20
+	"Thai To #1" = 20
+	"Hau Tran #1" = 20
+	"Chan-Tong #0" = 20
+	"Nguyen Minh-Tri #0" = 20
+}
+
+leader_names = {
+	Huynh 
+	Le 
+	Mac 
+	Ng Nguyen Nguyen-Dinh Nguyen-Khoa Nguyen-Tan 
+	Pham 
+	Tran 
+}
+
+ship_names = {
+	"Chiang-Mai"
+	"Do Thu"
+	"Kuan-yin"
+	"T'an Minh" "T'an Lung"
+	"T'an Bao" "Tai'Li"
+	"Thanh Hoa"
+	"Nan Chao"
+	"Nam Pung"
+}

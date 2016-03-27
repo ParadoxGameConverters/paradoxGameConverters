@@ -1,0 +1,11 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+metal = 3.00
+energy = 35.00
+industry = 8
+anti_air = 2
+infra = 9
+air_base = 10
+manpower = 2.00
+leadership = 0.50

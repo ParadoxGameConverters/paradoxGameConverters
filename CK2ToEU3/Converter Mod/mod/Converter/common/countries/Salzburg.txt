@@ -1,0 +1,103 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 149  119  9 }
+
+historical_ideas = {
+	national_conscripts
+	church_attendance_duty
+	military_drill
+	patron_of_art
+	grand_army
+	engineer_corps
+	national_bank
+	espionage
+	battlefield_commisions
+	scientific_revolution
+	national_trade_policy
+	glorious_arms
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Sigmund #0" = 60
+	"Friedrich #3" = 40
+	"Eberhard #2" = 40
+	"Johann #1" = 40
+	"Burkhard #1" = 20
+	"Andreas Jakob #0" = 20
+	"Bernhard #0" = 20
+	"Ferdinand #0" = 20
+	"Franz Anton #0" = 20
+	"Georg #0" = 20
+	"Gregor #0" = 20
+	"Guidobald #0" = 20
+	"Jakob Ernst #0" = 20
+	"Johann Ernst #0" = 20
+	"Johann Jakob #0" = 20
+	"Leonhard #0" = 20
+	"Leopold Anton #0" = 20
+	"Marcus Sittikus #0" = 20
+	"Matthäus #0" = 20
+	"Maximilian Gandolf #0" = 20
+	"Michael #0" = 20
+	"Paris #0" = 20
+	"Hyeronimus Franz Josef #0" = 20
+	"Wolf Dietrich #0" = 20
+	"Berthold #1" = 15
+	"Heinrich #1" = 15
+	"Ernst #0" = 15
+	"Leopold #0" = 15
+	"Benedikt #0" = 0
+	"Christian #0" = 0
+	"Clemens #0" = 0
+	"Gerhard #0" = 0
+	"Heinrich #0" = 0
+	"Hermann #0" = 0
+	"Jakob #0" = 0
+	"Oskar #0" = 0
+	"Otto #0" = 0
+	"Stefan #0" = 0
+	"Ulrich #0" = 0
+	"Wolfgang #0" = 0
+}
+
+leader_names = { 
+	Doppler Trakl Rendl Waggerl Mohr
+	Amanshauser Maislinger Bäck Scharl Aigner Mayer Witzigmann
+	Feiersinger Gruber Burgstaller Schönswetter Macheiner Rohracher  
+}
+
+ship_names = {
+	Gmunden
+	Hallein
+	Hallstatt
+	Pongau
+	Tennengau
+	Lungau
+	Pinzgau
+	Dachstein
+	Salzach
+	Hochkönig
+}
+
+army_names = {
+	"Erzbischofliche Garde" "Armee von $PROVINCE$" 
+}

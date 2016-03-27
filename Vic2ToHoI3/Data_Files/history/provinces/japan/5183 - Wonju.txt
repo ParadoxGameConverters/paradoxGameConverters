@@ -1,0 +1,4 @@
+owner = JAP
+
+controller = JAP add_core = JAP
+add_core = KOR infra = 5

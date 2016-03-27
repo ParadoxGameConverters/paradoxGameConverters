@@ -1,0 +1,9 @@
+owner = FIN
+controller = FIN
+add_core = FIN
+
+energy = 1.00
+industry = 1
+infra = 7
+naval_base = 2
+air_base = 3

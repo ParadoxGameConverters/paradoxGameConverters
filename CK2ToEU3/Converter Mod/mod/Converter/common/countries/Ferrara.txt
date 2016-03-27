@@ -1,0 +1,117 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 192  102  151 }
+
+historical_ideas = {
+	patron_of_art
+	merchant_adventures
+	national_trade_policy
+	church_attendance_duty
+	divine_supremacy 
+	national_conscripts
+	national_bank
+	engineer_corps
+	shrewd_commerce_practise
+	cabinet
+	military_drill
+	bureaucracy
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	italian_condotta
+	spanish_tercio
+	austrian_tercio
+	austrian_grenzer
+	french_dragoon
+	french_bluecoat
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Alfonso #0" = 40
+	"Ercole #0" = 40
+	"Niccolò #2" = 20
+	"Borso #1" = 20
+	"Leonello #0" = 20
+	"Alessandro #0" = 15
+	"Ferdinando #0" = 15
+	"Folco #0" = 15
+	"Luigi #0" = 15
+	"Sigismondo #0" = 15
+	"Alberto #1" = 10
+	"Francesco #0" = 10
+	"Ippolito #0" = 10
+	"Azzo #3" = 5
+	"Aldobrandino #2" = 5
+	"Obizzo #2" = 5
+	"Rinaldo #1" = 5
+	"Agostino #0" = 0
+	"Baldasare #0" = 0
+	"Carlo #0" = 0
+	"Cesare #0" = 0
+	"Cosimo #0" = 0
+	"Cristiano #0" = 0
+	"Davide #0" = 0
+	"Ennio #0" = 0
+	"Fulgenzio #0" = 0
+	"Gennaro #0" = 0
+	"Giulio #0" = 0
+	"Giuseppe #0" = 0
+	"Lazzaro #0" = 0
+	"Martino #0" = 0
+	"Nicola #0" = 0
+	"Ottavio #0" = 0
+	"Panfilo #0" = 0
+	"Prospero #0" = 0
+	"Renato #0" = 0
+	"Ruggiero #0" = 0
+	"Torquato #0" = 0
+	"Ugo #0" = 0
+	"Vincenzo #0" = 0
+}
+
+leader_names = {
+        Allegri "d'Appiani d'Aragona" Araldini "di Ardizzone" Ariosto Avanzini
+	Bacciochi Barberini Battisti Boiardo Boncompagni Boncompagni-Ludovisi
+	Calcagnini Catena Colonna "del Cossa" d'Este Farini "di Farnese" "di Ferrari"
+	Giardini Grandi Graziosi Gualandelli Gucciardini Loschi
+	Malmussi Marescalchi Menotti Mitelli Montecuccoli Montefeltro Nardi Nobili
+	Ordelaffi Pavironica Peretti Pico Pio Rangoni "de Roberti" Rossetti
+	Santarosa "di Sauli" Tassoni "de Tolomei" "della Torre" Tura Viridis Zini
+}
+
+ship_names = { 
+	Aguscello Albarea "Azzo VI d'Este"
+	Baura Boara "Borgo Scoline" Bova "Borso"
+	Casaglia Cassana "Castel Trivellino" "Chiesuol del Fosso" "Cocomaro di Cona"
+	"Cocomaro di Focomorto" Codrea Cona Contrapò Corlo Correggio
+	Denore
+	Ezzelino
+	Focomorto Francolino
+	Gaibana "Gaibanella Sant'Egidio" "Guglielmo Adelardi" 
+	"Malborghetto di Boara" "Malborghetto di Correggio" Marrara Mezzavia
+	Monestirolo Montalbano
+	"Niccoló III"
+	"Obizzo II"
+	Parasacco Pescara Pontegradella Pontelagoscuro "Ponte Travagli" Porotto Porporana
+	Quartesana
+	Ravalle
+	"S.Caterina" "S.Paolo" Sabbioni "San Bartolomeo in Bosco" "San Giorgio"
+	"San Martino" "San Mercuriale di Forlì" "San Michele" "Sant'Egidio" Spinazzino
+	Tedaldo "Torre della Fossa"
+	Uccellino 
+	Viconovo Villanova
+}
+
+army_names = {
+	"Armata di $PROVINCE$"
+}

@@ -1,0 +1,101 @@
+#Riga
+
+graphical_culture = easterngfx
+
+color = { 183  176  194 }
+
+historical_ideas = {
+	merchant_adventures
+	shrewd_commerce_practise
+	national_conscripts
+	glorious_arms
+	national_trade_policy
+	military_drill
+	cabinet
+	national_bank
+	grand_army
+	engineer_corps
+	church_attendance_duty
+	scientific_revolution
+}
+
+historical_units = {
+	eastern_medieval_infantry
+	eastern_knights
+	slavic_stradioti
+	eastern_militia
+	hungarian_hussar
+	polish_musketeer
+	polish_hussar
+	polish_tercio
+	polish_winged_hussar
+	russian_lancer
+	russian_cuirassier
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+}
+
+monarch_names = {
+	"Johann #4" = 60
+	"Henning #0" = 20
+	"Kaspar #0" = 20
+	"Michael #0" = 20
+	"Silvester #0" = 20
+	"Stefan #0" = 20
+	"Thomas #0" = 20
+	"Wilhelm #0" = 20
+	"Fromhold #1" = 15
+	"Henning #1" = 15
+	"Siegfried #1" = 15
+	"Albrecht #2" = 10
+	"Engelbert #1" = 10
+	"Friedrich #1" = 10
+	"Nikolaus #1" = 10
+	"Adalbert #0" = 0
+	"Adam #0" = 0
+	"Arnold #0" = 0
+	"Bernhard #0" = 0
+	"Bonifaz #0" = 0
+	"Cornelius #0" = 0
+	"Dietrich #0" = 0
+	"Egon #0" = 0
+	"Ferdinand #0" = 0
+	"Gregor #0" = 0
+	"Günther #0" = 0
+	"Humbert #0" = 0
+	"Isidor #0" = 0
+	"Joseph #0" = 0
+	"Konstantin #0" = 0
+	"Lothar #0" = 0
+	"Marcel #0" = 0
+	"Markus #0" = 0
+	"Matthias #0" = 0
+	"Oskar #0" = 0
+	"Pankraz #0" = 0
+	"Rudolf #0" = 0
+	"Siegbert #0" = 0
+	"Theodor #0" = 0
+	"Xaver #0" = 0
+}
+
+leader_names = { 
+	Stayn Finkelstein
+	Kanter Neiman Saper
+	Levin Neiman
+	Elkins Herder Balderis 
+	Eisenstein Strok Tal 
+	Zander "von Nauen" 
+	Suerbeer "von Lune" 
+	"von Vechten" "von Schwerin"
+	Takkon "von Pernstein"
+	"von Dolen" Blomberg
+	"Von Sinten" "von Wallenrodt"
+	Ambundi Scharpenberg
+}
+
+ship_names = {
+	George "Maria Mighell" Cristofer
+	Barbara Margaret Leonard Thomas
+	Julian Johan Katerina
+}

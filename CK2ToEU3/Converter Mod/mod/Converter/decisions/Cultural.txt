@@ -1,0 +1,155 @@
+country_decisions = {
+
+	cultural_shift = {
+		potential = {
+			capital_scope = {
+				NOT = { culture = THIS }
+			}
+			OR = {
+				NOT = { tag = FRA }
+				AND = {
+					tag = FRA
+					capital_scope = { culture_group = french }  # could have been formed by basque or breton
+				}
+			}
+			OR = {
+				NOT = { tag = GBR }
+				AND = {
+					tag = GBR
+					capital_scope = { culture_group = british }  # could have been formed by welsh
+				}
+			}
+			NOT = { tag = SCA }
+			NOT = { tag = GER }
+			OR = {
+				NOT = { tag = HRE }
+				AND = {
+					tag = HRE
+					capital_scope = { culture_group = germanic }  # could have been formed by any culture
+				}
+			}
+			NOT = { tag = PAP }
+			NOT = { tag = ITA }
+			OR = {
+				NOT = { tag = SPA }
+				AND = {
+					tag = SPA
+					capital_scope = { culture_group = iberian }  # could have been formed by basque
+				}
+			}
+			NOT = { tag = RUS }
+			NOT = { tag = BYZ }
+			OR = {
+				NOT = { tag = PER }
+				AND = {
+					tag = PER
+					capital_scope = { culture_group = iranian }  # could have been formed by azerbadjani
+				}
+			}
+			NOT = { tag = KHA }
+			NOT = { tag = JAP }
+			NOT = { tag = MCH }
+			NOT = { tag = MNG }
+			NOT = { tag = PRU }
+		}
+		allow =  {
+			dominant_culture = CAPITAL
+			stability = 1
+			war = no 
+			is_subject = false
+		}
+	  	effect = {
+			primary_culture = CAPITAL
+			stability = -5
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+province_decisions = {
+	support_local_customs = {
+		potential = {
+			has_national_focus = yes
+			has_owner_culture = no
+			has_owner_religion = yes
+			NOT = { has_province_modifier = local_customs }
+			owner = { 
+				NOT = { 
+					innovative_narrowminded = 0 
+				} 
+			}
+		}
+		allow = {
+			owner = { 
+				dip = 5
+				officials = 4
+			}
+		}
+		effect = {
+			add_province_modifier = {
+				name = "local_customs"
+				duration = -1
+			}
+			owner = {
+				officials = -4
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.0
+				has_owner_culture = yes
+			}
+			modifier = {
+				factor = 0.0
+				has_owner_religion = yes
+			}
+			modifier = {
+				factor = 0.0
+				is_core = THIS
+			}
+			modifier = {
+				factor = 0.0
+				NOT = { revolt_risk = 6 }
+			}
+		}
+	}
+	
+	promote_cultural_unity = {
+		
+		potential = {
+			owner = { culture_group = THIS }
+			has_owner_religion = yes
+			
+			any_core = {
+				exists = no
+	 		}
+		}
+		
+		allow = {
+			has_national_focus = yes
+			NOT = { nationalism = 1 }
+			owner = { 
+				officials = 2
+			}
+		}
+		
+		effect = {
+			any_core = { 
+				limit = { exists = no }
+				remove_core = THIS
+			}
+			
+			owner = {
+				officials = -2
+			}
+		}
+		
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+}

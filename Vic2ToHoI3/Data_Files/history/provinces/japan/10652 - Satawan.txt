@@ -1,0 +1,4 @@
+owner = JAP
+controller = JAP
+add_core = JAP
+infra = 6naval_base = 1

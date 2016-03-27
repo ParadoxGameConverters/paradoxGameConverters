@@ -1,0 +1,113 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 187  79  86 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms 
+	grand_army
+	military_drill
+	battlefield_commisions 
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	national_trade_policy
+	espionage
+	smithian_economics
+	cabinet
+}
+
+historical_units = {
+	indian_footsoldier
+	rajput_hill_fighters
+	indian_arquebusier
+	mughal_musketeer
+	mughal_mansabdar
+	indian_elephant
+	indian_shock_cavalry
+	rajput_musketeer
+	reformed_mughal_musketeer
+	reformed_mughal_mansabdar
+	sikh_hit_and_run
+	sikh_rifle
+}
+
+monarch_names = {
+	"Jassa Ahuwalia #0" = 20
+	"Lahina #0" = 20
+	"Ranjit #0" = 20
+	"Bhag #0" = 10
+	"Kharak #0" = 10
+	"Duleep #0" = 10
+	"Fateh #0" = 5
+	"Maha #0" = 5
+	"Sobha #0" = 5
+	"Narnak #0" = 5
+	"Angad #0" = 5
+	"Amar #0" = 5
+	"Ram #0" = 5
+	"Arjan #0" = 5
+	"Gobind #0" = 5
+	"Rai #0" = 5
+	"Krishan #0" = 5
+	"Bahadur #0" = 5
+	"Sardar Badar #1" = 1
+	"Balbir #0" = 0
+	"Bhalla #0" = 0
+	"Daya #0" = 0
+	"Dharem #0" = 0
+	"Fakir #0" = 0
+	"Gahunia #0" = 0
+	"Gian #0" = 0
+	"Granth #0" = 0
+	"Himmat #0" = 0
+	"Hoora #0" = 0
+	"Ishnar #0" = 0
+	"Jhol #0" = 0
+	"Jhotti #0" = 0
+	"Lohaar #0" = 0
+	"Mokham #0" = 0
+	"Nand #0" = 0
+	"Parmanand #0" = 0
+	"Rajsingh #0" = 0
+	"Sanlib #0" = 0
+	"Sardul #0" = 0
+	"Shabeg #0" = 0
+	"Shergill #0" = 0
+	"Sodhi #0" = 0
+	"Sohal #0" = 0
+	"Tara #0" = 0
+	"Udasi #0" = 0
+}
+
+leader_names = {
+	Bahadur
+	Bhalla
+	Das
+	Dev
+	Gahunia
+	Gobind
+	Granth
+	Hoora
+	Jhol
+	Jhotti
+	Krishan
+	Lohaar
+	Parmanand
+	Rajsingh
+	Shergill
+	Singh
+	Sodhi
+	Sohal
+	Rai
+	Udasi
+}
+
+ship_names = {
+	Beas Chenab Devi Gayatri Guru Indus
+	Jalsena Jhelum Lakshmi Nausena
+	"Nav ka Yudh" Parvati Radha Ratri
+	Ravi Sagar Sutlej Sarasvati Sita
+}

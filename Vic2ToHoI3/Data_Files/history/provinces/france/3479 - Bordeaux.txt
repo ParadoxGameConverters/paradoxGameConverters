@@ -1,0 +1,35 @@
+owner = FRA
+
+controller = FRA
+
+add_core = FRA
+
+points = 4
+
+industry = 4
+
+anti_air = 3
+
+infra = 9
+
+coastal_fort = 1
+
+air_base = 4
+
+naval_base = 6
+
+manpower = 2.00
+
+leadership = 0.30
+
+1941.6.22 = {
+	controller = GER
+}
+
+1943.2.1 = { land_fort = 2 coastal_fort = 4 }
+
+1944.6.20 = { land_fort = 3 coastal_fort = 6 }
+
+1944.12.01 = {
+	controller = USA
+}

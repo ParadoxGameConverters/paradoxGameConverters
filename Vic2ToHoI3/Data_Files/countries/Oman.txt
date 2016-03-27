@@ -1,0 +1,295 @@
+color = { 166  191  167 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"Omani al-Mushati al-1i" "Omani al-Mushati al-2i" "Omani al-Mushati al-3i" "Omani al-Mushati al-4i" "Omani al-Mushati al-5i" "Omani al-Mushati al-6i" "Omani al-Mushati al-7i" "Omani al-Mushati al-8i" "Omani al-Mushati al-9i" "Omani al-Mushati al-10i" "Omani al-Mushati al-12r" 
+		"Omani al-Mushati al-13r" "Omani al-Mushati al-14r" "Omani al-Mushati al-15r" "Omani al-Mushati al-16r" "Omani al-Mushati al-17r" "Omani al-Mushati al-18r" "Omani al-Mushati al-19r" "Omani al-Mushati al-20r" 
+	}
+	cavalry_brigade = {
+		"Omani Sipahis al-1i" "Omani Sipahis al-2i" "Omani Sipahis al-3i" "Omani Sipahis al-4i" "Omani Sipahis al-5i" "Omani Sipahis al-6i" "Omani Sipahis al-7i" "Omani Sipahis al-8i" "Omani Sipahis al-9i" "Omani Sipahis al-10i" "Omani Sipahis al-11r" 
+		"Omani Sipahis al-12r" "Omani Sipahis al-13r" "Omani Sipahis al-14r" "Omani Sipahis al-15r" 
+	}
+	motorized_brigade = {
+		"Omani al-Mushati al-1i" "Omani al-Mushati al-2i" "Omani al-Mushati al-3i" "Omani al-Mushati al-4i" "Omani al-Mushati al-5i" "Omani al-Mushati al-6i" "Omani al-Mushati al-7i" "Omani al-Mushati al-8i" "Omani al-Mushati al-9i" "Omani al-Mushati al-10i" "Omani al-Mushati al-12r" 
+		"Omani al-Mushati al-13r" "Omani al-Mushati al-14r" "Omani al-Mushati al-15r" "Omani al-Mushati al-16r" "Omani al-Mushati al-17r" "Omani al-Mushati al-18r" "Omani al-Mushati al-19r" "Omani al-Mushati al-20r" 
+	}
+	mechanized_brigade = {
+		"Omani al-Mushati al-1i" "Omani al-Mushati al-2i" "Omani al-Mushati al-3i" "Omani al-Mushati al-4i" "Omani al-Mushati al-5i" "Omani al-Mushati al-6i" "Omani al-Mushati al-7i" "Omani al-Mushati al-8i" "Omani al-Mushati al-9i" "Omani al-Mushati al-10i" "Omani al-Mushati al-12r" 
+		"Omani al-Mushati al-13r" "Omani al-Mushati al-14r" "Omani al-Mushati al-15r" "Omani al-Mushati al-16r" "Omani al-Mushati al-17r" "Omani al-Mushati al-18r" "Omani al-Mushati al-19r" "Omani al-Mushati al-20r" 
+	}
+	light_armor_brigade = {
+		"Omani Sipahis al-1i" "Omani Sipahis al-2i" "Omani Sipahis al-3i" "Omani Sipahis al-4i" "Omani Sipahis al-5i" "Omani Sipahis al-6i" "Omani Sipahis al-7i" "Omani Sipahis al-8i" "Omani Sipahis al-9i" "Omani Sipahis al-10i" 
+	}
+	armor_brigade = {
+		"Omani Sipahis al-1i" "Omani Sipahis al-2i" "Omani Sipahis al-3i" "Omani Sipahis al-4i" "Omani Sipahis al-5i" "Omani Sipahis al-6i" "Omani Sipahis al-7i" "Omani Sipahis al-8i" "Omani Sipahis al-9i" "Omani Sipahis al-10i" 
+	}
+	paratrooper_brigade = {
+		"Omani al-Mushati al-20r" "Omani al-Mushati al-21r" "Omani al-Mushati al-22r" "Omani al-Mushati al-23r" "Omani al-Mushati al-24r" "Omani al-Mushati al-25r" "Omani al-Mushati al-26r" "Omani al-Mushati al-27r" "Omani al-Mushati al-28r" "Omani al-Mushati al-29r" "Omani al-Mushati al-30r" 
+			}
+	marine_brigade = {
+		"Omani al-Mushati al-20r" "Omani al-Mushati al-21r" "Omani al-Mushati al-22r" "Omani al-Mushati al-23r" "Omani al-Mushati al-24r" "Omani al-Mushati al-25r" "Omani al-Mushati al-26r" "Omani al-Mushati al-27r" "Omani al-Mushati al-28r" "Omani al-Mushati al-29r" "Omani al-Mushati al-30r" 
+			}
+	bergsjaeger_brigade = {
+		"Omani al-Mushati al-20r" "Omani al-Mushati al-21r" "Omani al-Mushati al-22r" "Omani al-Mushati al-23r" "Omani al-Mushati al-24r" "Omani al-Mushati al-25r" "Omani al-Mushati al-26r" "Omani al-Mushati al-27r" "Omani al-Mushati al-28r" "Omani al-Mushati al-29r" "Omani al-Mushati al-30r" 
+			}
+	garrison_brigade = {
+		"Omani al-Mushati al-1i" "Omani al-Mushati al-2i" "Omani al-Mushati al-3i" "Omani al-Mushati al-4i" "Omani al-Mushati al-5i" "Omani al-Mushati al-6i" "Omani al-Mushati al-7i" "Omani al-Mushati al-8i" "Omani al-Mushati al-9i" "Omani al-Mushati al-10i" "Omani al-Mushati al-12r" 
+		"Omani al-Mushati al-13r" "Omani al-Mushati al-14r" "Omani al-Mushati al-15r" "Omani al-Mushati al-16r" "Omani al-Mushati al-17r" "Omani al-Mushati al-18r" "Omani al-Mushati al-19r" "Omani al-Mushati al-20r" 
+	}
+	hq_brigade = {
+		"1st Omani Army" "2nd Omani Army" "3rd Omani Army" "4th Omani Army" "5th Omani Army" 
+	}
+	militia_brigade = {
+		"Omani al-Milishiya al-1i" "Omani al-Milishiya al-2i" "Omani al-Milishiya al-3i" "Omani al-Milishiya al-4i" "Omani al-Milishiya al-5i" "Omani al-Milishiya al-6i" "Omani al-Milishiya al-7i" "Omani al-Milishiya al-8i" "Omani al-Milishiya al-9i" "Omani al-Milishiya al-10i" "Omani al-Milishiya al-11r" 
+		"Omani al-Milishiya al-12r" "Omani al-Milishiya al-13r" "Omani al-Milishiya al-14r" "Omani al-Milishiya al-15r" "Omani al-Milishiya al-16r" "Omani al-Milishiya al-17r" "Omani al-Milishiya al-18r" "Omani al-Milishiya al-19r" "Omani al-Milishiya al-20r" "Omani al-Milishiya al-21r" "Omani al-Milishiya al-22r" 
+		"Omani al-Milishiya al-23r" "Omani al-Milishiya al-24r" "Omani al-Milishiya al-25r" 
+	}
+	multi_role = {
+		"1. ROAF Fighter Group" "2. ROAF Fighter Group" "3. ROAF Fighter Group" "4. ROAF Fighter Group" "5. ROAF Fighter Group" "6. ROAF Fighter Group" "7. ROAF Fighter Group" "8. ROAF Fighter Group" "9. ROAF Fighter Group" "10. ROAF Fighter Group" 
+	}
+	interceptor = {
+		"1. ROAF Fighter Group" "2. ROAF Fighter Group" "3. ROAF Fighter Group" "4. ROAF Fighter Group" "5. ROAF Fighter Group" "6. ROAF Fighter Group" "7. ROAF Fighter Group" "8. ROAF Fighter Group" "9. ROAF Fighter Group" "10. ROAF Fighter Group" "1. ROAF Fighter Group" 
+		"2. ROAF Fighter Group" "3. ROAF Fighter Group" "4. ROAF Fighter Group" "5. ROAF Fighter Group" "6. ROAF Fighter Group" "7. ROAF Fighter Group" "8. ROAF Fighter Group" "9. ROAF Fighter Group" "10. ROAF Fighter Group" 
+	}
+	strategic_bomber = {
+		"11. ROAF Strategic Bomb Group" "12. ROAF Strategic Bomb Group" "13. ROAF Strategic Bomb Group" "14. ROAF Strategic Bomb Group" "15. ROAF Strategic Bomb Group" "16. ROAF Strategic Bomb Group" 
+	}
+	tactical_bomber = {
+		"21. ROAF Tactical Bomb Group" "22. ROAF Tactical Bomb Group" "23. ROAF Tactical Bomb Group" "24. ROAF Tactical Bomb Group" "25. ROAF Tactical Bomb Group" "26. ROAF Tactical Bomb Group" 
+	}
+	naval_bomber = {
+		"41. ROAF Marine Bomb Group" "42. ROAF Marine Bomb Group" "43. ROAF Marine Bomb Group" "44. ROAF Marine Bomb Group" "45. ROAF Marine Bomb Group" "51. ROAF Torpedo Group" "52. ROAF Torpedo Group" "53. ROAF Torpedo Group" "54. ROAF Torpedo Group" "55. ROAF Torpedo Group" "56. ROAF Torpedo Group" 
+			}
+	cas = {
+		"31. ROAF Dive Bomb Group" "32. ROAF Dive Bomb Group" "33. ROAF Dive Bomb Group" "34. ROAF Dive Bomb Group" "35. ROAF Dive Bomb Group" 
+	}
+	transport_plane = {
+		"61. ROAF Airtransport" "62. ROAF Airtransport" "63. ROAF Airtransport" "64. ROAF Airtransport" 
+	}
+	battleship = {
+		"SNV Masqat" "SNV Matrah" 
+	}
+	light_cruiser = {
+		"SNV Salalah" "SNV Raysut" "SNV Mirbah" "SNV Sawqirah" "SNV Duqm" 
+	}
+	heavy_cruiser = {
+		"SNV Salalah" "SNV Raysut" "SNV Mirbah" "SNV Sawqirah" "SNV Duqm" 
+	}
+	battlecruiser = {
+		"SNV al-Qahira" "SNV Salah al-Din" "SNV Mehemet Ali" 
+	}
+	destroyer = {
+		"Omani Torpedo Flotilla no. 1" "Omani Torpedo Flotilla no. 2" "Omani Torpedo Flotilla no. 3" "Omani Torpedo Flotilla no. 4" "Omani Torpedo Flotilla no. 5" "Omani Torpedo Flotilla no. 6" "Omani Torpedo Flotilla no. 7" "Omani Torpedo Flotilla no. 8" "Omani Torpedo Flotilla no. 9" "Omani Torpedo Flotilla no. 10" 
+	}
+	carrier = {
+		"SNV Salah al-Din" 
+	}
+	submarine = {
+		"Ustul al-Ghawwasati al-1i" "Ustul al-Ghawwasati al-2i" "Ustul al-Ghawwasati al-3i" "Ustul al-Ghawwasati al-4i" "Ustul al-Ghawwasati al-5i" "Ustul al-Ghawwasati al-6i" "Ustul al-Ghawwasati al-7i" "Ustul al-Ghawwasati al-8i" "Ustul al-Ghawwasati al-9i" "Ustul al-Ghawwasati al-10i" 
+	}
+	transport_ship = {
+		"Ustul al-Hamli al-1i" "Ustul al-Hamli al-2i" "Ustul al-Hamli al-3i" "Ustul al-Hamli al-4i" "Ustul al-Hamli al-5i" "Ustul al-Hamli al-6i" "Ustul al-Hamli al-7i" "Ustul al-Hamli al-8i" "Ustul al-Hamli al-9i" "Ustul al-Hamli al-10i" 
+	}
+
+}
+
+ministers = {
+	92001 = {
+		name = "Said ibn Timur"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M92001
+		head_of_state = ruthless_powermonger
+		head_of_government = backroom_backstabber
+		foreign_minister = general_staffer
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		minister_of_security = efficient_sociopath
+		start_date = 1936.1.1
+	}
+	92004 = {
+		name = "James E. Drummond"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M92004
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	92005 = {
+		name = "Henry L.W.L. Burnham"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M92005
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	92006 = {
+		name = "Geoffrey Dennis"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M92006
+		minister_of_intelligence = technical_specialist
+		start_date = 1936.1.1
+	}
+	92009 = {
+		name = "Geoffrey Claydon"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M92009
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	92010 = {
+		name = "Abdallah ibn Timur"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M92010
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+	92011 = {
+		name = "Herbert A. Laurens-Fisher"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M92011
+		foreign_minister = great_compromiser
+		start_date = 1939.1.1
+	}
+	92012 = {
+		name = "Ibrahim ibn Timur"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M92012
+		foreign_minister = iron_fisted_brute
+		start_date = 1944.1.1
+	}
+	92013 = {
+		name = "Arthur Henderson"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M92013
+		armament_minister = infantry_proponent
+		start_date = 1941.1.1
+	}
+	92014 = {
+		name = "James H. Thomas"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M92014
+		armament_minister = laissez_faires_capitalist
+		start_date = 1943.1.1
+	}
+	92015 = {
+		name = "Ali ibn Timur"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M92015
+		armament_minister = corrupt_kleptocrat
+		start_date = 1945.1.1
+	}
+	92016 = {
+		name = "Robert Bannatyne Finlay"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M92016
+		minister_of_security = silent_lawyer
+		start_date = 1940.1.1
+	}
+	92018 = {
+		name = "Harold Beresford-Butler"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M92018
+		minister_of_intelligence = industrial_specialist
+		start_date = 1942.1.1
+	}
+	92019 = {
+		name = "P.A. Mann"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M92019
+		chief_of_staff = school_of_fire_support
+		start_date = 1938.1.1
+	}
+	92020 = {
+		name = "Angus Douglas-Hamilton"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M92020
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1941.1.1
+	}
+	92021 = {
+		name = "Jamil ibn Timur"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M92021
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1945.1.1
+	}
+	92022 = {
+		name = "Eric Wright"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M92022
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1938.1.1
+	}
+	92024 = {
+		name = "Zahir ibn Timur"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M92024
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1945.1.1
+	}
+	92025 = {
+		name = "Derek Leaf"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M92025
+		chief_of_navy = indirect_approach_doctrine
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1943.1.1
+	}
+	92027 = {
+		name = "R.E. Martin"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M92027
+		chief_of_air = army_aviation_doctrine
+		start_date = 1941.1.1
+	}
+	92028 = {
+		name = "Fawzi ibn Timur"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M92028
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1945.1.1
+	}
+}

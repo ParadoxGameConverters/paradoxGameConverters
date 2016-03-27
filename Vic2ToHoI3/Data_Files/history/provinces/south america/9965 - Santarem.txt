@@ -1,0 +1,5 @@
+owner = BRA
+controller = BRA
+add_core = BRA
+rare_materials = 3.00
+infra = 4

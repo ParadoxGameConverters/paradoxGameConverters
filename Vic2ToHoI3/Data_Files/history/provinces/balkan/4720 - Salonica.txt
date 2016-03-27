@@ -1,0 +1,18 @@
+owner = GRE
+controller = GRE
+add_core = GRE
+
+points = 1
+metal = 6.00
+energy = 2.00
+rare_materials = 1.00
+industry = 2
+
+anti_air = 2
+infra = 8
+naval_base = 4
+manpower = 2.00
+leadership = 0.20
+1941.4.30 = {
+	controller = GER
+}

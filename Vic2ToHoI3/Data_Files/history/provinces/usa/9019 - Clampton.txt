@@ -1,0 +1,13 @@
+owner = USA
+controller = USA
+add_core = USA
+points = 1
+metal = 9.00
+energy = 127.00
+rare_materials = 1.00
+industry = 6
+anti_air = 1
+infra = 8
+air_base = 4
+manpower = 3.00
+leadership = 0.60

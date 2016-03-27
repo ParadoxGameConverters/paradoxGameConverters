@@ -1,0 +1,8 @@
+owner = IRQ
+controller = IRQ
+add_core = IRQ
+infra = 6
+manpower = 1.00
+leadership = 0.10
+
+1941.5.31 = {	owner = ENG	controller = ENG}

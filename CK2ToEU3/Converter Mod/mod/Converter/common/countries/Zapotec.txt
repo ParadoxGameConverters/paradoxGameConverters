@@ -1,0 +1,98 @@
+#Country Name: Please see filename.
+
+graphical_culture = northamericagfx
+
+color = { 158  118  120 }
+
+historical_ideas = {
+	deus_vult
+	divine_supremacy
+	patron_of_art
+	national_conscripts
+	military_drill
+	glorious_arms
+	battlefield_commisions
+	superior_seamanship
+	merchant_adventures
+	excellent_shipwrights
+	espionage
+	sea_hawks
+}
+
+historical_units = {
+	south_american_spearmen
+	zapotec_tribal_warfare
+	zapotec_plains_warfare
+	zapotec_gunpowder_warfare
+	westernized_zapotec
+	mexican_guerilla_warfare
+}
+
+monarch_names = {
+	"Cocijoeza #0" = 20
+	"Cocijopi Xolo #0" = 20
+	"Nucano #0" = 20
+	"Cocijocza #1" = 15
+	"Cocijopi #1" = 15
+	"Zaachilla #1" = 15
+	"Cocijouza #0" = 10
+	"Cocijopi Jzió #0" = 10
+	"Pwuix Dao #0" = 10
+	"Beljjw #0" = 0
+	"Bibejw #0" = 0
+	"Binech #0" = 0
+	"Bzojj Chsáaxcejj #0" = 0
+	"Cháalaxa #0" = 0
+	"Chonna Bicu #0" = 0
+	"Coqui #0" = 0
+	"Djoraxa #0" = 0
+	"Gwèibóoné #0" = 0
+	"Gyazob #0" = 0
+	"Gyejj #0" = 0
+	"Ipalnemoani #0" = 0
+	"Ji Jzió #0" = 0
+	"Jituh #0" = 0
+	"Jzió #0" = 0
+	"Láxdaóxo #0" = 0
+	"Lyebe #0" = 0
+	"Mbalaz #0" = 0
+	"Na Yel #0" = 0
+	"Naquichinisa #0" = 0
+	"Naxiñanguiiu #0" = 0
+	"Ngolbex An #0" = 0
+	"Nguiiu Rire #0" = 0
+	"Nisa Ro #0" = 0
+	"Pijje Jzió #0" = 0
+	"Tobi Rusiguunda #0" = 0
+	"Véeni #0" = 0
+	"Veziá #0" = 0
+	"Zne Yel #0" = 0
+	"Zniá #0" = 0
+	"Zyrx #0" = 0
+}
+
+leader_names = {
+	Beljjw Bibejw Binech "Bzojj Chsáaxcejj"
+	Cháalaxa Coqui
+	Djoraxa
+	Gwpeibóoné Gyazob Gyejj
+	"Ji Jzió" Jituh Jzió
+	Láxdaóxo Lyebe
+	Mbalaz
+	"Na Yel" "Ngolbex An"
+	"Pijje Jzió" "Pwuix Dao"
+	Véeni Vziá
+	"Zne Yel" Zniá Zyrx
+}
+
+ship_names = {
+	Atoyac Atzompa
+	Chalchiuhtlicue Chico Cocijo
+	Ipalnemoani
+	"Monte Alban"
+	Necocyautl Nahuatl
+	Oaxaca Omacatl
+	Quetzalcoatl
+	Tlaloc Tezcatlipoca Tecciztecatl
+	Xochiquetzal
+}

@@ -1,0 +1,11 @@
+owner = JAP
+
+controller = JAP
+
+add_core = JAP
+
+points = 2
+anti_air = 2
+infra = 4
+air_base = 6
+naval_base = 6

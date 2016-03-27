@@ -1,0 +1,204 @@
+# Copyright (c) 2015 The Paradox Game Converters Project
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+
+mappings={
+
+#Direct Mappings
+#This is essentially one-to-one country mappings to ensure that countries that are available in BOTH V2 and HoI3 get the correct tag.
+#For example, if Spain is active in V2 it will always become Spain in HoI3 after conversion.
+
+#The links that come first in the list are executed before the links after it.
+
+link = { vic = ENG hoi = ENG }	# Great Britain	=> United Kingdom
+link = { vic = RUS hoi = SOV }	# Russia 	=> Soviet Union
+link = { vic = FRA hoi = FRA }	# France
+link = { vic = GER hoi = GER }	# Germany
+link = { vic = AUS hoi = AUS }	# Austria
+link = { vic = USA hoi = USA }	# United States
+link = { vic = JAP hoi = JAP }	# Japan
+link = { vic = ITA hoi = ITA }	# Italy
+
+link = { vic = DEN hoi = DEN }	# Denmark
+link = { vic = FIN hoi = FIN }	# Finland
+link = { vic = NOR hoi = NOR }	# Norway
+link = { vic = SWE hoi = SWE }	# Sweden
+link = { vic = ICL hoi = ICL }	# Iceland
+
+link = { vic = BEL hoi = BEL }	# Belgium
+link = { vic = IRE hoi = IRE }	# Ireland
+link = { vic = NET hoi = HOL }	# Netherlands
+link = { vic = POR hoi = POR }	# Portugal
+link = { vic = SPA hoi = SPR }	# Spain
+
+link = { vic = LUX hoi = LUX }	# Luxembourg
+
+link = { vic = EST hoi = EST }	# Estonia
+link = { vic = LIT hoi = LIT }	# Lithuania
+link = { vic = LAT hoi = LAT }	# Latvia
+link = { vic = HUN hoi = HUN }	# Hungary
+link = { vic = POL hoi = POL }	# Poland
+link = { vic = SLV hoi = SLO }	# Slovakia
+link = { vic = SWI hoi = SCH }	# Switzerland
+link = { vic = ROM hoi = ROM }	# Romania	=> Romania
+link = { vic = CZH hoi = CZE }	# Czechoslovakia
+
+link = { vic = ALB hoi = ALB }	# Albania
+link = { vic = BUL hoi = BUL }	# Bulgaria
+link = { vic = GRE hoi = GRE }	# Greece
+link = { vic = TUR hoi = TUR }	# Ottomans	=> Turkey
+link = { vic = YUG hoi = YUG }	# Yugoslavia
+
+link = { vic = EGY hoi = EGY }	# Egypt
+link = { vic = LIB hoi = LIB }	# Liberia
+link = { vic = ETH hoi = ETH }	# Ethiopia
+link = { vic = SAF hoi = SAF }	# South Africa
+
+link = { vic = AFG hoi = AFG }	# Afghanistan
+link = { vic = IRQ hoi = IRQ }	# Iraq
+link = { vic = ISR hoi = ISR }	# Israel
+link = { vic = NEJ hoi = SAU }	# Nejd		=> Saudi Arabia
+link = { vic = OMA hoi = OMN }	# Oman
+link = { vic = PER hoi = PER }	# Persia
+link = { vic = YEM hoi = YEM }	# Yemen
+
+link = { vic = HND hoi = IND }	# India
+link = { vic = NEP hoi = NEP }	# Nepal
+
+link = { vic = BHU hoi = BHU }	# Bhutan
+link = { vic = CHI hoi = CHI }	# China
+link = { vic = JAV hoi = INO }	# Java		=> Indonesia
+link = { vic = KOR hoi = KOR }	# Korea
+link = { vic = SIA hoi = SIA }	# Siam
+link = { vic = TIB hoi = TIB }	# Tibet
+link = { vic = MGL hoi = MON }	# Mongolia
+link = { vic = PHI hoi = PHI }	# Phillipines
+link = { vic = MCK hoi = MAN }	# Manchukuo
+link = { vic = GXI hoi = CGX }	# Guangxi Clique
+link = { vic = SXI hoi = CSX }	# Shanxi
+link = { vic = YNN hoi = CYN }	# Yunnan
+link = { vic = XBI hoi = CXB }	# Xibei San Ma
+link = { vic = XIN hoi = SIK }	# Xinjiang	=> Sinkiang
+
+link = { vic = CAN hoi = CAN }	# Canada
+link = { vic = COS hoi = COS }	# Costa Rica
+link = { vic = CUB hoi = CUB }	# Cuba
+link = { vic = DOM hoi = DOM }	# Dominican Republic
+link = { vic = ELS hoi = SAL }	# El Salvador
+link = { vic = GUA hoi = GUA }	# Guatamala
+link = { vic = HAI hoi = HAI }	# Haiti
+link = { vic = MEX hoi = MEX }	# Mexico
+link = { vic = HON hoi = HON }	# Honduras
+link = { vic = NIC hoi = NIC }	# Nicaragua
+link = { vic = PNM hoi = PAN }	# Panama
+
+link = { vic = ARG hoi = ARG }	# Argentina
+link = { vic = BOL hoi = BOL }	# Bolivia
+link = { vic = BRZ hoi = BRA }	# Brazil
+link = { vic = CHL hoi = CHL }	# Chile
+link = { vic = CLM hoi = COL }	# Columbia
+link = { vic = ECU hoi = ECU }	# Ecuador
+link = { vic = PEU hoi = PRU }	# Peru
+link = { vic = PRG hoi = PAR }	# Paraguay
+link = { vic = URU hoi = URU }	# Uruguay
+link = { vic = VNZ hoi = VEN }	# Venezuela
+
+link = { vic = AST hoi = AST }	# Australia
+link = { vic = NZL hoi = NZL }	# New Zealand
+
+
+#Region-based mappings
+#These mappings are one-to-many conversions.  For each V2 tag there are several HoI3 tags.
+#These mappings ensure that V2 countries that do not fit in above or are not available in HoI3 will be assigned a region-appropriate HoI3 tag.
+#The LAST HoI3 tag has priority over the tags that come BEFORE it.
+#The first link is exectuted first, before the links that come after it.
+
+# Scandinavia
+#link = { vic = SCA hoi = ICL hoi = FIN hoi = NOR hoi = DEN hoi = SWE }	# Scandinavia => Sweden, Denmark, Norway, Finland, Iceland
+
+# Lowlands
+#link = { vic = WLL hoi = LUX hoi = HOL hoi = BEL }		# Wallonia	=> Belgium, Netherlands, Luxembourg
+#link = { vic = FLA hoi = HOL hoi = LUX hoi = BEL }		# Flanders	=> Belgium, Luxembourg, Netherlands
+
+# German Majors
+#link = { vic = NGF hoi = POL hoi = LAT hoi = LIT hoi = GER }	# NGF		=> Germany, Lithuania, Latvia, Poland
+#link = { vic = PRU hoi = POL hoi = LAT hoi = LIT hoi = GER }	# Prussia 	=> Germany, Lithuania, Latvia, Poland
+#link = { vic = SGF hoi = LUX hoi = SCH hoi = AUS hoi = GER }	# SGF		=> Germany, Austria, Switzerland, Luxembourg
+#link = { vic = KUK hoi = POL hoi = GER hoi = HUN hoi = AUS }	# Austria-Hun.	=> Austria, Hungary, Germany, Poland
+
+# Catalonia
+#link = { vic = CAT hoi = ITA hoi = FRA hoi = POR hoi = SPA }	# Catalonia	=> Spain, Portugal, France, Italy
+
+# Scotland
+#link = { vic = SCO hoi = NOR hoi = ICL hoi = IRE hoi = ENG }	# Scotland	=> United Kingdom, Ireland, Iceland, Norway
+
+# Central Europe
+#link = { vic = BOH hoi = HUN hoi = POL hoi = SLO hoi = CZE }	# Bohemia	=> Czechoslovakia, Slovakia, Poland, Hungary
+#link = { vic = KRA hoi = HUN hoi = CZE hoi = SLO hoi = POL }	# Krakow	=> Poland, Slovakia, Czechoslovakia, Hungary
+
+# Black Sea
+#link = { vic = UKR hoi = CZE hoi = HUN hoi = SLO hoi = SOV }	# Ukraine	=> Soviet Union, Slovakia, Hungary, Czechoslovakia
+#link = { vic = RUT hoi = CZE hoi = HUN hoi = SLO hoi = SOV }	# Ruthenia	=> Soviet Union, Slovakia, Hungary, Czechoslovakia
+#link = { vic = CRI hoi = CZE hoi = HUN hoi = SLO hoi = SOV }	# Crimea	=> Soviet Union, Slovakia, Hungary, Czechoslovakia
+
+# Arabia
+#link = { vic = ABU hoi = PAL hoi = PER hoi = YEM hoi = OMN hoi = JOR hoi = SAU }	# Abu Dhabi	=> Saudi Arabia, Jordan, Oman, Yemen, Persia, Palestine
+#link = { vic = HDJ hoi = IRQ hoi = OMN hoi = YEM hoi = PAL hoi = JOR hoi = SAU }	# Hedjaz	=> Saudi Arabia, Jordan, Palestine, Yemen, Oman, Iraq
+
+
+# missing:
+# --- ALL GERMAN MINORS (except LUX)
+# --- ALL ITALIAN MINORS
+# --- ALL BALKANS (except Albania, Bulgaria, Romania, Greece, Ottomans, and Yugoslavia)
+# --- ALL AFRICA (except Egypt, Liberia, Ethiopia, SA)
+# ARM Armenia
+# AZB Azerbaijan
+# BUK Bukkhara
+# GEO Georgia
+# KHI Khiva
+# KOK Kokland
+# MUG Mughalistan
+# --- ALL INDIAN MINORS (except Nepal)
+# ATJ Atjeh
+# BAL Bali
+# BRU Brunei
+# BUR Burma
+# CAM Cambodia
+# DAI Dai Viet
+# LUA Luang Prabang
+# JOH Johore
+# WIA Wiang Chhan
+# CAL California
+# CHE Cherokee
+# COL Columbia (British)
+# CSA Confederate States
+# DES Deseret
+# HAW Hawaii
+# MAN Manhattan Commune
+# MTS Metis Confederacy
+# NEN New England
+# NEW Newfoundland
+# QUE Quebec
+# TEX Texas
+# UCA US Central America
+# BYZ Byzantium
+# BAB Babylonia
+
+}

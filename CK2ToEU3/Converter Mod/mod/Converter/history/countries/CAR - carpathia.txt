@@ -1,0 +1,13 @@
+government = imperial_government
+aristocracy_plutocracy = -3
+centralization_decentralization = 4
+innovative_narrowminded = 1
+mercantilism_freetrade = -3
+offensive_defensive = 1
+land_naval = -1
+quality_quantity = 1
+serfdom_freesubjects = -5
+primary_culture = hungarian
+religion = catholic
+technology_group = eastern
+capital = 153	# Buda

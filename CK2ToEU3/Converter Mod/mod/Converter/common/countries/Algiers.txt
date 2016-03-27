@@ -1,0 +1,94 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 220  202  96 } 
+
+historical_ideas = {
+	excellent_shipwrights
+	merchant_adventures
+	military_drill
+	national_conscripts
+	sea_hawks
+	superior_seamanship
+	shrewd_commerce_practise
+	naval_fighting_instruction
+	national_trade_policy
+	battlefield_commisions
+	naval_glory
+	grand_navy
+}
+
+historical_units = {
+	mamluk_archer
+	muslim_cavalry_archers
+	mamluk_duel
+	mamluk_musket_charge
+	muslim_mass_infantry
+	muslim_dragoon
+	ali_bey_reformed_infantry
+}
+
+monarch_names = {
+	"Muhammad #1" = 260
+	"'Ali #0" = 100
+	"Ahmad #0" = 90
+	"Hasan #0" = 60
+	"Husayn #0" = 60
+	"Ibrahim #0" = 60
+	"Mustafa #0" = 60
+	"'Abdallâh #0" = 40
+	"'Abd ar-Rahmân #2" = 20
+	"Mûsâ #2" = 20
+	"'Abd al-Wâhid #0" = 20
+	"Abû Tâshufîn #0" = 20
+	"al-Hasan #0" = 20
+	"Sa'îd #0" = 20
+	"Sha'ban #0" = 20
+	"'Umar #0" = 20
+	"Yûsuf #1" = 15
+	"Baba Aruj #0" = 15
+	"Khidr Khair ad-Din #0" = 15
+	"Selim #0" = 15
+	"'Uthmân #2" = 10
+	"Yaghmurasân #1" = 10
+	"'Abd al-Karim #0" = 0
+	"Barakat #0" = 0
+	"Basir #0" = 0
+	"Dawud #0" = 0
+	"Faris #0" = 0
+	"Haidar #0" = 0
+	"Hashim #0" = 0
+	"Jabbar #0" = 0
+	"Jamal #0" = 0
+	"Junayd #0" = 0
+	"Najib #0" = 0
+	"Qasim #0" = 0
+	"Rahim #0" = 0
+	"Rashîd #0" = 0
+	"Safi #0" = 0
+	"Sakhr #0" = 0
+	"Wahid #0" = 0
+	"Zahir #0" = 0
+}
+
+leader_names = {
+	Selmi
+	Amara
+	Behar
+	Ilaes
+	Benzine
+	Essaid
+	Hacini
+	Benzai
+	Kelkal
+	Merah
+}
+
+ship_names = {
+	Barr Muta'al Wali Batin Zahir Akhir _Awwal
+	Mu'akhkhir Muqaddim Muqtadir Qadir Samad
+	Wahid Majid Wajed Qayyum Hayy Mumit Muhyi
+	Mu'id Mubdi Muhsi Hamid Waliyy Matin Qawiyy
+	Wakil Haqq Shahid Ba'ith
+}

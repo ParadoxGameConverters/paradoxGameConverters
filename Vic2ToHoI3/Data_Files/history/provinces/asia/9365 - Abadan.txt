@@ -1,0 +1,9 @@
+owner = IRQ
+controller = IRQ
+add_core = IRQ
+points = 1
+anti_air = 2
+infra = 6
+naval_base = 4
+
+1941.5.31 = {	owner = ENG	controller = ENG}

@@ -1,0 +1,6 @@
+owner = SOV
+
+controller = SOV
+add_core = SOV 
+naval_base = 2
+infra = 4

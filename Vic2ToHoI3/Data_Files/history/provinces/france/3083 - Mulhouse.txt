@@ -1,0 +1,18 @@
+owner = FRA
+controller = FRA
+add_core = FRA
+
+energy = 16.00
+metal = 9.00
+rare_materials = 5.00
+land_fort = 10
+points = 2
+anti_air = 3
+infra = 9
+
+1941.6.22 = {
+	controller = GER
+}
+1944.12.01 = {
+	controller = USA
+}

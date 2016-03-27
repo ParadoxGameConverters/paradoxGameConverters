@@ -1,0 +1,6 @@
+#Two-Decker
+type = big_ship
+
+hull_size = 50
+base_cannons = 100
+sail_speed = 5

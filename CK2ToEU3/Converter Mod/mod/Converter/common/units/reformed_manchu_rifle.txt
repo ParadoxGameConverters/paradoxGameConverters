@@ -1,0 +1,12 @@
+# Reformed Manchu Rifle Tactics
+
+type = cavalry
+unit_type = chinese
+
+maneuver = 2
+offensive_morale = 8
+defensive_morale = 6
+offensive_fire = 6
+defensive_fire = 5
+offensive_shock = 7
+defensive_shock = 4

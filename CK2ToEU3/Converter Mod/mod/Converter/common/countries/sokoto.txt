@@ -1,0 +1,99 @@
+#Country Name: Please seefilename.
+
+graphical_culture = africangfx
+
+color = { 201  19  70 }
+
+historical_ideas = {
+	military_drill
+	shrewd_commerce_practise
+	national_conscripts
+	merchant_adventures
+	national_trade_policy
+	battlefield_commisions
+	engineer_corps
+	grand_army
+	espionage
+	cabinet
+	glorious_arms
+	bureaucracy
+}
+
+historical_units = {
+	african_spearmen
+	mali_tribal_warfare
+	african_hill_warfare
+	niger_kongolese_gunpowder_warfare
+	westernized_niger_kongolese
+	african_western_franchise_warfare
+}
+
+monarch_names = {
+	"Usuman dan Fodio #0" = 20
+	"Muhammadu Bello #0" = 20
+	"Abu Bakar Atiqu #0" = 20
+	"Aliyu Baba #0" = 20
+	"Aliyu Karami #0" = 20
+	"Ahmadu dan Atiku #0" = 20
+	"Ahmadu Rafaye #0" = 20
+	"Mu'azu Ahmadu #0" = 20
+	"Umaru #0" = 20
+	"Abd al-Rahman #0" = 20
+	"Muhammadu Attahiru #0" = 20
+	"Muhammadu Tambari #0" = 20
+	"Suylemanu #0" = 10
+	"Ibrahimu Dabo #0" = 10
+	"Usuman #0" = 10
+	"Muhammadu Tukur #0" = 10
+	"Abdallahi Yanka #0" = 10
+	"Usuman Yero #0" = 10
+	"Sidiqu #0" = 10
+	"Musa #0" = 10
+	"Dan Halima #0" = 10
+	"Kasso #0" = 10
+	"Baciri #0" = 10
+	"Belarabe #0" = 10
+	"Gaude #0" = 10
+	"Muhammadu Ishaqa #0" = 10
+	"Belarabe #0" = 10
+	"Bakon Dare #0" = 10
+	"Maynassara Maji #0" = 10
+	"Shu'aybu #0" = 10
+	"Zubayru #0" = 10
+	"Jatau #0" = 10
+	"Abu Kwaka #0" = 10
+	"Hammada #0" = 10
+	"Muahmmad Sambo #0" = 10
+	"Dan Bako #0" = 10
+	"Fari #0" = 10
+	"Dan Gado #0" = 10
+	"Abdu Caccabi #0" = 10
+	"Abdu Tukudu #0" = 10
+	"Modibo Adama #0" = 10
+}
+
+leader_names = {
+	Saibou
+	Deo
+	Keita
+	Mamami
+	Toure
+	Diarra
+	Aluko
+	Modibo
+	Kanu
+	Kuti
+}
+
+ship_names = {
+	Abuja
+	Ede
+	Enugu
+	Kaduna
+	Kano
+	Katsina
+	Jos
+	Owo
+	Sokoto
+	Zaria
+}

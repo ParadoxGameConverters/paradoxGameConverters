@@ -1,0 +1,134 @@
+bookmark =
+{
+	name = "GC_NAME"
+	desc = "GC_DESC"
+	date = 1399.10.14
+	
+	country = CAS
+	country = ENG
+	country = FRA
+	country = TUR
+	country = HAB
+	country = POR
+	country = MOS
+}
+
+bookmark =
+{
+	name = "FALL_OF_BYZANS_NAME"
+	desc = "FALL_OF_BYZANS_DESC"
+	date = 1453.5.29
+	
+	country = TUR
+	country = ENG
+	country = FRA
+}
+bookmark =
+{
+	name = "NEWWORLD_NAME"
+	desc = "NEWWORLD_DESC"
+	date = 1492.1.1
+	
+	country = CAS
+	country = ENG
+	country = FRA
+	country = POR
+}
+
+bookmark =
+{
+	name = "LEAGUE_OF_CAMBRAI_NAME"
+	desc = "LEAGUE_OF_CAMBRAI_DESC"
+	date = 1508.12.10
+	
+	country = FRA
+	country = PAP
+	country = VEN
+}
+
+bookmark =
+{
+	name = "EIGHTY_YEARS_WAR_NAME"
+	desc = "EIGHTY_YEARS_WAR_DESC"
+	date = 1579.1.23
+	
+	country = SPA
+	country = NED
+}
+
+bookmark =
+{
+	name = "THIRTY_YEARS_WAR_NAME"
+	desc = "THIRTY_YEARS_WAR_DESC"
+	date = 1618.5.22
+	
+	country = SAV
+	country = PAL
+	country = BRU
+	country = FRA
+	country = HAB
+	country = BAV
+}
+
+bookmark =
+{
+	name = "SPANISH_SUCCESSION_NAME"
+	desc = "SPANISH_SUCCESSION_DESC"
+	date = 1701.9.1
+	
+	country = FRA
+	country = ENG
+	country = NED
+	country = HAB
+}
+
+bookmark =
+{
+	name = "QUADRUPLE_ALLIANCE_NAME"
+	desc = "QUADRUPLE_ALLIANCE_DESC"
+	date = 1718.12.17
+	
+	country = SPA
+	country = HAB
+	country = FRA
+	country = GBR
+}
+
+bookmark =
+{
+	name = "SEVEN_YEARS_WAR_NAME"
+	desc = "SEVEN_YEARS_WAR_DESC"
+	date = 1756.5.15
+	
+	country = PRU
+	country = GBR
+	country = HAN
+	country = HAB
+	country = RUS
+	country = SAX
+	country = FRA
+}
+
+bookmark =
+{
+	name = "USA_NAME"
+	desc = "USA_DESC"
+	date = 1776.7.4
+	
+	country = USA
+	country = GBR
+	country = FRA
+}
+
+bookmark =
+{
+	name = "REVOLUTIONARY_FRANCE_NAME"
+	desc = "REVOLUTIONARY_FRANCE_DESC"
+	date = 1789.7.14
+	
+	country = RFR
+	country = PRU
+	country = HAB
+	country = GBR
+	country = SPA
+}
