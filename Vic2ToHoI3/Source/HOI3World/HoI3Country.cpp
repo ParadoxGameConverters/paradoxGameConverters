@@ -1078,7 +1078,7 @@ void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 					for (auto regiment: army->getRegiments())
 					{
 						totalUnits++;
-						string type = regiment.getType();
+						string type = regiment->getType();
 						if (
 								(type == "artillery") || (type == "cavalry") || (type == "cuirassier") || (type == "dragoon") || (type == "engineer") || 
 								(type == "guard") || (type == "hussar") || (type == "infantry") || (type == "irregular") || (type == "plane") || (type == "tank")
@@ -1102,7 +1102,7 @@ void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 					for (auto regiment: army->getRegiments())
 					{
 						totalUnits++;
-						string type = regiment.getType();
+						string type = regiment->getType();
 						if (type == "tank")
 						{
 							numTanks++;
@@ -1123,7 +1123,7 @@ void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 					for (auto regiment: army->getRegiments())
 					{
 						totalUnits++;
-						string type = regiment.getType();
+						string type = regiment->getType();
 						if (type == "plane")
 						{
 							numPlanes++;
