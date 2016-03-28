@@ -42,6 +42,7 @@ Idhrendur		- Project Lead, Programming
 Ztaesek			- Programming, Data Files
 theosZA			- Programming
 PTSnoop			- Programming, Graphics, Analysis
+Clonefusion		- Analysis
 kwsdev			- Front End
 TheSpartanD		- Data Files
 LordBawbag		- Data Files
