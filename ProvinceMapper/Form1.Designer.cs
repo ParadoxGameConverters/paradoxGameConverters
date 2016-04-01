@@ -190,7 +190,8 @@
             "1x",
             "2x",
             "3x",
-            "4x"});
+            "4x",
+            "6x"});
             this.cbZoom.Name = "cbZoom";
             this.cbZoom.Size = new System.Drawing.Size(40, 23);
             this.cbZoom.ToolTipText = "Zoom Factor";
@@ -298,4 +299,3 @@
         private System.Windows.Forms.TabControl mappingsTabs;
     }
 }
-
