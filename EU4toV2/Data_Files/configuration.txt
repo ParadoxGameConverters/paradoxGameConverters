@@ -1,49 +1,73 @@
+# Copyright (c) 2014 The Paradox Game Converters Project
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+
 configuration =
 {
 	# Europa Universalis 4 directory: a path on your computer where Europa Universalis 4 is installed
-	EU4directory = "D:\Steam\steamapps\common\Europa Universalis IV"
+	EU4directory = "C:\Program Files (x86)\Steam\SteamApps\common\Europa Universalis IV"
+
+	# Europa Universalis 4 documents directory: a path on your computer where Europa Universalis 4 keeps temporary files
+	EU4DocumentsDirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Europa Universalis IV"
+
+	# Crusader Kings 2 export directory: a path on your computer where Crusader Kings 2 keeps exported games
+	CK2ExportDirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Crusader Kings II\eu4_export\mod"
 
 	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
 	V2directory = "D:\Paradox Interactive\Victoria 2"
 
-	# EU4 Game Type: what version of EU4 generated the save.  Possible values:
-	# 	auto	detect version automatically - vanilla only!
-	#	base	version (1.x)
-	EU4gametype = "base"
+	# Victoria 2 Documents directory: a path on your computer where Victoria 2 keeps temporary files
+	V2Documentsdirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Victoria II"
+
+	# CK2Converted: Whether or not the mod was converted from CK2. Possible values:
+	# 	yes
+	#	no
+	CK2Converted = "no"
 
 	# V2 Game Type: what version of V2 to convert to.  Possible values:
-	#	vanilla	vanilla V2 (1.x)
+	#	vanilla		vanilla V2 (1.x)
 	#	AHD		A House Divided (2.x)
 	#	HOD		Heart of Darkness (3.x)
-	V2gametype = "AHD"
+	#	HoD-NNM		HoD with the New Nations Mod
+	V2gametype = "HOD"
 
 	# The date on which the game is to start.  Default: 1835.12.1
 	# WARNING: start_date at or prior to 1835.1.1 will, in all likelyhood, crash Victoria!
 	start_date = 1836.1.1
 
-	# The maximum literacy a nation will start with. Default 80%
-	max_literacy = 0.80
+	# Reset Provinces: Whether or not to reset resettable V2 provinces
+	resetProvinces = "no"
+
+	# The maximum literacy a nation will start with. Default 100%
+	max_literacy = 1.0
 
 	# Remove type: Which landless nations to remove. Possible values:
 	#	none	remove none of them
 	#	dead	remove ones without cultural backing
-	#	all		remove all of them
+	#	all	remove all of them
 	# Note: if there are not enough V2 tags, some or all of these will be done anyway
-	Removetype = "dead"
-	
-	### CK2 to EU4 Mod Options
-	
-	# For future purposes, using the CK2->EU4 mod directory to bring over nations that don't exist in EU4. Options are:
-	#	"yes"
-	#	"no"
-	useCK2ModDirectory = "no"
-	# Europa Universalis 4 mod directory: a path on your computer where Europa Universalis 4 mod from Crusader Kings 2 is installed
-	EU4modfromCK2directory = ""
+	Removetype = "none"
 
-	### Mod Options
+	# Liberty Desire Threshold: The threshold value for when colonies are not absorbed. Default 100% (colonies always absorbed)
+	libertyThreshold = 100
 
-	# useConverterMod: whether or not to use the converter mod. Options are:
-	#	"yes"
-	#	"no"
-	useConverterMod = "no"
+	# Convert pop totals: whether or not the total population in a province should be determined from the EU4 game
+	convertPopTotals = "no"
 }

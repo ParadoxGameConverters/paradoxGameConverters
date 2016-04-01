@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{94887089-4A35-40BE-BA3F-6C9F15AA2BDA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Frontend.Core</RootNamespace>
+    <AssemblyName>ParadoxConverters.Frontend.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Caliburn.Micro">
+      <HintPath>..\packages\Caliburn.Micro.Core.2.0.0-alpha2\lib\portable-net45+sl5+win8+wp8\Caliburn.Micro.dll</HintPath>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Platform">
+      <HintPath>..\packages\Caliburn.Micro.2.0.0-alpha2\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\packages\Caliburn.Micro.2.0.0-alpha2\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\AsyncCommandBase.cs" />
+    <Compile Include="Commands\ConvertCommand.cs" />
+    <Compile Include="Commands\MoveCommand.cs" />
+    <Compile Include="Commands\OpenFileCommand.cs" />
+    <Compile Include="Commands\OpenFolderCommand.cs" />
+    <Compile Include="Conductors\Interfaces\IStepConductorBase.cs" />
+    <Compile Include="Conductors\StepConductorBase.cs" />
+    <Compile Include="Events\EventArgs\PreferenceOperation.cs" />
+    <Compile Include="Events\EventArgs\PreferenceStepOperationArgs.cs" />
+    <Compile Include="Exceptions\MissingRequiredXMLPropertyException.cs" />
+    <Compile Include="Exceptions\UnparsableDataValueException.cs" />
+    <Compile Include="Exceptions\XMLParseExceptionBase.cs" />
+    <Compile Include="Factories\ConverterSettingsFactory.cs" />
+    <Compile Include="Factories\FactoryBase.cs" />
+    <Compile Include="Factories\GameConfigurationFactory.cs" />
+    <Compile Include="Factories\PreferenceCategoryFactory.cs" />
+    <Compile Include="Factories\RequiredFileFactory.cs" />
+    <Compile Include="Factories\RequiredFolderFactory.cs" />
+    <Compile Include="Factories\TagReaders\FileTagReader.cs" />
+    <Compile Include="Factories\TagReaders\FolderTagReader.cs" />
+    <Compile Include="Factories\TagReaders\TagReaderBase.cs" />
+    <Compile Include="Helpers\DateParseHelper.cs" />
+    <Compile Include="Helpers\DirectoryCopyHelper.cs" />
+    <Compile Include="Helpers\EnumerableExtensionMethods.cs" />
+    <Compile Include="Helpers\FolderBrowserLauncher.cs" />
+    <Compile Include="Helpers\NativeMethods.cs" />
+    <Compile Include="Helpers\NullableComparer.cs" />
+    <Compile Include="Helpers\NumberParserHelper.cs" />
+    <Compile Include="Helpers\OutputConfigurationFileHelper.cs" />
+    <Compile Include="Helpers\DirectoryHelper.cs" />
+    <Compile Include="Helpers\TimeStringFormatter.cs" />
+    <Compile Include="Helpers\XElementHelper.cs" />
+    <Compile Include="Helpers\XMLErrorHelper.cs" />
+    <Compile Include="Logging\LogEntry.cs" />
+    <Compile Include="Logging\LogEntrySeverity.cs" />
+    <Compile Include="Logging\LogEntrySource.cs" />
+    <Compile Include="Model\ConverterOptions.cs" />
+    <Compile Include="Model\ConverterSettings.cs" />
+    <Compile Include="Model\GameConfiguration.cs" />
+    <Compile Include="Model\Interfaces\IConverterOptions.cs" />
+    <Compile Include="Model\Interfaces\IConverterSettings.cs" />
+    <Compile Include="Model\Interfaces\IGameConfiguration.cs" />
+    <Compile Include="Model\Interfaces\IMod.cs" />
+    <Compile Include="Model\Interfaces\IModel.cs" />
+    <Compile Include="Model\Interfaces\IPreferenceCategory.cs" />
+    <Compile Include="Model\Mod.cs" />
+    <Compile Include="Model\Paths\AlternativePath.cs" />
+    <Compile Include="Model\Paths\Interfaces\IAlternativePath.cs" />
+    <Compile Include="Model\Paths\Interfaces\IRequiredFolder.cs" />
+    <Compile Include="Model\Paths\Interfaces\IRequiredItemBase.cs" />
+    <Compile Include="Model\Paths\Interfaces\IRequiredFile.cs" />
+    <Compile Include="Model\Paths\RequiredFile.cs" />
+    <Compile Include="Model\Paths\RequiredFolder.cs" />
+    <Compile Include="Model\Paths\RequiredItemBase.cs" />
+    <Compile Include="Model\PreferenceEntries\DatePreferenceEntry.cs" />
+    <Compile Include="Model\PreferenceEntries\Interfaces\IPreferenceEntry.cs" />
+    <Compile Include="Model\PreferenceCategory.cs" />
+    <Compile Include="Model\PreferenceEntries\Interfaces\IDatePreferenceEntry.cs" />
+    <Compile Include="Model\PreferenceEntries\Interfaces\INumericPreferenceEntry.cs" />
+    <Compile Include="Model\PreferenceEntries\Interfaces\IStringPreferenceEntry.cs" />
+    <Compile Include="Model\PreferenceEntries\NumericPreferenceEntry.cs" />
+    <Compile Include="Model\PreferenceEntries\PreferenceEntry.cs" />
+    <Compile Include="Model\PreferenceEntries\StringPreferenceEntry.cs" />
+    <Compile Include="Model\Preferences\DatePreference.cs" />
+    <Compile Include="Model\Preferences\Interfaces\IDatePreference.cs" />
+    <Compile Include="Model\Preferences\Interfaces\INumericPreference.cs" />
+    <Compile Include="Model\Preferences\Interfaces\IPreference.cs" />
+    <Compile Include="Model\Preferences\Interfaces\IStringPreference.cs" />
+    <Compile Include="Model\Preferences\NumericPreference.cs" />
+    <Compile Include="Model\Preferences\Preference.cs" />
+    <Compile Include="Model\Preferences\StringPreference.cs" />
+    <Compile Include="Model\RelativeFolderLocationRoot.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ConvertViewModel.cs" />
+    <Compile Include="ViewModels\FrameViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IConvertViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IFrameViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\ILogViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IPathPickerViewModel.cs" />
+    <Compile Include="Navigation\IStep.cs" />
+    <Compile Include="ViewModels\Interfaces\IStepViewModelBase.cs" />
+    <Compile Include="Common\IViewModelBase.cs" />
+    <Compile Include="ViewModels\Interfaces\IWelcomeViewModel.cs" />
+    <Compile Include="ViewModels\LogViewModel.cs" />
+    <Compile Include="Navigation\Direction.cs" />
+    <Compile Include="ViewModels\PathPickerViewModel.cs" />
+    <Compile Include="ViewModels\PreferencesViewModel.cs" />
+    <Compile Include="ViewModels\StepViewModelBase.cs" />
+    <Compile Include="Common\ViewModelBase.cs" />
+    <Compile Include="ViewModels\WelcomeViewModel.cs" />
+    <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\OpenUriCommand.cs" />
+    <Compile Include="Views\Behaviours\ScrollIntoViewBehaviour.cs" />
+    <Compile Include="Views\TemplateSelectors\PreferenceTemplateSelector.cs" />
+    <Compile Include="Views\TemplateSelectors\RequiredItemTemplateSelector.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Configuration\Eu4ToVic2DefaultConfiguration.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\ConvertView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FrameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PathPickerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PreferencesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WelcomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Configuration\Ck2ToEu3DefaultConfiguration.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuration\ConfigurationExplanation.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuration\Eu3ToVic2DefaultConfiguration.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuration\GameConfigurations.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuration\SupportedConvertersDefault.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\AttachedProperties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Docs\license.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

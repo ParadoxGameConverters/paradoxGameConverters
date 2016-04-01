@@ -1,3 +1,49 @@
+/*Copyright (c) 2014 The Paradox Game Converters Project
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
+
+
+
+/*Copyright (c) 2010 Rolf Andreassen
+ 
+ Permission is hereby granted, free of charge, to any person obtaining
+ a copy of this software and associated documentation files (the
+ "Software"), to deal in the Software without restriction, including
+ without limitation the rights to use, copy, modify, merge, publish,
+ distribute, sublicense, and/or sell copies of the Software, and to
+ permit persons to whom the Software is furnished to do so, subject to
+ the following conditions:
+ 
+ The above copyright notice and this permission notice shall be included
+ in all copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
+
+
+
 #include "Parser.h"
 #include <fstream>
 #include <boost/spirit/include/support_istream_iterator.hpp>
@@ -6,21 +52,27 @@
 
 using namespace boost::spirit;
 
-static void setLHS			(string key);
-static void pushObj			();
-static void setRHSleaf		(string val);
-static void setRHSobject	();
-static void setRHSobjlist	();
-static void setRHStaglist	(vector<string> val);
 
-static Object* topLevel = NULL;  
-vector<Object*> stack; 
-vector<Object*> objstack; 
+
+static void setLHS						(string key);
+static void pushObj						();
+static void setRHSleaf					(string val);
+static void setRHSobject				();
+static void setRHSobjlist				();
+static void setRHStaglist				(vector<string> val);
+static void setEpsilon					();
+static void setAssign					();
+
+static Object*		topLevel		= NULL;  // a top level object
+vector<Object*>	stack;					// a stack of objects
+vector<Object*>	objstack;				// a stack of objects
+bool					epsilon		= false;	// if we've tried an episilon for an assign
+
 
 template <typename Iterator>
 struct SkipComment : qi::grammar<Iterator>
 {
-	qi::rule<Iterator> comment;
+	qi::rule<Iterator> comment;	// the rule for identiying comments
 
 	SkipComment() : SkipComment::base_type(comment)
 	{
@@ -28,7 +80,8 @@ struct SkipComment : qi::grammar<Iterator>
 	}
 };
 
-static bool debugme = false;
+
+static bool debugme = false;	// whether or not debugging should be on
 template <typename Iterator>
 struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 	static Object* topLevel; 
@@ -70,17 +123,33 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 
 	Parser() : Parser::base_type(root)
 	{
-		braces	= lit('{') >> *(iso8859_1::space) >> lit('}');
-		str     = lexeme[lit('"') >> raw[*(~iso8859_1::char_('"'))] >> lit('"')];
-		tolleaf = raw[+(~iso8859_1::char_("\"{}= \t\r\n"))];
-		leaf    = raw[+(iso8859_1::alnum | iso8859_1::char_("-._:"))];
+		// { }
+		braces = *(iso8859_1::space) >> lit('{') >> *(iso8859_1::space) >> lit('}') >> *(iso8859_1::space);
+
+		// a string enclosed in quotes
+		str     = lexeme[lit('"') >> raw[*(~iso8859_1::char_('"') | lit(0x80) | lit(0x81) | lit(0x82) | lit(0x83) | lit(0x84) | lit(0x85) | lit(0x86) | lit(0x87) | lit(0x88) | lit(0x89) | lit(0x8A) | lit(0x8B) | lit(0x8C) | lit(0x8D) | lit(0x8E) | lit(0x8F) | lit(0x90) | lit(0x91) | lit(0x92) | lit(0x93) | lit(0x94) | lit(0x95) | lit(0x96) | lit(0x97) | lit(0x98) | lit(0x99) | lit(0x9A) | lit(0x9B) | lit(0x9C) | lit(0x9D) | lit(0x9E) | lit(0x9F) | lit('–'))] >> lit('"')];
+
+		// a 'forgiving' string without quotes
+		tolleaf = raw[+(~iso8859_1::char_("\"{}= \t\r\n") | lit(0x80) | lit(0x81) | lit(0x82) | lit(0x83) | lit(0x84) | lit(0x85) | lit(0x86) | lit(0x87) | lit(0x88) | lit(0x89) | lit(0x8A) | lit(0x8B) | lit(0x8C) | lit(0x8D) | lit(0x8E) | lit(0x8F) | lit(0x90) | lit(0x91) | lit(0x92) | lit(0x93) | lit(0x94) | lit(0x95) | lit(0x96) | lit(0x97) | lit(0x98) | lit(0x99) | lit(0x9A) | lit(0x9B) | lit(0x9C) | lit(0x9D) | lit(0x9E) | lit(0x9F) | lit('–'))];
+
+		// a strict string without quotes
+		leaf    = raw[+(iso8859_1::alnum | iso8859_1::char_("-._:") | lit(0x80) | lit(0x81) | lit(0x82) | lit(0x83) | lit(0x84) | lit(0x85) | lit(0x86) | lit(0x87) | lit(0x88) | lit(0x89) | lit(0x8A) | lit(0x8B) | lit(0x8C) | lit(0x8D) | lit(0x8E) | lit(0x8F) | lit(0x90) | lit(0x91) | lit(0x92) | lit(0x93) | lit(0x94) | lit(0x95) | lit(0x96) | lit(0x97) | lit(0x98) | lit(0x99) | lit(0x9A) | lit(0x9B) | lit(0x9C) | lit(0x9D) | lit(0x9E) | lit(0x9F) | lit('–'))];
+
+		// a list of strings within brackets
 		taglist = lit('{') >> omit[*(iso8859_1::space)] >> lexeme[( ( str | skip[tolleaf] ) % *(iso8859_1::space) )] >> omit[*(iso8859_1::space)] >> lit('}');
+
+		// a root object contained within brackets
 		object  = raw[lit('{') >> *(root) >> *(iso8859_1::space) >> lit('}')];
+
+		// a list of objects contained within brackets
 		objlist = raw[lit('{') >> *( *(iso8859_1::space) >> object[&pushObj] ) >> *(iso8859_1::space) >> lit('}')];
-		assign  = raw[(*(iso8859_1::space) >> ( leaf[&setLHS] | str[&setLHS]) >> *(iso8859_1::space) >> lit('=')
-			>> *(iso8859_1::space) 
-			>> ( leaf[&setRHSleaf] | str[&setRHSleaf] | taglist[&setRHStaglist] | objlist[&setRHSobjlist] | object[&setRHSobject] ) 
-			>> *(iso8859_1::space))];
+
+		// an assignment. Left side is a string of some kind, right side is one of many allowed types
+		assign  = raw[(*(iso8859_1::space) >> ( leaf[&setLHS] | str[&setLHS] | eps[&setEpsilon] ) >> *(iso8859_1::space)
+			>>	lit('=')[&setAssign]	>> *(iso8859_1::space) 
+			>> ( leaf[&setRHSleaf] | str[&setRHSleaf] | taglist[&setRHStaglist] | objlist[&setRHSobjlist] | object[&setRHSobject] ) >> *(iso8859_1::space))];
+
+		// the root object (either an assignment, or something in braces)
 		root	= +(assign | braces);
 
 		str.name("str");
@@ -106,30 +175,42 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 	}
 };
 
+
 Object* getTopLevel()
 {
 	return topLevel;
 }
 
+
 void initParser()
 {
 	topLevel = new Object("topLevel");
+	epsilon	= false;
 }
+
 
 string bufferOneObject(ifstream& read)
 {
-	int openBraces = 0;
-	string currObject, buffer;
-	bool topLevel = true;
+	int openBraces = 0;				// the number of braces deep we are
+	string currObject, buffer;		// the current object and the tect under consideration
+	bool topLevel = true;			// whether or not we're at the top level
 	while (read.good())
 	{
 		getline(read, buffer);
+		if (buffer == "CK2txt")
+		{
+			continue;
+		}
+		else if (buffer == "EU4txt")
+		{
+			continue;
+		}
 		currObject += "\n";
 
-		bool opened = false;
-		bool isInLiteral = false;
-		const char* str = buffer.c_str();
-		unsigned int strSize = buffer.size();
+		bool opened = false;									// whether or not we just opened a new brace level
+		bool isInLiteral = false;							// whether or not we're in a string literal
+		const char* str = buffer.c_str();				// a character string of the text under consideration
+		const unsigned int strSize = buffer.size();	// the size of the text under consideration
 		for (unsigned int i = 0; i < strSize; ++i)
 		{
 			if ('"' == str[i])
@@ -186,10 +267,18 @@ string bufferOneObject(ifstream& read)
 	return currObject;
 }
 
+
 bool readFile(ifstream& read)
 {
 	clearStack();
 	read.unsetf(std::ios::skipws);
+
+	char firstChar = read.peek();
+	if (firstChar == (char)0xEF)
+	{
+		char bitBucket[3];
+		read.read(bitBucket, 3);
+	}
 
 	/* - it turns out that the current implementation of spirit::istream_iterator is ungodly slow...
 	static Parser<boost::spirit::istream_iterator> p;
@@ -201,30 +290,35 @@ bool readFile(ifstream& read)
 	return qi::phrase_parse(begin, end, p, s);
 	*/
 
-	static Parser<string::iterator> p;
-	static SkipComment<string::iterator> s;
+	const static Parser<string::iterator> p;
+	const static SkipComment<string::iterator> s;
 
 	/* buffer and parse one object at a time */
 	while (read.good())
 	{
-		string currObject = bufferOneObject(read);
+		string currObject = bufferOneObject(read);	// the object under consideration
 		if (!qi::phrase_parse(currObject.begin(), currObject.end(), p, s))
+		{
+			clearStack();
 			return false;
+		}
 	}
+
+	clearStack();
 	return true;
 }
 
 
 void clearStack()
 {
-	if (0 < stack.size())
+	if (!stack.empty())
 	{
-		cout << "Warning: Clearing stack size " << stack.size() << ". This should not happen in normal operation." << endl;
-	}
-	for (vector<Object*>::iterator i = stack.begin(); i != stack.end(); ++i)
-	{
-		//cout << (*i)->getKey() << endl;
-		cout << (*(*i)) << endl;
+		Log logOutput(LogLevel::Warning);	// a section in the log file that won't automatically be broken into lines
+		logOutput << "Clearing stack size " << stack.size() << " - this should not happen in normal operation\n";
+		for (vector<Object*>::iterator i = stack.begin(); i != stack.end(); ++i)
+		{
+			logOutput << **i << '\n';
+		}
 	}
 	stack.clear();
 }
@@ -232,19 +326,22 @@ void clearStack()
 
 void setLHS(string key)
 {
-	//cout << "Setting lefthand side " << key << endl;
+	//LOG(LogLevel::Debug) << "Setting LHS : " << key;
 	Object* p = new Object(key);
 	if (0 == stack.size())
 	{
 		topLevel->setValue(p);
 	}
 	stack.push_back(p);
+	epsilon = false;
 }
+
 
 void pushObj()
 {
-	string key("objlist");
-	Object* p = new Object(key); 
+	//LOG(LogLevel::Debug) << "Pushing objlist";
+	string key("objlist");			// the key of the object list
+	Object* p = new Object(key);	// the object to hold the object list
 	p->setObjList(); 
 	objstack.push_back(p); 
 }
@@ -252,52 +349,78 @@ void pushObj()
 
 void setRHSleaf(string val)
 {
-	Object* l = stack.back();
+	//LOG(LogLevel::Debug) << "Setting RHSleaf : " << val;
+	Object* l = stack.back();	// the leaf object
 	stack.pop_back(); 
 	l->setValue(val); 
 	if (0 < stack.size())
 	{
-		Object* p = stack.back(); 
+		Object* p = stack.back();	// the object holding the leaf
 		p->setValue(l); 
 	}
 }
 
+
 void setRHStaglist(vector<string> val)
 {
-	Object* l = stack.back();
+	//LOG(LogLevel::Debug) << "Setting RHStaglist";
+	Object* l = stack.back();	// the object holding the list
 	stack.pop_back(); 
 	l->addToList(val.begin(), val.end());
 	if (0 < stack.size())
 	{
-		Object* p = stack.back(); 
+		Object* p = stack.back();	// the object holding the list container
 		p->setValue(l); 
 	}
 }
 
+
 void setRHSobject()
 {
+	//LOG(LogLevel::Debug) << "Setting RHSobject";
 	// No value is set, a bunch of leaves have been defined. 
 	Object* l = stack.back();
 	stack.pop_back(); 
 	if (0 < stack.size())
 	{
-		Object* p = stack.back(); 
+		Object* p = stack.back(); // the object holding the first leaf
 		p->setValue(l); 
 	}
 }
 
 void setRHSobjlist()
 {
-	Object* l = stack.back();
+	//LOG(LogLevel::Debug) << "Setting RHSobjlist";
+	Object* l = stack.back();	// the object
 	l->setValue(objstack);
 	objstack.clear();
 	stack.pop_back(); 
 	if (0 < stack.size())
 	{
-		Object* p = stack.back(); 
+		Object* p = stack.back(); // the other object
 		p->setValue(l); 
 	}
 }
+
+
+void setEpsilon()
+{
+	//LOG(LogLevel::Debug) << "Setting epsilon";
+	epsilon = true;
+}
+
+
+void setAssign()
+{
+	//LOG(LogLevel::Debug) << "In assign";
+	if (epsilon)
+	{
+		Object* e = new Object("epsilon");
+		stack.push_back(e);
+	}
+	epsilon = false;
+}
+
 
 Object* doParseFile(const char* filename)
 {
@@ -310,7 +433,7 @@ Object* doParseFile(const char* filename)
 	*/
 
 	initParser();
-	Object* obj = getTopLevel();
+	Object* obj = getTopLevel();	// the top level object
 	read.open(filename); 
 	if (!read.is_open())
 	{

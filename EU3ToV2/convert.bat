@@ -1,1 +1,0 @@
-EU3toV2Converter.exe "D:\Paradox Interactive\Victoria 2"

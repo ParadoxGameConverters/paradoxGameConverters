@@ -1,33 +1,65 @@
+/*Copyright (c) 2014 The Paradox Game Converters Project
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
+
+
 #ifndef MAPPER_H
 #define MAPPER_H
 
 
 
 #include "Parsers\Object.h"
-class EU3World;
+#include <map>
+#include <set>
+#include <vector>
+#include <unordered_set>
+
+
+
 class V2World;
+class EU3World;
+enum WorldType;
 
 
 
 // Province Mappings
-typedef map< int, vector<int> > provinceMapping;			// < destProvince, sourceProvinces >
-typedef map< int, vector<int> > inverseProvinceMapping;	// < sourceProvince, destProvinces >
+typedef map< int, vector<int> >	provinceMapping;			// < destProvince, sourceProvinces >
+typedef map< int, vector<int> >	inverseProvinceMapping;	// < sourceProvince, destProvinces >
+typedef unordered_set<int>			resettableMap;
 
-provinceMapping initProvinceMap(Object* obj);
-inverseProvinceMapping invertProvinceMap(const provinceMapping& provMap);
+void initProvinceMap(Object* obj, WorldType worldType, provinceMapping& provinceMap, inverseProvinceMapping& inverseProvinceMap, resettableMap& resettableProvinces);
 const vector<int>& getV2ProvinceNums(const inverseProvinceMapping& invProvMap, int eu3ProvinceNum);
 
 
-// Country Mappings
-typedef map< string, string > countryMapping;	// < sourceCountry, destCountry>
+typedef vector< vector<int> > adjacencyMapping;
+adjacencyMapping initAdjacencyMap();
 
-vector<string> processBlockedNations(Object* obj);
-int initCountryMap(countryMapping& mapping, const EU3World& srcWorld, const V2World& destWorld, const vector<string>& blockedNations, Object* rulesObj);
+
+typedef map<int, string>	continentMapping;	// <province, continent>
+void initContinentMap(Object* obj, continentMapping& continentMap);
+
+
 void mergeNations(EU3World&, Object* mergeObj);
 void uniteJapan(EU3World&);
 void removeEmptyNations(EU3World&);
 void removeDeadLandlessNations(EU3World&);
-void removeOlderLandlessNations(EU3World&, int excess);
 void removeLandlessNations(EU3World&);
 
 
@@ -41,7 +73,8 @@ void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateI
 enum distinguisherType
 {
 	DTOwner,
-	DTReligion
+	DTReligion,
+	DTRegion
 };
 typedef pair<distinguisherType, string> distinguisher;
 typedef struct {
@@ -69,9 +102,18 @@ governmentMapping initGovernmentMap(Object* obj);
 
 
 // Cultural Union Nation mappings
-typedef map< string, vector<string> > unionCulturesMap; // <tag, cultures>
-unionCulturesMap initUnionCultures(Object* obj);
+typedef map< string, vector<string> > unionCulturesMap;	// <culture group, cultures>
+typedef map< string, string > inverseUnionCulturesMap;	// <culture, culture group>
+void initUnionCultures(Object* obj, unionCulturesMap& unionCultures, inverseUnionCulturesMap& inverseUnionCultures);
 
+
+// EU4 regions
+typedef map<int, set<string>>	EU3RegionsMapping;		// the regions in EU3
+void initEU3RegionMap(Object *obj, EU3RegionsMapping& regions);
+
+
+// utility functions
+string CardinalToOrdinal(int cardinal);
 
 
 #endif // MAPPER_H

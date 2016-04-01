@@ -1,0 +1,17 @@
+syntax: glob
+bin/**
+obj/**
+release/**
+Release/**
+Release-NoCopies/**
+ReleaseIntermediate/**
+mod/**
+PopsInfo/**
+Backup/**
+*.suo
+*.sdf
+*.filters
+*.user
+*.eu4
+*.eu3
+

@@ -1,3 +1,26 @@
+/*Copyright (c) 2014 The Paradox Game Converters Project
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
+
+
+
 #ifndef CONFIGURATION_H_
 #define CONFIGURATION_H_
 
@@ -18,14 +41,24 @@ public:
 		return getInstance()->EU4Path;
 	}
 
+	static string getEU4DocumentsPath()
+	{
+		return getInstance()->EU4DocumentsPath;
+	}
+
+	static string getCK2ExportPath()
+	{
+		return getInstance()->CK2ExportPath;
+	}
+
 	static string getV2Path()
 	{
 		return getInstance()->V2Path;
 	}
 
-	static string getEU4Gametype()
+	static string getV2DocumentsPath()
 	{
-		return getInstance()->EU4Gametype;
+		return getInstance()->V2DocumentsPath;
 	}
 
 	static string getV2Gametype()
@@ -33,9 +66,29 @@ public:
 		return getInstance()->V2Gametype;
 	}
 
-	static date getStartDate()
+	static date	getFirstEU4Date()
 	{
-		return getInstance()->StartDate;
+		return getInstance()->firstEU4Date;
+	}
+
+	static void setFirstEU4Date(date _firstDate)
+	{
+		getInstance()->firstEU4Date = _firstDate;
+	}
+
+	static date	getLastEU4Date()
+	{
+		return getInstance()->lastEU4Date;
+	}
+
+	static void setLastEU4Date(date _lastDate)
+	{
+		getInstance()->lastEU4Date = _lastDate;
+	}
+
+	static string getResetProvinces()
+	{
+		return getInstance()->resetProvinces;
 	}
 
 	static double getMaxLiteracy()
@@ -48,9 +101,24 @@ public:
 		return getInstance()->Removetype;
 	}
 
-	static string getV2OutputModName()
+	static double getLibertyThreshold()
 	{
-		return getInstance()->V2OutputModName;
+		return getInstance()->libertyThreshold;
+	}
+
+	static bool getConvertPopTotals()
+	{
+		return getInstance()->convertPopTotals;
+	}
+
+	static void setOutputName(string name)
+	{
+		getInstance()->outputName = name;
+	}
+
+	static string getOutputName()
+	{
+		return getInstance()->outputName;
 	}
 
 	static Configuration* getInstance()
@@ -63,15 +131,23 @@ public:
 private:
 	static Configuration* instance;
 
-	string	EU4Path;
-	string	V2Path;
-	string	EU4Gametype;
-	string	V2Gametype;
-	string	Removetype;
-	date		StartDate;
-	double	MaxLiteracy;
-	string	V2OutputModName;
-
+	// options from configuration.txt
+	string	EU4Path;					// the install directory for EU4
+	string	EU4DocumentsPath;		// EU4's directory under My Documents
+	string	CK2ExportPath;			// where CK2 exported game mods get put
+	string	V2Path;					// the install directory for V2
+	string	V2DocumentsPath;		// V2's directory under My Documents
+	string	V2Gametype;				// whether V2 is vanilla, AHD, or HoD
+	string	resetProvinces;		// whether or not to reset allowed provinces back to V2 defaults
+	double	MaxLiteracy;			// the maximum literacy allowed
+	string	Removetype;				// the ruleto use for removing excess EU4 nations
+	double	libertyThreshold;		// The threshold liberty desire value for when colonies are not absorbed
+	bool		convertPopTotals;		// whether or not to convert pop totals
+	
+	// items set during conversion
+	date		firstEU4Date;			// the date EU4 began
+	date		lastEU4Date;			// the date EU4 ended
+	string	outputName;				// the name the outputted mod should have
 };
 
 #endif // CONFIGURATION_H_
