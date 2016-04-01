@@ -1,5 +1,9 @@
 ProvinceMapper Change Log
 
+0.9I
+- Add 6x zoom option
+
+
 0.9H
 - Read YML province names from EU4 localization.
 - Handle being given a fresh province mappings file.
