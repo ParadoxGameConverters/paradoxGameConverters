@@ -129,6 +129,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	}
 
 	// get inventions
+	LOG(LogLevel::Info) << "Getting inventions";
 	inventionNumToName iNumToname;
 	getInventionNums(iNumToname);
 

@@ -46,7 +46,7 @@ Idhrendur		- Project Lead, Programming
 Ztaesek			- Programming, Data Files
 theosZA			- Programming
 PTSnoop			- Programming, graphics, analysis
-kwsdev			- data files
+kwsdev			- Data Files
 TheSpartanD		- Data Files
 LordBawbag		- Data Files
 MamelukeSkywalker	- Data Files
@@ -55,6 +55,7 @@ localtoast		- Data Files
 G_Morgan		- Data Files
 rageair			- Data Files
 Health			- Data Files
+Hibernian		- Data Files
 LowTartare		- Graphics
 ChortlingGnome		- Graphics
 Magc8Ball		- Graphics

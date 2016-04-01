@@ -776,41 +776,41 @@
 	link = { vic = 419 hoi = 7938 }	# Channel Islands -> Channel Islands
 	link = { vic = 304 hoi = 1386 }	# Isle of Man -> Douglas
 	# Ireland
-	link = { vic = 261 hoi = 1609 hoi = 1662 hoi = 1723 hoi = 1782 hoi = 1722 }	# Limerick -> Ennis, Limerick, Kilrush, Tralee, Dingle
-	link = { vic = 260 hoi = 1843 hoi = 1842 hoi = 1783 }	# Cork -> Cork, Killarney, Youghal
-	link = { vic = 262 hoi = 1724 hoi = 1784 }	# Waterford -> Tipperary, Waterford
-	link = { vic = 265 hoi = 1664 hoi = 1725 hoi = 1611 hoi = 1663 }	# Wexford -> Wicklow, Wexford, Carlow, Kilkenny
+	link = { vic = 261 hoi = 1662 hoi = 1609 hoi = 1723 hoi = 1782 hoi = 1722 hoi = 1842 }	# Limerick -> Limerick, Ennis, Kilrush, Tralee, Dingle, Killarney
+	link = { vic = 260 hoi = 1843 hoi = 1783 }	# Cork -> Cork, Youghal
+	link = { vic = 262 hoi = 1784 hoi = 1724 }	# Waterford -> Waterford, Tipperary
+	link = { vic = 265 hoi = 1725 hoi = 1611 hoi = 1663 hoi = 1664 }	# Wexford -> Wexford, Carlow, Kilkenny, Wicklow
 	link = { vic = 263 hoi = 1563 hoi = 1476 }	# Dublin -> Dublin, Drogheda
-	link = { vic = 256 hoi = 1385 hoi = 1430 hoi = 1431 }	# Armagh -> Armagh, Cavan, Newry
-	link = { vic = 254 hoi = 1251 hoi = 1341 }	# Belfast -> Larne, Belfast
+	link = { vic = 256 hoi = 1431 hoi = 1385 }	# Armagh -> Newry, Armagh
+	link = { vic = 254 hoi = 1341 hoi = 1251 }	# Belfast -> Belfast, Larne
 	link = { vic = 255 hoi = 1340 hoi = 1384 hoi = 1295 }	# Londonderry -> Omagh, Enniskillen, Coleraine
-	link = { vic = 257 hoi = 1250 hoi = 1293 hoi = 1294 }	# Donegal -> Letterkenny, Donegal, Buncrana
+	link = { vic = 257 hoi = 1293 hoi = 1250 hoi = 1294 }	# Donegal -> Donegal, Letterkenny, Buncrana
 	link = { vic = 259 hoi = 1339 hoi = 1429 hoi = 1519 }	# Sligo -> Sligo, Leitrim, Roscommon
-	link = { vic = 258 hoi = 1473 hoi = 1383 hoi = 1428 hoi = 1518 hoi = 1561 }	# Galway -> Clifden, Ballina, Mayo, Galway, Loughrea
-	link = { vic = 264 hoi = 1475 hoi = 1520 hoi = 1562 hoi = 1610 }	# Kildare -> Longford, Kildare, Mullingar, Tullamore
+	link = { vic = 258 hoi = 1518 hoi = 1428 hoi = 1473 hoi = 1561 hoi = 1383 }	# Galway -> Galway, Mayo, Clifden, Loughrea, Ballina
+	link = { vic = 264 hoi = 1520 hoi = 1475 hoi = 1562 hoi = 1610 hoi = 1430 }	# Kildare -> Kildare, Longford, Mullingar, Tullamore, Cavan
 	# Wales
-	link = { vic = 274 hoi = 1726 hoi = 1845 hoi = 1904 hoi = 1844 }	# Cardigan -> Aberystwyth, Cardigan, Swansea, Pembroke
+	link = { vic = 274 hoi = 1904 hoi = 1844 hoi = 1845 hoi = 1726 }	# Cardigan -> Swansea, Pembroke, Cardigan, Aberystwyth
 	link = { vic = 273 hoi = 1905 }	# Cardiff -> Cardiff
-	link = { vic = 275 hoi = 1785 hoi = 1846 hoi = 1665 }	# Llandrindod -> Brecon, Monmouth, Wrexham
-	link = { vic = 276 hoi = 1564 hoi = 1612 hoi = 1565 }	# Holyhead -> Anglesey, Bangor, Birkenhead
+	link = { vic = 275 hoi = 1665 hoi = 1785 hoi = 1846 }	# Llandrindod -> Wrexham, Brecon, Monmouth
+	link = { vic = 276 hoi = 1612 hoi = 1565 hoi = 1564 }	# Holyhead -> Bangor, Birkenhead, Anglesey
 	# Scotland
-	link = { vic = 266 hoi = 849 hoi = 850 hoi = 894 hoi = 934 hoi = 976 }	# Aberdeen -> Lossiemouth, Peterhead, Aberdeen, Balmoral, Arbroath
-	link = { vic = 267 hoi = 417 hoi = 604 hoi = 722 hoi = 806 hoi = 723 hoi = 680 hoi = 724 hoi = 681 hoi = 766 hoi = 807 hoi = 765 hoi = 847 hoi = 848 hoi = 933 hoi = 892 hoi = 932 hoi = 891 hoi = 846 hoi = 973 hoi = 1014 hoi = 974 hoi = 893 }	# Inverness -> Lerwick, Scapa Flow, Stornoway, Barra, Cape Wrath, Durness, Dornoch, Wick, Dingwall, Lairg, Ullapool, Gairloch, Inverness, Newtonmoore, Cannich, Fort Augustus, Kyle of Lochalsh, Portree, Mallaig, Tobermoray, Dalwhinnie, Grantown
-	link = { vic = 268 hoi = 1017 hoi = 1053 hoi = 975 }	# Dundee -> Dundee, Rosyth, Dunkeld
+	link = { vic = 266 hoi = 894 hoi = 934 hoi = 850 hoi = 849 }	# Aberdeen -> Aberdeen, Balmoral, Peterhead, Lossiemouth
+	link = { vic = 267 hoi = 848 hoi = 892 hoi = 932 hoi = 973 hoi = 891 hoi = 847 hoi = 765 hoi = 723 hoi = 807 hoi = 766 hoi = 724 hoi = 680 hoi = 681 hoi = 1014 hoi = 846 hoi = 806 hoi = 722 hoi = 604 hoi = 417 hoi = 893 hoi = 933 hoi = 974 }	# Inverness -> Inverness, Cannich, Fort Augustus, Mallaig, Kyle of Lochalsh, Gairloch, Ullapool, Cape Wrath, Lairg, Dingwall, Dornoch, Durness, Wick, Tobermoray, Portree, Barra, Stornoway, Scapa Flow, Lerwick, Grantown, Newtonmoore, Dalwhinnie
+	link = { vic = 268 hoi = 1017 hoi = 1053 hoi = 975 hoi = 976 }	# Dundee -> Dundee, Rosyth, Dunkeld, Arbroath
 	link = { vic = 270 hoi = 1016 hoi = 1052 hoi = 1089 hoi = 1126 hoi = 1015 }	# Stirling -> Stirling, Crianlarich, Dunbarton, Campbeltown, Fort William
-	link = { vic = 271 hoi = 1090 hoi = 1127 hoi = 1167 hoi = 1296 hoi = 1208 hoi = 1252 }	# Glasgow -> Shotts, Glasgow, Lanark, Wigtown, Ayr, Stranraer
+	link = { vic = 271 hoi = 1127 hoi = 1167 hoi = 1296 hoi = 1208 hoi = 1252 hoi = 1090 }	# Glasgow -> Glasgow, Lanark, Wigtown, Ayr, Stranraer, Shotts
 	link = { vic = 269 hoi = 1128 hoi = 1129 }	# Edinburgh -> Edinburgh, Dunbar
-	link = { vic = 272 hoi = 1209 hoi = 1253 hoi = 1168 }	# Dumfries -> Hawick, Dumfries, Selkirk
+	link = { vic = 272 hoi = 1253 hoi = 1168 hoi = 1209 }	# Dumfries -> Dumfries, Selkirk, Hawick
 	# Cornwall
-	link = { vic = 299 hoi = 2193 hoi = 2134 hoi = 2250 hoi = 2192 hoi = 2307 }	# Plymouth -> Exeter, Bude, Plymouth, Bodmin, Penzance
+	link = { vic = 299 hoi = 2250 hoi = 2193 hoi = 2134 hoi = 2192 hoi = 2307 }	# Plymouth -> Plymouth, Exeter, Bude, Bodmin, Penzance
 	# Northern England
 	link = { vic = 280 hoi = 1255 hoi = 1299 hoi = 1169 hoi = 1210 hoi = 1343 }	# Newcastle-upon-Tyne -> Newcastle, Sunderland, Berwick, Morpeth, Durham
 	link = { vic = 279 hoi = 1254 hoi = 1298 hoi = 1297 hoi = 1342 }	# Carlisle -> Carlisle, Kendal, Workington, Barrow
 	link = { vic = 277 hoi = 1521 hoi = 1477 hoi = 1387 }	# Liverpool -> Liverpool, Preston, Lancaster
 	link = { vic = 278 hoi = 1522 hoi = 1432 }	# Manchester -> Manchester, Skipton
-	link = { vic = 282 hoi = 1388 hoi = 1478 }	# Leeds -> Darlington, Leeds
-	link = { vic = 281 hoi = 1344 hoi = 1389 hoi = 1433 hoi = 1524 }	# Hull -> Middlesbrough, Scarborough, York, Hull
-	link = { vic = 283 hoi = 1523 hoi = 1567 }	# Sheffield -> Doncaster, Sheffield
+	link = { vic = 282 hoi = 1478 hoi = 1388 }	# Leeds -> Leeds, Darlington
+	link = { vic = 281 hoi = 1344 hoi = 1433 hoi = 1524 hoi = 1389 }	# Hull -> Middlesbrough, York, Hull, Scarborough
+	link = { vic = 283 hoi = 1567 hoi = 1523 }	# Sheffield -> Sheffield, Doncaster
 	link = { vic = 285 hoi = 1613 hoi = 1566 }	# Chester -> Chester, Warrington
 	# England Proper
 	link = { vic = 290 hoi = 1616 hoi = 1568 hoi = 1668 }	# Lincoln -> Grimsby, Scunthorpe, Lincoln
@@ -824,10 +824,10 @@
 	link = { vic = 293 hoi = 1909 }	# Chelmsford -> Southend
 	link = { vic = 295 hoi = 1908 hoi = 1848 hoi = 1963 }	# St Albans -> Luton, Bletchley, Slough
 	link = { vic = 294 hoi = 1907 hoi = 2019 }	# Oxford -> Oxford, Reading
-	link = { vic = 296 hoi = 1906 hoi = 2018 }	# Bristol -> Gloucester, Bristol
+	link = { vic = 296 hoi = 2018 hoi = 1906 }	# Bristol -> Bristol, Gloucester
 	link = { vic = 301 hoi = 2021 hoi = 11379 }	# Canterbury -> Dover, Maidstone
 	link = { vic = 300 hoi = 1964 }	# London -> London
-	link = { vic = 302 hoi = 11380 hoi = 2020 hoi = 2079 }	# Brighton -> Reigate, Aldershot, Brighton
+	link = { vic = 302 hoi = 2079 hoi = 11380 hoi = 2020 }	# Brighton -> Brighton, Reigate, Aldershot
 	link = { vic = 303 hoi = 2078 hoi = 2135 }	# Southampton -> Portsmouth, Newport
 	link = { vic = 297 hoi = 2136 hoi = 2077 hoi = 1962 }	# Salisbury -> Weymouth, Bournemouth, Swindon
 	link = { vic = 298 hoi = 2076 hoi = 2075 }	# Bath -> Taunton, Bideford
@@ -890,26 +890,26 @@
 	link = { vic = 339 hoi = 435 hoi = 471 hoi = 376 hoi = 404 hoi = 542 hoi = 698 hoi = 619 hoi = 88 hoi = 658 hoi = 472 hoi = 286 hoi = 581 hoi = 434 hoi = 507 hoi = 543 hoi = 740 hoi = 89 }	# Viipuri -> Vokhtozero, Värtsilä, Tolvajärvi, Kuolismaa, Sortavala, Viipuri, Antrea, Koivisto, Käkisalmi, Suojärvi, Porozero, Hiitola, Kollaa, Impilahti, Salmi, Kivennapa, Valkjärvi
 	# Denmark
 	link = { vic = 374 hoi = 1682 }	# Bornholm -> Bornholm
-	link = { vic = 372 hoi = 1436 hoi = 1437 hoi = 1482 hoi = 1526 }	# Copenhagen -> Slagelse, Helsingör, Copenhagen, Guldborgssund
+	link = { vic = 372 hoi = 1482 hoi = 1526 hoi = 1437 hoi = 1436 }	# Copenhagen -> Copenhagen, Guldborgssund, Helsingör, Slagelse
 	link = { vic = 373 hoi = 1391 hoi = 1435 hoi = 1481 }	# Odense -> Odense, Faaborg, Svendborg
-	link = { vic = 367 hoi = 1130 hoi = 1170 hoi = 1212 hoi = 1211 }	# Aalborg -> Fredrikshavn, Jammerbugt, Aalborg, Holstebro
-	link = { vic = 366 hoi = 1257 hoi = 1301 hoi = 1256 }	# Aarhus -> Randers, Århus, Silkeborg
+	link = { vic = 367 hoi = 1212 hoi = 1211 hoi = 1130 hoi = 1170 }	# Aalborg -> Aalborg, Holstebro, Fredrikshavn, Jammerbugt
+	link = { vic = 366 hoi = 1301 hoi = 1256 hoi = 1257 }	# Aarhus -> Århus, Silkeborg, Randers
 	link = { vic = 2557 vic = 368 hoi = 1345 hoi = 1346 hoi = 1300 }	# MANY-TO-MANY: Esbjerg, Ribe -> Esbjerg, Kolding, Herning
-	link = { vic = 371 hoi = 1390 hoi = 1434 }	# Aabenraa -> Tönder, Sönderborg
+	link = { vic = 371 hoi = 1434 hoi = 1390 }	# Aabenraa -> Sönderborg, Tönder
 	link = { vic = 370 vic = 533 hoi = 1525 hoi = 1479 }	# MANY-TO-MANY: Flensburg, Heligoland -> Flensburg, Leck
 	# ## Benelux
 	# The Netherlands
-	link = { vic = 385 hoi = 1618 hoi = 1672 hoi = 1732 hoi = 1569 }	# Leeuwarden -> Dokkum, Leeuwarden, Heerenveen, Waddeneilanden
-	link = { vic = 383 hoi = 1674 hoi = 1673 }	# Groningen -> Delfzijl, Groningen
+	link = { vic = 385 hoi = 1672 hoi = 1732 hoi = 1618 hoi = 1569 }	# Leeuwarden -> Leeuwarden, Heerenveen, Dokkum, Waddeneilanden
+	link = { vic = 383 hoi = 1673 hoi = 1674 }	# Groningen -> Groningen, Delfzijl
 	link = { vic = 386 hoi = 1733 hoi = 1853 hoi = 1793 }	# Assen -> Assen, Hoogeveen, Emmen
-	link = { vic = 384 hoi = 1792 hoi = 1913 hoi = 1852 hoi = 1912 }	# Zwolle -> Steenwijk, Enschede, Zwolle, Deventer
+	link = { vic = 384 hoi = 1852 hoi = 1912 hoi = 1792 hoi = 1913 }	# Zwolle -> Zwolle, Deventer, Steenwijk, Enschede
 	link = { vic = 382 hoi = 1967 hoi = 2025 hoi = 1968 }	# Arnhem -> Apeldoorn, Arnhem, Winterswijk
 	link = { vic = 377 hoi = 1966 hoi = 1911 hoi = 1734 }	# Utrecht -> Utrecht, Amersfoort, Betuwe
-	link = { vic = 375 hoi = 1671 hoi = 1791 hoi = 1851 hoi = 1910 hoi = 14167 }	# Amsterdam -> Den Helder, Alkmaar, Haarlem, Amsterdam, Afsluitdijk
-	link = { vic = 376 hoi = 1965 hoi = 2022 hoi = 2081 hoi = 14159 }	# Rotterdam -> Dordrecht, Den Haag, Rotterdam, Gouda
-	link = { vic = 378 hoi = 2080 hoi = 2024 }	# Middelburg -> Middelburg, Zierikzee
-	link = { vic = 380 hoi = 2139 hoi = 2023 hoi = 2138 hoi = 2082 }	# Breda -> Tilburg, Breda, Roosendaal, 's Hertogenbosch
-	link = { vic = 379 hoi = 2083 hoi = 2198 hoi = 2199 }	# Eindhoven -> Nijmegen, Eindhoven, Venlo
+	link = { vic = 375 hoi = 1910 hoi = 1851 hoi = 1791 hoi = 1671 hoi = 14167 }	# Amsterdam -> Amsterdam, Haarlem, Alkmaar, Den Helder, Afsluitdijk
+	link = { vic = 376 hoi = 2081 hoi = 2022 hoi = 1965 hoi = 14159 }	# Rotterdam -> Rotterdam, Den Haag, Dordrecht, Gouda
+	link = { vic = 378 hoi = 2080 hoi = 2024 hoi = 2138 }	# Middelburg -> Middelburg, Zierikzee, Roosendaal
+	link = { vic = 380 hoi = 2023 hoi = 2082 hoi = 2139 }	# Breda -> Breda, 's Hertogenbosch, Tilburg
+	link = { vic = 379 hoi = 2198 hoi = 2083 hoi = 2199 }	# Eindhoven -> Eindhoven, Nijmegen, Venlo
 	link = { vic = 381 hoi = 2140 hoi = 14156 }	# Maastricht -> Maastricht, Roermond
 	# Belgium
 	link = { vic = 388 hoi = 2137 }	# Bruges -> Brugge
@@ -917,17 +917,17 @@
 	link = { vic = 393 hoi = 2252 }	# Tournai -> Kortrijk
 	link = { vic = 390 hoi = 2197 hoi = 10685 }	# Antwerp -> Antwerpen, Turnhout
 	link = { vic = 387 hoi = 2311 hoi = 2254 }	# Brussels -> Bruxelles, Leuven
-	link = { vic = 394 hoi = 2310 hoi = 14155 }	# Charleroi -> Tournai, Charleroi
+	link = { vic = 394 hoi = 14155 hoi = 2310 }	# Charleroi -> Charleroi, Tournai
 	link = { vic = 392 hoi = 2369 hoi = 2427 }	# Namur -> Namur, Philippeville
 	link = { vic = 395 hoi = 2312 }	# Liège -> Liège
 	link = { vic = 391 hoi = 2255 }	# Hasselt -> Hasselt
 	link = { vic = 396 hoi = 2313 hoi = 2370 }	# Spa -> Verviers, Bastogne
-	link = { vic = 398 hoi = 2428 hoi = 2489 }	# Arlon -> Dinant, Arlon
+	link = { vic = 398 hoi = 2489 hoi = 2428 }	# Arlon -> Arlon, Dinant
 	# Luxembourg
 	link = { vic = 397 hoi = 2429 }	# Luxembourg -> Luxembourg
 	# ## Germany
 	# Schleswig-Holstein, Hamburg
-	link = { vic = 369 hoi = 1571 hoi = 1572 hoi = 1621 hoi = 1622 }	# Kiel -> Heide, Kiel, Neumünster, Plön
+	link = { vic = 369 hoi = 1572 hoi = 1621 hoi = 1622 hoi = 1571 }	# Kiel -> Kiel, Neumünster, Plön, Heide
 	link = { vic = 530 hoi = 1679 }	# Lübeck -> Lübeck
 	link = { vic = 529 hoi = 1678 hoi = 1738 }	# Lauenburg -> Segeberg, Mölln
 	link = { vic = 528 hoi = 1737 }	# Hamburg -> Hamburg
