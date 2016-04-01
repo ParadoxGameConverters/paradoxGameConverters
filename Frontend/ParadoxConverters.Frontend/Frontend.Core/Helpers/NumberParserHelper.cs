@@ -5,7 +5,7 @@ namespace Frontend.Core.Helpers
     public static class NumberParserHelper
     {
         /// <summary>
-        /// Tries the parse double.
+        ///     Tries the parse double.
         /// </summary>
         /// <param name="s">The arguments.</param>
         /// <param name="result">The result.</param>

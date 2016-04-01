@@ -3,12 +3,12 @@
 namespace Frontend.Core.Exceptions
 {
     /// <summary>
-    /// Exception that will be thrown if the xml that is being parsed is missing some required property
+    ///     Exception that will be thrown if the xml that is being parsed is missing some required property
     /// </summary>
     public class MissingRequiredXMLPropertyException : XMLParseExceptionBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MissingRequiredXMLPropertyException"/> class.
+        ///     Initializes a new instance of the <see cref="MissingRequiredXMLPropertyException" /> class.
         /// </summary>
         /// <param name="parentElement">The parent element.</param>
         /// <param name="propertyName">Name of the property.</param>

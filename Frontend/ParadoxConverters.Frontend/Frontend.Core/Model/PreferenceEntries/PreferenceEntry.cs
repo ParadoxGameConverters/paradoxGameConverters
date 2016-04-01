@@ -9,96 +9,89 @@ namespace Frontend.Core.Model.PreferenceEntries
         where TParent : IPreference
     {
         private bool isSelected;
-
         private T name;
 
         /// <summary>
-        /// Gets the name.
+        ///     Gets the name.
         /// </summary>
         /// <value>
-        /// The name.
+        ///     The name.
         /// </value>
         public T Name
         {
-            get
-            {
-                return this.name;
-            }
+            get { return name; }
 
             set
             {
-                if (NullableComparer.AreEqual(this.name, value))
+                if (NullableComparer.AreEqual(name, value))
                 {
                     return;
                 }
 
-                this.name = value;
-                this.NotifyOfPropertyChange(() => this.Name);
+                name = value;
+                NotifyOfPropertyChange(() => Name);
                 //this.UpdateParentUserChoice();
             }
         }
 
         /// <summary>
-        /// Gets the name of the friendly.
+        ///     Gets the name of the friendly.
         /// </summary>
         /// <value>
-        /// The name of the friendly.
+        ///     The name of the friendly.
         /// </value>
         public string FriendlyName { get; set; }
 
         /// <summary>
-        /// Gets the description.
+        ///     Gets the description.
         /// </summary>
         /// <value>
-        /// The description.
+        ///     The description.
         /// </value>
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets the parent.
+        ///     Gets the parent.
         /// </summary>
         /// <value>
-        /// The parent.
+        ///     The parent.
         /// </value>
         public TParent Parent { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether [is selected].
+        ///     Gets or sets a value indicating whether [is selected].
         /// </summary>
         /// <value>
-        ///   <c>true</c> if [is selected]; otherwise, <c>false</c>.
+        ///     <c>true</c> if [is selected]; otherwise, <c>false</c>.
         /// </value>
         public bool IsSelected
         {
-            get
-            {
-                return this.isSelected;
-            }
+            get { return isSelected; }
 
             set
             {
-                if (this.isSelected == value)
+                if (isSelected == value)
                 {
                     return;
                 }
 
-                this.isSelected = value;
+                isSelected = value;
 
                 if (value)
                 {
-                    this.UpdateParentUserChoice();
+                    UpdateParentUserChoice();
                 }
 
-                this.NotifyOfPropertyChange(() => this.IsSelected);
+                NotifyOfPropertyChange(() => IsSelected);
             }
         }
 
         /// <summary>
-        /// Updates the parent user choice. (Sets the parent's "SelectedEntry" property to this.
+        ///     Updates the parent user choice. (Sets the parent's "SelectedEntry" property to this.
         /// </summary>
         protected void UpdateParentUserChoice()
         {
-            var parent = this.Parent as IPreference;
+            var parent = Parent as IPreference;
             parent.SelectedEntry = this;
         }
     }

@@ -1,6 +1,6 @@
-﻿using Frontend.Core.Helpers;
+﻿using System;
+using Frontend.Core.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace Frontend.Core.Tests.Helpers
 {

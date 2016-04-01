@@ -3,15 +3,12 @@
 namespace Frontend.Core.Logging
 {
     /// <summary>
-    /// A logentry is, well, an entry in the log that is outputted to screen.
+    ///     A logentry is, well, an entry in the log that is outputted to screen.
     /// </summary>
     public class LogEntry
     {
-        private string logText;
-        private DateTime logStamp;
-        
         /// <summary>
-        /// Initializes a new instance of the <see cref="LogEntry"/> class.
+        ///     Initializes a new instance of the <see cref="LogEntry" /> class.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="severity">The severity.</param>
@@ -19,15 +16,15 @@ namespace Frontend.Core.Logging
         /// <param name="path">The path where something happened</param>
         public LogEntry(string text, LogEntrySeverity severity, LogEntrySource source, string path)
         {
-            this.logText = text;
-            this.logStamp = DateTime.Now;
-            this.Severity = severity;
-            this.Source = source;
-            this.Path = path;
+            LogText = text;
+            LogStamp = DateTime.Now;
+            Severity = severity;
+            Source = source;
+            Path = path;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LogEntry"/> class.
+        ///     Initializes a new instance of the <see cref="LogEntry" /> class.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <param name="severity">The severity.</param>
@@ -38,63 +35,51 @@ namespace Frontend.Core.Logging
         }
 
         /// <summary>
-        /// Gets the log text.
+        ///     Gets the log text.
         /// </summary>
         /// <value>
-        /// The log text.
+        ///     The log text.
         /// </value>
-        public string LogText
-        {
-            get
-            {
-                return this.logText;
-            }
-        }
+        public string LogText { get; private set; }
 
         /// <summary>
-        /// Gets the log stamp.
+        ///     Gets the log stamp.
         /// </summary>
         /// <value>
-        /// The log stamp.
+        ///     The log stamp.
         /// </value>
-        public DateTime LogStamp
-        {
-            get
-            {
-                return this.logStamp;
-            }
-        }
+        public DateTime LogStamp { get; private set; }
 
         /// <summary>
-        /// Gets or sets the source.
+        ///     Gets or sets the source.
         /// </summary>
         /// <value>
-        /// The source.
+        ///     The source.
         /// </value>
         public LogEntrySource Source { get; set; }
 
         /// <summary>
-        /// Gets or sets the severity.
+        ///     Gets or sets the severity.
         /// </summary>
         /// <value>
-        /// The severity.
+        ///     The severity.
         /// </value>
         public LogEntrySeverity Severity { get; set; }
 
         /// <summary>
-        /// Gets or sets the path to where something happened. Can be both file and folder
+        ///     Gets or sets the path to where something happened. Can be both file and folder
         /// </summary>
         public string Path { get; set; }
 
         /// <summary>
-        /// Returns a <see cref="System.String" /> that represents this instance.
+        ///     Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
         /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
+        ///     A <see cref="System.String" /> that represents this instance.
         /// </returns>
         public override string ToString()
         {
-            return this.LogStamp + " : " + this.LogText;
+            return LogStamp + " : " + LogText;
         }
     }
 }

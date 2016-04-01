@@ -9,11 +9,11 @@
              xmlns:local="clr-namespace:Frontend.Core.Views.TemplateSelectors"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <local:PreferenceTemplateSelector x:Key="PreferenceTemplateSelector"/>
+        <local:PreferenceTemplateSelector x:Key="PreferenceTemplateSelector" />
         <sys:Double x:Key="EditableTextBoxWidth">150</sys:Double>
         <controls:GridLength x:Key="FirstColumnWidth">30</controls:GridLength>
         <controls:GridLength x:Key="SecondColumnWidth">190</controls:GridLength>
-        <Thickness x:Key="EntryTemplateHeaderMargin" Left="0" Right="0" Top="0" Bottom="5"/>
+        <Thickness x:Key="EntryTemplateHeaderMargin" Left="0" Right="0" Top="0" Bottom="5" />
         <sys:Double x:Key="WrapPanelItemWidth">250</sys:Double>
 
         <Style x:Key="EntryBorderStyle" TargetType="{x:Type Border}">
@@ -23,32 +23,32 @@
         </Style>
 
         <Style x:Key="PreferenceBorderStyle" TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="LightGray"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="Padding" Value="3"/>
-            <Setter Property="ToolTip" Value="{Binding Description}"/>
-            <Setter Property="ToolTipService.InitialShowDelay" Value="0"/>
+            <Setter Property="BorderBrush" Value="LightGray" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Padding" Value="3" />
+            <Setter Property="ToolTip" Value="{Binding Description}" />
+            <Setter Property="ToolTipService.InitialShowDelay" Value="0" />
         </Style>
 
         <Style x:Key="TextboxWithDataValidationSupportStyle" TargetType="{x:Type TextBox}">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="true">
-                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
                 </Trigger>
             </Style.Triggers>
         </Style>
 
         <Style x:Key="HeaderTextBoxStyle" TargetType="TextBlock">
-            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontWeight" Value="Bold" />
         </Style>
 
         <DataTemplate x:Key="PredefinedStringEntryTemplate">
             <Border Style="{StaticResource EntryBorderStyle}">
                 <Grid>
                     <RadioButton GroupName="{Binding Parent.Name}"
-                       Content="{Binding FriendlyName}"
-                       IsChecked="{Binding IsSelected}">
-                    </RadioButton>
+                                 Content="{Binding FriendlyName}"
+                                 IsChecked="{Binding IsSelected}" />
                 </Grid>
             </Border>
         </DataTemplate>
@@ -57,9 +57,8 @@
             <Border Style="{StaticResource EntryBorderStyle}">
                 <Grid>
                     <RadioButton GroupName="{Binding Parent.Name}"
-                       Content="{Binding FriendlyName}"
-                       IsChecked="{Binding IsSelected}">
-                    </RadioButton>
+                                 Content="{Binding FriendlyName}"
+                                 IsChecked="{Binding IsSelected}" />
                 </Grid>
             </Border>
         </DataTemplate>
@@ -68,8 +67,10 @@
             <Border Style="{StaticResource EntryBorderStyle}">
                 <Grid>
                     <StackPanel HorizontalAlignment="Left">
-                        <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                     Style="{StaticResource TextboxWithDataValidationSupportStyle}" Width="{StaticResource EditableTextBoxWidth}" HorizontalAlignment="Left"/>
+                        <TextBox
+                            Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                            Style="{StaticResource TextboxWithDataValidationSupportStyle}"
+                            Width="{StaticResource EditableTextBoxWidth}" HorizontalAlignment="Left" />
                     </StackPanel>
                 </Grid>
             </Border>
@@ -79,22 +80,24 @@
             <Border Style="{StaticResource PreferenceBorderStyle}" Margin="2">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="{StaticResource FirstColumnWidth}"/>
-                        <ColumnDefinition Width="{StaticResource SecondColumnWidth}"/>
+                        <ColumnDefinition Width="{StaticResource FirstColumnWidth}" />
+                        <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="{Binding FriendlyName}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="{StaticResource EntryTemplateHeaderMargin}"/>
+                    <TextBlock Text="{Binding FriendlyName}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                               Margin="{StaticResource EntryTemplateHeaderMargin}" />
 
                     <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left">
-                        <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                                 Style="{StaticResource TextboxWithDataValidationSupportStyle}" 
-                                 Width="{StaticResource EditableTextBoxWidth}" 
-                                 HorizontalAlignment="Left"/>
+                        <TextBox
+                            Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                            Style="{StaticResource TextboxWithDataValidationSupportStyle}"
+                            Width="{StaticResource EditableTextBoxWidth}"
+                            HorizontalAlignment="Left" />
                     </StackPanel>
                 </Grid>
             </Border>
@@ -104,27 +107,27 @@
             <Border Style="{StaticResource PreferenceBorderStyle}" Margin="2">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="{StaticResource FirstColumnWidth}"/>
-                        <ColumnDefinition Width="{StaticResource SecondColumnWidth}"/>
+                        <ColumnDefinition Width="{StaticResource FirstColumnWidth}" />
+                        <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="{Binding FriendlyName}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="{StaticResource EntryTemplateHeaderMargin}"/>
+                    <TextBlock Text="{Binding FriendlyName}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                               Margin="{StaticResource EntryTemplateHeaderMargin}" />
 
                     <StackPanel Grid.Row="1" Grid.Column="1">
                         <DatePicker
-                            Text="{Binding FriendlyName}"
                             SelectedDate="{Binding Value, ValidatesOnDataErrors=True}"
                             SelectedDateFormat="Short"
                             DisplayDateStart="{Binding MinValue, Mode=OneWay}"
                             DisplayDateEnd="{Binding MaxValue, Mode=OneWay}"
-                            FirstDayOfWeek="Monday" 
+                            FirstDayOfWeek="Monday"
                             Width="{StaticResource EditableTextBoxWidth}"
-                            HorizontalAlignment="Left"/>
+                            HorizontalAlignment="Left" />
                     </StackPanel>
                 </Grid>
             </Border>
@@ -134,19 +137,21 @@
             <Border Style="{StaticResource PreferenceBorderStyle}" Margin="2">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="{StaticResource FirstColumnWidth}"/>
-                        <ColumnDefinition Width="{StaticResource SecondColumnWidth}"/>
+                        <ColumnDefinition Width="{StaticResource FirstColumnWidth}" />
+                        <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="{Binding FriendlyName}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="{StaticResource EntryTemplateHeaderMargin}"/>
+                    <TextBlock Text="{Binding FriendlyName}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                               Margin="{StaticResource EntryTemplateHeaderMargin}" />
 
                     <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left">
-                        <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="{StaticResource EditableTextBoxWidth}" HorizontalAlignment="Left"/>
+                        <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Width="{StaticResource EditableTextBoxWidth}" HorizontalAlignment="Left" />
                     </StackPanel>
                 </Grid>
             </Border>
@@ -156,24 +161,28 @@
             <Border Style="{StaticResource PreferenceBorderStyle}" Margin="2">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="{StaticResource FirstColumnWidth}"/>
-                        <ColumnDefinition Width="{StaticResource SecondColumnWidth}"/>
+                        <ColumnDefinition Width="{StaticResource FirstColumnWidth}" />
+                        <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="{Binding FriendlyName}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="{StaticResource EntryTemplateHeaderMargin}"/>
+                    <TextBlock Text="{Binding FriendlyName}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                               Margin="{StaticResource EntryTemplateHeaderMargin}" />
 
-                    <ItemsControl ItemsSource="{Binding Entries}" Grid.Row="1" Grid.Column="1" ItemTemplate="{StaticResource PredefinedStringEntryTemplate}"/>
+                    <ItemsControl ItemsSource="{Binding Entries}" Grid.Row="1" Grid.Column="1"
+                                  ItemTemplate="{StaticResource PredefinedStringEntryTemplate}" />
 
                     <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left">
-                        <TextBlock Text="{Binding Name}"/>
-                        <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                     Style="{StaticResource TextboxWithDataValidationSupportStyle}" Width="{StaticResource EditableTextBoxWidth}" HorizontalAlignment="Left"/>
+                        <TextBlock Text="{Binding Name}" />
+                        <TextBox
+                            Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                            Style="{StaticResource TextboxWithDataValidationSupportStyle}"
+                            Width="{StaticResource EditableTextBoxWidth}" HorizontalAlignment="Left" />
                     </StackPanel>
                 </Grid>
             </Border>
@@ -183,18 +192,20 @@
             <Border Style="{StaticResource PreferenceBorderStyle}" Margin="2">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="{StaticResource FirstColumnWidth}"/>
-                        <ColumnDefinition Width="{StaticResource SecondColumnWidth}"/>
+                        <ColumnDefinition Width="{StaticResource FirstColumnWidth}" />
+                        <ColumnDefinition Width="{StaticResource SecondColumnWidth}" />
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="{Binding FriendlyName}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="{StaticResource EntryTemplateHeaderMargin}"/>
+                    <TextBlock Text="{Binding FriendlyName}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                               Margin="{StaticResource EntryTemplateHeaderMargin}" />
 
-                    <ItemsControl ItemsSource="{Binding Entries}" Grid.Row="1" Grid.Column="1" ItemTemplate="{StaticResource PredefinedStringEntryTemplate}"/>
+                    <ItemsControl ItemsSource="{Binding Entries}" Grid.Row="1" Grid.Column="1"
+                                  ItemTemplate="{StaticResource PredefinedStringEntryTemplate}" />
                 </Grid>
             </Border>
         </DataTemplate>
@@ -202,19 +213,20 @@
 
     <Grid VerticalAlignment="Top" Margin="10,10,0, 10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="{Binding Category.FriendlyName}" Style="{StaticResource HeaderTextBoxStyle}"/>
-        <ScrollViewer x:Name="rootScrollViewer"  Grid.Row="1">
-            <ItemsControl ItemsSource="{Binding Category.Preferences}" ItemTemplateSelector="{StaticResource PreferenceTemplateSelector}">
+        <TextBlock Grid.Row="0" Text="{Binding Category.FriendlyName}" Style="{StaticResource HeaderTextBoxStyle}" />
+        <ScrollViewer x:Name="rootScrollViewer" Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding Category.Preferences}"
+                          ItemTemplateSelector="{StaticResource PreferenceTemplateSelector}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"
-                                   ItemWidth="{StaticResource WrapPanelItemWidth}"                                   
-                                   VerticalAlignment="Stretch" 
-                                   HorizontalAlignment="Stretch"/>
+                                   ItemWidth="{StaticResource WrapPanelItemWidth}"
+                                   VerticalAlignment="Stretch"
+                                   HorizontalAlignment="Stretch" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>

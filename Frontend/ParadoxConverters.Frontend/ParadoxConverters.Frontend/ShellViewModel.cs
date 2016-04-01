@@ -1,16 +1,14 @@
-
+using System;
+using Caliburn.Micro;
+using Frontend.Core.Model;
+using Frontend.Core.Navigation;
+using Frontend.Core.ViewModels;
 
 namespace Frontend.Client
 {
-    using Caliburn.Micro;
-    using Frontend.Core.Model;
-    using Frontend.Core.Navigation;
-    using Frontend.Core.ViewModels;
-    using System;
-
-    public class ShellViewModel : IShell , IDisposable
+    public class ShellViewModel : IShell, IDisposable
     {
-        private IEventAggregator eventAggregator;
+        private readonly IEventAggregator eventAggregator;
         private FrameViewModel frameViewModel;
         private bool isDisposed;
 
@@ -19,39 +17,39 @@ namespace Frontend.Client
             this.eventAggregator = eventAggregator;
         }
 
-        public FrameViewModel FrameViewModel 
-        { 
+        public FrameViewModel FrameViewModel
+        {
             get
             {
-                if (this.frameViewModel == null)
+                if (frameViewModel == null)
                 {
                     var options = new ConverterOptions();
-                    this.frameViewModel = new FrameViewModel(this.eventAggregator);
-                    var welcomeViewModel = new WelcomeViewModel(this.eventAggregator, options);
-                    var pathPickerViewModel = new PathPickerViewModel(this.eventAggregator, options);
+                    frameViewModel = new FrameViewModel(eventAggregator);
+                    var welcomeViewModel = new WelcomeViewModel(eventAggregator, options);
+                    var pathPickerViewModel = new PathPickerViewModel(eventAggregator, options);
 
-                    this.frameViewModel.Steps.Add(welcomeViewModel);
-                    this.frameViewModel.Steps.Add(pathPickerViewModel);
+                    frameViewModel.Steps.Add(welcomeViewModel);
+                    frameViewModel.Steps.Add(pathPickerViewModel);
 
-                    this.FrameViewModel.Move(Direction.Forward);
+                    FrameViewModel.Move(Direction.Forward);
                 }
 
-                return this.frameViewModel;
+                return frameViewModel;
             }
         }
 
         public void Dispose()
         {
-            this.Dispose(true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
 
         protected virtual void Dispose(bool isDisposing)
         {
-            if (isDisposing && !this.isDisposed)
+            if (isDisposing && !isDisposed)
             {
-                this.frameViewModel.Dispose();
-                this.isDisposed = true;
+                frameViewModel.Dispose();
+                isDisposed = true;
             }
         }
     }

@@ -6,8 +6,8 @@ namespace Frontend.Core.Model.Paths
     {
         public AlternativePath(string path, bool exists)
         {
-            this.Path = path;
-            this.Exists = exists;
+            Path = path;
+            Exists = exists;
         }
 
         public string Path { get; set; }

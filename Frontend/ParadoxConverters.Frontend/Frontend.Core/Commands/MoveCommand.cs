@@ -6,7 +6,7 @@ namespace Frontend.Core.Commands
 {
     public class MoveCommand : CommandBase
     {
-        private IStepConductorBase conductorViewModel;
+        private readonly IStepConductorBase conductorViewModel;
 
         public MoveCommand(IEventAggregator eventAggregator, IStepConductorBase conductorViewModel)
             : base(eventAggregator)
@@ -16,7 +16,7 @@ namespace Frontend.Core.Commands
 
         protected override bool OnCanExecute(object parameter)
         {
-            switch ((Direction)parameter)
+            switch ((Direction) parameter)
             {
                 case Direction.Backward:
                     return conductorViewModel.CanMoveBackward;
@@ -30,7 +30,7 @@ namespace Frontend.Core.Commands
 
         protected override void OnExecute(object parameter)
         {
-            this.conductorViewModel.Move((Direction)parameter);
+            conductorViewModel.Move((Direction) parameter);
         }
     }
 }

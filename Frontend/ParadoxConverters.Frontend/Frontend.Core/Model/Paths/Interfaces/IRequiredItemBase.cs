@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+
 namespace Frontend.Core.Model.Paths.Interfaces
 {
     public interface IRequiredItemBase : INotifyPropertyChanged
@@ -8,10 +9,11 @@ namespace Frontend.Core.Model.Paths.Interfaces
         string SelectedValue { get; set; }
         string TagName { get; }
         string InternalTagName { get; }
-        string Description { get;}
+        string Description { get; }
         IList<IAlternativePath> AlternativePaths { get; }
         string DefaultValue { get; }
         bool IsMandatory { get; }
         bool IsValid { get; }
+        bool IsHidden { get; }
     }
 }

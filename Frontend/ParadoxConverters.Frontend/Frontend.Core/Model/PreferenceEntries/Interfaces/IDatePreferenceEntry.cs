@@ -1,5 +1,5 @@
-﻿using Frontend.Core.Model.Preferences.Interfaces;
-using System;
+﻿using System;
+using Frontend.Core.Model.Preferences.Interfaces;
 
 namespace Frontend.Core.Model.PreferenceEntries.Interfaces
 {

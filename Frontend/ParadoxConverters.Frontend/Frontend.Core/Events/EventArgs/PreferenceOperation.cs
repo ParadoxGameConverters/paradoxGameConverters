@@ -1,11 +1,10 @@
-﻿
-namespace Frontend.Core.Events.EventArgs
+﻿namespace Frontend.Core.Events.EventArgs
 {
     /// <summary>
-    /// This enum indicates whether the fired event indicates an add or remove step operation
+    ///     This enum indicates whether the fired event indicates an add or remove step operation
     /// </summary>
     /// <remarks>
-    /// It's worth noting that both operations are bulk operations - they affect multiple steps
+    ///     It's worth noting that both operations are bulk operations - they affect multiple steps
     /// </remarks>
     public enum PreferenceOperation
     {

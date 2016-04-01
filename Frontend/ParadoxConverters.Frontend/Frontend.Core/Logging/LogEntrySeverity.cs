@@ -1,23 +1,22 @@
-﻿
-namespace Frontend.Core.Logging
+﻿namespace Frontend.Core.Logging
 {
     /// <summary>
-    /// Enumerates the various degrees of severity a single log entry could have
+    ///     Enumerates the various degrees of severity a single log entry could have
     /// </summary>
     public enum LogEntrySeverity
     {
         /// <summary>
-        /// The information
+        ///     The information
         /// </summary>
         Info,
 
         /// <summary>
-        /// The warning
+        ///     The warning
         /// </summary>
         Warning,
 
         /// <summary>
-        /// The error
+        ///     The error
         /// </summary>
         Error
     }

@@ -6,7 +6,7 @@ namespace Frontend.Core.Helpers
     public static class DateParseHelper
     {
         /// <summary>
-        /// Tries the parse double.
+        ///     Tries the parse double.
         /// </summary>
         /// <param name="s">The arguments.</param>
         /// <param name="result">The result.</param>
@@ -17,7 +17,7 @@ namespace Frontend.Core.Helpers
         }
 
         /// <summary>
-        /// Tries the parse double.
+        ///     Tries the parse double.
         /// </summary>
         /// <param name="s">The arguments.</param>
         /// <param name="result">The result.</param>
