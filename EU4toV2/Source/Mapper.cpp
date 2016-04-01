@@ -368,7 +368,7 @@ void removeDeadLandlessNations(EU4World& world)
 			{
 				if (popItr->culture == primaryCulture)
 				{
-					culturePercent += popItr->popRatio;
+					culturePercent += popItr->lowerPopRatio;
 				}
 			}
 			if ( culturePercent >= 0.5 )
@@ -461,6 +461,20 @@ cultureMapping initCultureMap(Object* obj)
 				newD.second	= (*j)->getLeaf();
 				distinguishers.push_back(newD);
 			}
+			if ( (*j)->getKey() == "region" )
+			{
+				distinguisher newD;	// a new distinguiser
+				newD.first	= DTRegion;
+				newD.second	= (*j)->getLeaf();
+				distinguishers.push_back(newD);
+			}
+			if ( (*j)->getKey() == "provinceid" )
+			{
+				distinguisher newD;	// a new distinguiser
+				newD.first	= DTProvince;
+				newD.second	= (*j)->getLeaf();
+				distinguishers.push_back(newD);
+			}
 		}
 
 		for (vector<string>::iterator j = srcCultures.begin(); j != srcCultures.end(); j++)
@@ -474,6 +488,61 @@ cultureMapping initCultureMap(Object* obj)
 	}
 
 	return cultureMap;
+}
+
+
+bool cultureMatch(const cultureMapping& cultureMap, const EU4RegionsMapping& regionsMap, string srcCulture, string& dstCulture, string religion, int EU4Province, string ownerTag)
+{
+	bool matched = false;
+	for (cultureMapping::const_iterator i = cultureMap.begin(); (i != cultureMap.end()) && (!matched); i++)
+	{
+		if (i->srcCulture == srcCulture)
+		{
+			bool match = true;
+			for (vector<distinguisher>::const_iterator j = i->distinguishers.begin(); j != i->distinguishers.end(); j++)
+			{
+				if (j->first == DTOwner)
+				{
+					if (ownerTag != j->second)
+					{
+							match = false;
+					}
+				}
+				else if (j->first == DTReligion)
+				{
+					if (religion != j->second)
+					{
+						match = false;
+					}
+				}
+				else if (j->first == DTRegion)
+				{
+					auto regions = regionsMap.find(EU4Province);
+					if ((regions == regionsMap.end()) || (regions->second.find(j->second) == regions->second.end()))
+					{
+						match = false;
+					}
+				}
+				else if (j->first == DTProvince)
+				{
+					if (atoi(j->second.c_str()) != EU4Province)
+					{
+						match = false;
+					}
+				}
+				else
+				{
+					LOG(LogLevel::Warning) << "Unhandled distinguisher type in culture rules";
+				}
+			}
+			if (match)
+			{
+				dstCulture = i->dstCulture;
+				matched = true;
+			}
+		}
+	}
+	return matched;
 }
 
 
@@ -507,6 +576,36 @@ religionMapping initReligionMap(Object* obj)
 	}
 
 	return religionMap;
+}
+
+
+minorityPopMapping initMinorityPopMap(Object* obj)
+{
+	minorityPopMapping minorityPopMap;			// the minority pop mapping
+	vector<Object*> links = obj->getLeaves();	// the minority pop mapping rules
+
+	for (auto i: links)
+	{
+		vector<Object*>	minorityPopMappings	= i->getLeaves();	// the items in this rule
+		string				minorityReligion;								// the minority religion
+		string				minorityCulture;								// the minority culture
+
+		for (auto j: minorityPopMappings)
+		{
+			if (j->getKey() == "religion")
+			{
+				minorityReligion = j->getLeaf();
+			}
+			else if (j->getKey() == "culture")
+			{
+				minorityCulture = j->getLeaf();
+			}
+		}
+
+		minorityPopMap.push_back(make_pair(minorityCulture, minorityReligion));
+	}
+
+	return minorityPopMap;
 }
 
 
@@ -589,6 +688,14 @@ void initUnionCultures(Object* obj, unionCulturesMap& unionCultures, inverseUnio
 				continue;
 			}
 			else if ((*j)->getKey() == "graphical_culture")
+			{
+				continue;
+			}
+			else if ((*j)->getKey() == "male_names")
+			{
+				continue;
+			}
+			else if ((*j)->getKey() == "female_names")
 			{
 				continue;
 			}
@@ -733,6 +840,96 @@ colonyMapping initColonyMap(Object* obj)
 	return colonyMap;
 }
 
+
+void initEU4RegionMapOldVersion(Object *obj, EU4RegionsMapping& regions)
+{
+	regions.clear();
+	vector<Object*> regionsObj = obj->getLeaves();	// the regions themselves
+	for (vector<Object*>::iterator regionsItr = regionsObj.begin(); regionsItr != regionsObj.end(); regionsItr++)
+	{
+		string regionName = (*regionsItr)->getKey();
+		vector<string> provinceStrings = (*regionsItr)->getTokens();				// the province numbers
+		for (vector<string>::iterator provinceItr = provinceStrings.begin(); provinceItr != provinceStrings.end(); provinceItr++)
+		{
+			int provinceNum = atoi(provinceItr->c_str());
+			auto mapping = regions.find(provinceNum);
+			if (mapping == regions.end())
+			{
+				set<string> newRegions;
+				newRegions.insert(regionName);
+				regions.insert(make_pair(provinceNum, newRegions));
+			}
+			else
+			{
+				mapping->second.insert(regionName);
+			}
+		}
+	}
+}
+
+
+void initEU4RegionMap(Object* regionObj, Object* areaObj, EU4RegionsMapping& regions)
+{
+	map<string, vector<int>> inverseAreas;	// area, provinces
+
+	regions.clear();
+	vector<Object*> areasObj = areaObj->getLeaves();	// the areas themselves
+	for (auto areaItr: areasObj)
+	{
+		string areaName = areaItr->getKey();
+		vector<int> provinces;
+		vector<string> provinceStrings = areaItr->getTokens();				// the province numbers
+		for (auto provinceItr: provinceStrings)
+		{
+			int provinceNum = atoi(provinceItr.c_str());
+			auto mapping = regions.find(provinceNum);
+			if (mapping == regions.end())
+			{
+				set<string> newRegions;
+				newRegions.insert(areaName);
+				regions.insert(make_pair(provinceNum, newRegions));
+			}
+			else
+			{
+				mapping->second.insert(areaName);
+			}
+			provinces.push_back(provinceNum);
+		}
+		
+		inverseAreas.insert(make_pair(areaName, provinces));
+	}
+
+	vector<Object*> regionsObj = regionObj->getLeaves();
+	for (auto regionItr: regionsObj)
+	{
+		string regionName = regionItr->getKey();
+		vector<Object*> areasObj = regionItr->getValue("areas");
+		if (areasObj.size() > 0)
+		{
+			vector<string> areas = areasObj[0]->getTokens();
+			for (auto areasItr: areas)
+			{
+				auto area = inverseAreas.find(areasItr);
+				for (auto provinceNum: area->second)
+				{
+					auto mapping = regions.find(provinceNum);
+					if (mapping == regions.end())
+					{
+						set<string> newRegions;
+						newRegions.insert(area->first);
+						regions.insert(make_pair(provinceNum, newRegions));
+					}
+					else
+					{
+						mapping->second.insert(regionName);
+					}
+				}
+			}
+		}
+	}
+}
+
+
 colonyFlagset initColonyFlagset(Object* obj)
 {
 	colonyFlagset colonyMap;									// the culture mapping
@@ -817,6 +1014,26 @@ CK2TitleMapping initCK2TitleMap(Object* obj)
 	}
 
 	return titleMapContainer;
+}
+
+FlagColourMapping initFlagColours(Object* obj)
+{
+	FlagColourMapping flagColourMapping;
+	vector<Object*>	colours = obj->getLeaves();
+
+	for (Object* colour : colours)
+	{
+		if (colour->getKey() != "flag_color")
+			continue;
+
+		std::vector<std::string> values = colour->getTokens();
+		if (values.size() < 3)
+			continue;
+
+		flagColourMapping.push_back(FlagColour(stoi(values[0]), stoi(values[1]), stoi(values[2])));
+	}
+
+	return flagColourMapping;
 }
 
 

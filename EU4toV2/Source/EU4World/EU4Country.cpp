@@ -20,23 +20,32 @@ THE SOFTWARE. */
 
 
 #include "EU4Country.h"
+#include "../Configuration.h"
 #include "../Log.h"
 #include "../Parsers/Object.h"
 #include "EU4Province.h"
 #include "EU4Relations.h"
 #include "EU4Leader.h"
+#include "EU4Version.h"
+#include "../V2World/V2Localisation.h"
 #include <algorithm>
 
 
-EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas)
+
+EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas, EU4Version* version, inverseUnionCulturesMap& inverseUnionCultures)
 {
 	tag = obj->getKey();
 
 	provinces.clear();
 	cores.clear();
+	inHRE					= false;
+	holyRomanEmperor	= false;
 
 	vector<Object*> nameObj = obj->getValue("name");	// the object holding the name
 	(!nameObj.empty()) ? name = nameObj[0]->getLeaf() : name = "";
+
+	vector<Object*> customNameObj = obj->getValue("custom_name");	// the object holding the name
+	(!customNameObj.empty()) ? randomName = V2Localisation::Convert(customNameObj[0]->getLeaf()) : randomName = "";
 
 	vector<Object*> adjectiveObj = obj->getValue("adjective");	// the object holding the adjective
 	(!adjectiveObj.empty()) ? adjective = adjectiveObj[0]->getLeaf() : adjective = "";
@@ -70,8 +79,39 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 		acceptedCultures.push_back(acceptedCultureObj[i]->getLeaf().c_str());
 	}
 
-	vector<Object*> unionCultureObj = obj->getValue("culture_group_union");	// the object holding the cultural union group
-	(unionCultureObj.size() > 0) ? culturalUnion = unionCultureObj[0]->getLeaf() : culturalUnion = "";
+	if (*version >= EU4Version("1.14.0.0"))
+	{
+		bool wasUnion = false;
+		if (Configuration::wasDLCActive("The Cossacks"))
+		{
+			vector <Object*> govRankObjs = obj->getValue("government_rank");
+			if (atoi(govRankObjs[0]->getLeaf().c_str()) > 2)
+			{
+				wasUnion = true;
+			}
+		}
+		else
+		{
+			vector <Object*> developmentObj = obj->getValue("development");
+			if (atof(developmentObj[0]->getLeaf().c_str()) >= 1000)
+			{
+				wasUnion = true;
+			}
+		}
+		if (wasUnion)
+		{
+			auto unionCultureItr = inverseUnionCultures.find(primaryCulture);
+			if (unionCultureItr != inverseUnionCultures.end())
+			{
+				culturalUnion = unionCultureItr->second;
+			}
+		}
+	}
+	else
+	{
+		vector<Object*> unionCultureObj = obj->getValue("culture_group_union");	// the object holding the cultural union group
+		(unionCultureObj.size() > 0) ? culturalUnion = unionCultureObj[0]->getLeaf() : culturalUnion = "";
+	}
 
 	vector<Object*> religionObj = obj->getValue("religion");	// the object holding the religion
 	(religionObj.size() > 0) ? religion = religionObj[0]->getLeaf().c_str() : religion = "";
@@ -158,9 +198,9 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 	vector<Object*> relationsLeaves = relationLeaves[0]->getLeaves();		// the objects holding the relationships themselves
 	for (unsigned int i = 0; i < relationsLeaves.size(); ++i)
 	{
-		//string key = relationsLeaves[i]->getKey();
+		string key = relationsLeaves[i]->getKey();
 		EU4Relations* rel = new EU4Relations(relationsLeaves[i]);
-		relations.push_back(rel);
+		relations.insert(make_pair(key, rel));
 	}
 
 	armies.clear();
@@ -200,12 +240,125 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 		colony = true;
 	}
 
-	libertyDesire = 0.0;
-	vector<Object*> libertyObj = obj->getValue("liberty_desire"); // the object holding the liberty desire
-	if (libertyObj.size() > 0)
+	customNation = false;
+	vector<Object*> customNationObj = obj->getValue("custom_name");	// the object handling the custom name (if there is one)
+	if (customNationObj.size() > 0)
 	{
-		libertyDesire = atof(libertyObj[0]->getLeaf().c_str());
+		customNation = true;
 	}
+
+	libertyDesire = 0.0;
+	vector<Object*> colonialSubjectObj = obj->getValue("is_colonial_subject");
+	if (colonialSubjectObj.size() > 0)
+	{
+		string overlord;
+		vector<Object*> overlordObj = obj->getValue("overlord");
+		if (overlordObj.size() > 0)
+		{
+			overlord = overlordObj[0]->getLeaf();
+		}
+
+		auto relationship = relations.find(overlord);
+		if (relationship != relations.end())
+		{
+			string attitude = relationship->second->getAttitude();
+			if (attitude == "attitude_rebellious")
+			{
+				libertyDesire = 95.0;
+			}
+			else if (attitude == "attitude_disloyal")
+			{
+				libertyDesire = 90.0;
+			}
+			else if (attitude == "attitude_disloyal_vassal")	// for pre-1.14 games
+			{
+				libertyDesire = 90.0;
+			}
+			else if (attitude == "attitude_outraged")
+			{
+				libertyDesire = 85.0;
+			}
+			else if (attitude == "atittude_rivalry")
+			{
+				libertyDesire = 80.0;
+			}
+			else if (attitude == "attitude_hostile")
+			{
+				libertyDesire = 75.0;
+			}
+			else if (attitude == "attitude_threatened")
+			{
+				libertyDesire = 65.0;
+			}
+			else if (attitude == "attitude_neutral")
+			{
+				libertyDesire = 50.0;
+			}
+			else if (attitude == "attitude_defensive")
+			{
+				libertyDesire = 35.0;
+			}
+			else if (attitude == "attitude_domineering")
+			{
+				libertyDesire = 20.0;
+			}
+			else if (attitude == "attitude_protective")
+			{
+				libertyDesire = 15.0;
+			}
+			else if (attitude == "attitude_allied")
+			{
+				libertyDesire = 10.0;
+			}
+			else if (attitude == "attitude_friendly")
+			{
+				libertyDesire = 10.0;
+			}
+			else if (attitude == "attitude_loyal")
+			{
+				libertyDesire = 5.0;
+			}
+			else if (attitude == "attitude_overlord")
+			{
+				libertyDesire = 5.0;
+			}
+			else if (attitude == "attitude_vassal")	// for pre-1.14 games
+			{
+				libertyDesire = 5.0;
+			}
+			else
+			{
+				LOG(LogLevel::Warning) << "Unknown attitude type " << attitude << " while setting liberty desire for " << tag;
+				libertyDesire = 95.0;
+			}
+		}
+	}
+
+	customFlag.flag = "-1";
+	vector<Object*> customFlagObj = obj->getValue("country_colors");
+	if (customFlagObj.size() > 0)
+	{
+		vector<Object*> flag = customFlagObj[0]->getValue("flag");
+		vector<Object*> emblem = customFlagObj[0]->getValue("subject_symbol_index");
+		vector<Object*> colours = customFlagObj[0]->getValue("flag_colors");
+
+		if (flag.size() > 0 && emblem.size() > 0 && colours.size() > 0)
+		{
+			customFlag.flag = to_string(1+stoi(flag[0]->getLeaf()));
+			customFlag.emblem = stoi(emblem[0]->getLeaf())+1;
+			
+			vector<string> colourtokens = colours[0]->getTokens();
+			customFlag.colours = std::make_tuple(stoi(colourtokens[0]), stoi(colourtokens[1]), stoi(colourtokens[2]));
+		}
+	}
+
+	vector<Object*> revolutionaryFlagObj = obj->getValue("revolutionary_colors");
+	if (revolutionaryFlagObj.size() > 0)
+	{
+		vector<string> colourtokens = revolutionaryFlagObj[0]->getTokens();
+		revolutionaryTricolour = std::make_tuple(stoi(colourtokens[0]), stoi(colourtokens[1]), stoi(colourtokens[2]));
+	}
+	revolutionary = false;
 }
 
 
@@ -468,6 +621,11 @@ void EU4Country::clearArmies()
 
 string EU4Country::getName(const string& language) const
 {
+	if (!randomName.empty())
+	{
+		return randomName;
+	}
+
 	if (namesByLanguage.empty() && language == "english")
 	{
 		return name;
@@ -487,6 +645,11 @@ string EU4Country::getName(const string& language) const
 
 string EU4Country::getAdjective(const string& language) const
 {
+	if (!randomName.empty())
+	{
+		return randomName;
+	}
+
 	if (adjectivesByLanguage.empty() && language == "english")
 	{
 		return adjective;

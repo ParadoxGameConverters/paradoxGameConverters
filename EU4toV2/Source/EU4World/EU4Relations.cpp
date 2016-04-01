@@ -38,4 +38,7 @@ EU4Relations::EU4Relations(Object* obj) {
 
 	vector<Object*> lastWarObj = obj->getValue("last_war");	// the object holding the date of the last war
 	(lastWarObj.size() > 0) ? last_war = date(lastWarObj[0]) : last_war = date();
+
+	vector<Object*> attitudeObj = obj->getValue("attitude");	//the object holding the diplomatic attitude
+	(attitudeObj.size() > 0) ? attitude = attitudeObj[0]->getLeaf() : attitude = "attitude_neutral";
 }

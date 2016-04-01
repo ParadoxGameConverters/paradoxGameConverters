@@ -1,15 +1,15 @@
 # Copyright (c) 2014 The Paradox Game Converters Project
-# 
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -61,14 +61,15 @@ link = { v2 = ibadi eu4 = ibadi }
 link = { v2 = kharijite eu4 = kharijite }
 
 #Eastern
-link = { v2 = mahayana eu4 = confucianism }
-#link = { v2 = gelugpa eu4 = buddhism owner = TIB }  # Tibet
-#link = { v2 = gelugpa eu4 = buddhism owner = OIR }	# Oirat Horde
+link = { v2 = mahayana eu4 = confucianism eu4 = mahayana }
+#link = { v2 = gelugpa eu4 = buddhism owner = TIB } # Tibet
+#link = { v2 = gelugpa eu4 = buddhism owner = OIR } # Oirat Horde
 link = { v2 = theravada eu4 = buddhism }
 link = { v2 = sikh eu4 = sikhism }
 link = { v2 = hindu eu4 = hinduism }
 link = { v2 = shinto eu4 = shinto }
 link = { v2 = jain eu4 = jain }
+link = { v2 = gelugpa eu4 = vajrayana }
 
 #Pagans
 link = { v2 = animist eu4 = animism }
@@ -85,8 +86,12 @@ link = { v2 = hellenic_pagan eu4 = hellenic_pagan }
 link = { v2 = inca_reformed eu4 = inca_reformed }
 link = { v2 = zun_pagan_reformed eu4 = zun_pagan_reformed }
 
+link = { v2 = inti eu4 = inti }
+link = { v2 = mayan eu4 = mesoamerican_religion }
+link = { v2 = nahuatl eu4 = nahuatl }
+
 #Zoroastrian
-link = { v2 = zoroastrian eu4 = zoroastrian eu4 = zoroastrian_heresy }
+link = { v2 = zoroastrian eu4 = zoroastrian }
 link = { v2 = manichean eu4 = manichean }
 link = { v2 = mazdaki eu4 = mazdaki }
 link = { v2 = zoroastrian_heresy eu4 = zoroastrian_heresy }
@@ -96,7 +101,6 @@ link = { v2 = jewish eu4 = jewish }
 link = { v2 = samaritan eu4 = samaritan }
 link = { v2 = karaite eu4 = karaite }
 link = { v2 = jewish_heresy eu4 = jewish_heresy }
-
 
 
 }

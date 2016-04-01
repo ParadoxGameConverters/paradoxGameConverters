@@ -1,4 +1,3 @@
-copy "Data_Files\changelog.txt" "release\changelog.txt"
 copy "Data_Files\configuration.txt" "release\configuration.txt"
 copy "Data_Files\readme.txt" "release\readme.txt"
 copy "Data_Files\merge_nations.txt" "release\merge_nations.txt"
@@ -6,6 +5,7 @@ copy "Data_Files\starting_factories.txt" "release\starting_factories.txt
 copy "Data_Files\province_mappings.txt" "release\province_mappings.txt
 copy "Data_Files\country_mappings.txt" "release\country_mappings.txt
 copy "Data_Files\cultureMap.txt" "release\cultureMap.txt
+copy "Data_Files\slaveCultureMap.txt" "release\slaveCultureMap.txt"
 copy "Data_Files\religionMap.txt" "release\religionMap.txt
 copy "Data_Files\unions.txt" "release\unions.txt
 copy "Data_Files\governmentMapping.txt" "release\governmentMapping.txt
@@ -18,9 +18,11 @@ copy "Data_Files\colonial.txt" "release\colonial.txt"
 copy "Data_Files\ck2titlemap.txt" "release\ck2titlemap.txt"
 copy "Data_Files\port_blacklist.txt" "release\port_blacklist.txt"
 copy "Data_Files\port_whitelist.txt" "release\port_whitelist.txt"
+copy "Data_Files\minorityPops.txt" "release\minorityPops.txt"
+copy "Data_Files\FAQ.txt" "release\FAQ.txt"
 
-rem hg log > Release/log.txt
-hg log --template "Change:\t\t{rev}: {node}\nAuthor:\t\t{author}\nDescription:\t{desc}\nDate:\t\t{date|isodate}\nBranch:\t\t{branch}\n***\n" > Release/log.txt
+del release\changelog.txt
+git log --oneline --decorate >> release/log.txt
 (for /f "delims=" %%i in (release/log.txt) do @echo %%i)>release/changelog.txt
 del release\log.txt
 
@@ -28,6 +30,8 @@ del "Release\blankMod" /Q
 rmdir "Release\blankMod" /S /Q
 mkdir "release\blankMod"
 mkdir "release\blankMod\output"
+mkdir "release\blankMod\output\decisions"
+mkdir "release\blankMod\output\events"
 mkdir "release\blankMod\output\history"
 mkdir "release\blankMod\output\history\provinces"
 mkdir "release\blankMod\output\history\provinces\africa"
@@ -68,6 +72,9 @@ xcopy "Data_Files\gfx" "release\blankmod\output\gfx" /Y /E /I
 xcopy "Data_Files\localisation" "release\blankmod\output\localisation" /Y /E /I
 xcopy "Data_Files\interface" "release\blankmod\output\interface" /Y /E /I
 xcopy "Data_Files\wars" "release\blankmod\output\history\wars" /Y /E /I
+xcopy "Data_Files\pops" "release\blankmod\output\history\pops\1836.1.1" /Y /E /I
+copy "Data_Files\converterEvents.txt" "release\blankmod\output\events\converterEvents.txt"
+copy "Data_Files\converterDecisions.txt" "release\blankmod\output\decisions\converterDecisions.txt"
 copy "Data_Files\countries.txt" "release\blankMod\output\common\countries.txt"
 copy "Data_Files\country_colors.txt" "release\blankMod\output\common\country_colors.txt"
 copy "Data_Files\religion.txt" "release\blankMod\output\common\religion.txt"

@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Parsers\Object.h"
 #include "EU4World\EU4Version.h"
+#include "FlagUtils.h"
 #include <map>
 #include <vector>
 #include <unordered_set>
@@ -36,7 +37,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class EU4World;
 class V2World;
 
-
+struct CustomFlag;
 
 // Province Mappings
 typedef map< int, vector<int> >	provinceMapping;			// < destProvince, sourceProvinces >
@@ -68,11 +69,19 @@ typedef map< int, int >				stateIndexMapping; // < province, state index >
 void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateIndexMap);
 
 
+// EU4 regions
+typedef map<int, set<string>>	EU4RegionsMapping;		// the regions in EU4
+void initEU4RegionMapOldVersion(Object *obj, EU4RegionsMapping& regions);
+void initEU4RegionMap(Object* areaObj, Object* regionObj, EU4RegionsMapping& regions);
+
+
 // Distinguishers for mappings
 enum distinguisherType
 {
 	DTOwner,
-	DTReligion
+	DTReligion,
+	DTRegion,
+	DTProvince
 };
 
 // Culture Mappings
@@ -84,11 +93,17 @@ typedef struct {
 } cultureStruct;
 typedef vector<cultureStruct> cultureMapping;
 cultureMapping initCultureMap(Object* obj);
+bool cultureMatch(const cultureMapping& cultureMap, const EU4RegionsMapping& regionsMap, string srcCulture, string& dstCulture, string religion, int EU4Province, string ownerTag);
 
 
 // Religion Mappings
 typedef map<string, string> religionMapping;		// <srcReligion, destReligion>
 religionMapping initReligionMap(Object* obj);
+
+
+// Minority cultures/religion
+typedef vector<pair<string, string>> minorityPopMapping;
+minorityPopMapping initMinorityPopMap(Object* obj);
 
 
 // Union Mappings
@@ -129,6 +144,8 @@ typedef struct {
 typedef map<string, shared_ptr<colonyFlag> > colonyFlagset; // <name, flag>
 colonyFlagset initColonyFlagset(Object* obj);
 
+typedef map<string, shared_ptr<CustomFlag> > customFlagset; // <name, flag>
+
 // CK2 titles for flags
 typedef struct {
 	map<string, string> map; // <name, title>
@@ -137,6 +154,9 @@ typedef struct {
 } CK2TitleMapping;	
 CK2TitleMapping initCK2TitleMap(Object* obj);
 
+// flag colours
+typedef vector<FlagColour> FlagColourMapping;
+FlagColourMapping initFlagColours(Object* obj);
 
 // utility functions
 string CardinalToOrdinal(int cardinal);

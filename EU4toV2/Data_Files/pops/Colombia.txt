@@ -1,0 +1,750 @@
+#Cundinamarca Region (584000)
+#Ruled by Colombia 1836
+#Bogota (240000/60000 POPS)
+2247 = {
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 1033
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 2630
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 427
+	}
+
+	bureaucrats = {
+		culture = chibchan
+		religion = inti
+		size = 33
+	}
+
+	officers = {
+		culture = chibchan
+		religion = inti
+		size = 53
+	}
+
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 552
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 61022
+	}
+}
+#Ibaque (88000/22000 POPS)
+2248 = {
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 220
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 880
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 143
+	}
+
+	bureaucrats = {
+		culture = chibchan
+		religion = inti
+		size = 11
+	}
+
+	officers = {
+		culture = chibchan
+		religion = inti
+		size = 18
+	}
+
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 185
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 20543
+	}
+}
+#Tunja (56000/14000 POPS)
+2249 = {
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 141
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 562
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 91
+	}
+
+	bureaucrats = {
+		culture = chibchan
+		religion = inti
+		size = 7
+	}
+
+	officers = {
+		culture = chibchan
+		religion = inti
+		size = 11
+	}
+
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 118
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 13120
+	}
+}
+#Manizales (116000/29000 POPS)
+2250 = {
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 625
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 275
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 1450
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 1100
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 26650
+	}
+}
+#Cucuta (84000/21000 POPS)
+2251 = {
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 210
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 840
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 137
+	}
+
+	bureaucrats = {
+		culture = chibchan
+		religion = inti
+		size = 11
+	}
+
+	officers = {
+		culture = chibchan
+		religion = inti
+		size = 17
+	}
+
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 176
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 19609
+	}
+}
+#Antioquia Region (452000)
+#Ruled by Colombia 1836
+#Medellin (128000/32000 POPS)
+2252 = {
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 650
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 275
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 1650
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 1200
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 28425
+	}
+}
+#Quibdo (48000/12000 POPS)
+2253 = {
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 125
+	}
+	
+	aristocrats = {
+		culture = guajiro
+		religion = animist
+		size = 125
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 50
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 250
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 50
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 4400
+	}
+
+	clergymen = {
+		culture = guajiro
+		religion = animist
+		size = 75
+	}
+
+	artisans = {
+		culture = guajiro
+		religion = animist
+		size = 350
+	}
+
+	soldiers = {
+		culture = guajiro
+		religion = animist
+		size = 75
+	}
+
+	farmers = {
+		culture = guajiro
+		religion = animist
+		size = 6500
+	}
+}
+#Cartagena de Indias (144000/36000 POPS)
+2254 = {
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 250
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 125
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 650
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 1100
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 10575
+	}
+	
+	aristocrats = {
+		culture = guajiro
+		religion = animist
+		size = 350
+	}
+
+	clergymen = {
+		culture = guajiro
+		religion = animist
+		size = 100
+	}
+
+	artisans = {
+		culture = guajiro
+		religion = animist
+		size = 1150
+	}
+
+	soldiers = {
+		culture = guajiro
+		religion = animist
+		size = 225
+	}
+
+	farmers = {
+		culture = guajiro
+		religion = animist
+		size = 18825
+	}
+}
+#Barranquilla (132000/33000 POPS)
+2255 = {
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 350
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 125
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 650
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 1100
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 10575
+	}
+	
+	aristocrats = {
+		culture = guajiro
+		religion = animist
+		size = 300
+	}
+
+	clergymen = {
+		culture = guajiro
+		religion = animist
+		size = 110
+	}
+
+	artisans = {
+		culture = guajiro
+		religion = animist
+		size = 950
+	}
+
+	soldiers = {
+		culture = afro_caribeno
+		religion = catholic
+		size = 210
+	}
+
+	farmers = {
+		culture = guajiro
+		religion = animist
+		size = 18730
+	}
+}
+#Cauca Region (300000)
+#Ruled by Colombia 1836
+#Cali (92000/23000 POPS)
+2256 = {
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 475
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 275
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 1150
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 1175
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 20025
+	}
+}
+#Popayan (68000/17000 POPS)
+2257 = {
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 350
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 175
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 850
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 200
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 15425
+	}
+}
+#Buenaventura (60000/15000 POPS)
+2258 = {
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 175
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 75
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 450
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 50
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 3100
+	}
+	
+	aristocrats = {
+		culture = guajiro
+		religion = animist
+		size = 150
+	}
+
+	clergymen = {
+		culture = guajiro
+		religion = animist
+		size = 25
+	}
+
+	artisans = {
+		culture = guajiro
+		religion = animist
+		size = 100
+	}
+
+	soldiers = {
+		culture = guajiro
+		religion = animist
+		size = 75
+	}
+
+	farmers = {
+		culture = guajiro
+		religion = animist
+		size = 6800
+	}
+}
+#Pasto (80000/20000 POPS)
+2259 = {
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 425
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 150
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 1000
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 225
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 18200
+	}
+}
+#Rio Negro Region (128000) #see Brazil.txt for balance of region
+#Ruled by Colombia 1836
+#San Jose del Guaviare (36000/9000 POPS)
+2260 = {
+	aristocrats = {
+		culture = amazonian
+		religion = animist
+		size = 175
+	}
+
+	clergymen = {
+		culture = amazonian
+		religion = animist
+		size = 125
+	}
+
+	artisans = {
+		culture = amazonian
+		religion = animist
+		size = 450
+	}
+
+	soldiers = {
+		culture = amazonian
+		religion = animist
+		size = 100
+	}
+
+	farmers = {
+		culture = amazonian
+		religion = animist
+		size = 8150
+	}
+}
+#Obando (20000/5000 POPS)
+2261 = {
+	aristocrats = {
+		culture = amazonian
+		religion = animist
+		size = 75
+	}
+
+	clergymen = {
+		culture = amazonian
+		religion = animist
+		size = 50
+	}
+
+	artisans = {
+		culture = amazonian
+		religion = animist
+		size = 250
+	}
+
+	soldiers = {
+		culture = amazonian
+		religion = animist
+		size = 50
+	}
+
+	farmers = {
+		culture = amazonian
+		religion = animist
+		size = 4575
+	}
+}
+#Casanare (60000/15000 POPS)
+2262 = {
+	aristocrats = {
+		culture = amazonian
+		religion = animist
+		size = 250
+	}
+
+	clergymen = {
+		culture = amazonian
+		religion = animist
+		size = 175
+	}
+
+	artisans = {
+		culture = amazonian
+		religion = animist
+		size = 750
+	}
+
+	soldiers = {
+		culture = amazonian
+		religion = animist
+		size = 150
+	}
+
+	farmers = {
+		culture = amazonian
+		religion = animist
+		size = 13575
+	}
+}
+#El Encanto (12000/3000 POPS)
+2263 = {
+	aristocrats = {
+		culture = amazonian
+		religion = animist
+		size = 25
+	}
+	
+	aristocrats = {
+		culture = maranon
+		religion = animist
+		size = 25
+	}
+
+	clergymen = {
+		culture = amazonian
+		religion = animist
+		size = 50
+	}
+
+	clergymen = {
+		culture = maranon
+		religion = animist
+		size = 25
+	}
+
+	artisans = {
+		culture = amazonian
+		religion = animist
+		size = 75
+	}
+
+	artisans = {
+		culture = maranon
+		religion = animist
+		size = 75
+	}
+
+	soldiers = {
+		culture = amazonian
+		religion = animist
+		size = 15
+	}
+
+	soldiers = {
+		culture = maranon
+		religion = animist
+		size = 10
+	}
+
+	farmers = {
+		culture = amazonian
+		religion = animist
+		size = 1350
+	}
+
+	farmers = {
+		culture = maranon
+		religion = animist
+		size = 1350
+	}
+}

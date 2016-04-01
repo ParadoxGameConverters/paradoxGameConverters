@@ -103,13 +103,16 @@ void CountryMapping::readEU4Regions(Object* obj)
 	for (vector<Object*>::iterator regionsItr = regionsObj.begin(); regionsItr != regionsObj.end(); regionsItr++)
 	{
 		vector<Object*> provincesObj = (*regionsItr)->getValue("provinces");	// the section containing the provinces in the regions
-		vector<string> provinceStrings = provincesObj[0]->getTokens();				// the province numbers
-		std::set<int> provinces;
-		for (vector<string>::iterator provinceItr = provinceStrings.begin(); provinceItr != provinceStrings.end(); provinceItr++)
+		if (provincesObj.size() > 0)
 		{
-			provinces.insert(atoi(provinceItr->c_str()));
+			vector<string> provinceStrings = provincesObj[0]->getTokens();				// the province numbers
+			std::set<int> provinces;
+			for (vector<string>::iterator provinceItr = provinceStrings.begin(); provinceItr != provinceStrings.end(); provinceItr++)
+			{
+				provinces.insert(atoi(provinceItr->c_str()));
+			}
+			EU4ColonialRegions.insert(make_pair((*regionsItr)->getKey(), provinces));
 		}
-		EU4ColonialRegions.insert(make_pair((*regionsItr)->getKey(), provinces));
 	}
 }
 
@@ -171,7 +174,7 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 		}
 
 		// rules-based
-		oneMapping(i->second, V2Countries,generatedV2TagPrefix, generatedV2TagSuffix);
+		oneMapping(i->second, V2Countries, generatedV2TagPrefix, generatedV2TagSuffix);
 	}
 
 	for (std::map<std::string, EU4Country*>::const_iterator i = ColonialCountries.begin(); i != ColonialCountries.end(); ++i)
@@ -279,7 +282,7 @@ void CountryMapping::oneMapping(EU4Country* country, const map<string, V2Country
 	// Find a V2 tag from our rule if possible.
 	std::map<std::string, std::vector<std::string>>::iterator findIter = EU4TagToV2TagsRules.find(EU4Tag);	// the rule (if any) with this EU4 tag
 
-	if (findIter == EU4TagToV2TagsRules.end())
+	if ((findIter == EU4TagToV2TagsRules.end()) || (country->isCustom()))
 	{
 		std::string CK2Title = GetCK2Title(EU4Tag, country->getName("english"), availableFlags, CK2titles);
 		if (CK2Title != "")
@@ -288,7 +291,7 @@ void CountryMapping::oneMapping(EU4Country* country, const map<string, V2Country
 		}
 	}
 
-	if (findIter != EU4TagToV2TagsRules.end())
+	if ((findIter != EU4TagToV2TagsRules.end()) && (!country->isCustom()))
 	{
 		const std::vector<std::string>& possibleV2Tags = findIter->second;
 		// We want to use a V2 tag that corresponds to an actual V2 country if possible.

@@ -308,6 +308,7 @@ link = { eu4 = DUL v2 = DUL }  # Dulkadir
 link = { eu4 = IRQ v2 = IRQ }  # Iraq
 link = { eu4 = KAR v2 = KAR }  # Karaman
 link = { eu4 = SYR v2 = SYR }  # Syria
+link = { eu4 = ISR v2 = ISR }  # Israel
 link = { eu4 = TRE v2 = TBZ }  # Trebizond
 link = { eu4 = SRU v2 = SRU }  # Saruhan
 link = { eu4 = MEN v2 = MEN }  # Mentese
@@ -456,6 +457,7 @@ link = { eu4 = PUN v2 = PAN }  # Punjab => Panjab
 link = { eu4 = SND v2 = SIN }  # Sind
 link = { eu4 = VIJ v2 = VIJ }  # Vijaynagara
 link = { eu4 = HIN v2 = HND }  # Hindustan => India
+link = { eu4 = BHA v2 = HND }  # Bharat => India
 link = { eu4 = AHM v2 = AMD }  # Ahmadnagar *
 link = { eu4 = BDA v2 = BER }  # Baroda => Beroda
 link = { eu4 = BST v2 = BAS }  # Bastar
@@ -472,7 +474,7 @@ link = { eu4 = KAT v2 = KAT }  # Kathiawar (NEW)
 link = { eu4 = KGR v2 = KGR }  # Kangra (NEW)
 link = { eu4 = KLN v2 = KLN }  # Keladi (NEW)
 link = { eu4 = KMT v2 = KMT }  # Koch (NEW)
-link = { eu4 = KOC v2 = TRA }  # Kochin => Travanacore
+link = { eu4 = KOC v2 = VND }  # Kochin => Venad
 link = { eu4 = MAB v2 = MAB }  # Malabar (NEW)
 link = { eu4 = MAW v2 = JOD }  # Marwar => Jodhpur
 link = { eu4 = MER v2 = MEW }  # Mewar
@@ -593,7 +595,7 @@ link = { eu4 = MCA V2 = MCA }
 link = { eu4 = MED V2 = MED } 
 link = { eu4 = MGD V2 = MGD } 
 link = { eu4 = MHX V2 = MHX } 
-link = { eu4 = MIN V2 = MIN } 
+link = { eu4 = MIN V2 = MIN } # Min (new)
 link = { eu4 = MIX V2 = MIX } 
 link = { eu4 = MJE V2 = MJE } 
 link = { eu4 = MJZ V2 = MJZ } 
@@ -665,6 +667,20 @@ link = { eu4 = YUE V2 = YUE }
 link = { eu4 = ZAF V2 = ZAF } 
 link = { eu4 = ZUN V2 = ZUN } 
 link = { eu4 = ZZZ V2 = ZZZ } 
+
+# Third Odyssey
+link = { eu4 = AEG V2 = AEG }
+link = { eu4 = CTM V2 = CTM }
+link = { eu4 = ELY V2 = ELY }
+link = { eu4 = HBN V2 = HBN }
+link = { eu4 = NHS V2 = NHS }
+
+# Extended Vanilla
+link = { eu4 = ANV V2 = ANV }
+link = { eu4 = CRL V2 = CRL }
+link = { eu4 = ILY V2 = ILY }
+link = { eu4 = MGU V2 = MGU }
+link = { eu4 = NSE V2 = NSE }
 
 link = { eu4 = k_afghanistan v2 = AFG }
 link = { eu4 = c_albania v2 = ALB }
@@ -772,5 +788,6 @@ link = { eu4 = k_venice v2 = VEN }
 link = { eu4 = d_venice v2 = VEN }
 link = { eu4 = d_wallachia v2 = WAL }
 link = { eu4 = c_wurttemberg v2 = WUR }
+link = { eu4 = secretdenmark v2 = SDM }
 
 }

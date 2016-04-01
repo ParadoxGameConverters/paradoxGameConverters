@@ -39,8 +39,11 @@ class V2Country;
 struct V2Demographic
 {
 	string								culture;
+	string								slaveCulture;
 	string								religion;
-	double								ratio;
+	double								upperRatio;
+	double								middleRatio;
+	double								lowerRatio;
 	EU4Province*						oldProvince;
 	EU4Country*							oldCountry;
 };
@@ -56,7 +59,8 @@ class V2Province
 		void determineColonial();
 		void addCore(string);
 		void addOldPop(const V2Pop*);
-		void doCreatePops(double popWeightRatio, V2Country* _owner);
+		void addMinorityPop(V2Pop*);
+		void doCreatePops(double popWeightRatio, V2Country* _owner, int popConversionAlgorithm);
 		void addFactory(V2Factory* factory);
 		void addPopDemographic(V2Demographic d);
 
@@ -76,7 +80,8 @@ class V2Province
 		void				setFortLevel(int level)						{ fortLevel = level; }
 		void				setNavalBaseLevel(int level)				{ navalBaseLevel = level; }
 		void				setRailLevel(int level)						{ railLevel = level; }
-		void				setResettable(const bool _resettable)	{ resettable = _resettable; };
+		void				setResettable(const bool _resettable)	{ resettable = _resettable; }
+		void				setSlaveProportion(const double _pro)	{ slaveProportion = _pro; }
 
 		const EU4Province*	getSrcProvince()		const { return srcProvince; }
 		int						getOldPopulation()	const	{ return oldPopulation; }
@@ -94,7 +99,11 @@ class V2Province
 
 	private:
 		void outputUnits(FILE*) const;
-		void createPops(const V2Demographic& demographic, double popWeightRatio, V2Country* _owner);
+
+		struct pop_points;
+		pop_points getPopPoints_1(const V2Demographic& demographic, double newPopulation, const V2Country* _owner); // EU4 1.0-1.11
+		pop_points getPopPoints_2(const V2Demographic& demographic, double newPopulation, const V2Country* _owner); // EU4 1.12 and newer
+		void createPops(const V2Demographic& demographic, double popWeightRatio, const V2Country* _owner, int popConversionAlgorithm);
 		void combinePops();
 		bool growSoldierPop(V2Pop* pop);
 
@@ -106,6 +115,7 @@ class V2Province
 		string						name;
 		string						owner;
 		vector<string>				cores;
+		bool							inHRE;
 		int							colonyLevel;
 		int							colonial;
 		bool							wasColonised;
@@ -115,7 +125,9 @@ class V2Province
 		int							oldPopulation;
 		vector<V2Demographic>	demographics;
 		vector<const V2Pop*>		oldPops;
+		vector<V2Pop*>				minorityPops;
 		vector<V2Pop*>				pops;
+		double						slaveProportion;
 		string						rgoType;
 		string						terrain;
 		int							lifeRating;

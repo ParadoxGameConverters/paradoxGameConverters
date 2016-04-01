@@ -78,7 +78,11 @@ class V2Army // also Navy
 		double				getArmyRemainder(RegimentCategory category) const { return armyRemainders[category]; };
 		EU4Army*				getSourceArmy() const { return sourceArmy; };
 		bool					getNavy() const { return isNavy; };
+
+		static V2Army*			makeTestNavy(int location);
+
 	private:
+		V2Army() {}; // used by makeTestNavy
 		V2ArmyID					id;
 		string					name;
 		int						location;

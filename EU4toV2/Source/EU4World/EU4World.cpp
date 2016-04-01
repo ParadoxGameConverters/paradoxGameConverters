@@ -38,15 +38,35 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas)
+EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas, inverseUnionCulturesMap& inverseUnionCultures)
 {
 	vector<Object*> versionObj = obj->getValue("savegame_version");	// the version of the save
 	(versionObj.size() > 0) ? version = new EU4Version(versionObj[0]) : version = new EU4Version();
+
+	vector<Object*> enabledDLCsObj = obj->getValue("dlc_enabled");
+	if (enabledDLCsObj.size() > 0)
+	{
+		vector<string>	activeDLCs;
+		vector<string> DLCsObj = enabledDLCsObj[0]->getTokens();
+		for (auto DLCsItr: DLCsObj)
+		{
+			activeDLCs.push_back(DLCsItr);
+		}
+
+		Configuration::setActiveDLCs(activeDLCs);
+	}
 
 	vector<Object*> dateObj = obj->getValue("date");
 	if (dateObj.size() > 0)
 	{
 		date endDate(dateObj[0]->getLeaf());
+	}
+
+	string emperor;
+	vector<Object*> emperorObj = obj->getValue("emperor");
+	if (emperorObj.size() > 0)
+	{
+		emperor = emperorObj[0]->getLeaf();
 	}
 
 	// Get Provinces and then get Countries
@@ -82,9 +102,32 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 			}
 			else
 			{
-				EU4Country* country = new EU4Country(countriesLeaves[j], armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas);	// the country in our format
+				EU4Country* country = new EU4Country(countriesLeaves[j], armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas, version, inverseUnionCultures);	// the country in our format
 				countries.insert(make_pair(country->getTag(), country));
+
+				// set HRE stuff
+				auto capitalItr = provinces.find(country->getCapital());
+				if ((capitalItr != provinces.end()) && (capitalItr->second->getInHRE()))
+				{
+					country->setInHRE(true);
+				}
+				if (country->getTag() == emperor)
+				{
+					country->setEmperor(true);
+				}
 			}
+		}
+	}
+
+
+	vector<Object*> revolutionTargetObj = obj->getValue("revolution_target");
+	if (revolutionTargetObj.size() > 0)
+	{
+		string revolutionTarget = revolutionTargetObj[0]->getLeaf();
+		auto country = countries.find(revolutionTarget);
+		if (country != countries.end())
+		{
+			country->second->viveLaRevolution(true);
 		}
 	}
 
@@ -122,43 +165,43 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 	// calculate total province weights
 	worldWeightSum = 0;
 
-	ofstream EU4_Production("EU4_Production.csv");
+	/*ofstream EU4_Production("EU4_Production.csv");
 	ofstream EU4_Tax("EU4_TaxIncome.csv");
-	ofstream EU4_World("EU4_World.csv");
+	ofstream EU4_World("EU4_World.csv");*/
 
 	std::vector<double> provEconVec;
 
 	std::map<string, vector<double> > world_tag_weights;
 
-	// Heading
-	EU4_Production << "PROV NAME" << ",";
-	EU4_Production << "OWNER" << ",";
-	EU4_Production << "TRADE GOOD" << ",";
-	EU4_Production << "GOODS PROD" << ",";
-	EU4_Production << "PRICE" << ",";
-	EU4_Production << "TRADE EFF" << ",";
-	EU4_Production << "PROD EFF" << ",";
-	EU4_Production << "PROV TRADE VAL" << ",";
-	EU4_Production << "TOTAL TRADE VAL" << ",";
-	EU4_Production << "TOTAL PRODUCTION" << endl;
+	//// Heading
+	//EU4_Production << "PROV NAME" << ",";
+	//EU4_Production << "OWNER" << ",";
+	//EU4_Production << "TRADE GOOD" << ",";
+	//EU4_Production << "GOODS PROD" << ",";
+	//EU4_Production << "PRICE" << ",";
+	//EU4_Production << "TRADE EFF" << ",";
+	//EU4_Production << "PROD EFF" << ",";
+	//EU4_Production << "PROV TRADE VAL" << ",";
+	//EU4_Production << "TOTAL TRADE VAL" << ",";
+	//EU4_Production << "TOTAL PRODUCTION" << endl;
 
-	// Heading
-	EU4_World << "COUNTRY" << ",";
-	EU4_World << "BASE TAX (2x)" << ",";
-	EU4_World << "TAX INCOME" << ",";
-	EU4_World << "PRODUCTION" << ",";
-	EU4_World << "BUILDINGS" << ",";
-	EU4_World << "MANPOWER" << ",";
-	EU4_World << "SUBTOTAL SAN BUILD" << ",";
-	EU4_World << "TOTAL WEIGHT" << endl;
+	//// Heading
+	//EU4_World << "COUNTRY" << ",";
+	//EU4_World << "BASE TAX (2x)" << ",";
+	//EU4_World << "TAX INCOME" << ",";
+	//EU4_World << "PRODUCTION" << ",";
+	//EU4_World << "BUILDINGS" << ",";
+	//EU4_World << "MANPOWER" << ",";
+	//EU4_World << "SUBTOTAL SAN BUILD" << ",";
+	//EU4_World << "TOTAL WEIGHT" << endl;
 
-	// Heading
-	EU4_Tax << "PROV NAME" << ",";
-	EU4_Tax << "OWNER" << ",";
-	EU4_Tax << "BASE TAX" << ",";
-	EU4_Tax << "BUILD INCOME" << ",";
-	EU4_Tax << "TAX EFF" << ",";
-	EU4_Tax << "TOTAL TAX INCOME" << endl;
+	//// Heading
+	//EU4_Tax << "PROV NAME" << ",";
+	//EU4_Tax << "OWNER" << ",";
+	//EU4_Tax << "BASE TAX" << ",";
+	//EU4_Tax << "BUILD INCOME" << ",";
+	//EU4_Tax << "TAX EFF" << ",";
+	//EU4_Tax << "TOTAL TAX INCOME" << endl;
 	for (map<int, EU4Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
 		i->second->determineProvinceWeight();
@@ -167,7 +210,7 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 
 
 		provEconVec = i->second->getProvProductionVec();
-		EU4_Production << i->second->getProvName() << ",";
+		/*EU4_Production << i->second->getProvName() << ",";
 		EU4_Production << i->second->getOwnerString() << ",";
 		EU4_Production << i->second->getTradeGoods() << ",";
 		EU4_Production << provEconVec.at(0) << ",";
@@ -184,7 +227,7 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 		EU4_Tax << provEconVec.at(6) << ",";
 		EU4_Tax << provEconVec.at(7) << ",";
 		EU4_Tax << provEconVec.at(8) << ",";
-		EU4_Tax << provEconVec.at(9) << "," << endl;
+		EU4_Tax << provEconVec.at(9) << "," << endl;*/
 
 		worldWeightSum += i->second->getTotalWeight();
 
@@ -220,7 +263,7 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 	// Total Base Tax, Total Tax Income, Total Production, Total Buildings, Total Manpower, total province weight //
 	LOG(LogLevel::Info) << "World Tag Map Size: " << world_tag_weights.size();
 
-	for (map<string, vector<double> >::iterator i = world_tag_weights.begin(); i != world_tag_weights.end(); i++)
+	/*for (map<string, vector<double> >::iterator i = world_tag_weights.begin(); i != world_tag_weights.end(); i++)
 	{
 		EU4_World << i->first << ",";
 		EU4_World << i->second[0] << ",";
@@ -234,7 +277,7 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 
 	EU4_Production.close();
 	EU4_Tax.close();
-	EU4_World.close();
+	EU4_World.close();*/
 }
 
 

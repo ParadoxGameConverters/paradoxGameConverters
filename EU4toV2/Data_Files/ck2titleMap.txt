@@ -3224,5 +3224,6 @@ link = { name = "Üxküll" 	 title = "c_lettigalians" 	 region = "e_wendish_empi
 link = { name = "Baddids" 	 title = "d_baddids" 	 region = "e_arabia" }
 link = { name = "Radhis" 	 title = "d_radhis" 	 region = "e_arabia" }
 link = { name = "Mansurids" 	 title = "k_mansurids" 	 region = "e_arabia" }
+link = { name = "Secret Denmark" 	 title = "secretdenmark" 	 region = "e_scandinavia" }
 
 }

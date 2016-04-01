@@ -5,7 +5,7 @@ IMPORTANT LINKS
 ----
 
 Forum thread: http://forum.paradoxplaza.com/forum/showthread.php?707362-The-EU4-to-V2-Converter-Project
-Sourceforge project: https://sourceforge.net/projects/eu4tov2/
+Github project: https://github.com/Idhrendur/paradoxGameConverters
 
 ----
 REQUIREMENTS
@@ -13,9 +13,15 @@ REQUIREMENTS
 V2 - HoD required
 EU4
 
+-----
+INSTRUCTIONS
+-----
+1. Run ConverterFrontend.exe.
+2. Fill out all fields and keep clicking Next.
+
 
 ----
-INSTRUCTIONS
+MANUAL METHOD INSTRUCTIONS
 ----
 
 1. Download the converter and unzip it wherever.
@@ -27,17 +33,6 @@ INSTRUCTIONS
 7. Start that copy of Victoria 2, and select the mod.
 
 ----
-FAQ
-----
-Q: I got an error that mentions MSVCP120.dll. What do I do?
-A :
-Go to the Visual Studio Redistributable page: http://www.microsoft.com/en-us/download/details.aspx?id=40784
-	then click Download and select vcredist_x86.exe.
-	Once it has downloaded, install it and run the converter again.
-
-
-
-----
 CREDITS
 ----
 
@@ -47,6 +42,7 @@ Idhrendur		- Project Lead, Programming
 Ztaesek			- Programming, Data Files
 theosZA			- Programming
 PTSnoop			- Programming, Graphics, Analysis
+Clonefusion		- Analysis
 kwsdev			- Front End
 TheSpartanD		- Data Files
 LordBawbag		- Data Files
@@ -59,9 +55,19 @@ niallmcfc		- Data Files
 plnp123			- Data Files
 Goldmattress		- Data Files
 Torakka			- Data Files
+Fliptoy			- Data Files
+LowTartare		- Data Files
+Kasemacher		- Data Files
+larjak			- Data Files
+Tehfailure		- Data Files
+kratostatic		- Data Files
+Kansai-kun		- Data Files
+SaintPetersbour		- Data Files
+Teutonizer		- Data Files
 LowTartare		- Graphics
 ChortlingGnome		- Graphics
 Magc8Ball		- Graphics
+Popcorn Soda55		- Graphics
 
 
  - AND ALL THE OTHERS WHO GAVE THEIR INPUT ON THE FORUM -

@@ -36,14 +36,7 @@ configuration =
 	# Victoria 2 Documents directory: a path on your computer where Victoria 2 keeps temporary files
 	V2Documentsdirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Victoria II"
 
-	# CK2Converted: Whether or not the mod was converted from CK2. Possible values:
-	# 	yes
-	#	no
-	CK2Converted = "no"
-
 	# V2 Game Type: what version of V2 to convert to.  Possible values:
-	#	vanilla		vanilla V2 (1.x)
-	#	AHD		A House Divided (2.x)
 	#	HOD		Heart of Darkness (3.x)
 	#	HoD-NNM		HoD with the New Nations Mod
 	V2gametype = "HOD"

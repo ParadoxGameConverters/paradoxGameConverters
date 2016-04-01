@@ -38,12 +38,15 @@ V2Pop::V2Pop(string _type, int _size, string _culture, string _religion)
 
 void V2Pop::output(FILE* output) const
 {
-	fprintf(output, "\t%s=\n", type.c_str());
-	fprintf(output, "\t{\n");
-	fprintf(output, "\t\tculture = %s\n", culture.c_str());
-	fprintf(output, "\t\treligion = %s\n", religion.c_str());
-	fprintf(output, "\t\tsize=%d\n", size);
-	fprintf(output, "\t}\n");
+	if (size > 0)
+	{
+		fprintf(output, "\t%s=\n", type.c_str());
+		fprintf(output, "\t{\n");
+		fprintf(output, "\t\tculture = %s\n", culture.c_str());
+		fprintf(output, "\t\treligion = %s\n", religion.c_str());
+		fprintf(output, "\t\tsize=%d\n", size);
+		fprintf(output, "\t}\n");
+	}
 }
 
 

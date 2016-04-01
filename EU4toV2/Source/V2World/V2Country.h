@@ -57,12 +57,12 @@ struct V2Party;
 class V2Country
 {
 	public:
-		V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _parties, V2World* _theWorld, bool _newCountry = false);
+		V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _parties, V2World* _theWorld, bool _newCountry = false, bool _dynamicCountry = false);
 		void								output() const;
 		void								outputToCommonCountriesFile(FILE*) const;
 		void								outputLocalisation(FILE*) const;
 		void								outputOOB() const;
-		void								initFromEU4Country(EU4Country* _srcCountry, vector<string> outputOrder, const CountryMapping& countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas);
+		void								initFromEU4Country(EU4Country* _srcCountry, const CountryMapping& countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const EU4RegionsMapping& regionsMap);
 		void								initFromHistory();
 		void								addProvince(V2Province* _province);
 		void								addState(V2State* newState);
@@ -70,12 +70,12 @@ class V2Country
 		bool								addFactory(V2Factory* factory);
 		void								addRailroadtoCapitalState();
 		void								convertUncivReforms();
-		void								setupPops(double popWeightRatio);
-		void								setArmyTech(double mean, double highest);
-		void								setNavyTech(double mean, double highest);
-		void								setCommerceTech(double mean, double highest);
-		void								setIndustryTech(double mean, double highest);
-		void								setCultureTech(double mean, double highest);
+		void								setupPops(double popWeightRatio, int popConversionAlgorithm);
+		void								setArmyTech(double normalizedScore);
+		void								setNavyTech(double normalizedScore);
+		void								setCommerceTech(double normalizedScore);
+		void								setIndustryTech(double normalizedScore);
+		void								setCultureTech(double normalizedScore);
 		void								addRelation(V2Relations* newRelation);
 		void								absorbVassal(V2Country* vassal);
 		void								setColonyOverlord(V2Country* colony);
@@ -113,7 +113,7 @@ class V2Country
 		bool								isNewCountry() const { return newCountry; }
 		int								getNumFactories() const { return numFactories; }
 
-		string								getReligion() const { return religion; }
+		string							getReligion() const { return religion; }
 
 	private:
 		void			outputTech(FILE*) const ;
@@ -128,7 +128,8 @@ class V2Country
 		V2World*							theWorld;
 		EU4Country*						srcCountry;
 		string							filename;
-		bool								newCountry;	// true if this country is being added by the converter, i.e. doesn't already exist in V2
+		bool								newCountry;			// true if this country is being added by the converter, i.e. doesn't already exist in Vic2
+		bool								dynamicCountry;	// true if this country is a Vic2 dynamic country
 		V2Country*						colonyOverlord;
 		string							colonialRegion;
 
@@ -137,6 +138,9 @@ class V2Country
 		map<int, V2Province*>		provinces;
 		int								capital;
 		bool								civilized;
+		bool								isReleasableVassal;
+		bool								holyRomanEmperor;
+		bool								inHRE;
 		string							primaryCulture;
 		set<string>						acceptedCultures;
 		string							religion;
@@ -176,6 +180,7 @@ class V2Country
 		Color								color;
 		int								unitNameCount[num_reg_categories];
 		int								numFactories;
+		vector<string>					decisions;
 };
 
 bool ProvinceRegimentCapacityPredicate(V2Province* prov1, V2Province* prov2);

@@ -35,9 +35,11 @@ class EU4Country;
 
 
 struct EU4PopRatio {
-	string culture;		// the culture
-	string religion;		// the religion
-	double popRatio;		// the percent of the total population this represents
+	string culture;			// the culture
+	string religion;			// the religion
+	double upperPopRatio;	// the percent of the total upper-class population this represents
+	double middlePopRatio;	// the percent of the total middle-class population this represents
+	double lowerPopRatio;	// the percent of the total lower-class population this represents
 };
 
 
@@ -59,6 +61,7 @@ class EU4Province {
 		double					getBaseTax()			const { return baseTax; }
 		string					getOwnerString()		const { return ownerString; }
 		EU4Country*				getOwner()				const { return owner; }
+		bool						getInHRE()				const { return inHRE; }
 		bool						isColony()				const { return colony; }
 		vector<EU4PopRatio>	getPopRatios()			const { return popRatios; }
 		double					getTotalWeight()		const { return totalWeight; }
@@ -81,7 +84,7 @@ class EU4Province {
 	private:
 		void	checkBuilding(const Object* provinceObj, string building);
 		void	buildPopRatios();
-		void	decayPopRatios(date olddate, date newdate, EU4PopRatio& currentPop);
+		void	decayPopRatios(date oldDate, date newDate, EU4PopRatio& currentPop);
 
 		vector<double>	getProvBuildingWeight()	const;
 		double			getTradeGoodWeight()		const;
@@ -89,11 +92,14 @@ class EU4Province {
 
 		int									num;						// the province number
 		double								baseTax;					// the base tax of the province
+		double								baseProd;					// the base production of the province
+		double								manpower;					// the base manpower of the province
 		double								totalWeight;
 		string								ownerString;			// a string with the owner's tag
 		string								provName;
 		EU4Country*							owner;					// the owner
 		vector<string>						cores;					// strings of the tags of all cores
+		bool									inHRE;					// whether or not this province is in the HRE
 		bool									colony;					// whether or not this is a colony
 		vector< pair<date, string> >	ownershipHistory;		// the history of who has owned this province
 		map<string, date>					lastPossessedDate;	// the last date the province was owned by different tags
@@ -102,7 +108,6 @@ class EU4Province {
 		vector<EU4PopRatio>				popRatios;				// the population ratios of this province
 		map<string, bool>					buildings;				// the buildings in this province
 
-		double								manpower;
 		string								tradeGoods;
 		int									numV2Provs;
 
@@ -113,7 +118,7 @@ class EU4Province {
 		double								provBuildingWeight;
 		double								provTradeGoodWeight;
 
-		std::vector<double>					provProductionVec;
+		std::vector<double>				provProductionVec;
 
 };
 

@@ -1,0 +1,342 @@
+#Quito Region (512000)
+#Ruled by Ecuador 1836
+#Quito (304000/76000 POPS)
+2279 = {
+	soldiers=
+	{
+		culture = chibchan
+		religion = inti
+		size=762
+	}
+
+	artisans=
+	{
+		culture = chibchan
+		religion = inti
+		size=3048
+	}
+
+	clergymen=
+	{
+		culture = chibchan
+		religion = inti
+		size=495
+	}
+
+	bureaucrats=
+	{
+		culture = chibchan
+		religion = inti
+		size=38
+	}
+
+	officers=
+	{
+		culture = chibchan
+		religion = inti
+		size=61
+	}
+
+	aristocrats=
+	{
+		culture = chibchan
+		religion = inti
+		size=640
+	}
+
+	farmers=
+	{
+		culture = chibchan
+		religion = inti
+		size=71156
+	}
+}
+#Zamora (176000/44000 POPS)
+2283 = {
+	soldiers=
+	{
+		culture = chibchan
+		religion = inti
+		size=438
+	}
+
+	artisans=
+	{
+		culture = chibchan
+		religion = inti
+		size=1752
+	}
+
+	clergymen=
+	{
+		culture = chibchan
+		religion = inti
+		size=285
+	}
+
+	bureaucrats=
+	{
+		culture = chibchan
+		religion = inti
+		size=22
+	}
+
+	officers=
+	{
+		culture = chibchan
+		religion = inti
+		size=35
+	}
+
+	aristocrats=
+	{
+		culture = chibchan
+		religion = inti
+		size=368
+	}
+
+	farmers=
+	{
+		culture = chibchan
+		religion = inti
+		size=40900
+	}
+}
+#Tena (32000/8000 POPS)
+2284 = {
+	aristocrats=
+	{
+		culture = chibchan
+		religion = inti
+		size=100
+	}
+
+	clergymen=
+	{
+		culture = chibchan
+		religion = inti
+		size=100
+	}
+
+	artisans=
+	{
+		culture = chibchan
+		religion = inti
+		size=250
+	}
+
+	soldiers=
+	{
+		culture = chibchan
+		religion = inti
+		size=75
+	}
+
+	farmers=
+	{
+		culture = chibchan
+		religion = inti
+		size=4475
+	}
+
+	aristocrats=
+	{
+		culture = maranon
+		religion = animist
+		size=50
+	}
+
+	clergymen=
+	{
+		culture = maranon
+		religion = animist
+		size=75
+	}
+
+	artisans=
+	{
+		culture = maranon
+		religion = animist
+		size=150
+	}
+
+	soldiers=
+	{
+		culture = maranon
+		religion = animist
+		size=25
+	}
+
+	farmers=
+	{
+		culture = maranon
+		religion = animist
+		size=2700
+	}
+}
+#Guayaquil Region (328000)
+#Ruled by Ecuador 1836
+#Guayaquil (80000/20000 POPS)
+2280 = {
+	soldiers=
+	{
+		culture = chibchan
+		religion = inti
+		size=1033
+	}
+
+	artisans=
+	{
+		culture = chibchan
+		religion = inti
+		size=806
+	}
+
+	clergymen=
+	{
+		culture = chibchan
+		religion = inti
+		size=131
+	}
+
+	bureaucrats=
+	{
+		culture = chibchan
+		religion = inti
+		size=10
+	}
+
+	officers=
+	{
+		culture = chibchan
+		religion = inti
+		size=16
+	}
+
+	aristocrats=
+	{
+		culture = chibchan
+		religion = inti
+		size=169
+	}
+
+	farmers=
+	{
+		culture = chibchan
+		religion = inti
+		size=17975
+	}
+}
+#Esmereldas (88000/22000 POPS)
+2281 = {
+	soldiers=
+	{
+		culture = chibchan
+		religion = inti
+		size=229
+	}
+
+	artisans=
+	{
+		culture = chibchan
+		religion = inti
+		size=914
+	}
+
+	clergymen=
+	{
+		culture = chibchan
+		religion = inti
+		size=149
+	}
+
+	bureaucrats=
+	{
+		culture = chibchan
+		religion = inti
+		size=11
+	}
+
+	officers=
+	{
+		culture = chibchan
+		religion = inti
+		size=18
+	}
+
+	aristocrats=
+	{
+		culture = chibchan
+		religion = inti
+		size=192
+	}
+
+	farmers=
+	{
+		culture = chibchan
+		religion = inti
+		size=21337
+	}
+}
+#Loja (160000/40000 POPS)
+2282 = {
+	soldiers=
+	{
+		culture = chibchan
+		religion = inti
+		size=400
+	}
+
+	artisans=
+	{
+		culture = chibchan
+		religion = inti
+		size=1600
+	}
+
+	clergymen=
+	{
+		culture = chibchan
+		religion = inti
+		size=260
+	}
+
+	bureaucrats=
+	{
+		culture = chibchan
+		religion = inti
+		size=20
+	}
+
+	officers=
+	{
+		culture = chibchan
+		religion = inti
+		size=32
+	}
+
+	aristocrats=
+	{
+		culture = chibchan
+		religion = inti
+		size=336
+	}
+
+	farmers=
+	{
+		culture = chibchan
+		religion = inti
+		size=37352
+	}
+}
+#Galapagos Region (300)
+#Ruled by Ecuador 1836
+#Galapagos (300/75 POPS)
+2285 = {
+	farmers=
+	{
+		culture = polynesian
+		religion = animist
+		size=75
+	}
+}

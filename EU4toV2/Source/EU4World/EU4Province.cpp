@@ -30,7 +30,8 @@ THE SOFTWARE. */
 
 
 
-EU4Province::EU4Province(Object* obj) {
+EU4Province::EU4Province(Object* obj)
+{
 	provTaxIncome = 0;
 	provProdIncome = 0;
 	provMPWeight = 0;
@@ -46,6 +47,20 @@ EU4Province::EU4Province(Object* obj) {
 	baseTaxObjs = obj->getValue("base_tax");
 	baseTax = (baseTaxObjs.size() > 0) ? atof(baseTaxObjs[0]->getLeaf().c_str()) : 0.0f;
 
+	vector<Object*> baseProdObjs;			// the object holding the base production
+	baseProdObjs = obj->getValue("base_production");
+	baseProd = (baseProdObjs.size() > 0) ? atof(baseProdObjs[0]->getLeaf().c_str()) : 0.0f;
+
+	vector<Object*> baseManpowerObjs;		// the object holding the base manpower
+	baseManpowerObjs = obj->getValue("base_manpower");
+	manpower = (baseManpowerObjs.size() > 0) ? atof(baseManpowerObjs[0]->getLeaf().c_str()) : 0.0f;
+
+	// for old versions of EU4 (< 1.12), copy tax to production if necessary
+	if (baseProd == 0.0f && baseTax > 0.0f)
+	{
+		baseProd = baseTax;
+	}
+
 	vector<Object*> ownerObjs;				// the object holding the owner
 	ownerObjs = obj->getValue("owner");
 	(ownerObjs.size() == 0) ? ownerString = "" : ownerString = ownerObjs[0]->getLeaf();
@@ -57,6 +72,16 @@ EU4Province::EU4Province(Object* obj) {
 	for (unsigned int i = 0; i < coreObjs.size(); i++)
 	{
 		cores.push_back(coreObjs[i]->getLeaf());
+	}
+
+	vector<Object*> hreObj = obj->getValue("hre");
+	if ((hreObj.size() > 0) && (hreObj[0]->getLeaf() == "yes"))
+	{
+		inHRE = true;
+	}
+	else
+	{
+		inHRE = false;
 	}
 
 	colony = false;
@@ -171,15 +196,25 @@ EU4Province::EU4Province(Object* obj) {
 		provName = "";
 	}
 
-	vector<Object*> manpowerObj = obj->getValue("manpower");
-	if (manpowerObj.size() > 0)
+	// if we didn't have base manpower (EU4 < 1.12), check for manpower instead
+	if (manpower == 0.0f)
 	{
-		string manpowerStr = manpowerObj[0]->getLeaf();
-		manpower = stod(manpowerStr);
+		vector<Object*> manpowerObj = obj->getValue("manpower");
+		if (manpowerObj.size() > 0)
+		{
+			string manpowerStr = manpowerObj[0]->getLeaf();
+			manpower = stod(manpowerStr);
+		}
 	}
-	else
+
+	// great projects
+	vector<Object*> projectsObj = obj->getValue("great_projects");
+	if (projectsObj.size() > 0)
 	{
-		manpower = 0.0;
+		for (const auto& proj : projectsObj[0]->getTokens())
+		{
+			buildings[proj] = true;
+		}
 	}
 
 	//LOG(LogLevel::Info) << "Check unique Buildings...";
@@ -274,12 +309,15 @@ void EU4Province::removeCore(string tag)
 bool EU4Province::wasColonised() const
 {
 	// returns true if the first owner did not own the province at the beginning of the game,
-	// but acquired it later through colonization
+	// but acquired it later through colonization, and if the current culture does not match the original culture
 	if (ownershipHistory.size() > 0)
 	{
 		if ((ownershipHistory[0].first != date()) && (ownershipHistory[0].first != Configuration::getFirstEU4Date()))
 		{
-			return true;
+			if	((cultureHistory.size() > 1) && (cultureHistory[0].second != cultureHistory[cultureHistory.size() - 1].second))
+			{
+				return true;
+			}
 		}
 	}
 	return false;
@@ -301,7 +339,10 @@ bool EU4Province::wasInfidelConquest() const
 		}
 		else
 		{
-			return firstReligion->isInfidelTo(ownerReligion);
+			if	((cultureHistory.size() > 1) && (cultureHistory[0].second != cultureHistory[cultureHistory.size() - 1].second))
+			{
+				return firstReligion->isInfidelTo(ownerReligion);
+			}
 		}
 	}
 	return false;
@@ -390,10 +431,12 @@ void EU4Province::buildPopRatios()
 	}
 
 	// build and scale historic culture-religion pairs
-	EU4PopRatio pr;	// a pop ratio
-	pr.culture	= curCulture;
-	pr.religion	= curReligion;
-	pr.popRatio	= 1.0;
+	EU4PopRatio pr;		// a pop ratio
+	pr.culture			= curCulture;
+	pr.religion			= curReligion;
+	pr.upperPopRatio	= 1.0;
+	pr.middlePopRatio	= 1.0;
+	pr.lowerPopRatio	= 1.0;
 	date cDate, rDate, lastLoopDate;	// the dates this culture dominated, this religion dominated, and the former relevant date
 	while (cItr != cultureHistory.end() || rItr != religionHistory.end())
 	{
@@ -417,13 +460,16 @@ void EU4Province::buildPopRatios()
 		{
 			decayPopRatios(lastLoopDate, cDate, pr);
 			popRatios.push_back(pr);
-			for (vector<EU4PopRatio>::iterator itr = popRatios.begin(); itr != popRatios.end(); ++itr)
+			for (auto itr: popRatios)
 			{
-				itr->popRatio /= 2.0;
+				itr.upperPopRatio		/= 2.0;
+				itr.middlePopRatio	/= 2.0;
 			}
-			pr.popRatio		= 0.5;
-			pr.culture		= cItr->second;
-			lastLoopDate	= cDate;
+			pr.upperPopRatio	= 0.5;
+			pr.middlePopRatio	= 0.5;
+			pr.lowerPopRatio	= 0.0;
+			pr.culture			= cItr->second;
+			lastLoopDate		= cDate;
 			++cItr;
 		}
 		else if (cDate == rDate)
@@ -431,32 +477,39 @@ void EU4Province::buildPopRatios()
 			// culture and religion change on the same day;
 			decayPopRatios(lastLoopDate, cDate, pr);
 			popRatios.push_back(pr);
-			for (vector<EU4PopRatio>::iterator itr = popRatios.begin(); itr != popRatios.end(); ++itr)
+			for (auto itr: popRatios)
 			{
-				itr->popRatio /= 2.0;
+				itr.upperPopRatio		/= 2.0;
+				itr.middlePopRatio	/= 2.0;
 			}
-			pr.popRatio		= 0.5;
-			pr.culture		= cItr->second;
-			pr.religion		= rItr->second;
-			lastLoopDate	= cDate;
+			pr.upperPopRatio	= 0.5;
+			pr.middlePopRatio	= 0.5;
+			pr.lowerPopRatio	= 0.0;
+			pr.culture			= cItr->second;
+			pr.religion			= rItr->second;
+			lastLoopDate		= cDate;
 			++cItr;
 			++rItr;
 		}
 		else if (rDate < cDate)
 		{
-			decayPopRatios(lastLoopDate, rDate, pr);
+			decayPopRatios(lastLoopDate, cDate, pr);
 			popRatios.push_back(pr);
-			for (vector<EU4PopRatio>::iterator itr = popRatios.begin(); itr != popRatios.end(); ++itr)
+			for (auto itr: popRatios)
 			{
-				itr->popRatio /= 2.0;
+				itr.upperPopRatio		/= 2.0;
+				itr.middlePopRatio	/= 2.0;
 			}
-			pr.popRatio		= 0.5;
-			pr.religion		= rItr->second;
-			lastLoopDate	= rDate;
+			pr.upperPopRatio	= 0.5;
+			pr.middlePopRatio	= 0.5;
+			pr.lowerPopRatio	= 0.0;
+			pr.religion			= rItr->second;
+			lastLoopDate		= rDate;
 			++rItr;
 		}
 	}
 	decayPopRatios(lastLoopDate, endDate, pr);
+
 	if ((pr.culture != "") || (pr.religion != ""))
 	{
 		popRatios.push_back(pr);
@@ -464,7 +517,7 @@ void EU4Province::buildPopRatios()
 }
 
 
-void EU4Province::decayPopRatios(date oldDate, date newDate, EU4PopRatio& currentPop)
+void	EU4Province::decayPopRatios(date oldDate, date newDate, EU4PopRatio& currentPop)
 {
 	// quick out for initial state (no decay needed)
 	if (oldDate == date())
@@ -479,14 +532,20 @@ void EU4Province::decayPopRatios(date oldDate, date newDate, EU4PopRatio& curren
 	}
 
 	// drop all non-current pops by a total of .0025 per year, divided proportionally
-	const double nonCurrentRatio = (1.0 - currentPop.popRatio);
-	for (vector<EU4PopRatio>::iterator itr = popRatios.begin(); itr != popRatios.end(); ++itr)
+	double upperNonCurrentRatio	= (1.0 - currentPop.upperPopRatio);
+	double middleNonCurrentRatio	= (1.0 - currentPop.middlePopRatio);
+	double lowerNonCurrentRatio	= (1.0 - currentPop.lowerPopRatio);
+	for (auto itr: popRatios)
 	{
-		itr->popRatio -= .0025 * (newDate.year - oldDate.year) * itr->popRatio / nonCurrentRatio ;
+		itr.upperPopRatio		-= .0025 * (newDate.year - oldDate.year) * itr.upperPopRatio	/ upperNonCurrentRatio;
+		itr.middlePopRatio	-= .0025 * (newDate.year - oldDate.year) * itr.middlePopRatio	/ middleNonCurrentRatio;
+		itr.lowerPopRatio		-= .0025 * (newDate.year - oldDate.year) * itr.lowerPopRatio	/ lowerNonCurrentRatio;
 	}
-
+	
 	// increase current pop by .0025 per year
-	currentPop.popRatio += .0025 * (newDate.year - oldDate.year);
+	currentPop.upperPopRatio	+= .0025 * (newDate.year - oldDate.year);
+	currentPop.middlePopRatio	+= .0025 * (newDate.year - oldDate.year);
+	currentPop.lowerPopRatio	+= .0025 * (newDate.year - oldDate.year);
 }
 
 
@@ -538,7 +597,7 @@ void EU4Province::determineProvinceWeight()
 		goods_produced_perc_mod += 0.05;
 	}
 
-	double goods_produced = (baseTax * 0.2) + manu_gp_mod + goods_produced_perc_mod + 0.03;
+	double goods_produced = (baseProd * 0.2) + manu_gp_mod + goods_produced_perc_mod + 0.03;
 
 	// idea effects
 	if ( (owner !=  NULL) && (owner->hasNationalIdea("bureaucracy")) )
@@ -553,12 +612,12 @@ void EU4Province::determineProvinceWeight()
 	// manpower
 	manpower_weight *= 25;
 	manpower_weight += manpower_modifier;
-	manpower_weight *= ((1 + manpower_modifier) / 1005);
+	manpower_weight *= ((1 + manpower_modifier) / 25); ## should work now as intended
 
 	//LOG(LogLevel::Info) << "Manpower Weight: " << manpower_weight;
 
 	double total_tx = (baseTax + building_tx_income) * (1.0 + building_tx_eff + 0.15);
-	double production_eff_tech = 1.0;
+	double production_eff_tech = 0.5; ## used to be 1.0
 
 	double total_trade_value = ((getTradeGoodPrice() * goods_produced) + trade_value) * (1 + trade_value_eff);
 	double production_income = total_trade_value * (1 + production_eff_tech + production_eff);
@@ -582,8 +641,8 @@ void EU4Province::determineProvinceWeight()
 	provMPWeight			= manpower_weight;
 	provTradeGoodWeight	= trade_goods_weight;
 
-	totalWeight = building_weight + ((2 * baseTax) + manpower_weight + trade_goods_weight + production_income + total_tx);
-
+	totalWeight = building_weight  + ((1 * baseTax) + (1 * baseProd) + (1 * manpower) + manpower_weight + trade_goods_weight + production_income + total_tx);
+	//i would change dev effect to 1, but your choice
 	if (owner == NULL)
 	{
 		totalWeight = 0;
@@ -630,93 +689,108 @@ double EU4Province::getTradeGoodPrice() const
 	spices
 	wine
 	cocoa
+	silk
+	dyes
+	tropical_wood
 	*/
 	//LOG(LogLevel::Info) << "Trade Goods Price";
 	double tradeGoodsPrice = 0;
 
 	if (tradeGoods == "chinaware")
 	{
-		tradeGoodsPrice = 9.66;
+		tradeGoodsPrice = 3;
 	}
 	else if (tradeGoods == "grain")
 	{
-		tradeGoodsPrice = 5.0;
+		tradeGoodsPrice = 2;
 	}
 	else if (tradeGoods == "fish")
 	{
-		tradeGoodsPrice = 5.00;
+		tradeGoodsPrice = 2.5;
 	}
 	else if (tradeGoods == "tabacco")
 	{
-		tradeGoodsPrice = 7.82;
+		tradeGoodsPrice = 3;
 	}
 	else if (tradeGoods == "iron")
 	{
-		tradeGoodsPrice = 5.94;
+		tradeGoodsPrice = 3;
 	}
 	else if (tradeGoods == "copper")
 	{
-		tradeGoodsPrice = 5.0;
+		tradeGoodsPrice = 3;
 	}
 	else if (tradeGoods == "cloth")
 	{
-		tradeGoodsPrice = 5.00;
+		tradeGoodsPrice = 3;
 	}
 	else if (tradeGoods == "slaves")
 	{
-		tradeGoodsPrice = 2.91;
+		tradeGoodsPrice = 2;
 	}
 	else if (tradeGoods == "salt")
 	{
-		tradeGoodsPrice = 3.30;
+		tradeGoodsPrice = 3;
 	}
 	else if (tradeGoods == "gold")
 	{
-		tradeGoodsPrice = 4.0;
+		tradeGoodsPrice = 6;
 	}
 	else if (tradeGoods == "fur")
 	{
-		tradeGoodsPrice = 7.03;
+		tradeGoodsPrice = 2;
 	}
 	else if (tradeGoods == "sugar")
 	{
-		tradeGoodsPrice = 3.40;
+		tradeGoodsPrice = 3;
 	}
 	else if (tradeGoods == "naval_supplies")
 	{
-		tradeGoodsPrice = 5.0;
+		tradeGoodsPrice = 2;
 	}
 	else if (tradeGoods == "tea")
 	{
-		tradeGoodsPrice = 6.88;
+		tradeGoodsPrice = 2;
 	}
 	else if (tradeGoods == "coffee")
 	{
-		tradeGoodsPrice = 9.58;
+		tradeGoodsPrice = 3;
 	}
 	else if (tradeGoods == "spices")
 	{
-		tradeGoodsPrice = 7.91;
+		tradeGoodsPrice = 3;
 	}
 	else if (tradeGoods == "wine")
 	{
-		tradeGoodsPrice = 5.18;
+		tradeGoodsPrice = 2.5;
 	}
 	else if (tradeGoods == "cocoa")
 	{
-		tradeGoodsPrice = 7.50;
+		tradeGoodsPrice = 4;
 	}
 	else if (tradeGoods == "ivory")
 	{
-		tradeGoodsPrice = 4.32;
+		tradeGoodsPrice = 4;
 	}
 	else if (tradeGoods == "wool")
 	{
-		tradeGoodsPrice = 2.26;
+		tradeGoodsPrice = 2.5;
 	}
 	else if (tradeGoods == "cotton")
 	{
-		tradeGoodsPrice = 3.96;
+		tradeGoodsPrice = 3;
+	}
+	else if (tradeGoods == "dyes")
+	{
+		tradeGoodsPrice = 4;
+	}
+	else if (tradeGoods == "tropical_wood")
+	{
+		tradeGoodsPrice = 2;
+	}
+	else if (tradeGoods == "silk")
+	{
+		tradeGoodsPrice = 4;
 	}
 	else
 	{
@@ -836,6 +910,18 @@ double EU4Province::getTradeGoodWeight() const
 		trade_goods_weight = 2;
 	}
 	else if (tradeGoods == "cotton")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "silk")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "tropical_wood")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "dyes")
 	{
 		trade_goods_weight = 2;
 	}
@@ -1160,7 +1246,7 @@ vector<double> EU4Province::getProvBuildingWeight() const
 		trade_power_eff += 0.5;
 	}*/
 
-	if (hasBuilding("march"))
+	/*if (hasBuilding("march"))
 	{
 		building_weight += 2;
 		manpower_modifier += 75;
@@ -1478,6 +1564,163 @@ vector<double> EU4Province::getProvBuildingWeight() const
 		trade_value += 1;
 		trade_power_eff += 1;
 		trade_power += 7;
+	}*/
+
+	if (hasBuilding("university"))
+	{
+		building_weight += 5.2;
+	}
+
+	// manfacturies building
+	if (hasBuilding("weapons"))
+	{
+		building_weight += 2;
+		manu_gp_mod = 1.0;
+	}
+
+	if (hasBuilding("wharf"))
+	{
+		building_weight += 2;
+		manu_gp_mod = 1.0;
+	}
+
+	if (hasBuilding("textile"))
+	{
+		building_weight += 2;
+		manu_gp_mod = 1.0;
+	}
+
+	if (hasBuilding("refinery"))
+	{
+		building_weight += 2;
+		manu_gp_mod = 1.0;
+	}
+
+	if (hasBuilding("plantations"))
+	{
+		building_weight += 2;
+		manu_gp_mod = 1.0;
+	}
+
+	if (hasBuilding("farm_estate"))
+	{
+		building_weight += 2;
+		manu_gp_mod = 1.0;
+	}
+
+	if (hasBuilding("tradecompany"))
+	{
+		building_weight += 2;
+		manu_gp_mod = 1.0;
+	}
+
+	// Base buildings
+	if (hasBuilding("fort1"))
+	{
+		building_weight += 1.8;
+	}
+	if (hasBuilding("fort2"))
+	{
+		building_weight += 3.6;
+	}
+	if (hasBuilding("fort3"))
+	{
+		building_weight += 5.4;
+	}
+	if (hasBuilding("fort4"))
+	{
+		building_weight += 7.2;
+
+	}
+	if (hasBuilding("dock"))
+	{
+		building_weight += 2.8;
+	}
+
+	if (hasBuilding("drydock"))
+	{
+		building_weight += 5.6;
+	}
+
+	if (hasBuilding("shipyard"))
+	{
+		building_weight += 2.4;
+	}
+
+	if (hasBuilding("grand_shipyard"))
+	{
+		building_weight += 4.8; ## i must mixed something up
+	}
+
+	if (hasBuilding("temple"))
+	{
+		building_weight += 0.4;
+		building_tx_eff += 0.40;
+	}
+
+	if (hasBuilding("courthouse"))
+	{
+		building_weight += 1.8;
+	}
+
+	if (hasBuilding("town_hall"))
+	{
+		building_weight += 3.6;
+	}
+
+	if (hasBuilding("cathedral"))
+	{
+		building_weight += 2.2;
+		building_tx_eff += 0.6;
+	}
+
+	if (hasBuilding("training_fields"))
+	{
+		building_weight += 1.2;
+		manpower_eff += 1.00;
+	}
+
+	if (hasBuilding("barracks"))
+	{
+		building_weight += 0.4;
+		manpower_eff += 0.50;
+	}
+
+	if (hasBuilding("regimental_camp"))
+	{
+		building_weight += 3.8;
+	}
+
+	if (hasBuilding("conscription_center"))
+	{
+		building_weight += 7.6;
+	}
+
+	if (hasBuilding("workshop"))
+	{
+		building_weight += 0.4;
+		production_eff += 0.5;
+	}
+
+	if (hasBuilding("counting_house"))
+	{
+		production_eff += 1.0;
+		building_weight += 1.6;
+	}
+
+	if (hasBuilding("stock_exchange"))
+	{
+		building_weight += 4.6;
+	}
+
+	if (hasBuilding("marketplace"))
+	{
+		building_weight += 1.4;
+	}
+
+	if (hasBuilding("trade_depot"))
+	{
+		building_weight += 3.2;
 	}
 
 	std::vector<double> provBuildingWeightVec;

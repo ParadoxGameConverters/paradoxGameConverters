@@ -37,8 +37,6 @@ link = { tag = SCA culture = swedish }
 link = { tag = SCA culture = danish }
 link = { tag = SCA culture = norwegian }
 link = { tag = SCA culture = icelandic }
-link = { tag = SCA culture = finnish }
-link = { tag = SCA culture = sami }
 
 #Great Britain
 link = { tag = ENG culture = british }

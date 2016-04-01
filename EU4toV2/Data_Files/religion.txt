@@ -223,7 +223,7 @@ pagan = {
 	}
 	west_african_pagan_reformed = {
 		icon = 21
-		color = { 91 49 13 }
+		color = { .355 .191 .05 }
 		pagan = yes
 	}
 
@@ -252,6 +252,18 @@ pagan = {
 		icon = 26
 		color = { 0.5 0.45 0.45 }
 		pagan = yes
+	}
+	mayan = {
+		icon = 19
+		color = { 0.95 0.3 0.3 }
+	}
+	nahuatl = {
+		icon = 49
+		color = { 0.4 0.1 0.1 }
+	}
+	inti = {
+		icon = 50
+		color = { 1.0 0.8 0.0 }
 	}
 }
 

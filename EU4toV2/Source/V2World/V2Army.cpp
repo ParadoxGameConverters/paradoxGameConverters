@@ -49,7 +49,7 @@ void V2ArmyID::output(FILE* out, int indentlevel) const
 
 V2Regiment::V2Regiment(RegimentCategory rc) : category(rc)
 {
-	name		= "\"\"";
+	name		= "";
 	switch (rc)
 	{
 		case infantry:
@@ -154,4 +154,17 @@ void V2Army::getRegimentCounts(int counts[num_reg_categories]) const
 	{
 		counts[itr->getCategory()]++;
 	}
+}
+
+
+// used for whitelist/blacklist testing routines
+V2Army* V2Army::makeTestNavy(int location)
+{
+	V2Army* army = new V2Army();
+	army->name = "V2 Test Navy";
+	army->isNavy = true;
+	army->setLocation(location);
+	V2Regiment reg(heavy_ship);
+	army->addRegiment(reg);
+	return army;
 }

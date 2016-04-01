@@ -33,6 +33,7 @@ POR		= "countries/Portugal.txt"
 SCO		= "countries/Scotland.txt"
 SPA		= "countries/Spain.txt"
 WLL		= "countries/Wallonia.txt"
+RME		= "countries/RomanEmpire.txt"
 
 # Germany
 ANH		= "countries/Anhalt.txt"
@@ -505,7 +506,6 @@ TIM		="countries/Timurid.txt"
 KZH		="countries/Kazakh.txt"
 
 # Japan
-MIN		="countries/Minamoto.txt"
 TAC		="countries/Tachibana.txt"
 FUJ 		="countries/Fujiwara.txt"
 TAI 		="countries/Taira.txt"

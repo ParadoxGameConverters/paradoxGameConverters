@@ -1,15 +1,15 @@
-# Copyright (c) 2014 The Paradox Game Converters Project
-# 
+# Copyright (c) 2015 The Paradox Game Converters Project
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,18 +23,23 @@
 
 cultureMap = {
 
+# Slovene
+link = { v2 = slovene eu4 = croatian region = germany_region }
+link = { v2 = slovene eu4 = austrian region = carinthia_area }
+
 # Germanic - North German, South German, Ashkenazi
 # Swiss - Swiss
-link = { v2 = ashkenazi eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 = saxon eu4 = old_saxon eu4 = rheinlaender eu4 = hessian eu4 = bavarian eu4 = austrian religion = jewish }
-link = { v2 = north_german eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 = saxon eu4 = old_saxon }
-link = { v2 = swiss eu4 = rheinlaender owner = SWI }
-link = { v2 = south_german eu4 = rheinlaender  eu4 = hessian eu4 = bavarian eu4 = austrian }
+link = { v2 = ashkenazi eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 = saxon eu4 = old_saxon eu4 = rheinlaender eu4 = hessian eu4 = bavarian eu4 = austrian eu4 = swabian eu4 = franconian religion = jewish }
+link = { v2 = north_german eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 = saxon eu4 = hessian eu4 = old_saxon }
+link = { v2 = swiss eu4 = swiss }
+link = { v2 = south_german eu4 = franconian eu4 = swabian eu4 = rheinlaender eu4 = bavarian eu4 = austrian }
+link = { v2 = german eu4 = german }
 
 # Benelux - Dutch, Flemish, Wallonian
-#link = { v2 = boer eu4 = dutch region = south_africa }
+link = { v2 = boer eu4 = dutch eu4 = flemish region = south_africa_region }
+link = { v2 = boer eu4 = dutch eu4 = flemish region = south_africa }
 link = { v2 = dutch eu4 = dutch eu4 = frisian }
 link = { v2 = flemish eu4 = flemish }
-link = { v2 = german eu4 = german }
 
 # Scandinavian - Swedish, Danish, Norwegian, Icelandic, Sami
 link = { v2 = swedish eu4 = swedish }
@@ -46,48 +51,91 @@ link = { v2 = sami eu4 = sapmi eu4 = lappish }
 # British - British, Irish
 # American - Yankee, Dixie, Texan
 # Neo-European - Anglo-Canadian
-#link = { v2 = yankee eu4 = english region = northeastern_america }
-#link = { v2 = dixie eu4 = english region = eastern_america }
-#link = { v2 = anglo_canadian eu4 = english region = northern_america }
-#link = { v2 = australian eu4 = english region = australia }
-#link = { v2 = texan eu4 = english eu4 = american region = central_american }
-link = { v2 = british eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = pictish }
+link = { v2 = yankee eu4 = english region = northeastern_america }
+link = { v2 = yankee eu4 = english region = northeast_america_region }
+link = { v2 = dixie eu4 = english region = eastern_america }
+link = { v2 = dixie eu4 = english region = southeast_america_region }
+link = { v2 = anglo_canadian eu4 = english region = northern_america }
+link = { v2 = anglo_canadian eu4 = english region = canada_region }
+link = { v2 = australian eu4 = english region = australia }
+link = { v2 = australian eu4 = english region = australia_region }
+link = { v2 = texan eu4 = english eu4 = american region = central_american }
+link = { v2 = texan eu4 = english eu4 = american region = texas_area }
+link = { v2 = english eu4 = english }
+link = { v2 = scottish eu4 = scottish }
+link = { v2 = anglo_saxon eu4 = anglo_saxon }
+link = { v2 = pictish eu4 = pictish }
 link = { v2 = yankee eu4 = american }
 
 # Celtic - welsh, irish
-link = { v2 = british eu4 = welsh }
+link = { v2 = welsh eu4 = welsh eu4 = cornish }
 link = { v2 = irish eu4 = irish }
 
-# Latin - lombard, umbrian, sicilian
-link = { v2 = north_italian eu4 = lombard eu4 = umbrian }
-link = { v2 = south_italian eu4 = sicilian }
-#link = { v2 = north_italian eu4 = italian region = lombardia }
-#link = { v2 = south_italian eu4 = italian region = two_sicilies }
-link = { v2 = north_italian eu4 = italian }
-#link = { v2 = north_italian eu4 = roman region = lombardia }
-#link = { v2 = south_italian eu4 = roman region = two_sicilies }
-link = { v2 = north_italian eu4 = roman }
+# Latin - lombard, umbrian, sicilian, ligurian, piedmontese, romagnan, sardinian, tuscan, venetian
+link = { v2 = north_italian eu4 = lombard eu4 = umbrian eu4 = piedmontese eu4 = ligurian eu4 = romagnan eu4 = tuscan eu4 = venetian }
+link = { v2 = south_italian eu4 = sicilian eu4 = sardinian eu4 = neapolitan }
+link = { v2 = north_italian eu4 = italian region = lombardia }
+link = { v2 = north_italian eu4 = italian region = lombardy_area }
+link = { v2 = north_italian eu4 = italian region = venetia_area }
+link = { v2 = north_italian eu4 = italian region = piedmont_area }
+link = { v2 = north_italian eu4 = italian region = tuscany_area }
+link = { v2 = north_italian eu4 = italian region = liguria_area }
+link = { v2 = north_italian eu4 = italian region = emilia_romagna_area }
+link = { v2 = north_italian eu4 = italian region = central_italy_area }
+link = { v2 = south_italian eu4 = italian region = two_sicilies }
+link = { v2 = south_italian eu4 = italian region = corsica_sardinia_area }
+link = { v2 = south_italian eu4 = italian region = sicily_area }
+link = { v2 = south_italian eu4 = italian region = naples_area }
+link = { v2 = south_italian eu4 = italian region = calabria_area }
+link = { v2 = south_italian eu4 = italian region = apulia_area }
+link = { v2 = all_italian eu4 = italian }
+link = { v2 = north_italian eu4 = roman region = lombardia }
+link = { v2 = north_italian eu4 = roman region = lombardy_area }
+link = { v2 = north_italian eu4 = roman region = venetia_area }
+link = { v2 = north_italian eu4 = roman region = piedmont_area }
+link = { v2 = north_italian eu4 = roman region = tuscany_area }
+link = { v2 = north_italian eu4 = roman region = liguria_area }
+link = { v2 = north_italian eu4 = roman region = emilia_romagna_area }
+link = { v2 = north_italian eu4 = roman region = central_italy_area }
+link = { v2 = south_italian eu4 = roman region = two_sicilies }
+link = { v2 = south_italian eu4 = roman region = corsica_sardinia_area }
+link = { v2 = south_italian eu4 = roman region = sicily_area }
+link = { v2 = south_italian eu4 = roman region = naples_area }
+link = { v2 = south_italian eu4 = roman region = calabria_area }
+link = { v2 = south_italian eu4 = roman region = apulia_area }
+link = { v2 = all_italian eu4 = roman }
 
 # Iberian - castillian, catalan, galician, andalucian, portugese, maltese
-#link = { v2 = mexican eu4 = castillian eu4 = galician eu4 = andalucian region = central_america }
-#link = { v2 = caribeno eu4 = castillian eu4 = galician eu4 = andalucian region = the_carribean }
-#link = { v2 = platinean eu4 = castillian eu4 = galician eu4 = andalucian region = la_plata_region }
-link = { v2 = spanish eu4 = castillian eu4 = galician eu4 = andalucian eu4 = visigothic }
-link = { v2 = catalan eu4 = catalan }
+link = { v2 = mexican eu4 = castillian eu4 = galician eu4 = andalucian region = central_america }
+link = { v2 = mexican eu4 = castillian eu4 = galician eu4 = andalucian region = central_america_region }
+link = { v2 = mexican eu4 = castillian eu4 = galician eu4 = andalucian region = mexico_region }
+link = { v2 = caribeno eu4 = castillian eu4 = galician eu4 = andalucian region = the_carribean }
+link = { v2 = caribeno eu4 = castillian eu4 = galician eu4 = andalucian region = carribeans_region }
+link = { v2 = platinean eu4 = castillian eu4 = galician eu4 = andalucian region = la_plata_region }
+link = { v2 = north_andean eu4 = castillian eu4 = galician eu4 = andalucian region = colombia }
+link = { v2 = north_andean eu4 = castillian eu4 = galician eu4 = andalucian region = colombia_region }
+link = { v2 = south_andean eu4 = castillian eu4 = galician eu4 = andalucian region = peru }
+link = { v2 = south_andean eu4 = castillian eu4 = galician eu4 = andalucian region = peru_region }
+link = { v2 = visigothic eu4 = visigothic }
+link = { v2 = spanish eu4 = castillian eu4 = leonese }
+link = { v2 = galician eu4 = galician }
+link = { v2 = catalan eu4 = catalan eu4 = aragonese }
 link = { v2 = portuguese eu4 = portugese }
-#link = { v2 = brazilian eu4 = portugese region = brazil_region }
+link = { v2 = brazilian eu4 = portugese region = brazil_region }
 link = { v2 = maltese eu4 = maltese }
 link = { v2 = basque eu4 = basque }
-link = { v2 = portuguese eu4 = suebi }
+link = { v2 = suebi eu4 = suebi }
+link = { v2 = andalucian eu4 = andalucian }
 #link = { v2 = central_american eu4 = ? }
-#link = { v2 = north_andean eu4 = ? }
-#link = { v2 = south_andean eu4 = ? }
-#link = { v2 = brazilian eu4 = ? }
 
 # French - cosmopolitan_french, gascon, normand, aquitaine, burgundian, occitain, wallonian
-#link = { v2 = french_canadian eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton region = northern_america }
-link = { v2 = french eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton eu4 = frankish eu4 = old_frankish }
+link = { v2 = french_canadian eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton region = northern_america }
+link = { v2 = french_canadian eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton region = canada_region }
+link = { v2 = french eu4 = cosmopolitan_french eu4 = normand eu4 = burgundian }
+link = { v2 = breton eu4 = breton }
+link = { v2 = occitain eu4 = occitain eu4 = aquitaine eu4 = gascon }
 link = { v2 = wallonian eu4 = wallonian }
+link = { v2 = frankish eu4 = old_frankish eu4 = frankish }
 
 # Finno Urgic - finnish, estonian, sapmi, ingrian, karelian, uralic
 link = { v2 = finnish eu4 = finnish eu4 = karelian }
@@ -102,12 +150,12 @@ link = { v2 = serb eu4 = serbian }
 link = { v2 = bulgarian eu4 = bulgarian }
 link = { v2 = romanian eu4 = romanian }
 link = { v2 = albanian eu4 = albanian }
-#link = { v2 = slovene eu4 = ? }
 
 # West Slav - polish, schlesian, czech, hungarian, slovak
 link = { v2 = polish eu4 = polish eu4 = schlesian }
 link = { v2 = hungarian eu4 = hungarian }
-#link = { v2 = slovak eu4 = czech region = hungarian_region }
+link = { v2 = slovak eu4 = czech region = hungarian_region }
+link = { v2 = slovak eu4 = czech region = slovakia_area }
 link = { v2 = czech eu4 = czech }
 link = { v2 = slovak eu4 = czech }
 
@@ -120,36 +168,39 @@ link = { v2 = byelorussian eu4 = byelorussian }
 link = { v2 = lithuanian eu4 = lithuanian }
 link = { v2 = latvian eu4 = latvian eu4 = old_prussian }
 
-# Byzantine - greek, georgian, armenian
-link = { v2 = sephardi eu4 = greek eu4 = georgian eu4 = armenian religion = jewish eu4 = goths }
-link = { v2 = greek eu4 = greek eu4 = gothic eu4 = goths }
+# Byzantine - greek, georgian, armenian, pontic_greek
+link = { v2 = sephardic eu4 = greek eu4 = georgian eu4 = armenian eu4 = goths eu4 = spartan eu4 = athenian eu4 = atlantean religion = jewish }
+link = { v2 = greek eu4 = greek eu4 = gothic eu4 = goths eu4 = pontic_greek }
 link = { v2 = georgian eu4 = georgian }
 link = { v2 = armenian eu4 = armenian }
-link = { v2 = north_caucasian eu4 = alan eu4 = circassian eu4 = dagestani }
+link = { v2 = north_caucasian eu4 = circassian eu4 = dagestani }
+link = { v2 = alan eu4 = alan }
 
-# Turko Semitic	- maghreb_arabic, al_misr_arabic, al_suryah_arabic, al_iraqiya_arabic, bedouin_arabic, berber, turkish
-link = { v2 = maghrebi eu4 = maghreb_arabic }
+# Turko Semitic - maghreb_arabic, al_misr_arabic, al_suryah_arabic, al_iraqiya_arabic, bedouin_arabic, berber, turkish, omani_culture, yemeni_culture
+link = { v2 = maghrebi eu4 = maghreb_arabic eu4 = moroccan }
 link = { v2 = misri eu4 = al_misr_arabic eu4 = egyptian_arabic }
 link = { v2 = mashriqi eu4 = al_iraqiya_arabic eu4 = al_suryah_arabic eu4 = levantine_arabic }
-link = { v2 = bedouin eu4 = bedouin_arabic }
-link = { v2 = berber eu4 = berber eu4 = moroccan eu4 = tunisian eu4 = algerian eu4 = berber }
+link = { v2 = bedouin eu4 = bedouin_arabic eu4 = omani_culture eu4 = yemeni_culture }
+link = { v2 = berber eu4 = berber eu4 = tunisian eu4 = algerian eu4 = berber }
 link = { v2 = turkish eu4 = turkish eu4 = pecheneg }
 
 # Iranian - persian, east_persian, baluchi
-#link = { v2 = tajik eu4 = persian region = central_asia }
+link = { v2 = tajik eu4 = sogdian eu4 = tocharian }
+link = { v2 = tajik eu4 = persian region = central_asia }
+link = { v2 = tajik eu4 = persian region = central_asia_region }
 link = { v2 = persian eu4 = persian eu4 = khorasani eu4 = mazandarani }
 link = { v2 = pashtun eu4 = east_persian eu4 = afghani eu4 = afghan }
-link = { v2 = baluchi eu4 = baluchi }
+link = { v2 = baluchi eu4 = baluchi eu4 = baloch }
 
 # Jewish
 link = { v2 = ashkenazi eu4 = ashkenazi }
-link = { v2 = sephardi eu4 = sephardi }
+link = { v2 = sephardic eu4 = sephardi }
 
 # Altaic - azerbadjani, turkmeni, mongol, uzbehk, khazak, kirgiz, siberian, yakut, tartar
 link = { v2 = azerbaijani eu4 = azerbadjani eu4 = azerbaijani }
-link = { v2 = hazara  eu4 = mongol religion = shiite }
+link = { v2 = hazara eu4 = mongol religion = shiite }
 link = { v2 = turkmen eu4 = turkmeni }
-link = { v2 = mongol eu4 = mongol eu4 = chahar eu4 = khalkha eu4 = oirats }
+link = { v2 = mongol eu4 = mongol eu4 = chahar eu4 = khalkha eu4 = oirats eu4 = khitan }
 link = { v2 = uzbek eu4 = uzbek eu4 = uzbehk eu4 = karluk }
 link = { v2 = kazak eu4 = khazak }
 link = { v2 = kirgiz eu4 = kirgiz eu4 = kirghiz }
@@ -166,55 +217,63 @@ link = { v2 = mayan eu4 = mayan eu4 = yucatec eu4 = putun eu4 = highland_mayan }
 link = { v2 = nahua eu4 = aztek eu4 = totonac }
 link = { v2 = native_american_minor eu4 = chichimecan }
 
-# South American - inca, guarani, aimara, amazonian, patagonian, guajiro, teremembe, tupinamba, mataco
-#link = { v2 = tarascan eu4 = ? }
-link = { v2 = quechua eu4 = inca eu4 = chimuan  eu4 = jivaro eu4 = chachapoyan }
-link = { v2 = guarani eu4 = guarani }
-link = { v2 = aimara eu4 = aimara eu4 = diaguita }
-link = { v2 = amazonian eu4 = amazonian eu4 = ge }
-link = { v2 = patagonian eu4 = patagonian eu4 = het eu4 = huarpe eu4 = mapuche }
-link = { v2 = guajiro eu4 = guajiro }
-link = { v2 = tupinamba eu4 = tupinamba eu4 = tupi }
-link = { v2 = native_american_minor eu4 = teremembe eu4 = mataco eu4 = goitaca eu4 = cara eu4 = muisca eu4 = miskito eu4 = charruan }
+# South American - chibchan, maranon, quechua, aimara, amazonian, tupi, je, guarani, araucanian, amazonian
+link = { v2 = chibchan eu4 = muisca eu4 = cara eu4 = miskito }
+link = { v2 = maranon eu4 = jivaro eu4 = chachapoyan }
+link = { v2 = quechua eu4 = inca eu4 = chimuan }
+link = { v2 = aimara eu4 = aimara  eu4 = diaguita }
+link = { v2 = amazonian eu4 = amazonian eu4 = maipurean }
+link = { v2 = tupi eu4 = tupinamba eu4 = tupi }
+link = { v2 = je eu4 = ge }
+link = { v2 = guarani eu4 = guarani eu4 = charruan }
+link = { v2 = patagonian eu4 = patagonian eu4 = het }
+link = { v2 = araucanian eu4 = huarpe eu4 = mapuche }
+link = { v2 = chacoan eu4 = chacoan eu4 = mataco }
 
 # Carribean - arawak, carib
-link = { v2 = native_american_minor eu4 = arawak eu4 = carib eu4 = guajiro eu4 = maipurean }
+link = { v2 = guajiro eu4 = arawak area = bogota area = coquivacoa area = popayan area = venezuela }
+link = { v2 = guajiro eu4 = guajiro } # is this even an eu4 culture?
+link = { v2 = carribean eu4 = arawak eu4 = carib }
 
-# North American - dakota, cherokee, pueblo, aleutian, inuit, cree, iroquis, huron, navajo, shawnee, delaware, creek
-link = { v2 = dakota eu4 = dakota }
-link = { v2 = cherokee eu4 = cherokee }
-link = { v2 = pueblo eu4 = pueblo }
-link = { v2 = inuit eu4 = inuit eu4 = aleutian eu4 = kamchatkan }
-link = { v2 = cree eu4 = cree }
-link = { v2 = metis eu4 = iroquois eu4 = iroquis eu4 = huron eu4 = shawnee }
-link = { v2 = navajo eu4 = navajo }
-link = { v2 = native_american_minor eu4 = catawba eu4 = apache eu4 = kiowa eu4 = chinook eu4 = salish eu4 = arapaho eu4 = yokuts eu4 = chacoan eu4 = haida eu4 = delaware eu4 = piman eu4 = shoshone eu4 = chipewyan eu4 = athabascan eu4 = susquehannock eu4 = creek eu4 = choctaw eu4 = chickasaw eu4 = pawnee eu4 = anishinabe eu4 = cheyenne eu4 = abenaki eu4 = mikmaq eu4 = mahican eu4 = mesquakie eu4 = wichita eu4 = powhatan eu4 = pequot eu4 = nakota eu4 = chiwere eu4 = osage eu4 = caddo eu4 = illini eu4 = blackfoot eu4 = tlingit eu4 = miwok }
+# North American - dakota, cherokee, pueblo, aleutian, inuit, cree, iroquis, huron, navajo, shawnee, delaware, creek, etc
+link = { v2 = siouan eu4 = dakota eu4 = nakota eu4 = chiwere eu4 = osage eu4 = catawba }
+link = { v2 = iroquoian eu4 = cherokee eu4 = iroquois eu4 = iroquis eu4 = huron eu4 = susquehannock }
+link = { v2 = sonoran eu4 = pueblo eu4 = piman eu4 = shoshone eu4 = kiowa }
+link = { v2 = eskaleut eu4 = kamchatkan eu4 = aleutian eu4 = inuit } # remove Kamchatkan from Ainu
+link = { v2 = central_algonquian eu4 = cree eu4 = shawnee eu4 = anishinabe eu4 = illini eu4 = mesquakie }
+link = { v2 = na_dene eu4 = navajo eu4 = chipewyan eu4 = athabascan eu4 = apache eu4 = haida }
+link = { v2 = penutian eu4 = chinook eu4 = salish eu4 = yokuts }
+link = { v2 = plains_algonquian eu4 = arapaho eu4 = cheyenne eu4 = blackfoot }
+link = { v2 = eastern_algonquian eu4 = delaware eu4 = abenaki eu4 = mikmaq eu4 = mahican eu4 = powhatan eu4 = pequot }
+link = { v2 = muskogean eu4 = creek eu4 = choctaw eu4 = chickasaw }
+link = { v2 = caddoan eu4 = pawnee eu4 = wichita eu4 = caddo }
+#link = { v2 = metis eu4 = ? }
+link = { v2 = native_american_minor eu4 = tlingit eu4 = miwok }
 
 # East Asian - japanese, manchu, chihan, cantonese, korean
 link = { v2 = japanese eu4 = japanese }
 link = { v2 = manchu eu4 = manchu }
-link = { v2 = beifaren eu4 = chihan eu4 = wu eu4 = jin eu4 = chimin eu4 = jianghuai eu4 = xibei eu4 = zhongyuan eu4 = shandong_culture}
-link = { v2 = nanfaren eu4 = cantonese eu4 = gan eu4 = xiang eu4 = sichuanese eu4 = hubei}
+link = { v2 = beifaren eu4 = chihan eu4 = wu eu4 = jin eu4 = jianghuai eu4 = xibei eu4 = zhongyuan eu4 = shandong_culture }
+link = { v2 = nanfaren eu4 = gan eu4 = xiang eu4 = sichuanese eu4 = hubei }
 link = { v2 = korean eu4 = korean }
 link = { v2 = ainu eu4 = ainu }
 link = { v2 = hakka eu4 = hakka }
 link = { v2 = miao eu4 = miao }
-#link = { v2 = min eu4 = ? }
+link = { v2 = min eu4 = chimin }
 link = { v2 = zhuang eu4 = zhuang }
-link = { v2 = yi eu4 = yi  }
-#link = { v2 = yue eu4 = ? }
+link = { v2 = yi eu4 = yi }
+link = { v2 = yue eu4 = cantonese }
 
 # Mon Khmer - khmer, mon, vietnamese
-link = { v2 = vietnamese eu4 = vietnamese }
+link = { v2 = vietnamese eu4 = vietnamese eu4 = cham }
 link = { v2 = khmer eu4 = khmer }
 
-# Malay - polynesian, cham, malayan, filipino, madagascan, sulawesi
-link = { v2 = polynesian eu4 = polynesian }
-link = { v2 = asian_minor eu4 = cham eu4 = bornean } 
+# Malay - cham, malayan, filipino, madagascan, sulawesi
+link = { v2 = bornean eu4 = bornean }
 link = { v2 = malay eu4 = malayan eu4 = sumatran }
 link = { v2 = filipino eu4 = filipino }
 link = { v2 = javan eu4 = javanese }
-link = { v2 = african_minor eu4 = madagascan }
+link = { v2 = malagasy eu4 = madagascan }
 link = { v2 = moluccan eu4 = sulawesi eu4 = moluccan }
 
 # Thai - central_thai, lao, northern_thai, shan
@@ -230,12 +289,14 @@ link = { v2 = kachin eu4 = kachin }
 link = { v2 = karen eu4 = karen }
 
 # Pacific - papuan, aboriginal, melanesian, moluccan
-#link = { v2 = hawaiian eu4 = ? }
-#link = { v2 = maori eu4 = ? }
+link = { v2 = hawaiian eu4 = polynesian provinceid = 1240 }
+link = { v2 = hawaiian eu4 = polynesian provinceid = 1997 }
+link = { v2 = maori eu4 = polynesian region = new_zealand_region }
 link = { v2 = aborigine eu4 = aboriginal }
 link = { v2 = melanesian eu4 = melanesian eu4 = papuan }
-#link = { v2 = micronesian eu4 = ? }
-link = { v2 = moluccan eu4 = moluccan }
+link = { v2 = melanesian eu4 = polynesian area = melanesia }
+link = { v2 = micronesian eu4 = polynesian area = micronesia }
+link = { v2 = polynesian eu4 = polynesian }
 
 # Eastern Aryan - assamese, bengali, bihari, nepali, oriya, sinhala
 link = { v2 = assamese eu4 = assamese }
@@ -253,7 +314,7 @@ link = { v2 = panjabi eu4 = panjabi }
 link = { v2 = kashmiri eu4 = kashmiri }
 
 # Western Aryan - gujarati, marathi, sindhi, rajput
-link = { v2 = gujarati eu4 = gujarati eu4 = baloch}
+link = { v2 = gujarati eu4 = gujarati }
 link = { v2 = marathi eu4 = marathi }
 link = { v2 = sindi eu4 = sindhi }
 link = { v2 = rajput eu4 = rajput eu4 = malvi }
@@ -264,88 +325,115 @@ link = { v2 = malayalam eu4 = malayalam }
 link = { v2 = tamil eu4 = tamil }
 link = { v2 = telegu eu4 = telegu }
 
-# Central Indic -  garjati, gondi, jharkhandi
+# Central Indic - garjati, gondi, jharkhandi
 link = { v2 = asian_minor eu4 = garjati eu4 = gondi eu4 = jharkhandi }
 
-# African - madagasque, tuareg, senegambian, dyola, nubian, somali, bantu, swahili, ethiopian, kongolese, shona, mali, yorumba, aka, ashanti
-#link = { v2 = edo eu4 = ? }
-#link = { v2 = ewe eu4 = ? }
-link = { v2 = fon eu4 = fon }
+# Sahelian - wolof, fulbe, hausa, kanuri, tuareg, baguirmi
+link = { v2 = wolof eu4 = senegambian eu4 = jolof }
 link = { v2 = fulbe eu4 = fulani }
 link = { v2 = hausa eu4 = hausa }
-#link = { v2 = ibibio eu4 = ? }
-#link = { v2 = ibo eu4 = ? }
-#link = { v2 = kru eu4 = ? }
-link = { v2 = mande eu4 = bozo eu4 = soninke }
-#link = { v2 = maures eu4 = ? }
-link = { v2 = mossi eu4 = mossi eu4 = dagomba }
-#link = { v2 = senufo eu4 = ? }
-link = { v2 = songhai eu4 = songhai }
-#link = { v2 = tiv eu4 = ? }
-#link = { v2 = wolof eu4 = ? }
-#link = { v2 = bakongo eu4 = ? }
-#link = { v2 = baguirmi eu4 = ? }
-#link = { v2 = fang eu4 = ? }
 link = { v2 = kanuri eu4 = kanuri }
-#link = { v2 = luba eu4 = ? }
-#link = { v2 = lunda eu4 = ? }
-#link = { v2 = mongo eu4 = ? }
-#link = { v2 = sara eu4 = ? }
-#link = { v2 = teda eu4 = ? }
-link = { v2 = amhara eu4 = amhara }
-#link = { v2 = afar eu4 = ? }
-#link = { v2 = azande eu4 = ? }
-#link = { v2 = baganda eu4 = ? }
-#link = { v2 = beja eu4 = ? }
-#link = { v2 = dinka eu4 = ? }
-#link = { v2 = fur eu4 = ? }
-#link = { v2 = kikuyu eu4 = ? }
-#link = { v2 = luo eu4 = ? }
-#link = { v2 = maasai eu4 = ? }
-#link = { v2 = nuer eu4 = ? }
-#link = { v2 = nuba eu4 = ? }
-#link = { v2 = ruanda eu4 = ? }
-#link = { v2 = rundi eu4 = ? }
-link = { v2 = sidama eu4 = sidamo }
-#link = { v2 = sukuma eu4 = ? }
-link = { v2 = tigray eu4 = tigray }
-#link = { v2 = unyamwezi eu4 = ? }
-#link = { v2 = chewa eu4 = ? }
-#link = { v2 = herero eu4 = ? }
-#link = { v2 = khoisan eu4 = ? }
-#link = { v2 = lomwe eu4 = ? }
-#link = { v2 = makua eu4 = ? }
-#link = { v2 = malagasy eu4 = ? }
-#link = { v2 = nguni eu4 = ? }
-#link = { v2 = ovimbundu eu4 = ? }
-#link = { v2 = sena eu4 = ? }
-#link = { v2 = sotho eu4 = ? }
-#link = { v2 = tonga eu4 = ? }
-#link = { v2 = tswana eu4 = ? }
-#link = { v2 = xhosa eu4 = ? }
-#link = { v2 = yao eu4 = ? }
-#link = { v2 = zulu eu4 = ? }
-link = { v2 = malagasy eu4 = madagasque }
 link = { v2 = tuareg eu4 = tuareg }
-link = { v2 = african_minor eu4 = senegambian eu4 = bantu eu4 = bilala eu4 = aka eu4 = nupe }
+link = { v2 = baguirmi eu4 = bilala }
+#link = { v2 = maures eu4 = ? } # Mauritania
+
+# Malian - songhai, mande, bambara, dyula
+link = { v2 = songhai eu4 = songhai }
+link = { v2 = mande eu4 = mali eu4 = soninke }
+link = { v2 = bambara eu4 = bozo eu4 = bambara }
 link = { v2 = dyula eu4 = dyola }
-link = { v2 = sudanese eu4 = nubian }
-link = { v2 = somali eu4 = somali }
-link = { v2 = swahili eu4 = swahili }
-link = { v2 = oromo eu4 = ethiopian }
-link = { v2 = bakongo eu4 = kongolese }
-link = { v2 = shona eu4 = shona }
-link = { v2 = bambara eu4 = mali eu4 = bambara  }
-link = { v2 = yoruba eu4 = yorumba }
+
+# Southwest Coast - akan, fon, yoruba, ibo, mossi
 link = { v2 = akan eu4 = aka eu4 = ashanti }
+link = { v2 = fon eu4 = fon }
+link = { v2 = yoruba eu4 = yorumba }
+link = { v2 = ibo eu4 = nupe }
+link = { v2 = mossi eu4 = mossi eu4 = dagomba }
+#link = { v2 = kru eu4 = ? } # Guinea
+#link = { v2 = senufo eu4 = ? } # Cote d'Ivoire
+#link = { v2 = ewe eu4 = ? } # Togo
+#link = { v2 = edo eu4 = ? } # Nigeria
+#link = { v2 = ibibio eu4 = ? } # Nigeria
+#link = { v2 = tiv eu4 = ? } # Nigeria
+
+# North Central Africa - fur, beja, sudanese
+#link = { v2 = teda eu4 = ? } # Chad
+#link = { v2 = sara eu4 = ? } # Cameroon, Chad
+#link = { v2 = fang eu4 = ? } # Cameroon, Gabon, EG
+link = { v2 = fur eu4 = nubian area = darfur_central_sahara_area }
+link = { v2 = beja eu4 = nubian area = red_sea_coast_area }
+link = { v2 = sudanese eu4 = nubian }
+#link = { v2 = dinka eu4 = ? } # Sudan
+#link = { v2 = azande eu4 = ? } # South Sudan
+#link = { v2 = luo eu4 = ? } # South Sudan
+#link = { v2 = nuba eu4 = ? } # South Sudan
+#link = { v2 = nuer eu4 = ? } # South Sudan
+
+# Horn of Africa - amhara, sidama, tigray, oromo, somali
+link = { v2 = amhara eu4 = amhara eu4 = coptic }
+link = { v2 = sidama eu4 = sidamo }
+link = { v2 = tigray eu4 = tigray }
+link = { v2 = somali eu4 = somali }
+link = { v2 = oromo eu4 = ethiopian } # does this actually exist?
+#link = { v2 = afar eu4 = ? } #Djibouti
+
+# The Congo - bakongo
+#link = { v2 = mongo eu4 = ? } # DRC
+link = { v2 = bakongo eu4 = kongolese }
+#link = { v2 = luba eu4 = ? } # DRC
+#link = { v2 = lunda eu4 = ? } # DRC, Angola, Zambia
+#link = { v2 = ovimbundu eu4 = ? } # Angola
+
+# East Africa - swahili, malagasy
+link = { v2 = swahili eu4 = swahili }
+#link = { v2 = kikuyu eu4 = ? } # Kenya
+#link = { v2 = maasai eu4 = ? } # Tanzania
+#link = { v2 = sukuma eu4 = ? } # Tanzania
+#link = { v2 = unyamwezi eu4 = ? } # Tanzania
+#link = { v2 = ruanda eu4 = ? } # Rwanda
+#link = { v2 = rundi eu4 = ? } # Burundi
+#link = { v2 = baganda eu4 = ? } # Uganda
+link = { v2 = malagasy eu4 = madagasque }
+
+# South Africa - khoisan, shona, sena, makua
+link = { v2 = khoisan eu4 = bantu area = south_african_plateau_area }
+link = { v2 = khoisan eu4 = bantu area = cape_of_good_hope_area }
+#link = { v2 = nguni eu4 = ? } # South Africa
+#link = { v2 = sotho eu4 = ? } # South Africa
+#link = { v2 = xhosa eu4 = ? } # South Africa
+#link = { v2 = zulu eu4 = ? } # South Africa
+#link = { v2 = tswana eu4 = ? } # Botswana
+#link = { v2 = chewa eu4 = ? } # Malawi
+link = { v2 = shona eu4 = shona }
+link = { v2 = sena eu4 = bantu area = zambezi_area }
+link = { v2 = makua eu4 = bantu area = mozambique_area }
+#link = { v2 = lomwe eu4 = ? } # Mozambique
+#link = { v2 = tonga eu4 = ? } # Mozambique
+#link = { v2 = yao eu4 = ? } # Mozambique
+#link = { v2 = herero eu4 = ? } # Namibia
+link = { v2 = african_minor eu4 = bantu }
+
+# African Diaspora
 #link = { v2 = afro_american eu4 = ? }
 #link = { v2 = afro_caribbean eu4 = ? }
 #link = { v2 = afro_caribeno eu4 = ? }
 #link = { v2 = afro_brazilian eu4 = ? }
 #link = { v2 = afro_antillean eu4 = ? }
 
+# Lost Cultures
+link = { v2 = north_italian eu4 = etrurian }
+link = { v2 = greek eu4 = atlantean eu4 = spartan eu4 = athenian }
+link = { v2 = anglo_saxon eu4 = anglosaxon }
+link = { v2 = misri eu4 = old_egyptian }
+link = { v2 = danish eu4 = scanian }
+link = { v2 = latvian eu4 = pruthenian }
+link = { v2 = mashriqi eu4 = phoenician eu4 = babylonian eu4 = aramaic }
+link = { v2 = sephardic eu4 = hebrew }
+link = { v2 = alan eu4 = scythian}
+link = { v2 = persian eu4 = parthian }
+
 # Bears
-#link = { v2 = bears eu4 = ? }
+link = { v2 = bears eu4 = jan_mayenese }
 
 # noculture
 link = { v2 = noculture eu4 = noculture }

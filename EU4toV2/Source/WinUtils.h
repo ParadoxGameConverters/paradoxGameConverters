@@ -41,6 +41,8 @@ void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNam
 bool TryCopyFile(const std::string& sourcePath, const std::string& destPath);
 // Returns true if the specified file exists (and is a file rather than a folder).
 bool DoesFileExist(const std::string& path);
+// Returns true if the specified folder exists (and is a folder rather than a file).
+bool doesFolderExist(const std::string& path);
 
 // Returns a formatted string describing the last error on the WinAPI.
 std::string GetLastWindowsError();

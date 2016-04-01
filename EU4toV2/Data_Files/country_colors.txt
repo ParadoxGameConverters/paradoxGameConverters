@@ -107,16 +107,6 @@ NOL = {
     color3= { 193 26 14  }
 }
 
-
-# **Great Britain**
-GBR = {
-    color1= { 193 26 14  }
-    color2= { 99 137 153  }
-    color3= { 83 149 105  }
-}
-
-# Scandinavia
-
 # Sweden
 SWE = {
     color1= { 62 122 189  }
@@ -589,14 +579,6 @@ TOU = {
 }
 
 
-# Anhalt
-ANH = {
-    color1= { 203 93 124  }
-    color2= { 101 102 163  }
-    color3= { 134 166 117  }
-}
-
-
 # Ansbach
 ANS = {
     color1= { 120 77 119  }
@@ -604,7 +586,7 @@ ANS = {
     color3= { 135 104 85  }
 }
 
-# Anhalt FIXED
+# Anhalt
 ANH = {
     color1= { 134 224 126  }
     color2= { 244 56 49  }
@@ -1334,10 +1316,9 @@ TRA = {
     color1= { 215 59 53  }
     color2= { 122 182 242 }
     color3= { 255 255 255  }
-	
+}
 CHM = {
     color1= { 215 59 53  }
     color2= { 122 182 242 }
     color3= { 255 255 255  }
-}
 }
