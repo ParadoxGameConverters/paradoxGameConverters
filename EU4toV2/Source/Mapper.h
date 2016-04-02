@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "Parsers\Object.h"
+#include "Object.h"
 #include "EU4World\EU4Version.h"
 #include "FlagUtils.h"
 #include <map>

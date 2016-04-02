@@ -22,7 +22,7 @@
 
 
 #include "EU4Religion.h"
-#include "../Parsers/Object.h"
+#include "Object.h"
 
 
 map<string, EU4Religion*> EU4Religion::all_religions;	// the set of all religions

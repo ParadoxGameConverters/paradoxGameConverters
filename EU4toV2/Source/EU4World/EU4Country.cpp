@@ -21,8 +21,8 @@ THE SOFTWARE. */
 
 #include "EU4Country.h"
 #include "../Configuration.h"
-#include "../Log.h"
-#include "../Parsers/Object.h"
+#include "Log.h"
+#include "Object.h"
 #include "EU4Province.h"
 #include "EU4Relations.h"
 #include "EU4Leader.h"

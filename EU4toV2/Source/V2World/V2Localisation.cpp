@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <Windows.h>
 
 #include "..\EU4World\EU4Country.h"
-#include "..\Log.h"
+#include "Log.h"
 #include "..\WinUtils.h"
 
 const std::array<std::string, V2Localisation::numLanguages> V2Localisation::languages = 

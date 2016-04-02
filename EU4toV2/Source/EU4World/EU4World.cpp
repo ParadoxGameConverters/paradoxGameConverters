@@ -24,11 +24,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "EU4World.h"
 #include <algorithm>
 #include <fstream>
-#include "../Log.h"
+#include "Log.h"
 #include "../Configuration.h"
 #include "../Mapper.h"
-#include "../Parsers/Object.h"
-#include "../Parsers/Parser.h"
+#include "Object.h"
+#include "ParadoxParser.h"
 #include "EU4Province.h"
 #include "EU4Country.h"
 #include "EU4Diplomacy.h"

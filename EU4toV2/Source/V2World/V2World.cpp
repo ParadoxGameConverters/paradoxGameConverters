@@ -34,8 +34,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <cmath>
 #include <cfloat>
 #include <sys/stat.h>
-#include "../Parsers/Parser.h"
-#include "../Log.h"
+#include "ParadoxParser.h"
+#include "Log.h"
 #include "../Mapper.h"
 #include "../Configuration.h"
 #include "../WinUtils.h"

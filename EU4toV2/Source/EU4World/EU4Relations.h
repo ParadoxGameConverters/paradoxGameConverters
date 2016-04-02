@@ -23,7 +23,7 @@ THE SOFTWARE. */
 #define EU4RELATIONS_H_
 
 
-#include "../Date.h"
+#include "Date.h"
 #include <string>
 using namespace std;
 

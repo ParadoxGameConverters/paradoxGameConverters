@@ -30,7 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Configuration.h"
 #include "Log.h"
-#include "Parsers\Parser.h"
+#include "ParadoxParser.h"
 #include "EU4World\EU4World.h"
 #include "EU4World\EU4Religion.h"
 #include "EU4World\EU4Localisation.h"

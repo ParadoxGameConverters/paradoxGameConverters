@@ -22,7 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Reforms.h"
-#include "../Log.h"
+#include "Log.h"
 #include "../Configuration.h"
 #include "../EU4World/EU4Country.h"
 #include "V2Country.h"

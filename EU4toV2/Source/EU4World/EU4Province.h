@@ -23,7 +23,7 @@ THE SOFTWARE. */
 #define EU4PROVINCE_H_
 
 
-#include "../Date.h"
+#include "Date.h"
 #include <string>
 #include <vector>
 #include <map>
