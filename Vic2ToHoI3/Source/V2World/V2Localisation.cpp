@@ -24,9 +24,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Localisation.h"
 #include <Windows.h>
 #include <fstream>
-#include "..\Log.h"
+#include "Log.h"
 #include "..\WinUtils.h"
-#include "..\Parsers\Object.h"
+#include "Object.h"
 
 
 

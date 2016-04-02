@@ -44,7 +44,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Object.h"
-#include "Parser.h"
+#include "ParadoxParser.h"
 #include <sstream> 
 #include <fstream>
 #include <algorithm>

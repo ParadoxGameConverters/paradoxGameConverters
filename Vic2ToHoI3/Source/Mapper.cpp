@@ -24,7 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Mapper.h"
 #include "Log.h"
 #include "Configuration.h"
-#include "Parsers\Object.h"
+#include "Object.h"
 #include "V2World\V2World.h"
 #include "V2World\V2Country.h"
 #include "V2World\V2Province.h"

@@ -22,7 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #ifndef GOVERNMENTMAPPER_H
 #define GOVERNMENTMAPPER_H
 
-#include "Parsers/Object.h"
+#include "Object.h"
 
 class V2Country;
 

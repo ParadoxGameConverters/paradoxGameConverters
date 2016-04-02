@@ -23,8 +23,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "HoI3Country.h"
 #include <fstream>
-#include "../Log.h"
-#include "../Parsers/Parser.h"
+#include "Log.h"
+#include "ParadoxParser.h"
 #include "HoI3Leader.h"
 #include "HoI3Minister.h"
 #include "../V2World/V2Relations.h"

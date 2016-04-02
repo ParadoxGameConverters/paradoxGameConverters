@@ -26,8 +26,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <ctime>
 #include <fstream>
 #include <iostream>
-
 #include <Windows.h>
+
+
 
 Log::Log(LogLevel level)
 : logLevel(level)

@@ -27,7 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 
 #include "..\V2World\V2Country.h"
-#include "..\Log.h"
+#include "Log.h"
 #include "..\WinUtils.h"
 
 const std::array<std::string, HoI3Localisation::numLanguages> HoI3Localisation::languages = 

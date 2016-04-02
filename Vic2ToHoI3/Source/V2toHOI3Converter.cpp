@@ -30,7 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Configuration.h"
 #include "Log.h"
-#include "Parsers\Parser.h"
+#include "ParadoxParser.h"
 #include "HOI3World\HoI3World.h"
 #include "V2World\V2World.h"
 #include "V2World\V2Factory.h"
