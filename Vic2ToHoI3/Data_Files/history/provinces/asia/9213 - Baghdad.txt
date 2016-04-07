@@ -1,0 +1,16 @@
+owner = IRQ
+
+controller = IRQ
+add_core = IRQ
+points = 3
+anti_air = 2
+infra = 6
+air_base = 4
+manpower = 6.00
+leadership = 0.60
+
+1941.5.31 = {
+	owner = ENG
+	controller = ENG
+}
+

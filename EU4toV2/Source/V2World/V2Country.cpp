@@ -30,9 +30,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <sstream>
 #include <queue>
 #include <boost/algorithm/string.hpp>
-#include "../Log.h"
+#include "Log.h"
 #include "../Configuration.h"
-#include "../Parsers/Parser.h"
+#include "paradoxParser.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/Eu4Country.h"
 #include "../EU4World/EU4Province.h"

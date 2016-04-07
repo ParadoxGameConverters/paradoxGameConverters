@@ -1,0 +1,14 @@
+owner = ROM
+controller = ROM
+add_core = ROM
+add_core = HUN
+
+energy = 1.00
+industry = 1
+infra = 8
+manpower = 1.00
+leadership = 0.10
+1940.8.30 = {
+	owner = HUN
+	controller = HUN
+}

@@ -1,0 +1,216 @@
+color = { 181  130  137 }
+graphical_culture = Soviet
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1. Tuvanska Strelkovaya Diviziya" "2. Tuvanska Strelkovaya Diviziya" "3. Tuvanska Strelkovaya Diviziya" "4. Tuvanska Strelkovaya Diviziya" "5. Tuvanska Strelkovaya Diviziya" "6. Tuvanska Strelkovaya Diviziya" "8. Tuvanska Strelkovaya Diviziya" "10. Tuvanska Strelkovaya Diviziya" "11. Tuvanska Strelkovaya Diviziya" "12. Tuvanska Strelkovaya Diviziya" "13. Tuvanska Strelkovaya Diviziya" 
+		"14. Tuvanska Strelkovaya Diviziya" "16. Tuvanska Strelkovaya Diviziya" "17. Tuvanska Strelkovaya Diviziya" "19. Tuvanska Strelkovaya Diviziya" "21. Tuvanska Strelkovaya Diviziya" "22. Tuvanska Strelkovaya Diviziya" "23. Tuvanska Strelkovaya Diviziya" "24. Tuvanska Strelkovaya Diviziya" "25. Tuvanska Strelkovaya Diviziya" 
+	}
+	cavalry_brigade = {
+		"1. Tuvanska Kavaleriyskaya Diviziya" "2. Tuvanska Kavaleriyskaya Diviziya" "3. Tuvanska Kavaleriyskaya Diviziya" "4. Tuvanska Kavaleriyskaya Diviziya" "5. Tuvanska Kavaleriyskaya Diviziya" "6. Tuvanska Kavaleriyskaya Diviziya" "7. Tuvanska Kavaleriyskaya Diviziya" "8. Tuvanska Kavaleriyskaya Diviziya" "9. Tuvanska Kavaleriyskaya Diviziya" "10. Tuvanska Kavaleriyskaya Diviziya" 
+	}
+	motorized_brigade = {
+		"1. Tuvanska Motorizovannaya Diviziya" "2. Tuvanska Motorizovannaya Diviziya" "3. Tuvanska Motorizovannaya Diviziya" "4. Tuvanska Motorizovannaya Diviziya" "5. Tuvanska Motorizovannaya Diviziya" "6. Tuvanska Motorizovannaya Diviziya" "8. Tuvanska Motorizovannaya Diviziya" "10. Tuvanska Motorizovannaya Diviziya" "12. Tuvanska Motorizovannaya Diviziya" "15. Tuvanska Motorizovannaya Diviziya" 
+	}
+	mechanized_brigade = {
+		"1. Tuvanska Motostrelkovaya Diviziya" "2. Tuvanska Motostrelkovaya Diviziya" "3. Tuvanska Motostrelkovaya Diviziya" "4. Tuvanska Motostrelkovaya Diviziya" "5. Tuvanska Motostrelkovaya Diviziya" "6. Tuvanska Motostrelkovaya Diviziya" "8. Tuvanska Motostrelkovaya Diviziya" "10. Tuvanska Motostrelkovaya Diviziya" "11. Tuvanska Motostrelkovaya Diviziya" "12. Tuvanska Motostrelkovaya Diviziya" "13. Tuvanska Motostrelkovaya Diviziya" 
+			}
+	light_armor_brigade = {
+		"1. Tuvanska Tankovaya Diviziya" "2. Tuvanska Tankovaya Diviziya" "3. Tuvanska Tankovaya Diviziya" "4. Tuvanska Tankovaya Diviziya" "5. Tuvanska Tankovaya Diviziya" "6. Tuvanska Tankovaya Diviziya" "7. Tuvanska Tankovaya Diviziya" "8. Tuvanska Tankovaya Diviziya" "9. Tuvanska Tankovaya Diviziya" "10. Tuvanska Tankovaya Diviziya" 
+	}
+	armor_brigade = {
+		"1. Tuvanska Tankovaya Diviziya" "2. Tuvanska Tankovaya Diviziya" "3. Tuvanska Tankovaya Diviziya" "4. Tuvanska Tankovaya Diviziya" "5. Tuvanska Tankovaya Diviziya" "6. Tuvanska Tankovaya Diviziya" "7. Tuvanska Tankovaya Diviziya" "8. Tuvanska Tankovaya Diviziya" "9. Tuvanska Tankovaya Diviziya" "10. Tuvanska Tankovaya Diviziya" 
+	}
+	paratrooper_brigade = {
+		"1. Tuvanska Vozdushno-Desantnaya Div." "2. Tuvanska Vozdushno-Desantnaya Div." "3. Tuvanska Vozdushno-Desantnaya Div." "4. Tuvanska Vozdushno-Desantnaya Div." "5. Tuvanska Vozdushno-Desantnaya Div." "6. Tuvanska Vozdushno-Desantnaya Div." "7. Tuvanska Vozdushno-Desantnaya Div." "8. Tuvanska Vozdushno-Desantnaya Div." "9. Tuvanska Vozdushno-Desantnaya Div." "10. Tuvanska Vozdushno-Desantnaya Div." 
+	}
+	marine_brigade = {
+		"1. Tuvanska Div. Morskoi Pekhoty" "2. Tuvanska Div. Morskoi Pekhoty" "3. Tuvanska Div. Morskoi Pekhoty" "4. Tuvanska Div. Morskoi Pekhoty" "5. Tuvanska Div. Morskoi Pekhoty" "6. Tuvanska Div. Morskoi Pekhoty" "7. Tuvanska Div. Morskoi Pekhoty" "8. Tuvanska Div. Morskoi Pekhoty" "9. Tuvanska Div. Morskoi Pekhoty" "10. Tuvanska Div. Morskoi Pekhoty" 
+	}
+	bergsjaeger_brigade = {
+		"1. Tuvanska Gornostrelkovaya Div." "2. Tuvanska Gornostrelkovaya Div." "3. Tuvanska Gornostrelkovaya Div." "4. Tuvanska Gornostrelkovaya Div." "5. Tuvanska Gornostrelkovaya Div." "6. Tuvanska Gornostrelkovaya Div." "8. Tuvanska Gornostrelkovaya Div." "10. Tuvanska Gornostrelkovaya Div." "11. Tuvanska Gornostrelkovaya Div." "12. Tuvanska Gornostrelkovaya Div." "13. Tuvanska Gornostrelkovaya Div." 
+		"14. Tuvanska Gornostrelkovaya Div." "16. Tuvanska Gornostrelkovaya Div." 
+	}
+	garrison_brigade = {
+		"1. Tuvanska Strelkovaya Diviziya" "2. Tuvanska Strelkovaya Diviziya" "3. Tuvanska Strelkovaya Diviziya" "4. Tuvanska Strelkovaya Diviziya" "5. Tuvanska Strelkovaya Diviziya" "6. Tuvanska Strelkovaya Diviziya" "8. Tuvanska Strelkovaya Diviziya" "10. Tuvanska Strelkovaya Diviziya" "11. Tuvanska Strelkovaya Diviziya" "12. Tuvanska Strelkovaya Diviziya" "13. Tuvanska Strelkovaya Diviziya" 
+		"14. Tuvanska Strelkovaya Diviziya" "16. Tuvanska Strelkovaya Diviziya" "17. Tuvanska Strelkovaya Diviziya" "19. Tuvanska Strelkovaya Diviziya" "21. Tuvanska Strelkovaya Diviziya" "22. Tuvanska Strelkovaya Diviziya" "23. Tuvanska Strelkovaya Diviziya" "24. Tuvanska Strelkovaya Diviziya" "25. Tuvanska Strelkovaya Diviziya" 
+	}
+	hq_brigade = {
+		"1st Tuvanska Armiya" "2nd Tuvanska Armiya" "3rd Tuvanska Armiya" "4th Tuvanska Armiya" "5th Tuvanska Armiya" 
+	}
+	militia_brigade = {
+		"1. Tuvanska Diviziya Opolcheniya" "2. Tuvanska Diviziya Opolcheniya" "3. Tuvanska Diviziya Opolcheniya" "4. Tuvanska Diviziya Opolcheniya" "5. Tuvanska Diviziya Opolcheniya" "6. Tuvanska Diviziya Opolcheniya" "8. Tuvanska Diviziya Opolcheniya" "10. Tuvanska Diviziya Opolcheniya" "11. Tuvanska Diviziya Opolcheniya" "12. Tuvanska Diviziya Opolcheniya" "13. Tuvanska Diviziya Opolcheniya" 
+		"14. Tuvanska Diviziya Opolcheniya" "16. Tuvanska Diviziya Opolcheniya" "17. Tuvanska Diviziya Opolcheniya" "19. Tuvanska Diviziya Opolcheniya" "21. Tuvanska Diviziya Opolcheniya" "22. Tuvanska Diviziya Opolcheniya" "23. Tuvanska Diviziya Opolcheniya" "24. Tuvanska Diviziya Opolcheniya" "25. Tuvanska Diviziya Opolcheniya" 
+	}
+	multi_role = {
+		"1. T-IAD" "2. T-IAD" "3. T-IAD" "4. T-IAD" "5. T-IAD" "6. T-IAD" "7. T-IAD" "8. T-IAD" "10. T-IAD" "11. T-IAD" 
+	}
+	interceptor = {
+		"1. T-IAD" "2. T-IAD" "3. T-IAD" "4. T-IAD" "5. T-IAD" "6. T-IAD" "7. T-IAD" "8. T-IAD" "10. T-IAD" "11. T-IAD" 
+	}
+	strategic_bomber = {
+		"1. T-DBAD" "2. T-DBAD" "3. T-DBAD" "4. T-DBAD" "5. T-DBAD" "6. T-DBAD" "7. T-DBAD" "8. T-DBAD" "9. T-DBAD" "10. T-DBAD" 
+	}
+	tactical_bomber = {
+		"1. T-BAD" "2. T-BAD" "3. T-BAD" "4. T-BAD" "5. T-BAD" "6. T-BAD" "7. T-BAD" "8. T-BAD" "9. T-BAD" "10. T-BAD" 
+	}
+	naval_bomber = {
+		"1. T-MBAD" "2. T-MBAD" "3. T-MBAD" "4. T-MBAD" "5. T-MBAD" "6. T-MBAD" "7. T-MBAD" "8. T-MBAD" "9. T-MBAD" "10. T-MBAD" "1. T-MTAD" 
+		"2. T-MTAD" "3. T-MTAD" "4. T-MTAD" "5. T-MTAD" "6. T-MTAD" "7. T-MTAD" "8. T-MTAD" "9. T-MTAD" "10. T-MTAD" 
+	}
+	cas = {
+		"23. T-ShAD" "46. T-ShAD" "77. T-ShAD" "25. T-ShAD" "72. T-ShAD" "9. T-ShAD" "10. T-ShAD" "11. T-ShAD" "1. T-ShAD" "2. T-ShAD" 
+	}
+	transport_plane = {
+		"1. T-TrAD" "2. T-TrAD" "3. T-TrAD" "4. T-TrAD" "5. T-TrAD" 
+	}
+	battleship = {
+		"Kyzyl" "Baj Haak" 
+	}
+	light_cruiser = {
+		"Erzin" "Saryg-Sep" "Sagorra" "CLdan" "Dovurag" 
+	}
+	heavy_cruiser = {
+		"Erzin" "Saryg-Sep" "Sagorra" "Cadan" "Dovurag" 
+	}
+	battlecruiser = {
+		"Kyzyl" "Baj Haak" 
+	}
+	destroyer = {
+		"1. Tunska Flotiliya Esmintsev" "2. Tunska Flotiliya Esmintsev" "3. Tunska Flotiliya Esmintsev" "4. Tunska Flotiliya Esmintsev" "5. Tunska Flotiliya Esmintsev" "6. Tunska Flotiliya Esmintsev" "7. Tunska Flotiliya Esmintsev" "8. Tunska Flotiliya Esmintsev" "9. Tunska Flotiliya Esmintsev" "10. Tunska Flotiliya Esmintsev" 
+	}
+	carrier = {
+		"Balgazyn" "Samagaltaj" 
+	}
+	submarine = {
+		"1. Tunska Flotiliya Podlodok" "2. Tunska Flotiliya Podlodok" "3. Tunska Flotiliya Podlodok" "4. Tunska Flotiliya Podlodok" "5. Tunska Flotiliya Podlodok" "6. Tunska Flotiliya Podlodok" "7. Tunska Flotiliya Podlodok" "8. Tunska Flotiliya Podlodok" "9. Tunska Flotiliya Podlodok" "10. Tunska Flotiliya Podlodok" 
+	}
+	transport_ship = {
+		"1. Tunska Transportnaya Flotiliya" "2. Tunska Transportnaya Flotiliya" "3. Tunska Transportnaya Flotiliya" "4. Tunska Transportnaya Flotiliya" "5. Tunska Transportnaya Flotiliya" "6. Tunska Transportnaya Flotiliya" "7. Tunska Transportnaya Flotiliya" "8. Tunska Transportnaya Flotiliya" "9. Tunska Transportnaya Flotiliya" "10. Tunska Transportnaya Flotiliya" 
+	}
+
+}
+
+ministers = {
+	71001 = {
+		name = "Salchak Gyrmittai"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M71001
+		head_of_state = insignificant_layman
+		foreign_minister = apologetic_clerk
+		start_date = 1936.1.1
+	}
+	71002 = {
+		name = "Kemchik-ool"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M71002
+		head_of_government = smiling_oilman
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	71004 = {
+		name = "S.T. Perilenko"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M71004
+		armament_minister = corrupt_kleptocrat
+		start_date = 1936.1.1
+	}
+	71005 = {
+		name = "A.D. Kravchenko"
+		ideology = stalinist
+		loyalty = 0.50
+		picture = M71005
+		minister_of_security = back_stabber
+		start_date = 1936.1.1
+	}
+	71006 = {
+		name = "Valerie Mejlauk"
+		ideology = stalinist
+		loyalty = 0.50
+		picture = M71006
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	71007 = {
+		name = "Tanchak Shoma"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M71007
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	71009 = {
+		name = "V.I. Kulikovskij"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M71009
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1936.1.1
+	}
+	71010 = {
+		name = "I.P. Rugalinskij"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M71010
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	71011 = {
+		name = "Vladimir Potemkine"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M71011
+		foreign_minister = iron_fisted_brute
+		start_date = 1941.1.1
+	}
+	71013 = {
+		name = "Sodmon Balchor"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M71013
+		foreign_minister = great_compromiser
+		start_date = 1938.1.1
+	}
+	71014 = {
+		name = "Vladimir Sokoline"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M71014
+		armament_minister = resource_industrialist
+		start_date = 1941.1.1
+	}
+	71015 = {
+		name = "Vladimir Oroskevich"
+		ideology = stalinist
+		loyalty = 0.50
+		picture = M71015
+		minister_of_security = silent_lawyer
+		start_date = 1936.1.1
+	}
+}

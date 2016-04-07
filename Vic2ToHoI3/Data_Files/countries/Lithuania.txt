@@ -1,0 +1,758 @@
+color = { 219  219  119 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"I Pestininkai Divizija" "II Pestininkai Divizija" "III Pestininkai Divizija" "IV Pestininkai Divizija" "V Pestininkai Divizija" "VI Pestininkai Divizija" "VII Pestininkai Divizija" "VIII Pestininkai Divizija" "IX Pestininkai Divizija" "X Pestininkai Divizija" "XI Pestininkai Divizija" 
+		"XII Pestininkai Divizija" "XIII Pestininkai Divizija" "XIV Pestininkai Divizija" "XV Pestininkai Divizija" "XVI Pestininkai Divizija" "XVII Pestininkai Divizija" "XVIII Pestininkai Divizija" "XIX Pestininkai Divizija" "XX Pestininkai Divizija" 
+	}
+	cavalry_brigade = {
+		"I Kavalerija Divizija" "II Kavalerija Divizija" "III Kavalerija Divizija" "IV Kavalerija Divizija" "V Kavalerija Divizija" "VI Kavalerija Divizija" "VII Kavalerija Divizija" "VIII Kavalerija Divizija" "IX Kavalerija Divizija" "X Kavalerija Divizija" 
+	}
+	motorized_brigade = {
+		"I Motorizavimas Divizija" "II Motorizavimas Divizija" "III Motorizavimas Divizija" "IV Motorizavimas Divizija" "V Motorizavimas Divizija" "VI Motorizavimas Divizija" "VII Motorizavimas Divizija" "VIII Motorizavimas Divizija" "IX Motorizavimas Divizija" "X Motorizavimas Divizija" 
+	}
+	mechanized_brigade = {
+		"I Mechanizavimas Divizija" "II Mechanizavimas Divizija" "III Mechanizavimas Divizija" "IV Mechanizavimas Divizija" "V Mechanizavimas Divizija" "VI Mechanizavimas Divizija" "VII Mechanizavimas Divizija" "VIII Mechanizavimas Divizija" "IX Mechanizavimas Divizija" "X Mechanizavimas Divizija" 
+	}
+	light_armor_brigade = {
+		"I Apsisarvavimas Divizija" "II Apsisarvavimas Divizija" "III Apsisarvavimas Divizija" "IV Apsisarvavimas Divizija" "V Apsisarvavimas Divizija" "VI Apsisarvavimas Divizija" "VII Apsisarvavimas Divizija" "VIII Apsisarvavimas Divizija" "IX Apsisarvavimas Divizija" "X Apsisarvavimas Divizija" 
+	}
+	armor_brigade = {
+		"I Apsisarvavimas Divizija" "II Apsisarvavimas Divizija" "III Apsisarvavimas Divizija" "IV Apsisarvavimas Divizija" "V Apsisarvavimas Divizija" "VI Apsisarvavimas Divizija" "VII Apsisarvavimas Divizija" "VIII Apsisarvavimas Divizija" "IX Apsisarvavimas Divizija" "X Apsisarvavimas Divizija" 
+	}
+	paratrooper_brigade = {
+		"I Gabenamas Divizija" "II Gabenamas Divizija" "III Gabenamas Divizija" "IV Gabenamas Divizija" "V Gabenamas Divizija" "VI Gabenamas Divizija" "VII Gabenamas Divizija" "VIII Gabenamas Divizija" "IX Gabenamas Divizija" "X Gabenamas Divizija" 
+	}
+	marine_brigade = {
+		"I Juras Peizazas Divizija" "II Juras Peizazas Divizija" "III Juras Peizazas Divizija" "IV Juras Peizazas Divizija" "V Juras Peizazas Divizija" "VI Juras Peizazas Divizija" "VII Juras Peizazas Divizija" "VIII Juras Peizazas Divizija" "IX Juras Peizazas Divizija" "X Juras Peizazas Divizija" 
+	}
+	bergsjaeger_brigade = {
+		"I Kalnu Pestininkai Divizija" "II Kalnu Pestininkai Divizija" "III Kalnu Pestininkai Divizija" "IV Kalnu Pestininkai Divizija" "V Kalnu Pestininkai Divizija" "VI Kalnu Pestininkai Divizija" "VII Kalnu Pestininkai Divizija" "VIII Kalnu Pestininkai Divizija" "IX Kalnu Pestininkai Divizija" "X Kalnu Pestininkai Divizija" 
+	}
+	garrison_brigade = {
+		"I Pestininkai Divizija" "II Pestininkai Divizija" "III Pestininkai Divizija" "IV Pestininkai Divizija" "V Pestininkai Divizija" "VI Pestininkai Divizija" "VII Pestininkai Divizija" "VIII Pestininkai Divizija" "IX Pestininkai Divizija" "X Pestininkai Divizija" "XI Pestininkai Divizija" 
+		"XII Pestininkai Divizija" "XIII Pestininkai Divizija" "XIV Pestininkai Divizija" "XV Pestininkai Divizija" "XVI Pestininkai Divizija" "XVII Pestininkai Divizija" "XVIII Pestininkai Divizija" "XIX Pestininkai Divizija" "XX Pestininkai Divizija" 
+	}
+	hq_brigade = {
+		"I Lietuva Armiya" "II Lietuva Armiya" "III Lietuva Armiya" "IV Lietuva Armiya" "V Lietuva Armiya" 
+	}
+	militia_brigade = {
+		"I Karo Policija Divizija" "II Karo Policija Divizija" "III Karo Policija Divizija" "IV Karo Policija Divizija" "V Karo Policija Divizija" "VI Karo Policija Divizija" "VII Karo Policija Divizija" "VIII Karo Policija Divizija" "IX Karo Policija Divizija" "X Karo Policija Divizija" "XI Karo Policija Divizija" 
+		"XII Karo Policija Divizija" "XIII Karo Policija Divizija" "XIV Karo Policija Divizija" "XV Karo Policija Divizija" "XVI Karo Policija Divizija" "XVII Karo Policija Divizija" "XVIII Karo Policija Divizija" "XIX Karo Policija Divizija" "XX Karo Policija Divizija" 
+	}
+	multi_role = {
+		"1. Naikintuvas Aviacijos Grupo" "2. Naikintuvas Aviacijos Grupo" "3. Naikintuvas Aviacijos Grupo" "4. Naikintuvas Aviacijos Grupo" "5. Naikintuvas Aviacijos Grupo" "6. Naikintuvas Aviacijos Grupo" "7. Naikintuvas Aviacijos Grupo" "8. Naikintuvas Aviacijos Grupo" "10. Naikintuvas Aviacijos Grupo" "12. Naikintuvas Aviacijos Grupo" 
+	}
+	interceptor = {
+		"1. Naikintuvas Aviacijos Grupo" "2. Naikintuvas Aviacijos Grupo" "3. Naikintuvas Aviacijos Grupo" "4. Naikintuvas Aviacijos Grupo" "5. Naikintuvas Aviacijos Grupo" "6. Naikintuvas Aviacijos Grupo" "7. Naikintuvas Aviacijos Grupo" "8. Naikintuvas Aviacijos Grupo" "10. Naikintuvas Aviacijos Grupo" "12. Naikintuvas Aviacijos Grupo" 
+	}
+	strategic_bomber = {
+		"1. Strateginis Bombonesis Avia. Gr." "2. Strateginis Bombonesis Avia. Gr." "3. Strateginis Bombonesis Avia. Gr." "4. Strateginis Bombonesis Avia. Gr." "5. Strateginis Bombonesis Avia. Gr." "6. Strateginis Bombonesis Avia. Gr." "7. Strateginis Bombonesis Avia. Gr." "8. Strateginis Bombonesis Avia. Gr." "9. Strateginis Bombonesis Avia. Gr." "10. Strateginis Bombonesis Avia. Gr." 
+	}
+	tactical_bomber = {
+		"1. Taktinis Bombonesis Avia. Gr." "2. Taktinis Bombonesis Avia. Gr." "3. Taktinis Bombonesis Avia. Gr." "4. Taktinis Bombonesis Avia. Gr." "5. Taktinis Bombonesis Avia. Gr." "6. Taktinis Bombonesis Avia. Gr." "7. Taktinis Bombonesis Avia. Gr." "8. Taktinis Bombonesis Avia. Gr." "9. Taktinis Bombonesis Avia. Gr." "10. Taktinis Bombonesis Avia. Gr." 
+	}
+	naval_bomber = {
+		"1. Karinio Juro Bombonesis Avia. Gr." "2. Karinio Juro Bombonesis Avia. Gr." "3. Karinio Juro Bombonesis Avia. Gr." "4. Karinio Juro Bombonesis Avia. Gr." "5. Karinio Juro Bombonesis Avia. Gr." "6. Karinio Juro Bombonesis Avia. Gr." "7. Karinio Juro Bombonesis Avia. Gr." "8. Karinio Juro Bombonesis Avia. Gr." "9. Karinio Juro Bombonesis Avia. Gr." "10. Karinio Juro Bombonesis Avia. Gr." "1. Torpeda Bombonesis Avia. Gr." 
+		"2. Torpeda Bombonesis Avia. Gr." "3. Torpeda Bombonesis Avia. Gr." "4. Torpeda Bombonesis Avia. Gr." "5. Torpeda Bombonesis Avia. Gr." "6. Torpeda Bombonesis Avia. Gr." "7. Torpeda Bombonesis Avia. Gr." "8. Torpeda Bombonesis Avia. Gr." "9. Torpeda Bombonesis Avia. Gr." "10. Torpeda Bombonesis Avia. Gr." 
+	}
+	cas = {
+		"1. Puolimas Bombonesis Avia. Gr." "2. Puolimas Bombonesis Avia. Gr." "3. Puolimas Bombonesis Avia. Gr." "4. Puolimas Bombonesis Avia. Gr." "5. Puolimas Bombonesis Avia. Gr." "6. Puolimas Bombonesis Avia. Gr." "7. Puolimas Bombonesis Avia. Gr." "8. Puolimas Bombonesis Avia. Gr." "9. Puolimas Bombonesis Avia. Gr." "10. Puolimas Bombonesis Avia. Gr." 
+	}
+	transport_plane = {
+		"1. Oro Transportu Grupo" "2. Oro Transportu Grupo" "3. Oro Transportu Grupo" "4. Oro Transportu Grupo" "5. Oro Transportu Grupo" 
+	}
+	battleship = {
+		"Kaunas" "Moletai" "Vilnius" "Siauliai" "Plunge" "Palanga" 
+	}
+	light_cruiser = {
+		"Silute" "Taurage" "Jurbarkas" "Alytus" "Trakai" "Druskininkai" 
+	}
+	heavy_cruiser = {
+		"Kaunas" "Moletai" "Vilnius" "Siauliai" "Plunge" "Palanga" 
+	}
+	battlecruiser = {
+		"Silute" "Taurage" "Jurbarkas" "Alytus" "Trakai" "Druskininkai" 
+	}
+	destroyer = {
+		"1. Nakintojas Eskadra" "2. Nakintojas Eskadra" "3. Nakintojas Eskadra" "4. Nakintojas Eskadra" "5. Nakintojas Eskadra" "6. Nakintojas Eskadra" "7. Nakintojas Eskadra" "8. Nakintojas Eskadra" "9. Nakintojas Eskadra" "10. Nakintojas Eskadra" "11. Nakintojas Eskadra" 
+		"12. Nakintojas Eskadra" "13. Nakintojas Eskadra" "14. Nakintojas Eskadra" "15. Nakintojas Eskadra" 
+	}
+	carrier = {
+		"Silute" "Taurage" "Jurbarkas" "Alytus" "Trakai" "Druskininkai" 
+	}
+	escort_carrier = {
+		"Dzkas" "Slis" "Skalvis" 
+	}
+	submarine = {
+		"1. Povandeninis Eskadra" "2. Povandeninis Eskadra" "3. Povandeninis Eskadra" "4. Povandeninis Eskadra" "5. Povandeninis Eskadra" "6. Povandeninis Eskadra" "7. Povandeninis Eskadra" "8. Povandeninis Eskadra" "9. Povandeninis Eskadra" "10. Povandeninis Eskadra" "11. Povandeninis Eskadra" 
+		"12. Povandeninis Eskadra" "13. Povandeninis Eskadra" "14. Povandeninis Eskadra" "15. Povandeninis Eskadra" 
+	}
+	transport_ship = {
+		"1. Transportavimas" "2. Transportavimas" "3. Transportavimas" "4. Transportavimas" "5. Transportavimas" "6. Transportavimas" "7. Transportavimas" "8. Transportavimas" "9. Transportavimas" "10. Transportavimas" 
+	}
+
+}
+
+ministers = {
+	28001 = {
+		name = "Antanas Smetona"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M28001
+		head_of_state = weary_stiff_neck
+		minister_of_security = compassionate_gentleman
+		armament_minister = air_to_ground_proponent
+		start_date = 1936.1.1
+	}
+	28002 = {
+		name = "Juozas Tubelis"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M28002
+		head_of_government = political_protege
+		minister_of_intelligence = research_specialist
+		start_date = 1936.1.1
+	}
+	28003 = {
+		name = "Stasys Lozoraitis"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M28003
+		foreign_minister = ideological_crusader
+		head_of_government = happy_amateur
+		foreign_minister = apologetic_clerk
+		start_date = 1936.1.1
+	}
+	28004 = {
+		name = "Valdemaras Vytautas-Carneckis"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M28004
+		armament_minister = military_entrepreneur
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	28006 = {
+		name = "Dovas Zaunius"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M28006
+		minister_of_intelligence = political_specialist
+		head_of_government = happy_amateur
+		start_date = 1936.1.1
+	}
+	28007 = {
+		name = "Jonas Galvydis-Bykauskas"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M28007
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	28008 = {
+		name = "Stasys Rastikis"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M28008
+		chief_of_army = elastic_defence_doctrine
+		chief_of_staff = school_of_fire_support
+		start_date = 1936.1.1
+	}
+	28009 = {
+		name = "Garnis Dirmantas"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M28009
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	28010 = {
+		name = "Antanas Gustaitis"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M28010
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	28031 = {
+		name = "Augustinas Voldemaras"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M28031
+		head_of_state = power_hungry_demagogue
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	28032 = {
+		name = "Kazys Skirpa"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M28032
+		head_of_state = insignificant_layman
+		minister_of_security = prince_of_terror
+		chief_of_air = army_aviation_doctrine
+		start_date = 1940.1.1
+	}
+	28033 = {
+		name = "Theodor von Renteln"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M28033
+		head_of_state = resigned_generalissimo
+		minister_of_intelligence = dismal_enigma
+		start_date = 1941.1.1
+	}
+	28035 = {
+		name = "Antanas Merkys"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M28035
+		head_of_state = benevolent_gentleman
+		head_of_government = smiling_oilman
+		foreign_minister = ideological_crusader
+		start_date = 1940.1.1
+	}
+	28036 = {
+		name = "Jonas Zemaitis"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M28036
+		head_of_state = autocratic_charmer
+		chief_of_staff = school_of_psychology
+		start_date = 1945.1.1
+	}
+	28037 = {
+		name = "Jupozas Maciusnas"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M28011
+		head_of_state = benevolent_gentleman
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	28038 = {
+		name = "Juozas Ambrazevicius"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M28020
+		head_of_state = insignificant_layman
+		head_of_government = corporate_suit
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1941.1.1
+	}
+	28039 = {
+		name = "Anatolijus Kairys"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M28019
+		head_of_state = die_hard_reformer
+		chief_of_army = static_defence_doctrine
+		chief_of_navy = base_control_doctrine
+		start_date = 1945.1.1
+	}
+	28040 = {
+		name = "Justas Paleckis"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M28021
+		head_of_state = insignificant_layman
+		head_of_government = smiling_oilman
+		foreign_minister = ideological_crusader
+		start_date = 1938.1.1
+	}
+	28041 = {
+		name = "Antanas Snieckus"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M28041
+		head_of_state = die_hard_reformer
+		head_of_government = old_admiral
+		minister_of_security = crime_fighter
+		chief_of_staff = school_of_fire_support
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1945.1.1
+	}
+	28042 = {
+		name = "Pranciskis Misiunas"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M28042
+		head_of_government = happy_amateur
+		minister_of_intelligence = research_specialist
+		start_date = 1938.1.1
+	}
+	28043 = {
+		name = "Petras Kubiliunas"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M28043
+		head_of_government = silent_workhorse
+		foreign_minister = ideological_crusader
+		chief_of_staff = school_of_mass_combat
+		start_date = 1940.1.1
+	}
+	28044 = {
+		name = "Vladas Mironas"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M28044
+		head_of_government = naive_optimist
+		minister_of_security = efficient_sociopath
+		start_date = 1938.1.1
+	}
+	28045 = {
+		name = "Jonas Cernius"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M28014
+		head_of_government = ambitious_union_boss
+		armament_minister = battle_fleet_proponent
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1939.1.1
+	}
+	28048 = {
+		name = "Kasimiras Zilenskiene"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M28048
+		head_of_government = flamboyant_tough_guy
+		minister_of_intelligence = industrial_specialist
+		start_date = 1945.1.1
+	}
+	28049 = {
+		name = "Linas Brodovskis"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M28015
+		head_of_government = backroom_backstabber
+		minister_of_security = efficient_sociopath
+		start_date = 1938.1.1
+	}
+	28053 = {
+		name = "Vincas Kreve-Mickevicius"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M28053
+		head_of_government = political_protege
+		foreign_minister = biased_intellectual
+		start_date = 1940.1.1
+	}
+	28055 = {
+		name = "Petras Domarkas"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M28055
+		foreign_minister = biased_intellectual
+		start_date = 1938.1.1
+	}
+	28056 = {
+		name = "Azuolas Kuschat"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M28056
+		foreign_minister = apologetic_clerk
+		chief_of_navy = power_projection_doctrine
+		start_date = 1940.1.1
+	}
+	28058 = {
+		name = "Juozas Urbsys"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M28058
+		foreign_minister = ideological_crusader
+		start_date = 1938.1.1
+	}
+	28059 = {
+		name = "Ernestas Galvanauskas"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M28059
+		foreign_minister = apologetic_clerk
+		start_date = 1940.1.1
+	}
+	28061 = {
+		name = "Karolis Vinewicz"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M28061
+		foreign_minister = iron_fisted_brute
+		start_date = 1945.1.1
+	}
+	28062 = {
+		name = "Giedrius Grigas"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M28062
+		foreign_minister = biased_intellectual
+		start_date = 1938.1.1
+	}
+	28063 = {
+		name = "Jonas Vailokaitis"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M28063
+		foreign_minister = great_compromiser
+		start_date = 1940.1.1
+	}
+	28067 = {
+		name = "Karolis Didzilus-Grosmanas"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M28067
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1941.1.1
+	}
+	28068 = {
+		name = "Mecislovas Gedvilas"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M28024
+		foreign_minister = apologetic_clerk
+		armament_minister = theoretical_scientist
+		chief_of_navy = base_control_doctrine
+		start_date = 1945.1.1
+	}
+	28070 = {
+		name = "Vincentas Latozaite"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M28070
+		armament_minister = strategic_air_proponent
+		start_date = 1940.1.1
+	}
+	28071 = {
+		name = "Petras Plechavicius"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M28071
+		armament_minister = military_entrepreneur
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1941.1.1
+	}
+	28072 = {
+		name = "Vladas Jurgutis"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M28072
+		armament_minister = resource_industrialist
+		start_date = 1938.1.1
+	}
+	28075 = {
+		name = "Aras Abrutis"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M28075
+		armament_minister = administrative_genius
+		start_date = 1945.1.1
+	}
+	28076 = {
+		name = "Juozas Purickis"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M28076
+		armament_minister = administrative_genius
+		start_date = 1938.1.1
+	}
+	28077 = {
+		name = "Leonas Bistras"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M28077
+		armament_minister = laissez_faires_capitalist
+		start_date = 1941.1.1
+	}
+	28078 = {
+		name = "Gintare Klumbyte"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M28078
+		armament_minister = corrupt_kleptocrat
+		start_date = 1945.1.1
+	}
+	28079 = {
+		name = "Vytautas Martinaitis"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M28079
+		armament_minister = submarine_proponent
+		start_date = 1938.1.1
+	}
+	28081 = {
+		name = "Icikas Meskupas-Adomas"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M28081
+		armament_minister = corrupt_kleptocrat
+		start_date = 1941.1.1
+	}
+	28082 = {
+		name = "Antonas Sanrkiene"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M28082
+		armament_minister = air_to_sea_proponent
+		start_date = 1945.1.1
+	}
+	28084 = {
+		name = "Wilhelm Kube"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M28084
+		minister_of_security = man_of_the_people
+		start_date = 1941.1.1
+	}
+	28085 = {
+		name = "Mykolas Slezevicius"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M28085
+		minister_of_security = prince_of_terror
+		start_date = 1938.1.1
+	}
+	28088 = {
+		name = "Jurgis Wintelaichuite"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M28088
+		minister_of_security = crooked_kleptocrat
+		start_date = 1940.1.1
+	}
+	28089 = {
+		name = "Jonas Endrasius"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M28089
+		minister_of_security = back_stabber
+		start_date = 1941.1.1
+	}
+	28090 = {
+		name = "Micislovas Reinys"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M28090
+		minister_of_security = efficient_sociopath
+		start_date = 1945.1.1
+	}
+	28091 = {
+		name = "Pranas Dovydaitis"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M28091
+		minister_of_security = silent_lawyer
+		start_date = 1938.1.1
+	}
+	28093 = {
+		name = "Mykolas Filipavicius"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M28093
+		minister_of_security = compassionate_gentleman
+		chief_of_air = air_superiority_doctrine
+		start_date = 1945.1.1
+	}
+	28094 = {
+		name = "Domas Rocius"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M28094
+		minister_of_security = efficient_sociopath
+		start_date = 1938.1.1
+	}
+	28095 = {
+		name = "Povilas Pakarklis"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M28025
+		minister_of_security = silent_lawyer
+		start_date = 1940.1.1
+	}
+	28097 = {
+		name = "Juozas Kupcinkas"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M28097
+		minister_of_security = compassionate_gentleman
+		start_date = 1945.1.1
+	}
+	28098 = {
+		name = "Jurgis Terleckas"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M28098
+		minister_of_security = prince_of_terror
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1946.1.1
+	}
+	28102 = {
+		name = "Juozas Baltakis"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M28102
+		minister_of_intelligence = political_specialist
+		start_date = 1939.1.1
+	}
+	28103 = {
+		name = "Franciskus Ivinskis"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M28103
+		minister_of_intelligence = research_specialist
+		start_date = 1940.1.1
+	}
+	28105 = {
+		name = "Juozas Alsauskas"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M28105
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1945.1.1
+	}
+	28107 = {
+		name = "Jurgis Saulys"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M28107
+		minister_of_intelligence = technical_specialist
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1941.1.1
+	}
+	28108 = {
+		name = "Atanas Ceponis"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M28108
+		minister_of_intelligence = dismal_enigma
+		start_date = 1945.1.1
+	}
+	28109 = {
+		name = "Vincentas Leskien"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M28109
+		minister_of_intelligence = industrial_specialist
+		start_date = 1938.1.1
+	}
+	28110 = {
+		name = "Vytautas Ambrazas"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M28110
+		minister_of_intelligence = political_specialist
+		start_date = 1940.1.1
+	}
+	28111 = {
+		name = "Chaimas Aizenas"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M28111
+		minister_of_intelligence = dismal_enigma
+		start_date = 1941.1.1
+	}
+	28112 = {
+		name = "Pranas Zibertas"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M28026
+		minister_of_intelligence = technical_specialist
+		start_date = 1945.1.1
+	}
+	28118 = {
+		name = "Juoza Barzda-Bradauskas"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M28017
+		chief_of_staff = school_of_psychology
+		start_date = 1938.1.1
+	}
+	28119 = {
+		name = "Azuolas Jakus"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M28119
+		chief_of_staff = school_of_mass_combat
+		start_date = 1945.1.1
+	}
+	28121 = {
+		name = "Aleksandras Guzevicius"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M28030
+		chief_of_staff = school_of_defence
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1941.1.1
+	}
+	28122 = {
+		name = "Albinas Cepas-Cepauskas"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M28122
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1938.1.1
+	}
+	28126 = {
+		name = "Gedrivius Palionis"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M28126
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1945.1.1
+	}
+	28127 = {
+		name = "Kazys Musteikis"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M28125
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1938.1.1
+	}
+	28129 = {
+		name = "Adolfas Ramanasukas-Vanagas"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M28018
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1945.1.1
+	}
+	28137 = {
+		name = "Vladas Karvelis"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M28029
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1938.1.1
+	}
+	28145 = {
+		name = "Juozas Baukarskas"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M28145
+		chief_of_air = army_aviation_doctrine
+		start_date = 1945.1.1
+	}
+}
+

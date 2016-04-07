@@ -1,0 +1,6 @@
+owner = JAP
+controller = JAP
+add_core = JAP
+
+infra = 8
+industry = 2

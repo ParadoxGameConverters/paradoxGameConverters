@@ -1,0 +1,9 @@
+owner = ECU
+controller = ECU
+add_core = ECU
+energy = 1.00
+industry = 1
+infra = 6
+manpower = 1.00
+leadership = 0.10
+naval_base = 3

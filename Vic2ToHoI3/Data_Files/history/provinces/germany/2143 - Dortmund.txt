@@ -1,0 +1,16 @@
+owner = GER
+controller = GER
+add_core = GER
+
+metal = 34.00
+energy = 90.00
+rare_materials = 5.00
+industry = 6
+anti_air = 2
+infra = 10
+manpower = 2.00
+leadership = 0.60
+
+1941.1.1 = {
+	radar_station = 2
+}

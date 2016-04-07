@@ -1,0 +1,9 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+add_core = EGY
+infra = 6
+manpower = 1.00
+leadership = 0.25
+
+infra = 4

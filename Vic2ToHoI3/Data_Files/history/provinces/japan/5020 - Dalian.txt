@@ -1,0 +1,13 @@
+owner = JAP
+controller = JAP
+
+add_core = JAP
+add_core = CHI
+add_core = CHC
+
+anti_air = 4
+infra = 6
+air_base = 7
+naval_base = 5
+
+energy = 1.00

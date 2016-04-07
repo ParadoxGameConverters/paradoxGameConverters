@@ -1,3 +1,25 @@
+/*Copyright (c) 2014 The Paradox Game Converters Project
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
+
+
 #include "Configuration.h"
 #include "Parsers/Parser.h"
 #include "Log.h"
@@ -6,32 +28,30 @@ Configuration* Configuration::instance = NULL;
 
 Configuration::Configuration()
 {
-	printf("Reading configuration file.\n");
-	log("Reading configuration file.\n");
+	LOG(LogLevel::Info) << "Reading configuration file.";
 
-	Object* tempObj = doParseFile("configuration.txt");
+	Object* tempObj = doParseFile("configuration.txt");	// the parsed configuration file
 	if (tempObj == NULL)
 	{
-		log("Could not parse file configuration.txt\n");
+		LOG(LogLevel::Error) << "Could not parse file configuration.txt";
 		exit(-1);
 	}
-	vector<Object*> obj = tempObj->getValue("configuration");
+	vector<Object*> obj = tempObj->getValue("configuration");	// the configuration section
 	if (obj.size() != 1)
 	{
-		printf("Configuration file must contain exactly one configuration section.");
-		log("Configuration file must contain exactly one configuration section.");
-		exit (-2);
+		LOG(LogLevel::Error) << "Configuration file must contain exactly one configuration section.";
+		exit (-1);
 	}
 
-	startDate	= date(obj[0]->getLeaf("start_date"));
-	if (startDate < date("1835.1.1"))
-	{
-		log("Warning: start dates prior to 1835 are likely to cause crashes!\n");
-	}
-	maxLiteracy	= atof(obj[0]->getLeaf("max_literacy").c_str());
-	V2Path		= obj[0]->getLeaf("v2directory");
-	EU3Path		= obj[0]->getLeaf("EU3directory");
-	EU3gametype	= obj[0]->getLeaf("EU3gametype");
-	V2gametype	= obj[0]->getLeaf("V2gametype");
-	removetype	= obj[0]->getLeaf("removetype");
+	MaxLiteracy			= atof(obj[0]->getLeaf("max_literacy").c_str());
+	resetProvinces		= obj[0]->getLeaf("resetProvinces");
+	V2Path				= obj[0]->getLeaf("v2directory");
+	V2DocumentsPath	= obj[0]->getLeaf("V2Documentsdirectory");
+	EU3Path				= obj[0]->getLeaf("EU3directory");
+	EU3gametype			= obj[0]->getLeaf("EU3gametype");
+	V2Gametype			= obj[0]->getLeaf("V2gametype");
+	EU3Mod				= obj[0]->getLeaf("EU3Mod");
+	Removetype			= obj[0]->getLeaf("removetype");
+	convertPopTotals	= (obj[0]->getLeaf("convertPopTotals") == "yes");
+	outputName			= "";
 }

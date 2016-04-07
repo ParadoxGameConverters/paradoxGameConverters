@@ -1,0 +1,500 @@
+color = { 84  119  168 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1st Israeli Infantry Division" "2nd Israeli Infantry Division" "3rd Israeli Infantry Division" "4th Israeli Infantry Division" "5th Israeli Infantry Division" "6th Israeli Infantry Division" "7th Israeli Infantry Division" "8th Israeli Infantry Division" "9th Israeli Infantry Division" "10th Israeli Infantry Division" "11th Israeli Infantry Division" 
+		"12th Israeli Infantry Division" "13th Israeli Infantry Division" "14th Israeli Infantry Division" "15th Israeli Infantry Division" "16th Israeli Infantry Division" "17th Israeli Infantry Division" "18th Israeli Infantry Division" "19th Israeli Infantry Division" "20th Israeli Infantry Division" 
+	}
+	cavalry_brigade = {
+		"1st Israeli Cavalry Division" "2nd Israeli Cavalry Division" "3rd Israeli Cavalry Division" "4th Israeli Cavalry Division" "5th Israeli Cavalry Division" "6th Israeli Cavalry Division" "7th Israeli Cavalry Division" "8th Israeli Cavalry Division" "9th Israeli Cavalry Division" "10th Israeli Cavalry Division" 
+	}
+	motorized_brigade = {
+		"1st Israeli Infantry Division" "2nd Israeli Infantry Division" "3rd Israeli Infantry Division" "1st Israeli Infantry Division" "2nd Israeli Infantry Division" "3rd Israeli Infantry Division" "4th Israeli Infantry Division" "5th Israeli Infantry Division" "6th Israeli Infantry Division" 
+	}
+	mechanized_brigade = {
+		"1st Israeli Infantry Division" "2nd Israeli Infantry Division" "3rd Israeli Infantry Division" "1st Israeli Infantry Division" "2nd Israeli Infantry Division" "3rd Israeli Infantry Division" "4th Israeli Infantry Division" "5th Israeli Infantry Division" "6th Israeli Infantry Division" "7th Israeli Infantry Division" "8th Israeli Infantry Division" 
+		"9th Israeli Infantry Division" "10th Israeli Infantry Division" 
+	}
+	light_armor_brigade = {
+		"1st Israeli Armoured Division" "2nd Israeli Armoured Division" "3rd Israeli Armoured Division" "4th Israeli Armoured Division" "5th Israeli Armoured Division" "6th Israeli Armoured Division" "7th Israeli Armoured Division" "8th Israeli Armoured Division" "9th Israeli Armoured Division" "10th Israeli Armoured Division" "11th Israeli Armoured Division" 
+		"12th Israeli Armoured Division" "14th Israeli Armoured Division" "15th Israeli Armoured Division" 
+	}
+	armor_brigade = {
+		"1st Armoured Division" "2nd Israeli Armoured Division" "3rd Israeli Armoured Division" "4th Israeli Armoured Division" "5th Israeli Armoured Division" "6th Israeli Armoured Division" "7th Israeli Armoured Division" "8th Israeli Armoured Division" "9th Israeli Armoured Division" "10th Israeli Armoured Division" "11th Israeli Armoured Division" 
+		"12th Israeli Armoured Division" "14th Israeli Armoured Division" "15th Israeli Armoured Division" 
+	}
+	paratrooper_brigade = {
+		"1st Israeli Airborne Division" "2nd Israeli Airborne Division" "3rd Israeli Airborne Division" "4th Israeli Airborne Division" "5th Israeli Airborne Division" "6th Israeli Airborne Division" "7th Israeli Airborne Division" "8th Israeli Airborne Division" "9th Israeli Airborne Division" "10th Israeli Airborne Division" 
+	}
+	marine_brigade = {
+		"1st Israeli Marine Division" "2nd Israeli Marine Division" "3rd Israeli Marine Division" "4th Israeli Marine Division" "5th Israeli Marine Division" "6th Israeli Marine Division" "7th Israeli Marine Division" "8th Israeli Marine Division" "9th Israeli Marine Division" "10th Israeli Marine Division" 
+	}
+	bergsjaeger_brigade = {
+		"1st Israeli Mountain Division" "2nd Israeli Mountain Division" "3rd Israeli Mountain Division" "4th Israeli Mountain Division" "5th Israeli Mountain Division" "8th Israeli Mountain Division" "10th Israeli Mountain Division" "11th Israeli Mountain Division" "12th Israeli Mountain Division" 
+	}
+	garrison_brigade = {
+		"1st Israeli Garrison Division" "2nd Israeli Garrison Division" "3rd Israeli Garrison Division" "4th Israeli Garrison Division" "5th Israeli Garrison Division" "6th Israeli Garrison Division" "7th Israeli Garrison Division" "8th Israeli Garrison Division" "9th Israeli Garrison Division" "10th Israeli Garrison Division" "11th Israeli Garrison Division" 
+		"12th Israeli Garrison Division" "13th Israeli Garrison Division" "14th Israeli Garrison Division" "15th Israeli Garrison Division" "16th Israeli Garrison Division" "17th Israeli Garrison Division" "18th Israeli Garrison Division" "19th Israeli Garrison Division" "20th Israeli Garrison Division" 
+	}
+	hq_brigade = {
+		"1st Israeli Army" "2nd Israeli Army" "3rd Israeli Army" "4th Israeli Army" "5th Israeli Army" "6th Israeli Army" "7th Israeli Army" "8th Israeli Army" 
+	}
+	militia_brigade = {
+		"1st Infantry Division" "2nd Infantry Division" "3rd Infantry Division" "4th Infantry Division" "5th Infantry Division" "6th Infantry Division" "7th Infantry Division" "8th Infantry Division" "9th Infantry Division" "10th Infantry Division" "11th Infantry Division" 
+		"12th Infantry Division" "13th Infantry Division" "14th Infantry Division" "15th Infantry Division" "16th Infantry Division" "17th Infantry Division" "18th Infantry Division" "19th Infantry Division" "20th Infantry Division" "21st Infantry Division" "22nd Infantry Division" 
+		"23rd Infantry Division" "24th Infantry Division" "25th Infantry Division" "26th Infantry Division" "27th Infantry Division" "28th Infantry Division" "29th Infantry Division" "30th Infantry Division" 
+	}
+	multi_role = {
+		"No.1 Group IAF" "No.2 Group IAF" "No.3 Group IAF" "No.4 Group IAF" "No.5 Group IAF" "No.7 Group IAF" "No.8 Group IAF" "No.9 Group IAF" "No.10 Group IAF" "No.11 Group IAF" "No.12 Group IAF" 
+		"No.13 Group IAF" "No.14 Group IAF" "No.15 Group IAF" "No.16 Group IAF" "No.17 Group IAF" "No.18 Group IAF" "No.19 Group IAF" "No.20 Group IAF" 
+	}
+	interceptor = {
+		"No.1 Group IAF" "No.2 Group IAF" "No.3 Group IAF" "No.4 Group IAF" "No.5 Group IAF" "No.7 Group IAF" "No.8 Group IAF" "No.9 Group IAF" "No.10 Group IAF" "No.11 Group IAF" "No.12 Group IAF" 
+		"No.13 Group IAF" "No.14 Group IAF" "No.15 Group IAF" "No.16 Group IAF" "No.17 Group IAF" "No.18 Group IAF" "No.19 Group IAF" "No.20 Group IAF" 
+	}
+	strategic_bomber = {
+		"No.1 Group IAF" "No.2 Group IAF" "No.6 Group IAF" "No.3 Group IAF" "No.4 Group IAF" "No.7 Group IAF" "No.8 Group IAF" "No.9 Group IAF" "No.10 Group IAF" "No.11 Group IAF" "No.12 Group IAF" 
+		"No.13 Group IAF" "No.14 Group IAF" "No.15 Group IAF" "No.16 Group IAF" "No.17 Group IAF" "No.18 Group IAF" "No.19 Group IAF" "No.20 Group IAF" 
+	}
+	tactical_bomber = {
+		"No.1 Group IAF" "No.2 Group IAF" "No.6 Group IAF" "No.3 Group IAF" "No.4 Group IAF" "No.7 Group IAF" "No.8 Group IAF" "No.9 Group IAF" "No.10 Group IAF" "No.11 Group IAF" "No.12 Group IAF" 
+		"No.13 Group IAF" "No.14 Group IAF" "No.15 Group IAF" "No.16 Group IAF" "No.17 Group IAF" "No.18 Group IAF" "No.19 Group IAF" "No.20 Group IAF" 
+	}
+	naval_bomber = {
+		"No.1 Group IAF" "No.2 Group IAF" "No.3 Group IAF" "No.4 Group IAF" "No.5 Group IAF" "No.7 Group IAF" "No.8 Group IAF" "No.9 Group IAF" "No.10 Group IAF" 
+	}
+	cas = {
+		"No.1 Group IAF" "No.2 Group IAF" "No.6 Group IAF" "No.3 Group IAF" "No.4 Group IAF" "No.7 Group IAF" "No.8 Group IAF" "No.9 Group IAF" "No.10 Group IAF" "No.11 Group IAF" "No.12 Group IAF" 
+		"No.13 Group IAF" "No.14 Group IAF" "No.15 Group IAF" "No.16 Group IAF" "No.17 Group IAF" "No.18 Group IAF" "No.19 Group IAF" "No.20 Group IAF" 
+	}
+	transport_plane = {
+		"No.1 Group IAF" "No.2 Group IAF" "No.3 Group IAF" "No.4 Group IAF" "No.5 Group IAF" "No.7 Group IAF" "No.8 Group IAF" "No.9 Group IAF" "No.10 Group IAF" 
+	}
+	battleship = {
+		"INS Independence" "INS Freedom" "INS Liberty" "INS Victory" 
+	}
+	light_cruiser = {
+		"INS Independence" "INS Freedom" "INS Liberty" "INS Victory" 
+	}
+	heavy_cruiser = {
+		"INS Independence" "INS Freedom" "INS Liberty" "INS Victory" 
+	}
+	battlecruiser = {
+		"INS Independence" "INS Freedom" "INS Liberty" "INS Victory" 
+	}
+	destroyer = {
+		"1st Israeli Destroyer Division" "2nd Israeli Destroyer Division" "3rd Israeli Destroyer Division" "4th Israeli Destroyer Division" "5th Israeli Destroyer Division" "6th Israeli Destroyer Division" "7th Israeli Destroyer Division" "8th Israeli Destroyer Division" "9th Israeli Destroyer Division" "10th Israeli Destroyer Division" 
+	}
+	carrier = {
+		"INS Independence" "INS Freedom" "INS Liberty" "INS Victory" 
+	}
+	escort_carrier = {
+		"INS Romach" "INS Shimrit" "INS Dvora" 
+	}
+	submarine = {
+		"1st Israeli Submarine Division" "2nd Israeli Submarine Division" "3rd Israeli Submarine Division" "4th Israeli Submarine Division" "5th Israeli Submarine Division" "6th Israeli Submarine Division" "7th Israeli Submarine Division" "8th Israeli Submarine Division" "9th Israeli Submarine Division" "10th Israeli Submarine Division" 
+	}
+	transport_ship = {
+		"1st Israeli Transport Division" "2nd Israeli Transport Division" "3rd Israeli Transport Division" "4th Israeli Transport Division" "5th Israeli Transport Division" "6th Israeli Transport Division" "7th Israeli Transport Division" "8th Israeli Transport Division" "9th Israeli Transport Division" "10th Israeli Transport Division" 
+	}
+
+}
+
+ministers = {
+	559001 = {
+		name = "Chaim Weizmann"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M559001
+		head_of_state = benevolent_gentleman
+		start_date = 1936.1.1
+	}
+	559002 = {
+		name = "David Ben Gurion"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M559002
+		head_of_government = ambitious_union_boss
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	559003 = {
+		name = "Moshe Sharett"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M559003
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	559004 = {
+		name = "Levi Eshkol"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M559004
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	559005 = {
+		name = "Golda Meir"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M559005
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	559006 = {
+		name = "Yigal Allon"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M559006
+		minister_of_intelligence = research_specialist
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	559007 = {
+		name = "Yigael Yadin"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M559007
+		chief_of_staff = school_of_fire_support
+		start_date = 1936.1.1
+	}
+	559009 = {
+		name = "Yedidia Ya'ari"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M559009
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	559010 = {
+		name = "Haim Laskov"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M559010
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	559011 = {
+		name = "Mashe Shaypira"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M559011
+		head_of_state = stern_imperialist
+		start_date = 1936.1.1
+	}
+	559012 = {
+		name = "Chaim Arlosoroff"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M559012
+		head_of_state = barking_buffoon
+		start_date = 1936.1.1
+	}
+	559013 = {
+		name = "Daniel Auster"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M559013
+		head_of_government = backroom_backstabber
+		start_date = 1936.1.1
+	}
+	559014 = {
+		name = "Dr. Abrahan Herschel"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M559014
+		head_of_government = naive_optimist
+		start_date = 1936.1.1
+	}
+	559015 = {
+		name = "Zerach Warnaftig"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M559015
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	559016 = {
+		name = "Pinhas Levon"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M559016
+		foreign_minister = great_compromiser
+		start_date = 1943.1.1
+	}
+	559017 = {
+		name = "Yitzhak Ben Zvi"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M559017
+		foreign_minister = iron_fisted_brute
+		head_of_state = ruthless_powermonger
+		start_date = 1936.1.1
+	}
+	559018 = {
+		name = "Yitzhak Tabenkin"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M559018
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1939.1.1
+	}
+	559019 = {
+		name = "Vadia Yosef"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M559019
+		armament_minister = infantry_proponent
+		start_date = 1936.1.1
+	}
+	559020 = {
+		name = "Mencahem Ussiskin"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M559020
+		armament_minister = strategic_air_proponent
+		start_date = 1937.1.1
+	}
+	559021 = {
+		name = "Vatchagan Meltonian"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M559021
+		armament_minister = laissez_faires_capitalist
+		start_date = 1940.1.1
+	}
+	559022 = {
+		name = "Kadish Luz"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M559022
+		armament_minister = battle_fleet_proponent
+		start_date = 1940.1.1
+	}
+	559023 = {
+		name = "Yosef Sprinzak"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M559023
+		armament_minister = air_superiority_proponent
+		minister_of_intelligence = industrial_specialist
+		start_date = 1942.1.1
+	}
+	559024 = {
+		name = "Eliezer Kaplan"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M559024
+		armament_minister = military_entrepreneur
+		start_date = 1945.1.1
+	}
+	559025 = {
+		name = "Pavlos Levan"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M559025
+		armament_minister = tank_proponent
+		start_date = 1936.1.1
+	}
+	559026 = {
+		name = "Nahum Nir-Rafalkes"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M559026
+		minister_of_security = back_stabber
+		start_date = 1936.1.1
+	}
+	559027 = {
+		name = "Menachem Baskind"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M559027
+		minister_of_security = compassionate_gentleman
+		start_date = 1939.1.1
+	}
+	559028 = {
+		name = "Mencahem Begin"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M559028
+		minister_of_security = efficient_sociopath
+		start_date = 1940.1.1
+	}
+	559029 = {
+		name = "Moshe Haim Shapira"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M559029
+		minister_of_security = silent_lawyer
+		start_date = 1949.1.1
+	}
+	559030 = {
+		name = "Israel Rokach"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M559030
+		minister_of_security = crime_fighter
+		start_date = 1952.1.1
+	}
+	559031 = {
+		name = "Moshe Katznelson"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M559031
+		minister_of_security = prince_of_terror
+		start_date = 1941.1.1
+	}
+	559032 = {
+		name = "Israel Bar-Yehuda"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M559032
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	559033 = {
+		name = "Menachem Mendel Lipschutz"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M559033
+		minister_of_intelligence = dismal_enigma
+		start_date = 1937.1.1
+	}
+	559034 = {
+		name = "Pinhas Sapir"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M559034
+		minister_of_intelligence = technical_specialist
+		start_date = 1942.1.1
+	}
+	559035 = {
+		name = "Yitzhak Grünbaum"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M559035
+		minister_of_intelligence = dismal_enigma
+		minister_of_security = prince_of_terror
+		start_date = 1944.1.1
+	}
+	559036 = {
+		name = "Rerl Katznelson"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M559036
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	559037 = {
+		name = "Menachem Schneerson"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M559037
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1937.1.1
+	}
+	559038 = {
+		name = "Roman Zakhari"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M559038
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	559039 = {
+		name = "Jiloshahaft Harkabi"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M559039
+		chief_of_staff = school_of_psychology
+		start_date = 1942.1.1
+	}
+	559040 = {
+		name = "Richard Silverstein"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M559040
+		chief_of_staff = school_of_mass_combat
+		start_date = 1936.1.1
+	}
+	559041 = {
+		name = "Pinchas Rosengarten"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M559041
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	559042 = {
+		name = "Moshe Dayan"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M559042
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1944.1.1
+	}
+	559043 = {
+		name = "Amos Zoref"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M559043
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	559044 = {
+		name = "Chaim Grunwald"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M559044
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	559045 = {
+		name = "Moshe Krelitz"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M559045
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1936.1.1
+	}
+	559046 = {
+		name = "Chris Magee"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M559046
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	559047 = {
+		name = "Reuven Woolf"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M559047
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+}

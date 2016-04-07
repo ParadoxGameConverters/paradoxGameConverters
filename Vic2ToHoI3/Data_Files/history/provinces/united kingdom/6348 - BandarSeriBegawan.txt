@@ -1,0 +1,8 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+rare_materials = 3.00
+infra = 4
+1942.6.4 = {
+	controller = JAP
+}

@@ -23,7 +23,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "V2Party.h"
 
-#include "..\Log.h"
+#include "Log.h"
 
 V2Party::V2Party(Object *party_obj)
 {

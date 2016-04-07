@@ -1,0 +1,335 @@
+color = { 77  103  174 }
+graphical_culture = Italian
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1. pjesacka divizija" "2. pjesacka divizija" "3. pjesacka divizija" "4. pjesacka divizija" "5. pjesacka divizija" "6. pjesacka divizija" "Poglavnikova tjelesna divizija" "1. hrvatska udarna divizija" "2. hrvatska divizija" "3. hrvatska divizija" "4. hrvatska divizija" 
+		"5. hrvatska divizija" "6. hrvatska divizija" "8. hrvatska divizija" "10. hrvatska divizija" "11. hrvatska divizija" "12. hrvatska divizija" "13. hrvatska divizija" "14. hrvatska divizija" "15. hrvatska divizija" "16. hrvatska doknadna divizija" "17. hrvatska divizija" 
+		"18. hrvatska udarna divizija" "19. hrvatska divizija" "20. hrvatska divizija" "21. hrvatska divizija" "22. hrvatska divizija" "23. hrvatska divizija" "24. hrvatska divizija" "25. hrvatska divizija" 
+	}
+	cavalry_brigade = {
+		"1. konjanicka divizija" "2. konjanicka divizija" "3. konjanicka divizija" "4. konjanicka divizija" "5. konjanicka divizija" 
+	}
+	motorized_brigade = {
+		"1. samovozna divizija" "2. samovozna divizija" "3. samovozna divizija" "1. brza divizija" "2. brza divizija" "3. brza divizija" 
+	}
+	mechanized_brigade = {
+		"1. mehanizirana divizija" "2. mehanizirana divizija" 
+	}
+	light_armor_brigade = {
+		"1. oklopna divizija" "2. oklopna divizija" "3. oklopna divizija" "4. oklopna divizija" "5. oklopna divizija" "6. oklopna divizija" "7. oklopna divizija" "8. oklopna divizija" "9. oklopna divizija" "10. oklopna divizija" "11. oklopna divizija" 
+			}
+	armor_brigade = {
+		"1. oklopna divizija" "2. oklopna divizija" "3. oklopna divizija" "4. oklopna divizija" "5. oklopna divizija" "6. oklopna divizija" "7. oklopna divizija" "8. oklopna divizija" "9. oklopna divizija" "10. oklopna divizija" "11. oklopna divizija" 
+			}
+	paratrooper_brigade = {
+		"1. padobranska lovacka divzija" "2. padobranska lovacka divzija" "3. padobranska lovacka divzija" "4. padobranska lovacka divzija" "5. padobranska lovacka divzija" "6. padobranska lovacka divzija" 
+	}
+	marine_brigade = {
+		"1. mornaricka divizija" "2. mornaricka divizija" 
+	}
+	bergsjaeger_brigade = {
+		"1. gorska divizija" "7. hrvatska (gorska) divizija" "9. hrvatska (gorska) divizija" "2. gorska divizija" "3. gorska divizija" "4. gorska divizija" "5. gorska divizija" "30. hrvatska (gorska) divizija" "31. hrvatska (gorska) divizija" "32. hrvatska (gorska) divizija" "33. hrvatska (gorska) divizija" 
+		"34. hrvatska (gorska) divizija" "35. hrvatska (gorska) divizija" 
+	}
+	garrison_brigade = {
+		"1. hrvatska udarna divizija" "2. hrvatska divizija" "3. hrvatska divizija" "4. hrvatska divizija" "5. hrvatska divizija" "6. hrvatska divizija" "8. hrvatska divizija" "10. hrvatska divizija" "11. hrvatska divizija" "12. hrvatska divizija" "13. hrvatska divizija" 
+		"14. hrvatska divizija" "15. hrvatska divizija" "16. hrvatska doknadna divizija" "17. hrvatska divizija" "18. hrvatska udarna divizija" "19. hrvatska divizija" "20. hrvatska divizija" "21. hrvatska divizija" "22. hrvatska divizija" "23. hrvatska divizija" "24. hrvatska divizija" 
+		"25. hrvatska divizija" 
+	}
+	hq_brigade = {
+		"Hrvati glavni štab" "1. hrvatska armija" "2. hrvatska armija" "3. hrvatska armija" "4. hrvatska armija" "5. hrvatska armija" 
+	}
+	militia_brigade = {
+		"Hrvatsko oruznistvo" "Ustaska vojnica" "Pucko ustaski sbor" "Huskina legija" "Hadziefendica legija" "Deutsch-Kroatische Polizei" 
+	}
+	multi_role = {
+		"4. legionarska skupina" "1. Lovaèka legionarska skupina" "11. zrakoplovna skupina" "26. zrakoplovna skupina" "27. zrakoplovna skupina" "28. zrakoplovna skupina" "29. zrakoplovna skupina" "30. zrakoplovna skupina" "31. zrakoplovna skupina" "32. zrakoplovna skupina" "33. zrakoplovna skupina" 
+		"34. zrakoplovna skupina" "35. zrakoplovna skupina" "36. zrakoplovna skupina" "37. zrakoplovna skupina" "38. zrakoplovna skupina" "39. zrakoplovna skupina" "40. zrakoplovna skupina" 
+	}
+	interceptor = {
+		"4. legionarska skupina" "1. Lovaèka legionarska skupina" "11. zrakoplovna skupina" "26. zrakoplovna skupina" "27. zrakoplovna skupina" "28. zrakoplovna skupina" "29. zrakoplovna skupina" "30. zrakoplovna skupina" "31. zrakoplovna skupina" "32. zrakoplovna skupina" "33. zrakoplovna skupina" 
+		"34. zrakoplovna skupina" "35. zrakoplovna skupina" "36. zrakoplovna skupina" "37. zrakoplovna skupina" "38. zrakoplovna skupina" "39. zrakoplovna skupina" "40. zrakoplovna skupina" 
+	}
+	strategic_bomber = {
+		"2. zrakoplovna skupina" "3. skupina" "5. legionarska skupina" "6. skupina" "15. Bombardersko-legionarska skupina" "skupina Cenic" 
+	}
+	tactical_bomber = {
+		"26. zrakoplovna skupina" "27. zrakoplovna skupina" "28. zrakoplovna skupina" "29. zrakoplovna skupina" "30. zrakoplovna skupina" "31. zrakoplovna skupina" "32. zrakoplovna skupina" "33. zrakoplovna skupina" "34. zrakoplovna skupina" "35. zrakoplovna skupina" "36. zrakoplovna skupina" 
+		"37. zrakoplovna skupina" "38. zrakoplovna skupina" "39. zrakoplovna skupina" "40. zrakoplovna skupina" 
+	}
+	naval_bomber = {
+		"26. zrakoplovna skupina" "27. zrakoplovna skupina" "28. zrakoplovna skupina" "29. zrakoplovna skupina" "30. zrakoplovna skupina" "31. zrakoplovna skupina" "32. zrakoplovna skupina" "33. zrakoplovna skupina" "34. zrakoplovna skupina" "35. zrakoplovna skupina" "36. zrakoplovna skupina" 
+		"37. zrakoplovna skupina" "38. zrakoplovna skupina" "39. zrakoplovna skupina" "40. zrakoplovna skupina" 
+	}
+	cas = {
+		"26. zrakoplovna skupina" "27. zrakoplovna skupina" "28. zrakoplovna skupina" "29. zrakoplovna skupina" "30. zrakoplovna skupina" "31. zrakoplovna skupina" "32. zrakoplovna skupina" "33. zrakoplovna skupina" "34. zrakoplovna skupina" "35. zrakoplovna skupina" "36. zrakoplovna skupina" 
+		"37. zrakoplovna skupina" "38. zrakoplovna skupina" "39. zrakoplovna skupina" "40. zrakoplovna skupina" 
+	}
+	transport_plane = {
+		"19. skupinaza vezu" "20. prijenosna skupina" 
+	}
+	battleship = {
+		"HRM Zabreb" "HRM Dubrovnik" "HRM Sarajevo" "HRM Mostar" "HRM Ogulin" 
+	}
+	light_cruiser = {
+		"HRM Zagreb" "HRM Dubrovnik" "HRM Split" "HRM Bjelovar" "HRM Rovinj" "HRM Rab" "HRM Zadar" "HRM Karlovac" "HRM Sarajevo" "HRM Mostar" "HRM Ogulin" 
+		"HRM Sisak" "HRM Sibenik" "HRM Solin" "HRM Korcula" "HRM Mljet" 
+	}
+	heavy_cruiser = {
+		"HRM Zagreb" "HRM Dubrovnik" "HRM Split" "HRM Bjelovar" "HRM Rovinj" "HRM Rab" "HRM Zadar" "HRM Karlovac" "HRM Sarajevo" "HRM Mostar" "HRM Ogulin" 
+		"HRM Sisak" "HRM Sibenik" "HRM Solin" "HRM Korcula" "HRM Mljet" 
+	}
+	battlecruiser = {
+		"HRM Zagreb" "HRM Rab" "HRM Zadar" "HRM Karlovac" "HRM Sarajevo" "HRM Mostar" "HRM Ogulin" 
+	}
+	carrier = {
+		"HRM Mostar" "HRM Ogulin" "HRM Mljet" 
+	}
+	escort_carrier = {
+		"HRM Mostar" "HRM Ogulin" "HRM Mljet" 
+	}
+
+}
+
+
+ministers = {
+	30001 = {
+		name = "Tomislav II"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M30001
+		head_of_state = power_hungry_demagogue
+		head_of_state = power_hungry_demagogue
+		start_date = 1936.1.1
+	}
+	30002 = {
+		name = "Ante Pavelic"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M30002
+		head_of_government = ambitious_union_boss
+		head_of_government = ambitious_union_boss
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	30003 = {
+		name = "Milan Budak"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M30003
+		foreign_minister = iron_fisted_brute
+		start_date = 1936.1.1
+	}
+	30004 = {
+		name = "Vilko Begic"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M30004
+		armament_minister = tank_proponent
+		chief_of_army = armoured_spearhead_doctrine
+		minister_of_security = tank_proponent
+		start_date = 1936.1.1
+	}
+	30005 = {
+		name = "Mladen Lorkovic"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M30005
+		minister_of_security = crooked_kleptocrat
+		foreign_minister = general_staffer
+		minister_of_intelligence = research_specialist
+		start_date = 1936.1.1
+	}
+	30006 = {
+		name = "Adalbert Rogulja"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M30006
+		minister_of_intelligence = dismal_enigma
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	30007 = {
+		name = "Slavko Kvaternik"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M30007
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	30009 = {
+		name = "Djuro Jakcin"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M30009
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	30010 = {
+		name = "Vladimir Kren"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M30010
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+	30022 = {
+		name = "Alojzije Stepinac"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M30022
+		head_of_state = weary_stiff_neck
+		foreign_minister = biased_intellectual
+		start_date = 1945.1.1
+	}
+	30023 = {
+		name = "Vladko Macek"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M30011
+		head_of_state = insignificant_layman
+		foreign_minister = biased_intellectual
+		start_date = 1938.1.1
+	}
+	30025 = {
+		name = "Vladimir Laxa"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M30017
+		head_of_government = old_general
+		chief_of_staff = school_of_defence
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1945.1.1
+	}
+	30026 = {
+		name = "Ivan Subasic"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M30012
+		head_of_government = backroom_backstabber
+		armament_minister = theoretical_scientist
+		start_date = 1938.1.1
+	}
+	30030 = {
+		name = "Ivan Saric"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M30030
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1946.1.1
+	}
+	30033 = {
+		name = "Dido Kvaternik"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M30033
+		armament_minister = infantry_proponent
+		start_date = 1938.1.1
+	}
+	30036 = {
+		name = "Viktor Vida"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M30015
+		minister_of_security = man_of_the_people
+		start_date = 1938.1.1
+	}
+	30037 = {
+		name = "Eugen Kvaternik"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M30037
+		minister_of_security = prince_of_terror
+		start_date = 1940.1.1
+	}
+	30038 = {
+		name = "Andrija Artukovic"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M30038
+		minister_of_security = efficient_sociopath
+		start_date = 1941.1.1
+	}
+	30039 = {
+		name = "Krunoslav Draganovic"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M30039
+		minister_of_security = back_stabber
+		start_date = 1943.1.1
+	}
+	30040 = {
+		name = "Vilko Pecnikar"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M30040
+		minister_of_security = crooked_kleptocrat
+		minister_of_intelligence = dismal_enigma
+		start_date = 1945.1.1
+	}
+	30048 = {
+		name = "Fedor Dragojlov"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M30048
+		chief_of_staff = school_of_mass_combat
+		start_date = 1943.1.1
+	}
+	30054 = {
+		name = "Slavko Stancer"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M30054
+		chief_of_army = static_defence_doctrine
+		start_date = 1942.1.1
+	}
+	30055 = {
+		name = "Friedrich Navratil"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M30020
+		chief_of_army = decisive_battle_doctrine
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1943.1.1
+	}
+	30061 = {
+		name = "Edgar Angeli"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M30019
+		chief_of_navy = open_seas_doctrine
+		start_date = 1943.1.1
+	}
+	30062 = {
+		name = "Nikola Steinfl"
+		ideology = national_socialist
+		loyalty = 0.50
+		picture = M30062
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1944.1.1
+	}
+}

@@ -1,0 +1,4 @@
+owner = ASTcontroller = ASTadd_core = AST
+infra = 1
+
+1942.6.4 = {	controller = JAP}

@@ -1,0 +1,17 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+
+points = 2
+crude_oil = 17.00
+industry = 1
+infra = 7
+
+1942.8.3 = {
+	controller = GER
+}
+1943.2.1 = {
+	controller = SOV 
+}
+
+

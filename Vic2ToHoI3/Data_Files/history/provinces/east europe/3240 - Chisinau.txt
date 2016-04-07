@@ -1,0 +1,11 @@
+owner = ROM
+controller = ROM
+add_core = ROM
+
+metal = 2.00
+energy = 2.00
+rare_materials = 1.00
+industry = 2
+infra = 8
+manpower = 1.00
+leadership = 0.10

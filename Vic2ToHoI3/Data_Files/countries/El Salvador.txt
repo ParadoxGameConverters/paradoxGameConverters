@@ -1,0 +1,435 @@
+color = { 228  229  221 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"I División de Infantería" "II División de Infantería" "III División de Infantería" "IV División de Infantería" "V División de Infantería" "VI División de Infantería" "VII División de Infantería" "VIII División de Infantería" "IX División de Infantería" "X División de Infantería" "XI División de Infantería" 
+		"XII División de Infantería" "XIII División de Infantería" "XIV División de Infantería" "XV División de Infantería" "XVI División de Infantería" "XVII División de Infantería" "XVIII División de Infantería" "XIX División de Infantería" "XX División de Infantería" 
+	}
+	cavalry_brigade = {
+		"1. División de Caballería" "2. División de Caballería" "3. División de Caballería" "4. División de Caballería" "5. División de Caballería" "6. División de Caballería" "7. División de Caballería" "8. División de Caballería" "9. División de Caballería" "10. División de Caballería" 
+	}
+	motorized_brigade = {
+		"División Motorizada nro. 1" "División Motorizada nro. 2" "División Motorizada nro. 3" "División Motorizada nro. 4" "División Motorizada nro. 5" "División Motorizada nro. 6" "División Motorizada nro. 7" "División Motorizada nro. 8" "División Motorizada nro. 9" "División Motorizada nro. 10" 
+	}
+	mechanized_brigade = {
+		"División Mecanizada nro. 11" "División Mecanizada nro. 12" "División Mecanizada nro. 13" "División Mecanizada nro. 14" "División Mecanizada nro. 15" "División Mecanizada nro. 16" "División Mecanizada nro. 17" "División Mecanizada nro. 18" "División Mecanizada nro. 19" "División Mecanizada nro. 20" 
+	}
+	light_armor_brigade = {
+		"1a División Blindada" "2a División Blindada" "3a División Blindada" "4a División Blindada" "5a División Blindada" "6a División Blindada" "7a División Blindada" "8a División Blindada" "9a División Blindada" "10a División Blindada" 
+	}
+	armor_brigade = {
+		"1a División Blindada" "2a División Blindada" "3a División Blindada" "4a División Blindada" "5a División Blindada" "6a División Blindada" "7a División Blindada" "8a División Blindada" "9a División Blindada" "10a División Blindada" 
+	}
+	paratrooper_brigade = {
+		"XXI División Paracidista" "XXII División Paracidista" "XXIII División Paracidista" "XXIV División Paracidista" "XXV División Paracidista" "XXVI División Paracidista" "XXVII División Paracidista" "XXVIII División Paracidista" "XXIX División Paracidista" "XXX División Paracidista" 
+	}
+	marine_brigade = {
+		"XXXI División de Infantería de Marina" "XXXII División de Infantería de Marina" "XXXIII División de Infantería de Marina" "XXXIV División de Infantería de Marina" "XXXV División de Infantería de Marina" "XXXVI División de Infantería de Marina" "XXXVII División de Infantería de Marina" "XXXVIII División de Infantería de Marina" "XXXIX División de Infantería de Marina" "XL División de Infantería de Marina" 
+	}
+	bergsjaeger_brigade = {
+		"XLI División de Montaña" "XLII División de Montaña" "XLIII División de Montaña" "XLIV División de Montaña" "XLV División de Montaña" "XLVI División de Montaña" "XLVII División de Montaña" "XLVIII División de Montaña" "XLIX División de Montaña" "L División de Montaña" 
+	}
+	garrison_brigade = {
+		"I División de Infantería" "II División de Infantería" "III División de Infantería" "IV División de Infantería" "V División de Infantería" "VI División de Infantería" "VII División de Infantería" "VIII División de Infantería" "IX División de Infantería" "X División de Infantería" "XI División de Infantería" 
+		"XII División de Infantería" "XIII División de Infantería" "XIV División de Infantería" "XV División de Infantería" "XVI División de Infantería" "XVII División de Infantería" "XVIII División de Infantería" "XIX División de Infantería" "XX División de Infantería" 
+	}
+	hq_brigade = {
+		"Cuartel General 1er Ejército" "Cuartel General 2o Ejército" "Cuartel General 3er Ejército" "Cuartel General 4o Ejército" "Cuartel General 5o Ejército" "Cuartel General 6o Ejército" "Cuartel General 7o Ejército" "Cuartel General 8o Ejército" "Cuartel General 9o Ejército" "Cuartel General 10o Ejército" 
+	}
+	militia_brigade = {
+		"Agrup. Defensa Nacional nro. 21" "Agrup. Defensa Nacional nro. 22" "Agrup. Defensa Nacional nro. 23" "Agrup. Defensa Nacional nro. 24" "Agrup. Defensa Nacional nro. 25" "Agrup. Defensa Nacional nro. 26" "Agrup. Defensa Nacional nro. 27" "Agrup. Defensa Nacional nro. 28" "Agrup. Defensa Nacional nro. 29" "Agrup. Defensa Nacional nro. 30" "Agrup. Defensa Nacional nro. 31" 
+		"Agrup. Defensa Nacional nro. 32" "Agrup. Defensa Nacional nro. 33" "Agrup. Defensa Nacional nro. 34" "Agrup. Defensa Nacional nro. 35" "Agrup. Defensa Nacional nro. 36" "Agrup. Defensa Nacional nro. 37" "Agrup. Defensa Nacional nro. 38" "Agrup. Defensa Nacional nro. 39" "Agrup. Defensa Nacional nro. 40" 
+	}
+	multi_role = {
+		"1. Grupo Aéreo de Caza" "2. Grupo Aéreo de Caza" "3. Grupo Aéreo de Caza" "4. Grupo Aéreo de Caza" "5. Grupo Aéreo de Caza" "6. Grupo Aéreo de Caza" "7. Grupo Aéreo de Caza" "8. Grupo Aéreo de Caza" "9. Grupo Aéreo de Caza" "10. Grupo Aéreo de Caza" 
+	}
+	interceptor = {
+		"1. Grupo Aéreo de Caza" "2. Grupo Aéreo de Caza" "3. Grupo Aéreo de Caza" "4. Grupo Aéreo de Caza" "5. Grupo Aéreo de Caza" "6. Grupo Aéreo de Caza" "7. Grupo Aéreo de Caza" "8. Grupo Aéreo de Caza" "9. Grupo Aéreo de Caza" "10. Grupo Aéreo de Caza" 
+	}
+	strategic_bomber = {
+		"1. Grupo Aéreo Estratégico" "2. Grupo Aéreo Estratégico" "3. Grupo Aéreo Estratégico" "4. Grupo Aéreo Estratégico" "5. Grupo Aéreo Estratégico" "6. Grupo Aéreo Estratégico" "7. Grupo Aéreo Estratégico" "8. Grupo Aéreo Estratégico" "9. Grupo Aéreo Estratégico" "10. Grupo Aéreo Estratégico" 
+	}
+	tactical_bomber = {
+		"1. Grupo Aéreo Táctico" "2. Grupo Aéreo Táctico" "3. Grupo Aéreo Táctico" "4. Grupo Aéreo Táctico" "5. Grupo Aéreo Táctico" "6. Grupo Aéreo Táctico" "7. Grupo Aéreo Táctico" "8. Grupo Aéreo Táctico" "9. Grupo Aéreo Táctico" "10. Grupo Aéreo Táctico" 
+	}
+	naval_bomber = {
+		"1. Grupo Aéreo de la Marina" "2. Grupo Aéreo de la Marina" "3. Grupo Aéreo de la Marina" "4. Grupo Aéreo de la Marina" "5. Grupo Aéreo de la Marina" "6. Grupo Aéreo de la Marina" "7. Grupo Aéreo de la Marina" "8. Grupo Aéreo de la Marina" "9. Grupo Aéreo de la Marina" "10. Grupo Aéreo de la Marina" "1. Grupo Aéreo Torpedero" 
+		"2. Grupo Aéreo Torpedero" "3. Grupo Aéreo Torpedero" "4. Grupo Aéreo Torpedero" "5. Grupo Aéreo Torpedero" "6. Grupo Aéreo Torpedero" "7. Grupo Aéreo Torpedero" "8. Grupo Aéreo Torpedero" "9. Grupo Aéreo Torpedero" "10. Grupo Aéreo Torpedero" 
+	}
+	cas = {
+		"1. Grupo Aéreo de Asalto" "2. Grupo Aéreo de Asalto" "3. Grupo Aéreo de Asalto" "4. Grupo Aéreo de Asalto" "5. Grupo Aéreo de Asalto" "6. Grupo Aéreo de Asalto" "7. Grupo Aéreo de Asalto" "8. Grupo Aéreo de Asalto" "9. Grupo Aéreo de Asalto" "10. Grupo Aéreo de Asalto" 
+	}
+	transport_plane = {
+		"1a Línea de Transporte Aéreo" "2a Línea de Transporte Aéreo" "3a Línea de Transporte Aéreo" "4a Línea de Transporte Aéreo" "5a Línea de Transporte Aéreo" 
+	}
+	battleship = {
+		"ARS La Libertad" "ARS Santa Ana" 
+	}
+	light_cruiser = {
+		"ARS Chalatenango" "ARS Cojutepeque" "ARS La Palma" "ARS Jazubal" "ARS Sonsonate" 
+	}
+	heavy_cruiser = {
+		"ARS Chalatenango" "ARS Cojutepeque" "ARS La Palma" "ARS Jazubal" "ARS Sonsonate" 
+	}
+	battlecruiser = {
+		"ARS La Libertad" "ARS Santa Ana" 
+	}
+	destroyer = {
+		"1a Flotilla de Torpederos" "2a Flotilla de Torpederos" "3a Flotilla de Torpederos" "4a Flotilla de Torpederos" "5a Flotilla de Torpederos" "6a Flotilla de Torpederos" "7a Flotilla de Torpederos" "8a Flotilla de Torpederos" "9a Flotilla de Torpederos" "10a Flotilla de Torpederos" 
+	}
+	carrier = {
+		"ARS República de El Salvador" "ARS San Salvador" 
+	}
+	submarine = {
+		"1a Flotilla de Submarinos" "2a Flotilla de Submarinos" "3a Flotilla de Submarinos" "4a Flotilla de Submarinos" "5a Flotilla de Submarinos" "6a Flotilla de Submarinos" "7a Flotilla de Submarinos" "8a Flotilla de Submarinos" "9a Flotilla de Submarinos" "10a Flotilla de Submarinos" 
+	}
+	transport_ship = {
+		"Flotilla de Transporte Naval nro. 1" "Flotilla de Transporte Naval nro. 2" "Flotilla de Transporte Naval nro. 3" "Flotilla de Transporte Naval nro. 4" "Flotilla de Transporte Naval nro. 5" "Flotilla de Transporte Naval nro. 6" "Flotilla de Transporte Naval nro. 7" "Flotilla de Transporte Naval nro. 8" "Flotilla de Transporte Naval nro. 9" "Flotilla de Transporte Naval nro. 10" 
+	}
+
+}
+
+ministers = {
+	77001 = {
+		name = "Maximilliano Hernandez Martínez"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M77001
+		head_of_state = resigned_generalissimo
+		head_of_government = old_general
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	77003 = {
+		name = "Miguel Ángel Araujo"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M77003
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	77004 = {
+		name = "Alberto Goméz Zarate"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M77004
+		armament_minister = infantry_proponent
+		start_date = 1936.1.1
+	}
+	77005 = {
+		name = "Fidel Cristino Garay"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M77005
+		minister_of_security = back_stabber
+		start_date = 1936.1.1
+	}
+	77006 = {
+		name = "Oscar A. Bolaños"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M77006
+		minister_of_intelligence = industrial_specialist
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	77007 = {
+		name = "Marco A. Molina"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M77007
+		chief_of_staff = school_of_mass_combat
+		start_date = 1936.1.1
+	}
+	77009 = {
+		name = "Raul Rodolfí Sanchez"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M77009
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	77010 = {
+		name = "Humbert Aberle"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M77010
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	77031 = {
+		name = "Andrés Ignacio Menéndez"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M77011
+		head_of_state = benevolent_gentleman
+		head_of_government = naive_optimist
+		chief_of_staff = school_of_defence
+		start_date = 1944.1.1
+	}
+	77032 = {
+		name = "Osmín Aguirre y Salinas"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M77032
+		head_of_state = power_hungry_demagogue
+		head_of_government = old_general
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1944.1.1
+	}
+	77033 = {
+		name = "Salvador Castañeda Castro"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M77033
+		head_of_state = die_hard_reformer
+		head_of_government = smiling_oilman
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1945.1.1
+	}
+	77037 = {
+		name = "Arturo Ramón Avila"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M77013
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1942.1.1
+	}
+	77038 = {
+		name = "Julio Enrique Ávila"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M77038
+		foreign_minister = iron_fisted_brute
+		start_date = 1944.1.1
+	}
+	77039 = {
+		name = "Alberto Argüello Loucel"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M77039
+		foreign_minister = great_compromiser
+		start_date = 1944.1.1
+	}
+	77040 = {
+		name = "Hector Escobar Serraño"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M77040
+		foreign_minister = general_staffer
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1945.1.1
+	}
+	77041 = {
+		name = "Joaquin Leiva y Lleida"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M77041
+		foreign_minister = biased_intellectual
+		start_date = 1946.1.1
+	}
+	77042 = {
+		name = "Pio Romero Bosque"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M77012
+		armament_minister = administrative_genius
+		start_date = 1938.1.1
+	}
+	77043 = {
+		name = "Pedro Jaime de Matheu"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M77043
+		armament_minister = laissez_faires_capitalist
+		minister_of_security = man_of_the_people
+		minister_of_security = man_of_the_people
+		start_date = 1938.1.1
+	}
+	77044 = {
+		name = "Jose Maria Cuellar"
+		ideology = market_liberal
+		loyalty = 0.25
+		picture = M77022
+		armament_minister = tank_proponent
+		head_of_government = naive_optimist
+		start_date = 1945.1.1
+	}
+	77045 = {
+		name = "José Gustavo Guerrero"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M77045
+		armament_minister = resource_industrialist
+		armament_minister = laissez_faires_capitalist
+		start_date = 1944.1.1
+	}
+	77047 = {
+		name = "José Adán Parada"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M77015
+		minister_of_security = compassionate_gentleman
+		start_date = 1939.1.1
+	}
+	77049 = {
+		name = "Armando Molina Meña"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M77016
+		minister_of_intelligence = dismal_enigma
+		start_date = 1941.1.1
+	}
+	77050 = {
+		name = "Salvador Peña Trejo"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M77026
+		minister_of_intelligence = research_specialist
+		start_date = 1944.1.1
+	}
+	77051 = {
+		name = "Laura H. de Salazar"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M77023
+		minister_of_intelligence = technical_specialist
+		foreign_minister = iron_fisted_brute
+		start_date = 1944.1.1
+	}
+	77054 = {
+		name = "Mauro Espínola Castro"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M77018
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1943.1.1
+	}
+	77055 = {
+		name = "José Angél Castillo"
+		ideology = social_democrat
+		loyalty = 0.50
+		picture = M77028
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1944.1.1
+	}
+	77056 = {
+		name = "Horacio Carnejo Ibanéz"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M77019
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1940.1.1
+	}
+	77058 = {
+		name = "Ricardo Abrego Abrego"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M77020
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1943.1.1
+	}
+	77059 = {
+		name = "Milton Andrade Cabrera"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M77030
+		chief_of_air = army_aviation_doctrine
+		start_date = 1944.1.1
+	}
+	77021 = {
+		name = "Augustín Farabundo Martí"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M77021
+		head_of_state = weary_stiff_neck
+		chief_of_staff = school_of_fire_support
+		start_date = 1936.1.1
+	}
+	77025 = {
+		name = "Franco Hernandez Ávila"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M77025
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	77065 = {
+		name = "Oscar A. Osorio"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M77065
+		head_of_state = resigned_generalissimo
+		head_of_government = old_general
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1948.1.1
+	}
+	77067 = {
+		name = "Franco Amerigo Paz"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M77067
+		foreign_minister = iron_fisted_brute
+		start_date = 1948.1.1
+	}
+	77068 = {
+		name = "Humberto Costa"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M77068
+		armament_minister = air_superiority_proponent
+		chief_of_air = air_superiority_doctrine
+		start_date = 1948.1.1
+	}
+	77069 = {
+		name = "Manuel de Jesús Cordova"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M77069
+		minister_of_security = prince_of_terror
+		chief_of_army = guns_and_butter_doctrine
+		chief_of_staff = school_of_fire_support
+		start_date = 1948.1.1
+	}
+	77070 = {
+		name = "Reinaldo Galindo Pohl"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M77070
+		minister_of_intelligence = naval_intelligence_specialist
+		chief_of_navy = open_seas_doctrine
+		start_date = 1948.1.1
+	}
+	77076 = {
+		name = "Manuel Jose Maria Lemus Lopez"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M77076
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1951.1.1
+	}
+}

@@ -1,0 +1,20 @@
+owner = USA
+controller = USA
+add_core = USA
+
+points = 1
+metal = 3.00
+energy = 6.00
+rare_materials = 2.00
+industry = 6
+anti_air = 3
+infra = 8
+air_base = 10
+naval_base = 10
+manpower = 3.00
+leadership = 0.40
+
+1941.1.1 = {
+	radar_station = 1
+}
+

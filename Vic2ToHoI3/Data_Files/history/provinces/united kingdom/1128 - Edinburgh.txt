@@ -1,0 +1,18 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+points = 5
+metal = 9.00
+energy = 30.00
+industry = 2
+infra = 9
+manpower = 1.00
+leadership = 0.25
+
+1938.1.1 = {
+	radar_station = 1
+}
+
+1939.1.1 = {
+	radar_station = 3
+}

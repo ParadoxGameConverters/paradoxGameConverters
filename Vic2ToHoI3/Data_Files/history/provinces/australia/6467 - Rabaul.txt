@@ -1,0 +1,12 @@
+owner = AST
+controller = AST
+add_core = AST
+points = 1
+anti_air = 2
+infra = 6
+air_base = 2
+naval_base = 7
+
+1942.2.1 = {
+	controller = JAP
+}

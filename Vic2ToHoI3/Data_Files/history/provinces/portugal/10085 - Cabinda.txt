@@ -1,0 +1,6 @@
+owner = POR
+controller = POR
+add_core = POR
+infra = 4
+air_base = 1
+naval_base = 1

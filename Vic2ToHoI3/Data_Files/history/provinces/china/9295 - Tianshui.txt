@@ -1,0 +1,8 @@
+owner = CXB
+controller = CXB
+add_core = CXB
+add_core = CHIadd_core = CHC
+infra = 2
+points = 1
+manpower = 1.00
+leadership = 0.10

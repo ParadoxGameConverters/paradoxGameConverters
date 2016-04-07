@@ -1,0 +1,581 @@
+color = { 180  158  127 }
+graphical_culture = Generic
+
+last_election = 1932.5.17
+duration = 60
+
+default_templates = {
+	ENG_infantry = {
+		motorized_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	ENG_motorized = {
+		motorized_brigade
+		motorized_brigade
+	}
+	ENG_armoured_1936 = {
+		armor_brigade
+		light_armor_brigade
+		light_armor_brigade
+		motorized_brigade
+	}
+	ENG_armoured_1940 = {
+		armor_brigade
+		armor_brigade
+		motorized_brigade
+	}
+	ENG_airborne = {
+		paratrooper_brigade
+		paratrooper_brigade
+		paratrooper_brigade
+	}
+}
+
+
+unit_names = {
+	infantry_brigade = {
+		"1st SA Infantry Division" "2nd SA Infantry Division" "3rd SA Infantry Division" "4th SA Infantry Division" "5th SA Infantry Division" "6th SA Infantry Division" "7th SA Infantry Division" "8th SA Infantry Division" "9th SA Infantry Division" "10th SA Infantry Division" "11th SA Infantry Division" 
+		"12th SA Infantry Division" "13th SA Infantry Division" "14th SA Infantry Division" "15th SA Infantry Division" "16th SA Infantry Division" "17th SA Infantry Division" "18th SA Infantry Division" "19th SA Infantry Division" "20th SA Infantry Division" 
+	}
+	cavalry_brigade = {
+		"1st SA Cavalry Division" "2nd SA Cavalry Division" "3rd SA Cavalry Division" "4th SA Cavalry Division" "5th SA Cavalry Division" "6th SA Cavalry Division" "7th SA Cavalry Division" "8th SA Cavalry Division" "9th SA Cavalry Division" "10th SA Cavalry Division" 
+	}
+	motorized_brigade = {
+		"1st SA Motorized Inf. Div." "2nd SA Motorized Inf. Div." "3rd SA Motorized Inf. Div." "4th SA Motorized Inf. Div." "5th SA Motorized Inf. Div." "6th SA Motorized Inf. Div." "7th SA Motorized Inf. Div." "8th SA Motorized Inf. Div." "9th SA Motorized Inf. Div." "10th SA Motorized Inf. Div." "11th SA Motorized Inf. Div." 
+		"12th SA Motorized Inf. Div." "13th SA Motorized Inf. Div." "14th SA Motorized Inf. Div." "15th SA Motorized Inf. Div." 
+	}
+	mechanized_brigade = {
+		"1st SA Half-Track Inf. Div." "2nd SA Half-Track Inf. Div." "3rd SA Half-Track Inf. Div." "4th SA Half-Track Inf. Div." "5th SA Half-Track Inf. Div." "6th SA Half-Track Inf. Div." "7th SA Half-Track Inf. Div." "8th SA Half-Track Inf. Div." "9th SA Half-Track Inf. Div." "10th SA Half-Track Inf. Div." "11th SA Half-Track Inf. Div." 
+		"12th SA Half-Track Inf. Div." "13th SA Half-Track Inf. Div." "14th SA Half-Track Inf. Div." "15th SA Half-Track Inf. Div." 
+	}
+	light_armor_brigade = {
+		"6th SA Armoured Division" "1st SA Armoured Division" "2nd SA Armoured Division" "3rd SA Armoured Division" "4th SA Armoured Division" "5th SA Armoured Division" "6th SA Armoured Division" "7th SA Armoured Division" "8th SA Armoured Division" "9th SA Armoured Division" "10th SA Armoured Division" 
+			}
+	armor_brigade = {
+		"6th SA Armoured Division" "1st SA Armoured Division" "2nd SA Armoured Division" "3rd SA Armoured Division" "4th SA Armoured Division" "5th SA Armoured Division" "6th SA Armoured Division" "7th SA Armoured Division" "8th SA Armoured Division" "9th SA Armoured Division" "10th SA Armoured Division" 
+			}
+	paratrooper_brigade = {
+		"1st SA Airborne Commando Division" "2nd SA Airborne Commando Division" "3rd SA Airborne Commando Division" "4th SA Airborne Commando Division" "5th SA Airborne Commando Division" "6th SA Airborne Commando Division" "7th SA Airborne Commando Division" "8th SA Airborne Commando Division" "9th SA Airborne Commando Division" "10th SA Airborne Commando Division" 
+	}
+	marine_brigade = {
+		"1st SA Marine Commando Division" "2nd SA Marine Commando Division" "3rd SA Marine Commando Division" "4th SA Marine Commando Division" "5th SA Marine Commando Division" "6th SA Marine Commando Division" "7th SA Marine Commando Division" "8th SA Marine Commando Division" "9th SA Marine Commando Division" "10th SA Marine Commando Division" 
+	}
+	bergsjaeger_brigade = {
+		"1st SA Mountain Rangers Div." "2nd SA Mountain Rangers Div." "3rd SA Mountain Rangers Div." "4th SA Mountain Rangers Div." "5th SA Mountain Rangers Div." "6th SA Mountain Rangers Div." "7th SA Mountain Rangers Div." "8th SA Mountain Rangers Div." "9th SA Mountain Rangers Div." "10th SA Mountain Rangers Div." "11th SA Mountain Rangers Div." 
+		"12th SA Mountain Rangers Div." "13th SA Mountain Rangers Div." "14th SA Mountain Rangers Div." "15th SA Mountain Rangers Div." 
+	}
+	garrison_brigade = {
+		"1st SA Infantry Division" "2nd SA Infantry Division" "3rd SA Infantry Division" "4th SA Infantry Division" "5th SA Infantry Division" "6th SA Infantry Division" "7th SA Infantry Division" "8th SA Infantry Division" "9th SA Infantry Division" "10th SA Infantry Division" "11th SA Infantry Division" 
+		"12th SA Infantry Division" "13th SA Infantry Division" "14th SA Infantry Division" "15th SA Infantry Division" "16th SA Infantry Division" "17th SA Infantry Division" "18th SA Infantry Division" "19th SA Infantry Division" "20th SA Infantry Division" 
+	}
+	hq_brigade = {
+		"Active Citizen Force" "South African Mobile Field Force" "1st South African Army" "2nd South African Army" "1st South African Army Group" "3rd South African Army" "4th South African Army" "2nd South African Army Group" 
+	}
+	militia_brigade = {
+		"1st Active Citizen Force" "2nd Active Citizen Force" "3rd Active Citizen Force" "4th Active Citizen Force" "5th Active Citizen Force" "6th Active Citizen Force" "7th Active Citizen Force" "8th Active Citizen Force" "9th Active Citizen Force" "10th Active Citizen Force" "11th Active Citizen Force" 
+		"12th Active Citizen Force" "13th Active Citizen Force" "14th Active Citizen Force" "15th Active Citizen Force" "16th Active Citizen Force" "17th Active Citizen Force" "18th Active Citizen Force" "19th Active Citizen Force" "20th Active Citizen Force" 
+	}
+	multi_role = {
+		"No.1 SAAF Fighter Group" "No.2 SAAF Fighter Group" "No.3 SAAF Fighter Group" "No.4 SAAF Fighter Group" "No.5 SAAF Fighter Group" "No.7 SAAF Fighter Group" "No.8 SAAF Fighter Group" "No.9 SAAF Fighter Group" "No.10 SAAF Fighter Group" "No.11 SAAF Fighter Group" "No.12 SAAF Fighter Group" 
+		"No.13 SAAF Fighter Group" "No.14 SAAF Fighter Group" "No.15 SAAF Fighter Group" "No.16 SAAF Fighter Group" "No.17 SAAF Fighter Group" "No.18 SAAF Fighter Group" "No.19 SAAF Fighter Group" "No.20 SAAF Fighter Group" 
+	}
+	interceptor = {
+		"No.1 SAAF Fighter Group" "No.2 SAAF Fighter Group" "No.3 SAAF Fighter Group" "No.4 SAAF Fighter Group" "No.5 SAAF Fighter Group" "No.7 SAAF Fighter Group" "No.8 SAAF Fighter Group" "No.9 SAAF Fighter Group" "No.10 SAAF Fighter Group" "No.11 SAAF Fighter Group" "No.12 SAAF Fighter Group" 
+		"No.13 SAAF Fighter Group" "No.14 SAAF Fighter Group" "No.15 SAAF Fighter Group" "No.16 SAAF Fighter Group" "No.17 SAAF Fighter Group" "No.18 SAAF Fighter Group" "No.19 SAAF Fighter Group" "No.20 SAAF Fighter Group" 
+	}
+	strategic_bomber = {
+		"No.1 SAAF Strategic Bomb Group" "No.2 SAAF Strategic Bomb Group" "No.6 SAAF Strategic Bomb Group" "No.3 SAAF Strategic Bomb Group" "No.4 SAAF Strategic Bomb Group" "No.7 SAAF Strategic Bomb Group" "No.8 SAAF Strategic Bomb Group" "No.9 SAAF Strategic Bomb Group" "No.10 SAAF Strategic Bomb Group" "No.11 SAAF Strategic Bomb Group" "No.12 SAAF Strategic Bomb Group" 
+		"No.13 SAAF Strategic Bomb Group" "No.14 SAAF Strategic Bomb Group" "No.15 SAAF Strategic Bomb Group" "No.16 SAAF Strategic Bomb Group" "No.17 SAAF Strategic Bomb Group" "No.18 SAAF Strategic Bomb Group" "No.19 SAAF Strategic Bomb Group" "No.20 SAAF Strategic Bomb Group" 
+	}
+	tactical_bomber = {
+		"No.1 SAAF Tactical Bomb Group" "No.2 SAAF Tactical Bomb Group" "No.6 SAAF Tactical Bomb Group" "No.3 SAAF Tactical Bomb Group" "No.4 SAAF Tactical Bomb Group" "No.7 SAAF Tactical Bomb Group" "No.8 SAAF Tactical Bomb Group" "No.9 SAAF Tactical Bomb Group" "No.10 SAAF Tactical Bomb Group" "No.11 SAAF Tactical Bomb Group" "No.12 SAAF Tactical Bomb Group" 
+		"No.13 SAAF Tactical Bomb Group" "No.14 SAAF Tactical Bomb Group" "No.15 SAAF Tactical Bomb Group" "No.16 SAAF Tactical Bomb Group" "No.17 SAAF Tactical Bomb Group" "No.18 SAAF Tactical Bomb Group" "No.19 SAAF Tactical Bomb Group" "No.20 SAAF Tactical Bomb Group" 
+	}
+	naval_bomber = {
+		"No.1 SAAF Marine Bomb Group" "No.2 SAAF Marine Bomb Group" "No.3 SAAF Marine Bomb Group" "No.4 SAAF Marine Bomb Group" "No.5 SAAF Marine Bomb Group" "No.7 SAAF Marine Bomb Group" "No.8 SAAF Marine Bomb Group" "No.9 SAAF Marine Bomb Group" "No.10 SAAF Marine Bomb Group" "No.11 SAAF Marine Bomb Group" "No.12 SAAF Marine Bomb Group" 
+		"No.13 SAAF Marine Bomb Group" "No.14 SAAF Marine Bomb Group" "No.15 SAAF Marine Bomb Group" "No.16 SAAF Marine Bomb Group" "No.17 SAAF Marine Bomb Group" "No.18 SAAF Marine Bomb Group" "No.19 SAAF Marine Bomb Group" "No.20 SAAF Marine Bomb Group" "No.1 SAAF Torpedo Attack Group" "No.2 SAAF Torpedo Attack Group" "No.3 SAAF Torpedo Attack Group" 
+		"No.4 SAAF Torpedo Attack Group" "No.5 SAAF Torpedo Attack Group" "No.7 SAAF Torpedo Attack Group" "No.8 SAAF Torpedo Attack Group" "No.9 SAAF Torpedo Attack Group" "No.10 SAAF Torpedo Attack Group" "No.11 SAAF Torpedo Attack Group" "No.12 SAAF Torpedo Attack Group" "No.13 SAAF Torpedo Attack Group" "No.14 SAAF Torpedo Attack Group" "No.15 SAAF Torpedo Attack Group" 
+		"No.16 SAAF Torpedo Attack Group" "No.17 SAAF Torpedo Attack Group" "No.18 SAAF Torpedo Attack Group" "No.19 SAAF Torpedo Attack Group" "No.20 SAAF Torpedo Attack Group" 
+	}
+	cas = {
+		"No.1 SAAF Dive Bomb Group" "No.2 SAAF Dive Bomb Group" "No.3 SAAF Dive Bomb Group" "No.4 SAAF Dive Bomb Group" "No.6 SAAF Dive Bomb Group" "No.7 SAAF Dive Bomb Group" "No.8 SAAF Dive Bomb Group" "No.9 SAAF Dive Bomb Group" "No.10 SAAF Dive Bomb Group" "No.11 SAAF Dive Bomb Group" "No.12 SAAF Dive Bomb Group" 
+		"No.13 SAAF Dive Bomb Group" "No.14 SAAF Dive Bomb Group" "No.15 SAAF Dive Bomb Group" "No.16 SAAF Dive Bomb Group" "No.17 SAAF Dive Bomb Group" "No.18 SAAF Dive Bomb Group" "No.19 SAAF Dive Bomb Group" "No.20 SAAF Dive Bomb Group" 
+	}
+	transport_plane = {
+		"No.1 SAAF Army Transport" "No.2 SAAF Army Transport" "No.3 SAAF Army Transport" "No.4 SAAF Army Transport" "No.5 SAAF Army Transport" "No.7 SAAF Army Transport" "No.8 SAAF Army Transport" "No.9 SAAF Army Transport" "No.10 SAAF Army Transport" 
+	}
+	battleship = {
+		"HMSAS South Africa" "HMSAS Good Hope" "HMSAS Natal" "HMSAS Transvaal" "HMSAS Orange Free State" "HMSAS Cape Town" "HMSAS Johannesburg" "HMSAS Port Elizabeth" "HMSAS East London" "HMSAS Bloemfontein" "HMSAS Durban" 
+		"HMSAS Pretoria" 
+	}
+	light_cruiser = {
+		"HMSAS Good Hope" "HMSAS Natal" "HMSAS Transvaal" "HMSAS Orange Free State" "HMSAS Cape Town" "HMSAS Johannesburg" "HMSAS Port Elizabeth" "HMSAS East London" "HMSAS Bloemfontein" "HMSAS Durban" "HMSAS Pretoria" 
+			}
+	heavy_cruiser = {
+		"HMSAS Good Hope" "HMSAS Natal" "HMSAS Transvaal" "HMSAS Orange Free State" "HMSAS Cape Town" "HMSAS Johannesburg" "HMSAS Port Elizabeth" "HMSAS East London" "HMSAS Bloemfontein" "HMSAS Durban" "HMSAS Pretoria" 
+			}
+	battlecruiser = {
+		"HMSAS South Africa" "HMSAS Good Hope" "HMSAS Natal" "HMSAS Transvaal" "HMSAS Orange Free State" "HMSAS Cape Town" "HMSAS Johannesburg" "HMSAS Port Elizabeth" "HMSAS East London" "HMSAS Bloemfontein" "HMSAS Durban" 
+		"HMSAS Pretoria" 
+	}
+	destroyer = {
+		"1st SAN Destroyer Flotilla" "2nd SAN Destroyer Flotilla" "3rd SAN Destroyer Flotilla" "4th SAN Destroyer Flotilla" "5th SAN Destroyer Flotilla" "6th SAN Destroyer Flotilla" "7th SAN Destroyer Flotilla" "8th SAN Destroyer Flotilla" "9th SAN Destroyer Flotilla" "10th SAN Destroyer Flotilla" "11th SAN Destroyer Flotilla" 
+		"12th SAN Destroyer Flotilla" "13th SAN Destroyer Flotilla" "14th SAN Destroyer Flotilla" "15th SAN Destroyer Flotilla" "16th SAN Destroyer Flotilla" "17th SAN Destroyer Flotilla" "18th SAN Destroyer Flotilla" "19th SAN Destroyer Flotilla" "20th SAN Destroyer Flotilla" 
+	}
+	carrier = {
+		"HMSAS South Africa" "HMSAS Good Hope" "HMSAS Natal" "HMSAS Transvaal" "HMSAS Orange Free State" "HMSAS Cape Town" "HMSAS Johannesburg" "HMSAS Port Elizabeth" "HMSAS East London" "HMSAS Bloemfontein" "HMSAS Durban" 
+		"HMSAS Pretoria" 
+	}
+	escort_carrier = {
+		"HMSAS Lion" "HMSAS Cheetah" "HMSAS Leopard" "HMSAS Serval" "HMSAS Caracal" "HMSAS Genet" "HMSAS Jackal" "HMSAS Mongoose" "HMSAS Hyena" "HMSAS Wild Dog" 
+	}
+	submarine = {
+		"1st SAN Submarine Flotilla" "2nd SAN Submarine Flotilla" "3rd SAN Submarine Flotilla" "4th SAN Submarine Flotilla" "5th SAN Submarine Flotilla" "6th SAN Submarine Flotilla" "7th SAN Submarine Flotilla" "8th SAN Submarine Flotilla" "9th SAN Submarine Flotilla" "10th SAN Submarine Flotilla" "11th SAN Submarine Flotilla" 
+		"12th SAN Submarine Flotilla" "13th SAN Submarine Flotilla" "14th SAN Submarine Flotilla" "15th SAN Submarine Flotilla" 
+	}
+	transport_ship = {
+		"1st SAN Transport Flotilla" "2nd SAN Transport Flotilla" "3rd SAN Transport Flotilla" "4th SAN Transport Flotilla" "5th SAN Transport Flotilla" "6th SAN Transport Flotilla" "7th SAN Transport Flotilla" "8th SAN Transport Flotilla" "9th SAN Transport Flotilla" "10th SAN Transport Flotilla" "11th SAN Transport Flotilla" 
+		"12th SAN Transport Flotilla" "13th SAN Transport Flotilla" "14th SAN Transport Flotilla" "15th SAN Transport Flotilla" 
+	}
+
+}
+
+
+ministers = {
+	70001 = {
+		name = "G.H.H. Villiers Lord Clarendon"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M70001
+		head_of_state = stern_imperialist
+		head_of_state = stern_imperialist
+		start_date = 1936.1.1
+	}
+	70002 = {
+		name = "James Hertzog"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M70002
+		head_of_government = old_general
+		foreign_minister = general_staffer
+		armament_minister = infantry_proponent
+		start_date = 1936.1.1
+	}
+	70004 = {
+		name = "Nicolaas Havenga"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M70004
+		armament_minister = laissez_faires_capitalist
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	70005 = {
+		name = "Jan C. Smuts"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M70005
+		minister_of_security = man_of_the_people
+		minister_of_intelligence = research_specialist
+		chief_of_army = armoured_spearhead_doctrine
+		head_of_government = backroom_backstabber
+		foreign_minister = ideological_crusader
+		chief_of_staff = school_of_mass_combat
+		armament_minister = military_entrepreneur
+		start_date = 1936.1.1
+	}
+	70007 = {
+		name = "Pierre van Ryneveld"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M70007
+		chief_of_staff = school_of_manoeuvre
+		chief_of_air = air_superiority_doctrine
+		foreign_minister = general_staffer
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	70009 = {
+		name = "Pierre Oliver-Knoll"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M70009
+		chief_of_navy = open_seas_doctrine
+		armament_minister = battle_fleet_proponent
+		start_date = 1936.1.1
+	}
+	70023 = {
+		name = "Sir Patrick Duncan"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M70023
+		head_of_state = autocratic_charmer
+		head_of_state = autocratic_charmer
+		start_date = 1937.1.1
+	}
+	70025 = {
+		name = "Nicolaas J. de Wet"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M70025
+		head_of_state = insignificant_layman
+		head_of_state = insignificant_layman
+		start_date = 1943.1.1
+	}
+	70027 = {
+		name = "Gideon B. van Zyl"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M70027
+		head_of_state = pig_headed_isolationist
+		head_of_state = pig_headed_isolationist
+		start_date = 1947.1.1
+	}
+	70029 = {
+		name = "D. F. Malan"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M70029
+		head_of_government = flamboyant_tough_guy
+		foreign_minister = the_cloak_n_dagger_schemer
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	70031 = {
+		name = "Gert Cronje"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M70031
+		foreign_minister = iron_fisted_brute
+		start_date = 1936.1.1
+	}
+	70032 = {
+		name = "Eric H. Louw"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M70032
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	70033 = {
+		name = "Reginald Blankenberg"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M70033
+		foreign_minister = biased_intellectual
+		start_date = 1937.1.1
+	}
+	70034 = {
+		name = "Graham Botha"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M70034
+		foreign_minister = apologetic_clerk
+		start_date = 1938.1.1
+	}
+	70036 = {
+		name = "E.G. Jansen"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M70036
+		foreign_minister = great_compromiser
+		minister_of_security = silent_lawyer
+		head_of_state = autocratic_charmer
+		head_of_state = autocratic_charmer
+		start_date = 1941.1.1
+	}
+	70038 = {
+		name = "L. J. du Plessis"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M70013
+		foreign_minister = ideological_crusader
+		start_date = 1943.1.1
+	}
+	70040 = {
+		name = "C. de Weenburg du Toit"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M70015
+		armament_minister = tank_proponent
+		minister_of_security = crime_fighter
+		chief_of_staff = school_of_fire_support
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1936.1.1
+	}
+	70041 = {
+		name = "J. G. Strijdom"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M70041
+		armament_minister = resource_industrialist
+		minister_of_security = back_stabber
+		head_of_government = backroom_backstabber
+		start_date = 1937.1.1
+	}
+	70043 = {
+		name = "S.P. Le Roux"
+		ideology = market_liberal
+		loyalty = 0.50
+		picture = M70043
+		armament_minister = administrative_genius
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1938.1.1
+	}
+	70045 = {
+		name = "H. J. van der Byl"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M70045
+		armament_minister = theoretical_scientist
+		start_date = 1939.1.1
+	}
+	70046 = {
+		name = "W. E. Madeley"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M70046
+		armament_minister = administrative_genius
+		start_date = 1939.1.1
+	}
+	70047 = {
+		name = "Adolf Malan"
+		ideology = market_liberal
+		loyalty = 0.50
+		picture = M70047
+		armament_minister = air_to_ground_proponent
+		chief_of_air = army_aviation_doctrine
+		start_date = 1940.1.1
+	}
+	70048 = {
+		name = "Charles T. te Water"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M70048
+		armament_minister = resource_industrialist
+		start_date = 1941.1.1
+	}
+	70049 = {
+		name = "Oswald Pirow"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M70014
+		armament_minister = military_entrepreneur
+		start_date = 1941.1.1
+	}
+	70050 = {
+		name = "Cornelis van Zuigenbrogge"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M70050
+		armament_minister = submarine_proponent
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1942.1.1
+	}
+	70052 = {
+		name = "P.O. Sauer"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M70052
+		armament_minister = laissez_faires_capitalist
+		start_date = 1943.1.1
+	}
+	70053 = {
+		name = "Marinus van Osterkamp"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M70053
+		armament_minister = air_to_sea_proponent
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1945.1.1
+	}
+	70055 = {
+		name = "Hendrik F. Verwoerd"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M70055
+		minister_of_security = prince_of_terror
+		head_of_government = ambitious_union_boss
+		start_date = 1936.1.1
+	}
+	70056 = {
+		name = "N. J. van der Merwe"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M70056
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	70057 = {
+		name = "C. R. Swart"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M70057
+		minister_of_security = silent_lawyer
+		minister_of_intelligence = dismal_enigma
+		head_of_state = pig_headed_isolationist
+		head_of_state = pig_headed_isolationist
+		start_date = 1937.1.1
+	}
+	70058 = {
+		name = "C. F. Stallard"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M70058
+		minister_of_security = silent_lawyer
+		start_date = 1938.1.1
+	}
+	70059 = {
+		name = "T.E. Dönges"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M70059
+		minister_of_security = man_of_the_people
+		start_date = 1938.1.1
+	}
+	70063 = {
+		name = "F.C. Erasmus"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M70063
+		minister_of_security = efficient_sociopath
+		armament_minister = submarine_proponent
+		armament_minister = laissez_faires_capitalist
+		start_date = 1941.1.1
+	}
+	70065 = {
+		name = "B.J. Schoeman"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M70065
+		minister_of_intelligence = research_specialist
+		start_date = 1936.1.1
+	}
+	70066 = {
+		name = "Jeannot de la Tourier"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M70066
+		minister_of_intelligence = naval_intelligence_specialist
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1939.1.1
+	}
+	70067 = {
+		name = "Seymour Jacklin"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M70016
+		minister_of_intelligence = political_specialist
+		start_date = 1940.1.1
+	}
+	70068 = {
+		name = "Eric Louw"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M70032
+		minister_of_intelligence = technical_specialist
+		start_date = 1943.1.1
+	}
+	70071 = {
+		name = "James Mitchell-Baker"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M70071
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1937.1.1
+	}
+	70072 = {
+		name = "Leonard Beyers"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M70072
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		start_date = 1940.1.1
+	}
+	70075 = {
+		name = "Robert Palmer"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M70075
+		chief_of_staff = school_of_psychology
+		start_date = 1944.1.1
+	}
+	70076 = {
+		name = "Jozua F. Naude"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M70076
+		chief_of_army = guns_and_butter_doctrine
+		minister_of_security = compassionate_gentleman
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	70081 = {
+		name = "Francois Theron"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M70081
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1946.1.1
+	}
+	70084 = {
+		name = "Christoffel Venter"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M70084
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1940.1.1
+	}
+	70011 = {
+		name = "J. F. van Rensburg"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M70011
+		head_of_state = resigned_generalissimo
+		head_of_government = old_general
+		start_date = 1936.1.1
+	}
+	70092 = {
+		name = "H.G. Lawrence"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M70092
+		minister_of_security = prince_of_terror
+		start_date = 1943.1.1
+	}
+	70097 = {
+		name = "Baron de Villiers Graaf"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M70097
+		head_of_government = happy_amateur
+		start_date = 1950.1.1
+	}
+	70098 = {
+		name = "Jacobus de Beer"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M70098
+		foreign_minister = great_compromiser
+		start_date = 1950.1.1
+	}
+	70100 = {
+		name = "Johannes J. Fouche"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M70100
+		armament_minister = resource_industrialist
+		start_date = 1959.1.1
+	}
+	70102 = {
+		name = "Johannes de Klerk"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M70102
+		minister_of_security = silent_lawyer
+		start_date = 1961.1.1
+	}
+}

@@ -22,9 +22,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Province.h"
-#include "../Log.h"
-#include "../Parsers\Object.h"
-#include "../Parsers\Parser.h"
+#include "Log.h"
+#include "Object.h"
+#include "ParadoxParser.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Province.h"
 #include "V2Pop.h"

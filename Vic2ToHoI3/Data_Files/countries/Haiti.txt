@@ -1,0 +1,494 @@
+color = { 145  188  196 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1ère Division d'Infanterie Haitien" "2ème Division d'Infanterie Haitien" "3ème Division d'Infanterie Haitien" "4ème Division d'Infanterie Haitien" "6ème Division d'Infanterie Haitien" 
+	}
+	cavalry_brigade = {
+		"1ère Division de Cavalerie 'Robespierre'" "2ème Division de Cavalerie Haitien" "3ème Division de Cavalerie Haitien" "4ème Division de Cavalerie Haitien" "5ème Division de Cavalerie Haitien" 
+	}
+	motorized_brigade = {
+		"1ère Div. d'Infanterie avec Camion" "2ème Div. d'Infanterie avec Camion" "3ème Div. d'Infanterie avec Camion" "4ème Div. d'Infanterie avec Camion" "5ème Div. d'Infanterie avec Camion" 
+	}
+	mechanized_brigade = {
+		"1ère Division Mécanisée Haitien" "2ème Division Mécanisée Haitien" "3ème Division Mécanisée Haitien" "4ème Division Mécanisée Haitien" "5ème Division Mécanisée Haitien" 
+	}
+	light_armor_brigade = {
+		"1ère Division Cuirassée 'Marat'" "2ème Division Cuirassée Haitien" "3ème Division Cuirassée Haitien" "4ème Division Cuirassée Haitien" "5ème Division Cuirassée Haitien" "6ème Division Cuirassée Haitien" 
+	}
+	armor_brigade = {
+		"1ère Division Cuirassée 'Marat'" "2ème Division Cuirassée Haitien" "3ème Division Cuirassée Haitien" "4ème Division Cuirassée Haitien" "5ème Division Cuirassée Haitien" "6ème Division Cuirassée Haitien" 
+	}
+	paratrooper_brigade = {
+		"1ère Division Parachutistes" "2ème Division Parachutistes" "3ème Division Parachutistes" "4ème Division Parachutistes" "5ème Division Parachutistes" 
+	}
+	marine_brigade = {
+		"1ère Division d'Infanterie Maritimes" "2ème Division d'Infanterie Maritimes" "3ème Division d'Infanterie Maritimes" "4ème Division d'Infanterie Maritimes" "5ème Division d'Infanterie Maritimes" 
+	}
+	bergsjaeger_brigade = {
+		"27ème Div. de Montagné 'Les Jacobins'" "30ème Division de Montagné" "31ème Division de Montagné" "64ème Division de Montagné" "66ème Division de Montagné" "65ème Division de Montagné" 
+	}
+	garrison_brigade = {
+		"10ème Division d'Infanterie Haitien" "11ème Division d'Infanterie Haitien" "13ème Division d'Infanterie Haitien" "16ème Division d'Infanterie Haitien" "18ème Division d'Infanterie Haitien" "19ème Division d'Infanterie Haitien" "20ème Division d'Infanterie Haitien" 
+	}
+	hq_brigade = {
+		"1ère Armée Haitien" "2ème Armée Haitien" "3ème Armée Haitien" 
+	}
+	militia_brigade = {
+		"1ère Division de Citoyens du Haiti" "2ème Division de Citoyens du Haiti" "3ème Division de Citoyens du Haiti" "4ème Division de Citoyens du Haiti" "5ème Division de Citoyens du Haiti" "6ème Division de Citoyens du Haiti" "7ème Division de Citoyens du Haiti" 
+	}
+	multi_role = {
+		"Groupe de Chasse 1" "Groupe de Chasse 2" "Groupe de Chasse 3" "Groupe de Chasse 4" "Groupe de Chasse 5" 
+	}
+	interceptor = {
+		"Groupe de Chasse 1" "Groupe de Chasse 2" "Groupe de Chasse 3" "Groupe de Chasse 4" "Groupe de Chasse 5" 
+	}
+	strategic_bomber = {
+		"Groupe de Bombardèment Stratégique 1" "Groupe de Bombardèment Stratégique 2" "Groupe de Bombardèment Stratégique 3" "Groupe de Bombardèment Stratégique 6" 
+	}
+	tactical_bomber = {
+		"Groupe de Bombardèment Tactique 1" "Groupe de Bombardèment Tactique 2" "Groupe de Bombardèment Tactique 3" "Groupe de Bombardèment Tactique 6" "Groupe de Bombardèment Tactique 10" 
+	}
+	naval_bomber = {
+		"Groupe de Bombardèment Naval 1" "Groupe de Bombardèment Naval 2" "Groupe de Bombardèment Naval 3" "Groupe de Bombardèment Naval 4" "Groupe de Bombardèment Naval 5" 
+	}
+	cas = {
+		"Groupe de Bombardèment d'Assaut 18" "Groupe de Bombardèment d'Assaut 19" "Groupe de Bombardèment d'Assaut 21" "Groupe de Bombardèment d'Assaut 22" "Groupe de Bombardèment d'Assaut 23" 
+	}
+	transport_plane = {
+		"1ère Groupe de Transport Aérien" "2ème Groupe de Transport Aérien" "3ème Groupe de Transport Aérien" "4ème Groupe de Transport Aérien" "5ème Groupe de Transport Aérien" 
+	}
+	battleship = {
+		"Citoyens de Haiti" "Port au Prince" 
+	}
+	light_cruiser = {
+		"Jérémie" "Port Sali" "Cap Haitien" "Port de Paix" "Jean Rabel" 
+	}
+	heavy_cruiser = {
+		"Jérémie" "Port Sali" "Cap Haitien" "Port de Paix" "Jean Rabel" 
+	}
+	battlecruiser = {
+		"Citoyens de Haiti" "Port au Prince" 
+	}
+	destroyer = {
+		"Baron Samedi et Groupe" "Calypso et Groupe" "Reine Mojo et Groupe" "Aywe et Groupe" "Dr.John et Groupe" 
+	}
+	carrier = {
+		"Republique de Haiti" "Napoleon" 
+	}
+	submarine = {
+		"Baka et Groupe" "Osun et Groupe" "Dambala et Groupe" "Ogu Bodagris et Groupe" "Erinle et Groupe" 
+	}
+	transport_ship = {
+		"1ère Flottille de Transport" "2ème Flottille de Transport" "3ème Flottille de Transport" "4ème Flottille de Transport" "5ème Flottille de Transport" 
+	}
+
+}
+
+ministers = {
+	78001 = {
+		name = "Stenio Vincent"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M78001
+		head_of_state = pig_headed_isolationist
+		head_of_government = corporate_suit
+		minister_of_security = crooked_kleptocrat
+		start_date = 1936.1.1
+	}
+	78003 = {
+		name = "Albert Blanchet"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M78003
+		foreign_minister = apologetic_clerk
+		head_of_government = happy_amateur
+		foreign_minister = apologetic_clerk
+		start_date = 1936.1.1
+	}
+	78004 = {
+		name = "Emilie Lescot"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M78004
+		armament_minister = infantry_proponent
+		chief_of_staff = school_of_fire_support
+		chief_of_army = static_defence_doctrine
+		head_of_state = resigned_generalissimo
+		head_of_government = old_general
+		foreign_minister = general_staffer
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	78005 = {
+		name = "Luis Dabtes Bellegarde"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M78005
+		minister_of_security = crooked_kleptocrat
+		armament_minister = corrupt_kleptocrat
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	78006 = {
+		name = "Sebastien de Arrondé"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M78006
+		minister_of_intelligence = political_specialist
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1936.1.1
+	}
+	78009 = {
+		name = "Alfred Nemours"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M78009
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	78010 = {
+		name = "G.Edouard Roy"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M78010
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	78033 = {
+		name = "Louis Dejoie"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M78033
+		head_of_state = die_hard_reformer
+		head_of_government = backroom_backstabber
+		armament_minister = laissez_faires_capitalist
+		start_date = 1946.1.1
+	}
+	78034 = {
+		name = "Dumarsais Estimé"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M78034
+		head_of_state = popular_figurehead
+		head_of_government = flamboyant_tough_guy
+		minister_of_security = back_stabber
+		start_date = 1937.1.1
+	}
+	78035 = {
+		name = "Franck Lavaud"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M78035
+		head_of_state = resigned_generalissimo
+		chief_of_staff = school_of_psychology
+		chief_of_army = elastic_defence_doctrine
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1946.1.1
+	}
+	78036 = {
+		name = "F. d'Orleans Juste Constant"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M78021
+		head_of_state = insignificant_layman
+		head_of_government = happy_amateur
+		foreign_minister = biased_intellectual
+		armament_minister = laissez_faires_capitalist
+		start_date = 1937.1.1
+	}
+	78037 = {
+		name = "Demosthenes Calixte"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M78037
+		head_of_state = popular_figurehead
+		minister_of_intelligence = political_specialist
+		start_date = 1946.1.1
+	}
+	78043 = {
+		name = "Paul Magloire"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M78043
+		head_of_government = old_general
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = guns_and_butter_doctrine
+		head_of_state = ruthless_powermonger
+		start_date = 1946.1.1
+	}
+	78045 = {
+		name = "Daniel Fignole"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M78045
+		head_of_government = political_protege
+		minister_of_security = silent_lawyer
+		start_date = 1946.1.1
+	}
+	78046 = {
+		name = "Georges Léger"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M78046
+		foreign_minister = the_cloak_n_dagger_schemer
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	78047 = {
+		name = "Marcel Fombrun"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M78013
+		foreign_minister = iron_fisted_brute
+		start_date = 1941.1.1
+	}
+	78049 = {
+		name = "dr. Georges Rigaud"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M78049
+		foreign_minister = biased_intellectual
+		minister_of_intelligence = research_specialist
+		start_date = 1946.1.1
+	}
+	78051 = {
+		name = "Jacques Wadestrand"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M78051
+		foreign_minister = great_compromiser
+		start_date = 1941.1.1
+	}
+	78052 = {
+		name = "Andre Dumont"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M78052
+		foreign_minister = iron_fisted_brute
+		minister_of_intelligence = naval_intelligence_specialist
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1943.1.1
+	}
+	78053 = {
+		name = "Timoléon Cesar Brutus"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M78053
+		foreign_minister = ideological_crusader
+		foreign_minister = ideological_crusader
+		start_date = 1946.1.1
+	}
+	78055 = {
+		name = "Mirko Chandler"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M78023
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1937.1.1
+	}
+	78057 = {
+		name = "Clement Jumelle"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M78057
+		foreign_minister = apologetic_clerk
+		armament_minister = air_superiority_proponent
+		start_date = 1946.1.1
+	}
+	78059 = {
+		name = "Luc Dominique"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M78014
+		armament_minister = tank_proponent
+		start_date = 1941.1.1
+	}
+	78060 = {
+		name = "Jean Francois Duvalier"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M78015
+		armament_minister = administrative_genius
+		minister_of_security = efficient_sociopath
+		start_date = 1945.1.1
+	}
+	78062 = {
+		name = "Max Charlmes"
+		ideology = social_liberal
+		loyalty = 0.50
+		picture = M78062
+		armament_minister = strategic_air_proponent
+		minister_of_security = crooked_kleptocrat
+		minister_of_intelligence = technical_specialist
+		start_date = 1937.1.1
+	}
+	78063 = {
+		name = "Frederic Doret"
+		ideology = social_liberal
+		loyalty = 0.50
+		picture = M78063
+		armament_minister = resource_industrialist
+		start_date = 1941.1.1
+	}
+	78064 = {
+		name = "Armand Ouellet"
+		ideology = social_liberal
+		loyalty = 0.50
+		picture = M78064
+		armament_minister = administrative_genius
+		start_date = 1946.1.1
+	}
+	78067 = {
+		name = "Michel Corvington Raymond"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M78024
+		armament_minister = theoretical_scientist
+		start_date = 1941.1.1
+	}
+	78069 = {
+		name = "Auguste Bonamy"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M78069
+		minister_of_security = silent_lawyer
+		start_date = 1941.1.1
+	}
+	78071 = {
+		name = "Gusley Vildrouin"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M78071
+		minister_of_security = back_stabber
+		minister_of_intelligence = research_specialist
+		start_date = 1946.1.1
+	}
+	78075 = {
+		name = "Antoine Levelt"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M78075
+		minister_of_security = silent_lawyer
+		minister_of_intelligence = research_specialist
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = armoured_spearhead_doctrine
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1946.1.1
+	}
+	78076 = {
+		name = "Belmeau Max-Pierre"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M78076
+		minister_of_security = back_stabber
+		minister_of_intelligence = research_specialist
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1937.1.1
+	}
+	78077 = {
+		name = "Victor Vivian"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M78025
+		minister_of_security = efficient_sociopath
+		start_date = 1941.1.1
+	}
+	78079 = {
+		name = "Joseph Louis Borno"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M78079
+		minister_of_intelligence = technical_specialist
+		start_date = 1937.1.1
+	}
+	78086 = {
+		name = "Rock Desroses"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M78026
+		minister_of_intelligence = technical_specialist
+		start_date = 1937.1.1
+	}
+	78096 = {
+		name = "Antioche Benot"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M78027
+		chief_of_staff = school_of_defence
+		start_date = 1937.1.1
+	}
+	78103 = {
+		name = "Ernst Severe"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M78028
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1937.1.1
+	}
+	78106 = {
+		name = "André Sainté Frederic"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M78106
+		chief_of_navy = power_projection_doctrine
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1937.1.1
+	}
+	78107 = {
+		name = "Raymond Gassner"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M78029
+		chief_of_navy = power_projection_doctrine
+		start_date = 1937.1.1
+	}
+	78110 = {
+		name = "Pascalé B.G. Guillaume"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M78020
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1937.1.1
+	}
+	78113 = {
+		name = "Charles H. Forbin"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M78030
+		chief_of_air = air_superiority_doctrine
+		start_date = 1946.1.1
+	}
+	78115 = {
+		name = "Leon Laleau"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M78115
+		foreign_minister = ideological_crusader
+		start_date = 1938.1.1
+	}
+}

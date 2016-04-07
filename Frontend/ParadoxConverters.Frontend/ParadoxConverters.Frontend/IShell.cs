@@ -1,3 +1,6 @@
-namespace Frontend.Client {
-    public interface IShell {}
+namespace Frontend.Client
+{
+    public interface IShell
+    {
+    }
 }

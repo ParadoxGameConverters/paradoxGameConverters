@@ -1,0 +1,13 @@
+owner = CZE
+controller = CZE
+add_core = CZE
+add_core = HUN
+
+infra = 8
+land_fort = 2
+
+1938.11.2 = {
+	owner = HUN
+	controller = HUN
+	add_core = SLO
+}

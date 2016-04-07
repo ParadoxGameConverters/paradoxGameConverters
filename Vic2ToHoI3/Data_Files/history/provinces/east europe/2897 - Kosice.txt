@@ -1,0 +1,20 @@
+owner = CZE
+controller = CZE
+add_core = CZE
+add_core = HUN
+
+points = 2
+metal = 1.00
+energy = 2.00
+industry = 5
+infra = 8
+manpower = 1.00
+leadership = 0.20
+
+infra = 8
+
+1938.11.2 = {
+	owner = HUN
+	controller = HUN
+	add_core = SLO
+}

@@ -1,0 +1,16 @@
+owner = IRE
+controller = IRE
+add_core = IRE
+
+points = 1
+metal = 9.00
+energy = 14.00
+rare_materials = 2.00
+industry = 6
+anti_air = 2
+infra = 9
+air_base = 4
+naval_base = 10
+manpower = 3.00
+leadership = 0.30
+

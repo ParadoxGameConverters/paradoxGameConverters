@@ -1,0 +1,13 @@
+owner = COL
+controller = COL
+add_core = COL
+points = 2
+metal = 7.00
+energy = 12.00
+crude_oil = 10.00
+rare_materials = 4.00
+industry = 7
+anti_air = 2
+infra = 6
+manpower = 6.00
+leadership = 0.60

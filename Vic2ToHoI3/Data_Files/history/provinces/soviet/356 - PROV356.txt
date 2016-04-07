@@ -1,0 +1,10 @@
+owner = SOV
+
+controller = SOV
+
+add_core = SOV
+
+terrain = arctic
+
+
+infra = 2

@@ -1,0 +1,12 @@
+owner = LIB
+controller = LIB
+add_core = LIB
+points = 1
+rare_materials = 2.50
+energy = 6
+anti_air = 1
+infra = 4
+air_base = 4
+naval_base = 2
+manpower = 3.00
+leadership = 0.30

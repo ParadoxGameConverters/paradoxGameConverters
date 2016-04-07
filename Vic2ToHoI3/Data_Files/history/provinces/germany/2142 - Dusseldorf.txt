@@ -1,0 +1,15 @@
+owner = GER
+controller = GER
+add_core = GER
+points = 10
+metal = 8.00
+energy = 25.00
+industry = 10
+manpower = 5.00
+leadership = 1.50
+
+infra = 10
+
+1941.1.1 = {
+	radar_station = 1
+}

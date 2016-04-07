@@ -22,8 +22,8 @@ THE SOFTWARE. */
 #include "EU4Province.h"
 #include "EU4Country.h"
 #include "EU4Religion.h"
-#include "../Log.h"
-#include "../Parsers/Object.h"
+#include "Log.h"
+#include "Object.h"
 #include "../Configuration.h"
 #include <algorithm>
 #include <fstream>
@@ -612,12 +612,12 @@ void EU4Province::determineProvinceWeight()
 	// manpower
 	manpower_weight *= 25;
 	manpower_weight += manpower_modifier;
-	manpower_weight *= ((1 + manpower_modifier) / 25); ## should work now as intended
+	manpower_weight *= ((1 + manpower_modifier) / 25); // should work now as intended
 
 	//LOG(LogLevel::Info) << "Manpower Weight: " << manpower_weight;
 
 	double total_tx = (baseTax + building_tx_income) * (1.0 + building_tx_eff + 0.15);
-	double production_eff_tech = 0.5; ## used to be 1.0
+	double production_eff_tech = 0.5; // used to be 1.0
 
 	double total_trade_value = ((getTradeGoodPrice() * goods_produced) + trade_value) * (1 + trade_value_eff);
 	double production_income = total_trade_value * (1 + production_eff_tech + production_eff);
@@ -1649,7 +1649,7 @@ vector<double> EU4Province::getProvBuildingWeight() const
 
 	if (hasBuilding("grand_shipyard"))
 	{
-		building_weight += 4.8; ## i must mixed something up
+		building_weight += 4.8; // i must mixed something up
 	}
 
 	if (hasBuilding("temple"))

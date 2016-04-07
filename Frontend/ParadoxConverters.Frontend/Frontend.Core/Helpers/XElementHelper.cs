@@ -1,18 +1,18 @@
-﻿using Frontend.Core.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using Frontend.Core.Exceptions;
 
 namespace Frontend.Core.Helpers
 {
     /// <summary>
-    /// Helper class for various XElement reading tasks
+    ///     Helper class for various XElement reading tasks
     /// </summary>
     public static class XElementHelper
     {
         /// <summary>
-        /// Reads the double value.
+        ///     Reads the double value.
         /// </summary>
         /// <param name="parentElement">The parent element.</param>
         /// <param name="propertyName">Name of the property.</param>
@@ -23,7 +23,7 @@ namespace Frontend.Core.Helpers
         }
 
         /// <summary>
-        /// Reads the double value.
+        ///     Reads the double value.
         /// </summary>
         /// <param name="parentElement">The parent element.</param>
         /// <param name="propertyName">Name of the property.</param>
@@ -33,9 +33,9 @@ namespace Frontend.Core.Helpers
         public static double ReadDoubleValue(XElement parentElement, string propertyName, bool isPropertyRequired)
         {
             double value;
-            IEnumerable<XElement> matches = parentElement.Descendants(propertyName);
+            var matches = parentElement.Descendants(propertyName);
             XElement match;
-            bool foundMatch = false;
+            var foundMatch = false;
 
             if (matches.Count() > 0)
             {
@@ -44,17 +44,15 @@ namespace Frontend.Core.Helpers
 
                 return value;
             }
-            else if (!foundMatch && isPropertyRequired)
+            if (!foundMatch && isPropertyRequired)
             {
                 throw new MissingRequiredXMLPropertyException(parentElement, propertyName, isPropertyRequired);
             }
-            else
-            {
-                return 0d;
-            }
+            return 0d;
         }
+
         /// <summary>
-        /// Reads the datetime value.
+        ///     Reads the datetime value.
         /// </summary>
         /// <param name="parentElement">The parent element.</param>
         /// <param name="propertyName">Name of the property.</param>
@@ -65,19 +63,20 @@ namespace Frontend.Core.Helpers
         }
 
         /// <summary>
-        /// Reads the datetime value.
+        ///     Reads the datetime value.
         /// </summary>
         /// <param name="parentElement">The parent element.</param>
         /// <param name="propertyName">Name of the property.</param>
         /// <param name="isPropertyRequired">if set to <c>true</c> [is property required].</param>
         /// <returns></returns>
         /// <exception cref="Converter.UI.Framework.MissingRequiredXMLPropertyException"></exception>
-        public static DateTime ReadDateValue(XElement parentElement, string propertyName, string dateFormat, bool isPropertyRequired)
+        public static DateTime ReadDateValue(XElement parentElement, string propertyName, string dateFormat,
+            bool isPropertyRequired)
         {
             DateTime value;
-            IEnumerable<XElement> matches = parentElement.Descendants(propertyName);
+            var matches = parentElement.Descendants(propertyName);
             XElement match;
-            bool foundMatch = false;
+            var foundMatch = false;
 
             if (matches.Count() > 0)
             {
@@ -89,18 +88,15 @@ namespace Frontend.Core.Helpers
                 // Stripping out the time component should negate this difference
                 return value.Date;
             }
-            else if (!foundMatch && isPropertyRequired)
+            if (!foundMatch && isPropertyRequired)
             {
                 throw new MissingRequiredXMLPropertyException(parentElement, propertyName, isPropertyRequired);
             }
-            else
-            {
-                return DateTime.Now;
-            }
+            return DateTime.Now;
         }
 
         /// <summary>
-        /// Reads the string value.
+        ///     Reads the string value.
         /// </summary>
         /// <param name="parentElement">The parent element.</param>
         /// <param name="propertyName">Name of the property.</param>
@@ -111,7 +107,7 @@ namespace Frontend.Core.Helpers
         }
 
         /// <summary>
-        /// Reads the string value.
+        ///     Reads the string value.
         /// </summary>
         /// <param name="parentElement">The parent element.</param>
         /// <param name="propertyName">Name of the property.</param>
@@ -123,7 +119,7 @@ namespace Frontend.Core.Helpers
         {
             string value;
 
-            IEnumerable<XElement> matches = parentElement.Descendants(propertyName);
+            var matches = parentElement.Descendants(propertyName);
 
             if (matches.Count() == 0)
             {
@@ -131,13 +127,10 @@ namespace Frontend.Core.Helpers
                 {
                     throw new MissingRequiredXMLPropertyException(parentElement, propertyName, isPropertyRequired);
                 }
-                else
-                {
-                    return string.Empty;
-                }
+                return string.Empty;
             }
 
-            XElement match = matches.First();
+            var match = matches.First();
 
             value = match.Value;
 
@@ -150,7 +143,7 @@ namespace Frontend.Core.Helpers
         }
 
         /// <summary>
-        /// Reads the bool value.
+        ///     Reads the bool value.
         /// </summary>
         /// <param name="parentElement">The parent element.</param>
         /// <param name="propertyName">Name of the property.</param>
@@ -161,7 +154,7 @@ namespace Frontend.Core.Helpers
         }
 
         /// <summary>
-        /// Reads the bool value.
+        ///     Reads the bool value.
         /// </summary>
         /// <param name="parentElement">The parent element.</param>
         /// <param name="propertyName">Name of the property.</param>
@@ -177,8 +170,8 @@ namespace Frontend.Core.Helpers
         public static bool ReadBoolValue(XElement parentElement, string propertyName, bool isPropertyRequired,
             bool defaultValue)
         {
-            bool value = defaultValue;
-            IEnumerable<XElement> matches = parentElement.Descendants(propertyName);
+            var value = defaultValue;
+            var matches = parentElement.Descendants(propertyName);
 
             if (!matches.Any())
             {
@@ -186,15 +179,12 @@ namespace Frontend.Core.Helpers
                 {
                     throw new MissingRequiredXMLPropertyException(parentElement, propertyName, isPropertyRequired);
                 }
-                else
-                {
-                    return defaultValue;
-                }
+                return defaultValue;
             }
 
-            XElement match = matches.First();
+            var match = matches.First();
 
-            bool foundMatch = bool.TryParse(match.Value, out value);
+            var foundMatch = bool.TryParse(match.Value, out value);
 
             if (!foundMatch && isPropertyRequired)
             {
@@ -205,7 +195,7 @@ namespace Frontend.Core.Helpers
         }
 
         /// <summary>
-        /// Reads the enumerable.
+        ///     Reads the enumerable.
         /// </summary>
         /// <param name="parentElement">The parent element.</param>
         /// <param name="propertyName">Name of the property.</param>
@@ -216,16 +206,17 @@ namespace Frontend.Core.Helpers
         }
 
         /// <summary>
-        /// Reads the enumerable.
+        ///     Reads the enumerable.
         /// </summary>
         /// <param name="parentElement">The parent element.</param>
         /// <param name="propertyName">Name of the property.</param>
         /// <param name="isPropertyRequired">if set to <c>true</c> [is property required].</param>
         /// <returns></returns>
         /// <exception cref="Converter.UI.Framework.MissingRequiredXMLPropertyException"></exception>
-        public static IEnumerable<XElement> ReadEnumerable(XElement parentElement, string propertyName, bool isPropertyRequired)
+        public static IEnumerable<XElement> ReadEnumerable(XElement parentElement, string propertyName,
+            bool isPropertyRequired)
         {
-            IEnumerable<XElement> elements = parentElement.Descendants(propertyName);
+            var elements = parentElement.Descendants(propertyName);
 
             if (!elements.Any() && isPropertyRequired)
             {
@@ -234,45 +225,5 @@ namespace Frontend.Core.Helpers
 
             return elements;
         }
-
-        ////private T ReadProperty<T>(XElement parentElement, string propertyName)
-        ////{
-        ////    T value = default(T);
-
-        ////    if (typeof(T).GetInterfaces().Any(t => t.GetGenericTypeDefinition() == typeof(IEnumerable)))
-        ////    {
-        ////        value = (T)parentElement.Descendants(propertyName);
-        ////    }
-        ////    else
-        ////    {
-        ////        var xmlElement = parentElement.Descendants(propertyName);
-
-        ////        if (xmlElement.Count() > 0)
-        ////        {
-        ////            if (typeof(T).Equals(typeof(string)))
-        ////            {
-        ////                var output = TryParse<string>(xmlElement.First().Value, );
-        ////            }
-        ////            else if(typeof(T).Equals(typeof(int)))
-        ////            {
-        ////            }
-        ////        }
-        ////    }
-
-        ////    return value;
-        ////}
-
-        ////public static T? TryParse<T>(string value, TryParseHandler<T> handler) where T : struct
-        ////{
-        ////    if (String.IsNullOrEmpty(value))
-        ////        return null;
-        ////    T result;
-        ////    if (handler(value, out result))
-        ////        return result;
-        ////    Trace.TraceWarning("Invalid value '{0}'", value);
-        ////    return null;
-        ////}
-
-        ////public delegate bool TryParseHandler<T>(string value, out T result);
     }
 }

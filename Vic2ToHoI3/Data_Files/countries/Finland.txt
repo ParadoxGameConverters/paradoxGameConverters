@@ -1,0 +1,837 @@
+color = { 205  212  228 }
+graphical_culture = Generic
+
+last_election = 1933.7.2
+duration = 36
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1. Divisioona" "2. Divisioona" "3. Divisioona" "4. Divisioona" "5. Divisioona" "6. Divisioona" "7. Divisioona" "8. Divisioona" "9. Divisioona" "10. Divisioona" "1. Polkupyˆr‰divisoona" 
+		"11. Divisioona" "12. Divisioona" "13. Divisioona" "14. Divisioona" "15. Divisioona" "16. Divisioona" "17. Divisioona" "18. Divisioona" "19. Divisioona" "20. Divisioona" "2. Polkupyˆr‰divisoona" 
+		"21. Divisioona" "22. Divisioona" "23. Divisioona" "24. Divisioona" "25. Divisioona" "26. Divisioona" "27. Divisioona" "28. Divisioona" "29. Divisioona" "30. Divisioona" "3. Polkupyˆr‰divisoona" 
+		"31. Divisioona" "32. Divisioona" "33. Divisioona" "34. Divisioona" "35. Divisioona" "36. Divisioona" "37. Divisioona" "38. Divisioona" "39. Divisioona" "40. Divisioona" "4. Polkupyˆr‰divisoona" 
+		"41. Divisioona" "42. Divisioona" "43. Divisioona" "44. Divisioona" "45. Divisioona" "46. Divisioona" "47. Divisioona" "48. Divisioona" "49. Divisioona" "50. Divisioona" "5. Polkupyˆr‰divisoona" 
+			}
+	cavalry_brigade = {
+		"Ratsuv‰kidivisioona" "2. Ratsuv‰kidivisioona" "3. Ratsuv‰kidivisioona" "4. Ratsuv‰kidivisioona" "5. Ratsuv‰kidivisioona" "6. Ratsuv‰kidivisioona" "7. Ratsuv‰kidivisioona" "8. Ratsuv‰kidivisioona" "1. Rakuunadivisioona" 
+	}
+	motorized_brigade = {
+		"J‰‰k‰ridivisioona" "2. J‰‰k‰ridivisioona" "3. J‰‰k‰ridivisioona" "4. J‰‰k‰ridivisioona" "5. J‰‰k‰ridivisioona" "6. J‰‰k‰ridivisioona" "7. J‰‰k‰ridivisioona" "8. J‰‰k‰ridivisioona" "9. J‰‰k‰ridivisioona" "10. J‰‰k‰ridivisioona" "11. J‰‰k‰ridivisioona" 
+		"12. J‰‰k‰ridivisioona" "13. J‰‰k‰ridivisioona" "14. J‰‰k‰ridivisioona" "15. J‰‰k‰ridivisioona" 
+	}
+	mechanized_brigade = {
+		"PsJ‰‰k‰ridivisioona" "2. PsJ‰‰k‰ridivisioona" "3. PsJ‰‰k‰ridivisioona" "4. PsJ‰‰k‰ridivisioona" "5. PsJ‰‰k‰ridivisioona" "6. PsJ‰‰k‰ridivisioona" "7. PsJ‰‰k‰ridivisioona" "8. PsJ‰‰k‰ridivisioona" "9. PsJ‰‰k‰ridivisioona" "10. PsJ‰‰k‰ridivisioona" "11. PsJ‰‰k‰ridivisioona" 
+		"12. PsJ‰‰k‰ridivisioona" "13. PsJ‰‰k‰ridivisioona" "14. PsJ‰‰k‰ridivisioona" "15. PsJ‰‰k‰ridivisioona" 
+	}
+	light_armor_brigade = {
+		"Panssaridiv. 'Lagus'" "2. Panssaridivisioona" "3. Panssaridivisioona" "4. Panssaridivisioona" "5. Panssaridivisioona" "6. Panssaridivisioona" "7. Panssaridivisioona" "8. Panssaridivisioona" "9. Panssaridivisioona" "10. Panssaridivisioona" "11. Panssaridivisioona" 
+			}
+	armor_brigade = {
+		"Panssaridiv. 'Lagus'" "2. Panssaridivisioona" "3. Panssaridivisioona" "4. Panssaridivisioona" "5. Panssaridivisioona" "6. Panssaridivisioona" "7. Panssaridivisioona" "8. Panssaridivisioona" "9. Panssaridivisioona" "10. Panssaridivisioona" "11. Panssaridivisioona" 
+			}
+	paratrooper_brigade = {
+		"Laskuvarjoj‰‰k‰ridiv." "2. Laskuvarjoj‰‰k‰ridiv." "3. Laskuvarjoj‰‰k‰ridiv." "4. Laskuvarjoj‰‰k‰ridiv." "5. Laskuvarjoj‰‰k‰ridiv." "6. Laskuvarjoj‰‰k‰ridiv." "7. Laskuvarjoj‰‰k‰ridiv." "8. Laskuvarjoj‰‰k‰ridiv." 
+	}
+	marine_brigade = {
+		"Rannikkoj‰‰k‰ridiv." "2. Rannikkoj‰‰k‰ridiv." "3. Rannikkoj‰‰k‰ridiv." "4. Rannikkoj‰‰k‰ridiv." "5. Rannikkoj‰‰k‰ridiv." "6. Rannikkoj‰‰k‰ridiv." "7. Rannikkoj‰‰k‰ridiv." 
+	}
+	bergsjaeger_brigade = {
+		"Sissidivisioona" "2. Sissidivisioona" "3. Sissidivisioona" "4. Sissidivisioona" "5. Sissidivisioona" "6. Sissidivisioona" "7. Sissidivisioona" 
+	}
+	garrison_brigade = {
+		"Hanhik. Komennuskunta" "Lemin Komennuskunta" "Savitaip. Komennuskunta" "Lahden Komennuskunta" "Taipals. Komennuskunta" "Taivalal. Komennuskunta" "ƒ‰nl. Komennuskunta" "Petsamon komennuskunta" "41. Divisioona" "42. Divisioona" "43. Divisioona" 
+		"44. Divisioona" "45. Divisioona" "46. Divisioona" "47. Divisioona" "48. Divisioona" "49. Divisioona" "50. Divisioona" 
+	}
+	hq_brigade = {
+		"Armeijakunta" "I Armeija" "II Armeija" "III Armeija" "IV Armeija" "V Armeija" "VI Armeija" "VII Armeija" 
+	}
+	militia_brigade = {
+		"1. Suojeluskuntadiv" "2. Suojeluskuntadiv" "3. Suojeluskuntadiv" "4. Suojeluskuntadiv" "1. Nostov‰kidiv." "2. Nostov‰kidiv." "3. Nostov‰kidiv." "4. Nostov‰kidiv." "5. Nostov‰kidiv." "6. Nostov‰kidiv." "7. Nostov‰kidiv." 
+		"8. Nostov‰kidiv." "9. Nostov‰kidiv." "10. Nostov‰kidiv." "11. Nostov‰kidiv." "12. Nostov‰kidiv." "13. Nostov‰kidiv." "14. Nostov‰kidiv." "15. Nostov‰kidiv." "16. Nostov‰kidiv." "17. Nostov‰kidiv." "18. Nostov‰kidiv." 
+		"19. Nostov‰kidiv." "20. Nostov‰kidiv." "21. Nostov‰kidiv." "22. Nostov‰kidiv." 
+	}
+	multi_role = {
+		"Lentorykmentti 2" "Lentorykmentti 3" "Karjalan lennosto" "Satakunnan lennosto" "Lapin lennosto" "Lentorykmentti 6" "Lentorykmentti 8" "Lentorykmentti 10" "Lentorykmentti 12" "Lentorykmentti 14" 
+	}
+	interceptor = {
+		"Lentorykmentti 2" "Lentorykmentti 3" "Karjalan lennosto" "Satakunnan lennosto" "Lapin lennosto" "Lentorykmentti 6" "Lentorykmentti 8" "Lentorykmentti 10" "Lentorykmentti 12" "Lentorykmentti 14" 
+	}
+	strategic_bomber = {
+		"Kaukopommituslennosto" "2. Kaukopommituslennosto" "3. Kaukopommituslennosto" "4. Kaukopommituslennosto" "5. Kaukopommituslennosto" "6. Kaukopommituslennosto" "7. Kaukopommituslennosto" 
+	}
+	tactical_bomber = {
+		"Lentorykmentti 4" "Lentorykmentti 5" "Lentorykmentti 7" "Lentorykmentti 9" "Lentorykmentti 11" "Lentorykmentti 13" "Lentorykmentti 15" 
+	}
+	naval_bomber = {
+		"Erill.Merilennosto" "2. Erill.Merilennosto" "3. Erill.Merilennosto" "4. Erill.Merilennosto" "5. Erill.Merilennosto 8" "Erill.Torpedolennosto" "2. Erill.Torpedolennosto" "3. Erill.Torpedolennosto" "4. Erill.Torpedolennosto" "5. Erill.Torpedolennosto" "6. Erill.Torpedolennosto" 
+			}
+	cas = {
+		"Lentorykmentti 1" "Syˆksypommituslennosto" "Lentorykmentti 16" "Lentorykmentti 17" "Lentorykmentti 18" "Lentorykmentti 19" "Lentorykmentti 20" "Lentorykmentti 21" 
+	}
+	transport_plane = {
+		"1. Ilmakuljetus" "2. Ilmakuljetus" "3. Ilmakuljetus" "4. Ilmakuljetus" "5. Ilmakuljetus" 
+	}
+	battleship = {
+		"Uusimaa" "Karjala" "Pohjanmaa" "Rauma" "Turku" "Viipuri" "Pietarsaari" "Vaasa" "Oulu" "Aura" "Kemi" 
+		"Tampere" 
+	}
+	light_cruiser = {
+		"V‰in‰mˆinen" "Ilmarinen" "Joukahainen" "Tapio" "Lemmink‰inen" "Helsinki" "Rauma" "Turku" "Kemi" "Maarianhamina" "Vaasa" 
+		"Viipuri" "Kotka" "Oulu" "Rauma" 
+	}
+	heavy_cruiser = {
+		"V‰in‰mˆinen" "Ilmarinen" "Joukahainen" "Tapio" "Lemmink‰inen" "Helsinki" "Rauma" "Turku" "Kemi" "Maarianhamina" "Vaasa" 
+		"Viipuri" "Kotka" "Oulu" "Rauma" 
+	}
+	battlecruiser = {
+		"Uusimaa" "Karjala" "Pohjanmaa" "Rauma" "Turku" "Viipuri" "Pietarsaari" "Vaasa" "Oulu" "Aura" "Kemi" 
+		"Tampere" 
+	}
+	destroyer = {
+		"1. Rannikkolaivue" "2. Rannikkolaivue" "3. Rannikkolaivue" "4. Rannikkolaivue" "5. Rannikkolaivue" "6. Rannikkolaivue" "7. Rannikkolaivue" "8. Rannikkolaivue" "9. Rannikkolaivue" "10. Rannikkolaivue" "11. Rannikkolaivue" 
+		"12. Rannikkolaivue" "13. Rannikkolaivue" "14. Rannikkolaivue" "15. Rannikkolaivue" "16. Rannikkolaivue" "17. Rannikkolaivue" "18. Rannikkolaivue" "19. Rannikkolaivue" "20. Rannikkolaivue" 
+	}
+	carrier = {
+		"Suur-Suomi" "Karjala" "Turku" "Pohjanmaa" "Mannerheim" "Viipuri" "Vaasa" "Uusimaa" "Ahvenanmaa" "Oulu" "Kemi" 
+			}
+	escort_carrier = {
+		"Turku" "Pohjanmaa" "Mannerheim" "Viipuri" "Vaasa" "Uusimaa" "Ahvenanmaa" "Oulu" "Kemi" 
+	}
+	submarine = {
+		"1. Sukellusvenelaivue" "2. Sukellusvenelaivue" "3. Sukellusvenelaivue" "4. Sukellusvenelaivue" "5. Sukellusvenelaivue" "6. Sukellusvenelaivue" "7. Sukellusvenelaivue" "8. Sukellusvenelaivue" "9. Sukellusvenelaivue" "10. Sukellusvenelaivue" "11. Sukellusvenelaivue" 
+		"12. Sukellusvenelaivue" "13. Sukellusvenelaivue" "14. Sukellusvenelaivue" "15. Sukellusvenelaivue" "16. Sukellusvenelaivue" "17. Sukellusvenelaivue" "18. Sukellusvenelaivue" "19. Sukellusvenelaivue" "20. Sukellusvenelaivue" 
+	}
+	transport_ship = {
+		"1. Kauppalaivasto" "2. Kauppalaivasto" "3. Kauppalaivasto" "4. Kauppalaivasto" "5. Kauppalaivasto" "6. Kauppalaivasto" "7. Kauppalaivasto" "8. Kauppalaivasto" "9. Kauppalaivasto" "10. Kauppalaivasto" "11. Kauppalaivasto" 
+		"12. Kauppalaivasto" "13. Kauppalaivasto" "14. Kauppalaivasto" "15. Kauppalaivasto" "16. Kauppalaivasto" "17. Kauppalaivasto" "18. Kauppalaivasto" "19. Kauppalaivasto" "20. Kauppalaivasto" 
+	}
+
+}
+
+
+ministers = {
+	29001 = {
+		name = "Pehr E. Svinhufvud"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M29001
+		head_of_state = pig_headed_isolationist
+		head_of_state = pig_headed_isolationist
+		armament_minister = tank_proponent
+		start_date = 1936.1.1
+	}
+	29002 = {
+		name = "Toivo M. Kivim‰ki"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M29002
+		head_of_government = silent_workhorse
+		minister_of_intelligence = research_specialist
+		start_date = 1936.1.1
+	}
+	29003 = {
+		name = "Antti V. Hackzell"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M29003
+		foreign_minister = biased_intellectual
+		head_of_government = silent_workhorse
+		armament_minister = battle_fleet_proponent
+		start_date = 1936.1.1
+	}
+	29004 = {
+		name = "Arvi A. Oksala"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M29004
+		armament_minister = resource_industrialist
+		foreign_minister = general_staffer
+		start_date = 1936.1.1
+	}
+	29005 = {
+		name = "Yrjˆ W. Puhakka"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M29005
+		minister_of_security = silent_lawyer
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	29006 = {
+		name = "Esko Riekki"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M29006
+		minister_of_intelligence = dismal_enigma
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	29007 = {
+		name = "K.L. Oesch"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M29007
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	29008 = {
+		name = "Hugo ÷sterman"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M29008
+		chief_of_army = elastic_defence_doctrine
+		chief_of_staff = school_of_mass_combat
+		start_date = 1936.1.1
+	}
+	29009 = {
+		name = "V‰inˆ Valve"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M29009
+		chief_of_navy = open_seas_doctrine
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1936.1.1
+	}
+	29010 = {
+		name = "Jarl Lundqvist"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M29010
+		chief_of_air = naval_aviation_doctrine
+		head_of_government = smiling_oilman
+		armament_minister = air_to_sea_proponent
+		start_date = 1936.1.1
+	}
+	29034 = {
+		name = "Carl G. Mannerheim"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M29034
+		head_of_state = resigned_generalissimo
+		chief_of_staff = school_of_defence
+		chief_of_army = decisive_battle_doctrine
+		head_of_state = resigned_generalissimo
+		start_date = 1944.1.1
+	}
+	29035 = {
+		name = "Juho K. Paasikivi"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M29035
+		head_of_state = autocratic_charmer
+		head_of_state = autocratic_charmer
+		head_of_government = flamboyant_tough_guy
+		armament_minister = resource_industrialist
+		start_date = 1945.1.1
+	}
+	29039 = {
+		name = "Risto Ryti"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M29033
+		head_of_state = weary_stiff_neck
+		head_of_state = weary_stiff_neck
+		head_of_state = weary_stiff_neck
+		head_of_government = backroom_backstabber
+		minister_of_security = back_stabber
+		start_date = 1940.1.1
+	}
+	29043 = {
+		name = "Kyˆsti Kallio"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M29032
+		head_of_state = stern_imperialist
+		head_of_government = corporate_suit
+		armament_minister = laissez_faires_capitalist
+		head_of_state = stern_imperialist
+		start_date = 1937.1.1
+	}
+	29048 = {
+		name = "Bruno Salmiala"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M29011
+		head_of_state = ruthless_powermonger
+		minister_of_security = back_stabber
+		start_date = 1936.1.1
+	}
+	29049 = {
+		name = "Otto Ville Kuusinen"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M29021
+		head_of_state = ruthless_powermonger
+		head_of_government = flamboyant_tough_guy
+		foreign_minister = apologetic_clerk
+		start_date = 1936.1.1
+	}
+	29050 = {
+		name = "V‰inˆ Kivisalo"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M29050
+		head_of_government = naive_optimist
+		foreign_minister = iron_fisted_brute
+		start_date = 1936.1.1
+	}
+	29051 = {
+		name = "Urho K. Kekkonen"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M29051
+		head_of_government = backroom_backstabber
+		minister_of_security = compassionate_gentleman
+		foreign_minister = iron_fisted_brute
+		start_date = 1943.1.1
+	}
+	29052 = {
+		name = "Mauno Pekkala"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M29052
+		head_of_government = political_protege
+		armament_minister = theoretical_scientist
+		start_date = 1945.1.1
+	}
+	29054 = {
+		name = "Aimo Cajander"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M29054
+		head_of_government = happy_amateur
+		armament_minister = resource_industrialist
+		start_date = 1937.1.1
+	}
+	29056 = {
+		name = "Yrjˆ K. Leino"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M29025
+		head_of_government = naive_optimist
+		minister_of_security = efficient_sociopath
+		start_date = 1946.1.1
+	}
+	29059 = {
+		name = "Johan W. Rangell"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M29059
+		head_of_government = flamboyant_tough_guy
+		foreign_minister = biased_intellectual
+		minister_of_security = man_of_the_people
+		start_date = 1941.1.1
+	}
+	29062 = {
+		name = "Kyosti J‰rvinen"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M29062
+		head_of_government = silent_workhorse
+		minister_of_security = silent_lawyer
+		start_date = 1946.1.1
+	}
+	29063 = {
+		name = "Edwin H. Linkomies"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M29063
+		head_of_government = naive_optimist
+		armament_minister = administrative_genius
+		head_of_government = naive_optimist
+		start_date = 1943.1.1
+	}
+	29064 = {
+		name = "Urho J. CastrÈn"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M29064
+		head_of_government = corporate_suit
+		armament_minister = infantry_proponent
+		start_date = 1944.1.1
+	}
+	29065 = {
+		name = "Vihtori Kosola"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M29012
+		head_of_government = silent_workhorse
+		armament_minister = infantry_proponent
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	29067 = {
+		name = "Anselmi Pitk‰silta"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M29067
+		foreign_minister = apologetic_clerk
+		start_date = 1936.1.1
+	}
+	29068 = {
+		name = "V‰inˆ A. Tanner"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M29068
+		foreign_minister = ideological_crusader
+		start_date = 1939.1.1
+	}
+	29071 = {
+		name = "Eino R. Holsti"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M29071
+		foreign_minister = great_compromiser
+		start_date = 1936.1.1
+	}
+	29072 = {
+		name = "Kaarle V. Voionmaa"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M29072
+		foreign_minister = apologetic_clerk
+		start_date = 1938.1.1
+	}
+	29073 = {
+		name = "Juho E. Erkko"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M29073
+		foreign_minister = biased_intellectual
+		start_date = 1938.1.1
+	}
+	29074 = {
+		name = "Rolf J. Witting"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M29074
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1940.1.1
+	}
+	29075 = {
+		name = "Carl J. Enckell"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M29070
+		foreign_minister = great_compromiser
+		foreign_minister = biased_intellectual
+		start_date = 1944.1.1
+	}
+	29077 = {
+		name = "Carl Ramsay"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M29077
+		foreign_minister = iron_fisted_brute
+		start_date = 1943.1.1
+	}
+	29079 = {
+		name = "Hilja Riipinen"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M29013
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	29081 = {
+		name = "Hella Wuolijoki"
+		ideology = stalinist
+		loyalty = 0.50
+		picture = M29081
+		foreign_minister = great_compromiser
+		start_date = 1942.1.1
+	}
+	29082 = {
+		name = "Viljam Sinisalo"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M29082
+		armament_minister = strategic_air_proponent
+		start_date = 1936.1.1
+	}
+	29083 = {
+		name = "Karl A. Fagerholm"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M29083
+		armament_minister = laissez_faires_capitalist
+		head_of_government = ambitious_union_boss
+		minister_of_security = man_of_the_people
+		start_date = 1943.1.1
+	}
+	29085 = {
+		name = "Otto Toivonen"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M29085
+		armament_minister = military_entrepreneur
+		start_date = 1946.1.1
+	}
+	29086 = {
+		name = "Juho Niukkanen"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M29014
+		armament_minister = administrative_genius
+		armament_minister = tank_proponent
+		start_date = 1936.1.1
+	}
+	29089 = {
+		name = "V‰inˆ L. Valve"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M29009
+		armament_minister = military_entrepreneur
+		minister_of_security = compassionate_gentleman
+		start_date = 1944.1.1
+	}
+	29093 = {
+		name = "Leonard Grandell"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M29093
+		armament_minister = laissez_faires_capitalist
+		chief_of_staff = school_of_fire_support
+		start_date = 1939.1.1
+	}
+	29097 = {
+		name = "Georg A. de Gripenberg"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M29097
+		armament_minister = strategic_air_proponent
+		minister_of_intelligence = industrial_specialist
+		start_date = 1946.1.1
+	}
+	29098 = {
+		name = "Karl R. WaldÈn"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M29098
+		armament_minister = resource_industrialist
+		head_of_government = happy_amateur
+		start_date = 1944.1.1
+	}
+	29101 = {
+		name = "Mauritz Rosenberg"
+		ideology = stalinist
+		loyalty = 0.50
+		picture = M29024
+		armament_minister = resource_industrialist
+		start_date = 1939.1.1
+	}
+	29103 = {
+		name = "Hugo Emil Aattela"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M29103
+		minister_of_security = prince_of_terror
+		start_date = 1943.1.1
+	}
+	29104 = {
+		name = "Valfrid Eskola"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M29104
+		minister_of_security = back_stabber
+		start_date = 1944.1.1
+	}
+	29105 = {
+		name = "Olavi I. Kojala"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M29105
+		minister_of_security = crime_fighter
+		start_date = 1946.1.1
+	}
+	29106 = {
+		name = "Richard Lorentz"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M29106
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	29107 = {
+		name = "Ernst V.L. von Born"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M29107
+		minister_of_security = silent_lawyer
+		start_date = 1941.1.1
+	}
+	29109 = {
+		name = "Leo R. Ehrnrooth"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M29109
+		minister_of_security = man_of_the_people
+		start_date = 1944.1.1
+	}
+	29111 = {
+		name = "Kaarlo H. Hillil‰"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M29111
+		minister_of_security = prince_of_terror
+		start_date = 1946.1.1
+	}
+	29112 = {
+		name = "Toivo J. Horelli"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M29112
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	29117 = {
+		name = "Jouko It‰l‰"
+		ideology = fascistic
+		loyalty = 0.50
+		picture = M29015
+		minister_of_security = prince_of_terror
+		start_date = 1936.1.1
+	}
+	29119 = {
+		name = "Yrjˆ Leino"
+		ideology = stalinist
+		loyalty = 0.50
+		picture = M29025
+		minister_of_security = man_of_the_people
+		start_date = 1939.1.1
+	}
+	29120 = {
+		name = "Edvard Kajala"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M29120
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1936.1.1
+	}
+	29121 = {
+		name = "Bruno Suviranta"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M29121
+		minister_of_intelligence = dismal_enigma
+		start_date = 1944.1.1
+	}
+	29123 = {
+		name = "Hjalmar F. Procope"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M29123
+		minister_of_intelligence = political_specialist
+		start_date = 1941.1.1
+	}
+	29124 = {
+		name = "Berndt R. von Fieandt"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M29124
+		minister_of_intelligence = technical_specialist
+		start_date = 1943.1.1
+	}
+	29129 = {
+		name = "Vilho Annala"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M29016
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	29131 = {
+		name = "Tuure Lehen"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M29026
+		minister_of_intelligence = political_specialist
+		start_date = 1939.1.1
+	}
+	29138 = {
+		name = "Kurt Wallenius"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M29017
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	29139 = {
+		name = "Akseli Anttila"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M29027
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = guns_and_butter_doctrine
+		chief_of_air = army_aviation_doctrine
+		start_date = 1939.1.1
+	}
+	29140 = {
+		name = "Kaarle Voinonmaa"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M29140
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	29146 = {
+		name = "Vilho Helanen"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M29018
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	29148 = {
+		name = "Claes Horola"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M29148
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	29150 = {
+		name = "Eero Rahola"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M29150
+		chief_of_navy = power_projection_doctrine
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1936.1.1
+	}
+	29151 = {
+		name = "Lauri Tiainen"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M29019
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	29153 = {
+		name = "Valio Porvari"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M29153
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	29155 = {
+		name = "Toivo Somerto"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M29155
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+	29156 = {
+		name = "Tauno Viljanen"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M29020
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	29165 = {
+		name = "Ralf Johan Tˆrngren"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M29165
+		armament_minister = military_entrepreneur
+		start_date = 1948.1.1
+	}
+	29167 = {
+		name = "≈ke Henrik Gartz"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M29167
+		foreign_minister = apologetic_clerk
+		start_date = 1950.1.1
+	}
+	29168 = {
+		name = "Sakari S. Tuomioja"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M29168
+		foreign_minister = biased_intellectual
+		start_date = 1951.1.1
+	}
+	29170 = {
+		name = "Onni A. Hiltunen"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M29170
+		armament_minister = infantry_proponent
+		start_date = 1950.1.1
+	}
+	29171 = {
+		name = "Vaino J. Sukselainen"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M29171
+		armament_minister = administrative_genius
+		start_date = 1951.1.1
+	}
+	29172 = {
+		name = "Viljo Rantala"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M29172
+		armament_minister = laissez_faires_capitalist
+		start_date = 1952.1.1
+	}
+	29173 = {
+		name = "Johannes Sihvo"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = L9738
+		chief_of_staff = school_of_psychology
+		start_date = 1948.1.1
+	}
+	29174 = {
+		name = "Kaarlo Malmberg"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = L9723
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1947.1.1
+	}
+	29175 = {
+		name = "Olavi Arho"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = L9757
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1948.1.1
+	}
+	29176 = {
+		name = "Olavi Sarko"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = L9777
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1948.1.1
+	}
+}

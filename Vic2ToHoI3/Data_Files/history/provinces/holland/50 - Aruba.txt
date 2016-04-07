@@ -1,0 +1,9 @@
+owner = HOL
+controller = HOL
+add_core = HOL
+
+industry = 1
+infra = 6
+manpower = 1.00
+leadership = 0.10
+naval_base = 1

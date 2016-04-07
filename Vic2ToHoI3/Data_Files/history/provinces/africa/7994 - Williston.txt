@@ -1,0 +1,7 @@
+owner = SAF
+controller = SAF
+add_core = SAF
+
+infra = 6
+
+infra = 6

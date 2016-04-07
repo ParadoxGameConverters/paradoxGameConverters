@@ -1,0 +1,457 @@
+# Copyright (c) 2015 The Paradox Game Converters Project
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+personalities=
+{
+	aggressive = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	relentless = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	active_p = {
+		land = trickster
+		sea = blockade_runner
+	}
+	earnest = {
+		land = trickster
+		sea = blockade_runner
+	}
+	persistant = {
+		land = trickster
+		sea = blockade_runner
+	}
+	balanced_p = {
+		land = defensive_doctrine
+		sea = blockade_runner
+	}
+	cautious = {
+		land = defensive_doctrine
+		sea = blockade_runner
+	}
+	coolminded = {
+		land = defensive_doctrine
+		sea = blockade_runner
+	}
+	inspiring = {
+		land = logistics_wizard
+	}
+	gallant = {
+		land = logistics_wizard
+	}
+	arrogant = {
+		land = old_guard
+		sea = old_guard
+	}
+	vainglorious = {
+		land = old_guard
+		sea = old_guard
+	}
+	brutish = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	bigoted = {
+		land = old_guard
+		sea = old_guard
+	}
+	impetuous = {
+		land = trickster
+		sea = blockade_runner
+	}
+	polite = {
+		land = winter_specialist
+		land = panzer_leader
+		land = engineer
+		sea = seawolf
+		sea = superior_tactician
+	}
+	tactful = {
+		land = winter_specialist
+		land = panzer_leader
+		land = engineer
+		sea = seawolf
+		sea = superior_tactician
+	}
+	diplomatic = {
+		land = winter_specialist
+		land = panzer_leader
+		land = engineer
+		sea = seawolf
+		sea = superior_tactician
+	}
+	glory_hound = {
+		land = winter_specialist
+		land = panzer_leader
+		land = engineer
+		sea = seawolf
+		sea = superior_tactician
+	}
+	vicious = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	hellbent = {
+		land = trickster
+		sea = blockade_runner
+	}
+	deeply_religious = {
+		land = logistics_wizard
+	}
+	imperious = {
+		land = offensive_doctrine
+		sea = superior_tactician
+		land = logistics_wizard
+	}
+	choleric = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	fanatic = {
+		land = commando
+	}
+	irate = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	wrathful = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	calm = {
+		land = old_guard
+		sea = old_guard
+	}
+	reserved = {
+		land = old_guard
+		sea = old_guard
+	}
+	harsh = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	merciless = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	implacable = {
+		sea = superior_tactician
+		land = defensive_doctrine
+	}
+	careful = {
+		land = old_guard
+		sea = old_guard
+	}
+	meticulous = {
+		land = old_guard
+		sea = old_guard
+	}
+	openminded = {
+		land = logistics_wizard
+		land = commando
+	}
+	charismatic = {
+		land = logistics_wizard
+		land = commando
+	}
+	impulsive = {
+		land = trickster
+		sea = blockade_runner
+	}
+	intuitive = {
+		land = logistics_wizard
+		land = logistics_wizard
+	}
+	resourceful = {
+		land = defensive_doctrine
+		sea = blockade_runner
+		land = commando
+	}
+	romantic = {
+		land = logistics_wizard
+	}
+	brash = {
+		land = offensive_doctrine
+		sea = superior_tactician
+		land = old_guard
+		sea = old_guard
+	}
+	daring = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	soldierly = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	disciplined = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	unflinching = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	bold = {
+		land = offensive_doctrine
+		sea = superior_tactician
+		land = trickster
+		sea = blockade_runner
+	}
+	audacious = {
+		land = offensive_doctrine
+		sea = blockade_runner
+		land = trickster
+		sea = blockade_runner
+	}
+	heroic = {
+		land = logistics_wizard
+	}
+	stout = {
+		land = defensive_doctrine
+		sea = blockade_runner
+		land = commando
+	}
+	stalwart = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	stouthearted = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	steadfast = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	chivalrous = {
+		land = offensive_doctrine
+		sea = superior_tactician
+		land = logistics_wizard
+	}
+	ballsy = {
+		land = logistics_wizard
+		land = trickster
+		sea = blockade_runner
+	}
+	aweless = {
+		land = commando
+	}
+	dauntless = {
+		land = commando
+	}
+	confident = {
+		land = commando
+	}
+	manful = {
+		land = commando
+	}
+	doughty = {
+		land = commando
+	}
+	gutsy = {
+		land = defensive_doctrine
+		sea = blockade_runner
+	}
+	spirited = {
+		land = defensive_doctrine
+		sea = blockade_runner
+	}
+	resolute = {
+		land = defensive_doctrine
+		sea = blockade_runner
+		land = logistics_wizard
+	}
+	defiant = {
+		land = defensive_doctrine
+		sea = blockade_runner
+		land = logistics_wizard
+	}
+	able = {
+		land = logistics_wizard
+	}
+	competent = {
+		land = logistics_wizard
+	}
+	expert = {
+		land = logistics_wizard
+	}
+	smart_p = {
+		land = logistics_wizard
+	}
+	intelligent = {
+		land = logistics_wizard
+	}
+	brilliant = {
+		land = logistics_wizard
+	}
+	sharp = {
+		land = logistics_wizard
+		land = trickster
+		land = fortress_buster
+	}
+	keen = {
+		land = logistics_wizard
+		land = trickster
+		land = fortress_buster
+	}
+	clever = {
+		land = logistics_wizard
+		land = trickster
+		land = fortress_buster
+	}
+	skilled = {
+		land = offensive_doctrine
+		sea = superior_tactician
+		land = logistics_wizard
+	}
+	efficient = {
+		land = offensive_doctrine
+		sea = superior_tactician
+		land = logistics_wizard
+	}
+	au_fait = {
+		land = offensive_doctrine
+		sea = superior_tactician
+		land = logistics_wizard
+	}
+	indifferent = {
+		land = old_guard
+		sea = old_guard
+	}
+	mediocre = {
+		land = old_guard
+		sea = old_guard
+	}
+	lackluster = {
+		land = old_guard
+		sea = old_guard
+	}
+	timid = {
+		land = old_guard
+		sea = old_guard
+	}
+	chickenhearted = {
+		land = old_guard
+		sea = old_guard
+	}
+	lilylivered = {
+		land = old_guard
+		sea = old_guard
+	}
+	soft = {
+		land = old_guard
+		sea = old_guard
+	}
+	spineless = {
+		land = old_guard
+		sea = old_guard
+	}
+	unmanly = {
+		land = old_guard
+		sea = old_guard
+	}
+	yellow = {
+		land = old_guard
+		sea = old_guard
+	}
+	pusillanimous = {
+		land = old_guard
+		sea = old_guard
+	}
+	coward = {
+		land = old_guard
+		sea = old_guard
+	}
+	craven = {
+		land = old_guard
+		sea = old_guard
+	}
+	bastard = {
+		land = old_guard
+		sea = old_guard
+	}
+	shirker = {
+		land = old_guard
+		sea = old_guard
+	}
+	scared = {
+		land = old_guard
+		sea = old_guard
+	}
+	maladroit = {
+		land = old_guard
+		sea = old_guard
+	}
+	undisciplined = {
+		land = old_guard
+		sea = old_guard
+	}
+	incapable = {
+		land = old_guard
+		sea = old_guard
+	}
+	inept = {
+		land = old_guard
+		sea = old_guard
+	}
+	inefficient = {
+		land = old_guard
+		sea = old_guard
+	}
+	perverse = {
+		land = old_guard
+		sea = old_guard
+	}
+	unruly = {
+		land = old_guard
+		sea = old_guard
+	}
+	disorderly = {
+		land = old_guard
+		sea = old_guard
+	}
+	careless = {
+		land = old_guard
+		sea = old_guard
+	}
+	wretched = {
+		land = old_guard
+		sea = old_guard
+	}
+	pisspoor = {
+		land = old_guard
+		sea = old_guard
+	}
+	unsound = {
+		land = old_guard
+		sea = old_guard
+	}
+	strange = {
+		land = old_guard
+		sea = old_guard
+	}
+	shrinking_violet = {
+		land = old_guard
+		sea = old_guard
+	}
+}

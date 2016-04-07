@@ -1,5 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<configuration Comment="This file is used to build the configuration parth of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<configuration
+  Comment="This file is used to build the configuration parth of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
   <!--This part contains the various options that will be displayed as preferences in the converter ui, and outputted as configuration.txt as input for the converter tool itself-->
   <converterOptions>
     <categories>
@@ -7,41 +9,10 @@
         <friendlyName>Configuration</friendlyName>
         <preferences>
           <preference>
-            <name>CK2Converted</name>
-            <friendlyName>Converted from CK2?</friendlyName>
-            <description>Whether or not the mod was converted from CK2</description>
-            <entryOptions>
-              <entryOption>
-                <name>yes</name>
-                <friendlyName>Yes</friendlyName>
-                <description>This savegame was converted from Crusader Kings 2</description>
-                <isDefault>false</isDefault>
-              </entryOption>
-              <entryOption>
-                <name>no</name>
-                <friendlyName>No</friendlyName>
-                <description>This savegame was NOT converted from Crusader Kings 2</description>
-                <isDefault>true</isDefault>
-              </entryOption>
-            </entryOptions>
-          </preference>
-          <preference>
             <name>V2gametype</name>
             <friendlyName>V2 Game Version</friendlyName>
             <description>V2 Game Version: what version of V2 to convert to</description>
             <entryOptions>
-              <entryOption>
-                <name>vanilla</name>
-                <friendlyName>Vanilla V2 (1.x)</friendlyName>
-                <description>Vanilla V2 (1.x)</description>
-                <isDefault>false</isDefault>
-              </entryOption>
-              <entryOption>
-                <name>AHD</name>
-                <friendlyName>A House Divided (2.x)</friendlyName>
-                <description>A House Divided (2.x)</description>
-                <isDefault>false</isDefault>
-              </entryOption>
               <entryOption>
                 <name>HOD</name>
                 <friendlyName>Heart of Darkness (3.x)</friendlyName>
@@ -82,7 +53,7 @@
                 <friendlyName>No</friendlyName>
                 <description>Don't reset provinces</description>
                 <isDefault>true</isDefault>
-              </entryOption>              
+              </entryOption>
             </entryOptions>
           </preference>
           <preference>
@@ -128,7 +99,7 @@
             <minValue>1</minValue>
             <maxValue>100</maxValue>
           </preference>
-		  <preference>
+          <preference>
             <name>convertPopTotals</name>
             <friendlyName>Convert pop totals?</friendlyName>
             <description>Whether or not the population totals should be converted.</description>
@@ -150,5 +121,6 @@
         </preferences>
       </category>
     </categories>
-  </converterOptions>>
+  </converterOptions>
+  >
 </configuration>

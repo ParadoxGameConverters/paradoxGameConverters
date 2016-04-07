@@ -1,0 +1,9 @@
+owner = SWE
+controller = SWE
+add_core = SWE
+
+metal = 30.00
+strategic_resource = tungsten
+infra = 6
+
+

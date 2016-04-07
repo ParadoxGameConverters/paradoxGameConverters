@@ -1,0 +1,7 @@
+owner = CYN
+controller = CYN
+add_core = CYN
+add_core = CHI
+add_core = CHC
+points = 1
+infra = 2

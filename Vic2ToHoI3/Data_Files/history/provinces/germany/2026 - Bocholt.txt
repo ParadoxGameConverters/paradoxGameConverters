@@ -1,0 +1,10 @@
+owner = GER
+controller = GER
+add_core = GER
+
+infra = 10
+
+1944.4.30 = {
+	air_base = 2
+
+}

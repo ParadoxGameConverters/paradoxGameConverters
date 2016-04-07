@@ -1,0 +1,17 @@
+owner = AST
+controller = AST
+add_core = AST
+points = 3
+metal = 5.00
+energy = 4.00
+rare_materials = 3.00
+industry = 6
+coastal_fort = 2
+land_fort = 0
+anti_air = 4
+infra = 10
+air_base = 8
+naval_base = 10
+manpower = 3.00
+leadership = 0.60
+crude_oil = 1.00

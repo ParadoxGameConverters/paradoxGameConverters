@@ -1,20 +1,20 @@
-﻿using Caliburn.Micro;
+﻿using System.IO;
+using System.Windows.Forms;
+using Caliburn.Micro;
 using Frontend.Core.Helpers;
 using Frontend.Core.Logging;
 using Frontend.Core.Model.Interfaces;
 using Frontend.Core.Model.Paths.Interfaces;
-using System.IO;
-using System.Windows.Forms;
 
 namespace Frontend.Core.Commands
 {
     /// <summary>
-    /// Command used to select a particular folder
+    ///     Command used to select a particular folder
     /// </summary>
     public class OpenFolderCommand : CommandBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="OpenFolderCommand"/> class.
+        ///     Initializes a new instance of the <see cref="OpenFolderCommand" /> class.
         /// </summary>
         /// <param name="eventAggregator"></param>
         /// <param name="options">The options.</param>
@@ -24,7 +24,7 @@ namespace Frontend.Core.Commands
         }
 
         /// <summary>
-        /// Called when [can execute].
+        ///     Called when [can execute].
         /// </summary>
         /// <param name="parameter">The parameter.</param>
         /// <returns></returns>
@@ -34,13 +34,13 @@ namespace Frontend.Core.Commands
         }
 
         /// <summary>
-        /// Called when [execute].
+        ///     Called when [execute].
         /// </summary>
         /// <param name="parameter">The parameter.</param>
         protected override void OnExecute(object parameter)
         {
             var requiredItem = parameter as IRequiredItemBase;
-            
+
             if (requiredItem == null)
             {
                 return;
@@ -51,16 +51,18 @@ namespace Frontend.Core.Commands
             if (Directory.Exists(requiredItem.DefaultValue))
             {
                 dialog.SelectedPath = requiredItem.DefaultValue;
-            } 
-            
+            }
+
             dialog.ShowNewFolderButton = false;
 
-            DialogResult result = FolderBrowserLauncher.ShowFolderBrowser(dialog, null);
+            var result = FolderBrowserLauncher.ShowFolderBrowser(dialog, null);
 
             if (result == DialogResult.OK)
             {
                 requiredItem.SelectedValue = dialog.SelectedPath;
-                this.EventAggregator.PublishOnUIThread(new LogEntry("Successfully set " + requiredItem.FriendlyName + " to ", LogEntrySeverity.Info, LogEntrySource.UI, requiredItem.SelectedValue));
+                EventAggregator.PublishOnUIThread(new LogEntry(
+                    "Successfully set " + requiredItem.FriendlyName + " to ", LogEntrySeverity.Info, LogEntrySource.UI,
+                    requiredItem.SelectedValue));
             }
         }
     }

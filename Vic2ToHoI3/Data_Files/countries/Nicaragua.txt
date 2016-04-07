@@ -1,0 +1,455 @@
+color = { 141  168  188 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"Guardia de Presidente" "1. División de Inf. 'Anastacio'" "2. División de Inf. Nicaragua" "3. División de Inf. Nicaragua" "4. División de Inf. Nicaragua" "5. División de Inf. Nicaragua" "6. División de Inf. Nicaragua" "7. División de Inf. Nicaragua" "8. División de Inf. Nicaragua" "9. División de Inf. Nicaragua" "10. División de Inf. Nicaragua" 
+		"11. División de Inf. Nicaragua" "12. División de Inf. Nicaragua" "13. División de Inf. Nicaragua" "14. División de Inf. Nicaragua" "15. División de Inf. Nicaragua" "16. División de Inf. Nicaragua" "17. División de Inf. Nicaragua" "18. División de Inf. Nicaragua" "19. División de Inf. Nicaragua" "20. División de Inf. Nicaragua" 
+	}
+	cavalry_brigade = {
+		"1. División de Caballería" "2. División de Caballería" "3. División de Caballería" "4. División de Caballería" "5. División de Caballería" "6. División de Caballería" "7. División de Caballería" "8. División de Caballería" "9. División de Caballería" "10. División de Caballería" 
+	}
+	motorized_brigade = {
+		"1. División Móvil 'Tachito'" "2. División Móvil" "3. División Móvil" "4. División Móvil" "5. División Móvil" "6. División Móvil" "7. División Móvil" "8. División Móvil" "9. División Móvil" "10. División Móvil" 
+	}
+	mechanized_brigade = {
+		"1. División Mecanizada" "2. División Mecanizada" "3. División Mecanizada" "4. División Mecanizada" "5. División Mecanizada" "6. División Mecanizada" "7. División Mecanizada" "8. División Mecanizada" "9. División Mecanizada" "10. División Mecanizada" 
+	}
+	light_armor_brigade = {
+		"División Blindada nro. 1" "División Blindada nro. 2" "División Blindada nro. 3" "División Blindada nro. 4" "División Blindada nro. 5" "División Blindada nro. 6" "División Blindada nro. 7" "División Blindada nro. 8" "División Blindada nro. 9" "División Blindada nro. 10" 
+	}
+	armor_brigade = {
+		"División Blindada nro. 1" "División Blindada nro. 2" "División Blindada nro. 3" "División Blindada nro. 4" "División Blindada nro. 5" "División Blindada nro. 6" "División Blindada nro. 7" "División Blindada nro. 8" "División Blindada nro. 9" "División Blindada nro. 10" 
+	}
+	paratrooper_brigade = {
+		"I División de Paracaidistas" "II División de Paracaidistas" "III División de Paracaidistas" "IV División de Paracaidistas" "V División de Paracaidistas" "VI División de Paracaidistas" "VII División de Paracaidistas" "VIII División de Paracaidistas" "IX División de Paracaidistas" "X División de Paracaidistas" 
+	}
+	marine_brigade = {
+		"I División de Infantería Naval" "II División de Infantería Naval" "III División de Infantería Naval" "IV División de Infantería Naval" "V División de Infantería Naval" "VI División de Infantería Naval" "VII División de Infantería Naval" "VIII División de Infantería Naval" "IX División de Infantería Naval" "X División de Infantería Naval" 
+	}
+	bergsjaeger_brigade = {
+		"I División de Montaña 'FMN'" "II División de Montaña" "III División de Montaña" "IV División de Montaña" "V División de Montaña" "VI División de Montaña" "VII División de Montaña" "VIII División de Montaña" "IX División de Montaña" "X División de Montaña" 
+	}
+	garrison_brigade = {
+		"1. División de Inf. 'Anastacio'" "2. División de Inf. Nicaragua" "3. División de Inf. Nicaragua" "4. División de Inf. Nicaragua" "5. División de Inf. Nicaragua" "6. División de Inf. Nicaragua" "7. División de Inf. Nicaragua" "8. División de Inf. Nicaragua" "9. División de Inf. Nicaragua" "10. División de Inf. Nicaragua" "11. División de Inf. Nicaragua" 
+		"12. División de Inf. Nicaragua" "13. División de Inf. Nicaragua" "14. División de Inf. Nicaragua" "15. División de Inf. Nicaragua" "16. División de Inf. Nicaragua" "17. División de Inf. Nicaragua" "18. División de Inf. Nicaragua" "19. División de Inf. Nicaragua" "20. División de Inf. Nicaragua" 
+	}
+	hq_brigade = {
+		"Cuartel General 1er Ejército" "Cuartel General 2o Ejército" "Cuartel General 3er Ejército" "Cuartel General 4o Ejército" "Cuartel General 5o Ejército" "Cuartel General 6o Ejército" "Cuartel General 7o Ejército" "Cuartel General 8o Ejército" "Cuartel General 9o Ejército" "Cuartel General 10o Ejército" 
+	}
+	militia_brigade = {
+		"Agrupacion SM nro. 1" "Agrupacion SM nro. 2" "Agrupacion SM nro. 3" "Agrupacion SM nro. 4" "Agrupacion SM nro. 5" "Agrupacion SM nro. 6" "Agrupacion SM nro. 7" "Agrupacion SM nro. 8" "Agrupacion SM nro. 9" "Agrupacion SM nro. 10" "Agrupacion SM nro. 11" 
+		"Agrupacion SM nro. 12" "Agrupacion SM nro. 13" "Agrupacion SM nro. 14" "Agrupacion SM nro. 15" "Agrupacion SM nro. 16" "Agrupacion SM nro. 17" "Agrupacion SM nro. 18" "Agrupacion SM nro. 19" "Agrupacion SM nro. 20" 
+	}
+	multi_role = {
+		"1. Grupo Aéreo de Caza" "2. Grupo Aéreo de Caza" "3. Grupo Aéreo de Caza" "4. Grupo Aéreo de Caza" "5. Grupo Aéreo de Caza" "6. Grupo Aéreo de Caza" "7. Grupo Aéreo de Caza" "8. Grupo Aéreo de Caza" "9. Grupo Aéreo de Caza" "10. Grupo Aéreo de Caza" 
+	}
+	interceptor = {
+		"1. Grupo Aéreo de Caza" "2. Grupo Aéreo de Caza" "3. Grupo Aéreo de Caza" "4. Grupo Aéreo de Caza" "5. Grupo Aéreo de Caza" "6. Grupo Aéreo de Caza" "7. Grupo Aéreo de Caza" "8. Grupo Aéreo de Caza" "9. Grupo Aéreo de Caza" "10. Grupo Aéreo de Caza" 
+	}
+	strategic_bomber = {
+		"1. Grupo Aéreo Estratégico" "2. Grupo Aéreo Estratégico" "3. Grupo Aéreo Estratégico" "4. Grupo Aéreo Estratégico" "5. Grupo Aéreo Estratégico" "6. Grupo Aéreo Estratégico" "7. Grupo Aéreo Estratégico" "8. Grupo Aéreo Estratégico" "9. Grupo Aéreo Estratégico" "10. Grupo Aéreo Estratégico" 
+	}
+	tactical_bomber = {
+		"1. Grupo Aéreo Táctico" "2. Grupo Aéreo Táctico" "3. Grupo Aéreo Táctico" "4. Grupo Aéreo Táctico" "5. Grupo Aéreo Táctico" "6. Grupo Aéreo Táctico" "7. Grupo Aéreo Táctico" "8. Grupo Aéreo Táctico" "9. Grupo Aéreo Táctico" "10. Grupo Aéreo Táctico" 
+	}
+	naval_bomber = {
+		"1. Grupo Aeronaval" "2. Grupo Aeronaval" "3. Grupo Aeronaval" "4. Grupo Aeronaval" "5. Grupo Aeronaval" "6. Grupo Aeronaval" "7. Grupo Aeronaval" "8. Grupo Aeronaval" "9. Grupo Aeronaval" "10. Grupo Aeronaval" "1. Grupo Aéreo Torpedero" 
+		"2. Grupo Aéreo Torpedero" "3. Grupo Aéreo Torpedero" "4. Grupo Aéreo Torpedero" "5. Grupo Aéreo Torpedero" "6. Grupo Aéreo Torpedero" "7. Grupo Aéreo Torpedero" "8. Grupo Aéreo Torpedero" "9. Grupo Aéreo Torpedero" "10. Grupo Aéreo Torpedero" 
+	}
+	cas = {
+		"1. Grupo Aéreo de Asalto" "2. Grupo Aéreo de Asalto" "3. Grupo Aéreo de Asalto" "4. Grupo Aéreo de Asalto" "5. Grupo Aéreo de Asalto" "6. Grupo Aéreo de Asalto" "7. Grupo Aéreo de Asalto" "8. Grupo Aéreo de Asalto" "9. Grupo Aéreo de Asalto" "10. Grupo Aéreo de Asalto" 
+	}
+	transport_plane = {
+		"1a Linea de Aerotrans. de Nicaragua" "2a Linea de Aerotrans. de Nicaragua" "3a Linea de Aerotrans. de Nicaragua" "4a Linea de Aerotrans. de Nicaragua" "5a Linea de Aerotrans. de Nicaragua" 
+	}
+	battleship = {
+		"ARN Anastacio Somoza" "ARN La República" 
+	}
+	light_cruiser = {
+		"ARN Managua" "ARN Masaya" "ARN Granada" "ARN León" "ARN Chinandega" 
+	}
+	heavy_cruiser = {
+		"ARN Managua" "ARN Masaya" "ARN Granada" "ARN León" "ARN Chinandega" 
+	}
+	battlecruiser = {
+		"ARN Anastacio Somoza" "ARN La República" 
+	}
+	destroyer = {
+		"Grupo Esteli" "Grupo El Jicaro" "Grupo Matagalpa" "Grupo Teupasenti" "Grupo Yuscarán" "Grupo San Rafael" "Grupo Santo Tomás" "Grupo La Cruz" "Grupo Siuna" "Grupo Jinotega" 
+	}
+	carrier = {
+		"ARN Somoza y Nicaragua" "ARN Tachito" 
+	}
+	submarine = {
+		"1a Flotilla de Submarinos" "2a Flotilla de Submarinos" "3a Flotilla de Submarinos" "4a Flotilla de Submarinos" "5a Flotilla de Submarinos" "6a Flotilla de Submarinos" "7a Flotilla de Submarinos" "8a Flotilla de Submarinos" "9a Flotilla de Submarinos" "10a Flotilla de Submarinos" 
+	}
+	transport_ship = {
+		"1. Transporte Marino" "2. Transporte Marino" "3. Transporte Marino" "4. Transporte Marino" "5. Transporte Marino" "6. Transporte Marino" "7. Transporte Marino" "8. Transporte Marino" "9. Transporte Marino" "10. Transporte Marino" 
+	}
+
+}
+
+
+ministers = {
+	48001 = {
+		name = "Juan Bautista Sacasa"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48001
+		head_of_state = pig_headed_isolationist
+		start_date = 1936.1.1
+	}
+	48002 = {
+		name = "Julían Irias Navarro"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48002
+		head_of_government = happy_amateur
+		head_of_state = insignificant_layman
+		start_date = 1936.1.1
+	}
+	48003 = {
+		name = "Leonardo Argüello Vargas"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48003
+		foreign_minister = iron_fisted_brute
+		minister_of_intelligence = technical_specialist
+		armament_minister = infantry_proponent
+		head_of_state = die_hard_reformer
+		start_date = 1936.1.1
+	}
+	48004 = {
+		name = "Anastacio G. Somoza"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48004
+		armament_minister = corrupt_kleptocrat
+		chief_of_staff = school_of_defence
+		head_of_state = resigned_generalissimo
+		head_of_government = flamboyant_tough_guy
+		foreign_minister = the_cloak_n_dagger_schemer
+		minister_of_security = efficient_sociopath
+		chief_of_army = static_defence_doctrine
+		head_of_government = old_general
+		start_date = 1936.1.1
+	}
+	48005 = {
+		name = "Alcacio Trelles Mendoza"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M48005
+		minister_of_security = crooked_kleptocrat
+		head_of_government = corporate_suit
+		start_date = 1936.1.1
+	}
+	48008 = {
+		name = "Augusto Caraval Antonio"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M48008
+		chief_of_army = elastic_defence_doctrine
+		chief_of_staff = school_of_fire_support
+		start_date = 1936.1.1
+	}
+	48009 = {
+		name = "Gustavo Flores Mendienta"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48009
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	48010 = {
+		name = "Guillermo R. Cuadra"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M48010
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	48032 = {
+		name = "Carlos Brenes Jarquin"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M48032
+		head_of_state = autocratic_charmer
+		head_of_government = silent_workhorse
+		armament_minister = laissez_faires_capitalist
+		start_date = 1936.1.1
+	}
+	48034 = {
+		name = "Benjamin Lacayo Sacasa"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48034
+		head_of_state = popular_figurehead
+		armament_minister = administrative_genius
+		start_date = 1947.1.1
+	}
+	48035 = {
+		name = "Victor Roman y Reyes"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M48035
+		head_of_state = pig_headed_isolationist
+		foreign_minister = general_staffer
+		minister_of_security = prince_of_terror
+		minister_of_intelligence = technical_specialist
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1947.1.1
+	}
+	48036 = {
+		name = "Leon Cabrales"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48011
+		head_of_government = happy_amateur
+		minister_of_security = back_stabber
+		head_of_state = insignificant_layman
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	48038 = {
+		name = "Vicente Morales"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48038
+		head_of_government = naive_optimist
+		start_date = 1937.1.1
+	}
+	48039 = {
+		name = "Carlos A. Villanueva"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48039
+		head_of_government = political_protege
+		start_date = 1939.1.1
+	}
+	48042 = {
+		name = "Guillermo Cuadra"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48012
+		head_of_government = ambitious_union_boss
+		head_of_government = ambitious_union_boss
+		minister_of_security = crime_fighter
+		start_date = 1947.1.1
+	}
+	48043 = {
+		name = "Dario Darío y Debayle"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48043
+		foreign_minister = general_staffer
+		start_date = 1936.1.1
+	}
+	48044 = {
+		name = "Manuel Cordero Reyes"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48044
+		foreign_minister = great_compromiser
+		start_date = 1937.1.1
+	}
+	48045 = {
+		name = "Mariano Argüello Vargas"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48044
+		foreign_minister = biased_intellectual
+		start_date = 1939.1.1
+	}
+	48047 = {
+		name = "Silvio Argüello Cardenal"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48047
+		foreign_minister = great_compromiser
+		start_date = 1947.1.1
+	}
+	48049 = {
+		name = "Nicolas Juarez Cejudo"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48049
+		armament_minister = air_to_ground_proponent
+		start_date = 1936.1.1
+	}
+	48050 = {
+		name = "Tomas Francisco Medina"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M48050
+		armament_minister = corrupt_kleptocrat
+		start_date = 1936.1.1
+	}
+	48052 = {
+		name = "Salvador Buenrostrí Cardeñas"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48052
+		armament_minister = air_superiority_proponent
+		start_date = 1939.1.1
+	}
+	48055 = {
+		name = "Benjamin Casal Cohen"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48055
+		armament_minister = military_entrepreneur
+		start_date = 1944.1.1
+	}
+	48056 = {
+		name = "Juan Estrada Ayala"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48056
+		armament_minister = air_to_ground_proponent
+		start_date = 1947.1.1
+	}
+	48057 = {
+		name = "José Clemón Sacasa"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M48016
+		armament_minister = tank_proponent
+		minister_of_intelligence = dismal_enigma
+		start_date = 1947.1.1
+	}
+	48061 = {
+		name = "Gustavo Pavon Ochoa"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M48061
+		minister_of_security = silent_lawyer
+		start_date = 1944.1.1
+	}
+	48062 = {
+		name = "Nicolas Eden Jímenez"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M48062
+		minister_of_security = compassionate_gentleman
+		start_date = 1947.1.1
+	}
+	48064 = {
+		name = "Francisco Estrasa"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M48064
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	48065 = {
+		name = "Leonardo Argüello Vincés"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M48065
+		minister_of_intelligence = dismal_enigma
+		start_date = 1937.1.1
+	}
+	48067 = {
+		name = "José Luís Pavon Vinales"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M48067
+		minister_of_intelligence = research_specialist
+		start_date = 1944.1.1
+	}
+	48068 = {
+		name = "Juan Pablo Esquerra"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M48026
+		minister_of_intelligence = dismal_enigma
+		minister_of_intelligence = dismal_enigma
+		chief_of_staff = school_of_psychology
+		start_date = 1947.1.1
+	}
+	48072 = {
+		name = "Manuel Roque Garcia"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M48017
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1947.1.1
+	}
+	48076 = {
+		name = "Manuel Corovél Kirsch"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M48018
+		chief_of_army = armoured_spearhead_doctrine
+		chief_of_army = static_defence_doctrine
+		start_date = 1944.1.1
+	}
+	48079 = {
+		name = "Noel Esto Niño Miranda"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M48019
+		chief_of_navy = open_seas_doctrine
+		chief_of_navy = open_seas_doctrine
+		start_date = 1944.1.1
+	}
+	48082 = {
+		name = "Joel Garcia Zaldana"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M48020
+		chief_of_air = army_aviation_doctrine
+		chief_of_air = army_aviation_doctrine
+		start_date = 1944.1.1
+	}
+	48021 = {
+		name = "Luis Cardenal"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M48021
+		head_of_state = weary_stiff_neck
+		head_of_government = flamboyant_tough_guy
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	48024 = {
+		name = "Teophilo S. Grálles"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M48024
+		armament_minister = strategic_air_proponent
+		start_date = 1936.1.1
+	}
+	48025 = {
+		name = "Juan Y. Masquez"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M48025
+		minister_of_security = efficient_sociopath
+		start_date = 1936.1.1
+	}
+}

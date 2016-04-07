@@ -1,0 +1,7 @@
+owner = SAF
+controller = SAF
+add_core = SAF
+anti_air = 2
+infra = 4
+air_base = 1
+naval_base = 3

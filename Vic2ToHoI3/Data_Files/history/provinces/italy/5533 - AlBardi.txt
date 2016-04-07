@@ -1,0 +1,22 @@
+owner = ITA
+controller = ITA
+add_core = ITA
+infra = 3
+1941.1.5 = {
+	controller = ENG
+}
+1941.4.8 = {
+	controller = ITA
+}
+# 1941.11.19 = {
+#	controller = ENG
+# }
+# 1942.6.21 = {
+#	controller = ITA
+# }
+1942.11.11 = {
+	controller = ENG
+}
+1943.9.3 = {
+	owner = ENG
+}

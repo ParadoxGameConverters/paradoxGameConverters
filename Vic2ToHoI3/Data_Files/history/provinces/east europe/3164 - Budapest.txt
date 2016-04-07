@@ -1,0 +1,14 @@
+owner = HUN
+controller = HUN
+add_core = HUN
+
+points = 2
+metal = 7.00
+energy = 14.00
+rare_materials = 7.00
+industry = 10
+anti_air = 2
+infra = 8
+air_base = 6
+manpower = 8.00
+leadership = 2.00

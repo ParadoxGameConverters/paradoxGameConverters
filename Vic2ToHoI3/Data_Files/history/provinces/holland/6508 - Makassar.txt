@@ -1,0 +1,15 @@
+owner = HOL
+controller = HOL
+
+add_core = HOL
+add_core = INO
+points = 2
+infra = 6
+manpower = 0.2
+leadership = 0.2
+naval_base = 2
+
+1942.6.4 = {
+	controller = JAP
+}
+1944.6.20 = { air_base = 4 }

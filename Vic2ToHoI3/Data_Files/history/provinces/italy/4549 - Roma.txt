@@ -1,0 +1,18 @@
+owner = ITA
+controller = ITA
+add_core = ITA
+
+points = 15
+metal = 7.00
+energy = 15.00
+rare_materials = 8.00
+industry = 8
+anti_air = 1
+infra = 8
+air_base = 10
+manpower = 8.00
+leadership = 1.20
+1943.9.3 = {
+	owner = ENG
+	controller = ENG
+}

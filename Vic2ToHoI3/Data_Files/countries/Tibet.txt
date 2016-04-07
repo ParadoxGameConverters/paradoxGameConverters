@@ -1,0 +1,349 @@
+color = { 177  207  205 }
+graphical_culture = Japanese
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"Di'1 Shi" "Di'2 Shi" "Di'3 Shi" "Di'4 Shi" "Di'5 Shi" "Di'6 Shi" "Di'7 Shi" "Di'8 Shi" "Di'9 Shi" "Di'10 Shi" "Di'12 Shi" 
+		"Di'14 Shi" "Di'15 Shi" "Di'17 Shi" "Di'19 Shi" "Di'21 Shi" "Di'22 Shi" "Di'25 Shi" "Di'28 Shi" "Di'29 Shi" "Di'30 Shi" "Di'35 Shi" 
+		"Di'38 Shi" "Di'40 Shi" "Di'42 Shi" "Di'46 Shi" "Di'47 Shi" "Di'49 Shi" "Di'50 Shi" "Di'51 Shi" "Di'57 Shi" "Di'58 Shi" "Di'61 Shi" 
+		"Di'62 Shi" "Di'63 Shi" "Di'64 Shi" "Di'65 Shi" "Di'66 Shi" "Di'69 Shi" 
+	}
+	cavalry_brigade = {
+		"Qibing Di'1 Shi" "Qibing Di'2 Shi" "Qibing Di'3 Shi" "Qibing Di'4 Shi" "Qibing Di'5 Shi" "Qibing Di'6 Shi" "Qibing Di'7 Shi" "Qibing Di'8 Shi" "Qibing Di'9 Shi" "Qibing Di'10 Shi" "Qibing Di'11 Shi" 
+		"Qibing Di'12 Shi" "Qibing Di'13 Shi" "Qibing Di'14 Shi" "Qibing Di'15 Shi" 
+	}
+	motorized_brigade = {
+		"Motuohua Bubing Di'1 Shi" "Motuohua Bubing Di'2 Shi" "Motuohua Bubing Di'3 Shi" "Motuohua Bubing Di'4 Shi" "Motuohua Bubing Di'5 Shi" "Motuohua Bubing Di'6 Shi" "Motuohua Bubing Di'7 Shi" "Motuohua Bubing Di'8 Shi" "Motuohua Bubing Di'9 Shi" "Motuohua Bubing Di'10 Shi" "Motuohua Bubing Di'12 Shi" 
+		"Motuohua Bubing Di'14 Shi" "Motuohua Bubing Di'15 Shi" 
+	}
+	mechanized_brigade = {
+		"Jixiehua Di'1 Shi" "Jixiehua Di'2 Shi" "Jixiehua Di'3 Shi" "Jixiehua Di'4 Shi" "Jixiehua Di'5 Shi" "Jixiehua Di'6 Shi" "Jixiehua Di'7 Shi" "Jixiehua Di'8 Shi" "Jixiehua Di'9 Shi" "Jixiehua Di'10 Shi" "Jixiehua Di'12 Shi" 
+		"Jixiehua Di'14 Shi" "Jixiehua Di'15 Shi" 
+	}
+	light_armor_brigade = {
+		"Zhuangjiabing Di'1 Shi" "Zhuangjiabing Di'2 Shi" "Zhuangjiabing Di'3 Shi" "Zhuangjiabing Di'4 Shi" "Zhuangjiabing Di'5 Shi" "Zhuangjiabing Di'6 Shi" "Zhuangjiabing Di'7 Shi" "Zhuangjiabing Di'8 Shi" "Zhuangjiabing Di'9 Shi" "Zhuangjiabing Di'10 Shi" "Zhuangjiabing Di'11 Shi" 
+		"Zhuangjiabing Di'12 Shi" "Zhuangjiabing Di'13 Shi" "Zhuangjiabing Di'14 Shi" "Zhuangjiabing Di'15 Shi" "Zhuangjiabing Di'16 Shi" "Zhuangjiabing Di'17 Shi" "Zhuangjiabing Di'18 Shi" "Zhuangjiabing Di'19 Shi" "Zhuangjiabing Di'20 Shi" 
+	}
+	armor_brigade = {
+		"Zhuangjiabing Di'1 Shi" "Zhuangjiabing Di'2 Shi" "Zhuangjiabing Di'3 Shi" "Zhuangjiabing Di'4 Shi" "Zhuangjiabing Di'5 Shi" "Zhuangjiabing Di'6 Shi" "Zhuangjiabing Di'7 Shi" "Zhuangjiabing Di'8 Shi" "Zhuangjiabing Di'9 Shi" "Zhuangjiabing Di'10 Shi" "Zhuangjiabing Di'11 Shi" 
+		"Zhuangjiabing Di'12 Shi" "Zhuangjiabing Di'13 Shi" "Zhuangjiabing Di'14 Shi" "Zhuangjiabing Di'15 Shi" "Zhuangjiabing Di'16 Shi" "Zhuangjiabing Di'17 Shi" "Zhuangjiabing Di'18 Shi" "Zhuangjiabing Di'19 Shi" "Zhuangjiabing Di'20 Shi" 
+	}
+	paratrooper_brigade = {
+		"1 Jiang'luo'san'bu" "Jiangluo Sanbu Di'2 Shi" "Jiangluo Sanbu Di'3 Shi" "Jiangluo Sanbu Di'4 Shi" "Jiangluo Sanbu Di'5 Shi" "Jiangluo Sanbu Di'6 Shi" "Jiangluo Sanbu Di'7 Shi" "Jiangluo Sanbu Di'8 Shi" "Jiangluo Sanbu Di'9 Shi" "Jiangluo Sanbu Di'10 Shi" "Jiangluo Sanbu Di'11 Shi" 
+		"Jiangluo Sanbu Di'12 Shi" "Jiangluo Sanbu Di'13 Shi" "Jiangluo Sanbu Di'14 Shi" "Jiangluo Sanbu Di'15 Shi" 
+	}
+	marine_brigade = {
+		"Luzhan Dui Di'1 Shi" "Luzhan Dui Di'2 Shi" "Luzhan Dui Di'3 Shi" "Luzhan Dui Di'4 Shi" "Luzhan Dui Di'5 Shi" "Luzhan Dui Di'6 Shi" "Luzhan Dui Di'7 Shi" "Luzhan Dui Di'8 Shi" "Luzhan Dui Di'9 Shi" "Luzhan Dui Di'10 Shi" "Luzhan Dui Di'11 Shi" 
+		"Luzhan Dui Di'12 Shi" "Luzhan Dui Di'13 Shi" "Luzhan Dui Di'14 Shi" "Luzhan Dui Di'15 Shi" 
+	}
+	bergsjaeger_brigade = {
+		"Pabing Di'1 Shi" "Pabing Di'2 Shi" "Pabing Di'3 Shi" "Pabing Di'4 Shi" "Pabing Di'5 Shi" "Pabing Di'6 Shi" "Pabing Di'7 Shi" "Pabing Di'8 Shi" "Pabing Di'9 Shi" "Pabing Di'10 Shi" "Pabing Di'12 Shi" 
+		"Pabing Di'14 Shi" "Pabing Di'15 Shi" "Pabing Di'17 Shi" "Pabing Di'19 Shi" 
+	}
+	garrison_brigade = {
+		"Di'1 Shi" "Di'2 Shi" "Di'3 Shi" "Di'4 Shi" "Di'5 Shi" "Di'6 Shi" "Di'7 Shi" "Di'8 Shi" "Di'10 Shi" "Di'12 Shi" "Di'14 Shi" 
+		"Di'15 Shi" "Di'17 Shi" "Di'19 Shi" "Di'21 Shi" "Di'22 Shi" "Di'25 Shi" "Di'28 Shi" "Di'29 Shi" "Di'30 Shi" "Di'35 Shi" "Di'38 Shi" 
+		"Di'40 Shi" "Di'42 Shi" "Di'46 Shi" "Di'47 Shi" "Di'49 Shi" "Di'50 Shi" 
+	}
+	hq_brigade = {
+		"Di'1 Zhandou Silingbu" "Di'2 Zhandou Silingbu" "Di'3 Zhandou Silingbu" "Di'4 Zhandou Silingbu" "Di'5 Zhandou Silingbu" "Di'6 Zhandou Silingbu" "Di'7 Zhandou Silingbu" "Di'8 Zhandou Silingbu" "Di'9 Zhandou Silingbu" 
+	}
+	militia_brigade = {
+		"Xinjiang Baoan Zongdui" "8. Min Shi" "9. Min Shi" "10. Min Shi" "12. Min Shi" "14. Min Shi" "15. Min Shi" "17. Min Shi" "19. Min Shi" "21. Min Shi" "22. Min Shi" 
+		"25. Min Shi" "28. Min Shi" "29. Min Shi" "30. Min Shi" "35. Min Shi" "38. Min Shi" "40. Min Shi" "42. Min Shi" "46. Min Shi" "47. Min Shi" "49. Min Shi" 
+		"50. Min Shi" "51. Min Shi" 
+	}
+	multi_role = {
+		"1. Qianjiji Dadui" "2. Qianjiji Dadui" "3. Qianjiji Dadui" "4. Qianjiji Dadui" "5. Qianjiji Dadui" 
+	}
+	interceptor = {
+		"1. Zhandouji Dadui" "2. Zhandouji Dadui" "3. Zhandouji Dadui" "4. Zhandouji Dadui" "5. Zhandouji Dadui" 
+	}
+	strategic_bomber = {
+		"1. STR Hongzhaji Dadui" "2. STR Hongzhaji Dadui" "3. STR Hongzhaji Dadui" "4. STR Hongzhaji Dadui" "5. STR Hongzhaji Dadui" 
+	}
+	tactical_bomber = {
+		"1. TAC Hongzhaji Dadui" "2. TAC Hongzhaji Dadui" "3. TAC Hongzhaji Dadui" "4. TAC Hongzhaji Dadui" "5. TAC Hongzhaji Dadui" 
+	}
+	naval_bomber = {
+		"1. MAR Hongzhaji Dadui" "2. MAR Hongzhaji Dadui" "3. MAR Hongzhaji Dadui" "4. MAR Hongzhaji Dadui" "5. MAR Hongzhaji Dadui" "6. MAR Hongzhaji Dadui" "7. MAR Hongzhaji Dadui" "8. MAR Hongzhaji Dadui" "9. MAR Hongzhaji Dadui" "10. MAR Hongzhaji Dadui" 
+	}
+	cas = {
+		"1. DIV Hongzhaji Dadui" "2. DIV Hongzhaji Dadui" "3. DIV Hongzhaji Dadui" "4. DIV Hongzhaji Dadui" "5. DIV Hongzhaji Dadui" 
+	}
+	transport_plane = {
+		"1. Kongyunji Dadui" "2. Kongyunji Dadui" "3. Kongyunji Dadui" "4. Kongyunji Dadui" "5. Kongyunji Dadui" 
+	}
+	battleship = {
+		"Nan'Shin" "Pao'Nim" 
+	}
+	light_cruiser = {
+		"Hai'Shen" "Ying'Swei" 
+	}
+	heavy_cruiser = {
+		"Ping'hai" "Ning'hai" 
+	}
+	battlecruiser = {
+		"Fei'Hung" "Chao'Ho" 
+	}
+	destroyer = {
+		"1. Quzujian Dadui" "2. Quzujian Dadui" "3. Quzujian Dadui" 
+	}
+	carrier = {
+		"Nan'Shin" "Pao'Nim" 
+	}
+	submarine = {
+		"1. Qianting Budui" "2. Qianting Budui" 
+	}
+	transport_ship = {
+		"1. Yunshuji Dadui" "2. Yunshuji Dadui" "3. Yunshuji Dadui" 
+	}
+
+}
+
+ministers = {
+	73001 = {
+		name = "Dalai Lama Lhamo Tondup"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M73001
+		head_of_state = pig_headed_isolationist
+		start_date = 1936.1.1
+	}
+	73002 = {
+		name = "Reting Rimpoche"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M73002
+		head_of_government = old_general
+		foreign_minister = apologetic_clerk
+		minister_of_security = compassionate_gentleman
+		armament_minister = laissez_faires_capitalist
+		start_date = 1936.1.1
+	}
+	73004 = {
+		name = "Tsepon Shakabpa"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M73004
+		armament_minister = corrupt_kleptocrat
+		minister_of_security = prince_of_terror
+		start_date = 1936.1.1
+	}
+	73006 = {
+		name = "W.G. Kundeling"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M73006
+		minister_of_intelligence = research_specialist
+		armament_minister = administrative_genius
+		start_date = 1936.1.1
+	}
+	73007 = {
+		name = "Gyato Wangdu"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M73007
+		chief_of_staff = school_of_manoeuvre
+		foreign_minister = general_staffer
+		armament_minister = tank_proponent
+		chief_of_army = armoured_spearhead_doctrine
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	73008 = {
+		name = "Tenpa Jamyang"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M73008
+		chief_of_army = elastic_defence_doctrine
+		armament_minister = infantry_proponent
+		minister_of_intelligence = research_specialist
+		chief_of_staff = school_of_fire_support
+		start_date = 1936.1.1
+	}
+	73009 = {
+		name = "Chama Samphe"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M73009
+		chief_of_navy = decisive_naval_battle_doctrine
+		armament_minister = battle_fleet_proponent
+		minister_of_security = efficient_sociopath
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	73010 = {
+		name = "Sampo Tsewang Rigzin"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M73010
+		chief_of_air = army_aviation_doctrine
+		armament_minister = air_to_ground_proponent
+		start_date = 1936.1.1
+	}
+	73041 = {
+		name = "Taktra Rinpoche"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M73041
+		head_of_government = backroom_backstabber
+		foreign_minister = great_compromiser
+		minister_of_security = compassionate_gentleman
+		start_date = 1941.1.1
+	}
+	73042 = {
+		name = "Gedun Choephel"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M73012
+		foreign_minister = biased_intellectual
+		minister_of_security = silent_lawyer
+		start_date = 1936.1.1
+	}
+	73043 = {
+		name = "Kuntsig Shamar Rimpoche"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M73043
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	73045 = {
+		name = "Jigme Taring"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M73045
+		foreign_minister = apologetic_clerk
+		armament_minister = military_entrepreneur
+		start_date = 1943.1.1
+	}
+	73047 = {
+		name = "Gangdhjom Tharchin"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M73047
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1944.1.1
+	}
+	73048 = {
+		name = "Dudjom Rimpoche"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M73048
+		foreign_minister = iron_fisted_brute
+		start_date = 1945.1.1
+	}
+	73050 = {
+		name = "Khilsin Tchansal"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M73050
+		armament_minister = theoretical_scientist
+		minister_of_intelligence = technical_specialist
+		start_date = 1938.1.1
+	}
+	73052 = {
+		name = "Lhalu Tsewang Dorje"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M73019
+		armament_minister = submarine_proponent
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1939.1.1
+	}
+	73053 = {
+		name = "Thupthen Ningee"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M73014
+		armament_minister = resource_industrialist
+		minister_of_intelligence = industrial_specialist
+		start_date = 1940.1.1
+	}
+	73055 = {
+		name = "Bapa Yeshe"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M73020
+		armament_minister = air_superiority_proponent
+		minister_of_security = man_of_the_people
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = elastic_defence_doctrine
+		chief_of_air = air_superiority_doctrine
+		start_date = 1942.1.1
+	}
+	73060 = {
+		name = "Chama Sanampo"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M73016
+		minister_of_security = back_stabber
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	73064 = {
+		name = "Thepon Rananpoi"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M73064
+		minister_of_security = crime_fighter
+		start_date = 1939.1.1
+	}
+	73073 = {
+		name = "Andruk Gonpo Tashi"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M73017
+		chief_of_staff = school_of_psychology
+		start_date = 1938.1.1
+	}
+	73074 = {
+		name = "Jampal Rabgyé Rinpoche"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M73018
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		start_date = 1939.1.1
+	}
+	73078 = {
+		name = "Chaghoe Namgyal Dorje"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M73078
+		chief_of_army = decisive_battle_doctrine
+		chief_of_navy = open_seas_doctrine
+		start_date = 1942.1.1
+	}
+	73081 = {
+		name = "Khemey Sonam Wangdi"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M73081
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1943.1.1
+	}
+}

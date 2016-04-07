@@ -1,0 +1,65 @@
+configuration =
+{
+	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
+	V2directory = "D:\Paradox Interactive\Victoria 2"
+
+	# Victoria 2 Documents directory: a path on your computer where Victoria 2 keeps temporary files
+	V2Documentsdirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Victoria II"
+
+	# HoI3 directory: a path on your computer where Hearts of Iron III is installed
+	HoI3directory = "C:\Program Files (x86)\Steam\SteamApps\common\Hearts of Iron 3"
+
+	# HoI3 Documents directory: a path on your computer where Hearts of Iron III keeps temporary files
+	HoI3Documentsdirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Hearts of Iron III"
+
+	# Vic2Mods: Vic2 mods to use for conversion
+	# Example: Vic2Mods = { modname1 modname2 }
+	Vic2Mods = { TheEmpireStrikesBack }
+
+	# Faction Leader: how the converter determines who the faction leaders are
+	#	auto
+	#	manual		Fill the factions with the proper Vicky tags.  First tag in each list is leader, others are members.
+	faction_leader = "auto"
+	axis_faction = { GER ITA }
+	allies_faction = { ENG FRA CAN HND SAF }
+	comintern_faction = { RUS }
+
+	# Minimum Infrastructure: every land province will have at least this much infrastructure
+	#	Default: 3.0 (minimum required to move armies)
+	min_infrastructure = 3.0
+
+	# IC Conversion: Set to "no" if you want to use the original HoI3 IC values. Options are:
+	#	"squareroot": sqrt(artisan/2 + craftsman + capitalists*2 + clerks*2) * 0.002 * factor
+	#	"linear": (artisan/2 + craftsman + capitalists*2 + clerks*2) * 0.000008 * factor
+	#	"logarithmic": log((artisan/2 + craftsman + capitalists*2 + clerks*2) / 70000) * 1.75 * factor
+	#	"no"
+	#	Default: "squareroot"
+	ic_conversion = "linear"
+	ic_factor = 1.0
+
+	# Manpower Conversion: Set to "no" if you want to use the original HoI3 manpower values. Options are:
+	#	"squareroot": sqrt(soldiers + farmers/4 + labourers/4 + craftsmen/4) * factor
+	#	"linear": (soldiers + farmers/4 + labourers/4 + craftsmen/4) * factor
+	#	"no"
+	#	Default: "linear"
+	manpower_conversion = "linear"
+	manpower_factor = 1.0
+
+	# Leadership Conversion: Set to "no" if you want to use the original HoI3 leadership values. Options are:
+	#	"squareroot": sqrt(officers + clerks + capitalists/2 + clergymen/2 + bureaucrats/4 + aristocrats/4) * factor
+	#	"linear": (officers + clerks + capitalists/2 + clergymen/2 + bureaucrats/4 + aristocrats/4) * factor
+	#	"no"
+	#	Default: "no"
+	leadership_conversion = "linear"
+	leadership_factor = 1.0
+
+	# This value affects how much the POP's literacy affects the weighting of the educated classes in leadership and IC
+	#  conversion calculations
+	literacy_weight = 0.1
+
+	# Starting production practicals: practicals_scale * Sum of all units' practical bonus when they are constructed
+	practicals_scale = 0.05
+	
+	# Note: You may want to merge some V2 nations.
+	# Merge settings are found in merge_nations.txt, rather than this file.
+}

@@ -1,0 +1,10 @@
+owner = CZE
+controller = CZE
+add_core = CZE
+
+infra = 8
+1939.3.15 = {
+	owner = GER
+	controller = GER
+	add_core = GER
+}

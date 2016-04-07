@@ -1,0 +1,26 @@
+diplomatic_decisions = {
+	
+	prepare_for_war = {
+		potential = {
+			government_in_exile = no
+			AI = no
+			NOT =  {
+				has_country_flag = prepare_for_war
+			}
+			NOT =  {
+				total_ic = 30
+			}
+		}
+		allow = {
+			
+		}
+
+		effect = {
+			set_country_flag = prepare_for_war
+			add_country_modifier = {
+				name = "prepare_for_war"
+				duration = 300
+			}
+		}
+	}
+}

@@ -1,0 +1,12 @@
+owner = HAI
+controller = HAI
+add_core = HAI
+points = 1
+rare_materials = 1.00
+anti_air = 1
+infra = 6
+energy = 8
+air_base = 2
+naval_base = 4
+manpower = 3.00
+leadership = 0.30

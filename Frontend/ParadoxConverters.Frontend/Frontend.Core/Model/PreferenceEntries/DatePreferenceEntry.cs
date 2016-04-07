@@ -1,6 +1,6 @@
-﻿using Frontend.Core.Model.PreferenceEntries.Interfaces;
+﻿using System;
+using Frontend.Core.Model.PreferenceEntries.Interfaces;
 using Frontend.Core.Model.Preferences.Interfaces;
-using System;
 
 namespace Frontend.Core.Model.PreferenceEntries
 {

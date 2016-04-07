@@ -4,26 +4,26 @@ namespace Frontend.Core.Tests
 {
     public class UnitTestBase
     {
-        public TestContext TestContext
-        {
-            get;
-            set;
-        }
+        public TestContext TestContext { get; set; }
 
         [TestInitialize]
         public void Initialize()
         {
-            this.OnInitialize();
+            OnInitialize();
         }
 
         [TestCleanup]
         public void Cleanup()
         {
-            this.OnCleanup();
+            OnCleanup();
         }
 
-        protected virtual void OnInitialize(){}
+        protected virtual void OnInitialize()
+        {
+        }
 
-        protected virtual void OnCleanup() { }
+        protected virtual void OnCleanup()
+        {
+        }
     }
 }

@@ -1,0 +1,23 @@
+owner = LAT
+controller = LAT
+add_core = LAT
+
+energy = 1.00
+industry = 1
+infra = 8
+manpower = 1.00
+leadership = 0.10
+1940.5.10 = {
+	owner = SOV
+	controller = SOV
+
+	add_core = SOV
+}
+1941.6.22 = {
+	owner = SOV
+	controller = SOV
+	add_core = SOV
+}
+1941.12.7 = {
+	controller = GER
+}

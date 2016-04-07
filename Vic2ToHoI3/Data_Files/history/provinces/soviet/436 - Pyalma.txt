@@ -1,0 +1,14 @@
+owner = SOV
+controller = SOV
+add_core = SOV 
+add_core = FIN
+
+infra = 6
+points = 2
+industry = 1
+anti_air = 1
+
+1941.12.7 = {
+	controller = FIN
+
+}

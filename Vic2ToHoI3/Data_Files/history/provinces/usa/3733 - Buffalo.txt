@@ -1,0 +1,7 @@
+owner = USA
+controller = USA
+add_core = USA
+points = 1
+metal = 54.00
+infra = 10
+industry = 2

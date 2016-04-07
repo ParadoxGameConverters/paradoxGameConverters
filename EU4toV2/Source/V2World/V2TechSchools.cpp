@@ -22,8 +22,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2TechSchools.h"
-#include "../Log.h"
-#include "../Parsers\Object.h"
+#include "Log.h"
+#include "Object.h"
 
 
 

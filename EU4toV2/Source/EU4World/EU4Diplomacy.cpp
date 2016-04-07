@@ -20,8 +20,8 @@ THE SOFTWARE. */
 
 
 #include "EU4Diplomacy.h"
-#include "../Log.h"
-#include "../Parsers/Object.h"
+#include "Log.h"
+#include "Object.h"
 
 
 

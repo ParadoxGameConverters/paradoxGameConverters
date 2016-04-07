@@ -1,0 +1,457 @@
+color = { 65  175  179 }
+graphical_culture = German
+
+last_election = 1934.6.6
+duration = 36
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1. Infantriedivision" "2. Infantriedivision" "3. Infantriedivision" "4. Infantriedivision" "5. Infantriedivision" "6. Infantriedivision" "7. Infantriedivision" "8. Infantriedivision" "9. Infantriedivision" "10. Infantriedivision" "11. Infantriedivision" 
+		"12. Infantriedivision" 
+	}
+	cavalry_brigade = {
+		"1. Kavalleriedivision" "2. Kavalleriedivision" "3. Kavalleriedivision" "4. Kavalleriedivision" "5. Kavalleriedivision" "6. Kavalleriedivision" "7. Kavalleriedivision" "8. Kavalleriedivision" "9. Kavalleriedivision" "10. Kavalleriedivision" 
+	}
+	motorized_brigade = {
+		"Kraftfahrjägerdivision" "2. Kraftfahrjägerdivision" "3. Kraftfahrjägerdivision" "4. Kraftfahrjägerdivision" "5. Kraftfahrjägerdivision" "6. Kraftfahrjägerdivision" "7. Kraftfahrjägerdivision" "8. Kraftfahrjägerdivision" "9. Kraftfahrjägerdivision" "10. Kraftfahrjägerdivision" 
+	}
+	mechanized_brigade = {
+		"1. Schnelledivision" "2. Schnelledivision" "3. Schnelledivision" "4. Schnelledivision" "5. Schnelledivision" "6. Schnelledivision" "7. Schnelledivision" "8. Schnelledivision" "9. Schnelledivision" "10. Schnelledivision" 
+	}
+	light_armor_brigade = {
+		"1. Panzerwagendivision" "2. Panzerwagendivision" "3. Panzerwagendivision" "4. Panzerwagendivision" "5. Panzerwagendivision" "6. Panzerwagendivision" "7. Panzerwagendivision" "8. Panzerwagendivision" "9. Panzerwagendivision" "10. Panzerwagendivision" 
+	}
+	armor_brigade = {
+		"1. Panzerwagendivision" "2. Panzerwagendivision" "3. Panzerwagendivision" "4. Panzerwagendivision" "5. Panzerwagendivision" "6. Panzerwagendivision" "7. Panzerwagendivision" "8. Panzerwagendivision" "9. Panzerwagendivision" "10. Panzerwagendivision" 
+	}
+	paratrooper_brigade = {
+		"1. Fallschirmjägerdivision" "2. Fallschirmjägerdivision" "3. Fallschirmjägerdivision" "4. Fallschirmjägerdivision" "5. Fallschirmjägerdivision" "6. Fallschirmjägerdivision" "7. Fallschirmjägerdivision" "8. Fallschirmjägerdivision" "9. Fallschirmjägerdivision" "10. Fallschirmjägerdivision" 
+	}
+	marine_brigade = {
+		"1. Marinestürmdivision" "2. Marinestürmdivision" "3. Marinestürmdivision" "4. Marinestürmdivision" "5. Marinestürmdivision" "6. Marinestürmdivision" "7. Marinestürmdivision" "8. Marinestürmdivision" "9. Marinestürmdivision" "10. Marinestürmdivision" 
+	}
+	bergsjaeger_brigade = {
+		"1. Alpenjägerdivision" "2. Alpenjägerdivision" "3. Alpenjägerdivision" "4. Alpenjägerdivision" "5. Alpenjägerdivision" "6. Alpenjägerdivision" "7. Alpenjägerdivision" "8. Alpenjägerdivision" "9. Alpenjägerdivision" 
+	}
+	garrison_brigade = {
+		"1. Infantriedivision" "2. Infantriedivision" "3. Infantriedivision" "4. Infantriedivision" "5. Infantriedivision" "6. Infantriedivision" "7. Infantriedivision" "8. Infantriedivision" "9. Infantriedivision" "10. Infantriedivision" "11. Infantriedivision" 
+		"12. Infantriedivision" 
+	}
+	hq_brigade = {
+		"1. Armee" "2. Armee" "3. Armee" "4. Armee" "5. Armee" "6. Armee" "7. Armee" "8. Armee" "9. Armee" "10. Armee" "11. Armee" 
+		"12. Armee" 
+	}
+	militia_brigade = {
+		"1. Landesschützendivision" "2. Landesschützendivision" "3. Landesschützendivision" "4. Landesschützendivision" "5. Landesschützendivision" "6. Landesschützendivision" "7. Landesschützendivision" "8. Landesschützendivision" "9. Landesschützendivision" "10. Landesschützendivision" "11. Landesschützendivision" 
+		"12. Landesschützendivision" "13. Landesschützendivision" "14. Landesschützendivision" "15. Landesschützendivision" "16. Landesschützendivision" "17. Landesschützendivision" "18. Landesschützendivision" "19. Landesschützendivision" "20. Landesschützendivision" 
+	}
+	multi_role = {
+		"Fliegerdivision 1" "Fliegerdivision 2" "Fliegerdivision 3" "Fliegerdivision 4" "Fliegerdivision 5" "Fliegerdivision 6" "Fliegerdivision 7" "Fliegerdivision 8" "Fliegerdivision 9" "Fliegerdivision 10" 
+	}
+	interceptor = {
+		"Fliegerdivision 1" "Fliegerdivision 2" "Fliegerdivision 3" "Fliegerdivision 4" "Fliegerdivision 5" "Fliegerdivision 6" "Fliegerdivision 7" "Fliegerdivision 8" "Fliegerdivision 9" "Fliegerdivision 10" 
+	}
+	strategic_bomber = {
+		"Strategische Fliegerdivision 1" "Strategische Fliegerdivision 2" "Strategische Fliegerdivision 3" "Strategische Fliegerdivision 4" "Strategische Fliegerdivision 5" "Strategische Fliegerdivision 6" "Strategische Fliegerdivision 7" "Strategische Fliegerdivision 8" "Strategische Fliegerdivision 9" "Strategische Fliegerdivision 10" 
+	}
+	tactical_bomber = {
+		"Taktische Fliegerdivision 1" "Taktische Fliegerdivision 2" "Taktische Fliegerdivision 3" "Taktische Fliegerdivision 4" "Taktische Fliegerdivision 5" "Taktische Fliegerdivision 6" "Taktische Fliegerdivision 7" "Taktische Fliegerdivision 8" "Taktische Fliegerdivision 9" "Taktische Fliegerdivision 10" 
+	}
+	naval_bomber = {
+		"Zee Bomben Fliegerdivision 1" "Zee Bomben Fliegerdivision 2" "Zee Bomben Fliegerdivision 3" "Zee Bomben Fliegerdivision 4" "Zee Bomben Fliegerdivision 5" "Zee Bomben Fliegerdivision 6" "Zee Bomben Fliegerdivision 7" "Zee Bomben Fliegerdivision 8" "Zee Bomben Fliegerdivision 9" "Zee Bomben Fliegerdivision 10" "Torpedo Fliegerdivision 1" 
+		"Torpedo Fliegerdivision 2" "Torpedo Fliegerdivision 3" "Torpedo Fliegerdivision 4" "Torpedo Fliegerdivision 5" "Torpedo Fliegerdivision 6" "Torpedo Fliegerdivision 7" "Torpedo Fliegerdivision 8" "Torpedo Fliegerdivision 9" "Torpedo Fliegerdivision 10" 
+	}
+	cas = {
+		"Angriff Fliegerdivision 1" "Angriff Fliegerdivision 2" "Angriff Fliegerdivision 3" "Angriff Fliegerdivision 4" "Angriff Fliegerdivision 5" "Angriff Fliegerdivision 6" "Angriff Fliegerdivision 7" "Angriff Fliegerdivision 8" "Angriff Fliegerdivision 9" "Angriff Fliegerdivision 10" 
+	}
+	transport_plane = {
+		"Transport Fliegerdivision 1" "Transport Fliegerdivision 2" "Transport Fliegerdivision 3" "Transport Fliegerdivision 4" "Transport Fliegerdivision 5" "Transport Fliegerdivision 6" "Transport Fliegerdivision 7" "Transport Fliegerdivision 8" "Transport Fliegerdivision 9" "Transport Fliegerdivision 10" 
+	}
+	destroyer = {
+		"1. Zerstörergeschwader" "2. Zerstörergeschwader" "3. Zerstörergeschwader" "4. Zerstörergeschwader" "5. Zerstörergeschwader" "6. Zerstörergeschwader" "7. Zerstörergeschwader" "8. Zerstörergeschwader" "9. Zerstörergeschwader" "10. Zerstörergeschwader" 
+	}
+
+}
+
+ministers = {
+	66001 = {
+		name = "Charlotte"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M66001
+		head_of_state = autocratic_charmer
+		head_of_state = autocratic_charmer
+		start_date = 1936.1.1
+	}
+	66002 = {
+		name = "Joseph Bech"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M66002
+		head_of_government = naive_optimist
+		foreign_minister = ideological_crusader
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	66004 = {
+		name = "Pierre Dupong"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M66004
+		armament_minister = laissez_faires_capitalist
+		chief_of_staff = school_of_defence
+		head_of_government = silent_workhorse
+		start_date = 1936.1.1
+	}
+	66005 = {
+		name = "Norbert Dumont"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M66005
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	66006 = {
+		name = "Nicholas Marque"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M66006
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	66008 = {
+		name = "Emile Speller"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M66008
+		chief_of_army = static_defence_doctrine
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	66010 = {
+		name = "Nicholas Diedrich"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M66010
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	66034 = {
+		name = "Alexander von Falkenhausen"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M66034
+		head_of_state = resigned_generalissimo
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1940.1.1
+	}
+	66035 = {
+		name = "Guillaume Soisson"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M66016
+		head_of_state = popular_figurehead
+		head_of_government = happy_amateur
+		minister_of_intelligence = research_specialist
+		chief_of_air = air_superiority_doctrine
+		start_date = 1945.1.1
+	}
+	66036 = {
+		name = "Paul Medinger"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M66021
+		head_of_state = pig_headed_isolationist
+		head_of_government = ambitious_union_boss
+		foreign_minister = biased_intellectual
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	66037 = {
+		name = "Martin Karp"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M66024
+		head_of_state = die_hard_reformer
+		head_of_government = corporate_suit
+		armament_minister = infantry_proponent
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1945.1.1
+	}
+	66039 = {
+		name = "René Blum"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M66039
+		head_of_government = ambitious_union_boss
+		foreign_minister = iron_fisted_brute
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	66040 = {
+		name = "Damian Kratzenberg"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M66011
+		head_of_government = corporate_suit
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	66045 = {
+		name = "Pierre Krier"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M66045
+		foreign_minister = apologetic_clerk
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	66048 = {
+		name = "Henri Ahnen"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M66015
+		foreign_minister = iron_fisted_brute
+		minister_of_security = compassionate_gentleman
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1945.1.1
+	}
+	66050 = {
+		name = "Francois Schammel"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M66050
+		foreign_minister = general_staffer
+		minister_of_intelligence = research_specialist
+		chief_of_staff = school_of_mass_combat
+		start_date = 1945.1.1
+	}
+	66052 = {
+		name = "Jules Keiffer"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M66052
+		armament_minister = military_entrepreneur
+		start_date = 1944.1.1
+	}
+	66053 = {
+		name = "Auguste Oster"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M66053
+		armament_minister = administrative_genius
+		start_date = 1945.1.1
+	}
+	66055 = {
+		name = "Alex Federspiel"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M66055
+		armament_minister = infantry_proponent
+		chief_of_staff = school_of_fire_support
+		start_date = 1940.1.1
+	}
+	66056 = {
+		name = "Gustave Farver"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M66014
+		armament_minister = tank_proponent
+		start_date = 1936.1.1
+	}
+	66057 = {
+		name = "Philip Hoffmann"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M66057
+		armament_minister = theoretical_scientist
+		start_date = 1945.1.1
+	}
+	66059 = {
+		name = "Jean Pierre Kauder"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M66025
+		armament_minister = military_entrepreneur
+		minister_of_security = man_of_the_people
+		minister_of_intelligence = industrial_specialist
+		start_date = 1945.1.1
+	}
+	66060 = {
+		name = "Nicolas Braunshausen"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M66060
+		minister_of_security = back_stabber
+		start_date = 1936.1.1
+	}
+	66061 = {
+		name = "Etienne Schmit"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M66061
+		minister_of_security = silent_lawyer
+		start_date = 1937.1.1
+	}
+	66063 = {
+		name = "Robert Als"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M66063
+		minister_of_security = crime_fighter
+		start_date = 1944.1.1
+	}
+	66064 = {
+		name = "Victor Bodson"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M66064
+		minister_of_security = man_of_the_people
+		start_date = 1946.1.1
+	}
+	66066 = {
+		name = "Joseph Goedert"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M66066
+		minister_of_security = compassionate_gentleman
+		start_date = 1944.1.1
+	}
+	66070 = {
+		name = "Michel Hansen"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M66070
+		minister_of_security = efficient_sociopath
+		start_date = 1945.1.1
+	}
+	66072 = {
+		name = "Edmond Klein"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M66072
+		minister_of_intelligence = dismal_enigma
+		start_date = 1940.1.1
+	}
+	66073 = {
+		name = "Joseph Tockert"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M66073
+		minister_of_intelligence = technical_specialist
+		start_date = 1936.1.1
+	}
+	66075 = {
+		name = "Charles Becker"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M66075
+		minister_of_intelligence = political_specialist
+		start_date = 1945.1.1
+	}
+	66077 = {
+		name = "Max Simon"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M66077
+		minister_of_intelligence = political_specialist
+		minister_of_security = prince_of_terror
+		start_date = 1940.1.1
+	}
+	66078 = {
+		name = "Jules Prussen"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M66078
+		minister_of_intelligence = technical_specialist
+		start_date = 1945.1.1
+	}
+	66080 = {
+		name = "Max Weckering"
+		ideology = left_wing_radical
+		loyalty = 0.50
+		picture = M66080
+		minister_of_intelligence = dismal_enigma
+		start_date = 1945.1.1
+	}
+	66082 = {
+		name = "Jean Seurlis"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M66082
+		chief_of_staff = school_of_psychology
+		start_date = 1940.1.1
+	}
+	66085 = {
+		name = "Aloyse Glodt"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M66017
+		chief_of_staff = school_of_fire_support
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1936.1.1
+	}
+	66090 = {
+		name = "Felix Bourbon-Parma"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M66090
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1940.1.1
+	}
+	66109 = {
+		name = "Jean Marc Steffen"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M66030
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1936.1.1
+	}
+	66111 = {
+		name = "Pierre Fischbach"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M66111
+		chief_of_navy = open_seas_doctrine
+		start_date = 1940.1.1
+	}
+	66114 = {
+		name = "Eugene Schaus"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M66114
+		minister_of_security = man_of_the_people
+		start_date = 1946.1.1
+	}
+	66115 = {
+		name = "Joseph Wohlfart"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M66115
+		minister_of_intelligence = industrial_specialist
+		start_date = 1951.1.1
+	}
+}

@@ -1,0 +1,31 @@
+owner = LIT
+
+controller = LIT
+
+add_core = LIT
+add_core = GER
+
+
+
+
+energy = 1.00
+
+industry = 1
+
+anti_air = 1
+
+infra = 8
+
+air_base = 1
+
+
+naval_base = 2
+1939.3.22 = {
+
+	owner = GER
+
+	controller = GER
+
+	add_core = GER
+
+}

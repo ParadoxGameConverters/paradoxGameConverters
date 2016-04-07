@@ -1,0 +1,15 @@
+owner = SPR
+controller = SPR
+add_core = SPR
+infra = 5
+air_base = 2
+naval_base = 3
+
+1938.9.1 = {
+	owner = SPA
+
+	controller = SPA
+
+	add_core = SPA
+
+}

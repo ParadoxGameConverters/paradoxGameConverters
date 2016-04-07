@@ -1,0 +1,14 @@
+owner = ITA
+controller = ITA
+add_core = ITA
+leadership = 0.25
+
+infra = 8
+1943.9.23 = {
+	owner = RSI
+	controller = RSI
+	add_core = RSI
+}
+1944.6.20 = {
+	land_fort = 3
+}

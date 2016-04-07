@@ -1,0 +1,6 @@
+owner = SAF
+controller = SAF
+add_core = SAF
+points = 2
+anti_air = 1
+infra = 6

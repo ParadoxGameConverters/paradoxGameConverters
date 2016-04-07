@@ -1,0 +1,18 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+points = 5
+metal = 2.00
+energy = 4.00
+industry = 6
+anti_air = 2
+infra = 9
+air_base = 4
+naval_base = 10
+manpower = 2.00
+leadership = 0.50
+strategic_resource = dockyard_facilities
+
+1938.1.1 = {
+	radar_station = 1
+}

@@ -1,0 +1,9 @@
+owner = AST
+controller = AST
+add_core = AST
+
+infra = 5
+
+infra = 5
+
+infra = 5

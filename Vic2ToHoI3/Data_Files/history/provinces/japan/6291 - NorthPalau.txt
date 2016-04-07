@@ -1,0 +1,11 @@
+owner = JAP
+controller = JAP
+add_core = JAP
+
+points = 1
+naval_base = 4
+infra = 3
+
+1944.6.20 = { 
+	air_base = 4
+}

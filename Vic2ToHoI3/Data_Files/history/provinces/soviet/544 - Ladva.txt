@@ -1,0 +1,16 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+add_core = FIN
+
+infra = 3
+
+1941.12.7 = {
+	controller = FIN
+}
+
+1944.6.20 = {
+	land_fort = 3
+	anti_air = 1
+
+}

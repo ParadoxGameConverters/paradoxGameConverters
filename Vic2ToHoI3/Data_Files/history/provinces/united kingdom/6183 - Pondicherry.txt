@@ -1,0 +1,8 @@
+owner = FRA
+controller = FRA
+add_core = FRA
+add_core = IND
+
+infra = 6
+
+naval_base = 1

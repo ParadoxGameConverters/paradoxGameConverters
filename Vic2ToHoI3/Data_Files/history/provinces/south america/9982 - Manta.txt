@@ -1,0 +1,6 @@
+owner = ECU
+controller = ECU
+add_core = ECU
+
+infra = 6
+naval_base = 3

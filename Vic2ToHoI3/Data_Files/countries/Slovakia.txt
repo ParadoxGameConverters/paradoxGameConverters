@@ -1,0 +1,505 @@
+color = { 158  161  188 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1. Pesi divize" "2. Pesi divize" "3. Pesi divize" "4. Pesi divize" "5. Pesi divize" "6. Pesi divize" "7. Pesi divize" "8. Pesi divize" "9. Pesi divize" "10. Pesi divize" "11. Pesi divize" 
+		"12. Pesi divize" "13. Pesi divize" "14. Pesi divize" "15. Pesi divize" "16. Pesi divize" "17. Pesi divize" "18. Pesi divize" "19. Pesi divize" "20. Pesi divize" "21. Pesi divize" "22. Pesi divize" 
+		"23. Pesi divize" "24. Pesi divize" "25. Pesi divize" "26. Pesi divize" "27. Pesi divize" "28. Pesi divize" "29. Pesi divize" "30. Pesi divize" "31. Pesi divize" "32. Pesi divize" "33. Pesi divize" 
+		"34. Pesi divize" "35. Pesi divize" "37. Pesi divize" "38. Pesi divize" "39. Pesi divize" "40. Pesi divize" "41. Pesi divize" "42. Pesi divize" "43. Pesi divize" "45. Pesi divize" "46. Pesi divize" 
+		"48. Pesi divize" "49. Pesi divize" "50. Pesi divize" 
+	}
+	cavalry_brigade = {
+		"1. Jezdecká divize" "2. Jezdecká divize" "3. Jezdecká divize" "4. Jezdecká divize" "5. Jezdecká divize" "6. Jezdecká divize" "7. Jezdecká divize" "8. Jezdecká divize" "9. Jezdecká divize" "10. Jezdecká divize" 
+	}
+	motorized_brigade = {
+		"1. Motostrelecká divize" "2. Motostrelecká divize" "3. Motostrelecká divize" "4. Motostrelecká divize" "5. Motostrelecká divize" "6. Motostrelecká divize" "7. Motostrelecká divize" "8. Motostrelecká divize" "9. Motostrelecká divize" "10. Motostrelecká divize" 
+	}
+	mechanized_brigade = {
+		"1. Mechanizovaná divize" "2. Mechanizovaná divize" "3. Mechanizovaná divize" "4. Mechanizovaná divize" "5. Mechanizovaná divize" "6. Mechanizovaná divize" "7. Mechanizovaná divize" "8. Mechanizovaná divize" "9. Mechanizovaná divize" "10. Mechanizovaná divize" 
+	}
+	light_armor_brigade = {
+		"1. Tanková divize" "2. Tanková divize" "3. Tanková divize" "4. Tanková divize" "5. Tanková divize" "6. Tanková divize" "7. Tanková divize" "8. Tanková divize" "9. Tanková divize" "10. Tanková divize" 
+	}
+	armor_brigade = {
+		"1. Tanková divize" "2. Tanková divize" "3. Tanková divize" "4. Tanková divize" "5. Tanková divize" "6. Tanková divize" "7. Tanková divize" "8. Tanková divize" "9. Tanková divize" "10. Tanková divize" 
+	}
+	paratrooper_brigade = {
+		"1. Vysadková divize" "2. Vysadková divize" "3. Vysadková divize" "4. Vysadková divize" "5. Vysadková divize" "6. Vysadková divize" "7. Vysadková divize" "8. Vysadková divize" "9. Vysadková divize" "10. Vysadková divize" "11. Vysadková divize" 
+		"12. Vysadková divize" "13. Vysadková divize" "14. Vysadková divize" "15. Vysadková divize" 
+	}
+	marine_brigade = {
+		"1. Divize námorni pechoty" "2. Divize námorni pechoty" "3. Divize námorni pechoty" "4. Divize námorni pechoty" "5. Divize námorni pechoty" 
+	}
+	bergsjaeger_brigade = {
+		"1. Horská divize" "2. Horská divize" "3. Horská divize" "4. Horská divize" "5. Horská divize" 
+	}
+	garrison_brigade = {
+		"51. Pesi divize" "52. Pesi divize" "53. Pesi divize" "54. Pesi divize" "55. Pesi divize" "56. Pesi divize" "57. Pesi divize" "58. Pesi divize" "59. Pesi divize" "60. Pesi divize" "61. Pesi divize" 
+		"62. Pesi divize" "63. Pesi divize" "64. Pesi divize" "65. Pesi divize" "66. Pesi divize" "67. Pesi divize" "68. Pesi divize" "69. Pesi divize" "70. Pesi divize" "71. Pesi divize" "72. Pesi divize" 
+		"73. Pesi divize" "74. Pesi divize" "75. Pesi divize" "76. Pesi divize" "77. Pesi divize" "78. Pesi divize" "79. Pesi divize" "80. Pesi divize" "81. Pesi divize" "82. Pesi divize" "83. Pesi divize" 
+		"84. Pesi divize" "85. Pesi divize" "86. Pesi divize" "87. Pesi divize" "88. Pesi divize" "89. Pesi divize" "90. Pesi divize" "91. Pesi divize" "92. Pesi divize" "93. Pesi divize" "94. Pesi divize" 
+		"95. Pesi divize" "97. Pesi divize" "98. Pesi divize" "99. Pesi divize" "100. Pesi divize" 
+	}
+	hq_brigade = {
+		"1. Slovensko armáda" "2. Slovensko armáda" "3. Slovensko armáda" "4. Slovensko armáda" "5. Slovensko armáda" "6. Slovensko armáda" "7. Slovensko armáda" "8. Slovensko armáda" "9. Slovensko armáda" "10. Slovensko armáda" "15. Slovensko armada" 
+			}
+	militia_brigade = {
+		"Hranicni oblast 1." "Hranicni oblast 2." "Hranicni oblast 3." "Hranicni oblast 4." "Hranicni oblast 5." "Hranicni oblast 6." "Hranicni oblast 7." "Hranicni oblast 8." "Hranicni oblast 9." "Hranicni oblast 10." "Hranicni oblast 11." 
+		"Hranicni oblast 12." "Hranicni oblast 13." "Hranicni oblast 14." "Hranicni oblast 15." "Hranicni oblast 16." "Hranicni oblast 17." "Hranicni oblast 18." "Hranicni oblast 19." "Hranicni oblast 20." 
+	}
+	multi_role = {
+		"1. Stihaci letecky pluk" "2. Stihaci letecky pluk" "3. Stihaci letecky pluk" "4. Stihaci letecky pluk" "5. Stihaci letecky pluk" "6. Stihaci letecky pluk" "7. Stihaci letecky pluk" "8. Stihaci letecky pluk" "9. Stihaci letecky pluk" "10. Stihaci letecky pluk" 
+	}
+	interceptor = {
+		"1. Stihaci letecky pluk" "2. Stihaci letecky pluk" "3. Stihaci letecky pluk" "4. Stihaci letecky pluk" "5. Stihaci letecky pluk" "6. Stihaci letecky pluk" "7. Stihaci letecky pluk" "8. Stihaci letecky pluk" "9. Stihaci letecky pluk" "10. Stihaci letecky pluk" 
+	}
+	strategic_bomber = {
+		"1. Pluk dalekonosného létáni" "2. Pluk dalekonosného létáni" "3. Pluk dalekonosného létáni" "4. Pluk dalekonosného létáni" "5. Pluk dalekonosného létáni" 
+	}
+	tactical_bomber = {
+		"1. Pluk taktického letectva" "2. Pluk taktického letectva" "3. Pluk taktického letectva" "4. Pluk taktického letectva" "5. Pluk taktického letectva" "6. Pluk taktického letectva" "7. Pluk taktického letectva" "8. Pluk taktického letectva" "9. Pluk taktického letectva" "10. Pluk taktického letectva" 
+	}
+	cas = {
+		"1. Bombardovaci pluk" "2. Bombardovaci pluk" "3. Bombardovaci pluk" "4. Bombardovaci pluk" "5. Bombardovaci pluk" "6. Bombardovaci pluk" "7. Bombardovaci pluk" "8. Bombardovaci pluk" "9. Bombardovaci pluk" "10. Bombardovaci pluk" 
+	}
+	transport_plane = {
+		"1. Letecky dopravni pluk" "2. Letecky dopravni pluk" "3. Letecky dopravni pluk" "4. Letecky dopravni pluk" "5. Letecky dopravni pluk" 
+	}
+
+}
+
+ministers = {
+	31001 = {
+		name = "Andrej Hlinka"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M31001
+		head_of_state = barking_buffoon
+		start_date = 1936.1.1
+	}
+	31002 = {
+		name = "Jozef Tiso"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M31002
+		head_of_government = happy_amateur
+		head_of_state = pig_headed_isolationist
+		head_of_state = pig_headed_isolationist
+		start_date = 1936.1.1
+	}
+	31003 = {
+		name = "Vojtech Tuka"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M31003
+		foreign_minister = the_cloak_n_dagger_schemer
+		head_of_government = naive_optimist
+		start_date = 1936.1.1
+	}
+	31004 = {
+		name = "Pavol Teplansky"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M31004
+		armament_minister = theoretical_scientist
+		start_date = 1936.1.1
+	}
+	31005 = {
+		name = "Ferdinand Durcansky"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M31005
+		minister_of_security = compassionate_gentleman
+		foreign_minister = great_compromiser
+		start_date = 1936.1.1
+	}
+	31006 = {
+		name = "Jaroslav Kratochvil"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M31006
+		minister_of_intelligence = industrial_specialist
+		armament_minister = military_entrepreneur
+		start_date = 1936.1.1
+	}
+	31007 = {
+		name = "Ferdinand Catlos"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M31007
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	31008 = {
+		name = "Gustav Malar"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = L70010
+		chief_of_army = armoured_spearhead_doctrine
+		minister_of_intelligence = naval_intelligence_specialist
+		chief_of_staff = school_of_fire_support
+		start_date = 1936.1.1
+	}
+	31009 = {
+		name = "Jozef Hora"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M31009
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	31010 = {
+		name = "Fritz Gejza"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M31010
+		chief_of_air = carpet_bombing_doctrine
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	31033 = {
+		name = "Karol Sidor"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M31033
+		head_of_state = popular_figurehead
+		head_of_government = silent_workhorse
+		minister_of_security = back_stabber
+		start_date = 1945.1.1
+	}
+	31035 = {
+		name = "Stefan Tiso"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M31035
+		head_of_government = backroom_backstabber
+		foreign_minister = biased_intellectual
+		start_date = 1944.1.1
+	}
+	31040 = {
+		name = "Petar Jilemnicky"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M31040
+		foreign_minister = apologetic_clerk
+		start_date = 1945.1.1
+	}
+	31041 = {
+		name = "Jozef Kubin"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M31019
+		foreign_minister = apologetic_clerk
+		chief_of_navy = power_projection_doctrine
+		chief_of_air = air_superiority_doctrine
+		start_date = 1946.1.1
+	}
+	31042 = {
+		name = "Mikulás Pruzinský"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M31042
+		armament_minister = resource_industrialist
+		start_date = 1938.1.1
+	}
+	31045 = {
+		name = "Emil Lendvay"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M31045
+		armament_minister = tank_proponent
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1945.1.1
+	}
+	31046 = {
+		name = "Eduard Bass-Schmidt"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M31046
+		armament_minister = laissez_faires_capitalist
+		start_date = 1946.1.1
+	}
+	31047 = {
+		name = "Jindrich Honzl"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M31029
+		armament_minister = military_entrepreneur
+		chief_of_navy = open_seas_doctrine
+		start_date = 1946.1.1
+	}
+	31048 = {
+		name = "Janko Jesensky"
+		ideology = fascistic
+		loyalty = 0.50
+		picture = M31048
+		minister_of_security = compassionate_gentleman
+		start_date = 1938.1.1
+	}
+	31050 = {
+		name = "Alexander Mach"
+		ideology = national_socialist
+		loyalty = 0.50
+		picture = M31050
+		minister_of_security = efficient_sociopath
+		start_date = 1940.1.1
+	}
+	31051 = {
+		name = "Tido Gaspar"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M31051
+		minister_of_security = prince_of_terror
+		start_date = 1941.1.1
+	}
+	31053 = {
+		name = "Vtislav Hrubec"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M31053
+		minister_of_security = silent_lawyer
+		start_date = 1945.1.1
+	}
+	31055 = {
+		name = "Hans Bernard"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M31055
+		minister_of_intelligence = industrial_specialist
+		start_date = 1939.1.1
+	}
+	31056 = {
+		name = "Manfred von Killinger"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M31056
+		minister_of_intelligence = research_specialist
+		start_date = 1940.1.1
+	}
+	31057 = {
+		name = "Hans Elard Ludin"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M31057
+		minister_of_intelligence = political_specialist
+		start_date = 1941.1.1
+	}
+	31058 = {
+		name = "Vilmos Nejedly"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M31058
+		minister_of_intelligence = technical_specialist
+		start_date = 1945.1.1
+	}
+	31059 = {
+		name = "Jaroslav Mellan"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M31059
+		minister_of_intelligence = industrial_specialist
+		start_date = 1946.1.1
+	}
+	31061 = {
+		name = "Otomar Kubela"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M31061
+		chief_of_staff = school_of_mass_combat
+		start_date = 1944.1.1
+	}
+	31064 = {
+		name = "Jozef Snejdarek"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M31064
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1944.1.1
+	}
+	31066 = {
+		name = "Jozef Turanec"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = L70016
+		chief_of_navy = open_seas_doctrine
+		start_date = 1938.1.1
+	}
+	31068 = {
+		name = "Vojtech Daubner"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M31068
+		chief_of_navy = indirect_approach_doctrine
+		chief_of_air = air_superiority_doctrine
+		start_date = 1945.1.1
+	}
+	31069 = {
+		name = "Anton Pulanick"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M31069
+		chief_of_air = army_aviation_doctrine
+		start_date = 1938.1.1
+	}
+	31070 = {
+		name = "Frantisek Straka"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M31070
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1944.1.1
+	}
+	31011 = {
+		name = "Jan Srobar Vavro"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M31011
+		head_of_state = insignificant_layman
+		start_date = 1936.1.1
+	}
+	31012 = {
+		name = "Daniel Ertl"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M31012
+		head_of_government = ambitious_union_boss
+		start_date = 1936.1.1
+	}
+	31013 = {
+		name = "Ladislav Skovira"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M31013
+		foreign_minister = great_compromiser
+		start_date = 1936.1.1
+	}
+	31014 = {
+		name = "Frantisek Halas"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M31014
+		armament_minister = infantry_proponent
+		start_date = 1936.1.1
+	}
+	31015 = {
+		name = "Ulian Pauliny"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M31015
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	31016 = {
+		name = "Edouard Urx"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M31016
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	31017 = {
+		name = "Rudolf Viest"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M31017
+		chief_of_staff = school_of_fire_support
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	31021 = {
+		name = "Rudolf Slansky"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M31021
+		head_of_state = power_hungry_demagogue
+		start_date = 1936.1.1
+	}
+	31022 = {
+		name = "Michael Knosko"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M31022
+		head_of_government = happy_amateur
+		start_date = 1936.1.1
+	}
+	31023 = {
+		name = "Gustaf Husak"
+		ideology = stalinist
+		loyalty = 0.50
+		picture = M31023
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	31024 = {
+		name = "Karel Konrad"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M31024
+		armament_minister = tank_proponent
+		start_date = 1936.1.1
+	}
+	31025 = {
+		name = "Frano Kral"
+		ideology = stalinist
+		loyalty = 0.50
+		picture = M31025
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	31026 = {
+		name = "Frantisek Kralina"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M31026
+		minister_of_intelligence = technical_specialist
+		start_date = 1936.1.1
+	}
+	31027 = {
+		name = "Julius Nosko"
+		ideology = stalinist
+		loyalty = 0.50
+		picture = M31027
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	31028 = {
+		name = "Frantisek Sadek"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M31028
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1936.1.1
+	}
+	31030 = {
+		name = "Cyril Kuchta"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M31030
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+}

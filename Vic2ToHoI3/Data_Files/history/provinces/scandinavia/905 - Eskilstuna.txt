@@ -1,0 +1,23 @@
+owner = SWE
+controller = SWE
+add_core = SWE
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8

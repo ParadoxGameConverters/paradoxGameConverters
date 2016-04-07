@@ -1,0 +1,8 @@
+owner = PRU
+controller = PRU
+add_core = PRU
+energy = 1.00
+industry = 1
+infra = 6
+manpower = 1.00
+leadership = 0.10

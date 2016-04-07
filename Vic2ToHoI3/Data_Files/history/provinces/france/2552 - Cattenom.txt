@@ -1,0 +1,20 @@
+owner = FRA
+controller = FRA
+add_core = FRA
+land_fort = 10
+
+infra = 7
+
+anti_air = 2
+points = 2
+
+terrain = woods
+
+1940.6.10 = {
+	controller = GER
+        land_fort = 2
+        anti_air = 0
+}
+1944.12.01 = {
+	controller = USA
+}

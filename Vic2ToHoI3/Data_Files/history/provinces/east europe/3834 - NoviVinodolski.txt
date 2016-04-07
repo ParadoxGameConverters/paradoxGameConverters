@@ -1,0 +1,24 @@
+owner = YUG
+controller = YUG
+add_core = YUG
+add_core = ITA
+
+infra = 8
+1941.4.10 = {
+	owner = CRO
+
+	controller = CRO
+
+	add_core = CRO
+
+} # The Treaty of Rome
+1941.5.18 = {
+	owner = ITA
+
+	controller = ITA
+
+} # The Treaty of Rome
+1944.6.20 = {
+	owner = CRO
+	controller = CRO
+}

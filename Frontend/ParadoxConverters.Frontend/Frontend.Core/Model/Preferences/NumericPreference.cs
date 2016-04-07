@@ -6,16 +6,16 @@ namespace Frontend.Core.Model.Preferences
     {
         protected override string OnValidateProperty(string propertyName)
         {
-            if (this.MinValue >= double.MinValue && this.MaxValue >= double.MinValue)
+            if (MinValue >= double.MinValue && MaxValue >= double.MinValue)
             {
-                return this.ValidateNumericValues(propertyName);
+                return ValidateNumericValues(propertyName);
             }
 
             return null;
         }
 
         /// <summary>
-        /// Validating numeric values
+        ///     Validating numeric values
         /// </summary>
         /// <param name="propertyName">The name of the property to validate</param>
         /// <returns>A string describing any problems with the current value</returns>
@@ -31,9 +31,10 @@ namespace Frontend.Core.Model.Preferences
 
             //TODO: This currently accepts both "," and "." as delimeters for some culture settings. Which can lead to confusing number parsing
 
-            if (this.Value < this.MinValue || this.Value > this.MaxValue)
+            if (Value < MinValue || Value > MaxValue)
             {
-                return "The value must be within the limits specified by the minimum and maximum value, currently " + this.MinValue + " and " + this.MaxValue + " respectively.";
+                return "The value must be within the limits specified by the minimum and maximum value, currently " +
+                       MinValue + " and " + MaxValue + " respectively.";
             }
 
             return null;

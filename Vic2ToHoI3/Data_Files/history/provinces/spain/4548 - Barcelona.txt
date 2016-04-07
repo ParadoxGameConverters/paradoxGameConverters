@@ -1,0 +1,22 @@
+owner = SPR
+controller = SPR
+add_core = SPR
+
+points = 2
+energy = 2.00
+industry = 4
+infra = 10
+manpower = 3.00
+leadership = 0.30
+anti_air = 2
+air_base = 4
+naval_base = 3
+
+1939.4.1 = {
+	owner = SPA
+
+	controller = SPA
+
+	add_core = SPA
+
+}

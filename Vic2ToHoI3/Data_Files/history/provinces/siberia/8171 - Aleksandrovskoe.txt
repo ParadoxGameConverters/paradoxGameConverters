@@ -1,0 +1,5 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+points = 3
+infra = 2

@@ -1,0 +1,6 @@
+owner = USA
+controller = USA
+add_core = USA
+rare_materials = 15.00
+industry = 1
+infra = 8

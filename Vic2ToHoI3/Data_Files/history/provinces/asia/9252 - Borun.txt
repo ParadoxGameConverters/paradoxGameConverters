@@ -1,0 +1,12 @@
+owner = PER
+controller = PER
+add_core = PER
+
+infra = 2
+
+infra = 2
+1941.12.7 = {
+	owner = SOV
+	controller = SOV
+	add_core = SOV
+}

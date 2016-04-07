@@ -1,0 +1,7 @@
+owner = SAU
+controller = SAU
+add_core = SAU
+anti_air = 2
+infra = 4
+air_base = 1
+infra = 2

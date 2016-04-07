@@ -1,6 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <gameConfigurations>
-  
+
   <!-- Crusader Kings 2 -->
   <gameConfiguration>
     <!--Misc-->
@@ -13,7 +14,7 @@
     <!--Save game-->
     <defaultSaveGameLocationType>WindowsUsersFolder</defaultSaveGameLocationType>
     <defaultSaveGameSubLocation>\Paradox Interactive\Crusader Kings II\save games</defaultSaveGameSubLocation>
-    
+
     <!--Mod related-->
     <defaultModFolderLocationType>WindowsUsersFolder</defaultModFolderLocationType>
     <defaultModFolderLocation>\Paradox Interactive\Crusader Kings II\mod</defaultModFolderLocation>
@@ -115,5 +116,38 @@
     <!--<defaultTempDirectoryLocationType>WindowsUsersFolder</defaultTempDirectoryLocationType>
     <defaultTempFolderLocation>\Paradox Interactive\Victoria II</defaultTempFolderLocation>
     <tempDirectoryTagName>V2Documentsdirectory</tempDirectoryTagName>-->
+  </gameConfiguration>
+  
+  <!--Hearts of Iron 3-->
+  <gameConfiguration>
+    <!--Misc-->
+    <name>HeartsOfIron3</name>
+    <friendlyName>Hearts of Iron 3</friendlyName>
+    <!--<steamId>25890</steamId>-->
+    <!--<saveGameExtension>.hoi3</saveGameExtension>-->
+    <!--<installationDirectoryTagName>HoI3directory</installationDirectoryTagName>-->
+
+    <!--<requiredItems>
+      <requiredFolder>
+        <folderTag>HoI3directory</folderTag>
+        --><!--<defaultLocationType>SteamFolder</defaultLocationType>
+          <subFolderLocation>\Hearts of Iron III</subFolderLocation>--><!--
+        <autoDetectFromSteamId>25890</autoDetectFromSteamId>
+      </requiredFolder>
+    
+    </requiredItems>-->
+
+    <!--Save game-->
+    <!--<defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
+    <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>-->
+
+    <!--Mod related-->
+    <!--<defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
+    <defaultModFolderLocation>\mod</defaultModFolderLocation>-->
+
+    <!--Temp files-->
+    <!--<defaultTempDirectoryLocationType>WindowsUsersFolder</defaultTempDirectoryLocationType>
+    <defaultTempFolderLocation>\Paradox Interactive\Hearts of Iron III</defaultTempFolderLocation>
+    <tempDirectoryTagName>HoI3Documentsdirectory</tempDirectoryTagName>-->
   </gameConfiguration>
 </gameConfigurations>

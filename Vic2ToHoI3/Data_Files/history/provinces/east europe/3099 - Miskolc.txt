@@ -1,0 +1,10 @@
+owner = HUN
+controller = HUN
+add_core = HUN
+
+metal = 1.00
+energy = 2.00
+industry = 2
+infra = 8
+manpower = 1.00
+leadership = 0.10

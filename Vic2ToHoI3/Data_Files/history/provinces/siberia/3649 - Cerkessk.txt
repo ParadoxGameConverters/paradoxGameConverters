@@ -1,0 +1,13 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+
+infra = 6
+
+infra = 6
+1942.8.3 = {
+	controller = GER
+}
+1943.1.21 = {
+	controller = SOV
+}

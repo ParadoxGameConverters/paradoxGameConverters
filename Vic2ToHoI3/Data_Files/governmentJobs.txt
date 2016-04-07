@@ -1,0 +1,138 @@
+# Copyright (c) 2015 The Paradox Game Converters Project
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+government_jobs = {
+head_of_state = {
+#	trait = flamboyant_tough_guy
+	trait = power_hungry_demagogue
+	trait = barking_buffoon
+	trait = stern_imperialist
+	trait = ruthless_powermonger
+	trait = autocratic_charmer
+	trait = resigned_generalissimo
+	trait = benevolent_gentleman
+	trait = weary_stiff_neck
+	trait = insignificant_layman
+	trait = die_hard_reformer
+	trait = pig_headed_isolationist
+	trait = popular_figurehead
+}
+
+head_of_government = {
+#	trait = stern_imperialist
+#	trait = insignificant_layman
+	trait = silent_workhorse
+	trait = naive_optimist
+	trait = flamboyant_tough_guy
+	trait = happy_amateur
+	trait = backroom_backstabber
+	trait = smiling_oilman
+	trait = old_general
+	trait = old_admiral
+	trait = old_air_marshal
+	trait = political_protege
+	trait = ambitious_union_boss
+	trait = corporate_suit
+}
+
+
+foreign_minister = {
+	trait = biased_intellectual
+	trait = ideological_crusader
+	trait = apologetic_clerk
+	trait = iron_fisted_brute
+	trait = great_compromiser
+	trait = general_staffer
+	trait = the_cloak_n_dagger_schemer
+}
+
+armament_minister = {
+	trait = administrative_genius
+	trait = resource_industrialist
+	trait = laissez_faires_capitalist
+	trait = theoretical_scientist
+	trait = military_entrepreneur
+	trait = battle_fleet_proponent
+	trait = submarine_proponent
+	trait = tank_proponent
+	trait = infantry_proponent
+	trait = air_to_ground_proponent
+	trait = air_to_sea_proponent
+	trait = strategic_air_proponent
+	trait = air_superiority_proponent
+	trait = corrupt_kleptocrat
+}
+
+minister_of_security = {
+	trait = silent_lawyer
+	trait = compassionate_gentleman
+	trait = crime_fighter
+	trait = prince_of_terror
+	trait = back_stabber
+	trait = man_of_the_people
+	trait = efficient_sociopath
+	trait = crooked_kleptocrat
+}
+
+minister_of_intelligence = {
+	trait = technical_specialist
+	trait = research_specialist
+	trait = political_specialist
+	trait = dismal_enigma
+	trait = industrial_specialist
+	trait = naval_intelligence_specialist
+}
+
+chief_of_staff = {
+	trait = school_of_manoeuvre
+	trait = school_of_fire_support
+	trait = school_of_mass_combat
+	trait = school_of_psychology
+	trait = school_of_defence
+	trait = logistics_specialist
+}
+
+chief_of_army = {
+	trait = elastic_defence_doctrine
+	trait = static_defence_doctrine
+	trait = decisive_battle_doctrine
+	trait = armoured_spearhead_doctrine
+	trait = guns_and_butter_doctrine
+	trait = undistinguished_suit
+}
+
+chief_of_navy = {
+	trait = open_seas_doctrine
+	trait = decisive_naval_battle_doctrine
+	trait = power_projection_doctrine
+	trait = indirect_approach_doctrine
+	trait = base_control_doctrine
+	trait = undistinguished_suit
+}
+
+chief_of_air = {
+	trait = air_superiority_doctrine
+	trait = naval_aviation_doctrine
+	trait = army_aviation_doctrine
+	trait = carpet_bombing_doctrine
+	trait = vertical_envelopment_doctrine
+	trait = undistinguished_suit
+}
+}

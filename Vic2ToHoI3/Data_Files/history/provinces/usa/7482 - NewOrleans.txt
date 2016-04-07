@@ -1,0 +1,11 @@
+owner = USA
+controller = USA
+add_core = USA
+points = 1
+metal = 1.00
+energy = 2.00
+industry = 2
+infra = 8
+manpower = 1.00
+naval_base = 6
+strategic_resource = prefab_ship_facilities

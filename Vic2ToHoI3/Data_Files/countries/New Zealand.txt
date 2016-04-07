@@ -1,0 +1,677 @@
+color = { 193  185  158 }
+graphical_culture = British
+
+last_election = 1935.11.27
+duration = 48
+
+default_templates = {
+	ENG_infantry = {
+		motorized_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	ENG_motorized = {
+		motorized_brigade
+		motorized_brigade
+	}
+	ENG_armoured_1936 = {
+		armor_brigade
+		light_armor_brigade
+		light_armor_brigade
+		motorized_brigade
+	}
+	ENG_armoured_1940 = {
+		armor_brigade
+		armor_brigade
+		motorized_brigade
+	}
+	ENG_airborne = {
+		paratrooper_brigade
+		paratrooper_brigade
+		paratrooper_brigade
+	}
+}
+
+
+unit_names = {
+	infantry_brigade = {
+		"2nd NZ Infantry Division" "3rd NZ Infantry Division" "1st NZ Infantry Division" "4th NZ Infantry Division" "5th NZ Infantry Division" "6th NZ Infantry Division" "7th NZ Infantry Division" "8th NZ Infantry Division" "9th NZ Infantry Division" "10th NZ Infantry Division" "11th NZ Infantry Division" 
+		"12th NZ Infantry Division" "13th NZ Infantry Division" "14th NZ Infantry Division" "15th NZ Infantry Division" "16th NZ Infantry Division" "17th NZ Infantry Division" "18th NZ Infantry Division" "19th NZ Infantry Division" "20th NZ Infantry Division" "33rd NZ Infantry Division" "34th NZ Infantry Division" 
+		"35th NZ Infantry Division" "36th NZ Infantry Division" "37th NZ Infantry Division" "38th NZ Infantry Division" "39th NZ Infantry Division" "40th NZ Infantry Division" "41st NZ Infantry Division" "42nd NZ Infantry Division" "43rd NZ Infantry Division" "44th NZ Infantry Division" "45th NZ Infantry Division" 
+		"46th NZ Infantry Division" "47th NZ Infantry Division" "48th NZ Infantry Division" "49th NZ Infantry Division" 
+	}
+	cavalry_brigade = {
+		"1st Mounted Rifles Division" "2nd Mounted Rifles Division" "3rd Mounted Rifles Division" "4th Mounted Rifles Division" "5th Mounted Rifles Division" "6th Mounted Rifles Division" "7th Mounted Rifles Division" "8th Mounted Rifles Division" "9th Mounted Rifles Division" "10th Mounted Rifles Division" 
+	}
+	motorized_brigade = {
+		"7th NZ Motorized Division" "8th NZ Motorized Division" "1st NZ Motorized Division" "2nd NZ Motorized Division" "3rd NZ Motorized Division" "4th NZ Motorized Division" "5th NZ Motorized Division" "6th NZ Motorized Division" "9th NZ Motorized Division" "10th NZ Motorized Division" "33rd NZ Motorized Division" 
+		"34th NZ Motorized Division" "35th NZ Motorized Division" "36th NZ Motorized Division" "37th NZ Motorized Division" "38th NZ Motorized Division" "39th NZ Motorized Division" "40th NZ Motorized Division" "41st NZ Motorized Division" "42nd NZ Motorized Division" "43rd NZ Motorized Division" "44th NZ Motorized Division" 
+		"45th NZ Motorized Division" "46th NZ Motorized Division" "47th NZ Motorized Division" "48th NZ Motorized Division" "49th NZ Motorized Division" 
+	}
+	mechanized_brigade = {
+		"1st NZ Mechanized Division" "2nd NZ Mechanized Division" "3rd NZ Mechanized Division" "4th NZ Mechanized Division" "5th NZ Mechanized Division" "6th NZ Mechanized Division" "7th NZ Mechanized Division" "8th NZ Mechanized Division" "9th NZ Mechanized Division" 
+	}
+	light_armor_brigade = {
+		"1st NZ Armoured Division" "2nd NZ Armoured Division" "3rd NZ Armoured Division" "4th NZ Armoured Division" "5th NZ Armoured Division" "6th NZ Armoured Division" "7th NZ Armoured Division" "8th NZ Armoured Division" "9th NZ Armoured Division" 
+	}
+	armor_brigade = {
+		"1st NZ Armoured Division" "2nd NZ Armoured Division" "3rd NZ Armoured Division" "4th NZ Armoured Division" "5th NZ Armoured Division" "6th NZ Armoured Division" "7th NZ Armoured Division" "8th NZ Armoured Division" "9th NZ Armoured Division" "10th NZ Armoured Division" "11th NZ Armoured Division" 
+		"12th NZ Armoured Division" "14th NZ Armoured Division" "15th NZ Armoured Division" 
+	}
+	paratrooper_brigade = {
+		"1st NZ Airborne Division" "2nd NZ Airborne Division" "3rd NZ Airborne Division" "4th NZ Airborne Division" "5th NZ Airborne Division" "6th NZ Airborne Division" "7th NZ Airborne Division" "8th NZ Airborne Division" "9th NZ Airborne Division" "10th NZ Airborne Division" 
+	}
+	marine_brigade = {
+		"1st Divison of NZ Marines" "2nd Divison of NZ Marines" "3rd Divison of NZ Marines" "4th Divison of NZ Marines" "5th Divison of NZ Marines" "6th Divison of NZ Marines" "7th Divison of NZ Marines" "8th Divison of NZ Marines" "9th Divison of NZ Marines" "10th Divison of NZ Marines" 
+	}
+	bergsjaeger_brigade = {
+		"2nd NZ Mountain Division" "3rd NZ Mountain Division" "1st NZ Mountain Division" "4th NZ Mountain Division" "5th NZ Mountain Division" "8th NZ Mountain Division" "10th NZ Mountain Division" "11th NZ Mountain Division" "12th NZ Mountain Division" "22th NZ Mountain Division" 
+	}
+	garrison_brigade = {
+		"2nd NZ Infantry Division" "3rd NZ Infantry Division" "1st NZ Infantry Division" "4th NZ Infantry Division" "5th NZ Infantry Division" "6th NZ Infantry Division" "7th NZ Infantry Division" "8th NZ Infantry Division" "9th NZ Infantry Division" "10th NZ Infantry Division" "11th NZ Infantry Division" 
+		"12th NZ Infantry Division" "13th NZ Infantry Division" "14th NZ Infantry Division" "15th NZ Infantry Division" "16th NZ Infantry Division" "17th NZ Infantry Division" "18th NZ Infantry Division" "19th NZ Infantry Division" "20th NZ Infantry Division" 
+	}
+	hq_brigade = {
+		"New Zealand Territorial Force" "2nd N.Z.E.F." "1st New Zealand Army" "2nd New Zealand Army" "1st New Zealand Army Group" "3rd New Zealand Army" "4th New Zealand Army" "2nd New Zealand Army Group" 
+	}
+	militia_brigade = {
+		"1st NZ Home Guard Division" "2nd NZ Home Guard Division" "3rd NZ Home Guard Division" "4th NZ Home Guard Division" "5th NZ Home Guard Division" "6th NZ Home Guard Division" "7th NZ Home Guard Division" "8th NZ Home Guard Division" "9th NZ Home Guard Division" "10th NZ Home Guard Division" "11th NZ Home Guard Division" 
+		"12th NZ Home Guard Division" "13th NZ Home Guard Division" "14th NZ Home Guard Division" "15th NZ Home Guard Division" "16th NZ Home Guard Division" "17th NZ Home Guard Division" "18th NZ Home Guard Division" "19th NZ Home Guard Division" "20th NZ Home Guard Division" "21st NZ Home Guard Division" "22nd NZ Home Guard Division" 
+		"23rd NZ Home Guard Division" "24th NZ Home Guard Division" "25th NZ Home Guard Division" "26th NZ Home Guard Division" "27th NZ Home Guard Division" "28th NZ Home Guard Division" "29th NZ Home Guard Division" "30th NZ Home Guard Division" 
+	}
+	multi_role = {
+		"No.1 RNZAF Fighter Group" "No.2 RNZAF Fighter Group" "No.3 RNZAF Fighter Group" "No.4 RNZAF Fighter Group" "No.5 RNZAF Fighter Group" "No.7 RNZAF Fighter Group" "No.8 RNZAF Fighter Group" "No.9 RNZAF Fighter Group" "No.10 RNZAF Fighter Group" "No.11 RNZAF Fighter Group" "No.12 RNZAF Fighter Group" 
+		"No.13 RNZAF Fighter Group" "No.14 RNZAF Fighter Group" "No.15 RNZAF Fighter Group" "No.16 RNZAF Fighter Group" "No.17 RNZAF Fighter Group" "No.18 RNZAF Fighter Group" "No.19 RNZAF Fighter Group" "No.20 RNZAF Fighter Group" 
+	}
+	interceptor = {
+		"No.1 RNZAF Fighter Group" "No.2 RNZAF Fighter Group" "No.3 RNZAF Fighter Group" "No.4 RNZAF Fighter Group" "No.5 RNZAF Fighter Group" "No.7 RNZAF Fighter Group" "No.8 RNZAF Fighter Group" "No.9 RNZAF Fighter Group" "No.10 RNZAF Fighter Group" "No.11 RNZAF Fighter Group" "No.12 RNZAF Fighter Group" 
+		"No.13 RNZAF Fighter Group" "No.14 RNZAF Fighter Group" "No.15 RNZAF Fighter Group" "No.16 RNZAF Fighter Group" "No.17 RNZAF Fighter Group" "No.18 RNZAF Fighter Group" "No.19 RNZAF Fighter Group" "No.20 RNZAF Fighter Group" 
+	}
+	strategic_bomber = {
+		"No.1 RNZAF Strategic Bomb Group" "No.2 RNZAF Strategic Bomb Group" "No.6 RNZAF Strategic Bomb Group" "No.3 RNZAF Strategic Bomb Group" "No.4 RNZAF Strategic Bomb Group" "No.7 RNZAF Strategic Bomb Group" "No.8 RNZAF Strategic Bomb Group" "No.9 RNZAF Strategic Bomb Group" "No.10 RNZAF Strategic Bomb Group" "No.11 RNZAF Strategic Bomb Group" "No.12 RNZAF Strategic Bomb Group" 
+		"No.13 RNZAF Strategic Bomb Group" "No.14 RNZAF Strategic Bomb Group" "No.15 RNZAF Strategic Bomb Group" "No.16 RNZAF Strategic Bomb Group" "No.17 RNZAF Strategic Bomb Group" "No.18 RNZAF Strategic Bomb Group" "No.19 RNZAF Strategic Bomb Group" "No.20 RNZAF Strategic Bomb Group" 
+	}
+	tactical_bomber = {
+		"No.1 RNZAF Tactical Bomb Group" "No.2 RNZAF Tactical Bomb Group" "No.6 RNZAF Tactical Bomb Group" "No.3 RNZAF Tactical Bomb Group" "No.4 RNZAF Tactical Bomb Group" "No.7 RNZAF Tactical Bomb Group" "No.8 RNZAF Tactical Bomb Group" "No.9 RNZAF Tactical Bomb Group" "No.10 RNZAF Tactical Bomb Group" "No.11 RNZAF Tactical Bomb Group" "No.12 RNZAF Tactical Bomb Group" 
+		"No.13 RNZAF Tactical Bomb Group" "No.14 RNZAF Tactical Bomb Group" "No.15 RNZAF Tactical Bomb Group" "No.16 RNZAF Tactical Bomb Group" "No.17 RNZAF Tactical Bomb Group" "No.18 RNZAF Tactical Bomb Group" "No.19 RNZAF Tactical Bomb Group" "No.20 RNZAF Tactical Bomb Group" 
+	}
+	naval_bomber = {
+		"No.1 RNZAF Naval Bomb Group" "No.2 RNZAF Naval Bomb Group" "No.3 RNZAF Naval Bomb Group" "No.4 RNZAF Naval Bomb Group" "No.5 RNZAF Naval Bomb Group" "No.7 RNZAF Naval Bomb Group" "No.8 RNZAF Naval Bomb Group" "No.9 RNZAF Naval Bomb Group" "No.10 RNZAF Naval Bomb Group" "No.11 RNZAF Naval Bomb Group" "No.12 RNZAF Naval Bomb Group" 
+		"No.13 RNZAF Naval Bomb Group" "No.14 RNZAF Naval Bomb Group" "No.15 RNZAF Naval Bomb Group" "No.16 RNZAF Naval Bomb Group" "No.17 RNZAF Naval Bomb Group" "No.18 RNZAF Naval Bomb Group" "No.19 RNZAF Naval Bomb Group" "No.20 RNZAF Naval Bomb Group" "No.1 RNZAF Torpedo Group" "No.2 RNZAF Torpedo Group" "No.3 RNZAF Torpedo Group" 
+		"No.4 RNZAF Torpedo Group" "No.5 RNZAF Torpedo Group" "No.7 RNZAF Torpedo Group" "No.8 RNZAF Torpedo Group" "No.9 RNZAF Torpedo Group" "No.10 RNZAF Torpedo Group" "No.11 RNZAF Torpedo Group" "No.12 RNZAF Torpedo Group" "No.13 RNZAF Torpedo Group" "No.14 RNZAF Torpedo Group" "No.15 RNZAF Torpedo Group" 
+		"No.16 RNZAF Torpedo Group" "No.17 RNZAF Torpedo Group" "No.18 RNZAF Torpedo Group" "No.19 RNZAF Torpedo Group" "No.20 RNZAF Torpedo Group" 
+	}
+	cas = {
+		"No.1 RNZAF Dive Bomb Group" "No.2 RNZAF Dive Bomb Group" "No.6 RNZAF Dive Bomb Group" "No.3 RNZAF Dive Bomb Group" "No.4 RNZAF Dive Bomb Group" "No.7 RNZAF Dive Bomb Group" "No.8 RNZAF Dive Bomb Group" "No.9 RNZAF Dive Bomb Group" "No.10 RNZAF Dive Bomb Group" "No.11 RNZAF Dive Bomb Group" "No.12 RNZAF Dive Bomb Group" 
+		"No.13 RNZAF Dive Bomb Group" "No.14 RNZAF Dive Bomb Group" "No.15 RNZAF Dive Bomb Group" "No.16 RNZAF Dive Bomb Group" "No.17 RNZAF Dive Bomb Group" "No.18 RNZAF Dive Bomb Group" "No.19 RNZAF Dive Bomb Group" "No.20 RNZAF Dive Bomb Group" 
+	}
+	transport_plane = {
+		"No.1 RNZAF Transport Group" "No.2 RNZAF Transport Group" "No.3 RNZAF Transport Group" "No.4 RNZAF Transport Group" "No.5 RNZAF Transport Group" "No.7 RNZAF Transport Group" "No.8 RNZAF Transport Group" "No.9 RNZAF Transport Group" "No.10 RNZAF Transport Group" 
+	}
+	battleship = {
+		"HMNZS New Zealand" "HMNZS Northland" "HMNZS Auckland" "HMNZS Gisborne" "HMNZS Taranaki" "HMNZS Hawkes Bay" "HMNZS Wellington" "HMNZS Nelson" "HMNZS Westland" "HMNZS Marlborough" "HMNZS Canterbury" 
+		"HMNZS Otago" "HMNZS Southland" 
+	}
+	light_cruiser = {
+		"HMNZS Leander" "HMNZS Achilles" "HMNZS Gambia" "HMNZS Arabis" "HMNZS Arbutus" "HMNZS Monowai" "HMNZS Cook Islands" "HMNZS Northland" "HMNZS Auckland" "HMNZS Gisborne" "HMNZS Taranaki" 
+		"HMNZS Hawkes Bay" "HMNZS Wellington" "HMNZS Nelson" "HMNZS Westland" "HMNZS Marlborough" "HMNZS Canterbury" "HMNZS Otago" "HMNZS Southland" 
+	}
+	heavy_cruiser = {
+		"HMNZS Northland" "HMNZS Auckland" "HMNZS Gisborne" "HMNZS Taranaki" "HMNZS Hawkes Bay" "HMNZS Wellington" "HMNZS Nelson" "HMNZS Westland" "HMNZS Marlborough" "HMNZS Canterbury" "HMNZS Otago" 
+		"HMNZS Southland" 
+	}
+	battlecruiser = {
+		"HMNZS New Zealand" "HMNZS Northland" "HMNZS Auckland" "HMNZS Gisborne" "HMNZS Taranaki" "HMNZS Hawkes Bay" "HMNZS Wellington" "HMNZS Nelson" "HMNZS Westland" "HMNZS Marlborough" "HMNZS Canterbury" 
+		"HMNZS Otago" "HMNZS Southland" 
+	}
+	destroyer = {
+		"1st Destroyer Flotilla" "2nd Destroyer Flotilla" "3rd Destroyer Flotilla" "4th Destroyer Flotilla" "5th Destroyer Flotilla" "6th Destroyer Flotilla" "7th Destroyer Flotilla" "8th Destroyer Flotilla" "9th Destroyer Flotilla" "10th Destroyer Flotilla" "11th Destroyer Flotilla" 
+		"12th Destroyer Flotilla" "13th Destroyer Flotilla" "14th Destroyer Flotilla" "15th Destroyer Flotilla" "16th Destroyer Flotilla" "17th Destroyer Flotilla" "18th Destroyer Flotilla" "19th Destroyer Flotilla" "20th Destroyer Flotilla" 
+	}
+	carrier = {
+		"HMNZS Vengeance" "HMNZS Melbourne" "HMNZS Sydney" "HMNZS Northland" "HMNZS Auckland" "HMNZS Gisborne" "HMNZS Taranaki" "HMNZS Hawkes Bay" "HMNZS Wellington" "HMNZS Nelson" "HMNZS Westland" 
+		"HMNZS Marlborough" "HMNZS Canterbury" "HMNZS Otago" "HMNZS Southland" 
+	}
+	escort_carrier = {
+		"HMNZS Stafford" "HMNZS Seddon" "HMNZS Hall-Jones" "HMNZS Ward" "HMNZS Massey" 
+	}
+	submarine = {
+		"1st Submarine Flotilla" "2nd Submarine Flotilla" "3rd Submarine Flotilla" "4th Submarine Flotilla" "5th Submarine Flotilla" "6th Submarine Flotilla" "7th Submarine Flotilla" "8th Submarine Flotilla" "9th Submarine Flotilla" "10th Submarine Flotilla" "11th Submarine Flotilla" 
+		"12th Submarine Flotilla" "13th Submarine Flotilla" "14th Submarine Flotilla" "15th Submarine Flotilla" 
+	}
+	transport_ship = {
+		"1st Transport Flotilla" "2nd Transport Flotilla" "3rd Transport Flotilla" "4th Transport Flotilla" "5th Transport Flotilla" "6th Transport Flotilla" "7th Transport Flotilla" "8th Transport Flotilla" "9th Transport Flotilla" "10th Transport Flotilla" "11th Transport Flotilla" 
+		"12th Transport Flotilla" "13th Transport Flotilla" "14th Transport Flotilla" "15th Transport Flotilla" 
+	}
+
+}
+
+ministers = {
+	55001 = {
+		name = "George de Vere Viscount Galway"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M55001
+		head_of_state = stern_imperialist
+		head_of_state = stern_imperialist
+		start_date = 1936.1.1
+	}
+	55002 = {
+		name = "Michael Joseph Savage"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M55002
+		head_of_government = silent_workhorse
+		foreign_minister = great_compromiser
+		start_date = 1936.1.1
+	}
+	55004 = {
+		name = "Walter Nash"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M55004
+		armament_minister = resource_industrialist
+		foreign_minister = apologetic_clerk
+		head_of_government = happy_amateur
+		start_date = 1936.1.1
+	}
+	55005 = {
+		name = "William Parry"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M55005
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	55006 = {
+		name = "Kenneth Folkes"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M55006
+		minister_of_intelligence = dismal_enigma
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	55007 = {
+		name = "William Sinclair-Burgess"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M55007
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = elastic_defence_doctrine
+		foreign_minister = general_staffer
+		start_date = 1936.1.1
+	}
+	55009 = {
+		name = "E.R. Drummond"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M55009
+		chief_of_navy = base_control_doctrine
+		minister_of_security = efficient_sociopath
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1936.1.1
+	}
+	55010 = {
+		name = "R.A. Cochrane"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M55010
+		chief_of_air = air_superiority_doctrine
+		armament_minister = air_superiority_proponent
+		start_date = 1936.1.1
+	}
+	55033 = {
+		name = "Norton Louis Baron Newall"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M55033
+		head_of_state = autocratic_charmer
+		head_of_state = autocratic_charmer
+		start_date = 1941.1.1
+	}
+	55035 = {
+		name = "Bernhard Baron Freyberg"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M55035
+		head_of_state = resigned_generalissimo
+		head_of_state = resigned_generalissimo
+		start_date = 1946.1.1
+	}
+	55037 = {
+		name = "Adam Hamilton"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M55037
+		head_of_government = corporate_suit
+		foreign_minister = apologetic_clerk
+		minister_of_security = crime_fighter
+		minister_of_intelligence = dismal_enigma
+		start_date = 1938.1.1
+	}
+	55038 = {
+		name = "Peter Fraser"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M55038
+		head_of_government = political_protege
+		foreign_minister = biased_intellectual
+		start_date = 1940.1.1
+	}
+	55039 = {
+		name = "Sydney Holland"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M55039
+		head_of_government = smiling_oilman
+		foreign_minister = great_compromiser
+		armament_minister = laissez_faires_capitalist
+		minister_of_security = prince_of_terror
+		start_date = 1943.1.1
+	}
+	55040 = {
+		name = "Frank Langstone"
+		ideology = social_democrat
+		loyalty = 0.50
+		picture = M55040
+		foreign_minister = ideological_crusader
+		start_date = 1938.1.1
+	}
+	55043 = {
+		name = "James Allen"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M55043
+		foreign_minister = great_compromiser
+		minister_of_security = back_stabber
+		start_date = 1938.1.1
+	}
+	55046 = {
+		name = "Gordon Coates"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M55046
+		foreign_minister = the_cloak_n_dagger_schemer
+		minister_of_security = silent_lawyer
+		start_date = 1942.1.1
+	}
+	55048 = {
+		name = "Dan Sullivan"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M55048
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	55049 = {
+		name = "William J. Jordan"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M55049
+		armament_minister = laissez_faires_capitalist
+		start_date = 1939.1.1
+	}
+	55050 = {
+		name = "L.M. Isitt"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M55050
+		armament_minister = air_to_sea_proponent
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1939.1.1
+	}
+	55051 = {
+		name = "Keith J. Holyoake"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M55051
+		armament_minister = military_entrepreneur
+		start_date = 1944.1.1
+	}
+	55052 = {
+		name = "W.E. Parry"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M55052
+		armament_minister = submarine_proponent
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1942.1.1
+	}
+	55055 = {
+		name = "A. de Terrotte Neville"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M55055
+		armament_minister = strategic_air_proponent
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1939.1.1
+	}
+	55056 = {
+		name = "W.H. Stratton"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M55056
+		armament_minister = air_to_ground_proponent
+		chief_of_air = army_aviation_doctrine
+		start_date = 1939.1.1
+	}
+	55057 = {
+		name = "Sir Frederick Field"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M55057
+		armament_minister = battle_fleet_proponent
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1942.1.1
+	}
+	55058 = {
+		name = "Ken MacKenzie"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M55058
+		armament_minister = theoretical_scientist
+		minister_of_intelligence = industrial_specialist
+		start_date = 1943.1.1
+	}
+	55059 = {
+		name = "Edward Puttick"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M55059
+		armament_minister = infantry_proponent
+		chief_of_staff = school_of_defence
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1944.1.1
+	}
+	55060 = {
+		name = "J.E. Duigan"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M55060
+		armament_minister = tank_proponent
+		minister_of_intelligence = technical_specialist
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1945.1.1
+	}
+	55061 = {
+		name = "Edward Blundell"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M55061
+		minister_of_security = silent_lawyer
+		start_date = 1938.1.1
+	}
+	55062 = {
+		name = "Robert Semple"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M55062
+		minister_of_security = man_of_the_people
+		start_date = 1940.1.1
+	}
+	55069 = {
+		name = "Hugo Philpott"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M55069
+		minister_of_intelligence = research_specialist
+		start_date = 1938.1.1
+	}
+	55070 = {
+		name = "Tom Stanley"
+		ideology = social_democrat
+		loyalty = 0.50
+		picture = M55021
+		minister_of_intelligence = political_specialist
+		head_of_state = power_hungry_demagogue
+		start_date = 1943.1.1
+	}
+	55076 = {
+		name = "Ronald Park"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M55076
+		chief_of_staff = school_of_mass_combat
+		start_date = 1940.1.1
+	}
+	55078 = {
+		name = "William Stevens"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M55078
+		chief_of_staff = school_of_fire_support
+		start_date = 1942.1.1
+	}
+	55079 = {
+		name = "N. Weir"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M55079
+		chief_of_staff = school_of_psychology
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1946.1.1
+	}
+	55080 = {
+		name = "Norris Stephen Falla"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M55080
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1937.1.1
+	}
+	55082 = {
+		name = "J.C. Nichols"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M55082
+		chief_of_army = static_defence_doctrine
+		start_date = 1940.1.1
+	}
+	55085 = {
+		name = "H.E. Horan"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M55085
+		chief_of_navy = open_seas_doctrine
+		start_date = 1938.1.1
+	}
+	55088 = {
+		name = "W.H.Stratton"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M55056
+		chief_of_navy = power_projection_doctrine
+		start_date = 1945.1.1
+	}
+	55089 = {
+		name = "G.W.G. Simpson"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M55089
+		chief_of_navy = base_control_doctrine
+		start_date = 1945.1.1
+	}
+	55091 = {
+		name = "H.D. McGregor"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M55091
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1941.1.1
+	}
+	55093 = {
+		name = "Gordon H. Steege"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M55093
+		chief_of_air = air_superiority_doctrine
+		start_date = 1944.1.1
+	}
+	55011 = {
+		name = "T.C.A. Hislop"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M55011
+		head_of_state = benevolent_gentleman
+		start_date = 1936.1.1
+	}
+	55012 = {
+		name = "A.E. Davy"
+		ideology = paternal_autocrat
+		loyalty = 0.25
+		picture = M55012
+		head_of_government = happy_amateur
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	55014 = {
+		name = "A.J. Stallworthy"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M55014
+		armament_minister = air_to_sea_proponent
+		start_date = 1936.1.1
+	}
+	55015 = {
+		name = "W.A. Veitch-Milne"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M55015
+		minister_of_security = prince_of_terror
+		start_date = 1936.1.1
+	}
+	55016 = {
+		name = "Arthur Dawes"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M55016
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1936.1.1
+	}
+	55017 = {
+		name = "Seymour DeWitt"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M55017
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	55019 = {
+		name = "Trevor Handley"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M55019
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	55020 = {
+		name = "Margaret Whittington"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M55020
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1936.1.1
+	}
+	55022 = {
+		name = "Victor Wilcox"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M55022
+		head_of_government = happy_amateur
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	55024 = {
+		name = "Sid Scott"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M55024
+		armament_minister = theoretical_scientist
+		start_date = 1936.1.1
+	}
+	55025 = {
+		name = "Gordon Watson"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M55025
+		minister_of_security = efficient_sociopath
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	55026 = {
+		name = "Frederick Freeman"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M55026
+		minister_of_intelligence = technical_specialist
+		start_date = 1936.1.1
+	}
+	55027 = {
+		name = "Henry Colthorpe"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M55027
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	55029 = {
+		name = "Eric Prendergast"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M55029
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	55030 = {
+		name = "L.P. Peterson"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M55030
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+	55095 = {
+		name = "Willoughby Baron Norrie"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M55095
+		head_of_state = weary_stiff_neck
+		head_of_state = weary_stiff_neck
+		start_date = 1952.1.1
+	}
+	55098 = {
+		name = "Frederick W. Doidge"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M55098
+		foreign_minister = biased_intellectual
+		start_date = 1949.1.1
+	}
+	55099 = {
+		name = "Thomas C. Webb"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M55099
+		foreign_minister = iron_fisted_brute
+		start_date = 1951.1.1
+	}
+	55100 = {
+		name = "Arnold H. Nordmeyer"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M55100
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1950.1.1
+	}
+	55101 = {
+		name = "Thomas L. MacDonald"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M55101
+		minister_of_security = efficient_sociopath
+		start_date = 1951.1.1
+	}
+}
