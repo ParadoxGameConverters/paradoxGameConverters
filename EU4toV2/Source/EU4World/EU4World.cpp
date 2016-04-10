@@ -312,16 +312,23 @@ void EU4World::readCommonCountries(istream& in, const std::string& rootPath)
 			if (findIter != countries.end())
 			{
 				EU4Country* country = findIter->second;
+
 				// The country file name is all the text after the equals sign (possibly in quotes).
-				size_t equalPos = countryLine.find('=', 3);
-				size_t beginPos = countryLine.find_first_not_of(' ', equalPos + 1);
-				size_t endPos = countryLine.find_last_not_of(' ') + 1;
+				size_t commentPos	= countryLine.find('#', 3);
+				if (commentPos != string::npos)
+				{
+					countryLine = countryLine.substr(0, commentPos);
+				}
+				size_t equalPos	= countryLine.find('=', 3);
+				size_t beginPos	= countryLine.find_first_not_of(' ', equalPos + 1);
+				size_t endPos		= countryLine.find_last_not_of(' ') + 1;
 				std::string fileName = countryLine.substr(beginPos, endPos - beginPos);
 				if (fileName.front() == '"' && fileName.back() == '"')
 				{
 					fileName = fileName.substr(1, fileName.size() - 2);
 				}
 				std::replace(fileName.begin(), fileName.end(), '/', '\\');
+
 				// Parse the country file.
 				std::string path = rootPath + "\\common\\" + fileName;
 				size_t lastPathSeparatorPos = path.find_last_of('\\');
