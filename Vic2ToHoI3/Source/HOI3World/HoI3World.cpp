@@ -945,7 +945,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 
 			// guarantee that navies are assigned to sea provinces, or land provinces with naval bases
 			bool usePort = false;
-			if ((locationCandidates.size() > 0) && (oldArmy->getNavy()))
+			if ((locationCandidates.size() > 0) && (oldArmy->getNavy()) && (!oldArmy->getAtSea()))
 			{
 				map<int, HoI3Province*>::const_iterator pitr = provinces.find(locationCandidates[0]);
 				if (pitr != provinces.end() && pitr->second->isLand())
