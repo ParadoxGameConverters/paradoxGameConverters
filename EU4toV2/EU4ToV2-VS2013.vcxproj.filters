@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Source\Color.cpp" />
+    <ClCompile Include="Source\Configuration.cpp" />
+    <ClCompile Include="Source\CountryMapping.cpp" />
+    <ClCompile Include="Source\FlagUtils.cpp" />
+    <ClCompile Include="Source\Mapper.cpp" />
+    <ClCompile Include="Source\targa.cpp" />
+    <ClCompile Include="Source\tempFuncs.cpp" />
+    <ClCompile Include="Source\WinUtils.cpp" />
+    <ClCompile Include="Source\EU4World\EU4Army.cpp">
+      <Filter>EU4 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU4World\EU4Country.cpp">
+      <Filter>EU4 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU4World\EU4Diplomacy.cpp">
+      <Filter>EU4 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU4World\EU4Leader.cpp">
+      <Filter>EU4 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU4World\EU4Localisation.cpp">
+      <Filter>EU4 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU4World\EU4Province.cpp">
+      <Filter>EU4 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU4World\EU4Relations.cpp">
+      <Filter>EU4 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU4World\EU4Religion.cpp">
+      <Filter>EU4 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU4World\EU4Version.cpp">
+      <Filter>EU4 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU4World\EU4World.cpp">
+      <Filter>EU4 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\V2Army.cpp">
+      <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\V2Country.cpp">
+      <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\V2Creditor.cpp">
+      <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\V2Diplomacy.cpp">
+      <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\V2Factory.cpp">
+      <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\V2Flags.cpp">
+      <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\V2Leader.cpp">
+      <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\V2LeaderTraits.cpp">
+      <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\V2Localisation.cpp">
+      <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\V2Party.cpp">
+      <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\V2World.cpp">
+      <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\V2TechSchools.cpp">
+      <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\V2Pop.cpp">
+      <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\V2Province.cpp">
+      <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\V2Reforms.cpp">
+      <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\V2Relations.cpp">
+      <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\V2State.cpp">
+      <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU4toV2Converter.cpp" />
+    <ClCompile Include="..\common_items\Date.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\Log.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\Object.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\ParadoxParser.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Color.h" />
+    <ClInclude Include="Source\Configuration.h" />
+    <ClInclude Include="Source\CountryMapping.h" />
+    <ClInclude Include="Source\FlagUtils.h" />
+    <ClInclude Include="Source\Mapper.h" />
+    <ClInclude Include="Source\targa.h" />
+    <ClInclude Include="Source\WinUtils.h" />
+    <ClInclude Include="Source\EU4World\EU4Army.h">
+      <Filter>EU4 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU4World\EU4Country.h">
+      <Filter>EU4 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU4World\EU4Diplomacy.h">
+      <Filter>EU4 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU4World\EU4Leader.h">
+      <Filter>EU4 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU4World\EU4Localisation.h">
+      <Filter>EU4 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU4World\EU4Province.h">
+      <Filter>EU4 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU4World\EU4Relations.h">
+      <Filter>EU4 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU4World\EU4Religion.h">
+      <Filter>EU4 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU4World\EU4Version.h">
+      <Filter>EU4 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU4World\EU4World.h">
+      <Filter>EU4 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2Army.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2Country.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2Creditor.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2Diplomacy.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2Factory.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2Flags.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2Inventions.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2Leader.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2LeaderTraits.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2Localisation.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2Party.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2World.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2TechSchools.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2Pop.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2Province.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2Reforms.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2Relations.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2State.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\Date.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\Log.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\Object.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\ParadoxParser.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="EU4 World">
+      <UniqueIdentifier>{ce1f05c1-d019-41f0-a90c-4aa12a96084e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vic2 World">
+      <UniqueIdentifier>{e035de80-c339-40c2-9c42-6d2c8efbe506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CommonItems">
+      <UniqueIdentifier>{b4ecb265-1673-4f23-af86-fbe9c838c8a9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

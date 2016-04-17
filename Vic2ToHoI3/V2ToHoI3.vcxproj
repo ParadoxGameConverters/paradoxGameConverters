@@ -43,12 +43,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IntDir>$(SolutionDir)\DebugIntermediate\</IntDir>
-    <IncludePath>$(UniversalCRT_IncludePath);$(BOOST_INCLUDE);$(VCInstallDir)include;$(WindowsSdkDir)include</IncludePath>
+    <IncludePath>$(UniversalCRT_IncludePath);$(BOOST_INCLUDE);$(VCInstallDir)include;$(WindowsSdkDir)include;..\common_items;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IntDir>$(SolutionDir)\ReleaseIntermediate\</IntDir>
-    <IncludePath>$(UniversalCRT_IncludePath);$(BOOST_INCLUDE);$(VCInstallDir)include;$(WindowsSdkDir)include</IncludePath>
+    <IncludePath>$(UniversalCRT_IncludePath);$(BOOST_INCLUDE);$(VCInstallDir)include;$(WindowsSdkDir)include;..\common_items;$(IncludePath)</IncludePath>
     <TargetName>V2ToHoI3Converter</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -98,10 +98,13 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\common_items\Date.cpp" />
+    <ClCompile Include="..\common_items\Log.cpp" />
+    <ClCompile Include="..\common_items\Object.cpp" />
+    <ClCompile Include="..\common_items\ParadoxParser.cpp" />
     <ClCompile Include="Source\Color.cpp" />
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\CountryMapping.cpp" />
-    <ClCompile Include="Source\Date.cpp" />
     <ClCompile Include="Source\GovernmentMapper.cpp" />
     <ClCompile Include="Source\HOI3World\HoI3Alignment.cpp" />
     <ClCompile Include="Source\HOI3World\HoI3Army.cpp" />
@@ -114,10 +117,7 @@
     <ClCompile Include="Source\HOI3World\HoI3Relations.cpp" />
     <ClCompile Include="Source\HOI3World\HoI3World.cpp" />
     <ClCompile Include="Source\V2toHOI3Converter.cpp" />
-    <ClCompile Include="Source\Log.cpp" />
     <ClCompile Include="Source\Mapper.cpp" />
-    <ClCompile Include="Source\Parsers\Object.cpp" />
-    <ClCompile Include="Source\Parsers\Parser.cpp" />
     <ClCompile Include="Source\V2World\V2Army.cpp" />
     <ClCompile Include="Source\V2World\V2Country.cpp" />
     <ClCompile Include="Source\V2World\V2Diplomacy.cpp" />
@@ -133,10 +133,13 @@
     <ClCompile Include="Source\WinUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\common_items\Date.h" />
+    <ClInclude Include="..\common_items\Log.h" />
+    <ClInclude Include="..\common_items\Object.h" />
+    <ClInclude Include="..\common_items\ParadoxParser.h" />
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\CountryMapping.h" />
-    <ClInclude Include="Source\Date.h" />
     <ClInclude Include="Source\GovernmentMapper.h" />
     <ClInclude Include="Source\HOI3World\HoI3Alignment.h" />
     <ClInclude Include="Source\HOI3World\HoI3Army.h" />
@@ -148,10 +151,7 @@
     <ClInclude Include="Source\HOI3World\HoI3Province.h" />
     <ClInclude Include="Source\HOI3World\HoI3Relations.h" />
     <ClInclude Include="Source\HOI3World\HoI3World.h" />
-    <ClInclude Include="Source\Log.h" />
     <ClInclude Include="Source\Mapper.h" />
-    <ClInclude Include="Source\Parsers\Object.h" />
-    <ClInclude Include="Source\Parsers\Parser.h" />
     <ClInclude Include="Source\V2World\V2Army.h" />
     <ClInclude Include="Source\V2World\V2Country.h" />
     <ClInclude Include="Source\V2World\V2Diplomacy.h" />

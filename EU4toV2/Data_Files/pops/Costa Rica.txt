@@ -1,0 +1,98 @@
+#Costa Rica Region (84000)
+#Ruled by Central America 1836
+#San Jose (52000/13000 POPS)
+2201 = {
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 300
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 125
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 650
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 125
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 11800
+	}
+}
+#Liberia (20000/5000 POPS)
+2202 = {
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 150
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 50
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 250
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 50
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 4500
+	}
+}
+#Limon (12000/3000 POPS)
+2203 = {
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 75
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 50
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 150
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 25
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 2700
+	}
+}

@@ -28,9 +28,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <io.h>
 #include <fstream>
 #include <sstream>
-#include "../Log.h"
+#include "Log.h"
 #include "../Configuration.h"
-#include "../Parsers/Parser.h"
+#include "ParadoxParser.h"
 #include "V2Army.h"
 #include "V2Factory.h"
 #include "V2Leader.h"

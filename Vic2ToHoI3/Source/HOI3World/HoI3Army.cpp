@@ -22,9 +22,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI3Army.h"
-#include "../Log.h"
+#include "Log.h"
 #include "../Configuration.h"
-#include "../Parsers/Parser.h"
+#include "ParadoxParser.h"
 #include <sstream>
 
 

@@ -1,27 +1,106 @@
+# Copyright (c) 2014 The Paradox Game Converters Project
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+
 religionmap = {
 
 #Christians
 
 link = { v2 = catholic eu4 = catholic }
+link = { v2 = cathar eu4 = cathar }
+link = { v2 = fraticelli eu4 = fraticelli }
+link = { v2 = waldensian eu4 = waldensian }
+link = { v2 = lollard eu4 = lollard }
+link = { v2 = catholic_heresy eu4 = catholic_heresy }
+
 link = { v2 = protestant eu4 = protestant eu4 = reformed }
+link = { v2 = protestant_heresy eu4 = protestant_heresy eu4 = reformed_heresy }
 link = { v2 = orthodox eu4 = orthodox }
+link = { v2 = bogomilist eu4 = bogomilist }
+link = { v2 = monothelite eu4 = monothelite }
+link = { v2 = iconoclast eu4 = iconoclast }
+link = { v2 = paulician eu4 = paulician }
+link = { v2 = orthodox_heresy eu4 = orthodox_heresy }
+
+link = { v2 = coptic eu4 = coptic }
+link = { v2 = monophysite eu4 = monophysite }
+link = { v2 = nestorian eu4 = nestorian }
+link = { v2 = messalian eu4 = messalian }
+
 
 #Muslims
 
 link = { v2 = sunni eu4 = sunni }
+link = { v2 = zikri eu4 = zikri }
+link = { v2 = yazidi eu4 = yazidi }
+link = { v2 = sunni_heresy eu4 = sunni_heresy }
+
 link = { v2 = shiite eu4 = shiite }
+link = { v2 = hurufi eu4 = hurufi }
+link = { v2 = druze eu4 = druze }
+link = { v2 = shiite_heresy eu4 = shiite_heresy }
+
+link = { v2 = ibadi eu4 = ibadi }
+link = { v2 = kharijite eu4 = kharijite }
 
 #Eastern
-link = { v2 = mahayana eu4 = confucianism }
-link = { v2 = gelugpa eu4 = buddhism owner = TIB }  # Tibet
-link = { v2 = gelugpa eu4 = buddhism owner = OIR }	# Oirat Horde
+link = { v2 = mahayana eu4 = confucianism eu4 = mahayana }
+#link = { v2 = gelugpa eu4 = buddhism owner = TIB } # Tibet
+#link = { v2 = gelugpa eu4 = buddhism owner = OIR } # Oirat Horde
 link = { v2 = theravada eu4 = buddhism }
-link = { v2 = sikh eu4 = hinduism owner = PUN }	# Punjab
+link = { v2 = sikh eu4 = sikhism }
 link = { v2 = hindu eu4 = hinduism }
 link = { v2 = shinto eu4 = shinto }
+link = { v2 = jain eu4 = jain }
+link = { v2 = gelugpa eu4 = vajrayana }
 
 #Pagans
-link = { v2 = animist eu4 = animism eu4 = shamanism }
+link = { v2 = animist eu4 = animism }
+link = { v2 = shamanism eu4 = shamanism }
+link = { v2 = totemism eu4 = totemism }
+link = { v2 = norse_pagan_reformed eu4 = norse_pagan_reformed }
+link = { v2 = tengri_pagan_reformed eu4 = tengri_pagan_reformed }
+link = { v2 = baltic_pagan_reformed eu4 = baltic_pagan_reformed }
+link = { v2 = finnish_pagan_reformed eu4 = finnish_pagan_reformed }
+link = { v2 = aztec_reformed eu4 = aztec_reformed }
+link = { v2 = slavic_pagan_reformed eu4 = slavic_pagan_reformed }
+link = { v2 = west_african_pagan_reformed eu4 = west_african_pagan_reformed }
+link = { v2 = hellenic_pagan eu4 = hellenic_pagan }
+link = { v2 = inca_reformed eu4 = inca_reformed }
+link = { v2 = zun_pagan_reformed eu4 = zun_pagan_reformed }
+
+link = { v2 = inti eu4 = inti }
+link = { v2 = mayan eu4 = mesoamerican_religion }
+link = { v2 = nahuatl eu4 = nahuatl }
+
+#Zoroastrian
+link = { v2 = zoroastrian eu4 = zoroastrian }
+link = { v2 = manichean eu4 = manichean }
+link = { v2 = mazdaki eu4 = mazdaki }
+link = { v2 = zoroastrian_heresy eu4 = zoroastrian_heresy }
+
+#Judaism
+link = { v2 = jewish eu4 = jewish }
+link = { v2 = samaritan eu4 = samaritan }
+link = { v2 = karaite eu4 = karaite }
+link = { v2 = jewish_heresy eu4 = jewish_heresy }
 
 
 }

@@ -1,0 +1,704 @@
+#Baguirmi Region (164000)
+#uncolonized in 1836/under the control of Borno via Sultan of Baguirmi
+#Massenya (80000/20000 POPS)
+1818 = {
+	aristocrats = {
+		culture = baguirmi
+		religion = sunni
+		size = 125
+	}
+
+	bureaucrats = {
+		culture = baguirmi
+		religion = sunni
+		size = 10
+	}
+
+	officers = {
+		culture = baguirmi
+		religion = sunni
+		size = 15
+	}
+
+	clergymen = {
+		culture = baguirmi
+		religion = sunni
+		size = 100
+	}
+
+	artisans = {
+		culture = baguirmi
+		religion = sunni
+		size = 450
+	}
+
+	soldiers = {
+		culture = baguirmi
+		religion = sunni
+		size = 100
+	}
+
+	farmers = {
+		culture = baguirmi
+		religion = sunni
+		size = 6200
+	}
+
+	aristocrats = {
+		culture = sara
+		religion = animist
+		size = 100
+	}
+
+	clergymen = {
+		culture = sara
+		religion = animist
+		size = 50
+	}
+
+	artisans = {
+		culture = sara
+		religion = animist
+		size = 300
+	}
+
+	soldiers = {
+		culture = sara
+		religion = animist
+		size = 50
+	}
+
+	farmers = {
+		culture = sara
+		religion = animist
+		size = 5500
+	}
+
+	slaves = {
+		culture = sara
+		religion = animist
+		size = 2000
+	}
+
+	aristocrats = {
+		culture = african_minor
+		religion = animist
+		size = 75
+	}
+
+	clergymen = {
+		culture = african_minor
+		religion = animist
+		size = 50
+	}
+
+	artisans = {
+		culture = african_minor
+		religion = animist
+		size = 250
+	}
+
+	soldiers = {
+		culture = african_minor
+		religion = animist
+		size = 50
+	}
+
+	farmers = {
+		culture = african_minor
+		religion = animist
+		size = 4575
+	}
+}
+#Moundou (48000/12000 POPS)
+1819 = {
+	aristocrats = {
+		culture = baguirmi
+		religion = sunni
+		size = 75
+	}
+
+	clergymen = {
+		culture = baguirmi
+		religion = sunni
+		size = 50
+	}
+
+	artisans = {
+		culture = baguirmi
+		religion = sunni
+		size = 250
+	}
+
+	soldiers = {
+		culture = baguirmi
+		religion = sunni
+		size = 50
+	}
+
+	farmers = {
+		culture = baguirmi
+		religion = sunni
+		size = 575
+	}
+
+	aristocrats = {
+		culture = sara
+		religion = animist
+		size = 125
+	}
+
+	clergymen = {
+		culture = sara
+		religion = animist
+		size = 75
+	}
+
+	artisans = {
+		culture = sara
+		religion = animist
+		size = 350
+	}
+
+	soldiers = {
+		culture = sara
+		religion = animist
+		size = 75
+	}
+
+	farmers = {
+		culture = sara
+		religion = animist
+		size = 6375
+	}
+
+	slaves = {
+		culture = sara
+		religion = animist
+		size = 2000
+	}
+
+	slaves = {
+		culture = african_minor
+		religion = animist
+		size = 2000
+	}
+}
+#Bongor (36000/9000 POPS)
+1820 = {
+	aristocrats = {
+		culture = sara
+		religion = animist
+		size = 25
+	}
+
+	clergymen = {
+		culture = sara
+		religion = animist
+		size = 50
+	}
+
+	artisans = {
+		culture = sara
+		religion = animist
+		size = 100
+	}
+
+	soldiers = {
+		culture = sara
+		religion = animist
+		size = 25
+	}
+
+	farmers = {
+		culture = sara
+		religion = animist
+		size = 1800
+	}
+
+	aristocrats = {
+		culture = african_minor
+		religion = animist
+		size = 125
+	}
+
+	clergymen = {
+		culture = african_minor
+		religion = animist
+		size = 75
+	}
+
+	artisans = {
+		culture = african_minor
+		religion = animist
+		size = 350
+	}
+
+	soldiers = {
+		culture = african_minor
+		religion = animist
+		size = 75
+	}
+
+	farmers = {
+		culture = african_minor
+		religion = animist
+		size = 6375
+	}
+}
+#Wadai Region (244000)
+#uncolonized in 1836/under the control of Sultan of Wadai
+#Abeche (68000/17000 POPS)
+1821 = {
+	aristocrats = {
+		culture = fur
+		religion = sunni
+		size = 175
+	}
+
+	bureaucrats = {
+		culture = fur
+		religion = sunni
+		size = 15
+	}
+
+	officers = {
+		culture = fur
+		religion = sunni
+		size = 35
+	}
+
+	clergymen = {
+		culture = fur
+		religion = sunni
+		size = 100
+	}
+
+	artisans = {
+		culture = fur
+		religion = sunni
+		size = 550
+	}
+
+	soldiers = {
+		culture = fur
+		religion = sunni
+		size = 125
+	}
+
+	farmers = {
+		culture = fur
+		religion = sunni
+		size = 7015
+	}
+
+	aristocrats = {
+		culture = teda
+		religion = sunni
+		size = 75
+	}
+
+	clergymen = {
+		culture = teda
+		religion = sunni
+		size = 50
+	}
+
+	artisans = {
+		culture = teda
+		religion = sunni
+		size = 300
+	}
+
+	soldiers = {
+		culture = teda
+		religion = sunni
+		size = 50
+	}
+
+	farmers = {
+		culture = teda
+		religion = sunni
+		size = 4500
+	}
+
+	slaves = {
+		culture = african_minor
+		religion = animist
+		size = 4000
+	}
+}
+#Am Timan (84000/21000 POPS)
+1822 = {
+	aristocrats = {
+		culture = fur
+		religion = sunni
+		size = 275
+	}
+
+	clergymen = {
+		culture = fur
+		religion = sunni
+		size = 150
+	}
+
+	artisans = {
+		culture = fur
+		religion = sunni
+		size = 600
+	}
+
+	soldiers = {
+		culture = fur
+		religion = sunni
+		size = 150
+	}
+
+	farmers = {
+		culture = fur
+		religion = sunni
+		size = 10825
+	}
+
+	slaves = {
+		culture = african_minor
+		religion = animist
+		size = 5000
+	}
+
+	aristocrats = {
+		culture = bedouin
+		religion = sunni
+		size = 75
+	}
+
+	clergymen = {
+		culture = bedouin
+		religion = sunni
+		size = 50
+	}
+
+	artisans = {
+		culture = bedouin
+		religion = sunni
+		size = 175
+	}
+
+	soldiers = {
+		culture = bedouin
+		religion = sunni
+		size = 50
+	}
+
+	farmers = {
+		culture = bedouin
+		religion = sunni
+		size = 3650
+	}
+}
+#Mongo (92000/23000 POPS)
+1823 = {
+	aristocrats = {
+		culture = fur
+		religion = sunni
+		size = 350
+	}
+
+	clergymen = {
+		culture = fur
+		religion = sunni
+		size = 175
+	}
+
+	artisans = {
+		culture = fur
+		religion = sunni
+		size = 725
+	}
+
+	soldiers = {
+		culture = fur
+		religion = sunni
+		size = 200
+	}
+
+	farmers = {
+		culture = fur
+		religion = sunni
+		size = 13550
+	}
+
+	aristocrats = {
+		culture = bedouin
+		religion = sunni
+		size = 50
+	}
+
+	clergymen = {
+		culture = bedouin
+		religion = sunni
+		size = 75
+	}
+
+	artisans = {
+		culture = bedouin
+		religion = sunni
+		size = 150
+	}
+
+	soldiers = {
+		culture = bedouin
+		religion = sunni
+		size = 25
+	}
+
+	farmers = {
+		culture = bedouin
+		religion = sunni
+		size = 2700
+	}
+
+	aristocrats = {
+		culture = african_minor
+		religion = animist
+		size = 25
+	}
+
+	clergymen = {
+		culture = african_minor
+		religion = animist
+		size = 50
+	}
+
+	artisans = {
+		culture = african_minor
+		religion = animist
+		size = 100
+	}
+
+	soldiers = {
+		culture = african_minor
+		religion = animist
+		size = 25
+	}
+
+	farmers = {
+		culture = african_minor
+		religion = animist
+		size = 1800
+	}
+
+	slaves = {
+		culture = african_minor
+		religion = animist
+		size = 3000
+	}
+}
+#Kanem Region (288000)
+#uncolonized in 1836/under the rule of Borno
+#Mao (188000/47000 POPS)
+1824 = {
+	aristocrats = {
+		culture = bedouin
+		religion = sunni
+		size = 650
+	}
+
+	clergymen = {
+		culture = bedouin
+		religion = sunni
+		size = 325
+	}
+
+	artisans = {
+		culture = bedouin
+		religion = sunni
+		size = 1325
+	}
+
+	soldiers = {
+		culture = bedouin
+		religion = sunni
+		size = 350
+	}
+
+	farmers = {
+		culture = bedouin
+		religion = sunni
+		size = 23350
+	}
+
+	aristocrats = {
+		culture = teda
+		religion = sunni
+		size = 25
+	}
+
+	clergymen = {
+		culture = teda
+		religion = sunni
+		size = 50
+	}
+
+	artisans = {
+		culture = teda
+		religion = sunni
+		size = 100
+	}
+
+	soldiers = {
+		culture = teda
+		religion = sunni
+		size = 25
+	}
+
+	farmers = {
+		culture = teda
+		religion = sunni
+		size = 1800
+	}
+
+	aristocrats = {
+		culture = kanuri
+		religion = sunni
+		size = 225
+	}
+
+	bureaucrats = {
+		culture = kanuri
+		religion = sunni
+		size = 25
+	}
+
+	officers = {
+		culture = kanuri
+		religion = sunni
+		size = 50
+	}
+
+	clergymen = {
+		culture = kanuri
+		religion = sunni
+		size = 125
+	}
+
+	artisans = {
+		culture = kanuri
+		religion = sunni
+		size = 600
+	}
+
+	soldiers = {
+		culture = kanuri
+		religion = sunni
+		size = 125
+	}
+
+	farmers = {
+		culture = kanuri
+		religion = sunni
+		size = 5850
+	}
+
+	slaves = {
+		culture = african_minor
+		religion = animist
+		size = 12000
+	}
+}
+#Zouar (72000/18000 POPS)
+1825 = {
+	aristocrats = {
+		culture = teda
+		religion = sunni
+		size = 300
+	}
+
+	clergymen = {
+		culture = teda
+		religion = sunni
+		size = 150
+	}
+
+	artisans = {
+		culture = teda
+		religion = sunni
+		size = 800
+	}
+
+	soldiers = {
+		culture = teda
+		religion = sunni
+		size = 175
+	}
+
+	farmers = {
+		culture = teda
+		religion = sunni
+		size = 14575
+	}
+
+	aristocrats = {
+		culture = tuareg
+		religion = sunni
+		size = 25
+	}
+
+	clergymen = {
+		culture = tuareg
+		religion = sunni
+		size = 50
+	}
+
+	artisans = {
+		culture = tuareg
+		religion = sunni
+		size = 100
+	}
+
+	soldiers = {
+		culture = tuareg
+		religion = sunni
+		size = 25
+	}
+
+	farmers = {
+		culture = tuareg
+		religion = sunni
+		size = 1800
+	}
+}
+#uncolonized in 1836/under the control of Wadai
+#Faya (28000/7000 POPS)
+1826 = {
+	aristocrats = {
+		culture = teda
+		religion = sunni
+		size = 125
+	}
+
+	clergymen = {
+		culture = teda
+		religion = sunni
+		size = 75
+	}
+
+	artisans = {
+		culture = teda
+		religion = sunni
+		size = 350
+	}
+
+	soldiers = {
+		culture = teda
+		religion = sunni
+		size = 75
+	}
+
+	farmers = {
+		culture = teda
+		religion = sunni
+		size = 6375
+	}
+
+}

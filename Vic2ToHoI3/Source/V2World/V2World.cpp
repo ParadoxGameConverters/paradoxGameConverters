@@ -24,8 +24,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2World.h"
 #include <fstream>
 #include <sys/stat.h>
-#include "../Parsers/Parser.h"
-#include "../Log.h"
+#include "ParadoxParser.h"
+#include "Log.h"
 #include "../Configuration.h"
 #include "../WinUtils.h"
 #include "V2Province.h"

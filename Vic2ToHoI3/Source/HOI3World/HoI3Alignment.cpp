@@ -22,7 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI3Alignment.h"
-#include "../Log.h"
+#include "Log.h"
 
 
 

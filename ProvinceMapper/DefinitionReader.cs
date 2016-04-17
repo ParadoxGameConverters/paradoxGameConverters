@@ -16,6 +16,10 @@ namespace ProvinceMapper
             {
                 string province = sr.ReadLine();
                 string[] provinceTokens = province.Split(';');
+                if ( (provinceTokens[4] == "RNW") || ((provinceTokens[4].Length > 5) && (provinceTokens[4].Substring(0, 6) == "Unused")) )
+                {
+                    continue;
+                }
                 try
                 {
                     Province p = new Province(provinceTokens);

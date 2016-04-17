@@ -1,0 +1,16 @@
+#Seychelles - 5000
+#ruled by Britain 1836
+#Seychelles (5000/1250 POPS)
+2127 = {
+	farmers = {
+		culture = african_minor
+		religion = animist
+		size = 1000
+	}
+	
+	farmers = {
+		culture = african_minor
+		religion = sunni
+		size = 300
+	}
+}

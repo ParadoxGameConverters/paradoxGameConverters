@@ -22,8 +22,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Configuration.h"
-#include "Parsers/Parser.h"
-#include "Parsers/Object.h"
+#include "ParadoxParser.h"
+#include "Object.h"
 #include "Log.h"
 #include <vector>
 using namespace std;

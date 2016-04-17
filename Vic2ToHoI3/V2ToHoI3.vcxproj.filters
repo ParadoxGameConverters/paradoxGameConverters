@@ -4,9 +4,7 @@
     <ClCompile Include="Source\Color.cpp" />
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\CountryMapping.cpp" />
-    <ClCompile Include="Source\Date.cpp" />
     <ClCompile Include="Source\GovernmentMapper.cpp" />
-    <ClCompile Include="Source\Log.cpp" />
     <ClCompile Include="Source\Mapper.cpp" />
     <ClCompile Include="Source\WinUtils.cpp" />
     <ClCompile Include="Source\HOI3World\HoI3Alignment.cpp">
@@ -63,12 +61,6 @@
     <ClCompile Include="Source\V2World\V2World.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Parsers\Object.cpp">
-      <Filter>Parser</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Parsers\Parser.cpp">
-      <Filter>Parser</Filter>
-    </ClCompile>
     <ClCompile Include="Source\V2toHOI3Converter.cpp" />
     <ClCompile Include="Source\HOI3World\HoI3Minister.cpp">
       <Filter>HOI3World</Filter>
@@ -82,14 +74,24 @@
     <ClCompile Include="Source\V2World\V2Leader.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
+    <ClCompile Include="..\common_items\Date.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\Log.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\Object.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\ParadoxParser.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\CountryMapping.h" />
-    <ClInclude Include="Source\Date.h" />
     <ClInclude Include="Source\GovernmentMapper.h" />
-    <ClInclude Include="Source\Log.h" />
     <ClInclude Include="Source\Mapper.h" />
     <ClInclude Include="Source\WinUtils.h" />
     <ClInclude Include="Source\HOI3World\HoI3Alignment.h">
@@ -149,12 +151,6 @@
     <ClInclude Include="Source\V2World\V2World.h">
       <Filter>Vic2World</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Parsers\Object.h">
-      <Filter>Parser</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Parsers\Parser.h">
-      <Filter>Parser</Filter>
-    </ClInclude>
     <ClInclude Include="Source\HOI3World\HoI3Minister.h">
       <Filter>HOI3World</Filter>
     </ClInclude>
@@ -164,6 +160,18 @@
     <ClInclude Include="Source\V2World\V2Leader.h">
       <Filter>Vic2World</Filter>
     </ClInclude>
+    <ClInclude Include="..\common_items\Date.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\Log.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\Object.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\ParadoxParser.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="HOI3World">
@@ -172,8 +180,8 @@
     <Filter Include="Vic2World">
       <UniqueIdentifier>{bc1097e7-d48e-4621-b8bf-34de52ee6f12}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Parser">
-      <UniqueIdentifier>{93cd3811-9297-418d-9464-b7e8ac39502d}</UniqueIdentifier>
+    <Filter Include="CommonItems">
+      <UniqueIdentifier>{4369bdc6-f414-40b6-8a26-07c3bd341c4b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
