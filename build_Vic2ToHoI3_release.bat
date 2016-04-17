@@ -14,3 +14,10 @@ cd "Vic2ToHoI3-%version%"
 call "%SEVENZIP_LOC%\7z.exe" a -tzip -r "..\Vic2ToHoI3-%version%.zip" "*" -mx5
 cd ..
 
+mkdir "PDM_Patch-%version%"
+mkdir "PDM_Patch-%version%/Vic2ToHoI3"
+xcopy "Vic2ToHoI3/Data_Files/PDM" "PDM_Patch-%version%/Vic2ToHoI3" /Y /E /I
+cd "PDM_Patch-%version%"
+call "%SEVENZIP_LOC%\7z.exe" a -tzip -r "..\PDM_Patch-%version%.zip" "*" -mx5
+cd ..
+
