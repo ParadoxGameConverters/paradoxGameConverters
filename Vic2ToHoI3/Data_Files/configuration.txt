@@ -14,7 +14,7 @@ configuration =
 
 	# Vic2Mods: Vic2 mods to use for conversion
 	# Example: Vic2Mods = { modname1 modname2 }
-	Vic2Mods = { TheEmpireStrikesBack }
+	Vic2Mods = { }
 
 	# Faction Leader: how the converter determines who the faction leaders are
 	#	auto
