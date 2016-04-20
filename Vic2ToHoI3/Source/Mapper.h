@@ -83,10 +83,6 @@ typedef vector< pair<string, string> > unionMapping;	// <cultures, tag>
 unionMapping initUnionMap(Object* obj);
 
 
-// Government Mappings
-governmentMapping initGovernmentMap(Object* obj);
-
-
 // Cultural Union Nation mappings
 typedef map< string, vector<string> > unionCulturesMap; // <culture group, cultures>
 void initUnionCultures(Object* obj, unionCulturesMap& unionCultures);

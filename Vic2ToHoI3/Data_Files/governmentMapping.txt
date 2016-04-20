@@ -18,26 +18,31 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+
+
 mappings = {
-link = { vic = proletarian_dictatorship culture = russian hoi = federal_socialist_republic }	# BE: Probably want to make federal_socialist_republic size-dependent
-link = { vic = proletarian_dictatorship culture = yankee hoi = federal_socialist_republic }
-link = { vic = proletarian_dictatorship hoi = socialist_republic }			# what about federal_socialist_republic?
-link = { vic = presidential_dictatorship culture = hungarian hoi = hungarian_right_wing_republic }
-link = { vic = presidential_dictatorship hoi = right_wing_republic }			# what about right_wing_autocrat?
-link = { vic = bourgeois_dictatorship hoi = social_liberalism }				# that can't be good. Maybe mod in a new government?
-link = { vic = fascist_dictatorship culture = german hoi = germanic_fascist_republic }	# what about national_socialism?
-link = { vic = fascist_dictatorship hoi = fascist_republic }				# what about national_socialism?
-link = { vic = absolute_monarchy ruling_party = fascist hoi = imperial }
-link = { vic = absolute_monarchy ruling_party = reactionary hoi = imperial }
 link = { vic = absolute_monarchy hoi = absolute_monarchy }
 link = { vic = prussian_constitutionalism ruling_party = fascist hoi = imperial }
 link = { vic = prussian_constitutionalism ruling_party = reactionary hoi = imperial }
-link = { vic = prussian_constitutionalism hoi = constitutional_monarchy }
+link = { vic = prussian_constitutionalism political_reforms = 0.75 hoi = constitutional_monarchy }
+link = { vic = prussian_constitutionalism hoi = imperial }
+link = { vic = hms_government ruling_party = fascist hoi = imperial }
 link = { vic = hms_government hoi = constitutional_monarchy }
-link = { vic = democracy culture = spanish hoi = spanish_social_conservatism closest_uh_social = 1 closest_uh_market = 0 }
-link = { vic = democracy hoi = social_conservatism closest_uh_social = 1 closest_uh_market = 0 }
-link = { vic = democracy hoi = market_liberalism closest_uh_social = -1 closest_uh_market = -2 }
-link = { vic = democracy hoi = social_democracy closest_uh_social = 0 closest_uh_market = 0 }
-link = { vic = democracy hoi = social_liberalism closest_uh_social = -2 closest_uh_market = 1 }
-link = { vic = democracy hoi = left_wing_radicals closest_uh_social = 0 closest_uh_market = 2 }
+link = { vic = democracy ruling_party = fascist hoi = right_wing_republic }
+link = { vic = democracy ruling_party = reactionary hoi = social_conservatism }
+link = { vic = democracy ruling_party = conservative political_reforms = 0.9 social_reforms_above = 0.90 hoi = social_liberalism }
+link = { vic = democracy ruling_party = conservative political_reforms = 0.9 social_reforms_below = 0.33 hoi = market_liberalism }
+link = { vic = democracy ruling_party = conservative hoi = social_conservatism }
+link = { vic = democracy ruling_party = anarcho_liberal hoi = market_liberalism }
+link = { vic = democracy ruling_party = liberal social_reforms_above = 0.66 hoi = social_liberalism }
+link = { vic = democracy ruling_party = liberal hoi = market_liberalism }
+link = { vic = democracy ruling_party = socialist social_reforms_above = 0.90 hoi = left_wing_radicals }
+link = { vic = democracy ruling_party = socialist hoi = social_democracy }
+link = { vic = democracy ruling_party = communist hoi = left_wing_radicals }
+link = { vic = proletarian_dictatorship hoi = socialist_republic }
+link = { vic = presidential_dictatorship ruling_party = liberal hoi = right_wing_republic }
+link = { vic = presidential_dictatorship ruling_party = anarcho_liberal hoi = right_wing_republic }
+link = { vic = presidential_dictatorship hoi = right_wing_autocrat }
+link = { vic = bourgeois_dictatorship hoi = right_wing_republic }
+link = { vic = fascist_dictatorship hoi = fascist_republic }
 }

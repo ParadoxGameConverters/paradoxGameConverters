@@ -413,7 +413,7 @@ void HoI3Country::outputOOB() const
 }
 
 
-void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, vector<string> outputOrder, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
 {
 	srcCountry = _srcCountry;
 
@@ -473,7 +473,7 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	string srcGovernment = srcCountry->getGovernment();
 	if (srcGovernment.size() > 0)
 	{
-		government = getGovernmentForCountry(srcCountry, _vic2ideology, governmentMap);
+		government = governmentMapper::getInstance()->getGovernmentForCountry(srcCountry, _vic2ideology);
 		if (government.empty())
 		{
 			government = "";

@@ -190,6 +190,40 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 		exit(0);
 	}
 
+	// Parse government mapping
+	LOG(LogLevel::Info) << "Parsing governments mappings";
+	initParser();
+	obj = doParseFile("governmentMapping.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file governmentMapping.txt";
+		exit(-1);
+	}
+	governmentMapper::getInstance()->initGovernmentMap(obj->getLeaves()[0]);
+
+	// Parse issues
+	LOG(LogLevel::Info) << "Parsing governments reforms";
+	for (auto itr : vic2Mods)
+	{
+		if (WinUtils::DoesFileExist(Configuration::getV2Path() + "\\mod\\" + itr + "\\common\\issues.txt"))
+		{
+			obj = doParseFile((Configuration::getV2Path() + "\\mod\\" + itr + "\\common\\issues.txt").c_str());
+			if (obj != NULL)
+			{
+				governmentMapper::getInstance()->initReforms(obj);
+				break;
+			}
+		}
+	}
+	if (!governmentMapper::getInstance()->areReformsInitialized())
+	{
+		obj = doParseFile((Configuration::getV2Path() + "\\common\\issues.txt").c_str());
+		if (obj != NULL)
+		{
+			governmentMapper::getInstance()->initReforms(obj);
+		}
+	}
+
 	LOG(LogLevel::Info) << "* Importing V2 save *";
 
 	//	Parse V2 Save
@@ -254,18 +288,6 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	// Get adjacencies
 	LOG(LogLevel::Info) << "Importing HoI3 adjacencies";
 	HoI3AdjacencyMapping HoI3AdjacencyMap = initHoI3AdjacencyMap();
-
-	// Parse government mapping
-	LOG(LogLevel::Info) << "Parsing governments mappings";
-	initParser();
-	obj = doParseFile("governmentMapping.txt");
-	if (obj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file governmentMapping.txt";
-		exit(-1);
-	}
-	governmentMapping governmentMap;
-	governmentMap = initGovernmentMap(obj->getLeaves()[0]);
 
 	// Leaders
 	map<int, int> leaderIDMap; // <V2, HoI3>
@@ -390,7 +412,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
+	destWorld.convertCountries(sourceWorld, countryMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld, provinceMap, inverseProvinceMap, countryMap, HoI3AdjacencyMap);
 	destWorld.consolidateProvinceItems(inverseProvinceMap);

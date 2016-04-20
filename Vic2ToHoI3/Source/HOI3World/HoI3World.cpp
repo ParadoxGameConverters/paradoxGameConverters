@@ -368,7 +368,7 @@ void HoI3World::getProvinceLocalizations(string file)
 }
 
 
-void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping countryMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping countryMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
 {
 	vector<string> outputOrder;
 	outputOrder.clear();
@@ -412,7 +412,7 @@ void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping coun
 				LOG(LogLevel::Error) << "Could not find the ruling party for " <<  sourceCountry->getTag() << ". Were all mods correctly included?";
 				exit(-1);
 			}
-			destCountry->initFromV2Country(sourceWorld, sourceCountry, rulingParty->ideology, outputOrder, countryMap, governmentMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
+			destCountry->initFromV2Country(sourceWorld, sourceCountry, rulingParty->ideology, outputOrder, countryMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
 			countries.insert(make_pair(HoI3Tag, destCountry));
 		}
 		else

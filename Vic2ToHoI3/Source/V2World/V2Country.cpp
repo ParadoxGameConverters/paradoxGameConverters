@@ -170,16 +170,14 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 	}
 
 	// Read reforms
+	map<string, string> reformTypes = governmentMapper::getInstance()->getReformTypes();
+
 	vector<Object*> leaves = obj->getLeaves();
 	for (unsigned int i = 0; i < leaves.size(); ++i)
 	{
 		string key = leaves[i]->getKey();
 
-		if (key == "slavery" || key == "vote_franchise" || key == "upper_house_composition" ||
-			key == "voting_system" || key == "public_meetings" || key == "press_rights" ||
-			key == "trade_unions" || key == "political_parties" || key == "wage_reform" ||
-			key == "work_hours" || key == "safety_regulations" || key == "unemployment_subsidies" ||
-			key == "pensions" || key == "health_care" || key == "school_reforms")
+		if (reformTypes.find(key) != reformTypes.end())
 		{
 			reformsArray[key] = leaves[i]->getLeaf();
 		}
@@ -405,7 +403,9 @@ std::string V2Country::getReform(std::string reform) const
 {
 	map<string, string>::const_iterator itr = reformsArray.find(reform);
 	if (itr == reformsArray.end())
+	{
 		return "";
+	}
 
 	return itr->second;
 }

@@ -291,20 +291,6 @@ unionMapping initUnionMap(Object* obj)
 }
 
 
-governmentMapping initGovernmentMap(Object* obj)
-{
-	governmentMapping governmentMap;				// the government mapping
-	vector<Object*> links = obj->getValue("link");
-	for (vector<Object*>::iterator itr = links.begin(); itr != links.end(); ++itr)
-	{
-		GovernmentMap gov(*itr);
-		governmentMap.push_back(gov);
-	}
-
-	return governmentMap;
-}
-
-
 void initUnionCultures(Object* obj, unionCulturesMap& unionCultures)
 {
 	vector<Object*> cultureGroups = obj->getLeaves();	// the cultural group rules
