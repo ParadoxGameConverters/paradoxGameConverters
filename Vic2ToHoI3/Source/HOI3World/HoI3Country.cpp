@@ -762,10 +762,10 @@ void HoI3Country::consolidateProvinceItems(inverseProvinceMapping& inverseProvin
 		double stateIndustry		= 0.0;
 		for (auto srcProvinceItr: stateItr.provinces)
 		{
-			auto itr = inverseProvinceMap.find(srcProvinceItr);
-			if (itr != inverseProvinceMap.end())
+			auto possibleHoI3Provinces = inverseProvinceMap.find(srcProvinceItr);
+			if (possibleHoI3Provinces != inverseProvinceMap.end())
 			{
-				for (auto dstProvinceNum: itr->second)
+				for (auto dstProvinceNum: possibleHoI3Provinces->second)
 				{
 					auto provinceItr = provinces.find(dstProvinceNum);
 					if (provinceItr != provinces.end())
@@ -803,10 +803,10 @@ void HoI3Country::consolidateProvinceItems(inverseProvinceMapping& inverseProvin
 
 		if (stateItr.provinces.size() > 0)
 		{
-			auto itr = inverseProvinceMap.find(stateItr.provinces[0]);
-			if (itr != inverseProvinceMap.end())
+			auto possibleHoI3Provinces = inverseProvinceMap.find(stateItr.provinces[0]);
+			if (possibleHoI3Provinces != inverseProvinceMap.end())
 			{
-				auto provinceItr = provinces.find(itr->second[0]);
+				auto provinceItr = provinces.find(possibleHoI3Provinces->second[0]);
 				if (provinceItr != provinces.end())
 				{
 					if (convertManpower)
@@ -828,14 +828,14 @@ void HoI3Country::consolidateProvinceItems(inverseProvinceMapping& inverseProvin
 			}
 			if (convertIndustry)
 			{
-				for (auto jtr: stateItr.provinces)
+				for (auto vic2ProvNum: stateItr.provinces)
 				{
-					auto itr = inverseProvinceMap.find(jtr);
-					if (itr != inverseProvinceMap.end())
+					auto possibleHoI3Provinces = inverseProvinceMap.find(vic2ProvNum);
+					if (possibleHoI3Provinces != inverseProvinceMap.end())
 					{
-						for (auto ktr: itr->second)
+						for (auto HoI3ProvNum: possibleHoI3Provinces->second)
 						{
-							auto provinceItr = provinces.find(ktr);
+							auto provinceItr = provinces.find(HoI3ProvNum);
 							if (provinceItr != provinces.end())
 							{
 								int intIndustry = static_cast<int>(stateIndustry + 0.5);
@@ -856,42 +856,50 @@ void HoI3Country::consolidateProvinceItems(inverseProvinceMapping& inverseProvin
 
 	if (provinces.size() > 0)
 	{
-		auto provinceItr = provinces.find(capital);
-		if (provinceItr == provinces.end())
+		auto capitalItr = provinces.find(capital);
+		if (capitalItr == provinces.end())
 		{
-			provinceItr = provinces.begin();
+			capitalItr = provinces.begin();
 		}
 
 		if (convertManpower)
 		{
-			leftoverManpower += provinceItr->second->getManpower();
-			provinceItr->second->setManpower(leftoverManpower);
+			leftoverManpower += capitalItr->second->getManpower();
+			capitalItr->second->setManpower(leftoverManpower);
 		}
 
 		if (convertLeadership)
 		{
-			leftoverLeadership += provinceItr->second->getLeadership();
-			provinceItr->second->setLeadership(leftoverLeadership);
+			leftoverLeadership += capitalItr->second->getLeadership();
+			capitalItr->second->setLeadership(leftoverLeadership);
 		}
 
 		if (convertIndustry)
 		{
-			leftoverIndustry += provinceItr->second->getActualIndustry();
+			leftoverIndustry += capitalItr->second->getActualIndustry();
 			int intIndustry = static_cast<int>(leftoverIndustry + 0.5);
 			if (intIndustry > 10)
 			{
 				intIndustry = 10;
 			}
-			provinceItr->second->setActualIndustry(intIndustry);
-			leftoverIndustry -= intIndustry;
-			for (auto jtr: capitalState.provinces)
+			if (intIndustry < 5)
 			{
-				auto itr = inverseProvinceMap.find(jtr);
-				if (itr != inverseProvinceMap.end())
+				intIndustry = 5;
+			}
+			capitalItr->second->setActualIndustry(intIndustry);
+			leftoverIndustry -= intIndustry;
+			for (auto vic2ProvinceNum: capitalState.provinces)
+			{
+				auto possibleHoI3Provinces = inverseProvinceMap.find(vic2ProvinceNum);
+				if (possibleHoI3Provinces != inverseProvinceMap.end())
 				{
-					for (auto ktr: itr->second)
+					for (auto hoi3ProvinceNum: possibleHoI3Provinces->second)
 					{
-						auto provinceItr = provinces.find(ktr);
+						if (hoi3ProvinceNum == capitalItr->first)
+						{
+							continue;
+						}
+						auto provinceItr = provinces.find(hoi3ProvinceNum);
 						if (provinceItr != provinces.end())
 						{
 							int intIndustry = static_cast<int>(leftoverIndustry + 0.5);
