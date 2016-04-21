@@ -70,6 +70,7 @@ class HoI3Country
 		void	consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry);
 		void	generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
 		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
+		void	addMinimalItems();
 		
 		void	setTechnology(string tech, int level);
 		void	addProvince(HoI3Province* _province);

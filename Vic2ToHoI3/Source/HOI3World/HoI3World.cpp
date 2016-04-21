@@ -1792,3 +1792,12 @@ void HoI3World::setAIFocuses(const AIFocusModifiers& focusModifiers)
 		countryItr.second->setAIFocuses(focusModifiers);
 	}
 }
+
+
+void HoI3World::addMinimalItems()
+{
+	for (auto country : countries)
+	{
+		country.second->addMinimalItems();
+	}
+}

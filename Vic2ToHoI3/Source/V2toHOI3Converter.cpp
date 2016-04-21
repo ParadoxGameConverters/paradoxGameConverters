@@ -430,6 +430,8 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	destWorld.convertVictoryPoints(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Setting AI focuses";
 	destWorld.setAIFocuses(focusModifiers);
+	LOG(LogLevel::Info) << "Adding minimal levels of airbase and port";
+	destWorld.addMinimalItems();
 
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";

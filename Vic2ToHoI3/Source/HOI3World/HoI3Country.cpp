@@ -1188,6 +1188,40 @@ void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 }
 
 
+void HoI3Country::addMinimalItems()
+{
+	// determine if there's anything to add
+	bool hasPort		= true;
+	bool hasAirbase	= true;
+	for (auto province: provinces)
+	{
+		if (province.second->getAirBase() > 0)
+		{
+			hasAirbase = true;
+		}
+		if (province.second->getAirBase() > 0)
+		{
+			hasAirbase = true;
+		}
+	}
+
+	auto capitalItr = provinces.find(capital);
+	if (capitalItr == provinces.end())
+	{
+		capitalItr = provinces.begin();
+	}
+
+	// if necessary, add an airbase to the capital province
+	if (!hasAirbase)
+	{
+		capitalItr->second->requireAirBase(1);
+	}
+
+	// if necessary, add a port as near to the capital as possible
+	//		impossible currently, as we don't have a way to know where ports are valid
+}
+
+
 void HoI3Country::addProvince(HoI3Province* _province)
 {
 	provinces.insert(make_pair(_province->getNum(), _province));
