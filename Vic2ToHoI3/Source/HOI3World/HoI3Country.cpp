@@ -177,7 +177,11 @@ void HoI3Country::output() const
 	outputLeaders();
 
 	// Output common country file. 
-	fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile).c_str(), "w");
+	if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile).c_str(), "w") != 0)
+	{
+		Log(LogLevel::Error) << "Could not open " << "Output\\" << Configuration::getOutputName() << "\\common\\countries\\" << commonCountryFile;
+		exit(-1);
+	}
 	int red;
 	int green;
 	int blue;
@@ -345,7 +349,11 @@ void HoI3Country::outputParties(FILE* output) const
 	fprintf(output, "\n");
 
 	FILE* partyLocalisations;
-	fopen_s(&partyLocalisations, ("Output\\" + Configuration::getOutputName() + "\\localisation\\Parties.csv").c_str(), "a");
+	if (fopen_s(&partyLocalisations, ("Output\\" + Configuration::getOutputName() + "\\localisation\\Parties.csv").c_str(), "a") != 0)
+	{
+		LOG(LogLevel::Error) << "Could not open " << "Output\\" << Configuration::getOutputName() << "\\localisation\\Parties.csv";
+		exit(-1);
+	}
 	for (auto party: parties)
 	{
 		fprintf(partyLocalisations, "%s;\n", party.localisationString.c_str());
@@ -357,7 +365,10 @@ void HoI3Country::outputParties(FILE* output) const
 void HoI3Country::outputLeaders() const
 {
 	FILE* leadersFile;
-	fopen_s(&leadersFile, ("Output\\" + Configuration::getOutputName() + "\\history\\leaders\\" + tag.c_str() + ".txt").c_str(), "w");
+	if (fopen_s(&leadersFile, ("Output\\" + Configuration::getOutputName() + "\\history\\leaders\\" + tag.c_str() + ".txt").c_str(), "w") != 0)
+	{
+		LOG(LogLevel::Error) << "Could not open " << "Output\\" << Configuration::getOutputName() << "\\history\\leaders\\" << tag.c_str() << ".txt";
+	}
 	int landLeaders	= 0;
 	int seaLeaders		= 0;
 	int airLeaders		= 0;

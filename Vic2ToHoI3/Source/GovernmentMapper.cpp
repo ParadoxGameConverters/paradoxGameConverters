@@ -160,8 +160,8 @@ string governmentMapper::getGovernmentForCountry(const V2Country* country, const
 			socialReforms += socialReform->second;
 		}
 	}
-	float politicalReformsPercent = 1.0 * politicalReforms / totalPoliticalReforms;
-	float socialReformsPercent		= 1.0 * socialReforms / totalSocialReforms;
+	double politicalReformsPercent	= 1.0 * politicalReforms	/ totalPoliticalReforms;
+	double socialReformsPercent		= 1.0 * socialReforms		/ totalSocialReforms;
 
 	// find the goverment type
 	string hoiGov;

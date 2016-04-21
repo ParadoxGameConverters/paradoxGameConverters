@@ -393,15 +393,15 @@ void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping coun
 
 		if (!HoI3Tag.empty())
 		{
-			for (vector<HoI3Country*>::iterator j = potentialCountries.begin(); j != potentialCountries.end() && !destCountry; j++)
+			for (auto candidateDestCountry: potentialCountries)
 			{
-				HoI3Country* candidateDestCountry = *j;
-				if (candidateDestCountry->getTag() == HoI3Tag)
+				if ((candidateDestCountry != NULL) && (candidateDestCountry->getTag() == HoI3Tag))
 				{
 					destCountry = candidateDestCountry;
+					break;
 				}
 			}
-			if (!destCountry)
+			if (destCountry == NULL)
 			{ // No such V2 country exists yet for this tag so we make a new one.
 				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
 				destCountry = new HoI3Country(HoI3Tag, countryFileName, this, true);
@@ -1142,7 +1142,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 			if (!destAirForce.isEmpty() && !destArmy.getProductionQueue())
 			{
 				// we need to put an airbase here, so make sure we're in our own territory
-				if (locationProvince->getOwner() == itr->first)
+				if ((locationProvince != NULL) && (locationProvince->getOwner() == itr->first))
 				{
 					// make sure an airbase is waiting for them
 					locationProvince->requireAirBase(min(10, locationProvince->getAirBase() + destAirForce.size()));
