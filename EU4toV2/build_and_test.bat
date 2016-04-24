@@ -1,2 +1,2 @@
-call build-VS2013.bat
+call build.bat
 call test_all_saves.bat
