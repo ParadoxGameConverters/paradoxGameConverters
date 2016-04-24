@@ -6,6 +6,7 @@ xcopy "Frontend\ParadoxConverters.Frontend\ParadoxConverters.Frontend\bin\Releas
 copy "EU4toV2\Data_Files\Eu4ToVic2DefaultConfiguration.xml" "EU4ToVic2-%version%\Configuration\"
 cd "EU4ToVic2-%version%\"
 del *.pdb
+cd ..
 
 cd EU4toV2
 call "build.bat"
