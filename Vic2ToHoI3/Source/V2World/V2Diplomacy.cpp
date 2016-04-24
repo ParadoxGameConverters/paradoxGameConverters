@@ -22,7 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Diplomacy.h"
-#include "../log.h"
+#include "Log.h"
 
 
 

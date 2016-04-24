@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #define EU4VERSION_H_
 
 
-#include "..\Parsers\Object.h"
+#include "Object.h"
 #include <string>
 using namespace std;
 

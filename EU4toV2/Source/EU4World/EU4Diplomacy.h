@@ -23,7 +23,7 @@ THE SOFTWARE. */
 #define EU4DIPLOMACY_H_
 
 
-#include "../Date.h"
+#include "Date.h"
 #include <vector>
 using namespace std;
 

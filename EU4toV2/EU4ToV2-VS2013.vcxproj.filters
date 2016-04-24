@@ -4,9 +4,7 @@
     <ClCompile Include="Source\Color.cpp" />
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\CountryMapping.cpp" />
-    <ClCompile Include="Source\Date.cpp" />
     <ClCompile Include="Source\FlagUtils.cpp" />
-    <ClCompile Include="Source\Log.cpp" />
     <ClCompile Include="Source\Mapper.cpp" />
     <ClCompile Include="Source\targa.cpp" />
     <ClCompile Include="Source\tempFuncs.cpp" />
@@ -92,21 +90,25 @@
     <ClCompile Include="Source\V2World\V2State.cpp">
       <Filter>Vic2 World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Parsers\Object.cpp">
-      <Filter>Parser</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Parsers\Parser.cpp">
-      <Filter>Parser</Filter>
-    </ClCompile>
     <ClCompile Include="Source\EU4toV2Converter.cpp" />
+    <ClCompile Include="..\common_items\Date.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\Log.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\Object.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\ParadoxParser.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\CountryMapping.h" />
-    <ClInclude Include="Source\Date.h" />
     <ClInclude Include="Source\FlagUtils.h" />
-    <ClInclude Include="Source\Log.h" />
     <ClInclude Include="Source\Mapper.h" />
     <ClInclude Include="Source\targa.h" />
     <ClInclude Include="Source\WinUtils.h" />
@@ -194,11 +196,17 @@
     <ClInclude Include="Source\V2World\V2State.h">
       <Filter>Vic2 World</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Parsers\Object.h">
-      <Filter>Parser</Filter>
+    <ClInclude Include="..\common_items\Date.h">
+      <Filter>CommonItems</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Parsers\Parser.h">
-      <Filter>Parser</Filter>
+    <ClInclude Include="..\common_items\Log.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\Object.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\ParadoxParser.h">
+      <Filter>CommonItems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -208,8 +216,8 @@
     <Filter Include="Vic2 World">
       <UniqueIdentifier>{e035de80-c339-40c2-9c42-6d2c8efbe506}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Parser">
-      <UniqueIdentifier>{b21a5555-674d-49b9-8431-308abeb89c25}</UniqueIdentifier>
+    <Filter Include="CommonItems">
+      <UniqueIdentifier>{b4ecb265-1673-4f23-af86-fbe9c838c8a9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

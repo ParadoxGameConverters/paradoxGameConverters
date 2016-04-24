@@ -27,7 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <vector>
 #include <string>
-#include "../Parsers/Object.h"
+#include "Object.h"
 using namespace std;
 
 

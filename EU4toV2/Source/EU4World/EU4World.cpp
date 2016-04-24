@@ -24,11 +24,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "EU4World.h"
 #include <algorithm>
 #include <fstream>
-#include "../Log.h"
+#include "Log.h"
 #include "../Configuration.h"
 #include "../Mapper.h"
-#include "../Parsers/Object.h"
-#include "../Parsers/Parser.h"
+#include "Object.h"
+#include "ParadoxParser.h"
 #include "EU4Province.h"
 #include "EU4Country.h"
 #include "EU4Diplomacy.h"
@@ -69,7 +69,33 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 		emperor = emperorObj[0]->getLeaf();
 	}
 
-	// Get Provinces and then get Countries
+	// Use map/definition.csv to determine valid provinces
+	map<int, int> validProvinces;
+	ifstream definitionFile((Configuration::getEU4Path() + "/map/definition.csv").c_str());
+	if (!definitionFile.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not open map/definition.csv";
+		exit(-1);
+	}
+	char input[256];
+	while (!definitionFile.eof())
+	{
+		definitionFile.getline(input, 255);
+		string inputStr(input);
+		int dbgprovNum = atoi(inputStr.substr(0, inputStr.find_first_of(';')).c_str());
+		if (
+				(inputStr.substr(0, 8) == "province") ||
+				(inputStr.substr(inputStr.find_last_of(';') + 1, 6) == "Unused") ||
+				(inputStr.substr(inputStr.find_last_of(';') + 1, 3) == "RNW")
+			)
+		{
+			continue;
+		}
+		int provNum = atoi(inputStr.substr(0, inputStr.find_first_of(';')).c_str());
+		validProvinces.insert(make_pair(provNum, provNum));
+	}
+
+	// Get Provinces
 	provinces.clear();
 	vector<Object*> provincesObj = obj->getValue("provinces");					// the object holding the provinces
 	if (provincesObj.size() > 0)
@@ -79,7 +105,10 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 		{
 			string keyProv = (provincesLeaves[j])->getKey();						// the key for the province
 
-			if (atoi(keyProv.c_str()) < 0)												// Check if key is a negative value (EU4 style)
+			if (
+					(atoi(keyProv.c_str()) < 0) &&													// Check if key is a negative value (EU4 style)
+					(validProvinces.find(-1 * atoi(keyProv.c_str())) != validProvinces.end())	// check it's a valid province for this version of EU4
+				)
 			{
 				EU4Province* province = new EU4Province((provincesLeaves[j]));	// the province in our format
 				provinces.insert(make_pair(province->getNum(), province));
@@ -87,6 +116,7 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 		}
 	}
 
+	// Get Countries
 	countries.clear();
 	vector<Object*> countriesObj = obj->getValue("countries");				// the object holding the countries
 	if (countriesObj.size() > 0)
@@ -312,16 +342,23 @@ void EU4World::readCommonCountries(istream& in, const std::string& rootPath)
 			if (findIter != countries.end())
 			{
 				EU4Country* country = findIter->second;
+
 				// The country file name is all the text after the equals sign (possibly in quotes).
-				size_t equalPos = countryLine.find('=', 3);
-				size_t beginPos = countryLine.find_first_not_of(' ', equalPos + 1);
-				size_t endPos = countryLine.find_last_not_of(' ') + 1;
+				size_t commentPos	= countryLine.find('#', 3);
+				if (commentPos != string::npos)
+				{
+					countryLine = countryLine.substr(0, commentPos);
+				}
+				size_t equalPos	= countryLine.find('=', 3);
+				size_t beginPos	= countryLine.find_first_not_of(' ', equalPos + 1);
+				size_t endPos		= countryLine.find_last_not_of(' ') + 1;
 				std::string fileName = countryLine.substr(beginPos, endPos - beginPos);
 				if (fileName.front() == '"' && fileName.back() == '"')
 				{
 					fileName = fileName.substr(1, fileName.size() - 2);
 				}
 				std::replace(fileName.begin(), fileName.end(), '/', '\\');
+
 				// Parse the country file.
 				std::string path = rootPath + "\\common\\" + fileName;
 				size_t lastPathSeparatorPos = path.find_last_of('\\');

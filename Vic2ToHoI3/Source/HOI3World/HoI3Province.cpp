@@ -22,9 +22,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI3Province.h"
-#include "../Log.h"
-#include "../Parsers\Object.h"
-#include "../Parsers\Parser.h"
+#include "Log.h"
+#include "Object.h"
+#include "ParadoxParser.h"
 #include <sstream>
 #include <algorithm>
 #include <stdio.h>

@@ -30,9 +30,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <sstream>
 #include <queue>
 #include <boost/algorithm/string.hpp>
-#include "../Log.h"
+#include "Log.h"
 #include "../Configuration.h"
-#include "../Parsers/Parser.h"
+#include "paradoxParser.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/Eu4Country.h"
 #include "../EU4World/EU4Province.h"
@@ -1412,7 +1412,7 @@ void V2Country::convertUncivReforms()
 			uncivReforms	= new V2UncivReforms(0, militaryDev, socioEconDev, this);
 			government		= "absolute_monarchy";
 		}
-		else if (srcCountry->getTechGroup() == "sub_saharan")
+		else if ((srcCountry->getTechGroup() == "sub_saharan") || (srcCountry->getTechGroup() == "central_african") || (srcCountry->getTechGroup() == "east_african"))
 		{
 			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
 			double militaryDev	= srcCountry->getMilTech() / totalTechs;

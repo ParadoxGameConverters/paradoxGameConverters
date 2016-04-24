@@ -34,8 +34,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <cmath>
 #include <cfloat>
 #include <sys/stat.h>
-#include "../Parsers/Parser.h"
-#include "../Log.h"
+#include "ParadoxParser.h"
+#include "Log.h"
 #include "../Mapper.h"
 #include "../Configuration.h"
 #include "../WinUtils.h"
@@ -68,7 +68,6 @@ typedef struct fileWithCreateTime
 } fileWithCreateTime;
 
 
-
 V2World::V2World(const minorityPopMapping& minorities)
 {
 	LOG(LogLevel::Info) << "Importing provinces";
@@ -78,40 +77,40 @@ V2World::V2World(const minorityPopMapping& minorities)
 	list<string>			directories;
 	directories.push_back("");
 
-	struct _stat st;
-	if (_stat(".\\blankMod\\output\\history\\provinces\\", &st) == 0)
+	bool provincesImported = false;
+	while (directories.size() > 0)
 	{
-		while (directories.size() > 0)
+		if ((fileListing = _findfirst((string(".\\blankMod\\output\\history\\provinces") + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
 		{
-			if ((fileListing = _findfirst((string(".\\blankMod\\output\\history\\provinces") + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
-			{
-				LOG(LogLevel::Error) << "Could not open directory .\\blankMod\\output\\history\\provinces" << directories.front() << "\\*.*";
-				exit(-1);
-			}
-
-			do
-			{
-				if (strcmp(provinceFileData.name, ".") == 0 || strcmp(provinceFileData.name, "..") == 0)
-				{
-					continue;
-				}
-				if (provinceFileData.attrib & _A_SUBDIR)
-				{
-					string newDirectory = directories.front() + "\\" + provinceFileData.name;
-					directories.push_back(newDirectory);
-				}
-				else
-				{
-					V2Province* newProvince = new V2Province(directories.front() + "\\" + provinceFileData.name);
-					provinces.insert(make_pair(newProvince->getNum(), newProvince));
-				}
-			} while (_findnext(fileListing, &provinceFileData) == 0);
-			_findclose(fileListing);
-			directories.pop_front();
+			LOG(LogLevel::Error) << "Could not open directory .\\blankMod\\output\\history\\provinces" << directories.front() << "\\*.*";
+			exit(-1);
 		}
+
+		do
+		{
+			if (strcmp(provinceFileData.name, ".") == 0 || strcmp(provinceFileData.name, "..") == 0)
+			{
+				continue;
+			}
+			if (provinceFileData.attrib & _A_SUBDIR)
+			{
+				string newDirectory = directories.front() + "\\" + provinceFileData.name;
+				directories.push_back(newDirectory);
+			}
+			else
+			{
+				V2Province* newProvince = new V2Province(directories.front() + "\\" + provinceFileData.name);
+				provinces.insert(make_pair(newProvince->getNum(), newProvince));
+				provincesImported = true;
+			}
+		} while (_findnext(fileListing, &provinceFileData) == 0);
+		_findclose(fileListing);
+		directories.pop_front();
 	}
-	else
+
+	if (!provincesImported)
 	{
+		directories.push_back("");
 		while (directories.size() > 0)
 		{
 			if ((fileListing = _findfirst((Configuration::getV2Path() + "\\history\\provinces" + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
@@ -143,6 +142,7 @@ V2World::V2World(const minorityPopMapping& minorities)
 	}
 
 	// Get province names
+	struct _stat st;
 	if (_stat(".\\blankMod\\output\\localisation\\text.csv", &st) == 0)
 	{
 		getProvinceLocalizations(".\\blankMod\\output\\localisation\\text.csv");

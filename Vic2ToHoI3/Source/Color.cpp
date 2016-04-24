@@ -25,10 +25,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <chrono>
 #include <random>
-
 #include <boost/lexical_cast.hpp>
 
-#include "Parsers/Object.h"
+#include "Object.h"
+
+
 
 Color::Color()
 : initialized(false), c({ 0, 0, 0 })

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -24,20 +24,20 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>NotSet</CharacterSet>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v140_xp</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v140_xp</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-NoCopies|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v120_xp</PlatformToolset>
+    <PlatformToolset>v140_xp</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -56,7 +56,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IntDir>$(SolutionDir)\DebugIntermediate\</IntDir>
-    <IncludePath>$(BOOST_INCLUDE);$(VCInstallDir)include;$(WindowsSdkDir)include</IncludePath>
+    <IncludePath>$(UniversalCRT_IncludePath);$(BOOST_INCLUDE);$(VCInstallDir)include;$(WindowsSdkDir)include;../common_items</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -64,7 +64,7 @@
     <BOOST_INCLUDE Condition=" '$(BOOST_INCLUDE)' == '' ">
 		H:\Projects\Development\Boost\boost_1_57_0
 	</BOOST_INCLUDE>
-    <IncludePath>$(BOOST_INCLUDE);$(VCInstallDir)include;$(WindowsSdkDir)include</IncludePath>
+    <IncludePath>$(UniversalCRT_IncludePath);$(BOOST_INCLUDE);$(VCInstallDir)include;$(WindowsSdkDir)include;../common_items</IncludePath>
     <TargetName>EU4toV2Converter</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-NoCopies|Win32'">
@@ -73,7 +73,7 @@
     <BOOST_INCLUDE Condition=" '$(BOOST_INCLUDE)' == '' ">
 		H:\Projects\Development\Boost\boost_1_57_0
 	</BOOST_INCLUDE>
-    <IncludePath>$(BOOST_INCLUDE);$(VCInstallDir)include;$(WindowsSdkDir)include</IncludePath>
+    <IncludePath>$(UniversalCRT_IncludePath);$(BOOST_INCLUDE);$(VCInstallDir)include;$(WindowsSdkDir)include;../common_items</IncludePath>
     <TargetName>EU4toV2Converter</TargetName>
     <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
   </PropertyGroup>
@@ -154,10 +154,13 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\common_items\Date.cpp" />
+    <ClCompile Include="..\common_items\Log.cpp" />
+    <ClCompile Include="..\common_items\Object.cpp" />
+    <ClCompile Include="..\common_items\ParadoxParser.cpp" />
     <ClCompile Include="Source\Color.cpp" />
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\CountryMapping.cpp" />
-    <ClCompile Include="Source\Date.cpp" />
     <ClCompile Include="Source\EU4toV2Converter.cpp" />
     <ClCompile Include="Source\EU4World\EU4Army.cpp" />
     <ClCompile Include="Source\EU4World\EU4Country.cpp" />
@@ -170,10 +173,7 @@
     <ClCompile Include="Source\EU4World\EU4Version.cpp" />
     <ClCompile Include="Source\EU4World\EU4World.cpp" />
     <ClCompile Include="Source\FlagUtils.cpp" />
-    <ClCompile Include="Source\Log.cpp" />
     <ClCompile Include="Source\Mapper.cpp" />
-    <ClCompile Include="Source\Parsers\Object.cpp" />
-    <ClCompile Include="Source\Parsers\Parser.cpp" />
     <ClCompile Include="Source\targa.cpp" />
     <ClCompile Include="Source\tempFuncs.cpp" />
     <ClCompile Include="Source\V2World\V2Army.cpp" />
@@ -196,10 +196,13 @@
     <ClCompile Include="Source\WinUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\common_items\Date.h" />
+    <ClInclude Include="..\common_items\Log.h" />
+    <ClInclude Include="..\common_items\Object.h" />
+    <ClInclude Include="..\common_items\ParadoxParser.h" />
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\CountryMapping.h" />
-    <ClInclude Include="Source\Date.h" />
     <ClInclude Include="Source\EU4World\EU4Army.h" />
     <ClInclude Include="Source\EU4World\EU4Country.h" />
     <ClInclude Include="Source\EU4World\EU4Diplomacy.h" />
@@ -211,10 +214,7 @@
     <ClInclude Include="Source\EU4World\EU4Version.h" />
     <ClInclude Include="Source\EU4World\EU4World.h" />
     <ClInclude Include="Source\FlagUtils.h" />
-    <ClInclude Include="Source\Log.h" />
     <ClInclude Include="Source\Mapper.h" />
-    <ClInclude Include="Source\Parsers\Object.h" />
-    <ClInclude Include="Source\Parsers\Parser.h" />
     <ClInclude Include="Source\targa.h" />
     <ClInclude Include="Source\V2World\V2Army.h" />
     <ClInclude Include="Source\V2World\V2Country.h" />

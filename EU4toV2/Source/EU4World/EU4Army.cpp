@@ -20,8 +20,8 @@ THE SOFTWARE. */
 
 
 #include "EU4Army.h"
-#include "../Log.h"
-#include "../Parsers/Parser.h"
+#include "Log.h"
+#include "ParadoxParser.h"
 
 
 

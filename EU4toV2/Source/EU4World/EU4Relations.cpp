@@ -20,7 +20,7 @@ THE SOFTWARE. */
 
 
 #include "EU4Relations.h"
-#include "../Parsers/Object.h"
+#include "Object.h"
 
 
 
