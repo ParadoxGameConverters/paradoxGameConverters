@@ -914,6 +914,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 
 		int airForceIndex = 0;
 		HoI3RegGroup::resetHQCounts();
+		HoI3RegGroup::resetRegGroupNameCounts();
 
 		// A V2 unit type counter to keep track of how many V2 units of this type were converted.
 		// Used to distribute HoI3 unit types in case of multiple mapping
@@ -1024,14 +1025,14 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 					mainRegiments.push_back(regiment);
 				}
 			}
+			sourceRegiments.clear();
 			if (mainRegiments.size() * 3 < supportRegiments.size())
 			{
 				LOG(LogLevel::Warning) << "Too many support units in " << itr->first << "'s army \"" << oldArmy->getName() << "\"";
 			}
 			if (mainRegiments.size() > 0)
 			{
-				double ratio = supportRegiments.size() / mainRegiments.size();
-				sourceRegiments.clear();
+				double ratio = 1.0 * supportRegiments.size() / mainRegiments.size();
 				unsigned int j = 0;
 				for (unsigned int i = 0; i < mainRegiments.size(); i++)
 				{
