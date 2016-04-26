@@ -274,10 +274,15 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 	}
 
 	// read in states
-	int count = 0;
+
 	vector<Object*> statesObj = obj->getValue("state"); // each state in the country
 	for (auto statesItr : statesObj)
 	{
+		// items that will matter for factory conversion
+		int mainProvince		= 0;
+		int craftsmenCount	= 0;
+		int clerksCount		= 0;
+
 		V2State newState;
 		// get the provinces in the state
 		vector<Object*> provinceObj = statesItr[0].getValue("provinces");
@@ -287,34 +292,42 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 			for (auto provinceItr: provinceIDs)
 			{
 				newState.provinces.push_back(atoi(provinceItr.c_str()));
+				if (mainProvince == 0)
+				{
+					mainProvince = atoi(provinceItr.c_str());
+				}
 			}
 		}
 
 		// count the employees in the state (for factory conversion)
-		//vector<Object*> buildingsObj = statesItr[0].getValue("state_buildings"); // each factory in the state
-		//for (auto buildingsItr : buildingsObj)
-		//{
-		//	vector<Object*> employmentObj = buildingsItr[0].getValue("employment"); // each employment entry in the factory.
-		//	for (auto employmentItr : employmentObj)
-		//	{
-		//		vector<Object*> employeesObj = employmentItr[0].getValue("employees"); // each employee entry in employment
-		//		for (auto employeesItr : employeesObj)
-		//		{
-		//			vector<Object*> employeeObj = employeesItr[0].getLeaves(); // each employee object in employees
-		//			for (auto employeeItr : employeeObj)
-		//			{
-		//				// this should work, except that the employee object is blank. I suspect more parser updates are in our future
-		//				vector<Object*> countObj = employeeItr[0].getValue("count");
-		//				if (countObj.size() > 0)
-		//				{
-		//					count += atoi(countObj[0]->getLeaf().c_str());
-		//				}
+		vector<Object*> buildingsObj = statesItr[0].getValue("state_buildings"); // each factory in the state
+		for (auto buildingsItr : buildingsObj)
+		{
+			vector<Object*> employmentObj = buildingsItr[0].getValue("employment"); // each employment entry in the factory.
+			for (auto employmentItr : employmentObj)
+			{
+				vector<Object*> employeesObj = employmentItr[0].getValue("employees"); // each employee entry in employment
+				for (auto employeesItr : employeesObj)
+				{
+					vector<Object*> employeeObj = employeesItr[0].getLeaves(); // each employee object in employees
+					for (auto employeeItr : employeeObj)
+					{
+						vector<Object*> countObj = employeeItr[0].getValue("count");
+						if (countObj.size() > 0)
+						{
+							count += atoi(countObj[0]->getLeaf().c_str());
+						}
 
-		//				//something where you get the pop type and count total clerks and total craftsmen differently
-		//			}
-		//		}
-		//	}
-		//}
+						//something where you get the pop type and count total clerks and total craftsmen differently
+					}
+				}
+			}
+		}
+		auto employmentProvince = provinces.find(mainProvince);
+		if (employmentProvince != provinces.end())
+		{
+			employmentProvince->second->setEmployedWorkers(craftsmenCount + 2 * clerksCount);
+		}
 
 		states.push_back(newState);
 	}

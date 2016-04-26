@@ -635,10 +635,9 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 			}
 
 			// convert industry
-			double industry = sourceProvince->getPopulation("craftsmen")
+			double industry = sourceProvince->getEmployedWorkers()
 				+ int(sourceProvince->getPopulation("artisans") * 0.5)
-				+ sourceProvince->getLiteracyWeightedPopulation("capitalists") * 2
-				+ sourceProvince->getLiteracyWeightedPopulation("clerks") * 2;
+				+ sourceProvince->getLiteracyWeightedPopulation("capitalists") * 2;
 			if (Configuration::getIcConversion() == "squareroot")
 			{
 				industry = sqrt(double(industry)) * 0.00127;
