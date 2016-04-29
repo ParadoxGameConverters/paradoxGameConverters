@@ -640,17 +640,17 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 				+ sourceProvince->getLiteracyWeightedPopulation("capitalists") * 2;
 			if (Configuration::getIcConversion() == "squareroot")
 			{
-				industry = sqrt(double(industry)) * 0.00127;
+				industry = sqrt(double(industry)) * 0.00417;
 				provItr->second->addRawIndustry(industry * Configuration::getIcFactor());
 			}
 			else if (Configuration::getIcConversion() == "linear")
 			{
-				industry = double(industry) * 0.00000564;
+				industry = double(industry) * 0.0000496;
 				provItr->second->addRawIndustry(industry * Configuration::getIcFactor());
 			}
 			else if (Configuration::getIcConversion() == "logarithmic")
 			{
-				industry = log(max(1, industry / 70000)) / log(2) * 1.75;
+				industry = log(max(1, industry / 70000)) / log(2) * 175;
 				provItr->second->addRawIndustry(industry * Configuration::getIcFactor());
 			}
 					
