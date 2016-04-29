@@ -1037,7 +1037,10 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 				{
 					for (; j < (i + 1) * ratio; j++)
 					{
-						sourceRegiments.push_back(supportRegiments[j]);
+						if (j < supportRegiments.size())
+						{
+							sourceRegiments.push_back(supportRegiments[j]);
+						}
 					}
 					sourceRegiments.push_back(mainRegiments[i]);
 				}
