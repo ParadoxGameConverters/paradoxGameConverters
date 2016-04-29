@@ -312,13 +312,28 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 					vector<Object*> employeeObj = employeesItr[0].getLeaves(); // each employee object in employees
 					for (auto employeeItr : employeeObj)
 					{
-						vector<Object*> countObj = employeeItr[0].getValue("count");
-						if (countObj.size() > 0)
+						vector<Object*> idObj = employeeItr[0].getValue("province_pop_id");
+						if (idObj.size() > 0)
 						{
-							count += atoi(countObj[0]->getLeaf().c_str());
+							vector<Object*> typeObj = idObj[0]->getValue("type");
+							if (typeObj.size() > 0)
+							{
+								string type = typeObj[0]->getLeaf();
+								vector<Object*> countObj = employeeItr[0].getValue("count");
+								if (countObj.size() > 0)
+								{
+									int count = atoi(countObj[0]->getLeaf().c_str());
+									if (type == "7")
+									{
+										craftsmenCount = count;
+									}
+									else if (type == "6")
+									{
+										clerksCount = count;
+									}
+								}
+							}
 						}
-
-						//something where you get the pop type and count total clerks and total craftsmen differently
 					}
 				}
 			}
