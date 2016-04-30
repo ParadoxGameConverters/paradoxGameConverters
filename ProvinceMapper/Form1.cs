@@ -88,6 +88,7 @@ namespace ProvinceMapper
                 if (srcChroma.TryGetValue(c.ToArgb(), out p))
                 {
                     toolTip1.Show(p.ToString(), pbSource, new Point(srcPt.X, srcPt.Y - 20));
+                    StatusLabel.Text = p.ToString();
                 }
             }
         }
@@ -104,6 +105,7 @@ namespace ProvinceMapper
                 if (destChroma.TryGetValue(c.ToArgb(), out p))
                 {
                     toolTip1.Show(p.ToString(), pbTarget, new Point(destPt.X, destPt.Y - 20));
+                    StatusLabel.Text = p.ToString();
                 }
             }
         }
@@ -197,11 +199,13 @@ namespace ProvinceMapper
         private void pbSource_MouseLeave(object sender, EventArgs e)
         {
             toolTip1.RemoveAll();
+            StatusLabel.Text = String.Empty;
         }
 
         private void pbTarget_MouseLeave(object sender, EventArgs e)
         {
             toolTip1.RemoveAll();
+            StatusLabel.Text = String.Empty;
         }
 
         private void createSelPBs(bool force)
