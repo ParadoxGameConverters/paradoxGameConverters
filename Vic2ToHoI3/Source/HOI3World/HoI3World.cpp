@@ -1110,6 +1110,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 
 				destReg.setType(destTypeItr->first);
 				destReg.setHistoricalModel(destTypeItr->second);
+				destReg.setReserve(true);
 
 				// Add to army/navy or newly created air force as appropriate
 				if (destReg.getForceType() != air)

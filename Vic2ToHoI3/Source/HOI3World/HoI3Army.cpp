@@ -166,6 +166,24 @@ void HoI3RegGroup::output(FILE* out, int indentlevel /* = 0*/) const
 		fprintf(out, "%s\tleader = %d\n", indent, leaderID);
 	}
 	fprintf(out, "%s\tlocation = %d\n", indent, location);
+
+	if ((force_type == land) && (command_level == division))
+	{
+		bool reserve = false;
+		for (auto regiment : regiments)
+		{
+			if (regiment.isReserve())
+			{
+				reserve = true;
+			}
+		}
+
+		if (reserve)
+		{
+			fprintf(out, "%s\tis_reserve = yes\n", indent);
+		}
+	}
+
 	for (vector<HoI3Regiment>::const_iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
 	{
 		itr->output(out, indentlevel + 1);
