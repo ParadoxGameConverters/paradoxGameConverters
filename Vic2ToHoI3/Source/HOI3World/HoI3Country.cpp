@@ -1302,7 +1302,6 @@ vector<int> HoI3Country::getPortProvinces(vector<int> locationCandidates, map<in
 
 void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V2Parties, V2Party* rulingParty, string& rulingIdeology)
 {
-	// 
 	// sort Vic2 parties by ideology
 	map<string, vector<V2Party*>> V2Ideologies;
 	for (auto partyItr: V2Parties)
@@ -1635,15 +1634,15 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 				newParty.organization	= newParty.popularity;
 				parties.push_back(newParty);
 
-				HoI3GroupItr->second.erase(HoI3GroupItr->second.begin());
-
-				auto itr = unmappedParties.find(newParty.ideology);
-				unmappedParties.erase(itr);
-
 				if (rulingParty->name == V2PartyItr->name)
 				{
 					rulingIdeology = HoI3GroupItr->second[0];
 				}
+
+				HoI3GroupItr->second.erase(HoI3GroupItr->second.begin());
+
+				auto itr = unmappedParties.find(newParty.ideology);
+				unmappedParties.erase(itr);
 			}
 			for (auto V2PartyItr: V2GroupItr.second)
 			{
