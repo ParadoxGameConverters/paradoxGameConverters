@@ -33,24 +33,25 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class HoI3World {
 	public:
 		HoI3World(const provinceMapping& provinceMap);
-		void				createProvinceFiles(const V2World& sourceWorld, const provinceMapping& provinceMap);
-		void				convertCountries(const V2World &sourceWorld, CountryMapping countryMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
-		void				convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, inverseProvinceMapping inverseProvinceMap, CountryMapping countryMap, const HoI3AdjacencyMapping &HoI3AdjacencyMap);
-		void				convertTechs(V2World& sourceWorld);
-		void				output() const;
-		void				convertDiplomacy(V2World& sourceWorld, CountryMapping countryMap);
-		void				convertArmies(V2World& sourceWorld, inverseProvinceMapping inverseProvinceMap, const HoI3AdjacencyMapping& HoI3AdjacencyMap);
-		void				configureFactions(const V2World &sourceWorld, const CountryMapping& countryMap);
-		void				generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
-		void				consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap);
-		void				convertVictoryPoints(const V2World& sourceWorld, CountryMapping countryMap);
-		void				setAIFocuses(const AIFocusModifiers& focusModifiers);
+
+		void	createProvinceFiles(const V2World& sourceWorld, const provinceMapping& provinceMap);
+		void	convertCountries(const V2World &sourceWorld, CountryMapping countryMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+		void	convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, inverseProvinceMapping inverseProvinceMap, CountryMapping countryMap, const HoI3AdjacencyMapping &HoI3AdjacencyMap);
+		void	convertTechs(V2World& sourceWorld);
+		void	output() const;
+		void	convertDiplomacy(V2World& sourceWorld, CountryMapping countryMap);
+		void	convertArmies(V2World& sourceWorld, inverseProvinceMapping inverseProvinceMap, const HoI3AdjacencyMapping& HoI3AdjacencyMap);
+		void	configureFactions(const V2World &sourceWorld, const CountryMapping& countryMap);
+		void	generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
+		void	consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap);
+		void	convertVictoryPoints(const V2World& sourceWorld, CountryMapping countryMap);
+		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
+		void	copyFlags(const V2World &sourceWorld, CountryMapping countryMap);
+		void	addMinimalItems();
 
 		map<string, HoI3Country*>	getPotentialCountries()	const;
 
-		void copyFlags(const V2World &sourceWorld, CountryMapping countryMap);
-		string convertIdeology(V2Party* v2Party) const;
-private:
+	private:
 		void					getProvinceLocalizations(string file);
 		void					checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string& leader, string factionName);
 		void					factionSatellites();

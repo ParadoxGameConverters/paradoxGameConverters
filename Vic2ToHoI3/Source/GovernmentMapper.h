@@ -23,26 +23,58 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #define GOVERNMENTMAPPER_H
 
 #include "Object.h"
+#include <map>
+#include <string>
+using namespace std;
+
+
 
 class V2Country;
 
-class GovernmentMap
-{
-public:
-	GovernmentMap(Object* link);
-	double score(const V2Country* country, const string _ideology, double avgMarket, double avgSocial);
-	string getName() const { return hoi3name; };
 
-private:
-	string hoi3name;
+struct govMapping
+{
 	string vic_gov;
-	string require_culture;
-	string require_ruling_party;
-	double closest_uh_social;
-	double closest_uh_market;
+	string hoi3_gov;
+	string ruling_party_required;
+	double require_political_reforms;
+	double require_social_reforms_above;
+	double require_social_reforms_below;
 };
 
-typedef vector<GovernmentMap> governmentMapping;
-string getGovernmentForCountry(const V2Country* country, const string _ideology, governmentMapping &governmentMap);
+
+class governmentMapper
+{
+	public:
+		governmentMapper();
+		void initGovernmentMap(Object* obj);
+		void initReforms(Object* obj);
+
+		string	getGovernmentForCountry(const V2Country* country, const string _ideology);
+
+		bool						areReformsInitialized() const	{ return reformsInitialized; }
+		map<string, string>	getReformTypes() const			{ return reformTypes; }
+
+		static governmentMapper* getInstance()
+		{
+			if (instance == NULL)
+			{
+				instance = new governmentMapper();
+			}
+			return instance;
+		}
+
+	private:
+		static governmentMapper* instance;
+
+		vector<govMapping>	governmentMap;
+		map<string, string>	reformTypes;
+		map<string, int>		politicalReformScores;
+		map<string, int>		socialReformScores;
+		int						totalPoliticalReforms;
+		int						totalSocialReforms;
+
+		bool						reformsInitialized;
+};
 
 #endif // GOVERNMENTMAPPER_H

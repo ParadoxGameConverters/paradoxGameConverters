@@ -50,15 +50,16 @@ class V2Province
 		int						getPopulation(string type = "") const;
 		int						getLiteracyWeightedPopulation(string type = "") const;
 
-		void						setOwner(V2Country* _owner)	{ owner = _owner; }
+		void						setOwner(V2Country* _owner)		{ owner = _owner; }
+		void						setEmployedWorkers(int _workers) { employedWorkers = _workers; }
 
-		string					getOwnerString()	const { return ownerString; }
-		V2Country*				getOwner()			const { return owner; }
-		int						getInfra()			const { return railLevel; }
-		int						getFort()			const { return fortLevel; }
-		int						getNavalBase()		const { return navalBaseLevel; }
-		int						getNum()				const { return num; }
-
+		string					getOwnerString()		const { return ownerString; }
+		V2Country*				getOwner()				const { return owner; }
+		int						getInfra()				const { return railLevel; }
+		int						getFort()				const { return fortLevel; }
+		int						getNavalBase()			const { return navalBaseLevel; }
+		int						getNum()					const { return num; }
+		int						getEmployedWorkers()	const { return employedWorkers; }
 
 	private:
 		int				num;
@@ -69,6 +70,8 @@ class V2Province
 		int				fortLevel;
 		int				navalBaseLevel;
 		int				railLevel;
+
+		int				employedWorkers;
 };
 
 

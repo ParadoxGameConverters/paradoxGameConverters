@@ -177,7 +177,11 @@ void HoI3Country::output() const
 	outputLeaders();
 
 	// Output common country file. 
-	fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile).c_str(), "w");
+	if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile).c_str(), "w") != 0)
+	{
+		Log(LogLevel::Error) << "Could not open " << "Output\\" << Configuration::getOutputName() << "\\common\\countries\\" << commonCountryFile;
+		exit(-1);
+	}
 	int red;
 	int green;
 	int blue;
@@ -345,7 +349,11 @@ void HoI3Country::outputParties(FILE* output) const
 	fprintf(output, "\n");
 
 	FILE* partyLocalisations;
-	fopen_s(&partyLocalisations, ("Output\\" + Configuration::getOutputName() + "\\localisation\\Parties.csv").c_str(), "a");
+	if (fopen_s(&partyLocalisations, ("Output\\" + Configuration::getOutputName() + "\\localisation\\Parties.csv").c_str(), "a") != 0)
+	{
+		LOG(LogLevel::Error) << "Could not open " << "Output\\" << Configuration::getOutputName() << "\\localisation\\Parties.csv";
+		exit(-1);
+	}
 	for (auto party: parties)
 	{
 		fprintf(partyLocalisations, "%s;\n", party.localisationString.c_str());
@@ -357,7 +365,10 @@ void HoI3Country::outputParties(FILE* output) const
 void HoI3Country::outputLeaders() const
 {
 	FILE* leadersFile;
-	fopen_s(&leadersFile, ("Output\\" + Configuration::getOutputName() + "\\history\\leaders\\" + tag.c_str() + ".txt").c_str(), "w");
+	if (fopen_s(&leadersFile, ("Output\\" + Configuration::getOutputName() + "\\history\\leaders\\" + tag.c_str() + ".txt").c_str(), "w") != 0)
+	{
+		LOG(LogLevel::Error) << "Could not open " << "Output\\" << Configuration::getOutputName() << "\\history\\leaders\\" << tag.c_str() << ".txt";
+	}
 	int landLeaders	= 0;
 	int seaLeaders		= 0;
 	int airLeaders		= 0;
@@ -413,7 +424,7 @@ void HoI3Country::outputOOB() const
 }
 
 
-void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, vector<string> outputOrder, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
 {
 	srcCountry = _srcCountry;
 
@@ -473,7 +484,7 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	string srcGovernment = srcCountry->getGovernment();
 	if (srcGovernment.size() > 0)
 	{
-		government = getGovernmentForCountry(srcCountry, _vic2ideology, governmentMap);
+		government = governmentMapper::getInstance()->getGovernmentForCountry(srcCountry, _vic2ideology);
 		if (government.empty())
 		{
 			government = "";
@@ -762,10 +773,10 @@ void HoI3Country::consolidateProvinceItems(inverseProvinceMapping& inverseProvin
 		double stateIndustry		= 0.0;
 		for (auto srcProvinceItr: stateItr.provinces)
 		{
-			auto itr = inverseProvinceMap.find(srcProvinceItr);
-			if (itr != inverseProvinceMap.end())
+			auto possibleHoI3Provinces = inverseProvinceMap.find(srcProvinceItr);
+			if (possibleHoI3Provinces != inverseProvinceMap.end())
 			{
-				for (auto dstProvinceNum: itr->second)
+				for (auto dstProvinceNum: possibleHoI3Provinces->second)
 				{
 					auto provinceItr = provinces.find(dstProvinceNum);
 					if (provinceItr != provinces.end())
@@ -803,10 +814,10 @@ void HoI3Country::consolidateProvinceItems(inverseProvinceMapping& inverseProvin
 
 		if (stateItr.provinces.size() > 0)
 		{
-			auto itr = inverseProvinceMap.find(stateItr.provinces[0]);
-			if (itr != inverseProvinceMap.end())
+			auto possibleHoI3Provinces = inverseProvinceMap.find(stateItr.provinces[0]);
+			if (possibleHoI3Provinces != inverseProvinceMap.end())
 			{
-				auto provinceItr = provinces.find(itr->second[0]);
+				auto provinceItr = provinces.find(possibleHoI3Provinces->second[0]);
 				if (provinceItr != provinces.end())
 				{
 					if (convertManpower)
@@ -828,14 +839,14 @@ void HoI3Country::consolidateProvinceItems(inverseProvinceMapping& inverseProvin
 			}
 			if (convertIndustry)
 			{
-				for (auto jtr: stateItr.provinces)
+				for (auto vic2ProvNum: stateItr.provinces)
 				{
-					auto itr = inverseProvinceMap.find(jtr);
-					if (itr != inverseProvinceMap.end())
+					auto possibleHoI3Provinces = inverseProvinceMap.find(vic2ProvNum);
+					if (possibleHoI3Provinces != inverseProvinceMap.end())
 					{
-						for (auto ktr: itr->second)
+						for (auto HoI3ProvNum: possibleHoI3Provinces->second)
 						{
-							auto provinceItr = provinces.find(ktr);
+							auto provinceItr = provinces.find(HoI3ProvNum);
 							if (provinceItr != provinces.end())
 							{
 								int intIndustry = static_cast<int>(stateIndustry + 0.5);
@@ -856,42 +867,50 @@ void HoI3Country::consolidateProvinceItems(inverseProvinceMapping& inverseProvin
 
 	if (provinces.size() > 0)
 	{
-		auto provinceItr = provinces.find(capital);
-		if (provinceItr == provinces.end())
+		auto capitalItr = provinces.find(capital);
+		if (capitalItr == provinces.end())
 		{
-			provinceItr = provinces.begin();
+			capitalItr = provinces.begin();
 		}
 
 		if (convertManpower)
 		{
-			leftoverManpower += provinceItr->second->getManpower();
-			provinceItr->second->setManpower(leftoverManpower);
+			leftoverManpower += capitalItr->second->getManpower();
+			capitalItr->second->setManpower(leftoverManpower);
 		}
 
 		if (convertLeadership)
 		{
-			leftoverLeadership += provinceItr->second->getLeadership();
-			provinceItr->second->setLeadership(leftoverLeadership);
+			leftoverLeadership += capitalItr->second->getLeadership();
+			capitalItr->second->setLeadership(leftoverLeadership);
 		}
 
 		if (convertIndustry)
 		{
-			leftoverIndustry += provinceItr->second->getActualIndustry();
+			leftoverIndustry += capitalItr->second->getActualIndustry();
 			int intIndustry = static_cast<int>(leftoverIndustry + 0.5);
 			if (intIndustry > 10)
 			{
 				intIndustry = 10;
 			}
-			provinceItr->second->setActualIndustry(intIndustry);
-			leftoverIndustry -= intIndustry;
-			for (auto jtr: capitalState.provinces)
+			if (intIndustry < 5)
 			{
-				auto itr = inverseProvinceMap.find(jtr);
-				if (itr != inverseProvinceMap.end())
+				intIndustry = 5;
+			}
+			capitalItr->second->setActualIndustry(intIndustry);
+			leftoverIndustry -= intIndustry;
+			for (auto vic2ProvinceNum: capitalState.provinces)
+			{
+				auto possibleHoI3Provinces = inverseProvinceMap.find(vic2ProvinceNum);
+				if (possibleHoI3Provinces != inverseProvinceMap.end())
 				{
-					for (auto ktr: itr->second)
+					for (auto hoi3ProvinceNum: possibleHoI3Provinces->second)
 					{
-						auto provinceItr = provinces.find(ktr);
+						if (hoi3ProvinceNum == capitalItr->first)
+						{
+							continue;
+						}
+						auto provinceItr = provinces.find(hoi3ProvinceNum);
 						if (provinceItr != provinces.end())
 						{
 							int intIndustry = static_cast<int>(leftoverIndustry + 0.5);
@@ -1180,6 +1199,40 @@ void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 }
 
 
+void HoI3Country::addMinimalItems()
+{
+	// determine if there's anything to add
+	bool hasPort		= true;
+	bool hasAirbase	= true;
+	for (auto province: provinces)
+	{
+		if (province.second->getAirBase() > 0)
+		{
+			hasAirbase = true;
+		}
+		if (province.second->getAirBase() > 0)
+		{
+			hasAirbase = true;
+		}
+	}
+
+	auto capitalItr = provinces.find(capital);
+	if (capitalItr == provinces.end())
+	{
+		capitalItr = provinces.begin();
+	}
+
+	// if necessary, add an airbase to the capital province
+	if (!hasAirbase)
+	{
+		capitalItr->second->requireAirBase(1);
+	}
+
+	// if necessary, add a port as near to the capital as possible
+	//		impossible currently, as we don't have a way to know where ports are valid
+}
+
+
 void HoI3Country::addProvince(HoI3Province* _province)
 {
 	provinces.insert(make_pair(_province->getNum(), _province));
@@ -1249,7 +1302,6 @@ vector<int> HoI3Country::getPortProvinces(vector<int> locationCandidates, map<in
 
 void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V2Parties, V2Party* rulingParty, string& rulingIdeology)
 {
-	// 
 	// sort Vic2 parties by ideology
 	map<string, vector<V2Party*>> V2Ideologies;
 	for (auto partyItr: V2Parties)
@@ -1582,15 +1634,15 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 				newParty.organization	= newParty.popularity;
 				parties.push_back(newParty);
 
-				HoI3GroupItr->second.erase(HoI3GroupItr->second.begin());
-
-				auto itr = unmappedParties.find(newParty.ideology);
-				unmappedParties.erase(itr);
-
 				if (rulingParty->name == V2PartyItr->name)
 				{
 					rulingIdeology = HoI3GroupItr->second[0];
 				}
+
+				HoI3GroupItr->second.erase(HoI3GroupItr->second.begin());
+
+				auto itr = unmappedParties.find(newParty.ideology);
+				unmappedParties.erase(itr);
 			}
 			for (auto V2PartyItr: V2GroupItr.second)
 			{

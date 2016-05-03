@@ -368,7 +368,7 @@ void HoI3World::getProvinceLocalizations(string file)
 }
 
 
-void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping countryMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping countryMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
 {
 	vector<string> outputOrder;
 	outputOrder.clear();
@@ -393,15 +393,15 @@ void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping coun
 
 		if (!HoI3Tag.empty())
 		{
-			for (vector<HoI3Country*>::iterator j = potentialCountries.begin(); j != potentialCountries.end() && !destCountry; j++)
+			for (auto candidateDestCountry: potentialCountries)
 			{
-				HoI3Country* candidateDestCountry = *j;
-				if (candidateDestCountry->getTag() == HoI3Tag)
+				if ((candidateDestCountry != NULL) && (candidateDestCountry->getTag() == HoI3Tag))
 				{
 					destCountry = candidateDestCountry;
+					break;
 				}
 			}
-			if (!destCountry)
+			if (destCountry == NULL)
 			{ // No such V2 country exists yet for this tag so we make a new one.
 				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
 				destCountry = new HoI3Country(HoI3Tag, countryFileName, this, true);
@@ -412,7 +412,7 @@ void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping coun
 				LOG(LogLevel::Error) << "Could not find the ruling party for " <<  sourceCountry->getTag() << ". Were all mods correctly included?";
 				exit(-1);
 			}
-			destCountry->initFromV2Country(sourceWorld, sourceCountry, rulingParty->ideology, outputOrder, countryMap, governmentMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
+			destCountry->initFromV2Country(sourceWorld, sourceCountry, rulingParty->ideology, outputOrder, countryMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
 			countries.insert(make_pair(HoI3Tag, destCountry));
 		}
 		else
@@ -635,23 +635,22 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 			}
 
 			// convert industry
-			double industry = sourceProvince->getPopulation("craftsmen")
+			double industry = sourceProvince->getEmployedWorkers()
 				+ int(sourceProvince->getPopulation("artisans") * 0.5)
-				+ sourceProvince->getLiteracyWeightedPopulation("capitalists") * 2
-				+ sourceProvince->getLiteracyWeightedPopulation("clerks") * 2;
+				+ sourceProvince->getLiteracyWeightedPopulation("capitalists") * 2;
 			if (Configuration::getIcConversion() == "squareroot")
 			{
-				industry = sqrt(double(industry)) * 0.00127;
+				industry = sqrt(double(industry)) * 0.00417;
 				provItr->second->addRawIndustry(industry * Configuration::getIcFactor());
 			}
 			else if (Configuration::getIcConversion() == "linear")
 			{
-				industry = double(industry) * 0.00000564;
+				industry = double(industry) * 0.0000496;
 				provItr->second->addRawIndustry(industry * Configuration::getIcFactor());
 			}
 			else if (Configuration::getIcConversion() == "logarithmic")
 			{
-				industry = log(max(1, industry / 70000)) / log(2) * 1.75;
+				industry = log(max(1, industry / 70000)) / log(2) * 175;
 				provItr->second->addRawIndustry(industry * Configuration::getIcFactor());
 			}
 					
@@ -914,6 +913,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 
 		int airForceIndex = 0;
 		HoI3RegGroup::resetHQCounts();
+		HoI3RegGroup::resetRegGroupNameCounts();
 
 		// A V2 unit type counter to keep track of how many V2 units of this type were converted.
 		// Used to distribute HoI3 unit types in case of multiple mapping
@@ -945,7 +945,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 
 			// guarantee that navies are assigned to sea provinces, or land provinces with naval bases
 			bool usePort = false;
-			if ((locationCandidates.size() > 0) && (oldArmy->getNavy()))
+			if ((locationCandidates.size() > 0) && (oldArmy->getNavy()) && (!oldArmy->getAtSea()))
 			{
 				map<int, HoI3Province*>::const_iterator pitr = provinces.find(locationCandidates[0]);
 				if (pitr != provinces.end() && pitr->second->isLand())
@@ -994,7 +994,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 				}
 				else if (!oldArmy->getNavy())
 				{
-					LOG(LogLevel::Warning) << "HoI3 Province for ID: " << selectedLocation << " not found. Placing units in the production queue";
+					LOG(LogLevel::Warning) << "HoI3 Province " << selectedLocation << "is not a valid location for regiments. Placing units in the production queue.";
 					destArmy.setProductionQueue(true);
 				}
 			}
@@ -1024,20 +1024,23 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 					mainRegiments.push_back(regiment);
 				}
 			}
+			sourceRegiments.clear();
 			if (mainRegiments.size() * 3 < supportRegiments.size())
 			{
 				LOG(LogLevel::Warning) << "Too many support units in " << itr->first << "'s army \"" << oldArmy->getName() << "\"";
 			}
 			if (mainRegiments.size() > 0)
 			{
-				double ratio = supportRegiments.size() / mainRegiments.size();
-				sourceRegiments.clear();
+				double ratio = 1.0 * supportRegiments.size() / mainRegiments.size();
 				unsigned int j = 0;
 				for (unsigned int i = 0; i < mainRegiments.size(); i++)
 				{
 					for (; j < (i + 1) * ratio; j++)
 					{
-						sourceRegiments.push_back(supportRegiments[j]);
+						if (j < supportRegiments.size())
+						{
+							sourceRegiments.push_back(supportRegiments[j]);
+						}
 					}
 					sourceRegiments.push_back(mainRegiments[i]);
 				}
@@ -1107,6 +1110,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 
 				destReg.setType(destTypeItr->first);
 				destReg.setHistoricalModel(destTypeItr->second);
+				destReg.setReserve(true);
 
 				// Add to army/navy or newly created air force as appropriate
 				if (destReg.getForceType() != air)
@@ -1142,7 +1146,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 			if (!destAirForce.isEmpty() && !destArmy.getProductionQueue())
 			{
 				// we need to put an airbase here, so make sure we're in our own territory
-				if (locationProvince->getOwner() == itr->first)
+				if ((locationProvince != NULL) && (locationProvince->getOwner() == itr->first))
 				{
 					// make sure an airbase is waiting for them
 					locationProvince->requireAirBase(min(10, locationProvince->getAirBase() + destAirForce.size()));
@@ -1790,5 +1794,14 @@ void HoI3World::setAIFocuses(const AIFocusModifiers& focusModifiers)
 	for (auto countryItr: countries)
 	{
 		countryItr.second->setAIFocuses(focusModifiers);
+	}
+}
+
+
+void HoI3World::addMinimalItems()
+{
+	for (auto country : countries)
+	{
+		country.second->addMinimalItems();
 	}
 }

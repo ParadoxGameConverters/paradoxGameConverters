@@ -1,5 +1,4 @@
 diplomatic_decisions = {
-	
 	prepare_for_war = {
 		potential = {
 			government_in_exile = no

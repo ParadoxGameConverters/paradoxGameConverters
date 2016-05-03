@@ -162,6 +162,7 @@ float date::diffInYears(const date& _rhs) const
 			lhsDays = day + 304;
 			break;
 		case 12:
+		default:
 			lhsDays = day + 334;
 			break;
 	}
@@ -203,6 +204,7 @@ float date::diffInYears(const date& _rhs) const
 			rhsDays = day + 304;
 			break;
 		case 12:
+		default:
 			rhsDays = day + 334;
 			break;
 	}

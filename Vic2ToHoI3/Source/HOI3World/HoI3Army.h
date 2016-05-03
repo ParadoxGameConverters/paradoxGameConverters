@@ -87,13 +87,16 @@ class HoI3Regiment // also Ship, Wing
 		void	setName(string _name)									{ name = _name; }
 		void	setType(HoI3RegimentType _type)						{ type = _type; }
 		void	setHistoricalModel(unsigned _historicalModel)	{ historicalModel = _historicalModel; }
+		void	setReserve(bool _reserve)								{ reserve = _reserve; }
 
 		ForceType					getForceType() const	{ return type.getForceType(); }
 		const HoI3RegimentType&	getType() const		{ return type; }
+		bool							isReserve() const		{ return reserve; }
 
 	private:
 		string				name;
 		HoI3RegimentType	type;
+		bool					reserve;
 		unsigned				historicalModel; // Tech level
 };
 

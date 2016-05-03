@@ -95,6 +95,7 @@ class V2Country
 		double							getRevanchism()												const { return revanchism; }
 		double							getWarExhaustion()											const { return warExhaustion; }
 		string							getTechSchool()												const { return techSchool; }
+		map<string, string>			getAllReforms()												const { return reformsArray; }
 
 		string							getReform(string reform) const;
 		string							getName(const string& language) const;

@@ -79,6 +79,7 @@ void Log::WriteToConsole(LogLevel level, const std::string& logMessage)
 					break;
 
 				case LogLevel::Debug:
+				default:
 					color = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
 					break;
 			}
