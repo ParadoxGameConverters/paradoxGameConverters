@@ -1,5 +1,5 @@
-Q: I got an error that mentions MSVCP120.dll. What do I do?
-A : Go to the Visual Studio Redistributable page: http://www.microsoft.com/en-us/download/details.aspx?id=40784
+Q: I got an error that mentions MSVCP140.dll. What do I do?
+A : Go to the Visual Studio Redistributable page: https://www.microsoft.com/en-us/download/details.aspx?id=49984
 	then click Download and select vcredist_x86.exe.
 	Once it has downloaded, install it and run the converter again.
 
