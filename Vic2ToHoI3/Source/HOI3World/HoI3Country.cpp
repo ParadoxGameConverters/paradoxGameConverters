@@ -1201,9 +1201,14 @@ void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 
 void HoI3Country::addMinimalItems()
 {
+	if (provinces.size() == 0)
+	{
+		return;
+	}
+
 	// determine if there's anything to add
-	bool hasPort		= true;
-	bool hasAirbase	= true;
+	bool hasPort		= false;
+	bool hasAirbase	= false;
 	for (auto province: provinces)
 	{
 		if (province.second->getAirBase() > 0)
