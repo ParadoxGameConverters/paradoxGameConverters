@@ -663,14 +663,14 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 			{
 				newManpower *= 0.0000037 * Configuration::getManpowerFactor() / mapping.second.size();
 				newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
-				provItr->second->addManpower(newManpower);
+				provItr->second->setManpower(newManpower);
 			}
 			else if (Configuration::getManpowerConversion() == "squareroot")
 			{
 				newManpower = sqrt(newManpower);
 				newManpower *= 0.0009 * Configuration::getManpowerFactor() / mapping.second.size();
 				newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
-				provItr->second->addManpower(newManpower);
+				provItr->second->setManpower(newManpower);
 			}
 
 			// convert leadership
@@ -684,14 +684,14 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 			{
 				newLeadership *= 0.0000035 * Configuration::getLeadershipFactor() / mapping.second.size();
 				newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
-				provItr->second->addLeadership(newLeadership);
+				provItr->second->setLeadership(newLeadership);
 			}
 			else if (Configuration::getLeadershipConversion() == "squareroot")
 			{
 				newLeadership = sqrt(newLeadership);
 				newLeadership *= 0.00034 * Configuration::getLeadershipFactor() / mapping.second.size();
 				newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
-				provItr->second->addLeadership(newLeadership);
+				provItr->second->setLeadership(newLeadership);
 			}
 		}
 	}
@@ -1149,7 +1149,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 				if ((locationProvince != NULL) && (locationProvince->getOwner() == itr->first))
 				{
 					// make sure an airbase is waiting for them
-					locationProvince->requireAirBase(min(10, locationProvince->getAirBase() + destAirForce.size()));
+					locationProvince->requireAirBase(min(10, locationProvince->getAirBase() + (destAirForce.size() * 2)));
 
 					stringstream name;
 					name << ++airForceIndex << CardinalToOrdinal(airForceIndex) << " Air Force";
