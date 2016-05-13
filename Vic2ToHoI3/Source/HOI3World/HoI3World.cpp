@@ -661,14 +661,14 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 				+ sourceProvince->getPopulation("farmers") * 0.25; // Conscripts
 			if (Configuration::getManpowerConversion() == "linear")
 			{
-				newManpower *= 0.0000037 * Configuration::getManpowerFactor() / mapping.second.size();
+				newManpower *= 0.0000032 * Configuration::getManpowerFactor() / mapping.second.size();
 				newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
 				provItr->second->setManpower(newManpower);
 			}
 			else if (Configuration::getManpowerConversion() == "squareroot")
 			{
 				newManpower = sqrt(newManpower);
-				newManpower *= 0.0009 * Configuration::getManpowerFactor() / mapping.second.size();
+				newManpower *= 0.00085 * Configuration::getManpowerFactor() / mapping.second.size();
 				newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
 				provItr->second->setManpower(newManpower);
 			}
@@ -682,14 +682,14 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 				+ sourceProvince->getLiteracyWeightedPopulation("aristocrats") * 0.25;
 			if (Configuration::getLeadershipConversion() == "linear")
 			{
-				newLeadership *= 0.0000035 * Configuration::getLeadershipFactor() / mapping.second.size();
+				newLeadership *= 0.000003 * Configuration::getLeadershipFactor() / mapping.second.size();
 				newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
 				provItr->second->setLeadership(newLeadership);
 			}
 			else if (Configuration::getLeadershipConversion() == "squareroot")
 			{
 				newLeadership = sqrt(newLeadership);
-				newLeadership *= 0.00034 * Configuration::getLeadershipFactor() / mapping.second.size();
+				newLeadership *= 0.00033 * Configuration::getLeadershipFactor() / mapping.second.size();
 				newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
 				provItr->second->setLeadership(newLeadership);
 			}
