@@ -661,14 +661,14 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 				+ sourceProvince->getPopulation("farmers") * 0.25; // Conscripts
 			if (Configuration::getManpowerConversion() == "linear")
 			{
-				newManpower *= 0.0000032 * Configuration::getManpowerFactor() / mapping.second.size();
+				newManpower *= 0.0000064 * Configuration::getManpowerFactor() / mapping.second.size();
 				newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
 				provItr->second->setManpower(newManpower);
 			}
 			else if (Configuration::getManpowerConversion() == "squareroot")
 			{
 				newManpower = sqrt(newManpower);
-				newManpower *= 0.00085 * Configuration::getManpowerFactor() / mapping.second.size();
+				newManpower *= 0.0017 * Configuration::getManpowerFactor() / mapping.second.size();
 				newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
 				provItr->second->setManpower(newManpower);
 			}
@@ -1554,7 +1554,7 @@ void HoI3World::consolidateProvinceItems(inverseProvinceMapping& inverseProvince
 		countryItr.second->consolidateProvinceItems(inverseProvinceMap, totalManpower, totalLeadership, totalIndustry);
 	}
 
-	double suggestedManpowerConst		= 1651.4 * Configuration::getManpowerFactor()	/ totalManpower;
+	double suggestedManpowerConst		= 3302.8 * Configuration::getManpowerFactor()	/ totalManpower;
 	LOG(LogLevel::Debug) << "Total manpower was " << totalManpower << ". Changing the manpower factor to " << suggestedManpowerConst << " would match vanilla HoI3.";
 
 	double suggestedLeadershipConst	=  212.0 * Configuration::getLeadershipFactor() / totalLeadership;
