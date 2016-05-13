@@ -1208,16 +1208,11 @@ void HoI3Country::addMinimalItems()
 
 	// determine if there's anything to add
 	bool hasPort		= false;
-	bool hasAirbase	= false;
 	for (auto province: provinces)
 	{
-		if (province.second->getAirBase() > 0)
+		if (province.second->getNavalBase() > 0)
 		{
-			hasAirbase = true;
-		}
-		if (province.second->getAirBase() > 0)
-		{
-			hasAirbase = true;
+			hasPort = true;
 		}
 	}
 
@@ -1228,10 +1223,7 @@ void HoI3Country::addMinimalItems()
 	}
 
 	// if necessary, add an airbase to the capital province
-	if (!hasAirbase)
-	{
-		capitalItr->second->requireAirBase(1);
-	}
+	capitalItr->second->requireAirBase(10);
 
 	// if necessary, add a port as near to the capital as possible
 	//		impossible currently, as we don't have a way to know where ports are valid
