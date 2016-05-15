@@ -52,7 +52,7 @@ class		V2World;
 typedef struct V2State
 {
 	vector<int>		provinces;
-	int				employedWorkers;
+	int				factoryLevels;
 } V2State;
 
 

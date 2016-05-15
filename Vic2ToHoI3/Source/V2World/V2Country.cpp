@@ -290,43 +290,17 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 		}
 
 		// count the employees in the state (for factory conversion)
-		int craftsmenCount	= 0;
-		int clerksCount		= 0;
+		int levelCount = 0;
 		vector<Object*> buildingsObj = statesItr[0].getValue("state_buildings"); // each factory in the state
 		for (auto buildingsItr : buildingsObj)
 		{
-			vector<Object*> employmentObj = buildingsItr[0].getValue("employment"); // each employment entry in the factory.
-			for (auto employmentItr : employmentObj)
+			vector<Object*> levelObj = buildingsItr[0].getValue("level"); // each employment entry in the factory.
+			if (levelObj.size() > 0)
 			{
-				vector<Object*> employeesObj = employmentItr[0].getValue("employees"); // each employee entry in employment
-				for (auto employeesItr : employeesObj)
-				{
-					vector<Object*> employeeObj = employeesItr[0].getLeaves(); // each employee object in employees
-					for (auto employeeItr : employeeObj)
-					{
-						vector<Object*> typeObj = employeeItr[0].getValue("type");
-						if (typeObj.size() > 0)
-						{
-							string type = typeObj[0]->getLeaf();
-							vector<Object*> countObj = employeeItr[0].getValue("count");
-							if (countObj.size() > 0)
-							{
-								int count = atoi(countObj[0]->getLeaf().c_str());
-								if (type == "7")
-								{
-									craftsmenCount = count;
-								}
-								else if (type == "6")
-								{
-									clerksCount = count;
-								}
-							}
-						}
-					}
-				}
+				levelCount += atoi(levelObj[0]->getLeaf().c_str());
 			}
 		}
-		newState.employedWorkers = craftsmenCount + 2 * clerksCount;
+		newState.factoryLevels = levelCount;
 		states.push_back(newState);
 	}
 }
@@ -415,12 +389,42 @@ void V2Country::putWorkersInProvinces()
 {
 	for (auto state : states)
 	{
-		if ((state.provinces.size() > 0) && (state.employedWorkers > 0))
+		// get the employable workers
+		int craftsmen		= 0;
+		int clerks			= 0;
+		int artisans		= 0;
+		int capitalists	= 0;
+		for (auto provinceNum : state.provinces)
+		{
+			auto province = provinces.find(provinceNum);
+			if (province != provinces.end())
+			{
+				craftsmen	+= province->second->getPopulation("craftsmen");
+				clerks		+= province->second->getPopulation("clerks");
+				artisans		+= province->second->getPopulation("aristans");
+				capitalists	+= province->second->getLiteracyWeightedPopulation("capitalists");
+			}
+		}
+
+		// limit craftsmen and clerks by factory levels
+		if ((craftsmen + clerks) > (state.factoryLevels * 10000))
+		{
+			float newCraftsmen	= (state.factoryLevels * 10000.0f) / (craftsmen + clerks) * craftsmen;
+			float newClerks		= (state.factoryLevels * 10000.0f) / (craftsmen + clerks) * clerks;
+
+			craftsmen	= static_cast<int>(newCraftsmen);
+			clerks		= static_cast<int>(newClerks);
+		}
+
+		// determine an actual 'employed workers' score
+		int employedWorkers = craftsmen + (clerks * 2) + static_cast<int>(artisans * 0.5) + (capitalists * 2);
+
+		if (state.provinces.size() > 0)
 		{
 			auto employmentProvince = provinces.find(state.provinces.front());
 			if (employmentProvince != provinces.end())
 			{
-				employmentProvince->second->setEmployedWorkers(state.employedWorkers);
+				employmentProvince->second->setEmployedWorkers(employedWorkers);
 			}
 		}
 	}
