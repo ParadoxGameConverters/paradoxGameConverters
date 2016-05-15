@@ -133,6 +133,7 @@ class HoI3Country
 		vector<HoI3Minister>				rulingMinisters;
 		vector<HoI3Leader>				leaders;
 		string								graphicalCulture;
+		bool									majorNation;
 
 		// AI focus modifiers
 		double	seaModifier;

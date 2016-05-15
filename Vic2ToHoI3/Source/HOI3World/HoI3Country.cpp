@@ -119,6 +119,8 @@ HoI3Country::HoI3Country(string _tag, string _commonCountryFile, HoI3World* _the
 	graphicalCulture = "Generic";
 
 	srcCountry	= NULL;
+
+	majorNation = false;
 }
 
 
@@ -189,6 +191,11 @@ void HoI3Country::output() const
 	fprintf(output, "color = { %d %d %d }\n", red, green, blue);
 	fprintf(output, "graphical_culture = %s\n", graphicalCulture.c_str());
 	fprintf(output, "\n");
+	if (majorNation)
+	{
+		fprintf(output, "major = yes\n");
+		fprintf(output, "\n");
+	}
 	fprintf(output, "default_templates = {\n");
 	fprintf(output, "	generic_infantry = {\n");
 	fprintf(output, "		infantry_brigade\n");
@@ -681,6 +688,9 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	{
 		capital = itr->second[0];
 	}
+
+	// major nation
+	majorNation = srcCountry->getGreatNation();
 }
 
 
