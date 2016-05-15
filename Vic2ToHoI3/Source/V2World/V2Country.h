@@ -51,7 +51,8 @@ class		V2World;
 
 typedef struct V2State
 {
-	vector<int> provinces;
+	vector<int>		provinces;
+	int				employedWorkers;
 } V2State;
 
 
@@ -69,6 +70,7 @@ class V2Country
 		void								eatCountry(V2Country* target);
 		void								clearProvinces();
 		void								clearCores();
+		void								putWorkersInProvinces();
 
 		map<string, V2Relations*>	getRelations()													const { return relations; }
 		vector<V2State>				getStates()														const { return states; }

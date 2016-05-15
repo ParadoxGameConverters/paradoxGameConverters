@@ -126,6 +126,12 @@ V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<string, 
 		}
 	}
 
+	// apply workers to provinces
+	for (auto country : countries)
+	{
+		country.second->putWorkersInProvinces();
+	}
+
 	// Cull countries with neither cores nor owned provinces (i.e. dead countries and uncreated dominions)
 	removeEmptyNations();
 

@@ -274,15 +274,9 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 	}
 
 	// read in states
-
 	vector<Object*> statesObj = obj->getValue("state"); // each state in the country
 	for (auto statesItr : statesObj)
 	{
-		// items that will matter for factory conversion
-		int mainProvince		= 0;
-		int craftsmenCount	= 0;
-		int clerksCount		= 0;
-
 		V2State newState;
 		// get the provinces in the state
 		vector<Object*> provinceObj = statesItr[0].getValue("provinces");
@@ -292,14 +286,12 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 			for (auto provinceItr: provinceIDs)
 			{
 				newState.provinces.push_back(atoi(provinceItr.c_str()));
-				if (mainProvince == 0)
-				{
-					mainProvince = atoi(provinceItr.c_str());
-				}
 			}
 		}
 
 		// count the employees in the state (for factory conversion)
+		int craftsmenCount	= 0;
+		int clerksCount		= 0;
 		vector<Object*> buildingsObj = statesItr[0].getValue("state_buildings"); // each factory in the state
 		for (auto buildingsItr : buildingsObj)
 		{
@@ -312,25 +304,21 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 					vector<Object*> employeeObj = employeesItr[0].getLeaves(); // each employee object in employees
 					for (auto employeeItr : employeeObj)
 					{
-						vector<Object*> idObj = employeeItr[0].getValue("province_pop_id");
-						if (idObj.size() > 0)
+						vector<Object*> typeObj = employeeItr[0].getValue("type");
+						if (typeObj.size() > 0)
 						{
-							vector<Object*> typeObj = idObj[0]->getValue("type");
-							if (typeObj.size() > 0)
+							string type = typeObj[0]->getLeaf();
+							vector<Object*> countObj = employeeItr[0].getValue("count");
+							if (countObj.size() > 0)
 							{
-								string type = typeObj[0]->getLeaf();
-								vector<Object*> countObj = employeeItr[0].getValue("count");
-								if (countObj.size() > 0)
+								int count = atoi(countObj[0]->getLeaf().c_str());
+								if (type == "7")
 								{
-									int count = atoi(countObj[0]->getLeaf().c_str());
-									if (type == "7")
-									{
-										craftsmenCount = count;
-									}
-									else if (type == "6")
-									{
-										clerksCount = count;
-									}
+									craftsmenCount = count;
+								}
+								else if (type == "6")
+								{
+									clerksCount = count;
 								}
 							}
 						}
@@ -338,12 +326,7 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 				}
 			}
 		}
-		auto employmentProvince = provinces.find(mainProvince);
-		if (employmentProvince != provinces.end())
-		{
-			employmentProvince->second->setEmployedWorkers(craftsmenCount + 2 * clerksCount);
-		}
-
+		newState.employedWorkers = craftsmenCount + 2 * clerksCount;
 		states.push_back(newState);
 	}
 }
@@ -426,6 +409,23 @@ void V2Country::clearCores()
 {
 	cores.clear();
 }
+
+
+void V2Country::putWorkersInProvinces()
+{
+	for (auto state : states)
+	{
+		if ((state.provinces.size() > 0) && (state.employedWorkers > 0))
+		{
+			auto employmentProvince = provinces.find(state.provinces.front());
+			if (employmentProvince != provinces.end())
+			{
+				employmentProvince->second->setEmployedWorkers(state.employedWorkers);
+			}
+		}
+	}
+}
+
 
 std::string V2Country::getReform(std::string reform) const
 {
