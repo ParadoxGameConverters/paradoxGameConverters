@@ -638,17 +638,17 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 			double industry = sourceProvince->getEmployedWorkers();
 			if (Configuration::getIcConversion() == "squareroot")
 			{
-				industry = sqrt(double(industry)) * 0.00417;
+				industry = sqrt(double(industry)) * 0.00292;
 				provItr->second->addRawIndustry(industry * Configuration::getIcFactor());
 			}
 			else if (Configuration::getIcConversion() == "linear")
 			{
-				industry = double(industry) * 0.0000496;
+				industry = double(industry) * 0.00000645;
 				provItr->second->addRawIndustry(industry * Configuration::getIcFactor());
 			}
 			else if (Configuration::getIcConversion() == "logarithmic")
 			{
-				industry = log(max(1, industry / 70000)) / log(2) * 175;
+				industry = log(max(1, industry / 70000)) / log(2) * 1.225;
 				provItr->second->addRawIndustry(industry * Configuration::getIcFactor());
 			}
 					
