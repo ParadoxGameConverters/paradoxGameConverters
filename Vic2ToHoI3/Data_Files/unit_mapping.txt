@@ -53,7 +53,7 @@ unit_map =
 	link = { vic = "irregular"		hoi0 = "militia_brigade" hoi0 = "militia_brigade" hoi1 = "militia_brigade" }
 	link = { vic = "infantry"		hoi1 = "infantry_brigade" hoi1 = "infantry_brigade" hoi2 = "infantry_brigade" }
 	link = { vic = "engineer"		hoi1 = "engineer_brigade" hoi1 = "engineer_brigade" hoi2 = "engineer_brigade" hoi1 = "infantry_brigade" hoi2 = "infantry_brigade" hoi1 = "infantry_brigade" hoi1 = "police_brigade" }
-	link = { vic = "guard"			hoi2 = "Alpini_brigade" hoi2 = "Alpins_brigade" hoi2 = "Guards_brigade" hoi2 = "Gurkha_brigade" hoi2 = "Imperial_brigade" hoi2 = "ranger_brigade" hoi2 = "waffenSS_brigade" hoi2 = "bergsjaeger_brigade" hoi1 = "bergsjaeger_brigade" hoi2 = "marine_brigade" hoi2 = "bergsjaeger_brigade" hoi1 = "bergsjaeger_brigade" }
+	link = { vic = "guard"			hoi2 = "Alpini_brigade" hoi2 = "Alpins_brigade" hoi2 = "Guards_brigade" hoi2 = "Gurkha_brigade" hoi2 = "Imperial_brigade" hoi2 = "ranger_brigade" hoi2 = "waffenSS_brigade" hoi2 = "bergsjaeger_brigade" hoi1 = "bergsjaeger_brigade" hoi2 = "marine_brigade" hoi2 = "bergsjaeger_brigade" hoi1 = "bergsjaeger_brigade" hoi1 = "motorized_brigade" }
 
 	link = { vic = "artillery"		hoi1 = "artillery_brigade" hoi1 = "artillery_brigade" hoi2 = "artillery_brigade" hoi1 = "artillery_brigade" hoi0 = "anti_tank_brigade" hoi0 = "anti_air_brigade" hoi1 = "artillery_brigade" hoi1 = "artillery_brigade" hoi1 = "anti_tank_brigade" hoi2 = "artillery_brigade" hoi1 = "artillery_brigade" hoi1 = "artillery_brigade" }
 
@@ -70,13 +70,13 @@ unit_map =
 	link = { vic = "frigate"		}
 
 	link = { vic = "ironclad"		hoi1 = "light_cruiser" hoi1 = "light_cruiser" hoi0 = "heavy_cruiser" }
-	link = { vic = "battleship"		hoi1 = "heavy_cruiser" hoi2 = "heavy_cruiser" hoi1 = "battlecruiser" hoi2 = "battlecruiser" hoi1 = "battleship"}
-	link = { vic = "dreadnought"		hoi1 = "battleship" hoi1 = "battleship" hoi2 = "battleship" }
+	link = { vic = "battleship"		hoi1 = "heavy_cruiser" hoi2 = "heavy_cruiser" hoi1 = "battlecruiser" hoi2 = "battlecruiser" }
+	link = { vic = "dreadnought"		hoi1 = "battleship" hoi1 = "battleship" hoi2 = "battleship" hoi2 = "battlecruiser"}
 
-	link = { vic = "commerce_raider" 	hoi0 = "destroyer" hoi0 = "destroyer" hoi0 = "light_cruiser"}
-	link = { vic = "monitor"		hoi0 = "light_cruiser" hoi1 = "light_cruiser" hoi0 = "light_cruiser" hoi1 = "destroyer" }
+	link = { vic = "commerce_raider" 	hoi0 = "destroyer" hoi0 = "destroyer" }
+	link = { vic = "monitor"		hoi0 = "light_cruiser" hoi1 = "light_cruiser" hoi0 = "destroyer" hoi1 = "destroyer" }
 	link = { vic = "cruiser"		hoi1 = "light_cruiser" hoi2 = "light_cruiser" hoi1 = "heavy_cruiser" hoi1 = "light_cruiser" hoi2 = "light_cruiser" hoi1 = "heavy_cruiser" hoi2 = "destroyer" }
 
 	link = { vic = "clipper_transport"	hoi0 = "transport" }
-	link = { vic = "steam_transport"	hoi0 = "transport" hoi1 = "transport" }
+	link = { vic = "steam_transport"	hoi1 = "transport" hoi0 = "transport" }
 }
