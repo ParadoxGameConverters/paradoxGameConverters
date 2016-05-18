@@ -431,7 +431,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "Setting AI focuses";
 	destWorld.setAIFocuses(focusModifiers);
 	LOG(LogLevel::Info) << "Adding minimal levels of airbase and port";
-	destWorld.addMinimalItems();
+	destWorld.addMinimalItems(inverseProvinceMap);
 
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";

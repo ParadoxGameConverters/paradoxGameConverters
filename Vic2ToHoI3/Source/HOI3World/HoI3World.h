@@ -47,7 +47,7 @@ class HoI3World {
 		void	convertVictoryPoints(const V2World& sourceWorld, CountryMapping countryMap);
 		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
 		void	copyFlags(const V2World &sourceWorld, CountryMapping countryMap);
-		void	addMinimalItems();
+		void	addMinimalItems(inverseProvinceMapping& inverseProvinceMap);
 
 		map<string, HoI3Country*>	getPotentialCountries()	const;
 

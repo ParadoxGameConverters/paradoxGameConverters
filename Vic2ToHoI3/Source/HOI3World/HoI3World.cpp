@@ -1796,10 +1796,10 @@ void HoI3World::setAIFocuses(const AIFocusModifiers& focusModifiers)
 }
 
 
-void HoI3World::addMinimalItems()
+void HoI3World::addMinimalItems(inverseProvinceMapping& inverseProvinceMap)
 {
 	for (auto country : countries)
 	{
-		country.second->addMinimalItems();
+		country.second->addMinimalItems(inverseProvinceMap);
 	}
 }
