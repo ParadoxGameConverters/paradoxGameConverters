@@ -247,16 +247,24 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 
 	armies.clear();
 	vector<Object*> armyObj = obj->getValue("army");	// the object sholding the armies
-	for (std::vector<Object*>::iterator itr = armyObj.begin(); itr != armyObj.end(); ++itr)
+	for (auto armyItr: armyObj)
 	{
-		V2Army* army = new V2Army(*itr);
+		V2Army* army = new V2Army(armyItr);
 		armies.push_back(army);
 	}
 	vector<Object*> navyObj = obj->getValue("navy");	// the objects holding the navies
-	for (std::vector<Object*>::iterator itr = navyObj.begin(); itr != navyObj.end(); ++itr)
+	for (auto navyItr: navyObj)
 	{
-		V2Army* navy = new V2Army(*itr);
+		V2Army* navy = new V2Army(navyItr);
 		armies.push_back(navy);
+
+		// get transported armies
+		vector<Object*> armyObj = navyItr->getValue("army");	// the object sholding the armies
+		for (auto armyItr: armyObj)
+		{
+			V2Army* army = new V2Army(armyItr);
+			armies.push_back(army);
+		}
 	}
 
 	leaders.clear();

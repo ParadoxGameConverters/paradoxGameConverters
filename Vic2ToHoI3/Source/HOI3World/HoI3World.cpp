@@ -992,7 +992,6 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 				}
 				else if (!oldArmy->getNavy())
 				{
-					LOG(LogLevel::Warning) << "HoI3 Province " << selectedLocation << "is not a valid location for regiments. Placing units in the production queue.";
 					destArmy.setProductionQueue(true);
 				}
 			}
