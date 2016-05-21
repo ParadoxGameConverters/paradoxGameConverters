@@ -838,7 +838,29 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 		LOG(LogLevel::Error) << "No unit mapping definitions loaded.";
 		return;
 	}
-	leaves = leaves[0]->getLeaves();
+
+	int modIndex		= -1;
+	int defaultIndex	= 0;
+	for (unsigned int i = 0; i < leaves.size(); i++)
+	{
+		string key = leaves[i]->getKey();
+		if ((Configuration::getVic2Mods().size() > 0) && (Configuration::getVic2Mods()[0] == key))
+		{
+			modIndex = i;
+		}
+		if (key == "default")
+		{
+			defaultIndex = i;
+		}
+	}
+	if (modIndex != -1)
+	{
+		leaves = leaves[modIndex]->getLeaves();
+	}
+	else
+	{
+		leaves = leaves[defaultIndex]->getLeaves();
+	}
 	for (vector<Object*>::iterator itr = leaves.begin(); itr != leaves.end(); ++itr)
 	{
 		vector<Object*> vicKeys = (*itr)->getValue("vic");
