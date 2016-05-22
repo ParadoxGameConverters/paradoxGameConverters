@@ -976,6 +976,41 @@ vector<int> HoI3World::getPortLocationCandidates(const vector<int>& locationCand
 	return portLocationCandidates;
 }
 
+#pragma optimize("", off)
+int HoI3World::getAirLocation(HoI3Province* locationProvince, const HoI3AdjacencyMapping& HoI3AdjacencyMap, string owner)
+{
+	queue<int>		openProvinces;
+	map<int, int>	closedProvinces;
+	openProvinces.push(locationProvince->getNum());
+	while (openProvinces.size() > 0)
+	{
+		int provNum = openProvinces.front();
+		openProvinces.pop();
+		closedProvinces.insert(make_pair(provNum, provNum));
+
+		auto province = provinces.find(provNum);
+		if ((province != provinces.end()) && (province->second->getOwner() == owner) && (province->second->getAirBase() > 0))
+		{
+			return provNum;
+		}
+		else
+		{
+			auto adjacencies = HoI3AdjacencyMap[provNum];
+			for (auto thisAdjacency: adjacencies)
+			{
+				auto closed = closedProvinces.find(thisAdjacency.to);
+				if (closed == closedProvinces.end())
+				{
+					openProvinces.push(thisAdjacency.to);
+				}
+			}
+		}
+	}
+
+	return -1;
+}
+
+
 vector<V2Regiment*> HoI3World::reorderRegiments(const vector<V2Regiment*>& sourceRegiments, const string& tag, const string& armyName)
 {
 	vector<V2Regiment*> supportRegiments;
@@ -1173,7 +1208,6 @@ void HoI3World::convertArmies(const V2World& sourceWorld, const inverseProvinceM
 				selectedLocation = locationCandidates[rand() % locationCandidates.size()];
 				destArmy.setLocation(selectedLocation);
 				map<int, HoI3Province*>::iterator pitr = provinces.find(selectedLocation);
-
 				if (pitr != provinces.end())
 				{
 					locationProvince = pitr->second;
@@ -1187,9 +1221,24 @@ void HoI3World::convertArmies(const V2World& sourceWorld, const inverseProvinceM
 			// air units need to be split into air forces, so create a top-level air force regiment to hold any air units
 			HoI3RegGroup destAirForce;
 			destAirForce.setForceType(air);
+			HoI3Province* airLocationProvince = NULL;
 			if (!destArmy.getProductionQueue())
 			{
-				destAirForce.setLocation(selectedLocation);
+				int airLocation = -1;
+				if (locationProvince != NULL)
+				{
+					airLocation = getAirLocation(locationProvince, HoI3AdjacencyMap, country.first);
+				}
+				destAirForce.setLocation(airLocation);
+				map<int, HoI3Province*>::iterator pitr = provinces.find(airLocation);
+				if (pitr != provinces.end())
+				{
+					airLocationProvince = pitr->second;
+				}
+				else
+				{
+					destAirForce.setProductionQueue(true);
+				}
 			}
 
 			// reorder the regiments to avoid zero-width units in HoI3
@@ -1217,22 +1266,13 @@ void HoI3World::convertArmies(const V2World& sourceWorld, const inverseProvinceM
 			// add converted air units to the country
 			if (!destAirForce.isEmpty() && !destArmy.getProductionQueue())
 			{
-				// we need to put an airbase here, so make sure we're in our own territory
-				if ((locationProvince != NULL) && (locationProvince->getOwner() == country.first))
-				{
-					// make sure an airbase is waiting for them
-					locationProvince->requireAirBase(min(10, locationProvince->getAirBase() + (destAirForce.size() * 2)));
+				// make sure an airbase is waiting for them
+				airLocationProvince->requireAirBase(min(10, airLocationProvince->getAirBase() + (destAirForce.size() * 2)));
 
-					stringstream name;
-					name << ++airForceIndex << CardinalToOrdinal(airForceIndex) << " Air Force";
-					destAirForce.setName(name.str());
-					country.second->addArmy(destAirForce);
-				}
-				else
-				{
-					LOG(LogLevel::Warning) << "Airforce attached to army " << oldArmy->getName() << " is not at a location where an airbase can be created; placing units in the production queue.";
-					destArmy.setProductionQueue(true);
-				}
+				stringstream name;
+				name << ++airForceIndex << CardinalToOrdinal(airForceIndex) << " Air Force";
+				destAirForce.setName(name.str());
+				country.second->addArmy(destAirForce);
 			}
 			if (!destAirForce.isEmpty() && destArmy.getProductionQueue())
 			{
@@ -1251,7 +1291,7 @@ void HoI3World::convertArmies(const V2World& sourceWorld, const inverseProvinceM
 		}
 	}
 }
-
+#pragma optimize("", on)
 
 void HoI3World::checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string leader, const string& factionName)
 {

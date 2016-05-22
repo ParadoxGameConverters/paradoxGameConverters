@@ -74,6 +74,7 @@ class HoI3World
 		vector<int>				getPortProvinces(const vector<int>& locationCandidates);
 		unitTypeMapping		getUnitMappings();
 		vector<int>				getPortLocationCandidates(const vector<int>& locationCandidates, const HoI3AdjacencyMapping& HoI3AdjacencyMap);
+		int						getAirLocation(HoI3Province* locationProvince, const HoI3AdjacencyMapping& HoI3AdjacencyMap, string owner);
 		vector<V2Regiment*>	reorderRegiments(const vector<V2Regiment*>& sourceRegiments, const string& tag, const string& armyName);
 
 		void	outputCommonCountries() const;
