@@ -50,7 +50,7 @@ typedef struct fileWithCreateTime
 } fileWithCreateTime;
 
 
-HoI3World::HoI3World(const provinceMapping& provinceMap)
+void HoI3World::importProvinces(const provinceMapping& provinceMap)
 {
 	LOG(LogLevel::Info) << "Importing provinces";
 
@@ -99,7 +99,11 @@ HoI3World::HoI3World(const provinceMapping& provinceMap)
 		directories.pop_front();
 	}
 	checkAllProvincesMapped(provinceMap);
+}
 
+
+void HoI3World::checkCoastalProvinces()
+{
 	// determine whether each province is coastal or not by checking if it has a naval base
 	// if it's not coastal, we won't try to put any navies in it (otherwise HoI3 crashes)
 	Object*	obj2 = doParseFile((Configuration::getHoI3Path() + "\\tfh\\map\\positions.txt").c_str());
@@ -109,12 +113,14 @@ HoI3World::HoI3World(const provinceMapping& provinceMap)
 		LOG(LogLevel::Error) << "map\\positions.txt failed to parse.";
 		exit(1);
 	}
-	for (vector<Object*>::iterator itr = objProv.begin(); itr != objProv.end(); ++itr)
+	for (auto itr: objProv)
 	{
-		int provinceNum = atoi((*itr)->getKey().c_str());
-		vector<Object*> objPos = (*itr)->getValue("building_position");
+		int provinceNum = atoi(itr->getKey().c_str());
+		vector<Object*> objPos = itr->getValue("building_position");
 		if (objPos.size() == 0)
+		{
 			continue;
+		}
 		vector<Object*> objNavalBase = objPos[0]->getValue("naval_base");
 		if (objNavalBase.size() != 0)
 		{
@@ -126,7 +132,11 @@ HoI3World::HoI3World(const provinceMapping& provinceMap)
 			}
 		}
 	}
+}
 
+
+void HoI3World::importPotentialCountries()
+{
 	countries.clear();
 
 	LOG(LogLevel::Info) << "Getting potential countries";
@@ -167,7 +177,7 @@ HoI3World::HoI3World(const provinceMapping& provinceMap)
 		countryFileName = line.substr(start, size);
 
 		HoI3Country* newCountry = new HoI3Country(tag, countryFileName, this);
-		potentialCountries.push_back(newCountry);
+		potentialCountries.insert(make_pair(tag, newCountry));
 	}
 	HoI3CountriesInput.close();
 
@@ -177,11 +187,21 @@ HoI3World::HoI3World(const provinceMapping& provinceMap)
 
 void HoI3World::output() const
 {
+	outputCommonCountries();
+	outputAutoexecLua();
+	outputLocalisations();
+	outputHistory();
+}
+
+
+void HoI3World::outputCommonCountries() const
+{
 	// Create common\countries path.
 	string countriesPath = "Output\\" + Configuration::getOutputName() + "\\common\\countries";
 	if (!WinUtils::TryCreateFolder(countriesPath))
 	{
-		return;
+		LOG(LogLevel::Error) << "Could not create \"Output\\" + Configuration::getOutputName() + "\\common\\countries\"";
+		exit(-1);
 	}
 
 	// Output common\countries.txt
@@ -207,13 +227,11 @@ void HoI3World::output() const
 		}
 		else if ((countryItr = countries.find(countryOrder[i])) == countries.end())
 		{
-			// Search potential countries. (This should normally only be REB, because only active countries should be in countryOrder)
-			for (vector<HoI3Country*>::const_iterator pCountryItr = potentialCountries.begin(); pCountryItr != potentialCountries.end(); pCountryItr++)
+			// Search potential countries. This should normally only be REB, because only active countries should be in countryOrder
+			auto potentialCountry = potentialCountries.find(hoiTag);
+			if (potentialCountry != potentialCountries.end())
 			{
-				if (hoiTag == (*pCountryItr)->getTag())
-				{
-					country = *pCountryItr;
-				}
+				country = potentialCountry->second;
 			}
 		}
 		else
@@ -231,43 +249,45 @@ void HoI3World::output() const
 		}
 	}
 
-	for (map<string, HoI3Country*>::const_iterator i = countries.begin(); i != countries.end(); i++)
+	for (auto countryItr: countries)
 	{
 		// Skip countries that have already been processed
-		for (unsigned j = 0; j < countryOrder.size(); j++)
+		for (auto orderItr: countryOrder)
 		{
-			if (countryOrder[j] == i->first)
+			if (orderItr == countryItr.first)
 			{
 				continue;
 			}
 		}
 
-		const HoI3Country& country = *i->second;
-		country.outputToCommonCountriesFile(allCountriesFile);
+		countryItr.second->outputToCommonCountriesFile(allCountriesFile);
 	}
 
 	// There are bugs and crashes if all potential vanilla HoI3 countries are not in the common\countries.txt file
 	// Also, the Rebels are to be included
-	for (vector<HoI3Country*>::const_iterator i = potentialCountries.begin(); i != potentialCountries.end(); i++)
+	for (auto potentialItr: potentialCountries)
 	{
 		// Skip countries that have already been processed. (This should normally only be REB, because only active countries should be in countryOrder)
-		for (unsigned j = 0; j < countryOrder.size(); j++)
+		for (auto orderItr: countryOrder)
 		{
-			if (countryOrder[j] == (*i)->getTag())
+			if (orderItr == potentialItr.first)
 			{
 				continue;
 			}
 		}
 
-		const HoI3Country& country = **i;
-		if (countries.find(country.getTag()) == countries.end())
+		if (countries.find(potentialItr.first) == countries.end())
 		{
-			country.outputToCommonCountriesFile(allCountriesFile);
+			potentialItr.second->outputToCommonCountriesFile(allCountriesFile);
 		}
 	}
 	fprintf(allCountriesFile, "\n");
 	fclose(allCountriesFile);
+}
 
+
+void HoI3World::outputAutoexecLua() const
+{
 	// output autoexec.lua
 	FILE* autoexec;
 	if (fopen_s(&autoexec, ("Output\\" + Configuration::getOutputName() + "\\script\\autoexec.lua").c_str(), "w") != 0)
@@ -291,13 +311,17 @@ void HoI3World::output() const
 	}
 	sourceFile.close();
 
-	for (auto country: potentialCountries)
+	for (auto country : potentialCountries)
 	{
-		fprintf(autoexec, "require('%s')\n", country->getTag().c_str());
+		fprintf(autoexec, "require('%s')\n", country.first.c_str());
 	}
 	fprintf(autoexec, "\n");
 	fclose(autoexec);
+}
 
+
+void HoI3World::outputLocalisations() const
+{
 	// Create localisations for all new countries. We don't actually know the names yet so we just use the tags as the names.
 	LOG(LogLevel::Debug) << "Writing localisation text";
 	string localisationPath = "Output\\" + Configuration::getOutputName() + "\\localisation";
@@ -324,31 +348,35 @@ void HoI3World::output() const
 		}
 	}
 	fclose(localisationFile);
+}
 
+
+void HoI3World::outputHistory() const
+{
 	LOG(LogLevel::Debug) << "Writing provinces";
-	for (map<int, HoI3Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
+	for (auto provItr: provinces)
 	{
-		i->second->output();
+		provItr.second->output();
 	}
 	LOG(LogLevel::Debug) << "Writing countries";
-	for (map<string, HoI3Country*>::const_iterator itr = countries.begin(); itr != countries.end(); itr++)
+	for (auto countryItr: countries)
 	{
-		itr->second->output();
+		countryItr.second->output();
 	}
 	// Override vanilla history to suppress vanilla OOB and faction membership being read
-	for (vector<HoI3Country*>::const_iterator i = potentialCountries.begin(); i != potentialCountries.end(); i++)
+	for (auto potentialItr: potentialCountries)
 	{
-		const HoI3Country& country = **i;
-		if (countries.find(country.getTag()) == countries.end())
+		if (countries.find(potentialItr.first) == countries.end())
 		{
-			country.output();
+			potentialItr.second->output();
 		}
 	}
 	LOG(LogLevel::Debug) << "Writing diplomacy";
 	diplomacy.output();
 }
 
-void HoI3World::getProvinceLocalizations(string file)
+
+void HoI3World::getProvinceLocalizations(const string& file)
 {
 	ifstream read;
 	string line;
@@ -368,75 +396,66 @@ void HoI3World::getProvinceLocalizations(string file)
 }
 
 
-void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping countryMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+void HoI3World::convertCountries(const V2World &sourceWorld, const CountryMapping& countryMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
 {
 	vector<string> outputOrder;
 	outputOrder.clear();
-	for (unsigned int i = 0; i < potentialCountries.size(); i++)
+	for (auto potentialItr: potentialCountries)
 	{
-		outputOrder.push_back(potentialCountries[i]->getTag());
+		outputOrder.push_back(potentialItr.first);
 	}
 
-	map<string, V2Country*> sourceCountries = sourceWorld.getCountries();
-	for (map<string, V2Country*>::iterator i = sourceCountries.begin(); i != sourceCountries.end(); i++)
+	for (auto sourceItr: sourceWorld.getCountries())
 	{
-		V2Country* sourceCountry = i->second;
-		std::string V2Tag = sourceCountry->getTag();
-
-		if (V2Tag == "REB")
+		// don't convert rebels
+		if (sourceItr.first == "REB")
 		{
 			continue;
 		}
 
 		HoI3Country* destCountry = NULL;
-		const std::string& HoI3Tag = countryMap[V2Tag];
-
+		const std::string& HoI3Tag = countryMap[sourceItr.first];
 		if (!HoI3Tag.empty())
 		{
-			for (auto candidateDestCountry: potentialCountries)
+			auto candidateDestCountry = potentialCountries.find(HoI3Tag);
+			if (candidateDestCountry != potentialCountries.end())
 			{
-				if ((candidateDestCountry != NULL) && (candidateDestCountry->getTag() == HoI3Tag))
-				{
-					destCountry = candidateDestCountry;
-					break;
-				}
+				destCountry = candidateDestCountry->second;
 			}
-			if (destCountry == NULL)
-			{ // No such V2 country exists yet for this tag so we make a new one.
-				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
+			if (destCountry == NULL) // No such HoI3 country exists yet for this tag so make a new one
+			{
+				std::string countryFileName = '/' + sourceItr.second->getName() + ".txt";
 				destCountry = new HoI3Country(HoI3Tag, countryFileName, this, true);
 			}
-			V2Party* rulingParty = sourceWorld.getRulingParty(sourceCountry);
+			V2Party* rulingParty = sourceWorld.getRulingParty(sourceItr.second);
 			if (rulingParty == NULL)
 			{
-				LOG(LogLevel::Error) << "Could not find the ruling party for " <<  sourceCountry->getTag() << ". Were all mods correctly included?";
+				LOG(LogLevel::Error) << "Could not find the ruling party for " <<  sourceItr.first << ". Were all mods correctly included?";
 				exit(-1);
 			}
-			destCountry->initFromV2Country(sourceWorld, sourceCountry, rulingParty->ideology, outputOrder, countryMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
+			destCountry->initFromV2Country(sourceWorld, sourceItr.second, rulingParty->ideology, outputOrder, countryMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
 			countries.insert(make_pair(HoI3Tag, destCountry));
 		}
 		else
 		{
-			LOG(LogLevel::Warning) << "Could not convert V2 tag " << i->second->getTag() << " to HoI3";
+			LOG(LogLevel::Warning) << "Could not convert V2 tag " << sourceItr.first << " to HoI3";
 		}
 	}
 
-	// ALL potential countries should be output to the file, otherwise some things don't get initialized right
-	for (vector<HoI3Country*>::iterator itr = potentialCountries.begin(); itr != potentialCountries.end(); ++itr)
+	// initialize all potential countries
+	// ALL potential countries should be output to the file, otherwise some things don't get initialized right in HoI3
+	for (auto potentialItr: potentialCountries)
 	{
-		map<string, HoI3Country*>::iterator citr = countries.find((*itr)->getTag());
+		map<string, HoI3Country*>::iterator citr = countries.find(potentialItr.first);
 		if (citr == countries.end())
 		{
-			(*itr)->initFromHistory();
-			//countries.insert(make_pair((*itr)->getTag(), *itr));
+			potentialItr.second->initFromHistory();
 		}
 	}
 
-	const std::vector<string> &greatCountries = sourceWorld.getGreatCountries();
-	for (unsigned i = 0; i < greatCountries.size(); i++)
+	for (auto greatItr: sourceWorld.getGreatCountries())
 	{
-		const std::string& HoI3Tag = countryMap[greatCountries[i]];
-		countryOrder.push_back(HoI3Tag);
+		countryOrder.push_back(countryMap[greatItr]);
 	}
 }
 
@@ -450,9 +469,9 @@ struct MTo1ProvinceComp
 };
 
 
-void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, inverseProvinceMapping inverseProvinceMap, CountryMapping countryMap, const HoI3AdjacencyMapping &HoI3AdjacencyMap)
+void HoI3World::convertProvinceOwners(const V2World &sourceWorld, const provinceMapping& provinceMap, const CountryMapping& countryMap)
 {
-	for (auto provItr: provinces)
+	for (auto provItr : provinces)
 	{
 		// get the appropriate mapping
 		provinceMapping::const_iterator provinceLink = provinceMap.find(provItr.first);
@@ -468,13 +487,13 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 
 		provItr.second->clearCores();
 
-		V2Province*	oldProvince	= NULL;
-		V2Country*	oldOwner		= NULL;
+		V2Province*	oldProvince = NULL;
+		V2Country*	oldOwner = NULL;
 
 		// determine ownership by province count, or total population (if province count is tied)
 		map<string, MTo1ProvinceComp> provinceBins;
 		double newProvinceTotalPop = 0;
-		for (auto srcProvItr: provinceLink->second)
+		for (auto srcProvItr : provinceLink->second)
 		{
 			V2Province* srcProvince = sourceWorld.getProvince(srcProvItr);
 			if (!srcProvince)
@@ -502,13 +521,13 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 			newProvinceTotalPop += srcProvince->getTotalPopulation();
 			// I am the new owner if there is no current owner, or I have more provinces than the current owner,
 			// or I have the same number of provinces, but more population, than the current owner
-			if (  (oldOwner == NULL)
+			if ((oldOwner == NULL)
 				|| (provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size())
-				|| ( (provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size())
-				  && (provinceBins[tag].totalPopulation > provinceBins[oldOwner->getTag()].totalPopulation)))
+				|| ((provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size())
+					&& (provinceBins[tag].totalPopulation > provinceBins[oldOwner->getTag()].totalPopulation)))
 			{
-				oldOwner		= owner;
-				oldProvince	= srcProvince;
+				oldOwner = owner;
+				oldProvince = srcProvince;
 			}
 		}
 		if (oldOwner == NULL)
@@ -533,13 +552,13 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 			}
 			provItr.second->convertFromOldProvince(oldProvince);
 
-			for (auto srcOwnerItr: provinceBins)
+			for (auto srcOwnerItr : provinceBins)
 			{
-				for (auto srcProvItr: srcOwnerItr.second.provinces)
+				for (auto srcProvItr : srcOwnerItr.second.provinces)
 				{
 					// convert cores
 					vector<V2Country*> oldCores = srcProvItr->getCores(sourceWorld.getCountries());
-					for (auto oldCoreItr: oldCores)
+					for (auto oldCoreItr : oldCores)
 					{
 						// skip this core if the country is the owner of the V2 province but not the HoI3 province
 						// (i.e. "avoid boundary conflicts that didn't exist in V2").
@@ -559,7 +578,11 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 			}
 		}
 	}
+}
 
+
+void HoI3World::convertNavalBases(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap)
+{
 	// convert naval bases. There should only be one per Vic2 naval base
 	for (auto mapping: inverseProvinceMap)
 	{
@@ -575,7 +598,11 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 			}
 		}
 	}
+}
 
+
+void HoI3World::convertProvinceItems(const V2World& sourceWorld, const provinceMapping& provinceMap, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, const HoI3AdjacencyMapping& HoI3AdjacencyMap)
+{
 	// now that all provinces have had owners and cores set, convert their other items
 	for (auto mapping: provinceMap)
 	{
@@ -696,7 +723,7 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 }
 
 
-void HoI3World::convertTechs(V2World& sourceWorld)
+void HoI3World::convertTechs(const V2World& sourceWorld)
 {
 	map<string, vector<pair<string, int> > > techTechMap;
 	map<string, vector<pair<string, int> > > invTechMap;
@@ -710,61 +737,58 @@ void HoI3World::convertTechs(V2World& sourceWorld)
 		exit(1);
 	}
 	objs = objs[0]->getValue("link");
-	for (vector<Object*>::iterator itr = objs.begin(); itr != objs.end(); ++itr)
+	for (auto itr: objs)
 	{
-		vector<string> keys = (*itr)->getKeys();
+		vector<string> keys = itr->getKeys();
 		int status = 0; // 0 = unhandled, 1 = tech, 2 = invention
 		vector<pair<string, int> > targetTechs;
 		string tech = "";
-		for (vector<string>::iterator master = keys.begin(); master != keys.end(); ++master)
+		for (auto master: keys)
 		{
-			if (status == 0 && (*master) == "v2_inv")
+			if ((status == 0) && (master == "v2_inv"))
 			{
-				tech = (*itr)->getLeaf("v2_inv");
+				tech = itr->getLeaf("v2_inv");
 				status = 2;
 			}
-			else if (status == 0 && (*master) == "v2_tech")
+			else if ((status == 0) && (master == "v2_tech"))
 			{
-				tech = (*itr)->getLeaf("v2_tech");
+				tech = itr->getLeaf("v2_tech");
 				status = 1;
 			}
 			else
 			{
-				int value = atoi((*itr)->getLeaf(*master).c_str());
-				targetTechs.push_back(pair<string, int>(*master, value));
+				int value = atoi(itr->getLeaf(master).c_str());
+				targetTechs.push_back(pair<string, int>(master, value));
 			}
 		}
 		switch (status)
 		{
-		case 0:
-			LOG(LogLevel::Error) << "unhandled tech link with first key " << keys[0].c_str() << "!";
-			break;
-		case 1:
-			techTechMap[tech] = targetTechs;
-			break;
-		case 2:
-			invTechMap[tech] = targetTechs;
-			break;
+			case 0:
+				LOG(LogLevel::Error) << "unhandled tech link with first key " << keys[0].c_str() << "!";
+				break;
+			case 1:
+				techTechMap[tech] = targetTechs;
+				break;
+			case 2:
+				invTechMap[tech] = targetTechs;
+				break;
 		}
 	}
 
 
-	for (map<string, HoI3Country*>::iterator i = countries.begin(); i != countries.end(); i++)
+	for (auto dstCountry: countries)
 	{
-		const std::string& HoI3Tag = i->first;
-		HoI3Country* destCountry = i->second;
-		const V2Country* sourceCountry = destCountry->getSourceCountry();
-		const std::string V2Tag = i->first;
-		vector<string> techs = sourceCountry->getTechs();
+		const V2Country*	sourceCountry	= dstCountry.second->getSourceCountry();
+		vector<string>		techs				= sourceCountry->getTechs();
 
-		for (vector<string>::iterator itr = techs.begin(); itr != techs.end(); ++itr)
+		for (auto techName: techs)
 		{
-			map<string, vector<pair<string, int> > >::iterator mapItr = techTechMap.find(*itr);
+			auto mapItr = techTechMap.find(techName);
 			if (mapItr != techTechMap.end())
 			{
-				for (vector<pair<string, int> >::iterator jtr = mapItr->second.begin(); jtr != mapItr->second.end(); ++jtr)
+				for (auto HoI3TechItr: mapItr->second)
 				{
-					destCountry->setTechnology(jtr->first, jtr->second);
+					dstCountry.second->setTechnology(HoI3TechItr.first, HoI3TechItr.second);
 				}
 			}
 		}
@@ -772,26 +796,27 @@ void HoI3World::convertTechs(V2World& sourceWorld)
 		vector<string> srcInventions = sourceCountry->getInventions();
 		for (auto invItr: srcInventions)
 		{
-			map<string, vector<pair<string, int> > >::iterator mapItr = invTechMap.find(invItr);
+			auto mapItr = invTechMap.find(invItr);
 			if (mapItr == invTechMap.end())
 			{
 				continue;
 			}
 			else
 			{
-				for (vector<pair<string, int> >::iterator jtr = mapItr->second.begin(); jtr != mapItr->second.end(); ++jtr)
+				for (auto HoI3TechItr : mapItr->second)
 				{
-					destCountry->setTechnology(jtr->first, jtr->second);
+					dstCountry.second->setTechnology(HoI3TechItr.first, HoI3TechItr.second);
 				}
 			}
 		}
 	}
 }
 
+
 static string CardinalToOrdinal(int cardinal)
 {
-	int hundredRem = cardinal % 100;
-	int tenRem = cardinal % 10;
+	int hundredRem	= cardinal % 100;
+	int tenRem		= cardinal % 10;
 	if (hundredRem - tenRem == 10)
 	{
 		return "th";
@@ -799,25 +824,25 @@ static string CardinalToOrdinal(int cardinal)
 
 	switch (tenRem)
 	{
-	case 1:
-		return "st";
-	case 2:
-		return "nd";
-	case 3:
-		return "rd";
-	default:
-		return "th";
+		case 1:
+			return "st";
+		case 2:
+			return "nd";
+		case 3:
+			return "rd";
+		default:
+			return "th";
 	}
 }
 
 
-vector<int> HoI3World::getPortProvinces(vector<int> locationCandidates)
+vector<int> HoI3World::getPortProvinces(const vector<int>& locationCandidates)
 {
 	vector<int> newLocationCandidates;
 	for (auto litr: locationCandidates)
 	{
 		map<int, HoI3Province*>::const_iterator provinceItr = provinces.find(litr);
-		if (provinceItr != provinces.end() && provinceItr->second->hasNavalBase())
+		if ((provinceItr != provinces.end()) && (provinceItr->second->hasNavalBase()))
 		{
 			newLocationCandidates.push_back(litr);
 		}
@@ -827,20 +852,21 @@ vector<int> HoI3World::getPortProvinces(vector<int> locationCandidates)
 }
 
 
-void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inverseProvinceMap, const HoI3AdjacencyMapping& HoI3AdjacencyMap)
+unitTypeMapping HoI3World::getUnitMappings()
 {
-	// get the unit mappings
+	// parse the mapping file
 	map<string, multimap<HoI3RegimentType, unsigned> > unitTypeMap; // <vic, hoi>
 	Object* obj = doParseFile("unit_mapping.txt");
 	vector<Object*> leaves = obj->getLeaves();
 	if (leaves.size() < 1)
 	{
 		LOG(LogLevel::Error) << "No unit mapping definitions loaded.";
-		return;
+		exit(-1);
 	}
 
-	int modIndex		= -1;
-	int defaultIndex	= 0;
+	// figure out which set of mappings to use
+	int modIndex = -1;
+	int defaultIndex = 0;
 	for (unsigned int i = 0; i < leaves.size(); i++)
 	{
 		string key = leaves[i]->getKey();
@@ -861,9 +887,11 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 	{
 		leaves = leaves[defaultIndex]->getLeaves();
 	}
-	for (vector<Object*>::iterator itr = leaves.begin(); itr != leaves.end(); ++itr)
+
+	// read the mappings
+	for (auto leaf: leaves)
 	{
-		vector<Object*> vicKeys = (*itr)->getValue("vic");
+		vector<Object*> vicKeys = leaf->getValue("vic");
 		if (vicKeys.size() < 1)
 		{
 			LOG(LogLevel::Error) << "invalid unit mapping(no source).";
@@ -872,60 +900,218 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 		{
 			// multimap allows multiple mapping and ratio mapping (e.g. 4 irregulars converted to 3 militia brigades and 1 infantry brigade)
 			multimap<HoI3RegimentType, unsigned> hoiList;
-			vector<Object*> hoiKeys = (*itr)->getValue("hoi0");
-			for (vector<Object*>::iterator hoiKey = hoiKeys.begin(); hoiKey != hoiKeys.end(); ++hoiKey)
+			vector<Object*> hoiKeys = leaf->getValue("hoi0");
+			for (auto hoiKey: hoiKeys)
 			{
-				hoiList.insert(std::pair<HoI3RegimentType, unsigned>(HoI3RegimentType((*hoiKey)->getLeaf()), 0));
+				hoiList.insert(make_pair(HoI3RegimentType(hoiKey->getLeaf()), 0));
 			}
 
-			hoiKeys = (*itr)->getValue("hoi1");
-			for (vector<Object*>::iterator hoiKey = hoiKeys.begin(); hoiKey != hoiKeys.end(); ++hoiKey)
+			hoiKeys = leaf->getValue("hoi1");
+			for (auto hoiKey : hoiKeys)
 			{
-				hoiList.insert(std::pair<HoI3RegimentType, unsigned>(HoI3RegimentType((*hoiKey)->getLeaf()), 1));
+				hoiList.insert(make_pair(HoI3RegimentType(hoiKey->getLeaf()), 1));
 			}
 
-			hoiKeys = (*itr)->getValue("hoi2");
-			for (vector<Object*>::iterator hoiKey = hoiKeys.begin(); hoiKey != hoiKeys.end(); ++hoiKey)
+			hoiKeys = leaf->getValue("hoi2");
+			for (auto hoiKey : hoiKeys)
 			{
-				hoiList.insert(std::pair<HoI3RegimentType, unsigned>(HoI3RegimentType((*hoiKey)->getLeaf()), 2));
+				hoiList.insert(make_pair(HoI3RegimentType(hoiKey->getLeaf()), 2));
 			}
 
-			hoiKeys = (*itr)->getValue("hoi3");
-			for (vector<Object*>::iterator hoiKey = hoiKeys.begin(); hoiKey != hoiKeys.end(); ++hoiKey)
+			hoiKeys = leaf->getValue("hoi3");
+			for (auto hoiKey : hoiKeys)
 			{
-				hoiList.insert(std::pair<HoI3RegimentType, unsigned>(HoI3RegimentType((*hoiKey)->getLeaf()), 3));
+				hoiList.insert(make_pair(HoI3RegimentType(hoiKey->getLeaf()), 3));
 			}
 
-			hoiKeys = (*itr)->getValue("hoi4");
-			for (vector<Object*>::iterator hoiKey = hoiKeys.begin(); hoiKey != hoiKeys.end(); ++hoiKey)
+			hoiKeys = leaf->getValue("hoi4");
+			for (auto hoiKey : hoiKeys)
 			{
-				hoiList.insert(std::pair<HoI3RegimentType, unsigned>(HoI3RegimentType((*hoiKey)->getLeaf()), 4));
+				hoiList.insert(make_pair(HoI3RegimentType(hoiKey->getLeaf()), 4));
 			}
 
-			for (vector<Object*>::iterator vicKey = vicKeys.begin(); vicKey != vicKeys.end(); ++vicKey)
+			for (auto vicKey: vicKeys)
 			{
-				if (unitTypeMap.find((*vicKey)->getLeaf()) == unitTypeMap.end())
+				if (unitTypeMap.find(vicKey->getLeaf()) == unitTypeMap.end())
 				{
-					unitTypeMap[(*vicKey)->getLeaf()] = hoiList;
+					unitTypeMap[vicKey->getLeaf()] = hoiList;
 				}
 				else
 				{
-					for (multimap<HoI3RegimentType, unsigned>::const_iterator listItr = hoiList.begin(); listItr != hoiList.end(); ++listItr)
+					for (auto listItr: hoiList)
 					{
-						unitTypeMap[(*vicKey)->getLeaf()].insert(*listItr);
+						unitTypeMap[vicKey->getLeaf()].insert(listItr);
 					}
 				}
 			}
 		}
 	}
 
+	return unitTypeMap;
+}
+
+
+vector<int> HoI3World::getPortLocationCandidates(const vector<int>& locationCandidates, const HoI3AdjacencyMapping& HoI3AdjacencyMap)
+{
+	vector<int> portLocationCandidates = getPortProvinces(locationCandidates);
+	if (portLocationCandidates.size() == 0)
+	{
+		// if none of the mapped provinces are ports, try to push the navy out to sea
+		for (auto candidate : locationCandidates)
+		{
+			if (HoI3AdjacencyMap.size() > static_cast<unsigned int>(candidate))
+			{
+				auto newCandidates = HoI3AdjacencyMap[candidate];
+				for (auto newCandidate : newCandidates)
+				{
+					auto candidateProvince = provinces.find(newCandidate.to);
+					if (candidateProvince == provinces.end())	// if this was not an imported province but has an adjacency, we can assume it's a sea province
+					{
+						portLocationCandidates.push_back(newCandidate.to);
+					}
+				}
+			}
+		}
+	}
+	return portLocationCandidates;
+}
+
+vector<V2Regiment*> HoI3World::reorderRegiments(const vector<V2Regiment*>& sourceRegiments, const string& tag, const string& armyName)
+{
+	vector<V2Regiment*> supportRegiments;
+	vector<V2Regiment*> mainRegiments;
+	for (auto regiment : sourceRegiments)
+	{
+		if ((regiment->getType() == "artillery") || (regiment->getType() == "engineer"))
+		{
+			supportRegiments.push_back(regiment);
+		}
+		else
+		{
+			mainRegiments.push_back(regiment);
+		}
+	}
+
+	vector<V2Regiment*> destRegiments;
+	if (mainRegiments.size() * 3 < supportRegiments.size())
+	{
+		LOG(LogLevel::Warning) << "Too many support units in " << tag << "'s army \"" << armyName << "\"";
+	}
+	if (mainRegiments.size() > 0)
+	{
+		double ratio = 1.0 * supportRegiments.size() / mainRegiments.size();
+		unsigned int j = 0;
+		for (unsigned int i = 0; i < mainRegiments.size(); i++)
+		{
+			for (; j < (i + 1) * ratio; j++)
+			{
+				if (j < supportRegiments.size())
+				{
+					destRegiments.push_back(supportRegiments[j]);
+				}
+			}
+			destRegiments.push_back(mainRegiments[i]);
+		}
+	}
+	else
+	{
+		for (auto regiment : supportRegiments)
+		{
+			destRegiments.push_back(regiment);
+		}
+	}
+
+	return destRegiments;
+}
+
+
+void HoI3World::convertRegiments(const unitTypeMapping& unitTypeMap, vector<V2Regiment*>& sourceRegiments, map<string, unsigned>& typeCount, const pair<string, HoI3Country*>& country, HoI3RegGroup& destArmy, HoI3RegGroup& destAirForce)
+{
+	for (auto regItr: sourceRegiments)
+	{
+		HoI3Regiment destReg;
+		destReg.setName(regItr->getName());
+
+		auto typeMap = unitTypeMap.find(regItr->getType());
+		if (typeMap == unitTypeMap.end())
+		{
+			LOG(LogLevel::Debug) << "Regiment " << regItr->getName() << " has unmapped unit type " << regItr->getType() << ", dropping.";
+			continue;
+		}
+		else if (typeMap->second.empty()) // Silently skip the ones that purposefully have no mapping
+		{
+			continue;
+		}
+
+		const multimap<HoI3RegimentType, unsigned>& hoiMapList = typeMap->second;
+		unsigned destMapIndex = typeCount[regItr->getType()]++ % hoiMapList.size();
+		multimap<HoI3RegimentType, unsigned>::const_iterator destTypeItr = hoiMapList.begin();
+
+		// Count down from destMapIndex to iterate to the correct destination type
+		for (; destMapIndex > 0 && destTypeItr != hoiMapList.end(); --destMapIndex)
+		{
+			++destTypeItr;
+		}
+
+		if (!destTypeItr->first.getUsableBy().empty()) // This unit type is exclusive
+		{
+			unsigned skippedCount = 0;
+			while (skippedCount < hoiMapList.size())
+			{
+				const set<string> &usableByCountries = destTypeItr->first.getUsableBy();
+
+				if (usableByCountries.empty() || usableByCountries.find(country.first) != usableByCountries.end())
+				{
+					break;
+				}
+
+				++skippedCount;
+				++destTypeItr;
+				++typeCount[regItr->getType()];
+				if (destTypeItr == hoiMapList.end())
+				{
+					destTypeItr = hoiMapList.begin();
+				}
+			}
+
+			if (skippedCount == hoiMapList.size())
+			{
+				LOG(LogLevel::Warning) << "Regiment " << regItr->getName() << " has unit type " << regItr->getType() << ", but it is mapped only to units exclusive to other countries. Dropping.";
+				continue;
+			}
+		}
+
+		destReg.setType(destTypeItr->first);
+		destReg.setHistoricalModel(destTypeItr->second);
+		destReg.setReserve(true);
+
+		// Add to army/navy or newly created air force as appropriate
+		if (destReg.getForceType() != air)
+		{
+			destArmy.addRegiment(destReg, true);
+		}
+		else
+		{
+			destAirForce.addRegiment(destReg, true);
+		}
+
+		// Contribute to country's practicals
+		country.second->getPracticals()[destTypeItr->first.getPracticalBonus()] += Configuration::getPracticalsScale() * destTypeItr->first.getPracticalBonusFactor();
+	}
+}
+
+
+void HoI3World::convertArmies(const V2World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const HoI3AdjacencyMapping& HoI3AdjacencyMap)
+{
+	unitTypeMapping unitTypeMap = getUnitMappings();
+
 	// define the headquarters brigade type
 	HoI3RegimentType hqBrigade("hq_brigade");
 
 	// convert each country's armies
-	for (map<string, HoI3Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	for (auto country: countries)
 	{
-		const V2Country* oldCountry = itr->second->getSourceCountry();
+		const V2Country* oldCountry = country.second->getSourceCountry();
 		if (oldCountry == NULL)
 		{
 			continue;
@@ -940,12 +1126,12 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 		map<string, unsigned> typeCount;
 
 		// Convert actual armies
-		vector<V2Army*> sourceArmies = oldCountry->getArmies();
-		for (vector<V2Army*>::iterator aitr = sourceArmies.begin(); aitr != sourceArmies.end(); ++aitr)
+		for (auto oldArmy: oldCountry->getArmies())
 		{
-			V2Army* oldArmy = *aitr;
 			HoI3RegGroup destArmy;
 			destArmy.setName(oldArmy->getName());
+
+			// determine if an army or navy
 			if (oldArmy->getNavy())
 			{
 				destArmy.setForceType(navy);
@@ -956,6 +1142,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 				destArmy.setForceType(land);
 			}
 
+			// get potential locations
 			vector<int> locationCandidates = getHoI3ProvinceNums(inverseProvinceMap, oldArmy->getLocation());
 			if (locationCandidates.size() == 0)
 			{
@@ -964,42 +1151,21 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 			}
 
 			// guarantee that navies are assigned to sea provinces, or land provinces with naval bases
-			bool usePort = false;
 			if ((locationCandidates.size() > 0) && (oldArmy->getNavy()) && (!oldArmy->getAtSea()))
 			{
 				map<int, HoI3Province*>::const_iterator pitr = provinces.find(locationCandidates[0]);
 				if (pitr != provinces.end() && pitr->second->isLand())
 				{
-					usePort = true;
-					vector<int> portLocationCandidates = getPortProvinces(locationCandidates);
-					if (portLocationCandidates.size() == 0)
+					locationCandidates = getPortLocationCandidates(locationCandidates, HoI3AdjacencyMap);
+					if (locationCandidates.size() == 0)
 					{
-						// if none of the mapped provinces are ports, try to push the navy out to sea
-						for (auto candidate: locationCandidates)
-						{
-							if (HoI3AdjacencyMap.size() > static_cast<unsigned int>(candidate))
-							{
-								auto newCandidates = HoI3AdjacencyMap[candidate];
-								for (auto newCandidate: newCandidates)
-								{
-									auto candidateProvince = provinces.find(newCandidate.to);
-									if (candidateProvince == provinces.end())	// if this was not an imported province but has an adjacency, we can assume it's a sea province
-									{
-										portLocationCandidates.push_back(newCandidate.to);
-									}
-								}
-							}
-						}
-						if (portLocationCandidates.size() == 0)
-						{
-							LOG(LogLevel::Warning) << "Navy " << oldArmy->getName() << " assigned to V2 province " << oldArmy->getLocation() << " which has no corresponding HoI3 port provinces; placing units in the production queue.";
-							destArmy.setProductionQueue(true);
-						}
+						LOG(LogLevel::Warning) << "Navy " << oldArmy->getName() << " assigned to V2 province " << oldArmy->getLocation() << " which has no corresponding HoI3 port provinces or adjacent sea provinces; placing units in the production queue.";
+						destArmy.setProductionQueue(true);
 					}
-					locationCandidates = portLocationCandidates;
 				}
 			}
 
+			// pick the actual location
 			int selectedLocation;
 			HoI3Province* locationProvince = NULL;
 			if (locationCandidates.size() > 0)
@@ -1021,129 +1187,16 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 			// air units need to be split into air forces, so create a top-level air force regiment to hold any air units
 			HoI3RegGroup destAirForce;
 			destAirForce.setForceType(air);
-
 			if (!destArmy.getProductionQueue())
 			{
 				destAirForce.setLocation(selectedLocation);
 			}
 
 			// reorder the regiments to avoid zero-width units in HoI3
-			vector<V2Regiment*> sourceRegiments = oldArmy->getRegiments();
-
-			vector<V2Regiment*> supportRegiments;
-			vector<V2Regiment*> mainRegiments;
-			for (auto regiment: sourceRegiments)
-			{
-				if ((regiment->getType() == "artillery") || (regiment->getType() == "engineer"))
-				{
-					supportRegiments.push_back(regiment);
-				}
-				else
-				{
-					mainRegiments.push_back(regiment);
-				}
-			}
-			sourceRegiments.clear();
-			if (mainRegiments.size() * 3 < supportRegiments.size())
-			{
-				LOG(LogLevel::Warning) << "Too many support units in " << itr->first << "'s army \"" << oldArmy->getName() << "\"";
-			}
-			if (mainRegiments.size() > 0)
-			{
-				double ratio = 1.0 * supportRegiments.size() / mainRegiments.size();
-				unsigned int j = 0;
-				for (unsigned int i = 0; i < mainRegiments.size(); i++)
-				{
-					for (; j < (i + 1) * ratio; j++)
-					{
-						if (j < supportRegiments.size())
-						{
-							sourceRegiments.push_back(supportRegiments[j]);
-						}
-					}
-					sourceRegiments.push_back(mainRegiments[i]);
-				}
-			}
-			else
-			{
-				for (auto regiment: supportRegiments)
-				{
-					sourceRegiments.push_back(regiment);
-				}
-			}
+			vector<V2Regiment*> sourceRegiments = reorderRegiments(oldArmy->getRegiments(), country.first, oldArmy->getName());
 
 			// convert the regiments
-			for (auto regItr: sourceRegiments)
-			{
-				HoI3Regiment destReg;
-				destReg.setName(regItr->getName());
-
-				map<string, multimap<HoI3RegimentType, unsigned> >::iterator typeMap = unitTypeMap.find(regItr->getType());
-				if (typeMap == unitTypeMap.end())
-				{
-					LOG(LogLevel::Debug) << "Regiment " << regItr->getName() << " has unmapped unit type " << regItr->getType() << ", dropping.";
-					continue;
-				}
-				else if (typeMap->second.empty()) // Silently skip the ones that have no mapping
-				{
-					continue;
-				}
-
-				const multimap<HoI3RegimentType, unsigned>& hoiMapList = typeMap->second;
-				unsigned destMapIndex = typeCount[regItr->getType()]++ % hoiMapList.size();
-				multimap<HoI3RegimentType, unsigned>::const_iterator destTypeItr = hoiMapList.begin();
-
-				// Count down from destMapIndex to iterate to the correct destination type
-				for (; destMapIndex > 0 && destTypeItr != hoiMapList.end(); --destMapIndex)
-				{
-					++destTypeItr;
-				}
-
-				if (!destTypeItr->first.getUsableBy().empty()) // This unit type is exclusive
-				{
-					unsigned skippedCount = 0;
-					while (skippedCount < hoiMapList.size())
-					{
-						const set<string> &usableByCountries = destTypeItr->first.getUsableBy();
-
-						if (usableByCountries.empty() || usableByCountries.find(itr->first) != usableByCountries.end())
-						{
-							break;
-						}
-
-						++skippedCount;
-						++destTypeItr;
-						++typeCount[regItr->getType()];
-						if (destTypeItr == hoiMapList.end())
-						{
-							destTypeItr = hoiMapList.begin();
-						}
-					}
-
-					if (skippedCount == hoiMapList.size())
-					{
-						LOG(LogLevel::Warning) << "Regiment " << regItr->getName() << " has unit type " << regItr->getType() << ", but it is mapped only to units exclusive to other countries. Dropping.";
-						continue;
-					}
-				}
-
-				destReg.setType(destTypeItr->first);
-				destReg.setHistoricalModel(destTypeItr->second);
-				destReg.setReserve(true);
-
-				// Add to army/navy or newly created air force as appropriate
-				if (destReg.getForceType() != air)
-				{
-					destArmy.addRegiment(destReg, true);
-				}
-				else
-				{
-					destAirForce.addRegiment(destReg, true);
-				}
-
-				// Contribute to country's practicals
-				itr->second->getPracticals()[destTypeItr->first.getPracticalBonus()] += Configuration::getPracticalsScale() * destTypeItr->first.getPracticalBonusFactor();
-			}
+			convertRegiments(unitTypeMap, sourceRegiments, typeCount, country, destArmy, destAirForce);
 
 			// add the converted units to the country
 			if (!destArmy.isEmpty() && !destArmy.getProductionQueue())
@@ -1154,18 +1207,18 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 					locationProvince->requireNavalBase(min(10, locationProvince->getNavalBase() + destArmy.size()));
 				}
 				destArmy.createHQs(hqBrigade); // Generate HQs for all hierarchies
-				itr->second->addArmy(destArmy);
+				country.second->addArmy(destArmy);
 			}
 			else if (!destArmy.isEmpty())
 			{
-				itr->second->addArmy(destArmy);
+				country.second->addArmy(destArmy);
 			}
 
 			// add converted air units to the country
 			if (!destAirForce.isEmpty() && !destArmy.getProductionQueue())
 			{
 				// we need to put an airbase here, so make sure we're in our own territory
-				if ((locationProvince != NULL) && (locationProvince->getOwner() == itr->first))
+				if ((locationProvince != NULL) && (locationProvince->getOwner() == country.first))
 				{
 					// make sure an airbase is waiting for them
 					locationProvince->requireAirBase(min(10, locationProvince->getAirBase() + (destAirForce.size() * 2)));
@@ -1173,7 +1226,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 					stringstream name;
 					name << ++airForceIndex << CardinalToOrdinal(airForceIndex) << " Air Force";
 					destAirForce.setName(name.str());
-					itr->second->addArmy(destAirForce);
+					country.second->addArmy(destAirForce);
 				}
 				else
 				{
@@ -1184,32 +1237,32 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 			if (!destAirForce.isEmpty() && destArmy.getProductionQueue())
 			{
 				destAirForce.setProductionQueue(true);
-				itr->second->addArmy(destAirForce);
+				country.second->addArmy(destAirForce);
 			}
 		}
 
 		// Anticipate practical points being awarded for completing the unit constructions
-		for (vector<HoI3RegGroup>::const_iterator armyItr = itr->second->getArmies().begin(); armyItr != itr->second->getArmies().end(); ++armyItr)
+		for (auto armyItr: country.second->getArmies())
 		{
-			if (armyItr->getProductionQueue())
+			if (armyItr.getProductionQueue())
 			{
-				armyItr->undoPracticalAddition(itr->second->getPracticals());
+				armyItr.undoPracticalAddition(country.second->getPracticals());
 			}
 		}
 	}
 }
 
 
-void HoI3World::checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string& leader, string factionName)
+void HoI3World::checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string leader, const string& factionName)
 {
 	bool leaderSet = false;
-	for (vector<string>::const_iterator itr = candidateTags.begin(); itr != candidateTags.end(); ++itr)
+	for (auto candidate: candidateTags)
 	{
 		// get HoI3 tag from V2 tag
-		string hoiTag = countryMap[*itr];
+		string hoiTag = countryMap[candidate];
 		if (hoiTag.empty())
 		{
-			LOG(LogLevel::Warning) << "Tag " << *itr << " requested for " << factionName << " faction, but is unmapped!";
+			LOG(LogLevel::Warning) << "Tag " << candidate << " requested for " << factionName << " faction, but is unmapped!";
 			continue;
 		}
 
@@ -1219,11 +1272,11 @@ void HoI3World::checkManualFaction(const CountryMapping& countryMap, const vecto
 		{
 			if (citr->second->getProvinces().size() == 0)
 			{
-				LOG(LogLevel::Warning) << "Tag " << *itr << " requested for " << factionName << " faction, but is landless!";
+				LOG(LogLevel::Warning) << "Tag " << candidate << " requested for " << factionName << " faction, but is landless!";
 			}
 			else
 			{
-				LOG(LogLevel::Debug) << *itr << " added to " << factionName  << " faction";
+				LOG(LogLevel::Debug) << candidate << " added to " << factionName  << " faction";
 				citr->second->setFaction(factionName);
 				if (leader == "")
 				{
@@ -1238,7 +1291,7 @@ void HoI3World::checkManualFaction(const CountryMapping& countryMap, const vecto
 		}
 		else
 		{
-			LOG(LogLevel::Warning) << "Tag " << *itr << " requested for " << factionName << " faction, but does not exist!";
+			LOG(LogLevel::Warning) << "Tag " << candidate << " requested for " << factionName << " faction, but does not exist!";
 		}
 	}
 }
@@ -1247,13 +1300,13 @@ void HoI3World::checkManualFaction(const CountryMapping& countryMap, const vecto
 void HoI3World::factionSatellites()
 {
 	// make sure that any vassals are in their master's faction
-	const vector<HoI3Agreement> &agr = diplomacy.getAgreements();
-	for (auto itr = agr.begin(); itr != agr.end(); ++itr)
+	const vector<HoI3Agreement>& agreements = diplomacy.getAgreements();
+	for (auto agreement: agreements)
 	{
-		if (itr->type == "vassal")
+		if (agreement.type == "vassal")
 		{
-			auto masterCountry		= countries.find(itr->country1);
-			auto satelliteCountry	= countries.find(itr->country2);
+			auto masterCountry		= countries.find(agreement.country1);
+			auto satelliteCountry	= countries.find(agreement.country2);
 			if ((masterCountry != countries.end()) && (masterCountry->second->getFaction() != "") && (satelliteCountry != countries.end()))
 			{
 				satelliteCountry->second->setFaction(masterCountry->second->getFaction());
@@ -1263,7 +1316,7 @@ void HoI3World::factionSatellites()
 }
 
 
-void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMapping& countryMap)
+void HoI3World::setFactionMembers(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
 	// find faction memebers
 	if (Configuration::getFactionLeaderAlgo() == "manual")
@@ -1278,18 +1331,18 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 		LOG(LogLevel::Info) << "Auto faction allocation requested.";
 
 		const vector<string>& greatCountries = sourceWorld.getGreatCountries();
-		for (vector<string>::const_iterator countryItr = greatCountries.begin(); countryItr != greatCountries.end(); ++countryItr)
+		for (auto countryItr : greatCountries)
 		{
-			map<string, HoI3Country*>::iterator itr = countries.find(countryMap[*countryItr]);
+			map<string, HoI3Country*>::iterator itr = countries.find(countryMap[countryItr]);
 			if (itr != countries.end())
 			{
 				HoI3Country* country = itr->second;
 				const string government = country->getGovernment();
 				const string ideology = country->getIdeology();
 				if (
-						(	government == "national_socialism" || government == "fascist_republic" || government == "germanic_fascist_republic" ||
-							government == "right_wing_republic" || government == "hungarian_right_wing_republic" || government == "right_wing_autocrat" ||
-							government == "absolute_monarchy" || government == "imperial"
+					(government == "national_socialism" || government == "fascist_republic" || government == "germanic_fascist_republic" ||
+						government == "right_wing_republic" || government == "hungarian_right_wing_republic" || government == "right_wing_autocrat" ||
+						government == "absolute_monarchy" || government == "imperial"
 						) &&
 						(ideology == "national_socialist" || ideology == "fascistic" || ideology == "paternal_autocrat")
 					)
@@ -1310,12 +1363,12 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 						}
 					}
 				}
-				else if	(
-								(	government == "social_conservatism" || government == "constitutional_monarchy" || government == "spanish_social_conservatism" ||
-									government == "market_liberalism" || government == "social_democracy" || government == "social_liberalism"
-								) &&
-								(ideology == "social_conservative" || ideology == "market_liberal" || ideology == "social_liberal" || ideology == "social_democrat")
-							)
+				else if (
+					(government == "social_conservatism" || government == "constitutional_monarchy" || government == "spanish_social_conservatism" ||
+						government == "market_liberalism" || government == "social_democracy" || government == "social_liberalism"
+						) &&
+						(ideology == "social_conservative" || ideology == "market_liberal" || ideology == "social_liberal" || ideology == "social_democrat")
+					)
 				{
 					if (alliesLeader == "")
 					{
@@ -1334,13 +1387,13 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 					}
 				}
 				// Allow left_wing_radicals, absolute monarchy and imperial. Being more tolerant for great powers, because we want comintern to be powerful
-				else if	(
-								(	
-									government == "left_wing_radicals" || government == "socialist_republic" || government == "federal_socialist_republic" ||
-									government == "absolute_monarchy" || government == "imperial"
-								) &&
-								(ideology == "left_wing_radical" || ideology == "leninist" || ideology == "stalinist")
-							)
+				else if (
+					(
+						government == "left_wing_radicals" || government == "socialist_republic" || government == "federal_socialist_republic" ||
+						government == "absolute_monarchy" || government == "imperial"
+						) &&
+						(ideology == "left_wing_radical" || ideology == "leninist" || ideology == "stalinist")
+					)
 				{
 					if (cominternLeader == "")
 					{
@@ -1361,7 +1414,7 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 			}
 			else
 			{
-				LOG(LogLevel::Error) << "V2 great power " << *countryItr << " not found.";
+				LOG(LogLevel::Error) << "V2 great power " << countryItr << " not found.";
 			}
 		}
 
@@ -1372,8 +1425,8 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 			const string government = itr->second->getGovernment();
 			const string ideology = itr->second->getIdeology();
 			if (
-					(government == "socialist_republic" || government == "federal_socialist_republic") &&
-					(ideology == "left_wing_radical" || ideology == "leninist" || ideology == "stalinist")
+				(government == "socialist_republic" || government == "federal_socialist_republic") &&
+				(ideology == "left_wing_radical" || ideology == "leninist" || ideology == "stalinist")
 				)
 			{
 				if (itr->second->getFaction() == "") // Skip if already a faction member
@@ -1407,87 +1460,30 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 	else
 	{
 		LOG(LogLevel::Error) << "Error: unrecognized faction algorithm \"" << Configuration::getFactionLeaderAlgo() << "\"!";
-		return;
+		exit(-1);
 	}
+}
 
-	//set faction leaders to be earlier in the country ordering
-	vector<string>::iterator i = countryOrder.begin();
-	while (i != countryOrder.end())
-	{
-		if (*i == axisLeader)
-		{
-			countryOrder.erase(i);
-			countryOrder.insert(countryOrder.begin(), axisLeader);
-			break;
-		}
-		i++;
-		if (i == countryOrder.end())
-		{
-			countryOrder.insert(countryOrder.begin(), axisLeader);
-			break;
-		}
-	}
-	i = countryOrder.begin();
-	while (i != countryOrder.end())
-	{
-		if (*i == alliesLeader)
-		{
-			countryOrder.erase(i);
-			countryOrder.insert(countryOrder.begin(), alliesLeader);
-			break;
-		}
-		i++;
-		if (i == countryOrder.end())
-		{
-			countryOrder.insert(countryOrder.begin(), axisLeader);
-			break;
-		}
-	}
-	i = countryOrder.begin();
-	while (i != countryOrder.end())
-	{
-		if (*i == cominternLeader)
-		{
-			countryOrder.erase(i);
-			countryOrder.insert(countryOrder.begin(), cominternLeader);
-			break;
-		}
-		i++;
-		if (i == countryOrder.end())
-		{
-			countryOrder.insert(countryOrder.begin(), axisLeader);
-			break;
-		}
-	}
-	for (vector<string>::iterator i = countryOrder.begin(); i != countryOrder.end(); i++)
-	{
-		if (*i == "REB")
-		{
-			countryOrder.erase(i);
-			countryOrder.insert(countryOrder.begin(), "REB");
-		}
-	}
 
-	// push satellites into the same faction as their parents
-	factionSatellites();
-
+void HoI3World::setAlignments()
+{
 	// set alignments
-	for (map<string, HoI3Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	for (auto country: countries)
 	{
-		const string countryFaction = itr->second->getFaction();
+		const string countryFaction = country.second->getFaction();
 
 		// force alignment for faction members
 		if (countryFaction == "axis")
 		{
-			itr->second->getAlignment()->alignToAxis();
+			country.second->getAlignment()->alignToAxis();
 		}
 		else if (countryFaction == "allies")
 		{
-			itr->second->getAlignment()->alignToAllied();
+			country.second->getAlignment()->alignToAllied();
 		}
 		else if (countryFaction == "comintern")
 		{
-			itr->second->getAlignment()->alignToComintern();
+			country.second->getAlignment()->alignToComintern();
 		}
 		else
 		{
@@ -1502,7 +1498,7 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 			HoI3Alignment cominternStart;
 			if (axisLeader != "")
 			{
-				HoI3Relations* relObj = itr->second->getRelations(axisLeader);
+				HoI3Relations* relObj = country.second->getRelations(axisLeader);
 				if (relObj != NULL)
 				{
 					double axisRelations = relObj->getRelations();
@@ -1518,7 +1514,7 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 			}
 			if (alliesLeader != "")
 			{
-				HoI3Relations* relObj = itr->second->getRelations(alliesLeader);
+				HoI3Relations* relObj = country.second->getRelations(alliesLeader);
 				if (relObj != NULL)
 				{
 					double alliesRelations = relObj->getRelations();
@@ -1534,7 +1530,7 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 			}
 			if (cominternLeader != "")
 			{
-				HoI3Relations* relObj = itr->second->getRelations(cominternLeader);
+				HoI3Relations* relObj = country.second->getRelations(cominternLeader);
 				if (relObj != NULL)
 				{
 					double cominternRelations = relObj->getRelations();
@@ -1548,13 +1544,62 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 					}
 				}
 			}
-			(*(itr->second->getAlignment())) = HoI3Alignment::getCentroid(axisStart, alliesStart, cominternStart);
+			(*(country.second->getAlignment())) = HoI3Alignment::getCentroid(axisStart, alliesStart, cominternStart);
 		}
 	}
 }
 
 
-void HoI3World::generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap)
+void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMapping& countryMap)
+{
+	setFactionMembers(sourceWorld, countryMap);
+
+	//set faction leaders to be earlier in the country ordering
+	for (auto country = countryOrder.begin(); country != countryOrder.end(); country++)
+	{
+		if (*country == axisLeader)
+		{
+			countryOrder.erase(country);
+			break;
+		}
+	}
+	countryOrder.insert(countryOrder.begin(), axisLeader);
+
+	for (auto country = countryOrder.begin(); country != countryOrder.end(); country++)
+	{
+		if (*country == alliesLeader)
+		{
+			countryOrder.erase(country);
+			break;
+		}
+	}
+	countryOrder.insert(countryOrder.begin(), alliesLeader);
+
+	for (auto country = countryOrder.begin(); country != countryOrder.end(); country++)
+	{
+		if (*country == cominternLeader)
+		{
+			countryOrder.erase(country);
+			break;
+		}
+	}
+	countryOrder.insert(countryOrder.begin(), cominternLeader);
+	
+	for (auto country = countryOrder.begin(); country != countryOrder.end(); country++)
+	{
+		if (*country == "REB")
+		{
+			countryOrder.erase(country);
+			break;
+		}
+	}
+
+	factionSatellites(); // push satellites into the same faction as their parents
+	setAlignments();
+}
+
+
+void HoI3World::generateLeaders(const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap)
 {
 	for (auto country: countries)
 	{
@@ -1563,7 +1608,7 @@ void HoI3World::generateLeaders(leaderTraitsMap leaderTraits, const namesMapping
 }
 
 
-void HoI3World::consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap)
+void HoI3World::consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap)
 {
 	double totalManpower		= 0.0;
 	double totalLeadership	= 0.0;
@@ -1584,7 +1629,7 @@ void HoI3World::consolidateProvinceItems(inverseProvinceMapping& inverseProvince
 }
 
 
-void HoI3World::convertVictoryPoints(const V2World& sourceWorld, CountryMapping countryMap)
+void HoI3World::convertVictoryPoints(const V2World& sourceWorld, const CountryMapping& countryMap)
 {
 	// all country capitals get five VP
 	for (auto countryItr: countries)
@@ -1597,10 +1642,10 @@ void HoI3World::convertVictoryPoints(const V2World& sourceWorld, CountryMapping 
 	}
 
 	// Great Power capitals get another five
-	const std::vector<string> &greatCountries = sourceWorld.getGreatCountries();
-	for (unsigned i = 0; i < greatCountries.size(); i++)
+	const std::vector<string>& greatCountries = sourceWorld.getGreatCountries();
+	for (auto country: sourceWorld.getGreatCountries())
 	{
-		const std::string& HoI3Tag = countryMap[greatCountries[i]];
+		const std::string& HoI3Tag = countryMap[country];
 		auto countryItr = countries.find(HoI3Tag);
 		if (countryItr != countries.end())
 		{
@@ -1643,21 +1688,20 @@ void HoI3World::convertVictoryPoints(const V2World& sourceWorld, CountryMapping 
 }
 
 
-void HoI3World::convertDiplomacy(V2World& sourceWorld, CountryMapping countryMap)
+void HoI3World::convertDiplomacy(const V2World& sourceWorld, const CountryMapping& countryMap)
 {
-	const vector<V2Agreement> &agreements = sourceWorld.getDiplomacy()->getAgreements();
-	for (vector<V2Agreement>::const_iterator itr = agreements.begin(); itr != agreements.end(); ++itr)
+	for (auto agreement: sourceWorld.getDiplomacy()->getAgreements())
 	{
-		string HoI3Tag1 = countryMap[itr->country1];
+		string HoI3Tag1 = countryMap[agreement.country1];
 		if (HoI3Tag1.empty())
 		{
-			LOG(LogLevel::Error) << "V2 Country " << itr->country1 << " used in diplomatic agreement doesn't exist";
+			LOG(LogLevel::Error) << "V2 Country " << agreement.country1 << " used in diplomatic agreement doesn't exist";
 			continue;
 		}
-		string HoI3Tag2 = countryMap[itr->country2];
+		string HoI3Tag2 = countryMap[agreement.country2];
 		if (HoI3Tag2.empty())
 		{
-			LOG(LogLevel::Error) << "V2 Country " << itr->country2 << " used in diplomatic agreement doesn't exist";
+			LOG(LogLevel::Error) << "V2 Country " << agreement.country2 << " used in diplomatic agreement doesn't exist";
 			continue;
 		}
 
@@ -1675,17 +1719,17 @@ void HoI3World::convertDiplomacy(V2World& sourceWorld, CountryMapping countryMap
 		}
 
 		// shared diplo types
-		if ((itr->type == "alliance") || (itr->type == "vassal"))
+		if ((agreement.type == "alliance") || (agreement.type == "vassal"))
 		{
 			// copy agreement
 			HoI3Agreement hoi3a;
-			hoi3a.country1 = HoI3Tag1;
-			hoi3a.country2 = HoI3Tag2;
-			hoi3a.start_date = itr->start_date;
-			hoi3a.type = itr->type;
+			hoi3a.country1		= HoI3Tag1;
+			hoi3a.country2		= HoI3Tag2;
+			hoi3a.start_date	= agreement.start_date;
+			hoi3a.type			= agreement.type;
 			diplomacy.addAgreement(hoi3a);
 
-			if (itr->type == "alliance")
+			if (agreement.type == "alliance")
 			{
 				hoi3Country1->second->editAllies().insert(HoI3Tag2);
 			}
@@ -1693,34 +1737,32 @@ void HoI3World::convertDiplomacy(V2World& sourceWorld, CountryMapping countryMap
 	}
 
 	// Relations and guarantees
-	for (map<string, HoI3Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	for (auto country: countries)
 	{
-		const std::map<string, HoI3Relations*> &relations = itr->second->getRelations();
-
-		for (std::map<string, HoI3Relations*>::const_iterator relationItr = relations.begin(); relationItr != relations.end(); ++relationItr)
+		for (auto relationItr: country.second->getRelations())
 		{
 			HoI3Agreement hoi3a;
-			if (itr->first < relationItr->first) // Put it in order to eliminate duplicate relations entries
+			if (country.first < relationItr.first) // Put it in order to eliminate duplicate relations entries
 			{
-				hoi3a.country1 = itr->first;
-				hoi3a.country2 = relationItr->first;
+				hoi3a.country1 = country.first;
+				hoi3a.country2 = relationItr.first;
 			}
 			else
 			{
-				hoi3a.country2 = relationItr->first;
-				hoi3a.country1 = itr->first;
+				hoi3a.country2 = relationItr.first;
+				hoi3a.country1 = country.first;
 			}
 
-			hoi3a.value = relationItr->second->getRelations();
+			hoi3a.value = relationItr.second->getRelations();
 			hoi3a.start_date = date("1930.1.1"); // Arbitrary date
 			hoi3a.type = "relation";
 			diplomacy.addAgreement(hoi3a);
 
-			if (relationItr->second->getGuarantee())
+			if (relationItr.second->getGuarantee())
 			{
 				HoI3Agreement hoi3a;
-				hoi3a.country1 = itr->first;
-				hoi3a.country2 = relationItr->first;
+				hoi3a.country1 = country.first;
+				hoi3a.country2 = relationItr.first;
 				hoi3a.start_date = date("1930.1.1"); // Arbitrary date
 				hoi3a.type = "guarantee";
 				diplomacy.addAgreement(hoi3a);
@@ -1730,19 +1772,7 @@ void HoI3World::convertDiplomacy(V2World& sourceWorld, CountryMapping countryMap
 }
 
 
-map<string, HoI3Country*> HoI3World::getPotentialCountries() const
-{
-	map<string, HoI3Country*> retVal;
-	for (vector<HoI3Country*>::const_iterator i = potentialCountries.begin(); i != potentialCountries.end(); i++)
-	{
-		retVal[(*i)->getTag()] = *i;
-	}
-
-	return retVal;
-}
-
-
-void HoI3World::copyFlags(const V2World &sourceWorld, CountryMapping countryMap)
+void HoI3World::copyFlags(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
 	LOG(LogLevel::Debug) << "Copying flags";
 
@@ -1759,11 +1789,10 @@ void HoI3World::copyFlags(const V2World &sourceWorld, CountryMapping countryMap)
 	}
 
 	const std::string folderPath = Configuration::getV2Path() + "\\gfx\\flags";
-	map<string, V2Country*> sourceCountries = sourceWorld.getCountries();
-	for (map<string, V2Country*>::iterator i = sourceCountries.begin(); i != sourceCountries.end(); i++)
+	for (auto country: sourceWorld.getCountries())
 	{
-		std::string V2Tag = i->first;
-		V2Country* sourceCountry = i->second;
+		std::string V2Tag = country.first;
+		V2Country* sourceCountry = country.second;
 		std::string V2FlagFile = sourceCountry->getFlagFile();
 		const std::string& HoI3Tag = countryMap[V2Tag];
 
@@ -1797,12 +1826,12 @@ void HoI3World::copyFlags(const V2World &sourceWorld, CountryMapping countryMap)
 
 void HoI3World::checkAllProvincesMapped(const provinceMapping& provinceMap)
 {
-	for (map<int, HoI3Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
+	for (auto province: provinces)
 	{
-		provinceMapping::const_iterator j = provinceMap.find(i->first);
-		if (j == provinceMap.end())
+		provinceMapping::const_iterator num = provinceMap.find(province.first);
+		if (num == provinceMap.end())
 		{
-			LOG(LogLevel::Warning) << "No mapping for HoI3 province " << i->first;
+			LOG(LogLevel::Warning) << "No mapping for HoI3 province " << province.first;
 		}
 	}
 }
@@ -1817,7 +1846,7 @@ void HoI3World::setAIFocuses(const AIFocusModifiers& focusModifiers)
 }
 
 
-void HoI3World::addMinimalItems(inverseProvinceMapping& inverseProvinceMap)
+void HoI3World::addMinimalItems(const inverseProvinceMapping& inverseProvinceMap)
 {
 	for (auto country : countries)
 	{

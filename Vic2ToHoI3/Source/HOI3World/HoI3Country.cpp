@@ -763,7 +763,7 @@ void HoI3Country::initFromHistory()
 }
 
 
-void HoI3Country::consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry)
+void HoI3Country::consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry)
 {
 	bool convertManpower		= (Configuration::getManpowerConversion() != "no");
 	bool convertLeadership	= (Configuration::getLeadershipConversion() != "no");
@@ -1209,7 +1209,7 @@ void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 }
 
 
-void HoI3Country::addMinimalItems(inverseProvinceMapping& inverseProvinceMap)
+void HoI3Country::addMinimalItems(const inverseProvinceMapping& inverseProvinceMap)
 {
 	if (provinces.size() == 0)
 	{

@@ -30,46 +30,69 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI3Diplomacy.h"
 #include "../Mapper.h"
 
-class HoI3World {
+
+
+typedef const map<string, multimap<HoI3RegimentType, unsigned> > unitTypeMapping;
+
+
+class HoI3World
+{
 	public:
-		HoI3World(const provinceMapping& provinceMap);
+		HoI3World() {}
 
-		void	createProvinceFiles(const V2World& sourceWorld, const provinceMapping& provinceMap);
-		void	convertCountries(const V2World &sourceWorld, CountryMapping countryMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
-		void	convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, inverseProvinceMapping inverseProvinceMap, CountryMapping countryMap, const HoI3AdjacencyMapping &HoI3AdjacencyMap);
-		void	convertTechs(V2World& sourceWorld);
 		void	output() const;
-		void	convertDiplomacy(V2World& sourceWorld, CountryMapping countryMap);
-		void	convertArmies(V2World& sourceWorld, inverseProvinceMapping inverseProvinceMap, const HoI3AdjacencyMapping& HoI3AdjacencyMap);
-		void	configureFactions(const V2World &sourceWorld, const CountryMapping& countryMap);
-		void	generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
-		void	consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap);
-		void	convertVictoryPoints(const V2World& sourceWorld, CountryMapping countryMap);
-		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
-		void	copyFlags(const V2World &sourceWorld, CountryMapping countryMap);
-		void	addMinimalItems(inverseProvinceMapping& inverseProvinceMap);
 
-		map<string, HoI3Country*>	getPotentialCountries()	const;
+		void	importProvinces(const provinceMapping& provinceMap);
+		void	checkCoastalProvinces();
+		void	importPotentialCountries();
+		void	convertCountries(const V2World &sourceWorld, const CountryMapping& countryMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+		void	convertProvinceOwners(const V2World &sourceWorld, const provinceMapping& provinceMap, const CountryMapping& countryMap);
+		void	convertNavalBases(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap);
+		void	convertProvinceItems(const V2World& sourceWorld, const provinceMapping& provinceMap, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, const HoI3AdjacencyMapping& HoI3AdjacencyMap);
+		void	convertTechs(const V2World& sourceWorld);
+		void	convertDiplomacy(const V2World& sourceWorld, const CountryMapping& countryMap);
+		void	convertArmies(const V2World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const HoI3AdjacencyMapping& HoI3AdjacencyMap);
+		void	configureFactions(const V2World& sourceWorld, const CountryMapping& countryMap);
+		void	generateLeaders(const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
+		void	consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap);
+		void	convertVictoryPoints(const V2World& sourceWorld, const CountryMapping& countryMap);
+		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
+		void	copyFlags(const V2World &sourceWorld, const CountryMapping& countryMap);
+		void	addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
+
+		map<string, HoI3Country*>	getPotentialCountries()	const { return potentialCountries; }
 
 	private:
-		void					getProvinceLocalizations(string file);
-		void					checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string& leader, string factionName);
-		void					factionSatellites();
-		vector<int>			getPortProvinces(vector<int> locationCandidates);
-		void					checkAllProvincesMapped(const provinceMapping& provinceMap);
+		void	getProvinceLocalizations(const string& file);
+		void	checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string leader, const string& factionName);
+		void	factionSatellites();
+		void	checkAllProvincesMapped(const provinceMapping& provinceMap);
+		void	setFactionMembers(const V2World &sourceWorld, const CountryMapping& countryMap);
+		void	setAlignments();
+		void	convertRegiments(const unitTypeMapping& unitTypeMap, vector<V2Regiment*>& sourceRegiments, map<string, unsigned>& typeCount, const pair<string, HoI3Country*>& country, HoI3RegGroup& destArmy, HoI3RegGroup& destAirForce);
 
-		map<int, HoI3Province*>	provinces;
-		map<string, HoI3Country*>		countries;
-		vector<HoI3Country*>		potentialCountries;
-		HoI3Diplomacy			diplomacy;
-		map<int, string>		continents;  // < province, continent >
+		vector<int>				getPortProvinces(const vector<int>& locationCandidates);
+		unitTypeMapping		getUnitMappings();
+		vector<int>				getPortLocationCandidates(const vector<int>& locationCandidates, const HoI3AdjacencyMapping& HoI3AdjacencyMap);
+		vector<V2Regiment*>	reorderRegiments(const vector<V2Regiment*>& sourceRegiments, const string& tag, const string& armyName);
 
-		vector<string> countryOrder; // Order of countries in common\countries.txt. Used for determining faction leader. Also, REB should be first.
+		void	outputCommonCountries() const;
+		void	outputAutoexecLua() const;
+		void	outputLocalisations() const;
+		void	outputHistory() const;
+
+		map<int, HoI3Province*>		provinces;
+		map<string, HoI3Country*>	countries;
+		map<string,HoI3Country*>	potentialCountries;
+		HoI3Diplomacy					diplomacy;
+		map<int, string>				continents;  // < province, continent >
+		vector<string>					countryOrder; // Order of countries in common\countries.txt. Used for determining faction leader. Also, REB should be first.
 
 		string axisLeader;
 		string alliesLeader;
 		string cominternLeader;
 };
+
 
 
 #endif // HOI3WORLD_H_
