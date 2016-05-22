@@ -976,7 +976,7 @@ vector<int> HoI3World::getPortLocationCandidates(const vector<int>& locationCand
 	return portLocationCandidates;
 }
 
-#pragma optimize("", off)
+
 int HoI3World::getAirLocation(HoI3Province* locationProvince, const HoI3AdjacencyMapping& HoI3AdjacencyMap, string owner)
 {
 	queue<int>		openProvinces;
@@ -1291,7 +1291,7 @@ void HoI3World::convertArmies(const V2World& sourceWorld, const inverseProvinceM
 		}
 	}
 }
-#pragma optimize("", on)
+
 
 void HoI3World::checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string leader, const string& factionName)
 {
