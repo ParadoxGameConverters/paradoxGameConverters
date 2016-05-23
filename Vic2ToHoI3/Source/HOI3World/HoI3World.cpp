@@ -1603,7 +1603,10 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 			break;
 		}
 	}
-	countryOrder.insert(countryOrder.begin(), axisLeader);
+	if (axisLeader != "")
+	{
+		countryOrder.insert(countryOrder.begin(), axisLeader);
+	}
 
 	for (auto country = countryOrder.begin(); country != countryOrder.end(); country++)
 	{
@@ -1613,7 +1616,10 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 			break;
 		}
 	}
-	countryOrder.insert(countryOrder.begin(), alliesLeader);
+	if (alliesLeader != "")
+	{
+		countryOrder.insert(countryOrder.begin(), alliesLeader);
+	}
 
 	for (auto country = countryOrder.begin(); country != countryOrder.end(); country++)
 	{
@@ -1623,7 +1629,10 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 			break;
 		}
 	}
-	countryOrder.insert(countryOrder.begin(), cominternLeader);
+	if (cominternLeader != "")
+	{
+		countryOrder.insert(countryOrder.begin(), cominternLeader);
+	}
 	
 	for (auto country = countryOrder.begin(); country != countryOrder.end(); country++)
 	{
@@ -1633,6 +1642,7 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 			break;
 		}
 	}
+	countryOrder.insert(countryOrder.begin(), "REB");
 
 	factionSatellites(); // push satellites into the same faction as their parents
 	setAlignments();
@@ -1735,13 +1745,11 @@ void HoI3World::convertDiplomacy(const V2World& sourceWorld, const CountryMappin
 		string HoI3Tag1 = countryMap[agreement.country1];
 		if (HoI3Tag1.empty())
 		{
-			LOG(LogLevel::Error) << "V2 Country " << agreement.country1 << " used in diplomatic agreement doesn't exist";
 			continue;
 		}
 		string HoI3Tag2 = countryMap[agreement.country2];
 		if (HoI3Tag2.empty())
 		{
-			LOG(LogLevel::Error) << "V2 Country " << agreement.country2 << " used in diplomatic agreement doesn't exist";
 			continue;
 		}
 
