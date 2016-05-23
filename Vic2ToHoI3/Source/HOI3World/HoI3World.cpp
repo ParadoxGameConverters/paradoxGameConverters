@@ -982,11 +982,11 @@ int HoI3World::getAirLocation(HoI3Province* locationProvince, const HoI3Adjacenc
 	queue<int>		openProvinces;
 	map<int, int>	closedProvinces;
 	openProvinces.push(locationProvince->getNum());
+	closedProvinces.insert(make_pair(locationProvince->getNum(), locationProvince->getNum()));
 	while (openProvinces.size() > 0)
 	{
 		int provNum = openProvinces.front();
 		openProvinces.pop();
-		closedProvinces.insert(make_pair(provNum, provNum));
 
 		auto province = provinces.find(provNum);
 		if ((province != provinces.end()) && (province->second->getOwner() == owner) && (province->second->getAirBase() > 0))
@@ -1002,6 +1002,7 @@ int HoI3World::getAirLocation(HoI3Province* locationProvince, const HoI3Adjacenc
 				if (closed == closedProvinces.end())
 				{
 					openProvinces.push(thisAdjacency.to);
+					closedProvinces.insert(make_pair(thisAdjacency.to, thisAdjacency.to));
 				}
 			}
 		}
