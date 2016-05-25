@@ -604,79 +604,107 @@ void HoI3World::convertNavalBases(const V2World &sourceWorld, const inverseProvi
 void HoI3World::convertProvinceItems(const V2World& sourceWorld, const provinceMapping& provinceMap, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, const HoI3AdjacencyMapping& HoI3AdjacencyMap)
 {
 	// now that all provinces have had owners and cores set, convert their other items
-	for (auto mapping: provinceMap)
+	for (auto mapping: inverseProvinceMap)
 	{
-		auto provItr = provinces.find(mapping.first);
-		if (provItr == provinces.end())
+		// get the source province
+		int srcProvinceNum = mapping.first;
+		V2Province* sourceProvince	= sourceWorld.getProvince(srcProvinceNum);
+		if (sourceProvince == NULL)
 		{
 			continue;
 		}
 
-		// determine if this is a border province or not
-		bool borderProvince = false;
-		if (HoI3AdjacencyMap.size() > static_cast<unsigned int>(mapping.first))
+		// convert items that apply to all destination provinces
+		for (auto dstProvinceNum: mapping.second)
 		{
-			const vector<adjacency> adjacencies = HoI3AdjacencyMap[mapping.first];
-			for (auto adj: adjacencies)
-			{
-				auto province				= provinces.find(mapping.first);
-				auto adjacentProvince	= provinces.find(adj.to);
-				if ((province != provinces.end()) && (adjacentProvince != provinces.end()) && (province->second->getOwner() != adjacentProvince->second->getOwner()))
-				{
-					borderProvince = true;
-					break;
-				}
-			}
-		}
-
-		for (auto srcProvinceNum: mapping.second)
-		{
-			V2Province* sourceProvince	= sourceWorld.getProvince(srcProvinceNum);
-
-			if (sourceProvince == NULL)
+			// get the destination province
+			auto dstProvItr = provinces.find(dstProvinceNum);
+			if (dstProvItr == provinces.end())
 			{
 				continue;
 			}
 
 			// source provinces from other owners should not contribute to the destination province
-			if (countryMap[sourceProvince->getOwnerString()] != provItr->second->getOwner())
+			if (countryMap[sourceProvince->getOwnerString()] != dstProvItr->second->getOwner())
 			{
 				continue;
+			}
+
+			// determine if this is a border province or not
+			bool borderProvince = false;
+			if (HoI3AdjacencyMap.size() > static_cast<unsigned int>(mapping.first))
+			{
+				const vector<adjacency> adjacencies = HoI3AdjacencyMap[mapping.first];
+				for (auto adj: adjacencies)
+				{
+					auto province				= provinces.find(mapping.first);
+					auto adjacentProvince	= provinces.find(adj.to);
+					if ((province != provinces.end()) && (adjacentProvince != provinces.end()) && (province->second->getOwner() != adjacentProvince->second->getOwner()))
+					{
+						borderProvince = true;
+						break;
+					}
+				}
 			}
 
 			// convert forts, naval bases, and infrastructure
 			int fortLevel = sourceProvince->getFort();
 			fortLevel = max(0, (fortLevel - 5) * 2 + 1);
-			if (provItr->second->getNavalBase() > 0)
+			if (dstProvItr->second->getNavalBase() > 0)
 			{
-				provItr->second->requireCoastalFort(fortLevel);
+				dstProvItr->second->requireCoastalFort(fortLevel);
 			}
 			if (borderProvince)
 			{
-				provItr->second->requireLandFort(fortLevel);
+				dstProvItr->second->requireLandFort(fortLevel);
 			}
-			provItr->second->requireInfrastructure((int)Configuration::getMinInfra());
+			dstProvItr->second->requireInfrastructure((int)Configuration::getMinInfra());
 			if (sourceProvince->getInfra() > 0) // No infra stays at minInfra
 			{
-				provItr->second->requireInfrastructure(sourceProvince->getInfra() + 4);
+				dstProvItr->second->requireInfrastructure(sourceProvince->getInfra() + 4);
+			}
+
+			if ((Configuration::getLeadershipConversion() == "linear") || (Configuration::getLeadershipConversion() == "squareroot"))
+			{
+				dstProvItr->second->setLeadership(0.0);
+			}
+			if ((Configuration::getManpowerConversion() == "linear") || (Configuration::getManpowerConversion() == "squareroot"))
+			{
+				dstProvItr->second->setManpower(0.0);
+			}
+			if ((Configuration::getIcConversion() == "squareroot") || (Configuration::getIcConversion() == "linear") ||(Configuration::getIcConversion() == "logarithmic"))
+			{
+				dstProvItr->second->setRawIndustry(0.0);
+				dstProvItr->second->setActualIndustry(0.0);
+			}
+		}
+
+		// convert items that apply to only one destination province
+		if (mapping.second.size() > 0)
+		{
+			// get the destination province
+			auto dstProvItr = provinces.find(mapping.second[0]);
+			if (dstProvItr == provinces.end())
+			{
+				continue;
 			}
 
 			// convert industry
 			double industry = sourceProvince->getEmployedWorkers();
 			if (Configuration::getIcConversion() == "squareroot")
 			{
-				industry = sqrt(double(industry)) * 0.00292;
-				provItr->second->addRawIndustry(industry * Configuration::getIcFactor());
+				industry = sqrt(double(industry)) * 0.01294;
+				dstProvItr->second->addRawIndustry(industry * Configuration::getIcFactor());
 			}
 			else if (Configuration::getIcConversion() == "linear")
 			{
-				industry = double(industry) * 0.00000645;
-				provItr->second->addRawIndustry(industry * Configuration::getIcFactor());
+				industry = double(industry) * 0.0000255;
+				dstProvItr->second->addRawIndustry(industry * Configuration::getIcFactor());
 			}
 			else if (Configuration::getIcConversion() == "logarithmic")
 			{
-				industry = log(max(1, industry / 70000)) / log(2) * 1.225;
-				provItr->second->addRawIndustry(industry * Configuration::getIcFactor());
+				industry = log(max(1, industry / 70000)) / log(2) * 5.33;
+				dstProvItr->second->addRawIndustry(industry * Configuration::getIcFactor());
 			}
 					
 			// convert manpower
@@ -686,16 +714,16 @@ void HoI3World::convertProvinceItems(const V2World& sourceWorld, const provinceM
 				+ sourceProvince->getPopulation("farmers") * 0.25; // Conscripts
 			if (Configuration::getManpowerConversion() == "linear")
 			{
-				newManpower *= 0.0000064 * Configuration::getManpowerFactor() / mapping.second.size();
+				newManpower *= 0.000073 * Configuration::getManpowerFactor() / mapping.second.size();
 				newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
-				provItr->second->setManpower(newManpower);
+				dstProvItr->second->addManpower(newManpower);
 			}
 			else if (Configuration::getManpowerConversion() == "squareroot")
 			{
 				newManpower = sqrt(newManpower);
-				newManpower *= 0.0017 * Configuration::getManpowerFactor() / mapping.second.size();
+				newManpower *= 0.017255 * Configuration::getManpowerFactor() / mapping.second.size();
 				newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
-				provItr->second->setManpower(newManpower);
+				dstProvItr->second->addManpower(newManpower);
 			}
 
 			// convert leadership
@@ -707,16 +735,16 @@ void HoI3World::convertProvinceItems(const V2World& sourceWorld, const provinceM
 				+ sourceProvince->getLiteracyWeightedPopulation("aristocrats") * 0.25;
 			if (Configuration::getLeadershipConversion() == "linear")
 			{
-				newLeadership *= 0.000003 * Configuration::getLeadershipFactor() / mapping.second.size();
+				newLeadership *= 0.00003495 * Configuration::getLeadershipFactor() / mapping.second.size();
 				newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
-				provItr->second->setLeadership(newLeadership);
+				dstProvItr->second->addLeadership(newLeadership);
 			}
 			else if (Configuration::getLeadershipConversion() == "squareroot")
 			{
 				newLeadership = sqrt(newLeadership);
-				newLeadership *= 0.00033 * Configuration::getLeadershipFactor() / mapping.second.size();
+				newLeadership *= 0.00351 * Configuration::getLeadershipFactor() / mapping.second.size();
 				newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
-				provItr->second->setLeadership(newLeadership);
+				dstProvItr->second->addLeadership(newLeadership);
 			}
 		}
 	}
