@@ -632,12 +632,12 @@ void HoI3World::convertProvinceItems(const V2World& sourceWorld, const provinceM
 
 			// determine if this is a border province or not
 			bool borderProvince = false;
-			if (HoI3AdjacencyMap.size() > static_cast<unsigned int>(mapping.first))
+			if (HoI3AdjacencyMap.size() > static_cast<unsigned int>(dstProvinceNum))
 			{
-				const vector<adjacency> adjacencies = HoI3AdjacencyMap[mapping.first];
+				const vector<adjacency> adjacencies = HoI3AdjacencyMap[dstProvinceNum];
 				for (auto adj: adjacencies)
 				{
-					auto province				= provinces.find(mapping.first);
+					auto province				= provinces.find(dstProvinceNum);
 					auto adjacentProvince	= provinces.find(adj.to);
 					if ((province != provinces.end()) && (adjacentProvince != provinces.end()) && (province->second->getOwner() != adjacentProvince->second->getOwner()))
 					{
