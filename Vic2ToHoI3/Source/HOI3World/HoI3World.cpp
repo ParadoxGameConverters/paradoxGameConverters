@@ -1846,6 +1846,28 @@ void HoI3World::convertDiplomacy(const V2World& sourceWorld, const CountryMappin
 			}
 		}
 	}
+
+	// decrease neutrality for countries with unowned cores
+	map<string, string> hasLoweredNeutrality;
+	for (auto province: provinces)
+	{
+		for (auto core: province.second->getCores())
+		{
+			if (province.second->getOwner() != core)
+			{
+				auto repeat = hasLoweredNeutrality.find(core);
+				if (repeat == hasLoweredNeutrality.end())
+				{
+					auto country = countries.find(core);
+					if (country != countries.end())
+					{
+						country->second->lowerNeutrality(20.0);
+						hasLoweredNeutrality.insert(make_pair(core, core));
+					}
+				}
+			}
+		}
+	}
 }
 
 

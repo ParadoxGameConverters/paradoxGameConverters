@@ -75,6 +75,7 @@ class HoI3Country
 		void	setTechnology(string tech, int level);
 		void	addProvince(HoI3Province* _province);
 		void	addArmy(HoI3RegGroup army);
+		void	lowerNeutrality(double amount);
 
 		void	setFaction(string newFaction)	{ faction = newFaction; }
 		void	setFactionLeader()				{ factionLeader = true; }

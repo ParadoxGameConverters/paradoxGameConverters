@@ -1966,6 +1966,16 @@ void HoI3Country::addArmy(HoI3RegGroup _army)
 }
 
 
+void HoI3Country::lowerNeutrality(double amount)
+{
+	neutrality -= amount;
+	if (neutrality < 0)
+	{
+		neutrality = 0.0;
+	}
+}
+
+
 HoI3Province* HoI3Country::getCapital(void)
 {
 	auto capitalItr = provinces.find(capital);
