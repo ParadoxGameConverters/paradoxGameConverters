@@ -675,7 +675,7 @@ void HoI3World::convertProvinceItems(const V2World& sourceWorld, const provinceM
 			if ((Configuration::getIcConversion() == "squareroot") || (Configuration::getIcConversion() == "linear") ||(Configuration::getIcConversion() == "logarithmic"))
 			{
 				dstProvItr->second->setRawIndustry(0.0);
-				dstProvItr->second->setActualIndustry(0.0);
+				dstProvItr->second->setActualIndustry(0);
 			}
 		}
 
@@ -714,14 +714,14 @@ void HoI3World::convertProvinceItems(const V2World& sourceWorld, const provinceM
 				+ sourceProvince->getPopulation("farmers") * 0.25; // Conscripts
 			if (Configuration::getManpowerConversion() == "linear")
 			{
-				newManpower *= 0.000073 * Configuration::getManpowerFactor() / mapping.second.size();
+				newManpower *= 0.00003 * Configuration::getManpowerFactor();
 				newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
 				dstProvItr->second->addManpower(newManpower);
 			}
 			else if (Configuration::getManpowerConversion() == "squareroot")
 			{
 				newManpower = sqrt(newManpower);
-				newManpower *= 0.017255 * Configuration::getManpowerFactor() / mapping.second.size();
+				newManpower *= 0.0076 * Configuration::getManpowerFactor();
 				newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
 				dstProvItr->second->addManpower(newManpower);
 			}
@@ -735,14 +735,14 @@ void HoI3World::convertProvinceItems(const V2World& sourceWorld, const provinceM
 				+ sourceProvince->getLiteracyWeightedPopulation("aristocrats") * 0.25;
 			if (Configuration::getLeadershipConversion() == "linear")
 			{
-				newLeadership *= 0.00003495 * Configuration::getLeadershipFactor() / mapping.second.size();
+				newLeadership *= 0.00001363 * Configuration::getLeadershipFactor();
 				newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
 				dstProvItr->second->addLeadership(newLeadership);
 			}
 			else if (Configuration::getLeadershipConversion() == "squareroot")
 			{
 				newLeadership = sqrt(newLeadership);
-				newLeadership *= 0.00351 * Configuration::getLeadershipFactor() / mapping.second.size();
+				newLeadership *= 0.00147 * Configuration::getLeadershipFactor();
 				newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
 				dstProvItr->second->addLeadership(newLeadership);
 			}
