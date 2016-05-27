@@ -1199,6 +1199,10 @@ HoI3RegGroup* HoI3World::createArmy(const inverseProvinceMapping& inverseProvinc
 			destWing.setProductionQueue(true);
 		}
 	}
+	else
+	{
+		destWing.setProductionQueue(true);
+	}
 
 	// separate all air regiments into the air force
 	vector<HoI3Regiment*> unprocessedRegiments;
