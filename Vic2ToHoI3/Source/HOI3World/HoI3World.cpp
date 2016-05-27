@@ -1225,7 +1225,7 @@ HoI3RegGroup* HoI3World::createArmy(const inverseProvinceMapping& inverseProvinc
 			// make sure an airbase is waiting for them
 			airLocationProvince->requireAirBase(min(10, airLocationProvince->getAirBase() + (destWing.size() * 2)));
 		}
-		destArmy->addChild(destWing);
+		destArmy->addChild(destWing, true);
 	}
 	sourceRegiments.swap(unprocessedRegiments);
 	unprocessedRegiments.clear();
@@ -1253,7 +1253,7 @@ HoI3RegGroup* HoI3World::createArmy(const inverseProvinceMapping& inverseProvinc
 	}
 	if (!armored.isEmpty())
 	{
-		destArmy->addChild(armored);
+		destArmy->addChild(armored, true);
 	}
 	sourceRegiments.swap(unprocessedRegiments);
 	unprocessedRegiments.clear();
@@ -1279,7 +1279,7 @@ HoI3RegGroup* HoI3World::createArmy(const inverseProvinceMapping& inverseProvinc
 	}
 	if (!specialist.isEmpty())
 	{
-		destArmy->addChild(specialist);
+		destArmy->addChild(specialist, true);
 	}
 	sourceRegiments.swap(unprocessedRegiments);
 	unprocessedRegiments.clear();
@@ -1385,7 +1385,7 @@ HoI3RegGroup* HoI3World::createArmy(const inverseProvinceMapping& inverseProvinc
 			}
 		}
 
-		destArmy->addChild(newGroup);
+		destArmy->addChild(newGroup, true);
 	}
 
 	// put together cavalry units (allow engineers to be included)
@@ -1424,7 +1424,7 @@ HoI3RegGroup* HoI3World::createArmy(const inverseProvinceMapping& inverseProvinc
 		}
 		if (newGroup.size() < 2)
 		{
-			destArmy->addChild(newGroup);
+			destArmy->addChild(newGroup, true);
 			break;
 		}
 
@@ -1452,7 +1452,7 @@ HoI3RegGroup* HoI3World::createArmy(const inverseProvinceMapping& inverseProvinc
 			}
 		}
 
-		destArmy->addChild(newGroup);
+		destArmy->addChild(newGroup, true);
 	}
 
 	if (sourceRegiments.size() > 0)
@@ -1464,7 +1464,7 @@ HoI3RegGroup* HoI3World::createArmy(const inverseProvinceMapping& inverseProvinc
 			newGroup.setForceType(land);
 			newGroup.setLocation(selectedLocation);
 			newGroup.addRegiment(*regiment, true);
-			destArmy->addChild(newGroup);
+			destArmy->addChild(newGroup, true);
 		}
 	}
 	

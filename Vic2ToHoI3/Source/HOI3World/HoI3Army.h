@@ -113,7 +113,7 @@ class HoI3RegGroup // also Navy, Air
 		static void	resetHQCounts();
 		void			setName();
 		bool			addRegiment(HoI3Regiment reg, bool allowPromote);
-		void			addChild(HoI3RegGroup group);
+		bool			addChild(HoI3RegGroup group, bool allowPromote);
 		void			createHQs(HoI3RegimentType hqType);
 		void			undoPracticalAddition(map<string, double>& practicals) const;
 		int			size() const;

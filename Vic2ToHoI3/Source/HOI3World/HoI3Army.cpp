@@ -346,11 +346,102 @@ void HoI3RegGroup::setName()
 }
 
 
-void HoI3RegGroup::addChild(HoI3RegGroup newChild)
+bool HoI3RegGroup::addChild(HoI3RegGroup newChild, bool allowPromote)
 {
-	if (command_level <= newChild.getCommandLevel())
+	if ((allowPromote) && (command_level <= newChild.getCommandLevel()))
 	{
 		command_level = static_cast<CommandLevel>(newChild.getCommandLevel() + 1);
+	}
+	else if (command_level <= newChild.getCommandLevel())
+	{
+		return false;
+	}
+
+	// Am I one command level above the child and don't have too many children?
+	if ((children.size() < 5) && (command_level == (newChild.getCommandLevel() + 1)))
+	{
+		children.push_back(newChild);
+		return true;
+	}
+
+	// can an existing child take this?
+	for (auto child: children)
+	{
+		if (child.addChild(newChild, false))
+		{
+			return true;
+		}
+	}
+
+	// can I create a new child (<5 current children, or I am an armygroup)?
+	if (children.size() < 5 || command_level == armygroup)
+	{
+		// add child
+		HoI3RegGroup newerChild = createChild();
+		if (newerChild.addChild(newChild, false))
+		{
+			children.push_back(newerChild);
+			return true;
+		}
+	}
+
+	// can't add this group; can I promote myself?
+	if (allowPromote)
+	{
+		command_level = static_cast<CommandLevel>(command_level + 1);
+
+		// split current children between two new intermediate children if appropriate
+		HoI3RegGroup child1 = createChild();
+		HoI3RegGroup child2 = createChild();
+		if (command_level > corps) // original command level was higher than division
+		{
+			for (size_t i = 0; i < children.size(); ++i)
+			{
+				if (i % 2 == 0)
+				{
+					child1.children.push_back(children[i]);
+				}
+				else
+				{
+					child2.children.push_back(children[i]);
+				}
+			}
+			children.clear();
+		}
+		else // NEW command_level == corps (originally a division)
+		{
+			for (size_t i = 0; i < regiments.size(); ++i)
+			{
+				child1.regiments.push_back(regiments[i]);
+			}
+			regiments.clear();
+		}
+		children.push_back(child1);
+		if (!child2.isEmpty())
+		{
+			children.push_back(child2);
+		}
+
+		// try again: can an existing child take this?
+		for (vector<HoI3RegGroup>::iterator itr = children.begin(); itr != children.end(); ++itr)
+		{
+			if (itr->addChild(newChild, false))
+			{
+				return true;
+			}
+		}
+
+		// try again: can I create a new child (<5 current children, or I am an armygroup)?
+		if (children.size() < 5 || command_level == armygroup)
+		{
+			// add child
+			HoI3RegGroup newerChild = createChild();
+			if (newerChild.addChild(newChild, false))
+			{
+				children.push_back(newerChild);
+				return true;
+			}
+		}
 	}
 
 	children.push_back(newChild);
