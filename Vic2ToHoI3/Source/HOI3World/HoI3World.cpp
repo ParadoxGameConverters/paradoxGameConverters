@@ -1040,61 +1040,14 @@ int HoI3World::getAirLocation(HoI3Province* locationProvince, const HoI3Adjacenc
 }
 
 
-vector<V2Regiment*> HoI3World::reorderRegiments(const vector<V2Regiment*>& sourceRegiments, const string& tag, const string& armyName)
+vector<HoI3Regiment*> HoI3World::convertRegiments(const unitTypeMapping& unitTypeMap, vector<V2Regiment*>& sourceRegiments, map<string, unsigned>& typeCount, const pair<string, HoI3Country*>& country)
 {
-	vector<V2Regiment*> supportRegiments;
-	vector<V2Regiment*> mainRegiments;
-	for (auto regiment : sourceRegiments)
-	{
-		if ((regiment->getType() == "artillery") || (regiment->getType() == "engineer"))
-		{
-			supportRegiments.push_back(regiment);
-		}
-		else
-		{
-			mainRegiments.push_back(regiment);
-		}
-	}
+	vector<HoI3Regiment*> destRegiments;
 
-	vector<V2Regiment*> destRegiments;
-	if (mainRegiments.size() * 3 < supportRegiments.size())
-	{
-		LOG(LogLevel::Warning) << "Too many support units in " << tag << "'s army \"" << armyName << "\"";
-	}
-	if (mainRegiments.size() > 0)
-	{
-		double ratio = 1.0 * supportRegiments.size() / mainRegiments.size();
-		unsigned int j = 0;
-		for (unsigned int i = 0; i < mainRegiments.size(); i++)
-		{
-			for (; j < (i + 1) * ratio; j++)
-			{
-				if (j < supportRegiments.size())
-				{
-					destRegiments.push_back(supportRegiments[j]);
-				}
-			}
-			destRegiments.push_back(mainRegiments[i]);
-		}
-	}
-	else
-	{
-		for (auto regiment : supportRegiments)
-		{
-			destRegiments.push_back(regiment);
-		}
-	}
-
-	return destRegiments;
-}
-
-
-void HoI3World::convertRegiments(const unitTypeMapping& unitTypeMap, vector<V2Regiment*>& sourceRegiments, map<string, unsigned>& typeCount, const pair<string, HoI3Country*>& country, HoI3RegGroup& destArmy, HoI3RegGroup& destAirForce)
-{
 	for (auto regItr: sourceRegiments)
 	{
-		HoI3Regiment destReg;
-		destReg.setName(regItr->getName());
+		HoI3Regiment* destReg = new HoI3Regiment();
+		destReg->setName(regItr->getName());
 
 		auto typeMap = unitTypeMap.find(regItr->getType());
 		if (typeMap == unitTypeMap.end())
@@ -1145,23 +1098,378 @@ void HoI3World::convertRegiments(const unitTypeMapping& unitTypeMap, vector<V2Re
 			}
 		}
 
-		destReg.setType(destTypeItr->first);
-		destReg.setHistoricalModel(destTypeItr->second);
-		destReg.setReserve(true);
-
-		// Add to army/navy or newly created air force as appropriate
-		if (destReg.getForceType() != air)
-		{
-			destArmy.addRegiment(destReg, true);
-		}
-		else
-		{
-			destAirForce.addRegiment(destReg, true);
-		}
+		destReg->setType(destTypeItr->first);
+		destReg->setHistoricalModel(destTypeItr->second);
+		destReg->setReserve(true);
+		destRegiments.push_back(destReg);
 
 		// Contribute to country's practicals
 		country.second->getPracticals()[destTypeItr->first.getPracticalBonus()] += Configuration::getPracticalsScale() * destTypeItr->first.getPracticalBonusFactor();
 	}
+
+	return destRegiments;
+}
+
+
+HoI3RegGroup* HoI3World::createArmy(const inverseProvinceMapping& inverseProvinceMap, const HoI3AdjacencyMapping& HoI3AdjacencyMap, string tag, const V2Army* oldArmy, vector<HoI3Regiment*>& sourceRegiments, int& airForceIndex)
+{
+	HoI3RegGroup* destArmy	= new HoI3RegGroup();
+
+	// determine if an army or navy
+	if (oldArmy->getNavy())
+	{
+		destArmy->setForceType(navy);
+		destArmy->setAtSea(oldArmy->getAtSea());
+	}
+	else
+	{
+		destArmy->setForceType(land);
+	}
+
+	// get potential locations
+	vector<int> locationCandidates = getHoI3ProvinceNums(inverseProvinceMap, oldArmy->getLocation());
+	if (locationCandidates.size() == 0)
+	{
+		LOG(LogLevel::Warning) << "Army or Navy " << oldArmy->getName() << " assigned to unmapped province " << oldArmy->getLocation() << "; placing units in the production queue.";
+		destArmy->setProductionQueue(true);
+	}
+
+	// guarantee that navies are assigned to sea provinces, or land provinces with naval bases
+	if ((locationCandidates.size() > 0) && (oldArmy->getNavy()) && (!oldArmy->getAtSea()))
+	{
+		map<int, HoI3Province*>::const_iterator pitr = provinces.find(locationCandidates[0]);
+		if (pitr != provinces.end() && pitr->second->isLand())
+		{
+			locationCandidates = getPortLocationCandidates(locationCandidates, HoI3AdjacencyMap);
+			if (locationCandidates.size() == 0)
+			{
+				LOG(LogLevel::Warning) << "Navy " << oldArmy->getName() << " assigned to V2 province " << oldArmy->getLocation() << " which has no corresponding HoI3 port provinces or adjacent sea provinces; placing units in the production queue.";
+				destArmy->setProductionQueue(true);
+			}
+		}
+	}
+
+	// pick the actual location
+	int selectedLocation;
+	HoI3Province* locationProvince = NULL;
+	if (locationCandidates.size() > 0)
+	{
+		selectedLocation = locationCandidates[rand() % locationCandidates.size()];
+		destArmy->setLocation(selectedLocation);
+		map<int, HoI3Province*>::iterator pitr = provinces.find(selectedLocation);
+		if (pitr != provinces.end())
+		{
+			locationProvince = pitr->second;
+		}
+		else if (!oldArmy->getNavy())
+		{
+			destArmy->setProductionQueue(true);
+		}
+	}
+
+	// handle navies
+	if (oldArmy->getNavy())
+	{
+		for (auto regiment: sourceRegiments)
+		{
+			destArmy->addRegiment(*regiment, true);
+		}
+		return destArmy;
+	}
+
+	// air units need to be split into air forces, so create an air force regiment to hold any air units
+	HoI3RegGroup destWing;
+	destWing.setForceType(air);
+	HoI3Province* airLocationProvince = NULL;
+	if (!destArmy->getProductionQueue())
+	{
+		int airLocation = -1;
+		if (locationProvince != NULL)
+		{
+			airLocation = getAirLocation(locationProvince, HoI3AdjacencyMap, tag);
+		}
+		destWing.setLocation(airLocation);
+		map<int, HoI3Province*>::iterator pitr = provinces.find(airLocation);
+		if (pitr != provinces.end())
+		{
+			airLocationProvince = pitr->second;
+		}
+		else
+		{
+			destWing.setProductionQueue(true);
+		}
+	}
+
+	// separate all air regiments into the air force
+	vector<HoI3Regiment*> unprocessedRegiments;
+	for (auto regiment: sourceRegiments)
+	{
+		// Add to army/navy or newly created air force as appropriate
+		if (regiment->getForceType() == air)
+		{
+			destWing.addRegiment(*regiment, true);
+		}
+		else
+		{
+			unprocessedRegiments.push_back(regiment);
+		}
+	}
+	if (!destWing.isEmpty())
+	{
+		stringstream name;
+		name << ++airForceIndex << CardinalToOrdinal(airForceIndex) << " Air Force";
+		destWing.setName(name.str());
+
+		if (!destWing.getProductionQueue())
+		{
+			// make sure an airbase is waiting for them
+			airLocationProvince->requireAirBase(min(10, airLocationProvince->getAirBase() + (destWing.size() * 2)));
+		}
+		destArmy->addChild(destWing);
+	}
+	sourceRegiments.swap(unprocessedRegiments);
+	unprocessedRegiments.clear();
+
+	// put all 'armored' type regiments together
+	HoI3RegGroup armored;
+	armored.setForceType(land);
+	armored.setLocation(selectedLocation);
+	for (auto regiment: sourceRegiments)
+	{
+		// Add to army/navy or newly created air force as appropriate
+		if ((regiment->getType().getName() == "light_armor_brigade") ||
+			 (regiment->getType().getName() == "armor_brigade") ||
+			 (regiment->getType().getName() == "armored_car_brigade") ||
+			 (regiment->getType().getName() == "tank_destroyer_brigade") ||
+			 (regiment->getType().getName() == "motorized_brigade")
+			)
+		{
+			armored.addRegiment(*regiment, true);
+		}
+		else
+		{
+			unprocessedRegiments.push_back(regiment);
+		}
+	}
+	if (!armored.isEmpty())
+	{
+		destArmy->addChild(armored);
+	}
+	sourceRegiments.swap(unprocessedRegiments);
+	unprocessedRegiments.clear();
+
+	// put all 'specialist' type regiments together
+	HoI3RegGroup specialist;
+	specialist.setForceType(land);
+	specialist.setLocation(selectedLocation);
+	for (auto regiment: sourceRegiments)
+	{
+		// Add to army/navy or newly created air force as appropriate
+		if ((regiment->getType().getName() == "bergsjaeger_brigade") ||
+			 (regiment->getType().getName() == "marine_brigade") ||
+			 (regiment->getType().getName() == "police_brigade")
+			)
+		{
+			armored.addRegiment(*regiment, true);
+		}
+		else
+		{
+			unprocessedRegiments.push_back(regiment);
+		}
+	}
+	if (!specialist.isEmpty())
+	{
+		destArmy->addChild(specialist);
+	}
+	sourceRegiments.swap(unprocessedRegiments);
+	unprocessedRegiments.clear();
+
+	// make infantry and militia divisions, with support regiments added
+	while (true)
+	{
+		HoI3RegGroup newGroup;
+		newGroup.setForceType(land);
+		newGroup.setLocation(selectedLocation);
+
+		// get the first regiment (required)
+		for (vector<HoI3Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+		{
+			HoI3Regiment* regiment = *itr;
+			if ((regiment->getType().getName() == "infantry_brigade") ||
+				 (regiment->getType().getName() == "militia_brigade")
+				)
+			{
+				newGroup.addRegiment(*regiment, true);
+				sourceRegiments.erase(itr);
+				break;
+			}
+		}
+		if (newGroup.isEmpty())
+		{
+			break;
+		}
+
+		// get the second regiment (not required)
+		for (vector<HoI3Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+		{
+			HoI3Regiment* regiment = *itr;
+			if ((regiment->getType().getName() == "infantry_brigade") ||
+				(regiment->getType().getName() == "militia_brigade")
+				)
+			{
+				newGroup.addRegiment(*regiment, true);
+				sourceRegiments.erase(itr);
+				break;
+			}
+		}
+
+		// get the support first regiment (not required, non-engineer preferred)
+		int numSupport = 0;
+		for (vector<HoI3Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+		{
+			HoI3Regiment* regiment = *itr;
+			if ((regiment->getType().getName() == "anti_air_brigade") ||
+				 (regiment->getType().getName() == "anti_tank_brigade") ||
+				 (regiment->getType().getName() == "artillery_brigade")
+				)
+			{
+				newGroup.addRegiment(*regiment, true);
+				sourceRegiments.erase(itr);
+				numSupport++;
+				break;
+			}
+		}
+
+		// get the second support regiment (not required, non-engineer preferred)
+		for (vector<HoI3Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+		{
+			HoI3Regiment* regiment = *itr;
+			if ((regiment->getType().getName() == "anti_air_brigade") ||
+				(regiment->getType().getName() == "anti_tank_brigade") ||
+				(regiment->getType().getName() == "artillery_brigade")
+				)
+			{
+				newGroup.addRegiment(*regiment, true);
+				sourceRegiments.erase(itr);
+				numSupport++;
+				break;
+			}
+		}
+
+		// add engineers as needed and available
+		if (numSupport < 2)
+		{
+			for (vector<HoI3Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+			{
+				HoI3Regiment* regiment = *itr;
+				if (regiment->getType().getName() == "engineer_brigade")
+				{
+					newGroup.addRegiment(*regiment, true);
+					sourceRegiments.erase(itr);
+					numSupport++;
+					break;
+				}
+			}
+		}
+		if (numSupport < 2)
+		{
+			for (vector<HoI3Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+			{
+				HoI3Regiment* regiment = *itr;
+				if (regiment->getType().getName() == "engineer_brigade")
+				{
+					newGroup.addRegiment(*regiment, true);
+					sourceRegiments.erase(itr);
+					break;
+				}
+			}
+		}
+
+		destArmy->addChild(newGroup);
+	}
+
+	// put together cavalry units (allow engineers to be included)
+	while (true)
+	{
+		HoI3RegGroup newGroup;
+		newGroup.setForceType(land);
+		newGroup.setLocation(selectedLocation);
+
+		// get the first regiment (required)
+		for (vector<HoI3Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+		{
+			HoI3Regiment* regiment = *itr;
+			if ((regiment->getType().getName() == "cavalry_brigade"))
+			{
+				newGroup.addRegiment(*regiment, true);
+				sourceRegiments.erase(itr);
+				break;
+			}
+		}
+		if (newGroup.isEmpty())
+		{
+			break;
+		}
+
+		// get the second regiment (required to continue)
+		for (vector<HoI3Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+		{
+			HoI3Regiment* regiment = *itr;
+			if ((regiment->getType().getName() == "cavalry_brigade"))
+			{
+				newGroup.addRegiment(*regiment, true);
+				sourceRegiments.erase(itr);
+				break;
+			}
+		}
+		if (newGroup.size() < 2)
+		{
+			destArmy->addChild(newGroup);
+			break;
+		}
+
+		// get the first engineer regiment (not required)
+		for (vector<HoI3Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+		{
+			HoI3Regiment* regiment = *itr;
+			if (regiment->getType().getName() == "engineer_brigade")
+			{
+				newGroup.addRegiment(*regiment, true);
+				sourceRegiments.erase(itr);
+				break;
+			}
+		}
+
+		// get the second engineer regiment (not required)
+		for (vector<HoI3Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+		{
+			HoI3Regiment* regiment = *itr;
+			if (regiment->getType().getName() == "engineer_brigade")
+			{
+				newGroup.addRegiment(*regiment, true);
+				sourceRegiments.erase(itr);
+				break;
+			}
+		}
+
+		destArmy->addChild(newGroup);
+	}
+
+	if (sourceRegiments.size() > 0)
+	{
+		LOG(LogLevel::Warning) << "Leftover regiments in " << tag << "'s army " << oldArmy->getName() << ". Likely too many support units.";
+		for (auto regiment: sourceRegiments)
+		{
+			HoI3RegGroup newGroup;
+			newGroup.setForceType(land);
+			newGroup.setLocation(selectedLocation);
+			newGroup.addRegiment(*regiment, true);
+			destArmy->addChild(newGroup);
+		}
+	}
+	
+
+	return destArmy;
 }
 
 
@@ -1192,130 +1500,31 @@ void HoI3World::convertArmies(const V2World& sourceWorld, const inverseProvinceM
 		// Convert actual armies
 		for (auto oldArmy: oldCountry->getArmies())
 		{
-			HoI3RegGroup destArmy;
-			destArmy.setName(oldArmy->getName());
-
-			// determine if an army or navy
-			if (oldArmy->getNavy())
-			{
-				destArmy.setForceType(navy);
-				destArmy.setAtSea(oldArmy->getAtSea());
-			}
-			else
-			{
-				destArmy.setForceType(land);
-			}
-
-			// get potential locations
-			vector<int> locationCandidates = getHoI3ProvinceNums(inverseProvinceMap, oldArmy->getLocation());
-			if (locationCandidates.size() == 0)
-			{
-				LOG(LogLevel::Warning) << "Army or Navy " << oldArmy->getName() << " assigned to unmapped province " << oldArmy->getLocation() << "; placing units in the production queue.";
-				destArmy.setProductionQueue(true);
-			}
-
-			// guarantee that navies are assigned to sea provinces, or land provinces with naval bases
-			if ((locationCandidates.size() > 0) && (oldArmy->getNavy()) && (!oldArmy->getAtSea()))
-			{
-				map<int, HoI3Province*>::const_iterator pitr = provinces.find(locationCandidates[0]);
-				if (pitr != provinces.end() && pitr->second->isLand())
-				{
-					locationCandidates = getPortLocationCandidates(locationCandidates, HoI3AdjacencyMap);
-					if (locationCandidates.size() == 0)
-					{
-						LOG(LogLevel::Warning) << "Navy " << oldArmy->getName() << " assigned to V2 province " << oldArmy->getLocation() << " which has no corresponding HoI3 port provinces or adjacent sea provinces; placing units in the production queue.";
-						destArmy.setProductionQueue(true);
-					}
-				}
-			}
-
-			// pick the actual location
-			int selectedLocation;
-			HoI3Province* locationProvince = NULL;
-			if (locationCandidates.size() > 0)
-			{
-				selectedLocation = locationCandidates[rand() % locationCandidates.size()];
-				destArmy.setLocation(selectedLocation);
-				map<int, HoI3Province*>::iterator pitr = provinces.find(selectedLocation);
-				if (pitr != provinces.end())
-				{
-					locationProvince = pitr->second;
-				}
-				else if (!oldArmy->getNavy())
-				{
-					destArmy.setProductionQueue(true);
-				}
-			}
-
-			// air units need to be split into air forces, so create a top-level air force regiment to hold any air units
-			HoI3RegGroup destAirForce;
-			destAirForce.setForceType(air);
-			HoI3Province* airLocationProvince = NULL;
-			if (!destArmy.getProductionQueue())
-			{
-				int airLocation = -1;
-				if (locationProvince != NULL)
-				{
-					airLocation = getAirLocation(locationProvince, HoI3AdjacencyMap, country.first);
-				}
-				destAirForce.setLocation(airLocation);
-				map<int, HoI3Province*>::iterator pitr = provinces.find(airLocation);
-				if (pitr != provinces.end())
-				{
-					airLocationProvince = pitr->second;
-				}
-				else
-				{
-					destAirForce.setProductionQueue(true);
-				}
-			}
-
-			// reorder the regiments to avoid zero-width units in HoI3
-			vector<V2Regiment*> sourceRegiments = reorderRegiments(oldArmy->getRegiments(), country.first, oldArmy->getName());
-
 			// convert the regiments
-			convertRegiments(unitTypeMap, sourceRegiments, typeCount, country, destArmy, destAirForce);
+			vector<HoI3Regiment*> regiments = convertRegiments(unitTypeMap, oldArmy->getRegiments(), typeCount, country);
+
+			// place the regiments into armies
+			HoI3RegGroup* army = createArmy(inverseProvinceMap, HoI3AdjacencyMap, country.first, oldArmy, regiments, airForceIndex);
+			army->setName(oldArmy->getName());
 
 			// add the converted units to the country
-			if (!destArmy.isEmpty() && !destArmy.getProductionQueue())
+			if ((army->getForceType() == land) && (!army->isEmpty()) && (!army->getProductionQueue()))
 			{
-				if ((oldArmy->getNavy()) && (locationProvince != NULL) && (locationProvince->isLand()))
-				{
-					// make sure a naval base is waiting for them
-					locationProvince->requireNavalBase(min(10, locationProvince->getNavalBase() + destArmy.size()));
-				}
-				destArmy.createHQs(hqBrigade); // Generate HQs for all hierarchies
-				country.second->addArmy(destArmy);
+				army->createHQs(hqBrigade); // Generate HQs for all hierarchies
+				country.second->addArmy(army);
 			}
-			else if (!destArmy.isEmpty())
+			else if (!army->isEmpty())
 			{
-				country.second->addArmy(destArmy);
-			}
-
-			// add converted air units to the country
-			if (!destAirForce.isEmpty() && !destArmy.getProductionQueue())
-			{
-				// make sure an airbase is waiting for them
-				airLocationProvince->requireAirBase(min(10, airLocationProvince->getAirBase() + (destAirForce.size() * 2)));
-
-				stringstream name;
-				name << ++airForceIndex << CardinalToOrdinal(airForceIndex) << " Air Force";
-				destAirForce.setName(name.str());
-				country.second->addArmy(destAirForce);
-			}
-			if (!destAirForce.isEmpty() && destArmy.getProductionQueue())
-			{
-				destAirForce.setProductionQueue(true);
-				country.second->addArmy(destAirForce);
+				country.second->addArmy(army);
 			}
 		}
 
 		// Anticipate practical points being awarded for completing the unit constructions
 		for (auto armyItr: country.second->getArmies())
 		{
-			if (armyItr.getProductionQueue())
+			if (armyItr->getProductionQueue())
 			{
-				armyItr.undoPracticalAddition(country.second->getPracticals());
+				armyItr->undoPracticalAddition(country.second->getPracticals());
 			}
 		}
 	}

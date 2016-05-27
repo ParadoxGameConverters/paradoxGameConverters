@@ -74,7 +74,7 @@ class HoI3Country
 		
 		void	setTechnology(string tech, int level);
 		void	addProvince(HoI3Province* _province);
-		void	addArmy(HoI3RegGroup army);
+		void	addArmy(HoI3RegGroup* army);
 		void	lowerNeutrality(double amount);
 
 		void	setFaction(string newFaction)	{ faction = newFaction; }
@@ -95,7 +95,7 @@ class HoI3Country
 		const set<string>&						getAllies() const				{ return allies; }
 		set<string>&								editAllies()					{ return allies; }
 		map<string, double>&						getPracticals()				{ return practicals; }
-		const vector<HoI3RegGroup>&			getArmies() const				{ return armies; }
+		const vector<HoI3RegGroup*>&			getArmies() const				{ return armies; }
 
 	private:
 		void			outputOOB()						const;
@@ -120,7 +120,7 @@ class HoI3Country
 		HoI3Alignment						alignment;
 		string								ideology;
 		map<string, HoI3Relations*>	relations;
-		vector<HoI3RegGroup>				armies;
+		vector<HoI3RegGroup*>			armies;
 		Color									color;
 		double								neutrality;
 		double								nationalUnity;

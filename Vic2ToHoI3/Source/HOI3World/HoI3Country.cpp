@@ -415,7 +415,7 @@ void HoI3Country::outputOOB() const
 		exit(-1);
 	}
 
-	for (std::vector<HoI3RegGroup>::const_iterator armyItr = armies.begin(); armyItr != armies.end(); ++armyItr)
+	for (auto armyItr: armies)
 	{
 		if (armyItr->getProductionQueue())
 		{
@@ -1960,7 +1960,7 @@ void HoI3Country::setTechnology(string tech, int level)
 }
 
 
-void HoI3Country::addArmy(HoI3RegGroup _army)
+void HoI3Country::addArmy(HoI3RegGroup* _army)
 {
 	armies.push_back(_army);
 }

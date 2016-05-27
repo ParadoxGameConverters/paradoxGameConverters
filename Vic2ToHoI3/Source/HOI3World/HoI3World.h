@@ -69,13 +69,13 @@ class HoI3World
 		void	checkAllProvincesMapped(const provinceMapping& provinceMap);
 		void	setFactionMembers(const V2World &sourceWorld, const CountryMapping& countryMap);
 		void	setAlignments();
-		void	convertRegiments(const unitTypeMapping& unitTypeMap, vector<V2Regiment*>& sourceRegiments, map<string, unsigned>& typeCount, const pair<string, HoI3Country*>& country, HoI3RegGroup& destArmy, HoI3RegGroup& destAirForce);
 
-		vector<int>				getPortProvinces(const vector<int>& locationCandidates);
-		unitTypeMapping		getUnitMappings();
-		vector<int>				getPortLocationCandidates(const vector<int>& locationCandidates, const HoI3AdjacencyMapping& HoI3AdjacencyMap);
-		int						getAirLocation(HoI3Province* locationProvince, const HoI3AdjacencyMapping& HoI3AdjacencyMap, string owner);
-		vector<V2Regiment*>	reorderRegiments(const vector<V2Regiment*>& sourceRegiments, const string& tag, const string& armyName);
+		vector<int>					getPortProvinces(const vector<int>& locationCandidates);
+		unitTypeMapping			getUnitMappings();
+		vector<int>					getPortLocationCandidates(const vector<int>& locationCandidates, const HoI3AdjacencyMapping& HoI3AdjacencyMap);
+		int							getAirLocation(HoI3Province* locationProvince, const HoI3AdjacencyMapping& HoI3AdjacencyMap, string owner);
+		vector<HoI3Regiment*>	convertRegiments(const unitTypeMapping& unitTypeMap, vector<V2Regiment*>& sourceRegiments, map<string, unsigned>& typeCount, const pair<string, HoI3Country*>& country);
+		HoI3RegGroup*				createArmy(const inverseProvinceMapping& inverseProvinceMap, const HoI3AdjacencyMapping& HoI3AdjacencyMap, string tag, const V2Army* oldArmy, vector<HoI3Regiment*>& sourceRegiments, int& airForceIndex);
 
 		void	outputCommonCountries() const;
 		void	outputAutoexecLua() const;

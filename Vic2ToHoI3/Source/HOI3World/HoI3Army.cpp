@@ -296,6 +296,7 @@ void HoI3RegGroup::createHQs(HoI3RegimentType hqType)
 		regname << ++hqCount << CardinalToOrdinal(hqCount) << " Headquarters Brigade";
 		hq.setName(regname.str());
 		hq.setType(hqType);
+		hq.setHistoricalModel(0);
 		regiments.push_back(hq);
 
 		for (vector<HoI3RegGroup>::iterator itr = children.begin(); itr != children.end(); ++itr)
@@ -347,9 +348,9 @@ void HoI3RegGroup::setName()
 
 void HoI3RegGroup::addChild(HoI3RegGroup newChild)
 {
-	if (command_level != theatre)
+	if (command_level <= newChild.getCommandLevel())
 	{
-		LOG(LogLevel::Error) << "tried to externally add a child to a non-theatre army group!";
+		command_level = static_cast<CommandLevel>(newChild.getCommandLevel() + 1);
 	}
 
 	children.push_back(newChild);
