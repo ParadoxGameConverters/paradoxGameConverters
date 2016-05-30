@@ -52,3 +52,5 @@ copy "Data_Files\country_colors.txt" "release\blankMod\output\common\country_col
 xcopy "Data_files\wars" "release\blankmod\output\history\wars" /Y /E /I
 xcopy "Data_Files\events" "release\blankMod\output\events"
 xcopy "Data_Files\decisions" "release\blankMod\output\decisions"
+copy "Data_Files\triggered_modifiers.txt" "release\blankMod\output\common\triggered_modifiers.txt"
+copy "Data_Files\governments.txt" "release\blankMod\output\common\governments.txt"

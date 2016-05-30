@@ -149,12 +149,12 @@ string governmentMapper::getGovernmentForCountry(const V2Country* country, const
 	auto currentReforms = country->getAllReforms();
 	for (auto reform: currentReforms)
 	{
-		auto politicalReform = politicalReformScores.find(reform.first);
+		auto politicalReform = politicalReformScores.find(reform.second);
 		if (politicalReform != politicalReformScores.end())
 		{
 			politicalReforms += politicalReform->second;
 		}
-		auto socialReform = socialReformScores.find(reform.first);
+		auto socialReform = socialReformScores.find(reform.second);
 		if (socialReform != socialReformScores.end())
 		{
 			socialReforms += socialReform->second;
@@ -184,6 +184,7 @@ string governmentMapper::getGovernmentForCountry(const V2Country* country, const
 
 	return hoiGov;
 }
+
 
 
 

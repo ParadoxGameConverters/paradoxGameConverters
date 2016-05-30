@@ -119,6 +119,8 @@ HoI3Country::HoI3Country(string _tag, string _commonCountryFile, HoI3World* _the
 	graphicalCulture = "Generic";
 
 	srcCountry	= NULL;
+
+	majorNation = false;
 }
 
 
@@ -189,6 +191,11 @@ void HoI3Country::output() const
 	fprintf(output, "color = { %d %d %d }\n", red, green, blue);
 	fprintf(output, "graphical_culture = %s\n", graphicalCulture.c_str());
 	fprintf(output, "\n");
+	if (majorNation)
+	{
+		fprintf(output, "major = yes\n");
+		fprintf(output, "\n");
+	}
 	fprintf(output, "default_templates = {\n");
 	fprintf(output, "	generic_infantry = {\n");
 	fprintf(output, "		infantry_brigade\n");
@@ -408,7 +415,7 @@ void HoI3Country::outputOOB() const
 		exit(-1);
 	}
 
-	for (std::vector<HoI3RegGroup>::const_iterator armyItr = armies.begin(); armyItr != armies.end(); ++armyItr)
+	for (auto armyItr: armies)
 	{
 		if (armyItr->getProductionQueue())
 		{
@@ -681,6 +688,9 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	{
 		capital = itr->second[0];
 	}
+
+	// major nation
+	majorNation = srcCountry->getGreatNation();
 }
 
 
@@ -753,7 +763,7 @@ void HoI3Country::initFromHistory()
 }
 
 
-void HoI3Country::consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry)
+void HoI3Country::consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry)
 {
 	bool convertManpower		= (Configuration::getManpowerConversion() != "no");
 	bool convertLeadership	= (Configuration::getLeadershipConversion() != "no");
@@ -1199,20 +1209,20 @@ void HoI3Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 }
 
 
-void HoI3Country::addMinimalItems()
+void HoI3Country::addMinimalItems(const inverseProvinceMapping& inverseProvinceMap)
 {
+	if (provinces.size() == 0)
+	{
+		return;
+	}
+
 	// determine if there's anything to add
-	bool hasPort		= true;
-	bool hasAirbase	= true;
+	bool hasPort = false;
 	for (auto province: provinces)
 	{
-		if (province.second->getAirBase() > 0)
+		if (province.second->getNavalBase() > 0)
 		{
-			hasAirbase = true;
-		}
-		if (province.second->getAirBase() > 0)
-		{
-			hasAirbase = true;
+			hasPort = true;
 		}
 	}
 
@@ -1223,13 +1233,29 @@ void HoI3Country::addMinimalItems()
 	}
 
 	// if necessary, add an airbase to the capital province
-	if (!hasAirbase)
-	{
-		capitalItr->second->requireAirBase(1);
-	}
+	capitalItr->second->requireAirBase(10);
 
 	// if necessary, add a port as near to the capital as possible
 	//		impossible currently, as we don't have a way to know where ports are valid
+
+	for (auto state : srcCountry->getStates())
+	{
+		if (state.provinces.size() > 0)
+		{
+			auto possibleHoI3Provinces = inverseProvinceMap.find(state.provinces[0]);
+			if (possibleHoI3Provinces != inverseProvinceMap.end())
+			{
+				if (possibleHoI3Provinces->second.size() > 0)
+				{
+					auto provinceItr = provinces.find(possibleHoI3Provinces->second[0]);
+					if (provinceItr != provinces.end())
+					{
+						provinceItr->second->requireAirBase(2);
+					}
+				}
+			}
+		}
+	}
 }
 
 
@@ -1934,9 +1960,19 @@ void HoI3Country::setTechnology(string tech, int level)
 }
 
 
-void HoI3Country::addArmy(HoI3RegGroup _army)
+void HoI3Country::addArmy(HoI3RegGroup* _army)
 {
 	armies.push_back(_army);
+}
+
+
+void HoI3Country::lowerNeutrality(double amount)
+{
+	neutrality -= amount;
+	if (neutrality < 0)
+	{
+		neutrality = 0.0;
+	}
 }
 
 

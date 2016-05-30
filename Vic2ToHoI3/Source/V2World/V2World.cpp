@@ -99,7 +99,7 @@ V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<string, 
 			if (rankingItr != greatNationIndices.end())
 			{
 				LOG(LogLevel::Debug) << "Set " << key << " as Great Power #" << rankingItr->second + 1;
-				countries[key]->setGreatNationRanking(rankingItr->second);
+				countries[key]->setGreatNation(true);
 				greatCountries[rankingItr->second] = key;
 			}
 		}
@@ -124,6 +124,12 @@ V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<string, 
 		{
 			(*j)->addCore(i->second);
 		}
+	}
+
+	// apply workers to provinces
+	for (auto country : countries)
+	{
+		country.second->putWorkersInProvinces();
 	}
 
 	// Cull countries with neither cores nor owned provinces (i.e. dead countries and uncreated dominions)

@@ -49,7 +49,7 @@ class V2Diplomacy
 		V2Diplomacy()	{ agreements.clear(); };
 		V2Diplomacy(Object *obj);
 
-		vector<V2Agreement>&	getAgreements()	{ return agreements; };
+		const vector<V2Agreement>&	getAgreements() const	{ return agreements; }
 
 	private:
 		vector<V2Agreement>	agreements;
