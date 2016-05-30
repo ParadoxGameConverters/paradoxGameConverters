@@ -102,6 +102,10 @@ class CK2Title
 		void                            stealDeFactoDeJureVassalsFromTitle(CK2Title*);
 		void                            disconnectHolderAndLieges();
 		void                            setTitleAsDead(CK2Title*);
+		void                            trySetCrownAuthority(std::string);
+		bool                            isVersion2Point2CrownAuthority(std::string);
+		bool                            isPreVersion2Point2CrownAuthority(std::string);
+		bool                            startsWith(std::string, std::string);
 		CK2Character*					getElectiveHeir(map<int, std::shared_ptr<CK2Character>>&);
 		CK2Character*					getTurkishSuccessionHeir();
 

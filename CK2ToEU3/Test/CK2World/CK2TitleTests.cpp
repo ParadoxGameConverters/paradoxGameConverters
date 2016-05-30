@@ -21,11 +21,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <vector>
 #include "Parsers/Object.h"
+#include "Helpers/ObjectDataHelper.h"
 #include "Mocks/ObjectMock.h"
 #include "CK2World/Character/CK2Character.h"
 #include "CK2World/CK2Title.h"
 
 using namespace testing;
+using namespace helpers;
 
 namespace ck2
 {
@@ -76,6 +78,34 @@ TEST_F(CK2TitleShould, NotResetHolderOfEatenTitle)
 
     ASSERT_TRUE(sampleTitle.eatTitle(&sampleVassal, false));
     ASSERT_TRUE(sampleVassal.hasHolders());
+}
+
+TEST_F(CK2TitleShould, HandleVersion2Point2CrownAuthorityLaws)
+{
+    const std::string CROWN_AUTHORITY_LAW = "crown_authority_0";
+    const std::string CENTRALIZATION_LAW = "centralization_0";
+    const std::string LAW_KEY = "law";
+
+    ObjectDataHelper titleObj;
+    std::vector<IObject *> laws;
+
+    ObjectMock crownAuthorityLawMock;
+    ObjectMock centralizationLawMock;
+    EXPECT_CALL(crownAuthorityLawMock, getLeaf())
+        .WillRepeatedly(Return(std::string(CROWN_AUTHORITY_LAW)));
+    EXPECT_CALL(centralizationLawMock, getLeaf()).WillRepeatedly(Return(std::string("centralization_0")));
+
+    laws.push_back(&crownAuthorityLawMock);
+    laws.push_back(&centralizationLawMock);
+
+	EXPECT_CALL(titleObj.getData(), getValue(LAW_KEY))
+        .WillRepeatedly(Return(laws));
+
+    std::map<int, std::shared_ptr<CK2Character>> characterMap;
+
+    sampleTitle.init(titleObj.getDataPointer().get(), characterMap, nullptr);
+
+    ASSERT_EQ(CROWN_AUTHORITY_LAW, sampleTitle.getCA());
 }
 
 } // namespace unittests

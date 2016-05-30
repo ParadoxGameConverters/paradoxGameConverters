@@ -1538,28 +1538,7 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 		return absorbedCountries;
 	}
 
-	int score = initialScore;
-	string CA = src->getCA();
-	if ( CA == "centralization_0")
-	{
-		score += 1000;
-	}
-	else if ( CA == "centralization_1")
-	{
-		score += 2000;
-	}
-	else if ( CA == "centralization_2")
-	{
-		score += 3000;
-	}
-	else if ( CA == "centralization_3")
-	{
-		score += 4000;
-	}
-	else if ( CA == "centralization_4")
-	{
-		score += 5000;
-	}
+	int score = initialScore + getCrownAuthorityVassalScore();
 
 	string srcTitle = this->getSrcCountry()->getTitleString();
 
@@ -2506,6 +2485,28 @@ void EU3Country::convertSliders()
 	log("\t;%s;%s;%d;%d;%d;%d;%d;%d;%d;%d\n", tag.c_str(), government.c_str(), centralization, aristocracy, serfdom, innovative, mercantilism, offensive, land, quality);
 }
 
+int EU3Country::getCrownAuthorityVassalScore() const
+{
+    constexpr auto MODIFIER = 1000;
+    constexpr auto ZERO_CHARACTER = '0';
+
+	string CA = src->getCA();
+
+	if (CA.empty())
+    {
+        return 0;
+    }
+
+	auto caRankRaw = CA.back();
+
+	if (!isdigit(caRankRaw))
+    {
+        return 0;
+    }
+
+	auto caRank = caRankRaw - ZERO_CHARACTER;
+    return caRank * MODIFIER + MODIFIER;
+}
 
 void EU3Country::addBuildings()
 {

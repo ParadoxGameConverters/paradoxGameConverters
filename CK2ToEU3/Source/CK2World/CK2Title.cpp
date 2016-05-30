@@ -31,6 +31,7 @@
 #include "CK2Barony.h"
 #include "..\Log.h"
 #include <algorithm>
+#include <boost/algorithm/string/predicate.hpp>
 #include <boost/range/adaptor/reversed.hpp>
 #include "..\Configuration.h"
 #include "..\EU3World\EU3Country.h"
@@ -108,26 +109,22 @@ void CK2Title::init(IObject* obj,  map<int, std::shared_ptr<CK2Character>>& char
 	feudalContract	= 0;
 	templeContract	= 0;
 	cityContract	= 0;
-	vector<IObject*> lawObj = obj->getValue("law");
-	for (unsigned int i = 0; i < lawObj.size(); i++)
-	{
-		if (lawObj[i]->getLeaf().substr(0, 14) == "centralization")
+	for (auto law : obj->getValue("law"))
+    {
+        trySetCrownAuthority(law->getLeaf());
+		if (law->getLeaf().substr(0, 15) == "feudal_contract")
 		{
-			CA = lawObj[i]->getLeaf();
+			feudalContract = atoi( law->getLeaf().substr(16,1).c_str() );
 		}
-		else if (lawObj[i]->getLeaf().substr(0, 15) == "feudal_contract")
+		else if (law->getLeaf().substr(0, 15) == "temple_contract")
 		{
-			feudalContract = atoi( lawObj[i]->getLeaf().substr(16,1).c_str() );
+			templeContract = atoi( law->getLeaf().substr(16,1).c_str() );
 		}
-		else if (lawObj[i]->getLeaf().substr(0, 15) == "temple_contract")
+		else if (law->getLeaf().substr(0, 13) == "city_contract")
 		{
-			templeContract = atoi( lawObj[i]->getLeaf().substr(16,1).c_str() );
+			cityContract = atoi( law->getLeaf().substr(14,1).c_str() );
 		}
-		else if (lawObj[i]->getLeaf().substr(0, 13) == "city_contract")
-		{
-			cityContract = atoi( lawObj[i]->getLeaf().substr(14,1).c_str() );
-		}
-	}
+    }
 
 	vector<IObject*> historyObjs = obj->getValue("history");
 	if (historyObjs.size() > 0)
@@ -636,6 +633,29 @@ void CK2Title::setTitleAsDead(CK2Title* target)
 	target->liegeString = "";
 	target->heir = NULL;
 	target->setLiege(this);
+}
+
+void CK2Title::trySetCrownAuthority(std::string law)
+{
+    if (isVersion2Point2CrownAuthority(law) || isPreVersion2Point2CrownAuthority(law))
+    {
+        CA = law;
+    }
+}
+
+bool CK2Title::isVersion2Point2CrownAuthority(std::string law)
+{
+    return startsWith(law, "crown_authority");
+}
+
+bool CK2Title::isPreVersion2Point2CrownAuthority(std::string law)
+{
+    return (startsWith(law, "centralization") && (getCA() == std::string()));
+}
+
+bool CK2Title::startsWith(std::string str, std::string prefix)
+{
+    return boost::algorithm::starts_with(str, prefix);
 }
 
 bool CK2Title::hasUnionWith(CK2Title* other, bool& otherDominant) const

@@ -102,6 +102,7 @@ class EU3Country
 		double					getLearningScore()		const { return learningScore; };
 		double					getTechScore()				const { return techScore; };
 		int						getAbsorbScore()			const	{ return absorbScore; };
+		int                     getCrownAuthorityVassalScore() const;
 		string					getTag()						const { return tag; };
 		string					getGovernment()			const { return government; };
 		string					getPrimaryCulture()		const { return primaryCulture; };
