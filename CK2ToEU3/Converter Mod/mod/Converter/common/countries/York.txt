@@ -1,0 +1,118 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 107  170  77 }
+
+historical_ideas = {
+	excellent_shipwrights
+	bill_of_rights
+	superior_seamanship
+	merchant_adventures
+	naval_glory
+	national_bank
+	press_gangs
+	smithian_economics
+	ecumenism
+	scientific_revolution
+	grand_navy
+	napoleonic_warfare
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_longbow
+	gaelic_mercenary
+	gaelic_free_shooter
+	irish_charge
+	anglofrench_line
+	british_redcoat
+	british_hussar
+	british_square
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Thomas #4" = 120
+	"John #2" = 100
+	"William #5" = 60
+	"Richard #0" = 60
+	"Robert #1" = 40
+	"George #0" = 40
+	"Matthew #0" = 40
+	"Henry #1" = 20
+	"Christopher #0" = 20
+	"Edmund #0" = 20
+	"Edward #0" = 20
+	"Edwin #0" = 20
+	"Lancelot #0" = 20
+	"Lawrence #0" = 20
+	"Nicholas #0" = 20
+	"Samuel #0" = 20
+	"Thobias #0" = 20
+	"Alexander #0" = 0
+	"Ambrose #0" = 0
+	"Andrew #0" = 0
+	"Anthony #0" = 0
+	"Archibald #0" = 0
+	"Benjamin #0" = 0
+	"Daniel #0" = 0
+	"David #0" = 0
+	"Francis #0" = 0
+	"Geoffrey #0" = 0
+	"Guy #0" = 0
+	"Horatio #0" = 0
+	"Hugh #0" = 0
+	"Isaac #0" = 0
+	"James #0" = 0
+	"Jeremy #0" = 0
+	"Jonathan #0" = 0
+	"Joseph #0" = 0
+	"Lewis #0" = 0
+	"Nehemiah #0" = 0
+	"Oliver #0" = 0
+	"Samuel #0" = 0
+	"Sydney #0" = 0
+}
+
+leader_names = {
+	Aislabie Armytage Aske
+	Barwick Beaumont Belasis Bingley Bosville Bowes Bulmer 
+	Clifford Constable Conyers Craven
+	Darcy Drax Duncombe
+	Fairfax Furnival
+	Grimston		
+	Harland Hillyard Hotham Howard Hutton
+	Ingilby
+	Lacy Langdale Legard
+	Mallory Metcalfe
+	Neville Norton
+	Scargill Scrope Sheffield Spencer Stanhope Strickland Sykes
+	Tempest Thorp
+	Warren Wentworth
+	Yorke
+}
+
+ship_names = {
+        Allerton
+        Beverley Bridlington Brigantia
+        Calderdale Cleveland Craven
+        Dalesman "Duke of York"
+        Eboracum "East Riding"
+        Flamborough Fountains
+        Halifax Hallam Holderness Humber
+        Ingleborough
+        "Kingston-upon-Hull"
+        Masham Middleham
+        "North Riding" "North Sea" Northallerton
+        Pennine Pontefract
+        Richmond Ripon "River Ouse"
+        Scarborough Scoresby Standard Swale
+        "Vale of York"
+        Wensleydale "West Riding" Wharfe "Whitby Castle" "White Rose"
+        York
+}

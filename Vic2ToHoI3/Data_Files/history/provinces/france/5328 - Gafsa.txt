@@ -1,0 +1,17 @@
+owner = FRA
+controller = FRA
+add_core = FRA
+infra = 1
+1940.6.22 = {
+	owner = VIC
+	controller = VIC
+	add_core = VIC
+}
+1943.2.1 = {
+	owner = FRA
+	controller = FRA
+	add_core = FRA
+}
+1944.12.01 = {
+	controller = USA
+}

@@ -1,0 +1,11 @@
+# Royal Mortar
+
+type = artillery
+
+maneuver = 2
+offensive_morale = 6
+defensive_morale = 6
+offensive_fire = 6
+defensive_fire = 6
+offensive_shock = 5
+defensive_shock = 5

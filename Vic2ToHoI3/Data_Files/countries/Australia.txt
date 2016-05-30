@@ -1,0 +1,1004 @@
+color = { 57  143  97 }
+graphical_culture = British
+
+last_election = 1934.10.23
+duration = 36
+
+
+default_templates = {
+	ENG_infantry = {
+		motorized_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	ENG_motorized = {
+		motorized_brigade
+		motorized_brigade
+	}
+	ENG_armoured_1936 = {
+		armor_brigade
+		light_armor_brigade
+		light_armor_brigade
+		motorized_brigade
+	}
+	ENG_armoured_1940 = {
+		armor_brigade
+		armor_brigade
+		motorized_brigade
+	}
+	ENG_airborne = {
+		paratrooper_brigade
+		paratrooper_brigade
+		paratrooper_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"6th Australian Infantry Div." "7th Australian Infantry Div." "9th Australian Infantry Div." "8th Australian Infantry Div." "23rd Australian Infantry Div." "1st Australian Infantry Div." "2nd Australian Infantry Div." "3rd Australian Infantry Div." "4th Australian Infantry Div." "5th Australian Infantry Div." "11th Australian Infantry Div." 
+		"10th Australian Infantry Div." "12th Australian Infantry Div." "14th Australian Infantry Div." "15th Australian Infantry Div." "16th Australian Infantry Div." "17th Australian Infantry Div." "18st Australian Infantry Div." "19th Australian Infantry Div." "20th Australian Infantry Div." "21st Australian Infantry Div." "22nd Australian Infantry Div." 
+		"24th Australian Infantry Div." "25th Australian Infantry Div." "26th Australian Infantry Div." "27th Australian Infantry Div." "28th Australian Infantry Div." "29th Australian Infantry Div." "30th Australian Infantry Div." "31st Australian Infantry Div." "32nd Australian Infantry Div." "33rd Australian Infantry Div." "34th Australian Infantry Div." 
+		"35th Australian Infantry Div." "36th Australian Infantry Div." "37th Australian Infantry Div." "38th Australian Infantry Div." "39th Australian Infantry Div." "40th Australian Infantry Div." 
+	}
+	cavalry_brigade = {
+		"1st Australian Cavalry Div." "2nd Australian Cavalry Div." "3rd Australian Cavalry Div." "4th Australian Cavalry Div." "5th Australian Cavalry Div." "6th Australian Cavalry Div." "7th Australian Cavalry Div." "8th Australian Cavalry Div." "9th Australian Cavalry Div." "10th Australian Cavalry Div." 
+	}
+	motorized_brigade = {
+		"6th Australian Motorized Div." "7th Australian Motorized Div." "9th Australian Motorized Div." "1st Australian Motorized Div." "2nd Australian Motorized Div." "3rd Australian Motorized Div." "4th Australian Motorized Div." "5th Australian Motorized Div." "6th Australian Motorized Div." "10th Australian Motorized Div." "11th Australian Motorized Div." 
+		"12th Australian Motorized Div." "13th Australian Motorized Div." "14th Australian Motorized Div." "15th Australian Motorized Div." 
+	}
+	mechanized_brigade = {
+		"6th Australian Half Track Div." "7th Australian Half Track Div." "9th Australian Half Track Div." "1st Australian Half Track Div." "2nd Australian Half Track Div." "3rd Australian Half Track Div." "4th Australian Half Track Div." "5th Australian Half Track Div." "8th Australian Half Track Div." "10th Australian Half Track Div." 
+	}
+	light_armor_brigade = {
+		"1st Australian Armoured Div." "2nd Australian Armoured Div." "3rd Australian Armoured Div." "4th Australian Armoured Div." "5th Australian Armoured Div." "6th Australian Armoured Div." "7th Australian Armoured Div." "8th Australian Armoured Div." "9th Australian Armoured Div." "10th Australian Armoured Div." "11th Australian Armoured Div." 
+		"12th Australian Armoured Div." "14th Australian Armoured Div." "15th Australian Armoured Div." 
+	}
+	armor_brigade = {
+		"1st Australian Armoured Div." "2nd Australian Armoured Div." "3rd Australian Armoured Div." "4th Australian Armoured Div." "5th Australian Armoured Div." "6th Australian Armoured Div." "7th Australian Armoured Div." "8th Australian Armoured Div." "9th Australian Armoured Div." "10th Australian Armoured Div." "11th Australian Armoured Div." 
+		"12th Australian Armoured Div." "14th Australian Armoured Div." "15th Australian Armoured Div." 
+	}
+	paratrooper_brigade = {
+		"1st Australian Airborne Div." "2nd Australian Airborne Div." "3rd Australian Airborne Div." "4th Australian Airborne Div." "5th Australian Airborne Div." "6th Australian Airborne Div." "7th Australian Airborne Div." "8th Australian Airborne Div." 
+	}
+	marine_brigade = {
+		"1st Royal Australian Marines Div." "2nd Royal Australian Marines Div." "3rd Royal Australian Marines Div." "4th Royal Australian Marines Div." "5th Royal Australian Marines Div." "6th Royal Australian Marines Div." "7th Royal Australian Marines Div." "8th Royal Australian Marines Div." "9th Royal Australian Marines Div." "10th Royal Australian Marines Div." 
+	}
+	bergsjaeger_brigade = {
+		"1st Australian Mountain Div." "2nd Australian Mountain Div." "3rd Australian Mountain Div." "4th Australian Mountain Div." "5th Australian Mountain Div." "6th Australian Mountain Div." "7th Australian Mountain Div." "8th Australian Mountain Div." "9th Australian Mountain Div." "10th Australian Mountain Div." "11th Australian Mountain Div." 
+		"12th Australian Mountain Div." 
+	}
+	garrison_brigade = {
+		"4th Australian Infantry Div." "5th Australian Infantry Div." "11th Australian Infantry Div." "10th Australian Infantry Div." "12th Australian Infantry Div." "14th Australian Infantry Div." "15th Australian Infantry Div." "16th Australian Infantry Div." "17th Australian Infantry Div." "18st Australian Infantry Div." "19th Australian Infantry Div." 
+		"20th Australian Infantry Div." 
+	}
+	hq_brigade = {
+		"2nd A.I.F." "1st Australian Army" "2nd Australian Army" "1st Australian Army Group" "3rd Australian Army" "4th Australian Army" "2nd Australian Army Group" 
+	}
+	militia_brigade = {
+		"Darwin Garrison" "1st Citizen Militia Division" "2nd Citizen Militia Division" "3rd Citizen Militia Division" "4th Citizen Militia Division" "5th Citizen Militia Division" "6th Citizen Militia Division" "7th Citizen Militia Division" "8th Citizen Militia Division" "9th Citizen Militia Division" "10th Citizen Militia Division" 
+		"11th Citizen Militia Division" "12th Citizen Militia Division" "13th Citizen Militia Division" "14th Citizen Militia Division" "15th Citizen Militia Division" "16th Citizen Militia Division" "17th Citizen Militia Division" "18th Citizen Militia Division" "19th Citizen Militia Division" "20th Citizen Militia Division" "21st Citizen Militia Division" 
+		"22nd Citizen Militia Division" "23rd Citizen Militia Division" "24th Citizen Militia Division" "25th Citizen Militia Division" "26th Citizen Militia Division" "27th Citizen Militia Division" "28th Citizen Militia Division" "29th Citizen Militia Division" "30th Citizen Militia Division" 
+	}
+	multi_role = {
+		"No.1 RAAF Fighter Group" "No.2 RAAF Fighter Group" "No.3 RAAF Fighter Group" "No.4 RAAF Fighter Group" "No.5 RAAF Fighter Group" "No.7 RAAF Fighter Group" "No.8 RAAF Fighter Group" "No.9 RAAF Fighter Group" "No.10 RAAF Fighter Group" "No.11 RAAF Fighter Group" "No.12 RAAF Fighter Group" 
+		"No.13 RAAF Fighter Group" "No.14 RAAF Fighter Group" "No.15 RAAF Fighter Group" "No.16 RAAF Fighter Group" "No.17 RAAF Fighter Group" "No.18 RAAF Fighter Group" "No.19 RAAF Fighter Group" "No.20 RAAF Fighter Group" 
+	}
+	interceptor = {
+		"No.1 RAAF Fighter Group" "No.2 RAAF Fighter Group" "No.3 RAAF Fighter Group" "No.4 RAAF Fighter Group" "No.5 RAAF Fighter Group" "No.7 RAAF Fighter Group" "No.8 RAAF Fighter Group" "No.9 RAAF Fighter Group" "No.10 RAAF Fighter Group" "No.11 RAAF Fighter Group" "No.12 RAAF Fighter Group" 
+		"No.13 RAAF Fighter Group" "No.14 RAAF Fighter Group" "No.15 RAAF Fighter Group" "No.16 RAAF Fighter Group" "No.17 RAAF Fighter Group" "No.18 RAAF Fighter Group" "No.19 RAAF Fighter Group" "No.20 RAAF Fighter Group" 
+	}
+	strategic_bomber = {
+		"No.1 RAAF Strategic Group" "No.2 RAAF Strategic Group" "No.6 RAAF Strategic Group" "No.3 RAAF Strategic Group" "No.4 RAAF Strategic Group" "No.7 RAAF Strategic Group" "No.8 RAAF Strategic Group" "No.9 RAAF Strategic Group" "No.10 RAAF Strategic Group" "No.11 RAAF Strategic Group" "No.12 RAAF Strategic Group" 
+		"No.13 RAAF Strategic Group" "No.14 RAAF Strategic Group" "No.15 RAAF Strategic Group" "No.16 RAAF Strategic Group" "No.17 RAAF Strategic Group" "No.18 RAAF Strategic Group" "No.19 RAAF Strategic Group" "No.20 RAAF Strategic Group" 
+	}
+	tactical_bomber = {
+		"No.1 RAAF Tactical Group" "No.2 RAAF Tactical Group" "No.6 RAAF Tactical Group" "No.3 RAAF Tactical Group" "No.4 RAAF Tactical Group" "No.7 RAAF Tactical Group" "No.8 RAAF Tactical Group" "No.9 RAAF Tactical Group" "No.10 RAAF Tactical Group" "No.11 RAAF Tactical Group" "No.12 RAAF Tactical Group" 
+		"No.13 RAAF Tactical Group" "No.14 RAAF Tactical Group" "No.15 RAAF Tactical Group" "No.16 RAAF Tactical Group" "No.17 RAAF Tactical Group" "No.18 RAAF Tactical Group" "No.19 RAAF Tactical Group" "No.20 RAAF Tactical Group" 
+	}
+	naval_bomber = {
+		"No.1 RAAF Naval Bomber Group" "No.2 RAAF Naval Bomber Group" "No.3 RAAF Naval Bomber Group" "No.4 RAAF Naval Bomber Group" "No.5 RAAF Naval Bomber Group" "No.7 RAAF Naval Bomber Group" "No.8 RAAF Naval Bomber Group" "No.9 RAAF Naval Bomber Group" "No.10 RAAF Naval Bomber Group" "No.11 RAAF Naval Bomber Group" "No.12 RAAF Naval Bomber Group" 
+		"No.13 RAAF Naval Bomber Group" "No.14 RAAF Naval Bomber Group" "No.15 RAAF Naval Bomber Group" "No.16 RAAF Naval Bomber Group" "No.17 RAAF Naval Bomber Group" "No.18 RAAF Naval Bomber Group" "No.19 RAAF Naval Bomber Group" "No.20 RAAF Naval Bomber Group" "No.1 RAAF Torpedo Attack Group" "No.2 RAAF Torpedo Attack Group" "No.3 RAAF Torpedo Attack Group" 
+		"No.4 RAAF Torpedo Attack Group" "No.5 RAAF Torpedo Attack Group" "No.7 RAAF Torpedo Attack Group" "No.8 RAAF Torpedo Attack Group" "No.9 RAAF Torpedo Attack Group" "No.10 RAAF Torpedo Attack Group" "No.11 RAAF Torpedo Attack Group" "No.12 RAAF Torpedo Attack Group" "No.13 RAAF Torpedo Attack Group" "No.14 RAAF Torpedo Attack Group" "No.15 RAAF Torpedo Attack Group" 
+		"No.16 RAAF Torpedo Attack Group" "No.17 RAAF Torpedo Attack Group" "No.18 RAAF Torpedo Attack Group" "No.19 RAAF Torpedo Attack Group" "No.20 RAAF Torpedo Attack Group" 
+	}
+	cas = {
+		"No.1 RAAF Dive Bomb Group" "No.2 RAAF Dive Bomb Group" "No.6 RAAF Dive Bomb Group" "No.3 RAAF Dive Bomb Group" "No.4 RAAF Dive Bomb Group" "No.7 RAAF Dive Bomb Group" "No.8 RAAF Dive Bomb Group" "No.9 RAAF Dive Bomb Group" "No.10 RAAF Dive Bomb Group" "No.11 RAAF Dive Bomb Group" "No.12 RAAF Dive Bomb Group" 
+		"No.13 RAAF Dive Bomb Group" "No.14 RAAF Dive Bomb Group" "No.15 RAAF Dive Bomb Group" "No.16 RAAF Dive Bomb Group" "No.17 RAAF Dive Bomb Group" "No.18 RAAF Dive Bomb Group" "No.19 RAAF Dive Bomb Group" "No.20 RAAF Dive Bomb Group" 
+	}
+	transport_plane = {
+		"No.1 RAAF Air Transport Group" "No.2 RAAF Air Transport Group" "No.3 RAAF Air Transport Group" "No.4 RAAF Air Transport Group" "No.5 RAAF Air Transport Group" "No.7 RAAF Air Transport Group" "No.8 RAAF Air Transport Group" "No.9 RAAF Air Transport Group" "No.10 RAAF Air Transport Group" "No.11 RAAF Air Transport Group" "No.12 RAAF Air Transport Group" 
+		"No.13 RAAF Air Transport Group" "No.14 RAAF Air Transport Group" "No.15 RAAF Air Transport Group" "No.16 RAAF Air Transport Group" "No.17 RAAF Air Transport Group" "No.18 RAAF Air Transport Group" "No.19 RAAF Air Transport Group" "No.20 RAAF Air Transport Group" 
+	}
+	battleship = {
+		"HMAS Princess Elizabeth" "HMAS New South Wales" "HMAS Queensland" "HMAS South Australia" "HMAS Tasmania" "HMAS Victoria" "HMAS Western Australia" 
+	}
+	light_cruiser = {
+		"HMAS Perth" "HMAS Sydney" "HMAS Hobart" "HMAS Brisbane" "HMAS Adelaide" "HMAS Darwin" "HMAS NewCLstle" "HMAS Christmas Island" "HMAS Coral Sea" "HMAS Norfolk Island" "HMAS Australia" 
+		"HMAS CLnberra" "HMAS Sydney" "HMAS Alice Springs" "HMAS Cooktown" "HMAS Broome" "HMAS Wagga Wagga" 
+	}
+	heavy_cruiser = {
+		"HMAS Perth" "HMAS Sydney" "HMAS Hobart" "HMAS Brisbane" "HMAS Adelaide" "HMAS Darwin" "HMAS Newcastle" "HMAS Christmas Island" "HMAS Coral Sea" "HMAS Norfolk Island" "HMAS Australia" 
+		"HMAS Canberra" "HMAS Sydney" "HMAS Alice Springs" "HMAS Cooktown" "HMAS Broome" "HMAS Wagga Wagga" 
+	}
+	battlecruiser = {
+		"HMAS New South Wales" "HMAS Queensland" "HMAS South Australia" "HMAS Tasmania" "HMAS Victoria" "HMAS Western Australia" 
+	}
+	destroyer = {
+		"1st Destroyer Flotilla" "2nd Destroyer Flotilla" "3rd Destroyer Flotilla" "4th Destroyer Flotilla" "5th Destroyer Flotilla" "6th Destroyer Flotilla" "7th Destroyer Flotilla" "8th Destroyer Flotilla" "9th Destroyer Flotilla" "10th Destroyer Flotilla" "11th Destroyer Flotilla" 
+		"12th Destroyer Flotilla" "13th Destroyer Flotilla" "14th Destroyer Flotilla" "15th Destroyer Flotilla" "16th Destroyer Flotilla" "17th Destroyer Flotilla" "18th Destroyer Flotilla" "19th Destroyer Flotilla" "20th Destroyer Flotilla" "21th Destroyer Flotilla" "22th Destroyer Flotilla" 
+		"23th Destroyer Flotilla" "24th Destroyer Flotilla" "25th Destroyer Flotilla" "26th Destroyer Flotilla" "27th Destroyer Flotilla" "28th Destroyer Flotilla" "29th Destroyer Flotilla" 
+	}
+	carrier = {
+		"HMAS Captain Cook" "HMAS Captain Bligh" "HMAS Shark Bay" "HMAS Geographe Bay" "HMAS Carpentaria" "HMAS King Sound" 
+	}
+	escort_carrier = {
+		"HMAS Sydney" "HMAS Vengeance" "HMAS Melbourne" 
+	}
+	submarine = {
+		"1st Submarine Flotilla" "2nd Submarine Flotilla" "3rd Submarine Flotilla" "4th Submarine Flotilla" "5th Submarine Flotilla" "6th Submarine Flotilla" "7th Submarine Flotilla" "8th Submarine Flotilla" "9th Submarine Flotilla" "10th Submarine Flotilla" "11th Submarine Flotilla" 
+		"12th Submarine Flotilla" "13th Submarine Flotilla" "14th Submarine Flotilla" "15th Submarine Flotilla" "16th Submarine Flotilla" "17th Submarine Flotilla" "18th Submarine Flotilla" "19th Submarine Flotilla" "20th Submarine Flotilla" 
+	}
+	transport_ship = {
+		"HMAS Kanimbla Flotilla" "1st Transport Flotilla" "2nd Transport Flotilla" "3rd Transport Flotilla" "4th Transport Flotilla" "5th Transport Flotilla" "6th Transport Flotilla" "7th Transport Flotilla" "8th Transport Flotilla" "9th Transport Flotilla" "10th Transport Flotilla" 
+		"11th Transport Flotilla" "12th Transport Flotilla" "13th Transport Flotilla" "14th Transport Flotilla" "15th Transport Flotilla" "16th Transport Flotilla" "17th Transport Flotilla" "18th Transport Flotilla" "19th Transport Flotilla" "20th Transport Flotilla" "21th Transport Flotilla" 
+		"22th Transport Flotilla" "23th Transport Flotilla" "24th Transport Flotilla" "25th Transport Flotilla" "26th Transport Flotilla" "27th Transport Flotilla" "28th Transport Flotilla" "29th Transport Flotilla" 
+	}
+
+}
+
+
+ministers = {
+	56001 = {
+		name = "Isaac Alfred Isaacs"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56001
+		head_of_state = stern_imperialist
+		head_of_government = stern_imperialist
+		start_date = 1936.1.1
+	}
+	56002 = {
+		name = "Joseph A. Lyons"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56002
+		head_of_government = flamboyant_tough_guy
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1936.1.1
+	}
+	56003 = {
+		name = "George F. Pearce"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56003
+		foreign_minister = great_compromiser
+		minister_of_security = silent_lawyer
+		start_date = 1936.1.1
+	}
+	56004 = {
+		name = "Robert A. Parkhill"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M56004
+		armament_minister = resource_industrialist
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	56005 = {
+		name = "Thomas Paterson"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M56005
+		minister_of_security = silent_lawyer
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	56006 = {
+		name = "Alexander McLachlan"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56006
+		minister_of_intelligence = technical_specialist
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	56008 = {
+		name = "John Lavarack"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M56008
+		chief_of_army = static_defence_doctrine
+		armament_minister = military_entrepreneur
+		start_date = 1936.1.1
+	}
+	56009 = {
+		name = "Ragnar M. Colvin"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M56009
+		chief_of_navy = open_seas_doctrine
+		minister_of_intelligence = naval_intelligence_specialist
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1936.1.1
+	}
+	56010 = {
+		name = "Richard Williams"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M56010
+		chief_of_air = air_superiority_doctrine
+		armament_minister = air_superiority_proponent
+		start_date = 1936.1.1
+	}
+	56031 = {
+		name = "Alexander G. Arkwright"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56031
+		head_of_state = stern_imperialist
+		head_of_state = stern_imperialist
+		head_of_state = stern_imperialist
+		start_date = 1936.1.1
+	}
+	56032 = {
+		name = "Henry Duke of Gloucester"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56032
+		head_of_state = autocratic_charmer
+		head_of_state = autocratic_charmer
+		head_of_state = autocratic_charmer
+		start_date = 1945.1.1
+	}
+	56035 = {
+		name = "Paul Roseville"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M56011
+		head_of_state = benevolent_gentleman
+		armament_minister = air_superiority_proponent
+		start_date = 1936.1.1
+	}
+	56036 = {
+		name = "Lance Sharkey"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M56021
+		head_of_state = barking_buffoon
+		head_of_government = ambitious_union_boss
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	56037 = {
+		name = "Robert G. Menzies"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56037
+		head_of_government = backroom_backstabber
+		foreign_minister = apologetic_clerk
+		start_date = 1937.1.1
+	}
+	56038 = {
+		name = "John J. Curtin"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M56038
+		head_of_government = silent_workhorse
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	56039 = {
+		name = "Ben Chiffley"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M56039
+		head_of_government = political_protege
+		start_date = 1945.1.1
+	}
+	56040 = {
+		name = "J.H.A. Durant"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M56012
+		head_of_government = happy_amateur
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	56042 = {
+		name = "Palmer A. McBride"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56042
+		foreign_minister = iron_fisted_brute
+		armament_minister = infantry_proponent
+		minister_of_security = silent_lawyer
+		start_date = 1936.1.1
+	}
+	56043 = {
+		name = "Henry S. Gullett"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M56043
+		foreign_minister = great_compromiser
+		minister_of_security = prince_of_terror
+		start_date = 1937.1.1
+	}
+	56044 = {
+		name = "William M. Hughes"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56044
+		foreign_minister = biased_intellectual
+		start_date = 1937.1.1
+	}
+	56046 = {
+		name = "Frederick Stewart"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56046
+		foreign_minister = ideological_crusader
+		start_date = 1939.1.1
+	}
+	56048 = {
+		name = "Earle Page"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M56048
+		foreign_minister = apologetic_clerk
+		minister_of_security = man_of_the_people
+		head_of_government = naive_optimist
+		armament_minister = laissez_faires_capitalist
+		start_date = 1944.1.1
+	}
+	56049 = {
+		name = "Vernon Sturdee"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M56049
+		foreign_minister = general_staffer
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	56050 = {
+		name = "Herbert V. Evatt"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M56050
+		foreign_minister = biased_intellectual
+		minister_of_security = back_stabber
+		minister_of_intelligence = political_specialist
+		head_of_government = silent_workhorse
+		start_date = 1941.1.1
+	}
+	56051 = {
+		name = "Peter Spearitt"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M56013
+		foreign_minister = general_staffer
+		start_date = 1936.1.1
+	}
+	56052 = {
+		name = "Francesco Piscitelli"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M56052
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1940.1.1
+	}
+	56053 = {
+		name = "Hugh Moxon"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M56023
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	56054 = {
+		name = "George Bateman"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M56054
+		foreign_minister = biased_intellectual
+		start_date = 1942.1.1
+	}
+	56055 = {
+		name = "John McAuley"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M56055
+		foreign_minister = great_compromiser
+		start_date = 1944.1.1
+	}
+	56056 = {
+		name = "Edward Davis Millen"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M56056
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	56057 = {
+		name = "G.A. Street"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56046
+		armament_minister = administrative_genius
+		start_date = 1937.1.1
+	}
+	56058 = {
+		name = "Hattil S. Foll"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M56058
+		armament_minister = administrative_genius
+		minister_of_security = compassionate_gentleman
+		start_date = 1940.1.1
+	}
+	56059 = {
+		name = "W.D. Bostock"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56059
+		armament_minister = air_to_sea_proponent
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1943.1.1
+	}
+	56061 = {
+		name = "Norman J. Makin"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M56061
+		armament_minister = military_entrepreneur
+		minister_of_intelligence = industrial_specialist
+		start_date = 1937.1.1
+	}
+	56062 = {
+		name = "Stanley Melbourne Bruce"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M56062
+		armament_minister = laissez_faires_capitalist
+		start_date = 1938.1.1
+	}
+	56063 = {
+		name = "A.M.G. Jones"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M56063
+		armament_minister = strategic_air_proponent
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1939.1.1
+	}
+	56064 = {
+		name = "Henry Showers"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M56064
+		armament_minister = battle_fleet_proponent
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1941.1.1
+	}
+	56065 = {
+		name = "Horace William Strutt"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M56065
+		armament_minister = infantry_proponent
+		chief_of_army = static_defence_doctrine
+		start_date = 1943.1.1
+	}
+	56066 = {
+		name = "Sydney Rowell"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M56066
+		armament_minister = tank_proponent
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1943.1.1
+	}
+	56067 = {
+		name = "Stanley J. Goble"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M56067
+		armament_minister = air_to_ground_proponent
+		chief_of_air = army_aviation_doctrine
+		start_date = 1944.1.1
+	}
+	56068 = {
+		name = "Guy C.C. Royle"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M56068
+		armament_minister = submarine_proponent
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1944.1.1
+	}
+	56071 = {
+		name = "Francesco Fantin"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M56014
+		armament_minister = battle_fleet_proponent
+		start_date = 1936.1.1
+	}
+	56072 = {
+		name = "Frank Carmagnolo"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M56072
+		armament_minister = strategic_air_proponent
+		start_date = 1939.1.1
+	}
+	56074 = {
+		name = "Richard Overell"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M56074
+		armament_minister = administrative_genius
+		start_date = 1944.1.1
+	}
+	56075 = {
+		name = "Jack Henry"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M56024
+		armament_minister = military_entrepreneur
+		start_date = 1936.1.1
+	}
+	56076 = {
+		name = "Jim Henderson"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M56076
+		armament_minister = infantry_proponent
+		start_date = 1939.1.1
+	}
+	56077 = {
+		name = "Tony McGillick"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M56077
+		armament_minister = theoretical_scientist
+		minister_of_intelligence = technical_specialist
+		start_date = 1944.1.1
+	}
+	56078 = {
+		name = "Kenneth Eather"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M56078
+		minister_of_security = efficient_sociopath
+		start_date = 1936.1.1
+	}
+	56085 = {
+		name = "Hubert P. Lazzarini"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M56085
+		minister_of_security = silent_lawyer
+		minister_of_intelligence = dismal_enigma
+		start_date = 1937.1.1
+	}
+	56087 = {
+		name = "James McCarthy"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M56015
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	56089 = {
+		name = "James Culliton"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M56089
+		minister_of_security = back_stabber
+		start_date = 1943.1.1
+	}
+	56090 = {
+		name = "John B. Miles"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M56025
+		minister_of_security = prince_of_terror
+		start_date = 1936.1.1
+	}
+	56091 = {
+		name = "Guido Barracchi"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M56091
+		minister_of_security = silent_lawyer
+		start_date = 1939.1.1
+	}
+	56092 = {
+		name = "Philip Adams"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M56092
+		minister_of_security = man_of_the_people
+		start_date = 1942.1.1
+	}
+	56093 = {
+		name = "Cyril Bingham-White"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56093
+		minister_of_intelligence = research_specialist
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1937.1.1
+	}
+	56095 = {
+		name = "Ben Chifley"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M56039
+		minister_of_intelligence = political_specialist
+		start_date = 1941.1.1
+	}
+	56098 = {
+		name = "John J. Dedman"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M56098
+		minister_of_intelligence = technical_specialist
+		armament_minister = theoretical_scientist
+		start_date = 1944.1.1
+	}
+	56099 = {
+		name = "Ron Law"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M56016
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	56100 = {
+		name = "Tom Dale"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M56026
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	56101 = {
+		name = "Alf Bradley"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M56101
+		minister_of_intelligence = research_specialist
+		start_date = 1941.1.1
+	}
+	56103 = {
+		name = "James V. Fairbairn"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M56103
+		chief_of_staff = school_of_fire_support
+		start_date = 1939.1.1
+	}
+	56105 = {
+		name = "E.K. Squires"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M56105
+		chief_of_staff = school_of_defence
+		start_date = 1938.1.1
+	}
+	56107 = {
+		name = "Leslie Beavis"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M56107
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1944.1.1
+	}
+	56108 = {
+		name = "George F. Langley"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M56017
+		chief_of_staff = school_of_mass_combat
+		start_date = 1936.1.1
+	}
+	56109 = {
+		name = "James Cannan"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M56027
+		chief_of_staff = school_of_mass_combat
+		start_date = 1936.1.1
+	}
+	56111 = {
+		name = "Leslie Morshead"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M56066
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1940.1.1
+	}
+	56115 = {
+		name = "Alan Ramsay"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M56018
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	56116 = {
+		name = "John Northcott"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M56028
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	56117 = {
+		name = "Hector Waller"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M56117
+		chief_of_navy = base_control_doctrine
+		start_date = 1937.1.1
+	}
+	56118 = {
+		name = "Victor Crutchley"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M56019
+		chief_of_navy = open_seas_doctrine
+		start_date = 1941.1.1
+	}
+	56120 = {
+		name = "John Collins"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M56068
+		chief_of_navy = power_projection_doctrine
+		start_date = 1941.1.1
+	}
+	56123 = {
+		name = "F.E. Getting"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M56029
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	56124 = {
+		name = "A.M. Charlesworth"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M56124
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1937.1.1
+	}
+	56127 = {
+		name = "Charles Burnett"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M56127
+		chief_of_air = air_superiority_doctrine
+		start_date = 1941.1.1
+	}
+	56129 = {
+		name = "John Lerew"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M56020
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	56130 = {
+		name = "G.J.W. MacKinolty"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M56030
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+	56134 = {
+		name = "William John McKell"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M56134
+		head_of_state = insignificant_layman
+		head_of_state = insignificant_layman
+		head_of_state = insignificant_layman
+		start_date = 1947.1.1
+	}
+	56140 = {
+		name = "Arthur W. Fadden"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M56140
+		head_of_government = happy_amateur
+		start_date = 1940.1.1
+	}
+	56141 = {
+		name = "Francis M. Forde"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M56141
+		head_of_government = silent_workhorse
+		start_date = 1945.1.1
+	}
+	56148 = {
+		name = "John McEwen"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M56148
+		foreign_minister = biased_intellectual
+		start_date = 1940.1.1
+	}
+	56150 = {
+		name = "Percy C. Spender"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56150
+		foreign_minister = apologetic_clerk
+		start_date = 1949.1.1
+	}
+	56152 = {
+		name = "Eric John Harrison"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M56152
+		armament_minister = military_entrepreneur
+		minister_of_security = compassionate_gentleman
+		start_date = 1949.1.1
+	}
+	56153 = {
+		name = "Herbert V. Johnson"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M56153
+		minister_of_security = man_of_the_people
+		start_date = 1945.1.1
+	}
+	56156 = {
+		name = "W.S.K. Hughes"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56156
+		minister_of_security = prince_of_terror
+		start_date = 1951.1.1
+	}
+	56158 = {
+		name = "John A. Spicer"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56158
+		minister_of_intelligence = dismal_enigma
+		start_date = 1949.1.1
+	}
+	56159 = {
+		name = "Sir William Slim"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M56159
+		head_of_state = resigned_generalissimo
+		head_of_state = resigned_generalissimo
+		start_date = 1953.1.1
+	}
+	56161 = {
+		name = "William Lord Dunrossil"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M56161
+		head_of_state = weary_stiff_neck
+		head_of_state = weary_stiff_neck
+		start_date = 1960.1.1
+	}
+	56163 = {
+		name = "William Lord De L'Isle"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M56163
+		head_of_state = autocratic_charmer
+		head_of_state = autocratic_charmer
+		start_date = 1961.1.1
+	}
+	56166 = {
+		name = "Arthur Colwell"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M56166
+		head_of_government = naive_optimist
+		foreign_minister = great_compromiser
+		start_date = 1960.1.1
+	}
+	56167 = {
+		name = "Richard G. Casey"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56167
+		foreign_minister = ideological_crusader
+		start_date = 1951.1.1
+	}
+	56168 = {
+		name = "Garfield E. Barwick"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56168
+		foreign_minister = iron_fisted_brute
+		minister_of_intelligence = political_specialist
+		start_date = 1961.1.1
+	}
+	56170 = {
+		name = "Gough Whitlam"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M56170
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1960.1.1
+	}
+	56171 = {
+		name = "Philip A.M. McBride"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M56171
+		armament_minister = laissez_faires_capitalist
+		start_date = 1950.1.1
+	}
+	56172 = {
+		name = "Athol G. Townley"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M56172
+		armament_minister = resource_industrialist
+		start_date = 1958.1.1
+	}
+	56173 = {
+		name = "Malcolm Fraser"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M56173
+		armament_minister = air_superiority_proponent
+		start_date = 1958.1.1
+	}
+	56174 = {
+		name = "Allen Fairhall"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56174
+		minister_of_security = silent_lawyer
+		start_date = 1956.1.1
+	}
+	56175 = {
+		name = "Gordon Freeth"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56175
+		minister_of_security = compassionate_gentleman
+		start_date = 1958.1.1
+	}
+	56176 = {
+		name = "Peter J. Nixon"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M56176
+		minister_of_security = back_stabber
+		start_date = 1961.1.1
+	}
+	56177 = {
+		name = "Neil O'Sullivan"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M56177
+		minister_of_intelligence = industrial_specialist
+		start_date = 1956.1.1
+	}
+	56179 = {
+		name = "Lionel K. Murphy"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M56179
+		minister_of_intelligence = technical_specialist
+		start_date = 1961.1.1
+	}
+}

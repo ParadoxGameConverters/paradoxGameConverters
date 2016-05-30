@@ -1,0 +1,12 @@
+# South American Gunpowder Warfare
+
+unit_type = new_world
+type = infantry
+
+maneuver = 1
+offensive_morale = 2
+defensive_morale = 5
+offensive_fire = 1
+defensive_fire = 2
+offensive_shock = 0
+defensive_shock = 2

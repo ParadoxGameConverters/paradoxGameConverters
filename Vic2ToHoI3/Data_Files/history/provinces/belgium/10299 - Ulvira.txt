@@ -1,0 +1,12 @@
+owner = BEL
+controller = BEL
+add_core = BEL
+metal = 13.00
+rare_materials = 3.00
+infra = 2
+manpower = 1.00
+leadership = 0.10
+
+1944.12.01 = {
+	controller = USA
+}

@@ -1,0 +1,11 @@
+owner = POL
+controller = POL
+add_core = POL
+
+infra = 9
+industry = 1
+
+1940.5.10 = {
+	controller = GER
+
+}

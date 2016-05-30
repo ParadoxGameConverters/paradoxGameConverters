@@ -1,0 +1,473 @@
+color = { 22  124  62 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"al-Mushati al-1i" "al-Mushati al-2i" "al-Mushati al-3i" "al-Mushati al-4i" "al-Mushati al-5i" "al-Mushati al-6i" "al-Mushati al-7i" "al-Mushati al-8i" "al-Mushati al-9i" "al-Mushati al-10i" "al-Mushati al-12r" 
+		"al-Mushati al-13r" "al-Mushati al-14r" "al-Mushati al-15r" "al-Mushati al-16r" "al-Mushati al-17r" "al-Mushati al-18r" "al-Mushati al-19r" "al-Mushati al-20r" 
+	}
+	cavalry_brigade = {
+		"Sipahis al-1i" "Sipahis al-2i" "Sipahis al-3i" "Sipahis al-4i" "Sipahis al-5i" "Sipahis al-6i" "Sipahis al-7i" "Sipahis al-8i" "Sipahis al-9i" "Sipahis al-10i" "Sipahis al-11r" 
+		"Sipahis al-12r" "Sipahis al-13r" "Sipahis al-14r" "Sipahis al-15r" 
+	}
+	motorized_brigade = {
+		"al-Mushati al-1i" "al-Mushati al-2i" "al-Mushati al-3i" "al-Mushati al-4i" "al-Mushati al-5i" "al-Mushati al-6i" "al-Mushati al-7i" "al-Mushati al-8i" "al-Mushati al-9i" "al-Mushati al-10i" "al-Mushati al-12r" 
+		"al-Mushati al-13r" "al-Mushati al-14r" "al-Mushati al-15r" "al-Mushati al-16r" "al-Mushati al-17r" "al-Mushati al-18r" "al-Mushati al-19r" "al-Mushati al-20r" 
+	}
+	mechanized_brigade = {
+		"al-Mushati al-1i" "al-Mushati al-2i" "al-Mushati al-3i" "al-Mushati al-4i" "al-Mushati al-5i" "al-Mushati al-6i" "al-Mushati al-7i" "al-Mushati al-8i" "al-Mushati al-9i" "al-Mushati al-10i" "al-Mushati al-12r" 
+		"al-Mushati al-13r" "al-Mushati al-14r" "al-Mushati al-15r" "al-Mushati al-16r" "al-Mushati al-17r" "al-Mushati al-18r" "al-Mushati al-19r" "al-Mushati al-20r" 
+	}
+	light_armor_brigade = {
+		"Sipahis al-1i" "Sipahis al-2i" "Sipahis al-3i" "Sipahis al-4i" "Sipahis al-5i" "Sipahis al-6i" "Sipahis al-7i" "Sipahis al-8i" "Sipahis al-9i" "Sipahis al-10i" 
+	}
+	armor_brigade = {
+		"Sipahis al-1i" "Sipahis al-2i" "Sipahis al-3i" "Sipahis al-4i" "Sipahis al-5i" "Sipahis al-6i" "Sipahis al-7i" "Sipahis al-8i" "Sipahis al-9i" "Sipahis al-10i" 
+	}
+	paratrooper_brigade = {
+		"al-Mushati al-20r" "al-Mushati al-21r" "al-Mushati al-22r" "al-Mushati al-23r" "al-Mushati al-24r" "al-Mushati al-25r" "al-Mushati al-26r" "al-Mushati al-27r" "al-Mushati al-28r" "al-Mushati al-29r" "al-Mushati al-30r" 
+			}
+	marine_brigade = {
+		"al-Mushati al-20r" "al-Mushati al-21r" "al-Mushati al-22r" "al-Mushati al-23r" "al-Mushati al-24r" "al-Mushati al-25r" "al-Mushati al-26r" "al-Mushati al-27r" "al-Mushati al-28r" "al-Mushati al-29r" "al-Mushati al-30r" 
+			}
+	bergsjaeger_brigade = {
+		"al-Mushati al-20r" "al-Mushati al-21r" "al-Mushati al-22r" "al-Mushati al-23r" "al-Mushati al-24r" "al-Mushati al-25r" "al-Mushati al-26r" "al-Mushati al-27r" "al-Mushati al-28r" "al-Mushati al-29r" "al-Mushati al-30r" 
+			}
+	garrison_brigade = {
+		"al-Mushati al-1i" "al-Mushati al-2i" "al-Mushati al-3i" "al-Mushati al-4i" "al-Mushati al-5i" "al-Mushati al-6i" "al-Mushati al-7i" "al-Mushati al-8i" "al-Mushati al-9i" "al-Mushati al-10i" "al-Mushati al-12r" 
+		"al-Mushati al-13r" "al-Mushati al-14r" "al-Mushati al-15r" "al-Mushati al-16r" "al-Mushati al-17r" "al-Mushati al-18r" "al-Mushati al-19r" "al-Mushati al-20r" 
+	}
+	hq_brigade = {
+		"1st Pakistani Army" "2nd Pakistani Army" "3rd Pakistani Army" "4th Pakistani Army" "5th Pakistani Army" 
+	}
+	militia_brigade = {
+		"al-Milishiya al-1i" "al-Milishiya al-2i" "al-Milishiya al-3i" "al-Milishiya al-4i" "al-Milishiya al-5i" "al-Milishiya al-6i" "al-Milishiya al-7i" "al-Milishiya al-8i" "al-Milishiya al-9i" "al-Milishiya al-10i" "al-Milishiya al-11r" 
+		"al-Milishiya al-12r" "al-Milishiya al-13r" "al-Milishiya al-14r" "al-Milishiya al-15r" "al-Milishiya al-16r" "al-Milishiya al-17r" "al-Milishiya al-18r" "al-Milishiya al-19r" "al-Milishiya al-20r" "al-Milishiya al-21r" "al-Milishiya al-22r" 
+		"al-Milishiya al-23r" "al-Milishiya al-24r" "al-Milishiya al-25r" 
+	}
+	multi_role = {
+		"1. PAF Fighter Group" "2. PAF Fighter Group" "3. PAF Fighter Group" "4. PAF Fighter Group" "5. PAF Fighter Group" "6. PAF Fighter Group" "7. PAF Fighter Group" "8. PAF Fighter Group" "9. PAF Fighter Group" "10. PAF Fighter Group" 
+	}
+	interceptor = {
+		"1. PAF Fighter Group" "2. PAF Fighter Group" "3. PAF Fighter Group" "4. PAF Fighter Group" "5. PAF Fighter Group" "6. PAF Fighter Group" "7. PAF Fighter Group" "8. PAF Fighter Group" "9. PAF Fighter Group" "10. PAF Fighter Group" "1. PAF Fighter Group" 
+		"2. PAF Fighter Group" "3. PAF Fighter Group" "4. PAF Fighter Group" "5. PAF Fighter Group" "6. PAF Fighter Group" "7. PAF Fighter Group" "8. PAF Fighter Group" "9. PAF Fighter Group" "10. PAF Fighter Group" 
+	}
+	strategic_bomber = {
+		"11. PAF Strategic Bomb Group" "12. PAF Strategic Bomb Group" "13. PAF Strategic Bomb Group" "14. PAF Strategic Bomb Group" "15. PAF Strategic Bomb Group" "16. PAF Strategic Bomb Group" 
+	}
+	tactical_bomber = {
+		"21. PAF Tactical Bomb Group" "22. PAF Tactical Bomb Group" "23. PAF Tactical Bomb Group" "24. PAF Tactical Bomb Group" "25. PAF Tactical Bomb Group" "26. PAF Tactical Bomb Group" 
+	}
+	naval_bomber = {
+		"41. PAF Marine Bomb Group" "42. PAF Marine Bomb Group" "43. PAF Marine Bomb Group" "44. PAF Marine Bomb Group" "45. PAF Marine Bomb Group" "51. PAF Torpedo Group" "52. PAF Torpedo Group" "53. PAF Torpedo Group" "54. PAF Torpedo Group" "55. PAF Torpedo Group" "56. PAF Torpedo Group" 
+			}
+	cas = {
+		"31. PAF Dive Bomb Group" "32. PAF Dive Bomb Group" "33. PAF Dive Bomb Group" "34. PAF Dive Bomb Group" "35. PAF Dive Bomb Group" 
+	}
+	transport_plane = {
+		"61. PAF Airtransport" "62. PAF Airtransport" "63. PAF Airtransport" "64. PAF Airtransport" 
+	}
+	battleship = {
+		"PNS al-Qahira" "PNS Salah al-Din" "PNS Mehemet Ali" "PNS Ibrahim" "PNS Sakka" "PNS Muhammad 'Ali" "PNS Rasheed" "PNS Damyat" "PNS Sharm El-Sheikh" "PNS Toushka" 
+	}
+	light_cruiser = {
+		"PNS Bur Safajah" "PNS Al Ghardaqah" "PNS Bur Tawfiq" "PNS Marsa Matruh" "PNS Al Iskandariyah" "PNS Najim al Zafir" "PNS Rasheed" "PNS Damyat" 
+	}
+	heavy_cruiser = {
+		"PNS Bur Safajah" "PNS Al Ghardaqah" "PNS Bur Tawfiq" "PNS Marsa Matruh" "PNS Al Iskandariyah" "PNS Najim al Zafir" "PNS El Aboukir" 
+	}
+	battlecruiser = {
+		"PNS Bur Safajah" "PNS Al Ghardaqah" "PNS Bur Tawfiq" "PNS Marsa Matruh" "PNS El Aboukir" "PNS Rasheed" "PNS Damyat" 
+	}
+	destroyer = {
+		"Flotille Al Bi'ra" "Flotille Tabuk" "Flotille Aynunah" "Flotille Dal'at al Akhdar" "Flotille Al Qalibah" "Flotille Ziba" "Flotille Al Wajh" "Flotille Hanak" "Flotille Khuff" "Flotille Umm Lajj" 
+	}
+	carrier = {
+		"PNS Muhammad 'Ali" "PNS Salah al-Din" 
+	}
+	escort_carrier = {
+		"PNS Babur" "PNS Badr" "PNS Khaibar" "PNS Shahjahan" "PNS Tariq" "PNS Tippu Sultan" 
+	}
+	submarine = {
+		"Ustul al-Ghawwasati al-1i" "Ustul al-Ghawwasati al-2i" "Ustul al-Ghawwasati al-3i" "Ustul al-Ghawwasati al-4i" "Ustul al-Ghawwasati al-5i" "Ustul al-Ghawwasati al-6i" "Ustul al-Ghawwasati al-7i" "Ustul al-Ghawwasati al-8i" "Ustul al-Ghawwasati al-9i" "Ustul al-Ghawwasati al-10i" 
+	}
+	transport_ship = {
+		"Ustul al-Hamli al-1i" "Ustul al-Hamli al-2i" "Ustul al-Hamli al-3i" "Ustul al-Hamli al-4i" "Ustul al-Hamli al-5i" "Ustul al-Hamli al-6i" "Ustul al-Hamli al-7i" "Ustul al-Hamli al-8i" "Ustul al-Hamli al-9i" "Ustul al-Hamli al-10i" 
+	}
+
+}
+
+ministers = {
+	564001 = {
+		name = "Sir Henry Duffield Craik"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M564001
+		head_of_state = stern_imperialist
+		start_date = 1936.1.1
+	}
+	564002 = {
+		name = "Sir John Anderson"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M564002
+		head_of_government = political_protege
+		start_date = 1936.1.1
+	}
+	564003 = {
+		name = "Sir Bertrand Glancy"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M564003
+		foreign_minister = great_compromiser
+		start_date = 1936.1.1
+	}
+	564004 = {
+		name = "Albert E. Clutterbuck"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M564004
+		armament_minister = corrupt_kleptocrat
+		start_date = 1936.1.1
+	}
+	564005 = {
+		name = "Herbert William Emerson"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M564005
+		minister_of_security = prince_of_terror
+		start_date = 1936.1.1
+	}
+	564006 = {
+		name = "Frederick Gough-Calthorpe"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M564006
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	564007 = {
+		name = "Wallace Duffield Wright"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M564007
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	564008 = {
+		name = "B.G.E. Dyer"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M564008
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	564009 = {
+		name = "John Talbot-Savignac-Hall"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = L1394
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1936.1.1
+	}
+	564010 = {
+		name = "Gerald Hendrickson"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M564010
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	564011 = {
+		name = "Iskander Mirza"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59014
+		head_of_state = barking_buffoon
+		start_date = 1936.1.1
+	}
+	564012 = {
+		name = "H.H. Muhammed Shuja ul-Mulk"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M564012
+		head_of_state = resigned_generalissimo
+		start_date = 1936.1.1
+	}
+	564013 = {
+		name = "Mohammad Ali Jinnah"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59042
+		head_of_government = flamboyant_tough_guy
+		head_of_state = power_hungry_demagogue
+		start_date = 1936.1.1
+	}
+	564014 = {
+		name = "Jamiat II Nawab of Manowar"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M564014
+		head_of_government = old_air_marshal
+		start_date = 1936.1.1
+	}
+	564015 = {
+		name = "Liaquat Ali Khan"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59052
+		foreign_minister = the_cloak_n_dagger_schemer
+		minister_of_security = efficient_sociopath
+		head_of_government = backroom_backstabber
+		start_date = 1936.1.1
+	}
+	564016 = {
+		name = "Mohammed Ayub Khan"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59049
+		foreign_minister = general_staffer
+		start_date = 1946.1.1
+	}
+	564017 = {
+		name = "H.H. Nwanm Khan Jorawar"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M564017
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	564018 = {
+		name = "Dr. Zakir Husain"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M59066
+		armament_minister = theoretical_scientist
+		start_date = 1936.1.1
+	}
+	564019 = {
+		name = "Zahid Hussain"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M564019
+		armament_minister = administrative_genius
+		start_date = 1941.1.1
+	}
+	564020 = {
+		name = "Francis Edgar Kearney"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M564020
+		armament_minister = military_entrepreneur
+		start_date = 1940.1.1
+	}
+	564021 = {
+		name = "Mehtar Saif ur-Rahman"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M564021
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	564023 = {
+		name = "Abdul Badshah Khan"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59076
+		minister_of_security = man_of_the_people
+		start_date = 1944.1.1
+	}
+	564024 = {
+		name = "Evan Meredith Jenkins"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M564024
+		minister_of_security = compassionate_gentleman
+		start_date = 1943.1.1
+	}
+	564025 = {
+		name = "H.H. Muzaffar ul-Mulk"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M564025
+		minister_of_security = back_stabber
+		start_date = 1936.1.1
+	}
+	564026 = {
+		name = "Ifthqar Husain Memdoot"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M59085
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	564027 = {
+		name = "Wilfred Hart-Sugden"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M564027
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1941.1.1
+	}
+	564028 = {
+		name = "Lord Edward Gleichen"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M564028
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	564029 = {
+		name = "Sir Skindher Hitay Khan"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59096
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	564030 = {
+		name = "Muhammad Yahya Khan"
+		ideology = social_democrat
+		loyalty = 0.50
+		picture = M59098
+		chief_of_staff = school_of_fire_support
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1945.1.1
+	}
+	564031 = {
+		name = "H.H. Shriman VIII Maharaja of Kashmir"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M564031
+		chief_of_staff = school_of_mass_combat
+		start_date = 1936.1.1
+	}
+	564032 = {
+		name = "Muhammad Ayub Khan"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M59105
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	564034 = {
+		name = "Rukn Nawab ud-Duala"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M564034
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	564035 = {
+		name = "Ali Rehman Khan"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = L505113
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	564036 = {
+		name = "H.H. Diwan III Nawab Khanji"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M564036
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	564037 = {
+		name = "Asghar Khan"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59020
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1936.1.1
+	}
+	564038 = {
+		name = "H.H. Ahmad ul-Mulk"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M564038
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1936.1.1
+	}
+	564040 = {
+		name = "Khwaja Nazimuddin"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M564040
+		head_of_state = barking_buffoon
+		head_of_government = corporate_suit
+		start_date = 1948.1.1
+	}
+	564041 = {
+		name = "Gholam Muhammad"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M564041
+		head_of_state = benevolent_gentleman
+		start_date = 1951.1.1
+	}
+	564044 = {
+		name = "Mohammad Ali Bogra"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M564044
+		head_of_government = ambitious_union_boss
+		start_date = 1953.1.1
+	}
+	564045 = {
+		name = "Chaudry Mohammad Ali"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M564045
+		foreign_minister = biased_intellectual
+		start_date = 1951.1.1
+	}
+	564046 = {
+		name = "Husain Suhrawandy"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M564046
+		foreign_minister = apologetic_clerk
+		start_date = 1953.1.1
+	}
+	564047 = {
+		name = "Abdul Wahab Khan"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M564047
+		armament_minister = infantry_proponent
+		minister_of_intelligence = research_specialist
+		start_date = 1952.1.1
+	}
+	564048 = {
+		name = "Moulvi Tamizaddin Khan"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M564048
+		minister_of_security = silent_lawyer
+		start_date = 1951.1.1
+	}
+}

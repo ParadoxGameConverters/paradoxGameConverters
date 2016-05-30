@@ -1,0 +1,88 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 210  106  47 }
+
+historical_ideas = {
+	excellent_shipwrights
+	superior_seamanship
+	shrewd_commerce_practise
+	merchant_adventures
+	naval_fighting_instruction
+	national_trade_policy
+	battlefield_commisions
+	sea_hawks
+	military_drill
+	bureaucracy
+	smithian_economics
+	espionage
+}
+
+historical_units = {
+	indian_footsoldier
+	rajput_hill_fighters
+	indian_arquebusier
+	indian_elephant
+	indian_shock_cavalry
+	rajput_musketeer
+	south_indian_musketeer
+	mughal_mansabdar
+	reformed_mughal_musketeer
+	reformed_mughal_mansabdar
+	tipu_sultan_rocket
+	indian_rifle
+}
+
+monarch_names = {
+	"Narasimhadeva #3" = 30
+	"Bhanudeva #3" = 30
+	"Kapilesvara Gajapati #0" = 30
+	"Pratâprudra #3" = 30
+	"Kaluadeva #3" = 30
+	"Govindaraja Vidyadhara #3" = 30
+	"Chakrapretâpa #0" = 30
+	"Nârashima Jana #0" = 30
+	"Raghurâma Chhotra #0" = 30
+	"Mukundadeva Harishandra #0" = 30
+	"Râmchandra Deva #0" = 30
+	"Râmchandra #0" = 20
+	"Purushottama Deva #0" = 20
+	"Mukunda Deva #0" = 10
+	"Nârsimha Deva #0" = 10
+	"Gangâdar Deva #0" = 10
+	"Bâlabhadra Deva #0" = 10
+	"Mukunda Deva #0" = 10
+	"Divya Simha Deva #0" = 10
+	"Hari Krishna Deva #0" = 10
+	"Gapînâth Deva #0" = 10
+	"Padmanabha #0" = 10
+	"Vîra Kishor Deva #0" = 10
+}
+
+leader_names = {
+	Bhowarbar
+	Bidyadhar
+	Dassa
+	Deo
+	Kalinga
+	Mansingh
+	Patra
+	Rai
+	Ratha
+	Roy
+	Santra
+	Singhar
+	Sinha
+	Uria
+	Vansa
+}
+
+ship_names = {
+	Baitarani Balasore Balugaon Behrampur
+	Bhubeneswar Brahmani Chandipur Chilka
+	Cuttack Durga Gopalpur Jagannath
+	Juggernaut Kalijai Konark Lakshmi
+	Mahanadi Nalabana Paradeep Parvati
+	Puri Radha Sarasvati Satapada
+}

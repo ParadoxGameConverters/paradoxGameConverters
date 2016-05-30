@@ -1,0 +1,121 @@
+#Denmark
+
+graphical_culture = latingfx
+	
+
+#color = { 139  125  149 }
+color = { 190  70  70 }
+
+
+historical_ideas = {
+	merchant_adventures
+	shrewd_commerce_practise
+	national_conscripts
+	national_trade_policy
+	military_drill
+	glorious_arms
+	national_bank
+	grand_army
+	cabinet
+	bill_of_rights
+	espionage
+	battlefield_commisions
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	dutch_maurician
+	swedish_galoop
+	swedish_gustavian
+	swedish_caroline
+	swedish_arme_blanche
+	prussian_frederickian
+	prussian_uhlan
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Christian #0" = 140
+	"Frederik #0" = 120
+	"Erik #6" = 20
+	"Christoffer #2" = 20
+	"Hans #0" = 20
+	"Adolf #0" = 10
+	"Filip #0" = 10
+	"Karl #0" = 10
+	"Magnus #0" = 10
+	"Margaret #0" = -10
+	"Maximilian #0" = 10
+	"Ulrik #0" = 10
+	"Frans #0" = 5
+	"Vilhelm #0" = 5
+	"Knud #7" = 1
+	"Valdemar #4" = 1
+	"Harald #3" = 1
+	"Oluf #3" = 1
+	"Alfred #0" = 0
+	"Anton #0" = 0
+	"Bent #0" = 0
+	"Emanuel #0" = 0
+	"Esben #0" = 0
+	"Fritjof #0" = 0
+	"Frode #0" = 0
+	"Gunnar #0" = 0
+	"Hans #0" = 0
+	"Henrik #0" = 0
+	"Holger #0" = 0
+	"Jorgen #0" = 0
+	"Kasper #0" = 0
+	"Peter #0" = 0
+	"Poul #0" = 0
+	"Rudolf #0" = 0
+	"Sigrun #0" = 0
+	"Stefan #0" = 0
+	"Tobias #0" = 0
+	"Torbald #0" = 0
+	"Viktor #0" = 0
+	"Vilfred #0" = 0
+}
+
+leader_names = {
+	Adeler Ahlefeldt Akeleye Arenstorff 
+	Bille Bielke Brahe Brockenhuus
+	Christiansen
+	Daa
+	Ebbesen Eberstein Ellbrecht 
+	Falkenskjold Fischer
+	Galt Gersdorff Gjedde Gyldenløve Gyldenstjerne Gøye
+	Harboe Hardenberg Holstein Huitfeldt Høegh
+	Jensen Juel
+	Krabbe Krag Krumpen Knudtzon Kvistgaard Kaas
+	Lillienskjold Lingby Lunge Lützow Løvenørn
+	Moltke Moth Munk
+	Norby
+	Pedersen Povlsen Pallesen Pil
+	Rantzau Reventlow Rosenkrantz Rosenørn
+	Schlentz Schack Scholten Sehested Skram
+	Thomsen "von Trampe" Trolle
+	Ulfeldt
+}
+
+ship_names = {
+	Achilles "Arche Noa" Arken Beskjermer "Byens Løffue" Caritas "Charlotte Amalie" 
+	Christiania Christiansand Christiansø "Christianus IV" "Christianus V" Churprindsen 
+	Concordia Cæsar Dannebroge David Delmenhorst Ditmarsken Draken "Dronning Louisa" 
+	Ebenetzer Elefanten Enighed "Engelske Fortuna" Enhiørningen Fides Flores 
+	"Flygende Hjorten" Fortuna "Fredericus III" "Fredericus IV" Fyen Gravenstein Griffe 
+	Gyldenløve Hannibal Havfru Havhest Havmand Hector Hercules "Hertug Olufs Pincke" 
+	Hiælperen Hjort Høyenhald Hummer "Hvide Ørn" Højenhald Island Jernvågen Jægermester 
+	Justitia "Kongens Jagt Krone" "Kronet Fisk" Lamprenen Leopard Lindorm Loss Lovisa 
+	"Løvendals Gallej" Makaløs Mars Merkurius Morian Najaden Nelleblad Neptunus 
+	"Norske Løve" Oldenborg Papegoye Patienta Pelican Phønix "Prinds Carl" 
+	"Prinds Christian" "Prinds Christian" "Prinds Wilhelm" Raae Samson Solen 
+	"Sophia Amalia" "Sophia Hedvig" "St. Erik" "St. Georg" "St. Oluf" Stormar Stralsund 
+	Svaerdfisk Svan "Svenske Jomfru" Søridder Tomler "To Løver" "Tre Løver" Trefoldighed 
+	Victoria Vindhunden Wenden Ørnen
+}

@@ -1,0 +1,96 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 255  151  40 }
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	divine_supremacy
+	military_drill
+	glorious_arms
+	battlefield_commisions
+	engineer_corps
+	espionage
+	shrewd_commerce_practise
+	national_trade_policy
+	merchant_adventures
+	bureaucracy
+}
+
+historical_units = {
+	persian_footsoldier
+	persian_cavalry_charge
+	persian_shamshir
+	qizilbash_cavalry
+	tofongchis_musketeer
+	topchis_artillery
+	afsharid_reformed
+	afsharid_reformed_infantry
+	muslim_mass_infantry
+	muslim_dragoon
+	persian_rifle
+}
+
+monarch_names = {
+	"Umur #1" = 20
+	"Junayd #0" = 20
+	"Musa #0" = 20
+	"Isa #1" = 15
+	"Kidr #1" = 15
+	"Muhammad #1" = 15
+	"Ali #0" = 10
+	"Ibrahim #0" = 10
+	"Aydin #0" = 5
+	"Abdulmecid #0" = 0
+	"Adil #0" = 0
+	"Bayezid #0" = 0
+	"Berk #0" = 0
+	"Burcu #0" = 0
+	"Direnç #0" = 0
+	"Emin #0" = 0
+	"Erdem #0" = 0
+	"Erol #0" = 0
+	"Hizir #0" = 0
+	"Ilhami #0" = 0
+	"Ishak #0" = 0
+	"Iskender #0" = 0
+	"Kamar #0" = 0
+	"Kasim #0" = 0
+	"Koray #0" = 0
+	"Korkud #0" = 0
+	"Murad #0" = 0
+	"Onur #0" = 0
+	"Özgür #0" = 0
+	"Savas #0" = 0
+	"Seyfettin #0" = 0
+	"Süleyman #0" = 0
+	"Temel #0" = 0
+	"Tunç #0" = 0
+	"Davud #0" = 0
+	"Hasan #0" = 0
+	"Hüseyin #0" = 0
+	"Yakub #0" = 0
+	"Yazid #0" = 0
+	"Yusuf #0" = 0
+}
+
+leader_names = {
+	Avsar
+	Baykurt
+	Halis
+	Mansur
+	Orga
+	Erim
+	Aras
+	Aydin
+	Bayar
+	Isa
+}
+
+ship_names = {
+	"Temür Yaman" Bayezid Candaroglu Isfendiyar Süleyman 
+	Kastamonu Tosya Saraydüzü Devrekani Agli Daday Bozkuri
+	Küre Arac Kargi Hanönü
+}

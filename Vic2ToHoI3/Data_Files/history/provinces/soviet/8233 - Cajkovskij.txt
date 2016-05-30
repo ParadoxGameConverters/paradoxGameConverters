@@ -1,0 +1,6 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+metal = 9.00
+crude_oil = 4.00
+infra = 6

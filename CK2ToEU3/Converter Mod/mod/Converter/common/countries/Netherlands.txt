@@ -1,0 +1,144 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+color = { 220  138  57 }
+
+historical_ideas = {
+	merchant_adventures
+	excellent_shipwrights
+	national_conscripts
+	military_drill
+	superior_seamanship
+	quest_for_the_new_world
+	national_trade_policy
+	colonial_ventures
+	naval_fighting_instruction
+	smithian_economics
+	ecumenism
+	scientific_revolution
+	improved_foraging
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	french_caracolle
+	swedish_galoop
+	austrian_tercio
+	austrian_grenzer
+	french_bluecoat
+	french_dragoon
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Willem #0" = 100
+	"Lodewijk #0" = 40
+	"Frederik Hendrik #0" = 20
+	"Maurits #0" = 20
+	"Filips Willem #0" = 15
+	"Hendrik Lodewijk #0" = 15
+	"Karel #0 Lodewijk" = 15
+	"Lodewijk #0 Karel" = 15
+	"Adriaan #0" = 10
+	"Andries #0" = 10
+	"Antonius #0" = 10
+	"Frederik #0" = 10
+	"Gaspar #0" = 10
+	"Isaac #0" = 10
+	"Jacob #0" = 10
+	"Johan #0" = 10
+	"Laurens #0" = 10
+	"Paul #0" = 10
+	"Pieter #0" = 10
+	"Simon #0" = 10
+	"Abraham #0" = 0
+	"Antoon #0" = 0
+	"Barthout #0" = 0
+	"Christiaan #0" = 0
+	"Christoffel #0" = 0
+	"Constantijn #0" = 0
+	"Cornelis #0" = 0
+	"Daniel #0" = 0
+	"David #0" = 0
+	"Filips #0" = 0
+	"Dirk #0" = 0
+	"Eise #0" = 0
+	"Frans #0" = 0
+	"Gabriel #0" = 0
+	"Gerard #0" = 0
+	"Gerben #0" = 0
+	"Godfried #0" = 0
+	"Hans #0" = 0
+	"Jeroen #0" = 0
+	"Hugo #0" = 0
+	"Jan #0" = 0
+	"Joost #0" = 0
+	"Nicolaas #0" = 0
+	"Roeland #0" = 0
+	"Rogier #0" = 0
+	"Rutger #0" = 0
+	"Thomas #0" = 0
+	"Vincent #0" = 0
+	"Zacharias #0" = 0
+}
+
+leader_names = {
+	"Van der Aa" "Van Assendelft" 
+	"Van Bronkhorst" Batenburg Bentinck Brandt "Van Brederode" Brouwer
+	Coehoorn Coen Crijnssen "Van Culemborg"
+	Daendels "Van Diemen" "Van der Does" "Van Duivenvoorde"
+	"Van Egmont" Evertzen
+	"Van Galen" "De Grouwe"
+	"Van Haren" "Van Heemskerck" "De Houtman" "Van Huchtenbroek"
+	"Van Ilpendam"
+	Kater "Van Keppel" Kortenaer
+	"Van Marnix" Martena "De Moor"
+	Nachtegaal "Van Nieuwenaar" "Van Noort"
+	"Van Pallandt"
+	"Van Raephorst" "Van Rechteren" Reijersen "Van Renesse" "Van Riebeeck" "De Rijk" "Van Rossum"
+	Schouten Schenk Spiegel Steltman Stuyvesant "Van Swieten"
+	Tasman "Van Troyen"
+	Vliechop "Van Voorst"
+	"Van Utenhove"
+	"Van Walbeeck" "Van Wassenaer" "Van der Werff" "Van Wesembeke" "Van Wingle" "Van Wijngaarden" "De Winter"
+}
+
+ship_names = {
+	Adelaar Ajax Alkmaar Amelia Amsterdam Atalanta
+	Bantam Batavia Beschermer Brederode Brouwer Brutus
+	Campen Cerberus Comeestar
+	Daphne Delfland Delft "Den Swarten Raven" Delphin Deventer Duyfken
+	Eendracht Eenhorn Embuscade Engel Erasmus
+	Gaesterland "Gekroende Liefde" Gelijkheid Gouda "Gouden Arend" "Gouden Leeuw" "Groot Frisia" "Groote Sint Joris" "Grote Zon"
+	Haarlem Heldin Hercules "De Halve Maen" Hollandia "Hollandsche Tuyn" "Huis te Oosterwijk" "Huis te Zwieten" "Huys van Nassau"
+	"Jong Prins te Paard" Jupiter "Kleine Zon"
+	"Kleene Sint Joris" Komeeetster "Kronede Arend"
+	Leyden "Liefde van Hoorn"
+	"Maagd van Dordrecht" Mars Mauritius Middelburg Minerva Moon Monnikendam Muiderberg
+	Nassau "Nieuw Vlissingen" 
+	Olifant Onrust Ooievaar Oranje
+	Patientia Posthorn "Prins Friso" "Prins Willem" 
+	Rotterdam Rozendaal
+	Schakerloo Schermer Spiegel Staten-Generaal Statenlande Ster "St. Iago de Victoria" "St. Marten" "St. Matthuis"
+	Tholen Tyger 
+	"Vereenigde Provincieën" Vlissingen Vrede Vrijheid
+	Waakzaamheid "Walcheren" "Wapen van Holland" "Wapen van Medenblik" Wassenaar Winhond "Witte Leeuw" Woerden Zeerijp
+	"Zeven Provincien" Zierikzee Zon Zuidholland "Zwarte Leeuw" 
+}
+
+
+army_names = {
+	"Staatse Leger" "Prinselijk Leger" "Leger van $PROVINCE$" 
+}
+
+fleet_names = {
+	"Staatse Vloot" "Noordzee Vloot" "Oostzee Vloot" "Oost-Indië Vloot" "West-Indië Vloot" "Middellandsezee Vloot"  "Vloot van $PROVINCE$" 
+}

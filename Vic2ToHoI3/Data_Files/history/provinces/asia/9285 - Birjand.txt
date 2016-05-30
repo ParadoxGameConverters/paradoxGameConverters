@@ -1,0 +1,7 @@
+owner = PER
+controller = PER
+add_core = PER
+rare_materials = 1.00
+infra = 2
+manpower = 2.00
+leadership = 0.20

@@ -1,0 +1,13 @@
+owner = BOL
+controller = BOL
+add_core = BOL
+points = 2
+metal = 32.00
+energy = 11.00
+rare_materials = 5.00
+industry = 6
+anti_air = 1
+infra = 6
+air_base = 4
+manpower = 3.00
+leadership = 0.30

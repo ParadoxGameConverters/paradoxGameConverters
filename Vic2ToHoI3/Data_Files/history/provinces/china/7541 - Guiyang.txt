@@ -1,0 +1,10 @@
+owner = CHI
+controller = CHI
+add_core = CHI
+add_core = CHC
+points = 1
+energy = 15.00
+industry = 1
+infra = 6
+manpower = 4.00
+leadership = 0.20

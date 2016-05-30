@@ -1,0 +1,372 @@
+color = { 196  80  85 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1st Guyanese Infantry Division" "2nd Guyanese Infantry Division" "3rd Guyanese Infantry Division" "4th Guyanese Infantry Division" "5th Guyanese Infantry Division" "6th Guyanese Infantry Division" "7th Guyanese Infantry Division" "8th Guyanese Infantry Division" "9th Guyanese Infantry Division" "10th Guyanese Infantry Division" "11th Guyanese Infantry Division" 
+		"12th Guyanese Infantry Division" "13th Guyanese Infantry Division" "14th Guyanese Infantry Division" "15th Guyanese Infantry Division" "16th Guyanese Infantry Division" "17th Guyanese Infantry Division" "18th Guyanese Infantry Division" "19th Guyanese Infantry Division" "20th Guyanese Infantry Division" 
+	}
+	cavalry_brigade = {
+		"1st Guyanese Cavalry Division" "2nd Guyanese Cavalry Division" "3rd Guyanese Cavalry Division" "4th Guyanese Cavalry Division" "5th Guyanese Cavalry Division" "6th Guyanese Cavalry Division" "7th Guyanese Cavalry Division" "8th Guyanese Cavalry Division" "9th Guyanese Cavalry Division" "10th Guyanese Cavalry Division" 
+	}
+	motorized_brigade = {
+		"1st Guyanese Infantry Division" "2nd Guyanese Infantry Division" "3rd Guyanese Infantry Division" "1st Guyanese Infantry Division" "2nd Guyanese Infantry Division" "3rd Guyanese Infantry Division" "4th Guyanese Infantry Division" "5th Guyanese Infantry Division" "6th Guyanese Infantry Division" 
+	}
+	mechanized_brigade = {
+		"1st Guyanese Infantry Division" "2nd Guyanese Infantry Division" "3rd Guyanese Infantry Division" "1st Guyanese Infantry Division" "2nd Guyanese Infantry Division" "3rd Guyanese Infantry Division" "4th Guyanese Infantry Division" "5th Guyanese Infantry Division" "6th Guyanese Infantry Division" "7th Guyanese Infantry Division" "8th Guyanese Infantry Division" 
+		"9th Guyanese Infantry Division" "10th Guyanese Infantry Division" 
+	}
+	light_armor_brigade = {
+		"1st Guyanese Armoured Division" "2nd Guyanese Armoured Division" "3rd Guyanese Armoured Division" "4th Guyanese Armoured Division" "5th Guyanese Armoured Division" "6th Guyanese Armoured Division" "7th Guyanese Armoured Division" "8th Guyanese Armoured Division" "9th Guyanese Armoured Division" "10th Guyanese Armoured Division" "11th Guyanese Armoured Division" 
+		"12th Guyanese Armoured Division" "14th Guyanese Armoured Division" "15th Guyanese Armoured Division" 
+	}
+	armor_brigade = {
+		"1st Armoured Division" "2nd Guyanese Armoured Division" "3rd Guyanese Armoured Division" "4th Guyanese Armoured Division" "5th Guyanese Armoured Division" "6th Guyanese Armoured Division" "7th Guyanese Armoured Division" "8th Guyanese Armoured Division" "9th Guyanese Armoured Division" "10th Guyanese Armoured Division" "11th Guyanese Armoured Division" 
+		"12th Guyanese Armoured Division" "14th Guyanese Armoured Division" "15th Guyanese Armoured Division" 
+	}
+	paratrooper_brigade = {
+		"1st Guyanese Airborne Division" "2nd Guyanese Airborne Division" "3rd Guyanese Airborne Division" "4th Guyanese Airborne Division" "5th Guyanese Airborne Division" "6th Guyanese Airborne Division" "7th Guyanese Airborne Division" "8th Guyanese Airborne Division" "9th Guyanese Airborne Division" "10th Guyanese Airborne Division" 
+	}
+	marine_brigade = {
+		"1st Guyanese Marine Division" "2nd Guyanese Marine Division" "3rd Guyanese Marine Division" "4th Guyanese Marine Division" "5th Guyanese Marine Division" "6th Guyanese Marine Division" "7th Guyanese Marine Division" "8th Guyanese Marine Division" "9th Guyanese Marine Division" "10th Guyanese Marine Division" 
+	}
+	bergsjaeger_brigade = {
+		"1st Guyanese Mountain Division" "2nd Guyanese Mountain Division" "3rd Guyanese Mountain Division" "4th Guyanese Mountain Division" "5th Guyanese Mountain Division" "8th Guyanese Mountain Division" "10th Guyanese Mountain Division" "11th Guyanese Mountain Division" "12th Guyanese Mountain Division" 
+	}
+	garrison_brigade = {
+		"1st Guyanese Garrison Division" "2nd Guyanese Garrison Division" "3rd Guyanese Garrison Division" "4th Guyanese Garrison Division" "5th Guyanese Garrison Division" "6th Guyanese Garrison Division" "7th Guyanese Garrison Division" "8th Guyanese Garrison Division" "9th Guyanese Garrison Division" "10th Guyanese Garrison Division" "11th Guyanese Garrison Division" 
+		"12th Guyanese Garrison Division" "13th Guyanese Garrison Division" "14th Guyanese Garrison Division" "15th Guyanese Garrison Division" "16th Guyanese Garrison Division" "17th Guyanese Garrison Division" "18th Guyanese Garrison Division" "19th Guyanese Garrison Division" "20th Guyanese Garrison Division" 
+	}
+	hq_brigade = {
+		"1st Guyanese Army" "2nd Guyanese Army" "3rd Guyanese Army" "4th Guyanese Army" "5th Guyanese Army" "6th Guyanese Army" "7th Guyanese Army" "8th Guyanese Army" 
+	}
+	militia_brigade = {
+		"1st Infantry Division" "2nd Infantry Division" "3rd Infantry Division" "4th Infantry Division" "5th Infantry Division" "6th Infantry Division" "7th Infantry Division" "8th Infantry Division" "9th Infantry Division" "10th Infantry Division" "11th Infantry Division" 
+		"12th Infantry Division" "13th Infantry Division" "14th Infantry Division" "15th Infantry Division" "16th Infantry Division" "17th Infantry Division" "18th Infantry Division" "19th Infantry Division" "20th Infantry Division" "21st Infantry Division" "22nd Infantry Division" 
+		"23rd Infantry Division" "24th Infantry Division" "25th Infantry Division" "26th Infantry Division" "27th Infantry Division" "28th Infantry Division" "29th Infantry Division" "30th Infantry Division" 
+	}
+	multi_role = {
+		"No.1 Group RGAF" "No.2 Group RGAF" "No.3 Group RGAF" "No.4 Group RGAF" "No.5 Group RGAF" "No.7 Group RGAF" "No.8 Group RGAF" "No.9 Group RGAF" "No.10 Group RGAF" "No.11 Group RGAF" "No.12 Group RGAF" 
+		"No.13 Group RGAF" "No.14 Group RGAF" "No.15 Group RGAF" "No.16 Group RGAF" "No.17 Group RGAF" "No.18 Group RGAF" "No.19 Group RGAF" "No.20 Group RGAF" 
+	}
+	interceptor = {
+		"No.1 Group RGAF" "No.2 Group RGAF" "No.3 Group RGAF" "No.4 Group RGAF" "No.5 Group RGAF" "No.7 Group RGAF" "No.8 Group RGAF" "No.9 Group RGAF" "No.10 Group RGAF" "No.11 Group RGAF" "No.12 Group RGAF" 
+		"No.13 Group RGAF" "No.14 Group RGAF" "No.15 Group RGAF" "No.16 Group RGAF" "No.17 Group RGAF" "No.18 Group RGAF" "No.19 Group RGAF" "No.20 Group RGAF" 
+	}
+	strategic_bomber = {
+		"No.1 Group RGAF" "No.2 Group RGAF" "No.6 Group RGAF" "No.3 Group RGAF" "No.4 Group RGAF" "No.7 Group RGAF" "No.8 Group RGAF" "No.9 Group RGAF" "No.10 Group RGAF" "No.11 Group RGAF" "No.12 Group RGAF" 
+		"No.13 Group RGAF" "No.14 Group RGAF" "No.15 Group RGAF" "No.16 Group RGAF" "No.17 Group RGAF" "No.18 Group RGAF" "No.19 Group RGAF" "No.20 Group RGAF" 
+	}
+	tactical_bomber = {
+		"No.1 Group RGAF" "No.2 Group RGAF" "No.6 Group RGAF" "No.3 Group RGAF" "No.4 Group RGAF" "No.7 Group RGAF" "No.8 Group RGAF" "No.9 Group RGAF" "No.10 Group RGAF" "No.11 Group RGAF" "No.12 Group RGAF" 
+		"No.13 Group RGAF" "No.14 Group RGAF" "No.15 Group RGAF" "No.16 Group RGAF" "No.17 Group RGAF" "No.18 Group RGAF" "No.19 Group RGAF" "No.20 Group RGAF" 
+	}
+	naval_bomber = {
+		"No.1 Group RGAF" "No.2 Group RGAF" "No.3 Group RGAF" "No.4 Group RGAF" "No.5 Group RGAF" "No.7 Group RGAF" "No.8 Group RGAF" "No.9 Group RGAF" "No.10 Group RGAF" 
+	}
+	cas = {
+		"No.1 Group RGAF" "No.2 Group RGAF" "No.6 Group RGAF" "No.3 Group RGAF" "No.4 Group RGAF" "No.7 Group RGAF" "No.8 Group RGAF" "No.9 Group RGAF" "No.10 Group RGAF" "No.11 Group RGAF" "No.12 Group RGAF" 
+		"No.13 Group RGAF" "No.14 Group RGAF" "No.15 Group RGAF" "No.16 Group RGAF" "No.17 Group RGAF" "No.18 Group RGAF" "No.19 Group RGAF" "No.20 Group RGAF" 
+	}
+	transport_plane = {
+		"No.1 Group RGAF" "No.2 Group RGAF" "No.3 Group RGAF" "No.4 Group RGAF" "No.5 Group RGAF" "No.7 Group RGAF" "No.8 Group RGAF" "No.9 Group RGAF" "No.10 Group RGAF" 
+	}
+	battleship = {
+		"GDFS Independence" "GDFS Freedom" "GDFS Liberty" "GDFS Victory" 
+	}
+	light_cruiser = {
+		"GDFS Independence" "GDFS Freedom" "GDFS Liberty" "GDFS Victory" 
+	}
+	heavy_cruiser = {
+		"GDFS Independence" "GDFS Freedom" "GDFS Liberty" "GDFS Victory" 
+	}
+	battlecruiser = {
+		"GDFS Independence" "GDFS Freedom" "GDFS Liberty" "GDFS Victory" 
+	}
+	destroyer = {
+		"1st Guyanese Destroyer Division" "2nd Guyanese Destroyer Division" "3rd Guyanese Destroyer Division" "4th Guyanese Destroyer Division" "5th Guyanese Destroyer Division" "6th Guyanese Destroyer Division" "7th Guyanese Destroyer Division" "8th Guyanese Destroyer Division" "9th Guyanese Destroyer Division" "10th Guyanese Destroyer Division" 
+	}
+	carrier = {
+		"GDFS Independence" "GDFS Freedom" "GDFS Liberty" "GDFS Victory" 
+	}
+	submarine = {
+		"1st Guyanese Submarine Division" "2nd Guyanese Submarine Division" "3rd Guyanese Submarine Division" "4th Guyanese Submarine Division" "5th Guyanese Submarine Division" "6th Guyanese Submarine Division" "7th Guyanese Submarine Division" "8th Guyanese Submarine Division" "9th Guyanese Submarine Division" "10th Guyanese Submarine Division" 
+	}
+	transport_ship = {
+		"1st Guyanese Transport Division" "2nd Guyanese Transport Division" "3rd Guyanese Transport Division" "4th Guyanese Transport Division" "5th Guyanese Transport Division" "6th Guyanese Transport Division" "7th Guyanese Transport Division" "8th Guyanese Transport Division" "9th Guyanese Transport Division" "10th Guyanese Transport Division" 
+	}
+
+}
+
+ministers = {
+	562001 = {
+		name = "Sir Gordon J. Lethem"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M562001
+		head_of_state = die_hard_reformer
+		start_date = 1936.1.1
+	}
+	562002 = {
+		name = "Sir Francis Stanley Jackson"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M562002
+		head_of_government = happy_amateur
+		start_date = 1936.1.1
+	}
+	562003 = {
+		name = "Sir Geoffrey Stanfford Northcote"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M562003
+		foreign_minister = apologetic_clerk
+		start_date = 1936.1.1
+	}
+	562004 = {
+		name = "Sir Ralph Alnwick Grey"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M562004
+		armament_minister = administrative_genius
+		start_date = 1936.1.1
+	}
+	562005 = {
+		name = "Charles Campbell Woolley"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M562005
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	562006 = {
+		name = "Edward F. Collingwood"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M562006
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	562007 = {
+		name = "Charles Birchwood"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M562007
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	562008 = {
+		name = "Frederic Augustis"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M562008
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1936.1.1
+	}
+	562009 = {
+		name = "H.C. Bigelow"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M562009
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1936.1.1
+	}
+	562010 = {
+		name = "H.F. Burnette"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M562010
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	562011 = {
+		name = "Severo Mallet-Prevost"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M562011
+		head_of_state = benevolent_gentleman
+		start_date = 1936.1.1
+	}
+	562012 = {
+		name = "Dr. Cheddi Jagan"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M562012
+		head_of_state = popular_figurehead
+		start_date = 1936.1.1
+	}
+	562013 = {
+		name = "Frederick Derecourt"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M562013
+		head_of_government = corporate_suit
+		start_date = 1936.1.1
+	}
+	562014 = {
+		name = "Forbes Burnham"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M562014
+		head_of_government = political_protege
+		start_date = 1936.1.1
+	}
+	562015 = {
+		name = "Charles Joseph Loghie"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M562015
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1936.1.1
+	}
+	562016 = {
+		name = "Rasleigh Jackson"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M562016
+		foreign_minister = great_compromiser
+		start_date = 1936.1.1
+	}
+	562017 = {
+		name = "Maurice Gordon"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M562017
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	562018 = {
+		name = "Dr. Gobinda Ganga"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M562018
+		armament_minister = theoretical_scientist
+		start_date = 1936.1.1
+	}
+	562019 = {
+		name = "James Christkirk"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M562019
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	562020 = {
+		name = "Lien James"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M562020
+		minister_of_security = prince_of_terror
+		start_date = 1940.1.1
+	}
+	562021 = {
+		name = "Vibert Parvathan"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M562021
+		minister_of_security = silent_lawyer
+		start_date = 1936.1.1
+	}
+	562022 = {
+		name = "William J. Featherstone"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M562022
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	562023 = {
+		name = "C.L.R. James"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M562023
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	562024 = {
+		name = "C.F. Drew"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = L1111
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	562025 = {
+		name = "Kingsley Forrester"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M562025
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1936.1.1
+	}
+	562026 = {
+		name = "H.F.L. Hilton-Green"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = L1164
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	562027 = {
+		name = "Christopher Lobban"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M562027
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	562028 = {
+		name = "Henry Winslow"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M562028
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	562029 = {
+		name = "Thomas McGarrity"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M562029
+		chief_of_navy = power_projection_doctrine
+		start_date = 1936.1.1
+	}
+	562030 = {
+		name = "Mortimer Chesswood"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M562030
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	562031 = {
+		name = "Kyle Lightfoot"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M562031
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+}

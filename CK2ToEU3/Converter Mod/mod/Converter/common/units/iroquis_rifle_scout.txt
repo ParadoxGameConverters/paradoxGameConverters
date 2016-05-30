@@ -1,0 +1,12 @@
+# Iroquis Rifle Scout Tactics
+
+unit_type = new_world	
+type = infantry
+
+maneuver = 1
+offensive_morale = 5
+defensive_morale = 3
+offensive_fire = 5
+defensive_fire = 2
+offensive_shock = 2
+defensive_shock = 1

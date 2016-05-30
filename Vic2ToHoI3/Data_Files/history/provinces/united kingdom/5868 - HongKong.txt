@@ -1,0 +1,16 @@
+owner = ENG
+controller = ENG
+add_core = CHI
+add_core = CHC
+add_core = CGX
+add_core = ENG
+points = 2
+coastal_fort = 1
+anti_air = 4
+infra = 7
+air_base = 4
+naval_base = 10
+
+1941.12.25 = {
+	controller = JAP
+}

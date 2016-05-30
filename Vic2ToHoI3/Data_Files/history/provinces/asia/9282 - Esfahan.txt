@@ -1,0 +1,5 @@
+owner = PER
+controller = PER
+add_core = PER
+points = 1
+infra = 4

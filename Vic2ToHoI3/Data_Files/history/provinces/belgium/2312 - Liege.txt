@@ -1,0 +1,30 @@
+owner = BEL
+controller = BEL
+add_core = BEL
+
+terrain = woods
+#http://en.wikipedia.org/wiki/File:Belgium_resources_1968.jpg
+energy = 20.00
+metal = 20.00
+
+points = 1
+industry = 5
+land_fort = 3
+anti_air = 2
+infra = 9
+manpower = 0.80
+leadership = 0.20
+
+1938.01.01 = {
+	land_fort = 4
+}
+1940.01.01 = {
+	land_fort = 5
+}
+
+1940.5.28 = {
+	controller = GER
+}
+1944.12.01 = {
+	controller = USA
+}

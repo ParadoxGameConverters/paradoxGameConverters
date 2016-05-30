@@ -1,0 +1,1042 @@
+#Loreto Region (96000)
+#Ruled by Peru 1836
+#Iquitos (60000/15000 POPS)
+2286 = {
+	aristocrats=
+	{
+		culture = maranon
+		religion = animist
+		size=250
+	}
+
+	clergymen=
+	{
+		culture = maranon
+		religion = animist
+		size=200
+	}
+
+	artisans=
+	{
+		culture = maranon
+		religion = animist
+		size=750
+	}
+
+	soldiers=
+	{
+		culture = maranon
+		religion = animist
+		size=150
+	}
+
+	farmers=
+	{
+		culture = maranon
+		religion = animist
+		size=12650
+	}
+}
+#"Ruled" by Ecuador 1836
+#Yurimagues (12000/3000 POPS)
+2287 = {
+	aristocrats=
+	{
+		culture = quechua
+		religion = animist
+		size=25
+	}
+	
+	aristocrats=
+	{
+		culture = maranon
+		religion = animist
+		size=25
+	}
+
+	clergymen=
+	{
+		culture = quechua
+		religion = animist
+		size=40
+	}
+
+	clergymen=
+	{
+		culture = maranon
+		religion = animist
+		size=35
+	}
+
+	artisans=
+	{
+		culture = quechua
+		religion = animist
+		size=75
+	}
+
+	artisans=
+	{
+		culture = maranon
+		religion = animist
+		size=75
+	}
+
+	soldiers=
+	{
+		culture = quechua
+		religion = animist
+		size=15
+	}
+
+	soldiers=
+	{
+		culture = maranon
+		religion = animist
+		size=10
+	}
+
+	farmers=
+	{
+		culture = quechua
+		religion = animist
+		size=1350
+	}
+
+	farmers=
+	{
+		culture = maranon
+		religion = animist
+		size=1350
+	}
+}
+#Yuncos (12000/3000 POPS)
+2288 = {
+	aristocrats=
+	{
+		culture = maranon
+		religion = animist
+		size=50
+	}
+
+	clergymen=
+	{
+		culture = maranon
+		religion = animist
+		size=75
+	}
+
+	artisans=
+	{
+		culture = maranon
+		religion = animist
+		size=150
+	}
+
+	soldiers=
+	{
+		culture = maranon
+		religion = animist
+		size=25
+	}
+
+	farmers=
+	{
+		culture = maranon
+		religion = animist
+		size=2700
+	}
+}
+#Puca Urco (12000/3000 POPS)
+2289 = {
+	aristocrats=
+	{
+		culture = maranon
+		religion = animist
+		size=50
+	}
+
+	clergymen=
+	{
+		culture = maranon
+		religion = animist
+		size=75
+	}
+
+	artisans=
+	{
+		culture = maranon
+		religion = animist
+		size=150
+	}
+
+	soldiers=
+	{
+		culture = maranon
+		religion = animist
+		size=25
+	}
+
+	farmers=
+	{
+		culture = maranon
+		religion = animist
+		size=2700
+	}
+}
+#Cajamarca Region (296000)
+#Ruled by Peru 1836
+#Cajamarca (144000/38000 POPS)
+2290 = {
+	soldiers=
+	{
+		culture = andean
+		religion = inti
+		size=380
+	}
+
+	artisans=
+	{
+		culture = andean
+		religion = inti
+		size=1520
+	}
+
+	clergymen=
+	{
+		culture = andean
+		religion = inti
+		size=247
+	}
+
+	bureaucrats=
+	{
+		culture = andean
+		religion = inti
+		size=19
+	}
+
+	officers=
+	{
+		culture = andean
+		religion = inti
+		size=30
+	}
+
+	aristocrats=
+	{
+		culture = andean
+		religion = inti
+		size=319
+	}
+
+	farmers=
+	{
+		culture = andean
+		religion = inti
+		size=35485
+	}
+}
+#Piura (60000/15000 POPS)
+2291 = {
+	soldiers=
+	{
+		culture = andean
+		religion = inti
+		size=157
+	}
+
+	artisans=
+	{
+		culture = andean
+		religion = inti
+		size=627
+	}
+
+	clergymen=
+	{
+		culture = andean
+		religion = inti
+		size=102
+	}
+
+	bureaucrats=
+	{
+		culture = andean
+		religion = inti
+		size=8
+	}
+
+	officers=
+	{
+		culture = andean
+		religion = inti
+		size=13
+	}
+
+	aristocrats=
+	{
+		culture = andean
+		religion = inti
+		size=132
+	}
+
+	farmers=
+	{
+		culture = andean
+		religion = inti
+		size=14636
+	}
+}
+#Trujillo (68000/17000 POPS)
+2292 = {
+	soldiers=
+	{
+		culture = andean
+		religion = inti
+		size=1033
+	}
+
+	artisans=
+	{
+		culture = andean
+		religion = inti
+		size=678
+	}
+
+	clergymen=
+	{
+		culture = andean
+		religion = inti
+		size=110
+	}
+
+	bureaucrats=
+	{
+		culture = andean
+		religion = inti
+		size=8
+	}
+
+	officers=
+	{
+		culture = andean
+		religion = inti
+		size=14
+	}
+
+	aristocrats=
+	{
+		culture = andean
+		religion = inti
+		size=142
+	}
+
+	farmers=
+	{
+		culture = andean
+		religion = inti
+		size=14965
+	}
+}
+#Moyobamba (24000/6000 POPS)
+2294 = {
+	soldiers=
+	{
+		culture = andean
+		religion = inti
+		size=1033
+	}
+
+	artisans=
+	{
+		culture = andean
+		religion = inti
+		size=180
+	}
+
+	clergymen=
+	{
+		culture = andean
+		religion = inti
+		size=29
+	}
+
+	bureaucrats=
+	{
+		culture = andean
+		religion = inti
+		size=2
+	}
+
+	officers=
+	{
+		culture = andean
+		religion = inti
+		size=4
+	}
+
+	aristocrats=
+	{
+		culture = andean
+		religion = inti
+		size=38
+	}
+
+	farmers=
+	{
+		culture = andean
+		religion = inti
+		size=3214
+	}
+
+	soldiers=
+	{
+		culture = maranon
+		religion = inti
+		size=15
+	}
+
+	artisans=
+	{
+		culture = maranon
+		religion = inti
+		size=60
+	}
+
+	clergymen=
+	{
+		culture = maranon
+		religion = inti
+		size=10
+	}
+
+	bureaucrats=
+	{
+		culture = maranon
+		religion = inti
+		size=1
+	}
+
+	officers=
+	{
+		culture = maranon
+		religion = inti
+		size=1
+	}
+
+	aristocrats=
+	{
+		culture = maranon
+		religion = inti
+		size=13
+	}
+
+	farmers=
+	{
+		culture = maranon
+		religion = inti
+		size=1400
+	}
+}
+#Junin Region (204000)
+#Ruled by Peru 1836
+#Huanuco (36000/9000 POPS)
+2293 = {
+	soldiers=
+	{
+		culture = andean
+		religion = inti
+		size=1033
+	}
+
+	artisans=
+	{
+		culture = andean
+		religion = inti
+		size=360
+	}
+
+	clergymen=
+	{
+		culture = andean
+		religion = inti
+		size=59
+	}
+
+	bureaucrats=
+	{
+		culture = andean
+		religion = inti
+		size=5
+	}
+
+	officers=
+	{
+		culture = andean
+		religion = inti
+		size=7
+	}
+
+	aristocrats=
+	{
+		culture = andean
+		religion = inti
+		size=76
+	}
+
+	farmers=
+	{
+		culture = andean
+		religion = inti
+		size=7460
+	}
+}
+#Jauja (60000/15000 POPS)
+2296 = {
+	soldiers=
+	{
+		culture = andean
+		religion = inti
+		size=1033
+	}
+
+	artisans=
+	{
+		culture = andean
+		religion = inti
+		size=600
+	}
+
+	clergymen=
+	{
+		culture = andean
+		religion = inti
+		size=98
+	}
+
+	bureaucrats=
+	{
+		culture = andean
+		religion = inti
+		size=8
+	}
+
+	officers=
+	{
+		culture = andean
+		religion = inti
+		size=12
+	}
+
+	aristocrats=
+	{
+		culture = andean
+		religion = inti
+		size=126
+	}
+
+	farmers=
+	{
+		culture = andean
+		religion = inti
+		size=13123
+	}
+}
+#Ayacucho (108000/27000 POPS)
+2299 = {
+	soldiers=
+	{
+		culture = andean
+		religion = inti
+		size=270
+	}
+
+	artisans=
+	{
+		culture = andean
+		religion = inti
+		size=1080
+	}
+
+	clergymen=
+	{
+		culture = andean
+		religion = inti
+		size=176
+	}
+
+	bureaucrats=
+	{
+		culture = andean
+		religion = inti
+		size=14
+	}
+
+	officers=
+	{
+		culture = andean
+		religion = inti
+		size=22
+	}
+
+	aristocrats=
+	{
+		culture = andean
+		religion = inti
+		size=227
+	}
+
+	farmers=
+	{
+		culture = andean
+		religion = inti
+		size=25211
+	}
+}
+#Lima Region (484000)
+#Ruled by Peru 1836
+#Lima (324000/81000 POPS)
+2295 = {
+	soldiers=
+	{
+		culture = andean
+		religion = inti
+		size=1033
+	}
+
+	artisans=
+	{
+		culture = andean
+		religion = inti
+		size=3280
+	}
+
+	clergymen=
+	{
+		culture = andean
+		religion = inti
+		size=533
+	}
+
+	bureaucrats=
+	{
+		culture = andean
+		religion = inti
+		size=41
+	}
+
+	officers=
+	{
+		culture = andean
+		religion = inti
+		size=66
+	}
+
+	aristocrats=
+	{
+		culture = andean
+		religion = inti
+		size=689
+	}
+
+	farmers=
+	{
+		culture = andean
+		religion = inti
+		size=76358
+	}
+}
+#Ica (60000/15000 POPS)
+2297 = {
+	aristocrats=
+	{
+		culture = quechua
+		religion = inti
+		size=325
+	}
+
+	clergymen=
+	{
+		culture = quechua
+		religion = inti
+		size=150
+	}
+
+	artisans=
+	{
+		culture = quechua
+		religion = inti
+		size=750
+	}
+
+	soldiers=
+	{
+		culture = quechua
+		religion = inti
+		size=175
+	}
+
+	farmers=
+	{
+		culture = quechua
+		religion = inti
+		size=14300
+	}
+}
+#Huaraz (100000/25000 POPS)
+2298 = {
+	soldiers=
+	{
+		culture = andean
+		religion = inti
+		size=250
+	}
+
+	artisans=
+	{
+		culture = andean
+		religion = inti
+		size=1000
+	}
+
+	clergymen=
+	{
+		culture = andean
+		religion = inti
+		size=163
+	}
+
+	bureaucrats=
+	{
+		culture = andean
+		religion = inti
+		size=13
+	}
+
+	officers=
+	{
+		culture = andean
+		religion = inti
+		size=20
+	}
+
+	aristocrats=
+	{
+		culture = andean
+		religion = inti
+		size=210
+	}
+
+	farmers=
+	{
+		culture = andean
+		religion = inti
+		size=23344
+	}
+}
+#Ucayali Region (32000)
+#Ruled by Peru 1836
+#Pucallpa (20000/5000 POPS)
+2300 = {
+	aristocrats=
+	{
+		culture = maranon
+		religion = animist
+		size=15
+	}
+
+	clergymen=
+	{
+		culture = maranon
+		religion = animist
+		size=25
+	}
+
+	artisans=
+	{
+		culture = maranon
+		religion = animist
+		size=50
+	}
+
+	soldiers=
+	{
+		culture = maranon
+		religion = animist
+		size=10
+	}
+
+	farmers=
+	{
+		culture = maranon
+		religion = animist
+		size=900
+	}
+
+	aristocrats=
+	{
+		culture = amazonian
+		religion = animist
+		size=75
+	}
+
+	clergymen=
+	{
+		culture = amazonian
+		religion = animist
+		size=50
+	}
+
+	artisans=
+	{
+		culture = amazonian
+		religion = animist
+		size=200
+	}
+
+	soldiers=
+	{
+		culture = amazonian
+		religion = animist
+		size=50
+	}
+
+	farmers=
+	{
+		culture = amazonian
+		religion = animist
+		size=3625
+	}
+}
+#Puerto Maldonado (12000/3000 POPS)
+2301 = {
+	soldiers=
+	{
+		culture = andean
+		religion = inti
+		size=30
+	}
+
+	artisans=
+	{
+		culture = andean
+		religion = inti
+		size=120
+	}
+
+	clergymen=
+	{
+		culture = andean
+		religion = inti
+		size=20
+	}
+
+	bureaucrats=
+	{
+		culture = andean
+		religion = inti
+		size=2
+	}
+
+	officers=
+	{
+		culture = andean
+		religion = inti
+		size=2
+	}
+
+	aristocrats=
+	{
+		culture = andean
+		religion = inti
+		size=25
+	}
+
+	farmers=
+	{
+		culture = andean
+		religion = inti
+		size=2801
+	}
+}
+#Cusco Region (404000)
+#Ruled by Peru 1836
+#Cusco (228000/57000 POPS)
+2302 = {
+	soldiers=
+	{
+		culture = andean
+		religion = inti
+		size=1033
+	}
+
+	artisans=
+	{
+		culture = andean
+		religion = inti
+		size=2289
+	}
+
+	clergymen=
+	{
+		culture = andean
+		religion = inti
+		size=372
+	}
+
+	bureaucrats=
+	{
+		culture = andean
+		religion = inti
+		size=29
+	}
+
+	officers=
+	{
+		culture = andean
+		religion = inti
+		size=46
+	}
+
+	aristocrats=
+	{
+		culture = andean
+		religion = inti
+		size=481
+	}
+
+	farmers=
+	{
+		culture = andean
+		religion = inti
+		size=52975
+	}
+}
+#Puno (104000/26000 POPS)
+2303 = {
+	soldiers=
+	{
+		culture = andean
+		religion = inti
+		size=1033
+	}
+
+	artisans=
+	{
+		culture = andean
+		religion = inti
+		size=1040
+	}
+
+	clergymen=
+	{
+		culture = andean
+		religion = inti
+		size=169
+	}
+
+	bureaucrats=
+	{
+		culture = andean
+		religion = inti
+		size=13
+	}
+
+	officers=
+	{
+		culture = andean
+		religion = inti
+		size=21
+	}
+
+	aristocrats=
+	{
+		culture = andean
+		religion = inti
+		size=218
+	}
+
+	farmers=
+	{
+		culture = andean
+		religion = inti
+		size=23506
+	}
+}
+#Arequipa (72000/18000 POPS)
+2304 = {
+	aristocrats=
+	{
+		culture = quechua
+		religion = inti
+		size=375
+	}
+
+	clergymen=
+	{
+		culture = quechua
+		religion = inti
+		size=175
+	}
+
+	artisans=
+	{
+		culture = quechua
+		religion = inti
+		size=900
+	}
+
+	soldiers=
+	{
+		culture = quechua
+		religion = inti
+		size=200
+	}
+
+	farmers=
+	{
+		culture = quechua
+		religion = inti
+		size=16350
+	}
+}
+#Atacama Region (100000) #see Chile.txt for balance of Region
+#Ruled by Peru 1836
+#Tacna (100000/25000 POPS)
+2578 = {
+	aristocrats=
+	{
+		culture = aimara
+		religion = inti
+		size=550
+	}
+
+	clergymen=
+	{
+		culture = aimara
+		religion = inti
+		size=250
+	}
+
+	artisans=
+	{
+		culture = aimara
+		religion = inti
+		size=1350
+	}
+
+	soldiers=
+	{
+		culture = aimara
+		religion = inti
+		size=250
+	}
+
+	farmers=
+	{
+		culture = aimara
+		religion = inti
+		size=22700
+	}
+}

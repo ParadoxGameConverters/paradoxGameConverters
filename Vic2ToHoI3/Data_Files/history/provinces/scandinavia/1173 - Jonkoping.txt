@@ -1,0 +1,9 @@
+owner = SWE
+controller = SWE
+add_core = SWE
+
+energy = 1.00
+industry = 1
+infra = 8
+manpower = 1.00
+leadership = 0.10

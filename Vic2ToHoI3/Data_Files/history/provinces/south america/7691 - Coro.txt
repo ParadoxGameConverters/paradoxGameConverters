@@ -1,0 +1,11 @@
+owner = VEN
+controller = VEN
+add_core = VEN
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6

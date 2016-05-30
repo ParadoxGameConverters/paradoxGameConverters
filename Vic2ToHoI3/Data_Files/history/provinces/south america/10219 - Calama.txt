@@ -1,0 +1,11 @@
+owner = CHL
+controller = CHL
+add_core = CHL
+
+infra = 2
+
+infra = 2
+
+infra = 2
+
+infra = 6

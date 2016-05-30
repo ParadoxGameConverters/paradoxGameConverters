@@ -1,0 +1,10 @@
+owner = CYN
+controller = CYN
+add_core = CYN
+add_core = CHI
+add_core = CHC
+energy = 6.00
+metal = 9.00
+infra = 2
+
+infra = 2

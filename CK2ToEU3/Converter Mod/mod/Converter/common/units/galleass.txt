@@ -1,0 +1,6 @@
+#Galleas
+type = galley
+
+hull_size = 14
+base_cannons = 15 
+sail_speed = 8

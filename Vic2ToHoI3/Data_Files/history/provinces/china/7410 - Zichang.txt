@@ -1,0 +1,7 @@
+owner = CHC
+controller = CHC
+add_core = CHC
+add_core = CHI
+infra = 3
+
+infra = 3

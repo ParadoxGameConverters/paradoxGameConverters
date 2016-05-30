@@ -1,0 +1,15 @@
+owner = AFG
+controller = AFG
+add_core = AFG
+
+infra = 2
+
+infra = 2
+
+infra = 2
+
+infra = 2
+
+infra = 2
+
+infra = 2

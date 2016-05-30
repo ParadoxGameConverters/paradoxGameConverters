@@ -1,0 +1,20 @@
+owner = FIN
+controller = FIN
+add_core = FIN
+
+infra = 6
+
+1939.8.23 = {
+	add_core = SOV
+}
+
+1940.3.12 = {
+	owner = SOV
+	controller = SOV
+}
+
+1941.12.7 = {
+	controller = FIN
+	owner = FIN
+}
+

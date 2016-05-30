@@ -1,0 +1,39 @@
+# Copyright (c) 2014 The Paradox Game Converters Project
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+
+regiment_costs =
+{
+
+# These costs represent the raw strength of EU4 regiments needed to generate a single V2 regiment
+# See file "unit_strength.txt" to see how much strength each EU4 regiment counts for
+
+# Current values are based off typical near-endgame EU4 land regiments being converted 3-to-1,
+# since V2 uses 3000-man regiments instead of EU4's 1000-man regiments,
+# and by number of cannons to get roughly 1-to-1 conversion of near-endgame ships.
+
+	infantry = 135		# 45 points per 1000 -> 3000 man regiments
+	cavalry = 135		# 45 points per 1000 -> 3000 man regiments
+	artillery = 120		# 40 points per 1000 -> 3000 man regiments
+	heavy_ship = 180	# 3-to-1 for threedeckers
+	light_ship = 90		# 3-to-1 for heavy frigates
+	galley = 90		# 9-to-2 conversion for archipelago frigates (converted into light ships in vicky)
+	transport = 72		# 3-to-1 conversion for all transports (based on modified unit_strength.txt)
+}

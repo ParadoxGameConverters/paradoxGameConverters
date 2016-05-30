@@ -1,0 +1,31 @@
+owner = ARG
+controller = ARG
+add_core = ARG
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6

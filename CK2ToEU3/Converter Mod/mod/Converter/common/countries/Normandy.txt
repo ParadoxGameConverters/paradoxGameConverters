@@ -1,0 +1,137 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 131  138  116 }
+
+historical_ideas = {
+	national_conscripts
+	merchant_adventures
+	humanist_tolerance
+	patron_of_art
+	colonial_ventures
+	military_drill
+	quest_for_the_new_world
+	cabinet
+	bureaucracy
+	scientific_revolution
+	liberty_egalite_fraternity
+	naval_provisioning
+}
+
+historical_units = {
+	western_medieval_infantry
+	chevauchee
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	french_caracolle
+	anglofrench_line
+	french_dragoon
+	french_bluecoat
+	french_cuirassier
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {	
+	"Henri #4" = 20
+	"Charles #0" = 20
+	"Richard #4" = 5
+	"Edouard #1" = 5
+	"Godefroid #1" = 5
+	"Jean #1" = 5
+	"Robert #3" = 1
+	"Guillaume #2" = 1
+	"Éttiene #1" = 1
+	"Adrien #0" = 0
+	"Alexandre #0" = 0
+	"Amédée #0" = 0
+	"André #0" = 0
+	"Artus #0" = 0
+	"Barthélémy #0" = 0
+	"Blaise #0" = 0
+	"Claude #0" = 0
+	"Constant #0" = 0
+	"Danyel #0" = 0
+	"Didier #0" = 0
+	"Emery #0" = 0
+	"Eudes #0" = 0	
+	"François #0" = 0
+	"Gilles #0" = 0
+	"Hercule #0" = 0
+	"Isembart #0" = 0
+	"Jean Baptiste #0" = 0
+	"Jérôme #0" = 0
+	"Julien #0" = 0
+	"Leon #0" = 0
+	"Louis #0" = 0
+	"Marin #0" = 0
+	"Matthieu #0" = 0
+	"Maurice #0" = 0
+	"Pierre #0" = 0
+	"Quentin #0" = 0
+	"Raoul #0" = 0
+	"Romain #0" = 0
+	"Vincent #0" = 0
+	"Zacharie #0" = 0
+}
+
+leader_names = {
+        d'Amfreville d'Abancourt d'Aboville
+        "de Bailleul" "de Berquetot" "de Béthencourt" "de la Boucque" "de Bracquemont" "de Brionne"
+        "de Croismarie" "de Crottay" "du Chastel" 
+        "de Dampierre" Duquesne 
+        d'Emondeville d'Estrimont Esquemelin
+        "de Fréville" "de Fry"
+        "de la Galissonière" Gosselin "de Graville" Guillaumery
+        d'Harcourt d'Herbouville "de Houdetot" "de la Houssaye"
+        d'Imbleval
+        "de Joigny" "de Jourville"
+        "de La Motte" "Le Moyne" "de Lenemont" Lesperon "de Lessard" "Le Tellier"
+        "de Marigny" "de Mauquenchy" "de Mornay" "du Moucel"
+        "de Noscey"
+        d'Ollençon d'Ozenne
+        "de Parbay" Parmentier "de Presteval"
+        "de Quenonville" "de Quesdeville" "du Quesnoy"
+        "de Riancourt" Roncerolles 
+        "de Saint Passy" "de Saint Bosmer" "de Sebouville"
+        "de Tallebot" "de Tassigny" "de Thiboutot"
+        "de Valiquerville" "de Vauquelin"
+       d'Ymonville
+}
+
+ship_names = {
+        Actif Adroit Aigrette Alouette Amarante
+        Angélique Ardent Aréthuse Arrogant Alcyon
+        Atalante Aurore Balance Blanche Blonde
+        Brave Brune Bricolle Brûlante Carpe
+        Charente "Chariot Royal" Chasse Corneille Coulisse
+        Cruelle Curieuse Danaé Danuble Dauphine
+        Digue Diligente Dryade Ecluse Ecueil
+        Embuscade Emeraude Enjouée Entendue Eole
+        Etoile Favorite Fée Félicité Fidèle
+        Fine Flatteuse Flore François Gaillard
+        Galatée Garonne Gazelle Gentille Gironde
+        Gloire Grâces Gracieuse Grand-Ponton Grive
+        Harmonie Hébé Heureux Inconstante Infidèle 
+        Jason Jolie Joyeuse Junon Juste
+        Léger "Le Havre" Levrette Lion Marie-Françoise
+        Marin Martiale Menaçante Nayade Normande
+        Orage Oriflamme Palmier Palombe Pélerine
+        Petit-Ponton "Petit Saint François" Pintade Précieux Prompte
+        Résolu Rocheloise Rubis "Saint Louis" "Saint Michel"
+        "Sans Pareil" Somme Subtile Trompeuse Turquoise
+}
+
+army_names = {
+         "Armée du Cotentin"     "Armée du Bessin" "Armée du Pays d'Auge"
+         "Armée d'Alençon"       "Armée de Caen"   "Armée d'Argentan"
+         "Armée de Falaise"      "Armée du Virois" "Armée de Neubourg"
+         "Armée de l'Avranchin"  "Armée du Perche" "Armée du Mortainais"
+         "Armée du Pays de Caux" 
+	 "Armée de $PROVINCE$" 
+}

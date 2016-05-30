@@ -1,0 +1,17 @@
+#Reunion (98000)
+#Ruled by France 1836
+#Reunion (98000/24500 POPS)
+2126 = {
+	farmers = {
+		culture = african_minor
+		religion = animist
+		size = 20000
+	}
+	
+	farmers = {
+		culture = african_minor
+		religion = sunni
+		size = 4500
+	}
+
+}

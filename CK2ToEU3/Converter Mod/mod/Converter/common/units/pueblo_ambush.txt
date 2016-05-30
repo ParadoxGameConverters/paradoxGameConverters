@@ -1,0 +1,12 @@
+# Pueblo Ambush Tactics
+
+unit_type = new_world
+type = infantry
+
+maneuver = 1
+offensive_morale = 1
+defensive_morale = 2
+offensive_fire = 0
+defensive_fire = 0
+offensive_shock = 0
+defensive_shock = 1

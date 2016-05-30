@@ -1,0 +1,94 @@
+#Country Name: Please seefilename.
+
+graphical_culture = africangfx
+
+color = { 186  164  78 }
+
+historical_ideas = {
+	national_conscripts
+	shrewd_commerce_practise
+	merchant_adventures
+	military_drill
+	national_trade_policy
+	battlefield_commisions
+	engineer_corps
+	grand_army
+	espionage
+	cabinet
+	humanist_tolerance
+	smithian_economics
+}
+
+historical_units = {
+	african_clubmen
+	bantu_tribal_warfare
+	bantu_plains_warfare
+	bantu_gunpowder_warfare
+	westernized_bantu
+	african_western_franchise_warfare
+}
+
+
+monarch_names = {
+	"Mbire #0" = 20
+	"Nyatsimba #0" = 20
+	"Matope #0" = 20
+	"Mavura #0" = 40
+	"Mukombero #0" = 20
+	"Changamire #0" = 20
+	"Kakuyo #0" = 20
+	"Neshangwe #0" = 20
+	"Chivere #0" = 20
+	"Chirisamhuru #0" = 20
+	"Gatsi #0" = 20
+	"Nyambo #0" = 20
+	"Siti #0" = 20
+	"Kamborapasu #0" = 20
+	"Dombo Chinkura #0" = 20  
+	"Nechisake #0" = 20
+	"Nechagadzike #0" = 20
+	"Mambo Rupanadamananga #0" = 20
+	"Gumboremvura #0" = 20 
+	"Toloa #0" = 5
+	"Matuzvianye #0" = 5
+	"Mukombwe #0" = 0
+	"Nyamhandu #0" = 0
+	"Basvi #0" = 0
+	"Tohwechipi #0" = 0
+	"Nyatsimba #0" = 0
+	"Ngwato #0" = 0
+	"Molwa #0" = 0
+	"Tamasiga #0" = 0
+	"Seogola #0" = 0
+	"Mucombo #0" = 0
+	"Inhamunda #0" = 0
+	"Ningomoxa #0" = 0
+	"Chiraramuro #0" = 0
+	"Chombo #0" = 0
+	"Peranhe #0" = 0
+	"Chicanga #0" = 0
+	"Nyacuimbiri #0" = 0
+	"Samutumbu #0" = 0
+	"Mupunzagutu #0" = 0
+	"Gowera #0" = 0
+	"Nyarumwe #0" = 0
+}
+
+leader_names = {
+	Chirombo
+	Njie
+	Rise
+	Tembo
+	Birir
+	Chrima
+	Kagona
+	Nkomo
+	Mutasa
+	Moyo
+}
+
+ship_names = {
+	Dziva Mwari Dzivaguru Mulungu Mbonga
+	Svikiro Mazendere "Mai Vedu" Musikavanhu
+	Mutorwa
+}

@@ -1,0 +1,15 @@
+owner = CHI
+controller = CHI
+add_core = CHI
+add_core = CHC
+metal = 2.00
+energy = 3.00
+rare_materials = 1.00
+industry = 3
+infra = 5
+points = 3
+manpower = 20.00
+leadership = 0.45
+1938.7.1 = {
+	controller = JAP
+}

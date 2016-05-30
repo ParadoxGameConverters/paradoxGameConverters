@@ -1,0 +1,5 @@
+owner = AST
+controller = AST
+add_core = AST
+metal = 3.00
+infra = 4

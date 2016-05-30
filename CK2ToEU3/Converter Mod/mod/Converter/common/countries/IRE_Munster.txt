@@ -1,0 +1,101 @@
+# Country name see file name.
+
+graphical_culture = latingfx
+
+color = { 104  137  140 }
+
+historical_ideas = {
+	excellent_shipwrights
+	bill_of_rights
+	superior_seamanship
+	merchant_adventures
+	naval_glory
+	cabinet
+	national_bank
+	espionage  
+	smithian_economics
+	scientific_revolution
+	revolution_and_counter
+	national_trade_policy
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	gaelic_galloglaigh
+	gaelic_mercenary
+	gaelic_free_shooter
+	irish_charge
+	anglofrench_line
+	british_redcoat
+	british_hussar
+	british_square
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Turlough #2" = 80
+	"Conchobhar #2" = 60
+	"Tadhg #2" = 40
+	"Donnchad #7" = 20
+	"Muireadhach #1" = 20
+	"Mathghamhain #0" = 20
+	"Diarmaid #3" = 1
+	"Mathghamhain #0" = 20
+	"Ádhamh #0" = 0
+	"Ailill #0" = 0
+	"Brígh #0" = 0
+	"Brónach #0" = 0
+	"Cadwgwan #0" = 0
+	"Caoimhín #0" = 0
+	"Cinnéidigh #0" = 0
+	"Deaglán #0" = 0
+	"Dougal #0" = 0
+	"Fionnlagh #0" = 0
+	"Garbhán #0" = 0
+	"Lachtna #0" = 0
+	"Lorccán #0" = 0
+	"Mainchín #0" = 0
+	"Mathúin #0" = 0
+	"Meallán #0" = 0
+	"Naomhán #0" = 0
+	"Niall #0" = 0
+	"Odhrán #0" = 0
+	"Pádraig #0" = 0
+	"Quinn #0" = 0
+	"Riain #0" = 0
+	"Ríoghnán #0" = 0
+	"Rórdan #0" = 0
+	"Ruaidhrí #0" = 0
+	"Ruarc #0" = 0
+	"Séaghdhá #0" = 0
+	"Seanán #0" = 0
+	"Sechnall #0" = 0
+	"Tighearnach #0" = 0
+	"Tuathal #0" = 0
+	"Uilliam #0" = 0
+	"Uinseann #0" = 0
+}
+
+ship_names = {
+	Clare Cork
+	"Deas Mhuman" 
+	Kerry 
+	"Lar Mumhan" Limerick
+	Tipperary "Tuad Mhuman"
+	"Urh Mumhan"  
+	Waterford
+}  
+
+leader_names = {
+	Barry Boyle
+	Darcy
+	FitzGerald FitzThomas
+	O'Brien O'Neill
+	MacCarthy
+	Sarsfield
+	Talbot
+}

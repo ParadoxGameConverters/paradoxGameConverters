@@ -1,0 +1,118 @@
+#Country Name: Please see filename.
+
+graphical_culture = southamericagfx
+
+color = { 94  136  191 }
+
+historical_ideas = {
+	deus_vult
+	divine_supremacy
+	patron_of_art
+	national_conscripts
+	military_drill
+	glorious_arms
+	battlefield_commisions
+	superior_seamanship
+	merchant_adventures
+	excellent_shipwrights
+	engineer_corps
+	shrewd_commerce_practise
+}
+
+historical_units = {
+	south_american_spearmen
+	maya_tribal_warfare
+	maya_forest_warfare
+	maya_gunpowder_warfare
+	westernized_mayan
+	maya_guerilla_warfare
+}
+
+leader_names = {
+	Ahkinxoc Ahmetakkukul Ahmok Ahnakukpech Ahpop-Achi Arana
+	Bakan Balam Bor
+	Canek Chaob Chiam
+	Hnuyg
+	Kayom Kíin Kukumatz
+	Mochcouoh
+	Nachancan Nohochacyum
+	Pacal
+	"Quitze Balam"
+	Tecunuman
+	Vataki
+	Yumcaax
+	Zotz
+}
+
+monarch_names = {
+	"Can Ek #0" = 60
+	"Balam Quitze #0" = 20
+	"Cocom #1" = 20
+	"Pacal #1" = 20
+	"Vahxaqui Caam #0" = 20
+	"Ah Cacao #1" = 15
+	"Cham Bahlun #1" = 15
+	"Cu Ix #1" = 15
+	"Pacal Balam #1" = 15
+	"Yaxum Balam #1" = 15
+	"Butz Chan #1" = 10
+	"Chaan Muan #1" = 10
+	"Kan Boar #1" = 10
+	"Yax Kuk Mok #1" = 10
+	"Yax Pac #1" = 10
+	"Ah Can #0" = 0
+	"Ahkinxok #0" = 0
+	"Ahmok #0" = 0
+	"Ahpop-Achi #0" = 0
+	"Arana #0" = 0
+	"Bakan #0" = 0
+	"Bor #0" = 0
+	"Cocaib #0" = 0
+	"Cocoja #0" = 0
+	"Conache #0" = 0
+	"Cotuja #0" = 0
+	"Gucamatz #0" = 0
+	"Hnuyg #0" = 0
+	"Kan Bahlun Mo #0" = 0
+	"Kayom #0" = 0
+	"Kukumatz #0" = 0
+	"Mochcouoh #0" = 0
+	"Nohochacyum #0" = 0
+	"Oxib Queh #0" = 0
+	"Tecunuman #0" = 0
+	"Tutul Xiu #0" = 0
+	"Tziquin #0" = 0
+	"Vataki #0" = 0
+	"Yumcaaz #0" = 0
+	"Zotz #0" = 0
+}
+
+ship_names = {
+	Aké "Ah Puch" "Altun Ha"
+	Bonampak Becan Bolonchen
+	Chaac Camazotz Cancuén Caracol Cerros Chacchoben Chacmultun Chinikiha Chinkultic 
+	Chunchucmil Civiltuk Calakmul Copan Coba
+	"Chichen Itza"
+	Dzibilchaltun Dzibilnocac Dzilam Dzibilchaltun
+	"Dos Pilas" "Cahal Pech"
+	Edzná Ekab "Ek'Balam" 
+	Gumarcaj Gucumatz
+	Hocchob Hormiguero Hunahpu Huracan
+	Ixbalanque Ixchel Ixtab Ichmac Ichmul Itzan Ixil Iximche Ixlu Izamal "Ix Chel"
+	Labná Lamanai Louisville Lubaantun LubaantunJaina Jolja "Joya de Cerén"
+	Kaminaljuyu Kabah Kiuic "Kantunil Kin"
+	Lamanai 
+	Mayapan Machaquila Mani Muluchtzekel Muyil 
+	Nakum Nakbe Naranjo Nebaj "Nim Li Punit"
+	Okop Oxcutzcab Oxkintok 
+	Palenque Pomoná Pusilha "Piedras Negras"
+	Quirigua
+	"Rio Azul" "Rio Bec"
+	Sayil Seibal Sisila
+	Tonina Tikal Tulum Tancah Tazumal Tecoh Topoxté 
+	Uxmal Uaxactun Ucanal Uci Utatlan
+	Waká
+	Xcalumkin Xcaret Xcorralche Xcucsuc Xculoc Xlapak Xpuhil Xultun Xunantunich
+	Yaklmai Yaxchilan Yaxha Yo'okop 
+	Zipacna Zaculeu 
+}

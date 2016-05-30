@@ -1,0 +1,9 @@
+owner = POR
+controller = POR
+add_core = POR
+points = 1
+infra = 4
+
+infra = 6
+
+infra = 4

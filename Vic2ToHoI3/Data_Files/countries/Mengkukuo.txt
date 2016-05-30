@@ -1,0 +1,178 @@
+color = { 234  212  145 }
+graphical_culture = Japanese
+
+default_templates = {
+	binary_infantry = {
+		infantry_brigade
+		infantry_brigade
+	}
+	binary_milita = {
+		militia_brigade
+		militia_brigade
+	}
+	binary_armoured = {
+		armor_brigade
+		motorized_brigade
+	}
+	binary_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1 Mengkukuo Hoheishidan" "2 Mengkukuo Hoheishidan" "3 Mengkukuo Hoheishidan" "4 Mengkukuo Hoheishidan" "5 Mengkukuo Hoheishidan" "6 Mengkukuo Hoheishidan" "8 Mengkukuo Hoheishidan" "10 Mengkukuo Hoheishidan" "11 Mengkukuo Hoheishidan" "12 Mengkukuo Hoheishidan" "13 Mengkukuo Hoheishidan" 
+		"14 Mengkukuo Hoheishidan" "16 Mengkukuo Hoheishidan" "17 Mengkukuo Hoheishidan" "19 Mengkukuo Hoheishidan" "21 Mengkukuo Hoheishidan" "22 Mengkukuo Hoheishidan" "23 Mengkukuo Hoheishidan" "24 Mengkukuo Hoheishidan" "25 Mengkukuo Hoheishidan" 
+	}
+	cavalry_brigade = {
+		"3. Mengkukuo Kiheishidan" "4. Mengkukuo Kiheishidan" "5. Mengkukuo Kiheishidan" "6. Mengkukuo Kiheishidan" "7. Mengkukuo Kiheishidan" "8. Mengkukuo Kiheishidan" "9. Mengkukuo Kiheishidan" "10. Mengkukuo Kiheishidan" 
+	}
+	motorized_brigade = {
+		"1. Mengkukuo Hoheishidan" "2. Mengkukuo Hoheishidan" "3. Mengkukuo Hoheishidan" "4. Mengkukuo Hoheishidan" "5. Mengkukuo Hoheishidan" "6. Mengkukuo Hoheishidan" "8. Mengkukuo Hoheishidan" "10. Mengkukuo Hoheishidan" "11. Mengkukuo Hoheishidan" "12. Mengkukuo Hoheishidan" 
+	}
+	mechanized_brigade = {
+		"1. Mengkukuo Hoheishidan" "2. Mengkukuo Hoheishidan" "3. Mengkukuo Hoheishidan" "4. Mengkukuo Hoheishidan" "5. Mengkukuo Hoheishidan" "6. Mengkukuo Hoheishidan" "8. Mengkukuo Hoheishidan" "10. Mengkukuo Hoheishidan" "11. Mengkukuo Hoheishidan" "12. Mengkukuo Hoheishidan" "13. Mengkukuo Hoheishidan" 
+			}
+	light_armor_brigade = {
+		"1. Mengkukuo Senshashidan" "2. Mengkukuo Senshashidan" "3. Mengkukuo Senshashidan" "4. Mengkukuo Senshashidan" "5. Mengkukuo Senshashidan" "6. Mengkukuo Senshashidan" "7. Mengkukuo Senshashidan" "8. Mengkukuo Senshashidan" "9. Mengkukuo Senshashidan" "10. Mengkukuo Senshashidan" 
+	}
+	armor_brigade = {
+		"1. Mengkukuo Senshashidan" "2. Mengkukuo Senshashidan" "3. Mengkukuo Senshashidan" "4. Mengkukuo Senshashidan" "5. Mengkukuo Senshashidan" "6. Mengkukuo Senshashidan" "7. Mengkukuo Senshashidan" "8. Mengkukuo Senshashidan" "9. Mengkukuo Senshashidan" "10. Mengkukuo Senshashidan" 
+	}
+	paratrooper_brigade = {
+		"1. Mengkukuo Uteishidan" "2. Mengkukuo Uteishidan" "3. Mengkukuo Uteishidan" "4. Mengkukuo Uteishidan" "5. Mengkukuo Uteishidan" "6. Mengkukuo Uteishidan" "7. Mengkukuo Uteishidan" "8. Mengkukuo Uteishidan" "9. Mengkukuo Uteishidan" "10. Mengkukuo Uteishidan" 
+	}
+	marine_brigade = {
+		"1. Mengkukuo Hoheishidan" "2. Mengkukuo Hoheishidan" "3. Mengkukuo Hoheishidan" "4. Mengkukuo Hoheishidan" "5. Mengkukuo Hoheishidan" "6. Mengkukuo Hoheishidan" "7. Mengkukuo Hoheishidan" "8. Mengkukuo Hoheishidan" "9. Mengkukuo Hoheishidan" "10. Mengkukuo Hoheishidan" 
+	}
+	bergsjaeger_brigade = {
+		"1. Mengkukuo Hoheishidan" "2. Mengkukuo Hoheishidan" "3. Mengkukuo Hoheishidan" "4. Mengkukuo Hoheishidan" "5. Mengkukuo Hoheishidan" "6. Mengkukuo Hoheishidan" "8. Mengkukuo Hoheishidan" "10. Mengkukuo Hoheishidan" "11. Mengkukuo Hoheishidan" "12. Mengkukuo Hoheishidan" 
+	}
+	garrison_brigade = {
+		"1 Mengkukuo Hoheishidan" "2 Mengkukuo Hoheishidan" "3 Mengkukuo Hoheishidan" "4 Mengkukuo Hoheishidan" "5 Mengkukuo Hoheishidan" "6 Mengkukuo Hoheishidan" "8 Mengkukuo Hoheishidan" "10 Mengkukuo Hoheishidan" "11 Mengkukuo Hoheishidan" "12 Mengkukuo Hoheishidan" "13 Mengkukuo Hoheishidan" 
+		"14 Mengkukuo Hoheishidan" "16 Mengkukuo Hoheishidan" "17 Mengkukuo Hoheishidan" "19 Mengkukuo Hoheishidan" "21 Mengkukuo Hoheishidan" "22 Mengkukuo Hoheishidan" "23 Mengkukuo Hoheishidan" "24 Mengkukuo Hoheishidan" "25 Mengkukuo Hoheishidan" 
+	}
+	hq_brigade = {
+		"1 Mengkukuogun Shireibu" "2 Mengkukuogun Shireibu" "3 Mengkukuogun Shireibu" "4 Mengkukuogun Shireibu" "5 Mengkukuogun Shireibu" 
+	}
+	militia_brigade = {
+		"1. Mengkukuo Hoheishidan" "2. Mengkukuo Hoheishidan" "3. Mengkukuo Hoheishidan" "4. Mengkukuo Hoheishidan" "5. Mengkukuo Hoheishidan" "6. Mengkukuo Hoheishidan" "8. Mengkukuo Hoheishidan" "10. Mengkukuo Hoheishidan" "11. Mengkukuo Hoheishidan" "12. Mengkukuo Hoheishidan" "13. Mengkukuo Hoheishidan" 
+		"14. Mengkukuo Hoheishidan" "16. Mengkukuo Hoheishidan" "17. Mengkukuo Hoheishidan" "19. Mengkukuo Hoheishidan" "21. Mengkukuo Hoheishidan" "22. Mengkukuo Hoheishidan" "23. Mengkukuo Hoheishidan" "24. Mengkukuo Hoheishidan" "25. Mengkukuo Hoheishidan" 
+	}
+	multi_role = {
+		"1. Mengkukuo Hikodan" "2. Mengkukuo Hikodan" "3. Mengkukuo Hikodan" "4. Mengkukuo Hikodan" "5. Mengkukuo Hikodan" 
+	}
+	interceptor = {
+		"1. Mengkukuo Hikodan" "2. Mengkukuo Hikodan" "3. Mengkukuo Hikodan" "4. Mengkukuo Hikodan" "5. Mengkukuo Hikodan" 
+	}
+	strategic_bomber = {
+		"1. Mengkukuo Hikodan" "2. Mengkukuo Hikodan" "3. Mengkukuo Hikodan" "4. Mengkukuo Hikodan" "5. Mengkukuo Hikodan" 
+	}
+	tactical_bomber = {
+		"1. Mengkukuo Hikodan" "2. Mengkukuo Hikodan" "3. Mengkukuo Hikodan" "4. Mengkukuo Hikodan" "5. Mengkukuo Hikodan" "10. Mengkukuo Hikodan" 
+	}
+	naval_bomber = {
+		"1. Mengkukuo Hikodan" "2. Mengkukuo Hikodan" "3. Mengkukuo Hikodan" "4. Mengkukuo Hikodan" "5. Mengkukuo Hikodan" 
+	}
+	cas = {
+		"23. Mengkukuo Hikodan" "46. Mengkukuo Hikodan" "77. Mengkukuo Hikodan" "25. Mengkukuo Hikodan" 
+	}
+	transport_plane = {
+		"1. Mengkukuo Hikodan" "2. Mengkukuo Hikodan" "3. Mengkukuo Hikodan" "4. Mengkukuo Hikodan" "5. Mengkukuo Hikodan" 
+	}
+	battleship = {
+		"Mongol Nayramdakh Ard Uls" "Ulan Bator" 
+	}
+	light_cruiser = {
+		"Bajan-Ula" "Arbaj-Here" 
+	}
+	heavy_cruiser = {
+		"Ba-Cagan" "Dzargalant" 
+	}
+	battlecruiser = {
+		"Mongol Nayramdakh Ard Uls" "Ulan Bator" 
+	}
+	destroyer = {
+		"1. Mengkukuo Kuchikukantai" "2. Mengkukuo Kuchikukantai" "3. Mengkukuo Kuchikukantai" "4. Mengkukuo Kuchikukantai" "5. Mengkukuo Kuchikukantai" 
+	}
+	carrier = {
+		"Choibalsan" 
+	}
+	submarine = {
+		"1. Mengkukuo Sensuikantai" "2. Mengkukuo Sensuikantai" "3. Mengkukuo Sensuikantai" "4. Mengkukuo Sensuikantai" "5. Mengkukuo Sensuikantai" 
+	}
+	transport_ship = {
+		"1. Mengkukuo Yuso Sentai" "2. Mengkukuo Yuso Sentai" "3. Mengkukuo Yuso Sentai" "4. Mengkukuo Yuso Sentai" "5. Mengkukuo Yuso Sentai" 
+	}
+
+}
+
+ministers = {
+	513001 = {
+		name = "De Noyan"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M513001
+		head_of_state = pig_headed_isolationist
+		head_of_government = political_protege
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	513003 = {
+		name = "Megata Toshiro"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M58032
+		foreign_minister = general_staffer
+		start_date = 1936.1.1
+	}
+	513004 = {
+		name = "Nakajima Kesago"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M58051
+		armament_minister = air_to_ground_proponent
+		start_date = 1936.1.1
+	}
+	513005 = {
+		name = "Damsurijan"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M513005
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	513006 = {
+		name = "Hung Zhehuang"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M513006
+		minister_of_intelligence = research_specialist
+		start_date = 1936.1.1
+	}
+	513008 = {
+		name = "Yonimitsu Kasahara"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = L101079
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	513009 = {
+		name = "Heinrich Hanke"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M513009
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	513010 = {
+		name = "Kyoiji Tomonaga"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = L101336
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+}

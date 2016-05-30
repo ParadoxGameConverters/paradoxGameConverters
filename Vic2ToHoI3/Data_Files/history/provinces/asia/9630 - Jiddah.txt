@@ -1,0 +1,5 @@
+owner = SAUcontroller = SAUadd_core = SAU
+infra = 6
+
+infra = 4
+naval_base = 4

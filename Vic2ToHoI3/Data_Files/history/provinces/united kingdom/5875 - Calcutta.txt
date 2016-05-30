@@ -1,0 +1,30 @@
+owner = ENG
+
+controller = ENG
+
+add_core = ENG
+add_core = IND
+
+
+points = 5
+
+metal = 1.00
+
+energy = 2.00
+
+rare_materials = 1.00
+
+industry = 2
+
+anti_air = 2
+
+infra = 6
+
+air_base = 4
+
+manpower = 8.00
+
+leadership = 0.25
+
+naval_base = 3
+

@@ -1,0 +1,14 @@
+owner = PRU
+controller = PRU
+add_core = PRU
+points = 2
+metal = 12.00
+energy = 12.00
+rare_materials = 3.00
+industry = 7
+anti_air = 2
+infra = 6
+air_base = 1
+naval_base = 3
+manpower = 7.00
+leadership = 0.70

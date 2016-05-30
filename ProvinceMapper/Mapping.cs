@@ -14,14 +14,15 @@ namespace ProvinceMapper
 
     class ProvinceMapping : Mapping
     {
-        public List<Province> srcProvs = new List<Province>();
-        public List<Province> destProvs = new List<Province>();
+        public List<Province>   srcProvs            = new List<Province>();
+        public List<Province>   destProvs           = new List<Province>();
+        public List<string>     resettableRegions   = new List<string>();
 
         public ProvinceMapping()
         {
         }
 
-        public ProvinceMapping(string line, string srcTag, string destTag, List<Province> possibleSources, List<Province> possibleDests)
+        public ProvinceMapping(string line, string srcTag, string destTag, List<Province> possibleSources, List<Province> possibleDests, string currentMapping)
         {
             string[] tokens = line.Split(' ', '\t');
             int parseMode = 0;
@@ -43,18 +44,22 @@ namespace ProvinceMapper
                 {
                     parseMode = 2;
                 }
+                else if (s == "resettable")
+                {
+                    parseMode = 3;
+                }
                 else if (s[0] == '#')
                 {
                     break;
                 }
                 else
                 {
-                    int provID = int.Parse(s.Trim('}'));
                     switch (parseMode)
                     {
                         case 1:
                             {
                                 // provID is src
+                                int provID = int.Parse(s.Trim('}'));
                                 Province prov = possibleSources.Find(
                                     delegate(Province p)
                                     {
@@ -62,15 +67,16 @@ namespace ProvinceMapper
                                     });
                                 if (prov == null)
                                     throw new Exception(String.Format("Province \"{0}\" appears in a mapping, but not in game data!", prov.ToString()));
-                                if (prov.mapping != null)
+                                if (prov.mappings.ContainsKey(currentMapping))
                                     throw new Exception(String.Format("Province \"{0}\" appears in more than one mapping!", prov.ToString()));
-                                prov.mapping = this;
+                                prov.mappings.Add(currentMapping, this);
                                 srcProvs.Add(prov);
                                 break;
                             }
                         case 2:
                             {
                                 // provID is dest
+                                int provID = int.Parse(s.Trim('}'));
                                 Province prov = possibleDests.Find(
                                     delegate(Province p)
                                     {
@@ -78,10 +84,16 @@ namespace ProvinceMapper
                                     });
                                 if (prov == null)
                                     throw new Exception(String.Format("Province \"{0}\" appears in a mapping, but not in game data!", prov.ToString()));
-                                if (prov.mapping != null)
+                                if (prov.mappings.ContainsKey(currentMapping))
                                     throw new Exception(String.Format("Province \"{0}\" appears in more than one mapping!", prov.ToString()));
-                                prov.mapping = this;
+                                prov.mappings.Add(currentMapping, this);
                                 destProvs.Add(prov);
+                                break;
+                            }
+                        case 3:
+                            {
+                                string region = s.Trim('}');
+                                resettableRegions.Add(region);
                                 break;
                             }
                         default:
@@ -119,7 +131,7 @@ namespace ProvinceMapper
             if (srcProvs.Count == 0 && destProvs.Count == 0)
                 return "";
             string retval = String.Empty;
-            retval += "link = { ";
+            retval += "\tlink = { ";
             foreach (Province p in srcProvs)
             {
                 retval += srcTag + " = " + p.ID.ToString() + " ";
@@ -127,6 +139,10 @@ namespace ProvinceMapper
             foreach (Province p in destProvs)
             {
                 retval += destTag + " = " + p.ID.ToString() + " ";
+            }
+            foreach (string r in resettableRegions)
+            {
+                retval += "resettable = " + r + " ";
             }
             retval += "}\t# ";
             if (isManyToMany())
@@ -185,7 +201,7 @@ namespace ProvinceMapper
 
         public string ToOutputString(string srcTag, string destTag)
         {
-            return "# " + commentLine;
+            return "\t# " + commentLine;
         }
     }
 }

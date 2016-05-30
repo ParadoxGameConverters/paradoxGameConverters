@@ -1,0 +1,20 @@
+owner = CZE
+controller = CZE
+add_core = CZE
+
+infra = 8
+
+land_fort = 5
+1939.3.15 = {
+	owner = POL
+
+	controller = POL
+
+	add_core = POL
+
+}
+
+1940.5.10 = {
+	controller = GER
+	land_fort = 2
+}

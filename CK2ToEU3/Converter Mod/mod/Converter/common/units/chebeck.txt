@@ -1,0 +1,6 @@
+#Chebeck
+type = galley
+
+hull_size = 16
+base_cannons = 20 
+sail_speed = 8

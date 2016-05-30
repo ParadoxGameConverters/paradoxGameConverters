@@ -1,0 +1,620 @@
+color = { 72  73  126 }
+
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"Gardijska Pesadijska Divizija" "1. Cerska Pesadijska Divizija" "3. Dunavska Pesadijska Divizija" "5. Sumadijska Pesadijska Divizija" "7. Potiska Pesadijska Divizija" "8. Krajinska Pesadijska Divizija" "9. Timocka Pesadijska Divizija" "10. Bosanska Pesadijska Divizija" "12. Jadranska Pesadijska Divizija" "13. Hercegovacka Pesadijska Divizija" "15. Zetska Pesadijska Divizija" 
+		"17. Vrbaska Pesadijska Divizija" "20. Bregalnicka Pesadijska Divizija" "22. Ibarska Pesadijska Divizija" "25. Vardarska Pesadijska Divizija" "27. Savska Pesadijska Divizija" "30. Osjecka Pesadijska Divizija" "31. Kosovska Pesadijska Divizija" "32. Triglavska Pesadijska Divizija" "33. Licka Pesadijska Divizija" "34. Toplicka Pesadijska Divizija" "38. Dravska Pesadijska Divizija" 
+		"40. Slavonska Pesadijska Divizija" "42. Murska Pesadijska Divizija" "44. Unska Pesadijska Divizija" "46. Moravska Pesadijska Divizija" "47. Dinarska Pesadijska Divizija" "49. Sremska Pesadijska Divizija" "50. Drinska Pesadijska Divizija" "51. Pesadijska Divizija" "52. Pesadijska Divizija" "53. Pesadijska Divizija" "54. Pesadijska Divizija" 
+		"55. Pesadijska Divizija" "56. Pesadijska Divizija" "57. Pesadijska Divizija" "58. Pesadijska Divizija" "59. Pesadijska Divizija" "60. Pesadijska Divizija" "61. Pesadijska Divizija" "62. Pesadijska Divizija" "63. Pesadijska Divizija" "64. Pesadijska Divizija" "65. Pesadijska Divizija" 
+		"66. Pesadijska Divizija" "67. Pesadijska Divizija" "68. Pesadijska Divizija" "69. Pesadijska Divizija" "70. Pesadijska Divizija" 
+	}
+	cavalry_brigade = {
+		"1. Konjicka Divizija" "2. Konjicka Divizija" "3. Konjicka Divizija" "4. Konjicka Divizija" "5. Konjicka Divizija" "6. Konjicka Divizija" "7. Konjicka Divizija" "8. Konjicka Divizija" "9. Konjicka Divizija" "10. Konjicka Divizija" "11. Konjicka Divizija" 
+		"12. Konjicka Divizija" 
+	}
+	motorized_brigade = {
+		"1. Motorizovana Divizija" "2. Motorizovana Divizija" "3. Motorizovana Divizija" "4. Motorizovana Divizija" "5. Motorizovana Divizija" "5. Motorizovana Divizija" "6. Motorizovana Divizija" "7. Motorizovana Divizija" "8. Motorizovana Divizija" "9. Motorizovana Divizija" "10. Motorizovana Divizija" 
+		"11. Motorizovana Divizija" 
+	}
+	mechanized_brigade = {
+		"1. Mehanizovana Divizija" "2. Mehanizovana Divizija" "3. Mehanizovana Divizija" "4. Mehanizovana Divizija" "5. Mehanizovana Divizija" "6. Mehanizovana Divizija" "7. Mehanizovana Divizija" "8. Mehanizovana Divizija" "9. Mehanizovana Divizija" "10. Mehanizovana Divizija" "11. Mehanizovana Divizija" 
+		"12. Mehanizovana Divizija" "13. Mehanizovana Divizija" 
+	}
+	light_armor_brigade = {
+		"1. Oklopna Divizija" "2. Oklopna Divizija" "3. Oklopna Divizija" "4. Oklopna Divizija" "5. Oklopna Divizija" "6. Oklopna Divizija" "7. Oklopna Divizija" "8. Oklopna Divizija" "9. Oklopna Divizija" "10. Oklopna Divizija" "11. Oklopna Divizija" 
+		"12. Oklopna Divizija" "13. Oklopna Divizija" "14. Oklopna Divizija" 
+	}
+	armor_brigade = {
+		"1. Oklopna Divizija" "2. Oklopna Divizija" "3. Oklopna Divizija" "4. Oklopna Divizija" "5. Oklopna Divizija" "6. Oklopna Divizija" "7. Oklopna Divizija" "8. Oklopna Divizija" "9. Oklopna Divizija" "10. Oklopna Divizija" "11. Oklopna Divizija" 
+		"12. Oklopna Divizija" "13. Oklopna Divizija" "14. Oklopna Divizija" 
+	}
+	paratrooper_brigade = {
+		"1. Padobranska Lovacka Divizija" "2. Padobranska Lovacka Divizija" "3. Padobranska Lovacka Divizija" "4. Padobranska Lovacka Divizija" "5. Padobranska Lovacka Divizija" "6. Padobranska Lovacka Divizija" "7. Padobranska Lovacka Divizija" "8. Padobranska Lovacka Divizija" "9. Padobranska Lovacka Divizija" 
+	}
+	marine_brigade = {
+		"1. Mornaricka Divizija" "2. Mornaricka Divizija" "3. Mornaricka Divizija" "4. Mornaricka Divizija" "5. Mornaricka Divizija" "6. Mornaricka Divizija" "7. Mornaricka Divizija" "8. Mornaricka Divizija" "9. Mornaricka Divizija" "10. Mornaricka Divizija" 
+	}
+	bergsjaeger_brigade = {
+		"Triglavski Odred" "Risnjacki Odred" "Planinski Odred" "Banatski Odred" "Branichevski Odred" "Kalnski Odred" "Komski Odred" "Licki Odred" "Ormoski Odred" "Pozarevacki Odred" "Savski Odred" 
+		"Sencanski Odred" "Smederevski Odred" "Somborski Odred" "Strumicki Odred" "Vlasinski Odred" "Zabaljski Odred" 
+	}
+	garrison_brigade = {
+		"25. Vardarska Pesadijska Divizija" "27. Savska Pesadijska Divizija" "30. Osjecka Pesadijska Divizija" "31. Kosovska Pesadijska Divizija" "32. Triglavska Pesadijska Divizija" "33. Licka Pesadijska Divizija" "34. Toplicka Pesadijska Divizija" "38. Dravska Pesadijska Divizija" "40. Slavonska Pesadijska Divizija" "42. Murska Pesadijska Divizija" "44. Unska Pesadijska Divizija" 
+		"46. Moravska Pesadijska Divizija" "47. Dinarska Pesadijska Divizija" "49. Sremska Pesadijska Divizija" "50. Drinska Pesadijska Divizija" "51. Pesadijska Divizija" "52. Pesadijska Divizija" "53. Pesadijska Divizija" "54. Pesadijska Divizija" "55. Pesadijska Divizija" "56. Pesadijska Divizija" "57. Pesadijska Divizija" 
+		"58. Pesadijska Divizija" "59. Pesadijska Divizija" "60. Pesadijska Divizija" "61. Pesadijska Divizija" "62. Pesadijska Divizija" "63. Pesadijska Divizija" "64. Pesadijska Divizija" "65. Pesadijska Divizija" "66. Pesadijska Divizija" "67. Pesadijska Divizija" "68. Pesadijska Divizija" 
+		"69. Pesadijska Divizija" "70. Pesadijska Divizija" 
+	}
+	hq_brigade = {
+		"1. armija" "2. armija" "3. armija" "4. armija" "5. armija" "6. armija" "7. armija" "8. armija" "9. armija" "10. armija" "15. armija" 
+			}
+	militia_brigade = {
+		"1. Milicija División" "2. Milicija División" "3. Milicija División" "4. Milicija División" "5. Milicija División" "6. Milicija División" "7. Milicija División" "8. Milicija División" "9. Milicija División" "10. Milicija División" "11. Milicija División" 
+		"12. Milicija División" "13. Milicija División" "14. Milicija División" "15. Milicija División" "16. Milicija División" "17. Milicija División" "18. Milicija División" "19. Milicija División" "20. Milicija División" 
+	}
+	multi_role = {
+		"2. Vazduhoplovni Lovacki Puk" "4. Vazduhoplovni Lovacki Puk" "5. Vazduhoplovni Lovacki Puk" "6. Vazduhoplovni Lovacki Puk" "9. Vazduhoplovni Lovacki Puk" "10. Vazduhoplovni Lovacki Puk" "15. Vazduhoplovni Lovacki Puk" "16. Vazduhoplovni Lovacki Puk" "17. Vazduhoplovni Lovacki Puk" "18. Vazduhoplovni Lovacki Puk" 
+	}
+	interceptor = {
+		"2. Vazduhoplovni Lovacki Puk" "4. Vazduhoplovni Lovacki Puk" "5. Vazduhoplovni Lovacki Puk" "6. Vazduhoplovni Lovacki Puk" "9. Vazduhoplovni Lovacki Puk" "10. Vazduhoplovni Lovacki Puk" "15. Vazduhoplovni Lovacki Puk" "16. Vazduhoplovni Lovacki Puk" "17. Vazduhoplovni Lovacki Puk" "18. Vazduhoplovni Lovacki Puk" 
+	}
+	strategic_bomber = {
+		"1. Strateski Bombarderski Puk" "3. Strateski Bombarderski Puk" "7. Strateski Bombarderski Puk" "8. Strateski Bombarderski Puk" "11. Strateski Bombarderski Puk" "12. Strateski Bombarderski Puk" "13. Strateski Bombarderski Puk" "14. Strateski Bombarderski Puk" "15. Strateski Bombarderski Puk" "16. Strateski Bombarderski Puk" 
+	}
+	tactical_bomber = {
+		"26. Takticki Bombarderski Puk" "17. Takticki Bombarderski Puk" "18. Takticki Bombarderski Puk" "19. Takticki Bombarderski Puk" "28. Takticki Bombarderski Puk" "38. Takticki Bombarderski Puk" "48. Takticki Bombarderski Puk" "58. Takticki Bombarderski Puk" "68. Takticki Bombarderski Puk" "78. Takticki Bombarderski Puk" 
+	}
+	naval_bomber = {
+		"1. Hidroplanska Komanda" "2. Hidroplanska Komanda" "3. Hidroplanska Komanda" "4. Hidroplanska Komanda" "5. Hidroplanska Komanda" "6. Hidroplanska Komanda" "7. Hidroplanska Komanda" "8. Hidroplanska Komanda" "9. Hidroplanska Komanda" "10. Hidroplanska Komanda" "13. Hidroplanska Torpedo Komanda" 
+		"14. Hidroplanska Torpedo Komanda" "15. Hidroplanska Torpedo Komanda" "16. Hidroplanska Torpedo Komanda" "17. Hidroplanska Torpedo Komanda" "18. Hidroplanska Torpedo Komanda" "19. Hidroplanska Torpedo Komanda" "20. Hidroplanska Torpedo Komanda" "24. Hidroplanska Torpedo Komanda" "26. Hidroplanska Torpedo Komanda" 
+	}
+	cas = {
+		"19. Obrasavanje Avio Bombarderski Puk" "20. Obrasavanje Avio Bombarderski Puk" "21. Obrasavanje Avio Bombarderski Puk" "22. Obrasavanje Avio Bombarderski Puk" "23. Obrasavanje Avio Bombarderski Puk" "24. Obrasavanje Avio Bombarderski Puk" "25. Obrasavanje Avio Bombarderski Puk" "27. Obrasavanje Avio Bombarderski Puk" "29. Obrasavanje Avio Bombarderski Puk" "30. Obrasavanje Avio Bombarderski Puk" 
+	}
+	transport_plane = {
+		"1. Transportna Eskadrila" "2. Transportna Eskadrila" "3. Transportna Eskadrila" "4. Transportna Eskadrila" "5. Transportna Eskadrila" 
+	}
+	battleship = {
+		"CJMN Belgrade" "CJMN Zagreb" "CJMN Novi Sad" "CJMN Budva" "CJMN Cetinje" "CJMN Dubrovnik" "CJMN Pec" "CJMN Pizren" "CJMN Pristina" "CJMN Sarajevo" 
+	}
+	light_cruiser = {
+		"CJMN Dalmacija" "CJMN Sarajevo" "CJMN Brus" "CJMN Nis" "CJMN Smederovo" "CJMN Manasija" "CJMN Vrsac" "CJMN Ljubljana" 
+	}
+	heavy_cruiser = {
+		"CJMN Belgrade" "CJMN Zagreb" "CJMN Novi Sad" "CJMN Budva" "CJMN Cetinje" "CJMN Dubrovnik" "CJMN Pec" "CJMN Pizren" "CJMN Pristina" 
+	}
+	battlecruiser = {
+		"CJMN Brus" "CJMN Nis" 
+	}
+	destroyer = {
+		"1. Razarac Flotila" "2. Razarac Flotila" "3. Razarac Flotila" "4. Razarac Flotila" "5. Razarac Flotila" "6. Razarac Flotila" "7. Razarac Flotila" "8. Razarac Flotila" "9. Razarac Flotila" "10. Razarac Flotila" "11. Razarac Flotila" 
+		"12. Razarac Flotila" "13. Razarac Flotila" "14. Razarac Flotila" "15. Razarac Flotila" "16. Razarac Flotila" "17. Razarac Flotila" "18. Razarac Flotila" "19. Razarac Flotila" "20. Razarac Flotila" 
+	}
+	carrier = {
+		"CJMN Smederovo" "CJMN Manasija" "CJMN Vrsac" "CJMN Ljubljana" "CJMN Brus" "CJMN Ljubljana" "CJMN Belgrade" "CJMN Zagreb" "CJMN Novi Sad" "CJMN Budva" 
+	}
+	submarine = {
+		"1. Podmorski Flotila" "2. Podmorski Flotila" "3. Podmorski Flotila" "4. Podmorski Flotila" "5. Podmorski Flotila" "6. Podmorski Flotila" "7. Podmorski Flotila" "8. Podmorski Flotila" "9. Podmorski Flotila" "10. Podmorski Flotila" "11. Podmorski Flotila" 
+		"12. Podmorski Flotila" "13. Podmorski Flotila" "14. Podmorski Flotila" "15. Podmorski Flotila" "16. Podmorski Flotila" "17. Podmorski Flotila" "18. Podmorski Flotila" "19. Podmorski Flotila" "20. Podmorski Flotila" 
+	}
+	transport_ship = {
+		"1. Pomorski Saobrac Flotila" "2. Pomorski Saobrac Flotila" "3. Pomorski Saobrac Flotila" "4. Pomorski Saobrac Flotila" "5. Pomorski Saobrac Flotila" "6. Pomorski Saobrac Flotila" "7. Pomorski Saobrac Flotila" "8. Pomorski Saobrac Flotila" "9. Pomorski Saobrac Flotila" "10. Pomorski Saobrac Flotila" "11. Pomorski Saobrac Flotila" 
+		"12. Pomorski Saobrac Flotila" "13. Pomorski Saobrac Flotila" "14. Pomorski Saobrac Flotila" "15. Pomorski Saobrac Flotila" "16. Pomorski Saobrac Flotila" "17. Pomorski Saobrac Flotila" "18. Pomorski Saobrac Flotila" "19. Pomorski Saobrac Flotila" "20. Pomorski Saobrac Flotila" 
+	}
+
+}
+
+ministers = {
+	20001 = {
+		name = "H.R.H. Pavle Karadjordjevic"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M20001
+		head_of_state = benevolent_gentleman
+		minister_of_security = prince_of_terror
+		chief_of_navy = power_projection_doctrine
+		start_date = 1936.1.1
+	}
+	20002 = {
+		name = "Milan Stojadinovic"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M20002
+		head_of_government = silent_workhorse
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1936.1.1
+	}
+	20004 = {
+		name = "Boguljub Jevtic"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M20004
+		armament_minister = corrupt_kleptocrat
+		start_date = 1936.1.1
+	}
+	20006 = {
+		name = "Borivoje Josimovic"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = L46013
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	20007 = {
+		name = "Petar Kosic"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = L46015
+		chief_of_staff = school_of_mass_combat
+		start_date = 1936.1.1
+	}
+	20008 = {
+		name = "Aleksandar Cincar-Markovic"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = L46005
+		chief_of_army = decisive_battle_doctrine
+		foreign_minister = general_staffer
+		start_date = 1936.1.1
+	}
+	20009 = {
+		name = "Bogoljub Ilic"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = L46043
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	20010 = {
+		name = "Dusan Simovic"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = L46060
+		chief_of_air = army_aviation_doctrine
+		head_of_government = happy_amateur
+		start_date = 1936.1.1
+	}
+	20031 = {
+		name = "Josip Broz"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M20021
+		head_of_state = power_hungry_demagogue
+		head_of_government = backroom_backstabber
+		chief_of_army = armoured_spearhead_doctrine
+		chief_of_navy = indirect_approach_doctrine
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	20032 = {
+		name = "Dragisa Cvetkovic"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M20032
+		head_of_government = naive_optimist
+		start_date = 1939.1.1
+	}
+	20034 = {
+		name = "Slobodan Jovanovic"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M20034
+		head_of_government = political_protege
+		foreign_minister = biased_intellectual
+		start_date = 1942.1.1
+	}
+	20035 = {
+		name = "Milos Trifunovic"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M20035
+		head_of_government = old_general
+		start_date = 1943.1.1
+	}
+	20036 = {
+		name = "Ivan Subasic"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M20014
+		head_of_government = corporate_suit
+		foreign_minister = apologetic_clerk
+		armament_minister = infantry_proponent
+		start_date = 1944.1.1
+	}
+	20038 = {
+		name = "Vlatko Macek"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M20038
+		head_of_government = old_air_marshal
+		foreign_minister = apologetic_clerk
+		start_date = 1936.1.1
+	}
+	20040 = {
+		name = "Momcilo Nincic"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M20013
+		foreign_minister = great_compromiser
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1941.1.1
+	}
+	20042 = {
+		name = "Milan Grol"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M20042
+		foreign_minister = apologetic_clerk
+		start_date = 1943.1.1
+	}
+	20043 = {
+		name = "Bozidar Puric"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M20043
+		foreign_minister = ideological_crusader
+		start_date = 1943.1.1
+	}
+	20045 = {
+		name = "Stanoje Simic"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M20023
+		foreign_minister = great_compromiser
+		start_date = 1936.1.1
+	}
+	20047 = {
+		name = "Edvard Kardelj"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M20047
+		foreign_minister = ideological_crusader
+		start_date = 1941.1.1
+	}
+	20048 = {
+		name = "Dimitrije Ljotic"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M20048
+		foreign_minister = iron_fisted_brute
+		start_date = 1943.1.1
+	}
+	20049 = {
+		name = "Edo Bogdan Markovic"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M20049
+		armament_minister = resource_industrialist
+		start_date = 1939.1.1
+	}
+	20050 = {
+		name = "Ladislav Polic"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M20050
+		armament_minister = laissez_faires_capitalist
+		start_date = 1941.1.1
+	}
+	20051 = {
+		name = "Anton Kozarev"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M20051
+		armament_minister = tank_proponent
+		start_date = 1942.1.1
+	}
+	20052 = {
+		name = "Tanasije Tasa Dinic"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M20052
+		armament_minister = corrupt_kleptocrat
+		start_date = 1943.1.1
+	}
+	20053 = {
+		name = "Petar Ivelich"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M20053
+		armament_minister = theoretical_scientist
+		start_date = 1944.1.1
+	}
+	20054 = {
+		name = "Milentije Popovic"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M20024
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	20055 = {
+		name = "Draza Mihailovic"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M20055
+		armament_minister = tank_proponent
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		head_of_government = naive_optimist
+		start_date = 1936.1.1
+	}
+	20056 = {
+		name = "Michel Yovanovic"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M20056
+		minister_of_security = compassionate_gentleman
+		start_date = 1939.1.1
+	}
+	20057 = {
+		name = "Momcilo Dujic"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M20015
+		minister_of_security = silent_lawyer
+		start_date = 1941.1.1
+	}
+	20058 = {
+		name = "Petar Grabovski"
+		ideology = fascistic
+		loyalty = 0.50
+		picture = M20058
+		minister_of_security = efficient_sociopath
+		start_date = 1942.1.1
+	}
+	20059 = {
+		name = "Milan Nedic"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M20059
+		minister_of_security = prince_of_terror
+		start_date = 1943.1.1
+	}
+	20060 = {
+		name = "Spiro Kitinchev"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M20060
+		minister_of_security = back_stabber
+		start_date = 1944.1.1
+	}
+	20061 = {
+		name = "Dragoljub Stefanic"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M20061
+		minister_of_security = crime_fighter
+		start_date = 1944.1.1
+	}
+	20062 = {
+		name = "Koca Popovic"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M20025
+		minister_of_security = silent_lawyer
+		chief_of_staff = school_of_mass_combat
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1936.1.1
+	}
+	20063 = {
+		name = "Andrija Stampar"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M20063
+		minister_of_intelligence = technical_specialist
+		start_date = 1939.1.1
+	}
+	20064 = {
+		name = "Djorde Petrelic"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M20064
+		minister_of_intelligence = industrial_specialist
+		start_date = 1941.1.1
+	}
+	20065 = {
+		name = "Dimitar Ckatrov"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M20065
+		minister_of_intelligence = dismal_enigma
+		start_date = 1942.1.1
+	}
+	20066 = {
+		name = "Kosta Ecanec"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M20066
+		minister_of_intelligence = research_specialist
+		start_date = 1943.1.1
+	}
+	20067 = {
+		name = "Drogoljub Jovanovic"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M20067
+		minister_of_intelligence = political_specialist
+		start_date = 1943.1.1
+	}
+	20068 = {
+		name = "Mihail Milosajevic"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M20068
+		minister_of_intelligence = technical_specialist
+		start_date = 1944.1.1
+	}
+	20069 = {
+		name = "Aleksandar Rankovic"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M20026
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	20071 = {
+		name = "Radivoje Jankovic"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = L46012
+		chief_of_staff = school_of_fire_support
+		start_date = 1941.1.1
+	}
+	20072 = {
+		name = "Dimitar Duzelov"
+		ideology = fascistic
+		loyalty = 0.50
+		picture = M20072
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1942.1.1
+	}
+	20073 = {
+		name = "Marko Bozovic"
+		ideology = national_socialist
+		loyalty = 0.50
+		picture = L46002
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1943.1.1
+	}
+	20074 = {
+		name = "Jovan Nikolic"
+		ideology = market_liberal
+		loyalty = 0.50
+		picture = M20074
+		chief_of_staff = school_of_psychology
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1944.1.1
+	}
+	20075 = {
+		name = "Arsa Jovanovic"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M20075
+		chief_of_staff = school_of_mass_combat
+		start_date = 1936.1.1
+	}
+	20078 = {
+		name = "Milutin Nedic"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = L46026
+		chief_of_army = decisive_battle_doctrine
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1941.1.1
+	}
+	20085 = {
+		name = "Petra Dumev"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M20085
+		chief_of_navy = indirect_approach_doctrine
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1942.1.1
+	}
+	20086 = {
+		name = "Nikola Mandic"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M20086
+		chief_of_navy = base_control_doctrine
+		start_date = 1943.1.1
+	}
+	20091 = {
+		name = "Ademaga Mesic"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M20091
+		chief_of_air = army_aviation_doctrine
+		start_date = 1943.1.1
+	}
+	20092 = {
+		name = "Petar Vukcevic"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = L46062
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1944.1.1
+	}
+	20093 = {
+		name = "Ivan Ribar"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M20093
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+	20094 = {
+		name = "H.M. Petar II"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M20011
+		head_of_state = benevolent_gentleman
+		start_date = 1941.1.1
+	}
+	20016 = {
+		name = "Miroslav Spalaikovic"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M20016
+		minister_of_intelligence = technical_specialist
+		start_date = 1936.1.1
+	}
+	20017 = {
+		name = "Mihailo Lukic"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = L46020
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1936.1.1
+	}
+	20104 = {
+		name = "Ivan Gosnjak"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M20104
+		armament_minister = infantry_proponent
+		start_date = 1953.1.1
+	}
+	20105 = {
+		name = "Vladimir Simic"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M20105
+		minister_of_security = compassionate_gentleman
+		start_date = 1953.1.1
+	}
+	20106 = {
+		name = "Milovan Djilas"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M20106
+		minister_of_intelligence = political_specialist
+		start_date = 1953.1.1
+	}
+}
+

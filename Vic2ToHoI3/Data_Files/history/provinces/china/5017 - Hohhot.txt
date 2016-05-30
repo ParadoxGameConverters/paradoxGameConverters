@@ -1,0 +1,19 @@
+owner = CSX
+controller = CSX
+
+ 
+add_core = CSX
+add_core = CHI
+add_core = CHC
+energy = 7.00
+industry = 1
+infra = 6
+points = 1
+manpower = 3.00
+leadership = 0.30
+
+1936.5.12 = {
+	owner = MEN
+	controller = MEN
+	add_core = MEN
+}

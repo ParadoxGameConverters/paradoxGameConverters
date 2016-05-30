@@ -1,0 +1,75 @@
+technology = { id = 0   average_year = 1300      tribal_despotism = yes 	tribal_federation = yes tribal_democracy = yes     }
+technology = { id = 1   average_year = 1360          				     }
+technology = { id = 2   average_year = 1380      despotic_monarchy = yes	imperial_government = yes	    					     }
+technology = { id = 3   average_year = 1400          				     }
+technology = { id = 4   average_year = 1410		temple = yes	allowed_ideas = 1    				     }
+technology = { id = 5   average_year = 1420          				     }
+technology = { id = 6   average_year = 1430     embassy = yes     				     }
+technology = { id = 7   average_year = 1440          				     }
+technology = { id = 8   average_year = 1450     feudal_monarchy = yes	courthouse = yes			     }
+technology = { id = 9   average_year = 1455     allowed_ideas = 2	 	            }
+technology = { id = 10  average_year = 1470          			noble_republic = yes   		    }
+technology = { id = 11  average_year = 1485     allowed_ideas = 3  			          	    }
+technology = { id = 12  average_year = 1495		spy_agency = yes }
+technology = { id = 13  average_year = 1497     theocratic_government = yes                 }
+technology = { id = 14  average_year = 1498                       }
+technology = { id = 15  average_year = 1502 }
+technology = { id = 16  average_year = 1508     university = yes                 }
+technology = { id = 17  average_year = 1518      allowed_ideas = 4                }
+technology = { id = 18  average_year = 1530				administrative_monarchy = yes            }
+technology = { id = 19  average_year = 1540     administrative_republic = yes	town_hall = yes            }
+technology = { id = 20  average_year = 1545     }
+technology = { id = 21  average_year = 1550     fine_arts_academy = yes                 }
+technology = { id = 22  average_year = 1565	allowed_ideas = 5                     }
+technology = { id = 23  average_year = 1585     college = yes                 }
+technology = { id = 24  average_year = 1600               }
+technology = { id = 25  average_year = 1610     allowed_ideas = 6                 }
+technology = { id = 26  average_year = 1620                      }
+technology = { id = 27  average_year = 1625          			absolute_monarchy = yes cathedral = yes glorious_monument = yes          }
+technology = { id = 28  average_year = 1636          			republican_dictatorship = yes            }
+technology = { id = 29  average_year = 1644     }
+technology = { id = 30  average_year = 1655     allowed_ideas = 7                 }
+technology = { id = 31  average_year = 1660     tax_assessor = yes                 }
+technology = { id = 32  average_year = 1675     constitutional_monarchy = yes royal_palace = yes           }
+technology = { id = 33  average_year = 1690     allowed_ideas = 8                 }
+technology = { id = 34  average_year = 1700                      }
+technology = { id = 35  average_year = 1709    }
+technology = { id = 36  average_year = 1714                      }
+technology = { id = 37  average_year = 1719                      }
+technology = { id = 38  average_year = 1723                      }
+technology = { id = 39  average_year = 1725                      }
+technology = { id = 40  average_year = 1727                      }
+technology = { id = 41  average_year = 1730     allowed_ideas = 9                 }
+technology = { id = 42  average_year = 1732                      }
+technology = { id = 43  average_year = 1735                      }
+technology = { id = 44  average_year = 1737                      }
+technology = { id = 45  average_year = 1743                      }
+technology = { id = 46  average_year = 1747                      }
+technology = { id = 47  average_year = 1750     			constitutional_republic = yes            }
+technology = { id = 48  average_year = 1755                      }
+technology = { id = 49  average_year = 1760                      }
+technology = { id = 50  average_year = 1765    	allowed_ideas = 10                 }
+technology = { id = 51  average_year = 1770     			enlightened_despotism = yes              }
+technology = { id = 52  average_year = 1775                      }
+technology = { id = 53  average_year = 1780                      }
+technology = { id = 54  average_year = 1785                      }
+technology = { id = 55  average_year = 1790     			bureaucratic_despotism = yes            }
+technology = { id = 56  average_year = 1791                      }
+technology = { id = 57  average_year = 1792                      	revolutionary_republic = yes		}
+technology = { id = 58  average_year = 1795                      }
+technology = { id = 59  average_year = 1798                      }
+technology = { id = 60  average_year = 1801                      }
+technology = { id = 61  average_year = 1803    	allowed_ideas = 11	revolutionary_empire = yes              }
+technology = { id = 62  average_year = 1805                     }
+technology = { id = 63  average_year = 1807                      }
+technology = { id = 64  average_year = 1809                      }
+technology = { id = 65  average_year = 1811    allowed_ideas = 12                  }
+technology = { id = 66  average_year = 1813                      }
+technology = { id = 67  average_year = 1815                      }
+technology = { id = 68  average_year = 1820                      }
+technology = { id = 69  average_year = 1830                      }
+technology = { id = 70  average_year = 1840                      }
+technology = { id = 71  average_year = 1850                      }
+technology = { id = 72  average_year = 1880                      }
+               
+               

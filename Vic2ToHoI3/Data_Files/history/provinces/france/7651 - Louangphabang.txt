@@ -1,0 +1,19 @@
+owner = FRA
+controller = FRA
+add_core = FRA
+add_core = IDC
+add_core = SIA
+infra = 1
+1940.6.22 = {
+	owner = VIC	
+	controller = VIC
+	add_core = VIC
+}
+1941.5.9 = {
+	owner = SIA
+	controller = SIA	
+	add_core = SIA
+} # The Tokyo Convention
+1944.12.01 = {
+	controller = USA
+}

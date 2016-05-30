@@ -1,0 +1,12 @@
+# Sioux Dragoon Tactics
+
+unit_type = new_world
+type = cavalry
+
+maneuver = 2
+offensive_morale = 6
+defensive_morale = 4
+offensive_fire = 0
+defensive_fire = 0
+offensive_shock = 4
+defensive_shock = 2

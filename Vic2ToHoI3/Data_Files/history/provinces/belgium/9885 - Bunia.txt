@@ -1,0 +1,18 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+
+infra = 2
+
+infra = 2
+
+infra = 2
+
+infra = 2
+
+infra = 2
+
+infra = 1
+1944.12.01 = {
+	controller = USA
+}

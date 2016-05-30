@@ -1,0 +1,105 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 191  83  101 }
+
+historical_ideas = {
+	church_attendance_duty
+	patron_of_art
+	deus_vult
+	national_conscripts
+	engineer_corps
+	divine_supremacy
+	shrewd_commerce_practise
+	national_trade_policy
+	national_bank
+	scientific_revolution
+	espionage
+	bureaucracy
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	italian_condotta
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Francesco #0" = 80
+	"Carlo #0" = 60
+	"Federico #0" = 40
+	"Vincenzo #0" = 40
+	"Ludovico #2" = 20
+	"Ferdinando #0" = 20
+	"Gianfrancesco #0" = 20
+	"Guglielmo #0" = 20
+	"Ercole #0" = 15
+	"Sigismondo #0" = 15
+	"Alessandro #0" = 10
+	"Gianlucido #0" = 10
+	"Giovanni #0" = 10
+	"Rodolfo #0" = 10
+	"Guido #1" = 5
+	"Alberto #0" = 0
+	"Benedetto #0" = 0
+	"Bonifacio #0" = 0
+	"Camillo #0" = 0
+	"Claudio #0" = 0
+	"Dario #0" = 0
+	"Emanuele #0" = 0
+	"Fabrizio #0" = 0
+	"Felice #0" = 0
+	"Gaetano #0" = 0
+	"Geronimo #0" = 0
+	"Giuseppe #0" = 0
+	"Ignazio #0" = 0
+	"Jacopo #0" = 0
+	"Leonardo #0" = 0
+	"Leopoldo #0" = 0
+	"Marcello #0" = 0
+	"Niccolò #0" = 0
+	"Paolo #0" = 0
+	"Raniero #0" = 0
+	"Rinaldo #0" = 0
+	"Salvatore #0" = 0
+	"Timoteo #0" = 0
+	"Uberto #0" = 0
+	"Vittorio #0" = 0
+}
+
+leader_names = {
+        d'Absburgo Alberti Amelia Barone Barzagli Belmonte Bibiena Boninsegna Bosio "di Busca"
+	"de Canal" Casabianca Castagnaro Cocconi Colombo Conti Fancelli Freddi
+	Gatti Germano Gonzaga Grazioli Grosso Idoni Innocenti Juvarra Lori
+	Manfredi Mantegna Manfredi "di Medici" Montanari Neri Oddo Panzavecchia Pesci Piccoli Pico "del Piero" Poggio Poma
+	Romano "de Rossi" Speri Tassoni Tazolli Tedesco Toselli Zaccardo Zappa
+}
+
+ship_names = { 
+	"Alberto Pitentino" "Andrea Mantegna" "Anselmo de Lucca"
+	"Barbara di Brandeburgo"
+	"Castelletto Borgo" "Corradi da Gonzaga"
+	Donatello
+	"Fiume Mincio" Formigosa
+	"Gianfrancesco Gonzaga" Ghibellini Guelphi
+	"Luca Fancelli" "Ludovico Gonzaga" "Luigi Gonzaga"
+	"Matilde Canossa"
+	"Pinamonte Bonacolsi"
+	"Rinaldo Bonacolsi"
+	"San Lorenzo" "San Sebastiano" Sant'Andrea
+}
+
+army_names = {
+	"Armata de $PROVINCE$"
+}

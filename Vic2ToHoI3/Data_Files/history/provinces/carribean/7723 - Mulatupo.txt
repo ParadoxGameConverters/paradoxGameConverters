@@ -1,0 +1,5 @@
+owner = PAN
+controller = PAN
+add_core = PAN
+
+infra = 6

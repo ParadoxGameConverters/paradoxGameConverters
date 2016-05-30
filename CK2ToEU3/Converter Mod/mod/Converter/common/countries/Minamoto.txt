@@ -1,0 +1,98 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 2  31   112 }
+
+historical_ideas = {
+	national_conscripts
+	excellent_shipwrights
+	merchant_adventures
+	superior_seamanship
+	espionage
+	military_drill
+	glorious_arms
+	national_trade_policy
+	patron_of_art
+	shrewd_commerce_practise
+	grand_army
+	cabinet
+}
+
+historical_units = {
+	japanese_archer
+	eastern_bow
+	japanese_footsoldier
+	japanese_samurai
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Norimichi #0" = 40
+	"Kimiyori #1" = 25
+	"Akisue #0" = 25
+	"Tadatsune #0" = 25
+	"Yoshitsuna #0" = 25
+	"Sadamori #0" = 25
+	"Munemori #0" = 20
+	"Yoritomo #0" = 20
+	"Kiyotomo #0" = 20
+	"Fuhito #0" = 20
+	"Yorimasa #0" = 20
+	"Toshimichi #0" = 20
+	"Shimadamaro #0" = 20
+	"Yorinaga #0" = 10
+	"Morozane #0" = 10
+	"Takaie #0" = 10
+	"Kanemichi #0" = 10
+	"Hamanari #0" = 10
+	"Umakai #0" = 10
+	"Tadamichi #0" = 5
+	"Saneyori #0" = 5
+	"Michinori #0" = 5
+	"Kiyotada #0" = 5
+	"Isamu #0" = 5
+	"Morosuke #0" = 5
+	"Takamitsu #0" = 5
+	"Senman #0" = 1
+	"Yoshihira #0" = 1
+	"Kiyomori #0" = 1
+	"Naramaro #0" = 1
+	"Toshihito #0" = 1
+	"Mamoru #0" = 1
+}
+
+leader_names = {
+	Amago Akita Ashina
+	Chikasue
+	Haruhisa Harumune Hidemune Hachiman Hashiba Hidekatsu Hidenobu Hidetaka
+	Kunihisa Katsuhisa Kiyosue Kuninao Kuninori Kunishige Katsunaga Kitsuno
+	Morikiyo Moritaka Moriuji Masamune Munemoto Munenari Muneyoshi
+	Naruto Nobuhiro Nobukane Nobukatsu Nobukazu Nobunaga Nagamasa Nagamasu Nobuharu Nobuhide 
+	Nobunari Nobutada Nobutaka Nobutoki Nobutomo Nobutoshi Nobusumi Nobuyuki Nohime
+	Okihisa Oichi Osaki
+	Sanesue Shigezane Sodo Shincho Suemaru
+	Toshisue Tadamune Tanemune Terumune Tsunamune Tsunamura Tamura Tsuda Tokuhime Tsuchida
+	Yoshikuni Yukimori Yamanaka
+}
+
+ship_names = {
+	"Amago Maru" "Akita Maru" "Ashina Maru"
+	"Chikasue Maru"
+	"Haruhisa Maru" "Harumune Maru" "Hidemune Maru" "Hachiman Maru" "Hashiba Maru" "Hidekatsu Maru" "Hidenobu Maru" "Hidetaka Maru"
+	"Kunihisa Maru" "Katsuhisa Maru" "Kiyosue Maru" "Kuninao Maru" "Kuninori Maru" "Kunishige Maru" "Katsunaga Maru" "Kitsuno Maru"
+	"Morikiyo Maru" "Moritaka Maru" "Moriuji Maru" "Masamune Maru" "Munemoto Maru" "Munenari Maru" "Muneyoshi Maru"
+	"Naruto Maru" "Nobuhiro Maru" "Nobukane Maru" "Nobukatsu Maru" "Nobukazu Maru" "Nobunaga Maru" "Nagamasa Maru" 
+	"Nagamasu Maru" "Nobuharu Maru" "Nobuhide Maru" "Nobunari Maru" "Nobutada Maru" "Nobutaka Maru" "Nobutoki Maru"
+	"Nobutomo Maru" "Nobutoshi Maru" "Nobusumi Maru" "Nobuyuki Maru" "Nohime Maru"
+	"Okihisa Maru" "Oichi Maru" "Osaki Maru"
+	"Sanesue Maru" "Shigezane Maru" "Sodo Maru" "Shincho Maru" "Suemaru Maru"
+	"Toshisue Maru" "Tadamune Maru" "Tanemune Maru" "Terumune Maru" "Tsunamune Maru" "Tsunamura Maru" "Tamura Maru" "Tsuda Maru"
+	"Tokuhime Maru" "Tsuchida Maru"
+	"Yoshikuni Maru" "Yukimori Maru" "Yamanaka Maru"
+}

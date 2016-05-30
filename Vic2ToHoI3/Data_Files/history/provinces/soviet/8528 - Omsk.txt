@@ -1,0 +1,15 @@
+owner = SOV
+
+controller = SOV
+
+add_core = SOV
+
+points = 1
+energy = 1.00
+industry = 1
+infra = 6
+air_base = 1
+manpower = 1.5
+leadership = 1.08
+
+infra = 6

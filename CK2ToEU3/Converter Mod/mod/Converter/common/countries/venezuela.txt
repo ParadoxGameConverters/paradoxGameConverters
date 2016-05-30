@@ -1,0 +1,103 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+is_colonial = yes
+
+color = { 213  82  109 }
+
+historical_ideas = {
+	national_conscripts
+	church_attendance_duty
+	military_drill
+	divine_supremacy
+	battlefield_commisions
+	deus_vult
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	grand_army
+	revolution_and_counter
+	glorious_arms
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	spanish_tercio
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"José #0 María" = 20
+	"Simón #0" = 20
+	"Cristóbal #0" = 15
+	"José #0 Tadeo" = 15
+	"Andrés #0" = 10
+	"Carlos #0" = 10
+	"José #0 Antonio" = 10
+	"Abel #0" = 0
+	"Agustín #0" = 0
+	"Alberto #0" = 0
+	"Álvaro #0" = 0
+	"Antonio #0" = 0
+	"Asdrúbal #0" = 0
+	"Bartolomé #0" = 0
+	"Daniel #0" = 0
+        "David #0" = 0
+	"Domingo #0" = 0
+	"Emiliano #0" = 0
+	"Enrique #0" = 0
+        "Evaristo #0" = 0
+	"Fabricio #0" = 0
+	"Fernando #0" = 0
+        "Fidel #0" = 0
+	"Gabriel #0" = 0
+        "José #0" = 0
+	"Juan #0" = 0
+	"Leonardo #0" = 0
+	"Manuel #0" = 0
+	"Marcos #0" = 0
+        "Miguel #0" = 0
+	"Narciso #0" = 0
+	"Octavio #0" = 0
+	"Pablo #0" = 0
+	"Patricio #0" = 0
+	"Pedro #0" = 0
+	"Roberto #0" = 0
+        "Rufino #0" = 0
+	"Santiago #0" = 0
+	"Tadeo #0" = 0
+	"Ulíses #0" = 0
+}
+
+leader_names = {
+	Alcantuz Alfaro Anzoátegui Bello Beltrán Berbeo Betancur Bolívar Carreño Díaz Flores
+	Gaitán Galán "García de Toledo" Gómez "Gutiérrez de Piñeres"
+	Marño Márquez Méndez Michelena Mier "de Miranda" Molina Monagas Monsalve Montúfar
+	Nariño Narvarte O'Baal O'Leary Ortíz Páez Paredo Pastrana Pinilla Pizarro Plata Plaza
+	Roa Rodríguez Rojas Rondón Rosillo Santander Soublette Torres
+	Urbaneja Uribe Vargas Viscardo
+}
+
+ship_names = {
+	Anaco
+	Calabozo
+	Caracas
+	"El Tigre"
+	Francisco
+	Guanare
+	Maracaibo
+	Orinoco
+	Trujillo
+	Valencia
+}

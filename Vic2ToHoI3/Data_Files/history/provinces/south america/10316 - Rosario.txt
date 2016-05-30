@@ -1,0 +1,10 @@
+owner = ARG
+controller = ARG
+add_core = ARG
+metal = 4.00
+energy = 4.00
+rare_materials = 2.00
+industry = 4
+infra = 6
+manpower = 3.00
+leadership = 0.30

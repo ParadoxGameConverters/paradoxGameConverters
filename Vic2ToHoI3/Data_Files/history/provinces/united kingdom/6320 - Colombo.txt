@@ -1,0 +1,13 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+rare_materials = 15.00
+industry = 2
+coastal_fort = 3
+land_fort = 0
+anti_air = 2
+infra = 6
+air_base = 10
+naval_base = 10
+manpower = 3.00
+leadership = 0.25

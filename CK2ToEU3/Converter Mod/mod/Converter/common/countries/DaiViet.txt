@@ -1,0 +1,83 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 136  117  90 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill 
+	battlefield_commisions
+	colonial_ventures
+	grand_army
+	espionage
+	merchant_adventures
+	engineer_corps
+	national_trade_policy
+	cabinet
+	bureaucracy
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Nghe Tong #0" = 20
+	"Due Tong #0" = 20
+	"Thai Tong #0" = 20
+	"Nhan Tong #0" = 20
+	"Hien Tong #0" = 20
+	"Tuc Tong #0" = 20
+	"Uy Muc #0" = 20
+	"Chieu Tong #0" = 20
+	"Cung Hoang #0" = 20
+	"Dang Doanh #0" = 20
+	"Anh Tong #0" = 20
+	"The Tong #0" = 20
+	"Gia Tong #0" = 20
+	"Hi Tong #0" = 20
+	"Du Tong #0" = 20
+	"Duy Phuong #0" = 20
+	"Y Tong #0" = 20
+	"De Hien #0" = 20
+	"Tran Thuan Tong #0" = 20
+	"Tran Thieu De #0" = 20
+	"Kui Li #0" = 20
+	"Han Thuong #0" = 20
+	"Hau Tran #0" = 20
+	"Vi Muc De #0" = 20
+	"Kung Hoang #0" = 20
+	"Dang Dung #0" = 20
+	"De Duy-Phuong #0" = 20
+	"Kinh-Tong #0" = 20
+	
+}
+
+leader_names = {
+	Cao 
+	Dang Doan 
+	Hoang Huynh 
+	Lam Le Ly 
+	Ng Nguyen Nguyen-Dinh Nguyen-Khoa 
+	Pham 
+	Tran Tran-Dinh Tran-Nhu Tran-Thanh Trinh Truong 
+	Vu 
+}
+
+ship_names = {
+	"Tran Canh" "Tran Hoang" "Tran Khâm" "Tran Thuyên"
+	"Tran Manh" "Tran Vuong" "Tran Hao" "Duong Nhat Le"
+	"Tran Phu" "Tran Kính" "Tran Hien" "Tran Ngung"
+	"Tran An" "Thái Tông" "Thánh Tông" "Nhân Tông"
+	"Anh Tông" "Minh Tông" "Hien Tông" "Du Tông"
+	"Nghe Tông" "Due Tông" "Thuan Tông"
+}

@@ -1,0 +1,187 @@
+# Copyright (c) 2015 The Paradox Game Converters Project
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+
+merge_nations =
+{
+	### Merging Victoria 2 nations
+
+	# You may add your own entries here if you wish, or find the ones you like and set "merge = yes".
+	# Each entry contains ONE master and N slave tags, and a "merge" statement which can be "yes" (enabled) or "no" (disabled).
+	# ALL TAGS ARE V2 TAGS!  Merging is done BEFORE conversion!  "master" should have a one-to-one mapping for best results.
+
+	soviet_union =
+	{
+		merge = no	# Change to yes to enable merging
+
+		master = RUS	# Russia
+
+		slave = CRI	# Crimea
+		slave = RUT	# Ruthenia
+		slave = UKR	# Ukraine
+		slave = MOL	# Moldavia
+		slave = ARM	# Armenia
+		slave = AZB	# Azerbaijan
+		slave = GEO	# Georgia
+		slave = KHI	# Khiva
+		slave = KOK	# Kokand
+		slave = MUG	# Mughalistan
+	}
+
+	germany =
+	{
+		merge = no	# Change to yes to enable merging
+
+		master = GER	# Germany proper (if extant)
+
+		slave = NGF	# North German Federation
+		slave = SGF	# South German Federation
+		slave = PRU	# Prussia
+
+		slave = ANH	# Anhalt
+		slave = BAD	# Baden
+		slave = BAV	# Bavaria
+		slave = BRA	# Braunschweig
+		slave = BRE	# Bremen
+		slave = COB	# Saxe-Coburg-Gotha
+		slave = DZG	# Danzig
+		slave = FRM	# Frankfurt-Am-Main
+		slave = HAM	# Hamburg
+		slave = HAN	# Hanover
+		slave = HES	# Hesse-Darmstadt
+		slave = HEK	# Hesse-Kassel
+		slave = HOL	# Holstein
+		slave = LIP	# Lippe-Detmold
+		slave = LUB	# Lubeck
+		slave = MEC	# Mecklenburg
+		slave = MEI	# Saxe-Meiningen
+		slave = NAS	# Nassau
+		slave = OLD	# Oldenburg
+		slave = SAX	# Saxony
+		slave = SCH	# Schleswig
+		slave = WEI	# Saxe-Weimar
+		slave = WUR	# Wurttemberg
+	}
+
+	italy = 
+	{
+		merge = no	# Change to yes to enable merging
+
+		master = ITA	# Italy proper (if extant)
+		
+		slave = LOM	# Lombardia
+		slave = LUC	# Lucca
+		slave = MOD	# Modena
+		slave = PAP	# Papal States
+		slave = PAR	# Parma
+		slave = SAR	# Sardinia-Piedmont
+		slave = SIC	# Sicily
+		slave = TRE	# Trieste
+		slave = TUS	# Tuscany
+		slave = VEN	# Venice
+	}
+
+	yugoslavia = 
+	{
+		merge = no	# Change to yes to enable merging
+
+		master = YUG	# Yugoslavia proper (if extant)
+
+		slave = BOS	# Bosnia-Herzegovina
+		slave = CRO	# Croatia
+		slave = MON	# Montenegro
+		slave = SER	# Serbia
+		slave = SLO	# Slovenia
+	}
+
+	greece =
+	{
+		merge = no	# Change to yes to enable merging
+
+		master = GRE	# Greece proper (if extant)
+
+		slave = CRE	# Crete
+		slave = ION	# Ionian Islands
+		slave = BYZ	# Byzantium
+	}
+
+	india = 
+	{
+		merge = no	# Change to yes to enable merging
+
+		master = HND	# India proper (if extant)
+
+		slave = AWA	# Awadh
+		slave = BAS	# Bastar
+		slave = BER	# Beroda
+		slave = BHO	# Bhopal
+		slave = BIK	# Bikaner
+		slave = BUN	# Bundelkhand
+		slave = GWA	# Gwailor
+		slave = HYD	# Hyderabad
+		slave = IND	# Indore
+		slave = JAI	# Jaipur
+		slave = SAS	# Jaisalmer
+		slave = JOD	# Jodhpur
+		slave = KAL	# Kalat
+		slave = KAS	# Kashmir
+		slave = KUT	# Kutch
+		slave = LAD 	# Ladakh
+		slave = MAK	# Makran
+		slave = MEW	# Mewar
+		slave = MYS	# Mysore
+		slave = NAG	# Nagpur
+		slave = ORI	# Orissa
+		slave = PAN	# Panjab
+		slave = SHI	# Shimla
+		slave = SIK	# Sikkim
+		slave = SIN	# Sind
+		slave = TRA	# Travancore
+	}
+
+	USA =
+	{
+		merge = no	# Change to yes to enable merging
+
+		master = USA	# USA proper
+
+		slave = CAL	# California Republic
+		slave = CHE	# Cherokee
+		slave = CSA	# Confederate States
+		slave = DES	# Deseret
+		slave = HAW	# Hawaii
+		slave = MAN	# Manhattan Commune
+		slave = MTC	# Metis Confederacy
+		slave = NEN	# New England
+		slave = TEX	# Texas
+	}
+
+	south_africa =
+	{
+		merge = no	# Change to yes to enable merging
+
+		master = SAF	# South Africa
+
+		slave = NAL	# Natalia
+		slave = ORA	# Oranje
+		slave = TRN	# Transvaal
+		slave = ZUL	# Zulu
+	}
+}

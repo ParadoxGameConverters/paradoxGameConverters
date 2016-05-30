@@ -1,0 +1,11 @@
+owner = CGX controller = CGX add_core = CGX
+add_core = CHI
+add_core = CHC
+infra = 5
+1936.5.12 = { 	owner = CHI} 
+1938.9.1 = {
+	controller = CHI
+}
+1944.6.20 = {
+controller = JAP
+}

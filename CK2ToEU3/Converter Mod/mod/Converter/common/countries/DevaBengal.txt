@@ -1,0 +1,83 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 17  16  203 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	national_conscripts
+	merchant_adventures
+	patron_of_art
+	military_drill
+	national_trade_policy
+	glorious_arms
+	grand_army
+	engineer_corps
+	espionage
+	smithian_economics
+	national_bank
+}
+
+historical_units = {
+	indian_footsoldier
+	rajput_hill_fighters
+	indian_arquebusier
+	mughal_musketeer
+	mughal_mansabdar
+	indian_elephant
+	indian_shock_cavalry
+	rajput_musketeer
+	reformed_mughal_musketeer
+	reformed_mughal_mansabdar
+	indian_rifle
+}
+
+monarch_names = {
+	"Laxman Sena #1" = 10
+	"Raja Ganesh #1" = 5
+	"Ballal Sen #1" = 10
+	"Lakshman #1" = 10
+	"Kehavar #1" = 10
+	"Rajeeb #1" = 20
+	"Robindranath #1" = 20
+	"Subhas Chandra #1" = 30
+	"Jaideep #1" = 10
+	"Bharot #1" = 20
+	"Debdas #1" = 20
+	"Kalidas #1" = 20
+}
+
+leader_names = {
+	Banerjee
+	Bose
+	Chodhury
+	Das
+	Debshikdar
+	Durgadas
+	Ganesh
+	Ganguly
+	Kalidas
+	Majumdar
+	Mukerjhee
+	Ramdas
+	Roy
+	Saraswoti
+	Sen
+	Sena
+	Thakur
+}
+
+ship_names = {
+	Bhagirathi Brahmaputra "Chingri Mach"
+	Chittagong Devi "Durga Ma" Ganga
+	"Hilsa Mach" Hooghly "Ilish Mach"
+	Jalangi Kolkata Machli "Kali Ma"
+	"Kali Meghana" "Kali Nauk" "Lal Nauk"
+	"Loki Devi" "Manasa Devi" Meghna Mongla
+	"Nil Nauk" "Nil Sagor" Padma "Parvati Devi"
+	"Rui Mach" Saraswoti "Sagorer Bahini" Shakti
+	"Shaktir Nauk" "Shasti Ma" "Sonar Bangladesh"
+	"Sunderboner Bahini" "Sunderboner Nauk"
+	Trishool "Uma Devi"
+}

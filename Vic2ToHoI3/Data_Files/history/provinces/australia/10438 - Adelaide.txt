@@ -1,0 +1,10 @@
+owner = AST
+controller = AST
+add_core = AST
+points = 1
+energy = 1.00
+industry = 3
+anti_air = 2
+infra = 6
+manpower = 1.00
+leadership = 0.10

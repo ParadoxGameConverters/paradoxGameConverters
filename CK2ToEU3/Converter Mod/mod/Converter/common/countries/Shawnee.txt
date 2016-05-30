@@ -1,0 +1,63 @@
+#Country Name: Please see filename.
+
+graphical_culture = northamericagfx
+
+color = { 212  105  118 } 
+
+historical_ideas = {
+	humanist_tolerance
+	national_conscripts
+	battlefield_commisions
+	grand_army
+	national_trade_policy
+	military_drill
+	cabinet
+	engineer_corps
+	bill_of_rights
+	patron_of_art
+	espionage
+	smithian_economics
+}
+
+historical_units = {
+	native_indian_archer
+	native_indian_tribal_warfare
+	algonkin_tomahawk_charge
+	native_indian_horsemen
+	commanche_swarm
+	native_indian_mountain_warfare
+	sioux_dragoon
+	american_western_franchise_warfare
+}
+
+monarch_names = {
+	"Hokoleskwa #0" = 20
+	"Cottawamago #0" = 20
+	"Paxinos #0" = 20
+	"Wynepuechisika #0" = 20
+	"Weyapersenwah #0" = 10
+	"Tecumseh #0" = 10
+}
+
+leader_names = {
+	Auglaize Alawaymotakah Akepee Aqueloma
+	Chillicothe Calaka Chalaakaatha Conedogwinit
+	Hathawekela Hisoskok Hawkawepitathy
+	Kispoko Kiscopocoke Kispokotha Koshachkink Kagoughsage Kickapougowi Kithlipecanuk
+	Mequachake Maykujay Mekoce Maguck
+	Oawikila Ochipway Okowellos Opeatako Oshawahnah
+	Piqua Pekowi Paxtang Peixtan Paheto Paytokothe
+	Spitotha Sawanugi Sawauwone Saweeto Sawcunk Sewickley Shamokin Sonnioto
+	Thaawikila Thawegila Tippecanoe Sylacauga
+	Wakatomica Wakatawicks Wapakoneta Wabapusito Wagunetee
+}
+
+ship_names = {
+	Chillicothe Cheketecaca
+	Hathawekela
+	Kispokotha
+	Mequachake
+	Pekuwe
+	"weewa'kanakithita" "Wiipekwa Weshe" "Mshkwaawi Peshikthe" "Papapanawe Meshewa" 
+	"Unemake Meshewa" "Wa'kanakya Conee" "Mshkwaawi Sepe"
+}

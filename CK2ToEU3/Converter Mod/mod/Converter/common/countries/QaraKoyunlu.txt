@@ -1,0 +1,53 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 116  153  8 } 
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms 
+	grand_army
+	military_drill
+	battlefield_commisions 
+	espionage
+	engineer_corps
+	shrewd_commerce_practise
+	merchant_adventures
+	national_trade_policy
+	cabinet
+	bureaucracy
+}
+
+historical_units = {
+	mongol_bow
+	mongol_swarm
+	mongol_steppe
+}
+
+monarch_names = {
+	"Qara Yûsuf #0" = 30
+	"Pir Budaq #0" = 30
+	"Iskander #0" = 30
+	"Jahân Shâh #0" = 20
+	"Hasan 'Ali #0" = 20
+}
+
+leader_names = {
+	Jahan
+	Nyuan
+	Khwaja
+	Yûsuf
+	Turmush
+	Bairam
+	Muhammad
+	Muzaffar
+	Hasan
+	Nasr
+}
+
+ship_names = {
+	Herat "Qara Yusuf" "Qara Muhammad" "Iskander Yusuf"
+	Kura Sumgait Bazard'uz'u "Qareh Sü" Sevan "Bälän Safar"
+	Agdam K'urdamir Udzary
+}

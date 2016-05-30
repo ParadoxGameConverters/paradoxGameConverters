@@ -1,0 +1,7 @@
+owner = CHI controller = CHI
+
+ 
+add_core = CHI
+add_core = CHC
+infra = 5
+1937.7.29 = { 	controller = JAP } 

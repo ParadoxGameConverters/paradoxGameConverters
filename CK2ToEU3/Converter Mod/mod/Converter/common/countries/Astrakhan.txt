@@ -1,0 +1,61 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 26  27  154 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms 
+	grand_army
+	military_drill
+	battlefield_commisions 
+	shrewd_commerce_practise
+	engineer_corps
+	espionage
+	merchant_adventures
+	national_trade_policy
+	cabinet
+	patron_of_art
+}
+
+historical_units = {
+	persian_footsoldier
+	muslim_cavalry_archers
+	persian_shamshir
+	qizilbash_cavalry
+	tofongchis_musketeer
+	topchis_artillery
+	afsharid_reformed
+	afsharid_reformed_infantry
+	muslim_mass_infantry
+	muslim_dragoon
+	persian_rifle
+}
+
+monarch_names = {
+	"Sayid Mahmud #0" = 20
+	"Mahmud #0" = 20
+	"Qasim #0" = 60
+	"Abdul-Karim #0" = 40
+	"Jani Beg #0" = 20
+	"Husayn #0" = 30
+	"Ak Köbek #0" = 40
+	"Abdul-Rahman #0" = 40
+	"Darwish Ali #0" = 30
+	"Shayk Haidar #0" = 20
+	"Yagmurchi #0" = 20
+}
+
+leader_names = { 
+	"Qara Chinua" "Delger Qyugun" "Arigh Gal" "Koke Erdene"
+	"Suren Unegen" "Tegus Enq" Qadandei Burilgigene Arighteni
+	Yekecher Surenqai Qorchigge
+}
+
+ship_names = {
+	Xacitarxan Volga Ästerxan Khadjitarkhan
+	"Chinggis Khan" Kuchuk Actarxan 
+	"Sarai Batu" "Hadzhy-Tarkhan" 
+	Gitorkhan Tsitrokhan
+}

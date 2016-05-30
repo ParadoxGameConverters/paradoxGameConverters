@@ -1,0 +1,72 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 184  193  89 }
+
+historical_ideas = {
+	national_conscripts
+	military_drill
+	glorious_arms
+	battlefield_commisions
+	shrewd_commerce_practise
+	grand_army
+	patron_of_art
+	merchant_adventures
+	national_trade_policy
+	espionage
+	cabinet
+	smithian_economics
+}
+
+historical_units = {
+	indian_footsoldier
+	indian_archers
+	indian_arquebusier
+	mughal_mansabdar
+	indian_elephant
+	indian_shock_cavalry
+	rajput_musketeer
+	south_indian_musketeer
+	reformed_mughal_musketeer
+	reformed_mughal_mansabdar
+	tipu_sultan_rocket
+	indian_rifle
+}
+
+monarch_names = {
+	"Yadu Raya #0" = 20
+	"Châma Râja #0" = 20
+	"Timmaraja #0" = 20
+	"Chamaraja #1" = 50
+	"Bettada Devaraja #0" = 10
+	"Raja Wadiyar #0" = 10
+	"Immadai Raja #0" = 10
+	"Kanthirava Narasaraja #0" = 20
+	"Chikkadevaraja #0" = 10
+	"Krishnaraja #0" = 20	
+}
+
+leader_names = {
+	Chandrashekar
+	Varma
+	Devaraja
+	Yaduraya
+	Waidyar
+	Vaidya
+	Noorondayya
+	Vilasa
+	Visvesvaraya
+	Basavaraju
+	Devi
+	Rajbal
+}
+
+ship_names = {
+	Amirtha Amman Arul Bhima Chellam
+	Devi Durga Gayatri Iniya Krishna
+	Lakshmi Madhu Meenakshi Nalini
+	Pallar Parvati Payaswani Pennar
+	Ponni Radha Ratri Sarasvati Sita
+	Tamarai
+}

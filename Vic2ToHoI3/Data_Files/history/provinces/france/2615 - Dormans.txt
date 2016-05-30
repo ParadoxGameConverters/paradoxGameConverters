@@ -1,0 +1,15 @@
+#Charleville Mezieres
+owner = FRA
+controller = FRA
+add_core = FRA
+
+terrain = woods
+
+infra = 8
+
+1941.6.22 = {
+	controller = GER
+}
+1944.12.01 = {
+	controller = USA
+}

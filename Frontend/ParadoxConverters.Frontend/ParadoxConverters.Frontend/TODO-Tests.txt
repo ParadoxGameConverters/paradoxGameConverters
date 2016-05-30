@@ -1,0 +1,9 @@
+Tests:
+
+File selection works in clickable uri
+Exception handling works in clickable uri
+No file/folder found works in clickable uri
+
+Ideas:
+Automate ironman->normal save game if possible
+Automatic detection of missing dependencies on startup

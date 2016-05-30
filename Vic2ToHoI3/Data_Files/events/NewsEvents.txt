@@ -1,0 +1,212 @@
+##########################
+#                        #
+# Historical News Events #
+#                        #
+##########################
+
+######################
+# Various News Items #
+######################
+
+### Hindenburg Crash
+
+country_event = {
+
+	id = 10000
+
+	title = "EVTNAME10000"
+	desc = "EVTDESC10000"
+	picture = "hindenburg"
+
+	trigger = {
+		date = 1937.5.6
+		not = { month = 6 }
+		not = { year = 1938 }
+		ai = no
+		not = { has_country_flag = hindenburg }
+		GER = { war = no }
+		USA = { war = no }
+	}
+
+	option = {
+		name = "EVTOPTA10000"
+		set_country_flag = hindenburg
+	}
+}
+
+### The Pentagon
+
+country_event = {
+
+	id = 10001
+
+	title = "EVTNAME10001"
+	desc = "EVTDESC10001"
+	picture = "pentagon"
+
+	trigger = {
+		date = 1943.1.15
+		not = { month = 2 }
+		not = { year = 1944 }
+		ai = no
+		not = { has_country_flag = pentagon }
+		4530 = { controlled_by = USA }
+	}
+
+	option = {
+		name = "EVTOPTA10001"
+		set_country_flag = pentagon
+	}
+}
+
+### Leon Trotsky
+
+country_event = {
+
+	id = 10002
+
+	title = "EVTNAME10002"
+	desc = "EVTDESC10002"
+	picture = "trotsky"
+
+	trigger = {
+		date = 1940.8.21
+		not = { month = 9 }
+		not = { year = 1941 }
+		ai = no
+		not = { has_country_flag = trotsky }
+		exists = SOV
+	}
+
+	option = {
+		name = "EVTOPTA10002"
+		set_country_flag = trotsky
+	}
+}
+
+### Wilhelm II
+
+country_event = {
+
+	id = 10003
+
+	title = "EVTNAME10003"
+	desc = "EVTDESC10003"
+	picture = "wilhelm"
+
+	trigger = {
+		date = 1941.6.4
+		not = { month = 7 }
+		not = { year = 1942 }
+		ai = no
+		not = { has_country_flag = wilhelm }
+	}
+
+	option = {
+		name = "EVTOPTA10003"
+		set_country_flag = wilhelm
+	}
+}
+
+### Amelia Earhart
+
+country_event = {
+
+	id = 10004
+
+	title = "EVTNAME10004"
+	desc = "EVTDESC10004"
+	picture = "earhart"
+
+	trigger = {
+		date = 1937.7.2
+		not = { month = 8 }
+		not = { year = 1938 }
+		ai = no
+		not = { has_country_flag = earhart }
+		USA = { war = no }
+	}
+
+	option = {
+		name = "EVTOPTA10004"
+		set_country_flag = earhart
+	}
+}
+
+### 1936 Olympics
+
+country_event = {
+
+	id = 10005
+
+	title = "EVTNAME10005"
+	desc = "EVTDESC10005"
+picture = "olympics"
+
+	trigger = {
+		date = 1936.8.16
+		not = { month = 9 }
+		not = { year = 1937 }
+		ai = no
+		not = { has_country_flag = olympics }
+		GER = { war = no }
+		USA = { war = no }
+		ENG = { war = no }
+		POL = { war = no }
+		FRA = { war = no }
+	}
+
+	option = {
+		name = "EVTOPTA10005"
+		set_country_flag = olympics
+	}
+}
+
+### War of the Worlds
+
+country_event = {
+
+	id = 10006
+
+	title = "EVTNAME10006"
+	desc = "EVTDESC10006"
+picture = "welles"
+
+	trigger = {
+		date = 1938.10.30
+		not = { month = 11 }
+		not = { year = 1939 }
+		ai = no
+		not = { has_country_flag = welles }
+		USA = { war = no }
+	}
+
+	option = {
+		name = "EVTOPTA10006"
+		set_country_flag = welles
+	}
+}
+
+### Vesuvius
+
+country_event = {
+
+	id = 10007
+
+	title = "EVTNAME10007"
+	desc = "EVTDESC10007"
+picture = "vesuvius"
+
+	trigger = {
+		date = 1944.3.18
+		not = { month = 4 }
+		not = { year = 1945 }
+		ai = no
+		not = { has_country_flag = vesuvius }
+	}
+
+	option = {
+		name = "EVTOPTA10007"
+		set_country_flag = vesuvius
+	}
+}

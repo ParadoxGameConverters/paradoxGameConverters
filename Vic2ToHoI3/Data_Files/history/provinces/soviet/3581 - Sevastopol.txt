@@ -1,0 +1,23 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+
+points = 2
+energy = 1.00
+industry = 1
+coastal_fort = 3
+land_fort = 5
+anti_air = 5
+infra = 8
+air_base = 6
+naval_base = 10
+manpower = 2.00
+leadership = 0.08
+
+1942.7.4 = {
+	controller = GER}
+1944.4.30 = {
+	controller = SOV
+}
+1944.5.9 = {
+	controller = SOV}

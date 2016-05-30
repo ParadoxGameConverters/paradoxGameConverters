@@ -1,0 +1,5 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+energy = 9.00
+infra = 4

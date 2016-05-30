@@ -1,0 +1,20 @@
+owner = FRA
+controller = FRA
+add_core = FRA
+
+points = 2
+metal = 6.00
+energy = 70.00
+rare_materials = 2.00
+industry = 2
+land_fort = 10
+anti_air = 3
+infra = 9
+manpower = 1.00
+leadership = 0.15
+1941.6.22 = {
+	controller = GER
+}
+1944.12.01 = {
+	controller = USA
+}

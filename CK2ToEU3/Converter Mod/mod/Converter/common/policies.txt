@@ -1,0 +1,265 @@
+# Do not change tags in here without changing every other reference to them.
+# If adding new policies, make sure they are uniquely named.
+
+# Uses all 'modifiers' possible thats exported as a Modifier.
+
+#########################################################
+# Centralisation <----> Decentralisation
+#########################################################
+centralization_decentralization = 
+{
+	max_war_exhaustion = -0.4
+	
+	global_tax_modifier = -0.04
+	production_efficiency = -0.03
+	spy_efficiency = -0.05
+	global_spy_defence = -0.01
+	
+	left_specific = {
+		inflation_reduction = 0.01
+		officials = 0.2
+	}
+	right_specific = {
+	}
+#	right_locked = yes
+
+	on_left = {
+		10 = 806 # Country Destabilized (-)
+		10 = 807 # Large Revolt (-)
+		10 = 808 # Local Pretender (-)	
+	}
+	on_right = {
+		10 = 809 # Province Tax Increase (+) 
+		10 = 810 # More Local Recruiting (+)
+		10 = 811 # Stability Increase (+)
+	}
+
+}
+
+#########################################################
+# Aristocracy <----> Plutocracy
+#########################################################
+aristocracy_plutocracy = {
+	cavalry_cost = 0.05
+		
+	left_specific = {
+		diplomats = 0.6
+		leader_shock = 0.2
+		global_regiment_cost = -0.01
+	}
+	right_specific = {
+		spies = 0.4
+		merchants = 0.2
+		trade_efficiency = 0.01
+		merchant_placement_chance = 0.04
+	}
+	on_left = {
+		10	= 803	#Loss of Stability (-)
+		10	= 804	#burghers in revolt (-)
+		10	= 805	#nobility strengthened (+)
+	}
+	on_right = {
+		10	= 800	#noble uprising (-)
+		10 	= 801   #loss of prestige (-)
+		10	= 802	#merchants benefit (+)
+	}
+	
+	bureaucrats_influence = -0.25		# Changed from -0.5
+}
+
+#########################################################
+# Serfdom <----> Free Subjects
+#########################################################
+serfdom_freesubjects = {
+	
+	infantry_cost = 0.06
+	
+	land_morale = 0.04
+	global_spy_defence = 0.025
+	
+	government_tech_cost_modifier = -0.04
+	production_tech_cost_modifier = -0.04
+	trade_tech_cost_modifier = -0.04
+	naval_tech_cost_modifier = -0.04
+	land_tech_cost_modifier = -0.04
+	
+	stability_cost_modifier = 0.05
+	
+	galley_cost = 0.025
+	
+	left_specific = {
+	}
+	right_specific = {
+	}
+	on_left = {
+		10 = 812 # Peasant Uprising (-)
+		10 = 813 # Competent Bailiff (+) .. Alderman or Sheriff
+		10 = 814 # Huge peasent uprsing in multiple provinces (-) 
+	}
+	on_right = {
+		10 = 815 # reduce manpower in a province (-)
+		10 = 816 # stability drop (-)
+		10 = 817 # inflation reduction (free subjects leads to less abuses in the system) (+)
+	}
+	
+	bureaucrats_influence = -0.25		# Changed from -0.5
+}
+
+#########################################################
+# Innovative <----> Narrowminded
+#########################################################
+innovative_narrowminded = {
+	stability_cost_modifier = -0.05
+	
+	max_war_exhaustion = -0.4
+	
+	technology_cost = 0.03
+	missionaries = 0.2
+	papal_influence = 0.03;
+	
+	left_specific = {
+	}
+	
+	right_specific = {
+		global_colonial_growth = 0.05
+		global_spy_defence = 0.02
+	}
+	on_left = {
+		10 = 818 # reduce stability (-)
+		10 = 819 # lose prestige (looking a bit soft compared to neighbours) (-) 
+		10 = 820 # random boost tech-boost advisor (+)
+	}
+	on_right = {
+		10 = 821 # relgious conversion (supression always encourages them) (-)
+		10 = 822 # lose stability (-) 
+		10 = 823 # get a theologian (+)
+	}	
+	
+	temples_influence = 0.25		# Changed from 0.5
+}
+
+#########################################################
+# Mercantilism <----> Free Trade
+#########################################################
+mercantilism_freetrade = {
+	global_spy_defence = -0.04
+	merchant_cost = -0.05
+	
+	left_specific = {
+		spies = 0.2
+		merchant_compete_chance = -0.05
+		modifier_province_owner_trade_chance = 0.25
+		trade_range_modifier = -0.04
+	}
+	
+	right_specific = {
+		merchant_compete_chance = 0.05
+		modifier_province_owner_trade_chance = -0.06
+		trade_range_modifier = 0.04
+		trade_efficiency = 0.01
+		merchants = 0.4
+	}
+	
+	on_left = {
+		10 = 824 #lose merchant in non owned COT (-)
+		10 = 825 # Loss of value in city of local CoT (-)
+		10 = 826 #get a collector (+)
+	}
+	on_right = {
+		10 = 827 #lose merchant in owned COT (-)
+		10 = 828 #lose merchants (-)
+		10 = 829 #get a trader (+)
+	}	
+	
+	enuchs_influence = 0.25		# Changed from 0.5
+
+}
+
+#########################################################
+# Offensive <----> Defensive
+#########################################################
+offensive_defensive = {
+	artillery_cost = -0.05
+	land_morale = -0.02
+	
+	defensiveness = 0.05
+	
+	left_specific = {
+	 	leader_shock = 0.25
+	}
+	right_specific = {
+		leader_siege = 0.25
+	}
+	on_left = {
+		10 = 830 # Loss of Stability (-)
+		10 = 831 # manpower reduction (people less keen to be cannon fodder) (-)
+		10 = 832 # gain prestige (giving the enemy a tast of cold steel like real men should) (+)
+	}
+	on_right = {
+		10 = 833 # lose army tradition (proper gentlemen know that you must give the enemy a taste of cold steel, rather than these unmanly tactics) (-)
+		10 = 834 # pesant revolt (locals get annoyed that you are taking thier land to build castles) (-)
+		10 = 835 # gain a fortification expert (+)
+	}	
+}
+
+#########################################################
+# Land <----> Naval
+#########################################################
+land_naval = {
+	infantry_cost = 0.05
+	cavalry_cost = 0.05
+	bigship_cost = -0.05
+	galley_cost = -0.025
+	lightship_cost = -0.05
+	global_tariffs = 0.05
+	global_manpower_modifier = -0.05
+	colonist_cost = -0.05
+
+	left_specific = {
+		land_morale = 0.02
+		land_forcelimit_modifier = 0.05
+	}
+	right_specific = {
+		naval_morale = 0.02
+		naval_forcelimit_modifier = 0.05
+	}
+	on_left = {
+		10 = 836 # reduction in naval technology investment (-)
+		10 = 837 # reduction in naval tradition (-)
+		10 = 838 # gain grand_captain (+)
+	}
+	on_right = {
+		10 = 839 # reduction in army technology investment (-)
+		10 = 840 # reduction in land tradition (-)
+		10 = 841 # gain grand_admiral (+)
+	}	
+	
+	enuchs_influence = 0.25		# Changed from 0.5
+}
+
+#########################################################
+# Quality <----> Quantity
+#########################################################
+quality_quantity = {
+	infantry_cost = -0.025
+	discipline = -0.02
+	global_manpower_modifier = 0.025
+	left_specific = {
+		leader_fire = 0.25
+	}
+	right_specific = {
+		reinforce_speed = 0.05
+	}
+	on_left = {
+		10 = 842 # manpower reduction (-)
+		10 = 843 # lose stability (-)
+		10 = 844 # gain commandant (+)
+	}
+	on_right = {
+		10 = 845 # presitge reduction (-)
+		10 = 846 # land tradition reduction (too many indians, not enough cheifs) (-) 
+		10 = 847 # gain army organiser (+)
+	}	
+	
+	temples_influence = 0.25		# Changed from 0.5
+}

@@ -1,0 +1,14 @@
+owner = BRA
+controller = BRA
+add_core = BRA
+points = 2
+metal = 5.00
+energy = 15.00
+rare_materials = 4.00
+industry = 6
+anti_air = 1
+infra = 6
+air_base = 4
+naval_base = 6
+manpower = 6.00
+leadership = 0.60

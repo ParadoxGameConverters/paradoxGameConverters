@@ -1,0 +1,150 @@
+#Guyana (99600)
+#Ruled by Britain 1836
+#Georgetown (58600/14650 POPS)
+2239 = {
+	aristocrats=
+	{
+		culture = carribean
+		religion = animist
+		size=100
+	}
+
+	clergymen=
+	{
+		culture = carribean
+		religion = animist
+		size=100
+	}
+
+	artisans=
+	{
+		culture = carribean
+		religion = animist
+		size=1050
+	}
+
+	soldiers=
+	{
+		culture = carribean
+		religion = animist
+		size=175
+	}
+
+	farmers=
+	{
+		culture = carribean
+		religion = animist
+		size=13225
+	}
+}
+#Mahdia (4000/1000 POPS)
+2242 = {
+	aristocrats=
+	{
+		culture = amazonian
+		religion = animist
+		size=10
+	}
+
+	clergymen=
+	{
+		culture = amazonian
+		religion = animist
+		size=25
+	}
+
+	artisans=
+	{
+		culture = amazonian
+		religion = animist
+		size=50
+	}
+
+	soldiers=
+	{
+		culture = amazonian
+		religion = animist
+		size=15
+	}
+
+	farmers=
+	{
+		culture = amazonian
+		religion = animist
+		size=900
+	}
+}
+#Essequibo (33000/8250 POPS)
+2243 = {
+	farmers=
+	{
+		culture = carribean
+		religion = animist
+		size=9000
+	}
+
+	soldiers=
+	{
+		culture = carribean
+		religion = animist
+		size=93
+	}
+
+	artisans=
+	{
+		culture = carribean
+		religion = animist
+		size=370
+	}
+
+	clergymen=
+	{
+		culture = carribean
+		religion = animist
+		size=60
+	}
+
+	aristocrats=
+	{
+		culture = carribean
+		religion = animist
+		size=90
+	}
+}
+#Biloka (4000/1000 POPS)
+1979 = {
+	aristocrats=
+	{
+		culture = amazonian
+		religion = animist
+		size=10
+	}
+
+	clergymen=
+	{
+		culture = amazonian
+		religion = animist
+		size=25
+	}
+
+	artisans=
+	{
+		culture = amazonian
+		religion = animist
+		size=50
+	}
+
+	soldiers=
+	{
+		culture = amazonian
+		religion = animist
+		size=15
+	}
+
+	farmers=
+	{
+		culture = amazonian
+		religion = animist
+		size=900
+	}
+}

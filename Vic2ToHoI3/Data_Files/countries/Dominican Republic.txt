@@ -1,0 +1,415 @@
+color = { 168  183  128 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"I División de Infantería" "II División de Infantería" "III División de Infantería" "IV División de Infantería" "V División de Infantería" "VI División de Infantería" "VII División de Infantería" "VIII División de Infantería" "IX División de Infantería" "X División de Infantería" 
+	}
+	cavalry_brigade = {
+		"I División de Caballería 'Leonidas'" "II División de Caballería" "III División de Caballería" "IV División de Caballería" "V División de Caballería" 
+	}
+	motorized_brigade = {
+		"I División Motorizada" "II División Motorizada" "III División Motorizada" "IV División Motorizada" "V División Motorizada" "X División Motorizada" 
+	}
+	mechanized_brigade = {
+		"I División Mecanizada" "II División Mecanizada" "III División Mecanizada" "IV División Mecanizada" "V División Mecanizada" 
+	}
+	light_armor_brigade = {
+		"I División Blindada" "II División Blindada" "III División Blindada" "IV División Blindada" "V División Blindada" 
+	}
+	armor_brigade = {
+		"I División Blindada" "II División Blindada" "III División Blindada" "IV División Blindada" "V División Blindada" 
+	}
+	paratrooper_brigade = {
+		"I División de Paracaidistas" "II División de Paracaidistas" "III División de Paracaidistas" "IV División de Paracaidistas" "V División de Paracaidistas" "X División de Paracaidistas" 
+	}
+	marine_brigade = {
+		"I División de Comandos Marinos" "II División de Comandos Marinos" "III División de Comandos Marinos" "IV División de Comandos Marinos" "V División de Comandos Marinos" 
+	}
+	bergsjaeger_brigade = {
+		"I División de Montaña 'Las Leonides'" "II División de Montaña" "III División de Montaña" "IV División de Montaña" "V División de Montaña" 
+	}
+	garrison_brigade = {
+		"XI División de Infantería" "XII División de Infantería" "XIII División de Infantería" "XIV División de Infantería" "XV División de Infantería" 
+	}
+	hq_brigade = {
+		"Cuartel General 1er Ejército" "Cuartel General 2o Ejército" "Cuartel General 3er Ejército" "Cuartel General 4o Ejército" "Cuartel General 5o Ejército" "Cuartel General 6o Ejército" "Cuartel General 7o Ejército" "Cuartel General 8o Ejército" "Cuartel General 9o Ejército" "Cuartel General 10o Ejército" 
+	}
+	militia_brigade = {
+		"1a División de Milicía PTDR" "2a División de Milicía PTDR" "3a División de Milicía PTDR" "4a División de Milicía PTDR" "5a División de Milicía PTDR" "6a División de Milicía PTDR" "7a División de Milicía PTDR" "8a División de Milicía PTDR" "9a División de Milicía PTDR" "10a División de Milicía PTDR" 
+	}
+	multi_role = {
+		"1. Grupo Aéreo de Caza" "2. Grupo Aéreo de Caza" "3. Grupo Aéreo de Caza" "4. Grupo Aéreo de Caza" "5. Grupo Aéreo de Caza" 
+	}
+	interceptor = {
+		"1. Grupo Aéreo de Caza" "2. Grupo Aéreo de Caza" "3. Grupo Aéreo de Caza" "4. Grupo Aéreo de Caza" "5. Grupo Aéreo de Caza" 
+	}
+	strategic_bomber = {
+		"1. Grupo Aéreo Estratégico" "2. Grupo Aéreo Estratégico" "3. Grupo Aéreo Estratégico" "4. Grupo Aéreo Estratégico" "5. Grupo Aéreo Estratégico" 
+	}
+	tactical_bomber = {
+		"1. Grupo Aéreo Táctico" "2. Grupo Aéreo Táctico" "3. Grupo Aéreo Táctico" "4. Grupo Aéreo Táctico" "5. Grupo Aéreo Táctico" 
+	}
+	naval_bomber = {
+		"1. Grupo Aéreo de la Armada" "2. Grupo Aéreo de la Armada" "3. Grupo Aéreo de la Armada" "4. Grupo Aéreo de la Armada" "5. Grupo Aéreo de la Armada" 
+	}
+	cas = {
+		"1. Grupo Aéreo del Ejército" "2. Grupo Aéreo del Ejército" "3. Grupo Aéreo del Ejército" "4. Grupo Aéreo del Ejército" "5. Grupo Aéreo del Ejército" 
+	}
+	transport_plane = {
+		"1. Grupo Aerotransportado del Ejército" "2. Grupo Aerotransportado del Ejército" "3. Grupo Aerotransportado del Ejército" "4. Grupo Aerotransportado del Ejército" "5. Grupo Aerotransportado del Ejército" 
+	}
+	battleship = {
+		"ARD Don Rafél Trujillo" "ARD Eleonora Trujillo" 
+	}
+	light_cruiser = {
+		"ARD El Benefactor" "ARD Santo Domingo" "ARD Santiago" "ARD San Pedro" "ARD La Romana" 
+	}
+	heavy_cruiser = {
+		"ARD El Benefactor" "ARD Santo Domingo" "ARD Santiago" "ARD San Pedro" "ARD La Romana" 
+	}
+	battlecruiser = {
+		"ARD Don Rafél Trujillo" "ARD Eleonora Trujillo" 
+	}
+	destroyer = {
+		"1. Flotilla de Destructores" "2. Flotilla de Destructores" "3. Flotilla de Destructores" "4. Flotilla de Destructores" "5. Flotilla de Destructores" 
+	}
+	carrier = {
+		"ARD República Dominicana" "ARD Isla Catalina" 
+	}
+	escort_carrier = {
+		"ARD Yaque del Norte" "ARD Lago Enriquillo" 
+	}
+	submarine = {
+		"1. Flotilla de Submarinos" "2. Flotilla de Submarinos" "3. Flotilla de Submarinos" "4. Flotilla de Submarinos" "5. Flotilla de Submarinos" 
+	}
+	transport_ship = {
+		"1. Flotilla de Transporte" "2. Flotilla de Transporte" "3. Flotilla de Transporte" "4. Flotilla de Transporte" "5. Flotilla de Transporte" 
+	}
+
+}
+
+
+ministers = {
+	49001 = {
+		name = "Rafél Trujillo"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M49001
+		head_of_state = pig_headed_isolationist
+		minister_of_security = prince_of_terror
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		head_of_government = backroom_backstabber
+		armament_minister = corrupt_kleptocrat
+		chief_of_navy = base_control_doctrine
+		head_of_state = barking_buffoon
+		start_date = 1936.1.1
+	}
+	49002 = {
+		name = "Jacinto Bienvenido Peynado"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M49002
+		head_of_government = naive_optimist
+		head_of_state = insignificant_layman
+		minister_of_security = crooked_kleptocrat
+		start_date = 1936.1.1
+	}
+	49003 = {
+		name = "Elias Brache"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M49003
+		foreign_minister = great_compromiser
+		head_of_state = weary_stiff_neck
+		start_date = 1936.1.1
+	}
+	49004 = {
+		name = "Manuel de Jesús Troncoso"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M49004
+		armament_minister = infantry_proponent
+		head_of_state = benevolent_gentleman
+		head_of_government = silent_workhorse
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1936.1.1
+	}
+	49006 = {
+		name = "Jesus da Costa Ruiz"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M49006
+		minister_of_intelligence = technical_specialist
+		start_date = 1936.1.1
+	}
+	49009 = {
+		name = "Humberto Rojas"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M49009
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1936.1.1
+	}
+	49010 = {
+		name = "Anibal Vallejo Sosa"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M49010
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+	49035 = {
+		name = "Rafael Espaillat"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M49035
+		head_of_state = popular_figurehead
+		head_of_government = political_protege
+		minister_of_security = efficient_sociopath
+		start_date = 1946.1.1
+	}
+	49036 = {
+		name = "Frank Feliz Miranda"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M49030
+		head_of_state = popular_figurehead
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1938.1.1
+	}
+	49037 = {
+		name = "Francisco Prats Ramirez"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M49037
+		head_of_state = autocratic_charmer
+		head_of_government = happy_amateur
+		minister_of_intelligence = industrial_specialist
+		start_date = 1942.1.1
+	}
+	49040 = {
+		name = "Alberto Garcia Vienda"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M49015
+		head_of_government = happy_amateur
+		minister_of_security = silent_lawyer
+		minister_of_intelligence = research_specialist
+		start_date = 1938.1.1
+	}
+	49042 = {
+		name = "Rafael Bonelly Fondeur"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M49042
+		head_of_government = smiling_oilman
+		armament_minister = infantry_proponent
+		start_date = 1946.1.1
+	}
+	49044 = {
+		name = "Mario Imbert McGregor"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M49026
+		head_of_government = corporate_suit
+		armament_minister = resource_industrialist
+		minister_of_intelligence = dismal_enigma
+		start_date = 1942.1.1
+	}
+	49045 = {
+		name = "Juan Bosch"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M49021
+		head_of_government = old_general
+		foreign_minister = iron_fisted_brute
+		head_of_state = die_hard_reformer
+		start_date = 1946.1.1
+	}
+	49046 = {
+		name = "Ernesto Bonetti-Burgos"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M49046
+		foreign_minister = apologetic_clerk
+		start_date = 1936.1.1
+	}
+	49047 = {
+		name = "Julio Ortega Frier"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M49047
+		foreign_minister = the_cloak_n_dagger_schemer
+		chief_of_air = army_aviation_doctrine
+		start_date = 1937.1.1
+	}
+	49048 = {
+		name = "Arturo Despradel"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M49048
+		foreign_minister = great_compromiser
+		start_date = 1938.1.1
+	}
+	49049 = {
+		name = "Manuel Peña Battle"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M49049
+		foreign_minister = general_staffer
+		chief_of_staff = school_of_defence
+		start_date = 1943.1.1
+	}
+	49051 = {
+		name = "Jesus de Galindez"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M49013
+		foreign_minister = ideological_crusader
+		armament_minister = laissez_faires_capitalist
+		head_of_government = flamboyant_tough_guy
+		start_date = 1942.1.1
+	}
+	49052 = {
+		name = "Emilio de los Santos"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M49052
+		foreign_minister = iron_fisted_brute
+		start_date = 1946.1.1
+	}
+	49053 = {
+		name = "Antonio Leyba Pou"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M49025
+		foreign_minister = ideological_crusader
+		minister_of_security = man_of_the_people
+		start_date = 1938.1.1
+	}
+	49056 = {
+		name = "Ignacio Bajordo"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M49056
+		armament_minister = administrative_genius
+		start_date = 1940.1.1
+	}
+	49058 = {
+		name = "Luis Amiamo Tio"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M49058
+		armament_minister = corrupt_kleptocrat
+		start_date = 1946.1.1
+	}
+	49061 = {
+		name = "Jorge Balaguer"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M49014
+		armament_minister = administrative_genius
+		minister_of_intelligence = research_specialist
+		start_date = 1946.1.1
+	}
+	49062 = {
+		name = "Francisco Cutricos"
+		ideology = social_democrat
+		loyalty = 0.50
+		picture = M49024
+		armament_minister = corrupt_kleptocrat
+		start_date = 1938.1.1
+	}
+	49066 = {
+		name = "Donald Reid Cabral"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M49066
+		minister_of_security = compassionate_gentleman
+		start_date = 1944.1.1
+	}
+	49067 = {
+		name = "Hector Trujillo"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M49067
+		minister_of_security = crooked_kleptocrat
+		minister_of_intelligence = political_specialist
+		head_of_state = insignificant_layman
+		start_date = 1946.1.1
+	}
+	49081 = {
+		name = "Jesus da Costa-Ruiz"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M49006
+		chief_of_staff = school_of_mass_combat
+		start_date = 1938.1.1
+	}
+	49082 = {
+		name = "Victor Viñas Roman"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M49027
+		chief_of_staff = school_of_fire_support
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1938.1.1
+	}
+	49084 = {
+		name = "Domingo de los Santos Ortiz"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M49018
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1938.1.1
+	}
+	49087 = {
+		name = "Honoracio Yuna Robles"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M49087
+		chief_of_navy = open_seas_doctrine
+		start_date = 1940.1.1
+	}
+	49090 = {
+		name = "Edgar Martinez"
+		ideology = left_wing_radical
+		loyalty = 0.25
+		picture = M49029
+		chief_of_navy = indirect_approach_doctrine
+		chief_of_air = air_superiority_doctrine
+		start_date = 1938.1.1
+	}
+	49094 = {
+		name = "Diego Trabajo Rúiz"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M49094
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1942.1.1
+	}
+}

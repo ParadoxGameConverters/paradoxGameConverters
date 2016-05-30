@@ -1,0 +1,8 @@
+owner = GRE
+controller = GRE
+add_core = GRE
+
+infra = 7
+1941.4.30 = {
+	controller = GER
+}

@@ -1,0 +1,16 @@
+owner = USA
+controller = USA
+add_core = USA
+add_core = PAN
+points = 1
+anti_air = 2
+infra = 6
+air_base = 1
+naval_base = 3
+manpower = 2.00
+leadership = 0.20
+
+
+1941.1.1 = {
+	radar_station = 1
+}

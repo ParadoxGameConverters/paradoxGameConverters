@@ -1,0 +1,297 @@
+# Copyright (c) 2014 The Paradox Game Converters Project
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+
+# This culture map contains one to one and many to one culture conversions.
+
+cultureMap = {
+
+# Germanic - pommeranian, prussian, hannoverian, hessian, saxon, rheinlaender, bavarian, austrian, dutch, flemish
+link = { vic = ashkenazi eu3 = pommeranian eu3 = prussian eu3 = hannoverian eu3 = saxon eu3 = rheinlaender eu3 = hessian eu3 = bavarian eu3 = austrian religion = jewish }
+link = { vic = north_german eu3 = pommeranian eu3 = prussian eu3 = hannoverian eu3 = saxon }
+link = { vic = swiss eu3 = rheinlaender owner = SWI }
+link = { vic = south_german eu3 = rheinlaender eu3 = hessian eu3 = bavarian eu3 = austrian }
+link = { vic = boer eu3 = dutch region = south_africa }
+link = { vic = dutch eu3 = dutch }
+link = { vic = flemish eu3 = flemish }
+
+
+# Scandinavian - swedish, danish, norwegian
+link = { vic = swedish eu3 = swedish }
+link = { vic = danish eu3 = danish }
+link = { vic = norwegian eu3 = norwegian }
+#link = { vic = icelandic eu3 = ? }
+link = { vic = norse eu3 = norse }
+
+# British - english, american, scottish
+link = { vic = yankee eu3 = english region = northeastern_america }
+link = { vic = dixie eu3 = english region = eastern_america }
+link = { vic = anglo_canadian eu3 = english region = northern_america }
+link = { vic = british eu3 = english eu3 = scottish eu3 = anglo_saxon eu3 = anglosaxon }
+link = { vic = yankee  eu3 = american }
+#link = { vic = texan eu3 = ? }
+#link = { vic = australian eu3 = ? }
+
+# Celtic - welsh, breton, irish
+link = { vic = british eu3 = welsh }
+link = { vic = irish eu3 = irish }
+link = { vic = breton eu3 = breton }
+
+# Latin - lombard, umbrian, sicilian
+link = { vic = north_italian eu3 = lombard  eu3 = umbrian }
+link = { vic = south_italian eu3 = sicilian }
+link = { vic = north_italian eu3 = italian region = lombardia }
+link = { vic = south_italian eu3 = italian region = two_sicilies }
+link = { vic = north_italian eu3 = italian }
+link = { vic = roman eu3 = roman }
+
+# Iberian - castillian, catalan, galician, andalucian, portugese, maltese
+link = { vic = mexican eu3 = castillian eu4 = galician eu4 = andalucian region = central_america }
+link = { vic = mexican eu3 = nahuatl }
+link = { vic = caribeno eu3 = castillian eu4 = galician eu4 = andalucian region = the_carribean }
+link = { vic = caribeno eu3 = caribeno }
+link = { vic = platinean eu3 = castillian eu4 = galician eu4 = andalucian region = la_plata_region }
+link = { vic = platinean eu3 = platinian }
+link = { vic = castillian eu3 = castillian }
+link = { vic = galician eu3 = galician } 
+link = { vic = andalucian eu3 = andalucian }
+link = { vic = catalan eu3 = catalan }
+link = { vic = portuguese eu3 = portugese }
+link = { vic = brazilian eu3 = portugese region = brazil_region }
+link = { vic = maltese eu3 = maltese }
+link = { vic = basque eu3 = basque }
+#link = { vic = central_american eu3 = ? }
+link = { vic = north_andean eu3 = n_andean }
+#link = { vic = south_andean eu3 = ? }
+link = { vic = brazilian eu3 = brazilian }
+
+# French - cosmopolitan_french, gascon, normand, aquitaine, burgundian, occitain, wallonian
+link = { vic = french_canadian eu3 = eu3 = cosmopolitan_french eu3 = gascon eu3 = normand eu3 = aquitaine eu3 = burgundian eu3 = occitain eu3 = breton region = northern_america }
+link = { vic = cosmopolitan_french eu3 = cosmopolitan_french eu3 = gascon eu3 = normand eu3 = aquitaine eu3 = burgundian eu3 = occitain }
+link = { vic = wallonian eu3 = wallonian }
+link = { eu3 = frankish vic = frankish }
+
+# Finno Urgic - finnish, estonian, sapmi, ingrian, karelian, uralic
+link = { vic = finnish eu3 = finnish eu3 = karelian }
+link = { vic = sami eu3 = sapmi eu3 = lappish }
+link = { vic = estonian eu3 = estonian eu3 = ingrian }
+link = { vic = ugrian eu3 = uralic eu3 = komi }
+link = { eu3 = ugricbaltic vic = ugricbaltic }
+link = { eu3 = lettigallish vic = lettigallish }
+
+# South Slav - croatian, serbian, bulgarian, romanian, albanian
+link = { vic = bosniak eu3 = croatian eu4 = serbian religion = sunni }
+link = { vic = bosniak eu3 = croatian eu4 = serbian religion = shiite }
+link = { vic = croat eu3 = croatian }
+link = { vic = serb eu3 = serbian }
+link = { vic = bulgarian eu3 = bulgarian }
+link = { vic = romanian eu3 = romanian }
+link = { vic = albanian eu3 = albanian }
+#link = { vic = slovene eu3 = ? }
+
+# West Slav - czech, hungarian, slovak
+link = { vic = hungarian eu3 = hungarian }
+link = { vic = slovak eu3 = czech region = hungarian_region }
+link = { vic = czech eu3 = czech }
+link = { vic = slovak eu3 = czech }
+
+# East Slav - russian, byelorussian, ruthenian
+link = { vic = russian eu3 = russian }
+link = { vic = ukrainian eu3 = ruthenian }
+link = { vic = byelorussian eu3 = byelorussian }
+
+# Baltic - polish, lithuanian, old_prussian, latvian, schlesian
+link = { vic = polish eu3 = polish eu3 = schlesian }
+link = { vic = lithuanian eu3 = lithuanian }
+link = { vic = latvian eu3 = latvian eu3 = old_prussian }
+
+# Byzantine - greek, georgian, armenian
+#link = { vic = sephardi eu3 = greek eu3 = georgian eu3 = armenian religion = jewish }
+link = { vic = greek eu3 = greek }
+link = { vic = georgian eu3 = georgian }
+link = { vic = armenian eu3 = armenian }
+link = { vic = north_caucasian eu3 = alan }
+
+# Turko Semitic	- maghreb_arabic, al_misr_arabic, al_suryah_arabic, al_iraqiya_arabic, bedouin_arabic, berber, turkish
+link = { vic = maghrebi eu3 = maghreb_arabic }
+link = { vic = misri eu3 = al_misr_arabic }
+link = { vic = mashriqi eu3 = al_iraqiya_arabic eu3 = al_suryah_arabic }
+link = { vic = bedouin eu3 = bedouin_arabic }
+link = { vic = berber eu3 = berber }
+link = { vic = turkish eu3 = turkish eu3 = pecheneg }
+
+ # Iranian - persian, east_persian, baluchi
+link = { vic = tajik eu3 = persian region = central_asia }
+link = { vic = persian eu3 = persian }
+link = { vic = pashtun eu3 = east_persian }
+link = { vic = baluchi eu3 = baluchi }
+
+# Jewish
+link = { v2 = ashkenazi eu4 = ashkenazi }
+link = { v2 = sephardi eu4 = sephardi }
+
+# Altaic - azerbadjani, turkmeni, mongol, uzbehk, khazak, kirgiz, siberian, yakut, tartar
+link = { vic = azerbaijani eu3 = azerbadjani }
+link = { vic = hazara  eu3 = mongol religion = shiite }
+link = { vic = turkmen eu3 = turkmeni eu3 = khazar eu3 = bolghar eu3 = avar }
+link = { vic = mongol eu3 =  mongol }
+link = { vic = uzbek eu3 = uzbehk }
+link = { vic = kazak eu3 = khazak }
+link = { vic = kirgiz eu3 = kirgiz }
+link = { vic = siberian eu3 = siberian }
+link = { vic = yakut eu3 = yakut }
+link = { vic = tatar eu3 = tartar eu3 = cuman }
+link = { vic = kurdish eu3 = kurdish }
+#link = { vic = uighur eu3 = ? }
+
+# Central American - zapotek, mayan, aztek
+link = { vic = zapotec eu3 = zapotek }
+link = { vic = mayan eu3 = mayan }
+link = { vic = nahua eu3 = aztek }
+
+# South American - inca, guarani, aimara, amazonian, patagonian, guajiro, teremembe, tupinamba, mataco
+#link = { vic = tarascan eu3 = ? }
+link = { vic = quechua eu3 = inca }
+link = { vic = guarani eu3 = guarani }
+link = { vic = aimara eu3 = aimara }
+link = { vic = amazonian eu3 = amazonian }
+link = { vic = patagonian eu3 = patagonian }
+link = { vic = guajiro eu3 = guajiro }
+link = { vic = tupinamba eu3 = tupinamba }
+link = { vic = teremembe eu3 = teremembe }
+link = { vic = mataco eu3 = mataco }
+
+# Carribean - arawak, carib
+link = { vic = arawak eu3 = arawak }
+link = { vic = carib eu3 = carib }
+
+# North American - dakota, cherokee, pueblo, aleutian, inuit, cree, iroquis, huron, navajo, shawnee, delaware, creek
+link = { vic = dakota eu3 = dakota }
+link = { vic = cherokee eu3 = cherokee }
+link = { vic = pueblo eu3 = pueblo }
+link = { vic = inuit eu3 = inuit }
+link = { vic = cree eu3 = cree }
+link = { vic = iroquis eu3 = iroquis }
+link = { vic = huron eu3 = huron }
+link = { vic = shawnee eu3 = shawnee }
+link = { vic = creek eu3 = creek }
+link = { vic = navajo eu3 = navajo }
+link = { vic = aleutian eu3 = aleutian }
+link = { vic = delaware eu3 = delaware }
+
+# East Asian - japanese, manchu, chihan, cantonese, korean
+link = { vic = japanese eu3 = japanese }
+link = { vic = manchu eu3 = manchu }
+link = { vic = beifaren eu3 = chihan }
+link = { vic = nanfaren eu3 = cantonese }
+link = { vic = korean eu3 = korean }
+#link = { vic = ainu eu3 = ? }
+#link = { vic = hakka eu3 = ? }
+#link = { vic = miao eu3 = ? }
+#link = { vic = min eu3 = ? }
+#link = { vic = zhuang eu3 = ? }
+#link = { vic = yi eu3 = ? }
+#link = { vic = yue eu3 = ? }
+
+# Mon Khmer - khmer, mon, vietnamese
+link = { vic = vietnamese eu3 = vietnamese }
+link = { vic = khmer eu3 = khmer }
+
+# Malay - polynesian, cham, malayan, filipino, madagascan, sulawesi
+link = { vic = polynesian eu3 = polynesian }
+link = { vic = cham eu3 = cham }
+link = { vic = sulawesi eu3 = sulawesi }
+link = { vic = malay eu3 = malayan }
+link = { vic = filipino eu3 = filipino }
+#link = { vic = javan eu3 = ? }
+link = { vic = madagascan eu3 = madagascan }
+
+# Thai - central_thai, lao, northern_thai, shan
+link = { vic = thai eu3 = central_thai eu3 = northern_thai }
+link = { vic = lao eu3 = lao }
+link = { vic = shan eu3 = shan }
+
+# Burman - burmese, tibetan, chin
+link = { vic = burmese eu3 = burmese eu3 = mon }
+link = { vic = tibetan eu3 = tibetan }
+link = { vic = chin eu3 = chin }
+#link = { vic = kachin eu3 = ? }
+#link = { vic = karen eu3 = ? }
+
+# Pacific - papuan, aboriginal, melanesian, moluccan
+#link = { vic = hawaiian eu3 = ? }
+#link = { vic = maori eu3 = ? }
+link = { vic = aborigine eu3 = aboriginal }
+link = { vic = melanesian eu3 = melanesian eu3 = papuan}
+#link = { vic = micronesian eu3 = ? }
+link = { vic = moluccan eu3 = moluccan }
+
+# Eastern Aryan - assamese, bengali, bihari, nepali, oriya, sinhala
+link = { vic = assamese eu3 = assamese }
+link = { vic = bengali eu3 = bengali }
+link = { vic = bihari eu3 = bihari }
+#link = { vic = manipuri eu3 = ? }
+link = { vic = nepali eu3 = nepali }
+link = { vic = oriya eu3 = oriya }
+link = { vic = sinhala eu3 = sinhala }
+
+# Hindusthani - avadhi, kanauji, panjabi, kashmiri
+link = { vic = avadhi eu3 = avadhi }
+link = { vic = kanauji eu3 = kanauji }
+link = { vic = panjabi eu3 = panjabi }
+link = { vic = kashmiri eu3 = kashmiri }
+
+# Western Aryan - gujarati, marathi, sindhi, rajput
+link = { vic = gujarati eu3 = gujarati }
+link = { vic = marathi eu3 = marathi }
+link = { vic = sindi eu3 = sindhi }
+link = { vic = rajput eu3 = rajput }
+
+# Dravidian - kannada, malayalam, tamil, telegu
+link = { vic = kannada eu3 = kannada }
+link = { vic = malayalam eu3 = malayalam }
+link = { vic = tamil eu3 = tamil }
+link = { vic = telegu eu3 = telegu }
+
+# African - madagasque, tuareg, senegambian, dyola, nubian, somali, bantu, swahili, ethiopian, kongolese, shona, mali, yorumba, aka, ashanti
+link = { vic = malagasy eu3 = madagasque }
+link = { vic = tuareg eu3 = tuareg }
+link = { vic = senegambian eu3 = senegambian }
+link = { vic = zulu eu3 = bantu }
+link = { vic = dyula eu3 = dyola }
+link = { vic = sudanese eu3 = nubian }
+link = { vic = somali eu3 = somali }
+link = { vic = swahili eu3 = swahili }
+link = { vic = oromo eu3 = ethiopian }
+link = { vic = bakongo eu3 = kongolese }
+link = { vic = shona eu3 = shona }
+link = { vic = bambara eu3 = mali }
+link = { vic = yoruba eu3 = yorumba }
+link = { vic = akan eu3 = aka eu3 = ashanti }
+
+# Bears
+#link = { v2 = bears eu4 = ? }
+
+# noculture
+link = { v2 = noculture eu4 = noculture }
+
+}
+
+ 

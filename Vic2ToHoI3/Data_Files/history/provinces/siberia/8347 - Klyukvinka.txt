@@ -1,0 +1,30 @@
+owner = SOVcontroller = SOVadd_core = SOV
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4

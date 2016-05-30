@@ -1,0 +1,23 @@
+owner = FRA
+controller = FRA
+add_core = FRA
+
+infra = 9
+
+1940.6.22 = {
+	owner = VIC
+	controller = VIC
+	add_core = VIC
+}
+1942.11.10 = {
+	owner = ITA
+	controller = ITA
+}
+1943.10.4 = {
+	owner = FRA
+	controller = FRA
+	add_core = FRA
+}
+1944.12.01 = {
+	controller = USA
+}

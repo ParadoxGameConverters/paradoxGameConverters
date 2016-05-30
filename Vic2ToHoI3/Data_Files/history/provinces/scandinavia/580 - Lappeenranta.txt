@@ -1,0 +1,11 @@
+owner = FIN
+controller = FIN
+add_core = FIN
+
+infra = 6
+air_base = 3
+
+1940.3.12 = {
+	land_fort = 4
+	anti_air = 1
+}

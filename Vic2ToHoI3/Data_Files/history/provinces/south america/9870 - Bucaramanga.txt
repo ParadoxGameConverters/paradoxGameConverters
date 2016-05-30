@@ -1,0 +1,4 @@
+owner = COL
+controller = COL
+add_core = COL
+infra = 4

@@ -1,0 +1,108 @@
+
+religion_decisions = {
+
+	enact_ottoman_tolerance = {
+		potential = {
+			tag = TUR
+			NOT = { has_country_modifier = ottoman_tolerance }
+		}
+		allow = {
+			owns = 151
+			ADM = 6
+			capital = 151
+			monthly_income = 40
+		}
+		effect = {
+			add_country_modifier = {
+				name = "ottoman_tolerance"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}
+
+country_decisions = {
+
+	make_constantinople_capital = {
+		potential = {
+			tag = TUR
+			owns = 151
+			NOT = { capital = 151 }
+			NOT = { has_country_flag = relocated_capital_constantinople }
+		}
+		allow = {
+			ADM = 6
+			monthly_income = 30
+			controls = 151
+			owns = 149		# Edirne
+			owns = 316		# Bithnyia
+			owns = 317		# Bursa
+			owns = 1764		# Burgas			
+		}
+		effect = {
+			set_country_flag = relocated_capital_constantinople
+			stability = 1
+			capital = 151
+			add_core = 151
+			151 = {
+				culture = turkish 
+				religion = sunni
+				rename_capital = Istanbul
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	provincial_system = {
+		potential = {
+			tag = TUR
+			NOT = { has_country_modifier = the_provincial_system }
+		}
+		allow = {
+			government_tech = 10
+			ADM = 7
+			officials = 3
+		}
+		effect = {
+			add_country_modifier = {
+				name = "the_provincial_system"
+				duration = -1
+			}
+			officials = -3
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+}
+
+province_decisions = {
+	devshirme_system = {
+		potential = {
+			owner = { tag = TUR }
+			has_owner_religion = no
+			not = { has_province_modifier = the_devshirme_system }
+			not = { any_neighbor_province = { has_province_modifier = the_devshirme_system } }
+		}
+		allow = {
+			has_building = regimental_camp
+			owner = { officials = 2}
+		}
+		effect = {
+			add_province_modifier = {
+				name = "the_devshirme_system"
+				duration = -1
+			}
+			owner = { officials = -2}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

@@ -1,0 +1,84 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 151  174  28 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill 
+	battlefield_commisions
+	shrewd_commerce_practise
+	grand_army
+	espionage
+	engineer_corps
+	national_trade_policy
+	cabinet
+	bureaucracy
+	merchant_adventures
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Sai Thiakap'at #0" = 10
+	"T'ene Kham #0" = 10
+	"La Sene T'ai #0" = 10
+	"Som P'ou #0" = 10
+	"Visoum #0" = 10
+        "Phothisarath #0" = 30
+        "Setthathirota #0" = 10
+        "Sene Soulintha #0" = 10
+        "Maha Oupahat #0" = 10
+        "Nakhone Noi #0" = 10
+	"Nokeo Koumane #0" = 10
+	"Thammikarath #0" = 10
+	"Oupagnouvarat #0" = 10
+	"Mone Keo #0" = 10
+	"Oupagnaovarath #0" = 10
+        "Tone Kham #0" = 10
+        "Visai #0" = 10
+        "Souligna Vongsa #0" = 10
+        "Tan Thala #0" = 10
+        "Nan Tharat #0"	= 10
+        "Sai Ong Hue #0" = 10
+        "Ong Long #0" = 10
+        "Ong Boun #0" = 10
+}
+
+leader_names = {
+	Vilavong
+	Vong
+	Vanh
+	Ath
+	Dang
+	Thuy
+	Thew
+	Aut
+	Bee
+	Joy
+}
+
+ship_names = {
+	Angkor Anousa
+	Khamteam Kongkeo Khamtum
+	Mekong Manora Manorom
+	Phommathat
+	Souphutta Sai
+	Ubosot
+	"Fa Ngum" "Lan Xang" "Muang Nan" "Nge-Anh"
+	"Vinh" "Muang Sing" "Muang Huom" "Xieng Hung"
+	"Pak Ou" "Pak Beng" "Un Heuan" "Keo Koumari"
+	"Siva Yaka" "Ngo Fa" "Lan Kham Deng" "Leu Xay"
+	"Fa Kheun" "Noy Onsa" "Chiang Kham" "Yu Khong"
+}

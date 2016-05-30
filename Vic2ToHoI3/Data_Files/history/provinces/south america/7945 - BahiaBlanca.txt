@@ -1,0 +1,7 @@
+owner = ARG
+controller = ARG
+add_core = ARG
+anti_air = 2
+infra = 6
+air_base = 3
+naval_base = 8

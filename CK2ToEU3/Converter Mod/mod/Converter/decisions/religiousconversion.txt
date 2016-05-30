@@ -1,0 +1,327 @@
+religion_decisions = {
+	
+	convert_to_catholic = {
+		
+		potential = {
+			OR = {
+				religion = protestant
+				religion = reformed
+			}
+		}
+
+		allow = {
+			defender_of_faith = no
+			force_converted = no
+			war = no
+			stability = 1
+		}
+
+		effect = {
+			religion = catholic
+			stability = -5
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.0
+				NOT = { dominant_religion = catholic }
+			}
+			modifier = {
+				factor = 0.0
+				capital_scope = { NOT = { religion = catholic } }
+			}
+			modifier = {
+				factor = 0.0
+				year = 1700
+			}
+		}
+	}
+	
+	convert_to_protestant = {
+		
+		potential = {
+			NOT = { tag = PAP }
+			NOT = { tag = KNI }
+			is_religion_enabled = protestant
+			religion = catholic
+			NOT = { has_country_flag = "reformation_money" }
+		}
+
+		allow = {
+			defender_of_faith = no
+			force_converted = no
+			war = no
+			stability = 1
+		}
+		effect = {
+			religion = protestant
+			stability = -5
+			remove_country_modifier = counter_reformation
+			years_of_income = 1.0
+			set_country_flag = "reformation_money" 
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.0
+				OR = {
+					culture_group = latin
+					culture_group = iberian
+					has_country_modifier = counter_reformation
+				}
+				NOT = { dominant_religion = protestant }
+			}
+			modifier = {
+				factor = 0
+				has_country_modifier = edict_de_nantes
+				NOT = { dominant_religion = protestant }
+			}
+			modifier = {
+				factor = 0.0
+				NOT = { dominant_religion = protestant }
+				capital_scope = { NOT = { religion = protestant } }
+			}
+			modifier = {
+				factor = 0.0
+				is_emperor = yes
+			}
+		}
+	}
+	convert_to_protestant_again = {
+		
+		potential = {
+			NOT = { tag = PAP }
+			NOT = { tag = KNI }
+			is_religion_enabled = protestant
+			OR = {
+				AND = {
+					religion = catholic
+					has_country_flag = "reformation_money"
+				}
+				religion = reformed
+			}
+		}
+
+		allow = {
+			defender_of_faith = no
+			force_converted = no
+			war = no
+			stability = 1
+		}
+
+		effect = {
+			religion = protestant
+			stability = -5
+			remove_country_modifier = counter_reformation
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.0
+				has_country_modifier = counter_reformation
+				NOT = { dominant_religion = protestant }
+			}
+			modifier = {
+				factor = 0.0
+				NOT = { dominant_religion = protestant }
+			}
+			modifier = {
+				factor = 0.0
+				capital_scope = { NOT = { religion = protestant } }
+			}
+			modifier = {
+				factor = 0.0
+				is_emperor = yes
+			}
+		}
+	}
+	
+	convert_to_reformed = {
+		
+		potential = {
+			NOT = { tag = PAP }
+			NOT = { tag = KNI }
+			is_religion_enabled = reformed
+			religion = catholic
+			NOT = { has_country_flag = "reformation_money" }
+		}
+
+		allow = {
+			defender_of_faith = no
+			force_converted = no
+			war = no
+			stability = 1
+		}
+
+		effect = {
+			religion = reformed
+			stability = -5
+			years_of_income = 1.0
+			set_country_flag = "reformation_money" 
+			remove_country_modifier = counter_reformation
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.0
+				OR = {
+					culture_group = latin
+					culture_group = iberian
+					has_country_modifier = counter_reformation
+				}
+				NOT = { dominant_religion = reformed }
+			}
+			modifier = {
+				factor = 0
+				has_country_modifier = edict_de_nantes
+				NOT = { dominant_religion = reformed }
+			}
+			modifier = {
+				factor = 0.0
+				NOT = { dominant_religion = reformed }
+				capital_scope = { NOT = { religion = reformed } }
+			}
+			modifier = {
+				factor = 0.0
+				is_emperor = yes
+			}
+		}
+	}
+	convert_to_reformed_again = {
+		
+		potential = {
+			NOT = { tag = PAP }
+			NOT = { tag = KNI }
+			is_religion_enabled = reformed
+			OR = {
+				AND = {
+					religion = catholic
+					has_country_flag = "reformation_money"
+				}
+				religion = protestant
+			}
+		}
+
+		allow = {
+			defender_of_faith = no
+			force_converted = no
+			war = no
+			stability = 1
+		}
+
+		effect = {
+			religion = reformed
+			stability = -5
+			remove_country_modifier = counter_reformation
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.0
+				has_country_modifier = counter_reformation
+				NOT = { dominant_religion = reformed }
+			}
+			modifier = {
+				factor = 0.0
+				NOT = { dominant_religion = reformed }
+			}
+			modifier = {
+				factor = 0.0
+				capital_scope = { NOT = { religion = reformed } }
+			}
+			modifier = {
+				factor = 0.0
+				is_emperor = yes
+			}
+		}
+	}
+	
+	
+	join_the_counter_reformation = {
+	
+		potential = {
+			NOT = { has_country_modifier = counter_reformation } 
+			has_global_flag = counter_reformation
+			NOT = { religion_years = { protestant = 130 } }
+			religion = catholic
+		}
+
+		allow = {
+			NOT = { idea = ecumenism }
+			NOT = { idea = liberty_egalite_fraternity }
+			OR = {
+				tag = PAP
+				is_emperor = yes
+				relation = { who = PAP value = -50 }
+			}
+			NOT = { has_country_modifier = edict_de_nantes }
+		}
+
+		effect = {
+			relation = { who = PAP value = 100 }
+			emperor = { relation = { who = THIS value = 50 } }
+			add_country_modifier = {
+				name = "counter_reformation"
+				duration = -1
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.0
+				dominant_religion = reformed
+			}
+			modifier = {
+				factor = 0.0
+				dominant_religion = protestant
+			}
+			modifier = {
+				factor = 0.0
+				has_country_flag = protestant_reformation
+			}
+			modifier = {
+				factor = 0.0
+				has_country_flag = calvinist_reformation
+			}
+			modifier = {
+				factor = 0.0
+				NOT = { relation = { who = PAP value = -10 } }
+				NOT = { culture_group = latin }
+				NOT = { culture_group = iberian }
+				is_emperor = no
+			}
+			modifier = {
+				factor = 0.0
+				ADM = 5
+				NOT = { relation = { who = PAP value = 100 } }
+				NOT = { culture_group = latin }
+				NOT = { culture_group = iberian }
+				is_emperor = no
+			}
+		}
+	}
+	
+	christian_daimyo = {
+		potential = {
+			is_daimyo = yes
+			religion = shinto
+			any_owned_province = {
+				religion = catholic
+			}
+		}
+		
+		allow = {
+			NOT = {
+				idea = deus_vult
+			}
+			dominant_religion = catholic
+			stability = 3
+		}
+		
+		effect = {
+			religion = catholic
+			stability = -4
+		}
+	}
+}

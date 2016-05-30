@@ -1,0 +1,21 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+energy = 5.00
+industry = 4
+coastal_fort = 3
+land_fort = 0
+anti_air = 3
+infra = 10
+air_base = 10
+naval_base = 10
+manpower = 4.00
+leadership = 1.00
+
+1938.1.1 = {
+	radar_station = 2
+}
+
+1939.1.1 = {
+	radar_station = 5
+}

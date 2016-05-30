@@ -1,0 +1,113 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 117  127  174 }
+
+historical_ideas = {
+	excellent_shipwrights
+	bill_of_rights
+	superior_seamanship
+	merchant_adventures
+	naval_glory
+	national_bank
+	press_gangs
+	smithian_economics
+	ecumenism
+	scientific_revolution
+	grand_navy
+	napoleonic_warfare	
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_longbow
+	gaelic_mercenary
+	gaelic_free_shooter
+	irish_charge
+	anglofrench_line
+	british_redcoat
+	british_hussar
+	british_square
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+leader_names = { 
+	Bennett Bevan Bowen
+	Cadell Cadwallader
+	Daniels Davis Davies
+	Edwards Ellis Evans
+	Griffiths Gough Gwyn
+	Harris Hopkins Howells Hughes Humphries
+	James Jenkins John Jones
+	Lewis Llewellyn Lloyd
+	Madog Matthews Meredith Merrick Morgan Morris Mostyn
+	Owen
+	Parry Phillips Powell Prees Price Pritchard Protheroe Pugh
+	Rees Richards Roberts Rogers
+	Thomas
+	Vaughan
+	Watkins Williams
+}
+
+monarch_names = {
+	"Owain #3" = 20
+	"Dafydd #3" = 10
+	"Gruffydd #3" = 10
+	"Llewelyn #3" = 10
+	"Rhodri #3" = 10
+	"Maredudd #2" = 10
+	"Cynan #1" = 10
+	"Cadwaladr #3" = 5
+	"Iago #3" = 5
+	"Idwal #2" = 5
+	"Maelgwyn #2" = 5
+	"Einion #1" = 5
+	"Iorwerth #1" = 5
+	"Trahaearn #1" = 5
+	"Aeron #0" = 0
+	"Aled #0" = 0
+	"Aneirin #0" = 0
+	"Arvel #0" = 0
+	"Berwyn #0" = 0
+	"Brynmor #0" = 0
+	"Cadfael #0" = 0
+	"Cadoc #0" = 0
+	"Cadwgawn #0" = 0
+	"Celyn #0" = 0
+	"Cledwyn #0" = 0
+	"Colwyn #0" = 0
+	"Dai #0" = 0
+	"Dilwyn #0" = 0
+	"Emyr #0" = 0
+	"Gawain #0" = 0
+	"Glynn #0" = 0
+	"Gwyn #0" = 0
+	"Heddwyn #0" = 0
+	"Heilyn #0" = 0
+	"Hywel #0" = 0
+	"Rhian #0" = 0
+	"Tristan #0" = 0
+	"Tudor #0" = 0
+	"Urien #0" = 0
+	"Vaughan #0" = 0
+}
+
+ship_names = {
+	Bedwyr Brycheiniog
+	Cadwaladr Caerdydd Caernarfon Caradoc Ceredigion Conwy Culhwch  
+	Deheubarth "Dewi Sant" Dolbadarn Dolwyddelan Dyfed
+	Eryri
+	Glywysing Gwalchmei "Gwenan Gorn" Gwydion Gwyn Gwynedd
+	Lleu "Llewellyn Fawr"
+	Mabinogi Math Meirionydd Morgannwg
+	Olwen "Owain Glyndwr"
+	Penfro Powys "Preiddeu Annwn" Pryderi Pwyll
+	Rhiannon
+	Taff Teifi Teirnon Tywi
+	"Ynys Môn"
+}

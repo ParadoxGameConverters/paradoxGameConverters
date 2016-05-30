@@ -1,0 +1,1031 @@
+# INSTRUCTIONS:
+# -------------
+# is_triggered_only - Triggered from within the code or by event effects. DO NOT REMOVE THE STOCK ONES.
+# mutual - The CB effects will also be used by the defender in peace treaties
+# months - The number of months this CB will be valid. Only works for triggered CBs.
+# prerequisites - A condition that automatically activates a CB. Does not work for triggered CBs. 'THIS' scope is the target country.
+# badboy_factor - Multiplied with any badboy increase normally associated with a peace option.
+# prestige_factor - Multiplied with any prestige increase normally associated with a peace option.
+# peace_cost_factor - Multiplied with the cost of the peace options in the peace treaty
+# po_xxx - Peace options. If toggled on, badboy_factor and prestige_factor are multiplied with any associated base changes to these (see defines.txt.)
+# allowed_provinces - If 'po_demand_provinces' is on, badboy_factor applies to these provinces. 'THIS' scope is us.
+
+# The peace options are:
+# po_annex
+# po_demand_provinces
+# po_revoke_cores
+# po_release_vassals
+# po_release_annexed
+# po_change_religion
+# po_form_personal_union
+# po_gold
+# po_become_vassal
+# po_concede_defeat
+# po_reduce_sphere
+# po_annul_treaties - Even if set to yes, factors only apply if the target is in your sphere
+# po_join_league
+# nomad - decides if nomads can have this. In our current model no cbs are useful for nomads
+# NOTE: The order in which the peace options are listed is the order in which the AI will normally prioritize them in peace treaties
+
+# TRIGGERED - Triggered from within the code or by event effects
+# --------------------------------------------------------------
+
+# Defected province
+cb_defection = {
+
+	is_triggered_only = yes
+	months = 12
+	nomad = no
+
+	badboy_factor = 0
+	prestige_factor = 2
+	peace_cost_factor = 0.5
+	
+	allowed_provinces = {
+		defection = 12 # Defected within the last 12 months
+		previous_owner = THIS
+	}
+
+	po_demand_provinces = yes
+	
+	war_name = CORE_WAR_NAME
+}
+
+# Cancelled loan
+cb_loan_cancelled = {
+
+	is_triggered_only = yes
+	months = 12
+	nomad = no
+	
+	badboy_factor = 0
+	prestige_factor = 2
+	peace_cost_factor = 0.5
+
+	po_gold = yes
+	po_concede_defeat = yes
+	
+	war_name = FINANCIAL_WAR_NAME
+}
+
+# Hostile spy discovered
+cb_spy_discovered = {
+
+	is_triggered_only = yes
+	months = 12
+	nomad = no
+	
+	badboy_factor = 0
+	prestige_factor = 2
+	peace_cost_factor = 0.5
+
+	po_revoke_cores = yes
+	po_gold = yes
+	po_concede_defeat = yes
+	
+	war_name = SPY_WAR_NAME
+}
+
+# Vassal that broke free
+cb_disloyal_vassal = {
+
+	is_triggered_only = yes
+	months = 120
+	nomad = no
+	
+	badboy_factor = 0
+	prestige_factor = 2
+	peace_cost_factor = 0.5
+	
+	po_become_vassal = yes
+	
+	war_name = VASSAL_WAR_NAME
+}
+
+# Defender of the Faith
+# Unused in the code
+cb_defender_of_the_faith = {
+
+	is_triggered_only = yes
+	months = 12
+	nomad = no
+	
+	badboy_factor = 0
+	prestige_factor = 2
+	peace_cost_factor = 0.5
+
+	po_release_vassals = yes
+	po_release_annexed = yes
+	po_revoke_cores = yes
+	po_reduce_sphere = yes
+	po_gold = yes
+	po_concede_defeat = yes
+	
+	war_name = DOF_WAR_NAME
+}
+
+# A HRE prince has been annexed
+cb_hre_attacked = {
+
+	is_triggered_only = yes
+	months = 60
+	nomad = no
+	
+	badboy_factor = 0.25
+	prestige_factor = 2
+	peace_cost_factor = 0.5
+	
+	allowed_provinces = {
+		hre = yes
+	}
+	
+	po_release_annexed = yes
+	po_release_vassals = yes
+	po_reduce_sphere = yes
+	po_demand_provinces = yes
+	po_gold = yes
+	po_concede_defeat = yes
+	
+	war_name = HRE_DEFENSE_WAR_NAME
+}
+
+# Guaranteeing Independence
+# Unused in the code
+cb_guarantee = {
+
+	is_triggered_only = yes
+	months = 12
+	nomad = no
+	
+	badboy_factor = 0
+	prestige_factor = 2
+	peace_cost_factor = 0.5
+	
+	po_release_vassals = yes
+	po_release_annexed = yes
+	po_reduce_sphere = yes
+	po_revoke_cores = yes
+	po_gold = yes
+	po_concede_defeat = yes
+	
+	war_name = INTERVENTION_WAR_NAME
+}
+
+# Warning CB
+# Unused in the code
+cb_warning = {
+
+	is_triggered_only = yes
+	months = 12
+	nomad = no
+	
+	badboy_factor = 0
+	prestige_factor = 2
+	peace_cost_factor = 0.5
+	
+	po_release_vassals = yes
+	po_release_annexed = yes
+	po_revoke_cores = yes
+	po_reduce_sphere = yes
+	po_gold = yes
+	po_concede_defeat = yes
+	
+	war_name = INTERVENTION_WAR_NAME
+}
+
+# Trade League
+cb_trade_league = {
+
+	is_triggered_only = yes
+	months = 12
+	nomad = no
+
+	badboy_factor = 0
+	prestige_factor = 2
+	peace_cost_factor = 0.5
+
+	po_join_league = yes
+	po_gold = yes
+	po_concede_defeat = yes
+	
+	war_name = TRADE_WAR_NAME
+}
+
+# War of Honor
+cb_insult = {
+
+	is_triggered_only = yes
+	mutual = yes
+	nomad = no
+	
+	months = 12
+
+	badboy_factor = 0
+	prestige_factor = 2
+	peace_cost_factor = 0.5
+
+	po_revoke_cores = yes
+	po_gold = yes
+	po_concede_defeat = yes
+	
+	war_name = INSULT_WAR_NAME
+}
+
+# Dishonored an alliance
+cb_dishonored_call = {
+
+	is_triggered_only = yes
+	months = 36
+	nomad = no
+	
+	badboy_factor = 0
+	prestige_factor = 2
+	peace_cost_factor = 0.5
+
+	po_revoke_cores = yes
+	po_gold = yes
+	po_concede_defeat = yes
+	
+	war_name = INSULT_WAR_NAME
+}
+
+# Restoration of recently broken PU
+cb_restore_personal_union = {
+	
+	is_triggered_only = yes
+	months = 120
+	nomad = no
+	
+	badboy_factor = 0
+	prestige_factor = 1
+	peace_cost_factor = 1
+	
+	po_form_personal_union = yes
+	
+	war_name = UNION_WAR_NAME
+}
+
+# Sphere of Influence
+cb_sphere_of_influence = {
+
+	is_triggered_only = yes
+	mutual = yes
+	months = 24
+	nomad = no
+
+	badboy_factor = 0
+	prestige_factor = 2
+	peace_cost_factor = 0.5
+	
+	po_annul_treaties = yes
+	po_reduce_sphere = yes
+	po_gold = yes
+	po_concede_defeat = yes
+	
+	war_name = INTERVENTION_WAR_NAME
+}
+
+# CB for vassalization missions
+cb_vassalize_mission = {
+	
+	is_triggered_only = yes
+	months = 120
+	nomad = no
+	
+	badboy_factor = 0
+	prestige_factor = 2
+	peace_cost_factor = 0.5
+	
+	po_become_vassal = yes
+	
+	war_name = VASSAL_MISSION_WAR_NAME
+}
+
+# CB for fabricated claims (spy action)
+cb_fabricated_claims = {
+	
+	is_triggered_only = yes
+	months = 12
+	nomad = no
+	
+	badboy_factor = 0.5
+	prestige_factor = 1
+	peace_cost_factor = 1.5
+	
+	po_form_personal_union = yes
+	
+	war_name = UNION_WAR_NAME
+}
+
+# CB for Emperor against HRE members that refuse religious conformance
+cb_religious_conformance = {
+	
+	is_triggered_only = yes
+	months = 24
+	nomad = no
+	
+	badboy_factor = 0
+	prestige_factor = 2
+	peace_cost_factor = 0.5
+	
+	po_change_religion = yes
+	
+	war_name = CONFORMANCE_WAR_NAME
+}
+
+# Friction along a national focus border
+cb_border_war = {
+
+	is_triggered_only = yes
+	months = 12
+	nomad = no
+
+	badboy_factor = 0.5
+	prestige_factor = 1
+	peace_cost_factor = 0.5
+
+	allowed_provinces = {
+		has_national_focus = yes
+		is_capital = no
+		any_neighbor_province = {
+			owned_by = THIS
+		}
+	}
+
+	po_demand_provinces = yes
+	po_concede_defeat = yes
+	
+	war_name = BORDER_WAR_NAME
+}
+
+# Japanese civil war
+jap_civil_war = {
+
+	mutual = yes
+	is_triggered_only = yes
+	nomad = no
+	
+	prestige_factor = 1.5
+	peace_cost_factor = 0.75
+	
+	po_endorse_shogun = yes
+	po_stop_endorse_shogun = yes
+	po_become_kampaku = yes
+		
+	war_name = JAPANESE_CB_NAME
+}
+
+# AUTOMATIC - Constantly in effect while 'prerequisites' is true
+# --------------------------------------------------------------
+
+# Temporary claim CB (mostly used by missions)
+cb_conquest = {
+
+	badboy_factor = 0.25
+	prestige_factor = 1
+	peace_cost_factor = 1.0
+	nomad = no
+	
+	prerequisites = {
+		temp_claim = THIS
+	}
+	
+	allowed_provinces = {
+		temp_claim = THIS
+	}
+
+	po_annex = yes
+	po_demand_provinces = yes
+	
+	war_name = CONQUEST_WAR_NAME
+}
+
+# We can take core provinces at no badboy
+cb_core = {
+
+	mutual = yes
+
+	badboy_factor = 0
+	prestige_factor = 1
+	peace_cost_factor = 0.5
+	nomad = no
+	
+	prerequisites = {
+		core_claim = THIS
+	}
+	
+	allowed_provinces = {
+		is_core = THIS
+	}
+	
+	po_annex = yes
+	po_demand_provinces = yes
+	
+	prov_desc = ALL_CORES
+	war_name = CORE_WAR_NAME
+}
+
+# Aid an ally
+cb_offensive_call = {
+
+	badboy_factor = 0
+	prestige_factor = 2
+	peace_cost_factor = 0.5
+	nomad = no
+	
+	prerequisites = {
+		any_ally = {
+			war_with = THIS
+		}
+		NOT = { war_with = THIS }
+		NOT = { truce_with = THIS }
+	}
+	
+	po_release_vassals = yes
+	po_release_annexed = yes
+	po_reduce_sphere = yes
+	po_revoke_cores = yes
+	po_gold = yes
+	po_concede_defeat = yes
+	
+	war_name = INTERVENTION_WAR_NAME
+}
+
+# Nationalism
+cb_nationalist = {
+
+	mutual = yes
+
+	badboy_factor = 0.5
+	prestige_factor = 2
+	peace_cost_factor = 0.75
+	nomad = no
+	
+	prerequisites = {
+		government_tech = 30
+		culture_group_claim = THIS
+	}
+	
+	allowed_provinces = {
+		culture_group = THIS
+	}
+	
+	po_annex = yes
+	po_demand_provinces = yes
+	
+	country_desc = ALL_CGROUP_COUNTRIES
+	prov_desc = ALL_CGROUP_PROVS
+	war_name = NATION_WAR_NAME
+}
+
+# Napoleonic era imperialism
+cb_imperial = {
+
+	mutual = yes
+
+	badboy_factor = 0.5
+	prestige_factor = 1
+	peace_cost_factor = 0.75
+	nomad = no
+	
+	prerequisites = {
+		OR = {
+			government = revolutionary_empire
+			government = revolutionary_republic
+			government = enlightened_despotism
+			government = republican_dictatorship
+			government = absolute_monarchy
+		}
+	}
+	
+	allowed_provinces = {
+		always = yes
+	}
+	
+	po_annex = yes
+	po_demand_provinces = yes
+	
+	country_desc = ALL_COUNTRIES
+	prov_desc = ALL_PROVS
+	war_name = IMPERIAL_WAR_NAME
+}
+
+# Revolutionary CB
+cb_revolutionary = {
+
+	mutual = yes
+
+	badboy_factor = 0.25
+	prestige_factor = 1
+	peace_cost_factor = 0.5
+	nomad = no
+	
+	prerequisites = {
+		idea = revolution_and_counter
+		OR = {
+			AND = {
+				government = monarchy
+				THIS = { government = republic }
+			}
+			AND = {
+				government = republic
+				NOT = { THIS = { government = republic } }
+			}
+		}
+	}
+	
+	allowed_provinces = {
+		always = yes
+	}
+	
+	po_annex = yes
+	po_demand_provinces = yes
+	
+	country_desc = ALL_GOV_ENEMIES
+	prov_desc = ALL_PROVS
+	war_name = REVOLUTIONARY_WAR_NAME
+}
+
+# Colonialist CB
+cb_colonial = {
+
+	mutual = yes
+
+	badboy_factor = 0.25
+	prestige_factor = 1
+	peace_cost_factor = 0.5
+	nomad = no
+	
+	prerequisites = {
+		idea = quest_for_the_new_world
+		colony_claim = THIS
+	}
+	
+	allowed_provinces = {
+		is_overseas = yes
+		any_neighbor_province = {
+			owned_by = THIS
+		}
+	}
+	
+	po_demand_provinces = yes
+	
+	prov_desc = ALL_ADJ_COLONIES
+	war_name = COLONIAL_WAR_NAME
+}
+
+# Liberation CB
+cb_liberation = {
+
+	badboy_factor = 0
+	prestige_factor = 3
+	peace_cost_factor = 0.5
+	nomad = no
+	
+	prerequisites = {
+		idea = bill_of_rights
+		THIS = {
+			OR = {
+				can_create_vassals = yes
+				num_of_vassals = 1
+			}
+		}
+	}
+	
+	po_release_vassals = yes
+	po_release_annexed = yes
+	po_reduce_sphere = yes
+	
+	country_desc = ALL_OPPRESSORS
+	war_name = LIBERATION_WAR_NAME
+}
+
+# Holy War
+cb_crusade = {
+
+	mutual = yes
+
+	badboy_factor = 0.25
+	prestige_factor = 1.25
+	peace_cost_factor = 1.0
+	nomad = no
+	
+	prerequisites = {
+		OR = {
+			religion_group = christian
+			religion_group = muslim
+		}
+		NOT = { religion_group = THIS }
+		OR = {
+			government = imperial_government
+			defender_of_faith = yes
+			neighbour = THIS
+			AND = {
+				THIS = { is_crusade_target = yes }
+				religion = catholic
+			}
+			idea = deus_vult # Actually "Unam Sanctam"
+			idea = divine_supremacy
+		}
+		NOT = { year = 1650 }
+	}
+	
+	allowed_provinces = {
+		always = yes
+	}
+	
+	po_demand_provinces = yes
+	po_annex = yes
+	
+	country_desc = ALL_INFIDELS
+	prov_desc = ALL_PROVS
+	war_name = CRUSADE_WAR_NAME
+}
+
+# Liberation of same-faith provinces
+cb_religious_liberation = {
+
+	mutual = yes
+
+	badboy_factor = 0.25
+	prestige_factor = 1.25
+	peace_cost_factor = 1.0
+	nomad = no
+	
+	prerequisites = {
+		NOT = { religion_group = christian } # Christians and Muslims get Holy War instead
+		NOT = { religion_group = muslim }
+		NOT = { religion_group = THIS }
+		religion_group_claim = THIS
+		OR = {
+			government = imperial_government
+			defender_of_faith = yes
+			neighbour = THIS
+			idea = deus_vult # Actually "Unam Sanctam"
+			idea = divine_supremacy
+		}
+	}
+	
+	allowed_provinces = {
+		religion_group = THIS
+	}
+	
+	po_demand_provinces = yes
+	po_annex = yes
+	
+	prov_desc = ALL_REL_GROUP_PROVS
+	war_name = RELIGIOUS_WAR_NAME
+}
+
+# Purging of Heresy
+cb_heretic = {
+
+	mutual = yes
+
+	badboy_factor = 0.5
+	prestige_factor = 2
+	peace_cost_factor = 1.0
+	nomad = no
+	
+	prerequisites = {
+		idea = deus_vult # Actually "Unam Sanctam"
+		religion_group = THIS
+		OR = {
+			NOT = { religion = THIS }
+			has_country_modifier = heretic_country
+			THIS = { has_country_modifier = heretic_country }
+		}
+	}
+	
+	allowed_provinces = {
+#		religion = THIS
+		always = yes
+	}
+	
+	po_change_religion = yes
+	po_demand_provinces = yes
+	
+	country_desc = ALL_HERETICS
+	prov_desc = ALL_PROVS
+	war_name = HERETIC_WAR_NAME
+}
+
+# Excommunication War
+cb_excommunication = {
+
+	badboy_factor = 0.25
+	prestige_factor = 1.25
+	peace_cost_factor = 1.0
+	nomad = no
+	
+	prerequisites = {
+		THIS = {
+			excommunicated = yes
+			religion = catholic
+		}
+		religion = catholic
+		excommunicated = no
+	}
+
+	allowed_provinces = {
+		OR = {
+			culture_group = THIS
+			is_core = THIS
+		}
+	}
+
+	po_release_vassals = yes
+	po_release_annexed = yes
+	po_annex = yes
+	po_demand_provinces = yes
+	po_revoke_cores = yes
+	po_become_vassal = yes
+	po_reduce_sphere = yes
+	po_gold = yes
+	po_concede_defeat = yes
+	
+	prov_desc = ALL_CGROUP_PROVS
+	war_name = EXCOM_WAR_NAME
+}
+
+# Trade War
+cb_trade_war = {
+
+	mutual = yes
+
+	badboy_factor = 0
+	prestige_factor = 2
+	peace_cost_factor = 0.5
+	nomad = no
+	
+	prerequisites = {
+		nomad = no				#Do not remove!
+		THIS = { nomad = no }	#Do not remove!
+		OR = {
+			trade_embargo_by = THIS
+			AND = {
+				government = merchant_republic
+				THIS = { government = merchant_republic } 
+			}
+		}
+	}
+
+	po_join_league = yes
+	po_revoke_cores = yes
+	po_gold = yes
+	po_concede_defeat = yes
+	
+	war_name = TRADE_WAR_NAME
+}
+
+# Imperial Ban
+cb_imperial_ban = {
+
+	badboy_factor = 0.1
+	prestige_factor = 2
+	peace_cost_factor = 0.5
+	nomad = no
+	
+	prerequisites = {
+		is_emperor = yes
+		has_global_flag = Reichsreform
+		THIS = {
+			capital_scope = { hre = no }
+			any_owned_province = {
+				hre = yes
+			}
+		}
+	}
+	
+	allowed_provinces = {
+		hre = yes
+		owner = {
+		capital_scope = { hre = no }
+		}
+	}
+
+	po_release_vassals = yes
+	po_release_annexed = yes
+	po_demand_provinces = yes
+	po_reduce_sphere = yes
+	
+	prov_desc = ALL_HRE_PROVS
+	war_name = BAN_WAR_NAME
+}
+
+# Super Badboy
+cb_super_badboy = {
+
+	badboy_factor = 0.25
+	prestige_factor = 1
+	peace_cost_factor = 0.75
+	nomad = no
+	
+	prerequisites = {
+		THIS = { badboy = 1.001 }
+	}
+	
+	allowed_provinces = {
+		always = yes
+	}
+	
+	po_release_vassals = yes
+	po_release_annexed = yes
+	po_annex = yes
+	po_demand_provinces = yes
+	po_revoke_cores = yes
+	po_reduce_sphere = yes
+	po_gold = yes
+	po_concede_defeat = yes
+	
+	prov_desc = ALL_PROVS
+	war_name = PUNITIVE_WAR_NAME
+}
+
+# War on "primitives" (annexable religion)
+cb_primitives = {
+
+	badboy_factor = 0.2
+	prestige_factor = 1
+	peace_cost_factor = 0.5
+	nomad = no
+	
+	prerequisites = {
+		primitives = no
+		THIS = { primitives = yes }
+	}
+	
+	allowed_provinces = {
+		always = yes
+	}
+	
+	po_annex = yes
+	po_demand_provinces = yes
+	po_revoke_cores = yes
+	po_release_vassals = yes
+	po_release_annexed = yes
+	po_reduce_sphere = yes
+	po_gold = yes
+	
+	country_desc = ALL_PRIMITIVES
+	prov_desc = ALL_PROVS
+	war_name = PRIMITIVE_WAR_NAME
+}
+
+# Claim Throne
+cb_claim_throne = {
+
+	badboy_factor = 0.1
+	prestige_factor = 2
+	peace_cost_factor = 1.4
+	nomad = no
+	
+	prerequisites = {
+		nomad = no				#Do not remove!
+		THIS = { nomad = no }	#Do not remove!
+		succession_claim = THIS
+	}
+	
+	allowed_provinces = {
+		always = yes
+	}
+
+	po_form_personal_union = yes
+	
+	prov_desc = ALL_PROVS
+	war_name = THRONE_WAR_NAME
+}
+
+# Horde vs Horde Conquest
+cb_horde_conquest = {
+
+	mutual = yes
+
+	badboy_factor = 0.25
+	prestige_factor = 1
+	peace_cost_factor = 1
+	nomad = no
+	
+	prerequisites = {
+		OR = {
+			government = tribal_despotism
+			government = tribal_federation
+			government = tribal_democracy
+		}
+		THIS = {
+			OR = {
+				government = tribal_despotism
+				government = tribal_federation
+				government = tribal_democracy
+			}
+		}
+		neighbour = THIS
+	}
+	
+	allowed_provinces = {
+		always = yes
+	}
+
+	po_annex = yes
+	po_demand_provinces = yes
+	po_become_vassal = yes
+	po_gold = yes
+	po_change_religion = yes
+	
+	prov_desc = ALL_PROVS
+	war_name = PRIMITIVE_WAR_NAME
+}
+
+# Horde vs Civilized
+cb_horde_vs_civ = {
+
+	mutual = yes
+
+	badboy_factor = 0.5
+	prestige_factor = 1
+	peace_cost_factor = 1
+	nomad = no
+	
+	prerequisites = {
+		OR = {
+			AND = {
+				OR = {
+					government = tribal_despotism
+					government = tribal_federation
+					government = tribal_democracy
+				}
+				THIS = {
+					NOT = {
+						OR = {
+							government = tribal_despotism
+							government = tribal_federation
+							government = tribal_democracy
+						}
+					}
+				}
+			}
+			AND = {
+				NOT = {
+					OR = {
+						government = tribal_despotism
+						government = tribal_federation
+						government = tribal_democracy
+					}
+				}
+				THIS = {
+					OR = {
+						government = tribal_despotism
+						government = tribal_federation
+						government = tribal_democracy
+					}
+				}
+			}
+		}
+		neighbour = THIS
+	}
+	
+	allowed_provinces = {
+		always = yes
+	}
+
+	po_annex = yes
+	po_demand_provinces = yes
+	po_become_vassal = yes
+	po_gold = yes
+	po_change_religion = yes
+	
+	prov_desc = ALL_PROVS
+	war_name = PRIMITIVE_WAR_NAME
+}
+
+# Horde vs Horde Conquest (nomads)
+cb_nomad_conquest = {
+
+	mutual = yes
+
+	badboy_factor = 0.25
+	prestige_factor = 1
+	peace_cost_factor = 1
+	
+	
+	prerequisites = {
+		government = steppe_horde
+		THIS = {
+				government = steppe_horde
+		}
+		neighbour = THIS
+	}
+	
+	allowed_provinces = {
+		always = yes
+	}
+
+	po_annex = yes
+	po_demand_provinces = yes
+	po_become_vassal = yes
+	po_gold = yes
+	po_change_religion = yes
+	
+	prov_desc = ALL_PROVS
+	war_name = PRIMITIVE_WAR_NAME
+}

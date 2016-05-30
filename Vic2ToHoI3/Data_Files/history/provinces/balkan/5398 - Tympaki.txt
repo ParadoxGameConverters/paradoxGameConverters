@@ -1,0 +1,12 @@
+owner = GRE
+controller = GRE
+add_core = GRE
+
+infra = 2
+1941.6.1 = {
+	controller = GER
+}
+#Fortress Crete surrender
+1945.5.12 = {
+	controller = GRE
+}

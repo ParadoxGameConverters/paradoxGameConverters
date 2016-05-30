@@ -1,0 +1,14 @@
+owner = POL
+controller = POL
+add_core = POL
+
+infra = 8
+
+strategic_resource = helium
+
+1939.9.1 = {
+	add_core = GER
+}
+1940.5.10 = {
+	controller = GER
+}

@@ -1,0 +1,3 @@
+owner = JAPcontroller = JAPadd_core = JAPanti_air = 3
+infra = 6naval_base = 1
+1944.2.18 = {	owner = USA	controller = USA	add_core = USA}

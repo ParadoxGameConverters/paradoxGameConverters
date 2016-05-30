@@ -1,0 +1,76 @@
+﻿<local:ViewModelUserControl x:Class="Converter.UI.Views.LogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Converter.UI.Framework"
+             mc:Ignorable="d" 
+             MinWidth="850">
+    <local:ViewModelUserControl.Resources>
+        <Style x:Key="summaryButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+    </local:ViewModelUserControl.Resources>
+    
+    <Grid VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Log:"/>
+        <DataGrid x:Name="LogDataGrid" Grid.Row="1" Grid.ColumnSpan="2"
+                  ItemsSource="{Binding Options.Logger.LogEntries}" 
+                  VerticalAlignment="Stretch" 
+                  HorizontalAlignment="Stretch" 
+                  AutoGenerateColumns="False" 
+                  SelectionMode="Single"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserReorderColumns="False"
+                  CanUserResizeColumns="True"
+                  CanUserResizeRows="True"
+                  CanUserSortColumns="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Time stamp" Width="75" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding LogStamp, StringFormat=T}" Margin="5, 0, 5, 0"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Severity" Width="60" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Severity}" Margin="5, 0, 5, 0"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Source" Width="70" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Source}" Margin="5, 0, 5, 0"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Text" IsReadOnly="True" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding LogText}" Margin="5, 0, 5, 0" TextWrapping="Wrap"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <Button Grid.Row="2" Grid.Column="1" Content="Save configuration file" Style="{StaticResource summaryButtonStyle}" Margin="5, 5, 5, 0" Command="{Binding SaveCommand}"/>
+        <Button Grid.Row="3" Grid.Column="1" Content="Convert" Style="{StaticResource summaryButtonStyle}" Margin="5" Command="{Binding ConvertCommand}"/>
+    </Grid>
+</local:ViewModelUserControl>

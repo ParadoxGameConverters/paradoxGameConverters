@@ -1,0 +1,10 @@
+owner = IRQ
+controller = IRQ
+add_core = IRQ
+points = 2
+energy = 15.00
+crude_oil = 12.00
+anti_air = 1
+infra = 4
+
+1941.5.31 = {	owner = ENG	controller = ENG}

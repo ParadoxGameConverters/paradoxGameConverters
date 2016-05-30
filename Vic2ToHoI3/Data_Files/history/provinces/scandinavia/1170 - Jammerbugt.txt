@@ -1,0 +1,22 @@
+owner = DEN
+controller = DEN
+add_core = DEN
+
+infra = 10
+
+infra = 10
+
+infra = 10
+
+infra = 10
+
+infra = 10
+
+infra = 10
+
+infra = 10
+
+infra = 10
+1940.4.10 = {
+	controller = GER
+}

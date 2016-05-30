@@ -1,0 +1,104 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 155  147  180 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	national_conscripts
+	merchant_adventures
+	humanist_tolerance
+	patron_of_art
+	national_bank
+	national_trade_policy
+	cabinet
+	ecumenism
+	smithian_economics
+	scientific_revolution
+	engineer_corps
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	prussian_uhlan
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Johann Georg #0" = 80
+	"Friedrich #0" = 60
+	"Friedrich August #0" = 60
+	"Albrecht #3" = 40
+	"Christian #0" = 40
+	"Heinrich #4" = 20
+	"Rudolf #2" = 20
+	"August #0" = 20
+	"Ernst #0" = 20
+	"Friedrich Christian #0" = 20
+	"Georg #0" = 20
+	"Moritz #0" = 20
+	"Alexander #0" = 15
+	"Anton #0" = 15
+	"Christian Albrecht #0" = 15
+	"Hektor #0" = 15
+	"Johann #0" = 15
+	"Karl #0" = 15
+	"Clemens Wenzel #0" = 10
+	"Franz Xaver #0" = 10
+	"Joachim #0" = 10
+	"Joseph #0" = 10
+	"Magnus #0" = 10
+	"Maximilian #0" = 10
+	"Severinus #0" = 10
+	"Wolfgang #0" = 10
+	"Alfred #0" = 0
+	"Andreas #0" = 0
+	"Bruno #0" = 0
+	"Burkhard #0" = 0
+	"Günther #0" = 0
+	"Hermann #0" = 0
+	"Kajetan #0" = 0
+	"Lambert #0" = 0
+	"Lukas #0" = 0
+	"Micharl #0" = 0
+	"Reimund #0" = 0
+	"Ulrich #0" = 0
+	"Wilfried #0" = 0
+	"Wolfram #0" = 0
+}
+
+leader_names = {
+	Hergesell Oelssner Rank Teichmann Taut
+	Harzer Dietze Tellig Pilz Winkler Uhlich
+	Uebigau Kranke Bieber "von Rath" Arnim
+	Hamann Kirbach Gödel Oertel Schönfeld
+	Deitz Kuhn Sehm Fischer Bretfeld Rabs
+}
+
+ship_names = {
+	Widukind Edberg Wichman Billing Liedolf
+	Brun "Otto I" "Heinrich I" "Bernhard I"
+	Ordulf Manus Lothar Lothar "Heinrich II"
+}
+
+
+army_names = {
+	"Kurfürstliche Garde" "Armee von $PROVINCE$" 
+}
+
+fleet_names = {
+	"Kurfürstliche Flotte"
+}

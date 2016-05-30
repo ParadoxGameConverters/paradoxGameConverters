@@ -1,0 +1,9 @@
+owner = GUA
+controller = GUA
+add_core = GUA
+
+infra = 6
+
+infra = 6
+
+infra = 6

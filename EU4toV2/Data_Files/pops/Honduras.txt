@@ -1,0 +1,251 @@
+#Honduras Region (352000)
+#Ruled by Central America 1836
+#Tegucigapa (180000/45000 POPS)
+2193 = {
+	aristocrats = {
+		culture = mayan
+		religion = mayan
+		size = 350
+	}
+	
+	aristocrats = {
+		culture = nahua
+		religion = nahuatl
+		size = 300
+	}
+	
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 300
+	}
+
+	clergymen = {
+		culture = mayan
+		religion = mayan
+		size = 150
+	}
+
+	clergymen = {
+		culture = nahua
+		religion = nahuatl
+		size = 150
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 150
+	}
+
+	artisans = {
+		culture = mayan
+		religion = mayan
+		size = 750
+	}
+
+	artisans = {
+		culture = nahua
+		religion = nahuatl
+		size = 750
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 750
+	}
+
+	soldiers = {
+		culture = nahua
+		religion = nahuatl
+		size = 150
+	}
+
+	soldiers = {
+		culture = mayan
+		religion = mayan
+		size = 150
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 150
+	}
+
+	farmers = {
+		culture = nahua
+		religion = nahuatl
+		size = 13700
+	}
+
+	farmers = {
+		culture = mayan
+		religion = mayan
+		size = 13600
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 13600
+	}
+}
+#San Pedro Sula (92000/23000 POPS)
+2194 = {
+	aristocrats = {
+		culture = mayan
+		religion = mayan
+		size = 550
+	}
+
+	clergymen = {
+		culture = mayan
+		religion = mayan
+		size = 225
+	}
+
+	artisans = {
+		culture = mayan
+		religion = mayan
+		size = 1150
+	}
+
+	soldiers = {
+		culture = mayan
+		religion = mayan
+		size = 225
+	}
+
+	farmers = {
+		culture = mayan
+		religion = mayan
+		size = 20850
+	}
+}
+#La Ceiba (68000/17000 POPS)
+2195 = {
+	aristocrats = {
+		culture = mayan
+		religion = mayan
+		size = 225
+	}
+	
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 200
+	}
+
+	clergymen = {
+		culture = mayan
+		religion = mayan
+		size = 100
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 75
+	}
+
+	artisans = {
+		culture = mayan
+		religion = mayan
+		size = 450
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 400
+	}
+
+	soldiers = {
+		culture = mayan
+		religion = mayan
+		size = 100
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 75
+	}
+
+	farmers = {
+		culture = mayan
+		religion = mayan
+		size = 8000
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 7375
+	}
+}
+#Puerto Lempira (12000/3000 POPS)
+2196 = {
+	aristocrats = {
+		culture = mayan
+		religion = mayan
+		size = 40
+	}
+	
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 35
+	}
+
+	clergymen = {
+		culture = mayan
+		religion = mayan
+		size = 25
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 25
+	}
+
+	artisans = {
+		culture = mayan
+		religion = mayan
+		size = 75
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 75
+	}
+
+	soldiers = {
+		culture = mayan
+		religion = mayan
+		size = 15
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 10
+	}
+
+	farmers = {
+		culture = mayan
+		religion = mayan
+		size = 1350
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 1350
+	}
+
+}

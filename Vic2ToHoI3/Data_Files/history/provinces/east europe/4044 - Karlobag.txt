@@ -1,0 +1,13 @@
+owner = YUG
+controller = YUG
+add_core = YUG
+
+infra = 7
+
+
+1941.6.22 = {
+	owner = CRO
+	controller = CRO
+	add_core = CRO
+
+}

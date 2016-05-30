@@ -1,0 +1,76 @@
+country_decisions = {
+
+	french_nation = {
+		potential = {
+			NOT = { tag = SPA }		# Basque is a valid culture for both FRA and SPA
+			NOT = { tag = HRE }
+			NOT = { tag = PAP }
+			NOT = { exists = FRA }
+			NOT = { exists = RFR }
+			OR = {
+				culture_group = french
+				culture_group = basque_group
+				primary_culture = breton
+			}
+		}
+		allow = 
+		{
+			owns = 177	# Maine
+			owns = 179	# Blois
+			owns = 182	# Vermandois
+			owns = 183	# Île-de-France
+			owns = 184	# Orléannais
+			owns = 185	# Othe
+			owns = 186	# Champagne
+			
+			is_core = 177	# Maine
+			is_core = 179	# Blois
+			is_core = 182	# Vermandois
+			is_core = 183	# Île-de-France
+			is_core = 184	# Orléannais
+			is_core = 185	# Othe
+			is_core = 186	# Champagne
+			
+			war = no
+		}
+	  effect = {
+			FRA = {
+				add_core = 167		# Caux
+				add_core = 168		# Normandie
+				add_core = 173		# Saintonge
+				add_core = 177		# Gascogne
+				add_core = 178		# Anjou
+				add_core = 179		# Blois
+				add_core = 180		# Poitou
+				add_core = 182		# Vermandois
+				add_core = 183		# Ile-de-France
+				add_core = 184		# Orléannais
+				add_core = 185		# Othe
+				add_core = 186		# Champagna
+				add_core = 190		# Bourbon
+				add_core = 194		# Périgord
+				add_core = 195		# Limousin
+				add_core = 196		# Toulouse
+				add_core = 198		# Rouergue
+				add_core = 199		# Auvergne
+				add_core = 200		# Avignon
+				add_core = 1743		# Cambray
+				add_core = 1879		# Alencon
+			}
+			merchants = 1
+			random_owned = {
+				base_tax = 1
+			}
+			centralization_decentralization = -2
+			prestige = 0.05
+			change_tag = FRA
+			FRA = {
+				capital = 183
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+}

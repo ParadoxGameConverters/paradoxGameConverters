@@ -1,0 +1,95 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 84  152  93 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill 
+	battlefield_commisions
+	colonial_ventures
+	grand_army
+	espionage
+	merchant_adventures
+	engineer_corps
+	national_trade_policy
+	patron_of_art
+	bureaucracy
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Ram Raja #0" = 20
+	"Int'araja #0" = 20
+	"Boromoraja #1" = 20
+	"Boromo Trailokanat #0" = 20
+	"Rama T'ibodi #2" = 20
+	"Ratsada #0" = 20
+	"P'rajai #0" = 20
+	"Keo Fa #0" = 20
+	"Khun Worawongsa #0" = 20
+	"Maha Chakkrap'at #0" = 20
+	"Mahin #0" = 20
+	"Maha Thammaraja #0" = 20
+	"Naresuen #0" = 20
+	"Ekat'otsarat #0" = 20
+	"Songtham Int'araja #1" = 20
+	"Jett'atirat #0" = 20
+	"At'ityawang #0" = 20
+	"Prasat T'ang #0" = 20
+	"Chao Fa Jai #0" = 20
+	"Sri Suthammaraja #0" = 20
+	"Narai #0" = 20
+	"P'ra P'etraja #0" = 20
+	"P'rachao Sua #0" = 20
+	"Boromakot T'ammaraja #0" = 20
+	"Ut'ump'on #0" = 20
+	"Ekat'at Boromaraja #0" = 20
+	"Phya Taksin #0" = 20
+	"Rama #0" = 20
+	"Nari #0" = 20
+	"Boromaratcha #0" = 20
+	"Naresuan #0" = 20
+	"Ramesuan #0" = 20
+	"Songtham #0" = 20
+}
+
+leader_names = {
+	Akradej Ariyanuntaka 
+	Boonmee 
+	Chaipatana Chakrabonse Chuasiriporn 
+	Diskul 
+	Ekaluck 
+	Hitapot 
+	Inchareon 
+	Kawrungruang Khuntilanont Klinpraneet Kriangsak 
+	Monkoltham 
+	Nitpattanasai Noppachorn Nut 
+	Panomyaong Phatipatanawong 
+	Sitdhirasdr Sivaraksa Srichure Supachai Supasawat 
+	Tantasatityanon Thabchumpon Tomson 
+	Wongrutiyan 
+	Yongchaiyudh 
+}
+
+ship_names = {
+	Ramithibodi Ramesuan Borommaracha "Thong Chan"
+	Ramaratcha Intharatcha Boromtrailokanat Ratsada
+	Chairacha Yotfa Worawongsa Chakkraphat Mahin
+	Sanpet Naresuan Ekathotsarot "Si Saowaphak"
+	Songtham Chehha "Somdet Phra" "Prasat Thong" Chai
+	Suthammaracha Narai Petratcha Süa Phumintharacha
+	Uthumpon Ekkathat
+}

@@ -1,0 +1,141 @@
+#Country Name: Please see filename.
+
+graphical_culture = indiangfx
+
+color = { 80  165  10 }
+
+historical_ideas = {
+	national_conscripts
+	military_drill
+	glorious_arms
+	battlefield_commisions
+	shrewd_commerce_practise
+	grand_army
+	merchant_adventures
+	engineer_corps
+	espionage
+	national_trade_policy
+	cabinet
+	smithian_economics
+}
+
+historical_units = {
+	indian_footsoldier
+	indian_archers
+	indian_arquebusier
+	mughal_mansabdar
+	indian_elephant
+	indian_shock_cavalry
+	rajput_musketeer
+	south_indian_musketeer
+	reformed_mughal_musketeer
+	reformed_mughal_mansabdar
+	tipu_sultan_rocket
+	indian_rifle
+}
+
+monarch_names = {
+	"Sriranga #0" = 60
+	"Narasimha #1" = 40
+	"Venkata #1" = 40
+	"Virupaksha #0" = 20
+	"Devaraya #0" = 20
+	"Vijaya #1" = 20
+	"Praudha #0" = 20
+	"Thimma #0" = 20
+	"Viranarasimha #0" = 20
+	"Krishna #0" = 20
+	"Achyuta #0" = 20
+	"Sadashiva #0" = 20
+	"Tirumala #0" = 20
+	"Rama #0" = 20
+	"Jagga #0" = 10
+	"Yethiraja #0" = 10
+	"Aliya Rama #0" = 5
+	"Tuluva #0" = 5
+	"Harihara #1" = 1
+	"Bukka #1" = 1
+	"Deva #2" = 1
+	"Ramachandra #1" = 1
+	"Vira Vijaya Bukka #0" = 1
+	"Mallikarjuna #0" = 1
+	"Adarsh #0" = 0
+	"Budhil #0" = 0
+	"Chaitanya #0" = 0
+	"Devarsi #0" = 0
+	"Devilal #0" = 0
+	"Gunda #0" = 0
+	"Hridaynath #0" = 0
+	"Kaushal #0" = 0
+	"Manprasad #0" = 0
+	"Markandeya #0" = 0
+	"Pranet #0" = 0
+	"Prabuddha #0" = 0
+	"Purandaradasa #0" = 0
+	"Rishi #0" = 0
+	"Sarasvat #0" = 0
+	"Sivvappa #0" = 0
+	"Thanjavur #0" = 0
+	"Thirumalai #0" = 0
+	"Timma #0" = 0
+	"Utkarsh #0" = 0
+	"Vikrant #0" = 0
+	"Yachama #0" = 0
+	"Nusrat #0" = 20
+	"Sayyid Khidr #0" = 20
+	"Daulat Khan #0" = 20
+	"Khidr Khan #0" = 20
+	"Mubarrak Shah #1" = 30
+	"Mohammed Shah #3" = 40
+	"Aladdin Alam Shah #0" = 10
+	"Bahlûl Ludi #0" = 20
+	"Saikander #0" = 20
+	"Ibrahim #1" = 20
+	"Sher Shah #0" = 20
+	"Islam Shah #0" = 20
+}
+
+leader_names = {
+	Keshaw
+	Ghemawat
+	Dasari
+	Chatterji
+	Malini
+	Mallikarjun
+	Chittoor
+	Jeoomal
+	Mayekar
+	Padmesh
+	Ali
+	Azad
+	Bhutto
+	Hussein
+	Jahan
+	Khan
+	Lodi
+	Lohia
+	Musharif
+	Nagar
+	Nazimuddin
+	Ra'ana
+	Sharma
+	Sinan
+	Singh
+	Sharif
+	Viqar-ul-Mulk
+}
+
+ship_names = {
+	Amirtha Amman Arul Bharatapuza
+	Bhavani Bhima Chellam Devi Durga
+	Gayatri Godavari Iniya Kabani
+	Kaveri Krishna Lakshmi Madhu
+	Meenakshi Nalini Pambar Parvati
+	Periyar Ponni Radha Ratri Sarasvati
+	Sita Tamarai Tungabhadra
+	Alia Chambal Fatimah Jalsena Ganges
+	"Kala Jahazi" Khan "Lal Jahazi"
+	Nausena "Nav ka Yudh" Niknaz
+	"Nila Jahazi" Niloufa Noor Sagar
+	Spiti Yamuna Yasmine
+}

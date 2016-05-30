@@ -1,0 +1,7 @@
+owner = SAF
+controller = SAF
+add_core = SAF
+metal = 4.00
+infra = 4
+
+infra = 6

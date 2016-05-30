@@ -1,0 +1,13 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+
+coastal_fort = 1
+anti_air = 2
+infra = 4
+industry = 1
+air_base = 2
+naval_base = 3
+
+infra = 7
+points = 2

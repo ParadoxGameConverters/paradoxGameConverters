@@ -1,0 +1,9 @@
+owner = MON
+controller = MON
+add_core = MON
+
+infra = 3
+
+infra = 3
+
+infra = 3

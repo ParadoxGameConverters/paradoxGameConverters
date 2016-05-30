@@ -1,0 +1,13 @@
+owner = ECU
+controller = ECU
+add_core = ECU
+points = 2
+metal = 5.00
+energy = 10.00
+rare_materials = 3.00
+industry = 5
+anti_air = 2
+infra = 6
+air_base = 1
+manpower = 3.00
+leadership = 0.30

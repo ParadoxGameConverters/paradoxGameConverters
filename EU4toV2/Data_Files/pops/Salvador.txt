@@ -1,0 +1,66 @@
+#Salvador Region (416000)
+#Ruled by Central America 1836
+#San Salvador (260000/65000 POPS)
+2191 = {
+	aristocrats = {
+		culture = nahua
+		religion = nahuatl
+		size = 1425
+	}
+
+	clergymen = {
+		culture = nahua
+		religion = nahuatl
+		size = 650
+	}
+
+	artisans = {
+		culture = nahua
+		religion = nahuatl
+		size = 3250
+	}
+
+	soldiers = {
+		culture = nahua
+		religion = nahuatl
+		size = 1100
+	}
+
+	farmers = {
+		culture = nahua
+		religion = nahuatl
+		size = 58625
+	}
+}
+#San Miguel (156000/44000 POPS)
+2192 = {
+	aristocrats = {
+		culture = nahua
+		religion = nahuatl
+		size = 950
+	}
+
+	clergymen = {
+		culture = nahua
+		religion = nahuatl
+		size = 450
+	}
+
+	artisans = {
+		culture = nahua
+		religion = nahuatl
+		size = 2200
+	}
+
+	soldiers = {
+		culture = nahua
+		religion = nahuatl
+		size = 450
+	}
+
+	farmers = {
+		culture = nahua
+		religion = nahuatl
+		size = 39950
+	}
+}

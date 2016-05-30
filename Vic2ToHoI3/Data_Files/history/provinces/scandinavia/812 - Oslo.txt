@@ -1,0 +1,22 @@
+owner = NOR
+controller = NOR
+add_core = NOR
+
+points = 5
+energy = 4.00
+industry = 7
+coastal_fort = 3
+land_fort = 0
+anti_air = 2
+infra = 8
+air_base = 4
+naval_base = 10
+manpower = 7.00
+leadership = 0.70
+1940.5.10 = {
+	controller = GER
+
+}
+1941.6.22 = {
+	controller = GER
+}

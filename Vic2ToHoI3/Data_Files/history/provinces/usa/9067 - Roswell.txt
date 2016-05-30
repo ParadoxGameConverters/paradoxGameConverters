@@ -1,0 +1,6 @@
+owner = USA
+controller = USA
+add_core = USA
+crude_oil = 24.00
+rare_materials = 10.00
+infra = 8

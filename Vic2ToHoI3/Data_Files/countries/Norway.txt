@@ -1,0 +1,773 @@
+color = { 111  71  71 }
+graphical_culture = Generic
+
+last_election = 1933.10.8
+duration = 36
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1. Infanteridivisjon" "2. Infanteridivisjon" "3. Infanteridivisjon" "4. Infanteridivisjon" "5. Infanteridivisjon" "6. Infanteridivisjon" "7. Infanteridivisjon" "8. Infanteridivisjon" "9. Infanteridivisjon" "10. Infanteridivisjon" "11. Infanteridivisjon" 
+		"12. Infanteridivisjon" "13. Infanteridivisjon" "14. Infanteridivisjon" "15. Infanteridivisjon" "16. Infanteridivisjon" "17. Infanteridivisjon" "18. Infanteridivisjon" "19. Infanteridivisjon" "20. Infanteridivisjon" "21. Infanteridivisjon" "22. Infanteridivisjon" 
+		"23. Infanteridivisjon" "24. Infanteridivisjon" "25. Infanteridivisjon" "26. Infanteridivisjon" "27. Infanteridivisjon" "28. Infanteridivisjon" "29. Infanteridivisjon" "30. Infanteridivisjon" 
+	}
+	cavalry_brigade = {
+		"1. Dragondivisjon" "2. Dragondivisjon" "3. Dragondivisjon" "4. Dragondivisjon" "5. Dragondivisjon" "6. Dragondivisjon" "7. Dragondivisjon" "8. Dragondivisjon" "9. Dragondivisjon" "10. Dragondivisjon" 
+	}
+	motorized_brigade = {
+		"1. Motoriserte Infanteridivisjon" "2. Motoriserte Infanteridivisjon" "3. Motoriserte Infanteridivisjon" "4. Motoriserte Infanteridivisjon" "5. Motoriserte Infanteridivisjon" "6. Motoriserte Infanteridivisjon" "7. Motoriserte Infanteridivisjon" "8. Motoriserte Infanteridivisjon" "9. Motoriserte Infanteridivisjon" "10. Motoriserte Infanteridivisjon" "11. Motoriserte Infanteridivisjon" 
+		"12. Motoriserte Infanteridivisjon" "13. Motoriserte Infanteridivisjon" "14. Motoriserte Infanteridivisjon" "15. Motoriserte Infanteridivisjon" 
+	}
+	mechanized_brigade = {
+		"1. Mekaniserte Infanteridivisjon" "2. Mekaniserte Infanteridivisjon" "3. Mekaniserte Infanteridivisjon" "4. Mekaniserte Infanteridivisjon" "5. Mekaniserte Infanteridivisjon" "6. Mekaniserte Infanteridivisjon" "7. Mekaniserte Infanteridivisjon" "8. Mekaniserte Infanteridivisjon" "9. Mekaniserte Infanteridivisjon" "10. Mekaniserte Infanteridivisjon" "11. Mekaniserte Infanteridivisjon" 
+		"12. Mekaniserte Infanteridivisjon" "13. Mekaniserte Infanteridivisjon" "14. Mekaniserte Infanteridivisjon" "15. Mekaniserte Infanteridivisjon" 
+	}
+	light_armor_brigade = {
+		"1. Panser Divisjon" "2. Panser Divisjon" "3. Panser Divisjon" "4. Panser Divisjon" "5. Panser Divisjon" "6. Panser Divisjon" "7. Panser Divisjon" "8. Panser Divisjon" "9. Panser Divisjon" "10. Panser Divisjon" "11. Panser Divisjon" 
+		"12. Panser Divisjon" "13. Panser Divisjon" "14. Panser Divisjon" "15. Panser Divisjon" 
+	}
+	armor_brigade = {
+		"1. Panser Divisjon" "2. Panser Divisjon" "3. Panser Divisjon" "4. Panser Divisjon" "5. Panser Divisjon" "6. Panser Divisjon" "7. Panser Divisjon" "8. Panser Divisjon" "9. Panser Divisjon" "10. Panser Divisjon" "11. Panser Divisjon" 
+		"12. Panser Divisjon" "13. Panser Divisjon" "14. Panser Divisjon" "15. Panser Divisjon" 
+	}
+	paratrooper_brigade = {
+		"1. Fallskjermsjegerdivisjon" "2. Fallskjermsjegerdivisjon" "3. Fallskjermsjegerdivisjon" "4. Fallskjermsjegerdivisjon" "5. Fallskjermsjegerdivisjon" "6. Fallskjermsjegerdivisjon" "7. Fallskjermsjegerdivisjon" "8. Fallskjermsjegerdivisjon" "9. Fallskjermsjegerdivisjon" "10. Fallskjermsjegerdivisjon" 
+	}
+	marine_brigade = {
+		"1. Marineinfanteri Divisjon" "2. Marineinfanteri Divisjon" "3. Marineinfanteri Divisjon" "4. Marineinfanteri Divisjon" "5. Marineinfanteri Divisjon" "6. Marineinfanteri Divisjon" "7. Marineinfanteri Divisjon" "8. Marineinfanteri Divisjon" "9. Marineinfanteri Divisjon" "10. Marineinfanteri Divisjon" "11. Marineinfanteri Divisjon" 
+		"12. Marineinfanteri Divisjon" "13. Marineinfanteri Divisjon" "14. Marineinfanteri Divisjon" 
+	}
+	bergsjaeger_brigade = {
+		"1. Bergdivisjon" "2. Bergdivisjon" "3. Bergdivisjon" "4. Bergdivisjon" "5. Bergdivisjon" "6. Bergdivisjon" "7. Bergdivisjon" "8. Bergdivisjon" "9. Bergdivisjon" "10. Bergdivisjon" "11. Bergdivisjon" 
+		"12. Bergdivisjon" "13. Bergdivisjon" "14. Bergdivisjon" "15. Bergdivisjon" "16. Bergdivisjon" "17. Bergdivisjon" "18. Bergdivisjon" "19. Bergdivisjon" "20. Bergdivisjon" 
+	}
+	garrison_brigade = {
+		"1. Infanteridivisjon" "2. Infanteridivisjon" "3. Infanteridivisjon" "4. Infanteridivisjon" "5. Infanteridivisjon" "6. Infanteridivisjon" "7. Infanteridivisjon" "8. Infanteridivisjon" "9. Infanteridivisjon" "10. Infanteridivisjon" "11. Infanteridivisjon" 
+		"12. Infanteridivisjon" "13. Infanteridivisjon" "14. Infanteridivisjon" "15. Infanteridivisjon" "16. Infanteridivisjon" "17. Infanteridivisjon" "18. Infanteridivisjon" "19. Infanteridivisjon" "20. Infanteridivisjon" "21. Infanteridivisjon" "22. Infanteridivisjon" 
+		"23. Infanteridivisjon" "24. Infanteridivisjon" "25. Infanteridivisjon" "26. Infanteridivisjon" "27. Infanteridivisjon" "28. Infanteridivisjon" "29. Infanteridivisjon" "30. Infanteridivisjon" 
+	}
+	hq_brigade = {
+		"1. Hær" "2. Hær" "3. Hær" "4. Hær" "5. Hær" "6. Hær" "7. Hær" "8. Hær" 
+	}
+	militia_brigade = {
+		"Heimevernets 1. Divisjon" "Heimevernets 2. Divisjon" "Heimevernets 3. Divisjon" "Heimevernets 4. Divisjon" "Heimevernets 5. Divisjon" "Heimevernets 6. Divisjon" "Heimevernets 7. Divisjon" "Heimevernets 8. Divisjon" "Heimevernets 9. Divisjon" "Heimevernets 10. Divisjon" "Heimevernets 11. Divisjon" 
+		"Heimevernets 12. Divisjon" "Heimevernets 13. Divisjon" "Heimevernets 14. Divisjon" "Heimevernets 15. Divisjon" "Heimevernets 16. Divisjon" "Heimevernets 17. Divisjon" "Heimevernets 18. Divisjon" "Heimevernets 19. Divisjon" "Heimevernets 20. Divisjon" 
+	}
+	multi_role = {
+		"1. Fornebu Jagergruppe" "2. Jagergruppe" "3. Jagergruppe" "4. Jagergruppe" "5. Jagergruppe" "6. Jagergruppe" "7. Jagergruppe" "8. Jagergruppe" "9. Jagergruppe" "10. Jagergruppe" 
+	}
+	interceptor = {
+		"1. Fornebu Jagergruppe" "2. Jagergruppe" "3. Jagergruppe" "4. Jagergruppe" "5. Jagergruppe" "6. Jagergruppe" "7. Jagergruppe" "8. Jagergruppe" "9. Jagergruppe" "10. Jagergruppe" 
+	}
+	strategic_bomber = {
+		"1. Strategiske Flyvegruppe" "2. Strategiske Flyvegruppe" "3. Strategiske Flyvegruppe" "4. Strategiske Flyvegruppe" "5. Strategiske Flyvegruppe" "6. Strategiske Flyvegruppe" "7. Strategiske Flyvegruppe" "8. Strategiske Flyvegruppe" "9. Strategiske Flyvegruppe" "10. Strategiske Flyvegruppe" 
+	}
+	tactical_bomber = {
+		"1. Taktiske Flyvegruppe" "2. Taktiske Flyvegruppe" "3. Taktiske Flyvegruppe" "4. Taktiske Flyvegruppe" "5. Taktiske Flyvegruppe" "6. Taktiske Flyvegruppe" "7. Taktiske Flyvegruppe" "8. Taktiske Flyvegruppe" "9. Taktiske Flyvegruppe" "10. Taktiske Flyvegruppe" 
+	}
+	naval_bomber = {
+		"Marinens 1. Bombeflygruppe" "Marinens 2. Bombeflygruppe" "Marinens 3. Bombeflygruppe" "Marinens 4. Bombeflygruppe" "Marinens 5. Bombeflygruppe" "Marinens 6. Bombeflygruppe" "Marinens 7. Bombeflygruppe" "Marinens 8. Bombeflygruppe" "Marinens 9. Bombeflygruppe" "Marinens 10. Bombeflygruppe" "Marinens 1. Torpedoflygruppe" 
+		"Marinens 2. Torpedoflygruppe" "Marinens 3. Torpedoflygruppe" "Marinens 4. Torpedoflygruppe" "Marinens 5. Torpedoflygruppe" "Marinens 6. Torpedoflygruppe" "Marinens 7. Torpedoflygruppe" "Marinens 8. Torpedoflygruppe" "Marinens 9. Torpedoflygruppe" "Marinens 10. Torpedoflygruppe" 
+	}
+	cas = {
+		"Hærens 1. Bombeflygruppe" "Hærens 2. Bombeflygruppe" "Hærens 3. Bombeflygruppe" "Hærens 4. Bombeflygruppe" "Hærens 5. Bombeflygruppe" "Hærens 6. Bombeflygruppe" "Hærens 7. Bombeflygruppe" "Hærens 8. Bombeflygruppe" "Hærens 9. Bombeflygruppe" "Hærens 10. Bombeflygruppe" 
+	}
+	transport_plane = {
+		"Hærens 1. Transportgruppe" "Hærens 2. Transportgruppe" "Hærens 3. Transportgruppe" "Hærens 4. Transportgruppe" "Hærens 5. Transportgruppe" 
+	}
+	battleship = {
+		"KNM Vestlandet" "KNM Finnmark" "KNM Norge" "KNM Eidsvold" "KNM Akershus" "KNM Bergen" "KNM Nidaros" "KNM Narvik" "KNM Tordenskjold" "KNM Harald Hårfagre" 
+	}
+	light_cruiser = {
+		"KNM Norge" "KNM Eidsvold" "KNM Akershus" "KNM Bergen" "KNM Nidaros" "KNM Narvik" "KNM Tordenskjold" "KNM Harald Hårfagre" 
+	}
+	heavy_cruiser = {
+		"KNM Norge" "KNM Eidsvold" "KNM Akershus" "KNM Bergen" "KNM Nidaros" "KNM Narvik" "KNM Tordenskjold" "KNM Harald Hårfagre" 
+	}
+	battlecruiser = {
+		"KNM Vestlandet" "KNM Finnmark" "KNM Norge" "KNM Eidsvold" "KNM Akershus" "KNM Bergen" "KNM Nidaros" "KNM Narvik" "KNM Tordenskjold" "KNM Harald Hårfagre" 
+	}
+	destroyer = {
+		"1. Destroyereskadre" "2. Destroyereskadre" "3. Destroyereskadre" "4. Destroyereskadre" "5. Destroyereskadre" "6. Destroyereskadre" "7. Destroyereskadre" "8. Destroyereskadre" "9. Destroyereskadre" "10. Destroyereskadre" "11. Destroyereskadre" 
+		"12. Destroyereskadre" "13. Destroyereskadre" "14. Destroyereskadre" "15. Destroyereskadre" "16. Destroyereskadre" "17. Destroyereskadre" "18. Destroyereskadre" "19. Destroyereskadre" "20. Destroyereskadre" 
+	}
+	carrier = {
+		"KNM Eidsvold" "KNM Olav den Hellige" "KNM Haakon Haakonsson" "KNM Sigurd Jorsalfar" "KNM Norge" "KNM Eidsvold" "KNM Akershus" "KNM Bergen" "KNM Nidaros" "KNM Narvik" "KNM Tordenskjold" 
+		"KNM Harald Hårfagre" 
+	}
+	escort_carrier = {
+		"KNM Uredd" "KNM Ula" "KNM Utsira" "KNM Utstein" "KNM Utvær" "KNM Uthaug" 
+	}
+	submarine = {
+		"1. Undervannsbåteskadre" "2. Undervannsbåteskadre" "3. Undervannsbåteskadre" "4. Undervannsbåteskadre" "5. Undervannsbåteskadre" "6. Undervannsbåteskadre" "7. Undervannsbåteskadre" "8. Undervannsbåteskadre" "9. Undervannsbåteskadre" "10. Undervannsbåteskadre" "11. Undervannsbåteskadre" 
+		"12. Undervannsbåteskadre" "13. Undervannsbåteskadre" "14. Undervannsbåteskadre" "15. Undervannsbåteskadre" "16. Undervannsbåteskadre" "17. Undervannsbåteskadre" "18. Undervannsbåteskadre" "19. Undervannsbåteskadre" "20. Undervannsbåteskadre" 
+	}
+	transport_ship = {
+		"Marinens 1. Transporteskadre" "Marinens 2. Transporteskadre" "Marinens 3. Transporteskadre" "Marinens 4. Transporteskadre" "Marinens 5. Transporteskadre" "Marinens 6. Transporteskadre" "Marinens 7. Transporteskadre" "Marinens 8. Transporteskadre" "Marinens 9. Transporteskadre" "Marinens 10. Transporteskadre" "Marinens 11. Transporteskadre" 
+		"Marinens 12. Transporteskadre" "Marinens 13. Transporteskadre" "Marinens 14. Transporteskadre" "Marinens 15. Transporteskadre" "Marinens 16. Transporteskadre" "Marinens 17. Transporteskadre" "Marinens 18. Transporteskadre" "Marinens 19. Transporteskadre" "Marinens 20. Transporteskadre" 
+	}
+
+}
+
+ministers = {
+	14001 = {
+		name = "Haakon VII"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M14001
+		head_of_state = pig_headed_isolationist
+		start_date = 1936.1.1
+	}
+	14002 = {
+		name = "Johan Nygaardsvold"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M14002
+		head_of_government = ambitious_union_boss
+		start_date = 1936.1.1
+	}
+	14003 = {
+		name = "Halvdan Koht"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M14003
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	14004 = {
+		name = "Adolf Indrebø"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M14004
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	14005 = {
+		name = "Trygve H. Lie"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M14005
+		minister_of_security = man_of_the_people
+		foreign_minister = iron_fisted_brute
+		start_date = 1936.1.1
+	}
+	14006 = {
+		name = "Alfred Roscher-Lund"
+		ideology = social_democrat
+		loyalty = 0.50
+		picture = M14006
+		minister_of_intelligence = research_specialist
+		start_date = 1936.1.1
+	}
+	14007 = {
+		name = "Otto Ruge"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M14075
+		chief_of_staff = school_of_defence
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	14008 = {
+		name = "Kristian K. Laake"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M14008
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	14009 = {
+		name = "Jacob von der Lippe"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M14009
+		chief_of_navy = indirect_approach_doctrine
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	14034 = {
+		name = "Erling Sandberg"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M14014
+		head_of_state = autocratic_charmer
+		armament_minister = infantry_proponent
+		minister_of_security = compassionate_gentleman
+		start_date = 1945.1.1
+	}
+	14036 = {
+		name = "C.J. Hambro"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M14036
+		head_of_government = silent_workhorse
+		foreign_minister = great_compromiser
+		start_date = 1937.1.1
+	}
+	14037 = {
+		name = "Einar Gerhardsen"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M14037
+		head_of_government = political_protege
+		start_date = 1941.1.1
+	}
+	14038 = {
+		name = "Adolf Worm-Müller"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M14038
+		head_of_government = happy_amateur
+		start_date = 1941.1.1
+	}
+	14039 = {
+		name = "Paal Berg"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M14039
+		head_of_government = backroom_backstabber
+		foreign_minister = great_compromiser
+		start_date = 1945.1.1
+	}
+	14040 = {
+		name = "Anders Lange"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M14040
+		head_of_government = happy_amateur
+		start_date = 1945.1.1
+	}
+	14042 = {
+		name = "Halvard Manthey Lange"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M14042
+		foreign_minister = general_staffer
+		start_date = 1945.1.1
+	}
+	14043 = {
+		name = "J. L. Mowinckel"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M14043
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	14045 = {
+		name = "Erik Andreas Colban"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M14045
+		foreign_minister = great_compromiser
+		start_date = 1938.1.1
+	}
+	14047 = {
+		name = "Rolf Andvord"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M14047
+		foreign_minister = apologetic_clerk
+		start_date = 1945.1.1
+	}
+	14048 = {
+		name = "Albert Viljam Hagelin"
+		ideology = fascistic
+		loyalty = 0.50
+		picture = M14048
+		foreign_minister = biased_intellectual
+		armament_minister = tank_proponent
+		start_date = 1942.1.1
+	}
+	14049 = {
+		name = "Adam Egede Nissen"
+		ideology = stalinist
+		loyalty = 0.50
+		picture = M14021
+		foreign_minister = iron_fisted_brute
+		head_of_state = insignificant_layman
+		start_date = 1941.1.1
+	}
+	14050 = {
+		name = "Finn Hagerup"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M14050
+		armament_minister = submarine_proponent
+		start_date = 1937.1.1
+	}
+	14051 = {
+		name = "Oscar F. Torp"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M14051
+		armament_minister = resource_industrialist
+		head_of_government = smiling_oilman
+		start_date = 1939.1.1
+	}
+	14052 = {
+		name = "Fredrik Monsen"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M14052
+		armament_minister = tank_proponent
+		start_date = 1940.1.1
+	}
+	14053 = {
+		name = "Jens Christian Hauge"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M14053
+		armament_minister = military_entrepreneur
+		start_date = 1940.1.1
+	}
+	14054 = {
+		name = "Erik Brofoss"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M14054
+		armament_minister = air_superiority_proponent
+		start_date = 1945.1.1
+	}
+	14055 = {
+		name = "Frederic Beichmann"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M14055
+		armament_minister = infantry_proponent
+		start_date = 1936.1.1
+	}
+	14056 = {
+		name = "Johan H. Andresen"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M14056
+		armament_minister = resource_industrialist
+		start_date = 1938.1.1
+	}
+	14057 = {
+		name = "Benjamin Vogt"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M14057
+		armament_minister = battle_fleet_proponent
+		start_date = 1940.1.1
+	}
+	14058 = {
+		name = "Michael Hansson"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M14058
+		armament_minister = strategic_air_proponent
+		start_date = 1941.1.1
+	}
+	14060 = {
+		name = "Gunnar Jahn"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M14060
+		armament_minister = laissez_faires_capitalist
+		minister_of_intelligence = industrial_specialist
+		start_date = 1945.1.1
+	}
+	14062 = {
+		name = "Fredrik Prytz"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M14062
+		armament_minister = submarine_proponent
+		start_date = 1942.1.1
+	}
+	14063 = {
+		name = "Carl Fröhlich Hansen"
+		ideology = fascistic
+		loyalty = 0.50
+		picture = M14063
+		armament_minister = military_entrepreneur
+		minister_of_intelligence = industrial_specialist
+		start_date = 1943.1.1
+	}
+	14064 = {
+		name = "Emil Lövlien"
+		ideology = stalinist
+		loyalty = 0.50
+		picture = M14022
+		armament_minister = military_entrepreneur
+		head_of_government = smiling_oilman
+		start_date = 1945.1.1
+	}
+	14065 = {
+		name = "Terje Wold"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M14065
+		minister_of_security = silent_lawyer
+		start_date = 1939.1.1
+	}
+	14066 = {
+		name = "Asbjørn Bryhn"
+		ideology = social_democrat
+		loyalty = 0.50
+		picture = M14066
+		minister_of_security = crime_fighter
+		start_date = 1943.1.1
+	}
+	14067 = {
+		name = "Haakon Lie"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M14067
+		minister_of_security = prince_of_terror
+		start_date = 1945.1.1
+	}
+	14068 = {
+		name = "Arne Sunde"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M14068
+		minister_of_security = silent_lawyer
+		start_date = 1937.1.1
+	}
+	14070 = {
+		name = "Rolf Fuglesang"
+		ideology = fascistic
+		loyalty = 0.25
+		picture = M14070
+		minister_of_security = efficient_sociopath
+		start_date = 1942.1.1
+	}
+	14071 = {
+		name = "Bertram Dybwad Brochmann"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M14071
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	14072 = {
+		name = "Vilhelm Evang"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M14072
+		minister_of_intelligence = political_specialist
+		start_date = 1943.1.1
+	}
+	14074 = {
+		name = "Karl A. Marthinsen"
+		ideology = national_socialist
+		loyalty = 0.50
+		picture = M14074
+		minister_of_intelligence = dismal_enigma
+		start_date = 1944.1.1
+	}
+	14075 = {
+		name = "Birger Ljungberg"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M14007
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	14076 = {
+		name = "Birger Frederik Motzfeldt"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M14076
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1944.1.1
+	}
+	14077 = {
+		name = "Johan Beichmann"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M14077
+		chief_of_staff = school_of_mass_combat
+		start_date = 1942.1.1
+	}
+	14078 = {
+		name = "Wilhelm von Tangen-Hansteen"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M14078
+		chief_of_staff = school_of_fire_support
+		start_date = 1946.1.1
+	}
+	14079 = {
+		name = "Halvor Hansson"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M14079
+		chief_of_staff = school_of_psychology
+		start_date = 1946.1.1
+	}
+	14081 = {
+		name = "Olav av Norge"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M14081
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1943.1.1
+	}
+	14082 = {
+		name = "Jørgen Bakke"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M14082
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1942.1.1
+	}
+	14083 = {
+		name = "Henry Diesen"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M14083
+		chief_of_navy = open_seas_doctrine
+		start_date = 1937.1.1
+	}
+	14084 = {
+		name = "Gunner Hovdenak"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M14084
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1941.1.1
+	}
+	14085 = {
+		name = "Christopher Meyer"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M14085
+		chief_of_navy = base_control_doctrine
+		start_date = 1938.1.1
+	}
+	14086 = {
+		name = "Hans Corneliussen"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M14086
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1941.1.1
+	}
+	14087 = {
+		name = "Thorleif Fjeldstad"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M14087
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1941.1.1
+	}
+	14088 = {
+		name = "Kjeld Stub Irgens"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M14088
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1942.1.1
+	}
+	14089 = {
+		name = "Hjalmar Riiser-Larsen"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M14089
+		chief_of_air = army_aviation_doctrine
+		start_date = 1937.1.1
+	}
+	14090 = {
+		name = "Bjarne Øen"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M14090
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1945.1.1
+	}
+	14091 = {
+		name = "Harald Bruusgaard"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M14091
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	14092 = {
+		name = "Carl Gulliksen"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M14092
+		chief_of_air = air_superiority_doctrine
+		start_date = 1937.1.1
+	}
+	14093 = {
+		name = "Trygve Klingenberg"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M14093
+		chief_of_air = army_aviation_doctrine
+		start_date = 1937.1.1
+	}
+	14094 = {
+		name = "Ole Reistad"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M14094
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1939.1.1
+	}
+	14011 = {
+		name = "Josef Terboven"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M14011
+		head_of_state = resigned_generalissimo
+		start_date = 1936.1.1
+	}
+	14012 = {
+		name = "Vidkun Quisling"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M14012
+		head_of_government = corporate_suit
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1936.1.1
+	}
+	14015 = {
+		name = "Jonas Lie"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M14015
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	14016 = {
+		name = "Oliver Møystad"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M14016
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	14017 = {
+		name = "Sverre Riisnæs"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M14017
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	14018 = {
+		name = "Konrad Sundlo"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M14018
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	14019 = {
+		name = "Bertel Bruun"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M14019
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	14020 = {
+		name = "Trygve Gran"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M14020
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+	14023 = {
+		name = "Peder Furubotn"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M14023
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	14024 = {
+		name = "Henry Wilhelm Kristiansen"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M14024
+		armament_minister = military_entrepreneur
+		start_date = 1936.1.1
+	}
+	14025 = {
+		name = "Samuel Titlestad"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M14025
+		minister_of_security = prince_of_terror
+		start_date = 1936.1.1
+	}
+	14026 = {
+		name = "Asbjørn Sunde"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M14026
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	14027 = {
+		name = "Arne Gauslå"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M14027
+		chief_of_staff = school_of_defence
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	14029 = {
+		name = "Skule Storheil"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M14029
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	14030 = {
+		name = "Henrik Norby"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M14030
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1936.1.1
+	}
+	14097 = {
+		name = "Nils Langhelle"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M14097
+		armament_minister = resource_industrialist
+		start_date = 1951.1.1
+	}
+	14098 = {
+		name = "Oscar C. Gundersen"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M14098
+		minister_of_security = silent_lawyer
+		start_date = 1946.1.1
+	}
+}

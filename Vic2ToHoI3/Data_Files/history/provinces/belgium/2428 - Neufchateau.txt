@@ -1,0 +1,14 @@
+#Dinant
+owner = BEL
+controller = BEL
+add_core = BEL
+
+terrain = forest
+infra = 8
+1940.5.28 = {
+	controller = GER
+
+}
+1944.12.01 = {
+	controller = USA
+}
