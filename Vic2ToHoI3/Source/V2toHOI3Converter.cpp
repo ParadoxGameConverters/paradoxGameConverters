@@ -278,11 +278,14 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 
 	// Parse HoI3 data files
 	LOG(LogLevel::Info) << "Parsing HoI3 data";
-	HoI3World destWorld(provinceMap);
+	HoI3World destWorld;
+	destWorld.importProvinces(provinceMap);
+	destWorld.checkCoastalProvinces();
 
 	// Get country mappings
 	CountryMapping countryMap;
 	countryMap.ReadRules("country_mappings.txt");
+	destWorld.importPotentialCountries();
 	countryMap.CreateMapping(sourceWorld, destWorld);
 
 	// Get adjacencies
@@ -414,12 +417,16 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "Converting countries";
 	destWorld.convertCountries(sourceWorld, countryMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
 	LOG(LogLevel::Info) << "Converting provinces";
-	destWorld.convertProvinces(sourceWorld, provinceMap, inverseProvinceMap, countryMap, HoI3AdjacencyMap);
+	destWorld.convertProvinceOwners(sourceWorld, provinceMap, countryMap);
+	destWorld.convertNavalBases(sourceWorld, inverseProvinceMap);
+	destWorld.convertProvinceItems(sourceWorld, provinceMap, inverseProvinceMap, countryMap, HoI3AdjacencyMap);
 	destWorld.consolidateProvinceItems(inverseProvinceMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Converting techs";
 	destWorld.convertTechs(sourceWorld);
+	LOG(LogLevel::Info) << "Adding minimal levels of airbase and port";
+	destWorld.addMinimalItems(inverseProvinceMap);
 	LOG(LogLevel::Info) << "Converting armies and navies";
 	destWorld.convertArmies(sourceWorld, inverseProvinceMap, HoI3AdjacencyMap);
 	LOG(LogLevel::Info) << "Setting up factions";
@@ -430,8 +437,6 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	destWorld.convertVictoryPoints(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Setting AI focuses";
 	destWorld.setAIFocuses(focusModifiers);
-	LOG(LogLevel::Info) << "Adding minimal levels of airbase and port";
-	destWorld.addMinimalItems();
 
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";

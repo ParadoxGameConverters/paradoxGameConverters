@@ -51,7 +51,8 @@ class		V2World;
 
 typedef struct V2State
 {
-	vector<int> provinces;
+	vector<int>		provinces;
+	int				factoryLevels;
 } V2State;
 
 
@@ -62,13 +63,14 @@ class V2Country
 		V2Country(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs, const continentMapping& continentMap);
 
 		void								addProvince(int num, V2Province* _province)		{ provinces.insert(make_pair(num, _province)); }
-		void								setColor(Color newColor)					{ color = newColor; }
-		void								setGreatNationRanking(int newRanking)	{ greatNationRanking = newRanking; }
+		void								setColor(Color newColor)								{ color = newColor; }
+		void								setGreatNation(bool _greatNation)					{ greatNation = _greatNation; }
 
 		void								addCore(V2Province*);
 		void								eatCountry(V2Country* target);
 		void								clearProvinces();
 		void								clearCores();
+		void								putWorkersInProvinces();
 
 		map<string, V2Relations*>	getRelations()													const { return relations; }
 		vector<V2State>				getStates()														const { return states; }
@@ -96,6 +98,7 @@ class V2Country
 		double							getWarExhaustion()											const { return warExhaustion; }
 		string							getTechSchool()												const { return techSchool; }
 		map<string, string>			getAllReforms()												const { return reformsArray; }
+		bool								getGreatNation()												const { return greatNation; }
 
 		string							getReform(string reform) const;
 		string							getName(const string& language) const;
@@ -153,7 +156,7 @@ class V2Country
 		string							flagFile;
 		unsigned	int					rulingPartyId;
 		vector<unsigned int>			activeParties;
-		int								greatNationRanking;
+		bool								greatNation;
 		string							techSchool;
 
 		// Localisation attributes
