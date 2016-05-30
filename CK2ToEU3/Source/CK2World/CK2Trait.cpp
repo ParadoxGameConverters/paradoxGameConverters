@@ -27,7 +27,7 @@
 
 static inline int GetOrZero(Object* obj, string name)
 {
-	vector<Object*> propObj = obj->getValue(name);
+	vector<IObject*> propObj = obj->getValue(name);
 	if (propObj.size() > 0)
 		return atoi( propObj[0]->getLeaf().c_str());
 	else
@@ -37,7 +37,7 @@ static inline int GetOrZero(Object* obj, string name)
 CK2Trait::CK2Trait(Object* obj)
 {
 	name = obj->getKey();
-	vector<Object*> oppositeObjs = obj->getValue("opposites");
+	vector<IObject*> oppositeObjs = obj->getValue("opposites");
 	if (oppositeObjs.size() > 0)
 	{
 		opposites = oppositeObjs[0]->getTokens();

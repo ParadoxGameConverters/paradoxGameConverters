@@ -1,5 +1,5 @@
 /*Copyright (c) 2013 The CK2 to EU3 Converter Project
- 
+
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
  "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
  distribute, sublicense, and/or sell copies of the Software, and to
  permit persons to whom the Software is furnished to do so, subject to
  the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -24,7 +24,7 @@
 #include "EU3Advisor.h"
 #include "EU3Province.h"
 #include "EU3Country.h"
-#include "..\CK2World\CK2Character.h"
+#include "CK2World\Character\CK2Character.h"
 #include "..\CK2World\CK2Dynasty.h"
 #include "..\CK2World\CK2Province.h"
 #include "..\Configuration.h"
@@ -36,7 +36,7 @@
 
 EU3Advisor::EU3Advisor(Object* advisorObj, const map<int, EU3Province*>& provinces)
 {
-	vector<Object*> nameObj = advisorObj->getValue("name");
+	vector<IObject*> nameObj = advisorObj->getValue("name");
 	if (nameObj.size() > 0)
 	{
 		name = nameObj[0]->getLeaf();
@@ -45,19 +45,19 @@ EU3Advisor::EU3Advisor(Object* advisorObj, const map<int, EU3Province*>& provinc
 	id					= Configuration::getID();
 	dynasty			= "";
 
-	vector<Object*> typeObj = advisorObj->getValue("type");
+	vector<IObject*> typeObj = advisorObj->getValue("type");
 	if (typeObj.size() > 0)
 	{
 		advisorType = typeObj[0]->getLeaf();
 	}
 
-	vector<Object*> skillObj = advisorObj->getValue("skill");
+	vector<IObject*> skillObj = advisorObj->getValue("skill");
 	if (skillObj.size() > 0)
 	{
 		advisorSkill = atoi( skillObj[0]->getLeaf().c_str() );
 	}
 
-	vector<Object*> locationObj = advisorObj->getValue("location");
+	vector<IObject*> locationObj = advisorObj->getValue("location");
 	if (locationObj.size() > 0)
 	{
 		location = atoi( locationObj[0]->getLeaf().c_str() );
@@ -74,13 +74,13 @@ EU3Advisor::EU3Advisor(Object* advisorObj, const map<int, EU3Province*>& provinc
 		log("\tError: Trying to place %s %s in province %d, but it is not a valid province.\n", name.c_str(), dynasty.c_str(), location);
 	}
 
-	vector<Object*> dateObj = advisorObj->getValue("date");
+	vector<IObject*> dateObj = advisorObj->getValue("date");
 	if (dateObj.size() > 0)
 	{
 		startDate = dateObj[0]->getLeaf();
 	}
 
-	vector<Object*> deathDateObj = advisorObj->getValue("death_date");
+	vector<IObject*> deathDateObj = advisorObj->getValue("death_date");
 	if (deathDateObj.size() > 0)
 	{
 		deathDate = deathDateObj[0]->getLeaf();

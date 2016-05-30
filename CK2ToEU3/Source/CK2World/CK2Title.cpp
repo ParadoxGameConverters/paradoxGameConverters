@@ -1,5 +1,5 @@
 /*Copyright (c) 2013 The CK2 to EU3 Converter Project
- 
+
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
  "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
  distribute, sublicense, and/or sell copies of the Software, and to
  permit persons to whom the Software is furnished to do so, subject to
  the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -24,13 +24,14 @@
 #include "CK2Title.h"
 #include "..\Parsers\Object.h"
 #include "CK2World.h"
-#include "CK2Character.h"
+#include "CK2World\Character\CK2Character.h"
 #include "CK2Title.h"
 #include "CK2Dynasty.h"
 #include "CK2History.h"
 #include "CK2Barony.h"
 #include "..\Log.h"
 #include <algorithm>
+#include <boost/range/adaptor/reversed.hpp>
 #include "..\Configuration.h"
 #include "..\EU3World\EU3Country.h"
 
@@ -65,30 +66,26 @@ CK2Title::CK2Title(string _titleString, int* _color)
 	color[2]				= _color[2];
 }
 
-
-void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters, const CK2BuildingFactory* buildingFactory)
+void CK2Title::init(IObject* obj,  map<int, std::shared_ptr<CK2Character>>& characters, const CK2BuildingFactory* buildingFactory)
 {
+    rawData = obj;
 	titleString = obj->getKey();
 	holder = NULL;
-	vector<Object*> holderObjs = obj->getValue("holder");
+	vector<IObject*> holderObjs = obj->getValue("holder");
 	if (holderObjs.size() > 0)
 	{
-		holder = characters[ atoi( holderObjs[0]->getLeaf().c_str() ) ];
-		if (holder != NULL)
-		{
-			holder->addTitle(this);
-		}
+		setHolder(characters[ atoi( holderObjs[0]->getLeaf().c_str() ) ].get());
 	}
 	heir = NULL;
 	successionLaw = obj->getLeaf("succession");
 	genderLaw = obj->getLeaf("gender");
 
-	vector<Object*> leavesObj = obj->getLeaves();
+	vector<IObject*> leavesObj = obj->getLeaves();
 	for (unsigned int i = 0; i < leavesObj.size(); i++)
 	{
 		if (leavesObj[i]->getKey() == "nomination")
 		{
-			vector<Object*> nomineeObj = leavesObj[i]->getValue("nominee");
+			vector<IObject*> nomineeObj = leavesObj[i]->getValue("nominee");
 			int nomineeId = atoi( nomineeObj[0]->getLeaf("id").c_str() );
 
 			bool nomineeMarked = false;
@@ -111,7 +108,7 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters, const CK2
 	feudalContract	= 0;
 	templeContract	= 0;
 	cityContract	= 0;
-	vector<Object*> lawObj = obj->getValue("law");
+	vector<IObject*> lawObj = obj->getValue("law");
 	for (unsigned int i = 0; i < lawObj.size(); i++)
 	{
 		if (lawObj[i]->getLeaf().substr(0, 14) == "centralization")
@@ -132,27 +129,22 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters, const CK2
 		}
 	}
 
-	vector<Object*> historyObjs = obj->getValue("history");
+	vector<IObject*> historyObjs = obj->getValue("history");
 	if (historyObjs.size() > 0)
 	{
 		historyObjs = historyObjs[0]->getLeaves();
 		for (unsigned int i = 0; i < historyObjs.size(); i++)
 		{
-			CK2History* newHistory = new CK2History(historyObjs[i], characters);
+			CK2History* newHistory = new CK2History(static_cast<Object*>(historyObjs[i]), characters);
 			history.push_back(newHistory);
 		}
 	}
 
-	vector<Object*> liegeObjs = obj->getValue("liege");
-	if (liegeObjs.size() > 0)
-	{
-		liegeString = liegeObjs[0]->getLeaf();
-	}
-	liege = NULL;
+    initLiege();
 
 	vassals.clear();
 
-	vector<Object*> deJureLiegeObjs = obj->getValue("de_jure_liege");
+	vector<IObject*> deJureLiegeObjs = obj->getValue("de_jure_liege");
 	if (deJureLiegeObjs.size() > 0)
 	{
 		deJureLiegeString = deJureLiegeObjs[0]->getLeaf();
@@ -167,24 +159,24 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters, const CK2
 	}
 
 	active = true;
-	vector<Object*> activeObjs = obj->getValue("active");
+	vector<IObject*> activeObjs = obj->getValue("active");
 	if (activeObjs.size() > 0)
 	{
 		if (activeObjs[0]->getLeaf() == "no")
 			active = false;
 	}
 
-	vector<Object*> dynObjs = obj->getValue("dynamic");
+	vector<IObject*> dynObjs = obj->getValue("dynamic");
 	if (dynObjs.size() > 0)
 	{
 		if (dynObjs[0]->getLeaf() == "yes")
 			dynamic = true;
 	}
 
-	vector<Object*> settlementObjs = obj->getValue("settlement");
+	vector<IObject*> settlementObjs = obj->getValue("settlement");
 	if (settlementObjs.size() > 0)
 	{
-		settlement = new CK2Barony(settlementObjs[0], this, NULL, buildingFactory);
+		settlement = new CK2Barony(static_cast<Object*>(settlementObjs[0]), this, NULL, buildingFactory);
 		if (holder != NULL)
 		{
 			holder->addHolding(settlement);
@@ -197,6 +189,11 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters, const CK2
 	inHRE			= false;
 }
 
+void CK2Title::initLiege()
+{
+    liegeString = rawData->getTitle("liege");
+	liege = NULL;
+}
 
 void CK2Title::setLiege(CK2Title* newLiege)
 {
@@ -237,7 +234,7 @@ void CK2Title::addToHRE()
 }
 
 
-void CK2Title::determineHeir(map<int, CK2Character*>& characters)
+void CK2Title::determineHeir(map<int, std::shared_ptr<CK2Character>>& characters)
 {
 	if (holder != NULL)
 	{
@@ -308,19 +305,27 @@ void CK2Title::setSuccessionLaw(string _successionLaw)
 	}
 }
 
+void CK2Title::setHolder(CK2Character* newHolder)
+{
+	holder = newHolder;
+	if (holder != NULL)
+	{
+		holder->addTitle(this);
+	}
+}
 
-void CK2Title::setDeJureLiege(const map<string, CK2Title*>& titles)
+void CK2Title::setDeJureLiege(const map<string, std::shared_ptr<CK2Title>>& titles)
 {
 	if (  (deJureLiegeString != "") && (deJureLiegeString != "---") && ( (deJureLiege == NULL) || (deJureLiege->getTitleString() != deJureLiegeString ) )  )
 	{
-		map<string, CK2Title*>::const_iterator titleItr = titles.find(deJureLiegeString);
+		auto titleItr = titles.find(deJureLiegeString);
 		if (titleItr != titles.end())
 		{
 			if (deJureLiege != NULL)
 			{
 				deJureLiege->removeDeJureVassal(this);
 			}
-			deJureLiege = titleItr->second;
+			deJureLiege = titleItr->second.get();
 			deJureLiege->addDeJureVassal(this);
 		}
 		else
@@ -342,27 +347,28 @@ void CK2Title::setDeJureLiege(CK2Title* _deJureLiege)
 }
 
 
-void CK2Title::addDeJureVassals(vector<Object*> obj, map<string, CK2Title*>& titles, CK2World* world)
+void CK2Title::addDeJureVassals(vector<IObject*> obj, map<string, std::shared_ptr<CK2Title>>& titles, CK2World* world)
 {
-	for (vector<Object*>::iterator itr = obj.begin(); itr < obj.end(); itr++)
+
+	for (vector<IObject*>::iterator itr = obj.begin(); itr < obj.end(); itr++)
 	{
 		string substr = (*itr)->getKey().substr(0, 2);
 		if ( (substr != "e_") && (substr != "k_") && (substr != "d_") && (substr != "c_") && (substr != "b_") )
 		{
 			continue;
 		}
-		map<string, CK2Title*>::iterator titleItr = titles.find( (*itr)->getKey() );
+		auto titleItr = titles.find( (*itr)->getKey() );
 		if (titleItr == titles.end())
 		{
 			int color[3] = {0, 0, 0};
-			vector<Object*> colorObjs = (*itr)->getValue("color");
+			vector<IObject*> colorObjs = (*itr)->getValue("color");
 			if (colorObjs.size() > 0)
 			{
 				color[0] = atoi(colorObjs[0]->getTokens()[0].c_str() );
 				color[1] = atoi(colorObjs[0]->getTokens()[1].c_str() );
 				color[2] = atoi(colorObjs[0]->getTokens()[2].c_str() );
 			}
-			CK2Title* newTitle = new CK2Title( (*itr)->getKey(), color);
+			auto newTitle = std::make_shared<CK2Title>( (*itr)->getKey(), color);
 			titles.insert( make_pair((*itr)->getKey(), newTitle) );
 			titleItr = titles.find( (*itr)->getKey() );
 		}
@@ -429,7 +435,7 @@ void CK2Title::getCultureWeights(map<string, int>& cultureWeights, const culture
 	}
 }
 
-CK2Character* CK2Title::getElectiveHeir(map<int, CK2Character*>& characters)
+CK2Character* CK2Title::getElectiveHeir(map<int, std::shared_ptr<CK2Character>>& characters)
 {
 	int nominee = -1;
 	int mostVotes = 0;
@@ -442,7 +448,7 @@ CK2Character* CK2Title::getElectiveHeir(map<int, CK2Character*>& characters)
 		}
 	}
 
-	return characters[nominee];
+	return characters[nominee].get();
 }
 
 
@@ -551,15 +557,13 @@ CK2Character* CK2Title::getTurkishSuccessionHeir()
 	return heir;
 }
 
-
 bool CK2Title::eatTitle(CK2Title* target, bool checkInheritance)
 {
 	// see if it's valid to consume the target title
 
-	// can't autocephalate
 	if (target == this)
 	{
-		log("\tAssert: title attempted to autocephalate.\n");
+		LOG(LogLevel::Warning) << target->getTitleString() << " attempted to autocephalate.\n";
 		return false;
 	}
 
@@ -599,34 +603,39 @@ bool CK2Title::eatTitle(CK2Title* target, bool checkInheritance)
 			return false;
 	}
 
-	// if we get here, it must be valid, so do the deed
+	absorbTitle(target);
+	return true;
+}
 
-	// steal all vassals and de jure vassals from target
-	for (vector<CK2Title*>::reverse_iterator itr = target->vassals.rbegin(); itr != target->vassals.rend(); ++itr)
-		(*itr)->setLiege(this);
-	/*for (vector<CK2Title*>::reverse_iterator itr = target->deJureVassals.rbegin(); itr != target->deJureVassals.rend(); ++itr)
-		(*itr)->setDeJureLiege(this);*/
+void CK2Title::absorbTitle(CK2Title* target)
+{
+    stealDeFactoDeJureVassalsFromTitle(target);
+	target->disconnectHolderAndLieges();
+	setTitleAsDead(target);
+}
 
-	// remove the target from its holder and lieges
-	target->holder->removeTitle(target);
-	if (target->liege)
-		target->liege->removeVassal(target);
-	/*if (target->deJureLiege)
-		target->deJureLiege->removeDeJureVassal(target);*/
+void CK2Title::stealDeFactoDeJureVassalsFromTitle(CK2Title* target)
+{
+    for (auto vassal : boost::adaptors::reverse(target->vassals))
+    {
+        vassal->setLiege(this);
+    }
+}
 
-	// destroy the target
+void CK2Title::disconnectHolderAndLieges()
+{
+    holder->removeTitle(this);
+	if (liege)
+		liege->removeVassal(this);
+}
+
+void CK2Title::setTitleAsDead(CK2Title* target)
+{
 	target->vassals.clear();
-	/*target->deJureVassals.clear();
-	target->deJureLiege = NULL;
-	target->deJureLiegeString = "";*/
 	target->liege = NULL;
 	target->liegeString = "";
-	target->holder = NULL;
 	target->heir = NULL;
-
 	target->setLiege(this);
-
-	return true;
 }
 
 bool CK2Title::hasUnionWith(CK2Title* other, bool& otherDominant) const
@@ -660,6 +669,16 @@ bool CK2Title::hasRMWith(CK2Title* other) const
 bool CK2Title::hasAllianceWith(CK2Title* other) const
 {
 	return (this->holder->isAlliedWith(other->holder));
+}
+
+bool CK2Title::hasHolders() const
+{
+	return ((getHolder() != NULL) || !getHistory().empty());
+}
+
+bool CK2Title::hasMapImpact() const
+{
+	return (!getVassals().empty() || ((getDeJureLiege() != NULL) && !getDeJureVassals().empty()));
 }
 
 int CK2Title::getRelationsWith(CK2Title* other, CK2Version& version) const

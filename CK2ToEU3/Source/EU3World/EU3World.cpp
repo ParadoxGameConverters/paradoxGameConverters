@@ -1,5 +1,5 @@
 /*Copyright (c) 2013 The CK2 to EU3 Converter Project
- 
+
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
  "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
  distribute, sublicense, and/or sell copies of the Software, and to
  permit persons to whom the Software is furnished to do so, subject to
  the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -40,9 +40,9 @@
 #include "..\CK2World\CK2Title.h"
 #include "..\CK2World\CK2Province.h"
 #include "..\CK2World\CK2World.h"
-#include "..\CK2World\CK2Character.h"
 #include "..\CK2World\CK2Religion.h"
 #include "..\ModWorld\ModCultureRule.h"
+#include "CK2World\Character\CK2Character.h"
 #include "EU3Province.h"
 #include "EU3Country.h"
 #include "EU3Ruler.h"
@@ -471,7 +471,7 @@ void EU3World::addHistoricalCountries()
 
 		string tag;
 		tag = string(countryDirData.name).substr(0, 3);
-		transform(tag.begin(), tag.end(), tag.begin(), toupper);
+		transform(tag.begin(), tag.end(), tag.begin(), ::toupper);
 
 		if (tag == "REB")
 		{
@@ -506,7 +506,7 @@ void EU3World::addHistoricalCountries()
 
 			string tag;
 			tag = string(countryDirData.name).substr(0, 3);
-			transform(tag.begin(), tag.end(), tag.begin(), toupper);
+			transform(tag.begin(), tag.end(), tag.begin(), ::toupper);
 
 			if (tag == "REB")
 			{
@@ -595,15 +595,16 @@ void EU3World::getCultureRules()
 		exit(-1);
 	}
 
-	vector<Object*> objectList = obj->getLeaves();
+	vector<IObject*> objectList = obj->getLeaves();
 
 	if (objectList.size() >0)
 	{
-		vector<Object*> cultureRuleObj = objectList[0]->getLeaves(); // Get culture rules
+		vector<IObject*> cultureRuleObj = objectList[0]->getLeaves(); // Get culture rules
 		for (unsigned int i = 0; i < cultureRuleObj.size(); i++) // Loop through each culture rule
 		{
 			//initialize culture rule
-			ModCultureRule* newCultureRule = new ModCultureRule(cultureRuleObj[i]->getKey(), cultureRuleObj[i]);
+			ModCultureRule* newCultureRule = new ModCultureRule(cultureRuleObj[i]->getKey(),
+				static_cast<Object*>(cultureRuleObj[i]));
 
 			//add to culture rules list
 			cultureRules.insert( make_pair(cultureRuleObj[i]->getKey(), newCultureRule) );
@@ -612,7 +613,7 @@ void EU3World::getCultureRules()
 }
 
 
-void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, const adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroupMap, Object* positionObj)
+void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, std::shared_ptr<CK2Province>>& allSrcProvinces, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, const adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroupMap, Object* positionObj)
 {
 	double totalHistoricalBaseTax		= 0.0f;
 	double totalHistoricalPopulation = 0.0f;
@@ -626,16 +627,16 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			totalHistoricalManpower		+= provinces.find(provItr->first)->second->getManpower();
 		}
 	}
-	log("\tTotal historical base tax is %f.\n", totalHistoricalBaseTax);
-	log("\tTotal historical population is %f.\n", totalHistoricalPopulation);
-	log("\tTotal historical manpower is %f.\n", totalHistoricalManpower);
+	LOG(LogLevel::Debug) << "\tTotal historical base tax is " << totalHistoricalBaseTax << ".\n";
+	LOG(LogLevel::Debug) << "\tTotal historical population is " << totalHistoricalPopulation << ".\n";
+	LOG(LogLevel::Debug) << "\tTotal historical manpower tax is " << totalHistoricalManpower << ".\n";
 
 	double totalBaseTaxProxy	= 0.0f;
 	double totalPopProxy			= 0.0f;
 	double totalManpowerProxy	= 0.0f;
-	for (map<int, CK2Province*>::const_iterator srcItr = allSrcProvinces.begin(); srcItr != allSrcProvinces.end(); srcItr++)
+	for (auto srcProvince : allSrcProvinces)
 	{
-		vector<CK2Barony*> baronies = srcItr->second->getBaronies();
+		vector<CK2Barony*> baronies = srcProvince.second->getBaronies();
 		for (vector<CK2Barony*>::const_iterator baronyItr = baronies.begin(); baronyItr != baronies.end(); baronyItr++)
 		{
 			totalBaseTaxProxy		+= (*baronyItr)->getBaseTaxProxy();
@@ -685,7 +686,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		vector<CK2Province*> srcProvinces;
 		for (unsigned j = 0; j < srcProvinceNums.size(); j++)
 		{
-			CK2Province* srcProvince = allSrcProvinces[ srcProvinceNums[j] ];
+			CK2Province* srcProvince = allSrcProvinces[ srcProvinceNums[j] ].get();
 			if (srcProvince != NULL)
 			{
 				srcProvinces.push_back(srcProvince);
@@ -842,10 +843,10 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 	}
 
 	//find all coastal provinces
-	vector<Object*> provPositionObj = positionObj->getLeaves();
+	vector<IObject*> provPositionObj = positionObj->getLeaves();
 	for (unsigned int i = 0; i < provPositionObj.size(); i++)
 	{
-		vector<Object*> portObjs = provPositionObj[i]->getValue("port");
+		vector<IObject*> portObjs = provPositionObj[i]->getValue("port");
 		if (portObjs.size() > 0)
 		{
 			map<int, EU3Province*>::iterator provItr = provinces.find( atoi(provPositionObj[i]->getKey().c_str()) );
@@ -999,7 +1000,7 @@ void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, provi
 
 				vector<int>		provinceNums;
 				provinceNums.clear();
-				if (CK2Location != NULL)
+				if (CK2Location > 0)
 				{
 					provinceNums = inverseProvinceMap[CK2Location];
 				}
@@ -1048,10 +1049,10 @@ void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, provi
 			exit(-1);
 		}
 
-		vector<Object*> advisorsObj = obj->getLeaves();
+		vector<IObject*> advisorsObj = obj->getLeaves();
 		for (unsigned int i = 0; i < advisorsObj.size(); i++)
 		{
-			EU3Advisor* newAdvisor = new EU3Advisor(advisorsObj[i], provinces);
+			EU3Advisor* newAdvisor = new EU3Advisor(static_cast<Object*>(advisorsObj[i]), provinces);
 			if ( (newAdvisor->getStartDate() < startDate) && (startDate < newAdvisor->getDeathDate()) )
 			{
 				vector<int> srcLocationNums = provinceMap[newAdvisor->getLocation()];
@@ -1449,13 +1450,13 @@ void EU3World::convertEconomies(const cultureGroupMapping& cultureGroups, const 
 		map<string, double>::iterator supplyItr = goodsSupply.find(tradeItr->first);
 		if (supplyItr == goodsSupply.end())
 		{
-			log("Error: no supply for trade good %s.\n", tradeItr->first);
+			LOG(LogLevel::Debug) << "Error: no supply for trade good " << tradeItr->first << ".\n";
 			continue;
 		}
 		map<string, double>::iterator demandItr = goodsDemand.find(tradeItr->first);
 		if (demandItr == goodsDemand.end())
 		{
-			log("Error: no demand for trade good %s.\n", tradeItr->first);
+		    LOG(LogLevel::Debug) << "Error: no demand for trade good " << tradeItr->first << ".\n";
 			continue;
 		}
 		double price = tradeItr->second.basePrice * (2.25 - supplyItr->second) * demandItr->second;
@@ -1475,10 +1476,10 @@ void EU3World::convertEconomies(const cultureGroupMapping& cultureGroups, const 
 
 void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap, CK2Version& version)
 {
-	log("Total converted EU3 countries: %d\n", convertedCountries.size());
+	LOG(LogLevel::Debug) << "Total converted EU3 countries: " << convertedCountries.size() << "\n";
 
 	removeUnusedCountries();
-	log("Total converted EU3 countries after removing unused ones: %d\n", convertedCountries.size());
+	LOG(LogLevel::Debug) << "Total converted EU3 countries after removing unused ones: " << convertedCountries.size() << "\n";
 
 	int leftoverCountries = convertedCountries.size();
 	int initialScore = atoi( Configuration::getVassalScore().c_str() );
@@ -1510,7 +1511,8 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 				}
 			}
 		}
-		log("Total converted EU3 countries after absorbing: %d. Merge score is %d\n", convertedCountries.size(), initialScore);
+		LOG(LogLevel::Debug) << "Total converted EU3 countries after absorbing: " << convertedCountries.size() <<
+            ". Merge score is " << initialScore << "\n";
 
 		mappings.clear();
 		leftoverCountries = matchTags(rulesObj, blockedNations, provinceMap, mappings);
@@ -1551,7 +1553,7 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 
 	if (Configuration::getUseConverterMod() == "yes")
 	{
-		log("%d tags were mapped. %d countries will be added to the mod.\n", mappedTags.size(), modCountries.size());
+		LOG(LogLevel::Debug) << mappedTags.size() << " tags were mapped. " << modCountries.size() << "countries will be added to the mod.\n";
 		addModCountries(modCountries, mappedTags, mappings, religionMap, cultureMap, inverseProvinceMap);
 	}
 
@@ -1567,11 +1569,11 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 		convertedCountries.push_back(historicalCountry);
 		if (distance > 0)
 		{
-			log("\tMapped countries %s -> %s (#%d)\n", CK2TitleStr.c_str(), EU3TagStr.c_str(), distance);
+		    LOG(LogLevel::Debug) << "\tMapped countries " << CK2TitleStr << " -> " << EU3TagStr << "(#" << distance << ")\n";
 		}
 		else
 		{
-			log("\tMapped countries %s -> %s (fallback)\n", CK2TitleStr.c_str(), EU3TagStr.c_str());
+		    LOG(LogLevel::Debug) << "\tMapped countries " << CK2TitleStr << " -> " << EU3TagStr << "(fallback)\n";
 		}
 	}
 
@@ -1598,7 +1600,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 					{
 						EU3Agreement* agr = new EU3Agreement;
 						agr->type = "open_market";
-						agr->startDate = date("1.1.1");
+						agr->startDate = common::date("1.1.1");
 						agr->country1 = itr->second;
 						agr->country2 = jtr->second;
 						diplomacy->addAgreement(agr);
@@ -1618,7 +1620,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 					{
 						EU3Agreement* agr = new EU3Agreement;
 						agr->type = "open_market";
-						agr->startDate = date("1.1.1");
+						agr->startDate = common::date("1.1.1");
 						agr->country1 = jtr->second;
 						agr->country2 = itr->second;
 						diplomacy->addAgreement(agr);
@@ -1646,7 +1648,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 			{
 				EU3Agreement* agr = new EU3Agreement;
 				agr->type = "union";
-				agr->startDate = date("1.1.1");
+				agr->startDate = common::date("1.1.1");
 				if (rhsDominant)
 				{
 					agr->country1 = jtr->second;
@@ -1667,7 +1669,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 			{
 				EU3Agreement* agr = new EU3Agreement;
 				agr->type = "royal_marriage";
-				agr->startDate = date("1.1.1");
+				agr->startDate = common::date("1.1.1");
 				agr->country1 = itr->second;
 				agr->country2 = jtr->second;
 				diplomacy->addAgreement(agr);
@@ -1680,7 +1682,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 			{
 				EU3Agreement* agr = new EU3Agreement;
 				agr->type = "alliance";
-				agr->startDate = date("1.1.1");
+				agr->startDate = common::date("1.1.1");
 				agr->country1 = itr->second;
 				agr->country2 = jtr->second;
 				diplomacy->addAgreement(agr);
@@ -1833,18 +1835,18 @@ int EU3World::matchTags(Object* rulesObj, vector<string>& blockedNations, const 
 	}
 
 	// get rules
-	vector<Object*> leaves = rulesObj->getLeaves();
+	vector<IObject*> leaves = rulesObj->getLeaves();
 	if (leaves.size() < 1)
 	{
 		log ("Error: No country mapping definitions loaded.\n");
 		printf("Error: No country mapping definitions loaded.\n");
 		return -1;
 	}
-	vector<Object*> rules = leaves[0]->getLeaves();
+	vector<IObject*> rules = leaves[0]->getLeaves();
 	// match titles and nations
 	for (unsigned int i = 0; i < rules.size(); ++i)
 	{
-		vector<Object*> rule = rules[i]->getLeaves();
+		vector<IObject*> rule = rules[i]->getLeaves();
 		string			rCK2Title;
 		vector<string>	rEU3Tags;
 		for (unsigned int j = 0; j < rule.size(); j++)
@@ -2074,7 +2076,7 @@ void EU3World::populateCountryFileData(EU3Country* country, cultureRuleOverrideM
 	ModCultureRule *rulingCulture = NULL, *commonCulture = NULL;
 	string primaryCulture = country->getPrimaryCulture().c_str();
 	string capitalCulture = provinces[country->getCapital()]->getCulture().c_str();
-		
+
 	if (croMap.count(titleString.c_str()) !=0 ) // check if CK2 title is in overrides
 	{
 		primaryCulture = croMap[titleString.c_str()]->getKey();
@@ -2332,13 +2334,23 @@ void EU3World::populateCountryFileData(EU3Country* country, cultureRuleOverrideM
 			{
 				if(i < maleRatio*rulers)
 				{
-					if (rulingNameListM.empty()) {printf ("empty: %s\n",country->getTag()); continue;}
+					if (rulingNameListM.empty())
+                    {
+
+                        LOG(LogLevel::Debug) << country->getTag() << " has no male names for rulers\n";
+                        continue;
+                    }
 					firstNames.push_back( make_tuple(rulingNameListM.back(),weight) );
 					rulingNameListM.pop_back();
 				}
 				else
 				{
-					if (rulingNameListF.empty()) {printf ("empty: %s\n",country->getTag()); continue;}
+					if (rulingNameListM.empty())
+                    {
+
+                        LOG(LogLevel::Debug) << country->getTag() << " has no female names for rulers\n";
+                        continue;
+                    }
 					firstNames.push_back( make_tuple(rulingNameListF.back(),weight*-1) );
 					rulingNameListF.pop_back();
 				}
@@ -2477,18 +2489,18 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		exit(-1);
 	}
 
-	vector<Object*> cultureRuleOverrideObj = obj->getValue("culture_rule_override");
+	vector<IObject*> cultureRuleOverrideObj = obj->getValue("culture_rule_override");
 	cultureRuleOverrideMapping croMap; // Culture Rule Override Mapping
 	if (cultureRuleOverrideObj.size() > 0)
 	{
-		croMap = initCultureRuleOverrideMap(cultureRuleOverrideObj[0],cultureRules);
+		croMap = initCultureRuleOverrideMap(static_cast<Object*>(cultureRuleOverrideObj[0]),cultureRules);
 	}
-	
-	vector<Object*> localeOverrideObj = obj->getValue("locale_override");
+
+	vector<IObject*> localeOverrideObj = obj->getValue("locale_override");
 	localeOverrideMapping locMap; // Locale Override Mapping
 	if (localeOverrideObj.size() > 0)
 	{
-		locMap = initLocaleOverrideMap(localeOverrideObj[0]);
+		locMap = initLocaleOverrideMap(static_cast<Object*>(localeOverrideObj[0]));
 	}
 
 	// Initialize RNG
@@ -2816,7 +2828,6 @@ void EU3World::outputCountryFile(FILE* countryFile, EU3Country* country)
 	if (leaderNames.size() > 0)
 	{
 		fprintf(countryFile, "\nleader_names = {\n\t");
-		int dist = -1;
 		for (vector<string>::iterator itr = leaderNames.begin(); itr < leaderNames.end(); ++itr)
 		{
 			fprintf(countryFile, "%s ", (*itr).c_str() );
@@ -2832,7 +2843,6 @@ void EU3World::outputCountryFile(FILE* countryFile, EU3Country* country)
 	if (shipNames.size() > 0)
 	{
 		fprintf(countryFile, "\nship_names = {\n\t");
-		int dist = -1;
 		for (vector<string>::iterator itr = shipNames.begin(); itr < shipNames.end(); ++itr)
 		{
 			fprintf(countryFile, "%s ", (*itr).c_str() );
@@ -2848,7 +2858,6 @@ void EU3World::outputCountryFile(FILE* countryFile, EU3Country* country)
 	if (armyNames.size() > 0)
 	{
 		fprintf(countryFile, "\narmy_names = {\n\t");
-		int dist = -1;
 		for (vector<string>::iterator itr = armyNames.begin(); itr < armyNames.end(); ++itr)
 		{
 			fprintf(countryFile, "%s ", (*itr).c_str() );
@@ -2864,7 +2873,6 @@ void EU3World::outputCountryFile(FILE* countryFile, EU3Country* country)
 	if (fleetNames.size() > 0)
 	{
 		fprintf(countryFile, "\nfleet_names = {\n\t");
-		int dist = -1;
 		for (vector<string>::iterator itr = fleetNames.begin(); itr < fleetNames.end(); ++itr)
 		{
 			fprintf(countryFile, "%s ", (*itr).c_str() );

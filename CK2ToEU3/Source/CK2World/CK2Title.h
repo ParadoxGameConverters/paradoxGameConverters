@@ -1,5 +1,5 @@
 /*Copyright (c) 2013 The CK2 to EU3 Converter Project
- 
+
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
  "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
  distribute, sublicense, and/or sell copies of the Software, and to
  permit persons to whom the Software is furnished to do so, subject to
  the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -24,10 +24,11 @@
 #ifndef CK2TITLE_H_
 #define CK2TITLE_H_
 
-
+#include "Parsers\IObject.h"
 #include "..\mappers.h"
 #include <vector>
 #include <map>
+#include <memory>
 using namespace std;
 
 
@@ -43,15 +44,16 @@ class CK2Title
 {
 	public:
 		CK2Title(string _titleString, int* color);
-		void	init(Object*, map<int, CK2Character*>&, const CK2BuildingFactory* buildingFactory);
+		void	init(IObject*, map<int, std::shared_ptr<CK2Character>>&, const CK2BuildingFactory* buildingFactory);
 
+		void						setDeJureLiege(const map<string, std::shared_ptr<CK2Title>>& titles);
 		void						setLiege(CK2Title*);
+		void						setHolder(CK2Character*);
 		void						addToHRE();
-		void						determineHeir(map<int, CK2Character*>&);
+		void						determineHeir(map<int, std::shared_ptr<CK2Character>>&);
 		void						setHeir(CK2Character*);
 		void						setSuccessionLaw(string _successionLaw);
-		void						setDeJureLiege(const map<string, CK2Title*>& titles);
-		void						addDeJureVassals(vector<Object*>, map<string, CK2Title*>& titles, CK2World* world);
+		void						addDeJureVassals(vector<IObject*>, map<string, std::shared_ptr<CK2Title>>& titles, CK2World* world);
 		void						removeDeJureVassal(CK2Title* vassal);
 
 		void						getCultureWeights(map<string, int>& cultureWeights, const cultureMapping& cultureMap) const;
@@ -87,13 +89,20 @@ class CK2Title
 		bool						hasUnionWith(CK2Title* other, bool& otherDominant /* out */) const;
 		bool						hasRMWith(CK2Title* other) const;
 		bool						hasAllianceWith(CK2Title* other) const;
+		bool						hasHolders() const;
+		bool						hasMapImpact() const;
 		int						getRelationsWith(CK2Title* other, CK2Version& version) const;
 
 	private:
-		void								setDeJureLiege(CK2Title* _deJureLiege);
-		void								addVassal(CK2Title*);
-		void								removeVassal(CK2Title*);
-		CK2Character*					getElectiveHeir(map<int, CK2Character*>&);
+	    void                            initLiege();
+		void							setDeJureLiege(CK2Title* _deJureLiege);
+		void							addVassal(CK2Title*);
+		void							removeVassal(CK2Title*);
+		void                            absorbTitle(CK2Title*);
+		void                            stealDeFactoDeJureVassalsFromTitle(CK2Title*);
+		void                            disconnectHolderAndLieges();
+		void                            setTitleAsDead(CK2Title*);
+		CK2Character*					getElectiveHeir(map<int, std::shared_ptr<CK2Character>>&);
 		CK2Character*					getTurkishSuccessionHeir();
 
 		string							titleString;
@@ -113,7 +122,7 @@ class CK2Title
 		vector<CK2Title*>				deJureVassals;
 		string							deJureLiegeString;
 		CK2Title*						deJureLiege;
-		
+
 		CK2Barony*						settlement;
 
 		bool								independent;
@@ -124,6 +133,7 @@ class CK2Title
 		int								color[3];
 
 		EU3Country*						dstCountry;
+		IObject*                        rawData;
 };
 
 

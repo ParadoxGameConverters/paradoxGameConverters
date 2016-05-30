@@ -1,5 +1,5 @@
 /*Copyright (c) 2013 The CK2 to EU3 Converter Project
- 
+
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
  "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
  distribute, sublicense, and/or sell copies of the Software, and to
  permit persons to whom the Software is furnished to do so, subject to
  the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -26,11 +26,11 @@
 #include "..\Parsers\Parser.h"
 #include "..\Parsers\Object.h"
 #include "..\Configuration.h"
-#include "..\Date.h"
+#include "Common\Date.h"
 #include "..\CK2World\CK2Province.h"
 #include "..\CK2World\CK2Title.h"
 #include "..\CK2World\CK2History.h"
-#include "..\CK2World\CK2Character.h"
+#include "CK2World\Character\CK2Character.h"
 #include "..\CK2World\CK2Barony.h"
 #include "..\CK2World\CK2Techs.h"
 #include "..\CK2World\CK2Religion.h"
@@ -49,7 +49,8 @@
 using namespace std;
 
 
-EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date startDate, const EU3Tech* techData)
+EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, common::date startDate,
+                       const EU3Tech* techData)
 {
 	src				= NULL;
 	liege				= NULL;
@@ -72,7 +73,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 	}
 
 	// Set objects from top of history file
-	vector<Object*> govLeaves = obj->getValue("government");
+	vector<IObject*> govLeaves = obj->getValue("government");
 	if (govLeaves.size() > 0)
 	{
 		government = govLeaves[0]->getLeaf();
@@ -82,7 +83,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		government = "";
 	}
 
-	vector<Object*> centralLeaves = obj->getValue("centralization_decentralization");
+	vector<IObject*> centralLeaves = obj->getValue("centralization_decentralization");
 	if (centralLeaves.size() > 0)
 	{
 		centralization = atoi( centralLeaves[0]->getLeaf().c_str() );
@@ -92,7 +93,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		centralization = 0;
 	}
 
-	vector<Object*> aristocracyLeaves = obj->getValue("aristocracy_plutocracy");
+	vector<IObject*> aristocracyLeaves = obj->getValue("aristocracy_plutocracy");
 	if (aristocracyLeaves.size() > 0)
 	{
 		aristocracy = atoi( aristocracyLeaves[0]->getLeaf().c_str() );
@@ -102,7 +103,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		aristocracy = 0;
 	}
 
-	vector<Object*> innovativeLeaves = obj->getValue("innovative_narrowminded");
+	vector<IObject*> innovativeLeaves = obj->getValue("innovative_narrowminded");
 	if (innovativeLeaves.size() > 0)
 	{
 		innovative = atoi( innovativeLeaves[0]->getLeaf().c_str() );
@@ -112,7 +113,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		innovative = 0;
 	}
 
-	vector<Object*> serfdomLeaves = obj->getValue("serfdom_freesubjects");
+	vector<IObject*> serfdomLeaves = obj->getValue("serfdom_freesubjects");
 	if (serfdomLeaves.size() > 0)
 	{
 		serfdom = atoi( serfdomLeaves[0]->getLeaf().c_str() );
@@ -122,7 +123,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		serfdom = 0;
 	}
 
-	vector<Object*> mercantilismLeaves = obj->getValue("mercantilism_freetrade");
+	vector<IObject*> mercantilismLeaves = obj->getValue("mercantilism_freetrade");
 	if (mercantilismLeaves.size() > 0)
 	{
 		mercantilism = atoi( mercantilismLeaves[0]->getLeaf().c_str() );
@@ -132,7 +133,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		mercantilism = 0;
 	}
 
-	vector<Object*> offensiveLeaves = obj->getValue("offensive_defensive");
+	vector<IObject*> offensiveLeaves = obj->getValue("offensive_defensive");
 	if (offensiveLeaves.size() > 0)
 	{
 		offensive = atoi( offensiveLeaves[0]->getLeaf().c_str() );
@@ -142,7 +143,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		offensive = 0;
 	}
 
-	vector<Object*> landLeaves = obj->getValue("land_naval");
+	vector<IObject*> landLeaves = obj->getValue("land_naval");
 	if (landLeaves.size() > 0)
 	{
 		land = atoi( landLeaves[0]->getLeaf().c_str() );
@@ -152,7 +153,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		land = 0;
 	}
 
-	vector<Object*> qualityLeaves = obj->getValue("quality_quantity");
+	vector<IObject*> qualityLeaves = obj->getValue("quality_quantity");
 	if (qualityLeaves.size() > 0)
 	{
 		quality = atoi( qualityLeaves[0]->getLeaf().c_str() );
@@ -162,7 +163,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		quality = 0;
 	}
 
-	vector<Object*> religionLeaves = obj->getValue("religion");
+	vector<IObject*> religionLeaves = obj->getValue("religion");
 	if (religionLeaves.size() > 0)
 	{
 		religion = religionLeaves[0]->getLeaf();
@@ -172,7 +173,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		religion = "";
 	}
 
-	vector<Object*> primaryCultureLeaves = obj->getValue("primary_culture");
+	vector<IObject*> primaryCultureLeaves = obj->getValue("primary_culture");
 	if (primaryCultureLeaves.size() > 0)
 	{
 		primaryCulture = primaryCultureLeaves[0]->getLeaf();
@@ -183,8 +184,8 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 	}
 
 	acceptedCultures.clear();
-	vector<Object*> acceptedCulturesLeaves = obj->getValue("add_accepted_culture");
-	for (vector<Object*>::iterator i = acceptedCulturesLeaves.begin(); i < acceptedCulturesLeaves.end(); i++)
+	vector<IObject*> acceptedCulturesLeaves = obj->getValue("add_accepted_culture");
+	for (vector<IObject*>::iterator i = acceptedCulturesLeaves.begin(); i < acceptedCulturesLeaves.end(); i++)
 	{
 		acceptedCultures.push_back( (*i)->getLeaf() );
 	}
@@ -196,7 +197,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 	history.clear();
 	previousMonarchs.clear();
 
-	vector<Object*> techLeaves = obj->getValue("technology_group");
+	vector<IObject*> techLeaves = obj->getValue("technology_group");
 	if (techLeaves.size() > 0)
 	{
 		techGroup = techLeaves[0]->getLeaf();
@@ -288,7 +289,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 
 	flags.clear();
 
-	vector<Object*> capitalObj = obj->getValue("capital");
+	vector<IObject*> capitalObj = obj->getValue("capital");
 	if (capitalObj.size() > 0)
 	{
 		capital = atoi( capitalObj[0]->getLeaf().c_str() );
@@ -308,8 +309,8 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 	estimatedGold			= 0.0f;
 	estimatedProduction	= 0.0f;
 	estimatedTolls			= 0.0f;
-	
-	vector<Object*> daimyoObj = obj->getValue("daimyo");
+
+	vector<IObject*> daimyoObj = obj->getValue("daimyo");
 	if (daimyoObj.size() > 0)
 	{
 		string leaf = daimyoObj[0]->getLeaf();
@@ -336,12 +337,12 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 	factions.clear();
 	mainFaction			= "";
 	mainFactionScore	= 0;
-	vector<Object*> factionObj = obj->getValue("faction");
-	for(vector<Object*>::iterator factionItr = factionObj.begin(); factionItr != factionObj.end(); factionItr++)
+	vector<IObject*> factionObj = obj->getValue("faction");
+	for(vector<IObject*>::iterator factionItr = factionObj.begin(); factionItr != factionObj.end(); factionItr++)
 	{
 		string newFaction = (*factionItr)->getLeaf();
 		factions.push_back(newFaction);
-		vector<Object*> mainFactionObj = obj->getValue(newFaction);
+		vector<IObject*> mainFactionObj = obj->getValue(newFaction);
 		if (mainFactionObj.size() > 0)
 		{
 			mainFaction			= newFaction;
@@ -351,122 +352,122 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 
 
 	// update items based on history
-	vector<Object*> objectList = obj->getLeaves();
+	vector<IObject*> objectList = obj->getLeaves();
 	for (unsigned int i = 0; i < objectList.size(); i++)
 	{
 		string key = objectList[i]->getKey();
 		if (key[0] == '1')
 		{
-			date histDate(key);
+			common::date histDate(key);
 			if (histDate <= startDate)
 			{
 				EU3History* newHistory = new EU3History(histDate);
 
-				vector<Object*> newMonarchObj = objectList[i]->getValue("monarch");
+				vector<IObject*> newMonarchObj = objectList[i]->getValue("monarch");
 				if (newMonarchObj.size() > 0)
 				{
-					monarch = new EU3Ruler(newMonarchObj[0]);
+					monarch = new EU3Ruler(static_cast<Object*>(newMonarchObj[0]));
 					previousMonarchs.push_back(monarch);
 					newHistory->monarch = monarch;
 				}
 
-				vector<Object*> newHeirObj = objectList[i]->getValue("heir");
+				vector<IObject*> newHeirObj = objectList[i]->getValue("heir");
 				if (newHeirObj.size() > 0)
 				{
-					heir = new EU3Ruler(newHeirObj[0]);
+					heir = new EU3Ruler(static_cast<Object*>(newHeirObj[0]));
 					newHistory->heir = heir;
 				}
 
-				vector<Object*> govLeaves = objectList[i]->getValue("government");
+				vector<IObject*> govLeaves = objectList[i]->getValue("government");
 				if (govLeaves.size() > 0)
 				{
 					government = govLeaves[0]->getLeaf();
 					newHistory->government = government;
 				}
 
-				vector<Object*> centralLeaves = obj->getValue("centralization_decentralization");
+				vector<IObject*> centralLeaves = obj->getValue("centralization_decentralization");
 				if (centralLeaves.size() > 0)
 				{
 					centralization = atoi( centralLeaves[0]->getLeaf().c_str() );
 				}
 
-				vector<Object*> aristocracyLeaves = obj->getValue("aristocracy_plutocracy");
+				vector<IObject*> aristocracyLeaves = obj->getValue("aristocracy_plutocracy");
 				if (aristocracyLeaves.size() > 0)
 				{
 					aristocracy = atoi( aristocracyLeaves[0]->getLeaf().c_str() );
 				}
 
-				vector<Object*> innovativeLeaves = obj->getValue("innovative_narrowminded");
+				vector<IObject*> innovativeLeaves = obj->getValue("innovative_narrowminded");
 				if (innovativeLeaves.size() > 0)
 				{
 					innovative = atoi( innovativeLeaves[0]->getLeaf().c_str() );
 				}
 
-				vector<Object*> serfdomLeaves = obj->getValue("serfdom_freesubjects");
+				vector<IObject*> serfdomLeaves = obj->getValue("serfdom_freesubjects");
 				if (serfdomLeaves.size() > 0)
 				{
 					serfdom = atoi( serfdomLeaves[0]->getLeaf().c_str() );
 				}
 
-				vector<Object*> mercantilismLeaves = obj->getValue("mercantilism_freetrade");
+				vector<IObject*> mercantilismLeaves = obj->getValue("mercantilism_freetrade");
 				if (mercantilismLeaves.size() > 0)
 				{
 					mercantilism = atoi( mercantilismLeaves[0]->getLeaf().c_str() );
 				}
 
-				vector<Object*> offensiveLeaves = obj->getValue("offensive_defensive");
+				vector<IObject*> offensiveLeaves = obj->getValue("offensive_defensive");
 				if (offensiveLeaves.size() > 0)
 				{
 					offensive = atoi( offensiveLeaves[0]->getLeaf().c_str() );
 				}
 
-				vector<Object*> landLeaves = obj->getValue("land_naval");
+				vector<IObject*> landLeaves = obj->getValue("land_naval");
 				if (landLeaves.size() > 0)
 				{
 					land = atoi( landLeaves[0]->getLeaf().c_str() );
 				}
 
-				vector<Object*> qualityLeaves = obj->getValue("quality_quantity");
+				vector<IObject*> qualityLeaves = obj->getValue("quality_quantity");
 				if (qualityLeaves.size() > 0)
 				{
 					quality = atoi( qualityLeaves[0]->getLeaf().c_str() );
 				}
 
-				vector<Object*> religionLeaves = objectList[i]->getValue("religion");
+				vector<IObject*> religionLeaves = objectList[i]->getValue("religion");
 				if (religionLeaves.size() > 0)
 				{
 					religion = religionLeaves[0]->getLeaf();
 					newHistory->religion = religion;
 				}
 
-				vector<Object*> primaryCultureLeaves = objectList[i]->getValue("primary_culture");
+				vector<IObject*> primaryCultureLeaves = objectList[i]->getValue("primary_culture");
 				if (primaryCultureLeaves.size() > 0)
 				{
 					primaryCulture = primaryCultureLeaves[0]->getLeaf();
 					newHistory->primaryCulture = primaryCulture;
 				}
 
-				vector<Object*> acceptedCulturesLeaves = objectList[i]->getValue("add_accepted_culture");
-				for (vector<Object*>::iterator j = acceptedCulturesLeaves.begin(); j < acceptedCulturesLeaves.end(); j++)
+				vector<IObject*> acceptedCulturesLeaves = objectList[i]->getValue("add_accepted_culture");
+				for (vector<IObject*>::iterator j = acceptedCulturesLeaves.begin(); j < acceptedCulturesLeaves.end(); j++)
 				{
 					acceptedCultures.push_back( (*j)->getLeaf() );
 					newHistory->acceptedCultures.push_back( (*j)->getLeaf() );
 				}
 
-				vector<Object*> techLeaves = objectList[i]->getValue("technology_group");
+				vector<IObject*> techLeaves = objectList[i]->getValue("technology_group");
 				if (techLeaves.size() > 0)
 				{
 					techGroup = techLeaves[0]->getLeaf();
 					newHistory->techGroup = techGroup;
 				}
 
-				vector<Object*> capitalObj = objectList[i]->getValue("capital");
+				vector<IObject*> capitalObj = objectList[i]->getValue("capital");
 				if (capitalObj.size() > 0)
 				{
 					capital = atoi( capitalObj[0]->getLeaf().c_str() );
 				}
 
-				vector<Object*> shogunObj = objectList[i]->getValue("shogun");
+				vector<IObject*> shogunObj = objectList[i]->getValue("shogun");
 				if(shogunObj.size() > 0)
 				{
 					world->setShogun(this);
@@ -616,7 +617,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	land				= 0;
 	quality			= 0;
 
-	date ascensionDate;
+	common::date ascensionDate;
 	vector<CK2History*> oldHistory = src->getHistory();
 	for (unsigned int i = 0; i < oldHistory.size(); i++)
 	{
@@ -670,7 +671,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 		{
 			heir = new EU3Ruler(newHeir);
 
-			date when = newHeir->getBirthDate();
+			common::date when = newHeir->getBirthDate();
 			if (when < ascensionDate)
 			{
 				when = ascensionDate;
@@ -1086,8 +1087,8 @@ void EU3Country::determineGovernment(double prestigeFactor)
 	{
 		government = "papal_government";
 	}
-	else if (  ( (srcTitleString == "e_golden_horde") || 
-					 (srcTitleString == "e_il-khanate") || 
+	else if (  ( (srcTitleString == "e_golden_horde") ||
+					 (srcTitleString == "e_il-khanate") ||
 					 (srcTitleString == "e_timurids") ||
 					 (srcTitleString == "e_mexikha") ||
 					 (srcTitleString == "e_mongol_empire") ) &&
@@ -1366,17 +1367,17 @@ void EU3Country::determineTechLevels(const vector<double>& avgTechLevels, const 
 			techLevels[TECH_INFANTRY_MELEE_WEAPONS] +
 			techLevels[TECH_SIEGE_EQUIPMENT_OLD] +
 			techLevels[TECH_TACTICS];
-		oldTradeTech = 
+		oldTradeTech =
 			techLevels[TECH_CASTLE_TAXES] +
 			techLevels[TECH_CITY_TAXES] +
 			techLevels[TECH_TEMPLE_TAXES];
-		oldProdTech = 
+		oldProdTech =
 			techLevels[TECH_CASTLE_CONSTRUCTION_OLD] +
 			techLevels[TECH_CITY_CONSTRUCTION_OLD] +
 			techLevels[TECH_TEMPLE_CONSTRUCTION_OLD] +
 			techLevels[TECH_FORTIFICATIONS_CONSTRUCTION_OLD] +
 			techLevels[TECH_CONSTRUCTION_OLD];
-		oldGovTech = 
+		oldGovTech =
 			techLevels[TECH_TEMPLE_TAXES] +
 			techLevels[TECH_NOBLE_CUSTOMS_OLD] +
 			techLevels[TECH_POPULAR_CUSTOMS_OLD] +
@@ -1431,13 +1432,13 @@ void EU3Country::determineTechLevels(const vector<double>& avgTechLevels, const 
 			techLevels[TECH_CITY_CONSTRUCTION] +
 			techLevels[TECH_TEMPLE_CONSTRUCTION] +
 			techLevels[TECH_TRADE_PRACTICES];
-		oldProdTech = 
+		oldProdTech =
 			techLevels[TECH_CASTLE_CONSTRUCTION] +
 			techLevels[TECH_CITY_CONSTRUCTION] +
 			techLevels[TECH_TEMPLE_CONSTRUCTION] +
 			techLevels[TECH_FORTIFICATIONS_CONSTRUCTION] +
 			techLevels[TECH_CONSTRUCTION];
-		oldGovTech = 
+		oldGovTech =
 			techLevels[TECH_NOBLE_CUSTOMS] +
 			techLevels[TECH_POPULAR_CUSTOMS] +
 			techLevels[TECH_RELIGIOUS_CUSTOMS] +
@@ -1456,7 +1457,7 @@ void EU3Country::determineTechLevels(const vector<double>& avgTechLevels, const 
 }
 
 
-void EU3Country::determineTechInvestment(const EU3Tech* techData, date startDate)
+void EU3Country::determineTechInvestment(const EU3Tech* techData, common::date startDate)
 {
 	double groupModifier = 1.0f / techData->getGroupModifier(techGroup);
 
@@ -1512,9 +1513,6 @@ void EU3Country::determineStartingAgents()
 		return;
 	}
 
-	if (src->getTitleString() == "k_scotland")
-		holder = holder;
-
 	merchants		= min(holder->getStateStats()[STEWARDSHIP]	/ 15.0, 5.0);
 	colonists		= min(holder->getStateStats()[MARTIAL]		/ 15.0, 5.0);
 	diplomats		= min(holder->getStateStats()[DIPLOMACY]	/ 15.0, 5.0);
@@ -1535,7 +1533,7 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 	// Am I a junior in a PU?
 	if (src->isIndependent() && (src != src->getHolder()->getPrimaryTitle()))
 	{
-		log("\t%s is completely absorbing all vassals (junior in PU).\n", src->getTitleString().c_str());
+		LOG(LogLevel::Debug) << "\t" << src->getTitleString() << " is completely absorbing all vassals (junior in PU).\n";
 		vector<EU3Country*> absorbedCountries = eatVassals();
 		return absorbedCountries;
 	}
@@ -1569,7 +1567,7 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 	vector<EU3Country*> absorbedVassals;
 	for(unsigned int i = 0; i < vassals.size(); i++)
 	{
-		// one's own titles should generally just merge completely
+        // one's own titles should generally just merge completely
 		if	(	(src->getHolder() == vassals[i]->getSrcCountry()->getHolder()) &&
 				(src->getHeir() == vassals[i]->getSrcCountry()->getHeir()) &&
 				(src->getSuccessionLaw() == vassals[i]->getSrcCountry()->getSuccessionLaw()) &&
@@ -1577,8 +1575,8 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 				(vassals[i]->getSrcCountry()->getTitleString() != Configuration::getHRETitle())
 			)
 		{
-			//vector<EU3Country*> newlyAbsorbed = vassals[i]->convertVassals(initialScore, diplomacy);
-			log("\t%s is completely absorbing %s (same holder).\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
+			LOG(LogLevel::Debug) << "\t" << src->getTitleString() << " is completely absorbing " <<
+                vassals[i]->getSrcCountry()->getTitleString() << "(junior in PU).\n";
 			for (vector<EU3Province*>::iterator provinceItr = vassals[i]->provinces.begin(); provinceItr != vassals[i]->provinces.end(); provinceItr++)
 			{
 				provinces.push_back(*provinceItr);
@@ -1623,6 +1621,7 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 		int vassalScore = score;
 		CK2Character* liege	= this->getSrcCountry()->getHolder();
 		CK2Character* vassal	= vassals[i]->getSrcCountry()->getHolder();
+
 		vassalScore += vassal->getOpinionOf(liege, version);
 		if (vassals[i]->getSrcCountry()->getTitleString().substr(0,2) == "b_") // baronies should be absorbed
 		{
@@ -1720,7 +1719,7 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			newAgreement->type			= "vassal";
 			newAgreement->country1	= this;
 			newAgreement->country2	= vassals[i];
-			newAgreement->startDate	= date("1.1.1");
+			newAgreement->startDate	= common::date("1.1.1");
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 			vassals[i]->addAgreement(newAgreement);
@@ -1733,20 +1732,21 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			newAgreement->type			= "vassal";
 			newAgreement->country1	= this;
 			newAgreement->country2	= vassals[i];
-			newAgreement->startDate	= date("1.1.1");
+			newAgreement->startDate	= common::date("1.1.1");
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 			vassals[i]->addAgreement(newAgreement);
 		}
 		else if ((vassalScore >= 1000) && (vassals[i]->getAbsorbScore() < 1000))
 		{
-			log("\t%s is sphering and alliancing %s.\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
+		    LOG(LogLevel::Debug) << "\t" << src->getTitleString() << " is sphering and alliancing " <<
+                vassals[i]->getSrcCountry()->getTitleString() << ".\n";
 			vassals[i]->setAbsorbScore(vassalScore);
 			EU3Agreement* newAgreement = new EU3Agreement;
 			newAgreement->type			= "sphere";
 			newAgreement->country1	= this;
 			newAgreement->country2	= vassals[i];
-			newAgreement->startDate	= date("1.1.1");
+			newAgreement->startDate	= common::date("1.1.1");
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 			vassals[i]->addAgreement(newAgreement);
@@ -1754,7 +1754,7 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			newAgreement->type			= "alliance";
 			newAgreement->country1	= this;
 			newAgreement->country2	= vassals[i];
-			newAgreement->startDate	= date("1.1.1");
+			newAgreement->startDate	= common::date("1.1.1");
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 			vassals[i]->addAgreement(newAgreement);
@@ -1767,7 +1767,7 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			newAgreement->type			= "guarantee";
 			newAgreement->country1	= this;
 			newAgreement->country2	= vassals[i];
-			newAgreement->startDate	= date("1.1.1");
+			newAgreement->startDate	= common::date("1.1.1");
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 			vassals[i]->addAgreement(newAgreement);
@@ -1775,7 +1775,7 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			newAgreement->type			= "guarantee";
 			newAgreement->country1	= vassals[i];
 			newAgreement->country2	= this;
-			newAgreement->startDate	= date("1.1.1");
+			newAgreement->startDate	= common::date("1.1.1");
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 			vassals[i]->addAgreement(newAgreement);
@@ -1793,6 +1793,8 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			}
 		}
 	}
+
+
 
 	return absorbedCountries;
 }

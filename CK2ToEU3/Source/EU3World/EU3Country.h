@@ -1,5 +1,5 @@
 /*Copyright (c) 2013 The CK2 to EU3 Converter Project
- 
+
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
  "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
  distribute, sublicense, and/or sell copies of the Software, and to
  permit persons to whom the Software is furnished to do so, subject to
  the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -30,7 +30,7 @@
 #include <vector>
 #include <queue>
 #include <tuple>
-#include "..\Date.h"
+#include "Common\Date.h"
 #include "..\Mappers.h"
 #include "..\CK2World\CK2Title.h"
 using namespace std;
@@ -53,7 +53,7 @@ class EU3Navy;
 class EU3Country
 {
 	public:
-		EU3Country(EU3World* world, string tag, string countryFile, date startDate, const EU3Tech* techData);
+		EU3Country(EU3World* world, string tag, string countryFile, common::date startDate, const EU3Tech* techData);
 		EU3Country(CK2Title*, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap);
 
 		void						output(FILE*);
@@ -67,7 +67,7 @@ class EU3Country
 		double					getProductionEffeciency();
 		void						setPreferredUnitType();
 		void						determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData, CK2Version& version);
-		void						determineTechInvestment(const EU3Tech* techData, date startDate);
+		void						determineTechInvestment(const EU3Tech* techData, common::date startDate);
 		void						determineStartingAgents();
 		vector<EU3Country*>	convertVassals(int initialScore, EU3Diplomacy* diplomacy, CK2Version& version);
 		vector<EU3Country*>	eatVassals();
@@ -87,7 +87,7 @@ class EU3Country
 		void		setRelations(EU3Country* other, int value)	{ relations.insert(make_pair(other, value)); };
 		void		setElector(bool _elector)				{ elector = _elector; };
 		void		setGraphicalCulture(string gfx)			{ graphicalCulture = gfx; };
-		void		setMonarchNames(deque<tuple<string,int>> list)	{ monarchNames = list; };
+		void		setMonarchNames(deque<tuple<string,int> > list)	{ monarchNames = list; };
 		void		setLeaderNames(vector<string> list)		{ leaderNames = list; };
 		void		setShipNames(vector<string> list)		{ shipNames = list; };
 		void		setArmyNames(vector<string> list)		{ armyNames = list; };
