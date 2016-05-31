@@ -1,5 +1,5 @@
 /*Copyright (c) 2013 The CK2 to EU3 Converter Project
- 
+
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
  "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
  distribute, sublicense, and/or sell copies of the Software, and to
  permit persons to whom the Software is furnished to do so, subject to
  the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -30,19 +30,19 @@
 #include "..\CK2World\CK2Barony.h"
 #include "..\CK2World\CK2Title.h"
 #include "..\CK2World\Ck2Province.h"
-#include "..\CK2World\CK2Character.h"
+#include "CK2World\Character\CK2Character.h"
 #include "..\CK2World\CK2Religion.h"
 #include <algorithm>
 
 
-EU3Province::EU3Province(int _num, Object* obj, date _startDate)
+EU3Province::EU3Province(int _num, Object* obj, common::date _startDate)
 {
 	srcProvinces.clear();
 	srcProvinceNums.clear();
 	startDate	= _startDate;
 	num			= _num;
 
-	vector<Object*> capitalObj = obj->getValue("capital");
+	vector<IObject*> capitalObj = obj->getValue("capital");
 	if (capitalObj.size() > 0)
 	{
 		land		= true;
@@ -55,7 +55,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 	}
 	coastal = false;
 
-	vector<Object*> tradeGoodObj = obj->getValue("trade_goods");
+	vector<IObject*> tradeGoodObj = obj->getValue("trade_goods");
 	if (tradeGoodObj.size() > 0)
 	{
 		tradeGood = tradeGoodObj[0]->getLeaf().c_str();
@@ -65,7 +65,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 		tradeGood = "";
 	}
 
-	vector<Object*> baseTaxObj = obj->getValue("base_tax");
+	vector<IObject*> baseTaxObj = obj->getValue("base_tax");
 	if (baseTaxObj.size() > 0)
 	{
 		baseTax = atof( baseTaxObj[0]->getLeaf().c_str() );
@@ -75,7 +75,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 		baseTax = 0.0f;
 	}
 
-	vector<Object*> populationObj = obj->getValue("citysize");
+	vector<IObject*> populationObj = obj->getValue("citysize");
 	if (populationObj.size() > 0)
 	{
 		population = atof( populationObj[0]->getLeaf().c_str() );
@@ -85,7 +85,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 		population = 0.0f;
 	}
 
-	vector<Object*> manpowerObj = obj->getValue("manpower");
+	vector<IObject*> manpowerObj = obj->getValue("manpower");
 	if (manpowerObj.size() > 0)
 	{
 		manpower = atoi ( manpowerObj[0]->getLeaf().c_str() );
@@ -96,14 +96,14 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 	}
 
 	buildings.clear();
-	vector<Object*> fortObj = obj->getValue("fort2");
+	vector<IObject*> fortObj = obj->getValue("fort2");
 	if (fortObj.size() > 0)
 	{
 		buildings.push_back("fort2");
 	}
 	else
 	{
-		vector<Object*> fortObj = obj->getValue("fort1");
+		vector<IObject*> fortObj = obj->getValue("fort1");
 		if (fortObj.size() > 0)
 		{
 			buildings.push_back("fort1");
@@ -111,7 +111,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 	}
 
 	owner = NULL;
-	vector<Object*> ownerObj = obj->getValue("owner");
+	vector<IObject*> ownerObj = obj->getValue("owner");
 	if (ownerObj.size() > 0)
 	{
 		ownerStr = ownerObj[0]->getLeaf();
@@ -124,22 +124,22 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 
 	cores.clear();
 	coreStrings.clear();
-	vector<Object*> coreObj = obj->getValue("add_core");
-	for (vector<Object*>::iterator itr = coreObj.begin(); itr != coreObj.end(); itr++)
+	vector<IObject*> coreObj = obj->getValue("add_core");
+	for (vector<IObject*>::iterator itr = coreObj.begin(); itr != coreObj.end(); itr++)
 	{
 		coreStrings.push_back( (*itr)->getLeaf() );
 	}
 	inHRE = false;
 
 	rawDiscoverers.clear();
-	vector<Object*> discoveredByObj = obj->getValue("discovered_by");
+	vector<IObject*> discoveredByObj = obj->getValue("discovered_by");
 	for (unsigned int i = 0; i < discoveredByObj.size(); i++)
 	{
 		rawDiscoverers.push_back(discoveredByObj[i]->getLeaf());
 	}
 	discoveredBy.clear();
 
-	vector<Object*> cultureObj = obj->getValue("culture");
+	vector<IObject*> cultureObj = obj->getValue("culture");
 	if (cultureObj.size() > 0)
 	{
 		culture = cultureObj[0]->getLeaf();
@@ -149,7 +149,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 		culture = "";
 	}
 
-	vector<Object*> religionObj = obj->getValue("religion");
+	vector<IObject*> religionObj = obj->getValue("religion");
 	if (religionObj.size() > 0)
 	{
 		religion = religionObj[0]->getLeaf();
@@ -163,7 +163,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 	modifiers.clear();
 
 	cot = false;
-	vector<Object*> cotObj = obj->getValue("cot");
+	vector<IObject*> cotObj = obj->getValue("cot");
 	if (cotObj.size() > 0)
 	{
 		if (cotObj[0]->getLeaf() == "yes")
@@ -182,7 +182,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 	demands.clear();
 	armyHere	= false;
 
-	vector<Object*> nativeSizeObj = obj->getValue("native_size");
+	vector<IObject*> nativeSizeObj = obj->getValue("native_size");
 	if (nativeSizeObj.size() > 0)
 	{
 		nativeSize = atof(nativeSizeObj[0]->getLeaf().c_str());
@@ -192,7 +192,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 		nativeSize = 0.0f;
 	}
 
-	vector<Object*> nativeFerocityObj = obj->getValue("native_ferocity");
+	vector<IObject*> nativeFerocityObj = obj->getValue("native_ferocity");
 	if (nativeFerocityObj.size() > 0)
 	{
 		nativeFerocity = atoi(nativeFerocityObj[0]->getLeaf().c_str());
@@ -202,7 +202,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 		nativeFerocity = 0;
 	}
 
-	vector<Object*> nativeHostilityObj = obj->getValue("native_hostileness");
+	vector<IObject*> nativeHostilityObj = obj->getValue("native_hostileness");
 	if (nativeHostilityObj.size() > 0)
 	{
 		nativeHostility = atoi(nativeHostilityObj[0]->getLeaf().c_str());
@@ -216,45 +216,45 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 	numShips			= 0;
 
 	// update based on history
-	vector<Object*> objectList = obj->getLeaves();
+	vector<IObject*> objectList = obj->getLeaves();
 	for (unsigned int i = 0; i < objectList.size(); i++)
 	{
 		string key = objectList[i]->getKey();
 		if (key[0] == '1')
 		{
-			date histDate(key);
+			common::date histDate(key);
 			if (histDate <= startDate)
 			{
 				EU3History* newHistory = new EU3History(histDate);
-				vector<Object*> capitalObj = objectList[i]->getValue("capital");
+				vector<IObject*> capitalObj = objectList[i]->getValue("capital");
 				if (capitalObj.size() > 0)
 				{
 					capital = capitalObj[0]->getLeaf();
 					newHistory->capital = capital;
 				}
 
-				vector<Object*> tradeGoodObj = objectList[i]->getValue("trade_goods");
+				vector<IObject*> tradeGoodObj = objectList[i]->getValue("trade_goods");
 				if (tradeGoodObj.size() > 0)
 				{
 					tradeGood = tradeGoodObj[0]->getLeaf().c_str();
 					newHistory->tradeGood = tradeGood;
 				}
 
-				vector<Object*> populationObj = objectList[i]->getValue("citysize");
+				vector<IObject*> populationObj = objectList[i]->getValue("citysize");
 				if (populationObj.size() > 0)
 				{
 					population = atof( populationObj[0]->getLeaf().c_str() );
-					newHistory->population = population;					
+					newHistory->population = population;
 				}
 
-				vector<Object*> manpowerObj = objectList[i]->getValue("manpower");
+				vector<IObject*> manpowerObj = objectList[i]->getValue("manpower");
 				if (manpowerObj.size() > 0)
 				{
 					manpower = atoi ( manpowerObj[0]->getLeaf().c_str() );
 					newHistory->manpower = manpower;
 				}
 
-				vector<Object*> fortObj = objectList[i]->getValue("fort2");
+				vector<IObject*> fortObj = objectList[i]->getValue("fort2");
 				if (fortObj.size() > 0)
 				{
 					buildings.clear();
@@ -262,14 +262,14 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 				}
 				else
 				{
-					vector<Object*> fortObj = objectList[i]->getValue("fort1");
+					vector<IObject*> fortObj = objectList[i]->getValue("fort1");
 					if (fortObj.size() > 0)
 					{
 						buildings.push_back("fort1");
 					}
 				}
 
-				vector<Object*> newOwnerObj = objectList[i]->getValue("owner");
+				vector<IObject*> newOwnerObj = objectList[i]->getValue("owner");
 				if (newOwnerObj.size() > 0)
 				{
 					ownerStr = newOwnerObj[0]->getLeaf();
@@ -277,14 +277,14 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 				}
 
 				coreObj = objectList[i]->getValue("add_core");
-				for (vector<Object*>::iterator itr = coreObj.begin(); itr != coreObj.end(); itr++)
+				for (vector<IObject*>::iterator itr = coreObj.begin(); itr != coreObj.end(); itr++)
 				{
 					coreStrings.push_back( (*itr)->getLeaf() );
 					newHistory->add_core = (*itr)->getLeaf();
 				}
 
 				coreObj = objectList[i]->getValue("remove_core");
-				for (vector<Object*>::iterator itr = coreObj.begin(); itr != coreObj.end(); itr++)
+				for (vector<IObject*>::iterator itr = coreObj.begin(); itr != coreObj.end(); itr++)
 				{
 					for (vector<string>::iterator coreItr = coreStrings.begin(); coreItr != coreStrings.end(); coreItr++)
 					{
@@ -297,7 +297,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 					}
 				}
 
-				vector<Object*> discoveredByObj = obj->getValue("discovered_by");
+				vector<IObject*> discoveredByObj = obj->getValue("discovered_by");
 				for (unsigned int j = 0; j < discoveredByObj.size(); j++)
 				{
 					for (unsigned int j = 0; j < discoveredByObj.size(); j++)
@@ -310,21 +310,21 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 					}
 				}
 
-				vector<Object*> cultureObj = objectList[i]->getValue("culture");
+				vector<IObject*> cultureObj = objectList[i]->getValue("culture");
 				if (cultureObj.size() > 0)
 				{
 					culture = cultureObj[0]->getLeaf();
 					newHistory->culture = culture;
 				}
 
-				vector<Object*> religionObj = objectList[i]->getValue("religion");
+				vector<IObject*> religionObj = objectList[i]->getValue("religion");
 				if (religionObj.size() > 0)
 				{
 					religion = religionObj[0]->getLeaf();
 					newHistory->religion = religion;
 				}
 
-				vector<Object*> cotObj = objectList[i]->getValue("cot");
+				vector<IObject*> cotObj = objectList[i]->getValue("cot");
 				if (cotObj.size() > 0)
 				{
 					if (cotObj[0]->getLeaf() == "yes")
@@ -845,6 +845,7 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 					rulerTitle = rulerTitle->getLiege();
 				}
 				const CK2Character* ruler = rulerTitle->getLastHolder();
+
 				if ( ruler->getReligion()->isHereticTo(topReligion) )
 				{
 					modifiers.push_back("heresy");
@@ -998,14 +999,14 @@ void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, con
 					//{
 						allConditions = false;
 					//}
-				} 
+				}
 				else if (*conditionItr == "not war")
 				{
 					//if (country->isAtWar()) TODO
 					//{
 					//	allConditions = false;
 					//}
-				} 
+				}
 				else if (conditionItr->substr(0, 13) == "stability is ")
 				{
 					int reqStability = atoi( conditionItr->substr(13, 2).c_str() );
@@ -1303,7 +1304,7 @@ double EU3Province::determineTax(const cultureGroupMapping& cultureGroups)
 	}
 
 	tax /= 12;
-	
+
 	if (population <= 1000)
 	{
 		tax *= 0.10 * (population / 10);
@@ -1360,7 +1361,7 @@ double EU3Province::determineTax(const cultureGroupMapping& cultureGroups)
 			(religion == "bektashi") ||
 			(religion == "druze") ||
 			(religion == "hurufi") ||
-			(religion == "shinto") 
+			(religion == "shinto")
 		)
 	{
 		tax *= 0.80;

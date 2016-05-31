@@ -1,4 +1,4 @@
-cultureMap = {
+mappings = {
 
 ## Germanic
 link = { ck2 = german eu3 = pommeranian de_jure = d_pommerania }
@@ -94,6 +94,7 @@ link = { ck2 = dutch eu3 = flemish de_jure = d_valois }
 link = { ck2 = dutch eu3 = dutch }
 
 ## Scandinavian
+link = { ck2 = norse eu3 = normand de_jure = e_france }
 link = { ck2 = norse eu3 = swedish de_jure = k_sweden }
 link = { ck2 = norse eu3 = swedish de_jure = e_russia }
 link = { ck2 = swedish eu3 = swedish }
@@ -102,13 +103,11 @@ link = { ck2 = norse eu3 = danish de_jure = e_hre }
 link = { ck2 = danish eu3 = danish }
 link = { ck2 = norse eu3 = norwegian de_jure = k_norway }
 link = { ck2 = norse eu3 = norwegian de_jure = e_britannia }
-link = { ck2 = norse eu3 = norwegian de_jure = e_france }
 link = { ck2 = norwegian eu3 = norwegian }
 link = { ck2 = norse eu3 = norwegian }
 
 ## British
-link = { ck2 = saxon eu3 = scottish de_jure = k_scotland }
-link = { ck2 = saxon eu3 = english }
+link = { ck2 = saxon eu3 = saxon }
 link = { ck2 = english eu3 = english }
 link = { ck2 = scottish eu3 = scottish }
 
@@ -118,13 +117,12 @@ link = { ck2 = breton eu3 = breton }
 link = { ck2 = irish eu3 = irish }
 
 ## Latin
+link = { ck2 = lombard eu3 = lombard }
 link = { ck2 = italian eu3 = lombard de_jure = d_venice }
 link = { ck2 = italian eu3 = lombard de_jure = d_verona }
 link = { ck2 = italian eu3 = lombard de_jure = d_susa }
 link = { ck2 = italian eu3 = lombard de_jure = d_genoa }
-link = { ck2 = italian eu3 = lombard de_jure = k_italy hre_member = true }
-link = { ck2 = italian eu3 = umbrian de_jure = k_italy }
-link = { ck2 = italian eu3 = sicilian de_jure = K_sicily }
+link = { ck2 = italian eu3 = sicilian de_jure = k_sicily }
 link = { ck2 = italian eu3 = sicilian de_jure = d_benevento }
 link = { ck2 = italian eu3 = sicilian de_jure = d_capua }
 link = { ck2 = italian eu3 = sicilian de_jure = d_apulia }
@@ -143,35 +141,35 @@ link = { ck2 = portuguese eu3 = galician de_jure = d_galicia }
 link = { ck2 = portuguese eu3 = galician de_jure = d_porto }
 link = { ck2 = andalusian_arabic eu3 = andalucian }
 link = { ck2 = portuguese eu3 = portugese }
-link = { ck2 = bedouin_arabic eu3 = maltese de_jure = K_sicily }
+link = { ck2 = bedouin_arabic eu3 = maltese de_jure = k_sicily }
 link = { ck2 = bedouin_arabic eu3 = maltese de_jure = d_benevento }
 link = { ck2 = bedouin_arabic eu3 = maltese de_jure = d_capua }
 link = { ck2 = bedouin_arabic eu3 = maltese de_jure = d_apulia }
 link = { ck2 = bedouin_arabic eu3 = maltese de_jure = d_salerno }
 link = { ck2 = bedouin_arabic eu3 = maltese de_jure = d_calabria }
 link = { ck2 = bedouin_arabic eu3 = maltese de_jure = d_sicily }
-link = { ck2 = maghreb_arabic eu3 = maltese de_jure = K_sicily }
+link = { ck2 = maghreb_arabic eu3 = maltese de_jure = k_sicily }
 link = { ck2 = maghreb_arabic eu3 = maltese de_jure = d_benevento }
 link = { ck2 = maghreb_arabic eu3 = maltese de_jure = d_capua }
 link = { ck2 = maghreb_arabic eu3 = maltese de_jure = d_apulia }
 link = { ck2 = maghreb_arabic eu3 = maltese de_jure = d_salerno }
 link = { ck2 = maghreb_arabic eu3 = maltese de_jure = d_calabria }
 link = { ck2 = maghreb_arabic eu3 = maltese de_jure = d_sicily }
-link = { ck2 = andalusian_arabic eu3 = maltese de_jure = K_sicily }
+link = { ck2 = andalusian_arabic eu3 = maltese de_jure = k_sicily }
 link = { ck2 = andalusian_arabic eu3 = maltese de_jure = d_benevento }
 link = { ck2 = andalusian_arabic eu3 = maltese de_jure = d_capua }
 link = { ck2 = andalusian_arabic eu3 = maltese de_jure = d_apulia }
 link = { ck2 = andalusian_arabic eu3 = maltese de_jure = d_salerno }
 link = { ck2 = andalusian_arabic eu3 = maltese de_jure = d_calabria }
 link = { ck2 = andalusian_arabic eu3 = maltese de_jure = d_sicily }
-link = { ck2 = levantine_arabic eu3 = maltese de_jure = K_sicily }
+link = { ck2 = levantine_arabic eu3 = maltese de_jure = k_sicily }
 link = { ck2 = levantine_arabic eu3 = maltese de_jure = d_benevento }
 link = { ck2 = levantine_arabic eu3 = maltese de_jure = d_capua }
 link = { ck2 = levantine_arabic eu3 = maltese de_jure = d_apulia }
 link = { ck2 = levantine_arabic eu3 = maltese de_jure = d_salerno }
 link = { ck2 = levantine_arabic eu3 = maltese de_jure = d_calabria }
 link = { ck2 = levantine_arabic eu3 = maltese de_jure = d_sicily }
-link = { ck2 = egyptian_arabic eu3 = maltese de_jure = K_sicily }
+link = { ck2 = egyptian_arabic eu3 = maltese de_jure = k_sicily }
 link = { ck2 = egyptian_arabic eu3 = maltese de_jure = d_benevento }
 link = { ck2 = egyptian_arabic eu3 = maltese de_jure = d_capua }
 link = { ck2 = egyptian_arabic eu3 = maltese de_jure = d_apulia }
@@ -264,6 +262,7 @@ link = { ck2 = polish eu3 = schlesian de_jure = d_moravia }
 link = { ck2 = polish ck2 = pommeranian eu3 = polish }
 
 ## East Slavic
+link = { ck2 = khanty eu3 = uralic }
 link = { ck2 = komi eu3 = uralic }
 link = { ck2 = russian eu3 = byelorussian de_jure = d_turov }
 link = { ck2 = russian eu3 = byelorussian de_jure = d_volhynia }
@@ -303,6 +302,8 @@ link = { ck2 = armenian eu3 = armenian }
 
 ## Turko-Semitic
 link = { ck2 = maghreb_arabic eu3 = maghreb_arabic de_jure = d_marrakech }
+link = { ck2 = maghreb_arabic eu3 = tuareg de_jure = d_tripolitania }
+link = { ck2 = maghreb_arabic eu3 = tuareg de_jure = d_cyrenaica }
 link = { ck2 = egyptian_arabic eu3 = al_misr_arabic }
 link = { ck2 = levantine_arabic eu3 = al_iraqiya_arabic religion = shiite }
 link = { ck2 = levantine_arabic eu3 = al_iraqiya_arabic religion = bektashi }
@@ -338,9 +339,11 @@ link = { ck2 = turkish eu3 = turkmeni de_jure = d_hamadan }
 link = { ck2 = turkish eu3 = turkmeni de_jure = d_birjand }
 link = { ck2 = turkish eu3 = siberian de_jure = c_omsk }
 link = { ck2 = turkish eu3 = turkish }
+link = { ck2 = alan ck2 = cuman ck2 = pecheneg ck2 = khazar ck2 = bolghar ck2 = avar ck2 = karluk eu3 = turkish }
 
 ## Iranian
 link = { ck2 = kurdish eu3 = persian }
+link = { ck2 = afghan eu3 = east_persian }
 link = { ck2 = persian eu3 = east_persian de_jure = d_khorasan }
 link = { ck2 = persian eu3 = east_persian de_jure = d_merv }
 link = { ck2 = persian eu3 = east_persian de_jure = d_khiva }
@@ -350,9 +353,32 @@ link = { ck2 = persian eu3 = east_persian de_jure = d_aktobe }
 link = { ck2 = persian eu3 = baluchi de_jure = d_hormuz }
 link = { ck2 = persian eu3 = baluchi de_jure = d_birjand }
 link = { ck2 = persian eu3 = persian }
+link = { ck2 = baloch eu3 = baluchi }
+
+## Hindustani
+link = { ck2 = rajput eu3 = rajput }
+link = { ck2 = gujurati eu3 = gujarati }
+link = { ck2 = hindustani eu3 = avadhi de_jure = k_kosala }
+link = { ck2 = hindustani eu3 = avadhi de_jure = k_gondwana }
+link = { ck2 = hindustani eu3 = avadhi de_jure = k_malwa }
+link = { ck2 = hindustani eu3 = kanauji }
+
+## Indo-Aryan
+link = { ck2 = oriya eu3 = oriya }
+link = { ck2 = marathi eu3 = marathi }
+link = { ck2 = bengali eu3 = bengali }
+link = { ck2 = assamese eu3 = assamese }
+link = { ck2 = sinhala eu3 = sinhala }
+link = { ck2 = sindhi eu3 = sindhi }
+link = { ck2 = panjabi eu3 = panjabi }
+
+## Dravidian
+link = { ck2 = tamil eu3 = malayalam de_jure = c_maldives}
+link = { ck2 = kannada eu3 = kannada }
+link = { ck2 = telugu eu3 = telegu }
+link = { ck2 = tamil eu3 = tamil }
 
 ## Altaic
-link = { ck2 = alan ck2 = cuman ck2 = pecheneg ck2 = khazar ck2 = bolghar ck2 = avar eu3 = tartar }
 link = { ck2 = mongol eu3 = azerbadjani de_jure = d_kermanshah }
 link = { ck2 = mongol eu3 = azerbadjani de_jure = d_tigris }
 link = { ck2 = mongol eu3 = azerbadjani de_jure = d_basra }
@@ -382,12 +408,7 @@ link = { ck2 = mongol eu3 = siberian de_jure = c_omsk }
 link = { ck2 = mongol eu3 = tartar }
 
 ## African
-#link = { ck2 = ?? eu3 = tuareg }
-link = { ck2 = ethiopian eu3 = nubian de_jure = d_aswan }
-link = { ck2 = ethiopian eu3 = nubian de_jure = c_kassala }
-link = { ck2 = ethiopian eu3 = nubian de_jure = c_hayya }
-link = { ck2 = ethiopian eu3 = nubian de_jure = c_atbara }
-link = { ck2 = ethiopian eu3 = nubian de_jure = c_sennar }
+link = { ck2 = nubian eu3 = nubian }
 link = { ck2 = ethiopian eu3 = ethiopian de_jure = d_gondar }
 link = { ck2 = ethiopian eu3 = ethiopian de_jure = c_aksum }
 link = { ck2 = ethiopian eu3 = ethiopian de_jure = c_akordat }

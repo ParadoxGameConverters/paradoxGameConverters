@@ -9,7 +9,7 @@
 using namespace boost;
 
 #define GROUPING_SYMBOL '*'
-vector<string> ModCultureRule::processRawNames(vector<Object*> nameListObj)
+vector<string> ModCultureRule::processRawNames(vector<IObject*> nameListObj)
 {
 	vector<string> nameList;
 	string rawNames, name, temp;
@@ -79,7 +79,7 @@ ModCultureRule::ModCultureRule(string _key, Object* obj)
 {
 	key			= _key;
 
-	vector<Object*> graphicalCultureObj = obj->getValue("graphical_culture");
+	vector<IObject*> graphicalCultureObj = obj->getValue("graphical_culture");
 	if (graphicalCultureObj.size() > 0)
 	{
 		graphicalCulture	= graphicalCultureObj[0]->getLeaf();
@@ -90,7 +90,7 @@ ModCultureRule::ModCultureRule(string _key, Object* obj)
 	}
 
 	#define DEFAULT_GC "Generic"
-	vector<Object*> graphicalCultureV2Obj = obj->getValue("graphical_culture_V2");
+	vector<IObject*> graphicalCultureV2Obj = obj->getValue("graphical_culture_V2");
 	if (graphicalCultureV2Obj.size() > 0)
 	{
 		graphicalCultureV2	= graphicalCultureV2Obj[0]->getLeaf();
@@ -101,7 +101,7 @@ ModCultureRule::ModCultureRule(string _key, Object* obj)
 	}
 
 	#define DEFAULT_BASE_V2 "CAN"
-	vector<Object*> baseCountryV2Obj = obj->getValue("base_country_V2");
+	vector<IObject*> baseCountryV2Obj = obj->getValue("base_country_V2");
 	if (graphicalCultureV2Obj.size() > 0)
 	{
 		baseCountryV2	= baseCountryV2Obj[0]->getLeaf();
@@ -112,7 +112,7 @@ ModCultureRule::ModCultureRule(string _key, Object* obj)
 	}
 
 	maleNames.clear();
-	vector<Object*> maleNameObj = obj->getValue("male_names");
+	vector<IObject*> maleNameObj = obj->getValue("male_names");
 	if (maleNameObj.size() > 0)
 	{
 		maleNames = processRawNames(maleNameObj);
@@ -120,35 +120,35 @@ ModCultureRule::ModCultureRule(string _key, Object* obj)
 	
 
 	femaleNames.clear();
-	vector<Object*> femaleNameObj = obj->getValue("female_names");
+	vector<IObject*> femaleNameObj = obj->getValue("female_names");
 	if (femaleNameObj.size() > 0)
 	{
 		femaleNames = processRawNames(femaleNameObj);
 	}
 
 	leaderNames.clear();
-	vector<Object*> leaderNameObj = obj->getValue("leader_names");
+	vector<IObject*> leaderNameObj = obj->getValue("leader_names");
 	if (leaderNameObj.size() > 0)
 	{
 		leaderNames = processRawNames(leaderNameObj);
 	}
 
 	shipNames.clear();
-	vector<Object*> shipNameObj = obj->getValue("ship_names");
+	vector<IObject*> shipNameObj = obj->getValue("ship_names");
 	if (shipNameObj.size() > 0)
 	{
 		shipNames = processRawNames(shipNameObj);
 	}
 
 	armyNames.clear();
-	vector<Object*> armyNameObj = obj->getValue("army_names");
+	vector<IObject*> armyNameObj = obj->getValue("army_names");
 	if (armyNameObj.size() > 0)
 	{
 		armyNames = processRawNames(armyNameObj);
 	}
 
 	fleetNames.clear();
-	vector<Object*> fleetNameObj = obj->getValue("fleet_names");
+	vector<IObject*> fleetNameObj = obj->getValue("fleet_names");
 	if (fleetNameObj.size() > 0)
 	{
 		fleetNames = processRawNames(fleetNameObj);

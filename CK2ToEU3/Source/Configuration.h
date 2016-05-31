@@ -48,6 +48,7 @@
 
 
 #include <string>
+#include "Parsers\IObject.h"
 using namespace std;
 
 
@@ -56,6 +57,7 @@ class Configuration // Singleton
 {
 public:
 	Configuration();
+	Configuration(IObject*);
 
 	static string getCK2Path()
 	{
@@ -234,7 +236,14 @@ public:
 		return instance;
 	}
 
+	static void setConfiguration(IObject* configurationDetails)
+	{
+		instance = new Configuration(configurationDetails);
+	}
+
 private:
+	void readConfiguration(IObject*);
+
 	static Configuration* instance;
 
 	string	CK2Path;

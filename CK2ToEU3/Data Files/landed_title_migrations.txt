@@ -1,0 +1,33 @@
+mappings={
+
+#Landed Title Migrations
+#Handles landed_title changes from one version to another, which typically happens if map expansions were involved (the RoI patch is an example). If the converter encounters a title not available in the CK2 install, it will check this file and attempt to use the new title as a replacement 
+
+# link = { old =  new =  }
+
+link = { old = b_aralsk new = b_aralkum }
+link = { old = b_chelyabinsk new = b_ural }
+link = { old = b_landau new = b_ludza }
+link = { old = b_lori new = b_lori_berd }
+link = { old = b_omsk new = b_tobol }
+link = { old = b_orenburg new = b_pecheneg }
+link = { old = b_vilani new = b_vilaka }
+link = { old = c_chelyabi new = c_ural }
+link = { old = c_emba new = c_kangly }
+link = { old = c_kama new = c_qazan }
+link = { old = c_khorasan new = c_tus }
+link = { old = c_omsk new = c_tobol }
+link = { old = c_oral new = c_yaik }
+link = { old = c_ryn_desert new = c_inder }
+link = { old = c_southern_ural new = c_ashli }
+link = { old = c_surgut new = c_sibir }
+link = { old = c_turkmen new = c_konjikala }
+link = { old = c_zermanya new = c_sirjan }
+link = { old = d_aktobe new = d_yaik }
+link = { old = d_birjand new = d_zabulistan }
+link = { old = d_hormuz new= d_kerman }
+link = { old = d_khwarizmian new= d_turkestan }
+link = { old = d_tyumen new = d_sibir }
+link = { old = k_khwarizm new = k_turkestan }
+link = { old = k_seljuk_turks new = e_seljuk_turks }
+}

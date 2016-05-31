@@ -1,5 +1,5 @@
 /*Copyright (c) 2013 The CK2 to EU3 Converter Project
- 
+
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
  "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
  distribute, sublicense, and/or sell copies of the Software, and to
  permit persons to whom the Software is furnished to do so, subject to
  the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -30,6 +30,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <memory>
 using namespace std;
 
 class Object;
@@ -57,7 +58,7 @@ class CK2Building
 		double	numSoldiers;
 		double	taxIncome;
 		double	techBonus;
-		
+
 		string			forbiddenReligion;
 		string			requiredReligion;
 		vector<string>	acceptableCultures;
@@ -68,13 +69,13 @@ class CK2Building
 class CK2BuildingFactory
 {
 	public:
-		CK2BuildingFactory(const cultureGroupMapping* _cultureGroupMap);
-		
+		CK2BuildingFactory(std::shared_ptr<cultureGroupMapping> _cultureGroupMap);
+
 		static void						addBuildingTypes(Object* obj);
 		const CK2Building*	getBuilding(string type, const CK2Character* baronyHolder) const;
 
 	private:
-		const cultureGroupMapping* cultureGroupMap;
+		std::shared_ptr<cultureGroupMapping> cultureGroupMap;
 		static map<string, const CK2Building*> buildings;
 };
 

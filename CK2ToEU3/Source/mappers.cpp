@@ -1,5 +1,5 @@
 /*Copyright (c) 2013 The CK2 to EU3 Converter Project
- 
+
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
  "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
  distribute, sublicense, and/or sell copies of the Software, and to
  permit persons to whom the Software is furnished to do so, subject to
  the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -29,8 +29,8 @@
 #include "CK2World\CK2Title.h"
 #include "CK2World\CK2Province.h"
 #include "CK2World\CK2Barony.h"
-#include "CK2World\CK2Character.h"
 #include "CK2World\CK2Religion.h"
+#include "CK2World\Character\CK2Character.h"
 #include "EU3World\EU3Country.h"
 #include <cstdio>
 #include <sstream>
@@ -42,7 +42,7 @@ provinceMapping initProvinceMap(Object* obj, CK2Version* version)
 	provinceMapping mapping;
 	provinceMapping::iterator mapIter;
 
-	vector<Object*> leaves = obj->getLeaves();
+	vector<IObject*> leaves = obj->getLeaves();
 
 	if (leaves.size() < 1)
 	{
@@ -51,20 +51,20 @@ provinceMapping initProvinceMap(Object* obj, CK2Version* version)
 		return mapping;
 	}
 
-	for (vector<Object*>::iterator itr = leaves.begin(); itr < leaves.end(); itr++)
+	for (vector<IObject*>::iterator itr = leaves.begin(); itr < leaves.end(); itr++)
 	{
 		if (  CK2Version( (*itr)->getKey() ) > *version  )
 		{
 			continue;
 		}
-		vector<Object*> data = (*itr)->getLeaves();
+		vector<IObject*> data = (*itr)->getLeaves();
 
 		for (unsigned int i = 0; i < data.size(); i++)
 		{
 			vector<int> CK2nums;
 			vector<int> EU3nums;
 
-			vector<Object*> maps = data[i]->getLeaves();
+			vector<IObject*> maps = data[i]->getLeaves();
 
 			for (unsigned int j = 0; j < maps.size(); j++)
 			{
@@ -119,8 +119,8 @@ continentMapping initContinentMap(Object* obj)
 {
 	continentMapping continentMap;
 
-	vector<Object*> continentObjs = obj->getLeaves();
-	for (vector<Object*>::iterator continentItr = continentObjs.begin(); continentItr < continentObjs.end(); continentItr++)
+	vector<IObject*> continentObjs = obj->getLeaves();
+	for (vector<IObject*>::iterator continentItr = continentObjs.begin(); continentItr < continentObjs.end(); continentItr++)
 	{
 		string continent = (*continentItr)->getKey();
 		vector<string> provinceObjs = (*continentItr)->getTokens();
@@ -184,13 +184,13 @@ vector<string> processBlockedNations(Object* obj)
 {
 	vector<string> blockedNations;
 
-	vector<Object*> leaves = obj->getLeaves();
+	vector<IObject*> leaves = obj->getLeaves();
 	if (leaves.size() < 1)
 	{
 		return blockedNations;
 	}
 
-	vector<Object*> nations = leaves[0]->getLeaves();
+	vector<IObject*> nations = leaves[0]->getLeaves();
 	for (unsigned int i = 0; i < nations.size(); i++)
 	{
 		blockedNations.push_back(nations[i]->getLeaf());
@@ -203,16 +203,16 @@ vector<string> processBlockedNations(Object* obj)
 cultureMapping initCultureMap(Object* obj) // TODO: consider cleaning up the distinguishers
 {
 	cultureMapping cultureMap;
-	vector<Object*> links = obj->getLeaves();
+	vector<IObject*> links = obj->getLeaves();
 
-	for (vector<Object*>::iterator i = links.begin(); i != links.end(); i++)
+	for (vector<IObject*>::iterator i = links.begin(); i != links.end(); i++)
 	{
-		vector<Object*>			cultures	= (*i)->getLeaves();
+		vector<IObject*>			cultures	= (*i)->getLeaves();
 
 		vector<string>				srcCultures;
 		string						dstCulture;
 		vector< distinguisher > distinguishers;
-		for (vector<Object*>::iterator j = cultures.begin(); j != cultures.end(); j++)
+		for (vector<IObject*>::iterator j = cultures.begin(); j != cultures.end(); j++)
 		{
 			if ( (*j)->getKey() == "eu3" )
 			{
@@ -356,11 +356,15 @@ string determineEU3Culture(string CK2Culture, const cultureMapping& cultureMap, 
 
 void addCultureGroupMappings(Object* obj, cultureGroupMapping& map)
 {
-	vector<Object*> groups = obj->getLeaves();
-	for (vector<Object*>::iterator groupsItr = groups.begin(); groupsItr < groups.end(); groupsItr++)
+	if (obj == NULL)
 	{
-		vector<Object*> cultures = (*groupsItr)->getLeaves();
-		for (vector<Object*>::iterator culturesItr = cultures.begin(); culturesItr < cultures.end(); culturesItr++)
+		return;
+	}
+	vector<IObject*> groups = obj->getLeaves();
+	for (vector<IObject*>::iterator groupsItr = groups.begin(); groupsItr < groups.end(); groupsItr++)
+	{
+		vector<IObject*> cultures = (*groupsItr)->getLeaves();
+		for (vector<IObject*>::iterator culturesItr = cultures.begin(); culturesItr < cultures.end(); culturesItr++)
 		{
 			map.insert( make_pair((*culturesItr)->getKey(), (*groupsItr)->getKey()) );
 		}
@@ -371,15 +375,15 @@ void addCultureGroupMappings(Object* obj, cultureGroupMapping& map)
 religionMapping initReligionMap(Object* obj)
 {
 	religionMapping religionMap;
-	vector<Object*> links = obj->getLeaves();
+	vector<IObject*> links = obj->getLeaves();
 
-	for (vector<Object*>::iterator i = links.begin(); i != links.end(); i++)
+	for (vector<IObject*>::iterator i = links.begin(); i != links.end(); i++)
 	{
-		vector<Object*>			link	= (*i)->getLeaves();
+		vector<IObject*>			link	= (*i)->getLeaves();
 
 		string srcReligion;
 		string dstReligion;
-		for (vector<Object*>::iterator j = link.begin(); j != link.end(); j++)
+		for (vector<IObject*>::iterator j = link.begin(); j != link.end(); j++)
 		{
 			if ( (*j)->getKey() == "eu3" )
 			{
@@ -400,11 +404,11 @@ religionMapping initReligionMap(Object* obj)
 
 void addReligionGroupMappings(Object* obj, religionGroupMapping& map)
 {
-	vector<Object*> groups = obj->getLeaves();
-	for (vector<Object*>::iterator groupsItr = groups.begin(); groupsItr < groups.end(); groupsItr++)
+	vector<IObject*> groups = obj->getLeaves();
+	for (vector<IObject*>::iterator groupsItr = groups.begin(); groupsItr < groups.end(); groupsItr++)
 	{
-		vector<Object*> religions = (*groupsItr)->getLeaves();
-		for (vector<Object*>::iterator religionsItr = religions.begin(); religionsItr < religions.end(); religionsItr++)
+		vector<IObject*> religions = (*groupsItr)->getLeaves();
+		for (vector<IObject*>::iterator religionsItr = religions.begin(); religionsItr < religions.end(); religionsItr++)
 		{
 			map.insert( make_pair((*religionsItr)->getKey(), (*groupsItr)->getKey()) );
 		}
@@ -416,25 +420,25 @@ tradeGoodMapping initTradeGoodMapping(Object* obj)
 {
 	tradeGoodMapping tradeGoodMap;
 
-	vector<Object*> tradeGoodObjs = obj->getLeaves();
-	for(vector<Object*>::iterator tradeItr = tradeGoodObjs.begin(); tradeItr < tradeGoodObjs.end(); tradeItr++)
+	vector<IObject*> tradeGoodObjs = obj->getLeaves();
+	for(vector<IObject*>::iterator tradeItr = tradeGoodObjs.begin(); tradeItr < tradeGoodObjs.end(); tradeItr++)
 	{
 		tradeGood newTradeGood;
 		string tradeGoodName = (*tradeItr)->getKey();
 		newTradeGood.basePrice = atoi( (*tradeItr)->getValue("base_price")[0]->getLeaf().c_str() );
-		
-		vector<Object*> supplyObjs = (*tradeItr)->getValue("supply");
-		vector<Object*> modifierObjs;
+
+		vector<IObject*> supplyObjs = (*tradeItr)->getValue("supply");
+		vector<IObject*> modifierObjs;
 		if (supplyObjs.size() > 0)
 		{
 			modifierObjs = supplyObjs[0]->getLeaves();
 		}
-		for(vector<Object*>::iterator modsItr = modifierObjs.begin(); modsItr < modifierObjs.end(); modsItr++)
+		for(vector<IObject*>::iterator modsItr = modifierObjs.begin(); modsItr < modifierObjs.end(); modsItr++)
 		{
 			double factor		= 1.0f;
 			string modifier	= "";
-			vector<Object*> leaves = (*modsItr)->getLeaves();
-			for(vector<Object*>::iterator itr = leaves.begin(); itr < leaves.end(); itr++)
+			vector<IObject*> leaves = (*modsItr)->getLeaves();
+			for(vector<IObject*>::iterator itr = leaves.begin(); itr < leaves.end(); itr++)
 			{
 				if ( (*itr)->getKey() == "factor" )
 				{
@@ -450,14 +454,14 @@ tradeGoodMapping initTradeGoodMapping(Object* obj)
 				}
 				else if ( (*itr)->getKey() == "NOT" )
 				{
-					vector<Object*> subObjs = (*itr)->getLeaves();
+					vector<IObject*> subObjs = (*itr)->getLeaves();
 					if (subObjs[0]->getKey() == "controlled_by")
 					{
 						modifier = "other controller";
 					}
 					else if (subObjs[0]->getKey() == "owner")
 					{
-						vector<Object*> subSubObjs = subObjs[0]->getLeaves();
+						vector<IObject*> subSubObjs = subObjs[0]->getLeaves();
 						if (subSubObjs[0]->getKey() == "stability")
 						{
 							modifier = "stability not " + subSubObjs[0]->getLeaf();
@@ -474,7 +478,7 @@ tradeGoodMapping initTradeGoodMapping(Object* obj)
 				}
 				else if ( (*itr)->getKey() == "owner" )
 				{
-					vector<Object*> subObjs = (*itr)->getLeaves();
+					vector<IObject*> subObjs = (*itr)->getLeaves();
 					if (subObjs[0]->getKey() == "serfdom_freesubjects")
 					{
 						modifier = "serfdom_freesubjects " + subObjs[0]->getLeaf();
@@ -500,17 +504,17 @@ tradeGoodMapping initTradeGoodMapping(Object* obj)
 			newTradeGood.supplyModifiers.push_back(make_pair(modifier, factor));
 		}
 
-		vector<Object*> demandObjs = (*tradeItr)->getValue("demand");
+		vector<IObject*> demandObjs = (*tradeItr)->getValue("demand");
 		if (demandObjs.size() > 0)
 		{
 			modifierObjs = demandObjs[0]->getLeaves();
 		}
-		for(vector<Object*>::iterator modsItr = modifierObjs.begin(); modsItr < modifierObjs.end(); modsItr++)
+		for(vector<IObject*>::iterator modsItr = modifierObjs.begin(); modsItr < modifierObjs.end(); modsItr++)
 		{
 			double			factor = 1.0f;
 			vector<string>	modifiers;
-			vector<Object*> leaves = (*modsItr)->getLeaves();
-			for(vector<Object*>::iterator itr = leaves.begin(); itr < leaves.end(); itr++)
+			vector<IObject*> leaves = (*modsItr)->getLeaves();
+			for(vector<IObject*>::iterator itr = leaves.begin(); itr < leaves.end(); itr++)
 			{
 				if ( (*itr)->getKey() == "factor" )
 				{
@@ -518,8 +522,8 @@ tradeGoodMapping initTradeGoodMapping(Object* obj)
 				}
 				else if ( (*itr)->getKey() == "owner" )
 				{
-					vector<Object*> subObjs = (*itr)->getLeaves();
-					for(vector<Object*>::iterator subItr = subObjs.begin(); subItr < subObjs.end(); subItr++)
+					vector<IObject*> subObjs = (*itr)->getLeaves();
+					for(vector<IObject*>::iterator subItr = subObjs.begin(); subItr < subObjs.end(); subItr++)
 					{
 						if ((*subItr)->getKey() == "war")
 						{
@@ -583,8 +587,8 @@ tradeGoodMapping initTradeGoodMapping(Object* obj)
 						}
 						else if ( (*subItr)->getKey() == "NOT" )
 						{
-							vector<Object*> subSubObjs = (*subItr)->getLeaves();
-							for(vector<Object*>::iterator subSubItr = subSubObjs.begin(); subSubItr < subSubObjs.end(); subSubItr++)
+							vector<IObject*> subSubObjs = (*subItr)->getLeaves();
+							for(vector<IObject*>::iterator subSubItr = subSubObjs.begin(); subSubItr < subSubObjs.end(); subSubItr++)
 							{
 								if ((*subSubItr)->getKey() == "trade_income_percentage")
 								{
@@ -612,12 +616,12 @@ tradeGoodMapping initTradeGoodMapping(Object* obj)
 				}
 				else if ( (*itr)->getKey() == "NOT" )
 				{
-					vector<Object*> subObjs = (*itr)->getLeaves();
-					for(vector<Object*>::iterator subItr = subObjs.begin(); subItr < subObjs.end(); subItr++)
+					vector<IObject*> subObjs = (*itr)->getLeaves();
+					for(vector<IObject*>::iterator subItr = subObjs.begin(); subItr < subObjs.end(); subItr++)
 					{
 						if ((*subItr)->getKey() == "owner")
 						{
-							vector<Object*> subSubObjs = (*subItr)->getLeaves();
+							vector<IObject*> subSubObjs = (*subItr)->getLeaves();
 							if (subSubObjs[0]->getKey() == "war")
 							{
 								string modifier = "not war";
@@ -661,10 +665,10 @@ tradeGoodMapping initTradeGoodMapping(Object* obj)
 						}
 					}
 				}
-				else if ((*itr)->getKey() == "OR") 
+				else if ((*itr)->getKey() == "OR")
 				{
-					vector<Object*> subObjs = (*itr)->getLeaves();
-					for(vector<Object*>::iterator subItr = subObjs.begin(); subItr < subObjs.end(); subItr++)
+					vector<IObject*> subObjs = (*itr)->getLeaves();
+					for(vector<IObject*>::iterator subItr = subObjs.begin(); subItr < subObjs.end(); subItr++)
 					{
 						if ((*subItr)->getKey() == "trade_goods")
 						{
@@ -737,16 +741,16 @@ cultureRuleOverrideMapping initCultureRuleOverrideMap(Object* obj, cultureRuleOv
 {
 	cultureRuleOverrideMapping mapping;
 
-	vector<Object*> links = obj->getLeaves();
+	vector<IObject*> links = obj->getLeaves();
 
 	if (links.size() < 1)
 	{
 		return mapping;
 	}
 
-	for (vector<Object*>::iterator itr = links.begin(); itr < links.end(); itr++)
+	for (vector<IObject*>::iterator itr = links.begin(); itr < links.end(); itr++)
 	{
-		vector<Object*> data = (*itr)->getLeaves();
+		vector<IObject*> data = (*itr)->getLeaves();
 
 		mapping.insert(make_pair(data[0]->getLeaf(), cultureRules[data[1]->getLeaf()]));
 	}
@@ -759,20 +763,20 @@ localeOverrideMapping initLocaleOverrideMap(Object* obj)
 {
 	localeOverrideMapping mapping;
 
-	vector<Object*> links = obj->getLeaves();
+	vector<IObject*> links = obj->getLeaves();
 
 	if (links.size() < 1)
 	{
 		return mapping;
 	}
 
-	for (vector<Object*>::iterator i = links.begin(); i != links.end(); i++)
+	for (vector<IObject*>::iterator i = links.begin(); i != links.end(); i++)
 	{
 		//vector<Object*> data = (*itr)->getLeaves();
 
 		//mapping.insert( make_pair(data[0]->getLeaf(), data[1] -> getLeaf()) );
 
-		vector<Object*>			locales	= (*i)->getLeaves();
+		vector<IObject*>			locales	= (*i)->getLeaves();
 
 		if (locales.size()<=1) continue;
 		string						code;
@@ -789,9 +793,9 @@ localeOverrideMapping initLocaleOverrideMap(Object* obj)
 		string						portugese;
 		string						russian;
 		string						finnish;
-		string						default;
+		string						default_language;
 		stringstream				ss;
-		for (vector<Object*>::iterator j = locales.begin(); j != locales.end(); j++)
+		for (vector<IObject*>::iterator j = locales.begin(); j != locales.end(); j++)
 		{
 			if ( (*j)->getKey() == "code" )
 			{
@@ -850,37 +854,37 @@ localeOverrideMapping initLocaleOverrideMap(Object* obj)
 				finnish = (*j)->getLeaf();
 			}
 		}
-		default = code;
-		for (unsigned int i = 0; i<default.size(); i++) // c_country_name -> c_Country_Name
+		default_language = code;
+		for (unsigned int i = 0; i<default_language.size(); i++) // c_country_name -> c_Country_Name
 		{
-			if (default[i] == '_')
+			if (default_language[i] == '_')
 			{
-				default[i+1] = toupper(default[i+1]);
+				default_language[i+1] = toupper(default_language[i+1]);
 			}
 		}
-		default = default.substr(2); // c_Country_Name -> Country_Name
+		default_language = default_language.substr(2); // c_Country_Name -> Country_Name
 		const string adj = "_Adj";
-		if ( default != adj &&
-			 default.size() > adj.size() &&
-			 default.substr( default.size() - adj.size() ) == "_Adj" ) // Remove "_Adj" from default value;
+		if ( default_language != adj &&
+			 default_language.size() > adj.size() &&
+			 default_language.substr( default_language.size() - adj.size() ) == "_Adj" ) // Remove "_Adj" from default value;
 		{
-		   default = default.substr(0, default.size() - adj.size());
+		   default_language = default_language.substr(0, default_language.size() - adj.size());
 		}
 		if (english.size() == 0)
 		{
-			english = default;
+			english = default_language;
 		}
 		if (french.size() == 0)
 		{
-			french = default;
+			french = default_language;
 		}
 		if (german.size() == 0)
 		{
-			german = default;
+			german = default_language;
 		}
 		if (spanish.size() == 0)
 		{
-			spanish = default;
+			spanish = default_language;
 		}
 		ss << ";" << english;
 		ss << ";" << french;

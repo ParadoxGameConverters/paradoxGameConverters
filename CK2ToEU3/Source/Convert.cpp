@@ -1,5 +1,5 @@
 /*Copyright (c) 2013 The CK2 to EU3 Converter Project
- 
+
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
  "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
  distribute, sublicense, and/or sell copies of the Software, and to
  permit persons to whom the Software is furnished to do so, subject to
  the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -22,6 +22,8 @@
 
 
 #include <fstream>
+#include <iostream>
+#include <memory>
 #include <string>
 #include <sys/stat.h>
 #include <io.h>
@@ -31,15 +33,21 @@
 #include "Configuration.h"
 #include "Parsers/Parser.h"
 #include "Parsers/Object.h"
+#include "Parsers/LandedTitleMigrationsParser.h"
 #include "EU3World\EU3World.h"
 #include "EU3World\EU3Country.h"
 #include "EU3World\EU3Tech.h"
 #include "CK2World\CK2World.h"
-#include "CK2World\CK2Opinion.h"
+#include "CK2World\Opinion\Repository.h"
 #include "CK2World\CK2Religion.h"
 #include "Mappers.h"
 using namespace std;
 
+void inform(std::string msg)
+{
+	log((msg + "\n").c_str());
+	std::cout << msg <<std::endl;
+}
 
 bool doParseDirectoryContents(const std::string& directory, std::function<void(Object* obj)> predicate)
 {
@@ -59,8 +67,7 @@ bool doParseDirectoryContents(const std::string& directory, std::function<void(O
 		obj = doParseFile((directory + data.name).c_str());
 		if (obj == NULL)
 		{
-			log("Error: Could not open %s\n", (directory + data.name).c_str());
-			printf("Error: Could not open %s\n", (directory + data.name).c_str());
+			inform("Error: Could not open " + directory + data.name);
 			exit(-1);
 		}
 		predicate(obj);
@@ -70,11 +77,17 @@ bool doParseDirectoryContents(const std::string& directory, std::function<void(O
 	return true;
 }
 
+void parseLandedTitleMigrations(CK2World& world)
+{
+    LOG(LogLevel::Info) << "\tParsing landed title migrations\n";
+    auto fileData = doParseFile("landed_title_migrations.txt");
+    parsers::LandedTitleMigrationsParser landedTitleMigrationsParser;
+    auto landedTitleMigrations = landedTitleMigrationsParser.parse(std::shared_ptr<Object>(fileData));
+    world.addTitleMigrations(landedTitleMigrations);
+}
 
 int main(int argc, char * argv[])
 {
-	initLog();
-
 	Object*	obj;				// generic object
 
 	//Get CK2 install location
@@ -86,8 +99,7 @@ int main(int argc, char * argv[])
 	struct stat st;
 	if (CK2Loc.empty() || (stat(CK2Loc.c_str(), &st) != 0))
 	{
-		log("No Crusader King 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
-		printf("No Crusader King 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		inform("No Crusader King 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.");
 		return (-2);
 	}
 
@@ -99,24 +111,21 @@ int main(int argc, char * argv[])
 	}
 	if (EU3Loc.empty() || (stat(EU3Loc.c_str(), &st) != 0))
 	{
-		log("No Europa Universalis 3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
-		printf("No Europa Universalis 3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		inform("No Europa Universalis 3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.");
 		return (-2);
 	}
 
 
-	//Get Input CK2 save 
+	//Get Input CK2 save
 	string inputFilename("input.ck2");
 	if (argc >= 2)
 	{
 		inputFilename = argv[1];
-		log("Using input file %s.\n", inputFilename.c_str());
-		printf("Using input file %s.\n", inputFilename.c_str());
+		inform("Using input file " + inputFilename);
 	}
 	else
 	{
-		log("No input file given, defaulting to input.ck2\n");
-		printf("No input file given, defaulting to input.ck2\n");
+		inform("No input file given, defaulting to input.ck2");
 	}
 
 
@@ -137,201 +146,177 @@ int main(int argc, char * argv[])
 		string copyCommand = "xcopy mod \"" + modFolderName + "\" /E /C /I /Y";
 		system(copyCommand.c_str());
 	}
-	
+	inform("Getting CK2 data.");
+
+	inform("\tGetting opinion modifiers");
+
+	auto srcOpinionRepository = std::make_shared<ck2::opinion::Repository>();
+
+	if (Configuration::getCK2Mod() != "")
+	{
+		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/opinion_modifiers.txt").c_str()); // for pre-1.06 installs
+		if (obj != NULL)
+		{
+			srcOpinionRepository->initOpinions(obj);
+		}
+		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\opinion_modifiers\\"), [&](Object* eachobj) { srcOpinionRepository->initOpinions(eachobj); });
+	}
+	obj = doParseFile((Configuration::getCK2Path() + "/common/opinion_modifiers.txt").c_str()); // for pre-1.06 installs
+	srcOpinionRepository->initOpinions(obj);
+	if (!doParseDirectoryContents((CK2Loc + "\\common\\opinion_modifiers\\"), [&](Object* eachobj) { srcOpinionRepository->initOpinions(eachobj); }))
+	{
+		inform("\t\tError: Could not open opinion_modifiers directory (ok for pre-1.06).");
+		if (obj == NULL)
+		{
+			inform("Error: Could not open " + Configuration::getCK2Path() + "/common/opinion_modifiers.txt");
+			exit(-1);
+		}
+	}
 
 	// Input CK2 Data
-	log("Getting CK2 data.\n");
-	printf("Getting CK2 data.\n");
-	CK2World srcWorld;
+	auto srcWorld = std::make_shared<CK2World>(std::make_shared<Log>(LogLevel::Info), srcOpinionRepository);
 
-	log("\tGetting building types.\n");
-	printf("\tGetting building types.\n");
+	inform("\tGetting building types.");
 	if (Configuration::getCK2Mod() != "")
 	{
 		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/buildings.txt").c_str()); // for pre-1.06 installs
-		if (obj != NULL)
-		{
-			srcWorld.addBuildingTypes(obj);
-		}
-		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\buildings\\"), [&](Object* eachobj) { srcWorld.addBuildingTypes(eachobj); });
+		srcWorld->addBuildingTypes(obj);
+		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\buildings\\"), [&](Object* eachobj) { srcWorld->addBuildingTypes(eachobj); });
 	}
 	obj = doParseFile((Configuration::getCK2Path() + "/common/buildings.txt").c_str()); // for pre-1.06 installs
-	if (obj == NULL)
+	srcWorld->addBuildingTypes(obj);
+	if (!doParseDirectoryContents((CK2Loc + "\\common\\buildings\\"), [&](Object* eachobj) { srcWorld->addBuildingTypes(eachobj); }))
 	{
-		log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/buildings.txt").c_str());
-		printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/buildings.txt").c_str());
-		exit(-1);
-	}
-	srcWorld.addBuildingTypes(obj);
-	if (!doParseDirectoryContents((CK2Loc + "\\common\\buildings\\"), [&](Object* eachobj) { srcWorld.addBuildingTypes(eachobj); }))
-	{
-		log("\t\tError: Could not open buildings directory (ok for pre-1.06).\n");
-		printf("\t\tError: Could not open buildings directory (ok for pre-1.06).\n");
+		inform("\t\tError: Could not open buildings directory (ok for pre-1.06).\n");
+
+		if (obj == NULL)
+		{
+			inform("Error: Could not open " + Configuration::getCK2Path() + "/common/buildings.txt");
+			exit(-1);
+		}
 	}
 
-	log("\tGetting CK2 religions\n");
-	printf("\tGetting CK2 religions\n");
+	inform("\tGetting CK2 religions");
 	if (Configuration::getCK2Mod() != "")
 	{
 		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/religion.txt").c_str()); // for pre-1.06 installs
-		if (obj != NULL)
-		{
-			CK2Religion::parseReligions(obj);
-		}
+		CK2Religion::parseReligions(obj);
 		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\religions\\"), [&](Object* eachobj) { CK2Religion::parseReligions(eachobj); });
 	}
 	obj = doParseFile((Configuration::getCK2Path() + "/common/religion.txt").c_str()); // for pre-1.06 installs
-	if (obj == NULL)
-	{
-		log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/religion.txt").c_str());
-		printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/religion.txt").c_str());
-		exit(-1);
-	}
 	CK2Religion::parseReligions(obj);
 	if (!doParseDirectoryContents((CK2Loc + "\\common\\religions\\"), [&](Object* eachobj) { CK2Religion::parseReligions(eachobj); }))
 	{
-		log("\t\tError: Could not open religions directory (ok for pre-1.06).\n");
-		printf("\t\tError: Could not open religions directory (ok for pre-1.06).\n");
+		inform("\t\tError: Could not open religions directory (ok for pre-1.06).");
+
+		if (obj == NULL)
+		{
+			inform("Error: Could not open " + Configuration::getCK2Path() + "/common/religion.txt");
+			exit(-1);
+		}
 	}
 
-	log("\tGetting CK2 cultures\n");
-	printf("\tGetting CK2 cultures\n");
-	cultureGroupMapping CK2CultureGroupMap;
+	inform("\tGetting CK2 cultures");
+	auto CK2CultureGroupMap = std::make_shared<cultureGroupMapping>();
 	if (Configuration::getCK2Mod() != "")
 	{
 		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/cultures.txt").c_str()); // for pre-1.06 installs
-		if (obj != NULL)
-		{
-			addCultureGroupMappings(obj, CK2CultureGroupMap);
-		}
-		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\cultures\\"), [&](Object* eachobj) { addCultureGroupMappings(eachobj, CK2CultureGroupMap); });
+		addCultureGroupMappings(obj, *CK2CultureGroupMap);
+		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\cultures\\"), [&](Object* eachobj) { addCultureGroupMappings(eachobj, *CK2CultureGroupMap); });
 	}
 	obj = doParseFile((Configuration::getCK2Path() + "/common/cultures.txt").c_str()); // for pre-1.06 installs
-	if (obj == NULL)
+	addCultureGroupMappings(obj, *CK2CultureGroupMap);
+	if (!doParseDirectoryContents((CK2Loc + "\\common\\cultures\\"), [&](Object* eachobj) { addCultureGroupMappings(eachobj, *CK2CultureGroupMap); }))
 	{
-		log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/cultures.txt").c_str());
-		printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/cultures.txt").c_str());
-		exit(-1);
-	}
-	addCultureGroupMappings(obj, CK2CultureGroupMap);
-	if (!doParseDirectoryContents((CK2Loc + "\\common\\cultures\\"), [&](Object* eachobj) { addCultureGroupMappings(eachobj, CK2CultureGroupMap); }))
-	{
-		log("\t\tError: Could not open cultures directory (ok for pre-1.06).\n");
-		printf("\t\tError: Could not open cultures directory (ok for pre-1.06).\n");
+		inform("\t\tError: Could not open cultures directory (ok for pre-1.06).");
+		if (obj == NULL)
+		{
+			inform("Error: Could not open " + Configuration::getCK2Path() + "/common/cultures.txt");
+			exit(-1);
+		}
 	}
 
-	log("\tParsing landed titles.\n");
-	printf("\tParsing landed titles.\n");
+	inform("\tParsing landed titles.");
 	bool modHasFiles = false;
 	if (Configuration::getCK2Mod() != "")
 	{
 		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/landed_titles.txt").c_str()); // for pre-1.06 installs
 		if (obj != NULL)
 		{
-			srcWorld.addPotentialTitles(obj);
+			srcWorld->addPotentialTitles(obj);
 			modHasFiles = true;
 		}
 		DWORD dwAttrib = GetFileAttributes((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\landed_titles\\").c_str());
 		if (dwAttrib != INVALID_FILE_ATTRIBUTES && (dwAttrib & FILE_ATTRIBUTE_DIRECTORY))
 		{
-			doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\landed_titles\\"), [&](Object* eachobj) { srcWorld.addPotentialTitles(eachobj); });
+			doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\landed_titles\\"), [&](Object* eachobj) { srcWorld->addPotentialTitles(eachobj); });
 			modHasFiles = true;
 		}
 	}
 	if (!modHasFiles)
 	{
 		obj = doParseFile((Configuration::getCK2Path() + "/common/landed_titles.txt").c_str()); // for pre-1.06 installs
-		if (obj == NULL)
+		srcWorld->addPotentialTitles(obj);
+		if (!doParseDirectoryContents((CK2Loc + "\\common\\landed_titles\\"), [&](Object* eachobj) { srcWorld->addPotentialTitles(eachobj); }))
 		{
-			log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/landed_titles.txt").c_str());
-			printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/landed_titles.txt").c_str());
-			exit(-1);
-		}
-		srcWorld.addPotentialTitles(obj);
-		if (!doParseDirectoryContents((CK2Loc + "\\common\\landed_titles\\"), [&](Object* eachobj) { srcWorld.addPotentialTitles(eachobj); }))
-		{
-			log("\t\tError: Could not open landed_titles directory (ok for pre-1.06).\n");
-			printf("\t\tError: Could not open landed_titles directory (ok for pre-1.06).\n");
+			inform("\t\tError: Could not open landed_titles directory (ok for pre-1.06).");
+			if (obj == NULL)
+			{
+				inform("Error: Could not open " + Configuration::getCK2Path() + "/common/landed_titles.txt");
+				exit(-1);
+			}
 		}
 	}
 
-	log("\tGetting traits\n");
-	printf("\tGetting traits\n");
+	parseLandedTitleMigrations(*srcWorld);
+
+	inform("\tGetting traits");
 	if (Configuration::getCK2Mod() != "")
 	{
 		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/traits.txt").c_str()); // for pre-1.06 installs
 		if (obj != NULL)
 		{
-			srcWorld.addTraits(obj);
+			srcWorld->addTraits(obj);
 		}
-		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\traits\\"), [&](Object* eachobj) { srcWorld.addTraits(eachobj); });
+		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\traits\\"), [&](Object* eachobj) { srcWorld->addTraits(eachobj); });
 	}
 	obj = doParseFile((Configuration::getCK2Path() + "/common/traits.txt").c_str()); // for pre-1.06 installs
-	if (obj == NULL)
-	{
-		log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/traits.txt").c_str());
-		printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/traits.txt").c_str());
-		exit(-1);
-	}
-	srcWorld.addTraits(obj);
-	if (!doParseDirectoryContents((CK2Loc + "\\common\\traits\\"), [&](Object* eachobj) { srcWorld.addTraits(eachobj); }))
+	srcWorld->addTraits(obj);
+	if (!doParseDirectoryContents((CK2Loc + "\\common\\traits\\"), [&](Object* eachobj) { srcWorld->addTraits(eachobj); }))
 	{
 		log("\t\tError: Could not open traits directory (ok for pre-1.06).\n");
 		printf("\t\tError: Could not open traits directory (ok for pre-1.06).\n");
-	}
-
-
-	log("\tGetting opinion modifiers\n");
-	printf("\tGetting opinion modifiers\n");
-	if (Configuration::getCK2Mod() != "")
-	{
-		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/opinion_modifiers.txt").c_str()); // for pre-1.06 installs
-		if (obj != NULL)
+		if (obj == NULL)
 		{
-			CK2Opinion::initOpinions(obj);
+			log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/traits.txt").c_str());
+			printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/traits.txt").c_str());
+			exit(-1);
 		}
-		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\opinion_modifiers\\"), [&](Object* eachobj) { CK2Opinion::initOpinions(eachobj); });
-	}
-	obj = doParseFile((Configuration::getCK2Path() + "/common/opinion_modifiers.txt").c_str()); // for pre-1.06 installs
-	if (obj == NULL)
-	{
-		log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/opinion_modifiers.txt").c_str());
-		printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/opinion_modifiers.txt").c_str());
-		exit(-1);
-	}
-	CK2Opinion::initOpinions(obj);
-	if (!doParseDirectoryContents((CK2Loc + "\\common\\opinion_modifiers\\"), [&](Object* eachobj) { CK2Opinion::initOpinions(eachobj); }))
-	{
-		log("\t\tError: Could not open opinion_modifiers directory (ok for pre-1.06).\n");
-		printf("\t\tError: Could not open opinion_modifiers directory (ok for pre-1.06).\n");
 	}
 
-
-	log("\tAdding dynasties from CK2 Install\n");
-	printf("\tAdding dynasties from CK2 Install\n");
+	inform("\tAdding dynasties from CK2 Install");
 	if (Configuration::getCK2Mod() != "")
 	{
 		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/dynasties.txt").c_str()); // for pre-1.06 installs
 		if (obj != NULL)
 		{
-			srcWorld.addDynasties(obj);
+			srcWorld->addDynasties(obj);
 		}
-		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\dynasties\\"), [&](Object* eachobj) { srcWorld.addDynasties(eachobj); });
+		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\dynasties\\"), [&](Object* eachobj) { srcWorld->addDynasties(eachobj); });
 	}
 	obj = doParseFile((Configuration::getCK2Path() + "/common/dynasties.txt").c_str()); // for pre-1.06 installs
-	if (obj == NULL)
-	{
-		log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/dynasties.txt").c_str());
-		printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/dynasties.txt").c_str());
-		exit(-1);
-	}
-	srcWorld.addDynasties(obj);
-	if (!doParseDirectoryContents((CK2Loc + "\\common\\dynasties\\"), [&](Object* eachobj) { srcWorld.addDynasties(eachobj); }))
+	srcWorld->addDynasties(obj);
+	if (!doParseDirectoryContents((CK2Loc + "\\common\\dynasties\\"), [&](Object* eachobj) { srcWorld->addDynasties(eachobj); }))
 	{
 		log("\t\tError: Could not open dynasties directory (ok for pre-1.06).\n");
 		printf("\t\tError: Could not open dynasties directory (ok for pre-1.06).\n");
+		if (obj == NULL)
+		{
+			inform("Error: Could not open " + Configuration::getCK2Path() + "/common/dynasties.txt");
+			exit(-1);
+		}
 	}
-	
+
 	log("Parsing CK2 save.\n");
 	printf("Parsing CK2 save.\n");
 	obj = doParseFile(inputFilename.c_str());
@@ -344,11 +329,11 @@ int main(int argc, char * argv[])
 
 	log("Importing parsed data.\n");
 	printf("Importing parsed data.\n");
-	srcWorld.init(obj, CK2CultureGroupMap);
+	srcWorld->init(obj, CK2CultureGroupMap);
 
 	log("Merging top-level titles.\n");
 	printf("Merging top-level titles.\n");
-	srcWorld.mergeTitles();
+	srcWorld->mergeTitles();
 
 
 	// Parse province mappings
@@ -362,9 +347,9 @@ int main(int argc, char * argv[])
 		printf("Error: Could not open %s\n", mappingFile);
 		exit(-1);
 	}
-	provinceMapping			provinceMap				= initProvinceMap(obj, srcWorld.getVersion());
+	provinceMapping			provinceMap				= initProvinceMap(obj, srcWorld->getVersion().get());
 	inverseProvinceMapping	inverseProvinceMap	= invertProvinceMap(provinceMap);
-	//map<int, CK2Province*> srcProvinces				= srcWorld.getProvinces();
+	//map<int, CK2Province*> srcProvinces				= srcWorld->getProvinces();
 	//for (map<int, CK2Province*>::iterator i = srcProvinces.begin(); i != srcProvinces.end(); i++)
 	//{
 	//	inverseProvinceMapping::iterator p = inverseProvinceMap.find(i->first);
@@ -423,15 +408,15 @@ int main(int argc, char * argv[])
 		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/technologies/land.txt").c_str());
 		exit(-1);
 	}
-	EU3Tech* techData = new EU3Tech(srcWorld.getEndDate(), obj, govObj, prodObj, tradeObj, navalObj, landObj);
+	EU3Tech* techData = new EU3Tech(srcWorld->getEndDate(), obj, govObj, prodObj, tradeObj, navalObj, landObj);
 
-	EU3World destWorld(&srcWorld, techData);
-	
+	EU3World destWorld(srcWorld.get(), techData);
+
 	// Add historical EU3 countries
 	log("Adding historical EU3 nations.\n");
 	printf("Adding historical EU3 nations.\n");
 	destWorld.addHistoricalCountries();
-	
+
 	// Get list of blocked nations
 	log("Getting blocked EU3 nations.\n");
 	printf("Getting blocked EU3 nations.\n");
@@ -514,7 +499,7 @@ int main(int argc, char * argv[])
 		return 1;
 	}
 	cultureMapping cultureMap;
-	cultureMap = initCultureMap(obj->getLeaves()[0]);
+	cultureMap = initCultureMap(static_cast<Object*>(obj->getLeaves()[0]));
 
 	// Get religion mappings
 	log("Parsing religion mappings.\n");
@@ -541,7 +526,7 @@ int main(int argc, char * argv[])
 		return 1;
 	}
 	religionMapping religionMap;
-	religionMap = initReligionMap(obj->getLeaves()[0]);
+	religionMap = initReligionMap(static_cast<Object*>(obj->getLeaves()[0]));
 
 	// Get continents
 	log("Parsing continents.\n");
@@ -589,7 +574,7 @@ int main(int argc, char * argv[])
 	// Convert
 	log("Converting countries.\n");
 	printf("Converting countries.\n");
-	destWorld.convertCountries(srcWorld.getAllTitles(), religionMap, cultureMap, inverseProvinceMap);
+	destWorld.convertCountries(srcWorld->getAllTitles(), religionMap, cultureMap, inverseProvinceMap);
 
 	log("Setting up provinces.\n");
 	printf("Setting up provinces.\n");
@@ -598,11 +583,11 @@ int main(int argc, char * argv[])
 	log("Converting provinces.\n");
 	printf("Converting provinces.\n");
 	Object* positionsObj = doParseFile((Configuration::getEU3Path() + "\\map\\positions.txt").c_str());
-	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), cultureMap, religionMap, continentMap, adjacencyMap, tradeGoodMap, EU3ReligionGroupMap, positionsObj);
+	auto provinces = srcWorld->getProvinces();
+	destWorld.convertProvinces(provinceMap, provinces, cultureMap, religionMap, continentMap, adjacencyMap, tradeGoodMap, EU3ReligionGroupMap, positionsObj);
 
 	// Map CK2 nations to EU3 nations
-	log("Parsing country mappings.\n");
-	printf("Parsing country mappings.\n");
+	LOG(LogLevel::Info) << "Parsing country mappings.\n";
 	if (Configuration::getUseConverterMod() == "yes")
 	{
 		filename = "country_mappings_mod.txt";
@@ -614,45 +599,39 @@ int main(int argc, char * argv[])
 	obj = doParseFile(filename.c_str());
 	if (obj == NULL)
 	{
-		log("Error: Could not open country_mappings.txt\n");
-		printf("Error: Could not open country_mappings.txt\n");
+	    LOG(LogLevel::Error) << "Could not open country_mappings.txt\n";
 		exit(-1);
 	}
-	log("Mapping CK2 nations to EU3 nations.\n");
-	printf("Mapping CK2 nations to EU3 nations.\n");
-	destWorld.assignTags(obj, blockedNations, provinceMap, religionMap, cultureMap, inverseProvinceMap, *(srcWorld.getVersion()));
+	LOG(LogLevel::Info) << "Mapping CK2 nations to EU3 nations.\n";
+	destWorld.assignTags(obj, blockedNations, provinceMap, religionMap, cultureMap, inverseProvinceMap, *(srcWorld->getVersion()));
 
-	log("Adding accepted cultures.\n");
-	printf("Adding accepted cultures.\n");
+    LOG(LogLevel::Info) << "Adding accepted cultures.\n";
 	destWorld.addAcceptedCultures();
 
-	log("Converting tech.\n");
-	printf("Converting tech.\n");
-	destWorld.convertTech(srcWorld);
+    LOG(LogLevel::Info) << "Converting tech.\n";
+	destWorld.convertTech(*srcWorld);
 
-	log("Converting governments.\n");
-	printf("Converting governments.\n");
+	LOG(LogLevel::Info) << "Converting governments.\n";
 	destWorld.convertGovernments();
 
-	log("Converting centes of trade\n");
-	printf("Converting centes of trade\n");
+	LOG(LogLevel::Info) << "Converting centers of trade\n";
 	destWorld.convertCoTs();
 
 	log("Converting sliders\n");
 	printf("Converting sliders\n");
 	destWorld.convertSliders();
-	
+
 	log("Converting economies.\n");
 	printf("Converting economies.\n");
 	destWorld.convertEconomies(EU3CultureGroupMap, tradeGoodMap);
 
 	log("Converting advisors.\n");
 	printf("Converting advisors.\n");
-	destWorld.convertAdvisors(inverseProvinceMap, provinceMap, srcWorld);
+	destWorld.convertAdvisors(inverseProvinceMap, provinceMap, *srcWorld);
 
 	log("Converting diplomatic relations.\n");
 	printf("Converting diplomatic relations.\n");
-	destWorld.convertDiplomacy(*(srcWorld.getVersion()));
+	destWorld.convertDiplomacy(*(srcWorld->getVersion()));
 
 	log("Converting armies and navies.\n");
 	printf("Converting armies and navies.\n");
@@ -702,6 +681,5 @@ int main(int argc, char * argv[])
 
 	log("Complete.\n");
 	printf("Complete.\n");
-	closeLog();
 	return 0;
 }
