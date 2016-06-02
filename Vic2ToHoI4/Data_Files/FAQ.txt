@@ -1,0 +1,8 @@
+Q: I got an error that mentions MSVCP140.dll. What do I do?
+A : Go to the Visual Studio Redistributable page: https://www.microsoft.com/en-us/download/details.aspx?id=51682
+	then click Download and select vcredist_x86.exe.
+	Once it has downloaded, install it and run the converter again.
+
+Q: I'm trying to convert a EU4 To Vic2 game and keep getting an error. What do I do?
+A: You need to include the Vic2 mod from the EU4 to Vic2 converter to properly convert these games.
+
