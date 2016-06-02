@@ -24,38 +24,38 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Army.h"
 #include "Log.h"
 #include "../Configuration.h"
-#include "ParadoxParser.h"
+#include "ParadoxParserUTF8.h"
 #include <sstream>
 
 
 
-HoI4RegimentType::HoI4RegimentType(string type)
+HoI4RegimentType::HoI4RegimentType(wstring type)
 {
-	string	filename	= Configuration::getHoI4Path() + "\\tfh\\units\\" + type + ".txt";
-	Object*	obj		= doParseFile(filename.c_str());
+	wstring	filename	= Configuration::getHoI4Path() + L"\\tfh\\units\\" + type + L".txt";
+	Object*	obj		= parser_UTF8::doParseFile(filename.c_str());
 	obj					= obj->getLeaves()[0];
 	name					= obj->getKey();
 
-	vector<Object*> usableByObject = obj->getValue("usable_by");
+	vector<Object*> usableByObject = obj->getValue(L"usable_by");
 	if (usableByObject.size() > 0)
 	{
-		vector<string> tokens = usableByObject[0]->getTokens();
+		vector<wstring> tokens = usableByObject[0]->getTokens();
 		for (auto tokensItr: tokens)
 		{
 			usableBy.insert(tokensItr);
 		}
 	}
 
-	string unit_type = obj->getLeaf("type");
-	if (unit_type == "air")
+	wstring unit_type = obj->getLeaf(L"type");
+	if (unit_type == L"air")
 	{
 		force_type = air;
 	}
-	else if (unit_type == "land")
+	else if (unit_type == L"land")
 	{
 		force_type = land;
 	}
-	else if (unit_type == "naval")
+	else if (unit_type == L"naval")
 	{
 		force_type = navy;
 	}
@@ -64,43 +64,43 @@ HoI4RegimentType::HoI4RegimentType(string type)
 		LOG(LogLevel::Error) << "Possible bad unit type in " << filename << "!";
 	}
 
-	max_strength			= atoi(obj->getLeaf("max_strength").c_str());
-	practicalBonus			= obj->getLeaf("on_completion");
-	practicalBonusFactor	= atof(obj->getLeaf("completion_size").c_str());
+	max_strength			= _wtoi(obj->getLeaf(L"max_strength").c_str());
+	practicalBonus			= obj->getLeaf(L"on_completion");
+	practicalBonusFactor	= _wtof(obj->getLeaf(L"completion_size").c_str());
 }
 
 
 void HoI4Regiment::output(FILE* out, int indentlevel) const
 {
-	string indents(indentlevel, '\t');
-	const char* indent = indents.c_str();
+	wstring indents(indentlevel, '\t');
+	const wchar_t* indent = indents.c_str();
 
 	switch (type.getForceType())
 	{
 		case land:
-			fprintf(out, "%sregiment = ", indent);
+			fwprintf(out, L"%sregiment = ", indent);
 			break;
 		case navy:
-			fprintf(out, "%sship = ", indent);
+			fwprintf(out, L"%sship = ", indent);
 			break;
 		case air:
-			fprintf(out, "%swing = ", indent);
+			fwprintf(out, L"%swing = ", indent);
 			break;
 	}
-	fprintf(out, "{ ");
-	fprintf(out, "type = %s ", type.getName().c_str());
-	fprintf(out, "name = \"%s\" ", name.c_str());
-	fprintf(out, "historical_model = %d ", historicalModel);
-	fprintf(out, "}\n");
+	fwprintf(out, L"{ ");
+	fwprintf(out, L"type = %s ", type.getName().c_str());
+	fwprintf(out, L"name = \"%s\" ", name.c_str());
+	fwprintf(out, L"historical_model = %d ", historicalModel);
+	fwprintf(out, L"}\n");
 }
 
 
 void HoI4Regiment::outputIntoProductionQueue(FILE* out) const
 {
-	fprintf(out, "\t%s = {\n", type.getName().c_str());
-	fprintf(out, "\t\tname = \"%s\"\n", name.c_str());
-	fprintf(out, "\t\thistorical_model = %d\n", historicalModel);
-	fprintf(out, "\t}\n");
+	fwprintf(out, L"\t%s = {\n", type.getName().c_str());
+	fwprintf(out, L"\t\tname = \"%s\"\n", name.c_str());
+	fwprintf(out, L"\t\thistorical_model = %d\n", historicalModel);
+	fwprintf(out, L"\t}\n");
 }
 
 
@@ -120,8 +120,8 @@ void HoI4RegGroup::output(FILE* out, int indentlevel /* = 0*/) const
 		return;
 	}
 
-	string indents(indentlevel, '\t');
-	const char* indent = indents.c_str();
+	wstring indents(indentlevel, '\t');
+	const wchar_t* indent = indents.c_str();
 
 	switch (force_type)
 	{
@@ -129,43 +129,43 @@ void HoI4RegGroup::output(FILE* out, int indentlevel /* = 0*/) const
 			switch (command_level)
 			{
 				case division:
-					fprintf(out, "%sdivision = {\n", indent);
+					fwprintf(out, L"%sdivision = {\n", indent);
 					break;
 				case corps:
-					fprintf(out, "%scorps = {\n", indent);
+					fwprintf(out, L"%scorps = {\n", indent);
 					break;
 				case army:
-					fprintf(out, "%sarmy = {\n", indent);
+					fwprintf(out, L"%sarmy = {\n", indent);
 					break;
 				case armygroup:
-					fprintf(out, "%sarmygroup = {\n", indent);
+					fwprintf(out, L"%sarmygroup = {\n", indent);
 					break;
 				case theatre:
-					fprintf(out, "%stheatre = {\n", indent);
+					fwprintf(out, L"%stheatre = {\n", indent);
 					break;
 				default:
 					LOG(LogLevel::Error) << "Internal error: unexpected army command level!";
 			}
 			break;
 		case navy:
-			fprintf(out, "%snavy = {\n", indent);
+			fwprintf(out, L"%snavy = {\n", indent);
 			break;
 		case air:
-			fprintf(out, "%sair = {\n", indent);
+			fwprintf(out, L"%sair = {\n", indent);
 			break;
 		default:
 			LOG(LogLevel::Error) << "Internal error: unexpected force type!";
 	}
-	fprintf(out, "%s\tname=\"%s\"\n", indent, name.c_str());
+	fwprintf(out, L"%s\tname=\"%s\"\n", indent, name.c_str());
 	if (force_type == air || (force_type == navy && !at_sea))
 	{
-		fprintf(out, "%s\tbase = %d\n", indent, location);
+		fwprintf(out, L"%s\tbase = %d\n", indent, location);
 	}
 	if (leaderID)
 	{
-		fprintf(out, "%s\tleader = %d\n", indent, leaderID);
+		fwprintf(out, L"%s\tleader = %d\n", indent, leaderID);
 	}
-	fprintf(out, "%s\tlocation = %d\n", indent, location);
+	fwprintf(out, L"%s\tlocation = %d\n", indent, location);
 
 	if ((force_type == land) && (command_level == division))
 	{
@@ -180,7 +180,7 @@ void HoI4RegGroup::output(FILE* out, int indentlevel /* = 0*/) const
 
 		if (reserve)
 		{
-			fprintf(out, "%s\tis_reserve = yes\n", indent);
+			fwprintf(out, L"%s\tis_reserve = yes\n", indent);
 		}
 	}
 
@@ -194,11 +194,11 @@ void HoI4RegGroup::output(FILE* out, int indentlevel /* = 0*/) const
 		itr->output(out, indentlevel + 1);
 	}
 
-	fprintf(out, "%s}\n", indent);
+	fwprintf(out, L"%s}\n", indent);
 }
 
 
-void HoI4RegGroup::outputIntoProductionQueue(FILE* out, const string& tag) const
+void HoI4RegGroup::outputIntoProductionQueue(FILE* out, const wstring& tag) const
 {
 	if (isEmpty())
 	{
@@ -208,30 +208,30 @@ void HoI4RegGroup::outputIntoProductionQueue(FILE* out, const string& tag) const
 
 	if (force_type == land && command_level == division) // Build as a division
 	{
-		fprintf(out, "military_construction = {\n");
-		fprintf(out, "\tcountry = %s\n", tag.c_str());
-		fprintf(out, "\t\tname = \"%s\"\n", name.c_str());
+		fwprintf(out, L"military_construction = {\n");
+		fwprintf(out, L"\tcountry = %s\n", tag.c_str());
+		fwprintf(out, L"\t\tname = \"%s\"\n", name.c_str());
 		for (vector<HoI4Regiment>::const_iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
 		{
 			itr->outputIntoProductionQueue(out);
 		}
 
-		fprintf(out, "\tcost = 0\n");
-		fprintf(out, "\tprogress = 0\n");
-		fprintf(out, "\tduration = 0\n"); // This makes the unit already or almost complete in the construction queue
-		fprintf(out, "}\n");
+		fwprintf(out, L"\tcost = 0\n");
+		fwprintf(out, L"\tprogress = 0\n");
+		fwprintf(out, L"\tduration = 0\n"); // This makes the unit already or almost complete in the construction queue
+		fwprintf(out, L"}\n");
 	}
 	else
 	{
 		for (vector<HoI4Regiment>::const_iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
 		{
-			fprintf(out, "military_construction = {\n");
-			fprintf(out, "\tcountry = %s\n", tag.c_str());
+			fwprintf(out, L"military_construction = {\n");
+			fwprintf(out, L"\tcountry = %s\n", tag.c_str());
 			itr->outputIntoProductionQueue(out);
-			fprintf(out, "\tcost = 0\n");
-			fprintf(out, "\tprogress = 0\n");
-			fprintf(out, "\tduration = 0\n"); // This makes the unit already or almost complete in the construction queue
-			fprintf(out, "}\n");
+			fwprintf(out, L"\tcost = 0\n");
+			fwprintf(out, L"\tprogress = 0\n");
+			fwprintf(out, L"\tduration = 0\n"); // This makes the unit already or almost complete in the construction queue
+			fwprintf(out, L"}\n");
 		}
 	}
 
@@ -261,28 +261,28 @@ void HoI4RegGroup::resetHQCounts()
 }
 
 
-static string CardinalToOrdinal(int cardinal)
+static wstring CardinalToOrdinal(int cardinal)
 {
 	int hundredRem	= cardinal % 100;
 	int tenRem		= cardinal % 10;
 	if (hundredRem - tenRem == 10)
 	{
-		return "th";
+		return L"th";
 	}
 
 	switch (tenRem)
 	{
 		case 1:
-			return "st";
+			return L"st";
 			break;
 		case 2:
-			return "nd";
+			return L"nd";
 			break;
 		case 3:
-			return "rd";
+			return L"rd";
 			break;
 		default:
-			return "th";
+			return L"th";
 	}
 }
 
@@ -292,8 +292,8 @@ void HoI4RegGroup::createHQs(HoI4RegimentType hqType)
 	if (command_level > division)
 	{
 		HoI4Regiment hq;
-		stringstream regname;
-		regname << ++hqCount << CardinalToOrdinal(hqCount) << " Headquarters Brigade";
+		wstringstream regname;
+		regname << ++hqCount << CardinalToOrdinal(hqCount) << L" Headquarters Brigade";
 		hq.setName(regname.str());
 		hq.setType(hqType);
 		hq.setHistoricalModel(0);
@@ -319,13 +319,13 @@ void HoI4RegGroup::resetRegGroupNameCounts()
 
 void HoI4RegGroup::setName()
 {
-	if (name != "")
+	if (name != L"")
 	{
 		LOG(LogLevel::Warning) << "resetting name for " << name << "!";
 		}
 
 	int index = ++regGroupNameCounts[command_level];
-	stringstream newname;
+	wstringstream newname;
 	newname << index << CardinalToOrdinal(index) << " ";
 	switch (command_level)
 	{
@@ -598,7 +598,7 @@ int HoI4RegGroup::size() const
 }
 
 
-void HoI4RegGroup::undoPracticalAddition(map<string, double>& practicals) const
+void HoI4RegGroup::undoPracticalAddition(map<wstring, double>& practicals) const
 {
 	for (vector<HoI4Regiment>::const_iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
 	{

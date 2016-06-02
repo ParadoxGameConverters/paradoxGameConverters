@@ -56,25 +56,25 @@ enum CommandLevel
 class HoI4RegimentType
 {
 	public:
-		HoI4RegimentType() : force_type(land), max_strength(1), name("INVALID"), practicalBonus(""), practicalBonusFactor(0.0) {}; // req'd for map<>
-		HoI4RegimentType(string type);
+		HoI4RegimentType() : force_type(land), max_strength(1), name(L"INVALID"), practicalBonus(L""), practicalBonusFactor(0.0) {}; // req'd for map<>
+		HoI4RegimentType(wstring type);
 
 		ForceType				getForceType() const					{ return force_type; }
-		string					getName() const						{ return name; }
+		wstring					getName() const						{ return name; }
 		int						getMaxStrength() const				{ return max_strength; }
-		const set<string>&	getUsableBy() const					{ return usableBy; }
-		string					getPracticalBonus() const			{ return practicalBonus; }
+		const set<wstring>&	getUsableBy() const					{ return usableBy; }
+		wstring					getPracticalBonus() const			{ return practicalBonus; }
 		double					getPracticalBonusFactor() const	{ return practicalBonusFactor; }
 
 		bool operator < (const HoI4RegimentType& rhs) const { return this->name < rhs.name; }; // multiset requires this
 
 	private:
-		ForceType	force_type;
-		string		name;
-		int			max_strength;
-		set<string>	usableBy;
-		string		practicalBonus;
-		double		practicalBonusFactor;
+		ForceType		force_type;
+		wstring			name;
+		int				max_strength;
+		set<wstring>	usableBy;
+		wstring			practicalBonus;
+		double			practicalBonusFactor;
 };
 
 
@@ -84,7 +84,7 @@ class HoI4Regiment // also Ship, Wing
 		void	output(FILE* out, int indentlevel) const;
 		void	outputIntoProductionQueue(FILE* out) const;
 
-		void	setName(string _name)									{ name = _name; }
+		void	setName(wstring _name)									{ name = _name; }
 		void	setType(HoI4RegimentType _type)						{ type = _type; }
 		void	setHistoricalModel(unsigned _historicalModel)	{ historicalModel = _historicalModel; }
 		void	setReserve(bool _reserve)								{ reserve = _reserve; }
@@ -94,7 +94,7 @@ class HoI4Regiment // also Ship, Wing
 		bool							isReserve() const		{ return reserve; }
 
 	private:
-		string				name;
+		wstring				name;
 		HoI4RegimentType	type;
 		bool					reserve;
 		unsigned				historicalModel; // Tech level
@@ -107,7 +107,7 @@ class HoI4RegGroup // also Navy, Air
 		HoI4RegGroup();
 
 		void	output(FILE* out, int indentlevel = 0) const;
-		void	outputIntoProductionQueue(FILE* out, const string& tag) const;
+		void	outputIntoProductionQueue(FILE* out, const wstring& tag) const;
 		
 		static void	resetRegGroupNameCounts();
 		static void	resetHQCounts();
@@ -115,10 +115,10 @@ class HoI4RegGroup // also Navy, Air
 		bool			addRegiment(HoI4Regiment reg, bool allowPromote);
 		bool			addChild(HoI4RegGroup group, bool allowPromote);
 		void			createHQs(HoI4RegimentType hqType);
-		void			undoPracticalAddition(map<string, double>& practicals) const;
+		void			undoPracticalAddition(map<wstring, double>& practicals) const;
 		int			size() const;
 
-		void	setName(string _name)									{ name = _name; }
+		void	setName(wstring _name)									{ name = _name; }
 		void	setLocation(int provinceID)							{ location = provinceID; }
 		void	setForceType(ForceType _type)							{ force_type = _type; }
 		void	setAtSea(int atSea)										{ at_sea = atSea; }
@@ -126,7 +126,7 @@ class HoI4RegGroup // also Navy, Air
 		void	setProductionQueue(const bool _productionQueue)	{ productionQueue = _productionQueue; }
 		void	setCommandLevel(CommandLevel lvl)					{ command_level = lvl; }
 
-		string			getName() const					{ return name; }
+		wstring			getName() const					{ return name; }
 		ForceType		getForceType() const				{ return force_type; }
 		bool				isEmpty() const					{ return (regiments.size() == 0 && children.size() == 0); }
 		bool				getProductionQueue() const		{ return productionQueue; }
@@ -135,7 +135,7 @@ class HoI4RegGroup // also Navy, Air
 	private:
 		HoI4RegGroup			createChild();
 
-		string					name;
+		wstring					name;
 		int						location;
 		vector<HoI4Regiment>	regiments;
 		ForceType				force_type;

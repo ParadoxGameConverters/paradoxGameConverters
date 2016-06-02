@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Relations::HoI4Relations(string newTag)
+HoI4Relations::HoI4Relations(wstring newTag)
 {
 	tag					= newTag;
 	value					= 0;
@@ -38,7 +38,7 @@ HoI4Relations::HoI4Relations(string newTag)
 }
 
 
-HoI4Relations::HoI4Relations(string newTag, V2Relations* oldRelations)
+HoI4Relations::HoI4Relations(wstring newTag, V2Relations* oldRelations)
 {
 	tag					= newTag;
 	value					= oldRelations->getRelations();

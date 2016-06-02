@@ -35,19 +35,19 @@ using namespace std;
 class HoI4Minister
 {
 	public:
-		HoI4Minister(vector<string>& firstNames, vector<string>& lastNames, string _ideology, governmentJob job, governmentJobsMap& jobMap, vector<string>& portraits);
+		HoI4Minister(vector<wstring>& firstNames, vector<wstring>& lastNames, wstring _ideology, governmentJob job, governmentJobsMap& jobMap, vector<wstring>& portraits);
 		void output(FILE* output);
 
-		string			getFirstJob()	const { return roles[0].first; }
+		wstring			getFirstJob()	const { return roles[0].first; }
 		unsigned int	getID()			const { return ID; }
 
 	private:
 		unsigned int	ID;
-		string			name;
-		string			ideology;
+		wstring			name;
+		wstring			ideology;
 		double			loyalty;
-		string			picture;
-		vector<pair<string, string>>	roles;	
+		wstring			picture;
+		vector<pair<wstring, wstring>>	roles;	
 };
 
 

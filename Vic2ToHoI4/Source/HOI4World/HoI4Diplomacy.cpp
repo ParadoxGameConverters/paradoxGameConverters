@@ -30,28 +30,28 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 void HoI4Diplomacy::output() const
 {
 	FILE* alliances;
-	if (fopen_s(&alliances, ("Output\\" + Configuration::getOutputName() + "\\history\\diplomacy\\Alliances.txt").c_str(), "w") != 0)
+	if (_wfopen_s(&alliances, (L"Output\\" + Configuration::getOutputName() + L"\\history\\diplomacy\\Alliances.txt").c_str(), L"w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create alliances history file";
 		exit(-1);
 	}
 
 	FILE* guarantees;
-	if (fopen_s(&guarantees, ("Output\\" + Configuration::getOutputName() + "\\history\\diplomacy\\Guarantees.txt").c_str(), "w") != 0)
+	if (_wfopen_s(&guarantees, (L"Output\\" + Configuration::getOutputName() + L"\\history\\diplomacy\\Guarantees.txt").c_str(), L"w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create guarantees history file";
 		exit(-1);
 	}
 
 	FILE* puppetStates;
-	if (fopen_s(&puppetStates, ("Output\\" + Configuration::getOutputName() + "\\history\\diplomacy\\PuppetStates.txt").c_str(), "w") != 0)
+	if (_wfopen_s(&puppetStates, (L"Output\\" + Configuration::getOutputName() + L"\\history\\diplomacy\\PuppetStates.txt").c_str(), L"w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create puppet states history file";
 		exit(-1);
 	}
 
 	FILE* relations;
-	if (fopen_s(&relations, ("Output\\" + Configuration::getOutputName() + "\\history\\diplomacy\\relations.txt").c_str(), "w") != 0)
+	if (_wfopen_s(&relations, (L"Output\\" + Configuration::getOutputName() + L"\\history\\diplomacy\\relations.txt").c_str(), L"w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create relations history file";
 		exit(-1);
@@ -60,19 +60,19 @@ void HoI4Diplomacy::output() const
 	FILE* out;
 	for (vector<HoI4Agreement>::const_iterator itr = agreements.begin(); itr != agreements.end(); ++itr)
 	{
-		if (itr->type == "guarantee")
+		if (itr->type == L"guarantee")
 		{
 			out = guarantees;
 		}
-		else if (itr->type == "vassal")
+		else if (itr->type == L"vassal")
 		{
 			out = puppetStates;
 		}
-		else if (itr->type == "alliance")
+		else if (itr->type == L"alliance")
 		{
 			out = alliances;
 		}
-		else if (itr->type == "relation")
+		else if (itr->type == L"relation")
 		{
 			out = relations;
 		}
@@ -81,18 +81,18 @@ void HoI4Diplomacy::output() const
 			LOG(LogLevel::Warning) << "Cannot ouput diplomatic agreement type " << itr->type;
 			continue;
 		}
-		fprintf(out, "%s=\n", itr->type.c_str());
-		fprintf(out, "{\n");
-		fprintf(out, "\tfirst=\"%s\"\n", itr->country1.c_str());
-		fprintf(out, "\tsecond=\"%s\"\n", itr->country2.c_str());
-		if (itr->type == "relation")
+		fwprintf(out, L"%s=\n", itr->type.c_str());
+		fwprintf(out, L"{\n");
+		fwprintf(out, L"\tfirst=\"%s\"\n", itr->country1.c_str());
+		fwprintf(out, L"\tsecond=\"%s\"\n", itr->country2.c_str());
+		if (itr->type == L"relation")
 		{
-			fprintf(out, "\tvalue=\"%i\"\n", itr->value);
+			fwprintf(out, L"\tvalue=\"%i\"\n", itr->value);
 		}
-		fprintf(out, "\tstart_date=\"%s\"\n", itr->start_date.toString().c_str());
-		fprintf(out, "\tend_date=\"1949.1.1\"\n");
-		fprintf(out, "}\n");
-		fprintf(out, "\n");
+		fwprintf(out, L"\tstart_date=\"%s\"\n", itr->start_date.toString().c_str());
+		fwprintf(out, L"\tend_date=\"1949.1.1\"\n");
+		fwprintf(out, L"}\n");
+		fwprintf(out, L"\n");
 	}
 	
 	fclose(alliances);
@@ -105,7 +105,7 @@ void HoI4Diplomacy::addAgreement(const HoI4Agreement agr)
 {
 	bool alreadyExists = false;
 
-	if (agr.type == "relation")
+	if (agr.type == L"relation")
 	{
 		for (vector<HoI4Agreement>::const_iterator itr = agreements.begin(); itr != agreements.end(); ++itr)
 		{

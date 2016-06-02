@@ -24,7 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Province.h"
 #include "Log.h"
 #include "Object.h"
-#include "ParadoxParser.h"
+#include "ParadoxParserUTF8.h"
 #include <sstream>
 #include <algorithm>
 #include <stdio.h>
@@ -33,13 +33,13 @@ using namespace std;
 
 
 
-HoI4Province::HoI4Province(string _filename)
+HoI4Province::HoI4Province(wstring _filename)
 {
 	filenames.insert(make_pair(_filename, _filename));
 	coastal				= false;
 	num					= 0;
-	name					= "";
-	owner					= "";
+	name					= L"";
+	owner					= L"";
 	points				= 0;
 	metal					= 0.0;
 	oil					= 0.0;
@@ -56,13 +56,13 @@ HoI4Province::HoI4Province(string _filename)
 	rawIndustry			= 0.0;
 	cores.clear();
 
-	int slash		= _filename.find_last_of("\\");
-	int numDigits	= _filename.find_first_of("-") - slash - 2;
-	string temp		= _filename.substr(slash + 1, numDigits);
-	num				= atoi(temp.c_str());
+	int slash		= _filename.find_last_of(L"\\");
+	int numDigits	= _filename.find_first_of(L"-") - slash - 2;
+	wstring temp		= _filename.substr(slash + 1, numDigits);
+	num				= _wtoi(temp.c_str());
 
 	Object* obj;
-	obj = doParseFile((string(".\\blankMod\\output\\history\\provinces") + _filename).c_str());
+	obj = parser_UTF8::doParseFile((wstring(L".\\blankMod\\output\\history\\provinces") + _filename).c_str());
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse .\\blankMod\\output\\history\\provinces" << _filename;
@@ -72,40 +72,40 @@ HoI4Province::HoI4Province(string _filename)
 	vector<Object*> leaves = obj->getLeaves();
 	for (vector<Object*>::iterator itr = leaves.begin(); itr != leaves.end(); itr++)
 	{
-		if ((*itr)->getKey() == "owner")
+		if ((*itr)->getKey() == L"owner")
 		{
 			owner = (*itr)->getLeaf();
 			is_land = true;
 		}
-		else if ((*itr)->getKey() == "metal")
+		else if ((*itr)->getKey() == L"metal")
 		{
-			metal = atof((*itr)->getLeaf().c_str());
+			metal = _wtof((*itr)->getLeaf().c_str());
 		}
-		else if ((*itr)->getKey() == "crude_oil")
+		else if ((*itr)->getKey() == L"crude_oil")
 		{
-			oil = atof((*itr)->getLeaf().c_str());
+			oil = _wtof((*itr)->getLeaf().c_str());
 		}
-		else if ((*itr)->getKey() == "rare_materials")
+		else if ((*itr)->getKey() == L"rare_materials")
 		{
-			rare_materials = atof((*itr)->getLeaf().c_str());
+			rare_materials = _wtof((*itr)->getLeaf().c_str());
 		}
-		else if ((*itr)->getKey() == "energy")
+		else if ((*itr)->getKey() == L"energy")
 		{
-			energy = atof((*itr)->getLeaf().c_str());
+			energy = _wtof((*itr)->getLeaf().c_str());
 		}
-		else if ((*itr)->getKey() == "manpower")
+		else if ((*itr)->getKey() == L"manpower")
 		{
-			manpower = atof((*itr)->getLeaf().c_str());
+			manpower = _wtof((*itr)->getLeaf().c_str());
 		}
-		else if ((*itr)->getKey() == "leadership")
+		else if ((*itr)->getKey() == L"leadership")
 		{
-			leadership = atof((*itr)->getLeaf().c_str());
+			leadership = _wtof((*itr)->getLeaf().c_str());
 		}
-		else if ((*itr)->getKey() == "industry")
+		else if ((*itr)->getKey() == L"industry")
 		{
-			industry = atoi((*itr)->getLeaf().c_str());
+			industry = _wtoi((*itr)->getLeaf().c_str());
 		}
-		else if ((*itr)->getKey() == "add_core")
+		else if ((*itr)->getKey() == L"add_core")
 		{
 			cores.push_back((*itr)->getLeaf());
 		}
@@ -118,7 +118,7 @@ void HoI4Province::output() const
 	for (auto filename: filenames)
 	{
 		FILE* output;
-		if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\provinces\\" + filename.first).c_str(), "w") != 0)
+		if (_wfopen_s(&output, (L"Output\\" + Configuration::getOutputName() + L"\\history\\provinces\\" + filename.first).c_str(), L"w") != 0)
 		{
 			int errNum;
 			_get_errno(&errNum);
@@ -127,66 +127,66 @@ void HoI4Province::output() const
 			LOG(LogLevel::Error) << "Could not create province history file Output\\" << Configuration::getOutputName() << "\\history\\provinces\\" << filename.first << " - " << errStr;
 			exit(-1);
 		}
-		if (owner != "")
+		if (owner != L"")
 		{
-			fprintf_s(output, "owner = %s\n", owner.c_str());
-			fprintf_s(output, "controller = %s\n", owner.c_str());
+			fwprintf_s(output, L"owner = %s\n", owner.c_str());
+			fwprintf_s(output, L"controller = %s\n", owner.c_str());
 		}
 		for (unsigned int i = 0; i < cores.size(); i++)
 		{
-			fprintf_s(output, "add_core = %s\n", cores[i].c_str());
+			fwprintf_s(output, L"add_core = %s\n", cores[i].c_str());
 		}
 		if ((points > 0) || industry > 0)
 		{
-			fprintf_s(output, "points = %i\n", points + (industry / 2));
+			fwprintf_s(output, L"points = %i\n", points + (industry / 2));
 		}
 		if (metal > 0.0)
 		{
-			fprintf_s(output, "metal = %.2f\n", metal);
+			fwprintf_s(output, L"metal = %.2f\n", metal);
 		}
 		if (energy > 0.0)
 		{
-			fprintf_s(output, "energy = %.2f\n", energy);
+			fwprintf_s(output, L"energy = %.2f\n", energy);
 		}
 		if (rare_materials > 0.0)
 		{
-			fprintf_s(output, "rare_materials = %.2f\n", rare_materials);
+			fwprintf_s(output, L"rare_materials = %.2f\n", rare_materials);
 		}
 		if (oil > 0.0)
 		{
-			fprintf_s(output, "crude_oil = %.2f\n", oil);
+			fwprintf_s(output, L"crude_oil = %.2f\n", oil);
 		}
 		if (industry > 0)
 		{
-			fprintf_s(output, "industry = %i\n", industry);
+			fwprintf_s(output, L"industry = %i\n", industry);
 		}
 		if (land_fort > 0)
 		{
-			fprintf_s(output, "land_fort = %i\n", land_fort);
+			fwprintf_s(output, L"land_fort = %i\n", land_fort);
 		}
 		if (coastal_fort > 0)
 		{
-			fprintf_s(output, "coastal_fort = %i\n", coastal_fort);
+			fwprintf_s(output, L"coastal_fort = %i\n", coastal_fort);
 		}
 		if (infrastructure > 0)
 		{
-			fprintf_s(output, "infra = %i\n", infrastructure);
+			fwprintf_s(output, L"infra = %i\n", infrastructure);
 		}
 		if (naval_base > 0)
 		{
-			fprintf_s(output, "naval_base = %i\n", naval_base);
+			fwprintf_s(output, L"naval_base = %i\n", naval_base);
 		}
 		if (air_base > 0)
 		{
-			fprintf_s(output, "air_base = %i\n", air_base);
+			fwprintf_s(output, L"air_base = %i\n", air_base);
 		}
 		if (manpower > 0.0)
 		{
-			fprintf_s(output, "manpower = %.2f\n", manpower);
+			fwprintf_s(output, L"manpower = %.2f\n", manpower);
 		}
 		if (leadership > 0.0)
 		{
-			fprintf_s(output, "leadership = %.2f\n", leadership);
+			fwprintf_s(output, L"leadership = %.2f\n", leadership);
 		}
 		fclose(output);
 	}
@@ -198,7 +198,7 @@ void HoI4Province::convertFromOldProvince(const V2Province* oldProvince)
 }
 
 
-void HoI4Province::addCore(string newCore)
+void HoI4Province::addCore(wstring newCore)
 {
 	// only add if unique
 	if ( find(cores.begin(), cores.end(), newCore) == cores.end() )
@@ -208,7 +208,7 @@ void HoI4Province::addCore(string newCore)
 }
 
 
-void HoI4Province::addFilename(string _filename)
+void HoI4Province::addFilename(wstring _filename)
 {
 	// only add if unique
 	if (filenames.find(_filename) == filenames.end())

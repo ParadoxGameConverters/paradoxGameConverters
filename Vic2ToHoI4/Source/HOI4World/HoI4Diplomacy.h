@@ -33,9 +33,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 struct HoI4Agreement
 {
-	string	type;
-	string	country1;
-	string	country2;
+	wstring	type;
+	wstring	country1;
+	wstring	country2;
 	int value; // For relation value
 	date		start_date;
 

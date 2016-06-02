@@ -25,16 +25,16 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Minister::HoI4Minister(vector<string>& firstNames, vector<string>& lastNames, string _ideology, governmentJob job, governmentJobsMap& jobMap, vector<string>& portraits)
+HoI4Minister::HoI4Minister(vector<wstring>& firstNames, vector<wstring>& lastNames, wstring _ideology, governmentJob job, governmentJobsMap& jobMap, vector<wstring>& portraits)
 {
 	ID			= Configuration::getNextLeaderID();
-	name		= firstNames[rand() % firstNames.size()] + " " + lastNames[rand() % lastNames.size()];
+	name		= firstNames[rand() % firstNames.size()] + L" " + lastNames[rand() % lastNames.size()];
 	ideology	= _ideology;
 	loyalty	= 1.0f;
 
 	picture	= portraits[rand() % portraits.size()];
 
-	vector<string> traits = jobMap.find(job.first)->second;
+	vector<wstring> traits = jobMap.find(job.first)->second;
 	roles.push_back(make_pair(job.first, traits[rand() % traits.size()]));
 
 	governmentJobsMap::iterator secondJob = jobMap.begin();
@@ -51,15 +51,15 @@ HoI4Minister::HoI4Minister(vector<string>& firstNames, vector<string>& lastNames
 
 void HoI4Minister::output(FILE * output)
 {
-	fprintf(output, "\t%d = {\n", ID);
-	fprintf(output, "\t\tname = \"%s\"\n", name.c_str());
-	fprintf(output, "\t\tideology = %s\n", ideology.c_str());
-	fprintf(output, "\t\tloyalty = %.2f\n", loyalty);
-	fprintf(output, "\t\tpicture = %s\n", picture.c_str());
+	fwprintf(output, L"\t%d = {\n", ID);
+	fwprintf(output, L"\t\tname = \"%s\"\n", name.c_str());
+	fwprintf(output, L"\t\tideology = %s\n", ideology.c_str());
+	fwprintf(output, L"\t\tloyalty = %.2f\n", loyalty);
+	fwprintf(output, L"\t\tpicture = %s\n", picture.c_str());
 	for (auto role: roles)
 	{
-		fprintf(output, "\t\t%s = %s\n", role.first.c_str(), role.second.c_str());
+		fwprintf(output, L"\t\t%s = %s\n", role.first.c_str(), role.second.c_str());
 	}
-	fprintf(output, "\t\tstart_date = 1936.1.1\n");
-	fprintf(output, "\t}\n");
+	fwprintf(output, L"\t\tstart_date = 1936.1.1\n");
+	fwprintf(output, L"\t}\n");
 }

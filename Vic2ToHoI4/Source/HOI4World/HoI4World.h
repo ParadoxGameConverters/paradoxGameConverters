@@ -32,7 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-typedef const map<string, multimap<HoI4RegimentType, unsigned> > unitTypeMapping;
+typedef const map<wstring, multimap<HoI4RegimentType, unsigned> > unitTypeMapping;
 
 
 class HoI4World
@@ -60,11 +60,11 @@ class HoI4World
 		void	copyFlags(const V2World &sourceWorld, const CountryMapping& countryMap);
 		void	addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
 
-		map<string, HoI4Country*>	getPotentialCountries()	const { return potentialCountries; }
+		map<wstring, HoI4Country*>	getPotentialCountries()	const { return potentialCountries; }
 
 	private:
-		void	getProvinceLocalizations(const string& file);
-		void	checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string leader, const string& factionName);
+		void	getProvinceLocalizations(const wstring& file);
+		void	checkManualFaction(const CountryMapping& countryMap, const vector<wstring>& candidateTags, wstring leader, const wstring& factionName);
 		void	factionSatellites();
 		void	checkAllProvincesMapped(const provinceMapping& provinceMap);
 		void	setFactionMembers(const V2World &sourceWorld, const CountryMapping& countryMap);
@@ -73,9 +73,9 @@ class HoI4World
 		vector<int>					getPortProvinces(const vector<int>& locationCandidates);
 		unitTypeMapping			getUnitMappings();
 		vector<int>					getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
-		int							getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string owner);
-		vector<HoI4Regiment*>	convertRegiments(const unitTypeMapping& unitTypeMap, vector<V2Regiment*>& sourceRegiments, map<string, unsigned>& typeCount, const pair<string, HoI4Country*>& country);
-		HoI4RegGroup*				createArmy(const inverseProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string tag, const V2Army* oldArmy, vector<HoI4Regiment*>& sourceRegiments, int& airForceIndex);
+		int							getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, wstring owner);
+		vector<HoI4Regiment*>	convertRegiments(const unitTypeMapping& unitTypeMap, vector<V2Regiment*>& sourceRegiments, map<wstring, unsigned>& typeCount, const pair<wstring, HoI4Country*>& country);
+		HoI4RegGroup*				createArmy(const inverseProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap, wstring tag, const V2Army* oldArmy, vector<HoI4Regiment*>& sourceRegiments, int& airForceIndex);
 
 		void	outputCommonCountries() const;
 		void	outputAutoexecLua() const;
@@ -83,15 +83,15 @@ class HoI4World
 		void	outputHistory() const;
 
 		map<int, HoI4Province*>		provinces;
-		map<string, HoI4Country*>	countries;
-		map<string,HoI4Country*>	potentialCountries;
+		map<wstring, HoI4Country*>	countries;
+		map<wstring,HoI4Country*>	potentialCountries;
 		HoI4Diplomacy					diplomacy;
-		map<int, string>				continents;  // < province, continent >
-		vector<string>					countryOrder; // Order of countries in common\countries.txt. Used for determining faction leader. Also, REB should be first.
+		map<int, wstring>				continents;  // < province, continent >
+		vector<wstring>					countryOrder; // Order of countries in common\countries.txt. Used for determining faction leader. Also, REB should be first.
 
-		string axisLeader;
-		string alliesLeader;
-		string cominternLeader;
+		wstring axisLeader;
+		wstring alliesLeader;
+		wstring cominternLeader;
 };
 
 
