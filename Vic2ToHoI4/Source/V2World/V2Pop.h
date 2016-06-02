@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -38,12 +38,12 @@ class V2Pop
 		V2Pop(Object* obj);
 
 		int		getSize()							const { return size; };
-		string	getType()							const { return type; };
+		wstring	getType()							const { return type; };
 		int		getSupportedRegimentCount()	const { return supportedRegiments; };
 		double	getLiteracy()						const { return lit; };
 
 	private:
-		string	type;
+		wstring	type;
 		int		size;
 		int		supportedRegiments;
 		double	lit;

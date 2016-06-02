@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -35,17 +35,17 @@ class V2Leader
 	public:
 		V2Leader(Object* obk);
 
-		string	getName()			const	{ return name; }
-		string	getType()			const { return type; }
+		wstring	getName()			const	{ return name; }
+		wstring	getType()			const { return type; }
 		double	getPrestige()		const { return prestige; }
-		string	getPersonality()	const { return personality; }
-		string	getBackground()	const { return background; }
+		wstring	getPersonality()	const { return personality; }
+		wstring	getBackground()	const { return background; }
 
 	private:
-		string	name;
-		string	type;
-		string	personality;
-		string	background;
+		wstring	name;
+		wstring	type;
+		wstring	personality;
+		wstring	background;
 		double	prestige;
 };
 

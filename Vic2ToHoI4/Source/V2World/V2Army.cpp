@@ -27,48 +27,48 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Regiment::V2Regiment (Object* obj)
+V2Regiment::V2Regiment(Object* obj)
 {
-	string key = obj->getKey ();
+	wstring key = obj->getKey();
 
-	std::vector<Object*> objName = obj->getValue ("name");
-	(objName.size () > 0) ? name = objName[0]->getLeaf () : name = "";
+	std::vector<Object*> objName = obj->getValue(L"name");
+	(objName.size() > 0) ? name = objName[0]->getLeaf() : name = L"";
 
-	std::vector<Object*> objType = obj->getValue ("type");
-	if (objType.size () > 0)
+	std::vector<Object*> objType = obj->getValue(L"type");
+	if (objType.size() > 0)
 	{
-		type = objType[0]->getLeaf ();
+		type = objType[0]->getLeaf();
 	}
 	else
 	{
 		LOG(LogLevel::Warning) << "Regiment or Ship " << name << " has no type";
-		type = "";
+		type = L"";
 	}
 
-	std::vector<Object*> objStr = obj->getValue ("strength");
-	if (objStr.size () > 0)
+	std::vector<Object*> objStr = obj->getValue(L"strength");
+	if (objStr.size() > 0)
 	{
-		strength = atof (objStr[0]->getLeaf ().c_str ());
+		strength = _wtof(objStr[0]->getLeaf().c_str());
 	}
 	else
 	{
 		strength = 0.0;
 	}
 
-	objStr = obj->getValue ("organisation");
-	if (objStr.size () > 0)
+	objStr = obj->getValue(L"organisation");
+	if (objStr.size() > 0)
 	{
-		organization = atof (objStr[0]->getLeaf ().c_str ());
+		organization = _wtof(objStr[0]->getLeaf().c_str());
 	}
 	else
 	{
 		organization = 0.0;
 	}
 
-	objStr = obj->getValue ("experience");
-	if (objStr.size () > 0)
+	objStr = obj->getValue(L"experience");
+	if (objStr.size() > 0)
 	{
-		experience = atof (objStr[0]->getLeaf ().c_str ());
+		experience = _wtof(objStr[0]->getLeaf().c_str());
 	}
 	else
 	{
@@ -77,46 +77,46 @@ V2Regiment::V2Regiment (Object* obj)
 }
 
 
-V2Army::V2Army (Object* obj)
+V2Army::V2Army(Object* obj)
 {
-	string key = obj->getKey ();
-	isNavy = (key == "navy");
+	wstring key = obj->getKey();
+	isNavy = (key == L"navy");
 
-	std::vector<Object*> objName = obj->getValue ("name");
-	(objName.size () > 0) ? name = objName[0]->getLeaf () : name = "";
+	std::vector<Object*> objName = obj->getValue(L"name");
+	(objName.size() > 0) ? name = objName[0]->getLeaf() : name = L"";
 
-	std::vector<Object*> objLoc = obj->getValue ("location");
-	if (objLoc.size () > 0)
+	std::vector<Object*> objLoc = obj->getValue(L"location");
+	if (objLoc.size() > 0)
 	{
-		location = atoi (objLoc[0]->getLeaf ().c_str ());
+		location = _wtoi(objLoc[0]->getLeaf().c_str());
 	}
 	else
 	{
-		LOG (LogLevel::Warning) << "Army or Navy " << name << " has no location";
+		LOG(LogLevel::Warning) << "Army or Navy " << name << " has no location";
 		location = -1;
 	}
 
-	std::vector<Object*> objAtSea = obj->getValue ("at_sea");
-	(objAtSea.size () > 0) ? at_sea = atoi (objAtSea[0]->getLeaf ().c_str ()) : at_sea = 0;
+	std::vector<Object*> objAtSea = obj->getValue(L"at_sea");
+	(objAtSea.size() > 0) ? at_sea = _wtoi(objAtSea[0]->getLeaf().c_str()) : at_sea = 0;
 
-	regiments.clear ();
-	std::vector<Object*> objRegs = obj->getValue ("regiment");
-	for (vector<Object*>::iterator itr = objRegs.begin (); itr != objRegs.end (); ++itr)
+	regiments.clear();
+	std::vector<Object*> objRegs = obj->getValue(L"regiment");
+	for (vector<Object*>::iterator itr = objRegs.begin(); itr != objRegs.end(); ++itr)
 	{
 		V2Regiment* newRegiment = new V2Regiment(*itr);
 		regiments.push_back(newRegiment);
 	}
-	std::vector<Object*> objShips = obj->getValue ("ship");
-	for (vector<Object*>::iterator itr = objShips.begin (); itr != objShips.end (); ++itr)
+	std::vector<Object*> objShips = obj->getValue(L"ship");
+	for (vector<Object*>::iterator itr = objShips.begin(); itr != objShips.end(); ++itr)
 	{
 		V2Regiment* newShip = new V2Regiment(*itr);
-		regiments.push_back (newShip);
+		regiments.push_back(newShip);
 	}
 
-	std::vector<Object*> objSupp = obj->getValue ("supplies");
-	if (objSupp.size () > 0)
+	std::vector<Object*> objSupp = obj->getValue(L"supplies");
+	if (objSupp.size() > 0)
 	{
-		supplies = atof (objSupp[0]->getLeaf ().c_str ());
+		supplies = _wtof(objSupp[0]->getLeaf().c_str());
 	}
 	else
 	{

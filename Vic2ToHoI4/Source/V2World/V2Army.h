@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -37,15 +37,15 @@ class V2Regiment // also Ship
 	public:
 		V2Regiment(Object* obj);
 
-		string getName()				const { return name; };
-		string getType()				const { return type; };
-		double getStrength()			const { return strength; };
-		double getOrganization()	const { return organization; };
-		double getExperience()		const { return experience; };
+		wstring	getName()				const { return name; };
+		wstring	getType()				const { return type; };
+		double	getStrength()			const { return strength; };
+		double	getOrganization()	const { return organization; };
+		double	getExperience()		const { return experience; };
 
 	private:
-		string	name;
-		string	type;
+		wstring	name;
+		wstring	type;
 		double	strength;
 		double	organization;
 		double	experience;
@@ -57,7 +57,7 @@ class V2Army // also Navy
 	public:
 		V2Army(Object* obj);
 
-		string					getName()		const { return name; };
+		wstring					getName()		const { return name; };
 		bool						getNavy()		const { return isNavy; };
 		double					getSupplies()	const { return supplies; };
 		int						getAtSea()		const { return at_sea; };
@@ -65,7 +65,7 @@ class V2Army // also Navy
 		vector<V2Regiment*>	getRegiments()	const { return regiments; };
 
 	private:
-		string					name;
+		wstring					name;
 		int						location;
 		vector<V2Regiment*>	regiments;
 		double					supplies;

@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -60,7 +60,7 @@ typedef struct V2State
 class V2Country
 {
 	public:
-		V2Country(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs, const continentMapping& continentMap);
+		V2Country(Object* obj, const inventionNumToName& iNumToName, map<wstring, wstring>& armyTechs, map<wstring, wstring>& navyTechs, const continentMapping& continentMap);
 
 		void								addProvince(int num, V2Province* _province)		{ provinces.insert(make_pair(num, _province)); }
 		void								setColor(Color newColor)								{ color = newColor; }
@@ -72,22 +72,22 @@ class V2Country
 		void								clearCores();
 		void								putWorkersInProvinces();
 
-		map<string, V2Relations*>	getRelations()													const { return relations; }
+		map<wstring, V2Relations*>	getRelations()													const { return relations; }
 		vector<V2State>				getStates()														const { return states; }
 		map<int, V2Province*>		getProvinces()													const { return provinces; }
 		vector<V2Province*>			getCores()														const { return cores; }
-		string							getTag()															const { return tag; }
-		string							getPrimaryCulture()											const { return primaryCulture; }
-		vector<string>					getInventions()												const { return inventions; }
+		wstring							getTag()															const { return tag; }
+		wstring							getPrimaryCulture()											const { return primaryCulture; }
+		vector<wstring>				getInventions()												const { return inventions; }
 		int								getNumArmyTechs()												const { return numArmyTechs; }
 		int								getNumNavyTechs()												const { return numNavyTechs; }
-		string							getGovernment()												const { return government; }
+		wstring							getGovernment()												const { return government; }
 		int								getCapital()													const { return capital; }
-		string							getCapitalContinent()										const { return capitalContinent; }
-		vector<string>					getTechs()														const { return techs; }
+		wstring							getCapitalContinent()										const { return capitalContinent; }
+		vector<wstring>				getTechs()														const { return techs; }
 		Color								getColor()														const { return color; }
-		string							getName()														const { return name; }
-		string							getFlagFile()													const { return flagFile; }
+		wstring							getName()														const { return name; }
+		wstring							getFlagFile()													const { return flagFile; }
 		double							getEducationSpending()										const { return educationSpending; }
 		double							getMilitarySpending()										const { return militarySpending; }
 		unsigned	int					getRulingPartyId()											const { return rulingPartyId; }
@@ -96,74 +96,74 @@ class V2Country
 		vector<V2Leader*>				getLeaders()													const { return leaders; }
 		double							getRevanchism()												const { return revanchism; }
 		double							getWarExhaustion()											const { return warExhaustion; }
-		string							getTechSchool()												const { return techSchool; }
-		map<string, string>			getAllReforms()												const { return reformsArray; }
+		wstring							getTechSchool()												const { return techSchool; }
+		map<wstring, wstring>		getAllReforms()												const { return reformsArray; }
 		bool								getGreatNation()												const { return greatNation; }
 
-		string							getReform(string reform) const;
-		string							getName(const string& language) const;
-		string							getAdjective(const string& language) const;
-		double							getUpperHousePercentage(string ideology) const;
+		wstring							getReform(wstring reform) const;
+		wstring							getName(const wstring& language) const;
+		wstring							getAdjective(const wstring& language) const;
+		double							getUpperHousePercentage(wstring ideology) const;
 
-		void setLocalisationName(const string& language, const string& name)
+		void setLocalisationName(const wstring& language, const wstring& name)
 		{
-			if (this->name != "") // Domains have their name set from domain_region
+			if (this->name != L"") // Domains have their name set from domain_region
 			{
 				namesByLanguage[language] = this->name;
 			}
 			else
 			{
 				namesByLanguage[language] = name;
-				if (language == "english") this->name = name;
+				if (language == L"english") this->name = name;
 			}
 		}
-		void setLocalisationAdjective(const string& language, const string& adjective)
+		void setLocalisationAdjective(const wstring& language, const wstring& adjective)
 		{
-			if (this->adjective != "") // Domains have their adjective set from domain_region
+			if (this->adjective != L"") // Domains have their adjective set from domain_region
 			{
 				adjectivesByLanguage[language] = this->adjective;
 			}
 			else
 			{
 				adjectivesByLanguage[language] = adjective;
-				if (language == "english") this->adjective = adjective;
+				if (language == L"english") this->adjective = adjective;
 			}
 		}
 
 	private:
-		string							tag;
+		wstring							tag;
 		vector<V2State>				states;
 		map<int, V2Province*>		provinces;	// ID, province
 		vector<V2Province*>			cores;
 		int								capital;
-		string							capitalContinent;
-		string							primaryCulture;
-		vector<string>					techs;
-		vector<string>					inventions;
+		wstring							capitalContinent;
+		wstring							primaryCulture;
+		vector<wstring>				techs;
+		vector<wstring>				inventions;
 		int								numArmyTechs;
 		int								numNavyTechs;
-		string							government;
-		map<string,V2Relations*>	relations;
+		wstring							government;
+		map<wstring,V2Relations*>	relations;
 		vector<V2Army*>				armies;
 		vector<V2Leader*>				leaders;
 		Color								color;	
-		map<string, double>			upperHouseComposition;
+		map<wstring, double>			upperHouseComposition;
 		double							educationSpending;
 		double							militarySpending;
 		double							revanchism;
 		double							warExhaustion;
-		map<string, string>			reformsArray;
-		string							flagFile;
+		map<wstring, wstring>		reformsArray;
+		wstring							flagFile;
 		unsigned	int					rulingPartyId;
 		vector<unsigned int>			activeParties;
 		bool								greatNation;
-		string							techSchool;
+		wstring							techSchool;
 
 		// Localisation attributes
-		string name;			// the name of this country
-		string adjective;		// the adjective for this country
-		map<string, string> namesByLanguage;		// the names of this country in different localisations
-		map<string, string> adjectivesByLanguage;	// the adjectives for this country in different localisations
+		wstring name;											// the name of this country
+		wstring adjective;									// the adjective for this country
+		map<wstring, wstring> namesByLanguage;			// the names of this country in different localisations
+		map<wstring, wstring> adjectivesByLanguage;	// the adjectives for this country in different localisations
 };
 
 

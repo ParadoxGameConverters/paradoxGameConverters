@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -28,48 +28,48 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 V2Relations::V2Relations(Object* obj)
 {
 	tag = obj->getKey();
-	vector<Object*> valueObj = obj->getValue("value");
+	vector<Object*> valueObj = obj->getValue(L"value");
 	if (valueObj.size() > 0)
 	{
-		value = atoi(valueObj[0]->getLeaf().c_str());
+		value = _wtoi(valueObj[0]->getLeaf().c_str());
 	}
 	else
 	{
 		value = 0;
 	}
 
-	vector<Object*> maObj = obj->getValue("military_access");
+	vector<Object*> maObj = obj->getValue(L"military_access");
 	if (maObj.size() > 0)
 	{
-		militaryAccess = (maObj[0]->getLeaf() == "yes");
+		militaryAccess = (maObj[0]->getLeaf() == L"yes");
 	}
 	else
 	{
 		militaryAccess = false;
 	}
 
-	vector<Object*> lastSendObj = obj->getValue("last_send_diplomat");
+	vector<Object*> lastSendObj = obj->getValue(L"last_send_diplomat");
 	if (lastSendObj.size() > 0)
 	{
 		lastSendDiplomat = date(lastSendObj[0]->getLeaf());
 	}
 
-	vector<Object*> lastWarObj = obj->getValue("last_war");
+	vector<Object*> lastWarObj = obj->getValue(L"last_war");
 	if (lastWarObj.size() > 0)
 	{
 		lastWar = date(lastWarObj[0]->getLeaf());
 	}
 
-	vector<Object*> truceUntilObj = obj->getValue("truce_until");
+	vector<Object*> truceUntilObj = obj->getValue(L"truce_until");
 	if (truceUntilObj.size() > 0)
 	{
 		truceUntil = date(truceUntilObj[0]->getLeaf());
 	}
 
-	vector<Object*> levelObj = obj->getValue("level");
+	vector<Object*> levelObj = obj->getValue(L"level");
 	if (levelObj.size() > 0)
 	{
-		level = atoi(levelObj[0]->getLeaf().c_str());
+		level = _wtoi(levelObj[0]->getLeaf().c_str());
 	}
 	else
 	{

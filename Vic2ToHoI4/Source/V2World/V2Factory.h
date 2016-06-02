@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -40,14 +40,14 @@ struct V2FactoryType
 {
 	V2FactoryType(Object* factory);
 
-	string						name;
+	wstring						name;
 };
 
 
 class V2Factory
 {
 	public:
-		string					getTypeName()						const { return type->name; }
+		wstring					getTypeName()						const { return type->name; }
 
 	private:
 		const V2FactoryType* type;

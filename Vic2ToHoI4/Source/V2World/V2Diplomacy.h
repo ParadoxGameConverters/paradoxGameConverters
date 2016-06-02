@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -36,9 +36,9 @@ struct V2Agreement
 {
 	V2Agreement(Object* obj);
 
-	string	type;
-	string	country1;
-	string	country2;
+	wstring	type;
+	wstring	country1;
+	wstring	country2;
 	date		start_date;
 };
 
