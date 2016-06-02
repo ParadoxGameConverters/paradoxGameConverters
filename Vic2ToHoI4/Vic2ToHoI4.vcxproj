@@ -33,7 +33,7 @@
     <LinkIncremental>false</LinkIncremental>
     <IntDir>$(SolutionDir)\ReleaseIntermediate\</IntDir>
     <IncludePath>$(UniversalCRT_IncludePath);$(BOOST_INCLUDE);$(VCInstallDir)include;$(WindowsSdkDir)include;..\common_items;$(IncludePath)</IncludePath>
-    <TargetName>V2ToHoI3Converter</TargetName>
+    <TargetName>V2ToHoI4Converter</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
