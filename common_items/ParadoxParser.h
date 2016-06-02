@@ -58,7 +58,7 @@ namespace parser_8859_15
 	Object*	getTopLevel();
 	void	clearStack(); 
 	void	initParser();
-	Object* doParseFile(const char* filename);
+	Object* doParseFile(const wchar_t* filename);
 }
 
 

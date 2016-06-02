@@ -467,7 +467,7 @@ void setAssign()
 }
 
 
-Object* doParseFile(const char* filename)
+Object* doParseFile(const wchar_t* filename)
 {
 	ifstream	read;				// ifstream for reading files
 
