@@ -51,11 +51,11 @@ public:
 	}
 
 private:
-	static void WriteToConsole(LogLevel, const std::string& logMessage);
-	static void WriteToFile(LogLevel, const std::string& logMessage);
+	static void WriteToConsole(LogLevel, const std::wstring& logMessage);
+	static void WriteToFile(LogLevel, const std::wstring& logMessage);
 
 	LogLevel logLevel;							// the current log level
-	std::ostringstream logMessageStream;	// the output stream to the log file
+	std::wostringstream logMessageStream;	// the output stream to the log file
 };
 
 #endif // LOG_H_

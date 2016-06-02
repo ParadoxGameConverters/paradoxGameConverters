@@ -44,12 +44,12 @@ Log::Log(LogLevel level)
 Log::~Log()
 {
 	logMessageStream << std::endl;
-	std::string logMessage = logMessageStream.str();
+	std::wstring logMessage = logMessageStream.str();
 	WriteToConsole(logLevel, logMessage);
 	WriteToFile(logLevel, logMessage);
 }
 
-void Log::WriteToConsole(LogLevel level, const std::string& logMessage)
+void Log::WriteToConsole(LogLevel level, const std::wstring& logMessage)
 {
 	if (level == LogLevel::Debug)
 	{	// Don't log debug messages to console.
@@ -94,12 +94,12 @@ void Log::WriteToConsole(LogLevel level, const std::string& logMessage)
 		}
 	}
 
-	std::cout << logMessage;
+	std::wcout << logMessage;
 }
 
-void Log::WriteToFile(LogLevel level, const std::string& logMessage)
+void Log::WriteToFile(LogLevel level, const std::wstring& logMessage)
 {
-	std::ofstream logFile("log.txt", std::ofstream::app);
+	std::wofstream logFile("log.txt", std::ofstream::app);
 
 	time_t rawtime;	// the raw time data
 	time(&rawtime);
