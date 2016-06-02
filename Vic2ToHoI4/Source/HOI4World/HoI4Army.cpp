@@ -445,6 +445,7 @@ bool HoI4RegGroup::addChild(HoI4RegGroup newChild, bool allowPromote)
 	}
 
 	children.push_back(newChild);
+	return false;
 }
 
 

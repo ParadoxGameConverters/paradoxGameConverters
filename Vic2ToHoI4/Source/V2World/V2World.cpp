@@ -198,7 +198,7 @@ void V2World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProvi
 	}
 }
 
-
+#pragma optimize("", off)
 void V2World::setLocalisations(V2Localisation& localisation)
 {
 	for (map<wstring, V2Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
@@ -206,20 +206,20 @@ void V2World::setLocalisations(V2Localisation& localisation)
 		const auto& nameLocalisations = localisation.GetTextInEachLanguage(countryItr->second->getTag());	// the names in all languages
 		for (const auto& nameLocalisation : nameLocalisations)	// the name under consideration
 		{
-			const std::string& language = nameLocalisation.first;	// the language
-			const std::string& name = nameLocalisation.second;		// the name of the country in this language
+			const std::wstring& language = nameLocalisation.first;	// the language
+			const std::wstring& name = nameLocalisation.second;		// the name of the country in this language
 			countryItr->second->setLocalisationName(language, name);
 		}
-		const auto& adjectiveLocalisations = localisation.GetTextInEachLanguage(countryItr->second->getTag() + "_ADJ");	// the adjectives in all languages
+		const auto& adjectiveLocalisations = localisation.GetTextInEachLanguage(countryItr->second->getTag() + L"_ADJ");	// the adjectives in all languages
 		for (const auto& adjectiveLocalisation : adjectiveLocalisations)	// the adjective under consideration
 		{
-			const std::string& language = adjectiveLocalisation.first;		// the language
-			const std::string& adjective = adjectiveLocalisation.second;	// the adjective for the country in this language
+			const std::wstring& language = adjectiveLocalisation.first;		// the language
+			const std::wstring& adjective = adjectiveLocalisation.second;	// the adjective for the country in this language
 			countryItr->second->setLocalisationAdjective(language, adjective);
 		}
 	}
 }
-
+#pragma optimize("", on)
 
 V2Party* V2World::getRulingParty(const V2Country* country) const
 {

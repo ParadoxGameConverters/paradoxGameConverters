@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -30,16 +30,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-const std::array<std::string, V2Localisation::numLanguages> V2Localisation::languages = 
-	{ "english", "french", "german", "spanish" };
+const std::array<std::wstring, V2Localisation::numLanguages> V2Localisation::languages = 
+	{ L"english", L"french", L"german", L"spanish" };
 
-void V2Localisation::SetTag(const std::string& newTag)
+
+void V2Localisation::SetTag(const std::wstring& newTag)
 {
 	tag = newTag;
 }
 
 
-void V2Localisation::SetPartyKey(size_t partyIndex, const std::string& partyKey)
+void V2Localisation::SetPartyKey(size_t partyIndex, const std::wstring& partyKey)
 {
 	if (parties.size() <= partyIndex)
 	{
@@ -48,7 +49,8 @@ void V2Localisation::SetPartyKey(size_t partyIndex, const std::string& partyKey)
 	parties[partyIndex].key = partyKey;
 }
 
-void V2Localisation::SetPartyName(size_t partyIndex, const std::string& language, const std::string& name)
+
+void V2Localisation::SetPartyName(size_t partyIndex, const std::wstring& language, const std::wstring& name)
 {
 	if (parties.size() <= partyIndex)
 	{
@@ -62,86 +64,17 @@ void V2Localisation::SetPartyName(size_t partyIndex, const std::string& language
 	}
 }
 
-void V2Localisation::WriteToStream(std::ostream& out) const
+
+void V2Localisation::ReadFromFile(const std::wstring& fileName)
 {
-	out << Convert(tag);
-	for (const auto& localisedName : name)
-	{
-		out << ';' << Convert(localisedName);
-	}
-	out << "x\n";
+	std::wifstream in(fileName);
 
-	out << Convert(tag) << "_ADJ";
-	for (const auto& localisedAdjective : adjective)
-	{
-		out << ';' << Convert(localisedAdjective);
-	}
-	out << "x\n";
-
-	for (const auto& party : parties)
-	{
-		out << Convert(party.key);
-		for (const auto& localisedPartyName : party.name)
-		{
-			out << ';' << Convert(localisedPartyName);
-		}
-		out << "x\n";
-	}
-}
-
-std::string V2Localisation::convertCountryFileName(const std::string countryFileName) const
-{
-	return Convert(countryFileName);
-}
-
-
-std::string V2Localisation::Convert(const std::string& text)
-{
-	if (text.empty())
-	{
-		return "";
-	}
-
-	int utf16Size = MultiByteToWideChar(CP_UTF8, 0, text.c_str(), text.size(), NULL, 0);
-	if (utf16Size == 0)
-	{
-		LOG(LogLevel::Warning) << "Can't convert \"" << text << "\" to UTF-16: " << WinUtils::GetLastWindowsError();
-		return "";
-	}
-	std::vector<wchar_t> utf16Text(utf16Size, L'\0');
-	int result = MultiByteToWideChar(CP_UTF8, 0, text.c_str(), text.size(), &utf16Text[0], utf16Size);
-	if (result == 0)
-	{
-		LOG(LogLevel::Warning) << "Can't convert \"" << text << "\" to UTF-16: " << WinUtils::GetLastWindowsError();
-		return "";
-	}
-	int latin1Size = WideCharToMultiByte(1252, WC_NO_BEST_FIT_CHARS | WC_COMPOSITECHECK | WC_DEFAULTCHAR, &utf16Text[0], utf16Size, NULL, 0, "0", NULL);
-	if (latin1Size == 0)
-	{
-		LOG(LogLevel::Warning) << "Can't convert \"" << text << "\" to Latin-1: " << WinUtils::GetLastWindowsError();
-		return "";
-	}
-	std::vector<char> latin1Text(latin1Size, '\0');
-	result = WideCharToMultiByte(1252, WC_NO_BEST_FIT_CHARS | WC_COMPOSITECHECK | WC_DEFAULTCHAR, &utf16Text[0], utf16Size, &latin1Text[0], latin1Size, "0", NULL);
-	if (result == 0)
-	{
-		LOG(LogLevel::Warning) << "Can't convert \"" << text << "\" to Latin-1: " << WinUtils::GetLastWindowsError();
-		return "";
-	}
-	return std::string(latin1Text.begin(), latin1Text.end());
-}
-
-
-void V2Localisation::ReadFromFile(const std::string& fileName)
-{
-	std::ifstream in(fileName);
-
-	std::string line;			// the line being processed
+	std::wstring line;			// the line being processed
 
 	// Subsequent lines are 'KEY: "Text"'
 	while (!in.eof())
 	{
-		string line;
+		wstring line;
 		getline(in, line);
 
 		if ((line[0] == '#') || (line.size() < 3)) // BE: The 3 here is arbitrary.
@@ -150,7 +83,7 @@ void V2Localisation::ReadFromFile(const std::string& fileName)
 		}
 
 		int division = line.find_first_of(';');
-		string key = line.substr(0, division);
+		wstring key = line.substr(0, division);
 
 		unsigned length = division;
 		for (auto language : languages)
@@ -163,7 +96,7 @@ void V2Localisation::ReadFromFile(const std::string& fileName)
 			int dash = localisations[key][language].find_first_of('–');									// the first (if any) dask in the output name
 			while (dash != string::npos)
 			{
-				localisations[key][language].replace(dash, 1, "-");
+				localisations[key][language].replace(dash, 1, L"-");
 				dash = localisations[key][language].find_first_of('–');
 			}
 		}
@@ -171,12 +104,12 @@ void V2Localisation::ReadFromFile(const std::string& fileName)
 }
 
 
-void V2Localisation::ReadFromAllFilesInFolder(const std::string& folderPath)
+void V2Localisation::ReadFromAllFilesInFolder(const std::wstring& folderPath)
 {
 	// Get all files in the folder.
-	std::vector<std::string> fileNames;
+	std::vector<std::wstring> fileNames;
 	WIN32_FIND_DATA findData;	// the file data
-	HANDLE findHandle = FindFirstFile((folderPath + "\\*").c_str(), &findData);	// the find handle
+	HANDLE findHandle = FindFirstFile((folderPath + L"\\*").c_str(), &findData);	// the find handle
 	if (findHandle == INVALID_HANDLE_VALUE)
 	{
 		return;
@@ -193,13 +126,13 @@ void V2Localisation::ReadFromAllFilesInFolder(const std::string& folderPath)
 	// Read all these files.
 	for (const auto& fileName : fileNames)
 	{
-		ReadFromFile(folderPath + '\\' + fileName);
+		ReadFromFile(folderPath + L'\\' + fileName);
 	}
 }
 
-const std::string& V2Localisation::GetText(const std::string& key, const std::string& language) const
+const std::wstring& V2Localisation::GetText(const std::wstring& key, const std::wstring& language) const
 {
-	static const std::string noLocalisation = "";	// used if there's no localisation
+	static const std::wstring noLocalisation = L"";	// used if there's no localisation
 
 	const auto keyFindIter = localisations.find(key);	// the localisations for this key
 	if (keyFindIter == localisations.end())
@@ -216,9 +149,10 @@ const std::string& V2Localisation::GetText(const std::string& key, const std::st
 	return languageFindIter->second;
 }
 
-const std::map<std::string, std::string>& V2Localisation::GetTextInEachLanguage(const std::string& key) const
+
+const std::map<std::wstring, std::wstring>& V2Localisation::GetTextInEachLanguage(const std::wstring& key) const
 {
-	static const std::map<std::string, std::string> noLocalisation;	// used if there's no localisation
+	static const std::map<std::wstring, std::wstring> noLocalisation;	// used if there's no localisation
 
 	const auto keyFindIter = localisations.find(key);	// the localisation we want
 	if (keyFindIter == localisations.end())

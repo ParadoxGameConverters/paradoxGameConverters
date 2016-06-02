@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -24,6 +24,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #ifndef V2LOCALISATION_H_
 #define V2LOCALISATION_H_
 
+
+
 #include <array>
 #include <iostream>
 #include <map>
@@ -36,60 +38,51 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 // Holds translations for attributes of a specific V2 country.
 class V2Localisation
 {
-public:
-	// Sets the tag to use for creating the name and adjective key to use in the localisation output.
-	void SetTag(const std::string& tag);
+	public:
+		// Sets the tag to use for creating the name and adjective key to use in the localisation output.
+		void SetTag(const std::wstring& tag);
 
-	// Sets the key to use for the specified party in the localisation output.
-	void SetPartyKey(size_t partyIndex, const std::string& partyKey);
-	// Sets the localised party name for the specified party in the given language, e.g. "english".
-	void SetPartyName(size_t partyIndex, const std::string& language, const std::string& name);
+		// Sets the key to use for the specified party in the localisation output.
+		void SetPartyKey(size_t partyIndex, const std::wstring& partyKey);
+		// Sets the localised party name for the specified party in the given language, e.g. "english".
+		void SetPartyName(size_t partyIndex, const std::wstring& language, const std::wstring& name);
 
-	// Writes a V2-formatted localisation info for all localised elements as:
-	// key;translation0;translation1;...;;;x
-	void WriteToStream(std::ostream&) const;
+		// Adds all localisations found in the specified file. The file should begin with
+		// a line like "l_english:" to indicate what language the texts are in.
+		void ReadFromFile(const std::wstring& fileName);
+		// Adds all localisations found in files in the specified folder as per ReadFromFile().
+		void ReadFromAllFilesInFolder(const std::wstring& folderPath);
 
-	// Converts the country file name
-	std::string convertCountryFileName(const std::string) const;
+		// Returns the localised text for the given key in the specified language. Returns
+		// an empty string if no such localisation is available.
+		const std::wstring& GetText(const std::wstring& key, const std::wstring& language) const;
+		// Returns the localised text for the given key in each language - the returned map is from
+		// language to localised text.
+		const std::map<std::wstring, std::wstring>& GetTextInEachLanguage(const std::wstring& key) const;
 
-	// Adds all localisations found in the specified file. The file should begin with
-	// a line like "l_english:" to indicate what language the texts are in.
-	void ReadFromFile(const std::string& fileName);
-	// Adds all localisations found in files in the specified folder as per ReadFromFile().
-	void ReadFromAllFilesInFolder(const std::string& folderPath);
+	private:
+		static const size_t numLanguages = 14;
+		static const std::array<std::wstring, numLanguages> languages;
 
-	// Returns the localised text for the given key in the specified language. Returns
-	// an empty string if no such localisation is available.
-	const std::string& GetText(const std::string& key, const std::string& language) const;
-	// Returns the localised text for the given key in each language - the returned map is from
-	// language to localised text.
-	const std::map<std::string, std::string>& GetTextInEachLanguage(const std::string& key) const;
+		typedef std::array<std::wstring, numLanguages> Localisations;
 
-private:
-	// All localisations are stored internally as UTF-8. However V2 doesn't seem to handle Unicode
-	// so we convert the text to ANSI Latin-1 before writing it.
-	static std::string Convert(const std::string&);
-
-	static const size_t numLanguages = 14;
-	static const std::array<std::string, numLanguages> languages;
-
-	typedef std::array<std::string, numLanguages> Localisations;
-
-	std::string tag;
-	Localisations name;
-	Localisations adjective;
-
-	struct Party
-	{
-		std::string key;
+		std::wstring tag;
 		Localisations name;
-	};
-	std::vector<Party> parties;
+		Localisations adjective;
+
+		struct Party
+		{
+			std::wstring key;
+			Localisations name;
+		};
+		std::vector<Party> parties;
 
 
-	typedef std::map<std::string, std::string> LanguageToLocalisationMap;
-	typedef std::unordered_map<std::string, LanguageToLocalisationMap> KeyToLocalisationsMap;
-	KeyToLocalisationsMap localisations;	// a map between keys and localisations
+		typedef std::map<std::wstring, std::wstring> LanguageToLocalisationMap;
+		typedef std::unordered_map<std::wstring, LanguageToLocalisationMap> KeyToLocalisationsMap;
+		KeyToLocalisationsMap localisations;	// a map between keys and localisations
 };
 
-#endif
+
+
+#endif	// V2LOCALISATION_H_
