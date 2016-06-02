@@ -32,20 +32,20 @@ namespace WinUtils {
 // Creates a new folder corresponding to the given path.
 // Returns true on success or if the folder already exists.
 // Returns false and logs a warning on failure.
-bool TryCreateFolder(const std::string& path);
+bool TryCreateFolder(const std::wstring& path);
 // Adds all files (just the file name) in the specified folder to the given collection.
-void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames);
+void GetAllFilesInFolder(const std::wstring& path, std::set<std::wstring>& fileNames);
 // Copies the file specified by sourcePath as destPath.
 // Returns true on success.
 // Returns false and logs a warning on failure.
-bool TryCopyFile(const std::string& sourcePath, const std::string& destPath);
+bool TryCopyFile(const std::wstring& sourcePath, const std::wstring& destPath);
 // Returns true if the specified file exists (and is a file rather than a folder).
-bool DoesFileExist(const std::string& path);
+bool DoesFileExist(const std::wstring& path);
 // Returns true if the specified folder exists (and is a folder rather than a file).
-bool doesFolderExist(const std::string& path);
+bool doesFolderExist(const std::wstring& path);
 
 // Returns a formatted string describing the last error on the WinAPI.
-std::string GetLastWindowsError();
+std::wstring GetLastWindowsError();
 
 } // namespace WinUtils
 

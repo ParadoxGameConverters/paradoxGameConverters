@@ -34,9 +34,9 @@ class V2Country;
 
 struct govMapping
 {
-	string vic_gov;
-	string HoI4_gov;
-	string ruling_party_required;
+	wstring vic_gov;
+	wstring HoI4_gov;
+	wstring ruling_party_required;
 	double require_political_reforms;
 	double require_social_reforms_above;
 	double require_social_reforms_below;
@@ -50,10 +50,10 @@ class governmentMapper
 		void initGovernmentMap(Object* obj);
 		void initReforms(Object* obj);
 
-		string	getGovernmentForCountry(const V2Country* country, const string _ideology);
+		wstring	getGovernmentForCountry(const V2Country* country, const wstring _ideology);
 
-		bool						areReformsInitialized() const	{ return reformsInitialized; }
-		map<string, string>	getReformTypes() const			{ return reformTypes; }
+		bool							areReformsInitialized() const	{ return reformsInitialized; }
+		map<wstring, wstring>	getReformTypes() const			{ return reformTypes; }
 
 		static governmentMapper* getInstance()
 		{
@@ -67,14 +67,13 @@ class governmentMapper
 	private:
 		static governmentMapper* instance;
 
-		vector<govMapping>	governmentMap;
-		map<string, string>	reformTypes;
-		map<string, int>		politicalReformScores;
-		map<string, int>		socialReformScores;
-		int						totalPoliticalReforms;
-		int						totalSocialReforms;
-
-		bool						reformsInitialized;
+		vector<govMapping>		governmentMap;
+		map<wstring, wstring>	reformTypes;
+		map<wstring, int>			politicalReformScores;
+		map<wstring, int>			socialReformScores;
+		int							totalPoliticalReforms;
+		int							totalSocialReforms;
+		bool							reformsInitialized;
 };
 
 #endif // GOVERNMENTMAPPER_H

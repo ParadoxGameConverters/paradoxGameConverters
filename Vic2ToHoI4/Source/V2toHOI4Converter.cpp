@@ -31,6 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Configuration.h"
 #include "Log.h"
 #include "ParadoxParser.h"
+#include "ParadoxParserUTF8.h"
 #include "HoI4World\HoI4World.h"
 #include "V2World\V2World.h"
 #include "V2World\V2Factory.h"
@@ -40,22 +41,22 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 // Converts the given V2 save into a HoI4 mod.
 // Returns 0 on success or a non-zero failure code on error.
-int ConvertV2ToHoI4(const std::string& V2SaveFileName)
+int ConvertV2ToHoI4(const std::wstring& V2SaveFileName)
 {
 	LOG(LogLevel::Info) << "Converter version 1.2";
 	Object*	obj;					// generic object
 
 	Configuration::getInstance();
 
-	char curDir[MAX_PATH];
+	wchar_t curDir[MAX_PATH];
 	GetCurrentDirectory(MAX_PATH, curDir);
 	LOG(LogLevel::Debug) << "Current directory is " << curDir;
 
 	// Get HoI4 install location
 	LOG(LogLevel::Debug) << "Get HoI4 Install Path";
-	string HoI4Loc = Configuration::getHoI4Path();	// the HoI4 install location as stated in the configuration file
+	wstring HoI4Loc = Configuration::getHoI4Path();	// the HoI4 install location as stated in the configuration file
 	struct _stat st;										// the file info
-	if (HoI4Loc.empty() || (_stat(HoI4Loc.c_str(), &st) != 0))
+	if (HoI4Loc.empty() || (_wstat(HoI4Loc.c_str(), &st) != 0))
 	{
 		LOG(LogLevel::Error) << "No HoI4 path was specified in configuration.txt, or the path was invalid";
 		return (-1);
@@ -67,8 +68,8 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	// Get HoI4 Documents Directory
 	LOG(LogLevel::Debug) << "Get HoI4 Documents directory";
-	string HoI4DocLoc = Configuration::getHoI4DocumentsPath();	// the HoI4 My Documents location as stated in the configuration file
-	if (HoI4DocLoc.empty() || (_stat(HoI4DocLoc.c_str(), &st) != 0))
+	wstring HoI4DocLoc = Configuration::getHoI4DocumentsPath();	// the HoI4 My Documents location as stated in the configuration file
+	if (HoI4DocLoc.empty() || (_wstat(HoI4DocLoc.c_str(), &st) != 0))
 	{
 		LOG(LogLevel::Error) << "No HoI4 documents directory was specified in configuration.txt, or the path was invalid";
 		return (-1);
@@ -80,8 +81,8 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	// Get V2 install location
 	LOG(LogLevel::Debug) << "Get V2 Install Path";
-	string V2Loc = Configuration::getV2Path();	// the V2 install location as stated in the configuration file
-	if (V2Loc.empty() || (_stat(V2Loc.c_str(), &st) != 0))
+	wstring V2Loc = Configuration::getV2Path();	// the V2 install location as stated in the configuration file
+	if (V2Loc.empty() || (_wstat(V2Loc.c_str(), &st) != 0))
 	{
 		LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
 		return (-1);
@@ -94,8 +95,8 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	// Get V2 Mod directory
 	map<string, string> possibleMods; // name, path
 	LOG(LogLevel::Debug) << "Get V2 Documents Directory";
-	string V2DocumentsLoc = Configuration::getV2DocumentsPath();	// the Victoria 2 My Documents location as stated in the configuration file
-	if (V2DocumentsLoc.empty() || (_stat(V2DocumentsLoc.c_str(), &st) != 0))
+	wstring V2DocumentsLoc = Configuration::getV2DocumentsPath();	// the Victoria 2 My Documents location as stated in the configuration file
+	if (V2DocumentsLoc.empty() || (_wstat(V2DocumentsLoc.c_str(), &st) != 0))
 	{
 		LOG(LogLevel::Error) << "No Victoria 2 documents directory was specified in configuration.txt, or the path was invalid";
 		return (-1);
@@ -107,21 +108,21 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	// Sanity check Vic2 mods
 	LOG(LogLevel::Debug) << "Double-check Vic2 mods";
-	vector<string> vic2Mods = Configuration::getVic2Mods();
+	vector<wstring> vic2Mods = Configuration::getVic2Mods();
 	for (auto itr: vic2Mods)
 	{
 		LOG(LogLevel::Debug) << "\tExpecting a mod with name " << itr;
 	}
 
-	set<string> fileNames;
-	WinUtils::GetAllFilesInFolder(Configuration::getV2Path() + "\\mod", fileNames);
-	for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
+	set<wstring> fileNames;
+	WinUtils::GetAllFilesInFolder(Configuration::getV2Path() + L"\\mod", fileNames);
+	for (set<wstring>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
 	{
 		const int pos = itr->find_last_of('.');	// the position of the last period in the filename
-		if (itr->substr(pos, itr->length()) == ".mod")
+		if (itr->substr(pos, itr->length()) == L".mod")
 		{
-			string folderName = itr->substr(0, pos);
-			if (WinUtils::doesFolderExist(Configuration::getV2Path() + "\\mod\\" + folderName))
+			wstring folderName = itr->substr(0, pos);
+			if (WinUtils::doesFolderExist(Configuration::getV2Path() + L"\\mod\\" + folderName))
 			{
 				LOG(LogLevel::Debug) << "\tFound mod with name " << folderName;
 			}
@@ -135,8 +136,8 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	// parse technologies
 	LOG(LogLevel::Info) << "Parsing Vic2 technologies";
-	map<string, string> armyTechs;
-	obj = doParseFile((Configuration::getV2Path() + "\\technologies\\army_tech.txt").c_str());
+	map<wstring, wstring> armyTechs;
+	obj = parser_8859_15::doParseFile((Configuration::getV2Path() + L"\\technologies\\army_tech.txt").c_str());
 	if (obj != NULL)
 	{
 		for (auto tech: obj->getLeaves())
@@ -144,8 +145,8 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 			armyTechs.insert(make_pair(tech->getKey(), tech->getKey()));
 		}
 	}
-	map<string, string> navyTechs;
-	obj = doParseFile((Configuration::getV2Path() + "\\technologies\\navy_tech.txt").c_str());
+	map<wstring, wstring> navyTechs;
+	obj = parser_8859_15::doParseFile((Configuration::getV2Path() + L"\\technologies\\navy_tech.txt").c_str());
 	if (obj != NULL)
 	{
 		for (auto tech: obj->getLeaves())
@@ -157,33 +158,33 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	// parse continents
 	LOG(LogLevel::Info) << "Parsing continents";
 	continentMapping continentMap;
-	obj = doParseFile((Configuration::getV2Path() + "\\map\\continent.txt").c_str());
+	obj = parser_8859_15::doParseFile((Configuration::getV2Path() + L"\\map\\continent.txt").c_str());
 	if (obj != NULL)
 	{
 		initContinentMap(obj, continentMap);
 	}
 
 	//get output name
-	const int slash	= V2SaveFileName.find_last_of("\\");				// the last slash in the save's filename
-	string outputName = V2SaveFileName.substr(slash + 1, V2SaveFileName.length());
-	const int length	= outputName.find_first_of(".");						// the first period after the slash
-	outputName			= outputName.substr(0, length);						// the name to use to output the mod
-	int dash = outputName.find_first_of('-');									// the first (if any) dask in the output name
+	const int slash		= V2SaveFileName.find_last_of(L"\\");				// the last slash in the save's filename
+	wstring outputName	= V2SaveFileName.substr(slash + 1, V2SaveFileName.length());
+	const int length		= outputName.find_first_of(L".");					// the first period after the slash
+	outputName				= outputName.substr(0, length);						// the name to use to output the mod
+	int dash					= outputName.find_first_of('-');						// the first (if any) dask in the output name
 	while (dash != string::npos)
 	{
-		outputName.replace(dash, 1, "_");
-		dash = outputName.find_first_of('-');
+		outputName.replace(dash, 1, L"_");
+		dash = outputName.find_first_of(L'-');
 	}
 	int space = outputName.find_first_of(' ');	// the first space (if any) in the output name
 	while (space != string::npos)
 	{
-		outputName.replace(space, 1, "_");
+		outputName.replace(space, 1, L"_");
 		space = outputName.find_first_of(' ');
 	}
 	Configuration::setOutputName(outputName);
 	LOG(LogLevel::Info) << "Using output name " << outputName;
 
-	string outputFolder = string(curDir) + "\\output\\" + Configuration::getOutputName();
+	wstring outputFolder = wstring(curDir) + L"\\output\\" + Configuration::getOutputName();
 	if (WinUtils::doesFolderExist(outputFolder.c_str()))
 	{
 		LOG(LogLevel::Error) << "Output folder " << Configuration::getOutputName() << " already exists! Clear the output folder before running again!";
@@ -192,8 +193,8 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	// Parse government mapping
 	LOG(LogLevel::Info) << "Parsing governments mappings";
-	initParser();
-	obj = doParseFile("governmentMapping.txt");
+	parser_UTF8::initParser();
+	obj = parser_UTF8::doParseFile(L"governmentMapping.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file governmentMapping.txt";
@@ -205,9 +206,9 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "Parsing governments reforms";
 	for (auto itr : vic2Mods)
 	{
-		if (WinUtils::DoesFileExist(Configuration::getV2Path() + "\\mod\\" + itr + "\\common\\issues.txt"))
+		if (WinUtils::DoesFileExist(Configuration::getV2Path() + L"\\mod\\" + itr + L"\\common\\issues.txt"))
 		{
-			obj = doParseFile((Configuration::getV2Path() + "\\mod\\" + itr + "\\common\\issues.txt").c_str());
+			obj = parser_8859_15::doParseFile((Configuration::getV2Path() + L"\\mod\\" + itr + L"\\common\\issues.txt").c_str());
 			if (obj != NULL)
 			{
 				governmentMapper::getInstance()->initReforms(obj);
@@ -217,7 +218,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	}
 	if (!governmentMapper::getInstance()->areReformsInitialized())
 	{
-		obj = doParseFile((Configuration::getV2Path() + "\\common\\issues.txt").c_str());
+		obj = parser_8859_15::doParseFile((Configuration::getV2Path() + L"\\common\\issues.txt").c_str());
 		if (obj != NULL)
 		{
 			governmentMapper::getInstance()->initReforms(obj);
@@ -228,7 +229,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	//	Parse V2 Save
 	LOG(LogLevel::Info) << "Parsing save";
-	obj = doParseFile(V2SaveFileName.c_str());
+	obj = parser_8859_15::doParseFile(V2SaveFileName.c_str());
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << V2SaveFileName << ". File is likely missing.";
@@ -242,11 +243,11 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	// Read all localisations.
 	LOG(LogLevel::Info) << "Reading localisation";
 	V2Localisation localisation;
-	localisation.ReadFromAllFilesInFolder(Configuration::getV2Path() + "\\localisation");
+	localisation.ReadFromAllFilesInFolder(Configuration::getV2Path() + L"\\localisation");
 	for (auto itr: vic2Mods)
 	{
 		LOG(LogLevel::Debug) << "Reading mod localisation";
-		localisation.ReadFromAllFilesInFolder(Configuration::getV2Path() + "\\mod\\" + itr + "\\localisation");
+		localisation.ReadFromAllFilesInFolder(Configuration::getV2Path() + L"\\mod\\" + itr + L"\\localisation");
 	}
 
 	sourceWorld.setLocalisations(localisation);
@@ -254,7 +255,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	// Merge nations
 	LOG(LogLevel::Info) << "Merging nations";
-	obj = doParseFile("merge_nations.txt");
+	obj = parser_UTF8::doParseFile(L"merge_nations.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file merge_nations.txt";
@@ -264,7 +265,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	// Parse province mappings
 	LOG(LogLevel::Info) << "Parsing province mappings";
-	obj = doParseFile("province_mappings.txt");
+	obj = parser_UTF8::doParseFile(L"province_mappings.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file province_mappings.txt";
@@ -284,7 +285,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	// Get country mappings
 	CountryMapping countryMap;
-	countryMap.ReadRules("country_mappings.txt");
+	countryMap.ReadRules(L"country_mappings.txt");
 	destWorld.importPotentialCountries();
 	countryMap.CreateMapping(sourceWorld, destWorld);
 
@@ -297,8 +298,8 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	// Parse government jobs
 	LOG(LogLevel::Info) << "Parsing government jobs";
-	initParser();
-	obj = doParseFile("governmentJobs.txt");
+	parser_UTF8::initParser();
+	obj = parser_UTF8::doParseFile(L"governmentJobs.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file governmentJobs.txt";
@@ -309,8 +310,8 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	// Parse leader traits
 	LOG(LogLevel::Info) << "Parsing government jobs";
-	initParser();
-	obj = doParseFile("leader_traits.txt");
+	parser_UTF8::initParser();
+	obj = parser_UTF8::doParseFile(L"leader_traits.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file leader_traits.txt";
@@ -326,13 +327,13 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	for (auto itr: vic2Mods)
 	{
 		LOG(LogLevel::Debug) << "Reading mod cultures";
-		obj = doParseFile((Configuration::getV2Path() + "\\mod\\" + itr + "\\common\\cultures.txt").c_str());
+		obj = parser_8859_15::doParseFile((Configuration::getV2Path() + L"\\mod\\" + itr + L"\\common\\cultures.txt").c_str());
 		if (obj != NULL)
 		{
 			initNamesMapping(obj, namesMap);
 		}
 	}
-	obj = doParseFile((Configuration::getV2Path() + "\\common\\cultures.txt").c_str());
+	obj = parser_8859_15::doParseFile((Configuration::getV2Path() + L"\\common\\cultures.txt").c_str());
 	if (obj != NULL)
 	{
 		initNamesMapping(obj, namesMap);
@@ -341,7 +342,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	// parse portraits list
 	LOG(LogLevel::Info) << "Parsing portraits list";
 	portraitMapping portraitMap;
-	obj = doParseFile("portraits.txt");
+	obj = parser_UTF8::doParseFile(L"portraits.txt");
 	if (obj != NULL)
 	{
 		initPortraitMapping(obj, portraitMap);
@@ -349,7 +350,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	// parse culture mapping
 	LOG(LogLevel::Info) << "Parsing culture mappings";
-	obj = doParseFile("culture_map.txt");
+	obj = parser_UTF8::doParseFile(L"culture_map.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file culture_map.txt";
@@ -365,7 +366,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	// parse personality mapping
 	LOG(LogLevel::Info) << "Parsing personality mappings";
-	obj = doParseFile("personality_map.txt");
+	obj = parser_UTF8::doParseFile(L"personality_map.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file personality_map.txt";
@@ -382,7 +383,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	// parse background mapping
 	LOG(LogLevel::Info) << "Parsing background mappings";
-	obj = doParseFile("background_map.txt");
+	obj = parser_UTF8::doParseFile(L"background_map.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file background_map.txt";
@@ -399,7 +400,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	// parse AI focus data
 	LOG(LogLevel::Info) << "Parsing AI focuses";
-	obj = doParseFile("ai_focus.txt");
+	obj = parser_UTF8::doParseFile(L"ai_focus.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file ai_focus.txt";
@@ -443,23 +444,23 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	system("%systemroot%\\System32\\xcopy blankMod output /E /Q /Y /I");
 
 	FILE* modFile;	// the .mod file for this mod
-	if (fopen_s(&modFile, ("Output\\" + Configuration::getOutputName() + ".mod").c_str(), "w") != 0)
+	if (_wfopen_s(&modFile, (L"Output\\" + Configuration::getOutputName() + L".mod").c_str(), L"w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create .mod file";
 		exit(-1);
 	}
-	fprintf(modFile, "name = \"Converted - %s\"\n", Configuration::getOutputName().c_str());
-	fprintf(modFile, "path = mod/%s\"\n", Configuration::getOutputName().c_str());
-	fprintf(modFile, "user_dir = \"%s_user_dir\"\n", Configuration::getOutputName().c_str());
-	fprintf(modFile, "replace = \"history/countries\"\n");
-	fprintf(modFile, "replace = \"history/diplomacy\"\n");
-	fprintf(modFile, "replace = \"history/provinces\"\n");
-	fprintf(modFile, "replace = \"script\"\n");
-	fprintf(modFile, "replace_path = \"events\"\n");
-	fprintf(modFile, "replace_path = \"decisions\"\n");
+	fwprintf(modFile, L"name = \"Converted - %s\"\n", Configuration::getOutputName().c_str());
+	fwprintf(modFile, L"path = mod/%s\"\n", Configuration::getOutputName().c_str());
+	fwprintf(modFile, L"user_dir = \"%s_user_dir\"\n", Configuration::getOutputName().c_str());
+	fwprintf(modFile, L"replace = \"history/countries\"\n");
+	fwprintf(modFile, L"replace = \"history/diplomacy\"\n");
+	fwprintf(modFile, L"replace = \"history/provinces\"\n");
+	fwprintf(modFile, L"replace = \"script\"\n");
+	fwprintf(modFile, L"replace_path = \"events\"\n");
+	fwprintf(modFile, L"replace_path = \"decisions\"\n");
 	fclose(modFile);
-	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();	// the command to rename the mod correctly
-	system(renameCommand.c_str());
+	wstring renameCommand = L"move /Y output\\output output\\" + Configuration::getOutputName();	// the command to rename the mod correctly
+	_wsystem(renameCommand.c_str());
 	LOG(LogLevel::Info) << "Copying flags";
 	destWorld.copyFlags(sourceWorld, countryMap);
 
@@ -471,12 +472,12 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 }
 
 
-int main(const int argc, const char * argv[])
+int main(const int argc, const wchar_t* argv[])
 {
 	try
 	{
-		const char* const defaultV2SaveFileName = "input.v2";	// the default name for a save to convert
-		string V2SaveFileName;												// the actual name for the save to convert
+		const wchar_t* const defaultV2SaveFileName = L"input.v2";	// the default name for a save to convert
+		wstring V2SaveFileName;													// the actual name for the save to convert
 		if (argc >= 2)
 		{
 			V2SaveFileName = argv[1];

@@ -53,15 +53,15 @@ void initProvinceMap(Object* obj, provinceMapping& provinceMap, provinceMapping&
 		vector<Object*> vMaps = (*i)->getLeaves();	// the items within the mapping
 		for (vector<Object*>::iterator j = vMaps.begin(); j != vMaps.end(); j++)
 		{
-			if ((*j)->getKey() == "vic")
+			if ((*j)->getKey() == L"vic")
 			{
-				V2nums.push_back(atoi((*j)->getLeaf().c_str()));
+				V2nums.push_back(_wtoi((*j)->getLeaf().c_str()));
 			}
-			else if ((*j)->getKey() == "hoi")
+			else if ((*j)->getKey() == L"hoi")
 			{
-				HoI4nums.push_back(atoi((*j)->getLeaf().c_str()));
+				HoI4nums.push_back(_wtoi((*j)->getLeaf().c_str()));
 			}
-			else if ((*j)->getKey() == "resettable")
+			else if ((*j)->getKey() == L"resettable")
 			{
 				resettable = true;
 			}
@@ -120,8 +120,8 @@ vector<int> getHoI4ProvinceNums(inverseProvinceMapping invProvMap, const int v2P
 HoI4AdjacencyMapping initHoI4AdjacencyMap()
 {
 	FILE* adjacenciesBin = NULL;	// the adjacencies.bin file
-	string filename = Configuration::getHoI4Path() + "\\tfh\\map\\cache\\adjacencies.bin";
-	fopen_s(&adjacenciesBin, filename.c_str(), "rb");
+	wstring filename = Configuration::getHoI4Path() + L"\\tfh\\map\\cache\\adjacencies.bin";
+	_wfopen_s(&adjacenciesBin, filename.c_str(), L"rb");
 	if (adjacenciesBin == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not open " << filename;
@@ -171,11 +171,11 @@ void initContinentMap(Object* obj, continentMapping& continentMap)
 	vector<Object*> continentObjs = obj->getLeaves();	// the continents
 	for (auto continentObj: continentObjs)
 	{
-		string continent = continentObj->getKey();	// the current continent
-		vector<Object*> provinceObjs = continentObj->getValue("provinces");	// the province numbers in this continent
+		wstring continent = continentObj->getKey();	// the current continent
+		vector<Object*> provinceObjs = continentObj->getValue(L"provinces");	// the province numbers in this continent
 		for (auto provinceStr: provinceObjs[0]->getTokens())
 		{
-			const int province = atoi(provinceStr.c_str());	// the current province num
+			const int province = _wtoi(provinceStr.c_str());	// the current province num
 			continentMap.insert( make_pair(province, continent) );
 		}
 	}
@@ -184,7 +184,7 @@ void initContinentMap(Object* obj, continentMapping& continentMap)
 
 void mergeNations(V2World& world, Object* mergeObj)
 {
-	vector<Object*> rules = mergeObj->getValue("merge_nations");	// all merging rules
+	vector<Object*> rules = mergeObj->getValue(L"merge_nations");	// all merging rules
 	if (rules.size() < 0)
 	{
 		LOG(LogLevel::Debug) << "No nations have merging requested (skipping)";
@@ -195,20 +195,20 @@ void mergeNations(V2World& world, Object* mergeObj)
 	for (vector<Object*>::iterator itr = rules.begin(); itr != rules.end(); ++itr)
 	{
 		vector<Object*> thisMerge = (*itr)->getLeaves();	// the current merge rule
-		string masterTag;												// the nation to merge into
-		vector<string> slaveTags;									// the nations that will be merged into the master
+		wstring masterTag;											// the nation to merge into
+		vector<wstring> slaveTags;									// the nations that will be merged into the master
 		bool enabled = false;										// whether or not this rule is enabled
 		for (vector<Object*>::iterator jtr = thisMerge.begin(); jtr != thisMerge.end(); ++jtr)
 		{
-			if ((*jtr)->getKey() == "merge" && (*jtr)->getLeaf() == "yes")
+			if ((*jtr)->getKey() == L"merge" && (*jtr)->getLeaf() == L"yes")
 			{
 				enabled = true;
 			}
-			else if ((*jtr)->getKey() == "master")
+			else if ((*jtr)->getKey() == L"master")
 			{
 				masterTag = (*jtr)->getLeaf();
 			}
-			else if ((*jtr)->getKey() == "slave")
+			else if ((*jtr)->getKey() == L"slave")
 			{
 				slaveTags.push_back((*jtr)->getLeaf());
 			}
@@ -216,7 +216,7 @@ void mergeNations(V2World& world, Object* mergeObj)
 		V2Country* master = world.getCountry(masterTag);	// the actual master country
 		if ( enabled && (master != NULL) && (slaveTags.size() > 0) )
 		{
-			for (vector<string>::iterator sitr = slaveTags.begin(); sitr != slaveTags.end(); ++sitr)
+			for (vector<wstring>::iterator sitr = slaveTags.begin(); sitr != slaveTags.end(); ++sitr)
 			{
 				master->eatCountry(world.getCountry(*sitr));
 			}
@@ -226,8 +226,8 @@ void mergeNations(V2World& world, Object* mergeObj)
 
 void removeEmptyNations(V2World& world)
 {
-	map<string, V2Country*> countries = world.getCountries();	// all V2 countries
-	for (map<string, V2Country*>::iterator i = countries.begin(); i != countries.end(); i++)
+	map<wstring, V2Country*> countries = world.getCountries();	// all V2 countries
+	for (map<wstring, V2Country*>::iterator i = countries.begin(); i != countries.end(); i++)
 	{
 		map<int, V2Province*> provinces	= i->second->getProvinces();	// the provinces for the nation
 		vector<V2Province*> cores			= i->second->getCores();		// the cores for the nation
@@ -245,13 +245,13 @@ void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateI
 
 	for (unsigned int i = 0; i < leaves.size(); i++)
 	{
-		vector<string> provinces = leaves[i]->getTokens();	// the provinces in this state
-		vector<int>		neighbors;									// the neighboring provinces (that is, all provinces in the state)
+		vector<wstring>	provinces = leaves[i]->getTokens();	// the provinces in this state
+		vector<int>			neighbors;									// the neighboring provinces (that is, all provinces in the state)
 
-		for (vector<string>::iterator j = provinces.begin(); j != provinces.end(); j++)
+		for (vector<wstring>::iterator j = provinces.begin(); j != provinces.end(); j++)
 		{
-			neighbors.push_back( atoi(j->c_str()) );
-			stateIndexMap.insert(make_pair(atoi(j->c_str()), i));
+			neighbors.push_back( _wtoi(j->c_str()) );
+			stateIndexMap.insert(make_pair(_wtoi(j->c_str()), i));
 		}
 		for (vector<int>::iterator j = neighbors.begin(); j != neighbors.end(); j++)
 		{
@@ -268,17 +268,17 @@ unionMapping initUnionMap(Object* obj)
 	vector<Object*> unions = obj->getLeaves();	// the rules for cultural unions
 	for (vector<Object*>::iterator i = unions.begin(); i != unions.end(); i++)
 	{
-		string tag;			// the tag for the cultural union
-		string culture;	// the culture for the cultural union
+		wstring tag;		// the tag for the cultural union
+		wstring culture;	// the culture for the cultural union
 
 		vector<Object*> aUnion = (*i)->getLeaves();	// the items for this rule
 		for (vector<Object*>::iterator j = aUnion.begin(); j != aUnion.end(); j++)
 		{
-			if ( (*j)->getKey() == "tag" )
+			if ( (*j)->getKey() == L"tag" )
 			{
 				tag = (*j)->getLeaf();
 			}
-			if ( (*j)->getKey() == "culture" )
+			if ( (*j)->getKey() == L"culture" )
 			{
 				culture = (*j)->getLeaf();
 			}
@@ -297,16 +297,16 @@ void initUnionCultures(Object* obj, unionCulturesMap& unionCultures)
 	for (vector<Object*>::iterator i = cultureGroups.begin(); i != cultureGroups.end(); i++)
 	{
 		vector<Object*>		culturesObj		= (*i)->getLeaves();	// the items in this rule
-		string					group				= (*i)->getKey();		// the cultural group
-		vector<string>			cultures;									// the cultures
+		wstring					group				= (*i)->getKey();		// the cultural group
+		vector<wstring>		cultures;									// the cultures
 
 		for (vector<Object*>::iterator j = culturesObj.begin(); j != culturesObj.end(); j++)
 		{
-			if ( (*j)->getKey() == "dynasty_names" )
+			if ( (*j)->getKey() == L"dynasty_names" )
 			{
 				continue;
 			}
-			else if ((*j)->getKey() == "graphical_culture")
+			else if ((*j)->getKey() == L"graphical_culture")
 			{
 				continue;
 			}
@@ -319,8 +319,8 @@ void initUnionCultures(Object* obj, unionCulturesMap& unionCultures)
 		unionCulturesMap::iterator itr = unionCultures.find(group);
 		if (itr != unionCultures.end())
 		{
-			vector<string> oldCultures = itr->second;	// any cultures already in the group
-			for (vector<string>::iterator jtr = oldCultures.begin(); jtr != oldCultures.end(); jtr++)
+			vector<wstring> oldCultures = itr->second;	// any cultures already in the group
+			for (vector<wstring>::iterator jtr = oldCultures.begin(); jtr != oldCultures.end(); jtr++)
 			{
 				cultures.push_back(*jtr);
 			}
@@ -338,22 +338,22 @@ cultureMapping initCultureMap(Object* obj)
 	for (vector<Object*>::iterator i = links.begin(); i != links.end(); i++)
 	{
 		vector<Object*>	cultures	= (*i)->getLeaves();	// the items in this rule
-		string				dstCulture;							// the HoI4 culture
-		vector<string>		srcCulture;							// the Vic2 cultures
+		wstring				dstCulture;							// the HoI4 culture
+		vector<wstring>		srcCulture;						// the Vic2 cultures
 
 		for (vector<Object*>::iterator j = cultures.begin(); j != cultures.end(); j++)
 		{
-			if ( (*j)->getKey() == "HoI4" )
+			if ( (*j)->getKey() == L"HoI4" )
 			{
 				dstCulture = (*j)->getLeaf();
 			}
-			if ( (*j)->getKey() == "v2" )
+			if ( (*j)->getKey() == L"v2" )
 			{
 				srcCulture.push_back( (*j)->getLeaf() );
 			}
 		}
 
-		for (vector<string>::iterator j = srcCulture.begin(); j != srcCulture.end(); j++)
+		for (vector<wstring>::iterator j = srcCulture.begin(); j != srcCulture.end(); j++)
 		{
 			cultureMap.insert(make_pair((*j), dstCulture));
 		}
@@ -363,62 +363,62 @@ cultureMapping initCultureMap(Object* obj)
 }
 
 
-void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, int>& commerceInvIdeas, map<string, int>& cultureInvIdeas, map<string, int>& industryInvIdeas, map<string, int>& navyInvIdeas, map<string, double>& UHLiberalIdeas, map<string, double>& UHReactionaryIdeas, vector< pair<string, int> >& literacyIdeas, map<string, int>& orderIdeas, map<string, int>& libertyIdeas, map<string, int>& equalityIdeas)
+void initIdeaEffects(Object* obj, map<wstring, int>& armyInvIdeas, map<wstring, int>& commerceInvIdeas, map<wstring, int>& cultureInvIdeas, map<wstring, int>& industryInvIdeas, map<wstring, int>& navyInvIdeas, map<wstring, double>& UHLiberalIdeas, map<wstring, double>& UHReactionaryIdeas, vector< pair<wstring, int> >& literacyIdeas, map<wstring, int>& orderIdeas, map<wstring, int>& libertyIdeas, map<wstring, int>& equalityIdeas)
 {
 	vector<Object*> ideasObj = obj->getLeaves();
 	for (vector<Object*>::iterator ideasItr = ideasObj.begin(); ideasItr != ideasObj.end(); ideasItr++)
 	{
-		string idea = (*ideasItr)->getKey();
+		wstring idea = (*ideasItr)->getKey();
 		vector<Object*> effects = (*ideasItr)->getLeaves();
 		for (vector<Object*>::iterator effectsItr = effects.begin(); effectsItr != effects.end(); effectsItr++)
 		{
-			string effectType = (*effectsItr)->getKey();
-			if (effectType == "army_investment")
+			wstring effectType = (*effectsItr)->getKey();
+			if (effectType == L"army_investment")
 			{
-				armyInvIdeas[idea] = atoi((*effectsItr)[0].getLeaf().c_str());
+				armyInvIdeas[idea] = _wtoi((*effectsItr)[0].getLeaf().c_str());
 			}
-			else if (effectType == "commerce_investment")
+			else if (effectType == L"commerce_investment")
 			{
-				commerceInvIdeas[idea] = atoi((*effectsItr)[0].getLeaf().c_str());
+				commerceInvIdeas[idea] = _wtoi((*effectsItr)[0].getLeaf().c_str());
 			}
-			else if (effectType == "culture_investment")
+			else if (effectType == L"culture_investment")
 			{
-				cultureInvIdeas[idea] = atoi((*effectsItr)[0].getLeaf().c_str());
+				cultureInvIdeas[idea] = _wtoi((*effectsItr)[0].getLeaf().c_str());
 			}
-			else if (effectType == "industry_investment")
+			else if (effectType == L"industry_investment")
 			{
-				industryInvIdeas[idea] = atoi((*effectsItr)[0].getLeaf().c_str());
+				industryInvIdeas[idea] = _wtoi((*effectsItr)[0].getLeaf().c_str());
 			}
-			else if (effectType == "navy_investment")
+			else if (effectType == L"navy_investment")
 			{
-				navyInvIdeas[idea] = atoi((*effectsItr)[0].getLeaf().c_str());
+				navyInvIdeas[idea] = _wtoi((*effectsItr)[0].getLeaf().c_str());
 			}
-			else if (effectType == "upper_house_liberal")
+			else if (effectType == L"upper_house_liberal")
 			{
-				UHLiberalIdeas[idea] = atof((*effectsItr)[0].getLeaf().c_str());
+				UHLiberalIdeas[idea] = _wtof((*effectsItr)[0].getLeaf().c_str());
 			}
-			else if (effectType == "upper_house_reactionary")
+			else if (effectType == L"upper_house_reactionary")
 			{
-				UHReactionaryIdeas[idea] = atof((*effectsItr)[0].getLeaf().c_str());
+				UHReactionaryIdeas[idea] = _wtof((*effectsItr)[0].getLeaf().c_str());
 			}
-			else if (effectType == "NV_order")
+			else if (effectType == L"NV_order")
 			{
-				orderIdeas[idea] = atoi((*effectsItr)[0].getLeaf().c_str());
+				orderIdeas[idea] = _wtoi((*effectsItr)[0].getLeaf().c_str());
 			}
-			else if (effectType == "NV_liberty")
+			else if (effectType == L"NV_liberty")
 			{
-				libertyIdeas[idea] = atoi((*effectsItr)[0].getLeaf().c_str());
+				libertyIdeas[idea] = _wtoi((*effectsItr)[0].getLeaf().c_str());
 			}
-			else if (effectType == "NV_equality")
+			else if (effectType == L"NV_equality")
 			{
-				equalityIdeas[idea] = atoi((*effectsItr)[0].getLeaf().c_str());
+				equalityIdeas[idea] = _wtoi((*effectsItr)[0].getLeaf().c_str());
 			}
-			else if (effectType == "literacy")
+			else if (effectType == L"literacy")
 			{
-				vector<string> literacyStrs = (*effectsItr)[0].getTokens();
+				vector<wstring> literacyStrs = (*effectsItr)[0].getTokens();
 				for (unsigned int i = 0; i < literacyStrs.size(); i++)
 				{
-					literacyIdeas.push_back(make_pair(idea, atoi(literacyStrs[i].c_str())));
+					literacyIdeas.push_back(make_pair(idea, _wtoi(literacyStrs[i].c_str())));
 				}
 			}
 		}
@@ -431,8 +431,8 @@ void initGovernmentJobTypes(Object* obj, governmentJobsMap& governmentJobs)
 	vector<Object*> jobsObj = obj->getLeaves();
 	for (auto jobsItr: jobsObj)
 	{
-		string job = jobsItr->getKey();
-		vector<string> traits;
+		wstring job = jobsItr->getKey();
+		vector<wstring> traits;
 		auto traitsObj = jobsItr->getLeaves();
 		for (auto trait: traitsObj)
 		{
@@ -448,8 +448,8 @@ void initLeaderTraitsMap(Object* obj, leaderTraitsMap& leaderTraits)
 	vector<Object*> typesObj = obj->getLeaves();
 	for (auto typeItr: typesObj)
 	{
-		string type = typeItr->getKey();
-		vector<string> traits;
+		wstring type = typeItr->getKey();
+		vector<wstring> traits;
 		auto traitsObj = typeItr->getLeaves();
 		for (auto trait: traitsObj)
 		{
@@ -465,17 +465,17 @@ void initLeaderPersonalityMap(Object* obj, personalityMap& landPersonalityMap, p
 	vector<Object*> personalitiesObj = obj->getLeaves();
 	for (auto personalityItr: personalitiesObj)
 	{
-		string personality = personalityItr->getKey();
-		vector<string> landTraits;
-		vector<string> seaTraits;
+		wstring personality = personalityItr->getKey();
+		vector<wstring> landTraits;
+		vector<wstring> seaTraits;
 		auto traitsObj = personalityItr->getLeaves();
 		for (auto trait: traitsObj)
 		{
-			if (trait->getKey() == "land")
+			if (trait->getKey() == L"land")
 			{
 				landTraits.push_back(trait->getLeaf());
 			}
-			else if (trait->getKey() == "sea")
+			else if (trait->getKey() == L"sea")
 			{
 				seaTraits.push_back(trait->getLeaf());
 			}
@@ -491,17 +491,17 @@ void initLeaderBackgroundMap(Object* obj, backgroundMap& landBackgroundMap, back
 	vector<Object*> backgroundObj = obj->getLeaves();
 	for (auto backgroundItr: backgroundObj)
 	{
-		string background = backgroundItr->getKey();
-		vector<string> landTraits;
-		vector<string> seaTraits;
+		wstring background = backgroundItr->getKey();
+		vector<wstring> landTraits;
+		vector<wstring> seaTraits;
 		auto traitsObj = backgroundItr->getLeaves();
 		for (auto trait: traitsObj)
 		{
-			if (trait->getKey() == "land")
+			if (trait->getKey() == L"land")
 			{
 				landTraits.push_back(trait->getLeaf());
 			}
-			else if (trait->getKey() == "sea")
+			else if (trait->getKey() == L"sea")
 			{
 				seaTraits.push_back(trait->getLeaf());
 			}
@@ -520,17 +520,17 @@ void initNamesMapping(Object* obj, namesMapping& namesMap)
 		vector<Object*> culturesObj = groupsItr->getLeaves();
 		for (auto culturesItr: culturesObj)
 		{
-			string key = culturesItr->getKey();
-			if ((key == "union") || (key == "leader") || (key == "unit") || (key == "is_overseas"))
+			wstring key = culturesItr->getKey();
+			if ((key == L"union") || (key == L"leader") || (key == L"unit") || (key == L"is_overseas"))
 			{
 				continue;
 			}
-			vector<Object*>	firstNamesObj	= culturesItr->getValue("first_names");
-			vector<Object*>	lastNamesObj	= culturesItr->getValue("last_names");
+			vector<Object*>	firstNamesObj	= culturesItr->getValue(L"first_names");
+			vector<Object*>	lastNamesObj	= culturesItr->getValue(L"last_names");
 			if ((firstNamesObj.size() > 0) && (lastNamesObj.size() > 0))
 			{
-				vector<string>		firstNames		= firstNamesObj[0]->getTokens();
-				vector<string>		lastNames		= lastNamesObj[0]->getTokens();
+				vector<wstring>		firstNames		= firstNamesObj[0]->getTokens();
+				vector<wstring>		lastNames		= lastNamesObj[0]->getTokens();
 				namesMap.insert(make_pair(key, make_pair(firstNames, lastNames)));
 			}
 			else
@@ -547,7 +547,7 @@ void initPortraitMapping(Object* obj, portraitMapping& portraitMap)
 	vector<Object*> groupsObj = obj->getLeaves();
 	for (auto groupsItr: groupsObj)
 	{
-		vector<string> portraits = groupsItr->getTokens();
+		vector<wstring> portraits = groupsItr->getTokens();
 		portraitMap.insert(make_pair(groupsItr->getKey(), portraits));
 	}
 }
@@ -559,20 +559,20 @@ void initAIFocusModifiers(Object* obj, AIFocusModifiers& modifiers)
 	for (auto focusesItr: focusesObj)
 	{
 		pair<AIFocusType, vector<AIFocusModifier>> newFocus;
-		string focusName = focusesItr->getKey();
-		if (focusName == "sea_focus")
+		wstring focusName = focusesItr->getKey();
+		if (focusName == L"sea_focus")
 		{
 			newFocus.first = SEA_FOCUS;
 		}
-		else if (focusName == "tank_focus")
+		else if (focusName == L"tank_focus")
 		{
 			newFocus.first = TANK_FOCUS;
 		}
-		else if (focusName == "air_focus")
+		else if (focusName == L"air_focus")
 		{
 			newFocus.first = AIR_FOCUS;
 		}
-		else if (focusName == "inf_focus")
+		else if (focusName == L"inf_focus")
 		{
 			newFocus.first = INF_FOCUS;
 		}
@@ -586,8 +586,8 @@ void initAIFocusModifiers(Object* obj, AIFocusModifiers& modifiers)
 
 			if (modifierItems.size() > 0)
 			{
-				string factorStr = modifierItems[0]->getLeaf();
-				newModifier.modifierAmount = atof(factorStr.c_str());
+				wstring factorStr = modifierItems[0]->getLeaf();
+				newModifier.modifierAmount = _wtof(factorStr.c_str());
 			}
 			if (modifierItems.size() > 1)
 			{

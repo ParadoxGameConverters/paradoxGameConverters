@@ -45,7 +45,7 @@ class CountryMapping
 	public:
 		// Initializes the rules to use for mapping tags using the rules found in the specified file.
 		// Returns true if the rules were successfully read.
-		bool ReadRules(const string& fileName);
+		bool ReadRules(const wstring& fileName);
 
 		// Creates a new mapping from all countries in the Vic2 world to HoI4 tags using
 		// the rules given in ReadRules(). HoI4 tags that already exists in the HoI4 world are given
@@ -54,27 +54,27 @@ class CountryMapping
 		// are given a generated tag "X00"-"X99".
 		void CreateMapping(const V2World& srcWorld, const HoI4World& destWorld);
 
-		// Returns the HoI4 tag that is mapped to by the given Vic2 tag. Returns an empty string
+		// Returns the HoI4 tag that is mapped to by the given Vic2 tag. Returns an empty wstring
 		// if there is no corresponding HoI4 tag. If CreateMapping() has been called then there
 		// is guaranteed to be a HoI4 tag for every Vic2 country.
-		const string& operator[](const string& V2Tag) const	{ return GetHoI4Tag(V2Tag); }
+		const wstring& operator[](const wstring& V2Tag) const	{ return GetHoI4Tag(V2Tag); }
 
-		// Returns the HoI4 tag that is mapped to by the given Vic2 tag. Returns an empty string
+		// Returns the HoI4 tag that is mapped to by the given Vic2 tag. Returns an empty wstring
 		// if there is no corresponding HoI4 tag. If CreateMapping() has been called then there
 		// is guaranteed to be a HoI4 tag for every Vic2 country.
-		const string& GetHoI4Tag(const string& V2Tag) const;
+		const wstring& GetHoI4Tag(const wstring& V2Tag) const;
 
-		// Returns the Vic2 tag that is mapped to by the given HoI4 tag. Returns an empty string
+		// Returns the Vic2 tag that is mapped to by the given HoI4 tag. Returns an empty wstring
 		// if there is no corresponding Vic2 tag. If CreateMapping() has been called then there
 		// is guaranteed to be a Vic2 tag for every HoI4 country.
-		const string& GetVic2Tag(const string& HoI4Tag) const;
+		const wstring& GetVic2Tag(const wstring& HoI4Tag) const;
 
 	private:
 		// Writes the given mapping to the log.
-		static void LogMapping(const string& sourceTag, const string& targetTag, const string& reason);
+		static void LogMapping(const wstring& sourceTag, const wstring& targetTag, const wstring& reason);
 
-		std::map<std::string, std::vector<std::string>>	V2TagToHoI4TagsRules;	// the possible mappings between V2 and HoI4 tags
-		boost::bimap<std::string, std::string>				V2TagToHoI4TagMap;		// the current mappping between V2 and HoI4 tags
+		std::map<std::wstring, std::vector<std::wstring>>	V2TagToHoI4TagsRules;	// the possible mappings between V2 and HoI4 tags
+		boost::bimap<std::wstring, std::wstring>				V2TagToHoI4TagMap;		// the current mappping between V2 and HoI4 tags
 };
 
 #endif
