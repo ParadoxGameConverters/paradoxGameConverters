@@ -45,8 +45,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #pragma warning(disable : 4348)	// suppress warnings from Spirit, because they aren't being fixed (or the fixes aren't being released)
-#include "ParadoxParser.h"
+#include "ParadoxParserUTF8.h"
 #include <fstream>
+#include <locale>
 #include <codecvt>
 #include <boost/spirit/include/support_istream_iterator.hpp>
 #include <boost/spirit/include/qi.hpp>
@@ -58,22 +59,18 @@ using namespace boost::spirit;
 
 
 
-namespace parser_8859_15
+namespace parser_UTF8
 {
 
 
 
-std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> string_converter;
-
-
-
-static void setLHS						(string key);
+static void setLHS						(wstring key);
 static void pushObj						();
-static void setRHSleaf					(string val);
+static void setRHSleaf					(wstring val);
 static void setRHSobject				();
 static void setRHSobjlist				();
 static void endRHSobjlist				();
-static void setRHStaglist				(vector<string> val);
+static void setRHStaglist				(vector<wstring> val);
 static void setEpsilon					();
 static void setAssign					();
 
@@ -91,7 +88,7 @@ struct SkipComment : qi::grammar<Iterator>
 
 	SkipComment() : SkipComment::base_type(comment)
 	{
-		comment = qi::raw[qi::lexeme[lit("#") >> *(iso8859_1::char_ - qi::eol)] >> -qi::eol];
+		comment = qi::raw[qi::lexeme[lit("#") >> *(standard_wide::char_ - qi::eol)] >> -qi::eol];
 	}
 };
 
@@ -103,11 +100,11 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 
 	// leaf: either left or right side of assignment.  unquoted keyword.
 	// example: leaf
-	qi::rule<Iterator, string(), SkipComment<Iterator> >	leaf;
+	qi::rule<Iterator, wstring(), SkipComment<Iterator> >	leaf;
 
 	// taglist: a grouping of anonymous (rhs) leaves or strings
 	// examples: { TAG TAG TAG } or { "string" "string" TAG }
-	qi::rule<Iterator, vector<string>(), SkipComment<Iterator> >	taglist;
+	qi::rule<Iterator, vector<wstring>(), SkipComment<Iterator> >	taglist;
 
 	// assign: assignment
 	// examples: lhs = rhs or lhs = { lhs = rhs }
@@ -123,11 +120,11 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 
 	// str: a quoted literal string.  may include extended and/or reserved characters.
 	// example: "I am a string."
-	qi::rule<Iterator, string()>	str;
+	qi::rule<Iterator, wstring()>	str;
 
 	// tolleaf: a tolerant leaf.  may include extended and other unreserved characters.  rhs only.
 	// example: leaves with accents (names, for instance).
-	qi::rule<Iterator, string(), SkipComment<Iterator> >	tolleaf;
+	qi::rule<Iterator, wstring(), SkipComment<Iterator> >	tolleaf;
 
 	// braces: a stray set of empty rhs braces (without an lhs)
 	// EU3 seems to do this for certain decision mods.
@@ -139,30 +136,30 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 	Parser() : Parser::base_type(root)
 	{
 		// { }
-		braces = *(iso8859_1::space) >> lit('{') >> *(iso8859_1::space) >> lit('}') >> *(iso8859_1::space);
+		braces = *(standard_wide::space) >> lit('{') >> *(standard_wide::space) >> lit('}') >> *(standard_wide::space);
 
 		// a string enclosed in quotes
-		str     = lexeme[lit('"') >> raw[*(~iso8859_1::char_('"') | lit(0x80) | lit(0x81) | lit(0x82) | lit(0x83) | lit(0x84) | lit(0x85) | lit(0x86) | lit(0x87) | lit(0x88) | lit(0x89) | lit(0x8A) | lit(0x8B) | lit(0x8C) | lit(0x8D) | lit(0x8E) | lit(0x8F) | lit(0x90) | lit(0x91) | lit(0x92) | lit(0x93) | lit(0x94) | lit(0x95) | lit(0x96) | lit(0x97) | lit(0x98) | lit(0x99) | lit(0x9A) | lit(0x9B) | lit(0x9C) | lit(0x9D) | lit(0x9E) | lit(0x9F) | lit('–') | lit('&'))] >> lit('"')];
+		str     = lexeme[lit('"') >> raw[*(~standard_wide::char_('"') | lit(0x80) | lit(0x81) | lit(0x82) | lit(0x83) | lit(0x84) | lit(0x85) | lit(0x86) | lit(0x87) | lit(0x88) | lit(0x89) | lit(0x8A) | lit(0x8B) | lit(0x8C) | lit(0x8D) | lit(0x8E) | lit(0x8F) | lit(0x90) | lit(0x91) | lit(0x92) | lit(0x93) | lit(0x94) | lit(0x95) | lit(0x96) | lit(0x97) | lit(0x98) | lit(0x99) | lit(0x9A) | lit(0x9B) | lit(0x9C) | lit(0x9D) | lit(0x9E) | lit(0x9F) | lit('–') | lit('&'))] >> lit('"')];
 
 		// a 'forgiving' string without quotes
-		tolleaf = raw[+(~iso8859_1::char_("\"{}= \t\r\n") | lit(0x80) | lit(0x81) | lit(0x82) | lit(0x83) | lit(0x84) | lit(0x85) | lit(0x86) | lit(0x87) | lit(0x88) | lit(0x89) | lit(0x8A) | lit(0x8B) | lit(0x8C) | lit(0x8D) | lit(0x8E) | lit(0x8F) | lit(0x90) | lit(0x91) | lit(0x92) | lit(0x93) | lit(0x94) | lit(0x95) | lit(0x96) | lit(0x97) | lit(0x98) | lit(0x99) | lit(0x9A) | lit(0x9B) | lit(0x9C) | lit(0x9D) | lit(0x9E) | lit(0x9F) | lit('–') | lit('&'))];
+		tolleaf = raw[+(~standard_wide::char_("\"{}= \t\r\n") | lit(0x80) | lit(0x81) | lit(0x82) | lit(0x83) | lit(0x84) | lit(0x85) | lit(0x86) | lit(0x87) | lit(0x88) | lit(0x89) | lit(0x8A) | lit(0x8B) | lit(0x8C) | lit(0x8D) | lit(0x8E) | lit(0x8F) | lit(0x90) | lit(0x91) | lit(0x92) | lit(0x93) | lit(0x94) | lit(0x95) | lit(0x96) | lit(0x97) | lit(0x98) | lit(0x99) | lit(0x9A) | lit(0x9B) | lit(0x9C) | lit(0x9D) | lit(0x9E) | lit(0x9F) | lit('–') | lit('&'))];
 
 		// a strict string without quotes
-		leaf    = raw[+(iso8859_1::alnum | iso8859_1::char_("-._:") | lit(0x80) | lit(0x81) | lit(0x82) | lit(0x83) | lit(0x84) | lit(0x85) | lit(0x86) | lit(0x87) | lit(0x88) | lit(0x89) | lit(0x8A) | lit(0x8B) | lit(0x8C) | lit(0x8D) | lit(0x8E) | lit(0x8F) | lit(0x90) | lit(0x91) | lit(0x92) | lit(0x93) | lit(0x94) | lit(0x95) | lit(0x96) | lit(0x97) | lit(0x98) | lit(0x99) | lit(0x9A) | lit(0x9B) | lit(0x9C) | lit(0x9D) | lit(0x9E) | lit(0x9F) | lit('–') | lit('&'))];
+		leaf    = raw[+(standard_wide::alnum | standard_wide::char_("-._:") | lit(0x80) | lit(0x81) | lit(0x82) | lit(0x83) | lit(0x84) | lit(0x85) | lit(0x86) | lit(0x87) | lit(0x88) | lit(0x89) | lit(0x8A) | lit(0x8B) | lit(0x8C) | lit(0x8D) | lit(0x8E) | lit(0x8F) | lit(0x90) | lit(0x91) | lit(0x92) | lit(0x93) | lit(0x94) | lit(0x95) | lit(0x96) | lit(0x97) | lit(0x98) | lit(0x99) | lit(0x9A) | lit(0x9B) | lit(0x9C) | lit(0x9D) | lit(0x9E) | lit(0x9F) | lit('–') | lit('&'))];
 
 		// a list of strings within brackets
-		taglist = lit('{') >> omit[*(iso8859_1::space)] >> lexeme[( ( str | skip[tolleaf] ) % *(iso8859_1::space) )] >> omit[*(iso8859_1::space)] >> lit('}');
+		taglist = lit('{') >> omit[*(standard_wide::space)] >> lexeme[( ( str | skip[tolleaf] ) % *(standard_wide::space) )] >> omit[*(standard_wide::space)] >> lit('}');
 
 		// a root object contained within brackets
-		object  = raw[lit('{') >> *(root) >> *(iso8859_1::space) >> lit('}')];
+		object  = raw[lit('{') >> *(root) >> *(standard_wide::space) >> lit('}')];
 
 		// a list of objects contained within brackets
-		objlist = raw[lit('{') >> *( *(iso8859_1::space) >> object[&pushObj] ) >> *(iso8859_1::space) >> lit('}')];
+		objlist = raw[lit('{') >> *( *(standard_wide::space) >> object[&pushObj] ) >> *(standard_wide::space) >> lit('}')];
 
 		// an assignment. Left side is a string of some kind, right side is one of many allowed types
-		assign  = raw[(*(iso8859_1::space) >> ( leaf[&setLHS] | str[&setLHS] | eps[&setEpsilon] ) >> *(iso8859_1::space)
-			>>	lit('=')[&setAssign]	>> *(iso8859_1::space) 
-			>> ( leaf[&setRHSleaf] | str[&setRHSleaf] | taglist[&setRHStaglist] | objlist[&setRHSobjlist] | object[&setRHSobject] ) >> *(iso8859_1::space))];
+		assign  = raw[(*(standard_wide::space) >> ( leaf[&setLHS] | str[&setLHS] | eps[&setEpsilon] ) >> *(standard_wide::space)
+			>>	lit('=')[&setAssign]	>> *(standard_wide::space) 
+			>> ( leaf[&setRHSleaf] | str[&setRHSleaf] | taglist[&setRHStaglist] | objlist[&setRHSobjlist] | object[&setRHSobject] ) >> *(standard_wide::space))];
 
 		// the root object (either an assignment, or something in braces)
 		root	= +(assign | braces);
@@ -204,28 +201,28 @@ void initParser()
 }
 
 
-string bufferOneObject(ifstream& read)
+wstring bufferOneObject(wifstream& read)
 {
 	int openBraces = 0;				// the number of braces deep we are
-	string currObject, buffer;		// the current object and the tect under consideration
+	wstring currObject, buffer;		// the current object and the tect under consideration
 	bool topLevel = true;			// whether or not we're at the top level
 	while (read.good())
 	{
 		getline(read, buffer);
-		if (buffer == "CK2txt")
+		if (buffer == L"CK2txt")
 		{
 			continue;
 		}
-		else if (buffer == "EU4txt")
+		else if (buffer == L"EU4txt")
 		{
 			continue;
 		}
-		currObject += "\n";
+		currObject += L"\n";
 
-		bool opened = false;									// whether or not we just opened a new brace level
-		bool isInLiteral = false;							// whether or not we're in a string literal
-		const char* str = buffer.c_str();				// a character string of the text under consideration
-		const unsigned int strSize = buffer.size();	// the size of the text under consideration
+		bool opened						= false;				// whether or not we just opened a new brace level
+		bool isInLiteral				= false;				// whether or not we're in a string literal
+		const wchar_t* str			= buffer.c_str();	// a character string of the text under consideration
+		const unsigned int strSize	= buffer.size();	// the size of the text under consideration
 		for (unsigned int i = 0; i < strSize; ++i)
 		{
 			if ('"' == str[i])
@@ -259,7 +256,7 @@ string bufferOneObject(ifstream& read)
 			continue;
 		}
 
-		if (currObject == "")
+		if (currObject == L"")
 		{
 			continue;
 		}
@@ -283,36 +280,25 @@ string bufferOneObject(ifstream& read)
 }
 
 
-bool readFile(ifstream& read)
+bool readFile(wifstream& read)
 {
 	clearStack();
 	read.unsetf(std::ios::skipws);
 
-	char firstChar = read.peek();
-	if (firstChar == (char)0xEF)
+	wchar_t firstChar = read.peek();
+	if (firstChar == (wchar_t)0xEF)
 	{
-		char bitBucket[3];
+		wchar_t bitBucket[3];
 		read.read(bitBucket, 3);
-		LOG(LogLevel::Warning) << "Identified a BOM in a file that should be UTF-8";
 	}
 
-	/* - it turns out that the current implementation of spirit::istream_iterator is ungodly slow...
-	static Parser<boost::spirit::istream_iterator> p;
-	static SkipComment<boost::spirit::istream_iterator> s;
-
-	boost::spirit::istream_iterator begin(read);
-	boost::spirit::istream_iterator end;
-
-	return qi::phrase_parse(begin, end, p, s);
-	*/
-
-	const static Parser<string::iterator> p;
-	const static SkipComment<string::iterator> s;
+	const static Parser<wstring::iterator> p;
+	const static SkipComment<wstring::iterator> s;
 
 	/* buffer and parse one object at a time */
 	while (read.good())
 	{
-		string currObject = bufferOneObject(read);	// the object under consideration
+		wstring currObject = bufferOneObject(read);	// the object under consideration
 		if (!qi::phrase_parse(currObject.begin(), currObject.end(), p, s))
 		{
 			clearStack();
@@ -340,12 +326,10 @@ void clearStack()
 }
 
 
-void setLHS(string key)
+void setLHS(wstring key)
 {
 	//LOG(LogLevel::Debug) << "Setting LHS : " << key;
-
-	wstring wide_key = string_converter.from_bytes(key);
-	Object* p = new Object(wide_key);
+	Object* p = new Object(key);
 	if (0 == stack.size())
 	{
 		topLevel->setValue(p);
@@ -358,22 +342,19 @@ void setLHS(string key)
 void pushObj()
 {
 	inObjList = true;
-	//LOG(LogLevel::Debug) << "Pushing objlist";
-	wstring key(L"objlist");			// the key of the object list
+	wstring key(L"objlist");		// the key of the object list
 	Object* p = new Object(key);	// the object to hold the object list
 	p->setObjList(); 
 	objstack.push_back(p); 
 }
 
 
-void setRHSleaf(string val)
+void setRHSleaf(wstring val)
 {
-	wstring wide_val = string_converter.from_bytes(val);
-
 	//LOG(LogLevel::Debug) << "Setting RHSleaf : " << val;
 	Object* l = stack.back();	// the leaf object
 	stack.pop_back(); 
-	l->setValue(wide_val);
+	l->setValue(val);
 	if ( (!inObjList) &&(0 < stack.size()) )
 	{
 		Object* p = stack.back();	// the object holding the leaf
@@ -387,19 +368,12 @@ void setRHSleaf(string val)
 }
 
 
-void setRHStaglist(vector<string> val)
+void setRHStaglist(vector<wstring> val)
 {
-	vector<wstring> wide_vals;
-	for (auto aVal: val)
-	{
-		wstring wide_val = string_converter.from_bytes(aVal);
-		wide_vals.push_back(wide_val);
-	}
-
 	//LOG(LogLevel::Debug) << "Setting RHStaglist";
 	Object* l = stack.back();	// the object holding the list
 	stack.pop_back(); 
-	l->addToList(wide_vals.begin(), wide_vals.end());
+	l->addToList(val.begin(), val.end());
 	if ( (!inObjList) &&(0 < stack.size()) )
 	{
 		Object* p = stack.back();	// the object holding the leaf
@@ -469,7 +443,7 @@ void setAssign()
 
 Object* doParseFile(const char* filename)
 {
-	ifstream	read;				// ifstream for reading files
+	wifstream read;				// wide ifstream for reading files
 
 	/* - when using parser debugging, also ensure that the parser object is non-static!
 	debugme = false;
@@ -484,6 +458,7 @@ Object* doParseFile(const char* filename)
 	{
 		return NULL;
 	}
+	read.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t,0x10ffff, std::consume_header>));
 	readFile(read);  
 	read.close();
 	read.clear();
@@ -493,4 +468,4 @@ Object* doParseFile(const char* filename)
 
 
 
-} // namespace parser_8859_15
+} // namespace parser_UTF8

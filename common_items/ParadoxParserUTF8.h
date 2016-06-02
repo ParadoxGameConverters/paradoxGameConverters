@@ -44,8 +44,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef PARSER_H
-#define PARSER_H
+#ifndef PARSER_H_UTF8_
+#define PARSER_H_UTF8_
 
 
 
@@ -53,14 +53,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-namespace parser_8859_15
+namespace parser_UTF8
 {
 	Object*	getTopLevel();
-	void	clearStack(); 
-	void	initParser();
-	Object* doParseFile(const char* filename);
+	void		clearStack(); 
+	void		initParser();
+	Object*	doParseFile(const char* filename);
 }
 
 
 
-#endif	// PARSER_H
+#endif	// PARSER_H_UTF8_

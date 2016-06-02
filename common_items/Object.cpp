@@ -53,7 +53,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-Object::Object(string k) :
+Object::Object(wstring k) :
 objects(),
 strVal(),
 leaf(false),
@@ -89,7 +89,7 @@ isObjList(other->isObjList)
 }
 
 
-void Object::setValue(string val)
+void Object::setValue(wstring val)
 {
 	strVal = val;
 	leaf = true;
@@ -103,7 +103,7 @@ void Object::setValue(Object* val)
 }
 
 
-void Object::unsetValue(string val)
+void Object::unsetValue(wstring val)
 {
 	for (unsigned int i = 0; i < objects.size(); ++i)
 	{
@@ -117,7 +117,7 @@ void Object::unsetValue(string val)
 }
 
 
-void Object::setLeaf(string key, string val)
+void Object::setLeaf(wstring key, wstring val)
 {
 	Object* leaf = new Object(key);	// an object to hold the leaf
 	leaf->setValue(val);
@@ -131,44 +131,44 @@ void Object::setValue(vector<Object*> val)
 }
 
 
-void Object::addToList(string val)
+void Object::addToList(wstring val)
 {
 	isObjList = true;
 	if (strVal.size() > 0)
 	{
-		strVal += " \"";
+		strVal += L" \"";
 	}
 	else
 	{
-		strVal += "\"";
+		strVal += L"\"";
 	}
 	strVal += val;
-	strVal += "\"";
+	strVal += L"\"";
 	tokens.push_back(val);
 }
 
 
-void Object::addToList(vector<string>::iterator begin, vector<string>::iterator end)
+void Object::addToList(vector<wstring>::iterator begin, vector<wstring>::iterator end)
 {
 	isObjList = true;
-	for (vector<string>::iterator itr = begin; itr != end; ++itr)
+	for (vector<wstring>::iterator itr = begin; itr != end; ++itr)
 	{
 		if (strVal.size() > 0)
 		{
-			strVal += "\" \"";
+			strVal += L"\" \"";
 		}
 		else
 		{
-			strVal += "\"";
+			strVal += L"\"";
 		}
 		strVal += *itr;
 	}
-	strVal += "\"";
+	strVal += L"\"";
 	tokens.insert(tokens.end(), begin, end);
 }
 
 
-vector<Object*> Object::getValue(string key) const
+vector<Object*> Object::getValue(wstring key) const
 {
 	vector<Object*> ret;	// the objects to return
 	for (vector<Object*>::const_iterator i = objects.begin(); i != objects.end(); ++i)
@@ -183,19 +183,19 @@ vector<Object*> Object::getValue(string key) const
 }
 
 
-string Object::getToken(const int index)
+wstring Object::getToken(const int index)
 {
 	if (!isObjList)
 	{
-		return "";
+		return L"";
 	}
 	if (index >= (int)tokens.size())
 	{
-		return "";
+		return L"";
 	}
 	if (index < 0)
 	{
-		return "";
+		return L"";
 	}
 	return tokens[index];
 }
@@ -211,11 +211,12 @@ int Object::numTokens()
 }
 
 
-vector<string> Object::getKeys() {
-	vector<string> ret;	// the keys to return
+vector<wstring> Object::getKeys()
+{
+	vector<wstring> ret;	// the keys to return
 	for (vector<Object*>::iterator i = objects.begin(); i != objects.end(); ++i)
 	{
-		string curr = (*i)->getKey();	// the current key
+		wstring curr = (*i)->getKey();	// the current key
 		if (find(ret.begin(), ret.end(), curr) != ret.end())
 		{
 			continue;
@@ -226,7 +227,7 @@ vector<string> Object::getKeys() {
 }
 
 
-string Object::getLeaf(string leaf) const
+wstring Object::getLeaf(wstring leaf) const
 {
 	vector<Object*> leaves = getValue(leaf); // the objects to return
 	if (0 == leaves.size())
@@ -235,6 +236,50 @@ string Object::getLeaf(string leaf) const
 		assert(leaves.size());
 	}
 	return leaves[0]->getLeaf();
+}
+
+
+wostream& operator<< (wostream& os, const Object& obj)
+{
+	static int indent = 0; // the level of indentation to output to
+	for (int i = 0; i < indent; i++)
+	{
+		os << "\t";
+	}
+	if (obj.leaf) {
+		os << obj.key << "=" << obj.strVal << "\n";
+		return os;
+	}
+	if (obj.isObjList)
+	{
+		os << obj.key << "={" << obj.strVal << " }\n";
+		return os;
+	}
+
+	if (&obj != getTopLevel())
+	{
+		os << obj.key << "=\n";
+		for (int i = 0; i < indent; i++)
+		{
+			os << "\t";
+		}
+		os << "{\n";
+		indent++;
+	}
+	for (vector<Object*>::const_iterator i = obj.objects.begin(); i != obj.objects.end(); ++i)
+	{
+		os << *(*i);
+	}
+	if (&obj != getTopLevel())
+	{
+		indent--;
+		for (int i = 0; i < indent; i++)
+		{
+			os << "\t";
+		}
+		os << "}\n";
+	}
+	return os;
 }
 
 
@@ -290,12 +335,12 @@ void Object::keyCount()
 		return;
 	}
 
-	map<string, int> refCount;	// the count of the references
+	map<wstring, int> refCount;	// the count of the references
 	keyCount(refCount);
-	vector<pair<string, int> > sortedCount; // an organized container for the counts
-	for (map<string, int>::iterator i = refCount.begin(); i != refCount.end(); ++i)
+	vector<pair<wstring, int> > sortedCount; // an organized container for the counts
+	for (auto i = refCount.begin(); i != refCount.end(); ++i)
 	{
-		pair<string, int> curr((*i).first, (*i).second);
+		pair<wstring, int> curr((*i).first, (*i).second);
 		if (2 > curr.second)
 		{
 			continue;
@@ -306,7 +351,7 @@ void Object::keyCount()
 			continue;
 		}
 
-		for (vector<pair<string, int> >::iterator j = sortedCount.begin(); j != sortedCount.end(); ++j)
+		for (vector<pair<wstring, int> >::iterator j = sortedCount.begin(); j != sortedCount.end(); ++j)
 		{
 			if (curr.second < (*j).second)
 			{
@@ -317,14 +362,14 @@ void Object::keyCount()
 		}
 	}
 
-	for (vector<pair<string, int> >::iterator j = sortedCount.begin(); j != sortedCount.end(); ++j)
+	for (vector<pair<wstring, int> >::iterator j = sortedCount.begin(); j != sortedCount.end(); ++j)
 	{
 		cout << (*j).first << " : " << (*j).second << "\n";
 	}
 }
 
 
-void Object::keyCount(map<string, int>& counter)
+void Object::keyCount(map<wstring, int>& counter)
 {
 	for (vector<Object*>::iterator i = objects.begin(); i != objects.end(); ++i)
 	{
@@ -363,7 +408,8 @@ void Object::addObject(Object* target)
 	objects.push_back(target);
 }
 
-void Object::addObjectAfter(Object* target, string key)
+
+void Object::addObjectAfter(Object* target, wstring key)
 {
 	vector<Object*>::iterator i;
 
@@ -385,7 +431,7 @@ void Object::addObjectAfter(Object* target, string key)
 
 
 Object* br = 0;	// the branch being set
-void setVal(string name, const string val, Object* branch)
+void setVal(wstring name, const wstring val, Object* branch)
 {
 	if ((branch) && (br != branch))
 	{
@@ -397,41 +443,41 @@ void setVal(string name, const string val, Object* branch)
 }
 
 
-void setInt(string name, const int val, Object* branch)
+void setInt(wstring name, const int val, Object* branch)
 {
 	if ((branch) && (br != branch))
 	{
 		br = branch;
 	}
-	static char strbuffer[1000];	// the text to add to the branch
-	sprintf_s(strbuffer, 1000, "%i", val);
+	static wchar_t strbuffer[1000];	// the text to add to the branch
+	swprintf_s(strbuffer, 1000, L"%i", val);
 	Object* b = new Object(name);	// the new object to add to the branch
 	b->setValue(strbuffer);
 	br->setValue(b);
 }
 
 
-void setFlt(string name, const double val, Object* branch)
+void setFlt(wstring name, const double val, Object* branch)
 {
 	if ((branch) && (br != branch))
 	{
 		br = branch;
 	}
-	static char strbuffer[1000];	// the text to add to the branch
-	sprintf_s(strbuffer, 1000, "%.3f", val);
+	static wchar_t strbuffer[1000];	// the text to add to the branch
+	swprintf_s(strbuffer, 1000, L"%.3f", val);
 	Object* b = new Object(name);	// the new object to add to the branch
 	b->setValue(strbuffer);
 	br->setValue(b);
 }
 
-double Object::safeGetFloat(string k, const
-	double def) {
+double Object::safeGetFloat(wstring k, const double def)
+{
 	objvec vec = getValue(k);	// the objects with the keys to be returned
 	if (0 == vec.size()) return def;
-	return atof(vec[0]->getLeaf().c_str());
+	return _wtof(vec[0]->getLeaf().c_str());
 }
 
-string Object::safeGetString(string k, string def)
+wstring Object::safeGetString(wstring k, wstring def)
 {
 	objvec vec = getValue(k);	// the objects with the strings to be returned
 	if (0 == vec.size())
@@ -441,17 +487,17 @@ string Object::safeGetString(string k, string def)
 	return vec[0]->getLeaf();
 }
 
-int Object::safeGetInt(string k, const int def)
+int Object::safeGetInt(wstring k, const int def)
 {
 	objvec vec = getValue(k);	// the objects with the ints to be returned
 	if (0 == vec.size())
 	{
 		return def;
 	}
-	return atoi(vec[0]->getLeaf().c_str());
+	return _wtoi(vec[0]->getLeaf().c_str());
 }
 
-Object* Object::safeGetObject(string k, Object* def)
+Object* Object::safeGetObject(wstring k, Object* def)
 {
 	objvec vec = getValue(k);	// the objects with the objects to be returned 
 	if (0 == vec.size())
@@ -462,9 +508,9 @@ Object* Object::safeGetObject(string k, Object* def)
 }
 
 
-string Object::toString() const
+wstring Object::toString() const
 {
-	ostringstream blah;	// the output string
+	wostringstream blah;	// the output string
 	blah << *(this);
 	return blah.str();
 }
