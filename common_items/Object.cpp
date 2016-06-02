@@ -45,6 +45,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Object.h"
 #include "ParadoxParser.h"
+#include "ParadoxParserUTF8.h"
 #include <sstream> 
 #include <fstream>
 #include <algorithm>
@@ -256,7 +257,7 @@ wostream& operator<< (wostream& os, const Object& obj)
 		return os;
 	}
 
-	if (&obj != getTopLevel())
+	if ((&obj != parser_UTF8::getTopLevel()) && (&obj != parser_8859_15::getTopLevel()))
 	{
 		os << obj.key << "=\n";
 		for (int i = 0; i < indent; i++)
@@ -270,7 +271,7 @@ wostream& operator<< (wostream& os, const Object& obj)
 	{
 		os << *(*i);
 	}
-	if (&obj != getTopLevel())
+	if ((&obj != parser_UTF8::getTopLevel()) && (&obj != parser_8859_15::getTopLevel()))
 	{
 		indent--;
 		for (int i = 0; i < indent; i++)
@@ -300,7 +301,7 @@ ostream& operator<< (ostream& os, const Object& obj)
 		return os;
 	}
 
-	if (&obj != getTopLevel())
+	if ((&obj != parser_UTF8::getTopLevel()) && (&obj != parser_8859_15::getTopLevel()))
 	{
 		os << obj.key << "=\n";
 		for (int i = 0; i < indent; i++)
@@ -314,7 +315,7 @@ ostream& operator<< (ostream& os, const Object& obj)
 	{
 		os << *(*i);
 	}
-	if (&obj != getTopLevel())
+	if ((&obj != parser_UTF8::getTopLevel()) && (&obj != parser_8859_15::getTopLevel()))
 	{
 		indent--;
 		for (int i = 0; i < indent; i++)

@@ -33,30 +33,30 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 void getInventionNums(inventionNumToName& numToName)
 {
 	// find the relevant inventions files
-	string path;
-	vector<string> vic2Mods = Configuration::getVic2Mods();
+	wstring path;
+	vector<wstring> vic2Mods = Configuration::getVic2Mods();
 	for (auto itr: vic2Mods)
 	{
-		string possiblePath = Configuration::getV2Path() + "\\mod\\" + itr + "\\inventions\\";
+		wstring possiblePath = Configuration::getV2Path() + L"\\mod\\" + itr + L"\\inventions\\";
 		if (WinUtils::doesFolderExist(possiblePath))
 		{
 			path = possiblePath;
 		}
 	}
-	if (path == "")
+	if (path == L"")
 	{
-		path = Configuration::getV2Path() + "\\inventions\\";
+		path = Configuration::getV2Path() + L"\\inventions\\";
 	}
 
 	//get the inventions
 	numToName.clear();
 	int num = 1;
 
-	set<string> techFiles;
+	set<wstring> techFiles;
 	WinUtils::GetAllFilesInFolder(path, techFiles);
 	for (auto fileItr: techFiles)
 	{
-		Object* obj = parser_8859_15::doParseFile((path + "\\" + fileItr).c_str());
+		Object* obj = parser_8859_15::doParseFile((path + L"\\" + fileItr).c_str());
 		vector<Object*> techObjs = obj->getLeaves();
 		for (auto techItr: techObjs)
 		{
