@@ -1867,9 +1867,9 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 
 void HoI4Country::outputLocalisation(FILE* output) const
 {
-	std::ostringstream localisationStream;
+	std::wostringstream localisationStream;
 	localisation.WriteToStream(localisationStream);
-	std::string localisationString = localisationStream.str();
+	std::wstring localisationString = localisationStream.str();
 	fwrite(localisationString.c_str(), sizeof(std::string::value_type), localisationString.size(), output);
 }
 

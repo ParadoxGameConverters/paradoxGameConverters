@@ -24,54 +24,53 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #ifndef HoI4LOCALISATION_H_
 #define HoI4LOCALISATION_H_
 
+
+
 #include <array>
 #include <iostream>
 #include <string>
 #include <vector>
 
+
+
 class V2Country;
+
+
 
 // Holds translations for attributes of a specific HoI4 country.
 class HoI4Localisation
 {
-public:
-	// Sets the tag to use for creating the name and adjective key to use in the localisation output.
-	void SetTag(const std::string& tag);
-	// Populates the localised names and adjectives using information from the V2 country.
-	void ReadFromCountry(const V2Country&);
+	public:
+		// Sets the tag to use for creating the name and adjective key to use in the localisation output.
+		void SetTag(const std::wstring& tag);
+		// Populates the localised names and adjectives using information from the V2 country.
+		void ReadFromCountry(const V2Country&);
 
-	// Sets the key to use for the specified party in the localisation output.
-	void SetPartyKey(size_t partyIndex, const std::string& partyKey);
-	// Sets the localised party name for the specified party in the given language, e.g. "english".
-	void SetPartyName(size_t partyIndex, const std::string& language, const std::string& name);
+		// Sets the key to use for the specified party in the localisation output.
+		void SetPartyKey(size_t partyIndex, const std::wstring& partyKey);
+		// Sets the localised party name for the specified party in the given language, e.g. "english".
+		void SetPartyName(size_t partyIndex, const std::wstring& language, const std::wstring& name);
 
-	// Writes a HoI4-formatted localisation info for all localised elements as:
-	// key;translation0;translation1;...;;;x
-	void WriteToStream(std::ostream&) const;
+		// Writes a HoI4-formatted localisation info for all localised elements as:
+		// key;translation0;translation1;...;;;x
+		void WriteToStream(std::wostream&) const;
 
-	// Converts the country file name
-	std::string convertCountryFileName(const std::string) const;
+	private:
+		static const size_t numLanguages = 14;
+		static const std::array<std::wstring, numLanguages> languages;
 
-private:
-	// All localisations are stored internally as UTF-8. However HoI4 doesn't seem to handle Unicode
-	// so we convert the text to ANSI Latin-1 before writing it.
-	static std::string Convert(const std::string&);
+		typedef std::array<std::wstring, numLanguages> Localisations;
 
-	static const size_t numLanguages = 14;
-	static const std::array<std::string, numLanguages> languages;
-
-	typedef std::array<std::string, numLanguages> Localisations;
-
-	std::string tag;
-	Localisations name;
-	Localisations adjective;
-
-	struct Party
-	{
-		std::string key;
+		std::wstring tag;
 		Localisations name;
-	};
-	std::vector<Party> parties;
+		Localisations adjective;
+
+		struct Party
+		{
+			std::wstring key;
+			Localisations name;
+		};
+		std::vector<Party> parties;
 };
 
 #endif
