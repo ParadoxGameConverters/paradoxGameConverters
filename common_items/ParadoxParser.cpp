@@ -47,7 +47,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #pragma warning(disable : 4348)	// suppress warnings from Spirit, because they aren't being fixed (or the fixes aren't being released)
 #include "ParadoxParser.h"
 #include <fstream>
-#include <codecvt>
 #include <boost/spirit/include/support_istream_iterator.hpp>
 #include <boost/spirit/include/qi.hpp>
 #include "Log.h"
@@ -63,8 +62,315 @@ namespace parser_8859_15
 
 
 
-std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> string_converter;
-
+// if an automated way can be found to do this, use that instead. But be wary of UTF-8 converters, they choke on 8859-15
+wstring convert8859_15ToWideString(string input)
+{
+	wstring output;
+	for (auto character: input)
+	{
+		if (character > 0)
+		{
+			output.push_back(character);
+		}
+		else
+		{
+			switch (static_cast<unsigned char>(character))
+			{
+				case 160:
+					output.push_back(L' ');
+					break;
+				case 161:
+					output.push_back(L'¡');
+					break;
+				case 162:
+					output.push_back(L'¢');
+					break;
+				case 163:
+					output.push_back(L'£');
+					break;
+				case 164:
+					output.push_back(L'€');
+					break;
+				case 165:
+					output.push_back(L'¥');
+					break;
+				case 166:
+					output.push_back(L'Š');
+					break;
+				case 167:
+					output.push_back(L'§');
+					break;
+				case 168:
+					output.push_back(L'š');
+					break;
+				case 169:
+					output.push_back(L'©');
+					break;
+				case 170:
+					output.push_back(L'ª');
+					break;
+				case 171:
+					output.push_back(L'«');
+					break;
+				case 172:
+					output.push_back(L'¬');
+					break;
+				case 173:
+					output.push_back(L'-');
+					break;
+				case 174:
+					output.push_back(L'®');
+					break;
+				case 175:
+					output.push_back(L'¯');
+					break;
+				case 176:
+					output.push_back(L'°');
+					break;
+				case 177:
+					output.push_back(L'±');
+					break;
+				case 178:
+					output.push_back(L'²');
+					break;
+				case 179:
+					output.push_back(L'³');
+					break;
+				case 180:
+					output.push_back(L'Ž');
+					break;
+				case 181:
+					output.push_back(L'µ');
+					break;
+				case 182:
+					output.push_back(L'¶');
+					break;
+				case 183:
+					output.push_back(L'·');
+					break;
+				case 184:
+					output.push_back(L'ž');
+					break;
+				case 185:
+					output.push_back(L'¹');
+					break;
+				case 186:
+					output.push_back(L'º');
+					break;
+				case 187:
+					output.push_back(L'»');
+					break;
+				case 188:
+					output.push_back(L'Œ');
+					break;
+				case 189:
+					output.push_back(L'œ');
+					break;
+				case 190:
+					output.push_back(L'Ÿ');
+					break;
+				case 191:
+					output.push_back(L'¿');
+					break;
+				case 192:
+					output.push_back(L'À');
+					break;
+				case 193:
+					output.push_back(L'Á');
+					break;
+				case 194:
+					output.push_back(L'Â');
+					break;
+				case 195:
+					output.push_back(L'Ã');
+					break;
+				case 196:
+					output.push_back(L'Ä');
+					break;
+				case 197:
+					output.push_back(L'Å');
+					break;
+				case 198:
+					output.push_back(L'Æ');
+					break;
+				case 199:
+					output.push_back(L'Ç');
+					break;
+				case 200:
+					output.push_back(L'È');
+					break;
+				case 201:
+					output.push_back(L'É');
+					break;
+				case 202:
+					output.push_back(L'Ê');
+					break;
+				case 203:
+					output.push_back(L'Ë');
+					break;
+				case 204:
+					output.push_back(L'Ì');
+					break;
+				case 205:
+					output.push_back(L'Í');
+					break;
+				case 206:
+					output.push_back(L'Î');
+					break;
+				case 207:
+					output.push_back(L'Ï');
+					break;
+				case 208:
+					output.push_back(L'Ð');
+					break;
+				case 209:
+					output.push_back(L'Ñ');
+					break;
+				case 210:
+					output.push_back(L'Ò');
+					break;
+				case 211:
+					output.push_back(L'Ó');
+					break;
+				case 212:
+					output.push_back(L'Ô');
+					break;
+				case 213:
+					output.push_back(L'Õ');
+					break;
+				case 214:
+					output.push_back(L'Ö');
+					break;
+				case 215:
+					output.push_back(L'×');
+					break;
+				case 216:
+					output.push_back(L'Ø');
+					break;
+				case 217:
+					output.push_back(L'Ù');
+					break;
+				case 218:
+					output.push_back(L'Ú');
+					break;
+				case 219:
+					output.push_back(L'Û');
+					break;
+				case 220:
+					output.push_back(L'Ü');
+					break;
+				case 221:
+					output.push_back(L'Ý');
+					break;
+				case 222:
+					output.push_back(L'Þ');
+					break;
+				case 223:
+					output.push_back(L'ß');
+					break;
+				case 224:
+					output.push_back(L'à');
+					break;
+				case 225:
+					output.push_back(L'á');
+					break;
+				case 226:
+					output.push_back(L'â');
+					break;
+				case 227:
+					output.push_back(L'ã');
+					break;
+				case 228:
+					output.push_back(L'ä');
+					break;
+				case 229:
+					output.push_back(L'å');
+					break;
+				case 230:
+					output.push_back(L'æ');
+					break;
+				case 231:
+					output.push_back(L'ç');
+					break;
+				case 232:
+					output.push_back(L'è');
+					break;
+				case 233:
+					output.push_back(L'é');
+					break;
+				case 234:
+					output.push_back(L'ê');
+					break;
+				case 235:
+					output.push_back(L'ë');
+					break;
+				case 236:
+					output.push_back(L'ì');
+					break;
+				case 237:
+					output.push_back(L'í');
+					break;
+				case 238:
+					output.push_back(L'î');
+					break;
+				case 239:
+					output.push_back(L'ï');
+					break;
+				case 240:
+					output.push_back(L'ð');
+					break;
+				case 241:
+					output.push_back(L'ñ');
+					break;
+				case 242:
+					output.push_back(L'ò');
+					break;
+				case 243:
+					output.push_back(L'ó');
+					break;
+				case 244:
+					output.push_back(L'ô');
+					break;
+				case 245:
+					output.push_back(L'õ');
+					break;
+				case 246:
+					output.push_back(L'ö');
+					break;
+				case 247:
+					output.push_back(L'÷');
+					break;
+				case 248:
+					output.push_back(L'ø');
+					break;
+				case 249:
+					output.push_back(L'ù');
+					break;
+				case 250:
+					output.push_back(L'ú');
+					break;
+				case 251:
+					output.push_back(L'û');
+					break;
+				case 252:
+					output.push_back(L'ü');
+					break;
+				case 253:
+					output.push_back(L'ý');
+					break;
+				case 254:
+					output.push_back(L'þ');
+					break;
+				case 255:
+					output.push_back(L'ÿ');
+					break;
+				default:
+					;// do nothing
+			}
+		}
+	}
+	return output;
+}
 
 
 static void setLHS						(string key);
@@ -313,6 +619,7 @@ bool readFile(ifstream& read)
 	while (read.good())
 	{
 		string currObject = bufferOneObject(read);	// the object under consideration
+
 		if (!qi::phrase_parse(currObject.begin(), currObject.end(), p, s))
 		{
 			clearStack();
@@ -344,7 +651,7 @@ void setLHS(string key)
 {
 	//LOG(LogLevel::Debug) << "Setting LHS : " << key;
 
-	wstring wide_key = string_converter.from_bytes(key);
+	wstring wide_key = convert8859_15ToWideString(key);
 	Object* p = new Object(wide_key);
 	if (0 == stack.size())
 	{
@@ -368,7 +675,7 @@ void pushObj()
 
 void setRHSleaf(string val)
 {
-	wstring wide_val = string_converter.from_bytes(val);
+	wstring wide_val = convert8859_15ToWideString(val);
 
 	//LOG(LogLevel::Debug) << "Setting RHSleaf : " << val;
 	Object* l = stack.back();	// the leaf object
@@ -392,7 +699,7 @@ void setRHStaglist(vector<string> val)
 	vector<wstring> wide_vals;
 	for (auto aVal: val)
 	{
-		wstring wide_val = string_converter.from_bytes(aVal);
+		wstring wide_val = convert8859_15ToWideString(aVal);
 		wide_vals.push_back(wide_val);
 	}
 

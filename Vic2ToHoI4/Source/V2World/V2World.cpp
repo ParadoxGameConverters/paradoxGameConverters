@@ -198,7 +198,7 @@ void V2World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProvi
 	}
 }
 
-#pragma optimize("", off)
+
 void V2World::setLocalisations(V2Localisation& localisation)
 {
 	for (map<wstring, V2Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
@@ -219,7 +219,7 @@ void V2World::setLocalisations(V2Localisation& localisation)
 		}
 	}
 }
-#pragma optimize("", on)
+
 
 V2Party* V2World::getRulingParty(const V2Country* country) const
 {
