@@ -85,7 +85,7 @@ void Log::WriteToConsole(LogLevel level, const std::wstring& logMessage)
 			}
 			SetConsoleTextAttribute(console, color);
 			DWORD bytesWritten = 0;
-			WriteConsoleA(console, logMessage.c_str(), logMessage.size(), &bytesWritten, NULL);
+			WriteConsoleW(console, logMessage.c_str(), logMessage.size(), &bytesWritten, NULL);
 
 			// Restore old console color.
 			SetConsoleTextAttribute(console, oldConsoleInfo.wAttributes);
