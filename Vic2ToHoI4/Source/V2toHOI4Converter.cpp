@@ -25,9 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <io.h>
 #include <stdexcept>
 #include <sys/stat.h>
-
 #include <Windows.h>
-
 #include "Configuration.h"
 #include "Log.h"
 #include "ParadoxParser.h"
@@ -37,6 +35,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2World\V2Factory.h"
 #include "V2World\V2Localisation.h"
 #include "WinUtils.h"
+
 
 
 // Converts the given V2 save into a HoI4 mod.
@@ -472,7 +471,7 @@ int ConvertV2ToHoI4(const std::wstring& V2SaveFileName)
 }
 
 
-int main(const int argc, const wchar_t* argv[])
+int wmain(const int argc, const wchar_t* argv[])
 {
 	try
 	{
