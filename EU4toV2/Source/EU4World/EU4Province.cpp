@@ -565,6 +565,7 @@ void EU4Province::determineProvinceWeight()
 	double trade_value					= 0.0;
 	double trade_value_eff				= 0.0;
 	double trade_power_eff				= 0.0;
+	double dev_modifier				= 0.0;
 	
 	std::vector<double> provBuildingWeightVec = getProvBuildingWeight();
 
@@ -584,6 +585,7 @@ void EU4Province::determineProvinceWeight()
 		trade_value					= provBuildingWeightVec.at(9);
 		trade_value_eff			= provBuildingWeightVec.at(10);
 		trade_power_eff			= provBuildingWeightVec.at(11);
+		dev_modifier			= provBuildingWeightVec.at(12);
 	}
 	catch (exception &e)
 	{
@@ -631,17 +633,20 @@ void EU4Province::determineProvinceWeight()
 	//	<< " production eff: " << production_eff 
 	//	<< " Production: " << production_income;
 
-	total_tx *= 1;
+	total_tx *= 1.5;
 	manpower_weight *= 1;
-	production_income *= 1;
+	production_income *= 1.5;
 
 	provBuildingWeight	= building_weight;
 	provTaxIncome			= total_tx;
 	provProdIncome			= production_income;
 	provMPWeight			= manpower_weight;
 	provTradeGoodWeight	= trade_goods_weight;
+	
+	// dev modifier
+	dev_modifier *= (baseTax + baseProd + manpower);
 
-	totalWeight = building_weight  + ((1 * baseTax) + (1 * baseProd) + (1 * manpower) + manpower_weight + trade_goods_weight + production_income + total_tx);
+	totalWeight = building_weight + dev_modifier + ( manpower_weight + production_income + total_tx);
 	//i would change dev effect to 1, but your choice
 	if (owner == NULL)
 	{
@@ -949,6 +954,7 @@ vector<double> EU4Province::getProvBuildingWeight() const
 	double trade_value					= 0.0;
 	double trade_value_eff				= 0.0;
 	double trade_power_eff				= 0.0;
+	double dev_modifier				= 0.0;
 
 	// unique buildings
 	/*
@@ -1566,162 +1572,181 @@ vector<double> EU4Province::getProvBuildingWeight() const
 		trade_power += 7;
 	}*/
 
-	if (hasBuilding("university"))
-	{
-		building_weight += 5.2;
-	}
+	
+if (hasBuilding("university"))
+    {
+        building_weight += 6;
+    }
 
-	// manfacturies building
-	if (hasBuilding("weapons"))
-	{
-		building_weight += 2;
-		manu_gp_mod = 1.0;
-	}
+    // manfacturies building
+    if (hasBuilding("weapons"))
+    {
+        manu_gp_mod = 1.0;
+    }
 
-	if (hasBuilding("wharf"))
-	{
-		building_weight += 2;
-		manu_gp_mod = 1.0;
-	}
+    if (hasBuilding("wharf"))
+    {
+        manu_gp_mod = 1.0;
+    }
 
-	if (hasBuilding("textile"))
-	{
-		building_weight += 2;
-		manu_gp_mod = 1.0;
-	}
+    if (hasBuilding("textile"))
+    {
+        manu_gp_mod = 1.0;
+    }
 
-	if (hasBuilding("refinery"))
-	{
-		building_weight += 2;
-		manu_gp_mod = 1.0;
-	}
+    if (hasBuilding("refinery"))
+    {
+        manu_gp_mod = 1.0;
+    }
 
-	if (hasBuilding("plantations"))
-	{
-		building_weight += 2;
-		manu_gp_mod = 1.0;
-	}
+    if (hasBuilding("plantations"))
+    {
+        manu_gp_mod = 1.0;
+    }
 
-	if (hasBuilding("farm_estate"))
-	{
-		building_weight += 2;
-		manu_gp_mod = 1.0;
-	}
+    if (hasBuilding("farm_estate"))
+    {
+        manu_gp_mod = 1.0;
+    }
 
-	if (hasBuilding("tradecompany"))
-	{
-		building_weight += 2;
-		manu_gp_mod = 1.0;
-	}
+    if (hasBuilding("tradecompany"))
+    {
+        manu_gp_mod = 1.0;
+    }
 
-	// Base buildings
-	if (hasBuilding("fort1"))
-	{
-		building_weight += 1.8;
-	}
-	if (hasBuilding("fort2"))
-	{
-		building_weight += 3.6;
-	}
-	if (hasBuilding("fort3"))
-	{
-		building_weight += 5.4;
-	}
-	if (hasBuilding("fort4"))
-	{
-		building_weight += 7.2;
+    // Base buildings
+    if (hasBuilding("fort1"))
+    {
+        building_weight += 4;
+    }
+    if (hasBuilding("fort2"))
+    {
+        building_weight += 8;
+    }
+    if (hasBuilding("fort3"))
+    {
+        building_weight += 12;
+    }
+    if (hasBuilding("fort4"))
+    {
+        building_weight += 16;
 
-	}
-	if (hasBuilding("dock"))
-	{
-		building_weight += 2.8;
-	}
+    }
+    if (hasBuilding("dock"))
+    {
+        building_weight += 6;
+    }
 
-	if (hasBuilding("drydock"))
-	{
-		building_weight += 5.6;
-	}
+    if (hasBuilding("drydock"))
+    {
+        building_weight += 12;
+    }
 
-	if (hasBuilding("shipyard"))
-	{
-		building_weight += 2.4;
-	}
+    if (hasBuilding("shipyard"))
+    {
+        dev_modifier += 0.1;
+    }
 
-	if (hasBuilding("grand_shipyard"))
-	{
-		building_weight += 4.8; // i must mixed something up
-	}
+    if (hasBuilding("grand_shipyard"))
+    {
+        dev_modifier += 0.2;
+    }
 
-	if (hasBuilding("temple"))
-	{
-		building_weight += 0.4;
-		building_tx_eff += 0.40;
-	}
+    if (hasBuilding("temple"))
+    {
+        building_tx_eff += 0.40;
+    }
 
-	if (hasBuilding("courthouse"))
-	{
-		building_weight += 1.8;
-	}
+    if (hasBuilding("courthouse"))
+    {
+        dev_modifier += 0.075;
+    }
 
-	if (hasBuilding("town_hall"))
-	{
-		building_weight += 3.6;
-	}
+    if (hasBuilding("town_hall"))
+    {
+        dev_modifier += 0.15;
+    }
 
-	if (hasBuilding("cathedral"))
-	{
-		building_weight += 2.2;
-		building_tx_eff += 0.6;
-	}
+    if (hasBuilding("cathedral"))
+    {
+        building_tx_eff += 0.6;
+        dev_modifier += 0.05;
+    }
 
-	if (hasBuilding("training_fields"))
-	{
-		building_weight += 1.2;
-		manpower_eff += 1.00;
-	}
+    if (hasBuilding("training_fields"))
+    {
+        manpower_eff += 1.00;
+    }
 
-	if (hasBuilding("barracks"))
-	{
-		building_weight += 0.4;
-		manpower_eff += 0.50;
-	}
+    if (hasBuilding("barracks"))
+    {
+        manpower_eff += 0.50;
+    }
 
-	if (hasBuilding("regimental_camp"))
-	{
-		building_weight += 3.8;
-	}
+    if (hasBuilding("regimental_camp"))
+    {
+        building_weight += 6;
+    }
 
-	if (hasBuilding("conscription_center"))
-	{
-		building_weight += 7.6;
-	}
+    if (hasBuilding("conscription_center"))
+    {
+        building_weight += 12;
+    }
 
-	if (hasBuilding("workshop"))
-	{
-		building_weight += 0.4;
-		production_eff += 0.5;
-	}
+    if (hasBuilding("workshop"))
+    {
+        production_eff += 0.5;
+    }
 
-	if (hasBuilding("counting_house"))
-	{
-		production_eff += 1.0;
-		building_weight += 1.6;
-	}
+    if (hasBuilding("counting_house"))
+    {
+        production_eff += 1.0;
+    }
 
-	if (hasBuilding("stock_exchange"))
-	{
-		building_weight += 4.6;
-	}
+    if (hasBuilding("stock_exchange"))
+    {
+        dev_modifier += 0.225;
+    }
 
-	if (hasBuilding("marketplace"))
-	{
-		building_weight += 1.4;
-	}
+    if (hasBuilding("marketplace"))
+    {
+        dev_modifier += 0.075;
+    }
 
-	if (hasBuilding("trade_depot"))
-	{
-		building_weight += 3.2;
-	}
+    if (hasBuilding("trade_depot"))
+    {
+        dev_modifier += 0.15;
+    }
+
+    if (hasBuilding("center_of_trade"))
+    {
+        building_weight += 24;
+    }
+
+    if (hasBuilding("inland_center_of_trade"))
+    {
+        building_weight += 12;
+    }
+
+    if (hasBuilding("natural_harbor"))
+    {
+        building_weight += 15;
+    }
+
+    if (hasBuilding("stora_kopparberget_modifier"))
+    {
+        manu_gp_mod = 5.0;
+    }
+
+    if (hasBuilding("cerro_rico_modifier"))
+    {
+        manu_gp_mod = 3.0;
+    }
+
+    if (hasBuilding("spice_islands_modifier"))
+    {
+        manu_gp_mod = 3.0;
+    }
 
 	std::vector<double> provBuildingWeightVec;
 	provBuildingWeightVec.push_back(building_weight);
@@ -1736,6 +1761,7 @@ vector<double> EU4Province::getProvBuildingWeight() const
 	provBuildingWeightVec.push_back(trade_value);
 	provBuildingWeightVec.push_back(trade_value_eff);
 	provBuildingWeightVec.push_back(trade_power_eff);
+	provBuildingWeightVec.push_back(dev_modifier);
 	// 0 building_weight, 1 manpower_modifier, 2 manu_gp_mod, 3 building_tx_eff, 4 production_eff
 	// 5 building_tx_income, 6 manpower_eff, 7 goods_produced_perc_mod, 8 trade_power 9 trade_value
 	// 10 trade_value_eff, 11 trade_power_eff;
