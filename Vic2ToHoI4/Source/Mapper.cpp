@@ -44,24 +44,24 @@ void initProvinceMap(Object* obj, provinceMapping& provinceMap, provinceMapping&
 	}
 
 	vector<Object*> data = leaves[0]->getLeaves();	// the actual mappings
-	for (vector<Object*>::iterator i = data.begin(); i != data.end(); i++)
+	for (auto mapping: data)
 	{
 		vector<int> V2nums;					// the V2 province numbers in this mappping
 		vector<int> HoI4nums;				// the HoI4 province numbers in this mappping
 		bool			resettable = false;	// if this is a province that can be reset to V2 defaults
 
-		vector<Object*> vMaps = (*i)->getLeaves();	// the items within the mapping
-		for (vector<Object*>::iterator j = vMaps.begin(); j != vMaps.end(); j++)
+		vector<Object*> vMaps = mapping->getLeaves();	// the items within the mapping
+		for (auto item: vMaps)
 		{
-			if ((*j)->getKey() == L"vic")
+			if (item->getKey() == L"vic")
 			{
-				V2nums.push_back(_wtoi((*j)->getLeaf().c_str()));
+				V2nums.push_back(_wtoi(item->getLeaf().c_str()));
 			}
-			else if ((*j)->getKey() == L"hoi")
+			else if (item->getKey() == L"hoi")
 			{
-				HoI4nums.push_back(_wtoi((*j)->getLeaf().c_str()));
+				HoI4nums.push_back(_wtoi(item->getLeaf().c_str()));
 			}
-			else if ((*j)->getKey() == L"resettable")
+			else if (item->getKey() == L"resettable")
 			{
 				resettable = true;
 			}
@@ -80,22 +80,22 @@ void initProvinceMap(Object* obj, provinceMapping& provinceMap, provinceMapping&
 			HoI4nums.push_back(0);
 		}
 
-		for (vector<int>::iterator j = HoI4nums.begin(); j != HoI4nums.end(); j++)
+		for (auto num: HoI4nums)
 		{
-			if (*j != 0)
+			if (num != 0)
 			{
-				provinceMap.insert(make_pair(*j, V2nums));
+				provinceMap.insert(make_pair(num, V2nums));
 				if (resettable)
 				{
-					resettableProvinces.insert(*j);
+					resettableProvinces.insert(num);
 				}
 			}
 		}
-		for (vector<int>::iterator j = V2nums.begin(); j != V2nums.end(); j++)
+		for (auto num: V2nums)
 		{
-			if (*j != 0)
+			if (num != 0)
 			{
-				inverseProvinceMap.insert(make_pair(*j, HoI4nums));
+				inverseProvinceMap.insert(make_pair(num, HoI4nums));
 			}
 		}
 	}
@@ -192,33 +192,33 @@ void mergeNations(V2World& world, Object* mergeObj)
 	}
 
 	rules = rules[0]->getLeaves();	// the rules themselves
-	for (vector<Object*>::iterator itr = rules.begin(); itr != rules.end(); ++itr)
+	for (auto rule: rules)
 	{
-		vector<Object*> thisMerge = (*itr)->getLeaves();	// the current merge rule
-		wstring masterTag;											// the nation to merge into
-		vector<wstring> slaveTags;									// the nations that will be merged into the master
-		bool enabled = false;										// whether or not this rule is enabled
-		for (vector<Object*>::iterator jtr = thisMerge.begin(); jtr != thisMerge.end(); ++jtr)
+		vector<Object*> thisMerge = rule->getLeaves();	// the current merge rule
+		wstring masterTag;										// the nation to merge into
+		vector<wstring> slaveTags;								// the nations that will be merged into the master
+		bool enabled = false;									// whether or not this rule is enabled
+		for (auto item: thisMerge)
 		{
-			if ((*jtr)->getKey() == L"merge" && (*jtr)->getLeaf() == L"yes")
+			if (item->getKey() == L"merge" && item->getLeaf() == L"yes")
 			{
 				enabled = true;
 			}
-			else if ((*jtr)->getKey() == L"master")
+			else if (item->getKey() == L"master")
 			{
-				masterTag = (*jtr)->getLeaf();
+				masterTag = item->getLeaf();
 			}
-			else if ((*jtr)->getKey() == L"slave")
+			else if (item->getKey() == L"slave")
 			{
-				slaveTags.push_back((*jtr)->getLeaf());
+				slaveTags.push_back(item->getLeaf());
 			}
 		}
 		V2Country* master = world.getCountry(masterTag);	// the actual master country
 		if ( enabled && (master != NULL) && (slaveTags.size() > 0) )
 		{
-			for (vector<wstring>::iterator sitr = slaveTags.begin(); sitr != slaveTags.end(); ++sitr)
+			for (auto slave: slaveTags)
 			{
-				master->eatCountry(world.getCountry(*sitr));
+				master->eatCountry(world.getCountry(slave));
 			}
 		}
 	}
@@ -227,13 +227,13 @@ void mergeNations(V2World& world, Object* mergeObj)
 void removeEmptyNations(V2World& world)
 {
 	map<wstring, V2Country*> countries = world.getCountries();	// all V2 countries
-	for (map<wstring, V2Country*>::iterator i = countries.begin(); i != countries.end(); i++)
+	for (auto country: countries)
 	{
-		map<int, V2Province*> provinces	= i->second->getProvinces();	// the provinces for the nation
-		vector<V2Province*> cores			= i->second->getCores();		// the cores for the nation
+		map<int, V2Province*> provinces	= country.second->getProvinces();	// the provinces for the nation
+		vector<V2Province*> cores			= country.second->getCores();			// the cores for the nation
 		if ( (provinces.size()) == 0 && (cores.size() == 0) )
 		{
-			world.removeCountry(i->first);
+			world.removeCountry(country.first);
 		}
 	}
 }
@@ -243,19 +243,19 @@ void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateI
 {
 	vector<Object*> leaves = obj->getLeaves();	// the states
 
-	for (unsigned int i = 0; i < leaves.size(); i++)
+	for (unsigned int stateIndex = 0; stateIndex < leaves.size(); stateIndex++)
 	{
-		vector<wstring>	provinces = leaves[i]->getTokens();	// the provinces in this state
-		vector<int>			neighbors;									// the neighboring provinces (that is, all provinces in the state)
+		vector<wstring>	provinces = leaves[stateIndex]->getTokens();	// the provinces in this state
+		vector<int>			neighbors;												// the neighboring provinces (that is, all provinces in the state)
 
-		for (vector<wstring>::iterator j = provinces.begin(); j != provinces.end(); j++)
+		for (auto provNum: provinces)
 		{
-			neighbors.push_back( _wtoi(j->c_str()) );
-			stateIndexMap.insert(make_pair(_wtoi(j->c_str()), i));
+			neighbors.push_back( _wtoi(provNum.c_str()) );
+			stateIndexMap.insert(make_pair(_wtoi(provNum.c_str()), stateIndex));
 		}
-		for (vector<int>::iterator j = neighbors.begin(); j != neighbors.end(); j++)
+		for (auto neighbor: neighbors)
 		{
-			stateMap.insert(make_pair(*j, neighbors));
+			stateMap.insert(make_pair(neighbor, neighbors));
 		}
 	}
 }
@@ -266,21 +266,20 @@ unionMapping initUnionMap(Object* obj)
 	unionMapping unionMap;	// the cultural unions map
 
 	vector<Object*> unions = obj->getLeaves();	// the rules for cultural unions
-	for (vector<Object*>::iterator i = unions.begin(); i != unions.end(); i++)
+	for (auto aUnion: unions)
 	{
 		wstring tag;		// the tag for the cultural union
 		wstring culture;	// the culture for the cultural union
 
-		vector<Object*> aUnion = (*i)->getLeaves();	// the items for this rule
-		for (vector<Object*>::iterator j = aUnion.begin(); j != aUnion.end(); j++)
+		for (auto item: aUnion->getLeaves())
 		{
-			if ( (*j)->getKey() == L"tag" )
+			if (item->getKey() == L"tag")
 			{
-				tag = (*j)->getLeaf();
+				tag = item->getLeaf();
 			}
-			if ( (*j)->getKey() == L"culture" )
+			if (item->getKey() == L"culture")
 			{
-				culture = (*j)->getLeaf();
+				culture = item->getLeaf();
 			}
 		}
 
@@ -294,25 +293,25 @@ unionMapping initUnionMap(Object* obj)
 void initUnionCultures(Object* obj, unionCulturesMap& unionCultures)
 {
 	vector<Object*> cultureGroups = obj->getLeaves();	// the cultural group rules
-	for (vector<Object*>::iterator i = cultureGroups.begin(); i != cultureGroups.end(); i++)
+	for (auto cultureGroup: cultureGroups)
 	{
-		vector<Object*>		culturesObj		= (*i)->getLeaves();	// the items in this rule
-		wstring					group				= (*i)->getKey();		// the cultural group
-		vector<wstring>		cultures;									// the cultures
+		vector<Object*>		culturesObj		= cultureGroup->getLeaves();	// the items in this rule
+		wstring					group				= cultureGroup->getKey();		// the cultural group
+		vector<wstring>		cultures;												// the cultures
 
-		for (vector<Object*>::iterator j = culturesObj.begin(); j != culturesObj.end(); j++)
+		for (auto item: culturesObj)
 		{
-			if ( (*j)->getKey() == L"dynasty_names" )
+			if (item->getKey() == L"dynasty_names")
 			{
 				continue;
 			}
-			else if ((*j)->getKey() == L"graphical_culture")
+			else if (item->getKey() == L"graphical_culture")
 			{
 				continue;
 			}
 			else
 			{
-				cultures.push_back( (*j)->getKey() );
+				cultures.push_back(item->getKey());
 			}
 		}
 
@@ -320,9 +319,9 @@ void initUnionCultures(Object* obj, unionCulturesMap& unionCultures)
 		if (itr != unionCultures.end())
 		{
 			vector<wstring> oldCultures = itr->second;	// any cultures already in the group
-			for (vector<wstring>::iterator jtr = oldCultures.begin(); jtr != oldCultures.end(); jtr++)
+			for (auto jtr: oldCultures)
 			{
-				cultures.push_back(*jtr);
+				cultures.push_back(jtr);
 			}
 		}
 		unionCultures[group] = cultures;
@@ -333,29 +332,29 @@ void initUnionCultures(Object* obj, unionCulturesMap& unionCultures)
 cultureMapping initCultureMap(Object* obj)
 {
 	cultureMapping cultureMap;						// the culture mapping
-	vector<Object*> links = obj->getLeaves();	// the culture mapping rules
+	vector<Object*> rules = obj->getLeaves();	// the culture mapping rules
 
-	for (vector<Object*>::iterator i = links.begin(); i != links.end(); i++)
+	for (auto rule: rules)
 	{
-		vector<Object*>	cultures	= (*i)->getLeaves();	// the items in this rule
+		vector<Object*>	cultures	= rule->getLeaves();	// the items in this rule
 		wstring				dstCulture;							// the HoI4 culture
-		vector<wstring>		srcCulture;						// the Vic2 cultures
+		vector<wstring>	srcCultures;						// the Vic2 cultures
 
-		for (vector<Object*>::iterator j = cultures.begin(); j != cultures.end(); j++)
+		for (auto item: cultures)
 		{
-			if ( (*j)->getKey() == L"HoI4" )
+			if (item->getKey() == L"HoI4")
 			{
-				dstCulture = (*j)->getLeaf();
+				dstCulture = item->getLeaf();
 			}
-			if ( (*j)->getKey() == L"v2" )
+			if (item->getKey() == L"v2")
 			{
-				srcCulture.push_back( (*j)->getLeaf() );
+				srcCultures.push_back(item->getLeaf());
 			}
 		}
 
-		for (vector<wstring>::iterator j = srcCulture.begin(); j != srcCulture.end(); j++)
+		for (auto srcCulture: srcCultures)
 		{
-			cultureMap.insert(make_pair((*j), dstCulture));
+			cultureMap.insert(make_pair(srcCulture, dstCulture));
 		}
 	}
 
@@ -366,59 +365,59 @@ cultureMapping initCultureMap(Object* obj)
 void initIdeaEffects(Object* obj, map<wstring, int>& armyInvIdeas, map<wstring, int>& commerceInvIdeas, map<wstring, int>& cultureInvIdeas, map<wstring, int>& industryInvIdeas, map<wstring, int>& navyInvIdeas, map<wstring, double>& UHLiberalIdeas, map<wstring, double>& UHReactionaryIdeas, vector< pair<wstring, int> >& literacyIdeas, map<wstring, int>& orderIdeas, map<wstring, int>& libertyIdeas, map<wstring, int>& equalityIdeas)
 {
 	vector<Object*> ideasObj = obj->getLeaves();
-	for (vector<Object*>::iterator ideasItr = ideasObj.begin(); ideasItr != ideasObj.end(); ideasItr++)
+	for (auto ideasItr: ideasObj)
 	{
-		wstring idea = (*ideasItr)->getKey();
-		vector<Object*> effects = (*ideasItr)->getLeaves();
-		for (vector<Object*>::iterator effectsItr = effects.begin(); effectsItr != effects.end(); effectsItr++)
+		wstring idea = ideasItr->getKey();
+		vector<Object*> effects = ideasItr->getLeaves();
+		for (auto effectsItr: effects)
 		{
-			wstring effectType = (*effectsItr)->getKey();
+			wstring effectType = effectsItr->getKey();
 			if (effectType == L"army_investment")
 			{
-				armyInvIdeas[idea] = _wtoi((*effectsItr)[0].getLeaf().c_str());
+				armyInvIdeas[idea] = _wtoi(effectsItr[0].getLeaf().c_str());
 			}
 			else if (effectType == L"commerce_investment")
 			{
-				commerceInvIdeas[idea] = _wtoi((*effectsItr)[0].getLeaf().c_str());
+				commerceInvIdeas[idea] = _wtoi(effectsItr[0].getLeaf().c_str());
 			}
 			else if (effectType == L"culture_investment")
 			{
-				cultureInvIdeas[idea] = _wtoi((*effectsItr)[0].getLeaf().c_str());
+				cultureInvIdeas[idea] = _wtoi(effectsItr[0].getLeaf().c_str());
 			}
 			else if (effectType == L"industry_investment")
 			{
-				industryInvIdeas[idea] = _wtoi((*effectsItr)[0].getLeaf().c_str());
+				industryInvIdeas[idea] = _wtoi(effectsItr[0].getLeaf().c_str());
 			}
 			else if (effectType == L"navy_investment")
 			{
-				navyInvIdeas[idea] = _wtoi((*effectsItr)[0].getLeaf().c_str());
+				navyInvIdeas[idea] = _wtoi(effectsItr[0].getLeaf().c_str());
 			}
 			else if (effectType == L"upper_house_liberal")
 			{
-				UHLiberalIdeas[idea] = _wtof((*effectsItr)[0].getLeaf().c_str());
+				UHLiberalIdeas[idea] = _wtof(effectsItr[0].getLeaf().c_str());
 			}
 			else if (effectType == L"upper_house_reactionary")
 			{
-				UHReactionaryIdeas[idea] = _wtof((*effectsItr)[0].getLeaf().c_str());
+				UHReactionaryIdeas[idea] = _wtof(effectsItr[0].getLeaf().c_str());
 			}
 			else if (effectType == L"NV_order")
 			{
-				orderIdeas[idea] = _wtoi((*effectsItr)[0].getLeaf().c_str());
+				orderIdeas[idea] = _wtoi(effectsItr[0].getLeaf().c_str());
 			}
 			else if (effectType == L"NV_liberty")
 			{
-				libertyIdeas[idea] = _wtoi((*effectsItr)[0].getLeaf().c_str());
+				libertyIdeas[idea] = _wtoi(effectsItr[0].getLeaf().c_str());
 			}
 			else if (effectType == L"NV_equality")
 			{
-				equalityIdeas[idea] = _wtoi((*effectsItr)[0].getLeaf().c_str());
+				equalityIdeas[idea] = _wtoi(effectsItr[0].getLeaf().c_str());
 			}
 			else if (effectType == L"literacy")
 			{
-				vector<wstring> literacyStrs = (*effectsItr)[0].getTokens();
-				for (unsigned int i = 0; i < literacyStrs.size(); i++)
+				vector<wstring> literacyStrs = effectsItr[0].getTokens();
+				for (auto literacyString: literacyStrs)
 				{
-					literacyIdeas.push_back(make_pair(idea, _wtoi(literacyStrs[i].c_str())));
+					literacyIdeas.push_back(make_pair(idea, _wtoi(literacyString.c_str())));
 				}
 			}
 		}

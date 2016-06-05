@@ -173,13 +173,13 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<wstr
 	map<wstring, wstring> reformTypes = governmentMapper::getInstance()->getReformTypes();
 
 	vector<Object*> leaves = obj->getLeaves();
-	for (unsigned int i = 0; i < leaves.size(); ++i)
+	for (auto leaf: leaves)
 	{
-		wstring key = leaves[i]->getKey();
+		wstring key = leaf->getKey();
 
 		if (reformTypes.find(key) != reformTypes.end())
 		{
-			reformsArray[key] = leaves[i]->getLeaf();
+			reformsArray[key] = leaf->getLeaf();
 		}
 	}
 
@@ -214,9 +214,9 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<wstr
 	flagFile += L".tga";
 
 	// Read international relations leaves
-	for (unsigned int i = 0; i < leaves.size(); ++i)
+	for (auto leaf: leaves)
 	{
-		wstring key = leaves[i]->getKey();
+		wstring key = leaf->getKey();
 
 		if ((key.size() == 3) &&
 			(
@@ -240,7 +240,7 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<wstr
 			)
 		)
 		{
-			V2Relations* rel = new V2Relations(leaves[i]);
+			V2Relations* rel = new V2Relations(leaf);
 			relations.insert(make_pair(rel->getTag(), rel));
 		}
 	}
@@ -337,11 +337,11 @@ void V2Country::eatCountry(V2Country* target)
 	const double targetWeight = (double)target->provinces.size() / (double)totalProvinces;		// the amount of influence from the target country
 
 	// acquire target's cores (always)
-	for (unsigned int j = 0; j < target->cores.size(); j++)
+	for (auto core: target->cores)
 	{
-		addCore(target->cores[j]);
-		target->cores[j]->addCore(tag);
-		target->cores[j]->removeCore(target->tag);
+		addCore(core);
+		core->addCore(tag);
+		core->removeCore(target->tag);
 	}
 
 	// everything else, do only if this country actually currently exists
@@ -358,12 +358,14 @@ void V2Country::eatCountry(V2Country* target)
 		armies.insert(armies.end(), target->armies.begin(), target->armies.end());
 
 		// give merged nation any techs owned by either nation
-		vector<wstring> ttechs = target->getTechs();
-		for (vector<wstring>::iterator tech = ttechs.begin(); tech != ttechs.end(); ++tech)
+		vector<wstring> targetTechs = target->getTechs();
+		for (auto tech: targetTechs)
 		{
-			vector<wstring>::iterator stech = std::find(techs.begin(), techs.end(), *tech);
+			vector<wstring>::iterator stech = std::find(techs.begin(), techs.end(), tech);
 			if (stech == techs.end())
-				techs.push_back(*tech);
+			{
+				techs.push_back(tech);
+			}
 		}
 
 		// and do the same with inventions

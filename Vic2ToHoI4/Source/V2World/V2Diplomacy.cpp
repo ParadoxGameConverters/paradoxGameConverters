@@ -61,30 +61,30 @@ V2Agreement::V2Agreement(Object *obj)
 V2Diplomacy::V2Diplomacy(Object *obj)
 {
 	std::vector<Object*> objVassals = obj->getValue(L"vassal");
-	for (std::vector<Object*>::iterator itr = objVassals.begin(); itr != objVassals.end(); ++itr)
+	for (auto itr: objVassals)
 	{
-		V2Agreement agr(*itr);
+		V2Agreement agr(itr);
 		agreements.push_back(agr);
 	}
 
 	std::vector<Object*> objAlliances = obj->getValue(L"alliance");
-	for (std::vector<Object*>::iterator itr = objAlliances.begin(); itr != objAlliances.end(); ++itr)
+	for (auto itr: objAlliances)
 	{
-		V2Agreement agr(*itr);
+		V2Agreement agr(itr);
 		agreements.push_back(agr);
 	}
 
 	std::vector<Object*> objCBs = obj->getValue(L"causus_belli");
-	for (std::vector<Object*>::iterator itr = objCBs.begin(); itr != objCBs.end(); ++itr)
+	for (auto itr: objCBs)
 	{
-		V2Agreement agr(*itr);
+		V2Agreement agr(itr);
 		agreements.push_back(agr);
 	}
 
 	std::vector<Object*> objSubsidies = obj->getValue(L"warsubsidy");
-	for (std::vector<Object*>::iterator itr = objSubsidies.begin(); itr != objSubsidies.end(); ++itr)
+	for (auto itr: objSubsidies)
 	{
-		V2Agreement agr(*itr);
+		V2Agreement agr(itr);
 		agreements.push_back(agr);
 	}
 }

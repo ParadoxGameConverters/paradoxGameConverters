@@ -101,15 +101,15 @@ V2Army::V2Army(Object* obj)
 
 	regiments.clear();
 	std::vector<Object*> objRegs = obj->getValue(L"regiment");
-	for (vector<Object*>::iterator itr = objRegs.begin(); itr != objRegs.end(); ++itr)
+	for (auto itr: objRegs)
 	{
-		V2Regiment* newRegiment = new V2Regiment(*itr);
+		V2Regiment* newRegiment = new V2Regiment(itr);
 		regiments.push_back(newRegiment);
 	}
 	std::vector<Object*> objShips = obj->getValue(L"ship");
-	for (vector<Object*>::iterator itr = objShips.begin(); itr != objShips.end(); ++itr)
+	for (auto itr: objShips)
 	{
-		V2Regiment* newShip = new V2Regiment(*itr);
+		V2Regiment* newShip = new V2Regiment(itr);
 		regiments.push_back(newShip);
 	}
 

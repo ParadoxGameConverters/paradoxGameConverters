@@ -305,11 +305,11 @@ void HoI4Country::outputToCommonCountriesFile(FILE* output) const
 void HoI4Country::outputPracticals(FILE* output) const
 {
 	fwprintf(output, L"\n");
-	for (map<wstring, double>::const_iterator itr = practicals.begin(); itr != practicals.end(); ++itr)
+	for (auto itr: practicals)
 	{
-		if (itr->second > 0.0)
+		if (itr.second > 0.0)
 		{
-			fwprintf(output, L"%s = %.2f\n", itr->first.c_str(), min(20.0, itr->second));
+			fwprintf(output, L"%s = %.2f\n", itr.first.c_str(), min(20.0, itr.second));
 		}
 	}
 }
@@ -318,9 +318,9 @@ void HoI4Country::outputPracticals(FILE* output) const
 void HoI4Country::outputTech(FILE* output) const
 {
 	fwprintf(output, L"\n");
-	for (map<wstring, int>::const_iterator itr = technologies.begin(); itr != technologies.end(); ++itr)
+	for (auto itr: technologies)
 	{
-		fwprintf(output, L"%s = %d\n", itr->first.c_str(), itr->second);
+		fwprintf(output, L"%s = %d\n", itr.first.c_str(), itr.second);
 	}
 }
 
@@ -489,15 +489,15 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	// Political parties
 	convertParties(_srcCountry, _srcWorld.getActiveParties(_srcCountry), _srcWorld.getRulingParty(_srcCountry), ideology);
-	for (auto partyItr = parties.begin(); partyItr != parties.end(); partyItr++)
+	for (auto partyItr: parties)
 	{
-		auto oldLocalisation = V2Localisations.GetTextInEachLanguage(partyItr->name);
-		partyItr->localisationString = partyItr->ideology + L"_" + tag;
+		auto oldLocalisation = V2Localisations.GetTextInEachLanguage(partyItr.name);
+		partyItr.localisationString = partyItr.ideology + L"_" + tag;
 		auto localisationItr = oldLocalisation.begin();
 		localisationItr++;
 		for (; localisationItr != oldLocalisation.end(); localisationItr++)
 		{
-			partyItr->localisationString += L";" + localisationItr->second;
+			partyItr.localisationString += L";" + localisationItr->second;
 		}
 	}
 
@@ -658,12 +658,12 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	map<wstring, V2Relations*> srcRelations = srcCountry->getRelations();
 	if (srcRelations.size() > 0)
 	{
-		for (map<wstring, V2Relations*>::iterator itr = srcRelations.begin(); itr != srcRelations.end(); ++itr)
+		for (auto itr: srcRelations)
 		{
-			const std::wstring& HoI4Tag = countryMap[itr->second->getTag()];
+			const std::wstring& HoI4Tag = countryMap[itr.second->getTag()];
 			if (!HoI4Tag.empty())
 			{
-				HoI4Relations* hoi2r = new HoI4Relations(HoI4Tag, itr->second);
+				HoI4Relations* hoi2r = new HoI4Relations(HoI4Tag, itr.second);
 				relations.insert(make_pair(HoI4Tag, hoi2r));
 			}
 		}
@@ -1226,7 +1226,7 @@ void HoI4Country::addMinimalItems(const inverseProvinceMapping& inverseProvinceM
 	// if necessary, add a port as near to the capital as possible
 	//		impossible currently, as we don't have a way to know where ports are valid
 
-	for (auto state : srcCountry->getStates())
+	for (auto state: srcCountry->getStates())
 	{
 		if (state.provinces.size() > 0)
 		{
@@ -1287,18 +1287,18 @@ vector<int> HoI4Country::getPortProvinces(vector<int> locationCandidates, map<in
 		s.close();
 	}
 
-	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
+	for (auto litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
 	{
-		vector<int>::iterator black = std::find(port_blacklist.begin(), port_blacklist.end(), *litr);
+		auto black = std::find(port_blacklist.begin(), port_blacklist.end(), *litr);
 		if (black != port_blacklist.end())
 		{
 			locationCandidates.erase(litr);
 			break;
 		}
 	}
-	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
+	for (auto litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
 	{
-		map<int, HoI4Province*>::iterator pitr = allProvinces.find(*litr);
+		auto pitr = allProvinces.find(*litr);
 		if (pitr != allProvinces.end())
 		{
 			if (!pitr->second->hasNavalBase())
@@ -1680,11 +1680,11 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	}
 
 	// merge Vic2 parties by ideology, then map those cases
-	for (map<wstring, vector<V2Party*>>::iterator ideologyItr = V2Ideologies.begin(); ideologyItr != V2Ideologies.end(); ideologyItr++)
+	for (auto ideologyItr: V2Ideologies)
 	{
-		while (ideologyItr->second.size() > 1)
+		while (ideologyItr.second.size() > 1)
 		{
-			ideologyItr->second.pop_back();
+			ideologyItr.second.pop_back();
 		}
 	}
 

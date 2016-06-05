@@ -60,14 +60,14 @@ V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<wstring,
 		greatCountries.resize(greatNations.size());
 	}
 
-	for (unsigned int i = 0; i < leaves.size(); i++)
+	for (auto leaf: leaves)
 	{
-		wstring key = leaves[i]->getKey();
+		wstring key = leaf->getKey();
 
 		// Is this a numeric value? If so, must be a province
 		if (_wtoi(key.c_str()) > 0)
 		{
-			provinces[_wtoi(key.c_str())] = new V2Province(leaves[i]);
+			provinces[_wtoi(key.c_str())] = new V2Province(leaf);
 		}
 
 		// Countries are three uppercase characters
@@ -93,7 +93,7 @@ V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<wstring,
 			)
 		)
 		{
-			countries[key] = new V2Country(leaves[i], iNumToName, armyTechs, navyTechs, continentMap);
+			countries[key] = new V2Country(leaf, iNumToName, armyTechs, navyTechs, continentMap);
 
 			map<int, int>::iterator rankingItr = greatNationIndices.find(countriesIndex++);
 			if (rankingItr != greatNationIndices.end())
@@ -106,23 +106,23 @@ V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<wstring,
 	}
 
 	// add province owner info to countries
-	for (map<int, V2Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
+	for (auto province: provinces)
 	{
-		map<wstring, V2Country*>::iterator j = countries.find(i->second->getOwnerString());
-		if (j != countries.end())
+		auto country = countries.find(province.second->getOwnerString());
+		if (country != countries.end())
 		{
-			j->second->addProvince(i->first, i->second);
-			i->second->setOwner(j->second);
+			country->second->addProvince(province.first, province.second);
+			province.second->setOwner(country->second);
 		}
 	}
 
 	// add province core info to countries
-	for (map<int, V2Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
+	for (auto province: provinces)
 	{
-		vector<V2Country*> cores = i->second->getCores(countries);	// the cores held on this province
-		for (vector<V2Country*>::iterator j = cores.begin(); j != cores.end(); j++)
+		vector<V2Country*> coreCountries = province.second->getCores(countries);	// the cores held on this province
+		for (auto coreCountry: coreCountries)
 		{
-			(*j)->addCore(i->second);
+			coreCountry->addCore(province.second);
 		}
 	}
 
@@ -188,12 +188,12 @@ V2Province* V2World::getProvince(int provNum) const
 
 void V2World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProvinceMap) const
 {
-	for (map<int, V2Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
+	for (auto province: provinces)
 	{
-		inverseProvinceMapping::const_iterator j = inverseProvinceMap.find(i->first);
-		if (j == inverseProvinceMap.end())
+		inverseProvinceMapping::const_iterator mapping = inverseProvinceMap.find(province.first);
+		if (mapping == inverseProvinceMap.end())
 		{
-			LOG(LogLevel::Warning) << "No mapping for Vic2 province " << i->first;
+			LOG(LogLevel::Warning) << "No mapping for Vic2 province " << province.first;
 		}
 	}
 }
@@ -201,21 +201,21 @@ void V2World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProvi
 
 void V2World::setLocalisations(V2Localisation& localisation)
 {
-	for (map<wstring, V2Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	for (auto countryItr: countries)
 	{
-		const auto& nameLocalisations = localisation.GetTextInEachLanguage(countryItr->second->getTag());	// the names in all languages
+		const auto& nameLocalisations = localisation.GetTextInEachLanguage(countryItr.second->getTag());	// the names in all languages
 		for (const auto& nameLocalisation : nameLocalisations)	// the name under consideration
 		{
 			const std::wstring& language = nameLocalisation.first;	// the language
 			const std::wstring& name = nameLocalisation.second;		// the name of the country in this language
-			countryItr->second->setLocalisationName(language, name);
+			countryItr.second->setLocalisationName(language, name);
 		}
-		const auto& adjectiveLocalisations = localisation.GetTextInEachLanguage(countryItr->second->getTag() + L"_ADJ");	// the adjectives in all languages
+		const auto& adjectiveLocalisations = localisation.GetTextInEachLanguage(countryItr.second->getTag() + L"_ADJ");	// the adjectives in all languages
 		for (const auto& adjectiveLocalisation : adjectiveLocalisations)	// the adjective under consideration
 		{
 			const std::wstring& language = adjectiveLocalisation.first;		// the language
 			const std::wstring& adjective = adjectiveLocalisation.second;	// the adjective for the country in this language
-			countryItr->second->setLocalisationAdjective(language, adjective);
+			countryItr.second->setLocalisationAdjective(language, adjective);
 		}
 	}
 }
@@ -255,15 +255,15 @@ vector<V2Party*> V2World::getActiveParties(const V2Country* country) const
 
 void V2World::removeEmptyNations()
 {
-	for (map<wstring, V2Country*>::iterator i = countries.begin(); i != countries.end();)
+	for (auto country = countries.begin(); country != countries.end();)
 	{
-		if (i->second->getCores().size() < 1 && i->second->getProvinces().size() < 1)
+		if ((country->second->getCores().size() < 1) && (country->second->getProvinces().size() < 1))
 		{
-			i = countries.erase(i); // i points to the next element
+			country = countries.erase(country); // i points to the next element
 		}
 		else
 		{
-			++i;
+			++country;
 		}
 	}
 }
@@ -356,12 +356,12 @@ void V2World::readCountryFiles(wstring countryListFile, wstring mod)
 		// Get party information
 		vector<Object*> leaves = countryData->getLeaves();
 
-		for (unsigned int i = 0; i < leaves.size(); i++)
+		for (auto leaf: leaves)
 		{
-			wstring key = leaves[i]->getKey();
+			wstring key = leaf->getKey();
 			if (key == L"party")
 			{
-				parties.push_back(new V2Party(leaves[i]));
+				parties.push_back(new V2Party(leaf));
 			}
 		}
 	}

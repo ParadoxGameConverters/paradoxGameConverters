@@ -57,26 +57,25 @@ bool CountryMapping::ReadRules(const std::wstring& fileName)
 		LOG(LogLevel::Error) << fileName << " does not contain a mapping";
 		return false;
 	}
-	vector<Object*> ruleNodes = nodes[0]->getLeaves();
 
 	// Convert rule nodes into our map data structure.
 	LOG(LogLevel::Debug) << "Building rules map";
 	map<wstring, vector<wstring>> newV2TagToHoI4TagsRules;	// the mapping rules
-	for (vector<Object*>::iterator i = ruleNodes.begin(); i != ruleNodes.end(); ++i)
+	for (auto ruleNode: nodes[0]->getLeaves())
 	{
-		vector<Object*> rule = (*i)->getLeaves();	// an individual rule
-		wstring newV2Tag;									// the V2 tag in the rule
-		vector<wstring>	HoI4Tags;					// the HoI4 tags in the rule
-		for (vector<Object*>::iterator j = rule.begin(); j != rule.end(); ++j)
+		vector<Object*> rule = ruleNode->getLeaves();	// an individual rule
+		wstring newV2Tag;											// the V2 tag in the rule
+		vector<wstring>	HoI4Tags;							// the HoI4 tags in the rule
+		for (auto part: rule)
 		{
-			std::wstring key = boost::to_upper_copy((*j)->getKey());	// the key for this part of the rule
+			std::wstring key = boost::to_upper_copy(part->getKey());	// the key for this part of the rule
 			if (key == L"VIC")
 			{
-				newV2Tag = boost::to_upper_copy((*j)->getLeaf());
+				newV2Tag = boost::to_upper_copy(part->getLeaf());
 			}
 			else if (key == L"HOI")
 			{
-				HoI4Tags.push_back(boost::to_upper_copy((*j)->getLeaf()));
+				HoI4Tags.push_back(boost::to_upper_copy(part->getLeaf()));
 			}
 			else
 			{
@@ -103,31 +102,29 @@ void CountryMapping::CreateMapping(const V2World& srcWorld, const HoI4World& des
 	// Get the V2 tags for all countries we want to map.
 	std::set<std::wstring> V2TagsToMap;		// the V2 tags that still need mapping
 	const std::map<std::wstring, V2Country*> V2Countries = srcWorld.getCountries();	// all the EU4 countries
-	for (std::map<std::wstring, V2Country*>::const_iterator i = V2Countries.begin(); i != V2Countries.end(); ++i)
+	for (auto country: V2Countries)
 	{
-		V2TagsToMap.insert(i->first);
+		V2TagsToMap.insert(country.first);
 	}
 
 	// Find a HoI4 tag from the rules for each V2 tag.
 	const map<wstring, HoI4Country*> HoI4Countries = destWorld.getPotentialCountries();
-	for (std::set<std::wstring>::iterator i = V2TagsToMap.begin(); i != V2TagsToMap.end(); ++i)
+	for (auto Vic2Tag: V2TagsToMap)
 	{
-		const std::wstring& V2Tag = *i;	// the V2 tag being considered
 		bool mapped = false;					// whether or not the V2 tag has been mapped
 		// Find a HoI4 tag from our rule if possible.
-		std::map<std::wstring, std::vector<std::wstring>>::iterator findIter = V2TagToHoI4TagsRules.find(V2Tag);	// the rule (if any) with this V2 tag
+		std::map<std::wstring, std::vector<std::wstring>>::iterator findIter = V2TagToHoI4TagsRules.find(Vic2Tag);	// the rule (if any) with this V2 tag
 		if (findIter != V2TagToHoI4TagsRules.end())
 		{
 			const std::vector<std::wstring>& possibleHoI4Tags = findIter->second;
 			// We want to use a HoI4 tag that corresponds to an actual HoI4 country if possible.
-			for (vector<wstring>::const_iterator j = possibleHoI4Tags.begin(); j != possibleHoI4Tags.end() && !mapped; ++j)
+			for (auto HoI4Tag: possibleHoI4Tags)
 			{
-				const std::wstring& HoI4Tag = *j;
 				if (HoI4Countries.find(HoI4Tag) != HoI4Countries.end() && V2TagToHoI4TagMap.right.find(HoI4Tag) == V2TagToHoI4TagMap.right.end())
 				{
 					mapped = true;
-					V2TagToHoI4TagMap.left.insert(make_pair(V2Tag, HoI4Tag));
-					LogMapping(V2Tag, HoI4Tag, L"default HoI4 country");
+					V2TagToHoI4TagMap.left.insert(make_pair(Vic2Tag, HoI4Tag));
+					LogMapping(Vic2Tag, HoI4Tag, L"default HoI4 country");
 				}
 			}
 		}
@@ -137,8 +134,8 @@ void CountryMapping::CreateMapping(const V2World& srcWorld, const HoI4World& des
 			wostringstream generatedHoI4TagStream;	// a stream for the new tag to be constructed in
 			generatedHoI4TagStream << generatedHoI4TagPrefix << setfill(L'0') << setw(2) << generatedHoI4TagSuffix;
 			wstring HoI4Tag = generatedHoI4TagStream.str();
-			V2TagToHoI4TagMap.left.insert(make_pair(V2Tag, HoI4Tag));
-			LogMapping(V2Tag, HoI4Tag, L"generated tag");
+			V2TagToHoI4TagMap.left.insert(make_pair(Vic2Tag, HoI4Tag));
+			LogMapping(Vic2Tag, HoI4Tag, L"generated tag");
 			// Prepare the next generated tag.
 			++generatedHoI4TagSuffix;
 			if (generatedHoI4TagSuffix > 99)

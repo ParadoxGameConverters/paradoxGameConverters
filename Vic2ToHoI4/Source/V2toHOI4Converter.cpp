@@ -115,12 +115,12 @@ int ConvertV2ToHoI4(const std::wstring& V2SaveFileName)
 
 	set<wstring> fileNames;
 	WinUtils::GetAllFilesInFolder(Configuration::getV2Path() + L"\\mod", fileNames);
-	for (set<wstring>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
+	for (auto fileName: fileNames)
 	{
-		const int pos = itr->find_last_of('.');	// the position of the last period in the filename
-		if (itr->substr(pos, itr->length()) == L".mod")
+		const int pos = fileName.find_last_of('.');	// the position of the last period in the filename
+		if (fileName.substr(pos, fileName.length()) == L".mod")
 		{
-			wstring folderName = itr->substr(0, pos);
+			wstring folderName = fileName.substr(0, pos);
 			if (WinUtils::doesFolderExist(Configuration::getV2Path() + L"\\mod\\" + folderName))
 			{
 				LOG(LogLevel::Debug) << "\tFound mod with name " << folderName;

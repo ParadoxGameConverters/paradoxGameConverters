@@ -184,14 +184,14 @@ void HoI4RegGroup::output(FILE* out, int indentlevel /* = 0*/) const
 		}
 	}
 
-	for (vector<HoI4Regiment>::const_iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
+	for (auto itr: regiments)
 	{
-		itr->output(out, indentlevel + 1);
+		itr.output(out, indentlevel + 1);
 	}
 
-	for (vector<HoI4RegGroup>::const_iterator itr = children.begin(); itr != children.end(); ++itr)
+	for (auto itr: children)
 	{
-		itr->output(out, indentlevel + 1);
+		itr.output(out, indentlevel + 1);
 	}
 
 	fwprintf(out, L"%s}\n", indent);
@@ -211,9 +211,9 @@ void HoI4RegGroup::outputIntoProductionQueue(FILE* out, const wstring& tag) cons
 		fwprintf(out, L"military_construction = {\n");
 		fwprintf(out, L"\tcountry = %s\n", tag.c_str());
 		fwprintf(out, L"\t\tname = \"%s\"\n", name.c_str());
-		for (vector<HoI4Regiment>::const_iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
+		for (auto itr: regiments)
 		{
-			itr->outputIntoProductionQueue(out);
+			itr.outputIntoProductionQueue(out);
 		}
 
 		fwprintf(out, L"\tcost = 0\n");
@@ -223,11 +223,11 @@ void HoI4RegGroup::outputIntoProductionQueue(FILE* out, const wstring& tag) cons
 	}
 	else
 	{
-		for (vector<HoI4Regiment>::const_iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
+		for (auto itr: regiments)
 		{
 			fwprintf(out, L"military_construction = {\n");
 			fwprintf(out, L"\tcountry = %s\n", tag.c_str());
-			itr->outputIntoProductionQueue(out);
+			itr.outputIntoProductionQueue(out);
 			fwprintf(out, L"\tcost = 0\n");
 			fwprintf(out, L"\tprogress = 0\n");
 			fwprintf(out, L"\tduration = 0\n"); // This makes the unit already or almost complete in the construction queue
@@ -235,9 +235,9 @@ void HoI4RegGroup::outputIntoProductionQueue(FILE* out, const wstring& tag) cons
 		}
 	}
 
-	for (vector<HoI4RegGroup>::const_iterator itr = children.begin(); itr != children.end(); ++itr)
+	for (auto itr: children)
 	{
-		itr->outputIntoProductionQueue(out, tag);
+		itr.outputIntoProductionQueue(out, tag);
 	}
 }
 
@@ -299,9 +299,9 @@ void HoI4RegGroup::createHQs(HoI4RegimentType hqType)
 		hq.setHistoricalModel(0);
 		regiments.push_back(hq);
 
-		for (vector<HoI4RegGroup>::iterator itr = children.begin(); itr != children.end(); ++itr)
+		for (auto itr: children)
 		{
-			itr->createHQs(hqType);
+			itr.createHQs(hqType);
 		}
 	}
 }
@@ -423,9 +423,9 @@ bool HoI4RegGroup::addChild(HoI4RegGroup newChild, bool allowPromote)
 		}
 
 		// try again: can an existing child take this?
-		for (vector<HoI4RegGroup>::iterator itr = children.begin(); itr != children.end(); ++itr)
+		for (auto itr: children)
 		{
-			if (itr->addChild(newChild, false))
+			if (itr.addChild(newChild, false))
 			{
 				return true;
 			}
@@ -470,9 +470,9 @@ bool HoI4RegGroup::addRegiment(HoI4Regiment reg, bool allowPromote)
 	if (command_level > division)
 	{
 		// can an existing child take this?
-		for (vector<HoI4RegGroup>::iterator itr = children.begin(); itr != children.end(); ++itr)
+		for (auto itr: children)
 		{
-			if (itr->addRegiment(reg, false))
+			if (itr.addRegiment(reg, false))
 			{
 				return true;
 			}
@@ -486,7 +486,7 @@ bool HoI4RegGroup::addRegiment(HoI4Regiment reg, bool allowPromote)
 			// rebalance grandchildren: give the new child one grandchild from every existing child
 			if (command_level > corps)
 			{
-				for (vector<HoI4RegGroup>::iterator itr = children.begin(); itr != children.end(); ++itr)
+				for (auto itr = children.begin(); itr != children.end(); ++itr)
 				{
 					vector<HoI4RegGroup>::iterator grandchild = --itr->children.end();
 					HoI4RegGroup temp = *(grandchild);
@@ -503,9 +503,9 @@ bool HoI4RegGroup::addRegiment(HoI4Regiment reg, bool allowPromote)
 			children.push_back(newChild);
 
 			// try again: can an existing child take this?
-			for (vector<HoI4RegGroup>::iterator itr = children.begin(); itr != children.end(); ++itr)
+			for (auto itr: children)
 			{
-				if (itr->addRegiment(reg, false))
+				if (itr.addRegiment(reg, false))
 				{
 					return true;
 				}
@@ -572,9 +572,9 @@ bool HoI4RegGroup::addRegiment(HoI4Regiment reg, bool allowPromote)
 		children.push_back(child2);
 
 		// try again: can an existing child take this?
-		for (vector<HoI4RegGroup>::iterator itr = children.begin(); itr != children.end(); ++itr)
+		for (auto itr: children)
 		{
-			if (itr->addRegiment(reg, false))
+			if (itr.addRegiment(reg, false))
 			{
 				return true;
 			}
@@ -590,9 +590,9 @@ int HoI4RegGroup::size() const
 {
 	unsigned size = regiments.size();
 
-	for (vector<HoI4RegGroup>::const_iterator itr = children.begin(); itr != children.end(); ++itr)
+	for (auto itr: children)
 	{
-		size += itr->size();
+		size += itr.size();
 	}
 
 	return size;
@@ -601,13 +601,13 @@ int HoI4RegGroup::size() const
 
 void HoI4RegGroup::undoPracticalAddition(map<wstring, double>& practicals) const
 {
-	for (vector<HoI4Regiment>::const_iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
+	for (auto itr: regiments)
 	{
-		practicals[itr->getType().getPracticalBonus()] -= itr->getType().getPracticalBonusFactor();
+		practicals[itr.getType().getPracticalBonus()] -= itr.getType().getPracticalBonusFactor();
 	}
 
-	for (vector<HoI4RegGroup>::const_iterator itr = children.begin(); itr != children.end(); ++itr)
+	for (auto itr: children)
 	{
-		itr->undoPracticalAddition(practicals);
+		itr.undoPracticalAddition(practicals);
 	}
 }

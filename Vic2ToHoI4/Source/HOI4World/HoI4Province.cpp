@@ -70,44 +70,44 @@ HoI4Province::HoI4Province(wstring _filename)
 	}
 
 	vector<Object*> leaves = obj->getLeaves();
-	for (vector<Object*>::iterator itr = leaves.begin(); itr != leaves.end(); itr++)
+	for (auto itr: leaves)
 	{
-		if ((*itr)->getKey() == L"owner")
+		if (itr->getKey() == L"owner")
 		{
-			owner = (*itr)->getLeaf();
+			owner = itr->getLeaf();
 			is_land = true;
 		}
-		else if ((*itr)->getKey() == L"metal")
+		else if (itr->getKey() == L"metal")
 		{
-			metal = _wtof((*itr)->getLeaf().c_str());
+			metal = _wtof(itr->getLeaf().c_str());
 		}
-		else if ((*itr)->getKey() == L"crude_oil")
+		else if (itr->getKey() == L"crude_oil")
 		{
-			oil = _wtof((*itr)->getLeaf().c_str());
+			oil = _wtof(itr->getLeaf().c_str());
 		}
-		else if ((*itr)->getKey() == L"rare_materials")
+		else if (itr->getKey() == L"rare_materials")
 		{
-			rare_materials = _wtof((*itr)->getLeaf().c_str());
+			rare_materials = _wtof(itr->getLeaf().c_str());
 		}
-		else if ((*itr)->getKey() == L"energy")
+		else if (itr->getKey() == L"energy")
 		{
-			energy = _wtof((*itr)->getLeaf().c_str());
+			energy = _wtof(itr->getLeaf().c_str());
 		}
-		else if ((*itr)->getKey() == L"manpower")
+		else if (itr->getKey() == L"manpower")
 		{
-			manpower = _wtof((*itr)->getLeaf().c_str());
+			manpower = _wtof(itr->getLeaf().c_str());
 		}
-		else if ((*itr)->getKey() == L"leadership")
+		else if (itr->getKey() == L"leadership")
 		{
-			leadership = _wtof((*itr)->getLeaf().c_str());
+			leadership = _wtof(itr->getLeaf().c_str());
 		}
-		else if ((*itr)->getKey() == L"industry")
+		else if (itr->getKey() == L"industry")
 		{
-			industry = _wtoi((*itr)->getLeaf().c_str());
+			industry = _wtoi(itr->getLeaf().c_str());
 		}
-		else if ((*itr)->getKey() == L"add_core")
+		else if (itr->getKey() == L"add_core")
 		{
-			cores.push_back((*itr)->getLeaf());
+			cores.push_back(itr->getLeaf());
 		}
 	}
 }
@@ -132,9 +132,9 @@ void HoI4Province::output() const
 			fwprintf_s(output, L"owner = %s\n", owner.c_str());
 			fwprintf_s(output, L"controller = %s\n", owner.c_str());
 		}
-		for (unsigned int i = 0; i < cores.size(); i++)
+		for (auto core: cores)
 		{
-			fwprintf_s(output, L"add_core = %s\n", cores[i].c_str());
+			fwprintf_s(output, L"add_core = %s\n", core.c_str());
 		}
 		if ((points > 0) || industry > 0)
 		{

@@ -58,38 +58,38 @@ void HoI4Diplomacy::output() const
 	}
 	
 	FILE* out;
-	for (vector<HoI4Agreement>::const_iterator itr = agreements.begin(); itr != agreements.end(); ++itr)
+	for (auto itr: agreements)
 	{
-		if (itr->type == L"guarantee")
+		if (itr.type == L"guarantee")
 		{
 			out = guarantees;
 		}
-		else if (itr->type == L"vassal")
+		else if (itr.type == L"vassal")
 		{
 			out = puppetStates;
 		}
-		else if (itr->type == L"alliance")
+		else if (itr.type == L"alliance")
 		{
 			out = alliances;
 		}
-		else if (itr->type == L"relation")
+		else if (itr.type == L"relation")
 		{
 			out = relations;
 		}
 		else
 		{
-			LOG(LogLevel::Warning) << "Cannot ouput diplomatic agreement type " << itr->type;
+			LOG(LogLevel::Warning) << "Cannot ouput diplomatic agreement type " << itr.type;
 			continue;
 		}
-		fwprintf(out, L"%s=\n", itr->type.c_str());
+		fwprintf(out, L"%s=\n", itr.type.c_str());
 		fwprintf(out, L"{\n");
-		fwprintf(out, L"\tfirst=\"%s\"\n", itr->country1.c_str());
-		fwprintf(out, L"\tsecond=\"%s\"\n", itr->country2.c_str());
-		if (itr->type == L"relation")
+		fwprintf(out, L"\tfirst=\"%s\"\n", itr.country1.c_str());
+		fwprintf(out, L"\tsecond=\"%s\"\n", itr.country2.c_str());
+		if (itr.type == L"relation")
 		{
-			fwprintf(out, L"\tvalue=\"%i\"\n", itr->value);
+			fwprintf(out, L"\tvalue=\"%i\"\n", itr.value);
 		}
-		fwprintf(out, L"\tstart_date=\"%s\"\n", itr->start_date.toString().c_str());
+		fwprintf(out, L"\tstart_date=\"%s\"\n", itr.start_date.toString().c_str());
 		fwprintf(out, L"\tend_date=\"1949.1.1\"\n");
 		fwprintf(out, L"}\n");
 		fwprintf(out, L"\n");
@@ -107,9 +107,9 @@ void HoI4Diplomacy::addAgreement(const HoI4Agreement agr)
 
 	if (agr.type == L"relation")
 	{
-		for (vector<HoI4Agreement>::const_iterator itr = agreements.begin(); itr != agreements.end(); ++itr)
+		for (auto itr: agreements)
 		{
-			if (agr == *itr)
+			if (agr == itr)
 			{
 				alreadyExists = true;
 				break;

@@ -41,9 +41,9 @@ V2Province::V2Province(Object* obj)
 	cores.clear();
 	vector<Object*> coreObjs;				// the object holding the cores
 	coreObjs = obj->getValue(L"core");
-	for (unsigned int i = 0; i < coreObjs.size(); i++)
+	for (auto coreObj: coreObjs)
 	{
-		cores.push_back(coreObjs[i]->getLeaf());
+		cores.push_back(coreObj->getLeaf());
 	}
 
 	vector<Object*> buildingObjs;
@@ -80,14 +80,14 @@ V2Province::V2Province(Object* obj)
 
 	// read pops
 	vector<Object*> children = obj->getLeaves();
-	for (vector<Object*>::iterator itr = children.begin(); itr != children.end(); ++itr)
+	for (auto itr: children)
 	{
-		wstring key = (*itr)->getKey();
+		wstring key = itr->getKey();
 		if (key == L"aristocrats" || key == L"artisans" || key == L"bureaucrats" || key == L"capitalists" || key == L"clergymen"
 			|| key == L"craftsmen" || key == L"clerks" || key == L"farmers" || key == L"soldiers" || key == L"officers"
 			|| key == L"labourers" || key == L"slaves")
 		{
-			V2Pop* pop = new V2Pop(*itr);
+			V2Pop* pop = new V2Pop(itr);
 			pops.push_back(pop);
 		}
 	}
@@ -99,9 +99,9 @@ V2Province::V2Province(Object* obj)
 vector<V2Country*> V2Province::getCores(const map<wstring, V2Country*>& countries) const
 {
 	vector<V2Country*> coreOwners;
-	for (vector<wstring>::const_iterator i = cores.begin(); i != cores.end(); i++)
+	for (auto core: cores)
 	{
-		map<wstring, V2Country*>::const_iterator j = countries.find(*i);
+		map<wstring, V2Country*>::const_iterator j = countries.find(core);
 		if (j != countries.end())
 		{
 			coreOwners.push_back(j->second);
@@ -124,16 +124,16 @@ void V2Province::addCore(wstring newCore)
 
 void V2Province::removeCore(wstring tag)
 {
-	for (vector<wstring>::iterator i = cores.begin(); i != cores.end(); i++)
+	for (auto core = cores.begin(); core != cores.end(); core++)
 	{
-		if (*i == tag)
+		if (*core == tag)
 		{
-			cores.erase(i);
+			cores.erase(core);
 			if (cores.size() == 0)
 			{
 				break;
 			}
-			i = cores.begin();
+			core = cores.begin();
 		}
 	}
 }
@@ -142,9 +142,9 @@ void V2Province::removeCore(wstring tag)
 int V2Province::getTotalPopulation() const
 {
 	int total = 0;
-	for (vector<V2Pop*>::const_iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	for (auto itr: pops)
 	{
-		total += (*itr)->getSize();
+		total += itr->getSize();
 	}
 	return total;
 }
@@ -160,12 +160,12 @@ int V2Province::getTotalPopulation() const
 int V2Province::getPopulation(wstring type) const
 {
 	int totalPop = 0;
-	for (vector<V2Pop*>::const_iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	for (auto pop: pops)
 	{
 		// empty string for type gets total population
-		if (type == L"" || type == (*itr)->getType())
+		if (type == L"" || type == pop->getType())
 		{
-			totalPop += (*itr)->getSize();
+			totalPop += pop->getSize();
 		}
 	}
 	return totalPop;
@@ -176,12 +176,12 @@ int V2Province::getLiteracyWeightedPopulation(wstring type) const
 {
 	double literacyWeight = Configuration::getLiteracyWeight();
 	int totalPop = 0;
-	for (vector<V2Pop*>::const_iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	for (auto pop: pops)
 	{
 		// empty string for type gets total population
-		if (type == L"" || type == (*itr)->getType())
+		if (type == L"" || type == pop->getType())
 		{
-			totalPop += int((*itr)->getSize() * ((*itr)->getLiteracy() * literacyWeight + (1.0 - literacyWeight)));
+			totalPop += int(pop->getSize() * (pop->getLiteracy() * literacyWeight + (1.0 - literacyWeight)));
 		}
 	}
 	return totalPop;

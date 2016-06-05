@@ -339,12 +339,11 @@ void HoI4World::outputLocalisations() const
 		LOG(LogLevel::Error) << "Could not update localisation text file";
 		exit(-1);
 	}
-	for (map<wstring, HoI4Country*>::const_iterator i = countries.begin(); i != countries.end(); i++)
+	for (auto country: countries)
 	{
-		const HoI4Country& country = *i->second;
-		if (country.isNewCountry())
+		if (country.second->isNewCountry())
 		{
-			country.outputLocalisation(localisationFile);
+			country.second->outputLocalisation(localisationFile);
 		}
 	}
 	fclose(localisationFile);
@@ -1111,7 +1110,7 @@ vector<HoI4Regiment*> HoI4World::convertRegiments(const unitTypeMapping& unitTyp
 }
 
 
-HoI4RegGroup* HoI4World::createArmy(const inverseProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap, wstring tag, const V2Army* oldArmy, vector<HoI4Regiment*>& sourceRegiments, int& airForceIndex)
+HoI4RegGroup* HoI4World::createArmy(const inverseProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap, wstring tag, const V2Army* oldArmy, vector<HoI4Regiment*>& regiments, int& airForceIndex)
 {
 	HoI4RegGroup* destArmy	= new HoI4RegGroup();
 
@@ -1170,7 +1169,7 @@ HoI4RegGroup* HoI4World::createArmy(const inverseProvinceMapping& inverseProvinc
 	// handle navies
 	if (oldArmy->getNavy())
 	{
-		for (auto regiment: sourceRegiments)
+		for (auto regiment: regiments)
 		{
 			destArmy->addRegiment(*regiment, true);
 		}
@@ -1206,7 +1205,7 @@ HoI4RegGroup* HoI4World::createArmy(const inverseProvinceMapping& inverseProvinc
 
 	// separate all air regiments into the air force
 	vector<HoI4Regiment*> unprocessedRegiments;
-	for (auto regiment: sourceRegiments)
+	for (auto regiment: regiments)
 	{
 		// Add to army/navy or newly created air force as appropriate
 		if (regiment->getForceType() == air)
@@ -1231,14 +1230,14 @@ HoI4RegGroup* HoI4World::createArmy(const inverseProvinceMapping& inverseProvinc
 		}
 		destArmy->addChild(destWing, true);
 	}
-	sourceRegiments.swap(unprocessedRegiments);
+	regiments.swap(unprocessedRegiments);
 	unprocessedRegiments.clear();
 
 	// put all 'armored' type regiments together
 	HoI4RegGroup armored;
 	armored.setForceType(land);
 	armored.setLocation(selectedLocation);
-	for (auto regiment: sourceRegiments)
+	for (auto regiment: regiments)
 	{
 		// Add to army/navy or newly created air force as appropriate
 		if ((regiment->getType().getName() == L"light_armor_brigade") ||
@@ -1259,14 +1258,14 @@ HoI4RegGroup* HoI4World::createArmy(const inverseProvinceMapping& inverseProvinc
 	{
 		destArmy->addChild(armored, true);
 	}
-	sourceRegiments.swap(unprocessedRegiments);
+	regiments.swap(unprocessedRegiments);
 	unprocessedRegiments.clear();
 
 	// put all 'specialist' type regiments together
 	HoI4RegGroup specialist;
 	specialist.setForceType(land);
 	specialist.setLocation(selectedLocation);
-	for (auto regiment: sourceRegiments)
+	for (auto regiment: regiments)
 	{
 		// Add to army/navy or newly created air force as appropriate
 		if ((regiment->getType().getName() == L"bergsjaeger_brigade") ||
@@ -1285,7 +1284,7 @@ HoI4RegGroup* HoI4World::createArmy(const inverseProvinceMapping& inverseProvinc
 	{
 		destArmy->addChild(specialist, true);
 	}
-	sourceRegiments.swap(unprocessedRegiments);
+	regiments.swap(unprocessedRegiments);
 	unprocessedRegiments.clear();
 
 	// make infantry and militia divisions, with support regiments added
@@ -1296,15 +1295,14 @@ HoI4RegGroup* HoI4World::createArmy(const inverseProvinceMapping& inverseProvinc
 		newGroup.setLocation(selectedLocation);
 
 		// get the first regiment (required)
-		for (vector<HoI4Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+		for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
 		{
-			HoI4Regiment* regiment = *itr;
-			if ((regiment->getType().getName() == L"infantry_brigade") ||
-				 (regiment->getType().getName() == L"militia_brigade")
+			if (((*regiment)->getType().getName() == L"infantry_brigade") ||
+				 ((*regiment)->getType().getName() == L"militia_brigade")
 				)
 			{
-				newGroup.addRegiment(*regiment, true);
-				sourceRegiments.erase(itr);
+				newGroup.addRegiment(**regiment, true);
+				regiments.erase(regiment);
 				break;
 			}
 		}
@@ -1314,47 +1312,44 @@ HoI4RegGroup* HoI4World::createArmy(const inverseProvinceMapping& inverseProvinc
 		}
 
 		// get the second regiment (not required)
-		for (vector<HoI4Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+		for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
 		{
-			HoI4Regiment* regiment = *itr;
-			if ((regiment->getType().getName() == L"infantry_brigade") ||
-				(regiment->getType().getName() == L"militia_brigade")
+			if (((*regiment)->getType().getName() == L"infantry_brigade") ||
+				((*regiment)->getType().getName() == L"militia_brigade")
 				)
 			{
-				newGroup.addRegiment(*regiment, true);
-				sourceRegiments.erase(itr);
+				newGroup.addRegiment(**regiment, true);
+				regiments.erase(regiment);
 				break;
 			}
 		}
 
 		// get the support first regiment (not required, non-engineer preferred)
 		int numSupport = 0;
-		for (vector<HoI4Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+		for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
 		{
-			HoI4Regiment* regiment = *itr;
-			if ((regiment->getType().getName() == L"anti_air_brigade") ||
-				 (regiment->getType().getName() == L"anti_tank_brigade") ||
-				 (regiment->getType().getName() == L"artillery_brigade")
+			if (((*regiment)->getType().getName() == L"anti_air_brigade") ||
+				 ((*regiment)->getType().getName() == L"anti_tank_brigade") ||
+				 ((*regiment)->getType().getName() == L"artillery_brigade")
 				)
 			{
-				newGroup.addRegiment(*regiment, true);
-				sourceRegiments.erase(itr);
+				newGroup.addRegiment(**regiment, true);
+				regiments.erase(regiment);
 				numSupport++;
 				break;
 			}
 		}
 
 		// get the second support regiment (not required, non-engineer preferred)
-		for (vector<HoI4Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+		for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
 		{
-			HoI4Regiment* regiment = *itr;
-			if ((regiment->getType().getName() == L"anti_air_brigade") ||
-				(regiment->getType().getName() == L"anti_tank_brigade") ||
-				(regiment->getType().getName() == L"artillery_brigade")
+			if (((*regiment)->getType().getName() == L"anti_air_brigade") ||
+				((*regiment)->getType().getName() == L"anti_tank_brigade") ||
+				((*regiment)->getType().getName() == L"artillery_brigade")
 				)
 			{
-				newGroup.addRegiment(*regiment, true);
-				sourceRegiments.erase(itr);
+				newGroup.addRegiment(**regiment, true);
+				regiments.erase(regiment);
 				numSupport++;
 				break;
 			}
@@ -1363,13 +1358,12 @@ HoI4RegGroup* HoI4World::createArmy(const inverseProvinceMapping& inverseProvinc
 		// add engineers as needed and available
 		if (numSupport < 2)
 		{
-			for (vector<HoI4Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+			for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
 			{
-				HoI4Regiment* regiment = *itr;
-				if (regiment->getType().getName() == L"engineer_brigade")
+				if ((*regiment)->getType().getName() == L"engineer_brigade")
 				{
-					newGroup.addRegiment(*regiment, true);
-					sourceRegiments.erase(itr);
+					newGroup.addRegiment(**regiment, true);
+					regiments.erase(regiment);
 					numSupport++;
 					break;
 				}
@@ -1377,13 +1371,12 @@ HoI4RegGroup* HoI4World::createArmy(const inverseProvinceMapping& inverseProvinc
 		}
 		if (numSupport < 2)
 		{
-			for (vector<HoI4Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+			for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
 			{
-				HoI4Regiment* regiment = *itr;
-				if (regiment->getType().getName() == L"engineer_brigade")
+				if ((*regiment)->getType().getName() == L"engineer_brigade")
 				{
-					newGroup.addRegiment(*regiment, true);
-					sourceRegiments.erase(itr);
+					newGroup.addRegiment(**regiment, true);
+					regiments.erase(regiment);
 					break;
 				}
 			}
@@ -1400,13 +1393,12 @@ HoI4RegGroup* HoI4World::createArmy(const inverseProvinceMapping& inverseProvinc
 		newGroup.setLocation(selectedLocation);
 
 		// get the first regiment (required)
-		for (vector<HoI4Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+		for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
 		{
-			HoI4Regiment* regiment = *itr;
-			if ((regiment->getType().getName() == L"cavalry_brigade"))
+			if (((*regiment)->getType().getName() == L"cavalry_brigade"))
 			{
-				newGroup.addRegiment(*regiment, true);
-				sourceRegiments.erase(itr);
+				newGroup.addRegiment(**regiment, true);
+				regiments.erase(regiment);
 				break;
 			}
 		}
@@ -1416,13 +1408,12 @@ HoI4RegGroup* HoI4World::createArmy(const inverseProvinceMapping& inverseProvinc
 		}
 
 		// get the second regiment (required to continue)
-		for (vector<HoI4Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+		for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
 		{
-			HoI4Regiment* regiment = *itr;
-			if ((regiment->getType().getName() == L"cavalry_brigade"))
+			if (((*regiment)->getType().getName() == L"cavalry_brigade"))
 			{
-				newGroup.addRegiment(*regiment, true);
-				sourceRegiments.erase(itr);
+				newGroup.addRegiment(**regiment, true);
+				regiments.erase(regiment);
 				break;
 			}
 		}
@@ -1433,25 +1424,23 @@ HoI4RegGroup* HoI4World::createArmy(const inverseProvinceMapping& inverseProvinc
 		}
 
 		// get the first engineer regiment (not required)
-		for (vector<HoI4Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+		for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
 		{
-			HoI4Regiment* regiment = *itr;
-			if (regiment->getType().getName() == L"engineer_brigade")
+			if ((*regiment)->getType().getName() == L"engineer_brigade")
 			{
-				newGroup.addRegiment(*regiment, true);
-				sourceRegiments.erase(itr);
+				newGroup.addRegiment(**regiment, true);
+				regiments.erase(regiment);
 				break;
 			}
 		}
 
 		// get the second engineer regiment (not required)
-		for (vector<HoI4Regiment*>::iterator itr = sourceRegiments.begin(); itr != sourceRegiments.end(); itr++)
+		for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
 		{
-			HoI4Regiment* regiment = *itr;
-			if (regiment->getType().getName() == L"engineer_brigade")
+			if ((*regiment)->getType().getName() == L"engineer_brigade")
 			{
-				newGroup.addRegiment(*regiment, true);
-				sourceRegiments.erase(itr);
+				newGroup.addRegiment(**regiment, true);
+				regiments.erase(regiment);
 				break;
 			}
 		}
@@ -1459,10 +1448,10 @@ HoI4RegGroup* HoI4World::createArmy(const inverseProvinceMapping& inverseProvinc
 		destArmy->addChild(newGroup, true);
 	}
 
-	if (sourceRegiments.size() > 0)
+	if (regiments.size() > 0)
 	{
 		LOG(LogLevel::Warning) << "Leftover regiments in " << tag << "'s army " << oldArmy->getName() << ". Likely too many support units.";
-		for (auto regiment: sourceRegiments)
+		for (auto regiment: regiments)
 		{
 			HoI4RegGroup newGroup;
 			newGroup.setForceType(land);
@@ -1702,28 +1691,28 @@ void HoI4World::setFactionMembers(const V2World &sourceWorld, const CountryMappi
 
 		// Comintern get a boost to its membership for being internationalistic
 		// Go through all stalinist, leninist countries and add them to comintern if they're not hostile to leader
-		for (map<wstring, HoI4Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+		for (auto country: countries)
 		{
-			const wstring government = itr->second->getGovernment();
-			const wstring ideology = itr->second->getIdeology();
+			const wstring government = country.second->getGovernment();
+			const wstring ideology = country.second->getIdeology();
 			if (
 				(government == L"socialist_republic" || government == L"federal_socialist_republic") &&
 				(ideology == L"left_wing_radical" || ideology == L"leninist" || ideology == L"stalinist")
 				)
 			{
-				if (itr->second->getFaction() == L"") // Skip if already a faction member
+				if (country.second->getFaction() == L"") // Skip if already a faction member
 				{
 					if (cominternLeader == L"")
 					{
-						cominternLeader = itr->first; // Faction leader
-						itr->second->setFaction(L"comintern");
-						itr->second->setFactionLeader();
+						cominternLeader = country.first; // Faction leader
+						country.second->setFaction(L"comintern");
+						country.second->setFactionLeader();
 					}
 					else
 					{
 						// Check if enemy of leader
 						bool enemy = false;
-						const map<wstring, HoI4Relations*> &relations = itr->second->getRelations();
+						const map<wstring, HoI4Relations*> &relations = country.second->getRelations();
 						map<wstring, HoI4Relations*>::const_iterator relationItr = relations.find(cominternLeader);
 						if (relationItr != relations.end() && relationItr->second->atWar())
 						{
@@ -1732,7 +1721,7 @@ void HoI4World::setFactionMembers(const V2World &sourceWorld, const CountryMappi
 
 						if (!enemy)
 						{
-							itr->second->setFaction(L"comintern");
+							country.second->setFaction(L"comintern");
 						}
 					}
 				}
