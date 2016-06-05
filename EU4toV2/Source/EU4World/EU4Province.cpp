@@ -37,6 +37,7 @@ EU4Province::EU4Province(Object* obj)
 	provMPWeight = 0;
 	provBuildingWeight = 0;
 	provTradeGoodWeight = 0;
+	provDevModifier = 0;
 
 
 	numV2Provs = 0;
@@ -642,11 +643,12 @@ void EU4Province::determineProvinceWeight()
 	provProdIncome			= production_income;
 	provMPWeight			= manpower_weight;
 	provTradeGoodWeight	= trade_goods_weight;
+	provDevModifier	= dev_modifier;
 	
 	// dev modifier
-	dev_modifier *= (baseTax + baseProd + manpower);
+	dev_modifier *= ( baseTax + baseProd + manpower );
 
-	totalWeight = building_weight + dev_modifier + ( manpower_weight + production_income + total_tx);
+	totalWeight = building_weight + dev_modifier + ( manpower_weight + production_income + total_tx );
 	//i would change dev effect to 1, but your choice
 	if (owner == NULL)
 	{
