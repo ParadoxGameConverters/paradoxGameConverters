@@ -76,6 +76,7 @@ class EU4Province {
 		double					getProvProdIncome() const { return provProdIncome; }
 		double					getProvMPWeight() const { return provMPWeight; }
 		double					getProvTotalBuildingWeight() const { return provBuildingWeight; }
+		double					getProvTotalDevModifier() const { return provDevModifier; }
 		double					getCurrTradeGoodWeight() const { return provTradeGoodWeight; }
 
 		std::vector<double>	getProvProductionVec() const { return provProductionVec; }
@@ -117,6 +118,7 @@ class EU4Province {
 		double								provMPWeight;
 		double								provBuildingWeight;
 		double								provTradeGoodWeight;
+		double								provDevModifier;
 
 		std::vector<double>				provProductionVec;
 
