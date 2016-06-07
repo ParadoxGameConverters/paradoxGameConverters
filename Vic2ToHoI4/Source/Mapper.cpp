@@ -53,11 +53,11 @@ void initProvinceMap(Object* obj, provinceMapping& provinceMap, provinceMapping&
 		vector<Object*> vMaps = mapping->getLeaves();	// the items within the mapping
 		for (auto item: vMaps)
 		{
-			if (item->getKey() == L"vic")
+			if (item->getKey() == L"vic2")
 			{
 				V2nums.push_back(_wtoi(item->getLeaf().c_str()));
 			}
-			else if (item->getKey() == L"hoi")
+			else if (item->getKey() == L"hoi4")
 			{
 				HoI4nums.push_back(_wtoi(item->getLeaf().c_str()));
 			}

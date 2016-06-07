@@ -761,15 +761,15 @@ void HoI4Country::consolidateProvinceItems(const inverseProvinceMapping& inverse
 	double leftoverLeadership	= 0.0;
 	double leftoverIndustry		= 0.0;
 
-	V2State capitalState;
+	Vic2State capitalState;
 
-	vector<V2State> states = srcCountry->getStates();
+	vector<Vic2State> states = srcCountry->getStates();
 	for (auto stateItr: states)
 	{
 		double stateManpower		= 0.0;
 		double stateLeadership	= 0.0;
 		double stateIndustry		= 0.0;
-		for (auto srcProvinceItr: stateItr.provinces)
+		for (auto srcProvinceItr: stateItr.getProvinces())
 		{
 			auto possibleHoI4Provinces = inverseProvinceMap.find(srcProvinceItr);
 			if (possibleHoI4Provinces != inverseProvinceMap.end())
@@ -810,9 +810,9 @@ void HoI4Country::consolidateProvinceItems(const inverseProvinceMapping& inverse
 		totalLeadership	+= stateLeadership;
 		totalIndustry		+= stateIndustry;
 
-		if (stateItr.provinces.size() > 0)
+		if (stateItr.getProvinces().size() > 0)
 		{
-			auto possibleHoI4Provinces = inverseProvinceMap.find(stateItr.provinces[0]);
+			auto possibleHoI4Provinces = inverseProvinceMap.find(stateItr.getProvinces()[0]);
 			if (possibleHoI4Provinces != inverseProvinceMap.end())
 			{
 				auto provinceItr = provinces.find(possibleHoI4Provinces->second[0]);
@@ -837,7 +837,7 @@ void HoI4Country::consolidateProvinceItems(const inverseProvinceMapping& inverse
 			}
 			if (convertIndustry)
 			{
-				for (auto vic2ProvNum: stateItr.provinces)
+				for (auto vic2ProvNum: stateItr.getProvinces())
 				{
 					auto possibleHoI4Provinces = inverseProvinceMap.find(vic2ProvNum);
 					if (possibleHoI4Provinces != inverseProvinceMap.end())
@@ -897,7 +897,7 @@ void HoI4Country::consolidateProvinceItems(const inverseProvinceMapping& inverse
 			}
 			capitalItr->second->setActualIndustry(intIndustry);
 			leftoverIndustry -= intIndustry;
-			for (auto vic2ProvinceNum: capitalState.provinces)
+			for (auto vic2ProvinceNum: capitalState.getProvinces())
 			{
 				auto possibleHoI4Provinces = inverseProvinceMap.find(vic2ProvinceNum);
 				if (possibleHoI4Provinces != inverseProvinceMap.end())
@@ -1228,9 +1228,9 @@ void HoI4Country::addMinimalItems(const inverseProvinceMapping& inverseProvinceM
 
 	for (auto state: srcCountry->getStates())
 	{
-		if (state.provinces.size() > 0)
+		if (state.getProvinces().size() > 0)
 		{
-			auto possibleHoI4Provinces = inverseProvinceMap.find(state.provinces[0]);
+			auto possibleHoI4Provinces = inverseProvinceMap.find(state.getProvinces()[0]);
 			if (possibleHoI4Provinces != inverseProvinceMap.end())
 			{
 				if (possibleHoI4Provinces->second.size() > 0)

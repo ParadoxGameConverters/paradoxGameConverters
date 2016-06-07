@@ -18,4 +18,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 0.0.0 = {
+	# ######
+	# ##  North America
+	# ######
+	# ## USA
+	# # California
+	link = { vic2 = 87 hoi4 = 9637 hoi4 = 6861 hoi4 = 3677 hoi4 = 3840 hoi4 = 986 hoi4 = 3784 hoi4 = 11876 hoi4 = 6881 }	# Monterey -> land, land, land, land, land, land, land, land
 }

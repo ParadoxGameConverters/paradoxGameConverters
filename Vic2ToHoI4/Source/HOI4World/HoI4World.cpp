@@ -37,6 +37,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../V2World/V2Province.h"
 #include "../V2World/V2Party.h"
 #include "HoI4Relations.h"
+#include "HoI4State.h"
 
 
 typedef struct fileWithCreateTime
@@ -186,7 +187,7 @@ void HoI4World::output() const
 	outputCommonCountries();
 	//outputAutoexecLua();
 	//outputLocalisations();
-	//outputHistory();
+	outputHistory();
 }
 
 
@@ -199,7 +200,6 @@ void HoI4World::outputCommonCountries() const
 		LOG(LogLevel::Error) << L"Could not create \"Output\\" + Configuration::getOutputName() + L"\\common\"";
 		exit(-1);
 	}
-	countriesPath ;
 	if (!WinUtils::TryCreateFolder(countriesPath + L"\\countries"))
 	{
 		LOG(LogLevel::Error) << L"Could not create \"Output\\" + Configuration::getOutputName() + L"\\common\\countries\"";
@@ -359,26 +359,32 @@ void HoI4World::outputLocalisations() const
 
 void HoI4World::outputHistory() const
 {
-	LOG(LogLevel::Debug) << "Writing provinces";
-	for (auto provItr: provinces)
+	LOG(LogLevel::Debug) << "Writing states";
+	wstring statesPath = L"Output/" + Configuration::getOutputName() + L"/history/states";
+	if (!WinUtils::TryCreateFolder(statesPath))
 	{
-		provItr.second->output();
+		LOG(LogLevel::Error) << L"Could not create \"Output/" + Configuration::getOutputName() + L"/history/states";
+		exit(-1);
 	}
-	LOG(LogLevel::Debug) << "Writing countries";
-	for (auto countryItr: countries)
+	for (auto state: states)
 	{
-		countryItr.second->output();
+		state.output();
 	}
-	// Override vanilla history to suppress vanilla OOB and faction membership being read
-	for (auto potentialItr: potentialCountries)
-	{
-		if (countries.find(potentialItr.first) == countries.end())
-		{
-			potentialItr.second->output();
-		}
-	}
-	LOG(LogLevel::Debug) << "Writing diplomacy";
-	diplomacy.output();
+	//LOG(LogLevel::Debug) << "Writing countries";
+	//for (auto countryItr: countries)
+	//{
+	//	countryItr.second->output();
+	//}
+	//// Override vanilla history to suppress vanilla OOB and faction membership being read
+	//for (auto potentialItr: potentialCountries)
+	//{
+	//	if (countries.find(potentialItr.first) == countries.end())
+	//	{
+	//		potentialItr.second->output();
+	//	}
+	//}
+	//LOG(LogLevel::Debug) << "Writing diplomacy";
+	//diplomacy.output();
 }
 
 
@@ -475,115 +481,146 @@ struct MTo1ProvinceComp
 };
 
 
-void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const provinceMapping& provinceMap, const CountryMapping& countryMap)
+void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap)
 {
-	for (auto provItr : provinces)
+	// create states based on Vic2 states
+	//		create a lookup table of Vic2 states by Vic2 provinces
+	//		create 
+	// go through all province mappings to determine province owners
+	//		
+
+	int stateId = 1;
+	for (auto country: sourceWorld.getCountries())
 	{
-		// get the appropriate mapping
-		provinceMapping::const_iterator provinceLink = provinceMap.find(provItr.first);
-		if ((provinceLink == provinceMap.end()) || (provinceLink->second.size() == 0))
+		wstring HoI4Tag = countryMap.GetHoI4Tag(country.first);
+		for (auto vic2State: country.second->getStates())
 		{
-			LOG(LogLevel::Warning) << "No source for " << provItr.second->getName() << " (province " << provItr.first << ')';
-			continue;
-		}
-		else if (provinceLink->second[0] == 0)
-		{
-			continue;
-		}
+			HoI4State newState(stateId, HoI4Tag);
 
-		provItr.second->clearCores();
-
-		V2Province*	oldProvince = NULL;
-		V2Country*	oldOwner = NULL;
-
-		// determine ownership by province count, or total population (if province count is tied)
-		map<wstring, MTo1ProvinceComp> provinceBins;
-		double newProvinceTotalPop = 0;
-		for (auto srcProvItr : provinceLink->second)
-		{
-			V2Province* srcProvince = sourceWorld.getProvince(srcProvItr);
-			if (!srcProvince)
+			for (auto vic2Province: vic2State.getProvinces())
 			{
-				LOG(LogLevel::Warning) << "Old province " << provinceLink->second[0] << " does not exist (bad mapping?)";
-				continue;
-			}
-			V2Country* owner = srcProvince->getOwner();
-			wstring tag;
-			if (owner != NULL)
-			{
-				tag = owner->getTag();
-			}
-			else
-			{
-				tag = L"";
-			}
-
-			if (provinceBins.find(tag) == provinceBins.end())
-			{
-				provinceBins[tag] = MTo1ProvinceComp();
-			}
-			provinceBins[tag].provinces.push_back(srcProvince);
-			provinceBins[tag].totalPopulation += srcProvince->getTotalPopulation();
-			newProvinceTotalPop += srcProvince->getTotalPopulation();
-			// I am the new owner if there is no current owner, or I have more provinces than the current owner,
-			// or I have the same number of provinces, but more population, than the current owner
-			if ((oldOwner == NULL)
-				|| (provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size())
-				|| ((provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size())
-					&& (provinceBins[tag].totalPopulation > provinceBins[oldOwner->getTag()].totalPopulation)))
-			{
-				oldOwner = owner;
-				oldProvince = srcProvince;
-			}
-		}
-		if (oldOwner == NULL)
-		{
-			provItr.second->setOwner(L"");
-			continue;
-		}
-
-		// convert from the source provinces
-		const wstring HoI4Tag = countryMap[oldOwner->getTag()];
-		if (HoI4Tag.empty())
-		{
-			LOG(LogLevel::Warning) << "Could not map provinces owned by " << oldOwner->getTag();
-		}
-		else
-		{
-			provItr.second->setOwner(HoI4Tag);
-			map<wstring, HoI4Country*>::iterator ownerItr = countries.find(HoI4Tag);
-			if (ownerItr != countries.end())
-			{
-				ownerItr->second->addProvince(provItr.second);
-			}
-			provItr.second->convertFromOldProvince(oldProvince);
-
-			for (auto srcOwnerItr : provinceBins)
-			{
-				for (auto srcProvItr : srcOwnerItr.second.provinces)
+				auto provMapping = inverseProvinceMap.find(vic2Province);
+				if (provMapping != inverseProvinceMap.end())
 				{
-					// convert cores
-					vector<V2Country*> oldCores = srcProvItr->getCores(sourceWorld.getCountries());
-					for (auto oldCoreItr : oldCores)
+					for (auto HoI4ProvNum: provMapping->second)
 					{
-						// skip this core if the country is the owner of the V2 province but not the HoI4 province
-						// (i.e. "avoid boundary conflicts that didn't exist in V2").
-						// this country may still get core via a province that DID belong to the current HoI4 owner
-						if ((oldCoreItr->getTag() == srcOwnerItr.first) && (oldCoreItr != oldOwner))
-						{
-							continue;
-						}
-
-						const wstring coreOwner = countryMap[oldCoreItr->getTag()];
-						if (coreOwner != L"")
-						{
-							provItr.second->addCore(coreOwner);
-						}
+						newState.addProvince(HoI4ProvNum);
 					}
 				}
 			}
+			
+			states.push_back(newState);
+			stateId++;
 		}
 	}
+
+	//for (auto provItr : provinces)
+	//{
+	//	// get the appropriate mapping
+	//	provinceMapping::const_iterator provinceLink = provinceMap.find(provItr.first);
+	//	if ((provinceLink == provinceMap.end()) || (provinceLink->second.size() == 0))
+	//	{
+	//		LOG(LogLevel::Warning) << "No source for " << provItr.second->getName() << " (province " << provItr.first << ')';
+	//		continue;
+	//	}
+	//	else if (provinceLink->second[0] == 0)
+	//	{
+	//		continue;
+	//	}
+
+	//	provItr.second->clearCores();
+
+	//	V2Province*	oldProvince = NULL;
+	//	V2Country*	oldOwner = NULL;
+
+	//	// determine ownership by province count, or total population (if province count is tied)
+	//	map<wstring, MTo1ProvinceComp> provinceBins;
+	//	double newProvinceTotalPop = 0;
+	//	for (auto srcProvItr : provinceLink->second)
+	//	{
+	//		V2Province* srcProvince = sourceWorld.getProvince(srcProvItr);
+	//		if (!srcProvince)
+	//		{
+	//			LOG(LogLevel::Warning) << "Old province " << provinceLink->second[0] << " does not exist (bad mapping?)";
+	//			continue;
+	//		}
+	//		V2Country* owner = srcProvince->getOwner();
+	//		wstring tag;
+	//		if (owner != NULL)
+	//		{
+	//			tag = owner->getTag();
+	//		}
+	//		else
+	//		{
+	//			tag = L"";
+	//		}
+
+	//		if (provinceBins.find(tag) == provinceBins.end())
+	//		{
+	//			provinceBins[tag] = MTo1ProvinceComp();
+	//		}
+	//		provinceBins[tag].provinces.push_back(srcProvince);
+	//		provinceBins[tag].totalPopulation += srcProvince->getTotalPopulation();
+	//		newProvinceTotalPop += srcProvince->getTotalPopulation();
+	//		// I am the new owner if there is no current owner, or I have more provinces than the current owner,
+	//		// or I have the same number of provinces, but more population, than the current owner
+	//		if ((oldOwner == NULL)
+	//			|| (provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size())
+	//			|| ((provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size())
+	//				&& (provinceBins[tag].totalPopulation > provinceBins[oldOwner->getTag()].totalPopulation)))
+	//		{
+	//			oldOwner = owner;
+	//			oldProvince = srcProvince;
+	//		}
+	//	}
+	//	if (oldOwner == NULL)
+	//	{
+	//		provItr.second->setOwner(L"");
+	//		continue;
+	//	}
+
+	//	// convert from the source provinces
+	//	const wstring HoI4Tag = countryMap[oldOwner->getTag()];
+	//	if (HoI4Tag.empty())
+	//	{
+	//		LOG(LogLevel::Warning) << "Could not map provinces owned by " << oldOwner->getTag();
+	//	}
+	//	else
+	//	{
+	//		provItr.second->setOwner(HoI4Tag);
+	//		map<wstring, HoI4Country*>::iterator ownerItr = countries.find(HoI4Tag);
+	//		if (ownerItr != countries.end())
+	//		{
+	//			ownerItr->second->addProvince(provItr.second);
+	//		}
+	//		provItr.second->convertFromOldProvince(oldProvince);
+
+	//		for (auto srcOwnerItr : provinceBins)
+	//		{
+	//			for (auto srcProvItr : srcOwnerItr.second.provinces)
+	//			{
+	//				// convert cores
+	//				vector<V2Country*> oldCores = srcProvItr->getCores(sourceWorld.getCountries());
+	//				for (auto oldCoreItr : oldCores)
+	//				{
+	//					// skip this core if the country is the owner of the V2 province but not the HoI4 province
+	//					// (i.e. "avoid boundary conflicts that didn't exist in V2").
+	//					// this country may still get core via a province that DID belong to the current HoI4 owner
+	//					if ((oldCoreItr->getTag() == srcOwnerItr.first) && (oldCoreItr != oldOwner))
+	//					{
+	//						continue;
+	//					}
+
+	//					const wstring coreOwner = countryMap[oldCoreItr->getTag()];
+	//					if (coreOwner != L"")
+	//					{
+	//						provItr.second->addCore(coreOwner);
+	//					}
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
 }
 
 

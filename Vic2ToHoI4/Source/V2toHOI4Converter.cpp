@@ -416,8 +416,8 @@ int ConvertV2ToHoI4(const std::wstring& V2SaveFileName)
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
 	destWorld.convertCountries(sourceWorld, countryMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
-	LOG(LogLevel::Info) << "Converting provinces";
-	destWorld.convertProvinceOwners(sourceWorld, provinceMap, countryMap);
+	LOG(LogLevel::Info) << "Converting states";
+	destWorld.convertProvinceOwners(sourceWorld, inverseProvinceMap, countryMap);
 	destWorld.convertNavalBases(sourceWorld, inverseProvinceMap);
 	destWorld.convertProvinceItems(sourceWorld, provinceMap, inverseProvinceMap, countryMap, HoI4AdjacencyMap);
 	destWorld.consolidateProvinceItems(inverseProvinceMap);
@@ -449,14 +449,11 @@ int ConvertV2ToHoI4(const std::wstring& V2SaveFileName)
 		exit(-1);
 	}
 	fwprintf(modFile, L"name = \"Converted - %s\"\n", Configuration::getOutputName().c_str());
-	fwprintf(modFile, L"path = mod/%s\"\n", Configuration::getOutputName().c_str());
+	fwprintf(modFile, L"path = \"mod/%s\"\n", Configuration::getOutputName().c_str());
 	fwprintf(modFile, L"user_dir = \"%s_user_dir\"\n", Configuration::getOutputName().c_str());
 	fwprintf(modFile, L"replace = \"history/countries\"\n");
-	fwprintf(modFile, L"replace = \"history/diplomacy\"\n");
-	fwprintf(modFile, L"replace = \"history/provinces\"\n");
-	fwprintf(modFile, L"replace = \"script\"\n");
-	fwprintf(modFile, L"replace_path = \"events\"\n");
-	fwprintf(modFile, L"replace_path = \"decisions\"\n");
+	//fwprintf(modFile, L"replace = \"history/diplomacy\"\n");
+	fwprintf(modFile, L"replace = \"history/states\"\n");
 	fclose(modFile);
 	wstring renameCommand = L"move /Y output\\output output\\" + Configuration::getOutputName();	// the command to rename the mod correctly
 	_wsystem(renameCommand.c_str());

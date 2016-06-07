@@ -32,6 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Inventions.h"
 #include "V2Localisation.h"
 #include "V2Province.h"
+#include "Vic2State.h"
 #include <vector>
 #include <map>
 #include <set>
@@ -47,13 +48,6 @@ class		V2Province;
 class		V2Reforms;
 class		V2Relations;
 class		V2World;
-
-
-typedef struct V2State
-{
-	vector<int>		provinces;
-	int				factoryLevels;
-} V2State;
 
 
 
@@ -73,7 +67,7 @@ class V2Country
 		void								putWorkersInProvinces();
 
 		map<wstring, V2Relations*>	getRelations()													const { return relations; }
-		vector<V2State>				getStates()														const { return states; }
+		vector<Vic2State>				getStates()														const { return states; }
 		map<int, V2Province*>		getProvinces()													const { return provinces; }
 		vector<V2Province*>			getCores()														const { return cores; }
 		wstring							getTag()															const { return tag; }
@@ -132,7 +126,7 @@ class V2Country
 
 	private:
 		wstring							tag;
-		vector<V2State>				states;
+		vector<Vic2State>				states;
 		map<int, V2Province*>		provinces;	// ID, province
 		vector<V2Province*>			cores;
 		int								capital;

@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Country.h"
 #include "HoI4Province.h"
 #include "HoI4Diplomacy.h"
+#include "HoI4State.h"
 #include "../Mapper.h"
 
 
@@ -46,7 +47,7 @@ class HoI4World
 		void	checkCoastalProvinces();
 		void	importPotentialCountries();
 		void	convertCountries(const V2World &sourceWorld, const CountryMapping& countryMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
-		void	convertProvinceOwners(const V2World &sourceWorld, const provinceMapping& provinceMap, const CountryMapping& countryMap);
+		void	convertProvinceOwners(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap);
 		void	convertNavalBases(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap);
 		void	convertProvinceItems(const V2World& sourceWorld, const provinceMapping& provinceMap, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		void	convertTechs(const V2World& sourceWorld);
@@ -82,12 +83,13 @@ class HoI4World
 		void	outputLocalisations() const;
 		void	outputHistory() const;
 
+		vector<HoI4State>				states;
 		map<int, HoI4Province*>		provinces;
 		map<wstring, HoI4Country*>	countries;
 		map<wstring,HoI4Country*>	potentialCountries;
 		HoI4Diplomacy					diplomacy;
 		map<int, wstring>				continents;  // < province, continent >
-		vector<wstring>					countryOrder; // Order of countries in common\countries.txt. Used for determining faction leader. Also, REB should be first.
+		vector<wstring>				countryOrder; // Order of countries in common\countries.txt. Used for determining faction leader. Also, REB should be first.
 
 		wstring axisLeader;
 		wstring alliesLeader;

@@ -6,11 +6,11 @@ configuration =
 	# Victoria 2 Documents directory: a path on your computer where Victoria 2 keeps temporary files
 	V2Documentsdirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Victoria II"
 
-	# HoI4 directory: a path on your computer where Hearts of Iron III is installed
-	HoI3directory = "C:\Program Files (x86)\Steam\SteamApps\common\Hearts of Iron 4"
+	# HoI4 directory: a path on your computer where Hearts of Iron IV is installed
+	HoI4directory = "D:\SteamLibrary\SteamApps\common\Hearts of Iron IV"
 
-	# HoI4 Documents directory: a path on your computer where Hearts of Iron III keeps temporary files
-	HoI3Documentsdirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Hearts of Iron III"
+	# HoI4 Documents directory: a path on your computer where Hearts of Iron IV keeps temporary files
+	HoI4Documentsdirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Hearts of Iron IV"
 
 	# Vic2Mods: Vic2 mods to use for conversion
 	# Example: Vic2Mods = { modname1 modname2 }
