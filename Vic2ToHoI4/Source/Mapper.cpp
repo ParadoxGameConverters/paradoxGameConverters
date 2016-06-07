@@ -119,33 +119,33 @@ vector<int> getHoI4ProvinceNums(inverseProvinceMapping invProvMap, const int v2P
 
 HoI4AdjacencyMapping initHoI4AdjacencyMap()
 {
-	FILE* adjacenciesBin = NULL;	// the adjacencies.bin file
-	wstring filename = Configuration::getHoI4Path() + L"\\tfh\\map\\cache\\adjacencies.bin";
-	_wfopen_s(&adjacenciesBin, filename.c_str(), L"rb");
-	if (adjacenciesBin == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not open " << filename;
-		exit(1);
-	}
+	//FILE* adjacenciesBin = NULL;	// the adjacencies.bin file
+	//wstring filename = Configuration::getHoI4Path() + L"\\tfh\\map\\cache\\adjacencies.bin";
+	//_wfopen_s(&adjacenciesBin, filename.c_str(), L"rb");
+	//if (adjacenciesBin == NULL)
+	//{
+	//	LOG(LogLevel::Error) << "Could not open " << filename;
+	//	exit(1);
+	//}
 
 	HoI4AdjacencyMapping adjacencyMap;	// the adjacency mapping
-	while (!feof(adjacenciesBin))
-	{
-		int numAdjacencies;	// the total number of adjacencies
-		if (fread(&numAdjacencies, sizeof(numAdjacencies), 1, adjacenciesBin) != 1)
-		{
-			break;
-		}
-		vector<adjacency> adjacencies;	// the adjacencies for the current province
-		for (int i = 0; i < numAdjacencies; i++)
-		{
-			adjacency newAdjacency;	// the current adjacency
-			fread(&newAdjacency, sizeof(newAdjacency), 1, adjacenciesBin);
-			adjacencies.push_back(newAdjacency);
-		}
-		adjacencyMap.push_back(adjacencies);
-	}
-	fclose(adjacenciesBin);
+	//while (!feof(adjacenciesBin))
+	//{
+	//	int numAdjacencies;	// the total number of adjacencies
+	//	if (fread(&numAdjacencies, sizeof(numAdjacencies), 1, adjacenciesBin) != 1)
+	//	{
+	//		break;
+	//	}
+	//	vector<adjacency> adjacencies;	// the adjacencies for the current province
+	//	for (int i = 0; i < numAdjacencies; i++)
+	//	{
+	//		adjacency newAdjacency;	// the current adjacency
+	//		fread(&newAdjacency, sizeof(newAdjacency), 1, adjacenciesBin);
+	//		adjacencies.push_back(newAdjacency);
+	//	}
+	//	adjacencyMap.push_back(adjacencies);
+	//}
+	//fclose(adjacenciesBin);
 
 	// optional code to output data from the adjacencies map
 	/*FILE* adjacenciesData;

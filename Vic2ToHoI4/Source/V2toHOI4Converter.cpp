@@ -296,28 +296,28 @@ int ConvertV2ToHoI4(const std::wstring& V2SaveFileName)
 	map<int, int> leaderIDMap; // <V2, HoI4>
 
 	// Parse government jobs
-	LOG(LogLevel::Info) << "Parsing government jobs";
+	/*LOG(LogLevel::Info) << "Parsing government jobs";
 	parser_UTF8::initParser();
 	obj = parser_UTF8::doParseFile(L"governmentJobs.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file governmentJobs.txt";
 		exit(-1);
-	}
+	}*/
 	governmentJobsMap governmentJobs;
-	initGovernmentJobTypes(obj->getLeaves()[0], governmentJobs);
+	//initGovernmentJobTypes(obj->getLeaves()[0], governmentJobs);
 
 	// Parse leader traits
 	LOG(LogLevel::Info) << "Parsing government jobs";
-	parser_UTF8::initParser();
+	/*parser_UTF8::initParser();
 	obj = parser_UTF8::doParseFile(L"leader_traits.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file leader_traits.txt";
 		exit(-1);
-	}
+	}*/
 	leaderTraitsMap leaderTraits;
-	initLeaderTraitsMap(obj->getLeaves()[0], leaderTraits);
+	//initLeaderTraitsMap(obj->getLeaves()[0], leaderTraits);
 
 	// parse names
 	LOG(LogLevel::Info) << "Parsing names";
@@ -365,7 +365,7 @@ int ConvertV2ToHoI4(const std::wstring& V2SaveFileName)
 
 	// parse personality mapping
 	LOG(LogLevel::Info) << "Parsing personality mappings";
-	obj = parser_UTF8::doParseFile(L"personality_map.txt");
+	/*obj = parser_UTF8::doParseFile(L"personality_map.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file personality_map.txt";
@@ -375,14 +375,14 @@ int ConvertV2ToHoI4(const std::wstring& V2SaveFileName)
 	{
 		LOG(LogLevel::Error) << "Failed to parse personality_map.txt";
 		return 1;
-	}
+	}*/
 	personalityMap landPersonalityMap;
 	personalityMap seaPersonalityMap;
-	initLeaderPersonalityMap(obj->getLeaves()[0], landPersonalityMap, seaPersonalityMap);
+	//initLeaderPersonalityMap(obj->getLeaves()[0], landPersonalityMap, seaPersonalityMap);
 
 	// parse background mapping
 	LOG(LogLevel::Info) << "Parsing background mappings";
-	obj = parser_UTF8::doParseFile(L"background_map.txt");
+	/*obj = parser_UTF8::doParseFile(L"background_map.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file background_map.txt";
@@ -392,14 +392,14 @@ int ConvertV2ToHoI4(const std::wstring& V2SaveFileName)
 	{
 		LOG(LogLevel::Error) << "Failed to parse background_map.txt";
 		return 1;
-	}
+	}*/
 	backgroundMap landBackgroundMap;
 	backgroundMap seaBackgroundMap;
-	initLeaderBackgroundMap(obj->getLeaves()[0], landBackgroundMap, seaBackgroundMap);
+	//initLeaderBackgroundMap(obj->getLeaves()[0], landBackgroundMap, seaBackgroundMap);
 
 	// parse AI focus data
 	LOG(LogLevel::Info) << "Parsing AI focuses";
-	obj = parser_UTF8::doParseFile(L"ai_focus.txt");
+	/*obj = parser_UTF8::doParseFile(L"ai_focus.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file ai_focus.txt";
@@ -409,9 +409,9 @@ int ConvertV2ToHoI4(const std::wstring& V2SaveFileName)
 	{
 		LOG(LogLevel::Error) << "Failed to parse ai_focus.txt";
 		return 1;
-	}
+	}*/
 	AIFocusModifiers focusModifiers;
-	initAIFocusModifiers(obj, focusModifiers);
+	//initAIFocusModifiers(obj, focusModifiers);
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";

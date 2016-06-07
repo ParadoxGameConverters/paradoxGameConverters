@@ -31,7 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 HoI4RegimentType::HoI4RegimentType(wstring type)
 {
-	wstring	filename	= Configuration::getHoI4Path() + L"\\tfh\\units\\" + type + L".txt";
+	/*wstring	filename	= Configuration::getHoI4Path() + L"\\tfh\\units\\" + type + L".txt";
 	Object*	obj		= parser_UTF8::doParseFile(filename.c_str());
 	obj					= obj->getLeaves()[0];
 	name					= obj->getKey();
@@ -66,7 +66,7 @@ HoI4RegimentType::HoI4RegimentType(wstring type)
 
 	max_strength			= _wtoi(obj->getLeaf(L"max_strength").c_str());
 	practicalBonus			= obj->getLeaf(L"on_completion");
-	practicalBonusFactor	= _wtof(obj->getLeaf(L"completion_size").c_str());
+	practicalBonusFactor	= _wtof(obj->getLeaf(L"completion_size").c_str());*/
 }
 
 

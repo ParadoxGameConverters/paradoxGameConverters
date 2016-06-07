@@ -33,23 +33,23 @@ HoI4Leader::HoI4Leader(vector<wstring>& firstNames, vector<wstring>& lastNames, 
 	type		= _type;
 	skill		= 0;
 	rank		= 1;
-	picture	= portraits[rand() % portraits.size()];
+	//picture	= portraits[rand() % portraits.size()];
 
-	if (rand() % 4 > 0)
-	{
-		vector<wstring> allTraits = _traitsMap.find(_type)->second;
-		traits.push_back(allTraits[rand() % allTraits.size()]);
+	//if (rand() % 4 > 0)
+	//{
+	//	vector<wstring> allTraits = _traitsMap.find(_type)->second;
+	//	traits.push_back(allTraits[rand() % allTraits.size()]);
 
-		if (rand() % 10 > 8)
-		{
-			wstring secondTrait = allTraits[rand() % allTraits.size()];
-			while (traits[0] == secondTrait)
-			{
-				secondTrait = allTraits[rand() % allTraits.size()];
-			}
-			traits.push_back(secondTrait);
-		}
-	}
+	//	if (rand() % 10 > 8)
+	//	{
+	//		wstring secondTrait = allTraits[rand() % allTraits.size()];
+	//		while (traits[0] == secondTrait)
+	//		{
+	//			secondTrait = allTraits[rand() % allTraits.size()];
+	//		}
+	//		traits.push_back(secondTrait);
+	//	}
+	//}
 }
 
 
@@ -72,7 +72,7 @@ HoI4Leader::HoI4Leader(V2Leader* srcLeader, wstring _country, personalityMap& la
 		skill = 9;
 	}
 	rank		= 4;
-	picture	= portraits[rand() % portraits.size()];
+	//picture	= portraits[rand() % portraits.size()];
 
 	if (type == L"land")
 	{

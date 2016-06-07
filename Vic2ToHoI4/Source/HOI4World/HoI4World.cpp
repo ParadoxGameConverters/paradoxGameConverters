@@ -106,80 +106,76 @@ void HoI4World::checkCoastalProvinces()
 {
 	// determine whether each province is coastal or not by checking if it has a naval base
 	// if it's not coastal, we won't try to put any navies in it (otherwise HoI4 crashes)
-	Object*	obj2 = parser_UTF8::doParseFile((Configuration::getHoI4Path() + L"\\tfh\\map\\positions.txt").c_str());
-	vector<Object*> objProv = obj2->getLeaves();
-	if (objProv.size() == 0)
-	{
-		LOG(LogLevel::Error) << "map\\positions.txt failed to parse.";
-		exit(1);
-	}
-	for (auto itr: objProv)
-	{
-		int provinceNum = _wtoi(itr->getKey().c_str());
-		vector<Object*> objPos = itr->getValue(L"building_position");
-		if (objPos.size() == 0)
-		{
-			continue;
-		}
-		vector<Object*> objNavalBase = objPos[0]->getValue(L"naval_base");
-		if (objNavalBase.size() != 0)
-		{
-			// this province is coastal
-			map<int, HoI4Province*>::iterator pitr = provinces.find(provinceNum);
-			if (pitr != provinces.end())
-			{
-				pitr->second->setCoastal(true);
-			}
-		}
-	}
+	//Object*	obj2 = parser_UTF8::doParseFile((Configuration::getHoI4Path() + L"\\tfh\\map\\positions.txt").c_str());
+	//vector<Object*> objProv = obj2->getLeaves();
+	//if (objProv.size() == 0)
+	//{
+	//	LOG(LogLevel::Error) << "map\\positions.txt failed to parse.";
+	//	exit(1);
+	//}
+	//for (auto itr: objProv)
+	//{
+	//	int provinceNum = _wtoi(itr->getKey().c_str());
+	//	vector<Object*> objPos = itr->getValue(L"building_position");
+	//	if (objPos.size() == 0)
+	//	{
+	//		continue;
+	//	}
+	//	vector<Object*> objNavalBase = objPos[0]->getValue(L"naval_base");
+	//	if (objNavalBase.size() != 0)
+	//	{
+	//		// this province is coastal
+	//		map<int, HoI4Province*>::iterator pitr = provinces.find(provinceNum);
+	//		if (pitr != provinces.end())
+	//		{
+	//			pitr->second->setCoastal(true);
+	//		}
+	//	}
+	//}
 }
 
 
 void HoI4World::importPotentialCountries()
 {
+	potentialCountries.clear();
 	countries.clear();
 
 	LOG(LogLevel::Info) << "Getting potential countries";
-	potentialCountries.clear();
-	const date FirstStartDate(L"1936.1.1");
-	wifstream HoI4CountriesInput;
-	struct _stat st;
-	if (_wstat(L".\\blankMod\\output\\common\\countries.txt", &st) == 0)
-	{
-		HoI4CountriesInput.open(L".\\blankMod\\output\\common\\countries.txt");
-	}
-	else
-	{
-		HoI4CountriesInput.open((Configuration::getHoI4Path() + L"\\common\\countries.txt").c_str());
-	}
-	if (!HoI4CountriesInput.is_open())
-	{
-		LOG(LogLevel::Error) << "Could not open countries.txt";
-		exit(1);
-	}
+	set<wstring> countryFilenames;
+	WinUtils::GetAllFilesInFolder(Configuration::getHoI4Path() + L"common/country_tags", countryFilenames);
 
-	while (!HoI4CountriesInput.eof())
+	for (auto countryFilename: countryFilenames)
 	{
-		wstring line;
-		getline(HoI4CountriesInput, line);
-
-		if ((line[0] == '#') || (line.size() < 3))
+		wifstream HoI4CountriesInput(countryFilename);
+		if (!HoI4CountriesInput.is_open())
 		{
-			continue;
+			LOG(LogLevel::Error) << "Could not open " << countryFilename;
+			exit(1);
 		}
 
-		wstring tag;
-		tag = line.substr(0, 3);
+		while (!HoI4CountriesInput.eof())
+		{
+			wstring line;
+			getline(HoI4CountriesInput, line);
 
-		wstring countryFileName;
-		int start = line.find_first_of('/');
-		int size = line.find_last_of('\"') - start;
-		countryFileName = line.substr(start, size);
+			if ((line[0] == '#') || (line.size() < 3))
+			{
+				continue;
+			}
 
-		HoI4Country* newCountry = new HoI4Country(tag, countryFileName, this);
-		potentialCountries.insert(make_pair(tag, newCountry));
+			wstring tag;
+			tag = line.substr(0, 3);
+
+			wstring countryFileName;
+			int start = line.find_first_of('/');
+			int size = line.find_last_of('\"') - start;
+			countryFileName = line.substr(start, size);
+
+			HoI4Country* newCountry = new HoI4Country(tag, countryFileName, this);
+			potentialCountries.insert(make_pair(tag, newCountry));
+		}
+		HoI4CountriesInput.close();
 	}
-	HoI4CountriesInput.close();
 
 	countryOrder.push_back(L"REB");
 }
@@ -188,26 +184,37 @@ void HoI4World::importPotentialCountries()
 void HoI4World::output() const
 {
 	outputCommonCountries();
-	outputAutoexecLua();
-	outputLocalisations();
-	outputHistory();
+	//outputAutoexecLua();
+	//outputLocalisations();
+	//outputHistory();
 }
 
 
 void HoI4World::outputCommonCountries() const
 {
 	// Create common\countries path.
-	wstring countriesPath = L"Output\\" + Configuration::getOutputName() + L"\\common\\countries";
+	wstring countriesPath = L"Output\\" + Configuration::getOutputName() + L"\\common";
 	if (!WinUtils::TryCreateFolder(countriesPath))
 	{
+		LOG(LogLevel::Error) << L"Could not create \"Output\\" + Configuration::getOutputName() + L"\\common\"";
+		exit(-1);
+	}
+	countriesPath ;
+	if (!WinUtils::TryCreateFolder(countriesPath + L"\\countries"))
+	{
 		LOG(LogLevel::Error) << L"Could not create \"Output\\" + Configuration::getOutputName() + L"\\common\\countries\"";
+		exit(-1);
+	}
+	if (!WinUtils::TryCreateFolder(countriesPath + L"\\country_tags"))
+	{
+		LOG(LogLevel::Error) << L"Could not create \"Output\\" + Configuration::getOutputName() + L"\\common\\country_tags\"";
 		exit(-1);
 	}
 
 	// Output common\countries.txt
 	LOG(LogLevel::Debug) << "Writing countries file";
 	FILE* allCountriesFile;
-	if (_wfopen_s(&allCountriesFile, (L"Output\\" + Configuration::getOutputName() + L"\\common\\countries.txt").c_str(), L"w") != 0)
+	if (_wfopen_s(&allCountriesFile, (L"Output\\" + Configuration::getOutputName() + L"\\common\\country_tags\\00_countries.txt").c_str(), L"w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create countries file";
 		exit(-1);
@@ -1468,59 +1475,59 @@ HoI4RegGroup* HoI4World::createArmy(const inverseProvinceMapping& inverseProvinc
 
 void HoI4World::convertArmies(const V2World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap)
 {
-	unitTypeMapping unitTypeMap = getUnitMappings();
+	//unitTypeMapping unitTypeMap = getUnitMappings();
 
-	// define the headquarters brigade type
-	HoI4RegimentType hqBrigade(L"hq_brigade");
+	//// define the headquarters brigade type
+	//HoI4RegimentType hqBrigade(L"hq_brigade");
 
-	// convert each country's armies
-	for (auto country: countries)
-	{
-		const V2Country* oldCountry = country.second->getSourceCountry();
-		if (oldCountry == NULL)
-		{
-			continue;
-		}
+	//// convert each country's armies
+	//for (auto country: countries)
+	//{
+	//	const V2Country* oldCountry = country.second->getSourceCountry();
+	//	if (oldCountry == NULL)
+	//	{
+	//		continue;
+	//	}
 
-		int airForceIndex = 0;
-		HoI4RegGroup::resetHQCounts();
-		HoI4RegGroup::resetRegGroupNameCounts();
+	//	int airForceIndex = 0;
+	//	HoI4RegGroup::resetHQCounts();
+	//	HoI4RegGroup::resetRegGroupNameCounts();
 
-		// A V2 unit type counter to keep track of how many V2 units of this type were converted.
-		// Used to distribute HoI4 unit types in case of multiple mapping
-		map<wstring, unsigned> typeCount;
+	//	// A V2 unit type counter to keep track of how many V2 units of this type were converted.
+	//	// Used to distribute HoI4 unit types in case of multiple mapping
+	//	map<wstring, unsigned> typeCount;
 
-		// Convert actual armies
-		for (auto oldArmy: oldCountry->getArmies())
-		{
-			// convert the regiments
-			vector<HoI4Regiment*> regiments = convertRegiments(unitTypeMap, oldArmy->getRegiments(), typeCount, country);
+	//	// Convert actual armies
+	//	for (auto oldArmy: oldCountry->getArmies())
+	//	{
+	//		// convert the regiments
+	//		vector<HoI4Regiment*> regiments = convertRegiments(unitTypeMap, oldArmy->getRegiments(), typeCount, country);
 
-			// place the regiments into armies
-			HoI4RegGroup* army = createArmy(inverseProvinceMap, HoI4AdjacencyMap, country.first, oldArmy, regiments, airForceIndex);
-			army->setName(oldArmy->getName());
+	//		// place the regiments into armies
+	//		HoI4RegGroup* army = createArmy(inverseProvinceMap, HoI4AdjacencyMap, country.first, oldArmy, regiments, airForceIndex);
+	//		army->setName(oldArmy->getName());
 
-			// add the converted units to the country
-			if ((army->getForceType() == land) && (!army->isEmpty()) && (!army->getProductionQueue()))
-			{
-				army->createHQs(hqBrigade); // Generate HQs for all hierarchies
-				country.second->addArmy(army);
-			}
-			else if (!army->isEmpty())
-			{
-				country.second->addArmy(army);
-			}
-		}
+	//		// add the converted units to the country
+	//		if ((army->getForceType() == land) && (!army->isEmpty()) && (!army->getProductionQueue()))
+	//		{
+	//			army->createHQs(hqBrigade); // Generate HQs for all hierarchies
+	//			country.second->addArmy(army);
+	//		}
+	//		else if (!army->isEmpty())
+	//		{
+	//			country.second->addArmy(army);
+	//		}
+	//	}
 
-		// Anticipate practical points being awarded for completing the unit constructions
-		for (auto armyItr: country.second->getArmies())
-		{
-			if (armyItr->getProductionQueue())
-			{
-				armyItr->undoPracticalAddition(country.second->getPracticals());
-			}
-		}
-	}
+	//	// Anticipate practical points being awarded for completing the unit constructions
+	//	for (auto armyItr: country.second->getArmies())
+	//	{
+	//		if (armyItr->getProductionQueue())
+	//		{
+	//			armyItr->undoPracticalAddition(country.second->getPracticals());
+	//		}
+	//	}
+	//}
 }
 
 
