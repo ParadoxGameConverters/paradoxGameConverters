@@ -489,7 +489,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 	// go through all province mappings to determine province owners
 	//		
 
-	int stateId = 1;
+	int stateId = 741;
 	for (auto country: sourceWorld.getCountries())
 	{
 		wstring HoI4Tag = countryMap.GetHoI4Tag(country.first);
