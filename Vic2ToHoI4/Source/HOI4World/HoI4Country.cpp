@@ -178,7 +178,7 @@ void HoI4Country::output() const
 	int green;
 	int blue;
 	color.GetRGB(red, green, blue);
-	output << L"color = { " << red << " " << green << " " << blue << "}" << endl;
+	output << "color = { " << red << " " << green << " " << blue << "}" << endl;
 	/*fwprintf(output, L"graphical_culture = %s\n", graphicalCulture.c_str());
 	fwprintf(output, L"\n");
 	if (majorNation)
