@@ -47,6 +47,8 @@ bool doesFolderExist(const std::wstring& path);
 // Returns a formatted string describing the last error on the WinAPI.
 std::wstring GetLastWindowsError();
 
+std::string convertToUTF8(std::wstring UTF16);
+std::wstring convertToUTF16(std::string UTF8);
 } // namespace WinUtils
 
 #endif // WINUTILS_H_

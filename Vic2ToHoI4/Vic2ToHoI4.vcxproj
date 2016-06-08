@@ -67,6 +67,7 @@
     <ClCompile Include="..\common_items\Object.cpp" />
     <ClCompile Include="..\common_items\ParadoxParser.cpp" />
     <ClCompile Include="..\common_items\ParadoxParserUTF8.cpp" />
+    <ClCompile Include="..\common_items\WinUtils.cpp" />
     <ClCompile Include="Source\Color.cpp" />
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\CountryMapping.cpp" />
@@ -96,7 +97,6 @@
     <ClCompile Include="Source\V2World\V2Province.cpp" />
     <ClCompile Include="Source\V2World\V2Relations.cpp" />
     <ClCompile Include="Source\V2World\V2World.cpp" />
-    <ClCompile Include="Source\WinUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h" />
@@ -104,6 +104,7 @@
     <ClInclude Include="..\common_items\Object.h" />
     <ClInclude Include="..\common_items\ParadoxParser.h" />
     <ClInclude Include="..\common_items\ParadoxParserUTF8.h" />
+    <ClInclude Include="..\common_items\WinUtils.h" />
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\CountryMapping.h" />
@@ -133,7 +134,6 @@
     <ClInclude Include="Source\V2World\V2Relations.h" />
     <ClInclude Include="Source\V2World\V2World.h" />
     <ClInclude Include="Source\V2World\Vic2State.h" />
-    <ClInclude Include="Source\WinUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

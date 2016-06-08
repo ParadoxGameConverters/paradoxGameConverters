@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <Windows.h>
 #include <fstream>
 #include "Log.h"
-#include "..\WinUtils.h"
+#include "../../../common_items/WinUtils.h"
 #include "Object.h"
 
 

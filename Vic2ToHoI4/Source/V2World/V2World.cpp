@@ -28,7 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "ParadoxParser.h"
 #include "Log.h"
 #include "../Configuration.h"
-#include "../WinUtils.h"
+#include "../../../common_items/WinUtils.h"
 #include "V2Province.h"
 #include "V2Relations.h"
 #include "V2Army.h"

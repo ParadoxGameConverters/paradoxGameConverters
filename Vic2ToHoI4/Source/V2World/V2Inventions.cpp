@@ -24,7 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "V2Inventions.h"
 #include "../Configuration.h"
-#include "../WinUtils.h"
+#include "../../../common_items/WinUtils.h"
 #include "Object.h"
 #include "ParadoxParser.h"
 

@@ -115,4 +115,34 @@ std::wstring GetLastWindowsError()
 	}
 }
 
+
+std::string convertToUTF8(std::wstring UTF16)
+{
+	char utf8array[1024];
+	if (0 == WideCharToMultiByte(CP_UTF8, 0, UTF16.c_str(), -1, utf8array, 1024, NULL, NULL))
+	{
+		int errorCode = GetLastError();
+		LOG(LogLevel::Error) << "Could not translate string to UTF-8. Error code " <<errorCode;
+	}
+	std::string returnable(utf8array);
+
+	return returnable;
+}
+
+
+std::wstring convertToUTF16(std::string UTF8)
+{
+	wchar_t wideKeyArray[1024];
+	if (0 == MultiByteToWideChar(28605 /* 8859-15*/, MB_PRECOMPOSED, UTF8.c_str(), -1, wideKeyArray, 1024))
+	{
+		int errorCode = GetLastError();
+		LOG(LogLevel::Error) << "Could not translate string to UTF-16. Error code " <<errorCode;
+	}
+	std::wstring returnable(wideKeyArray);
+
+	return returnable;
+}
+
+
+
 } // namespace WinUtils
