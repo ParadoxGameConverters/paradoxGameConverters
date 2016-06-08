@@ -264,7 +264,7 @@ int ConvertV2ToHoI4(const std::wstring& V2SaveFileName)
 
 	// Parse province mappings
 	LOG(LogLevel::Info) << "Parsing province mappings";
-	obj = parser_UTF8::doParseFile(L"province_mappings.txt");
+	obj = parser_8859_15::doParseFile(L"province_mappings.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file province_mappings.txt";
