@@ -117,58 +117,58 @@ void HoI4Country::output() const
 {
 	// output history file
 	FILE* output;
-	if (_wfopen_s(&output, (L"Output\\" + Configuration::getOutputName() + L"\\history\\countries\\" + filename).c_str(), L"w") != 0)
-	{
-		LOG(LogLevel::Error) << "Could not create country history file " << filename;
-		exit(-1);
-	}
+	//if (_wfopen_s(&output, (L"Output\\" + Configuration::getOutputName() + L"\\history\\countries\\" + filename).c_str(), L"w") != 0)
+	//{
+	//	LOG(LogLevel::Error) << "Could not create country history file " << filename;
+	//	exit(-1);
+	//}
 
-	if (capital > 0)
-	{
-		fwprintf(output, L"capital=%d\n", capital);
-	}
-	if (government != L"")
-	{
-		fwprintf(output, L"government = %s\n", government.c_str());
-	}
-	if (ideology != L"")
-	{
-		fwprintf(output, L"ideology = %s\n", ideology.c_str());
-	}
-	for (auto ministerItr: rulingMinisters)
-	{
-		fwprintf(output, L"%s = %d\n", ministerItr.getFirstJob().c_str(), ministerItr.getID());
-	}
-	if (faction != L"")
-	{
-		fwprintf(output, L"join_faction = %s\n", faction.c_str());
-	}
-	fwprintf(output, L"alignment = { x = %.2f y = %.2f }\n", alignment.get2DX(), alignment.get2DY());
-	fwprintf(output, L"neutrality = %.2f\n", neutrality);
-	fwprintf(output, L"national_unity = %.2f\n", nationalUnity);
+	//if (capital > 0)
+	//{
+	//	fwprintf(output, L"capital=%d\n", capital);
+	//}
+	//if (government != L"")
+	//{
+	//	fwprintf(output, L"government = %s\n", government.c_str());
+	//}
+	//if (ideology != L"")
+	//{
+	//	fwprintf(output, L"ideology = %s\n", ideology.c_str());
+	//}
+	//for (auto ministerItr: rulingMinisters)
+	//{
+	//	fwprintf(output, L"%s = %d\n", ministerItr.getFirstJob().c_str(), ministerItr.getID());
+	//}
+	//if (faction != L"")
+	//{
+	//	fwprintf(output, L"join_faction = %s\n", faction.c_str());
+	//}
+	//fwprintf(output, L"alignment = { x = %.2f y = %.2f }\n", alignment.get2DX(), alignment.get2DY());
+	//fwprintf(output, L"neutrality = %.2f\n", neutrality);
+	//fwprintf(output, L"national_unity = %.2f\n", nationalUnity);
 
-	fwprintf(output, L"civil_law = %s\n", civil_law.c_str());
-	fwprintf(output, L"conscription_law = %s\n", conscription_law.c_str());
-	fwprintf(output, L"economic_law = %s\n", economic_law.c_str());
-	fwprintf(output, L"education_investment_law = %s\n", educational_investment_law.c_str());
-	fwprintf(output, L"industrial_policy_laws = %s\n", industrial_policy_laws.c_str());
-	fwprintf(output, L"press_laws = %s\n", press_laws.c_str());
-	fwprintf(output, L"training_laws = %s\n", training_laws.c_str());
-	outputPracticals(output);
-	outputTech(output);
-	outputParties(output);
+	//fwprintf(output, L"civil_law = %s\n", civil_law.c_str());
+	//fwprintf(output, L"conscription_law = %s\n", conscription_law.c_str());
+	//fwprintf(output, L"economic_law = %s\n", economic_law.c_str());
+	//fwprintf(output, L"education_investment_law = %s\n", educational_investment_law.c_str());
+	//fwprintf(output, L"industrial_policy_laws = %s\n", industrial_policy_laws.c_str());
+	//fwprintf(output, L"press_laws = %s\n", press_laws.c_str());
+	//fwprintf(output, L"training_laws = %s\n", training_laws.c_str());
+	//outputPracticals(output);
+	//outputTech(output);
+	//outputParties(output);
 
-	fwprintf(output, L"oob = \"%s\"\n", (tag + L"_OOB.txt").c_str());
-	fclose(output);
+	//fwprintf(output, L"oob = \"%s\"\n", (tag + L"_OOB.txt").c_str());
+	//fclose(output);
 
-	// output OOB file
-	outputOOB();
+	//// output OOB file
+	//outputOOB();
 
-	// output leaders file
-	outputLeaders();
+	//// output leaders file
+	//outputLeaders();
 
 	// Output common country file. 
-	if (_wfopen_s(&output, (L"Output\\" + Configuration::getOutputName() + L"\\common\\countries\\" + commonCountryFile).c_str(), L"w") != 0)
+	if (fopen_s(&output, ("Output\\" + WinUtils::convertToUTF8(Configuration::getOutputName()) + "\\common\\countries\\" + WinUtils::convertToUTF8(commonCountryFile)).c_str(), "w") != 0)
 	{
 		Log(LogLevel::Error) << "Could not open " << "Output\\" << Configuration::getOutputName() << "\\common\\countries\\" << commonCountryFile;
 		exit(-1);
@@ -178,7 +178,7 @@ void HoI4Country::output() const
 	int blue;
 	color.GetRGB(red, green, blue);
 	fwprintf(output, L"color = { %d %d %d }\n", red, green, blue);
-	fwprintf(output, L"graphical_culture = %s\n", graphicalCulture.c_str());
+	/*fwprintf(output, L"graphical_culture = %s\n", graphicalCulture.c_str());
 	fwprintf(output, L"\n");
 	if (majorNation)
 	{
@@ -207,7 +207,7 @@ void HoI4Country::output() const
 	fwprintf(output, L"	}\n");
 	fwprintf(output, L"}\n");
 	fwprintf(output, L"\n");
-	fwprintf(output, L"unit_names = {\n");
+	fwprintf(output, L"unit_names = {\n");*/
 	//fwprintf(output, L"	infantry_brigade = {\n");
 	//fwprintf(output, L"		\"Faizabad Division\"\n");
 	//fwprintf(output, L"	}\n");
@@ -283,23 +283,23 @@ void HoI4Country::output() const
 	//fwprintf(output, L"	transport_ship = {\n");
 	//fwprintf(output, L"		\"1. Troop Transport Flotilla\"\n");
 	//fwprintf(output, L"	}\n");
-	fwprintf(output, L"}\n");
+	/*fwprintf(output, L"}\n");
 	fwprintf(output, L"\n");
 	fwprintf(output, L"ministers = {\n");
 	for (auto ministerItr: ministers)
 	{
 		ministerItr.output(output);
 	}
-	fwprintf(output, L"}\n");
+	fwprintf(output, L"}\n");*/
 	fclose(output);
 
-	outputAIScript();
+	//outputAIScript();
 }
 
 
 void HoI4Country::outputToCommonCountriesFile(FILE* output) const
 {
-	fwprintf(output, L"%s = \"countries%s\"\n", tag.c_str(), commonCountryFile.c_str());
+	fprintf(output, "%s = \"countries%s\"\n", WinUtils::convertToUTF8(tag).c_str(), WinUtils::convertToUTF8(commonCountryFile).c_str());
 }
 
 

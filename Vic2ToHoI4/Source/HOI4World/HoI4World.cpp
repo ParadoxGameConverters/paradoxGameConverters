@@ -214,7 +214,7 @@ void HoI4World::outputCommonCountries() const
 	// Output common\countries.txt
 	LOG(LogLevel::Debug) << "Writing countries file";
 	FILE* allCountriesFile;
-	if (_wfopen_s(&allCountriesFile, (L"Output\\" + Configuration::getOutputName() + L"\\common\\country_tags\\00_countries.txt").c_str(), L"w") != 0)
+	if (_wfopen_s(&allCountriesFile, (L"Output\\" + Configuration::getOutputName() + L"\\common\\country_tags\\01_countries.txt").c_str(), L"w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create countries file";
 		exit(-1);
@@ -370,19 +370,19 @@ void HoI4World::outputHistory() const
 	{
 		state.output();
 	}
-	//LOG(LogLevel::Debug) << "Writing countries";
-	//for (auto countryItr: countries)
-	//{
-	//	countryItr.second->output();
-	//}
-	//// Override vanilla history to suppress vanilla OOB and faction membership being read
-	//for (auto potentialItr: potentialCountries)
-	//{
-	//	if (countries.find(potentialItr.first) == countries.end())
-	//	{
-	//		potentialItr.second->output();
-	//	}
-	//}
+	LOG(LogLevel::Debug) << "Writing countries";
+	for (auto countryItr: countries)
+	{
+		countryItr.second->output();
+	}
+	// Override vanilla history to suppress vanilla OOB and faction membership being read
+	for (auto potentialItr: potentialCountries)
+	{
+		if (countries.find(potentialItr.first) == countries.end())
+		{
+			potentialItr.second->output();
+		}
+	}
 	//LOG(LogLevel::Debug) << "Writing diplomacy";
 	//diplomacy.output();
 }
