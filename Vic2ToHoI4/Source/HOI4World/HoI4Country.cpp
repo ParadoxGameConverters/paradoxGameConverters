@@ -64,10 +64,9 @@ const wchar_t* const ideologyNames[stalinist + 1] = {
 
 HoI4Country::HoI4Country(wstring _tag, wstring _commonCountryFile, HoI4World* _theWorld, bool _newCountry /* = false */)
 {
-	theWorld = _theWorld;
-	newCountry = _newCountry;
-
-	commonCountryFile = _commonCountryFile;
+	theWorld				= _theWorld;
+	newCountry			= _newCountry;
+	commonCountryFile	= _commonCountryFile;
 
 	tag					= _tag;
 
@@ -116,7 +115,7 @@ HoI4Country::HoI4Country(wstring _tag, wstring _commonCountryFile, HoI4World* _t
 void HoI4Country::output() const
 {
 	// output history file
-	FILE* output;
+	//FILE* output;
 	//if (_wfopen_s(&output, (L"Output\\" + Configuration::getOutputName() + L"\\history\\countries\\" + filename).c_str(), L"w") != 0)
 	//{
 	//	LOG(LogLevel::Error) << "Could not create country history file " << filename;
@@ -167,8 +166,10 @@ void HoI4Country::output() const
 	//// output leaders file
 	//outputLeaders();
 
-	// Output common country file. 
-	if (fopen_s(&output, ("Output\\" + WinUtils::convertToUTF8(Configuration::getOutputName()) + "\\common\\countries\\" + WinUtils::convertToUTF8(commonCountryFile)).c_str(), "w") != 0)
+	// Output common country file
+	ofstream output;
+	output.open(("Output\\" + WinUtils::convertToUTF8(Configuration::getOutputName()) + "\\common\\countries\\" + WinUtils::convertToASCII(commonCountryFile)).c_str());
+	if (!output.is_open())
 	{
 		Log(LogLevel::Error) << "Could not open " << "Output\\" << Configuration::getOutputName() << "\\common\\countries\\" << commonCountryFile;
 		exit(-1);
@@ -177,7 +178,7 @@ void HoI4Country::output() const
 	int green;
 	int blue;
 	color.GetRGB(red, green, blue);
-	fwprintf(output, L"color = { %d %d %d }\n", red, green, blue);
+	output << L"color = { " << red << " " << green << " " << blue << "}" << endl;
 	/*fwprintf(output, L"graphical_culture = %s\n", graphicalCulture.c_str());
 	fwprintf(output, L"\n");
 	if (majorNation)
@@ -291,7 +292,7 @@ void HoI4Country::output() const
 		ministerItr.output(output);
 	}
 	fwprintf(output, L"}\n");*/
-	fclose(output);
+	output.close();
 
 	//outputAIScript();
 }
@@ -299,7 +300,7 @@ void HoI4Country::output() const
 
 void HoI4Country::outputToCommonCountriesFile(FILE* output) const
 {
-	fprintf(output, "%s = \"countries%s\"\n", WinUtils::convertToUTF8(tag).c_str(), WinUtils::convertToUTF8(commonCountryFile).c_str());
+	fprintf(output, "%s = \"countries%s\"\n", WinUtils::convertToUTF8(tag).c_str(), WinUtils::convertToASCII(commonCountryFile).c_str());
 }
 
 

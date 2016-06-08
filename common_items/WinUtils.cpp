@@ -116,6 +116,20 @@ std::wstring GetLastWindowsError()
 }
 
 
+std::string convertToASCII(std::wstring UTF16)
+{
+	char utf8array[1024];
+	if (0 == WideCharToMultiByte(20127 /*US-ASCII (7-bit)*/, 0, UTF16.c_str(), -1, utf8array, 1024, NULL, NULL))
+	{
+		int errorCode = GetLastError();
+		LOG(LogLevel::Error) << "Could not translate string to UTF-8. Error code " <<errorCode;
+	}
+	std::string returnable(utf8array);
+
+	return returnable;
+}
+
+
 std::string convertToUTF8(std::wstring UTF16)
 {
 	char utf8array[1024];
