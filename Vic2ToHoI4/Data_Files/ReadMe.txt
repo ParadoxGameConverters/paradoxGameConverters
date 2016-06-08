@@ -43,6 +43,7 @@ CREDITS
 An (incomplete) list of those who contributed effort to this mammoth undertaking
 
 Idhrendur		- Project Lead, Programming
+simsulla		- Data Files
 
 
  - AND ALL THE OTHERS WHO GAVE THEIR INPUT ON THE FORUM -
