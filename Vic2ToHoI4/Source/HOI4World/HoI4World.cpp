@@ -504,7 +504,10 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 				{
 					for (auto HoI4ProvNum: provMapping->second)
 					{
-						newState.addProvince(HoI4ProvNum);
+						if (HoI4ProvNum != 0)
+						{
+							newState.addProvince(HoI4ProvNum);
+						}
 					}
 				}
 			}
