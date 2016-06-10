@@ -371,6 +371,12 @@ void HoI4World::outputHistory() const
 		state.output();
 	}
 	LOG(LogLevel::Debug) << "Writing countries";
+	wstring unitsPath = L"Output/" + Configuration::getOutputName() + L"/history/units";
+	if (!WinUtils::TryCreateFolder(unitsPath))
+	{
+		LOG(LogLevel::Error) << L"Could not create \"Output/" + Configuration::getOutputName() + L"/history/units";
+		exit(-1);
+	}
 	for (auto countryItr: countries)
 	{
 		countryItr.second->output();

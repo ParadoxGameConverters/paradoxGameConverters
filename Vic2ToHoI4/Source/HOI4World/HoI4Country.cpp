@@ -161,7 +161,7 @@ void HoI4Country::output() const
 	//fclose(output);
 
 	//// output OOB file
-	//outputOOB();
+	outputOOB();
 
 	//// output leaders file
 	//outputLeaders();
@@ -392,20 +392,21 @@ void HoI4Country::outputLeaders() const
 	}
 	fclose(leadersFile);
 
-	LOG(LogLevel::Info) << tag << " has " << landLeaders << " land leaders, L" << seaLeaders << " sea leaders, and " << airLeaders << " air leaders.";
+	LOG(LogLevel::Info) << tag << " has " << landLeaders << " land leaders, " << seaLeaders << " sea leaders, and " << airLeaders << " air leaders.";
 }
 
 
 void HoI4Country::outputOOB() const
 {
-	FILE* output;
-	if (_wfopen_s(&output, (L"Output\\" + Configuration::getOutputName() + L"\\history\\units\\" + tag + L"_OOB.txt").c_str(), L"w") != 0)
+	ofstream output;
+	output.open(("Output/" + WinUtils::convertToUTF8(Configuration::getOutputName()) + "/history/units/" + WinUtils::convertToASCII(tag) + "_OOB.txt").c_str());
+	if (!output.is_open())
 	{
-		LOG(LogLevel::Error) << "Could not create OOB file " << (tag + L"_OOB.txt");
+		Log(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/history/units/" << tag << "_OOB.txt";
 		exit(-1);
 	}
 
-	for (auto armyItr: armies)
+	/*for (auto armyItr: armies)
 	{
 		if (armyItr->getProductionQueue())
 		{
@@ -415,9 +416,38 @@ void HoI4Country::outputOOB() const
 		{
 			armyItr->output(output);
 		}
-	}
+	}*/
 
-	fclose(output);
+	output  << "start_equipment_factor = 0\n";
+	output  << "division_template = {\n";
+	output  << "\tname = \"Infantry Division\"        # Bhutanese Army never expanded past battalion size (in 1943)\n";
+	output  << "\t\n";
+	output  << "\tregiments = {\n";
+	output  << "\t\tinfantry = { x = 0 y = 0 }\n";
+	output  << "\t\tinfantry = { x = 0 y = 1 }\n";
+	output  << "\t}\n";
+	output  << "}\n";
+	output  << "\n";
+	output  << "\n";
+	output  << "units = {\n";
+	output  << "\t##### No standing army #####\n";
+	output  << "}\n";
+	output  << "\n";
+	output  << "\n";
+	output  << "### No BHU air forces ###\n";
+	output  << "instant_effect = {\n";
+	output  << "\tadd_equipment_production = {\n";
+	output  << "\t\tequipment = {\n";
+	output  << "\t\t\ttype = infantry_equipment_0\n";
+	output  << "\t\t\tcreator = \"" << WinUtils::convertToUTF8(tag) << "\"\n";
+	output  << "\t\t}\n";
+	output  << "\t\trequested_factories = 1\n";
+	output  << "\t\tprogress = 0.88\n";
+	output  << "\t\tefficiency = 100\n";
+	output  << "\t}\n";
+	output  << "}\n";
+
+	output.close();
 }
 
 
