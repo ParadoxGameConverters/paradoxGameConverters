@@ -40,6 +40,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4State.h"
 
 
+
 typedef struct fileWithCreateTime
 {
 	wstring	filename;
@@ -143,11 +144,11 @@ void HoI4World::importPotentialCountries()
 
 	LOG(LogLevel::Info) << "Getting potential countries";
 	set<wstring> countryFilenames;
-	WinUtils::GetAllFilesInFolder(Configuration::getHoI4Path() + L"common/country_tags", countryFilenames);
+	WinUtils::GetAllFilesInFolder(Configuration::getHoI4Path() + L"/common/country_tags", countryFilenames);
 
 	for (auto countryFilename: countryFilenames)
 	{
-		wifstream HoI4CountriesInput(countryFilename);
+		wifstream HoI4CountriesInput(Configuration::getHoI4Path() + L"/common/country_tags/" + countryFilename);
 		if (!HoI4CountriesInput.is_open())
 		{
 			LOG(LogLevel::Error) << "Could not open " << countryFilename;
@@ -162,6 +163,10 @@ void HoI4World::importPotentialCountries()
 			if ((line[0] == '#') || (line.size() < 3))
 			{
 				continue;
+			}
+			if (line.substr(0, 19) == L"dynamic_tags  = yes")
+			{
+				break;
 			}
 
 			wstring tag;

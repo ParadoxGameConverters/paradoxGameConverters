@@ -399,7 +399,7 @@ void HoI4Country::outputLeaders() const
 void HoI4Country::outputOOB() const
 {
 	ofstream output;
-	output.open(("Output/" + WinUtils::convertToUTF8(Configuration::getOutputName()) + "/history/units/" + WinUtils::convertToASCII(tag) + "_OOB.txt").c_str());
+	output.open(("Output/" + WinUtils::convertToUTF8(Configuration::getOutputName()) + "/history/units/" + WinUtils::convertToASCII(tag) + "_1936.txt").c_str());
 	if (!output.is_open())
 	{
 		Log(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/history/units/" << tag << "_OOB.txt";
