@@ -398,13 +398,13 @@ void HoI4Country::outputLeaders() const
 
 void HoI4Country::outputOOB() const
 {
-	ofstream output;
-	output.open(("Output/" + WinUtils::convertToUTF8(Configuration::getOutputName()) + "/history/units/" + WinUtils::convertToASCII(tag) + "_1936.txt").c_str());
+	ofstream output(("Output/" + WinUtils::convertToUTF8(Configuration::getOutputName()) + "/history/units/" + WinUtils::convertToASCII(tag) + "_1936.txt").c_str());
 	if (!output.is_open())
 	{
 		Log(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/history/units/" << tag << "_OOB.txt";
 		exit(-1);
 	}
+	output << "\xEF\xBB\xBF";	// add the BOM to make HoI4 happy
 
 	/*for (auto armyItr: armies)
 	{
