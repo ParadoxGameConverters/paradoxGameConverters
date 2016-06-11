@@ -225,72 +225,11 @@ void HoI4World::outputCommonCountries() const
 		exit(-1);
 	}
 
-	// Make sure Rebels are first in the list (Rebel flag used for unclaimed provinces).
-	// Then put the V2 great powers in order
-	for (unsigned i = 0; i < countryOrder.size(); i++)
-	{
-		const wstring hoiTag = countryOrder[i];
-		HoI4Country* country = NULL;
-		std::map<wstring, HoI4Country*>::const_iterator countryItr;
-
-		if (hoiTag.empty())
-		{
-			LOG(LogLevel::Error) << "countryOrder entry #" << i << " empty!";
-		}
-		else if ((countryItr = countries.find(countryOrder[i])) == countries.end())
-		{
-			// Search potential countries. This should normally only be REB, because only active countries should be in countryOrder
-			auto potentialCountry = potentialCountries.find(hoiTag);
-			if (potentialCountry != potentialCountries.end())
-			{
-				country = potentialCountry->second;
-			}
-		}
-		else
-		{
-			country = countryItr->second;
-		}
-
-		if (country)
-		{
-			country->outputToCommonCountriesFile(allCountriesFile);
-		}
-		else
-		{
-			LOG(LogLevel::Error) << "countryOrder entry #" << i << " " << countryOrder[i] << " not found!";
-		}
-	}
-
 	for (auto countryItr: countries)
 	{
-		// Skip countries that have already been processed
-		for (auto orderItr: countryOrder)
+		if (potentialCountries.find(countryItr.first) == potentialCountries.end())
 		{
-			if (orderItr == countryItr.first)
-			{
-				continue;
-			}
-		}
-
-		countryItr.second->outputToCommonCountriesFile(allCountriesFile);
-	}
-
-	// There are bugs and crashes if all potential vanilla HoI4 countries are not in the common\countries.txt file
-	// Also, the Rebels are to be included
-	for (auto potentialItr: potentialCountries)
-	{
-		// Skip countries that have already been processed. (This should normally only be REB, because only active countries should be in countryOrder)
-		for (auto orderItr: countryOrder)
-		{
-			if (orderItr == potentialItr.first)
-			{
-				continue;
-			}
-		}
-
-		if (countries.find(potentialItr.first) == countries.end())
-		{
-			potentialItr.second->outputToCommonCountriesFile(allCountriesFile);
+			countryItr.second->outputToCommonCountriesFile(allCountriesFile);
 		}
 	}
 	fwprintf(allCountriesFile, L"\n");
