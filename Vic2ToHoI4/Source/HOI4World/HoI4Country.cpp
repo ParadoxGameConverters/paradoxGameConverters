@@ -447,7 +447,7 @@ void HoI4Country::outputOOB() const
 }
 
 
-void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const wstring _vic2ideology, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const wstring _vic2ideology, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap, map<int, HoI4State*> states)
 {
 	srcCountry = _srcCountry;
 
@@ -702,7 +702,11 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	inverseProvinceMapping::iterator itr = inverseProvinceMap.find(oldCapital);
 	if (itr != inverseProvinceMap.end())
 	{
-		capital = itr->second[0];
+		auto capitalState = stateMap.find(itr->second[0]);
+		if (capitalState != stateMap.end() && (states.find(capitalState->second)->second->getOwner() == tag))
+		{
+			capital = capitalState->second;
+		}
 	}
 
 	// major nation

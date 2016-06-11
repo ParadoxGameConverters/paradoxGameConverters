@@ -310,7 +310,7 @@ void HoI4World::outputHistory() const
 	}
 	for (auto state: states)
 	{
-		state.output();
+		state.second->output();
 	}
 	LOG(LogLevel::Debug) << "Writing countries";
 	wstring unitsPath = L"Output/" + Configuration::getOutputName() + L"/history/units";
@@ -356,7 +356,7 @@ void HoI4World::getProvinceLocalizations(const wstring& file)
 }
 
 
-void HoI4World::convertCountries(const V2World &sourceWorld, const CountryMapping& countryMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+void HoI4World::convertCountries(const V2World &sourceWorld, const CountryMapping& countryMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap)
 {
 	for (auto sourceItr: sourceWorld.getCountries())
 	{
@@ -386,7 +386,7 @@ void HoI4World::convertCountries(const V2World &sourceWorld, const CountryMappin
 				LOG(LogLevel::Error) << "Could not find the ruling party for " <<  sourceItr.first << ". Were all mods correctly included?";
 				exit(-1);
 			}
-			destCountry->initFromV2Country(sourceWorld, sourceItr.second, rulingParty->ideology, countryMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
+			destCountry->initFromV2Country(sourceWorld, sourceItr.second, rulingParty->ideology, countryMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, stateMap, states);
 			countries.insert(make_pair(WinUtils::convertToUTF8(HoI4Tag), destCountry));
 		}
 		else
@@ -417,7 +417,7 @@ struct MTo1ProvinceComp
 };
 
 
-void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap)
+void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, HoI4StateMapping& stateMap)
 {
 	// create states based on Vic2 states
 	//		create a lookup table of Vic2 states by Vic2 provinces
@@ -425,13 +425,22 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 	// go through all province mappings to determine province owners
 	//		
 
-	int stateId = 741;
+	// determine province owners for all HoI4 provinces
+	//	loop through the vic2 countries
+	//		determine the relevant HoI4 country
+	//		loop through the states in the vic2 country
+	//			create a matching HoI4 state
+	//			loop through the provinces in the vic2 state
+	//				if the matching HoI4 provinces are owned by this country, add it to the HoI4 state
+	//			if the state is not empty, add it to this list of states
+
+	int stateID = 741;
 	for (auto country: sourceWorld.getCountries())
 	{
 		wstring HoI4Tag = countryMap.GetHoI4Tag(country.first);
 		for (auto vic2State: country.second->getStates())
 		{
-			HoI4State newState(stateId, HoI4Tag);
+			HoI4State* newState = new HoI4State(stateID, WinUtils::convertToUTF8(HoI4Tag));
 
 			for (auto vic2Province: vic2State.getProvinces())
 			{
@@ -442,14 +451,15 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 					{
 						if (HoI4ProvNum != 0)
 						{
-							newState.addProvince(HoI4ProvNum);
+							newState->addProvince(HoI4ProvNum);
+							stateMap.insert(make_pair(HoI4ProvNum, stateID));
 						}
 					}
 				}
 			}
 			
-			states.push_back(newState);
-			stateId++;
+			states.insert(make_pair(stateID, newState));
+			stateID++;
 		}
 	}
 

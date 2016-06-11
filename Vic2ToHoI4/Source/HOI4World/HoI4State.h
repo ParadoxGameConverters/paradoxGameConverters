@@ -35,16 +35,18 @@ using namespace std;
 class HoI4State
 {
 	public:
-		HoI4State(int _ID, wstring _ownerTag);
+		HoI4State(int _ID, string _ownerTag);
 
 		void output();
 
 		void	addProvince(int province)	{ provinces.push_back(province); }
 
+		string	getOwner() const	{ return ownerTag; }
+
 	private:
 		int			ID;
 		vector<int>	provinces;
-		wstring		ownerTag;
+		string		ownerTag;
 };
 
 

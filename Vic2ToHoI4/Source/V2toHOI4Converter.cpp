@@ -414,10 +414,11 @@ int ConvertV2ToHoI4(const std::wstring& V2SaveFileName)
 	//initAIFocusModifiers(obj, focusModifiers);
 
 	// Convert
-	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, countryMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
 	LOG(LogLevel::Info) << "Converting states";
-	destWorld.convertProvinceOwners(sourceWorld, inverseProvinceMap, countryMap);
+	HoI4StateMapping HoI4StateMap;
+	destWorld.convertProvinceOwners(sourceWorld, inverseProvinceMap, countryMap, HoI4StateMap);
+	LOG(LogLevel::Info) << "Converting countries";
+	destWorld.convertCountries(sourceWorld, countryMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, HoI4StateMap);
 	destWorld.convertNavalBases(sourceWorld, inverseProvinceMap);
 	destWorld.convertProvinceItems(sourceWorld, provinceMap, inverseProvinceMap, countryMap, HoI4AdjacencyMap);
 	destWorld.consolidateProvinceItems(inverseProvinceMap);
@@ -449,7 +450,7 @@ int ConvertV2ToHoI4(const std::wstring& V2SaveFileName)
 		exit(-1);
 	}
 	fwprintf(modFile, L"name = \"Converted - %s\"\n", Configuration::getOutputName().c_str());
-	fwprintf(modFile, L"path = \"mod/%s\"\n", Configuration::getOutputName().c_str());
+	fwprintf(modFile, L"path = \"mod/%s/\"\n", Configuration::getOutputName().c_str());
 	fwprintf(modFile, L"user_dir = \"%s_user_dir\"\n", Configuration::getOutputName().c_str());
 	fwprintf(modFile, L"replace = \"history/countries\"\n");
 	//fwprintf(modFile, L"replace = \"history/diplomacy\"\n");

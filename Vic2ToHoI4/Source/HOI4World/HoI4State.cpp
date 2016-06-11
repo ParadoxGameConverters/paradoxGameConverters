@@ -25,10 +25,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include "../Configuration.h"
 #include "Log.h"
+#include "WinUtils.h"
 
 
 
-HoI4State::HoI4State(int _ID, wstring _ownerTag)
+HoI4State::HoI4State(int _ID, string _ownerTag)
 {
 	ID			= _ID;
 	ownerTag	= _ownerTag;
@@ -37,8 +38,8 @@ HoI4State::HoI4State(int _ID, wstring _ownerTag)
 
 void HoI4State::output()
 {
-	wstring filename(L"Output/" + Configuration::getOutputName() + L"/history/states/" + to_wstring(ID) + L"-blah.txt");
-	wofstream out;
+	string filename("Output/" + WinUtils::convertToUTF8(Configuration::getOutputName()) + "/history/states/" + to_string(ID) + "-blah.txt");
+	ofstream out;
 	out.open(filename);
 
 	if (!out.is_open())
@@ -47,15 +48,15 @@ void HoI4State::output()
 		exit(-1);
 	}
 
-	out << L"state={" << endl;
-	out << L"\tid=" << ID << endl;
-	out << L"\tname=" << "foo" << " # bar" << endl;
-	out << L"\tmanpower = 1" << endl;
+	out << "state={" << endl;
+	out << "\tid=" << ID << endl;
+	out << "\tname=" << "foo" << " # bar" << endl;
+	out << "\tmanpower = 1" << endl;
 	out << endl;
-	out << L"\tstate_category = town" << endl;
-	out << L"" << endl;
-	out << L"\thistory={" << endl;
-	out << L"\t\towner = " << ownerTag << endl;
+	out << "\tstate_category = town" << endl;
+	out << "" << endl;
+	out << "\thistory={" << endl;
+	out << "\t\towner = " << ownerTag << endl;
 	//out << L"	victory_points = { 3838 1 }" << endl;
 	//out << L"	buildings = {" << endl;
 	//out << L"	infrastructure = 4" << endl;
@@ -66,17 +67,17 @@ void HoI4State::output()
 	//out << L"}" << endl;
 	//out << L"}" << endl;
 	//out << L"	add_core_of = FRA" << endl;
-	out << L"\t}" << endl;
+	out << "\t}" << endl;
 	out << endl;
-	out << L"\tprovinces={" << endl;
-	out << L"\t\t";
+	out << "\tprovinces={" << endl;
+	out << "\t\t";
 	for (auto provnum: provinces)
 	{
 		out << provnum << " ";
 	}
 	out << endl;
-	out << L"\t}" << endl;
-	out << L"}" << endl;
+	out << "\t}" << endl;
+	out << "}" << endl;
 
 	out.close();
 }

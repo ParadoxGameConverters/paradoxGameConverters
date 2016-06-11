@@ -30,6 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Localisation.h"
 #include "HoI4Province.h"
 #include "HoI4Relations.h"
+#include "HoI4State.h"
 #include "../CountryMapping.h"
 #include "../Mapper.h"
 #include "../Color.h"
@@ -65,7 +66,7 @@ class HoI4Country
 		void	outputToCommonCountriesFile(FILE*) const;
 		void	outputLocalisation(FILE*) const;
 		void	outputAIScript() const;
-		void	initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const wstring _vic2ideology, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+		void	initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const wstring _vic2ideology, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap, map<int, HoI4State*> states);
 		void	initFromHistory();
 		void	consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry);
 		void	generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);

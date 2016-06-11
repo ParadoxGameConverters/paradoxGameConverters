@@ -72,10 +72,13 @@ void removeOlderLandlessNations(HoI4World&, int excess);
 void removeLandlessNations(HoI4World&);
 
 
-// State Mappings
+// Vic2 State Mappings
 typedef map< int, vector<int> >	stateMapping;	// < province, all other provinces in state >
 typedef map< int, int >				stateIndexMapping; // < province, state index >
 void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateIndexMap);
+
+// HoI4 State Mappings
+typedef map<int, int> HoI4StateMapping;	// province num, state ID
 
 
 // Union Mappings
