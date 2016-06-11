@@ -24,6 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Diplomacy.h"
 #include "Log.h"
 #include "../Configuration.h"
+#include "WinUtils.h"
 
 
 
@@ -60,39 +61,39 @@ void HoI4Diplomacy::output() const
 	FILE* out;
 	for (auto itr: agreements)
 	{
-		if (itr.type == L"guarantee")
+		if (itr.type == "guarantee")
 		{
 			out = guarantees;
 		}
-		else if (itr.type == L"vassal")
+		else if (itr.type == "vassal")
 		{
 			out = puppetStates;
 		}
-		else if (itr.type == L"alliance")
+		else if (itr.type == "alliance")
 		{
 			out = alliances;
 		}
-		else if (itr.type == L"relation")
+		else if (itr.type == "relation")
 		{
 			out = relations;
 		}
 		else
 		{
-			LOG(LogLevel::Warning) << "Cannot ouput diplomatic agreement type " << itr.type;
+			LOG(LogLevel::Warning) << "Cannot ouput diplomatic agreement type " << WinUtils::convertToUTF16(itr.type);
 			continue;
 		}
-		fwprintf(out, L"%s=\n", itr.type.c_str());
-		fwprintf(out, L"{\n");
-		fwprintf(out, L"\tfirst=\"%s\"\n", itr.country1.c_str());
-		fwprintf(out, L"\tsecond=\"%s\"\n", itr.country2.c_str());
-		if (itr.type == L"relation")
+		fprintf(out, "%s=\n", itr.type.c_str());
+		fprintf(out, "{\n");
+		fprintf(out, "\tfirst=\"%s\"\n", itr.country1.c_str());
+		fprintf(out, "\tsecond=\"%s\"\n", itr.country2.c_str());
+		if (itr.type == "relation")
 		{
-			fwprintf(out, L"\tvalue=\"%i\"\n", itr.value);
+			fprintf(out, "\tvalue=\"%i\"\n", itr.value);
 		}
-		fwprintf(out, L"\tstart_date=\"%s\"\n", itr.start_date.toString().c_str());
-		fwprintf(out, L"\tend_date=\"1949.1.1\"\n");
-		fwprintf(out, L"}\n");
-		fwprintf(out, L"\n");
+		fprintf(out, "\tstart_date=\"%s\"\n", WinUtils::convertToUTF8(itr.start_date.toString()).c_str());
+		fprintf(out, "\tend_date=\"1949.1.1\"\n");
+		fprintf(out, "}\n");
+		fprintf(out, "\n");
 	}
 	
 	fclose(alliances);
@@ -105,7 +106,7 @@ void HoI4Diplomacy::addAgreement(const HoI4Agreement agr)
 {
 	bool alreadyExists = false;
 
-	if (agr.type == L"relation")
+	if (agr.type == "relation")
 	{
 		for (auto itr: agreements)
 		{

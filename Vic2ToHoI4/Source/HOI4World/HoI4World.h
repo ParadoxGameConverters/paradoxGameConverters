@@ -61,11 +61,11 @@ class HoI4World
 		void	copyFlags(const V2World &sourceWorld, const CountryMapping& countryMap);
 		void	addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
 
-		map<wstring, HoI4Country*>	getPotentialCountries()	const { return potentialCountries; }
+		map<string, HoI4Country*>	getPotentialCountries()	const { return potentialCountries; }
 
 	private:
 		void	getProvinceLocalizations(const wstring& file);
-		void	checkManualFaction(const CountryMapping& countryMap, const vector<wstring>& candidateTags, wstring leader, const wstring& factionName);
+		void	checkManualFaction(const CountryMapping& countryMap, const vector<wstring>& candidateTags, string leader, const wstring& factionName);
 		void	factionSatellites();
 		void	checkAllProvincesMapped(const provinceMapping& provinceMap);
 		void	setFactionMembers(const V2World &sourceWorld, const CountryMapping& countryMap);
@@ -85,15 +85,14 @@ class HoI4World
 
 		vector<HoI4State>				states;
 		map<int, HoI4Province*>		provinces;
-		map<wstring, HoI4Country*>	countries;
-		map<wstring,HoI4Country*>	potentialCountries;
+		map<string, HoI4Country*>	countries;
+		map<string,HoI4Country*>	potentialCountries;
 		HoI4Diplomacy					diplomacy;
 		map<int, wstring>				continents;  // < province, continent >
-		vector<wstring>				countryOrder; // Order of countries in common\countries.txt. Used for determining faction leader. Also, REB should be first.
 
-		wstring axisLeader;
-		wstring alliesLeader;
-		wstring cominternLeader;
+		string axisLeader;
+		string alliesLeader;
+		string cominternLeader;
 };
 
 

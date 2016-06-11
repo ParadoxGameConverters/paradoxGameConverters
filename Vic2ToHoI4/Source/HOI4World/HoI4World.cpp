@@ -169,8 +169,8 @@ void HoI4World::importPotentialCountries()
 				break;
 			}
 
-			wstring tag;
-			tag = line.substr(0, 3);
+			string tag;
+			tag = WinUtils::convertToUTF8(line.substr(0, 3));
 
 			wstring countryFileName;
 			int start = line.find_first_of('/');
@@ -182,8 +182,6 @@ void HoI4World::importPotentialCountries()
 		}
 		HoI4CountriesInput.close();
 	}
-
-	countryOrder.push_back(L"REB");
 }
 
 
@@ -264,7 +262,7 @@ void HoI4World::outputAutoexecLua() const
 
 	for (auto country : potentialCountries)
 	{
-		fwprintf(autoexec, L"require('%s')\n", country.first.c_str());
+		fwprintf(autoexec, L"require('%s')\n", WinUtils::convertToUTF16(country.first).c_str());
 	}
 	fwprintf(autoexec, L"\n");
 	fclose(autoexec);
@@ -360,13 +358,6 @@ void HoI4World::getProvinceLocalizations(const wstring& file)
 
 void HoI4World::convertCountries(const V2World &sourceWorld, const CountryMapping& countryMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
 {
-	vector<wstring> outputOrder;
-	outputOrder.clear();
-	for (auto potentialItr: potentialCountries)
-	{
-		outputOrder.push_back(potentialItr.first);
-	}
-
 	for (auto sourceItr: sourceWorld.getCountries())
 	{
 		// don't convert rebels
@@ -379,7 +370,7 @@ void HoI4World::convertCountries(const V2World &sourceWorld, const CountryMappin
 		const std::wstring& HoI4Tag = countryMap[sourceItr.first];
 		if (!HoI4Tag.empty())
 		{
-			auto candidateDestCountry = potentialCountries.find(HoI4Tag);
+			auto candidateDestCountry = potentialCountries.find(WinUtils::convertToUTF8(HoI4Tag));
 			if (candidateDestCountry != potentialCountries.end())
 			{
 				destCountry = candidateDestCountry->second;
@@ -387,7 +378,7 @@ void HoI4World::convertCountries(const V2World &sourceWorld, const CountryMappin
 			if (destCountry == NULL) // No such HoI4 country exists yet for this tag so make a new one
 			{
 				std::wstring countryFileName = L'/' + sourceItr.second->getName() + L".txt";
-				destCountry = new HoI4Country(HoI4Tag, countryFileName, this, true);
+				destCountry = new HoI4Country(WinUtils::convertToUTF8(HoI4Tag), countryFileName, this, true);
 			}
 			V2Party* rulingParty = sourceWorld.getRulingParty(sourceItr.second);
 			if (rulingParty == NULL)
@@ -395,8 +386,8 @@ void HoI4World::convertCountries(const V2World &sourceWorld, const CountryMappin
 				LOG(LogLevel::Error) << "Could not find the ruling party for " <<  sourceItr.first << ". Were all mods correctly included?";
 				exit(-1);
 			}
-			destCountry->initFromV2Country(sourceWorld, sourceItr.second, rulingParty->ideology, outputOrder, countryMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
-			countries.insert(make_pair(HoI4Tag, destCountry));
+			destCountry->initFromV2Country(sourceWorld, sourceItr.second, rulingParty->ideology, countryMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
+			countries.insert(make_pair(WinUtils::convertToUTF8(HoI4Tag), destCountry));
 		}
 		else
 		{
@@ -408,16 +399,11 @@ void HoI4World::convertCountries(const V2World &sourceWorld, const CountryMappin
 	// ALL potential countries should be output to the file, otherwise some things don't get initialized right in HoI4
 	for (auto potentialItr: potentialCountries)
 	{
-		map<wstring, HoI4Country*>::iterator citr = countries.find(potentialItr.first);
+		map<string, HoI4Country*>::iterator citr = countries.find(potentialItr.first);
 		if (citr == countries.end())
 		{
 			potentialItr.second->initFromHistory();
 		}
-	}
-
-	for (auto greatItr: sourceWorld.getGreatCountries())
-	{
-		countryOrder.push_back(countryMap[greatItr]);
 	}
 }
 
@@ -1521,7 +1507,7 @@ void HoI4World::convertArmies(const V2World& sourceWorld, const inverseProvinceM
 }
 
 
-void HoI4World::checkManualFaction(const CountryMapping& countryMap, const vector<wstring>& candidateTags, wstring leader, const wstring& factionName)
+void HoI4World::checkManualFaction(const CountryMapping& countryMap, const vector<wstring>& candidateTags, string leader, const wstring& factionName)
 {
 	bool leaderSet = false;
 	for (auto candidate: candidateTags)
@@ -1535,7 +1521,7 @@ void HoI4World::checkManualFaction(const CountryMapping& countryMap, const vecto
 		}
 
 		// find HoI4 nation and ensure that it has land
-		auto citr = countries.find(hoiTag);
+		auto citr = countries.find(WinUtils::convertToUTF8(hoiTag));
 		if (citr != countries.end())
 		{
 			if (citr->second->getProvinces().size() == 0)
@@ -1546,7 +1532,7 @@ void HoI4World::checkManualFaction(const CountryMapping& countryMap, const vecto
 			{
 				LOG(LogLevel::Debug) << candidate << " added to " << factionName  << " faction";
 				citr->second->setFaction(factionName);
-				if (leader == L"")
+				if (leader == "")
 				{
 					leader = citr->first;
 				}
@@ -1571,7 +1557,7 @@ void HoI4World::factionSatellites()
 	const vector<HoI4Agreement>& agreements = diplomacy.getAgreements();
 	for (auto agreement: agreements)
 	{
-		if (agreement.type == L"vassal")
+		if (agreement.type == "vassal")
 		{
 			auto masterCountry		= countries.find(agreement.country1);
 			auto satelliteCountry	= countries.find(agreement.country2);
@@ -1601,7 +1587,7 @@ void HoI4World::setFactionMembers(const V2World &sourceWorld, const CountryMappi
 		const vector<wstring>& greatCountries = sourceWorld.getGreatCountries();
 		for (auto countryItr : greatCountries)
 		{
-			map<wstring, HoI4Country*>::iterator itr = countries.find(countryMap[countryItr]);
+			auto itr = countries.find(WinUtils::convertToUTF8(countryMap[countryItr]));
 			if (itr != countries.end())
 			{
 				HoI4Country* country = itr->second;
@@ -1615,7 +1601,7 @@ void HoI4World::setFactionMembers(const V2World &sourceWorld, const CountryMappi
 						(ideology == L"national_socialist" || ideology == L"fascistic" || ideology == L"paternal_autocrat")
 					)
 				{
-					if (axisLeader == L"")
+					if (axisLeader == "")
 					{
 						axisLeader = itr->first;
 						country->setFaction(L"axis");
@@ -1624,7 +1610,7 @@ void HoI4World::setFactionMembers(const V2World &sourceWorld, const CountryMappi
 					else
 					{
 						// Check if ally of leader
-						const set<wstring>& allies = country->getAllies();
+						const set<string>& allies = country->getAllies();
 						if (allies.find(axisLeader) != allies.end())
 						{
 							country->setFaction(L"axis");
@@ -1638,7 +1624,7 @@ void HoI4World::setFactionMembers(const V2World &sourceWorld, const CountryMappi
 						(ideology == L"social_conservative" || ideology == L"market_liberal" || ideology == L"social_liberal" || ideology == L"social_democrat")
 					)
 				{
-					if (alliesLeader == L"")
+					if (alliesLeader == "")
 					{
 						alliesLeader = itr->first;
 						country->setFaction(L"allies");
@@ -1647,7 +1633,7 @@ void HoI4World::setFactionMembers(const V2World &sourceWorld, const CountryMappi
 					else
 					{
 						// Check if ally of leader
-						const set<wstring> &allies = country->getAllies();
+						const set<string> &allies = country->getAllies();
 						if (allies.find(alliesLeader) != allies.end())
 						{
 							country->setFaction(L"allies");
@@ -1663,7 +1649,7 @@ void HoI4World::setFactionMembers(const V2World &sourceWorld, const CountryMappi
 						(ideology == L"left_wing_radical" || ideology == L"leninist" || ideology == L"stalinist")
 					)
 				{
-					if (cominternLeader == L"")
+					if (cominternLeader == "")
 					{
 						cominternLeader = itr->first; // Faction leader
 						country->setFaction(L"comintern");
@@ -1672,7 +1658,7 @@ void HoI4World::setFactionMembers(const V2World &sourceWorld, const CountryMappi
 					else
 					{
 						// Check if ally of leader
-						const set<wstring> &allies = country->getAllies();
+						const set<string> &allies = country->getAllies();
 						if (allies.find(alliesLeader) != allies.end())
 						{
 							country->setFaction(L"comintern");
@@ -1699,7 +1685,7 @@ void HoI4World::setFactionMembers(const V2World &sourceWorld, const CountryMappi
 			{
 				if (country.second->getFaction() == L"") // Skip if already a faction member
 				{
-					if (cominternLeader == L"")
+					if (cominternLeader == "")
 					{
 						cominternLeader = country.first; // Faction leader
 						country.second->setFaction(L"comintern");
@@ -1710,7 +1696,7 @@ void HoI4World::setFactionMembers(const V2World &sourceWorld, const CountryMappi
 						// Check if enemy of leader
 						bool enemy = false;
 						const map<wstring, HoI4Relations*> &relations = country.second->getRelations();
-						map<wstring, HoI4Relations*>::const_iterator relationItr = relations.find(cominternLeader);
+						auto relationItr = relations.find(WinUtils::convertToUTF16(cominternLeader));
 						if (relationItr != relations.end() && relationItr->second->atWar())
 						{
 							enemy = true;
@@ -1764,9 +1750,9 @@ void HoI4World::setAlignments()
 			HoI4Alignment axisStart;
 			HoI4Alignment alliesStart;
 			HoI4Alignment cominternStart;
-			if (axisLeader != L"")
+			if (axisLeader != "")
 			{
-				HoI4Relations* relObj = country.second->getRelations(axisLeader);
+				HoI4Relations* relObj = country.second->getRelations(WinUtils::convertToUTF16(axisLeader));
 				if (relObj != NULL)
 				{
 					double axisRelations = relObj->getRelations();
@@ -1780,9 +1766,9 @@ void HoI4World::setAlignments()
 					}
 				}
 			}
-			if (alliesLeader != L"")
+			if (alliesLeader != "")
 			{
-				HoI4Relations* relObj = country.second->getRelations(alliesLeader);
+				HoI4Relations* relObj = country.second->getRelations(WinUtils::convertToUTF16(alliesLeader));
 				if (relObj != NULL)
 				{
 					double alliesRelations = relObj->getRelations();
@@ -1796,9 +1782,9 @@ void HoI4World::setAlignments()
 					}
 				}
 			}
-			if (cominternLeader != L"")
+			if (cominternLeader != "")
 			{
-				HoI4Relations* relObj = country.second->getRelations(cominternLeader);
+				HoI4Relations* relObj = country.second->getRelations(WinUtils::convertToUTF16(cominternLeader));
 				if (relObj != NULL)
 				{
 					double cominternRelations = relObj->getRelations();
@@ -1821,57 +1807,6 @@ void HoI4World::setAlignments()
 void HoI4World::configureFactions(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
 	setFactionMembers(sourceWorld, countryMap);
-
-	//set faction leaders to be earlier in the country ordering
-	for (auto country = countryOrder.begin(); country != countryOrder.end(); country++)
-	{
-		if (*country == axisLeader)
-		{
-			countryOrder.erase(country);
-			break;
-		}
-	}
-	if (axisLeader != L"")
-	{
-		countryOrder.insert(countryOrder.begin(), axisLeader);
-	}
-
-	for (auto country = countryOrder.begin(); country != countryOrder.end(); country++)
-	{
-		if (*country == alliesLeader)
-		{
-			countryOrder.erase(country);
-			break;
-		}
-	}
-	if (alliesLeader != L"")
-	{
-		countryOrder.insert(countryOrder.begin(), alliesLeader);
-	}
-
-	for (auto country = countryOrder.begin(); country != countryOrder.end(); country++)
-	{
-		if (*country == cominternLeader)
-		{
-			countryOrder.erase(country);
-			break;
-		}
-	}
-	if (cominternLeader != L"")
-	{
-		countryOrder.insert(countryOrder.begin(), cominternLeader);
-	}
-	
-	for (auto country = countryOrder.begin(); country != countryOrder.end(); country++)
-	{
-		if (*country == L"REB")
-		{
-			countryOrder.erase(country);
-			break;
-		}
-	}
-	countryOrder.insert(countryOrder.begin(), L"REB");
-
 	factionSatellites(); // push satellites into the same faction as their parents
 	setAlignments();
 }
@@ -1924,7 +1859,7 @@ void HoI4World::convertVictoryPoints(const V2World& sourceWorld, const CountryMa
 	for (auto country: sourceWorld.getGreatCountries())
 	{
 		const std::wstring& HoI4Tag = countryMap[country];
-		auto countryItr = countries.find(HoI4Tag);
+		auto countryItr = countries.find(WinUtils::convertToUTF8(HoI4Tag));
 		if (countryItr != countries.end())
 		{
 			auto capitalItr = countryItr->second->getCapital();
@@ -1981,8 +1916,8 @@ void HoI4World::convertDiplomacy(const V2World& sourceWorld, const CountryMappin
 			continue;
 		}
 
-		map<wstring, HoI4Country*>::iterator HoI4Country1 = countries.find(HoI4Tag1);
-		map<wstring, HoI4Country*>::iterator HoI4Country2 = countries.find(HoI4Tag2);
+		map<string, HoI4Country*>::iterator HoI4Country1 = countries.find(WinUtils::convertToUTF8(HoI4Tag1));
+		map<string, HoI4Country*>::iterator HoI4Country2 = countries.find(WinUtils::convertToUTF8(HoI4Tag2));
 		if (HoI4Country1 == countries.end())
 		{
 			LOG(LogLevel::Warning) << "HoI4 country " << HoI4Tag1 << " used in diplomatic agreement doesn't exist";
@@ -1999,15 +1934,15 @@ void HoI4World::convertDiplomacy(const V2World& sourceWorld, const CountryMappin
 		{
 			// copy agreement
 			HoI4Agreement HoI4a;
-			HoI4a.country1		= HoI4Tag1;
-			HoI4a.country2		= HoI4Tag2;
+			HoI4a.country1		= WinUtils::convertToUTF8(HoI4Tag1);
+			HoI4a.country2		= WinUtils::convertToUTF8(HoI4Tag2);
 			HoI4a.start_date	= agreement.start_date;
-			HoI4a.type			= agreement.type;
+			HoI4a.type			= WinUtils::convertToUTF8(agreement.type);
 			diplomacy.addAgreement(HoI4a);
 
 			if (agreement.type == L"alliance")
 			{
-				HoI4Country1->second->editAllies().insert(HoI4Tag2);
+				HoI4Country1->second->editAllies().insert(WinUtils::convertToUTF8(HoI4Tag2));
 			}
 		}
 	}
@@ -2018,29 +1953,29 @@ void HoI4World::convertDiplomacy(const V2World& sourceWorld, const CountryMappin
 		for (auto relationItr: country.second->getRelations())
 		{
 			HoI4Agreement HoI4a;
-			if (country.first < relationItr.first) // Put it in order to eliminate duplicate relations entries
+			if (country.first < WinUtils::convertToUTF8(relationItr.first)) // Put it in order to eliminate duplicate relations entries
 			{
 				HoI4a.country1 = country.first;
-				HoI4a.country2 = relationItr.first;
+				HoI4a.country2 = WinUtils::convertToUTF8(relationItr.first);
 			}
 			else
 			{
-				HoI4a.country2 = relationItr.first;
+				HoI4a.country2 = WinUtils::convertToUTF8(relationItr.first);
 				HoI4a.country1 = country.first;
 			}
 
 			HoI4a.value = relationItr.second->getRelations();
 			HoI4a.start_date = date(L"1930.1.1"); // Arbitrary date
-			HoI4a.type = L"relation";
+			HoI4a.type = "relation";
 			diplomacy.addAgreement(HoI4a);
 
 			if (relationItr.second->getGuarantee())
 			{
 				HoI4Agreement HoI4a;
 				HoI4a.country1 = country.first;
-				HoI4a.country2 = relationItr.first;
+				HoI4a.country2 = WinUtils::convertToUTF8(relationItr.first);
 				HoI4a.start_date = date(L"1930.1.1"); // Arbitrary date
-				HoI4a.type = L"guarantee";
+				HoI4a.type = "guarantee";
 				diplomacy.addAgreement(HoI4a);
 			}
 		}
@@ -2057,7 +1992,7 @@ void HoI4World::convertDiplomacy(const V2World& sourceWorld, const CountryMappin
 				auto repeat = hasLoweredNeutrality.find(core);
 				if (repeat == hasLoweredNeutrality.end())
 				{
-					auto country = countries.find(core);
+					auto country = countries.find(WinUtils::convertToUTF8(core));
 					if (country != countries.end())
 					{
 						country->second->lowerNeutrality(20.0);

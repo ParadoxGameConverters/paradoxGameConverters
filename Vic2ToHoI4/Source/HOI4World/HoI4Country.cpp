@@ -62,7 +62,7 @@ const wchar_t* const ideologyNames[stalinist + 1] = {
 
 
 
-HoI4Country::HoI4Country(wstring _tag, wstring _commonCountryFile, HoI4World* _theWorld, bool _newCountry /* = false */)
+HoI4Country::HoI4Country(string _tag, wstring _commonCountryFile, HoI4World* _theWorld, bool _newCountry /* = false */)
 {
 	theWorld				= _theWorld;
 	newCountry			= _newCountry;
@@ -115,59 +115,55 @@ HoI4Country::HoI4Country(wstring _tag, wstring _commonCountryFile, HoI4World* _t
 void HoI4Country::output() const
 {
 	// output history file
-	//FILE* output;
-	//if (_wfopen_s(&output, (L"Output\\" + Configuration::getOutputName() + L"\\history\\countries\\" + filename).c_str(), L"w") != 0)
-	//{
-	//	LOG(LogLevel::Error) << "Could not create country history file " << filename;
-	//	exit(-1);
-	//}
+	ofstream output;
+	output.open(("Output/" + WinUtils::convertToUTF8(Configuration::getOutputName()) + "/history/countries/" + WinUtils::convertToUTF8(filename)).c_str());
+	if (!output.is_open())
+	{
+		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/history/" << filename;
+		exit(-1);
+	}
+	output << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
 
-	//if (capital > 0)
-	//{
-	//	fwprintf(output, L"capital=%d\n", capital);
-	//}
-	//if (government != L"")
-	//{
-	//	fwprintf(output, L"government = %s\n", government.c_str());
-	//}
-	//if (ideology != L"")
-	//{
-	//	fwprintf(output, L"ideology = %s\n", ideology.c_str());
-	//}
-	//for (auto ministerItr: rulingMinisters)
-	//{
-	//	fwprintf(output, L"%s = %d\n", ministerItr.getFirstJob().c_str(), ministerItr.getID());
-	//}
-	//if (faction != L"")
-	//{
-	//	fwprintf(output, L"join_faction = %s\n", faction.c_str());
-	//}
-	//fwprintf(output, L"alignment = { x = %.2f y = %.2f }\n", alignment.get2DX(), alignment.get2DY());
-	//fwprintf(output, L"neutrality = %.2f\n", neutrality);
-	//fwprintf(output, L"national_unity = %.2f\n", nationalUnity);
+	if (capital > 0)
+	{
+		output << "capital = " << capital << endl;
+	}
+	output << "oob = \"" << tag << "_OOB.txt\"\n";
 
-	//fwprintf(output, L"civil_law = %s\n", civil_law.c_str());
-	//fwprintf(output, L"conscription_law = %s\n", conscription_law.c_str());
-	//fwprintf(output, L"economic_law = %s\n", economic_law.c_str());
-	//fwprintf(output, L"education_investment_law = %s\n", educational_investment_law.c_str());
-	//fwprintf(output, L"industrial_policy_laws = %s\n", industrial_policy_laws.c_str());
-	//fwprintf(output, L"press_laws = %s\n", press_laws.c_str());
-	//fwprintf(output, L"training_laws = %s\n", training_laws.c_str());
-	//outputPracticals(output);
-	//outputTech(output);
-	//outputParties(output);
-
-	//fwprintf(output, L"oob = \"%s\"\n", (tag + L"_OOB.txt").c_str());
-	//fclose(output);
+	output << "# Starting tech\n";
+	output << "set_technology = {\n";
+	output << "\tinfantry_weapons = 1\n";
+	output << "\tinfantry_weapons1 = 1\n";
+	output << "\ttech_support = 1\n";
+	output << "\ttech_engineers = 1\n";
+	output << "\ttech_recon = 1\n";
+	output << "\tgw_artillery = 1\n";
+	output << "\tgwtank = 1\n";
+	output << "\tbasic_light_tank = 1\n";
+	output << "\tearly_fighter = 1\n";
+	output << "\tcv_early_fighter = 1\n";
+	output << "\tcv_naval_bomber1 = 1\n";
+	output << "\tnaval_bomber1 = 1\n";
+	output << "\tearly_bomber = 1\n";
+	output << "\tCAS1 = 1\n";
+	output << "\tearly_destroyer = 1\n";
+	output << "\tearly_light_cruiser = 1\n";
+	output << "\tearly_heavy_cruiser = 1\n";
+	output << "\tearly_submarine = 1\n";
+	output << "\ttransport = 1\n";
+	output << "\ttrench_warfare = 1\n";
+	output << endl;
+	output << "\tfleet_in_being = 1\n";
+	output << "}\n";
+	output.close();
 
 	//// output OOB file
-	outputOOB();
+	//outputOOB();
 
 	//// output leaders file
 	//outputLeaders();
 
 	// Output common country file
-	ofstream output;
 	output.open(("Output\\" + WinUtils::convertToUTF8(Configuration::getOutputName()) + "\\common\\countries\\" + WinUtils::convertToASCII(commonCountryFile)).c_str());
 	if (!output.is_open())
 	{
@@ -300,7 +296,7 @@ void HoI4Country::output() const
 
 void HoI4Country::outputToCommonCountriesFile(FILE* output) const
 {
-	fprintf(output, "%s = \"countries%s\"\n", WinUtils::convertToUTF8(tag).c_str(), WinUtils::convertToASCII(commonCountryFile).c_str());
+	fprintf(output, "%s = \"countries%s\"\n", tag.c_str(), WinUtils::convertToASCII(commonCountryFile).c_str());
 }
 
 
@@ -362,7 +358,7 @@ void HoI4Country::outputParties(FILE* output) const
 void HoI4Country::outputLeaders() const
 {
 	FILE* leadersFile;
-	if (_wfopen_s(&leadersFile, (L"Output\\" + Configuration::getOutputName() + L"\\history\\leaders\\" + tag.c_str() + L".txt").c_str(), L"w") != 0)
+	if (_wfopen_s(&leadersFile, (L"Output\\" + Configuration::getOutputName() + L"\\history\\leaders\\" + WinUtils::convertToUTF16(tag).c_str() + L".txt").c_str(), L"w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not open " << "Output\\" << Configuration::getOutputName() << "\\history\\leaders\\" << tag.c_str() << ".txt";
 	}
@@ -387,21 +383,21 @@ void HoI4Country::outputLeaders() const
 		}
 		else
 		{
-			LOG(LogLevel::Warning) << "Leader of unknown type in " << tag;
+			LOG(LogLevel::Warning) << "Leader of unknown type in " << WinUtils::convertToUTF16(tag);
 		}
 	}
 	fclose(leadersFile);
 
-	LOG(LogLevel::Info) << tag << " has " << landLeaders << " land leaders, " << seaLeaders << " sea leaders, and " << airLeaders << " air leaders.";
+	LOG(LogLevel::Info) << WinUtils::convertToUTF16(tag) << " has " << landLeaders << " land leaders, " << seaLeaders << " sea leaders, and " << airLeaders << " air leaders.";
 }
 
 
 void HoI4Country::outputOOB() const
 {
-	ofstream output(("Output/" + WinUtils::convertToUTF8(Configuration::getOutputName()) + "/history/units/" + WinUtils::convertToASCII(tag) + "_1936.txt").c_str());
+	ofstream output(("Output/" + WinUtils::convertToUTF8(Configuration::getOutputName()) + "/history/units/" + tag + "_1936.txt").c_str());
 	if (!output.is_open())
 	{
-		Log(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/history/units/" << tag << "_OOB.txt";
+		Log(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/history/units/" << WinUtils::convertToUTF16(tag) << "_OOB.txt";
 		exit(-1);
 	}
 	output << "\xEF\xBB\xBF";	// add the BOM to make HoI4 happy
@@ -439,7 +435,7 @@ void HoI4Country::outputOOB() const
 	output  << "\tadd_equipment_production = {\n";
 	output  << "\t\tequipment = {\n";
 	output  << "\t\t\ttype = infantry_equipment_0\n";
-	output  << "\t\t\tcreator = \"" << WinUtils::convertToUTF8(tag) << "\"\n";
+	output  << "\t\t\tcreator = \"" << tag << "\"\n";
 	output  << "\t\t}\n";
 	output  << "\t\trequested_factories = 1\n";
 	output  << "\t\tprogress = 0.88\n";
@@ -451,13 +447,13 @@ void HoI4Country::outputOOB() const
 }
 
 
-void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const wstring _vic2ideology, vector<wstring> outputOrder, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const wstring _vic2ideology, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
 {
 	srcCountry = _srcCountry;
 
 	struct _wfinddata_t	fileData;
 	intptr_t					fileListing;
-	wstring filesearch = L".\\blankMod\\output\\history\\countries\\" + tag + L"*.txt";
+	wstring filesearch = L".\\blankMod\\output\\history\\countries\\" + WinUtils::convertToUTF16(tag) + L"*.txt";
 	if ((fileListing = _wfindfirst(filesearch.c_str(), &fileData)) != -1L)
 	{
 		filename = fileData.name;
@@ -465,7 +461,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	_findclose(fileListing);
 	if (filename == L"")
 	{
-		wstring filesearch = Configuration::getHoI4Path() + L"\\tfh\\history\\countries\\" + tag + L"*.txt";
+		wstring filesearch = Configuration::getHoI4Path() + L"\\tfh\\history\\countries\\" + WinUtils::convertToUTF16(tag) + L"*.txt";
 		if ((fileListing = _wfindfirst(filesearch.c_str(), &fileData)) != -1L)
 		{
 			filename = fileData.name;
@@ -473,7 +469,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 		else
 		{
 			_findclose(fileListing);
-			filesearch = Configuration::getHoI4Path() + L"\\history\\countries\\" + tag + L"*.txt";
+			filesearch = Configuration::getHoI4Path() + L"\\history\\countries\\" + WinUtils::convertToUTF16(tag) + L"*.txt";
 			if ((fileListing = _wfindfirst(filesearch.c_str(), &fileData)) != -1L)
 			{
 				filename = fileData.name;
@@ -486,14 +482,14 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 		wstring countryName	= commonCountryFile;
 		int lastSlash			= countryName.find_last_of(L"/");
 		countryName				= countryName.substr(lastSlash + 1, countryName.size());
-		filename					= tag + L" - " + countryName;
+		filename					= WinUtils::convertToUTF16(tag) + L" - " + countryName;
 	}
 
 	// Color
 	color = srcCountry->getColor();
 
 	// Localisation
-	localisation.SetTag(tag);
+	localisation.SetTag(WinUtils::convertToUTF16(tag));
 	localisation.ReadFromCountry(*srcCountry);
 
 	// graphical culture type
@@ -515,7 +511,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 		if (government.empty())
 		{
 			government = L"";
-			LOG(LogLevel::Warning) << "No government mapping defined for " << srcGovernment << " (L" << srcCountry->getTag() << " -> " << tag << ')';
+			LOG(LogLevel::Warning) << "No government mapping defined for " << srcGovernment << " (L" << srcCountry->getTag() << " -> " << WinUtils::convertToUTF16(tag) << ')';
 		}
 	}
 
@@ -524,7 +520,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	for (auto partyItr: parties)
 	{
 		auto oldLocalisation = V2Localisations.GetTextInEachLanguage(partyItr.name);
-		partyItr.localisationString = partyItr.ideology + L"_" + tag;
+		partyItr.localisationString = partyItr.ideology + L"_" + WinUtils::convertToUTF16(tag);
 		auto localisationItr = oldLocalisation.begin();
 		localisationItr++;
 		for (; localisationItr != oldLocalisation.end(); localisationItr++)
@@ -680,7 +676,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	vector<V2Leader*> srcLeaders = srcCountry->getLeaders();
 	for (auto srcLeader: srcLeaders)
 	{
-		HoI4Leader newLeader(srcLeader, tag, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, portraitMap[graphicalCulture]);
+		HoI4Leader newLeader(srcLeader, WinUtils::convertToUTF16(tag), landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, portraitMap[graphicalCulture]);
 		leaders.push_back(newLeader);
 	}
 
@@ -720,7 +716,7 @@ void HoI4Country::initFromHistory()
 	wstring fullFilename;
 	struct _wfinddata_t	fileData;
 	intptr_t					fileListing;
-	wstring filesearch = L".\\blankMod\\output\\history\\countries\\" + tag + L"*.txt";
+	wstring filesearch = L".\\blankMod\\output\\history\\countries\\" + WinUtils::convertToUTF16(tag) + L"*.txt";
 	if ((fileListing = _wfindfirst(filesearch.c_str(), &fileData)) != -1L)
 	{
 		filename			= fileData.name;
@@ -729,7 +725,7 @@ void HoI4Country::initFromHistory()
 	_findclose(fileListing);
 	if (fullFilename == L"")
 	{
-		wstring filesearch = Configuration::getHoI4Path() + L"\\tfh\\history\\countries\\" + tag + L"*.txt";
+		wstring filesearch = Configuration::getHoI4Path() + L"\\tfh\\history\\countries\\" + WinUtils::convertToUTF16(tag) + L"*.txt";
 		if ((fileListing = _wfindfirst(filesearch.c_str(), &fileData)) != -1L)
 		{
 			filename			= fileData.name;
@@ -738,7 +734,7 @@ void HoI4Country::initFromHistory()
 		else
 		{
 			_findclose(fileListing);
-			filesearch = Configuration::getHoI4Path() + L"\\history\\countries\\" + tag + L"*.txt";
+			filesearch = Configuration::getHoI4Path() + L"\\history\\countries\\" + WinUtils::convertToUTF16(tag) + L"*.txt";
 			if ((fileListing = _wfindfirst(filesearch.c_str(), &fileData)) != -1L)
 			{
 				filename			= fileData.name;
@@ -752,7 +748,7 @@ void HoI4Country::initFromHistory()
 		wstring countryName	= commonCountryFile;
 		int lastSlash			= countryName.find_last_of(L"/");
 		countryName				= countryName.substr(lastSlash + 1, countryName.size());
-		filename					= tag + L" - " + countryName;
+		filename					= WinUtils::convertToUTF16(tag) + L" - " + countryName;
 		return;
 	}
 
@@ -1003,7 +999,7 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, const namesMappi
 	}
 	for (unsigned int i = 0; i <= totalLand; i++)
 	{
-		HoI4Leader newLeader(firstNames, lastNames, tag, L"land", leaderTraits, portraitMap[graphicalCulture]);
+		HoI4Leader newLeader(firstNames, lastNames, WinUtils::convertToUTF16(tag), L"land", leaderTraits, portraitMap[graphicalCulture]);
 		leaders.push_back(newLeader);
 	}
 
@@ -1030,7 +1026,7 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, const namesMappi
 	}
 	for (unsigned int i = 0; i <= totalSea; i++)
 	{
-		HoI4Leader newLeader(firstNames, lastNames, tag, L"sea", leaderTraits, portraitMap[graphicalCulture]);
+		HoI4Leader newLeader(firstNames, lastNames, WinUtils::convertToUTF16(tag), L"sea", leaderTraits, portraitMap[graphicalCulture]);
 		leaders.push_back(newLeader);
 	}
 
@@ -1057,7 +1053,7 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, const namesMappi
 	}
 	for (unsigned int i = 0; i <= totalAir; i++)
 	{
-		HoI4Leader newLeader(firstNames, lastNames, tag, L"air", leaderTraits, portraitMap[graphicalCulture]);
+		HoI4Leader newLeader(firstNames, lastNames, WinUtils::convertToUTF16(tag), L"air", leaderTraits, portraitMap[graphicalCulture]);
 		leaders.push_back(newLeader);
 	}
 }
@@ -1892,7 +1888,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 
 	if (V2Ideologies.size() > 0)
 	{
-		LOG(LogLevel::Warning) << "Unmapped Vic2 parties for " << tag;
+		LOG(LogLevel::Warning) << "Unmapped Vic2 parties for " << WinUtils::convertToUTF16(tag);
 	}
 }
 
@@ -1909,17 +1905,17 @@ void HoI4Country::outputLocalisation(FILE* output) const
 void HoI4Country::outputAIScript() const
 {
 	FILE* output;
-	if (_wfopen_s(&output, (L"Output\\" + Configuration::getOutputName() + L"\\script\\country\\" + tag + L".lua").c_str(), L"w") != 0)
+	if (_wfopen_s(&output, (L"Output\\" + Configuration::getOutputName() + L"\\script\\country\\" + WinUtils::convertToUTF16(tag) + L".lua").c_str(), L"w") != 0)
 	{
-		LOG(LogLevel::Error) << "Could not create country script file for " << tag;
+		LOG(LogLevel::Error) << "Could not create country script file for " << WinUtils::convertToUTF16(tag);
 		exit(-1);
 	}
 
 	fwprintf(output, L"local P = {}\n");
-	fwprintf(output, L"AI_%s = P\n", tag.c_str());
+	fwprintf(output, L"AI_%s = P\n", WinUtils::convertToUTF16(tag).c_str());
 
 	wifstream sourceFile;
-	LOG(LogLevel::Debug) << tag << ": air modifier - " << airModifier << ", tankModifier - " << tankModifier << ", seaModifier - " << seaModifier << ", infModifier - " << infModifier;
+	LOG(LogLevel::Debug) << WinUtils::convertToUTF16(tag) << ": air modifier - " << airModifier << ", tankModifier - " << tankModifier << ", seaModifier - " << seaModifier << ", infModifier - " << infModifier;
 	if ((airModifier > seaModifier) && (airModifier > tankModifier) && (airModifier > infModifier)) // air template
 	{
 		sourceFile.open(L"airTEMPLATE.lua", ifstream::in);
@@ -1965,7 +1961,7 @@ void HoI4Country::outputAIScript() const
 	}
 	sourceFile.close();
 
-	fwprintf(output, L"return AI_%s\n", tag.c_str());
+	fwprintf(output, L"return AI_%s\n", WinUtils::convertToUTF16(tag).c_str());
 
 	fclose(output);
 }

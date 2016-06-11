@@ -60,12 +60,12 @@ typedef struct
 class HoI4Country
 {
 	public:
-		HoI4Country(wstring _tag, wstring _commonCountryFile, HoI4World* _theWorld, bool _newCountry = false);
+		HoI4Country(string _tag, wstring _commonCountryFile, HoI4World* _theWorld, bool _newCountry = false);
 		void	output() const;
 		void	outputToCommonCountriesFile(FILE*) const;
 		void	outputLocalisation(FILE*) const;
 		void	outputAIScript() const;
-		void	initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const wstring _vic2ideology, vector<wstring> outputOrder, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+		void	initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const wstring _vic2ideology, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
 		void	initFromHistory();
 		void	consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry);
 		void	generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
@@ -85,15 +85,15 @@ class HoI4Country
 		
 		const map<wstring, HoI4Relations*>&	getRelations() const			{ return relations; }
 		map<int, HoI4Province*>					getProvinces() const			{ return provinces; }
-		wstring										getTag() const					{ return tag; }
+		string										getTag() const					{ return tag; }
 		const V2Country*							getSourceCountry() const	{ return srcCountry; }
 		wstring										getGovernment() const		{ return government; }
 		bool											isNewCountry() const			{ return newCountry; }
 		wstring										getFaction() const			{ return faction; }
 		HoI4Alignment*								getAlignment()					{ return &alignment; }
 		wstring										getIdeology() const			{ return ideology; }
-		const set<wstring>&						getAllies() const				{ return allies; }
-		set<wstring>&								editAllies()					{ return allies; }
+		const set<string>&						getAllies() const				{ return allies; }
+		set<string>&								editAllies()					{ return allies; }
 		map<wstring, double>&					getPracticals()				{ return practicals; }
 		const vector<HoI4RegGroup*>&			getArmies() const				{ return armies; }
 
@@ -111,7 +111,7 @@ class HoI4Country
 		wstring								filename;
 		bool									newCountry;	// true if this country is being added by the converter, i.e. doesn't already exist in HoI4
 
-		wstring								tag;
+		string								tag;
 		map<int, HoI4Province*>			provinces;
 		int									capital;
 		wstring								commonCountryFile;
@@ -127,7 +127,7 @@ class HoI4Country
 		HoI4Localisation					localisation;
 		wstring								faction;
 		bool									factionLeader;
-		set<wstring>						allies;
+		set<string>							allies;
 		map<wstring, double>				practicals;
 		vector<HoI4Party>					parties;
 		vector<HoI4Minister>				ministers;

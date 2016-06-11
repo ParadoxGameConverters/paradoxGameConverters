@@ -29,14 +29,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <set>
 #include <sstream>
 #include <utility>
-
 #include <boost/algorithm/string.hpp>
-
 #include "Object.h"
 #include "paradoxParserUTF8.h"
 #include "V2World\V2World.h"
 #include "HoI4World\HoI4World.h"
 #include "Log.h"
+#include "WinUtils.h"
+
+
 
 bool CountryMapping::ReadRules(const std::wstring& fileName)
 {
@@ -108,7 +109,7 @@ void CountryMapping::CreateMapping(const V2World& srcWorld, const HoI4World& des
 	}
 
 	// Find a HoI4 tag from the rules for each V2 tag.
-	const map<wstring, HoI4Country*> HoI4Countries = destWorld.getPotentialCountries();
+	const map<string, HoI4Country*> HoI4Countries = destWorld.getPotentialCountries();
 	for (auto Vic2Tag: V2TagsToMap)
 	{
 		bool mapped = false;					// whether or not the V2 tag has been mapped
@@ -120,7 +121,7 @@ void CountryMapping::CreateMapping(const V2World& srcWorld, const HoI4World& des
 			// We want to use a HoI4 tag that corresponds to an actual HoI4 country if possible.
 			for (auto HoI4Tag: possibleHoI4Tags)
 			{
-				if (HoI4Countries.find(HoI4Tag) != HoI4Countries.end() && V2TagToHoI4TagMap.right.find(HoI4Tag) == V2TagToHoI4TagMap.right.end())
+				if (HoI4Countries.find(WinUtils::convertToUTF8(HoI4Tag)) != HoI4Countries.end() && V2TagToHoI4TagMap.right.find(HoI4Tag) == V2TagToHoI4TagMap.right.end())
 				{
 					mapped = true;
 					V2TagToHoI4TagMap.left.insert(make_pair(Vic2Tag, HoI4Tag));
