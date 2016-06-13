@@ -64,21 +64,20 @@ namespace parser_UTF8
 
 
 
-static void setLHS						(wstring key);
+static void setLHS						(string key);
 static void pushObj						();
-static void setRHSleaf					(wstring val);
+static void setRHSleaf					(string val);
 static void setRHSobject				();
 static void setRHSobjlist				();
-static void endRHSobjlist				();
-static void setRHStaglist				(vector<wstring> val);
+static void setRHStaglist				(vector<string> val);
 static void setEpsilon					();
 static void setAssign					();
 
-static Object*		topLevel		= NULL;  // a top level object
-vector<Object*>	stack;					// a stack of objects
-vector<Object*>	objstack;				// a stack of objects
-bool					epsilon		= false;	// if we've tried an episilon for an assign
-bool					inObjList	= false;	// if we're inside an object list
+static Object*		topLevel		= nullptr;  // a top level object
+vector<Object*>	stack;						// a stack of objects
+vector<Object*>	objstack;					// a stack of objects
+bool					epsilon		= false;		// if we've tried an episilon for an assign
+bool					inObjList	= false;		// if we're inside an object list
 
 
 template <typename Iterator>
@@ -95,16 +94,17 @@ struct SkipComment : qi::grammar<Iterator>
 
 static bool debugme = false;	// whether or not debugging should be on
 template <typename Iterator>
-struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
+struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> >
+{
 	static Object* topLevel; 
 
 	// leaf: either left or right side of assignment.  unquoted keyword.
 	// example: leaf
-	qi::rule<Iterator, wstring(), SkipComment<Iterator> >	leaf;
+	qi::rule<Iterator, string(), SkipComment<Iterator> >	leaf;
 
 	// taglist: a grouping of anonymous (rhs) leaves or strings
 	// examples: { TAG TAG TAG } or { "string" "string" TAG }
-	qi::rule<Iterator, vector<wstring>(), SkipComment<Iterator> >	taglist;
+	qi::rule<Iterator, vector<string>(), SkipComment<Iterator> >	taglist;
 
 	// assign: assignment
 	// examples: lhs = rhs or lhs = { lhs = rhs }
@@ -120,11 +120,11 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 
 	// str: a quoted literal string.  may include extended and/or reserved characters.
 	// example: "I am a string."
-	qi::rule<Iterator, wstring()>	str;
+	qi::rule<Iterator, string()>	str;
 
 	// tolleaf: a tolerant leaf.  may include extended and other unreserved characters.  rhs only.
 	// example: leaves with accents (names, for instance).
-	qi::rule<Iterator, wstring(), SkipComment<Iterator> >	tolleaf;
+	qi::rule<Iterator, string(), SkipComment<Iterator> >	tolleaf;
 
 	// braces: a stray set of empty rhs braces (without an lhs)
 	// EU3 seems to do this for certain decision mods.
@@ -196,32 +196,33 @@ Object* getTopLevel()
 
 void initParser()
 {
-	topLevel = new Object(L"topLevel");
+	topLevel = new Object("topLevel");
 	epsilon	= false;
 }
 
 
-wstring bufferOneObject(wifstream& read)
+string bufferOneObject(ifstream& read)
 {
 	int openBraces = 0;				// the number of braces deep we are
-	wstring currObject, buffer;		// the current object and the tect under consideration
+	string currObject, buffer;		// the current object and the tect under consideration
 	bool topLevel = true;			// whether or not we're at the top level
 	while (read.good())
 	{
 		getline(read, buffer);
-		if (buffer == L"CK2txt")
+
+		if (buffer == "CK2txt")
 		{
 			continue;
 		}
-		else if (buffer == L"EU4txt")
+		else if (buffer == "EU4txt")
 		{
 			continue;
 		}
-		currObject += L"\n";
+		currObject += "\n";
 
 		bool opened						= false;				// whether or not we just opened a new brace level
 		bool isInLiteral				= false;				// whether or not we're in a string literal
-		const wchar_t* str			= buffer.c_str();	// a character string of the text under consideration
+		const char* str				= buffer.c_str();	// a character string of the text under consideration
 		const unsigned int strSize	= buffer.size();	// the size of the text under consideration
 		for (unsigned int i = 0; i < strSize; ++i)
 		{
@@ -256,7 +257,7 @@ wstring bufferOneObject(wifstream& read)
 			continue;
 		}
 
-		if (currObject == L"")
+		if (currObject == "")
 		{
 			continue;
 		}
@@ -280,25 +281,18 @@ wstring bufferOneObject(wifstream& read)
 }
 
 
-bool readFile(wifstream& read)
+bool readFile(ifstream& read)
 {
 	clearStack();
 	read.unsetf(std::ios::skipws);
 
-	wchar_t firstChar = read.peek();
-	if (firstChar == (wchar_t)0xEF)
-	{
-		wchar_t bitBucket[3];
-		read.read(bitBucket, 3);
-	}
-
-	const static Parser<wstring::iterator> p;
-	const static SkipComment<wstring::iterator> s;
+	const static Parser<string::iterator> p;
+	const static SkipComment<string::iterator> s;
 
 	/* buffer and parse one object at a time */
 	while (read.good())
 	{
-		wstring currObject = bufferOneObject(read);	// the object under consideration
+		string currObject = bufferOneObject(read);	// the object under consideration
 		if (!qi::phrase_parse(currObject.begin(), currObject.end(), p, s))
 		{
 			clearStack();
@@ -326,7 +320,7 @@ void clearStack()
 }
 
 
-void setLHS(wstring key)
+void setLHS(string key)
 {
 	//LOG(LogLevel::Debug) << "Setting LHS : " << key;
 	Object* p = new Object(key);
@@ -342,14 +336,15 @@ void setLHS(wstring key)
 void pushObj()
 {
 	inObjList = true;
-	wstring key(L"objlist");		// the key of the object list
+	//LOG(LogLevel::Debug) << "Pushing objlist";
+	string key("objlist");			// the key of the object list
 	Object* p = new Object(key);	// the object to hold the object list
 	p->setObjList(); 
 	objstack.push_back(p); 
 }
 
 
-void setRHSleaf(wstring val)
+void setRHSleaf(string val)
 {
 	//LOG(LogLevel::Debug) << "Setting RHSleaf : " << val;
 	Object* l = stack.back();	// the leaf object
@@ -368,12 +363,12 @@ void setRHSleaf(wstring val)
 }
 
 
-void setRHStaglist(vector<wstring> val)
+void setRHStaglist(vector<string> vals)
 {
 	//LOG(LogLevel::Debug) << "Setting RHStaglist";
 	Object* l = stack.back();	// the object holding the list
 	stack.pop_back(); 
-	l->addToList(val.begin(), val.end());
+	l->addToList(vals.begin(), vals.end());
 	if ( (!inObjList) &&(0 < stack.size()) )
 	{
 		Object* p = stack.back();	// the object holding the leaf
@@ -434,17 +429,15 @@ void setAssign()
 	//LOG(LogLevel::Debug) << "In assign";
 	if (epsilon)
 	{
-		Object* e = new Object(L"epsilon");
+		Object* e = new Object("epsilon");
 		stack.push_back(e);
 	}
 	epsilon = false;
 }
 
 
-Object* doParseFile(const wchar_t* filename)
+Object* doParseFile(string filename)
 {
-	wifstream read;				// wide ifstream for reading files
-
 	/* - when using parser debugging, also ensure that the parser object is non-static!
 	debugme = false;
 	if (string(filename) == "D:\\Victoria 2\\technologies\\commerce_tech.txt")
@@ -453,10 +446,10 @@ Object* doParseFile(const wchar_t* filename)
 
 	initParser();
 	Object* obj = getTopLevel();	// the top level object
-	read.open(filename); 
+	ifstream read(filename); 
 	if (!read.is_open())
 	{
-		return NULL;
+		return nullptr;
 	}
 	read.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t,0x10ffff, std::consume_header>));
 	readFile(read);  

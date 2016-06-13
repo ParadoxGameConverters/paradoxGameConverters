@@ -50,6 +50,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Object.h"
+#include <string>
+using namespace std;
 
 
 
@@ -58,7 +60,7 @@ namespace parser_UTF8
 	Object*	getTopLevel();
 	void		clearStack(); 
 	void		initParser();
-	Object*	doParseFile(const wchar_t* filename);
+	Object*	doParseFile(string filename);
 }
 
 

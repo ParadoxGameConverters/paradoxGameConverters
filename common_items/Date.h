@@ -35,7 +35,7 @@ class Object;
 struct date
 {
 	date() : year(1), month(1), day(1) {};
-	date(wstring _init);
+	date(string _init);
 	date(const date& _init);
 	date(const Object* _init);
 
@@ -52,7 +52,7 @@ struct date
 	float diffInYears(const date& _rhs) const;
 
 	bool isSet() const;
-	wstring toString() const;
+	string toString() const;
 
 	int year;		// the year
 	int month;		// the month

@@ -22,7 +22,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Log.h"
-
 #include <ctime>
 #include <fstream>
 #include <iostream>
@@ -41,15 +40,17 @@ Log::Log(LogLevel level)
 	}
 }
 
+
 Log::~Log()
 {
 	logMessageStream << std::endl;
-	std::wstring logMessage = logMessageStream.str();
+	std::string logMessage = logMessageStream.str();
 	WriteToConsole(logLevel, logMessage);
 	WriteToFile(logLevel, logMessage);
 }
 
-void Log::WriteToConsole(LogLevel level, const std::wstring& logMessage)
+
+void Log::WriteToConsole(LogLevel level, const std::string& logMessage)
 {
 	if (level == LogLevel::Debug)
 	{	// Don't log debug messages to console.
@@ -94,12 +95,13 @@ void Log::WriteToConsole(LogLevel level, const std::wstring& logMessage)
 		}
 	}
 
-	std::wcout << logMessage;
+	std::cout << logMessage;
 }
 
-void Log::WriteToFile(LogLevel level, const std::wstring& logMessage)
+
+void Log::WriteToFile(LogLevel level, const std::string& logMessage)
 {
-	std::wofstream logFile("log.txt", std::ofstream::app);
+	std::ofstream logFile("log.txt", std::ofstream::app);
 
 	time_t rawtime;	// the raw time data
 	time(&rawtime);
