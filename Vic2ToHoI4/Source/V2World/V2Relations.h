@@ -36,7 +36,7 @@ class V2Relations
 	public:
 		V2Relations(Object* obj);
 
-		wstring	getTag()			const { return tag; }
+		string	getTag()			const { return tag; }
 		int		getRelations()	const { return value; }
 		int		getLevel()		const { return level; }
 
@@ -46,7 +46,7 @@ class V2Relations
 		date getTruceUntil()			const { return truceUntil; }
 
 	private:
-		wstring	tag;
+		string	tag;
 		int		value;
 		bool		militaryAccess;
 		date		lastSendDiplomat;

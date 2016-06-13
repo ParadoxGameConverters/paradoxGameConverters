@@ -35,13 +35,13 @@ struct V2Party
 {
 	V2Party(Object* party_obj);
 
-	wstring name;
-	wstring ideology;
-	wstring economic_policy;
-	wstring trade_policy;
-	wstring religious_policy;
-	wstring citizenship_policy;
-	wstring war_policy;
+	string name;
+	string ideology;
+	string economic_policy;
+	string trade_policy;
+	string religious_policy;
+	string citizenship_policy;
+	string war_policy;
 };
 
 

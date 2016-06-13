@@ -44,28 +44,28 @@ struct	V2Party;
 class V2World
 {
 	public:
-		V2World(Object* obj, const inventionNumToName& iNumToName, map<wstring, wstring>& armyTechs, map<wstring, wstring>& navyTechs, const continentMapping& continentMap);
+		V2World(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs, const continentMapping& continentMap);
 
-		V2Country*						getCountry(wstring tag) const;
-		void								removeCountry(wstring tag);
-		V2Province*						getProvince(int provNum) const;
-		void								checkAllProvincesMapped(const inverseProvinceMapping& inverseProvinceMap) const;
-		void								setLocalisations(V2Localisation& localisation);
-		V2Party*							getRulingParty(const V2Country* country) const;
-		vector<V2Party*>				getActiveParties(const V2Country* country) const;
+		V2Country*					getCountry(string tag) const;
+		void							removeCountry(string tag);
+		V2Province*					getProvince(int provNum) const;
+		void							checkAllProvincesMapped(const inverseProvinceMapping& inverseProvinceMap) const;
+		void							setLocalisations(V2Localisation& localisation);
+		V2Party*						getRulingParty(const V2Country* country) const;
+		vector<V2Party*>			getActiveParties(const V2Country* country) const;
 		
-		map<wstring, V2Country*>	getCountries()	const			{ return countries; }
-		const V2Diplomacy*			getDiplomacy()	const			{ return &diplomacy; }
-		const vector<wstring>&		getGreatCountries() const	{ return greatCountries; }
+		map<string, V2Country*>	getCountries()	const			{ return countries; }
+		const V2Diplomacy*		getDiplomacy()	const			{ return &diplomacy; }
+		const vector<string>&	getGreatCountries() const	{ return greatCountries; }
 	private:
-		void								readCountryFiles(wstring countryListFile, wstring mod);
-		void								removeEmptyNations();
+		void							readCountryFiles(string countryListFile, string mod);
+		void							removeEmptyNations();
 
-		map<int, V2Province*>		provinces;
-		map<wstring, V2Country*>	countries;
-		V2Diplomacy						diplomacy;
-		vector<V2Party*>				parties;
-		vector<wstring>				greatCountries; // Tags of great nations in order of ranking
+		map<int, V2Province*>	provinces;
+		map<string, V2Country*>	countries;
+		V2Diplomacy					diplomacy;
+		vector<V2Party*>			parties;
+		vector<string>				greatCountries; // Tags of great nations in order of ranking
 };
 
 

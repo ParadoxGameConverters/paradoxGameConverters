@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include <sys/stat.h>
 #include <codecvt>
-#include "ParadoxParser.h"
+#include "ParadoxParser8859_15.h"
 #include "Log.h"
 #include "../Configuration.h"
 #include "../../../common_items/WinUtils.h"
@@ -39,7 +39,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<wstring, wstring>& armyTechs, map<wstring, wstring>& navyTechs, const continentMapping& continentMap)
+V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs, const continentMapping& continentMap)
 {
 	provinces.clear();
 	countries.clear();
@@ -47,14 +47,14 @@ V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<wstring,
 
 	// Get great nation indices
 	unsigned countriesIndex = 1; // Starts from 1 at REB
-	vector<Object*> greatNationsObj = obj->getValue(L"great_nations");
+	vector<Object*> greatNationsObj = obj->getValue("great_nations");
 	map<int, int> greatNationIndices; // Map greatNation index to its ranking (i.e. 0 - 7)
 	if (greatNationsObj.size() > 0)
 	{
-		vector<wstring> greatNations = greatNationsObj[0]->getTokens();
+		vector<string> greatNations = greatNationsObj[0]->getTokens();
 		for (unsigned int i = 0; i < greatNations.size(); i++)
 		{
-			greatNationIndices.insert(make_pair(_wtoi(greatNations[i].c_str()), i));
+			greatNationIndices.insert(make_pair(atoi(greatNations[i].c_str()), i));
 		}
 
 		greatCountries.resize(greatNations.size());
@@ -62,12 +62,12 @@ V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<wstring,
 
 	for (auto leaf: leaves)
 	{
-		wstring key = leaf->getKey();
+		string key = leaf->getKey();
 
 		// Is this a numeric value? If so, must be a province
-		if (_wtoi(key.c_str()) > 0)
+		if (atoi(key.c_str()) > 0)
 		{
-			provinces[_wtoi(key.c_str())] = new V2Province(leaf);
+			provinces[atoi(key.c_str())] = new V2Province(leaf);
 		}
 
 		// Countries are three uppercase characters
@@ -136,7 +136,7 @@ V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<wstring,
 	removeEmptyNations();
 
 	// Diplomacy
-	vector<Object*> diploObj = obj->getValue(L"diplomacy");
+	vector<Object*> diploObj = obj->getValue("diplomacy");
 	if (diploObj.size() > 0)
 	{
 		diplomacy = V2Diplomacy(diploObj[0]);
@@ -147,21 +147,21 @@ V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<wstring,
 	}
 
 	// get country colours and parties
-	vector<wstring> vic2Mods = Configuration::getVic2Mods();
+	vector<string> vic2Mods = Configuration::getVic2Mods();
 	for (auto itr: vic2Mods)
 	{
-		readCountryFiles(Configuration::getV2Path() + L"\\mod\\" + itr + L"\\common\\countries.txt", itr);
+		readCountryFiles(Configuration::getV2Path() + "\\mod\\" + itr + "\\common\\countries.txt", itr);
 	}
 	if (vic2Mods.size() == 0)
 	{
-		readCountryFiles(Configuration::getV2Path() + L"\\common\\countries.txt", L"");
+		readCountryFiles(Configuration::getV2Path() + "\\common\\countries.txt", "");
 	}
 }
 
 
-V2Country* V2World::getCountry(wstring tag) const
+V2Country* V2World::getCountry(string tag) const
 {
-	map<wstring, V2Country*>::const_iterator itr = countries.find(tag);
+	map<string, V2Country*>::const_iterator itr = countries.find(tag);
 	if (itr != countries.end())
 	{
 		return itr->second;
@@ -173,7 +173,7 @@ V2Country* V2World::getCountry(wstring tag) const
 }
 
 
-void V2World::removeCountry(wstring tag)
+void V2World::removeCountry(string tag)
 {
 	countries.erase(tag);
 }
@@ -206,15 +206,15 @@ void V2World::setLocalisations(V2Localisation& localisation)
 		const auto& nameLocalisations = localisation.GetTextInEachLanguage(countryItr.second->getTag());	// the names in all languages
 		for (const auto& nameLocalisation : nameLocalisations)	// the name under consideration
 		{
-			const std::wstring& language = nameLocalisation.first;	// the language
-			const std::wstring& name = nameLocalisation.second;		// the name of the country in this language
+			const std::string& language = nameLocalisation.first;	// the language
+			const std::string& name = nameLocalisation.second;		// the name of the country in this language
 			countryItr.second->setLocalisationName(language, name);
 		}
-		const auto& adjectiveLocalisations = localisation.GetTextInEachLanguage(countryItr.second->getTag() + L"_ADJ");	// the adjectives in all languages
+		const auto& adjectiveLocalisations = localisation.GetTextInEachLanguage(countryItr.second->getTag() + "_ADJ");	// the adjectives in all languages
 		for (const auto& adjectiveLocalisation : adjectiveLocalisations)	// the adjective under consideration
 		{
-			const std::wstring& language = adjectiveLocalisation.first;		// the language
-			const std::wstring& adjective = adjectiveLocalisation.second;	// the adjective for the country in this language
+			const std::string& language = adjectiveLocalisation.first;		// the language
+			const std::string& adjective = adjectiveLocalisation.second;	// the adjective for the country in this language
 			countryItr.second->setLocalisationAdjective(language, adjective);
 		}
 	}
@@ -269,14 +269,13 @@ void V2World::removeEmptyNations()
 }
 
 
-void V2World::readCountryFiles(wstring countryListFile, wstring mod)
+void V2World::readCountryFiles(string countryListFile, string mod)
 {
-	struct _stat st;
-	wifstream V2CountriesInput;
+	ifstream V2CountriesInput;
 	V2CountriesInput.open(countryListFile.c_str());
 	if (!V2CountriesInput.is_open())
 	{
-		if (mod == L"")
+		if (mod == "")
 		{
 			LOG(LogLevel::Error) << "Could not open " << countryListFile;
 			exit(1);
@@ -288,32 +287,32 @@ void V2World::readCountryFiles(wstring countryListFile, wstring mod)
 	}
 	while (!V2CountriesInput.eof())
 	{
-		wstring line;
+		string line;
 		getline(V2CountriesInput, line);
 
 		if ((line[0] == '#') || (line.size() < 3))
 		{
 			continue;
 		}
-		else if (line.substr(0, 12) == L"dynamic_tags")
+		else if (line.substr(0, 12) == "dynamic_tags")
 		{
 			continue;
 		}
 
-		wstring tag;
+		string tag;
 		tag = line.substr(0, 3);
 
-		wstring countryFileName;
+		string countryFileName;
 		int start = line.find_first_of('/');
 		int size = line.find_last_of('\"') - start;
 		countryFileName = line.substr(start, size);
 
 		Object* countryData = NULL;
-		wstring file;
-		if (mod != L"")
+		string file;
+		if (mod != "")
 		{
-			file = Configuration::getV2Path() + L"\\mod\\" + mod + L"\\common\\countries\\" + countryFileName;
-			if (_wstat(file.c_str(), &st) == 0)
+			file = Configuration::getV2Path() + "\\mod\\" + mod + "\\common\\countries\\" + countryFileName;
+			if (WinUtils::DoesFileExist(file.c_str()))
 			{
 				countryData = parser_8859_15::doParseFile(file.c_str());
 				if (countryData == NULL)
@@ -324,8 +323,8 @@ void V2World::readCountryFiles(wstring countryListFile, wstring mod)
 		}
 		if (countryData == NULL)
 		{
-			file = Configuration::getV2Path() +  L"\\common\\countries\\" + countryFileName;
-			if (_wstat(file.c_str(), &st) == 0)
+			file = Configuration::getV2Path() +  "\\common\\countries\\" + countryFileName;
+			if (WinUtils::DoesFileExist(file.c_str()))
 			{
 				countryData = parser_8859_15::doParseFile(file.c_str());
 				if (countryData == NULL)
@@ -340,15 +339,15 @@ void V2World::readCountryFiles(wstring countryListFile, wstring mod)
 			}
 		}
 
-		vector<Object*> colorObj = countryData->getValue(L"color");
+		vector<Object*> colorObj = countryData->getValue("color");
 		if (colorObj.size() > 0)
 		{
-			vector<wstring> rgb = colorObj[0]->getTokens();
+			vector<string> rgb = colorObj[0]->getTokens();
 			if (rgb.size() == 3)
 			{
 				if (countries.find(tag) != countries.end())
 				{
-					countries[tag]->setColor(Color(_wtoi(rgb[0].c_str()), _wtoi(rgb[1].c_str()), _wtoi(rgb[2].c_str())));
+					countries[tag]->setColor(Color(atoi(rgb[0].c_str()), atoi(rgb[1].c_str()), atoi(rgb[2].c_str())));
 				}
 			}
 		}
@@ -358,8 +357,8 @@ void V2World::readCountryFiles(wstring countryListFile, wstring mod)
 
 		for (auto leaf: leaves)
 		{
-			wstring key = leaf->getKey();
-			if (key == L"party")
+			string key = leaf->getKey();
+			if (key == "party")
 			{
 				parties.push_back(new V2Party(leaf));
 			}

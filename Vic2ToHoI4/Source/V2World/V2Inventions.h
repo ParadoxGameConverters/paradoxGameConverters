@@ -32,7 +32,7 @@ using namespace std;
 
 
 
-typedef map<int, wstring> inventionNumToName;
+typedef map<int, string> inventionNumToName;
 
 
 void getInventionNums(inventionNumToName& numToName);

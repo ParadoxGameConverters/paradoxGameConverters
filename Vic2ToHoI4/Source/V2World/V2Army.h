@@ -37,15 +37,15 @@ class V2Regiment // also Ship
 	public:
 		V2Regiment(Object* obj);
 
-		wstring	getName()				const { return name; };
-		wstring	getType()				const { return type; };
+		string	getName()				const { return name; };
+		string	getType()				const { return type; };
 		double	getStrength()			const { return strength; };
-		double	getOrganization()	const { return organization; };
+		double	getOrganization()		const { return organization; };
 		double	getExperience()		const { return experience; };
 
 	private:
-		wstring	name;
-		wstring	type;
+		string	name;
+		string	type;
 		double	strength;
 		double	organization;
 		double	experience;
@@ -57,7 +57,7 @@ class V2Army // also Navy
 	public:
 		V2Army(Object* obj);
 
-		wstring					getName()		const { return name; };
+		string					getName()		const { return name; };
 		bool						getNavy()		const { return isNavy; };
 		double					getSupplies()	const { return supplies; };
 		int						getAtSea()		const { return at_sea; };
@@ -65,7 +65,7 @@ class V2Army // also Navy
 		vector<V2Regiment*>	getRegiments()	const { return regiments; };
 
 	private:
-		wstring					name;
+		string					name;
 		int						location;
 		vector<V2Regiment*>	regiments;
 		double					supplies;

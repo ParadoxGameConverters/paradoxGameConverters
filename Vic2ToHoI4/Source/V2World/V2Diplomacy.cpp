@@ -30,27 +30,27 @@ V2Agreement::V2Agreement(Object *obj)
 {
 	type = obj->getKey();
 
-	std::vector<Object*> objFirst = obj->getValue(L"first");
+	std::vector<Object*> objFirst = obj->getValue("first");
 	if (objFirst.size() > 0)
 	{
 		country1 = objFirst[0]->getLeaf();
 	}
 	else
 	{
-		LOG(LogLevel::Warning) << "Diplomatic agreement (L" << type << ") has no first party";
+		LOG(LogLevel::Warning) << "Diplomatic agreement (" << type << ") has no first party";
 	}
 
-	std::vector<Object*> objSecond = obj->getValue(L"second");
+	std::vector<Object*> objSecond = obj->getValue("second");
 	if (objSecond.size() > 0)
 	{
 		country2 = objSecond[0]->getLeaf();
 	}
 	else
 	{
-		LOG(LogLevel::Warning) << "Diplomatic agreement (L" << type << ") has no second party";
+		LOG(LogLevel::Warning) << "Diplomatic agreement (" << type << ") has no second party";
 	}
 
-	std::vector<Object*> objDate = obj->getValue(L"start_date");
+	std::vector<Object*> objDate = obj->getValue("start_date");
 	if (objDate.size() > 0)
 	{
 		start_date = date(objDate[0]->getLeaf());
@@ -60,28 +60,28 @@ V2Agreement::V2Agreement(Object *obj)
 
 V2Diplomacy::V2Diplomacy(Object *obj)
 {
-	std::vector<Object*> objVassals = obj->getValue(L"vassal");
+	std::vector<Object*> objVassals = obj->getValue("vassa");
 	for (auto itr: objVassals)
 	{
 		V2Agreement agr(itr);
 		agreements.push_back(agr);
 	}
 
-	std::vector<Object*> objAlliances = obj->getValue(L"alliance");
+	std::vector<Object*> objAlliances = obj->getValue("alliance");
 	for (auto itr: objAlliances)
 	{
 		V2Agreement agr(itr);
 		agreements.push_back(agr);
 	}
 
-	std::vector<Object*> objCBs = obj->getValue(L"causus_belli");
+	std::vector<Object*> objCBs = obj->getValue("causus_belli");
 	for (auto itr: objCBs)
 	{
 		V2Agreement agr(itr);
 		agreements.push_back(agr);
 	}
 
-	std::vector<Object*> objSubsidies = obj->getValue(L"warsubsidy");
+	std::vector<Object*> objSubsidies = obj->getValue("warsubsidy");
 	for (auto itr: objSubsidies)
 	{
 		V2Agreement agr(itr);

@@ -26,41 +26,41 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "../../../common_items/WinUtils.h"
 #include "Object.h"
-#include "ParadoxParser.h"
+#include "ParadoxParser8859_15.h"
 
 
 
 void getInventionNums(inventionNumToName& numToName)
 {
 	// find the relevant inventions files
-	wstring path;
-	vector<wstring> vic2Mods = Configuration::getVic2Mods();
+	string path;
+	vector<string> vic2Mods = Configuration::getVic2Mods();
 	for (auto itr: vic2Mods)
 	{
-		wstring possiblePath = Configuration::getV2Path() + L"\\mod\\" + itr + L"\\inventions\\";
+		string possiblePath = Configuration::getV2Path() + "\\mod\\" + itr + "\\inventions\\";
 		if (WinUtils::doesFolderExist(possiblePath))
 		{
 			path = possiblePath;
 		}
 	}
-	if (path == L"")
+	if (path == "")
 	{
-		path = Configuration::getV2Path() + L"\\inventions\\";
+		path = Configuration::getV2Path() + "\\inventions\\";
 	}
 
 	//get the inventions
 	numToName.clear();
 	int num = 1;
 
-	set<wstring> techFiles;
+	set<string> techFiles;
 	WinUtils::GetAllFilesInFolder(path, techFiles);
 	for (auto fileItr: techFiles)
 	{
-		Object* obj = parser_8859_15::doParseFile((path + L"\\" + fileItr).c_str());
+		Object* obj = parser_8859_15::doParseFile((path + "\\" + fileItr).c_str());
 		vector<Object*> techObjs = obj->getLeaves();
 		for (auto techItr: techObjs)
 		{
-			wstring name = techItr->getKey();
+			string name = techItr->getKey();
 			numToName.insert(make_pair(num, name));
 			num++;
 		}

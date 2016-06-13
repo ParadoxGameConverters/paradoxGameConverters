@@ -38,12 +38,12 @@ class V2Pop
 		V2Pop(Object* obj);
 
 		int		getSize()							const { return size; };
-		wstring	getType()							const { return type; };
+		string	getType()							const { return type; };
 		int		getSupportedRegimentCount()	const { return supportedRegiments; };
 		double	getLiteracy()						const { return lit; };
 
 	private:
-		wstring	type;
+		string	type;
 		int		size;
 		int		supportedRegiments;
 		double	lit;

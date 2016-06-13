@@ -36,9 +36,9 @@ struct V2Agreement
 {
 	V2Agreement(Object* obj);
 
-	wstring	type;
-	wstring	country1;
-	wstring	country2;
+	string	type;
+	string	country1;
+	string	country2;
 	date		start_date;
 };
 

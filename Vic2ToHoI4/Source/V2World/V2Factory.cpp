@@ -22,5 +22,3 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Factory.h"
-#include "ParadoxParser.h"
-#include "Log.h"
