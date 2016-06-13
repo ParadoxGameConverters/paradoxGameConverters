@@ -434,7 +434,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 	//				if the matching HoI4 provinces are owned by this country, add it to the HoI4 state
 	//			if the state is not empty, add it to this list of states
 
-	int stateID = 741;
+	int stateID = 1;
 	for (auto country: sourceWorld.getCountries())
 	{
 		wstring HoI4Tag = countryMap.GetHoI4Tag(country.first);

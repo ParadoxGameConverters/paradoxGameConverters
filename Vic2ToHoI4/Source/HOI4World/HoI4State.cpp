@@ -41,43 +41,45 @@ void HoI4State::output()
 	string filename("Output/" + WinUtils::convertToUTF8(Configuration::getOutputName()) + "/history/states/" + to_string(ID) + "-blah.txt");
 	ofstream out;
 	out.open(filename);
-
-	if (!out.is_open())
+//	if (provinces.size() != 0)
 	{
-		LOG(LogLevel::Error) << L"Could not open \"output/input/history/states/" + to_wstring(ID) + L"-blah.txt\"";
-		exit(-1);
-	}
+		if (!out.is_open())
+		{
+			LOG(LogLevel::Error) << L"Could not open \"output/input/history/states/" + to_wstring(ID) + L"-blah.txt\"";
+			exit(-1);
+		}
 
-	out << "state={" << endl;
-	out << "\tid=" << ID << endl;
-	out << "\tname=" << "foo" << " # bar" << endl;
-	out << "\tmanpower = 1" << endl;
-	out << endl;
-	out << "\tstate_category = town" << endl;
-	out << "" << endl;
-	out << "\thistory={" << endl;
-	out << "\t\towner = " << ownerTag << endl;
-	//out << L"	victory_points = { 3838 1 }" << endl;
-	//out << L"	buildings = {" << endl;
-	//out << L"	infrastructure = 4" << endl;
-	//out << L"	industrial_complex = 1" << endl;
-	//out << L"	air_base = 1" << endl;
-	//out << L"	3838 = {" << endl;
-	//out << L"	naval_base = 3" << endl;
-	//out << L"}" << endl;
-	//out << L"}" << endl;
-	//out << L"	add_core_of = FRA" << endl;
-	out << "\t}" << endl;
-	out << endl;
-	out << "\tprovinces={" << endl;
-	out << "\t\t";
-	for (auto provnum: provinces)
-	{
-		out << provnum << " ";
-	}
-	out << endl;
-	out << "\t}" << endl;
-	out << "}" << endl;
+		out << "state={" << endl;
+		out << "\tid=" << ID << endl;
+		out << "\tname=" << "foo" << " # bar" << endl;
+		out << "\tmanpower = 1" << endl;
+		out << endl;
+		out << "\tstate_category = town" << endl;
+		out << "" << endl;
+		out << "\thistory={" << endl;
+		out << "\t\towner = " << ownerTag << endl;
+		//out << L"	victory_points = { 3838 1 }" << endl;
+		//out << L"	buildings = {" << endl;
+		//out << L"	infrastructure = 4" << endl;
+		//out << L"	industrial_complex = 1" << endl;
+		//out << L"	air_base = 1" << endl;
+		//out << L"	3838 = {" << endl;
+		//out << L"	naval_base = 3" << endl;
+		//out << L"}" << endl;
+		//out << L"}" << endl;
+		//out << L"	add_core_of = FRA" << endl;
+		out << "\t}" << endl;
+		out << endl;
+		out << "\tprovinces={" << endl;
+		out << "\t\t";
+		for (auto provnum : provinces)
+		{
+			out << provnum << " ";
+		}
+		out << endl;
+		out << "\t}" << endl;
+		out << "}" << endl;
 
-	out.close();
+		out.close();
+	}
 }

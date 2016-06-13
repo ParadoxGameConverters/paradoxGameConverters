@@ -26,7 +26,7 @@
     link = { vic2 = 2336 hoi4 = 1280 }    # Easter Island -> land
     link = { vic2 = 801 hoi4 = 12148 hoi4 = 10188 }    # Tahiti -> land, land
     link = { vic2 = 2544 hoi4 = 13080 }    # Pago Pago -> land
-    link = { vic2 = 2547 vic2 = 2543 hoi4 = 7290 }    # Tokelau, Apia -> land
+    link = { vic2 = 2547 hoi4 = 7290 }    # Tokelau, Apia -> land
     link = { vic2 = 686 hoi4 = 13053 hoi4 = 13049 hoi4 = 13050 }    # Line Islands -> land, land, land
     link = { vic2 = 2526 hoi4 = 13048 }    # Palmyra -> land
     link = { vic2 = 658 hoi4 = 12021 hoi4 = 10048 hoi4 = 7195 hoi4 = 4180 hoi4 = 7112 hoi4 = 13051 }    # Hawaii -> land, land, land, land, land, land
@@ -43,7 +43,7 @@
     link = { vic2 = 2523 hoi4 = 13038 }    # Nauru -> land
     link = { vic2 = 2527 hoi4 = 7393 hoi4 = 13022 hoi4 = 13021 hoi4 = 4387 hoi4 = 13020 }    # Gilbert Islands -> land, land, land, land, land
     link = { vic2 = 2541 hoi4 = 13056 hoi4 = 13057 hoi4 = 13055 hoi4 = 13054 }    # Ellice Islands -> land, land, land, land
-    link = { vic2 = 2454 hoi4 = 12159 hoi4 = 7302 }    # Fiji -> land, land
+    link = { vic2 = 2454 hoi4 = 4286 hoi4 = 12159 hoi4 = 7302 }    # Fiji -> land, land
     # Pacific
     #
     # Congo
@@ -179,8 +179,9 @@
     link = { vic2 = 1939 hoi4 = 2025 }    # Zaria -> land
     link = { vic2 = 1947 hoi4 = 1969 }    # Katsina -> land
     link = { vic2 = 1940 hoi4 = 1932 }    # Bida -> land
-    link = { vic2 = 1901 vic2 = 1948 hoi4 = 8071 hoi4 = 10836 hoi4 = 7950 hoi4 = 1891 }    # MANY-TO-MANY: Wagadugu, Sokoto -> land, land, land, land
-    link = { vic2 = 1902 hoi4 = 12851 hoi4 = 8116 }    # Wahiguya -> land, land
+    link = { vic2 = 1901 hoi4 = 10836 hoi4 = 7950 }
+	link = { vic2 = 1948 hoi4 = 1891 }    # 
+    link = { vic2 = 1902 hoi4 = 12851 hoi4 = 8116 hoi4 = 8071}    # Wahiguya -> land, land
     link = { vic2 = 1906 hoi4 = 12794 }    # Orodaro -> land
     link = { vic2 = 1799 hoi4 = 4927 }    # Sikasso -> land
     link = { vic2 = 1804 hoi4 = 7930 hoi4 = 7954 }    # Bandiagara -> land, land
@@ -191,7 +192,8 @@
     link = { vic2 = 1809 hoi4 = 12707 }    # Say -> land
     link = { vic2 = 1905 hoi4 = 7983 }    # Bobo Dioulasso -> land
     link = { vic2 = 1798 hoi4 = 5045 }    # Bougouni -> land
-    link = { vic2 = 1794 vic2 = 1800 hoi4 = 12751 }    # Bamako, Segu -> land
+    #ignored link = { vic2 = 1794}
+	link = { vic2 = 1800 hoi4 = 12751 }    # Bamako, Segu -> land
     link = { vic2 = 1796 hoi4 = 10915 }    # Nioro -> land
     link = { vic2 = 1882 hoi4 = 8008 }    # Kankan -> land
     link = { vic2 = 1883 hoi4 = 5039 }    # Beyla -> land
@@ -205,7 +207,7 @@
     link = { vic2 = 1921 hoi4 = 12762 }    # Nikki -> land
     link = { vic2 = 1938 hoi4 = 12817 }    # Bussa -> land
     link = { vic2 = 1925 hoi4 = 12731 }    # Ibadan -> land
-    link = { vic2 = 1922 hoi4 = 12874 }    # Jugu -> land
+    link = { vic2 = 1922 hoi4 = 2001 hoi4 = 12874 }    # Jugu -> land
     link = { vic2 = 1918 hoi4 = 12843 }    # Sokode -> land
     link = { vic2 = 1797 hoi4 = 10829 }    # Kita -> land
     link = { vic2 = 1801 hoi4 = 10812 hoi4 = 10771 }    # Mourdiah -> land, land
@@ -365,7 +367,7 @@
     link = { vic2 = 1490 hoi4 = 12732 hoi4 = 4888 hoi4 = 10490 hoi4 = 7270 hoi4 = 11448 hoi4 = 12815 hoi4 = 10817 }    # Lanzhou -> land, land, land, land, land, land, land
     link = { vic2 = 1535 hoi4 = 7803 hoi4 = 12750 hoi4 = 5031 hoi4 = 10770 hoi4 = 8102 hoi4 = 7727 hoi4 = 4783 hoi4 = 10899 hoi4 = 12776 hoi4 = 12327 hoi4 = 5057 hoi4 = 8055 }    # Yeke Juu Chuulghan -> land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 1488 hoi4 = 12820 hoi4 = 12596 hoi4 = 5076 hoi4 = 2099 hoi4 = 2028 hoi4 = 7971 hoi4 = 1778 hoi4 = 5100 hoi4 = 2053 }    # Jiayuguan -> land, land, land, land, land, land, land, land, land
-    link = { vic2 = 1557 hoi4 = 8018 hoi4 = 12846 hoi4 = 4536 hoi4 = 10750 }    # Balekungomi -> land, land, land, land
+    link = { vic2 = 1557 hoi4 = 1882 hoi4 = 8018 hoi4 = 12846 hoi4 = 4536 hoi4 = 10750 }    # Balekungomi -> land, land, land, land
     link = { vic2 = 1556 hoi4 = 12890 hoi4 = 10865 hoi4 = 7940 hoi4 = 10796 hoi4 = 10834 hoi4 = 7997 }    # Makhai -> land, land, land, land, land, land
     link = { vic2 = 1558 hoi4 = 8037 hoi4 = 4914 hoi4 = 12899 hoi4 = 4964 }    # Kegudo -> land, land, land, land
     link = { vic2 = 1586 hoi4 = 4407 hoi4 = 10856 hoi4 = 8104 hoi4 = 7988 hoi4 = 1918 hoi4 = 4999 hoi4 = 10726 hoi4 = 1999 hoi4 = 12724 hoi4 = 12837 hoi4 = 10841 hoi4 = 2067 hoi4 = 7294 }    # Yazhou -> land, land, land, land, land, land, land, land, land, land, land, land, land
@@ -510,7 +512,7 @@
     link = { vic2 = 2207 hoi4 = 7752 hoi4 = 7749 hoi4 = 12612 hoi4 = 4856 hoi4 = 1723 hoi4 = 1853 hoi4 = 10632 hoi4 = 12686 hoi4 = 1787 }    # Sainshand -> land, land, land, land, land, land, land, land, land
     link = { vic2 = 1468 hoi4 = 1774 hoi4 = 7870 hoi4 = 7808 hoi4 = 1855 hoi4 = 10560 hoi4 = 10634 hoi4 = 12544 hoi4 = 10695 hoi4 = 10563 hoi4 = 4777 hoi4 = 7799 hoi4 = 12614 hoi4 = 4858 }    # Uliastai -> land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 2608 hoi4 = 4751 hoi4 = 7843 hoi4 = 12695 hoi4 = 7773 hoi4 = 10669 hoi4 = 12520 hoi4 = 10539 }    # Khatgal -> land, land, land, land, land, land, land
-    link = { vic2 = 2678 hoi4 = 1791 hoi4 = 4882 hoi4 = 12579 hoi4 = 12649 hoi4 = 1689 hoi4 = 4697 hoi4 = 10623 hoi4 = 1728 hoi4 = 12675 }    # Bulgan -> land, land, land, land, land, land, land, land, land
+    link = { vic2 = 2678 hoi4 = 1834 hoi4 = 1791 hoi4 = 4882 hoi4 = 12579 hoi4 = 12649 hoi4 = 1689 hoi4 = 4697 hoi4 = 10623 hoi4 = 1728 hoi4 = 12675 }    # Bulgan -> land, land, land, land, land, land, land, land, land
     link = { vic2 = 1465 hoi4 = 10554 hoi4 = 7717 hoi4 = 7676 hoi4 = 1859 hoi4 = 1798 hoi4 = 12605 hoi4 = 4801 hoi4 = 4732 hoi4 = 7881 }    # Urga -> land, land, land, land, land, land, land, land, land
     link = { vic2 = 1467 hoi4 = 4792 hoi4 = 12665 hoi4 = 12533 hoi4 = 4862 hoi4 = 7885 hoi4 = 7823 hoi4 = 10708 hoi4 = 1868 hoi4 = 10578 hoi4 = 10647 hoi4 = 12557 hoi4 = 10575 }    # Bayan Tumen -> land, land, land, land, land, land, land, land, land, land, land, land
     # Mongolia
@@ -546,7 +548,7 @@
     link = { vic2 = 1631 hoi4 = 10115 hoi4 = 4103 hoi4 = 11912 hoi4 = 12011 }    # Wonju -> land, land, land, land
     link = { vic2 = 1636 hoi4 = 11992 hoi4 = 7175 hoi4 = 4126 hoi4 = 7204 }    # Taejon -> land, land, land, land
     link = { vic2 = 1633 hoi4 = 11977 hoi4 = 10085 hoi4 = 1081 }    # Taegu -> land, land, land
-    link = { vic2 = 1634 hoi4 = 4086 hoi4 = 12089 hoi4 = 7121 }    # Pohang -> land, land, land
+    link = { vic2 = 1634 hoi4 = 4056 hoi4 = 4086 hoi4 = 12089 hoi4 = 7121 }    # Pohang -> land, land, land
     link = { vic2 = 1632 hoi4 = 1054 hoi4 = 12060 }    # Pusan -> land, land
     link = { vic2 = 1635 hoi4 = 11948 hoi4 = 10110 hoi4 = 12085 }    # Kwangju -> land, land, land
     link = { vic2 = 1637 hoi4 = 1177 }    # Cheju -> land
@@ -772,7 +774,7 @@
     link = { vic2 = 2332 hoi4 = 5169 hoi4 = 12954 }    # Osorno -> land, land
     link = { vic2 = 2397 hoi4 = 8176 hoi4 = 8161 }    # Esquel -> land, land
     link = { vic2 = 2396 hoi4 = 10953 hoi4 = 12349 hoi4 = 11005 }    # Rawson -> land, land, land
-    link = { vic2 = 2398 hoi4 = 12952 hoi4 = 2169 }    # Puerto Deseado -> land, land
+    link = { vic2 = 2398 hoi4 = 8913 hoi4 = 12952 hoi4 = 2169 }    # Puerto Deseado -> land, land
     link = { vic2 = 2399 hoi4 = 5173 hoi4 = 12946 }    # Río Gallegos -> land, land
     link = { vic2 = 2333 hoi4 = 8218 hoi4 = 8198 hoi4 = 10961 hoi4 = 2161 hoi4 = 5159 hoi4 = 5118 }    # Puerto Aisén -> land, land, land, land, land, land
     link = { vic2 = 2334 hoi4 = 5201 hoi4 = 5215 }    # Punta Arenas -> land, land
@@ -799,7 +801,7 @@
     link = { vic2 = 2657 hoi4 = 4733 hoi4 = 12643 hoi4 = 10635 }    # Svetlogorsk -> land, land, land
     link = { vic2 = 2644 hoi4 = 1852 hoi4 = 10589 hoi4 = 12611 hoi4 = 7765 hoi4 = 7817 hoi4 = 1795 hoi4 = 10714 hoi4 = 4821 hoi4 = 12565 hoi4 = 7889 hoi4 = 4855 }    # Olyekminsk -> land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 2645 hoi4 = 1666 hoi4 = 4795 hoi4 = 12538 hoi4 = 4868 hoi4 = 7759 hoi4 = 10583 hoi4 = 4762 hoi4 = 1761 hoi4 = 7854 hoi4 = 7736 hoi4 = 4835 hoi4 = 4716 hoi4 = 12575 hoi4 = 10654 hoi4 = 12506 }    # Chilchi -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-    link = { vic2 = 2676 hoi4 = 7828 hoi4 = 4737 hoi4 = 1792 hoi4 = 12608 hoi4 = 7726 hoi4 = 12681 hoi4 = 10557 hoi4 = 13059 hoi4 = 12531 hoi4 = 10688 hoi4 = 10628 hoi4 = 4703 hoi4 = 12668 }    # Kirensk -> land, land, land, land, land, land, land, land, land, land, land, land, land
+    link = { vic2 = 2676 hoi4 = 1707 hoi4 = 7828 hoi4 = 4737 hoi4 = 1792 hoi4 = 12608 hoi4 = 7726 hoi4 = 12681 hoi4 = 10557 hoi4 = 13059 hoi4 = 12531 hoi4 = 10688 hoi4 = 10628 hoi4 = 4703 hoi4 = 12668 }    # Kirensk -> land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 1079 hoi4 = 10683 hoi4 = 7786 hoi4 = 4677 hoi4 = 4719 hoi4 = 12622 hoi4 = 10559 hoi4 = 7725 hoi4 = 10574 hoi4 = 12641 hoi4 = 1672 hoi4 = 1826 hoi4 = 10643 hoi4 = 10565 hoi4 = 12556 hoi4 = 4832 hoi4 = 10681 hoi4 = 4675 }    # Nerchinsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 1078 hoi4 = 4837 hoi4 = 10528 hoi4 = 7835 hoi4 = 12644 hoi4 = 10658 hoi4 = 7816 hoi4 = 4766 hoi4 = 12507 hoi4 = 7860 hoi4 = 7751 hoi4 = 4705 hoi4 = 1696 }    # Chita -> land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 1076 hoi4 = 7902 hoi4 = 1735 hoi4 = 10699 hoi4 = 7802 hoi4 = 12523 hoi4 = 10570 hoi4 = 1876 hoi4 = 7713 hoi4 = 10562 hoi4 = 1813 hoi4 = 10549 hoi4 = 4750 hoi4 = 7841 hoi4 = 4808 hoi4 = 1803 hoi4 = 7876 hoi4 = 10664 hoi4 = 7769 }    # Bratsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
@@ -812,7 +814,7 @@
     link = { vic2 = 1077 hoi4 = 4711 hoi4 = 4690 hoi4 = 12563 hoi4 = 10712 hoi4 = 7815 hoi4 = 10639 hoi4 = 1850 hoi4 = 1777 hoi4 = 7744 hoi4 = 4782 hoi4 = 4853 hoi4 = 12621 hoi4 = 4818 hoi4 = 12628 hoi4 = 12691 hoi4 = 4724 }    # Krasnoyarsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 1469 hoi4 = 7819 hoi4 = 7804 hoi4 = 1676 hoi4 = 10646 hoi4 = 7731 hoi4 = 12625 hoi4 = 7703 hoi4 = 12610 hoi4 = 10597 hoi4 = 1877 hoi4 = 10627 hoi4 = 4680 }    # Kyzyl -> land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 1067 hoi4 = 7680 hoi4 = 1779 hoi4 = 12528 hoi4 = 12515 hoi4 = 1297 hoi4 = 4803 hoi4 = 1794 hoi4 = 10537 hoi4 = 1797 hoi4 = 12613 hoi4 = 11410 hoi4 = 10546 hoi4 = 4665 hoi4 = 7757 hoi4 = 4789 hoi4 = 4793 hoi4 = 7886 hoi4 = 12631 hoi4 = 10580 hoi4 = 7822 hoi4 = 1369 hoi4 = 1685 hoi4 = 1816 hoi4 = 10649 }    # Barnaul -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-    link = { vic2 = 1068 hoi4 = 10584 hoi4 = 12594 hoi4 = 7890 hoi4 = 12427 hoi4 = 1749 hoi4 = 1818 hoi4 = 10610 hoi4 = 4674 hoi4 = 12635 hoi4 = 4867 hoi4 = 12564 hoi4 = 1864 hoi4 = 10713 hoi4 = 12509 hoi4 = 4800 hoi4 = 10531 hoi4 = 4781 }    # Ulala -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
+    link = { vic2 = 1068 hoi4 = 1702 hoi4 = 10584 hoi4 = 12594 hoi4 = 7890 hoi4 = 12427 hoi4 = 1749 hoi4 = 1818 hoi4 = 10610 hoi4 = 4674 hoi4 = 12635 hoi4 = 4867 hoi4 = 12564 hoi4 = 1864 hoi4 = 10713 hoi4 = 12509 hoi4 = 4800 hoi4 = 10531 hoi4 = 4781 }    # Ulala -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 2698 hoi4 = 10653 hoi4 = 10218 hoi4 = 4661 hoi4 = 7708 hoi4 = 10202 hoi4 = 12616 hoi4 = 4670 hoi4 = 7317 hoi4 = 4685 hoi4 = 10630 hoi4 = 10235 hoi4 = 10161 hoi4 = 7350 hoi4 = 10292 hoi4 = 1287 hoi4 = 1879 }    # Slavgorod -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 1064 hoi4 = 12580 hoi4 = 1835 hoi4 = 10626 hoi4 = 10696 hoi4 = 12546 hoi4 = 1800 hoi4 = 10568 hoi4 = 7800 hoi4 = 1709 hoi4 = 12652 hoi4 = 4700 hoi4 = 7722 hoi4 = 4840 hoi4 = 10555 hoi4 = 1790 hoi4 = 4866 hoi4 = 7274 hoi4 = 10652 hoi4 = 4734 hoi4 = 7825 hoi4 = 1860 hoi4 = 7687 hoi4 = 4806 hoi4 = 1733 hoi4 = 12606 hoi4 = 4366 hoi4 = 12679 }    # Omsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 2686 hoi4 = 6787 hoi4 = 10659 hoi4 = 7681 hoi4 = 10600 hoi4 = 10670 hoi4 = 4780 hoi4 = 3472 hoi4 = 12390 }    # Ishim -> land, land, land, land, land, land, land, land
@@ -852,7 +854,7 @@
     link = { vic2 = 1023 hoi4 = 3347 hoi4 = 11252 hoi4 = 11239 hoi4 = 11134 hoi4 = 9033 hoi4 = 9159 hoi4 = 6215 hoi4 = 6135 hoi4 = 9257 hoi4 = 6358 hoi4 = 9267 hoi4 = 357 hoi4 = 6269 hoi4 = 11338 hoi4 = 346 hoi4 = 6247 }    # Kostorma -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 1022 hoi4 = 6362 hoi4 = 11295 hoi4 = 3268 hoi4 = 3370 hoi4 = 280 hoi4 = 378 hoi4 = 9356 hoi4 = 9278 hoi4 = 11362 hoi4 = 6316 hoi4 = 9311 hoi4 = 214 hoi4 = 3202 hoi4 = 3339 }    # Ivanovo -> land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 1012 hoi4 = 283 hoi4 = 3275 hoi4 = 3387 hoi4 = 3322 hoi4 = 6284 hoi4 = 11363 hoi4 = 3302 hoi4 = 11258 hoi4 = 314 hoi4 = 9273 hoi4 = 6279 hoi4 = 9313 hoi4 = 9266 hoi4 = 9330 hoi4 = 3356 hoi4 = 11294 hoi4 = 11248 hoi4 = 11379 hoi4 = 11314 hoi4 = 269 hoi4 = 397 hoi4 = 9376 hoi4 = 330 hoi4 = 3257 }    # Ryazan -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-    link = { vic2 = 1013 hoi4 = 9395 hoi4 = 11268 hoi4 = 350 hoi4 = 11217 hoi4 = 9235 hoi4 = 3290 hoi4 = 11330 hoi4 = 9282 hoi4 = 6290 hoi4 = 6348 hoi4 = 9348 }    # Vladimir -> land, land, land, land, land, land, land, land, land, land, land
+    link = { vic2 = 1013 hoi4 = 3240 hoi4 = 9395 hoi4 = 11268 hoi4 = 350 hoi4 = 11217 hoi4 = 9235 hoi4 = 3290 hoi4 = 11330 hoi4 = 9282 hoi4 = 6290 hoi4 = 6348 hoi4 = 9348 }    # Vladimir -> land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 1011 hoi4 = 3376 hoi4 = 3250 hoi4 = 6315 hoi4 = 6333 hoi4 = 6396 hoi4 = 11347 hoi4 = 6262 hoi4 = 3292 hoi4 = 212 hoi4 = 261 hoi4 = 11242 hoi4 = 300 hoi4 = 9366 hoi4 = 3236 }    # Tula -> land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 1017 hoi4 = 9328 hoi4 = 6355 hoi4 = 9355 hoi4 = 9384 hoi4 = 9411 hoi4 = 11368 hoi4 = 11214 hoi4 = 384 hoi4 = 328 hoi4 = 302 hoi4 = 11283 hoi4 = 11310 hoi4 = 11337 }    # Orel -> land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 1181 hoi4 = 4277 hoi4 = 10268 hoi4 = 12111 hoi4 = 12194 }    # Qaraganda -> land, land, land, land
@@ -869,7 +871,7 @@
     link = { vic2 = 980 hoi4 = 547 hoi4 = 9476 hoi4 = 6505 hoi4 = 9461 hoi4 = 9446 hoi4 = 6519 hoi4 = 523 hoi4 = 11487 hoi4 = 570 hoi4 = 11513 }    # Luhansk -> land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 1015 hoi4 = 6365 hoi4 = 9261 hoi4 = 9301 hoi4 = 11284 hoi4 = 6252 hoi4 = 3345 hoi4 = 352 }    # Peremyshl -> land, land, land, land, land, land, land
     link = { vic2 = 1010 hoi4 = 274 hoi4 = 3263 hoi4 = 3377 hoi4 = 3308 hoi4 = 382 hoi4 = 246 hoi4 = 11235 hoi4 = 11369 hoi4 = 11300 }    # Kaluga -> land, land, land, land, land, land, land, land, land
-    link = { vic2 = 1001 hoi4 = 97 hoi4 = 3190 hoi4 = 3116 hoi4 = 3220 hoi4 = 252 hoi4 = 6356 hoi4 = 9345 hoi4 = 231 hoi4 = 11205 hoi4 = 121 hoi4 = 11099 hoi4 = 164 hoi4 = 62 hoi4 = 2 hoi4 = 9122 hoi4 = 11166 hoi4 = 9188 hoi4 = 6143 hoi4 = 6167 hoi4 = 6101 hoi4 = 6056 hoi4 = 3077 hoi4 = 11039 }    # Yaroslavl -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
+    link = { vic2 = 1001 hoi4 = 97 hoi4 = 3190 hoi4 = 3116 hoi4 = 3220 hoi4 = 252 hoi4 = 6356 hoi4 = 9345 hoi4 = 231 hoi4 = 11205 hoi4 = 121 hoi4 = 11099 hoi4 = 164 hoi4 = 62 hoi4 = 1 hoi4 = 2 hoi4 = 9122 hoi4 = 11166 hoi4 = 9188 hoi4 = 6143 hoi4 = 6167 hoi4 = 6101 hoi4 = 6056 hoi4 = 3077 hoi4 = 11039 }    # Yaroslavl -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 991 hoi4 = 11095 hoi4 = 11107 hoi4 = 9168 hoi4 = 196 hoi4 = 9133 hoi4 = 9210 hoi4 = 3079 hoi4 = 9113 hoi4 = 6091 hoi4 = 9202 hoi4 = 9110 hoi4 = 11086 hoi4 = 3164 hoi4 = 84 hoi4 = 6190 hoi4 = 11143 hoi4 = 174 hoi4 = 106 hoi4 = 3099 hoi4 = 2996 hoi4 = 9222 hoi4 = 3087 hoi4 = 6112 }    # Uglich -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 989 hoi4 = 129 hoi4 = 3124 hoi4 = 11213 hoi4 = 9199 hoi4 = 9131 hoi4 = 3175 hoi4 = 11177 hoi4 = 75 hoi4 = 3157 hoi4 = 6182 hoi4 = 163 hoi4 = 11168 hoi4 = 3154 hoi4 = 9102 hoi4 = 6097 hoi4 = 11189 hoi4 = 9207 hoi4 = 6189 hoi4 = 81 hoi4 = 160 }    # Vologda -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 1198 hoi4 = 1554 hoi4 = 1623 hoi4 = 12161 hoi4 = 10470 hoi4 = 4499 hoi4 = 7501 }    # Bukhara -> land, land, land, land, land, land
@@ -1280,7 +1282,7 @@
     link = { vic2 = 250 hoi4 = 10247 hoi4 = 4287 }    # Caribou -> land, land
     link = { vic2 = 208 hoi4 = 7045 hoi4 = 12054 }    # Raleigh -> land, land
     link = { vic2 = 209 hoi4 = 10081 hoi4 = 7083 hoi4 = 7138 }    # Charlotte -> land, land, land
-    link = { vic2 = 2556 hoi4 = 10468 hoi4 = 12445 hoi4 = 10096 hoi4 = 10495 hoi4 = 7643 hoi4 = 9967 }    # Asheville -> land, land, land, land, land, land
+    link = { vic2 = 2556 hoi4 = 3994 hoi4 = 10468 hoi4 = 12445 hoi4 = 10096 hoi4 = 10495 hoi4 = 7643 hoi4 = 9967 }    # Asheville -> land, land, land, land, land, land
     link = { vic2 = 210 hoi4 = 1163 hoi4 = 1132 hoi4 = 1019 hoi4 = 10051 }    # Wilmington -> land, land, land, land
     link = { vic2 = 207 hoi4 = 9876 hoi4 = 6943 hoi4 = 11783 hoi4 = 4168 hoi4 = 1077 }    # Greenville -> land, land, land, land, land
     link = { vic2 = 2555 hoi4 = 10394 hoi4 = 638 hoi4 = 7612 hoi4 = 7118 }    # Augusta -> land, land, land, land
@@ -1468,7 +1470,7 @@
     link = { vic2 = 47 hoi4 = 4753 }    # Fort Severn -> land
     link = { vic2 = 2628 hoi4 = 761 }    # Attawapiskat -> land
     link = { vic2 = 48 hoi4 = 10621 hoi4 = 9740 hoi4 = 12701 }    # Fort Albany -> land, land, land
-    link = { vic2 = 52 hoi4 = 3640 hoi4 = 11602 hoi4 = 6676 hoi4 = 9634 hoi4 = 3661 hoi4 = 11585 hoi4 = 6662 hoi4 = 11569 hoi4 = 9583 hoi4 = 11728 hoi4 = 9585 }    # Sudbury -> land, land, land, land, land, land, land, land, land, land, land
+    link = { vic2 = 52 hoi4 = 605 hoi4 = 3640 hoi4 = 11602 hoi4 = 6676 hoi4 = 9634 hoi4 = 3661 hoi4 = 11585 hoi4 = 6662 hoi4 = 11569 hoi4 = 9583 hoi4 = 11728 hoi4 = 9585 }    # Sudbury -> land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 57 hoi4 = 3778 hoi4 = 6630 hoi4 = 3635 hoi4 = 3608 }    # Ottawa -> land, land, land, land
     link = { vic2 = 56 hoi4 = 3605 hoi4 = 6625 hoi4 = 4270 }    # Kingston -> land, land, land
     link = { vic2 = 46 hoi4 = 6607 hoi4 = 3775 hoi4 = 6797 hoi4 = 9580 hoi4 = 11567 }    # Toronto -> land, land, land, land, land
@@ -1618,7 +1620,7 @@
     link = { vic2 = 1464 hoi4 = 10184 }    # Sulu -> land
     link = { vic2 = 1462 hoi4 = 4399 hoi4 = 1421 hoi4 = 7417 hoi4 = 7389 hoi4 = 7360 hoi4 = 10243 hoi4 = 10300 hoi4 = 4427 hoi4 = 12273 hoi4 = 12217 hoi4 = 10214 }    # Zamboanga -> land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 1463 hoi4 = 1293 hoi4 = 12188 hoi4 = 1379 hoi4 = 1407 hoi4 = 7284 hoi4 = 4241 hoi4 = 7445 hoi4 = 12245 hoi4 = 12160 hoi4 = 1234 hoi4 = 12116 hoi4 = 4266 hoi4 = 12158 hoi4 = 10328 }    # Davao -> land, land, land, land, land, land, land, land, land, land, land, land, land, land
-    link = { vic2 = 1457 hoi4 = 4377 hoi4 = 12279 hoi4 = 1372 hoi4 = 10306 }    # Legazpi -> land, land, land, land
+    link = { vic2 = 1457 hoi4 = 4228 hoi4 = 4377 hoi4 = 12279 hoi4 = 1372 hoi4 = 10306 }    # Legazpi -> land, land, land, land
     link = { vic2 = 1458 hoi4 = 4288 hoi4 = 10272 }    # Mindoro -> land, land
     link = { vic2 = 1459 hoi4 = 4429 hoi4 = 10145 hoi4 = 7419 }    # Palawan -> land, land, land
     link = { vic2 = 1455 hoi4 = 12236 hoi4 = 1221 hoi4 = 10265 hoi4 = 10236 hoi4 = 1288 hoi4 = 7323 hoi4 = 7351 hoi4 = 7275 hoi4 = 10165 }    # Manila -> land, land, land, land, land, land, land, land, land
@@ -1629,8 +1631,8 @@
     link = { vic2 = 1097 hoi4 = 7264 hoi4 = 10160 hoi4 = 12132 hoi4 = 1263 hoi4 = 4268 hoi4 = 4231 }    # New Caledonia -> land, land, land, land, land, land
     link = { vic2 = 2535 hoi4 = 1237 hoi4 = 12120 hoi4 = 4247 }    # New Hebrides -> land, land, land
     link = { vic2 = 2536 hoi4 = 7390 }    # Santa Cruz Islands -> land
-    link = { vic2 = 2534 hoi4 = 10291 hoi4 = 7437 hoi4 = 1370 hoi4 = 4292 hoi4 = 10319 hoi4 = 12265 hoi4 = 1042 hoi4 = 4252 }    # Solomon Islands -> land, land, land, land, land, land, land, land
-    link = { vic2 = 2539 hoi4 = 4378 hoi4 = 1358 hoi4 = 10234 }    # Bougainville -> land, land, land
+    link = { vic2 = 2534 hoi4 = 1269 hoi4 = 1085 hoi4 = 10291 hoi4 = 7437 hoi4 = 1370 hoi4 = 4292 hoi4 = 10319 hoi4 = 12265 hoi4 = 1042 hoi4 = 4252 }    # Solomon Islands -> land, land, land, land, land, land, land, land
+    link = { vic2 = 2539 hoi4 = 4226 hoi4 = 4378 hoi4 = 1358 hoi4 = 10234 }    # Bougainville -> land, land, land
     link = { vic2 = 1531 hoi4 = 4421 hoi4 = 7412 hoi4 = 1361 hoi4 = 4352 hoi4 = 7339 }    # New Ireland -> land, land, land, land, land
     link = { vic2 = 2537 hoi4 = 1329 hoi4 = 1301 hoi4 = 4304 hoi4 = 4332 hoi4 = 12222 hoi4 = 7324 hoi4 = 7352 hoi4 = 1286 hoi4 = 10206 hoi4 = 10166 hoi4 = 7251 }    # New Britain -> land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 2530 hoi4 = 2129 hoi4 = 10954 hoi4 = 12931 hoi4 = 5135 hoi4 = 7614 hoi4 = 12154 hoi4 = 12193 hoi4 = 7365 hoi4 = 10251 hoi4 = 12237 hoi4 = 4418 hoi4 = 7409 hoi4 = 4317 hoi4 = 10974 hoi4 = 7305 }    # Lae -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
@@ -1742,7 +1744,7 @@
     #
     # Ethiopia
     link = { vic2 = 1863 hoi4 = 12856 hoi4 = 2009 }    # Asosa -> land, land
-    link = { vic2 = 1862 hoi4 = 7912 }    # Bonga -> land
+    link = { vic2 = 1862 hoi4 = 8019 hoi4 = 7912 }    # Bonga -> land
     link = { vic2 = 1860 hoi4 = 10734 }    # Awasa -> land
     link = { vic2 = 1864 hoi4 = 8062 hoi4 = 8019 }    # Negele -> land, land
     link = { vic2 = 1866 hoi4 = 4995 hoi4 = 10775 }    # Goba -> land, land
@@ -1755,7 +1757,7 @@
     link = { vic2 = 1857 hoi4 = 7944 }    # Antalo -> land
     link = { vic2 = 1856 hoi4 = 2072 }    # Aksum -> land
     link = { vic2 = 1858 hoi4 = 5041 }    # Awsa -> land
-    link = { vic2 = 1865 hoi4 = 7980 }    # Harer -> land
+    link = { vic2 = 1865 hoi4 = 12714 hoi4 = 7980 }    # Harer -> land
     link = { vic2 = 1867 hoi4 = 12812 hoi4 = 12757 hoi4 = 12714 }    # Werder -> land, land, land
     link = { vic2 = 1851 hoi4 = 8043 }    # Assab -> land
     link = { vic2 = 1848 hoi4 = 12766 }    # Asmara -> land
@@ -1764,7 +1766,7 @@
     #
     # Somalia
     link = { vic2 = 1177 hoi4 = 8000 }    # Socotra -> land
-    link = { vic2 = 1875 hoi4 = 8124 hoi4 = 4985 }    # Djibuti -> land, land
+    link = { vic2 = 1875 hoi4 = 4985 hoi4 = 8124 hoi4 = 4985 }    # Djibuti -> land, land
     link = { vic2 = 1874 hoi4 = 10777 }    # Zeyla -> land
     link = { vic2 = 1873 hoi4 = 10833 hoi4 = 1905 hoi4 = 12814 hoi4 = 10921 hoi4 = 12759 hoi4 = 5068 hoi4 = 8094 }    # Berbera -> land, land, land, land, land, land, land
     link = { vic2 = 1869 hoi4 = 2063 hoi4 = 2020 }    # Baidoa -> land, land
@@ -1775,7 +1777,7 @@
     # Somalia
     #
     # Madagascar
-    link = { vic2 = 2125 hoi4 = 13018 }    # Mauritius -> land
+    link = { vic2 = 2125 hoi4 = 2165 hoi4 = 13018 }    # Mauritius -> land
     link = { vic2 = 2126 hoi4 = 13017 }    # Bourbon -> land
     link = { vic2 = 2117 hoi4 = 2200 hoi4 = 8246 }    # Ampanihy -> land, land
     link = { vic2 = 2118 hoi4 = 10993 }    # Tolanaro -> land
@@ -1816,7 +1818,7 @@
     link = { vic2 = 1764 hoi4 = 7188 }    # Minya -> land
     link = { vic2 = 1765 hoi4 = 4055 hoi4 = 1068 hoi4 = 10031 }    # Fayyum -> land, land, land
     link = { vic2 = 1763 hoi4 = 12004 hoi4 = 4143 }    # Bani Suwayf -> land, land
-    link = { vic2 = 1750 hoi4 = 3996 }    # Giza -> land
+    link = { vic2 = 1750 hoi4 = 992 hoi4 = 3996 }    # Giza -> land
     link = { vic2 = 1747 hoi4 = 7164 hoi4 = 10073 }    # Tanta -> land, land
     link = { vic2 = 1748 hoi4 = 10005 }    # Mansura -> land
     link = { vic2 = 1746 hoi4 = 11964 hoi4 = 7091 }    # Dumyat -> land, land
@@ -1899,7 +1901,7 @@
     link = { vic2 = 919 hoi4 = 4206 }    # Jaffa -> land
     link = { vic2 = 916 hoi4 = 1201 hoi4 = 7107 }    # Acre -> land, land
     link = { vic2 = 915 hoi4 = 1065 }    # Sidon -> land
-    link = { vic2 = 913 hoi4 = 11919 }    # Beirut -> land
+    link = { vic2 = 913 hoi4 = 792 hoi4 = 11919 }    # Beirut -> land
     link = { vic2 = 914 hoi4 = 1108 }    # Askaleh -> land
     link = { vic2 = 905 hoi4 = 1088 hoi4 = 10087 }    # Latakia -> land, land
     link = { vic2 = 897 hoi4 = 7140 hoi4 = 12473 hoi4 = 7671 }    # Aleppo -> land, land, land
@@ -2048,7 +2050,7 @@
     #
     # Australia
     link = { vic2 = 2473 hoi4 = 2146 hoi4 = 5161 hoi4 = 1667 hoi4 = 4836 hoi4 = 5134 hoi4 = 10455 hoi4 = 11019 }    # Wagga Wagga -> land, land, land, land, land, land, land
-    link = { vic2 = 2474 hoi4 = 4500 hoi4 = 4453 hoi4 = 4478 hoi4 = 7649 hoi4 = 4658 hoi4 = 7471 hoi4 = 7533 hoi4 = 12377 }    # Moree -> land, land, land, land, land, land, land, land
+    link = { vic2 = 2474 hoi4 = 4673 hoi4 = 4500 hoi4 = 4453 hoi4 = 4478 hoi4 = 7649 hoi4 = 4658 hoi4 = 7471 hoi4 = 7533 hoi4 = 12377 }    # Moree -> land, land, land, land, land, land, land, land
     link = { vic2 = 2470 hoi4 = 1611 hoi4 = 7664 hoi4 = 10500 }    # Port Macquarie -> land, land, land
     link = { vic2 = 2469 hoi4 = 7450 hoi4 = 7496 hoi4 = 7520 }    # Newcastle -> land, land, land
     link = { vic2 = 2471 hoi4 = 12435 hoi4 = 10682 hoi4 = 10427 hoi4 = 10388 hoi4 = 1537 }    # Ophir -> land, land, land, land, land
@@ -2173,7 +2175,7 @@
     link = { vic2 = 880 hoi4 = 979 hoi4 = 3982 hoi4 = 3967 hoi4 = 6978 hoi4 = 11897 hoi4 = 11839 hoi4 = 9844 hoi4 = 6920 hoi4 = 6938 hoi4 = 9871 }    # Kastamonu -> land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 881 hoi4 = 6871 hoi4 = 890 hoi4 = 3905 hoi4 = 904 hoi4 = 3919 hoi4 = 11866 hoi4 = 11883 }    # Bolu -> land, land, land, land, land, land, land
     link = { vic2 = 868 hoi4 = 909 hoi4 = 3907 hoi4 = 6808 hoi4 = 3951 }    # Eskishehir -> land, land, land, land
-    link = { vic2 = 876 hoi4 = 6925 hoi4 = 9901 hoi4 = 11784 hoi4 = 6908 hoi4 = 11747 hoi4 = 9806 }    # Ankara -> land, land, land, land, land, land
+    link = { vic2 = 876 hoi4 = 804 hoi4 = 6925 hoi4 = 9901 hoi4 = 11784 hoi4 = 6908 hoi4 = 11747 hoi4 = 9806 }    # Ankara -> land, land, land, land, land, land
     link = { vic2 = 878 hoi4 = 9830 hoi4 = 961 hoi4 = 3870 hoi4 = 921 hoi4 = 6888 hoi4 = 6977 hoi4 = 869 hoi4 = 9861 hoi4 = 11844 hoi4 = 3862 hoi4 = 11826 hoi4 = 919 hoi4 = 3964 hoi4 = 3807 }    # Kayseri -> land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 898 hoi4 = 9893 hoi4 = 3889 hoi4 = 806 }    # Antep -> land, land, land
     link = { vic2 = 896 hoi4 = 886 hoi4 = 6813 hoi4 = 3921 }    # Marash -> land, land, land
@@ -2205,7 +2207,8 @@
     link = { vic2 = 662 hoi4 = 9548 hoi4 = 577 }    # Cernauti -> land, land
     link = { vic2 = 677 hoi4 = 11705 hoi4 = 565 hoi4 = 6600 hoi4 = 3577 hoi4 = 414 hoi4 = 3407 }    # Balti -> land, land, land, land, land, land
     link = { vic2 = 673 hoi4 = 11652 hoi4 = 6706 hoi4 = 9701 hoi4 = 6729 }    # Galati -> land, land, land, land
-    link = { vic2 = 672 vic2 = 660 hoi4 = 3741 hoi4 = 3728 hoi4 = 11672 hoi4 = 11655 hoi4 = 6747 hoi4 = 9672 hoi4 = 6731 hoi4 = 9685 }    # MANY-TO-MANY: Bacau, Udvarhely -> land, land, land, land, land, land, land, land
+    link = { vic2 = 672 hoi4 = 3728 hoi4 = 11672 hoi4 = 11655 }
+	link = { vic2 = 660 hoi4 = 3741 hoi4 = 6747 hoi4 = 9672 hoi4 = 6731 hoi4 = 9685 }    #  Bacau, Udvarhely -> land, land, land, land, land, land, land, land
     link = { vic2 = 676 hoi4 = 3704 hoi4 = 9683 hoi4 = 3724 hoi4 = 6743 hoi4 = 11686 hoi4 = 3707 }    # Chisinau -> land, land, land, land, land, land
     link = { vic2 = 671 hoi4 = 11534 hoi4 = 6584 hoi4 = 744 }    # Botosani -> land, land, land
     link = { vic2 = 670 hoi4 = 9716 hoi4 = 723 }    # Iasi -> land, land
@@ -2386,7 +2389,7 @@
     # Finland
     link = { vic2 = 339 hoi4 = 11156 hoi4 = 6153 hoi4 = 9176 hoi4 = 3060 hoi4 = 9150 hoi4 = 9105 hoi4 = 9100 hoi4 = 9206 hoi4 = 11162 hoi4 = 6150 hoi4 = 3187 hoi4 = 3133 hoi4 = 11046 hoi4 = 6052 hoi4 = 3050 }    # Viipuri -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 337 hoi4 = 7 hoi4 = 6175 hoi4 = 3073 hoi4 = 3115 hoi4 = 9233 hoi4 = 9106 hoi4 = 11079 hoi4 = 6146 hoi4 = 11024 hoi4 = 6134 hoi4 = 3149 }    # Kajaani -> land, land, land, land, land, land, land, land, land, land, land
-    link = { vic2 = 342 hoi4 = 11210 hoi4 = 9061 hoi4 = 9181 hoi4 = 6210 hoi4 = 3185 hoi4 = 193 hoi4 = 3125 hoi4 = 11199 hoi4 = 6078 hoi4 = 9104 hoi4 = 11141 hoi4 = 141 hoi4 = 136 hoi4 = 6033 hoi4 = 6156 hoi4 = 11076 hoi4 = 9169 hoi4 = 3068 }    # Kuopio -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
+    link = { vic2 = 342 hoi4 = 2998 hoi4 = 11210 hoi4 = 9061 hoi4 = 9181 hoi4 = 6210 hoi4 = 3185 hoi4 = 193 hoi4 = 3125 hoi4 = 11199 hoi4 = 6078 hoi4 = 9104 hoi4 = 11141 hoi4 = 141 hoi4 = 136 hoi4 = 6033 hoi4 = 6156 hoi4 = 11076 hoi4 = 9169 hoi4 = 3068 }    # Kuopio -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 341 hoi4 = 139 hoi4 = 3030 hoi4 = 37 hoi4 = 3131 hoi4 = 3013 hoi4 = 165 hoi4 = 11043 hoi4 = 9163 hoi4 = 9056 }    # Mikkeli -> land, land, land, land, land, land, land, land, land
     link = { vic2 = 340 hoi4 = 204 hoi4 = 9183 hoi4 = 3161 hoi4 = 3061 hoi4 = 11056 hoi4 = 6082 hoi4 = 52 hoi4 = 6186 hoi4 = 9073 hoi4 = 11138 }    # Kotka -> land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 343 hoi4 = 9194 hoi4 = 11211 hoi4 = 6108 hoi4 = 11105 hoi4 = 6144 hoi4 = 9129 hoi4 = 6009 }    # Helsinki -> land, land, land, land, land, land, land
@@ -2408,7 +2411,7 @@
     link = { vic2 = 305 hoi4 = 6041 hoi4 = 9069 hoi4 = 6173 hoi4 = 3098 hoi4 = 11173 hoi4 = 115 hoi4 = 6038 hoi4 = 11118 hoi4 = 3183 hoi4 = 9139 hoi4 = 6118 hoi4 = 21 hoi4 = 3022 hoi4 = 6116 hoi4 = 3018 hoi4 = 107 hoi4 = 9132 }    # Trondheim -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 308 hoi4 = 3096 hoi4 = 3093 hoi4 = 9216 hoi4 = 11100 hoi4 = 102 hoi4 = 9127 hoi4 = 6204 hoi4 = 3180 hoi4 = 188 }    # Alesund -> land, land, land, land, land, land, land, land, land
     link = { vic2 = 309 hoi4 = 3090 hoi4 = 3188 hoi4 = 6216 hoi4 = 9047 hoi4 = 3114 hoi4 = 199 hoi4 = 122 hoi4 = 6145 hoi4 = 9170 }    # Bergen -> land, land, land, land, land, land, land, land, land
-    link = { vic2 = 310 hoi4 = 65 hoi4 = 11198 hoi4 = 3129 hoi4 = 137 hoi4 = 3192 hoi4 = 11101 hoi4 = 3049 hoi4 = 6176 hoi4 = 11367 hoi4 = 9296 hoi4 = 9196 hoi4 = 11176 hoi4 = 9096 }    # Christianssand -> land, land, land, land, land, land, land, land, land, land, land, land, land
+    link = { vic2 = 310 hoi4 = 53 hoi4 = 65 hoi4 = 11198 hoi4 = 3129 hoi4 = 137 hoi4 = 3192 hoi4 = 11101 hoi4 = 3049 hoi4 = 6176 hoi4 = 11367 hoi4 = 9296 hoi4 = 9196 hoi4 = 11176 hoi4 = 9096 }    # Christianssand -> land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 314 hoi4 = 6114 hoi4 = 11206 hoi4 = 111 hoi4 = 3105 hoi4 = 133 hoi4 = 10 hoi4 = 3136 hoi4 = 6160 hoi4 = 3021 hoi4 = 9135 hoi4 = 11113 hoi4 = 9227 hoi4 = 11028 hoi4 = 6042 }    # Hamar -> land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 315 hoi4 = 144 hoi4 = 27 hoi4 = 11037 hoi4 = 6136 hoi4 = 9032 hoi4 = 11135 hoi4 = 9157 }    # Lillehammer -> land, land, land, land, land, land, land
     link = { vic2 = 312 hoi4 = 14 hoi4 = 9204 hoi4 = 6080 hoi4 = 3059 hoi4 = 3094 hoi4 = 6184 }    # Drammen -> land, land, land, land, land, land
@@ -2419,7 +2422,7 @@
     #
     # Sweden
     link = { vic2 = 321 hoi4 = 9108 hoi4 = 3104 hoi4 = 9147 hoi4 = 201 hoi4 = 6168 hoi4 = 61 hoi4 = 6170 hoi4 = 6208 hoi4 = 11060 hoi4 = 9083 hoi4 = 6055 hoi4 = 9178 hoi4 = 190 hoi4 = 6155 hoi4 = 58 hoi4 = 11102 hoi4 = 3179 hoi4 = 148 hoi4 = 6074 hoi4 = 3054 hoi4 = 9226 hoi4 = 9186 hoi4 = 6165 hoi4 = 6125 hoi4 = 11073 hoi4 = 11208 hoi4 = 11155 hoi4 = 6206 hoi4 = 101 hoi4 = 3095 hoi4 = 151 }    # Luleå -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-    link = { vic2 = 320 hoi4 = 6083 hoi4 = 6024 hoi4 = 11190 hoi4 = 9211 hoi4 = 11112 hoi4 = 11058 hoi4 = 9175 hoi4 = 6152 hoi4 = 9095 hoi4 = 9134 hoi4 = 11026 hoi4 = 11152 hoi4 = 11 hoi4 = 3003 hoi4 = 109 hoi4 = 3138 hoi4 = 11069 hoi4 = 3044 hoi4 = 145 hoi4 = 3173 hoi4 = 6200 hoi4 = 118 hoi4 = 182 hoi4 = 3113 hoi4 = 6132 hoi4 = 11067 hoi4 = 9093 hoi4 = 3100 hoi4 = 9220 hoi4 = 6161 hoi4 = 9143 hoi4 = 11201 }    # Umeå -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
+    link = { vic2 = 320 hoi4 = 3062 hoi4 = 6083 hoi4 = 6024 hoi4 = 11190 hoi4 = 9211 hoi4 = 11112 hoi4 = 11058 hoi4 = 9175 hoi4 = 6152 hoi4 = 9095 hoi4 = 9134 hoi4 = 11026 hoi4 = 11152 hoi4 = 11 hoi4 = 3003 hoi4 = 109 hoi4 = 3138 hoi4 = 11069 hoi4 = 3044 hoi4 = 145 hoi4 = 3173 hoi4 = 6200 hoi4 = 118 hoi4 = 182 hoi4 = 3113 hoi4 = 6132 hoi4 = 11067 hoi4 = 9093 hoi4 = 3100 hoi4 = 9220 hoi4 = 6161 hoi4 = 9143 hoi4 = 11201 }    # Umeå -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 319 hoi4 = 9171 hoi4 = 6185 hoi4 = 11187 hoi4 = 3039 hoi4 = 11052 hoi4 = 168 hoi4 = 9066 hoi4 = 3111 hoi4 = 6207 hoi4 = 202 hoi4 = 3191 hoi4 = 9229 hoi4 = 11116 hoi4 = 11049 hoi4 = 6129 hoi4 = 113 hoi4 = 6010 hoi4 = 11123 hoi4 = 9154 hoi4 = 46 hoi4 = 3162 }    # Östersund -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 318 hoi4 = 9088 hoi4 = 11185 hoi4 = 6067 hoi4 = 11120 hoi4 = 184 hoi4 = 11148 hoi4 = 9141 hoi4 = 11129 hoi4 = 6063 hoi4 = 130 hoi4 = 205 hoi4 = 9151 hoi4 = 9035 hoi4 = 3108 hoi4 = 6126 }    # Sundsvall -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 317 hoi4 = 6023 hoi4 = 11209 hoi4 = 125 hoi4 = 11040 hoi4 = 11147 hoi4 = 3045 hoi4 = 49 hoi4 = 9051 hoi4 = 11091 }    # Gävle -> land, land, land, land, land, land, land, land, land
@@ -2653,7 +2656,8 @@
     link = { vic2 = 490 hoi4 = 11742 hoi4 = 3945 hoi4 = 9812 hoi4 = 871 hoi4 = 3799 hoi4 = 3891 hoi4 = 888 hoi4 = 9852 hoi4 = 6879 }    # Cuenca -> land, land, land, land, land, land, land, land, land
     link = { vic2 = 508 hoi4 = 3953 hoi4 = 942 hoi4 = 832 hoi4 = 3835 hoi4 = 11884 hoi4 = 9903 hoi4 = 11807 hoi4 = 11812 }    # Albacete -> land, land, land, land, land, land, land, land
     link = { vic2 = 491 hoi4 = 9778 hoi4 = 6832 hoi4 = 6896 hoi4 = 12081 hoi4 = 950 hoi4 = 12083 hoi4 = 9828 hoi4 = 6948 }    # Ciudad Real -> land, land, land, land, land, land, land, land
-    link = { vic2 = 489 vic2 = 480 hoi4 = 6800 hoi4 = 11825 hoi4 = 918 hoi4 = 3918 hoi4 = 4024 hoi4 = 3920 hoi4 = 6746 hoi4 = 9881 hoi4 = 3986 hoi4 = 858 hoi4 = 11863 hoi4 = 6914 hoi4 = 9757 }    # MANY-TO-MANY: Toledo, Valladolid -> land, land, land, land, land, land, land, land, land, land, land, land, land
+    link = { vic2 = 489 hoi4 = 9881 hoi4 = 3986 hoi4 = 858 hoi4 = 11863 hoi4 = 6914 hoi4 = 9757 }
+	link = { vic2 = 480 hoi4 = 6800 hoi4 = 11825 hoi4 = 918 hoi4 = 3918 hoi4 = 4024 hoi4 = 3920 hoi4 = 6746 }    #  Toledo, Valladolid -> land, land, land, land, land, land, land, land, land, land, land, land, land
     link = { vic2 = 487 hoi4 = 3938 hoi4 = 3858 hoi4 = 9767 hoi4 = 896 hoi4 = 3794 hoi4 = 11820 hoi4 = 977 hoi4 = 6993 }    # Madrid -> land, land, land, land, land, land, land, land
     link = { vic2 = 476 hoi4 = 6734 hoi4 = 9689 hoi4 = 9686 hoi4 = 11677 hoi4 = 11692 hoi4 = 11675 }    # Vigo -> land, land, land, land, land, land
     link = { vic2 = 474 hoi4 = 758 hoi4 = 11710 hoi4 = 6955 hoi4 = 3761 }    # La Coruña -> land, land, land, land
@@ -2705,7 +2709,8 @@
     link = { vic2 = 403 hoi4 = 11549 hoi4 = 9561 hoi4 = 11518 hoi4 = 3402 }    # Laon -> land, land, land, land
     link = { vic2 = 407 hoi4 = 9505 hoi4 = 6531 hoi4 = 680 hoi4 = 3669 }    # Chaumont -> land, land, land, land
     link = { vic2 = 412 hoi4 = 3629 hoi4 = 11502 hoi4 = 9559 }    # Metz -> land, land, land
-    link = { vic2 = 408 vic2 = 410 hoi4 = 678 hoi4 = 13011 hoi4 = 6545 hoi4 = 11732 hoi4 = 551 hoi4 = 3533 }    # MANY-TO-MANY: Chalons, Colmar -> land, land, land, land, land, land
+    link = { vic2 = 408 hoi4 = 13011 hoi4 = 6545 hoi4 = 11732 hoi4 = 551 hoi4 = 3533 }
+	link = { vic2 = 410 hoi4 = 678 }  
     link = { vic2 = 409 hoi4 = 9503 hoi4 = 6529 hoi4 = 549 }    # Strasbourg -> land, land, land
     link = { vic2 = 414 hoi4 = 521 hoi4 = 1346 }    # Épinal -> land, land
     link = { vic2 = 411 hoi4 = 11516 hoi4 = 11642 hoi4 = 11488 }    # Nancy -> land, land, land
@@ -2818,6 +2823,12 @@
     link = { vic2 = 298 hoi4 = 9484 hoi4 = 6351 }    # Bath -> land, land
     link = { vic2 = 297 hoi4 = 3422 hoi4 = 3463 }    # Salisbury -> land, land
     link = { vic2 = 299 hoi4 = 11406 hoi4 = 6526 hoi4 = 540 hoi4 = 9562 }    # Plymouth -> land, land, land, land
-    # Great Britain
+    link = { vic2 = 361 hoi4 = 6296 hoi4 = 327 hoi4 = 9404 } #additions
+	link = { vic2 = 2127 hoi4 = 2188 } #additions
+	link = { vic2 = 348 hoi4 = 9228 } #additions
+	link = { vic2 = 1320 hoi4 = 10321 hoi4 = 12251} #additions
+	link = { vic2 = 2128 hoi4 = 13019 }#additions
+   # Great Britain
     #
+	
 }
