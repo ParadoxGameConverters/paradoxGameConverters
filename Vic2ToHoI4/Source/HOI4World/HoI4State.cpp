@@ -38,14 +38,14 @@ HoI4State::HoI4State(int _ID, string _ownerTag)
 
 void HoI4State::output()
 {
-	string filename("Output/" + WinUtils::convertToUTF8(Configuration::getOutputName()) + "/history/states/" + to_string(ID) + "-blah.txt");
+	string filename("Output/" + Configuration::getOutputName() + "/history/states/" + to_string(ID) + "-blah.txt");
 	ofstream out;
 	out.open(filename);
 //	if (provinces.size() != 0)
 	{
 		if (!out.is_open())
 		{
-			LOG(LogLevel::Error) << L"Could not open \"output/input/history/states/" + to_wstring(ID) + L"-blah.txt\"";
+			LOG(LogLevel::Error) << "Could not open \"output/input/history/states/" + to_string(ID) + "-blah.txt\"";
 			exit(-1);
 		}
 
@@ -58,16 +58,16 @@ void HoI4State::output()
 		out << "" << endl;
 		out << "\thistory={" << endl;
 		out << "\t\towner = " << ownerTag << endl;
-		//out << L"	victory_points = { 3838 1 }" << endl;
-		//out << L"	buildings = {" << endl;
-		//out << L"	infrastructure = 4" << endl;
-		//out << L"	industrial_complex = 1" << endl;
-		//out << L"	air_base = 1" << endl;
-		//out << L"	3838 = {" << endl;
-		//out << L"	naval_base = 3" << endl;
-		//out << L"}" << endl;
-		//out << L"}" << endl;
-		//out << L"	add_core_of = FRA" << endl;
+		//out << "	victory_points = { 3838 1 }" << endl;
+		//out << "	buildings = {" << endl;
+		//out << "	infrastructure = 4" << endl;
+		//out << "	industrial_complex = 1" << endl;
+		//out << "	air_base = 1" << endl;
+		//out << "	3838 = {" << endl;
+		//out << "	naval_base = 3" << endl;
+		//out << "}" << endl;
+		//out << "}" << endl;
+		//out << "	add_core_of = FRA" << endl;
 		out << "\t}" << endl;
 		out << endl;
 		out << "\tprovinces={" << endl;

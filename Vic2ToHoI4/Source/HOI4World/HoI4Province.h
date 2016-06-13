@@ -35,16 +35,16 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class HoI4Province
 {
 	public:
-		HoI4Province(wstring _filename);
+		HoI4Province(string _filename);
 		void output() const;
 		void convertFromOldProvince(const V2Province* oldProvince);
-		void addCore(wstring);
-		void addFilename(wstring _filename);
+		void addCore(string);
+		void addFilename(string _filename);
 
 		void clearCores()										{ cores.clear(); }
 		void setCoastal(bool _coastal)					{ coastal = _coastal; }
-		void setName(wstring _name)							{ name = _name; }
-		void setOwner(wstring _owner)						{ owner = _owner; }
+		void setName(string _name)							{ name = _name; }
+		void setOwner(string _owner)						{ owner = _owner; }
 		void addManpower(double newManpower)			{ manpower += newManpower; }
 		void setManpower(double newManpower)			{ manpower = newManpower; }
 		void addLeadership(double newLeadership)		{ leadership += newLeadership; }
@@ -55,9 +55,9 @@ class HoI4Province
 		void setPoints(int newPoints)						{ points = newPoints; }
 		void addPoints(int newPoints)						{ points += newPoints; }
 
-		wstring	getOwner()				const { return owner; }
+		string	getOwner()				const { return owner; }
 		int		getNum()					const { return num; }
-		wstring	getName()				const { return name; }
+		string	getName()				const { return name; }
 		bool		hasNavalBase()			const { return (naval_base > 0); }
 		bool		isLand()					const { return is_land; }
 		int		getAirBase()			const { return air_base; }
@@ -67,7 +67,7 @@ class HoI4Province
 		double	getRawIndustry()		const { return rawIndustry; }
 		int		getActualIndustry()	const { return industry; }
 		
-		vector<wstring>	getCores() const	{ return cores; }
+		vector<string>	getCores() const	{ return cores; }
 
 		void		requireNavalBase(int min);
 		void		requireAirBase(int min);
@@ -77,12 +77,12 @@ class HoI4Province
 		void		requireInfrastructure(int min);
 
 	private:
-		map<wstring, wstring>	filenames;
+		map<string, string>	filenames;
 		bool						coastal;
 		int						num;
-		wstring					name;
-		wstring					owner;
-		vector<wstring>			cores;
+		string					name;
+		string					owner;
+		vector<string>			cores;
 		bool						is_land;
 
 		int				ncrafts;

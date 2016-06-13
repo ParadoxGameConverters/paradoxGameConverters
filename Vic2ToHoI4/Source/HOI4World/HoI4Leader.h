@@ -36,21 +36,21 @@ using namespace std;
 class HoI4Leader
 {
 	public:
-		HoI4Leader(vector<wstring>& firstNames, vector<wstring>& lastNames, wstring _country, wstring _type, leaderTraitsMap& _traitsMap, vector<wstring>& portraits);
-		HoI4Leader(V2Leader* srcLeader, wstring _country, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, vector<wstring>& portraits);
+		HoI4Leader(vector<string>& firstNames, vector<string>& lastNames, string _country, string _type, leaderTraitsMap& _traitsMap, vector<string>& portraits);
+		HoI4Leader(V2Leader* srcLeader, string _country, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, vector<string>& portraits);
 		void output(FILE* output);
 
-		wstring getType()	const { return type; }
+		string getType()	const { return type; }
 
 	private:
 		unsigned int		ID;
-		wstring				name;
-		wstring				country;
-		wstring				type;
+		string				name;
+		string				country;
+		string				type;
 		int					skill;
 		int					rank;
-		wstring				picture;
-		vector<wstring>	traits;
+		string				picture;
+		vector<string>	traits;
 };
 
 
