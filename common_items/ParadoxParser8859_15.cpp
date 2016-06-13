@@ -62,12 +62,12 @@ namespace parser_8859_15
 {
 
 
-static void setLHS						(string key);
+static void setLHS						(wstring key);
 static void pushObj						();
-static void setRHSleaf					(string val);
+static void setRHSleaf					(wstring val);
 static void setRHSobject				();
 static void setRHSobjlist				();
-static void setRHStaglist				(vector<string> val);
+static void setRHStaglist				(vector<wstring> val);
 static void setEpsilon					();
 static void setAssign					();
 
@@ -98,11 +98,11 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> >
 
 	// leaf: either left or right side of assignment.  unquoted keyword.
 	// example: leaf
-	qi::rule<Iterator, string(), SkipComment<Iterator> >	leaf;
+	qi::rule<Iterator, wstring(), SkipComment<Iterator> >	leaf;
 
 	// taglist: a grouping of anonymous (rhs) leaves or strings
 	// examples: { TAG TAG TAG } or { "string" "string" TAG }
-	qi::rule<Iterator, vector<string>(), SkipComment<Iterator> >	taglist;
+	qi::rule<Iterator, vector<wstring>(), SkipComment<Iterator> >	taglist;
 
 	// assign: assignment
 	// examples: lhs = rhs or lhs = { lhs = rhs }
@@ -118,11 +118,11 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> >
 
 	// str: a quoted literal string.  may include extended and/or reserved characters.
 	// example: "I am a string."
-	qi::rule<Iterator, string()>	str;
+	qi::rule<Iterator, wstring()>	str;
 
 	// tolleaf: a tolerant leaf.  may include extended and other unreserved characters.  rhs only.
 	// example: leaves with accents (names, for instance).
-	qi::rule<Iterator, string(), SkipComment<Iterator> >	tolleaf;
+	qi::rule<Iterator, wstring(), SkipComment<Iterator> >	tolleaf;
 
 	// braces: a stray set of empty rhs braces (without an lhs)
 	// EU3 seems to do this for certain decision mods.
@@ -199,30 +199,31 @@ void initParser()
 }
 
 
-string bufferOneObject(ifstream& read)
+wstring bufferOneObject(ifstream& read)
 {
 	int openBraces = 0;				// the number of braces deep we are
-	string currObject, buffer;		// the current object and the tect under consideration
+	wstring currObject;				// the current object being built
 	bool topLevel = true;			// whether or not we're at the top level
 	while (read.good())
 	{
+		string buffer;
 		getline(read, buffer);
-		buffer = WinUtils::convert8859_15ToUTF8(buffer);
+		wstring wide_buffer = WinUtils::convertToUTF16(buffer);
 
-		if (buffer == "CK2txt")
+		if (wide_buffer == L"CK2txt")
 		{
 			continue;
 		}
-		else if (buffer == "EU4txt")
+		else if (wide_buffer == L"EU4txt")
 		{
 			continue;
 		}
-		currObject += "\n";
+		currObject += L"\n";
 
-		bool opened						= false;				// whether or not we just opened a new brace level
-		bool isInLiteral				= false;				// whether or not we're in a string literal
-		const char* str				= buffer.c_str();	// a character string of the text under consideration
-		const unsigned int strSize	= buffer.size();	// the size of the text under consideration
+		bool opened						= false;						// whether or not we just opened a new brace level
+		bool isInLiteral				= false;						// whether or not we're in a string literal
+		const wchar_t* str			= wide_buffer.c_str();	// a character string of the text under consideration
+		const unsigned int strSize	= wide_buffer.size();	// the size of the text under consideration
 		for (unsigned int i = 0; i < strSize; ++i)
 		{
 			if ('"' == str[i])
@@ -256,7 +257,7 @@ string bufferOneObject(ifstream& read)
 			continue;
 		}
 
-		if (currObject == "")
+		if (currObject == L"")
 		{
 			continue;
 		}
@@ -303,13 +304,13 @@ bool readFile(ifstream& read)
 	return qi::phrase_parse(begin, end, p, s);
 	*/
 
-	const static Parser<string::iterator> p;
-	const static SkipComment<string::iterator> s;
+	const static Parser<wstring::iterator> p;
+	const static SkipComment<wstring::iterator> s;
 
 	/* buffer and parse one object at a time */
 	while (read.good())
 	{
-		string currObject = bufferOneObject(read);	// the object under consideration
+		wstring currObject = bufferOneObject(read);	// the object under consideration
 		if (!qi::phrase_parse(currObject.begin(), currObject.end(), p, s))
 		{
 			clearStack();
@@ -337,11 +338,11 @@ void clearStack()
 }
 
 
-void setLHS(string key)
+void setLHS(wstring key)
 {
 	//LOG(LogLevel::Debug) << "Setting LHS : " << key;
 
-	Object* p = new Object(key);
+	Object* p = new Object(WinUtils::convertToUTF8(key));
 	if (0 == stack.size())
 	{
 		topLevel->setValue(p);
@@ -362,12 +363,12 @@ void pushObj()
 }
 
 
-void setRHSleaf(string val)
+void setRHSleaf(wstring val)
 {
 	//LOG(LogLevel::Debug) << "Setting RHSleaf : " << val;
 	Object* l = stack.back();	// the leaf object
 	stack.pop_back(); 
-	l->setValue(val);
+	l->setValue(WinUtils::convertToUTF8(val));
 	if ( (!inObjList) &&(0 < stack.size()) )
 	{
 		Object* p = stack.back();	// the object holding the leaf
@@ -381,12 +382,19 @@ void setRHSleaf(string val)
 }
 
 
-void setRHStaglist(vector<string> vals)
+void setRHStaglist(vector<wstring> vals)
 {
 	//LOG(LogLevel::Debug) << "Setting RHStaglist";
+	vector<string> utf8Vals;
+	for (auto val: vals)
+	{
+		utf8Vals.push_back(WinUtils::convertToUTF8(val));
+	}
+
+
 	Object* l = stack.back();	// the object holding the list
 	stack.pop_back(); 
-	l->addToList(vals.begin(), vals.end());
+	l->addToList(utf8Vals.begin(), utf8Vals.end());
 	if ( (!inObjList) &&(0 < stack.size()) )
 	{
 		Object* p = stack.back();	// the object holding the leaf

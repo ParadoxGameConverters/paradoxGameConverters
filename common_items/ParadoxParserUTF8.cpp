@@ -286,6 +286,13 @@ bool readFile(ifstream& read)
 	clearStack();
 	read.unsetf(std::ios::skipws);
 
+	char firstChar = read.peek();
+	if (firstChar == (char)0xEF)
+	{
+		char bitBucket[3];
+		read.read(bitBucket, 3);
+	}
+
 	const static Parser<string::iterator> p;
 	const static SkipComment<string::iterator> s;
 

@@ -756,21 +756,11 @@ void HoI4Country::initFromHistory()
 	_findclose(fileListing);
 	if (fullFilename == "")
 	{
-		string filesearch = Configuration::getHoI4Path() + "\\tfh\\history\\countries\\" + tag + "*.txt";
+		filesearch = Configuration::getHoI4Path() + "\\history\\countries\\" + tag + "*.txt";
 		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 		{
 			filename			= fileData.name;
-			fullFilename = Configuration::getHoI4Path() + "\\tfh\\history\\countries\\" + fileData.name;
-		}
-		else
-		{
-			_findclose(fileListing);
-			filesearch = Configuration::getHoI4Path() + "\\history\\countries\\" + tag + "*.txt";
-			if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-			{
-				filename			= fileData.name;
-				fullFilename = Configuration::getHoI4Path() + "\\history\\countries\\" + fileData.name;
-			}
+			fullFilename = Configuration::getHoI4Path() + "\\history\\countries\\" + fileData.name;
 		}
 		_findclose(fileListing);
 	}

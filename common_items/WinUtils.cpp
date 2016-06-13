@@ -151,12 +151,16 @@ std::string convert8859_15ToUTF8(std::string input)
 
 std::wstring convertToUTF16(std::string UTF8)
 {
-	wchar_t wideKeyArray[1024];
-	if (0 == MultiByteToWideChar(28605 /* 8859-15*/, MB_PRECOMPOSED, UTF8.c_str(), -1, wideKeyArray, 1024))
+	int requiredSize = MultiByteToWideChar(28605 /* 8859-15*/, MB_PRECOMPOSED, UTF8.c_str(), -1, NULL, 0);
+	wchar_t* wideKeyArray = new wchar_t[requiredSize];
+
+	if (0 == MultiByteToWideChar(28605 /* 8859-15*/, MB_PRECOMPOSED, UTF8.c_str(), -1, wideKeyArray, requiredSize))
 	{
 		LOG(LogLevel::Error) << "Could not translate string to UTF-16 - " << GetLastWindowsError();
 	}
 	std::wstring returnable(wideKeyArray);
+
+	delete[] wideKeyArray;
 
 	return returnable;
 }

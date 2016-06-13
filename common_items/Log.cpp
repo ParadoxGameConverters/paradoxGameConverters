@@ -22,6 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Log.h"
+#include "WinUtils.h"
 #include <ctime>
 #include <fstream>
 #include <iostream>
@@ -86,7 +87,7 @@ void Log::WriteToConsole(LogLevel level, const std::string& logMessage)
 			}
 			SetConsoleTextAttribute(console, color);
 			DWORD bytesWritten = 0;
-			WriteConsoleW(console, logMessage.c_str(), logMessage.size(), &bytesWritten, NULL);
+			WriteConsoleW(console, WinUtils::convertToUTF16(logMessage).c_str(), logMessage.size(), &bytesWritten, NULL);
 
 			// Restore old console color.
 			SetConsoleTextAttribute(console, oldConsoleInfo.wAttributes);
