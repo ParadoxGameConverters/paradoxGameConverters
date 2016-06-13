@@ -62,7 +62,7 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 		adjective = "";
 	}
 
-	vector<Object*> capitalObj = obj->getValue("capita");	// the object holding the capital
+	vector<Object*> capitalObj = obj->getValue("capital");	// the object holding the capital
 	(capitalObj.size() > 0) ? capital = atoi(capitalObj[0]->getLeaf().c_str()) : capital = 0;
 
 	auto continent = continentMap.find(capital);
@@ -302,7 +302,7 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 		vector<Object*> buildingsObj = statesItr[0].getValue("state_buildings"); // each factory in the state
 		for (auto buildingsItr : buildingsObj)
 		{
-			vector<Object*> levelObj = buildingsItr[0].getValue("leve"); // each employment entry in the factory.
+			vector<Object*> levelObj = buildingsItr[0].getValue("level"); // each employment entry in the factory.
 			if (levelObj.size() > 0)
 			{
 				levelCount += atoi(levelObj[0]->getLeaf().c_str());
