@@ -437,9 +437,11 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 	int stateID = 1;
 	for (auto country: sourceWorld.getCountries())
 	{
+		
 		wstring HoI4Tag = countryMap.GetHoI4Tag(country.first);
 		for (auto vic2State: country.second->getStates())
 		{
+			int provincecount = 0;
 			HoI4State* newState = new HoI4State(stateID, WinUtils::convertToUTF8(HoI4Tag));
 
 			for (auto vic2Province: vic2State.getProvinces())
@@ -453,12 +455,18 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 						{
 							newState->addProvince(HoI4ProvNum);
 							stateMap.insert(make_pair(HoI4ProvNum, stateID));
+							provincecount++;
 						}
 					}
 				}
 			}
-			
-			states.insert(make_pair(stateID, newState));
+			if (provincecount != 0)
+			{
+				states.insert(make_pair(stateID, newState));
+			}
+			else
+				stateID--;
+
 			stateID++;
 		}
 	}
