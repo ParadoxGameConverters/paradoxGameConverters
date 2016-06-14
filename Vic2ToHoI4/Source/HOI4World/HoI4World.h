@@ -61,9 +61,8 @@ class HoI4World
 		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
 		void	copyFlags(const V2World &sourceWorld, const CountryMapping& countryMap);
 		void	addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
-
+		int		getStates() const;
 		map<string, HoI4Country*>	getPotentialCountries()	const { return potentialCountries; }
-
 	private:
 		void	getProvinceLocalizations(const wstring& file);
 		void	checkManualFaction(const CountryMapping& countryMap, const vector<wstring>& candidateTags, string leader, const wstring& factionName);

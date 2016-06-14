@@ -41,7 +41,6 @@ void HoI4State::output()
 	string filename("Output/" + WinUtils::convertToUTF8(Configuration::getOutputName()) + "/history/states/" + to_string(ID) + "-blah.txt");
 	ofstream out;
 	out.open(filename);
-//	if (provinces.size() != 0)
 	{
 		if (!out.is_open())
 		{

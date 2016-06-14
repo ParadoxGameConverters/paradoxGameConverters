@@ -297,7 +297,15 @@ void HoI4World::outputLocalisations() const
 	}
 	fclose(localisationFile);
 }
-
+int HoI4World::getStates() const
+{
+	int statenumber = 0;
+	for (auto state : states)
+	{
+		statenumber++;
+	}
+	return statenumber;
+}
 
 void HoI4World::outputHistory() const
 {
@@ -321,14 +329,14 @@ void HoI4World::outputHistory() const
 	}
 	for (auto countryItr: countries)
 	{
-		countryItr.second->output();
+		countryItr.second->output(getStates());
 	}
 	// Override vanilla history to suppress vanilla OOB and faction membership being read
 	for (auto potentialItr: potentialCountries)
 	{
 		if (countries.find(potentialItr.first) == countries.end())
 		{
-			potentialItr.second->output();
+			potentialItr.second->output(getStates());
 		}
 	}
 	//LOG(LogLevel::Debug) << "Writing diplomacy";
@@ -415,7 +423,6 @@ struct MTo1ProvinceComp
 	vector<V2Province*> provinces;
 	int totalPopulation;
 };
-
 
 void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, HoI4StateMapping& stateMap)
 {

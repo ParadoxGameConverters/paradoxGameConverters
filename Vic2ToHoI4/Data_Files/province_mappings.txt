@@ -1746,7 +1746,7 @@
     link = { vic2 = 1863 hoi4 = 12856 hoi4 = 2009 }    # Asosa -> land, land
     link = { vic2 = 1862 hoi4 = 8019 hoi4 = 7912 }    # Bonga -> land
     link = { vic2 = 1860 hoi4 = 10734 }    # Awasa -> land
-    link = { vic2 = 1864 hoi4 = 8062 hoi4 = 8019 }    # Negele -> land, land
+    link = { vic2 = 1864 hoi4 = 8062 }    # Negele -> land, land
     link = { vic2 = 1866 hoi4 = 4995 hoi4 = 10775 }    # Goba -> land, land
     link = { vic2 = 1861 hoi4 = 8036 }    # Aselia -> land
     link = { vic2 = 1859 hoi4 = 5010 }    # Ankober -> land
@@ -1758,7 +1758,7 @@
     link = { vic2 = 1856 hoi4 = 2072 }    # Aksum -> land
     link = { vic2 = 1858 hoi4 = 5041 }    # Awsa -> land
     link = { vic2 = 1865 hoi4 = 12714 hoi4 = 7980 }    # Harer -> land
-    link = { vic2 = 1867 hoi4 = 12812 hoi4 = 12757 hoi4 = 12714 }    # Werder -> land, land, land
+    link = { vic2 = 1867 hoi4 = 12812 hoi4 = 12757  }    # Werder -> land, land, land
     link = { vic2 = 1851 hoi4 = 8043 }    # Assab -> land
     link = { vic2 = 1848 hoi4 = 12766 }    # Asmara -> land
     link = { vic2 = 1849 hoi4 = 5047 hoi4 = 5091 }    # Massawa -> land, land
@@ -1766,7 +1766,7 @@
     #
     # Somalia
     link = { vic2 = 1177 hoi4 = 8000 }    # Socotra -> land
-    link = { vic2 = 1875 hoi4 = 4985 hoi4 = 8124 hoi4 = 4985 }    # Djibuti -> land, land
+    link = { vic2 = 1875 hoi4 = 4985 hoi4 = 8124 }    # Djibuti -> land, land
     link = { vic2 = 1874 hoi4 = 10777 }    # Zeyla -> land
     link = { vic2 = 1873 hoi4 = 10833 hoi4 = 1905 hoi4 = 12814 hoi4 = 10921 hoi4 = 12759 hoi4 = 5068 hoi4 = 8094 }    # Berbera -> land, land, land, land, land, land, land
     link = { vic2 = 1869 hoi4 = 2063 hoi4 = 2020 }    # Baidoa -> land, land
