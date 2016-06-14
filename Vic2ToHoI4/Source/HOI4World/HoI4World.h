@@ -44,7 +44,7 @@ class HoI4World
 
 		void	output() const;
 
-		void	importProvinces(const provinceMapping& provinceMap);
+		void	importProvinces();
 		void	checkCoastalProvinces();
 		void	importPotentialCountries();
 		void	convertCountries(const V2World &sourceWorld, const CountryMapping& countryMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap);
@@ -61,13 +61,14 @@ class HoI4World
 		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
 		void	copyFlags(const V2World &sourceWorld, const CountryMapping& countryMap);
 		void	addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
-		int		getStates() const;
+		void	checkAllProvincesMapped(const provinceMapping& provinceMap);
+
 		map<string, HoI4Country*>	getPotentialCountries()	const { return potentialCountries; }
+
 	private:
 		void	getProvinceLocalizations(const string& file);
 		void	checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string leader, const string& factionName);
 		void	factionSatellites();
-		void	checkAllProvincesMapped(const provinceMapping& provinceMap);
 		void	setFactionMembers(const V2World &sourceWorld, const CountryMapping& countryMap);
 		void	setAlignments();
 

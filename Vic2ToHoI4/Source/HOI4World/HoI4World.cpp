@@ -52,7 +52,7 @@ typedef struct fileWithCreateTime
 } fileWithCreateTime;
 
 
-void HoI4World::importProvinces(const provinceMapping& provinceMap)
+void HoI4World::importProvinces()
 {
 	LOG(LogLevel::Info) << "Importing provinces";
 
@@ -100,7 +100,6 @@ void HoI4World::importProvinces(const provinceMapping& provinceMap)
 		_findclose(fileListing);
 		directories.pop_front();
 	}
-	checkAllProvincesMapped(provinceMap);
 }
 
 
@@ -297,15 +296,7 @@ void HoI4World::outputLocalisations() const
 	}
 	fclose(localisationFile);
 }
-int HoI4World::getStates() const
-{
-	int statenumber = 0;
-	for (auto state : states)
-	{
-		statenumber++;
-	}
-	return statenumber;
-}
+
 
 void HoI4World::outputHistory() const
 {
@@ -329,14 +320,14 @@ void HoI4World::outputHistory() const
 	}
 	for (auto countryItr: countries)
 	{
-		countryItr.second->output(getStates());
+		countryItr.second->output(states.size());
 	}
 	// Override vanilla history to suppress vanilla OOB and faction membership being read
 	for (auto potentialItr: potentialCountries)
 	{
 		if (countries.find(potentialItr.first) == countries.end())
 		{
-			potentialItr.second->output(getStates());
+			potentialItr.second->output(states.size());
 		}
 	}
 	//LOG(LogLevel::Debug) << "Writing diplomacy";
@@ -2084,14 +2075,32 @@ void HoI4World::copyFlags(const V2World &sourceWorld, const CountryMapping& coun
 
 void HoI4World::checkAllProvincesMapped(const provinceMapping& provinceMap)
 {
-	for (auto province: provinces)
+	ifstream definitions(Configuration::getHoI4Path() + "/map/definition.csv");
+	if (!definitions.is_open())
 	{
-		provinceMapping::const_iterator num = provinceMap.find(province.first);
+		LOG(LogLevel::Error) << "Could not open " << Configuration::getHoI4Path() << "/map/definition.csv";
+		exit(-1);
+	}
+
+	while (true)
+	{
+		string line;
+		getline(definitions, line);
+		int pos = line.find_first_of(';');
+		if (pos == string::npos)
+		{
+			break;
+		}
+		int provNum = atoi(line.substr(0, pos).c_str());
+
+		provinceMapping::const_iterator num = provinceMap.find(provNum);
 		if (num == provinceMap.end())
 		{
-			LOG(LogLevel::Warning) << "No mapping for HoI4 province " << province.first;
+			LOG(LogLevel::Warning) << "No mapping for HoI4 province " << provNum;
 		}
 	}
+
+	definitions.close();
 }
 
 
