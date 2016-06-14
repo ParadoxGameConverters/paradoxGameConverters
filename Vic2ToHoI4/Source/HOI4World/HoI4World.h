@@ -61,6 +61,7 @@ class HoI4World
 		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
 		void	copyFlags(const V2World &sourceWorld, const CountryMapping& countryMap);
 		void	addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
+		void	recordAllLandProvinces();
 		void	checkAllProvincesMapped(const provinceMapping& provinceMap);
 
 		map<string, HoI4Country*>	getPotentialCountries()	const { return potentialCountries; }
@@ -86,6 +87,7 @@ class HoI4World
 
 		map<int, HoI4State*>			states;
 		map<int, HoI4Province*>		provinces;
+		set<int>							landProvinces;
 		map<string, HoI4Country*>	countries;
 		map<string,HoI4Country*>	potentialCountries;
 		HoI4Diplomacy					diplomacy;
