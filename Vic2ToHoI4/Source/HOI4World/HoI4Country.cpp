@@ -116,12 +116,10 @@ void HoI4Country::output(int statenumber) const
 {
 	// output history file
 	ofstream output;
-	output.open(("Output/" + Configuration::getOutputName() + "/history/countries/" + WinUtils::convertToASCII(filename)).c_str());
-	if (!output.is_open())
 	string con = tag;
 	if (capital > 0 && capital <= statenumber)
 	{
-		output.open(("Output/" + WinUtils::convertToUTF8(Configuration::getOutputName()) + "/history/countries/" + WinUtils::convertToASCII(filename)).c_str());
+		output.open(("Output/" + Configuration::getOutputName() + "/history/countries/" + WinUtils::convertToASCII(filename)).c_str());
 		if (!output.is_open())
 		{
 			Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/history/" << filename;
