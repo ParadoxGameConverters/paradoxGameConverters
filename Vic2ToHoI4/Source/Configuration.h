@@ -36,37 +36,37 @@ class Configuration // Singleton
 	public:
 		Configuration();
 
-		static wstring getHoI4Path()
+		static string getHoI4Path()
 		{
 			return getInstance()->HoI4Path;
 		}
 
-		static wstring getHoI4DocumentsPath()
+		static string getHoI4DocumentsPath()
 		{
 			return getInstance()->HoI4DocumentsPath;
 		}
 
-		static wstring getV2Path()
+		static string getV2Path()
 		{
 			return getInstance()->V2Path;
 		}
 
-		static wstring getV2DocumentsPath()
+		static string getV2DocumentsPath()
 		{
 			return getInstance()->V2DocumentsPath;
 		}
 
-		static vector<wstring> getVic2Mods()
+		static vector<string> getVic2Mods()
 		{
 			return getInstance()->Vic2Mods;
 		}
 
-		static void setOutputName(wstring name)
+		static void setOutputName(string name)
 		{
 			getInstance()->outputName = name;
 		}
 
-		static wstring getOutputName()
+		static string getOutputName()
 		{
 			return getInstance()->outputName;
 		}
@@ -76,27 +76,27 @@ class Configuration // Singleton
 			return getInstance()->minInfra;
 		}
 
-		static wstring getFactionLeaderAlgo()
+		static string getFactionLeaderAlgo()
 		{
 			return getInstance()->factionLeaderAlgorithm;
 		}
 
-		static vector<wstring> getManualAxisFaction()
+		static vector<string> getManualAxisFaction()
 		{
 			return getInstance()->manualAxisFaction;
 		}
 
-		static vector<wstring> getManualAlliesFaction()
+		static vector<string> getManualAlliesFaction()
 		{
 			return getInstance()->manualAlliesFaction;
 		}
 
-		static vector<wstring> getManualCominternFaction()
+		static vector<string> getManualCominternFaction()
 		{
 			return getInstance()->manualCominternFaction;
 		}
 
-		static wstring getIcConversion()
+		static string getIcConversion()
 		{
 			return getInstance()->icConversion;
 		}
@@ -106,7 +106,7 @@ class Configuration // Singleton
 			return getInstance()->icFactor;
 		}
 
-		static wstring getManpowerConversion()
+		static string getManpowerConversion()
 		{
 			return getInstance()->manpowerConversion;
 		}
@@ -116,7 +116,7 @@ class Configuration // Singleton
 			return getInstance()->manpowerFactor;
 		}
 
-		static wstring getLeadershipConversion()
+		static string getLeadershipConversion()
 		{
 			return getInstance()->leadershipConversion;
 		}
@@ -159,23 +159,23 @@ class Configuration // Singleton
 	private:
 		static Configuration* instance;
 
-		wstring			HoI4Path;				// the install directory for HoI4
-		wstring			HoI4DocumentsPath;	// HoI4's directory under My Documents
-		wstring			V2Path;					// the install directory for V2
-		wstring			V2DocumentsPath;		// V2's directory under My Documents
-		vector<wstring>	Vic2Mods;
-		wstring			outputName;				// the name the outputted mod should have
+		string			HoI4Path;				// the install directory for HoI4
+		string			HoI4DocumentsPath;	// HoI4's directory under My Documents
+		string			V2Path;					// the install directory for V2
+		string			V2DocumentsPath;		// V2's directory under My Documents
+		vector<string>	Vic2Mods;
+		string			outputName;				// the name the outputted mod should have
 
-		wstring			factionLeaderAlgorithm;
-		vector<wstring> manualAxisFaction;
-		vector<wstring> manualAlliesFaction;
-		vector<wstring> manualCominternFaction;
+		string			factionLeaderAlgorithm;
+		vector<string> manualAxisFaction;
+		vector<string> manualAlliesFaction;
+		vector<string> manualCominternFaction;
 		double			minInfra;
-		wstring			icConversion;
+		string			icConversion;
 		double			icFactor;
-		wstring			manpowerConversion;
+		string			manpowerConversion;
 		double			manpowerFactor;
-		wstring			leadershipConversion;
+		string			leadershipConversion;
 		double			leadershipFactor;
 		double			literacyWeight;
 		double			practicalsScale;

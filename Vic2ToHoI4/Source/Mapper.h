@@ -57,7 +57,7 @@ typedef vector< vector<adjacency> > HoI4AdjacencyMapping;
 HoI4AdjacencyMapping initHoI4AdjacencyMap();
 
 
-typedef map<int, wstring> continentMapping;	// <province, continent>
+typedef map<int, string> continentMapping;	// <province, continent>
 void initContinentMap(Object* obj, continentMapping& continentMap);
 
 
@@ -82,43 +82,43 @@ typedef map<int, int> HoI4StateMapping;	// province num, state ID
 
 
 // Union Mappings
-typedef vector< pair<wstring, wstring> > unionMapping;	// <cultures, tag>
+typedef vector< pair<string, string> > unionMapping;	// <cultures, tag>
 unionMapping initUnionMap(Object* obj);
 
 
 // Cultural Union Nation mappings
-typedef map< wstring, vector<wstring> > unionCulturesMap; // <culture group, cultures>
+typedef map< string, vector<string> > unionCulturesMap; // <culture group, cultures>
 void initUnionCultures(Object* obj, unionCulturesMap& unionCultures);
 
 // Culture Mappings
-typedef map<wstring, wstring> cultureMapping; // <srcCulture, dstCulture>
+typedef map<string, string> cultureMapping; // <srcCulture, dstCulture>
 cultureMapping initCultureMap(Object* obj);
 
 // idea effects
-void initIdeaEffects(Object* obj, map<wstring, int>& armyInvIdeas, map<wstring, int>& commerceInvIdeas, map<wstring, int>& cultureInvIdeas, map<wstring, int>& industryInvIdeas, map<wstring, int>& navyInvIdeas, map<wstring, double>& UHLiberalIdeas, map<wstring, double>& UHReactionaryIdeas, vector< pair<wstring, int> >& literacyIdeas, map<wstring, int>& orderIdeas, map<wstring, int>& libertyIdeas, map<wstring, int>& equalityIdeas);
+void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, int>& commerceInvIdeas, map<string, int>& cultureInvIdeas, map<string, int>& industryInvIdeas, map<string, int>& navyInvIdeas, map<string, double>& UHLiberalIdeas, map<string, double>& UHReactionaryIdeas, vector< pair<string, int> >& literacyIdeas, map<string, int>& orderIdeas, map<string, int>& libertyIdeas, map<string, int>& equalityIdeas);
 
 
 // government jobs
-typedef pair<wstring, vector<wstring>> governmentJob; // <job name, possible traits>
-typedef map<wstring, vector<wstring>> governmentJobsMap;
+typedef pair<string, vector<string>> governmentJob; // <job name, possible traits>
+typedef map<string, vector<string>> governmentJobsMap;
 void initGovernmentJobTypes(Object* obj, governmentJobsMap& governmentJobs);
 
 
 // leaderTraits
-typedef map<wstring, vector<wstring>> leaderTraitsMap; // <leader type, possible traits>
+typedef map<string, vector<string>> leaderTraitsMap; // <leader type, possible traits>
 void initLeaderTraitsMap(Object* obj, leaderTraitsMap& leaderTraits);
-typedef map<wstring, vector<wstring>> personalityMap;	// <V2 personality, possible HoI4 traits>
+typedef map<string, vector<string>> personalityMap;	// <V2 personality, possible HoI4 traits>
 void initLeaderPersonalityMap(Object* obj, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap);
-typedef map<wstring, vector<wstring>> backgroundMap;		// <V2 background, possible HoI4 traits>
+typedef map<string, vector<string>> backgroundMap;		// <V2 background, possible HoI4 traits>
 void initLeaderBackgroundMap(Object* obj, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
 
 
 // names
-typedef map<wstring, pair<vector<wstring>, vector<wstring>>> namesMapping;
+typedef map<string, pair<vector<string>, vector<string>>> namesMapping;
 void initNamesMapping(Object* obj, namesMapping& namesMap);
 
 // portraits
-typedef map<wstring, vector<wstring>> portraitMapping; // <graphical culture, valid portraits>
+typedef map<string, vector<string>> portraitMapping; // <graphical culture, valid portraits>
 void initPortraitMapping(Object* obj, portraitMapping& portraitMap);
 
 // AI focus
@@ -130,8 +130,8 @@ typedef enum {
 } AIFocusType;
 typedef struct {
 	double	modifierAmount;
-	wstring	modifierType;
-	wstring	modifierRequirement;
+	string	modifierType;
+	string	modifierRequirement;
 } AIFocusModifier;
 typedef map<AIFocusType, vector<AIFocusModifier>> AIFocusModifiers;
 void initAIFocusModifiers(Object* obj, AIFocusModifiers& modifiers);

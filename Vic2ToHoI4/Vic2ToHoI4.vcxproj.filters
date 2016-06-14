@@ -21,9 +21,6 @@
     <ClCompile Include="..\common_items\Object.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
-    <ClCompile Include="..\common_items\ParadoxParser.cpp">
-      <Filter>CommonItems</Filter>
-    </ClCompile>
     <ClCompile Include="..\common_items\ParadoxParserUTF8.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
@@ -105,6 +102,9 @@
     <ClCompile Include="..\common_items\WinUtils.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
+    <ClCompile Include="..\common_items\ParadoxParser8859_15.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -114,9 +114,6 @@
       <Filter>CommonItems</Filter>
     </ClInclude>
     <ClInclude Include="..\common_items\Object.h">
-      <Filter>CommonItems</Filter>
-    </ClInclude>
-    <ClInclude Include="..\common_items\ParadoxParser.h">
       <Filter>CommonItems</Filter>
     </ClInclude>
     <ClInclude Include="..\common_items\ParadoxParserUTF8.h">
@@ -200,6 +197,9 @@
       <Filter>HoI4World</Filter>
     </ClInclude>
     <ClInclude Include="..\common_items\WinUtils.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\ParadoxParser8859_15.h">
       <Filter>CommonItems</Filter>
     </ClInclude>
   </ItemGroup>

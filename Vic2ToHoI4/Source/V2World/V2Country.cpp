@@ -30,7 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <sstream>
 #include "Log.h"
 #include "../Configuration.h"
-#include "ParadoxParser.h"
+#include "Object.h"
 #include "V2Army.h"
 #include "V2Factory.h"
 #include "V2Leader.h"
@@ -41,7 +41,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<wstring, wstring>& armyTechs, map<wstring, wstring>& navyTechs, const continentMapping& continentMap)
+V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs, const continentMapping& continentMap)
 {
 	tag = obj->getKey();
 	provinces.clear();
@@ -50,7 +50,7 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<wstr
 
 	greatNation = false; // Default to not great nation. This is set later in V2World.
 
-	vector<Object*> nameObj = obj->getValue(L"domain_region");	// the region name for dynamically generated dominions
+	vector<Object*> nameObj = obj->getValue("domain_region");	// the region name for dynamically generated dominions
 	if (!nameObj.empty())
 	{
 		name = nameObj[0]->getLeaf().c_str();
@@ -58,12 +58,12 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<wstr
 	}
 	else
 	{
-		name = L"";
-		adjective = L"";
+		name = "";
+		adjective = "";
 	}
 
-	vector<Object*> capitalObj = obj->getValue(L"capital");	// the object holding the capital
-	(capitalObj.size() > 0) ? capital = _wtoi(capitalObj[0]->getLeaf().c_str()) : capital = 0;
+	vector<Object*> capitalObj = obj->getValue("capital");	// the object holding the capital
+	(capitalObj.size() > 0) ? capital = atoi(capitalObj[0]->getLeaf().c_str()) : capital = 0;
 
 	auto continent = continentMap.find(capital);
 	if (continent != continentMap.end())
@@ -71,10 +71,10 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<wstr
 		capitalContinent = continent->second;
 	}
 
-	vector<Object*> primaryCultureObj = obj->getValue(L"primary_culture");	// the object holding the primary culture
-	(primaryCultureObj.size() > 0) ? primaryCulture = primaryCultureObj[0]->getLeaf().c_str() : primaryCulture = L"";
+	vector<Object*> primaryCultureObj = obj->getValue("primary_culture");	// the object holding the primary culture
+	(primaryCultureObj.size() > 0) ? primaryCulture = primaryCultureObj[0]->getLeaf().c_str() : primaryCulture = "";
 
-	vector<Object*> techsObj = obj->getValue(L"technology");	// the object holding the technology levels
+	vector<Object*> techsObj = obj->getValue("technology");	// the object holding the technology levels
 	if (techsObj.size() > 0)
 	{
 		techs = techsObj[0]->getKeys();
@@ -94,13 +94,13 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<wstr
 	}
 
 	inventions.clear();
-	techsObj = obj->getValue(L"active_inventions");
+	techsObj = obj->getValue("active_inventions");
 	if (techsObj.size() > 0)
 	{
-		vector<wstring> active_inventions = techsObj[0]->getTokens();
-		for (vector<wstring>::iterator itr = active_inventions.begin(); itr != active_inventions.end(); ++itr)
+		vector<string> active_inventions = techsObj[0]->getTokens();
+		for (vector<string>::iterator itr = active_inventions.begin(); itr != active_inventions.end(); ++itr)
 		{
-			int i = _wtoi(itr->c_str());
+			int i = atoi(itr->c_str());
 			auto jtr = iNumToName.find(i);
 			if (jtr == iNumToName.end())
 			{
@@ -114,16 +114,16 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<wstr
 	}
 
 	activeParties.clear();
-	vector<Object*> partyObj = obj->getValue(L"active_party");
+	vector<Object*> partyObj = obj->getValue("active_party");
 	for (auto party: partyObj)
 	{
-		activeParties.push_back(_wtoi(party->getLeaf().c_str()));
+		activeParties.push_back(atoi(party->getLeaf().c_str()));
 	}
 
-	partyObj = obj->getValue(L"ruling_party");
+	partyObj = obj->getValue("ruling_party");
 	if (partyObj.size() > 0)
 	{
-		rulingPartyId = _wtoi(partyObj[0]->getLeaf().c_str()); // Numerical ID
+		rulingPartyId = atoi(partyObj[0]->getLeaf().c_str()); // Numerical ID
 	}
 	else if (activeParties.size() > 0)
 	{
@@ -135,34 +135,34 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<wstr
 	}
 
 	// Read spending
-	vector<Object*> spendingObj = obj->getValue(L"education_spending");
+	vector<Object*> spendingObj = obj->getValue("education_spending");
 	if (spendingObj.size() > 0)
 	{
-		vector<Object*> settingsObj = spendingObj[0]->getValue(L"settings");
-		(settingsObj.size() > 0) ? educationSpending = _wtof(settingsObj[0]->getLeaf().c_str()) : 0.0;
+		vector<Object*> settingsObj = spendingObj[0]->getValue("settings");
+		(settingsObj.size() > 0) ? educationSpending = atof(settingsObj[0]->getLeaf().c_str()) : 0.0;
 	}
 
-	spendingObj = obj->getValue(L"military_spending");
+	spendingObj = obj->getValue("military_spending");
 	if (spendingObj.size() > 0)
 	{
-		vector<Object*> settingsObj = spendingObj[0]->getValue(L"settings");
-		(settingsObj.size() > 0) ? militarySpending = _wtof(settingsObj[0]->getLeaf().c_str()) : 0.0;
+		vector<Object*> settingsObj = spendingObj[0]->getValue("settings");
+		(settingsObj.size() > 0) ? militarySpending = atof(settingsObj[0]->getLeaf().c_str()) : 0.0;
 	}
 
-	vector<Object*> revanchismObj = obj->getValue(L"revanchism");
+	vector<Object*> revanchismObj = obj->getValue("revanchism");
 	if (revanchismObj.size() > 0)
 	{
-		revanchism = _wtof(revanchismObj[0]->getLeaf().c_str());
+		revanchism = atof(revanchismObj[0]->getLeaf().c_str());
 	}
 	else
 	{
 		revanchism = 0.0;
 	}
 
-	vector<Object*> warExhaustionObj = obj->getValue(L"war_exhaustion");
+	vector<Object*> warExhaustionObj = obj->getValue("war_exhaustion");
 	if (warExhaustionObj.size() > 0)
 	{
-		warExhaustion = _wtof(warExhaustionObj[0]->getLeaf().c_str());
+		warExhaustion = atof(warExhaustionObj[0]->getLeaf().c_str());
 	}
 	else
 	{
@@ -170,12 +170,12 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<wstr
 	}
 
 	// Read reforms
-	map<wstring, wstring> reformTypes = governmentMapper::getInstance()->getReformTypes();
+	map<string, string> reformTypes = governmentMapper::getInstance()->getReformTypes();
 
 	vector<Object*> leaves = obj->getLeaves();
 	for (auto leaf: leaves)
 	{
-		wstring key = leaf->getKey();
+		string key = leaf->getKey();
 
 		if (reformTypes.find(key) != reformTypes.end())
 		{
@@ -183,40 +183,40 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<wstr
 		}
 	}
 
-	vector<Object*> governmentObj = obj->getValue(L"government");	// the object holding the government
-	(governmentObj.size() > 0) ? government = governmentObj[0]->getLeaf() : government = L"";
+	vector<Object*> governmentObj = obj->getValue("government");	// the object holding the government
+	(governmentObj.size() > 0) ? government = governmentObj[0]->getLeaf() : government = "";
 
-	auto upperHouseObj = obj->getValue(L"upper_house");
+	auto upperHouseObj = obj->getValue("upper_house");
 	auto ideologiesObj = upperHouseObj[0]->getLeaves();
 	for (auto ideologyObj: ideologiesObj)
 	{
-		upperHouseComposition.insert(make_pair(ideologyObj[0].getKey(), _wtof(ideologyObj[0].getLeaf().c_str())));
+		upperHouseComposition.insert(make_pair(ideologyObj[0].getKey(), atof(ideologyObj[0].getLeaf().c_str())));
 	}
 
 	flagFile = tag;
-	if (government == L"proletarian_dictatorship")
+	if (government == "proletarian_dictatorship")
 	{
-		flagFile += L"_communist";
+		flagFile += "_communist";
 	}
-	else if (government == L"presidential_dictatorship" || government == L"bourgeois_dictatorship" || government == L"democracy")
+	else if (government == "presidential_dictatorship" || government == "bourgeois_dictatorship" || government == "democracy")
 	{
-		flagFile += L"_republic";
+		flagFile += "_republic";
 	}
-	else if (government == L"fascist_dictatorship")
+	else if (government == "fascist_dictatorship")
 	{
-		flagFile += L"_fascist";
+		flagFile += "_fascist";
 	}
-	else if (government == L"absolute_monarchy" || government == L"prussian_constitutionalism" || government == L"hms_government")
+	else if (government == "absolute_monarchy" || government == "prussian_constitutionalism" || government == "hms_government")
 	{
-		flagFile += L"_monarchy";
+		flagFile += "_monarchy";
 	}
 
-	flagFile += L".tga";
+	flagFile += ".tga";
 
 	// Read international relations leaves
 	for (auto leaf: leaves)
 	{
-		wstring key = leaf->getKey();
+		string key = leaf->getKey();
 
 		if ((key.size() == 3) &&
 			(
@@ -246,20 +246,20 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<wstr
 	}
 
 	armies.clear();
-	vector<Object*> armyObj = obj->getValue(L"army");	// the object sholding the armies
+	vector<Object*> armyObj = obj->getValue("army");	// the object sholding the armies
 	for (auto armyItr: armyObj)
 	{
 		V2Army* army = new V2Army(armyItr);
 		armies.push_back(army);
 	}
-	vector<Object*> navyObj = obj->getValue(L"navy");	// the objects holding the navies
+	vector<Object*> navyObj = obj->getValue("navy");	// the objects holding the navies
 	for (auto navyItr: navyObj)
 	{
 		V2Army* navy = new V2Army(navyItr);
 		armies.push_back(navy);
 
 		// get transported armies
-		vector<Object*> armyObj = navyItr->getValue(L"army");	// the object sholding the armies
+		vector<Object*> armyObj = navyItr->getValue("army");	// the object sholding the armies
 		for (auto armyItr: armyObj)
 		{
 			V2Army* army = new V2Army(armyItr);
@@ -268,44 +268,44 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<wstr
 	}
 
 	leaders.clear();
-	vector<Object*> leaderObj = obj->getValue(L"leader");	// the objects holding the leaders
+	vector<Object*> leaderObj = obj->getValue("leader");	// the objects holding the leaders
 	for (auto itr: leaderObj)
 	{
 		V2Leader* leader = new V2Leader(itr);
 		leaders.push_back(leader);
 	}
 
-	vector<Object*> techSchoolObj = obj->getValue(L"schools");	// the objects holding the tech school
+	vector<Object*> techSchoolObj = obj->getValue("schools");	// the objects holding the tech school
 	if (techSchoolObj.size() > 0)
 	{
 		techSchool = techSchoolObj[0]->getLeaf();
 	}
 
 	// read in states
-	vector<Object*> statesObj = obj->getValue(L"state"); // each state in the country
+	vector<Object*> statesObj = obj->getValue("state"); // each state in the country
 	for (auto statesItr : statesObj)
 	{
 		Vic2State newState;
 		// get the provinces in the state
-		vector<Object*> provinceObj = statesItr[0].getValue(L"provinces");
+		vector<Object*> provinceObj = statesItr[0].getValue("provinces");
 		if (provinceObj.size() > 0)
 		{
-			vector<wstring> provinceIDs = provinceObj[0]->getTokens();
+			vector<string> provinceIDs = provinceObj[0]->getTokens();
 			for (auto provinceItr: provinceIDs)
 			{
-				newState.addProvince(_wtoi(provinceItr.c_str()));
+				newState.addProvince(atoi(provinceItr.c_str()));
 			}
 		}
 
 		// count the employees in the state (for factory conversion)
 		int levelCount = 0;
-		vector<Object*> buildingsObj = statesItr[0].getValue(L"state_buildings"); // each factory in the state
+		vector<Object*> buildingsObj = statesItr[0].getValue("state_buildings"); // each factory in the state
 		for (auto buildingsItr : buildingsObj)
 		{
-			vector<Object*> levelObj = buildingsItr[0].getValue(L"level"); // each employment entry in the factory.
+			vector<Object*> levelObj = buildingsItr[0].getValue("level"); // each employment entry in the factory.
 			if (levelObj.size() > 0)
 			{
-				levelCount += _wtoi(levelObj[0]->getLeaf().c_str());
+				levelCount += atoi(levelObj[0]->getLeaf().c_str());
 			}
 		}
 		newState.setFactoryLevel(levelCount);
@@ -358,10 +358,10 @@ void V2Country::eatCountry(V2Country* target)
 		armies.insert(armies.end(), target->armies.begin(), target->armies.end());
 
 		// give merged nation any techs owned by either nation
-		vector<wstring> targetTechs = target->getTechs();
+		vector<string> targetTechs = target->getTechs();
 		for (auto tech: targetTechs)
 		{
-			vector<wstring>::iterator stech = std::find(techs.begin(), techs.end(), tech);
+			vector<string>::iterator stech = std::find(techs.begin(), techs.end(), tech);
 			if (stech == techs.end())
 			{
 				techs.push_back(tech);
@@ -409,10 +409,10 @@ void V2Country::putWorkersInProvinces()
 			auto province = provinces.find(provinceNum);
 			if (province != provinces.end())
 			{
-				craftsmen	+= province->second->getPopulation(L"craftsmen");
-				clerks		+= province->second->getPopulation(L"clerks");
-				artisans		+= province->second->getPopulation(L"aristans");
-				capitalists	+= province->second->getLiteracyWeightedPopulation(L"capitalists");
+				craftsmen	+= province->second->getPopulation("craftsmen");
+				clerks		+= province->second->getPopulation("clerks");
+				artisans		+= province->second->getPopulation("aristans");
+				capitalists	+= province->second->getLiteracyWeightedPopulation("capitalists");
 			}
 		}
 
@@ -441,59 +441,59 @@ void V2Country::putWorkersInProvinces()
 }
 
 
-std::wstring V2Country::getReform(std::wstring reform) const
+std::string V2Country::getReform(std::string reform) const
 {
-	map<wstring, wstring>::const_iterator itr = reformsArray.find(reform);
+	map<string, string>::const_iterator itr = reformsArray.find(reform);
 	if (itr == reformsArray.end())
 	{
-		return L"";
+		return "";
 	}
 
 	return itr->second;
 }
 
 
-wstring V2Country::getName(const wstring& language) const
+string V2Country::getName(const string& language) const
 {
-	if (namesByLanguage.empty() && language == L"english")
+	if (namesByLanguage.empty() && language == "english")
 	{
 		return name;
 	}
 
-	map<wstring, wstring>::const_iterator findIter = namesByLanguage.find(language);
+	map<string, string>::const_iterator findIter = namesByLanguage.find(language);
 	if (findIter != namesByLanguage.end())
 	{
 		return findIter->second;
 	}
 	else
 	{
-		return L"";
+		return "";
 	}
 }
 
 
-wstring V2Country::getAdjective(const wstring& language) const
+string V2Country::getAdjective(const string& language) const
 {
-	if (adjectivesByLanguage.empty() && language == L"english")
+	if (adjectivesByLanguage.empty() && language == "english")
 	{
 		return adjective;
 	}
 
-	map<wstring, wstring>::const_iterator findIter = adjectivesByLanguage.find(language);
+	map<string, string>::const_iterator findIter = adjectivesByLanguage.find(language);
 	if (findIter != adjectivesByLanguage.end())
 	{
 		return findIter->second;
 	}
 	else
 	{
-		return L"";
+		return "";
 	}
 }
 
 
-double V2Country::getUpperHousePercentage(wstring ideology) const
+double V2Country::getUpperHousePercentage(string ideology) const
 {
-	map<wstring, double>::const_iterator itr = upperHouseComposition.find(ideology);
+	map<string, double>::const_iterator itr = upperHouseComposition.find(ideology);
 	if (itr == upperHouseComposition.end())
 		return 0.0;
 

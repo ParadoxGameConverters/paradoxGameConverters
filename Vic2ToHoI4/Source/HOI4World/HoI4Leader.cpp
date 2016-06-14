@@ -25,10 +25,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Leader::HoI4Leader(vector<wstring>& firstNames, vector<wstring>& lastNames, wstring _country, wstring _type, leaderTraitsMap& _traitsMap, vector<wstring>& portraits)
+HoI4Leader::HoI4Leader(vector<string>& firstNames, vector<string>& lastNames, string _country, string _type, leaderTraitsMap& _traitsMap, vector<string>& portraits)
 {
 	ID			= Configuration::getNextLeaderID();
-	name		= firstNames[rand() % firstNames.size()] + L" " + lastNames[rand() % lastNames.size()];
+	name		= firstNames[rand() % firstNames.size()] + " " + lastNames[rand() % lastNames.size()];
 	country	= _country;
 	type		= _type;
 	skill		= 0;
@@ -37,12 +37,12 @@ HoI4Leader::HoI4Leader(vector<wstring>& firstNames, vector<wstring>& lastNames, 
 
 	//if (rand() % 4 > 0)
 	//{
-	//	vector<wstring> allTraits = _traitsMap.find(_type)->second;
+	//	vector<string> allTraits = _traitsMap.find(_type)->second;
 	//	traits.push_back(allTraits[rand() % allTraits.size()]);
 
 	//	if (rand() % 10 > 8)
 	//	{
-	//		wstring secondTrait = allTraits[rand() % allTraits.size()];
+	//		string secondTrait = allTraits[rand() % allTraits.size()];
 	//		while (traits[0] == secondTrait)
 	//		{
 	//			secondTrait = allTraits[rand() % allTraits.size()];
@@ -53,18 +53,18 @@ HoI4Leader::HoI4Leader(vector<wstring>& firstNames, vector<wstring>& lastNames, 
 }
 
 
-HoI4Leader::HoI4Leader(V2Leader* srcLeader, wstring _country, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, vector<wstring>& portraits)
+HoI4Leader::HoI4Leader(V2Leader* srcLeader, string _country, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, vector<string>& portraits)
 {
 	ID			= Configuration::getNextLeaderID();
 	name		= srcLeader->getName();
 	country	= _country;
-	if (srcLeader->getType() == L"land")
+	if (srcLeader->getType() == "land")
 	{
-		type = L"land";
+		type = "land";
 	}
-	else if (srcLeader->getType() == L"sea")
+	else if (srcLeader->getType() == "sea")
 	{
-		type = L"sea";
+		type = "sea";
 	}
 	skill		= static_cast<int>(srcLeader->getPrestige() * 22.5f);
 	if (skill > 9)
@@ -74,7 +74,7 @@ HoI4Leader::HoI4Leader(V2Leader* srcLeader, wstring _country, personalityMap& la
 	rank		= 4;
 	//picture	= portraits[rand() % portraits.size()];
 
-	if (type == L"land")
+	if (type == "land")
 	{
 		auto possiblePersonalities = landPersonalityMap.find(srcLeader->getPersonality());
 		if ((possiblePersonalities != landPersonalityMap.end()) && (possiblePersonalities->second.size() > 0))
@@ -87,7 +87,7 @@ HoI4Leader::HoI4Leader(V2Leader* srcLeader, wstring _country, personalityMap& la
 			traits.push_back(possibleBackgrounds->second[rand() % possibleBackgrounds->second.size()]);
 		}
 	}
-	else if (type == L"sea")
+	else if (type == "sea")
 	{
 		auto possiblePersonalities = seaPersonalityMap.find(srcLeader->getPersonality());
 		if ((possiblePersonalities != seaPersonalityMap.end()) && (possiblePersonalities->second.size() > 0))
@@ -105,21 +105,21 @@ HoI4Leader::HoI4Leader(V2Leader* srcLeader, wstring _country, personalityMap& la
 
 void HoI4Leader::output(FILE * output)
 {
-	fwprintf(output, L"%d = {\n", ID);
-	fwprintf(output, L"\tname = \"%s\"\n", name.c_str());
-	fwprintf(output, L"\tcountry = %s\n", country.c_str());
-	fwprintf(output, L"\ttype = %s\n", type.c_str());
-	fwprintf(output, L"\tskill = %d", skill);
-	fwprintf(output, L"\tmax_skill = 9\n");
-	fwprintf(output, L"\tloyalty = 1.00\n");
-	fwprintf(output, L"\tpicture = %s\n", picture.c_str());
+	fprintf(output, "%d = {\n", ID);
+	fprintf(output, "\tname = \"%s\"\n", name.c_str());
+	fprintf(output, "\tcountry = %s\n", country.c_str());
+	fprintf(output, "\ttype = %s\n", type.c_str());
+	fprintf(output, "\tskill = %d", skill);
+	fprintf(output, "\tmax_skill = 9\n");
+	fprintf(output, "\tloyalty = 1.00\n");
+	fprintf(output, "\tpicture = %s\n", picture.c_str());
 	for (auto trait: traits)
 	{
-		fwprintf(output, L"\tadd_trait = %s\n", trait.c_str());
+		fprintf(output, "\tadd_trait = %s\n", trait.c_str());
 	}
-	fwprintf(output, L"\thistory = {\n");
-	fwprintf(output, L"\t\t1936.1.1 = { rank = %d }\n", rank);
-	fwprintf(output, L"\t\t1970.1.1 = { rank = 0 }\n");
-	fwprintf(output, L"\t}\n");
-	fwprintf(output, L"}\n");
+	fprintf(output, "\thistory = {\n");
+	fprintf(output, "\t\t1936.1.1 = { rank = %d }\n", rank);
+	fprintf(output, "\t\t1970.1.1 = { rank = 0 }\n");
+	fprintf(output, "\t}\n");
+	fprintf(output, "}\n");
 }

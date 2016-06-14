@@ -44,12 +44,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef PARSER_H
-#define PARSER_H
+#ifndef PARSER_H_8859_15
+#define PARSER_H_8859_15
 
 
 
 #include "Object.h"
+#include <string>
+using namespace std;
 
 
 
@@ -58,9 +60,9 @@ namespace parser_8859_15
 	Object*	getTopLevel();
 	void	clearStack(); 
 	void	initParser();
-	Object* doParseFile(const wchar_t* filename);
+	Object* doParseFile(string filename);
 }
 
 
 
-#endif	// PARSER_H
+#endif	// PARSER_H_8859_15

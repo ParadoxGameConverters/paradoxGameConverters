@@ -27,25 +27,25 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 V2Leader::V2Leader(Object* obj)
 {
-	name = obj->getLeaf(L"name");
+	name = obj->getLeaf("name");
 	if (name[0] == '\"')
 	{
 		name	= name.substr(1, name.length() - 2);
 	}
 
-	type = obj->getLeaf(L"type");
+	type = obj->getLeaf("type");
 
-	personality	= obj->getLeaf(L"personality");
+	personality	= obj->getLeaf("personality");
 	if (personality[0] == '\"')
 	{
 		personality	= personality.substr(1, personality.length() - 2);
 	}
 
-	background	= obj->getLeaf(L"background");
+	background	= obj->getLeaf("background");
 	if (background[0] == '\"')
 	{
 		background	= background.substr(1, background.length() - 2);
 	}
 
-	prestige = _wtof(obj->getLeaf(L"prestige").c_str());
+	prestige = atof(obj->getLeaf("prestige").c_str());
 }

@@ -35,14 +35,14 @@ void HoI4Alignment::output(FILE* out)
 	if (Y < -2.0 * X - 200.0)	LOG(LogLevel::Error) << "Alignment out of bounds (top-left): " << X << Y;
 	if (Y < 2.0 * X - 200.0)	LOG(LogLevel::Error) << "Alignment out of bounds (top-right): " << X << Y;
 
-	fwprintf(out, L"\talignment=\n");
-	fwprintf(out, L"\t{\n");
-	fwprintf(out, L"\t\tposition=\n");
-	fwprintf(out, L"\t\t{\n");
-	fwprintf(out, L"\t\t\tx=%.2f\n", X);
-	fwprintf(out, L"\t\t\ty=%.2f\n", Y);
-	fwprintf(out, L"\t\t}\n");
-	fwprintf(out, L"\t}\n");
+	fprintf(out, "\talignment=\n");
+	fprintf(out, "\t{\n");
+	fprintf(out, "\t\tposition=\n");
+	fprintf(out, "\t\t{\n");
+	fprintf(out, "\t\t\tx=%.2f\n", X);
+	fprintf(out, "\t\t\ty=%.2f\n", Y);
+	fprintf(out, "\t\t}\n");
+	fprintf(out, "\t}\n");
 }
 
 

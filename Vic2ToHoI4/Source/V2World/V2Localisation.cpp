@@ -30,17 +30,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-const std::array<std::wstring, V2Localisation::numLanguages> V2Localisation::languages = 
-	{ L"english", L"french", L"german", L"spanish" };
+const std::array<std::string, V2Localisation::numLanguages> V2Localisation::languages = 
+	{ "english", "french", "german", "spanish" };
 
 
-void V2Localisation::SetTag(const std::wstring& newTag)
+void V2Localisation::SetTag(const std::string& newTag)
 {
 	tag = newTag;
 }
 
 
-void V2Localisation::SetPartyKey(size_t partyIndex, const std::wstring& partyKey)
+void V2Localisation::SetPartyKey(size_t partyIndex, const std::string& partyKey)
 {
 	if (parties.size() <= partyIndex)
 	{
@@ -50,7 +50,7 @@ void V2Localisation::SetPartyKey(size_t partyIndex, const std::wstring& partyKey
 }
 
 
-void V2Localisation::SetPartyName(size_t partyIndex, const std::wstring& language, const std::wstring& name)
+void V2Localisation::SetPartyName(size_t partyIndex, const std::string& language, const std::string& name)
 {
 	if (parties.size() <= partyIndex)
 	{
@@ -65,16 +65,16 @@ void V2Localisation::SetPartyName(size_t partyIndex, const std::wstring& languag
 }
 
 
-void V2Localisation::ReadFromFile(const std::wstring& fileName)
+void V2Localisation::ReadFromFile(const std::string& fileName)
 {
-	std::wifstream in(fileName);
+	std::ifstream in(fileName);
 
-	std::wstring line;			// the line being processed
+	std::string line;			// the line being processed
 
 	// Subsequent lines are 'KEY: "Text"'
 	while (!in.eof())
 	{
-		wstring line;
+		string line;
 		getline(in, line);
 
 		if ((line[0] == '#') || (line.size() < 3)) // BE: The 3 here is arbitrary.
@@ -83,7 +83,7 @@ void V2Localisation::ReadFromFile(const std::wstring& fileName)
 		}
 
 		int division = line.find_first_of(';');
-		wstring key = line.substr(0, division);
+		string key = line.substr(0, division);
 
 		unsigned length = division;
 		for (auto language : languages)
@@ -96,7 +96,7 @@ void V2Localisation::ReadFromFile(const std::wstring& fileName)
 			int dash = localisations[key][language].find_first_of('–');									// the first (if any) dask in the output name
 			while (dash != string::npos)
 			{
-				localisations[key][language].replace(dash, 1, L"-");
+				localisations[key][language].replace(dash, 1, "-");
 				dash = localisations[key][language].find_first_of('–');
 			}
 		}
@@ -104,35 +104,23 @@ void V2Localisation::ReadFromFile(const std::wstring& fileName)
 }
 
 
-void V2Localisation::ReadFromAllFilesInFolder(const std::wstring& folderPath)
+void V2Localisation::ReadFromAllFilesInFolder(const std::string& folderPath)
 {
 	// Get all files in the folder.
-	std::vector<std::wstring> fileNames;
-	WIN32_FIND_DATA findData;	// the file data
-	HANDLE findHandle = FindFirstFile((folderPath + L"\\*").c_str(), &findData);	// the find handle
-	if (findHandle == INVALID_HANDLE_VALUE)
-	{
-		return;
-	}
-	do
-	{
-		if (!(findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
-		{
-			fileNames.push_back(findData.cFileName);
-		}
-	} while (FindNextFile(findHandle, &findData) != 0);
-	FindClose(findHandle);
+	std::set<std::string> fileNames;
+	WinUtils::GetAllFilesInFolder(folderPath + "\\*", fileNames);
 
 	// Read all these files.
 	for (const auto& fileName : fileNames)
 	{
-		ReadFromFile(folderPath + L'\\' + fileName);
+		ReadFromFile(folderPath + '\\' + fileName);
 	}
 }
 
-const std::wstring& V2Localisation::GetText(const std::wstring& key, const std::wstring& language) const
+
+const std::string& V2Localisation::GetText(const std::string& key, const std::string& language) const
 {
-	static const std::wstring noLocalisation = L"";	// used if there's no localisation
+	static const std::string noLocalisation = "";	// used if there's no localisation
 
 	const auto keyFindIter = localisations.find(key);	// the localisations for this key
 	if (keyFindIter == localisations.end())
@@ -150,9 +138,9 @@ const std::wstring& V2Localisation::GetText(const std::wstring& key, const std::
 }
 
 
-const std::map<std::wstring, std::wstring>& V2Localisation::GetTextInEachLanguage(const std::wstring& key) const
+const std::map<std::string, std::string>& V2Localisation::GetTextInEachLanguage(const std::string& key) const
 {
-	static const std::map<std::wstring, std::wstring> noLocalisation;	// used if there's no localisation
+	static const std::map<std::string, std::string> noLocalisation;	// used if there's no localisation
 
 	const auto keyFindIter = localisations.find(key);	// the localisation we want
 	if (keyFindIter == localisations.end())

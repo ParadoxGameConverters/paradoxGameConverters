@@ -42,18 +42,18 @@ class V2Province
 {
 	public:
 		V2Province(Object* obj);
-		void	addCore(wstring);
-		void	removeCore(wstring tag);
+		void	addCore(string);
+		void	removeCore(string tag);
 
 		int						getTotalPopulation() const;
-		vector<V2Country*>	getCores(const map<wstring, V2Country*>& countries) const;
-		int						getPopulation(wstring type = L"") const;
-		int						getLiteracyWeightedPopulation(wstring type = L"") const;
+		vector<V2Country*>	getCores(const map<string, V2Country*>& countries) const;
+		int						getPopulation(string type = "") const;
+		int						getLiteracyWeightedPopulation(string type = "") const;
 
 		void						setOwner(V2Country* _owner)		{ owner = _owner; }
 		void						setEmployedWorkers(int _workers) { employedWorkers = _workers; }
 
-		wstring					getOwnerString()		const { return ownerString; }
+		string					getOwnerString()		const { return ownerString; }
 		V2Country*				getOwner()				const { return owner; }
 		int						getInfra()				const { return railLevel; }
 		int						getFort()				const { return fortLevel; }
@@ -63,9 +63,9 @@ class V2Province
 
 	private:
 		int					num;
-		wstring				ownerString;			// a wstring with the owner's tag
+		string				ownerString;			// a string with the owner's tag
 		V2Country*			owner;
-		vector<wstring>	cores;
+		vector<string>	cores;
 		vector<V2Pop*>		pops;
 		int					fortLevel;
 		int					navalBaseLevel;

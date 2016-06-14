@@ -31,28 +31,28 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 void HoI4Diplomacy::output() const
 {
 	FILE* alliances;
-	if (_wfopen_s(&alliances, (L"Output\\" + Configuration::getOutputName() + L"\\history\\diplomacy\\Alliances.txt").c_str(), L"w") != 0)
+	if (fopen_s(&alliances, ("Output\\" + Configuration::getOutputName() + "\\history\\diplomacy\\Alliances.txt").c_str(), "w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create alliances history file";
 		exit(-1);
 	}
 
 	FILE* guarantees;
-	if (_wfopen_s(&guarantees, (L"Output\\" + Configuration::getOutputName() + L"\\history\\diplomacy\\Guarantees.txt").c_str(), L"w") != 0)
+	if (fopen_s(&guarantees, ("Output\\" + Configuration::getOutputName() + "\\history\\diplomacy\\Guarantees.txt").c_str(), "w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create guarantees history file";
 		exit(-1);
 	}
 
 	FILE* puppetStates;
-	if (_wfopen_s(&puppetStates, (L"Output\\" + Configuration::getOutputName() + L"\\history\\diplomacy\\PuppetStates.txt").c_str(), L"w") != 0)
+	if (fopen_s(&puppetStates, ("Output\\" + Configuration::getOutputName() + "\\history\\diplomacy\\PuppetStates.txt").c_str(), "w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create puppet states history file";
 		exit(-1);
 	}
 
 	FILE* relations;
-	if (_wfopen_s(&relations, (L"Output\\" + Configuration::getOutputName() + L"\\history\\diplomacy\\relations.txt").c_str(), L"w") != 0)
+	if (fopen_s(&relations, ("Output\\" + Configuration::getOutputName() + "\\history\\diplomacy\\relations.txt").c_str(), "w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create relations history file";
 		exit(-1);
@@ -65,7 +65,7 @@ void HoI4Diplomacy::output() const
 		{
 			out = guarantees;
 		}
-		else if (itr.type == "vassal")
+		else if (itr.type == "vassa")
 		{
 			out = puppetStates;
 		}
@@ -79,7 +79,7 @@ void HoI4Diplomacy::output() const
 		}
 		else
 		{
-			LOG(LogLevel::Warning) << "Cannot ouput diplomatic agreement type " << WinUtils::convertToUTF16(itr.type);
+			LOG(LogLevel::Warning) << "Cannot ouput diplomatic agreement type " << itr.type;
 			continue;
 		}
 		fprintf(out, "%s=\n", itr.type.c_str());
@@ -90,7 +90,7 @@ void HoI4Diplomacy::output() const
 		{
 			fprintf(out, "\tvalue=\"%i\"\n", itr.value);
 		}
-		fprintf(out, "\tstart_date=\"%s\"\n", WinUtils::convertToUTF8(itr.start_date.toString()).c_str());
+		fprintf(out, "\tstart_date=\"%s\"\n", itr.start_date.toString().c_str());
 		fprintf(out, "\tend_date=\"1949.1.1\"\n");
 		fprintf(out, "}\n");
 		fprintf(out, "\n");

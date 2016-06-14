@@ -30,12 +30,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-const std::array<std::wstring, HoI4Localisation::numLanguages> HoI4Localisation::languages = 
-	{ L"english", L"french", L"german", L"spanish" };
+const std::array<std::string, HoI4Localisation::numLanguages> HoI4Localisation::languages = 
+	{ "english", "french", "german", "spanish" };
 
 
 
-void HoI4Localisation::SetTag(const std::wstring& newTag)
+void HoI4Localisation::SetTag(const std::string& newTag)
 {
 	tag = newTag;
 }
@@ -54,7 +54,7 @@ void HoI4Localisation::ReadFromCountry(const V2Country& source)
 }
 
 
-void HoI4Localisation::SetPartyKey(size_t partyIndex, const std::wstring& partyKey)
+void HoI4Localisation::SetPartyKey(size_t partyIndex, const std::string& partyKey)
 {
 	if (parties.size() <= partyIndex)
 	{
@@ -64,7 +64,7 @@ void HoI4Localisation::SetPartyKey(size_t partyIndex, const std::wstring& partyK
 }
 
 
-void HoI4Localisation::SetPartyName(size_t partyIndex, const std::wstring& language, const std::wstring& name)
+void HoI4Localisation::SetPartyName(size_t partyIndex, const std::string& language, const std::string& name)
 {
 	if (parties.size() <= partyIndex)
 	{
@@ -79,7 +79,7 @@ void HoI4Localisation::SetPartyName(size_t partyIndex, const std::wstring& langu
 }
 
 
-void HoI4Localisation::WriteToStream(std::wostream& out) const
+void HoI4Localisation::WriteToStream(std::ostream& out) const
 {
 	out << tag;
 	for (const auto& localisedName : name)

@@ -35,17 +35,17 @@ class V2Relations;
 class HoI4Relations
 {
 	public:
-		HoI4Relations(wstring newTag);
-		HoI4Relations(wstring newTag, V2Relations* oldRelations);
+		HoI4Relations(string newTag);
+		HoI4Relations(string newTag, V2Relations* oldRelations);
 
-		wstring	getTag()				const { return tag; };
+		string	getTag()				const { return tag; };
 		int		getRelations()		const { return value; };
 		bool		getGuarantee()		const { return guarantee; };
 		date		getLastWar()		const { return lastWar; };
 		date		getTruceUntil()	const { return truceUntil; };
 		bool		atWar()				const { return lastWar > truceUntil; };
 	private:
-		wstring	tag;
+		string	tag;
 		int		value;
 		bool		militaryAccess;
 		date		lastSendDiplomat;

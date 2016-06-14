@@ -40,46 +40,46 @@ class V2Localisation
 {
 	public:
 		// Sets the tag to use for creating the name and adjective key to use in the localisation output.
-		void SetTag(const std::wstring& tag);
+		void SetTag(const std::string& tag);
 
 		// Sets the key to use for the specified party in the localisation output.
-		void SetPartyKey(size_t partyIndex, const std::wstring& partyKey);
+		void SetPartyKey(size_t partyIndex, const std::string& partyKey);
 		// Sets the localised party name for the specified party in the given language, e.g. "english".
-		void SetPartyName(size_t partyIndex, const std::wstring& language, const std::wstring& name);
+		void SetPartyName(size_t partyIndex, const std::string& language, const std::string& name);
 
 		// Adds all localisations found in the specified file. The file should begin with
 		// a line like "l_english:" to indicate what language the texts are in.
-		void ReadFromFile(const std::wstring& fileName);
+		void ReadFromFile(const std::string& fileName);
 		// Adds all localisations found in files in the specified folder as per ReadFromFile().
-		void ReadFromAllFilesInFolder(const std::wstring& folderPath);
+		void ReadFromAllFilesInFolder(const std::string& folderPath);
 
 		// Returns the localised text for the given key in the specified language. Returns
 		// an empty string if no such localisation is available.
-		const std::wstring& GetText(const std::wstring& key, const std::wstring& language) const;
+		const std::string& GetText(const std::string& key, const std::string& language) const;
 		// Returns the localised text for the given key in each language - the returned map is from
 		// language to localised text.
-		const std::map<std::wstring, std::wstring>& GetTextInEachLanguage(const std::wstring& key) const;
+		const std::map<std::string, std::string>& GetTextInEachLanguage(const std::string& key) const;
 
 	private:
 		static const size_t numLanguages = 14;
-		static const std::array<std::wstring, numLanguages> languages;
+		static const std::array<std::string, numLanguages> languages;
 
-		typedef std::array<std::wstring, numLanguages> Localisations;
+		typedef std::array<std::string, numLanguages> Localisations;
 
-		std::wstring tag;
+		std::string tag;
 		Localisations name;
 		Localisations adjective;
 
 		struct Party
 		{
-			std::wstring key;
+			std::string key;
 			Localisations name;
 		};
 		std::vector<Party> parties;
 
 
-		typedef std::map<std::wstring, std::wstring> LanguageToLocalisationMap;
-		typedef std::unordered_map<std::wstring, LanguageToLocalisationMap> KeyToLocalisationsMap;
+		typedef std::map<std::string, std::string> LanguageToLocalisationMap;
+		typedef std::unordered_map<std::string, LanguageToLocalisationMap> KeyToLocalisationsMap;
 		KeyToLocalisationsMap localisations;	// a map between keys and localisations
 };
 

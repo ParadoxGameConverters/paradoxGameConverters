@@ -31,16 +31,16 @@ using namespace std;
 
 V2Province::V2Province(Object* obj)
 {
-	num = _wtoi(obj->getKey().c_str());
+	num = atoi(obj->getKey().c_str());
 
 	vector<Object*> ownerObjs;				// the object holding the owner
-	ownerObjs = obj->getValue(L"owner");
-	(ownerObjs.size() == 0) ? ownerString = L"" : ownerString = ownerObjs[0]->getLeaf();
+	ownerObjs = obj->getValue("owner");
+	(ownerObjs.size() == 0) ? ownerString = "" : ownerString = ownerObjs[0]->getLeaf();
 	owner = NULL;
 
 	cores.clear();
 	vector<Object*> coreObjs;				// the object holding the cores
-	coreObjs = obj->getValue(L"core");
+	coreObjs = obj->getValue("core");
 	for (auto coreObj: coreObjs)
 	{
 		cores.push_back(coreObj->getLeaf());
@@ -48,33 +48,33 @@ V2Province::V2Province(Object* obj)
 
 	vector<Object*> buildingObjs;
 	fortLevel = 0;
-	buildingObjs = obj->getValue(L"fort");
+	buildingObjs = obj->getValue("fort");
 	if (buildingObjs.size() > 0)
 	{
-		vector<wstring> tokens = buildingObjs[0]->getTokens();
+		vector<string> tokens = buildingObjs[0]->getTokens();
 		if (tokens.size() > 0)
 		{
-			fortLevel = _wtoi(tokens[0].c_str());
+			fortLevel = atoi(tokens[0].c_str());
 		}
 	}
 	navalBaseLevel = 0;
-	buildingObjs = obj->getValue(L"naval_base");
+	buildingObjs = obj->getValue("naval_base");
 	if (buildingObjs.size() > 0)
 	{
-		vector<wstring> tokens = buildingObjs[0]->getTokens();
+		vector<string> tokens = buildingObjs[0]->getTokens();
 		if (tokens.size() > 0)
 		{
-			navalBaseLevel = _wtoi(tokens[0].c_str());
+			navalBaseLevel = atoi(tokens[0].c_str());
 		}
 	}
 	railLevel = 0;
-	buildingObjs = obj->getValue(L"railroad");
+	buildingObjs = obj->getValue("railroad");
 	if (buildingObjs.size() > 0)
 	{
-		vector<wstring> tokens = buildingObjs[0]->getTokens();
+		vector<string> tokens = buildingObjs[0]->getTokens();
 		if (tokens.size() > 0)
 		{
-			railLevel = _wtoi(tokens[0].c_str());
+			railLevel = atoi(tokens[0].c_str());
 		}
 	}
 
@@ -82,10 +82,10 @@ V2Province::V2Province(Object* obj)
 	vector<Object*> children = obj->getLeaves();
 	for (auto itr: children)
 	{
-		wstring key = itr->getKey();
-		if (key == L"aristocrats" || key == L"artisans" || key == L"bureaucrats" || key == L"capitalists" || key == L"clergymen"
-			|| key == L"craftsmen" || key == L"clerks" || key == L"farmers" || key == L"soldiers" || key == L"officers"
-			|| key == L"labourers" || key == L"slaves")
+		string key = itr->getKey();
+		if (key == "aristocrats" || key == "artisans" || key == "bureaucrats" || key == "capitalists" || key == "clergymen"
+			|| key == "craftsmen" || key == "clerks" || key == "farmers" || key == "soldiers" || key == "officers"
+			|| key == "labourers" || key == "slaves")
 		{
 			V2Pop* pop = new V2Pop(itr);
 			pops.push_back(pop);
@@ -96,15 +96,15 @@ V2Province::V2Province(Object* obj)
 }
 
 
-vector<V2Country*> V2Province::getCores(const map<wstring, V2Country*>& countries) const
+vector<V2Country*> V2Province::getCores(const map<string, V2Country*>& countries) const
 {
 	vector<V2Country*> coreOwners;
 	for (auto core: cores)
 	{
-		map<wstring, V2Country*>::const_iterator j = countries.find(core);
-		if (j != countries.end())
+		auto countryItr = countries.find(core);
+		if (countryItr != countries.end())
 		{
-			coreOwners.push_back(j->second);
+			coreOwners.push_back(countryItr->second);
 		}
 	}
 
@@ -112,7 +112,7 @@ vector<V2Country*> V2Province::getCores(const map<wstring, V2Country*>& countrie
 }
 
 
-void V2Province::addCore(wstring newCore)
+void V2Province::addCore(string newCore)
 {
 	// only add if unique
 	if ( find(cores.begin(), cores.end(), newCore) == cores.end() )
@@ -122,7 +122,7 @@ void V2Province::addCore(wstring newCore)
 }
 
 
-void V2Province::removeCore(wstring tag)
+void V2Province::removeCore(string tag)
 {
 	for (auto core = cores.begin(); core != cores.end(); core++)
 	{
@@ -157,13 +157,13 @@ int V2Province::getTotalPopulation() const
 
 
 
-int V2Province::getPopulation(wstring type) const
+int V2Province::getPopulation(string type) const
 {
 	int totalPop = 0;
 	for (auto pop: pops)
 	{
 		// empty string for type gets total population
-		if (type == L"" || type == pop->getType())
+		if (type == "" || type == pop->getType())
 		{
 			totalPop += pop->getSize();
 		}
@@ -172,14 +172,14 @@ int V2Province::getPopulation(wstring type) const
 }
 
 
-int V2Province::getLiteracyWeightedPopulation(wstring type) const
+int V2Province::getLiteracyWeightedPopulation(string type) const
 {
 	double literacyWeight = Configuration::getLiteracyWeight();
 	int totalPop = 0;
 	for (auto pop: pops)
 	{
 		// empty string for type gets total population
-		if (type == L"" || type == pop->getType())
+		if (type == "" || type == pop->getType())
 		{
 			totalPop += int(pop->getSize() * (pop->getLiteracy() * literacyWeight + (1.0 - literacyWeight)));
 		}

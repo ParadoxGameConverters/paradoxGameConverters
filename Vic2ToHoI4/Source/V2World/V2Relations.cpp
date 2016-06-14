@@ -28,48 +28,48 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 V2Relations::V2Relations(Object* obj)
 {
 	tag = obj->getKey();
-	vector<Object*> valueObj = obj->getValue(L"value");
+	vector<Object*> valueObj = obj->getValue("value");
 	if (valueObj.size() > 0)
 	{
-		value = _wtoi(valueObj[0]->getLeaf().c_str());
+		value = atoi(valueObj[0]->getLeaf().c_str());
 	}
 	else
 	{
 		value = 0;
 	}
 
-	vector<Object*> maObj = obj->getValue(L"military_access");
+	vector<Object*> maObj = obj->getValue("military_access");
 	if (maObj.size() > 0)
 	{
-		militaryAccess = (maObj[0]->getLeaf() == L"yes");
+		militaryAccess = (maObj[0]->getLeaf() == "yes");
 	}
 	else
 	{
 		militaryAccess = false;
 	}
 
-	vector<Object*> lastSendObj = obj->getValue(L"last_send_diplomat");
+	vector<Object*> lastSendObj = obj->getValue("last_send_diplomat");
 	if (lastSendObj.size() > 0)
 	{
 		lastSendDiplomat = date(lastSendObj[0]->getLeaf());
 	}
 
-	vector<Object*> lastWarObj = obj->getValue(L"last_war");
+	vector<Object*> lastWarObj = obj->getValue("last_war");
 	if (lastWarObj.size() > 0)
 	{
 		lastWar = date(lastWarObj[0]->getLeaf());
 	}
 
-	vector<Object*> truceUntilObj = obj->getValue(L"truce_until");
+	vector<Object*> truceUntilObj = obj->getValue("truce_unti");
 	if (truceUntilObj.size() > 0)
 	{
 		truceUntil = date(truceUntilObj[0]->getLeaf());
 	}
 
-	vector<Object*> levelObj = obj->getValue(L"level");
+	vector<Object*> levelObj = obj->getValue("leve");
 	if (levelObj.size() > 0)
 	{
-		level = _wtoi(levelObj[0]->getLeaf().c_str());
+		level = atoi(levelObj[0]->getLeaf().c_str());
 	}
 	else
 	{

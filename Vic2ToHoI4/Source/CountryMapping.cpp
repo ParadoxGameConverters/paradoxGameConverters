@@ -39,7 +39,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-bool CountryMapping::ReadRules(const std::wstring& fileName)
+bool CountryMapping::ReadRules(const std::string& fileName)
 {
 	LOG(LogLevel::Info) << "Reading country mapping rules";
 
@@ -61,20 +61,20 @@ bool CountryMapping::ReadRules(const std::wstring& fileName)
 
 	// Convert rule nodes into our map data structure.
 	LOG(LogLevel::Debug) << "Building rules map";
-	map<wstring, vector<wstring>> newV2TagToHoI4TagsRules;	// the mapping rules
+	map<string, vector<string>> newV2TagToHoI4TagsRules;	// the mapping rules
 	for (auto ruleNode: nodes[0]->getLeaves())
 	{
 		vector<Object*> rule = ruleNode->getLeaves();	// an individual rule
-		wstring newV2Tag;											// the V2 tag in the rule
-		vector<wstring>	HoI4Tags;							// the HoI4 tags in the rule
+		string newV2Tag;											// the V2 tag in the rule
+		vector<string>	HoI4Tags;							// the HoI4 tags in the rule
 		for (auto part: rule)
 		{
-			std::wstring key = boost::to_upper_copy(part->getKey());	// the key for this part of the rule
-			if (key == L"VIC")
+			std::string key = boost::to_upper_copy(part->getKey());	// the key for this part of the rule
+			if (key == "VIC")
 			{
 				newV2Tag = boost::to_upper_copy(part->getLeaf());
 			}
-			else if (key == L"HOI")
+			else if (key == "HOI")
 			{
 				HoI4Tags.push_back(boost::to_upper_copy(part->getLeaf()));
 			}
@@ -101,8 +101,8 @@ void CountryMapping::CreateMapping(const V2World& srcWorld, const HoI4World& des
 	int generatedHoI4TagSuffix = 0; // two digit suffix
 
 	// Get the V2 tags for all countries we want to map.
-	std::set<std::wstring> V2TagsToMap;		// the V2 tags that still need mapping
-	const std::map<std::wstring, V2Country*> V2Countries = srcWorld.getCountries();	// all the EU4 countries
+	std::set<std::string> V2TagsToMap;		// the V2 tags that still need mapping
+	const std::map<std::string, V2Country*> V2Countries = srcWorld.getCountries();	// all the EU4 countries
 	for (auto country: V2Countries)
 	{
 		V2TagsToMap.insert(country.first);
@@ -114,29 +114,29 @@ void CountryMapping::CreateMapping(const V2World& srcWorld, const HoI4World& des
 	{
 		bool mapped = false;					// whether or not the V2 tag has been mapped
 		// Find a HoI4 tag from our rule if possible.
-		std::map<std::wstring, std::vector<std::wstring>>::iterator findIter = V2TagToHoI4TagsRules.find(Vic2Tag);	// the rule (if any) with this V2 tag
+		std::map<std::string, std::vector<std::string>>::iterator findIter = V2TagToHoI4TagsRules.find(Vic2Tag);	// the rule (if any) with this V2 tag
 		if (findIter != V2TagToHoI4TagsRules.end())
 		{
-			const std::vector<std::wstring>& possibleHoI4Tags = findIter->second;
+			const std::vector<std::string>& possibleHoI4Tags = findIter->second;
 			// We want to use a HoI4 tag that corresponds to an actual HoI4 country if possible.
 			for (auto HoI4Tag: possibleHoI4Tags)
 			{
-				if (HoI4Countries.find(WinUtils::convertToUTF8(HoI4Tag)) != HoI4Countries.end() && V2TagToHoI4TagMap.right.find(HoI4Tag) == V2TagToHoI4TagMap.right.end())
+				if (HoI4Countries.find(HoI4Tag) != HoI4Countries.end() && V2TagToHoI4TagMap.right.find(HoI4Tag) == V2TagToHoI4TagMap.right.end())
 				{
 					mapped = true;
 					V2TagToHoI4TagMap.left.insert(make_pair(Vic2Tag, HoI4Tag));
-					LogMapping(Vic2Tag, HoI4Tag, L"default HoI4 country");
+					LogMapping(Vic2Tag, HoI4Tag, "default HoI4 country");
 				}
 			}
 		}
 		if (!mapped)
 		{	// Either the V2 tag had no mapping rule or no HoI4 tag from its mapping rule could be used. 
 			// We generate a new HoI4 tag for it.
-			wostringstream generatedHoI4TagStream;	// a stream for the new tag to be constructed in
-			generatedHoI4TagStream << generatedHoI4TagPrefix << setfill(L'0') << setw(2) << generatedHoI4TagSuffix;
-			wstring HoI4Tag = generatedHoI4TagStream.str();
+			ostringstream generatedHoI4TagStream;	// a stream for the new tag to be constructed in
+			generatedHoI4TagStream << generatedHoI4TagPrefix << setfill('0') << setw(2) << generatedHoI4TagSuffix;
+			string HoI4Tag = generatedHoI4TagStream.str();
 			V2TagToHoI4TagMap.left.insert(make_pair(Vic2Tag, HoI4Tag));
-			LogMapping(Vic2Tag, HoI4Tag, L"generated tag");
+			LogMapping(Vic2Tag, HoI4Tag, "generated tag");
 			// Prepare the next generated tag.
 			++generatedHoI4TagSuffix;
 			if (generatedHoI4TagSuffix > 99)
@@ -148,37 +148,37 @@ void CountryMapping::CreateMapping(const V2World& srcWorld, const HoI4World& des
 	}
 }
 
-const std::wstring& CountryMapping::GetHoI4Tag(const std::wstring& V2Tag) const
+const std::string& CountryMapping::GetHoI4Tag(const std::string& V2Tag) const
 {
-	static const std::wstring V2RebelTag = L"REB";								// the V2 tag for rebels
+	static const std::string V2RebelTag = "REB";								// the V2 tag for rebels
 
-	boost::bimap<std::wstring, std::wstring>::left_const_iterator findIter = V2TagToHoI4TagMap.left.find(V2Tag);	// the mapping with this V2 tag
+	boost::bimap<std::string, std::string>::left_const_iterator findIter = V2TagToHoI4TagMap.left.find(V2Tag);	// the mapping with this V2 tag
 	if (findIter != V2TagToHoI4TagMap.left.end())
 	{
 		return findIter->second;
 	}
 	else
 	{
-		static const std::wstring V2TagNotFound = L"";	// an empty string for unfound tags
+		static const std::string V2TagNotFound = "";	// an empty string for unfound tags
 		return V2TagNotFound;
 	}
 }
 
-const std::wstring& CountryMapping::GetVic2Tag(const std::wstring& HoI4Tag) const
+const std::string& CountryMapping::GetVic2Tag(const std::string& HoI4Tag) const
 {
-	boost::bimap<std::wstring, std::wstring>::right_const_iterator findIter = V2TagToHoI4TagMap.right.find(HoI4Tag);	// the mapping with this HoI4 tag
+	boost::bimap<std::string, std::string>::right_const_iterator findIter = V2TagToHoI4TagMap.right.find(HoI4Tag);	// the mapping with this HoI4 tag
 	if (findIter != V2TagToHoI4TagMap.right.end())
 	{
 		return findIter->second;
 	}
 	else
 	{
-		static const std::wstring HoI4TagNotFound = L"";	// an empty string for unfound tags
+		static const std::string HoI4TagNotFound = "";	// an empty string for unfound tags
 		return HoI4TagNotFound;
 	}
 }
 
-void CountryMapping::LogMapping(const std::wstring& sourceTag, const std::wstring& targetTag, const std::wstring& reason)
+void CountryMapping::LogMapping(const std::string& sourceTag, const std::string& targetTag, const std::string& reason)
 {
 	LOG(LogLevel::Debug) << "Mapping " << sourceTag << " -> " << targetTag << " (" << reason << ')';
 }

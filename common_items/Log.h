@@ -24,10 +24,16 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #ifndef LOG_H_
 #define LOG_H_
 
+
+
 #include <sstream>
 #include <string>
 
+
+
 #define LOG(LOG_LEVEL) Log(LOG_LEVEL)
+
+
 
 enum class LogLevel
 {
@@ -37,25 +43,27 @@ enum class LogLevel
 	Debug			// to display debug data. White.
 };
 
+
+
 class Log
 {
-public:
-	Log(LogLevel);
-	~Log();
+	public:
+		Log(LogLevel);
+		~Log();
 
-	template<class T>
-	Log& operator<<(T t)
-	{
-		logMessageStream << t;
-		return *this;
-	}
+		template<class T>
+		Log& operator<<(T t)
+		{
+			logMessageStream << t;
+			return *this;
+		}
 
-private:
-	static void WriteToConsole(LogLevel, const std::wstring& logMessage);
-	static void WriteToFile(LogLevel, const std::wstring& logMessage);
+	private:
+		static void WriteToConsole(LogLevel, const std::string& logMessage);
+		static void WriteToFile(LogLevel, const std::string& logMessage);
 
-	LogLevel logLevel;							// the current log level
-	std::wostringstream logMessageStream;	// the output stream to the log file
+		LogLevel logLevel;							// the current log level
+		std::ostringstream logMessageStream;	// the output stream to the log file
 };
 
 #endif // LOG_H_

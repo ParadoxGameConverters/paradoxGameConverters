@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Relations::HoI4Relations(wstring newTag)
+HoI4Relations::HoI4Relations(string newTag)
 {
 	tag					= newTag;
 	value					= 0;
@@ -38,14 +38,14 @@ HoI4Relations::HoI4Relations(wstring newTag)
 }
 
 
-HoI4Relations::HoI4Relations(wstring newTag, V2Relations* oldRelations)
+HoI4Relations::HoI4Relations(string newTag, V2Relations* oldRelations)
 {
 	tag					= newTag;
 	value					= oldRelations->getRelations();
 	militaryAccess		= oldRelations->hasMilitaryAccess();
 	lastSendDiplomat	= oldRelations->getDiplomatLastSent();
 	lastWar				= oldRelations->getLastWar();
-	truceUntil = oldRelations->getTruceUntil();
-	guarantee = (oldRelations->getLevel() >= 4);
+	truceUntil			= oldRelations->getTruceUntil();
+	guarantee			= (oldRelations->getLevel() >= 4);
 }
 

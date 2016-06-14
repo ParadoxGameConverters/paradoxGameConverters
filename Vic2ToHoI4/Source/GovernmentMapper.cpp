@@ -43,7 +43,7 @@ governmentMapper::governmentMapper()
 
 void governmentMapper::initGovernmentMap(Object* obj)
 {
-	vector<Object*> links = obj->getValue(L"link");
+	vector<Object*> links = obj->getValue("link");
 	for (auto link: links)
 	{
 		govMapping newMapping;
@@ -54,30 +54,30 @@ void governmentMapper::initGovernmentMap(Object* obj)
 		vector<Object*> items = link->getLeaves();
 		for (auto item : items)
 		{
-			wstring key = item->getKey();
-			if (key == L"vic")
+			string key = item->getKey();
+			if (key == "vic")
 			{
 				newMapping.vic_gov = item->getLeaf();
 			}
-			else if (key == L"hoi")
+			else if (key == "hoi")
 			{
 				newMapping.HoI4_gov = item->getLeaf();
 			}
-			else if (key == L"ruling_party")
+			else if (key == "ruling_party")
 			{
 				newMapping.ruling_party_required = item->getLeaf();
 			}
-			else if (key == L"political_reforms")
+			else if (key == "political_reforms")
 			{
-				newMapping.require_political_reforms = _wtof(item->getLeaf().c_str());
+				newMapping.require_political_reforms = atof(item->getLeaf().c_str());
 			}
-			else if (key == L"social_reforms_above")
+			else if (key == "social_reforms_above")
 			{
-				newMapping.require_social_reforms_above = _wtof(item->getLeaf().c_str());
+				newMapping.require_social_reforms_above = atof(item->getLeaf().c_str());
 			}
-			else if (key == L"social_reforms_below")
+			else if (key == "social_reforms_below")
 			{
-				newMapping.require_social_reforms_below = _wtof(item->getLeaf().c_str());
+				newMapping.require_social_reforms_below = atof(item->getLeaf().c_str());
 			}
 		}
 		governmentMap.push_back(newMapping);
@@ -90,18 +90,18 @@ void governmentMapper::initReforms(Object* obj)
 	vector<Object*> topObjects = obj->getLeaves();
 	for (auto topObject : topObjects)
 	{
-		if (topObject->getKey() == L"political_reforms")
+		if (topObject->getKey() == "political_reforms")
 		{
 			vector<Object*> reformObjs = topObject->getLeaves();
 			for (auto reformObj : reformObjs)
 			{
-				reformTypes.insert(make_pair(reformObj->getKey(), L""));
+				reformTypes.insert(make_pair(reformObj->getKey(), ""));
 
 				int reformLevelNum = 0;
 				vector<Object*> reformLevelObjs = reformObj->getLeaves();
 				for (auto reformLevel : reformLevelObjs)
 				{
-					if ((reformLevel->getKey() == L"next_step_only") || (reformLevel->getKey() == L"administrative"))
+					if ((reformLevel->getKey() == "next_step_only") || (reformLevel->getKey() == "administrative"))
 					{
 						continue;
 					}
@@ -114,18 +114,18 @@ void governmentMapper::initReforms(Object* obj)
 			}
 		}
 
-		if (topObject->getKey() == L"social_reforms")
+		if (topObject->getKey() == "social_reforms")
 		{
 			vector<Object*> reformObjs = topObject->getLeaves();
 			for (auto reformObj : reformObjs)
 			{
-				reformTypes.insert(make_pair(reformObj->getKey(), L""));
+				reformTypes.insert(make_pair(reformObj->getKey(), ""));
 
 				int reformLevelNum = 0;
 				vector<Object*> reformLevelObjs = reformObj->getLeaves();
 				for (auto reformLevel : reformLevelObjs)
 				{
-					if ((reformLevel->getKey() == L"next_step_only") || (reformLevel->getKey() == L"administrative"))
+					if ((reformLevel->getKey() == "next_step_only") || (reformLevel->getKey() == "administrative"))
 					{
 						continue;
 					}
@@ -141,7 +141,7 @@ void governmentMapper::initReforms(Object* obj)
 }
 
 
-wstring governmentMapper::getGovernmentForCountry(const V2Country* country, const wstring ideology)
+string governmentMapper::getGovernmentForCountry(const V2Country* country, const string ideology)
 {
 	// calculate the percent of reforms passed
 	int politicalReforms	= 0;
@@ -164,12 +164,12 @@ wstring governmentMapper::getGovernmentForCountry(const V2Country* country, cons
 	double socialReformsPercent		= 1.0 * socialReforms		/ totalSocialReforms;
 
 	// find the goverment type
-	wstring hoiGov;
+	string hoiGov;
 	for (auto mapping : governmentMap)
 	{
 		if (
 				(mapping.vic_gov == country->getGovernment()) &&
-				((mapping.ruling_party_required == L"") || (mapping.ruling_party_required == ideology)) &&
+				((mapping.ruling_party_required == "") || (mapping.ruling_party_required == ideology)) &&
 				(mapping.require_political_reforms <= politicalReformsPercent) &&
 				(mapping.require_social_reforms_above <= socialReformsPercent) &&
 				(mapping.require_social_reforms_below >= socialReformsPercent)

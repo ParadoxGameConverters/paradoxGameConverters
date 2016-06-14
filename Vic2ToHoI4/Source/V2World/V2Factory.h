@@ -40,14 +40,14 @@ struct V2FactoryType
 {
 	V2FactoryType(Object* factory);
 
-	wstring						name;
+	string						name;
 };
 
 
 class V2Factory
 {
 	public:
-		wstring					getTypeName()						const { return type->name; }
+		string					getTypeName()						const { return type->name; }
 
 	private:
 		const V2FactoryType* type;

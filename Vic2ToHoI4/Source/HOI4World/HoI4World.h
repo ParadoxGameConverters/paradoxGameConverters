@@ -33,7 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-typedef const map<wstring, multimap<HoI4RegimentType, unsigned> > unitTypeMapping;
+typedef const map<string, multimap<HoI4RegimentType, unsigned> > unitTypeMapping;
 
 
 
@@ -64,8 +64,8 @@ class HoI4World
 		int		getStates() const;
 		map<string, HoI4Country*>	getPotentialCountries()	const { return potentialCountries; }
 	private:
-		void	getProvinceLocalizations(const wstring& file);
-		void	checkManualFaction(const CountryMapping& countryMap, const vector<wstring>& candidateTags, string leader, const wstring& factionName);
+		void	getProvinceLocalizations(const string& file);
+		void	checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string leader, const string& factionName);
 		void	factionSatellites();
 		void	checkAllProvincesMapped(const provinceMapping& provinceMap);
 		void	setFactionMembers(const V2World &sourceWorld, const CountryMapping& countryMap);
@@ -74,9 +74,9 @@ class HoI4World
 		vector<int>					getPortProvinces(const vector<int>& locationCandidates);
 		unitTypeMapping			getUnitMappings();
 		vector<int>					getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
-		int							getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, wstring owner);
-		vector<HoI4Regiment*>	convertRegiments(const unitTypeMapping& unitTypeMap, vector<V2Regiment*>& sourceRegiments, map<wstring, unsigned>& typeCount, const pair<wstring, HoI4Country*>& country);
-		HoI4RegGroup*				createArmy(const inverseProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap, wstring tag, const V2Army* oldArmy, vector<HoI4Regiment*>& sourceRegiments, int& airForceIndex);
+		int							getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string owner);
+		vector<HoI4Regiment*>	convertRegiments(const unitTypeMapping& unitTypeMap, vector<V2Regiment*>& sourceRegiments, map<string, unsigned>& typeCount, const pair<string, HoI4Country*>& country);
+		HoI4RegGroup*				createArmy(const inverseProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string tag, const V2Army* oldArmy, vector<HoI4Regiment*>& sourceRegiments, int& airForceIndex);
 
 		void	outputCommonCountries() const;
 		void	outputAutoexecLua() const;
@@ -88,7 +88,7 @@ class HoI4World
 		map<string, HoI4Country*>	countries;
 		map<string,HoI4Country*>	potentialCountries;
 		HoI4Diplomacy					diplomacy;
-		map<int, wstring>				continents;  // < province, continent >
+		map<int, string>				continents;  // < province, continent >
 
 		string axisLeader;
 		string alliesLeader;

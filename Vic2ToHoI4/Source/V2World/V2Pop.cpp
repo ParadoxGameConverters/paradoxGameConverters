@@ -30,15 +30,15 @@ V2Pop::V2Pop(Object *obj)
 {
 	type = obj->getKey();
 
-	vector<Object*> childObj = obj->getValue(L"size");
+	vector<Object*> childObj = obj->getValue("size");
 	if (childObj.size() > 0)
 	{
-		size = _wtoi(childObj[0]->getLeaf().c_str());
+		size = atoi(childObj[0]->getLeaf().c_str());
 	}
 
-	childObj = obj->getValue(L"literacy");
+	childObj = obj->getValue("literacy");
 	if (childObj.size() > 0)
 	{
-		lit = _wtoi(childObj[0]->getLeaf().c_str());
+		lit = atoi(childObj[0]->getLeaf().c_str());
 	}
 }
