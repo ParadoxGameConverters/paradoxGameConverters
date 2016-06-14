@@ -108,7 +108,7 @@ void V2Localisation::ReadFromAllFilesInFolder(const std::string& folderPath)
 {
 	// Get all files in the folder.
 	std::set<std::string> fileNames;
-	WinUtils::GetAllFilesInFolder(folderPath + "\\*", fileNames);
+	WinUtils::GetAllFilesInFolder(folderPath, fileNames);
 
 	// Read all these files.
 	for (const auto& fileName : fileNames)
