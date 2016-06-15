@@ -30,8 +30,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-const std::array<std::string, HoI4Localisation::numLanguages> HoI4Localisation::languages = 
-	{ "english", "french", "german", "spanish" };
+const std::array<std::string, HoI4Localisation::numLanguages> HoI4Localisation::languages =
+{ "english", "french", "german", "spanish" };
 
 
 
@@ -81,21 +81,32 @@ void HoI4Localisation::SetPartyName(size_t partyIndex, const std::string& langua
 
 void HoI4Localisation::WriteToStream(std::ostream& out) const
 {
-	out << tag;
-	for (const auto& localisedName : name)
-	{
-		out << ';' << localisedName;
-	}
-	out << "x\n";
+	//thatsgerman: HoI3 way of localisation
+	/*	for (const auto& localisedName : name)
+		{
+			out << ';' << localisedName;
+		}
+		out << "x\n";
 
-	out << tag << "_ADJ";
-	for (const auto& localisedAdjective : adjective)
-	{
-		out << ';' << localisedAdjective;
-	}
-	out << "x\n";
-
-	for (const auto& party : parties)
+		out << tag << "_ADJ";
+		for (const auto& localisedAdjective : adjective)
+		{
+			out << ';' << localisedAdjective;
+		}*/
+	out << " " << tag << "_fascism:0 \"" << name.front() << "\"" << endl;
+	out << " " << tag << "_fascism_DEF:0 \"" << name.front() << "\"" << endl;
+	out << " " << tag << "_democratic:0 \"" << name.front() << "\"" << endl;
+	out << " " << tag << "_democratic_DEF:0 \"" << name.front() << "\"" << endl;
+	out << " " << tag << "_neutrality:0 \"" << name.front() << "\"" << endl;
+	out << " " << tag << "_neutrality_DEF:0 \"" << name.front() << "\"" << endl;
+	out << " " << tag << "_communism:0 \"" << name.front() << "\"" << endl;
+	out << " " << tag << "_communism_DEF:0 \"" << name.front() << "\"" << endl;
+	out << " " << tag << "_fascism_ADJ:0 \"" << name.front() << "\"" << endl;
+	out << " " << tag << "_democratic_ADJ:0 \"" << name.front() << "\"" << endl;
+	out << " " << tag << "_neutrality_ADJ:0 \"" << name.front() << "\"" << endl;
+	out << " " << tag << "_communism_ADJ:0 \"" << name.front() << "\"" << endl;
+	//thatsgerman: parties are always 0 atm
+	/*for (const auto& party : parties)
 	{
 		out << party.key;
 		for (const auto& localisedPartyName : party.name)
@@ -103,5 +114,5 @@ void HoI4Localisation::WriteToStream(std::ostream& out) const
 			out << ';' << localisedPartyName;
 		}
 		out << "x\n";
-	}
+	}*/
 }

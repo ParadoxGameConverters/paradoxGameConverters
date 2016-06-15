@@ -188,7 +188,7 @@ void HoI4World::output() const
 {
 	outputCommonCountries();
 	//outputAutoexecLua();
-	//outputLocalisations();
+	outputLocalisations();
 	outputHistory();
 }
 
@@ -221,7 +221,7 @@ void HoI4World::outputCommonCountries() const
 		LOG(LogLevel::Error) << "Could not create countries file";
 		exit(-1);
 	}
-
+	
 	for (auto countryItr: countries)
 	{
 		if (potentialCountries.find(countryItr.first) == potentialCountries.end())
@@ -278,8 +278,8 @@ void HoI4World::outputLocalisations() const
 		return;
 	}
 
-	string source = ".\\blankMod\\output\\localisation\\countries.csv";
-	string dest = localisationPath + "\\countries.csv";
+	string source = ".\\blankMod\\output\\localisation\\countries_mod_l_english.yml";
+	string dest = localisationPath + "\\countries_mod_l_english.yml";
 	WinUtils::TryCopyFile(source, dest);
 	FILE* localisationFile;
 	if (fopen_s(&localisationFile, dest.c_str(), "a") != 0)
@@ -287,6 +287,7 @@ void HoI4World::outputLocalisations() const
 		LOG(LogLevel::Error) << "Could not update localisation text file";
 		exit(-1);
 	}
+	fprintf(localisationFile, "l_english:\r\n");
 	for (auto country: countries)
 	{
 		if (country.second->isNewCountry())

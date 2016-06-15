@@ -116,7 +116,6 @@ void HoI4Country::output(int statenumber) const
 {
 	// output history file
 	ofstream output;
-	string con = tag;
 	if (capital > 0 && capital <= statenumber)
 	{
 		output.open(("Output/" + Configuration::getOutputName() + "/history/countries/" + WinUtils::convertToASCII(filename)).c_str());
