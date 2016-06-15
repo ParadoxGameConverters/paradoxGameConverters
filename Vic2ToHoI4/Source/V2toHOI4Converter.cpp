@@ -42,7 +42,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 // Returns 0 on success or a non-zero failure code on error.
 int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 {
-	LOG(LogLevel::Info) << "Converter version 1.2";
+	LOG(LogLevel::Info) << "Converter version 0.0";
 	Object*	obj;					// generic object
 
 	Configuration::getInstance();
@@ -278,7 +278,9 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	// Parse HoI4 data files
 	LOG(LogLevel::Info) << "Parsing HoI4 data";
 	HoI4World destWorld;
-	destWorld.importProvinces(provinceMap);
+	destWorld.importProvinces();
+	destWorld.recordAllLandProvinces();
+	destWorld.checkAllProvincesMapped(provinceMap);
 	destWorld.checkCoastalProvinces();
 
 	// Get country mappings

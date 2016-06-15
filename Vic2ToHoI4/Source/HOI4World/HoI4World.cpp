@@ -52,7 +52,7 @@ typedef struct fileWithCreateTime
 } fileWithCreateTime;
 
 
-void HoI4World::importProvinces(const provinceMapping& provinceMap)
+void HoI4World::importProvinces()
 {
 	LOG(LogLevel::Info) << "Importing provinces";
 
@@ -100,7 +100,6 @@ void HoI4World::importProvinces(const provinceMapping& provinceMap)
 		_findclose(fileListing);
 		directories.pop_front();
 	}
-	checkAllProvincesMapped(provinceMap);
 }
 
 
@@ -297,15 +296,7 @@ void HoI4World::outputLocalisations() const
 	}
 	fclose(localisationFile);
 }
-int HoI4World::getStates() const
-{
-	int statenumber = 0;
-	for (auto state : states)
-	{
-		statenumber++;
-	}
-	return statenumber;
-}
+
 
 void HoI4World::outputHistory() const
 {
@@ -329,14 +320,14 @@ void HoI4World::outputHistory() const
 	}
 	for (auto countryItr: countries)
 	{
-		countryItr.second->output(getStates());
+		countryItr.second->output(states.size());
 	}
 	// Override vanilla history to suppress vanilla OOB and faction membership being read
 	for (auto potentialItr: potentialCountries)
 	{
 		if (countries.find(potentialItr.first) == countries.end())
 		{
-			potentialItr.second->output(getStates());
+			potentialItr.second->output(states.size());
 		}
 	}
 	//LOG(LogLevel::Debug) << "Writing diplomacy";
@@ -426,33 +417,27 @@ struct MTo1ProvinceComp
 
 void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, HoI4StateMapping& stateMap)
 {
-	// create states based on Vic2 states
-	//		create a lookup table of Vic2 states by Vic2 provinces
-	//		create 
-	// go through all province mappings to determine province owners
-	//		
+	// TODO - determine province owners for all HoI4 provinces
+	
 
-	// determine province owners for all HoI4 provinces
 	//	loop through the vic2 countries
-	//		determine the relevant HoI4 country
-	//		loop through the states in the vic2 country
-	//			create a matching HoI4 state
-	//			loop through the provinces in the vic2 state
-	//				if the matching HoI4 provinces are owned by this country, add it to the HoI4 state
-	//			if the state is not empty, add it to this list of states
-
 	int stateID = 1;
 	for (auto country: sourceWorld.getCountries())
 	{
-		
+		//	determine the relevant HoI4 country
 		string HoI4Tag = countryMap.GetHoI4Tag(country.first);
+
+		//	loop through the states in the vic2 country
 		for (auto vic2State: country.second->getStates())
 		{
+			//	create a matching HoI4 state
 			int provincecount = 0;
 			HoI4State* newState = new HoI4State(stateID, HoI4Tag);
 
+			//	loop through the provinces in the vic2 state
 			for (auto vic2Province: vic2State.getProvinces())
 			{
+				//	TODO - if the matching HoI4 provinces are owned by this country, add it to the HoI4 state
 				auto provMapping = inverseProvinceMap.find(vic2Province);
 				if (provMapping != inverseProvinceMap.end())
 				{
@@ -467,14 +452,13 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 					}
 				}
 			}
+
+			//	if the state is not empty, add it to this list of states
 			if (provincecount != 0)
 			{
 				states.insert(make_pair(stateID, newState));
+				stateID++;
 			}
-			else
-				stateID--;
-
-			stateID++;
 		}
 	}
 
@@ -2082,16 +2066,72 @@ void HoI4World::copyFlags(const V2World &sourceWorld, const CountryMapping& coun
 }
 
 
-void HoI4World::checkAllProvincesMapped(const provinceMapping& provinceMap)
+void HoI4World::recordAllLandProvinces()
 {
-	for (auto province: provinces)
+	ifstream definitions(Configuration::getHoI4Path() + "/map/definition.csv");
+	if (!definitions.is_open())
 	{
-		provinceMapping::const_iterator num = provinceMap.find(province.first);
-		if (num == provinceMap.end())
+		LOG(LogLevel::Error) << "Could not open " << Configuration::getHoI4Path() << "/map/definition.csv";
+		exit(-1);
+	}
+
+	while (true)
+	{
+		string line;
+		getline(definitions, line);
+		int pos = line.find_first_of(';');
+		if (pos == string::npos)
 		{
-			LOG(LogLevel::Warning) << "No mapping for HoI4 province " << province.first;
+			break;
+		}
+		int provNum = atoi(line.substr(0, pos).c_str());
+		
+		line = line.substr(pos + 1, line.length());
+		int pos2 = line.find_first_of(';');
+		line = line.substr(pos2 + 1, line.length());
+		int pos3 = line.find_first_of(';');
+		line = line.substr(pos3 + 1, line.length());
+		int pos4 = line.find_first_of(';');
+		line = line.substr(pos4 + 1, line.length());
+		int pos5 = line.find_first_of(';');
+		line = line.substr(0, pos5);
+
+		if (line == "land")
+		{
+			landProvinces.insert(provNum);
 		}
 	}
+}
+
+
+void HoI4World::checkAllProvincesMapped(const provinceMapping& provinceMap)
+{
+	ifstream definitions(Configuration::getHoI4Path() + "/map/definition.csv");
+	if (!definitions.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not open " << Configuration::getHoI4Path() << "/map/definition.csv";
+		exit(-1);
+	}
+
+	while (true)
+	{
+		string line;
+		getline(definitions, line);
+		int pos = line.find_first_of(';');
+		if (pos == string::npos)
+		{
+			break;
+		}
+		int provNum = atoi(line.substr(0, pos).c_str());
+
+		provinceMapping::const_iterator num = provinceMap.find(provNum);
+		if (num == provinceMap.end())
+		{
+			LOG(LogLevel::Warning) << "No mapping for HoI4 province " << provNum;
+		}
+	}
+
+	definitions.close();
 }
 
 
