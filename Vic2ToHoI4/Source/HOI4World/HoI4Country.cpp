@@ -134,8 +134,10 @@ void HoI4Country::output(int statenumber) const
 		output << "" << endl;
 		output << "# Starting tech" << endl;
 		output << "set_technology = {" << endl;
-		output << "    infantry_weapons = 1" << endl;
-		output << "    tech_mountaineers = 1" << endl;
+		for (auto tech : technologies)
+		{
+			output << tech.first<< " = 1" << endl;
+		}
 		output << "}" << endl;
 		output << "" << endl;
 		output << "1939.1.1 = {" << endl;
