@@ -585,13 +585,13 @@ tag vs internalTag:
 		<requiredFolder>
           <tag>HoI4directory</tag>
           <friendlyName>Hearts of Iron 4 directory</friendlyName>
-          <description>A path on your computer where Hearts of Iron 3 is installed</description>
+          <description>A path on your computer where Hearts of Iron 4 is installed</description>
           <isMandatory>true</isMandatory>
           <alternatives>
             <alternative>
               <defaultLocationType>SteamFolder</defaultLocationType>
               <!--<subFolderLocation>\Hearts of Iron IV</subFolderLocation>-->
-              <autoDetectFromSteamId>25890</autoDetectFromSteamId>
+              <autoDetectFromSteamId>394360</autoDetectFromSteamId>
             </alternative>
           </alternatives>
         </requiredFolder>
@@ -608,7 +608,7 @@ tag vs internalTag:
             </alternative>
             <alternative>
               <defaultLocationType>SteamFolder</defaultLocationType>
-              <autoDetectFromSteamId>25890</autoDetectFromSteamId>
+              <autoDetectFromSteamId>394360</autoDetectFromSteamId>
               <subFolderLocation>map\cache</subFolderLocation>
             </alternative>
           </alternatives>
@@ -639,7 +639,7 @@ tag vs internalTag:
           <alternatives>
             <alternative>
               <defaultLocationType>SteamFolder</defaultLocationType>
-              <autoDetectFromSteamId>25890</autoDetectFromSteamId>
+              <autoDetectFromSteamId>394360</autoDetectFromSteamId>
               <subFolderLocation>mod</subFolderLocation>
             </alternative>
           </alternatives>
