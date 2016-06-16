@@ -81,18 +81,6 @@ void HoI4Localisation::SetPartyName(size_t partyIndex, const std::string& langua
 
 void HoI4Localisation::WriteToStream(std::ostream& out) const
 {
-	//thatsgerman: HoI3 way of localisation
-	/*	for (const auto& localisedName : name)
-		{
-			out << ';' << localisedName;
-		}
-		out << "x\n";
-
-		out << tag << "_ADJ";
-		for (const auto& localisedAdjective : adjective)
-		{
-			out << ';' << localisedAdjective;
-		}*/
 	out << " " << tag << "_fascism:0 \"" << name.front() << "\"" << endl;
 	out << " " << tag << "_fascism_DEF:0 \"" << name.front() << "\"" << endl;
 	out << " " << tag << "_democratic:0 \"" << name.front() << "\"" << endl;

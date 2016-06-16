@@ -278,16 +278,15 @@ void HoI4World::outputLocalisations() const
 		return;
 	}
 
-	string source = ".\\blankMod\\output\\localisation\\countries_mod_l_english.yml";
 	string dest = localisationPath + "\\countries_mod_l_english.yml";
-	WinUtils::TryCopyFile(source, dest);
-	FILE* localisationFile;
-	if (fopen_s(&localisationFile, dest.c_str(), "a") != 0)
+	ofstream localisationFile(dest.c_str());
+	if (!localisationFile.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not update localisation text file";
 		exit(-1);
 	}
-	fprintf(localisationFile, "l_english:\r\n");
+	localisationFile << "\xEF\xBB\xBF"; // output a BOM to make HoI4 happy
+	localisationFile << "l_english:\r\n";
 	for (auto country: countries)
 	{
 		if (country.second->isNewCountry())
@@ -295,7 +294,7 @@ void HoI4World::outputLocalisations() const
 			country.second->outputLocalisation(localisationFile);
 		}
 	}
-	fclose(localisationFile);
+	localisationFile.close();
 }
 
 

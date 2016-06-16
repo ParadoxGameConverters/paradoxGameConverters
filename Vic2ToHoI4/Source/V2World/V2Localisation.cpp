@@ -90,7 +90,7 @@ void V2Localisation::ReadFromFile(const std::string& fileName)
 		{
 			int frontDivision = division + 1;
 			division = line.find_first_of(';', frontDivision);
-			localisations[key][language] = line.substr(frontDivision, division - frontDivision);
+			localisations[key][language] = WinUtils::convert8859_15ToUTF8(line.substr(frontDivision, division - frontDivision));
 
 			// dash characters other than 0x2D break HoI4
 			int dash = localisations[key][language].find_first_of('–');									// the first (if any) dask in the output name

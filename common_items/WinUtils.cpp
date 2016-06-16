@@ -132,12 +132,16 @@ std::string convertToASCII(std::string UTF8)
 
 std::string convertToUTF8(std::wstring UTF16)
 {
-	char utf8array[1024];
-	if (0 == WideCharToMultiByte(CP_UTF8, 0, UTF16.c_str(), -1, utf8array, 1024, NULL, NULL))
+	int requiredSize = WideCharToMultiByte(CP_UTF8, 0, UTF16.c_str(), -1, NULL, 0, NULL, NULL);
+	char* utf8array = new char[requiredSize];
+
+	if (0 == WideCharToMultiByte(CP_UTF8, 0, UTF16.c_str(), -1, utf8array, requiredSize, NULL, NULL))
 	{
 		LOG(LogLevel::Error) << "Could not translate string to UTF-8 - " << GetLastWindowsError();
 	}
 	std::string returnable(utf8array);
+
+	delete[] utf8array;
 
 	return returnable;
 }

@@ -64,7 +64,7 @@ class HoI4Country
 		HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld, bool _newCountry = false);
 		void	output(int) const;
 		void	outputToCommonCountriesFile(FILE*) const;
-		void	outputLocalisation(FILE*) const;
+		void	outputLocalisation(ofstream& localisationFile) const;
 		void	outputAIScript() const;
 		void	initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap, map<int, HoI4State*> states);
 		void	initFromHistory();
