@@ -116,6 +116,18 @@ void HoI4Country::output(int statenumber) const
 {
 	// output history file
 	ofstream output;
+	//thatsgerman: well this is ugly... PLACEHOLDER
+	int com = 0;
+	int dem = 0;
+	int fac = 0;
+	for (auto party : parties)
+	{
+		if (party.name.find("fascist") != string::npos || party.name.find("reactionary") != string::npos)
+			fac += party.popularity;
+		if (party.name.find("socialist") != string::npos || party.name.find("communist") != string::npos)
+			com += party.popularity;
+	}
+	dem = 100 - fac - com;
 	if ((capital > 0 && capital <= statenumber) || !newCountry)
 	{
 		output.open(("Output/" + Configuration::getOutputName() + "/history/countries/" + WinUtils::convertToASCII(filename)).c_str());
@@ -149,19 +161,19 @@ void HoI4Country::output(int statenumber) const
 		output << "" << endl;
 		output << "    parties = {" << endl;
 		output << "        democratic = { " << endl;
-		output << "            popularity = 0" << endl;
+		output << "            popularity = " << dem*4/5 << endl;
 		output << "        }" << endl;
 		output << "" << endl;
 		output << "        fascism = {" << endl;
-		output << "            popularity = 0" << endl;
+		output << "            popularity = "<< fac << endl;
 		output << "        }" << endl;
 		output << "        " << endl;
 		output << "        communism = {" << endl;
-		output << "            popularity = 0" << endl;
+		output << "            popularity = " << com << endl;
 		output << "        }" << endl;
 		output << "        " << endl;
 		output << "        neutrality = { " << endl;
-		output << "            popularity = 100" << endl;
+		output << "            popularity = " << dem /5 << endl;
 		output << "        }" << endl;
 		output << "    }" << endl;
 		output << "    " << endl;
@@ -360,7 +372,7 @@ void HoI4Country::outputTech(FILE* output) const
 
 void HoI4Country::outputParties(FILE* output) const
 {
-	fprintf(output, "popularity = {\n");
+	/*fprintf(output, "popularity = {\n");
 	for (auto party : parties)
 	{
 		fprintf(output, "\t%s = %d\n", party.ideology.c_str(), party.popularity);
@@ -386,7 +398,7 @@ void HoI4Country::outputParties(FILE* output) const
 	{
 		fprintf(partyLocalisations, "%s;\n", party.localisationString.c_str());
 	}
-	fclose(partyLocalisations);
+	fclose(partyLocalisations);*/
 }
 
 
