@@ -36,15 +36,15 @@ HoI4State::HoI4State(int _ID, string _ownerTag)
 }
 
 
-void HoI4State::output()
+void HoI4State::output(string _filename)
 {
-	string filename("Output/" + Configuration::getOutputName() + "/history/states/" + to_string(ID) + "-blah.txt");
+	string filename("Output/" + Configuration::getOutputName() + "/history/states/" + _filename);
 	ofstream out;
 	out.open(filename);
 	{
 		if (!out.is_open())
 		{
-			LOG(LogLevel::Error) << "Could not open \"output/input/history/states/" + to_string(ID) + "-blah.txt\"";
+			LOG(LogLevel::Error) << "Could not open \"output/input/history/states/" + _filename;
 			exit(-1);
 		}
 

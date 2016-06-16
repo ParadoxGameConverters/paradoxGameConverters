@@ -278,7 +278,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	// Parse HoI4 data files
 	LOG(LogLevel::Info) << "Parsing HoI4 data";
 	HoI4World destWorld;
-	destWorld.importProvinces();
+	destWorld.importStates();
 	destWorld.recordAllLandProvinces();
 	destWorld.checkAllProvincesMapped(provinceMap);
 	destWorld.checkCoastalProvinces();

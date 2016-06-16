@@ -37,7 +37,7 @@ class HoI4State
 	public:
 		HoI4State(int _ID, string _ownerTag);
 
-		void output();
+		void output(string filename);
 
 		void	addProvince(int province)	{ provinces.push_back(province); }
 

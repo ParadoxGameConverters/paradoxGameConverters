@@ -44,7 +44,7 @@ class HoI4World
 
 		void	output() const;
 
-		void	importProvinces();
+		void	importStates();
 		void	checkCoastalProvinces();
 		void	importPotentialCountries();
 		void	convertCountries(const V2World &sourceWorld, const CountryMapping& countryMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap);
@@ -86,6 +86,7 @@ class HoI4World
 		void	outputHistory() const;
 
 		map<int, HoI4State*>			states;
+		map<int, string>				stateFilenames;
 		map<int, HoI4Province*>		provinces;
 		set<int>							landProvinces;
 		map<string, HoI4Country*>	countries;

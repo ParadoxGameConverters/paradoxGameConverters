@@ -52,53 +52,16 @@ typedef struct fileWithCreateTime
 } fileWithCreateTime;
 
 
-void HoI4World::importProvinces()
+void HoI4World::importStates()
 {
-	LOG(LogLevel::Info) << "Importing provinces";
+	LOG(LogLevel::Info) << "Importing states";
 
-	struct _finddata_t	provinceFileData;
-	intptr_t					fileListing = NULL;
-	list<string>			directories;
-
-	directories.push_back("");
-	while (directories.size() > 0)
+	set<string> statesFiles;
+	WinUtils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/history/states", statesFiles);
+	for (auto stateFile: statesFiles)
 	{
-		if ((fileListing = _findfirst((string(".\\blankMod\\output\\history\\provinces") + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
-		{
-			LOG(LogLevel::Error) << "Could not open directory .\\blankMod\\output\\history\\provinces" << directories.front() << "\\*.*";
-			exit(-1);
-		}
-
-		do
-		{
-			if (strcmp(provinceFileData.name, ".") == 0 || strcmp(provinceFileData.name, "..") == 0)
-			{
-				continue;
-			}
-			if (provinceFileData.attrib & _A_SUBDIR)
-			{
-				string newDirectory = directories.front() + "\\" + provinceFileData.name;
-				directories.push_back(newDirectory);
-			}
-			else
-			{
-				HoI4Province* newProvince = new HoI4Province(directories.front() + "\\" + provinceFileData.name);
-
-				int provinceNum = newProvince->getNum();
-				auto provinceItr = provinces.find(provinceNum);
-				if (provinceItr == provinces.end())
-				{
-					provinces.insert(make_pair(provinceNum, newProvince));
-				}
-				else
-				{
-					provinceItr->second->addFilename(directories.front() + "\\" + provinceFileData.name);
-					provinceNum++;
-				}
-			}
-		} while (_findnext(fileListing, &provinceFileData) == 0);
-		_findclose(fileListing);
-		directories.pop_front();
+		int num = stoi(stateFile.substr(0, stateFile.find_first_of('-')));
+		stateFilenames.insert(make_pair(num, stateFile));
 	}
 }
 
@@ -309,8 +272,28 @@ void HoI4World::outputHistory() const
 	}
 	for (auto state: states)
 	{
-		state.second->output();
+		string filename;
+		auto nameItr = stateFilenames.find(state.first);
+		if (nameItr == stateFilenames.end())
+		{
+			filename = to_string(state.first) + "-convertedState.txt";
+		}
+		else
+		{
+			filename = nameItr->second;
+		}
+		state.second->output(filename);
 	}
+	for (auto nameItr = stateFilenames.find(states.size() + 1); nameItr != stateFilenames.end(); nameItr++)
+	{
+		ofstream emptyStateFile("Output/" + Configuration::getOutputName() + "/history/states/" + nameItr->second);
+		if (!emptyStateFile.is_open())
+		{
+			LOG(LogLevel::Warning) << "Could not create " << "Output/" << Configuration::getOutputName() << "/history/states/" << nameItr->second;
+		}
+		emptyStateFile.close();
+	}
+
 	LOG(LogLevel::Debug) << "Writing countries";
 	string unitsPath = "Output/" + Configuration::getOutputName() + "/history/units";
 	if (!WinUtils::TryCreateFolder(unitsPath))
