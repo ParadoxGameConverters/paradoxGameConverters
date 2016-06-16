@@ -116,7 +116,7 @@ void HoI4Country::output(int statenumber) const
 {
 	// output history file
 	ofstream output;
-	if (capital > 0 && capital <= statenumber)
+	if ((capital > 0 && capital <= statenumber) || !newCountry)
 	{
 		output.open(("Output/" + Configuration::getOutputName() + "/history/countries/" + WinUtils::convertToASCII(filename)).c_str());
 		if (!output.is_open())
@@ -125,9 +125,10 @@ void HoI4Country::output(int statenumber) const
 			exit(-1);
 		}
 		output << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
-
-		output << "capital = " << capital << endl;
-
+		if(newCountry)
+			output << "capital = " << capital << endl;
+		else
+			output << "capital =  1" << endl;
 		output << "" << endl;
 		output << "oob = \"" << tag << "_OOB\"" << endl;
 		output << "" << endl;
