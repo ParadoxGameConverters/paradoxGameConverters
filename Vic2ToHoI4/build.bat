@@ -8,7 +8,7 @@ rmdir Release /S /Q
 del ReleaseIntermediate/q
 rmdir ReleaseIntermediate /S /Q
 
-msbuild.exe V2ToHoI4.sln /p:Configuration=Release /m
+msbuild.exe Vic2ToHoI4.sln /p:Configuration=Release /m
 
 
 cd Release
