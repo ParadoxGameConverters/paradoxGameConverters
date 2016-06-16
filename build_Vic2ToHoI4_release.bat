@@ -9,6 +9,7 @@ copy "Vic2ToHoI4\Data_Files\SupportedConvertersDefault.xml" "Vic2ToHoI4-%version
 cd Vic2ToHoI4
 call "build.bat"
 xcopy "Release" "..\Vic2ToHoI4-%version%\Vic2ToHoI4"  /Y /E /I
+copy "%VS140COMNTOOLS%\..\..\VC\redist\x64\Microsoft.VC140.CRT\msvcp140.dll" "..\Vic2ToHoI4-%version%\Vic2ToHoI4\msvcp140.dll"
 cd ..
 
 cd "Vic2ToHoI4-%version%"
