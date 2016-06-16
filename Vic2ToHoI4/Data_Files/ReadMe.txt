@@ -42,7 +42,12 @@ CREDITS
 
 An (incomplete) list of those who contributed effort to this mammoth undertaking
 
-Idhrendur		- Project Lead, Programming
+Idhrendur		- Project Lead, Programming, Analysis
+thatsgerman		- Programming, Analysis
+DasGuntLord01		- Analysis
+dtremenak		- Analysis
+history_fan		- Analysis
+PTSnoop			- Analysis
 simsulla		- Data Files
 Mattymooz		- Data Files
 
