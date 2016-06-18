@@ -133,7 +133,7 @@ void HoI4Country::output(int statenumber) const
 		output.open(("Output/" + Configuration::getOutputName() + "/history/countries/" + WinUtils::convertToASCII(filename)).c_str());
 		if (!output.is_open())
 		{
-			Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/history/" << filename;
+			Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/history/" << WinUtils::convertToASCII(filename);
 			exit(-1);
 		}
 		output << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
@@ -207,10 +207,10 @@ void HoI4Country::output(int statenumber) const
 	//outputLeaders();
 
 	// Output common country file
-	output.open(("Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + WinUtils::convertToASCII(commonCountryFile)).c_str());
+	output.open(("Output/" + Configuration::getOutputName() + "/common/countries/" + WinUtils::convertToASCII(commonCountryFile)).c_str());
 	if (!output.is_open())
 	{
-		Log(LogLevel::Error) << "Could not open " << "Output\\" << Configuration::getOutputName() << "\\common\\countries\\" << commonCountryFile;
+		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << WinUtils::convertToASCII(commonCountryFile);
 		exit(-1);
 	}
 	int red;

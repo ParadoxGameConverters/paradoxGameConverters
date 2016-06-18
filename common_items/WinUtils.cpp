@@ -120,7 +120,7 @@ std::string GetLastWindowsError()
 std::string convertToASCII(std::string UTF8)
 {
 	char asciiArray[1024];
-	if (0 == WideCharToMultiByte(20127 /*US-ASCII (7-bit)*/, 0, convertToUTF16(UTF8).c_str(), -1, asciiArray, 1024, NULL, NULL))
+	if (0 == WideCharToMultiByte(20127 /*US-ASCII (7-bit)*/, 0, convertToUTF16(UTF8).c_str(), -1, asciiArray, 1024, "0", NULL))
 	{
 		LOG(LogLevel::Error) << "Could not translate string to ASCII - " << GetLastWindowsError();
 	}
