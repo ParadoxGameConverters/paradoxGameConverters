@@ -21,15 +21,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4World.h"
-#include <Windows.h>
 #include <fstream>
 #include <algorithm>
-#include <io.h>
 #include <list>
 #include <queue>
 #include <cmath>
 #include <cfloat>
-#include <sys/stat.h>
 #include "ParadoxParserUTF8.h"
 #include "Log.h"
 #include "../Configuration.h"

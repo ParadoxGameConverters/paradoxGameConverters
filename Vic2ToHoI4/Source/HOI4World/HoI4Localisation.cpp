@@ -22,7 +22,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4Localisation.h"
-#include <Windows.h>
 #include <fstream>
 #include "../V2World/V2Country.h"
 #include "Log.h"

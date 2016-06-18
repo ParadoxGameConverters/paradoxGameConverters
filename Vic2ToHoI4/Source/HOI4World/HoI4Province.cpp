@@ -28,7 +28,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <sstream>
 #include <algorithm>
 #include <stdio.h>
-#include <sys/stat.h>
 using namespace std;
 
 

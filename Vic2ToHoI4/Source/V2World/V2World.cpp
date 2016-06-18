@@ -23,7 +23,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "V2World.h"
 #include <fstream>
-#include <sys/stat.h>
 #include <codecvt>
 #include "ParadoxParser8859_15.h"
 #include "Log.h"

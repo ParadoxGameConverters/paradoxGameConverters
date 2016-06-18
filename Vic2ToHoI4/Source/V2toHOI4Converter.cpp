@@ -22,10 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <fstream>
-#include <io.h>
 #include <stdexcept>
-#include <sys/stat.h>
-#include <Windows.h>
 #include "Configuration.h"
 #include "Log.h"
 #include "ParadoxParser8859_15.h"
