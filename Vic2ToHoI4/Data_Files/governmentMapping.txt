@@ -21,28 +21,28 @@
 
 
 mappings = {
-link = { vic = absolute_monarchy hoi = absolute_monarchy }
-link = { vic = prussian_constitutionalism ruling_party = fascist hoi = imperial }
-link = { vic = prussian_constitutionalism ruling_party = reactionary hoi = imperial }
-link = { vic = prussian_constitutionalism political_reforms = 0.75 hoi = constitutional_monarchy }
-link = { vic = prussian_constitutionalism hoi = imperial }
-link = { vic = hms_government ruling_party = fascist hoi = imperial }
-link = { vic = hms_government hoi = constitutional_monarchy }
-link = { vic = democracy ruling_party = fascist hoi = right_wing_republic }
-link = { vic = democracy ruling_party = reactionary hoi = social_conservatism }
-link = { vic = democracy ruling_party = conservative political_reforms = 0.9 social_reforms_above = 0.90 hoi = social_liberalism }
-link = { vic = democracy ruling_party = conservative political_reforms = 0.9 social_reforms_below = 0.33 hoi = market_liberalism }
-link = { vic = democracy ruling_party = conservative hoi = social_conservatism }
-link = { vic = democracy ruling_party = anarcho_liberal hoi = market_liberalism }
-link = { vic = democracy ruling_party = liberal social_reforms_above = 0.66 hoi = social_liberalism }
-link = { vic = democracy ruling_party = liberal hoi = market_liberalism }
-link = { vic = democracy ruling_party = socialist social_reforms_above = 0.90 hoi = left_wing_radicals }
-link = { vic = democracy ruling_party = socialist hoi = social_democracy }
-link = { vic = democracy ruling_party = communist hoi = left_wing_radicals }
-link = { vic = proletarian_dictatorship hoi = socialist_republic }
-link = { vic = presidential_dictatorship ruling_party = liberal hoi = right_wing_republic }
-link = { vic = presidential_dictatorship ruling_party = anarcho_liberal hoi = right_wing_republic }
-link = { vic = presidential_dictatorship hoi = right_wing_autocrat }
-link = { vic = bourgeois_dictatorship hoi = right_wing_republic }
-link = { vic = fascist_dictatorship hoi = fascist_republic }
+link = { vic = absolute_monarchy hoi = neutrality }
+link = { vic = prussian_constitutionalism ruling_party = fascist hoi = fascism }
+link = { vic = prussian_constitutionalism ruling_party = reactionary hoi = fascism}
+link = { vic = prussian_constitutionalism political_reforms = 0.75 hoi = neutrality}
+link = { vic = prussian_constitutionalism hoi = neutrality}
+link = { vic = hms_government ruling_party = fascist hoi = fascism}
+link = { vic = hms_government hoi = neutrality}
+link = { vic = democracy ruling_party = fascist hoi = democratic}
+link = { vic = democracy ruling_party = reactionary hoi = democratic}
+link = { vic = democracy ruling_party = conservative political_reforms = 0.9 social_reforms_above = 0.90 hoi = democratic}
+link = { vic = democracy ruling_party = conservative political_reforms = 0.9 social_reforms_below = 0.33 hoi = democratic}
+link = { vic = democracy ruling_party = conservative hoi = democratic}
+link = { vic = democracy ruling_party = anarcho_liberal hoi = democratic}
+link = { vic = democracy ruling_party = liberal social_reforms_above = 0.66 hoi = democratic}
+link = { vic = democracy ruling_party = liberal hoi = democratic}
+link = { vic = democracy ruling_party = socialist social_reforms_above = 0.90 hoi = democratic}
+link = { vic = democracy ruling_party = socialist hoi = democratic}
+link = { vic = democracy ruling_party = communist hoi = democratic}
+link = { vic = proletarian_dictatorship hoi = communism}
+link = { vic = presidential_dictatorship ruling_party = liberal hoi = communism}
+link = { vic = presidential_dictatorship ruling_party = anarcho_liberal hoi = communism}
+link = { vic = presidential_dictatorship hoi = fascism}
+link = { vic = bourgeois_dictatorship hoi = communism}
+link = { vic = fascist_dictatorship hoi = fascism}
 }
