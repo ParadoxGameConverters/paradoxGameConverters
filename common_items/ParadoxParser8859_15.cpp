@@ -208,6 +208,14 @@ wstring bufferOneObject(ifstream& read)
 	{
 		string buffer;
 		getline(read, buffer);
+		if(buffer.empty())
+		{
+			continue;
+		}
+		if(buffer.back() == '\r')
+		{
+			buffer.pop_back();
+		}
 		wstring wide_buffer = Utils::convertToUTF16(buffer);
 
 		if (wide_buffer == L"CK2txt")
