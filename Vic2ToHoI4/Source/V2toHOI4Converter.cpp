@@ -44,9 +44,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	Configuration::getInstance();
 
-	wchar_t curDir[MAX_PATH];
-	GetCurrentDirectory(MAX_PATH, curDir);
-	LOG(LogLevel::Debug) << "Current directory is " << Utils::convertToUTF8(curDir);
+	LOG(LogLevel::Debug) << "Current directory is " << Utils::getCurrentDirectory();
 
 	// Get HoI4 install location
 	LOG(LogLevel::Debug) << "Get HoI4 Install Path";
@@ -179,7 +177,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	Configuration::setOutputName(outputName);
 	LOG(LogLevel::Info) << "Using output name " << outputName;
 
-	string outputFolder = Utils::convertToUTF8(curDir) + "/output/" + Configuration::getOutputName();
+	string outputFolder = Utils::getCurrentDirectory() + "/output/" + Configuration::getOutputName();
 	if (Utils::doesFolderExist(outputFolder.c_str()))
 	{
 		LOG(LogLevel::Error) << "Output folder " << Configuration::getOutputName() << " already exists! Clear the output folder before running again!";

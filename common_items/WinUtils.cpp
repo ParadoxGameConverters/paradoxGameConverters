@@ -48,6 +48,14 @@ bool TryCreateFolder(const std::string& path)
 }
 
 
+std::string getCurrentDirectory()
+{
+	wchar_t curDir[MAX_PATH];
+	GetCurrentDirectory(MAX_PATH, curDir);
+	return Utils::convertToUTF8(curDir);
+}
+
+
 void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames)
 {
 	WIN32_FIND_DATA findData;	// the structure to hold the file data

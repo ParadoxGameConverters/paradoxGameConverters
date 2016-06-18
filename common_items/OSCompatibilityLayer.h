@@ -83,7 +83,7 @@ namespace Utils
 	// Returns true on success or if the folder already exists.
 	// Returns false and logs a warning on failure.
 	bool TryCreateFolder(const std::string& path);
-	void getCurrentDirectory(uint32_t length, char directory[MAX_PATH]);
+	std::string getCurrentDirectory();
 	// Adds all files (just the file name) in the specified folder to the given collection.
 	void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames);
 	// Copies the file specified by sourcePath as destPath.
