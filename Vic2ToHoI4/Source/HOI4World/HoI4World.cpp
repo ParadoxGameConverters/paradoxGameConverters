@@ -38,6 +38,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+
 typedef struct fileWithCreateTime
 {
 	string	filename;
@@ -674,7 +675,7 @@ void HoI4World::convertProvinceItems(const V2World& sourceWorld, const provinceM
 			}
 			else if (Configuration::getIcConversion() == "logarithmic")
 			{
-				industry = log(max(1, industry / 70000)) / log(2) * 5.33;
+				industry = log(max(1.0, industry / 70000)) / log(2) * 5.33;
 				dstProvItr->second->addRawIndustry(industry * Configuration::getIcFactor());
 			}
 					
