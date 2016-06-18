@@ -75,13 +75,6 @@ typedef int errno_t;
 
 
 
-typedef bool (*TryCreateFolderFunc)(const std::string&);
-typedef void (*GetCurrentDirectoryFunc)(uint32_t length, char directory[MAX_PATH]);
-typedef void (*WriteToConsoleUtilFunc)(LogLevel level, const std::string& logMessage);
-
-
-void InitOSCompatabilityLayer();
-
 
 namespace Utils
 {
@@ -102,9 +95,6 @@ namespace Utils
 	// Returns true if the specified folder exists (and is a folder rather than a file).
 	bool doesFolderExist(const std::string& path);
 
-	int FromMultiByte(const char* in, size_t inSize, wchar_t* out, size_t outSize);
-	int ToMultiByte(const wchar_t* in, size_t inSize, char* out, size_t outSize);
-
 	void WriteToConsole(LogLevel level, const std::string& logMessage);
 
 	// Returns a formatted string describing the last error on the WinAPI.
@@ -120,9 +110,6 @@ namespace Utils
 	std::string convertToUTF8(std::wstring UTF16);
 	std::string convert8859_15ToUTF8(std::string input);
 	std::wstring convertToUTF16(std::string UTF8);
-
-	void writeToConsole(LogLevel level, const std::string& logMessage);
-
 } // namespace Utils
 
 
