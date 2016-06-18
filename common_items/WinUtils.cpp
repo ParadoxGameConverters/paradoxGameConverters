@@ -172,7 +172,7 @@ std::wstring convertToUTF16(std::string UTF8)
 }
 
 
-void writeToConsole(LogLevel level, const std::string& logMessage)
+void WriteToConsole(LogLevel level, const std::string& logMessage)
 {
 	if (level == LogLevel::Debug)
 	{	// Don't log debug messages to console.
