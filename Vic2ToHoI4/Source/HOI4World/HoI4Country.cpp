@@ -120,6 +120,15 @@ void HoI4Country::output(int statenumber) const
 	int com = 0;
 	int dem = 0;
 	int fac = 0;
+	string ideology = "";
+	if (government == "fascism")
+		ideology = "fascism_ideology";
+	else if (government == "democratic")
+		ideology = "liberalism";
+	else if (government == "communism")
+		ideology = "marxism";
+	else
+		ideology = "despotism";
 	for (auto party : parties)
 	{
 		if (party.name.find("fascist") != string::npos || party.name.find("reactionary") != string::npos)
@@ -128,6 +137,7 @@ void HoI4Country::output(int statenumber) const
 			com += party.popularity;
 	}
 	dem = 100 - fac - com;
+	
 	if ((capital > 0 && capital <= statenumber) || !newCountry)
 	{
 		output.open(("Output/" + Configuration::getOutputName() + "/history/countries/" + WinUtils::convertToASCII(filename)).c_str());
@@ -177,7 +187,12 @@ void HoI4Country::output(int statenumber) const
 		output << "        }" << endl;
 		output << "    }" << endl;
 		output << "    " << endl;
-		output << "    ruling_party = neutrality" << endl;
+
+		if (government == "")
+			output << "    ruling_party = neutrality" << endl;
+		else
+			output << "    ruling_party = "<< government << endl;
+
 		output << "    last_election = \"1936.1.1\"" << endl;
 		output << "    election_frequency = 48" << endl;
 		output << "    elections_allowed = no" << endl;
@@ -188,7 +203,7 @@ void HoI4Country::output(int statenumber) const
 		output << "    desc = \"POLITICS_JIGME_WANGCHUCK_DESC\"" << endl;
 		output << "    picture = \"gfx / leaders / Asia / Portrait_Asia_Generic_2.dds\"" << endl;
 		output << "    expire = \"1965.1.1\"" << endl;
-		output << "    ideology = despotism" << endl;
+		output << "    ideology = " << ideology << endl;
 		output << "    traits = {" << endl;
 		output << "        #" << endl;
 		output << "    }" << endl;
