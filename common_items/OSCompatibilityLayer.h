@@ -68,14 +68,6 @@ typedef int errno_t;
 
 
 
-#ifdef WIN32
-#include <Windows.h>
-//typedef struct _stat stat; //Not sure about this.
-#endif //WIN32
-
-
-
-
 namespace Utils
 {
 
