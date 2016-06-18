@@ -29,7 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Minister.h"
 #include "../V2World/V2Relations.h"
 #include "../V2World/V2Party.h"
-#include "../../../common_items/WinUtils.h"
+#include "../../../common_items/OSCompatibilityLayer.h"
 
 
 
@@ -140,10 +140,10 @@ void HoI4Country::output(int statenumber) const
 	
 	if ((capital > 0 && capital <= statenumber) || !newCountry)
 	{
-		output.open(("Output/" + Configuration::getOutputName() + "/history/countries/" + WinUtils::convertToASCII(filename)).c_str());
+		output.open(("Output/" + Configuration::getOutputName() + "/history/countries/" + Utils::convertToASCII(filename)).c_str());
 		if (!output.is_open())
 		{
-			Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/history/" << WinUtils::convertToASCII(filename);
+			Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/history/" << Utils::convertToASCII(filename);
 			exit(-1);
 		}
 		output << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
@@ -222,10 +222,10 @@ void HoI4Country::output(int statenumber) const
 	//outputLeaders();
 
 	// Output common country file
-	output.open(("Output/" + Configuration::getOutputName() + "/common/countries/" + WinUtils::convertToASCII(commonCountryFile)).c_str());
+	output.open(("Output/" + Configuration::getOutputName() + "/common/countries/" + Utils::convertToASCII(commonCountryFile)).c_str());
 	if (!output.is_open())
 	{
-		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << WinUtils::convertToASCII(commonCountryFile);
+		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << Utils::convertToASCII(commonCountryFile);
 		exit(-1);
 	}
 	int red;
@@ -357,7 +357,7 @@ void HoI4Country::outputToCommonCountriesFile(FILE* output) const
 	//removes countries with 0 capital, sorry that its in here and not in HoI4World.cpp :(
 	if (capital != 0)
 	{
-		fprintf(output, "%s = \"countries%s\"\n", tag.c_str(), WinUtils::convertToASCII(commonCountryFile).c_str());
+		fprintf(output, "%s = \"countries%s\"\n", tag.c_str(), Utils::convertToASCII(commonCountryFile).c_str());
 	}
 }
 

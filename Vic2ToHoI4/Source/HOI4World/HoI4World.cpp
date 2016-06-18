@@ -33,7 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "ParadoxParserUTF8.h"
 #include "Log.h"
 #include "../Configuration.h"
-#include "../../../common_items/WinUtils.h"
+#include "../../../common_items/OSCompatibilityLayer.h"
 #include "../V2World/V2Province.h"
 #include "../V2World/V2Party.h"
 #include "HoI4Relations.h"
@@ -57,7 +57,7 @@ void HoI4World::importStates()
 	LOG(LogLevel::Info) << "Importing states";
 
 	set<string> statesFiles;
-	WinUtils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/history/states", statesFiles);
+	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/history/states", statesFiles);
 	for (auto stateFile: statesFiles)
 	{
 		int num = stoi(stateFile.substr(0, stateFile.find_first_of('-')));
@@ -106,7 +106,7 @@ void HoI4World::importPotentialCountries()
 
 	LOG(LogLevel::Info) << "Getting potential countries";
 	set<string> countryFilenames;
-	WinUtils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/common/country_tags", countryFilenames);
+	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/common/country_tags", countryFilenames);
 
 	for (auto countryFilename: countryFilenames)
 	{
@@ -160,17 +160,17 @@ void HoI4World::outputCommonCountries() const
 {
 	// Create common\countries path.
 	string countriesPath = "Output/" + Configuration::getOutputName() + "/common";
-	if (!WinUtils::TryCreateFolder(countriesPath))
+	if (!Utils::TryCreateFolder(countriesPath))
 	{
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common\"";
 		exit(-1);
 	}
-	if (!WinUtils::TryCreateFolder(countriesPath + "/countries"))
+	if (!Utils::TryCreateFolder(countriesPath + "/countries"))
 	{
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/countries\"";
 		exit(-1);
 	}
-	if (!WinUtils::TryCreateFolder(countriesPath + "/country_tags"))
+	if (!Utils::TryCreateFolder(countriesPath + "/country_tags"))
 	{
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/country_tags\"";
 		exit(-1);
@@ -236,7 +236,7 @@ void HoI4World::outputLocalisations() const
 	// Create localisations for all new countries. We don't actually know the names yet so we just use the tags as the names.
 	LOG(LogLevel::Debug) << "Writing localisation text";
 	string localisationPath = "Output/" + Configuration::getOutputName() + "/localisation";
-	if (!WinUtils::TryCreateFolder(localisationPath))
+	if (!Utils::TryCreateFolder(localisationPath))
 	{
 		return;
 	}
@@ -265,7 +265,7 @@ void HoI4World::outputHistory() const
 {
 	LOG(LogLevel::Debug) << "Writing states";
 	string statesPath = "Output/" + Configuration::getOutputName() + "/history/states";
-	if (!WinUtils::TryCreateFolder(statesPath))
+	if (!Utils::TryCreateFolder(statesPath))
 	{
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history/states";
 		exit(-1);
@@ -296,7 +296,7 @@ void HoI4World::outputHistory() const
 
 	LOG(LogLevel::Debug) << "Writing countries";
 	string unitsPath = "Output/" + Configuration::getOutputName() + "/history/units";
-	if (!WinUtils::TryCreateFolder(unitsPath))
+	if (!Utils::TryCreateFolder(unitsPath))
 	{
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history/units";
 		exit(-1);
@@ -2003,12 +2003,12 @@ void HoI4World::copyFlags(const V2World &sourceWorld, const CountryMapping& coun
 
 	// Create output folders.
 	std::string outputGraphicsFolder = "Output/" + Configuration::getOutputName() + "/gfx";
-	if (!WinUtils::TryCreateFolder(outputGraphicsFolder))
+	if (!Utils::TryCreateFolder(outputGraphicsFolder))
 	{
 		return;
 	}
 	std::string outputFlagFolder = outputGraphicsFolder + "/flags";
-	if (!WinUtils::TryCreateFolder(outputFlagFolder))
+	if (!Utils::TryCreateFolder(outputFlagFolder))
 	{
 		return;
 	}
@@ -2026,10 +2026,10 @@ void HoI4World::copyFlags(const V2World &sourceWorld, const CountryMapping& coun
 		for (auto mod: mods)
 		{
 			string sourceFlagPath = Configuration::getV2Path() + "/mod/" + mod + "/gfx/flags/"+ V2FlagFile;
-			if (WinUtils::DoesFileExist(sourceFlagPath))
+			if (Utils::DoesFileExist(sourceFlagPath))
 			{
 				std::string destFlagPath = outputFlagFolder + '/' + HoI4Tag + ".tga";
-				flagCopied = WinUtils::TryCopyFile(sourceFlagPath, destFlagPath);
+				flagCopied = Utils::TryCopyFile(sourceFlagPath, destFlagPath);
 				if (flagCopied)
 				{
 					break;
@@ -2039,10 +2039,10 @@ void HoI4World::copyFlags(const V2World &sourceWorld, const CountryMapping& coun
 		if (!flagCopied)
 		{
 			std::string sourceFlagPath = folderPath + '/' + V2FlagFile;
-			if (WinUtils::DoesFileExist(sourceFlagPath))
+			if (Utils::DoesFileExist(sourceFlagPath))
 			{
 				std::string destFlagPath = outputFlagFolder + '/' + HoI4Tag + ".tga";
-				WinUtils::TryCopyFile(sourceFlagPath, destFlagPath);
+				Utils::TryCopyFile(sourceFlagPath, destFlagPath);
 			}
 		}
 	}

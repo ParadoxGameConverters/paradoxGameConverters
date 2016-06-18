@@ -196,10 +196,10 @@
     <ClInclude Include="Source\HOI4World\HoI4State.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
-    <ClInclude Include="..\common_items\WinUtils.h">
+    <ClInclude Include="..\common_items\ParadoxParser8859_15.h">
       <Filter>CommonItems</Filter>
     </ClInclude>
-    <ClInclude Include="..\common_items\ParadoxParser8859_15.h">
+    <ClInclude Include="..\common_items\OSCompatibilityLayer.h">
       <Filter>CommonItems</Filter>
     </ClInclude>
   </ItemGroup>

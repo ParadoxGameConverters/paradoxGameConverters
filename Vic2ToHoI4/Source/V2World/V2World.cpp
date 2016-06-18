@@ -28,7 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "ParadoxParser8859_15.h"
 #include "Log.h"
 #include "../Configuration.h"
-#include "../../../common_items/WinUtils.h"
+#include "../../../common_items/OSCompatibilityLayer.h"
 #include "V2Province.h"
 #include "V2Relations.h"
 #include "V2Army.h"
@@ -312,7 +312,7 @@ void V2World::readCountryFiles(string countryListFile, string mod)
 		if (mod != "")
 		{
 			file = Configuration::getV2Path() + "/mod/" + mod + "/common/countries/" + countryFileName;
-			if (WinUtils::DoesFileExist(file.c_str()))
+			if (Utils::DoesFileExist(file.c_str()))
 			{
 				countryData = parser_8859_15::doParseFile(file.c_str());
 				if (countryData == NULL)
@@ -324,7 +324,7 @@ void V2World::readCountryFiles(string countryListFile, string mod)
 		if (countryData == NULL)
 		{
 			file = Configuration::getV2Path() +  "/common/countries/" + countryFileName;
-			if (WinUtils::DoesFileExist(file.c_str()))
+			if (Utils::DoesFileExist(file.c_str()))
 			{
 				countryData = parser_8859_15::doParseFile(file.c_str());
 				if (countryData == NULL)
