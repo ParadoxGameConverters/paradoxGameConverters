@@ -49,7 +49,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	wchar_t curDir[MAX_PATH];
 	GetCurrentDirectory(MAX_PATH, curDir);
-	LOG(LogLevel::Debug) << "Current directory is " << curDir;
+	LOG(LogLevel::Debug) << "Current directory is " << WinUtils::convertToUTF8(curDir);
 
 	// Get HoI4 install location
 	LOG(LogLevel::Debug) << "Get HoI4 Install Path";
