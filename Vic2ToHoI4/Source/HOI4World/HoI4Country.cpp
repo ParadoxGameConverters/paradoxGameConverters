@@ -513,31 +513,10 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 {
 	srcCountry = _srcCountry;
 
-	struct _finddata_t	fileData;
-	intptr_t					fileListing;
-	string filesearch = "./blankMod/output/history/countries/" + tag + "*.txt";
-	if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-	{
-		filename = fileData.name;
-	}
-	_findclose(fileListing);
+	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
 	if (filename == "")
 	{
-		string filesearch = Configuration::getHoI4Path() + "/tfh/history/countries/" + tag + "*.txt";
-		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-		{
-			filename = fileData.name;
-		}
-		else
-		{
-			_findclose(fileListing);
-			filesearch = Configuration::getHoI4Path() + "/history/countries/" + tag + "*.txt";
-			if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-			{
-				filename = fileData.name;
-			}
-		}
-		_findclose(fileListing);
+		filename = Utils::GetFileFromTag(Configuration::getHoI4Path() + "/tfh/history/countries/", tag);
 	}
 	if (filename == "")
 	{
@@ -780,32 +759,22 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 void HoI4Country::initFromHistory()
 {
 	string fullFilename;
-	struct _finddata_t	fileData;
-	intptr_t					fileListing;
-	string filesearch = "./blankMod/output/history/countries/" + tag + "*.txt";
-	if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
+	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
+	if (filename == "")
 	{
-		filename			= fileData.name;
-		fullFilename	= string("./blankMod/output/history/countries/") + fileData.name;
+		filename = Utils::GetFileFromTag(Configuration::getHoI4Path() + "/history/countries/", tag);
 	}
-	_findclose(fileListing);
-	if (fullFilename == "")
-	{
-		filesearch = Configuration::getHoI4Path() + "/history/countries/" + tag + "*.txt";
-		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-		{
-			filename = fileData.name;
-			fullFilename = Configuration::getHoI4Path() + "/history/countries/" + fileData.name;
-		}
-		_findclose(fileListing);
-	}
-	if (fullFilename == "")
+	if (filename == "")
 	{
 		string countryName	= commonCountryFile;
 		int lastSlash			= countryName.find_last_of("/");
 		countryName				= countryName.substr(lastSlash + 1, countryName.size());
 		filename					= tag + " - " + countryName;
 		return;
+	}
+	else
+	{
+		fullFilename = string("./blankMod/output/history/countries/") + filename;
 	}
 
 	Object* obj = parser_UTF8::doParseFile(fullFilename.c_str());
