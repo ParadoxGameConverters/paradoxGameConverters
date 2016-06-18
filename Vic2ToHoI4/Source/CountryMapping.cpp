@@ -32,8 +32,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <boost/algorithm/string.hpp>
 #include "Object.h"
 #include "paradoxParserUTF8.h"
-#include "V2World\V2World.h"
-#include "HoI4World\HoI4World.h"
+#include "V2World/V2World.h"
+#include "HoI4World/HoI4World.h"
 #include "Log.h"
 #include "WinUtils.h"
 

@@ -150,11 +150,11 @@ V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<string, 
 	vector<string> vic2Mods = Configuration::getVic2Mods();
 	for (auto itr: vic2Mods)
 	{
-		readCountryFiles(Configuration::getV2Path() + "\\mod\\" + itr + "\\common\\countries.txt", itr);
+		readCountryFiles(Configuration::getV2Path() + "/mod/" + itr + "/common/countries.txt", itr);
 	}
 	if (vic2Mods.size() == 0)
 	{
-		readCountryFiles(Configuration::getV2Path() + "\\common\\countries.txt", "");
+		readCountryFiles(Configuration::getV2Path() + "/common/countries.txt", "");
 	}
 }
 
@@ -311,7 +311,7 @@ void V2World::readCountryFiles(string countryListFile, string mod)
 		string file;
 		if (mod != "")
 		{
-			file = Configuration::getV2Path() + "\\mod\\" + mod + "\\common\\countries\\" + countryFileName;
+			file = Configuration::getV2Path() + "/mod/" + mod + "/common/countries/" + countryFileName;
 			if (WinUtils::DoesFileExist(file.c_str()))
 			{
 				countryData = parser_8859_15::doParseFile(file.c_str());
@@ -323,7 +323,7 @@ void V2World::readCountryFiles(string countryListFile, string mod)
 		}
 		if (countryData == NULL)
 		{
-			file = Configuration::getV2Path() +  "\\common\\countries\\" + countryFileName;
+			file = Configuration::getV2Path() +  "/common/countries/" + countryFileName;
 			if (WinUtils::DoesFileExist(file.c_str()))
 			{
 				countryData = parser_8859_15::doParseFile(file.c_str());

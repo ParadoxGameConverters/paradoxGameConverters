@@ -37,7 +37,7 @@ void getInventionNums(inventionNumToName& numToName)
 	vector<string> vic2Mods = Configuration::getVic2Mods();
 	for (auto itr: vic2Mods)
 	{
-		string possiblePath = Configuration::getV2Path() + "\\mod\\" + itr + "\\inventions\\";
+		string possiblePath = Configuration::getV2Path() + "/mod/" + itr + "/inventions/";
 		if (WinUtils::doesFolderExist(possiblePath))
 		{
 			path = possiblePath;
@@ -45,7 +45,7 @@ void getInventionNums(inventionNumToName& numToName)
 	}
 	if (path == "")
 	{
-		path = Configuration::getV2Path() + "\\inventions\\";
+		path = Configuration::getV2Path() + "/inventions/";
 	}
 
 	//get the inventions
@@ -56,7 +56,7 @@ void getInventionNums(inventionNumToName& numToName)
 	WinUtils::GetAllFilesInFolder(path, techFiles);
 	for (auto fileItr: techFiles)
 	{
-		Object* obj = parser_8859_15::doParseFile((path + "\\" + fileItr).c_str());
+		Object* obj = parser_8859_15::doParseFile((path + "/" + fileItr).c_str());
 		vector<Object*> techObjs = obj->getLeaves();
 		for (auto techItr: techObjs)
 		{

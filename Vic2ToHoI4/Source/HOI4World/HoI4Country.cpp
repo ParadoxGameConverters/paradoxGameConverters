@@ -404,9 +404,9 @@ void HoI4Country::outputParties(FILE* output) const
 	fprintf(output, "\n");
 
 	FILE* partyLocalisations;
-	if (fopen_s(&partyLocalisations, ("Output\\" + Configuration::getOutputName() + "\\localisation\\Parties.csv").c_str(), "a") != 0)
+	if (fopen_s(&partyLocalisations, ("Output/" + Configuration::getOutputName() + "/localisation/Parties.csv").c_str(), "a") != 0)
 	{
-		LOG(LogLevel::Error) << "Could not open " << "Output\\" << Configuration::getOutputName() << "\\localisation\\Parties.csv";
+		LOG(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/localisation/Parties.csv";
 		exit(-1);
 	}
 	for (auto party : parties)
@@ -420,9 +420,9 @@ void HoI4Country::outputParties(FILE* output) const
 void HoI4Country::outputLeaders() const
 {
 	FILE* leadersFile;
-	if (fopen_s(&leadersFile, ("Output\\" + Configuration::getOutputName() + "\\history\\leaders\\" + tag.c_str() + ".txt").c_str(), "w") != 0)
+	if (fopen_s(&leadersFile, ("Output/" + Configuration::getOutputName() + "/history/leaders/" + tag.c_str() + ".txt").c_str(), "w") != 0)
 	{
-		LOG(LogLevel::Error) << "Could not open " << "Output\\" << Configuration::getOutputName() << "\\history\\leaders\\" << tag.c_str() << ".txt";
+		LOG(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/history/leaders/" << tag.c_str() << ".txt";
 	}
 	int landLeaders = 0;
 	int seaLeaders = 0;
@@ -515,7 +515,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	struct _finddata_t	fileData;
 	intptr_t					fileListing;
-	string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
+	string filesearch = "./blankMod/output/history/countries/" + tag + "*.txt";
 	if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 	{
 		filename = fileData.name;
@@ -523,7 +523,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	_findclose(fileListing);
 	if (filename == "")
 	{
-		string filesearch = Configuration::getHoI4Path() + "\\tfh\\history\\countries\\" + tag + "*.txt";
+		string filesearch = Configuration::getHoI4Path() + "/tfh/history/countries/" + tag + "*.txt";
 		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 		{
 			filename = fileData.name;
@@ -531,7 +531,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 		else
 		{
 			_findclose(fileListing);
-			filesearch = Configuration::getHoI4Path() + "\\history\\countries\\" + tag + "*.txt";
+			filesearch = Configuration::getHoI4Path() + "/history/countries/" + tag + "*.txt";
 			if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 			{
 				filename = fileData.name;
@@ -782,20 +782,20 @@ void HoI4Country::initFromHistory()
 	string fullFilename;
 	struct _finddata_t	fileData;
 	intptr_t					fileListing;
-	string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
+	string filesearch = "./blankMod/output/history/countries/" + tag + "*.txt";
 	if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 	{
 		filename			= fileData.name;
-		fullFilename	= string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
+		fullFilename	= string("./blankMod/output/history/countries/") + fileData.name;
 	}
 	_findclose(fileListing);
 	if (fullFilename == "")
 	{
-		filesearch = Configuration::getHoI4Path() + "\\history\\countries\\" + tag + "*.txt";
+		filesearch = Configuration::getHoI4Path() + "/history/countries/" + tag + "*.txt";
 		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 		{
 			filename = fileData.name;
-			fullFilename = Configuration::getHoI4Path() + "\\history\\countries\\" + fileData.name;
+			fullFilename = Configuration::getHoI4Path() + "/history/countries/" + fileData.name;
 		}
 		_findclose(fileListing);
 	}
@@ -1960,7 +1960,7 @@ void HoI4Country::outputLocalisation(ofstream& localisationFile) const
 void HoI4Country::outputAIScript() const
 {
 	FILE* output;
-	if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\script\\country\\" + tag + ".lua").c_str(), "w") != 0)
+	if (fopen_s(&output, ("Output/" + Configuration::getOutputName() + "/script/country/" + tag + ".lua").c_str(), "w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create country script file for " << tag;
 		exit(-1);

@@ -466,7 +466,7 @@ Object* doParseFile(string filename)
 {
 	/* - when using parser debugging, also ensure that the parser object is non-static!
 	debugme = false;
-	if (string(filename) == "D:\\Victoria 2\\technologies\\commerce_tech.txt")
+	if (string(filename) == "D:/Victoria 2/technologies/commerce_tech.txt")
 		debugme = true;
 	*/
 

@@ -49,7 +49,7 @@ bool TryCreateFolder(const std::string& path)
 void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames)
 {
 	WIN32_FIND_DATA findData;	// the structure to hold the file data
-	HANDLE findHandle = FindFirstFileW(convertToUTF16(path + "\\*").c_str(), &findData);	// the results of the file search
+	HANDLE findHandle = FindFirstFileW(convertToUTF16(path + "/*").c_str(), &findData);	// the results of the file search
 	if (findHandle == INVALID_HANDLE_VALUE)
 	{
 		return;

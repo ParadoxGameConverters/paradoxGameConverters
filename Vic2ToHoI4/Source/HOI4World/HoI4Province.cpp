@@ -62,10 +62,10 @@ HoI4Province::HoI4Province(string _filename)
 	num				= atoi(temp.c_str());
 
 	Object* obj;
-	obj = parser_UTF8::doParseFile((string(".\\blankMod\\output\\history\\provinces") + _filename).c_str());
+	obj = parser_UTF8::doParseFile((string("./blankMod/output/history/provinces") + _filename).c_str());
 	if (obj == NULL)
 	{
-		LOG(LogLevel::Error) << "Could not parse .\\blankMod\\output\\history\\provinces" << _filename;
+		LOG(LogLevel::Error) << "Could not parse ./blankMod/output/history/provinces" << _filename;
 		exit(-1);
 	}
 
@@ -118,13 +118,13 @@ void HoI4Province::output() const
 	for (auto filename: filenames)
 	{
 		FILE* output;
-		if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\provinces\\" + filename.first).c_str(), "w") != 0)
+		if (fopen_s(&output, ("Output/" + Configuration::getOutputName() + "/history/provinces/" + filename.first).c_str(), "w") != 0)
 		{
 			int errNum;
 			_get_errno(&errNum);
 			char errStr[256];
 			strerror_s(errStr, sizeof(errStr), errNum);
-			LOG(LogLevel::Error) << "Could not create province history file Output\\" << Configuration::getOutputName() << "\\history\\provinces\\" << filename.first << " - " << errStr;
+			LOG(LogLevel::Error) << "Could not create province history file Output/" << Configuration::getOutputName() << "/history/provinces/" << filename.first << " - " << errStr;
 			exit(-1);
 		}
 		if (owner != "")

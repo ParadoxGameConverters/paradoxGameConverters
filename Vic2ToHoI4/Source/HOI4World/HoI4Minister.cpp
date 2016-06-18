@@ -21,7 +21,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4Minister.h"
-#include "..\Configuration.h"
+#include "../Configuration.h"
 
 
 
