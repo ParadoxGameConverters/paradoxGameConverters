@@ -57,4 +57,4 @@ class V2Diplomacy
 
 
 
-#endif
+#endif // V2DIPLOMACY_H_

@@ -148,4 +148,4 @@ class HoI4RegGroup // also Navy, Air
 
 
 
-#endif
+#endif // HoI4ARMY_H_
