@@ -138,7 +138,6 @@ void HoI4World::importPotentialCountries()
 			int start = line.find_first_of('/');
 			int size = line.find_last_of('\"') - start;
 			countryFileName = line.substr(start, size);
-
 			HoI4Country* newCountry = new HoI4Country(tag, countryFileName, this);
 			potentialCountries.insert(make_pair(tag, newCountry));
 		}
@@ -150,6 +149,7 @@ void HoI4World::importPotentialCountries()
 void HoI4World::output() const
 {
 	outputCommonCountries();
+	outputColorsfile();
 	//outputAutoexecLua();
 	outputLocalisations();
 	outputHistory();
@@ -195,7 +195,28 @@ void HoI4World::outputCommonCountries() const
 	fprintf(allCountriesFile, "\n");
 	fclose(allCountriesFile);
 }
+void HoI4World::outputColorsfile() const
+{
 
+	ofstream output2;
+	output2.open(("Output/" + Configuration::getOutputName() + "/common/countries/colors.txt"));
+	if (!output2.is_open())
+	{
+		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/colors.txt";
+		exit(-1);
+	}
+	string s = "#reload countrycolors\r\n";
+	for (auto countryItr : countries)
+	{
+		if (potentialCountries.find(countryItr.first) == potentialCountries.end())
+		{
+			s += countryItr.second->outputColors();
+			//countryItr.second->outputColors(allCountriesFile);
+		}
+	}
+	output2 << s;
+	output2.close();
+}
 
 void HoI4World::outputAutoexecLua() const
 {
@@ -313,7 +334,7 @@ void HoI4World::outputHistory() const
 			potentialItr.second->output(states.size());
 		}
 	}
-	//LOG(LogLevel::Debug) << "Writing diplomacy";
+	LOG(LogLevel::Debug) << "Writing diplomacy";
 	//diplomacy.output();
 }
 
@@ -375,6 +396,7 @@ void HoI4World::convertCountries(const V2World &sourceWorld, const CountryMappin
 		{
 			LOG(LogLevel::Warning) << "Could not convert V2 tag " << sourceItr.first << " to HoI4";
 		}
+
 	}
 
 	// initialize all potential countries

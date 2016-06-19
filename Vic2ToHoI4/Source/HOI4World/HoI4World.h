@@ -82,6 +82,7 @@ class HoI4World
 		HoI4RegGroup*				createArmy(const inverseProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string tag, const V2Army* oldArmy, vector<HoI4Regiment*>& sourceRegiments, int& airForceIndex);
 
 		void	outputCommonCountries() const;
+		void outputColorsfile() const;
 		void	outputAutoexecLua() const;
 		void	outputLocalisations() const;
 		void	outputHistory() const;

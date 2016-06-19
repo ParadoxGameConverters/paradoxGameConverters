@@ -63,6 +63,8 @@ class HoI4Country
 	public:
 		HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld, bool _newCountry = false);
 		void	output(int) const;
+		void	outputCommonCountryFile() const;
+		string	outputColors() const;
 		void	outputToCommonCountriesFile(FILE*) const;
 		void	outputLocalisation(ofstream& localisationFile) const;
 		void	outputAIScript() const;

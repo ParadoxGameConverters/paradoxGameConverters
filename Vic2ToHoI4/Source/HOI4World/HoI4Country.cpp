@@ -66,10 +66,11 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 {
 	theWorld = _theWorld;
 	newCountry = _newCountry;
-	commonCountryFile = _commonCountryFile;
+	
 
 	tag = _tag;
-
+	commonCountryFile = _commonCountryFile;
+	commonCountryFile.insert(1, tag + "-");
 	provinces.clear();
 	technologies.clear();
 
@@ -220,19 +221,7 @@ void HoI4Country::output(int statenumber) const
 
 	//// output leaders file
 	//outputLeaders();
-
-	// Output common country file
-	output.open(("Output/" + Configuration::getOutputName() + "/common/countries/" + WinUtils::convertToASCII(commonCountryFile)).c_str());
-	if (!output.is_open())
-	{
-		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << WinUtils::convertToASCII(commonCountryFile);
-		exit(-1);
-	}
-	int red;
-	int green;
-	int blue;
-	color.GetRGB(red, green, blue);
-	output << "color = { " << red << " " << green << " " << blue << "}" << endl;
+		outputCommonCountryFile();
 	/*fprintf(output, "graphical_culture = %s\n", graphicalCulture.c_str());
 	fprintf(output, "\n");
 	if (majorNation)
@@ -346,12 +335,41 @@ void HoI4Country::output(int statenumber) const
 		ministerItr.output(output);
 	}
 	fprintf(output, "}\n");*/
-	output.close();
+	//output.close();
 
 	//outputAIScript();
 }
-
-
+void HoI4Country::outputCommonCountryFile() const
+{
+	// Output common country file
+	ofstream output2;
+	output2.open(("Output/" + Configuration::getOutputName() + "/common/countries/" + WinUtils::convertToASCII(commonCountryFile)).c_str());
+	if (!output2.is_open())
+	{
+		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << WinUtils::convertToASCII(commonCountryFile);
+		exit(-1);
+	}
+	int red = 0;
+	int green = 0;
+	int blue = 0;
+	color.GetRGB(red, green, blue);
+	string s = to_string(red) + " " + to_string(green) + " " + to_string(blue);
+	output2 << "color = { " << s << "}" << endl;
+	output2.close();
+}
+string HoI4Country::outputColors() const
+{
+	int red;
+	int green;
+	int blue;
+	color.GetRGB(red, green, blue);
+	string s;
+	if (capital != 0)
+		return  tag + " = {\r\tcolor = rgb { " + to_string(red) + " " + to_string(green) + " " + to_string(blue) + " }\r\tcolor_ui = rgb { " + to_string(red) + " " + to_string(green) + " " + to_string(blue) + " }\r}\r";
+	else
+		return "";
+	//fprintf(output,s, tag.c_str(), WinUtils::convertToASCII(commonCountryFile).c_str());
+}
 void HoI4Country::outputToCommonCountriesFile(FILE* output) const
 {
 	//removes countries with 0 capital, sorry that its in here and not in HoI4World.cpp :(
@@ -500,7 +518,7 @@ void HoI4Country::outputOOB() const
 void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap, map<int, HoI4State*> states)
 {
 	srcCountry = _srcCountry;
-
+	
 	struct _finddata_t	fileData;
 	intptr_t					fileListing;
 	string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
@@ -537,7 +555,6 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	// Color
 	color = srcCountry->getColor();
-
 	// Localisation
 	localisation.SetTag(tag);
 	localisation.ReadFromCountry(*srcCountry);
