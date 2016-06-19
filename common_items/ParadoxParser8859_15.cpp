@@ -50,7 +50,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <boost/spirit/include/support_istream_iterator.hpp>
 #include <boost/spirit/include/qi.hpp>
 #include "Log.h"
-#include "WinUtils.h"
+#include "OSCompatibilityLayer.h"
 
 
 
@@ -208,7 +208,15 @@ wstring bufferOneObject(ifstream& read)
 	{
 		string buffer;
 		getline(read, buffer);
-		wstring wide_buffer = WinUtils::convertToUTF16(buffer);
+		if(buffer.empty())
+		{
+			continue;
+		}
+		if(buffer.back() == '\r')
+		{
+			buffer.pop_back();
+		}
+		wstring wide_buffer = Utils::convertToUTF16(buffer);
 
 		if (wide_buffer == L"CK2txt")
 		{
@@ -342,7 +350,7 @@ void setLHS(wstring key)
 {
 	//LOG(LogLevel::Debug) << "Setting LHS : " << key;
 
-	Object* p = new Object(WinUtils::convertToUTF8(key));
+	Object* p = new Object(Utils::convertToUTF8(key));
 	if (0 == stack.size())
 	{
 		topLevel->setValue(p);
@@ -368,7 +376,7 @@ void setRHSleaf(wstring val)
 	//LOG(LogLevel::Debug) << "Setting RHSleaf : " << val;
 	Object* l = stack.back();	// the leaf object
 	stack.pop_back(); 
-	l->setValue(WinUtils::convertToUTF8(val));
+	l->setValue(Utils::convertToUTF8(val));
 	if ( (!inObjList) &&(0 < stack.size()) )
 	{
 		Object* p = stack.back();	// the object holding the leaf
@@ -388,7 +396,7 @@ void setRHStaglist(vector<wstring> vals)
 	vector<string> utf8Vals;
 	for (auto val: vals)
 	{
-		utf8Vals.push_back(WinUtils::convertToUTF8(val));
+		utf8Vals.push_back(Utils::convertToUTF8(val));
 	}
 
 
@@ -466,7 +474,7 @@ Object* doParseFile(string filename)
 {
 	/* - when using parser debugging, also ensure that the parser object is non-static!
 	debugme = false;
-	if (string(filename) == "D:\\Victoria 2\\technologies\\commerce_tech.txt")
+	if (string(filename) == "D:/Victoria 2/technologies/commerce_tech.txt")
 		debugme = true;
 	*/
 

@@ -29,7 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Minister.h"
 #include "../V2World/V2Relations.h"
 #include "../V2World/V2Party.h"
-#include "../../../common_items/WinUtils.h"
+#include "../../../common_items/OSCompatibilityLayer.h"
 
 
 
@@ -141,10 +141,10 @@ void HoI4Country::output(int statenumber) const
 	
 	if ((capital > 0 && capital <= statenumber) || !newCountry)
 	{
-		output.open(("Output/" + Configuration::getOutputName() + "/history/countries/" + WinUtils::convertToASCII(filename)).c_str());
+		output.open(("Output/" + Configuration::getOutputName() + "/history/countries/" + Utils::convertToASCII(filename)).c_str());
 		if (!output.is_open())
 		{
-			Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/history/" << WinUtils::convertToASCII(filename);
+			Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/history/" << Utils::convertToASCII(filename);
 			exit(-1);
 		}
 		output << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
@@ -221,7 +221,8 @@ void HoI4Country::output(int statenumber) const
 
 	//// output leaders file
 	//outputLeaders();
-		outputCommonCountryFile();
+	outputCommonCountryFile();
+
 	/*fprintf(output, "graphical_culture = %s\n", graphicalCulture.c_str());
 	fprintf(output, "\n");
 	if (majorNation)
@@ -375,7 +376,7 @@ void HoI4Country::outputToCommonCountriesFile(FILE* output) const
 	//removes countries with 0 capital, sorry that its in here and not in HoI4World.cpp :(
 	if (capital != 0)
 	{
-		fprintf(output, "%s = \"countries%s\"\n", tag.c_str(), WinUtils::convertToASCII(commonCountryFile).c_str());
+		fprintf(output, "%s = \"countries%s\"\n", tag.c_str(), Utils::convertToASCII(commonCountryFile).c_str());
 	}
 }
 
@@ -422,9 +423,9 @@ void HoI4Country::outputParties(FILE* output) const
 	fprintf(output, "\n");
 
 	FILE* partyLocalisations;
-	if (fopen_s(&partyLocalisations, ("Output\\" + Configuration::getOutputName() + "\\localisation\\Parties.csv").c_str(), "a") != 0)
+	if (fopen_s(&partyLocalisations, ("Output/" + Configuration::getOutputName() + "/localisation/Parties.csv").c_str(), "a") != 0)
 	{
-		LOG(LogLevel::Error) << "Could not open " << "Output\\" << Configuration::getOutputName() << "\\localisation\\Parties.csv";
+		LOG(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/localisation/Parties.csv";
 		exit(-1);
 	}
 	for (auto party : parties)
@@ -438,9 +439,9 @@ void HoI4Country::outputParties(FILE* output) const
 void HoI4Country::outputLeaders() const
 {
 	FILE* leadersFile;
-	if (fopen_s(&leadersFile, ("Output\\" + Configuration::getOutputName() + "\\history\\leaders\\" + tag.c_str() + ".txt").c_str(), "w") != 0)
+	if (fopen_s(&leadersFile, ("Output/" + Configuration::getOutputName() + "/history/leaders/" + tag.c_str() + ".txt").c_str(), "w") != 0)
 	{
-		LOG(LogLevel::Error) << "Could not open " << "Output\\" << Configuration::getOutputName() << "\\history\\leaders\\" << tag.c_str() << ".txt";
+		LOG(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/history/leaders/" << tag.c_str() << ".txt";
 	}
 	int landLeaders = 0;
 	int seaLeaders = 0;
@@ -518,32 +519,10 @@ void HoI4Country::outputOOB() const
 void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap, map<int, HoI4State*> states)
 {
 	srcCountry = _srcCountry;
-	
-	struct _finddata_t	fileData;
-	intptr_t					fileListing;
-	string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
-	if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-	{
-		filename = fileData.name;
-	}
-	_findclose(fileListing);
+	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
 	if (filename == "")
 	{
-		string filesearch = Configuration::getHoI4Path() + "\\tfh\\history\\countries\\" + tag + "*.txt";
-		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-		{
-			filename = fileData.name;
-		}
-		else
-		{
-			_findclose(fileListing);
-			filesearch = Configuration::getHoI4Path() + "\\history\\countries\\" + tag + "*.txt";
-			if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-			{
-				filename = fileData.name;
-			}
-		}
-		_findclose(fileListing);
+		filename = Utils::GetFileFromTag(Configuration::getHoI4Path() + "/tfh/history/countries/", tag);
 	}
 	if (filename == "")
 	{
@@ -785,32 +764,22 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 void HoI4Country::initFromHistory()
 {
 	string fullFilename;
-	struct _finddata_t	fileData;
-	intptr_t					fileListing;
-	string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
-	if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
+	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
+	if (filename == "")
 	{
-		filename			= fileData.name;
-		fullFilename	= string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
+		filename = Utils::GetFileFromTag(Configuration::getHoI4Path() + "/history/countries/", tag);
 	}
-	_findclose(fileListing);
-	if (fullFilename == "")
-	{
-		filesearch = Configuration::getHoI4Path() + "\\history\\countries\\" + tag + "*.txt";
-		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-		{
-			filename = fileData.name;
-			fullFilename = Configuration::getHoI4Path() + "\\history\\countries\\" + fileData.name;
-		}
-		_findclose(fileListing);
-	}
-	if (fullFilename == "")
+	if (filename == "")
 	{
 		string countryName	= commonCountryFile;
 		int lastSlash			= countryName.find_last_of("/");
 		countryName				= countryName.substr(lastSlash + 1, countryName.size());
 		filename					= tag + " - " + countryName;
 		return;
+	}
+	else
+	{
+		fullFilename = string("./blankMod/output/history/countries/") + filename;
 	}
 
 	Object* obj = parser_UTF8::doParseFile(fullFilename.c_str());
@@ -2369,7 +2338,7 @@ void HoI4Country::outputLocalisation(ofstream& localisationFile) const
 void HoI4Country::outputAIScript() const
 {
 	FILE* output;
-	if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\script\\country\\" + tag + ".lua").c_str(), "w") != 0)
+	if (fopen_s(&output, ("Output/" + Configuration::getOutputName() + "/script/country/" + tag + ".lua").c_str(), "w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create country script file for " << tag;
 		exit(-1);

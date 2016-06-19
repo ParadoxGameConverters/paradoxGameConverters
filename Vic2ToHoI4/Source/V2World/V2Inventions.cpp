@@ -24,7 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "V2Inventions.h"
 #include "../Configuration.h"
-#include "../../../common_items/WinUtils.h"
+#include "../../../common_items/OSCompatibilityLayer.h"
 #include "Object.h"
 #include "ParadoxParser8859_15.h"
 
@@ -37,15 +37,15 @@ void getInventionNums(inventionNumToName& numToName)
 	vector<string> vic2Mods = Configuration::getVic2Mods();
 	for (auto itr: vic2Mods)
 	{
-		string possiblePath = Configuration::getV2Path() + "\\mod\\" + itr + "\\inventions\\";
-		if (WinUtils::doesFolderExist(possiblePath))
+		string possiblePath = Configuration::getV2Path() + "/mod/" + itr + "/inventions/";
+		if (Utils::doesFolderExist(possiblePath))
 		{
 			path = possiblePath;
 		}
 	}
 	if (path == "")
 	{
-		path = Configuration::getV2Path() + "\\inventions\\";
+		path = Configuration::getV2Path() + "/inventions/";
 	}
 
 	//get the inventions
@@ -53,10 +53,10 @@ void getInventionNums(inventionNumToName& numToName)
 	int num = 1;
 
 	set<string> techFiles;
-	WinUtils::GetAllFilesInFolder(path, techFiles);
+	Utils::GetAllFilesInFolder(path, techFiles);
 	for (auto fileItr: techFiles)
 	{
-		Object* obj = parser_8859_15::doParseFile((path + "\\" + fileItr).c_str());
+		Object* obj = parser_8859_15::doParseFile((path + "/" + fileItr).c_str());
 		vector<Object*> techObjs = obj->getLeaves();
 		for (auto techItr: techObjs)
 		{

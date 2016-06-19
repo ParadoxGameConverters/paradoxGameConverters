@@ -22,11 +22,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Log.h"
-#include "WinUtils.h"
+#include "OSCompatibilityLayer.h"
 #include <ctime>
 #include <fstream>
 #include <iostream>
-#include <Windows.h>
+
+
+
+#pragma warning(disable : 4996)	// suppress warning about localtime, asthe alternative is windows-specific
 
 
 
@@ -46,57 +49,8 @@ Log::~Log()
 {
 	logMessageStream << std::endl;
 	std::string logMessage = logMessageStream.str();
-	WriteToConsole(logLevel, logMessage);
+	Utils::WriteToConsole(logLevel, logMessage);
 	WriteToFile(logLevel, logMessage);
-}
-
-
-void Log::WriteToConsole(LogLevel level, const std::string& logMessage)
-{
-	if (level == LogLevel::Debug)
-	{	// Don't log debug messages to console.
-		return;
-	}
-
-	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);	// a handle to the console window
-	if (console != INVALID_HANDLE_VALUE)
-	{
-		CONSOLE_SCREEN_BUFFER_INFO oldConsoleInfo;	// the current (soon to be outdated) console data
-		BOOL success = GetConsoleScreenBufferInfo(console, &oldConsoleInfo);	// whether or not the console data could be retrieved
-		if (success)
-		{
-			WORD color;	// the color the text will be
-			switch (level)
-			{
-				case LogLevel::Error:
-					color = FOREGROUND_RED | FOREGROUND_INTENSITY;
-					break;
-
-				case LogLevel::Warning:
-					color = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY;
-					break;
-
-				case LogLevel::Info:
-					color = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
-					break;
-
-				case LogLevel::Debug:
-				default:
-					color = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
-					break;
-			}
-			SetConsoleTextAttribute(console, color);
-			DWORD bytesWritten = 0;
-			WriteConsoleW(console, WinUtils::convertToUTF16(logMessage).c_str(), logMessage.size(), &bytesWritten, NULL);
-
-			// Restore old console color.
-			SetConsoleTextAttribute(console, oldConsoleInfo.wAttributes);
-
-			return;
-		}
-	}
-
-	std::cout << logMessage;
 }
 
 
@@ -106,12 +60,11 @@ void Log::WriteToFile(LogLevel level, const std::string& logMessage)
 
 	time_t rawtime;	// the raw time data
 	time(&rawtime);
-	tm timeInfo;		// the processed time data
-	errno_t error = localtime_s(&timeInfo, &rawtime);	// wheter or not there was an error
-	if (error == 0)
+	tm* timeInfo = localtime(&rawtime); // the processed time data
+	if (timeInfo) // whether or not there was an error
 	{
 		char timeBuffer[64];	// the formatted time
-		size_t bytesWritten = strftime(timeBuffer, 64, "%Y-%m-%d %H:%M:%S ", &timeInfo);	// the number of digits for the time stamp
+		size_t bytesWritten = strftime(timeBuffer, 64, "%Y-%m-%d %H:%M:%S ", timeInfo);	// the number of digits for the time stamp
 		if (bytesWritten != 0)
 		{
 			logFile << timeBuffer;

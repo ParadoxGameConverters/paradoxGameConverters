@@ -59,4 +59,4 @@ private:
 	std::array<int, 3> c;	// the color values
 };
 
-#endif
+#endif // COLOR_H_

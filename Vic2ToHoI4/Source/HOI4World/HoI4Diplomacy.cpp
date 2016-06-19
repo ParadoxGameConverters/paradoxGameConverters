@@ -24,35 +24,35 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Diplomacy.h"
 #include "Log.h"
 #include "../Configuration.h"
-#include "WinUtils.h"
+#include "OSCompatibilityLayer.h"
 
 
 
 void HoI4Diplomacy::output() const
 {
 	FILE* alliances;
-	if (fopen_s(&alliances, ("Output\\" + Configuration::getOutputName() + "\\history\\diplomacy\\Alliances.txt").c_str(), "w") != 0)
+	if (fopen_s(&alliances, ("Output/" + Configuration::getOutputName() + "/history/diplomacy/Alliances.txt").c_str(), "w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create alliances history file";
 		exit(-1);
 	}
 
 	FILE* guarantees;
-	if (fopen_s(&guarantees, ("Output\\" + Configuration::getOutputName() + "\\history\\diplomacy\\Guarantees.txt").c_str(), "w") != 0)
+	if (fopen_s(&guarantees, ("Output/" + Configuration::getOutputName() + "/history/diplomacy/Guarantees.txt").c_str(), "w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create guarantees history file";
 		exit(-1);
 	}
 
 	FILE* puppetStates;
-	if (fopen_s(&puppetStates, ("Output\\" + Configuration::getOutputName() + "\\history\\diplomacy\\PuppetStates.txt").c_str(), "w") != 0)
+	if (fopen_s(&puppetStates, ("Output/" + Configuration::getOutputName() + "/history/diplomacy/PuppetStates.txt").c_str(), "w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create puppet states history file";
 		exit(-1);
 	}
 
 	FILE* relations;
-	if (fopen_s(&relations, ("Output\\" + Configuration::getOutputName() + "\\history\\diplomacy\\relations.txt").c_str(), "w") != 0)
+	if (fopen_s(&relations, ("Output/" + Configuration::getOutputName() + "/history/diplomacy/relations.txt").c_str(), "w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create relations history file";
 		exit(-1);

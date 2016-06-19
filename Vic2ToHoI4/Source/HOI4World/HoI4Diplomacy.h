@@ -58,4 +58,4 @@ class HoI4Diplomacy
 
 
 
-#endif
+#endif // HoI4DIPLOMACY_H_
