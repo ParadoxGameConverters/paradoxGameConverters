@@ -1811,7 +1811,13 @@ void HoI4World::generateLeaders(const leaderTraitsMap& leaderTraits, const names
 		country.second->generateLeaders(leaderTraits, namesMap, portraitMap);
 	}
 }
-
+void HoI4World::calculateArmies(const inverseProvinceMapping& inverseProvinceMap)
+{
+	for (auto country : countries)
+	{
+		country.second->CalculateArmyDivisions(inverseProvinceMap);
+	}
+}
 
 void HoI4World::consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap)
 {

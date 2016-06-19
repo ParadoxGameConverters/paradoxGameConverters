@@ -56,6 +56,7 @@ class HoI4World
 		void	convertArmies(const V2World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		void	configureFactions(const V2World& sourceWorld, const CountryMapping& countryMap);
 		void	generateLeaders(const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
+		void calculateArmies(const inverseProvinceMapping& inverseProvinceMap);
 		void	consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap);
 		void	convertVictoryPoints(const V2World& sourceWorld, const CountryMapping& countryMap);
 		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
