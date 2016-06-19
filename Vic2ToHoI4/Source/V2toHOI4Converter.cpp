@@ -437,7 +437,10 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";
-	system("%systemroot%/System32/xcopy blankMod output /E /Q /Y /I");
+	if (!Utils::copyFolder("blankMod", "output"))
+	{
+		exit(-1);
+	}
 
 	FILE* modFile;	// the .mod file for this mod
 	if (fopen_s(&modFile, ("Output/" + Configuration::getOutputName() + ".mod").c_str(), "w") != 0)
