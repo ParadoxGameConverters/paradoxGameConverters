@@ -83,6 +83,7 @@ namespace Utils
 	// Returns false and logs a warning on failure.
 	bool TryCopyFile(const std::string& sourcePath, const std::string& destPath);
 	bool copyFolder(const std::string& sourceFolder, const std::string& destFolder);
+	bool renameFolder(const std::string& sourceFolder, const std::string& destFolder);
 	// Returns true if the specified file exists (and is a file rather than a folder).
 	bool DoesFileExist(const std::string& path);
 	// Returns true if the specified folder exists (and is a folder rather than a file).

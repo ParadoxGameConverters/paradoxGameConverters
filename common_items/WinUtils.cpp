@@ -103,21 +103,56 @@ bool copyFolder(const std::string& sourceFolder, const std::string& destFolder)
 	wcscpy(to, wideDest.c_str());
 	to[wideDest.size() + 1] = '\0';
 
-	SHFILEOPSTRUCT* fileOptStruct;
-	fileOptStruct->hwnd		= NULL;
-	fileOptStruct->wFunc		= FO_COPY;
-	fileOptStruct->pFrom		= from;
-	fileOptStruct->pTo		= to;
-	fileOptStruct->fFlags	= FOF_NOCONFIRMATION | FOF_NOCONFIRMMKDIR | FOF_NOERRORUI | FOF_SILENT;
+	SHFILEOPSTRUCT fileOptStruct;
+	fileOptStruct.hwnd	= NULL;
+	fileOptStruct.wFunc	= FO_COPY;
+	fileOptStruct.pFrom	= from;
+	fileOptStruct.pTo		= to;
+	fileOptStruct.fFlags	= FOF_NOCONFIRMATION | FOF_NOCONFIRMMKDIR | FOF_NOERRORUI | FOF_SILENT;
 
-	int result = SHFileOperation(fileOptStruct);
+	int result = SHFileOperation(&fileOptStruct);
 	if (result != 0)
 	{
 		LOG(LogLevel::Error) << "Could not copy" << sourceFolder << " to " << destFolder << ". Error code: " << result;
 	}
-	else if (fileOptStruct->fAnyOperationsAborted)
+	else if (fileOptStruct.fAnyOperationsAborted)
 	{
 		LOG(LogLevel::Error) << "Could not copy" << sourceFolder << " to " << destFolder << ". Operation aborted";
+	}
+
+	delete[] from;
+	delete[] to;
+	return true;
+}
+
+
+bool renameFolder(const std::string& sourceFolder, const std::string& destFolder)
+{
+	std::wstring wideSource = convertToUTF16(sourceFolder);
+	wchar_t* from = new wchar_t[wideSource.size() + 2];
+	wcscpy(from, wideSource.c_str());
+	from[wideSource.size() + 1] = '\0';
+
+	std::wstring wideDest = convertToUTF16(destFolder);
+	wchar_t* to = new wchar_t[wideDest.size() + 1];
+	wcscpy(to, wideDest.c_str());
+	to[wideDest.size() + 1] = '\0';
+
+	SHFILEOPSTRUCT fileOptStruct;
+	fileOptStruct.hwnd	= NULL;
+	fileOptStruct.wFunc	= FO_MOVE;
+	fileOptStruct.pFrom	= from;
+	fileOptStruct.pTo		= to;
+	fileOptStruct.fFlags	= FOF_NOCONFIRMATION | FOF_NOCONFIRMMKDIR | FOF_NOERRORUI | FOF_SILENT;
+
+	int result = SHFileOperation(&fileOptStruct);
+	if (result != 0)
+	{
+		LOG(LogLevel::Error) << "Could not rename" << sourceFolder << " to " << destFolder << ". Error code: " << result;
+	}
+	else if (fileOptStruct.fAnyOperationsAborted)
+	{
+		LOG(LogLevel::Error) << "Could not rename" << sourceFolder << " to " << destFolder << ". Operation aborted";
 	}
 
 	delete[] from;

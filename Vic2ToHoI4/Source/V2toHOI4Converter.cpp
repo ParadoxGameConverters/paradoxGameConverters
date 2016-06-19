@@ -455,8 +455,14 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	//fprintf(modFile, "replace = \"history/diplomacy\"\n");
 	fprintf(modFile, "replace = \"history/states\"\n");
 	fclose(modFile);
+
 	string renameCommand = "move /Y output/output output/" + Configuration::getOutputName();	// the command to rename the mod correctly
-	system(renameCommand.c_str());
+	if (!Utils::renameFolder("output/output", "output/" + Configuration::getOutputName()))
+	{
+		exit(-1);
+	}
+
+
 	LOG(LogLevel::Info) << "Copying flags";
 	destWorld.copyFlags(sourceWorld, countryMap);
 
