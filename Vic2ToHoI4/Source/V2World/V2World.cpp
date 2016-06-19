@@ -218,6 +218,24 @@ void V2World::setLocalisations(V2Localisation& localisation)
 			countryItr.second->setLocalisationAdjective(language, adjective);
 		}
 	}
+	for (auto country : countries)
+	{
+
+		//	loop through the states in the vic2 country
+		for (auto vic2State : country.second->getStates())
+		{
+			string statename = "";
+			const auto& nameLocalisations = localisation.GetTextInEachLanguage("PROV" + to_string(vic2State.getStateID()));	// the names in all languages
+			for (const auto& nameLocalisation : nameLocalisations)	// the name under consideration
+			{
+				const std::string& language = nameLocalisation.first;	// the language
+				const std::string& name = nameLocalisation.second;		// the name of the country in this language
+				if (nameLocalisation.first == "english")
+					statename = name;;
+			}
+			vic2State.setName(statename);
+		}
+	}
 }
 
 

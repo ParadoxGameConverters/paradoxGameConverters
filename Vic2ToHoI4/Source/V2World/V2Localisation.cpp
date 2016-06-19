@@ -150,4 +150,16 @@ const std::map<std::string, std::string>& V2Localisation::GetTextInEachLanguage(
 
 	return keyFindIter->second;
 }
+const std::map<std::string, std::string>& V2Localisation::GetTextInEachLanguageForStates(const std::string& key) const
+{
+	static const std::map<std::string, std::string> noLocalisation;	// used if there's no localisation
+
+	const auto keyFindIter = localisations.find(key);	// the localisation we want
+	if (keyFindIter == localisations.end())
+	{
+		return noLocalisation;
+	}
+
+	return keyFindIter->second;
+}
 

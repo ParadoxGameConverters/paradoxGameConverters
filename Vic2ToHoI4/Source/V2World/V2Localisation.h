@@ -60,6 +60,8 @@ class V2Localisation
 		// language to localised text.
 		const std::map<std::string, std::string>& GetTextInEachLanguage(const std::string& key) const;
 
+		const std::map<std::string, std::string>& GetTextInEachLanguageForStates(const std::string & key) const;
+
 	private:
 		static const size_t numLanguages = 14;
 		static const std::array<std::string, numLanguages> languages;

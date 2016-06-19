@@ -413,11 +413,10 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	}*/
 	AIFocusModifiers focusModifiers;
 	//initAIFocusModifiers(obj, focusModifiers);
-
 	// Convert
 	LOG(LogLevel::Info) << "Converting states";
 	HoI4StateMapping HoI4StateMap;
-	destWorld.convertProvinceOwners(sourceWorld, inverseProvinceMap, countryMap, HoI4StateMap);
+	destWorld.convertProvinceOwners(sourceWorld, inverseProvinceMap, countryMap, HoI4StateMap, localisation);
 	LOG(LogLevel::Info) << "Converting countries";
 	destWorld.convertCountries(sourceWorld, countryMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, HoI4StateMap);
 	destWorld.convertNavalBases(sourceWorld, inverseProvinceMap);

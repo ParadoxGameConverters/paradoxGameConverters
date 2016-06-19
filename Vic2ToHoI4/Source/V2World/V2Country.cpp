@@ -288,12 +288,15 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 		Vic2State newState;
 		// get the provinces in the state
 		vector<Object*> provinceObj = statesItr[0].getValue("provinces");
+		vector<string> realid = provinceObj[0] ->getTokens();
+		string realrealid = realid.front();
 		if (provinceObj.size() > 0)
 		{
 			vector<string> provinceIDs = provinceObj[0]->getTokens();
 			for (auto provinceItr: provinceIDs)
 			{
 				newState.addProvince(atoi(provinceItr.c_str()));
+				newState.setID(std::stoi(realrealid));
 			}
 		}
 
