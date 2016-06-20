@@ -33,7 +33,11 @@ HoI4State::HoI4State(int _ID, string _ownerTag, string _name)
 {
 	ID			= _ID;
 	ownerTag	= _ownerTag;
-	name = _name;
+	name		= _name;
+	if (name == "")
+	{
+		name = "Foo";
+	}
 }
 
 

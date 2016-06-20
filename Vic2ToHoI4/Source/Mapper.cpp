@@ -238,19 +238,20 @@ void removeEmptyNations(V2World& world)
 }
 
 
-void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateIndexMap)
+void initStateMap(Object* obj, stateMapping& stateMap, stateIdMapping& stateIdMap)
 {
 	vector<Object*> leaves = obj->getLeaves();	// the states
 
-	for (unsigned int stateIndex = 0; stateIndex < leaves.size(); stateIndex++)
+	for (auto leaf: leaves)
 	{
-		vector<string>	provinces = leaves[stateIndex]->getTokens();	// the provinces in this state
-		vector<int>			neighbors;												// the neighboring provinces (that is, all provinces in the state)
+		string			ID				= leaf->getKey();		// the name of this state
+		vector<string>	provinces	= leaf->getTokens();	// the provinces in this state
+		vector<int>		neighbors;								// the neighboring provinces (that is, all provinces in the state)
 
 		for (auto provNum: provinces)
 		{
 			neighbors.push_back( atoi(provNum.c_str()) );
-			stateIndexMap.insert(make_pair(atoi(provNum.c_str()), stateIndex));
+			stateIdMap.insert(make_pair(atoi(provNum.c_str()), ID));
 		}
 		for (auto neighbor: neighbors)
 		{

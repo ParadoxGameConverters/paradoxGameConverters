@@ -198,7 +198,7 @@ void V2World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProvi
 }
 
 
-void V2World::setLocalisations(V2Localisation& localisation)
+void V2World::setLocalisations(V2Localisation& localisation, const stateIdMapping& stateIdMap)
 {
 	for (auto countryItr: countries)
 	{
@@ -219,20 +219,37 @@ void V2World::setLocalisations(V2Localisation& localisation)
 	}
 	for (auto country : countries)
 	{
-
 		//	loop through the states in the vic2 country
 		for (auto vic2State : country.second->getStates())
 		{
 			string statename = "";
-			const auto& nameLocalisations = localisation.GetTextInEachLanguage("PROV" + to_string(vic2State.getStateID()));	// the names in all languages
-			for (const auto& nameLocalisation : nameLocalisations)	// the name under consideration
+
+			auto stateID = stateIdMap.find(vic2State->getProvinces()[0]);
+			if (stateID != stateIdMap.end())
 			{
-				const std::string& language = nameLocalisation.first;	// the language
-				const std::string& name = nameLocalisation.second;		// the name of the country in this language
-				if (nameLocalisation.first == "english")
-					statename = name;;
+				const auto& nameLocalisations = localisation.GetTextInEachLanguage(stateID->second);	// the names in all languages
+				for (const auto& nameLocalisation : nameLocalisations)		// the name under consideration
+				{
+					const std::string& language = nameLocalisation.first;		// the language
+					const std::string& name		 = nameLocalisation.second;	// the name of the country in this language
+					if (nameLocalisation.first == "english")
+					{
+						statename = name;
+					}
+				}
 			}
-			vic2State.setName(statename);
+
+			// some otherwise valid unicode sequences cause problems when just before a quote
+			//		wierdest thing ever. Happens in notepad++, too.
+			if (statename.size() > 1)
+			{
+				string lastTwoBytes = statename.substr(statename.size() - 2, 2);
+				if (lastTwoBytes == u8"ó")
+				{
+					statename = statename.substr(0, statename.size() - 2) + 'o';
+				}
+			}
+			vic2State->setName(statename);
 		}
 	}
 }

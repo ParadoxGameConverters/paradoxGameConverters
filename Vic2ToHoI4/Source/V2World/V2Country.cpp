@@ -284,7 +284,7 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 	vector<Object*> statesObj = obj->getValue("state"); // each state in the country
 	for (auto statesItr : statesObj)
 	{
-		Vic2State newState;
+		Vic2State* newState = new Vic2State;
 		// get the provinces in the state
 		vector<Object*> provinceObj = statesItr[0].getValue("provinces");
 		vector<string> realid = provinceObj[0] ->getTokens();
@@ -294,8 +294,8 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 			vector<string> provinceIDs = provinceObj[0]->getTokens();
 			for (auto provinceItr: provinceIDs)
 			{
-				newState.addProvince(atoi(provinceItr.c_str()));
-				newState.setID(std::stoi(realrealid));
+				newState->addProvince(atoi(provinceItr.c_str()));
+				newState->setID(std::stoi(realrealid));
 			}
 		}
 
@@ -310,7 +310,7 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 				levelCount += atoi(levelObj[0]->getLeaf().c_str());
 			}
 		}
-		newState.setFactoryLevel(levelCount);
+		newState->setFactoryLevel(levelCount);
 		states.push_back(newState);
 	}
 }
@@ -399,14 +399,14 @@ void V2Country::clearCores()
 
 void V2Country::putWorkersInProvinces()
 {
-	for (auto state : states)
+	for (auto state: states)
 	{
 		// get the employable workers
 		int craftsmen		= 0;
 		int clerks			= 0;
 		int artisans		= 0;
 		int capitalists	= 0;
-		for (auto provinceNum : state.getProvinces())
+		for (auto provinceNum : state->getProvinces())
 		{
 			auto province = provinces.find(provinceNum);
 			if (province != provinces.end())
@@ -419,10 +419,10 @@ void V2Country::putWorkersInProvinces()
 		}
 
 		// limit craftsmen and clerks by factory levels
-		if ((craftsmen + clerks) > (state.getFactoryLevel() * 10000))
+		if ((craftsmen + clerks) > (state->getFactoryLevel() * 10000))
 		{
-			float newCraftsmen	= (state.getFactoryLevel() * 10000.0f) / (craftsmen + clerks) * craftsmen;
-			float newClerks		= (state.getFactoryLevel() * 10000.0f) / (craftsmen + clerks) * clerks;
+			float newCraftsmen	= (state->getFactoryLevel() * 10000.0f) / (craftsmen + clerks) * craftsmen;
+			float newClerks		= (state->getFactoryLevel() * 10000.0f) / (craftsmen + clerks) * clerks;
 
 			craftsmen	= static_cast<int>(newCraftsmen);
 			clerks		= static_cast<int>(newClerks);
@@ -431,9 +431,9 @@ void V2Country::putWorkersInProvinces()
 		// determine an actual 'employed workers' score
 		int employedWorkers = craftsmen + (clerks * 2) + static_cast<int>(artisans * 0.5) + (capitalists * 2);
 
-		if (state.getProvinces().size() > 0)
+		if (state->getProvinces().size() > 0)
 		{
-			auto employmentProvince = provinces.find(state.getProvinces().front());
+			auto employmentProvince = provinces.find(state->getProvinces().front());
 			if (employmentProvince != provinces.end())
 			{
 				employmentProvince->second->setEmployedWorkers(employedWorkers);

@@ -435,20 +435,10 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 		{
 			//	create a matching HoI4 state
 			int provincecount = 0;
-			string statename = "";
-			const auto& nameLocalisations = localisation.GetTextInEachLanguage("PROV" + to_string(vic2State.getStateID()));	// the names in all languages
-			for (const auto& nameLocalisation : nameLocalisations)	// the name under consideration
-			{
-				const std::string& language = nameLocalisation.first;	// the language
-				const std::string& name = nameLocalisation.second;		// the name of the country in this language
-				if (nameLocalisation.first == "english")
-					statename = name;;
-			}
-			vic2State.setName(statename);
-			HoI4State* newState = new HoI4State(stateID, HoI4Tag, statename);
+			HoI4State* newState = new HoI4State(stateID, HoI4Tag, vic2State->getName());
 
 			//	loop through the provinces in the vic2 state
-			for (auto vic2Province: vic2State.getProvinces())
+			for (auto vic2Province: vic2State->getProvinces())
 			{
 				//	TODO - if the matching HoI4 provinces are owned by this country, add it to the HoI4 state
 				auto provMapping = inverseProvinceMap.find(vic2Province);
