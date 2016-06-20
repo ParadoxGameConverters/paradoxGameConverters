@@ -62,6 +62,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\common_items\CommonUtils.cpp" />
     <ClCompile Include="..\common_items\Date.cpp" />
     <ClCompile Include="..\common_items\Log.cpp" />
     <ClCompile Include="..\common_items\Object.cpp" />
@@ -102,9 +103,9 @@
     <ClInclude Include="..\common_items\Date.h" />
     <ClInclude Include="..\common_items\Log.h" />
     <ClInclude Include="..\common_items\Object.h" />
+    <ClInclude Include="..\common_items\OSCompatibilityLayer.h" />
     <ClInclude Include="..\common_items\ParadoxParser8859_15.h" />
     <ClInclude Include="..\common_items\ParadoxParserUTF8.h" />
-    <ClInclude Include="..\common_items\WinUtils.h" />
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\CountryMapping.h" />

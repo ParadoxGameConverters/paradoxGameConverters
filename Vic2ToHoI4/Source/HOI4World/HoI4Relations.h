@@ -56,4 +56,4 @@ class HoI4Relations
 
 
 
-#endif
+#endif // HoI4RELATIONS_H_

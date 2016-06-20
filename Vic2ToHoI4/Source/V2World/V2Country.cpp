@@ -25,7 +25,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <algorithm>
 #include <math.h>
 #include <float.h>
-#include <io.h>
 #include <fstream>
 #include <sstream>
 #include "Log.h"

@@ -46,4 +46,4 @@ struct V2Party
 
 
 
-#endif
+#endif // V2PARTY_H_

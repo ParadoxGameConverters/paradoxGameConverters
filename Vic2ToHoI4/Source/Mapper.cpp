@@ -25,11 +25,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "Configuration.h"
 #include "Object.h"
-#include "V2World\V2World.h"
-#include "V2World\V2Country.h"
-#include "V2World\V2Province.h"
+#include "V2World/V2World.h"
+#include "V2World/V2Country.h"
+#include "V2World/V2Province.h"
 #include <algorithm>
-#include <sys/stat.h>
 
 
 
@@ -120,7 +119,7 @@ vector<int> getHoI4ProvinceNums(inverseProvinceMapping invProvMap, const int v2P
 HoI4AdjacencyMapping initHoI4AdjacencyMap()
 {
 	//FILE* adjacenciesBin = NULL;	// the adjacencies.bin file
-	//string filename = Configuration::getHoI4Path() + "\\tfh\\map\\cache\\adjacencies.bin";
+	//string filename = Configuration::getHoI4Path() + "/tfh/map/cache/adjacencies.bin";
 	//fopen_s(&adjacenciesBin, filename.c_str(), "rb");
 	//if (adjacenciesBin == NULL)
 	//{

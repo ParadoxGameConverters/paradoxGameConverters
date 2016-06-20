@@ -77,4 +77,4 @@ class CountryMapping
 		boost::bimap<std::string, std::string>				V2TagToHoI4TagMap;		// the current mappping between V2 and HoI4 tags
 };
 
-#endif
+#endif // COUNTRYMAPPING_H

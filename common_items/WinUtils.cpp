@@ -21,13 +21,16 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "WinUtils.h"
+#include "OSCompatibilityLayer.h"
 #include <Windows.h>
+#include <iostream>
+#include <Shellapi.h>
 #include "Log.h"
 
 
 
-namespace WinUtils {
+namespace Utils
+{
 
 
 
@@ -40,16 +43,24 @@ bool TryCreateFolder(const std::string& path)
 	}
 	else
 	{
-		LOG(LogLevel::Warning) << "Could not create folder " << path << " - " << GetLastWindowsError();
+		LOG(LogLevel::Warning) << "Could not create folder " << path << " - " << GetLastErrorString();
 		return false;
 	}
+}
+
+
+std::string getCurrentDirectory()
+{
+	wchar_t curDir[MAX_PATH];
+	GetCurrentDirectory(MAX_PATH, curDir);
+	return Utils::convertToUTF8(curDir);
 }
 
 
 void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames)
 {
 	WIN32_FIND_DATA findData;	// the structure to hold the file data
-	HANDLE findHandle = FindFirstFileW(convertToUTF16(path + "\\*").c_str(), &findData);	// the results of the file search
+	HANDLE findHandle = FindFirstFileW(convertToUTF16(path + "/*").c_str(), &findData);	// the results of the file search
 	if (findHandle == INVALID_HANDLE_VALUE)
 	{
 		return;
@@ -74,9 +85,79 @@ bool TryCopyFile(const std::string& sourcePath, const std::string& destPath)
 	}
 	else
 	{
-		LOG(LogLevel::Warning) << "Could not copy file " << sourcePath << " to " << destPath << " - " << GetLastWindowsError();
+		LOG(LogLevel::Warning) << "Could not copy file " << sourcePath << " to " << destPath << " - " << GetLastErrorString();
 		return false;
 	}
+}
+
+
+bool copyFolder(const std::string& sourceFolder, const std::string& destFolder)
+{
+	std::wstring wideSource = convertToUTF16(sourceFolder);
+	wchar_t* from = new wchar_t[wideSource.size() + 2];
+	wcscpy(from, wideSource.c_str());
+	from[wideSource.size() + 1] = '\0';
+
+	std::wstring wideDest = convertToUTF16(destFolder);
+	wchar_t* to = new wchar_t[wideDest.size() + 1];
+	wcscpy(to, wideDest.c_str());
+	to[wideDest.size() + 1] = '\0';
+
+	SHFILEOPSTRUCT fileOptStruct;
+	fileOptStruct.hwnd	= NULL;
+	fileOptStruct.wFunc	= FO_COPY;
+	fileOptStruct.pFrom	= from;
+	fileOptStruct.pTo		= to;
+	fileOptStruct.fFlags	= FOF_NOCONFIRMATION | FOF_NOCONFIRMMKDIR | FOF_NOERRORUI | FOF_SILENT;
+
+	int result = SHFileOperation(&fileOptStruct);
+	if (result != 0)
+	{
+		LOG(LogLevel::Error) << "Could not copy" << sourceFolder << " to " << destFolder << ". Error code: " << result;
+	}
+	else if (fileOptStruct.fAnyOperationsAborted)
+	{
+		LOG(LogLevel::Error) << "Could not copy" << sourceFolder << " to " << destFolder << ". Operation aborted";
+	}
+
+	delete[] from;
+	delete[] to;
+	return true;
+}
+
+
+bool renameFolder(const std::string& sourceFolder, const std::string& destFolder)
+{
+	std::wstring wideSource = convertToUTF16(sourceFolder);
+	wchar_t* from = new wchar_t[wideSource.size() + 2];
+	wcscpy(from, wideSource.c_str());
+	from[wideSource.size() + 1] = '\0';
+
+	std::wstring wideDest = convertToUTF16(destFolder);
+	wchar_t* to = new wchar_t[wideDest.size() + 1];
+	wcscpy(to, wideDest.c_str());
+	to[wideDest.size() + 1] = '\0';
+
+	SHFILEOPSTRUCT fileOptStruct;
+	fileOptStruct.hwnd	= NULL;
+	fileOptStruct.wFunc	= FO_MOVE;
+	fileOptStruct.pFrom	= from;
+	fileOptStruct.pTo		= to;
+	fileOptStruct.fFlags	= FOF_NOCONFIRMATION | FOF_NOCONFIRMMKDIR | FOF_NOERRORUI | FOF_SILENT;
+
+	int result = SHFileOperation(&fileOptStruct);
+	if (result != 0)
+	{
+		LOG(LogLevel::Error) << "Could not rename" << sourceFolder << " to " << destFolder << ". Error code: " << result;
+	}
+	else if (fileOptStruct.fAnyOperationsAborted)
+	{
+		LOG(LogLevel::Error) << "Could not rename" << sourceFolder << " to " << destFolder << ". Operation aborted";
+	}
+
+	delete[] from;
+	delete[] to;
+	return true;
 }
 
 
@@ -94,7 +175,7 @@ bool doesFolderExist(const std::string& path)
 }
 
 
-std::string GetLastWindowsError()
+std::string GetLastErrorString()
 {
 	DWORD errorCode = ::GetLastError();	// the code for the latest error
 	const DWORD errorBufferSize = 256;	// the size of the textbuffer for the error
@@ -122,7 +203,7 @@ std::string convertToASCII(std::string UTF8)
 	char asciiArray[1024];
 	if (0 == WideCharToMultiByte(20127 /*US-ASCII (7-bit)*/, 0, convertToUTF16(UTF8).c_str(), -1, asciiArray, 1024, "0", NULL))
 	{
-		LOG(LogLevel::Error) << "Could not translate string to ASCII - " << GetLastWindowsError();
+		LOG(LogLevel::Error) << "Could not translate string to ASCII - " << GetLastErrorString();
 	}
 	std::string returnable(asciiArray);
 
@@ -137,7 +218,7 @@ std::string convertToUTF8(std::wstring UTF16)
 
 	if (0 == WideCharToMultiByte(CP_UTF8, 0, UTF16.c_str(), -1, utf8array, requiredSize, NULL, NULL))
 	{
-		LOG(LogLevel::Error) << "Could not translate string to UTF-8 - " << GetLastWindowsError();
+		LOG(LogLevel::Error) << "Could not translate string to UTF-8 - " << GetLastErrorString();
 	}
 	std::string returnable(utf8array);
 
@@ -160,7 +241,7 @@ std::wstring convertToUTF16(std::string UTF8)
 
 	if (0 == MultiByteToWideChar(28605 /* 8859-15*/, MB_PRECOMPOSED, UTF8.c_str(), -1, wideKeyArray, requiredSize))
 	{
-		LOG(LogLevel::Error) << "Could not translate string to UTF-16 - " << GetLastWindowsError();
+		LOG(LogLevel::Error) << "Could not translate string to UTF-16 - " << GetLastErrorString();
 	}
 	std::wstring returnable(wideKeyArray);
 
@@ -170,5 +251,54 @@ std::wstring convertToUTF16(std::string UTF8)
 }
 
 
+void WriteToConsole(LogLevel level, const std::string& logMessage)
+{
+	if (level == LogLevel::Debug)
+	{	// Don't log debug messages to console.
+		return;
+	}
 
-} // namespace WinUtils
+	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);	// a handle to the console window
+	if (console != INVALID_HANDLE_VALUE)
+	{
+		CONSOLE_SCREEN_BUFFER_INFO oldConsoleInfo;	// the current (soon to be outdated) console data
+		BOOL success = GetConsoleScreenBufferInfo(console, &oldConsoleInfo);	// whether or not the console data could be retrieved
+		if (success)
+		{
+			WORD color;	// the color the text will be
+			switch (level)
+			{
+			case LogLevel::Error:
+				color = FOREGROUND_RED | FOREGROUND_INTENSITY;
+				break;
+
+			case LogLevel::Warning:
+				color = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY;
+				break;
+
+			case LogLevel::Info:
+				color = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+				break;
+
+			case LogLevel::Debug:
+			default:
+				color = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
+				break;
+			}
+			SetConsoleTextAttribute(console, color);
+			DWORD bytesWritten = 0;
+			WriteConsoleW(console, Utils::convertToUTF16(logMessage).c_str(), logMessage.size(), &bytesWritten, NULL);
+
+			// Restore old console color.
+			SetConsoleTextAttribute(console, oldConsoleInfo.wAttributes);
+
+			return;
+		}
+	}
+
+	std::cout << logMessage;
+}
+
+
+
+} // namespace Utils

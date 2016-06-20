@@ -31,7 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 HoI4RegimentType::HoI4RegimentType(string type)
 {
-	/*string	filename	= Configuration::getHoI4Path() + "\\tfh\\units\\" + type + ".txt";
+	/*string	filename	= Configuration::getHoI4Path() + "/tfh/units/" + type + ".txt";
 	Object*	obj		= parser_UTF8::doParseFile(filename.c_str());
 	obj					= obj->getLeaves()[0];
 	name					= obj->getKey();

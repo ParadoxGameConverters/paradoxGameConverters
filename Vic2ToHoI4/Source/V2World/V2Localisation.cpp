@@ -22,10 +22,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Localisation.h"
-#include <Windows.h>
 #include <fstream>
 #include "Log.h"
-#include "../../../common_items/WinUtils.h"
+#include "../../../common_items/OSCompatibilityLayer.h"
 #include "Object.h"
 
 
@@ -90,7 +89,7 @@ void V2Localisation::ReadFromFile(const std::string& fileName)
 		{
 			int frontDivision = division + 1;
 			division = line.find_first_of(';', frontDivision);
-			localisations[key][language] = WinUtils::convert8859_15ToUTF8(line.substr(frontDivision, division - frontDivision));
+			localisations[key][language] = Utils::convert8859_15ToUTF8(line.substr(frontDivision, division - frontDivision));
 
 			// dash characters other than 0x2D break HoI4
 			int dash = localisations[key][language].find_first_of('–');									// the first (if any) dask in the output name
@@ -108,12 +107,12 @@ void V2Localisation::ReadFromAllFilesInFolder(const std::string& folderPath)
 {
 	// Get all files in the folder.
 	std::set<std::string> fileNames;
-	WinUtils::GetAllFilesInFolder(folderPath, fileNames);
+	Utils::GetAllFilesInFolder(folderPath, fileNames);
 
 	// Read all these files.
 	for (const auto& fileName : fileNames)
 	{
-		ReadFromFile(folderPath + '\\' + fileName);
+		ReadFromFile(folderPath + '/' + fileName);
 	}
 }
 

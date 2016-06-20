@@ -73,4 +73,4 @@ class HoI4Localisation
 		std::vector<Party> parties;
 };
 
-#endif
+#endif // HoI4LOCALISATION_H_

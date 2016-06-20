@@ -59,7 +59,6 @@ class Log
 		}
 
 	private:
-		static void WriteToConsole(LogLevel, const std::string& logMessage);
 		static void WriteToFile(LogLevel, const std::string& logMessage);
 
 		LogLevel logLevel;							// the current log level
