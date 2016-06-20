@@ -27,19 +27,16 @@ namespace Utils
 {
 	std::string GetFileFromTag(const std::string& directoryPath, const std::string& tag)
 	{
-		std::string output = "";
 		std::set<std::string> foundFiles;
 		GetAllFilesInFolder(directoryPath, foundFiles);
-		if(!foundFiles.empty())
+		for (std::string file : foundFiles)
 		{
-			for(std::string file : foundFiles)
+			if (tag == file.substr(0, 3))
 			{
-				if(tag.compare(0, 3, file) == 0)
-				{
-
-				}
+				return file;
 			}
 		}
-		return output;
+
+		return "";
 	}
 }

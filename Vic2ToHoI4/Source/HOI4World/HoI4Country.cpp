@@ -769,6 +769,11 @@ void HoI4Country::initFromHistory()
 	{
 		filename = Utils::GetFileFromTag(Configuration::getHoI4Path() + "/history/countries/", tag);
 	}
+	else
+	{
+		fullFilename = string("./blankMod/output/history/countries/") + filename;
+	}
+
 	if (filename == "")
 	{
 		string countryName	= commonCountryFile;
@@ -779,8 +784,9 @@ void HoI4Country::initFromHistory()
 	}
 	else
 	{
-		fullFilename = string("./blankMod/output/history/countries/") + filename;
+		fullFilename = Configuration::getHoI4Path() + "/history/countries/" + filename;
 	}
+	
 
 	Object* obj = parser_UTF8::doParseFile(fullFilename.c_str());
 	if (obj == NULL)
