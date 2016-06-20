@@ -438,7 +438,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";
-	if (!Utils::copyFolder("blankMod", "output"))
+	if (!Utils::copyFolder("blankMod/output", "output/output"))
 	{
 		exit(-1);
 	}

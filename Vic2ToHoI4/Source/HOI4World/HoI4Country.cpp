@@ -344,10 +344,10 @@ void HoI4Country::outputCommonCountryFile() const
 {
 	// Output common country file
 	ofstream output2;
-	output2.open(("Output/" + Configuration::getOutputName() + "/common/countries/" + WinUtils::convertToASCII(commonCountryFile)).c_str());
+	output2.open(("Output/" + Configuration::getOutputName() + "/common/countries/" + Utils::convertToASCII(commonCountryFile)).c_str());
 	if (!output2.is_open())
 	{
-		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << WinUtils::convertToASCII(commonCountryFile);
+		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << Utils::convertToASCII(commonCountryFile);
 		exit(-1);
 	}
 	int red = 0;
