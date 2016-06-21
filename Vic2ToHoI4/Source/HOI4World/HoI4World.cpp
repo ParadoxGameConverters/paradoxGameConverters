@@ -445,7 +445,15 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 					statename = name;;
 			}
 			vic2State.setName(statename);
-			HoI4State* newState = new HoI4State(stateID, HoI4Tag, statename);
+			float newManpower = 1;
+			for (auto prov : vic2State.getProvinces())
+			{
+				V2Province* sourceProvince = sourceWorld.getProvince(prov);
+				newManpower += sourceProvince->getTotalPopulation()*4;
+			}
+			if (newManpower <= 0)
+				newManpower = 1;
+			HoI4State* newState = new HoI4State(stateID, HoI4Tag, statename, newManpower);
 
 			//	loop through the provinces in the vic2 state
 			for (auto vic2Province: vic2State.getProvinces())
@@ -607,6 +615,14 @@ void HoI4World::convertNavalBases(const V2World &sourceWorld, const inverseProvi
 
 void HoI4World::convertProvinceItems(const V2World& sourceWorld, const provinceMapping& provinceMap, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap)
 {
+	for (auto state : states)
+	{
+		for (auto prov : state.second->getProvinces())
+		{
+			
+			
+		}
+	}
 	// now that all provinces have had owners and cores set, convert their other items
 	for (auto mapping: inverseProvinceMap)
 	{

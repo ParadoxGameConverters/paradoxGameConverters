@@ -29,6 +29,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#pragma warning(disable: 4996)	// supress warnings about wcscmp()
+
+
+
 namespace Utils
 {
 
@@ -148,11 +152,11 @@ bool renameFolder(const std::string& sourceFolder, const std::string& destFolder
 	int result = SHFileOperation(&fileOptStruct);
 	if (result != 0)
 	{
-		LOG(LogLevel::Error) << "Could not rename" << sourceFolder << " to " << destFolder << ". Error code: " << result;
+		LOG(LogLevel::Error) << "Could not rename " << sourceFolder << " to " << destFolder << ". Error code: " << result;
 	}
 	else if (fileOptStruct.fAnyOperationsAborted)
 	{
-		LOG(LogLevel::Error) << "Could not rename" << sourceFolder << " to " << destFolder << ". Operation aborted";
+		LOG(LogLevel::Error) << "Could not rename " << sourceFolder << " to " << destFolder << ". Operation aborted.";
 	}
 
 	delete[] from;

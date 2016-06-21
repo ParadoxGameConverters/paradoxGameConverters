@@ -29,11 +29,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4State::HoI4State(int _ID, string _ownerTag, string _name)
+HoI4State::HoI4State(int _ID, string _ownerTag, string _name, float _Manpower)
 {
 	ID			= _ID;
 	ownerTag	= _ownerTag;
 	name = _name;
+	manpower = _Manpower;
 }
 
 
@@ -52,7 +53,7 @@ void HoI4State::output(string _filename)
 		out << "state={" << endl;
 		out << "\tid=" << ID << endl;
 		out << "\tname= \"" << name << "\"" << endl;
-		out << "\tmanpower = 1" << endl;
+		out << "\tmanpower = " << to_string(manpower) << endl;
 		out << endl;
 		out << "\tstate_category = town" << endl;
 		out << "" << endl;

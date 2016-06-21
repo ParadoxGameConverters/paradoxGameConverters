@@ -469,6 +469,7 @@ void setAssign()
 	epsilon = false;
 }
 
+
 Object* doParseFile(string filename)
 {
 	/* - when using parser debugging, also ensure that the parser object is non-static!
@@ -490,6 +491,7 @@ Object* doParseFile(string filename)
 
 	return obj;
 }
+
 
 
 } // namespace parser_8859_15
