@@ -436,7 +436,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 			//	create a matching HoI4 state
 			int provincecount = 0;
 			float newManpower = 1;
-			for (auto prov : vic2State.getProvinces())
+			for (auto prov: vic2State->getProvinces())
 			{
 				V2Province* sourceProvince = sourceWorld.getProvince(prov);
 				newManpower += sourceProvince->getTotalPopulation() * 4;
