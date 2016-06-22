@@ -216,6 +216,7 @@ void HoI4World::outputColorsfile() const
 	output2.close();
 }
 
+
 void HoI4World::outputAutoexecLua() const
 {
 	// output autoexec.lua
@@ -257,26 +258,11 @@ void HoI4World::outputLocalisations() const
 	string localisationPath = "Output/" + Configuration::getOutputName() + "/localisation";
 	if (!Utils::TryCreateFolder(localisationPath))
 	{
-		return;
-	}
-
-	string dest = localisationPath + "/countries_mod_l_english.yml";
-	ofstream localisationFile(dest.c_str());
-	if (!localisationFile.is_open())
-	{
-		LOG(LogLevel::Error) << "Could not update localisation text file";
+		LOG(LogLevel::Error) << "Could not create localisation folder";
 		exit(-1);
 	}
-	localisationFile << "\xEF\xBB\xBF"; // output a BOM to make HoI4 happy
-	localisationFile << "l_english:\r\n";
-	for (auto country: countries)
-	{
-		if (country.second->isNewCountry())
-		{
-			country.second->outputLocalisation(localisationFile);
-		}
-	}
-	localisationFile.close();
+
+	localisation.outputCountries(localisationPath);
 }
 
 
@@ -395,6 +381,7 @@ void HoI4World::convertCountries(const V2World &sourceWorld, const CountryMappin
 			LOG(LogLevel::Warning) << "Could not convert V2 tag " << sourceItr.first << " to HoI4";
 		}
 
+		localisation.ReadFromCountry(sourceItr.second, HoI4Tag);
 	}
 
 	// initialize all potential countries

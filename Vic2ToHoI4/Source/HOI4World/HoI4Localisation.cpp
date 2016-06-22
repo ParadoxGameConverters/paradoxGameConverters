@@ -29,77 +29,67 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-const std::array<std::string, HoI4Localisation::numLanguages> HoI4Localisation::languages =
-{ "english", "french", "german", "spanish" };
-
-
-
-void HoI4Localisation::SetTag(const std::string& newTag)
+void HoI4Localisation::ReadFromCountry(const V2Country* source, string destTag)
 {
-	tag = newTag;
+	for (auto nameInLanguage: source->getLocalisedNames())
+	{
+		auto existingLocalisation = countryLocalisations.find(nameInLanguage.first);
+		if (existingLocalisation == countryLocalisations.end())
+		{
+			keyToLocalisationMap newLocalisation;
+			countryLocalisations[nameInLanguage.first] = newLocalisation;
+			existingLocalisation = countryLocalisations.find(nameInLanguage.first);
+		}
+		
+		existingLocalisation->second.insert(make_pair(destTag + "_fascism", nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_fascism_DEF", nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_democratic", nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_democratic_DEF", nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_neutrality", nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_neutrality_DEF", nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_communism", nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_communism_DEF", nameInLanguage.second));
+	}
+	for (auto adjInLanguage: source->getLocalisedAdjectives())
+	{
+		auto existingLocalisation = countryLocalisations.find(adjInLanguage.first);
+		if (existingLocalisation == countryLocalisations.end())
+		{
+			keyToLocalisationMap newLocalisation;
+			countryLocalisations[adjInLanguage.first] = newLocalisation;
+			existingLocalisation = countryLocalisations.find(adjInLanguage.first);
+		}
+
+		existingLocalisation->second.insert(make_pair(destTag + "_fascism_ADJ", adjInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_democratic_ADJ", adjInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_neutrality_ADJ", adjInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_communism_ADJ", adjInLanguage.second));
+	}
 }
 
 
-void HoI4Localisation::ReadFromCountry(const V2Country& source)
+
+void HoI4Localisation::outputCountries(string localisationPath) const
 {
-	for (size_t i = 0; i < numLanguages; ++i)
+	for (auto languageToLocalisations: countryLocalisations)
 	{
-		if (!languages[i].empty())
+		if (languageToLocalisations.first == "")
 		{
-			name[i] = source.getName(languages[i]);
-			adjective[i] = source.getAdjective(languages[i]);
+			continue;
+		}
+		string dest = localisationPath + "/countries_mod_l_" + languageToLocalisations.first + ".yml";
+		ofstream localisationFile(localisationPath + "/countries_mod_l_" + languageToLocalisations.first + ".yml");
+		if (!localisationFile.is_open())
+		{
+			LOG(LogLevel::Error) << "Could not update localisation text file";
+			exit(-1);
+		}
+		localisationFile << "\xEF\xBB\xBF"; // output a BOM to make HoI4 happy
+		localisationFile << "l_" << languageToLocalisations.first << ":\r\n";
+
+		for (auto mapping: languageToLocalisations.second)
+		{
+			localisationFile << " " << mapping.first << ":0 \"" << mapping.second << "\"" << endl;
 		}
 	}
-}
-
-
-void HoI4Localisation::SetPartyKey(size_t partyIndex, const std::string& partyKey)
-{
-	if (parties.size() <= partyIndex)
-	{
-		parties.resize(partyIndex + 1);
-	}
-	parties[partyIndex].key = partyKey;
-}
-
-
-void HoI4Localisation::SetPartyName(size_t partyIndex, const std::string& language, const std::string& name)
-{
-	if (parties.size() <= partyIndex)
-	{
-		parties.resize(partyIndex + 1);
-	}
-	auto languageIter = std::find(languages.begin(), languages.end(), language);
-	if (languageIter != languages.end())
-	{
-		size_t languageIndex = std::distance(languages.begin(), languageIter);
-		parties[partyIndex].name[languageIndex] = name;
-	}
-}
-
-
-void HoI4Localisation::WriteToStream(std::ostream& out) const
-{
-	out << " " << tag << "_fascism:0 \"" << name.front() << "\"" << endl;
-	out << " " << tag << "_fascism_DEF:0 \"" << name.front() << "\"" << endl;
-	out << " " << tag << "_democratic:0 \"" << name.front() << "\"" << endl;
-	out << " " << tag << "_democratic_DEF:0 \"" << name.front() << "\"" << endl;
-	out << " " << tag << "_neutrality:0 \"" << name.front() << "\"" << endl;
-	out << " " << tag << "_neutrality_DEF:0 \"" << name.front() << "\"" << endl;
-	out << " " << tag << "_communism:0 \"" << name.front() << "\"" << endl;
-	out << " " << tag << "_communism_DEF:0 \"" << name.front() << "\"" << endl;
-	out << " " << tag << "_fascism_ADJ:0 \"" << name.front() << "\"" << endl;
-	out << " " << tag << "_democratic_ADJ:0 \"" << name.front() << "\"" << endl;
-	out << " " << tag << "_neutrality_ADJ:0 \"" << name.front() << "\"" << endl;
-	out << " " << tag << "_communism_ADJ:0 \"" << name.front() << "\"" << endl;
-	//thatsgerman: parties are always 0 atm
-	/*for (const auto& party : parties)
-	{
-		out << party.key;
-		for (const auto& localisedPartyName : party.name)
-		{
-			out << ';' << localisedPartyName;
-		}
-		out << "x\n";
-	}*/
 }

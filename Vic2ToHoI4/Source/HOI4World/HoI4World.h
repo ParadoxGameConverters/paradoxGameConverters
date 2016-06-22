@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Country.h"
 #include "HoI4Province.h"
 #include "HoI4Diplomacy.h"
+#include "HoI4Localisation.h"
 #include "HoI4State.h"
 #include "../Mapper.h"
 
@@ -95,6 +96,8 @@ class HoI4World
 		map<string,HoI4Country*>	potentialCountries;
 		HoI4Diplomacy					diplomacy;
 		map<int, string>				continents;  // < province, continent >
+
+		HoI4Localisation				localisation;
 
 		string axisLeader;
 		string alliesLeader;
