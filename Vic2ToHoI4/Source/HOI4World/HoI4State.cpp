@@ -29,12 +29,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4State::HoI4State(int _ID, string _ownerTag, string _name, float _Manpower)
+HoI4State::HoI4State(int _ID, string _ownerTag, string _name, float _Manpower, double _CivFactories, int _MilFactories, string _catagory, int _stateworkers, int _countryworkers )
 {
 	ID			= _ID;
 	ownerTag	= _ownerTag;
 	name = _name;
 	manpower = _Manpower;
+	civFactories = _CivFactories;
+	milFactories = _MilFactories;
+	catagory = _catagory;
+	stateworkers = _stateworkers;
+	countryworkers = _countryworkers;
 }
 
 
@@ -49,24 +54,25 @@ void HoI4State::output(string _filename)
 			LOG(LogLevel::Error) << "Could not open \"output/input/history/states/" + _filename;
 			exit(-1);
 		}
-
+		//out << civFactories << "  " << milFactories << endl;
 		out << "state={" << endl;
 		out << "\tid=" << ID << endl;
 		out << "\tname= \"" << name << "\"" << endl;
 		out << "\tmanpower = " << to_string(manpower) << endl;
 		out << endl;
-		out << "\tstate_category = town" << endl;
+		out << "\tstate_category = "<< catagory << endl;
 		out << "" << endl;
 		out << "\thistory={" << endl;
 		out << "\t\towner = " << ownerTag << endl;
 		//out << "	victory_points = { 3838 1 }" << endl;
-		//out << "	buildings = {" << endl;
-		//out << "	infrastructure = 4" << endl;
-		//out << "	industrial_complex = 1" << endl;
+		out << "	buildings = {" << endl;
+		out << "	infrastructure = 10" << endl;
+		out << "	industrial_complex = "<< civFactories << "#stateworkers = " << stateworkers << " out of employed workers = " << countryworkers<< endl;
+		out << "	arms_factory = " << milFactories << endl;
 		//out << "	air_base = 1" << endl;
 		//out << "	3838 = {" << endl;
 		//out << "	naval_base = 3" << endl;
-		//out << "}" << endl;
+		out << "}" << endl;
 		//out << "}" << endl;
 		//out << "	add_core_of = FRA" << endl;
 		out << "\t}" << endl;

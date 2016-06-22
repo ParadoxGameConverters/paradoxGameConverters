@@ -75,7 +75,6 @@ class HoI4Country
 		void	CalculateArmyDivisions(const inverseProvinceMapping& inverseProvinceMap);
 		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
 		void	addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
-		
 		void	setTechnology(string tech, int level);
 		void	addProvince(HoI4Province* _province);
 		void	addArmy(HoI4RegGroup* army);
@@ -83,6 +82,7 @@ class HoI4Country
 
 		void	setFaction(string newFaction)	{ faction = newFaction; }
 		void	setFactionLeader()				{ factionLeader = true; }
+		void	setFactories(int _factories) { totalfactories = _factories; }
 
 		HoI4Relations*								getRelations(string withWhom) const;
 		HoI4Province*								getCapital();
@@ -124,6 +124,7 @@ class HoI4Country
 		string								government;
 		HoI4Alignment						alignment;
 		string								ideology;
+		int									totalfactories;
 		map<string, HoI4Relations*>	relations;
 		vector<HoI4RegGroup*>			armies;
 		string								divisionstxt;
