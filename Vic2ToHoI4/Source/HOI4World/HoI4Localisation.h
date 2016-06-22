@@ -30,6 +30,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
+using namespace std;
 
 
 
@@ -37,40 +39,20 @@ class V2Country;
 
 
 
-// Holds translations for attributes of a specific HoI4 country.
+// Holds translations all HoI4 localisations
 class HoI4Localisation
 {
 	public:
-		// Sets the tag to use for creating the name and adjective key to use in the localisation output.
-		void SetTag(const std::string& tag);
-		// Populates the localised names and adjectives using information from the V2 country.
-		void ReadFromCountry(const V2Country&);
+		// Populates localised names and adjectives for a HoI4 country using information from the Vic2 country.
+		void ReadFromCountry(const V2Country*, string destTag);
 
-		// Sets the key to use for the specified party in the localisation output.
-		void SetPartyKey(size_t partyIndex, const std::string& partyKey);
-		// Sets the localised party name for the specified party in the given language, e.g. "english".
-		void SetPartyName(size_t partyIndex, const std::string& language, const std::string& name);
-
-		// Writes a HoI4-formatted localisation info for all localised elements as:
-		// key;translation0;translation1;...;;;x
-		void WriteToStream(std::ostream&) const;
+		void outputCountries(string localisationPath) const;
 
 	private:
-		static const size_t numLanguages = 14;
-		static const std::array<std::string, numLanguages> languages;
+		typedef std::map<std::string, std::string>				keyToLocalisationMap;			// key -> localisation
+		typedef std::map<std::string, keyToLocalisationMap>	languageToLocalisationsMap;	// language -> (key -> localisation)
 
-		typedef std::array<std::string, numLanguages> Localisations;
-
-		std::string tag;
-		Localisations name;
-		Localisations adjective;
-
-		struct Party
-		{
-			std::string key;
-			Localisations name;
-		};
-		std::vector<Party> parties;
+		languageToLocalisationsMap countryLocalisations;	// a map between languages and localisations
 };
 
 #endif // HoI4LOCALISATION_H_

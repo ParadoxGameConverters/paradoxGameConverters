@@ -93,6 +93,8 @@ class V2Country
 		string							getTechSchool()												const { return techSchool; }
 		map<string, string>			getAllReforms()												const { return reformsArray; }
 		bool								getGreatNation()												const { return greatNation; }
+		map<string, string>			getLocalisedNames()											const { return namesByLanguage; }
+		map<string, string>			getLocalisedAdjectives()									const { return adjectivesByLanguage; }
 
 		string							getReform(string reform) const;
 		string							getName(const string& language) const;
@@ -154,9 +156,9 @@ class V2Country
 		string							techSchool;
 
 		// Localisation attributes
-		string name;											// the name of this country
+		string name;										// the name of this country
 		string adjective;									// the adjective for this country
-		map<string, string> namesByLanguage;			// the names of this country in different localisations
+		map<string, string> namesByLanguage;		// the names of this country in different localisations
 		map<string, string> adjectivesByLanguage;	// the adjectives for this country in different localisations
 };
 

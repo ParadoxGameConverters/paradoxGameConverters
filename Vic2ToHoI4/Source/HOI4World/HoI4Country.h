@@ -27,7 +27,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "HoI4Alignment.h"
 #include "HoI4Army.h"
-#include "HoI4Localisation.h"
 #include "HoI4Province.h"
 #include "HoI4Relations.h"
 #include "HoI4State.h"
@@ -62,26 +61,25 @@ class HoI4Country
 {
 	public:
 		HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld, bool _newCountry = false);
-		void	output(int) const;
-		void	outputCommonCountryFile() const;
+		void		output(int) const;
+		void		outputCommonCountryFile() const;
 		string	outputColors() const;
-		void	outputToCommonCountriesFile(FILE*) const;
-		void	outputLocalisation(ofstream& localisationFile) const;
-		void	outputAIScript() const;
-		void	initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap, map<int, HoI4State*> states);
-		void	initFromHistory();
-		void	consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry);
-		void	generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
-		void	CalculateArmyDivisions(const inverseProvinceMapping& inverseProvinceMap);
-		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
-		void	addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
-		void	setTechnology(string tech, int level);
-		void	addProvince(HoI4Province* _province);
-		void	addArmy(HoI4RegGroup* army);
-		void	lowerNeutrality(double amount);
+		void		outputToCommonCountriesFile(FILE*) const;
+		void		outputAIScript() const;
+		void		initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap, map<int, HoI4State*> states);
+		void		initFromHistory();
+		void		consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry);
+		void		generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
+		void		CalculateArmyDivisions(const inverseProvinceMapping& inverseProvinceMap);
+		void		setAIFocuses(const AIFocusModifiers& focusModifiers);
+		void		addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
+		void		setTechnology(string tech, int level);
+		void		addProvince(HoI4Province* _province);
+		void		addArmy(HoI4RegGroup* army);
+		void		lowerNeutrality(double amount);
 
-		void	setFaction(string newFaction)	{ faction = newFaction; }
-		void	setFactionLeader()				{ factionLeader = true; }
+		void		setFaction(string newFaction)	{ faction = newFaction; }
+		void		setFactionLeader()				{ factionLeader = true; }
 		void	setFactories(int _factories) { totalfactories = _factories; }
 
 		HoI4Relations*								getRelations(string withWhom) const;
@@ -98,7 +96,7 @@ class HoI4Country
 		string										getIdeology() const			{ return ideology; }
 		const set<string>&						getAllies() const				{ return allies; }
 		set<string>&								editAllies()					{ return allies; }
-		map<string, double>&					getPracticals()				{ return practicals; }
+		map<string, double>&						getPracticals()				{ return practicals; }
 		const vector<HoI4RegGroup*>&			getArmies() const				{ return armies; }
 		
 
@@ -132,7 +130,6 @@ class HoI4Country
 		Color									color;
 		double								neutrality;
 		double								nationalUnity;
-		HoI4Localisation					localisation;
 		string								faction;
 		bool									factionLeader;
 		set<string>							allies;

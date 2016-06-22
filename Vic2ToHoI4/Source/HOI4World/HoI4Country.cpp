@@ -534,9 +534,6 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	// Color
 	color = srcCountry->getColor();
-	// Localisation
-	localisation.SetTag(tag);
-	localisation.ReadFromCountry(*srcCountry);
 
 	// graphical culture type
 	auto cultureItr = cultureMap.find(srcCountry->getPrimaryCulture());
@@ -2330,14 +2327,6 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	{
 		LOG(LogLevel::Warning) << "Unmapped Vic2 parties for " << tag;
 	}
-}
-
-
-void HoI4Country::outputLocalisation(ofstream& localisationFile) const
-{
-	std::ostringstream localisationStream;
-	localisation.WriteToStream(localisationStream);
-	localisationFile << localisationStream.str();
 }
 
 
