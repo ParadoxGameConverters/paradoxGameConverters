@@ -73,9 +73,9 @@ void removeLandlessNations(HoI4World&);
 
 
 // Vic2 State Mappings
-typedef map< int, vector<int> >	stateMapping;	// < province, all other provinces in state >
-typedef map< int, int >				stateIndexMapping; // < province, state index >
-void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateIndexMap);
+typedef map< int, vector<int> >	stateMapping;		// < province, all other provinces in state >
+typedef map< int, string >			stateIdMapping;	// < province, state ID >
+void initStateMap(Object* obj, stateMapping& stateMap, stateIdMapping& stateIdMap);
 
 // HoI4 State Mappings
 typedef map<int, int> HoI4StateMapping;	// province num, state ID

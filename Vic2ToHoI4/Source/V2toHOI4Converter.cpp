@@ -218,6 +218,38 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 		}
 	}
 
+	// import Vic2 states
+	LOG(LogLevel::Info) << "Importing Vic2 states";
+
+	stateMapping	stateMap;
+	stateIdMapping	stateIdMap;
+	bool				stateMapInitialized = false;
+	for (auto itr: vic2Mods)
+	{
+		if (Utils::DoesFileExist(Configuration::getV2Path() + "/mod/" + itr + "/map/region.txt"))
+		{
+			obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/map/region.txt").c_str());
+			if (obj != NULL)
+			{
+				initStateMap(obj, stateMap, stateIdMap);
+				stateMapInitialized = true;
+				break;
+			}
+		}
+	}
+	if (!stateMapInitialized)
+	{
+		obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/map/region.txt").c_str());
+		if (obj != NULL)
+		{
+			initStateMap(obj, stateMap, stateIdMap);
+		}
+		else
+		{
+			LOG(LogLevel::Error) << "Could not import " << Configuration::getV2Path() << "/map/region.txt";
+		}
+	}
+
 	LOG(LogLevel::Info) << "* Importing V2 save *";
 
 	//	Parse V2 Save
@@ -243,7 +275,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 		localisation.ReadFromAllFilesInFolder(Configuration::getV2Path() + "/mod/" + itr + "/localisation");
 	}
 
-	sourceWorld.setLocalisations(localisation);
+	sourceWorld.setLocalisations(localisation, stateIdMap);
 
 
 	// Merge nations

@@ -435,7 +435,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 		 double employedworkersadjusted = 0;
 		for (auto vic2State : country.second->getStates())
 		{
-			for (auto prov : vic2State.getProvinces())
+			for (auto prov : vic2State->getProvinces())
 			{
 				//takes employed workers and divides by 100,000 to convert
 				V2Province* sourceProvince = sourceWorld.getProvince(prov);
@@ -459,7 +459,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 			float population = 0;
 			double raillevel = 0;
 			int provinces = 0;
-			for (auto prov : vic2State.getProvinces())
+			for (auto prov : vic2State->getProvinces())
 			{
 				//gets population, raillevel, and workers in every state to convert slots and states*conversion percentage
 				V2Province* sourceProvince = sourceWorld.getProvince(prov);
@@ -479,9 +479,11 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 			if (stateSlots > 12)
 				stateSlots = 12;
 			stateFac = round(stateWorkers);
-			//limits factories by slots
+			//limits factories by max slots
+			if (stateFac > 12)
+				stateFac = 12;
 			if (stateFac > stateSlots)
-				stateFac = stateSlots;
+				stateSlots = stateFac;
 			string catagory = "";
 			//names of city size to give correct number of slots
 			if (stateSlots >= 12)
@@ -516,29 +518,20 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 			}
 			//	create a matching HoI4 state
 			int provincecount = 0;
-			string statename = "";
-			const auto& nameLocalisations = localisation.GetTextInEachLanguage("PROV" + to_string(vic2State.getStateID()));	// the names in all languages
-			for (const auto& nameLocalisation : nameLocalisations)	// the name under consideration
-			{
-				const std::string& language = nameLocalisation.first;	// the language
-				const std::string& name = nameLocalisation.second;		// the name of the country in this language
-				if (nameLocalisation.first == "english")
-					statename = name;;
-			}
-			vic2State.setName(statename);
 			float newManpower = 1;
-			for (auto prov : vic2State.getProvinces())
+			for (auto prov: vic2State->getProvinces())
 			{
 				V2Province* sourceProvince = sourceWorld.getProvince(prov);
-				newManpower += sourceProvince->getTotalPopulation()*4;
+				newManpower += sourceProvince->getTotalPopulation() * 4;
 			}
 			if (newManpower <= 0)
+			{
 				newManpower = 1;
-			
-			HoI4State* newState = new HoI4State(stateID, HoI4Tag, statename, newManpower, civFac, milFac, catagory, stateWorkers, employedworkersadjusted);
+			}
+			HoI4State* newState = new HoI4State(stateID, HoI4Tag, vic2State->getName(), newManpower, civFac, milFac, catagory, stateWorkers, employedworkersadjusted);
 
 			//	loop through the provinces in the vic2 state
-			for (auto vic2Province: vic2State.getProvinces())
+			for (auto vic2Province: vic2State->getProvinces())
 			{
 				//	TODO - if the matching HoI4 provinces are owned by this country, add it to the HoI4 state
 				auto provMapping = inverseProvinceMap.find(vic2Province);
@@ -562,10 +555,6 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 				states.insert(make_pair(stateID, newState));
 				stateID++;
 			}
-		}
-		if (HoI4Tag == "X68")
-		{
-			volatile double x = weshouldhavethesemuch;
 		}
 	}
 

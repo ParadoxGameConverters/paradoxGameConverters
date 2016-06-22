@@ -67,7 +67,7 @@ class V2Country
 		void								putWorkersInProvinces();
 
 		map<string, V2Relations*>	getRelations()													const { return relations; }
-		vector<Vic2State>				getStates()														const { return states; }
+		vector<Vic2State*>			getStates()														const { return states; }
 		map<int, V2Province*>		getProvinces()													const { return provinces; }
 		vector<V2Province*>			getCores()														const { return cores; }
 		string							getTag()															const { return tag; }
@@ -126,7 +126,7 @@ class V2Country
 
 	private:
 		string							tag;
-		vector<Vic2State>				states;
+		vector<Vic2State*>			states;
 		map<int, V2Province*>		provinces;	// ID, province
 		vector<V2Province*>			cores;
 		int								capital;

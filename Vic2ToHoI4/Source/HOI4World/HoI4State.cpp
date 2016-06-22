@@ -33,8 +33,12 @@ HoI4State::HoI4State(int _ID, string _ownerTag, string _name, float _Manpower, d
 {
 	ID			= _ID;
 	ownerTag	= _ownerTag;
-	name = _name;
-	manpower = _Manpower;
+	name		= _name;
+	if (name == "")
+	{
+		name = "Foo";
+	}
+	manpower	= _Manpower;
 	civFactories = _CivFactories;
 	milFactories = _MilFactories;
 	catagory = _catagory;
