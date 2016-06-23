@@ -57,6 +57,7 @@ class V2World
 		map<string, V2Country*>	getCountries()	const			{ return countries; }
 		const V2Diplomacy*		getDiplomacy()	const			{ return &diplomacy; }
 		const vector<string>&	getGreatCountries() const	{ return greatCountries; }
+
 	private:
 		void							readCountryFiles(string countryListFile, string mod);
 		void							removeEmptyNations();

@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include "../V2World/V2Localisation.h"
 #include <array>
 #include <iostream>
 #include <string>
@@ -43,16 +44,20 @@ class V2Country;
 class HoI4Localisation
 {
 	public:
-		// Populates localised names and adjectives for a HoI4 country using information from the Vic2 country.
-		void ReadFromCountry(const V2Country*, string destTag);
+		void	readFromCountry(const V2Country*, string destTag);
+		void	addStateLocalisation(int HoI4StateID, string Vic2StateID, const V2Localisation Vic2Localisations);
 
-		void outputCountries(string localisationPath) const;
+		void	output(string localisationPath) const;
 
 	private:
+		void outputCountries(string localisationPath) const;
+		void outputStates(string localisationPath) const;
+
 		typedef std::map<std::string, std::string>				keyToLocalisationMap;			// key -> localisation
 		typedef std::map<std::string, keyToLocalisationMap>	languageToLocalisationsMap;	// language -> (key -> localisation)
 
-		languageToLocalisationsMap countryLocalisations;	// a map between languages and localisations
+		languageToLocalisationsMap countryLocalisations;	// a map between languages and country localisations
+		languageToLocalisationsMap stateLocalisations;		// a map between languages and state localisations
 };
 
 #endif // HoI4LOCALISATION_H_
