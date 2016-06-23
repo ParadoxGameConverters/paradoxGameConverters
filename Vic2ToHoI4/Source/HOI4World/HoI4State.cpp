@@ -29,7 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4State::HoI4State(int _ID, string _ownerTag, string _name, float _Manpower, double _CivFactories, int _MilFactories, string _catagory, int _stateworkers, int _countryworkers )
+HoI4State::HoI4State(int _ID, string _ownerTag, string _name, float _Manpower, double _CivFactories, int _MilFactories, string _catagory, int _raillevel)
 {
 	ID			= _ID;
 	ownerTag	= _ownerTag;
@@ -42,8 +42,7 @@ HoI4State::HoI4State(int _ID, string _ownerTag, string _name, float _Manpower, d
 	civFactories = _CivFactories;
 	milFactories = _MilFactories;
 	catagory = _catagory;
-	stateworkers = _stateworkers;
-	countryworkers = _countryworkers;
+	raillevel = _raillevel;
 }
 
 
@@ -70,8 +69,8 @@ void HoI4State::output(string _filename)
 		out << "\t\towner = " << ownerTag << endl;
 		//out << "	victory_points = { 3838 1 }" << endl;
 		out << "	buildings = {" << endl;
-		out << "	infrastructure = 10" << endl;
-		out << "	industrial_complex = "<< civFactories << "#stateworkers = " << stateworkers << " out of employed workers = " << countryworkers<< endl;
+		out << "	infrastructure = "<< raillevel << endl;
+		out << "	industrial_complex = " << civFactories << endl;
 		out << "	arms_factory = " << milFactories << endl;
 		//out << "	air_base = 1" << endl;
 		//out << "	3838 = {" << endl;

@@ -444,8 +444,8 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 			double stateWorkers = 0;
 			double stateFac = 0;
 			float population = 0;
-			double raillevel = 0;
-			int provinces = 0;
+			volatile double raillevel = 0;
+			volatile double provinces = 0;
 			for (auto prov : vic2State->getProvinces())
 			{
 				//gets population, raillevel, and workers in every state to convert slots and states*conversion percentage
@@ -459,7 +459,9 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 			if (stateWorkers < 0)
 				stateWorkers = 0;
 			//average raillevel per state
-			raillevel = (raillevel) / provinces;
+			raillevel = (raillevel); // provinces;
+			if (raillevel >= 4)
+				raillevel += rand() % 4;
 			//slots is given per 120,000 people (need to change)
 			int stateSlots = population/120000;
 			//make sure not larger then 12 so stateFac is properly limited to max state level
@@ -515,7 +517,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 			{
 				newManpower = 1;
 			}
-			HoI4State* newState = new HoI4State(stateID, HoI4Tag, vic2State->getName(), newManpower, civFac, milFac, catagory, stateWorkers, employedworkersadjusted);
+			HoI4State* newState = new HoI4State(stateID, HoI4Tag, vic2State->getName(), newManpower, civFac, milFac, catagory, raillevel);
 
 			//	loop through the provinces in the vic2 state
 			for (auto vic2Province: vic2State->getProvinces())
