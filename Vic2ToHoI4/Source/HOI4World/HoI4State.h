@@ -35,7 +35,7 @@ using namespace std;
 class HoI4State
 {
 	public:
-		HoI4State(int _ID, string _ownerTag, float _Manpower);
+		HoI4State(int _ID, string _ownerTag, float _Manpower, double _CivFactories, int _MilFactories, string _catagory, int _stateworkers, int _countryworkers);
 
 		void output(string filename);
 
@@ -49,6 +49,11 @@ class HoI4State
 		vector<int>	provinces;
 		string		ownerTag;
 		float			manpower;
+		double		civFactories;
+		int			milFactories;
+		string		catagory;
+		int			stateworkers;
+		int			countryworkers;
 };
 
 

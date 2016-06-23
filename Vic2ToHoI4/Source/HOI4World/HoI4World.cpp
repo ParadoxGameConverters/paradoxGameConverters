@@ -35,6 +35,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../V2World/V2Party.h"
 #include "HoI4Relations.h"
 #include "HoI4State.h"
+#include <cmath>
+#include <random>  
 
 
 
@@ -417,12 +419,93 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 	int stateID = 1;
 	for (auto country: sourceWorld.getCountries())
 	{
+
 		//	determine the relevant HoI4 country
 		string HoI4Tag = countryMap.GetHoI4Tag(country.first);
-
+		 double employedworkersadjusted = 0;
+		for (auto vic2State : country.second->getStates())
+		{
+			for (auto prov : vic2State->getProvinces())
+			{
+				//takes employed workers and divides by 100,000 to convert
+				V2Province* sourceProvince = sourceWorld.getProvince(prov);
+				employedworkersadjusted += sourceProvince->getEmployedWorkers()*.00001;
+			}
+		}
+		//calculating the conversion between Vic2Employed Workers to HoI4 factories
+		 double percentage = 0;
+		 double sinner = sin(employedworkersadjusted/150)*100;
+		 double logger = log10(employedworkersadjusted) * 15;
+		 double HoI4TotalFactories = sinner + logger + 5;
+		if (employedworkersadjusted != 0)
+		{
+			percentage = HoI4TotalFactories / employedworkersadjusted;
+		}
 		//	loop through the states in the vic2 country
 		for (auto vic2State: country.second->getStates())
 		{
+			double stateWorkers = 0;
+			double stateFac = 0;
+			float population = 0;
+			double raillevel = 0;
+			int provinces = 0;
+			for (auto prov : vic2State->getProvinces())
+			{
+				//gets population, raillevel, and workers in every state to convert slots and states*conversion percentage
+				V2Province* sourceProvince = sourceWorld.getProvince(prov);
+				population += sourceProvince->getLiteracyWeightedPopulation();
+				raillevel = sourceProvince->getInfra();
+				stateWorkers += sourceProvince->getEmployedWorkers()*.00001*percentage;
+				provinces++;
+			}
+			//used to make sure no negative factories
+			if (stateWorkers < 0)
+				stateWorkers = 0;
+			//average raillevel per state
+			raillevel = (raillevel) / provinces;
+			//slots is given per 120,000 people (need to change)
+			int stateSlots = population/120000;
+			//make sure not larger then 12 so stateFac is properly limited to max state level
+			if (stateSlots > 12)
+				stateSlots = 12;
+			stateFac = round(stateWorkers);
+			//limits factories by max slots
+			if (stateFac > 12)
+				stateFac = 12;
+			if (stateFac > stateSlots)
+				stateSlots = stateFac;
+			string catagory = "";
+			//names of city size to give correct number of slots
+			if (stateSlots >= 12)
+				catagory = "megalopolis";
+			else if (stateSlots >= 10)
+				catagory = "metropolis";
+			else if (stateSlots >= 8)
+				catagory = "large_city";
+			else if (stateSlots >= 6)
+				catagory = "city";
+			else if (stateSlots >= 5)
+				catagory = "large_town";
+			else if (stateSlots >= 4)
+				catagory = "town";
+			else if (stateSlots >= 2)
+				catagory = "rural";
+			else if (stateSlots >= 1)
+				catagory = "pastoral";
+			else
+				catagory = "enclave";
+
+			int civFac = 0;
+			int milFac = 0;
+			//0-6 gives a civ factory, 7-9 gives mil factory
+			for (int i = 0; i < stateFac; i++)
+			{
+				int randnmb = rand() % 10;
+				if (randnmb > 6)
+					milFac++;
+				else
+					civFac++;
+			}
 			//	create a matching HoI4 state
 			int provincecount = 0;
 			float newManpower = 1;
@@ -435,7 +518,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 			{
 				newManpower = 1;
 			}
-			HoI4State* newState = new HoI4State(stateID, HoI4Tag, newManpower);
+			HoI4State* newState = new HoI4State(stateID, HoI4Tag, newManpower, civFac, milFac, catagory, stateWorkers, employedworkersadjusted);
 
 			//	loop through the provinces in the vic2 state
 			for (auto vic2Province: vic2State->getProvinces())
