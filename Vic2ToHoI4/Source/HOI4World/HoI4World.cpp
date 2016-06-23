@@ -461,10 +461,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 			//used to make sure no negative factories
 			if (stateWorkers < 0)
 				stateWorkers = 0;
-			//average raillevel per state
-			raillevel = (raillevel); // provinces;
-			if (raillevel >= 4)
-				raillevel += rand() % 4;
+		
 			//slots is given per 120,000 people (need to change)
 			int stateSlots = population/120000;
 			//make sure not larger then 12 so stateFac is properly limited to max state level
@@ -476,6 +473,13 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 				stateFac = 12;
 			if (stateFac > stateSlots)
 				stateSlots = stateFac;
+			//better rails for better industry
+				if (stateFac > 10)
+					raillevel += 3;
+				else if (stateFac > 6)
+					raillevel += 2;
+				else if (stateFac > 4)
+					raillevel++;
 			string catagory = "";
 			//names of city size to give correct number of slots
 			if (stateSlots >= 12)
