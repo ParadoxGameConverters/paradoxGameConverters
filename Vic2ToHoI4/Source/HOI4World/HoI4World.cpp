@@ -195,6 +195,8 @@ void HoI4World::outputCommonCountries() const
 	fprintf(allCountriesFile, "\n");
 	fclose(allCountriesFile);
 }
+
+
 void HoI4World::outputColorsfile() const
 {
 
@@ -264,7 +266,7 @@ void HoI4World::outputLocalisations() const
 		exit(-1);
 	}
 
-	localisation.outputCountries(localisationPath);
+	localisation.output(localisationPath);
 }
 
 
@@ -383,7 +385,7 @@ void HoI4World::convertCountries(const V2World &sourceWorld, const CountryMappin
 			LOG(LogLevel::Warning) << "Could not convert V2 tag " << sourceItr.first << " to HoI4";
 		}
 
-		localisation.ReadFromCountry(sourceItr.second, HoI4Tag);
+		localisation.readFromCountry(sourceItr.second, HoI4Tag);
 	}
 
 	// initialize all potential countries
@@ -407,13 +409,14 @@ struct MTo1ProvinceComp
 	int totalPopulation;
 };
 
-void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, HoI4StateMapping& stateMap, V2Localisation& localisation)
+
+void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, HoI4StateMapping& stateMap, V2Localisation& Vic2Localisations)
 {
 	// TODO - determine province owners for all HoI4 provinces
 	
 
 	//	loop through the vic2 countries
-	volatile int stateID = 1;
+	int stateID = 1;
 	for (auto country: sourceWorld.getCountries())
 	{
 
@@ -517,7 +520,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 			{
 				newManpower = 1;
 			}
-			HoI4State* newState = new HoI4State(stateID, HoI4Tag, vic2State->getName(), newManpower, civFac, milFac, catagory, raillevel);
+			HoI4State* newState = new HoI4State(stateID, HoI4Tag, newManpower, civFac, milFac, catagory, raillevel);
 
 			//	loop through the provinces in the vic2 state
 			for (auto vic2Province: vic2State->getProvinces())
@@ -541,9 +544,10 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 			//	if the state is not empty, add it to this list of states
 			if (provincecount != 0)
 			{
+				localisation.addStateLocalisation(stateID, vic2State->getStateID(), Vic2Localisations);
 				states.insert(make_pair(stateID, newState));
 				stateID++;
-			}
+			}			
 		}
 	}
 

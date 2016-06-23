@@ -222,34 +222,15 @@ void V2World::setLocalisations(V2Localisation& localisation, const stateIdMappin
 		//	loop through the states in the vic2 country
 		for (auto vic2State : country.second->getStates())
 		{
-			string statename = "";
-
 			auto stateID = stateIdMap.find(vic2State->getProvinces()[0]);
 			if (stateID != stateIdMap.end())
 			{
-				const auto& nameLocalisations = localisation.GetTextInEachLanguage(stateID->second);	// the names in all languages
-				for (const auto& nameLocalisation : nameLocalisations)		// the name under consideration
-				{
-					const std::string& language = nameLocalisation.first;		// the language
-					const std::string& name		 = nameLocalisation.second;	// the name of the country in this language
-					if (nameLocalisation.first == "english")
-					{
-						statename = name;
-					}
-				}
+				vic2State->setID(stateID->second);
 			}
-
-			// some otherwise valid unicode sequences cause problems when just before a quote
-			//		wierdest thing ever. Happens in notepad++, too.
-			if (statename.size() > 1)
+			else
 			{
-				string lastTwoBytes = statename.substr(statename.size() - 2, 2);
-				if (lastTwoBytes == u8"ó")
-				{
-					statename = statename.substr(0, statename.size() - 2) + 'o';
-				}
+				LOG(LogLevel::Warning) << "Could not find the state for Vic2 province " << vic2State->getProvinces()[0] << ", owned by " << country.first;
 			}
-			vic2State->setName(statename);
 		}
 	}
 }

@@ -29,19 +29,18 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4State::HoI4State(int _ID, string _ownerTag, string _name, float _Manpower, double _CivFactories, int _MilFactories, string _catagory, int _raillevel)
+HoI4State::HoI4State(int _ID, string _ownerTag, float _Manpower, double _CivFactories, int _MilFactories, string _catagory, int _raillevel)
 {
-	ID			= _ID;
-	ownerTag	= _ownerTag;
-	name		= _name;
-	if (name == "")
-	{
-		name = "Foo";
-	}
+	ID					= _ID;
+	ownerTag			= _ownerTag;
+	manpower			= _Manpower;
+	civFactories	= _CivFactories;
+	milFactories	= _MilFactories;
+	catagory			= _catagory;
+	
 	manpower	= _Manpower;
 	civFactories = _CivFactories;
 	milFactories = _MilFactories;
-	catagory = _catagory;
 	raillevel = _raillevel;
 }
 
@@ -60,8 +59,8 @@ void HoI4State::output(string _filename)
 		//out << civFactories << "  " << milFactories << endl;
 		out << "state={" << endl;
 		out << "\tid=" << ID << endl;
-		out << "\tname= \"" << name << "\"" << endl;
-		out << "\tmanpower = " << to_string(manpower) << endl;
+		out << "\tname= \"STATE_" << ID << "\"" << endl;
+		out << "\tmanpower = " << manpower << endl;
 		out << endl;
 		out << "\tstate_category = "<< catagory << endl;
 		out << "" << endl;

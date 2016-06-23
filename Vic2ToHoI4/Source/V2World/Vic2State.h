@@ -36,20 +36,16 @@ class Vic2State
 	public:
 		void	addProvince(int provNum)	{ provinces.push_back(provNum); }
 		void	setFactoryLevel(int level)	{ factoryLevel = level; }
-		void	setID(int id)					{ stateID = id; }
-		void	setName(string _name)		{ name = _name; }
-
+		void	setID(string id)				{ stateID = id; }
 
 		vector<int>	getProvinces() const		{ return provinces; }
 		int			getFactoryLevel() const	{ return factoryLevel; }
-		int			getStateID() const		{ return stateID; }
-		string		getName() const			{ return name; }
+		string		getStateID() const		{ return stateID; }
 
 	private:
 		vector<int>		provinces;
 		int				factoryLevel;
-		int				stateID;
-		string			name;
+		string			stateID;
 };
 
 

@@ -35,23 +35,21 @@ using namespace std;
 class HoI4State
 {
 	public:
-		HoI4State(int _ID, string _ownerTag, string _name, float _Manpower, double _CivFactories, int _MilFactories, string _catagory, int _raillevel);
+		HoI4State(int _ID, string _ownerTag, float _Manpower, double _CivFactories, int _MilFactories, string _catagory, int _raillevel);
 
 		void output(string filename);
 
-		void	addProvince(int province)	{ provinces.push_back(province); }
-		vector<int> getProvinces() const { return provinces; }
-		string	getOwner() const	{ return ownerTag; }
-		string		getName() const { return name; }
-		float		getManpower() const { return manpower; }
+		void			addProvince(int province)	{ provinces.push_back(province); }
+		vector<int> getProvinces() const			{ return provinces; }
+		string		getOwner() const				{ return ownerTag; }
+		float			getManpower() const			{ return manpower; }
 
 	private:
 		int			ID;
 		vector<int>	provinces;
 		string		ownerTag;
-		string			name;
-		float		manpower;
-		double			civFactories;
+		float			manpower;
+		double		civFactories;
 		int			milFactories;
 		string catagory;
 		int raillevel;
