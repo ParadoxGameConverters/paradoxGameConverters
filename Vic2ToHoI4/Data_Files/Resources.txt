@@ -1,0 +1,266 @@
+﻿resources  =  {
+link = { province = 606 aluminium = 10 }
+link = { province = 833 chromium = 36 aluminium = 112 }
+link = { province = 907 chromium = 116 aluminium = 32 }
+link = { province = 630 steel = 4 }
+link = { province = 10 aluminium = 8 }
+link = { province = 799 tungsten = 76 }
+link = { province = 285 aluminium = 2 steel = 3 }
+link = { province = 819 aluminium = 16 steel  =  24 }
+link = { province = 222 steel = 2 }
+link = { province = 131 chromium = 2 tungsten = 22 aluminium = 12 }
+link = { province = 253 steel = 16 aluminium = 4 }
+link = { province = 3241 steel = 48 }
+link = { province = 364 steel = 20 }
+link = { province = 83 steel = 3 }
+link = { province = 6268 steel = 120 }
+link = { province = 219 steel = 60 aluminium = 8 }
+link = { province = 3205 steel = 56 aluminium = 4 }
+link = { province = 3273 steel = 36 }
+link = { province = 200 tungsten = 6 aluminium = 4 }
+link = { province = 211 steel = 10 }
+link = { province = 69 steel = 10 }
+link = { province = 35 steel = 40 aluminium = 4 }
+link = { province = 53 chromium = 2 aluminium = 22 }
+link = { province = 22 steel = 12 tungsten  =  20 }
+link = { province = 30 steel = 8 chromium = 2 }
+link = { province = 485 steel = 36 }
+link = { province = 7 steel = 4 }
+link = { province = 658 aluminium = 24 }
+link = { province = 688 steel = 8 aluminium = 1 }
+link = { province = 682 oil  =  1 }
+link = { province = 611 steel = 40 aluminium = 28 chromium  =  4 tungsten  =  2 }
+link = { province = 603 steel = 32.000 aluminium = 18.000 }
+link = { province = 782 aluminium = 16 }
+link = { province = 790 steel = 24 }
+link = { province = 521 steel = 48 }
+link = { province = 794 tungsten = 6 }
+link = { province = 738 steel = 12 }
+link = { province = 747 steel = 12 }
+link = { province = 845 tungsten = 300 }
+link = { province = 7193 chromium = 4 }
+link = { province = 6990 chromium = 16 }
+link = { province = 841 chromium = 20 steel  =  20 }
+link = { province = 3401 chromium = 10 }
+link = { province = 530 steel = 3 }
+link = { province = 743 steel = 40 aluminium = 18 }
+link = { province = 568 chromium = 22 }
+link = { province = 641 steel = 128 aluminium = 72 }
+link = { province = 489 oil = 14 aluminium = 12 }
+link = { province = 21911 aluminium = 120 }
+link = { province = 15 steel = 28 chromium = 24 }
+link = { province = 36 steel = 52.000 }
+link = { province = 301 steel = 28 }
+link = { province = 752 steel = 136 aluminium = 96 }
+link = { province = 418 steel = 56 }
+link = { province = 302 steel = 76 chromium = 12 }
+link = { province = 453 oil = 6 }
+link = { province = 1467 oil = 126 }
+link = { province = 595 steel = 48 }
+link = { province = 683 oil = 26 }
+link = { province = 654 chromium = 46 }
+link = { province = 717 tungsten = 26 oil = 18 }
+link = { province = 714 chromium = 20 }
+link = { province = 187 steel = 24 }
+link = { province = 228 steel = 40 }
+link = { province = 286 steel = 20 }
+link = { province = 232 chromium = 10 }
+link = { province = 659 steel = 48.000 aluminium = 16.000 }
+link = { province = 105 oil = 8 }
+link = { province = 5082 tungsten = 3 }
+link = { province = 648 aluminium = 18 }
+link = { province = 1984 rubber = 2 }
+link = { province = 2100 steel = 4 }
+link = { province = 1688 steel = 8 chromium = 80 }
+link = { province = 650 steel = 24 }
+link = { province = 549 steel = 236 }
+link = { province = 993 aluminium = 2 }
+link = { province = 531 tungsten = 1 }
+link = { province = 1285 rubber = 94 }
+link = { province = 1014 rubber = 4 }
+link = { province = 1244 rubber = 10 tungsten = 2 }
+link = { province = 454 steel = 112 aluminium = 22 }
+link = { province = 4199 steel = 20 }
+link = { province = 78 oil = 22 }
+link = { province = 1955 oil = 3 }
+link = { province = 1920 oil = 1 }
+link = { province = 1947 oil = 2 }
+link = { province = 191 tungsten = 2 }
+link = { province = 7959 rubber = 4 }
+link = { province = 636 aluminium = 28 }
+link = { province = 1613 oil = 2 steel = 2 }
+link = { province = 2174 tungsten = 102.000 steel = 2.000 }
+link = { province = 2156 oil = 18 }
+link = { province = 1633 oil = 1 }
+link = { province = 5051 oil = 2 }
+link = { province = 4942 oil = 58 }
+link = { province = 1928 aluminium = 12 }
+link = { province = 4934 aluminium = 104 }
+link = { province = 2031 chromium = 1 }
+link = { province = 4991 chromium = 6 }
+link = { province = 12823 chromium = 1 }
+link = { province = 1550 steel = 4 chromium = 160 }
+link = { province = 12878 chromium = 1 }
+link = { province = 1988 chromium = 1 }
+link = { province = 1594  chromium = 3 }
+link = { province = 4598 chromium = 1 }
+link = { province = 762 steel = 56 aluminium = 58 }
+link = { province = 1961 tungsten = 2 }
+link = { province = 4386  chromium = 2  }
+link = { province = 8010 tungsten = 2 }
+link = { province = 1114 tungsten = 3  }
+link = { province = 1676 chromium = 2 }
+link = { province = 1689 steel = 2 chromium = 3 }
+link = { province = 1208 rubber = 72 oil = 18 }
+link = { province = 1225 rubber = 138 oil = 10 }
+link = { province = 1209 rubber = 242 oil = 16 }
+link = { province = 1291 rubber = 848 steel = 32 tungsten = 308 }
+link = { province = 3369 steel = 16 }
+link = { province = 928 chromium = 86 }
+link = { province = 785 chromium = 54 }
+link = { province = 849 chromium = 84 steel  =  20 }
+link = { province = 1005 chromium = 46 }
+link = { province = 784 chromium = 32 }
+link = { province = 890 chromium = 26 }
+link = { province = 715 steel = 20.000 }
+link = { province = 598 steel = 24.000 }
+link = { province = 702 steel = 80 }
+link = { province = 913 steel = 112 }
+link = { province = 1453 oil = 66 }
+link = { province = 1503 aluminium = 20 }
+link = { province = 1441 aluminium = 18 }
+link = { province = 1618 oil = 100 aluminium = 32 }
+link = { province = 805 oil = 580 aluminium = 96 }
+link = { province = 1972 oil = 20 aluminium = 52 }
+link = { province = 850 steel = 40 oil = 10 aluminium = 16 }
+link = { province = 610 oil = 350 aluminium = 14 }
+link = { province = 1862 steel = 136 tungsten = 62 aluminium = 44 }
+link = { province = 46 steel = 62 }
+link = { province = 1663 tungsten = 106 }
+link = { province = 868 oil = 20 }
+link = { province = 1352 oil = 42 }
+link = { province = 1789 steel = 32 chromium = 2 tungsten = 34 }
+link = { province = 1736 tungsten = 16 }
+link = { province = 1752 steel = 24 oil = 10 }
+link = { province = 656 aluminium = 22 }
+link = { province = 1719 steel = 208 }
+link = { province = 691 steel = 112.000 oil = 10.000 }
+link = { province = 703 steel = 84 }
+link = { province = 123 aluminium = 10 }
+link = { province = 305 chromium = 24 }
+link = { province = 653 oil = 2 }
+link = { province = 31 aluminium = 20 }
+link = { province = 410 steel = 40 tungsten = 34 }
+link = { province = 1220 chromium = 20 }
+link = { province = 664 chromium = 28 }
+link = { province = 725 chromium = 12 }
+link = { province = 858 aluminium = 2 }
+link = { province = 1963 oil = 14 }
+link = { province = 4959 oil = 12 }
+link = { province = 1922 oil = 42 }
+link = { province = 563 steel = 100 aluminium = 24 }
+link = { province = 1213 rubber = 116 }
+link = { province = 1238 rubber = 28 }
+link = { province = 1412 chromium = 20 tungsten = 128 }
+link = { province = 1059 steel = 44 chromium = 36 aluminium = 2 }
+link = { province = 1275 chromium = 8 }
+link = { province = 1061 oil = 4 }
+link = { province = 1349 tungsten = 26 }
+link = { province = 684 steel = 4 aluminium = 194 }
+link = { province = 1159 steel = 20 tungsten = 16 }
+link = { province = 1497 oil = 6 }
+link = { province = 1199 tungsten = 42 }
+link = { province = 1116 tungsten = 54 }
+link = { province = 1510 chromium = 6 }
+link = { province = 914 aluminium = 3 chromium = 3 }
+link = { province = 1071 oil = 2 }
+link = { province = 1037 steel = 8 }
+link = { province = 1013 steel = 36 }
+link = { province = 657 oil = 70 }
+link = { province = 490 aluminium = 4.000 }
+link = { province = 1284 aluminium = 4 }
+link = { province = 863 steel = 4 chromium = 22 aluminium = 58 tungsten  =  20 }
+link = { province = 1323 oil = 2 }
+link = { province = 2051 tungsten = 10 }
+link = { province = 793 aluminium = 2 }
+link = { province = 2060 oil = 48 }
+link = { province = 1945 steel = 4 }
+link = { province = 1944 oil = 126 }
+link = { province = 804 chromium = 16 }
+link = { province = 2182 tungsten = 2.000 }
+link = { province = 1937 oil = 20 }
+link = { province = 1979 aluminium = 4 }
+link = { province = 2153 steel = 4 }
+link = { province = 2150 rubber = 30 }
+link = { province = 519 aluminium = 10.000 }
+link = { province = 2106 tungsten = 46 steel = 8 }
+link = { province = 529 steel = 54 }
+link = { province = 1449 oil = 12 }
+link = { province = 2149 oil = 6 }
+link = { province = 1759 steel = 12 chromium = 6 }
+link = { province = 692 aluminium = 30 }
+link = { province = 1217 steel = 28 }
+link = { province = 1472 tungsten = 36 }
+link = { province = 848 steel = 20 tungsten = 52 }
+link = { province = 1020 chromium = 88 }
+link = { province = 1051 aluminium = 6 }
+link = { province = 1024 steel = 24 }
+link = { province = 998 steel = 24 tungsten = 10 }
+link = { province = 1322 oil = 4 }
+link = { province = 1580 chromium = 168 }
+link = { province = 697 chromium = 64.000 tungsten = 16.000 }
+link = { province = 3854 rubber = 6.000 }
+link = { province = 1724 steel = 24 }
+link = { province = 1672 steel = 12 chromium = 10 }
+link = { province = 1696 steel = 20 chromium = 34 tungsten = 28 aluminium = 8 }
+link = { province = 1666 steel = 32 chromium = 12 }
+link = { province = 1707 steel = 28.000 aluminium = 10.000 }
+link = { province = 1735 aluminium = 34 }
+link = { province = 237 chromium = 32 }
+link = { province = 1726 oil = 14 }
+link = { province = 4874 chromium = 44 aluminium = 30 }
+link = { province = 1334 steel = 72 oil = 12 }
+link = { province = 1591 steel = 48 chromium = 44 tungsten = 14 aluminium = 32 }
+link = { province = 1287 chromium = 22.000 }
+link = { province = 374 oil = 4 }
+link = { province = 1047 tungsten = 10 steel =  20 chromium  =  4 }
+link = { province = 1078 tungsten = 20 steel =  20 chromium  =  4 }
+link = { province = 1018 tungsten = 14 steel  =  10 chromium  =  4 }
+link = { province = 1023 tungsten = 20 steel =  20 chromium  =  4 }
+link = { province = 516 steel = 48 }
+link = { province = 425 steel = 20 chromium  =  4 tungsten  =  4 }
+link = { province = 1918 oil = 2 }
+link = { province = 1448 tungsten = 8 }
+link = { province = 1367 steel  =  20 }
+link = { province = 1083 steel = 16 }
+link = { province = 1766 aluminium = 2 chromium = 3 }
+link = { province = 517 steel = 4 tungsten = 3 }
+link = { province = 1388 rubber = 2 }
+link = { province = 9252 steel = 36 aluminium = 12 }
+link = { province = 1237 chromium = 178.000 }
+link = { province = 514 steel = 90 }
+link = { province = 227 steel = 28 }
+link = { province = 675 steel = 24 }
+link = { province = 2048 oil = 6 }
+link = { province = 552 steel = 110 aluminium = 38 }
+link = { province = 3565 steel = 20 }
+link = { province = 11 tungsten = 70 steel =  80 chromium  =  40 }
+link = { province = 1298 rubber = 16 }
+link = { province = 479 steel = 60 aluminium = 20 }
+link = { province = 1073 chromium = 8 tungsten = 38 }
+link = { province = 1246 rubber = 268 oil = 24 aluminium = 6 }
+link = { province = 1098 rubber = 52 }
+link = { province = 1600 oil = 10 }
+link = { province = 444 aluminium = 24 }
+link = { province = 602 steel = 12.000 aluminium = 14.000 }
+link = { province = 761 aluminium = 8.000 }
+link = { province = 4982 aluminium = 112 }
+link = { province = 2195 tungsten = 4 steel = 2 }
+link = { province = 3284 oil = 16 }
+link = { province = 68 steel = 8 }
+link = { province = 541 tungsten = 2 }
+link = { province = 836 steel = 36 }
+link = { province = 1468 chromium = 116 }
+link = { province = 2197 tungsten = 6 }
+link = { province = 1279 rubber = 70 }
+}

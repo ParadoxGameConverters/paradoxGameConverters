@@ -62,6 +62,12 @@ void HoI4State::output(string _filename)
 		out << "\tname= \"STATE_" << ID << "\"" << endl;
 		out << "\tmanpower = " << manpower << endl;
 		out << endl;
+		if (resources != "")
+		{
+			out << "resources={" << endl;
+			out << resources;
+			out << "}" << endl;
+		}
 		out << "\tstate_category = "<< catagory << endl;
 		out << "" << endl;
 		out << "\thistory={" << endl;

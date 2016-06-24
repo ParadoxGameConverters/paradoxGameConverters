@@ -38,11 +38,12 @@ class HoI4State
 		HoI4State(int _ID, string _ownerTag, float _Manpower, double _CivFactories, int _MilFactories, string _catagory, int _raillevel);
 
 		void output(string filename);
-
+		void		setResources(string _resources) { resources = _resources; }
 		void			addProvince(int province)	{ provinces.push_back(province); }
 		vector<int> getProvinces() const			{ return provinces; }
 		string		getOwner() const				{ return ownerTag; }
 		float			getManpower() const			{ return manpower; }
+
 
 	private:
 		int			ID;
@@ -53,6 +54,7 @@ class HoI4State
 		int			milFactories;
 		string catagory;
 		int raillevel;
+		string resources;
 };
 
 

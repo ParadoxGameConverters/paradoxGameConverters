@@ -37,6 +37,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4State.h"
 #include <cmath>
 #include <random>  
+#include <boost/filesystem.hpp>
+#include <boost/foreach.hpp> 
 
 
 
@@ -413,8 +415,11 @@ struct MTo1ProvinceComp
 void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, HoI4StateMapping& stateMap, V2Localisation& Vic2Localisations)
 {
 	// TODO - determine province owners for all HoI4 provinces
+	Object* obj = parser_UTF8::doParseFile("Resources.txt");
+	auto obj2 = obj->getValue("resources");
+	auto obj3 = obj2[0]->getValue("link");
 	
-
+	auto obj4 = obj3[0]->getValue("province");
 	//	loop through the vic2 countries
 	int stateID = 1;
 	for (auto country: sourceWorld.getCountries())
@@ -444,6 +449,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 		//	loop through the states in the vic2 country
 		for (auto vic2State: country.second->getStates())
 		{
+			string resources = "";
 			double stateWorkers = 0;
 			double stateFac = 0;
 			float population = 0;
@@ -451,6 +457,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 			volatile double provinces = 0;
 			for (auto prov : vic2State->getProvinces())
 			{
+				
 				//gets population, raillevel, and workers in every state to convert slots and states*conversion percentage
 				V2Province* sourceProvince = sourceWorld.getProvince(prov);
 				population += sourceProvince->getLiteracyWeightedPopulation();
@@ -535,6 +542,23 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 				{
 					for (auto HoI4ProvNum: provMapping->second)
 					{
+						for (auto itr : obj3)
+						{
+							auto keys = itr->getLeaves();
+							auto province = keys[0]->getLeaf();
+							if (to_string(HoI4ProvNum) == province)
+							{
+								for (int i = 1; i < keys.size(); i++)
+								{
+									auto key = keys[i]->getKey();
+									auto value = keys[i]->getLeaf();
+									resources += key + " = " + value + "\r\n";
+
+								}
+								newState->setResources(resources);
+							}
+
+						}
 						if (HoI4ProvNum != 0)
 						{
 							newState->addProvince(HoI4ProvNum);
@@ -2119,12 +2143,33 @@ void HoI4World::convertDiplomacy(const V2World& sourceWorld, const CountryMappin
 		}
 	}
 }
+void HoI4World::copyEvents()
+{
+	// Create output folders.
+	std::string outputEventsFolder = "Output/" + Configuration::getOutputName() + "/events";
+	if (!Utils::TryCreateFolder(outputEventsFolder))
+	{
+		return;
+	}
+	namespace fs = boost::filesystem;
 
+	fs::path targetDir("events");
+
+	fs::directory_iterator it(targetDir), eod;
+	BOOST_FOREACH(fs::path const &p, std::make_pair(it, eod))
+	{
+		if (fs::is_regular_file(p))
+		{
+			Utils::TryCopyFile(boost::filesystem::canonical(p).string() , outputEventsFolder);
+		}
+	}
+	
+}
 
 void HoI4World::copyFlags(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
 	LOG(LogLevel::Debug) << "Copying flags";
-
+	
 	// Create output folders.
 	std::string outputGraphicsFolder = "Output/" + Configuration::getOutputName() + "/gfx";
 	if (!Utils::TryCreateFolder(outputGraphicsFolder))
