@@ -60,7 +60,7 @@ void HoI4State::output(string _filename)
 		out << "state={" << endl;
 		out << "\tid=" << ID << endl;
 		out << "\tname= \"STATE_" << ID << "\"" << endl;
-		out << "\tmanpower = " << manpower << endl;
+		out << "\tmanpower = " << to_string(manpower) << endl;
 		out << endl;
 		if (resources != "")
 		{

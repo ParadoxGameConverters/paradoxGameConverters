@@ -42,7 +42,8 @@ class HoI4State
 		void			addProvince(int province)	{ provinces.push_back(province); }
 		vector<int> getProvinces() const			{ return provinces; }
 		string		getOwner() const				{ return ownerTag; }
-		float			getManpower() const			{ return manpower; }
+		float		getManpower() const				{ return manpower; }
+		int			getID()							{ return ID; }
 
 
 	private:
@@ -55,6 +56,7 @@ class HoI4State
 		string catagory;
 		int raillevel;
 		string resources;
+
 };
 
 

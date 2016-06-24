@@ -155,6 +155,9 @@ void HoI4World::output() const
 	//outputAutoexecLua();
 	outputLocalisations();
 	outputHistory();
+	//output events
+	Utils::copyFolder("events", "output/" + Configuration::getOutputName());
+	outputMap();
 }
 
 
@@ -270,10 +273,45 @@ void HoI4World::outputLocalisations() const
 
 	localisation.output(localisationPath);
 }
+void HoI4World::outputMap() const
+{
+	LOG(LogLevel::Debug) << "Writing Map Info";
+	string mappath = "Output/" + Configuration::getOutputName() + "/map";
+	if (!Utils::TryCreateFolder(mappath))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/map";
+		exit(-1);
+	}
+	string filename("Output/" + Configuration::getOutputName() + "/map/rocketsites.txt");
+	ofstream out;
+	out.open(filename);
+	
+	for (auto state : states)
+	{
+		vector<int> provinces = state.second->getProvinces();
+		out << state.second->getID() << " = { " << provinces.front() << " }\r\n";
+	}
+	out.close();
+	string filename2("Output/" + Configuration::getOutputName() + "/map/airports.txt");
+	ofstream out2;
+	out2.open(filename2);
 
+	for (auto state : states)
+	{
+		vector<int> provinces2 = state.second->getProvinces();
+		out2 << state.second->getID() << " = { " << provinces2.front() << " }\r\n";
+	}
+	out2.close();
+
+	string filename3("Output/" + Configuration::getOutputName() + "/map/buildings.txt");
+	ofstream out3;
+	out3.open(filename3);
+	out3.close();
+}
 
 void HoI4World::outputHistory() const
 {
+
 	LOG(LogLevel::Debug) << "Writing states";
 	string statesPath = "Output/" + Configuration::getOutputName() + "/history/states";
 	if (!Utils::TryCreateFolder(statesPath))
@@ -2143,33 +2181,11 @@ void HoI4World::convertDiplomacy(const V2World& sourceWorld, const CountryMappin
 		}
 	}
 }
-void HoI4World::copyEvents()
-{
-	// Create output folders.
-	std::string outputEventsFolder = "Output/" + Configuration::getOutputName() + "/events";
-	if (!Utils::TryCreateFolder(outputEventsFolder))
-	{
-		return;
-	}
-	namespace fs = boost::filesystem;
-
-	fs::path targetDir("events");
-
-	fs::directory_iterator it(targetDir), eod;
-	BOOST_FOREACH(fs::path const &p, std::make_pair(it, eod))
-	{
-		if (fs::is_regular_file(p))
-		{
-			Utils::TryCopyFile(boost::filesystem::canonical(p).string() , outputEventsFolder);
-		}
-	}
-	
-}
 
 void HoI4World::copyFlags(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
 	LOG(LogLevel::Debug) << "Copying flags";
-	
+
 	// Create output folders.
 	std::string outputGraphicsFolder = "Output/" + Configuration::getOutputName() + "/gfx";
 	if (!Utils::TryCreateFolder(outputGraphicsFolder))
