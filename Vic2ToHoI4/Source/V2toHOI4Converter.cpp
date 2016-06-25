@@ -467,7 +467,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	destWorld.convertVictoryPoints(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Setting AI focuses";
 	destWorld.setAIFocuses(focusModifiers);
-
+	
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";
 	if (!Utils::copyFolder("blankMod/output", "output/output"))
@@ -501,7 +501,8 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	LOG(LogLevel::Info) << "Outputting world";
 	destWorld.output();
-
+	LOG(LogLevel::Info) << "Creating Supply Zones";
+	destWorld.outputSupply(sourceWorld, inverseProvinceMap, countryMap, HoI4StateMap, localisation);
 	LOG(LogLevel::Info) << "* Conversion complete *";
 	return 0;
 }
