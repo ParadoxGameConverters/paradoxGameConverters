@@ -503,6 +503,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	destWorld.output();
 	LOG(LogLevel::Info) << "Creating Supply Zones";
 	destWorld.outputSupply(sourceWorld, inverseProvinceMap, countryMap, HoI4StateMap, localisation);
+	Utils::copyFolder("bookmarks", "output/" + Configuration::getOutputName() + "/common");
 	LOG(LogLevel::Info) << "* Conversion complete *";
 	return 0;
 }
