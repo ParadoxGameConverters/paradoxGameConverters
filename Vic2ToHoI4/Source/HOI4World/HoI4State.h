@@ -35,7 +35,7 @@ using namespace std;
 class HoI4State
 {
 	public:
-		HoI4State(int _ID, string _ownerTag, float _Manpower, double _CivFactories, int _MilFactories, string _catagory, int _raillevel);
+		HoI4State(int _ID, string _ownerTag, float _Manpower, double _CivFactories, int _MilFactories, string _catagory, int _raillevel, int _navalbase, int _navallocation);
 
 		void output(string filename);
 		void		setResources(string _resources) { resources = _resources; }
@@ -56,6 +56,8 @@ class HoI4State
 		string catagory;
 		int raillevel;
 		string resources;
+		int navalbase;
+		int navallocation;
 
 };
 

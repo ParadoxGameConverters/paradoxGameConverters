@@ -29,7 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4State::HoI4State(int _ID, string _ownerTag, float _Manpower, double _CivFactories, int _MilFactories, string _catagory, int _raillevel)
+HoI4State::HoI4State(int _ID, string _ownerTag, float _Manpower, double _CivFactories, int _MilFactories, string _catagory, int _raillevel, int _navalbase, int _navallocation)
 {
 	ID					= _ID;
 	ownerTag			= _ownerTag;
@@ -42,6 +42,8 @@ HoI4State::HoI4State(int _ID, string _ownerTag, float _Manpower, double _CivFact
 	civFactories = _CivFactories;
 	milFactories = _MilFactories;
 	raillevel = _raillevel;
+	navalbase = _navalbase;
+	navallocation = _navallocation;
 }
 
 
@@ -77,10 +79,17 @@ void HoI4State::output(string _filename)
 		out << "	infrastructure = "<< raillevel << endl;
 		out << "	industrial_complex = " << civFactories << endl;
 		out << "	arms_factory = " << milFactories << endl;
+		
+		if (navalbase > 0 && navallocation > 0)
+		{
+			out << "	" << navallocation << " = {" << endl;
+			out << "		naval_base = " << navalbase << endl;
+			out << "	}" << endl;
+		}
 		//out << "	air_base = 1" << endl;
 		//out << "	3838 = {" << endl;
 		//out << "	naval_base = 3" << endl;
-		out << "}" << endl;
+		out << "\t\t}" << endl;
 		//out << "}" << endl;
 		//out << "	add_core_of = FRA" << endl;
 		out << "\t}" << endl;

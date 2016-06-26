@@ -39,9 +39,20 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <random>  
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp> 
-
-
-
+#include <IL\il.h>
+#include <IL\ilu.h>
+#include <IL\ilut.h>
+#include<IL\config.h>
+#include<IL\devil_internal_exports.h>
+#include<IL\ilu_region.h>
+#include<IL\ilut_config.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#pragma comment( lib, "opengl32.lib" )
+#pragma comment( lib, "glu32.lib" )
+#pragma comment(lib, "IL/DevIL.lib")
+#pragma comment(lib, "IL/ILU.lib")
+#pragma comment(lib, "IL/ILUT.lib")
 
 typedef struct fileWithCreateTime
 {
@@ -573,8 +584,11 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 	Object* obj = parser_UTF8::doParseFile("Resources.txt");
 	auto obj2 = obj->getValue("resources");
 	auto obj3 = obj2[0]->getValue("link");
-
 	auto obj4 = obj3[0]->getValue("province");
+	Object* navalobj = parser_UTF8::doParseFile("navalprovinces.txt");
+	auto navalobj2 = navalobj->getValue("navalprovinces");
+	auto navalobj3 = navalobj2[0]->getValue("link");
+	auto navalprovinces = navalobj3[0]->getValue("province");
 	//	loop through the vic2 countries
 	int stateID = 1;
 	for (auto country : sourceWorld.getCountries())
@@ -604,17 +618,50 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 		//	loop through the states in the vic2 country
 		for (auto vic2State : country.second->getStates())
 		{
+			if (vic2State->getStateID() == "BRZ_2408")
+			{
+				int x;
+				x = 6;
+				Object* obj = parser_UTF8::doParseFile("Resources.txt");
+			}
+			bool lookfornavalbase = true;
 			string resources = "";
 			double stateWorkers = 0;
 			double stateFac = 0;
 			float population = 0;
-			volatile double raillevel = 0;
-			volatile double provinces = 0;
+			double raillevel = 0;
+			double provinces = 0;
+			int navalbase = 0;
+			int navalbaselocation = 0;
 			for (auto prov : vic2State->getProvinces())
 			{
 
 				//gets population, raillevel, and workers in every state to convert slots and states*conversion percentage
 				V2Province* sourceProvince = sourceWorld.getProvince(prov);
+				if (sourceProvince->getNavalBase() > 0 && prov < 2800)
+				{
+					navalbase += sourceProvince->getNavalBase();
+					 auto loc = inverseProvinceMap.find(prov);
+					if (loc->second.size() < 100)
+					{
+						for (auto HoI4ProvNum : loc->second)
+						{
+							if (HoI4ProvNum < 14000 && lookfornavalbase == true)
+							{
+								for (auto navalprov : navalprovinces)
+								{
+									string navalprovince = navalprov->getLeaf();
+									if (navalprovince == to_string(HoI4ProvNum))
+									{
+										navalbaselocation = HoI4ProvNum;
+										lookfornavalbase = false;
+										break;
+									}
+								}
+							}
+						}
+					}
+				}
 				population += sourceProvince->getLiteracyWeightedPopulation();
 				raillevel = sourceProvince->getInfra();
 				stateWorkers += sourceProvince->getEmployedWorkers()*.00001*percentage;
@@ -633,8 +680,8 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 			//limits factories by max slots
 			if (stateFac > 12)
 				stateFac = 12;
-			if (stateFac > stateSlots)
-				stateSlots = stateFac;
+			if (stateFac >= stateSlots)
+				stateSlots = stateFac + 2;
 			//better rails for better industry
 			if (stateFac > 10)
 				raillevel += 3;
@@ -686,7 +733,8 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 			{
 				newManpower = 1;
 			}
-			HoI4State* newState = new HoI4State(stateID, HoI4Tag, newManpower, civFac, milFac, catagory, raillevel);
+		
+			HoI4State* newState = new HoI4State(stateID, HoI4Tag, newManpower, civFac, milFac, catagory, raillevel, navalbase, navalbaselocation);
 
 			//	loop through the provinces in the vic2 state
 			for (auto vic2Province : vic2State->getProvinces())
@@ -2301,6 +2349,8 @@ void HoI4World::convertDiplomacy(const V2World& sourceWorld, const CountryMappin
 
 void HoI4World::copyFlags(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
+	
+
 	LOG(LogLevel::Debug) << "Copying flags";
 
 	// Create output folders.
