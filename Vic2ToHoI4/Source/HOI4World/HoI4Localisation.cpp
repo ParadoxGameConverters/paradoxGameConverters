@@ -41,14 +41,13 @@ void HoI4Localisation::readFromCountry(const V2Country* source, string destTag)
 			existingLocalisation = countryLocalisations.find(nameInLanguage.first);
 		}
 		
-		existingLocalisation->second.insert(make_pair(destTag + "_fascism", nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_fascism_DEF", nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_democratic", nameInLanguage.second));
+		
+		existingLocalisation->second.insert(make_pair(destTag + "_democratic",  nameInLanguage.second));
 		existingLocalisation->second.insert(make_pair(destTag + "_democratic_DEF", nameInLanguage.second));
 		existingLocalisation->second.insert(make_pair(destTag + "_neutrality", nameInLanguage.second));
 		existingLocalisation->second.insert(make_pair(destTag + "_neutrality_DEF", nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_communism", nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_communism_DEF", nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_communism", "People's Republic of " + nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_communism_DEF", "People's Republic of " + nameInLanguage.second));
 	}
 	for (auto adjInLanguage: source->getLocalisedAdjectives())
 	{
@@ -59,7 +58,8 @@ void HoI4Localisation::readFromCountry(const V2Country* source, string destTag)
 			countryLocalisations[adjInLanguage.first] = newLocalisation;
 			existingLocalisation = countryLocalisations.find(adjInLanguage.first);
 		}
-
+		existingLocalisation->second.insert(make_pair(destTag + "_fascism", adjInLanguage.second + " Empire"));
+		existingLocalisation->second.insert(make_pair(destTag + "_fascism_DEF", adjInLanguage.second));
 		existingLocalisation->second.insert(make_pair(destTag + "_fascism_ADJ", adjInLanguage.second));
 		existingLocalisation->second.insert(make_pair(destTag + "_democratic_ADJ", adjInLanguage.second));
 		existingLocalisation->second.insert(make_pair(destTag + "_neutrality_ADJ", adjInLanguage.second));
