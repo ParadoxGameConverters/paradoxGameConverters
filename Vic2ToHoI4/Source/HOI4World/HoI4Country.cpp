@@ -66,7 +66,7 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 {
 	theWorld = _theWorld;
 	newCountry = _newCountry;
-	
+
 
 	tag = _tag;
 	commonCountryFile = _commonCountryFile;
@@ -74,11 +74,11 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	provinces.clear();
 	technologies.clear();
 
-	capital			= 0;
-	ideology			= "";
-	government		= "";
-	faction			= "";
-	factionLeader	= false;
+	capital = 0;
+	ideology = "";
+	government = "";
+	faction = "";
+	factionLeader = false;
 
 	neutrality = 50;
 	nationalUnity = 70;
@@ -88,13 +88,13 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	airModifier = 1.0;
 	infModifier = 1.0;
 
-	training_laws					= "minimal_training";
-	press_laws						= "censored_press";
-	industrial_policy_laws		= "consumer_product_orientation";
+	training_laws = "minimal_training";
+	press_laws = "censored_press";
+	industrial_policy_laws = "consumer_product_orientation";
 	educational_investment_law = "minimal_education_investment";
-	economic_law					= "full_civilian_economy";
-	conscription_law				= "volunteer_army";
-	civil_law						= "limited_restrictions";
+	economic_law = "full_civilian_economy";
+	conscription_law = "volunteer_army";
+	civil_law = "limited_restrictions";
 
 	relations.clear();
 	armies.clear();
@@ -113,7 +113,7 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 }
 
 
-void HoI4Country::output(int statenumber) const
+void HoI4Country::output(int statenumber, map<int, HoI4State*>	states) const
 {
 	// output history file
 	ofstream output;
@@ -138,7 +138,7 @@ void HoI4Country::output(int statenumber) const
 			com += party.popularity;
 	}
 	dem = 100 - fac - com;
-	
+
 	if ((capital > 0 && capital <= statenumber) || !newCountry)
 	{
 		output.open(("Output/" + Configuration::getOutputName() + "/history/countries/" + Utils::convertToASCII(filename)).c_str());
@@ -148,7 +148,7 @@ void HoI4Country::output(int statenumber) const
 			exit(-1);
 		}
 		output << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
-		if(newCountry)
+		if (newCountry)
 			output << "capital = " << capital << endl;
 		else
 			output << "capital =  1" << endl;
@@ -159,7 +159,7 @@ void HoI4Country::output(int statenumber) const
 		output << "set_technology = {" << endl;
 		for (auto tech : technologies)
 		{
-			output << tech.first<< " = 1" << endl;
+			output << tech.first << " = 1" << endl;
 		}
 		output << "}" << endl;
 		output << "" << endl;
@@ -172,11 +172,11 @@ void HoI4Country::output(int statenumber) const
 		output << "" << endl;
 		output << "    parties = {" << endl;
 		output << "        democratic = { " << endl;
-		output << "            popularity = " << dem*4/5 << endl;
+		output << "            popularity = " << dem * 4 / 5 << endl;
 		output << "        }" << endl;
 		output << "" << endl;
 		output << "        fascism = {" << endl;
-		output << "            popularity = "<< fac << endl;
+		output << "            popularity = " << fac << endl;
 		output << "        }" << endl;
 		output << "        " << endl;
 		output << "        communism = {" << endl;
@@ -184,7 +184,7 @@ void HoI4Country::output(int statenumber) const
 		output << "        }" << endl;
 		output << "        " << endl;
 		output << "        neutrality = { " << endl;
-		output << "            popularity = " << dem /5 << endl;
+		output << "            popularity = " << dem / 5 << endl;
 		output << "        }" << endl;
 		output << "    }" << endl;
 		output << "    " << endl;
@@ -192,7 +192,7 @@ void HoI4Country::output(int statenumber) const
 		if (government == "")
 			output << "    ruling_party = neutrality" << endl;
 		else
-			output << "    ruling_party = "<< government << endl;
+			output << "    ruling_party = " << government << endl;
 
 		output << "    last_election = \"1936.1.1\"" << endl;
 		output << "    election_frequency = 48" << endl;
@@ -217,7 +217,7 @@ void HoI4Country::output(int statenumber) const
 	}
 
 	//// output OOB file
-	outputOOB();
+	outputOOB(states);
 
 	//// output leaders file
 	//outputLeaders();
@@ -473,7 +473,7 @@ void HoI4Country::outputLeaders() const
 }
 
 
-void HoI4Country::outputOOB() const
+void HoI4Country::outputOOB(map<int, HoI4State*> states) const
 {
 	ofstream output(("Output/" + Configuration::getOutputName() + "/history/units/" + tag + "_OOB.txt").c_str());
 	if (!output.is_open())
@@ -494,7 +494,17 @@ void HoI4Country::outputOOB() const
 			armyItr->output(output);
 		}
 	}*/
-
+	int navallocation = 0;
+	if (naviestxt != "")
+	{
+		for (auto state : states)
+		{
+			if (state.second->getOwner() == tag && state.second->getNavalLocation() != 0)
+			{
+				navallocation = state.second->getNavalLocation();
+			}
+		}
+	}
 	output << "start_equipment_factor = 0\n";
 	output << divisionstxt;
 	output << "### No BHU air forces ###\n";
@@ -511,6 +521,14 @@ void HoI4Country::outputOOB() const
 	output << "}\n";
 	output << "units = {\r\n";
 	output << armiestxt;
+	if (naviestxt != "")
+	{
+		output << "\tnavy = {" << endl;
+		output << "\t\tname = \"Grand Fleet\"" << endl;
+		output << "\t\tlocation = " << navallocation << endl;
+		output << naviestxt;
+		output << "\t}" << endl;
+	}
 	output << "}";
 	output.close();
 }
@@ -526,10 +544,10 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	}
 	if (filename == "")
 	{
-		string countryName	= commonCountryFile;
-		int lastSlash			= countryName.find_last_of("/");
-		countryName				= countryName.substr(lastSlash + 1, countryName.size());
-		filename					= tag + " - " + countryName;
+		string countryName = commonCountryFile;
+		int lastSlash = countryName.find_last_of("/");
+		countryName = countryName.substr(lastSlash + 1, countryName.size());
+		filename = tag + " - " + countryName;
 	}
 
 	// Color
@@ -773,17 +791,17 @@ void HoI4Country::initFromHistory()
 
 	if (filename == "")
 	{
-		string countryName	= commonCountryFile;
-		int lastSlash			= countryName.find_last_of("/");
-		countryName				= countryName.substr(lastSlash + 1, countryName.size());
-		filename					= tag + " - " + countryName;
+		string countryName = commonCountryFile;
+		int lastSlash = countryName.find_last_of("/");
+		countryName = countryName.substr(lastSlash + 1, countryName.size());
+		filename = tag + " - " + countryName;
 		return;
 	}
 	else
 	{
 		fullFilename = Configuration::getHoI4Path() + "/history/countries/" + filename;
 	}
-	
+
 
 	Object* obj = parser_UTF8::doParseFile(fullFilename.c_str());
 	if (obj == NULL)
@@ -814,9 +832,9 @@ void HoI4Country::initFromHistory()
 
 void HoI4Country::consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry)
 {
-	bool convertManpower		= (Configuration::getManpowerConversion() != "no");
-	bool convertLeadership	= (Configuration::getLeadershipConversion() != "no");
-	bool convertIndustry		= (Configuration::getIcConversion() != "no");
+	bool convertManpower = (Configuration::getManpowerConversion() != "no");
+	bool convertLeadership = (Configuration::getLeadershipConversion() != "no");
+	bool convertIndustry = (Configuration::getIcConversion() != "no");
 
 	double leftoverManpower = 0.0;
 	double leftoverLeadership = 0.0;
@@ -825,12 +843,12 @@ void HoI4Country::consolidateProvinceItems(const inverseProvinceMapping& inverse
 	Vic2State capitalState;
 
 	vector<Vic2State*> states = srcCountry->getStates();
-	for (auto stateItr: states)
+	for (auto stateItr : states)
 	{
 		double stateManpower = 0.0;
 		double stateLeadership = 0.0;
 		double stateIndustry = 0.0;
-		for (auto srcProvinceItr: stateItr->getProvinces())
+		for (auto srcProvinceItr : stateItr->getProvinces())
 		{
 			auto possibleHoI4Provinces = inverseProvinceMap.find(srcProvinceItr);
 			if (possibleHoI4Provinces != inverseProvinceMap.end())
@@ -898,7 +916,7 @@ void HoI4Country::consolidateProvinceItems(const inverseProvinceMapping& inverse
 			}
 			if (convertIndustry)
 			{
-				for (auto vic2ProvNum: stateItr->getProvinces())
+				for (auto vic2ProvNum : stateItr->getProvinces())
 				{
 					auto possibleHoI4Provinces = inverseProvinceMap.find(vic2ProvNum);
 					if (possibleHoI4Provinces != inverseProvinceMap.end())
@@ -1090,16 +1108,132 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, const namesMappi
 		leaders.push_back(newLeader);
 	}
 }
+void HoI4Country::CalculateNavy(const inverseProvinceMapping& inverseProvinceMap)
+{
+	int navalport = 0;
+	double HeavyShip = 0;
+	double LightShip = 0;
+	double BB = 0;
+	double BC = 0;
+	double HC = 0;
+	double LC = 0;
+	double DD = 0;
+	double CV = 0;
+	double SB = 0;
+	string navies = "";
+	vector<string> navytechs;
+	for (auto army : srcCountry->getArmies())
+	{
+		for (auto regiment : army->getRegiments())
+		{
+			string type = regiment->getType();
+			if (
+				(type == "battleship") || (type == "dreadnought") || (type == "cruiser")
+				)
+			{
+				if (type == "battleship")
+				{
+					HeavyShip += .8;
+				}
+				if (type == "dreadnought")
+				{
+					HeavyShip += 1;
+				}
+				if (type == "cruiser")
+				{
+					LightShip += 1;
+				}
+			}
+		}
+	}
+	for (auto tech : technologies)
+	{
+		if (tech.first == "early_light_cruiser" && tech.second == 1)
+		{
+			navytechs.push_back(tech.first);
+		}
+		if (tech.first == "early_destroyer" && tech.second == 1)
+		{
+			navytechs.push_back(tech.first);
+		}
+		if (tech.first == "early_submarine" && tech.second == 1)
+		{
+			navytechs.push_back(tech.first);
+		}
+		if (tech.first == "early_heavy_cruiser" && tech.second == 1)
+		{
+			navytechs.push_back(tech.first);
+		}
+		if (tech.first == "early_battlecruiser" && tech.second == 1)
+		{
+			navytechs.push_back(tech.first);
+		}
+		if (tech.first == "early_battleship" && tech.second == 1)
+		{
+			navytechs.push_back(tech.first);
+		}
+	}
+	if (std::find(navytechs.begin(), navytechs.end(), "early_battleship") != navytechs.end())
+		CV = HeavyShip * 0.073;
+	if (std::find(navytechs.begin(), navytechs.end(), "early_battleship") != navytechs.end())
+		BB = HeavyShip * 0.21945;
+	if (std::find(navytechs.begin(), navytechs.end(), "early_battlecruiser") != navytechs.end())
+		BC = HeavyShip * 0.073;
+	if (std::find(navytechs.begin(), navytechs.end(), "early_heavy_cruiser") != navytechs.end())
+		HC = HeavyShip * 0.2926;
+	if (std::find(navytechs.begin(), navytechs.end(), "early_light_cruiser") != navytechs.end())
+		LC = LightShip * .47;
+	if (std::find(navytechs.begin(), navytechs.end(), "early_destroyer") != navytechs.end())
+		DD = LightShip * 1.88;
+	if (std::find(navytechs.begin(), navytechs.end(), "early_submarine") != navytechs.end())
+		SB = LightShip * .705;
+
+	for (int i = 0; i < CV; i++)
+	{
+		navies += "ship = { name = \"Carrier\" definition = carrier equipment = { carrier_1 = { amount = 1 owner = "+tag+" create_if_missing = yes } } \r\n";
+		navies += "		air_wings = {\r\n";
+		navies += "			cv_fighter_equipment_0 = { owner = \"" +tag+ "\" amount = 27 create_if_missing = yes }\r\n";
+		navies += "			cv_nav_bomber_equipment_1 = { owner = \"" + tag + "\" amount = 27 create_if_missing = yes }\r\n";
+		navies += "		}\r\n";
+		navies += "	}\r\n";
+	}
+	for (int i = 0; i < BB; i++)
+	{
+		navies += "ship = { name = \"Battleship\" definition = battleship equipment = { battleship_1 = { amount = 1 owner = "+ tag + " create_if_missing = yes version_name = \"Battleship 1\" } } }\r\n";
+	}
+	for (int i = 0; i < BC; i++)
+	{
+		navies += "ship = { name = \"Battle Cruiser\" definition = battle_cruiser  equipment = { battle_cruiser_1 = { amount = 1 owner = " + tag + " create_if_missing = yes  version_name = \"Battle Cruiser 1\" } } }\r\n";
+	}
+	for (int i = 0; i < HC; i++)
+	{
+		navies += "ship = { name = \"Heavy Cruiser\" definition = heavy_cruiser   equipment = { heavy_cruiser_1 = { amount = 1 owner = " + tag + " create_if_missing = yes  version_name = \"Heavy Cruiser 1\" } } }\r\n";
+	}
+	for (int i = 0; i < LC; i++)
+	{
+		navies += "ship = { name = \"Light Cruiser\" definition = light_cruiser    equipment = { light_cruiser_1 = { amount = 1 owner = " + tag + " create_if_missing = yes  version_name = \"Light Cruiser 1\" } } }\r\n";
+	}
+	for (int i = 0; i < DD; i++)
+	{
+		navies += "ship = { name = \"Destroyer\" definition = destroyer    equipment = { destroyer_1 = { amount = 1 owner = " + tag + " create_if_missing = yes  version_name = \"Destroyer 1\" } } }\r\n";
+	}
+	for (int i = 0; i < SB; i++)
+	{
+		navies += "ship = { name = \"submarine\" definition = submarine    equipment = { submarine_1 = { amount = 1 owner = " + tag + " create_if_missing = yes  version_name = \"submarine 1\" } } }\r\n";
+	}
+	naviestxt = navies;
+}
 void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inverseProvinceMap)
 {
-		int infantrybrigs = 0;
-		int artbrigs = 0;
-		int supportbrigs = 0;
-		int tankbrigs = 0;
-		int cavbrigs = 0;
-		int cavsupportbrigs = 0;
-		int mtnbrigs = 0;
-		map<int, int> locations;
+	CalculateNavy(inverseProvinceMap);
+	int infantrybrigs = 0;
+	int artbrigs = 0;
+	int supportbrigs = 0;
+	int tankbrigs = 0;
+	int cavbrigs = 0;
+	int cavsupportbrigs = 0;
+	int mtnbrigs = 0;
+	map<int, int> locations;
 	for (auto army : srcCountry->getArmies())
 	{
 		int HoI4location = 0;
@@ -1123,7 +1257,7 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 		}
 		else
 		{
-			
+
 			locations[HoI4location] += army->getRegiments().size();
 		}*/
 		for (auto regiment : army->getRegiments())
@@ -1302,7 +1436,7 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 				division_templates += "	regiments = {\r\n";
 				for (int i = 0; i < infperdiv / 3; i++)
 				{
-				division_templates += "		infantry = { x = 0 y = " + to_string(i) + " }\r\n";
+					division_templates += "		infantry = { x = 0 y = " + to_string(i) + " }\r\n";
 				}
 				for (int i = 0; i < infperdiv / 3; i++)
 				{
@@ -1317,7 +1451,7 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 				division_templates += "        engineer = { x = 0 y = 0 }\r\n";
 				division_templates += "        recon = { x = 0 y = 1 }\r\n";
 				division_templates += "	}\r\n";
-				division_templates += "}\r\n"; 
+				division_templates += "}\r\n";
 			}
 
 		}
@@ -1403,8 +1537,8 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 	}
 	for (auto const &ent1 : locations)
 	{
-		if(totalweight != 0)
-			locations[ent1.first] = ent1.second*numberofdivisions/totalweight;
+		if (totalweight != 0)
+			locations[ent1.first] = ent1.second*numberofdivisions / totalweight;
 	}
 	//unit placement
 	int AdvNmb = 1;
@@ -1454,7 +1588,7 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 					//Super Placement
 					Armies += "division= {	\r\n";
 					Armies += "		name = \"" + to_string(AdvNmb++) + ".Advance Infantry Division\"\r\n";
-					Armies += "		location = " + to_string(ent1.first)+"\r\n";
+					Armies += "		location = " + to_string(ent1.first) + "\r\n";
 					Armies += "		division_template = \"Advance Infantry Division\"\r\n";
 					Armies += "		start_experience_factor = 0.3\r\n";
 					Armies += "	}\r\n";
@@ -1466,7 +1600,7 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 					//Med Placement
 					Armies += "division= {	\r\n";
 					Armies += "		name = \"" + to_string(MedNmb++) + ".Support Infantry Division\"\r\n";
-					Armies += "		location = " + to_string(ent1.first)+"\r\n";
+					Armies += "		location = " + to_string(ent1.first) + "\r\n";
 					Armies += "		division_template = \"Support Infantry Division\"\r\n";
 					Armies += "		start_experience_factor = 0.3\r\n";
 					Armies += "	}\r\n";
@@ -1478,7 +1612,7 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 					//Bad Placement
 					Armies += "division= {	\r\n";
 					Armies += "		name = \"" + to_string(BscNmb++) + ".Basic Infantry Division\"\r\n";
-					Armies += "		location = " + to_string(ent1.first)+"\r\n";
+					Armies += "		location = " + to_string(ent1.first) + "\r\n";
 					Armies += "		division_template = \"Basic Infantry Division\"\r\n";
 					Armies += "		start_experience_factor = 0.3\r\n";
 					Armies += "	}\r\n";
@@ -1562,8 +1696,8 @@ void HoI4Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 						totalUnits++;
 						string type = regiment->getType();
 						if (
-								(type == "artillery") || (type == "cavalry") || (type == "cuirassier") || (type == "dragoon") || (type == "engineer") || 
-								(type == "guard") || (type == "hussar") || (type == "infantry") || (type == "irregular") || (type == "plane") || (type == "tank")
+							(type == "artillery") || (type == "cavalry") || (type == "cuirassier") || (type == "dragoon") || (type == "engineer") ||
+							(type == "guard") || (type == "hussar") || (type == "infantry") || (type == "irregular") || (type == "plane") || (type == "tank")
 							)
 						{
 							numSeaUnits++;
@@ -1817,10 +1951,10 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	if ((ideologyItr != V2Ideologies.end()) && (ideologyItr->second.size() == 1))
 	{
 		HoI4Party newParty;
-		newParty.name				= ideologyItr->second[0]->name;
-		newParty.ideology			= "fascistic";
-		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("fascist") * 100 + 0.5);
-		newParty.organization	= newParty.popularity;
+		newParty.name = ideologyItr->second[0]->name;
+		newParty.ideology = "fascistic";
+		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("fascist") * 100 + 0.5);
+		newParty.organization = newParty.popularity;
 		parties.push_back(newParty);
 
 		if (rulingParty->ideology == ideologyItr->first)
@@ -1836,10 +1970,10 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	if ((ideologyItr != V2Ideologies.end()) && (ideologyItr->second.size() == 1))
 	{
 		HoI4Party newParty;
-		newParty.name				= ideologyItr->second[0]->name;
-		newParty.ideology			= "paternal_autocrat";
-		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("reactionary") * 100 + 0.5);
-		newParty.organization	= newParty.popularity;
+		newParty.name = ideologyItr->second[0]->name;
+		newParty.ideology = "paternal_autocrat";
+		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("reactionary") * 100 + 0.5);
+		newParty.organization = newParty.popularity;
 		parties.push_back(newParty);
 
 		if (rulingParty->ideology == ideologyItr->first)
@@ -1855,10 +1989,10 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	if ((ideologyItr != V2Ideologies.end()) && (ideologyItr->second.size() == 1))
 	{
 		HoI4Party newParty;
-		newParty.name				= ideologyItr->second[0]->name;
-		newParty.ideology			= "social_conservative";
-		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("conservative") * 100 + 0.5);
-		newParty.organization	= newParty.popularity;
+		newParty.name = ideologyItr->second[0]->name;
+		newParty.ideology = "social_conservative";
+		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("conservative") * 100 + 0.5);
+		newParty.organization = newParty.popularity;
 		parties.push_back(newParty);
 
 		if (rulingParty->ideology == ideologyItr->first)
@@ -1874,10 +2008,10 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	if ((ideologyItr != V2Ideologies.end()) && (ideologyItr->second.size() == 1))
 	{
 		HoI4Party newParty;
-		newParty.name				= ideologyItr->second[0]->name;
-		newParty.ideology			= "left_wing_radica";
-		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("socialist") * 100 + 0.5);
-		newParty.organization	= newParty.popularity;
+		newParty.name = ideologyItr->second[0]->name;
+		newParty.ideology = "left_wing_radica";
+		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("socialist") * 100 + 0.5);
+		newParty.organization = newParty.popularity;
 		parties.push_back(newParty);
 
 		if (rulingParty->ideology == ideologyItr->first)
@@ -1893,10 +2027,10 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	if ((ideologyItr != V2Ideologies.end()) && (ideologyItr->second.size() == 1))
 	{
 		HoI4Party newParty;
-		newParty.name				= ideologyItr->second[0]->name;
-		newParty.ideology			= "stalinist";
-		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("communist") * 100 + 0.5);
-		newParty.organization	= newParty.popularity;
+		newParty.name = ideologyItr->second[0]->name;
+		newParty.ideology = "stalinist";
+		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("communist") * 100 + 0.5);
+		newParty.organization = newParty.popularity;
 		parties.push_back(newParty);
 
 		if (rulingParty->ideology == ideologyItr->first)
@@ -1912,10 +2046,10 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	if ((ideologyItr != V2Ideologies.end()) && (ideologyItr->second.size() == 1))
 	{
 		HoI4Party newParty;
-		newParty.name				= ideologyItr->second[0]->name;
-		newParty.ideology			= "social_libera";
-		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("libera") * 100 + 0.5);
-		newParty.organization	= newParty.popularity;
+		newParty.name = ideologyItr->second[0]->name;
+		newParty.ideology = "social_libera";
+		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("libera") * 100 + 0.5);
+		newParty.organization = newParty.popularity;
 		parties.push_back(newParty);
 
 		if (rulingParty->ideology == ideologyItr->first)
@@ -1931,10 +2065,10 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	if ((ideologyItr != V2Ideologies.end()) && (ideologyItr->second.size() == 1))
 	{
 		HoI4Party newParty;
-		newParty.name				= ideologyItr->second[0]->name;
-		newParty.ideology			= "market_libera";
-		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("anarcho_libera") * 100 + 0.5);
-		newParty.organization	= newParty.popularity;
+		newParty.name = ideologyItr->second[0]->name;
+		newParty.ideology = "market_libera";
+		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("anarcho_libera") * 100 + 0.5);
+		newParty.organization = newParty.popularity;
 		parties.push_back(newParty);
 
 		if (rulingParty->ideology == ideologyItr->first)

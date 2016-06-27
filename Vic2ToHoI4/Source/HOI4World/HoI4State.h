@@ -44,7 +44,7 @@ class HoI4State
 		string		getOwner() const				{ return ownerTag; }
 		float		getManpower() const				{ return manpower; }
 		int			getID()							{ return ID; }
-
+		int			getNavalLocation() const		{ return navallocation; }
 
 	private:
 		int			ID;

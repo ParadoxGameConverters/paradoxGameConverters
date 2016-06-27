@@ -61,7 +61,7 @@ class HoI4Country
 {
 	public:
 		HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld, bool _newCountry = false);
-		void		output(int) const;
+		void		output(int, map<int, HoI4State*>) const;
 		void		outputCommonCountryFile() const;
 		string	outputColors() const;
 		void		outputToCommonCountriesFile(FILE*) const;
@@ -70,6 +70,7 @@ class HoI4Country
 		void		initFromHistory();
 		void		consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry);
 		void		generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
+		void		CalculateNavy(const inverseProvinceMapping & inverseProvinceMap);
 		void		CalculateArmyDivisions(const inverseProvinceMapping& inverseProvinceMap);
 		void		setAIFocuses(const AIFocusModifiers& focusModifiers);
 		void		addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
@@ -98,10 +99,11 @@ class HoI4Country
 		set<string>&								editAllies()					{ return allies; }
 		map<string, double>&						getPracticals()				{ return practicals; }
 		const vector<HoI4RegGroup*>&			getArmies() const				{ return armies; }
+
 		
 
 	private:
-		void			outputOOB()						const;
+		void			outputOOB(map<int, HoI4State*>)						const;
 		void			outputPracticals(FILE*)		const;
 		void			outputTech(FILE*)				const;
 		void			outputParties(FILE*)			const;
@@ -126,6 +128,7 @@ class HoI4Country
 		map<string, HoI4Relations*>	relations;
 		vector<HoI4RegGroup*>			armies;
 		string								divisionstxt;
+		string								naviestxt;
 		string								armiestxt;
 		Color									color;
 		double								neutrality;

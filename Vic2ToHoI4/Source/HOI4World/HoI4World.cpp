@@ -363,14 +363,14 @@ void HoI4World::outputHistory() const
 	}
 	for (auto countryItr : countries)
 	{
-		countryItr.second->output(states.size());
+		countryItr.second->output(states.size(), states);
 	}
 	// Override vanilla history to suppress vanilla OOB and faction membership being read
 	for (auto potentialItr : potentialCountries)
 	{
 		if (countries.find(potentialItr.first) == countries.end())
 		{
-			potentialItr.second->output(states.size());
+			potentialItr.second->output(states.size(), states);
 		}
 	}
 	LOG(LogLevel::Debug) << "Writing diplomacy";
