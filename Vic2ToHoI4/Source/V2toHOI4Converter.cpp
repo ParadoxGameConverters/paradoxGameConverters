@@ -461,8 +461,8 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	destWorld.configureFactions(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Generating Leaders";
 	destWorld.generateLeaders(leaderTraits, namesMap, portraitMap);
-	LOG(LogLevel::Info) << "Calculating Armies";
-	destWorld.calculateArmies(inverseProvinceMap);
+	LOG(LogLevel::Info) << "Converting Armies";
+	destWorld.convertArmies(inverseProvinceMap);
 	LOG(LogLevel::Info) << "Converting victory points";
 	destWorld.convertVictoryPoints(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Setting AI focuses";

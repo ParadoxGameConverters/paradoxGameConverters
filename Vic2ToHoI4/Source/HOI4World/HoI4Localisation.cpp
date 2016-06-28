@@ -41,7 +41,6 @@ void HoI4Localisation::readFromCountry(const V2Country* source, string destTag)
 			existingLocalisation = countryLocalisations.find(nameInLanguage.first);
 		}
 		
-		
 		existingLocalisation->second.insert(make_pair(destTag + "_democratic",  nameInLanguage.second));
 		existingLocalisation->second.insert(make_pair(destTag + "_democratic_DEF", nameInLanguage.second));
 		existingLocalisation->second.insert(make_pair(destTag + "_neutrality", nameInLanguage.second));

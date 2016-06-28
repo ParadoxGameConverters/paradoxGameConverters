@@ -50,60 +50,57 @@ HoI4State::HoI4State(int _ID, string _ownerTag, float _Manpower, double _CivFact
 void HoI4State::output(string _filename)
 {
 	string filename("Output/" + Configuration::getOutputName() + "/history/states/" + _filename);
-	ofstream out;
-	out.open(filename);
+	ofstream out(filename);
+	if (!out.is_open())
 	{
-		if (!out.is_open())
-		{
-			LOG(LogLevel::Error) << "Could not open \"output/input/history/states/" + _filename;
-			exit(-1);
-		}
-		//out << civFactories << "  " << milFactories << endl;
-		out << "state={" << endl;
-		out << "\tid=" << ID << endl;
-		out << "\tname= \"STATE_" << ID << "\"" << endl;
-		out << "\tmanpower = " << to_string(manpower) << endl;
-		out << endl;
-		if (resources != "")
-		{
-			out << "resources={" << endl;
-			out << resources;
-			out << "}" << endl;
-		}
-		out << "\tstate_category = "<< catagory << endl;
-		out << "" << endl;
-		out << "\thistory={" << endl;
-		out << "\t\towner = " << ownerTag << endl;
-		//out << "	victory_points = { 3838 1 }" << endl;
-		out << "	buildings = {" << endl;
-		out << "	infrastructure = "<< raillevel << endl;
-		out << "	industrial_complex = " << civFactories << endl;
-		out << "	arms_factory = " << milFactories << endl;
-		
-		if (navalbase > 0 && navallocation > 0)
-		{
-			out << "	" << navallocation << " = {" << endl;
-			out << "		naval_base = " << navalbase << endl;
-			out << "	}" << endl;
-		}
-		//out << "	air_base = 1" << endl;
-		//out << "	3838 = {" << endl;
-		//out << "	naval_base = 3" << endl;
-		out << "\t\t}" << endl;
-		//out << "}" << endl;
-		//out << "	add_core_of = FRA" << endl;
-		out << "\t}" << endl;
-		out << endl;
-		out << "\tprovinces={" << endl;
-		out << "\t\t";
-		for (auto provnum : provinces)
-		{
-			out << provnum << " ";
-		}
-		out << endl;
-		out << "\t}" << endl;
-		out << "}" << endl;
-
-		out.close();
+		LOG(LogLevel::Error) << "Could not open \"output/input/history/states/" + _filename;
+		exit(-1);
 	}
+	//out << civFactories << "  " << milFactories << endl;
+	out << "state={" << endl;
+	out << "\tid=" << ID << endl;
+	out << "\tname= \"STATE_" << ID << "\"" << endl;
+	out << "\tmanpower = " << to_string(manpower) << endl;
+	out << endl;
+	if (resources != "")
+	{
+		out << "resources={" << endl;
+		out << resources;
+		out << "}" << endl;
+	}
+	out << "\tstate_category = "<< catagory << endl;
+	out << "" << endl;
+	out << "\thistory={" << endl;
+	out << "\t\towner = " << ownerTag << endl;
+	//out << "	victory_points = { 3838 1 }" << endl;
+	out << "	buildings = {" << endl;
+	out << "	infrastructure = "<< raillevel << endl;
+	out << "	industrial_complex = " << civFactories << endl;
+	out << "	arms_factory = " << milFactories << endl;
+		
+	if (navalbase > 0 && navallocation > 0)
+	{
+		out << "	" << navallocation << " = {" << endl;
+		out << "		naval_base = " << navalbase << endl;
+		out << "	}" << endl;
+	}
+	//out << "	air_base = 1" << endl;
+	//out << "	3838 = {" << endl;
+	//out << "	naval_base = 3" << endl;
+	out << "\t\t}" << endl;
+	//out << "}" << endl;
+	//out << "	add_core_of = FRA" << endl;
+	out << "\t}" << endl;
+	out << endl;
+	out << "\tprovinces={" << endl;
+	out << "\t\t";
+	for (auto provnum : provinces)
+	{
+		out << provnum << " ";
+	}
+	out << endl;
+	out << "\t}" << endl;
+	out << "}" << endl;
+
+	out.close();
 }

@@ -48,6 +48,7 @@ class HoI4World
 		void	importStates();
 		void	checkCoastalProvinces();
 		void	importPotentialCountries();
+
 		void	convertCountries(const V2World &sourceWorld, const CountryMapping& countryMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap);
 		void	getStateInfo(const V2World & sourceWorld, const inverseProvinceMapping & inverseProvinceMap, const CountryMapping & countryMap, HoI4StateMapping & stateMap, V2Localisation & localisation);
 		void	outputSupply(const V2World & sourceWorld, const inverseProvinceMapping & inverseProvinceMap, const CountryMapping & countryMap, HoI4StateMapping & stateMap, V2Localisation & Vic2Localisations);
@@ -60,7 +61,7 @@ class HoI4World
 		void	convertArmies(const V2World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		void	configureFactions(const V2World& sourceWorld, const CountryMapping& countryMap);
 		void	generateLeaders(const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
-		void calculateArmies(const inverseProvinceMapping& inverseProvinceMap);
+		void	convertArmies(const inverseProvinceMapping& inverseProvinceMap);
 		void	consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap);
 		void	convertVictoryPoints(const V2World& sourceWorld, const CountryMapping& countryMap);
 		void	setAIFocuses(const AIFocusModifiers& focusModifiers);

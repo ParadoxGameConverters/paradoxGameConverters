@@ -27,6 +27,19 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <queue>
 #include <cmath>
 #include <cfloat>
+#include <cmath>
+#include <random>  
+#include <boost/filesystem.hpp>
+#include <boost/foreach.hpp> 
+//#include <IL\il.h>
+//#include <IL\ilu.h>
+//#include <IL\ilut.h>
+//#include <IL\config.h>
+//#include <IL\devil_internal_exports.h>
+//#include <IL\ilu_region.h>
+//#include <IL\ilut_config.h>
+//#include <GL/gl.h>
+//#include <GL/glu.h>
 #include "ParadoxParserUTF8.h"
 #include "Log.h"
 #include "../Configuration.h"
@@ -35,24 +48,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../V2World/V2Party.h"
 #include "HoI4Relations.h"
 #include "HoI4State.h"
-#include <cmath>
-#include <random>  
-#include <boost/filesystem.hpp>
-#include <boost/foreach.hpp> 
-#include <IL\il.h>
-#include <IL\ilu.h>
-#include <IL\ilut.h>
-#include<IL\config.h>
-#include<IL\devil_internal_exports.h>
-#include<IL\ilu_region.h>
-#include<IL\ilut_config.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
-#pragma comment( lib, "opengl32.lib" )
-#pragma comment( lib, "glu32.lib" )
-#pragma comment(lib, "IL/DevIL.lib")
-#pragma comment(lib, "IL/ILU.lib")
-#pragma comment(lib, "IL/ILUT.lib")
+
+
 
 typedef struct fileWithCreateTime
 {
@@ -201,9 +198,9 @@ void HoI4World::outputCommonCountries() const
 		exit(-1);
 	}
 
-	for (auto countryItr : countries)
+	for (auto countryItr: countries)
 	{
-		if (potentialCountries.find(countryItr.first) == potentialCountries.end())
+		if ((potentialCountries.find(countryItr.first) == potentialCountries.end()) && (countryItr.second->getCapital() != 0))
 		{
 			countryItr.second->outputToCommonCountriesFile(allCountriesFile);
 		}
@@ -363,14 +360,14 @@ void HoI4World::outputHistory() const
 	}
 	for (auto countryItr : countries)
 	{
-		countryItr.second->output(states.size(), states);
+		countryItr.second->output(states);
 	}
 	// Override vanilla history to suppress vanilla OOB and faction membership being read
 	for (auto potentialItr : potentialCountries)
 	{
 		if (countries.find(potentialItr.first) == countries.end())
 		{
-			potentialItr.second->output(states.size(), states);
+			potentialItr.second->output(states);
 		}
 	}
 	LOG(LogLevel::Debug) << "Writing diplomacy";
@@ -480,7 +477,7 @@ void HoI4World::outputSupply(const V2World &sourceWorld, const inverseProvinceMa
 		auto zonekeys = zone->getLeaves();
 		string HoI4defaultZone = zonekeys[0]->getLeaf();
 		string zonevalue = zonekeys[zonekeys.size()-1]->getLeaf();
-		for (int i = 1; i < zonekeys.size() - 1; i++)
+		for (unsigned int i = 1; i < zonekeys.size() - 1; i++)
 		{
 			auto province = zonekeys[i]->getLeaf();
 			for (auto state : states)
@@ -578,6 +575,7 @@ void HoI4World::outputSupply(const V2World &sourceWorld, const inverseProvinceMa
 	}
 }
 
+
 void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, HoI4StateMapping& stateMap, V2Localisation& Vic2Localisations)
 {
 	// TODO - determine province owners for all HoI4 provinces
@@ -672,7 +670,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 				stateWorkers = 0;
 
 			//slots is given per 120,000 people (need to change)
-			int stateSlots = population / 120000;
+			int stateSlots = static_cast<int>(population) / 120000;
 			//make sure not larger then 12 so stateFac is properly limited to max state level
 			if (stateSlots > 12)
 				stateSlots = 12;
@@ -681,7 +679,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 			if (stateFac > 12)
 				stateFac = 12;
 			if (stateFac >= stateSlots)
-				stateSlots = stateFac + 2;
+				stateSlots = static_cast<int>(stateFac) + 2;
 			//better rails for better industry
 			if (stateFac > 10)
 				raillevel += 3;
@@ -734,7 +732,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 				newManpower = 1;
 			}
 		
-			HoI4State* newState = new HoI4State(stateID, HoI4Tag, newManpower, civFac, milFac, catagory, raillevel, navalbase, navalbaselocation);
+			HoI4State* newState = new HoI4State(stateID, HoI4Tag, newManpower, civFac, milFac, catagory, static_cast<int>(raillevel), navalbase, navalbaselocation);
 
 			//	loop through the provinces in the vic2 state
 			for (auto vic2Province : vic2State->getProvinces())
@@ -751,7 +749,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 							auto province = keys[0]->getLeaf();
 							if (to_string(HoI4ProvNum) == province)
 							{
-								for (int i = 1; i < keys.size(); i++)
+								for (unsigned int i = 1; i < keys.size(); i++)
 								{
 									auto key = keys[i]->getKey();
 									auto value = keys[i]->getLeaf();
@@ -2156,13 +2154,16 @@ void HoI4World::generateLeaders(const leaderTraitsMap& leaderTraits, const names
 		country.second->generateLeaders(leaderTraits, namesMap, portraitMap);
 	}
 }
-void HoI4World::calculateArmies(const inverseProvinceMapping& inverseProvinceMap)
+
+
+void HoI4World::convertArmies(const inverseProvinceMapping& inverseProvinceMap)
 {
-	for (auto country : countries)
+	for (auto country: countries)
 	{
-		country.second->CalculateArmyDivisions(inverseProvinceMap);
+		country.second->convertArmyDivisions(inverseProvinceMap);
 	}
 }
+
 
 void HoI4World::consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap)
 {

@@ -34,16 +34,16 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 enum ideaologyType {
-	national_socialist = 0,
-	fascistic = 1,
-	paternal_autocrat = 2,
-	social_conservative = 3,
-	market_liberal = 4,
-	social_liberal = 5,
-	social_democrat = 6,
-	left_wing_radical = 7,
-	leninist = 8,
-	stalinist = 9
+	national_socialist	= 0,
+	fascistic				= 1,
+	paternal_autocrat		= 2,
+	social_conservative	= 3,
+	market_liberal			= 4,
+	social_liberal			= 5,
+	social_democrat		= 6,
+	left_wing_radical		= 7,
+	leninist					= 8,
+	stalinist				= 9
 };
 
 
@@ -64,37 +64,37 @@ const char* const ideologyNames[stalinist + 1] = {
 
 HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld, bool _newCountry /* = false */)
 {
-	theWorld = _theWorld;
-	newCountry = _newCountry;
+	theWorld		= _theWorld;
+	newCountry	= _newCountry;
 
 
-	tag = _tag;
-	commonCountryFile = _commonCountryFile;
+	tag					= _tag;
+	commonCountryFile	= _commonCountryFile;
 	commonCountryFile.insert(1, tag + "-");
 	provinces.clear();
 	technologies.clear();
 
-	capital = 0;
-	ideology = "";
-	government = "";
-	faction = "";
-	factionLeader = false;
+	capital			= 0;
+	ideology			= "";
+	government		= "";
+	faction			= "";
+	factionLeader	= false;
 
-	neutrality = 50;
-	nationalUnity = 70;
+	neutrality		= 50;
+	nationalUnity	= 70;
 
-	seaModifier = 1.0;
-	tankModifier = 1.0;
-	airModifier = 1.0;
-	infModifier = 1.0;
+	seaModifier		= 1.0;
+	tankModifier	= 1.0;
+	airModifier		= 1.0;
+	infModifier		= 1.0;
 
-	training_laws = "minimal_training";
-	press_laws = "censored_press";
-	industrial_policy_laws = "consumer_product_orientation";
-	educational_investment_law = "minimal_education_investment";
-	economic_law = "full_civilian_economy";
-	conscription_law = "volunteer_army";
-	civil_law = "limited_restrictions";
+	training_laws					= "minimal_training";
+	press_laws						= "censored_press";
+	industrial_policy_laws		= "consumer_product_orientation";
+	educational_investment_law	= "minimal_education_investment";
+	economic_law					= "full_civilian_economy";
+	conscription_law				= "volunteer_army";
+	civil_law						= "limited_restrictions";
 
 	relations.clear();
 	armies.clear();
@@ -104,42 +104,21 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	ministers.clear();
 	rulingMinisters.clear();
 
-
-	graphicalCulture = "Generic";
+	graphicalCulture	= "Generic";
+	majorNation			= false;
 
 	srcCountry = NULL;
-
-	majorNation = false;
 }
 
 
-void HoI4Country::output(int statenumber, map<int, HoI4State*>	states) const
+void HoI4Country::output(map<int, HoI4State*> states) const
 {
 	// output history file
 	ofstream output;
-	//thatsgerman: well this is ugly... PLACEHOLDER
-	int com = 0;
-	int dem = 0;
-	int fac = 0;
-	string ideology = "";
-	if (government == "fascism")
-		ideology = "fascism_ideology";
-	else if (government == "democratic")
-		ideology = "liberalism";
-	else if (government == "communism")
-		ideology = "marxism";
-	else
-		ideology = "despotism";
-	for (auto party : parties)
-	{
-		if (party.name.find("fascist") != string::npos || party.name.find("reactionary") != string::npos)
-			fac += party.popularity;
-		if (party.name.find("socialist") != string::npos || party.name.find("communist") != string::npos)
-			com += party.popularity;
-	}
-	dem = 100 - fac - com;
 
-	if ((capital > 0 && capital <= statenumber) || !newCountry)
+	if (	((capital > 0) && (capital <= static_cast<int>(states.size()))	)
+			||	!newCountry
+		)
 	{
 		output.open(("Output/" + Configuration::getOutputName() + "/history/countries/" + Utils::convertToASCII(filename)).c_str());
 		if (!output.is_open())
@@ -149,9 +128,13 @@ void HoI4Country::output(int statenumber, map<int, HoI4State*>	states) const
 		}
 		output << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
 		if (newCountry)
+		{
 			output << "capital = " << capital << endl;
+		}
 		else
+		{
 			output << "capital =  1" << endl;
+		}
 		output << "" << endl;
 		output << "oob = \"" << tag << "_OOB\"" << endl;
 		output << "" << endl;
@@ -172,27 +155,31 @@ void HoI4Country::output(int statenumber, map<int, HoI4State*>	states) const
 		output << "" << endl;
 		output << "    parties = {" << endl;
 		output << "        democratic = { " << endl;
-		output << "            popularity = " << dem * 4 / 5 << endl;
+		output << "            popularity = " << democraticPopularity << endl;
 		output << "        }" << endl;
 		output << "" << endl;
 		output << "        fascism = {" << endl;
-		output << "            popularity = " << fac << endl;
+		output << "            popularity = " << facismPopularity << endl;
 		output << "        }" << endl;
 		output << "        " << endl;
 		output << "        communism = {" << endl;
-		output << "            popularity = " << com << endl;
+		output << "            popularity = " << communismPopularity << endl;
 		output << "        }" << endl;
 		output << "        " << endl;
 		output << "        neutrality = { " << endl;
-		output << "            popularity = " << dem / 5 << endl;
+		output << "            popularity = " << neutralityPopularity << endl;
 		output << "        }" << endl;
 		output << "    }" << endl;
 		output << "    " << endl;
 
 		if (government == "")
+		{
 			output << "    ruling_party = neutrality" << endl;
+		}
 		else
+		{
 			output << "    ruling_party = " << government << endl;
+		}
 
 		output << "    last_election = \"1936.1.1\"" << endl;
 		output << "    election_frequency = 48" << endl;
@@ -216,10 +203,10 @@ void HoI4Country::output(int statenumber, map<int, HoI4State*>	states) const
 		output.close();
 	}
 
-	//// output OOB file
+	// output OOB file
 	outputOOB(states);
 
-	//// output leaders file
+	// output leaders file
 	//outputLeaders();
 	outputCommonCountryFile();
 
@@ -340,24 +327,28 @@ void HoI4Country::output(int statenumber, map<int, HoI4State*>	states) const
 
 	//outputAIScript();
 }
+
+
 void HoI4Country::outputCommonCountryFile() const
 {
 	// Output common country file
-	ofstream output2;
-	output2.open(("Output/" + Configuration::getOutputName() + "/common/countries/" + Utils::convertToASCII(commonCountryFile)).c_str());
-	if (!output2.is_open())
+	ofstream output;
+	output.open(("Output/" + Configuration::getOutputName() + "/common/countries/" + Utils::convertToASCII(commonCountryFile)).c_str());
+	if (!output.is_open())
 	{
 		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << Utils::convertToASCII(commonCountryFile);
 		exit(-1);
 	}
-	int red = 0;
-	int green = 0;
-	int blue = 0;
+	int red		= 0;
+	int green	= 0;
+	int blue		= 0;
 	color.GetRGB(red, green, blue);
 	string s = to_string(red) + " " + to_string(green) + " " + to_string(blue);
-	output2 << "color = { " << s << "}" << endl;
-	output2.close();
+	output << "color = { " << s << "}" << endl;
+	output.close();
 }
+
+
 string HoI4Country::outputColors() const
 {
 	int red;
@@ -366,25 +357,27 @@ string HoI4Country::outputColors() const
 	color.GetRGB(red, green, blue);
 	string s;
 	if (capital != 0)
+	{
 		return  tag + " = {\r\tcolor = rgb { " + to_string(red) + " " + to_string(green) + " " + to_string(blue) + " }\r\tcolor_ui = rgb { " + to_string(red) + " " + to_string(green) + " " + to_string(blue) + " }\r}\r";
+	}
 	else
+	{
 		return "";
+	}
 	//fprintf(output,s, tag.c_str(), WinUtils::convertToASCII(commonCountryFile).c_str());
 }
+
+
 void HoI4Country::outputToCommonCountriesFile(FILE* output) const
 {
-	//removes countries with 0 capital, sorry that its in here and not in HoI4World.cpp :(
-	if (capital != 0)
-	{
-		fprintf(output, "%s = \"countries%s\"\n", tag.c_str(), Utils::convertToASCII(commonCountryFile).c_str());
-	}
+	fprintf(output, "%s = \"countries%s\"\n", tag.c_str(), Utils::convertToASCII(commonCountryFile).c_str());
 }
 
 
 void HoI4Country::outputPracticals(FILE* output) const
 {
 	fprintf(output, "\n");
-	for (auto itr : practicals)
+	for (auto itr: practicals)
 	{
 		if (itr.second > 0.0)
 		{
@@ -397,7 +390,7 @@ void HoI4Country::outputPracticals(FILE* output) const
 void HoI4Country::outputTech(FILE* output) const
 {
 	fprintf(output, "\n");
-	for (auto itr : technologies)
+	for (auto itr: technologies)
 	{
 		fprintf(output, "%s = %d\n", itr.first.c_str(), itr.second);
 	}
@@ -407,7 +400,7 @@ void HoI4Country::outputTech(FILE* output) const
 void HoI4Country::outputParties(FILE* output) const
 {
 	/*fprintf(output, "popularity = {\n");
-	for (auto party : parties)
+	for (auto party: parties)
 	{
 		fprintf(output, "\t%s = %d\n", party.ideology.c_str(), party.popularity);
 	}
@@ -428,7 +421,7 @@ void HoI4Country::outputParties(FILE* output) const
 		LOG(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/localisation/Parties.csv";
 		exit(-1);
 	}
-	for (auto party : parties)
+	for (auto party: parties)
 	{
 		fprintf(partyLocalisations, "%s;\n", party.localisationString.c_str());
 	}
@@ -443,10 +436,10 @@ void HoI4Country::outputLeaders() const
 	{
 		LOG(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/history/leaders/" << tag.c_str() << ".txt";
 	}
-	int landLeaders = 0;
-	int seaLeaders = 0;
-	int airLeaders = 0;
-	for (auto leader : leaders)
+	int landLeaders	= 0;
+	int seaLeaders		= 0;
+	int airLeaders		= 0;
+	for (auto leader: leaders)
 	{
 		leader.output(leadersFile);
 
@@ -544,10 +537,10 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	}
 	if (filename == "")
 	{
-		string countryName = commonCountryFile;
-		int lastSlash = countryName.find_last_of("/");
-		countryName = countryName.substr(lastSlash + 1, countryName.size());
-		filename = tag + " - " + countryName;
+		string countryName	= commonCountryFile;
+		int lastSlash			= countryName.find_last_of("/");
+		countryName				= countryName.substr(lastSlash + 1, countryName.size());
+		filename					= tag + " - " + countryName;
 	}
 
 	// Color
@@ -578,7 +571,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	// Political parties
 	convertParties(_srcCountry, _srcWorld.getActiveParties(_srcCountry), _srcWorld.getRulingParty(_srcCountry), ideology);
-	for (auto partyItr : parties)
+	for (auto partyItr: parties)
 	{
 		auto oldLocalisation = V2Localisations.GetTextInEachLanguage(partyItr.name);
 		partyItr.localisationString = partyItr.ideology + "_" + tag;
@@ -596,8 +589,8 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	auto namesItr = namesMap.find(srcCountry->getPrimaryCulture());
 	if (namesItr != namesMap.end())
 	{
-		firstNames = namesItr->second.first;
-		lastNames = namesItr->second.second;
+		firstNames	= namesItr->second.first;
+		lastNames	= namesItr->second.second;
 	}
 	else
 	{
@@ -606,7 +599,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	}
 	for (unsigned int ideologyIdx = 0; ideologyIdx <= stalinist; ideologyIdx++)
 	{
-		for (auto job : governmentJobs)
+		for (auto job: governmentJobs)
 		{
 			HoI4Minister newMinister(firstNames, lastNames, ideologyNames[ideologyIdx], job, governmentJobs, portraitMap[graphicalCulture]);
 			ministers.push_back(newMinister);
@@ -735,7 +728,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	// leaders
 	vector<V2Leader*> srcLeaders = srcCountry->getLeaders();
-	for (auto srcLeader : srcLeaders)
+	for (auto srcLeader: srcLeaders)
 	{
 		HoI4Leader newLeader(srcLeader, tag, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, portraitMap[graphicalCulture]);
 		leaders.push_back(newLeader);
@@ -747,7 +740,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	map<string, V2Relations*> srcRelations = srcCountry->getRelations();
 	if (srcRelations.size() > 0)
 	{
-		for (auto itr : srcRelations)
+		for (auto itr: srcRelations)
 		{
 			const std::string& HoI4Tag = countryMap[itr.second->getTag()];
 			if (!HoI4Tag.empty())
@@ -757,7 +750,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 			}
 		}
 	}
-	//GETCAPITALHERE
+
 	// Capital
 	int oldCapital = srcCountry->getCapital();
 	inverseProvinceMapping::iterator itr = inverseProvinceMap.find(oldCapital);
@@ -791,10 +784,10 @@ void HoI4Country::initFromHistory()
 
 	if (filename == "")
 	{
-		string countryName = commonCountryFile;
-		int lastSlash = countryName.find_last_of("/");
-		countryName = countryName.substr(lastSlash + 1, countryName.size());
-		filename = tag + " - " + countryName;
+		string countryName	= commonCountryFile;
+		int lastSlash			= countryName.find_last_of("/");
+		countryName				= countryName.substr(lastSlash + 1, countryName.size());
+		filename					= tag + " - " + countryName;
 		return;
 	}
 	else
@@ -832,28 +825,28 @@ void HoI4Country::initFromHistory()
 
 void HoI4Country::consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry)
 {
-	bool convertManpower = (Configuration::getManpowerConversion() != "no");
-	bool convertLeadership = (Configuration::getLeadershipConversion() != "no");
-	bool convertIndustry = (Configuration::getIcConversion() != "no");
+	bool convertManpower			= (Configuration::getManpowerConversion() != "no");
+	bool convertLeadership		= (Configuration::getLeadershipConversion() != "no");
+	bool convertIndustry			= (Configuration::getIcConversion() != "no");
 
-	double leftoverManpower = 0.0;
-	double leftoverLeadership = 0.0;
-	double leftoverIndustry = 0.0;
+	double leftoverManpower		= 0.0;
+	double leftoverLeadership	= 0.0;
+	double leftoverIndustry		= 0.0;
 
 	Vic2State capitalState;
 
 	vector<Vic2State*> states = srcCountry->getStates();
-	for (auto stateItr : states)
+	for (auto stateItr: states)
 	{
-		double stateManpower = 0.0;
-		double stateLeadership = 0.0;
-		double stateIndustry = 0.0;
-		for (auto srcProvinceItr : stateItr->getProvinces())
+		double stateManpower		= 0.0;
+		double stateLeadership	= 0.0;
+		double stateIndustry		= 0.0;
+		for (auto srcProvinceItr: stateItr->getProvinces())
 		{
 			auto possibleHoI4Provinces = inverseProvinceMap.find(srcProvinceItr);
 			if (possibleHoI4Provinces != inverseProvinceMap.end())
 			{
-				for (auto dstProvinceNum : possibleHoI4Provinces->second)
+				for (auto dstProvinceNum: possibleHoI4Provinces->second)
 				{
 					auto provinceItr = provinces.find(dstProvinceNum);
 					if (provinceItr != provinces.end())
@@ -885,9 +878,9 @@ void HoI4Country::consolidateProvinceItems(const inverseProvinceMapping& inverse
 				}
 			}
 		}
-		totalManpower += stateManpower;
-		totalLeadership += stateLeadership;
-		totalIndustry += stateIndustry;
+		totalManpower		+= stateManpower;
+		totalLeadership	+= stateLeadership;
+		totalIndustry		+= stateIndustry;
 
 		if (stateItr->getProvinces().size() > 0)
 		{
@@ -2461,6 +2454,41 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	{
 		LOG(LogLevel::Warning) << "Unmapped Vic2 parties for " << tag;
 	}
+
+	communismPopularity	= 0;
+	democraticPopularity	= 0;
+	facismPopularity		= 0;
+	neutralityPopularity	= 0;
+	if (government == "fascism")
+	{
+		ideology = "fascism_ideology";
+	}
+	else if (government == "democratic")
+	{
+		ideology = "liberalism";
+	}
+	else if (government == "communism")
+	{
+		ideology = "marxism";
+	}
+	else
+	{
+		ideology = "despotism";
+	}
+	for (auto party : parties)
+	{
+		if (party.name.find("fascist") != string::npos || party.name.find("reactionary") != string::npos)
+		{
+			facismPopularity += party.popularity;
+		}
+		if (party.name.find("socialist") != string::npos || party.name.find("communist") != string::npos)
+		{
+			communismPopularity += party.popularity;
+		}
+	}
+	democraticPopularity =	100 - facismPopularity - communismPopularity;
+	neutralityPopularity =	democraticPopularity / 5;
+	democraticPopularity -=	neutralityPopularity;
 }
 
 

@@ -61,17 +61,19 @@ class HoI4Country
 {
 	public:
 		HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld, bool _newCountry = false);
-		void		output(int, map<int, HoI4State*>) const;
+
+		void		output(map<int, HoI4State*> states) const;
 		void		outputCommonCountryFile() const;
 		string	outputColors() const;
 		void		outputToCommonCountriesFile(FILE*) const;
 		void		outputAIScript() const;
+
 		void		initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap, map<int, HoI4State*> states);
 		void		initFromHistory();
 		void		consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry);
 		void		generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
 		void		CalculateNavy(const inverseProvinceMapping & inverseProvinceMap);
-		void		CalculateArmyDivisions(const inverseProvinceMapping& inverseProvinceMap);
+		void		convertArmyDivisions(const inverseProvinceMapping& inverseProvinceMap);
 		void		setAIFocuses(const AIFocusModifiers& focusModifiers);
 		void		addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
 		void		setTechnology(string tech, int level);
@@ -81,7 +83,7 @@ class HoI4Country
 
 		void		setFaction(string newFaction)	{ faction = newFaction; }
 		void		setFactionLeader()				{ factionLeader = true; }
-		void	setFactories(int _factories) { totalfactories = _factories; }
+		void		setFactories(int _factories)	{ totalfactories = _factories; }
 
 		HoI4Relations*								getRelations(string withWhom) const;
 		HoI4Province*								getCapital();
@@ -108,7 +110,9 @@ class HoI4Country
 		void			outputTech(FILE*)				const;
 		void			outputParties(FILE*)			const;
 		void			outputLeaders()				const;
+
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, HoI4Province*> allProvinces);
+
 		void			convertParties(const V2Country* srcCountry, vector<V2Party*> V2Parties, V2Party* rulingParty, string& rulingIdeology);
 
 		HoI4World*							theWorld;
@@ -158,6 +162,12 @@ class HoI4Country
 		string				industrial_policy_laws;
 		string				press_laws;
 		string				training_laws;
+
+		// faction popularity
+		int communismPopularity;
+		int democraticPopularity;
+		int facismPopularity;
+		int neutralityPopularity;
 };
 
 #endif	// HoI4COUNTRY_H_

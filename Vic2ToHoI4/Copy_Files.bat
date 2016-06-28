@@ -9,6 +9,9 @@ copy "Data_Files\tech_mapping.txt" "release\tech_mapping.txt"
 copy "Data_Files\unit_mapping.txt" "release\unit_mapping.txt"
 copy "Data_Files\culture_map.txt" "release\culture_map.txt"
 copy "Data_Files\FAQ.txt" "release\FAQ.txt"
+copy "Data_files\resources.txt" "release\resources.txt"
+copy "Data_files\navalprovinces.txt" "release\navalprovinces.txt"
+copy "Data_files\supply.txt" "release\supply.txt"
 
 del release\changelog.txt
 git log --oneline --decorate >> release/log.txt
