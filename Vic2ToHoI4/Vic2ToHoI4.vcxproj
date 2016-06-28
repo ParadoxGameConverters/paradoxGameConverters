@@ -32,7 +32,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IntDir>$(SolutionDir)\ReleaseIntermediate\</IntDir>
-    <IncludePath>$(UniversalCRT_IncludePath);$(BOOST_INCLUDE);$(VCInstallDir)include;$(WindowsSdkDir)include;..\common_items;$(IncludePath)</IncludePath>
+    <IncludePath>$(UniversalCRT_IncludePath);$(BOOST_INCLUDE);$(DEVIL_SDK_INCLUDE);$(VCInstallDir)include;$(WindowsSdkDir)include;..\common_items;$(IncludePath)</IncludePath>
     <TargetName>V2ToHoI4Converter</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -43,14 +43,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\boost_1_61_0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(BOOST_INCLUDE); $(DEVIL_SDK_INCLUDE)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>%(AdditionalDependencies);C:\Users\John\Desktop\ParadoxConverters\paradoxGameConverters\Vic2ToHoI4\packages\DevIL.1.7.8\build\native\lib\x64\dynamic\v110\Debug\DevIL.lib;C:\Users\John\Desktop\ParadoxConverters\paradoxGameConverters\Vic2ToHoI4\packages\DevIL.1.7.8\build\native\lib\x64\dynamic\v110\Debug\ILU.lib;C:\Users\John\Desktop\ParadoxConverters\paradoxGameConverters\Vic2ToHoI4\packages\DevIL.1.7.8\build\native\lib\x64\dynamic\v110\Debug\ILUT.lib</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(BOOST_LIB);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
@@ -105,7 +105,6 @@
     <ClInclude Include="..\common_items\OSCompatibilityLayer.h" />
     <ClInclude Include="..\common_items\ParadoxParser8859_15.h" />
     <ClInclude Include="..\common_items\ParadoxParserUTF8.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\CountryMapping.h" />
@@ -136,22 +135,6 @@
     <ClInclude Include="Source\V2World\V2World.h" />
     <ClInclude Include="Source\V2World\Vic2State.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Vic2ToHoI4.rc" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-    <Import Project="packages\DevIL.redist.1.7.8\build\native\DevIL.redist.targets" Condition="Exists('packages\DevIL.redist.1.7.8\build\native\DevIL.redist.targets')" />
-    <Import Project="packages\DevIL.1.7.8\build\native\DevIL.targets" Condition="Exists('packages\DevIL.1.7.8\build\native\DevIL.targets')" />
-  </ImportGroup>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('packages\DevIL.redist.1.7.8\build\native\DevIL.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\DevIL.redist.1.7.8\build\native\DevIL.redist.targets'))" />
-    <Error Condition="!Exists('packages\DevIL.1.7.8\build\native\DevIL.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\DevIL.1.7.8\build\native\DevIL.targets'))" />
-  </Target>
+  <ImportGroup Label="ExtensionTargets" />
 </Project>
