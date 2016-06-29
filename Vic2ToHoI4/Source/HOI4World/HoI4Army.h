@@ -161,12 +161,12 @@ class HoI4RegimentType
 };
 
 
-class HoI4DivisionType
+class HoI4DivisionTemplateType
 {
 	public:
-		HoI4DivisionType(string name);
+		HoI4DivisionTemplateType(string name);
 
-		friend ostream& operator << (ostream& out, HoI4DivisionType);
+		friend ostream& operator << (ostream& out, HoI4DivisionTemplateType);
 
 		void addRegiment(HoI4RegimentType newRegiment)			{ regiments.push_back(newRegiment); }
 		void addSupportRegiment(HoI4RegimentType newRegiment)	{ supportRegiments.push_back(newRegiment); }
@@ -175,6 +175,20 @@ class HoI4DivisionType
 		string							name;
 		vector<HoI4RegimentType>	regiments;
 		vector<HoI4RegimentType>	supportRegiments;
+};
+
+
+class HoI4DivisionType
+{
+	public:
+		HoI4DivisionType(string name, string type, int location);
+
+		friend ostream& operator << (ostream& out, HoI4DivisionType);
+
+	private:
+		string	name;
+		string	type;
+		int		location;
 };
 
 

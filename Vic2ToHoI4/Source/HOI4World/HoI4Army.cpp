@@ -613,35 +613,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 //}
 
 
-HoI4DivisionType::HoI4DivisionType(string _name)
-{
-	name = _name;
-}
-
-
-ostream& operator << (ostream& out, HoI4DivisionType divisionType)
-{
-	out << "division_template = {\n";
-	out << "\tname = \"" << divisionType.name << "\"\n";
-	out << endl;
-	out << "\tregiments = {\n";
-	for (auto regiment: divisionType.regiments)
-	{
-		out << regiment;
-	}
-	out << "\t}\n";
-	out << "\tsupport = {\n";
-	for (auto regiment: divisionType.supportRegiments)
-	{
-		out << regiment;
-	}
-	out << "\t}\n";
-	out << "}\n";
-
-	return out;
-}
-
-
 HoI4RegimentType::HoI4RegimentType(string _type, int _x, int _y)
 {
 	type	= _type;
@@ -653,6 +624,56 @@ HoI4RegimentType::HoI4RegimentType(string _type, int _x, int _y)
 ostream& operator << (ostream& out, HoI4RegimentType regiment)
 {
 	out << "\t\t" << regiment.type << " = { x = " << regiment.x << " y = " << regiment.y << " }\n";
+
+	return out;
+}
+
+
+HoI4DivisionTemplateType::HoI4DivisionTemplateType(string _name)
+{
+	name = _name;
+}
+
+
+ostream& operator << (ostream& out, HoI4DivisionTemplateType divisionTemplateType)
+{
+	out << "division_template = {\n";
+	out << "\tname = \"" << divisionTemplateType.name << "\"\n";
+	out << endl;
+	out << "\tregiments = {\n";
+	for (auto regiment: divisionTemplateType.regiments)
+	{
+		out << regiment;
+	}
+	out << "\t}\n";
+	out << "\tsupport = {\n";
+	for (auto regiment: divisionTemplateType.supportRegiments)
+	{
+		out << regiment;
+	}
+	out << "\t}\n";
+	out << "}\n";
+
+	return out;
+}
+
+
+HoI4DivisionType::HoI4DivisionType(string _name, string _type, int _location)
+{
+	name		= _name;
+	type		= _type;
+	location	= _location;
+}
+
+
+ostream& operator << (ostream& out, HoI4DivisionType division)
+{
+	out << "\tdivision = {\n";
+	out << "\t\tname = \"" << division.name << "\"\n";
+	out << "\t\tlocation = " << division.location << "\n";
+	out << "\t\tdivision_template = \"" << division.type << "\"\n";
+	out << "\t\tstart_experience_factor = 0.3\n";
+	out << "\t}\n";
 
 	return out;
 }

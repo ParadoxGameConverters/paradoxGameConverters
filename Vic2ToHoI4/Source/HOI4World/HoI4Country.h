@@ -128,9 +128,6 @@ class HoI4Country
 		string								ideology;
 		int									totalfactories;
 		map<string, HoI4Relations*>	relations;
-		vector<HoI4DivisionType>		divisionTemplates;
-		string								naviestxt;
-		string								armiestxt;
 		Color									color;
 		double								neutrality;
 		double								nationalUnity;
@@ -165,6 +162,11 @@ class HoI4Country
 		int democraticPopularity;
 		int facismPopularity;
 		int neutralityPopularity;
+
+		// military stuff
+		vector<HoI4DivisionTemplateType>		divisionTemplates;
+		vector<HoI4DivisionType>				divisions;
+		string										naviestxt;
 };
 
 #endif	// HoI4COUNTRY_H_
