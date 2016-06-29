@@ -97,7 +97,6 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	civil_law						= "limited_restrictions";
 
 	relations.clear();
-	armies.clear();
 	allies.clear();
 	practicals.clear();
 	parties.clear();
@@ -499,7 +498,11 @@ void HoI4Country::outputOOB(map<int, HoI4State*> states) const
 		}
 	}
 	output << "start_equipment_factor = 0\n";
-	output << divisionstxt;
+	for (auto divisionTemplate: divisionTemplates)
+	{
+		output << divisionTemplate;
+		output << endl;
+	}
 	output << "### No BHU air forces ###\n";
 	output << "instant_effect = {\n";
 	output << "\tadd_equipment_production = {\n";
@@ -1216,19 +1219,25 @@ void HoI4Country::CalculateNavy(const inverseProvinceMapping& inverseProvinceMap
 	}
 	naviestxt = navies;
 }
-void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inverseProvinceMap)
+
+
+void HoI4Country::convertArmyDivisions(const inverseProvinceMapping& inverseProvinceMap)
 {
 	CalculateNavy(inverseProvinceMap);
-	int infantrybrigs = 0;
-	int artbrigs = 0;
-	int supportbrigs = 0;
-	int tankbrigs = 0;
-	int cavbrigs = 0;
-	int cavsupportbrigs = 0;
-	int mtnbrigs = 0;
+
+	// get the total number of source brigades and the number of source brigades per location
+	int infantryBrigades			= 0;
+	int artilleryBrigades		= 0;
+	int supportBrigades			= 0;
+	int tankBrigades				= 0;
+	int cavalryBrigades			= 0;
+	int cavalrySupportBrigades	= 0;
+	int mountainBrigades			= 0;
+
 	map<int, int> locations;
-	for (auto army : srcCountry->getArmies())
+	for (auto army: srcCountry->getArmies())
 	{
+		// get the number of source brigades per location
 		int HoI4location = 0;
 		auto provMapping = inverseProvinceMap.find(army->getLocation());
 		if (provMapping != inverseProvinceMap.end())
@@ -1242,17 +1251,8 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 			}
 		}
 		locations[HoI4location] += army->getRegiments().size();
-		/*if (locations[HoI4location] == NULL)
-		{
-			std::vector<V2Regiment*> objRegs = army->getRegiments();
-			int x = objRegs.size();
-			locations.insert(std::pair<int, int>(HoI4location, army->getRegiments().size()));
-		}
-		else
-		{
 
-			locations[HoI4location] += army->getRegiments().size();
-		}*/
+		// get the total number of source brigades
 		for (auto regiment : army->getRegiments())
 		{
 			string type = regiment->getType();
@@ -1263,276 +1263,284 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 			{
 				if (type == "artillery")
 				{
-					infantrybrigs += 2;
-					artbrigs++;
+					infantryBrigades += 2;
+					artilleryBrigades++;
 				}
 				else if (type == "cavalry")
-					cavbrigs += 3;
+				{
+					cavalryBrigades += 3;
+				}
 				else if (type == "cuirassier")
 				{
-					cavbrigs += 3;
-					cavsupportbrigs++;
+					cavalryBrigades += 3;
+					cavalrySupportBrigades++;
 				}
 				else if (type == "dragoon" || type == "hussar")
 				{
-					cavbrigs += 3;
-					cavsupportbrigs++;
+					cavalryBrigades += 3;
+					cavalrySupportBrigades++;
 				}
 				else if (type == "engineer")
-					supportbrigs += 3;
+				{
+					supportBrigades += 3;
+				}
 				else if (type == "guard")
-					mtnbrigs += 2;
+				{
+					mountainBrigades += 2;
+				}
 				else if (type == "infantry")
-					infantrybrigs += 3;
+				{
+					infantryBrigades += 3;
+				}
 				else if (type == "irregular")
-					infantrybrigs += 1;
+				{
+					infantryBrigades += 1;
+				}
 				else if (type == "tank")
-					tankbrigs++;
+				{
+					tankBrigades++;
+				}
 			}
 		}
 	}
-	string division_templates = "";
-	//number of Inf per Division
-	int infperdiv = 0;
-	//number of Tank Brig per div
-	int tankperdiv = 0;
-	//number of cav brig per div
-	int cavperdiv = 0;
-	//number of mtn brig pre div
-	int mtnperdiv = 0;
-	//support + art divs
-	int superdiv = 0;
-	//support or art divs
-	int meddiv = 0;
-	//inf only divs
-	int baddiv = 0;
 
-	//Calcing # of Infantry per Division
-	if (infantrybrigs <= 45)
-		infperdiv = 3;
-	else if (infantrybrigs <= 90)
-		infperdiv = 6;
-	else
-		infperdiv = 9;
-
-	//calcing # of brigs in Tank div
-	if (tankbrigs <= 5)
-		tankperdiv = 1;
-	else if (tankbrigs <= 10)
-		tankperdiv = 2;
-	else
-		tankperdiv = 3;
-
-	//calculating # of brigs in Cav div
-	if (cavbrigs <= 9)
-		cavperdiv = 1;
-	else if (cavbrigs <= 18)
-		cavperdiv = 2;
-	else
-		cavperdiv = 3;
-
-	//calculating # of brigs in Mtn div
-	if (mtnbrigs <= 9)
-		mtnperdiv = 1;
-	else if (mtnbrigs <= 18)
-		mtnperdiv = 2;
-	else
-		mtnperdiv = 3;
-
-	int numberofdivisions = infantrybrigs / infperdiv;
-	if (tankbrigs > 0)
+	// calculate the number of brigades in different types of divisions
+	int infantryPerDivision = 0;
+	if (infantryBrigades <= 45)
 	{
-		division_templates += "division_template = {\r\n";
-		division_templates += "	name = \"Tank Division\"\r\n";
-		division_templates += "\r\n";
-		division_templates += "	regiments = {\r\n";
-		for (int i = 0; i < tankperdiv; i++)
-		{
-			division_templates += "     light_armor  = { x = 0 y = " + to_string(i) + " }\r\n";
-			division_templates += "		light_armor  = { x = 1 y = " + to_string(i) + " }\r\n";
-			division_templates += "		motorized  = { x = 2 y = " + to_string(i) + " }\r\n";
-		}
-		division_templates += "	}\r\n";
-		division_templates += "	\r\n";
-		division_templates += "	support = {\r\n";
-		division_templates += "	}\r\n";
-		division_templates += "}\r\n";
+		infantryPerDivision = 3;
 	}
-	if (cavbrigs > 0)
+	else if (infantryBrigades <= 90)
 	{
-		division_templates += "division_template = {\r\n";
-		division_templates += "	name = \"Cavalry Division\"\r\n";
-		division_templates += "\r\n";
-		division_templates += "	regiments = {\r\n";
-		for (int i = 0; i < cavperdiv; i++)
-		{
-			division_templates += "     cavalry   = { x = 0 y = " + to_string(i) + " }\r\n";
-			division_templates += "		cavalry   = { x = 1 y = " + to_string(i) + " }\r\n";
-			division_templates += "		cavalry   = { x = 2 y = " + to_string(i) + " }\r\n";
-		}
-		division_templates += "	}\r\n";
-		division_templates += "	\r\n";
-		division_templates += "	support = {\r\n";
-		division_templates += "	}\r\n";
-		division_templates += "}\r\n";
+		infantryPerDivision = 6;
 	}
-	if (mtnbrigs > 0)
+	else
 	{
-		division_templates += "division_template = {\r\n";
-		division_templates += "	name = \"Mountaineers\"\r\n";
-		division_templates += "\r\n";
-		division_templates += "	regiments = {\r\n";
-		for (int i = 0; i < cavperdiv; i++)
-		{
-			division_templates += "     mountaineers    = { x = 0 y = " + to_string(i) + " }\r\n";
-			division_templates += "		mountaineers    = { x = 1 y = " + to_string(i) + " }\r\n";
-			division_templates += "		mountaineers    = { x = 2 y = " + to_string(i) + " }\r\n";
-		}
-		division_templates += "	}\r\n";
-		division_templates += "	\r\n";
-		division_templates += "	support = {\r\n";
-		division_templates += "	}\r\n";
-		division_templates += "}\r\n";
+		infantryPerDivision = 9;
 	}
-	if (artbrigs != 0 || supportbrigs != 0)
+
+	int tanksPerDivision = 0;
+	if (tankBrigades <= 5)
 	{
-		if (artbrigs / (infperdiv / 3) > supportbrigs)
+		tanksPerDivision = 1;
+	}
+	else if (tankBrigades <= 10)
+	{
+		tanksPerDivision = 2;
+	}
+	else
+	{
+		tanksPerDivision = 3;
+	}
+
+	int cavalryPerDivision = 0;
+	if (cavalryBrigades <= 9)
+	{
+		cavalryPerDivision = 1;
+	}
+	else if (cavalryBrigades <= 18)
+	{
+		cavalryPerDivision = 2;
+	}
+	else
+	{
+		cavalryPerDivision = 3;
+	}
+
+	int mountainPerDivision = 0;
+	if (mountainBrigades <= 9)
+	{
+		mountainPerDivision = 1;
+	}
+	else if (mountainBrigades <= 18)
+	{
+		mountainPerDivision = 2;
+	}
+	else
+	{
+		mountainPerDivision = 3;
+	}
+
+	// create division templates
+	if (tankBrigades > 0)
+	{
+		HoI4DivisionType newDivisionTemplate("Tank Division");
+		for (int i = 0; i < tanksPerDivision; i++)
+		{
+			HoI4RegimentType lightArmorRegimentOne("light_armor", 0, i);
+			newDivisionTemplate.addRegiment(lightArmorRegimentOne);
+			HoI4RegimentType lightArmorRegimentTwo("light_armor", 1, i);
+			newDivisionTemplate.addRegiment(lightArmorRegimentTwo);
+			HoI4RegimentType motorizedrRegiment("motorized", 2, i);
+			newDivisionTemplate.addRegiment(motorizedrRegiment);
+		}
+		divisionTemplates.push_back(newDivisionTemplate);
+	}
+	if (cavalryBrigades > 0)
+	{
+		HoI4DivisionType newDivisionTemplate("Cavalry Division");
+		for (int i = 0; i < cavalryPerDivision; i++)
+		{
+			HoI4RegimentType cavalryRegimentOne("cavalry", 0, i);
+			newDivisionTemplate.addRegiment(cavalryRegimentOne);
+			HoI4RegimentType cavalryRegimentTwo("cavalry", 1, i);
+			newDivisionTemplate.addRegiment(cavalryRegimentTwo);
+			HoI4RegimentType cavalryRegimentThree("cavalry", 2, i);
+			newDivisionTemplate.addRegiment(cavalryRegimentThree);
+		}
+		divisionTemplates.push_back(newDivisionTemplate);
+	}
+	if (mountainBrigades > 0)
+	{
+		HoI4DivisionType newDivisionTemplate("Mountaineers");
+		for (int i = 0; i < cavalryPerDivision; i++)
+		{
+			HoI4RegimentType mountainRegimentOne("mountaineers", 0, i);
+			newDivisionTemplate.addRegiment(mountainRegimentOne);
+			HoI4RegimentType mountainRegimentTwo("mountaineers", 1, i);
+			newDivisionTemplate.addRegiment(mountainRegimentTwo);
+			HoI4RegimentType mountainRegimentThree("mountaineers", 2, i);
+			newDivisionTemplate.addRegiment(mountainRegimentThree);
+		}
+		divisionTemplates.push_back(newDivisionTemplate);
+	}
+	if ( (artilleryBrigades > 0) || (supportBrigades > 0) )
+	{
+		if ( (artilleryBrigades / (infantryPerDivision / 3)) > supportBrigades )
 		{
 			//there are more brigades with artillery than with support, meddiv will have only art
-			division_templates += "division_template = {\r\n";
-			division_templates += "	name = \"Support Infantry Division\"\r\n";
-			division_templates += "\r\n";
-			division_templates += "	regiments = {\r\n";
-			for (int i = 0; i < infperdiv / 3; i++)
+			HoI4DivisionType newDivisionTemplate("Support Infantry Division");
+			for (int i = 0; i < (infantryPerDivision / 3); i++)
 			{
-				division_templates += "		infantry = { x = 0 y = " + to_string(i) + " }\r\n";
+				HoI4RegimentType infantryRegiment("infantry", 0, i);
+				newDivisionTemplate.addRegiment(infantryRegiment);
 			}
-			for (int i = 0; i < infperdiv / 3; i++)
+			for (int i = 0; i < (infantryPerDivision / 3); i++)
 			{
-				division_templates += "  infantry = { x = " + to_string(i) + " y = 0 }\r\n";
-				division_templates += "		infantry = { x = " + to_string(i) + " y = 1 }\r\n";
-				division_templates += "		infantry = { x = " + to_string(i) + " y = 2 }\r\n";
-				division_templates += "		artillery_brigade = { x = " + to_string(i) + " y = 3 }\r\n";
+				HoI4RegimentType infantryRegimentOne("infantry", i, 0);
+				newDivisionTemplate.addRegiment(infantryRegimentOne);
+				HoI4RegimentType infantryRegimentTwo("infantry", i, 1);
+				newDivisionTemplate.addRegiment(infantryRegimentTwo);
+				HoI4RegimentType infantryRegimentThree("infantry", i, 2);
+				newDivisionTemplate.addRegiment(infantryRegimentThree);
+				HoI4RegimentType artilleryRegiment("artillery_brigade", i, 3);
+				newDivisionTemplate.addRegiment(artilleryRegiment);
 			}
-			division_templates += "	}\r\n";
-			division_templates += "	\r\n";
-			division_templates += "	support = {\r\n";
-			division_templates += "	}\r\n";
-			division_templates += "}\r\n";
+			divisionTemplates.push_back(newDivisionTemplate);
 
-			if (supportbrigs != 0)
+			if (supportBrigades > 0)
 			{
-				//have both supportbrigs and artillery, have superdiv
-				division_templates += "division_template = {\r\n";
-				division_templates += "	name = \"Advance Infantry Division\"\r\n";
-				division_templates += "\r\n";
-				division_templates += "	regiments = {\r\n";
-				for (int i = 0; i < infperdiv / 3; i++)
+				//have both support brigades and artillery, have superdiv
+				HoI4DivisionType newDivisionTemplate("Advance Infantry Division");
+				for (int i = 0; i < (infantryPerDivision / 3); i++)
 				{
-					division_templates += "		infantry = { x = 0 y = " + to_string(i) + " }\r\n";
+					HoI4RegimentType infantryRegiment("infantry", 0, i);
+					newDivisionTemplate.addRegiment(infantryRegiment);
 				}
-				for (int i = 0; i < infperdiv / 3; i++)
+				for (int i = 0; i < (infantryPerDivision / 3); i++)
 				{
-					division_templates += "  infantry = { x = " + to_string(i) + " y = 0 }\r\n";
-					division_templates += "		infantry = { x = " + to_string(i) + " y = 1 }\r\n";
-					division_templates += "		infantry = { x = " + to_string(i) + " y = 2 }\r\n";
-					division_templates += "		artillery_brigade = { x = " + to_string(i) + " y = 3 }\r\n";
+					HoI4RegimentType infantryRegimentOne("infantry", i, 0);
+					newDivisionTemplate.addRegiment(infantryRegimentOne);
+					HoI4RegimentType infantryRegimentTwo("infantry", i, 1);
+					newDivisionTemplate.addRegiment(infantryRegimentTwo);
+					HoI4RegimentType infantryRegimentThree("infantry", i, 2);
+					newDivisionTemplate.addRegiment(infantryRegimentThree);
+					HoI4RegimentType artilleryRegiment("artillery_brigade", i, 3);
+					newDivisionTemplate.addRegiment(artilleryRegiment);
 				}
-				division_templates += "	}\r\n";
-				division_templates += "	\r\n";
-				division_templates += "	support = {\r\n";
-				division_templates += "        engineer = { x = 0 y = 0 }\r\n";
-				division_templates += "        recon = { x = 0 y = 1 }\r\n";
-				division_templates += "	}\r\n";
-				division_templates += "}\r\n";
-			}
+				HoI4RegimentType engineerRegiment("engineer", 0, 0);
+				newDivisionTemplate.addSupportRegiment(engineerRegiment);
+				HoI4RegimentType reconRegiment("recon", 0, 1);
+				newDivisionTemplate.addSupportRegiment(reconRegiment);
 
+				divisionTemplates.push_back(newDivisionTemplate);
+			}
 		}
 		else
 		{
 			//there are more brigades with support then artillery, meddiv will have only support 
-			division_templates += "division_template = {\r\n";
-			division_templates += "	name = \"Support Infantry Division\"\r\n";
-			division_templates += "\r\n";
-			division_templates += "	regiments = {\r\n";
-			for (int i = 0; i < infperdiv / 3; i++)
+			HoI4DivisionType newDivisionTemplate("Support Infantry Division");
+			for (int i = 0; i < (infantryPerDivision / 3); i++)
 			{
-				division_templates += "		infantry = { x = 0 y = " + to_string(i) + " }\r\n";
+				HoI4RegimentType infantryRegiment("infantry", 0, i);
+				newDivisionTemplate.addRegiment(infantryRegiment);
 			}
-			for (int i = 0; i < infperdiv / 3; i++)
+			for (int i = 0; i < (infantryPerDivision / 3); i++)
 			{
-				division_templates += "  infantry = { x = " + to_string(i) + " y = 0 }\r\n";
-				division_templates += "		infantry = { x = " + to_string(i) + " y = 1 }\r\n";
-				division_templates += "		infantry = { x = " + to_string(i) + " y = 2 }\r\n";
+				HoI4RegimentType infantryRegimentOne("infantry", i, 0);
+				newDivisionTemplate.addRegiment(infantryRegimentOne);
+				HoI4RegimentType infantryRegimentTwo("infantry", i, 1);
+				newDivisionTemplate.addRegiment(infantryRegimentTwo);
+				HoI4RegimentType infantryRegimentThree("infantry", i, 2);
+				newDivisionTemplate.addRegiment(infantryRegimentThree);
 			}
-			division_templates += "	}\r\n";
-			division_templates += "	\r\n";
-			division_templates += "	support = {\r\n";
-			division_templates += "        engineer = { x = 0 y = 0 }\r\n";
-			division_templates += "        recon = { x = 0 y = 1 }\r\n";
-			division_templates += "	}\r\n";
-			division_templates += "}\r\n";
-			if (artbrigs != 0)
+			HoI4RegimentType engineerRegiment("engineer", 0, 0);
+			newDivisionTemplate.addSupportRegiment(engineerRegiment);
+			HoI4RegimentType reconRegiment("recon", 0, 1);
+			newDivisionTemplate.addSupportRegiment(reconRegiment);
+			divisionTemplates.push_back(newDivisionTemplate);
+
+			if (artilleryBrigades != 0)
 			{
 				//have both supportbrigs and artillery, have superdiv
-				division_templates += " division_template ={\r\n";
-				division_templates += "	name = \"Advance Infantry Division\"\r\n";
-				division_templates += "\r\n";
-				division_templates += "	regiments = {\r\n";
-				for (int i = 0; i < infperdiv / 3; i++)
+				HoI4DivisionType newDivisionTemplate("Advance Infantry Division");
+				for (int i = 0; i < (infantryPerDivision / 3); i++)
 				{
-					division_templates += "		infantry = { x = 0 y = " + to_string(i) + " }\r\n";
+					HoI4RegimentType infantryRegiment("infantry", 0, i);
+					newDivisionTemplate.addRegiment(infantryRegiment);
 				}
-				for (int i = 0; i < infperdiv / 3; i++)
+				for (int i = 0; i < (infantryPerDivision / 3); i++)
 				{
-					division_templates += "  infantry = { x = " + to_string(i) + " y = 0 }\r\n";
-					division_templates += "		infantry = { x = " + to_string(i) + " y = 1 }\r\n";
-					division_templates += "		infantry = { x = " + to_string(i) + " y = 2 }\r\n";
-					division_templates += "		artillery_brigade = { x = " + to_string(i) + " y = 3 }\r\n";
+					HoI4RegimentType infantryRegimentOne("infantry", i, 0);
+					newDivisionTemplate.addRegiment(infantryRegimentOne);
+					HoI4RegimentType infantryRegimentTwo("infantry", i, 1);
+					newDivisionTemplate.addRegiment(infantryRegimentTwo);
+					HoI4RegimentType infantryRegimentThree("infantry", i, 2);
+					newDivisionTemplate.addRegiment(infantryRegimentThree);
+					HoI4RegimentType artilleryRegiment("artillery_brigade", i, 3);
+					newDivisionTemplate.addRegiment(artilleryRegiment);
 				}
-				division_templates += "	}\r\n";
-				division_templates += "	\r\n";
-				division_templates += "	support = {\r\n";
-				division_templates += "        engineer = { x = 0 y = 0 }\r\n";
-				division_templates += "        recon = { x = 0 y = 1 }\r\n";
-				division_templates += "	}\r\n";
-				division_templates += "}\r\n";
+				HoI4RegimentType engineerRegiment("engineer", 0, 0);
+				newDivisionTemplate.addSupportRegiment(engineerRegiment);
+				HoI4RegimentType reconRegiment("recon", 0, 1);
+				newDivisionTemplate.addSupportRegiment(reconRegiment);
+
+				divisionTemplates.push_back(newDivisionTemplate);
 			}
 		}
 	}
-	//Basic Inf Div
-	division_templates += "division_template = {\r\n";
-	division_templates += "	name = \"Basic Infantry Division\"\r\n";
-	division_templates += "\r\n";
-	division_templates += "	regiments = {\r\n";
-	for (int i = 0; i < infperdiv / 3; i++)
-	{
-		division_templates += "		infantry = { x = 0 y = " + to_string(i) + " }\r\n";
-	}
-	for (int i = 0; i < infperdiv / 3; i++)
-	{
-		division_templates += "  infantry = { x = " + to_string(i) + " y = 0 }\r\n";
-		division_templates += "		infantry = { x = " + to_string(i) + " y = 1 }\r\n";
-		division_templates += "		infantry = { x = " + to_string(i) + " y = 2 }\r\n";
-	}
-	division_templates += "	}\r\n";
-	division_templates += "	\r\n";
-	division_templates += "	support = {\r\n";
-	division_templates += "	}\r\n";
-	division_templates += "}\r\n";
 
-	divisionstxt = division_templates;
+	// basic infantry division
+	HoI4DivisionType newDivisionTemplate("Basic Infantry Division");
+	for (int i = 0; i < (infantryPerDivision / 3); i++)
+	{
+		HoI4RegimentType infantryRegiment("infantry", 0, i);
+		newDivisionTemplate.addRegiment(infantryRegiment);
+	}
+	for (int i = 0; i < (infantryPerDivision / 3); i++)
+	{
+		HoI4RegimentType infantryRegimentOne("infantry", i, 0);
+		newDivisionTemplate.addRegiment(infantryRegimentOne);
+		HoI4RegimentType infantryRegimentTwo("infantry", i, 1);
+		newDivisionTemplate.addRegiment(infantryRegimentTwo);
+		HoI4RegimentType infantryRegimentThree("infantry", i, 2);
+		newDivisionTemplate.addRegiment(infantryRegimentThree);
+	}
+	divisionTemplates.push_back(newDivisionTemplate);
+
 	//calculating number of units per location
 	int totalweight = 0;
 	for (auto const &ent1 : locations)
 	{
 		totalweight += ent1.second;
 	}
+	int numberofdivisions = infantryBrigades / infantryPerDivision;
 	for (auto const &ent1 : locations)
 	{
 		if (totalweight != 0)
 			locations[ent1.first] = ent1.second*numberofdivisions / totalweight;
 	}
+
 	//unit placement
 	int AdvNmb = 1;
 	int MedNmb = 1;
@@ -1543,9 +1551,9 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 		int unitsinprov = 0;
 		while (unitsinprov < ent1.second)
 		{
-			if (infantrybrigs >= infperdiv && ent1.first != 0)
+			if (infantryBrigades >= infantryPerDivision && ent1.first != 0)
 			{
-				if (tankbrigs > 0)
+				if (tankBrigades > 0)
 				{
 					Armies += "division= {	\r\n";
 					Armies += "		name = \"" + to_string(AdvNmb++) + ".Tank Division\"\r\n";
@@ -1553,9 +1561,9 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 					Armies += "		division_template = \"Tank Division\"\r\n";
 					Armies += "		start_experience_factor = 0.3\r\n";
 					Armies += "	}\r\n";
-					tankbrigs -= tankperdiv;
+					tankBrigades -= tanksPerDivision;
 				}
-				if (cavbrigs > 0)
+				if (cavalryBrigades > 0)
 				{
 					Armies += "division= {	\r\n";
 					Armies += "		name = \"" + to_string(AdvNmb++) + ".Cavalry Division\"\r\n";
@@ -1563,9 +1571,9 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 					Armies += "		division_template = \"Cavalry Division\"\r\n";
 					Armies += "		start_experience_factor = 0.3\r\n";
 					Armies += "	}\r\n";
-					cavbrigs -= cavperdiv;
+					cavalryBrigades -= cavalryPerDivision;
 				}
-				if (mtnbrigs > 0)
+				if (mountainBrigades > 0)
 				{
 					Armies += "division= {	\r\n";
 					Armies += "		name = \"" + to_string(AdvNmb++) + ".Mountaineers\"\r\n";
@@ -1573,10 +1581,10 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 					Armies += "		division_template = \"Mountaineers\"\r\n";
 					Armies += "		start_experience_factor = 0.3\r\n";
 					Armies += "	}\r\n";
-					mtnbrigs -= mtnperdiv;
+					mountainBrigades -= mountainPerDivision;
 				}
 
-				if (artbrigs / (infperdiv / 3) >= 1 && supportbrigs >= 1)
+				if (artilleryBrigades / (infantryPerDivision / 3) >= 1 && supportBrigades >= 1)
 				{
 					//Super Placement
 					Armies += "division= {	\r\n";
@@ -1585,10 +1593,10 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 					Armies += "		division_template = \"Advance Infantry Division\"\r\n";
 					Armies += "		start_experience_factor = 0.3\r\n";
 					Armies += "	}\r\n";
-					artbrigs -= infperdiv / 3;
-					supportbrigs--;
+					artilleryBrigades -= infantryPerDivision / 3;
+					supportBrigades--;
 				}
-				else if (artbrigs / (infperdiv / 3) >= 1 || supportbrigs >= 1)
+				else if (artilleryBrigades / (infantryPerDivision / 3) >= 1 || supportBrigades >= 1)
 				{
 					//Med Placement
 					Armies += "division= {	\r\n";
@@ -1597,8 +1605,8 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 					Armies += "		division_template = \"Support Infantry Division\"\r\n";
 					Armies += "		start_experience_factor = 0.3\r\n";
 					Armies += "	}\r\n";
-					artbrigs -= infperdiv / 3;
-					supportbrigs--;
+					artilleryBrigades -= infantryPerDivision / 3;
+					supportBrigades--;
 				}
 				else
 				{
@@ -1610,7 +1618,7 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 					Armies += "		start_experience_factor = 0.3\r\n";
 					Armies += "	}\r\n";
 				}
-				infantrybrigs -= infperdiv;
+				infantryBrigades -= infantryPerDivision;
 				unitsinprov++;
 			}
 			else
@@ -1622,6 +1630,7 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 	}
 	armiestxt = Armies;
 }
+
 
 void HoI4Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 {
@@ -2563,12 +2572,6 @@ void HoI4Country::setTechnology(string tech, int level)
 	map<string, int>::iterator techEntry = technologies.find(tech);
 	if (techEntry == technologies.end() || technologies[tech] < level)
 		technologies[tech] = level;
-}
-
-
-void HoI4Country::addArmy(HoI4RegGroup* _army)
-{
-	armies.push_back(_army);
 }
 
 

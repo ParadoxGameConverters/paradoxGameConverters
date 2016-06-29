@@ -78,7 +78,6 @@ class HoI4Country
 		void		addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
 		void		setTechnology(string tech, int level);
 		void		addProvince(HoI4Province* _province);
-		void		addArmy(HoI4RegGroup* army);
 		void		lowerNeutrality(double amount);
 
 		void		setFaction(string newFaction)	{ faction = newFaction; }
@@ -100,8 +99,7 @@ class HoI4Country
 		const set<string>&						getAllies() const				{ return allies; }
 		set<string>&								editAllies()					{ return allies; }
 		map<string, double>&						getPracticals()				{ return practicals; }
-		const vector<HoI4RegGroup*>&			getArmies() const				{ return armies; }
-
+		int											getCapitalNum()				{ return capital; }
 		
 
 	private:
@@ -130,8 +128,7 @@ class HoI4Country
 		string								ideology;
 		int									totalfactories;
 		map<string, HoI4Relations*>	relations;
-		vector<HoI4RegGroup*>			armies;
-		string								divisionstxt;
+		vector<HoI4DivisionType>		divisionTemplates;
 		string								naviestxt;
 		string								armiestxt;
 		Color									color;
