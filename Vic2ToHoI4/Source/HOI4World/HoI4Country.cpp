@@ -335,7 +335,6 @@ void HoI4Country::output(map<int, HoI4State*> states) const
 
 void HoI4Country::outputCommonCountryFile() const
 {
-	// Output common country file
 	ofstream output;
 	output.open(("Output/" + Configuration::getOutputName() + "/common/countries/" + Utils::convertToASCII(commonCountryFile)).c_str());
 	if (!output.is_open())
@@ -343,32 +342,28 @@ void HoI4Country::outputCommonCountryFile() const
 		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << Utils::convertToASCII(commonCountryFile);
 		exit(-1);
 	}
+
 	int red		= 0;
 	int green	= 0;
 	int blue		= 0;
 	color.GetRGB(red, green, blue);
-	string s = to_string(red) + " " + to_string(green) + " " + to_string(blue);
-	output << "color = { " << s << "}" << endl;
+	output << "color = { " << red << " " << green << " " << blue << " }" << endl;
+
 	output.close();
 }
 
 
-string HoI4Country::outputColors() const
+void HoI4Country::outputColors(ofstream& out) const
 {
 	int red;
 	int green;
 	int blue;
 	color.GetRGB(red, green, blue);
-	string s;
-	if (capital != 0)
-	{
-		return  tag + " = {\r\tcolor = rgb { " + to_string(red) + " " + to_string(green) + " " + to_string(blue) + " }\r\tcolor_ui = rgb { " + to_string(red) + " " + to_string(green) + " " + to_string(blue) + " }\r}\r";
-	}
-	else
-	{
-		return "";
-	}
-	//fprintf(output,s, tag.c_str(), WinUtils::convertToASCII(commonCountryFile).c_str());
+
+	out << tag << " = {\n";
+	out << "\tcolor = rgb { " << red << " " << green << " " << blue << " }\n";
+	out << "\tcolor_ui = rgb { "  << red << " " << green << " " << blue << " }";
+	out << "}\n";
 }
 
 

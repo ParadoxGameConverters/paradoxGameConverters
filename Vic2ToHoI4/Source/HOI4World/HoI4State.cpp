@@ -29,21 +29,20 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4State::HoI4State(int _ID, string _ownerTag, float _Manpower, double _CivFactories, int _MilFactories, string _catagory, int _raillevel, int _navalbase, int _navallocation)
+HoI4State::HoI4State(int _ID, string _ownerTag, float _manpower, double _civFactories, int _milFactories, string _catagory, int _railLevel, int _navalBase, int _navalLocation)
 {
 	ID					= _ID;
 	ownerTag			= _ownerTag;
-	manpower			= _Manpower;
-	civFactories	= _CivFactories;
-	milFactories	= _MilFactories;
+	manpower			= _manpower;
+	civFactories	= _civFactories;
+	milFactories	= _milFactories;
 	catagory			= _catagory;
-	
-	manpower	= _Manpower;
-	civFactories = _CivFactories;
-	milFactories = _MilFactories;
-	raillevel = _raillevel;
-	navalbase = _navalbase;
-	navallocation = _navallocation;
+	manpower			= _manpower;
+	civFactories	= _civFactories;
+	milFactories	= _milFactories;
+	railLevel		= _railLevel;
+	navalBase		= _navalBase;
+	navalLocation	= _navalLocation;
 }
 
 
@@ -56,7 +55,6 @@ void HoI4State::output(string _filename)
 		LOG(LogLevel::Error) << "Could not open \"output/input/history/states/" + _filename;
 		exit(-1);
 	}
-	//out << civFactories << "  " << milFactories << endl;
 	out << "state={" << endl;
 	out << "\tid=" << ID << endl;
 	out << "\tname= \"STATE_" << ID << "\"" << endl;
@@ -73,23 +71,21 @@ void HoI4State::output(string _filename)
 	out << "\thistory={" << endl;
 	out << "\t\towner = " << ownerTag << endl;
 	//out << "	victory_points = { 3838 1 }" << endl;
-	out << "	buildings = {" << endl;
-	out << "	infrastructure = "<< raillevel << endl;
-	out << "	industrial_complex = " << civFactories << endl;
-	out << "	arms_factory = " << milFactories << endl;
+	out << "\t\tbuildings = {" << endl;
+	out << "\t\t\tinfrastructure = "<< railLevel << endl;
+	out << "\t\t\tindustrial_complex = " << civFactories << endl;
+	out << "\t\t\tarms_factory = " << milFactories << endl;
 		
-	if (navalbase > 0 && navallocation > 0)
+	if (navalBase > 0 && navalLocation > 0)
 	{
-		out << "	" << navallocation << " = {" << endl;
-		out << "		naval_base = " << navalbase << endl;
-		out << "	}" << endl;
+		out << "\t\t\t" << navalLocation << " = {" << endl;
+		out << "\t\t\t\tnaval_base = " << navalBase << endl;
+		out << "\t\t\t}" << endl;
 	}
-	//out << "	air_base = 1" << endl;
-	//out << "	3838 = {" << endl;
-	//out << "	naval_base = 3" << endl;
+	//out << "\t\tair_base = 1" << endl;
 	out << "\t\t}" << endl;
-	//out << "}" << endl;
-	//out << "	add_core_of = FRA" << endl;
+	//out << "\t}" << endl;
+	//out << "\tadd_core_of = FRA" << endl;
 	out << "\t}" << endl;
 	out << endl;
 	out << "\tprovinces={" << endl;

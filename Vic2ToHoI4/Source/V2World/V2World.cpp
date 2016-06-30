@@ -217,10 +217,10 @@ void V2World::setLocalisations(V2Localisation& localisation, const stateIdMappin
 			countryItr.second->setLocalisationAdjective(language, adjective);
 		}
 	}
-	for (auto country : countries)
+	for (auto country: countries)
 	{
 		//	loop through the states in the vic2 country
-		for (auto vic2State : country.second->getStates())
+		for (auto vic2State: country.second->getStates())
 		{
 			auto stateID = stateIdMap.find(vic2State->getProvinces()[0]);
 			if (stateID != stateIdMap.end())

@@ -25,10 +25,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <algorithm>
 #include <list>
 #include <queue>
-#include <cmath>
-#include <cfloat>
-#include <cmath>
-#include <random>  
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp> 
 //#include <IL\il.h>
@@ -213,24 +209,26 @@ void HoI4World::outputCommonCountries() const
 void HoI4World::outputColorsfile() const
 {
 
-	ofstream output2;
-	output2.open(("Output/" + Configuration::getOutputName() + "/common/countries/colors.txt"));
-	if (!output2.is_open())
+	ofstream output;
+	output.open(("Output/" + Configuration::getOutputName() + "/common/countries/colors.txt"));
+	if (!output.is_open())
 	{
-		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/colors.txt";
+		Log(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/common/countries/colors.txt";
 		exit(-1);
 	}
-	string s = "#reload countrycolors\r\n";
+
+	output << "#reload countrycolors\r\n";
 	for (auto countryItr : countries)
 	{
-		if (potentialCountries.find(countryItr.first) == potentialCountries.end())
+		if (	(potentialCountries.find(countryItr.first) == potentialCountries.end()) &&
+				(countryItr.second->getCapitalNum() != 0)
+			)
 		{
-			s += countryItr.second->outputColors();
-			//countryItr.second->outputColors(allCountriesFile);
+			countryItr.second->outputColors(output);
 		}
 	}
-	output2 << s;
-	output2.close();
+
+	output.close();
 }
 
 
@@ -586,73 +584,70 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 	Object* navalobj = parser_UTF8::doParseFile("navalprovinces.txt");
 	auto navalobj2 = navalobj->getValue("navalprovinces");
 	auto navalobj3 = navalobj2[0]->getValue("link");
-	auto navalprovinces = navalobj3[0]->getValue("province");
+	auto navalProvinces = navalobj3[0]->getValue("province");
+
 	//	loop through the vic2 countries
 	int stateID = 1;
 	for (auto country : sourceWorld.getCountries())
 	{
-
 		//	determine the relevant HoI4 country
 		string HoI4Tag = countryMap.GetHoI4Tag(country.first);
-		double employedworkersadjusted = 0;
+
+		double employedWorkersAdjusted = 0;
 		for (auto vic2State : country.second->getStates())
 		{
 			for (auto prov : vic2State->getProvinces())
 			{
-				//takes employed workers and divides by 100,000 to convert
 				V2Province* sourceProvince = sourceWorld.getProvince(prov);
-				employedworkersadjusted += sourceProvince->getEmployedWorkers()*.00001;
+
+				// takes employed workers and divides by 100,000 to convert
+				employedWorkersAdjusted += sourceProvince->getEmployedWorkers() / 100000.0;
 			}
 		}
-		//calculating the conversion between Vic2Employed Workers to HoI4 factories
-		double percentage = 0;
-		double sinner = sin(employedworkersadjusted / 150) * 100;
-		double logger = log10(employedworkersadjusted) * 15;
-		double HoI4TotalFactories = sinner + logger + 5;
-		if (employedworkersadjusted != 0)
+
+		// calculating the conversion between Vic2Employed Workers to HoI4 factories
+		double percentage	= 0;
+		double sinPart		= sin(employedWorkersAdjusted / 150) * 100;
+		double logpart		= log10(employedWorkersAdjusted) * 15;
+		double HoI4TotalFactories = sinPart + logpart + 5;
+		if (employedWorkersAdjusted != 0)
 		{
-			percentage = HoI4TotalFactories / employedworkersadjusted;
+			percentage = HoI4TotalFactories / employedWorkersAdjusted;
 		}
+
 		//	loop through the states in the vic2 country
 		for (auto vic2State : country.second->getStates())
 		{
-			if (vic2State->getStateID() == "BRZ_2408")
-			{
-				int x;
-				x = 6;
-				Object* obj = parser_UTF8::doParseFile("Resources.txt");
-			}
-			bool lookfornavalbase = true;
+			bool foundNavalBase = false;
 			string resources = "";
-			double stateWorkers = 0;
-			double stateFac = 0;
-			float population = 0;
-			double raillevel = 0;
-			double provinces = 0;
-			int navalbase = 0;
-			int navalbaselocation = 0;
-			for (auto prov : vic2State->getProvinces())
-			{
 
-				//gets population, raillevel, and workers in every state to convert slots and states*conversion percentage
-				V2Province* sourceProvince = sourceWorld.getProvince(prov);
-				if (sourceProvince->getNavalBase() > 0 && prov < 2800)
+			double	stateWorkers		= 0;
+			int		stateFactories		= 0;
+			int		population			= 0;
+			int		railLevel			= 0;
+			int		navalBase			= 0;
+			int		navalBaseLocation	= 0;
+			for (auto provinceNum: vic2State->getProvinces())
+			{
+				// get population, rail level, and workers in every state to convert slots and states*conversion percentage
+				V2Province* sourceProvince = sourceWorld.getProvince(provinceNum);
+				if ((sourceProvince->getNavalBase() > 0) && (provinceNum < 2800))
 				{
-					navalbase += sourceProvince->getNavalBase();
-					 auto loc = inverseProvinceMap.find(prov);
-					if (loc->second.size() < 100)
+					navalBase += sourceProvince->getNavalBase();
+					auto HoI4ProvNum = inverseProvinceMap.find(provinceNum);
+					if (HoI4ProvNum->second.size() < 100)
 					{
-						for (auto HoI4ProvNum : loc->second)
+						for (auto HoI4ProvNum : HoI4ProvNum->second)
 						{
-							if (HoI4ProvNum < 14000 && lookfornavalbase == true)
+							if ((HoI4ProvNum < 14000) && !foundNavalBase)
 							{
-								for (auto navalprov : navalprovinces)
+								for (auto navalprov: navalProvinces)
 								{
-									string navalprovince = navalprov->getLeaf();
-									if (navalprovince == to_string(HoI4ProvNum))
+									int navalProvince = stoi(navalprov->getLeaf());
+									if (navalProvince == HoI4ProvNum)
 									{
-										navalbaselocation = HoI4ProvNum;
-										lookfornavalbase = false;
+										navalBaseLocation	= HoI4ProvNum;
+										foundNavalBase		= true;
 										break;
 									}
 								}
@@ -660,65 +655,98 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 						}
 					}
 				}
-				population += sourceProvince->getLiteracyWeightedPopulation();
-				raillevel = sourceProvince->getInfra();
-				stateWorkers += sourceProvince->getEmployedWorkers()*.00001*percentage;
-				provinces++;
+				population		+= sourceProvince->getLiteracyWeightedPopulation();
+				railLevel		 = sourceProvince->getInfra();
+				stateWorkers	+= sourceProvince->getEmployedWorkers() * percentage / 100000;
 			}
-			//used to make sure no negative factories
+
+			// make sure there are no negative factories
 			if (stateWorkers < 0)
-				stateWorkers = 0;
-
-			//slots is given per 120,000 people (need to change)
-			int stateSlots = static_cast<int>(population) / 120000;
-			//make sure not larger then 12 so stateFac is properly limited to max state level
-			if (stateSlots > 12)
-				stateSlots = 12;
-			stateFac = round(stateWorkers);
-			//limits factories by max slots
-			if (stateFac > 12)
-				stateFac = 12;
-			if (stateFac >= stateSlots)
-				stateSlots = static_cast<int>(stateFac) + 2;
-			//better rails for better industry
-			if (stateFac > 10)
-				raillevel += 3;
-			else if (stateFac > 6)
-				raillevel += 2;
-			else if (stateFac > 4)
-				raillevel++;
-			string catagory = "";
-			//names of city size to give correct number of slots
-			if (stateSlots >= 12)
-				catagory = "megalopolis";
-			else if (stateSlots >= 10)
-				catagory = "metropolis";
-			else if (stateSlots >= 8)
-				catagory = "large_city";
-			else if (stateSlots >= 6)
-				catagory = "city";
-			else if (stateSlots >= 5)
-				catagory = "large_town";
-			else if (stateSlots >= 4)
-				catagory = "town";
-			else if (stateSlots >= 2)
-				catagory = "rural";
-			else if (stateSlots >= 1)
-				catagory = "pastoral";
-			else
-				catagory = "enclave";
-
-			int civFac = 0;
-			int milFac = 0;
-			//0-6 gives a civ factory, 7-9 gives mil factory
-			for (int i = 0; i < stateFac; i++)
 			{
-				int randnmb = rand() % 10;
-				if (randnmb > 6)
-					milFac++;
-				else
-					civFac++;
+				stateWorkers = 0;
 			}
+			stateFactories = static_cast<int>(round(stateWorkers));
+			if (stateFactories > 12) // limit factories by 12 (the max slots)
+			{
+				stateFactories = 12;
+			}
+
+			// determine state category
+			int stateSlots = population / 120000; // one slot is given per 120,000 people (need to change)
+			if (stateFactories >= stateSlots)
+			{
+				stateSlots = stateFactories + 2;
+			}
+
+			string catagory = "";
+			if (stateSlots >= 12)
+			{
+				catagory = "megalopolis";
+			}
+			else if (stateSlots >= 10)
+			{
+				catagory = "metropolis";
+			}
+			else if (stateSlots >= 8)
+			{
+				catagory = "large_city";
+			}
+			else if (stateSlots >= 6)
+			{
+				catagory = "city";
+			}
+			else if (stateSlots >= 5)
+			{
+				catagory = "large_town";
+			}
+			else if (stateSlots >= 4)
+			{
+				catagory = "town";
+			}
+			else if (stateSlots >= 2)
+			{
+				catagory = "rural";
+			}
+			else if (stateSlots >= 1)
+			{
+				catagory = "pastoral";
+			}
+			else
+			{
+				catagory = "enclave";
+			}
+
+			//better rails for better industry
+			if (stateFactories > 10)
+			{
+				railLevel += 3;
+			}
+			else if (stateFactories > 6)
+			{
+				railLevel += 2;
+			}
+			else if (stateFactories > 4)
+			{
+				railLevel++;
+			}
+
+			// distribute military and civilian factories using unseeded random
+			//		0-6 gives a civilian factory, 7-9 gives a military factory
+			int civilianFactories	= 0;
+			int militaryFactories	= 0;
+			for (int i = 0; i < stateFactories; i++)
+			{
+				int randomNum = rand() % 10;
+				if (randomNum > 6)
+				{
+					militaryFactories++;
+				}
+				else
+				{
+					civilianFactories++;
+				}
+			}
+
 			//	create a matching HoI4 state
 			int provincecount = 0;
 			float newManpower = 1;
@@ -732,7 +760,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 				newManpower = 1;
 			}
 		
-			HoI4State* newState = new HoI4State(stateID, HoI4Tag, newManpower, civFac, milFac, catagory, static_cast<int>(raillevel), navalbase, navalbaselocation);
+			HoI4State* newState = new HoI4State(stateID, HoI4Tag, newManpower, civilianFactories, militaryFactories, catagory, railLevel, navalBase, navalBaseLocation);
 
 			//	loop through the provinces in the vic2 state
 			for (auto vic2Province : vic2State->getProvinces())

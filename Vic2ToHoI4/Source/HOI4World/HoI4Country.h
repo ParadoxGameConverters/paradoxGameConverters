@@ -64,7 +64,7 @@ class HoI4Country
 
 		void		output(map<int, HoI4State*> states) const;
 		void		outputCommonCountryFile() const;
-		string	outputColors() const;
+		void		outputColors(ofstream& out) const;
 		void		outputToCommonCountriesFile(FILE*) const;
 		void		outputAIScript() const;
 
@@ -82,7 +82,6 @@ class HoI4Country
 
 		void		setFaction(string newFaction)	{ faction = newFaction; }
 		void		setFactionLeader()				{ factionLeader = true; }
-		void		setFactories(int _factories)	{ totalfactories = _factories; }
 
 		HoI4Relations*								getRelations(string withWhom) const;
 		HoI4Province*								getCapital();
@@ -126,7 +125,6 @@ class HoI4Country
 		string								government;
 		HoI4Alignment						alignment;
 		string								ideology;
-		int									totalfactories;
 		map<string, HoI4Relations*>	relations;
 		Color									color;
 		double								neutrality;

@@ -35,16 +35,18 @@ using namespace std;
 class HoI4State
 {
 	public:
-		HoI4State(int _ID, string _ownerTag, float _Manpower, double _CivFactories, int _MilFactories, string _catagory, int _raillevel, int _navalbase, int _navallocation);
+		HoI4State(int _ID, string _ownerTag, float _manpower, double _civFactories, int _milFactories, string _catagory, int _railLevel, int _navalBase, int _navalLocation);
 
-		void output(string filename);
-		void		setResources(string _resources) { resources = _resources; }
-		void			addProvince(int province)	{ provinces.push_back(province); }
+		void	output(string filename);
+
+		void	setResources(string _resources)	{ resources = _resources; }
+		void	addProvince(int province)			{ provinces.push_back(province); }
+
 		vector<int> getProvinces() const			{ return provinces; }
 		string		getOwner() const				{ return ownerTag; }
-		float		getManpower() const				{ return manpower; }
-		int			getID()							{ return ID; }
-		int			getNavalLocation() const		{ return navallocation; }
+		float			getManpower() const			{ return manpower; }
+		int			getID() const					{ return ID; }
+		int			getNavalLocation() const	{ return navalLocation; }
 
 	private:
 		int			ID;
@@ -53,11 +55,11 @@ class HoI4State
 		float			manpower;
 		double		civFactories;
 		int			milFactories;
-		string catagory;
-		int raillevel;
-		string resources;
-		int navalbase;
-		int navallocation;
+		string		catagory;
+		int			railLevel;
+		string		resources;
+		int			navalBase;
+		int			navalLocation;
 
 };
 
