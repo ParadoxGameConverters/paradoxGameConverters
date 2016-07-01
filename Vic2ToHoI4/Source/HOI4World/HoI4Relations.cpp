@@ -35,6 +35,7 @@ HoI4Relations::HoI4Relations(string newTag)
 	lastWar				= date();
 	truceUntil = date();
 	guarantee = false;
+	sphereLeader = false;
 }
 
 
@@ -47,5 +48,6 @@ HoI4Relations::HoI4Relations(string newTag, V2Relations* oldRelations)
 	lastWar				= oldRelations->getLastWar();
 	truceUntil			= oldRelations->getTruceUntil();
 	guarantee			= (oldRelations->getLevel() >= 4);
+	sphereLeader		= (oldRelations->getLevel() >= 5);
 }
 

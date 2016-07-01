@@ -1541,9 +1541,13 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 			locations[ent1.first] = ent1.second*numberofdivisions / totalweight;
 	}
 	//unit placement
-	int AdvNmb = 1;
-	int MedNmb = 1;
-	int BscNmb = 1;
+	int AdvNmb = 0;
+	int MedNmb = 0;
+	int BscNmb = 0;
+	brigs.push_back(tankbrigs);
+	brigs.push_back(cavbrigs);
+	brigs.push_back(infantrybrigs);
+	brigs.push_back(artbrigs);
 	string Armies = "";
 	for (auto const &ent1 : locations)
 	{
@@ -1555,7 +1559,7 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 				if (tankbrigs > 0)
 				{
 					Armies += "division= {	\r\n";
-					Armies += "		name = \"" + to_string(AdvNmb++) + ".Tank Division\"\r\n";
+					Armies += "		name = \"" + to_string(++AdvNmb) + ".Tank Division\"\r\n";
 					Armies += "		location = " + to_string(ent1.first) + "\r\n";
 					Armies += "		division_template = \"Tank Division\"\r\n";
 					Armies += "		start_experience_factor = 0.3\r\n";
@@ -1565,7 +1569,7 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 				if (cavbrigs > 0)
 				{
 					Armies += "division= {	\r\n";
-					Armies += "		name = \"" + to_string(AdvNmb++) + ".Cavalry Division\"\r\n";
+					Armies += "		name = \"" + to_string(++AdvNmb) + ".Cavalry Division\"\r\n";
 					Armies += "		location = " + to_string(ent1.first) + "\r\n";
 					Armies += "		division_template = \"Cavalry Division\"\r\n";
 					Armies += "		start_experience_factor = 0.3\r\n";
@@ -1575,7 +1579,7 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 				if (mtnbrigs > 0)
 				{
 					Armies += "division= {	\r\n";
-					Armies += "		name = \"" + to_string(AdvNmb++) + ".Mountaineers\"\r\n";
+					Armies += "		name = \"" + to_string(++AdvNmb) + ".Mountaineers\"\r\n";
 					Armies += "		location = " + to_string(ent1.first) + "\r\n";
 					Armies += "		division_template = \"Mountaineers\"\r\n";
 					Armies += "		start_experience_factor = 0.3\r\n";
@@ -1587,7 +1591,7 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 				{
 					//Super Placement
 					Armies += "division= {	\r\n";
-					Armies += "		name = \"" + to_string(AdvNmb++) + ".Advance Infantry Division\"\r\n";
+					Armies += "		name = \"" + to_string(++AdvNmb) + ".Advance Infantry Division\"\r\n";
 					Armies += "		location = " + to_string(ent1.first) + "\r\n";
 					Armies += "		division_template = \"Advance Infantry Division\"\r\n";
 					Armies += "		start_experience_factor = 0.3\r\n";
@@ -1599,7 +1603,7 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 				{
 					//Med Placement
 					Armies += "division= {	\r\n";
-					Armies += "		name = \"" + to_string(MedNmb++) + ".Support Infantry Division\"\r\n";
+					Armies += "		name = \"" + to_string(++MedNmb) + ".Support Infantry Division\"\r\n";
 					Armies += "		location = " + to_string(ent1.first) + "\r\n";
 					Armies += "		division_template = \"Support Infantry Division\"\r\n";
 					Armies += "		start_experience_factor = 0.3\r\n";
@@ -1611,7 +1615,7 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 				{
 					//Bad Placement
 					Armies += "division= {	\r\n";
-					Armies += "		name = \"" + to_string(BscNmb++) + ".Basic Infantry Division\"\r\n";
+					Armies += "		name = \"" + to_string(++BscNmb) + ".Basic Infantry Division\"\r\n";
 					Armies += "		location = " + to_string(ent1.first) + "\r\n";
 					Armies += "		division_template = \"Basic Infantry Division\"\r\n";
 					Armies += "		start_experience_factor = 0.3\r\n";
@@ -1622,9 +1626,10 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 			}
 			else
 			{
-				LOG(LogLevel::Warning) << "Problem converting units for" << tag << " one of the locations for unit placement was 0!";
+				LOG(LogLevel::Warning) << "Problem converting units for " << tag << " one of the locations for unit placement was 0!";
 				break;
 			}
+			
 		}
 	}
 	armiestxt = Armies;

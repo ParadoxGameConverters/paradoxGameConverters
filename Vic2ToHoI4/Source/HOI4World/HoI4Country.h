@@ -78,7 +78,7 @@ class HoI4Country
 		void		addProvince(HoI4Province* _province);
 		void		addArmy(HoI4RegGroup* army);
 		void		lowerNeutrality(double amount);
-
+		void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
 		void		setFaction(string newFaction)	{ faction = newFaction; }
 		void		setFactionLeader()				{ factionLeader = true; }
 		void	setFactories(int _factories) { totalfactories = _factories; }
@@ -99,9 +99,9 @@ class HoI4Country
 		set<string>&								editAllies()					{ return allies; }
 		map<string, double>&						getPracticals()				{ return practicals; }
 		const vector<HoI4RegGroup*>&			getArmies() const				{ return armies; }
-
-		
-
+		vector<int>									getBrigs() const			{ return brigs; }
+		double										getArmyStrength() const { return brigs[0] * 12 + brigs[1] * .85 + brigs[2] + brigs[3] * 2.1; }
+		const string									getSphereLeader() const { return sphereLeader; }
 	private:
 		void			outputOOB(map<int, HoI4State*>)						const;
 		void			outputPracticals(FILE*)		const;
@@ -114,8 +114,8 @@ class HoI4Country
 		HoI4World*							theWorld;
 		const V2Country*					srcCountry;
 		string								filename;
-		bool									newCountry;	// true if this country is being added by the converter, i.e. doesn't already exist in HoI4
-
+		bool								newCountry;	// true if this country is being added by the converter, i.e. doesn't already exist in HoI4
+		const string						sphereLeader = "";
 		string								tag;
 		map<int, HoI4Province*>			provinces;
 		int									capital;
@@ -143,6 +143,7 @@ class HoI4Country
 		vector<HoI4Leader>				leaders;
 		string								graphicalCulture;
 		bool									majorNation;
+		vector<int>							brigs;
 
 		// AI focus modifiers
 		double	seaModifier;

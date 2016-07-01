@@ -60,12 +60,19 @@ class HoI4World
 		void	convertArmies(const V2World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		void	configureFactions(const V2World& sourceWorld, const CountryMapping& countryMap);
 		void	generateLeaders(const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
-		void calculateArmies(const inverseProvinceMapping& inverseProvinceMap);
+		void	calculateArmies(const inverseProvinceMapping& inverseProvinceMap);
 		void	consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap);
 		void	convertVictoryPoints(const V2World& sourceWorld, const CountryMapping& countryMap);
 		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
 		void	copyFlags(const V2World &sourceWorld, const CountryMapping& countryMap);
 		void	addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
+		void	setSphereLeaders(const V2World & sourceWorld, const CountryMapping & countryMap);
+		void	thatsgermanWarCreator(const V2World & sourceWorld, const CountryMapping& countryMap);
+		vector<vector<HoI4Country*>> CreateFactions(const V2World & sourceWorld, const CountryMapping & countryMap);
+		HoI4Country *	GetFactionLeader(vector<HoI4Country*> Faction);
+		double	GetFactionStrength(vector<HoI4Country*> Faction);
+		vector<HoI4Country*>	returnGreatCountries(const V2World & sourceWorld, const CountryMapping & countryMap);
+		string returnIfSphere(HoI4Country * leadercountry, HoI4Country * posLeaderCountry, const V2World & sourceWorld, const CountryMapping & countryMap);
 		void	recordAllLandProvinces();
 		void	checkAllProvincesMapped(const provinceMapping& provinceMap);
 

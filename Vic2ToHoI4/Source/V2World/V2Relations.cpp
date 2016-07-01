@@ -66,7 +66,7 @@ V2Relations::V2Relations(Object* obj)
 		truceUntil = date(truceUntilObj[0]->getLeaf());
 	}
 
-	vector<Object*> levelObj = obj->getValue("leve");
+	vector<Object*> levelObj = obj->getValue("level");
 	if (levelObj.size() > 0)
 	{
 		level = atoi(levelObj[0]->getLeaf().c_str());

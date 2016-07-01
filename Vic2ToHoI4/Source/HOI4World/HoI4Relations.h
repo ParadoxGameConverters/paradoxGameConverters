@@ -41,6 +41,7 @@ class HoI4Relations
 		string	getTag()				const { return tag; };
 		int		getRelations()		const { return value; };
 		bool		getGuarantee()		const { return guarantee; };
+		bool		getSphereLeader()		const { return sphereLeader; };
 		date		getLastWar()		const { return lastWar; };
 		date		getTruceUntil()	const { return truceUntil; };
 		bool		atWar()				const { return lastWar > truceUntil; };
@@ -52,6 +53,7 @@ class HoI4Relations
 		date		lastWar;
 		date		truceUntil;
 		bool		guarantee;
+		bool		sphereLeader;
 };
 
 

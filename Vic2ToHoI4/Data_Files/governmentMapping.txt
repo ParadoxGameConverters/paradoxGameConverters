@@ -21,13 +21,13 @@
 
 
 mappings = {
-link = { vic = absolute_monarchy hoi = neutrality }
-link = { vic = prussian_constitutionalism ruling_party = fascist hoi = fascism }
-link = { vic = prussian_constitutionalism ruling_party = reactionary hoi = fascism}
-link = { vic = prussian_constitutionalism political_reforms = 0.75 hoi = neutrality}
-link = { vic = prussian_constitutionalism hoi = neutrality}
-link = { vic = hms_government ruling_party = fascist hoi = fascism}
-link = { vic = hms_government hoi = neutrality}
+link = { vic = absolute_monarchy hoi = absolute_monarchy}
+link = { vic = prussian_constitutionalism ruling_party = fascist hoi = absolute_monarchy }
+link = { vic = prussian_constitutionalism ruling_party = reactionary hoi =  absolute_monarchy}
+link = { vic = prussian_constitutionalism political_reforms = 0.75 hoi = prussian_constitutionalism }
+link = { vic = prussian_constitutionalism hoi = prussian_constitutionalism }
+link = { vic = hms_government ruling_party = fascist hoi = prussian_constitutionalism }
+link = { vic = hms_government hoi = hms_government }
 link = { vic = democracy ruling_party = fascist hoi = democratic}
 link = { vic = democracy ruling_party = reactionary hoi = democratic}
 link = { vic = democracy ruling_party = conservative political_reforms = 0.9 social_reforms_above = 0.90 hoi = democratic}
@@ -40,9 +40,9 @@ link = { vic = democracy ruling_party = socialist social_reforms_above = 0.90 ho
 link = { vic = democracy ruling_party = socialist hoi = democratic}
 link = { vic = democracy ruling_party = communist hoi = democratic}
 link = { vic = proletarian_dictatorship hoi = communism}
-link = { vic = presidential_dictatorship ruling_party = liberal hoi = communism}
-link = { vic = presidential_dictatorship ruling_party = anarcho_liberal hoi = communism}
+link = { vic = presidential_dictatorship ruling_party = liberal hoi = absolute_monarchy }
+link = { vic = presidential_dictatorship ruling_party = anarcho_liberal hoi = syndicalism}
 link = { vic = presidential_dictatorship hoi = fascism}
-link = { vic = bourgeois_dictatorship hoi = communism}
+link = { vic = bourgeois_dictatorship hoi = syndicalism}
 link = { vic = fascist_dictatorship hoi = fascism}
 }

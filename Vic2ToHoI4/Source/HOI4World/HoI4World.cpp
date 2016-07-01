@@ -479,7 +479,7 @@ void HoI4World::outputSupply(const V2World &sourceWorld, const inverseProvinceMa
 		vector<HoI4State*> ZoneStates;
 		auto zonekeys = zone->getLeaves();
 		string HoI4defaultZone = zonekeys[0]->getLeaf();
-		string zonevalue = zonekeys[zonekeys.size()-1]->getLeaf();
+		string zonevalue = zonekeys[zonekeys.size() - 1]->getLeaf();
 		for (int i = 1; i < zonekeys.size() - 1; i++)
 		{
 			auto province = zonekeys[i]->getLeaf();
@@ -529,7 +529,7 @@ void HoI4World::outputSupply(const V2World &sourceWorld, const inverseProvinceMa
 				out << "	id=" << zoneid << endl;
 				//out << "	name = \"foo\"" << endl;
 				out << "name=\"STATE_" << ZoneStates.front()->getID() << "\"" << endl;
-				out << "	value = "<< zonevalue << endl;
+				out << "	value = " << zonevalue << endl;
 				out << "	states={" << endl;
 				out << "		";
 				for (auto state : ZoneStates)
@@ -641,7 +641,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 				if (sourceProvince->getNavalBase() > 0 && prov < 2800)
 				{
 					navalbase += sourceProvince->getNavalBase();
-					 auto loc = inverseProvinceMap.find(prov);
+					auto loc = inverseProvinceMap.find(prov);
 					if (loc->second.size() < 100)
 					{
 						for (auto HoI4ProvNum : loc->second)
@@ -733,7 +733,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 			{
 				newManpower = 1;
 			}
-		
+
 			HoI4State* newState = new HoI4State(stateID, HoI4Tag, newManpower, civFac, milFac, catagory, raillevel, navalbase, navalbaselocation);
 
 			//	loop through the provinces in the vic2 state
@@ -2286,6 +2286,7 @@ void HoI4World::convertDiplomacy(const V2World& sourceWorld, const CountryMappin
 			if (agreement.type == "alliance")
 			{
 				HoI4Country1->second->editAllies().insert(HoI4Tag2);
+				HoI4Country2->second->editAllies().insert(HoI4Tag1);
 			}
 		}
 	}
@@ -2321,6 +2322,15 @@ void HoI4World::convertDiplomacy(const V2World& sourceWorld, const CountryMappin
 				HoI4a.type = "guarantee";
 				diplomacy.addAgreement(HoI4a);
 			}
+			if (relationItr.second->getSphereLeader())
+			{
+				HoI4Agreement HoI4a;
+				HoI4a.country1 = country.first;
+				HoI4a.country2 = relationItr.first;
+				HoI4a.start_date = date("1930.1.1"); // Arbitrary date
+				HoI4a.type = "sphere";
+				diplomacy.addAgreement(HoI4a);
+			}
 		}
 	}
 
@@ -2349,7 +2359,7 @@ void HoI4World::convertDiplomacy(const V2World& sourceWorld, const CountryMappin
 
 void HoI4World::copyFlags(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
-	
+
 
 	LOG(LogLevel::Debug) << "Copying flags";
 
@@ -2485,4 +2495,169 @@ void HoI4World::addMinimalItems(const inverseProvinceMapping& inverseProvinceMap
 	{
 		country.second->addMinimalItems(inverseProvinceMap);
 	}
+}
+void HoI4World::setSphereLeaders(const V2World &sourceWorld, const CountryMapping& countryMap)
+{
+	const vector<string>& greatCountries = sourceWorld.getGreatCountries();
+	for (auto countryItr : greatCountries)
+	{
+		auto itr = countries.find(countryMap[countryItr]);
+		if (itr != countries.end())
+		{
+			HoI4Country* country = itr->second;
+			auto relations = country->getRelations();
+			for (auto relation : relations)
+			{
+				if (relation.second->getSphereLeader())
+				{
+					string tag = relation.second->getTag();
+					auto spheredcountry = countries.find(tag);
+					if (spheredcountry != countries.end())
+					{
+						spheredcountry->second->setSphereLeader(country->getTag());
+					}
+				}
+			}
+		}
+	}
+}
+void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryMapping& countryMap)
+{
+	vector<vector<HoI4Country*>> Factions = CreateFactions(sourceWorld, countryMap);
+}
+vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorld, const CountryMapping& countryMap)
+{
+	vector<vector<HoI4Country*>> Factions;
+	string filename("Output/wars.txt");
+	ofstream out;
+	out.open(filename);
+	{
+		vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
+		vector<string> usedCountries;
+		for (auto country : GreatCountries)
+		{
+				if (std::find(usedCountries.begin(), usedCountries.end(), country->getTag()) == usedCountries.end()) 
+				{
+					//checks to make sure its not creating a faction when already in one
+					vector<HoI4Country*> Faction;
+					double FactionMilStrength = 0;
+					Faction.push_back(country);
+					string yourgovernment = country->getGovernment();
+					auto allies = country->getAllies();
+					vector<int> yourbrigs = country->getBrigs();
+					auto yourrelations = country->getRelations();
+					out << country->getSourceCountry()->getName() << " " + yourgovernment + " " + to_string(country->getArmyStrength()) + " allies: \n";
+					usedCountries.push_back(country->getTag());
+					FactionMilStrength = country->getArmyStrength();
+					for (auto ally : allies)
+					{
+						auto itrally = countries.find(ally);
+						if (itrally != countries.end())
+						{
+							HoI4Country* allycountry = itrally->second;
+							string allygovernment = allycountry->getGovernment();
+							string name = "";
+							vector<int> allybrigs = allycountry->getBrigs();
+							for (auto country : countries)
+							{
+								if (country.second->getTag() == ally)
+									name = country.second->getSourceCountry()->getName();
+							}
+							string sphere = returnIfSphere(country, allycountry, sourceWorld, countryMap);
+
+							if (allygovernment == yourgovernment || sphere == country->getTag()
+								|| (yourgovernment == "absolute_monarchy" && (allygovernment == "fascism" || allygovernment == "democratic" || allygovernment == "prussian_constitutionalism" || allygovernment == "hms_government"))
+								|| (yourgovernment == "democratic" && (allygovernment == "hms_government" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism"))
+								|| (yourgovernment == "prussian_constitutionalism" && (allygovernment == "hms_government" || allygovernment == "absolute_monarchy" || allygovernment == "democratic" || allygovernment == "fascism"))
+								|| (yourgovernment == "hms_government" && (allygovernment == "democratic" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism"))
+								|| (yourgovernment == "communism" && (allygovernment == "syndicalism"))
+								|| (yourgovernment == "syndicalism" && (allygovernment == "communism" || allygovernment == "fascism"))
+								|| (yourgovernment == "fascism" && (allygovernment == "syndicalism" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism")))
+								{
+								bool canally = false;
+								//if there is a sphere leader, it is not blank
+								if (sphere != "")
+								{
+									//if sphere is equal to great power in question, can ally
+									if (sphere == country->getTag())
+									{
+										canally = true;
+									}
+								}
+								else
+									canally = true;
+
+								if (canally)
+								{
+									usedCountries.push_back(allycountry->getTag());
+									out << "\t" + name + " " + allygovernment + " Strength: " + to_string(allycountry->getArmyStrength()) << endl;
+									FactionMilStrength += allycountry->getArmyStrength();
+									Faction.push_back(allycountry);
+								}
+							}
+						}
+
+					}
+					out << "\tFaction Strength: " + to_string(FactionMilStrength) << endl;
+					out << endl;
+					Factions.push_back(Faction);
+				}
+				
+			}
+		
+
+		out.close();
+	}
+	return Factions;
+}
+double HoI4World::GetFactionStrength(vector<HoI4Country*> Faction)
+{
+	double strength = 0;
+	for (auto country : Faction)
+	{
+		strength += country->getArmyStrength();
+	}
+	return strength;
+}
+vector<HoI4Country*> HoI4World::returnGreatCountries(const V2World &sourceWorld, const CountryMapping& countryMap)
+{
+	const vector<string>& greatCountries = sourceWorld.getGreatCountries();
+	vector<HoI4Country*> GreatCountries;
+	for (auto countryItr : greatCountries)
+	{
+		auto itr = countries.find(countryMap[countryItr]);
+		if (itr != countries.end())
+		{
+			GreatCountries.push_back(itr->second);
+		}
+	}
+	return GreatCountries;
+}
+string HoI4World::returnIfSphere(HoI4Country* leadercountry, HoI4Country* posLeaderCountry, const V2World &sourceWorld, const CountryMapping& countryMap)
+{
+	vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
+	for (auto country : GreatCountries)
+	{
+		auto relations = country->getRelations();
+		for (auto relation : relations)
+		{
+			if (relation.second->getSphereLeader())
+			{
+
+				string tag = relation.second->getTag();
+
+				auto spheredcountry = countries.find(tag);
+				if (spheredcountry != countries.end())
+				{
+					if (posLeaderCountry->getTag() == spheredcountry->second->getTag())
+					{
+						return country->getTag();
+					}
+
+				}
+
+			}
+		}
+	}
+	
 }
