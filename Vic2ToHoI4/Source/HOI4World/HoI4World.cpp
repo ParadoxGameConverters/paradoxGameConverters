@@ -576,15 +576,12 @@ void HoI4World::outputSupply(const V2World &sourceWorld, const inverseProvinceMa
 
 void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, HoI4StateMapping& stateMap, V2Localisation& Vic2Localisations)
 {
-	// TODO - determine province owners for all HoI4 provinces
 	Object* obj = parser_UTF8::doParseFile("Resources.txt");
 	auto obj2 = obj->getValue("resources");
 	auto obj3 = obj2[0]->getValue("link");
 	auto obj4 = obj3[0]->getValue("province");
-	Object* navalobj = parser_UTF8::doParseFile("navalprovinces.txt");
-	auto navalobj2 = navalobj->getValue("navalprovinces");
-	auto navalobj3 = navalobj2[0]->getValue("link");
-	auto navalProvinces = navalobj3[0]->getValue("province");
+
+	// TODO - determine province owners for all HoI4 provinces
 
 	//	loop through the vic2 countries
 	int stateID = 1;
@@ -618,43 +615,17 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 		//	loop through the states in the vic2 country
 		for (auto vic2State : country.second->getStates())
 		{
-			bool foundNavalBase = false;
 			string resources = "";
 
 			double	stateWorkers		= 0;
 			int		stateFactories		= 0;
 			int		population			= 0;
 			int		railLevel			= 0;
-			int		navalBase			= 0;
-			int		navalBaseLocation	= 0;
 			for (auto provinceNum: vic2State->getProvinces())
 			{
 				// get population, rail level, and workers in every state to convert slots and states*conversion percentage
 				V2Province* sourceProvince = sourceWorld.getProvince(provinceNum);
-				if ((sourceProvince->getNavalBase() > 0) && (provinceNum < 2800))
-				{
-					navalBase += sourceProvince->getNavalBase();
-					auto HoI4ProvNum = inverseProvinceMap.find(provinceNum);
-					if (HoI4ProvNum->second.size() < 100)
-					{
-						for (auto HoI4ProvNum : HoI4ProvNum->second)
-						{
-							if ((HoI4ProvNum < 14000) && !foundNavalBase)
-							{
-								for (auto navalprov: navalProvinces)
-								{
-									int navalProvince = stoi(navalprov->getLeaf());
-									if (navalProvince == HoI4ProvNum)
-									{
-										navalBaseLocation	= HoI4ProvNum;
-										foundNavalBase		= true;
-										break;
-									}
-								}
-							}
-						}
-					}
-				}
+
 				population		+= sourceProvince->getLiteracyWeightedPopulation();
 				railLevel		 = sourceProvince->getInfra();
 				stateWorkers	+= sourceProvince->getEmployedWorkers() * percentage / 100000;
@@ -760,7 +731,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 				newManpower = 1;
 			}
 		
-			HoI4State* newState = new HoI4State(stateID, HoI4Tag, newManpower, civilianFactories, militaryFactories, catagory, railLevel, navalBase, navalBaseLocation);
+			HoI4State* newState = new HoI4State(vic2State, stateID, HoI4Tag, newManpower, civilianFactories, militaryFactories, catagory, railLevel);
 
 			//	loop through the provinces in the vic2 state
 			for (auto vic2Province : vic2State->getProvinces())
@@ -920,19 +891,54 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 
 void HoI4World::convertNavalBases(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap)
 {
-	// convert naval bases. There should only be one per Vic2 naval base
-	for (auto mapping : inverseProvinceMap)
+	Object* fileObj			= parser_UTF8::doParseFile("navalprovinces.txt");
+	auto linkObj				= fileObj->getValue("link");
+	auto navalProvincesObj	= linkObj[0]->getValue("province");
+
+	// create a lookup table of naval provinces
+	unordered_map<int, int> navalProvinces;
+	for (auto provice: navalProvincesObj)
 	{
-		auto sourceProvince = sourceWorld.getProvince(mapping.first);
-		int navalBaseLevel = sourceProvince->getNavalBase();
-		navalBaseLevel = max(0, (navalBaseLevel - 3) * 2 + 1);
-		if (mapping.second.size() > 0)
+		int navalProvince = stoi(provice->getLeaf());
+		navalProvinces.insert(make_pair(navalProvince, navalProvince));
+	}
+
+	// convert naval bases. There should only be one per HoI4 state
+	for (auto state: states)
+	{
+		auto vic2State = state.second->getSourceState();
+
+		int		navalBaseLevel		= 0;
+		int		navalBaseLocation	= 0;
+		for (auto provinceNum: vic2State->getProvinces())
 		{
-			auto destProvince = provinces.find(mapping.second[0]);
-			if (destProvince != provinces.end())
+			V2Province* sourceProvince = sourceWorld.getProvince(provinceNum);
+			if (sourceProvince->getNavalBase() > 0)
 			{
-				destProvince->second->requireNavalBase(navalBaseLevel);
+				navalBaseLevel += sourceProvince->getNavalBase();
+
+				// set the naval base in only coastal provinces
+				if (navalBaseLocation == 0)
+				{
+					auto provinceMapping = inverseProvinceMap.find(provinceNum);
+					if (provinceMapping != inverseProvinceMap.end())
+					{
+						for (auto HoI4ProvNum : provinceMapping->second)
+						{
+							if (navalProvinces.find(HoI4ProvNum) != navalProvinces.end())
+							{
+								navalBaseLocation	= HoI4ProvNum;
+								break;
+							}
+						}
+					}
+				}
 			}
+		}
+
+		if (navalBaseLocation != 0)
+		{
+			state.second->setNavalBase(navalBaseLevel, navalBaseLocation);
 		}
 	}
 }

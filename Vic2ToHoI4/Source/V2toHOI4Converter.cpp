@@ -444,9 +444,9 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "Converting states";
 	HoI4StateMapping HoI4StateMap;
 	destWorld.convertProvinceOwners(sourceWorld, inverseProvinceMap, countryMap, HoI4StateMap, localisation);
+	destWorld.convertNavalBases(sourceWorld, inverseProvinceMap);
 	LOG(LogLevel::Info) << "Converting countries";
 	destWorld.convertCountries(sourceWorld, countryMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, HoI4StateMap);
-	destWorld.convertNavalBases(sourceWorld, inverseProvinceMap);
 	destWorld.convertProvinceItems(sourceWorld, provinceMap, inverseProvinceMap, countryMap, HoI4AdjacencyMap);
 	destWorld.consolidateProvinceItems(inverseProvinceMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";

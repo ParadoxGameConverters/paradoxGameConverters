@@ -29,8 +29,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4State::HoI4State(int _ID, string _ownerTag, float _manpower, double _civFactories, int _milFactories, string _catagory, int _railLevel, int _navalBase, int _navalLocation)
+HoI4State::HoI4State(Vic2State* _sourceState, int _ID, string _ownerTag, float _manpower, double _civFactories, int _milFactories, string _catagory, int _railLevel)
 {
+	sourceState		= _sourceState;
+
 	ID					= _ID;
 	ownerTag			= _ownerTag;
 	manpower			= _manpower;
@@ -41,8 +43,8 @@ HoI4State::HoI4State(int _ID, string _ownerTag, float _manpower, double _civFact
 	civFactories	= _civFactories;
 	milFactories	= _milFactories;
 	railLevel		= _railLevel;
-	navalBase		= _navalBase;
-	navalLocation	= _navalLocation;
+	navalLevel		= 0;
+	navalLocation	= 0;
 }
 
 
@@ -76,10 +78,10 @@ void HoI4State::output(string _filename)
 	out << "\t\t\tindustrial_complex = " << civFactories << endl;
 	out << "\t\t\tarms_factory = " << milFactories << endl;
 		
-	if (navalBase > 0 && navalLocation > 0)
+	if ((navalLevel > 0) && (navalLocation > 0))
 	{
 		out << "\t\t\t" << navalLocation << " = {" << endl;
-		out << "\t\t\t\tnaval_base = " << navalBase << endl;
+		out << "\t\t\t\tnaval_base = " << navalLevel << endl;
 		out << "\t\t\t}" << endl;
 	}
 	//out << "\t\tair_base = 1" << endl;
@@ -99,4 +101,11 @@ void HoI4State::output(string _filename)
 	out << "}" << endl;
 
 	out.close();
+}
+
+
+void HoI4State::setNavalBase(int level, int location)
+{
+	navalLevel		= level;
+	navalLocation	= location;
 }

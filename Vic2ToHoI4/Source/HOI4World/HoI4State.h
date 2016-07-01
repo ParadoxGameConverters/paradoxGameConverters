@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <vector>
 #include <string>
+#include "..\V2World\Vic2State.h"
 using namespace std;
 
 
@@ -35,13 +36,16 @@ using namespace std;
 class HoI4State
 {
 	public:
-		HoI4State(int _ID, string _ownerTag, float _manpower, double _civFactories, int _milFactories, string _catagory, int _railLevel, int _navalBase, int _navalLocation);
+		HoI4State(Vic2State* sourceState, int _ID, string _ownerTag, float _manpower, double _civFactories, int _milFactories, string _catagory, int _railLevel);
 
 		void	output(string filename);
 
 		void	setResources(string _resources)	{ resources = _resources; }
 		void	addProvince(int province)			{ provinces.push_back(province); }
 
+		void	setNavalBase(int level, int location);
+
+		Vic2State*	getSourceState() const		{ return sourceState; }
 		vector<int> getProvinces() const			{ return provinces; }
 		string		getOwner() const				{ return ownerTag; }
 		float			getManpower() const			{ return manpower; }
@@ -49,6 +53,8 @@ class HoI4State
 		int			getNavalLocation() const	{ return navalLocation; }
 
 	private:
+		Vic2State*	sourceState;
+
 		int			ID;
 		vector<int>	provinces;
 		string		ownerTag;
@@ -58,7 +64,7 @@ class HoI4State
 		string		catagory;
 		int			railLevel;
 		string		resources;
-		int			navalBase;
+		int			navalLevel;
 		int			navalLocation;
 
 };
