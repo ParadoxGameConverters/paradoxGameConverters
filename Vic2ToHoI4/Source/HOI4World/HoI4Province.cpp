@@ -32,9 +32,9 @@ using namespace std;
 
 
 
-HoI4Province::HoI4Province(string _filename)
+HoI4Province::HoI4Province(/*string _filename*/)
 {
-	filenames.insert(make_pair(_filename, _filename));
+	//filenames.insert(/*make_pair(_filename, _filename)*/);
 	coastal				= false;
 	num					= 0;
 	name					= "";
@@ -55,18 +55,18 @@ HoI4Province::HoI4Province(string _filename)
 	rawIndustry			= 0.0;
 	cores.clear();
 
-	int slash		= _filename.find_last_of("\\");
+	/*int slash		= _filename.find_last_of("\\");
 	int numDigits	= _filename.find_first_of("-") - slash - 2;
 	string temp		= _filename.substr(slash + 1, numDigits);
-	num				= atoi(temp.c_str());
+	num				= atoi(temp.c_str());*/
 
 	Object* obj;
-	obj = parser_UTF8::doParseFile((string("./blankMod/output/history/provinces") + _filename).c_str());
-	if (obj == NULL)
+	//obj = parser_UTF8::doParseFile((string("./blankMod/output/history/provinces") + _filename).c_str());
+	/*if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse ./blankMod/output/history/provinces" << _filename;
 		exit(-1);
-	}
+	}*/
 
 	vector<Object*> leaves = obj->getLeaves();
 	for (auto itr: leaves)

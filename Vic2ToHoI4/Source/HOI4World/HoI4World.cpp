@@ -2548,11 +2548,20 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		vector<HoI4Country*> Neighbors;
 		string filename("Output/neigh.txt");
 		ofstream out;
+		vector<HoI4Province> provinces2;
 		out.open(filename);
 		{
 			for (auto prov : leaderProvs)
 			{
-				ifstream myReadFile;
+				HoI4Province* prov2;
+				provinces.insert(pair<int, HoI4Province*>(prov, prov2));
+				volatile int provfind = provinces.find(prov)->first;
+				if (provfind == prov)
+				{
+					LOG(LogLevel::Warning) << "THEY ARE EQUAL";
+				}
+			
+				/*ifstream myReadFile;
 				myReadFile.open("adj.txt");
 				char output[100];
 				if (myReadFile.is_open())
@@ -2579,7 +2588,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 						}
 					}
 				}
-				myReadFile.close();
+				myReadFile.close();*/
 			}
 			out << Leader->getSourceCountry()->getName() + " " << endl;
 			for (auto neigh : Neighbors)

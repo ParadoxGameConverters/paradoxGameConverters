@@ -35,7 +35,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class HoI4Province
 {
 	public:
-		HoI4Province(string _filename);
+		HoI4Province(/*string _filename*/);
 		void output() const;
 		void convertFromOldProvince(const V2Province* oldProvince);
 		void addCore(string);
@@ -54,7 +54,7 @@ class HoI4Province
 		void setActualIndustry(int newIndustry)		{ industry = newIndustry; }
 		void setPoints(int newPoints)						{ points = newPoints; }
 		void addPoints(int newPoints)						{ points += newPoints; }
-
+		void setnum(int number)						{ num = number; }
 		string	getOwner()				const { return owner; }
 		int		getNum()					const { return num; }
 		string	getName()				const { return name; }
