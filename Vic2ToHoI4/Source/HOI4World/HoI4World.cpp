@@ -2524,19 +2524,116 @@ void HoI4World::setSphereLeaders(const V2World &sourceWorld, const CountryMappin
 void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
 	vector<vector<HoI4Country*>> Factions = CreateFactions(sourceWorld, countryMap);
-}
-vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorld, const CountryMapping& countryMap)
-{
-	vector<vector<HoI4Country*>> Factions;
-	string filename("Output/wars.txt");
-	ofstream out;
-	out.open(filename);
+	bool fascismrelevant = false;
+	bool communismrelevant = false;
+	double WorldStrength = 0;
+	//get World Strength
+	for (auto Faction : Factions)
 	{
-		vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
-		vector<string> usedCountries;
-		for (auto country : GreatCountries)
+		WorldStrength += GetFactionStrength(Faction);
+	}
+
+	//check relevancies
+	for (auto Faction : Factions)
+	{
+		HoI4Country* Leader = GetFactionLeader(Faction);
+		if (Leader->getGovernment() == "absolute_monarchy" || Leader->getGovernment() == "fascism")
+			if (GetFactionStrength(Faction) > WorldStrength*0.1)
+				fascismrelevant = true;
+
+		if (Leader->getGovernment() == "communism" || Leader->getGovernment() == "syndicalism")
+			if (GetFactionStrength(Faction) > WorldStrength*0.1)
+				communismrelevant = true;
+		vector<int> leaderProvs = getCountryProvinces(Leader);
+		vector<HoI4Country*> Neighbors;
+		string filename("Output/neigh.txt");
+		ofstream out;
+		out.open(filename);
 		{
-				if (std::find(usedCountries.begin(), usedCountries.end(), country->getTag()) == usedCountries.end()) 
+			for (auto prov : leaderProvs)
+			{
+				ifstream myReadFile;
+				myReadFile.open("adj.txt");
+				char output[100];
+				if (myReadFile.is_open())
+				{
+					while (!myReadFile.eof())
+					{
+						myReadFile >> output;
+						vector<string> parts;
+						stringstream ss(output); // Turn the string into a stream.
+						string tok;
+						char delimiter = ';';
+						while (getline(ss, tok, delimiter))
+						{
+							parts.push_back(tok);
+						}
+						if (stoi(parts[0]) == prov)
+						{
+							for (int i = 5; i < parts.size(); i++)
+							{
+								HoI4Country* provowner = FindProvOwner(stoi(parts[i]));
+								if (provowner != Leader)
+									Neighbors.push_back(provowner);
+							}
+						}
+					}
+				}
+				myReadFile.close();
+			}
+			out << Leader->getSourceCountry()->getName() + " " << endl;
+			for (auto neigh : Neighbors)
+				out << neigh->getSourceCountry()->getName() + " ";
+			out << endl;
+			out.close();
+		}
+	}
+}
+HoI4Country*  HoI4World::FindProvOwner(int findprov)
+{
+	for (auto state : states)
+	{
+		for (auto prov : state.second->getProvinces())
+		{
+			if (findprov = prov)
+			{
+				auto itr = countries.find(state.second->getOwner());
+				if (itr != countries.end())
+				{
+					return itr->second;
+				}
+			}
+		}
+	}
+}
+vector<int> HoI4World::getCountryProvinces(HoI4Country* Country)
+{
+	vector<int> provinces;
+	for (auto state : states)
+	{
+		if (state.second->getOwner() == Country->getTag())
+		{
+			for (auto prov : state.second->getProvinces())
+			{
+
+				provinces.push_back(prov);
+			}
+		}
+	}
+	return provinces;
+}
+	vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorld, const CountryMapping& countryMap)
+	{
+		vector<vector<HoI4Country*>> Factions;
+		string filename("Output/wars.txt");
+		ofstream out;
+		out.open(filename);
+		{
+			vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
+			vector<string> usedCountries;
+			for (auto country : GreatCountries)
+			{
+				if (std::find(usedCountries.begin(), usedCountries.end(), country->getTag()) == usedCountries.end())
 				{
 					//checks to make sure its not creating a faction when already in one
 					vector<HoI4Country*> Faction;
@@ -2573,7 +2670,7 @@ vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorl
 								|| (yourgovernment == "communism" && (allygovernment == "syndicalism"))
 								|| (yourgovernment == "syndicalism" && (allygovernment == "communism" || allygovernment == "fascism"))
 								|| (yourgovernment == "fascism" && (allygovernment == "syndicalism" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism")))
-								{
+							{
 								bool canally = false;
 								//if there is a sphere leader, it is not blank
 								if (sphere != "")
@@ -2602,62 +2699,66 @@ vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorl
 					out << endl;
 					Factions.push_back(Faction);
 				}
-				
+
 			}
-		
 
-		out.close();
-	}
-	return Factions;
-}
-double HoI4World::GetFactionStrength(vector<HoI4Country*> Faction)
-{
-	double strength = 0;
-	for (auto country : Faction)
-	{
-		strength += country->getArmyStrength();
-	}
-	return strength;
-}
-vector<HoI4Country*> HoI4World::returnGreatCountries(const V2World &sourceWorld, const CountryMapping& countryMap)
-{
-	const vector<string>& greatCountries = sourceWorld.getGreatCountries();
-	vector<HoI4Country*> GreatCountries;
-	for (auto countryItr : greatCountries)
-	{
-		auto itr = countries.find(countryMap[countryItr]);
-		if (itr != countries.end())
-		{
-			GreatCountries.push_back(itr->second);
+
+			out.close();
 		}
+		return Factions;
 	}
-	return GreatCountries;
-}
-string HoI4World::returnIfSphere(HoI4Country* leadercountry, HoI4Country* posLeaderCountry, const V2World &sourceWorld, const CountryMapping& countryMap)
-{
-	vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
-	for (auto country : GreatCountries)
+	HoI4Country* HoI4World::GetFactionLeader(vector<HoI4Country*> Faction)
 	{
-		auto relations = country->getRelations();
-		for (auto relation : relations)
+		return Faction.front();
+	}
+	double HoI4World::GetFactionStrength(vector<HoI4Country*> Faction)
+	{
+		double strength = 0;
+		for (auto country : Faction)
 		{
-			if (relation.second->getSphereLeader())
+			strength += country->getArmyStrength();
+		}
+		return strength;
+	}
+	vector<HoI4Country*> HoI4World::returnGreatCountries(const V2World &sourceWorld, const CountryMapping& countryMap)
+	{
+		const vector<string>& greatCountries = sourceWorld.getGreatCountries();
+		vector<HoI4Country*> GreatCountries;
+		for (auto countryItr : greatCountries)
+		{
+			auto itr = countries.find(countryMap[countryItr]);
+			if (itr != countries.end())
 			{
-
-				string tag = relation.second->getTag();
-
-				auto spheredcountry = countries.find(tag);
-				if (spheredcountry != countries.end())
+				GreatCountries.push_back(itr->second);
+			}
+		}
+		return GreatCountries;
+	}
+	string HoI4World::returnIfSphere(HoI4Country* leadercountry, HoI4Country* posLeaderCountry, const V2World &sourceWorld, const CountryMapping& countryMap)
+	{
+		vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
+		for (auto country : GreatCountries)
+		{
+			auto relations = country->getRelations();
+			for (auto relation : relations)
+			{
+				if (relation.second->getSphereLeader())
 				{
-					if (posLeaderCountry->getTag() == spheredcountry->second->getTag())
+
+					string tag = relation.second->getTag();
+
+					auto spheredcountry = countries.find(tag);
+					if (spheredcountry != countries.end())
 					{
-						return country->getTag();
+						if (posLeaderCountry->getTag() == spheredcountry->second->getTag())
+						{
+							return country->getTag();
+						}
+
 					}
 
 				}
-
 			}
 		}
+
 	}
-	
-}

@@ -68,6 +68,8 @@ class HoI4World
 		void	addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
 		void	setSphereLeaders(const V2World & sourceWorld, const CountryMapping & countryMap);
 		void	thatsgermanWarCreator(const V2World & sourceWorld, const CountryMapping& countryMap);
+		HoI4Country* FindProvOwner(int prov);
+		vector<int> getCountryProvinces(HoI4Country * Country);
 		vector<vector<HoI4Country*>> CreateFactions(const V2World & sourceWorld, const CountryMapping & countryMap);
 		HoI4Country *	GetFactionLeader(vector<HoI4Country*> Faction);
 		double	GetFactionStrength(vector<HoI4Country*> Faction);
