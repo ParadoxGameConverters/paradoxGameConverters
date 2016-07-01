@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <vector>
 #include <string>
+#include <map>
 #include "..\V2World\Vic2State.h"
 using namespace std;
 
@@ -40,8 +41,8 @@ class HoI4State
 
 		void	output(string filename);
 
-		void	setResources(string _resources)	{ resources = _resources; }
-		void	addProvince(int province)			{ provinces.push_back(province); }
+		void	addProvince(int province)							{ provinces.push_back(province); }
+		void	addResource(string resource, double amount)	{ resources[resource] += amount; }
 
 		void	setNavalBase(int level, int location);
 		void	setIndustry(int civilianFactories, int militaryFactories, string category, int railLevel);
@@ -54,20 +55,23 @@ class HoI4State
 		int			getNavalLocation() const	{ return navalLocation; }
 
 	private:
-		Vic2State*	sourceState;
+		Vic2State*				sourceState;
 
-		int			ID;
-		vector<int>	provinces;
-		string		ownerTag;
-		float			manpower;
-		int			civFactories;
-		int			milFactories;
-		string		category;
-		int			railLevel;
-		string		resources;
-		int			navalLevel;
-		int			navalLocation;
+		int						ID;
+		vector<int>				provinces;
+		string					ownerTag;
 
+		float						manpower;
+
+		int						civFactories;
+		int						milFactories;
+		string					category;
+		int						railLevel;
+	
+		int						navalLevel;
+		int						navalLocation;
+
+		map<string, double>	resources;
 };
 
 

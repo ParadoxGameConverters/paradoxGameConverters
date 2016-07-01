@@ -578,11 +578,6 @@ void HoI4World::outputSupply(const V2World &sourceWorld, const inverseProvinceMa
 
 void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, HoI4StateMapping& stateMap, V2Localisation& Vic2Localisations)
 {
-	Object* obj = parser_UTF8::doParseFile("Resources.txt");
-	auto obj2 = obj->getValue("resources");
-	auto obj3 = obj2[0]->getValue("link");
-	auto obj4 = obj3[0]->getValue("province");
-
 	// TODO - determine province owners for all HoI4 provinces
 
 	//	loop through the vic2 countries
@@ -621,23 +616,6 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 				{
 					for (auto HoI4ProvNum : provMapping->second)
 					{
-						for (auto itr : obj3)
-						{
-							auto keys = itr->getLeaves();
-							auto province = keys[0]->getLeaf();
-							if (to_string(HoI4ProvNum) == province)
-							{
-								for (unsigned int i = 1; i < keys.size(); i++)
-								{
-									auto key = keys[i]->getKey();
-									auto value = keys[i]->getLeaf();
-									resources += key + " = " + value + "\r\n";
-
-								}
-								newState->setResources(resources);
-							}
-
-						}
 						if (HoI4ProvNum != 0)
 						{
 							newState->addProvince(HoI4ProvNum);
@@ -1112,6 +1090,57 @@ void HoI4World::convertIndustry(const V2World& sourceWorld)
 	//		}
 	//	}
 	//}
+}
+
+
+void HoI4World::convertResources()
+{
+	Object* fileObj = parser_UTF8::doParseFile("Resources.txt");
+	if (fileObj == nullptr)
+	{
+		LOG(LogLevel::Error) << "Could not read resources.txt";
+		exit(-1);
+	}
+
+	auto resourcesObj	= fileObj->getValue("resources");
+	auto linksObj		= resourcesObj[0]->getValue("link");
+
+	map<int, map<string, double> > resourceMap;
+	for (auto linkObj: linksObj)
+	{
+		int provinceNumber = stoi(linkObj->getLeaf("province"));
+		auto mapping = resourceMap.find(provinceNumber);
+		if (mapping == resourceMap.end())
+		{
+			map<string, double> resources;
+			resourceMap.insert(make_pair(provinceNumber, resources));
+			mapping = resourceMap.find(provinceNumber);
+		}
+
+		auto resourcesObj = linkObj->getValue("resources");
+		auto actualResources = resourcesObj[0]->getLeaves();
+		for (auto resource: actualResources)
+		{
+			string	resourceName	= resource->getKey();
+			double	amount			= stof(resource->getLeaf());
+			mapping->second[resourceName] += amount;
+		}
+	}
+
+	for (auto state: states)
+	{
+		for (auto provinceNumber: state.second->getProvinces())
+		{
+			auto mapping = resourceMap.find(provinceNumber);
+			if (mapping != resourceMap.end())
+			{
+				for (auto resource: mapping->second)
+				{
+					state.second->addResource(resource.first, resource.second);
+				}
+			}
+		}
+	}
 }
 
 
