@@ -29,20 +29,19 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4State::HoI4State(Vic2State* _sourceState, int _ID, string _ownerTag, float _manpower, double _civFactories, int _milFactories, string _catagory, int _railLevel)
+HoI4State::HoI4State(Vic2State* _sourceState, int _ID, string _ownerTag, float _manpower)
 {
 	sourceState		= _sourceState;
 
 	ID					= _ID;
 	ownerTag			= _ownerTag;
 	manpower			= _manpower;
-	civFactories	= _civFactories;
-	milFactories	= _milFactories;
-	catagory			= _catagory;
-	manpower			= _manpower;
-	civFactories	= _civFactories;
-	milFactories	= _milFactories;
-	railLevel		= _railLevel;
+
+	civFactories	= 0;
+	milFactories	= 0;
+	category			= "pastoral";
+	railLevel		= 0;
+
 	navalLevel		= 0;
 	navalLocation	= 0;
 }
@@ -68,7 +67,7 @@ void HoI4State::output(string _filename)
 		out << resources;
 		out << "}" << endl;
 	}
-	out << "\tstate_category = "<< catagory << endl;
+	out << "\tstate_category = "<< category << endl;
 	out << "" << endl;
 	out << "\thistory={" << endl;
 	out << "\t\towner = " << ownerTag << endl;
@@ -108,4 +107,13 @@ void HoI4State::setNavalBase(int level, int location)
 {
 	navalLevel		= level;
 	navalLocation	= location;
+}
+
+
+void HoI4State::setIndustry(int _civilianFactories, int _militaryFactories, string _category, int _railLevel)
+{
+	civFactories	= _civilianFactories;
+	milFactories	= _militaryFactories;
+	category			= _category;
+	railLevel		= _railLevel;
 }

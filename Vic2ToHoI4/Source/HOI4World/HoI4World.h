@@ -54,7 +54,7 @@ class HoI4World
 		void	outputSupply(const V2World & sourceWorld, const inverseProvinceMapping & inverseProvinceMap, const CountryMapping & countryMap, HoI4StateMapping & stateMap, V2Localisation & Vic2Localisations);
 		void	convertProvinceOwners(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, HoI4StateMapping& stateMap, V2Localisation& Vic2Localisations);
 		void	convertNavalBases(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap);
-		void	convertProvinceItems(const V2World& sourceWorld, const provinceMapping& provinceMap, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
+		void	convertIndustry(const V2World& sourceWorld);
 		void	convertTechs(const V2World& sourceWorld);
 		void	convertDiplomacy(const V2World& sourceWorld, const CountryMapping& countryMap);
 		void	copyEvents();

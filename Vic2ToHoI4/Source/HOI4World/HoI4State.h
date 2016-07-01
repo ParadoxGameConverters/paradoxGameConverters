@@ -36,7 +36,7 @@ using namespace std;
 class HoI4State
 {
 	public:
-		HoI4State(Vic2State* sourceState, int _ID, string _ownerTag, float _manpower, double _civFactories, int _milFactories, string _catagory, int _railLevel);
+		HoI4State(Vic2State* sourceState, int _ID, string _ownerTag, float _manpower);
 
 		void	output(string filename);
 
@@ -44,6 +44,7 @@ class HoI4State
 		void	addProvince(int province)			{ provinces.push_back(province); }
 
 		void	setNavalBase(int level, int location);
+		void	setIndustry(int civilianFactories, int militaryFactories, string category, int railLevel);
 
 		Vic2State*	getSourceState() const		{ return sourceState; }
 		vector<int> getProvinces() const			{ return provinces; }
@@ -59,9 +60,9 @@ class HoI4State
 		vector<int>	provinces;
 		string		ownerTag;
 		float			manpower;
-		double		civFactories;
+		int			civFactories;
 		int			milFactories;
-		string		catagory;
+		string		category;
 		int			railLevel;
 		string		resources;
 		int			navalLevel;

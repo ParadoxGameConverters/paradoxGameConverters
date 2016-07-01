@@ -279,6 +279,8 @@ void HoI4World::outputLocalisations() const
 
 	localisation.output(localisationPath);
 }
+
+
 void HoI4World::outputMap() const
 {
 	LOG(LogLevel::Debug) << "Writing Map Info";
@@ -590,133 +592,10 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 		//	determine the relevant HoI4 country
 		string HoI4Tag = countryMap.GetHoI4Tag(country.first);
 
-		double employedWorkersAdjusted = 0;
-		for (auto vic2State : country.second->getStates())
-		{
-			for (auto prov : vic2State->getProvinces())
-			{
-				V2Province* sourceProvince = sourceWorld.getProvince(prov);
-
-				// takes employed workers and divides by 100,000 to convert
-				employedWorkersAdjusted += sourceProvince->getEmployedWorkers() / 100000.0;
-			}
-		}
-
-		// calculating the conversion between Vic2Employed Workers to HoI4 factories
-		double percentage	= 0;
-		double sinPart		= sin(employedWorkersAdjusted / 150) * 100;
-		double logpart		= log10(employedWorkersAdjusted) * 15;
-		double HoI4TotalFactories = sinPart + logpart + 5;
-		if (employedWorkersAdjusted != 0)
-		{
-			percentage = HoI4TotalFactories / employedWorkersAdjusted;
-		}
-
 		//	loop through the states in the vic2 country
 		for (auto vic2State : country.second->getStates())
 		{
 			string resources = "";
-
-			double	stateWorkers		= 0;
-			int		stateFactories		= 0;
-			int		population			= 0;
-			int		railLevel			= 0;
-			for (auto provinceNum: vic2State->getProvinces())
-			{
-				// get population, rail level, and workers in every state to convert slots and states*conversion percentage
-				V2Province* sourceProvince = sourceWorld.getProvince(provinceNum);
-
-				population		+= sourceProvince->getLiteracyWeightedPopulation();
-				railLevel		 = sourceProvince->getInfra();
-				stateWorkers	+= sourceProvince->getEmployedWorkers() * percentage / 100000;
-			}
-
-			// make sure there are no negative factories
-			if (stateWorkers < 0)
-			{
-				stateWorkers = 0;
-			}
-			stateFactories = static_cast<int>(round(stateWorkers));
-			if (stateFactories > 12) // limit factories by 12 (the max slots)
-			{
-				stateFactories = 12;
-			}
-
-			// determine state category
-			int stateSlots = population / 120000; // one slot is given per 120,000 people (need to change)
-			if (stateFactories >= stateSlots)
-			{
-				stateSlots = stateFactories + 2;
-			}
-
-			string catagory = "";
-			if (stateSlots >= 12)
-			{
-				catagory = "megalopolis";
-			}
-			else if (stateSlots >= 10)
-			{
-				catagory = "metropolis";
-			}
-			else if (stateSlots >= 8)
-			{
-				catagory = "large_city";
-			}
-			else if (stateSlots >= 6)
-			{
-				catagory = "city";
-			}
-			else if (stateSlots >= 5)
-			{
-				catagory = "large_town";
-			}
-			else if (stateSlots >= 4)
-			{
-				catagory = "town";
-			}
-			else if (stateSlots >= 2)
-			{
-				catagory = "rural";
-			}
-			else if (stateSlots >= 1)
-			{
-				catagory = "pastoral";
-			}
-			else
-			{
-				catagory = "enclave";
-			}
-
-			//better rails for better industry
-			if (stateFactories > 10)
-			{
-				railLevel += 3;
-			}
-			else if (stateFactories > 6)
-			{
-				railLevel += 2;
-			}
-			else if (stateFactories > 4)
-			{
-				railLevel++;
-			}
-
-			// distribute military and civilian factories using unseeded random
-			//		0-6 gives a civilian factory, 7-9 gives a military factory
-			int civilianFactories	= 0;
-			int militaryFactories	= 0;
-			for (int i = 0; i < stateFactories; i++)
-			{
-				int randomNum = rand() % 10;
-				if (randomNum > 6)
-				{
-					militaryFactories++;
-				}
-				else
-				{
-					civilianFactories++;
-				}
-			}
 
 			//	create a matching HoI4 state
 			int provincecount = 0;
@@ -731,7 +610,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 				newManpower = 1;
 			}
 		
-			HoI4State* newState = new HoI4State(vic2State, stateID, HoI4Tag, newManpower, civilianFactories, militaryFactories, catagory, railLevel);
+			HoI4State* newState = new HoI4State(vic2State, stateID, HoI4Tag, newManpower);
 
 			//	loop through the provinces in the vic2 state
 			for (auto vic2Province : vic2State->getProvinces())
@@ -944,161 +823,295 @@ void HoI4World::convertNavalBases(const V2World &sourceWorld, const inverseProvi
 }
 
 
-void HoI4World::convertProvinceItems(const V2World& sourceWorld, const provinceMapping& provinceMap, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap)
+void HoI4World::convertIndustry(const V2World& sourceWorld)
 {
-	for (auto state : states)
+	// calculate the factory/worker ratio for every country
+	map<string, double> ratioMap;
+	for (auto HoI4Country: countries)
 	{
-		for (auto prov : state.second->getProvinces())
+		// get the Vic2 country
+		auto Vic2Country = HoI4Country.second->getSourceCountry();
+
+		// get the total number of employed/employable workers
+		double employedWorkersAdjusted = 0;
+		for (auto sourceProvince: Vic2Country->getProvinces())
 		{
+			// takes employed workers and divides by 100,000 to convert
+			employedWorkersAdjusted += sourceProvince.second->getEmployedWorkers() / 100000.0;
+		}
 
-
+		// calculate the ratio between Vic2 employed workers and HoI4 factories
+		double sinPart		= sin(employedWorkersAdjusted / 150) * 100;
+		double logpart		= log10(employedWorkersAdjusted) * 15;
+		double HoI4TotalFactories = sinPart + logpart + 5;
+		if (employedWorkersAdjusted != 0)
+		{
+			ratioMap[HoI4Country.second->getTag()] = HoI4TotalFactories / employedWorkersAdjusted;
+		}
+		else
+		{
+			ratioMap[HoI4Country.second->getTag()] = 0.0;
 		}
 	}
-	// now that all provinces have had owners and cores set, convert their other items
-	for (auto mapping : inverseProvinceMap)
+
+	//	loop through the HoI4 states to set the factory levels
+	for (auto HoI4State: states)
 	{
-		// get the source province
-		int srcProvinceNum = mapping.first;
-		V2Province* sourceProvince = sourceWorld.getProvince(srcProvinceNum);
-		if (sourceProvince == NULL)
+		auto Vic2State = HoI4State.second->getSourceState();
+
+		auto ratioMapping = ratioMap.find(HoI4State.second->getOwner());
+		if (ratioMapping == ratioMap.end())
 		{
 			continue;
 		}
-
-		// convert items that apply to all destination provinces
-		for (auto dstProvinceNum : mapping.second)
+		double	stateWorkers		= 0;
+		int		stateFactories		= 0;
+		int		population			= 0;
+		int		railLevel			= 0;
+		for (auto provinceNum: Vic2State->getProvinces())
 		{
-			// get the destination province
-			auto dstProvItr = provinces.find(dstProvinceNum);
-			if (dstProvItr == provinces.end())
-			{
-				continue;
-			}
+			// get population, rail level, and workers to convert slots and states*conversion percentage
+			V2Province* sourceProvince = sourceWorld.getProvince(provinceNum);
 
-			// source provinces from other owners should not contribute to the destination province
-			if (countryMap[sourceProvince->getOwnerString()] != dstProvItr->second->getOwner())
-			{
-				continue;
-			}
-
-			// determine if this is a border province or not
-			bool borderProvince = false;
-			if (HoI4AdjacencyMap.size() > static_cast<unsigned int>(dstProvinceNum))
-			{
-				const vector<adjacency> adjacencies = HoI4AdjacencyMap[dstProvinceNum];
-				for (auto adj : adjacencies)
-				{
-					auto province = provinces.find(dstProvinceNum);
-					auto adjacentProvince = provinces.find(adj.to);
-					if ((province != provinces.end()) && (adjacentProvince != provinces.end()) && (province->second->getOwner() != adjacentProvince->second->getOwner()))
-					{
-						borderProvince = true;
-						break;
-					}
-				}
-			}
-
-			// convert forts, naval bases, and infrastructure
-			int fortLevel = sourceProvince->getFort();
-			fortLevel = max(0, (fortLevel - 5) * 2 + 1);
-			if (dstProvItr->second->getNavalBase() > 0)
-			{
-				dstProvItr->second->requireCoastalFort(fortLevel);
-			}
-			if (borderProvince)
-			{
-				dstProvItr->second->requireLandFort(fortLevel);
-			}
-			dstProvItr->second->requireInfrastructure((int)Configuration::getMinInfra());
-			if (sourceProvince->getInfra() > 0) // No infra stays at minInfra
-			{
-				dstProvItr->second->requireInfrastructure(sourceProvince->getInfra() + 4);
-			}
-
-			if ((Configuration::getLeadershipConversion() == "linear") || (Configuration::getLeadershipConversion() == "squareroot"))
-			{
-				dstProvItr->second->setLeadership(0.0);
-			}
-			if ((Configuration::getManpowerConversion() == "linear") || (Configuration::getManpowerConversion() == "squareroot"))
-			{
-				dstProvItr->second->setManpower(0.0);
-			}
-			if ((Configuration::getIcConversion() == "squareroot") || (Configuration::getIcConversion() == "linear") || (Configuration::getIcConversion() == "logarithmic"))
-			{
-				dstProvItr->second->setRawIndustry(0.0);
-				dstProvItr->second->setActualIndustry(0);
-			}
+			population		+= sourceProvince->getLiteracyWeightedPopulation();
+			railLevel		 = sourceProvince->getInfra();
+			stateWorkers	+= sourceProvince->getEmployedWorkers() * ratioMapping->second / 100000;
 		}
 
-		// convert items that apply to only one destination province
-		if (mapping.second.size() > 0)
+		// make sure there are no negative factories
+		if (stateWorkers < 0)
 		{
-			// get the destination province
-			auto dstProvItr = provinces.find(mapping.second[0]);
-			if (dstProvItr == provinces.end())
-			{
-				continue;
-			}
+			stateWorkers = 0;
+		}
+		stateFactories = static_cast<int>(round(stateWorkers));
+		if (stateFactories > 12) // limit factories by 12 (the max slots)
+		{
+			stateFactories = 12;
+		}
 
-			// convert industry
-			double industry = sourceProvince->getEmployedWorkers();
-			if (Configuration::getIcConversion() == "squareroot")
-			{
-				industry = sqrt(double(industry)) * 0.01294;
-				dstProvItr->second->addRawIndustry(industry * Configuration::getIcFactor());
-			}
-			else if (Configuration::getIcConversion() == "linear")
-			{
-				industry = double(industry) * 0.0000255;
-				dstProvItr->second->addRawIndustry(industry * Configuration::getIcFactor());
-			}
-			else if (Configuration::getIcConversion() == "logarithmic")
-			{
-				industry = log(max(1.0, industry / 70000)) / log(2) * 5.33;
-				dstProvItr->second->addRawIndustry(industry * Configuration::getIcFactor());
-			}
+		// determine state category
+		int stateSlots = population / 120000; // one slot is given per 120,000 people (need to change)
+		if (stateFactories >= stateSlots)
+		{
+			stateSlots = stateFactories + 2;
+		}
 
-			// convert manpower
-			double newManpower = sourceProvince->getPopulation("soldiers")
-				+ sourceProvince->getPopulation("craftsmen") * 0.25 // Conscripts
-				+ sourceProvince->getPopulation("labourers") * 0.25 // Conscripts
-				+ sourceProvince->getPopulation("farmers") * 0.25; // Conscripts
-			if (Configuration::getManpowerConversion() == "linear")
-			{
-				newManpower *= 0.00003 * Configuration::getManpowerFactor();
-				newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
-				dstProvItr->second->addManpower(newManpower);
-			}
-			else if (Configuration::getManpowerConversion() == "squareroot")
-			{
-				newManpower = sqrt(newManpower);
-				newManpower *= 0.0076 * Configuration::getManpowerFactor();
-				newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
-				dstProvItr->second->addManpower(newManpower);
-			}
+		string category = "";
+		if (stateSlots >= 12)
+		{
+			category = "megalopolis";
+		}
+		else if (stateSlots >= 10)
+		{
+			category = "metropolis";
+		}
+		else if (stateSlots >= 8)
+		{
+			category = "large_city";
+		}
+		else if (stateSlots >= 6)
+		{
+			category = "city";
+		}
+		else if (stateSlots >= 5)
+		{
+			category = "large_town";
+		}
+		else if (stateSlots >= 4)
+		{
+			category = "town";
+		}
+		else if (stateSlots >= 2)
+		{
+			category = "rural";
+		}
+		else if (stateSlots >= 1)
+		{
+			category = "pastoral";
+		}
+		else
+		{
+			category = "enclave";
+		}
 
-			// convert leadership
-			double newLeadership = sourceProvince->getLiteracyWeightedPopulation("clergymen") * 0.5
-				+ sourceProvince->getPopulation("officers")
-				+ sourceProvince->getLiteracyWeightedPopulation("clerks") // Clerks representing researchers
-				+ sourceProvince->getLiteracyWeightedPopulation("capitalists") * 0.5
-				+ sourceProvince->getLiteracyWeightedPopulation("bureaucrats") * 0.25
-				+ sourceProvince->getLiteracyWeightedPopulation("aristocrats") * 0.25;
-			if (Configuration::getLeadershipConversion() == "linear")
+		//better rails for better industry
+		if (stateFactories > 10)
+		{
+			railLevel += 3;
+		}
+		else if (stateFactories > 6)
+		{
+			railLevel += 2;
+		}
+		else if (stateFactories > 4)
+		{
+			railLevel++;
+		}
+
+		// distribute military and civilian factories using unseeded random
+		//		0-6 gives a civilian factory, 7-9 gives a military factory
+		int civilianFactories	= 0;
+		int militaryFactories	= 0;
+		for (int i = 0; i < stateFactories; i++)
+		{
+			int randomNum = rand() % 10;
+			if (randomNum > 6)
 			{
-				newLeadership *= 0.00001363 * Configuration::getLeadershipFactor();
-				newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
-				dstProvItr->second->addLeadership(newLeadership);
+				militaryFactories++;
 			}
-			else if (Configuration::getLeadershipConversion() == "squareroot")
+			else
 			{
-				newLeadership = sqrt(newLeadership);
-				newLeadership *= 0.00147 * Configuration::getLeadershipFactor();
-				newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
-				dstProvItr->second->addLeadership(newLeadership);
+				civilianFactories++;
 			}
 		}
+		HoI4State.second->setIndustry(civilianFactories, militaryFactories, category, railLevel);
 	}
+
+	//// now that all provinces have had owners and cores set, convert their other items
+	//for (auto mapping : inverseProvinceMap)
+	//{
+	//	// get the source province
+	//	int srcProvinceNum = mapping.first;
+	//	V2Province* sourceProvince = sourceWorld.getProvince(srcProvinceNum);
+	//	if (sourceProvince == NULL)
+	//	{
+	//		continue;
+	//	}
+
+	//	// convert items that apply to all destination provinces
+	//	for (auto dstProvinceNum : mapping.second)
+	//	{
+	//		// get the destination province
+	//		auto dstProvItr = provinces.find(dstProvinceNum);
+	//		if (dstProvItr == provinces.end())
+	//		{
+	//			continue;
+	//		}
+
+	//		// source provinces from other owners should not contribute to the destination province
+	//		if (countryMap[sourceProvince->getOwnerString()] != dstProvItr->second->getOwner())
+	//		{
+	//			continue;
+	//		}
+
+	//		// determine if this is a border province or not
+	//		bool borderProvince = false;
+	//		if (HoI4AdjacencyMap.size() > static_cast<unsigned int>(dstProvinceNum))
+	//		{
+	//			const vector<adjacency> adjacencies = HoI4AdjacencyMap[dstProvinceNum];
+	//			for (auto adj : adjacencies)
+	//			{
+	//				auto province = provinces.find(dstProvinceNum);
+	//				auto adjacentProvince = provinces.find(adj.to);
+	//				if ((province != provinces.end()) && (adjacentProvince != provinces.end()) && (province->second->getOwner() != adjacentProvince->second->getOwner()))
+	//				{
+	//					borderProvince = true;
+	//					break;
+	//				}
+	//			}
+	//		}
+
+	//		// convert forts, naval bases, and infrastructure
+	//		int fortLevel = sourceProvince->getFort();
+	//		fortLevel = max(0, (fortLevel - 5) * 2 + 1);
+	//		if (dstProvItr->second->getNavalBase() > 0)
+	//		{
+	//			dstProvItr->second->requireCoastalFort(fortLevel);
+	//		}
+	//		if (borderProvince)
+	//		{
+	//			dstProvItr->second->requireLandFort(fortLevel);
+	//		}
+	//		dstProvItr->second->requireInfrastructure((int)Configuration::getMinInfra());
+	//		if (sourceProvince->getInfra() > 0) // No infra stays at minInfra
+	//		{
+	//			dstProvItr->second->requireInfrastructure(sourceProvince->getInfra() + 4);
+	//		}
+
+	//		if ((Configuration::getLeadershipConversion() == "linear") || (Configuration::getLeadershipConversion() == "squareroot"))
+	//		{
+	//			dstProvItr->second->setLeadership(0.0);
+	//		}
+	//		if ((Configuration::getManpowerConversion() == "linear") || (Configuration::getManpowerConversion() == "squareroot"))
+	//		{
+	//			dstProvItr->second->setManpower(0.0);
+	//		}
+	//		if ((Configuration::getIcConversion() == "squareroot") || (Configuration::getIcConversion() == "linear") || (Configuration::getIcConversion() == "logarithmic"))
+	//		{
+	//			dstProvItr->second->setRawIndustry(0.0);
+	//			dstProvItr->second->setActualIndustry(0);
+	//		}
+	//	}
+
+	//	// convert items that apply to only one destination province
+	//	if (mapping.second.size() > 0)
+	//	{
+	//		// get the destination province
+	//		auto dstProvItr = provinces.find(mapping.second[0]);
+	//		if (dstProvItr == provinces.end())
+	//		{
+	//			continue;
+	//		}
+
+	//		// convert industry
+	//		double industry = sourceProvince->getEmployedWorkers();
+	//		if (Configuration::getIcConversion() == "squareroot")
+	//		{
+	//			industry = sqrt(double(industry)) * 0.01294;
+	//			dstProvItr->second->addRawIndustry(industry * Configuration::getIcFactor());
+	//		}
+	//		else if (Configuration::getIcConversion() == "linear")
+	//		{
+	//			industry = double(industry) * 0.0000255;
+	//			dstProvItr->second->addRawIndustry(industry * Configuration::getIcFactor());
+	//		}
+	//		else if (Configuration::getIcConversion() == "logarithmic")
+	//		{
+	//			industry = log(max(1.0, industry / 70000)) / log(2) * 5.33;
+	//			dstProvItr->second->addRawIndustry(industry * Configuration::getIcFactor());
+	//		}
+
+	//		// convert manpower
+	//		double newManpower = sourceProvince->getPopulation("soldiers")
+	//			+ sourceProvince->getPopulation("craftsmen") * 0.25 // Conscripts
+	//			+ sourceProvince->getPopulation("labourers") * 0.25 // Conscripts
+	//			+ sourceProvince->getPopulation("farmers") * 0.25; // Conscripts
+	//		if (Configuration::getManpowerConversion() == "linear")
+	//		{
+	//			newManpower *= 0.00003 * Configuration::getManpowerFactor();
+	//			newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
+	//			dstProvItr->second->addManpower(newManpower);
+	//		}
+	//		else if (Configuration::getManpowerConversion() == "squareroot")
+	//		{
+	//			newManpower = sqrt(newManpower);
+	//			newManpower *= 0.0076 * Configuration::getManpowerFactor();
+	//			newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
+	//			dstProvItr->second->addManpower(newManpower);
+	//		}
+
+	//		// convert leadership
+	//		double newLeadership = sourceProvince->getLiteracyWeightedPopulation("clergymen") * 0.5
+	//			+ sourceProvince->getPopulation("officers")
+	//			+ sourceProvince->getLiteracyWeightedPopulation("clerks") // Clerks representing researchers
+	//			+ sourceProvince->getLiteracyWeightedPopulation("capitalists") * 0.5
+	//			+ sourceProvince->getLiteracyWeightedPopulation("bureaucrats") * 0.25
+	//			+ sourceProvince->getLiteracyWeightedPopulation("aristocrats") * 0.25;
+	//		if (Configuration::getLeadershipConversion() == "linear")
+	//		{
+	//			newLeadership *= 0.00001363 * Configuration::getLeadershipFactor();
+	//			newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
+	//			dstProvItr->second->addLeadership(newLeadership);
+	//		}
+	//		else if (Configuration::getLeadershipConversion() == "squareroot")
+	//		{
+	//			newLeadership = sqrt(newLeadership);
+	//			newLeadership *= 0.00147 * Configuration::getLeadershipFactor();
+	//			newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
+	//			dstProvItr->second->addLeadership(newLeadership);
+	//		}
+	//	}
+	//}
 }
 
 
