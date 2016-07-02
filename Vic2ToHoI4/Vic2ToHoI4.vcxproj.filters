@@ -108,6 +108,9 @@
     <ClCompile Include="..\common_items\CommonUtils.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
+    <ClCompile Include="Source\HOI4World\HoI4SupplyZone.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -204,6 +207,9 @@
     </ClInclude>
     <ClInclude Include="..\common_items\OSCompatibilityLayer.h">
       <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\HoI4SupplyZone.h">
+      <Filter>HoI4World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

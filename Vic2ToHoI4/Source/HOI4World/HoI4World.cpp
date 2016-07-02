@@ -38,36 +38,84 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 //#include <GL/glu.h>
 #include "ParadoxParserUTF8.h"
 #include "Log.h"
+#include "OSCompatibilityLayer.h"
 #include "../Configuration.h"
-#include "../../../common_items/OSCompatibilityLayer.h"
 #include "../V2World/V2Province.h"
 #include "../V2World/V2Party.h"
 #include "HoI4Relations.h"
 #include "HoI4State.h"
+#include "HoI4SupplyZone.h"
 
 
 
-typedef struct fileWithCreateTime
-{
-	string	filename;
-	time_t	createTime;
-	bool operator < (const fileWithCreateTime &rhs) const
-	{
-		return createTime < rhs.createTime;
-	};
-} fileWithCreateTime;
-
-
-void HoI4World::importStates()
+void HoI4World::importStates(map<int, vector<int>>& defaultStateToProvinceMap)
 {
 	LOG(LogLevel::Info) << "Importing states";
 
 	set<string> statesFiles;
 	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/history/states", statesFiles);
-	for (auto stateFile : statesFiles)
+	for (auto stateFile: statesFiles)
 	{
 		int num = stoi(stateFile.substr(0, stateFile.find_first_of('-')));
 		stateFilenames.insert(make_pair(num, stateFile));
+
+		// create the default state map
+		Object* fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/history/states/" + stateFile);
+		if (fileObj == nullptr)
+		{
+			LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/history/states/" << stateFile;
+			exit(-1);
+		}
+		auto stateObj = fileObj->getValue("state");
+		auto provincesObj = stateObj[0]->getValue("provinces");
+		auto tokens = provincesObj[0]->getTokens();
+		vector<int> provinces;
+		for (auto provinceNumString: tokens)
+		{
+			provinces.push_back(stoi(provinceNumString));
+		}
+
+		defaultStateToProvinceMap.insert(make_pair(num, provinces));
+	}
+}
+
+
+void HoI4World::importSuppplyZones(const map<int, vector<int>>& defaultStateToProvinceMap, map<int, int>& provinceToSupplyZoneMap)
+{
+	LOG(LogLevel::Info) << "Importing supply zones";
+
+	set<string> supplyZonesFiles;
+	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/map/supplyareas", supplyZonesFiles);
+	for (auto supplyZonesFile: supplyZonesFiles)
+	{
+		// record the filename
+		int num = stoi(supplyZonesFile.substr(0, supplyZonesFile.find_first_of('-')));
+		supplyZonesFilenames.insert(make_pair(num, supplyZonesFile));
+
+		// record the other data
+		Object* fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/map/supplyareas/" + supplyZonesFile);
+		if (fileObj == nullptr)
+		{
+			LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/map/supplyareas/" << supplyZonesFile;
+			exit(-1);
+		}
+		auto supplyAreaObj	= fileObj->getValue("supply_area");
+		int ID					= stoi(supplyAreaObj[0]->getLeaf("id"));
+		int value				= stoi(supplyAreaObj[0]->getLeaf("value"));
+
+		HoI4SupplyZone* newSupplyZone = new HoI4SupplyZone(ID, value);
+		supplyZones.insert(make_pair(ID, newSupplyZone));
+
+		// map the provinces to the supply zone
+		auto statesObj = supplyAreaObj[0]->getValue("states");
+		for (auto idString: statesObj[0]->getTokens())
+		{
+			auto mapping = defaultStateToProvinceMap.find(stoi(idString));
+			for (auto province: mapping->second)
+			{
+				provinceToSupplyZoneMap.insert(make_pair(province, ID));
+			}
+		}
 	}
 }
 
@@ -114,7 +162,7 @@ void HoI4World::importPotentialCountries()
 	set<string> countryFilenames;
 	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/common/country_tags", countryFilenames);
 
-	for (auto countryFilename : countryFilenames)
+	for (auto countryFilename: countryFilenames)
 	{
 		ifstream HoI4CountriesInput(Configuration::getHoI4Path() + "/common/country_tags/" + countryFilename);
 		if (!HoI4CountriesInput.is_open())
@@ -160,6 +208,7 @@ void HoI4World::output() const
 	outputLocalisations();
 	outputHistory();
 	outputMap();
+	outputSupply();
 }
 
 
@@ -216,7 +265,7 @@ void HoI4World::outputColorsfile() const
 	}
 
 	output << "#reload countrycolors\r\n";
-	for (auto countryItr : countries)
+	for (auto countryItr: countries)
 	{
 		if (	(potentialCountries.find(countryItr.first) == potentialCountries.end()) &&
 				(countryItr.second->getCapitalNum() != 0)
@@ -255,7 +304,7 @@ void HoI4World::outputAutoexecLua() const
 	}
 	sourceFile.close();
 
-	for (auto country : potentialCountries)
+	for (auto country: potentialCountries)
 	{
 		fprintf(autoexec, "require('%s')\n", country.first.c_str());
 	}
@@ -338,7 +387,7 @@ void HoI4World::outputHistory() const
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history/states";
 		exit(-1);
 	}
-	for (auto state : states)
+	for (auto state: states)
 	{
 		string filename;
 		auto nameItr = stateFilenames.find(state.first);
@@ -369,12 +418,12 @@ void HoI4World::outputHistory() const
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history/units";
 		exit(-1);
 	}
-	for (auto countryItr : countries)
+	for (auto countryItr: countries)
 	{
 		countryItr.second->output(states);
 	}
 	// Override vanilla history to suppress vanilla OOB and faction membership being read
-	for (auto potentialItr : potentialCountries)
+	for (auto potentialItr: potentialCountries)
 	{
 		if (countries.find(potentialItr.first) == countries.end())
 		{
@@ -408,7 +457,7 @@ void HoI4World::getProvinceLocalizations(const string& file)
 
 void HoI4World::convertCountries(const V2World &sourceWorld, const CountryMapping& countryMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap)
 {
-	for (auto sourceItr : sourceWorld.getCountries())
+	for (auto sourceItr: sourceWorld.getCountries())
 	{
 		// don't convert rebels
 		if (sourceItr.first == "REB")
@@ -449,12 +498,33 @@ void HoI4World::convertCountries(const V2World &sourceWorld, const CountryMappin
 
 	// initialize all potential countries
 	// ALL potential countries should be output to the file, otherwise some things don't get initialized right in HoI4
-	for (auto potentialItr : potentialCountries)
+	for (auto potentialItr: potentialCountries)
 	{
 		map<string, HoI4Country*>::iterator citr = countries.find(potentialItr.first);
 		if (citr == countries.end())
 		{
 			potentialItr.second->initFromHistory();
+		}
+	}
+}
+
+
+void HoI4World::outputSupply() const
+{
+	// create the folders
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/map/supplyareas"))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/map/supplyareas";
+		exit(-1);
+	}
+
+	// output the supply zones
+	for (auto zone: supplyZones)
+	{
+		auto filenameMap = supplyZonesFilenames.find(zone.first);
+		if (filenameMap != supplyZonesFilenames.end())
+		{
+			zone.second->output(filenameMap->second);
 		}
 	}
 }
@@ -467,124 +537,6 @@ struct MTo1ProvinceComp
 	vector<V2Province*> provinces;
 	int totalPopulation;
 };
-void HoI4World::outputSupply(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, HoI4StateMapping& stateMap, V2Localisation& Vic2Localisations)
-{
-	int zoneid = 1;
-	Object* objzones = parser_UTF8::doParseFile("supply.txt");
-	auto obj2zones = objzones->getValue("zones");
-	auto defaultzones = obj2zones[0]->getValue("link");
-	string filename("Output/" + to_string(zoneid) + ".txt");
-	vector<HoI4State*> usedStates;
-	string supplypath = "Output/" + Configuration::getOutputName() + "/map/supplyareas";
-	if (!Utils::TryCreateFolder(supplypath))
-	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/map/supplyareas";
-		exit(-1);
-	}
-
-	for (auto zone : defaultzones)
-	{
-		vector<HoI4State*> ZoneStates;
-		auto zonekeys = zone->getLeaves();
-		string HoI4defaultZone = zonekeys[0]->getLeaf();
-		string zonevalue = zonekeys[zonekeys.size()-1]->getLeaf();
-		for (unsigned int i = 1; i < zonekeys.size() - 1; i++)
-		{
-			auto province = zonekeys[i]->getLeaf();
-			for (auto state : states)
-			{
-				vector<int> provinces = state.second->getProvinces();
-				for (auto prov : provinces)
-				{
-					if (to_string(prov) == province)
-					{
-						if (find(usedStates.begin(), usedStates.end(), state.second) != usedStates.end())
-						{
-
-						}
-						else
-						{
-							ZoneStates.push_back(state.second);
-							usedStates.push_back(state.second);
-						}
-					}
-				}
-			}
-		}
-		ofstream out;
-		filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(zoneid) + "-SupplyArea.txt");
-		if (zoneid == 346)
-			filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(zoneid) + "-FaroeIslands.txt");
-		if (zoneid == 347)
-			filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(zoneid) + "-JohnstonAtoll.txt");
-		if (zoneid == 348)
-			filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(zoneid) + "-Jamaica.txt");
-		if (zoneid == 349)
-			filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(zoneid) + "-Ascension.txt");
-		if (zoneid == 350)
-			filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(zoneid) + "-DiegoGarcia.txt");
-		if (zoneid == 351)
-			filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(zoneid) + "-ChristmasIslands.txt");
-		if (zoneid == 352)
-			filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(zoneid) + "-CocosIslands.txt");
-		if (zoneid == 353)
-			filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(zoneid) + "-KerguelenIslands.txt");
-		if (ZoneStates.size() > 0)
-		{
-			out.open(filename);
-			{
-				out << "supply_area={" << endl;
-				out << "	id=" << zoneid << endl;
-				//out << "	name = \"foo\"" << endl;
-				out << "name=\"STATE_" << ZoneStates.front()->getID() << "\"" << endl;
-				out << "	value = "<< zonevalue << endl;
-				out << "	states={" << endl;
-				out << "		";
-				for (auto state : ZoneStates)
-				{
-					string s = to_string(state->getID()) + " ";
-					out << s;
-				}
-				out << endl;
-				out << "	}" << endl;
-				out << "}" << endl;
-
-				zoneid++;
-				out.close();
-			}
-		}
-
-	}
-	if (zoneid < 354)
-	{
-		for (int i = zoneid; i < 355; i++)
-		{
-			ofstream out;
-			filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(i) + "-SupplyArea.txt");
-			if (i == 346)
-				filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(i) + "-FaroeIslands.txt");
-			if (i == 347)
-				filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(i) + "-JohnstonAtoll.txt");
-			if (i == 348)
-				filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(i) + "-Jamaica.txt");
-			if (i == 349)
-				filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(i) + "-Ascension.txt");
-			if (i == 350)
-				filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(i) + "-DiegoGarcia.txt");
-			if (i == 351)
-				filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(i) + "-ChristmasIslands.txt");
-			if (i == 352)
-				filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(i) + "-CocosIslands.txt");
-			if (i == 353)
-				filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(i) + "-KerguelenIslands.txt");
-			out.open(filename);
-			{
-
-				out.close();
-			}
-		}
-	}
-}
 
 
 void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, HoI4StateMapping& stateMap, V2Localisation& Vic2Localisations)
@@ -593,13 +545,13 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 
 	//	loop through the vic2 countries
 	int stateID = 1;
-	for (auto country : sourceWorld.getCountries())
+	for (auto country: sourceWorld.getCountries())
 	{
 		//	determine the relevant HoI4 country
 		string HoI4Tag = countryMap.GetHoI4Tag(country.first);
 
 		//	loop through the states in the vic2 country
-		for (auto vic2State : country.second->getStates())
+		for (auto vic2State: country.second->getStates())
 		{
 			string resources = "";
 
@@ -626,7 +578,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 				auto provMapping = inverseProvinceMap.find(vic2Province);
 				if (provMapping != inverseProvinceMap.end())
 				{
-					for (auto HoI4ProvNum : provMapping->second)
+					for (auto HoI4ProvNum: provMapping->second)
 					{
 						if (HoI4ProvNum != 0)
 						{
@@ -648,7 +600,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 		}
 	}
 
-	//for (auto provItr : provinces)
+	//for (auto provItr: provinces)
 	//{
 	//	// get the appropriate mapping
 	//	provinceMapping::const_iterator provinceLink = provinceMap.find(provItr.first);
@@ -670,7 +622,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 	//	// determine ownership by province count, or total population (if province count is tied)
 	//	map<string, MTo1ProvinceComp> provinceBins;
 	//	double newProvinceTotalPop = 0;
-	//	for (auto srcProvItr : provinceLink->second)
+	//	for (auto srcProvItr: provinceLink->second)
 	//	{
 	//		V2Province* srcProvince = sourceWorld.getProvince(srcProvItr);
 	//		if (!srcProvince)
@@ -729,13 +681,13 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 	//		}
 	//		provItr.second->convertFromOldProvince(oldProvince);
 
-	//		for (auto srcOwnerItr : provinceBins)
+	//		for (auto srcOwnerItr: provinceBins)
 	//		{
-	//			for (auto srcProvItr : srcOwnerItr.second.provinces)
+	//			for (auto srcProvItr: srcOwnerItr.second.provinces)
 	//			{
 	//				// convert cores
 	//				vector<V2Country*> oldCores = srcProvItr->getCores(sourceWorld.getCountries());
-	//				for (auto oldCoreItr : oldCores)
+	//				for (auto oldCoreItr: oldCores)
 	//				{
 	//					// skip this core if the country is the owner of the V2 province but not the HoI4 province
 	//					// (i.e. "avoid boundary conflicts that didn't exist in V2").
@@ -792,7 +744,7 @@ void HoI4World::convertNavalBases(const V2World &sourceWorld, const inverseProvi
 					auto provinceMapping = inverseProvinceMap.find(provinceNum);
 					if (provinceMapping != inverseProvinceMap.end())
 					{
-						for (auto HoI4ProvNum : provinceMapping->second)
+						for (auto HoI4ProvNum: provinceMapping->second)
 						{
 							if (navalProvinces.find(HoI4ProvNum) != navalProvinces.end())
 							{
@@ -958,7 +910,7 @@ void HoI4World::convertIndustry(const V2World& sourceWorld)
 	}
 
 	//// now that all provinces have had owners and cores set, convert their other items
-	//for (auto mapping : inverseProvinceMap)
+	//for (auto mapping: inverseProvinceMap)
 	//{
 	//	// get the source province
 	//	int srcProvinceNum = mapping.first;
@@ -969,7 +921,7 @@ void HoI4World::convertIndustry(const V2World& sourceWorld)
 	//	}
 
 	//	// convert items that apply to all destination provinces
-	//	for (auto dstProvinceNum : mapping.second)
+	//	for (auto dstProvinceNum: mapping.second)
 	//	{
 	//		// get the destination province
 	//		auto dstProvItr = provinces.find(dstProvinceNum);
@@ -989,7 +941,7 @@ void HoI4World::convertIndustry(const V2World& sourceWorld)
 	//		if (HoI4AdjacencyMap.size() > static_cast<unsigned int>(dstProvinceNum))
 	//		{
 	//			const vector<adjacency> adjacencies = HoI4AdjacencyMap[dstProvinceNum];
-	//			for (auto adj : adjacencies)
+	//			for (auto adj: adjacencies)
 	//			{
 	//				auto province = provinces.find(dstProvinceNum);
 	//				auto adjacentProvince = provinces.find(adj.to);
@@ -1156,6 +1108,27 @@ void HoI4World::convertResources()
 }
 
 
+void HoI4World::convertSupplyZones(const map<int, int>& provinceToSupplyZoneMap)
+{
+	for (auto state: states)
+	{
+		for (auto province: state.second->getProvinces())
+		{
+			auto mapping = provinceToSupplyZoneMap.find(province);
+			if (mapping != provinceToSupplyZoneMap.end())
+			{
+				auto supplyZone = supplyZones.find(mapping->second);
+				if (supplyZone != supplyZones.end())
+				{
+					supplyZone->second->addState(state.first);
+					break;
+				}
+			}
+		}
+	}
+}
+
+
 void HoI4World::convertTechs(const V2World& sourceWorld)
 {
 	map<string, vector<pair<string, int> > > techTechMap;
@@ -1170,13 +1143,13 @@ void HoI4World::convertTechs(const V2World& sourceWorld)
 		exit(1);
 	}
 	objs = objs[0]->getValue("link");
-	for (auto itr : objs)
+	for (auto itr: objs)
 	{
 		vector<string> keys = itr->getKeys();
 		int status = 0; // 0 = unhandled, 1 = tech, 2 = invention
 		vector<pair<string, int> > targetTechs;
 		string tech = "";
-		for (auto master : keys)
+		for (auto master: keys)
 		{
 			if ((status == 0) && (master == "v2_inv"))
 			{
@@ -1196,30 +1169,30 @@ void HoI4World::convertTechs(const V2World& sourceWorld)
 		}
 		switch (status)
 		{
-		case 0:
-			LOG(LogLevel::Error) << "unhandled tech link with first key " << keys[0].c_str() << "!";
-			break;
-		case 1:
-			techTechMap[tech] = targetTechs;
-			break;
-		case 2:
-			invTechMap[tech] = targetTechs;
-			break;
+			case 0:
+				LOG(LogLevel::Error) << "unhandled tech link with first key " << keys[0].c_str() << "!";
+				break;
+			case 1:
+				techTechMap[tech] = targetTechs;
+				break;
+			case 2:
+				invTechMap[tech] = targetTechs;
+				break;
 		}
 	}
 
 
-	for (auto dstCountry : countries)
+	for (auto dstCountry: countries)
 	{
 		const V2Country*	sourceCountry = dstCountry.second->getSourceCountry();
 		vector<string>	techs = sourceCountry->getTechs();
 
-		for (auto techName : techs)
+		for (auto techName: techs)
 		{
 			auto mapItr = techTechMap.find(techName);
 			if (mapItr != techTechMap.end())
 			{
-				for (auto HoI4TechItr : mapItr->second)
+				for (auto HoI4TechItr: mapItr->second)
 				{
 					dstCountry.second->setTechnology(HoI4TechItr.first, HoI4TechItr.second);
 				}
@@ -1227,7 +1200,7 @@ void HoI4World::convertTechs(const V2World& sourceWorld)
 		}
 
 		vector<string> srcInventions = sourceCountry->getInventions();
-		for (auto invItr : srcInventions)
+		for (auto invItr: srcInventions)
 		{
 			auto mapItr = invTechMap.find(invItr);
 			if (mapItr == invTechMap.end())
@@ -1236,7 +1209,7 @@ void HoI4World::convertTechs(const V2World& sourceWorld)
 			}
 			else
 			{
-				for (auto HoI4TechItr : mapItr->second)
+				for (auto HoI4TechItr: mapItr->second)
 				{
 					dstCountry.second->setTechnology(HoI4TechItr.first, HoI4TechItr.second);
 				}
@@ -1248,8 +1221,8 @@ void HoI4World::convertTechs(const V2World& sourceWorld)
 
 static string CardinalToOrdinal(int cardinal)
 {
-	int hundredRem = cardinal % 100;
-	int tenRem = cardinal % 10;
+	int hundredRem	= cardinal % 100;
+	int tenRem		= cardinal % 10;
 	if (hundredRem - tenRem == 10)
 	{
 		return "th";
@@ -1257,14 +1230,14 @@ static string CardinalToOrdinal(int cardinal)
 
 	switch (tenRem)
 	{
-	case 1:
-		return "st";
-	case 2:
-		return "nd";
-	case 3:
-		return "rd";
-	default:
-		return "th";
+		case 1:
+			return "st";
+		case 2:
+			return "nd";
+		case 3:
+			return "rd";
+		default:
+			return "th";
 	}
 }
 
@@ -1272,7 +1245,7 @@ static string CardinalToOrdinal(int cardinal)
 vector<int> HoI4World::getPortProvinces(const vector<int>& locationCandidates)
 {
 	vector<int> newLocationCandidates;
-	for (auto litr : locationCandidates)
+	for (auto litr: locationCandidates)
 	{
 		map<int, HoI4Province*>::const_iterator provinceItr = provinces.find(litr);
 		if ((provinceItr != provinces.end()) && (provinceItr->second->hasNavalBase()))
@@ -1291,12 +1264,12 @@ vector<int> HoI4World::getPortLocationCandidates(const vector<int>& locationCand
 	if (portLocationCandidates.size() == 0)
 	{
 		// if none of the mapped provinces are ports, try to push the navy out to sea
-		for (auto candidate : locationCandidates)
+		for (auto candidate: locationCandidates)
 		{
 			if (HoI4AdjacencyMap.size() > static_cast<unsigned int>(candidate))
 			{
 				auto newCandidates = HoI4AdjacencyMap[candidate];
-				for (auto newCandidate : newCandidates)
+				for (auto newCandidate: newCandidates)
 				{
 					auto candidateProvince = provinces.find(newCandidate.to);
 					if (candidateProvince == provinces.end())	// if this was not an imported province but has an adjacency, we can assume it's a sea province
@@ -1330,7 +1303,7 @@ int HoI4World::getAirLocation(HoI4Province* locationProvince, const HoI4Adjacenc
 		else
 		{
 			auto adjacencies = HoI4AdjacencyMap[provNum];
-			for (auto thisAdjacency : adjacencies)
+			for (auto thisAdjacency: adjacencies)
 			{
 				auto closed = closedProvinces.find(thisAdjacency.to);
 				if (closed == closedProvinces.end())
@@ -1407,7 +1380,7 @@ void HoI4World::convertArmies(const V2World& sourceWorld, const inverseProvinceM
 void HoI4World::checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string leader, const string& factionName)
 {
 	bool leaderSet = false;
-	for (auto candidate : candidateTags)
+	for (auto candidate: candidateTags)
 	{
 		// get HoI4 tag from V2 tag
 		string hoiTag = countryMap[candidate];
@@ -1452,7 +1425,7 @@ void HoI4World::factionSatellites()
 {
 	// make sure that any vassals are in their master's faction
 	const vector<HoI4Agreement>& agreements = diplomacy.getAgreements();
-	for (auto agreement : agreements)
+	for (auto agreement: agreements)
 	{
 		if (agreement.type == "vassa")
 		{
@@ -1482,7 +1455,7 @@ void HoI4World::setFactionMembers(const V2World &sourceWorld, const CountryMappi
 		LOG(LogLevel::Info) << "Auto faction allocation requested.";
 
 		const vector<string>& greatCountries = sourceWorld.getGreatCountries();
-		for (auto countryItr : greatCountries)
+		for (auto countryItr: greatCountries)
 		{
 			auto itr = countries.find(countryMap[countryItr]);
 			if (itr != countries.end())
@@ -1571,7 +1544,7 @@ void HoI4World::setFactionMembers(const V2World &sourceWorld, const CountryMappi
 
 		// Comintern get a boost to its membership for being internationalistic
 		// Go through all stalinist, leninist countries and add them to comintern if they're not hostile to leader
-		for (auto country : countries)
+		for (auto country: countries)
 		{
 			const string government = country.second->getGovernment();
 			const string ideology = country.second->getIdeology();
@@ -1619,7 +1592,7 @@ void HoI4World::setFactionMembers(const V2World &sourceWorld, const CountryMappi
 void HoI4World::setAlignments()
 {
 	// set alignments
-	for (auto country : countries)
+	for (auto country: countries)
 	{
 		const string countryFaction = country.second->getFaction();
 
@@ -1711,7 +1684,7 @@ void HoI4World::configureFactions(const V2World &sourceWorld, const CountryMappi
 
 void HoI4World::generateLeaders(const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap)
 {
-	for (auto country : countries)
+	for (auto country: countries)
 	{
 		country.second->generateLeaders(leaderTraits, namesMap, portraitMap);
 	}
@@ -1732,7 +1705,7 @@ void HoI4World::consolidateProvinceItems(const inverseProvinceMapping& inversePr
 	double totalManpower = 0.0;
 	double totalLeadership = 0.0;
 	double totalIndustry = 0.0;
-	for (auto countryItr : countries)
+	for (auto countryItr: countries)
 	{
 		countryItr.second->consolidateProvinceItems(inverseProvinceMap, totalManpower, totalLeadership, totalIndustry);
 	}
@@ -1751,7 +1724,7 @@ void HoI4World::consolidateProvinceItems(const inverseProvinceMapping& inversePr
 void HoI4World::convertVictoryPoints(const V2World& sourceWorld, const CountryMapping& countryMap)
 {
 	// all country capitals get five VP
-	for (auto countryItr : countries)
+	for (auto countryItr: countries)
 	{
 		auto capitalItr = countryItr.second->getCapital();
 		if (capitalItr != NULL)
@@ -1762,7 +1735,7 @@ void HoI4World::convertVictoryPoints(const V2World& sourceWorld, const CountryMa
 
 	// Great Power capitals get another five
 	const std::vector<string>& greatCountries = sourceWorld.getGreatCountries();
-	for (auto country : sourceWorld.getGreatCountries())
+	for (auto country: sourceWorld.getGreatCountries())
 	{
 		const std::string& HoI4Tag = countryMap[country];
 		auto countryItr = countries.find(HoI4Tag);
@@ -1809,7 +1782,7 @@ void HoI4World::convertVictoryPoints(const V2World& sourceWorld, const CountryMa
 
 void HoI4World::convertDiplomacy(const V2World& sourceWorld, const CountryMapping& countryMap)
 {
-	for (auto agreement : sourceWorld.getDiplomacy()->getAgreements())
+	for (auto agreement: sourceWorld.getDiplomacy()->getAgreements())
 	{
 		string HoI4Tag1 = countryMap[agreement.country1];
 		if (HoI4Tag1.empty())
@@ -1854,9 +1827,9 @@ void HoI4World::convertDiplomacy(const V2World& sourceWorld, const CountryMappin
 	}
 
 	// Relations and guarantees
-	for (auto country : countries)
+	for (auto country: countries)
 	{
-		for (auto relationItr : country.second->getRelations())
+		for (auto relationItr: country.second->getRelations())
 		{
 			HoI4Agreement HoI4a;
 			if (country.first < relationItr.first) // Put it in order to eliminate duplicate relations entries
@@ -1889,9 +1862,9 @@ void HoI4World::convertDiplomacy(const V2World& sourceWorld, const CountryMappin
 
 	// decrease neutrality for countries with unowned cores
 	map<string, string> hasLoweredNeutrality;
-	for (auto province : provinces)
+	for (auto province: provinces)
 	{
-		for (auto core : province.second->getCores())
+		for (auto core: province.second->getCores())
 		{
 			if (province.second->getOwner() != core)
 			{
@@ -1929,7 +1902,7 @@ void HoI4World::copyFlags(const V2World &sourceWorld, const CountryMapping& coun
 	}
 
 	const std::string folderPath = Configuration::getV2Path() + "/gfx/flags";
-	for (auto country : sourceWorld.getCountries())
+	for (auto country: sourceWorld.getCountries())
 	{
 		std::string V2Tag = country.first;
 		V2Country* sourceCountry = country.second;
@@ -1938,7 +1911,7 @@ void HoI4World::copyFlags(const V2World &sourceWorld, const CountryMapping& coun
 
 		bool flagCopied = false;
 		vector<string> mods = Configuration::getVic2Mods();
-		for (auto mod : mods)
+		for (auto mod: mods)
 		{
 			string sourceFlagPath = Configuration::getV2Path() + "/mod/" + mod + "/gfx/flags/" + V2FlagFile;
 			if (Utils::DoesFileExist(sourceFlagPath))
@@ -2035,7 +2008,7 @@ void HoI4World::checkAllProvincesMapped(const provinceMapping& provinceMap)
 
 void HoI4World::setAIFocuses(const AIFocusModifiers& focusModifiers)
 {
-	for (auto countryItr : countries)
+	for (auto countryItr: countries)
 	{
 		countryItr.second->setAIFocuses(focusModifiers);
 	}
@@ -2044,7 +2017,7 @@ void HoI4World::setAIFocuses(const AIFocusModifiers& focusModifiers)
 
 void HoI4World::addMinimalItems(const inverseProvinceMapping& inverseProvinceMap)
 {
-	for (auto country : countries)
+	for (auto country: countries)
 	{
 		country.second->addMinimalItems(inverseProvinceMap);
 	}

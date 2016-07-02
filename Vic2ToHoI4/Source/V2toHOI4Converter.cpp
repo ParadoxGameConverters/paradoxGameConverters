@@ -305,7 +305,10 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	// Parse HoI4 data files
 	LOG(LogLevel::Info) << "Parsing HoI4 data";
 	HoI4World destWorld;
-	destWorld.importStates();
+	map<int, vector<int>> HoI4DefaultStateToProvinceMap;
+	destWorld.importStates(HoI4DefaultStateToProvinceMap);
+	map<int, int> provinceToSupplyZoneMap;
+	destWorld.importSuppplyZones(HoI4DefaultStateToProvinceMap, provinceToSupplyZoneMap);
 	destWorld.recordAllLandProvinces();
 	destWorld.checkAllProvincesMapped(provinceMap);
 	destWorld.checkCoastalProvinces();
@@ -450,6 +453,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "Converting industry";
 	destWorld.convertIndustry(sourceWorld);
 	destWorld.convertResources();
+	destWorld.convertSupplyZones(provinceToSupplyZoneMap);
 	destWorld.consolidateProvinceItems(inverseProvinceMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld, countryMap);
@@ -503,8 +507,6 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	LOG(LogLevel::Info) << "Outputting world";
 	destWorld.output();
-	LOG(LogLevel::Info) << "Creating Supply Zones";
-	destWorld.outputSupply(sourceWorld, inverseProvinceMap, countryMap, HoI4StateMap, localisation);
 	Utils::copyFolder("bookmarks", "output/" + Configuration::getOutputName() + "/common");
 	LOG(LogLevel::Info) << "* Conversion complete *";
 	return 0;
