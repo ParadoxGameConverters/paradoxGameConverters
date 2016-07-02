@@ -117,11 +117,11 @@ bool copyFolder(const std::string& sourceFolder, const std::string& destFolder)
 	int result = SHFileOperation(&fileOptStruct);
 	if (result != 0)
 	{
-		LOG(LogLevel::Error) << "Could not copy" << sourceFolder << " to " << destFolder << ". Error code: " << result;
+		LOG(LogLevel::Error) << "Could not copy " << sourceFolder << " to " << destFolder << ". Error code: " << result;
 	}
 	else if (fileOptStruct.fAnyOperationsAborted)
 	{
-		LOG(LogLevel::Error) << "Could not copy" << sourceFolder << " to " << destFolder << ". Operation aborted";
+		LOG(LogLevel::Error) << "Could not copy " << sourceFolder << " to " << destFolder << ". Operation aborted";
 	}
 
 	delete[] from;

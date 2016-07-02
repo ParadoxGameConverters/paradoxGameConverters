@@ -159,8 +159,6 @@ void HoI4World::output() const
 	//outputAutoexecLua();
 	outputLocalisations();
 	outputHistory();
-	//output events
-	Utils::copyFolder("events", "output/" + Configuration::getOutputName());
 	outputMap();
 }
 
@@ -284,38 +282,51 @@ void HoI4World::outputLocalisations() const
 void HoI4World::outputMap() const
 {
 	LOG(LogLevel::Debug) << "Writing Map Info";
-	string mappath = "Output/" + Configuration::getOutputName() + "/map";
-	if (!Utils::TryCreateFolder(mappath))
+
+	// create the map folder
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/map"))
 	{
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/map";
 		exit(-1);
 	}
-	string filename("Output/" + Configuration::getOutputName() + "/map/rocketsites.txt");
-	ofstream out;
-	out.open(filename);
 
-	for (auto state : states)
+	// create the rocket sites file
+	ofstream rocketSitesFile("Output/" + Configuration::getOutputName() + "/map/rocketsites.txt");
+	if (!rocketSitesFile.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not create Output/" << Configuration::getOutputName() << "/map/rocketsites.txt";
+		exit(-1);
+	}
+	for (auto state: states)
 	{
 		vector<int> provinces = state.second->getProvinces();
-		out << state.second->getID() << " = { " << provinces.front() << " }\r\n";
+		rocketSitesFile << state.second->getID() << " = { " << provinces.front() << " }\n";
 	}
-	out.close();
-	string filename2("Output/" + Configuration::getOutputName() + "/map/airports.txt");
-	ofstream out2;
-	out2.open(filename2);
+	rocketSitesFile.close();
 
-	for (auto state : states)
+	// create the airports file
+	ofstream airportsFile("Output/" + Configuration::getOutputName() + "/map/airports.txt");
+	if (!airportsFile.is_open())
 	{
-		vector<int> provinces2 = state.second->getProvinces();
-		out2 << state.second->getID() << " = { " << provinces2.front() << " }\r\n";
+		LOG(LogLevel::Error) << "Could not create Output/" << Configuration::getOutputName() << "/map/airports.txt";
+		exit(-1);
 	}
-	out2.close();
+	for (auto state: states)
+	{
+		vector<int> provinces = state.second->getProvinces();
+		airportsFile << state.second->getID() << " = { " << provinces.front() << " }\n";
+	}
+	airportsFile.close();
 
-	string filename3("Output/" + Configuration::getOutputName() + "/map/buildings.txt");
-	ofstream out3;
-	out3.open(filename3);
-	out3.close();
+	// create the buildings file
+	ofstream buildingsFile("Output/" + Configuration::getOutputName() + "/map/buildings.txt");
+	if (!buildingsFile.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not create Output/" << Configuration::getOutputName() << "/map/buildings.txt";
+	}
+	buildingsFile.close();
 }
+
 
 void HoI4World::outputHistory() const
 {
@@ -592,23 +603,24 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 		{
 			string resources = "";
 
-			//	create a matching HoI4 state
-			int provincecount = 0;
-			float newManpower = 1;
-			for (auto prov : vic2State->getProvinces())
+			// determine the manpower for the new state
+			int manpower = 1;
+			for (auto prov: vic2State->getProvinces())
 			{
 				V2Province* sourceProvince = sourceWorld.getProvince(prov);
-				newManpower += sourceProvince->getTotalPopulation() * 4;
+				manpower += sourceProvince->getTotalPopulation() * 4;
 			}
-			if (newManpower <= 0)
+			if (manpower <= 0)
 			{
-				newManpower = 1;
+				manpower = 1;
 			}
 		
-			HoI4State* newState = new HoI4State(vic2State, stateID, HoI4Tag, newManpower);
+			//	create a matching HoI4 state
+			HoI4State* newState = new HoI4State(vic2State, stateID, HoI4Tag, manpower);
 
 			//	loop through the provinces in the vic2 state
-			for (auto vic2Province : vic2State->getProvinces())
+			int provincecount = 0;
+			for (auto vic2Province: vic2State->getProvinces())
 			{
 				//	TODO - if the matching HoI4 provinces are owned by this country, add it to the HoI4 state
 				auto provMapping = inverseProvinceMap.find(vic2Province);

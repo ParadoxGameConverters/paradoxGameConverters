@@ -29,7 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4State::HoI4State(Vic2State* _sourceState, int _ID, string _ownerTag, float _manpower)
+HoI4State::HoI4State(Vic2State* _sourceState, int _ID, string _ownerTag, int _manpower)
 {
 	sourceState		= _sourceState;
 
@@ -59,7 +59,7 @@ void HoI4State::output(string _filename)
 	out << "state={" << endl;
 	out << "\tid=" << ID << endl;
 	out << "\tname= \"STATE_" << ID << "\"" << endl;
-	out << "\tmanpower = " << to_string(manpower) << endl;
+	out << "\tmanpower = " << manpower << endl;
 	out << endl;
 	if (resources.size() > 0)
 	{

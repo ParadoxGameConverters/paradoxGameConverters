@@ -26,6 +26,5 @@ mkdir "release\blankMod\output\history"
 mkdir "release\blankMod\output\history\provinces"
 mkdir "release\blankMod\output\history\countries"
 
-rem xcopy "Data_Files\history\provinces" "release\blankmod\output\history\provinces" /Y /E /I
-rem xcopy "Data_Files\countries" "release\blankmod\output\common\countries" /Y /E /I
+xcopy "Data_Files\events" "release\blankmod\output\events" /Y /E /I
 rem copy "Data_Files\countries.txt" "release\blankMod\output\common\countries.txt"

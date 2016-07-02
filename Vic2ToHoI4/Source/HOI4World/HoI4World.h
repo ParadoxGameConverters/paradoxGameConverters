@@ -58,7 +58,6 @@ class HoI4World
 		void	convertResources();
 		void	convertTechs(const V2World& sourceWorld);
 		void	convertDiplomacy(const V2World& sourceWorld, const CountryMapping& countryMap);
-		void	copyEvents();
 		void	convertArmies(const V2World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		void	configureFactions(const V2World& sourceWorld, const CountryMapping& countryMap);
 		void	generateLeaders(const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
