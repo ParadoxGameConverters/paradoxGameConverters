@@ -507,7 +507,6 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	LOG(LogLevel::Info) << "Outputting world";
 	destWorld.output();
-	Utils::copyFolder("bookmarks", "output/" + Configuration::getOutputName() + "/common");
 	LOG(LogLevel::Info) << "* Conversion complete *";
 	return 0;
 }
