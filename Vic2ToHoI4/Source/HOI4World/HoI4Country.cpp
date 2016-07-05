@@ -1530,25 +1530,12 @@ void HoI4Country::convertArmyDivisions(const inverseProvinceMapping& inverseProv
 			location.second *= numberOfDivisions / totalWeight;
 		}
 	}
-<<<<<<< HEAD
-	//unit placement
-	int AdvNmb = 0;
-	int MedNmb = 0;
-	int BscNmb = 0;
-	brigs.push_back(tankbrigs);
-	brigs.push_back(cavbrigs);
-	brigs.push_back(infantrybrigs);
-	brigs.push_back(artbrigs);
-	string Armies = "";
-	for (auto const &ent1 : locations)
-=======
 
 	// place units
 	int numAdvanced	= 1;
 	int numMedium		= 1;
 	int numBasic		= 1;
 	for (auto const location: locations)
->>>>>>> Vic2ToHoI4
 	{
 		int unitsInProv = 0;
 		while (unitsInProv < location.second)
@@ -1557,96 +1544,34 @@ void HoI4Country::convertArmyDivisions(const inverseProvinceMapping& inverseProv
 			{
 				if (tankBrigades > 0)
 				{
-<<<<<<< HEAD
-					Armies += "division= {	\r\n";
-					Armies += "		name = \"" + to_string(++AdvNmb) + ".Tank Division\"\r\n";
-					Armies += "		location = " + to_string(ent1.first) + "\r\n";
-					Armies += "		division_template = \"Tank Division\"\r\n";
-					Armies += "		start_experience_factor = 0.3\r\n";
-					Armies += "	}\r\n";
-					tankbrigs -= tankperdiv;
-=======
 					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Tank Division", "Tank Division", location.first);
 					divisions.push_back(newDivision);
 					tankBrigades -= tanksPerDivision;
->>>>>>> Vic2ToHoI4
 				}
 				if (cavalryBrigades > 0)
 				{
-<<<<<<< HEAD
-					Armies += "division= {	\r\n";
-					Armies += "		name = \"" + to_string(++AdvNmb) + ".Cavalry Division\"\r\n";
-					Armies += "		location = " + to_string(ent1.first) + "\r\n";
-					Armies += "		division_template = \"Cavalry Division\"\r\n";
-					Armies += "		start_experience_factor = 0.3\r\n";
-					Armies += "	}\r\n";
-					cavbrigs -= cavperdiv;
-=======
 					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Cavalry Division", "Cavalry Division", location.first);
 					divisions.push_back(newDivision);
 					cavalryBrigades -= cavalryPerDivision;
->>>>>>> Vic2ToHoI4
 				}
 				if (mountainBrigades > 0)
 				{
-<<<<<<< HEAD
-					Armies += "division= {	\r\n";
-					Armies += "		name = \"" + to_string(++AdvNmb) + ".Mountaineers\"\r\n";
-					Armies += "		location = " + to_string(ent1.first) + "\r\n";
-					Armies += "		division_template = \"Mountaineers\"\r\n";
-					Armies += "		start_experience_factor = 0.3\r\n";
-					Armies += "	}\r\n";
-					mtnbrigs -= mtnperdiv;
-=======
 					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Mountaineers", "Mountaineers", location.first);
 					divisions.push_back(newDivision);
 					mountainBrigades -= mountainPerDivision;
->>>>>>> Vic2ToHoI4
 				}
 
 				if ( ((artilleryBrigades / (infantryPerDivision / 3)) >= 1) && (supportBrigades >= 1) )
 				{
-<<<<<<< HEAD
-					//Super Placement
-					Armies += "division= {	\r\n";
-					Armies += "		name = \"" + to_string(++AdvNmb) + ".Advance Infantry Division\"\r\n";
-					Armies += "		location = " + to_string(ent1.first) + "\r\n";
-					Armies += "		division_template = \"Advance Infantry Division\"\r\n";
-					Armies += "		start_experience_factor = 0.3\r\n";
-					Armies += "	}\r\n";
-					artbrigs -= infperdiv / 3;
-					supportbrigs--;
-=======
 					// Super Placement
 					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Advance Infantry Division", "Advance Infantry Division", location.first);
 					divisions.push_back(newDivision);
 					artilleryBrigades -= (infantryPerDivision / 3);
 					supportBrigades--;
->>>>>>> Vic2ToHoI4
 				}
 				else if ( ((artilleryBrigades / (infantryPerDivision / 3)) >= 1) || (supportBrigades >= 1) )
 				{
 					//Med Placement
-<<<<<<< HEAD
-					Armies += "division= {	\r\n";
-					Armies += "		name = \"" + to_string(++MedNmb) + ".Support Infantry Division\"\r\n";
-					Armies += "		location = " + to_string(ent1.first) + "\r\n";
-					Armies += "		division_template = \"Support Infantry Division\"\r\n";
-					Armies += "		start_experience_factor = 0.3\r\n";
-					Armies += "	}\r\n";
-					artbrigs -= infperdiv / 3;
-					supportbrigs--;
-				}
-				else
-				{
-					//Bad Placement
-					Armies += "division= {	\r\n";
-					Armies += "		name = \"" + to_string(++BscNmb) + ".Basic Infantry Division\"\r\n";
-					Armies += "		location = " + to_string(ent1.first) + "\r\n";
-					Armies += "		division_template = \"Basic Infantry Division\"\r\n";
-					Armies += "		start_experience_factor = 0.3\r\n";
-					Armies += "	}\r\n";
-=======
 					HoI4DivisionType newDivision(to_string(numMedium++) + ".Support Infantry Division", "Support Infantry Division", location.first);
 					divisions.push_back(newDivision);
 					artilleryBrigades -= (infantryPerDivision / 3);
@@ -1657,18 +1582,13 @@ void HoI4Country::convertArmyDivisions(const inverseProvinceMapping& inverseProv
 					// Bad Placement
 					HoI4DivisionType newDivision(to_string(numBasic++) + ".Basic Infantry Division", "Basic Infantry Division", location.first);
 					divisions.push_back(newDivision);
->>>>>>> Vic2ToHoI4
 				}
 				infantryBrigades -= infantryPerDivision;
 				unitsInProv++;
 			}
 			else
 			{
-<<<<<<< HEAD
-				LOG(LogLevel::Warning) << "Problem converting units for " << tag << " one of the locations for unit placement was 0!";
-=======
 				LOG(LogLevel::Warning) << "When converting units for " << tag << ", one of the locations for unit placement was undefined!";
->>>>>>> Vic2ToHoI4
 				break;
 			}
 			
