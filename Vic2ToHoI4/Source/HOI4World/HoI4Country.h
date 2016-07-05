@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "HoI4Alignment.h"
 #include "HoI4Army.h"
+#include "HoI4Navy.h"
 #include "HoI4Province.h"
 #include "HoI4Relations.h"
 #include "HoI4State.h"
@@ -61,27 +62,27 @@ class HoI4Country
 {
 	public:
 		HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld, bool _newCountry = false);
-		void		output(int, map<int, HoI4State*>) const;
+
+		void		output(map<int, HoI4State*> states) const;
 		void		outputCommonCountryFile() const;
-		string	outputColors() const;
+		void		outputColors(ofstream& out) const;
 		void		outputToCommonCountriesFile(FILE*) const;
 		void		outputAIScript() const;
+
 		void		initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap, map<int, HoI4State*> states);
 		void		initFromHistory();
 		void		consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry);
 		void		generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
-		void		CalculateNavy(const inverseProvinceMapping & inverseProvinceMap);
-		void		CalculateArmyDivisions(const inverseProvinceMapping& inverseProvinceMap);
+		void		convertNavy(map<int, HoI4State*> states);
+		void		convertArmyDivisions(const inverseProvinceMapping& inverseProvinceMap);
 		void		setAIFocuses(const AIFocusModifiers& focusModifiers);
 		void		addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
 		void		setTechnology(string tech, int level);
 		void		addProvince(HoI4Province* _province);
-		void		addArmy(HoI4RegGroup* army);
 		void		lowerNeutrality(double amount);
 		void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
 		void		setFaction(string newFaction)	{ faction = newFaction; }
 		void		setFactionLeader()				{ factionLeader = true; }
-		void	setFactories(int _factories) { totalfactories = _factories; }
 
 		HoI4Relations*								getRelations(string withWhom) const;
 		HoI4Province*								getCapital();
@@ -99,16 +100,20 @@ class HoI4Country
 		set<string>&								editAllies()					{ return allies; }
 		map<string, double>&						getPracticals()				{ return practicals; }
 		const vector<HoI4RegGroup*>&			getArmies() const				{ return armies; }
-		vector<int>									getBrigs() const			{ return brigs; }
-		double										getArmyStrength() const { return brigs[0] * 12 + brigs[1] * .85 + brigs[2] + brigs[3] * 2.1; }
-		const string									getSphereLeader() const { return sphereLeader; }
+		vector<int>									getBrigs() const				{ return brigs; }
+		double										getArmyStrength() const 	{ return brigs[0] * 12 + brigs[1] * .85 + brigs[2] + brigs[3] * 2.1; }
+		const string								getSphereLeader() const		{ return sphereLeader; }
+		int											getCapitalNum()				{ return capital; }
+
 	private:
-		void			outputOOB(map<int, HoI4State*>)						const;
+		void			outputOOB()						const;
 		void			outputPracticals(FILE*)		const;
 		void			outputTech(FILE*)				const;
 		void			outputParties(FILE*)			const;
 		void			outputLeaders()				const;
+
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, HoI4Province*> allProvinces);
+
 		void			convertParties(const V2Country* srcCountry, vector<V2Party*> V2Parties, V2Party* rulingParty, string& rulingIdeology);
 
 		HoI4World*							theWorld;
@@ -124,12 +129,7 @@ class HoI4Country
 		string								government;
 		HoI4Alignment						alignment;
 		string								ideology;
-		int									totalfactories;
 		map<string, HoI4Relations*>	relations;
-		vector<HoI4RegGroup*>			armies;
-		string								divisionstxt;
-		string								naviestxt;
-		string								armiestxt;
 		Color									color;
 		double								neutrality;
 		double								nationalUnity;
@@ -159,6 +159,18 @@ class HoI4Country
 		string				industrial_policy_laws;
 		string				press_laws;
 		string				training_laws;
+
+		// faction popularity
+		int communismPopularity;
+		int democraticPopularity;
+		int facismPopularity;
+		int neutralityPopularity;
+
+		// military stuff
+		vector<HoI4DivisionTemplateType>		divisionTemplates;
+		vector<HoI4DivisionType>				divisions;
+		vector<HoI4Ship>							ships;
+		int											navalLocation;
 };
 
 #endif	// HoI4COUNTRY_H_

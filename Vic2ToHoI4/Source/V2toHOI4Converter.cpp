@@ -305,7 +305,10 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	// Parse HoI4 data files
 	LOG(LogLevel::Info) << "Parsing HoI4 data";
 	HoI4World destWorld;
-	destWorld.importStates();
+	map<int, vector<int>> HoI4DefaultStateToProvinceMap;
+	destWorld.importStates(HoI4DefaultStateToProvinceMap);
+	map<int, int> provinceToSupplyZoneMap;
+	destWorld.importSuppplyZones(HoI4DefaultStateToProvinceMap, provinceToSupplyZoneMap);
 	destWorld.recordAllLandProvinces();
 	destWorld.checkAllProvincesMapped(provinceMap);
 	destWorld.checkCoastalProvinces();
@@ -444,10 +447,13 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "Converting states";
 	HoI4StateMapping HoI4StateMap;
 	destWorld.convertProvinceOwners(sourceWorld, inverseProvinceMap, countryMap, HoI4StateMap, localisation);
+	destWorld.convertNavalBases(sourceWorld, inverseProvinceMap);
 	LOG(LogLevel::Info) << "Converting countries";
 	destWorld.convertCountries(sourceWorld, countryMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, HoI4StateMap);
-	destWorld.convertNavalBases(sourceWorld, inverseProvinceMap);
-	destWorld.convertProvinceItems(sourceWorld, provinceMap, inverseProvinceMap, countryMap, HoI4AdjacencyMap);
+	LOG(LogLevel::Info) << "Converting industry";
+	destWorld.convertIndustry(sourceWorld);
+	destWorld.convertResources();
+	destWorld.convertSupplyZones(provinceToSupplyZoneMap);
 	destWorld.consolidateProvinceItems(inverseProvinceMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld, countryMap);
@@ -455,14 +461,15 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	destWorld.convertTechs(sourceWorld);
 	LOG(LogLevel::Info) << "Adding minimal levels of airbase and port";
 	destWorld.addMinimalItems(inverseProvinceMap);
-	LOG(LogLevel::Info) << "Converting armies and navies";
-	destWorld.convertArmies(sourceWorld, inverseProvinceMap, HoI4AdjacencyMap);
+	/*LOG(LogLevel::Info) << "Converting armies and navies";
+	destWorld.convertArmies(sourceWorld, inverseProvinceMap, HoI4AdjacencyMap);*/
 	LOG(LogLevel::Info) << "Setting up factions";
 	destWorld.configureFactions(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Generating Leaders";
 	destWorld.generateLeaders(leaderTraits, namesMap, portraitMap);
-	LOG(LogLevel::Info) << "Calculating Armies";
-	destWorld.calculateArmies(inverseProvinceMap);
+	LOG(LogLevel::Info) << "Converting armies and navies";
+	destWorld.convertArmies(inverseProvinceMap);
+	destWorld.convertNavies();
 	LOG(LogLevel::Info) << "Converting victory points";
 	destWorld.convertVictoryPoints(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Setting AI focuses";
@@ -501,10 +508,6 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	LOG(LogLevel::Info) << "Outputting world";
 	destWorld.output();
-	
-	LOG(LogLevel::Info) << "Creating Supply Zones";
-	destWorld.outputSupply(sourceWorld, inverseProvinceMap, countryMap, HoI4StateMap, localisation);
-	Utils::copyFolder("bookmarks", "output/" + Configuration::getOutputName() + "/common");
 	LOG(LogLevel::Info) << "* Conversion complete *";
 	return 0;
 }

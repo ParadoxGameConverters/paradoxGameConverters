@@ -21,58 +21,31 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef HOI4STATE_H_
-#define HOI4STATE_H_
+#ifndef HOI4_SUPPLY_ZONE_H_
+#define HOI4_SUPPLY_ZONE_H_
 
 
 
-#include <vector>
 #include <string>
-#include <map>
-#include "..\V2World\Vic2State.h"
+#include <vector>
 using namespace std;
 
 
 
-class HoI4State
+class HoI4SupplyZone
 {
 	public:
-		HoI4State(Vic2State* sourceState, int _ID, string _ownerTag, int _manpower);
+		HoI4SupplyZone(int _ID, int _value);
 
-		void	output(string filename);
+		void output(string filename);
 
-		void	addProvince(int province)							{ provinces.push_back(province); }
-		void	addResource(string resource, double amount)	{ resources[resource] += amount; }
-
-		void	setNavalBase(int level, int location);
-		void	setIndustry(int civilianFactories, int militaryFactories, string category, int railLevel);
-
-		Vic2State*	getSourceState() const		{ return sourceState; }
-		vector<int> getProvinces() const			{ return provinces; }
-		string		getOwner() const				{ return ownerTag; }
-		int			getID() const					{ return ID; }
-		int			getNavalLocation() const	{ return navalLocation; }
+		void addState(int state)	{ states.push_back(state); }
 
 	private:
-		Vic2State*				sourceState;
-
-		int						ID;
-		vector<int>				provinces;
-		string					ownerTag;
-
-		int						manpower;
-
-		int						civFactories;
-		int						milFactories;
-		string					category;
-		int						railLevel;
-	
-		int						navalLevel;
-		int						navalLocation;
-
-		map<string, double>	resources;
+		int			ID;
+		vector<int>	states;
+		int			value;
 };
 
 
-
-#endif // HOI4STATE_H_
+#endif

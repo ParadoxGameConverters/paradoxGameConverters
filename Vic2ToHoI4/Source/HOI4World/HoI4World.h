@@ -30,6 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Diplomacy.h"
 #include "HoI4Localisation.h"
 #include "HoI4State.h"
+#include "HoI4SupplyZone.h"
 #include "../Mapper.h"
 
 
@@ -45,22 +46,25 @@ class HoI4World
 
 		void	output() const;
 
-		void	importStates();
+		void	importStates(map<int, vector<int>>& defaultStateToProvinceMap);
+		void	importSuppplyZones(const map<int, vector<int>>& defaultStateToProvinceMap, map<int, int>& provinceToSupplyZoneMap);
 		void	checkCoastalProvinces();
 		void	importPotentialCountries();
+
 		void	convertCountries(const V2World &sourceWorld, const CountryMapping& countryMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap);
-		void	getStateInfo(const V2World & sourceWorld, const inverseProvinceMapping & inverseProvinceMap, const CountryMapping & countryMap, HoI4StateMapping & stateMap, V2Localisation & localisation);
-		void	outputSupply(const V2World & sourceWorld, const inverseProvinceMapping & inverseProvinceMap, const CountryMapping & countryMap, HoI4StateMapping & stateMap, V2Localisation & Vic2Localisations);
+		void	setStateInfo(const V2World & sourceWorld, const inverseProvinceMapping & inverseProvinceMap, const CountryMapping & countryMap, HoI4StateMapping & stateMap, V2Localisation & localisation);
 		void	convertProvinceOwners(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, HoI4StateMapping& stateMap, V2Localisation& Vic2Localisations);
 		void	convertNavalBases(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap);
-		void	convertProvinceItems(const V2World& sourceWorld, const provinceMapping& provinceMap, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
+		void	convertIndustry(const V2World& sourceWorld);
+		void	convertResources();
+		void	convertSupplyZones(const map<int, int>& provinceToSupplyZoneMap);
 		void	convertTechs(const V2World& sourceWorld);
 		void	convertDiplomacy(const V2World& sourceWorld, const CountryMapping& countryMap);
-		void	copyEvents();
 		void	convertArmies(const V2World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		void	configureFactions(const V2World& sourceWorld, const CountryMapping& countryMap);
 		void	generateLeaders(const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
-		void	calculateArmies(const inverseProvinceMapping& inverseProvinceMap);
+		void	convertArmies(const inverseProvinceMapping& inverseProvinceMap);
+		void	convertNavies();
 		void	consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap);
 		void	convertVictoryPoints(const V2World& sourceWorld, const CountryMapping& countryMap);
 		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
@@ -91,18 +95,19 @@ class HoI4World
 		unitTypeMapping			getUnitMappings();
 		vector<int>					getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		int							getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string owner);
-		vector<HoI4Regiment*>	convertRegiments(const unitTypeMapping& unitTypeMap, vector<V2Regiment*>& sourceRegiments, map<string, unsigned>& typeCount, const pair<string, HoI4Country*>& country);
-		HoI4RegGroup*				createArmy(const inverseProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string tag, const V2Army* oldArmy, vector<HoI4Regiment*>& sourceRegiments, int& airForceIndex);
 
 		void	outputCommonCountries() const;
-		void outputColorsfile() const;
+		void	outputColorsfile() const;
 		void	outputAutoexecLua() const;
 		void	outputLocalisations() const;
 		void	outputMap() const;
 		void	outputHistory() const;
+		void	outputSupply() const;
 
 		map<int, HoI4State*>			states;
 		map<int, string>				stateFilenames;
+		map<int, HoI4SupplyZone*>	supplyZones;
+		map<int, string>				supplyZonesFilenames;
 		map<int, HoI4Province*>		provinces;
 		set<int>							landProvinces;
 		map<string, HoI4Country*>	countries;
