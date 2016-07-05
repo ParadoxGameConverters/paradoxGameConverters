@@ -208,7 +208,7 @@ void HoI4Country::output(map<int, HoI4State*> states) const
 	}
 
 	// output OOB file
-	outputOOB(states);
+	outputOOB();
 
 	// output leaders file
 	//outputLeaders();
@@ -465,7 +465,7 @@ void HoI4Country::outputLeaders() const
 }
 
 
-void HoI4Country::outputOOB(map<int, HoI4State*> states) const
+void HoI4Country::outputOOB() const
 {
 	ofstream output(("Output/" + Configuration::getOutputName() + "/history/units/" + tag + "_OOB.txt").c_str());
 	if (!output.is_open())
@@ -486,17 +486,6 @@ void HoI4Country::outputOOB(map<int, HoI4State*> states) const
 			armyItr->output(output);
 		}
 	}*/
-	int navallocation = 0;
-	if (naviestxt != "")
-	{
-		for (auto state : states)
-		{
-			if (state.second->getOwner() == tag && state.second->getNavalLocation() != 0)
-			{
-				navallocation = state.second->getNavalLocation();
-			}
-		}
-	}
 	output << "start_equipment_factor = 0\n";
 	for (auto divisionTemplate: divisionTemplates)
 	{
@@ -520,12 +509,15 @@ void HoI4Country::outputOOB(map<int, HoI4State*> states) const
 	{
 		output << division;
 	}
-	if (naviestxt != "")
+	if (ships.size() > 0)
 	{
 		output << "\tnavy = {" << endl;
 		output << "\t\tname = \"Grand Fleet\"" << endl;
-		output << "\t\tlocation = " << navallocation << endl;
-		output << naviestxt;
+		output << "\t\tlocation = " << navalLocation << endl;
+		for (auto ship: ships)
+		{
+			output << ship;
+		}
 		output << "\t}" << endl;
 	}
 	output << "}";
@@ -1107,127 +1099,120 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, const namesMappi
 		leaders.push_back(newLeader);
 	}
 }
-void HoI4Country::CalculateNavy(const inverseProvinceMapping& inverseProvinceMap)
+
+
+void HoI4Country::convertNavy(map<int, HoI4State*> states)
 {
 	int navalport = 0;
-	double HeavyShip = 0;
-	double LightShip = 0;
-	double BB = 0;
-	double BC = 0;
-	double HC = 0;
-	double LC = 0;
-	double DD = 0;
-	double CV = 0;
-	double SB = 0;
-	string navies = "";
-	vector<string> navytechs;
-	for (auto army : srcCountry->getArmies())
+
+	// count the heavy and light Vic2 ships
+	double heavyShip	= 0;
+	double lightShip	= 0;
+	for (auto army: srcCountry->getArmies())
 	{
-		for (auto regiment : army->getRegiments())
+		for (auto regiment: army->getRegiments())
 		{
 			string type = regiment->getType();
-			if (
-				(type == "battleship") || (type == "dreadnought") || (type == "cruiser")
-				)
+			if (type == "battleship")
 			{
-				if (type == "battleship")
-				{
-					HeavyShip += .8;
-				}
-				if (type == "dreadnought")
-				{
-					HeavyShip += 1;
-				}
-				if (type == "cruiser")
-				{
-					LightShip += 1;
-				}
+				heavyShip += 0.8;
+			}
+			if (type == "dreadnought")
+			{
+				heavyShip += 1;
+			}
+			if (type == "cruiser")
+			{
+				lightShip += 1;
 			}
 		}
 	}
-	for (auto tech : technologies)
+
+	// determine the HoI4 ships
+	double BB			= 0;
+	double BC			= 0;
+	double HC			= 0;
+	double LC			= 0;
+	double DD			= 0;
+	double CV			= 0;
+	double SB			= 0;
+	for (auto tech: technologies)
 	{
-		if (tech.first == "early_light_cruiser" && tech.second == 1)
+		if ((tech.first == "early_light_cruiser") && (tech.second == 1))
 		{
-			navytechs.push_back(tech.first);
+			LC = lightShip * .47;
 		}
-		if (tech.first == "early_destroyer" && tech.second == 1)
+		if ((tech.first == "early_destroyer") && (tech.second == 1))
 		{
-			navytechs.push_back(tech.first);
+			DD = lightShip * 1.88;
 		}
-		if (tech.first == "early_submarine" && tech.second == 1)
+		if ((tech.first == "early_submarine") && (tech.second == 1))
 		{
-			navytechs.push_back(tech.first);
+			SB = lightShip * .705;
 		}
-		if (tech.first == "early_heavy_cruiser" && tech.second == 1)
+		if ((tech.first == "early_heavy_cruiser") && (tech.second == 1))
 		{
-			navytechs.push_back(tech.first);
+			HC = heavyShip * 0.2926;
 		}
-		if (tech.first == "early_battlecruiser" && tech.second == 1)
+		if ((tech.first == "early_battlecruiser") && (tech.second == 1))
 		{
-			navytechs.push_back(tech.first);
+			BC = heavyShip * 0.073;
 		}
-		if (tech.first == "early_battleship" && tech.second == 1)
+		if ((tech.first == "early_battleship") && (tech.second == 1))
 		{
-			navytechs.push_back(tech.first);
+			CV = heavyShip * 0.073;
+			BB = heavyShip * 0.21945;
 		}
 	}
-	if (std::find(navytechs.begin(), navytechs.end(), "early_battleship") != navytechs.end())
-		CV = HeavyShip * 0.073;
-	if (std::find(navytechs.begin(), navytechs.end(), "early_battleship") != navytechs.end())
-		BB = HeavyShip * 0.21945;
-	if (std::find(navytechs.begin(), navytechs.end(), "early_battlecruiser") != navytechs.end())
-		BC = HeavyShip * 0.073;
-	if (std::find(navytechs.begin(), navytechs.end(), "early_heavy_cruiser") != navytechs.end())
-		HC = HeavyShip * 0.2926;
-	if (std::find(navytechs.begin(), navytechs.end(), "early_light_cruiser") != navytechs.end())
-		LC = LightShip * .47;
-	if (std::find(navytechs.begin(), navytechs.end(), "early_destroyer") != navytechs.end())
-		DD = LightShip * 1.88;
-	if (std::find(navytechs.begin(), navytechs.end(), "early_submarine") != navytechs.end())
-		SB = LightShip * .705;
 
 	for (int i = 0; i < CV; i++)
 	{
-		navies += "ship = { name = \"Carrier\" definition = carrier equipment = { carrier_1 = { amount = 1 owner = "+tag+" create_if_missing = yes } } \r\n";
-		navies += "		air_wings = {\r\n";
-		navies += "			cv_fighter_equipment_0 = { owner = \"" +tag+ "\" amount = 27 create_if_missing = yes }\r\n";
-		navies += "			cv_nav_bomber_equipment_1 = { owner = \"" + tag + "\" amount = 27 create_if_missing = yes }\r\n";
-		navies += "		}\r\n";
-		navies += "	}\r\n";
+		HoI4Ship newShip("Carrier", "carrier", tag);
+		ships.push_back(newShip);
 	}
 	for (int i = 0; i < BB; i++)
 	{
-		navies += "ship = { name = \"Battleship\" definition = battleship equipment = { battleship_1 = { amount = 1 owner = "+ tag + " create_if_missing = yes version_name = \"Battleship 1\" } } }\r\n";
+		HoI4Ship newShip("Battleship", "battleship", tag);
+		ships.push_back(newShip);
 	}
 	for (int i = 0; i < BC; i++)
 	{
-		navies += "ship = { name = \"Battle Cruiser\" definition = battle_cruiser  equipment = { battle_cruiser_1 = { amount = 1 owner = " + tag + " create_if_missing = yes  version_name = \"Battle Cruiser 1\" } } }\r\n";
+		HoI4Ship newShip("Battle Cruiser", "battle_cruiser", tag);
+		ships.push_back(newShip);
 	}
 	for (int i = 0; i < HC; i++)
 	{
-		navies += "ship = { name = \"Heavy Cruiser\" definition = heavy_cruiser   equipment = { heavy_cruiser_1 = { amount = 1 owner = " + tag + " create_if_missing = yes  version_name = \"Heavy Cruiser 1\" } } }\r\n";
+		HoI4Ship newShip("Heavy Cruiser", "heavy_cruiser", tag);
+		ships.push_back(newShip);
 	}
 	for (int i = 0; i < LC; i++)
 	{
-		navies += "ship = { name = \"Light Cruiser\" definition = light_cruiser    equipment = { light_cruiser_1 = { amount = 1 owner = " + tag + " create_if_missing = yes  version_name = \"Light Cruiser 1\" } } }\r\n";
+		HoI4Ship newShip("Light Cruiser", "light_cruiser", tag);
+		ships.push_back(newShip);
 	}
 	for (int i = 0; i < DD; i++)
 	{
-		navies += "ship = { name = \"Destroyer\" definition = destroyer    equipment = { destroyer_1 = { amount = 1 owner = " + tag + " create_if_missing = yes  version_name = \"Destroyer 1\" } } }\r\n";
+		HoI4Ship newShip("Destroyer", "destroyer", tag);
+		ships.push_back(newShip);
 	}
 	for (int i = 0; i < SB; i++)
 	{
-		navies += "ship = { name = \"submarine\" definition = submarine    equipment = { submarine_1 = { amount = 1 owner = " + tag + " create_if_missing = yes  version_name = \"submarine 1\" } } }\r\n";
+		HoI4Ship newShip("Submarine", "submarine", tag);
+		ships.push_back(newShip);
 	}
-	naviestxt = navies;
+
+	for (auto state: states)
+	{
+		if ((state.second->getOwner() == tag) && (state.second->getNavalLocation() != 0))
+		{
+			navalLocation = state.second->getNavalLocation();
+		}
+	}
 }
 
 
 void HoI4Country::convertArmyDivisions(const inverseProvinceMapping& inverseProvinceMap)
 {
-	CalculateNavy(inverseProvinceMap);
-
 	// get the total number of source brigades and the number of source brigades per location
 	int infantryBrigades			= 0;
 	int artilleryBrigades		= 0;

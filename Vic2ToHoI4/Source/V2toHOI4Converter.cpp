@@ -461,14 +461,15 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	destWorld.convertTechs(sourceWorld);
 	LOG(LogLevel::Info) << "Adding minimal levels of airbase and port";
 	destWorld.addMinimalItems(inverseProvinceMap);
-	LOG(LogLevel::Info) << "Converting armies and navies";
-	destWorld.convertArmies(sourceWorld, inverseProvinceMap, HoI4AdjacencyMap);
+	/*LOG(LogLevel::Info) << "Converting armies and navies";
+	destWorld.convertArmies(sourceWorld, inverseProvinceMap, HoI4AdjacencyMap);*/
 	LOG(LogLevel::Info) << "Setting up factions";
 	destWorld.configureFactions(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Generating Leaders";
 	destWorld.generateLeaders(leaderTraits, namesMap, portraitMap);
-	LOG(LogLevel::Info) << "Converting Armies";
+	LOG(LogLevel::Info) << "Converting armies and navies";
 	destWorld.convertArmies(inverseProvinceMap);
+	destWorld.convertNavies();
 	LOG(LogLevel::Info) << "Converting victory points";
 	destWorld.convertVictoryPoints(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Setting AI focuses";

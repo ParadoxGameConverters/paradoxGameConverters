@@ -1700,6 +1700,15 @@ void HoI4World::convertArmies(const inverseProvinceMapping& inverseProvinceMap)
 }
 
 
+void HoI4World::convertNavies()
+{
+	for (auto country: countries)
+	{
+		country.second->convertNavy(states);
+	}
+}
+
+
 void HoI4World::consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap)
 {
 	double totalManpower = 0.0;

@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "HoI4Alignment.h"
 #include "HoI4Army.h"
+#include "HoI4Navy.h"
 #include "HoI4Province.h"
 #include "HoI4Relations.h"
 #include "HoI4State.h"
@@ -72,7 +73,7 @@ class HoI4Country
 		void		initFromHistory();
 		void		consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry);
 		void		generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
-		void		CalculateNavy(const inverseProvinceMapping & inverseProvinceMap);
+		void		convertNavy(map<int, HoI4State*> states);
 		void		convertArmyDivisions(const inverseProvinceMapping& inverseProvinceMap);
 		void		setAIFocuses(const AIFocusModifiers& focusModifiers);
 		void		addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
@@ -102,7 +103,7 @@ class HoI4Country
 		
 
 	private:
-		void			outputOOB(map<int, HoI4State*>)						const;
+		void			outputOOB()						const;
 		void			outputPracticals(FILE*)		const;
 		void			outputTech(FILE*)				const;
 		void			outputParties(FILE*)			const;
@@ -164,7 +165,8 @@ class HoI4Country
 		// military stuff
 		vector<HoI4DivisionTemplateType>		divisionTemplates;
 		vector<HoI4DivisionType>				divisions;
-		string										naviestxt;
+		vector<HoI4Ship>							ships;
+		int											navalLocation;
 };
 
 #endif	// HoI4COUNTRY_H_
