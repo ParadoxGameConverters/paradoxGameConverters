@@ -12,10 +12,10 @@ copy "Data_Files\FAQ.txt" "release\FAQ.txt"
 copy "Data_files\resources.txt" "release\resources.txt"
 copy "Data_files\navalprovinces.txt" "release\navalprovinces.txt"
 
-del release\changelog.txt
-git log --oneline --decorate >> release/log.txt
+del release/changelog.txt
+git log --oneline --decorate >> release/makelog.txt
 (for /f "delims=" %%i in (release/log.txt) do @echo %%i)>release/changelog.txt
-del release\log.txt
+del release/makelog.txt
 
 del "Release\blankMod" /Q
 rmdir "Release\blankMod" /S /Q
