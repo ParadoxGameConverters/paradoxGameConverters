@@ -99,8 +99,7 @@ class HoI4Country
 		const set<string>&						getAllies() const				{ return allies; }
 		set<string>&								editAllies()					{ return allies; }
 		map<string, double>&						getPracticals()				{ return practicals; }
-		vector<int>									getBrigs() const				{ return brigs; }
-		double										getArmyStrength() const 	{ return brigs[0] * 12 + brigs[1] * .85 + brigs[2] + brigs[3] * 2.1; }
+		double										getArmyStrength() const 	{ return armyStrength; }
 		const string								getSphereLeader() const		{ return sphereLeader; }
 		int											getCapitalNum()				{ return capital; }
 
@@ -118,7 +117,7 @@ class HoI4Country
 		HoI4World*							theWorld;
 		const V2Country*					srcCountry;
 		string								filename;
-		bool								newCountry;	// true if this country is being added by the converter, i.e. doesn't already exist in HoI4
+		bool									newCountry;	// true if this country is being added by the converter, i.e. doesn't already exist in HoI4
 		const string						sphereLeader = "";
 		string								tag;
 		map<int, HoI4Province*>			provinces;
@@ -142,7 +141,6 @@ class HoI4Country
 		vector<HoI4Leader>				leaders;
 		string								graphicalCulture;
 		bool									majorNation;
-		vector<int>							brigs;
 
 		// AI focus modifiers
 		double	seaModifier;
@@ -168,6 +166,7 @@ class HoI4Country
 		// military stuff
 		vector<HoI4DivisionTemplateType>		divisionTemplates;
 		vector<HoI4DivisionType>				divisions;
+		double										armyStrength;	// a calculated value abstractly representing army strength
 		vector<HoI4Ship>							ships;
 		int											navalLocation;
 };

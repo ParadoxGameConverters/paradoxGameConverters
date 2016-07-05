@@ -1291,6 +1291,7 @@ void HoI4Country::convertArmyDivisions(const inverseProvinceMapping& inverseProv
 			}
 		}
 	}
+	armyStrength = (tankBrigades * 12) + (cavalryBrigades * 0.85) + (infantryBrigades) + (artilleryBrigades * 2.1);
 
 	// calculate the number of brigades in different types of divisions
 	int infantryPerDivision = 0;

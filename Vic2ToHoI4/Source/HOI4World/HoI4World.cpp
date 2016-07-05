@@ -2205,7 +2205,6 @@ vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorl
 				Faction.push_back(country);
 				string yourgovernment = country->getGovernment();
 				auto allies = country->getAllies();
-				vector<int> yourbrigs = country->getBrigs();
 				auto yourrelations = country->getRelations();
 				out << country->getSourceCountry()->getName() << " " + yourgovernment + " " + to_string(country->getArmyStrength()) + " allies: \n";
 				usedCountries.push_back(country->getTag());
@@ -2218,7 +2217,6 @@ vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorl
 						HoI4Country* allycountry = itrally->second;
 						string allygovernment = allycountry->getGovernment();
 						string name = "";
-						vector<int> allybrigs = allycountry->getBrigs();
 						for (auto country : countries)
 						{
 							if (country.second->getTag() == ally)
