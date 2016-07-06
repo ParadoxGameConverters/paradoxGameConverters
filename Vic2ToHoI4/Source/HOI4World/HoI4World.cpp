@@ -2624,7 +2624,7 @@ void HoI4World::HowToTakeLand(HoI4Country* TargetCountry, HoI4Country* Attacking
 		{
 			//FIXME
 			//hmm I am still weaker, maybe need to look for allies?
-			//Function that looks for more allies and adds to faction through events/ NF
+			GetMorePossibleAllies(AttackingCountry);
 			//if (GetFactionStrengthWithDistance(me) >= GetFactionStrengthWithDistance(Them))
 				//ADD CONQUEST GOAL
 			//else
@@ -2665,7 +2665,7 @@ vector<HoI4Country*> HoI4World::GetMorePossibleAllies(HoI4Country* CountryThatWa
 					//else
 						//well we are positive, 1 NF to add to ally should be fine
 				//else if(relations between countries > 0)
-					//we are friendly
+					//we are friendly, add 2 NF for ally? Good way to decide how many alliances there will be
 			newPossibleAllies.push_back(country);
 		}
 	}
