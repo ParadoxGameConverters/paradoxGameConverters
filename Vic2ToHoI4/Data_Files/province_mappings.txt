@@ -24,9 +24,9 @@
 	link = { vic2 = 2285 hoi4 = 5023 }	# Galápagos -> land
 	link = { vic2 = 2623 hoi4 = 13052 }	# Midway Island -> land
 	link = { vic2 = 2336 hoi4 = 1280 }	# Easter Island -> land
-	link = { vic2 = 801 hoi4 = 12148 hoi4 = 10188 }	# Tahiti -> land, land
-	link = { vic2 = 2544 hoi4 = 13080 }	# Pago Pago -> land
-	link = { vic2 = 2547 hoi4 = 7290 }	# Tokelau -> land
+	link = { vic2 = 801 vic2 = 2545 vic2 = 2551 vic2 = 2552 vic2 = 2553 hoi4 = 12148 hoi4 = 10188 }	# MANY-TO-MANY: Tahiti, Rarotonga, Marquesas, Pitcairn, Tuamotus -> land, land
+	link = { vic2 = 2544 vic2 = 2548 hoi4 = 13080 }	# Pago Pago, Niue -> land
+	link = { vic2 = 2547 vic2 = 2543 vic2 = 2546 hoi4 = 7290 }	# Tokelau, Apia, Tongareva -> land
 	link = { vic2 = 686 hoi4 = 13053 hoi4 = 13049 hoi4 = 13050 }	# Line Islands -> land, land, land
 	link = { vic2 = 2526 hoi4 = 13048 }	# Palmyra -> land
 	link = { vic2 = 658 hoi4 = 12021 hoi4 = 10048 hoi4 = 7195 hoi4 = 4180 hoi4 = 7112 hoi4 = 13051 }	# Hawaii -> land, land, land, land, land, land
@@ -43,7 +43,7 @@
 	link = { vic2 = 2523 hoi4 = 13038 }	# Nauru -> land
 	link = { vic2 = 2527 hoi4 = 7393 hoi4 = 13022 hoi4 = 13021 hoi4 = 4387 hoi4 = 13020 }	# Gilbert Islands -> land, land, land, land, land
 	link = { vic2 = 2541 hoi4 = 13056 hoi4 = 13057 hoi4 = 13055 hoi4 = 13054 }	# Ellice Islands -> land, land, land, land
-	link = { vic2 = 2454 hoi4 = 4286 hoi4 = 12159 hoi4 = 7302 }	# Fiji -> land, land, land
+	link = { vic2 = 2454 vic2 = 2520 vic2 = 2540 vic2 = 2542 hoi4 = 4286 hoi4 = 12159 hoi4 = 7302 }	# MANY-TO-MANY: Fiji, Taveuni, Tonga, Wallis and Futuna -> land, land, land
 	# Pacific
 	# 
 	# Congo
@@ -107,7 +107,7 @@
 	link = { vic2 = 2042 hoi4 = 12967 }	# Iringa -> land
 	link = { vic2 = 2029 hoi4 = 5210 }	# Mombasa -> land
 	link = { vic2 = 2037 hoi4 = 8183 }	# Tanga -> land
-	link = { vic2 = 2036 hoi4 = 2196 }	# Dar Es Salaam -> land
+	link = { vic2 = 2036 vic2 = 2048 hoi4 = 2196 }	# Dar Es Salaam, Zanzibar -> land
 	link = { vic2 = 2038 hoi4 = 8182 }	# Kilwa -> land
 	link = { vic2 = 2041 hoi4 = 8201 }	# Masasi -> land
 	link = { vic2 = 2040 hoi4 = 10845 }	# Songea -> land
@@ -118,17 +118,17 @@
 	link = { vic2 = 2064 hoi4 = 2217 hoi4 = 2159 }	# Nampula -> land, land
 	link = { vic2 = 2581 hoi4 = 10972 }	# Mataka -> land
 	link = { vic2 = 2065 hoi4 = 2180 }	# Milange -> land
-	link = { vic2 = 2059 hoi4 = 12971 }	# Quelimane -> land
+	link = { vic2 = 2059 vic2 = 2053 hoi4 = 12971 }	# Quelimane, Sena -> land
 	link = { vic2 = 2066 hoi4 = 12908 }	# Zomba -> land
 	link = { vic2 = 2067 hoi4 = 12986 }	# Lilongwe -> land
-	link = { vic2 = 2054 hoi4 = 12950 }	# Tete -> land
+	link = { vic2 = 2054 vic2 = 2056 hoi4 = 12950 }	# Tete, Zumbo -> land
 	link = { vic2 = 2018 hoi4 = 5221 }	# Chipata -> land
 	link = { vic2 = 2016 hoi4 = 10594 hoi4 = 10930 }	# Kazembe -> land, land
 	link = { vic2 = 2017 hoi4 = 1846 }	# Kasema -> land
 	link = { vic2 = 2046 hoi4 = 2176 hoi4 = 10988 hoi4 = 8144 }	# Ujiji -> land, land, land
 	link = { vic2 = 790 hoi4 = 12504 }	# Kitwe -> land
 	link = { vic2 = 2012 hoi4 = 5199 }	# Lusaka -> land
-	link = { vic2 = 2068 hoi4 = 2216 }	# Harare -> land
+	link = { vic2 = 2068 vic2 = 2635 hoi4 = 2216 }	# Harare, Kariba -> land
 	link = { vic2 = 2015 hoi4 = 7872 }	# Monzo -> land
 	link = { vic2 = 1987 hoi4 = 1817 hoi4 = 4515 hoi4 = 191 }	# Bunkeya -> land, land, land
 	link = { vic2 = 1988 hoi4 = 12795 hoi4 = 1968 hoi4 = 1516 }	# Mussumba -> land, land, land
@@ -144,15 +144,15 @@
 	link = { vic2 = 2005 hoi4 = 8138 hoi4 = 8202 }	# Huambo -> land, land
 	link = { vic2 = 2008 hoi4 = 12391 }	# Ondjiva -> land
 	link = { vic2 = 2003 hoi4 = 12958 }	# Benguela -> land
-	link = { vic2 = 1999 hoi4 = 8248 hoi4 = 5158 }	# Luanda -> land, land
-	link = { vic2 = 1978 hoi4 = 2192 }	# Madingou -> land
+	link = { vic2 = 1999 vic2 = 2002 hoi4 = 8248 hoi4 = 5158 }	# MANY-TO-MANY: Luanda, Quibala -> land, land
+	link = { vic2 = 1978 vic2 = 1980 hoi4 = 2192 }	# Madingou, Djambala -> land
 	link = { vic2 = 1977 hoi4 = 8193 }	# Nkuna -> land
 	link = { vic2 = 1982 hoi4 = 5117 hoi4 = 12925 }	# Kinshasa -> land, land
 	link = { vic2 = 2624 hoi4 = 12975 }	# Loango -> land
 	link = { vic2 = 1983 hoi4 = 10968 }	# Boma -> land
 	link = { vic2 = 2000 hoi4 = 2115 }	# Cabinda -> land
 	link = { vic2 = 2001 hoi4 = 8219 }	# Mbanza -> land
-	link = { vic2 = 1976 hoi4 = 10948 }	# Makokou -> land
+	link = { vic2 = 1976 vic2 = 1975 hoi4 = 10948 }	# Makokou, Moanda -> land
 	link = { vic2 = 1974 hoi4 = 8207 }	# Mayumbe -> land
 	link = { vic2 = 1972 hoi4 = 5139 }	# Libreville -> land
 	link = { vic2 = 1959 hoi4 = 2080 }	# Yaounde -> land
@@ -165,22 +165,22 @@
 	link = { vic2 = 1960 hoi4 = 9137 }	# Bafoussam -> land
 	link = { vic2 = 1961 hoi4 = 7978 }	# Bamenda -> land
 	link = { vic2 = 1937 hoi4 = 10820 hoi4 = 4889 }	# Tukari -> land, land
-	link = { vic2 = 1950 hoi4 = 8109 }	# Yola -> land
-	link = { vic2 = 1943 hoi4 = 4938 }	# Jos -> land
-	link = { vic2 = 1951 hoi4 = 4997 }	# Kuka -> land
+	link = { vic2 = 1950 vic2 = 1944 hoi4 = 8109 }	# Yola, Gombe -> land
+	link = { vic2 = 1943 vic2 = 1942 hoi4 = 4938 }	# Jos, Bauchi -> land
+	link = { vic2 = 1951 vic2 = 1953 hoi4 = 4997 }	# Kuka, Dikoa -> land
 	link = { vic2 = 1952 hoi4 = 5028 }	# Nguru -> land
-	link = { vic2 = 1945 hoi4 = 4972 }	# Kano -> land
+	link = { vic2 = 1945 vic2 = 1949 hoi4 = 4972 }	# Kano, Hadejia -> land
 	link = { vic2 = 1819 hoi4 = 1993 }	# Moundou -> land
-	link = { vic2 = 1818 hoi4 = 9152 hoi4 = 2081 }	# Massenya -> land, land
+	link = { vic2 = 1818 vic2 = 1820 hoi4 = 9152 hoi4 = 2081 }	# MANY-TO-MANY: Massenya, Bongor -> land, land
 	link = { vic2 = 1964 hoi4 = 7963 }	# Maroua -> land
 	link = { vic2 = 1941 hoi4 = 8021 }	# Abuja -> land
 	link = { vic2 = 1936 hoi4 = 1992 }	# Makurdi -> land
-	link = { vic2 = 1930 hoi4 = 12900 }	# Lokoja -> land
+	link = { vic2 = 1930 vic2 = 1929 hoi4 = 12900 }	# Lokoja, Akure -> land
 	link = { vic2 = 1939 hoi4 = 2025 }	# Zaria -> land
 	link = { vic2 = 1947 hoi4 = 1969 }	# Katsina -> land
 	link = { vic2 = 1940 hoi4 = 1932 }	# Bida -> land
-	link = { vic2 = 1901 hoi4 = 10836 hoi4 = 7950 }	# Wagadugu -> land, land
-	link = { vic2 = 1948 hoi4 = 1891 }	# Sokoto -> land
+	link = { vic2 = 1901 vic2 = 1903 hoi4 = 10836 hoi4 = 7950 }	# MANY-TO-MANY: Wagadugu, Dori -> land, land
+	link = { vic2 = 1948 vic2 = 1946 hoi4 = 1891 }	# Sokoto, Kebbi -> land
 	link = { vic2 = 1902 hoi4 = 12851 hoi4 = 8116 hoi4 = 8071 }	# Wahiguya -> land, land, land
 	link = { vic2 = 1906 hoi4 = 12794 }	# Orodaro -> land
 	link = { vic2 = 1799 hoi4 = 4927 }	# Sikasso -> land
@@ -193,21 +193,21 @@
 	link = { vic2 = 1905 hoi4 = 7983 }	# Bobo Dioulasso -> land
 	link = { vic2 = 1798 hoi4 = 5045 }	# Bougouni -> land
 	# ignored link = { vic2 = 1794}
-	link = { vic2 = 1800 hoi4 = 12751 }	# Segu -> land
+	link = { vic2 = 1800 vic2 = 1794 hoi4 = 12751 }	# Segu, Bamako -> land
 	link = { vic2 = 1796 hoi4 = 10915 }	# Nioro -> land
 	link = { vic2 = 1882 hoi4 = 8008 }	# Kankan -> land
 	link = { vic2 = 1883 hoi4 = 5039 }	# Beyla -> land
 	link = { vic2 = 1900 hoi4 = 5070 }	# Odienne -> land
 	link = { vic2 = 1898 hoi4 = 8065 }	# Kong -> land
 	link = { vic2 = 1895 hoi4 = 8122 }	# Bouake -> land
-	link = { vic2 = 1899 hoi4 = 5013 }	# Bondouku -> land
+	link = { vic2 = 1899 vic2 = 1897 hoi4 = 5013 }	# Bondouku, Akoupe -> land
 	link = { vic2 = 1912 hoi4 = 8096 }	# Wa -> land
 	link = { vic2 = 1913 hoi4 = 8039 }	# Tamale -> land
-	link = { vic2 = 1910 hoi4 = 12787 }	# Kumasi -> land
+	link = { vic2 = 1911 vic2 = 1916 hoi4 = 12787 hoi4 = 13136 }	# MANY-TO-MANY: Kintampo, Yendi -> land, lake
 	link = { vic2 = 1921 hoi4 = 12762 }	# Nikki -> land
-	link = { vic2 = 1938 hoi4 = 12817 }	# Bussa -> land
+	link = { vic2 = 1938 vic2 = 1927 hoi4 = 12817 }	# Bussa, Ilorin -> land
 	link = { vic2 = 1925 hoi4 = 12731 }	# Ibadan -> land
-	link = { vic2 = 1922 hoi4 = 2001 hoi4 = 12874 }	# Jugu -> land, land
+	link = { vic2 = 1922 vic2 = 1904 hoi4 = 2001 hoi4 = 12874 }	# MANY-TO-MANY: Jugu, Fada Ngourma -> land, land
 	link = { vic2 = 1918 hoi4 = 12843 }	# Sokode -> land
 	link = { vic2 = 1797 hoi4 = 10829 }	# Kita -> land
 	link = { vic2 = 1801 hoi4 = 10812 hoi4 = 10771 }	# Mourdiah -> land, land
@@ -216,28 +216,28 @@
 	link = { vic2 = 1880 hoi4 = 12802 }	# Timbo -> land
 	link = { vic2 = 1791 hoi4 = 2100 }	# Bakel -> land
 	link = { vic2 = 1778 hoi4 = 8015 }	# Maghama -> land
-	link = { vic2 = 1884 hoi4 = 2094 }	# Freetown -> land
+	link = { vic2 = 1884 vic2 = 1886 vic2 = 1885 hoi4 = 2094 }	# Freetown, Bo, Falaba -> land
 	link = { vic2 = 1879 hoi4 = 1909 hoi4 = 2038 }	# Boffa -> land, land
-	link = { vic2 = 1908 hoi4 = 12742 }	# Cape Coast -> land
-	link = { vic2 = 1887 hoi4 = 7959 }	# Monrovia -> land
-	link = { vic2 = 1892 hoi4 = 10803 }	# Grand Lahou -> land
-	link = { vic2 = 1888 hoi4 = 8006 }	# Harper -> land
+	link = { vic2 = 1908 vic2 = 1909 vic2 = 1910 hoi4 = 12742 }	# Cape Coast, Sekondi, Kumasi -> land
+	link = { vic2 = 1887 vic2 = 1889 vic2 = 1890 hoi4 = 7959 }	# Monrovia, Bopolu, Gbarnga -> land
+	link = { vic2 = 1892 vic2 = 1894 hoi4 = 10803 }	# Grand Lahou, Grand Bassam -> land
+	link = { vic2 = 1888 vic2 = 1891 hoi4 = 8006 }	# Harper, Zwedru -> land
 	link = { vic2 = 1973 hoi4 = 8244 }	# Bata -> land
-	link = { vic2 = 1934 hoi4 = 10831 }	# Calabar -> land
-	link = { vic2 = 1932 hoi4 = 8034 }	# Bonny -> land
-	link = { vic2 = 1931 hoi4 = 4952 }	# Warri -> land
-	link = { vic2 = 1923 hoi4 = 2050 }	# Lagos -> land
-	link = { vic2 = 1919 hoi4 = 10919 }	# Cotonou -> land
-	link = { vic2 = 1914 hoi4 = 1951 }	# Lome -> land
+	link = { vic2 = 1934 vic2 = 1935 vic2 = 1957 hoi4 = 10831 }	# Calabar, Aruchukwu, Buea -> land
+	link = { vic2 = 1932 vic2 = 1933 hoi4 = 8034 }	# Bonny, Awka -> land
+	link = { vic2 = 1931 vic2 = 1928 hoi4 = 4952 }	# Warri, Benin -> land
+	link = { vic2 = 1923 vic2 = 1924 vic2 = 1926 hoi4 = 2050 }	# Lagos, Abeokuta, Ife -> land
+	link = { vic2 = 1919 vic2 = 1920 hoi4 = 10919 }	# Cotonou, Abomey -> land
+	link = { vic2 = 1914 vic2 = 1917 hoi4 = 1951 }	# Lome, Atakpame -> land
 	link = { vic2 = 1907 hoi4 = 10862 }	# Accra -> land
 	link = { vic2 = 1915 hoi4 = 12785 }	# Ho -> land
-	link = { vic2 = 1893 hoi4 = 10762 }	# Sassandra -> land
-	link = { vic2 = 1790 hoi4 = 12710 }	# Matam -> land
-	link = { vic2 = 1783 hoi4 = 4948 }	# Dakar -> land
+	link = { vic2 = 1893 vic2 = 1896 hoi4 = 10762 }	# Sassandra, Man -> land
+	link = { vic2 = 1790 vic2 = 1787 vic2 = 1786 vic2 = 1789 vic2 = 1776 vic2 = 1777 hoi4 = 12710 }	# Matam, Diourbel, Linguere, Podor, Rosso, Aleg -> land
+	link = { vic2 = 1783 vic2 = 2573 vic2 = 1784 hoi4 = 4948 }	# Dakar, Mboul, Saint-Louis -> land
 	link = { vic2 = 1788 hoi4 = 7972 }	# Kaolack -> land
 	link = { vic2 = 1878 hoi4 = 12858 }	# Gabu -> land
 	link = { vic2 = 1877 hoi4 = 12747 hoi4 = 12891 }	# Bissau -> land, land
-	link = { vic2 = 1792 hoi4 = 12834 }	# Ziguinchor -> land
+	link = { vic2 = 1792 vic2 = 1793 hoi4 = 12834 }	# Ziguinchor, Velingara -> land
 	link = { vic2 = 1785 hoi4 = 4989 }	# Banjul -> land
 	# French Africa
 	# 
@@ -249,6 +249,7 @@
 	link = { vic2 = 2133 hoi4 = 10995 }	# South Georgia -> land
 	link = { vic2 = 2130 hoi4 = 13013 }	# Ascension -> land
 	link = { vic2 = 2129 hoi4 = 13016 }	# Saint Helena -> land
+	link = { vic2 = 2132 }	# Tristan da Cunha -> DROPPED
 	# Atlantic Islands
 	# 
 	# China
@@ -592,7 +593,7 @@
 	link = { vic2 = 2291 hoi4 = 2156 }	# Piura -> land
 	link = { vic2 = 2280 hoi4 = 8252 }	# Guayaquil -> land
 	link = { vic2 = 2281 hoi4 = 8047 }	# Esmereldas -> land
-	link = { vic2 = 2257 hoi4 = 10846 }	# Popayán -> land
+	link = { vic2 = 2257 vic2 = 2259 hoi4 = 10846 }	# Popayán, Pasto -> land
 	link = { vic2 = 2258 hoi4 = 7936 hoi4 = 7991 }	# Buenaventura -> land, land
 	link = { vic2 = 2248 hoi4 = 2079 }	# Ibagué -> land
 	link = { vic2 = 2250 hoi4 = 10790 }	# Manizales -> land
@@ -612,7 +613,8 @@
 	link = { vic2 = 2274 hoi4 = 5056 hoi4 = 4892 hoi4 = 5000 }	# Barinas -> land, land, land
 	link = { vic2 = 2265 hoi4 = 4942 }	# Guanare -> land
 	link = { vic2 = 2266 hoi4 = 8080 hoi4 = 8024 }	# Calabozo -> land, land
-	link = { vic2 = 2272 hoi4 = 4526 hoi4 = 153 }	# Coro -> land, land
+	link = { vic2 = 2235 vic2 = 2234 hoi4 = 153 }	# Aruba, Curacao -> land
+	link = { vic2 = 2272 hoi4 = 4526 }	# Coro -> land
 	link = { vic2 = 2268 hoi4 = 10855 }	# San Felipe -> land
 	link = { vic2 = 2264 hoi4 = 8113 }	# Caracas -> land
 	link = { vic2 = 2267 hoi4 = 7968 }	# Cumaná -> land
@@ -627,8 +629,8 @@
 	link = { vic2 = 2246 hoi4 = 4934 }	# Maripasoula -> land
 	link = { vic2 = 2241 hoi4 = 12885 }	# Cayenne -> land
 	link = { vic2 = 2402 hoi4 = 10934 }	# Manaus -> land
-	link = { vic2 = 2412 hoi4 = 5008 }	# Óbidos -> land
-	link = { vic2 = 2415 hoi4 = 4980 }	# Macapá -> land
+	link = { vic2 = 2412 vic2 = 2408 hoi4 = 5008 }	# Óbidos, Oriximina -> land
+	link = { vic2 = 2415 vic2 = 2414 hoi4 = 4980 }	# Macapá, Amapá -> land
 	link = { vic2 = 2411 hoi4 = 1979 }	# Santarém -> land
 	link = { vic2 = 2405 hoi4 = 5232 hoi4 = 12965 }	# Borba -> land, land
 	link = { vic2 = 2550 hoi4 = 11010 hoi4 = 12939 }	# Forte do Príncipe -> land, land
@@ -710,7 +712,8 @@
 	link = { vic2 = 2358 hoi4 = 8238 }	# Santo Tomás -> land
 	link = { vic2 = 2554 hoi4 = 11007 }	# Posadas -> land
 	link = { vic2 = 2381 hoi4 = 10985 }	# Río Cuarto -> land
-	link = { vic2 = 2368 hoi4 = 10944 hoi4 = 2224 hoi4 = 5229 }	# Salta -> land, land, land
+	link = { vic2 = 2371 vic2 = 2369 vic2 = 2368 vic2 = 2372 vic2 = 2370 hoi4 = 2224 hoi4 = 10944 }	# MANY-TO-MANY: Equia, Jujuy, Salta, Rivadavia, Cochinoca -> land, land
+	link = { vic2 = 2315 hoi4 = 5229 }	# Tarija -> land
 	link = { vic2 = 2373 hoi4 = 10965 }	# Tucumán -> land
 	link = { vic2 = 2375 hoi4 = 8195 hoi4 = 11001 }	# Vinchina -> land, land
 	link = { vic2 = 2374 hoi4 = 5143 hoi4 = 8216 }	# Catamarca -> land, land
@@ -750,12 +753,10 @@
 	link = { vic2 = 2316 hoi4 = 10924 }	# Santa Cruz -> land
 	link = { vic2 = 2320 hoi4 = 10982 hoi4 = 8211 }	# Riberalta -> land, land
 	link = { vic2 = 2317 hoi4 = 12973 }	# San Ignacio -> land
-	link = { vic2 = 2318 hoi4 = 5179 hoi4 = 2160 hoi4 = 12902 hoi4 = 12916 }	# Roboré -> land, land, land, land
-	link = { vic2 = 2313 hoi4 = 12930 }	# Chuquisaca -> land
-	link = { vic2 = 2370 hoi4 = 10987 }	# Cochinoca -> land
-	link = { vic2 = 2372 hoi4 = 12979 }	# Rivadavia -> land
+	link = { vic2 = 2318 hoi4 = 5179 hoi4 = 2160 hoi4 = 12902 hoi4 = 12916 hoi4 = 12979 }	# Roboré -> land, land, land, land, land
+	link = { vic2 = 2313 hoi4 = 12930 hoi4 = 10987 }	# Chuquisaca -> land, land
 	link = { vic2 = 2314 hoi4 = 2174 }	# Potosí -> land
-	link = { vic2 = 2307 hoi4 = 5131 }	# Iquique -> land
+	link = { vic2 = 2307 vic2 = 2308 hoi4 = 5131 }	# Iquique, Arica -> land
 	link = { vic2 = 2309 hoi4 = 8231 hoi4 = 8217 }	# Calama -> land, land
 	link = { vic2 = 2305 hoi4 = 5171 hoi4 = 12994 hoi4 = 5146 }	# Antofagasta -> land, land, land
 	link = { vic2 = 2322 hoi4 = 12914 hoi4 = 5228 hoi4 = 11000 hoi4 = 5192 }	# Copiapó -> land, land, land, land
@@ -767,16 +768,16 @@
 	link = { vic2 = 2331 hoi4 = 8251 }	# Chillán -> land
 	link = { vic2 = 2330 hoi4 = 12984 }	# Cauquenes -> land
 	link = { vic2 = 2391 hoi4 = 8192 }	# Neuquén -> land
-	link = { vic2 = 2328 hoi4 = 5121 hoi4 = 12920 }	# Valdivia -> land, land
+	link = { vic2 = 2328 vic2 = 2329 hoi4 = 5121 hoi4 = 12920 }	# MANY-TO-MANY: Valdivia, Temuco -> land, land
 	link = { vic2 = 2394 hoi4 = 12982 hoi4 = 2199 hoi4 = 12306 }	# Bariloche -> land, land, land
 	link = { vic2 = 2355 hoi4 = 12321 hoi4 = 12494 }	# Carmen -> land, land
 	link = { vic2 = 2392 hoi4 = 10981 }	# Viedma -> land
-	link = { vic2 = 2332 hoi4 = 5169 hoi4 = 12954 }	# Osorno -> land, land
+	link = { vic2 = 2332 hoi4 = 5169 hoi4 = 12954 hoi4 = 5118 }	# Osorno -> land, land, land
 	link = { vic2 = 2397 hoi4 = 8176 hoi4 = 8161 }	# Esquel -> land, land
 	link = { vic2 = 2396 hoi4 = 10953 hoi4 = 12349 hoi4 = 11005 }	# Rawson -> land, land, land
 	link = { vic2 = 2398 hoi4 = 8913 hoi4 = 12952 hoi4 = 2169 }	# Puerto Deseado -> land, land, land
 	link = { vic2 = 2399 hoi4 = 5173 hoi4 = 12946 }	# Río Gallegos -> land, land
-	link = { vic2 = 2333 hoi4 = 8218 hoi4 = 8198 hoi4 = 10961 hoi4 = 2161 hoi4 = 5159 hoi4 = 5118 }	# Puerto Aisén -> land, land, land, land, land, land
+	link = { vic2 = 2333 hoi4 = 8218 hoi4 = 8198 hoi4 = 10961 hoi4 = 2161 hoi4 = 5159 }	# Puerto Aisén -> land, land, land, land, land
 	link = { vic2 = 2334 hoi4 = 5201 hoi4 = 5215 }	# Punta Arenas -> land, land
 	link = { vic2 = 2335 hoi4 = 5209 }	# Porvenir -> land
 	link = { vic2 = 2400 hoi4 = 11009 }	# Río Grande -> land
@@ -784,10 +785,10 @@
 	# Southern Cone
 	# 
 	# Russia (omg that took forever)
-	link = { vic2 = 2651 hoi4 = 6085 }	# Udanchniy -> land
+	link = { vic2 = 2651 vic2 = 2650 vic2 = 2695 vic2 = 2694 vic2 = 2677 hoi4 = 6085 }	# Udanchniy, Nyurba, Mukhtuya, Vanavara, Dotkon -> land
 	link = { vic2 = 2671 hoi4 = 1722 }	# Zhilinda -> land
 	link = { vic2 = 1069 hoi4 = 2853 }	# Vilyuysk -> land
-	link = { vic2 = 2672 hoi4 = 1745 }	# Pokrovsk -> land
+	link = { vic2 = 2672 vic2 = 2649 hoi4 = 1745 }	# Pokrovsk, Zhigansk -> land
 	link = { vic2 = 2656 hoi4 = 10631 hoi4 = 7863 hoi4 = 1697 }	# Tayimba -> land, land, land
 	link = { vic2 = 2701 hoi4 = 1741 hoi4 = 4743 hoi4 = 4812 }	# Surinda -> land, land, land
 	link = { vic2 = 1070 hoi4 = 7707 hoi4 = 4785 hoi4 = 1837 hoi4 = 4842 hoi4 = 7805 }	# Bryanka -> land, land, land, land, land
@@ -801,11 +802,11 @@
 	link = { vic2 = 2657 hoi4 = 4733 hoi4 = 12643 hoi4 = 10635 }	# Svetlogorsk -> land, land, land
 	link = { vic2 = 2644 hoi4 = 1852 hoi4 = 10589 hoi4 = 12611 hoi4 = 7765 hoi4 = 7817 hoi4 = 1795 hoi4 = 10714 hoi4 = 4821 hoi4 = 12565 hoi4 = 7889 hoi4 = 4855 }	# Olyekminsk -> land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 2645 hoi4 = 1666 hoi4 = 4795 hoi4 = 12538 hoi4 = 4868 hoi4 = 7759 hoi4 = 10583 hoi4 = 4762 hoi4 = 1761 hoi4 = 7854 hoi4 = 7736 hoi4 = 4835 hoi4 = 4716 hoi4 = 12575 hoi4 = 10654 hoi4 = 12506 }	# Chilchi -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 2676 hoi4 = 1707 hoi4 = 7828 hoi4 = 4737 hoi4 = 1792 hoi4 = 12608 hoi4 = 7726 hoi4 = 12681 hoi4 = 10557 hoi4 = 13059 hoi4 = 12531 hoi4 = 10688 hoi4 = 10628 hoi4 = 4703 hoi4 = 12668 }	# Kirensk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 2676 hoi4 = 7828 hoi4 = 4737 hoi4 = 1792 hoi4 = 12608 hoi4 = 7726 hoi4 = 12681 hoi4 = 10557 hoi4 = 13059 hoi4 = 12531 hoi4 = 10688 hoi4 = 10628 hoi4 = 4703 hoi4 = 12668 }	# Kirensk -> land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1079 hoi4 = 10683 hoi4 = 7786 hoi4 = 4677 hoi4 = 4719 hoi4 = 12622 hoi4 = 10559 hoi4 = 7725 hoi4 = 10574 hoi4 = 12641 hoi4 = 1672 hoi4 = 1826 hoi4 = 10643 hoi4 = 10565 hoi4 = 12556 hoi4 = 4832 hoi4 = 10681 hoi4 = 4675 }	# Nerchinsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1078 hoi4 = 4837 hoi4 = 10528 hoi4 = 7835 hoi4 = 12644 hoi4 = 10658 hoi4 = 7816 hoi4 = 4766 hoi4 = 12507 hoi4 = 7860 hoi4 = 7751 hoi4 = 4705 hoi4 = 1696 }	# Chita -> land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1076 hoi4 = 7902 hoi4 = 1735 hoi4 = 10699 hoi4 = 7802 hoi4 = 12523 hoi4 = 10570 hoi4 = 1876 hoi4 = 7713 hoi4 = 10562 hoi4 = 1813 hoi4 = 10549 hoi4 = 4750 hoi4 = 7841 hoi4 = 4808 hoi4 = 1803 hoi4 = 7876 hoi4 = 10664 hoi4 = 7769 }	# Bratsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1075 hoi4 = 1762 hoi4 = 10543 hoi4 = 1810 hoi4 = 10524 hoi4 = 10596 hoi4 = 12647 hoi4 = 4815 hoi4 = 10661 hoi4 = 12540 hoi4 = 4797 hoi4 = 1727 hoi4 = 12525 hoi4 = 1829 hoi4 = 7838 }	# Irkutsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 1075 hoi4 = 1762 hoi4 = 10543 hoi4 = 1810 hoi4 = 10524 hoi4 = 10596 hoi4 = 12647 hoi4 = 4815 hoi4 = 10661 hoi4 = 12540 hoi4 = 4797 hoi4 = 1727 hoi4 = 12525 hoi4 = 1829 hoi4 = 7838 hoi4 = 1707 }	# Irkutsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 2681 hoi4 = 1729 hoi4 = 7809 hoi4 = 1757 }	# Kikkiakki -> land, land, land
 	link = { vic2 = 2646 hoi4 = 4730 hoi4 = 10533 hoi4 = 1726 hoi4 = 10663 hoi4 = 7882 hoi4 = 12514 hoi4 = 1856 hoi4 = 7837 hoi4 = 7781 hoi4 = 10561 }	# Ases Igan -> land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1065 hoi4 = 12574 hoi4 = 1784 hoi4 = 12672 hoi4 = 12542 hoi4 = 12639 hoi4 = 1768 hoi4 = 7685 hoi4 = 10692 hoi4 = 4817 }	# Nizhnevartovsk -> land, land, land, land, land, land, land, land, land
@@ -915,7 +916,7 @@
 	link = { vic2 = 960 hoi4 = 550 hoi4 = 11490 hoi4 = 11464 hoi4 = 9533 hoi4 = 3570 hoi4 = 11514 hoi4 = 3470 }	# Zhitomir -> land, land, land, land, land, land, land
 	link = { vic2 = 992 hoi4 = 11165 hoi4 = 11083 hoi4 = 3085 hoi4 = 11131 hoi4 = 3035 hoi4 = 39 hoi4 = 9153 hoi4 = 9177 hoi4 = 9111 hoi4 = 11048 hoi4 = 9060 hoi4 = 194 hoi4 = 6131 hoi4 = 9107 hoi4 = 3163 hoi4 = 11093 hoi4 = 93 }	# Belozersk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 993 hoi4 = 6017 hoi4 = 11036 hoi4 = 11103 hoi4 = 3160 hoi4 = 3057 hoi4 = 6073 hoi4 = 11062 hoi4 = 60 hoi4 = 166 }	# Vyterga -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 2670 hoi4 = 3184 }	# Tiksi -> land
+	link = { vic2 = 2670 vic2 = 2652 hoi4 = 3184 }	# Tiksi, Kular -> land
 	link = { vic2 = 2673 hoi4 = 13060 }	# Olenyok -> land
 	link = { vic2 = 2653 hoi4 = 11122 }	# Saskylah -> land
 	link = { vic2 = 2654 hoi4 = 11261 }	# Khatanga -> land
@@ -934,7 +935,7 @@
 	link = { vic2 = 2667 hoi4 = 2877 }	# Bulun -> land
 	link = { vic2 = 1071 hoi4 = 6211 }	# Bytantaysk -> land
 	link = { vic2 = 2643 hoi4 = 12634 }	# Honuu -> land
-	link = { vic2 = 2647 hoi4 = 12549 }	# Yansk -> land
+	link = { vic2 = 2647 vic2 = 2668 hoi4 = 12549 }	# Yansk, Verkhoyansk -> land
 	link = { vic2 = 2619 hoi4 = 13061 }	# Abiy -> land
 	link = { vic2 = 2642 hoi4 = 4878 }	# Ust Nera -> land
 	link = { vic2 = 2669 hoi4 = 1878 hoi4 = 4798 hoi4 = 4726 hoi4 = 7746 }	# Amga -> land, land, land, land
@@ -954,16 +955,16 @@
 	link = { vic2 = 2639 hoi4 = 12551 }	# Susuman -> land
 	link = { vic2 = 1072 hoi4 = 12518 }	# Okhotsk -> land
 	link = { vic2 = 2620 hoi4 = 12592 }	# Syasir -> land
-	link = { vic2 = 2622 hoi4 = 4455 }	# Markovo -> land
-	link = { vic2 = 2664 hoi4 = 4006 }	# Oyotuni -> land
+	link = { vic2 = 2622 vic2 = 2660 hoi4 = 4455 }	# Markovo, Bereyezovka -> land
+	link = { vic2 = 2664 vic2 = 2665 hoi4 = 4006 }	# Oyotuni, Chokurdakh -> land
 	link = { vic2 = 2662 hoi4 = 1819 }	# Cherskiy -> land
 	link = { vic2 = 2638 hoi4 = 1865 }	# Omsukchan -> land
 	link = { vic2 = 2618 hoi4 = 12683 }	# Talaya -> land
 	link = { vic2 = 1073 hoi4 = 10540 }	# Yevensk -> land
 	link = { vic2 = 2661 hoi4 = 13062 }	# Nizhnekolymsk -> land
 	link = { vic2 = 2666 hoi4 = 5264 }	# Pevek -> land
-	link = { vic2 = 2637 hoi4 = 13063 }	# Novo Mariinsk -> land
-	link = { vic2 = 2634 hoi4 = 4744 }	# Rassvet -> land
+	link = { vic2 = 2637 vic2 = 2590 hoi4 = 13063 }	# Novo Mariinsk, Ugolnoye -> land
+	link = { vic2 = 2634 vic2 = 2663 hoi4 = 4744 }	# Rassvet, Kamenskoye -> land
 	link = { vic2 = 2616 hoi4 = 1823 }	# Tilichiki -> land
 	link = { vic2 = 2633 hoi4 = 1839 hoi4 = 1863 }	# Ossora -> land, land
 	link = { vic2 = 1074 hoi4 = 12522 hoi4 = 7878 hoi4 = 4728 hoi4 = 12207 hoi4 = 13067 }	# Petropavlovsk -> land, land, land, land, land
@@ -1167,8 +1168,8 @@
 	link = { vic2 = 2203 hoi4 = 12878 }	# Limón -> land
 	link = { vic2 = 2201 hoi4 = 13087 }	# San José -> land
 	link = { vic2 = 2200 hoi4 = 2075 }	# Bluefields -> land
-	link = { vic2 = 2196 hoi4 = 2031 }	# Puerto Lempira -> land
-	link = { vic2 = 2195 hoi4 = 12865 }	# La Ceiba -> land
+	link = { vic2 = 2196 vic2 = 2195 hoi4 = 2031 }	# Puerto Lempira, La Ceiba -> land
+	link = { vic2 = 2193 hoi4 = 12865 }	# Comayagua -> land
 	link = { vic2 = 2194 hoi4 = 8017 }	# San Pedro Sula -> land
 	link = { vic2 = 2192 hoi4 = 13093 }	# San Miguel -> land
 	link = { vic2 = 2191 hoi4 = 12823 }	# San Salvador -> land
@@ -1206,9 +1207,9 @@
 	# Mexico
 	# 
 	# Carribean
-	link = { vic2 = 2223 hoi4 = 4155 }	# Saint Thomas -> land
+	link = { vic2 = 2223 vic2 = 2226 hoi4 = 4155 }	# Saint Thomas, Tortola -> land
 	link = { vic2 = 2236 hoi4 = 13084 }	# Saint Martin -> land
-	link = { vic2 = 2225 hoi4 = 4450 }	# Montserrat -> land
+	link = { vic2 = 2225 vic2 = 2227 vic2 = 2224 hoi4 = 4450 }	# Montserrat, Saint Kitts, Antigua -> land
 	link = { vic2 = 2230 hoi4 = 9377 }	# Guadeloupe -> land
 	link = { vic2 = 2232 hoi4 = 7123 }	# Dominica -> land
 	link = { vic2 = 2228 hoi4 = 177 }	# Martinique -> land
@@ -1223,7 +1224,7 @@
 	link = { vic2 = 2216 hoi4 = 4598 hoi4 = 7632 }	# La Vega -> land, land
 	link = { vic2 = 2213 hoi4 = 4641 hoi4 = 1635 }	# Port Au Prince -> land, land
 	link = { vic2 = 2215 hoi4 = 1594 }	# Cap Haitien -> land
-	link = { vic2 = 2217 hoi4 = 12304 hoi4 = 12477 }	# Jamaica -> land, land
+	link = { vic2 = 2217 vic2 = 2218 hoi4 = 12304 hoi4 = 12477 }	# MANY-TO-MANY: Jamaica, Cayman Islands -> land, land
 	link = { vic2 = 2212 hoi4 = 1550 hoi4 = 12347 hoi4 = 7590 }	# Santiago de Cuba -> land, land, land
 	link = { vic2 = 2211 hoi4 = 10374 hoi4 = 4476 hoi4 = 7546 }	# Camagüey -> land, land, land
 	link = { vic2 = 2210 hoi4 = 10498 hoi4 = 7451 }	# Jagua -> land, land
@@ -1522,9 +1523,9 @@
 	link = { vic2 = 1811 hoi4 = 10758 }	# Maradi -> land
 	link = { vic2 = 1812 hoi4 = 10917 }	# Agades -> land
 	link = { vic2 = 1817 hoi4 = 1956 }	# Bilma -> land
-	link = { vic2 = 1825 hoi4 = 10893 }	# Zouar -> land
-	link = { vic2 = 1826 hoi4 = 5136 }	# Faya -> land
-	link = { vic2 = 1842 hoi4 = 4902 }	# Junaynah -> land
+	link = { vic2 = 1825 hoi4 = 10893 hoi4 = 5136 }	# Zouar -> land, land
+	link = { vic2 = 1826 hoi4 = 4902 }	# Faya -> land
+	link = { vic2 = 1842 hoi4 = 8103 }	# Junaynah -> land
 	link = { vic2 = 1814 hoi4 = 8128 }	# Madama -> land
 	link = { vic2 = 1813 hoi4 = 4913 hoi4 = 7939 }	# Arlit -> land, land
 	link = { vic2 = 1807 hoi4 = 10868 }	# Tessalit -> land
@@ -1540,8 +1541,8 @@
 	# South Africa
 	link = { vic2 = 2069 hoi4 = 7842 }	# Gweru -> land
 	link = { vic2 = 2070 hoi4 = 10929 }	# Mutare -> land
-	link = { vic2 = 2058 hoi4 = 5155 }	# Mossurize -> land
-	link = { vic2 = 2057 hoi4 = 12935 hoi4 = 2120 }	# Sofala -> land, land
+	link = { vic2 = 2058 vic2 = 2055 hoi4 = 5155 }	# Mossurize, Songo -> land
+	link = { vic2 = 2057 vic2 = 2052 hoi4 = 12935 hoi4 = 2120 }	# MANY-TO-MANY: Sofala, Massekisse -> land, land
 	link = { vic2 = 2073 hoi4 = 1688 hoi4 = 2151 }	# Masvingo -> land, land
 	link = { vic2 = 2071 hoi4 = 4851 }	# Bulawayo -> land
 	link = { vic2 = 2103 hoi4 = 5231 }	# Philippolis -> land
@@ -1553,7 +1554,7 @@
 	link = { vic2 = 2108 hoi4 = 5217 hoi4 = 5106 }	# Mosega -> land, land
 	link = { vic2 = 2107 hoi4 = 2213 }	# Klerksdorp -> land
 	link = { vic2 = 2109 hoi4 = 2171 }	# Lydenburg -> land
-	link = { vic2 = 2105 hoi4 = 10400 }	# Pretoria -> land
+	link = { vic2 = 2105 vic2 = 2106 hoi4 = 10400 }	# Pretoria, Witwatersrand -> land
 	link = { vic2 = 2004 hoi4 = 12985 }	# Moçâmedes -> land
 	link = { vic2 = 2075 hoi4 = 12963 }	# Serowe -> land
 	link = { vic2 = 2113 hoi4 = 8178 }	# Ulundi -> land
@@ -1565,7 +1566,7 @@
 	link = { vic2 = 2072 hoi4 = 1874 }	# Hwange -> land
 	link = { vic2 = 2076 hoi4 = 1580 }	# Nokaneng -> land
 	link = { vic2 = 2077 hoi4 = 12940 }	# Tsabong -> land
-	link = { vic2 = 2095 hoi4 = 5203 hoi4 = 1509 hoi4 = 10668 }	# Dikathong -> land, land, land
+	link = { vic2 = 2095 vic2 = 2094 hoi4 = 5203 hoi4 = 1509 hoi4 = 10668 }	# MANY-TO-MANY: Dikathong, Kimberley -> land, land, land
 	link = { vic2 = 2079 hoi4 = 12921 hoi4 = 10978 }	# Swakopmund -> land, land
 	link = { vic2 = 2081 hoi4 = 12519 }	# Linyati -> land
 	link = { vic2 = 2080 hoi4 = 8136 hoi4 = 10957 }	# Tsumeb -> land, land
@@ -1578,8 +1579,8 @@
 	link = { vic2 = 2093 hoi4 = 12419 }	# Calvinia -> land
 	link = { vic2 = 2558 hoi4 = 10697 }	# De Aar -> land
 	link = { vic2 = 2088 hoi4 = 4528 hoi4 = 10442 }	# Springbok -> land, land
-	link = { vic2 = 2099 hoi4 = 4556 }	# Mathele -> land
-	link = { vic2 = 2097 hoi4 = 4584 }	# Graaf Reinet -> land
+	link = { vic2 = 2104 hoi4 = 4556 }	# Thaba Bosiu -> land
+	link = { vic2 = 2097 vic2 = 2099 hoi4 = 4584 }	# Graaf Reinet, Mathele -> land
 	link = { vic2 = 2092 hoi4 = 4822 }	# Beaufort -> land
 	link = { vic2 = 2111 hoi4 = 1468 }	# Durban -> land
 	link = { vic2 = 2100 hoi4 = 7576 }	# Umtata -> land
@@ -1587,7 +1588,8 @@
 	link = { vic2 = 2096 hoi4 = 4696 }	# Port Elizabeth -> land
 	link = { vic2 = 2091 hoi4 = 12547 }	# Mossel Bay -> land
 	link = { vic2 = 2089 hoi4 = 12692 }	# Worcester -> land
-	link = { vic2 = 2087 hoi4 = 10415 hoi4 = 12589 }	# Cape Town -> land, land
+	link = { vic2 = 2090 hoi4 = 12589 }	# Swettenham -> land
+	link = { vic2 = 2087 hoi4 = 10415 }	# Cape Town -> land
 	# South Africa (Very messy conversion, lots of provinces missed)
 	# 
 	# Malay
@@ -1670,7 +1672,7 @@
 	link = { vic2 = 1427 hoi4 = 10282 hoi4 = 4409 hoi4 = 12955 hoi4 = 7227 hoi4 = 8221 hoi4 = 10310 }	# Kota Waringin -> land, land, land, land, land, land
 	link = { vic2 = 1428 hoi4 = 2170 hoi4 = 2222 hoi4 = 7424 }	# Sintang -> land, land, land
 	link = { vic2 = 1426 hoi4 = 12129 hoi4 = 4279 hoi4 = 1304 hoi4 = 1316 hoi4 = 4335 hoi4 = 1230 }	# Pontianak -> land, land, land, land, land, land
-	link = { vic2 = 1394 hoi4 = 1208 hoi4 = 12905 hoi4 = 4216 hoi4 = 12283 }	# Kuching -> land, land, land, land
+	link = { vic2 = 1394 vic2 = 2576 hoi4 = 12905 hoi4 = 4216 hoi4 = 12283 hoi4 = 1208 }	# MANY-TO-MANY: Kuching, Natuna -> land, land, land, land
 	link = { vic2 = 1395 hoi4 = 1335 hoi4 = 10269 hoi4 = 8091 hoi4 = 2117 hoi4 = 4396 hoi4 = 10285 hoi4 = 7443 }	# Bintulu -> land, land, land, land, land, land, land
 	link = { vic2 = 1397 hoi4 = 1306 hoi4 = 10240 hoi4 = 12228 hoi4 = 7358 hoi4 = 4338 hoi4 = 12186 hoi4 = 10199 }	# Sandakan -> land, land, land, land, land, land, land
 	link = { vic2 = 1396 hoi4 = 10143 hoi4 = 4282 hoi4 = 10212 hoi4 = 12171 }	# Api -> land, land, land, land
@@ -1787,7 +1789,7 @@
 	link = { vic2 = 2122 hoi4 = 5185 }	# Toliara -> land
 	link = { vic2 = 2121 hoi4 = 8188 }	# Mahajanga -> land
 	link = { vic2 = 2120 hoi4 = 5222 }	# Antsiranana -> land
-	link = { vic2 = 2123 hoi4 = 13072 }	# Comoros -> land
+	link = { vic2 = 2123 vic2 = 2124 hoi4 = 13072 }	# Comoros, Mayotte -> land
 	# Madagascar (see Mayotte)
 	# 
 	# Egypt
@@ -1800,7 +1802,8 @@
 	link = { vic2 = 1833 hoi4 = 12725 hoi4 = 2003 }	# Suakin -> land, land
 	link = { vic2 = 1834 hoi4 = 1977 }	# Halaib -> land
 	link = { vic2 = 1835 hoi4 = 4961 hoi4 = 12836 hoi4 = 4138 }	# Dongola -> land, land, land
-	link = { vic2 = 2564 hoi4 = 7987 hoi4 = 10900 hoi4 = 8103 }	# Salima -> land, land, land
+	link = { vic2 = 1838 hoi4 = 10900 }	# Obeid -> land
+	link = { vic2 = 2564 hoi4 = 7987 }	# Salima -> land
 	link = { vic2 = 1758 hoi4 = 10907 hoi4 = 12733 hoi4 = 10869 }	# Farafra -> land, land, land
 	link = { vic2 = 1761 hoi4 = 10097 hoi4 = 2064 }	# Baris -> land, land
 	link = { vic2 = 1760 hoi4 = 12099 hoi4 = 12816 }	# Mut -> land, land
@@ -1862,7 +1865,7 @@
 	link = { vic2 = 1169 hoi4 = 4993 }	# Sohar -> land
 	link = { vic2 = 1167 hoi4 = 7960 hoi4 = 2048 hoi4 = 8108 }	# Abu Dhabi -> land, land, land
 	link = { vic2 = 1168 hoi4 = 10904 }	# Dubai -> land
-	link = { vic2 = 1165 hoi4 = 8051 }	# Doha -> land
+	link = { vic2 = 1165 vic2 = 1162 hoi4 = 8051 }	# Doha, Bahrain -> land
 	# Arabai (See Qatar)
 	# 
 	# Iraq
@@ -2051,6 +2054,7 @@
 	# Australia
 	link = { vic2 = 2473 hoi4 = 2146 hoi4 = 5161 hoi4 = 1667 hoi4 = 4836 hoi4 = 5134 hoi4 = 10455 hoi4 = 11019 }	# Wagga Wagga -> land, land, land, land, land, land, land
 	link = { vic2 = 2474 hoi4 = 4673 hoi4 = 4500 hoi4 = 4453 hoi4 = 4478 hoi4 = 7649 hoi4 = 4658 hoi4 = 7471 hoi4 = 7533 hoi4 = 12377 }	# Moree -> land, land, land, land, land, land, land, land, land
+	link = { vic2 = 2508 }	# Norfolk Island -> DROPPED
 	link = { vic2 = 2470 hoi4 = 1611 hoi4 = 7664 hoi4 = 10500 }	# Port Macquarie -> land, land, land
 	link = { vic2 = 2469 hoi4 = 7450 hoi4 = 7496 hoi4 = 7520 }	# Newcastle -> land, land, land
 	link = { vic2 = 2471 hoi4 = 12435 hoi4 = 10682 hoi4 = 10427 hoi4 = 10388 hoi4 = 1537 }	# Ophir -> land, land, land, land, land
@@ -2155,7 +2159,7 @@
 	# Poland
 	# 
 	# Turkey (spare place in cyprus)
-	link = { vic2 = 857 hoi4 = 11984 }	# Famagusta -> land
+	link = { vic2 = 857 vic2 = 855 hoi4 = 11984 }	# Famagusta, Nicosia -> land
 	link = { vic2 = 856 hoi4 = 7193 }	# Limassol -> land
 	link = { vic2 = 892 hoi4 = 1463 hoi4 = 12476 }	# Hakkari -> land, land
 	link = { vic2 = 893 hoi4 = 7530 hoi4 = 12387 }	# Diyarbakir -> land, land
@@ -2368,7 +2372,7 @@
 	link = { vic2 = 695 hoi4 = 6332 hoi4 = 11265 hoi4 = 348 hoi4 = 395 }	# Königsberg -> land, land, land, land
 	link = { vic2 = 698 hoi4 = 3288 }	# Memel -> land
 	link = { vic2 = 362 hoi4 = 3272 hoi4 = 6281 hoi4 = 11312 hoi4 = 6407 }	# Marijampole -> land, land, land, land
-	link = { vic2 = 361 hoi4 = 6296 hoi4 = 327 hoi4 = 9404 }	# NOTHING -> land, land, land
+	link = { vic2 = 361 hoi4 = 6296 hoi4 = 327 hoi4 = 9404 }	# Kaunas -> land, land, land
 	link = { vic2 = 360 hoi4 = 9295 hoi4 = 3320 hoi4 = 11391 hoi4 = 6340 }	# Vilnius -> land, land, land, land
 	link = { vic2 = 363 hoi4 = 9357 hoi4 = 9438 hoi4 = 9374 hoi4 = 9246 hoi4 = 11226 hoi4 = 11498 }	# Panevezys -> land, land, land, land, land, land
 	link = { vic2 = 364 hoi4 = 9483 hoi4 = 6376 hoi4 = 3337 hoi4 = 6360 hoi4 = 6229 hoi4 = 530 }	# Siauliai -> land, land, land, land, land, land
@@ -2528,7 +2532,7 @@
 	link = { vic2 = 577 hoi4 = 3444 hoi4 = 3512 }	# Cleves -> land, land
 	link = { vic2 = 381 hoi4 = 11562 }	# Maastricht -> land
 	link = { vic2 = 543 hoi4 = 11360 }	# Emden -> land
-	link = { vic2 = 540 hoi4 = 241 hoi4 = 336 }	# Oldenburg -> land, land
+	link = { vic2 = 540 vic2 = 533 hoi4 = 241 hoi4 = 336 }	# MANY-TO-MANY: Oldenburg, Heligoland -> land, land
 	link = { vic2 = 531 hoi4 = 374 hoi4 = 6349 }	# Stade -> land, land
 	link = { vic2 = 538 hoi4 = 11388 hoi4 = 247 }	# Osnabrück -> land, land
 	link = { vic2 = 541 hoi4 = 309 hoi4 = 3234 }	# Cloppenburg -> land, land
@@ -2762,7 +2766,7 @@
 	link = { vic2 = 402 hoi4 = 485 hoi4 = 11420 hoi4 = 454 }	# Amiens -> land, land, land
 	link = { vic2 = 415 hoi4 = 6599 hoi4 = 9434 hoi4 = 11563 }	# Rouen -> land, land, land
 	link = { vic2 = 417 hoi4 = 539 hoi4 = 11521 hoi4 = 553 }	# Alençon -> land, land, land
-	link = { vic2 = 418 hoi4 = 9550 hoi4 = 6449 hoi4 = 3579 hoi4 = 11535 }	# Caen -> land, land, land, land
+	link = { vic2 = 418 vic2 = 419 hoi4 = 9550 hoi4 = 6449 hoi4 = 3579 hoi4 = 11535 }	# MANY-TO-MANY: Caen, Channel Islands -> land, land, land, land
 	link = { vic2 = 423 hoi4 = 11465 hoi4 = 11616 }	# Nantes -> land, land
 	link = { vic2 = 424 hoi4 = 11508 hoi4 = 9495 hoi4 = 527 }	# Rennes -> land, land, land
 	link = { vic2 = 422 hoi4 = 9510 hoi4 = 6536 }	# Vannes -> land, land
@@ -2826,7 +2830,7 @@
 	link = { vic2 = 2127 hoi4 = 2188 }	# Seychelles -> land
 	link = { vic2 = 348 hoi4 = 9228 }	# Åland Islands -> land
 	link = { vic2 = 1320 hoi4 = 10321 hoi4 = 12251 }	# Andaman Islands -> land, land
-	link = { vic2 = 2128 hoi4 = 13019 } #additions
+	link = { vic2 = 2128 hoi4 = 13019 }	# Diego Garcia -> land
 	# Great Britain
 	# 
 }
