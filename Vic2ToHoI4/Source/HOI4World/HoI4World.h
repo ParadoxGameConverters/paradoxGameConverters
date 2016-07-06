@@ -69,6 +69,7 @@ class HoI4World
 		void	setSphereLeaders(const V2World & sourceWorld, const CountryMapping & countryMap);
 		void	thatsgermanWarCreator(const V2World & sourceWorld, const CountryMapping& countryMap);
 		void HowToTakeLand(HoI4Country * TargetCountry, HoI4Country * AttackingCountry);
+		vector<HoI4Country*> GetMorePossibleAllies(HoI4Country * CountryThatWantsAllies);
 		double GetFactionStrengthWithDistance(HoI4Country* HomeCountry, vector<HoI4Country*> Faction);
 		vector<HoI4Country*> findFaction(HoI4Country * CheckingCountry);
 		bool checkIfGreatCountry(HoI4Country * checkingCountry, const V2World & sourceWorld, const CountryMapping & countryMap);
