@@ -32,13 +32,14 @@ using namespace std;
 
 
 
-HoI4Province::HoI4Province(/*string _filename*/)
+HoI4Province::HoI4Province(string Owner, int State)
 {
 	//filenames.insert(/*make_pair(_filename, _filename)*/);
 	coastal				= false;
 	num					= 0;
 	name					= "";
-	owner					= "";
+	owner					= Owner;
+	state = State;
 	points				= 0;
 	metal					= 0.0;
 	oil					= 0.0;

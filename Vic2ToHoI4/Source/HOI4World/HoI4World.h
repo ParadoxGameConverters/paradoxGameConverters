@@ -68,6 +68,12 @@ class HoI4World
 		void	addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
 		void	setSphereLeaders(const V2World & sourceWorld, const CountryMapping & countryMap);
 		void	thatsgermanWarCreator(const V2World & sourceWorld, const CountryMapping& countryMap);
+		void HowToTakeLand(HoI4Country * TargetCountry, HoI4Country * AttackingCountry);
+		double GetFactionStrengthWithDistance(HoI4Country* HomeCountry, vector<HoI4Country*> Faction);
+		vector<HoI4Country*> findFaction(HoI4Country * CheckingCountry);
+		bool checkIfGreatCountry(HoI4Country * checkingCountry, const V2World & sourceWorld, const CountryMapping & countryMap);
+		vector<HoI4Country*> findNeighbors(vector<int> CountryProvs, HoI4Country * CheckingCountry);
+		void fillProvinces();
 		HoI4Country* FindProvOwner(int prov);
 		vector<int> getCountryProvinces(HoI4Country * Country);
 		vector<vector<HoI4Country*>> CreateFactions(const V2World & sourceWorld, const CountryMapping & countryMap);
@@ -111,7 +117,7 @@ class HoI4World
 		map<int, string>				continents;  // < province, continent >
 
 		HoI4Localisation				localisation;
-
+		vector<vector<HoI4Country*>> Factions;
 		string axisLeader;
 		string alliesLeader;
 		string cominternLeader;

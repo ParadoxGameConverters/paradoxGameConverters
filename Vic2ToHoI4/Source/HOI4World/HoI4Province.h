@@ -35,7 +35,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class HoI4Province
 {
 	public:
-		HoI4Province(/*string _filename*/);
+		HoI4Province(string Owner, int state);
 		void output() const;
 		void convertFromOldProvince(const V2Province* oldProvince);
 		void addCore(string);
@@ -95,7 +95,7 @@ class HoI4Province
 		double			manpower;
 		double			leadership;
 		double			rawIndustry;
-
+		int				state;
 		int				naval_base;
 		int				air_base;
 		int				industry;
