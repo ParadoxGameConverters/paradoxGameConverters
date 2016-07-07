@@ -89,10 +89,20 @@ void V2Localisation::ReadFromFile(const std::string& fileName)
 		{
 			int frontDivision = division + 1;
 			division = line.find_first_of(';', frontDivision);
-			localisations[key][language] = Utils::convert8859_15ToUTF8(line.substr(frontDivision, division - frontDivision));
+			string result = line.substr(frontDivision, division - frontDivision);
+
+			// Ö gets translated to an invalid character sequence. :-(
+			int O = result.find_first_of('Ö');	// the first (if any) Ö in the output name
+			while (O != string::npos)
+			{
+				result.replace(O, 1, "O");
+				O = result.find_first_of('Ö');
+			}
+
+			localisations[key][language] = Utils::convert8859_15ToUTF8(result);
 
 			// dash characters other than 0x2D break HoI4
-			int dash = localisations[key][language].find_first_of('–');									// the first (if any) dask in the output name
+			int dash = localisations[key][language].find_first_of('–');	// the first (if any) dahk in the output name
 			while (dash != string::npos)
 			{
 				localisations[key][language].replace(dash, 1, "-");
