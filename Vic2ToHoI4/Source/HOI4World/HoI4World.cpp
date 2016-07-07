@@ -19,7 +19,7 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
-
+#include <string>
 #include "HoI4World.h"
 #include <fstream>
 #include <algorithm>
@@ -2523,82 +2523,102 @@ void HoI4World::setSphereLeaders(const V2World &sourceWorld, const CountryMappin
 }
 void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
+	
 	//FIX ALL FIXMES AND ADD CONQUEST GOAL
 	//MAKE SURE THIS WORKS
 	Factions = CreateFactions(sourceWorld, countryMap);
 	bool fascismrelevant = false;
 	bool communismrelevant = false;
 	double WorldStrength = 0;
+	//GetDistance(Factions.front().front(), Factions.back().back());
 	//get World Strength
 	fillProvinces();
-	for (auto Faction : Factions)
+	string filename("Output/AI.txt");
+	ofstream out;
+	out.open(filename);
 	{
-		WorldStrength += GetFactionStrength(Faction);
-	}
-
-	//check relevancies
-	for (auto Faction : Factions)
-	{
-		//this might need to change to add factions together
-		HoI4Country* Leader = GetFactionLeader(Faction);
-		if (Leader->getGovernment() == "absolute_monarchy" || Leader->getGovernment() == "fascism")
-			if (GetFactionStrength(Faction) > WorldStrength*0.1)
-				fascismrelevant = true;
-
-		if (Leader->getGovernment() == "communism" || Leader->getGovernment() == "syndicalism")
-			if (GetFactionStrength(Faction) > WorldStrength*0.1)
-				communismrelevant = true;
-		
-	}
-	//time to do events for coms and fascs if they are relevant
-	for (auto Faction : Factions)
-	{
-		HoI4Country* Leader = GetFactionLeader(Faction);
-		if (Leader->getGovernment == "fascism" || Leader->getGovernment == "absolute_monarchy")
+		for (auto Faction : Factions)
 		{
-			vector<HoI4Country*> AnchlussTargets;
-			vector<HoI4Country*> SudatenTargets;
-			vector<HoI4Country*> EqualTargets;
-			vector<HoI4Country*> StrongerTargets;
-			vector<int> leaderProvs = getCountryProvinces(Leader);
-			vector<HoI4Country*> Neighbors = findNeighbors(leaderProvs, Leader);
-			set<string> Allies = Leader->getAllies();
-			//should add method to look for cores you dont own
-			//should add method to look for more allies
-			
-			//lets look for weak neighbors
-			for (auto neigh : Neighbors)
+			WorldStrength += GetFactionStrength(Faction);
+		}
+		out << WorldStrength << endl;
+		//check relevancies
+		for (auto Faction : Factions)
+		{
+			//this might need to change to add factions together
+			HoI4Country* Leader = GetFactionLeader(Faction);
+			if (Leader->getGovernment() == "absolute_monarchy" || Leader->getGovernment() == "fascism")
+				if (GetFactionStrength(Faction) > WorldStrength*0.1)
+					fascismrelevant = true;
+
+			if (Leader->getGovernment() == "communism" || Leader->getGovernment() == "syndicalism")
+				if (GetFactionStrength(Faction) > WorldStrength*0.1)
+					communismrelevant = true;
+
+		}
+		if (fascismrelevant)
+			out << "Fascism is Relevant" << endl;
+		if (communismrelevant)
+			out << "Communist is Relevant" << endl;
+		//time to do events for coms and fascs if they are relevant
+		for (auto Faction : Factions)
+		{
+			HoI4Country* Leader = GetFactionLeader(Faction);
+			if (Leader->getGovernment() == "fascism" || Leader->getGovernment() == "absolute_monarchy")
 			{
-				//lets check to see if they are our ally and not a great country
-				if (std::find(Allies.begin(), Allies.end(), neigh->getTag()) == Allies.end() && !checkIfGreatCountry(neigh, sourceWorld, countryMap))
+				out << Leader->getTag() << endl;
+				vector<HoI4Country*> AnchlussTargets;
+				vector<HoI4Country*> SudatenTargets;
+				vector<HoI4Country*> EqualTargets;
+				vector<HoI4Country*> StrongerTargets;
+				vector<int> leaderProvs = getCountryProvinces(Leader);
+				vector<HoI4Country*> Neighbors = findNeighbors(leaderProvs, Leader);
+				set<string> Allies = Leader->getAllies();
+				//should add method to look for cores you dont own
+				//should add method to look for more allies
+
+				//lets look for weak neighbors
+				for (auto neigh : Neighbors)
 				{
-					//if not, lets see their strength is at least < 20%
-					if (neigh->getArmyStrength() < Leader->getArmyStrength()*0.2)
+					//lets check to see if they are our ally and not a great country
+					if (std::find(Allies.begin(), Allies.end(), neigh->getTag()) == Allies.end() && !checkIfGreatCountry(neigh, sourceWorld, countryMap))
 					{
-						//they are very weak and we can get 1 of these countries in an anchluss
-						AnchlussTargets.push_back(neigh);
-					}
-					//if not, lets see their strength is at least < 60%
-					if (neigh->getArmyStrength() < Leader->getArmyStrength()*0.6)
-					{
-						//they are weak and we can get 1 of these countries in sudaten deal
-						SudatenTargets.push_back(neigh);
-					}
-					//if not, lets see their strength is at least = to ours%
-					if (neigh->getArmyStrength() < Leader->getArmyStrength())
-					{
-						EqualTargets.push_back(neigh);
-					}
-					//if not, lets see their strength is at least < 120%
-					if (neigh->getArmyStrength() < Leader->getArmyStrength()*1.2)
-					{
-						StrongerTargets.push_back(neigh);
+						//if not, lets see their strength is at least < 20%
+						if (neigh->getArmyStrength() < Leader->getArmyStrength()*0.2)
+						{
+							//they are very weak and we can get 1 of these countries in an anchluss
+							//AnchlussTargets.push_back(neigh);
+							HowToTakeLand(neigh, Leader);
+							out << neigh->getTag() + " Anchluss" << endl;
+						}
+						//if not, lets see their strength is at least < 60%
+						if (neigh->getArmyStrength() < Leader->getArmyStrength()*0.6)
+						{
+							//they are weak and we can get 1 of these countries in sudaten deal
+							//SudatenTargets.push_back(neigh);
+							HowToTakeLand(neigh, Leader);
+							out << neigh->getTag() + " Sudaten" << endl;
+						}
+						//if not, lets see their strength is at least = to ours%
+						if (neigh->getArmyStrength() < Leader->getArmyStrength())
+						{
+							//EqualTargets.push_back(neigh);
+							HowToTakeLand(neigh, Leader);
+							out << neigh->getTag() + " Equal" << endl;
+						}
+						//if not, lets see their strength is at least < 120%
+						if (neigh->getArmyStrength() < Leader->getArmyStrength()*1.2)
+						{
+							//StrongerTargets.push_back(neigh);
+							HowToTakeLand(neigh, Leader);
+							out << neigh->getTag() + " Stronger Neighbor" << endl;
+						}
 					}
 				}
 
 			}
 		}
-		
+		out.close();
 	}
 }
 void HoI4World::HowToTakeLand(HoI4Country* TargetCountry, HoI4Country* AttackingCountry)
@@ -2625,10 +2645,14 @@ void HoI4World::HowToTakeLand(HoI4Country* TargetCountry, HoI4Country* Attacking
 			//FIXME
 			//hmm I am still weaker, maybe need to look for allies?
 			GetMorePossibleAllies(AttackingCountry);
-			//if (GetFactionStrengthWithDistance(me) >= GetFactionStrengthWithDistance(Them))
+			if (GetFactionStrengthWithDistance(AttackingCountry, findFaction(AttackingCountry)) >= GetFactionStrengthWithDistance(AttackingCountry, targetFaction))
+			{
 				//ADD CONQUEST GOAL
-			//else
+			}
+			else
+			{
 				//Time to Try Coup
+			}
 		}
 		
 	}
@@ -2636,10 +2660,16 @@ void HoI4World::HowToTakeLand(HoI4Country* TargetCountry, HoI4Country* Attacking
 vector<HoI4Country*> HoI4World::GetMorePossibleAllies(HoI4Country* CountryThatWantsAllies)
 {
 	vector<HoI4Country*> newPossibleAllies;
-	vector<HoI4Country*> CountriesWithin1000Miles; //Rename to actual distance
+	vector<HoI4Country*> CountriesWithin500Miles; //Rename to actual distance
+	for (auto country : countries)
+	{
+		HoI4Country* country2 = country.second;
+		if (GetDistance(CountryThatWantsAllies, country2) <= 500)
+			CountriesWithin500Miles.push_back(country2);
+	}
 	string yourgovernment = CountryThatWantsAllies->getGovernment();
 	//look for all capitals within a distance of Berlin to Tehran
-	for (auto country : CountriesWithin1000Miles)
+	for (auto country : CountriesWithin500Miles)
 	{
 		string allygovernment = country->getGovernment();
 		//possible government matches
@@ -2670,20 +2700,79 @@ vector<HoI4Country*> HoI4World::GetMorePossibleAllies(HoI4Country* CountryThatWa
 		}
 	}
 }
+double HoI4World::GetDistance(HoI4Country* Country1, HoI4Country* Country2)
+{
+	map<string, multimap<HoI4RegimentType, unsigned> > unitTypeMap; // <vic, hoi>
+	ifstream myReadFile;
+	myReadFile.open("positions.txt");
+	HoI4Province* C1prov = Country1->getCapital();
+	HoI4Province* C2prov = Country2->getCapital();
+	if (C1prov == NULL || C2prov == NULL)
+		return 0;
+
+	double C1x = 0;
+	double C1y = 0;
+	double C2x = 0;
+	double C2y = 0;
+	int C1provnumber;
+	int C2provnumber;
+	char output[100];
+	if (myReadFile.is_open())
+	{
+		while (!myReadFile.eof())
+		{
+			myReadFile >> output;
+			vector<string> parts;
+			stringstream ss(output); // Turn the string into a stream.
+			string tok;
+			char delimiter = ';';
+			while (getline(ss, tok, delimiter))
+			{
+				parts.push_back(tok);
+			}
+			if (stoi(parts[0]) == C1prov->getNum())
+			{
+				C1x = stoi(parts[2]);
+				C1y = stoi(parts[4]);
+			}
+			else if (stoi(parts[0]) == C2prov->getNum())
+			{
+				C2x = stoi(parts[2]);
+				C2y = stoi(parts[4]);
+			}
+			else if (C1x != 0 && C1y != 0 && C2x != 0 && C2y != 0)
+				break;
+		}
+	}
+	double xdist = abs(C2x - C1x);
+	if (xdist > 2625)
+		xdist = 5250 - xdist;
+	return sqrt(pow(xdist, 2) + pow(C2y - C1y, 2));
+}
 double HoI4World::GetFactionStrengthWithDistance(HoI4Country* HomeCountry, vector<HoI4Country*> Faction)
 {
-	//FIXME
-	//Distance is assuming Home Country is Germany, distance determined is capital
-	//Berlin to Paris is 1.0x
-	//Berlin to London is 0.9x
-	//Berlin to Moscow is 0.8x
-	//Berlin to Jerusalem is 0.7x
-	//Berlin to Terhan is 0.6x
-	//Berlin to Delhi is 0.5x
-	//Berlin to Nanjing is 0.3x
-	//Berlin to Tokyo is 0.2x
-	//This is a dummy Function that needs to be completed
-	return GetFactionStrength(Faction);
+	double strength;
+	for (auto country : Faction)
+	{
+		double distanceMulti = GetDistance(HomeCountry, country);
+		if (distanceMulti < 300)
+			distanceMulti = 1;
+		else if (distanceMulti < 500)
+			distanceMulti = 0.9;
+		else if (distanceMulti < 750)
+			distanceMulti = 0.8;
+		else if (distanceMulti < 1000)
+			distanceMulti = 0.7;
+		else if (distanceMulti < 1500)
+			distanceMulti = 0.5;
+		else if (distanceMulti < 2000)
+			distanceMulti = 0.3;
+		else
+			distanceMulti = 0.2;
+
+		strength += country->getArmyStrength() * distanceMulti;
+	}
+	return strength;
 }
 vector<HoI4Country*> HoI4World::findFaction(HoI4Country* CheckingCountry)
 {
@@ -2691,7 +2780,7 @@ vector<HoI4Country*> HoI4World::findFaction(HoI4Country* CheckingCountry)
 	ourFaction.push_back(CheckingCountry);
 	for (auto faction : Factions)
 	{
-		if (std::find(faction.begin(), faction.end(), CheckingCountry->getTag()) == faction.end())
+		if (std::find(faction.begin(), faction.end(), CheckingCountry) == faction.end())
 		{
 			//if country is in faction list, it is part of that faction
 			ourFaction = faction;
@@ -2704,7 +2793,7 @@ bool HoI4World::checkIfGreatCountry(HoI4Country* checkingCountry, const V2World 
 	bool isGreatCountry = false;
 	vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
 
-		if (std::find(GreatCountries.begin(), GreatCountries.end(), checkingCountry->getTag()) != GreatCountries.end())
+		if (std::find(GreatCountries.begin(), GreatCountries.end(), checkingCountry) != GreatCountries.end())
 		{
 			isGreatCountry = true;
 		}
@@ -2747,9 +2836,10 @@ vector<HoI4Country*> HoI4World::findNeighbors(vector<int> CountryProvs, HoI4Coun
 							//if (provfind == prov)
 							{
 								string ownertag = provinces.find(neighborprov)->second->getOwner();
+								HoI4Country* ownerCountry = countries.find(ownertag)->second;
 								if (ownertag != CheckingCountry->getTag())
 								{
-									if (std::find(Neighbors.begin(), Neighbors.end(), ownertag) == Neighbors.end())
+									if (std::find(Neighbors.begin(), Neighbors.end(), ownerCountry) == Neighbors.end())
 									{
 										Neighbors.push_back(countries.find(ownertag)->second);
 									}
@@ -2818,7 +2908,7 @@ vector<int> HoI4World::getCountryProvinces(HoI4Country* Country)
 	vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorld, const CountryMapping& countryMap)
 	{
 		vector<vector<HoI4Country*>> Factions2;
-		string filename("Output/wars.txt");
+		string filename("Output/Factions.txt");
 		ofstream out;
 		out.open(filename);
 		{
@@ -2841,6 +2931,7 @@ vector<int> HoI4World::getCountryProvinces(HoI4Country* Country)
 					FactionMilStrength = country->getArmyStrength();
 					for (auto ally : allies)
 					{
+
 						auto itrally = countries.find(ally);
 						if (itrally != countries.end())
 						{
@@ -2939,7 +3030,6 @@ vector<int> HoI4World::getCountryProvinces(HoI4Country* Country)
 				{
 
 					string tag = relation.second->getTag();
-
 					auto spheredcountry = countries.find(tag);
 					if (spheredcountry != countries.end())
 					{
@@ -2955,3 +3045,4 @@ vector<int> HoI4World::getCountryProvinces(HoI4Country* Country)
 		}
 
 	}
+	
