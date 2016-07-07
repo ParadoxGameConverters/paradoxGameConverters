@@ -348,8 +348,8 @@ void HoI4World::outputMap() const
 	}
 	for (auto state: states)
 	{
-		vector<int> provinces = state.second->getProvinces();
-		rocketSitesFile << state.second->getID() << " = { " << provinces.front() << " }\n";
+		map<int, int> provinces = state.second->getProvinces();
+		rocketSitesFile << state.second->getID() << " = { " << provinces.begin()->first << " }\n";
 	}
 	rocketSitesFile.close();
 
@@ -362,8 +362,8 @@ void HoI4World::outputMap() const
 	}
 	for (auto state: states)
 	{
-		vector<int> provinces = state.second->getProvinces();
-		airportsFile << state.second->getID() << " = { " << provinces.front() << " }\n";
+		map<int, int> provinces = state.second->getProvinces();
+		airportsFile << state.second->getID() << " = { " << provinces.begin()->first << " }\n";
 	}
 	airportsFile.close();
 
@@ -643,6 +643,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const province
 
 	//	loop through the vic2 countries
 	int stateID = 1;
+	map<int, int> assignedStates;
 	for (auto country: sourceWorld.getCountries())
 	{
 		//	determine the relevant HoI4 country
@@ -681,10 +682,11 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const province
 						if (HoI4ProvNum != 0)
 						{
 							auto ownerItr = provinceOwners.find(HoI4ProvNum);
-							if ((ownerItr != provinceOwners.end()) && (ownerItr->second == HoI4Tag))
+							if ((ownerItr != provinceOwners.end()) && (ownerItr->second == HoI4Tag) && (assignedStates.find(HoI4ProvNum) == assignedStates.end()))
 							{
 								newState->addProvince(HoI4ProvNum);
 								stateMap.insert(make_pair(HoI4ProvNum, stateID));
+								assignedStates.insert(make_pair(HoI4ProvNum, HoI4ProvNum));
 								provincecount++;
 							}
 						}
@@ -1089,7 +1091,7 @@ void HoI4World::convertResources()
 	{
 		for (auto provinceNumber: state.second->getProvinces())
 		{
-			auto mapping = resourceMap.find(provinceNumber);
+			auto mapping = resourceMap.find(provinceNumber.first);
 			if (mapping != resourceMap.end())
 			{
 				for (auto resource: mapping->second)
@@ -1108,7 +1110,7 @@ void HoI4World::convertSupplyZones(const map<int, int>& provinceToSupplyZoneMap)
 	{
 		for (auto province: state.second->getProvinces())
 		{
-			auto mapping = provinceToSupplyZoneMap.find(province);
+			auto mapping = provinceToSupplyZoneMap.find(province.first);
 			if (mapping != provinceToSupplyZoneMap.end())
 			{
 				auto supplyZone = supplyZones.find(mapping->second);

@@ -805,8 +805,8 @@
 	link = { vic2 = 1895 hoi4 = 8122 }	# Bouake -> land
 	link = { vic2 = 1899 vic2 = 1897 hoi4 = 5013 }	# Bondouku, Akoupe -> land
 	link = { vic2 = 1912 hoi4 = 8096 }	# Wa -> land
-	link = { vic2 = 1913 hoi4 = 8039 }	# Tamale -> land
-	link = { vic2 = 1911 vic2 = 1916 hoi4 = 12787 hoi4 = 13136 }	# MANY-TO-MANY: Kintampo, Yendi -> land, lake
+	link = { vic2 = 1913 vic2 = 1916 hoi4 = 8039 }	# Tamale, Yendi -> land
+	link = { vic2 = 1911 hoi4 = 12787 hoi4 = 13136 }	# Kintampo -> land, lake
 	link = { vic2 = 1921 hoi4 = 12762 }	# Nikki -> land
 	link = { vic2 = 1938 vic2 = 1927 hoi4 = 12817 }	# Bussa, Ilorin -> land
 	link = { vic2 = 1925 hoi4 = 12731 }	# Ibadan -> land

@@ -41,14 +41,14 @@ class HoI4State
 
 		void	output(string filename);
 
-		void	addProvince(int province)							{ provinces.push_back(province); }
+		void	addProvince(int province)							{ provinces.insert(make_pair(province, province)); }
 		void	addResource(string resource, double amount)	{ resources[resource] += amount; }
 
 		void	setNavalBase(int level, int location);
 		void	setIndustry(int civilianFactories, int militaryFactories, string category, int railLevel);
 
 		Vic2State*	getSourceState() const		{ return sourceState; }
-		vector<int> getProvinces() const			{ return provinces; }
+		map<int, int> getProvinces() const		{ return provinces; }
 		string		getOwner() const				{ return ownerTag; }
 		int			getID() const					{ return ID; }
 		int			getNavalLocation() const	{ return navalLocation; }
@@ -57,7 +57,7 @@ class HoI4State
 		Vic2State*				sourceState;
 
 		int						ID;
-		vector<int>				provinces;
+		map<int, int>			provinces;
 		string					ownerTag;
 
 		int						manpower;

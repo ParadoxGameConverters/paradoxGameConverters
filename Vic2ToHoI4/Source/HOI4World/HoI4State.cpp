@@ -96,7 +96,7 @@ void HoI4State::output(string _filename)
 	out << "\t\t";
 	for (auto provnum : provinces)
 	{
-		out << provnum << " ";
+		out << provnum.first << " ";
 	}
 	out << endl;
 	out << "\t}" << endl;
