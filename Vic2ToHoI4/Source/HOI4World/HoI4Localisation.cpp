@@ -125,8 +125,7 @@ void HoI4Localisation::outputStates(string localisationPath) const
 		{
 			continue;
 		}
-		string dest = localisationPath + "/state_names_l_" + languageToLocalisations.first + ".yml";
-		ofstream localisationFile(localisationPath + "/state_l_" + languageToLocalisations.first + ".yml");
+		ofstream localisationFile(localisationPath + "/state_names_l_" + languageToLocalisations.first + ".yml");
 		if (!localisationFile.is_open())
 		{
 			LOG(LogLevel::Error) << "Could not update localisation text file";
