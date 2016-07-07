@@ -2564,7 +2564,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		for (auto Faction : Factions)
 		{
 			HoI4Country* Leader = GetFactionLeader(Faction);
-			if (Leader->getGovernment() == "fascism" || Leader->getGovernment() == "absolute_monarchy")
+			if ((Leader->getGovernment() == "fascism" || Leader->getGovernment() == "absolute_monarchy") && fascismrelevant)
 			{
 				out << Leader->getTag() << endl;
 				vector<HoI4Country*> AnchlussTargets;
@@ -2589,7 +2589,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 							//they are very weak and we can get 1 of these countries in an anchluss
 							//AnchlussTargets.push_back(neigh);
 							HowToTakeLand(neigh, Leader);
-							out << neigh->getTag() + " Anchluss" << endl;
+							out << "/t" + neigh->getSourceCountry()->getName() + " Anchluss" << endl;
 						}
 						//if not, lets see their strength is at least < 60%
 						if (neigh->getArmyStrength() < Leader->getArmyStrength()*0.6)
@@ -2597,25 +2597,62 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 							//they are weak and we can get 1 of these countries in sudaten deal
 							//SudatenTargets.push_back(neigh);
 							HowToTakeLand(neigh, Leader);
-							out << neigh->getTag() + " Sudaten" << endl;
+							out << "/t" + neigh->getSourceCountry()->getName() + " Sudaten" << endl;
 						}
 						//if not, lets see their strength is at least = to ours%
 						if (neigh->getArmyStrength() < Leader->getArmyStrength())
 						{
 							//EqualTargets.push_back(neigh);
 							HowToTakeLand(neigh, Leader);
-							out << neigh->getTag() + " Equal" << endl;
+							out << "/t" + neigh->getSourceCountry()->getName() + " Equal" << endl;
 						}
 						//if not, lets see their strength is at least < 120%
 						if (neigh->getArmyStrength() < Leader->getArmyStrength()*1.2)
 						{
 							//StrongerTargets.push_back(neigh);
 							HowToTakeLand(neigh, Leader);
-							out << neigh->getTag() + " Stronger Neighbor" << endl;
+							out << "/t" + neigh->getSourceCountry()->getName() + " Stronger Neighbor" << endl;
 						}
 					}
 				}
+				out << endl;
+			}
+			if ((Leader->getGovernment() == "communism") && communismrelevant)
+			{
+				out << Leader->getTag() << endl;
+				vector<int> leaderProvs = getCountryProvinces(Leader);
+				vector<HoI4Country*> Neighbors = findNeighbors(leaderProvs, Leader);
+				set<string> Allies = Leader->getAllies();
 
+				//check if has "Long live the king" and add events if they do
+
+				//if (Permanant Revolution)
+					//Decide between Anti - Democratic Focus, Anti - Monarch Focus, or Anti - Fascist Focus(Look at all great powers and get average relation between each ideology, the one with the lowest average relation leads to that focus).
+					//Attempt to ally with other Communist Countries(with Permanant Revolution)
+
+				for (auto neigh : Neighbors)
+				{
+					//lets check to see if they are our ally and not a great country
+					if (std::find(Allies.begin(), Allies.end(), neigh->getTag()) == Allies.end() && !checkIfGreatCountry(neigh, sourceWorld, countryMap))
+					{
+						if (neigh->getCommunismPopularity() > 25)
+						{
+							//look for neighboring countries to spread communism too(Need 25 % or more Communism support), Prioritizing those with "Communism Allowed" Flags, prioritizing those who are weakest
+							//	Method() Influence Ideology and Attempt Coup
+							out << "/t" + neigh->getSourceCountry()->getName() + " Attempt Coup" << endl;
+						}
+						else
+						{
+							//	Then look for neighboring countries to spread communism by force, prioritizing weakest first
+							HowToTakeLand(neigh, Leader);
+							out << "/t" + neigh->getSourceCountry()->getName() + " Spread Communism by force" << endl;
+							//	Depending on Anti - Ideology Focus, look for allies in alternate ideologies to get to ally with to declare war against Anti - Ideology Country.
+						}
+					}
+				}
+				//if (Socialism in One State)
+				//	Events / Focuses to increase Industrialization and defense of the country, becomes Isolationist
+				//	Eventually gets events to drop Socialism in One state and switch to permanant revolution(Maybe ? )
 			}
 		}
 		out.close();
@@ -2684,6 +2721,7 @@ vector<HoI4Country*> HoI4World::GetMorePossibleAllies(HoI4Country* CountryThatWa
 		{
 			//FIXME
 			//check if we are friendly at all?
+			HoI4Relations* relationswithposally = CountryThatWantsAllies->getRelations(country->getTag());
 			//if(relations between our countries > -100)
 				//ok we dont hate each other, lets check how badly we need each other, well I do, the only reason I am here is im trying to conquer a neighbor and am not strong enough!
 				//if(possible country has a weak faction, or is by himself and weak) maybe also check if he has any fascist/comm neighbors he doesnt like later?
@@ -2723,7 +2761,7 @@ double HoI4World::GetDistance(HoI4Country* Country1, HoI4Country* Country2)
 		{
 			myReadFile >> output;
 			vector<string> parts;
-			stringstream ss(output); // Turn the string into a stream.
+			stringstream ss(output); 
 			string tok;
 			char delimiter = ';';
 			while (getline(ss, tok, delimiter))
