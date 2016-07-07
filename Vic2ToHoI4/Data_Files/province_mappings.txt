@@ -466,7 +466,7 @@
 	link = { vic2 = 2264 hoi4 = 8113 }	# Caracas -> land
 	link = { vic2 = 2277 hoi4 = 7915 hoi4 = 5317 }	# El Jobal -> land, land
 	link = { vic2 = 2278 hoi4 = 8050 }	# San Fernando de Atabapo -> land
-	link = { vic2 = 2275 hoi4 = 10879 hoi4 = 10736 hoi4 = 10849 hoi4 = 8904 }	# Angostura -> land, land, land, sea
+	link = { vic2 = 2275 hoi4 = 10879 hoi4 = 10736 hoi4 = 10849 }	# Angostura -> land, land, land
 	link = { vic2 = 2276 hoi4 = 1981 hoi4 = 10767 hoi4 = 10823 }	# Curiapo -> land, land, land
 	link = { vic2 = 2269 hoi4 = 10912 }	# Güiria -> land
 	link = { vic2 = 2267 hoi4 = 7968 }	# Cumaná -> land
@@ -1325,7 +1325,7 @@
 	link = { vic2 = 353 hoi4 = 185 hoi4 = 6201 }	# Ösel -> land, land
 	# 
 	# ## Finland
-	link = { vic2 = 339 hoi4 = 11156 hoi4 = 6153 hoi4 = 9176 hoi4 = 3060 hoi4 = 9150 hoi4 = 9105 hoi4 = 9100 hoi4 = 9206 hoi4 = 11162 hoi4 = 6150 hoi4 = 3187 hoi4 = 3133 hoi4 = 11046 hoi4 = 6052 hoi4 = 3050 }	# Viipuri -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 339 hoi4 = 11156 hoi4 = 6153 hoi4 = 9176 hoi4 = 3060 hoi4 = 9150 hoi4 = 9105 hoi4 = 9100 hoi4 = 9206 hoi4 = 11162 hoi4 = 6150 hoi4 = 3187 hoi4 = 3133 hoi4 = 11046 hoi4 = 6052 hoi4 = 3050 hoi4 = 2332 }	# Viipuri -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
 	link = { vic2 = 337 hoi4 = 7 hoi4 = 6175 hoi4 = 3073 hoi4 = 3115 hoi4 = 9233 hoi4 = 9106 hoi4 = 11079 hoi4 = 6146 hoi4 = 11024 hoi4 = 6134 hoi4 = 3149 hoi4 = 13118 }	# Kajaani -> land, land, land, land, land, land, land, land, land, land, land, lake
 	link = { vic2 = 342 hoi4 = 2998 hoi4 = 9061 hoi4 = 9181 hoi4 = 6210 hoi4 = 3185 hoi4 = 193 hoi4 = 3125 hoi4 = 11199 hoi4 = 6078 hoi4 = 9104 hoi4 = 11141 hoi4 = 141 hoi4 = 136 hoi4 = 6033 hoi4 = 6156 hoi4 = 11076 hoi4 = 9169 hoi4 = 3068 hoi4 = 13112 hoi4 = 13115 hoi4 = 13114 hoi4 = 13109 hoi4 = 11210 hoi4 = 13110 hoi4 = 13111 }	# Kuopio -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake, lake, lake, lake, land, lake, lake
 	link = { vic2 = 341 hoi4 = 139 hoi4 = 3030 hoi4 = 37 hoi4 = 3131 hoi4 = 3013 hoi4 = 165 hoi4 = 11043 hoi4 = 9163 hoi4 = 9056 hoi4 = 13108 hoi4 = 13105 hoi4 = 13104 }	# Mikkeli -> land, land, land, land, land, land, land, land, land, lake, lake, lake
@@ -1860,7 +1860,7 @@
 	link = { vic2 = 1004 hoi4 = 11059 hoi4 = 57 hoi4 = 3140 hoi4 = 172 hoi4 = 9082 hoi4 = 9190 hoi4 = 152 hoi4 = 3142 hoi4 = 9184 hoi4 = 6169 }	# Tikhvin -> land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 2580 hoi4 = 9197 hoi4 = 70 hoi4 = 11174 hoi4 = 6095 hoi4 = 9164 hoi4 = 3110 hoi4 = 6035 hoi4 = 3072 }	# Stara Ladoga -> land, land, land, land, land, land, land, land
 	link = { vic2 = 994 hoi4 = 149 hoi4 = 3151 hoi4 = 6174 hoi4 = 79 hoi4 = 11068 }	# St Petersburg -> land, land, land, land, land
-	link = { vic2 = 995 hoi4 = 11150 hoi4 = 6106 hoi4 = 3084 hoi4 = 6057 hoi4 = 6172 hoi4 = 11153 hoi4 = 90 hoi4 = 6070 hoi4 = 9078 hoi4 = 40 hoi4 = 9231 hoi4 = 13130 hoi4 = 11092 hoi4 = 92 hoi4 = 3144 hoi4 = 11159 hoi4 = 9118 hoi4 = 6094 hoi4 = 2994 hoi4 = 3033 hoi4 = 13198 }	# Petrozavorsk -> land, land, land, land, land, land, land, land, land, land, land, lake, land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 995 hoi4 = 11150 hoi4 = 6106 hoi4 = 3084 hoi4 = 6057 hoi4 = 6172 hoi4 = 11153 hoi4 = 90 hoi4 = 6070 hoi4 = 9078 hoi4 = 40 hoi4 = 9231 hoi4 = 13130 hoi4 = 11092 hoi4 = 92 hoi4 = 3144 hoi4 = 11159 hoi4 = 9118 hoi4 = 6094 hoi4 = 2994 hoi4 = 3033 hoi4 = 13198 hoi4 = 2356 }	# Petrozavorsk -> land, land, land, land, land, land, land, land, land, land, land, lake, land, land, land, land, land, land, land, land, lake, lake
 	link = { vic2 = 988 hoi4 = 6159 hoi4 = 11094 hoi4 = 155 hoi4 = 157 hoi4 = 3071 hoi4 = 11175 hoi4 = 11212 hoi4 = 3078 hoi4 = 13194 }	# Povyents -> land, land, land, land, land, land, land, land, lake
 	link = { vic2 = 984 hoi4 = 9055 hoi4 = 9045 hoi4 = 80 hoi4 = 11146 hoi4 = 6021 hoi4 = 6096 hoi4 = 11054 hoi4 = 6098 hoi4 = 9119 hoi4 = 9074 hoi4 = 3067 hoi4 = 9198 hoi4 = 11181 hoi4 = 176 hoi4 = 3008 hoi4 = 6029 hoi4 = 86 hoi4 = 3189 hoi4 = 9195 hoi4 = 94 hoi4 = 170 hoi4 = 134 hoi4 = 11096 hoi4 = 36 hoi4 = 11045 }	# Kostomushka -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 983 hoi4 = 9162 hoi4 = 3121 hoi4 = 15 hoi4 = 9123 hoi4 = 74 hoi4 = 9203 hoi4 = 9039 hoi4 = 11031 hoi4 = 178 hoi4 = 6181 hoi4 = 11128 hoi4 = 9201 hoi4 = 9217 hoi4 = 11088 hoi4 = 9115 hoi4 = 9165 hoi4 = 98 hoi4 = 9215 }	# Kandalaksha -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
@@ -2818,12 +2818,243 @@
 	link = { vic2 = 2130 hoi4 = 13013 }	# Ascension -> land
 	link = { vic2 = 2129 hoi4 = 13016 }	# Saint Helena -> land
 	link = { vic2 = 2132 }	# Tristan da Cunha -> DROPPED
-	#
-	#
+	# 
+	# 
 	# ##########
 	# Oceans and Seas
 	# ##########
-	#
-	# ## Seas
+	# 
+	# ## Baltic
+	link = { vic2 = 2706 hoi4 = 593 hoi4 = 786 hoi4 = 990 hoi4 = 1211 }	# Ålands Hav -> sea, sea, sea, sea
+	link = { vic2 = 2705 hoi4 = 4 hoi4 = 411 }	# Gulf of Bothnia -> sea, sea
+	link = { vic2 = 2707 hoi4 = 1434 hoi4 = 1660 }	# Gulf of Finland -> sea, sea
+	link = { vic2 = 2709 hoi4 = 1885 }	# Gulf of Riga -> sea
+	link = { vic2 = 2708 hoi4 = 2107 hoi4 = 2230 }	# Western Baltic Sea -> sea, sea
+	link = { vic2 = 2710 hoi4 = 2256 hoi4 = 2282 hoi4 = 2309 hoi4 = 2333 hoi4 = 2358 }	# Southern Baltic Sea -> sea, sea, sea, sea, sea
+	link = { vic2 = 2711 hoi4 = 2382 hoi4 = 2431 hoi4 = 2408 }	# Öresund -> sea, sea, sea
+	link = { vic2 = 2712 hoi4 = 2455 }	# Kattegat -> sea
+	# 
+	# ## North Sea
+	link = { vic2 = 2716 hoi4 = 13193 hoi4 = 8370 hoi4 = 5740 hoi4 = 5713 hoi4 = 2679 hoi4 = 5687 hoi4 = 209 hoi4 = 8379 hoi4 = 2653 hoi4 = 2630 hoi4 = 5765 hoi4 = 8352 }	# White Sea -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2717 hoi4 = 8326 hoi4 = 2604 hoi4 = 5792 }	# Lofoten Sea -> sea, sea, sea
+	link = { vic2 = 2718 hoi4 = 5818 hoi4 = 8717 hoi4 = 8692 hoi4 = 8530 hoi4 = 5966 hoi4 = 2554 hoi4 = 5869 hoi4 = 5895 hoi4 = 5845 hoi4 = 2578 hoi4 = 2986 hoi4 = 3038 }	# Northern Norwegian Sea -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2721 hoi4 = 2729 hoi4 = 2752 }	# Helgoland Bight -> sea, sea
+	link = { vic2 = 2720 hoi4 = 2506 hoi4 = 6816 hoi4 = 7018 hoi4 = 5 hoi4 = 6624 hoi4 = 5989 }	# Skagerrack -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2722 hoi4 = 2775 hoi4 = 7242 }	# Coast of Holland -> sea, sea
+	link = { vic2 = 2734 hoi4 = 7695 hoi4 = 2966 hoi4 = 2993 }	# The North Sea -> sea, sea, sea
+	link = { vic2 = 2719 hoi4 = 6234 hoi4 = 1227 hoi4 = 2530 hoi4 = 6026 hoi4 = 5942 }	# Southern Norwegian Sea -> sea, sea, sea, sea, sea
+	link = { vic2 = 2732 hoi4 = 7468 hoi4 = 2918 hoi4 = 2799 }	# Tyne -> sea, sea, sea
+	link = { vic2 = 2733 hoi4 = 2942 hoi4 = 7923 hoi4 = 8142 }	# Firth of Forth -> sea, sea, sea
+	link = { vic2 = 2735 hoi4 = 3195 hoi4 = 8262 hoi4 = 3400 hoi4 = 8288 hoi4 = 6434 hoi4 = 8612 }	# Moray Firth -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2926 hoi4 = 2960 hoi4 = 8640 hoi4 = 2695 hoi4 = 2499 hoi4 = 4034 hoi4 = 8666 }	# Jan Mayen Sea -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2927 hoi4 = 9023 hoi4 = 2446 hoi4 = 8767 hoi4 = 2936 hoi4 = 8789 hoi4 = 8973 }	# Spitzberg Sea -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2928 hoi4 = 8490 hoi4 = 8604 hoi4 = 8557 hoi4 = 8580 hoi4 = 6049 hoi4 = 8565 hoi4 = 2568 hoi4 = 2909 hoi4 = 8743 hoi4 = 8542 hoi4 = 8588 }	# Icelandic Sea -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2933 hoi4 = 8759 hoi4 = 8463 hoi4 = 8436 hoi4 = 8782 hoi4 = 5361 hoi4 = 5337 hoi4 = 8882 hoi4 = 8517 }	# Denmark Strait -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2930 hoi4 = 8709 hoi4 = 8684 hoi4 = 8735 hoi4 = 5455 hoi4 = 8658 hoi4 = 8534 hoi4 = 5312 }	# Coast of Iceland -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2929 hoi4 = 8413 hoi4 = 8428 hoi4 = 8509 hoi4 = 8387 hoi4 = 8632 hoi4 = 8482 hoi4 = 8404 hoi4 = 8300 }	# Shetland Straits -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2934 hoi4 = 8805 hoi4 = 5432 hoi4 = 5408 hoi4 = 999 hoi4 = 8831 hoi4 = 795 }	# Eastern Coast of Greenland -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2736 hoi4 = 8367 hoi4 = 8361 hoi4 = 3590 }	# North Channel -> sea, sea, sea
+	link = { vic2 = 2737 hoi4 = 8340 hoi4 = 3990 }	# Irish Sea -> sea, sea
+	link = { vic2 = 2739 hoi4 = 8393 hoi4 = 3785 hoi4 = 8454 hoi4 = 8813 hoi4 = 2473 hoi4 = 2481 }	# Donegal Bay -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2740 hoi4 = 4662 hoi4 = 8865 }	# Dingle Bay -> sea, sea
+	link = { vic2 = 2741 hoi4 = 8418 hoi4 = 8442 hoi4 = 4438 }	# Celtic Sea -> sea, sea, sea
+	link = { vic2 = 2726 hoi4 = 8314 hoi4 = 8462 }	# Lands End -> sea, sea
+	link = { vic2 = 2738 hoi4 = 4212 }	# St. George's Channel -> sea
+	link = { vic2 = 2723 hoi4 = 2824 hoi4 = 5929 hoi4 = 8621 }	# Dogger Bank -> sea, sea, sea
+	link = { vic2 = 2724 hoi4 = 2895 hoi4 = 2977 hoi4 = 2847 hoi4 = 12389 hoi4 = 11748 hoi4 = 13004 hoi4 = 8450 }	# Straits of Dover -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2725 hoi4 = 13006 hoi4 = 4370 hoi4 = 3528 hoi4 = 13007 hoi4 = 2381 hoi4 = 2871 }	# The Channel -> sea, sea, sea, sea, sea, sea
+	# 
+	# ## Black Sea
+	link = { vic2 = 2775 hoi4 = 8131 }	# Gulf of Odessa -> sea
+	link = { vic2 = 2776 hoi4 = 8282 }	# Sea of Azov -> sea
+	link = { vic2 = 2777 hoi4 = 8334 hoi4 = 8308 }	# Eastern Black Sea -> sea, sea
+	link = { vic2 = 2774 hoi4 = 8256 hoi4 = 7906 }	# Gulf of Varna -> sea, sea
+	link = { vic2 = 2773 hoi4 = 5412 hoi4 = 7678 }	# Sea of Marmara -> sea, sea
+	# 
+	# ## Mediterranean Sea
+	link = { vic2 = 2770 hoi4 = 6419 hoi4 = 6608 }	# Gulf of Cyprus -> sea, sea
+	link = { vic2 = 2769 hoi4 = 609 hoi4 = 6219 hoi4 = 803 hoi4 = 1008 hoi4 = 6011 }	# Palestinian Coast -> sea, sea, sea, sea, sea
+	link = { vic2 = 2772 hoi4 = 7452 hoi4 = 7226 hoi4 = 6801 }	# Aegean Sea -> sea, sea, sea
+	link = { vic2 = 2771 hoi4 = 7002 }	# Sea of Crete -> sea
+	link = { vic2 = 2768 hoi4 = 428 hoi4 = 5961 hoi4 = 5985 }	# Bay of Alexandria -> sea, sea, sea
+	link = { vic2 = 2767 hoi4 = 225 hoi4 = 20 }	# Gulf of Tobruk -> sea, sea
+	link = { vic2 = 2765 hoi4 = 5937 hoi4 = 5913 }	# Ionian Sea -> sea, sea
+	link = { vic2 = 2761 hoi4 = 5786 }	# Gulf of Venice -> sea
+	link = { vic2 = 2762 hoi4 = 5812 }	# Adriatic Sea -> sea
+	link = { vic2 = 2763 hoi4 = 5838 }	# Straits of Otranto -> sea
+	link = { vic2 = 2764 hoi4 = 5864 hoi4 = 5890 }	# Gulf of Taranto -> sea, sea
+	link = { vic2 = 2766 hoi4 = 9049 hoi4 = 5759 }	# Gulf of Sirte -> sea, sea
+	link = { vic2 = 2760 hoi4 = 5707 }	# Straits of Messina -> sea
+	link = { vic2 = 2759 hoi4 = 5733 }	# Malta Channel -> sea
+	link = { vic2 = 2758 hoi4 = 5631 hoi4 = 9013 }	# Gulf of Gabes -> sea, sea
+	link = { vic2 = 2757 hoi4 = 5681 hoi4 = 1452 hoi4 = 8965 }	# Bay of Naples -> sea, sea, sea
+	link = { vic2 = 2756 hoi4 = 5656 }	# Tyrrhenian Sea -> sea
+	link = { vic2 = 2751 hoi4 = 5555 hoi4 = 5579 }	# Ligurian Sea -> sea, sea
+	link = { vic2 = 2750 hoi4 = 8918 }	# Cote D'Azur -> sea
+	link = { vic2 = 2749 hoi4 = 5505 }	# Gulf of Lion -> sea
+	link = { vic2 = 2753 hoi4 = 8895 }	# Western Mediterranean -> sea
+	link = { vic2 = 2755 hoi4 = 5605 hoi4 = 8941 }	# Cape Bon -> sea, sea
+	link = { vic2 = 2752 hoi4 = 8871 }	# Gulf of Mallorca -> sea
+	link = { vic2 = 2748 hoi4 = 8845 hoi4 = 5454 }	# Gulf of Valencia -> sea, sea
+	link = { vic2 = 2754 hoi4 = 5531 hoi4 = 5479 hoi4 = 8819 }	# Barbary Coast -> sea, sea, sea
+	link = { vic2 = 2747 hoi4 = 5431 hoi4 = 8793 }	# Gulf of Almería -> sea, sea
+	link = { vic2 = 2746 hoi4 = 5407 hoi4 = 2400 }	# Straits of Gibraltar -> sea, sea
+	# 
+	# ## Gulf of Mexico and Caribbean
+	link = { vic2 = 2959 hoi4 = 6612 hoi4 = 6422 hoi4 = 2745 }	# Apalachee Bay -> sea, sea, sea
+	link = { vic2 = 2960 hoi4 = 6223 hoi4 = 2722 }	# Mobile Bay -> sea, sea
+	link = { vic2 = 2961 hoi4 = 5963 hoi4 = 2623 hoi4 = 2646 }	# Galveston Bay -> sea, sea, sea
+	link = { vic2 = 2962 hoi4 = 2672 hoi4 = 5986 }	# Tampico Bay -> sea, sea
+	link = { vic2 = 2963 hoi4 = 5915 hoi4 = 2697 }	# Yucatan Sea -> sea, sea
+	link = { vic2 = 2964 hoi4 = 5892 hoi4 = 6014 }	# Gulf of Mexico -> sea, sea
+	link = { vic2 = 2965 hoi4 = 5866 hoi4 = 5840 }	# Yucatan Channel -> sea, sea
+	link = { vic2 = 2958 hoi4 = 6805 hoi4 = 7006 }	# Florida Straits -> sea, sea
+	link = { vic2 = 2956 hoi4 = 7910 hoi4 = 8135 }	# Coast of Florida -> sea, sea
+	link = { vic2 = 2966 hoi4 = 5814 }	# Belize Bay -> sea
+	link = { vic2 = 2971 hoi4 = 5735 }	# Northwestern Caribbean -> sea
+	link = { vic2 = 2967 hoi4 = 5788 }	# Mosquito Coast -> sea
+	link = { vic2 = 2968 hoi4 = 5709 hoi4 = 2284 hoi4 = 2547 }	# Gulf of Darien -> sea, sea, sea
+	link = { vic2 = 2970 hoi4 = 5683 hoi4 = 5761 }	# Central Caribbean -> sea, sea
+	link = { vic2 = 2969 hoi4 = 5633 hoi4 = 2500 hoi4 = 2865 hoi4 = 5658 }	# Jamaica Channel -> sea, sea, sea, sea
+	link = { vic2 = 2972 hoi4 = 2258 hoi4 = 2232 hoi4 = 2571 }	# Venezuelan Gulf -> sea, sea, sea
+	link = { vic2 = 2973 hoi4 = 2110 hoi4 = 2910 }	# Venezuelan Sea -> sea, sea
+	link = { vic2 = 2975 hoi4 = 2597 hoi4 = 2766 hoi4 = 2791 }	# Windward Islands -> sea, sea, sea
+	link = { vic2 = 2976 hoi4 = 5533 hoi4 = 5507 hoi4 = 2887 }	# Lesser Antilles -> sea, sea, sea
+	link = { vic2 = 2974 hoi4 = 5607 hoi4 = 5557 }	# Eastern Caribbean -> sea, sea
+	link = { vic2 = 2979 hoi4 = 5581 hoi4 = 2934 }	# Coast of Hispaniola -> sea, sea
+	link = { vic2 = 2977 hoi4 = 7230 hoi4 = 7456 }	# Turks & Caicos Sea -> sea, sea
+	link = { vic2 = 2978 hoi4 = 5700 }	# Coast of Cuba -> sea
+	link = { vic2 = 2957 hoi4 = 5674 hoi4 = 5649 hoi4 = 8284 }	# Coast of the Bahamas -> sea, sea, sea
+	# 
+	# ## Hudson and Baffin Bays
+	link = { vic2 = 2940 hoi4 = 451 hoi4 = 255 hoi4 = 8867 }	# Western Hudson Bay -> sea, sea, sea
+	link = { vic2 = 2939 hoi4 = 9092 hoi4 = 9001 hoi4 = 8815 hoi4 = 8768 }	# James Bay -> sea, sea, sea, sea
+	link = { vic2 = 2941 hoi4 = 8745 hoi4 = 1482 hoi4 = 8841 }	# Eastern Hudson Bay -> sea, sea, sea
+	link = { vic2 = 2942 hoi4 = 8891 hoi4 = 48 hoi4 = 8914 hoi4 = 9077 hoi4 = 8978 }	# Foxe Basin -> sea, sea, sea, sea, sea
+	link = { vic2 = 2938 hoi4 = 8953 hoi4 = 6000 hoi4 = 8930 hoi4 = 1256 hoi4 = 6261 hoi4 = 5977 }	# Hudson Straits -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2937 hoi4 = 6054 hoi4 = 217 hoi4 = 5881 hoi4 = 7499 hoi4 = 7724 hoi4 = 600 hoi4 = 5830 hoi4 = 5905 hoi4 = 5953 }	# Baffin Bay -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2936 hoi4 = 5928 hoi4 = 8719 hoi4 = 8694 hoi4 = 3633 hoi4 = 3826 }	# Labrador Strait -> sea, sea, sea, sea, sea
+	link = { vic2 = 2935 hoi4 = 419 hoi4 = 8274 hoi4 = 1669 hoi4 = 2911 hoi4 = 5856 hoi4 = 7952 hoi4 = 8163 }	# Western Coast of Greenland -> sea, sea, sea, sea, sea, sea, sea
+	# 
+	# ## North Atlantic
+	link = { vic2 = 2946 hoi4 = 8668 hoi4 = 2935 }	# Strait of Belle Isle -> sea, sea
+	link = { vic2 = 2943 hoi4 = 8642 }	# Gulf of St. Lawrence -> sea
+	link = { vic2 = 2944 hoi4 = 8614 hoi4 = 2768 }	# Cabot Strait -> sea, sea
+	link = { vic2 = 2945 hoi4 = 8566 }	# Bay of Fundy -> sea
+	link = { vic2 = 3022 hoi4 = 2817 hoi4 = 2434 hoi4 = 8864 hoi4 = 8589 }	# New England Seamounts -> sea, sea, sea, sea
+	link = { vic2 = 2947 hoi4 = 8838 hoi4 = 2361 hoi4 = 2449 }	# Fortune Bay -> sea, sea, sea
+	link = { vic2 = 2948 hoi4 = 4484 hoi4 = 4035 hoi4 = 3441 hoi4 = 4258 hoi4 = 2233 hoi4 = 2285 }	# Notre Dame Bay -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2949 hoi4 = 2792 hoi4 = 1894 hoi4 = 2259 hoi4 = 2888 hoi4 = 2864 hoi4 = 2839 hoi4 = 2816 hoi4 = 2959 }	# Labrador Sea -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3242 hoi4 = 5480 hoi4 = 2596 hoi4 = 2570 hoi4 = 2645 hoi4 = 2671 hoi4 = 5286 }	# Maury Sea Channel -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2931 hoi4 = 2546 hoi4 = 2523 hoi4 = 2448 hoi4 = 2374 hoi4 = 1255 hoi4 = 1481 }	# Northeastern Atlantic -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2951 hoi4 = 1930 hoi4 = 5259 hoi4 = 2247 hoi4 = 1705 hoi4 = 2622 hoi4 = 2299 hoi4 = 2273 hoi4 = 2137 hoi4 = 2325 hoi4 = 5506 }	# Hecala Seamount -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2950 hoi4 = 2349 hoi4 = 3037 hoi4 = 2112 hoi4 = 2767 hoi4 = 1442 hoi4 = 2721 hoi4 = 2744 hoi4 = 1218 hoi4 = 2696 }	# Greenland Sea -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2729 hoi4 = 8592 }	# Cote D'Argent -> sea
+	link = { vic2 = 2728 hoi4 = 5108 hoi4 = 8546 }	# Quiberon Bay -> sea, sea
+	link = { vic2 = 2731 hoi4 = 5233 hoi4 = 8618 }	# Cantabrian Sea -> sea, sea
+	link = { vic2 = 2727 hoi4 = 4885 hoi4 = 8469 }	# Coast of Britanny -> sea, sea
+	link = { vic2 = 2743 hoi4 = 8698 hoi4 = 5258 }	# Finisterre Bay -> sea, sea
+	link = { vic2 = 2742 hoi4 = 8672 hoi4 = 8840 hoi4 = 8646 }	# Western Approaches -> sea, sea, sea
+	link = { vic2 = 2730 hoi4 = 8496 hoi4 = 8522 hoi4 = 8569 }	# Bay of Biscay -> sea, sea, sea
+	link = { vic2 = 2744 hoi4 = 5284 hoi4 = 8749 hoi4 = 5311 }	# Lusitanian Sea -> sea, sea, sea
+	link = { vic2 = 2745 hoi4 = 5336 hoi4 = 8772 hoi4 = 5382 }	# Gulf of Cadiz -> sea, sea, sea
+	link = { vic2 = 2925 hoi4 = 2375 hoi4 = 1926 hoi4 = 8960 hoi4 = 8937 hoi4 = 5360 }	# Coast of Morocco -> sea, sea, sea, sea, sea
+	link = { vic2 = 2924 hoi4 = 2272 hoi4 = 2135 hoi4 = 2246 hoi4 = 826 hoi4 = 1701 hoi4 = 210 hoi4 = 1032 hoi4 = 4439 hoi4 = 5140 }	# Canarian Sea -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2923 hoi4 = 251 hoi4 = 412 hoi4 = 448 hoi4 = 633 hoi4 = 43 hoi4 = 4483 hoi4 = 4257 hoi4 = 4706 hoi4 = 4929 }	# Mauritanian Coast -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2922 hoi4 = 787 hoi4 = 594 hoi4 = 9072 hoi4 = 9024 hoi4 = 8999 hoi4 = 8889 hoi4 = 8829 }	# Coast of Senegambia -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2980 hoi4 = 1890 hoi4 = 1665 hoi4 = 2720 hoi4 = 2743 }	# Guyana Coast -> sea, sea, sea, sea
+	link = { vic2 = 2981 hoi4 = 2670 hoi4 = 1439 hoi4 = 2644 hoi4 = 2595 }	# Coast of Amapá -> sea, sea, sea, sea
+	link = { vic2 = 2982 hoi4 = 2569 hoi4 = 2545 hoi4 = 1215 hoi4 = 2498 hoi4 = 2522 }	# Amazonas Gulf -> sea, sea, sea, sea, sea
+	link = { vic2 = 2983 hoi4 = 2472 hoi4 = 2447 hoi4 = 2398 }	# Coast of Brazil -> sea, sea, sea
+	link = { vic2 = 2984 hoi4 = 2849 hoi4 = 8427 hoi4 = 8402 }	# Coast of Recife -> sea, sea, sea
+	link = { vic2 = 3037 hoi4 = 5682 hoi4 = 8951 hoi4 = 5657 hoi4 = 8976 hoi4 = 2298 hoi4 = 8880 }	# Romanche Gap -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3030 hoi4 = 2423 hoi4 = 2248 hoi4 = 2826 hoi4 = 2324 hoi4 = 5632 hoi4 = 2958 hoi4 = 3036 hoi4 = 2373 hoi4 = 2348 hoi4 = 3237 }	# Southern Guiana Basin -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2955 hoi4 = 8363 hoi4 = 5939 hoi4 = 8415 hoi4 = 8389 hoi4 = 5624 }	# Coast of Carolina -> sea, sea, sea, sea, sea
+	link = { vic2 = 2954 hoi4 = 8465 hoi4 = 8492 }	# Cape Hatteras -> sea, sea
+	link = { vic2 = 2953 hoi4 = 8518 }	# Chesapeake Bay -> sea
+	link = { vic2 = 2952 hoi4 = 8543 }	# Massachusetts Bay -> sea
+	link = { vic2 = 3023 hoi4 = 2840 hoi4 = 2458 hoi4 = 2483 hoi4 = 5804 hoi4 = 5778 }	# Sable Island Bank -> sea, sea, sea, sea, sea
+	link = { vic2 = 3024 hoi4 = 8438 hoi4 = 8336 hoi4 = 8310 }	# Blake Plateau -> sea, sea, sea
+	link = { vic2 = 3025 hoi4 = 5498 hoi4 = 5409 hoi4 = 5524 hoi4 = 2411 hoi4 = 5726 }	# West Bermuda Sea -> sea, sea, sea, sea, sea
+	link = { vic2 = 3026 hoi4 = 5752 hoi4 = 2385 hoi4 = 5384 }	# East Bermuda Sea -> sea, sea, sea
+	link = { vic2 = 3027 hoi4 = 5433 hoi4 = 5548 hoi4 = 5456 hoi4 = 5572 hoi4 = 5598 hoi4 = 5472 hoi4 = 7951 hoi4 = 7047 hoi4 = 5481 hoi4 = 8258 }	# Canary Current -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3209 hoi4 = 6844 hoi4 = 4890 hoi4 = 7498 hoi4 = 7723 }	# Bahamas Basin -> sea, sea, sea, sea
+	link = { vic2 = 3018 hoi4 = 2474 hoi4 = 5329 hoi4 = 2312 hoi4 = 2985 hoi4 = 2425 hoi4 = 3238 }	# Western Gibbs Fracture -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2932 hoi4 = 1035 hoi4 = 8839 hoi4 = 830 hoi4 = 2424 hoi4 = 8723 hoi4 = 5863 hoi4 = 8890 hoi4 = 5889 hoi4 = 8989 hoi4 = 2399 }	# Rockall -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3016 hoi4 = 5912 hoi4 = 47 hoi4 = 9076 hoi4 = 8929 hoi4 = 450 hoi4 = 9008 hoi4 = 254 hoi4 = 5532 }	# Hatton Bank -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3020 hoi4 = 8403 hoi4 = 8453 hoi4 = 8508 hoi4 = 8481 hoi4 = 5556 hoi4 = 4663 }	# Sea of Azores -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3031 hoi4 = 1477 hoi4 = 4213 hoi4 = 8985 hoi4 = 2350 hoi4 = 9034 hoi4 = 8912 hoi4 = 1251 }	# Canary Approach -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3019 hoi4 = 5234 hoi4 = 635 hoi4 = 2274 hoi4 = 2300 hoi4 = 2326 }	# Iberian Shelf -> sea, sea, sea, sea, sea
+	link = { vic2 = 3017 hoi4 = 9000 hoi4 = 5109 hoi4 = 8977 hoi4 = 9025 hoi4 = 8952 hoi4 = 8905 hoi4 = 8881 hoi4 = 8758 hoi4 = 8856 hoi4 = 8804 hoi4 = 8830 }	# Eastern Gibbs Fracture -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3210 hoi4 = 7272 hoi4 = 6260 hoi4 = 5338 hoi4 = 5447 hoi4 = 5235 hoi4 = 5399 hoi4 = 5999 }	# Western Sargasso Sea -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3211 hoi4 = 5374 hoi4 = 5423 hoi4 = 5352 hoi4 = 5362 hoi4 = 5303 hoi4 = 5313 }	# Bermuda Approaches -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3237 hoi4 = 2336 hoi4 = 4930 hoi4 = 1706 hoi4 = 4707 hoi4 = 5141 hoi4 = 5276 hoi4 = 5251 }	# Sohm Plain -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3021 hoi4 = 8781 hoi4 = 8708 hoi4 = 8734 hoi4 = 8683 hoi4 = 8657 hoi4 = 8631 hoi4 = 8603 }	# Corner Seamounts -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3028 hoi4 = 4443 hoi4 = 2863 hoi4 = 6649 hoi4 = 4667 }	# Northern Guiana Basin -> sea, sea, sea, sea
+	link = { vic2 = 3036 hoi4 = 5111 hoi4 = 6461 hoi4 = 5260 hoi4 = 5777 hoi4 = 5287 hoi4 = 5751 hoi4 = 3595 }	# Central Sargasso Sea -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3035 hoi4 = 5803 hoi4 = 5904 hoi4 = 5976 hoi4 = 5927 hoi4 = 6053 }	# Eastern Sargasso Sea -> sea, sea, sea, sea, sea
+	link = { vic2 = 3033 hoi4 = 5275 hoi4 = 5250 hoi4 = 4886 hoi4 = 5302 hoi4 = 8556 hoi4 = 8533 hoi4 = 8579 hoi4 = 5580 hoi4 = 8162 }	# Cruiser Tablemount -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3032 hoi4 = 2984 hoi4 = 3632 hoi4 = 5351 hoi4 = 5606 hoi4 = 5328 hoi4 = 8386 hoi4 = 5422 }	# Cape Verde Approach -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3034 hoi4 = 8299 hoi4 = 8273 hoi4 = 2944 hoi4 = 5471 hoi4 = 5880 hoi4 = 2968 hoi4 = 5497 }	# Barracuda Fracture Zone -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3207 hoi4 = 5398 hoi4 = 5446 hoi4 = 5373 hoi4 = 2920 hoi4 = 3825 hoi4 = 3440 }	# Cape Verde Basin -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3206 hoi4 = 2873 hoi4 = 2138 hoi4 = 2897 hoi4 = 1931 hoi4 = 5571 hoi4 = 5547 hoi4 = 5623 hoi4 = 5597 hoi4 = 5523 }	# East Demerara Plain -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3205 hoi4 = 3198 hoi4 = 2621 hoi4 = 3405 hoi4 = 8325 hoi4 = 8378 hoi4 = 8351 hoi4 = 5855 }	# West Demerara Plain -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3029 hoi4 = 3789 hoi4 = 2815 hoi4 = 3993 hoi4 = 4217 hoi4 = 2838 hoi4 = 5725 }	# Guiana Basin -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3208 hoi4 = 5952 hoi4 = 5699 hoi4 = 5673 hoi4 = 5829 hoi4 = 2997 hoi4 = 5648 }	# Nares Plain -> sea, sea, sea, sea, sea, sea
+	# 
+	# ## South Atlantic
+	link = { vic2 = 2985 hoi4 = 791 hoi4 = 995 hoi4 = 8507 hoi4 = 8298 hoi4 = 8324 }	# Coast of Pernambuco -> sea, sea, sea, sea, sea
+	link = { vic2 = 2986 hoi4 = 597 hoi4 = 8480 hoi4 = 8452 hoi4 = 2778 hoi4 = 8159 }	# Todos os Santos Bay -> sea, sea, sea, sea, sea
+	link = { vic2 = 2987 hoi4 = 2719 hoi4 = 2694 hoi4 = 8716 hoi4 = 2643 hoi4 = 6256 hoi4 = 2544 hoi4 = 2594 hoi4 = 2731 hoi4 = 416 hoi4 = 2620 }	# Rio De Janeiro -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2988 hoi4 = 5998 hoi4 = 5975 hoi4 = 213 hoi4 = 2765 hoi4 = 2790 }	# Baia Paranaguá -> sea, sea, sea, sea, sea
+	link = { vic2 = 2989 hoi4 = 5951 hoi4 = 9037 hoi4 = 9 }	# Rio De La Plata -> sea, sea, sea
+	link = { vic2 = 2990 hoi4 = 9009 hoi4 = 5926 hoi4 = 5879 }	# Bahia Blanca -> sea, sea, sea
+	link = { vic2 = 2991 hoi4 = 5828 hoi4 = 5802 }	# Coast of Patagonia -> sea, sea
+	link = { vic2 = 2992 hoi4 = 8986 hoi4 = 2777 hoi4 = 8961 hoi4 = 5776 hoi4 = 8866 }	# Magellan Strait -> sea, sea, sea, sea, sea
+	link = { vic2 = 3048 hoi4 = 5622 hoi4 = 5854 hoi4 = 5596 hoi4 = 8814 hoi4 = 2580 hoi4 = 5546 hoi4 = 5496 hoi4 = 5470 hoi4 = 5522 }	# Coast of Falklands -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3200 hoi4 = 2322 hoi4 = 2346 hoi4 = 9021 hoi4 = 9070 hoi4 = 2270 hoi4 = 631 hoi4 = 41 hoi4 = 446 hoi4 = 1030 hoi4 = 824 hoi4 = 2244 hoi4 = 8974 hoi4 = 8997 hoi4 = 1699 }	# Coast of South Georgia -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3047 hoi4 = 3233 hoi4 = 3437 hoi4 = 1924 hoi4 = 3032 hoi4 = 3822 hoi4 = 1475 hoi4 = 2655 hoi4 = 2983 hoi4 = 2957 }	# Falkland Plateau -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3040 hoi4 = 2632 hoi4 = 5903 hoi4 = 2606 }	# Argentine Sea -> sea, sea, sea
+	link = { vic2 = 3041 hoi4 = 2681 hoi4 = 2933 hoi4 = 2862 hoi4 = 2705 hoi4 = 2669 hoi4 = 2837 }	# Argentine Rise -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3201 hoi4 = 1249 hoi4 = 2886 hoi4 = 2271 hoi4 = 249 hoi4 = 2245 hoi4 = 2323 }	# Argentine Plain -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3042 hoi4 = 2742 hoi4 = 2814 hoi4 = 5839 hoi4 = 2297 hoi4 = 2422 hoi4 = 2754 }	# Cornet Bank -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3043 hoi4 = 2521 hoi4 = 2471 hoi4 = 2497 hoi4 = 2372 hoi4 = 2397 hoi4 = 2347 hoi4 = 8602 hoi4 = 8656 hoi4 = 6457 hoi4 = 8555 }	# Vema Channel -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3044 hoi4 = 8630 hoi4 = 6840 hoi4 = 7947 hoi4 = 8272 hoi4 = 7268 hoi4 = 7720 hoi4 = 8744 hoi4 = 2801 hoi4 = 5708 hoi4 = 8655 }	# South Brazil Basin -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3049 hoi4 = 8377 hoi4 = 8350 hoi4 = 8928 hoi4 = 8904 hoi4 = 8426 }	# Fernando de Noronha Islands -> sea, sea, sea, sea, sea
+	link = { vic2 = 3050 hoi4 = 8479 hoi4 = 8629 hoi4 = 8451 }	# North Brazil Basin -> sea, sea, sea
+	link = { vic2 = 2921 hoi4 = 991 hoi4 = 8803 hoi4 = 8780 hoi4 = 8349 hoi4 = 8297 }	# Coast of Guinea -> sea, sea, sea, sea, sea
+	link = { vic2 = 3051 hoi4 = 8855 hoi4 = 8401 hoi4 = 8376 hoi4 = 5734 }	# Sierra Leone Basin -> sea, sea, sea, sea
+	link = { vic2 = 2920 hoi4 = 1212 hoi4 = 8323 hoi4 = 5760 hoi4 = 8757 hoi4 = 8733 hoi4 = 7493 hoi4 = 7719 hoi4 = 7946 }	# Ivory Coast -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2919 hoi4 = 1661 hoi4 = 8682 hoi4 = 7267 hoi4 = 4475 hoi4 = 5133 }	# Gold Coast -> sea, sea, sea, sea, sea
+	link = { vic2 = 2918 hoi4 = 4026 hoi4 = 8707 hoi4 = 1886 hoi4 = 3818 hoi4 = 4249 hoi4 = 4922 }	# Bight of Benin -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2917 hoi4 = 4699 hoi4 = 3625 hoi4 = 2108 hoi4 = 8348 hoi4 = 3433 }	# Coast of Cameroon -> sea, sea, sea, sea, sea
+	link = { vic2 = 2916 hoi4 = 2231 hoi4 = 2982 hoi4 = 2956 hoi4 = 2813 hoi4 = 2932 hoi4 = 3029 hoi4 = 3228 hoi4 = 5891 }	# Gulf of Kongo -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2915 hoi4 = 2764 hoi4 = 2741 hoi4 = 2861 hoi4 = 2908 hoi4 = 2257 hoi4 = 2885 hoi4 = 2693 hoi4 = 2668 }	# Coast of Angola -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2914 hoi4 = 2542 hoi4 = 2283 hoi4 = 2566 hoi4 = 2642 hoi4 = 2592 hoi4 = 2519 hoi4 = 2619 hoi4 = 5938 }	# Coast of Namibia -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2913 hoi4 = 2420 hoi4 = 5962 hoi4 = 2395 hoi4 = 2310 hoi4 = 2444 hoi4 = 2321 hoi4 = 2269 hoi4 = 2243 hoi4 = 2131 hoi4 = 2469 hoi4 = 2495 hoi4 = 1695 hoi4 = 1471 }	# Cape of Good Hope -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3063 hoi4 = 627 hoi4 = 8852 hoi4 = 1921 hoi4 = 2334 hoi4 = 8826 }	# Cape of Storms -> sea, sea, sea, sea, sea
+	link = { vic2 = 3053 hoi4 = 8779 hoi4 = 5813 hoi4 = 8554 hoi4 = 8532 hoi4 = 8271 hoi4 = 8506 hoi4 = 8577 }	# West Coast of Ascension -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3054 hoi4 = 8158 hoi4 = 8756 hoi4 = 8828 hoi4 = 8802 hoi4 = 8681 hoi4 = 8732 hoi4 = 6839 hoi4 = 6645 hoi4 = 6456 hoi4 = 5950 hoi4 = 5925 }	# East Coast of Ascension -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3038 hoi4 = 8388 hoi4 = 5371 hoi4 = 5420 hoi4 = 5468 hoi4 = 8257 hoi4 = 5444 hoi4 = 2718 hoi4 = 5396 hoi4 = 5914 }	# East Guinea Basin -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3039 hoi4 = 8362 hoi4 = 5878 hoi4 = 5902 hoi4 = 5326 hoi4 = 5349 hoi4 = 2789 hoi4 = 8283 hoi4 = 2836 hoi4 = 5300 hoi4 = 5974 hoi4 = 5997 hoi4 = 6048 hoi4 = 6255 hoi4 = 7042 hoi4 = 5248 hoi4 = 5865 hoi4 = 1435 hoi4 = 8309 hoi4 = 5273 hoi4 = 8613 }	# West Guinea Basin -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3203 hoi4 = 5827 hoi4 = 5853 hoi4 = 8693 hoi4 = 5421 hoi4 = 5397 hoi4 = 5469 hoi4 = 5775 hoi4 = 5801 }	# West Coast of Saint Helena -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3052 hoi4 = 5787 hoi4 = 8601 hoi4 = 8854 hoi4 = 8879 hoi4 = 7494 }	# Martin Vaz Ridge -> sea, sea, sea, sea, sea
+	link = { vic2 = 3204 hoi4 = 8718 hoi4 = 8335 hoi4 = 5570 hoi4 = 5521 hoi4 = 5495 hoi4 = 5445 hoi4 = 5545 hoi4 = 8903 hoi4 = 8950 hoi4 = 8975 }	# Moore Fracture Zone -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3202 hoi4 = 7043 hoi4 = 6646 hoi4 = 8927 hoi4 = 8998 hoi4 = 9022 hoi4 = 8578 }	# Zapiola Seamount -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3060 hoi4 = 2520 hoi4 = 2421 hoi4 = 2445 hoi4 = 2396 hoi4 = 2470 hoi4 = 2543 hoi4 = 2496 hoi4 = 2593 hoi4 = 2567 }	# South Sandwich Islands -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3046 hoi4 = 2134 hoi4 = 8949 hoi4 = 8926 hoi4 = 8641 hoi4 = 8878 hoi4 = 8778 }	# Argentine Basin -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3045 hoi4 = 1700 hoi4 = 1925 hoi4 = 825 hoi4 = 1250 hoi4 = 1476 hoi4 = 1031 }	# Zapiola Plain -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3059 hoi4 = 8731 hoi4 = 8827 hoi4 = 8801 hoi4 = 8853 hoi4 = 8902 hoi4 = 8755 hoi4 = 5249 }	# San Marin Gap -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3062 hoi4 = 5996 hoi4 = 5949 hoi4 = 5973 hoi4 = 7907 hoi4 = 5877 hoi4 = 5852 hoi4 = 7263 hoi4 = 6641 hoi4 = 6453 hoi4 = 6044 hoi4 = 5723 hoi4 = 5749 hoi4 = 5774 }	# Bouvet Island -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3056 hoi4 = 5671 hoi4 = 8132 hoi4 = 2371 hoi4 = 2345 hoi4 = 5646 hoi4 = 1245 hoi4 = 6802 hoi4 = 5800 hoi4 = 5826 hoi4 = 1026 hoi4 = 821 hoi4 = 245 hoi4 = 2295 }	# Cape Plain -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3058 hoi4 = 8667 hoi4 = 632 hoi4 = 250 hoi4 = 9071 hoi4 = 42 hoi4 = 447 hoi4 = 5350 hoi4 = 5327 hoi4 = 5301 }	# Coast of Tristan da Cunha -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3061 hoi4 = 7679 hoi4 = 8576 hoi4 = 8491 hoi4 = 8553 hoi4 = 8531 hoi4 = 7490 hoi4 = 8478 hoi4 = 8505 hoi4 = 6835 hoi4 = 6251 hoi4 = 7038 hoi4 = 8600 hoi4 = 8654 hoi4 = 8705 hoi4 = 8680 hoi4 = 8628 hoi4 = 3628 hoi4 = 3232 hoi4 = 8437 hoi4 = 3436 }	# Inaccessible Island -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3055 hoi4 = 5595 hoi4 = 5698 hoi4 = 5750 hoi4 = 5724 hoi4 = 5621 hoi4 = 8414 hoi4 = 5672 hoi4 = 5620 hoi4 = 5697 hoi4 = 5569 hoi4 = 5647 hoi4 = 5494 hoi4 = 5520 hoi4 = 5544 hoi4 = 5594 }	# Walvis Ridge -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3057 hoi4 = 5372 hoi4 = 8464 hoi4 = 4253 hoi4 = 4479 hoi4 = 4030 hoi4 = 3821 hoi4 = 4702 hoi4 = 5274 hoi4 = 4926 hoi4 = 5137 }	# Gough Island -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	# 
+	# 
+	# 
+	# 
+	# 
 	link = { vic2 = 2779 hoi4 = 1496 hoi4 = 1271 hoi4 = 1050 hoi4 = 843 }	# Caspian Sea -> lake, lake, lake, lake
 }
