@@ -102,6 +102,7 @@ class HoI4Country
 		vector<int>									getBrigs() const			{ return brigs; }
 		double										getArmyStrength() const { return brigs[0] * 12 + brigs[1] * .85 + brigs[2] + brigs[3] * 2.1; }
 		const string									getSphereLeader() const { return sphereLeader; }
+		vector<HoI4Party> getParties() const { return parties; }
 	private:
 		void			outputOOB(map<int, HoI4State*>)						const;
 		void			outputPracticals(FILE*)		const;

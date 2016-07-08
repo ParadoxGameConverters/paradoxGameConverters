@@ -2635,7 +2635,14 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 					//lets check to see if they are our ally and not a great country
 					if (std::find(Allies.begin(), Allies.end(), neigh->getTag()) == Allies.end() && !checkIfGreatCountry(neigh, sourceWorld, countryMap))
 					{
-						if (neigh->getCommunismPopularity() > 25)
+						double com = 0;
+						
+						for (auto party : neigh->getParties())
+						{
+							if (party.name.find("socialist") != string::npos || party.name.find("communist") != string::npos)
+								com += party.popularity;
+						}
+						if (com > 25)
 						{
 							//look for neighboring countries to spread communism too(Need 25 % or more Communism support), Prioritizing those with "Communism Allowed" Flags, prioritizing those who are weakest
 							//	Method() Influence Ideology and Attempt Coup
@@ -2681,7 +2688,7 @@ void HoI4World::HowToTakeLand(HoI4Country* TargetCountry, HoI4Country* Attacking
 		{
 			//FIXME
 			//hmm I am still weaker, maybe need to look for allies?
-			GetMorePossibleAllies(AttackingCountry);
+			//GetMorePossibleAllies(AttackingCountry);
 			if (GetFactionStrengthWithDistance(AttackingCountry, findFaction(AttackingCountry)) >= GetFactionStrengthWithDistance(AttackingCountry, targetFaction))
 			{
 				//ADD CONQUEST GOAL
@@ -2873,13 +2880,15 @@ vector<HoI4Country*> HoI4World::findNeighbors(vector<int> CountryProvs, HoI4Coun
 							//int provfind = provinces.find(neighborprov)->first;
 							//if (provfind == prov)
 							{
-								string ownertag = provinces.find(neighborprov)->second->getOwner();
+								string ownertag = "";
+								ownertag = provincemap.find(neighborprov)->second[1];
 								HoI4Country* ownerCountry = countries.find(ownertag)->second;
-								if (ownertag != CheckingCountry->getTag())
+								if (ownertag != CheckingCountry->getTag() && ownerCountry != nullptr)
 								{
+									//if not already in neighbors
 									if (std::find(Neighbors.begin(), Neighbors.end(), ownerCountry) == Neighbors.end())
 									{
-										Neighbors.push_back(countries.find(ownertag)->second);
+										Neighbors.push_back(ownerCountry);
 									}
 								}
 							}
@@ -2890,11 +2899,13 @@ vector<HoI4Country*> HoI4World::findNeighbors(vector<int> CountryProvs, HoI4Coun
 			myReadFile.close();
 		}
 		out << CheckingCountry->getSourceCountry()->getName() + " " << endl;
+		
 		for (auto neigh : Neighbors)
 			out << neigh->getSourceCountry()->getName() + " ";
 		out << endl;
 		out.close();
 	}
+	volatile vector<HoI4Country*> Neighbors2 = Neighbors;
 	return Neighbors;
 }
 void HoI4World::fillProvinces()
@@ -2905,8 +2916,12 @@ void HoI4World::fillProvinces()
 		{
 			string owner = state.second->getOwner();
 			int stateID = state.second->getID();
-			HoI4Province* newprov = new HoI4Province(owner, stateID);
-			provinces.insert(pair<int, HoI4Province*>(prov, newprov));
+			vector<string> provinceinfo;
+			provinceinfo.push_back(to_string(stateID));
+			provinceinfo.push_back(owner);
+			provincemap.insert(pair<int, vector<string>>(prov, provinceinfo));
+			// HoI4Province* newprov = new HoI4Province(owner, stateID);
+			//provinces.insert(pair<int, HoI4Province*>(prov, newprov));
 		}
 	}
 }

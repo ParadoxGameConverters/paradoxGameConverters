@@ -123,6 +123,7 @@ class HoI4World
 		string axisLeader;
 		string alliesLeader;
 		string cominternLeader;
+		map<int, vector<string>> provincemap;
 };
 
 
