@@ -680,8 +680,6 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const province
 		//	loop through the states in the vic2 country
 		for (auto vic2State: country.second->getStates())
 		{
-			string resources = "";
-
 			// determine the manpower for the new state
 			int manpower = 1;
 			for (auto prov: vic2State->getProvinces())
@@ -721,6 +719,26 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const province
 					}
 				}
 			}
+
+			// create a VP for the state
+			auto vic2Province = vic2State->getProvinces()[0];
+			auto provMapping = inverseProvinceMap.find(vic2Province);
+			if (provMapping != inverseProvinceMap.end())
+			{
+				int HoI4ProvNum = provMapping->second[0];
+				if (HoI4ProvNum != 0)
+				{
+					auto ownerItr = provinceOwners.find(HoI4ProvNum);
+					if (
+							(ownerItr != provinceOwners.end()) && (ownerItr->second == HoI4Tag) &&
+							(stateMap.find(HoI4ProvNum) != stateMap.end()) && (stateMap.find(HoI4ProvNum)->second == stateID)
+						)
+					{
+						newState->addVP(HoI4ProvNum, 5);
+					}
+				}
+			}
+
 
 			//	if the state is not empty, add it to this list of states
 			if (provincecount != 0)

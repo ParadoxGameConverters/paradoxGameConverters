@@ -75,7 +75,12 @@ void HoI4State::output(string _filename)
 	out << "" << endl;
 	out << "\thistory={" << endl;
 	out << "\t\towner = " << ownerTag << endl;
-	//out << "	victory_points = { 3838 1 }" << endl;
+	for (auto VP: victoryPoints)
+	{
+		out << "\t\tvictory_points = {" << endl;
+		out << "\t\t\t" << VP.first << " " << VP.second << endl;
+		out << "\t\t}" << endl;
+	}
 	out << "\t\tbuildings = {" << endl;
 	out << "\t\t\tinfrastructure = "<< railLevel << endl;
 	out << "\t\t\tindustrial_complex = " << civFactories << endl;

@@ -43,6 +43,7 @@ class HoI4State
 
 		void	addProvince(int province)							{ provinces.insert(make_pair(province, province)); }
 		void	addResource(string resource, double amount)	{ resources[resource] += amount; }
+		void	addVP(int location, int value)					{ victoryPoints.insert(make_pair(location, value)); }
 
 		void	setNavalBase(int level, int location);
 		void	setIndustry(int civilianFactories, int militaryFactories, string category, int railLevel);
@@ -73,6 +74,8 @@ class HoI4State
 		int						navalLocation;
 
 		map<string, double>	resources;
+
+		map<int, int>			victoryPoints;
 };
 
 
