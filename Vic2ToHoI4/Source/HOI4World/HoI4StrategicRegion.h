@@ -21,58 +21,37 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef HOI4STATE_H_
-#define HOI4STATE_H_
+#ifndef _HOI4_STRATEGIC_REGION
+#define _HOI4_STRATEGIC_REGION
 
 
 
-#include <vector>
+#include "Object.h"
 #include <string>
-#include <map>
-#include "..\V2World\Vic2State.h"
+#include <vector>
 using namespace std;
 
 
 
-class HoI4State
+class HoI4StrategicRegion
 {
 	public:
-		HoI4State(Vic2State* sourceState, int _ID, string _ownerTag, int _manpower);
+		HoI4StrategicRegion(string _filename);
+		void output(string path);
 
-		void	output(string filename);
+		int			getID() const				{ return ID; }
+		vector<int>	getOldProvinces() const	{ return oldProvinces; }
 
-		void	addProvince(int province)							{ provinces.insert(make_pair(province, province)); }
-		void	addResource(string resource, double amount)	{ resources[resource] += amount; }
-
-		void	setNavalBase(int level, int location);
-		void	setIndustry(int civilianFactories, int militaryFactories, string category, int railLevel);
-
-		Vic2State*		getSourceState() const		{ return sourceState; }
-		map<int, int>	getProvinces() const			{ return provinces; }
-		string			getOwner() const				{ return ownerTag; }
-		int				getID() const					{ return ID; }
-		int				getNavalLocation() const	{ return navalLocation; }
+		void	addNewProvince(int province)	{ newProvinces.push_back(province); }
 
 	private:
-		Vic2State*				sourceState;
-
-		int						ID;
-		map<int, int>			provinces;
-		string					ownerTag;
-
-		int						manpower;
-
-		int						civFactories;
-		int						milFactories;
-		string					category;
-		int						railLevel;
-	
-		int						navalLevel;
-		int						navalLocation;
-
-		map<string, double>	resources;
+		string		filename;
+		int			ID;
+		vector<int>	oldProvinces;
+		vector<int>	newProvinces;
+		Object*		weatherObj;
 };
 
 
 
-#endif // HOI4STATE_H_
+#endif // _HOI4_STRATEGIC_REGION

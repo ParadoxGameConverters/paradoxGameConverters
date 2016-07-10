@@ -120,6 +120,23 @@ void HoI4World::importSuppplyZones(const map<int, vector<int>>& defaultStateToPr
 }
 
 
+void HoI4World::importStrategicRegions()
+{
+	set<string> filenames;
+	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/map/strategicregions/", filenames);
+	for (auto filename: filenames)
+	{
+		HoI4StrategicRegion* newRegion = new HoI4StrategicRegion(filename);
+		strategicRegions.insert(make_pair(newRegion->getID(), newRegion));
+
+		for (auto province: newRegion->getOldProvinces())
+		{
+			provinceToStratRegionMap.insert(make_pair(province, newRegion->getID()));
+		}
+	}
+}
+
+
 void HoI4World::checkCoastalProvinces()
 {
 	// determine whether each province is coastal or not by checking if it has a naval base
@@ -374,6 +391,17 @@ void HoI4World::outputMap() const
 		LOG(LogLevel::Error) << "Could not create Output/" << Configuration::getOutputName() << "/map/buildings.txt";
 	}
 	buildingsFile.close();
+
+	// output strategic regions
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/map/strategicregions"))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/map/strategicregions";
+		exit(-1);
+	}
+	for (auto strategicRegion: strategicRegions)
+	{
+		strategicRegion.second->output("Output/" + Configuration::getOutputName() + "/map/strategicregions/");
+	}
 }
 
 
@@ -1121,6 +1149,74 @@ void HoI4World::convertSupplyZones(const map<int, int>& provinceToSupplyZoneMap)
 				}
 			}
 		}
+	}
+}
+
+
+void HoI4World::convertStrategicRegions()
+{
+	// assign the states to strategic regions
+	for (auto state: states)
+	{
+		// figure out which strategic regions are represented
+		map<int, int> usedRegions;	// region ID -> number of provinces in that region
+		for (auto province: state.second->getProvinces())
+		{
+			auto mapping = provinceToStratRegionMap.find(province.first);
+			if (mapping == provinceToStratRegionMap.end())
+			{
+				LOG(LogLevel::Warning) << "Province " << province.first << " had no original strategic region";
+				continue;
+			}
+
+			auto usedRegion = usedRegions.find(mapping->second);
+			if (usedRegion == usedRegions.end())
+			{
+				usedRegions.insert(make_pair(mapping->second, 1));
+			}
+			else
+			{
+				usedRegion->second++;
+			}
+
+			provinceToStratRegionMap.erase(mapping);
+		}
+
+		// pick the most represented strategic region
+		int mostProvinces	= 0;
+		int bestRegion		= 0;
+		for (auto region: usedRegions)
+		{
+			if (region.second > mostProvinces)
+			{
+				bestRegion		= region.first;
+				mostProvinces	= region.second;
+			}
+		}
+
+		// add the state's province to the region
+		auto region = strategicRegions.find(bestRegion);
+		if (region == strategicRegions.end())
+		{
+			LOG(LogLevel::Warning) << "Strategic region " << bestRegion << " was not in the list of regions.";
+			continue;
+		}
+		for (auto province: state.second->getProvinces())
+		{
+			region->second->addNewProvince(province.first);
+		}
+	}
+
+	// add leftover provinces back to their strategic regions
+	for (auto mapping: provinceToStratRegionMap)
+	{
+		auto region = strategicRegions.find(mapping.second);
+		if (region == strategicRegions.end())
+		{
+			LOG(LogLevel::Warning) << "Strategic region " << mapping.second << " was not in the list of regions.";
+			continue;
+		}
+		region->second->addNewProvince(mapping.first);
 	}
 }
 

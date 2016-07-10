@@ -30,6 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Diplomacy.h"
 #include "HoI4Localisation.h"
 #include "HoI4State.h"
+#include "HoI4StrategicRegion.h"
 #include "HoI4SupplyZone.h"
 #include "../Mapper.h"
 
@@ -48,6 +49,7 @@ class HoI4World
 
 		void	importStates(map<int, vector<int>>& defaultStateToProvinceMap);
 		void	importSuppplyZones(const map<int, vector<int>>& defaultStateToProvinceMap, map<int, int>& provinceToSupplyZoneMap);
+		void	importStrategicRegions();
 		void	checkCoastalProvinces();
 		void	importPotentialCountries();
 
@@ -58,6 +60,7 @@ class HoI4World
 		void	convertIndustry(const V2World& sourceWorld);
 		void	convertResources();
 		void	convertSupplyZones(const map<int, int>& provinceToSupplyZoneMap);
+		void	convertStrategicRegions();
 		void	convertTechs(const V2World& sourceWorld);
 		void	convertDiplomacy(const V2World& sourceWorld, const CountryMapping& countryMap);
 		void	convertArmies(const V2World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
@@ -97,14 +100,19 @@ class HoI4World
 
 		map<int, HoI4State*>			states;
 		map<int, string>				stateFilenames;
-		map<int, HoI4SupplyZone*>	supplyZones;
-		map<int, string>				supplyZonesFilenames;
+		
 		map<int, HoI4Province*>		provinces;
 		set<int>							landProvinces;
 		map<string, HoI4Country*>	countries;
 		map<string,HoI4Country*>	potentialCountries;
 		HoI4Diplomacy					diplomacy;
-		map<int, string>				continents;  // < province, continent >
+
+		// map items
+		map<int, string>						continents;  // < province, continent >
+		map<int, HoI4SupplyZone*>			supplyZones;
+		map<int, string>						supplyZonesFilenames;
+		map<int, HoI4StrategicRegion*>	strategicRegions;
+		map<int, int>							provinceToStratRegionMap;
 
 		HoI4Localisation				localisation;
 

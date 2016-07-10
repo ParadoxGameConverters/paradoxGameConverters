@@ -309,6 +309,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	destWorld.importStates(HoI4DefaultStateToProvinceMap);
 	map<int, int> provinceToSupplyZoneMap;
 	destWorld.importSuppplyZones(HoI4DefaultStateToProvinceMap, provinceToSupplyZoneMap);
+	destWorld.importStrategicRegions();
 	destWorld.recordAllLandProvinces();
 	destWorld.checkAllProvincesMapped(provinceMap);
 	destWorld.checkCoastalProvinces();
@@ -454,6 +455,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	destWorld.convertIndustry(sourceWorld);
 	destWorld.convertResources();
 	destWorld.convertSupplyZones(provinceToSupplyZoneMap);
+	destWorld.convertStrategicRegions();
 	destWorld.consolidateProvinceItems(inverseProvinceMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld, countryMap);
