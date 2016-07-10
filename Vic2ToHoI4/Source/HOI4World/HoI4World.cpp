@@ -857,9 +857,9 @@ void HoI4World::convertIndustry(const V2World& sourceWorld)
 
 		// determine state category
 		int stateSlots = population / 120000; // one slot is given per 120,000 people (need to change)
-		if (stateFactories >= stateSlots)
+		if ((stateFactories + HoI4State.second->getDockyards()) >= stateSlots)
 		{
-			stateSlots = stateFactories + 2;
+			stateSlots = stateFactories + HoI4State.second->getDockyards() + 2;
 		}
 
 		string category = "";

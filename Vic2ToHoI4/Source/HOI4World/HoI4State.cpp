@@ -41,6 +41,7 @@ HoI4State::HoI4State(Vic2State* _sourceState, int _ID, string _ownerTag, int _ma
 	milFactories	= 0;
 	category			= "pastoral";
 	railLevel		= 0;
+	dockyards		= 0;
 
 	navalLevel		= 0;
 	navalLocation	= 0;
@@ -79,6 +80,7 @@ void HoI4State::output(string _filename)
 	out << "\t\t\tinfrastructure = "<< railLevel << endl;
 	out << "\t\t\tindustrial_complex = " << civFactories << endl;
 	out << "\t\t\tarms_factory = " << milFactories << endl;
+	out << "\t\t\tdockyard = " << dockyards << endl;
 		
 	if ((navalLevel > 0) && (navalLocation > 0))
 	{
@@ -110,6 +112,8 @@ void HoI4State::setNavalBase(int level, int location)
 {
 	navalLevel		= level;
 	navalLocation	= location;
+
+	dockyards		= 1;
 }
 
 

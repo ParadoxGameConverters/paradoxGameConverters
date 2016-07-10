@@ -52,6 +52,7 @@ class HoI4State
 		string			getOwner() const				{ return ownerTag; }
 		int				getID() const					{ return ID; }
 		int				getNavalLocation() const	{ return navalLocation; }
+		int				getDockyards() const			{ return dockyards; }
 
 	private:
 		Vic2State*				sourceState;
@@ -64,6 +65,7 @@ class HoI4State
 
 		int						civFactories;
 		int						milFactories;
+		int						dockyards;
 		string					category;
 		int						railLevel;
 	
