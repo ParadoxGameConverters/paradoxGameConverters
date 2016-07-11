@@ -50,6 +50,7 @@ HoI4State::HoI4State(Vic2State* _sourceState, int _ID, string _ownerTag, int _ma
 
 void HoI4State::output(string _filename)
 {
+	// create the file
 	string filename("Output/" + Configuration::getOutputName() + "/history/states/" + _filename);
 	ofstream out(filename);
 	if (!out.is_open())
@@ -57,6 +58,8 @@ void HoI4State::output(string _filename)
 		LOG(LogLevel::Error) << "Could not open \"output/input/history/states/" + _filename;
 		exit(-1);
 	}
+
+	// output the data
 	out << "state={" << endl;
 	out << "\tid=" << ID << endl;
 	out << "\tname= \"STATE_" << ID << "\"" << endl;
@@ -85,7 +88,10 @@ void HoI4State::output(string _filename)
 	out << "\t\t\tinfrastructure = "<< railLevel << endl;
 	out << "\t\t\tindustrial_complex = " << civFactories << endl;
 	out << "\t\t\tarms_factory = " << milFactories << endl;
-	out << "\t\t\tdockyard = " << dockyards << endl;
+	if (dockyards > 0)
+	{
+		out << "\t\t\tdockyard = " << dockyards << endl;
+	}
 		
 	if ((navalLevel > 0) && (navalLocation > 0))
 	{
@@ -115,10 +121,13 @@ void HoI4State::output(string _filename)
 
 void HoI4State::setNavalBase(int level, int location)
 {
-	navalLevel		= level;
-	navalLocation	= location;
+	if (provinces.find(location) != provinces.end())
+	{
+		navalLevel		= level;
+		navalLocation	= location;
 
-	dockyards		= 1;
+		dockyards		= 1;
+	}
 }
 
 
