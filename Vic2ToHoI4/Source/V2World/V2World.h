@@ -49,7 +49,7 @@ class V2World
 		V2Country*					getCountry(string tag) const;
 		void							removeCountry(string tag);
 		V2Province*					getProvince(int provNum) const;
-		void							checkAllProvincesMapped(const inverseProvinceMapping& inverseProvinceMap) const;
+		void							checkAllProvincesMapped(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap) const;
 		void							setLocalisations(V2Localisation& localisation, const stateIdMapping& stateIdMap);
 		V2Party*						getRulingParty(const V2Country* country) const;
 		vector<V2Party*>			getActiveParties(const V2Country* country) const;

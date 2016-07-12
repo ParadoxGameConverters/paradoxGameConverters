@@ -38,12 +38,12 @@ class HoI4World;
 
 
 // Province Mappings
-typedef map< int, vector<int> >	provinceMapping;			// < destProvince, sourceProvinces >
-typedef map< int, vector<int> >	inverseProvinceMapping;	// < sourceProvince, destProvinces >
+typedef map< int, vector<int> >	HoI4ToVic2ProvinceMapping;
+typedef map< int, vector<int> >	Vic2ToHoI4ProvinceMapping;
 typedef unordered_set<int>			resettableMap;
 
-void initProvinceMap(Object* obj, provinceMapping& provMap, provinceMapping& inverseProvMap, resettableMap& resettableProvinces);
-vector<int> getHoI4ProvinceNums(inverseProvinceMapping invProvMap, int v2ProvinceNum);
+void initProvinceMap(Object* obj, HoI4ToVic2ProvinceMapping& provMap, Vic2ToHoI4ProvinceMapping& inverseProvMap, resettableMap& resettableProvinces);
+vector<int> getHoI4ProvinceNums(Vic2ToHoI4ProvinceMapping invProvMap, int v2ProvinceNum);
 
 
 typedef struct {
@@ -76,10 +76,6 @@ void removeLandlessNations(HoI4World&);
 typedef map< int, vector<int> >	stateMapping;		// < province, all other provinces in state >
 typedef map< int, string >			stateIdMapping;	// < province, state ID >
 void initStateMap(Object* obj, stateMapping& stateMap, stateIdMapping& stateIdMap);
-
-// HoI4 State Mappings
-typedef map<int, int> HoI4StateMapping;	// province num, state ID
-
 
 // Union Mappings
 typedef vector< pair<string, string> > unionMapping;	// <cultures, tag>

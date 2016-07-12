@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <vector>
 #include <string>
 #include <map>
+#include "..\Mapper.h"
 #include "..\V2World\Vic2State.h"
 using namespace std;
 
@@ -37,45 +38,49 @@ using namespace std;
 class HoI4State
 {
 	public:
-		HoI4State(Vic2State* sourceState, int _ID, string _ownerTag, int _manpower);
+		HoI4State(const Vic2State* sourceState, int _ID, string _ownerTag);
 
 		void	output(string filename);
 
-		void	addProvince(int province)							{ provinces.insert(make_pair(province, province)); }
+		void	addProvince(int province) { provinces.insert(province); }
 		void	addResource(string resource, double amount)	{ resources[resource] += amount; }
-		void	addVP(int location, int value)					{ victoryPoints.insert(make_pair(location, value)); }
+		void	addVP(int location, int value) { victoryPoints.insert(make_pair(location, value)); }
+		void	addManpower(int newManpower) { manpower += newManpower; }
 
 		void	setNavalBase(int level, int location);
 		void	setIndustry(int civilianFactories, int militaryFactories, string category, int railLevel);
 
-		Vic2State*		getSourceState() const		{ return sourceState; }
-		map<int, int>	getProvinces() const			{ return provinces; }
-		string			getOwner() const				{ return ownerTag; }
-		int				getID() const					{ return ID; }
-		int				getNavalLocation() const	{ return navalLocation; }
-		int				getDockyards() const			{ return dockyards; }
+		const Vic2State* getSourceState() const { return sourceState; }
+		set<int>	getProvinces() const { return provinces; }
+		string getOwner() const { return ownerTag; }
+		int getID() const { return ID; }
+		int getNavalLocation() const { return navalLocation; }
+		int getDockyards() const { return dockyards; }
+
+		int getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping& provinceMap);
+		bool isProvinceInState(int provinceNum);
 
 	private:
-		Vic2State*				sourceState;
+		const Vic2State* sourceState;
 
-		int						ID;
-		map<int, int>			provinces;
-		string					ownerTag;
+		int ID;
+		set<int> provinces;
+		string ownerTag;
 
-		int						manpower;
+		int manpower;
 
-		int						civFactories;
-		int						milFactories;
-		int						dockyards;
-		string					category;
-		int						railLevel;
+		int civFactories;
+		int milFactories;
+		int dockyards;
+		string category;
+		int railLevel;
 	
-		int						navalLevel;
-		int						navalLocation;
+		int navalLevel;
+		int navalLocation;
 
-		map<string, double>	resources;
+		map<string, double> resources;
 
-		map<int, int>			victoryPoints;
+		map<int, int> victoryPoints;
 };
 
 

@@ -29,13 +29,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4State::HoI4State(Vic2State* _sourceState, int _ID, string _ownerTag, int _manpower)
+HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, string _ownerTag)
 {
 	sourceState		= _sourceState;
 
 	ID					= _ID;
 	ownerTag			= _ownerTag;
-	manpower			= _manpower;
+	manpower			= 1;
 
 	civFactories	= 0;
 	milFactories	= 0;
@@ -109,7 +109,7 @@ void HoI4State::output(string _filename)
 	out << "\t\t";
 	for (auto provnum : provinces)
 	{
-		out << provnum.first << " ";
+		out << provnum << " ";
 	}
 	out << endl;
 	out << "\t}" << endl;
@@ -137,4 +137,25 @@ void HoI4State::setIndustry(int _civilianFactories, int _militaryFactories, stri
 	milFactories	= _militaryFactories;
 	category			= _category;
 	railLevel		= _railLevel;
+}
+
+
+int HoI4State::getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping& provinceMap)
+{
+	auto vic2Province = sourceState->getProvinces()[0];
+	auto provMapping = provinceMap.find(vic2Province);
+	if (provMapping != provinceMap.end())
+	{
+		return provMapping->second[0];
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+
+bool HoI4State::isProvinceInState(int provinceNum)
+{
+	return (provinces.find(provinceNum) != provinces.end());
 }

@@ -185,11 +185,11 @@ V2Province* V2World::getProvince(int provNum) const
 }
 
 
-void V2World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProvinceMap) const
+void V2World::checkAllProvincesMapped(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap) const
 {
 	for (auto province: provinces)
 	{
-		inverseProvinceMapping::const_iterator mapping = inverseProvinceMap.find(province.first);
+		Vic2ToHoI4ProvinceMapping::const_iterator mapping = inverseProvinceMap.find(province.first);
 		if (mapping == inverseProvinceMap.end())
 		{
 			LOG(LogLevel::Warning) << "No mapping for Vic2 province " << province.first;

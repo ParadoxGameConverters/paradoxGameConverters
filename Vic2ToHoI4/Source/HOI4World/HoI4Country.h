@@ -69,14 +69,14 @@ class HoI4Country
 		void		outputToCommonCountriesFile(FILE*) const;
 		void		outputAIScript() const;
 
-		void		initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap, map<int, HoI4State*> states);
+		void		initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, Vic2ToHoI4ProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states);
 		void		initFromHistory();
-		void		consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry);
+		void		consolidateProvinceItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry);
 		void		generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
 		void		convertNavy(map<int, HoI4State*> states);
-		void		convertArmyDivisions(const inverseProvinceMapping& inverseProvinceMap);
+		void		convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void		setAIFocuses(const AIFocusModifiers& focusModifiers);
-		void		addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
+		void		addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void		setTechnology(string tech, int level);
 		void		addProvince(HoI4Province* _province);
 		void		lowerNeutrality(double amount);

@@ -296,8 +296,8 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 		LOG(LogLevel::Error) << "Could not parse file province_mappings.txt";
 		exit(-1);
 	}
-	provinceMapping			provinceMap;
-	inverseProvinceMapping	inverseProvinceMap;
+	HoI4ToVic2ProvinceMapping			provinceMap;
+	Vic2ToHoI4ProvinceMapping	inverseProvinceMap;
 	resettableMap				resettableProvinces;
 	initProvinceMap(obj, provinceMap, inverseProvinceMap, resettableProvinces);
 	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
@@ -446,11 +446,10 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	//initAIFocusModifiers(obj, focusModifiers);
 	// Convert
 	LOG(LogLevel::Info) << "Converting states";
-	HoI4StateMapping HoI4StateMap;
-	destWorld.createStates(provinceMap, inverseProvinceMap, countryMap, HoI4StateMap, localisation);
+	destWorld.convertStates(provinceMap, inverseProvinceMap, countryMap, localisation);
 	destWorld.convertNavalBases(inverseProvinceMap);
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(countryMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, HoI4StateMap);
+	destWorld.convertCountries(countryMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
 	LOG(LogLevel::Info) << "Converting industry";
 	destWorld.convertIndustry();
 	destWorld.convertResources();

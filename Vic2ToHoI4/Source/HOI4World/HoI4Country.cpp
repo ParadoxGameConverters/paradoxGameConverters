@@ -525,7 +525,7 @@ void HoI4Country::outputOOB() const
 }
 
 
-void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap, map<int, HoI4State*> states)
+void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, Vic2ToHoI4ProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states)
 {
 	srcCountry = _srcCountry;
 	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
@@ -751,7 +751,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	// Capital
 	int oldCapital = srcCountry->getCapital();
-	inverseProvinceMapping::iterator itr = inverseProvinceMap.find(oldCapital);
+	Vic2ToHoI4ProvinceMapping::iterator itr = inverseProvinceMap.find(oldCapital);
 	if (itr != inverseProvinceMap.end())
 	{
 		auto capitalState = stateMap.find(itr->second[0]);
@@ -821,7 +821,7 @@ void HoI4Country::initFromHistory()
 }
 
 
-void HoI4Country::consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry)
+void HoI4Country::consolidateProvinceItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry)
 {
 	bool convertManpower			= (Configuration::getManpowerConversion() != "no");
 	bool convertLeadership		= (Configuration::getLeadershipConversion() != "no");
@@ -1211,7 +1211,7 @@ void HoI4Country::convertNavy(map<int, HoI4State*> states)
 }
 
 
-void HoI4Country::convertArmyDivisions(const inverseProvinceMapping& inverseProvinceMap)
+void HoI4Country::convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap)
 {
 	// get the total number of source brigades and the number of source brigades per location
 	int infantryBrigades			= 0;
@@ -1762,7 +1762,7 @@ void HoI4Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 }
 
 
-void HoI4Country::addMinimalItems(const inverseProvinceMapping& inverseProvinceMap)
+void HoI4Country::addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap)
 {
 	if (provinces.size() == 0)
 	{

@@ -32,7 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-void initProvinceMap(Object* obj, provinceMapping& provinceMap, provinceMapping& inverseProvinceMap, resettableMap& resettableProvinces)
+void initProvinceMap(Object* obj, HoI4ToVic2ProvinceMapping& provinceMap, Vic2ToHoI4ProvinceMapping& inverseProvinceMap, resettableMap& resettableProvinces)
 {
 	vector<Object*> leaves = obj->getLeaves();	// the different version number blocks
 
@@ -102,9 +102,9 @@ void initProvinceMap(Object* obj, provinceMapping& provinceMap, provinceMapping&
 
 
 static const vector<int> empty_vec;	// an empty vector in case there are no equivalent V2 province numbers
-vector<int> getHoI4ProvinceNums(inverseProvinceMapping invProvMap, const int v2ProvinceNum)
+vector<int> getHoI4ProvinceNums(Vic2ToHoI4ProvinceMapping invProvMap, const int v2ProvinceNum)
 {
-	inverseProvinceMapping::iterator itr = invProvMap.find(v2ProvinceNum);	// the province entry in the inverse province map
+	Vic2ToHoI4ProvinceMapping::iterator itr = invProvMap.find(v2ProvinceNum);	// the province entry in the inverse province map
 	if (itr == invProvMap.end())
 	{
 		return empty_vec;
