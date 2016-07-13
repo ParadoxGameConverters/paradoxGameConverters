@@ -67,27 +67,9 @@ void HoI4Localisation::readFromCountry(const V2Country* source, string destTag)
 }
 
 
-void HoI4Localisation::addStateLocalisation(int HoI4StateID, string Vic2StateID, const V2Localisation Vic2Localisations)
-{
-	for (auto nameInLanguage: Vic2Localisations.GetTextInEachLanguage(Vic2StateID))
-	{
-		auto existingLocalisation = stateLocalisations.find(nameInLanguage.first);
-		if (existingLocalisation == stateLocalisations.end())
-		{
-			keyToLocalisationMap newLocalisation;
-			stateLocalisations[nameInLanguage.first] = newLocalisation;
-			existingLocalisation = stateLocalisations.find(nameInLanguage.first);
-		}
-
-		existingLocalisation->second.insert(make_pair(string("STATE_") + to_string(HoI4StateID), nameInLanguage.second));
-	}
-}
-
-
 void HoI4Localisation::output(string localisationPath) const
 {
 	outputCountries(localisationPath);
-	outputStates(localisationPath);
 }
 
 
@@ -112,31 +94,6 @@ void HoI4Localisation::outputCountries(string localisationPath) const
 		for (auto mapping: languageToLocalisations.second)
 		{
 			localisationFile << " " << mapping.first << ":0 \"" << mapping.second << "\"" << endl;
-		}
-	}
-}
-
-
-void HoI4Localisation::outputStates(string localisationPath) const
-{
-	for (auto languageToLocalisations: stateLocalisations)
-	{
-		if (languageToLocalisations.first == "")
-		{
-			continue;
-		}
-		ofstream localisationFile(localisationPath + "/state_names_l_" + languageToLocalisations.first + ".yml");
-		if (!localisationFile.is_open())
-		{
-			LOG(LogLevel::Error) << "Could not update localisation text file";
-			exit(-1);
-		}
-		localisationFile << "\xEF\xBB\xBF"; // output a BOM to make HoI4 happy
-		localisationFile << "l_" << languageToLocalisations.first << ":\r\n";
-
-		for (auto mapping: languageToLocalisations.second)
-		{
-			localisationFile << " " << mapping.first << ":10 \"" << mapping.second << "\"" << endl;
 		}
 	}
 }

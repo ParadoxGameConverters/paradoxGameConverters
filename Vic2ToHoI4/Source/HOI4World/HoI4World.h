@@ -29,7 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Province.h"
 #include "HoI4Diplomacy.h"
 #include "HoI4Localisation.h"
-#include "HoI4State.h"
+#include "HoI4States.h"
 #include "HoI4StrategicRegion.h"
 #include "HoI4SupplyZone.h"
 #include "../Mapper.h"
@@ -39,21 +39,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 typedef const map<string, multimap<HoI4RegimentType, unsigned> > unitTypeMapping;
 
 
-struct MTo1ProvinceComp
-{
-	MTo1ProvinceComp() : totalPopulation(0) {};
-
-	vector<V2Province*> provinces;
-	int totalPopulation;
-};
-
-
-typedef struct ownersAndCores
-{
-	string owner;
-	vector<string> cores;
-} ownersAndCores;
-
 
 class HoI4World
 {
@@ -62,14 +47,14 @@ class HoI4World
 
 		void	output() const;
 
-		void	importStates(map<int, vector<int>>& defaultStateToProvinceMap);
+		void addStates(const HoI4States* theStates) { states = theStates; }
+
 		void	importSuppplyZones(const map<int, vector<int>>& defaultStateToProvinceMap, map<int, int>& provinceToSupplyZoneMap);
 		void	importStrategicRegions();
 		void	checkCoastalProvinces();
 		void	importPotentialCountries();
 
 		void	convertCountries(const CountryMapping& countryMap, const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
-		void	convertStates(const HoI4ToVic2ProvinceMapping& provinceMap, const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, V2Localisation& Vic2Localisations);
 		void	convertNavalBases(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void	convertIndustry();
 		void	convertResources();
@@ -87,23 +72,11 @@ class HoI4World
 		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
 		void	copyFlags(const CountryMapping& countryMap);
 		void	addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
-		void	recordAllLandProvinces();
 		void	checkAllProvincesMapped(const HoI4ToVic2ProvinceMapping& provinceMap);
 
 		map<string, HoI4Country*>	getPotentialCountries()	const { return potentialCountries; }
 
 	private:
-		map<int, ownersAndCores> determineProvinceOwners(const HoI4ToVic2ProvinceMapping& provinceMap, const CountryMapping& countryMap);
-		bool getAppropriateMapping(const HoI4ToVic2ProvinceMapping& provinceMap, int provNum, HoI4ToVic2ProvinceMapping::const_iterator& provinceLink);
-		map<V2Country*, MTo1ProvinceComp> determinePotentialOwners(HoI4ToVic2ProvinceMapping::const_iterator provinceLink);
-		V2Country* selectProvinceOwner(const map<V2Country*, MTo1ProvinceComp>& provinceBins);
-		void createStates(const CountryMapping& countryMap, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, V2Localisation& Vic2Localisations);
-		bool createMatchingHoI4State(const Vic2State* vic2State, int stateID, string stateOwner, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces, V2Localisation& Vic2Localisations);
-		void addProvincesToNewState(HoI4State* newState, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces);
-		bool isProvinceOwnedByCountryAndNotAlreadyAssigned(int provNum, string stateOwner, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces);
-		void createVPForState(HoI4State* newState, const Vic2ToHoI4ProvinceMapping& provinceMap);
-		void addManpowerToNewState(HoI4State* newState);
-
 		void	getProvinceLocalizations(const string& file);
 		void	checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string leader, const string& factionName);
 		void	factionSatellites();
@@ -125,12 +98,9 @@ class HoI4World
 
 		const V2World* sourceWorld;
 
-		map<int, HoI4State*>			states;
-		map<int, string>				stateFilenames;
-		map<int, int>					provinceToStateIDMap;
+		const HoI4States* states;
 		
 		map<int, HoI4Province*>		provinces;
-		set<int>							landProvinces;
 		map<string, HoI4Country*>	countries;
 		map<string,HoI4Country*>	potentialCountries;
 		HoI4Diplomacy					diplomacy;

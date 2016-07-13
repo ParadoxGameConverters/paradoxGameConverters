@@ -39,6 +39,10 @@ using namespace std;
 class V2Country;
 
 
+typedef std::map<std::string, std::string>				keyToLocalisationMap;			// key -> localisation
+typedef std::map<std::string, keyToLocalisationMap>	languageToLocalisationsMap;	// language -> (key -> localisation)
+
+
 
 // Holds translations all HoI4 localisations
 class HoI4Localisation
@@ -51,13 +55,8 @@ class HoI4Localisation
 
 	private:
 		void outputCountries(string localisationPath) const;
-		void outputStates(string localisationPath) const;
-
-		typedef std::map<std::string, std::string>				keyToLocalisationMap;			// key -> localisation
-		typedef std::map<std::string, keyToLocalisationMap>	languageToLocalisationsMap;	// language -> (key -> localisation)
 
 		languageToLocalisationsMap countryLocalisations;	// a map between languages and country localisations
-		languageToLocalisationsMap stateLocalisations;		// a map between languages and state localisations
 };
 
 #endif // HoI4LOCALISATION_H_

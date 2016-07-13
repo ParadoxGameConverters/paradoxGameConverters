@@ -306,11 +306,12 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "Parsing HoI4 data";
 	HoI4World destWorld(&sourceWorld);
 	map<int, vector<int>> HoI4DefaultStateToProvinceMap;
-	destWorld.importStates(HoI4DefaultStateToProvinceMap);
+	HoI4States* theStates = new HoI4States(&sourceWorld);
+	theStates->importStates(HoI4DefaultStateToProvinceMap);
+	theStates->recordAllLandProvinces();
 	map<int, int> provinceToSupplyZoneMap;
 	destWorld.importSuppplyZones(HoI4DefaultStateToProvinceMap, provinceToSupplyZoneMap);
 	destWorld.importStrategicRegions();
-	destWorld.recordAllLandProvinces();
 	destWorld.checkAllProvincesMapped(provinceMap);
 	destWorld.checkCoastalProvinces();
 
@@ -446,7 +447,8 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	//initAIFocusModifiers(obj, focusModifiers);
 	// Convert
 	LOG(LogLevel::Info) << "Converting states";
-	destWorld.convertStates(provinceMap, inverseProvinceMap, countryMap, localisation);
+	theStates->convertStates(provinceMap, inverseProvinceMap, countryMap, localisation);
+	destWorld.addStates(theStates);
 	destWorld.convertNavalBases(inverseProvinceMap);
 	LOG(LogLevel::Info) << "Converting countries";
 	destWorld.convertCountries(countryMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
