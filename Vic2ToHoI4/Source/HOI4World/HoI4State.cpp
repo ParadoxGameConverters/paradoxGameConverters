@@ -102,7 +102,10 @@ void HoI4State::output(string _filename)
 	//out << "\t\tair_base = 1" << endl;
 	out << "\t\t}" << endl;
 	//out << "\t}" << endl;
-	//out << "\tadd_core_of = FRA" << endl;
+	for (auto core: cores)
+	{
+		out << "\t\tadd_core_of = " << core << endl;
+	}
 	out << "\t}" << endl;
 	out << endl;
 	out << "\tprovinces={" << endl;
@@ -137,6 +140,15 @@ void HoI4State::setIndustry(int _civilianFactories, int _militaryFactories, stri
 	milFactories	= _militaryFactories;
 	category			= _category;
 	railLevel		= _railLevel;
+}
+
+
+void HoI4State::addCores(const vector<string>& newCores)
+{
+	for (auto newCore: newCores)
+	{
+		cores.insert(newCore);
+	}
 }
 
 

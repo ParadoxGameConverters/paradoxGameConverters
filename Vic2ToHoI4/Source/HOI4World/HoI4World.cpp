@@ -560,14 +560,14 @@ void HoI4World::outputSupply() const
 
 void HoI4World::convertStates(const HoI4ToVic2ProvinceMapping& provinceMap, const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, V2Localisation& Vic2Localisations)
 {
-	map<int, string> provinceOwners = determineProvinceOwners(provinceMap, countryMap);
-	createStates(countryMap, inverseProvinceMap, provinceOwners, Vic2Localisations);
+	map<int, ownersAndCores> provinceOwnersandCores = determineProvinceOwners(provinceMap, countryMap);
+	createStates(countryMap, inverseProvinceMap, provinceOwnersandCores, Vic2Localisations);
 }
 
 
-map<int, string> HoI4World::determineProvinceOwners(const HoI4ToVic2ProvinceMapping& provinceMap, const CountryMapping& countryMap)
+map<int, ownersAndCores> HoI4World::determineProvinceOwners(const HoI4ToVic2ProvinceMapping& provinceMap, const CountryMapping& countryMap)
 {
-	map<int, string> provinceOwners;	// province number, HoI4 owner
+	map<int, ownersAndCores> ownersAndCoresMap;
 	for (auto provItr: landProvinces)
 	{
 		HoI4ToVic2ProvinceMapping::const_iterator provinceLink;
@@ -591,35 +591,47 @@ map<int, string> HoI4World::determineProvinceOwners(const HoI4ToVic2ProvinceMapp
 		}
 		else
 		{
-			provinceOwners.insert(make_pair(provItr, HoI4Tag));
+			ownersAndCores newOwnerandCores;
+			newOwnerandCores.owner = HoI4Tag;
+			ownersAndCoresMap.insert(make_pair(provItr, newOwnerandCores));
 			for (auto srcOwnerItr: potentialOwners)
 			{
-				//for (auto srcProvItr: srcOwnerItr.second.provinces)
-				//{
-				//	// convert cores
-				//	vector<V2Country*> oldCores = srcProvItr->getCores(sourceWorld->getCountries());
-				//	for (auto oldCoreItr: oldCores)
-				//	{
-				//		// skip this core if the country is the owner of the V2 province but not the HoI4 province
-				//		// (i.e. "avoid boundary conflicts that didn't exist in V2").
-				//		// this country may still get core via a province that DID belong to the current HoI4 owner
-				//		if ((oldCoreItr->getTag() == srcOwnerItr.first) && (oldCoreItr != oldOwner))
-				//		{
-				//			continue;
-				//		}
+				for (auto srcProvItr: srcOwnerItr.second.provinces)
+				{
+					// convert cores
+					vector<V2Country*> oldCores = srcProvItr->getCores(sourceWorld->getCountries());
+					for (auto oldCoreItr: oldCores)
+					{
+						// skip this core if the country is the owner of the V2 province but not the HoI4 province
+						// (i.e. "avoid boundary conflicts that didn't exist in V2").
+						// this country may still get core via a province that DID belong to the current HoI4 owner
+						if ((oldCoreItr == srcOwnerItr.first) && (oldCoreItr != oldOwner))
+						{
+							continue;
+						}
 
-				//		const string coreOwner = countryMap[oldCoreItr->getTag()];
-				//		if (coreOwner != "")
-				//		{
-				//			provItr.second->addCore(coreOwner);
-				//		}
-				//	}
-				//}
+						const string coreOwner = countryMap[oldCoreItr->getTag()];
+						if (coreOwner != "")
+						{
+							auto coreItr = ownersAndCoresMap.find(provItr);
+							if (coreItr == ownersAndCoresMap.end())
+							{
+								ownersAndCores newOwnerandCores;
+								newOwnerandCores.cores.push_back(coreOwner);
+								ownersAndCoresMap.insert(make_pair(provItr, newOwnerandCores));
+							}
+							else
+							{
+								coreItr->second.cores.push_back(coreOwner);
+							}
+						}
+					}
+				}
 			}
 		}
 	}
 
-	return provinceOwners;
+	return ownersAndCoresMap;
 }
 
 
@@ -685,7 +697,7 @@ V2Country* HoI4World::selectProvinceOwner(const map<V2Country*, MTo1ProvinceComp
 }
 
 
-void HoI4World::createStates(const CountryMapping& countryMap, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, string>& provinceToOwnersMap, V2Localisation& Vic2Localisations)
+void HoI4World::createStates(const CountryMapping& countryMap, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, V2Localisation& Vic2Localisations)
 {
 	int stateID = 1;
 	set<int> assignedProvinces;
@@ -693,7 +705,7 @@ void HoI4World::createStates(const CountryMapping& countryMap, const Vic2ToHoI4P
 	{
 		for (auto vic2State: country.second->getStates())
 		{		
-			if (createMatchingHoI4State(vic2State, stateID, countryMap.GetHoI4Tag(country.first), HoI4ToVic2ProvinceMap, provinceToOwnersMap, assignedProvinces, Vic2Localisations))
+			if (createMatchingHoI4State(vic2State, stateID, countryMap.GetHoI4Tag(country.first), HoI4ToVic2ProvinceMap, provinceToOwnersAndCoresMap, assignedProvinces, Vic2Localisations))
 			{
 				stateID++;
 			}
@@ -702,18 +714,18 @@ void HoI4World::createStates(const CountryMapping& countryMap, const Vic2ToHoI4P
 }
 
 
-bool HoI4World::createMatchingHoI4State(const Vic2State* vic2State, int stateID, string stateOwner, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, string>& provinceToOwnersMap, set<int>& assignedProvinces, V2Localisation& Vic2Localisations)
+bool HoI4World::createMatchingHoI4State(const Vic2State* vic2State, int stateID, string stateOwner, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces, V2Localisation& Vic2Localisations)
 {
 	//	create a matching HoI4 state
 	HoI4State* newState = new HoI4State(vic2State, stateID, stateOwner);
-	addProvincesToNewState(newState, HoI4ToVic2ProvinceMap, provinceToOwnersMap, assignedProvinces);
+	addProvincesToNewState(newState, HoI4ToVic2ProvinceMap, provinceToOwnersAndCoresMap, assignedProvinces);
 	if (newState->getProvinces().size() == 0)
 	{
 		delete newState;
 		return false;
 	}
 
-	createVPForState(newState, HoI4ToVic2ProvinceMap, provinceToOwnersMap);
+	createVPForState(newState, HoI4ToVic2ProvinceMap);
 	addManpowerToNewState(newState);
 	localisation.addStateLocalisation(stateID, vic2State->getStateID(), Vic2Localisations);
 	states.insert(make_pair(stateID, newState));
@@ -722,7 +734,7 @@ bool HoI4World::createMatchingHoI4State(const Vic2State* vic2State, int stateID,
 }
 
 
-void HoI4World::addProvincesToNewState(HoI4State* newState, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, string>& provinceToOwnersMap, set<int>& assignedProvinces)
+void HoI4World::addProvincesToNewState(HoI4State* newState, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces)
 {
 	for (auto vic2Province: newState->getSourceState()->getProvinces())
 	{
@@ -732,11 +744,13 @@ void HoI4World::addProvincesToNewState(HoI4State* newState, const Vic2ToHoI4Prov
 		{
 			for (auto HoI4ProvNum: provMapping->second)
 			{
-				if (isProvinceOwnedByCountryAndNotAlreadyAssigned(HoI4ProvNum, newState->getOwner(), provinceToOwnersMap, assignedProvinces))
+				if (isProvinceOwnedByCountryAndNotAlreadyAssigned(HoI4ProvNum, newState->getOwner(), provinceToOwnersAndCoresMap, assignedProvinces))
 				{
 					newState->addProvince(HoI4ProvNum);
 					provinceToStateIDMap.insert(make_pair(HoI4ProvNum, newState->getID()));
 					assignedProvinces.insert(HoI4ProvNum);
+
+					newState->addCores(provinceToOwnersAndCoresMap.find(HoI4ProvNum)->second.cores);
 				}
 			}
 		}
@@ -744,15 +758,15 @@ void HoI4World::addProvincesToNewState(HoI4State* newState, const Vic2ToHoI4Prov
 }
 
 
-bool HoI4World::isProvinceOwnedByCountryAndNotAlreadyAssigned(int provNum, string stateOwner, const map<int, string>& provinceToOwnersMap, set<int>& assignedProvinces)
+bool HoI4World::isProvinceOwnedByCountryAndNotAlreadyAssigned(int provNum, string stateOwner, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces)
 {
 	if (provNum == 0)
 	{
 		return false;
 	}
 
-	auto provinceOwnerItr = provinceToOwnersMap.find(provNum);
-	if ((provinceOwnerItr == provinceToOwnersMap.end()) || (provinceOwnerItr->second != stateOwner))
+	auto provinceOwnerItr = provinceToOwnersAndCoresMap.find(provNum);
+	if ((provinceOwnerItr == provinceToOwnersAndCoresMap.end()) || (provinceOwnerItr->second.owner != stateOwner))
 	{
 		return false;
 	}
@@ -766,7 +780,7 @@ bool HoI4World::isProvinceOwnedByCountryAndNotAlreadyAssigned(int provNum, strin
 }
 
 
-void HoI4World::createVPForState(HoI4State* newState, const Vic2ToHoI4ProvinceMapping& provinceMap, const map<int, string>& provinceToOwnersMap)
+void HoI4World::createVPForState(HoI4State* newState, const Vic2ToHoI4ProvinceMapping& provinceMap)
 {
 	int HoI4ProvNum = newState->getFirstProvinceByVic2Definition(provinceMap);
 	if (newState->isProvinceInState(HoI4ProvNum))

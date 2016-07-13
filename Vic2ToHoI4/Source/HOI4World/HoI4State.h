@@ -40,15 +40,16 @@ class HoI4State
 	public:
 		HoI4State(const Vic2State* sourceState, int _ID, string _ownerTag);
 
-		void	output(string filename);
+		void output(string filename);
 
-		void	addProvince(int province) { provinces.insert(province); }
-		void	addResource(string resource, double amount)	{ resources[resource] += amount; }
-		void	addVP(int location, int value) { victoryPoints.insert(make_pair(location, value)); }
-		void	addManpower(int newManpower) { manpower += newManpower; }
+		void addProvince(int province) { provinces.insert(province); }
+		void addResource(string resource, double amount)	{ resources[resource] += amount; }
+		void addVP(int location, int value) { victoryPoints.insert(make_pair(location, value)); }
+		void addManpower(int newManpower) { manpower += newManpower; }
 
-		void	setNavalBase(int level, int location);
-		void	setIndustry(int civilianFactories, int militaryFactories, string category, int railLevel);
+		void setNavalBase(int level, int location);
+		void setIndustry(int civilianFactories, int militaryFactories, string category, int railLevel);
+		void addCores(const vector<string>& newCores);
 
 		const Vic2State* getSourceState() const { return sourceState; }
 		set<int>	getProvinces() const { return provinces; }
@@ -66,6 +67,7 @@ class HoI4State
 		int ID;
 		set<int> provinces;
 		string ownerTag;
+		set<string> cores;
 
 		int manpower;
 

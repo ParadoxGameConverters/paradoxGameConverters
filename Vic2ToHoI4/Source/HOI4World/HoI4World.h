@@ -48,6 +48,13 @@ struct MTo1ProvinceComp
 };
 
 
+typedef struct ownersAndCores
+{
+	string owner;
+	vector<string> cores;
+} ownersAndCores;
+
+
 class HoI4World
 {
 	public:
@@ -86,15 +93,15 @@ class HoI4World
 		map<string, HoI4Country*>	getPotentialCountries()	const { return potentialCountries; }
 
 	private:
-		map<int, string> determineProvinceOwners(const HoI4ToVic2ProvinceMapping& provinceMap, const CountryMapping& countryMap);
+		map<int, ownersAndCores> determineProvinceOwners(const HoI4ToVic2ProvinceMapping& provinceMap, const CountryMapping& countryMap);
 		bool getAppropriateMapping(const HoI4ToVic2ProvinceMapping& provinceMap, int provNum, HoI4ToVic2ProvinceMapping::const_iterator& provinceLink);
 		map<V2Country*, MTo1ProvinceComp> determinePotentialOwners(HoI4ToVic2ProvinceMapping::const_iterator provinceLink);
 		V2Country* selectProvinceOwner(const map<V2Country*, MTo1ProvinceComp>& provinceBins);
-		void createStates(const CountryMapping& countryMap, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, string>& provinceToOwnersMap, V2Localisation& Vic2Localisations);
-		bool createMatchingHoI4State(const Vic2State* vic2State, int stateID, string stateOwner, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, string>& provinceToOwnersMap, set<int>& assignedProvinces, V2Localisation& Vic2Localisations);
-		void addProvincesToNewState(HoI4State* newState, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, string>& provinceToOwnersMap, set<int>& assignedProvinces);
-		bool isProvinceOwnedByCountryAndNotAlreadyAssigned(int provNum, string stateOwner, const map<int, string>& provinceToOwnersMap, set<int>& assignedProvinces);
-		void createVPForState(HoI4State* newState, const Vic2ToHoI4ProvinceMapping& provinceMap, const map<int, string>& provinceToOwnersMap);
+		void createStates(const CountryMapping& countryMap, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, V2Localisation& Vic2Localisations);
+		bool createMatchingHoI4State(const Vic2State* vic2State, int stateID, string stateOwner, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces, V2Localisation& Vic2Localisations);
+		void addProvincesToNewState(HoI4State* newState, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces);
+		bool isProvinceOwnedByCountryAndNotAlreadyAssigned(int provNum, string stateOwner, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces);
+		void createVPForState(HoI4State* newState, const Vic2ToHoI4ProvinceMapping& provinceMap);
 		void addManpowerToNewState(HoI4State* newState);
 
 		void	getProvinceLocalizations(const string& file);
