@@ -1712,7 +1712,7 @@
 	link = { vic2 = 255 hoi4 = 276 hoi4 = 385 hoi4 = 11257 }	# Londonderry -> land, land, land
 	link = { vic2 = 257 hoi4 = 337 }	# Donegal -> land
 	link = { vic2 = 254 hoi4 = 3329 hoi4 = 3379 }	# Belfast -> land, land
-	link = { vic2 = 253 hoi4 = 13003 }	# Faroe Islands -> land
+	link = { vic2 = 253 vic2 = 3246 hoi4 = 13003 }	# Faroe Islands, Jan Mayen -> land
 	link = { vic2 = 266 hoi4 = 9161 hoi4 = 11306 hoi4 = 11055 hoi4 = 11207 hoi4 = 200 hoi4 = 11136 }	# Aberdeen -> land, land, land, land, land, land
 	link = { vic2 = 267 hoi4 = 3373 hoi4 = 284 hoi4 = 11161 hoi4 = 9075 hoi4 = 6046 hoi4 = 6104 hoi4 = 3159 hoi4 = 11064 hoi4 = 131 hoi4 = 9090 hoi4 = 6205 hoi4 = 3178 hoi4 = 11266 hoi4 = 6062 hoi4 = 6196 }	# Inverness -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 268 hoi4 = 6300 hoi4 = 3150 }	# Dundee -> land, land
@@ -2729,7 +2729,7 @@
 	# Australia
 	link = { vic2 = 2473 hoi4 = 2146 hoi4 = 5161 hoi4 = 1667 hoi4 = 4836 hoi4 = 5134 hoi4 = 10455 hoi4 = 11019 }	# Wagga Wagga -> land, land, land, land, land, land, land
 	link = { vic2 = 2474 hoi4 = 4673 hoi4 = 4500 hoi4 = 4453 hoi4 = 4478 hoi4 = 7649 hoi4 = 4658 hoi4 = 7471 hoi4 = 7533 hoi4 = 12377 }	# Moree -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 2508 }	# Norfolk Island -> DROPPED
+
 	link = { vic2 = 2470 hoi4 = 1611 hoi4 = 7664 hoi4 = 10500 }	# Port Macquarie -> land, land, land
 	link = { vic2 = 2469 hoi4 = 7450 hoi4 = 7496 hoi4 = 7520 }	# Newcastle -> land, land, land
 	link = { vic2 = 2471 hoi4 = 12435 hoi4 = 10682 hoi4 = 10427 hoi4 = 10388 hoi4 = 1537 }	# Ophir -> land, land, land, land, land
@@ -2737,7 +2737,7 @@
 	link = { vic2 = 2468 hoi4 = 12406 hoi4 = 4864 }	# Sydney -> land, land
 	link = { vic2 = 2475 hoi4 = 8249 hoi4 = 2114 hoi4 = 12934 hoi4 = 10977 hoi4 = 2163 hoi4 = 8234 hoi4 = 12968 }	# Broken Hill -> land, land, land, land, land, land, land
 	link = { vic2 = 2486 hoi4 = 12451 hoi4 = 1570 hoi4 = 7592 hoi4 = 4546 hoi4 = 4530 hoi4 = 4517 hoi4 = 1472 hoi4 = 4502 }	# Toowoomba -> land, land, land, land, land, land, land, land
-	link = { vic2 = 2483 hoi4 = 7564 hoi4 = 10445 hoi4 = 10458 hoi4 = 7535 hoi4 = 10430 }	# Brisbane -> land, land, land, land, land
+	link = { vic2 = 2483 vic2 = 2508 hoi4 = 7564 hoi4 = 10445 hoi4 = 10458 hoi4 = 7535 hoi4 = 10430 }	# MANY-TO-MANY: Brisbane, Norfolk Island -> land, land, land, land, land
 	link = { vic2 = 2485 hoi4 = 7666 hoi4 = 4632 hoi4 = 7610 hoi4 = 12424 hoi4 = 12411 hoi4 = 1557 }	# Clermont -> land, land, land, land, land, land
 	link = { vic2 = 2484 hoi4 = 10460 hoi4 = 10487 hoi4 = 7522 hoi4 = 12308 hoi4 = 7651 hoi4 = 10475 hoi4 = 4481 }	# Gladstone -> land, land, land, land, land, land, land
 	link = { vic2 = 2490 hoi4 = 10941 hoi4 = 2116 hoi4 = 5227 hoi4 = 11006 hoi4 = 5198 hoi4 = 12949 }	# Charleville -> land, land, land, land, land, land
@@ -3116,14 +3116,13 @@
 	link = { vic2 = 2806 hoi4 = 2514 hoi4 = 2638 hoi4 = 2614 }	# Coast of Java -> sea, sea, sea
 	link = { vic2 = 2807 hoi4 = 2490 hoi4 = 2416 hoi4 = 2391 hoi4 = 2537 }	# Coast of Surabaya -> sea, sea, sea, sea
 	link = { vic2 = 2808 hoi4 = 2440 hoi4 = 2265 hoi4 = 2291 hoi4 = 2341 hoi4 = 1235 }	# Straits of Lombok -> sea, sea, sea, sea, sea
-	link = { vic2 = 2809 hoi4 = 4676 hoi4 = 5116 hoi4 = 435 hoi4 = 616 hoi4 = 234 hoi4 = 9057 hoi4 = 28 hoi4 = 5438 hoi4 = 2317 hoi4 = 1016 hoi4 = 811 }	# Timor Sea -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
 	link = { vic2 = 2873 hoi4 = 1911 hoi4 = 1461 hoi4 = 1686 hoi4 = 5636 hoi4 = 2367 }	# King Sound -> sea, sea, sea, sea, sea
 	link = { vic2 = 2872 hoi4 = 8996 hoi4 = 8972 hoi4 = 9063 hoi4 = 9020 hoi4 = 815 hoi4 = 239 }	# Northwest Cape -> sea, sea, sea, sea, sea, sea
 	link = { vic2 = 2871 hoi4 = 8948 hoi4 = 5584 hoi4 = 5610 hoi4 = 5712 hoi4 = 1240 hoi4 = 2418 hoi4 = 2442 hoi4 = 5739 hoi4 = 2466 }	# Shark Bay -> sea, sea, sea, sea, sea, sea, sea, sea, sea
 	link = { vic2 = 2870 hoi4 = 2516 hoi4 = 8923 hoi4 = 5441 hoi4 = 2539 hoi4 = 8874 hoi4 = 5491 hoi4 = 5517 hoi4 = 2492 }	# Cape Leeuwin -> sea, sea, sea, sea, sea, sea, sea, sea
 	link = { vic2 = 2869 hoi4 = 5560 hoi4 = 5541 hoi4 = 5694 hoi4 = 5746 hoi4 = 5720 hoi4 = 5536 hoi4 = 6476 }	# Great Australian Bight -> sea, sea, sea, sea, sea, sea, sea
 	link = { vic2 = 2868 hoi4 = 5771 hoi4 = 5798 hoi4 = 5510 hoi4 = 5824 }	# Kangaroo Island -> sea, sea, sea, sea
-	link = { vic2 = 2867 hoi4 = 5122 hoi4 = 5240 }	# Bass Strait -> sea, sea
+	link = { vic2 = 2867 hoi4 = 5122 hoi4 = 5240 hoi4 = 4679 }	# Bass Strait -> sea, sea, sea
 	link = { vic2 = 2875 hoi4 = 4905 hoi4 = 5844 hoi4 = 5843 hoi4 = 5817 }	# Toogee Ridge -> sea, sea, sea, sea
 	link = { vic2 = 3226 hoi4 = 6664 hoi4 = 6859 hoi4 = 6277 hoi4 = 6069 }	# South Australian Plain -> sea, sea, sea, sea
 	link = { vic2 = 3088 hoi4 = 5764 hoi4 = 5566 hoi4 = 5465 hoi4 = 5791 hoi4 = 5643 hoi4 = 5591 hoi4 = 5617 hoi4 = 5668 }	# South Australian Basin -> sea, sea, sea, sea, sea, sea, sea, sea
