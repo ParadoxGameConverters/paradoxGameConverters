@@ -110,6 +110,7 @@ void HoI4States::convertStates(const HoI4ToVic2ProvinceMapping& provinceMap, con
 
 map<int, ownersAndCores> HoI4States::determineProvinceOwners(const HoI4ToVic2ProvinceMapping& provinceMap, const CountryMapping& countryMap)
 {
+	const map<string, V2Country*> V2Countries = sourceWorld->getCountries();
 	map<int, ownersAndCores> ownersAndCoresMap;
 	for (auto provItr: landProvinces)
 	{
@@ -142,7 +143,7 @@ map<int, ownersAndCores> HoI4States::determineProvinceOwners(const HoI4ToVic2Pro
 				for (auto srcProvItr: srcOwnerItr.second.provinces)
 				{
 					// convert cores
-					vector<V2Country*> oldCores = srcProvItr->getCores(sourceWorld->getCountries());
+					vector<V2Country*> oldCores = srcProvItr->getCores(V2Countries);
 					for (auto oldCoreItr: oldCores)
 					{
 						// skip this core if the country is the owner of the V2 province but not the HoI4 province
