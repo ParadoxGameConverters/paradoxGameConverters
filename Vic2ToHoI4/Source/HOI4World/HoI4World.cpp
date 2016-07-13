@@ -1278,13 +1278,13 @@ void HoI4World::checkManualFaction(const CountryMapping& countryMap, const vecto
 void HoI4World::factionSatellites()
 {
 	// make sure that any vassals are in their master's faction
-	const vector<HoI4Agreement>& agreements = diplomacy.getAgreements();
+	const vector<const HoI4Agreement*>& agreements = diplomacy.getAgreements();
 	for (auto agreement: agreements)
 	{
-		if (agreement.type == "vassa")
+		if (agreement->type == "vassal")
 		{
-			auto masterCountry = countries.find(agreement.country1);
-			auto satelliteCountry = countries.find(agreement.country2);
+			auto masterCountry = countries.find(agreement->country1);
+			auto satelliteCountry = countries.find(agreement->country2);
 			if ((masterCountry != countries.end()) && (masterCountry->second->getFaction() != "") && (satelliteCountry != countries.end()))
 			{
 				satelliteCountry->second->setFaction(masterCountry->second->getFaction());
@@ -1675,11 +1675,11 @@ void HoI4World::convertDiplomacy(const CountryMapping& countryMap)
 		if ((agreement.type == "alliance") || (agreement.type == "vassa"))
 		{
 			// copy agreement
-			HoI4Agreement HoI4a;
-			HoI4a.country1 = HoI4Tag1;
-			HoI4a.country2 = HoI4Tag2;
-			HoI4a.start_date = agreement.start_date;
-			HoI4a.type = agreement.type;
+			HoI4Agreement* HoI4a = new HoI4Agreement;
+			HoI4a->country1 = HoI4Tag1;
+			HoI4a->country2 = HoI4Tag2;
+			HoI4a->start_date = agreement.start_date;
+			HoI4a->type = agreement.type;
 			diplomacy.addAgreement(HoI4a);
 
 			if (agreement.type == "alliance")
@@ -1694,30 +1694,30 @@ void HoI4World::convertDiplomacy(const CountryMapping& countryMap)
 	{
 		for (auto relationItr: country.second->getRelations())
 		{
-			HoI4Agreement HoI4a;
+			HoI4Agreement* HoI4a = new HoI4Agreement;
 			if (country.first < relationItr.first) // Put it in order to eliminate duplicate relations entries
 			{
-				HoI4a.country1 = country.first;
-				HoI4a.country2 = relationItr.first;
+				HoI4a->country1 = country.first;
+				HoI4a->country2 = relationItr.first;
 			}
 			else
 			{
-				HoI4a.country2 = relationItr.first;
-				HoI4a.country1 = country.first;
+				HoI4a->country2 = relationItr.first;
+				HoI4a->country1 = country.first;
 			}
 
-			HoI4a.value = relationItr.second->getRelations();
-			HoI4a.start_date = date("1930.1.1"); // Arbitrary date
-			HoI4a.type = "relation";
+			HoI4a->value = relationItr.second->getRelations();
+			HoI4a->start_date = date("1930.1.1"); // Arbitrary date
+			HoI4a->type = "relation";
 			diplomacy.addAgreement(HoI4a);
 
 			if (relationItr.second->getGuarantee())
 			{
-				HoI4Agreement HoI4a;
-				HoI4a.country1 = country.first;
-				HoI4a.country2 = relationItr.first;
-				HoI4a.start_date = date("1930.1.1"); // Arbitrary date
-				HoI4a.type = "guarantee";
+				HoI4Agreement* HoI4a = new HoI4Agreement;
+				HoI4a->country1 = country.first;
+				HoI4a->country2 = relationItr.first;
+				HoI4a->start_date = date("1930.1.1"); // Arbitrary date
+				HoI4a->type = "guarantee";
 				diplomacy.addAgreement(HoI4a);
 			}
 		}

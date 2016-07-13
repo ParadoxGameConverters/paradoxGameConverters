@@ -50,10 +50,11 @@ class HoI4Diplomacy
 		HoI4Diplomacy() { agreements.clear(); };
 		void output() const;
 
-		void addAgreement(const HoI4Agreement agr);
-		const vector<HoI4Agreement> &getAgreements() const { return agreements; };
+		void addAgreement(const HoI4Agreement* agr);
+		const vector<const HoI4Agreement*>& getAgreements() const { return agreements; };
+
 	private:
-		vector<HoI4Agreement>	agreements;
+		vector<const HoI4Agreement*> agreements;
 };
 
 
