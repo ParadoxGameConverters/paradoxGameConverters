@@ -3152,5 +3152,121 @@
 	# 
 	# 
 	# 
+	# 
+	# ## East Asian and Oceania Seas
+	# # South China Sea
+	link = { vic2 = 2824 hoi4 = 3204 hoi4 = 5296 hoi4 = 3006 }	# Guangzhou Bay -> sea, sea, sea
+	link = { vic2 = 2823 hoi4 = 5244 hoi4 = 5127 hoi4 = 5269 }	# Gulf of Tonkin -> sea, sea, sea
+	link = { vic2 = 2822 hoi4 = 4912 hoi4 = 4689 hoi4 = 3411 }	# Coast of Annam -> sea, sea, sea
+	link = { vic2 = 2847 hoi4 = 5392 hoi4 = 8701 hoi4 = 5416 }	# Paracel Islands -> sea, sea, sea
+	link = { vic2 = 2848 hoi4 = 5463 hoi4 = 5489 hoi4 = 5440 hoi4 = 2971 }	# Manila Bay -> sea, sea, sea, sea
+	link = { vic2 = 2821 hoi4 = 2857 hoi4 = 2946 hoi4 = 3603 hoi4 = 2978 }	# Coast of Brunei -> sea, sea, sea, sea
+	link = { vic2 = 2819 hoi4 = 4466 hoi4 = 3218 }	# Cam Ranh Bay -> sea, sea
+	link = { vic2 = 2820 hoi4 = 3797 hoi4 = 2928 hoi4 = 3020 }	# South China Sea -> sea, sea, sea
+	link = { vic2 = 2816 hoi4 = 2904 hoi4 = 2952 hoi4 = 2882 }	# Coast of Sarawak -> sea, sea, sea
+	# 
+	# # Gulf of Thailand
+	link = { vic2 = 2818 hoi4 = 4002 }	# Gulf of Siam -> sea
+	link = { vic2 = 2817 hoi4 = 4016 hoi4 = 4240 hoi4 = 3425 }	# Mekong Delta -> sea, sea, sea
+	link = { vic2 = 2815 hoi4 = 3809 hoi4 = 3616 }	# Malayan Sea -> sea, sea
+	link = { vic2 = 2814 hoi4 = 5564 hoi4 = 5539 hoi4 = 5589 hoi4 = 5960 hoi4 = 5615 }	# Straits of Johore -> sea, sea, sea, sea, sea
+	# 
+	# # Java Sea
+	link = { vic2 = 2813 hoi4 = 5641 hoi4 = 4225 hoi4 = 2760 hoi4 = 2737 }	# Karimata Strait -> sea, sea, sea, sea
+	link = { vic2 = 2811 hoi4 = 5666 hoi4 = 2785 hoi4 = 2809 hoi4 = 4451 hoi4 = 2239 }	# Java Sea -> sea, sea, sea, sea, sea
+	# 
+	# # Banda Sea
+	link = { vic2 = 2810 hoi4 = 5515 hoi4 = 2124 hoi4 = 5414 hoi4 = 5366 }	# The Moluccas -> sea, sea, sea, sea
+	link = { vic2 = 2852 hoi4 = 5343 hoi4 = 8412 hoi4 = 4899 }	# Sea of Celebes -> sea, sea, sea
+	link = { vic2 = 2853 hoi4 = 5294 hoi4 = 5267 hoi4 = 8898 hoi4 = 5390 hoi4 = 5320 }	# Sea of Ternate -> sea, sea, sea, sea, sea
+	link = { vic2 = 2854 hoi4 = 5487 hoi4 = 8969 hoi4 = 5238 hoi4 = 5462 }	# Sea of Banda -> sea, sea, sea, sea
+	link = { vic2 = 2862 hoi4 = 5290 hoi4 = 8921 hoi4 = 8945 }	# Kolepom Bay -> sea, sea, sea
+	# 
+	#  # Timor Sea
+	link = { vic2 = 2809 hoi4 = 4676 hoi4 = 5116 hoi4 = 435 hoi4 = 616 hoi4 = 234 hoi4 = 9057 hoi4 = 28 hoi4 = 5438 hoi4 = 2317 hoi4 = 1016 hoi4 = 811 }	# Timor Sea -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	# 
+	# # Arafura Sea
+	link = { vic2 = 2861 hoi4 = 5263 hoi4 = 5513 hoi4 = 5538 }	# Arafuam Sea -> sea, sea, sea
+	link = { vic2 = 2863 hoi4 = 5563 hoi4 = 5316 hoi4 = 8993 hoi4 = 5340 hoi4 = 9017 }	# Gulf of Carpentaria -> sea, sea, sea, sea, sea
+	# 
+	# # Bismark Sea
+	link = { vic2 = 2858 hoi4 = 7235 hoi4 = 430 hoi4 = 7010 hoi4 = 7461 hoi4 = 807 }	# Vilian Strait -> sea, sea, sea, sea, sea
+	# 
+	# # Solomon Sea
+	link = { vic2 = 2859 hoi4 = 6627 hoi4 = 24 hoi4 = 5842 hoi4 = 229 hoi4 = 5868 hoi4 = 7022 hoi4 = 6819 hoi4 = 5816 hoi4 = 5790 }	# Trobrian Islands -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	# 
+	# # Coral Sea
+	link = { vic2 = 2882 hoi4 = 5793 hoi4 = 5741 hoi4 = 5413 hoi4 = 5559 hoi4 = 5437 }	# New Caledonian Sea -> sea, sea, sea, sea, sea
+	link = { vic2 = 2883 hoi4 = 5896 hoi4 = 5870 hoi4 = 5846 hoi4 = 5943 hoi4 = 5919 hoi4 = 5583 hoi4 = 6238 }	# Coral Sea -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2860 hoi4 = 5364 hoi4 = 5639 hoi4 = 5387 hoi4 = 6437 hoi4 = 5587 hoi4 = 5613 }	# Torres Strait -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2864 hoi4 = 5967 hoi4 = 5990 hoi4 = 5411 hoi4 = 6030 }	# Great Barrier Reef -> sea, sea, sea, sea
+	link = { vic2 = 2865 hoi4 = 5365 hoi4 = 5389 hoi4 = 5435 hoi4 = 5341 }	# Capricorn Bay -> sea, sea, sea, sea
+	link = { vic2 = 2884 hoi4 = 5819 hoi4 = 5609 hoi4 = 7246 hoi4 = 5766 hoi4 = 5660 hoi4 = 7927 hoi4 = 7698 hoi4 = 7472 hoi4 = 8966 hoi4 = 9014 }	# Gilbert Sea -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	# 
+	# # Tasman Sea
+	link = { vic2 = 2866 hoi4 = 5459 hoi4 = 5318 hoi4 = 5484 }	# Cape Howe -> sea, sea, sea
+	link = { vic2 = 2876 hoi4 = 5637 hoi4 = 5483 hoi4 = 3011 hoi4 = 3209 hoi4 = 2973 }	# Cook Strait -> sea, sea, sea, sea, sea
+	link = { vic2 = 2880 hoi4 = 4230 hoi4 = 2948 hoi4 = 2660 hoi4 = 2924 }	# Southern Tasman Sea -> sea, sea, sea, sea
+	link = { vic2 = 2874 hoi4 = 5265 hoi4 = 5458 hoi4 = 2710 hoi4 = 5292 hoi4 = 4456 }	# Tasman Plateau -> sea, sea, sea, sea, sea
+	link = { vic2 = 2877 hoi4 = 4007 hoi4 = 5509 hoi4 = 2878 hoi4 = 3801 hoi4 = 2854 }	# Northern Tasman Sea -> sea, sea, sea, sea, sea
+	link = { vic2 = 3220 hoi4 = 2830 hoi4 = 2805 hoi4 = 2782 hoi4 = 3416 hoi4 = 5535 hoi4 = 3607 }	# Coast of Norfolk Island -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2878 hoi4 = 5511 hoi4 = 5635 hoi4 = 5537 hoi4 = 5485 hoi4 = 5460 }	# Cape Farewell -> sea, sea, sea, sea, sea
+	# 
+	# # Celebes Sea
+	link = { vic2 = 2812 hoi4 = 2833 hoi4 = 8822 hoi4 = 8797 }	# Straits of Makassar -> sea, sea, sea
+	# 
+	# # Sulu Sea
+	link = { vic2 = 2851 hoi4 = 8848 hoi4 = 2922 hoi4 = 8774 }	# Sulu Sea -> sea, sea, sea
+	link = { vic2 = 2850 hoi4 = 8727 hoi4 = 2899 hoi4 = 8751 }	# Gulf of Leyte -> sea, sea, sea
+	# 
+	# # Yellow Sea
+	link = { vic2 = 2828 hoi4 = 2734 hoi4 = 8445 }	# Korea Bay -> sea, sea
+	link = { vic2 = 2827 hoi4 = 2757 hoi4 = 2781 }	# Yellow Sea -> sea, sea
+	# 
+	# # East China Sea
+	link = { vic2 = 2829 hoi4 = 2708 hoi4 = 8150 }	# South Korean Sea -> sea, sea
+	link = { vic2 = 2826 hoi4 = 8421 hoi4 = 8396 hoi4 = 2804 hoi4 = 8266 }	# Yang Tse Delta -> sea, sea, sea, sea
+	link = { vic2 = 2825 hoi4 = 8371 hoi4 = 5345 hoi4 = 5322 }	# Taiwan Strait -> sea, sea, sea
+	link = { vic2 = 2845 hoi4 = 8292 hoi4 = 8343 hoi4 = 8318 hoi4 = 8499 }	# Ryukyu Islands -> sea, sea, sea, sea
+	link = { vic2 = 2846 hoi4 = 5367 hoi4 = 2829 hoi4 = 8676 hoi4 = 8623 }	# Luzon Strait -> sea, sea, sea, sea
+	# 
+	# # Sea of Japan
+	link = { vic2 = 2830 hoi4 = 2609 hoi4 = 7028 hoi4 = 7252 hoi4 = 2634 }	# North Korean Sea -> sea, sea, sea, sea
+	link = { vic2 = 2842 hoi4 = 7932 }	# Amakusa Sea -> sea
+	link = { vic2 = 2841 hoi4 = 2684 hoi4 = 2658 hoi4 = 7478 hoi4 = 7704 }	# Sea of Japan -> sea, sea, sea, sea
+	link = { vic2 = 2831 hoi4 = 6632 hoi4 = 6824 hoi4 = 2583 hoi4 = 6442 }	# Coast of Olga -> sea, sea, sea, sea
+	link = { vic2 = 2832 hoi4 = 2534 hoi4 = 2510 }	# Tatar Straits -> sea, sea
+	# 
+	# # Sea of Okhotsk
+	link = { vic2 = 2835 hoi4 = 1899 hoi4 = 2881 hoi4 = 2903 hoi4 = 2808 hoi4 = 2560 }	# Bay of Komenskoie -> sea, sea, sea, sea, sea
+	link = { vic2 = 2834 hoi4 = 5439 hoi4 = 2436 hoi4 = 5514 hoi4 = 5415 }	# Bay of Ayan -> sea, sea, sea, sea
+	link = { vic2 = 2836 hoi4 = 2951 hoi4 = 2927 hoi4 = 3424 hoi4 = 3615 hoi4 = 2460 hoi4 = 3808 }	# Coast of Kamchatska -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2833 hoi4 = 5321 hoi4 = 5344 hoi4 = 5391 hoi4 = 5588 hoi4 = 5295 }	# Amur Delta -> sea, sea, sea, sea, sea
+	link = { vic2 = 2837 hoi4 = 5268 hoi4 = 2485 hoi4 = 5243 }	# Okhotsk Sea -> sea, sea, sea
+	link = { vic2 = 2838 hoi4 = 5126 hoi4 = 4015 hoi4 = 4911 hoi4 = 220 hoi4 = 5488 }	# Coast of Sakhalin -> sea, sea, sea, sea, sea
+	link = { vic2 = 2839 hoi4 = 4688 hoi4 = 4465 hoi4 = 4239 hoi4 = 5614 }	# Soya Strait -> sea, sea, sea, sea
+	# 
+	# # Bering Sea
+	link = { vic2 = 2897 hoi4 = 2287 hoi4 = 2261 hoi4 = 2366 hoi4 = 9016 hoi4 = 8944 hoi4 = 8992 hoi4 = 8968 }	# Bay of Anadyr -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2896 hoi4 = 1673 hoi4 = 2713 hoi4 = 2688 hoi4 = 2613 hoi4 = 2663 }	# Bay of Oljut -> sea, sea, sea, sea, sea
+	link = { vic2 = 2895 hoi4 = 16 hoi4 = 5849 hoi4 = 5899 hoi4 = 423 hoi4 = 3019 hoi4 = 8174 hoi4 = 7967 hoi4 = 5769 hoi4 = 5872 hoi4 = 5744 hoi4 = 5717 hoi4 = 9044 hoi4 = 5796 }	# Bay of Uka -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3121 hoi4 = 8307 hoi4 = 8281 hoi4 = 6240 hoi4 = 8333 hoi4 = 604 hoi4 = 1447 hoi4 = 7929 hoi4 = 6439 hoi4 = 5822 }	# Novarsk Plain -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2898 hoi4 = 5461 hoi4 = 5486 hoi4 = 8648 hoi4 = 8675 hoi4 = 8726 hoi4 = 5512 }	# Yekaterina Plains -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3015 hoi4 = 8636 hoi4 = 8662 hoi4 = 8688 hoi4 = 2556 hoi4 = 3052 hoi4 = 8713 hoi4 = 2991 hoi4 = 5957 }	# Kuskowim Bay -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3130 hoi4 = 8608 hoi4 = 5886 hoi4 = 5933 hoi4 = 2607 hoi4 = 5782 hoi4 = 5860 hoi4 = 5808 hoi4 = 5834 }	# North Bering Sea -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3014 hoi4 = 8383 hoi4 = 2706 hoi4 = 8409 hoi4 = 8513 hoi4 = 8739 hoi4 = 8812 hoi4 = 3201 }	# Coast of Alaska -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3133 hoi4 = 6004 hoi4 = 6064 hoi4 = 3591 hoi4 = 5981 hoi4 = 2581 }	# Pribilof Islands -> sea, sea, sea, sea, sea
+	link = { vic2 = 3134 hoi4 = 8304 hoi4 = 8170 hoi4 = 6471 hoi4 = 6271 }	# Eastern Aleutian Islands -> sea, sea, sea, sea
+	link = { vic2 = 3132 hoi4 = 3450 hoi4 = 2771 hoi4 = 2795 hoi4 = 3046 hoi4 = 3642 hoi4 = 3248 }	# Western Aleutian Islands -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3131 hoi4 = 4043 hoi4 = 5356 hoi4 = 3836 hoi4 = 5378 hoi4 = 2656 hoi4 = 5909 }	# South Bering Sea -> sea, sea, sea, sea, sea, sea
+	# 
+	# 
+	# 
+	# 
 	link = { vic2 = 2779 hoi4 = 1496 hoi4 = 1271 hoi4 = 1050 hoi4 = 843 }	# Caspian Sea -> lake, lake, lake, lake
+	# 
+	# 
+	# 
+	# 
+	# 
 }
