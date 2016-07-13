@@ -308,7 +308,6 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	map<int, vector<int>> HoI4DefaultStateToProvinceMap;
 	HoI4States* theStates = new HoI4States(&sourceWorld);
 	theStates->importStates(HoI4DefaultStateToProvinceMap);
-	theStates->recordAllLandProvinces();
 	map<int, int> provinceToSupplyZoneMap;
 	destWorld.importSuppplyZones(HoI4DefaultStateToProvinceMap, provinceToSupplyZoneMap);
 	destWorld.importStrategicRegions();

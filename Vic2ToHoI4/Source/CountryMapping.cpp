@@ -148,6 +148,7 @@ void CountryMapping::CreateMapping(const V2World& srcWorld, const HoI4World& des
 	}
 }
 
+
 const std::string& CountryMapping::GetHoI4Tag(const std::string& V2Tag) const
 {
 	static const std::string V2RebelTag = "REB";								// the V2 tag for rebels

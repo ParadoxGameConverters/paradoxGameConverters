@@ -101,7 +101,7 @@ void HoI4States::recordAllLandProvinces()
 }
 
 
-void HoI4States::convertStates(const HoI4ToVic2ProvinceMapping& provinceMap, const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, V2Localisation& Vic2Localisations)
+void HoI4States::convertStates(const HoI4ToVic2ProvinceMapping& provinceMap, const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, const V2Localisation& Vic2Localisations)
 {
 	map<int, ownersAndCores> provinceOwnersandCores = determineProvinceOwners(provinceMap, countryMap);
 	createStates(countryMap, inverseProvinceMap, provinceOwnersandCores, Vic2Localisations);
@@ -240,7 +240,7 @@ V2Country* HoI4States::selectProvinceOwner(const map<V2Country*, MTo1ProvinceCom
 }
 
 
-void HoI4States::createStates(const CountryMapping& countryMap, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, V2Localisation& Vic2Localisations)
+void HoI4States::createStates(const CountryMapping& countryMap, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, const V2Localisation& Vic2Localisations)
 {
 	int stateID = 1;
 	set<int> assignedProvinces;
@@ -257,7 +257,7 @@ void HoI4States::createStates(const CountryMapping& countryMap, const Vic2ToHoI4
 }
 
 
-bool HoI4States::createMatchingHoI4State(const Vic2State* vic2State, int stateID, string stateOwner, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces, V2Localisation& Vic2Localisations)
+bool HoI4States::createMatchingHoI4State(const Vic2State* vic2State, int stateID, const string& stateOwner, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces, const V2Localisation& Vic2Localisations)
 {
 	//	create a matching HoI4 state
 	HoI4State* newState = new HoI4State(vic2State, stateID, stateOwner);
@@ -343,7 +343,7 @@ void HoI4States::addManpowerToNewState(HoI4State* newState)
 }
 
 
-void HoI4States::addLocalisation(int HoI4StateID, string Vic2StateID, const V2Localisation Vic2Localisations)
+void HoI4States::addLocalisation(int HoI4StateID, string Vic2StateID, const V2Localisation& Vic2Localisations)
 {
 	for (auto nameInLanguage: Vic2Localisations.GetTextInEachLanguage(Vic2StateID))
 	{
