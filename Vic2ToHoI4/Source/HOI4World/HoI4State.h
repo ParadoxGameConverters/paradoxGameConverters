@@ -54,6 +54,7 @@ class HoI4State
 		const Vic2State* getSourceState() const { return sourceState; }
 		set<int>	getProvinces() const { return provinces; }
 		string getOwner() const { return ownerTag; }
+		set<string> getCores() const { return cores; }
 		int getID() const { return ID; }
 		int getNavalLocation() const { return navalLocation; }
 		int getDockyards() const { return dockyards; }

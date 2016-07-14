@@ -749,20 +749,62 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 		}
 	}
 
-	// Capital
-	int oldCapital = srcCountry->getCapital();
-	Vic2ToHoI4ProvinceMapping::iterator itr = inverseProvinceMap.find(oldCapital);
-	if (itr != inverseProvinceMap.end())
-	{
-		auto capitalState = stateMap.find(itr->second[0]);
-		if (capitalState != stateMap.end() && (states.find(capitalState->second)->second->getOwner() == tag))
-		{
-			capital = capitalState->second;
-		}
-	}
+	determineCapitalFromVic2(inverseProvinceMap, stateMap, states);
 
 	// major nation
 	majorNation = srcCountry->getGreatNation();
+}
+
+
+void HoI4Country::determineCapitalFromVic2(Vic2ToHoI4ProvinceMapping Vic2ToHoI4ProvinceMap, const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states)
+{
+	int oldCapital = srcCountry->getCapital();
+	Vic2ToHoI4ProvinceMapping::iterator itr = Vic2ToHoI4ProvinceMap.find(oldCapital);
+	if (itr != Vic2ToHoI4ProvinceMap.end())
+	{
+		auto capitalState = provinceToStateIDMap.find(itr->second[0]);
+		if (capitalState != provinceToStateIDMap.end() && isStateValidForCapital(capitalState, states))
+		{
+			capital = capitalState->second;
+		}
+		else
+		{
+			setFirstOwnedStateAsCapital(capitalState->second);
+		}
+	}
+}
+
+
+bool HoI4Country::isStateValidForCapital(map<int, int>::const_iterator capitalState, const map<int, HoI4State*>& states)
+{
+	auto state = states.find(capitalState->second)->second;
+	return (isThisStateOwnedByUs(state) || isThisStateACoreWhileWeOwnNoStates(state));
+}
+
+
+bool HoI4Country::isThisStateOwnedByUs(const HoI4State* state) const
+{
+	return (state->getOwner() == tag);
+}
+
+
+bool HoI4Country::isThisStateACoreWhileWeOwnNoStates(const HoI4State* state) const
+{
+	for (auto core: state->getCores())
+	{
+		if (core == tag)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+void HoI4Country::setFirstOwnedStateAsCapital(int attemptedCapital)
+{
+	LOG(LogLevel::Warning) << "TODO: try to give a capital in this case";
 }
 
 
@@ -813,7 +855,7 @@ void HoI4Country::initFromHistory()
 		ideology = results[0]->getLeaf();
 	}
 
-	results = obj->getValue("capita");
+	results = obj->getValue("capital");
 	if (results.size() > 0)
 	{
 		capital = atoi(results[0]->getLeaf().c_str());

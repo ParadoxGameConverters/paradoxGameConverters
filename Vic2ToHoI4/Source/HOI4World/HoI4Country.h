@@ -109,6 +109,12 @@ class HoI4Country
 		void			outputParties(FILE*)			const;
 		void			outputLeaders()				const;
 
+		void determineCapitalFromVic2(Vic2ToHoI4ProvinceMapping Vic2ToHoI4ProvinceMap, const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states);
+		bool isStateValidForCapital(map<int, int>::const_iterator capitalState, const map<int, HoI4State*>& states);
+		bool isThisStateOwnedByUs(const HoI4State* state) const;
+		bool isThisStateACoreWhileWeOwnNoStates(const HoI4State* state) const;
+		void setFirstOwnedStateAsCapital(int attemptedCapital);
+
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, HoI4Province*> allProvinces);
 
 		void			convertParties(const V2Country* srcCountry, vector<V2Party*> V2Parties, V2Party* rulingParty, string& rulingIdeology);
