@@ -2729,7 +2729,6 @@
 	# Australia
 	link = { vic2 = 2473 hoi4 = 2146 hoi4 = 5161 hoi4 = 1667 hoi4 = 4836 hoi4 = 5134 hoi4 = 10455 hoi4 = 11019 }	# Wagga Wagga -> land, land, land, land, land, land, land
 	link = { vic2 = 2474 hoi4 = 4673 hoi4 = 4500 hoi4 = 4453 hoi4 = 4478 hoi4 = 7649 hoi4 = 4658 hoi4 = 7471 hoi4 = 7533 hoi4 = 12377 }	# Moree -> land, land, land, land, land, land, land, land, land
-
 	link = { vic2 = 2470 hoi4 = 1611 hoi4 = 7664 hoi4 = 10500 }	# Port Macquarie -> land, land, land
 	link = { vic2 = 2469 hoi4 = 7450 hoi4 = 7496 hoi4 = 7520 }	# Newcastle -> land, land, land
 	link = { vic2 = 2471 hoi4 = 12435 hoi4 = 10682 hoi4 = 10427 hoi4 = 10388 hoi4 = 1537 }	# Ophir -> land, land, land, land, land
@@ -3147,7 +3146,39 @@
 	link = { vic2 = 3084 hoi4 = 5738 hoi4 = 820 hoi4 = 2709 hoi4 = 443 hoi4 = 244 hoi4 = 2685 hoi4 = 626 hoi4 = 2591 hoi4 = 2565 }	# Southwest Indian Basin -> sea, sea, sea, sea, sea, sea, sea, sea, sea
 	link = { vic2 = 3085 hoi4 = 9067 hoi4 = 8627 hoi4 = 8552 hoi4 = 8476 hoi4 = 8529 hoi4 = 8599 hoi4 = 5693 hoi4 = 5642 }	# Kerguelen Islands -> sea, sea, sea, sea, sea, sea, sea, sea
 	# 
-	# 
+	# ## Eastern Pacific
+	link = { vic2 = 3135 hoi4 = 8330 hoi4 = 8356 hoi4 = 8432 hoi4 = 8763 hoi4 = 8861 hoi4 = 8886 hoi4 = 8278 }	# Uminak Pass -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3013 hoi4 = 3002 hoi4 = 3648 hoi4 = 3842 hoi4 = 4049 hoi4 = 3253 hoi4 = 3454 hoi4 = 8561 hoi4 = 8538 hoi4 = 8486 hoi4 = 8458 hoi4 = 8584 hoi4 = 3600 hoi4 = 3793 hoi4 = 2917 hoi4 = 2965 hoi4 = 8785 hoi4 = 8809 }	# Gulf of Alaska -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3012 hoi4 = 2970 hoi4 = 4498 hoi4 = 2894 hoi4 = 2870 hoi4 = 4945 hoi4 = 5150 hoi4 = 4722 }	# Hecate Strait -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3011 hoi4 = 2774 hoi4 = 2846 hoi4 = 2945 hoi4 = 5309 hoi4 = 5282 hoi4 = 5257 hoi4 = 2751 }	# Coast of Columbia -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3010 hoi4 = 2921 hoi4 = 5335 hoi4 = 5359 hoi4 = 3998 }	# Coast of Oregon -> sea, sea, sea, sea
+	link = { vic2 = 3009 hoi4 = 5381 hoi4 = 5406 hoi4 = 2898 hoi4 = 5430 hoi4 = 5504 }	# Santa Catalina Islands -> sea, sea, sea, sea, sea
+	link = { vic2 = 3008 hoi4 = 2875 hoi4 = 5554 hoi4 = 5578 hoi4 = 4895 hoi4 = 5530 hoi4 = 2652 }	# Coast of California -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3006 hoi4 = 2851 hoi4 = 5630 hoi4 = 2828 }	# Gulf of California -> sea, sea, sea
+	link = { vic2 = 3005 hoi4 = 5680 hoi4 = 5706 }	# Mazatlan Bay -> sea, sea
+	link = { vic2 = 3007 hoi4 = 5604 hoi4 = 2603 hoi4 = 2629 hoi4 = 2577 hoi4 = 2553 hoi4 = 5655 hoi4 = 3837 hoi4 = 3643 }	# Coast of Baja -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3004 hoi4 = 2803 hoi4 = 5732 hoi4 = 5785 hoi4 = 5262 }	# Manzanilla Bay -> sea, sea, sea, sea
+	link = { vic2 = 3003 hoi4 = 2780 hoi4 = 5289 hoi4 = 2357 hoi4 = 2889 hoi4 = 2307 hoi4 = 2912 }	# Acapulco Bay -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3002 hoi4 = 2254 hoi4 = 2331 hoi4 = 5315 hoi4 = 3239 hoi4 = 2280 hoi4 = 2756 }	# Bay of Costa Rica -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3001 hoi4 = 2683 hoi4 = 2733 hoi4 = 8857 hoi4 = 3442 hoi4 = 5436 }	# Gulf of Panama -> sea, sea, sea, sea, sea
+	link = { vic2 = 3000 hoi4 = 2360 hoi4 = 1946 hoi4 = 2707 hoi4 = 3634 hoi4 = 2311 }	# Coast of Ecuador -> sea, sea, sea, sea, sea
+	link = { vic2 = 3157 hoi4 = 5452 hoi4 = 2657 hoi4 = 5429 hoi4 = 5477 hoi4 = 5503 hoi4 = 5529 hoi4 = 5841 hoi4 = 5358 hoi4 = 5380 hoi4 = 5405 hoi4 = 2148 }	# Coast of the Galapagos Islands -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2999 hoi4 = 2335 hoi4 = 8706 hoi4 = 1495 hoi4 = 1720 hoi4 = 4036 hoi4 = 2384 }	# Guayaquil Bay -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2998 hoi4 = 4485 hoi4 = 4708 hoi4 = 2410 hoi4 = 4259 }	# Coast of Peru -> sea, sea, sea, sea
+	link = { vic2 = 2997 hoi4 = 4931 hoi4 = 5252 hoi4 = 5277 hoi4 = 2433 hoi4 = 5142 }	# Arequipa Bay -> sea, sea, sea, sea, sea
+	link = { vic2 = 2996 hoi4 = 5304 hoi4 = 5831 hoi4 = 5779 hoi4 = 5330 hoi4 = 2457 hoi4 = 5753 }	# Antofagasta Coast -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2995 hoi4 = 5353 hoi4 = 2633 hoi4 = 2482 hoi4 = 5650 hoi4 = 5675 hoi4 = 5701 hoi4 = 5727 }	# Atacama Coast -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2994 hoi4 = 5400 hoi4 = 2557 hoi4 = 5625 hoi4 = 5375 hoi4 = 5424 }	# Coast of Chile -> sea, sea, sea, sea, sea
+	link = { vic2 = 2993 hoi4 = 5549 hoi4 = 5499 hoi4 = 5448 hoi4 = 2508 hoi4 = 5473 hoi4 = 2532 }	# South Chilean Coast -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3248 hoi4 = 5285 hoi4 = 8760 hoi4 = 2533 hoi4 = 8736 hoi4 = 8710 }	# West Magellan Strait -> sea, sea, sea, sea, sea
+	link = { vic2 = 3177 hoi4 = 51 hoi4 = 259 hoi4 = 1040 hoi4 = 2891 hoi4 = 2867 hoi4 = 8285 hoi4 = 8311 hoi4 = 8364 hoi4 = 8337 hoi4 = 835 hoi4 = 456 hoi4 = 640 hoi4 = 8390 hoi4 = 9081 }	# Coast of Samoa -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3179 hoi4 = 8567 hoi4 = 8907 hoi4 = 8615 hoi4 = 8519 hoi4 = 8833 hoi4 = 8737 hoi4 = 8416 hoi4 = 9027 hoi4 = 9003 hoi4 = 8544 hoi4 = 8955 hoi4 = 8932 hoi4 = 8980 hoi4 = 8859 hoi4 = 8884 }	# Coast of Tonga -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3170 hoi4 = 8761 hoi4 = 8493 hoi4 = 8807 hoi4 = 8783 hoi4 = 8536 hoi4 = 8559 hoi4 = 8582 hoi4 = 8643 hoi4 = 8606 hoi4 = 8634 hoi4 = 8686 hoi4 = 8711 hoi4 = 8660 }	# Coast of the Society Islands -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3182 hoi4 = 2113 hoi4 = 1895 hoi4 = 5626 hoi4 = 5526 hoi4 = 5500 hoi4 = 5449 hoi4 = 5144 hoi4 = 4935 hoi4 = 4489 hoi4 = 4712 hoi4 = 5600 hoi4 = 5574 hoi4 = 4263 hoi4 = 4039 hoi4 = 8511 hoi4 = 2313 hoi4 = 1443 hoi4 = 1670 hoi4 = 2673 hoi4 = 5882 hoi4 = 2698 hoi4 = 2647 }	# Coast of the Tuamotus -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3181 hoi4 = 2769 hoi4 = 2746 hoi4 = 2937 hoi4 = 2890 hoi4 = 2301 hoi4 = 2987 hoi4 = 2913 hoi4 = 2401 hoi4 = 2376 hoi4 = 2327 hoi4 = 3042 hoi4 = 8769 hoi4 = 2961 hoi4 = 2723 hoi4 = 3827 hoi4 = 8385 hoi4 = 7460 }	# Resolution Flats -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3180 hoi4 = 3831 hoi4 = 5253 hoi4 = 5305 hoi4 = 5331 hoi4 = 8411 hoi4 = 8720 hoi4 = 5354 hoi4 = 5401 hoi4 = 5474 hoi4 = 5425 hoi4 = 5278 hoi4 = 5376 hoi4 = 8695 }	# Coast of the Marquesas -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3176 hoi4 = 1711 hoi4 = 1487 hoi4 = 1260 hoi4 = 2549 hoi4 = 2625 hoi4 = 2573 hoi4 = 2648 hoi4 = 2599 hoi4 = 8439 hoi4 = 2451 hoi4 = 2250 hoi4 = 1936 hoi4 = 8466 hoi4 = 2141 hoi4 = 2525 hoi4 = 2502 hoi4 = 2276 hoi4 = 2476 }	# Central Pacific Basin -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3190 hoi4 = 8327 hoi4 = 8816 hoi4 = 2275 hoi4 = 2140 hoi4 = 8380 hoi4 = 8353 hoi4 = 8301 hoi4 = 8166 hoi4 = 420 hoi4 = 1935 hoi4 = 1259 }	# Coast of Easter Island -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
 	# 
 	# 
 	# 
@@ -3182,7 +3213,7 @@
 	link = { vic2 = 2854 hoi4 = 5487 hoi4 = 8969 hoi4 = 5238 hoi4 = 5462 }	# Sea of Banda -> sea, sea, sea, sea
 	link = { vic2 = 2862 hoi4 = 5290 hoi4 = 8921 hoi4 = 8945 }	# Kolepom Bay -> sea, sea, sea
 	# 
-	#  # Timor Sea
+	# # Timor Sea
 	link = { vic2 = 2809 hoi4 = 4676 hoi4 = 5116 hoi4 = 435 hoi4 = 616 hoi4 = 234 hoi4 = 9057 hoi4 = 28 hoi4 = 5438 hoi4 = 2317 hoi4 = 1016 hoi4 = 811 }	# Timor Sea -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
 	# 
 	# # Arafura Sea
