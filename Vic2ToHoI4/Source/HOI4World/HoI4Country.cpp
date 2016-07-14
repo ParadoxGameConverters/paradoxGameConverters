@@ -769,7 +769,7 @@ void HoI4Country::determineCapitalFromVic2(Vic2ToHoI4ProvinceMapping Vic2ToHoI4P
 		}
 		else
 		{
-			setFirstOwnedStateAsCapital(capitalState->second);
+			findBestCapital();
 		}
 	}
 }
@@ -802,9 +802,10 @@ bool HoI4Country::isThisStateACoreWhileWeOwnNoStates(const HoI4State* state) con
 }
 
 
-void HoI4Country::setFirstOwnedStateAsCapital(int attemptedCapital)
+void HoI4Country::findBestCapital()
 {
-	LOG(LogLevel::Warning) << "TODO: try to give a capital in this case";
+	capital = 1;
+	LOG(LogLevel::Warning) << "Could not properly set capital for " << tag;
 }
 
 

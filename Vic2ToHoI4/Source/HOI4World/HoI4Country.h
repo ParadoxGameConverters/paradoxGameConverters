@@ -113,7 +113,7 @@ class HoI4Country
 		bool isStateValidForCapital(map<int, int>::const_iterator capitalState, const map<int, HoI4State*>& states);
 		bool isThisStateOwnedByUs(const HoI4State* state) const;
 		bool isThisStateACoreWhileWeOwnNoStates(const HoI4State* state) const;
-		void setFirstOwnedStateAsCapital(int attemptedCapital);
+		void findBestCapital();
 
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, HoI4Province*> allProvinces);
 
