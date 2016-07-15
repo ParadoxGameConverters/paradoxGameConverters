@@ -1818,6 +1818,10 @@ void HoI4World::checkAllProvincesMapped(const HoI4ToVic2ProvinceMapping& provinc
 			break;
 		}
 		int provNum = atoi(line.substr(0, pos).c_str());
+		if (provNum == 0)
+		{
+			continue;
+		}
 
 		auto num = provinceMap.find(provNum);
 		if (num == provinceMap.end())
