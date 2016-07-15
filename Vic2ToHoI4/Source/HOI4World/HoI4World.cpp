@@ -612,9 +612,9 @@ void HoI4World::convertIndustry()
 			stateWorkers = 0;
 		}
 		stateFactories = static_cast<int>(round(stateWorkers));
-		if (stateFactories > 12) // limit factories by 12 (the max slots)
+		if ((stateFactories + HoI4State.second->getDockyards()) > 12) // limit factories by 12 (the max slots)
 		{
-			stateFactories = 12;
+			stateFactories = 12 - HoI4State.second->getDockyards();
 		}
 
 		// determine state category
