@@ -32,7 +32,7 @@
 	link = { vic2 = 226 hoi4 = 822 hoi4 = 11785 hoi4 = 9804 hoi4 = 847 hoi4 = 3850 hoi4 = 11769 hoi4 = 11758 hoi4 = 3847 }	# Harrisburg -> land, land, land, land, land, land, land, land
 	link = { vic2 = 225 hoi4 = 11648 hoi4 = 9836 hoi4 = 3697 hoi4 = 862 hoi4 = 11817 hoi4 = 6885 hoi4 = 6872 hoi4 = 12405 hoi4 = 880 hoi4 = 6899 hoi4 = 702 hoi4 = 3880 }	# Williamsport -> land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 228 hoi4 = 3687 hoi4 = 6705 hoi4 = 9662 }	# Erie -> land, land, land
-	link = { vic2 = 178 hoi4 = 6874 hoi4 = 6890 hoi4 = 9825 hoi4 = 882 hoi4 = 4442 hoi4 = 9808 hoi4 = 13154 }	# Cleveland -> land, land, land, land, land, land, lake
+	link = { vic2 = 178 hoi4 = 6874 hoi4 = 6890 hoi4 = 9825 hoi4 = 882 hoi4 = 4442 hoi4 = 9808 }	# Cleveland -> land, land, land, land, land, land
 	link = { vic2 = 179 hoi4 = 659 hoi4 = 3853 hoi4 = 6855 }	# Columbus -> land, land, land
 	link = { vic2 = 182 hoi4 = 11890 hoi4 = 4601 }	# Cincinnati -> land, land
 	link = { vic2 = 181 hoi4 = 11791 hoi4 = 831 hoi4 = 11776 hoi4 = 11760 }	# Dayton -> land, land, land, land
@@ -51,7 +51,7 @@
 	link = { vic2 = 219 hoi4 = 9758 hoi4 = 6984 }	# Baltimore -> land, land
 	link = { vic2 = 222 hoi4 = 9786 hoi4 = 6892 hoi4 = 3917 }	# Dover -> land, land, land
 	link = { vic2 = 238 hoi4 = 9708 hoi4 = 9721 hoi4 = 6916 hoi4 = 6795 }	# Syracuse -> land, land, land, land
-	link = { vic2 = 237 hoi4 = 3733 hoi4 = 3747 hoi4 = 3702 hoi4 = 13157 }	# Rochester -> land, land, land, lake
+	link = { vic2 = 237 hoi4 = 3733 hoi4 = 3747 hoi4 = 3702 }	# Rochester -> land, land, land
 	link = { vic2 = 236 hoi4 = 11654 hoi4 = 734 hoi4 = 9664 hoi4 = 6707 }	# Buffalo -> land, land, land, land
 	link = { vic2 = 235 hoi4 = 9774 hoi4 = 706 hoi4 = 11660 hoi4 = 9673 hoi4 = 9693 hoi4 = 1436 hoi4 = 6717 hoi4 = 11650 hoi4 = 11680 }	# Binghamton -> land, land, land, land, land, land, land, land, land
 	link = { vic2 = 234 hoi4 = 3806 hoi4 = 11665 hoi4 = 11722 }	# Albany -> land, land, land
@@ -93,9 +93,9 @@
 	link = { vic2 = 172 hoi4 = 11637 hoi4 = 870 }	# Fort Wayne -> land, land
 	link = { vic2 = 171 hoi4 = 6713 hoi4 = 4437 hoi4 = 9653 hoi4 = 9654 }	# South Bend -> land, land, land, land
 	link = { vic2 = 174 hoi4 = 6769 hoi4 = 691 hoi4 = 695 hoi4 = 11641 hoi4 = 11685 hoi4 = 9684 hoi4 = 6782 hoi4 = 11714 }	# Grand Rapids -> land, land, land, land, land, land, land, land
-	link = { vic2 = 173 hoi4 = 9724 hoi4 = 6710 hoi4 = 11656 hoi4 = 13199 hoi4 = 13156 }	# Detroit -> land, land, land, lake, lake
-	link = { vic2 = 175 hoi4 = 3766 hoi4 = 11669 hoi4 = 9746 hoi4 = 13200 }	# Saginaw -> land, land, land, lake
-	link = { vic2 = 176 hoi4 = 10233 hoi4 = 10303 hoi4 = 11731 hoi4 = 7420 hoi4 = 9747 hoi4 = 13155 }	# Traverse City -> land, land, land, land, land, lake
+	link = { vic2 = 173 hoi4 = 9724 hoi4 = 6710 hoi4 = 11656 hoi4 = 13156 }	# Detroit -> land, land, land, lake
+	link = { vic2 = 175 hoi4 = 3766 hoi4 = 11669 hoi4 = 9746 }	# Saginaw -> land, land, land
+	link = { vic2 = 176 hoi4 = 10233 hoi4 = 10303 hoi4 = 11731 hoi4 = 7420 hoi4 = 9747 }	# Traverse City -> land, land, land, land, land
 	link = { vic2 = 148 hoi4 = 12346 hoi4 = 4449 hoi4 = 4540 }	# Malden -> land, land, land
 	link = { vic2 = 147 hoi4 = 1534 hoi4 = 10370 hoi4 = 12463 }	# Joplin -> land, land, land
 	link = { vic2 = 149 hoi4 = 12361 hoi4 = 1441 hoi4 = 1564 hoi4 = 10717 }	# Jefferson City -> land, land, land, land
@@ -151,23 +151,23 @@
 	link = { vic2 = 142 hoi4 = 4522 hoi4 = 1559 hoi4 = 7555 hoi4 = 7599 }	# Shreveport -> land, land, land, land
 	link = { vic2 = 141 hoi4 = 1643 hoi4 = 4507 hoi4 = 12313 hoi4 = 1528 hoi4 = 12401 }	# Lake Charles -> land, land, land, land, land
 	link = { vic2 = 139 hoi4 = 12398 hoi4 = 4535 hoi4 = 7552 }	# New Orleans -> land, land, land
-	link = { vic2 = 132 hoi4 = 9829 hoi4 = 5001 hoi4 = 6968 hoi4 = 4577 hoi4 = 12486 hoi4 = 1500 hoi4 = 7628 hoi4 = 10861 hoi4 = 3960 hoi4 = 10778 hoi4 = 805 hoi4 = 10504 hoi4 = 10337 }	# Houston -> land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 134 hoi4 = 3875 hoi4 = 5085 hoi4 = 2082 hoi4 = 9920 hoi4 = 1915 hoi4 = 12875 hoi4 = 7981 }	# Dallas -> land, land, land, land, land, land, land
-	link = { vic2 = 135 hoi4 = 2055 hoi4 = 3972 hoi4 = 12848 hoi4 = 12301 hoi4 = 9773 hoi4 = 12893 hoi4 = 9908 hoi4 = 1998 }	# Lubbock -> land, land, land, land, land, land, land, land
+	link = { vic2 = 132 hoi4 = 9829 hoi4 = 5001 hoi4 = 6968 hoi4 = 4577 hoi4 = 12486 hoi4 = 1500 hoi4 = 7628 hoi4 = 10778 hoi4 = 805 hoi4 = 10504 hoi4 = 10337 }	# Houston -> land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 134 hoi4 = 3875 hoi4 = 5085 hoi4 = 2082 hoi4 = 9920 hoi4 = 1915 hoi4 = 12875 hoi4 = 7981 hoi4 = 3960 hoi4 = 10861 }	# Dallas -> land, land, land, land, land, land, land, land, land
+	link = { vic2 = 135 hoi4 = 2055 hoi4 = 3972 hoi4 = 12848 hoi4 = 12301 hoi4 = 9773 hoi4 = 12893 hoi4 = 9908 }	# Lubbock -> land, land, land, land, land, land, land
 	link = { vic2 = 133 hoi4 = 4884 hoi4 = 1927 hoi4 = 6798 hoi4 = 8064 hoi4 = 12410 hoi4 = 12341 hoi4 = 5022 hoi4 = 7836 }	# Austin -> land, land, land, land, land, land, land, land
 	link = { vic2 = 137 hoi4 = 12782 hoi4 = 6987 hoi4 = 2042 }	# San Antonio -> land, land, land
 	link = { vic2 = 138 hoi4 = 12728 hoi4 = 2019 hoi4 = 5061 hoi4 = 12369 hoi4 = 6785 }	# Laredo -> land, land, land, land, land
-	link = { vic2 = 136 hoi4 = 10740 hoi4 = 10894 hoi4 = 1954 hoi4 = 5038 hoi4 = 4955 }	# El Paso -> land, land, land, land, land
+	link = { vic2 = 136 hoi4 = 10740 hoi4 = 10894 hoi4 = 1954 hoi4 = 5038 hoi4 = 4955 hoi4 = 1998 }	# El Paso -> land, land, land, land, land, land
 	link = { vic2 = 109 hoi4 = 1809 hoi4 = 12627 hoi4 = 1738 }	# Pueblo -> land, land, land
 	link = { vic2 = 106 hoi4 = 1827 hoi4 = 10588 hoi4 = 12642 hoi4 = 11772 hoi4 = 7780 hoi4 = 12570 }	# Denver -> land, land, land, land, land, land
 	link = { vic2 = 107 hoi4 = 6887 hoi4 = 10535 hoi4 = 3869 }	# Grand Junction -> land, land, land
 	link = { vic2 = 108 hoi4 = 7684 hoi4 = 7999 hoi4 = 9792 hoi4 = 868 hoi4 = 1658 }	# Alamosa -> land, land, land, land, land
-	link = { vic2 = 103 hoi4 = 4975 hoi4 = 12684 hoi4 = 10642 hoi4 = 2102 }	# Santa Fe -> land, land, land, land
-	link = { vic2 = 105 hoi4 = 12791 hoi4 = 3867 hoi4 = 12720 hoi4 = 10867 hoi4 = 8070 hoi4 = 3883 }	# Las Cruces -> land, land, land, land, land, land
+	link = { vic2 = 103 hoi4 = 4975 hoi4 = 12684 hoi4 = 2102 hoi4 = 10642 }	# Santa Fe -> land, land, land, land
+	link = { vic2 = 105 hoi4 = 3867 hoi4 = 12720 hoi4 = 10867 hoi4 = 8070 hoi4 = 3883 hoi4 = 12791 }	# Las Cruces -> land, land, land, land, land, land
 	link = { vic2 = 104 hoi4 = 10645 hoi4 = 12552 hoi4 = 1972 hoi4 = 10914 hoi4 = 5044 }	# Albuquerque -> land, land, land, land, land
-	link = { vic2 = 112 hoi4 = 10711 hoi4 = 4610 hoi4 = 4820 hoi4 = 4794 }	# Casper -> land, land, land, land
+	link = { vic2 = 112 hoi4 = 10711 hoi4 = 4610 hoi4 = 4820 hoi4 = 4794 hoi4 = 7814 }	# Casper -> land, land, land, land, land
 	link = { vic2 = 110 hoi4 = 4723 hoi4 = 10640 hoi4 = 12561 hoi4 = 12633 }	# Cheyenne -> land, land, land, land
-	link = { vic2 = 111 hoi4 = 7814 hoi4 = 1815 hoi4 = 12651 hoi4 = 7688 hoi4 = 7888 }	# Cody -> land, land, land, land, land
+	link = { vic2 = 111 hoi4 = 1815 hoi4 = 12651 hoi4 = 7688 hoi4 = 7888 }	# Cody -> land, land, land, land
 	link = { vic2 = 113 hoi4 = 4741 hoi4 = 1736 hoi4 = 7779 hoi4 = 6742 hoi4 = 4860 }	# Bozeman -> land, land, land, land, land
 	link = { vic2 = 114 hoi4 = 1854 hoi4 = 12676 hoi4 = 4838 }	# Missoula -> land, land, land
 	link = { vic2 = 115 hoi4 = 7883 hoi4 = 4863 hoi4 = 10624 hoi4 = 10593 hoi4 = 1857 hoi4 = 11712 }	# Great Falls -> land, land, land, land, land, land
@@ -175,7 +175,8 @@
 	link = { vic2 = 93 hoi4 = 9695 hoi4 = 12535 hoi4 = 1789 hoi4 = 10602 hoi4 = 10672 }	# Pocatello -> land, land, land, land, land
 	link = { vic2 = 91 hoi4 = 7845 hoi4 = 10556 hoi4 = 12607 }	# Boise -> land, land, land
 	link = { vic2 = 92 hoi4 = 1832 hoi4 = 12124 hoi4 = 3781 hoi4 = 4778 hoi4 = 9616 }	# Coeur D'Alene -> land, land, land, land, land
-	link = { vic2 = 97 hoi4 = 4865 hoi4 = 10651 hoi4 = 1663 hoi4 = 10582 hoi4 = 4668 hoi4 = 1756 hoi4 = 4742 hoi4 = 13153 }	# Salt Lake City -> land, land, land, land, land, land, land, lake
+	link = { vic2 = 3225 hoi4 = 13153 }	# Great Salt Lake -> lake
+	link = { vic2 = 97 hoi4 = 4865 hoi4 = 10651 hoi4 = 1663 hoi4 = 10582 hoi4 = 4668 hoi4 = 1756 hoi4 = 4742 }	# Salt Lake City -> land, land, land, land, land, land, land
 	link = { vic2 = 98 hoi4 = 12699 hoi4 = 12573 hoi4 = 10662 }	# Loa -> land, land, land
 	link = { vic2 = 99 hoi4 = 7818 hoi4 = 7764 hoi4 = 1740 }	# Moab -> land, land, land
 	link = { vic2 = 102 hoi4 = 10783 hoi4 = 3834 hoi4 = 7920 }	# Tucson -> land, land, land
@@ -237,11 +238,16 @@
 	link = { vic2 = 10 hoi4 = 10703 }	# Inuvik -> land
 	link = { vic2 = 2598 hoi4 = 7830 }	# Fort Liard -> land
 	link = { vic2 = 9 hoi4 = 7858 }	# Fort Simpson -> land
-	link = { vic2 = 11 hoi4 = 10527 hoi4 = 7696 hoi4 = 2407 hoi4 = 8653 hoi4 = 4272 }	# Echo Bay -> land, land, land, lake, lake
+	link = { vic2 = 3227 hoi4 = 8653 }	# Great Slave Lake -> lake
+	link = { vic2 = 11 hoi4 = 10527 hoi4 = 7696 hoi4 = 2407 hoi4 = 4272 }	# Echo Bay -> land, land, land, lake
 	link = { vic2 = 12 hoi4 = 7901 hoi4 = 13189 }	# Reliance -> land, lake
 	link = { vic2 = 2596 hoi4 = 13075 }	# Fort Resolution -> land
-	link = { vic2 = 31 hoi4 = 1671 hoi4 = 3800 hoi4 = 4695 hoi4 = 12682 hoi4 = 12534 hoi4 = 13167 hoi4 = 13187 hoi4 = 13185 hoi4 = 6779 hoi4 = 7348 hoi4 = 13183 hoi4 = 13168 }	# Stanley -> land, land, land, land, land, lake, lake, lake, land, land, lake, lake
-	link = { vic2 = 50 hoi4 = 7899 hoi4 = 4775 hoi4 = 10718 hoi4 = 1782 hoi4 = 777 hoi4 = 602 hoi4 = 13161 hoi4 = 13159 }	# Thunder Bay -> land, land, land, land, land, land, lake, lake
+	link = { vic2 = 3228 hoi4 = 13167 }	# Lake Athabasca -> lake
+	link = { vic2 = 3229 hoi4 = 13168 hoi4 = 13187 }	# Reindeer Lake -> lake, lake
+	link = { vic2 = 31 hoi4 = 1671 hoi4 = 3800 hoi4 = 4695 hoi4 = 12682 hoi4 = 12534 hoi4 = 13185 hoi4 = 6779 hoi4 = 7348 hoi4 = 13183 }	# Stanley -> land, land, land, land, land, lake, land, land, lake
+	link = { vic2 = 3116 hoi4 = 13159 }	# Lake Superior -> lake
+	link = { vic2 = 3117 hoi4 = 13161 }	# Lake Nipigon -> lake
+	link = { vic2 = 50 hoi4 = 7899 hoi4 = 4775 hoi4 = 10718 hoi4 = 1782 hoi4 = 777 hoi4 = 602 }	# Thunder Bay -> land, land, land, land, land, land
 	link = { vic2 = 51 hoi4 = 12582 hoi4 = 12278 hoi4 = 9467 hoi4 = 6510 hoi4 = 9480 hoi4 = 1299 hoi4 = 4784 hoi4 = 4869 hoi4 = 7366 }	# Sault Ste Marie -> land, land, land, land, land, land, land, land, land
 	link = { vic2 = 2595 hoi4 = 10721 }	# Nunavut -> land
 	link = { vic2 = 43 hoi4 = 2947 hoi4 = 13191 hoi4 = 13190 hoi4 = 8962 hoi4 = 13188 }	# Arviat -> land, lake, lake, lake, lake
@@ -249,7 +255,7 @@
 	link = { vic2 = 42 hoi4 = 4790 hoi4 = 1873 }	# Pembina -> land, land
 	link = { vic2 = 41 hoi4 = 3721 hoi4 = 1848 hoi4 = 12145 hoi4 = 12688 }	# Brandon -> land, land, land, land
 	link = { vic2 = 36 hoi4 = 4426 hoi4 = 4872 hoi4 = 4875 }	# Winnipeg -> land, land, land
-	link = { vic2 = 40 hoi4 = 12636 hoi4 = 4218 hoi4 = 5119 hoi4 = 13163 }	# Dauphin -> land, land, land, lake
+	link = { vic2 = 40 hoi4 = 12636 hoi4 = 4218 hoi4 = 5119 }	# Dauphin -> land, land, land
 	link = { vic2 = 39 hoi4 = 7782 hoi4 = 6728 }	# Norway House -> land, land
 	link = { vic2 = 38 hoi4 = 10585 }	# Indian Lakes -> land
 	link = { vic2 = 37 hoi4 = 10605 hoi4 = 7185 hoi4 = 5239 hoi4 = 13182 }	# Churchill -> land, land, land, lake
@@ -262,6 +268,10 @@
 	link = { vic2 = 56 hoi4 = 3605 hoi4 = 6625 hoi4 = 4270 }	# Kingston -> land, land, land
 	link = { vic2 = 46 hoi4 = 6607 hoi4 = 3775 hoi4 = 6797 hoi4 = 9580 hoi4 = 11567 }	# Toronto -> land, land, land, land, land
 	link = { vic2 = 53 hoi4 = 9743 hoi4 = 6610 hoi4 = 779 }	# Barrie -> land, land, land
+	link = { vic2 = 3112 hoi4 = 13157 }	# Lake Ontario -> lake
+	link = { vic2 = 3113 hoi4 = 13154 }	# Lake Erie -> lake
+	link = { vic2 = 3114 hoi4 = 13200 hoi4 = 13199 }	# Lake Huron -> lake, lake
+	link = { vic2 = 3115 hoi4 = 13155 }	# Lake Michigan -> lake
 	link = { vic2 = 55 hoi4 = 11695 hoi4 = 3763 hoi4 = 749 }	# Hamilton -> land, land, land
 	link = { vic2 = 54 hoi4 = 9667 hoi4 = 722 hoi4 = 9711 hoi4 = 11725 hoi4 = 774 }	# Windsor -> land, land, land, land, land
 	link = { vic2 = 66 hoi4 = 4417 hoi4 = 7289 hoi4 = 10230 hoi4 = 10174 hoi4 = 10320 hoi4 = 7433 }	# Sherbrooke -> land, land, land, land, land, land
@@ -270,6 +280,7 @@
 	link = { vic2 = 58 hoi4 = 4345 hoi4 = 7345 }	# Montreal -> land, land
 	link = { vic2 = 63 hoi4 = 12205 hoi4 = 12276 hoi4 = 1341 hoi4 = 7435 hoi4 = 10700 hoi4 = 1764 hoi4 = 4419 hoi4 = 12223 }	# Temiscaming -> land, land, land, land, land, land, land, land
 	link = { vic2 = 60 hoi4 = 6740 hoi4 = 490 hoi4 = 11682 hoi4 = 3911 hoi4 = 11902 hoi4 = 10249 hoi4 = 7875 hoi4 = 983 hoi4 = 13162 }	# Fort Rupert -> land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 3118 hoi4 = 13163 }	# Lake Winnipeg -> lake
 	link = { vic2 = 2593 hoi4 = 10176 hoi4 = 13181 }	# Fort George -> land, lake
 	link = { vic2 = 2626 hoi4 = 13196 hoi4 = 13184 hoi4 = 13166 }	# Port Harrison -> land, lake, lake
 	link = { vic2 = 59 hoi4 = 1657 hoi4 = 4666 hoi4 = 12600 hoi4 = 13164 }	# Nitchequon -> land, land, land, lake
@@ -287,7 +298,7 @@
 	link = { vic2 = 62 hoi4 = 7810 hoi4 = 10534 hoi4 = 7683 hoi4 = 1785 }	# Sept-Îles -> land, land, land, land
 	link = { vic2 = 2625 hoi4 = 4720 hoi4 = 4787 hoi4 = 12503 }	# Port Hope Simpson -> land, land, land
 	link = { vic2 = 76 hoi4 = 1426 }	# Hopedale -> land
-	link = { vic2 = 2627 hoi4 = 7364 hoi4 = 3208 hoi4 = 13165 }	# Fort Chimo -> land, land, lake
+	link = { vic2 = 2627 hoi4 = 7364 hoi4 = 3208 }	# Fort Chimo -> land, land
 	link = { vic2 = 2592 hoi4 = 12147 hoi4 = 13186 }	# Ungava -> land, lake
 	link = { vic2 = 45 hoi4 = 3691 hoi4 = 7813 }	# Baffin Island -> land, land
 	link = { vic2 = 44 hoi4 = 1712 }	# Coral Harbour -> land
@@ -345,8 +356,9 @@
 	# 
 	# ## Central America
 	link = { vic2 = 2199 hoi4 = 10728 }	# León -> land
-	link = { vic2 = 2197 hoi4 = 12738 hoi4 = 13178 }	# Managua -> land, lake
-	link = { vic2 = 2198 hoi4 = 1988 hoi4 = 13139 }	# Rivas -> land, lake
+	link = { vic2 = 3110 hoi4 = 13178 hoi4 = 13139 }	# Lake Nicaragua -> lake, lake
+	link = { vic2 = 2197 hoi4 = 12738 }	# Managua -> land
+	link = { vic2 = 2198 hoi4 = 1988 }	# Rivas -> land
 	link = { vic2 = 2202 hoi4 = 13092 }	# Liberia -> land
 	link = { vic2 = 2203 hoi4 = 12878 }	# Limón -> land
 	link = { vic2 = 2201 hoi4 = 13087 }	# San José -> land
@@ -668,7 +680,7 @@
 	link = { vic2 = 1968 hoi4 = 11108 }	# Bossangoa -> land
 	link = { vic2 = 1970 hoi4 = 3165 }	# Bangassou -> land
 	link = { vic2 = 1996 hoi4 = 12847 hoi4 = 1950 hoi4 = 12808 hoi4 = 2073 }	# Kisangani -> land, land, land, land
-	link = { vic2 = 1997 hoi4 = 12783 hoi4 = 2154 hoi4 = 6027 hoi4 = 1181 hoi4 = 4201 hoi4 = 13176 }	# Mungbane -> land, land, land, land, lake, lake
+	link = { vic2 = 1997 hoi4 = 12783 hoi4 = 2154 hoi4 = 6027 hoi4 = 1181 }	# Mungbane -> land, land, land, land
 	link = { vic2 = 1998 hoi4 = 2034 hoi4 = 11934 hoi4 = 7133 }	# Baramo -> land, land, land
 	link = { vic2 = 1969 hoi4 = 10764 hoi4 = 12719 }	# Zemio -> land, land
 	link = { vic2 = 1845 hoi4 = 7996 hoi4 = 1953 }	# Yambio -> land, land
@@ -687,13 +699,16 @@
 	link = { vic2 = 1831 hoi4 = 10795 hoi4 = 10851 }	# Rabak -> land, land
 	link = { vic2 = 1830 hoi4 = 4918 hoi4 = 1914 hoi4 = 12887 }	# Sennar -> land, land, land
 	link = { vic2 = 1847 hoi4 = 10859 }	# Kapoeta -> land
-	link = { vic2 = 2021 hoi4 = 7088 hoi4 = 13177 }	# Masindi -> land, lake
+	link = { vic2 = 2021 hoi4 = 7088 }	# Masindi -> land
 	link = { vic2 = 2020 hoi4 = 3854 }	# Mbarara -> land
 	link = { vic2 = 2019 hoi4 = 12989 }	# Entebbe -> land
 	link = { vic2 = 2023 hoi4 = 12929 }	# Jinja -> land
 	link = { vic2 = 2028 hoi4 = 5160 }	# Kisumu -> land
 	link = { vic2 = 2026 hoi4 = 11145 }	# Lodwar -> land
-	link = { vic2 = 2025 hoi4 = 2066 hoi4 = 13135 }	# Marsabit -> land, lake
+	link = { vic2 = 3236 hoi4 = 13135 }	# Lake Rudolf -> lake
+	link = { vic2 = 3103 hoi4 = 2281 hoi4 = 4201 hoi4 = 13176 hoi4 = 13177 }	# Lake Tanganyika -> lake, lake, lake, lake
+	link = { vic2 = 3104 hoi4 = 2255 }	# Lake Malawi -> lake
+	link = { vic2 = 2025 hoi4 = 2066 }	# Marsabit -> land
 	link = { vic2 = 2024 hoi4 = 5079 }	# Nairobi -> land
 	link = { vic2 = 2027 hoi4 = 1939 hoi4 = 10860 }	# Nakuru -> land, land
 	link = { vic2 = 2033 hoi4 = 5196 }	# Voi -> land
@@ -701,7 +716,7 @@
 	link = { vic2 = 2030 hoi4 = 10976 }	# Lamu -> land
 	link = { vic2 = 2031 hoi4 = 8133 hoi4 = 12927 }	# Wajir -> land, land
 	link = { vic2 = 2047 hoi4 = 11017 hoi4 = 2206 }	# Arusha -> land, land
-	link = { vic2 = 2044 hoi4 = 4171 hoi4 = 10932 hoi4 = 2308 }	# Mwanza -> land, land, lake
+	link = { vic2 = 2044 hoi4 = 4171 hoi4 = 10932 }	# Mwanza -> land, land
 	link = { vic2 = 2034 hoi4 = 9962 }	# Kigali -> land
 	link = { vic2 = 2035 hoi4 = 2220 }	# Usumbura -> land
 	link = { vic2 = 1990 hoi4 = 7161 hoi4 = 10766 }	# Nyangwe -> land, land
@@ -725,12 +740,14 @@
 	link = { vic2 = 2065 hoi4 = 2180 }	# Milange -> land
 	link = { vic2 = 2059 vic2 = 2053 hoi4 = 12971 }	# Quelimane, Sena -> land
 	link = { vic2 = 2066 hoi4 = 12908 }	# Zomba -> land
-	link = { vic2 = 2067 hoi4 = 12986 hoi4 = 2255 }	# Lilongwe -> land, lake
+	link = { vic2 = 2067 hoi4 = 12986 }	# Lilongwe -> land
 	link = { vic2 = 2054 vic2 = 2056 hoi4 = 12950 }	# Tete, Zumbo -> land
 	link = { vic2 = 2018 hoi4 = 5221 }	# Chipata -> land
-	link = { vic2 = 2016 hoi4 = 10594 hoi4 = 10930 hoi4 = 13173 }	# Kazembe -> land, land, lake
+	link = { vic2 = 3102 hoi4 = 2308 }	# Lake Victoria -> lake
+	link = { vic2 = 3238 hoi4 = 13173 }	# Lake Mweru -> lake
+	link = { vic2 = 2016 hoi4 = 10594 hoi4 = 10930 }	# Kazembe -> land, land
 	link = { vic2 = 2017 hoi4 = 1846 }	# Kasema -> land
-	link = { vic2 = 2046 hoi4 = 2176 hoi4 = 10988 hoi4 = 8144 hoi4 = 2281 }	# Ujiji -> land, land, land, lake
+	link = { vic2 = 2046 hoi4 = 2176 hoi4 = 10988 hoi4 = 8144 }	# Ujiji -> land, land, land
 	link = { vic2 = 790 hoi4 = 12504 }	# Kitwe -> land
 	link = { vic2 = 2012 hoi4 = 5199 }	# Lusaka -> land
 	link = { vic2 = 2068 vic2 = 2635 hoi4 = 2216 }	# Harare, Kariba -> land
@@ -846,7 +863,9 @@
 	# ## Sahara
 	link = { vic2 = 1815 hoi4 = 10805 }	# Zinder -> land
 	link = { vic2 = 1816 hoi4 = 10780 }	# Kufe -> land
-	link = { vic2 = 1824 hoi4 = 3123 hoi4 = 13138 }	# Mao -> land, lake
+	link = { vic2 = 3224 hoi4 = 13137 }	# Lake Tana -> lake
+	link = { vic2 = 3101 hoi4 = 13138 }	# Lake Tchad -> lake
+	link = { vic2 = 1824 hoi4 = 3123 }	# Mao -> land
 	link = { vic2 = 1821 hoi4 = 4897 }	# Abeche -> land
 	link = { vic2 = 1810 hoi4 = 8028 }	# Dosso -> land
 	link = { vic2 = 1811 hoi4 = 10758 }	# Maradi -> land
@@ -941,6 +960,7 @@
 	link = { vic2 = 1849 hoi4 = 5047 hoi4 = 5091 }	# Massawa -> land, land
 	# 
 	# ## Somalia
+	# 
 	link = { vic2 = 1177 hoi4 = 8000 }	# Socotra -> land
 	link = { vic2 = 1875 hoi4 = 4985 hoi4 = 8124 }	# Djibuti -> land, land
 	link = { vic2 = 1874 hoi4 = 10777 }	# Zeyla -> land
@@ -1325,7 +1345,8 @@
 	link = { vic2 = 353 hoi4 = 185 hoi4 = 6201 }	# Ösel -> land, land
 	# 
 	# ## Finland
-	link = { vic2 = 339 hoi4 = 11156 hoi4 = 6153 hoi4 = 9176 hoi4 = 3060 hoi4 = 9150 hoi4 = 9105 hoi4 = 9100 hoi4 = 9206 hoi4 = 11162 hoi4 = 6150 hoi4 = 3187 hoi4 = 3133 hoi4 = 11046 hoi4 = 6052 hoi4 = 3050 hoi4 = 2332 }	# Viipuri -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 2714 hoi4 = 2332 }	# Ladoga -> lake
+	link = { vic2 = 339 hoi4 = 11156 hoi4 = 6153 hoi4 = 9176 hoi4 = 3060 hoi4 = 9150 hoi4 = 9105 hoi4 = 9100 hoi4 = 9206 hoi4 = 11162 hoi4 = 6150 hoi4 = 3187 hoi4 = 3133 hoi4 = 11046 hoi4 = 6052 hoi4 = 3050 }	# Viipuri -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 337 hoi4 = 7 hoi4 = 6175 hoi4 = 3073 hoi4 = 3115 hoi4 = 9233 hoi4 = 9106 hoi4 = 11079 hoi4 = 6146 hoi4 = 11024 hoi4 = 6134 hoi4 = 3149 hoi4 = 13118 }	# Kajaani -> land, land, land, land, land, land, land, land, land, land, land, lake
 	link = { vic2 = 342 hoi4 = 2998 hoi4 = 9061 hoi4 = 9181 hoi4 = 6210 hoi4 = 3185 hoi4 = 193 hoi4 = 3125 hoi4 = 11199 hoi4 = 6078 hoi4 = 9104 hoi4 = 11141 hoi4 = 141 hoi4 = 136 hoi4 = 6033 hoi4 = 6156 hoi4 = 11076 hoi4 = 9169 hoi4 = 3068 hoi4 = 13112 hoi4 = 13115 hoi4 = 13114 hoi4 = 13109 hoi4 = 11210 hoi4 = 13110 hoi4 = 13111 }	# Kuopio -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake, lake, lake, lake, land, lake, lake
 	link = { vic2 = 341 hoi4 = 139 hoi4 = 3030 hoi4 = 37 hoi4 = 3131 hoi4 = 3013 hoi4 = 165 hoi4 = 11043 hoi4 = 9163 hoi4 = 9056 hoi4 = 13108 hoi4 = 13105 hoi4 = 13104 }	# Mikkeli -> land, land, land, land, land, land, land, land, land, lake, lake, lake
@@ -1786,7 +1807,7 @@
 	link = { vic2 = 1038 hoi4 = 9526 hoi4 = 566 hoi4 = 11537 hoi4 = 3404 hoi4 = 9549 hoi4 = 9487 hoi4 = 470 hoi4 = 3538 hoi4 = 3406 hoi4 = 11538 hoi4 = 545 hoi4 = 6525 hoi4 = 11457 hoi4 = 468 hoi4 = 11472 hoi4 = 9513 hoi4 = 11482 hoi4 = 6564 hoi4 = 3515 hoi4 = 11524 hoi4 = 11552 hoi4 = 6491 hoi4 = 9538 hoi4 = 6588 hoi4 = 6551 hoi4 = 3467 hoi4 = 11473 }	# Novo Uzensk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 2610 hoi4 = 11480 hoi4 = 9528 hoi4 = 7438 hoi4 = 4351 hoi4 = 576 hoi4 = 1318 hoi4 = 3502 hoi4 = 11510 hoi4 = 508 hoi4 = 432 hoi4 = 9462 }	# Uralsk -> land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1183 hoi4 = 12227 hoi4 = 7313 hoi4 = 7341 hoi4 = 4294 hoi4 = 7370 hoi4 = 12254 hoi4 = 12235 hoi4 = 1247 hoi4 = 4254 hoi4 = 10253 hoi4 = 4394 }	# Aqtobe -> land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 2702 hoi4 = 7243 hoi4 = 7354 hoi4 = 7337 hoi4 = 10164 hoi4 = 7410 hoi4 = 1429 hoi4 = 12294 hoi4 = 12179 hoi4 = 10264 hoi4 = 12108 hoi4 = 1220 hoi4 = 1371 hoi4 = 1314 hoi4 = 4376 hoi4 = 4227 hoi4 = 4374 hoi4 = 4300 hoi4 = 4303 hoi4 = 10131 hoi4 = 1721 }	# Aralsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 2702 hoi4 = 7243 hoi4 = 7354 hoi4 = 7337 hoi4 = 10164 hoi4 = 7410 hoi4 = 1429 hoi4 = 12294 hoi4 = 12179 hoi4 = 10264 hoi4 = 12108 hoi4 = 1220 hoi4 = 1371 hoi4 = 1314 hoi4 = 4376 hoi4 = 4227 hoi4 = 4374 hoi4 = 4300 hoi4 = 4303 hoi4 = 10131 }	# Aralsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 980 hoi4 = 547 hoi4 = 9476 hoi4 = 6505 hoi4 = 9461 hoi4 = 9446 hoi4 = 6519 hoi4 = 523 hoi4 = 11487 hoi4 = 570 hoi4 = 11513 }	# Luhansk -> land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1015 hoi4 = 6365 hoi4 = 9261 hoi4 = 9301 hoi4 = 11284 hoi4 = 6252 hoi4 = 3345 hoi4 = 352 }	# Peremyshl -> land, land, land, land, land, land, land
 	link = { vic2 = 1010 hoi4 = 274 hoi4 = 3263 hoi4 = 3377 hoi4 = 3308 hoi4 = 382 hoi4 = 246 hoi4 = 11235 hoi4 = 11369 hoi4 = 11300 }	# Kaluga -> land, land, land, land, land, land, land, land, land
@@ -1860,8 +1881,9 @@
 	link = { vic2 = 1004 hoi4 = 11059 hoi4 = 57 hoi4 = 3140 hoi4 = 172 hoi4 = 9082 hoi4 = 9190 hoi4 = 152 hoi4 = 3142 hoi4 = 9184 hoi4 = 6169 }	# Tikhvin -> land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 2580 hoi4 = 9197 hoi4 = 70 hoi4 = 11174 hoi4 = 6095 hoi4 = 9164 hoi4 = 3110 hoi4 = 6035 hoi4 = 3072 }	# Stara Ladoga -> land, land, land, land, land, land, land, land
 	link = { vic2 = 994 hoi4 = 149 hoi4 = 3151 hoi4 = 6174 hoi4 = 79 hoi4 = 11068 }	# St Petersburg -> land, land, land, land, land
-	link = { vic2 = 995 hoi4 = 11150 hoi4 = 6106 hoi4 = 3084 hoi4 = 6057 hoi4 = 6172 hoi4 = 11153 hoi4 = 90 hoi4 = 6070 hoi4 = 9078 hoi4 = 40 hoi4 = 9231 hoi4 = 13130 hoi4 = 11092 hoi4 = 92 hoi4 = 3144 hoi4 = 11159 hoi4 = 9118 hoi4 = 6094 hoi4 = 2994 hoi4 = 3033 hoi4 = 13198 hoi4 = 2356 }	# Petrozavorsk -> land, land, land, land, land, land, land, land, land, land, land, lake, land, land, land, land, land, land, land, land, lake, lake
-	link = { vic2 = 988 hoi4 = 6159 hoi4 = 11094 hoi4 = 155 hoi4 = 157 hoi4 = 3071 hoi4 = 11175 hoi4 = 11212 hoi4 = 3078 hoi4 = 13194 }	# Povyents -> land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 2715 hoi4 = 13198 hoi4 = 2356 hoi4 = 13194 hoi4 = 13130 }	# Onega -> lake, lake, lake, lake
+	link = { vic2 = 995 hoi4 = 11150 hoi4 = 6106 hoi4 = 3084 hoi4 = 6057 hoi4 = 6172 hoi4 = 11153 hoi4 = 90 hoi4 = 6070 hoi4 = 9078 hoi4 = 40 hoi4 = 9231 hoi4 = 11092 hoi4 = 92 hoi4 = 3144 hoi4 = 11159 hoi4 = 9118 hoi4 = 6094 hoi4 = 2994 hoi4 = 3033 }	# Petrozavorsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 988 hoi4 = 6159 hoi4 = 11094 hoi4 = 155 hoi4 = 157 hoi4 = 3071 hoi4 = 11175 hoi4 = 11212 hoi4 = 3078 }	# Povyents -> land, land, land, land, land, land, land, land
 	link = { vic2 = 984 hoi4 = 9055 hoi4 = 9045 hoi4 = 80 hoi4 = 11146 hoi4 = 6021 hoi4 = 6096 hoi4 = 11054 hoi4 = 6098 hoi4 = 9119 hoi4 = 9074 hoi4 = 3067 hoi4 = 9198 hoi4 = 11181 hoi4 = 176 hoi4 = 3008 hoi4 = 6029 hoi4 = 86 hoi4 = 3189 hoi4 = 9195 hoi4 = 94 hoi4 = 170 hoi4 = 134 hoi4 = 11096 hoi4 = 36 hoi4 = 11045 }	# Kostomushka -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 983 hoi4 = 9162 hoi4 = 3121 hoi4 = 15 hoi4 = 9123 hoi4 = 74 hoi4 = 9203 hoi4 = 9039 hoi4 = 11031 hoi4 = 178 hoi4 = 6181 hoi4 = 11128 hoi4 = 9201 hoi4 = 9217 hoi4 = 11088 hoi4 = 9115 hoi4 = 9165 hoi4 = 98 hoi4 = 9215 }	# Kandalaksha -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 2587 hoi4 = 6117 hoi4 = 142 hoi4 = 3134 hoi4 = 11183 hoi4 = 116 hoi4 = 3170 hoi4 = 9179 hoi4 = 11196 hoi4 = 11140 hoi4 = 9059 hoi4 = 6194 hoi4 = 6140 hoi4 = 3012 hoi4 = 11117 hoi4 = 6157 }	# Kola -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
@@ -1911,7 +1933,9 @@
 	link = { vic2 = 1112 hoi4 = 10454 hoi4 = 4901 }	# Ardabil -> land, land
 	link = { vic2 = 1108 hoi4 = 1896 hoi4 = 12793 hoi4 = 4825 }	# Tabriz -> land, land, land
 	link = { vic2 = 1111 hoi4 = 1822 hoi4 = 12861 hoi4 = 2071 }	# Mahabad -> land, land, land
-	link = { vic2 = 1110 hoi4 = 7604 hoi4 = 13120 }	# Urumia -> land, lake
+	link = { vic2 = 3231 hoi4 = 13121 }	# Lake Van -> lake
+	link = { vic2 = 3232 hoi4 = 13120 }	# Lake Urmia -> lake
+	link = { vic2 = 1110 hoi4 = 7604 }	# Urumia -> land
 	link = { vic2 = 1109 hoi4 = 1636 hoi4 = 4755 }	# Khvoy -> land, land
 	link = { vic2 = 1136 hoi4 = 10797 }	# Bushire -> land
 	link = { vic2 = 1132 hoi4 = 5005 }	# Abadan -> land
@@ -2017,7 +2041,7 @@
 	link = { vic2 = 892 hoi4 = 1463 hoi4 = 12476 }	# Hakkari -> land, land
 	link = { vic2 = 893 hoi4 = 7530 hoi4 = 12387 }	# Diyarbakir -> land, land
 	link = { vic2 = 891 hoi4 = 12318 hoi4 = 10497 }	# Bitlis -> land, land
-	link = { vic2 = 890 hoi4 = 6935 hoi4 = 864 hoi4 = 13121 }	# Van -> land, land, lake
+	link = { vic2 = 890 hoi4 = 6935 hoi4 = 864 }	# Van -> land, land
 	link = { vic2 = 899 hoi4 = 9823 hoi4 = 11871 hoi4 = 12416 hoi4 = 4512 }	# Urfa -> land, land, land, land
 	link = { vic2 = 889 hoi4 = 7620 hoi4 = 9912 hoi4 = 11759 hoi4 = 11739 }	# Malatya -> land, land, land, land
 	link = { vic2 = 885 hoi4 = 12376 hoi4 = 4583 }	# Kars -> land, land
@@ -2505,7 +2529,7 @@
 	link = { vic2 = 1079 hoi4 = 10683 hoi4 = 7786 hoi4 = 4677 hoi4 = 4719 hoi4 = 12622 hoi4 = 10559 hoi4 = 7725 hoi4 = 10574 hoi4 = 12641 hoi4 = 1672 hoi4 = 1826 hoi4 = 10643 hoi4 = 10565 hoi4 = 12556 hoi4 = 4832 hoi4 = 10681 hoi4 = 4675 }	# Nerchinsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1078 hoi4 = 4837 hoi4 = 10528 hoi4 = 7835 hoi4 = 12644 hoi4 = 10658 hoi4 = 7816 hoi4 = 4766 hoi4 = 12507 hoi4 = 7860 hoi4 = 7751 hoi4 = 4705 hoi4 = 1696 }	# Chita -> land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1076 hoi4 = 7902 hoi4 = 1735 hoi4 = 10699 hoi4 = 7802 hoi4 = 12523 hoi4 = 10570 hoi4 = 1876 hoi4 = 7713 hoi4 = 10562 hoi4 = 1813 hoi4 = 10549 hoi4 = 4750 hoi4 = 7841 hoi4 = 4808 hoi4 = 1803 hoi4 = 7876 hoi4 = 10664 hoi4 = 7769 }	# Bratsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1075 hoi4 = 1762 hoi4 = 10543 hoi4 = 1810 hoi4 = 10524 hoi4 = 10596 hoi4 = 12647 hoi4 = 4815 hoi4 = 10661 hoi4 = 12540 hoi4 = 4797 hoi4 = 1727 hoi4 = 12525 hoi4 = 1829 hoi4 = 7838 hoi4 = 1707 hoi4 = 13152 }	# Irkutsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 1075 hoi4 = 1762 hoi4 = 10543 hoi4 = 1810 hoi4 = 10524 hoi4 = 10596 hoi4 = 12647 hoi4 = 4815 hoi4 = 10661 hoi4 = 12540 hoi4 = 4797 hoi4 = 1727 hoi4 = 12525 hoi4 = 1829 hoi4 = 7838 hoi4 = 1707 }	# Irkutsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 2681 hoi4 = 1729 hoi4 = 7809 hoi4 = 1757 }	# Kikkiakki -> land, land, land
 	link = { vic2 = 2646 hoi4 = 4730 hoi4 = 10533 hoi4 = 1726 hoi4 = 10663 hoi4 = 7882 hoi4 = 12514 hoi4 = 1856 hoi4 = 7837 hoi4 = 7781 hoi4 = 10561 }	# Ases Igan -> land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1065 hoi4 = 12574 hoi4 = 1784 hoi4 = 12672 hoi4 = 12542 hoi4 = 12639 hoi4 = 1768 hoi4 = 7685 hoi4 = 10692 hoi4 = 4817 }	# Nizhnevartovsk -> land, land, land, land, land, land, land, land, land
@@ -2514,7 +2538,7 @@
 	link = { vic2 = 1077 hoi4 = 4711 hoi4 = 4690 hoi4 = 12563 hoi4 = 10712 hoi4 = 7815 hoi4 = 10639 hoi4 = 1850 hoi4 = 1777 hoi4 = 7744 hoi4 = 4782 hoi4 = 4853 hoi4 = 12621 hoi4 = 4818 hoi4 = 12628 hoi4 = 12691 hoi4 = 4724 }	# Krasnoyarsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1469 hoi4 = 7819 hoi4 = 7804 hoi4 = 1676 hoi4 = 10646 hoi4 = 7731 hoi4 = 12625 hoi4 = 7703 hoi4 = 12610 hoi4 = 10597 hoi4 = 1877 hoi4 = 10627 hoi4 = 4680 }	# Kyzyl -> land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1067 hoi4 = 7680 hoi4 = 1779 hoi4 = 12528 hoi4 = 12515 hoi4 = 1297 hoi4 = 4803 hoi4 = 1794 hoi4 = 10537 hoi4 = 1797 hoi4 = 12613 hoi4 = 11410 hoi4 = 10546 hoi4 = 4665 hoi4 = 7757 hoi4 = 4789 hoi4 = 4793 hoi4 = 7886 hoi4 = 12631 hoi4 = 10580 hoi4 = 7822 hoi4 = 1369 hoi4 = 1685 hoi4 = 1816 hoi4 = 10649 }	# Barnaul -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1068 hoi4 = 1702 hoi4 = 10584 hoi4 = 12594 hoi4 = 7890 hoi4 = 12427 hoi4 = 1749 hoi4 = 1818 hoi4 = 10610 hoi4 = 4674 hoi4 = 12635 hoi4 = 4867 hoi4 = 12564 hoi4 = 1864 hoi4 = 10713 hoi4 = 12509 hoi4 = 4800 hoi4 = 10531 hoi4 = 4781 hoi4 = 13151 }	# Ulala -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 1068 hoi4 = 1702 hoi4 = 10584 hoi4 = 12594 hoi4 = 7890 hoi4 = 12427 hoi4 = 1749 hoi4 = 1818 hoi4 = 10610 hoi4 = 4674 hoi4 = 12635 hoi4 = 4867 hoi4 = 12564 hoi4 = 1864 hoi4 = 10713 hoi4 = 12509 hoi4 = 4800 hoi4 = 10531 hoi4 = 4781 }	# Ulala -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 2698 hoi4 = 10653 hoi4 = 10218 hoi4 = 4661 hoi4 = 7708 hoi4 = 10202 hoi4 = 12616 hoi4 = 4670 hoi4 = 7317 hoi4 = 4685 hoi4 = 10630 hoi4 = 10235 hoi4 = 10161 hoi4 = 7350 hoi4 = 10292 hoi4 = 1287 hoi4 = 1879 }	# Slavgorod -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1064 hoi4 = 12580 hoi4 = 1835 hoi4 = 10626 hoi4 = 10696 hoi4 = 12546 hoi4 = 1800 hoi4 = 10568 hoi4 = 7800 hoi4 = 1709 hoi4 = 12652 hoi4 = 4700 hoi4 = 7722 hoi4 = 4840 hoi4 = 10555 hoi4 = 1790 hoi4 = 4866 hoi4 = 7274 hoi4 = 10652 hoi4 = 4734 hoi4 = 7825 hoi4 = 1860 hoi4 = 7687 hoi4 = 4806 hoi4 = 1733 hoi4 = 12606 hoi4 = 4366 hoi4 = 12679 }	# Omsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 2686 hoi4 = 6787 hoi4 = 10659 hoi4 = 7681 hoi4 = 10600 hoi4 = 10670 hoi4 = 4780 hoi4 = 3472 hoi4 = 12390 }	# Ishim -> land, land, land, land, land, land, land, land
@@ -2530,6 +2554,7 @@
 	link = { vic2 = 1181 hoi4 = 4277 hoi4 = 10268 hoi4 = 12111 hoi4 = 12194 }	# Qaraganda -> land, land, land, land
 	link = { vic2 = 2612 hoi4 = 10220 hoi4 = 10277 hoi4 = 7392 hoi4 = 10275 hoi4 = 12121 hoi4 = 12177 }	# Aktash -> land, land, land, land, land, land
 	link = { vic2 = 2606 hoi4 = 7335 hoi4 = 1312 hoi4 = 4389 hoi4 = 1382 hoi4 = 4595 hoi4 = 1402 hoi4 = 4250 hoi4 = 10179 hoi4 = 1243 }	# Zhambyl -> land, land, land, land, land, land, land, land, land
+	link = { vic2 = 2780 hoi4 = 1721 }	# Aral Sea -> lake
 	link = { vic2 = 1187 hoi4 = 1239 hoi4 = 7405 hoi4 = 10290 hoi4 = 1668 hoi4 = 4764 hoi4 = 7332 }	# Semipalatinsk -> land, land, land, land, land, land
 	link = { vic2 = 2670 vic2 = 2652 hoi4 = 3184 }	# Tiksi, Kular -> land
 	link = { vic2 = 2673 hoi4 = 13060 }	# Olenyok -> land
@@ -2571,10 +2596,10 @@
 	link = { vic2 = 2616 hoi4 = 1823 }	# Tilichiki -> land
 	link = { vic2 = 2633 hoi4 = 1839 hoi4 = 1863 }	# Ossora -> land, land
 	link = { vic2 = 1074 hoi4 = 12522 hoi4 = 7878 hoi4 = 4728 hoi4 = 12207 hoi4 = 13067 }	# Petropavlovsk -> land, land, land, land, land
-	link = { vic2 = 2680 hoi4 = 2972 hoi4 = 11827 }	# Dudinka -> land, lake
+	link = { vic2 = 2680 hoi4 = 2972 }	# Dudinka -> land
 	link = { vic2 = 2615 hoi4 = 3336 }	# Krasnoselkup -> land
-	link = { vic2 = 2613 hoi4 = 3415 hoi4 = 10564 hoi4 = 12545 hoi4 = 10536 hoi4 = 4761 hoi4 = 12517 hoi4 = 2703 }	# Nyda -> land, land, land, land, land, land, lake
-	link = { vic2 = 2659 hoi4 = 96 hoi4 = 9125 hoi4 = 5918 }	# Napalkovo -> land, lake, lake
+	link = { vic2 = 2613 hoi4 = 3415 hoi4 = 10564 hoi4 = 12545 hoi4 = 10536 hoi4 = 4761 hoi4 = 12517 }	# Nyda -> land, land, land, land, land, land
+	link = { vic2 = 2659 hoi4 = 96 }	# Napalkovo -> land
 	link = { vic2 = 2685 hoi4 = 13076 hoi4 = 12502 }	# Muzhi -> land, land
 	link = { vic2 = 2682 hoi4 = 9142 hoi4 = 7689 hoi4 = 7738 hoi4 = 1684 }	# Aksarka -> land, land, land, land
 	link = { vic2 = 2684 hoi4 = 4669 }	# Yar Sale -> land
@@ -2590,7 +2615,7 @@
 	# 
 	# ## Central Asia
 	link = { vic2 = 1205 hoi4 = 7477 hoi4 = 7563 hoi4 = 7635 hoi4 = 4599 hoi4 = 10510 hoi4 = 10359 hoi4 = 1593 hoi4 = 12359 }	# Kyzyl Arvat -> land, land, land, land, land, land, land, land
-	link = { vic2 = 1188 hoi4 = 1840 hoi4 = 4845 hoi4 = 10619 hoi4 = 10550 hoi4 = 12529 hoi4 = 13197 hoi4 = 12662 hoi4 = 7784 hoi4 = 10680 hoi4 = 7856 hoi4 = 4651 hoi4 = 7711 hoi4 = 4773 hoi4 = 10146 hoi4 = 10547 hoi4 = 7795 hoi4 = 13148 hoi4 = 13149 }	# Qaratal -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake, lake
+	link = { vic2 = 1188 hoi4 = 1840 hoi4 = 4845 hoi4 = 10619 hoi4 = 10550 hoi4 = 12529 hoi4 = 13197 hoi4 = 12662 hoi4 = 7784 hoi4 = 10680 hoi4 = 7856 hoi4 = 4651 hoi4 = 7711 hoi4 = 4773 hoi4 = 10146 hoi4 = 10547 hoi4 = 7795 }	# Qaratal -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1186 hoi4 = 10148 hoi4 = 4686 hoi4 = 10660 hoi4 = 12640 hoi4 = 7706 hoi4 = 12583 hoi4 = 1825 hoi4 = 4224 hoi4 = 1591 }	# Alma Ata -> land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1185 hoi4 = 12385 hoi4 = 4492 hoi4 = 12487 hoi4 = 10508 hoi4 = 10452 hoi4 = 7600 hoi4 = 7657 hoi4 = 12329 hoi4 = 7597 hoi4 = 7556 hoi4 = 12658 hoi4 = 10603 hoi4 = 12340 hoi4 = 12397 hoi4 = 10506 }	# Yasi -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1191 hoi4 = 1479 hoi4 = 4618 hoi4 = 1576 hoi4 = 12465 hoi4 = 12324 hoi4 = 1614 hoi4 = 10435 hoi4 = 10395 }	# Khiva -> land, land, land, land, land, land, land, land
@@ -2604,7 +2629,7 @@
 	link = { vic2 = 1193 hoi4 = 4581 hoi4 = 4638 hoi4 = 10353 hoi4 = 4578 hoi4 = 10420 hoi4 = 1532 hoi4 = 7486 hoi4 = 4488 hoi4 = 12471 }	# Kyzylorda -> land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1199 hoi4 = 7682 hoi4 = 4629 hoi4 = 7775 }	# Samarkand -> land, land, land
 	link = { vic2 = 1189 hoi4 = 4316 hoi4 = 1483 hoi4 = 10530 hoi4 = 10408 }	# Bishkek -> land, land, land, land
-	link = { vic2 = 1190 hoi4 = 5062 hoi4 = 1675 hoi4 = 12511 hoi4 = 4768 hoi4 = 4391 hoi4 = 13147 }	# Naryn -> land, land, land, land, land, lake
+	link = { vic2 = 1190 hoi4 = 5062 hoi4 = 1675 hoi4 = 12511 hoi4 = 4768 hoi4 = 4391 }	# Naryn -> land, land, land, land, land
 	link = { vic2 = 1201 hoi4 = 12430 hoi4 = 12250 hoi4 = 4542 hoi4 = 1384 hoi4 = 11687 hoi4 = 1919 hoi4 = 1216 }	# Khojand -> land, land, land, land, land, land, land
 	link = { vic2 = 1202 hoi4 = 2058 hoi4 = 12581 }	# Kokand -> land, land
 	link = { vic2 = 1195 hoi4 = 10601 hoi4 = 1459 hoi4 = 10488 hoi4 = 10187 }	# Tashkent -> land, land, land, land
@@ -3163,25 +3188,80 @@
 	link = { vic2 = 3001 hoi4 = 2683 hoi4 = 2733 hoi4 = 8857 hoi4 = 3442 hoi4 = 5436 }	# Gulf of Panama -> sea, sea, sea, sea, sea
 	link = { vic2 = 3000 hoi4 = 2360 hoi4 = 1946 hoi4 = 2707 hoi4 = 3634 hoi4 = 2311 }	# Coast of Ecuador -> sea, sea, sea, sea, sea
 	link = { vic2 = 3157 hoi4 = 5452 hoi4 = 2657 hoi4 = 5429 hoi4 = 5477 hoi4 = 5503 hoi4 = 5529 hoi4 = 5841 hoi4 = 5358 hoi4 = 5380 hoi4 = 5405 hoi4 = 2148 }	# Coast of the Galapagos Islands -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
-	link = { vic2 = 2999 hoi4 = 2335 hoi4 = 8706 hoi4 = 1495 hoi4 = 1720 hoi4 = 4036 hoi4 = 2384 }	# Guayaquil Bay -> sea, sea, sea, sea, sea, sea
-	link = { vic2 = 2998 hoi4 = 4485 hoi4 = 4708 hoi4 = 2410 hoi4 = 4259 }	# Coast of Peru -> sea, sea, sea, sea
+	link = { vic2 = 2999 hoi4 = 2335 hoi4 = 8706 hoi4 = 1720 hoi4 = 4036 }	# Guayaquil Bay -> sea, sea, sea, sea
+	link = { vic2 = 3240 hoi4 = 13134 }	# Lake Poopo -> lake
+	link = { vic2 = 3109 hoi4 = 13175 }	# Lake Titicaca -> lake
+	link = { vic2 = 2998 hoi4 = 4485 hoi4 = 4708 hoi4 = 2410 }	# Coast of Peru -> sea, sea, sea
 	link = { vic2 = 2997 hoi4 = 4931 hoi4 = 5252 hoi4 = 5277 hoi4 = 2433 hoi4 = 5142 }	# Arequipa Bay -> sea, sea, sea, sea, sea
 	link = { vic2 = 2996 hoi4 = 5304 hoi4 = 5831 hoi4 = 5779 hoi4 = 5330 hoi4 = 2457 hoi4 = 5753 }	# Antofagasta Coast -> sea, sea, sea, sea, sea, sea
-	link = { vic2 = 2995 hoi4 = 5353 hoi4 = 2633 hoi4 = 2482 hoi4 = 5650 hoi4 = 5675 hoi4 = 5701 hoi4 = 5727 }	# Atacama Coast -> sea, sea, sea, sea, sea, sea, sea
-	link = { vic2 = 2994 hoi4 = 5400 hoi4 = 2557 hoi4 = 5625 hoi4 = 5375 hoi4 = 5424 }	# Coast of Chile -> sea, sea, sea, sea, sea
+	link = { vic2 = 3195 hoi4 = 8906 hoi4 = 8883 hoi4 = 2484 }	# Karasev Plains -> sea, sea, sea
+	link = { vic2 = 3184 hoi4 = 7729 hoi4 = 7277 hoi4 = 7052 hoi4 = 6848 hoi4 = 6654 hoi4 = 6266 hoi4 = 6466 hoi4 = 7504 }	# Chatham Islands -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3185 hoi4 = 8328 hoi4 = 2260 hoi4 = 8302 hoi4 = 5931 hoi4 = 8590 hoi4 = 5858 hoi4 = 5884 hoi4 = 5907 hoi4 = 6059 hoi4 = 5955 hoi4 = 6002 hoi4 = 5979 }	# Southwest Pacific Basin -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3159 hoi4 = 8456 hoi4 = 5550 hoi4 = 5728 hoi4 = 5754 hoi4 = 5832 hoi4 = 5806 hoi4 = 5780 hoi4 = 5702 hoi4 = 5676 hoi4 = 5651 hoi4 = 8484 hoi4 = 8406 hoi4 = 8381 hoi4 = 2234 hoi4 = 8167 hoi4 = 7956 hoi4 = 8276 }	# Coast of the Cook Islands -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3183 hoi4 = 2286 hoi4 = 8430 hoi4 = 8354 }	# Titus Ridge -> sea, sea, sea
+	link = { vic2 = 3186 hoi4 = 2548 hoi4 = 2572 hoi4 = 2598 hoi4 = 2524 hoi4 = 2624 hoi4 = 2337 }	# Ludovico Gulch -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3189 hoi4 = 2386 hoi4 = 2501 }	# Menard Fracture Zone -> sea, sea
+	link = { vic2 = 3243 hoi4 = 258 hoi4 = 455 hoi4 = 639 }	# Southeast Pacific Basin -> sea, sea, sea
+	link = { vic2 = 3187 hoi4 = 1219 hoi4 = 2475 hoi4 = 2362 hoi4 = 1000 }	# Coast of Pitcairn Island -> sea, sea, sea, sea
+	link = { vic2 = 3188 hoi4 = 8790 hoi4 = 796 hoi4 = 834 hoi4 = 2841 hoi4 = 2450 hoi4 = 2426 }	# Rogeveen Basin -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3194 hoi4 = 601 hoi4 = 1039 hoi4 = 50 hoi4 = 2818 hoi4 = 2793 hoi4 = 2351 hoi4 = 2249 }	# Selkirk Rise -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3245 hoi4 = 2412 hoi4 = 8931 hoi4 = 8979 hoi4 = 2435 hoi4 = 9080 hoi4 = 8954 }	# Markov Plains -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3198 hoi4 = 2509 hoi4 = 8806 hoi4 = 8858 hoi4 = 8685 hoi4 = 8710 }	# Humboldt Plains -> sea, sea, sea, sea, sea
+	link = { vic2 = 3199 hoi4 = 5599 hoi4 = 5573 hoi4 = 5525 hoi4 = 2582 hoi4 = 8581 hoi4 = 8605 hoi4 = 8633 hoi4 = 8832 }	# Valdivia Flats -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3193 hoi4 = 5727 hoi4 = 5625 hoi4 = 8535 hoi4 = 8510 hoi4 = 8483 hoi4 = 13 hoi4 = 1486 hoi4 = 1259 hoi4 = 8558 hoi4 = 2608 hoi4 = 8659 hoi4 = 2459 hoi4 = 9026 hoi4 = 9002 }	# Juan Fernandez Islands -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2995 hoi4 = 5353 hoi4 = 2633 hoi4 = 2482 hoi4 = 5650 hoi4 = 5675 hoi4 = 5701 }	# Atacama Coast -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2994 hoi4 = 5400 hoi4 = 2557 hoi4 = 5375 hoi4 = 5424 }	# Coast of Chile -> sea, sea, sea, sea
 	link = { vic2 = 2993 hoi4 = 5549 hoi4 = 5499 hoi4 = 5448 hoi4 = 2508 hoi4 = 5473 hoi4 = 2532 }	# South Chilean Coast -> sea, sea, sea, sea, sea, sea
-	link = { vic2 = 3248 hoi4 = 5285 hoi4 = 8760 hoi4 = 2533 hoi4 = 8736 hoi4 = 8710 }	# West Magellan Strait -> sea, sea, sea, sea, sea
+	link = { vic2 = 3248 hoi4 = 5285 hoi4 = 8760 hoi4 = 2533 hoi4 = 8736 }	# West Magellan Strait -> sea, sea, sea, sea
 	link = { vic2 = 3177 hoi4 = 51 hoi4 = 259 hoi4 = 1040 hoi4 = 2891 hoi4 = 2867 hoi4 = 8285 hoi4 = 8311 hoi4 = 8364 hoi4 = 8337 hoi4 = 835 hoi4 = 456 hoi4 = 640 hoi4 = 8390 hoi4 = 9081 }	# Coast of Samoa -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
 	link = { vic2 = 3179 hoi4 = 8567 hoi4 = 8907 hoi4 = 8615 hoi4 = 8519 hoi4 = 8833 hoi4 = 8737 hoi4 = 8416 hoi4 = 9027 hoi4 = 9003 hoi4 = 8544 hoi4 = 8955 hoi4 = 8932 hoi4 = 8980 hoi4 = 8859 hoi4 = 8884 }	# Coast of Tonga -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
 	link = { vic2 = 3170 hoi4 = 8761 hoi4 = 8493 hoi4 = 8807 hoi4 = 8783 hoi4 = 8536 hoi4 = 8559 hoi4 = 8582 hoi4 = 8643 hoi4 = 8606 hoi4 = 8634 hoi4 = 8686 hoi4 = 8711 hoi4 = 8660 }	# Coast of the Society Islands -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
 	link = { vic2 = 3182 hoi4 = 2113 hoi4 = 1895 hoi4 = 5626 hoi4 = 5526 hoi4 = 5500 hoi4 = 5449 hoi4 = 5144 hoi4 = 4935 hoi4 = 4489 hoi4 = 4712 hoi4 = 5600 hoi4 = 5574 hoi4 = 4263 hoi4 = 4039 hoi4 = 8511 hoi4 = 2313 hoi4 = 1443 hoi4 = 1670 hoi4 = 2673 hoi4 = 5882 hoi4 = 2698 hoi4 = 2647 }	# Coast of the Tuamotus -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
-	link = { vic2 = 3181 hoi4 = 2769 hoi4 = 2746 hoi4 = 2937 hoi4 = 2890 hoi4 = 2301 hoi4 = 2987 hoi4 = 2913 hoi4 = 2401 hoi4 = 2376 hoi4 = 2327 hoi4 = 3042 hoi4 = 8769 hoi4 = 2961 hoi4 = 2723 hoi4 = 3827 hoi4 = 8385 hoi4 = 7460 }	# Resolution Flats -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
-	link = { vic2 = 3180 hoi4 = 3831 hoi4 = 5253 hoi4 = 5305 hoi4 = 5331 hoi4 = 8411 hoi4 = 8720 hoi4 = 5354 hoi4 = 5401 hoi4 = 5474 hoi4 = 5425 hoi4 = 5278 hoi4 = 5376 hoi4 = 8695 }	# Coast of the Marquesas -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3181 hoi4 = 2769 hoi4 = 2746 hoi4 = 2937 hoi4 = 2890 hoi4 = 2301 hoi4 = 2987 hoi4 = 2913 hoi4 = 2401 hoi4 = 2376 hoi4 = 2327 hoi4 = 3042 hoi4 = 8769 hoi4 = 2961 hoi4 = 2723 hoi4 = 3827 hoi4 = 8385 hoi4 = 7460 hoi4 = 3243 hoi4 = 2866 }	# Resolution Flats -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3155 hoi4 = 2454 hoi4 = 2430 hoi4 = 2406 hoi4 = 5758 hoi4 = 2380 }	# Galois Plain -> sea, sea, sea, sea, sea
+	link = { vic2 = 3160 hoi4 = 4717 hoi4 = 4940 hoi4 = 5147 hoi4 = 5410 }	# Clipperton Island -> sea, sea, sea, sea
+	link = { vic2 = 3154 hoi4 = 5114 hoi4 = 2529 hoi4 = 2479 hoi4 = 5237 hoi4 = 2505 }	# Kepler Plain -> sea, sea, sea, sea, sea
+	link = { vic2 = 3161 hoi4 = 4267 hoi4 = 5280 hoi4 = 5255 hoi4 = 4494 }	# Henderson Seamount -> sea, sea, sea, sea
+	link = { vic2 = 3165 hoi4 = 8661 hoi4 = 5576 hoi4 = 5457 hoi4 = 5307 hoi4 = 5404 hoi4 = 5379 hoi4 = 5502 hoi4 = 5434 hoi4 = 5476 hoi4 = 5451 hoi4 = 5428 hoi4 = 4672 hoi4 = 5482 hoi4 = 2727 hoi4 = 2869 hoi4 = 2893 }	# Discoverer Seamount -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3164 hoi4 = 5783 hoi4 = 5809 hoi4 = 5835 hoi4 = 5730 hoi4 = 5756 hoi4 = 5811 hoi4 = 5653 hoi4 = 5385 hoi4 = 5704 hoi4 = 5628 hoi4 = 5602 hoi4 = 5552 hoi4 = 5678 hoi4 = 8981 }	# Northeast Pacific Basin -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3166 hoi4 = 6426 hoi4 = 267 hoi4 = 6653 hoi4 = 6847 hoi4 = 7051 hoi4 = 5987 hoi4 = 6068 hoi4 = 7276 hoi4 = 7503 hoi4 = 8868 hoi4 = 7728 hoi4 = 6858 hoi4 = 6663 hoi4 = 6276 hoi4 = 9040 hoi4 = 7955 hoi4 = 8166 hoi4 = 1710 hoi4 = 8405 }	# Tasavulu Flats -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3196 hoi4 = 218 hoi4 = 5805 hoi4 = 5930 hoi4 = 5857 hoi4 = 8987 hoi4 = 8892 hoi4 = 6058 hoi4 = 9010 hoi4 = 6465 hoi4 = 6265 hoi4 = 5883 hoi4 = 8455 hoi4 = 8429 }	# Timkin Plain -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3171 hoi4 = 1270 hoi4 = 9091 hoi4 = 59 hoi4 = 6001 hoi4 = 5978 hoi4 = 5954 hoi4 = 5906 hoi4 = 8938 hoi4 = 8963 }	# Peru Basin -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3158 hoi4 = 8746 hoi4 = 5964 hoi4 = 1049 hoi4 = 465 hoi4 = 842 hoi4 = 8915 hoi4 = 1495 hoi4 = 2384 hoi4 = 4259 }	# Lapira Plains -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3163 hoi4 = 5577 hoi4 = 5679 hoi4 = 5867 hoi4 = 5654 hoi4 = 647 hoi4 = 5629 hoi4 = 5603 }	# Bauer Basin -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3162 hoi4 = 4721 hoi4 = 4497 hoi4 = 5333 hoi4 = 5357 hoi4 = 5528 hoi4 = 4271 hoi4 = 3647 hoi4 = 4048 hoi4 = 3841 hoi4 = 5815 hoi4 = 3051 hoi4 = 5789 hoi4 = 3252 hoi4 = 3453 hoi4 = 5553 }	# Madijera Ridge -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3156 hoi4 = 5334 hoi4 = 5281 hoi4 = 5308 hoi4 = 4944 hoi4 = 5256 hoi4 = 5149 }	# O'Gorman Rise -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3172 hoi4 = 5784 hoi4 = 5757 hoi4 = 5935 hoi4 = 5705 hoi4 = 6006 hoi4 = 5959 hoi4 = 5940 hoi4 = 5983 hoi4 = 5888 hoi4 = 5911 hoi4 = 5916 hoi4 = 5731 hoi4 = 5893 hoi4 = 6475 hoi4 = 7286 hoi4 = 7739 hoi4 = 6018 hoi4 = 7514 hoi4 = 8842 hoi4 = 8275 hoi4 = 7061 }	# Yupanqui Basin -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3174 hoi4 = 5762 hoi4 = 2822 hoi4 = 8837 hoi4 = 6227 hoi4 = 8911 hoi4 = 8959 hoi4 = 8984 hoi4 = 8936 hoi4 = 8888 hoi4 = 8863 hoi4 = 2940 hoi4 = 2845 hoi4 = 2916 hoi4 = 2990 hoi4 = 2964 hoi4 = 5810 hoi4 = 5836 hoi4 = 5862 hoi4 = 6616 hoi4 = 7966 hoi4 = 3637 hoi4 = 3445 }	# Altamira Plains -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3173 hoi4 = 8434 hoi4 = 8540 hoi4 = 8488 hoi4 = 9031 hoi4 = 8358 hoi4 = 8280 hoi4 = 8306 hoi4 = 7234 hoi4 = 8515 hoi4 = 8741 hoi4 = 9007 hoi4 = 6425 hoi4 = 8715 hoi4 = 7009 hoi4 = 8811 hoi4 = 8332 hoi4 = 8173 hoi4 = 6809 }	# Severance Plains -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3180 hoi4 = 3831 hoi4 = 5253 hoi4 = 5305 hoi4 = 5331 hoi4 = 8411 hoi4 = 8720 hoi4 = 5354 hoi4 = 5401 hoi4 = 5474 hoi4 = 5425 hoi4 = 5278 hoi4 = 5376 hoi4 = 8695 hoi4 = 8460 }	# Coast of the Marquesas -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
 	link = { vic2 = 3176 hoi4 = 1711 hoi4 = 1487 hoi4 = 1260 hoi4 = 2549 hoi4 = 2625 hoi4 = 2573 hoi4 = 2648 hoi4 = 2599 hoi4 = 8439 hoi4 = 2451 hoi4 = 2250 hoi4 = 1936 hoi4 = 8466 hoi4 = 2141 hoi4 = 2525 hoi4 = 2502 hoi4 = 2276 hoi4 = 2476 }	# Central Pacific Basin -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
-	link = { vic2 = 3190 hoi4 = 8327 hoi4 = 8816 hoi4 = 2275 hoi4 = 2140 hoi4 = 8380 hoi4 = 8353 hoi4 = 8301 hoi4 = 8166 hoi4 = 420 hoi4 = 1935 hoi4 = 1259 }	# Coast of Easter Island -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
-	# 
-	# 
-	# 
+	link = { vic2 = 3190 hoi4 = 8816 hoi4 = 2275 hoi4 = 2140 hoi4 = 8380 hoi4 = 8353 hoi4 = 8301 hoi4 = 1935 hoi4 = 420 hoi4 = 8327 }	# Coast of Easter Island -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3145 hoi4 = 3408 hoi4 = 3001 hoi4 = 8687 hoi4 = 8635 hoi4 = 8583 hoi4 = 8512 hoi4 = 4220 hoi4 = 8537 hoi4 = 8607 hoi4 = 8560 hoi4 = 3200 }	# Chinook Trough -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3152 hoi4 = 5885 hoi4 = 5980 hoi4 = 5113 hoi4 = 6060 hoi4 = 7053 hoi4 = 7278 hoi4 = 7057 hoi4 = 6854 hoi4 = 5958 hoi4 = 5833 hoi4 = 5908 hoi4 = 5859 hoi4 = 6003 hoi4 = 6267 hoi4 = 6467 }	# Musicians Seamount -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3150 hoi4 = 8357 hoi4 = 8433 hoi4 = 8459 hoi4 = 8487 hoi4 = 8410 hoi4 = 8384 hoi4 = 8331 hoi4 = 8887 hoi4 = 8836 hoi4 = 6472 hoi4 = 5582 hoi4 = 5339 hoi4 = 5982 hoi4 = 8305 hoi4 = 5627 hoi4 = 5601 hoi4 = 5755 hoi4 = 5781 hoi4 = 5652 hoi4 = 5575 hoi4 = 5729 hoi4 = 5677 hoi4 = 5807 hoi4 = 7283 hoi4 = 8562 hoi4 = 8663 hoi4 = 8862 hoi4 = 5558 hoi4 = 8810 hoi4 = 8764 hoi4 = 8786 }	# Coast of Hawaii -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3178 hoi4 = 2988 hoi4 = 2962 hoi4 = 2914 hoi4 = 2938 hoi4 = 3244 hoi4 = 8137 hoi4 = 2674 hoi4 = 2699 hoi4 = 2724 hoi4 = 8259 hoi4 = 3043 hoi4 = 3446 hoi4 = 4040 hoi4 = 4264 hoi4 = 5145 hoi4 = 5254 hoi4 = 5659 hoi4 = 4936 hoi4 = 3638 }	# Johnston Atoll -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3169 hoi4 = 2770 hoi4 = 2747 hoi4 = 2842 hoi4 = 2819 hoi4 = 2794 hoi4 = 5534 hoi4 = 8714 hoi4 = 8689 hoi4 = 8637 hoi4 = 8910 hoi4 = 8935 hoi4 = 2504 hoi4 = 2478 hoi4 = 1717 hoi4 = 1491 hoi4 = 1045 hoi4 = 840 hoi4 = 461 hoi4 = 9087 hoi4 = 56 hoi4 = 264 hoi4 = 9006 hoi4 = 9030 hoi4 = 8958 hoi4 = 8983 hoi4 = 8740 }	# Northern Line Islands -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3247 hoi4 = 6005 hoi4 = 6660 hoi4 = 6065 hoi4 = 6272 hoi4 = 5527 hoi4 = 5501 hoi4 = 5475 hoi4 = 5426 hoi4 = 5402 hoi4 = 5279 hoi4 = 5306 hoi4 = 5377 hoi4 = 5450 hoi4 = 5355 hoi4 = 5332 hoi4 = 5608 hoi4 = 5634 hoi4 = 4713 hoi4 = 4490 hoi4 = 3832 }	# West Hawaii -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3167 hoi4 = 7510 hoi4 = 8539 hoi4 = 8514 hoi4 = 8585 hoi4 = 8609 hoi4 = 2651 hoi4 = 2702 hoi4 = 2602 hoi4 = 2576 hoi4 = 2628 hoi4 = 2377 hoi4 = 8408 hoi4 = 8359 hoi4 = 2941 hoi4 = 2677 hoi4 = 5508 hoi4 = 5363 hoi4 = 5837 hoi4 = 7735 }	# Hawaiian Arch -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3149 hoi4 = 7957 hoi4 = 7730 hoi4 = 6849 hoi4 = 4671 hoi4 = 7505 hoi4 = 6655 hoi4 = 8171 hoi4 = 8279 hoi4 = 7962 hoi4 = 4894 hoi4 = 8303 hoi4 = 8277 hoi4 = 8168 }	# Murray Fracture Zone -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3146 hoi4 = 2329 hoi4 = 2354 hoi4 = 2428 hoi4 = 2477 hoi4 = 8382 hoi4 = 8431 hoi4 = 8485 hoi4 = 8407 hoi4 = 8457 }	# Stanley Seamount -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3151 hoi4 = 8329 hoi4 = 8355 hoi4 = 5910 hoi4 = 5934 hoi4 = 5887 hoi4 = 2915 hoi4 = 4447 hoi4 = 2939 hoi4 = 5861 hoi4 = 2963 hoi4 = 4044 }	# Argo Seamount -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3148 hoi4 = 2989 hoi4 = 3249 hoi4 = 3047 hoi4 = 3451 }	# California Seamount -> sea, sea, sea, sea
+	link = { vic2 = 3141 hoi4 = 2728 hoi4 = 2868 hoi4 = 3997 hoi4 = 2678 hoi4 = 2892 }	# Moonless Seamounts -> sea, sea, sea, sea, sea
+	link = { vic2 = 3147 hoi4 = 2575 hoi4 = 4448 hoi4 = 5478 hoi4 = 5453 hoi4 = 2796 hoi4 = 2821 hoi4 = 3792 hoi4 = 2844 }	# Mendocino Escarpment -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3140 hoi4 = 2749 hoi4 = 2726 hoi4 = 4221 hoi4 = 2772 hoi4 = 2527 hoi4 = 2601 }	# Explorer Trench -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3111 hoi4 = 263 hoi4 = 2650 hoi4 = 2627 hoi4 = 2503 hoi4 = 2551 hoi4 = 2452 hoi4 = 2404 hoi4 = 2252 hoi4 = 2305 hoi4 = 2278 hoi4 = 2378 hoi4 = 9029 hoi4 = 2701 hoi4 = 2779 }	# Sedna Basin -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3142 hoi4 = 2850 hoi4 = 1716 hoi4 = 1265 hoi4 = 8860 hoi4 = 8834 hoi4 = 1490 hoi4 = 1044 hoi4 = 55 hoi4 = 460 hoi4 = 644 hoi4 = 2144 hoi4 = 3599 hoi4 = 1941 hoi4 = 839 }	# Chinook Basin -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3144 hoi4 = 459 hoi4 = 262 hoi4 = 54 hoi4 = 838 hoi4 = 643 hoi4 = 1715 hoi4 = 1264 hoi4 = 8762 hoi4 = 8784 hoi4 = 8712 hoi4 = 5956 hoi4 = 8738 hoi4 = 8808 }	# Jingu Basin -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3153 hoi4 = 8933 hoi4 = 8956 hoi4 = 8908 hoi4 = 8885 hoi4 = 9004 hoi4 = 2304 hoi4 = 5288 hoi4 = 9085 hoi4 = 5261 hoi4 = 9028 hoi4 = 5551 hoi4 = 5703 hoi4 = 5314 hoi4 = 5932 }	# Coast of Midway Island -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3143 hoi4 = 2626 hoi4 = 2600 hoi4 = 2303 hoi4 = 2969 hoi4 = 2143 hoi4 = 2353 hoi4 = 2403 hoi4 = 2550 hoi4 = 2277 hoi4 = 2251 hoi4 = 1940 }	# Ulchi Basin -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3136 hoi4 = 2748 hoi4 = 2700 hoi4 = 2725 hoi4 = 2820 hoi4 = 2874 hoi4 = 2526 hoi4 = 2675 hoi4 = 2649 hoi4 = 2574 }	# Western Aleutian Sea -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3139 hoi4 = 7509 hoi4 = 7734 hoi4 = 2827 hoi4 = 2682 hoi4 = 7961 hoi4 = 7282 hoi4 = 7056 hoi4 = 6853 hoi4 = 6659 }	# Eastern Aleutian Sea -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3138 hoi4 = 8909 hoi4 = 2802 hoi4 = 2732 hoi4 = 9086 hoi4 = 9005 hoi4 = 8934 hoi4 = 2676 }	# Alaska Plain -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3137 hoi4 = 2798 hoi4 = 2823 hoi4 = 8835 hoi4 = 2755 hoi4 = 8957 hoi4 = 8982 }	# Baker Seamount -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3168 hoi4 = 2306 hoi4 = 5737 hoi4 = 8690 hoi4 = 8765 hoi4 = 8787 hoi4 = 2797 hoi4 = 2773 hoi4 = 2750 hoi4 = 2528 hoi4 = 2552 hoi4 = 2405 hoi4 = 2453 hoi4 = 2330 hoi4 = 2355 hoi4 = 2379 hoi4 = 2429 }	# Radford Basin -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3175 hoi4 = 2302 hoi4 = 2328 hoi4 = 2427 hoi4 = 645 hoi4 = 1266 hoi4 = 5684 hoi4 = 1942 hoi4 = 5710 hoi4 = 2253 hoi4 = 2279 hoi4 = 8586 hoi4 = 8610 hoi4 = 8638 hoi4 = 8664 hoi4 = 8669 hoi4 = 2352 hoi4 = 7914 hoi4 = 7686 hoi4 = 2145 hoi4 = 2402 hoi4 = 8563 }	# Southern Line Islands -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
 	# 
 	# 
 	# ## East Asian and Oceania Seas
@@ -3227,12 +3307,12 @@
 	link = { vic2 = 2859 hoi4 = 6627 hoi4 = 24 hoi4 = 5842 hoi4 = 229 hoi4 = 5868 hoi4 = 7022 hoi4 = 6819 hoi4 = 5816 hoi4 = 5790 }	# Trobrian Islands -> sea, sea, sea, sea, sea, sea, sea, sea, sea
 	# 
 	# # Coral Sea
-	link = { vic2 = 2882 hoi4 = 5793 hoi4 = 5741 hoi4 = 5413 hoi4 = 5559 hoi4 = 5437 }	# New Caledonian Sea -> sea, sea, sea, sea, sea
+	link = { vic2 = 2882 hoi4 = 5793 hoi4 = 5413 hoi4 = 5559 hoi4 = 5437 hoi4 = 5741 }	# New Caledonian Sea -> sea, sea, sea, sea, sea
 	link = { vic2 = 2883 hoi4 = 5896 hoi4 = 5870 hoi4 = 5846 hoi4 = 5943 hoi4 = 5919 hoi4 = 5583 hoi4 = 6238 }	# Coral Sea -> sea, sea, sea, sea, sea, sea, sea
 	link = { vic2 = 2860 hoi4 = 5364 hoi4 = 5639 hoi4 = 5387 hoi4 = 6437 hoi4 = 5587 hoi4 = 5613 }	# Torres Strait -> sea, sea, sea, sea, sea, sea
 	link = { vic2 = 2864 hoi4 = 5967 hoi4 = 5990 hoi4 = 5411 hoi4 = 6030 }	# Great Barrier Reef -> sea, sea, sea, sea
 	link = { vic2 = 2865 hoi4 = 5365 hoi4 = 5389 hoi4 = 5435 hoi4 = 5341 }	# Capricorn Bay -> sea, sea, sea, sea
-	link = { vic2 = 2884 hoi4 = 5819 hoi4 = 5609 hoi4 = 7246 hoi4 = 5766 hoi4 = 5660 hoi4 = 7927 hoi4 = 7698 hoi4 = 7472 hoi4 = 8966 hoi4 = 9014 }	# Gilbert Sea -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2884 hoi4 = 5819 hoi4 = 5609 hoi4 = 7246 hoi4 = 5660 hoi4 = 7927 hoi4 = 7698 hoi4 = 7472 hoi4 = 8966 hoi4 = 9014 }	# Gilbert Sea -> sea, sea, sea, sea, sea, sea, sea, sea, sea
 	# 
 	# # Tasman Sea
 	link = { vic2 = 2866 hoi4 = 5459 hoi4 = 5318 hoi4 = 5484 }	# Cape Howe -> sea, sea, sea
@@ -3241,7 +3321,7 @@
 	link = { vic2 = 2874 hoi4 = 5265 hoi4 = 5458 hoi4 = 2710 hoi4 = 5292 hoi4 = 4456 }	# Tasman Plateau -> sea, sea, sea, sea, sea
 	link = { vic2 = 2877 hoi4 = 4007 hoi4 = 5509 hoi4 = 2878 hoi4 = 3801 hoi4 = 2854 }	# Northern Tasman Sea -> sea, sea, sea, sea, sea
 	link = { vic2 = 3220 hoi4 = 2830 hoi4 = 2805 hoi4 = 2782 hoi4 = 3416 hoi4 = 5535 hoi4 = 3607 }	# Coast of Norfolk Island -> sea, sea, sea, sea, sea, sea
-	link = { vic2 = 2878 hoi4 = 5511 hoi4 = 5635 hoi4 = 5537 hoi4 = 5485 hoi4 = 5460 }	# Cape Farewell -> sea, sea, sea, sea, sea
+	link = { vic2 = 2878 hoi4 = 5511 hoi4 = 5635 hoi4 = 5537 hoi4 = 5485 }	# Cape Farewell -> sea, sea, sea, sea
 	# 
 	# # Celebes Sea
 	link = { vic2 = 2812 hoi4 = 2833 hoi4 = 8822 hoi4 = 8797 }	# Straits of Makassar -> sea, sea, sea
@@ -3259,7 +3339,32 @@
 	link = { vic2 = 2826 hoi4 = 8421 hoi4 = 8396 hoi4 = 2804 hoi4 = 8266 }	# Yang Tse Delta -> sea, sea, sea, sea
 	link = { vic2 = 2825 hoi4 = 8371 hoi4 = 5345 hoi4 = 5322 }	# Taiwan Strait -> sea, sea, sea
 	link = { vic2 = 2845 hoi4 = 8292 hoi4 = 8343 hoi4 = 8318 hoi4 = 8499 }	# Ryukyu Islands -> sea, sea, sea, sea
-	link = { vic2 = 2846 hoi4 = 5367 hoi4 = 2829 hoi4 = 8676 hoi4 = 8623 }	# Luzon Strait -> sea, sea, sea, sea
+	link = { vic2 = 2886 hoi4 = 8990 hoi4 = 5763 hoi4 = 5917 hoi4 = 8619 hoi4 = 8593 hoi4 = 8647 hoi4 = 5894 hoi4 = 8820 }	# Nauru Island -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3191 hoi4 = 8341 hoi4 = 8368 hoi4 = 8394 hoi4 = 8419 hoi4 = 2852 hoi4 = 8470 hoi4 = 8497 }	# Coast of the Ellice Islands -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3219 hoi4 = 5714 hoi4 = 8289 hoi4 = 8315 hoi4 = 5685 }	# Coast of Fiji -> sea, sea, sea, sea
+	link = { vic2 = 3216 hoi4 = 5688 hoi4 = 8263 hoi4 = 5662 }	# Fiji Basin -> sea, sea, sea
+	link = { vic2 = 3192 hoi4 = 8145 hoi4 = 5766 hoi4 = 5460 }	# New Caledonia Basin -> sea, sea, sea
+	link = { vic2 = 2879 hoi4 = 5561 hoi4 = 5585 hoi4 = 5611 hoi4 = 5711 }	# Coast of New Zealand -> sea, sea, sea, sea
+	link = { vic2 = 2881 hoi4 = 2236 hoi4 = 2388 hoi4 = 2119 hoi4 = 5386 }	# Canterbury Bight -> sea, sea, sea, sea
+	link = { vic2 = 2887 hoi4 = 1231 hoi4 = 8919 hoi4 = 7690 hoi4 = 1906 hoi4 = 8896 }	# Melanesia Sea -> sea, sea, sea, sea, sea
+	link = { vic2 = 3197 hoi4 = 2438 hoi4 = 7062 hoi4 = 2487 hoi4 = 7473 hoi4 = 2974 hoi4 = 2535 hoi4 = 2512 hoi4 = 5988 }	# Syrus Reef -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3126 hoi4 = 4460 hoi4 = 4234 hoi4 = 4011 hoi4 = 5123 hoi4 = 4906 hoi4 = 1682 }	# Coast of Marcus Island -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3217 hoi4 = 3610 hoi4 = 6617 hoi4 = 7515 hoi4 = 7247 hoi4 = 6820 hoi4 = 5638 hoi4 = 3804 }	# Solace Flats -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3127 hoi4 = 2855 hoi4 = 2806 hoi4 = 2831 hoi4 = 2879 hoi4 = 4683 hoi4 = 3419 }	# Coast of the Mariana Islands -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3218 hoi4 = 2263 hoi4 = 7918 hoi4 = 2925 hoi4 = 2237 hoi4 = 8286 hoi4 = 2949 hoi4 = 3014 hoi4 = 3212 }	# Pisaros Pass -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3223 hoi4 = 2315 hoi4 = 2289 hoi4 = 2339 hoi4 = 2364 }	# Tusei Bank -> sea, sea, sea, sea
+	link = { vic2 = 3222 hoi4 = 8369 hoi4 = 2414 hoi4 = 2462 hoi4 = 5965 hoi4 = 8395 hoi4 = 8444 hoi4 = 8471 }	# Mainu Reef -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3221 hoi4 = 8523 hoi4 = 8570 hoi4 = 8673 hoi4 = 8547 hoi4 = 8290 hoi4 = 8316 hoi4 = 5941 hoi4 = 8699 hoi4 = 8342 }	# Coast of the Gilbert Islands -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3244 hoi4 = 8794 hoi4 = 8773 hoi4 = 6810 hoi4 = 2389 hoi4 = 7287 hoi4 = 8750 hoi4 = 8724 }	# Jaluit Passage -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2885 hoi4 = 9052 hoi4 = 8872 hoi4 = 8942 hoi4 = 8846 }	# Solomon Sea -> sea, sea, sea, sea
+	link = { vic2 = 2857 hoi4 = 2611 hoi4 = 1011 hoi4 = 2558 }	# Biak Bay -> sea, sea, sea
+	link = { vic2 = 2888 hoi4 = 2758 hoi4 = 2783 hoi4 = 2901 hoi4 = 2711 hoi4 = 2686 hoi4 = 8139 hoi4 = 1456 hoi4 = 1681 hoi4 = 2121 }	# Micronesia Sea -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2856 hoi4 = 8644 hoi4 = 3805 hoi4 = 4235 hoi4 = 4461 hoi4 = 5124 hoi4 = 4907 hoi4 = 4684 hoi4 = 2585 hoi4 = 2636 hoi4 = 2661 hoi4 = 2735 hoi4 = 8260 hoi4 = 3420 }	# Palau Islands -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2855 hoi4 = 8696 hoi4 = 8670 hoi4 = 5242 hoi4 = 2902 }	# Philippine Sea -> sea, sea, sea, sea
+	link = { vic2 = 2889 hoi4 = 2880 hoi4 = 8721 hoi4 = 2784 hoi4 = 8591 hoi4 = 8616 hoi4 = 4012 hoi4 = 3611 }	# Philippine Trench -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2849 hoi4 = 8572 hoi4 = 2876 hoi4 = 2856 hoi4 = 2832 }	# Coast of Luzon -> sea, sea, sea, sea
+	link = { vic2 = 2891 hoi4 = 2463 hoi4 = 2365 hoi4 = 2390 hoi4 = 2415 hoi4 = 2439 hoi4 = 2488 hoi4 = 2759 hoi4 = 2950 hoi4 = 2975 hoi4 = 2926 hoi4 = 8312 hoi4 = 3015 hoi4 = 3213 }	# Tinian Sea -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2846 hoi4 = 5367 hoi4 = 2829 hoi4 = 8676 hoi4 = 8623 hoi4 = 8595 hoi4 = 8649 }	# Luzon Strait -> sea, sea, sea, sea, sea, sea
 	# 
 	# # Sea of Japan
 	link = { vic2 = 2830 hoi4 = 2609 hoi4 = 7028 hoi4 = 7252 hoi4 = 2634 }	# North Korean Sea -> sea, sea, sea, sea
@@ -3274,14 +3379,29 @@
 	link = { vic2 = 2836 hoi4 = 2951 hoi4 = 2927 hoi4 = 3424 hoi4 = 3615 hoi4 = 2460 hoi4 = 3808 }	# Coast of Kamchatska -> sea, sea, sea, sea, sea, sea
 	link = { vic2 = 2833 hoi4 = 5321 hoi4 = 5344 hoi4 = 5391 hoi4 = 5588 hoi4 = 5295 }	# Amur Delta -> sea, sea, sea, sea, sea
 	link = { vic2 = 2837 hoi4 = 5268 hoi4 = 2485 hoi4 = 5243 }	# Okhotsk Sea -> sea, sea, sea
-	link = { vic2 = 2838 hoi4 = 5126 hoi4 = 4015 hoi4 = 4911 hoi4 = 220 hoi4 = 5488 }	# Coast of Sakhalin -> sea, sea, sea, sea, sea
-	link = { vic2 = 2839 hoi4 = 4688 hoi4 = 4465 hoi4 = 4239 hoi4 = 5614 }	# Soya Strait -> sea, sea, sea, sea
+	link = { vic2 = 2838 hoi4 = 5126 hoi4 = 4015 hoi4 = 4911 hoi4 = 220 hoi4 = 5488 hoi4 = 8893 }	# Coast of Sakhalin -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2890 hoi4 = 8525 hoi4 = 8548 hoi4 = 8747 hoi4 = 2807 hoi4 = 2712 hoi4 = 2736 }	# Philippine Basin -> sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2892 hoi4 = 2637 hoi4 = 2662 hoi4 = 2687 hoi4 = 8770 hoi4 = 2559 hoi4 = 2513 hoi4 = 8568 }	# Iwo Jima Sea -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2843 hoi4 = 8791 hoi4 = 8472 }	# Setto Inland Sea -> sea, sea
+	link = { vic2 = 3128 hoi4 = 8420 hoi4 = 8498 hoi4 = 8524 hoi4 = 6019 hoi4 = 5991 hoi4 = 5968 hoi4 = 6239 hoi4 = 6228 hoi4 = 5944 }	# Maysdale Flats -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3129 hoi4 = 7023 hoi4 = 8264 hoi4 = 7699 hoi4 = 8146 hoi4 = 7928 hoi4 = 6427 hoi4 = 6628 hoi4 = 6438 }	# Izamo Drop -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3124 hoi4 = 5319 hoi4 = 8494 hoi4 = 5767 hoi4 = 5794 hoi4 = 5342 hoi4 = 5663 hoi4 = 8338 hoi4 = 5742 hoi4 = 5715 hoi4 = 5689 }	# Northwest Pacific Basin -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3123 hoi4 = 808 hoi4 = 1457 hoi4 = 613 hoi4 = 25 hoi4 = 8467 hoi4 = 431 hoi4 = 230 hoi4 = 9015 hoi4 = 9053 }	# Yamara Gulch -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2893 hoi4 = 1232 hoi4 = 2238 hoi4 = 1907 hoi4 = 5241 hoi4 = 5293 hoi4 = 5266 hoi4 = 8520 hoi4 = 1012 }	# Taihei Ocean -> sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2844 hoi4 = 5716 hoi4 = 5743 hoi4 = 2316 hoi4 = 8545 hoi4 = 5690 hoi4 = 5664 hoi4 = 2612 hoi4 = 2586 hoi4 = 2536 hoi4 = 2340 hoi4 = 2122 hoi4 = 2290 hoi4 = 2264 hoi4 = 8817 }	# Tokai Sea -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2840 hoi4 = 5922 hoi4 = 5946 hoi4 = 8869 hoi4 = 8843 hoi4 = 6036 hoi4 = 5848 hoi4 = 5795 hoi4 = 5768 hoi4 = 5821 hoi4 = 5993 hoi4 = 5970 }	# Tsugaru Strait -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2839 hoi4 = 4688 hoi4 = 4465 hoi4 = 4239 hoi4 = 5614 hoi4 = 5640 }	# Soya Strait -> sea, sea, sea, sea, sea
 	# 
 	# # Bering Sea
 	link = { vic2 = 2897 hoi4 = 2287 hoi4 = 2261 hoi4 = 2366 hoi4 = 9016 hoi4 = 8944 hoi4 = 8992 hoi4 = 8968 }	# Bay of Anadyr -> sea, sea, sea, sea, sea, sea, sea
 	link = { vic2 = 2896 hoi4 = 1673 hoi4 = 2713 hoi4 = 2688 hoi4 = 2613 hoi4 = 2663 }	# Bay of Oljut -> sea, sea, sea, sea, sea
 	link = { vic2 = 2895 hoi4 = 16 hoi4 = 5849 hoi4 = 5899 hoi4 = 423 hoi4 = 3019 hoi4 = 8174 hoi4 = 7967 hoi4 = 5769 hoi4 = 5872 hoi4 = 5744 hoi4 = 5717 hoi4 = 9044 hoi4 = 5796 }	# Bay of Uka -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
 	link = { vic2 = 3121 hoi4 = 8307 hoi4 = 8281 hoi4 = 6240 hoi4 = 8333 hoi4 = 604 hoi4 = 1447 hoi4 = 7929 hoi4 = 6439 hoi4 = 5822 }	# Novarsk Plain -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 2894 hoi4 = 5691 hoi4 = 5665 hoi4 = 8916 hoi4 = 5969 hoi4 = 5898 hoi4 = 5871 hoi4 = 5921 hoi4 = 5945 hoi4 = 8796 hoi4 = 5586 hoi4 = 5612 }	# The Kuriles -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3120 hoi4 = 7248 hoi4 = 7474 hoi4 = 6629 hoi4 = 7024 hoi4 = 6032 hoi4 = 5992 hoi4 = 5562 }	# Orsova Bank -> sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3125 hoi4 = 8365 hoi4 = 7740 hoi4 = 5820 hoi4 = 6031 hoi4 = 5920 hoi4 = 5897 hoi4 = 5847 hoi4 = 8594 hoi4 = 8620 }	# Sevrance Shoals -> sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3122 hoi4 = 8700 hoi4 = 8795 hoi4 = 8967 hoi4 = 8821 hoi4 = 8991 hoi4 = 8847 hoi4 = 8440 hoi4 = 8943 hoi4 = 8674 hoi4 = 8873 hoi4 = 8897 hoi4 = 8920 hoi4 = 8571 hoi4 = 8391 }	# Sorvskiya Plains -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
+	link = { vic2 = 3119 hoi4 = 8291 hoi4 = 9011 hoi4 = 8317 hoi4 = 8265 hoi4 = 8147 hoi4 = 7700 hoi4 = 8443 hoi4 = 8939 hoi4 = 6821 hoi4 = 612 hoi4 = 8725 }	# Korskiyev Gulch -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
 	link = { vic2 = 2898 hoi4 = 5461 hoi4 = 5486 hoi4 = 8648 hoi4 = 8675 hoi4 = 8726 hoi4 = 5512 }	# Yekaterina Plains -> sea, sea, sea, sea, sea, sea
 	link = { vic2 = 3015 hoi4 = 8636 hoi4 = 8662 hoi4 = 8688 hoi4 = 2556 hoi4 = 3052 hoi4 = 8713 hoi4 = 2991 hoi4 = 5957 }	# Kuskowim Bay -> sea, sea, sea, sea, sea, sea, sea, sea
 	link = { vic2 = 3130 hoi4 = 8608 hoi4 = 5886 hoi4 = 5933 hoi4 = 2607 hoi4 = 5782 hoi4 = 5860 hoi4 = 5808 hoi4 = 5834 }	# North Bering Sea -> sea, sea, sea, sea, sea, sea, sea, sea
@@ -3291,13 +3411,16 @@
 	link = { vic2 = 3132 hoi4 = 3450 hoi4 = 2771 hoi4 = 2795 hoi4 = 3046 hoi4 = 3642 hoi4 = 3248 }	# Western Aleutian Islands -> sea, sea, sea, sea, sea, sea
 	link = { vic2 = 3131 hoi4 = 4043 hoi4 = 5356 hoi4 = 3836 hoi4 = 5378 hoi4 = 2656 hoi4 = 5909 }	# South Bering Sea -> sea, sea, sea, sea, sea, sea
 	# 
-	# 
-	# 
-	# 
+	# # Caspian Sea
 	link = { vic2 = 2779 hoi4 = 1496 hoi4 = 1271 hoi4 = 1050 hoi4 = 843 }	# Caspian Sea -> lake, lake, lake, lake
+	#
+	#
+	# ## Lakes
+	link = { vic2 = 3233 hoi4 = 13147 }	# Issyk Kul -> lake
+	link = { vic2 = 3106 hoi4 = 13148 hoi4 = 13149 hoi4 = 13151 }	# Lake Balchasj -> lake, lake, lake
+	link = { vic2 = 3107 hoi4 = 13152 }	# Lake Bajkal -> lake
+	link = { vic2 = 3230 hoi4 = 2703 hoi4 = 9125 hoi4 = 5918 hoi4 = 11827 }	# Gulf of Ob -> lake, lake, lake, lake
 	# 
 	# 
-	# 
-	# 
-	# 
+	# ## Dropped Vic2 provinces
 }
