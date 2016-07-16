@@ -1747,58 +1747,6 @@ void HoI4World::convertDiplomacy(const CountryMapping& countryMap)
 }
 
 
-void HoI4World::copyFlags(const CountryMapping& countryMap)
-{
-	LOG(LogLevel::Debug) << "Copying flags";
-
-	// Create output folders.
-	std::string outputGraphicsFolder = "Output/" + Configuration::getOutputName() + "/gfx";
-	if (!Utils::TryCreateFolder(outputGraphicsFolder))
-	{
-		return;
-	}
-	std::string outputFlagFolder = outputGraphicsFolder + "/flags";
-	if (!Utils::TryCreateFolder(outputFlagFolder))
-	{
-		return;
-	}
-
-	const std::string folderPath = Configuration::getV2Path() + "/gfx/flags";
-	for (auto country: sourceWorld->getCountries())
-	{
-		std::string V2Tag = country.first;
-		V2Country* sourceCountry = country.second;
-		std::string V2FlagFile = sourceCountry->getFlagFile();
-		const std::string& HoI4Tag = countryMap[V2Tag];
-
-		bool flagCopied = false;
-		vector<string> mods = Configuration::getVic2Mods();
-		for (auto mod: mods)
-		{
-			string sourceFlagPath = Configuration::getV2Path() + "/mod/" + mod + "/gfx/flags/" + V2FlagFile;
-			if (Utils::DoesFileExist(sourceFlagPath))
-			{
-				std::string destFlagPath = outputFlagFolder + '/' + HoI4Tag + ".tga";
-				flagCopied = Utils::TryCopyFile(sourceFlagPath, destFlagPath);
-				if (flagCopied)
-				{
-					break;
-				}
-			}
-		}
-		if (!flagCopied)
-		{
-			std::string sourceFlagPath = folderPath + '/' + V2FlagFile;
-			if (Utils::DoesFileExist(sourceFlagPath))
-			{
-				std::string destFlagPath = outputFlagFolder + '/' + HoI4Tag + ".tga";
-				Utils::TryCopyFile(sourceFlagPath, destFlagPath);
-			}
-		}
-	}
-}
-
-
 void HoI4World::checkAllProvincesMapped(const HoI4ToVic2ProvinceMapping& provinceMap)
 {
 	ifstream definitions(Configuration::getHoI4Path() + "/map/definition.csv");

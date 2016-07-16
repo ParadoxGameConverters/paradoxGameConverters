@@ -24,6 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include <stdexcept>
 #include "Configuration.h"
+#include "Flags.h"
 #include "Log.h"
 #include "ParadoxParser8859_15.h"
 #include "ParadoxParserUTF8.h"
@@ -506,7 +507,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 
 	LOG(LogLevel::Info) << "Copying flags";
-	destWorld.copyFlags(countryMap);
+	copyFlags(destWorld.getCountries());
 
 	LOG(LogLevel::Info) << "Outputting world";
 	destWorld.output();
