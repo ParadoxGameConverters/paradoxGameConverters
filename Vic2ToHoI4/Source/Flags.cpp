@@ -28,12 +28,31 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-vector<string> getSourceFlagPaths(string Vic2Tag);
-void copyFlags(map<string, HoI4Country*> countries)
+void processFlagsForCountry(const pair<string, HoI4Country*>& country);
+void copyFlags(const map<string, HoI4Country*>& countries)
 {
 	for (auto country: countries)
 	{
-		vector<string> sourcePaths = getSourceFlagPaths(country.second->getSourceCountry()->getTag());
+		processFlagsForCountry(country);
+	}
+}
+
+
+vector<string> getSourceFlagPaths(string Vic2Tag);
+tga_image* readFlag(string path);
+void processFlagsForCountry(const pair<string, HoI4Country*>& country)
+{
+	vector<string> sourcePaths = getSourceFlagPaths(country.second->getSourceCountry()->getTag());
+	for (auto path: sourcePaths)
+	{
+		tga_image* sourceFlag = readFlag(path);
+		if (sourceFlag == nullptr)
+		{
+			continue;
+		}
+
+
+		delete sourceFlag;
 	}
 }
 
@@ -82,6 +101,24 @@ vector<string> getSourceFlagPaths(string Vic2Tag)
 	}
 
 	return paths;
+}
+
+
+tga_image* readFlag(string path)
+{
+	FILE* flagFile = fopen(path.c_str(), "r");
+
+	tga_image* flag = new tga_image;
+	tga_result result = tga_read_from_FILE(flag, flagFile);
+	if (result != TGA_NOERR)
+	{
+		LOG(LogLevel::Warning) << "Could not read flag " << path << ": " << tga_error(result);
+		delete flag;
+		flag = nullptr;
+	}
+
+	fclose(flagFile);
+	return flag;
 }
 
 

@@ -33,7 +33,7 @@ using namespace std;
 
 
 
-void copyFlags(map<string, HoI4Country*> countries);
+void copyFlags(const map<string, HoI4Country*>& countries);
 
 
 
