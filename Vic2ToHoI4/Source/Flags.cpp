@@ -31,6 +31,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 void processFlagsForCountry(const pair<string, HoI4Country*>& country);
 void copyFlags(const map<string, HoI4Country*>& countries)
 {
+	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx");
+	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx/flags");
 	for (auto country: countries)
 	{
 		processFlagsForCountry(country);
@@ -40,6 +42,7 @@ void copyFlags(const map<string, HoI4Country*>& countries)
 
 vector<string> getSourceFlagPaths(string Vic2Tag);
 tga_image* readFlag(string path);
+tga_image* createNewFlag(const tga_image* sourceFlag, unsigned int sizeX, unsigned int sizeY);
 void processFlagsForCountry(const pair<string, HoI4Country*>& country)
 {
 	vector<string> sourcePaths = getSourceFlagPaths(country.second->getSourceCountry()->getTag());
@@ -51,7 +54,14 @@ void processFlagsForCountry(const pair<string, HoI4Country*>& country)
 			continue;
 		}
 
+		tga_image* destFlag = createNewFlag(sourceFlag, 82, 52);
+		FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/test.tga").c_str(), "w");
+		tga_write_to_FILE(outputFile, destFlag);
+		fclose(outputFile);
+		tga_free_buffers(destFlag);
+		delete destFlag;
 
+		tga_free_buffers(sourceFlag);
 		delete sourceFlag;
 	}
 }
@@ -119,6 +129,47 @@ tga_image* readFlag(string path)
 
 	fclose(flagFile);
 	return flag;
+}
+
+
+tga_image* createNewFlag(const tga_image* sourceFlag, unsigned int sizeX, unsigned int sizeY)
+{
+	tga_image* destFlag = new tga_image;
+	destFlag->image_id_length = 0;
+	destFlag->color_map_type = TGA_COLOR_MAP_ABSENT;
+	destFlag->image_type = TGA_IMAGE_TYPE_BGR;
+	destFlag->color_map_origin = 0;
+	destFlag->color_map_length = 0;
+	destFlag->color_map_depth = 0;
+	destFlag->origin_x = 0;
+	destFlag->origin_y = 0;
+	destFlag->width = sizeX;
+	destFlag->height = sizeY;
+	destFlag->pixel_depth = 32;
+	destFlag->image_descriptor = 8;
+	destFlag->image_id = nullptr;
+	destFlag->color_map_data = nullptr;
+
+	destFlag->image_data = static_cast<uint8_t*>(malloc(sizeX * sizeY * 4));
+	for (unsigned int y = 0; y < sizeY; y++)
+	{
+		for (unsigned int x = 0; x < sizeX; x++)
+		{
+			int sourceY = static_cast<int>(1.0 * y / sizeY * sourceFlag->height);
+			int sourceX = static_cast<int>(1.0 * x / sizeX * sourceFlag->width);
+			int sourceBytesPerPixel = sourceFlag->pixel_depth / 8;
+			int sourceIndex = (sourceY * sourceFlag->width + sourceX) * sourceBytesPerPixel;
+
+			int destIndex = (y * sizeX + x) * 4;
+
+			destFlag->image_data[destIndex + 0] = sourceFlag->image_data[sourceIndex + 0];
+			destFlag->image_data[destIndex + 1] = sourceFlag->image_data[sourceIndex + 1];
+			destFlag->image_data[destIndex + 2] = sourceFlag->image_data[sourceIndex + 2];
+			destFlag->image_data[destIndex + 3] = sourceFlag->image_data[sourceIndex + 3];
+		}
+	}
+
+	return destFlag;
 }
 
 
