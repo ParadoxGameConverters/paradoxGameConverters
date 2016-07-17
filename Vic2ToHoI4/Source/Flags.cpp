@@ -84,13 +84,13 @@ string getSourceFlagPath(string Vic2Tag)
 
 tga_image* readFlag(string path)
 {
-	FILE* flagFile = fopen(path.c_str(), "r");
+	FILE* flagFile = fopen(path.c_str(), "r+b");
 
 	tga_image* flag = new tga_image;
 	tga_result result = tga_read_from_FILE(flag, flagFile);
 	if (result != TGA_NOERR)
 	{
-		LOG(LogLevel::Warning) << "Could not read flag " << path << ": " << tga_error(result);
+		LOG(LogLevel::Warning) << "Could not read flag " << path << ": " << tga_error(result) << ". FEOF: " << feof(flagFile) << ". Ferror: " << ferror(flagFile) << ".";
 		delete flag;
 		flag = nullptr;
 	}
@@ -144,7 +144,7 @@ tga_image* createNewFlag(const tga_image* sourceFlag, unsigned int sizeX, unsign
 void createBigFlag(tga_image* sourceFlag, string tag)
 {
 	tga_image* destFlag = createNewFlag(sourceFlag, 82, 52);
-	FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/" + tag + ".tga").c_str(), "w");
+	FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/" + tag + ".tga").c_str(), "w+b");
 	tga_write_to_FILE(outputFile, destFlag);
 	fclose(outputFile);
 	tga_free_buffers(destFlag);
