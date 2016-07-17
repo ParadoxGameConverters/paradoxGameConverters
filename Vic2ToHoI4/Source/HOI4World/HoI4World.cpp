@@ -2369,6 +2369,7 @@ void HoI4World::createIdeologyFiles()
 		return;
 	}
 	Utils::TryCopyFile("NeededFiles/countrypoliticsview.gfx", "Output/" + Configuration::getOutputName() + "/interface/countrypoliticsview.gfx");
+	Utils::copyFolder("NeededFiles/defines", "Output/" + Configuration::getOutputName() + "/common");
 }
 void HoI4World::copyFlags(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
@@ -4722,24 +4723,33 @@ void HoI4World::fillCountryIC()
 	for (auto country : countries)
 	{
 		vector<int> countrystates;
-		int countryIC = 0;
+		int countryICMIL = 0;
+		int countryICCIV = 0;
 		for (auto state : states)
 		{
 			if (state.second->getOwner() == country.second->getTag())
 			{
-				countryIC += state.second->getMilFactories();
+				countryICCIV += state.second->getCivFactories();
+				countryICMIL += state.second->getMilFactories();
 				countrystates.push_back(state.first);
 			}
 		}
 		countriesStates.insert(make_pair(country.second->getTag(), countrystates));
-		countriesIC.insert(make_pair(country.second->getTag(), countryIC));
+		countriesICMIL.insert(make_pair(country.second->getTag(), countryICMIL));
+		countriesICCIV.insert(make_pair(country.second->getTag(), countryICCIV));
 	}
 }
 double HoI4World::getStrengthOverTime(HoI4Country* Country, double years)
 {
-	double strength = 0;
-	strength = Country->getArmyStrength() + countriesIC.find(Country->getTag())->second*2.5*years+ countriesIC.find(Country->getTag())->second*2*.469*2.5*years;
-	return strength;
+	return Country->getArmyStrength() + countriesICMIL.find(Country->getTag())->second * 3 * 365 *years + countriesICCIV.find(Country->getTag())->second*.469*.5 /*.469 is milfac per year, .5 since half are used by consumer goods*/*3*365;
+}
+double HoI4World::getInitialStrength(HoI4Country* Country)
+{
+	return Country->getArmyStrength();
+}
+double HoI4World::getAddedStrength(HoI4Country* Country, double years)
+{
+	return countriesICMIL.find(Country->getTag())->second * 3 * 365 * years + countriesICCIV.find(Country->getTag())->second*.469*.5 /*.469 is milfac per year, .5 since half are used by consumer goods*/ * 3 * 365;
 }
 void HoI4World::outputRelations()
 {
@@ -4762,13 +4772,13 @@ void HoI4World::outputRelations()
 	{
 		return;
 	}
-
+	
 	std::string outputopinionfolder = "Output/" + Configuration::getOutputName() + "/common/opinion_modifiers";
 	if (!Utils::TryCreateFolder(outputopinionfolder))
 	{
 		return;
 	}
-	Utils::copyFolder("NeededFiles/defines", "output/" + Configuration::getOutputName() + "/common");
+	//Utils::copyFolder("NeededFiles/defines", "Output/" + Configuration::getOutputName() + "/common");
 	string filename("Output/" + Configuration::getOutputName() + "/common/opinion_modifiers/01_opinion_modifiers.txt");
 	ofstream out;
 	out.open(filename);
@@ -4865,8 +4875,19 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				vector<HoI4Country*> Sudaten;
 				vector<HoI4Country*> DifficultTargets;
 				vector<int> leaderProvs = getCountryProvinces(Leader);
-				LOG(LogLevel::Info) << "Calculating Neighbors for " + Leader->getSourceCountry()->getName();
-				map<string, HoI4Country*> Neighbors = findNeighbors(leaderProvs, Leader);
+				map<string, HoI4Country*> AllNeighbors = findNeighbors(leaderProvs, Leader);
+				map<string, HoI4Country*> Neighbors;
+				for each (auto neigh in AllNeighbors)
+				{
+					if (neigh.second->getCapitalProv() != 0)
+					{
+						//IMPROVE
+						//need to get further neighbors, as well as countries without capital in an area
+						double distance = GetDistance(Leader, neigh.second);
+						if (distance <= 500)
+							Neighbors.insert(neigh);
+					}
+				}
 				set<string> Allies = Leader->getAllies();
 				//should add method to look for cores you dont own
 				//should add method to look for more allies
@@ -4878,8 +4899,10 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 					//lets check to see if they are our ally and not a great country
 					if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
 					{
+						volatile double enemystrength = getStrengthOverTime(neigh.second, 1.5);
+						volatile double mystrength = getStrengthOverTime(Leader, 1.5);
 						//if not, lets see their strength is at least < 20%
-						if (getStrengthOverTime(neigh.second,1.5) < getStrengthOverTime(Leader,1.5)*0.2)
+						if (getStrengthOverTime(neigh.second,1.5) < getStrengthOverTime(Leader,1.5)*0.2 && findFaction(neigh.second).size() == 1)
 						{
 							//they are very weak and we can get 1 of these countries in an anchluss
 							//AnchlussTargets.push_back(neigh);
@@ -4887,7 +4910,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 						
 						}
 						//if not, lets see their strength is at least < 60%
-						else if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1)*0.6 && getStrengthOverTime(neigh.second, 1) > getStrengthOverTime(Leader, 1)*0.2)
+						else if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1)*0.6 && getStrengthOverTime(neigh.second, 1) > getStrengthOverTime(Leader, 1)*0.2 && findFaction(neigh.second).size() == 1)
 						{
 							//they are weak and we can get 1 of these countries in sudaten deal
 							//SudatenTargets.push_back(neigh);
@@ -5003,6 +5026,9 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 						
 						for (int i = 0; i < 2; i++)
 						{
+							int start = 0;
+							if (nan.size() >= 2)
+								start = -1;
 							if (i < nan.size())
 							{
 								//int x = i * 3;
@@ -5021,7 +5047,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 								FocusTree += "		    date > 1937." + to_string(v1+5) + "." + to_string(v2+5) + "\r\n";
 								FocusTree += "		}\r\n";
 								FocusTree += "		\r\n";
-								FocusTree += "		x = " + to_string(x + i*2) + "\r\n";
+								FocusTree += "		x = " + to_string(x + i*2 + start) + "\r\n";
 								FocusTree += "		y = 2\r\n";
 								FocusTree += "		cost = 10\r\n";
 								FocusTree += "		ai_will_do = {\r\n";
@@ -5252,8 +5278,6 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				}
 				//events for allies
 				vector<HoI4Country*> newAllies = GetMorePossibleAllies(Leader);
-				if (takenSpots.size() == 0)
-					takenSpots.push_back(22);
 				if (newAllies.size() > 0)
 				{
 					//Focus to call summit, maybe have events from summit
@@ -5278,11 +5302,15 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				}
 				for (int i = 0; i < newAllies.size(); i++)
 				{
+					int displacement = 0;
+					if (newAllies.size() == 2)
+						displacement = -1;
 					FocusTree += "focus = {\r\n";
 					FocusTree += "		id = Alliance_"+newAllies[i]->getTag() + Leader->getTag() + "\r\n";
 					FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
 					FocusTree += "		text = \"Alliance with "+newAllies[i]->getSourceCountry()->getName()+"\"\r\n";
-					FocusTree += "		x = " + to_string(takenSpots.back() + 3 + i) + "\r\n";
+					FocusTree += "		prerequisite = { focus =  Fas_Summit" + Leader->getTag() + " }\r\n";
+					FocusTree += "		x = " + to_string(takenSpots.back() + 3 + i*2 + displacement) + "\r\n";
 					FocusTree += "		y = 1\r\n";
 					FocusTree += "		cost = 10\r\n";
 					FocusTree += "		ai_will_do = {\r\n";
@@ -5331,42 +5359,27 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				}
 				int maxGCWars = 0;
 				int start = 0;
-				if (GCTargets.size() >= 4)
-				{
-					start = -3;
-				}
-				else if (GCTargets.size() == 3)
-				{
-					start = -2;
-				}
-				else if (GCTargets.size() == 2)
+				if (GCTargets.size() == 2)
 				{
 					start = -1;
 				}
 
 				for each (auto GC in GCTargets)
 				{
-					if (maxGCWars < 4)
+					string prereq = "";
+					if (maxGCWars < 2)
 					{
+						int y2 = 0;
 						//figuring out location of WG
-						string prereq;
-						if (takenSpotsy.size() > 0)
+						if (newAllies.size() > 0)
 						{
-							if (takenSpotsy.back() == 5)
-							{
-								prereq = Leader->getTag() + "_finish_" + GC->getTag();
-							}
-							else if (takenSpotsy.back() == 2)
-							{
-								prereq = Leader->getTag() + "_anschluss_" + GC->getTag();
-							}
-							else
-								prereq = "";
-						}
-						else
-						{
-							prereq = "";
-							takenSpotsy.push_back(0);
+							y2 = 2;
+							prereq = " 	prerequisite = { ";
+
+							for (int i = 0; i < 2; i++)
+								prereq += " focus = Alliance_" + newAllies[i]->getTag() + Leader->getTag();
+
+						prereq += "}\r\n";
 						}
 						int v1 = rand() % 12 + 1;
 						int v2 = rand() % 12 + 1;
@@ -5374,11 +5387,11 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 						FocusTree += "		id = War" + GC->getTag() + Leader->getTag() + "\r\n";
 						FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
 						FocusTree += "		text = \"War with " + GC->getSourceCountry()->getName() + "\"\r\n";//change to faction name later
-					//	if(prereq != "")
-						//	FocusTree += "		prerequisite = { focus = "+prereq+" }\r\n";
+						if(prereq != "")
+							FocusTree += prereq;
 						FocusTree += "		available = {   date > 1938." + to_string(v1) + "." + to_string(v2) + "} \r\n";
-						FocusTree += "		x = " + to_string(takenSpots.back() + start + maxGCWars*2) + "\r\n";
-						FocusTree += "		y = " + to_string(0) + "\r\n";
+						FocusTree += "		x = " + to_string(takenSpots.back() + start + 3 + maxGCWars*2) + "\r\n";
+						FocusTree += "		y = " + to_string(y2) + "\r\n";
 						//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\r\n";
 						FocusTree += "		cost = 10\r\n";
 						FocusTree += "		ai_will_do = {\r\n";
@@ -5447,7 +5460,19 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				out << Leader->getSourceCountry()->getName() << endl;
 				vector<int> leaderProvs = getCountryProvinces(Leader);
 				LOG(LogLevel::Info) << "Calculating Neighbors for " + Leader->getSourceCountry()->getName();
-				map<string, HoI4Country*> Neighbors = findNeighbors(leaderProvs, Leader);
+				map<string, HoI4Country*> AllNeighbors = findNeighbors(leaderProvs, Leader);
+				map<string, HoI4Country*> Neighbors;
+				for each (auto neigh in AllNeighbors)
+				{
+					if (neigh.second->getCapitalProv() != 0)
+					{
+						//IMPROVE
+						//need to get further neighbors, as well as countries without capital in an area
+						double distance = GetDistance(Leader, neigh.second);
+						if (distance <= 500)
+							Neighbors.insert(neigh);
+					}
+				}
 				set<string> Allies = Leader->getAllies();
 				vector<HoI4Country*> Targets;
 				map<string, vector<HoI4Country*>> NationalFocusesMap;
@@ -5469,7 +5494,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 
 						for (auto party : neigh.second->getParties())
 						{
-							if (party.name.find("socialist") != string::npos || party.name.find("communist") != string::npos)
+							if (party.name.find("socialist") != string::npos || party.name.find("communist") != string::npos || party.name.find("anarcho_liberal") != string::npos)
 								com += party.popularity;
 						}
 						if (com > 25)
@@ -5479,7 +5504,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 							out << "/t" + neigh.second->getSourceCountry()->getName() + " Attempt Coup" << endl;
 							coups.push_back(neigh.second);
 						}
-						else
+						else if(findFaction(neigh.second).size() == 1)
 						{
 							//	Then look for neighboring countries to spread communism by force, prioritizing weakest first
 							forcedtakeover.push_back(neigh.second);
@@ -6168,7 +6193,7 @@ vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorl
 				auto allies = country->getAllies();
 				vector<int> yourbrigs = country->getBrigs();
 				auto yourrelations = country->getRelations();
-				out << country->getSourceCountry()->getName() << " " + yourgovernment + " " + to_string(getStrengthOverTime(country, 1)) + " allies: \n";
+				out << country->getSourceCountry()->getName() << " " + yourgovernment + " initial strength:" + to_string(getInitialStrength(country)) + " Factory Strength per year: "+to_string(getAddedStrength(country,1))+" allies: \n";
 				usedCountries.push_back(country->getTag());
 				FactionMilStrength = getStrengthOverTime(country, 1);
 				for (auto ally : allies)
@@ -6213,7 +6238,7 @@ vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorl
 							if (canally)
 							{
 								usedCountries.push_back(allycountry->getTag());
-								out << "\t" + name + " " + allygovernment + " Strength: " + to_string(getStrengthOverTime(allycountry, 1)) << endl;
+								out << "\t" + name + " " + allygovernment + " initial strength:" + to_string(getInitialStrength(allycountry)) + " Factory Strength per year: " + to_string(getAddedStrength(allycountry, 1)) << endl;
 								FactionMilStrength += getStrengthOverTime(allycountry, 1);
 								Faction.push_back(allycountry);
 							}

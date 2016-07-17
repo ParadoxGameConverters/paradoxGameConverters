@@ -74,6 +74,8 @@ class HoI4World
 		string genericFocusTreeCreator(HoI4Country * CreatingCountry);
 		void fillCountryIC();
 		double getStrengthOverTime(HoI4Country * Country, double years);
+		double getInitialStrength(HoI4Country * Country);
+		double getAddedStrength(HoI4Country * Country, double years);
 		void outputRelations();
 		void	thatsgermanWarCreator(const V2World & sourceWorld, const CountryMapping& countryMap);
 		string HowToTakeLand(HoI4Country * TargetCountry, HoI4Country * AttackingCountry, double time);
@@ -125,7 +127,8 @@ class HoI4World
 		map<string,HoI4Country*>	potentialCountries;
 		HoI4Diplomacy					diplomacy;
 		map<int, string>				continents;  // < province, continent >
-		map<string, int>				countriesIC;  
+		map<string, int>				countriesICMIL;  
+		map<string, int>				countriesICCIV;
 		map<string, vector<int>>		countriesStates; 
 		map<int, int>					stateMap;
 

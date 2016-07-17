@@ -1627,6 +1627,16 @@ void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inversePr
 	brigs.push_back(cavbrigs);
 	brigs.push_back(infantrybrigs);
 	brigs.push_back(artbrigs);
+	int InfWep = 0;
+	auto search = technologies.find("infantry_weapons1");
+	if (search != technologies.end()) {
+		InfWep = 0.5;
+	}
+	if (search == technologies.end()) {
+		InfWep = 0.3;
+	}
+	volatile int x = InfWep;
+	armyStrength = (100 * InfWep*infantrybrigs) + (175 * supportbrigs) + (126 * artbrigs) + (1135 * tankbrigs) + (120 * InfWep*cavbrigs) + (140 * InfWep*mtnbrigs);
 	string Armies = "";
 	for (auto const &ent1 : locations)
 	{
