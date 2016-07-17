@@ -637,6 +637,10 @@ tag vs internalTag:
           <friendlyName>HoI4 mod directory</friendlyName>
           <description>A path on your computer where HoI4 temp files are kept</description>
           <alternatives>
+				<alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Hearts of Iron IV\mod</subFolderLocation>
+            </alternative>
             <alternative>
               <defaultLocationType>SteamFolder</defaultLocationType>
               <autoDetectFromSteamId>394360</autoDetectFromSteamId>

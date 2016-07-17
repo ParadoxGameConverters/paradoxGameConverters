@@ -28,6 +28,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <vector>
 #include <string>
+#include <map>
+#include "..\Mapper.h"
+#include "..\V2World\Vic2State.h"
 using namespace std;
 
 
@@ -35,32 +38,52 @@ using namespace std;
 class HoI4State
 {
 	public:
-		HoI4State(int _ID, string _ownerTag, float _Manpower, double _CivFactories, int _MilFactories, string _catagory, int _raillevel, int _navalbase, int _navallocation);
+		HoI4State(const Vic2State* sourceState, int _ID, string _ownerTag);
 
 		void output(string filename);
-		void		setResources(string _resources) { resources = _resources; }
-		void			addProvince(int province)	{ provinces.push_back(province); }
-		vector<int> getProvinces() const			{ return provinces; }
-		string		getOwner() const				{ return ownerTag; }
-		float		getManpower() const				{ return manpower; }
-		int			getID()							{ return ID; }
-		int			getNavalLocation() const		{ return navallocation; }
-		int			getMilFactories() const { return milFactories; }
-		int			getCivFactories() const { return civFactories; }
+
+		void addProvince(int province) { provinces.insert(province); }
+		void addResource(string resource, double amount)	{ resources[resource] += amount; }
+		void addVP(int location, int value) { victoryPoints.insert(make_pair(location, value)); }
+		void addManpower(int newManpower) { manpower += newManpower; }
+
+		void setNavalBase(int level, int location);
+		void setIndustry(int civilianFactories, int militaryFactories, string category, int railLevel);
+		void addCores(const vector<string>& newCores);
+
+		const Vic2State* getSourceState() const { return sourceState; }
+		set<int>	getProvinces() const { return provinces; }
+		string getOwner() const { return ownerTag; }
+		set<string> getCores() const { return cores; }
+		int getID() const { return ID; }
+		int getNavalLocation() const { return navalLocation; }
+		int getDockyards() const { return dockyards; }
+
+		int getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping& provinceMap);
+		bool isProvinceInState(int provinceNum);
 
 	private:
-		int			ID;
-		vector<int>	provinces;
-		string		ownerTag;
-		float			manpower;
-		double		civFactories;
-		int			milFactories;
-		string catagory;
-		int raillevel;
-		string resources;
-		int navalbase;
-		int navallocation;
+		const Vic2State* sourceState;
 
+		int ID;
+		set<int> provinces;
+		string ownerTag;
+		set<string> cores;
+
+		int manpower;
+
+		int civFactories;
+		int milFactories;
+		int dockyards;
+		string category;
+		int railLevel;
+	
+		int navalLevel;
+		int navalLocation;
+
+		map<string, double> resources;
+
+		map<int, int> victoryPoints;
 };
 
 

@@ -4,9 +4,9 @@ This program will convert a Victoria 2 save game to a Hearts of Iron 4 mod.
 IMPORTANT LINKS
 ----
 
-Forum thread: http://forum.paradoxplaza.com/forum/showthread.php?582798-V2-to-HoI3-Converter-Mod!&p=18169205&viewfull=1#post18169205
+Forum thread: https://forum.paradoxplaza.com/forum/index.php?threads/the-vic2-to-hoi4-converter-project-development-thread.915440
 Github project: https://github.com/Idhrendur/paradoxGameConverters
-Documentation: https://github.com/Idhrendur/paradoxGameConverters/wiki/Vic2-To-HoI3
+Documentation: http://www.hoi4wiki.com/Victoria_2_to_Hearts_of_Iron_IV_converter
 
 ----
 REQUIREMENTS
@@ -45,6 +45,8 @@ An (incomplete) list of those who contributed effort to this mammoth undertaking
 Idhrendur		- Project Lead, Programming, Analysis
 thatsgerman		- Programming, Analysis
 jepaan			- Programming
+Italianajt		- Analysis, Data Files, QA
+Ordinary_Kraut		- Analysis, Data Files
 DasGuntLord01		- Analysis
 dtremenak		- Analysis
 history_fan		- Analysis

@@ -9,11 +9,13 @@ copy "Data_Files\tech_mapping.txt" "release\tech_mapping.txt"
 copy "Data_Files\unit_mapping.txt" "release\unit_mapping.txt"
 copy "Data_Files\culture_map.txt" "release\culture_map.txt"
 copy "Data_Files\FAQ.txt" "release\FAQ.txt"
+copy "Data_files\resources.txt" "release\resources.txt"
+copy "Data_files\navalprovinces.txt" "release\navalprovinces.txt"
 
 del release\changelog.txt
-git log --oneline --decorate >> release/log.txt
-(for /f "delims=" %%i in (release/log.txt) do @echo %%i)>release/changelog.txt
-del release\log.txt
+git log --oneline --decorate >> release\makelog.txt
+(for /f "delims=" %%i in (release\makelog.txt) do @echo %%i)>release\changelog.txt
+del release\makelog.txt
 
 del "Release\blankMod" /Q
 rmdir "Release\blankMod" /S /Q
@@ -23,6 +25,6 @@ mkdir "release\blankMod\output\history"
 mkdir "release\blankMod\output\history\provinces"
 mkdir "release\blankMod\output\history\countries"
 
-rem xcopy "Data_Files\history\provinces" "release\blankmod\output\history\provinces" /Y /E /I
-rem xcopy "Data_Files\countries" "release\blankmod\output\common\countries" /Y /E /I
-rem copy "Data_Files\countries.txt" "release\blankMod\output\common\countries.txt"
+xcopy "Data_Files\events" "release\blankmod\output\events" /Y /E /I
+xcopy "Data_Files\bookmarks" "release\blankmod\output\bookmarks" /Y /E /I
+xcopy "Data_Files\on_actions" "release\blankmod\output\common\on_actions" /Y /E /I

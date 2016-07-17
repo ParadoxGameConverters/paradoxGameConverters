@@ -29,81 +29,145 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4State::HoI4State(int _ID, string _ownerTag, float _Manpower, double _CivFactories, int _MilFactories, string _catagory, int _raillevel, int _navalbase, int _navallocation)
+HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, string _ownerTag)
 {
+	sourceState		= _sourceState;
+
 	ID					= _ID;
 	ownerTag			= _ownerTag;
-	manpower			= _Manpower;
-	civFactories	= _CivFactories;
-	milFactories	= _MilFactories;
-	catagory			= _catagory;
-	
-	manpower	= _Manpower;
-	civFactories = _CivFactories;
-	milFactories = _MilFactories;
-	raillevel = _raillevel;
-	navalbase = _navalbase;
-	navallocation = _navallocation;
+	manpower			= 1;
+
+	civFactories	= 0;
+	milFactories	= 0;
+	category			= "pastoral";
+	railLevel		= 0;
+	dockyards		= 0;
+
+	navalLevel		= 0;
+	navalLocation	= 0;
 }
 
 
 void HoI4State::output(string _filename)
 {
+	// create the file
 	string filename("Output/" + Configuration::getOutputName() + "/history/states/" + _filename);
-	ofstream out;
-	out.open(filename);
+	ofstream out(filename);
+	if (!out.is_open())
 	{
-		if (!out.is_open())
-		{
-			LOG(LogLevel::Error) << "Could not open \"output/input/history/states/" + _filename;
-			exit(-1);
-		}
-		//out << civFactories << "  " << milFactories << endl;
-		out << "state={" << endl;
-		out << "\tid=" << ID << endl;
-		out << "\tname= \"STATE_" << ID << "\"" << endl;
-		out << "\tmanpower = " << to_string(manpower) << endl;
-		out << endl;
-		if (resources != "")
-		{
-			out << "resources={" << endl;
-			out << resources;
-			out << "}" << endl;
-		}
-		out << "\tstate_category = "<< catagory << endl;
-		out << "" << endl;
-		out << "\thistory={" << endl;
-		out << "\t\towner = " << ownerTag << endl;
-		//out << "	victory_points = { 3838 1 }" << endl;
-		out << "	buildings = {" << endl;
-		out << "	infrastructure = "<< raillevel << endl;
-		out << "	industrial_complex = " << civFactories << endl;
-		out << "	arms_factory = " << milFactories << endl;
-		
-		if (navalbase > 0 && navallocation > 0)
-		{
-			out << "	" << navallocation << " = {" << endl;
-			out << "		naval_base = " << navalbase << endl;
-			out << "	}" << endl;
-		}
-		//out << "	air_base = 1" << endl;
-		//out << "	3838 = {" << endl;
-		//out << "	naval_base = 3" << endl;
-		out << "\t\t}" << endl;
-		//out << "}" << endl;
-		//out << "	add_core_of = FRA" << endl;
-		out << "\t}" << endl;
-		out << endl;
-		out << "\tprovinces={" << endl;
-		out << "\t\t";
-		for (auto provnum : provinces)
-		{
-			out << provnum << " ";
-		}
-		out << endl;
-		out << "\t}" << endl;
-		out << "}" << endl;
-
-		out.close();
+		LOG(LogLevel::Error) << "Could not open \"output/input/history/states/" + _filename;
+		exit(-1);
 	}
+
+	// output the data
+	out << "state={" << endl;
+	out << "\tid=" << ID << endl;
+	out << "\tname= \"STATE_" << ID << "\"" << endl;
+	out << "\tmanpower = " << manpower << endl;
+	out << endl;
+	if (resources.size() > 0)
+	{
+		out << "\tresources={" << endl;
+		for (auto resource: resources)
+		{
+			out << "\t\t" << resource.first << " = " << resource.second << endl;
+		}
+		out << "\t}" << endl;
+	}
+	out << "\tstate_category = "<< category << endl;
+	out << "" << endl;
+	out << "\thistory={" << endl;
+	out << "\t\towner = " << ownerTag << endl;
+	for (auto VP: victoryPoints)
+	{
+		out << "\t\tvictory_points = {" << endl;
+		out << "\t\t\t" << VP.first << " " << VP.second << endl;
+		out << "\t\t}" << endl;
+	}
+	out << "\t\tbuildings = {" << endl;
+	out << "\t\t\tinfrastructure = "<< railLevel << endl;
+	out << "\t\t\tindustrial_complex = " << civFactories << endl;
+	out << "\t\t\tarms_factory = " << milFactories << endl;
+	if (dockyards > 0)
+	{
+		out << "\t\t\tdockyard = " << dockyards << endl;
+	}
+		
+	if ((navalLevel > 0) && (navalLocation > 0))
+	{
+		out << "\t\t\t" << navalLocation << " = {" << endl;
+		out << "\t\t\t\tnaval_base = " << navalLevel << endl;
+		out << "\t\t\t}" << endl;
+	}
+	//out << "\t\tair_base = 1" << endl;
+	out << "\t\t}" << endl;
+	//out << "\t}" << endl;
+	for (auto core: cores)
+	{
+		out << "\t\tadd_core_of = " << core << endl;
+	}
+	out << "\t}" << endl;
+	out << endl;
+	out << "\tprovinces={" << endl;
+	out << "\t\t";
+	for (auto provnum : provinces)
+	{
+		out << provnum << " ";
+	}
+	out << endl;
+	out << "\t}" << endl;
+	out << "}" << endl;
+
+	out.close();
+}
+
+
+void HoI4State::setNavalBase(int level, int location)
+{
+	if (provinces.find(location) != provinces.end())
+	{
+		navalLevel		= level;
+		navalLocation	= location;
+
+		dockyards		= 1;
+	}
+}
+
+
+void HoI4State::setIndustry(int _civilianFactories, int _militaryFactories, string _category, int _railLevel)
+{
+	civFactories	= _civilianFactories;
+	milFactories	= _militaryFactories;
+	category			= _category;
+	railLevel		= _railLevel;
+}
+
+
+void HoI4State::addCores(const vector<string>& newCores)
+{
+	for (auto newCore: newCores)
+	{
+		cores.insert(newCore);
+	}
+}
+
+
+int HoI4State::getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping& provinceMap)
+{
+	auto vic2Province = sourceState->getProvinces()[0];
+	auto provMapping = provinceMap.find(vic2Province);
+	if (provMapping != provinceMap.end())
+	{
+		return provMapping->second[0];
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+
+bool HoI4State::isProvinceInState(int provinceNum)
+{
+	return (provinces.find(provinceNum) != provinces.end());
 }

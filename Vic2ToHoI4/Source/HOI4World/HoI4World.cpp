@@ -65,16 +65,19 @@ typedef struct fileWithCreateTime
 } fileWithCreateTime;
 
 
-void HoI4World::importStates()
+void HoI4World::importStrategicRegions()
 {
-	LOG(LogLevel::Info) << "Importing states";
-
-	set<string> statesFiles;
-	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/history/states", statesFiles);
-	for (auto stateFile : statesFiles)
+	set<string> filenames;
+	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/map/strategicregions/", filenames);
+	for (auto filename: filenames)
 	{
-		int num = stoi(stateFile.substr(0, stateFile.find_first_of('-')));
-		stateFilenames.insert(make_pair(num, stateFile));
+		HoI4StrategicRegion* newRegion = new HoI4StrategicRegion(filename);
+		strategicRegions.insert(make_pair(newRegion->getID(), newRegion));
+
+		for (auto province: newRegion->getOldProvinces())
+		{
+			provinceToStratRegionMap.insert(make_pair(province, newRegion->getID()));
+		}
 	}
 }
 
@@ -299,8 +302,13 @@ void HoI4World::outputMap() const
 
 	for (auto state : states)
 	{
-		vector<int> provinces = state.second->getProvinces();
-		out << state.second->getID() << " = { " << provinces.front() << " }\r\n";
+		LOG(LogLevel::Error) << "Could not create Output/" << Configuration::getOutputName() << "/map/rocketsites.txt";
+		exit(-1);
+	}
+	for (auto state: states->getStates())
+	{
+		auto provinces = state.second->getProvinces();
+		rocketSitesFile << state.second->getID() << " = { " << *provinces.begin() << " }\n";
 	}
 	out.close();
 	string filename2("Output/" + Configuration::getOutputName() + "/map/airports.txt");
@@ -312,47 +320,34 @@ void HoI4World::outputMap() const
 		vector<int> provinces2 = state.second->getProvinces();
 		out2 << state.second->getID() << " = { " << provinces2.front() << " }\r\n";
 	}
-	out2.close();
+	for (auto state: states->getStates())
+	{
+		auto provinces = state.second->getProvinces();
+		airportsFile << state.second->getID() << " = { " << *provinces.begin() << " }\n";
+	}
+	airportsFile.close();
 
 	string filename3("Output/" + Configuration::getOutputName() + "/map/buildings.txt");
 	ofstream out3;
 	out3.open(filename3);
 	out3.close();
+
+	// output strategic regions
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/map/strategicregions"))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/map/strategicregions";
+		exit(-1);
+	}
+	for (auto strategicRegion: strategicRegions)
+	{
+		strategicRegion.second->output("Output/" + Configuration::getOutputName() + "/map/strategicregions/");
+	}
 }
+
 
 void HoI4World::outputHistory() const
 {
-
-	LOG(LogLevel::Debug) << "Writing states";
-	string statesPath = "Output/" + Configuration::getOutputName() + "/history/states";
-	if (!Utils::TryCreateFolder(statesPath))
-	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history/states";
-		exit(-1);
-	}
-	for (auto state : states)
-	{
-		string filename;
-		auto nameItr = stateFilenames.find(state.first);
-		if (nameItr == stateFilenames.end())
-		{
-			filename = to_string(state.first) + "-convertedState.txt";
-		}
-		else
-		{
-			filename = nameItr->second;
-		}
-		state.second->output(filename);
-	}
-	for (auto nameItr = stateFilenames.find(states.size() + 1); nameItr != stateFilenames.end(); nameItr++)
-	{
-		ofstream emptyStateFile("Output/" + Configuration::getOutputName() + "/history/states/" + nameItr->second);
-		if (!emptyStateFile.is_open())
-		{
-			LOG(LogLevel::Warning) << "Could not create " << "Output/" << Configuration::getOutputName() << "/history/states/" << nameItr->second;
-		}
-		emptyStateFile.close();
-	}
+	states->output();	
 
 	LOG(LogLevel::Debug) << "Writing countries";
 	string unitsPath = "Output/" + Configuration::getOutputName() + "/history/units";
@@ -364,15 +359,15 @@ void HoI4World::outputHistory() const
 	//old states
 	/*for (auto countryItr : countries)
 	{
-		countryItr.second->output(states.size(), states);
-	}*/
+		countryItr.second->output(states->getStates());
+	}
 	// Override vanilla history to suppress vanilla OOB and faction membership being read
 	vector<vector<HoI4Country*>> empty;
 	for (auto potentialItr : potentialCountries)
 	{
 		if (countries.find(potentialItr.first) == countries.end())
 		{
-			potentialItr.second->output(states.size(), states, empty, "asdf");
+			potentialItr.second->output(states->getStates());
 		}
 	}
 	LOG(LogLevel::Debug) << "Writing diplomacy";
@@ -400,9 +395,9 @@ void HoI4World::getProvinceLocalizations(const string& file)
 }
 
 
-void HoI4World::convertCountries(const V2World &sourceWorld, const CountryMapping& countryMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap)
+void HoI4World::convertCountries(const CountryMapping& countryMap, const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
 {
-	for (auto sourceItr : sourceWorld.getCountries())
+	for (auto sourceItr: sourceWorld->getCountries())
 	{
 		// don't convert rebels
 		if (sourceItr.first == "REB")
@@ -424,13 +419,13 @@ void HoI4World::convertCountries(const V2World &sourceWorld, const CountryMappin
 				std::string countryFileName = '/' + sourceItr.second->getName() + ".txt";
 				destCountry = new HoI4Country(HoI4Tag, countryFileName, this, true);
 			}
-			V2Party* rulingParty = sourceWorld.getRulingParty(sourceItr.second);
+			V2Party* rulingParty = sourceWorld->getRulingParty(sourceItr.second);
 			if (rulingParty == NULL)
 			{
 				LOG(LogLevel::Error) << "Could not find the ruling party for " << sourceItr.first << ". Were all mods correctly included?";
 				exit(-1);
 			}
-			destCountry->initFromV2Country(sourceWorld, sourceItr.second, rulingParty->ideology, countryMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, stateMap, states);
+			destCountry->initFromV2Country(*sourceWorld, sourceItr.second, rulingParty->ideology, countryMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, states->getProvinceToStateIDMap(), states->getStates());
 			countries.insert(make_pair(HoI4Tag, destCountry));
 		}
 		else
@@ -548,365 +543,26 @@ void HoI4World::outputSupply(const V2World &sourceWorld, const inverseProvinceMa
 			}
 		}
 
-	}
-	if (zoneid < 354)
-	{
-		for (int i = zoneid; i < 355; i++)
-		{
-			ofstream out;
-			filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(i) + "-SupplyArea.txt");
-			if (i == 346)
-				filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(i) + "-FaroeIslands.txt");
-			if (i == 347)
-				filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(i) + "-JohnstonAtoll.txt");
-			if (i == 348)
-				filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(i) + "-Jamaica.txt");
-			if (i == 349)
-				filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(i) + "-Ascension.txt");
-			if (i == 350)
-				filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(i) + "-DiegoGarcia.txt");
-			if (i == 351)
-				filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(i) + "-ChristmasIslands.txt");
-			if (i == 352)
-				filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(i) + "-CocosIslands.txt");
-			if (i == 353)
-				filename = ("Output/" + Configuration::getOutputName() + "/map/supplyareas/" + to_string(i) + "-KerguelenIslands.txt");
-			out.open(filename);
-			{
-
-				out.close();
-			}
-		}
-	}
-}
-
-void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, HoI4StateMapping& stateMap, V2Localisation& Vic2Localisations)
-{
-	// TODO - determine province owners for all HoI4 provinces
-	Object* obj = parser_UTF8::doParseFile("Resources.txt");
-	auto obj2 = obj->getValue("resources");
-	auto obj3 = obj2[0]->getValue("link");
-	auto obj4 = obj3[0]->getValue("province");
-	Object* navalobj = parser_UTF8::doParseFile("navalprovinces.txt");
-	auto navalobj2 = navalobj->getValue("navalprovinces");
-	auto navalobj3 = navalobj2[0]->getValue("link");
-	auto navalprovinces = navalobj3[0]->getValue("province");
-	//	loop through the vic2 countries
-	int stateID = 1;
-	for (auto country : sourceWorld.getCountries())
-	{
-
-		//	determine the relevant HoI4 country
-		string HoI4Tag = countryMap.GetHoI4Tag(country.first);
-		double employedworkersadjusted = 0;
-		for (auto vic2State : country.second->getStates())
-		{
-			for (auto prov : vic2State->getProvinces())
-			{
-				//takes employed workers and divides by 100,000 to convert
-				V2Province* sourceProvince = sourceWorld.getProvince(prov);
-				employedworkersadjusted += sourceProvince->getEmployedWorkers()*.00001;
-			}
-		}
-		//calculating the conversion between Vic2Employed Workers to HoI4 factories
-		double percentage = 0;
-		double sinner = sin(employedworkersadjusted / 150) * 100;
-		double logger = log10(employedworkersadjusted) * 15;
-		double HoI4TotalFactories = sinner + logger + 5;
-		HoI4Country* hoi4con = countries.find(HoI4Tag)->second;
-		if (employedworkersadjusted != 0)
-		{
-			percentage = HoI4TotalFactories / employedworkersadjusted;
-		}
-		//	loop through the states in the vic2 country
-		for (auto vic2State : country.second->getStates())
-		{
-			if (vic2State->getStateID() == "BRZ_2408")
-			{
-				int x;
-				x = 6;
-				Object* obj = parser_UTF8::doParseFile("Resources.txt");
-			}
-			bool lookfornavalbase = true;
-			string resources = "";
-			double stateWorkers = 0;
-			double stateFac = 0;
-			float population = 0;
-			double raillevel = 0;
-			double provinces = 0;
-			int navalbase = 0;
-			int navalbaselocation = 0;
-			for (auto prov : vic2State->getProvinces())
-			{
-
-				//gets population, raillevel, and workers in every state to convert slots and states*conversion percentage
-				V2Province* sourceProvince = sourceWorld.getProvince(prov);
-				if (sourceProvince->getNavalBase() > 0 && prov < 2800)
-				{
-					navalbase += sourceProvince->getNavalBase();
-					auto loc = inverseProvinceMap.find(prov);
-					if (loc->second.size() < 100)
-					{
-						for (auto HoI4ProvNum : loc->second)
-						{
-							if (HoI4ProvNum < 14000 && lookfornavalbase == true)
-							{
-								for (auto navalprov : navalprovinces)
-								{
-									string navalprovince = navalprov->getLeaf();
-									if (navalprovince == to_string(HoI4ProvNum))
-									{
-										navalbaselocation = HoI4ProvNum;
-										lookfornavalbase = false;
-										break;
-									}
-								}
-							}
-						}
-					}
-				}
-				population += sourceProvince->getLiteracyWeightedPopulation();
-				raillevel = sourceProvince->getInfra();
-				stateWorkers += sourceProvince->getEmployedWorkers()*.00001*percentage;
-				provinces++;
-			}
-			//used to make sure no negative factories
-			if (stateWorkers < 0)
-				stateWorkers = 0;
-
-			//slots is given per 120,000 people (need to change)
-			int stateSlots = population / 120000;
-			//make sure not larger then 12 so stateFac is properly limited to max state level
-			if (stateSlots > 12)
-				stateSlots = 12;
-			stateFac = round(stateWorkers);
-			//limits factories by max slots
-			if (stateFac > 12)
-				stateFac = 12;
-			if (stateFac >= stateSlots)
-				stateSlots = stateFac + 2;
-			//better rails for better industry
-			if (stateFac > 10)
-				raillevel += 3;
-			else if (stateFac > 6)
-				raillevel += 2;
-			else if (stateFac > 4)
-				raillevel++;
-			string catagory = "";
-			//names of city size to give correct number of slots
-			if (stateSlots >= 12)
-				catagory = "megalopolis";
-			else if (stateSlots >= 10)
-				catagory = "metropolis";
-			else if (stateSlots >= 8)
-				catagory = "large_city";
-			else if (stateSlots >= 6)
-				catagory = "city";
-			else if (stateSlots >= 5)
-				catagory = "large_town";
-			else if (stateSlots >= 4)
-				catagory = "town";
-			else if (stateSlots >= 2)
-				catagory = "rural";
-			else if (stateSlots >= 1)
-				catagory = "pastoral";
-			else
-				catagory = "enclave";
-
-			int civFac = 0;
-			int milFac = 0;
-			//0-6 gives a civ factory, 7-9 gives mil factory
-			for (int i = 0; i < stateFac; i++)
-			{
-				int randnmb = rand() % 10;
-				if (randnmb > 6)
-					milFac++;
-				else
-					civFac++;
-			}
-			//	create a matching HoI4 state
-			int provincecount = 0;
-			float newManpower = 1;
-			for (auto prov : vic2State->getProvinces())
-			{
-				V2Province* sourceProvince = sourceWorld.getProvince(prov);
-				newManpower += sourceProvince->getTotalPopulation() * 4;
-			}
-			if (newManpower <= 0)
-			{
-				newManpower = 1;
-			}
-
-			HoI4State* newState = new HoI4State(stateID, HoI4Tag, newManpower, civFac, milFac, catagory, raillevel, navalbase, navalbaselocation);
-
-			//	loop through the provinces in the vic2 state
-			for (auto vic2Province : vic2State->getProvinces())
-			{
-				//	TODO - if the matching HoI4 provinces are owned by this country, add it to the HoI4 state
-				auto provMapping = inverseProvinceMap.find(vic2Province);
-				if (provMapping != inverseProvinceMap.end())
-				{
-					for (auto HoI4ProvNum : provMapping->second)
-					{
-						for (auto itr : obj3)
-						{
-							auto keys = itr->getLeaves();
-							auto province = keys[0]->getLeaf();
-							if (to_string(HoI4ProvNum) == province)
-							{
-								for (int i = 1; i < keys.size(); i++)
-								{
-									auto key = keys[i]->getKey();
-									auto value = keys[i]->getLeaf();
-									resources += key + " = " + value + "\r\n";
-
-								}
-								newState->setResources(resources);
-							}
-
-						}
-						if (HoI4ProvNum != 0)
-						{
-							newState->addProvince(HoI4ProvNum);
-							stateMap.insert(make_pair(HoI4ProvNum, stateID));
-							provincecount++;
-						}
-					}
-				}
-			}
-
-			//	if the state is not empty, add it to this list of states
-			if (provincecount != 0)
-			{
-				localisation.addStateLocalisation(stateID, vic2State->getStateID(), Vic2Localisations);
-				states.insert(make_pair(stateID, newState));
-				stateID++;
-			}
-		}
-	}
-
-	//for (auto provItr : provinces)
-	//{
-	//	// get the appropriate mapping
-	//	provinceMapping::const_iterator provinceLink = provinceMap.find(provItr.first);
-	//	if ((provinceLink == provinceMap.end()) || (provinceLink->second.size() == 0))
-	//	{
-	//		LOG(LogLevel::Warning) << "No source for " << provItr.second->getName() << " (province " << provItr.first << ')';
-	//		continue;
-	//	}
-	//	else if (provinceLink->second[0] == 0)
-	//	{
-	//		continue;
-	//	}
-
-	//	provItr.second->clearCores();
-
-	//	V2Province*	oldProvince = NULL;
-	//	V2Country*	oldOwner = NULL;
-
-	//	// determine ownership by province count, or total population (if province count is tied)
-	//	map<string, MTo1ProvinceComp> provinceBins;
-	//	double newProvinceTotalPop = 0;
-	//	for (auto srcProvItr : provinceLink->second)
-	//	{
-	//		V2Province* srcProvince = sourceWorld.getProvince(srcProvItr);
-	//		if (!srcProvince)
-	//		{
-	//			LOG(LogLevel::Warning) << "Old province " << provinceLink->second[0] << " does not exist (bad mapping?)";
-	//			continue;
-	//		}
-	//		V2Country* owner = srcProvince->getOwner();
-	//		string tag;
-	//		if (owner != NULL)
-	//		{
-	//			tag = owner->getTag();
-	//		}
-	//		else
-	//		{
-	//			tag = "";
-	//		}
-
-	//		if (provinceBins.find(tag) == provinceBins.end())
-	//		{
-	//			provinceBins[tag] = MTo1ProvinceComp();
-	//		}
-	//		provinceBins[tag].provinces.push_back(srcProvince);
-	//		provinceBins[tag].totalPopulation += srcProvince->getTotalPopulation();
-	//		newProvinceTotalPop += srcProvince->getTotalPopulation();
-	//		// I am the new owner if there is no current owner, or I have more provinces than the current owner,
-	//		// or I have the same number of provinces, but more population, than the current owner
-	//		if ((oldOwner == NULL)
-	//			|| (provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size())
-	//			|| ((provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size())
-	//				&& (provinceBins[tag].totalPopulation > provinceBins[oldOwner->getTag()].totalPopulation)))
-	//		{
-	//			oldOwner = owner;
-	//			oldProvince = srcProvince;
-	//		}
-	//	}
-	//	if (oldOwner == NULL)
-	//	{
-	//		provItr.second->setOwner("");
-	//		continue;
-	//	}
-
-	//	// convert from the source provinces
-	//	const string HoI4Tag = countryMap[oldOwner->getTag()];
-	//	if (HoI4Tag.empty())
-	//	{
-	//		LOG(LogLevel::Warning) << "Could not map provinces owned by " << oldOwner->getTag();
-	//	}
-	//	else
-	//	{
-	//		provItr.second->setOwner(HoI4Tag);
-	//		map<string, HoI4Country*>::iterator ownerItr = countries.find(HoI4Tag);
-	//		if (ownerItr != countries.end())
-	//		{
-	//			ownerItr->second->addProvince(provItr.second);
-	//		}
-	//		provItr.second->convertFromOldProvince(oldProvince);
-
-	//		for (auto srcOwnerItr : provinceBins)
-	//		{
-	//			for (auto srcProvItr : srcOwnerItr.second.provinces)
-	//			{
-	//				// convert cores
-	//				vector<V2Country*> oldCores = srcProvItr->getCores(sourceWorld.getCountries());
-	//				for (auto oldCoreItr : oldCores)
-	//				{
-	//					// skip this core if the country is the owner of the V2 province but not the HoI4 province
-	//					// (i.e. "avoid boundary conflicts that didn't exist in V2").
-	//					// this country may still get core via a province that DID belong to the current HoI4 owner
-	//					if ((oldCoreItr->getTag() == srcOwnerItr.first) && (oldCoreItr != oldOwner))
-	//					{
-	//						continue;
-	//					}
-
-	//					const string coreOwner = countryMap[oldCoreItr->getTag()];
-	//					if (coreOwner != "")
-	//					{
-	//						provItr.second->addCore(coreOwner);
-	//					}
-	//				}
-	//			}
-	//		}
-	//	}
-	//}
-}
-
-
-void HoI4World::convertNavalBases(const V2World &sourceWorld, const inverseProvinceMapping& inverseProvinceMap)
+void HoI4World::convertNavalBases(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap)
 {
 	// convert naval bases. There should only be one per Vic2 naval base
 	for (auto mapping : inverseProvinceMap)
 	{
-		auto sourceProvince = sourceWorld.getProvince(mapping.first);
-		int navalBaseLevel = sourceProvince->getNavalBase();
-		navalBaseLevel = max(0, (navalBaseLevel - 3) * 2 + 1);
-		if (mapping.second.size() > 0)
+		int navalProvince = stoi(provice->getLeaf());
+		navalProvinces.insert(make_pair(navalProvince, navalProvince));
+	}
+
+	// convert naval bases. There should only be one per HoI4 state
+	for (auto state: states->getStates())
+	{
+		auto vic2State = state.second->getSourceState();
+
+		int		navalBaseLevel		= 0;
+		int		navalBaseLocation	= 0;
+		for (auto provinceNum: vic2State->getProvinces())
 		{
-			auto destProvince = provinces.find(mapping.second[0]);
-			if (destProvince != provinces.end())
+			V2Province* sourceProvince = sourceWorld->getProvince(provinceNum);
+			if (sourceProvince->getNavalBase() > 0)
 			{
 				destProvince->second->requireNavalBase(navalBaseLevel);
 			}
@@ -915,7 +571,7 @@ void HoI4World::convertNavalBases(const V2World &sourceWorld, const inverseProvi
 }
 
 
-void HoI4World::convertProvinceItems(const V2World& sourceWorld, const provinceMapping& provinceMap, const inverseProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap)
+void HoI4World::convertIndustry()
 {
 	for (auto state : states)
 	{
@@ -925,8 +581,9 @@ void HoI4World::convertProvinceItems(const V2World& sourceWorld, const provinceM
 
 		}
 	}
-	// now that all provinces have had owners and cores set, convert their other items
-	for (auto mapping : inverseProvinceMap)
+
+	//	loop through the HoI4 states to set the factory levels
+	for (auto HoI4State: states->getStates())
 	{
 		// get the source province
 		int srcProvinceNum = mapping.first;
@@ -935,22 +592,32 @@ void HoI4World::convertProvinceItems(const V2World& sourceWorld, const provinceM
 		{
 			continue;
 		}
+		double	stateWorkers		= 0;
+		int		stateFactories		= 0;
+		int		population			= 0;
+		int		railLevel			= 0;
+		for (auto provinceNum: Vic2State->getProvinces())
+		{
+			// get population, rail level, and workers to convert slots and states*conversion percentage
+			V2Province* sourceProvince = sourceWorld->getProvince(provinceNum);
 
 		// convert items that apply to all destination provinces
 		for (auto dstProvinceNum : mapping.second)
 		{
-			// get the destination province
-			auto dstProvItr = provinces.find(dstProvinceNum);
-			if (dstProvItr == provinces.end())
-			{
-				continue;
-			}
+			stateWorkers = 0;
+		}
+		stateFactories = static_cast<int>(round(stateWorkers));
+		if ((stateFactories + HoI4State.second->getDockyards()) > 12) // limit factories by 12 (the max slots)
+		{
+			stateFactories = 12 - HoI4State.second->getDockyards();
+		}
 
-			// source provinces from other owners should not contribute to the destination province
-			if (countryMap[sourceProvince->getOwnerString()] != dstProvItr->second->getOwner())
-			{
-				continue;
-			}
+		// determine state category
+		int stateSlots = population / 120000; // one slot is given per 120,000 people (need to change)
+		if ((stateFactories + HoI4State.second->getDockyards()) >= stateSlots)
+		{
+			stateSlots = stateFactories + HoI4State.second->getDockyards() + 2;
+		}
 
 			// determine if this is a border province or not
 			bool borderProvince = false;
@@ -1001,8 +668,172 @@ void HoI4World::convertProvinceItems(const V2World& sourceWorld, const provinceM
 			}
 		}
 
-		// convert items that apply to only one destination province
-		if (mapping.second.size() > 0)
+	//// now that all provinces have had owners and cores set, convert their other items
+	//for (auto mapping: inverseProvinceMap)
+	//{
+	//	// get the source province
+	//	int srcProvinceNum = mapping.first;
+	//	V2Province* sourceProvince = sourceWorld->getProvince(srcProvinceNum);
+	//	if (sourceProvince == NULL)
+	//	{
+	//		continue;
+	//	}
+
+	//	// convert items that apply to all destination provinces
+	//	for (auto dstProvinceNum: mapping.second)
+	//	{
+	//		// get the destination province
+	//		auto dstProvItr = provinces.find(dstProvinceNum);
+	//		if (dstProvItr == provinces.end())
+	//		{
+	//			continue;
+	//		}
+
+	//		// source provinces from other owners should not contribute to the destination province
+	//		if (countryMap[sourceProvince->getOwnerString()] != dstProvItr->second->getOwner())
+	//		{
+	//			continue;
+	//		}
+
+	//		// determine if this is a border province or not
+	//		bool borderProvince = false;
+	//		if (HoI4AdjacencyMap.size() > static_cast<unsigned int>(dstProvinceNum))
+	//		{
+	//			const vector<adjacency> adjacencies = HoI4AdjacencyMap[dstProvinceNum];
+	//			for (auto adj: adjacencies)
+	//			{
+	//				auto province = provinces.find(dstProvinceNum);
+	//				auto adjacentProvince = provinces.find(adj.to);
+	//				if ((province != provinces.end()) && (adjacentProvince != provinces.end()) && (province->second->getOwner() != adjacentProvince->second->getOwner()))
+	//				{
+	//					borderProvince = true;
+	//					break;
+	//				}
+	//			}
+	//		}
+
+	//		// convert forts, naval bases, and infrastructure
+	//		int fortLevel = sourceProvince->getFort();
+	//		fortLevel = max(0, (fortLevel - 5) * 2 + 1);
+	//		if (dstProvItr->second->getNavalBase() > 0)
+	//		{
+	//			dstProvItr->second->requireCoastalFort(fortLevel);
+	//		}
+	//		if (borderProvince)
+	//		{
+	//			dstProvItr->second->requireLandFort(fortLevel);
+	//		}
+	//		dstProvItr->second->requireInfrastructure((int)Configuration::getMinInfra());
+	//		if (sourceProvince->getInfra() > 0) // No infra stays at minInfra
+	//		{
+	//			dstProvItr->second->requireInfrastructure(sourceProvince->getInfra() + 4);
+	//		}
+
+	//		if ((Configuration::getLeadershipConversion() == "linear") || (Configuration::getLeadershipConversion() == "squareroot"))
+	//		{
+	//			dstProvItr->second->setLeadership(0.0);
+	//		}
+	//		if ((Configuration::getManpowerConversion() == "linear") || (Configuration::getManpowerConversion() == "squareroot"))
+	//		{
+	//			dstProvItr->second->setManpower(0.0);
+	//		}
+	//		if ((Configuration::getIcConversion() == "squareroot") || (Configuration::getIcConversion() == "linear") || (Configuration::getIcConversion() == "logarithmic"))
+	//		{
+	//			dstProvItr->second->setRawIndustry(0.0);
+	//			dstProvItr->second->setActualIndustry(0);
+	//		}
+	//	}
+
+	//	// convert items that apply to only one destination province
+	//	if (mapping.second.size() > 0)
+	//	{
+	//		// get the destination province
+	//		auto dstProvItr = provinces.find(mapping.second[0]);
+	//		if (dstProvItr == provinces.end())
+	//		{
+	//			continue;
+	//		}
+
+	//		// convert industry
+	//		double industry = sourceProvince->getEmployedWorkers();
+	//		if (Configuration::getIcConversion() == "squareroot")
+	//		{
+	//			industry = sqrt(double(industry)) * 0.01294;
+	//			dstProvItr->second->addRawIndustry(industry * Configuration::getIcFactor());
+	//		}
+	//		else if (Configuration::getIcConversion() == "linear")
+	//		{
+	//			industry = double(industry) * 0.0000255;
+	//			dstProvItr->second->addRawIndustry(industry * Configuration::getIcFactor());
+	//		}
+	//		else if (Configuration::getIcConversion() == "logarithmic")
+	//		{
+	//			industry = log(max(1.0, industry / 70000)) / log(2) * 5.33;
+	//			dstProvItr->second->addRawIndustry(industry * Configuration::getIcFactor());
+	//		}
+
+	//		// convert manpower
+	//		double newManpower = sourceProvince->getPopulation("soldiers")
+	//			+ sourceProvince->getPopulation("craftsmen") * 0.25 // Conscripts
+	//			+ sourceProvince->getPopulation("labourers") * 0.25 // Conscripts
+	//			+ sourceProvince->getPopulation("farmers") * 0.25; // Conscripts
+	//		if (Configuration::getManpowerConversion() == "linear")
+	//		{
+	//			newManpower *= 0.00003 * Configuration::getManpowerFactor();
+	//			newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
+	//			dstProvItr->second->addManpower(newManpower);
+	//		}
+	//		else if (Configuration::getManpowerConversion() == "squareroot")
+	//		{
+	//			newManpower = sqrt(newManpower);
+	//			newManpower *= 0.0076 * Configuration::getManpowerFactor();
+	//			newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
+	//			dstProvItr->second->addManpower(newManpower);
+	//		}
+
+	//		// convert leadership
+	//		double newLeadership = sourceProvince->getLiteracyWeightedPopulation("clergymen") * 0.5
+	//			+ sourceProvince->getPopulation("officers")
+	//			+ sourceProvince->getLiteracyWeightedPopulation("clerks") // Clerks representing researchers
+	//			+ sourceProvince->getLiteracyWeightedPopulation("capitalists") * 0.5
+	//			+ sourceProvince->getLiteracyWeightedPopulation("bureaucrats") * 0.25
+	//			+ sourceProvince->getLiteracyWeightedPopulation("aristocrats") * 0.25;
+	//		if (Configuration::getLeadershipConversion() == "linear")
+	//		{
+	//			newLeadership *= 0.00001363 * Configuration::getLeadershipFactor();
+	//			newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
+	//			dstProvItr->second->addLeadership(newLeadership);
+	//		}
+	//		else if (Configuration::getLeadershipConversion() == "squareroot")
+	//		{
+	//			newLeadership = sqrt(newLeadership);
+	//			newLeadership *= 0.00147 * Configuration::getLeadershipFactor();
+	//			newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
+	//			dstProvItr->second->addLeadership(newLeadership);
+	//		}
+	//	}
+	//}
+}
+
+
+void HoI4World::convertResources()
+{
+	Object* fileObj = parser_UTF8::doParseFile("Resources.txt");
+	if (fileObj == nullptr)
+	{
+		LOG(LogLevel::Error) << "Could not read resources.txt";
+		exit(-1);
+	}
+
+	auto resourcesObj	= fileObj->getValue("resources");
+	auto linksObj		= resourcesObj[0]->getValue("link");
+
+	map<int, map<string, double> > resourceMap;
+	for (auto linkObj: linksObj)
+	{
+		int provinceNumber = stoi(linkObj->getLeaf("province"));
+		auto mapping = resourceMap.find(provinceNumber);
+		if (mapping == resourceMap.end())
 		{
 			// get the destination province
 			auto dstProvItr = provinces.find(mapping.second[0]);
@@ -1029,12 +860,12 @@ void HoI4World::convertProvinceItems(const V2World& sourceWorld, const provinceM
 				dstProvItr->second->addRawIndustry(industry * Configuration::getIcFactor());
 			}
 
-			// convert manpower
-			double newManpower = sourceProvince->getPopulation("soldiers")
-				+ sourceProvince->getPopulation("craftsmen") * 0.25 // Conscripts
-				+ sourceProvince->getPopulation("labourers") * 0.25 // Conscripts
-				+ sourceProvince->getPopulation("farmers") * 0.25; // Conscripts
-			if (Configuration::getManpowerConversion() == "linear")
+	for (auto state: states->getStates())
+	{
+		for (auto provinceNumber: state.second->getProvinces())
+		{
+			auto mapping = resourceMap.find(provinceNumber);
+			if (mapping != resourceMap.end())
 			{
 				newManpower *= 0.00003 * Configuration::getManpowerFactor();
 				newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
@@ -1048,14 +879,15 @@ void HoI4World::convertProvinceItems(const V2World& sourceWorld, const provinceM
 				dstProvItr->second->addManpower(newManpower);
 			}
 
-			// convert leadership
-			double newLeadership = sourceProvince->getLiteracyWeightedPopulation("clergymen") * 0.5
-				+ sourceProvince->getPopulation("officers")
-				+ sourceProvince->getLiteracyWeightedPopulation("clerks") // Clerks representing researchers
-				+ sourceProvince->getLiteracyWeightedPopulation("capitalists") * 0.5
-				+ sourceProvince->getLiteracyWeightedPopulation("bureaucrats") * 0.25
-				+ sourceProvince->getLiteracyWeightedPopulation("aristocrats") * 0.25;
-			if (Configuration::getLeadershipConversion() == "linear")
+
+void HoI4World::convertSupplyZones(const map<int, int>& provinceToSupplyZoneMap)
+{
+	for (auto state: states->getStates())
+	{
+		for (auto province: state.second->getProvinces())
+		{
+			auto mapping = provinceToSupplyZoneMap.find(province);
+			if (mapping != provinceToSupplyZoneMap.end())
 			{
 				newLeadership *= 0.00001363 * Configuration::getLeadershipFactor();
 				newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
@@ -1073,7 +905,75 @@ void HoI4World::convertProvinceItems(const V2World& sourceWorld, const provinceM
 }
 
 
-void HoI4World::convertTechs(const V2World& sourceWorld)
+void HoI4World::convertStrategicRegions()
+{
+	// assign the states to strategic regions
+	for (auto state: states->getStates())
+	{
+		// figure out which strategic regions are represented
+		map<int, int> usedRegions;	// region ID -> number of provinces in that region
+		for (auto province: state.second->getProvinces())
+		{
+			auto mapping = provinceToStratRegionMap.find(province);
+			if (mapping == provinceToStratRegionMap.end())
+			{
+				LOG(LogLevel::Warning) << "Province " << province << " had no original strategic region";
+				continue;
+			}
+
+			auto usedRegion = usedRegions.find(mapping->second);
+			if (usedRegion == usedRegions.end())
+			{
+				usedRegions.insert(make_pair(mapping->second, 1));
+			}
+			else
+			{
+				usedRegion->second++;
+			}
+
+			provinceToStratRegionMap.erase(mapping);
+		}
+
+		// pick the most represented strategic region
+		int mostProvinces	= 0;
+		int bestRegion		= 0;
+		for (auto region: usedRegions)
+		{
+			if (region.second > mostProvinces)
+			{
+				bestRegion		= region.first;
+				mostProvinces	= region.second;
+			}
+		}
+
+		// add the state's province to the region
+		auto region = strategicRegions.find(bestRegion);
+		if (region == strategicRegions.end())
+		{
+			LOG(LogLevel::Warning) << "Strategic region " << bestRegion << " was not in the list of regions.";
+			continue;
+		}
+		for (auto province: state.second->getProvinces())
+		{
+			region->second->addNewProvince(province);
+		}
+	}
+
+	// add leftover provinces back to their strategic regions
+	for (auto mapping: provinceToStratRegionMap)
+	{
+		auto region = strategicRegions.find(mapping.second);
+		if (region == strategicRegions.end())
+		{
+			LOG(LogLevel::Warning) << "Strategic region " << mapping.second << " was not in the list of regions.";
+			continue;
+		}
+		region->second->addNewProvince(mapping.first);
+	}
+}
+
+
+void HoI4World::convertTechs()
 {
 	map<string, vector<pair<string, int> > > techTechMap;
 	map<string, vector<pair<string, int> > > invTechMap;
@@ -1362,434 +1262,7 @@ int HoI4World::getAirLocation(HoI4Province* locationProvince, const HoI4Adjacenc
 }
 
 
-vector<HoI4Regiment*> HoI4World::convertRegiments(const unitTypeMapping& unitTypeMap, vector<V2Regiment*>& sourceRegiments, map<string, unsigned>& typeCount, const pair<string, HoI4Country*>& country)
-{
-	vector<HoI4Regiment*> destRegiments;
-
-	for (auto regItr : sourceRegiments)
-	{
-		HoI4Regiment* destReg = new HoI4Regiment();
-		destReg->setName(regItr->getName());
-
-		auto typeMap = unitTypeMap.find(regItr->getType());
-		if (typeMap == unitTypeMap.end())
-		{
-			LOG(LogLevel::Debug) << "Regiment " << regItr->getName() << " has unmapped unit type " << regItr->getType() << ", dropping.";
-			continue;
-		}
-		else if (typeMap->second.empty()) // Silently skip the ones that purposefully have no mapping
-		{
-			continue;
-		}
-
-		const multimap<HoI4RegimentType, unsigned>& hoiMapList = typeMap->second;
-		unsigned destMapIndex = typeCount[regItr->getType()]++ % hoiMapList.size();
-		multimap<HoI4RegimentType, unsigned>::const_iterator destTypeItr = hoiMapList.begin();
-
-		// Count down from destMapIndex to iterate to the correct destination type
-		for (; destMapIndex > 0 && destTypeItr != hoiMapList.end(); --destMapIndex)
-		{
-			++destTypeItr;
-		}
-
-		if (!destTypeItr->first.getUsableBy().empty()) // This unit type is exclusive
-		{
-			unsigned skippedCount = 0;
-			while (skippedCount < hoiMapList.size())
-			{
-				const set<string> &usableByCountries = destTypeItr->first.getUsableBy();
-
-				if (usableByCountries.empty() || usableByCountries.find(country.first) != usableByCountries.end())
-				{
-					break;
-				}
-
-				++skippedCount;
-				++destTypeItr;
-				++typeCount[regItr->getType()];
-				if (destTypeItr == hoiMapList.end())
-				{
-					destTypeItr = hoiMapList.begin();
-				}
-			}
-
-			if (skippedCount == hoiMapList.size())
-			{
-				LOG(LogLevel::Warning) << "Regiment " << regItr->getName() << " has unit type " << regItr->getType() << ", but it is mapped only to units exclusive to other countries. Dropping.";
-				continue;
-			}
-		}
-
-		destReg->setType(destTypeItr->first);
-		destReg->setHistoricalModel(destTypeItr->second);
-		destReg->setReserve(true);
-		destRegiments.push_back(destReg);
-
-		// Contribute to country's practicals
-		country.second->getPracticals()[destTypeItr->first.getPracticalBonus()] += Configuration::getPracticalsScale() * destTypeItr->first.getPracticalBonusFactor();
-	}
-
-	return destRegiments;
-}
-
-
-HoI4RegGroup* HoI4World::createArmy(const inverseProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string tag, const V2Army* oldArmy, vector<HoI4Regiment*>& regiments, int& airForceIndex)
-{
-	HoI4RegGroup* destArmy = new HoI4RegGroup();
-
-	// determine if an army or navy
-	if (oldArmy->getNavy())
-	{
-		destArmy->setForceType(navy);
-		destArmy->setAtSea(oldArmy->getAtSea());
-	}
-	else
-	{
-		destArmy->setForceType(land);
-	}
-
-	// get potential locations
-	vector<int> locationCandidates = getHoI4ProvinceNums(inverseProvinceMap, oldArmy->getLocation());
-	if (locationCandidates.size() == 0)
-	{
-		LOG(LogLevel::Warning) << "Army or Navy " << oldArmy->getName() << " assigned to unmapped province " << oldArmy->getLocation() << "; placing units in the production queue.";
-		destArmy->setProductionQueue(true);
-	}
-
-	// guarantee that navies are assigned to sea provinces, or land provinces with naval bases
-	if ((locationCandidates.size() > 0) && (oldArmy->getNavy()) && (!oldArmy->getAtSea()))
-	{
-		map<int, HoI4Province*>::const_iterator pitr = provinces.find(locationCandidates[0]);
-		if (pitr != provinces.end() && pitr->second->isLand())
-		{
-			locationCandidates = getPortLocationCandidates(locationCandidates, HoI4AdjacencyMap);
-			if (locationCandidates.size() == 0)
-			{
-				LOG(LogLevel::Warning) << "Navy " << oldArmy->getName() << " assigned to V2 province " << oldArmy->getLocation() << " which has no corresponding HoI4 port provinces or adjacent sea provinces; placing units in the production queue.";
-				destArmy->setProductionQueue(true);
-			}
-		}
-	}
-
-	// pick the actual location
-	int selectedLocation;
-	HoI4Province* locationProvince = NULL;
-	if (locationCandidates.size() > 0)
-	{
-		selectedLocation = locationCandidates[rand() % locationCandidates.size()];
-		destArmy->setLocation(selectedLocation);
-		map<int, HoI4Province*>::iterator pitr = provinces.find(selectedLocation);
-		if (pitr != provinces.end())
-		{
-			locationProvince = pitr->second;
-		}
-		else if (!oldArmy->getNavy())
-		{
-			destArmy->setProductionQueue(true);
-		}
-	}
-
-	// handle navies
-	if (oldArmy->getNavy())
-	{
-		for (auto regiment : regiments)
-		{
-			destArmy->addRegiment(*regiment, true);
-		}
-		return destArmy;
-	}
-
-	// air units need to be split into air forces, so create an air force regiment to hold any air units
-	HoI4RegGroup destWing;
-	destWing.setForceType(air);
-	HoI4Province* airLocationProvince = NULL;
-	if (!destArmy->getProductionQueue())
-	{
-		int airLocation = -1;
-		if (locationProvince != NULL)
-		{
-			airLocation = getAirLocation(locationProvince, HoI4AdjacencyMap, tag);
-		}
-		destWing.setLocation(airLocation);
-		map<int, HoI4Province*>::iterator pitr = provinces.find(airLocation);
-		if (pitr != provinces.end())
-		{
-			airLocationProvince = pitr->second;
-		}
-		else
-		{
-			destWing.setProductionQueue(true);
-		}
-	}
-	else
-	{
-		destWing.setProductionQueue(true);
-	}
-
-	// separate all air regiments into the air force
-	vector<HoI4Regiment*> unprocessedRegiments;
-	for (auto regiment : regiments)
-	{
-		// Add to army/navy or newly created air force as appropriate
-		if (regiment->getForceType() == air)
-		{
-			destWing.addRegiment(*regiment, true);
-		}
-		else
-		{
-			unprocessedRegiments.push_back(regiment);
-		}
-	}
-	if (!destWing.isEmpty())
-	{
-		stringstream name;
-		name << ++airForceIndex << CardinalToOrdinal(airForceIndex) << " Air Force";
-		destWing.setName(name.str());
-
-		if (!destWing.getProductionQueue())
-		{
-			// make sure an airbase is waiting for them
-			airLocationProvince->requireAirBase(min(10, airLocationProvince->getAirBase() + (destWing.size() * 2)));
-		}
-		destArmy->addChild(destWing, true);
-	}
-	regiments.swap(unprocessedRegiments);
-	unprocessedRegiments.clear();
-
-	// put all 'armored' type regiments together
-	HoI4RegGroup armored;
-	armored.setForceType(land);
-	armored.setLocation(selectedLocation);
-	for (auto regiment : regiments)
-	{
-		// Add to army/navy or newly created air force as appropriate
-		if ((regiment->getType().getName() == "light_armor_brigade") ||
-			(regiment->getType().getName() == "armor_brigade") ||
-			(regiment->getType().getName() == "armored_car_brigade") ||
-			(regiment->getType().getName() == "tank_destroyer_brigade") ||
-			(regiment->getType().getName() == "motorized_brigade")
-			)
-		{
-			armored.addRegiment(*regiment, true);
-		}
-		else
-		{
-			unprocessedRegiments.push_back(regiment);
-		}
-	}
-	if (!armored.isEmpty())
-	{
-		destArmy->addChild(armored, true);
-	}
-	regiments.swap(unprocessedRegiments);
-	unprocessedRegiments.clear();
-
-	// put all 'specialist' type regiments together
-	HoI4RegGroup specialist;
-	specialist.setForceType(land);
-	specialist.setLocation(selectedLocation);
-	for (auto regiment : regiments)
-	{
-		// Add to army/navy or newly created air force as appropriate
-		if ((regiment->getType().getName() == "bergsjaeger_brigade") ||
-			(regiment->getType().getName() == "marine_brigade") ||
-			(regiment->getType().getName() == "police_brigade")
-			)
-		{
-			armored.addRegiment(*regiment, true);
-		}
-		else
-		{
-			unprocessedRegiments.push_back(regiment);
-		}
-	}
-	if (!specialist.isEmpty())
-	{
-		destArmy->addChild(specialist, true);
-	}
-	regiments.swap(unprocessedRegiments);
-	unprocessedRegiments.clear();
-
-	// make infantry and militia divisions, with support regiments added
-	while (true)
-	{
-		HoI4RegGroup newGroup;
-		newGroup.setForceType(land);
-		newGroup.setLocation(selectedLocation);
-
-		// get the first regiment (required)
-		for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
-		{
-			if (((*regiment)->getType().getName() == "infantry_brigade") ||
-				((*regiment)->getType().getName() == "militia_brigade")
-				)
-			{
-				newGroup.addRegiment(**regiment, true);
-				regiments.erase(regiment);
-				break;
-			}
-		}
-		if (newGroup.isEmpty())
-		{
-			break;
-		}
-
-		// get the second regiment (not required)
-		for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
-		{
-			if (((*regiment)->getType().getName() == "infantry_brigade") ||
-				((*regiment)->getType().getName() == "militia_brigade")
-				)
-			{
-				newGroup.addRegiment(**regiment, true);
-				regiments.erase(regiment);
-				break;
-			}
-		}
-
-		// get the support first regiment (not required, non-engineer preferred)
-		int numSupport = 0;
-		for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
-		{
-			if (((*regiment)->getType().getName() == "anti_air_brigade") ||
-				((*regiment)->getType().getName() == "anti_tank_brigade") ||
-				((*regiment)->getType().getName() == "artillery_brigade")
-				)
-			{
-				newGroup.addRegiment(**regiment, true);
-				regiments.erase(regiment);
-				numSupport++;
-				break;
-			}
-		}
-
-		// get the second support regiment (not required, non-engineer preferred)
-		for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
-		{
-			if (((*regiment)->getType().getName() == "anti_air_brigade") ||
-				((*regiment)->getType().getName() == "anti_tank_brigade") ||
-				((*regiment)->getType().getName() == "artillery_brigade")
-				)
-			{
-				newGroup.addRegiment(**regiment, true);
-				regiments.erase(regiment);
-				numSupport++;
-				break;
-			}
-		}
-
-		// add engineers as needed and available
-		if (numSupport < 2)
-		{
-			for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
-			{
-				if ((*regiment)->getType().getName() == "engineer_brigade")
-				{
-					newGroup.addRegiment(**regiment, true);
-					regiments.erase(regiment);
-					numSupport++;
-					break;
-				}
-			}
-		}
-		if (numSupport < 2)
-		{
-			for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
-			{
-				if ((*regiment)->getType().getName() == "engineer_brigade")
-				{
-					newGroup.addRegiment(**regiment, true);
-					regiments.erase(regiment);
-					break;
-				}
-			}
-		}
-
-		destArmy->addChild(newGroup, true);
-	}
-
-	// put together cavalry units (allow engineers to be included)
-	while (true)
-	{
-		HoI4RegGroup newGroup;
-		newGroup.setForceType(land);
-		newGroup.setLocation(selectedLocation);
-
-		// get the first regiment (required)
-		for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
-		{
-			if (((*regiment)->getType().getName() == "cavalry_brigade"))
-			{
-				newGroup.addRegiment(**regiment, true);
-				regiments.erase(regiment);
-				break;
-			}
-		}
-		if (newGroup.isEmpty())
-		{
-			break;
-		}
-
-		// get the second regiment (required to continue)
-		for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
-		{
-			if (((*regiment)->getType().getName() == "cavalry_brigade"))
-			{
-				newGroup.addRegiment(**regiment, true);
-				regiments.erase(regiment);
-				break;
-			}
-		}
-		if (newGroup.size() < 2)
-		{
-			destArmy->addChild(newGroup, true);
-			break;
-		}
-
-		// get the first engineer regiment (not required)
-		for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
-		{
-			if ((*regiment)->getType().getName() == "engineer_brigade")
-			{
-				newGroup.addRegiment(**regiment, true);
-				regiments.erase(regiment);
-				break;
-			}
-		}
-
-		// get the second engineer regiment (not required)
-		for (auto regiment = regiments.begin(); regiment != regiments.end(); regiment++)
-		{
-			if ((*regiment)->getType().getName() == "engineer_brigade")
-			{
-				newGroup.addRegiment(**regiment, true);
-				regiments.erase(regiment);
-				break;
-			}
-		}
-
-		destArmy->addChild(newGroup, true);
-	}
-
-	if (regiments.size() > 0)
-	{
-		LOG(LogLevel::Warning) << "Leftover regiments in " << tag << "'s army " << oldArmy->getName() << ". Likely too many support units.";
-		for (auto regiment : regiments)
-		{
-			HoI4RegGroup newGroup;
-			newGroup.setForceType(land);
-			newGroup.setLocation(selectedLocation);
-			newGroup.addRegiment(*regiment, true);
-			destArmy->addChild(newGroup, true);
-		}
-	}
-
-
-	return destArmy;
-}
-
-
-void HoI4World::convertArmies(const V2World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap)
+void HoI4World::convertArmies(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap)
 {
 	//unitTypeMapping unitTypeMap = getUnitMappings();
 
@@ -1894,13 +1367,13 @@ void HoI4World::checkManualFaction(const CountryMapping& countryMap, const vecto
 void HoI4World::factionSatellites()
 {
 	// make sure that any vassals are in their master's faction
-	const vector<HoI4Agreement>& agreements = diplomacy.getAgreements();
+	const vector<const HoI4Agreement*>& agreements = diplomacy.getAgreements();
 	for (auto agreement : agreements)
 	{
-		if (agreement.type == "vassa")
+		if (agreement->type == "vassal")
 		{
-			auto masterCountry = countries.find(agreement.country1);
-			auto satelliteCountry = countries.find(agreement.country2);
+			auto masterCountry = countries.find(agreement->country1);
+			auto satelliteCountry = countries.find(agreement->country2);
 			if ((masterCountry != countries.end()) && (masterCountry->second->getFaction() != "") && (satelliteCountry != countries.end()))
 			{
 				satelliteCountry->second->setFaction(masterCountry->second->getFaction());
@@ -1910,7 +1383,7 @@ void HoI4World::factionSatellites()
 }
 
 
-void HoI4World::setFactionMembers(const V2World &sourceWorld, const CountryMapping& countryMap)
+void HoI4World::setFactionMembers(const CountryMapping& countryMap)
 {
 	// find faction memebers
 	if (Configuration::getFactionLeaderAlgo() == "manua")
@@ -1924,7 +1397,7 @@ void HoI4World::setFactionMembers(const V2World &sourceWorld, const CountryMappi
 	{
 		LOG(LogLevel::Info) << "Auto faction allocation requested.";
 
-		const vector<string>& greatCountries = sourceWorld.getGreatCountries();
+		const vector<string>& greatCountries = sourceWorld->getGreatCountries();
 		for (auto countryItr : greatCountries)
 		{
 			auto itr = countries.find(countryMap[countryItr]);
@@ -2144,9 +1617,9 @@ void HoI4World::setAlignments()
 }
 
 
-void HoI4World::configureFactions(const V2World &sourceWorld, const CountryMapping& countryMap)
+void HoI4World::configureFactions(const CountryMapping& countryMap)
 {
-	setFactionMembers(sourceWorld, countryMap);
+	setFactionMembers(countryMap);
 	factionSatellites(); // push satellites into the same faction as their parents
 	setAlignments();
 }
@@ -2159,7 +1632,9 @@ void HoI4World::generateLeaders(const leaderTraitsMap& leaderTraits, const names
 		country.second->generateLeaders(leaderTraits, namesMap, portraitMap);
 	}
 }
-void HoI4World::calculateArmies(const inverseProvinceMapping& inverseProvinceMap)
+
+
+void HoI4World::convertArmies(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap)
 {
 	for (auto country : countries)
 	{
@@ -2167,7 +1642,17 @@ void HoI4World::calculateArmies(const inverseProvinceMapping& inverseProvinceMap
 	}
 }
 
-void HoI4World::consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap)
+
+void HoI4World::convertNavies()
+{
+	for (auto country: countries)
+	{
+		country.second->convertNavy(states->getStates());
+	}
+}
+
+
+void HoI4World::consolidateProvinceItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap)
 {
 	double totalManpower = 0.0;
 	double totalLeadership = 0.0;
@@ -2188,7 +1673,7 @@ void HoI4World::consolidateProvinceItems(const inverseProvinceMapping& inversePr
 }
 
 
-void HoI4World::convertVictoryPoints(const V2World& sourceWorld, const CountryMapping& countryMap)
+void HoI4World::convertVictoryPoints(const CountryMapping& countryMap)
 {
 	// all country capitals get five VP
 	for (auto countryItr : countries)
@@ -2201,8 +1686,8 @@ void HoI4World::convertVictoryPoints(const V2World& sourceWorld, const CountryMa
 	}
 
 	// Great Power capitals get another five
-	const std::vector<string>& greatCountries = sourceWorld.getGreatCountries();
-	for (auto country : sourceWorld.getGreatCountries())
+	const std::vector<string>& greatCountries = sourceWorld->getGreatCountries();
+	for (auto country: sourceWorld->getGreatCountries())
 	{
 		const std::string& HoI4Tag = countryMap[country];
 		auto countryItr = countries.find(HoI4Tag);
@@ -2247,9 +1732,9 @@ void HoI4World::convertVictoryPoints(const V2World& sourceWorld, const CountryMa
 }
 
 
-void HoI4World::convertDiplomacy(const V2World& sourceWorld, const CountryMapping& countryMap)
+void HoI4World::convertDiplomacy(const CountryMapping& countryMap)
 {
-	for (auto agreement : sourceWorld.getDiplomacy()->getAgreements())
+	for (auto agreement: sourceWorld->getDiplomacy()->getAgreements())
 	{
 		string HoI4Tag1 = countryMap[agreement.country1];
 		if (HoI4Tag1.empty())
@@ -2279,11 +1764,11 @@ void HoI4World::convertDiplomacy(const V2World& sourceWorld, const CountryMappin
 		if ((agreement.type == "alliance") || (agreement.type == "vassa"))
 		{
 			// copy agreement
-			HoI4Agreement HoI4a;
-			HoI4a.country1 = HoI4Tag1;
-			HoI4a.country2 = HoI4Tag2;
-			HoI4a.start_date = agreement.start_date;
-			HoI4a.type = agreement.type;
+			HoI4Agreement* HoI4a = new HoI4Agreement;
+			HoI4a->country1 = HoI4Tag1;
+			HoI4a->country2 = HoI4Tag2;
+			HoI4a->start_date = agreement.start_date;
+			HoI4a->type = agreement.type;
 			diplomacy.addAgreement(HoI4a);
 
 			if (agreement.type == "alliance")
@@ -2299,30 +1784,30 @@ void HoI4World::convertDiplomacy(const V2World& sourceWorld, const CountryMappin
 	{
 		for (auto relationItr : country.second->getRelations())
 		{
-			HoI4Agreement HoI4a;
+			HoI4Agreement* HoI4a = new HoI4Agreement;
 			if (country.first < relationItr.first) // Put it in order to eliminate duplicate relations entries
 			{
-				HoI4a.country1 = country.first;
-				HoI4a.country2 = relationItr.first;
+				HoI4a->country1 = country.first;
+				HoI4a->country2 = relationItr.first;
 			}
 			else
 			{
-				HoI4a.country2 = relationItr.first;
-				HoI4a.country1 = country.first;
+				HoI4a->country2 = relationItr.first;
+				HoI4a->country1 = country.first;
 			}
 
-			HoI4a.value = relationItr.second->getRelations();
-			HoI4a.start_date = date("1930.1.1"); // Arbitrary date
-			HoI4a.type = "relation";
+			HoI4a->value = relationItr.second->getRelations();
+			HoI4a->start_date = date("1930.1.1"); // Arbitrary date
+			HoI4a->type = "relation";
 			diplomacy.addAgreement(HoI4a);
 
 			if (relationItr.second->getGuarantee())
 			{
-				HoI4Agreement HoI4a;
-				HoI4a.country1 = country.first;
-				HoI4a.country2 = relationItr.first;
-				HoI4a.start_date = date("1930.1.1"); // Arbitrary date
-				HoI4a.type = "guarantee";
+				HoI4Agreement* HoI4a = new HoI4Agreement;
+				HoI4a->country1 = country.first;
+				HoI4a->country2 = relationItr.first;
+				HoI4a->start_date = date("1930.1.1"); // Arbitrary date
+				HoI4a->type = "guarantee";
 				diplomacy.addAgreement(HoI4a);
 			}
 			if (relationItr.second->getSphereLeader())
@@ -2371,9 +1856,9 @@ void HoI4World::createIdeologyFiles()
 	Utils::TryCopyFile("NeededFiles/countrypoliticsview.gfx", "Output/" + Configuration::getOutputName() + "/interface/countrypoliticsview.gfx");
 	Utils::copyFolder("NeededFiles/defines", "Output/" + Configuration::getOutputName() + "/common");
 }
-void HoI4World::copyFlags(const V2World &sourceWorld, const CountryMapping& countryMap)
-{
 
+void HoI4World::copyFlags(const CountryMapping& countryMap)
+{
 
 	LOG(LogLevel::Debug) << "Copying flags";
 
@@ -2390,7 +1875,7 @@ void HoI4World::copyFlags(const V2World &sourceWorld, const CountryMapping& coun
 	}
 
 	const std::string folderPath = Configuration::getV2Path() + "/gfx/flags";
-	for (auto country : sourceWorld.getCountries())
+	for (auto country: sourceWorld->getCountries())
 	{
 		std::string V2Tag = country.first;
 		V2Country* sourceCountry = country.second;
@@ -2425,7 +1910,7 @@ void HoI4World::copyFlags(const V2World &sourceWorld, const CountryMapping& coun
 }
 
 
-void HoI4World::recordAllLandProvinces()
+void HoI4World::checkAllProvincesMapped(const HoI4ToVic2ProvinceMapping& provinceMap)
 {
 	ifstream definitions(Configuration::getHoI4Path() + "/map/definition.csv");
 	if (!definitions.is_open())
@@ -2444,46 +1929,12 @@ void HoI4World::recordAllLandProvinces()
 			break;
 		}
 		int provNum = atoi(line.substr(0, pos).c_str());
-
-		line = line.substr(pos + 1, line.length());
-		int pos2 = line.find_first_of(';');
-		line = line.substr(pos2 + 1, line.length());
-		int pos3 = line.find_first_of(';');
-		line = line.substr(pos3 + 1, line.length());
-		int pos4 = line.find_first_of(';');
-		line = line.substr(pos4 + 1, line.length());
-		int pos5 = line.find_first_of(';');
-		line = line.substr(0, pos5);
-
-		if (line == "land")
+		if (provNum == 0)
 		{
-			landProvinces.insert(provNum);
+			continue;
 		}
-	}
-}
 
-
-void HoI4World::checkAllProvincesMapped(const provinceMapping& provinceMap)
-{
-	ifstream definitions(Configuration::getHoI4Path() + "/map/definition.csv");
-	if (!definitions.is_open())
-	{
-		LOG(LogLevel::Error) << "Could not open " << Configuration::getHoI4Path() << "/map/definition.csv";
-		exit(-1);
-	}
-
-	while (true)
-	{
-		string line;
-		getline(definitions, line);
-		int pos = line.find_first_of(';');
-		if (pos == string::npos)
-		{
-			break;
-		}
-		int provNum = atoi(line.substr(0, pos).c_str());
-
-		provinceMapping::const_iterator num = provinceMap.find(provNum);
+		auto num = provinceMap.find(provNum);
 		if (num == provinceMap.end())
 		{
 			LOG(LogLevel::Warning) << "No mapping for HoI4 province " << provNum;
@@ -2503,7 +1954,7 @@ void HoI4World::setAIFocuses(const AIFocusModifiers& focusModifiers)
 }
 
 
-void HoI4World::addMinimalItems(const inverseProvinceMapping& inverseProvinceMap)
+void HoI4World::addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap)
 {
 	for (auto country : countries)
 	{

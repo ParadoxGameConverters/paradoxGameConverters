@@ -613,7 +613,7 @@ void HoI4Country::outputOOB(map<int, HoI4State*> states) const
 }
 
 
-void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap, map<int, HoI4State*> states)
+void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, Vic2ToHoI4ProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states)
 {
 	srcCountry = _srcCountry;
 	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
@@ -837,20 +837,63 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 		}
 	}
 	//GETCAPITALHERE
-	// Capital
-	int oldCapital = srcCountry->getCapital();
-	inverseProvinceMapping::iterator itr = inverseProvinceMap.find(oldCapital);
-	if (itr != inverseProvinceMap.end())
-	{
-		auto capitalState = stateMap.find(itr->second[0]);
-		if (capitalState != stateMap.end() && (states.find(capitalState->second)->second->getOwner() == tag))
-		{
-			capital = capitalState->second;
-		}
-	}
+	determineCapitalFromVic2(inverseProvinceMap, stateMap, states);
 
 	// major nation
 	majorNation = srcCountry->getGreatNation();
+}
+
+
+void HoI4Country::determineCapitalFromVic2(Vic2ToHoI4ProvinceMapping Vic2ToHoI4ProvinceMap, const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states)
+{
+	int oldCapital = srcCountry->getCapital();
+	Vic2ToHoI4ProvinceMapping::iterator itr = Vic2ToHoI4ProvinceMap.find(oldCapital);
+	if (itr != Vic2ToHoI4ProvinceMap.end())
+	{
+		auto capitalState = provinceToStateIDMap.find(itr->second[0]);
+		if (capitalState != provinceToStateIDMap.end() && isStateValidForCapital(capitalState, states))
+		{
+			capital = capitalState->second;
+		}
+		else
+		{
+			findBestCapital();
+		}
+	}
+}
+
+
+bool HoI4Country::isStateValidForCapital(map<int, int>::const_iterator capitalState, const map<int, HoI4State*>& states)
+{
+	auto state = states.find(capitalState->second)->second;
+	return (isThisStateOwnedByUs(state) || isThisStateACoreWhileWeOwnNoStates(state));
+}
+
+
+bool HoI4Country::isThisStateOwnedByUs(const HoI4State* state) const
+{
+	return (state->getOwner() == tag);
+}
+
+
+bool HoI4Country::isThisStateACoreWhileWeOwnNoStates(const HoI4State* state) const
+{
+	for (auto core: state->getCores())
+	{
+		if (core == tag)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+void HoI4Country::findBestCapital()
+{
+	capital = 1;
+	LOG(LogLevel::Warning) << "Could not properly set capital for " << tag;
 }
 
 
@@ -901,7 +944,7 @@ void HoI4Country::initFromHistory()
 		ideology = results[0]->getLeaf();
 	}
 
-	results = obj->getValue("capita");
+	results = obj->getValue("capital");
 	if (results.size() > 0)
 	{
 		capital = atoi(results[0]->getLeaf().c_str());
@@ -909,7 +952,7 @@ void HoI4Country::initFromHistory()
 }
 
 
-void HoI4Country::consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry)
+void HoI4Country::consolidateProvinceItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry)
 {
 	bool convertManpower = (Configuration::getManpowerConversion() != "no");
 	bool convertLeadership = (Configuration::getLeadershipConversion() != "no");
@@ -1302,7 +1345,9 @@ void HoI4Country::CalculateNavy(const inverseProvinceMapping& inverseProvinceMap
 	}
 	naviestxt = navies;
 }
-void HoI4Country::CalculateArmyDivisions(const inverseProvinceMapping& inverseProvinceMap)
+
+
+void HoI4Country::convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap)
 {
 	CalculateNavy(inverseProvinceMap);
 	int infantrybrigs = 0;
@@ -1890,7 +1935,7 @@ void HoI4Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 }
 
 
-void HoI4Country::addMinimalItems(const inverseProvinceMapping& inverseProvinceMap)
+void HoI4Country::addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap)
 {
 	if (provinces.size() == 0)
 	{

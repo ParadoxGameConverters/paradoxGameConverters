@@ -21,42 +21,37 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef HoI4DIPLOMACY_H_
-#define HoI4DIPLOMACY_H_
+#ifndef _HOI4_STRATEGIC_REGION
+#define _HOI4_STRATEGIC_REGION
 
 
 
-#include "Date.h"
+#include "Object.h"
+#include <string>
 #include <vector>
+using namespace std;
 
 
 
-struct HoI4Agreement
-{
-	string	type;
-	string	country1;
-	string	country2;
-	int value; // For relation value
-	date		start_date;
-
-	// Ignore value and start_date, because value might not be set, and start_date is irrelevant
-	bool operator==(const HoI4Agreement &rhs) const { return this->type == rhs.type && this->country1 == rhs.country1 && this->country2 == rhs.country2; };
-};
-
-
-class HoI4Diplomacy
+class HoI4StrategicRegion
 {
 	public:
-		HoI4Diplomacy() { agreements.clear(); };
-		void output() const;
+		HoI4StrategicRegion(string _filename);
+		void output(string path);
 
-		void addAgreement(const HoI4Agreement* agr);
-		const vector<const HoI4Agreement*>& getAgreements() const { return agreements; };
+		int			getID() const				{ return ID; }
+		vector<int>	getOldProvinces() const	{ return oldProvinces; }
+
+		void	addNewProvince(int province)	{ newProvinces.push_back(province); }
 
 	private:
-		vector<const HoI4Agreement*> agreements;
+		string		filename;
+		int			ID;
+		vector<int>	oldProvinces;
+		vector<int>	newProvinces;
+		Object*		weatherObj;
 };
 
 
 
-#endif // HoI4DIPLOMACY_H_
+#endif // _HOI4_STRATEGIC_REGION
