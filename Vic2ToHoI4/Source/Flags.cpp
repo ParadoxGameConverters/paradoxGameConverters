@@ -155,7 +155,7 @@ void createBigFlag(tga_image* sourceFlag, string tag)
 void createMediumFlag(tga_image* sourceFlag, string tag)
 {
 	tga_image* destFlag = createNewFlag(sourceFlag, 41, 26);
-	FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/medium/" + tag + ".tga").c_str(), "w");
+	FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/medium/" + tag + ".tga").c_str(), "w+b");
 	tga_write_to_FILE(outputFile, destFlag);
 	fclose(outputFile);
 	tga_free_buffers(destFlag);
@@ -166,7 +166,7 @@ void createMediumFlag(tga_image* sourceFlag, string tag)
 void createSmallFlag(tga_image* sourceFlag, string tag)
 {
 	tga_image* destFlag = createNewFlag(sourceFlag, 10, 7);
-	FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/small/" + tag + ".tga").c_str(), "w");
+	FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/small/" + tag + ".tga").c_str(), "w+b");
 	tga_write_to_FILE(outputFile, destFlag);
 	fclose(outputFile);
 	tga_free_buffers(destFlag);
