@@ -113,32 +113,81 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 }
 
 
-void HoI4Country::output(int statenumber, map<int, HoI4State*>	states) const
+void HoI4Country::output(int statenumber, map<int, HoI4State*>	states, vector<vector<HoI4Country*>> Factions, string FactionName) const
 {
 	// output history file
+
 	ofstream output;
 	//thatsgerman: well this is ugly... PLACEHOLDER
 	int com = 0;
 	int dem = 0;
 	int fac = 0;
+	int lib = 0;
+	int soc = 0;
+	int syn = 0;
+	int aut = 0;
 	string ideology = "";
-	if (government == "fascism")
-		ideology = "fascism_ideology";
-	else if (government == "democratic")
-		ideology = "liberalism";
-	else if (government == "communism")
-		ideology = "marxism";
-	else
-		ideology = "despotism";
+	
+	
 	for (auto party : parties)
 	{
-		if (party.name.find("fascist") != string::npos || party.name.find("reactionary") != string::npos)
+		//	volatile int x = getSourceCountry()->getRulingPartyId();
+		if (party.name.find("fascist") != string::npos)
 			fac += party.popularity;
-		if (party.name.find("socialist") != string::npos || party.name.find("communist") != string::npos)
+		if (party.name.find("communist") != string::npos)
 			com += party.popularity;
+		if (party.name.find("liberal") != string::npos)
+			lib += party.popularity;
+		if (party.name.find("conservative") != string::npos && (government == "democratic" || government == "prussian_constitutionalism"))
+			dem += party.popularity;
+		if (party.name.find("conservative") != string::npos && (government != "democratic" && government != "prussian_constitutionalism"))
+			aut += party.popularity;
+		if (party.name.find("socialist") != string::npos && (party.war_pol == "anti_military" || party.war_pol == "pacifism"))
+			soc += party.popularity;
+		if (party.name.find("socialist") != string::npos && (party.war_pol == "pro_military" || party.war_pol == "jingoism"))
+			syn += party.popularity;
+		if (party.name.find("anarcho_liberal") != string::npos)
+			syn += party.popularity;
+		if (party.name.find("reactionary") != string::npos)
+			aut += party.popularity;
 	}
-	dem = 100 - fac - com;
+	if (rulingHoI4Ideology == "")
+	{
+		map<int, int> countriesparties;
+		countriesparties.insert(make_pair(1, fac));//fascist
+		countriesparties.insert(make_pair(2, com));//communist
+		countriesparties.insert(make_pair(3, lib));//liberal
+		countriesparties.insert(make_pair(4, dem));//conservative
+		countriesparties.insert(make_pair(5, soc));//socialist
+		countriesparties.insert(make_pair(6, syn));//syndicalist
+		countriesparties.insert(make_pair(7, aut));//autocrat
 
+		std::vector<std::pair<double, double>> tempVector;
+		// Insert entries
+		for (auto iterator = countriesparties.begin(); iterator != countriesparties.end(); ++iterator)
+		{
+			tempVector.push_back(*iterator);
+		}
+		sort(tempVector.begin(), tempVector.end());
+	}
+	if (rulingHoI4Ideology == "fascism")
+		ideology = "fascism_ideology";
+	else if (rulingHoI4Ideology == "democratic")
+		ideology = "democratic_conservative";
+	else if (rulingHoI4Ideology == "communism")
+		ideology = "marxism";
+	else if (rulingHoI4Ideology == "syndicalism")
+		ideology = "national_syndicalist";
+	else if (rulingHoI4Ideology == "liberal")
+		ideology = "democratic_liberal";
+	else if (rulingHoI4Ideology == "autocratic")
+		ideology = "absolute_monarchy ";
+	else if (rulingHoI4Ideology == "socialist")
+		ideology = "democratic_socialist  ";
+	else
+		ideology = "despotism";
+
+	//lib = 100 - fac - com - dem - aut - soc - syn;
 	if ((capital > 0 && capital <= statenumber) || !newCountry)
 	{
 		output.open(("Output/" + Configuration::getOutputName() + "/history/countries/" + Utils::convertToASCII(filename)).c_str());
@@ -172,9 +221,21 @@ void HoI4Country::output(int statenumber, map<int, HoI4State*>	states) const
 		output << "" << endl;
 		output << "    parties = {" << endl;
 		output << "        democratic = { " << endl;
-		output << "            popularity = " << dem * 4 / 5 << endl;
+		output << "            popularity = " << dem << endl;
 		output << "        }" << endl;
 		output << "" << endl;
+		output << "        liberal = {" << endl;
+		output << "            popularity = " << lib << endl;
+		output << "        }" << endl;
+		output << "        " << endl;
+		output << "        socialist = {" << endl;
+		output << "            popularity = " << soc << endl;
+		output << "        }" << endl;
+		output << "        " << endl;
+		output << "        syndicalism = {" << endl;
+		output << "            popularity = " << syn << endl;
+		output << "        }" << endl;
+		output << "        " << endl;
 		output << "        fascism = {" << endl;
 		output << "            popularity = " << fac << endl;
 		output << "        }" << endl;
@@ -183,23 +244,41 @@ void HoI4Country::output(int statenumber, map<int, HoI4State*>	states) const
 		output << "            popularity = " << com << endl;
 		output << "        }" << endl;
 		output << "        " << endl;
+		output << "        autocratic = {" << endl;
+		output << "            popularity = " << aut << endl;
+		output << "        }" << endl;
+		output << "        " << endl;
 		output << "        neutrality = { " << endl;
-		output << "            popularity = " << dem / 5 << endl;
+		output << "            popularity = 0" << endl;
 		output << "        }" << endl;
 		output << "    }" << endl;
 		output << "    " << endl;
 
-		if (government == "")
+		if (rulingHoI4Ideology == "")
+		{
 			output << "    ruling_party = neutrality" << endl;
+		}
 		else
-			output << "    ruling_party = " << government << endl;
+			output << "    ruling_party = " << rulingHoI4Ideology << endl;
 
 		output << "    last_election = \"1936.1.1\"" << endl;
 		output << "    election_frequency = 48" << endl;
 		output << "    elections_allowed = no" << endl;
 		output << "}" << endl;
+		output << relationstxt;
 		output << "" << endl;
-		output << "create_country_leader = {" << endl;
+		for (auto Faction : Factions)
+		{
+			if (Faction.front()->getTag() == tag)
+			{
+				output << "create_faction = \"Alliance of " + getSourceCountry()->getName() + "\"\r\n";
+				for (auto factionmem : Faction)
+				{
+					output << "add_to_faction = " + factionmem->getTag() + "\r\n";
+				}
+			}
+		}
+		output << "\r\ncreate_country_leader = {" << endl;
 		output << "    name = \"Jigme Wangchuck\"" << endl;
 		output << "    desc = \"POLITICS_JIGME_WANGCHUCK_DESC\"" << endl;
 		output << "    picture = \"gfx / leaders / Asia / Portrait_Asia_Generic_2.dds\"" << endl;
@@ -1957,6 +2036,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	{
 		HoI4Party newParty;
 		newParty.name = ideologyItr->second[0]->name;
+		newParty.war_pol = ideologyItr->second[0]->war_policy;
 		newParty.ideology = "fascistic";
 		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("fascist") * 100 + 0.5);
 		newParty.organization = newParty.popularity;
@@ -1965,6 +2045,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		if (rulingParty->ideology == ideologyItr->first)
 		{
 			rulingIdeology = "fascistic";
+			rulingHoI4Ideology = "fascism";
 		}
 
 		V2Ideologies.erase(ideologyItr);
@@ -1976,6 +2057,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	{
 		HoI4Party newParty;
 		newParty.name = ideologyItr->second[0]->name;
+		newParty.war_pol = ideologyItr->second[0]->war_policy;
 		newParty.ideology = "paternal_autocrat";
 		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("reactionary") * 100 + 0.5);
 		newParty.organization = newParty.popularity;
@@ -1984,6 +2066,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		if (rulingParty->ideology == ideologyItr->first)
 		{
 			rulingIdeology = "paternal_autocrat";
+			rulingHoI4Ideology = "autocratic";
 		}
 
 		V2Ideologies.erase(ideologyItr);
@@ -1995,6 +2078,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	{
 		HoI4Party newParty;
 		newParty.name = ideologyItr->second[0]->name;
+		newParty.war_pol = ideologyItr->second[0]->war_policy;
 		newParty.ideology = "social_conservative";
 		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("conservative") * 100 + 0.5);
 		newParty.organization = newParty.popularity;
@@ -2003,6 +2087,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		if (rulingParty->ideology == ideologyItr->first)
 		{
 			rulingIdeology = "social_conservative";
+			rulingHoI4Ideology = "democratic";
 		}
 
 		V2Ideologies.erase(ideologyItr);
@@ -2014,14 +2099,16 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	{
 		HoI4Party newParty;
 		newParty.name = ideologyItr->second[0]->name;
-		newParty.ideology = "left_wing_radica";
+		newParty.war_pol = ideologyItr->second[0]->war_policy;
+		newParty.ideology = "left_wing_radical";
 		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("socialist") * 100 + 0.5);
 		newParty.organization = newParty.popularity;
 		parties.push_back(newParty);
 
 		if (rulingParty->ideology == ideologyItr->first)
 		{
-			rulingIdeology = "left_wing_radica";
+			rulingIdeology = "left_wing_radical";
+			rulingHoI4Ideology = "socialist";
 		}
 
 		V2Ideologies.erase(ideologyItr);
@@ -2033,6 +2120,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	{
 		HoI4Party newParty;
 		newParty.name = ideologyItr->second[0]->name;
+		newParty.war_pol = ideologyItr->second[0]->war_policy;
 		newParty.ideology = "stalinist";
 		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("communist") * 100 + 0.5);
 		newParty.organization = newParty.popularity;
@@ -2041,44 +2129,49 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		if (rulingParty->ideology == ideologyItr->first)
 		{
 			rulingIdeology = "stalinist";
+			rulingHoI4Ideology = "communism";
 		}
 
 		V2Ideologies.erase(ideologyItr);
 		auto itr = unmappedParties.find("stalinist");
 		unmappedParties.erase(itr);
 	}
-	ideologyItr = V2Ideologies.find("libera");
+	ideologyItr = V2Ideologies.find("liberal");
 	if ((ideologyItr != V2Ideologies.end()) && (ideologyItr->second.size() == 1))
 	{
 		HoI4Party newParty;
 		newParty.name = ideologyItr->second[0]->name;
-		newParty.ideology = "social_libera";
-		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("libera") * 100 + 0.5);
+		newParty.war_pol = ideologyItr->second[0]->war_policy;
+		newParty.ideology = "social_liberal";
+		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("liberal") * 100 + 0.5);
 		newParty.organization = newParty.popularity;
 		parties.push_back(newParty);
 
 		if (rulingParty->ideology == ideologyItr->first)
 		{
-			rulingIdeology = "social_libera";
+			rulingIdeology = "social_liberal";
+			rulingHoI4Ideology = "liberal";
 		}
 
 		V2Ideologies.erase(ideologyItr);
 		auto itr = unmappedParties.find("social_libera");
 		unmappedParties.erase(itr);
 	}
-	ideologyItr = V2Ideologies.find("anarcho_libera");
+	ideologyItr = V2Ideologies.find("anarcho_liberal");
 	if ((ideologyItr != V2Ideologies.end()) && (ideologyItr->second.size() == 1))
 	{
 		HoI4Party newParty;
 		newParty.name = ideologyItr->second[0]->name;
-		newParty.ideology = "market_libera";
-		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("anarcho_libera") * 100 + 0.5);
+		newParty.war_pol = ideologyItr->second[0]->war_policy;
+		newParty.ideology = "market_liberal";
+		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("anarcho_liberal") * 100 + 0.5);
 		newParty.organization = newParty.popularity;
 		parties.push_back(newParty);
 
 		if (rulingParty->ideology == ideologyItr->first)
 		{
-			rulingIdeology = "market_libera";
+			rulingIdeology = "market_liberal";
+			rulingHoI4Ideology = "syndicalism";
 		}
 
 		V2Ideologies.erase(ideologyItr);
@@ -2183,7 +2276,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			}
 		}
 	}
-	ideologyItr = V2Ideologies.find("libera");
+	ideologyItr = V2Ideologies.find("liberal");
 	if (ideologyItr != V2Ideologies.end())
 	{
 		for (auto partyItr : ideologyItr->second)
@@ -2201,7 +2294,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			}
 		}
 	}
-	ideologyItr = V2Ideologies.find("anarcho_libera");
+	ideologyItr = V2Ideologies.find("anarcho_liberal");
 	if (ideologyItr != V2Ideologies.end())
 	{
 		for (auto partyItr : ideologyItr->second)
@@ -2383,7 +2476,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			}
 		}
 	}
-	ideologyItr = V2Ideologies.find("libera");
+	ideologyItr = V2Ideologies.find("liberal");
 	if (ideologyItr != V2Ideologies.end())
 	{
 		for (auto partyItr : ideologyItr->second)
@@ -2401,7 +2494,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			}
 		}
 	}
-	ideologyItr = V2Ideologies.find("anarcho_libera");
+	ideologyItr = V2Ideologies.find("anarcho_liberal");
 	if (ideologyItr != V2Ideologies.end())
 	{
 		for (auto partyItr : ideologyItr->second)

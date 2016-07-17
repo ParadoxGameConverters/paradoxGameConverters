@@ -45,6 +45,8 @@ class HoI4State
 		float		getManpower() const				{ return manpower; }
 		int			getID()							{ return ID; }
 		int			getNavalLocation() const		{ return navallocation; }
+		int			getMilFactories() const { return milFactories; }
+		int			getCivFactories() const { return civFactories; }
 
 	private:
 		int			ID;

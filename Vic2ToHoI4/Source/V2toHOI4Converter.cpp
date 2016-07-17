@@ -467,9 +467,10 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	destWorld.convertVictoryPoints(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Setting AI focuses";
 	destWorld.setAIFocuses(focusModifiers);
-	destWorld.thatsgermanWarCreator(sourceWorld, countryMap);
+	//destWorld.thatsgermanWarCreator(sourceWorld, countryMap);
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";
+
 	if (!Utils::copyFolder("blankMod/output", "output/output"))
 	{
 		exit(-1);
@@ -495,15 +496,18 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 		exit(-1);
 	}
 
-
+	destWorld.outputRelations();
 	LOG(LogLevel::Info) << "Copying flags";
 	destWorld.copyFlags(sourceWorld, countryMap);
-
+	
 	LOG(LogLevel::Info) << "Outputting world";
 	destWorld.output();
 	
 	LOG(LogLevel::Info) << "Creating Supply Zones";
 	destWorld.outputSupply(sourceWorld, inverseProvinceMap, countryMap, HoI4StateMap, localisation);
+	destWorld.createIdeologyFiles();
+
+	destWorld.thatsgermanWarCreator(sourceWorld, countryMap);
 	Utils::copyFolder("bookmarks", "output/" + Configuration::getOutputName() + "/common");
 	LOG(LogLevel::Info) << "* Conversion complete *";
 	return 0;

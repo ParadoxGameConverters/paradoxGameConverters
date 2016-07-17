@@ -52,6 +52,11 @@ typedef struct
 	string			name;
 	string			localisationString;
 	string			ideology;
+	string			economic_pol;
+	string			trade_pol;
+	string			rel_pol;
+	string			citizen_pol;
+	string			war_pol;
 	unsigned int	popularity;
 	unsigned int	organization;
 } HoI4Party;
@@ -61,9 +66,10 @@ class HoI4Country
 {
 	public:
 		HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld, bool _newCountry = false);
-		void		output(int, map<int, HoI4State*>) const;
+		//void		output(int, map<int, HoI4State*>) const;
+		void		output(int statenumber, map<int, HoI4State*> states, vector<vector<HoI4Country*>> Factions, string FactionName) const;
 		void		outputCommonCountryFile() const;
-		string	outputColors() const;
+		string		outputColors() const;
 		void		outputToCommonCountriesFile(FILE*) const;
 		void		outputAIScript() const;
 		void		initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const HoI4StateMapping& stateMap, map<int, HoI4State*> states);
@@ -82,6 +88,7 @@ class HoI4Country
 		void		setFaction(string newFaction)	{ faction = newFaction; }
 		void		setFactionLeader()				{ factionLeader = true; }
 		void	setFactories(int _factories) { totalfactories = _factories; }
+		void setRelations(string relationsinput) { relationstxt = relationsinput; }
 
 		HoI4Relations*								getRelations(string withWhom) const;
 		HoI4Province*								getCapital();
@@ -100,9 +107,13 @@ class HoI4Country
 		map<string, double>&						getPracticals()				{ return practicals; }
 		const vector<HoI4RegGroup*>&			getArmies() const				{ return armies; }
 		vector<int>									getBrigs() const			{ return brigs; }
-		double										getArmyStrength() const { return brigs[0] * 12 + brigs[1] * .85 + brigs[2] + brigs[3] * 2.1; }
+		double									getCapitalProv() const { return capital; }
+		double										getArmyStrength() const { return armyStrength; }
 		const string									getSphereLeader() const { return sphereLeader; }
 		vector<HoI4Party> getParties() const { return parties; }
+		int getTotalFactories() const { return totalfactories; }
+		int getTechnologyCount() const { return technologies.size(); }
+		
 	private:
 		void			outputOOB(map<int, HoI4State*>)						const;
 		void			outputPracticals(FILE*)		const;
@@ -111,6 +122,7 @@ class HoI4Country
 		void			outputLeaders()				const;
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, HoI4Province*> allProvinces);
 		void			convertParties(const V2Country* srcCountry, vector<V2Party*> V2Parties, V2Party* rulingParty, string& rulingIdeology);
+		
 
 		HoI4World*							theWorld;
 		const V2Country*					srcCountry;
@@ -143,8 +155,11 @@ class HoI4Country
 		vector<HoI4Minister>				rulingMinisters;
 		vector<HoI4Leader>				leaders;
 		string								graphicalCulture;
+		string								rulingHoI4Ideology;
 		bool									majorNation;
 		vector<int>							brigs;
+		long armyStrength;
+		string relationstxt;
 
 		// AI focus modifiers
 		double	seaModifier;

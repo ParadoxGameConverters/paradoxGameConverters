@@ -176,11 +176,11 @@ void HoI4World::outputCommonCountries() const
 {
 	// Create common\countries path.
 	string countriesPath = "Output/" + Configuration::getOutputName() + "/common";
-	if (!Utils::TryCreateFolder(countriesPath))
+	/*if (!Utils::TryCreateFolder(countriesPath))
 	{
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common\"";
 		exit(-1);
-	}
+	}*/
 	if (!Utils::TryCreateFolder(countriesPath + "/countries"))
 	{
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/countries\"";
@@ -361,16 +361,18 @@ void HoI4World::outputHistory() const
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history/units";
 		exit(-1);
 	}
-	for (auto countryItr : countries)
+	//old states
+	/*for (auto countryItr : countries)
 	{
 		countryItr.second->output(states.size(), states);
-	}
+	}*/
 	// Override vanilla history to suppress vanilla OOB and faction membership being read
+	vector<vector<HoI4Country*>> empty;
 	for (auto potentialItr : potentialCountries)
 	{
 		if (countries.find(potentialItr.first) == countries.end())
 		{
-			potentialItr.second->output(states.size(), states);
+			potentialItr.second->output(states.size(), states, empty, "asdf");
 		}
 	}
 	LOG(LogLevel::Debug) << "Writing diplomacy";
@@ -611,6 +613,7 @@ void HoI4World::convertProvinceOwners(const V2World &sourceWorld, const inverseP
 		double sinner = sin(employedworkersadjusted / 150) * 100;
 		double logger = log10(employedworkersadjusted) * 15;
 		double HoI4TotalFactories = sinner + logger + 5;
+		HoI4Country* hoi4con = countries.find(HoI4Tag)->second;
 		if (employedworkersadjusted != 0)
 		{
 			percentage = HoI4TotalFactories / employedworkersadjusted;
@@ -2356,7 +2359,17 @@ void HoI4World::convertDiplomacy(const V2World& sourceWorld, const CountryMappin
 		}
 	}
 }
-
+void HoI4World::createIdeologyFiles()
+{
+	Utils::copyFolder("NeededFiles/interface", "output/" + Configuration::getOutputName()+"/gfx");
+	Utils::copyFolder("NeededFiles/ideologies", "output/" + Configuration::getOutputName() + "/common");
+	std::string outputGraphicsFolder = "Output/" + Configuration::getOutputName() + "/interface";
+	if (!Utils::TryCreateFolder(outputGraphicsFolder))
+	{
+		return;
+	}
+	Utils::TryCopyFile("NeededFiles/countrypoliticsview.gfx", "Output/" + Configuration::getOutputName() + "/interface/countrypoliticsview.gfx");
+}
 void HoI4World::copyFlags(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
 
@@ -2521,18 +2534,2295 @@ void HoI4World::setSphereLeaders(const V2World &sourceWorld, const CountryMappin
 		}
 	}
 }
+string HoI4World::createAnnexEvent(HoI4Country* Annexer, HoI4Country* Annexed, int eventnumber)
+{
+	string Events;
+	string annexername = Annexer->getSourceCountry()->getName();
+	string annexedname = Annexed->getSourceCountry()->getName();
+	Events += "country_event = {\r\n";
+	Events += "	id = " + Annexer->getTag() + "annex." + to_string(eventnumber) + "\r\n";
+	Events += "	title = \"" + annexername + " Demands " + annexedname + "!\"\r\n";
+	Events += "	desc = \"Today " + annexername + " sent an envoy to us with a proposition of an union. We are alone and in this world, and a union with " + annexername + " might prove to be fruiteful.";
+	Events += " Our people would be safe with the mighty army of " + annexername + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!\"\r\n";
+	Events += "	picture = GFX_report_event_hitler_parade\r\n";
+	Events += "	\r\n";
+	Events += "	is_triggered_only = yes\r\n";
+	Events += "	\r\n";
+	Events += "	option = { # Accept\r\n";
+	Events += "		name = \"We accept the Union\"\r\n";
+	Events += "		ai_chance = {\r\n";
+	Events += "			base = 30\r\n";
+	Events += "			modifier = {\r\n";
+	Events += "				add = -15\r\n";
+	Events += "				" + Annexer->getTag() + " = { has_army_size = { size < 40 } }\r\n";
+	Events += "			}\r\n";
+	Events += "			modifier = {\r\n";
+	Events += "				add = 45\r\n";
+	Events += "				" + Annexer->getTag() + " = { has_army_size = { size > 39 } }\r\n";
+	Events += "			}\r\n";
+	Events += "		}\r\n";
+	Events += "		" + Annexer->getTag() + " = {\r\n";
+	Events += "			country_event = { hours = 2 id = " + Annexer->getTag() + "annex." + to_string(eventnumber + 1) + " }\r\n";//+1 accept
+	Events += "		}\r\n";
+	Events += "		custom_effect_tooltip = GAME_OVER_TT\r\n";
+	Events += "	}\r\n";
+	Events += "	option = { # Refuse\r\n";
+	Events += "		name = \"We Refuse!\"\r\n";
+	Events += "		ai_chance = {\r\n";
+	Events += "			base = 10 \r\n";
+	Events += "\r\n";
+	Events += "			modifier = {\r\n";
+	Events += "				factor = 0\r\n";
+	Events += "				GER = { has_army_size = { size > 39 } }\r\n";
+	Events += "			}\r\n";
+	Events += "			modifier = {\r\n";
+	Events += "				add = 20\r\n";
+	Events += "				GER = { has_army_size = { size < 30 } }\r\n";
+	Events += "			}\r\n";
+	Events += "		}\r\n";
+	Events += "		" + Annexer->getTag() + " = {\r\n";
+	//Events += "			add_opinion_modifier = { target = ROOT modifier = " + Annexer->getTag() + "_anschluss_rejected }\r\n";
+	Events += "			country_event = { hours = 2 id = " + Annexer->getTag() + "annex." + to_string(eventnumber + 2) + " }\r\n";//+2 refuse
+	Events += "			if = { limit = { is_in_faction_with = " + Annexed->getTag() + " }\r\n";
+	Events += "				remove_from_faction = " + Annexed->getTag() + "\r\n";
+	Events += "			}\r\n";
+	Events += "		}\r\n";
+	Events += "	}\r\n";
+	Events += "}\r\n";
+	Events += "\r\n";
+	//Country Refuses!
+	Events += "# Austria refuses Anschluss\r\n";
+	Events += "country_event = {\r\n";
+	Events += "	id = " + Annexer->getTag() + "annex." + to_string(eventnumber+2) + "\r\n";
+	Events += "	title = \"" + annexedname + " Refuses!\"\r\n";
+	Events += "	desc = \"" + annexedname + " Refused our proposed union! This is an insult to us that cannot go unanswered!\"\r\n";
+	Events += "	picture = GFX_report_event_german_troops\r\n";
+	Events += "	\r\n";
+	Events += "	is_triggered_only = yes\r\n";
+	Events += "	\r\n";
+	Events += "	option = {\r\n";
+	Events += "		name = \"It's time for war\"\r\n";
+	Events += "		create_wargoal = {\r\n";
+	Events += "				type = puppet_wargoal_focus\r\n";
+	Events += "			target = " + Annexed->getTag() + "\r\n";
+	Events += "		}\r\n";
+	Events += "	}\r\n";
+	Events += "}";
+	//accepts
+	Events += "# Austrian Anschluss Completed\r\n";
+	Events += "country_event = {\r\n";
+	Events += "	id = " + Annexer->getTag() + "annex." + to_string(eventnumber+1) + "\r\n";
+	Events += "	title = \"" + annexedname + " accepts!\"\r\n";
+	Events += "	desc = \"" + annexedname + " accepted our proposed union, their added strength will push us to greatness!\"\r\n";
+	Events += "	picture = GFX_report_event_german_speech\r\n";
+	Events += "	\r\n";
+	Events += "	is_triggered_only = yes\r\n";
+	Events += "	\r\n";
+	Events += "	option = {\r\n";
+	Events += "		name = \"A stronger Union!\"\r\n";
+	for (auto cstate : countriesStates.find(Annexed->getTag())->second)
+	{
+		Events += "		" + to_string(cstate) + " = {\r\n";
+		Events += "			if = {\r\n";
+		Events += "				limit = { is_owned_by = " + Annexed->getTag() + " }\r\n";
+		Events += "				add_core_of = " + Annexer->getTag() + "\r\n";
+		Events += "			}\r\n";
+		Events += "		}\r\n";
+
+	}
+	Events += "\r\n";
+	Events += "		annex_country = { target = " + Annexed->getTag() + " transfer_troops = yes }\r\n";
+	Events += "		add_political_power = 50\r\n";
+	Events += "		add_named_threat = { threat = 2 name = \"" + annexername + " annexed " + annexedname + "\" }\r\n";
+	Events += "		set_country_flag = " + Annexed->getTag() + "_annexed\r\n";
+	Events += "	}\r\n";
+	Events += "}\r\n";
+	return Events;
+}
+string HoI4World::createSudatenEvent(HoI4Country* Annexer, HoI4Country* Annexed, int eventnumber, vector<int> claimedStates)
+{
+	string Events;
+	//flesh out this event more, possibly make it so allies have a chance to help?
+	string annexername = Annexer->getSourceCountry()->getName();
+	string annexedname = Annexed->getSourceCountry()->getName();
+	Events += "#Sudaten Events\r\n";
+	Events += "country_event = {\r\n";
+	Events += "	id = " + Annexer->getTag() + "sudaten." + to_string(eventnumber) + "\r\n";
+	Events += "	title = \"" + annexername + " Demands " + annexedname + "!\"\r\n";
+	Events += "	desc = \"" + annexername + " has recently been making claims to our bordering states, saying that these states are full of " + Annexer->getSourceCountry()->getAdjective("english") + " people and that the territory should be given to them. Although it ";
+	Events += "is true that recently our neighboring states have had an influx of " + Annexer->getSourceCountry()->getAdjective("english") + " people in the recent years, we cannot give up our lands because a few "+ Annexer->getSourceCountry()->getAdjective("english") +" settled down in our land. " ;
+	Events += "In response " + annexername + " has called for a conference, demanding their territory in exchange for peace. How do we resond? ";
+	Events += " Our people would be safe with the mighty army of " + annexername + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!\"\r\n";
+	Events += "	picture = GFX_report_event_hitler_parade\r\n";
+	Events += "	\r\n";
+	Events += "	is_triggered_only = yes\r\n";
+	Events += "	\r\n";
+	Events += "	option = { # Accept\r\n";
+	Events += "		name = \"We Accept\"\r\n";
+	Events += "		ai_chance = {\r\n";
+	Events += "			base = 30\r\n";
+	Events += "			modifier = {\r\n";
+	Events += "				add = -15\r\n";
+	Events += "				" + Annexer->getTag() + " = { has_army_size = { size < 40 } }\r\n";
+	Events += "			}\r\n";
+	Events += "			modifier = {\r\n";
+	Events += "				add = 45\r\n";
+	Events += "				" + Annexer->getTag() + " = { has_army_size = { size > 39 } }\r\n";
+	Events += "			}\r\n";
+	Events += "		}\r\n";
+	Events += "		" + Annexer->getTag() + " = {\r\n";
+	Events += "			country_event = { hours = 2 id = " + Annexer->getTag() + "sudaten." + to_string(eventnumber + 1) + " }\r\n";//+1 accept
+	Events += "		}\r\n";
+	Events += "	}\r\n";
+	Events += "	option = { # Refuse\r\n";
+	Events += "		name = \"We Refuse!\"\r\n";
+	Events += "		ai_chance = {\r\n";
+	Events += "			base = 10 \r\n";
+	Events += "\r\n";
+	Events += "			modifier = {\r\n";
+	Events += "				factor = 0\r\n";
+	Events += "				GER = { has_army_size = { size > 39 } }\r\n";
+	Events += "			}\r\n";
+	Events += "			modifier = {\r\n";
+	Events += "				add = 20\r\n";
+	Events += "				GER = { has_army_size = { size < 30 } }\r\n";
+	Events += "			}\r\n";
+	Events += "		}\r\n";
+	Events += "		" + Annexer->getTag() + " = {\r\n";
+	//Events += "			add_opinion_modifier = { target = ROOT modifier = " + Annexer->getTag() + "_anschluss_rejected }\r\n";
+	Events += "			country_event = { hours = 2 id = " + Annexer->getTag() + "sudaten." + to_string(eventnumber + 2) + " }\r\n";//+2 refuse
+	Events += "			if = { limit = { is_in_faction_with = " + Annexed->getTag() + " }\r\n";
+	Events += "				remove_from_faction = " + Annexed->getTag() + "\r\n";
+	Events += "			}\r\n";
+	Events += "		}\r\n";
+	Events += "	}\r\n";
+	Events += "}\r\n";
+	Events += "\r\n";
+	//Country Refuses!
+	Events += "# refuses Sudaten\r\n";
+	Events += "country_event = {\r\n";
+	Events += "	id = " + Annexer->getTag() + "sudaten." + to_string(eventnumber + 2) + "\r\n";
+	Events += "	title = \"" + annexedname + " Refuses!\"\r\n";
+	Events += "	desc = \"" + annexedname + " Refused our proposed proposition! This is an insult to us that cannot go unanswered!\"\r\n";
+	Events += "	picture = GFX_report_event_german_troops\r\n";
+	Events += "	\r\n";
+	Events += "	is_triggered_only = yes\r\n";
+	Events += "	\r\n";
+	Events += "	option = {\r\n";
+	Events += "		name = \"It's time for war\"\r\n";
+	Events += "		create_wargoal = {\r\n";
+	Events += "				type = puppet_wargoal_focus\r\n";
+	Events += "			target = " + Annexed->getTag() + "\r\n";
+	Events += "		}\r\n";
+	Events += "	}\r\n";
+	Events += "}";
+	//accepts
+	Events += "#  Sudaten Completed\r\n";
+	Events += "country_event = {\r\n";
+	Events += "	id = " + Annexer->getTag() + "sudaten." + to_string(eventnumber + 1) + "\r\n";
+	Events += "	title = \"" + annexedname + " accepts!\"\r\n";
+	Events += "	desc = \"" + annexedname + " accepted our proposed demands, the added lands will push us to greatness!\"\r\n";
+	Events += "	picture = GFX_report_event_german_speech\r\n";
+	Events += "	\r\n";
+	Events += "	is_triggered_only = yes\r\n";
+	Events += "	\r\n";
+	Events += "	option = {\r\n";
+	Events += "		name = \"A stronger Union!\"\r\n";
+	for (auto cstate : claimedStates)
+	{
+		Events += "		" + to_string(cstate) + " = { add_core_of = " + Annexer->getTag() + " }\r\n";
+		Events += "		" + Annexer->getTag() + " = { transfer_state =  " + to_string(cstate) + " }\r\n";
+	}
+	Events += "		set_country_flag = " + Annexed->getTag() + "_demanded\r\n";
+	Events += "	}\r\n";
+	Events += "}\r\n";
+	return Events;
+}
+void HoI4World::fillProvinceNeighbors()
+{
+	std::ifstream file("adj.txt");
+	std::string str;
+	while (std::getline(file, str))
+	{
+		//	char output[100];
+		//myReadFile >> output;
+		vector<string> parts;
+		stringstream ss(str); // Turn the string into a stream.
+		string tok;
+		char delimiter = ';';
+		//crashes
+		while (getline(ss, tok, delimiter))
+			parts.push_back(tok);
+		vector<int> provneighbors;
+		for (int i = 5; i < parts.size(); i++)
+		{
+			//crashes
+			int neighborprov = stoi(parts[i]);
+			provneighbors.push_back(neighborprov);
+		}
+		provinceNeighbors.insert(make_pair(stoi(parts[0]), provneighbors));
+	}
+	file.close();
+}
+string HoI4World::genericFocusTreeCreator(HoI4Country* CreatingCountry)
+{
+	string s;
+//DOES NOT INCLUDE LAST BRACKET!
+	s += "focus_tree = { \r\n";
+	s += "	id = german_focus\r\n";
+	s += "	\r\n";
+	s += "	country = {\r\n";
+	s += "		factor = 0\r\n";
+	s += "		\r\n";
+	s += "		modifier = {\r\n";
+	s += "			add = 10\r\n";
+	s += "			tag = " + CreatingCountry->getTag() + "\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "	\r\n";
+	s += "	default = no\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = army_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
+	s += "		x = 1\r\n";
+	s += "		y = 0\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			army_experience = 5\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = land_doc_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				uses = 1\r\n";
+	s += "				category = land_doctrine\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = equipment_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_small_arms\r\n";
+	s += "		prerequisite = { focus = army_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 0\r\n";
+	s += "		y = 1\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = infantry_weapons_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				uses = 1\r\n";
+	s += "				category = infantry_weapons\r\n";
+	s += "				category = artillery\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = motorization_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_army_motorized\r\n";
+	s += "		prerequisite = { focus = army_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		bypass = { has_tech = motorised_infantry }\r\n";
+	s += "		x = 2\r\n";
+	s += "		y = 1\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = motorized_bonus\r\n";
+	s += "				bonus = 0.75\r\n";
+	s += "				technology = motorised_infantry\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = doctrine_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_army_doctrines\r\n";
+	s += "		prerequisite = { focus = army_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 1\r\n";
+	s += "		y = 2\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			army_experience = 5\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = land_doc_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				uses = 1\r\n";
+	s += "				category = land_doctrine\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = equipment_effort_2" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_army_artillery\r\n";
+	s += "		prerequisite = { focus = equipment_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 0\r\n";
+	s += "		y = 3\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = infantry_artillery_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				uses = 1\r\n";
+	s += "				category = infantry_weapons\r\n";
+	s += "				category = artillery\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = mechanization_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_build_tank\r\n";
+	s += "		prerequisite = { focus = motorization_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 2\r\n";
+	s += "		y = 3\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = motorized_bonus\r\n";
+	s += "				ahead_reduction = 0.5\r\n";
+	s += "				uses = 1\r\n";
+	s += "				category = motorized_equipment\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = doctrine_effort_2" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_army_doctrines\r\n";
+	s += "		prerequisite = { focus = doctrine_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 1\r\n";
+	s += "		y = 4\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			army_experience = 5\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = land_doc_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				uses = 1\r\n";
+	s += "				category = land_doctrine\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = equipment_effort_3" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_army_artillery2\r\n";
+	s += "		prerequisite = { focus = equipment_effort_2" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 0\r\n";
+	s += "		y = 5\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = infantry_artillery_bonus\r\n";
+	s += "				ahead_reduction = 1\r\n";
+	s += "				uses = 1\r\n";
+	s += "				category = infantry_weapons\r\n";
+	s += "				category = artillery\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = armor_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_army_tanks\r\n";
+	s += "		prerequisite = { focus = mechanization_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 2\r\n";
+	s += "		y = 5\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = armor_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				uses = 2\r\n";
+	s += "				category = armor\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = special_forces" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_special_forces\r\n";
+	s += "		prerequisite = { focus = equipment_effort_3" + CreatingCountry->getTag() + " }\r\n";
+	s += "		prerequisite = { focus = doctrine_effort_2" + CreatingCountry->getTag() + " }\r\n";
+	s += "		prerequisite = { focus = armor_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 1\r\n";
+	s += "		y = 6\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = special_forces_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				uses = 1\r\n";
+	s += "				technology = paratroopers\r\n";
+	s += "				technology = paratroopers2\r\n";
+	s += "				technology = marines\r\n";
+	s += "				technology = marines2\r\n";
+	s += "				technology = tech_mountaineers\r\n";
+	s += "				technology = tech_mountaineers2\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = aviation_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_build_airforce\r\n";
+	s += "		x = 5\r\n";
+	s += "		y = 0\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		complete_tooltip = {\r\n";
+	s += "			air_experience = 25\r\n";
+	s += "			if = { limit = { has_country_flag = aviation_effort_AB }\r\n";
+	s += "				add_building_construction = {\r\n";
+	s += "					type = air_base\r\n";
+	s += "					level = 2\r\n";
+	s += "					instant_build = yes\r\n";
+	s += "				}\r\n";
+	s += "			}			\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = air_doc_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				uses = 1\r\n";
+	s += "				category = air_doctrine\r\n";
+	s += "			}			\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			air_experience = 25\r\n";
+	s += "\r\n";
+	s += "			if = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					capital_scope = {\r\n";
+	s += "						NOT = {\r\n";
+	s += "							free_building_slots = {\r\n";
+	s += "								building = air_base\r\n";
+	s += "								size > 1\r\n";
+	s += "							}\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				random_owned_state = {\r\n";
+	s += "					limit = {\r\n";
+	s += "						free_building_slots = {\r\n";
+	s += "							building = air_base\r\n";
+	s += "							size > 1\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "					add_building_construction = {\r\n";
+	s += "						type = air_base\r\n";
+	s += "						level = 2\r\n";
+	s += "						instant_build = yes\r\n";
+	s += "					}\r\n";
+	s += "					ROOT = { set_country_flag = aviation_effort_AB }\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "			if = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					capital_scope = {\r\n";
+	s += "						free_building_slots = {\r\n";
+	s += "							building = air_base\r\n";
+	s += "							size > 1\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				capital_scope = {\r\n";
+	s += "					add_building_construction = {\r\n";
+	s += "						type = air_base\r\n";
+	s += "						level = 2\r\n";
+	s += "						instant_build = yes\r\n";
+	s += "					}\r\n";
+	s += "					ROOT = { set_country_flag = aviation_effort_AB }\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = air_doc_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				uses = 1\r\n";
+	s += "				category = air_doctrine\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = fighter_focus" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_air_fighter\r\n";
+	s += "		prerequisite = { focus = aviation_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		mutually_exclusive = { focus = bomber_focus" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 4\r\n";
+	s += "		y = 1\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = fighter_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				uses = 2\r\n";
+	s += "				technology = early_fighter\r\n";
+	s += "				technology = fighter1\r\n";
+	s += "				technology = fighter2\r\n";
+	s += "				technology = fighter3\r\n";
+	s += "				technology = heavy_fighter1\r\n";
+	s += "				technology = heavy_fighter2\r\n";
+	s += "				technology = heavy_fighter3\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = bomber_focus" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_air_bomber\r\n";
+	s += "		prerequisite = { focus = aviation_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		mutually_exclusive = { focus = fighter_focus" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 6\r\n";
+	s += "		y = 1\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = bomber_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				uses = 2\r\n";
+	s += "				technology = strategic_bomber1\r\n";
+	s += "				technology = strategic_bomber2\r\n";
+	s += "				technology = strategic_bomber3\r\n";
+	s += "				category = tactical_bomber\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = aviation_effort_2" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_air_doctrine\r\n";
+	s += "		prerequisite = { focus = bomber_focus focus = fighter_focus" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 5\r\n";
+	s += "		y = 2\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		complete_tooltip = {\r\n";
+	s += "			air_experience = 25\r\n";
+	s += "			if = { limit = { has_country_flag = aviation_effort_2_AB }\r\n";
+	s += "				add_building_construction = {\r\n";
+	s += "					type = air_base\r\n";
+	s += "					level = 2\r\n";
+	s += "					instant_build = yes\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name =  air_doc_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				uses = 1\r\n";
+	s += "				category = air_doctrine\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			air_experience = 25\r\n";
+	s += "			if = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					capital_scope = {\r\n";
+	s += "						NOT = {\r\n";
+	s += "							free_building_slots = {\r\n";
+	s += "								building = air_base\r\n";
+	s += "								size > 1\r\n";
+	s += "							}\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				random_owned_state = {\r\n";
+	s += "					limit = {\r\n";
+	s += "						free_building_slots = {\r\n";
+	s += "							building = air_base\r\n";
+	s += "							size > 1\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "					add_building_construction = {\r\n";
+	s += "						type = air_base\r\n";
+	s += "						level = 2\r\n";
+	s += "						instant_build = yes\r\n";
+	s += "					}\r\n";
+	s += "					ROOT = { set_country_flag = aviation_effort_2_AB }\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "			if = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					capital_scope = {\r\n";
+	s += "						free_building_slots = {\r\n";
+	s += "							building = air_base\r\n";
+	s += "							size > 1\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				capital_scope = {\r\n";
+	s += "					add_building_construction = {\r\n";
+	s += "						type = air_base\r\n";
+	s += "						level = 2\r\n";
+	s += "						instant_build = yes\r\n";
+	s += "					}				\r\n";
+	s += "					ROOT = { set_country_flag = aviation_effort_2_AB }\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name =  air_doc_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				uses = 1\r\n";
+	s += "				category = air_doctrine\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = CAS_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_CAS\r\n";
+	s += "		prerequisite = { focus = aviation_effort_2" + CreatingCountry->getTag() + " }\r\n";
+	s += "		prerequisite = { focus = motorization_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 4\r\n";
+	s += "		y = 3\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = CAS_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				ahead_reduction = 1\r\n";
+	s += "				uses = 1\r\n";
+	s += "				category = cas_bomber\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = rocket_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_focus_rocketry\r\n";
+	s += "		prerequisite = { focus = aviation_effort_2" + CreatingCountry->getTag() + " }\r\n";
+	s += "		prerequisite = { focus = infrastructure_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 5\r\n";
+	s += "		y = 4\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = jet_rocket_bonus\r\n";
+	s += "				ahead_reduction = 0.5\r\n";
+	s += "				uses = 2\r\n";
+	s += "				category = rocketry\r\n";
+	s += "				category = jet_technology\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 1\r\n";
+	s += "			modifier = {\r\n";
+	s += "				factor = 0.25\r\n";
+	s += "				always = yes\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = NAV_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_air_naval_bomber\r\n";
+	s += "		prerequisite = { focus = aviation_effort_2" + CreatingCountry->getTag() + " }\r\n";
+	s += "		prerequisite = { focus = flexible_navy" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 6\r\n";
+	s += "		y = 3\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = nav_bomber_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				ahead_reduction = 1\r\n";
+	s += "				uses = 1\r\n";
+	s += "				category = naval_bomber\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = naval_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_construct_naval_dockyard\r\n";
+	s += "		x = 9\r\n";
+	s += "		y = 0\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		available = {\r\n";
+	s += "			any_state = {\r\n";
+	s += "				is_coastal = yes\r\n";
+	s += "				is_controlled_by = ROOT\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		complete_tooltip = {\r\n";
+	s += "			navy_experience = 25\r\n";
+	s += "			add_extra_state_shared_building_slots = 3\r\n";
+	s += "			add_building_construction = {\r\n";
+	s += "				type = dockyard\r\n";
+	s += "				level = 3\r\n";
+	s += "				instant_build = yes\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "		\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			navy_experience = 25\r\n";
+	s += "			if = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					NOT = {\r\n";
+	s += "						any_owned_state = {\r\n";
+	s += "							dockyard > 0\r\n";
+	s += "							free_building_slots = {\r\n";
+	s += "								building = dockyard\r\n";
+	s += "								size > 2\r\n";
+	s += "								include_locked = yes\r\n";
+	s += "							}\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "					any_owned_state = {\r\n";
+	s += "						is_coastal = yes\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				random_owned_state = {\r\n";
+	s += "					limit = {\r\n";
+	s += "						is_coastal = yes\r\n";
+	s += "						free_building_slots = {\r\n";
+	s += "							building = dockyard\r\n";
+	s += "							size > 2\r\n";
+	s += "							include_locked = yes\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "					add_extra_state_shared_building_slots = 3\r\n";
+	s += "					add_building_construction = {\r\n";
+	s += "						type = dockyard\r\n";
+	s += "						level = 3\r\n";
+	s += "						instant_build = yes\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				set_country_flag = naval_effort_built\r\n";
+	s += "			}\r\n";
+	s += "			if = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					NOT = { has_country_flag = naval_effort_built }\r\n";
+	s += "					any_owned_state = {\r\n";
+	s += "						dockyard > 0\r\n";
+	s += "						free_building_slots = {\r\n";
+	s += "							building = dockyard\r\n";
+	s += "							size > 2\r\n";
+	s += "							include_locked = yes\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				random_owned_state = {\r\n";
+	s += "					limit = {\r\n";
+	s += "						dockyard > 0\r\n";
+	s += "						free_building_slots = {\r\n";
+	s += "							building = dockyard\r\n";
+	s += "							size > 2\r\n";
+	s += "							include_locked = yes\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "					add_extra_state_shared_building_slots = 3\r\n";
+	s += "					add_building_construction = {\r\n";
+	s += "						type = dockyard\r\n";
+	s += "						level = 3\r\n";
+	s += "						instant_build = yes\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				set_country_flag = naval_effort_built\r\n";
+	s += "			}\r\n";
+	s += "			if = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					NOT = { has_country_flag = naval_effort_built }\r\n";
+	s += "					NOT = {\r\n";
+	s += "						any_owned_state = {\r\n";
+	s += "							free_building_slots = {\r\n";
+	s += "								building = dockyard\r\n";
+	s += "								size > 2\r\n";
+	s += "								include_locked = yes\r\n";
+	s += "							}\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				random_state = {\r\n";
+	s += "					limit = {\r\n";
+	s += "						controller = { tag = ROOT }\r\n";
+	s += "						free_building_slots = {\r\n";
+	s += "							building = dockyard\r\n";
+	s += "							size > 2\r\n";
+	s += "							include_locked = yes\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "					add_extra_state_shared_building_slots = 3\r\n";
+	s += "					add_building_construction = {\r\n";
+	s += "						type = dockyard\r\n";
+	s += "						level = 3\r\n";
+	s += "						instant_build = yes\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "			}			\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = flexible_navy" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_build_navy\r\n";
+	s += "		prerequisite = { focus = naval_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		mutually_exclusive = { focus = large_navy" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 8\r\n";
+	s += "		y = 1\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 1\r\n";
+	s += "			modifier = {\r\n";
+	s += "				factor = 0\r\n";
+	s += "				all_owned_state = {\r\n";
+	s += "					OR = {\r\n";
+	s += "						is_coastal = no\r\n";
+	s += "						dockyard < 1\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = sub_op_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				uses = 2\r\n";
+	s += "				technology = convoy_interdiction_ti\r\n";
+	s += "				technology = unrestricted_submarine_warfare\r\n";
+	s += "				technology = wolfpacks\r\n";
+	s += "				technology = advanced_submarine_warfare\r\n";
+	s += "				technology = combined_operations_raiding\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = large_navy" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_navy_doctrines_tactics\r\n";
+	s += "		prerequisite = { focus = naval_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		mutually_exclusive = { focus = flexible_navy" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 10\r\n";
+	s += "		y = 1\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 1\r\n";
+	s += "			modifier = {\r\n";
+	s += "				factor = 0\r\n";
+	s += "				all_owned_state = {\r\n";
+	s += "					OR = {\r\n";
+	s += "						is_coastal = no\r\n";
+	s += "						dockyard < 1\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = fleet_in_being_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				uses = 2\r\n";
+	s += "				category = fleet_in_being_tree\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = submarine_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_navy_submarine\r\n";
+	s += "		prerequisite = { focus = flexible_navy focus = large_navy" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 8\r\n";
+	s += "		y = 2\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 1\r\n";
+	s += "			modifier = {\r\n";
+	s += "				factor = 0\r\n";
+	s += "				all_owned_state = {\r\n";
+	s += "					OR = {\r\n";
+	s += "						is_coastal = no\r\n";
+	s += "						dockyard < 1\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = ss_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				ahead_reduction = 1\r\n";
+	s += "				uses = 1\r\n";
+	s += "				technology = early_submarine\r\n";
+	s += "				technology = basic_submarine\r\n";
+	s += "				technology = improved_submarine\r\n";
+	s += "				technology = advanced_submarine\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = cruiser_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_navy_cruiser\r\n";
+	s += "		prerequisite = { focus = large_navy focus = flexible_navy" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 10\r\n";
+	s += "		y = 2\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 1\r\n";
+	s += "			modifier = {\r\n";
+	s += "				factor = 0\r\n";
+	s += "				all_owned_state = {\r\n";
+	s += "					OR = {\r\n";
+	s += "						is_coastal = no\r\n";
+	s += "						dockyard < 1\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = cr_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				ahead_reduction = 1\r\n";
+	s += "				uses = 1\r\n";
+	s += "				technology = improved_light_cruiser\r\n";
+	s += "				technology = advanced_light_cruiser\r\n";
+	s += "				technology = improved_heavy_cruiser\r\n";
+	s += "				technology = advanced_heavy_cruiser\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = destroyer_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_wolf_pack\r\n";
+	s += "		prerequisite = { focus = submarine_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 8\r\n";
+	s += "		y = 3\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 1\r\n";
+	s += "			modifier = {\r\n";
+	s += "				factor = 0\r\n";
+	s += "				all_owned_state = {\r\n";
+	s += "					OR = {\r\n";
+	s += "						is_coastal = no\r\n";
+	s += "						dockyard < 1\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = dd_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				ahead_reduction = 1\r\n";
+	s += "				uses = 1\r\n";
+	s += "				technology = early_destroyer\r\n";
+	s += "				technology = basic_destroyer\r\n";
+	s += "				technology = improved_destroyer\r\n";
+	s += "				technology = advanced_destroyer\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = capital_ships_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_navy_battleship\r\n";
+	s += "		prerequisite = { focus = cruiser_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 10\r\n";
+	s += "		y = 3\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 1\r\n";
+	s += "			modifier = {\r\n";
+	s += "				factor = 0\r\n";
+	s += "				all_owned_state = {\r\n";
+	s += "					OR = {\r\n";
+	s += "						is_coastal = no\r\n";
+	s += "						dockyard < 1\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			navy_experience = 25\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = capital_ships_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				ahead_reduction = 1\r\n";
+	s += "				uses = 1\r\n";
+	s += "				technology = basic_battlecruiser\r\n";
+	s += "				technology = basic_battleship\r\n";
+	s += "				technology = improved_battleship\r\n";
+	s += "				technology = advanced_battleship\r\n";
+	s += "				technology = heavy_battleship\r\n";
+	s += "				technology = heavy_battleship2\r\n";
+	s += "				technology = early_carrier\r\n";
+	s += "				technology = basic_carrier\r\n";
+	s += "				technology = improved_carrier\r\n";
+	s += "				technology = advanced_carrier\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = industrial_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_production\r\n";
+	s += "		x = 13\r\n";
+	s += "		y = 0\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = industrial_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				uses = 1\r\n";
+	s += "				category = industry\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 3\r\n";
+	s += "			modifier = {\r\n";
+	s += "				factor = 0\r\n";
+	s += "				date < 1939.1.1\r\n";
+	s += "				OR = { \r\n";
+	s += "					# we dont want chinese minors to go crazy on slots early since they get eaten\r\n";
+	s += "					tag = GXC \r\n";
+	s += "					tag = YUN\r\n";
+	s += "					tag = SHX\r\n";
+	s += "					tag = XSM\r\n";
+	s += "					tag = BEL\r\n";
+	s += "					tag = LUX\r\n";
+	s += "					tag = HOL\r\n";
+	s += "					tag = DEN\r\n";
+	s += "\r\n";
+	s += "					# we also dont want tiny nations to go crazy with slots right away\r\n";
+	s += "					num_of_controlled_states < 2\r\n";
+	s += "				}				\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = construction_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_construct_civ_factory\r\n";
+	s += "		prerequisite = { focus = industrial_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 12\r\n";
+	s += "		y = 1\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 2\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		bypass = {\r\n";
+	s += "			custom_trigger_tooltip = {\r\n";
+	s += "				tooltip = construction_effort_tt\r\n";
+	s += "				all_owned_state = {\r\n";
+	s += "					free_building_slots = {\r\n";
+	s += "						building = industrial_complex\r\n";
+	s += "						size < 1\r\n";
+	s += "						include_locked = yes\r\n";
+	s += "					}					\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		complete_tooltip = {\r\n";
+	s += "			add_extra_state_shared_building_slots = 1\r\n";
+	s += "			add_building_construction = {\r\n";
+	s += "				type = industrial_complex\r\n";
+	s += "				level = 1\r\n";
+	s += "				instant_build = yes\r\n";
+	s += "			}			\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			random_owned_state = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					free_building_slots = {\r\n";
+	s += "						building = industrial_complex\r\n";
+	s += "						size > 0\r\n";
+	s += "						include_locked = yes\r\n";
+	s += "					}\r\n";
+	s += "					OR = {\r\n";
+	s += "						is_in_home_area = yes\r\n";
+	s += "						NOT = {\r\n";
+	s += "							owner = {\r\n";
+	s += "								any_owned_state = {\r\n";
+	s += "									free_building_slots = {\r\n";
+	s += "										building = industrial_complex\r\n";
+	s += "										size > 0\r\n";
+	s += "										include_locked = yes\r\n";
+	s += "									}\r\n";
+	s += "									is_in_home_area = yes\r\n";
+	s += "								}\r\n";
+	s += "							}\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				add_extra_state_shared_building_slots = 1\r\n";
+	s += "				add_building_construction = {\r\n";
+	s += "					type = industrial_complex\r\n";
+	s += "					level = 1\r\n";
+	s += "					instant_build = yes\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = production_effort"+CreatingCountry->getTag()+"\r\n";
+	s += "		icon = GFX_goal_generic_construct_mil_factory\r\n";
+	s += "		prerequisite = { focus = industrial_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 14\r\n";
+	s += "		y = 1\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 2			\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		bypass = {\r\n";
+	s += "			custom_trigger_tooltip = {\r\n";
+	s += "				tooltip = production_effort_tt\r\n";
+	s += "				all_owned_state = {\r\n";
+	s += "					free_building_slots = {\r\n";
+	s += "						building = arms_factory\r\n";
+	s += "						size < 1\r\n";
+	s += "						include_locked = yes\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		complete_tooltip = {\r\n";
+	s += "			add_extra_state_shared_building_slots = 1\r\n";
+	s += "			add_building_construction = {\r\n";
+	s += "				type = arms_factory\r\n";
+	s += "				level = 1\r\n";
+	s += "				instant_build = yes\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			random_owned_state = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					free_building_slots = {\r\n";
+	s += "						building = arms_factory\r\n";
+	s += "						size > 0\r\n";
+	s += "						include_locked = yes\r\n";
+	s += "					}\r\n";
+	s += "					OR = {\r\n";
+	s += "						is_in_home_area = yes\r\n";
+	s += "						NOT = {\r\n";
+	s += "							owner = {\r\n";
+	s += "								any_owned_state = {\r\n";
+	s += "									free_building_slots = {\r\n";
+	s += "										building = arms_factory\r\n";
+	s += "										size > 0\r\n";
+	s += "										include_locked = yes\r\n";
+	s += "									}\r\n";
+	s += "									is_in_home_area = yes\r\n";
+	s += "								}\r\n";
+	s += "							}\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				add_extra_state_shared_building_slots = 1\r\n";
+	s += "				add_building_construction = {\r\n";
+	s += "					type = arms_factory\r\n";
+	s += "					level = 1\r\n";
+	s += "					instant_build = yes\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = construction_effort_2" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_construct_civ_factory\r\n";
+	s += "		prerequisite = { focus = construction_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 12\r\n";
+	s += "		y = 2\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 2\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		bypass = {\r\n";
+	s += "			custom_trigger_tooltip = {\r\n";
+	s += "				tooltip = construction_effort_tt\r\n";
+	s += "				all_owned_state = {\r\n";
+	s += "					free_building_slots = {\r\n";
+	s += "						building = industrial_complex\r\n";
+	s += "						size < 1\r\n";
+	s += "						include_locked = yes\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		complete_tooltip = {\r\n";
+	s += "			add_extra_state_shared_building_slots = 1\r\n";
+	s += "			add_building_construction = {\r\n";
+	s += "				type = industrial_complex\r\n";
+	s += "				level = 1\r\n";
+	s += "				instant_build = yes\r\n";
+	s += "			}\r\n";
+	s += "		}		\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			random_owned_state = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					free_building_slots = {\r\n";
+	s += "						building = industrial_complex\r\n";
+	s += "						size > 0\r\n";
+	s += "						include_locked = yes\r\n";
+	s += "					}\r\n";
+	s += "					OR = {\r\n";
+	s += "						is_in_home_area = yes\r\n";
+	s += "						NOT = {\r\n";
+	s += "							owner = {\r\n";
+	s += "								any_owned_state = {\r\n";
+	s += "									free_building_slots = {\r\n";
+	s += "										building = industrial_complex\r\n";
+	s += "										size > 0\r\n";
+	s += "										include_locked = yes\r\n";
+	s += "									}\r\n";
+	s += "									is_in_home_area = yes\r\n";
+	s += "								}\r\n";
+	s += "							}\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				add_extra_state_shared_building_slots = 1\r\n";
+	s += "				add_building_construction = {\r\n";
+	s += "					type = industrial_complex\r\n";
+	s += "					level = 1\r\n";
+	s += "					instant_build = yes\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = production_effort_2" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_construct_mil_factory\r\n";
+	s += "		prerequisite = { focus = production_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 14\r\n";
+	s += "		y = 2\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 2\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		bypass = {\r\n";
+	s += "			custom_trigger_tooltip = {\r\n";
+	s += "				tooltip = production_effort_tt\r\n";
+	s += "				all_owned_state = {\r\n";
+	s += "					free_building_slots = {\r\n";
+	s += "						building = arms_factory\r\n";
+	s += "						size < 1\r\n";
+	s += "						include_locked = yes\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		complete_tooltip = {\r\n";
+	s += "			add_extra_state_shared_building_slots = 1\r\n";
+	s += "			add_building_construction = {\r\n";
+	s += "				type = arms_factory\r\n";
+	s += "				level = 1\r\n";
+	s += "				instant_build = yes\r\n";
+	s += "			}\r\n";
+	s += "		}		\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			random_owned_state = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					free_building_slots = {\r\n";
+	s += "						building = arms_factory\r\n";
+	s += "						size > 0\r\n";
+	s += "						include_locked = yes\r\n";
+	s += "					}\r\n";
+	s += "					OR = {\r\n";
+	s += "						is_in_home_area = yes\r\n";
+	s += "						NOT = {\r\n";
+	s += "							owner = {\r\n";
+	s += "								any_owned_state = {\r\n";
+	s += "									free_building_slots = {\r\n";
+	s += "										building = arms_factory\r\n";
+	s += "										size > 0\r\n";
+	s += "										include_locked = yes\r\n";
+	s += "									}\r\n";
+	s += "									is_in_home_area = yes\r\n";
+	s += "								}\r\n";
+	s += "							}\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				add_extra_state_shared_building_slots = 1\r\n";
+	s += "				add_building_construction = {\r\n";
+	s += "					type = arms_factory\r\n";
+	s += "					level = 1\r\n";
+	s += "					instant_build = yes\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = infrastructure_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_construct_infrastructure\r\n";
+	s += "		prerequisite = { focus = construction_effort_2" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 12\r\n";
+	s += "		y = 3\r\n";
+	s += "		cost = 10\r\n";
+	s += "		bypass = {\r\n";
+	s += "			custom_trigger_tooltip = {\r\n";
+	s += "				tooltip = infrastructure_effort_tt\r\n";
+	s += "				all_owned_state = {			\r\n";
+	s += "					free_building_slots = {\r\n";
+	s += "						building = infrastructure\r\n";
+	s += "						size < 1\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		complete_tooltip = {\r\n";
+	s += "			add_building_construction = {\r\n";
+	s += "				type = infrastructure\r\n";
+	s += "				level = 1\r\n";
+	s += "				instant_build = yes\r\n";
+	s += "			}\r\n";
+	s += "			add_building_construction = {\r\n";
+	s += "				type = infrastructure\r\n";
+	s += "				level = 1\r\n";
+	s += "				instant_build = yes\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			random_owned_state = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					free_building_slots = {\r\n";
+	s += "						building = infrastructure\r\n";
+	s += "						size > 0\r\n";
+	s += "					}\r\n";
+	s += "					OR = {\r\n";
+	s += "						is_in_home_area = yes\r\n";
+	s += "						NOT = {\r\n";
+	s += "							owner = {\r\n";
+	s += "								any_owned_state = {\r\n";
+	s += "									free_building_slots = {\r\n";
+	s += "										building = infrastructure\r\n";
+	s += "										size > 0\r\n";
+	s += "									}\r\n";
+	s += "									is_in_home_area = yes\r\n";
+	s += "								}\r\n";
+	s += "							}\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				add_building_construction = {\r\n";
+	s += "					type = infrastructure\r\n";
+	s += "					level = 1\r\n";
+	s += "					instant_build = yes\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "			random_owned_state = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					free_building_slots = {\r\n";
+	s += "						building = infrastructure\r\n";
+	s += "						size > 0\r\n";
+	s += "					}\r\n";
+	s += "					OR = {\r\n";
+	s += "						is_in_home_area = yes\r\n";
+	s += "						NOT = {\r\n";
+	s += "							owner = {\r\n";
+	s += "								any_owned_state = {\r\n";
+	s += "									free_building_slots = {\r\n";
+	s += "										building = infrastructure\r\n";
+	s += "										size > 0\r\n";
+	s += "									}\r\n";
+	s += "									is_in_home_area = yes\r\n";
+	s += "								}\r\n";
+	s += "							}\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				add_building_construction = {\r\n";
+	s += "					type = infrastructure\r\n";
+	s += "					level = 1\r\n";
+	s += "					instant_build = yes\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = production_effort_3" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_construct_mil_factory\r\n";
+	s += "		prerequisite = { focus = production_effort_2" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 14\r\n";
+	s += "		y = 3\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 2\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		bypass = {\r\n";
+	s += "			custom_trigger_tooltip = {\r\n";
+	s += "				tooltip = production_effort_tt\r\n";
+	s += "				all_owned_state = {\r\n";
+	s += "					free_building_slots = {\r\n";
+	s += "						building = arms_factory\r\n";
+	s += "						size < 1\r\n";
+	s += "						include_locked = yes\r\n";
+	s += "					}					\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		complete_tooltip = {\r\n";
+	s += "			add_extra_state_shared_building_slots = 1\r\n";
+	s += "			add_building_construction = {\r\n";
+	s += "				type = arms_factory\r\n";
+	s += "				level = 1\r\n";
+	s += "				instant_build = yes\r\n";
+	s += "			}\r\n";
+	s += "		}		\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			random_owned_state = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					free_building_slots = {\r\n";
+	s += "						building = arms_factory\r\n";
+	s += "						size > 0\r\n";
+	s += "						include_locked = yes\r\n";
+	s += "					}\r\n";
+	s += "					OR = {\r\n";
+	s += "						is_in_home_area = yes\r\n";
+	s += "						NOT = {\r\n";
+	s += "							owner = {\r\n";
+	s += "								any_owned_state = {\r\n";
+	s += "									free_building_slots = {\r\n";
+	s += "										building = arms_factory\r\n";
+	s += "										size > 0\r\n";
+	s += "										include_locked = yes\r\n";
+	s += "									}\r\n";
+	s += "									is_in_home_area = yes\r\n";
+	s += "								}\r\n";
+	s += "							}\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				add_extra_state_shared_building_slots = 1\r\n";
+	s += "				add_building_construction = {\r\n";
+	s += "					type = arms_factory\r\n";
+	s += "					level = 1\r\n";
+	s += "					instant_build = yes\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = infrastructure_effort_2" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_construct_infrastructure\r\n";
+	s += "		prerequisite = { focus = infrastructure_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 12\r\n";
+	s += "		y = 4\r\n";
+	s += "		cost = 10\r\n";
+	s += "		bypass = {\r\n";
+	s += "			custom_trigger_tooltip = {\r\n";
+	s += "				tooltip = infrastructure_effort_tt\r\n";
+	s += "				all_owned_state = {			\r\n";
+	s += "					free_building_slots = {\r\n";
+	s += "						building = infrastructure\r\n";
+	s += "						size < 1\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		complete_tooltip = {\r\n";
+	s += "			add_building_construction = {\r\n";
+	s += "				type = infrastructure\r\n";
+	s += "				level = 1\r\n";
+	s += "				instant_build = yes\r\n";
+	s += "			}\r\n";
+	s += "			add_building_construction = {\r\n";
+	s += "				type = infrastructure\r\n";
+	s += "				level = 1\r\n";
+	s += "				instant_build = yes\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			random_owned_state = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					free_building_slots = {\r\n";
+	s += "						building = infrastructure\r\n";
+	s += "						size > 0\r\n";
+	s += "					}\r\n";
+	s += "					OR = {\r\n";
+	s += "						is_in_home_area = yes\r\n";
+	s += "						NOT = {\r\n";
+	s += "							owner = {\r\n";
+	s += "								any_owned_state = {\r\n";
+	s += "									free_building_slots = {\r\n";
+	s += "										building = infrastructure\r\n";
+	s += "										size > 0\r\n";
+	s += "									}\r\n";
+	s += "									is_in_home_area = yes\r\n";
+	s += "								}\r\n";
+	s += "							}\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				add_building_construction = {\r\n";
+	s += "					type = infrastructure\r\n";
+	s += "					level = 1\r\n";
+	s += "					instant_build = yes\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "			random_owned_state = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					free_building_slots = {\r\n";
+	s += "						building = infrastructure\r\n";
+	s += "						size > 0\r\n";
+	s += "					}\r\n";
+	s += "					OR = {\r\n";
+	s += "						is_in_home_area = yes\r\n";
+	s += "						NOT = {\r\n";
+	s += "							owner = {\r\n";
+	s += "								any_owned_state = {\r\n";
+	s += "									free_building_slots = {\r\n";
+	s += "										building = infrastructure\r\n";
+	s += "										size > 0\r\n";
+	s += "									}\r\n";
+	s += "									is_in_home_area = yes\r\n";
+	s += "								}\r\n";
+	s += "							}\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				add_building_construction = {\r\n";
+	s += "					type = infrastructure\r\n";
+	s += "					level = 1\r\n";
+	s += "					instant_build = yes\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = construction_effort_3" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_construct_civ_factory\r\n";
+	s += "		prerequisite = { focus = infrastructure_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 14\r\n";
+	s += "		y = 4\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 2\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		bypass = {\r\n";
+	s += "			custom_trigger_tooltip = {\r\n";
+	s += "				tooltip = construction_effort_tt\r\n";
+	s += "				all_owned_state = {\r\n";
+	s += "					free_building_slots = {\r\n";
+	s += "						building = industrial_complex\r\n";
+	s += "						size < 2\r\n";
+	s += "						include_locked = yes\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		complete_tooltip = {\r\n";
+	s += "			add_extra_state_shared_building_slots = 2\r\n";
+	s += "			add_building_construction = {\r\n";
+	s += "				type = industrial_complex\r\n";
+	s += "				level = 2\r\n";
+	s += "				instant_build = yes\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			random_owned_state = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					free_building_slots = {\r\n";
+	s += "						building = industrial_complex\r\n";
+	s += "						size > 1\r\n";
+	s += "						include_locked = yes\r\n";
+	s += "					}\r\n";
+	s += "					OR = {\r\n";
+	s += "						is_in_home_area = yes\r\n";
+	s += "						NOT = {\r\n";
+	s += "							owner = {\r\n";
+	s += "								any_owned_state = {\r\n";
+	s += "									free_building_slots = {\r\n";
+	s += "										building = industrial_complex\r\n";
+	s += "										size > 1\r\n";
+	s += "										include_locked = yes\r\n";
+	s += "									}\r\n";
+	s += "									is_in_home_area = yes\r\n";
+	s += "								}\r\n";
+	s += "							}\r\n";
+	s += "						}\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				add_extra_state_shared_building_slots = 2\r\n";
+	s += "				add_building_construction = {\r\n";
+	s += "					type = industrial_complex\r\n";
+	s += "					level = 2\r\n";
+	s += "					instant_build = yes\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = nuclear_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_focus_wonderweapons\r\n";
+	s += "		prerequisite = { focus = infrastructure_effort_2" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 10\r\n";
+	s += "		y = 5\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = nuclear_bonus\r\n";
+	s += "				ahead_reduction = 0.5\r\n";
+	s += "				category = nuclear\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 1\r\n";
+	s += "			modifier = {\r\n";
+	s += "				factor = 0.25\r\n";
+	s += "				always = yes\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = extra_tech_slot" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_focus_research\r\n";
+	s += "		prerequisite = { focus = infrastructure_effort_2" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 12\r\n";
+	s += "		y = 5\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_research_slot = 1\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "	\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = extra_tech_slot_2" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_focus_research\r\n";
+	s += "		prerequisite = { focus = extra_tech_slot" + CreatingCountry->getTag() + " }\r\n";
+	s += "		available = {\r\n";
+	s += "			num_of_factories > 50\r\n";
+	s += "		}\r\n";
+	s += "		cancel_if_invalid = no\r\n";
+	s += "		continue_if_invalid = yes\r\n";
+	s += "		x = 12\r\n";
+	s += "		y = 6\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_research_slot = 1\r\n";
+	s += "		}\r\n";
+	s += "	}	\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = secret_weapons" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_secret_weapon\r\n";
+	s += "		prerequisite = { focus = infrastructure_effort_2" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 14\r\n";
+	s += "		y = 5\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_tech_bonus = {\r\n";
+	s += "				name = secret_bonus\r\n";
+	s += "				bonus = 0.5\r\n";
+	s += "				uses = 4\r\n";
+	s += "				category = electronics\r\n";
+	s += "				category = nuclear\r\n";
+	s += "				category = rocketry\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 1\r\n";
+	s += "			modifier = {\r\n";
+	s += "				factor = 0.25\r\n";
+	s += "				always = yes\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = political_effort" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_demand_territory\r\n";
+	s += "		x = 19\r\n";
+	s += "		y = 0\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_political_power = 120\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = collectivist_ethos" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_national_unity #icon = GFX_goal_tripartite_pact\r\n";
+	s += "		prerequisite = { focus = political_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		mutually_exclusive = { focus = liberty_ethos" + CreatingCountry->getTag() + "}\r\n";
+	s += "		available = {\r\n";
+	s += "			OR = {\r\n";
+	s += "				has_government = fascism\r\n";
+	s += "				has_government = communism\r\n";
+	s += "				has_government = neutrality\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "		x = 18\r\n";
+	s += "		y = 1\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 5\r\n";
+	s += "			modifier = {\r\n";
+	s += "				factor = 0\r\n";
+	s += "				OR = {\r\n";
+	s += "					is_historical_focus_on = yes\r\n";
+	s += "					has_idea = neutrality_idea\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_ideas = collectivist_ethos_focus\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = nationalism_focus" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_support_fascism #icon = GFX_goal_tripartite_pact\r\n";
+	s += "		prerequisite = { focus = collectivist_ethos" + CreatingCountry->getTag() + " }\r\n";
+	s += "		mutually_exclusive = { focus = internationalism_focus" + CreatingCountry->getTag() + " }\r\n";
+	s += "		available = {\r\n";
+	s += "			OR = {\r\n";
+	s += "				has_government = fascism\r\n";
+	s += "				has_government = neutrality\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "		x = 16\r\n";
+	s += "		y = 2\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 5\r\n";
+	s += "			modifier = {\r\n";
+	s += "				factor = 2\r\n";
+	s += "				any_neighbor_country = {\r\n";
+	s += "					is_major = yes\r\n";
+	s += "					has_government = fascism\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_ideas = nationalism\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "	\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = internationalism_focus" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_support_communism #icon = GFX_goal_tripartite_pact\r\n";
+	s += "		prerequisite = { focus = collectivist_ethos" + CreatingCountry->getTag() + " }\r\n";
+	s += "		mutually_exclusive = { focus = nationalism_focus" + CreatingCountry->getTag() + " }\r\n";
+	s += "		available = {\r\n";
+	s += "			OR = {\r\n";
+	s += "				has_government = communism\r\n";
+	s += "				has_government = neutrality\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "		x = 18\r\n";
+	s += "		y = 2\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 5\r\n";
+	s += "			modifier = {\r\n";
+	s += "				factor = 2\r\n";
+	s += "				any_neighbor_country = {\r\n";
+	s += "					is_major = yes\r\n";
+	s += "					has_government = communism\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_ideas = internationalism\r\n";
+	s += "		}\r\n";
+	s += "	}	\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = liberty_ethos" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_support_democracy\r\n";
+	s += "		prerequisite = { focus = political_effort" + CreatingCountry->getTag() + " }\r\n";
+	s += "		mutually_exclusive = { focus = collectivist_ethos" + CreatingCountry->getTag() + " }\r\n";
+	s += "		available = {\r\n";
+	s += "			OR = {\r\n";
+	s += "				has_government = democratic\r\n";
+	s += "				has_government = neutrality\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "		x = 20\r\n";
+	s += "		y = 1\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 95\r\n";
+	s += "			modifier = {\r\n";
+	s += "				factor = 0.1\r\n";
+	s += "				any_neighbor_country = {\r\n";
+	s += "					is_major = yes\r\n";
+	s += "					OR = {\r\n";
+	s += "						has_government = communism\r\n";
+	s += "						has_government = fascism\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "				NOT = {\r\n";
+	s += "					any_neighbor_country = {\r\n";
+	s += "						is_major = yes\r\n";
+	s += "						has_government = democratic\r\n";
+	s += "					}\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_ideas = liberty_ethos_focus\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = militarism" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_political_pressure\r\n";
+	s += "		prerequisite = { focus = nationalism_focus" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 16\r\n";
+	s += "		y = 3\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			if = {\r\n";
+	s += "				limit = { has_idea = neutrality_idea }\r\n";
+	s += "				remove_ideas = neutrality_idea\r\n";
+	s += "			}			\r\n";
+	s += "			add_ideas = militarism_focus\r\n";
+	s += "			army_experience = 20\r\n";
+	s += "			set_rule = { can_send_volunteers = yes }\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = political_correctness" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_dangerous_deal\r\n";
+	s += "		prerequisite = { focus = internationalism_focus" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 18\r\n";
+	s += "		y = 3\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			if = {\r\n";
+	s += "				limit = { has_idea = neutrality_idea }\r\n";
+	s += "				remove_ideas = neutrality_idea\r\n";
+	s += "			}		\r\n";
+	s += "			add_political_power = 200\r\n";
+	s += "			add_ideas = idea_political_correctness\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = neutrality_focus" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_neutrality_focus\r\n";
+	s += "		prerequisite = { focus = liberty_ethos" + CreatingCountry->getTag() + " }\r\n";
+	s += "		mutually_exclusive = { focus = interventionism_focus" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 20\r\n";
+	s += "		y = 2\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			if = {\r\n";
+	s += "				limit = { NOT = { has_idea = neutrality_idea } }\r\n";
+	s += "				add_ideas = neutrality_idea\r\n";
+	s += "			}\r\n";
+	s += "			add_political_power = 150\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = interventionism_focus" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_political_pressure\r\n";
+	s += "		prerequisite = { focus = liberty_ethos" + CreatingCountry->getTag() + " }\r\n";
+	s += "		mutually_exclusive = { focus = neutrality_focus" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 22\r\n";
+	s += "		y = 2\r\n";
+	s += "		cost = 10\r\n";
+	s += "\r\n";
+	s += "		ai_will_do = {\r\n";
+	s += "			factor = 1\r\n";
+	s += "			modifier = {\r\n";
+	s += "				factor = 0\r\n";
+	s += "				has_idea = neutrality_idea\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			if = {\r\n";
+	s += "				limit = { has_idea = neutrality_idea }\r\n";
+	s += "				remove_ideas = neutrality_idea\r\n";
+	s += "			}	\r\n";
+	s += "			set_rule = { can_send_volunteers = yes }\r\n";
+	s += "			add_political_power = 150\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = military_youth" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_more_territorial_claims\r\n";
+	s += "		prerequisite = { focus = militarism" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 16\r\n";
+	s += "		y = 4\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_ideas = military_youth_focus\r\n";
+	s += "			if = {\r\n";
+	s += "				limit = { has_government = fascism }\r\n";
+	s += "				add_popularity = {\r\n";
+	s += "					ideology = fascism\r\n";
+	s += "					popularity = 0.2\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "			if = {\r\n";
+	s += "				limit = { has_government = communism }\r\n";
+	s += "				add_popularity = {\r\n";
+	s += "					ideology = communism\r\n";
+	s += "					popularity = 0.2\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = deterrence" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_defence\r\n";
+	s += "		prerequisite = { focus = neutrality_focus" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 20\r\n";
+	s += "		y = 3\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_ideas = deterrence\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = volunteer_corps" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
+	s += "		prerequisite = { focus = interventionism_focus" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 22\r\n";
+	s += "		y = 3\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_ideas = volunteer_corps_focus\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = paramilitarism" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_military_sphere\r\n";
+	s += "		prerequisite = { focus = military_youth" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 16\r\n";
+	s += "		y = 5\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_ideas = paramilitarism_focus\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = indoctrination_focus" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_propaganda\r\n";
+	s += "		prerequisite = { focus = political_correctness" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 18\r\n";
+	s += "		y = 4\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_ideas = indoctrination_focus\r\n";
+	s += "			add_political_power = 150\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = foreign_expeditions" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_more_territorial_claims\r\n";
+	s += "		prerequisite = { focus = volunteer_corps" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 22\r\n";
+	s += "		y = 4\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_ideas = foreign_expeditions_focus\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = why_we_fight" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_propaganda\r\n";
+	s += "		prerequisite = { focus = foreign_expeditions focus = deterrence" + CreatingCountry->getTag() + " }\r\n";
+	s += "		available = { \r\n";
+	s += "			OR = { \r\n";
+	s += "				threat > 0.75 \r\n";
+	s += "				has_defensive_war = yes \r\n";
+	s += "			}\r\n";
+	s += "		}\r\n";
+	s += "\r\n";
+	s += "		continue_if_invalid = yes\r\n";
+	s += "		\r\n";
+	s += "		x = 20\r\n";
+	s += "		y = 5\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			if = {\r\n";
+	s += "				limit = { NOT = { has_idea = neutrality_idea } }\r\n";
+	s += "				set_rule = { can_create_factions = yes }\r\n";
+	s += "			}\r\n";
+	s += "			add_ideas = why_we_fight_focus\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = political_commissars" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_forceful_treaty\r\n";
+	s += "		prerequisite = { focus = indoctrination_focus" + CreatingCountry->getTag() + " }\r\n";
+	s += "		available = {\r\n";
+	s += "		}\r\n";
+	s += "		x = 18\r\n";
+	s += "		y = 5\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_ideas = political_commissars_focus\r\n";
+	s += "			if = {\r\n";
+	s += "				limit = { has_government = fascism }\r\n";
+	s += "				add_popularity = {\r\n";
+	s += "					ideology = fascism\r\n";
+	s += "					popularity = 0.2\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "			if = {\r\n";
+	s += "				limit = { has_government = communism }\r\n";
+	s += "				add_popularity = {\r\n";
+	s += "					ideology = communism\r\n";
+	s += "					popularity = 0.2\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "			add_political_power = 200\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = ideological_fanaticism" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_demand_territory\r\n";
+	s += "		prerequisite = { focus = paramilitarism" + CreatingCountry->getTag() + " focus = political_commissars" + CreatingCountry->getTag() + " }\r\n";
+	s += "		x = 17\r\n";
+	s += "		y = 6\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			add_ideas = ideological_fanaticism_focus\r\n";
+	s += "			set_rule = {\r\n";
+	s += "				can_create_factions = yes\r\n";
+	s += "			}\r\n";
+	s += "			hidden_effect = {\r\n";
+	s += "				set_rule = { can_use_kamikaze_pilots = yes }\r\n";
+	s += "			}\r\n";
+	s += "			custom_effect_tooltip = kamikaze_focus_tooltip\r\n";
+	s += "		}\r\n";
+	s += "	}\r\n";
+	s += "	\r\n";
+	s += "	focus = {\r\n";
+	s += "		id = technology_sharing" + CreatingCountry->getTag() + "\r\n";
+	s += "		icon = GFX_goal_generic_scientific_exchange\r\n";
+	s += "		prerequisite = { focus = ideological_fanaticism" + CreatingCountry->getTag() + " focus = why_we_fight" + CreatingCountry->getTag() + " }\r\n";
+	s += "		available = {\r\n";
+	s += "			has_war = yes\r\n";
+	s += "			is_in_faction = yes\r\n";
+	s += "			OR = {\r\n";
+	s += "				num_of_factories > 50\r\n";
+	s += "				any_country = {\r\n";
+	s += "					is_in_faction_with = ROOT\r\n";
+	s += "					num_of_factories > 50\r\n";
+	s += "				}\r\n";
+	s += "			}\r\n";
+	s += "		}		\r\n";
+	s += "		x = 19\r\n";
+	s += "		y = 7\r\n";
+	s += "		cost = 10\r\n";
+	s += "		completion_reward = {\r\n";
+	s += "			if = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					original_research_slots < 3\r\n";
+	s += "				}\r\n";
+	s += "				add_research_slot = 1\r\n";
+	s += "			}\r\n";
+	s += "			if = {\r\n";
+	s += "				limit = {\r\n";
+	s += "					original_research_slots > 2\r\n";
+	s += "				}\r\n";
+	s += "				add_tech_bonus = {\r\n";
+	s += "					name = electronics_bonus\r\n";
+	s += "					bonus = 0.5\r\n";
+	s += "					uses = 1\r\n";
+	s += "					category = electronics\r\n";
+	s += "				}\r\n";
+	s += "				add_tech_bonus = {\r\n";
+	s += "					name = industrial_bonus\r\n";
+	s += "					bonus = 0.5\r\n";
+	s += "					uses = 1\r\n";
+	s += "					category = industry\r\n";
+	s += "				}	\r\n";
+	s += "				add_tech_bonus = {\r\n";
+	s += "					name = infantry_weapons_bonus\r\n";
+	s += "					bonus = 0.5\r\n";
+	s += "					uses = 1\r\n";
+	s += "					category = infantry_weapons\r\n";
+	s += "					category = artillery\r\n";
+	s += "				}				\r\n";
+	s += "			}			\r\n";
+	s += "		}\r\n";
+	s += "	}	\r\n";
+	s += "\r\n";
+	return s;
+}
+void HoI4World::fillCountryIC()
+{
+
+	for (auto country : countries)
+	{
+		vector<int> countrystates;
+		int countryIC = 0;
+		for (auto state : states)
+		{
+			if (state.second->getOwner() == country.second->getTag())
+			{
+				countryIC += state.second->getMilFactories();
+				countrystates.push_back(state.first);
+			}
+		}
+		countriesStates.insert(make_pair(country.second->getTag(), countrystates));
+		countriesIC.insert(make_pair(country.second->getTag(), countryIC));
+	}
+}
+double HoI4World::getStrengthOverTime(HoI4Country* Country, double years)
+{
+	double strength = 0;
+	strength = Country->getArmyStrength() + countriesIC.find(Country->getTag())->second*2.5*years+ countriesIC.find(Country->getTag())->second*2*.469*2.5*years;
+	return strength;
+}
+void HoI4World::outputRelations()
+{
+	string opinion_modifiers;
+	for (auto country : countries)
+	{
+		string countryrelation;
+		for (auto country2 : countries)
+		{
+			if (country.second->getTag() != country2.second->getTag() && country.second->getRelations(country2.second->getTag()) != NULL &&country2.second->getRelations(country2.second->getTag()) != NULL)
+			{
+				opinion_modifiers += country.second->getTag() + "_" + country2.second->getTag() + " = {\r\n\tvalue = " + to_string(country.second->getRelations(country2.second->getTag())->getRelations()*1.5) + "\r\n}\r\n";
+				countryrelation += "add_opinion_modifier = { target = " + country2.second->getTag() + " modifier = " + country.second->getTag() + "_" + country2.second->getTag() + "}\r\n";
+			}
+		}
+		country.second->setRelations(countryrelation);
+	}
+	std::string outputcommon = "Output/" + Configuration::getOutputName() + "/common";
+	if (!Utils::TryCreateFolder(outputcommon))
+	{
+		return;
+	}
+
+	std::string outputopinionfolder = "Output/" + Configuration::getOutputName() + "/common/opinion_modifiers";
+	if (!Utils::TryCreateFolder(outputopinionfolder))
+	{
+		return;
+	}
+	Utils::copyFolder("NeededFiles/defines", "output/" + Configuration::getOutputName() + "/common");
+	string filename("Output/" + Configuration::getOutputName() + "/common/opinion_modifiers/01_opinion_modifiers.txt");
+	ofstream out;
+	out.open(filename);
+	{
+		out << "opinion_modifiers = {\r\n";
+		out << opinion_modifiers;
+		out << "}\r\n";
+	}
+	out.close();
+}
 void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
-	
+
 	//FIX ALL FIXMES AND ADD CONQUEST GOAL
 	//MAKE SURE THIS WORKS
+	//IMPROVE
+	//MAKE ARMY STRENGTH CALCS MORE ACCURATE!!
+	fillCountryIC();
+	LOG(LogLevel::Info) << "Filling province neighbors";
+	fillProvinceNeighbors();
+	LOG(LogLevel::Info) << "Creating Factions";
 	Factions = CreateFactions(sourceWorld, countryMap);
+	for (auto country : countries)
+	{
+		int i = 1;
+		string FactionName;
+		for (auto faction : Factions)
+		{
+			if (country.second->getTag() == faction.front()->getTag())
+			{
+				FactionName = to_string(i++);
+			}
+		}
+		country.second->output(states.size(), states, Factions, FactionName);
+	}
 	bool fascismrelevant = false;
 	bool communismrelevant = false;
 	double WorldStrength = 0;
 	//GetDistance(Factions.front().front(), Factions.back().back());
 	//get World Strength
+	LOG(LogLevel::Info) << "Filling Provinces";
 	fillProvinces();
+	string NFpath = "Output/" + Configuration::getOutputName() + "/common/national_focus";
+	if (!Utils::TryCreateFolder(NFpath))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/national_focus\"";
+		exit(-1);
+	}
+	string eventpath = "Output/" + Configuration::getOutputName() + "/events";
+	if (!Utils::TryCreateFolder(eventpath))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/events\"";
+		exit(-1);
+	}
 	string filename("Output/AI.txt");
 	ofstream out;
 	out.open(filename);
@@ -2560,84 +4850,624 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 			out << "Fascism is Relevant" << endl;
 		if (communismrelevant)
 			out << "Communist is Relevant" << endl;
+		out << endl;
 		//time to do events for coms and fascs if they are relevant
+		LOG(LogLevel::Info) << "Calculating Fasc/Com AI";
 		for (auto Faction : Factions)
 		{
 			HoI4Country* Leader = GetFactionLeader(Faction);
 			if ((Leader->getGovernment() == "fascism" || Leader->getGovernment() == "absolute_monarchy") && fascismrelevant)
 			{
-				out << Leader->getTag() << endl;
-				vector<HoI4Country*> AnchlussTargets;
-				vector<HoI4Country*> SudatenTargets;
-				vector<HoI4Country*> EqualTargets;
-				vector<HoI4Country*> StrongerTargets;
+				LOG(LogLevel::Info) << "Calculating AI for " + Leader->getSourceCountry()->getName();
+				out << Leader->getSourceCountry()->getName() << endl;
+				vector<HoI4Country*> Targets;
+				vector<HoI4Country*> Anchluss;
+				vector<HoI4Country*> Sudaten;
+				vector<HoI4Country*> DifficultTargets;
 				vector<int> leaderProvs = getCountryProvinces(Leader);
-				vector<HoI4Country*> Neighbors = findNeighbors(leaderProvs, Leader);
+				LOG(LogLevel::Info) << "Calculating Neighbors for " + Leader->getSourceCountry()->getName();
+				map<string, HoI4Country*> Neighbors = findNeighbors(leaderProvs, Leader);
 				set<string> Allies = Leader->getAllies();
 				//should add method to look for cores you dont own
 				//should add method to look for more allies
 
 				//lets look for weak neighbors
+				LOG(LogLevel::Info) << "Doing Neighbor calcs for " + Leader->getSourceCountry()->getName();
 				for (auto neigh : Neighbors)
 				{
 					//lets check to see if they are our ally and not a great country
-					if (std::find(Allies.begin(), Allies.end(), neigh->getTag()) == Allies.end() && !checkIfGreatCountry(neigh, sourceWorld, countryMap))
+					if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
 					{
 						//if not, lets see their strength is at least < 20%
-						if (neigh->getArmyStrength() < Leader->getArmyStrength()*0.2)
+						if (getStrengthOverTime(neigh.second,1.5) < getStrengthOverTime(Leader,1.5)*0.2)
 						{
 							//they are very weak and we can get 1 of these countries in an anchluss
 							//AnchlussTargets.push_back(neigh);
-							HowToTakeLand(neigh, Leader);
-							out << "/t" + neigh->getSourceCountry()->getName() + " Anchluss" << endl;
+							Anchluss.push_back(neigh.second);
+						
 						}
 						//if not, lets see their strength is at least < 60%
-						if (neigh->getArmyStrength() < Leader->getArmyStrength()*0.6)
+						else if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1)*0.6 && getStrengthOverTime(neigh.second, 1) > getStrengthOverTime(Leader, 1)*0.2)
 						{
 							//they are weak and we can get 1 of these countries in sudaten deal
 							//SudatenTargets.push_back(neigh);
-							HowToTakeLand(neigh, Leader);
-							out << "/t" + neigh->getSourceCountry()->getName() + " Sudaten" << endl;
+							Sudaten.push_back(neigh.second);
+				
 						}
 						//if not, lets see their strength is at least = to ours%
-						if (neigh->getArmyStrength() < Leader->getArmyStrength())
+						else if (getStrengthOverTime(neigh.second, 1) < getStrengthOverTime(Leader, 1))
 						{
 							//EqualTargets.push_back(neigh);
-							HowToTakeLand(neigh, Leader);
-							out << "/t" + neigh->getSourceCountry()->getName() + " Equal" << endl;
+							DifficultTargets.push_back(neigh.second);
+						
 						}
 						//if not, lets see their strength is at least < 120%
-						if (neigh->getArmyStrength() < Leader->getArmyStrength()*1.2)
+						else if (getStrengthOverTime(neigh.second, 1) < getStrengthOverTime(Leader, 1)*1.2)
 						{
 							//StrongerTargets.push_back(neigh);
-							HowToTakeLand(neigh, Leader);
-							out << "/t" + neigh->getSourceCountry()->getName() + " Stronger Neighbor" << endl;
+							DifficultTargets.push_back(neigh.second);
+
 						}
+						
 					}
 				}
+				string Events;
+				string s;
+				map<string, vector<HoI4Country*>> TargetMap;
+				vector<HoI4Country*> anchlussnan;
+				vector<HoI4Country*> sudatennan;
+				vector<HoI4Country*> nan;
+				vector<HoI4Country*> fn;
+				vector<HoI4Country*> man;
+				vector<HoI4Country*> coup;
+				int EventNumber = 0;
+				vector<int> takenSpots;
+				vector<int> takenSpotsy;
+				int x = 22;
+				takenSpots.push_back(x);
+				//look through every anchluss and see its difficulty
+				for (auto target : Anchluss)
+				{
+					string type;
+					//outputs are
+					//noactionneeded -  Can take target without any help
+					//factionneeded - can take target and faction with attackers faction helping
+					//morealliesneeded - can take target with more allies, comes with "newallies" in map
+					//coup - cant take over, need to coup
+					type = HowToTakeLand(target, Leader, 1.5);
+					out << type + " " + target->getSourceCountry()->getName() << endl;
+					if (type == "noactionneeded")
+					{
+						nan.push_back(target);
+						anchlussnan.push_back(target);
+					}
+				}
+				
+				string FocusTree = genericFocusTreeCreator(Leader);
+				if (nan.size() >= 1)
+				{
+					//if it can easily take these targets as they are not in an alliance, you can get annexation event
+						
+						if (nan.size() == 1)
+						{
+							x = 24;
+							takenSpots.push_back(x);
+						}
+						if (nan.size() >= 2)
+						{
+							x = 25;
+							takenSpots.push_back(x);
+						}
+						takenSpotsy.push_back(2);
+						//Focus to increase fascist support and prereq for anschluss
+						FocusTree += "focus = {\r\n";
+						FocusTree += "		id = The_third_way" + Leader->getTag() + "\r\n";
+						FocusTree += "		icon = GFX_goal_support_fascism\r\n";
+						FocusTree += "		text = \"The Third Way!\"\r\n";
+						FocusTree += "		x = " + to_string(x) + "\r\n";
+						FocusTree += "		y = 0\r\n";
+						FocusTree += "		cost = 10\r\n";
+						FocusTree += "		ai_will_do = {\r\n";
+						FocusTree += "			factor = 5\r\n";
+						FocusTree += "		}	\r\n";
+						FocusTree += "		completion_reward = {\r\n";
+						//FIXME 
+						//Need to get Drift Defense to work
+						//FocusTree += "			drift_defence_factor = 0.5\r\n";
+						FocusTree += "			add_ideas = fascist_influence\r\n";
+						FocusTree += "		}\r\n";
+						FocusTree += "	}\r\n";
+
+						//Focus to increase army support
+						FocusTree += "focus = {\r\n";
+						FocusTree += "		id = mil_march" + Leader->getTag() + "\r\n";
+						FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
+						FocusTree += "		text = \"Establish Military March Day\"\r\n";
+						FocusTree += "		prerequisite = { focus = The_third_way" + Leader->getTag() + " }\r\n";
+						FocusTree += "		x = " + to_string(x) + "\r\n";
+						FocusTree += "		y = 1\r\n";
+						FocusTree += "		cost = 10\r\n";
+						FocusTree += "		ai_will_do = {\r\n";
+						FocusTree += "			factor = 5\r\n";
+						FocusTree += "		}	\r\n";
+						FocusTree += "		completion_reward = {\r\n";
+						FocusTree += "			army_experience = 20\r\n";
+						FocusTree += "		add_tech_bonus = { \r\n";
+						FocusTree += "				bonus = 0.5\r\n";
+						FocusTree += "				uses = 2\r\n";
+						FocusTree += "				category = land_doctrine\r\n";
+						FocusTree += "			}";
+						FocusTree += "		}\r\n";
+						FocusTree += "	}\r\n";
+						Events += "add_namespace = " + Leader->getTag() + "annex\r\n";
+						
+						for (int i = 0; i < 2; i++)
+						{
+							if (i < nan.size())
+							{
+								//int x = i * 3;
+								string annexername = Leader->getSourceCountry()->getName();
+								string annexedname = nan[i]->getSourceCountry()->getName();
+								int v1 = rand() % 5 + 1;
+								int v2 = rand() % 5 + 1;
+								//focus for anschluss
+								FocusTree += "		focus = { \r\n";
+								FocusTree += "		id = "+Leader->getTag() +"_anschluss_"+nan[i]->getTag()+"\r\n";
+								FocusTree += "		icon = GFX_goal_anschluss\r\n";
+								FocusTree += "		text = \"Union with "+annexedname+"\"\r\n";
+								FocusTree += "		prerequisite = { focus = mil_march" + Leader->getTag() + " }\r\n";
+								FocusTree += "		available = {\r\n";
+								FocusTree += "			is_puppet = no\r\n";
+								FocusTree += "		    date > 1937." + to_string(v1+5) + "." + to_string(v2+5) + "\r\n";
+								FocusTree += "		}\r\n";
+								FocusTree += "		\r\n";
+								FocusTree += "		x = " + to_string(x + i*2) + "\r\n";
+								FocusTree += "		y = 2\r\n";
+								FocusTree += "		cost = 10\r\n";
+								FocusTree += "		ai_will_do = {\r\n";
+								FocusTree += "			factor = 10\r\n";
+								FocusTree += "			modifier = {\r\n";
+								FocusTree += "				factor = 0\r\n";
+								FocusTree += "				date < 1937.6.6\r\n";
+								FocusTree += "			}\r\n";
+								FocusTree += "		}	\r\n";
+								FocusTree += "		completion_reward = {\r\n";
+								FocusTree += "			army_experience = 10\r\n";
+								FocusTree += "			if = {\r\n";
+								FocusTree += "				limit = {\r\n";
+								FocusTree += "					country_exists = " + nan[i]->getTag() + "\r\n";
+								FocusTree += "				}\r\n";
+								FocusTree += "				" + nan[i]->getTag() + " = {\r\n";
+								FocusTree += "					country_event = " + Leader->getTag() + "annex."+to_string(EventNumber)+"\r\n";
+								FocusTree += "				}\r\n";
+								FocusTree += "			}\r\n";
+								FocusTree += "		}\r\n";
+								FocusTree += "	}";
+
+								//events
+								
+								Events += createAnnexEvent(Leader, nan[i], EventNumber);
+								EventNumber += 3;
+							}
+						}
+					nan.clear();
+
+				}
+				for (auto target : Sudaten)
+				{
+					string type;
+					//outputs are
+					//noactionneeded -  Can take target without any help
+					//factionneeded - can take target and faction with attackers faction helping
+					//morealliesneeded - can take target with more allies, comes with "newallies" in map
+					//coup - cant take over, need to coup
+					type = HowToTakeLand(target, Leader, 2.5);
+					out << type + " " + target->getSourceCountry()->getName() << endl;
+					if (type == "noactionneeded")
+					{
+						nan.push_back(target);
+					}
+				}
+				if (nan.size() >= 1)
+				{
+					//if it can easily take these targets as they are not in an alliance, you can get annexation event
+					
+					//Focus to increase empire size more
+					FocusTree += "focus = {\r\n";
+					FocusTree += "		id = Expand_the_Reich" + Leader->getTag() + "\r\n";
+					FocusTree += "		icon = GFX_goal_generic_political_pressure\r\n";//something about claiming land
+					FocusTree += "		text = \"Expand the Reich\"\r\n";
+					if (anchlussnan.size() == 1 || anchlussnan.size() >= 2)
+					{
+						FocusTree += "		prerequisite = { ";
+						for (int i = 0; i < 2; i++)
+						{
+							if (i < anchlussnan.size())
+							{
+								FocusTree += " focus = " + Leader->getTag() + "_anschluss_" + anchlussnan[i]->getTag() + " ";
+							}
+						}
+						FocusTree += "\r\n }\r\n";
+						FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
+						FocusTree += "		y = 3\r\n";
+						takenSpotsy.push_back(5);
+					}
+					else
+					{
+						int x = takenSpots.back();
+						takenSpots.push_back(x);
+						if (nan.size() == 1)
+						{
+							x += 2;
+							takenSpots.push_back(x);
+						}
+						if (nan.size() >= 2)
+						{
+							x += 3;
+							takenSpots.push_back(x);
+						}
+						FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
+						FocusTree += "		y = 0\r\n";
+						takenSpotsy.push_back(2);
+					}
+					FocusTree += "		cost = 10\r\n";
+					FocusTree += "		ai_will_do = {\r\n";
+					FocusTree += "			factor = 5\r\n";
+					FocusTree += "		}	\r\n";
+					FocusTree += "		completion_reward = {\r\n";
+					FocusTree += "			add_named_threat = { threat = 2 name = \"Fascist Expansion\" }\r\n";//give some claims or cores
+					FocusTree += "		}\r\n";
+					FocusTree += "	}\r\n";
+					for (int i = 0; i < 1; i++)
+					{
+						if (i < nan.size())
+						{
+							int x = i * 3;
+							string annexername = Leader->getSourceCountry()->getName();
+							string annexedname = nan[i]->getSourceCountry()->getName();
+							int v1 = rand() % 8 + 1;
+							int v2 = rand() % 8 + 1;
+							//focus for sudaten
+							FocusTree += "		focus = { \r\n";
+							FocusTree += "		id = " + Leader->getTag() + "_sudaten_" + nan[i]->getTag() + "\r\n";
+							FocusTree += "		icon = GFX_goal_anschluss\r\n";
+							FocusTree += "		text = \"Demand Territory from " + annexedname + "\"\r\n";
+							FocusTree += "		prerequisite = { focus = Expand_the_Reich" + Leader->getTag() + " }\r\n";
+							FocusTree += "		available = {\r\n";
+							FocusTree += "			is_puppet = no\r\n";
+							FocusTree += "		    date > 1938." + to_string(v1) + "." + to_string(v2) + "\r\n";
+							FocusTree += "		}\r\n";
+							FocusTree += "		\r\n";
+							if (anchlussnan.size() == 1 || anchlussnan.size() >= 2)
+							{
+								FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
+								FocusTree += "		y = 4\r\n";
+							}
+							else
+							{
+								FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
+								FocusTree += "		y = 1\r\n";
+							}
+							FocusTree += "		cost = 10\r\n";
+							FocusTree += "		ai_will_do = {\r\n";
+							FocusTree += "			factor = 10\r\n";
+							FocusTree += "			modifier = {\r\n";
+							FocusTree += "				factor = 0\r\n";
+							FocusTree += "				date < 1937.6.6\r\n";
+							FocusTree += "			}\r\n";
+							FocusTree += "		}	\r\n";
+							FocusTree += "		completion_reward = {\r\n";
+							FocusTree += "			army_experience = 10\r\n";
+							FocusTree += "			if = {\r\n";
+							FocusTree += "				limit = {\r\n";
+							FocusTree += "					country_exists = " + nan[i]->getTag() + "\r\n";
+							FocusTree += "				}\r\n";
+							FocusTree += "				" + nan[i]->getTag() + " = {\r\n";
+							FocusTree += "					country_event = " + Leader->getTag() + "sudaten." + to_string(EventNumber) + "\r\n";
+							FocusTree += "				}\r\n";
+							FocusTree += "			}\r\n";
+							FocusTree += "		}\r\n";
+							FocusTree += "	}";
+
+							//FINISH HIM
+							FocusTree += "		focus = { \r\n";
+							FocusTree += "		id = " + Leader->getTag() + "_finish_" + nan[i]->getTag() + "\r\n";
+							FocusTree += "		icon = GFX_goal_generic_territory_or_war\r\n";
+							FocusTree += "		text = \"Fate of " + annexedname + "\"\r\n";
+							FocusTree += "		prerequisite = { focus =  " + Leader->getTag() + "_sudaten_" + nan[i]->getTag() + " }\r\n";
+							FocusTree += "		available = {\r\n";
+							FocusTree += "			is_puppet = no\r\n";
+							FocusTree += "		}\r\n";
+							FocusTree += "		\r\n";
+							if (anchlussnan.size() == 1 || anchlussnan.size() >= 2)
+							{
+								FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
+								FocusTree += "		y = 5\r\n";
+							}
+							else
+							{
+								FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
+								FocusTree += "		y = 2\r\n";
+							}
+							FocusTree += "		cost = 10\r\n";
+							FocusTree += "		ai_will_do = {\r\n";
+							FocusTree += "			factor = 10\r\n";
+							FocusTree += "			modifier = {\r\n";
+							FocusTree += "				factor = 0\r\n";
+							FocusTree += "				date < 1937.6.6\r\n";
+							FocusTree += "			}\r\n";
+							FocusTree += "		}	\r\n";
+							FocusTree += "		completion_reward = {\r\n";
+							FocusTree += "		create_wargoal = {\r\n";
+							FocusTree += "				type = annex_everything\r\n";
+							FocusTree += "			target = " + nan[i]->getTag() + "\r\n";
+							FocusTree += "		}\r\n";
+							FocusTree += "		}\r\n";
+							FocusTree += "	}";
+
+							//events
+							//find neighboring states
+							vector<int> demandedstates;
+							for (auto leaderprov : leaderProvs)
+							{
+								vector<int> thisprovNeighbors = provinceNeighbors.find(leaderprov)->second;
+								for (int prov : thisprovNeighbors)
+								{
+									if (provincemap.find(prov) == provincemap.end())
+									{
+									}
+									else
+									{
+										vector<string> stuff = provincemap.find(prov)->second;
+										if (stuff.size() >= 1)
+										{
+											int statenumber = stoi(stuff.front());
+											//string ownertag = "";
+											auto ownertag = provincemap.find(prov);
+											if (ownertag != provincemap.end())
+											{
+												vector<string> tags = ownertag->second;
+												if (tags.size() >= 1)
+												{
+													if (tags[1] == nan[i]->getTag())
+													{
+									
+															/* v does not contain x */
+															demandedstates.push_back(statenumber);
+														
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							Events += "add_namespace = " + Leader->getTag() + "sudaten\r\n";
+							Events += createSudatenEvent(Leader, nan[0], EventNumber, demandedstates);
+							EventNumber += 3;
+						}
+					}
+					nan.clear();
+
+				}
+				//events for allies
+				vector<HoI4Country*> newAllies = GetMorePossibleAllies(Leader);
+				if (takenSpots.size() == 0)
+					takenSpots.push_back(22);
+				if (newAllies.size() > 0)
+				{
+					//Focus to call summit, maybe have events from summit
+					FocusTree += "focus = {\r\n";
+					FocusTree += "		id = Fas_Summit" + Leader->getTag() + "\r\n";
+					FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
+					FocusTree += "		text = \"Call for the Fascist Summit\"\r\n";
+					FocusTree += "		x = " + to_string(takenSpots.back()+3) + "\r\n";
+					FocusTree += "		y = 0\r\n";
+					FocusTree += "		cost = 10\r\n";
+					FocusTree += "		ai_will_do = {\r\n";
+					FocusTree += "			factor = 0\r\n";
+					FocusTree += "			modifier = {\r\n";
+					FocusTree += "			factor = 5\r\n";
+					FocusTree += "			date > 1938.1.1\r\n";
+					FocusTree += "			}";
+					FocusTree += "		}	\r\n";
+					FocusTree += "		completion_reward = {\r\n";
+					//FocusTree += "			opinion_gain_monthly_factor = 1.0 \r\n";
+					FocusTree += "		}\r\n";
+					FocusTree += "	}\r\n";
+				}
+				for (int i = 0; i < newAllies.size(); i++)
+				{
+					FocusTree += "focus = {\r\n";
+					FocusTree += "		id = Alliance_"+newAllies[i]->getTag() + Leader->getTag() + "\r\n";
+					FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
+					FocusTree += "		text = \"Alliance with "+newAllies[i]->getSourceCountry()->getName()+"\"\r\n";
+					FocusTree += "		x = " + to_string(takenSpots.back() + 3 + i) + "\r\n";
+					FocusTree += "		y = 1\r\n";
+					FocusTree += "		cost = 10\r\n";
+					FocusTree += "		ai_will_do = {\r\n";
+					FocusTree += "			factor = 10\r\n";
+					FocusTree += "		}	\r\n";
+					FocusTree += "		bypass = { \r\n";
+					FocusTree += "			\r\n";
+					FocusTree += "			OR = {\r\n";
+					FocusTree += "				is_in_faction_with = "+newAllies[i]->getTag()+"\r\n";
+					FocusTree += "				has_war_with = " + newAllies[i]->getTag() + "\r\n";
+					FocusTree += "				NOT = { country_exists = " + newAllies[i]->getTag() + " }\r\n";
+					FocusTree += "			}\r\n";
+					FocusTree += "		}\r\n";
+					
+					FocusTree += "		completion_reward = {\r\n";
+					FocusTree += "		" + newAllies[i]->getTag() + " = {\r\n";
+					FocusTree += "			add_opinion_modifier = { target = " + Leader->getTag() + " modifier = ger_ita_alliance_focus } \r\n";
+					FocusTree += "		}";
+					FocusTree += "		}\r\n";
+					FocusTree += "	}\r\n";
+				}
+				//Declaring war with Great Country
+				vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
+				map<double, HoI4Country*> GCDistance;
+				vector<HoI4Country*> GCDistanceSorted;
+				//get great countries with a distance
+				for each (auto GC in GreatCountries)
+				{
+					GCDistance.insert(make_pair(GetDistance(Leader, GC), GC));
+				}
+				//put them into a vector so we know their order
+				for (auto iterator = GCDistance.begin(); iterator != GCDistance.end(); ++iterator)
+				{
+					GCDistanceSorted.push_back(iterator->second);
+				}
+				sort(GCDistanceSorted.begin(), GCDistanceSorted.end());
+				vector<HoI4Country*> GCTargets;
+				for each (auto GC in GCDistanceSorted)
+				{
+					if (HowToTakeLand(GC, Leader, 3) == "noactionneeded" || HowToTakeLand(GC, Leader, 3) == "factionneeded" || HowToTakeLand(GC, Leader, 3) == "morealliesneeded")
+					{
+						if(GC != Leader)
+							GCTargets.push_back(GC);
+					}
+
+				}
+				int maxGCWars = 0;
+				int start = 0;
+				if (GCTargets.size() >= 4)
+				{
+					start = -3;
+				}
+				else if (GCTargets.size() == 3)
+				{
+					start = -2;
+				}
+				else if (GCTargets.size() == 2)
+				{
+					start = -1;
+				}
+
+				for each (auto GC in GCTargets)
+				{
+					if (maxGCWars < 4)
+					{
+						//figuring out location of WG
+						string prereq;
+						if (takenSpotsy.size() > 0)
+						{
+							if (takenSpotsy.back() == 5)
+							{
+								prereq = Leader->getTag() + "_finish_" + GC->getTag();
+							}
+							else if (takenSpotsy.back() == 2)
+							{
+								prereq = Leader->getTag() + "_anschluss_" + GC->getTag();
+							}
+							else
+								prereq = "";
+						}
+						else
+						{
+							prereq = "";
+							takenSpotsy.push_back(0);
+						}
+						int v1 = rand() % 12 + 1;
+						int v2 = rand() % 12 + 1;
+						FocusTree += "focus = {\r\n";
+						FocusTree += "		id = War" + GC->getTag() + Leader->getTag() + "\r\n";
+						FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
+						FocusTree += "		text = \"War with " + GC->getSourceCountry()->getName() + "\"\r\n";//change to faction name later
+					//	if(prereq != "")
+						//	FocusTree += "		prerequisite = { focus = "+prereq+" }\r\n";
+						FocusTree += "		available = {   date > 1938." + to_string(v1) + "." + to_string(v2) + "} \r\n";
+						FocusTree += "		x = " + to_string(takenSpots.back() + start + maxGCWars*2) + "\r\n";
+						FocusTree += "		y = " + to_string(0) + "\r\n";
+						//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\r\n";
+						FocusTree += "		cost = 10\r\n";
+						FocusTree += "		ai_will_do = {\r\n";
+						FocusTree += "			factor = 5\r\n";
+						FocusTree += "			modifier = {\r\n";
+						FocusTree += "			factor = 0\r\n";
+						FocusTree += "			strength_ratio = { tag = " + GC->getTag() + " ratio < 1 }\r\n";
+						FocusTree += "			}";
+						if (GCTargets.size() > 1)
+						{
+							FocusTree += "modifier = {\r\n	factor = 0\r\n	OR = {";
+							for (int i2 = 0; i2 < 3; i2++)
+							{
+								if (GC != GCTargets[i2])
+								{
+									FocusTree += "has_war_with = " + GC->getTag()+"\r\n";
+								}
+
+							}
+							FocusTree += "}\r\n}";
+						}
+						FocusTree += "		}	\r\n";
+						FocusTree += "		completion_reward = {\r\n";
+						FocusTree += "			create_wargoal = {\r\n";
+						FocusTree += "				type = puppet_wargoal_focus\r\n";
+						FocusTree += "				target = " + GC->getTag() + "\r\n";
+						FocusTree += "			}";
+						FocusTree += "		}\r\n";
+						FocusTree += "	}\r\n";
+						maxGCWars++;
+					}
+				}
+				//insert these values in targetmap for use later possibly?
+				TargetMap.insert(make_pair("noactionneeded", nan));
+				TargetMap.insert(make_pair("factionneeded", fn));
+				TargetMap.insert(make_pair("morealliesneeded", man));
+				TargetMap.insert(make_pair("coup", coup));
+				//actual eventoutput
+				FocusTree += "\r\n}";
+				
+				//output National Focus
+				string filenameNF("Output/" + Configuration::getOutputName() + "/common/national_focus/" + Leader->getSourceCountry()->getTag() + "_NF.txt");
+				//string filename2("Output/NF.txt");
+				ofstream out2;
+				out2.open(filenameNF);
+				{
+					out2 << FocusTree;
+				}
+				out2.close();
+				//output events
+				string filenameevents("Output/" + Configuration::getOutputName() + "/events/" + Leader->getSourceCountry()->getTag() + "_events.txt");
+				//string filename2("Output/NF.txt");
+				ofstream outevents;
+				outevents.open(filenameevents);
+				{
+					outevents << Events;
+				}
+				outevents.close();
+
+				out << s;
 				out << endl;
 			}
 			if ((Leader->getGovernment() == "communism") && communismrelevant)
 			{
-				out << Leader->getTag() << endl;
+				LOG(LogLevel::Info) << "Calculating AI for " + Leader->getSourceCountry()->getName();
+				out << Leader->getSourceCountry()->getName() << endl;
 				vector<int> leaderProvs = getCountryProvinces(Leader);
-				vector<HoI4Country*> Neighbors = findNeighbors(leaderProvs, Leader);
+				LOG(LogLevel::Info) << "Calculating Neighbors for " + Leader->getSourceCountry()->getName();
+				map<string, HoI4Country*> Neighbors = findNeighbors(leaderProvs, Leader);
 				set<string> Allies = Leader->getAllies();
+				vector<HoI4Country*> Targets;
+				map<string, vector<HoI4Country*>> NationalFocusesMap;
+				vector<HoI4Country*> coups;
+				vector<HoI4Country*> forcedtakeover;
 
 				//check if has "Long live the king" and add events if they do
 
 				//if (Permanant Revolution)
 					//Decide between Anti - Democratic Focus, Anti - Monarch Focus, or Anti - Fascist Focus(Look at all great powers and get average relation between each ideology, the one with the lowest average relation leads to that focus).
 					//Attempt to ally with other Communist Countries(with Permanant Revolution)
-
+				LOG(LogLevel::Info) << "Doing Neighbor calcs for " + Leader->getSourceCountry()->getName();
 				for (auto neigh : Neighbors)
 				{
 					//lets check to see if they are our ally and not a great country
-					if (std::find(Allies.begin(), Allies.end(), neigh->getTag()) == Allies.end() && !checkIfGreatCountry(neigh, sourceWorld, countryMap))
+					if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
 					{
 						double com = 0;
-						
-						for (auto party : neigh->getParties())
+
+						for (auto party : neigh.second->getParties())
 						{
 							if (party.name.find("socialist") != string::npos || party.name.find("communist") != string::npos)
 								com += party.popularity;
@@ -2646,13 +5476,13 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 						{
 							//look for neighboring countries to spread communism too(Need 25 % or more Communism support), Prioritizing those with "Communism Allowed" Flags, prioritizing those who are weakest
 							//	Method() Influence Ideology and Attempt Coup
-							out << "/t" + neigh->getSourceCountry()->getName() + " Attempt Coup" << endl;
+							out << "/t" + neigh.second->getSourceCountry()->getName() + " Attempt Coup" << endl;
+							coups.push_back(neigh.second);
 						}
 						else
 						{
 							//	Then look for neighboring countries to spread communism by force, prioritizing weakest first
-							HowToTakeLand(neigh, Leader);
-							out << "/t" + neigh->getSourceCountry()->getName() + " Spread Communism by force" << endl;
+							forcedtakeover.push_back(neigh.second);
 							//	Depending on Anti - Ideology Focus, look for allies in alternate ideologies to get to ally with to declare war against Anti - Ideology Country.
 						}
 					}
@@ -2660,146 +5490,526 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				//if (Socialism in One State)
 				//	Events / Focuses to increase Industrialization and defense of the country, becomes Isolationist
 				//	Eventually gets events to drop Socialism in One state and switch to permanant revolution(Maybe ? )
+
+				string s;
+				map<string, vector<HoI4Country*>> TargetMap;
+				vector<HoI4Country*> nan;
+				vector<HoI4Country*> fn;
+				vector<HoI4Country*> man;
+				vector<HoI4Country*> coup;
+				for (auto target : forcedtakeover)
+				{
+					string type;
+					//outputs are
+					//noactionneeded -  Can take target without any help
+					//factionneeded - can take target and faction with attackers faction helping
+					//morealliesneeded - can take target with more allies, comes with "newallies" in map
+					//coup - cant take over, need to coup
+					type = HowToTakeLand(target, Leader, 2.5);
+					out << type + " " + target->getSourceCountry()->getName() << endl;
+					if (type == "noactionneeded")
+						nan.push_back(target);
+					else if (type == "factionneeded")
+						fn.push_back(target);
+					else if (type == "morealliesneeded")
+						man.push_back(target);
+					else if (type == "coup")
+						coup.push_back(target);
+				}
+				//insert these values in targetmap for use later possibly?
+				TargetMap.insert(make_pair("noactionneeded", nan));
+				TargetMap.insert(make_pair("factionneeded", fn));
+				TargetMap.insert(make_pair("morealliesneeded", man));
+				TargetMap.insert(make_pair("coup", coup));
+				//actual eventoutput
+				vector<int> takenSpots;
+				string FocusTree = genericFocusTreeCreator(Leader);
+				if (coups.size() > 0)
+				{
+					int x = 22;
+					takenSpots.push_back(x);
+					if (coups.size() == 1)
+					{
+						x = 24;
+						takenSpots.push_back(x);
+					}
+					if (coups.size() >= 2)
+					{
+						x = 25;
+						takenSpots.push_back(x);
+					}
+					//Focus to increase Comm support and prereq for coups
+						FocusTree += "focus = {\r\n";
+						FocusTree += "		id = Home_of_Revolution"+Leader->getTag()+"\r\n";
+						FocusTree += "		icon = GFX_goal_support_communism\r\n";
+						FocusTree += "		text = \"Home of the Revolution\"\r\n";
+						FocusTree += "		x = "+to_string(x)+"\r\n";
+						FocusTree += "		y = 0\r\n";
+						FocusTree += "		cost = 10\r\n";
+						FocusTree += "		ai_will_do = {\r\n";
+						FocusTree += "			factor = 5\r\n";
+						FocusTree += "		}	\r\n";
+						FocusTree += "		completion_reward = {\r\n";
+						//FIXME 
+						//Need to get Drift Defense to work
+						//FocusTree += "			drift_defence_factor = 0.5\r\n";
+						FocusTree += "			add_ideas = communist_influence\r\n";
+						FocusTree += "		}\r\n";
+						FocusTree += "	}\r\n";
+						
+					for (int i = 0; i < 2; i++)
+					{
+						if (i < coups.size())
+						{
+							FocusTree += "focus = {\r\n";
+							FocusTree += "		id = Influence_" +coups[i]->getTag()+"_" +Leader->getTag() + "\r\n";
+							FocusTree += "		icon = GFX_goal_generic_propaganda\r\n";
+							FocusTree += "		text = \"Influence "+ coups[i]->getSourceCountry()->getName() +"\"\r\n";
+							FocusTree += "		prerequisite = { focus = Home_of_Revolution" + Leader->getTag() + " }\r\n";
+							FocusTree += "		x = " + to_string(24+i*2) + "\r\n";
+							FocusTree += "		y = 1\r\n";
+							FocusTree += "		cost = 10\r\n";
+							FocusTree += "		ai_will_do = {\r\n";
+							FocusTree += "			factor = 5\r\n";
+							FocusTree += "		}	\r\n";
+							FocusTree += "		completion_reward = {\r\n";
+							FocusTree += "			" + coups[i]->getTag()+" = {\r\n";
+							FocusTree += "				if = {\r\n";
+							FocusTree += "					limit = {\r\n";
+							FocusTree += "						" + Leader->getTag() + " = {\r\n";
+							FocusTree += "							has_government = fascism\r\n";
+							FocusTree += "						}\r\n";
+							FocusTree += "					}\r\n";
+							FocusTree += "					add_ideas = fascist_influence\r\n";
+							FocusTree += "				}\r\n";
+							FocusTree += "				if = {\r\n";
+							FocusTree += "					limit = {\r\n";
+							FocusTree += "						" + Leader->getTag() + " = {\r\n";
+							FocusTree += "							has_government = communism\r\n";
+							FocusTree += "						}\r\n";
+							FocusTree += "					}\r\n";
+							FocusTree += "					add_ideas = communist_influence\r\n";
+							FocusTree += "				}\r\n";
+							FocusTree += "				if = {\r\n";
+							FocusTree += "					limit = {\r\n";
+							FocusTree += "						" + Leader->getTag() + " = {\r\n";
+							FocusTree += "							has_government = democratic\r\n";
+							FocusTree += "						}\r\n";
+							FocusTree += "					}\r\n";
+							FocusTree += "					add_ideas = democratic_influence\r\n";
+							FocusTree += "				}\r\n";
+							FocusTree += "				country_event = { id = generic.1 }";
+							FocusTree += "			}\r\n";
+							FocusTree += "			\r\n";
+							FocusTree += "		}\r\n";
+							FocusTree += "	}\r\n";
+							//Civil War
+							FocusTree += "focus = {\r\n";
+							FocusTree += "		id = Coup_" + coups[i]->getTag() + "_" + Leader->getTag() + "\r\n";
+							FocusTree += "		icon = GFX_goal_generic_demand_territory\r\n";
+							FocusTree += "		text = \"Civil War in " + coups[i]->getSourceCountry()->getName() + "\"\r\n";
+							FocusTree += "		prerequisite = { focus = Influence_" + coups[i]->getTag() + "_" + Leader->getTag() + " }\r\n";
+							FocusTree += "		available = {\r\n";
+							FocusTree += "		"+ coups[i]->getTag() +" = { communism > 0.5 } ";
+							FocusTree += "		}";
+							FocusTree += "		x = " + to_string(24 + i * 2) + "\r\n";
+							FocusTree += "		y = 2\r\n";
+							FocusTree += "		cost = 10\r\n";
+							FocusTree += "		ai_will_do = {\r\n";
+							FocusTree += "			factor = 5\r\n";
+							FocusTree += "		}	\r\n";
+							FocusTree += "		completion_reward = {\r\n";
+							FocusTree += "			" + coups[i]->getTag() + " = {\r\n";
+							FocusTree += "						start_civil_war = {\r\n";
+							FocusTree += "							ideology = communism\r\n";
+							FocusTree += "							size = 0.5\r\n";
+							FocusTree += "					}";
+							FocusTree += "			}\r\n";
+							FocusTree += "			\r\n";
+							FocusTree += "		}\r\n";
+							FocusTree += "	}\r\n";
+						}
+					}
+				}
+				if (forcedtakeover.size() > 0)
+				{
+					
+					//Strengthen Commitern
+					FocusTree += "focus = {\r\n";
+					FocusTree += "		id = StrengthCom" + Leader->getTag() + "\r\n";
+					FocusTree += "		icon = GFX_goal_support_communism\r\n";
+					FocusTree += "		text = \"Strengthen The Comintern\"\r\n";//change to faction name later
+					FocusTree += "		x = " + to_string(takenSpots.back() + 5) + "\r\n";//fixme
+					FocusTree += "		y = 0\r\n";
+					FocusTree += "		cost = 10\r\n";
+					FocusTree += "		ai_will_do = {\r\n";
+					FocusTree += "			factor = 5\r\n";
+					FocusTree += "		}	\r\n";
+					FocusTree += "		completion_reward = {\r\n";
+					FocusTree += "			army_experience = 20\r\n";
+					FocusTree += "		add_tech_bonus = { \r\n";
+					FocusTree += "				bonus = 0.5\r\n";
+					FocusTree += "				uses = 2\r\n";
+					FocusTree += "				category = land_doctrine\r\n";
+					FocusTree += "			}";
+					FocusTree += "		}\r\n";
+					FocusTree += "	}\r\n";
+
+					FocusTree += "focus = {\r\n";
+					FocusTree += "		id = Inter_Com_Pres" + Leader->getTag() + "\r\n";
+					FocusTree += "		icon = GFX_goal_generic_dangerous_deal\r\n";
+					FocusTree += "		text = \"International Communist Pressure\"\r\n";//change to faction name later
+					FocusTree += "		prerequisite = { focus = StrengthCom" + Leader->getTag() + " }\r\n";
+					FocusTree += "		available = {  date > 1937.1.1 } \r\n";
+					FocusTree += "		x = " + to_string(takenSpots.back() + 5) + "\r\n";
+					FocusTree += "		y = 1\r\n";
+					FocusTree += "		cost = 10\r\n";
+					FocusTree += "		ai_will_do = {\r\n";
+					FocusTree += "			factor = 5\r\n";
+					FocusTree += "		}	\r\n";
+					FocusTree += "		completion_reward = {\r\n";
+					FocusTree += "			add_named_threat = { threat = 2 name = \"Socialist World Republic\" }\r\n";
+					//FIXME
+					//maybe add some claims?
+					FocusTree += "		}\r\n";
+					FocusTree += "	}\r\n";
+					vector<HoI4Country*> TargetsbyIC; //its actually by tech lol
+					bool first = true;
+					//FIXME 
+					//Right now just uses everyone in forcedtakover, doesnt use nan, fn, ect...
+					for (auto country : forcedtakeover)
+					{
+						if (first)
+						{
+							TargetsbyIC.push_back(country);
+							first = false;
+						}
+						else
+						{
+							//makes sure not a coup target
+							if (find(coups.begin(), coups.end(), country) == coups.end())
+							{
+								if (TargetsbyIC.front()->getTechnologyCount() < country->getTechnologyCount())
+								{
+									TargetsbyIC.insert(TargetsbyIC.begin(), country);
+								}
+								else
+									TargetsbyIC.push_back(country);
+							}
+						}
+					}
+					for (int i = 0; i < 3; i++)
+					{
+						if (i < TargetsbyIC.size())
+						{
+							int v1 = rand() % 12 + 1;
+							int v2 = rand() % 12 + 1;
+							FocusTree += "focus = {\r\n";
+							FocusTree += "		id = War"+ TargetsbyIC[i]->getTag() + Leader->getTag() + "\r\n";
+							FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
+							FocusTree += "		text = \"War with "+ TargetsbyIC[i]->getSourceCountry()->getName()+"\"\r\n";//change to faction name later
+							FocusTree += "		prerequisite = { focus = Inter_Com_Pres" + Leader->getTag() + " }\r\n";
+							FocusTree += "		available = {   date > 1938."+to_string(v1)+"."+to_string(v2)+"} \r\n";
+							FocusTree += "		x = " + to_string(takenSpots.back() + 3 + i*2) + "\r\n";
+							FocusTree += "		y = 2\r\n";
+							FocusTree += "		cost = 10\r\n";
+							FocusTree += "		ai_will_do = {\r\n";
+							FocusTree += "			factor = 5\r\n";
+							FocusTree += "			modifier = {\r\n";
+							FocusTree += "			factor = 0\r\n";
+							FocusTree += "			strength_ratio = { tag = " + TargetsbyIC[i]->getTag() + " ratio < 1 }\r\n";
+							FocusTree += "			}";
+							if (TargetsbyIC.size() > 1)
+							{
+								FocusTree += "modifier = {\r\n	factor = 0\r\n	OR = {";
+									for (int i2 = 0; i2 < 3; i2++)
+									{
+										if (i != i2)
+											FocusTree += "has_war_with = " + TargetsbyIC[i]->getTag()+"\r\n";
+									}
+									FocusTree += "}\r\n}";
+							}
+							FocusTree += "		}	\r\n";
+							FocusTree += "		completion_reward = {\r\n";
+							FocusTree += "			create_wargoal = {\r\n";
+							FocusTree += "				type = puppet_wargoal_focus\r\n";
+							FocusTree += "				target = "+ TargetsbyIC[i]->getTag()+"\r\n";
+							FocusTree += "			}";
+							FocusTree += "		}\r\n";
+							FocusTree += "	}\r\n";
+							
+						}
+					}
+					takenSpots.push_back(takenSpots.back() + 5);
+				}
+				//events for allies
+				vector<HoI4Country*> newAllies = GetMorePossibleAllies(Leader);
+				if (newAllies.size() > 0)
+				{
+					//Focus to call summit, maybe have events from summit
+					FocusTree += "focus = {\r\n";
+					FocusTree += "		id = Com_Summit" + Leader->getTag() + "\r\n";
+					FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
+					FocusTree += "		text = \"Call for the Communist Summit\"\r\n";
+					FocusTree += "		x = " + to_string(takenSpots.back() + 3) + "\r\n";
+					FocusTree += "		y = 0\r\n";
+					FocusTree += "		cost = 10\r\n";
+					FocusTree += "		ai_will_do = {\r\n";
+					FocusTree += "			factor = 0\r\n";
+					FocusTree += "			modifier = {\r\n";
+					FocusTree += "			factor = 5\r\n";
+					FocusTree += "			date > 1938.1.1\r\n";
+					FocusTree += "			}";
+					FocusTree += "		}	\r\n";
+					FocusTree += "		completion_reward = {\r\n";
+					//FocusTree += "			opinion_gain_monthly_factor = 1.0 \r\n";
+					FocusTree += "		}\r\n";
+					FocusTree += "	}\r\n";
+				}
+				for (int i = 0; i < newAllies.size(); i++)
+				{
+					FocusTree += "focus = {\r\n";
+					FocusTree += "		id = Alliance_" + newAllies[i]->getTag() + Leader->getTag() + "\r\n";
+					FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
+					FocusTree += "		text = \"Alliance with " + newAllies[i]->getSourceCountry()->getName() + "\"\r\n";
+					FocusTree += "		x = " + to_string(takenSpots.back() + 3 + i) + "\r\n";
+					FocusTree += "		y = 1\r\n";
+					FocusTree += "		cost = 10\r\n";
+					FocusTree += "		ai_will_do = {\r\n";
+					FocusTree += "			factor = 10\r\n";
+					FocusTree += "		bypass = { \r\n";
+					FocusTree += "			\r\n";
+					FocusTree += "			OR = {\r\n";
+					FocusTree += "				is_in_faction_with = " + newAllies[i]->getTag() + "\r\n";
+					FocusTree += "				has_war_with = " + newAllies[i]->getTag() + "\r\n";
+					FocusTree += "				NOT = { country_exists = " + newAllies[i]->getTag() + " }\r\n";
+					FocusTree += "			}\r\n";
+					FocusTree += "		}\r\n";
+					FocusTree += "		}	\r\n";
+					FocusTree += "		completion_reward = {\r\n";
+					FocusTree += "		" + newAllies[i]->getTag() + " = {\r\n";
+					FocusTree += "			add_opinion_modifier = { target = "+Leader->getTag() +" modifier = ger_ita_alliance_focus } \r\n";
+					FocusTree += "		}";
+					FocusTree += "		}\r\n";
+					FocusTree += "	}\r\n";
+				}
+				FocusTree += "\r\n}";
+				string filename2("Output/" + Configuration::getOutputName() + "/common/national_focus/"+Leader->getSourceCountry()->getTag()+"_NF.txt");
+				//string filename2("Output/NF.txt");
+				ofstream out2;
+				out2.open(filename2);
+				{
+					out2 << FocusTree;
+				}
+				out2.close();
+				out << s;
+				out << endl;
 			}
 		}
 		out.close();
 	}
 }
-void HoI4World::HowToTakeLand(HoI4Country* TargetCountry, HoI4Country* AttackingCountry)
+string HoI4World::HowToTakeLand(HoI4Country* TargetCountry, HoI4Country* AttackingCountry, double time)
 {
-	vector<HoI4Country*> targetFaction = findFaction(TargetCountry);
-	vector<HoI4Country*> myFaction = findFaction(AttackingCountry);
-	//right now assumes you are stronger then them
+	string s;
+	string type;
+		if (TargetCountry != AttackingCountry)
+		{
+			vector<HoI4Country*> targetFaction = findFaction(TargetCountry);
+			vector<HoI4Country*> moreAllies = GetMorePossibleAllies(AttackingCountry);
+			vector<HoI4Country*> myFaction = findFaction(AttackingCountry);
+			//right now assumes you are stronger then them
 
-	//lets check if I am stronger then their faction
-	if (AttackingCountry->getArmyStrength() >= GetFactionStrength(targetFaction))
-	{
-		//we are stronger, and dont even need ally help
-		//ADD CONQUEST GOAL
-	}
-	else
-	{
-		//lets check if my faction is stronger
-		if (GetFactionStrengthWithDistance(AttackingCountry, myFaction) >= GetFactionStrengthWithDistance(TargetCountry, targetFaction))
-		{
-			//ADD CONQUEST GOAL
-		}
-		else
-		{
-			//FIXME
-			//hmm I am still weaker, maybe need to look for allies?
-			//GetMorePossibleAllies(AttackingCountry);
-			if (GetFactionStrengthWithDistance(AttackingCountry, findFaction(AttackingCountry)) >= GetFactionStrengthWithDistance(AttackingCountry, targetFaction))
+			double myFactionDisStrength = GetFactionStrengthWithDistance(AttackingCountry, myFaction, time);
+			double enemyFactionDisStrength = GetFactionStrengthWithDistance(TargetCountry, targetFaction, time);
+			//lets check if I am stronger then their faction
+			if (getStrengthOverTime(AttackingCountry,time) >= GetFactionStrength(targetFaction))
 			{
+				//we are stronger, and dont even need ally help
 				//ADD CONQUEST GOAL
+				type = "noactionneeded";
+				s += "Can kill " + TargetCountry->getSourceCountry()->getName() + " by ourselves\r\n\t I have a strength of " + to_string(getStrengthOverTime(AttackingCountry, time));
+				s += " and my faction has a strength of " + to_string(myFactionDisStrength) + ", while " + TargetCountry->getSourceCountry()->getName() + " has a strength of " + to_string(getStrengthOverTime(TargetCountry, time));
+				s += " and has a faction strength of " + to_string(enemyFactionDisStrength) + " \r\n";
 			}
 			else
 			{
-				//Time to Try Coup
+				//lets check if my faction is stronger
+				
+				if (myFactionDisStrength >= enemyFactionDisStrength)
+				{
+					//ADD CONQUEST GOAL
+					type = "factionneeded";
+					s += "Can kill " + TargetCountry->getSourceCountry()->getName() + " with our faction\r\n\t I have a strength of " + to_string(getStrengthOverTime(AttackingCountry, time));
+					s += " and my faction has a strength of " + to_string(myFactionDisStrength) + ", while " + TargetCountry->getSourceCountry()->getName() + " has a strength of "+ to_string(getStrengthOverTime(TargetCountry, time));
+					s += " and has a faction strength of " + to_string(enemyFactionDisStrength) + " \r\n";
+				}
+				else
+				{
+					//FIXME
+					//hmm I am still weaker, maybe need to look for allies?
+					type = "morealliesneeded";
+					//targettype.insert(make_pair("newallies", moreAllies));
+					myFactionDisStrength = GetFactionStrengthWithDistance(AttackingCountry, myFaction, time) + GetFactionStrengthWithDistance(AttackingCountry, moreAllies, time);
+					enemyFactionDisStrength = GetFactionStrengthWithDistance(TargetCountry, targetFaction, time);
+					if (GetFactionStrengthWithDistance(AttackingCountry, myFaction, time) >= GetFactionStrengthWithDistance(TargetCountry, targetFaction, time))
+					{
+						//ADD CONQUEST GOAL
+						s += "Can kill " + TargetCountry->getSourceCountry()->getName() + " with our faction Once I have more allies\r\n\t I have a strength of " + to_string(getStrengthOverTime(AttackingCountry,1));
+						s += " and my faction has a strength of " + to_string(myFactionDisStrength) + ", while " + TargetCountry->getSourceCountry()->getName() + " has a strength of " + to_string(getStrengthOverTime(TargetCountry, 1));
+						s += " and has a faction strength of " + to_string(enemyFactionDisStrength) + " \r\n";
+					}
+					else
+					{
+						//Time to Try Coup
+						type = "coup";
+						s += "Cannot kill " + TargetCountry->getSourceCountry()->getName() + ", time to try coup\r\n";
+					}
+				}
+
 			}
 		}
-		
-	}
+		return type;
 }
 vector<HoI4Country*> HoI4World::GetMorePossibleAllies(HoI4Country* CountryThatWantsAllies)
 {
+	int maxcountries = 0;
 	vector<HoI4Country*> newPossibleAllies;
+	set<string> currentAllies = CountryThatWantsAllies->getAllies();
+	//set<string> currentAllies = CountryThatWantsAllies->getAllies();
 	vector<HoI4Country*> CountriesWithin500Miles; //Rename to actual distance
 	for (auto country : countries)
 	{
 		HoI4Country* country2 = country.second;
 		if (GetDistance(CountryThatWantsAllies, country2) <= 500)
-			CountriesWithin500Miles.push_back(country2);
+			if (std::find(currentAllies.begin(), currentAllies.end(), country2->getTag()) == currentAllies.end())
+			{
+				CountriesWithin500Miles.push_back(country2);
+			}
 	}
 	string yourgovernment = CountryThatWantsAllies->getGovernment();
+	volatile vector<HoI4Country*> vCountriesWithin500Miles = CountriesWithin500Miles;
 	//look for all capitals within a distance of Berlin to Tehran
-	for (auto country : CountriesWithin500Miles)
+	for (int i = 0; i < CountriesWithin500Miles.size(); i++)
 	{
-		string allygovernment = country->getGovernment();
+		string allygovernment = CountriesWithin500Miles[i]->getGovernment();
 		//possible government matches
-		if (allygovernment == yourgovernment 
+		if (allygovernment == yourgovernment
 			|| (yourgovernment == "absolute_monarchy" && (allygovernment == "fascism" || allygovernment == "democratic" || allygovernment == "prussian_constitutionalism" || allygovernment == "hms_government"))
 			|| (yourgovernment == "democratic" && (allygovernment == "hms_government" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism"))
 			|| (yourgovernment == "prussian_constitutionalism" && (allygovernment == "hms_government" || allygovernment == "absolute_monarchy" || allygovernment == "democratic" || allygovernment == "fascism"))
 			|| (yourgovernment == "hms_government" && (allygovernment == "democratic" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism"))
 			|| (yourgovernment == "communism" && (allygovernment == "syndicalism"))
 			|| (yourgovernment == "syndicalism" && (allygovernment == "communism" || allygovernment == "fascism"))
-			|| (yourgovernment == "fascism" && (allygovernment == "syndicalism" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism")))
+			|| (yourgovernment == "fascism" && (allygovernment == "syndicalism" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism" || allygovernment == "hms_government")))
 		{
-			//FIXME
-			//check if we are friendly at all?
-			HoI4Relations* relationswithposally = CountryThatWantsAllies->getRelations(country->getTag());
-			//if(relations between our countries > -100)
-				//ok we dont hate each other, lets check how badly we need each other, well I do, the only reason I am here is im trying to conquer a neighbor and am not strong enough!
-				//if(possible country has a weak faction, or is by himself and weak) maybe also check if he has any fascist/comm neighbors he doesnt like later?
-					//well that ally is weak, he probably wants some friends
-					//if(relations between our countries is > -100 && < -50)
-						//will take several NF to ally with them
-					//else if (relations between our countries is >= -50 && < 0)
-						//will take some NF to ally
-					//else
-						//well we are positive, 1 NF to add to ally should be fine
-				//else if(relations between countries > 0)
-					//we are friendly, add 2 NF for ally? Good way to decide how many alliances there will be
-			newPossibleAllies.push_back(country);
+
+			if (maxcountries < 2)
+			{
+				//FIXME
+				//check if we are friendly at all?
+				HoI4Relations* relationswithposally = CountryThatWantsAllies->getRelations(CountriesWithin500Miles[i]->getTag());
+				volatile int rel = relationswithposally->getRelations();
+				volatile int size = findFaction(CountriesWithin500Miles[i]).size();
+				volatile int armysize = getStrengthOverTime(CountriesWithin500Miles[i], 1);
+				//for now can only ally with people not in a faction, and must be worth adding
+				if (relationswithposally->getRelations() >= -50 && findFaction(CountriesWithin500Miles[i]).size() <= 1)
+				{
+					//ok we dont hate each other, lets check how badly we need each other, well I do, the only reason I am here is im trying to conquer a neighbor and am not strong enough!
+					//if (GetFactionStrength(findFaction(country)) < 20000) //maybe also check if he has any fascist/comm neighbors he doesnt like later?
+					
+						//well that ally is weak, he probably wants some friends
+						if (relationswithposally->getRelations() >= -50 && relationswithposally->getRelations() < 0)
+						{
+							//will take some NF to ally
+							newPossibleAllies.push_back(CountriesWithin500Miles[i]);
+							maxcountries++;
+						}
+						if(relationswithposally->getRelations() >= 0)
+						{
+							//well we are positive, 1 NF to add to ally should be fine
+							newPossibleAllies.push_back(CountriesWithin500Miles[i]);
+							maxcountries++;
+						}
+					
+					/*else if (relationswithposally->getRelations() > 0)
+					{
+						//we are friendly, add 2 NF for ally? Good way to decide how many alliances there will be
+						newPossibleAllies.push_back(country);
+						i++;
+					}*/
+					
+				}
+			}
+			
 		}
 	}
+	return newPossibleAllies;
 }
 double HoI4World::GetDistance(HoI4Country* Country1, HoI4Country* Country2)
 {
 	map<string, multimap<HoI4RegimentType, unsigned> > unitTypeMap; // <vic, hoi>
-	ifstream myReadFile;
-	myReadFile.open("positions.txt");
-	HoI4Province* C1prov = Country1->getCapital();
-	HoI4Province* C2prov = Country2->getCapital();
-	if (C1prov == NULL || C2prov == NULL)
-		return 0;
-
+	volatile HoI4Country* Country23 = Country2;
+	auto C1state = states.find(Country1->getCapitalProv());
+	auto C2state = states.find(Country2->getCapitalProv());
+	int C1prov;
+	int C2prov;
+	if (Country1->getCapitalProv() == 0 || Country2->getCapitalProv() == 0)
+		return 100000;
+	else
+	{
+		C1prov = C1state->second->getProvinces().front();
+		C2prov = C2state->second->getProvinces().front();
+	}
 	double C1x = 0;
 	double C1y = 0;
 	double C2x = 0;
 	double C2y = 0;
-	int C1provnumber;
-	int C2provnumber;
-	char output[100];
-	if (myReadFile.is_open())
+	std::ifstream file("positions.txt");
+	std::string str;
+	while (std::getline(file, str))
 	{
-		while (!myReadFile.eof())
+		vector<string> parts;
+		stringstream ss(str);
+		string tok;
+		char delimiter = ';';
+		while (getline(ss, tok, delimiter))
 		{
-			myReadFile >> output;
-			vector<string> parts;
-			stringstream ss(output); 
-			string tok;
-			char delimiter = ';';
-			while (getline(ss, tok, delimiter))
-			{
-				parts.push_back(tok);
-			}
-			if (stoi(parts[0]) == C1prov->getNum())
-			{
-				C1x = stoi(parts[2]);
-				C1y = stoi(parts[4]);
-			}
-			else if (stoi(parts[0]) == C2prov->getNum())
-			{
-				C2x = stoi(parts[2]);
-				C2y = stoi(parts[4]);
-			}
-			else if (C1x != 0 && C1y != 0 && C2x != 0 && C2y != 0)
-				break;
+			parts.push_back(tok);
 		}
+		if (stoi(parts[0]) == C1prov)
+		{
+			C1x = stoi(parts[2]);
+			C1y = stoi(parts[4]);
+		}
+		else if (stoi(parts[0]) == C2prov)
+		{
+			C2x = stoi(parts[2]);
+			C2y = stoi(parts[4]);
+		}
+		else if (C1x != 0 && C1y != 0 && C2x != 0 && C2y != 0)
+			break;
+
 	}
 	double xdist = abs(C2x - C1x);
 	if (xdist > 2625)
 		xdist = 5250 - xdist;
-	return sqrt(pow(xdist, 2) + pow(C2y - C1y, 2));
+	double distance = sqrt(pow(xdist, 2) + pow(C2y - C1y, 2));
+	return distance;
 }
-double HoI4World::GetFactionStrengthWithDistance(HoI4Country* HomeCountry, vector<HoI4Country*> Faction)
+double HoI4World::GetFactionStrengthWithDistance(HoI4Country* HomeCountry, vector<HoI4Country*> Faction, double time)
 {
 	double strength;
 	for (auto country : Faction)
 	{
-		double distanceMulti = GetDistance(HomeCountry, country);
+		double distanceMulti = 1;
+		if (country == HomeCountry)
+		{
+			 distanceMulti = 1;
+		}
+		else
+			 distanceMulti = GetDistance(HomeCountry, country);
+
 		if (distanceMulti < 300)
 			distanceMulti = 1;
 		else if (distanceMulti < 500)
@@ -2815,7 +6025,7 @@ double HoI4World::GetFactionStrengthWithDistance(HoI4Country* HomeCountry, vecto
 		else
 			distanceMulti = 0.2;
 
-		strength += country->getArmyStrength() * distanceMulti;
+		strength += getStrengthOverTime(country, time) * distanceMulti;
 	}
 	return strength;
 }
@@ -2825,7 +6035,7 @@ vector<HoI4Country*> HoI4World::findFaction(HoI4Country* CheckingCountry)
 	ourFaction.push_back(CheckingCountry);
 	for (auto faction : Factions)
 	{
-		if (std::find(faction.begin(), faction.end(), CheckingCountry) == faction.end())
+		if (std::find(faction.begin(), faction.end(), CheckingCountry) != faction.end())
 		{
 			//if country is in faction list, it is part of that faction
 			ourFaction = faction;
@@ -2838,74 +6048,70 @@ bool HoI4World::checkIfGreatCountry(HoI4Country* checkingCountry, const V2World 
 	bool isGreatCountry = false;
 	vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
 
-		if (std::find(GreatCountries.begin(), GreatCountries.end(), checkingCountry) != GreatCountries.end())
-		{
-			isGreatCountry = true;
-		}
-		return isGreatCountry;
-	
+	if (std::find(GreatCountries.begin(), GreatCountries.end(), checkingCountry) != GreatCountries.end())
+	{
+		isGreatCountry = true;
+	}
+	return isGreatCountry;
+
 }
-vector<HoI4Country*> HoI4World::findNeighbors(vector<int> CountryProvs, HoI4Country* CheckingCountry)
+map<string, HoI4Country*> HoI4World::findNeighbors(vector<int> CountryProvs, HoI4Country* CheckingCountry)
 {
-	vector<HoI4Country*> Neighbors;
-	string filename("Output/neigh.txt");
+	map<string, HoI4Country*> Neighbors;
+	string filename("Output/" + CheckingCountry->getSourceCountry()->getName() + "neigh.txt");
 	ofstream out;
 	vector<HoI4Province> provinces2;
 	out.open(filename);
 	{
 		for (auto prov : CountryProvs)
 		{
-
-			ifstream myReadFile;
-			myReadFile.open("adj.txt");
-			char output[100];
-			if (myReadFile.is_open())
+			vector<int> thisprovNeighbors = provinceNeighbors.find(prov)->second;
+			for (int prov : thisprovNeighbors)
 			{
-				while (!myReadFile.eof())
+				//string ownertag = "";
+				auto ownertag = provincemap.find(prov);
+				if (ownertag != provincemap.end())
 				{
-					myReadFile >> output;
-					vector<string> parts;
-					stringstream ss(output); // Turn the string into a stream.
-					string tok;
-					char delimiter = ';';
-					while (getline(ss, tok, delimiter))
+					vector<string> tags = ownertag->second;
+					if (tags.size() >= 1)
 					{
-						parts.push_back(tok);
-					}
-					if (stoi(parts[0]) == prov)
-					{
-						for (int i = 5; i < parts.size(); i++)
+						HoI4Country* ownerCountry = countries.find(tags[1])->second;
+						if (ownerCountry != CheckingCountry)
 						{
-							int neighborprov = stoi(parts[i]);
-							//int provfind = provinces.find(neighborprov)->first;
-							//if (provfind == prov)
+							//if not already in neighbors
+							if (Neighbors.find(tags[1]) == Neighbors.end())
 							{
-								string ownertag = "";
-								ownertag = provincemap.find(neighborprov)->second[1];
-								HoI4Country* ownerCountry = countries.find(ownertag)->second;
-								if (ownertag != CheckingCountry->getTag() && ownerCountry != nullptr)
-								{
-									//if not already in neighbors
-									if (std::find(Neighbors.begin(), Neighbors.end(), ownerCountry) == Neighbors.end())
-									{
-										Neighbors.push_back(ownerCountry);
-									}
-								}
+								Neighbors.insert(make_pair(tags[1], ownerCountry));
 							}
 						}
 					}
 				}
+			}		
+		}
+		if (Neighbors.size() == 0)
+		{
+
+			for (auto country : countries)
+			{
+
+				HoI4Country* country2 = country.second;
+				if (country2->getCapitalProv() != 0)
+				{
+					//IMPROVE
+					//need to get further neighbors, as well as countries without capital in an area
+					double distance = GetDistance(CheckingCountry, country2);
+					if (distance <= 500)
+						Neighbors.insert(country);
+				}
 			}
-			myReadFile.close();
 		}
 		out << CheckingCountry->getSourceCountry()->getName() + " " << endl;
-		
+
 		for (auto neigh : Neighbors)
-			out << neigh->getSourceCountry()->getName() + " ";
+			out << neigh.second->getSourceCountry()->getName() + " ";
 		out << endl;
 		out.close();
 	}
-	volatile vector<HoI4Country*> Neighbors2 = Neighbors;
 	return Neighbors;
 }
 void HoI4World::fillProvinces()
@@ -2925,23 +6131,6 @@ void HoI4World::fillProvinces()
 		}
 	}
 }
-/*HoI4Country*  HoI4World::FindProvOwner(int findprov)
-{
-	for (auto state : states)
-	{
-		for (auto prov : state.second->getProvinces())
-		{
-			if (findprov = prov)
-			{
-				auto itr = countries.find(state.second->getOwner());
-				if (itr != countries.end())
-				{
-					return itr->second;
-				}
-			}
-		}
-	}
-}*/
 vector<int> HoI4World::getCountryProvinces(HoI4Country* Country)
 {
 	vector<int> provinces;
@@ -2958,144 +6147,143 @@ vector<int> HoI4World::getCountryProvinces(HoI4Country* Country)
 	}
 	return provinces;
 }
-	vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorld, const CountryMapping& countryMap)
-	{
-		vector<vector<HoI4Country*>> Factions2;
-		string filename("Output/Factions.txt");
-		ofstream out;
-		out.open(filename);
-		{
-			vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
-			vector<string> usedCountries;
-			for (auto country : GreatCountries)
-			{
-				if (std::find(usedCountries.begin(), usedCountries.end(), country->getTag()) == usedCountries.end())
-				{
-					//checks to make sure its not creating a faction when already in one
-					vector<HoI4Country*> Faction;
-					double FactionMilStrength = 0;
-					Faction.push_back(country);
-					string yourgovernment = country->getGovernment();
-					auto allies = country->getAllies();
-					vector<int> yourbrigs = country->getBrigs();
-					auto yourrelations = country->getRelations();
-					out << country->getSourceCountry()->getName() << " " + yourgovernment + " " + to_string(country->getArmyStrength()) + " allies: \n";
-					usedCountries.push_back(country->getTag());
-					FactionMilStrength = country->getArmyStrength();
-					for (auto ally : allies)
-					{
-
-						auto itrally = countries.find(ally);
-						if (itrally != countries.end())
-						{
-							HoI4Country* allycountry = itrally->second;
-							string allygovernment = allycountry->getGovernment();
-							string name = "";
-							vector<int> allybrigs = allycountry->getBrigs();
-							for (auto country : countries)
-							{
-								if (country.second->getTag() == ally)
-									name = country.second->getSourceCountry()->getName();
-							}
-							string sphere = returnIfSphere(country, allycountry, sourceWorld, countryMap);
-
-							if (allygovernment == yourgovernment || sphere == country->getTag()
-								|| (yourgovernment == "absolute_monarchy" && (allygovernment == "fascism" || allygovernment == "democratic" || allygovernment == "prussian_constitutionalism" || allygovernment == "hms_government"))
-								|| (yourgovernment == "democratic" && (allygovernment == "hms_government" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism"))
-								|| (yourgovernment == "prussian_constitutionalism" && (allygovernment == "hms_government" || allygovernment == "absolute_monarchy" || allygovernment == "democratic" || allygovernment == "fascism"))
-								|| (yourgovernment == "hms_government" && (allygovernment == "democratic" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism"))
-								|| (yourgovernment == "communism" && (allygovernment == "syndicalism"))
-								|| (yourgovernment == "syndicalism" && (allygovernment == "communism" || allygovernment == "fascism"))
-								|| (yourgovernment == "fascism" && (allygovernment == "syndicalism" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism")))
-							{
-								bool canally = false;
-								//if there is a sphere leader, it is not blank
-								if (sphere != "")
-								{
-									//if sphere is equal to great power in question, can ally
-									if (sphere == country->getTag())
-									{
-										canally = true;
-									}
-								}
-								else
-									canally = true;
-
-								if (canally)
-								{
-									usedCountries.push_back(allycountry->getTag());
-									out << "\t" + name + " " + allygovernment + " Strength: " + to_string(allycountry->getArmyStrength()) << endl;
-									FactionMilStrength += allycountry->getArmyStrength();
-									Faction.push_back(allycountry);
-								}
-							}
-						}
-
-					}
-					out << "\tFaction Strength: " + to_string(FactionMilStrength) << endl;
-					out << endl;
-					Factions2.push_back(Faction);
-				}
-
-			}
-
-
-			out.close();
-		}
-		return Factions2;
-	}
-	HoI4Country* HoI4World::GetFactionLeader(vector<HoI4Country*> Faction)
-	{
-		return Faction.front();
-	}
-	double HoI4World::GetFactionStrength(vector<HoI4Country*> Faction)
-	{
-		double strength = 0;
-		for (auto country : Faction)
-		{
-			strength += country->getArmyStrength();
-		}
-		return strength;
-	}
-	vector<HoI4Country*> HoI4World::returnGreatCountries(const V2World &sourceWorld, const CountryMapping& countryMap)
-	{
-		const vector<string>& greatCountries = sourceWorld.getGreatCountries();
-		vector<HoI4Country*> GreatCountries;
-		for (auto countryItr : greatCountries)
-		{
-			auto itr = countries.find(countryMap[countryItr]);
-			if (itr != countries.end())
-			{
-				GreatCountries.push_back(itr->second);
-			}
-		}
-		return GreatCountries;
-	}
-	string HoI4World::returnIfSphere(HoI4Country* leadercountry, HoI4Country* posLeaderCountry, const V2World &sourceWorld, const CountryMapping& countryMap)
+vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorld, const CountryMapping& countryMap)
+{
+	vector<vector<HoI4Country*>> Factions2;
+	string filename("Output/Factions.txt");
+	ofstream out;
+	out.open(filename);
 	{
 		vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
+		vector<string> usedCountries;
 		for (auto country : GreatCountries)
 		{
-			auto relations = country->getRelations();
-			for (auto relation : relations)
+			if (std::find(usedCountries.begin(), usedCountries.end(), country->getTag()) == usedCountries.end())
 			{
-				if (relation.second->getSphereLeader())
+				//checks to make sure its not creating a faction when already in one
+				vector<HoI4Country*> Faction;
+				double FactionMilStrength = 0;
+				Faction.push_back(country);
+				string yourgovernment = country->getGovernment();
+				auto allies = country->getAllies();
+				vector<int> yourbrigs = country->getBrigs();
+				auto yourrelations = country->getRelations();
+				out << country->getSourceCountry()->getName() << " " + yourgovernment + " " + to_string(getStrengthOverTime(country, 1)) + " allies: \n";
+				usedCountries.push_back(country->getTag());
+				FactionMilStrength = getStrengthOverTime(country, 1);
+				for (auto ally : allies)
 				{
 
-					string tag = relation.second->getTag();
-					auto spheredcountry = countries.find(tag);
-					if (spheredcountry != countries.end())
+					auto itrally = countries.find(ally);
+					if (itrally != countries.end())
 					{
-						if (posLeaderCountry->getTag() == spheredcountry->second->getTag())
+						HoI4Country* allycountry = itrally->second;
+						string allygovernment = allycountry->getGovernment();
+						string name = "";
+						vector<int> allybrigs = allycountry->getBrigs();
+						for (auto country : countries)
 						{
-							return country->getTag();
+							if (country.second->getTag() == ally)
+								name = country.second->getSourceCountry()->getName();
 						}
+						string sphere = returnIfSphere(country, allycountry, sourceWorld, countryMap);
 
+						if (allygovernment == yourgovernment || sphere == country->getTag()
+							|| (yourgovernment == "absolute_monarchy" && (allygovernment == "fascism" || allygovernment == "democratic" || allygovernment == "prussian_constitutionalism" || allygovernment == "hms_government"))
+							|| (yourgovernment == "democratic" && (allygovernment == "hms_government" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism"))
+							|| (yourgovernment == "prussian_constitutionalism" && (allygovernment == "hms_government" || allygovernment == "absolute_monarchy" || allygovernment == "democratic" || allygovernment == "fascism"))
+							|| (yourgovernment == "hms_government" && (allygovernment == "democratic" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism"))
+							|| (yourgovernment == "communism" && (allygovernment == "syndicalism"))
+							|| (yourgovernment == "syndicalism" && (allygovernment == "communism" || allygovernment == "fascism"))
+							|| (yourgovernment == "fascism" && (allygovernment == "syndicalism" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism")))
+						{
+							bool canally = false;
+							//if there is a sphere leader, it is not blank
+							if (sphere != "")
+							{
+								//if sphere is equal to great power in question, can ally
+								if (sphere == country->getTag())
+								{
+									canally = true;
+								}
+							}
+							else
+								canally = true;
+
+							if (canally)
+							{
+								usedCountries.push_back(allycountry->getTag());
+								out << "\t" + name + " " + allygovernment + " Strength: " + to_string(getStrengthOverTime(allycountry, 1)) << endl;
+								FactionMilStrength += getStrengthOverTime(allycountry, 1);
+								Faction.push_back(allycountry);
+							}
+						}
 					}
 
 				}
+				out << "\tFaction Strength: " + to_string(FactionMilStrength) << endl;
+				out << endl;
+				Factions2.push_back(Faction);
 			}
+
 		}
 
+
+		out.close();
 	}
-	
+	return Factions2;
+}
+HoI4Country* HoI4World::GetFactionLeader(vector<HoI4Country*> Faction)
+{
+	return Faction.front();
+}
+double HoI4World::GetFactionStrength(vector<HoI4Country*> Faction)
+{
+	double strength = 0;
+	for (auto country : Faction)
+	{
+		strength += getStrengthOverTime(country, 1);
+	}
+	return strength;
+}
+vector<HoI4Country*> HoI4World::returnGreatCountries(const V2World &sourceWorld, const CountryMapping& countryMap)
+{
+	const vector<string>& greatCountries = sourceWorld.getGreatCountries();
+	vector<HoI4Country*> GreatCountries;
+	for (auto countryItr : greatCountries)
+	{
+		auto itr = countries.find(countryMap[countryItr]);
+		if (itr != countries.end())
+		{
+			GreatCountries.push_back(itr->second);
+		}
+	}
+	return GreatCountries;
+}
+string HoI4World::returnIfSphere(HoI4Country* leadercountry, HoI4Country* posLeaderCountry, const V2World &sourceWorld, const CountryMapping& countryMap)
+{
+	vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
+	for (auto country : GreatCountries)
+	{
+		auto relations = country->getRelations();
+		for (auto relation : relations)
+		{
+			if (relation.second->getSphereLeader())
+			{
+
+				string tag = relation.second->getTag();
+				auto spheredcountry = countries.find(tag);
+				if (spheredcountry != countries.end())
+				{
+					if (posLeaderCountry->getTag() == spheredcountry->second->getTag())
+					{
+						return country->getTag();
+					}
+
+				}
+
+			}
+		}
+	}
+
+}

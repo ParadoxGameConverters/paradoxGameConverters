@@ -48,6 +48,15 @@ void HoI4Localisation::readFromCountry(const V2Country* source, string destTag)
 		existingLocalisation->second.insert(make_pair(destTag + "_neutrality_DEF", nameInLanguage.second));
 		existingLocalisation->second.insert(make_pair(destTag + "_communism", "People's Republic of " + nameInLanguage.second));
 		existingLocalisation->second.insert(make_pair(destTag + "_communism_DEF", "People's Republic of " + nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_autocratic", "Kingdom of " + nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_autocratic_DEF", nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_socialist", nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_socialist_DEF", nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_liberal", nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_liberal_DEF", nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_syndicalism", "Commune of "+nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_syndicalism_DEF", nameInLanguage.second));
+
 	}
 	for (auto adjInLanguage: source->getLocalisedAdjectives())
 	{
@@ -64,6 +73,10 @@ void HoI4Localisation::readFromCountry(const V2Country* source, string destTag)
 		existingLocalisation->second.insert(make_pair(destTag + "_democratic_ADJ", adjInLanguage.second));
 		existingLocalisation->second.insert(make_pair(destTag + "_neutrality_ADJ", adjInLanguage.second));
 		existingLocalisation->second.insert(make_pair(destTag + "_communism_ADJ", adjInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_autocratic_ADJ", adjInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_socialist_ADJ", adjInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_liberal_ADJ", adjInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_syndicalism_ADJ", adjInLanguage.second));
 	}
 }
 
