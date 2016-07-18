@@ -463,22 +463,21 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	destWorld.convertTechs();
 	LOG(LogLevel::Info) << "Adding minimal levels of airbase and port";
 	destWorld.addMinimalItems(inverseProvinceMap);
-	LOG(LogLevel::Info) << "Converting armies and navies";
-	destWorld.convertArmies(sourceWorld, inverseProvinceMap, HoI4AdjacencyMap);
 	LOG(LogLevel::Info) << "Setting up factions";
 	destWorld.configureFactions(countryMap);
 	LOG(LogLevel::Info) << "Generating Leaders";
 	destWorld.generateLeaders(leaderTraits, namesMap, portraitMap);
-	LOG(LogLevel::Info) << "Calculating Armies";
-	destWorld.calculateArmies(inverseProvinceMap);
+	LOG(LogLevel::Info) << "Converting armies and navies";
+	destWorld.convertArmies(inverseProvinceMap);
+	destWorld.convertNavies();
 	LOG(LogLevel::Info) << "Converting victory points";
 	destWorld.convertVictoryPoints(countryMap);
 	LOG(LogLevel::Info) << "Setting AI focuses";
 	destWorld.setAIFocuses(focusModifiers);
 	//destWorld.thatsgermanWarCreator(sourceWorld, countryMap);
+
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";
-
 	if (!Utils::copyFolder("blankMod/output", "output/output"))
 	{
 		exit(-1);
@@ -510,9 +509,6 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	
 	LOG(LogLevel::Info) << "Outputting world";
 	destWorld.output();
-	
-	LOG(LogLevel::Info) << "Creating Supply Zones";
-	destWorld.outputSupply(sourceWorld, inverseProvinceMap, countryMap, HoI4StateMap, localisation);
 	destWorld.createIdeologyFiles();
 
 	destWorld.thatsgermanWarCreator(sourceWorld, countryMap);

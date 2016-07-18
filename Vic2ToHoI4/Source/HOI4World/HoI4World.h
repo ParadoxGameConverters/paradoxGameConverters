@@ -31,6 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Localisation.h"
 #include "HoI4States.h"
 #include "HoI4StrategicRegion.h"
+#include "HoI4SupplyZone.h"
 #include "../Mapper.h"
 
 
@@ -60,6 +61,7 @@ class HoI4World
 		void	convertStrategicRegions();
 		void	convertTechs();
 		void	convertDiplomacy(const CountryMapping& countryMap);
+		void createIdeologyFiles();
 		void	convertArmies(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		void	configureFactions(const CountryMapping& countryMap);
 		void	generateLeaders(const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
@@ -70,6 +72,32 @@ class HoI4World
 		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
 		void	copyFlags(const CountryMapping& countryMap);
 		void	addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
+		void    setSphereLeaders(const V2World & sourceWorld, const CountryMapping & countryMap);
+		void    thatsgermanWarCreator(const V2World & sourceWorld, const CountryMapping& countryMap);
+		HoI4Country* FindProvOwner(int prov);
+		vector<int> getCountryProvinces(HoI4Country * Country);
+		vector<vector<HoI4Country*>> CreateFactions(const V2World & sourceWorld, const CountryMapping & countryMap);
+		HoI4Country *    GetFactionLeader(vector<HoI4Country*> Faction);
+		double    GetFactionStrength(vector<HoI4Country*> Faction);
+		vector<HoI4Country*>    returnGreatCountries(const V2World & sourceWorld, const CountryMapping & countryMap);
+		string returnIfSphere(HoI4Country * leadercountry, HoI4Country * posLeaderCountry, const V2World & sourceWorld, const CountryMapping & countryMap);
+		string HowToTakeLand(HoI4Country * TargetCountry, HoI4Country * AttackingCountry, double time);
+		vector<HoI4Country*> GetMorePossibleAllies(HoI4Country * CountryThatWantsAllies);
+		double GetDistance(HoI4Country * Country1, HoI4Country * Country2);
+		double GetFactionStrengthWithDistance(HoI4Country * HomeCountry, vector<HoI4Country*> Faction, double time);
+		vector<HoI4Country*> findFaction(HoI4Country * CheckingCountry);
+		bool checkIfGreatCountry(HoI4Country * checkingCountry, const V2World & sourceWorld, const CountryMapping & countryMap);
+		map<string, HoI4Country*> findNeighbors(vector<int> CountryProvs, HoI4Country * CheckingCountry);
+		void fillProvinces();
+		string createAnnexEvent(HoI4Country * Annexer, HoI4Country * Annexed, int eventnumber);
+		string createSudatenEvent(HoI4Country * Annexer, HoI4Country * Annexed, int eventnumber, vector<int> claimedStates);
+		void fillProvinceNeighbors();
+		string genericFocusTreeCreator(HoI4Country * CreatingCountry);
+		void fillCountryIC();
+		double getStrengthOverTime(HoI4Country * Country, double years);
+		double getInitialStrength(HoI4Country * Country);
+		double getAddedStrength(HoI4Country * Country, double years);
+		void outputRelations();
 		void	checkAllProvincesMapped(const HoI4ToVic2ProvinceMapping& provinceMap);
 
 		map<string, HoI4Country*>	getPotentialCountries()	const { return potentialCountries; }
@@ -82,18 +110,17 @@ class HoI4World
 		void	setAlignments();
 
 		vector<int>					getPortProvinces(const vector<int>& locationCandidates);
-		unitTypeMapping			getUnitMappings();
 		vector<int>					getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		int							getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string owner);
-		vector<HoI4Regiment*>	convertRegiments(const unitTypeMapping& unitTypeMap, vector<V2Regiment*>& sourceRegiments, map<string, unsigned>& typeCount, const pair<string, HoI4Country*>& country);
-		HoI4RegGroup*				createArmy(const inverseProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string tag, const V2Army* oldArmy, vector<HoI4Regiment*>& sourceRegiments, int& airForceIndex);
 
 		void	outputCommonCountries() const;
-		void outputColorsfile() const;
+		void	outputColorsfile() const;
 		void	outputAutoexecLua() const;
 		void	outputLocalisations() const;
 		void	outputMap() const;
 		void	outputHistory() const;
+		void	outputSupply() const;
+
 		map<int, vector<int>>			provinceNeighbors;
 		const V2World* sourceWorld;
 

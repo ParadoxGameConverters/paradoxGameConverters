@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "HoI4Alignment.h"
 #include "HoI4Army.h"
+#include "HoI4Navy.h"
 #include "HoI4Province.h"
 #include "HoI4Relations.h"
 #include "HoI4State.h"
@@ -66,12 +67,12 @@ class HoI4Country
 {
 	public:
 		HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld, bool _newCountry = false);
-		//void		output(int, map<int, HoI4State*>) const;
-		void		output(int statenumber, map<int, HoI4State*> states, vector<vector<HoI4Country*>> Factions, string FactionName) const;
+		void		output(map<int, HoI4State*> states, vector<vector<HoI4Country*>> Factions, string FactionName) const;
 		void		outputCommonCountryFile() const;
-		string		outputColors() const;
+		void		outputColors(ofstream& out) const;
 		void		outputToCommonCountriesFile(FILE*) const;
 		void		outputAIScript() const;
+
 		void		initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, Vic2ToHoI4ProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states);
 		void		initFromHistory();
 		void		consolidateProvinceItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry);
@@ -82,12 +83,11 @@ class HoI4Country
 		void		addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void		setTechnology(string tech, int level);
 		void		addProvince(HoI4Province* _province);
-		void		addArmy(HoI4RegGroup* army);
 		void		lowerNeutrality(double amount);
+
 		void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
 		void		setFaction(string newFaction)	{ faction = newFaction; }
 		void		setFactionLeader()				{ factionLeader = true; }
-		void	setFactories(int _factories) { totalfactories = _factories; }
 		void setRelations(string relationsinput) { relationstxt = relationsinput; }
 
 		HoI4Relations*								getRelations(string withWhom) const;
@@ -105,7 +105,7 @@ class HoI4Country
 		const set<string>&						getAllies() const				{ return allies; }
 		set<string>&								editAllies()					{ return allies; }
 		map<string, double>&						getPracticals()				{ return practicals; }
-		const vector<HoI4RegGroup*>&			getArmies() const				{ return armies; }
+		int											getCapitalNum()				{ return capital; }
 		vector<int>									getBrigs() const			{ return brigs; }
 		double									getCapitalProv() const { return capital; }
 		double										getArmyStrength() const { return armyStrength; }
@@ -115,7 +115,7 @@ class HoI4Country
 		int getTechnologyCount() const { return technologies.size(); }
 		
 	private:
-		void			outputOOB(map<int, HoI4State*>)						const;
+		void			outputOOB()						const;
 		void			outputPracticals(FILE*)		const;
 		void			outputTech(FILE*)				const;
 		void			outputParties(FILE*)			const;
@@ -145,10 +145,6 @@ class HoI4Country
 		string								ideology;
 		int									totalfactories;
 		map<string, HoI4Relations*>	relations;
-		vector<HoI4RegGroup*>			armies;
-		string								divisionstxt;
-		string								naviestxt;
-		string								armiestxt;
 		Color									color;
 		double								neutrality;
 		double								nationalUnity;
@@ -181,6 +177,22 @@ class HoI4Country
 		string				industrial_policy_laws;
 		string				press_laws;
 		string				training_laws;
+
+		// faction popularity
+		int communismPopularity;
+		int democraticPopularity;
+		int facismPopularity;
+		int liberalPopularity;
+		int socialistPopularity;
+		int syndicalistPopularity;
+		int autocraticPopularity;
+		int neutralityPopularity;
+
+		// military stuff
+		vector<HoI4DivisionTemplateType>		divisionTemplates;
+		vector<HoI4DivisionType>				divisions;
+		vector<HoI4Ship>							ships;
+		int											navalLocation;
 };
 
 #endif	// HoI4COUNTRY_H_
