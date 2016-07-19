@@ -2070,7 +2070,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		}
 
 		V2Ideologies.erase(ideologyItr);
-		auto itr = unmappedParties.find("left_wing_radica");
+		auto itr = unmappedParties.find("left_wing_radical");
 		unmappedParties.erase(itr);
 	}
 	ideologyItr = V2Ideologies.find("communist");
@@ -2112,7 +2112,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		}
 
 		V2Ideologies.erase(ideologyItr);
-		auto itr = unmappedParties.find("social_libera");
+		auto itr = unmappedParties.find("social_liberal");
 		unmappedParties.erase(itr);
 	}
 	ideologyItr = V2Ideologies.find("anarcho_liberal");
@@ -2133,7 +2133,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		}
 
 		V2Ideologies.erase(ideologyItr);
-		auto itr = unmappedParties.find("market_libera");
+		auto itr = unmappedParties.find("market_liberal");
 		unmappedParties.erase(itr);
 	}
 
