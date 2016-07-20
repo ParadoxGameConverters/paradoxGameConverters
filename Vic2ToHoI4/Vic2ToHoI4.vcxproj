@@ -71,6 +71,7 @@
     <ClCompile Include="Source\Color.cpp" />
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\CountryMapping.cpp" />
+    <ClCompile Include="Source\Flags.cpp" />
     <ClCompile Include="Source\GovernmentMapper.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Alignment.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Army.cpp" />
@@ -88,6 +89,7 @@
     <ClCompile Include="Source\HOI4World\HoI4SupplyZone.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4World.cpp" />
     <ClCompile Include="Source\Mapper.cpp" />
+    <ClCompile Include="Source\targa.cpp" />
     <ClCompile Include="Source\V2toHOI4Converter.cpp" />
     <ClCompile Include="Source\V2World\V2Army.cpp" />
     <ClCompile Include="Source\V2World\V2Country.cpp" />
@@ -112,6 +114,7 @@
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\CountryMapping.h" />
+    <ClInclude Include="Source\Flags.h" />
     <ClInclude Include="Source\GovernmentMapper.h" />
     <ClInclude Include="Source\HOI4World\HoI4Alignment.h" />
     <ClInclude Include="Source\HOI4World\HoI4Army.h" />
@@ -129,6 +132,7 @@
     <ClInclude Include="Source\HOI4World\HoI4SupplyZone.h" />
     <ClInclude Include="Source\HOI4World\HoI4World.h" />
     <ClInclude Include="Source\Mapper.h" />
+    <ClInclude Include="Source\targa.h" />
     <ClInclude Include="Source\V2World\V2Army.h" />
     <ClInclude Include="Source\V2World\V2Country.h" />
     <ClInclude Include="Source\V2World\V2Diplomacy.h" />
