@@ -24,6 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Flags.h"
 #include "targa.h"
 #include "Log.h"
+#include "Configuration.h"
 #include "OSCompatibilityLayer.h"
 
 
@@ -69,16 +70,46 @@ void processFlagsForCountry(const pair<string, HoI4Country*>& country)
 }
 
 
+string getConversionModFlag(string Vic2Tag);
 string getSourceFlagPath(string Vic2Tag)
 {
 	string path = "flags/" + Vic2Tag + ".tga";
 	if (!Utils::DoesFileExist(path))
 	{
-		LOG(LogLevel::Warning) << "Could not find source flag for " << Vic2Tag;
-		return string("");
+		path = getConversionModFlag(Vic2Tag);
+		if (!Utils::DoesFileExist(path))
+		{
+			LOG(LogLevel::Warning) << "Could not find source flag for " << Vic2Tag;
+			return string("");
+		}
 	}
 
 	return path;
+}
+
+
+bool isThisAConvertedTag(string Vic2Tag);
+string getConversionModFlag(string Vic2Tag)
+{
+	if (isThisAConvertedTag(Vic2Tag))
+	{
+		for (auto mod: Configuration::getVic2Mods())
+		{
+			string path = Configuration::getV2Path() + "/mod/" + mod + "/gfx/flags/" + Vic2Tag + ".tga";
+			if (Utils::DoesFileExist(path))
+			{
+				return path;
+			}
+		}
+	}
+
+	return "";
+}
+
+
+bool isThisAConvertedTag(string Vic2Tag)
+{
+	return isdigit(Vic2Tag.c_str()[2]);
 }
 
 
