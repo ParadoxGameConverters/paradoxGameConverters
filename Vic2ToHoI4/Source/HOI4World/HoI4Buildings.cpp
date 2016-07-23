@@ -34,7 +34,7 @@ HoI4Building::HoI4Building(int _stateID, double _xCoordinate, double _zCoordinat
 {
 	stateID = _stateID;
 	xCoordinate = _xCoordinate;
-	yCoordinate = 0.0;
+	yCoordinate = 10.0;
 	zCoordinate = _zCoordinate;
 	rotation = 0.0;
 }
