@@ -273,15 +273,15 @@ map<int, pair<double, double>> HoI4Buildings::getProvincePositions()
 		line = line.substr(fooSeparator + 1, line.size());
 
 		int xSeparator = line.find_first_of(';');
-		double x = stof(line.substr(0, IDSeparator));
+		double x = stof(line.substr(0, xSeparator));
 		line = line.substr(xSeparator + 1, line.size());
 
 		int zSeparator = line.find_first_of(';');
-		double z = stof(line.substr(0, IDSeparator));
+		double z = stof(line.substr(0, zSeparator));
 		line = line.substr(zSeparator + 1, line.size());
 
 		int ySeparator = line.find_first_of(';');
-		double y = stof(line.substr(0, IDSeparator));
+		double y = stof(line.substr(0, ySeparator));
 
 		positions.insert(make_pair(ID, make_pair(x, y)));
 	}
