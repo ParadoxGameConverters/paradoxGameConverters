@@ -122,6 +122,9 @@
     </ClCompile>
     <ClCompile Include="Source\targa.cpp" />
     <ClCompile Include="Source\Flags.cpp" />
+    <ClCompile Include="Source\HOI4World\HoI4Buildings.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -233,5 +236,8 @@
     </ClInclude>
     <ClInclude Include="Source\targa.h" />
     <ClInclude Include="Source\Flags.h" />
+    <ClInclude Include="Source\HOI4World\HoI4Buildings.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

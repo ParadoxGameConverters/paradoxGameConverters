@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "ParadoxParser8859_15.h"
 #include "ParadoxParserUTF8.h"
+#include "HOI4World/HoI4Buildings.h"
 #include "HoI4World/HoI4World.h"
 #include "V2World/V2World.h"
 #include "V2World/V2Factory.h"
@@ -477,6 +478,8 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	destWorld.convertVictoryPoints(countryMap);
 	LOG(LogLevel::Info) << "Setting AI focuses";
 	destWorld.setAIFocuses(focusModifiers);
+	LOG(LogLevel::Info) << "Creating buildings";
+	HoI4Buildings buildings(theStates->getProvinceToStateIDMap());
 	
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";
@@ -511,6 +514,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	LOG(LogLevel::Info) << "Outputting world";
 	destWorld.output();
+	buildings.output();
 	LOG(LogLevel::Info) << "* Conversion complete *";
 	return 0;
 }
