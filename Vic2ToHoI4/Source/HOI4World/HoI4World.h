@@ -70,7 +70,6 @@ class HoI4World
 		void	consolidateProvinceItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void	convertVictoryPoints(const CountryMapping& countryMap);
 		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
-		void	copyFlags(const CountryMapping& countryMap);
 		void	addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void fillCountryProvinces();
 		void    setSphereLeaders(const V2World & sourceWorld, const CountryMapping & countryMap);
@@ -103,6 +102,7 @@ class HoI4World
 		void	checkAllProvincesMapped(const HoI4ToVic2ProvinceMapping& provinceMap);
 
 		map<string, HoI4Country*>	getPotentialCountries()	const { return potentialCountries; }
+		map<string, HoI4Country*>	getCountries()	const { return countries; }
 
 	private:
 		void	getProvinceLocalizations(const string& file);

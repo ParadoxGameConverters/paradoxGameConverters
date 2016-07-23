@@ -24,9 +24,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include <stdexcept>
 #include "Configuration.h"
+#include "Flags.h"
 #include "Log.h"
 #include "ParadoxParser8859_15.h"
 #include "ParadoxParserUTF8.h"
+#include "HOI4World/HoI4Buildings.h"
 #include "HoI4World/HoI4World.h"
 #include "V2World/V2World.h"
 #include "V2World/V2Factory.h"
@@ -474,8 +476,9 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	destWorld.convertVictoryPoints(countryMap);
 	LOG(LogLevel::Info) << "Setting AI focuses";
 	destWorld.setAIFocuses(focusModifiers);
-	//destWorld.thatsgermanWarCreator(sourceWorld, countryMap);
-
+	LOG(LogLevel::Info) << "Creating buildings";
+	HoI4Buildings buildings(theStates->getProvinceToStateIDMap());
+	
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";
 	if (!Utils::copyFolder("blankMod/output", "output/output"))
@@ -505,10 +508,11 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	destWorld.outputRelations();
 	LOG(LogLevel::Info) << "Copying flags";
-	destWorld.copyFlags(countryMap);
+	copyFlags(destWorld.getCountries());
 	
 	LOG(LogLevel::Info) << "Outputting world";
 	destWorld.output();
+	buildings.output();
 	destWorld.createIdeologyFiles();
 
 	destWorld.thatsgermanWarCreator(sourceWorld, countryMap);

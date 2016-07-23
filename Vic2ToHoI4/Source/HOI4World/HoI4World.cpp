@@ -354,14 +354,6 @@ void HoI4World::outputMap() const
 	}
 	airportsFile.close();
 
-	// create the buildings file
-	ofstream buildingsFile("Output/" + Configuration::getOutputName() + "/map/buildings.txt");
-	if (!buildingsFile.is_open())
-	{
-		LOG(LogLevel::Error) << "Could not create Output/" << Configuration::getOutputName() << "/map/buildings.txt";
-	}
-	buildingsFile.close();
-
 	// output strategic regions
 	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/map/strategicregions"))
 	{
