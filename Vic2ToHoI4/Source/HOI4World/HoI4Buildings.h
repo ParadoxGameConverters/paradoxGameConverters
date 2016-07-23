@@ -91,7 +91,7 @@ class HoI4Buildings
 		map<int, vector<int>> getAdjacencies();
 		map<int, pair<double, double>> getProvincePositions();
 
-		vector<HoI4Building*> buildings;
+		multimap<int, HoI4Building*> buildings;
 };
 
 

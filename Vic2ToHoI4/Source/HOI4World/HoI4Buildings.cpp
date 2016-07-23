@@ -93,7 +93,7 @@ void HoI4Buildings::placeNavalBases(const map<int, int>& provinceToStateIDMap)
 		}
 
 		HoI4NavalBase* newNavalBase = new HoI4NavalBase(provinceToStateMapping->second, position->second.first, position->second.second, province.connectingSeaProvince);
-		buildings.push_back(newNavalBase);
+		buildings.insert(make_pair(provinceToStateMapping->second, newNavalBase));
 	}
 }
 
@@ -292,6 +292,6 @@ void HoI4Buildings::output() const
 
 	for (auto building: buildings)
 	{
-		out << *building;
+		out << *(building.second);
 	}
 }
