@@ -128,6 +128,7 @@ vector<coastalProvince> HoI4Buildings::getCoastalProvinces()
 				newCoastalProvince.province = province.first;
 				newCoastalProvince.connectingSeaProvince = adjProvince->first;
 				coastalProvinces.push_back(newCoastalProvince);
+				break;
 			}
 		}
 	}
