@@ -143,6 +143,8 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<vector<HoI4Country*
 		{
 			output << "capital =  1" << endl;
 		}
+		
+
 		output << "" << endl;
 		output << "oob = \"" << tag << "_OOB\"" << endl;
 		output << "" << endl;
@@ -599,7 +601,10 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 			LOG(LogLevel::Warning) << "No government mapping defined for " << srcGovernment << " (" << srcCountry->getTag() << " -> " << tag << ')';
 		}
 	}
-
+	if (tag == "X64")
+	{
+		ideology = "fascism";
+	}
 	// Political parties
 	convertParties(_srcCountry, _srcWorld.getActiveParties(_srcCountry), _srcWorld.getRulingParty(_srcCountry), ideology);
 	for (auto partyItr: parties)
@@ -1367,7 +1372,17 @@ void HoI4Country::convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseP
 			}
 		}
 	}
-
+	int InfWep = 0;
+	if (technologies.find("infantry_weapons1") == technologies.end())
+	{
+		InfWep = 0.3;
+	}
+	if (technologies.find("infantry_weapons1") != technologies.end())
+	{
+		InfWep = 0.5;
+	}
+	armyStrength = 0;
+	armyStrength = (100 * InfWep*infantryBrigades) + (supportBrigades * 175) + (artilleryBrigades * 126) + (tankBrigades * 1135) + (cavalryBrigades * 120 * InfWep) + (mountainBrigades * 140 * InfWep);
 	// calculate the number of brigades in different types of divisions
 	int infantryPerDivision = 0;
 	if (infantryBrigades <= 45)
@@ -1616,39 +1631,53 @@ void HoI4Country::convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseP
 		int unitsInProv = 0;
 		while (unitsInProv < location.second)
 		{
-			if (infantryBrigades >= infantryPerDivision && location.first != 0)
+			if (infantryBrigades >= infantryPerDivision)
 			{
+				int infLocation = 0;
+				if (location.first != 0)
+				{
+					infLocation = location.first;
+				}
+				else if (capital != 0)
+				{
+					infLocation = capital;
+				}
+				else
+				{
+					LOG(LogLevel::Warning) << "When converting units for " << tag << ", one of the locations for unit placement was undefined!";
+					break;
+				}
 				if (tankBrigades > 0)
 				{
-					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Tank Division", "Tank Division", location.first);
+					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Tank Division", "Tank Division", infLocation);
 					divisions.push_back(newDivision);
 					tankBrigades -= tanksPerDivision;
 				}
 				if (cavalryBrigades > 0)
 				{
-					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Cavalry Division", "Cavalry Division", location.first);
+					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Cavalry Division", "Cavalry Division", infLocation);
 					divisions.push_back(newDivision);
 					cavalryBrigades -= cavalryPerDivision;
 				}
 				if (mountainBrigades > 0)
 				{
-					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Mountaineers", "Mountaineers", location.first);
+					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Mountaineers", "Mountaineers", infLocation);
 					divisions.push_back(newDivision);
 					mountainBrigades -= mountainPerDivision;
 				}
 
-				if ( ((artilleryBrigades / (infantryPerDivision / 3)) >= 1) && (supportBrigades >= 1) )
+				if (((artilleryBrigades / (infantryPerDivision / 3)) >= 1) && (supportBrigades >= 1))
 				{
 					// Super Placement
-					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Advance Infantry Division", "Advance Infantry Division", location.first);
+					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Advance Infantry Division", "Advance Infantry Division", infLocation);
 					divisions.push_back(newDivision);
 					artilleryBrigades -= (infantryPerDivision / 3);
 					supportBrigades--;
 				}
-				else if ( ((artilleryBrigades / (infantryPerDivision / 3)) >= 1) || (supportBrigades >= 1) )
+				else if (((artilleryBrigades / (infantryPerDivision / 3)) >= 1) || (supportBrigades >= 1))
 				{
 					//Med Placement
-					HoI4DivisionType newDivision(to_string(numMedium++) + ".Support Infantry Division", "Support Infantry Division", location.first);
+					HoI4DivisionType newDivision(to_string(numMedium++) + ".Support Infantry Division", "Support Infantry Division", infLocation);
 					divisions.push_back(newDivision);
 					artilleryBrigades -= (infantryPerDivision / 3);
 					supportBrigades--;
@@ -1656,17 +1685,15 @@ void HoI4Country::convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseP
 				else
 				{
 					// Bad Placement
-					HoI4DivisionType newDivision(to_string(numBasic++) + ".Basic Infantry Division", "Basic Infantry Division", location.first);
+					HoI4DivisionType newDivision(to_string(numBasic++) + ".Basic Infantry Division", "Basic Infantry Division", infLocation);
 					divisions.push_back(newDivision);
 				}
 				infantryBrigades -= infantryPerDivision;
 				unitsInProv++;
 			}
 			else
-			{
-				LOG(LogLevel::Warning) << "When converting units for " << tag << ", one of the locations for unit placement was undefined!";
 				break;
-			}
+			
 		}
 	}
 }
@@ -1987,7 +2014,6 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	unmappedParties.insert(make_pair("left_wing_radical", "communist_group"));
 	unmappedParties.insert(make_pair("leninist", "communist_group"));
 	unmappedParties.insert(make_pair("stalinist", "communist_group"));
-
 	// map all the simplistic cases
 	auto ideologyItr = V2Ideologies.find("fascist");
 	if ((ideologyItr != V2Ideologies.end()) && (ideologyItr->second.size() == 1))
@@ -2003,7 +2029,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		if (rulingParty->ideology == ideologyItr->first)
 		{
 			rulingIdeology = "fascistic";
-			rulingHoI4Ideology = "fascism_ideology";
+			rulingHoI4Ideology = "fascism";
 		}
 
 		V2Ideologies.erase(ideologyItr);
@@ -2024,7 +2050,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		if (rulingParty->ideology == ideologyItr->first)
 		{
 			rulingIdeology = "paternal_autocrat";
-			rulingHoI4Ideology = "absolute_monarchy";
+			rulingHoI4Ideology = "autocratic";
 		}
 
 		V2Ideologies.erase(ideologyItr);
@@ -2045,7 +2071,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		if (rulingParty->ideology == ideologyItr->first)
 		{
 			rulingIdeology = "social_conservative";
-			rulingHoI4Ideology = "democratic_conservative";
+			rulingHoI4Ideology = "democratic";
 		}
 
 		V2Ideologies.erase(ideologyItr);
@@ -2066,7 +2092,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		if (rulingParty->ideology == ideologyItr->first)
 		{
 			rulingIdeology = "left_wing_radical";
-			rulingHoI4Ideology = "democratic_socialist";
+			rulingHoI4Ideology = "socialist";
 		}
 
 		V2Ideologies.erase(ideologyItr);
@@ -2087,7 +2113,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		if (rulingParty->ideology == ideologyItr->first)
 		{
 			rulingIdeology = "stalinist";
-			rulingHoI4Ideology = "marxism";
+			rulingHoI4Ideology = "communism";
 		}
 
 		V2Ideologies.erase(ideologyItr);
@@ -2108,7 +2134,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		if (rulingParty->ideology == ideologyItr->first)
 		{
 			rulingIdeology = "social_liberal";
-			rulingHoI4Ideology = "democratic_liberal";
+			rulingHoI4Ideology = "liberal";
 		}
 
 		V2Ideologies.erase(ideologyItr);
@@ -2129,16 +2155,17 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		if (rulingParty->ideology == ideologyItr->first)
 		{
 			rulingIdeology = "market_liberal";
-			rulingHoI4Ideology = "national_syndicalist";
+			rulingHoI4Ideology = "syndicalism";
 		}
 
 		V2Ideologies.erase(ideologyItr);
 		auto itr = unmappedParties.find("market_liberal");
 		unmappedParties.erase(itr);
 	}
-
+	
 	if (V2Ideologies.size() == 0)
 	{
+		setPartyPopularity();
 		return;
 	}
 
@@ -2286,7 +2313,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			HoI4IdeologyGroups.insert(make_pair(HoI4PartyItr.second, parties));
 		}
 	}
-	/*
+	
 	for (auto V2GroupItr : V2IdeologyGroups)
 	{
 		auto HoI4GroupItr = HoI4IdeologyGroups.find(V2GroupItr.first);
@@ -2327,10 +2354,10 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		{
 			HoI4IdeologyGroups.erase(HoI4GroupItr);
 		}
-	}*/
-
+	}
 	if (V2Ideologies.size() == 0)
 	{
+		setPartyPopularity();
 		return;
 	}
 
@@ -2515,40 +2542,46 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 
 	if (rulingHoI4Ideology == "")
 	{
-		rulingHoI4Ideology = "despotism";
+		rulingHoI4Ideology = "neutrality";
 	}
 
 	if (V2Ideologies.size() > 0)
 	{
 		LOG(LogLevel::Warning) << "Unmapped Vic2 parties for " << tag;
 	}
+	setPartyPopularity();
+}
+void HoI4Country::setPartyPopularity()
+{
+	communismPopularity = 0;
+	democraticPopularity = 0;
+	facismPopularity = 0;
+	neutralityPopularity = 0;
+	liberalPopularity = 0;
+	socialistPopularity = 0;
+	syndicalistPopularity = 0;
+	autocraticPopularity = 0;
 
-	communismPopularity		= 0;
-	democraticPopularity		= 0;
-	facismPopularity			= 0;
-	neutralityPopularity		= 0;
-	liberalPopularity			= 0;
-	socialistPopularity		= 0;
-	syndicalistPopularity	= 0;
-	autocraticPopularity		= 0;
-	if (government == "fascism")
-	{
+	if (rulingHoI4Ideology == "fascism")
 		ideology = "fascism_ideology";
-	}
-	else if (government == "democratic")
-	{
-		ideology = "liberalism";
-	}
-	else if (government == "communism")
-	{
+	else if (rulingHoI4Ideology == "democratic")
+		ideology = "democratic_conservative";
+	else if (rulingHoI4Ideology == "communism")
 		ideology = "marxism";
-	}
+	else if (rulingHoI4Ideology == "syndicalism")
+		ideology = "national_syndicalist";
+	else if (rulingHoI4Ideology == "liberal")
+		ideology = "democratic_liberal";
+	else if (rulingHoI4Ideology == "autocratic")
+		ideology = "absolute_monarchy";
+	else if (rulingHoI4Ideology == "socialist")
+		ideology = "democratic_socialist ";
 	else
-	{
 		ideology = "despotism";
-	}
+
 	for (auto party : parties)
 	{
+
 		if (party.name.find("fascist") != string::npos)
 		{
 			facismPopularity += party.popularity;
@@ -2587,7 +2620,6 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		}
 	}
 }
-
 
 void HoI4Country::outputAIScript() const
 {

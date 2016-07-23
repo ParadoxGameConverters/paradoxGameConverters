@@ -72,6 +72,7 @@ class HoI4World
 		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
 		void	copyFlags(const CountryMapping& countryMap);
 		void	addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
+		void fillCountryProvinces();
 		void    setSphereLeaders(const V2World & sourceWorld, const CountryMapping & countryMap);
 		void    thatsgermanWarCreator(const V2World & sourceWorld, const CountryMapping& countryMap);
 		HoI4Country* FindProvOwner(int prov);
@@ -91,6 +92,7 @@ class HoI4World
 		void fillProvinces();
 		string createAnnexEvent(HoI4Country * Annexer, HoI4Country * Annexed, int eventnumber);
 		string createSudatenEvent(HoI4Country * Annexer, HoI4Country * Annexed, int eventnumber, vector<int> claimedStates);
+		string createMonarchyEmpireNF(HoI4Country * Home, HoI4Country * Annexed1, HoI4Country * Annexed2, HoI4Country * Annexed3, HoI4Country * Annexed4, int ProtectorateNumber, int AnnexNumber, int x);
 		void fillProvinceNeighbors();
 		string genericFocusTreeCreator(HoI4Country * CreatingCountry);
 		void fillCountryIC();

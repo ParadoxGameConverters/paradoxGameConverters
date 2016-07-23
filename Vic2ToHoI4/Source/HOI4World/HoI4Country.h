@@ -113,6 +113,8 @@ class HoI4Country
 		vector<HoI4Party> getParties() const { return parties; }
 		int getTotalFactories() const { return totalfactories; }
 		int getTechnologyCount() const { return technologies.size(); }
+		int getProvinceCount() const { return provinceCount; }
+		void setProvinceCount(int count) { provinceCount = count; }
 		
 	private:
 		void			outputOOB()						const;
@@ -128,6 +130,8 @@ class HoI4Country
 
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, HoI4Province*> allProvinces);
 		void			convertParties(const V2Country* srcCountry, vector<V2Party*> V2Parties, V2Party* rulingParty, string& rulingIdeology);
+
+		void setPartyPopularity();
 		
 
 		HoI4World*							theWorld;
@@ -160,6 +164,7 @@ class HoI4Country
 		string								rulingHoI4Ideology;
 		bool									majorNation;
 		vector<int>							brigs;
+		int provinceCount;
 		long armyStrength;
 		string relationstxt;
 

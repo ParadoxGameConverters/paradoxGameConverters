@@ -849,7 +849,7 @@ void HoI4World::convertIndustry()
 
 void HoI4World::convertResources()
 {
-	Object* fileObj = parser_UTF8::doParseFile("Resources.txt");
+	Object* fileObj = parser_UTF8::doParseFile("resources.txt");
 	if (fileObj == nullptr)
 	{
 		LOG(LogLevel::Error) << "Could not read resources.txt";
@@ -1879,7 +1879,22 @@ void HoI4World::addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvince
 	}
 }
 
-
+void HoI4World::fillCountryProvinces()
+{
+	for (auto country : countries)
+	{
+		country.second->setProvinceCount(0);
+	}
+	for(auto state : states->getStates())
+	{
+		auto ownercountry = countries.find(state.second->getOwner());
+		for (auto prov : state.second->getProvinces())
+		{
+			//fix later
+			ownercountry->second->setProvinceCount(ownercountry->second->getProvinceCount() + 1);
+		}
+	}
+}
 void HoI4World::setSphereLeaders(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
 	const vector<string>& greatCountries = sourceWorld.getGreatCountries();
@@ -2108,6 +2123,744 @@ string HoI4World::createSudatenEvent(HoI4Country* Annexer, HoI4Country* Annexed,
 	Events += "	}\r\n";
 	Events += "}\r\n";
 	return Events;
+}
+string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed1, HoI4Country* Annexed2, HoI4Country* Annexed3, HoI4Country* Annexed4, int ProtectorateNumber, int AnnexNumber, int x)
+{
+	string FocusTree = "";
+	//Glory to Empire!
+	FocusTree += "		focus = { \r\n";
+	FocusTree += "		id = EmpireGlory" + Home->getTag()+"\r\n";
+	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		text = \"Glory to the Empire!\"\r\n";
+	FocusTree += "		available = {\r\n";
+	//FocusTree += "			is_puppet = no\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "		\r\n";
+	FocusTree += "		x =  31\r\n";
+	FocusTree += "		y = 0\r\n";
+	FocusTree += "		cost = 10\r\n";
+	FocusTree += "		ai_will_do = {\r\n";
+	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			modifier = {\r\n";
+	FocusTree += "				factor = 0\r\n";
+	FocusTree += "				date < 1937.6.6\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}	\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	FocusTree += "			add_national_unity = 0.1\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "	}";
+
+	//Colonies Focus
+	FocusTree += "		focus = { \r\n";
+	FocusTree += "		id = StrengthenColonies" + Home->getTag()+"\r\n";
+	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		text = \"Strengthen the Colonies\"\r\n";
+	FocusTree += "		prerequisite = { focus = EmpireGlory" + Home->getTag() + " }\r\n";
+	FocusTree += "		mutually_exclusive = { focus = StrengthenHome" + Home->getTag() + " }\r\n";
+	FocusTree += "		x =  30\r\n";
+	FocusTree += "		y = 1\r\n";
+	FocusTree += "		cost = 10\r\n";
+	FocusTree += "		ai_will_do = {\r\n";
+	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			modifier = {\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}	\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	//FocusTree += "			army_experience = 10\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "	}";
+	//Home Focus
+	FocusTree += "		focus = { \r\n";
+	FocusTree += "		id = StrengthenHome" + Home->getTag() + "\r\n";
+	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		text = \"Strengthen Home\"\r\n";
+	FocusTree += "		prerequisite = { focus = EmpireGlory" + Home->getTag() + " }\r\n";
+	FocusTree += "		mutually_exclusive = { focus = StrengthenColonies" + Home->getTag() + " }\r\n";
+	FocusTree += "		x =  32\r\n";
+	FocusTree += "		y = 1\r\n";
+	FocusTree += "		cost = 10\r\n";
+	FocusTree += "		ai_will_do = {\r\n";
+	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			modifier = {\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}	\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	//FocusTree += "			army_experience = 10\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "	}";
+
+	//Colonial Factories
+	FocusTree += "		focus = { \r\n";
+	FocusTree += "		id = ColonialInd" + Home->getTag() + "\r\n";
+	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		text = \"Colonial Industry Buildup\"\r\n";
+	FocusTree += "		prerequisite = { focus = StrengthenColonies" + Home->getTag() + " }\r\n";
+	FocusTree += "		x =  26\r\n";
+	FocusTree += "		y = 2\r\n";
+	FocusTree += "		cost = 10\r\n";
+	FocusTree += "		ai_will_do = {\r\n";
+	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			modifier = {\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}	\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	FocusTree += "			random_owned_state = {\r\n";
+	FocusTree += "				limit = {\r\n";
+	FocusTree += "					free_building_slots = {\r\n";
+	FocusTree += "						building = arms_factory\r\n";
+	FocusTree += "						size > 0\r\n";
+	FocusTree += "						include_locked = yes\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "					OR = {\r\n";
+	FocusTree += "						is_in_home_area = no\r\n";
+	FocusTree += "						NOT = {\r\n";
+	FocusTree += "							owner = {\r\n";
+	FocusTree += "								any_owned_state = {\r\n";
+	FocusTree += "									free_building_slots = {\r\n";
+	FocusTree += "										building = arms_factory\r\n";
+	FocusTree += "										size > 0\r\n";
+	FocusTree += "										include_locked = yes\r\n";
+	FocusTree += "									}\r\n";
+	FocusTree += "									is_in_home_area = no\r\n";
+	FocusTree += "								}\r\n";
+	FocusTree += "							}\r\n";
+	FocusTree += "						}\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "				add_extra_state_shared_building_slots = 1\r\n";
+	FocusTree += "				add_building_construction = {\r\n";
+	FocusTree += "					type = arms_factory\r\n";
+	FocusTree += "					level = 1\r\n";
+	FocusTree += "					instant_build = yes\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	FocusTree += "			random_owned_state = {\r\n";
+	FocusTree += "				limit = {\r\n";
+	FocusTree += "					free_building_slots = {\r\n";
+	FocusTree += "						building = arms_factory\r\n";
+	FocusTree += "						size > 0\r\n";
+	FocusTree += "						include_locked = yes\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "					OR = {\r\n";
+	FocusTree += "						is_in_home_area = no\r\n";
+	FocusTree += "						NOT = {\r\n";
+	FocusTree += "							owner = {\r\n";
+	FocusTree += "								any_owned_state = {\r\n";
+	FocusTree += "									free_building_slots = {\r\n";
+	FocusTree += "										building = arms_factory\r\n";
+	FocusTree += "										size > 0\r\n";
+	FocusTree += "										include_locked = yes\r\n";
+	FocusTree += "									}\r\n";
+	FocusTree += "									is_in_home_area = no\r\n";
+	FocusTree += "								}\r\n";
+	FocusTree += "							}\r\n";
+	FocusTree += "						}\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "				add_extra_state_shared_building_slots = 1\r\n";
+	FocusTree += "				add_building_construction = {\r\n";
+	FocusTree += "					type = arms_factory\r\n";
+	FocusTree += "					level = 1\r\n";
+	FocusTree += "					instant_build = yes\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	FocusTree += "			random_owned_state = {\r\n";
+	FocusTree += "				limit = {\r\n";
+	FocusTree += "					free_building_slots = {\r\n";
+	FocusTree += "						building = arms_factory\r\n";
+	FocusTree += "						size > 0\r\n";
+	FocusTree += "						include_locked = yes\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "					OR = {\r\n";
+	FocusTree += "						is_in_home_area = no\r\n";
+	FocusTree += "						NOT = {\r\n";
+	FocusTree += "							owner = {\r\n";
+	FocusTree += "								any_owned_state = {\r\n";
+	FocusTree += "									free_building_slots = {\r\n";
+	FocusTree += "										building = arms_factory\r\n";
+	FocusTree += "										size > 0\r\n";
+	FocusTree += "										include_locked = yes\r\n";
+	FocusTree += "									}\r\n";
+	FocusTree += "									is_in_home_area = no\r\n";
+	FocusTree += "								}\r\n";
+	FocusTree += "							}\r\n";
+	FocusTree += "						}\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "				add_extra_state_shared_building_slots = 1\r\n";
+	FocusTree += "				add_building_construction = {\r\n";
+	FocusTree += "					type = arms_factory\r\n";
+	FocusTree += "					level = 1\r\n";
+	FocusTree += "					instant_build = yes\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "	}";
+
+	//Colonial Highway
+	FocusTree += "		focus = { \r\n";
+	FocusTree += "		id = ColonialHwy" + Home->getTag() + "\r\n";
+	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		text = \"Colonial Highway\"\r\n";
+	FocusTree += "		prerequisite = { focus = ColonialInd" + Home->getTag() + " }\r\n";
+	FocusTree += "		x =  24\r\n";
+	FocusTree += "		y = 3\r\n";
+	FocusTree += "		cost = 10\r\n";
+	FocusTree += "		ai_will_do = {\r\n";
+	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			modifier = {\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}	\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	FocusTree += "			random_owned_state = {\r\n";
+	FocusTree += "				limit = {\r\n";
+	FocusTree += "					free_building_slots = {\r\n";
+	FocusTree += "						building = infrastructure\r\n";
+	FocusTree += "						size > 0\r\n";
+	FocusTree += "						include_locked = yes\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "					OR = {\r\n";
+	FocusTree += "						is_in_home_area = no\r\n";
+	FocusTree += "						NOT = {\r\n";
+	FocusTree += "							owner = {\r\n";
+	FocusTree += "								any_owned_state = {\r\n";
+	FocusTree += "									free_building_slots = {\r\n";
+	FocusTree += "										building = infrastructure\r\n";
+	FocusTree += "										size > 0\r\n";
+	FocusTree += "										include_locked = yes\r\n";
+	FocusTree += "									}\r\n";
+	FocusTree += "									is_in_home_area = no\r\n";
+	FocusTree += "								}\r\n";
+	FocusTree += "							}\r\n";
+	FocusTree += "						}\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "				add_extra_state_shared_building_slots = 1\r\n";
+	FocusTree += "				add_building_construction = {\r\n";
+	FocusTree += "					type = infrastructure\r\n";
+	FocusTree += "					level = 1\r\n";
+	FocusTree += "					instant_build = yes\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	FocusTree += "			random_owned_state = {\r\n";
+	FocusTree += "				limit = {\r\n";
+	FocusTree += "					free_building_slots = {\r\n";
+	FocusTree += "						building = infrastructure\r\n";
+	FocusTree += "						size > 0\r\n";
+	FocusTree += "						include_locked = yes\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "					OR = {\r\n";
+	FocusTree += "						is_in_home_area = no\r\n";
+	FocusTree += "						NOT = {\r\n";
+	FocusTree += "							owner = {\r\n";
+	FocusTree += "								any_owned_state = {\r\n";
+	FocusTree += "									free_building_slots = {\r\n";
+	FocusTree += "										building = infrastructure\r\n";
+	FocusTree += "										size > 0\r\n";
+	FocusTree += "										include_locked = yes\r\n";
+	FocusTree += "									}\r\n";
+	FocusTree += "									is_in_home_area = no\r\n";
+	FocusTree += "								}\r\n";
+	FocusTree += "							}\r\n";
+	FocusTree += "						}\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "				add_extra_state_shared_building_slots = 1\r\n";
+	FocusTree += "				add_building_construction = {\r\n";
+	FocusTree += "					type = infrastructure\r\n";
+	FocusTree += "					level = 1\r\n";
+	FocusTree += "					instant_build = yes\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	FocusTree += "			random_owned_state = {\r\n";
+	FocusTree += "				limit = {\r\n";
+	FocusTree += "					free_building_slots = {\r\n";
+	FocusTree += "						building = infrastructure\r\n";
+	FocusTree += "						size > 0\r\n";
+	FocusTree += "						include_locked = yes\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "					OR = {\r\n";
+	FocusTree += "						is_in_home_area = no\r\n";
+	FocusTree += "						NOT = {\r\n";
+	FocusTree += "							owner = {\r\n";
+	FocusTree += "								any_owned_state = {\r\n";
+	FocusTree += "									free_building_slots = {\r\n";
+	FocusTree += "										building = infrastructure\r\n";
+	FocusTree += "										size > 0\r\n";
+	FocusTree += "										include_locked = yes\r\n";
+	FocusTree += "									}\r\n";
+	FocusTree += "									is_in_home_area = no\r\n";
+	FocusTree += "								}\r\n";
+	FocusTree += "							}\r\n";
+	FocusTree += "						}\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "				add_extra_state_shared_building_slots = 1\r\n";
+	FocusTree += "				add_building_construction = {\r\n";
+	FocusTree += "					type = infrastructure\r\n";
+	FocusTree += "					level = 1\r\n";
+	FocusTree += "					instant_build = yes\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "	}";
+
+	//improve resources
+	FocusTree += "		focus = { \r\n";
+	FocusTree += "		id = ResourceFac" + Home->getTag() + "\r\n";
+	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		text = \"Improve Resource Factories\"\r\n";
+	FocusTree += "		prerequisite = { focus = ColonialInd" + Home->getTag() + " }\r\n";
+	FocusTree += "		mutually_exclusive = { focus = StrengthenColonies" + Home->getTag() + " }\r\n";
+	FocusTree += "		x =  26\r\n";
+	FocusTree += "		y = 3\r\n";
+	FocusTree += "		cost = 10\r\n";
+	FocusTree += "		ai_will_do = {\r\n";
+	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			modifier = {\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}	\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	FocusTree += "			local_resources_factor = 0.2\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "	}";
+
+	//establish colonial army
+	FocusTree += "		focus = { \r\n";
+	FocusTree += "		id = ColonialArmy" + Home->getTag() + "\r\n";
+	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		text = \"Establish Colonial Army\"\r\n";
+	FocusTree += "		prerequisite = { focus = StrengthenColonies" + Home->getTag() + " }\r\n";
+	FocusTree += "		x =  28\r\n";
+	FocusTree += "		y = 2\r\n";
+	FocusTree += "		cost = 10\r\n";
+	FocusTree += "		ai_will_do = {\r\n";
+	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			modifier = {\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}	\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	//find out how to increase non core pop, or add cores
+	//FocusTree += "			local_resources_factor = 0.2\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "	}";
+	string protectorateNFs = "";
+	//establish protectorate
+	if (ProtectorateNumber >= 1)
+	{
+		FocusTree += "focus = {\r\n";
+		FocusTree += "		id = Protectorate" + Home->getTag() + Annexed1->getTag() + "\r\n";
+		FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
+		FocusTree += "		text = \"Establish Protectorate over " + Annexed1->getSourceCountry()->getName() + "\"\r\n";
+		FocusTree += "		prerequisite = { focus = ColonialArmy" + Home->getTag() + " }\r\n";
+		FocusTree += "		x = 28\r\n";
+		FocusTree += "		y = 3\r\n";
+		FocusTree += "		cost = 10\r\n";
+		FocusTree += "		ai_will_do = {\r\n";
+		FocusTree += "			factor = 5\r\n";
+		FocusTree += "			modifier = {\r\n";
+		FocusTree += "			factor = 0\r\n";
+		FocusTree += "			strength_ratio = { tag = " + Annexed1->getTag() + " ratio < 1 }\r\n";
+		FocusTree += "			}";
+		FocusTree += "		}	\r\n";
+		FocusTree += "		completion_reward = {\r\n";
+		FocusTree += "			create_wargoal = {\r\n";
+		FocusTree += "				type = puppet_wargoal_focus\r\n";
+		FocusTree += "				target = " + Annexed1->getTag() + "\r\n";
+		FocusTree += "			}";
+		FocusTree += "		}\r\n";
+		FocusTree += "	}\r\n";
+		protectorateNFs += " Protectorate" + Home->getTag() + Annexed1->getTag();
+	}
+	if (ProtectorateNumber >= 2)
+	{
+		FocusTree += "focus = {\r\n";
+		FocusTree += "		id = Protectorate" + Home->getTag() + Annexed2->getTag() + "\r\n";
+		FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
+		FocusTree += "		text = \"Establish Protectorate over " + Annexed2->getSourceCountry()->getName() + "\"\r\n";
+		FocusTree += "		prerequisite = { focus = ColonialArmy" + Home->getTag() + " }\r\n";
+		FocusTree += "		x = 28\r\n";
+		FocusTree += "		y = 3\r\n";
+		FocusTree += "		cost = 10\r\n";
+		FocusTree += "		ai_will_do = {\r\n";
+		FocusTree += "			factor = 5\r\n";
+		FocusTree += "			modifier = {\r\n";
+		FocusTree += "			factor = 0\r\n";
+		FocusTree += "			strength_ratio = { tag = " + Annexed2->getTag() + " ratio < 1 }\r\n";
+		FocusTree += "			}";
+		FocusTree += "		}	\r\n";
+		FocusTree += "		completion_reward = {\r\n";
+		FocusTree += "			create_wargoal = {\r\n";
+		FocusTree += "				type = puppet_wargoal_focus\r\n";
+		FocusTree += "				target = " + Annexed2->getTag() + "\r\n";
+		FocusTree += "			}";
+		FocusTree += "		}\r\n";
+		FocusTree += "	}\r\n";
+		protectorateNFs += " Protectorate" + Home->getTag() + Annexed2->getTag();
+	}
+	
+	//Trade Empire
+	FocusTree += "		focus = { \r\n";
+	FocusTree += "		id = TradeEmpire" + Home->getTag() + "\r\n";
+	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		text = \"Fund the "+Home->getSourceCountry()->getAdjective("english") +" Colonial Trade Corporation\"\r\n";
+	FocusTree += "		prerequisite = { focus = ColonialHwy" + Home->getTag() + " focus = ResourceFac" + Home->getTag() + " }\r\n";
+	FocusTree += "		x =  25\r\n";
+	FocusTree += "		y = 4\r\n";
+	FocusTree += "		cost = 10\r\n";
+	FocusTree += "		ai_will_do = {\r\n";
+	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			modifier = {\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}	\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	FocusTree += "			set_country_flag = TradeEmpire";
+	FocusTree += "			trade_opinion_factor = 0.1\r\n";
+	FocusTree += "			random_owned_state = {\r\n";
+	FocusTree += "				limit = {\r\n";
+	FocusTree += "					free_building_slots = {\r\n";
+	FocusTree += "						building = infrastructure\r\n";
+	FocusTree += "						size > 0\r\n";
+	FocusTree += "						include_locked = yes\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "					OR = {\r\n";
+	FocusTree += "						is_in_home_area = no\r\n";
+	FocusTree += "						NOT = {\r\n";
+	FocusTree += "							owner = {\r\n";
+	FocusTree += "								any_owned_state = {\r\n";
+	FocusTree += "									free_building_slots = {\r\n";
+	FocusTree += "										building = infrastructure\r\n";
+	FocusTree += "										size > 0\r\n";
+	FocusTree += "										include_locked = yes\r\n";
+	FocusTree += "									}\r\n";
+	FocusTree += "									is_in_home_area = no\r\n";
+	FocusTree += "								}\r\n";
+	FocusTree += "							}\r\n";
+	FocusTree += "						}\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "				add_extra_state_shared_building_slots = 2\r\n";
+	FocusTree += "				add_building_construction = {\r\n";
+	FocusTree += "					type = dockyard\r\n";
+	FocusTree += "					level = 2\r\n";
+	FocusTree += "					instant_build = yes\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "	}";
+
+	//Industry Buildup
+	FocusTree += "		focus = { \r\n";
+	FocusTree += "		id = IndHome" + Home->getTag() + "\r\n";
+	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		text = \"Fund Industrial build at Home\"\r\n";
+	FocusTree += "		prerequisite = { focus = StrengthenHome" + Home->getTag() + " }\r\n";
+	FocusTree += "		x =  32\r\n";
+	FocusTree += "		y = 2\r\n";
+	FocusTree += "		cost = 10\r\n";
+	FocusTree += "		ai_will_do = {\r\n";
+	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			modifier = {\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}	\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	//add tech
+	//FocusTree += "			research_time_factor = -0.1\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "	}";
+
+	//National Highway
+	FocusTree += "		focus = { \r\n";
+	FocusTree += "		id = NationalHwy" + Home->getTag() + "\r\n";
+	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		text = \"National Highway\"\r\n";
+	FocusTree += "		prerequisite = { focus = IndHome" + Home->getTag() + " }\r\n";
+	FocusTree += "		x =  32\r\n";
+	FocusTree += "		y = 3\r\n";
+	FocusTree += "		cost = 10\r\n";
+	FocusTree += "		ai_will_do = {\r\n";
+	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			modifier = {\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}	\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	FocusTree += "			random_owned_state = {\r\n";
+	FocusTree += "				limit = {\r\n";
+	FocusTree += "					free_building_slots = {\r\n";
+	FocusTree += "						building = infrastructure\r\n";
+	FocusTree += "						size > 0\r\n";
+	FocusTree += "						include_locked = yes\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "					OR = {\r\n";
+	FocusTree += "						is_in_home_area = yes\r\n";
+	FocusTree += "						NOT = {\r\n";
+	FocusTree += "							owner = {\r\n";
+	FocusTree += "								any_owned_state = {\r\n";
+	FocusTree += "									free_building_slots = {\r\n";
+	FocusTree += "										building = infrastructure\r\n";
+	FocusTree += "										size > 0\r\n";
+	FocusTree += "										include_locked = yes\r\n";
+	FocusTree += "									}\r\n";
+	FocusTree += "									is_in_home_area = yes\r\n";
+	FocusTree += "								}\r\n";
+	FocusTree += "							}\r\n";
+	FocusTree += "						}\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "				add_extra_state_shared_building_slots = 1\r\n";
+	FocusTree += "				add_building_construction = {\r\n";
+	FocusTree += "					type = infrastructure\r\n";
+	FocusTree += "					level = 1\r\n";
+	FocusTree += "					instant_build = yes\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	FocusTree += "			random_owned_state = {\r\n";
+	FocusTree += "				limit = {\r\n";
+	FocusTree += "					free_building_slots = {\r\n";
+	FocusTree += "						building = infrastructure\r\n";
+	FocusTree += "						size > 0\r\n";
+	FocusTree += "						include_locked = yes\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "					OR = {\r\n";
+	FocusTree += "						is_in_home_area = yes\r\n";
+	FocusTree += "						NOT = {\r\n";
+	FocusTree += "							owner = {\r\n";
+	FocusTree += "								any_owned_state = {\r\n";
+	FocusTree += "									free_building_slots = {\r\n";
+	FocusTree += "										building = infrastructure\r\n";
+	FocusTree += "										size > 0\r\n";
+	FocusTree += "										include_locked = yes\r\n";
+	FocusTree += "									}\r\n";
+	FocusTree += "									is_in_home_area = yes\r\n";
+	FocusTree += "								}\r\n";
+	FocusTree += "							}\r\n";
+	FocusTree += "						}\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "				add_extra_state_shared_building_slots = 1\r\n";
+	FocusTree += "				add_building_construction = {\r\n";
+	FocusTree += "					type = infrastructure\r\n";
+	FocusTree += "					level = 1\r\n";
+	FocusTree += "					instant_build = yes\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	FocusTree += "			random_owned_state = {\r\n";
+	FocusTree += "				limit = {\r\n";
+	FocusTree += "					free_building_slots = {\r\n";
+	FocusTree += "						building = infrastructure\r\n";
+	FocusTree += "						size > 0\r\n";
+	FocusTree += "						include_locked = yes\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "					OR = {\r\n";
+	FocusTree += "						is_in_home_area = yes\r\n";
+	FocusTree += "						NOT = {\r\n";
+	FocusTree += "							owner = {\r\n";
+	FocusTree += "								any_owned_state = {\r\n";
+	FocusTree += "									free_building_slots = {\r\n";
+	FocusTree += "										building = infrastructure\r\n";
+	FocusTree += "										size > 0\r\n";
+	FocusTree += "										include_locked = yes\r\n";
+	FocusTree += "									}\r\n";
+	FocusTree += "									is_in_home_area = yes\r\n";
+	FocusTree += "								}\r\n";
+	FocusTree += "							}\r\n";
+	FocusTree += "						}\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "				add_extra_state_shared_building_slots = 1\r\n";
+	FocusTree += "				add_building_construction = {\r\n";
+	FocusTree += "					type = infrastructure\r\n";
+	FocusTree += "					level = 1\r\n";
+	FocusTree += "					instant_build = yes\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "	}";
+
+	//National College
+	FocusTree += "		focus = { \r\n";
+	FocusTree += "		id = NatCollege" + Home->getTag() + "\r\n";
+	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		text = \"Establish National College\"\r\n";
+	FocusTree += "		prerequisite = { focus = IndHome" + Home->getTag() + " }\r\n";
+	FocusTree += "		x =  34\r\n";
+	FocusTree += "		y = 3\r\n";
+	FocusTree += "		cost = 10\r\n";
+	FocusTree += "		ai_will_do = {\r\n";
+	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			modifier = {\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}	\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	FocusTree += "			research_time_factor = -0.1\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "	}";
+
+	//Improve Factories
+	FocusTree += "		focus = { \r\n";
+	FocusTree += "		id = MilitaryBuildup" + Home->getTag() + "\r\n";
+	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		text = \"Military Buildup\"\r\n";
+	FocusTree += "		prerequisite = { focus = NatCollege" + Home->getTag() + " }\r\n";
+	FocusTree += "		prerequisite = { focus = NationalHwy" + Home->getTag() + " }\r\n";
+	FocusTree += "		x =  33\r\n";
+	FocusTree += "		y = 4\r\n";
+	FocusTree += "		cost = 10\r\n";
+	FocusTree += "		ai_will_do = {\r\n";
+	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			modifier = {\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}	\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	FocusTree += "			random_owned_state = {\r\n";
+	FocusTree += "				limit = {\r\n";
+	FocusTree += "					free_building_slots = {\r\n";
+	FocusTree += "						building = arms_factory\r\n";
+	FocusTree += "						size > 0\r\n";
+	FocusTree += "						include_locked = yes\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "					OR = {\r\n";
+	FocusTree += "						is_in_home_area = yes\r\n";
+	FocusTree += "						NOT = {\r\n";
+	FocusTree += "							owner = {\r\n";
+	FocusTree += "								any_owned_state = {\r\n";
+	FocusTree += "									free_building_slots = {\r\n";
+	FocusTree += "										building = arms_factory\r\n";
+	FocusTree += "										size > 0\r\n";
+	FocusTree += "										include_locked = yes\r\n";
+	FocusTree += "									}\r\n";
+	FocusTree += "									is_in_home_area = yes\r\n";
+	FocusTree += "								}\r\n";
+	FocusTree += "							}\r\n";
+	FocusTree += "						}\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "				add_extra_state_shared_building_slots = 1\r\n";
+	FocusTree += "				add_building_construction = {\r\n";
+	FocusTree += "					type = arms_factory\r\n";
+	FocusTree += "					level = 1\r\n";
+	FocusTree += "					instant_build = yes\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	FocusTree += "			random_owned_state = {\r\n";
+	FocusTree += "				limit = {\r\n";
+	FocusTree += "					free_building_slots = {\r\n";
+	FocusTree += "						building = arms_factory\r\n";
+	FocusTree += "						size > 0\r\n";
+	FocusTree += "						include_locked = yes\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "					OR = {\r\n";
+	FocusTree += "						is_in_home_area = yes\r\n";
+	FocusTree += "						NOT = {\r\n";
+	FocusTree += "							owner = {\r\n";
+	FocusTree += "								any_owned_state = {\r\n";
+	FocusTree += "									free_building_slots = {\r\n";
+	FocusTree += "										building = arms_factory\r\n";
+	FocusTree += "										size > 0\r\n";
+	FocusTree += "										include_locked = yes\r\n";
+	FocusTree += "									}\r\n";
+	FocusTree += "									is_in_home_area = yes\r\n";
+	FocusTree += "								}\r\n";
+	FocusTree += "							}\r\n";
+	FocusTree += "						}\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "				add_extra_state_shared_building_slots = 1\r\n";
+	FocusTree += "				add_building_construction = {\r\n";
+	FocusTree += "					type = arms_factory\r\n";
+	FocusTree += "					level = 1\r\n";
+	FocusTree += "					instant_build = yes\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	FocusTree += "			random_owned_state = {\r\n";
+	FocusTree += "				limit = {\r\n";
+	FocusTree += "					free_building_slots = {\r\n";
+	FocusTree += "						building = arms_factory\r\n";
+	FocusTree += "						size > 0\r\n";
+	FocusTree += "						include_locked = yes\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "					OR = {\r\n";
+	FocusTree += "						is_in_home_area = yes\r\n";
+	FocusTree += "						NOT = {\r\n";
+	FocusTree += "							owner = {\r\n";
+	FocusTree += "								any_owned_state = {\r\n";
+	FocusTree += "									free_building_slots = {\r\n";
+	FocusTree += "										building = arms_factory\r\n";
+	FocusTree += "										size > 0\r\n";
+	FocusTree += "										include_locked = yes\r\n";
+	FocusTree += "									}\r\n";
+	FocusTree += "									is_in_home_area = yes\r\n";
+	FocusTree += "								}\r\n";
+	FocusTree += "							}\r\n";
+	FocusTree += "						}\r\n";
+	FocusTree += "					}\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "				add_extra_state_shared_building_slots = 1\r\n";
+	FocusTree += "				add_building_construction = {\r\n";
+	FocusTree += "					type = arms_factory\r\n";
+	FocusTree += "					level = 1\r\n";
+	FocusTree += "					instant_build = yes\r\n";
+	FocusTree += "				}\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "	}";
+
+	//PrepBorder
+	FocusTree += "		focus = { \r\n";
+	FocusTree += "		id = PrepTheBorder" + Home->getTag() + "\r\n";
+	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		text = \"Prepare the Border\"\r\n";
+	FocusTree += "		prerequisite = { focus = StrengthenHome" + Home->getTag() + " }\r\n";
+	FocusTree += "		x =  36\r\n";
+	FocusTree += "		y = 2\r\n";
+	FocusTree += "		cost = 10\r\n";
+	FocusTree += "		ai_will_do = {\r\n";
+	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			modifier = {\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}	\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	//FORTS
+	//FocusTree += "			research_time_factor = -0.1\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "	}";
+
+	//Promote Nationalistic Spirit
+	FocusTree += "		focus = { \r\n";
+	FocusTree += "		id = NatSpirit" + Home->getTag() + "\r\n";
+	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		text = \"Promote Nationalistic Spirit\"\r\n";
+	FocusTree += "		prerequisite = { focus = PrepTheBorder" + Home->getTag() + " }\r\n";
+	FocusTree += "		x =  36\r\n";
+	FocusTree += "		y = 3\r\n";
+	FocusTree += "		cost = 10\r\n";
+	FocusTree += "		ai_will_do = {\r\n";
+	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			modifier = {\r\n";
+	FocusTree += "			}\r\n";
+	FocusTree += "		}	\r\n";
+	FocusTree += "		completion_reward = {\r\n";
+	FocusTree += "			add_ideas = paramilitarism_focus\r\n";
+	FocusTree += "		}\r\n";
+	FocusTree += "	}";
+	return FocusTree;
 }
 void HoI4World::fillProvinceNeighbors()
 {
@@ -4166,11 +4919,15 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 	//MAKE SURE THIS WORKS
 	//IMPROVE
 	//MAKE ARMY STRENGTH CALCS MORE ACCURATE!!
+	LOG(LogLevel::Info) << "Filling Map Information";
+	fillProvinces();
 	fillCountryIC();
+	fillCountryProvinces();
 	LOG(LogLevel::Info) << "Filling province neighbors";
 	fillProvinceNeighbors();
 	LOG(LogLevel::Info) << "Creating Factions";
 	Factions = CreateFactions(sourceWorld, countryMap);
+	//outputting the country and factions
 	for (auto country : countries)
 	{
 		int i = 1;
@@ -4179,6 +4936,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		{
 			if (country.second->getTag() == faction.front()->getTag())
 			{
+				//wtf does this do? idk
 				FactionName = to_string(i++);
 			}
 		}
@@ -4186,11 +4944,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 	}
 	bool fascismrelevant = false;
 	bool communismrelevant = false;
-	double WorldStrength = 0;
-	//GetDistance(Factions.front().front(), Factions.back().back());
-	//get World Strength
-	LOG(LogLevel::Info) << "Filling Provinces";
-	fillProvinces();
+	//output folders
 	string NFpath = "Output/" + Configuration::getOutputName() + "/common/national_focus";
 	if (!Utils::TryCreateFolder(NFpath))
 	{
@@ -4203,8 +4957,11 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/events\"";
 		exit(-1);
 	}
+	//Files To show results
 	string filename("Output/AI.txt");
 	ofstream out;
+	//getting total strength of all factions
+	double WorldStrength = 0;
 	out.open(filename);
 	{
 		for (auto Faction : Factions)
@@ -4236,17 +4993,21 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		for (auto Faction : Factions)
 		{
 			HoI4Country* Leader = GetFactionLeader(Faction);
-			if ((Leader->getGovernment() == "fascism" || Leader->getGovernment() == "absolute_monarchy") && fascismrelevant)
+			if ((Leader->getGovernment() == "fascism") && fascismrelevant)
 			{
 				LOG(LogLevel::Info) << "Calculating AI for " + Leader->getSourceCountry()->getName();
 				out << Leader->getSourceCountry()->getName() << endl;
+				//too many lists, need to clean up
 				vector<HoI4Country*> Targets;
 				vector<HoI4Country*> Anchluss;
 				vector<HoI4Country*> Sudaten;
+				vector<HoI4Country*> EqualTargets;
 				vector<HoI4Country*> DifficultTargets;
+				//getting country provinces and its neighbors
 				vector<int> leaderProvs = getCountryProvinces(Leader);
 				map<string, HoI4Country*> AllNeighbors = findNeighbors(leaderProvs, Leader);
-				map<string, HoI4Country*> Neighbors;
+				map<string, HoI4Country*> CloseNeighbors;
+				//gets neighbors that are actually close to you
 				for each (auto neigh in AllNeighbors)
 				{
 					if (neigh.second->getCapitalProv() != 0)
@@ -4255,44 +5016,40 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 						//need to get further neighbors, as well as countries without capital in an area
 						double distance = GetDistance(Leader, neigh.second);
 						if (distance <= 500)
-							Neighbors.insert(neigh);
+							CloseNeighbors.insert(neigh);
 					}
 				}
+
 				set<string> Allies = Leader->getAllies();
 				//should add method to look for cores you dont own
 				//should add method to look for more allies
 
 				//lets look for weak neighbors
 				LOG(LogLevel::Info) << "Doing Neighbor calcs for " + Leader->getSourceCountry()->getName();
-				for (auto neigh : Neighbors)
+				for (auto neigh : CloseNeighbors)
 				{
-					//lets check to see if they are our ally and not a great country
+					//lets check to see if they are not our ally and not a great country
 					if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
 					{
 						volatile double enemystrength = getStrengthOverTime(neigh.second, 1.5);
 						volatile double mystrength = getStrengthOverTime(Leader, 1.5);
-						//if not, lets see their strength is at least < 20%
+						//lets see their strength is at least < 20%
 						if (getStrengthOverTime(neigh.second,1.5) < getStrengthOverTime(Leader,1.5)*0.2 && findFaction(neigh.second).size() == 1)
 						{
-							//they are very weak and we can get 1 of these countries in an anchluss
-							//AnchlussTargets.push_back(neigh);
+							//they are very weak
 							Anchluss.push_back(neigh.second);
-						
 						}
 						//if not, lets see their strength is at least < 60%
 						else if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1)*0.6 && getStrengthOverTime(neigh.second, 1) > getStrengthOverTime(Leader, 1)*0.2 && findFaction(neigh.second).size() == 1)
 						{
 							//they are weak and we can get 1 of these countries in sudaten deal
-							//SudatenTargets.push_back(neigh);
 							Sudaten.push_back(neigh.second);
-				
 						}
 						//if not, lets see their strength is at least = to ours%
 						else if (getStrengthOverTime(neigh.second, 1) < getStrengthOverTime(Leader, 1))
 						{
 							//EqualTargets.push_back(neigh);
-							DifficultTargets.push_back(neigh.second);
-						
+							EqualTargets.push_back(neigh.second);
 						}
 						//if not, lets see their strength is at least < 120%
 						else if (getStrengthOverTime(neigh.second, 1) < getStrengthOverTime(Leader, 1)*1.2)
@@ -4304,6 +5061,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 						
 					}
 				}
+				//string that contains all events
 				string Events;
 				string s;
 				map<string, vector<HoI4Country*>> TargetMap;
@@ -4314,6 +5072,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				vector<HoI4Country*> man;
 				vector<HoI4Country*> coup;
 				int EventNumber = 0;
+				//x is used for the x position of our last NF, so we can place them correctly
 				vector<int> takenSpots;
 				vector<int> takenSpotsy;
 				int x = 22;
@@ -4322,7 +5081,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				for (auto target : Anchluss)
 				{
 					string type;
-					//outputs are
+					//outputs are for HowToTakeLand()
 					//noactionneeded -  Can take target without any help
 					//factionneeded - can take target and faction with attackers faction helping
 					//morealliesneeded - can take target with more allies, comes with "newallies" in map
@@ -4331,16 +5090,16 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 					out << type + " " + target->getSourceCountry()->getName() << endl;
 					if (type == "noactionneeded")
 					{
+						//too many vectors, need to clean up
 						nan.push_back(target);
 						anchlussnan.push_back(target);
 					}
 				}
-				
+				//gives us generic focus tree start
 				string FocusTree = genericFocusTreeCreator(Leader);
 				if (nan.size() >= 1)
 				{
 					//if it can easily take these targets as they are not in an alliance, you can get annexation event
-						
 						if (nan.size() == 1)
 						{
 							x = 24;
@@ -4404,6 +5163,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 								//int x = i * 3;
 								string annexername = Leader->getSourceCountry()->getName();
 								string annexedname = nan[i]->getSourceCountry()->getName();
+								//for random date
 								int v1 = rand() % 5 + 1;
 								int v2 = rand() % 5 + 1;
 								//focus for anschluss
@@ -4441,7 +5201,6 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 								FocusTree += "	}";
 
 								//events
-								
 								Events += createAnnexEvent(Leader, nan[i], EventNumber);
 								EventNumber += 3;
 							}
@@ -4475,6 +5234,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 					FocusTree += "		text = \"Expand the Reich\"\r\n";
 					if (anchlussnan.size() == 1 || anchlussnan.size() >= 2)
 					{
+						//if there are anschlusses, make this event require at least 1 anschluss, else, its the start of a tree
 						FocusTree += "		prerequisite = { ";
 						for (unsigned int i = 0; i < 2; i++)
 						{
@@ -4490,6 +5250,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 					}
 					else
 					{
+						//figuring out position
 						int x = takenSpots.back();
 						takenSpots.push_back(x);
 						if (nan.size() == 1)
@@ -4536,6 +5297,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 							FocusTree += "		\r\n";
 							if (anchlussnan.size() == 1 || anchlussnan.size() >= 2)
 							{
+								//figuring out position again
 								FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
 								FocusTree += "		y = 4\r\n";
 							}
@@ -4602,7 +5364,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 							FocusTree += "	}";
 
 							//events
-							//find neighboring states
+							//find neighboring states to take in sudaten deal
 							vector<int> demandedstates;
 							for (auto leaderprov : leaderProvs)
 							{
@@ -4666,6 +5428,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 					FocusTree += "			}";
 					FocusTree += "		}	\r\n";
 					FocusTree += "		completion_reward = {\r\n";
+					//FIXME
 					//FocusTree += "			opinion_gain_monthly_factor = 1.0 \r\n";
 					FocusTree += "		}\r\n";
 					FocusTree += "	}\r\n";
@@ -4772,6 +5535,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 						FocusTree += "			}";
 						if (GCTargets.size() > 1)
 						{
+							//make ai have this as a 0 modifier if they are at war
 							FocusTree += "modifier = {\r\n	factor = 0\r\n	OR = {";
 							for (int i2 = 0; i2 < 3; i2++)
 							{
@@ -4795,6 +5559,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 					}
 				}
 				//insert these values in targetmap for use later possibly?
+				//needs cleanup, too many vectors!
 				TargetMap.insert(make_pair("noactionneeded", nan));
 				TargetMap.insert(make_pair("factionneeded", fn));
 				TargetMap.insert(make_pair("morealliesneeded", man));
@@ -4804,7 +5569,6 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				
 				//output National Focus
 				string filenameNF("Output/" + Configuration::getOutputName() + "/common/national_focus/" + Leader->getSourceCountry()->getTag() + "_NF.txt");
-				//string filename2("Output/NF.txt");
 				ofstream out2;
 				out2.open(filenameNF);
 				{
@@ -4824,8 +5588,26 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				out << s;
 				out << endl;
 			}
+			if (Leader->getGovernment() == "absolute_monarchy")
+			{
+				//this is for monarchy events, dont need for random
+				string FocusTree = genericFocusTreeCreator(Leader);
+				FocusTree += createMonarchyEmpireNF(Leader, Leader, Leader, Leader, Leader, 0, 0, 0);
+				FocusTree += "\r\n}";
+
+				//output National Focus
+				string filenameNF("Output/" + Configuration::getOutputName() + "/common/national_focus/" + Leader->getSourceCountry()->getTag() + "_NF.txt");
+				//string filename2("Output/NF.txt");
+				ofstream out2;
+				out2.open(filenameNF);
+				{
+					out2 << FocusTree;
+				}
+				out2.close();
+			}
 			if ((Leader->getGovernment() == "communism") && communismrelevant)
 			{
+				//communism still needs great country war events
 				LOG(LogLevel::Info) << "Calculating AI for " + Leader->getSourceCountry()->getName();
 				out << Leader->getSourceCountry()->getName() << endl;
 				vector<int> leaderProvs = getCountryProvinces(Leader);
@@ -4848,8 +5630,6 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				map<string, vector<HoI4Country*>> NationalFocusesMap;
 				vector<HoI4Country*> coups;
 				vector<HoI4Country*> forcedtakeover;
-
-				//check if has "Long live the king" and add events if they do
 
 				//if (Permanant Revolution)
 					//Decide between Anti - Democratic Focus, Anti - Monarch Focus, or Anti - Fascist Focus(Look at all great powers and get average relation between each ideology, the one with the lowest average relation leads to that focus).
@@ -5275,12 +6055,15 @@ vector<HoI4Country*> HoI4World::GetMorePossibleAllies(HoI4Country* CountryThatWa
 	vector<HoI4Country*> CountriesWithin500Miles; //Rename to actual distance
 	for (auto country : countries)
 	{
-		HoI4Country* country2 = country.second;
-		if (GetDistance(CountryThatWantsAllies, country2) <= 500)
-			if (std::find(currentAllies.begin(), currentAllies.end(), country2->getTag()) == currentAllies.end())
-			{
-				CountriesWithin500Miles.push_back(country2);
-			}
+		if (country.second->getProvinceCount() != 0)
+		{
+			HoI4Country* country2 = country.second;
+			if (GetDistance(CountryThatWantsAllies, country2) <= 500)
+				if (std::find(currentAllies.begin(), currentAllies.end(), country2->getTag()) == currentAllies.end())
+				{
+					CountriesWithin500Miles.push_back(country2);
+				}
+		}
 	}
 	string yourgovernment = CountryThatWantsAllies->getGovernment();
 	volatile vector<HoI4Country*> vCountriesWithin500Miles = CountriesWithin500Miles;
