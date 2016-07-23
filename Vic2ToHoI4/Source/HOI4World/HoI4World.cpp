@@ -2136,7 +2136,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	//FocusTree += "			is_puppet = no\r\n";
 	FocusTree += "		}\r\n";
 	FocusTree += "		\r\n";
-	FocusTree += "		x =  31\r\n";
+	FocusTree += "		x =  29\r\n";
 	FocusTree += "		y = 0\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
@@ -2158,7 +2158,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		text = \"Strengthen the Colonies\"\r\n";
 	FocusTree += "		prerequisite = { focus = EmpireGlory" + Home->getTag() + " }\r\n";
 	FocusTree += "		mutually_exclusive = { focus = StrengthenHome" + Home->getTag() + " }\r\n";
-	FocusTree += "		x =  30\r\n";
+	FocusTree += "		x =  28\r\n";
 	FocusTree += "		y = 1\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
@@ -2177,7 +2177,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		text = \"Strengthen Home\"\r\n";
 	FocusTree += "		prerequisite = { focus = EmpireGlory" + Home->getTag() + " }\r\n";
 	FocusTree += "		mutually_exclusive = { focus = StrengthenColonies" + Home->getTag() + " }\r\n";
-	FocusTree += "		x =  32\r\n";
+	FocusTree += "		x =  30\r\n";
 	FocusTree += "		y = 1\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
@@ -2193,7 +2193,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	//Colonial Factories
 	FocusTree += "		focus = { \r\n";
 	FocusTree += "		id = ColonialInd" + Home->getTag() + "\r\n";
-	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		icon = GFX_goal_generic_construct_civ_factory\r\n";
 	FocusTree += "		text = \"Colonial Industry Buildup\"\r\n";
 	FocusTree += "		prerequisite = { focus = StrengthenColonies" + Home->getTag() + " }\r\n";
 	FocusTree += "		x =  26\r\n";
@@ -2218,7 +2218,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "							owner = {\r\n";
 	FocusTree += "								any_owned_state = {\r\n";
 	FocusTree += "									free_building_slots = {\r\n";
-	FocusTree += "										building = arms_factory\r\n";
+	FocusTree += "										building = industrial_complex\r\n";
 	FocusTree += "										size > 0\r\n";
 	FocusTree += "										include_locked = yes\r\n";
 	FocusTree += "									}\r\n";
@@ -2250,7 +2250,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "							owner = {\r\n";
 	FocusTree += "								any_owned_state = {\r\n";
 	FocusTree += "									free_building_slots = {\r\n";
-	FocusTree += "										building = arms_factory\r\n";
+	FocusTree += "										building = industrial_complex\r\n";
 	FocusTree += "										size > 0\r\n";
 	FocusTree += "										include_locked = yes\r\n";
 	FocusTree += "									}\r\n";
@@ -2282,7 +2282,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "							owner = {\r\n";
 	FocusTree += "								any_owned_state = {\r\n";
 	FocusTree += "									free_building_slots = {\r\n";
-	FocusTree += "										building = arms_factory\r\n";
+	FocusTree += "										building = industrial_complex\r\n";
 	FocusTree += "										size > 0\r\n";
 	FocusTree += "										include_locked = yes\r\n";
 	FocusTree += "									}\r\n";
@@ -2305,7 +2305,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	//Colonial Highway
 	FocusTree += "		focus = { \r\n";
 	FocusTree += "		id = ColonialHwy" + Home->getTag() + "\r\n";
-	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		icon = GFX_goal_generic_construct_infrastructure\r\n";
 	FocusTree += "		text = \"Colonial Highway\"\r\n";
 	FocusTree += "		prerequisite = { focus = ColonialInd" + Home->getTag() + " }\r\n";
 	FocusTree += "		x =  24\r\n";
@@ -2417,7 +2417,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	//improve resources
 	FocusTree += "		focus = { \r\n";
 	FocusTree += "		id = ResourceFac" + Home->getTag() + "\r\n";
-	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		icon = GFX_goal_generic_oil_refinery\r\n";
 	FocusTree += "		text = \"Improve Resource Factories\"\r\n";
 	FocusTree += "		prerequisite = { focus = ColonialInd" + Home->getTag() + " }\r\n";
 	FocusTree += "		mutually_exclusive = { focus = StrengthenColonies" + Home->getTag() + " }\r\n";
@@ -2437,7 +2437,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	//establish colonial army
 	FocusTree += "		focus = { \r\n";
 	FocusTree += "		id = ColonialArmy" + Home->getTag() + "\r\n";
-	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
 	FocusTree += "		text = \"Establish Colonial Army\"\r\n";
 	FocusTree += "		prerequisite = { focus = StrengthenColonies" + Home->getTag() + " }\r\n";
 	FocusTree += "		x =  28\r\n";
@@ -2487,9 +2487,9 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 		FocusTree += "		id = Protectorate" + Home->getTag() + Annexed2->getTag() + "\r\n";
 		FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
 		FocusTree += "		text = \"Establish Protectorate over " + Annexed2->getSourceCountry()->getName() + "\"\r\n";
-		FocusTree += "		prerequisite = { focus = ColonialArmy" + Home->getTag() + " }\r\n";
+		FocusTree += "		prerequisite = { focus = Protectorate" + Home->getTag() + Annexed1->getTag() + " }\r\n";
 		FocusTree += "		x = 28\r\n";
-		FocusTree += "		y = 3\r\n";
+		FocusTree += "		y = 4\r\n";
 		FocusTree += "		cost = 10\r\n";
 		FocusTree += "		ai_will_do = {\r\n";
 		FocusTree += "			factor = 5\r\n";
@@ -2558,13 +2558,13 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		}\r\n";
 	FocusTree += "	}";
 
-	//Industry Buildup
+	//Home Industry Buildup
 	FocusTree += "		focus = { \r\n";
 	FocusTree += "		id = IndHome" + Home->getTag() + "\r\n";
-	FocusTree += "		icon = GFX_goal_anschluss\r\n";
-	FocusTree += "		text = \"Fund Industrial build at Home\"\r\n";
+	FocusTree += "		icon = GFX_goal_generic_production\r\n";
+	FocusTree += "		text = \"Fund Industrial Improvement\"\r\n";
 	FocusTree += "		prerequisite = { focus = StrengthenHome" + Home->getTag() + " }\r\n";
-	FocusTree += "		x =  32\r\n";
+	FocusTree += "		x =  31\r\n";
 	FocusTree += "		y = 2\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
@@ -2581,10 +2581,10 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	//National Highway
 	FocusTree += "		focus = { \r\n";
 	FocusTree += "		id = NationalHwy" + Home->getTag() + "\r\n";
-	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		icon = GFX_goal_generic_construct_infrastructure\r\n";
 	FocusTree += "		text = \"National Highway\"\r\n";
 	FocusTree += "		prerequisite = { focus = IndHome" + Home->getTag() + " }\r\n";
-	FocusTree += "		x =  32\r\n";
+	FocusTree += "		x =  30\r\n";
 	FocusTree += "		y = 3\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
@@ -2696,7 +2696,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		icon = GFX_goal_anschluss\r\n";
 	FocusTree += "		text = \"Establish National College\"\r\n";
 	FocusTree += "		prerequisite = { focus = IndHome" + Home->getTag() + " }\r\n";
-	FocusTree += "		x =  34\r\n";
+	FocusTree += "		x =  32\r\n";
 	FocusTree += "		y = 3\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
@@ -2712,11 +2712,11 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	//Improve Factories
 	FocusTree += "		focus = { \r\n";
 	FocusTree += "		id = MilitaryBuildup" + Home->getTag() + "\r\n";
-	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		icon = GFX_goal_generic_construct_mil_factory\r\n";
 	FocusTree += "		text = \"Military Buildup\"\r\n";
 	FocusTree += "		prerequisite = { focus = NatCollege" + Home->getTag() + " }\r\n";
 	FocusTree += "		prerequisite = { focus = NationalHwy" + Home->getTag() + " }\r\n";
-	FocusTree += "		x =  33\r\n";
+	FocusTree += "		x =  31\r\n";
 	FocusTree += "		y = 4\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
@@ -2825,10 +2825,10 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	//PrepBorder
 	FocusTree += "		focus = { \r\n";
 	FocusTree += "		id = PrepTheBorder" + Home->getTag() + "\r\n";
-	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		icon = GFX_goal_generic_defence\r\n";
 	FocusTree += "		text = \"Prepare the Border\"\r\n";
 	FocusTree += "		prerequisite = { focus = StrengthenHome" + Home->getTag() + " }\r\n";
-	FocusTree += "		x =  36\r\n";
+	FocusTree += "		x =  34\r\n";
 	FocusTree += "		y = 2\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
@@ -2845,10 +2845,10 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	//Promote Nationalistic Spirit
 	FocusTree += "		focus = { \r\n";
 	FocusTree += "		id = NatSpirit" + Home->getTag() + "\r\n";
-	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		icon = GFX_goal_generic_political_pressure\r\n";
 	FocusTree += "		text = \"Promote Nationalistic Spirit\"\r\n";
 	FocusTree += "		prerequisite = { focus = PrepTheBorder" + Home->getTag() + " }\r\n";
-	FocusTree += "		x =  36\r\n";
+	FocusTree += "		x =  34\r\n";
 	FocusTree += "		y = 3\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
@@ -2860,6 +2860,60 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "			add_ideas = paramilitarism_focus\r\n";
 	FocusTree += "		}\r\n";
 	FocusTree += "	}";
+
+	//ANNEX
+	if (AnnexNumber >= 1)
+	{
+		FocusTree += "focus = {\r\n";
+		FocusTree += "		id = Annex" + Home->getTag() + Annexed3->getTag() + "\r\n";
+		FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
+		FocusTree += "		text = \"Conquer " + Annexed3->getSourceCountry()->getName() + "\"\r\n";
+		FocusTree += "		prerequisite = { focus = NatSpirit" + Home->getTag() + " }\r\n";
+		FocusTree += "		x = 34\r\n";
+		FocusTree += "		y = 4\r\n";
+		FocusTree += "		cost = 10\r\n";
+		FocusTree += "		ai_will_do = {\r\n";
+		FocusTree += "			factor = 5\r\n";
+		FocusTree += "			modifier = {\r\n";
+		FocusTree += "			factor = 0\r\n";
+		FocusTree += "			strength_ratio = { tag = " + Annexed3->getTag() + " ratio < 1 }\r\n";
+		FocusTree += "			}";
+		FocusTree += "		}	\r\n";
+		FocusTree += "		completion_reward = {\r\n";
+		FocusTree += "			create_wargoal = {\r\n";
+		FocusTree += "				type = puppet_wargoal_focus\r\n";
+		FocusTree += "				target = " + Annexed3->getTag() + "\r\n";
+		FocusTree += "			}";
+		FocusTree += "		}\r\n";
+		FocusTree += "	}\r\n";
+	}
+	if (AnnexNumber >= 2)
+	{
+		FocusTree += "focus = {\r\n";
+		FocusTree += "		id = Annex" + Home->getTag() + Annexed4->getTag() + "\r\n";
+		FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
+		FocusTree += "		text = \"Conquer " + Annexed4->getSourceCountry()->getName() + "\"\r\n";
+		FocusTree += "		prerequisite = { focus = NatSpirit" + Home->getTag() + " }\r\n";
+		FocusTree += "		x = 36\r\n";
+		FocusTree += "		y = 4\r\n";
+		FocusTree += "		cost = 10\r\n";
+		FocusTree += "		ai_will_do = {\r\n";
+		FocusTree += "			factor = 5\r\n";
+		FocusTree += "			modifier = {\r\n";
+		FocusTree += "			factor = 0\r\n";
+		FocusTree += "			strength_ratio = { tag = " + Annexed4->getTag() + " ratio < 1 }\r\n";
+		FocusTree += "			}";
+		FocusTree += "		}	\r\n";
+		FocusTree += "		completion_reward = {\r\n";
+		FocusTree += "			create_wargoal = {\r\n";
+		FocusTree += "				type = puppet_wargoal_focus\r\n";
+		FocusTree += "				target = " + Annexed4->getTag() + "\r\n";
+		FocusTree += "			}";
+		FocusTree += "		}\r\n";
+		FocusTree += "	}\r\n";
+	}
+
+
 	return FocusTree;
 }
 void HoI4World::fillProvinceNeighbors()
@@ -5410,6 +5464,11 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				}
 				//events for allies
 				vector<HoI4Country*> newAllies = GetMorePossibleAllies(Leader);
+				for each (auto newally in newAllies)
+				{
+					findFaction(Leader).push_back(newally);
+					out << "added Ally " + newally->getSourceCountry()->getName() + " with init strength of " + to_string(getInitialStrength(newally)) + " and a yearly strength of " + to_string(getAddedStrength(newally, 1)) + "\r\n";
+ 				}
 				if (newAllies.size() > 0)
 				{
 					//Focus to call summit, maybe have events from summit
@@ -5417,7 +5476,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 					FocusTree += "		id = Fas_Summit" + Leader->getTag() + "\r\n";
 					FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
 					FocusTree += "		text = \"Call for the Fascist Summit\"\r\n";
-					FocusTree += "		x = " + to_string(takenSpots.back()+3) + "\r\n";
+					FocusTree += "		x = " + to_string(takenSpots.back()+4) + "\r\n";
 					FocusTree += "		y = 0\r\n";
 					FocusTree += "		cost = 10\r\n";
 					FocusTree += "		ai_will_do = {\r\n";
@@ -5443,7 +5502,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 					FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
 					FocusTree += "		text = \"Alliance with "+newAllies[i]->getSourceCountry()->getName()+"\"\r\n";
 					FocusTree += "		prerequisite = { focus =  Fas_Summit" + Leader->getTag() + " }\r\n";
-					FocusTree += "		x = " + to_string(takenSpots.back() + 3 + i*2 + displacement) + "\r\n";
+					FocusTree += "		x = " + to_string(takenSpots.back() + 4 + i*2 + displacement) + "\r\n";
 					FocusTree += "		y = 1\r\n";
 					FocusTree += "		cost = 10\r\n";
 					FocusTree += "		ai_will_do = {\r\n";
@@ -5472,7 +5531,9 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				//get great countries with a distance
 				for each (auto GC in GreatCountries)
 				{
-					GCDistance.insert(make_pair(GetDistance(Leader, GC), GC));
+					double distance = GetDistance(Leader, GC);
+					if(distance < 1200)
+						GCDistance.insert(make_pair(distance, GC));
 				}
 				//put them into a vector so we know their order
 				for (auto iterator = GCDistance.begin(); iterator != GCDistance.end(); ++iterator)
@@ -5483,7 +5544,9 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				vector<HoI4Country*> GCTargets;
 				for each (auto GC in GCDistanceSorted)
 				{
-					if (HowToTakeLand(GC, Leader, 3) == "noactionneeded" || HowToTakeLand(GC, Leader, 3) == "factionneeded" || HowToTakeLand(GC, Leader, 3) == "morealliesneeded")
+					string thetag = GC->getTag();
+					string HowToTakeGC = HowToTakeLand(GC, Leader, 3);
+					if (HowToTakeGC == "noactionneeded" || HowToTakeGC == "factionneeded" || HowToTakeGC == "morealliesneeded")
 					{
 						if(GC != Leader)
 							GCTargets.push_back(GC);
@@ -5591,8 +5654,87 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 			if (Leader->getGovernment() == "absolute_monarchy")
 			{
 				//this is for monarchy events, dont need for random
+				out << Leader->getSourceCountry()->getName() << endl;
+				//too many lists, need to clean up
+				vector<HoI4Country*> Targets;
+				vector<HoI4Country*> WeakNeighbors;
+				vector<HoI4Country*> WeakColonies;
+				vector<HoI4Country*> EqualTargets;
+				vector<HoI4Country*> DifficultTargets;
+				//getting country provinces and its neighbors
+				vector<int> leaderProvs = getCountryProvinces(Leader);
+				map<string, HoI4Country*> AllNeighbors = findNeighbors(leaderProvs, Leader);
+				map<string, HoI4Country*> CloseNeighbors;
+				map<string, HoI4Country*> FarNeighbors;
+				//gets neighbors that are actually close to you
+				for each (auto neigh in AllNeighbors)
+				{
+					if (neigh.second->getCapitalProv() != 0)
+					{
+						//IMPROVE
+						//need to get further neighbors, as well as countries without capital in an area
+						double distance = GetDistance(Leader, neigh.second);
+						if (distance <= 500)
+							CloseNeighbors.insert(neigh);
+						else
+							FarNeighbors.insert(neigh);
+					}
+				}
+				//if farneighbors is 0, try to find colonial conquest
+				if (FarNeighbors.size() == 0)
+				{
+					for (auto Colcountry : countries)
+					{
+
+						HoI4Country* country2 = Colcountry.second;
+						if (country2->getCapitalProv() != 0)
+						{
+							//IMPROVE
+							//but this should never happen since the AI shouldnt even take this unless they already have colonies
+							double distance = GetDistance(Leader, country2);
+							if (distance <= 1000 && Colcountry.second->getProvinceCount() > 0)
+								FarNeighbors.insert(Colcountry);
+						}
+					}
+				}
+				set<string> Allies = Leader->getAllies();
+				//should add method to look for cores you dont own
+				//should add method to look for more allies
+
+				//lets look for weak neighbors
+				LOG(LogLevel::Info) << "Doing Neighbor calcs for " + Leader->getSourceCountry()->getName();
+				for (auto neigh : CloseNeighbors)
+				{
+					//lets check to see if they are not our ally and not a great country
+					if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
+					{
+						volatile double enemystrength = getStrengthOverTime(neigh.second, 1.5);
+						volatile double mystrength = getStrengthOverTime(Leader, 1.5);
+						//lets see their strength is at least < 20%
+						if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second).size() == 1)
+						{
+							//they are very weak
+							WeakNeighbors.push_back(neigh.second);
+						}
+					}
+				}
+				for (auto neigh : FarNeighbors)
+				{
+					//lets check to see if they are not our ally and not a great country
+					if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
+					{
+						volatile double enemystrength = getStrengthOverTime(neigh.second, 1.5);
+						volatile double mystrength = getStrengthOverTime(Leader, 1.5);
+						//lets see their strength is at least < 20%
+						if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second).size() == 1)
+						{
+							//they are very weak
+							WeakColonies.push_back(neigh.second);
+						}
+					}
+				}
 				string FocusTree = genericFocusTreeCreator(Leader);
-				FocusTree += createMonarchyEmpireNF(Leader, Leader, Leader, Leader, Leader, 0, 0, 0);
+				FocusTree += createMonarchyEmpireNF(Leader, WeakColonies.front(), WeakColonies.back(), WeakNeighbors.front(), WeakNeighbors.back(), WeakColonies.size(), WeakNeighbors.size(), 0);
 				FocusTree += "\r\n}";
 
 				//output National Focus
@@ -6254,7 +6396,7 @@ map<string, HoI4Country*> HoI4World::findNeighbors(vector<int> CountryProvs, HoI
 					if (tags.size() >= 1)
 					{
 						HoI4Country* ownerCountry = countries.find(tags[1])->second;
-						if (ownerCountry != CheckingCountry)
+						if (ownerCountry != CheckingCountry && ownerCountry->getProvinceCount() > 0 )
 						{
 							//if not already in neighbors
 							if (Neighbors.find(tags[1]) == Neighbors.end())
@@ -6278,7 +6420,7 @@ map<string, HoI4Country*> HoI4World::findNeighbors(vector<int> CountryProvs, HoI
 					//IMPROVE
 					//need to get further neighbors, as well as countries without capital in an area
 					double distance = GetDistance(CheckingCountry, country2);
-					if (distance <= 500)
+					if (distance <= 500 && country.second->getProvinceCount() > 0 )
 						Neighbors.insert(country);
 				}
 			}
