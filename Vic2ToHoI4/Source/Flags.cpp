@@ -109,7 +109,7 @@ string getConversionModFlag(string Vic2Tag)
 
 bool isThisAConvertedTag(string Vic2Tag)
 {
-	return isdigit(Vic2Tag.c_str()[2]);
+	return (isdigit(Vic2Tag.c_str()[2]) != 0);
 }
 
 
