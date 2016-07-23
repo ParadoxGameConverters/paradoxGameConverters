@@ -122,7 +122,7 @@ vector<coastalProvince> HoI4Buildings::getCoastalProvinces()
 		for (auto adjProvinceNum: adjacency->second)
 		{
 			auto adjProvince = provinces.find(adjProvinceNum);
-			if ((adjProvince != provinces.end()) && (!adjProvince->second.isLand))
+			if ((adjProvince != provinces.end()) && (adjProvince->second.type == "ocean"))
 			{
 				coastalProvince newCoastalProvince;
 				newCoastalProvince.province = province.first;
@@ -175,9 +175,17 @@ map<int, province> HoI4Buildings::getProvinces()
 		int landSeaSeparator = line.find_first_of(';');
 		string landOrSea = line.substr(0, landSeaSeparator);
 		bool isLand = (landOrSea == "land");
+		line = line.substr(landSeaSeparator + 1, line.size());
+
+		int boolSeparator = line.find_first_of(';');
+		line = line.substr(boolSeparator + 1, line.size());
+
+		int typeSeparator = line.find_first_of(';');
+		string type = line.substr(0, typeSeparator);
 		
 		province newProvince;
 		newProvince.isLand = isLand;
+		newProvince.type = type;
 		provinces.insert(make_pair(ID, newProvince));
 	}
 

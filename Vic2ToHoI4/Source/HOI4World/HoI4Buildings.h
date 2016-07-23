@@ -36,6 +36,7 @@ using namespace std;
 typedef struct province
 {
 	bool isLand;
+	string type;
 } province;
 
 
