@@ -1286,155 +1286,6 @@ void HoI4World::factionSatellites()
 }
 
 
-void HoI4World::setFactionMembers(const CountryMapping& countryMap)
-{
-	// find faction memebers
-	if (Configuration::getFactionLeaderAlgo() == "manua")
-	{
-		LOG(LogLevel::Info) << "Manual faction allocation requested.";
-		checkManualFaction(countryMap, Configuration::getManualAxisFaction(), axisLeader, "axis");
-		checkManualFaction(countryMap, Configuration::getManualAlliesFaction(), alliesLeader, "allies");
-		checkManualFaction(countryMap, Configuration::getManualCominternFaction(), cominternLeader, "comintern");
-	}
-	else if (Configuration::getFactionLeaderAlgo() == "auto")
-	{
-		LOG(LogLevel::Info) << "Auto faction allocation requested.";
-
-		const vector<string>& greatCountries = sourceWorld->getGreatCountries();
-		for (auto countryItr: greatCountries)
-		{
-			auto itr = countries.find(countryMap[countryItr]);
-			if (itr != countries.end())
-			{
-				HoI4Country* country = itr->second;
-				const string government = country->getGovernment();
-				const string ideology = country->getIdeology();
-				if (
-					(government == "national_socialism" || government == "fascist_republic" || government == "germanic_fascist_republic" ||
-						government == "right_wing_republic" || government == "hungarian_right_wing_republic" || government == "right_wing_autocrat" ||
-						government == "absolute_monarchy" || government == "imperia"
-						) &&
-					(ideology == "national_socialist" || ideology == "fascistic" || ideology == "paternal_autocrat")
-					)
-				{
-					if (axisLeader == "")
-					{
-						axisLeader = itr->first;
-						country->setFaction("axis");
-						country->setFactionLeader();
-					}
-					else
-					{
-						// Check if ally of leader
-						const set<string>& allies = country->getAllies();
-						if (allies.find(axisLeader) != allies.end())
-						{
-							country->setFaction("axis");
-						}
-					}
-				}
-				else if (
-					(government == "social_conservatism" || government == "constitutional_monarchy" || government == "spanish_social_conservatism" ||
-						government == "market_liberalism" || government == "social_democracy" || government == "social_liberalism"
-						) &&
-					(ideology == "social_conservative" || ideology == "market_libera" || ideology == "social_libera" || ideology == "social_democrat")
-					)
-				{
-					if (alliesLeader == "")
-					{
-						alliesLeader = itr->first;
-						country->setFaction("allies");
-						country->setFactionLeader();
-					}
-					else
-					{
-						// Check if ally of leader
-						const set<string> &allies = country->getAllies();
-						if (allies.find(alliesLeader) != allies.end())
-						{
-							country->setFaction("allies");
-						}
-					}
-				}
-				// Allow left_wing_radicals, absolute monarchy and imperial. Being more tolerant for great powers, because we want comintern to be powerful
-				else if (
-					(
-						government == "left_wing_radicals" || government == "socialist_republic" || government == "federal_socialist_republic" ||
-						government == "absolute_monarchy" || government == "imperia"
-						) &&
-					(ideology == "left_wing_radica" || ideology == "leninist" || ideology == "stalinist")
-					)
-				{
-					if (cominternLeader == "")
-					{
-						cominternLeader = itr->first; // Faction leader
-						country->setFaction("comintern");
-						country->setFactionLeader();
-					}
-					else
-					{
-						// Check if ally of leader
-						const set<string> &allies = country->getAllies();
-						if (allies.find(alliesLeader) != allies.end())
-						{
-							country->setFaction("comintern");
-						}
-					}
-				}
-			}
-			else
-			{
-				LOG(LogLevel::Error) << "V2 great power " << countryItr << " not found.";
-			}
-		}
-
-		// Comintern get a boost to its membership for being internationalistic
-		// Go through all stalinist, leninist countries and add them to comintern if they're not hostile to leader
-		for (auto country: countries)
-		{
-			const string government = country.second->getGovernment();
-			const string ideology = country.second->getIdeology();
-			if (
-				(government == "socialist_republic" || government == "federal_socialist_republic") &&
-				(ideology == "left_wing_radica" || ideology == "leninist" || ideology == "stalinist")
-				)
-			{
-				if (country.second->getFaction() == "") // Skip if already a faction member
-				{
-					if (cominternLeader == "")
-					{
-						cominternLeader = country.first; // Faction leader
-						country.second->setFaction("comintern");
-						country.second->setFactionLeader();
-					}
-					else
-					{
-						// Check if enemy of leader
-						bool enemy = false;
-						const map<string, HoI4Relations*>& relations = country.second->getRelations();
-						auto relationItr = relations.find(cominternLeader);
-						if (relationItr != relations.end() && relationItr->second->atWar())
-						{
-							enemy = true;
-						}
-
-						if (!enemy)
-						{
-							country.second->setFaction("comintern");
-						}
-					}
-				}
-			}
-		}
-	}
-	else
-	{
-		LOG(LogLevel::Error) << "Error: unrecognized faction algorithm \"" << Configuration::getFactionLeaderAlgo() << "\"!";
-		exit(-1);
-	}
-}
-
-
 void HoI4World::setAlignments()
 {
 	// set alignments
@@ -1522,7 +1373,6 @@ void HoI4World::setAlignments()
 
 void HoI4World::configureFactions(const CountryMapping& countryMap)
 {
-	setFactionMembers(countryMap);
 	factionSatellites(); // push satellites into the same faction as their parents
 	setAlignments();
 }
@@ -1552,27 +1402,6 @@ void HoI4World::convertNavies()
 	{
 		country.second->convertNavy(states->getStates());
 	}
-}
-
-
-void HoI4World::consolidateProvinceItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap)
-{
-	double totalManpower = 0.0;
-	double totalLeadership = 0.0;
-	double totalIndustry = 0.0;
-	for (auto countryItr: countries)
-	{
-		countryItr.second->consolidateProvinceItems(inverseProvinceMap, totalManpower, totalLeadership, totalIndustry);
-	}
-
-	double suggestedManpowerConst = 3302.8 * Configuration::getManpowerFactor() / totalManpower;
-	LOG(LogLevel::Debug) << "Total manpower was " << totalManpower << ". Changing the manpower factor to " << suggestedManpowerConst << " would match vanilla HoI4.";
-
-	double suggestedLeadershipConst = 212.0 * Configuration::getLeadershipFactor() / totalLeadership;
-	LOG(LogLevel::Debug) << "Total leadership was " << totalLeadership << ". Changing the leadership factor to " << suggestedLeadershipConst << " would match vanilla HoI4.";
-
-	double suggestedIndustryConst = 1746.0 * Configuration::getIcFactor() / totalIndustry;
-	LOG(LogLevel::Debug) << "Total IC was " << totalIndustry << ". Changing the IC factor to " << suggestedIndustryConst << " would match vanilla HoI4.";
 }
 
 

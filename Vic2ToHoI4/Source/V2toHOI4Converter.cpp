@@ -87,20 +87,6 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 		LOG(LogLevel::Debug) << "Victoria 2 install path is " << V2Loc;
 	}
 
-	// Get V2 Mod directory
-	map<string, string> possibleMods; // name, path
-	LOG(LogLevel::Debug) << "Get V2 Documents Directory";
-	string V2DocumentsLoc = Configuration::getV2DocumentsPath();	// the Victoria 2 My Documents location as stated in the configuration file
-	if (V2DocumentsLoc.empty() || !Utils::doesFolderExist(V2DocumentsLoc.c_str()))
-	{
-		LOG(LogLevel::Error) << "No Victoria 2 documents directory was specified in configuration.txt, or the path was invalid";
-		return (-1);
-	}
-	else
-	{
-		LOG(LogLevel::Debug) << "Victoria 2 Documents directory is " << V2DocumentsLoc;
-	}
-
 	// Sanity check Vic2 mods
 	LOG(LogLevel::Debug) << "Double-check Vic2 mods";
 	vector<string> vic2Mods = Configuration::getVic2Mods();
@@ -458,7 +444,6 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	destWorld.convertResources();
 	destWorld.convertSupplyZones(provinceToSupplyZoneMap);
 	destWorld.convertStrategicRegions();
-	destWorld.consolidateProvinceItems(inverseProvinceMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(countryMap);
 	LOG(LogLevel::Info) << "Converting techs";
