@@ -32,8 +32,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 void processFlagsForCountry(const pair<string, HoI4Country*>& country);
 void copyFlags(const map<string, HoI4Country*>& countries)
 {
-	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx");
-	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx/flags");
+	Utils::copyFolder("NeededFiles/gfx", "output/" + Configuration::getOutputName());
+	//Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx");
+	//Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx/flags");
 	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx/flags/medium");
 	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx/flags/small");
 	for (auto country: countries)
@@ -46,23 +47,42 @@ void copyFlags(const map<string, HoI4Country*>& countries)
 string getSourceFlagPath(string Vic2Tag);
 tga_image* readFlag(string path);
 tga_image* createNewFlag(const tga_image* sourceFlag, unsigned int sizeX, unsigned int sizeY);
-void createBigFlag(tga_image* sourceFlag, string tag);
-void createMediumFlag(tga_image* sourceFlag, string tag);
-void createSmallFlag(tga_image* sourceFlag, string tag);
+void createBigFlag(tga_image* sourceFlag, string tag, string extension);
+void createMediumFlag(tga_image* sourceFlag, string tag, string extension);
+void createSmallFlag(tga_image* sourceFlag, string tag, string extension);
 void processFlagsForCountry(const pair<string, HoI4Country*>& country)
 {
 	string sourcePath = getSourceFlagPath(country.second->getSourceCountry()->getTag());
+	string comsourcePath = getSourceFlagPath(country.second->getSourceCountry()->getTag()+ "_communist");
+	string monsourcePath = getSourceFlagPath(country.second->getSourceCountry()->getTag()+ "_monarchy");
+	string fassourcePath = getSourceFlagPath(country.second->getSourceCountry()->getTag()+ "_fascist");
+	string repsourcePath = getSourceFlagPath(country.second->getSourceCountry()->getTag()+ "_republic");
 	if (sourcePath != "")
 	{
 		tga_image* sourceFlag = readFlag(sourcePath);
+		tga_image* comsourceFlag = readFlag(comsourcePath);
+		tga_image* monsourceFlag = readFlag(monsourcePath);
+		tga_image* fassourceFlag = readFlag(fassourcePath);
+		tga_image* repsourceFlag = readFlag(repsourcePath);
 		if (sourceFlag == nullptr)
 		{
 			return;
 		}
-
-		createBigFlag(sourceFlag, country.first);
-		createMediumFlag(sourceFlag, country.first);
-		createSmallFlag(sourceFlag, country.first);
+		createBigFlag(sourceFlag, country.first, "");
+		createBigFlag(comsourceFlag, country.first, "_communist");
+		createBigFlag(monsourceFlag, country.first, "_monarchy");
+		createBigFlag(fassourceFlag, country.first, "_fascist");
+		createBigFlag(repsourceFlag, country.first, "_republic");
+		createMediumFlag(sourceFlag, country.first, "");
+		createMediumFlag(comsourceFlag, country.first, "_communist");
+		createMediumFlag(monsourceFlag, country.first, "_monarchy");
+		createMediumFlag(fassourceFlag, country.first, "_fascist");
+		createMediumFlag(repsourceFlag, country.first, "_republic");
+		createSmallFlag(sourceFlag, country.first,"");
+		createSmallFlag(comsourceFlag, country.first, "_communist");
+		createSmallFlag(monsourceFlag, country.first, "_monarchy");
+		createSmallFlag(fassourceFlag, country.first, "_fascist");
+		createSmallFlag(repsourceFlag, country.first, "_republic");
 
 		tga_free_buffers(sourceFlag);
 		delete sourceFlag;
@@ -172,34 +192,150 @@ tga_image* createNewFlag(const tga_image* sourceFlag, unsigned int sizeX, unsign
 }
 
 
-void createBigFlag(tga_image* sourceFlag, string tag)
+void createBigFlag(tga_image* sourceFlag, string tag, string extension)
 {
 	tga_image* destFlag = createNewFlag(sourceFlag, 82, 52);
-	FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/" + tag + ".tga").c_str(), "w+b");
-	tga_write_to_FILE(outputFile, destFlag);
-	fclose(outputFile);
+	
+	if (extension.find("_communist") != string::npos) {
+		FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/" + tag + "_communism.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile, destFlag);
+		fclose(outputFile);
+
+		FILE* outputFile2 = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/" + tag + "_syndicalism.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile2, destFlag);
+		fclose(outputFile2);
+	}
+	else if (extension.find("_monarchy") != string::npos) {
+		FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/" + tag + "_autocratic.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile, destFlag);
+		fclose(outputFile);
+	}
+	else if (extension.find("_fascist") != string::npos) {
+		FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/" + tag + "_fascism.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile, destFlag);
+		fclose(outputFile);
+	}
+	else if (extension.find("_republic") != string::npos) {
+		//FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/" + tag + ".tga").c_str(), "w+b");
+		//tga_write_to_FILE(outputFile, destFlag);
+		//fclose(outputFile);
+	}
+	else {
+		FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/" + tag + "_socialist.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile, destFlag);
+		fclose(outputFile);
+
+		FILE* outputFile2 = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/" + tag + "_liberal.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile2, destFlag);
+		fclose(outputFile2);
+
+		FILE* outputFile3 = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/" + tag + "_democratic.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile3, destFlag);
+		fclose(outputFile3);
+
+		FILE* outputFile4 = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/" + tag + "_neutrality.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile4, destFlag);
+		fclose(outputFile4);
+	}
 	tga_free_buffers(destFlag);
 	delete destFlag;
 }
 
 
-void createMediumFlag(tga_image* sourceFlag, string tag)
+void createMediumFlag(tga_image* sourceFlag, string tag, string extension)
 {
 	tga_image* destFlag = createNewFlag(sourceFlag, 41, 26);
-	FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/medium/" + tag + ".tga").c_str(), "w+b");
-	tga_write_to_FILE(outputFile, destFlag);
-	fclose(outputFile);
+
+	if (extension.find("_communist") != string::npos) {
+		FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/medium/" + tag + "_communism.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile, destFlag);
+		fclose(outputFile);
+
+		FILE* outputFile2 = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/medium/" + tag + "_syndicalism.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile2, destFlag);
+		fclose(outputFile2);
+	}
+	else if (extension.find("_monarchy") != string::npos) {
+		FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/medium/" + tag + "_autocratic.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile, destFlag);
+		fclose(outputFile);
+	}
+	else if (extension.find("_fascist") != string::npos) {
+		FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/medium/" + tag + "_fascism.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile, destFlag);
+		fclose(outputFile);
+	}
+	else if (extension.find("_republic") != string::npos) {
+		//FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/" + tag + ".tga").c_str(), "w+b");
+		//tga_write_to_FILE(outputFile, destFlag);
+		//fclose(outputFile);
+	}
+	else {
+		FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/medium/" + tag + "_socialist.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile, destFlag);
+		fclose(outputFile);
+
+		FILE* outputFile2 = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/medium/" + tag + "_liberal.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile2, destFlag);
+		fclose(outputFile2);
+
+		FILE* outputFile3 = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/medium/" + tag + "_democratic.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile3, destFlag);
+		fclose(outputFile3);
+
+		FILE* outputFile4 = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/medium/" + tag + "_neutrality.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile4, destFlag);
+		fclose(outputFile4);
+	}
 	tga_free_buffers(destFlag);
 	delete destFlag;
 }
 
 
-void createSmallFlag(tga_image* sourceFlag, string tag)
+void createSmallFlag(tga_image* sourceFlag, string tag, string extension)
 {
 	tga_image* destFlag = createNewFlag(sourceFlag, 10, 7);
-	FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/small/" + tag + ".tga").c_str(), "w+b");
-	tga_write_to_FILE(outputFile, destFlag);
-	fclose(outputFile);
+	if (extension.find("_communist") != string::npos) {
+		FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/small/" + tag + "_communism.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile, destFlag);
+		fclose(outputFile);
+
+		FILE* outputFile2 = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/small/" + tag + "_syndicalism.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile2, destFlag);
+		fclose(outputFile2);
+	}
+	else if (extension.find("_monarchy") != string::npos) {
+		FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/small/" + tag + "_autocratic.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile, destFlag);
+		fclose(outputFile);
+	}
+	else if (extension.find("_fascist") != string::npos) {
+		FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/small/" + tag + "_fascism.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile, destFlag);
+		fclose(outputFile);
+	}
+	else if (extension.find("_republic") != string::npos) {
+		//FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/" + tag + ".tga").c_str(), "w+b");
+		//tga_write_to_FILE(outputFile, destFlag);
+		//fclose(outputFile);
+	}
+	else {
+		FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/small/" + tag + "_socialist.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile, destFlag);
+		fclose(outputFile);
+
+		FILE* outputFile2 = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/small/" + tag + "_liberal.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile2, destFlag);
+		fclose(outputFile2);
+
+		FILE* outputFile3 = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/small/" + tag + "_democratic.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile3, destFlag);
+		fclose(outputFile3);
+
+		FILE* outputFile4 = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/small/" + tag + "_neutrality.tga").c_str(), "w+b");
+		tga_write_to_FILE(outputFile4, destFlag);
+		fclose(outputFile4);
+	}
 	tga_free_buffers(destFlag);
 	delete destFlag;
 }

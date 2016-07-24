@@ -1248,8 +1248,11 @@ void HoI4Country::convertNavy(map<int, HoI4State*> states)
 
 	for (int i = 0; i < CV; i++)
 	{
-		HoI4Ship newShip("Carrier", "carrier", tag);
-		ships.push_back(newShip);
+		if (technologies.find("CAS1") != technologies.end() && technologies.find("naval_bomber1") != technologies.end() && technologies.find("early_carrier") != technologies.end())
+		{
+			HoI4Ship newShip("Carrier", "carrier", tag);
+			ships.push_back(newShip);
+		}
 	}
 	for (int i = 0; i < BB; i++)
 	{

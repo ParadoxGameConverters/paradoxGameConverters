@@ -1757,6 +1757,7 @@ void HoI4World::createIdeologyFiles()
 {
 	Utils::copyFolder("NeededFiles/interface", "output/" + Configuration::getOutputName()+"/gfx");
 	Utils::copyFolder("NeededFiles/ideologies", "output/" + Configuration::getOutputName() + "/common");
+	Utils::copyFolder("NeededFiles/ideas", "output/" + Configuration::getOutputName()+"/common");
 	std::string outputGraphicsFolder = "Output/" + Configuration::getOutputName() + "/interface";
 	if (!Utils::TryCreateFolder(outputGraphicsFolder))
 	{
@@ -1766,57 +1767,6 @@ void HoI4World::createIdeologyFiles()
 	Utils::copyFolder("NeededFiles/defines", "Output/" + Configuration::getOutputName() + "/common");
 }
 
-void HoI4World::copyFlags(const CountryMapping& countryMap)
-{
-
-	LOG(LogLevel::Debug) << "Copying flags";
-
-	// Create output folders.
-	std::string outputGraphicsFolder = "Output/" + Configuration::getOutputName() + "/gfx";
-	if (!Utils::TryCreateFolder(outputGraphicsFolder))
-	{
-		return;
-	}
-	std::string outputFlagFolder = outputGraphicsFolder + "/flags";
-	if (!Utils::TryCreateFolder(outputFlagFolder))
-	{
-		return;
-	}
-
-	const std::string folderPath = Configuration::getV2Path() + "/gfx/flags";
-	for (auto country: sourceWorld->getCountries())
-	{
-		std::string V2Tag = country.first;
-		V2Country* sourceCountry = country.second;
-		std::string V2FlagFile = sourceCountry->getFlagFile();
-		const std::string& HoI4Tag = countryMap[V2Tag];
-
-		bool flagCopied = false;
-		vector<string> mods = Configuration::getVic2Mods();
-		for (auto mod : mods)
-		{
-			string sourceFlagPath = Configuration::getV2Path() + "/mod/" + mod + "/gfx/flags/" + V2FlagFile;
-			if (Utils::DoesFileExist(sourceFlagPath))
-			{
-				std::string destFlagPath = outputFlagFolder + '/' + HoI4Tag + ".tga";
-				flagCopied = Utils::TryCopyFile(sourceFlagPath, destFlagPath);
-				if (flagCopied)
-				{
-					break;
-				}
-			}
-		}
-		if (!flagCopied)
-		{
-			std::string sourceFlagPath = folderPath + '/' + V2FlagFile;
-			if (Utils::DoesFileExist(sourceFlagPath))
-			{
-				std::string destFlagPath = outputFlagFolder + '/' + HoI4Tag + ".tga";
-				Utils::TryCopyFile(sourceFlagPath, destFlagPath);
-			}
-		}
-	}
-}
 
 
 void HoI4World::checkAllProvincesMapped(const HoI4ToVic2ProvinceMapping& provinceMap)
@@ -2422,7 +2372,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
 	FocusTree += "		completion_reward = {\r\n";
-	FocusTree += "			local_resources_factor = 0.2\r\n";
+	FocusTree += "			add_ideas = improved_resource_industry\r\n";
 	FocusTree += "		}\r\n";
 	FocusTree += "	}";
 
@@ -2515,8 +2465,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
 	FocusTree += "		completion_reward = {\r\n";
-	FocusTree += "			set_country_flag = TradeEmpire";
-	FocusTree += "			trade_opinion_factor = 0.1\r\n";
+	FocusTree += "			add_ideas = established_traders";
 	FocusTree += "			random_owned_state = {\r\n";
 	FocusTree += "				limit = {\r\n";
 	FocusTree += "					free_building_slots = {\r\n";
@@ -2697,7 +2646,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
 	FocusTree += "		completion_reward = {\r\n";
-	FocusTree += "			research_time_factor = -0.1\r\n";
+	FocusTree += "			add_ideas = national_college\r\n";
 	FocusTree += "		}\r\n";
 	FocusTree += "	}";
 
@@ -2829,8 +2778,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
 	FocusTree += "		completion_reward = {\r\n";
-	//FORTS
-	//FocusTree += "			research_time_factor = -0.1\r\n";
+	FocusTree += "			add_ideas = border_buildup\r\n";
 	FocusTree += "		}\r\n";
 	FocusTree += "	}";
 
@@ -2873,7 +2821,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 		FocusTree += "		}	\r\n";
 		FocusTree += "		completion_reward = {\r\n";
 		FocusTree += "			create_wargoal = {\r\n";
-		FocusTree += "				type = puppet_wargoal_focus\r\n";
+		FocusTree += "				type = annex_everything\r\n";
 		FocusTree += "				target = " + Annexed3->getTag() + "\r\n";
 		FocusTree += "			}";
 		FocusTree += "		}\r\n";
@@ -2898,7 +2846,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 		FocusTree += "		}	\r\n";
 		FocusTree += "		completion_reward = {\r\n";
 		FocusTree += "			create_wargoal = {\r\n";
-		FocusTree += "				type = puppet_wargoal_focus\r\n";
+		FocusTree += "				type = annex_everything\r\n";
 		FocusTree += "				target = " + Annexed4->getTag() + "\r\n";
 		FocusTree += "			}";
 		FocusTree += "		}\r\n";
@@ -5727,11 +5675,145 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				}
 				string FocusTree = genericFocusTreeCreator(Leader);
 				FocusTree += createMonarchyEmpireNF(Leader, WeakColonies.front(), WeakColonies.back(), WeakNeighbors.front(), WeakNeighbors.back(), WeakColonies.size(), WeakNeighbors.size(), 0);
+				//Declaring war with Great Country
+				vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
+				map<double, HoI4Country*> GCDistance;
+				vector<HoI4Country*> GCDistanceSorted;
+				//get great countries with a distance
+				for each (auto GC in GreatCountries)
+				{
+					double distance = GetDistance(Leader, GC);
+					if (distance < 1200)
+						GCDistance.insert(make_pair(distance, GC));
+				}
+				//put them into a vector so we know their order
+				for (auto iterator = GCDistance.begin(); iterator != GCDistance.end(); ++iterator)
+				{
+					GCDistanceSorted.push_back(iterator->second);
+				}
+				sort(GCDistanceSorted.begin(), GCDistanceSorted.end());
+				vector<HoI4Country*> GCTargets;
+				for each (auto GC in GCDistanceSorted)
+				{
+					string thetag = GC->getTag();
+					string HowToTakeGC = HowToTakeLand(GC, Leader, 3);
+					if (HowToTakeGC == "noactionneeded" || HowToTakeGC == "factionneeded")
+					{
+						if (GC != Leader)
+							GCTargets.push_back(GC);
+					}
+					if (HowToTakeGC == "morealliesneeded")
+					{
+
+					}
+
+				}
+				int maxGCWars = 0;
+				int start = 0;
+				if (GCTargets.size() == 2)
+				{
+					start = -1;
+				}
+
+				for each (auto GC in GCTargets)
+				{
+					string prereq = "";
+					if (maxGCWars < 2)
+					{
+						int y2 = 0;
+						//figuring out location of WG
+						/*if (newAllies.size() > 0)
+						{
+							y2 = 2;
+							prereq = " 	prerequisite = { ";
+
+							for (int i = 0; i < 2; i++)
+								prereq += " focus = Alliance_" + newAllies[i]->getTag() + Leader->getTag();
+
+							prereq += "}\r\n";
+						}*/
+						int v1 = rand() % 12 + 1;
+						int v2 = rand() % 12 + 1;
+						FocusTree += "focus = {\r\n";
+						FocusTree += "		id = War" + GC->getTag() + Leader->getTag() + "\r\n";
+						FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
+						FocusTree += "		text = \"War with " + GC->getSourceCountry()->getName() + "\"\r\n";//change to faction name later
+						FocusTree += "		prerequisite = { focus =  MilitaryBuildup" + Leader->getTag() + " }\r\n";
+						FocusTree += "		available = {   date > 1938." + to_string(v1) + "." + to_string(v2) + "} \r\n";
+						FocusTree += "		x = 31" + to_string(maxGCWars*2)+"\r\n";
+						FocusTree += "		y = 4\r\n";
+						//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\r\n";
+						FocusTree += "		cost = 10\r\n";
+						FocusTree += "		ai_will_do = {\r\n";
+						FocusTree += "			factor = 5\r\n";
+						FocusTree += "			modifier = {\r\n";
+						FocusTree += "			factor = 0\r\n";
+						FocusTree += "			strength_ratio = { tag = " + GC->getTag() + " ratio < 1 }\r\n";
+						FocusTree += "			}";
+						if (GCTargets.size() > 1)
+						{
+							//make ai have this as a 0 modifier if they are at war
+							FocusTree += "modifier = {\r\n	factor = 0\r\n	OR = {";
+							for (int i2 = 0; i2 < 3; i2++)
+							{
+								if (GC != GCTargets[i2])
+								{
+									FocusTree += "has_war_with = " + GC->getTag() + "\r\n";
+								}
+
+							}
+							FocusTree += "}\r\n}";
+						}
+						FocusTree += "		}	\r\n";
+						FocusTree += "		completion_reward = {\r\n";
+						FocusTree += "			create_wargoal = {\r\n";
+						FocusTree += "				type = puppet_wargoal_focus\r\n";
+						FocusTree += "				target = " + GC->getTag() + "\r\n";
+						FocusTree += "			}";
+						FocusTree += "		}\r\n";
+						FocusTree += "	}\r\n";
+						maxGCWars++;
+					}
+				}
 				FocusTree += "\r\n}";
+				string Events = "";
+				Events += "add_namespace = "+Leader->getTag()+"\r\n";
+				int eventNumber = 0;
+				for each (auto GC in GCTargets)
+				{
+					Events += "country_event = {\r\n";
+					Events += "	id = " + Leader->getTag() + "." + to_string(eventNumber) +"\r\n";
+					Events += "	title = \"Trade Incident\"\r\n";
+					Events += "	desc = \"One of our convoys was sunk by "+GC->getSourceCountry()->getName()+"\"\r\n";
+					Events += "	picture = GFX_report_event_chinese_soldiers_fighting\r\n";
+					Events += "	\r\n";
+					Events += "	is_triggered_only = no\r\n";
+					Events += "	\r\n";
+					Events += "	option = { # Breaking point!\r\n";
+					Events += "		name = \"They will Pay!\"\r\n";
+					Events += "		ai_chance = { factor = 85 }\r\n";
+					Events += "		effect_tooltip = {\r\n";
+					Events += "			"+Leader->getTag()+" = {\r\n";
+					Events += "			create_wargoal = {\r\n";
+					Events += "				type = annex_everything\r\n";
+					Events += "				target = " + GC->getTag() + "\r\n";
+					Events += "			}\r\n";
+					Events += "		}\r\n";
+					Events += "	}\r\n";
+					Events += "}";
+				}
+				//output events
+				string filenameevents("Output/" + Configuration::getOutputName() + "/events/" + Leader->getSourceCountry()->getTag() + "_events.txt");
+				//string filename2("Output/NF.txt");
+				ofstream outevents;
+				outevents.open(filenameevents);
+				{
+					outevents << Events;
+				}
+				outevents.close();
 
 				//output National Focus
 				string filenameNF("Output/" + Configuration::getOutputName() + "/common/national_focus/" + Leader->getSourceCountry()->getTag() + "_NF.txt");
-				//string filename2("Output/NF.txt");
 				ofstream out2;
 				out2.open(filenameNF);
 				{
