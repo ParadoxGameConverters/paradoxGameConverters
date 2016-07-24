@@ -37,10 +37,4 @@ void copyFlags(const map<string, HoI4Country*>& countries);
 
 
 
-
-//bool CreateColonialFlag(std::string colonialOverlordPath, std::string colonialBasePath, std::string targetPath);
-//bool CreateCustomFlag(FlagColour c1, FlagColour c2, FlagColour c3, std::string emblemPath, std::string basePath, std::string targetPath);
-
-
-
 #endif // FLAGS_H_

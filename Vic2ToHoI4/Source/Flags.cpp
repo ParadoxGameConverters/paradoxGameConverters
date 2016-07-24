@@ -43,67 +43,102 @@ void copyFlags(const map<string, HoI4Country*>& countries)
 }
 
 
-string getSourceFlagPath(string Vic2Tag);
+enum flagIdeologies
+{
+	BASE_FLAG			= 0,
+	COMMUNISM_FLAG		= 1,
+	DEMOCRATIC_FLAG	= 2,
+	FACISM_FLAG			= 3,
+	FLAG_END				= 4
+};
+
+char* vic2Suffixes[FLAG_END] = {
+	".tga",
+	"_communist.tga",
+	"_republic.tga",
+	"_fascist.tga"
+};
+
+char* hoi4Suffixes[FLAG_END] = {
+	".tga",
+	"_communism.tga",
+	"_democratic.tga",
+	"_fascism.tga"
+};
+
+
+vector<string> getSourceFlagPaths(string Vic2Tag);
 tga_image* readFlag(string path);
 tga_image* createNewFlag(const tga_image* sourceFlag, unsigned int sizeX, unsigned int sizeY);
-void createBigFlag(tga_image* sourceFlag, string tag);
-void createMediumFlag(tga_image* sourceFlag, string tag);
-void createSmallFlag(tga_image* sourceFlag, string tag);
+void createBigFlag(tga_image* sourceFlag, string filename);
+void createMediumFlag(tga_image* sourceFlag, string filename);
+void createSmallFlag(tga_image* sourceFlag, string filename);
 void processFlagsForCountry(const pair<string, HoI4Country*>& country)
 {
-	string sourcePath = getSourceFlagPath(country.second->getSourceCountry()->getTag());
-	if (sourcePath != "")
+	vector<string> sourcePath = getSourceFlagPaths(country.second->getSourceCountry()->getTag());
+	for (unsigned int i = BASE_FLAG; i < FLAG_END; i++)
 	{
-		tga_image* sourceFlag = readFlag(sourcePath);
-		if (sourceFlag == nullptr)
+		if (sourcePath[i] != "")
 		{
-			return;
+			tga_image* sourceFlag = readFlag(sourcePath[i]);
+			if (sourceFlag == nullptr)
+			{
+				return;
+			}
+
+			createBigFlag(sourceFlag, country.first + hoi4Suffixes[i]);
+			createMediumFlag(sourceFlag, country.first + hoi4Suffixes[i]);
+			createSmallFlag(sourceFlag, country.first + hoi4Suffixes[i]);
+
+			tga_free_buffers(sourceFlag);
+			delete sourceFlag;
 		}
-
-		createBigFlag(sourceFlag, country.first);
-		createMediumFlag(sourceFlag, country.first);
-		createSmallFlag(sourceFlag, country.first);
-
-		tga_free_buffers(sourceFlag);
-		delete sourceFlag;
 	}
 }
 
 
-string getConversionModFlag(string Vic2Tag);
-string getSourceFlagPath(string Vic2Tag)
+string getSourceFlagPath(string Vic2Tag, string sourceSuffix);
+vector<string> getSourceFlagPaths(string Vic2Tag)
 {
-	string path = "flags/" + Vic2Tag + ".tga";
-	if (!Utils::DoesFileExist(path))
+	vector<string> paths;
+	paths.resize(FLAG_END);
+	paths[BASE_FLAG] = "";
+
+	for (unsigned int i = BASE_FLAG; i < FLAG_END; i++)
 	{
-		path = getConversionModFlag(Vic2Tag);
-		if (!Utils::DoesFileExist(path))
+		string path = getSourceFlagPath(Vic2Tag, vic2Suffixes[i]);
+		if (path == "")
 		{
-			LOG(LogLevel::Warning) << "Could not find source flag for " << Vic2Tag;
-			return string("");
+			LOG(LogLevel::Warning) << "Could not find source flag: " << Vic2Tag << vic2Suffixes[i];
+			paths[i] = paths[BASE_FLAG];
+		}
+		else
+		{
+			paths[i] = path;
 		}
 	}
 
-	return path;
+	return paths;
 }
 
 
 bool isThisAConvertedTag(string Vic2Tag);
-string getConversionModFlag(string Vic2Tag)
+string getConversionModFlag(string flagFilename);
+string getSourceFlagPath(string Vic2Tag, string sourceSuffix)
 {
-	if (isThisAConvertedTag(Vic2Tag))
+	string path = "flags/" + Vic2Tag + sourceSuffix;
+	if (!Utils::DoesFileExist(path))
 	{
-		for (auto mod: Configuration::getVic2Mods())
+		if (isThisAConvertedTag(Vic2Tag))
 		{
-			string path = Configuration::getV2Path() + "/mod/" + mod + "/gfx/flags/" + Vic2Tag + ".tga";
-			if (Utils::DoesFileExist(path))
-			{
-				return path;
-			}
+			path = getConversionModFlag(Vic2Tag + sourceSuffix);
+		}
+		if (!Utils::DoesFileExist(path))
+		{
+			return "";
 		}
 	}
-
-	return "";
+	return path;
 }
 
 
@@ -113,9 +148,29 @@ bool isThisAConvertedTag(string Vic2Tag)
 }
 
 
+string getConversionModFlag(string flagFilename)
+{
+	for (auto mod: Configuration::getVic2Mods())
+	{
+		string path = Configuration::getV2Path() + "/mod/" + mod + "/gfx/flags/" + flagFilename;
+		if (Utils::DoesFileExist(path))
+		{
+			return path;
+		}
+	}
+
+	return "";
+}
+
+
 tga_image* readFlag(string path)
 {
-	FILE* flagFile = fopen(path.c_str(), "r+b");
+	FILE* flagFile;
+	if (fopen_s(&flagFile, path.c_str(), "r+b") != 0)
+	{
+		LOG(LogLevel::Warning) << "Could not open " << path;
+		return nullptr;
+	}
 
 	tga_image* flag = new tga_image;
 	tga_result result = tga_read_from_FILE(flag, flagFile);
@@ -172,10 +227,15 @@ tga_image* createNewFlag(const tga_image* sourceFlag, unsigned int sizeX, unsign
 }
 
 
-void createBigFlag(tga_image* sourceFlag, string tag)
+void createBigFlag(tga_image* sourceFlag, string filename)
 {
 	tga_image* destFlag = createNewFlag(sourceFlag, 82, 52);
-	FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/" + tag + ".tga").c_str(), "w+b");
+	FILE* outputFile;
+	if (fopen_s(&outputFile, ("Output/" + Configuration::getOutputName() + "/gfx/flags/" + filename).c_str(), "w+b") != 0)
+	{
+		LOG(LogLevel::Warning) << "Could not create Output/" << Configuration::getOutputName() << "/gfx/flags/" << filename;
+		return;
+	}
 	tga_write_to_FILE(outputFile, destFlag);
 	fclose(outputFile);
 	tga_free_buffers(destFlag);
@@ -183,10 +243,15 @@ void createBigFlag(tga_image* sourceFlag, string tag)
 }
 
 
-void createMediumFlag(tga_image* sourceFlag, string tag)
+void createMediumFlag(tga_image* sourceFlag, string filename)
 {
 	tga_image* destFlag = createNewFlag(sourceFlag, 41, 26);
-	FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/medium/" + tag + ".tga").c_str(), "w+b");
+	FILE* outputFile;
+	if (fopen_s(&outputFile, ("Output/" + Configuration::getOutputName() + "/gfx/flags/medium/" + filename).c_str(), "w+b") != 0)
+	{
+		LOG(LogLevel::Warning) << "Could not create Output/" << Configuration::getOutputName() << "/gfx/flags/medium/" << filename;
+		return;
+	}
 	tga_write_to_FILE(outputFile, destFlag);
 	fclose(outputFile);
 	tga_free_buffers(destFlag);
@@ -194,10 +259,15 @@ void createMediumFlag(tga_image* sourceFlag, string tag)
 }
 
 
-void createSmallFlag(tga_image* sourceFlag, string tag)
+void createSmallFlag(tga_image* sourceFlag, string filename)
 {
 	tga_image* destFlag = createNewFlag(sourceFlag, 10, 7);
-	FILE* outputFile = fopen(("Output/" + Configuration::getOutputName() + "/gfx/flags/small/" + tag + ".tga").c_str(), "w+b");
+	FILE* outputFile;
+	if (fopen_s(&outputFile, ("Output/" + Configuration::getOutputName() + "/gfx/flags/small/" + filename).c_str(), "w+b") != 0)
+	{
+		LOG(LogLevel::Warning) << "Could not create Output/" << Configuration::getOutputName() << "/gfx/flags/small/" << filename;
+		return;
+	}
 	tga_write_to_FILE(outputFile, destFlag);
 	fclose(outputFile);
 	tga_free_buffers(destFlag);
