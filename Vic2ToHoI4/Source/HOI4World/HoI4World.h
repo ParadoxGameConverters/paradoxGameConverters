@@ -67,7 +67,6 @@ class HoI4World
 		void	generateLeaders(const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
 		void	convertArmies(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void	convertNavies();
-		void	consolidateProvinceItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void	convertVictoryPoints(const CountryMapping& countryMap);
 		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
 		void	addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
@@ -108,7 +107,6 @@ class HoI4World
 		void	getProvinceLocalizations(const string& file);
 		void	checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string leader, const string& factionName);
 		void	factionSatellites();
-		void	setFactionMembers(const CountryMapping& countryMap);
 		void	setAlignments();
 
 		vector<int>					getPortProvinces(const vector<int>& locationCandidates);

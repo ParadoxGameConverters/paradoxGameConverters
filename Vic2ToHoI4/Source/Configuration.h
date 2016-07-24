@@ -51,11 +51,6 @@ class Configuration // Singleton
 			return getInstance()->V2Path;
 		}
 
-		static string getV2DocumentsPath()
-		{
-			return getInstance()->V2DocumentsPath;
-		}
-
 		static vector<string> getVic2Mods()
 		{
 			return getInstance()->Vic2Mods;
@@ -69,71 +64,6 @@ class Configuration // Singleton
 		static string getOutputName()
 		{
 			return getInstance()->outputName;
-		}
-
-		static double getMinInfra()
-		{
-			return getInstance()->minInfra;
-		}
-
-		static string getFactionLeaderAlgo()
-		{
-			return getInstance()->factionLeaderAlgorithm;
-		}
-
-		static vector<string> getManualAxisFaction()
-		{
-			return getInstance()->manualAxisFaction;
-		}
-
-		static vector<string> getManualAlliesFaction()
-		{
-			return getInstance()->manualAlliesFaction;
-		}
-
-		static vector<string> getManualCominternFaction()
-		{
-			return getInstance()->manualCominternFaction;
-		}
-
-		static string getIcConversion()
-		{
-			return getInstance()->icConversion;
-		}
-
-		static double getIcFactor()
-		{
-			return getInstance()->icFactor;
-		}
-
-		static string getManpowerConversion()
-		{
-			return getInstance()->manpowerConversion;
-		}
-
-		static double getManpowerFactor()
-		{
-			return getInstance()->manpowerFactor;
-		}
-
-		static string getLeadershipConversion()
-		{
-			return getInstance()->leadershipConversion;
-		}
-
-		static double getLeadershipFactor()
-		{
-			return getInstance()->leadershipFactor;
-		}
-
-		static double getLiteracyWeight()
-		{
-			return getInstance()->literacyWeight;
-		}
-
-		static double getPracticalsScale()
-		{
-			return getInstance()->practicalsScale;
 		}
 
 		static int getNextLeaderID()
@@ -162,23 +92,8 @@ class Configuration // Singleton
 		string			HoI4Path;				// the install directory for HoI4
 		string			HoI4DocumentsPath;	// HoI4's directory under My Documents
 		string			V2Path;					// the install directory for V2
-		string			V2DocumentsPath;		// V2's directory under My Documents
 		vector<string>	Vic2Mods;
 		string			outputName;				// the name the outputted mod should have
-
-		string			factionLeaderAlgorithm;
-		vector<string> manualAxisFaction;
-		vector<string> manualAlliesFaction;
-		vector<string> manualCominternFaction;
-		double			minInfra;
-		string			icConversion;
-		double			icFactor;
-		string			manpowerConversion;
-		double			manpowerFactor;
-		string			leadershipConversion;
-		double			leadershipFactor;
-		double			literacyWeight;
-		double			practicalsScale;
 
 		unsigned int	leaderID;
 		unsigned int	leaderIDCountryIdx;
