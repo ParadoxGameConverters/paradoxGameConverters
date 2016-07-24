@@ -74,11 +74,11 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	provinces.clear();
 	technologies.clear();
 
-	capital			= 0;
-	ideology			= "despotism";
-	government		= "";
-	faction			= "";
-	factionLeader	= false;
+	capital = 0;
+	ideology = "despotism";
+	government = "";
+	faction = "";
+	factionLeader = false;
 
 	neutrality = 50;
 	nationalUnity = 70;
@@ -103,13 +103,13 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	ministers.clear();
 	rulingMinisters.clear();
 
-	graphicalCulture	= "Generic";
-	majorNation			= false;
+	graphicalCulture = "Generic";
+	majorNation = false;
 
-	communismPopularity	= 0;
-	democraticPopularity	= 80;
-	facismPopularity		= 0;
-	neutralityPopularity	= 20;
+	communismPopularity = 0;
+	democraticPopularity = 80;
+	facismPopularity = 0;
+	neutralityPopularity = 20;
 	liberalPopularity = 0;
 	socialistPopularity = 0;
 	syndicalistPopularity = 0;
@@ -124,8 +124,8 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<vector<HoI4Country*
 	// output history file
 	ofstream output;
 
-	if (	((capital > 0) && (capital <= static_cast<int>(states.size()))	)
-			||	!newCountry
+	if (((capital > 0) && (capital <= static_cast<int>(states.size())))
+		|| !newCountry
 		)
 	{
 		output.open(("Output/" + Configuration::getOutputName() + "/history/countries/" + Utils::convertToASCII(filename)).c_str());
@@ -143,7 +143,7 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<vector<HoI4Country*
 		{
 			output << "capital =  1" << endl;
 		}
-		
+
 
 		output << "" << endl;
 		output << "oob = \"" << tag << "_OOB\"" << endl;
@@ -240,131 +240,133 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<vector<HoI4Country*
 		output << "    " << endl;
 		output << "}" << endl;
 		output.close();
-	}
 
-	// output OOB file
-	outputOOB();
 
-	// output leaders file
-	//outputLeaders();
-	outputCommonCountryFile();
 
-	/*fprintf(output, "graphical_culture = %s\n", graphicalCulture.c_str());
-	fprintf(output, "\n");
-	if (majorNation)
-	{
-		fprintf(output, "major = yes\n");
+		// output OOB file
+		outputOOB();
+
+		// output leaders file
+		//outputLeaders();
+		outputCommonCountryFile();
+
+		/*fprintf(output, "graphical_culture = %s\n", graphicalCulture.c_str());
 		fprintf(output, "\n");
-	}
-	fprintf(output, "default_templates = {\n");
-	fprintf(output, "	generic_infantry = {\n");
-	fprintf(output, "		infantry_brigade\n");
-	fprintf(output, "		infantry_brigade\n");
-	fprintf(output, "		infantry_brigade\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	generic_milita = {\n");
-	fprintf(output, "		militia_brigade\n");
-	fprintf(output, "		militia_brigade\n");
-	fprintf(output, "		militia_brigade\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	generic_armoured = {\n");
-	fprintf(output, "		armor_brigade\n");
-	fprintf(output, "		motorized_brigade\n");
-	fprintf(output, "		motorized_brigade\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	generic_cavalry = {\n");
-	fprintf(output, "		cavalry_brigade\n");
-	fprintf(output, "		cavalry_brigade\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "}\n");
-	fprintf(output, "\n");
-	fprintf(output, "unit_names = {\n");*/
-	//fprintf(output, "	infantry_brigade = {\n");
-	//fprintf(output, "		\"Faizabad Division\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	cavalry_brigade = {\n");
-	//fprintf(output, "		\"Faizabad Cavalry\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	motorized_brigade = {\n");
-	//fprintf(output, "		\"Faizabad Motor Div.\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	mechanized_brigade = {\n");
-	//fprintf(output, "		\"Faizabad Half Track Div.\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	light_armor_brigade = {\n");
-	//fprintf(output, "		\"Faizabad Armoured Div.\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	armor_brigade = {\n");
-	//fprintf(output, "		\"Faizabad Armoured Div.\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	paratrooper_brigade = {\n");
-	//fprintf(output, "		\"Faizabad Para Division\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	marine_brigade = {\n");
-	//fprintf(output, "		\"Faizabad Marine Division\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	bergsjaeger_brigade = {\n");
-	//fprintf(output, "		\"Faizabad Mountain Division\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	garrison_brigade = {\n");
-	//fprintf(output, "		\"Faizabad Division\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	hq_brigade = {\n");
-	//fprintf(output, "		\"1st Afghanestani Army\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	militia_brigade = {\n");
-	//fprintf(output, "		\"Faizabad Militia\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	multi_role = {\n");
-	//fprintf(output, "		\"I.Fighter Group\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	interceptor = {\n");
-	//fprintf(output, "		\"I.Fighter Group\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	strategic_bomber = {\n");
-	//fprintf(output, "		\"I.Strategic Group\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	tactical_bomber = {\n");
-	//fprintf(output, "		\"I.Tactical Group\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	naval_bomber = {\n");
-	//fprintf(output, "		\"I.Naval Bomber Group\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	cas = {\n");
-	//fprintf(output, "		\"I.Dive Bomber Group\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	transport_plane = {\n");
-	//fprintf(output, "		\"I.Air Transport Group\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	battleship = {\n");
-	//fprintf(output, "		\"RAS Afghanistan\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	heavy_cruiser = {\n");
-	//fprintf(output, "		\"RAS Faizabad\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	destroyer = {\n");
-	//fprintf(output, "		\"D1 / D2 / D3\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	carrier = {\n");
-	//fprintf(output, "		\"RAS Zahir Shah\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	submarine = {\n");
-	//fprintf(output, "		\"1. Submarine Flotilla\"\n");
-	//fprintf(output, "	}\n");
-	//fprintf(output, "	transport_ship = {\n");
-	//fprintf(output, "		\"1. Troop Transport Flotilla\"\n");
-	//fprintf(output, "	}\n");
-	/*fprintf(output, "}\n");
-	fprintf(output, "\n");
-	fprintf(output, "ministers = {\n");
-	for (auto ministerItr: ministers)
-	{
-		ministerItr.output(output);
-	}
-	fprintf(output, "}\n");*/
-	//output.close();
+		if (majorNation)
+		{
+			fprintf(output, "major = yes\n");
+			fprintf(output, "\n");
+		}
+		fprintf(output, "default_templates = {\n");
+		fprintf(output, "	generic_infantry = {\n");
+		fprintf(output, "		infantry_brigade\n");
+		fprintf(output, "		infantry_brigade\n");
+		fprintf(output, "		infantry_brigade\n");
+		fprintf(output, "	}\n");
+		fprintf(output, "	generic_milita = {\n");
+		fprintf(output, "		militia_brigade\n");
+		fprintf(output, "		militia_brigade\n");
+		fprintf(output, "		militia_brigade\n");
+		fprintf(output, "	}\n");
+		fprintf(output, "	generic_armoured = {\n");
+		fprintf(output, "		armor_brigade\n");
+		fprintf(output, "		motorized_brigade\n");
+		fprintf(output, "		motorized_brigade\n");
+		fprintf(output, "	}\n");
+		fprintf(output, "	generic_cavalry = {\n");
+		fprintf(output, "		cavalry_brigade\n");
+		fprintf(output, "		cavalry_brigade\n");
+		fprintf(output, "	}\n");
+		fprintf(output, "}\n");
+		fprintf(output, "\n");
+		fprintf(output, "unit_names = {\n");*/
+		//fprintf(output, "	infantry_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Division\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	cavalry_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Cavalry\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	motorized_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Motor Div.\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	mechanized_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Half Track Div.\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	light_armor_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Armoured Div.\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	armor_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Armoured Div.\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	paratrooper_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Para Division\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	marine_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Marine Division\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	bergsjaeger_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Mountain Division\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	garrison_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Division\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	hq_brigade = {\n");
+		//fprintf(output, "		\"1st Afghanestani Army\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	militia_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Militia\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	multi_role = {\n");
+		//fprintf(output, "		\"I.Fighter Group\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	interceptor = {\n");
+		//fprintf(output, "		\"I.Fighter Group\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	strategic_bomber = {\n");
+		//fprintf(output, "		\"I.Strategic Group\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	tactical_bomber = {\n");
+		//fprintf(output, "		\"I.Tactical Group\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	naval_bomber = {\n");
+		//fprintf(output, "		\"I.Naval Bomber Group\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	cas = {\n");
+		//fprintf(output, "		\"I.Dive Bomber Group\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	transport_plane = {\n");
+		//fprintf(output, "		\"I.Air Transport Group\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	battleship = {\n");
+		//fprintf(output, "		\"RAS Afghanistan\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	heavy_cruiser = {\n");
+		//fprintf(output, "		\"RAS Faizabad\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	destroyer = {\n");
+		//fprintf(output, "		\"D1 / D2 / D3\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	carrier = {\n");
+		//fprintf(output, "		\"RAS Zahir Shah\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	submarine = {\n");
+		//fprintf(output, "		\"1. Submarine Flotilla\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	transport_ship = {\n");
+		//fprintf(output, "		\"1. Troop Transport Flotilla\"\n");
+		//fprintf(output, "	}\n");
+		/*fprintf(output, "}\n");
+		fprintf(output, "\n");
+		fprintf(output, "ministers = {\n");
+		for (auto ministerItr: ministers)
+		{
+			ministerItr.output(output);
+		}
+		fprintf(output, "}\n");*/
+		//output.close();
 
-	//outputAIScript();
+		//outputAIScript();
+	}
 }
 
 
@@ -378,9 +380,9 @@ void HoI4Country::outputCommonCountryFile() const
 		exit(-1);
 	}
 
-	int red		= 0;
-	int green	= 0;
-	int blue		= 0;
+	int red = 0;
+	int green = 0;
+	int blue = 0;
 	color.GetRGB(red, green, blue);
 	output << "color = { " << red << " " << green << " " << blue << " }" << endl;
 
@@ -397,7 +399,7 @@ void HoI4Country::outputColors(ofstream& out) const
 
 	out << tag << " = {\n";
 	out << "\tcolor = rgb { " << red << " " << green << " " << blue << " }\n";
-	out << "\tcolor_ui = rgb { "  << red << " " << green << " " << blue << " }";
+	out << "\tcolor_ui = rgb { " << red << " " << green << " " << blue << " }";
 	out << "}\n";
 }
 
@@ -411,7 +413,7 @@ void HoI4Country::outputToCommonCountriesFile(FILE* output) const
 void HoI4Country::outputPracticals(FILE* output) const
 {
 	fprintf(output, "\n");
-	for (auto itr: practicals)
+	for (auto itr : practicals)
 	{
 		if (itr.second > 0.0)
 		{
@@ -424,7 +426,7 @@ void HoI4Country::outputPracticals(FILE* output) const
 void HoI4Country::outputTech(FILE* output) const
 {
 	fprintf(output, "\n");
-	for (auto itr: technologies)
+	for (auto itr : technologies)
 	{
 		fprintf(output, "%s = %d\n", itr.first.c_str(), itr.second);
 	}
@@ -470,10 +472,10 @@ void HoI4Country::outputLeaders() const
 	{
 		LOG(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/history/leaders/" << tag.c_str() << ".txt";
 	}
-	int landLeaders	= 0;
-	int seaLeaders		= 0;
-	int airLeaders		= 0;
-	for (auto leader: leaders)
+	int landLeaders = 0;
+	int seaLeaders = 0;
+	int airLeaders = 0;
+	for (auto leader : leaders)
 	{
 		leader.output(leadersFile);
 
@@ -522,7 +524,7 @@ void HoI4Country::outputOOB() const
 		}
 	}*/
 	output << "start_equipment_factor = 0\n";
-	for (auto divisionTemplate: divisionTemplates)
+	for (auto divisionTemplate : divisionTemplates)
 	{
 		output << divisionTemplate;
 		output << endl;
@@ -540,7 +542,7 @@ void HoI4Country::outputOOB() const
 	output << "\t}\n";
 	output << "}\n";
 	output << "units = {\r\n";
-	for (auto division: divisions)
+	for (auto division : divisions)
 	{
 		output << division;
 	}
@@ -549,7 +551,7 @@ void HoI4Country::outputOOB() const
 		output << "\tnavy = {" << endl;
 		output << "\t\tname = \"Grand Fleet\"" << endl;
 		output << "\t\tlocation = " << navalLocation << endl;
-		for (auto ship: ships)
+		for (auto ship : ships)
 		{
 			output << ship;
 		}
@@ -570,10 +572,10 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	}
 	if (filename == "")
 	{
-		string countryName	= commonCountryFile;
-		int lastSlash			= countryName.find_last_of("/");
-		countryName				= countryName.substr(lastSlash + 1, countryName.size());
-		filename					= tag + " - " + countryName;
+		string countryName = commonCountryFile;
+		int lastSlash = countryName.find_last_of("/");
+		countryName = countryName.substr(lastSlash + 1, countryName.size());
+		filename = tag + " - " + countryName;
 	}
 
 	// Color
@@ -607,7 +609,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	}
 	// Political parties
 	convertParties(_srcCountry, _srcWorld.getActiveParties(_srcCountry), _srcWorld.getRulingParty(_srcCountry), ideology);
-	for (auto partyItr: parties)
+	for (auto partyItr : parties)
 	{
 		auto oldLocalisation = V2Localisations.GetTextInEachLanguage(partyItr.name);
 		partyItr.localisationString = partyItr.ideology + "_" + tag;
@@ -625,8 +627,8 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	auto namesItr = namesMap.find(srcCountry->getPrimaryCulture());
 	if (namesItr != namesMap.end())
 	{
-		firstNames	= namesItr->second.first;
-		lastNames	= namesItr->second.second;
+		firstNames = namesItr->second.first;
+		lastNames = namesItr->second.second;
 	}
 	else
 	{
@@ -635,7 +637,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	}
 	for (unsigned int ideologyIdx = 0; ideologyIdx <= stalinist; ideologyIdx++)
 	{
-		for (auto job: governmentJobs)
+		for (auto job : governmentJobs)
 		{
 			HoI4Minister newMinister(firstNames, lastNames, ideologyNames[ideologyIdx], job, governmentJobs, portraitMap[graphicalCulture]);
 			ministers.push_back(newMinister);
@@ -764,7 +766,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	// leaders
 	vector<V2Leader*> srcLeaders = srcCountry->getLeaders();
-	for (auto srcLeader: srcLeaders)
+	for (auto srcLeader : srcLeaders)
 	{
 		HoI4Leader newLeader(srcLeader, tag, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, portraitMap[graphicalCulture]);
 		leaders.push_back(newLeader);
@@ -776,7 +778,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	map<string, V2Relations*> srcRelations = srcCountry->getRelations();
 	if (srcRelations.size() > 0)
 	{
-		for (auto itr: srcRelations)
+		for (auto itr : srcRelations)
 		{
 			const std::string& HoI4Tag = countryMap[itr.second->getTag()];
 			if (!HoI4Tag.empty())
@@ -828,7 +830,7 @@ bool HoI4Country::isThisStateOwnedByUs(const HoI4State* state) const
 
 bool HoI4Country::isThisStateACoreWhileWeOwnNoStates(const HoI4State* state) const
 {
-	for (auto core: state->getCores())
+	for (auto core : state->getCores())
 	{
 		if (core == tag)
 		{
@@ -863,10 +865,10 @@ void HoI4Country::initFromHistory()
 
 	if (filename == "")
 	{
-		string countryName	= commonCountryFile;
-		int lastSlash			= countryName.find_last_of("/");
-		countryName				= countryName.substr(lastSlash + 1, countryName.size());
-		filename					= tag + " - " + countryName;
+		string countryName = commonCountryFile;
+		int lastSlash = countryName.find_last_of("/");
+		countryName = countryName.substr(lastSlash + 1, countryName.size());
+		filename = tag + " - " + countryName;
 		return;
 	}
 	else
@@ -904,28 +906,28 @@ void HoI4Country::initFromHistory()
 
 void HoI4Country::consolidateProvinceItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry)
 {
-	bool convertManpower			= (Configuration::getManpowerConversion() != "no");
-	bool convertLeadership		= (Configuration::getLeadershipConversion() != "no");
-	bool convertIndustry			= (Configuration::getIcConversion() != "no");
+	bool convertManpower = (Configuration::getManpowerConversion() != "no");
+	bool convertLeadership = (Configuration::getLeadershipConversion() != "no");
+	bool convertIndustry = (Configuration::getIcConversion() != "no");
 
-	double leftoverManpower		= 0.0;
-	double leftoverLeadership	= 0.0;
-	double leftoverIndustry		= 0.0;
+	double leftoverManpower = 0.0;
+	double leftoverLeadership = 0.0;
+	double leftoverIndustry = 0.0;
 
 	Vic2State capitalState;
 
 	vector<Vic2State*> states = srcCountry->getStates();
-	for (auto stateItr: states)
+	for (auto stateItr : states)
 	{
-		double stateManpower		= 0.0;
-		double stateLeadership	= 0.0;
-		double stateIndustry		= 0.0;
-		for (auto srcProvinceItr: stateItr->getProvinces())
+		double stateManpower = 0.0;
+		double stateLeadership = 0.0;
+		double stateIndustry = 0.0;
+		for (auto srcProvinceItr : stateItr->getProvinces())
 		{
 			auto possibleHoI4Provinces = inverseProvinceMap.find(srcProvinceItr);
 			if (possibleHoI4Provinces != inverseProvinceMap.end())
 			{
-				for (auto dstProvinceNum: possibleHoI4Provinces->second)
+				for (auto dstProvinceNum : possibleHoI4Provinces->second)
 				{
 					auto provinceItr = provinces.find(dstProvinceNum);
 					if (provinceItr != provinces.end())
@@ -957,9 +959,9 @@ void HoI4Country::consolidateProvinceItems(const Vic2ToHoI4ProvinceMapping& inve
 				}
 			}
 		}
-		totalManpower		+= stateManpower;
-		totalLeadership	+= stateLeadership;
-		totalIndustry		+= stateIndustry;
+		totalManpower += stateManpower;
+		totalLeadership += stateLeadership;
+		totalIndustry += stateIndustry;
 
 		if (stateItr->getProvinces().size() > 0)
 		{
@@ -1187,11 +1189,11 @@ void HoI4Country::convertNavy(map<int, HoI4State*> states)
 	int navalport = 0;
 
 	// count the heavy and light Vic2 ships
-	double heavyShip	= 0;
-	double lightShip	= 0;
-	for (auto army: srcCountry->getArmies())
+	double heavyShip = 0;
+	double lightShip = 0;
+	for (auto army : srcCountry->getArmies())
 	{
-		for (auto regiment: army->getRegiments())
+		for (auto regiment : army->getRegiments())
 		{
 			string type = regiment->getType();
 			if (type == "battleship")
@@ -1210,14 +1212,14 @@ void HoI4Country::convertNavy(map<int, HoI4State*> states)
 	}
 
 	// determine the HoI4 ships
-	double BB			= 0;
-	double BC			= 0;
-	double HC			= 0;
-	double LC			= 0;
-	double DD			= 0;
-	double CV			= 0;
-	double SB			= 0;
-	for (auto tech: technologies)
+	double BB = 0;
+	double BC = 0;
+	double HC = 0;
+	double LC = 0;
+	double DD = 0;
+	double CV = 0;
+	double SB = 0;
+	for (auto tech : technologies)
 	{
 		if ((tech.first == "early_light_cruiser") && (tech.second == 1))
 		{
@@ -1248,8 +1250,11 @@ void HoI4Country::convertNavy(map<int, HoI4State*> states)
 
 	for (int i = 0; i < CV; i++)
 	{
-		HoI4Ship newShip("Carrier", "carrier", tag);
-		ships.push_back(newShip);
+		if (technologies.find("CAS1") != technologies.end() && technologies.find("naval_bomber1") != technologies.end() && technologies.find("early_carrier") != technologies.end())
+		{
+			HoI4Ship newShip("Carrier", "carrier", tag);
+			ships.push_back(newShip);
+		}
 	}
 	for (int i = 0; i < BB; i++)
 	{
@@ -1282,7 +1287,7 @@ void HoI4Country::convertNavy(map<int, HoI4State*> states)
 		ships.push_back(newShip);
 	}
 
-	for (auto state: states)
+	for (auto state : states)
 	{
 		if ((state.second->getOwner() == tag) && (state.second->getNavalLocation() != 0))
 		{
@@ -1295,16 +1300,16 @@ void HoI4Country::convertNavy(map<int, HoI4State*> states)
 void HoI4Country::convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap)
 {
 	// get the total number of source brigades and the number of source brigades per location
-	int infantryBrigades			= 0;
-	int artilleryBrigades		= 0;
-	int supportBrigades			= 0;
-	int tankBrigades				= 0;
-	int cavalryBrigades			= 0;
-	int cavalrySupportBrigades	= 0;
-	int mountainBrigades			= 0;
+	int infantryBrigades = 0;
+	int artilleryBrigades = 0;
+	int supportBrigades = 0;
+	int tankBrigades = 0;
+	int cavalryBrigades = 0;
+	int cavalrySupportBrigades = 0;
+	int mountainBrigades = 0;
 
 	map<int, int> locations;
-	for (auto army: srcCountry->getArmies())
+	for (auto army : srcCountry->getArmies())
 	{
 		// get the number of source brigades per location
 		int HoI4location = 0;
@@ -1483,9 +1488,9 @@ void HoI4Country::convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseP
 		}
 		divisionTemplates.push_back(newDivisionTemplate);
 	}
-	if ( (artilleryBrigades > 0) || (supportBrigades > 0) )
+	if ((artilleryBrigades > 0) || (supportBrigades > 0))
 	{
-		if ( (artilleryBrigades / (infantryPerDivision / 3)) > supportBrigades )
+		if ((artilleryBrigades / (infantryPerDivision / 3)) > supportBrigades)
 		{
 			//there are more brigades with artillery than with support, meddiv will have only art
 			HoI4DivisionTemplateType newDivisionTemplate("Support Infantry Division");
@@ -1609,12 +1614,12 @@ void HoI4Country::convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseP
 
 	// calculate number of units per location
 	int totalWeight = 0;
-	for (auto const location: locations)
+	for (auto const location : locations)
 	{
 		totalWeight += location.second;
 	}
 	int numberOfDivisions = infantryBrigades / infantryPerDivision;
-	for (auto location: locations)
+	for (auto location : locations)
 	{
 		if (totalWeight != 0)
 		{
@@ -1623,10 +1628,10 @@ void HoI4Country::convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseP
 	}
 
 	// place units
-	int numAdvanced	= 1;
-	int numMedium		= 1;
-	int numBasic		= 1;
-	for (auto const location: locations)
+	int numAdvanced = 1;
+	int numMedium = 1;
+	int numBasic = 1;
+	for (auto const location : locations)
 	{
 		int unitsInProv = 0;
 		while (unitsInProv < location.second)
@@ -1693,7 +1698,7 @@ void HoI4Country::convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseP
 			}
 			else
 				break;
-			
+
 		}
 	}
 }
@@ -2162,7 +2167,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		auto itr = unmappedParties.find("market_liberal");
 		unmappedParties.erase(itr);
 	}
-	
+
 	if (V2Ideologies.size() == 0)
 	{
 		setPartyPopularity();
@@ -2313,7 +2318,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			HoI4IdeologyGroups.insert(make_pair(HoI4PartyItr.second, parties));
 		}
 	}
-	
+
 	for (auto V2GroupItr : V2IdeologyGroups)
 	{
 		auto HoI4GroupItr = HoI4IdeologyGroups.find(V2GroupItr.first);

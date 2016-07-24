@@ -60,7 +60,7 @@ HoI4NavalBase::HoI4NavalBase(int _stateID, double _xCoordinate, double _zCoordin
 
 ostream& HoI4NavalBase::print(ostream& out) const
 {
-	out << stateID << ";naval_base;" << xCoordinate << ';' << yCoordinate << ';' << zCoordinate << ';';
+	out << stateID << ";naval_base;" << xCoordinate << ';' << 11/*yCoordinate*/ << ';' << zCoordinate << ';';
 	out << rotation << ';' << connectingSeaProvince << endl;
 
 	return out;

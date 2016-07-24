@@ -1766,7 +1766,7 @@ void HoI4World::createIdeologyFiles()
 	Utils::copyFolder("NeededFiles/defines", "Output/" + Configuration::getOutputName() + "/common");
 }
 
-void HoI4World::copyFlags(const CountryMapping& countryMap)
+/*void HoI4World::copyFlags(const CountryMapping& countryMap)
 {
 
 	LOG(LogLevel::Debug) << "Copying flags";
@@ -1816,7 +1816,7 @@ void HoI4World::copyFlags(const CountryMapping& countryMap)
 			}
 		}
 	}
-}
+}*/
 
 
 void HoI4World::checkAllProvincesMapped(const HoI4ToVic2ProvinceMapping& provinceMap)
@@ -2422,7 +2422,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
 	FocusTree += "		completion_reward = {\r\n";
-	FocusTree += "			local_resources_factor = 0.2\r\n";
+	FocusTree += "			add_ideas = improved_resource_industry\r\n";
 	FocusTree += "		}\r\n";
 	FocusTree += "	}";
 
@@ -2466,7 +2466,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 		FocusTree += "		}	\r\n";
 		FocusTree += "		completion_reward = {\r\n";
 		FocusTree += "			create_wargoal = {\r\n";
-		FocusTree += "				type = puppet_wargoal_focus\r\n";
+		FocusTree += "				type = annex_everything\r\n";
 		FocusTree += "				target = " + Annexed1->getTag() + "\r\n";
 		FocusTree += "			}";
 		FocusTree += "		}\r\n";
@@ -2492,7 +2492,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 		FocusTree += "		}	\r\n";
 		FocusTree += "		completion_reward = {\r\n";
 		FocusTree += "			create_wargoal = {\r\n";
-		FocusTree += "				type = puppet_wargoal_focus\r\n";
+		FocusTree += "				type = annex_everything\r\n";
 		FocusTree += "				target = " + Annexed2->getTag() + "\r\n";
 		FocusTree += "			}";
 		FocusTree += "		}\r\n";
@@ -2516,7 +2516,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		}	\r\n";
 	FocusTree += "		completion_reward = {\r\n";
 	FocusTree += "			set_country_flag = TradeEmpire";
-	FocusTree += "			trade_opinion_factor = 0.1\r\n";
+	FocusTree += "			add_ideas = established_traders\r\n";
 	FocusTree += "			random_owned_state = {\r\n";
 	FocusTree += "				limit = {\r\n";
 	FocusTree += "					free_building_slots = {\r\n";
@@ -2565,8 +2565,12 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
 	FocusTree += "		completion_reward = {\r\n";
-	//add tech
-	//FocusTree += "			research_time_factor = -0.1\r\n";
+	FocusTree += "			add_tech_bonus = {\r\n";
+	FocusTree += "				name = industrial_bonus\r\n";
+	FocusTree += "				bonus = 0.5\r\n";
+	FocusTree += "				uses = 1\r\n";
+	FocusTree += "				category = industry\r\n";
+	FocusTree += "			}\r\n";
 	FocusTree += "		}\r\n";
 	FocusTree += "	}";
 
@@ -2697,7 +2701,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
 	FocusTree += "		completion_reward = {\r\n";
-	FocusTree += "			research_time_factor = -0.1\r\n";
+	FocusTree += "			add_ideas = { national_college }\r\n";
 	FocusTree += "		}\r\n";
 	FocusTree += "	}";
 
@@ -2829,8 +2833,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
 	FocusTree += "		completion_reward = {\r\n";
-	//FORTS
-	//FocusTree += "			research_time_factor = -0.1\r\n";
+	FocusTree += "			 add_ideas = border_buildup\r\n";
 	FocusTree += "		}\r\n";
 	FocusTree += "	}";
 
@@ -2873,7 +2876,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 		FocusTree += "		}	\r\n";
 		FocusTree += "		completion_reward = {\r\n";
 		FocusTree += "			create_wargoal = {\r\n";
-		FocusTree += "				type = puppet_wargoal_focus\r\n";
+		FocusTree += "				type = annex_everything\r\n";
 		FocusTree += "				target = " + Annexed3->getTag() + "\r\n";
 		FocusTree += "			}";
 		FocusTree += "		}\r\n";
@@ -2898,14 +2901,15 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 		FocusTree += "		}	\r\n";
 		FocusTree += "		completion_reward = {\r\n";
 		FocusTree += "			create_wargoal = {\r\n";
-		FocusTree += "				type = puppet_wargoal_focus\r\n";
+		FocusTree += "				type = annex_everything\r\n";
 		FocusTree += "				target = " + Annexed4->getTag() + "\r\n";
 		FocusTree += "			}";
 		FocusTree += "		}\r\n";
 		FocusTree += "	}\r\n";
 	}
-
-
+	//creating Ideas for this
+	string Ideas = "";
+	string Events = "";
 	return FocusTree;
 }
 void HoI4World::fillProvinceNeighbors()
@@ -4988,6 +4992,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		}
 		country.second->output(states->getStates(), Factions, FactionName);
 	}
+	double PercentageOfWorldAtWar = 0;
 	bool fascismrelevant = false;
 	bool communismrelevant = false;
 	//output folders
@@ -5095,13 +5100,13 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 						else if (getStrengthOverTime(neigh.second, 1) < getStrengthOverTime(Leader, 1))
 						{
 							//EqualTargets.push_back(neigh);
-							EqualTargets.push_back(neigh.second);
+							//EqualTargets.push_back(neigh.second);
 						}
 						//if not, lets see their strength is at least < 120%
 						else if (getStrengthOverTime(neigh.second, 1) < getStrengthOverTime(Leader, 1)*1.2)
 						{
 							//StrongerTargets.push_back(neigh);
-							DifficultTargets.push_back(neigh.second);
+							//DifficultTargets.push_back(neigh.second);
 
 						}
 						
@@ -5137,21 +5142,20 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 					if (type == "noactionneeded")
 					{
 						//too many vectors, need to clean up
-						nan.push_back(target);
 						anchlussnan.push_back(target);
 					}
 				}
 				//gives us generic focus tree start
 				string FocusTree = genericFocusTreeCreator(Leader);
-				if (nan.size() >= 1)
+				if (anchlussnan.size() >= 1)
 				{
 					//if it can easily take these targets as they are not in an alliance, you can get annexation event
-						if (nan.size() == 1)
+						if (anchlussnan.size() == 1)
 						{
 							x = 24;
 							takenSpots.push_back(x);
 						}
-						if (nan.size() >= 2)
+						if (anchlussnan.size() >= 2)
 						{
 							x = 25;
 							takenSpots.push_back(x);
@@ -5202,19 +5206,19 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 						for (unsigned int i = 0; i < 2; i++)
 						{
 							int start = 0;
-							if (nan.size() >= 2)
+							if (anchlussnan.size() >= 2)
 								start = -1;
-							if (i < nan.size())
+							if (i < anchlussnan.size())
 							{
 								//int x = i * 3;
 								string annexername = Leader->getSourceCountry()->getName();
-								string annexedname = nan[i]->getSourceCountry()->getName();
+								string annexedname = anchlussnan[i]->getSourceCountry()->getName();
 								//for random date
 								int v1 = rand() % 5 + 1;
 								int v2 = rand() % 5 + 1;
 								//focus for anschluss
 								FocusTree += "		focus = { \r\n";
-								FocusTree += "		id = "+Leader->getTag() +"_anschluss_"+nan[i]->getTag()+"\r\n";
+								FocusTree += "		id = "+Leader->getTag() +"_anschluss_"+ anchlussnan[i]->getTag()+"\r\n";
 								FocusTree += "		icon = GFX_goal_anschluss\r\n";
 								FocusTree += "		text = \"Union with "+annexedname+"\"\r\n";
 								FocusTree += "		prerequisite = { focus = mil_march" + Leader->getTag() + " }\r\n";
@@ -5237,9 +5241,9 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 								FocusTree += "			army_experience = 10\r\n";
 								FocusTree += "			if = {\r\n";
 								FocusTree += "				limit = {\r\n";
-								FocusTree += "					country_exists = " + nan[i]->getTag() + "\r\n";
+								FocusTree += "					country_exists = " + anchlussnan[i]->getTag() + "\r\n";
 								FocusTree += "				}\r\n";
-								FocusTree += "				" + nan[i]->getTag() + " = {\r\n";
+								FocusTree += "				" + anchlussnan[i]->getTag() + " = {\r\n";
 								FocusTree += "					country_event = " + Leader->getTag() + "annex."+to_string(EventNumber)+"\r\n";
 								FocusTree += "				}\r\n";
 								FocusTree += "			}\r\n";
@@ -5247,11 +5251,10 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 								FocusTree += "	}";
 
 								//events
-								Events += createAnnexEvent(Leader, nan[i], EventNumber);
+								Events += createAnnexEvent(Leader, anchlussnan[i], EventNumber);
 								EventNumber += 3;
 							}
 						}
-					nan.clear();
 
 				}
 				for (auto target : Sudaten)
@@ -5266,10 +5269,10 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 					out << type + " " + target->getSourceCountry()->getName() << endl;
 					if (type == "noactionneeded")
 					{
-						nan.push_back(target);
+						sudatennan.push_back(target);
 					}
 				}
-				if (nan.size() >= 1)
+				if (sudatennan.size() >= 1)
 				{
 					//if it can easily take these targets as they are not in an alliance, you can get annexation event
 					
@@ -5299,12 +5302,12 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 						//figuring out position
 						int x = takenSpots.back();
 						takenSpots.push_back(x);
-						if (nan.size() == 1)
+						if (sudatennan.size() == 1)
 						{
 							x += 2;
 							takenSpots.push_back(x);
 						}
-						if (nan.size() >= 2)
+						if (sudatennan.size() >= 2)
 						{
 							x += 3;
 							takenSpots.push_back(x);
@@ -5323,16 +5326,16 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 					FocusTree += "	}\r\n";
 					for (unsigned int i = 0; i < 1; i++)
 					{
-						if (i < nan.size())
+						if (i < sudatennan.size())
 						{
 							int x = i * 3;
 							string annexername = Leader->getSourceCountry()->getName();
-							string annexedname = nan[i]->getSourceCountry()->getName();
+							string annexedname = sudatennan[i]->getSourceCountry()->getName();
 							int v1 = rand() % 8 + 1;
 							int v2 = rand() % 8 + 1;
 							//focus for sudaten
 							FocusTree += "		focus = { \r\n";
-							FocusTree += "		id = " + Leader->getTag() + "_sudaten_" + nan[i]->getTag() + "\r\n";
+							FocusTree += "		id = " + Leader->getTag() + "_sudaten_" + sudatennan[i]->getTag() + "\r\n";
 							FocusTree += "		icon = GFX_goal_anschluss\r\n";
 							FocusTree += "		text = \"Demand Territory from " + annexedname + "\"\r\n";
 							FocusTree += "		prerequisite = { focus = Expand_the_Reich" + Leader->getTag() + " }\r\n";
@@ -5364,9 +5367,9 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 							FocusTree += "			army_experience = 10\r\n";
 							FocusTree += "			if = {\r\n";
 							FocusTree += "				limit = {\r\n";
-							FocusTree += "					country_exists = " + nan[i]->getTag() + "\r\n";
+							FocusTree += "					country_exists = " + sudatennan[i]->getTag() + "\r\n";
 							FocusTree += "				}\r\n";
-							FocusTree += "				" + nan[i]->getTag() + " = {\r\n";
+							FocusTree += "				" + sudatennan[i]->getTag() + " = {\r\n";
 							FocusTree += "					country_event = " + Leader->getTag() + "sudaten." + to_string(EventNumber) + "\r\n";
 							FocusTree += "				}\r\n";
 							FocusTree += "			}\r\n";
@@ -5375,10 +5378,10 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 
 							//FINISH HIM
 							FocusTree += "		focus = { \r\n";
-							FocusTree += "		id = " + Leader->getTag() + "_finish_" + nan[i]->getTag() + "\r\n";
+							FocusTree += "		id = " + Leader->getTag() + "_finish_" + sudatennan[i]->getTag() + "\r\n";
 							FocusTree += "		icon = GFX_goal_generic_territory_or_war\r\n";
 							FocusTree += "		text = \"Fate of " + annexedname + "\"\r\n";
-							FocusTree += "		prerequisite = { focus =  " + Leader->getTag() + "_sudaten_" + nan[i]->getTag() + " }\r\n";
+							FocusTree += "		prerequisite = { focus =  " + Leader->getTag() + "_sudaten_" + sudatennan[i]->getTag() + " }\r\n";
 							FocusTree += "		available = {\r\n";
 							FocusTree += "			is_puppet = no\r\n";
 							FocusTree += "		}\r\n";
@@ -5404,7 +5407,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 							FocusTree += "		completion_reward = {\r\n";
 							FocusTree += "		create_wargoal = {\r\n";
 							FocusTree += "				type = annex_everything\r\n";
-							FocusTree += "			target = " + nan[i]->getTag() + "\r\n";
+							FocusTree += "			target = " + sudatennan[i]->getTag() + "\r\n";
 							FocusTree += "		}\r\n";
 							FocusTree += "		}\r\n";
 							FocusTree += "	}";
@@ -5433,7 +5436,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 												vector<string> tags = ownertag->second;
 												if (tags.size() >= 1)
 												{
-													if (tags[1] == nan[i]->getTag())
+													if (tags[1] == sudatennan[i]->getTag())
 													{
 									
 															/* v does not contain x */
@@ -5447,12 +5450,10 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 								}
 							}
 							Events += "add_namespace = " + Leader->getTag() + "sudaten\r\n";
-							Events += createSudatenEvent(Leader, nan[0], EventNumber, demandedstates);
+							Events += createSudatenEvent(Leader, sudatennan[0], EventNumber, demandedstates);
 							EventNumber += 3;
 						}
 					}
-					nan.clear();
-
 				}
 				//events for allies
 				vector<HoI4Country*> newAllies = GetMorePossibleAllies(Leader);
@@ -5615,7 +5616,8 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				}
 				//insert these values in targetmap for use later possibly?
 				//needs cleanup, too many vectors!
-				TargetMap.insert(make_pair("noactionneeded", nan));
+				TargetMap.insert(make_pair("noactionneeded", anchlussnan));
+				TargetMap.insert(make_pair("noactionneeded", sudatennan));
 				TargetMap.insert(make_pair("factionneeded", fn));
 				TargetMap.insert(make_pair("morealliesneeded", man));
 				TargetMap.insert(make_pair("coup", coup));
