@@ -34,6 +34,7 @@ void copyFlags(const map<string, HoI4Country*>& countries)
 {
 	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx");
 	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx/flags");
+	//Utils::TryCopyFile("NeededFiles/gfx", "Output/" + Configuration::getOutputName());
 	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx/flags/medium");
 	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx/flags/small");
 	for (auto country: countries)
@@ -49,21 +50,34 @@ enum flagIdeologies
 	COMMUNISM_FLAG		= 1,
 	DEMOCRATIC_FLAG	= 2,
 	FACISM_FLAG			= 3,
-	FLAG_END				= 4
+	SYNDICALISM_FLAG = 4,
+	SOCIALIST_FLAG = 5,
+	LIBERAL_FLAG = 6,
+	AUTOCRATIC_FLAG = 7,
+	FLAG_END				= 8
 };
 
 char* vic2Suffixes[FLAG_END] = {
 	".tga",
 	"_communist.tga",
+	".tga",
+	"_fascist.tga",
+	"_communist.tga",
 	"_republic.tga",
-	"_fascist.tga"
+	"_republic.tga",
+	"_monarchy.tga",
 };
 
 char* hoi4Suffixes[FLAG_END] = {
 	".tga",
 	"_communism.tga",
 	"_democratic.tga",
-	"_fascism.tga"
+	"_fascism.tga",
+	"_syndicalism.tga",
+	"_socialist.tga",
+	"_liberal.tga",
+	"_autocratic.tga",
+
 };
 
 

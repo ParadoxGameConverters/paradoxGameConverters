@@ -2295,6 +2295,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		}	\r\n";
 	FocusTree += "		completion_reward = {\r\n";
 	FocusTree += "			add_ideas = established_traders";
+	FocusTree += "			set_country_flag = established_traders";
 	FocusTree += "			random_owned_state = {\r\n";
 	FocusTree += "				limit = {\r\n";
 	FocusTree += "					free_building_slots = {\r\n";
@@ -5616,13 +5617,18 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 					Events += "	desc = \"One of our convoys was sunk by "+GC->getSourceCountry()->getName()+"\"\r\n";
 					Events += "	picture = GFX_report_event_chinese_soldiers_fighting\r\n";
 					Events += "	\r\n";
-					Events += "	is_triggered_only = no\r\n";
+					Events += "	is_triggered_only = yes\r\n";
 					Events += "	\r\n";
+					Events += " trigger = {";
+					Events += "		has_country_flag = established_traders";
+					Events += "		NOT = { has_country_flag = established_traders_activated }";
+					Events += " }";
 					Events += "	option = { # Breaking point!\r\n";
 					Events += "		name = \"They will Pay!\"\r\n";
 					Events += "		ai_chance = { factor = 85 }\r\n";
 					Events += "		effect_tooltip = {\r\n";
 					Events += "			"+Leader->getTag()+" = {\r\n";
+					Events += "			set_country_flag = established_traders_activated";
 					Events += "			create_wargoal = {\r\n";
 					Events += "				type = annex_everything\r\n";
 					Events += "				target = " + GC->getTag() + "\r\n";
