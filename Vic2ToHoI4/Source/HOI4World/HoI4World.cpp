@@ -1911,7 +1911,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		y = 0\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
-	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			factor = 10\r\n";
 	FocusTree += "			modifier = {\r\n";
 	FocusTree += "				factor = 0\r\n";
 	FocusTree += "				date < 1937.6.6\r\n";
@@ -1925,7 +1925,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	//Colonies Focus
 	FocusTree += "		focus = { \r\n";
 	FocusTree += "		id = StrengthenColonies" + Home->getTag()+"\r\n";
-	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		icon = GFX_goal_generic_position_armies\r\n";
 	FocusTree += "		text = \"Strengthen the Colonies\"\r\n";
 	FocusTree += "		prerequisite = { focus = EmpireGlory" + Home->getTag() + " }\r\n";
 	FocusTree += "		mutually_exclusive = { focus = StrengthenHome" + Home->getTag() + " }\r\n";
@@ -1933,18 +1933,18 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		y = 1\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
-	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			factor = 10\r\n";
 	FocusTree += "			modifier = {\r\n";
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
 	FocusTree += "		completion_reward = {\r\n";
-	//FocusTree += "			army_experience = 10\r\n";
+	FocusTree += "			navy_experience = 25\r\n";
 	FocusTree += "		}\r\n";
 	FocusTree += "	}";
 	//Home Focus
 	FocusTree += "		focus = { \r\n";
 	FocusTree += "		id = StrengthenHome" + Home->getTag() + "\r\n";
-	FocusTree += "		icon = GFX_goal_anschluss\r\n";
+	FocusTree += "		icon = GFX_goal_generic_national_unity\r\n";
 	FocusTree += "		text = \"Strengthen Home\"\r\n";
 	FocusTree += "		prerequisite = { focus = EmpireGlory" + Home->getTag() + " }\r\n";
 	FocusTree += "		mutually_exclusive = { focus = StrengthenColonies" + Home->getTag() + " }\r\n";
@@ -1952,12 +1952,12 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		y = 1\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
-	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			factor = 10\r\n";
 	FocusTree += "			modifier = {\r\n";
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
 	FocusTree += "		completion_reward = {\r\n";
-	//FocusTree += "			army_experience = 10\r\n";
+	FocusTree += "			army_experience = 25\r\n";
 	FocusTree += "		}\r\n";
 	FocusTree += "	}";
 
@@ -1971,7 +1971,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		y = 2\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
-	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			factor = 10\r\n";
 	FocusTree += "			modifier = {\r\n";
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
@@ -2083,7 +2083,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		y = 3\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
-	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			factor = 10\r\n";
 	FocusTree += "			modifier = {\r\n";
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
@@ -2196,7 +2196,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		y = 3\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
-	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			factor = 10\r\n";
 	FocusTree += "			modifier = {\r\n";
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
@@ -2215,13 +2215,12 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		y = 2\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
-	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			factor = 10\r\n";
 	FocusTree += "			modifier = {\r\n";
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
 	FocusTree += "		completion_reward = {\r\n";
-	//find out how to increase non core pop, or add cores
-	//FocusTree += "			local_resources_factor = 0.2\r\n";
+	FocusTree += "			add_ideas = militirism\r\n";
 	FocusTree += "		}\r\n";
 	FocusTree += "	}";
 	string protectorateNFs = "";
@@ -2237,7 +2236,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 		FocusTree += "		y = 3\r\n";
 		FocusTree += "		cost = 10\r\n";
 		FocusTree += "		ai_will_do = {\r\n";
-		FocusTree += "			factor = 5\r\n";
+		FocusTree += "			factor = 10\r\n";
 		FocusTree += "			modifier = {\r\n";
 		FocusTree += "			factor = 0\r\n";
 		FocusTree += "			strength_ratio = { tag = " + Annexed1->getTag() + " ratio < 1 }\r\n";
@@ -2289,7 +2288,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		y = 4\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
-	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			factor = 10\r\n";
 	FocusTree += "			modifier = {\r\n";
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
@@ -2339,7 +2338,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		y = 2\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
-	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			factor = 10\r\n";
 	FocusTree += "			modifier = {\r\n";
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
@@ -2359,7 +2358,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		y = 3\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
-	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			factor = 10\r\n";
 	FocusTree += "			modifier = {\r\n";
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
@@ -2471,7 +2470,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		y = 3\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
-	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			factor = 10\r\n";
 	FocusTree += "			modifier = {\r\n";
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
@@ -2491,7 +2490,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		y = 4\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
-	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			factor = 10\r\n";
 	FocusTree += "			modifier = {\r\n";
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
@@ -2603,7 +2602,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		y = 2\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
-	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			factor = 10\r\n";
 	FocusTree += "			modifier = {\r\n";
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
@@ -2622,7 +2621,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		y = 3\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
-	FocusTree += "			factor = 1\r\n";
+	FocusTree += "			factor = 10\r\n";
 	FocusTree += "			modifier = {\r\n";
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
