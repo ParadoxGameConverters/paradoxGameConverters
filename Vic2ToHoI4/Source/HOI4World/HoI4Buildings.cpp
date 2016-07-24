@@ -34,7 +34,7 @@ HoI4Building::HoI4Building(int _stateID, double _xCoordinate, double _zCoordinat
 {
 	stateID = _stateID;
 	xCoordinate = _xCoordinate;
-	yCoordinate = 0.0;
+	yCoordinate = 10.0;
 	zCoordinate = _zCoordinate;
 	rotation = 0.0;
 }
@@ -93,7 +93,7 @@ void HoI4Buildings::placeNavalBases(const map<int, int>& provinceToStateIDMap)
 		}
 
 		HoI4NavalBase* newNavalBase = new HoI4NavalBase(provinceToStateMapping->second, position->second.first, position->second.second, province.connectingSeaProvince);
-		buildings.push_back(newNavalBase);
+		buildings.insert(make_pair(provinceToStateMapping->second, newNavalBase));
 	}
 }
 
@@ -122,12 +122,13 @@ vector<coastalProvince> HoI4Buildings::getCoastalProvinces()
 		for (auto adjProvinceNum: adjacency->second)
 		{
 			auto adjProvince = provinces.find(adjProvinceNum);
-			if ((adjProvince != provinces.end()) && (!adjProvince->second.isLand))
+			if ((adjProvince != provinces.end()) && (adjProvince->second.type == "ocean"))
 			{
 				coastalProvince newCoastalProvince;
 				newCoastalProvince.province = province.first;
 				newCoastalProvince.connectingSeaProvince = adjProvince->first;
 				coastalProvinces.push_back(newCoastalProvince);
+				break;
 			}
 		}
 	}
@@ -175,9 +176,17 @@ map<int, province> HoI4Buildings::getProvinces()
 		int landSeaSeparator = line.find_first_of(';');
 		string landOrSea = line.substr(0, landSeaSeparator);
 		bool isLand = (landOrSea == "land");
+		line = line.substr(landSeaSeparator + 1, line.size());
+
+		int boolSeparator = line.find_first_of(';');
+		line = line.substr(boolSeparator + 1, line.size());
+
+		int typeSeparator = line.find_first_of(';');
+		string type = line.substr(0, typeSeparator);
 		
 		province newProvince;
 		newProvince.isLand = isLand;
+		newProvince.type = type;
 		provinces.insert(make_pair(ID, newProvince));
 	}
 
@@ -264,15 +273,15 @@ map<int, pair<double, double>> HoI4Buildings::getProvincePositions()
 		line = line.substr(fooSeparator + 1, line.size());
 
 		int xSeparator = line.find_first_of(';');
-		double x = stof(line.substr(0, IDSeparator));
+		double x = stof(line.substr(0, xSeparator));
 		line = line.substr(xSeparator + 1, line.size());
 
 		int zSeparator = line.find_first_of(';');
-		double z = stof(line.substr(0, IDSeparator));
+		double z = stof(line.substr(0, zSeparator));
 		line = line.substr(zSeparator + 1, line.size());
 
 		int ySeparator = line.find_first_of(';');
-		double y = stof(line.substr(0, IDSeparator));
+		double y = stof(line.substr(0, ySeparator));
 
 		positions.insert(make_pair(ID, make_pair(x, y)));
 	}
@@ -292,6 +301,6 @@ void HoI4Buildings::output() const
 
 	for (auto building: buildings)
 	{
-		out << *building;
+		out << *(building.second);
 	}
 }

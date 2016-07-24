@@ -174,15 +174,17 @@ int V2Province::getPopulation(string type) const
 
 int V2Province::getLiteracyWeightedPopulation(string type) const
 {
-	double literacyWeight = Configuration::getLiteracyWeight();
-	int totalPop = 0;
-	for (auto pop: pops)
-	{
-		// empty string for type gets total population
-		if (type == "" || type == pop->getType())
-		{
-			totalPop += int(pop->getSize() * (pop->getLiteracy() * literacyWeight + (1.0 - literacyWeight)));
-		}
-	}
-	return totalPop;
+	//double literacyWeight = Configuration::getLiteracyWeight();
+	//int totalPop = 0;
+	//for (auto pop: pops)
+	//{
+	//	// empty string for type gets total population
+	//	if (type == "" || type == pop->getType())
+	//	{
+	//		totalPop += int(pop->getSize() * (pop->getLiteracy() * literacyWeight + (1.0 - literacyWeight)));
+	//	}
+	//}
+	//return totalPop;
+
+	return 0;
 }

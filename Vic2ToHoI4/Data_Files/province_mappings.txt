@@ -186,13 +186,13 @@
 	link = { vic2 = 96 hoi4 = 10591 hoi4 = 7879 hoi4 = 4799 }	# Las Vegas -> land, land, land
 	link = { vic2 = 95 hoi4 = 4607 hoi4 = 4521 hoi4 = 12399 hoi4 = 7827 hoi4 = 4736 hoi4 = 12425 hoi4 = 4816 }	# Elko -> land, land, land, land, land, land, land
 	link = { vic2 = 94 hoi4 = 10422 hoi4 = 12134 hoi4 = 1862 hoi4 = 7756 }	# Carson City -> land, land, land, land
-	link = { vic2 = 88 hoi4 = 4657 hoi4 = 7667 hoi4 = 1432 hoi4 = 1601 hoi4 = 6694 hoi4 = 6876 hoi4 = 11763 hoi4 = 4518 hoi4 = 9911 hoi4 = 941 hoi4 = 1651 hoi4 = 10387 hoi4 = 12303 }	# Mariposa -> land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 90 hoi4 = 1562 hoi4 = 7986 hoi4 = 12374 hoi4 = 823 hoi4 = 4727 hoi4 = 7517 }	# San Diego -> land, land, land, land, land, land
-	link = { vic2 = 89 hoi4 = 11859 hoi4 = 9855 hoi4 = 10483 hoi4 = 9814 hoi4 = 11795 hoi4 = 11757 }	# Los Angeles -> land, land, land, land, land, land
-	link = { vic2 = 87 hoi4 = 9637 hoi4 = 6861 hoi4 = 3840 hoi4 = 986 hoi4 = 3784 hoi4 = 6881 hoi4 = 11876 }	# Monterey -> land, land, land, land, land, land, land
-	link = { vic2 = 84 hoi4 = 768 hoi4 = 11658 hoi4 = 9671 hoi4 = 3678 hoi4 = 6699 hoi4 = 677 hoi4 = 6681 hoi4 = 6757 hoi4 = 6745 hoi4 = 3677 }	# San Francisco -> land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 85 hoi4 = 781 hoi4 = 6772 hoi4 = 9730 hoi4 = 610 hoi4 = 6482 hoi4 = 3644 }	# Eureka -> land, land, land, land, land, land
-	link = { vic2 = 86 hoi4 = 10159 hoi4 = 4331 hoi4 = 6665 hoi4 = 3588 hoi4 = 11698 hoi4 = 710 hoi4 = 766 hoi4 = 9697 hoi4 = 9713 }	# Sacramento -> land, land, land, land, land, land, land, land, land
+	link = { vic2 = 88 hoi4 = 11763 hoi4 = 4518 hoi4 = 6876 hoi4 = 6694 hoi4 = 6699 hoi4 = 1601 hoi4 = 1432 hoi4 = 7667 hoi4 = 1651 hoi4 = 4657 hoi4 = 12303 hoi4 = 10387 hoi4 = 941 hoi4 = 9911 hoi4 = 4727 }	# Mariposa -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 90 hoi4 = 1562 hoi4 = 12374 hoi4 = 7986 hoi4 = 823 hoi4 = 7517 }	# San Diego -> land, land, land, land, land
+	link = { vic2 = 89 hoi4 = 9814 hoi4 = 11757 hoi4 = 11795 hoi4 = 10483 hoi4 = 9855 hoi4 = 11859 }	# Los Angeles -> land, land, land, land, land, land
+	link = { vic2 = 87 hoi4 = 9637 hoi4 = 3840 hoi4 = 986 hoi4 = 6881 hoi4 = 11876 hoi4 = 3784 hoi4 = 6861 }	# Monterey -> land, land, land, land, land, land, land
+	link = { vic2 = 84 hoi4 = 9671 hoi4 = 11658 hoi4 = 677 hoi4 = 6681 hoi4 = 3677 hoi4 = 3678 hoi4 = 6745 hoi4 = 6757 }	# San Francisco -> land, land, land, land, land, land, land, land
+	link = { vic2 = 85 hoi4 = 610 hoi4 = 9730 hoi4 = 6772 hoi4 = 768 hoi4 = 781 hoi4 = 6482 hoi4 = 3644 }	# Eureka -> land, land, land, land, land, land, land
+	link = { vic2 = 86 hoi4 = 9713 hoi4 = 710 hoi4 = 9697 hoi4 = 766 hoi4 = 11698 hoi4 = 10159 hoi4 = 3588 hoi4 = 6665 hoi4 = 4331 }	# Sacramento -> land, land, land, land, land, land, land, land, land
 	link = { vic2 = 83 hoi4 = 7721 hoi4 = 10625 hoi4 = 10305 hoi4 = 4347 }	# Klamath Falls -> land, land, land, land
 	link = { vic2 = 82 hoi4 = 1414 hoi4 = 7865 hoi4 = 12183 hoi4 = 4826 hoi4 = 12553 }	# Baker City -> land, land, land, land, land
 	link = { vic2 = 81 hoi4 = 10183 hoi4 = 12211 hoi4 = 4380 hoi4 = 12281 hoi4 = 11495 hoi4 = 505 hoi4 = 11733 hoi4 = 3471 hoi4 = 10151 hoi4 = 4274 hoi4 = 7398 hoi4 = 3513 hoi4 = 4328 hoi4 = 528 }	# Portland -> land, land, land, land, land, land, land, land, land, land, land, land, land, land
@@ -277,7 +277,7 @@
 	link = { vic2 = 54 hoi4 = 9667 hoi4 = 722 hoi4 = 9711 hoi4 = 11725 hoi4 = 774 }	# Windsor -> land, land, land, land, land
 	link = { vic2 = 66 hoi4 = 4417 hoi4 = 7289 hoi4 = 10230 hoi4 = 10174 hoi4 = 10320 hoi4 = 7433 }	# Sherbrooke -> land, land, land, land, land, land
 	link = { vic2 = 65 hoi4 = 12149 }	# Quebec City -> land
-	link = { vic2 = 64 hoi4 = 9601 hoi4 = 7291 }	# Trois-Rivires -> land, land
+	link = { vic2 = 64 hoi4 = 9601 hoi4 = 7291 }	# Trois-Rivières -> land, land
 	link = { vic2 = 58 hoi4 = 4345 hoi4 = 7345 }	# Montreal -> land, land
 	link = { vic2 = 63 hoi4 = 12205 hoi4 = 12276 hoi4 = 1341 hoi4 = 7435 hoi4 = 10700 hoi4 = 1764 hoi4 = 4419 hoi4 = 12223 }	# Temiscaming -> land, land, land, land, land, land, land, land
 	link = { vic2 = 60 hoi4 = 6740 hoi4 = 490 hoi4 = 11682 hoi4 = 3911 hoi4 = 11902 hoi4 = 10249 hoi4 = 7875 hoi4 = 983 hoi4 = 13162 }	# Fort Rupert -> land, land, land, land, land, land, land, land, lake
@@ -296,7 +296,7 @@
 	link = { vic2 = 77 hoi4 = 373 }	# St Pierre & Miquelon -> land
 	link = { vic2 = 74 hoi4 = 12680 hoi4 = 7758 hoi4 = 12505 }	# Saint Johns -> land, land, land
 	link = { vic2 = 75 hoi4 = 7788 hoi4 = 12698 }	# Millertown -> land, land
-	link = { vic2 = 62 hoi4 = 7810 hoi4 = 10534 hoi4 = 7683 hoi4 = 1785 }	# Sept-les -> land, land, land, land
+	link = { vic2 = 62 hoi4 = 7810 hoi4 = 10534 hoi4 = 7683 hoi4 = 1785 }	# Sept-Îles -> land, land, land, land
 	link = { vic2 = 2625 hoi4 = 4720 hoi4 = 4787 hoi4 = 12503 }	# Port Hope Simpson -> land, land, land
 	link = { vic2 = 76 hoi4 = 1426 }	# Hopedale -> land
 	link = { vic2 = 2627 hoi4 = 7364 hoi4 = 3208 }	# Fort Chimo -> land, land
@@ -310,23 +310,23 @@
 	link = { vic2 = 2180 hoi4 = 10832 }	# Chilpancingo -> land
 	link = { vic2 = 2170 hoi4 = 4887 }	# Morelia -> land
 	link = { vic2 = 2167 hoi4 = 2008 }	# Guanajuato -> land
-	link = { vic2 = 2173 hoi4 = 2011 }	# Quertaro -> land
+	link = { vic2 = 2173 hoi4 = 2011 }	# Querétaro -> land
 	link = { vic2 = 2175 hoi4 = 7913 }	# Tulancingo -> land
 	link = { vic2 = 2176 hoi4 = 8089 }	# Puebla -> land
 	link = { vic2 = 2166 hoi4 = 5052 hoi4 = 13089 }	# Guadalajara -> land, land
 	link = { vic2 = 2160 hoi4 = 10172 }	# Aguascalientes -> land
-	link = { vic2 = 2159 hoi4 = 2083 hoi4 = 4956 }	# San Luis Potos -> land, land
+	link = { vic2 = 2159 hoi4 = 2083 hoi4 = 4956 }	# San Luis Potosí -> land, land
 	link = { vic2 = 2158 hoi4 = 10853 hoi4 = 12804 }	# Zacatecas -> land, land
-	link = { vic2 = 2155 hoi4 = 10738 hoi4 = 1952 }	# Torren -> land, land
+	link = { vic2 = 2155 hoi4 = 10738 hoi4 = 1952 }	# Torreón -> land, land
 	link = { vic2 = 2151 hoi4 = 12721 hoi4 = 7973 }	# Saltillo -> land, land
 	link = { vic2 = 2146 hoi4 = 12835 }	# Monterrey -> land
 	link = { vic2 = 2153 hoi4 = 10871 hoi4 = 8003 hoi4 = 7921 hoi4 = 4946 }	# Durango -> land, land, land, land
-	link = { vic2 = 2157 hoi4 = 8057 hoi4 = 1945 }	# Culiacn -> land, land
-	link = { vic2 = 2156 hoi4 = 10895 }	# Mazatln -> land
+	link = { vic2 = 2157 hoi4 = 8057 hoi4 = 1945 }	# Culiacán -> land, land
+	link = { vic2 = 2156 hoi4 = 10895 }	# Mazatlán -> land
 	link = { vic2 = 2161 hoi4 = 12873 }	# Tepic -> land
 	link = { vic2 = 2168 hoi4 = 12746 }	# Puerto Vallarta -> land
 	link = { vic2 = 2169 hoi4 = 2051 }	# Colima -> land
-	link = { vic2 = 2171 hoi4 = 5066 hoi4 = 8032 }	# Los Albailes -> land, land
+	link = { vic2 = 2171 hoi4 = 5066 hoi4 = 8032 }	# Los Albañiles -> land, land
 	link = { vic2 = 2179 hoi4 = 10730 }	# Acapulco -> land
 	link = { vic2 = 2163 hoi4 = 5021 }	# Tampico -> land
 	link = { vic2 = 2162 hoi4 = 12810 hoi4 = 10732 hoi4 = 8079 }	# Veracruz -> land, land, land
@@ -337,14 +337,14 @@
 	link = { vic2 = 2178 hoi4 = 8236 hoi4 = 12712 }	# Collataro -> land, land
 	link = { vic2 = 2182 hoi4 = 12753 }	# Tapachula -> land
 	link = { vic2 = 2181 hoi4 = 1900 }	# Tuxtla -> land
-	link = { vic2 = 2164 hoi4 = 10889 hoi4 = 2021 }	# Minatitln -> land, land
+	link = { vic2 = 2164 hoi4 = 10889 hoi4 = 2021 }	# Minatitlán -> land, land
 	link = { vic2 = 2165 hoi4 = 12867 }	# Villahermosa -> land
 	link = { vic2 = 2184 hoi4 = 4904 }	# Campeche -> land
-	link = { vic2 = 2183 hoi4 = 12715 }	# Mrida -> land
+	link = { vic2 = 2183 hoi4 = 12715 }	# Mérida -> land
 	link = { vic2 = 2185 hoi4 = 4965 }	# Bacalar -> land
 	link = { vic2 = 2152 hoi4 = 10800 hoi4 = 10746 }	# Monclova -> land, land
 	link = { vic2 = 2147 hoi4 = 2104 hoi4 = 12811 hoi4 = 2060 }	# Morelos -> land, land, land
-	link = { vic2 = 2154 hoi4 = 4898 hoi4 = 10916 hoi4 = 12850 }	# Santa Mara del Oro -> land, land, land
+	link = { vic2 = 2154 hoi4 = 4898 hoi4 = 10916 hoi4 = 12850 }	# Santa María del Oro -> land, land, land
 	link = { vic2 = 2144 hoi4 = 12897 }	# Delicias -> land
 	link = { vic2 = 2145 hoi4 = 7935 hoi4 = 10830 }	# Parral -> land, land
 	link = { vic2 = 2142 hoi4 = 12827 hoi4 = 12745 hoi4 = 5071 }	# Chihuahua -> land, land, land
@@ -356,13 +356,13 @@
 	link = { vic2 = 2139 hoi4 = 12461 hoi4 = 1892 hoi4 = 12859 hoi4 = 7964 hoi4 = 1904 }	# Rosarito -> land, land, land, land, land
 	# 
 	# ## Central America
-	link = { vic2 = 2199 hoi4 = 10728 }	# Len -> land
+	link = { vic2 = 2199 hoi4 = 10728 }	# León -> land
 	link = { vic2 = 3110 hoi4 = 13178 hoi4 = 13139 }	# Lake Nicaragua -> lake, lake
 	link = { vic2 = 2197 hoi4 = 12738 }	# Managua -> land
 	link = { vic2 = 2198 hoi4 = 1988 }	# Rivas -> land
 	link = { vic2 = 2202 hoi4 = 13092 }	# Liberia -> land
-	link = { vic2 = 2203 hoi4 = 12878 }	# Limn -> land
-	link = { vic2 = 2201 hoi4 = 13087 }	# San Jos -> land
+	link = { vic2 = 2203 hoi4 = 12878 }	# Limón -> land
+	link = { vic2 = 2201 hoi4 = 13087 }	# San José -> land
 	link = { vic2 = 2200 hoi4 = 2075 }	# Bluefields -> land
 	link = { vic2 = 2196 vic2 = 2195 hoi4 = 2031 }	# Puerto Lempira, La Ceiba -> land
 	link = { vic2 = 2193 hoi4 = 12865 }	# Comayagua -> land
@@ -373,11 +373,11 @@
 	link = { vic2 = 2187 hoi4 = 10842 }	# Quetzaltenango -> land
 	link = { vic2 = 2188 hoi4 = 13085 }	# Puerto Barrios -> land
 	link = { vic2 = 2205 hoi4 = 4611 }	# David -> land
-	link = { vic2 = 2206 hoi4 = 4624 hoi4 = 1633 }	# Penonom -> land, land
+	link = { vic2 = 2206 hoi4 = 4624 hoi4 = 1633 }	# Penonomé -> land, land
 	link = { vic2 = 2208 hoi4 = 10482 }	# Yaviza -> land
 	link = { vic2 = 2204 hoi4 = 7630 }	# Panama City -> land
 	link = { vic2 = 1723 hoi4 = 7617 }	# Balboa -> land
-	link = { vic2 = 2189 hoi4 = 4991 }	# Sayaxch -> land
+	link = { vic2 = 2189 hoi4 = 4991 }	# Sayaxché -> land
 	link = { vic2 = 2190 hoi4 = 2077 }	# Belize -> land
 	# 
 	# ## Carribean
@@ -401,7 +401,7 @@
 	link = { vic2 = 2215 hoi4 = 1594 }	# Cap Haitien -> land
 	link = { vic2 = 2217 vic2 = 2218 hoi4 = 12304 hoi4 = 12477 }	# MANY-TO-MANY: Jamaica, Cayman Islands -> land, land
 	link = { vic2 = 2212 hoi4 = 1550 hoi4 = 12347 hoi4 = 7590 }	# Santiago de Cuba -> land, land, land
-	link = { vic2 = 2211 hoi4 = 10374 hoi4 = 4476 hoi4 = 7546 }	# Camagey -> land, land, land
+	link = { vic2 = 2211 hoi4 = 10374 hoi4 = 4476 hoi4 = 7546 }	# Camagüey -> land, land, land
 	link = { vic2 = 2210 hoi4 = 10498 hoi4 = 7451 }	# Jagua -> land, land
 	link = { vic2 = 2209 hoi4 = 4600 hoi4 = 7622 }	# Havana -> land, land
 	link = { vic2 = 2220 hoi4 = 10440 }	# Turks And Caicos -> land
@@ -424,7 +424,7 @@
 	link = { vic2 = 2301 hoi4 = 8191 }	# Puerto Maldonado -> land
 	link = { vic2 = 2303 hoi4 = 2182 hoi4 = 10940 }	# Puno -> land, land
 	link = { vic2 = 2300 hoi4 = 2226 }	# Pucallpa -> land
-	link = { vic2 = 2293 hoi4 = 2212 }	# Hunuco -> land
+	link = { vic2 = 2293 hoi4 = 2212 }	# Huánuco -> land
 	link = { vic2 = 2296 hoi4 = 2162 }	# Huancavelica -> land
 	link = { vic2 = 2299 hoi4 = 12953 }	# Ayacucho -> land
 	link = { vic2 = 2298 hoi4 = 12983 hoi4 = 5190 }	# Huaraz -> land, land
@@ -450,21 +450,21 @@
 	link = { vic2 = 2281 hoi4 = 8047 }	# Esmereldas -> land
 	# 
 	# ## Colombia
-	link = { vic2 = 2257 vic2 = 2259 hoi4 = 10846 }	# Popayn, Pasto -> land
+	link = { vic2 = 2257 vic2 = 2259 hoi4 = 10846 }	# Popayán, Pasto -> land
 	link = { vic2 = 2258 hoi4 = 7936 hoi4 = 7991 }	# Buenaventura -> land, land
 	link = { vic2 = 2263 hoi4 = 12825 }	# El Encanto -> land
 	link = { vic2 = 2261 hoi4 = 12729 hoi4 = 10792 }	# Obando -> land, land
-	link = { vic2 = 2260 hoi4 = 12770 hoi4 = 2007 }	# San Jos del Guaviare -> land, land
+	link = { vic2 = 2260 hoi4 = 12770 hoi4 = 2007 }	# San José del Guaviare -> land, land
 	link = { vic2 = 2262 hoi4 = 5026 hoi4 = 1887 }	# Casanare -> land, land
 	link = { vic2 = 2249 hoi4 = 7993 }	# Tunja -> land
-	link = { vic2 = 2251 hoi4 = 12845 }	# Ccuta -> land
+	link = { vic2 = 2251 hoi4 = 12845 }	# Cúcuta -> land
 	link = { vic2 = 2255 hoi4 = 1937 hoi4 = 8056 hoi4 = 2085 }	# Barranquilla -> land, land, land
-	link = { vic2 = 2247 hoi4 = 10747 }	# Bogot -> land
-	link = { vic2 = 2248 hoi4 = 2079 }	# Ibagu -> land
+	link = { vic2 = 2247 hoi4 = 10747 }	# Bogotá -> land
+	link = { vic2 = 2248 hoi4 = 2079 }	# Ibagué -> land
 	link = { vic2 = 2256 hoi4 = 12872 }	# Cali -> land
-	link = { vic2 = 2253 hoi4 = 4969 hoi4 = 10494 }	# Quibd -> land, land
+	link = { vic2 = 2253 hoi4 = 4969 hoi4 = 10494 }	# Quibdó -> land, land
 	link = { vic2 = 2250 hoi4 = 10790 }	# Manizales -> land
-	link = { vic2 = 2252 hoi4 = 2023 hoi4 = 12703 }	# Medelln -> land, land
+	link = { vic2 = 2252 hoi4 = 2023 hoi4 = 12703 }	# Medellín -> land, land
 	link = { vic2 = 2254 hoi4 = 12790 hoi4 = 10864 }	# Cartagena de Indias -> land, land
 	# 
 	# ## Venezuela
@@ -481,8 +481,8 @@
 	link = { vic2 = 2278 hoi4 = 8050 }	# San Fernando de Atabapo -> land
 	link = { vic2 = 2275 hoi4 = 10879 hoi4 = 10736 hoi4 = 10849 }	# Angostura -> land, land, land
 	link = { vic2 = 2276 hoi4 = 1981 hoi4 = 10767 hoi4 = 10823 }	# Curiapo -> land, land, land
-	link = { vic2 = 2269 hoi4 = 10912 }	# Giria -> land
-	link = { vic2 = 2267 hoi4 = 7968 }	# Cuman -> land
+	link = { vic2 = 2269 hoi4 = 10912 }	# Güiria -> land
+	link = { vic2 = 2267 hoi4 = 7968 }	# Cumaná -> land
 	# 
 	# ## Guyana
 	link = { vic2 = 2243 hoi4 = 12716 }	# Essequibo -> land
@@ -495,29 +495,29 @@
 	link = { vic2 = 2241 hoi4 = 12885 }	# Cayenne -> land
 	# 
 	# ## Brazil
-	link = { vic2 = 2549 hoi4 = 8160 }	# Tarauac -> land
+	link = { vic2 = 2549 hoi4 = 8160 }	# Tarauacá -> land
 	link = { vic2 = 2407 hoi4 = 2198 }	# Tabatinga -> land
 	link = { vic2 = 2404 hoi4 = 10960 hoi4 = 5216 }	# Tefe -> land, land
 	link = { vic2 = 2401 hoi4 = 13083 hoi4 = 8185 }	# Marabitanas -> land, land
 	link = { vic2 = 2403 hoi4 = 12919 hoi4 = 8254 }	# Cachoeira -> land, land
-	link = { vic2 = 2532 hoi4 = 5083 }	# Forte So Joaquim -> land
+	link = { vic2 = 2532 hoi4 = 5083 }	# Forte São Joaquim -> land
 	link = { vic2 = 2402 hoi4 = 10934 }	# Manaus -> land
-	link = { vic2 = 2412 vic2 = 2408 hoi4 = 5008 }	# bidos, Oriximina -> land
-	link = { vic2 = 2415 vic2 = 2414 hoi4 = 4980 }	# Macap, Amap -> land
-	link = { vic2 = 2411 hoi4 = 1979 }	# Santarm -> land
+	link = { vic2 = 2412 vic2 = 2408 hoi4 = 5008 }	# Óbidos, Oriximina -> land
+	link = { vic2 = 2415 vic2 = 2414 hoi4 = 4980 }	# Macapá, Amapá -> land
+	link = { vic2 = 2411 hoi4 = 1979 }	# Santarém -> land
 	link = { vic2 = 2405 hoi4 = 5232 hoi4 = 12965 }	# Borba -> land, land
-	link = { vic2 = 2550 hoi4 = 11010 hoi4 = 12939 }	# Forte do Prncipe -> land, land
+	link = { vic2 = 2550 hoi4 = 11010 hoi4 = 12939 }	# Forte do Príncipe -> land, land
 	link = { vic2 = 2417 hoi4 = 8175 hoi4 = 2142 hoi4 = 2147 }	# Vila Bela -> land, land, land
-	link = { vic2 = 2418 hoi4 = 2204 }	# Cuiab -> land
+	link = { vic2 = 2418 hoi4 = 2204 }	# Cuiabá -> land
 	link = { vic2 = 2421 hoi4 = 12987 hoi4 = 5115 hoi4 = 8140 hoi4 = 5148 }	# Vila Boa -> land, land, land, land
 	link = { vic2 = 2422 hoi4 = 12959 hoi4 = 5208 }	# Aganja -> land, land
 	link = { vic2 = 2444 hoi4 = 2190 hoi4 = 12923 hoi4 = 2218 }	# Paracatu -> land, land, land
 	link = { vic2 = 2438 hoi4 = 8129 hoi4 = 5174 }	# Vila do Barra -> land, land
 	link = { vic2 = 2600 hoi4 = 2035 hoi4 = 8172 }	# Altamira -> land, land
-	link = { vic2 = 2413 hoi4 = 10956 }	# Marab -> land
+	link = { vic2 = 2413 hoi4 = 10956 }	# Marabá -> land
 	link = { vic2 = 2423 hoi4 = 2168 hoi4 = 5151 }	# Palmas -> land, land
-	link = { vic2 = 2410 hoi4 = 10874 hoi4 = 12999 hoi4 = 12853 hoi4 = 2214 }	# Belm -> land, land, land, land
-	link = { vic2 = 2424 hoi4 = 5220 hoi4 = 12933 }	# So Lus -> land, land
+	link = { vic2 = 2410 hoi4 = 10874 hoi4 = 12999 hoi4 = 12853 hoi4 = 2214 }	# Belém -> land, land, land, land
+	link = { vic2 = 2424 hoi4 = 5220 hoi4 = 12933 }	# São Luís -> land, land
 	link = { vic2 = 2425 hoi4 = 12913 hoi4 = 12947 hoi4 = 2150 }	# Chapada -> land, land, land
 	link = { vic2 = 2427 hoi4 = 5153 hoi4 = 10984 hoi4 = 5204 hoi4 = 5218 }	# Oeiras -> land, land, land, land
 	link = { vic2 = 2426 hoi4 = 2228 }	# Teresina -> land
@@ -525,20 +525,20 @@
 	link = { vic2 = 2430 hoi4 = 2164 }	# Crato -> land
 	link = { vic2 = 2433 hoi4 = 8227 hoi4 = 10345 }	# Cabrobo -> land, land
 	link = { vic2 = 2437 hoi4 = 10392 hoi4 = 5194 hoi4 = 8177 hoi4 = 10926 hoi4 = 8242 hoi4 = 4617 }	# Juazeiro -> land, land, land, land, land, land
-	link = { vic2 = 2440 hoi4 = 8233 hoi4 = 12903 hoi4 = 12422 hoi4 = 5223 }	# Vitria da Conquista -> land, land, land, land
-	link = { vic2 = 2443 hoi4 = 7589 hoi4 = 4570 hoi4 = 12938 hoi4 = 12909 hoi4 = 10931 }	# Januria -> land, land, land, land, land
+	link = { vic2 = 2440 hoi4 = 8233 hoi4 = 12903 hoi4 = 12422 hoi4 = 5223 }	# Vitória da Conquista -> land, land, land, land
+	link = { vic2 = 2443 hoi4 = 7589 hoi4 = 4570 hoi4 = 12938 hoi4 = 12909 hoi4 = 10931 }	# Januária -> land, land, land, land, land
 	link = { vic2 = 2445 hoi4 = 2167 hoi4 = 12977 hoi4 = 7636 hoi4 = 10945 hoi4 = 12937 }	# Uberaba -> land, land, land, land, land
-	link = { vic2 = 2442 hoi4 = 8148 hoi4 = 8210 hoi4 = 7476 }	# Sabar -> land, land, land
+	link = { vic2 = 2442 hoi4 = 8148 hoi4 = 8210 hoi4 = 7476 }	# Sabará -> land, land, land
 	link = { vic2 = 2441 hoi4 = 8226 hoi4 = 12334 }	# Ouro Preto -> land, land
-	link = { vic2 = 2446 hoi4 = 12438 hoi4 = 10360 hoi4 = 12479 hoi4 = 2185 }	# So Joo del Rey -> land, land, land, land
+	link = { vic2 = 2446 hoi4 = 12438 hoi4 = 10360 hoi4 = 12479 hoi4 = 2185 }	# São João del Rey -> land, land, land, land
 	link = { vic2 = 2452 hoi4 = 5186 hoi4 = 12972 }	# Campinas -> land, land
 	link = { vic2 = 2456 hoi4 = 10994 hoi4 = 11003 }	# Araraquara -> land, land
 	link = { vic2 = 2453 hoi4 = 1583 }	# Assis -> land
-	link = { vic2 = 2419 hoi4 = 8189 hoi4 = 10959 hoi4 = 2181 hoi4 = 2111 }	# Corumb -> land, land, land, land
+	link = { vic2 = 2419 hoi4 = 8189 hoi4 = 10959 hoi4 = 2181 hoi4 = 2111 }	# Corumbá -> land, land, land, land
 	link = { vic2 = 2416 hoi4 = 5200 hoi4 = 12951 }	# Dourados -> land, land
 	link = { vic2 = 2460 hoi4 = 8239 hoi4 = 2109 }	# Castro -> land, land
 	link = { vic2 = 2458 hoi4 = 5178 hoi4 = 4587 }	# Guarapuava -> land, land
-	link = { vic2 = 2462 hoi4 = 12466 }	# So Miguel -> land
+	link = { vic2 = 2462 hoi4 = 12466 }	# São Miguel -> land
 	link = { vic2 = 2459 hoi4 = 1529 hoi4 = 5156 }	# Lajes -> land, land
 	link = { vic2 = 2465 hoi4 = 1542 hoi4 = 5110 }	# Passo Fundo -> land, land
 	link = { vic2 = 2463 hoi4 = 12396 hoi4 = 10447 }	# Porto Alegre -> land, land
@@ -547,42 +547,42 @@
 	link = { vic2 = 2455 hoi4 = 5167 hoi4 = 7553 }	# Iguape -> land, land
 	link = { vic2 = 2306 hoi4 = 11008 }	# Sorocaba -> land
 	link = { vic2 = 2451 hoi4 = 10432 hoi4 = 5112 }	# Santos -> land, land
-	link = { vic2 = 2450 hoi4 = 10513 hoi4 = 10947 }	# So Paulo -> land, land
+	link = { vic2 = 2450 hoi4 = 10513 hoi4 = 10947 }	# São Paulo -> land, land
 	link = { vic2 = 2447 hoi4 = 10980 hoi4 = 5172 }	# Rio de Janeiro -> land, land
 	link = { vic2 = 2448 hoi4 = 12996 hoi4 = 8190 }	# Campos -> land, land
-	link = { vic2 = 2449 hoi4 = 8196 hoi4 = 10999 hoi4 = 2153 }	# Vitria -> land, land, land
+	link = { vic2 = 2449 hoi4 = 8196 hoi4 = 10999 hoi4 = 2153 }	# Vitória -> land, land, land
 	link = { vic2 = 2439 hoi4 = 10419 hoi4 = 11002 }	# Porto Seguro -> land, land
 	link = { vic2 = 2436 hoi4 = 10946 hoi4 = 8197 hoi4 = 8184 }	# Salvador de Bahia -> land, land, land
 	link = { vic2 = 2435 hoi4 = 8143 }	# Aracaju -> land
-	link = { vic2 = 2434 hoi4 = 10939 hoi4 = 10998 hoi4 = 1524 hoi4 = 5182 }	# Macei -> land, land, land, land
+	link = { vic2 = 2434 hoi4 = 10939 hoi4 = 10998 hoi4 = 1524 hoi4 = 5182 }	# Maceió -> land, land, land, land
 	link = { vic2 = 2432 hoi4 = 5168 hoi4 = 1446 hoi4 = 12961 hoi4 = 10967 }	# Recife -> land, land, land, land
-	link = { vic2 = 2428 hoi4 = 10989 hoi4 = 2227 hoi4 = 7561 }	# Paraba -> land, land, land
+	link = { vic2 = 2428 hoi4 = 10989 hoi4 = 2227 hoi4 = 7561 }	# Paraíba -> land, land, land
 	link = { vic2 = 2431 hoi4 = 10933 hoi4 = 2175 }	# Natal -> land, land
 	# 
 	# ## Uruguay
 	link = { vic2 = 2344 hoi4 = 10362 hoi4 = 12336 hoi4 = 4457 }	# Montevideo -> land, land, land
 	link = { vic2 = 2347 hoi4 = 12496 hoi4 = 1654 hoi4 = 12481 hoi4 = 1641 hoi4 = 10347 }	# Melo -> land, land, land, land, land
-	link = { vic2 = 2346 hoi4 = 4575 hoi4 = 4604 }	# Tacuaremb -> land, land
+	link = { vic2 = 2346 hoi4 = 4575 hoi4 = 4604 }	# Tacuarembó -> land, land
 	link = { vic2 = 2464 hoi4 = 7638 hoi4 = 4436 }	# Pelotas -> land, land
 	link = { vic2 = 2467 hoi4 = 4589 hoi4 = 1598 hoi4 = 1585 }	# Alegrete -> land, land, land
 	link = { vic2 = 2466 hoi4 = 7581 hoi4 = 7594 }	# Santa Maria -> land, land
-	link = { vic2 = 2345 hoi4 = 12468 hoi4 = 10502 hoi4 = 1613 hoi4 = 12440 hoi4 = 1626 }	# Paysand -> land, land, land, land, land
+	link = { vic2 = 2345 hoi4 = 12468 hoi4 = 10502 hoi4 = 1613 hoi4 = 12440 hoi4 = 1626 }	# Paysandú -> land, land, land, land, land
 	# 
 	# ## Paraguay
 	link = { vic2 = 2340 hoi4 = 2173 }	# Pilar -> land
-	link = { vic2 = 2341 hoi4 = 2194 }	# Encarnacin -> land
+	link = { vic2 = 2341 hoi4 = 2194 }	# Encarnación -> land
 	link = { vic2 = 2339 hoi4 = 2152 }	# Asuncion -> land
 	link = { vic2 = 2342 hoi4 = 12901 }	# San Pedro -> land
-	link = { vic2 = 2343 hoi4 = 11023 }	# Concepcin -> land
+	link = { vic2 = 2343 hoi4 = 11023 }	# Concepción -> land
 	link = { vic2 = 2420 hoi4 = 8224 }	# Iguatemi -> land
-	link = { vic2 = 2338 hoi4 = 5165 hoi4 = 8203 }	# Puerto Guaran -> land, land
+	link = { vic2 = 2338 hoi4 = 5165 hoi4 = 8203 }	# Puerto Guaraní -> land, land
 	link = { vic2 = 2337 hoi4 = 10973 }	# Fortin Falcon -> land
 	# 
 	# ## Bolivia
 	link = { vic2 = 2315 hoi4 = 5229 }	# Tarija -> land
-	link = { vic2 = 2314 hoi4 = 2174 }	# Potos -> land
+	link = { vic2 = 2314 hoi4 = 2174 }	# Potosí -> land
 	link = { vic2 = 2313 hoi4 = 12930 hoi4 = 10987 }	# Chuquisaca -> land, land
-	link = { vic2 = 2318 hoi4 = 5179 hoi4 = 2160 hoi4 = 12902 hoi4 = 12916 hoi4 = 12979 }	# Robor -> land, land, land, land, land
+	link = { vic2 = 2318 hoi4 = 5179 hoi4 = 2160 hoi4 = 12902 hoi4 = 12916 hoi4 = 12979 }	# Roboré -> land, land, land, land, land
 	link = { vic2 = 2317 hoi4 = 12973 }	# San Ignacio -> land
 	link = { vic2 = 2316 hoi4 = 10924 }	# Santa Cruz -> land
 	link = { vic2 = 2311 hoi4 = 10938 }	# Cochabamba -> land
@@ -596,71 +596,71 @@
 	link = { vic2 = 2307 vic2 = 2308 hoi4 = 5131 }	# Iquique, Arica -> land
 	link = { vic2 = 2309 hoi4 = 8231 hoi4 = 8217 }	# Calama -> land, land
 	link = { vic2 = 2305 hoi4 = 5171 hoi4 = 12994 hoi4 = 5146 }	# Antofagasta -> land, land, land
-	link = { vic2 = 2322 hoi4 = 12914 hoi4 = 5228 hoi4 = 11000 hoi4 = 5192 }	# Copiap -> land, land, land, land
+	link = { vic2 = 2322 hoi4 = 12914 hoi4 = 5228 hoi4 = 11000 hoi4 = 5192 }	# Copiapó -> land, land, land, land
 	link = { vic2 = 2323 hoi4 = 8194 }	# La Serena -> land
-	link = { vic2 = 2326 hoi4 = 5191 }	# Via del Mar -> land
+	link = { vic2 = 2326 hoi4 = 5191 }	# Viña del Mar -> land
 	link = { vic2 = 2324 hoi4 = 650 }	# Santiago -> land
-	link = { vic2 = 2325 hoi4 = 8222 }	# Valparaso -> land
+	link = { vic2 = 2325 hoi4 = 8222 }	# Valparaíso -> land
 	link = { vic2 = 2327 hoi4 = 8229 }	# Talca -> land
-	link = { vic2 = 2331 hoi4 = 8251 }	# Chilln -> land
+	link = { vic2 = 2331 hoi4 = 8251 }	# Chillán -> land
 	link = { vic2 = 2330 hoi4 = 12984 }	# Cauquenes -> land
 	link = { vic2 = 2328 vic2 = 2329 hoi4 = 5121 hoi4 = 12920 }	# MANY-TO-MANY: Valdivia, Temuco -> land, land
 	link = { vic2 = 2332 hoi4 = 5169 hoi4 = 12954 hoi4 = 5118 }	# Osorno -> land, land, land
-	link = { vic2 = 2333 hoi4 = 8218 hoi4 = 8198 hoi4 = 10961 hoi4 = 2161 hoi4 = 5159 }	# Puerto Aisn -> land, land, land, land, land
+	link = { vic2 = 2333 hoi4 = 8218 hoi4 = 8198 hoi4 = 10961 hoi4 = 2161 hoi4 = 5159 }	# Puerto Aisén -> land, land, land, land, land
 	link = { vic2 = 2334 hoi4 = 5201 hoi4 = 5215 }	# Punta Arenas -> land, land
 	link = { vic2 = 2335 hoi4 = 5209 }	# Porvenir -> land
 	# 
 	# ## Argentina
 	link = { vic2 = 2366 hoi4 = 2209 }	# Formosa -> land
 	link = { vic2 = 2367 hoi4 = 2195 }	# Xolotas -> land
-	link = { vic2 = 2365 hoi4 = 12943 }	# Villa ngela -> land
+	link = { vic2 = 2365 hoi4 = 12943 }	# Villa Ángela -> land
 	link = { vic2 = 2364 hoi4 = 2106 hoi4 = 12922 }	# Resistencia -> land, land
-	link = { vic2 = 2377 hoi4 = 10986 }	# Aatuya -> land
+	link = { vic2 = 2377 hoi4 = 10986 }	# Añatuya -> land
 	link = { vic2 = 2376 hoi4 = 2208 }	# Santiago del Estero -> land
 	link = { vic2 = 2362 hoi4 = 5213 hoi4 = 8169 }	# Reconquista -> land, land
 	link = { vic2 = 2356 hoi4 = 12964 }	# Corrientes -> land
-	link = { vic2 = 2357 hoi4 = 8187 }	# Curuz Cuati -> land
-	link = { vic2 = 2358 hoi4 = 8238 }	# Santo Toms -> land
+	link = { vic2 = 2357 hoi4 = 8187 }	# Curuzú Cuatiá -> land
+	link = { vic2 = 2358 hoi4 = 8238 }	# Santo Tomás -> land
 	link = { vic2 = 2554 hoi4 = 11007 }	# Posadas -> land
-	link = { vic2 = 2381 hoi4 = 10985 }	# Ro Cuarto -> land
+	link = { vic2 = 2381 hoi4 = 10985 }	# Río Cuarto -> land
 	link = { vic2 = 2371 vic2 = 2372 vic2 = 2370 vic2 = 2369 vic2 = 2368 hoi4 = 2224 hoi4 = 10944 }	# MANY-TO-MANY: Equia, Rivadavia, Cochinoca, Jujuy, Salta -> land, land
-	link = { vic2 = 2373 hoi4 = 10965 }	# Tucumn -> land
+	link = { vic2 = 2373 hoi4 = 10965 }	# Tucumán -> land
 	link = { vic2 = 2375 hoi4 = 8195 hoi4 = 11001 }	# Vinchina -> land, land
 	link = { vic2 = 2374 hoi4 = 5143 hoi4 = 8216 }	# Catamarca -> land, land
 	link = { vic2 = 2385 hoi4 = 12978 hoi4 = 8253 }	# La Rioja -> land, land
-	link = { vic2 = 2378 hoi4 = 8255 }	# Mailn -> land
+	link = { vic2 = 2378 hoi4 = 8255 }	# Mailín -> land
 	link = { vic2 = 2380 hoi4 = 10975 }	# Villa Nueva -> land
-	link = { vic2 = 2379 hoi4 = 12942 }	# Crdoba de Argentina -> land
+	link = { vic2 = 2379 hoi4 = 12942 }	# Córdoba de Argentina -> land
 	link = { vic2 = 2386 hoi4 = 11022 }	# Santa Rita -> land
 	link = { vic2 = 2383 hoi4 = 5152 hoi4 = 2158 }	# San Luis -> land, land
 	link = { vic2 = 2384 hoi4 = 7550 hoi4 = 5184 }	# Mercedes -> land, land
 	link = { vic2 = 2387 hoi4 = 2136 }	# San Juan -> land
 	link = { vic2 = 2388 hoi4 = 12928 }	# Calingasta -> land
 	link = { vic2 = 2389 hoi4 = 2179 hoi4 = 10964 }	# Mendoza -> land, land
-	link = { vic2 = 2382 hoi4 = 8208 }	# Renanc -> land
+	link = { vic2 = 2382 hoi4 = 8208 }	# Renancó -> land
 	link = { vic2 = 2361 hoi4 = 7500 hoi4 = 5163 hoi4 = 2172 hoi4 = 13000 }	# Sancti Spiritu -> land, land, land, land
 	link = { vic2 = 2363 }	# Rosario -> DROPPED
-	link = { vic2 = 2360 hoi4 = 10515 hoi4 = 1449 }	# Paran -> land, land
-	link = { vic2 = 2359 hoi4 = 10943 hoi4 = 12453 }	# Coln -> land, land
-	link = { vic2 = 2393 hoi4 = 10935 }	# Teln -> land
+	link = { vic2 = 2360 hoi4 = 10515 hoi4 = 1449 }	# Paraná -> land, land
+	link = { vic2 = 2359 hoi4 = 10943 hoi4 = 12453 }	# Colón -> land, land
+	link = { vic2 = 2393 hoi4 = 10935 }	# Telén -> land
 	link = { vic2 = 2353 hoi4 = 12998 hoi4 = 10418 hoi4 = 1596 hoi4 = 10375 }	# Trenque Lauquen -> land, land, land, land
 	link = { vic2 = 2350 hoi4 = 10402 hoi4 = 12394 hoi4 = 4602 hoi4 = 1568 hoi4 = 1555 hoi4 = 12409 }	# Azul -> land, land, land, land, land, land
 	link = { vic2 = 2352 hoi4 = 1624 hoi4 = 7621 }	# Mar del Plata -> land, land
-	link = { vic2 = 2354 hoi4 = 1639 hoi4 = 4643 }	# Baha Blanca -> land, land
+	link = { vic2 = 2354 hoi4 = 1639 hoi4 = 4643 }	# Bahía Blanca -> land, land
 	link = { vic2 = 2351 hoi4 = 12379 hoi4 = 4573 }	# La Plata -> land, land
-	link = { vic2 = 2349 hoi4 = 12351 hoi4 = 10390 }	# Junn -> land, land
+	link = { vic2 = 2349 hoi4 = 12351 hoi4 = 10390 }	# Junín -> land, land
 	link = { vic2 = 2348 hoi4 = 12364 }	# Buenos Aires -> land
 	link = { vic2 = 2390 hoi4 = 2215 hoi4 = 11021 hoi4 = 5219 hoi4 = 12970 hoi4 = 8215 hoi4 = 10992 }	# San Rafael -> land, land, land, land, land, land
-	link = { vic2 = 2395 hoi4 = 2149 }	# Curac -> land
-	link = { vic2 = 2391 hoi4 = 8192 }	# Neuqun -> land
+	link = { vic2 = 2395 hoi4 = 2149 }	# Curacó -> land
+	link = { vic2 = 2391 hoi4 = 8192 }	# Neuquén -> land
 	link = { vic2 = 2394 hoi4 = 12982 hoi4 = 2199 hoi4 = 12306 }	# Bariloche -> land, land, land
 	link = { vic2 = 2355 hoi4 = 12321 hoi4 = 12494 }	# Carmen -> land, land
 	link = { vic2 = 2392 hoi4 = 10981 }	# Viedma -> land
 	link = { vic2 = 2397 hoi4 = 8176 hoi4 = 8161 }	# Esquel -> land, land
 	link = { vic2 = 2396 hoi4 = 10953 hoi4 = 12349 hoi4 = 11005 }	# Rawson -> land, land, land
 	link = { vic2 = 2398 hoi4 = 8913 hoi4 = 12952 hoi4 = 2169 }	# Puerto Deseado -> land, land, land
-	link = { vic2 = 2399 hoi4 = 5173 hoi4 = 12946 }	# Ro Gallegos -> land, land
-	link = { vic2 = 2400 hoi4 = 11009 }	# Ro Grande -> land
+	link = { vic2 = 2399 hoi4 = 5173 hoi4 = 12946 }	# Río Gallegos -> land, land
+	link = { vic2 = 2400 hoi4 = 11009 }	# Río Grande -> land
 	link = { vic2 = 2131 hoi4 = 12960 }	# Falkland Islands -> land
 	# 
 	# 
@@ -734,7 +734,7 @@
 	link = { vic2 = 2040 hoi4 = 10845 }	# Songea -> land
 	link = { vic2 = 2039 hoi4 = 12944 }	# Lindi -> land
 	link = { vic2 = 2063 hoi4 = 2202 }	# Ibo -> land
-	link = { vic2 = 2060 hoi4 = 2123 }	# Moambique -> land
+	link = { vic2 = 2060 hoi4 = 2123 }	# Moçambique -> land
 	link = { vic2 = 2061 hoi4 = 5164 }	# Angoche -> land
 	link = { vic2 = 2064 hoi4 = 2217 hoi4 = 2159 }	# Nampula -> land, land
 	link = { vic2 = 2581 hoi4 = 10972 }	# Mataka -> land
@@ -903,7 +903,7 @@
 	link = { vic2 = 2107 hoi4 = 2213 }	# Klerksdorp -> land
 	link = { vic2 = 2109 hoi4 = 2171 }	# Lydenburg -> land
 	link = { vic2 = 2105 vic2 = 2106 hoi4 = 10400 }	# Pretoria, Witwatersrand -> land
-	link = { vic2 = 2004 hoi4 = 12985 }	# Momedes -> land
+	link = { vic2 = 2004 hoi4 = 12985 }	# Moçâmedes -> land
 	link = { vic2 = 2075 hoi4 = 12963 }	# Serowe -> land
 	link = { vic2 = 2113 hoi4 = 8178 }	# Ulundi -> land
 	link = { vic2 = 2114 hoi4 = 7900 }	# Mbabane -> land
@@ -1113,7 +1113,7 @@
 	# Austria
 	link = { vic2 = 616 hoi4 = 9679 hoi4 = 9648 hoi4 = 9646 hoi4 = 653 }	# Graz -> land, land, land, land
 	link = { vic2 = 624 hoi4 = 9661 hoi4 = 11630 hoi4 = 6690 }	# Eisenstadt -> land, land, land
-	link = { vic2 = 620 hoi4 = 704 }	# Sankt Plten -> land
+	link = { vic2 = 620 hoi4 = 704 }	# Sankt Pölten -> land
 	link = { vic2 = 617 hoi4 = 9650 hoi4 = 11651 }	# Judenburg -> land, land
 	link = { vic2 = 618 hoi4 = 3673 hoi4 = 6687 hoi4 = 3674 }	# Klagenfurt -> land, land, land
 	link = { vic2 = 619 hoi4 = 11666 hoi4 = 6739 hoi4 = 9527 hoi4 = 3718 hoi4 = 3700 }	# Vienna -> land, land, land, land, land
@@ -1183,10 +1183,10 @@
 	link = { vic2 = 2533 hoi4 = 11639 hoi4 = 9670 hoi4 = 711 }	# Targu Mures -> land, land, land
 	link = { vic2 = 655 hoi4 = 693 hoi4 = 3694 hoi4 = 11622 }	# Gyulafehervar -> land, land, land
 	link = { vic2 = 656 hoi4 = 9619 hoi4 = 3665 hoi4 = 6679 hoi4 = 676 }	# Deva -> land, land, land, land
-	link = { vic2 = 651 hoi4 = 3696 hoi4 = 713 hoi4 = 9687 hoi4 = 746 }	# Szatmr -> land, land, land, land
+	link = { vic2 = 651 hoi4 = 3696 hoi4 = 713 hoi4 = 9687 hoi4 = 746 }	# Szatmár -> land, land, land, land
 	link = { vic2 = 654 hoi4 = 6714 hoi4 = 3709 hoi4 = 6711 }	# Cluj -> land, land, land
 	link = { vic2 = 647 hoi4 = 6682 hoi4 = 6697 hoi4 = 9640 hoi4 = 696 }	# Oradea -> land, land, land, land
-	link = { vic2 = 653 hoi4 = 3649 hoi4 = 662 hoi4 = 11592 }	# Resicabnya -> land, land, land
+	link = { vic2 = 653 hoi4 = 3649 hoi4 = 662 hoi4 = 11592 }	# Resicabánya -> land, land, land
 	link = { vic2 = 652 hoi4 = 646 hoi4 = 11608 hoi4 = 9606 }	# Temesvar -> land, land, land
 	link = { vic2 = 665 hoi4 = 3645 hoi4 = 6667 hoi4 = 11605 hoi4 = 637 }	# Tirgu Jiu -> land, land, land, land
 	link = { vic2 = 666 hoi4 = 3630 hoi4 = 11588 hoi4 = 6652 hoi4 = 11657 }	# Craiova -> land, land, land, land
@@ -1209,32 +1209,32 @@
 	link = { vic2 = 815 hoi4 = 6923 hoi4 = 9862 hoi4 = 878 hoi4 = 893 hoi4 = 11813 hoi4 = 3937 }	# Plovdiv -> land, land, land, land, land, land
 	# 
 	# ## Hungary
-	link = { vic2 = 650 hoi4 = 11644 hoi4 = 9656 hoi4 = 679 hoi4 = 11646 hoi4 = 699 }	# Bkscsaba -> land, land, land, land, land
+	link = { vic2 = 650 hoi4 = 11644 hoi4 = 9656 hoi4 = 679 hoi4 = 11646 hoi4 = 699 }	# Békéscsaba -> land, land, land, land, land
 	link = { vic2 = 648 hoi4 = 9706 hoi4 = 6735 hoi4 = 11659 hoi4 = 730 hoi4 = 3730 }	# Debrecen -> land, land, land, land, land
 	link = { vic2 = 649 hoi4 = 6700 }	# Szeged -> land
-	link = { vic2 = 645 hoi4 = 11625 hoi4 = 6670 }	# Kecskemt -> land, land
+	link = { vic2 = 645 hoi4 = 11625 hoi4 = 6670 }	# Kecskemét -> land, land
 	link = { vic2 = 2778 hoi4 = 13125 }	# Lake Balaton -> lake
-	link = { vic2 = 644 hoi4 = 9624 hoi4 = 6685 hoi4 = 3680 hoi4 = 682 }	# Kaposvr -> land, land, land, land
-	link = { vic2 = 640 hoi4 = 11610 hoi4 = 9643 }	# Pcs -> land, land
+	link = { vic2 = 644 hoi4 = 9624 hoi4 = 6685 hoi4 = 3680 hoi4 = 682 }	# Kaposvár -> land, land, land, land
+	link = { vic2 = 640 hoi4 = 11610 hoi4 = 9643 }	# Pécs -> land, land
 	link = { vic2 = 646 hoi4 = 3731 hoi4 = 6716 hoi4 = 3713 hoi4 = 6751 hoi4 = 11520 }	# Miskolc -> land, land, land, land, land
 	link = { vic2 = 641 hoi4 = 9660 hoi4 = 9690 hoi4 = 716 hoi4 = 684 }	# Budapest -> land, land, land, land
-	link = { vic2 = 643 hoi4 = 6703 hoi4 = 701 hoi4 = 3683 }	# Szkesfehrvr -> land, land, land
+	link = { vic2 = 643 hoi4 = 6703 hoi4 = 701 hoi4 = 3683 }	# Székesfehérvár -> land, land, land
 	link = { vic2 = 642 hoi4 = 6720 hoi4 = 9676 hoi4 = 11663 }	# Gyor -> land, land, land
 	link = { vic2 = 639 hoi4 = 3670 }	# Zalaegerszeg -> land
 	link = { vic2 = 623 hoi4 = 686 hoi4 = 11627 }	# Sopron -> land, land
 	# 
 	# ## Czenchosolovakia
 	link = { vic2 = 950 hoi4 = 11536 hoi4 = 11691 hoi4 = 3548 hoi4 = 6571 hoi4 = 9563 }	# Uzgorord -> land, land, land, land, land
-	link = { vic2 = 637 hoi4 = 6586 hoi4 = 6604 hoi4 = 3581 }	# Koice -> land, land, land
-	link = { vic2 = 636 hoi4 = 11554 hoi4 = 581 hoi4 = 3550 hoi4 = 555 }	# Bansk Bystrica -> land, land, land, land
-	link = { vic2 = 634 hoi4 = 3484 hoi4 = 11539 }	# Trencn -> land, land
-	link = { vic2 = 638 hoi4 = 3716 hoi4 = 11679 hoi4 = 6561 hoi4 = 9537 hoi4 = 6573 hoi4 = 3565 }	# Ronava -> land, land, land, land, land, land
+	link = { vic2 = 637 hoi4 = 6586 hoi4 = 6604 hoi4 = 3581 }	# Košice -> land, land, land
+	link = { vic2 = 636 hoi4 = 11554 hoi4 = 581 hoi4 = 3550 hoi4 = 555 }	# Banská Bystrica -> land, land, land, land
+	link = { vic2 = 634 hoi4 = 3484 hoi4 = 11539 }	# Trencín -> land, land
+	link = { vic2 = 638 hoi4 = 3716 hoi4 = 11679 hoi4 = 6561 hoi4 = 9537 hoi4 = 6573 hoi4 = 3565 }	# Ronava -> land, land, land, land, land, land
 	link = { vic2 = 635 hoi4 = 541 hoi4 = 11522 hoi4 = 3537 }	# Nitra -> land, land, land
 	link = { vic2 = 633 hoi4 = 9539 hoi4 = 9692 }	# Bratislava -> land, land
 	link = { vic2 = 631 hoi4 = 3553 hoi4 = 569 hoi4 = 3569 hoi4 = 557 }	# Brno -> land, land, land, land
 	link = { vic2 = 689 hoi4 = 9567 hoi4 = 9551 }	# Tesin -> land, land
 	link = { vic2 = 632 hoi4 = 6562 hoi4 = 11511 hoi4 = 6576 hoi4 = 6590 }	# Olomouc -> land, land, land, land
-	link = { vic2 = 626 hoi4 = 9414 hoi4 = 9429 hoi4 = 3462 hoi4 = 583 hoi4 = 494 hoi4 = 445 }	# Hradec Krlov -> land, land, land, land, land, land
+	link = { vic2 = 626 hoi4 = 9414 hoi4 = 9429 hoi4 = 3462 hoi4 = 583 hoi4 = 494 hoi4 = 445 }	# Hradec Králové -> land, land, land, land, land, land
 	link = { vic2 = 630 hoi4 = 9569 hoi4 = 11556 hoi4 = 9541 hoi4 = 5283 hoi4 = 543 hoi4 = 11525 }	# Budejovice -> land, land, land, land, land, land
 	link = { vic2 = 628 hoi4 = 469 hoi4 = 11414 hoi4 = 11401 }	# Aussig -> land, land, land
 	link = { vic2 = 627 hoi4 = 6470 hoi4 = 424 hoi4 = 9555 hoi4 = 3585 hoi4 = 3418 hoi4 = 11432 }	# Karlsbad -> land, land, land, land, land, land
@@ -1243,12 +1243,12 @@
 	# 
 	# ## Western Balkans
 	link = { vic2 = 795 hoi4 = 630 hoi4 = 9756 hoi4 = 11887 }	# Bor -> land, land, land
-	link = { vic2 = 798 hoi4 = 6998 hoi4 = 9602 }	# Ni -> land, land
+	link = { vic2 = 798 hoi4 = 6998 hoi4 = 9602 }	# Niš -> land, land
 	link = { vic2 = 802 hoi4 = 6953 hoi4 = 9890 hoi4 = 9906 }	# Pristina -> land, land, land
 	link = { vic2 = 796 hoi4 = 11583 hoi4 = 6634 }	# Kragujevac -> land, land
 	link = { vic2 = 792 hoi4 = 3614 hoi4 = 614 hoi4 = 11787 hoi4 = 6643 }	# Pancevo -> land, land, land, land
 	link = { vic2 = 804 hoi4 = 3939 hoi4 = 6970 }	# Novi Pazar -> land, land
-	link = { vic2 = 797 hoi4 = 9599 hoi4 = 3984 hoi4 = 3956 }	# Uice -> land, land, land
+	link = { vic2 = 797 hoi4 = 9599 hoi4 = 3984 hoi4 = 3956 }	# Uice -> land, land, land
 	link = { vic2 = 794 hoi4 = 11586 hoi4 = 3609 hoi4 = 11580 hoi4 = 797 }	# Belgrade -> land, land, land, land
 	link = { vic2 = 787 hoi4 = 953 }	# Foca -> land
 	link = { vic2 = 786 hoi4 = 6799 hoi4 = 11574 hoi4 = 606 hoi4 = 11741 }	# Tuzla -> land, land, land, land
@@ -1268,9 +1268,9 @@
 	link = { vic2 = 2538 hoi4 = 619 hoi4 = 3617 hoi4 = 9621 }	# Novi Sad -> land, land, land
 	link = { vic2 = 793 hoi4 = 6647 }	# Vukovar -> land
 	link = { vic2 = 779 hoi4 = 9608 hoi4 = 3623 }	# Osijek -> land, land
-	link = { vic2 = 777 hoi4 = 3627 hoi4 = 9595 }	# Poega -> land, land
+	link = { vic2 = 777 hoi4 = 3627 hoi4 = 9595 }	# Poega -> land, land
 	link = { vic2 = 776 hoi4 = 624 hoi4 = 11594 }	# Bjelovar -> land, land
-	link = { vic2 = 775 hoi4 = 9611 }	# Varadin -> land
+	link = { vic2 = 775 hoi4 = 9611 }	# Varadin -> land
 	link = { vic2 = 771 hoi4 = 3592 hoi4 = 11581 hoi4 = 3596 }	# Zagreb -> land, land, land
 	link = { vic2 = 780 hoi4 = 11816 hoi4 = 3924 hoi4 = 3974 }	# Split -> land, land, land
 	link = { vic2 = 782 hoi4 = 6889 hoi4 = 3868 }	# Dubrovnik -> land, land
@@ -1326,7 +1326,7 @@
 	link = { vic2 = 696 hoi4 = 9346 hoi4 = 3351 hoi4 = 11245 hoi4 = 6375 hoi4 = 9372 hoi4 = 9398 }	# Allenstein -> land, land, land, land, land, land
 	link = { vic2 = 693 hoi4 = 3380 hoi4 = 6402 }	# Elbing -> land, land
 	link = { vic2 = 697 hoi4 = 281 hoi4 = 3384 }	# Gumbinnen -> land, land
-	link = { vic2 = 695 hoi4 = 6332 hoi4 = 11265 hoi4 = 348 hoi4 = 395 }	# Knigsberg -> land, land, land, land
+	link = { vic2 = 695 hoi4 = 6332 hoi4 = 11265 hoi4 = 348 hoi4 = 395 }	# Königsberg -> land, land, land, land
 	link = { vic2 = 698 hoi4 = 3288 }	# Memel -> land
 	link = { vic2 = 362 hoi4 = 3272 hoi4 = 6281 hoi4 = 11312 hoi4 = 6407 }	# Marijampole -> land, land, land, land
 	link = { vic2 = 361 hoi4 = 6296 hoi4 = 327 hoi4 = 9404 }	# Kaunas -> land, land, land
@@ -1342,9 +1342,9 @@
 	link = { vic2 = 354 hoi4 = 9340 }	# Riga -> land
 	link = { vic2 = 352 hoi4 = 6178 hoi4 = 6408 hoi4 = 9221 hoi4 = 592 hoi4 = 9485 }	# Dorpat -> land, land, land, land, land
 	link = { vic2 = 350 hoi4 = 4640 hoi4 = 11443 hoi4 = 11057 hoi4 = 6099 }	# Narva -> land, land, land, land
-	link = { vic2 = 351 hoi4 = 3174 hoi4 = 11291 hoi4 = 308 hoi4 = 6381 }	# Prnu -> land, land, land, land
+	link = { vic2 = 351 hoi4 = 3174 hoi4 = 11291 hoi4 = 308 hoi4 = 6381 }	# Pärnu -> land, land, land, land
 	link = { vic2 = 349 hoi4 = 83 hoi4 = 3074 hoi4 = 496 hoi4 = 567 hoi4 = 3152 hoi4 = 11426 hoi4 = 11127 hoi4 = 9079 }	# Reval -> land, land, land, land, land, land, land, land
-	link = { vic2 = 353 hoi4 = 185 hoi4 = 6201 }	# sel -> land, land
+	link = { vic2 = 353 hoi4 = 185 hoi4 = 6201 }	# Ösel -> land, land
 	# 
 	# ## Finland
 	link = { vic2 = 2714 hoi4 = 2332 }	# Ladoga -> lake
@@ -1354,7 +1354,7 @@
 	link = { vic2 = 341 hoi4 = 139 hoi4 = 3030 hoi4 = 37 hoi4 = 3131 hoi4 = 3013 hoi4 = 165 hoi4 = 11043 hoi4 = 9163 hoi4 = 9056 hoi4 = 13108 hoi4 = 13105 hoi4 = 13104 }	# Mikkeli -> land, land, land, land, land, land, land, land, land, lake, lake, lake
 	link = { vic2 = 340 hoi4 = 204 hoi4 = 9183 hoi4 = 3161 hoi4 = 3061 hoi4 = 11056 hoi4 = 6082 hoi4 = 52 hoi4 = 6186 hoi4 = 9073 hoi4 = 11138 }	# Kotka -> land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 343 hoi4 = 9194 hoi4 = 11211 hoi4 = 6108 hoi4 = 11105 hoi4 = 6144 hoi4 = 9129 hoi4 = 6009 }	# Helsinki -> land, land, land, land, land, land, land
-	link = { vic2 = 344 hoi4 = 67 hoi4 = 9167 hoi4 = 6163 hoi4 = 9160 hoi4 = 13103 }	# Hmeenlinna -> land, land, land, land, lake
+	link = { vic2 = 344 hoi4 = 67 hoi4 = 9167 hoi4 = 6163 hoi4 = 9160 hoi4 = 13103 }	# Hämeenlinna -> land, land, land, land, lake
 	link = { vic2 = 347 hoi4 = 11172 hoi4 = 3025 hoi4 = 6047 hoi4 = 11066 hoi4 = 13107 hoi4 = 13106 hoi4 = 13100 hoi4 = 3137 hoi4 = 13102 }	# Tampere -> land, land, land, land, lake, lake, lake, land, lake
 	link = { vic2 = 345 hoi4 = 3009 hoi4 = 32 hoi4 = 9094 hoi4 = 3083 hoi4 = 6066 hoi4 = 169 hoi4 = 3117 hoi4 = 13101 }	# Turku -> land, land, land, land, land, land, land, lake
 	link = { vic2 = 346 hoi4 = 6141 hoi4 = 11033 hoi4 = 3119 hoi4 = 6138 hoi4 = 9038 hoi4 = 6013 hoi4 = 11126 hoi4 = 3122 hoi4 = 11065 hoi4 = 63 hoi4 = 3172 hoi4 = 66 hoi4 = 9156 hoi4 = 11144 hoi4 = 6198 hoi4 = 9166 hoi4 = 13113 }	# Vaasa -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
@@ -1379,28 +1379,28 @@
 	link = { vic2 = 316 hoi4 = 11151 hoi4 = 3171 hoi4 = 11184 hoi4 = 3007 hoi4 = 179 }	# Frederiksstad -> land, land, land, land, land
 	# 
 	# ## Sweden
-	link = { vic2 = 348 hoi4 = 9228 }	# land Islands -> land
-	link = { vic2 = 321 hoi4 = 9108 hoi4 = 3104 hoi4 = 9147 hoi4 = 201 hoi4 = 6168 hoi4 = 61 hoi4 = 6170 hoi4 = 6208 hoi4 = 11060 hoi4 = 9083 hoi4 = 6055 hoi4 = 9178 hoi4 = 190 hoi4 = 6155 hoi4 = 58 hoi4 = 11102 hoi4 = 3179 hoi4 = 148 hoi4 = 6074 hoi4 = 3054 hoi4 = 9226 hoi4 = 9186 hoi4 = 6165 hoi4 = 6125 hoi4 = 11073 hoi4 = 11208 hoi4 = 11155 hoi4 = 6206 hoi4 = 101 hoi4 = 3095 hoi4 = 151 hoi4 = 13119 }	# Lule -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
-	link = { vic2 = 320 hoi4 = 3062 hoi4 = 6083 hoi4 = 6024 hoi4 = 11190 hoi4 = 9211 hoi4 = 11112 hoi4 = 11058 hoi4 = 9175 hoi4 = 6152 hoi4 = 9095 hoi4 = 9134 hoi4 = 11026 hoi4 = 11152 hoi4 = 11 hoi4 = 3003 hoi4 = 109 hoi4 = 3138 hoi4 = 11069 hoi4 = 3044 hoi4 = 145 hoi4 = 3173 hoi4 = 6200 hoi4 = 118 hoi4 = 182 hoi4 = 3113 hoi4 = 6132 hoi4 = 11067 hoi4 = 9093 hoi4 = 3100 hoi4 = 9220 hoi4 = 6161 hoi4 = 9143 hoi4 = 11201 }	# Ume -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 319 hoi4 = 9171 hoi4 = 6185 hoi4 = 11187 hoi4 = 3039 hoi4 = 11052 hoi4 = 168 hoi4 = 9066 hoi4 = 3111 hoi4 = 6207 hoi4 = 202 hoi4 = 3191 hoi4 = 9229 hoi4 = 11116 hoi4 = 11049 hoi4 = 6129 hoi4 = 113 hoi4 = 6010 hoi4 = 11123 hoi4 = 9154 hoi4 = 46 hoi4 = 3162 hoi4 = 13117 }	# stersund -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 348 hoi4 = 9228 }	# Åland Islands -> land
+	link = { vic2 = 321 hoi4 = 9108 hoi4 = 3104 hoi4 = 9147 hoi4 = 201 hoi4 = 6168 hoi4 = 61 hoi4 = 6170 hoi4 = 6208 hoi4 = 11060 hoi4 = 9083 hoi4 = 6055 hoi4 = 9178 hoi4 = 190 hoi4 = 6155 hoi4 = 58 hoi4 = 11102 hoi4 = 3179 hoi4 = 148 hoi4 = 6074 hoi4 = 3054 hoi4 = 9226 hoi4 = 9186 hoi4 = 6165 hoi4 = 6125 hoi4 = 11073 hoi4 = 11208 hoi4 = 11155 hoi4 = 6206 hoi4 = 101 hoi4 = 3095 hoi4 = 151 hoi4 = 13119 }	# Luleå -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 320 hoi4 = 3062 hoi4 = 6083 hoi4 = 6024 hoi4 = 11190 hoi4 = 9211 hoi4 = 11112 hoi4 = 11058 hoi4 = 9175 hoi4 = 6152 hoi4 = 9095 hoi4 = 9134 hoi4 = 11026 hoi4 = 11152 hoi4 = 11 hoi4 = 3003 hoi4 = 109 hoi4 = 3138 hoi4 = 11069 hoi4 = 3044 hoi4 = 145 hoi4 = 3173 hoi4 = 6200 hoi4 = 118 hoi4 = 182 hoi4 = 3113 hoi4 = 6132 hoi4 = 11067 hoi4 = 9093 hoi4 = 3100 hoi4 = 9220 hoi4 = 6161 hoi4 = 9143 hoi4 = 11201 }	# Umeå -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 319 hoi4 = 9171 hoi4 = 6185 hoi4 = 11187 hoi4 = 3039 hoi4 = 11052 hoi4 = 168 hoi4 = 9066 hoi4 = 3111 hoi4 = 6207 hoi4 = 202 hoi4 = 3191 hoi4 = 9229 hoi4 = 11116 hoi4 = 11049 hoi4 = 6129 hoi4 = 113 hoi4 = 6010 hoi4 = 11123 hoi4 = 9154 hoi4 = 46 hoi4 = 3162 hoi4 = 13117 }	# Östersund -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
 	link = { vic2 = 318 hoi4 = 9088 hoi4 = 11185 hoi4 = 6067 hoi4 = 11120 hoi4 = 184 hoi4 = 11148 hoi4 = 9141 hoi4 = 11129 hoi4 = 6063 hoi4 = 130 hoi4 = 205 hoi4 = 9151 hoi4 = 9035 hoi4 = 3108 hoi4 = 6126 }	# Sundsvall -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 317 hoi4 = 6023 hoi4 = 11209 hoi4 = 125 hoi4 = 11040 hoi4 = 11147 hoi4 = 3045 hoi4 = 49 hoi4 = 9051 hoi4 = 11091 }	# Gvle -> land, land, land, land, land, land, land, land, land
+	link = { vic2 = 317 hoi4 = 6023 hoi4 = 11209 hoi4 = 125 hoi4 = 11040 hoi4 = 11147 hoi4 = 3045 hoi4 = 49 hoi4 = 9051 hoi4 = 11091 }	# Gävle -> land, land, land, land, land, land, land, land, land
 	link = { vic2 = 323 hoi4 = 77 hoi4 = 9068 hoi4 = 6123 hoi4 = 9148 hoi4 = 11053 hoi4 = 9173 hoi4 = 3148 hoi4 = 9117 hoi4 = 9193 hoi4 = 156 hoi4 = 11197 hoi4 = 114 hoi4 = 6093 hoi4 = 9182 hoi4 = 3070 hoi4 = 3005 hoi4 = 6147 hoi4 = 13099 }	# Falun -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
 	link = { vic2 = 324 hoi4 = 3182 hoi4 = 11163 hoi4 = 9149 hoi4 = 11278 }	# Uppsala -> land, land, land, land
 	link = { vic2 = 322 hoi4 = 161 hoi4 = 6050 hoi4 = 6209 }	# Stockholm -> land, land, land
-	link = { vic2 = 326 hoi4 = 9109 hoi4 = 11082 hoi4 = 11188 hoi4 = 9185 hoi4 = 3106 hoi4 = 35 hoi4 = 6127 hoi4 = 13097 hoi4 = 13098 }	# Vsters -> land, land, land, land, land, land, land, lake, lake
-	link = { vic2 = 325 hoi4 = 6311 hoi4 = 6397 hoi4 = 9393 hoi4 = 11289 hoi4 = 11380 hoi4 = 9308 }	# Norrkping -> land, land, land, land, land, land
-	link = { vic2 = 327 hoi4 = 9209 hoi4 = 6188 hoi4 = 6164 hoi4 = 6084 hoi4 = 11044 }	# rebro -> land, land, land, land, land
-	link = { vic2 = 2703 hoi4 = 13096 }	# Vnern -> lake
+	link = { vic2 = 326 hoi4 = 9109 hoi4 = 11082 hoi4 = 11188 hoi4 = 9185 hoi4 = 3106 hoi4 = 35 hoi4 = 6127 hoi4 = 13097 hoi4 = 13098 }	# Västerås -> land, land, land, land, land, land, land, lake, lake
+	link = { vic2 = 325 hoi4 = 6311 hoi4 = 6397 hoi4 = 9393 hoi4 = 11289 hoi4 = 11380 hoi4 = 9308 }	# Norrköping -> land, land, land, land, land, land
+	link = { vic2 = 327 hoi4 = 9209 hoi4 = 6188 hoi4 = 6164 hoi4 = 6084 hoi4 = 11044 }	# Örebro -> land, land, land, land, land
+	link = { vic2 = 2703 hoi4 = 13096 }	# Vänern -> lake
 	link = { vic2 = 328 hoi4 = 11070 hoi4 = 69 hoi4 = 147 hoi4 = 9138 hoi4 = 6195 hoi4 = 3128 hoi4 = 11114 hoi4 = 6028 hoi4 = 9054 hoi4 = 3141 hoi4 = 9218 }	# Karlstad -> land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 329 hoi4 = 383 hoi4 = 6310 hoi4 = 171 }	# Gteborg -> land, land, land
-	link = { vic2 = 330 hoi4 = 3375 hoi4 = 3286 hoi4 = 6406 hoi4 = 3386 hoi4 = 6331 hoi4 = 295 hoi4 = 3063 }	# Bors -> land, land, land, land, land, land, land
+	link = { vic2 = 329 hoi4 = 383 hoi4 = 6310 hoi4 = 171 }	# Göteborg -> land, land, land
+	link = { vic2 = 330 hoi4 = 3375 hoi4 = 3286 hoi4 = 6406 hoi4 = 3386 hoi4 = 6331 hoi4 = 295 hoi4 = 3063 }	# Borås -> land, land, land, land, land, land, land
 	link = { vic2 = 331 hoi4 = 408 hoi4 = 6258 }	# Gotland -> land, land
-	link = { vic2 = 2704 hoi4 = 13095 }	# Vttern -> lake
-	link = { vic2 = 333 hoi4 = 9406 hoi4 = 11311 hoi4 = 242 hoi4 = 9251 hoi4 = 9329 hoi4 = 11231 hoi4 = 9410 hoi4 = 11280 }	# Vxj -> land, land, land, land, land, land, land, land
+	link = { vic2 = 2704 hoi4 = 13095 }	# Vättern -> lake
+	link = { vic2 = 333 hoi4 = 9406 hoi4 = 11311 hoi4 = 242 hoi4 = 9251 hoi4 = 9329 hoi4 = 11231 hoi4 = 9410 hoi4 = 11280 }	# Växjö -> land, land, land, land, land, land, land, land
 	link = { vic2 = 332 hoi4 = 211 hoi4 = 329 hoi4 = 299 hoi4 = 363 hoi4 = 6148 hoi4 = 3229 hoi4 = 11390 }	# Kalmar -> land, land, land, land, land, land, land
 	link = { vic2 = 335 hoi4 = 6120 hoi4 = 9300 hoi4 = 11160 hoi4 = 11327 hoi4 = 11215 }	# Karlskrona -> land, land, land, land, land
-	link = { vic2 = 334 hoi4 = 11376 hoi4 = 9279 hoi4 = 6345 hoi4 = 9362 hoi4 = 6412 hoi4 = 3307 }	# Malm -> land, land, land, land, land, land
+	link = { vic2 = 334 hoi4 = 11376 hoi4 = 9279 hoi4 = 6345 hoi4 = 9362 hoi4 = 6412 hoi4 = 3307 }	# Malmö -> land, land, land, land, land, land
 	# 
 	# ## Denmark
 	link = { vic2 = 374 hoi4 = 6361 }	# Bornholm -> land
@@ -1414,7 +1414,7 @@
 	link = { vic2 = 370 hoi4 = 11251 }	# Flensburg -> land
 	# 
 	# ## Germany
-	link = { vic2 = 537 hoi4 = 11468 hoi4 = 11402 hoi4 = 6513 }	# Gttingen -> land, land, land
+	link = { vic2 = 537 hoi4 = 11468 hoi4 = 11402 hoi4 = 6513 }	# Göttingen -> land, land, land
 	link = { vic2 = 536 hoi4 = 11493 hoi4 = 526 hoi4 = 9375 }	# Brunswick -> land, land, land
 	link = { vic2 = 534 hoi4 = 6377 hoi4 = 3395 }	# Hanover -> land, land
 	link = { vic2 = 566 hoi4 = 564 hoi4 = 9524 hoi4 = 6549 }	# Kassel -> land, land, land
@@ -1422,7 +1422,7 @@
 	link = { vic2 = 582 hoi4 = 405 hoi4 = 9509 }	# Minden -> land, land
 	link = { vic2 = 585 hoi4 = 3355 }	# Detmold -> land
 	link = { vic2 = 692 hoi4 = 11288 hoi4 = 11260 }	# Deutsch Krone -> land, land
-	link = { vic2 = 680 hoi4 = 11372 hoi4 = 11316 hoi4 = 11343 }	# Kslin -> land, land, land
+	link = { vic2 = 680 hoi4 = 11372 hoi4 = 11316 hoi4 = 11343 }	# Köslin -> land, land, land
 	link = { vic2 = 679 hoi4 = 9361 hoi4 = 9277 hoi4 = 9306 hoi4 = 9252 }	# Kolberg -> land, land, land, land
 	link = { vic2 = 546 hoi4 = 6282 hoi4 = 6390 hoi4 = 6334 hoi4 = 6309 hoi4 = 9334 }	# Stettin -> land, land, land, land, land
 	link = { vic2 = 551 hoi4 = 11219 hoi4 = 375 hoi4 = 3367 }	# Pritzwalk -> land, land, land
@@ -1434,9 +1434,9 @@
 	link = { vic2 = 688 hoi4 = 6485 hoi4 = 421 hoi4 = 3414 hoi4 = 3583 }	# Troppau -> land, land, land, land
 	link = { vic2 = 684 hoi4 = 9511 hoi4 = 479 hoi4 = 11467 hoi4 = 6512 hoi4 = 9457 }	# Oppeln -> land, land, land, land, land
 	link = { vic2 = 683 hoi4 = 6595 hoi4 = 11517 hoi4 = 3545 hoi4 = 6534 hoi4 = 3438 hoi4 = 3485 }	# Liegnitz -> land, land, land, land, land, land
-	link = { vic2 = 681 hoi4 = 444 hoi4 = 11478 hoi4 = 6236 hoi4 = 9387 hoi4 = 537 hoi4 = 3473 }	# Kstrin -> land, land, land, land, land, land
+	link = { vic2 = 681 hoi4 = 444 hoi4 = 11478 hoi4 = 6236 hoi4 = 9387 hoi4 = 537 hoi4 = 3473 }	# Küstrin -> land, land, land, land, land, land
 	link = { vic2 = 552 hoi4 = 478 hoi4 = 11415 hoi4 = 9496 hoi4 = 3572 }	# Cottbus -> land, land, land, land
-	link = { vic2 = 687 hoi4 = 9535 hoi4 = 3514 }	# Grlitz -> land, land
+	link = { vic2 = 687 hoi4 = 9535 hoi4 = 3514 }	# Görlitz -> land, land
 	link = { vic2 = 558 hoi4 = 514 hoi4 = 6559 hoi4 = 573 }	# Dresden -> land, land, land
 	link = { vic2 = 560 hoi4 = 9471 hoi4 = 9441 }	# Chemnitz -> land, land
 	link = { vic2 = 556 hoi4 = 6441 hoi4 = 11545 }	# Halle -> land, land
@@ -1451,7 +1451,7 @@
 	link = { vic2 = 593 hoi4 = 3690 hoi4 = 9655 hoi4 = 6934 }	# Ulm -> land, land, land
 	link = { vic2 = 588 hoi4 = 3679 hoi4 = 13126 }	# Konstanz -> land, lake
 	link = { vic2 = 594 hoi4 = 694 hoi4 = 519 }	# Sigmaringen -> land, land
-	link = { vic2 = 591 hoi4 = 11486 }	# Tbingen -> land
+	link = { vic2 = 591 hoi4 = 11486 }	# Tübingen -> land
 	link = { vic2 = 586 hoi4 = 6542 hoi4 = 3530 hoi4 = 6568 }	# Karlsruhe -> land, land, land
 	link = { vic2 = 587 hoi4 = 11640 hoi4 = 6712 hoi4 = 3692 }	# Freiburg -> land, land, land
 	link = { vic2 = 590 hoi4 = 9545 hoi4 = 6555 hoi4 = 6581 }	# Heilbronn -> land, land, land
@@ -1464,7 +1464,7 @@
 	link = { vic2 = 562 hoi4 = 3500 }	# Gotha -> land
 	link = { vic2 = 563 hoi4 = 482 }	# Meiningen -> land
 	link = { vic2 = 598 hoi4 = 3474 hoi4 = 11404 hoi4 = 9416 }	# Bayreuth -> land, land, land
-	link = { vic2 = 597 hoi4 = 13116 hoi4 = 6421 hoi4 = 9572 hoi4 = 11417 hoi4 = 9557 }	# Wrzburg -> land, land, land, land, land
+	link = { vic2 = 597 hoi4 = 13116 hoi4 = 6421 hoi4 = 9572 hoi4 = 11417 hoi4 = 9557 }	# Würzburg -> land, land, land, land, land
 	link = { vic2 = 596 hoi4 = 6594 }	# Aschaffenburg -> land
 	link = { vic2 = 569 hoi4 = 3574 }	# Mannheim -> land
 	link = { vic2 = 2560 hoi4 = 589 }	# Darmstadt -> land
@@ -1472,16 +1472,16 @@
 	link = { vic2 = 568 hoi4 = 11445 hoi4 = 3397 }	# Fulda -> land, land
 	link = { vic2 = 567 hoi4 = 3524 hoi4 = 9547 hoi4 = 11533 }	# Giessen -> land, land, land
 	link = { vic2 = 564 hoi4 = 6488 }	# Frankfurt -> land
-	link = { vic2 = 578 hoi4 = 6469 }	# Dsseldorf -> land
+	link = { vic2 = 578 hoi4 = 6469 }	# Düsseldorf -> land
 	link = { vic2 = 575 hoi4 = 587 }	# Cologne -> land
-	link = { vic2 = 532 hoi4 = 6325 hoi4 = 6263 hoi4 = 6298 hoi4 = 9264 hoi4 = 6218 hoi4 = 9238 }	# Lneburg -> land, land, land, land, land, land
-	link = { vic2 = 581 hoi4 = 11346 hoi4 = 6622 hoi4 = 6535 }	# Mnster -> land, land, land
+	link = { vic2 = 532 hoi4 = 6325 hoi4 = 6263 hoi4 = 6298 hoi4 = 9264 hoi4 = 6218 hoi4 = 9238 }	# Lüneburg -> land, land, land, land, land, land
+	link = { vic2 = 581 hoi4 = 11346 hoi4 = 6622 hoi4 = 6535 }	# Münster -> land, land, land
 	link = { vic2 = 580 hoi4 = 495 }	# Dortmund -> land
 	link = { vic2 = 369 hoi4 = 6389 hoi4 = 3231 hoi4 = 317 hoi4 = 11366 }	# Kiel -> land, land, land, land
 	link = { vic2 = 542 hoi4 = 9281 hoi4 = 11233 hoi4 = 11264 }	# Lingen -> land, land, land
 	link = { vic2 = 574 hoi4 = 3423 hoi4 = 11494 hoi4 = 3547 }	# Kreuznach -> land, land, land
 	link = { vic2 = 571 hoi4 = 3558 hoi4 = 563 hoi4 = 11547 }	# Kaiserslautern -> land, land, land
-	link = { vic2 = 573 hoi4 = 11531 hoi4 = 9575 }	# Saarbrcken -> land, land
+	link = { vic2 = 573 hoi4 = 11531 hoi4 = 9575 }	# Saarbrücken -> land, land
 	link = { vic2 = 572 hoi4 = 11435 hoi4 = 11470 }	# Trier -> land, land
 	link = { vic2 = 576 hoi4 = 9522 }	# Aachen -> land
 	link = { vic2 = 577 hoi4 = 3444 hoi4 = 3512 }	# Cleves -> land, land
@@ -1489,23 +1489,23 @@
 	link = { vic2 = 543 hoi4 = 11360 }	# Emden -> land
 	link = { vic2 = 540 vic2 = 533 hoi4 = 241 hoi4 = 336 }	# MANY-TO-MANY: Oldenburg, Heligoland -> land, land
 	link = { vic2 = 531 hoi4 = 374 hoi4 = 6349 }	# Stade -> land, land
-	link = { vic2 = 538 hoi4 = 11388 hoi4 = 247 }	# Osnabrck -> land, land
+	link = { vic2 = 538 hoi4 = 11388 hoi4 = 247 }	# Osnabrück -> land, land
 	link = { vic2 = 541 hoi4 = 309 hoi4 = 3234 }	# Cloppenburg -> land, land
 	link = { vic2 = 535 hoi4 = 3271 }	# Nienburg -> land
 	link = { vic2 = 539 hoi4 = 3326 }	# Bremen -> land
-	link = { vic2 = 547 hoi4 = 3340 hoi4 = 349 }	# Swinemnde -> land, land
+	link = { vic2 = 547 hoi4 = 3340 hoi4 = 349 }	# Swinemünde -> land, land
 	link = { vic2 = 548 hoi4 = 9388 }	# Stralsund -> land
 	link = { vic2 = 550 hoi4 = 3312 hoi4 = 3207 }	# Prenzlau -> land, land
 	link = { vic2 = 545 hoi4 = 268 hoi4 = 3258 }	# Neustrelitz -> land, land
 	link = { vic2 = 544 hoi4 = 11305 hoi4 = 9294 hoi4 = 11276 hoi4 = 293 hoi4 = 321 }	# Schwerin -> land, land, land, land, land
-	link = { vic2 = 530 hoi4 = 11331 }	# Lbeck -> land
+	link = { vic2 = 530 hoi4 = 11331 }	# Lübeck -> land
 	link = { vic2 = 529 hoi4 = 9320 hoi4 = 6257 }	# Lauenburg -> land, land
 	link = { vic2 = 528 hoi4 = 9347 hoi4 = 3368 }	# Hamburg -> land, land
 	# 
 	# ## Benelux
 	link = { vic2 = 398 hoi4 = 11407 hoi4 = 9418 }	# Arlon -> land, land
 	link = { vic2 = 396 hoi4 = 3488 }	# Spa -> land
-	link = { vic2 = 395 hoi4 = 11519 hoi4 = 6537 hoi4 = 9444 }	# Lige -> land, land, land
+	link = { vic2 = 395 hoi4 = 11519 hoi4 = 6537 hoi4 = 9444 }	# Liège -> land, land, land
 	link = { vic2 = 383 hoi4 = 11318 }	# Groningen -> land
 	link = { vic2 = 384 hoi4 = 6286 hoi4 = 9403 }	# Zwolle -> land, land
 	link = { vic2 = 386 hoi4 = 9309 }	# Assen -> land
@@ -1535,7 +1535,7 @@
 	link = { vic2 = 609 hoi4 = 9587 hoi4 = 3612 }	# Sitten -> land, land
 	link = { vic2 = 605 hoi4 = 9620 hoi4 = 9618 }	# Bern -> land, land
 	link = { vic2 = 604 hoi4 = 6683 hoi4 = 9638 }	# Basel -> land, land
-	link = { vic2 = 608 hoi4 = 9622 }	# Neuchtel -> land
+	link = { vic2 = 608 hoi4 = 9622 }	# Neuchâtel -> land
 	link = { vic2 = 607 hoi4 = 6666 hoi4 = 11590 hoi4 = 13124 }	# Geneva -> land, land, lake
 	# 
 	# ## Italy
@@ -1596,16 +1596,16 @@
 	link = { vic2 = 496 hoi4 = 899 hoi4 = 915 hoi4 = 11838 hoi4 = 9842 hoi4 = 9840 hoi4 = 11821 hoi4 = 11819 }	# Huesca -> land, land, land, land, land, land, land
 	link = { vic2 = 493 hoi4 = 3737 hoi4 = 3933 hoi4 = 932 hoi4 = 3931 hoi4 = 9857 }	# Pamplona -> land, land, land, land, land
 	link = { vic2 = 492 hoi4 = 740 hoi4 = 6756 hoi4 = 3735 }	# Bilbao -> land, land, land
-	link = { vic2 = 477 hoi4 = 11843 hoi4 = 11840 hoi4 = 3725 hoi4 = 3729 hoi4 = 726 hoi4 = 3727 hoi4 = 920 }	# Len -> land, land, land, land, land, land, land
+	link = { vic2 = 477 hoi4 = 11843 hoi4 = 11840 hoi4 = 3725 hoi4 = 3729 hoi4 = 726 hoi4 = 3727 hoi4 = 920 }	# León -> land, land, land, land, land, land, land
 	link = { vic2 = 478 hoi4 = 9703 hoi4 = 6749 hoi4 = 11688 hoi4 = 11684 hoi4 = 9699 }	# Santander -> land, land, land, land, land
 	link = { vic2 = 475 hoi4 = 11707 hoi4 = 9719 hoi4 = 6764 hoi4 = 729 hoi4 = 3744 }	# Oviedo -> land, land, land, land, land
 	link = { vic2 = 497 hoi4 = 813 hoi4 = 948 hoi4 = 11737 hoi4 = 7213 hoi4 = 798 hoi4 = 3909 }	# Teruel -> land, land, land, land, land, land
-	link = { vic2 = 488 hoi4 = 6841 hoi4 = 9785 hoi4 = 9933 hoi4 = 11870 }	# Sigenza -> land, land, land, land
+	link = { vic2 = 488 hoi4 = 6841 hoi4 = 9785 hoi4 = 9933 hoi4 = 11870 }	# Sigüenza -> land, land, land, land
 	link = { vic2 = 481 hoi4 = 11766 hoi4 = 3859 hoi4 = 857 hoi4 = 9870 hoi4 = 11806 hoi4 = 6936 hoi4 = 11809 }	# Soria -> land, land, land, land, land, land, land
-	link = { vic2 = 494 hoi4 = 6903 hoi4 = 3902 hoi4 = 884 hoi4 = 3887 }	# Logroo -> land, land, land, land
-	link = { vic2 = 483 hoi4 = 3845 hoi4 = 939 hoi4 = 3820 hoi4 = 9800 hoi4 = 9827 }	# vila -> land, land, land, land, land
+	link = { vic2 = 494 hoi4 = 6903 hoi4 = 3902 hoi4 = 884 hoi4 = 3887 }	# Logroño -> land, land, land, land
+	link = { vic2 = 483 hoi4 = 3845 hoi4 = 939 hoi4 = 3820 hoi4 = 9800 hoi4 = 9827 }	# Ávila -> land, land, land, land, land
 	link = { vic2 = 482 hoi4 = 6907 hoi4 = 874 hoi4 = 6867 hoi4 = 794 hoi4 = 3874 hoi4 = 9846 }	# Salamanca -> land, land, land, land, land, land
-	link = { vic2 = 486 hoi4 = 9877 hoi4 = 6866 hoi4 = 9839 hoi4 = 9917 hoi4 = 11756 hoi4 = 9770 }	# Cceres -> land, land, land, land, land, land
+	link = { vic2 = 486 hoi4 = 9877 hoi4 = 6866 hoi4 = 9839 hoi4 = 9917 hoi4 = 11756 hoi4 = 9770 }	# Cáceres -> land, land, land, land, land, land
 	link = { vic2 = 485 hoi4 = 931 hoi4 = 6902 hoi4 = 9925 hoi4 = 985 hoi4 = 11780 }	# Almendralejo -> land, land, land, land, land
 	link = { vic2 = 490 hoi4 = 11742 hoi4 = 3945 hoi4 = 9812 hoi4 = 871 hoi4 = 3799 hoi4 = 3891 hoi4 = 888 hoi4 = 9852 hoi4 = 6879 }	# Cuenca -> land, land, land, land, land, land, land, land, land
 	link = { vic2 = 508 hoi4 = 3953 hoi4 = 942 hoi4 = 832 hoi4 = 3835 hoi4 = 11884 hoi4 = 9903 hoi4 = 11807 hoi4 = 11812 }	# Albacete -> land, land, land, land, land, land, land, land
@@ -1614,33 +1614,33 @@
 	link = { vic2 = 480 hoi4 = 6800 hoi4 = 11825 hoi4 = 918 hoi4 = 3918 hoi4 = 4024 hoi4 = 3920 hoi4 = 6746 }	# Valladolid -> land, land, land, land, land, land, land
 	link = { vic2 = 487 hoi4 = 3938 hoi4 = 3858 hoi4 = 9767 hoi4 = 896 hoi4 = 3794 hoi4 = 11820 hoi4 = 977 hoi4 = 6993 }	# Madrid -> land, land, land, land, land, land, land, land
 	link = { vic2 = 476 hoi4 = 6734 hoi4 = 9689 hoi4 = 9686 hoi4 = 11677 hoi4 = 11692 hoi4 = 11675 }	# Vigo -> land, land, land, land, land, land
-	link = { vic2 = 474 hoi4 = 758 hoi4 = 11710 hoi4 = 6955 hoi4 = 3761 }	# La Corua -> land, land, land, land
+	link = { vic2 = 474 hoi4 = 758 hoi4 = 11710 hoi4 = 6955 hoi4 = 3761 }	# La Coruña -> land, land, land, land
 	link = { vic2 = 518 hoi4 = 9817 hoi4 = 11673 }	# Oporto -> land, land
 	link = { vic2 = 484 hoi4 = 6954 hoi4 = 11798 hoi4 = 11851 }	# Badajoz -> land, land, land
-	link = { vic2 = 510 hoi4 = 875 hoi4 = 3871 hoi4 = 879 hoi4 = 3810 hoi4 = 3930 hoi4 = 809 hoi4 = 6744 }	# Crdoba -> land, land, land, land, land, land, land
+	link = { vic2 = 510 hoi4 = 875 hoi4 = 3871 hoi4 = 879 hoi4 = 3810 hoi4 = 3930 hoi4 = 809 hoi4 = 6744 }	# Córdoba -> land, land, land, land, land, land, land
 	link = { vic2 = 521 hoi4 = 11805 }	# Lisbon -> land
 	link = { vic2 = 519 hoi4 = 845 hoi4 = 6941 hoi4 = 3892 hoi4 = 877 hoi4 = 6921 hoi4 = 724 hoi4 = 889 }	# Vila Real -> land, land, land, land, land, land, land
-	link = { vic2 = 520 hoi4 = 3886 hoi4 = 3926 hoi4 = 11885 hoi4 = 3969 hoi4 = 938 hoi4 = 6818 hoi4 = 9787 hoi4 = 3798 hoi4 = 6996 }	# Covilh -> land, land, land, land, land, land, land, land, land
+	link = { vic2 = 520 hoi4 = 3886 hoi4 = 3926 hoi4 = 11885 hoi4 = 3969 hoi4 = 938 hoi4 = 6818 hoi4 = 9787 hoi4 = 3798 hoi4 = 6996 }	# Covilhã -> land, land, land, land, land, land, land, land, land
 	link = { vic2 = 522 hoi4 = 799 hoi4 = 6924 hoi4 = 3861 }	# Coimbra -> land, land, land
 	link = { vic2 = 523 hoi4 = 11768 hoi4 = 844 hoi4 = 924 }	# Abrantes -> land, land, land
-	link = { vic2 = 525 hoi4 = 9819 hoi4 = 3846 hoi4 = 9869 hoi4 = 6986 }	# vora -> land, land, land, land
+	link = { vic2 = 525 hoi4 = 9819 hoi4 = 3846 hoi4 = 9869 hoi4 = 6986 }	# Évora -> land, land, land, land
 	link = { vic2 = 524 hoi4 = 970 hoi4 = 980 }	# Setubal -> land, land
 	link = { vic2 = 526 hoi4 = 3866 hoi4 = 6884 hoi4 = 9765 hoi4 = 6933 }	# Beja -> land, land, land, land
 	link = { vic2 = 527 hoi4 = 6880 hoi4 = 3790 }	# Faro -> land, land
 	link = { vic2 = 511 hoi4 = 4080 hoi4 = 9815 hoi4 = 11749 hoi4 = 12070 hoi4 = 3940 }	# Huelva -> land, land, land, land, land
 	link = { vic2 = 509 hoi4 = 7183 hoi4 = 1178 hoi4 = 7098 hoi4 = 9891 }	# Seville -> land, land, land, land
-	link = { vic2 = 512 hoi4 = 1048 hoi4 = 10094 }	# Cdiz -> land, land
+	link = { vic2 = 512 hoi4 = 1048 hoi4 = 10094 }	# Cádiz -> land, land
 	link = { vic2 = 517 hoi4 = 4135 }	# Gibraltar -> land
-	link = { vic2 = 514 hoi4 = 9979 hoi4 = 7068 hoi4 = 10009 hoi4 = 7153 hoi4 = 4182 hoi4 = 7198 }	# Mlaga -> land, land, land, land, land, land
-	link = { vic2 = 516 hoi4 = 10111 hoi4 = 1090 hoi4 = 4095 hoi4 = 7196 hoi4 = 1192 hoi4 = 4195 }	# Jan -> land, land, land, land, land, land
+	link = { vic2 = 514 hoi4 = 9979 hoi4 = 7068 hoi4 = 10009 hoi4 = 7153 hoi4 = 4182 hoi4 = 7198 }	# Málaga -> land, land, land, land, land, land
+	link = { vic2 = 516 hoi4 = 10111 hoi4 = 1090 hoi4 = 4095 hoi4 = 7196 hoi4 = 1192 hoi4 = 4195 }	# Jaén -> land, land, land, land, land, land
 	link = { vic2 = 513 hoi4 = 1176 hoi4 = 10063 hoi4 = 747 }	# Granada -> land, land, land
-	link = { vic2 = 515 hoi4 = 4065 hoi4 = 12038 hoi4 = 11956 }	# Almera -> land, land, land
+	link = { vic2 = 515 hoi4 = 4065 hoi4 = 12038 hoi4 = 11956 }	# Almería -> land, land, land
 	link = { vic2 = 506 hoi4 = 10109 hoi4 = 7111 }	# Cartagena -> land, land
 	link = { vic2 = 503 hoi4 = 6906 hoi4 = 6959 hoi4 = 6856 }	# Valencia -> land, land, land
 	link = { vic2 = 507 hoi4 = 1093 hoi4 = 10024 }	# Murcia -> land, land
 	link = { vic2 = 505 hoi4 = 962 hoi4 = 9889 hoi4 = 4098 }	# Alicante -> land, land, land
-	link = { vic2 = 500 hoi4 = 6865 hoi4 = 3898 hoi4 = 3899 hoi4 = 897 hoi4 = 872 }	# Lrida -> land, land, land, land, land
-	link = { vic2 = 504 hoi4 = 9896 hoi4 = 6817 hoi4 = 3873 }	# Castelln -> land, land, land
+	link = { vic2 = 500 hoi4 = 6865 hoi4 = 3898 hoi4 = 3899 hoi4 = 897 hoi4 = 872 }	# Lérida -> land, land, land, land, land
+	link = { vic2 = 504 hoi4 = 9896 hoi4 = 6817 hoi4 = 3873 }	# Castellón -> land, land, land
 	link = { vic2 = 501 hoi4 = 6812 hoi4 = 6966 hoi4 = 6836 }	# Tarragona -> land, land, land
 	link = { vic2 = 498 hoi4 = 9764 hoi4 = 9797 }	# Barcelona -> land, land
 	link = { vic2 = 495 hoi4 = 3816 hoi4 = 6901 hoi4 = 9813 hoi4 = 11793 hoi4 = 790 hoi4 = 3954 hoi4 = 6878 }	# Zaragoza -> land, land, land, land, land, land, land
@@ -1650,9 +1650,9 @@
 	link = { vic2 = 473 hoi4 = 11804 hoi4 = 9851 hoi4 = 3838 }	# Corsica -> land, land, land
 	link = { vic2 = 465 hoi4 = 778 hoi4 = 9603 }	# Annecy -> land, land
 	link = { vic2 = 453 hoi4 = 762 hoi4 = 11716 hoi4 = 6786 hoi4 = 780 }	# Valence -> land, land, land, land
-	link = { vic2 = 466 hoi4 = 6784 hoi4 = 6609 hoi4 = 11573 }	# Chambry -> land, land, land
+	link = { vic2 = 466 hoi4 = 6784 hoi4 = 6609 hoi4 = 11573 }	# Chambéry -> land, land, land
 	link = { vic2 = 454 hoi4 = 3768 hoi4 = 764 hoi4 = 3764 }	# Grenoble -> land, land, land
-	link = { vic2 = 452 hoi4 = 9732 hoi4 = 3770 }	# St tienne -> land, land
+	link = { vic2 = 452 hoi4 = 9732 hoi4 = 3770 }	# St Étienne -> land, land
 	link = { vic2 = 405 hoi4 = 9472 hoi4 = 3447 }	# Charleville -> land, land
 	link = { vic2 = 404 hoi4 = 11606 }	# Cambrai -> land
 	link = { vic2 = 413 hoi4 = 3546 hoi4 = 3560 hoi4 = 5291 }	# Verdun -> land, land, land
@@ -1666,12 +1666,12 @@
 	link = { vic2 = 408 hoi4 = 13011 hoi4 = 6545 hoi4 = 11732 hoi4 = 551 hoi4 = 3533 }	# Chalons -> land, land, land, land, land
 	link = { vic2 = 410 hoi4 = 678 }	# Colmar -> land
 	link = { vic2 = 409 hoi4 = 9503 hoi4 = 6529 hoi4 = 549 }	# Strasbourg -> land, land, land
-	link = { vic2 = 414 hoi4 = 521 hoi4 = 1346 }	# pinal -> land, land
+	link = { vic2 = 414 hoi4 = 521 hoi4 = 1346 }	# Épinal -> land, land
 	link = { vic2 = 411 hoi4 = 11516 hoi4 = 11642 hoi4 = 11488 }	# Nancy -> land, land, land
 	link = { vic2 = 431 hoi4 = 11794 hoi4 = 11593 hoi4 = 3594 }	# Macon -> land, land, land
 	link = { vic2 = 451 hoi4 = 6613 hoi4 = 9590 hoi4 = 3589 hoi4 = 6639 }	# Lyon -> land, land, land, land
 	link = { vic2 = 433 hoi4 = 3646 hoi4 = 3650 hoi4 = 641 hoi4 = 6668 hoi4 = 3666 }	# Lons -> land, land, land, land, land
-	link = { vic2 = 432 hoi4 = 9642 hoi4 = 6698 hoi4 = 817 hoi4 = 698 }	# Besanon -> land, land, land, land
+	link = { vic2 = 432 hoi4 = 9642 hoi4 = 6698 hoi4 = 817 hoi4 = 698 }	# Besançon -> land, land, land, land
 	link = { vic2 = 428 hoi4 = 3652 hoi4 = 11628 hoi4 = 648 hoi4 = 9658 }	# Dijon -> land, land, land, land
 	link = { vic2 = 406 hoi4 = 9490 hoi4 = 3506 }	# Troyes -> land, land
 	link = { vic2 = 472 hoi4 = 3959 hoi4 = 9909 }	# Nice -> land, land
@@ -1681,8 +1681,8 @@
 	link = { vic2 = 449 hoi4 = 6773 hoi4 = 6789 hoi4 = 3754 hoi4 = 6770 hoi4 = 769 }	# Aurillac -> land, land, land, land, land
 	link = { vic2 = 462 hoi4 = 752 hoi4 = 11709 hoi4 = 760 hoi4 = 6962 }	# Rodez -> land, land, land, land
 	link = { vic2 = 448 hoi4 = 3621 hoi4 = 6648 hoi4 = 9593 hoi4 = 590 hoi4 = 9748 }	# Clermont-Ferrand -> land, land, land, land, land
-	link = { vic2 = 446 hoi4 = 651 hoi4 = 9629 hoi4 = 6651 }	# Chteauroux -> land, land, land
-	link = { vic2 = 438 hoi4 = 3493 hoi4 = 512 hoi4 = 6518 }	# Orlans -> land, land, land
+	link = { vic2 = 446 hoi4 = 651 hoi4 = 9629 hoi4 = 6651 }	# Châteauroux -> land, land, land
+	link = { vic2 = 438 hoi4 = 3493 hoi4 = 512 hoi4 = 6518 }	# Orléans -> land, land, land
 	link = { vic2 = 440 hoi4 = 6533 hoi4 = 11631 }	# Blois -> land, land
 	link = { vic2 = 426 hoi4 = 6547 hoi4 = 9507 }	# Chartres -> land, land
 	link = { vic2 = 425 hoi4 = 9523 hoi4 = 11506 hoi4 = 9534 }	# Paris -> land, land, land
@@ -1700,7 +1700,7 @@
 	link = { vic2 = 455 hoi4 = 3749 hoi4 = 6766 hoi4 = 943 }	# Toulouse -> land, land, land
 	link = { vic2 = 457 hoi4 = 6931 hoi4 = 3915 hoi4 = 9882 hoi4 = 12169 }	# Foix -> land, land, land, land
 	link = { vic2 = 464 hoi4 = 9853 hoi4 = 6915 }	# Perpignan -> land, land
-	link = { vic2 = 444 hoi4 = 11582 hoi4 = 595 hoi4 = 629 }	# Angoulme -> land, land, land
+	link = { vic2 = 444 hoi4 = 11582 hoi4 = 595 hoi4 = 629 }	# Angoulême -> land, land, land
 	link = { vic2 = 434 hoi4 = 11613 hoi4 = 503 hoi4 = 9867 }	# Angers -> land, land, land
 	link = { vic2 = 435 hoi4 = 3523 hoi4 = 3495 }	# Laval -> land, land
 	link = { vic2 = 459 hoi4 = 6762 hoi4 = 9717 hoi4 = 6759 hoi4 = 929 hoi4 = 11720 hoi4 = 6775 }	# Mont de Marsan -> land, land, land, land, land, land
@@ -1709,13 +1709,13 @@
 	link = { vic2 = 442 hoi4 = 9597 hoi4 = 6657 hoi4 = 655 }	# La Rochelle -> land, land, land
 	link = { vic2 = 458 hoi4 = 6777 hoi4 = 6621 hoi4 = 9737 hoi4 = 11565 }	# Bordeaux -> land, land, land, land
 	link = { vic2 = 2570 hoi4 = 6585 }	# Beauvais -> land
-	link = { vic2 = 416 hoi4 = 9578 hoi4 = 3549 hoi4 = 6569 }	# vreux -> land, land, land
+	link = { vic2 = 416 hoi4 = 9578 hoi4 = 3549 hoi4 = 6569 }	# Évreux -> land, land, land
 	link = { vic2 = 401 hoi4 = 3476 hoi4 = 6504 }	# Arras -> land, land
 	link = { vic2 = 399 hoi4 = 3536 hoi4 = 11483 }	# Lille -> land, land
 	link = { vic2 = 400 hoi4 = 9500 hoi4 = 11548 hoi4 = 575 }	# Dunkirk -> land, land, land
 	link = { vic2 = 402 hoi4 = 485 hoi4 = 11420 hoi4 = 454 }	# Amiens -> land, land, land
 	link = { vic2 = 415 hoi4 = 6599 hoi4 = 9434 hoi4 = 11563 }	# Rouen -> land, land, land
-	link = { vic2 = 417 hoi4 = 539 hoi4 = 11521 hoi4 = 553 }	# Alenon -> land, land, land
+	link = { vic2 = 417 hoi4 = 539 hoi4 = 11521 hoi4 = 553 }	# Alençon -> land, land, land
 	link = { vic2 = 418 vic2 = 419 hoi4 = 9550 hoi4 = 6449 hoi4 = 3579 hoi4 = 11535 }	# MANY-TO-MANY: Caen, Channel Islands -> land, land, land, land
 	link = { vic2 = 423 hoi4 = 11465 hoi4 = 11616 }	# Nantes -> land, land
 	link = { vic2 = 424 hoi4 = 11508 hoi4 = 9495 hoi4 = 527 }	# Rennes -> land, land, land
@@ -1879,7 +1879,7 @@
 	link = { vic2 = 2588 hoi4 = 11038 hoi4 = 3092 hoi4 = 9248 hoi4 = 3080 hoi4 = 3 hoi4 = 18 hoi4 = 127 hoi4 = 6109 hoi4 = 89 hoi4 = 11178 hoi4 = 3031 hoi4 = 6051 hoi4 = 3130 hoi4 = 6102 hoi4 = 140 hoi4 = 11137 hoi4 = 26 hoi4 = 138 hoi4 = 3086 hoi4 = 11071 hoi4 = 6034 hoi4 = 6075 hoi4 = 72 hoi4 = 6166 hoi4 = 9187 hoi4 = 9130 hoi4 = 6090 }	# Onega -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1005 hoi4 = 6086 hoi4 = 110 hoi4 = 11191 hoi4 = 9212 hoi4 = 9234 hoi4 = 320 hoi4 = 6225 hoi4 = 8 }	# Borovichi -> land, land, land, land, land, land, land, land
 	link = { vic2 = 1003 hoi4 = 71 hoi4 = 117 hoi4 = 11072 hoi4 = 3089 hoi4 = 11109 hoi4 = 6154 }	# Novgorod -> land, land, land, land, land, land
-	link = { vic2 = 2713 hoi4 = 13127 }	# Peipsi Jrv -> lake
+	link = { vic2 = 2713 hoi4 = 13127 }	# Peipsi Järv -> lake
 	link = { vic2 = 1006 hoi4 = 9408 hoi4 = 95 hoi4 = 9319 hoi4 = 11304 hoi4 = 11392 hoi4 = 6324 hoi4 = 11202 hoi4 = 11097 hoi4 = 3310 hoi4 = 415 }	# Pskov -> land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 997 hoi4 = 104 hoi4 = 126 hoi4 = 6139 hoi4 = 3120 hoi4 = 9098 hoi4 = 9120 hoi4 = 3053 }	# Gdov -> land, land, land, land, land, land, land
 	link = { vic2 = 996 hoi4 = 9097 hoi4 = 11186 hoi4 = 181 hoi4 = 11080 hoi4 = 6197 hoi4 = 11032 hoi4 = 11139 }	# Luga -> land, land, land, land, land, land, land
@@ -2071,7 +2071,7 @@
 	link = { vic2 = 874 hoi4 = 3876 hoi4 = 784 }	# Burdur -> land, land
 	link = { vic2 = 866 hoi4 = 3983 hoi4 = 6877 hoi4 = 9878 }	# Afyon -> land, land, land
 	link = { vic2 = 871 hoi4 = 6945 hoi4 = 11796 hoi4 = 10041 hoi4 = 11907 }	# Denizli -> land, land, land, land
-	link = { vic2 = 867 hoi4 = 856 hoi4 = 981 hoi4 = 3856 hoi4 = 11831 }	# Ktahya -> land, land, land, land
+	link = { vic2 = 867 hoi4 = 856 hoi4 = 981 hoi4 = 3856 hoi4 = 11831 }	# Kütahya -> land, land, land, land
 	link = { vic2 = 875 hoi4 = 12013 hoi4 = 12016 hoi4 = 1005 hoi4 = 1119 }	# Antalya -> land, land, land, land
 	link = { vic2 = 872 hoi4 = 9941 hoi4 = 10122 hoi4 = 12096 hoi4 = 11917 }	# Mugla -> land, land, land, land
 	link = { vic2 = 869 hoi4 = 11848 hoi4 = 4112 hoi4 = 7130 hoi4 = 6992 hoi4 = 9929 hoi4 = 10038 }	# Izmir -> land, land, land, land, land, land
@@ -2080,7 +2080,7 @@
 	link = { vic2 = 865 hoi4 = 6864 hoi4 = 9887 }	# Canakkale -> land, land
 	link = { vic2 = 863 hoi4 = 3851 hoi4 = 947 hoi4 = 11867 hoi4 = 3786 }	# Bursa -> land, land, land, land
 	link = { vic2 = 862 hoi4 = 11811 }	# Izmit -> land
-	link = { vic2 = 861 hoi4 = 11829 }	# skdar -> land
+	link = { vic2 = 861 hoi4 = 11829 }	# Üsküdar -> land
 	link = { vic2 = 860 hoi4 = 9833 }	# Istanbul -> land
 	link = { vic2 = 858 hoi4 = 6895 hoi4 = 922 }	# Kirklareli -> land, land
 	link = { vic2 = 859 hoi4 = 849 hoi4 = 3879 }	# Gallipoli -> land, land
@@ -2423,7 +2423,7 @@
 	link = { vic2 = 1594 hoi4 = 8112 hoi4 = 5016 hoi4 = 7790 hoi4 = 1970 hoi4 = 5087 hoi4 = 2015 hoi4 = 1766 }	# Kashgar -> land, land, land, land, land, land, land
 	link = { vic2 = 1597 hoi4 = 7949 hoi4 = 4828 hoi4 = 12119 }	# Aksu -> land, land, land
 	link = { vic2 = 1599 hoi4 = 4843 hoi4 = 12598 hoi4 = 12671 hoi4 = 10839 hoi4 = 4704 hoi4 = 1838 }	# Kumul -> land, land, land, land, land, land
-	link = { vic2 = 1600 hoi4 = 4709 hoi4 = 10545 hoi4 = 7792 hoi4 = 7702 hoi4 = 12656 hoi4 = 7732 hoi4 = 12524 hoi4 = 10614 }	# Dhu -> land, land, land, land, land, land, land, land
+	link = { vic2 = 1600 hoi4 = 4709 hoi4 = 10545 hoi4 = 7792 hoi4 = 7702 hoi4 = 12656 hoi4 = 7732 hoi4 = 12524 hoi4 = 10614 }	# Díhuà -> land, land, land, land, land, land, land, land
 	link = { vic2 = 1595 hoi4 = 12601 hoi4 = 12526 hoi4 = 1703 hoi4 = 4682 hoi4 = 7850 hoi4 = 4770 }	# Ili -> land, land, land, land, land, land
 	link = { vic2 = 1596 hoi4 = 10674 hoi4 = 1783 hoi4 = 7866 hoi4 = 1844 hoi4 = 10691 hoi4 = 12737 hoi4 = 12590 hoi4 = 1708 }	# Tulta -> land, land, land, land, land, land, land, land
 	link = { vic2 = 2679 hoi4 = 7693 hoi4 = 4823 hoi4 = 4849 hoi4 = 4714 hoi4 = 7737 hoi4 = 4788 }	# Khovd -> land, land, land, land, land, land
@@ -2817,7 +2817,7 @@
 	link = { vic2 = 2127 hoi4 = 2188 }	# Seychelles -> land
 	# 
 	# Pacific Islands
-	link = { vic2 = 2285 hoi4 = 5023 }	# Galpagos -> land
+	link = { vic2 = 2285 hoi4 = 5023 }	# Galápagos -> land
 	link = { vic2 = 2623 hoi4 = 13052 }	# Midway Island -> land
 	link = { vic2 = 2336 hoi4 = 1280 }	# Easter Island -> land
 	link = { vic2 = 801 vic2 = 2545 vic2 = 2551 vic2 = 2552 vic2 = 2553 hoi4 = 12148 hoi4 = 10188 }	# MANY-TO-MANY: Tahiti, Rarotonga, Marquesas, Pitcairn, Tuamotus -> land, land
@@ -2844,8 +2844,8 @@
 	# Atlantic Islands
 	link = { vic2 = 2134 hoi4 = 1751 }	# Azores -> land
 	link = { vic2 = 1876 hoi4 = 13014 }	# Cape Verde -> land
-	link = { vic2 = 1954 hoi4 = 13015 }	# So Tom -> land
-	link = { vic2 = 1955 hoi4 = 1903 }	# Fernando P -> land
+	link = { vic2 = 1954 hoi4 = 13015 }	# São Tomé -> land
+	link = { vic2 = 1955 hoi4 = 1903 }	# Fernando Pó -> land
 	link = { vic2 = 2133 hoi4 = 10995 }	# South Georgia -> land
 	link = { vic2 = 2130 hoi4 = 13013 }	# Ascension -> land
 	link = { vic2 = 2129 hoi4 = 13016 }	# Saint Helena -> land
@@ -2857,13 +2857,13 @@
 	# ##########
 	# 
 	# ## Baltic
-	link = { vic2 = 2706 hoi4 = 593 hoi4 = 786 hoi4 = 990 hoi4 = 1211 }	# lands Hav -> sea, sea, sea, sea
+	link = { vic2 = 2706 hoi4 = 593 hoi4 = 786 hoi4 = 990 hoi4 = 1211 }	# Ålands Hav -> sea, sea, sea, sea
 	link = { vic2 = 2705 hoi4 = 4 hoi4 = 411 }	# Gulf of Bothnia -> sea, sea
 	link = { vic2 = 2707 hoi4 = 1434 hoi4 = 1660 }	# Gulf of Finland -> sea, sea
 	link = { vic2 = 2709 hoi4 = 1885 }	# Gulf of Riga -> sea
 	link = { vic2 = 2708 hoi4 = 2107 hoi4 = 2230 }	# Western Baltic Sea -> sea, sea
 	link = { vic2 = 2710 hoi4 = 2256 hoi4 = 2282 hoi4 = 2309 hoi4 = 2333 hoi4 = 2358 }	# Southern Baltic Sea -> sea, sea, sea, sea, sea
-	link = { vic2 = 2711 hoi4 = 2382 hoi4 = 2431 hoi4 = 2408 }	# resund -> sea, sea, sea
+	link = { vic2 = 2711 hoi4 = 2382 hoi4 = 2431 hoi4 = 2408 }	# Öresund -> sea, sea, sea
 	link = { vic2 = 2712 hoi4 = 2455 }	# Kattegat -> sea
 	# 
 	# ## North Sea
@@ -2929,7 +2929,7 @@
 	link = { vic2 = 2752 hoi4 = 8871 }	# Gulf of Mallorca -> sea
 	link = { vic2 = 2748 hoi4 = 8845 hoi4 = 5454 }	# Gulf of Valencia -> sea, sea
 	link = { vic2 = 2754 hoi4 = 5531 hoi4 = 5479 hoi4 = 8819 }	# Barbary Coast -> sea, sea, sea
-	link = { vic2 = 2747 hoi4 = 5431 hoi4 = 8793 }	# Gulf of Almera -> sea, sea
+	link = { vic2 = 2747 hoi4 = 5431 hoi4 = 8793 }	# Gulf of Almería -> sea, sea
 	link = { vic2 = 2746 hoi4 = 5407 hoi4 = 2400 }	# Straits of Gibraltar -> sea, sea
 	# 
 	# ## Gulf of Mexico and Caribbean
@@ -2995,7 +2995,7 @@
 	link = { vic2 = 2923 hoi4 = 251 hoi4 = 412 hoi4 = 448 hoi4 = 633 hoi4 = 43 hoi4 = 4483 hoi4 = 4257 hoi4 = 4706 hoi4 = 4929 }	# Mauritanian Coast -> sea, sea, sea, sea, sea, sea, sea, sea, sea
 	link = { vic2 = 2922 hoi4 = 787 hoi4 = 594 hoi4 = 9072 hoi4 = 9024 hoi4 = 8999 hoi4 = 8889 hoi4 = 8829 }	# Coast of Senegambia -> sea, sea, sea, sea, sea, sea, sea
 	link = { vic2 = 2980 hoi4 = 1890 hoi4 = 1665 hoi4 = 2720 hoi4 = 2743 }	# Guyana Coast -> sea, sea, sea, sea
-	link = { vic2 = 2981 hoi4 = 2670 hoi4 = 1439 hoi4 = 2644 hoi4 = 2595 }	# Coast of Amap -> sea, sea, sea, sea
+	link = { vic2 = 2981 hoi4 = 2670 hoi4 = 1439 hoi4 = 2644 hoi4 = 2595 }	# Coast of Amapá -> sea, sea, sea, sea
 	link = { vic2 = 2982 hoi4 = 2569 hoi4 = 2545 hoi4 = 1215 hoi4 = 2498 hoi4 = 2522 }	# Amazonas Gulf -> sea, sea, sea, sea, sea
 	link = { vic2 = 2983 hoi4 = 2472 hoi4 = 2447 hoi4 = 2398 }	# Coast of Brazil -> sea, sea, sea
 	link = { vic2 = 2984 hoi4 = 2849 hoi4 = 8427 hoi4 = 8402 }	# Coast of Recife -> sea, sea, sea
@@ -3038,7 +3038,7 @@
 	link = { vic2 = 2985 hoi4 = 791 hoi4 = 995 hoi4 = 8507 hoi4 = 8298 hoi4 = 8324 }	# Coast of Pernambuco -> sea, sea, sea, sea, sea
 	link = { vic2 = 2986 hoi4 = 597 hoi4 = 8480 hoi4 = 8452 hoi4 = 2778 hoi4 = 8159 }	# Todos os Santos Bay -> sea, sea, sea, sea, sea
 	link = { vic2 = 2987 hoi4 = 2719 hoi4 = 2694 hoi4 = 8716 hoi4 = 2643 hoi4 = 6256 hoi4 = 2544 hoi4 = 2594 hoi4 = 2731 hoi4 = 416 hoi4 = 2620 }	# Rio De Janeiro -> sea, sea, sea, sea, sea, sea, sea, sea, sea, sea
-	link = { vic2 = 2988 hoi4 = 5998 hoi4 = 5975 hoi4 = 213 hoi4 = 2765 hoi4 = 2790 }	# Baia Paranagu -> sea, sea, sea, sea, sea
+	link = { vic2 = 2988 hoi4 = 5998 hoi4 = 5975 hoi4 = 213 hoi4 = 2765 hoi4 = 2790 }	# Baia Paranaguá -> sea, sea, sea, sea, sea
 	link = { vic2 = 2989 hoi4 = 5951 hoi4 = 9037 hoi4 = 9 }	# Rio De La Plata -> sea, sea, sea
 	link = { vic2 = 2990 hoi4 = 9009 hoi4 = 5926 hoi4 = 5879 }	# Bahia Blanca -> sea, sea, sea
 	link = { vic2 = 2991 hoi4 = 5828 hoi4 = 5802 }	# Coast of Patagonia -> sea, sea

@@ -51,7 +51,6 @@ Configuration::Configuration()
 	}
 
 	V2Path				= obj[0]->getLeaf("V2directory");
-	V2DocumentsPath	= obj[0]->getLeaf("V2Documentsdirectory");
 	HoI4Path				= obj[0]->getLeaf("HoI4directory");
 	HoI4DocumentsPath = obj[0]->getLeaf("HoI4Documentsdirectory");
 	outputName			= "";
@@ -61,36 +60,6 @@ Configuration::Configuration()
 	{
 		Vic2Mods = modsObj[0]->getTokens();
 	}
-
-	factionLeaderAlgorithm	= obj[0]->getLeaf("faction_leader");
-	if (factionLeaderAlgorithm == "manual")
-	{
-		vector<Object*> factionObj = obj[0]->getValue("axis_faction");
-		if (factionObj.size() > 0)
-		{
-			manualAxisFaction = factionObj[0]->getTokens();
-		}
-		factionObj = obj[0]->getValue("allies_faction");
-		if (factionObj.size() > 0)
-		{
-			manualAlliesFaction = factionObj[0]->getTokens();
-		}
-		factionObj = obj[0]->getValue("comintern_faction");
-		if (factionObj.size() > 0)
-		{
-			manualCominternFaction = factionObj[0]->getTokens();
-		}
-	}
-
-	minInfra					= atof(obj[0]->getLeaf("min_infrastructure").c_str());
-	icConversion			= obj[0]->getLeaf("ic_conversion");
-	icFactor					= atof(obj[0]->getLeaf("ic_factor").c_str());
-	manpowerConversion	= obj[0]->getLeaf("manpower_conversion");
-	manpowerFactor			= atof(obj[0]->getLeaf("manpower_factor").c_str());
-	leadershipConversion	= obj[0]->getLeaf("leadership_conversion");
-	leadershipFactor		= atof(obj[0]->getLeaf("leadership_factor").c_str());
-	literacyWeight			= atof(obj[0]->getLeaf("literacy_weight").c_str());
-	practicalsScale		= atof(obj[0]->getLeaf("practicals_scale").c_str());
 
 	leaderID					= 1000;
 	leaderIDCountryIdx	= 1;

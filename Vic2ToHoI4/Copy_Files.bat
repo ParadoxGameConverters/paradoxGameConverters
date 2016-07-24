@@ -28,6 +28,6 @@ mkdir "release\blankMod\output\history\provinces"
 mkdir "release\blankMod\output\history\countries"
 
 xcopy "Data_Files\events" "release\blankmod\output\events" /Y /E /I
-xcopy "Data_Files\bookmarks" "release\blankmod\output\bookmarks" /Y /E /I
+xcopy "Data_Files\bookmarks" "release\blankmod\output\common\bookmarks" /Y /E /I
 xcopy "Data_Files\on_actions" "release\blankmod\output\common\on_actions" /Y /E /I
 xcopy "Data_Files\flags" "release\flags" /Y /E /I
