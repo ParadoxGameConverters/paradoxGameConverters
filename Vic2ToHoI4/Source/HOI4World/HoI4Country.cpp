@@ -155,7 +155,7 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<vector<HoI4Country*
 			output << tech.first << " = 1" << endl;
 		}
 		output << "}" << endl;
-		output << "" << endl;
+		output << "set_convoys = " + to_string(convoys) << endl;
 		output << "1939.1.1 = {" << endl;
 		output << "" << endl;
 		output << "    " << endl;
@@ -1039,6 +1039,9 @@ void HoI4Country::convertNavy(map<int, HoI4State*> states)
 	double DD = 0;
 	double CV = 0;
 	double SB = 0;
+	convoys = 0;
+	convoys = (heavyShip * 0.21945 * 40) + (lightShip * 1.88 * 4);
+
 	for (auto tech : technologies)
 	{
 		if ((tech.first == "early_light_cruiser") && (tech.second == 1))

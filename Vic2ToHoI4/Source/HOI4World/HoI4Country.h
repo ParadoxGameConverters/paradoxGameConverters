@@ -163,6 +163,7 @@ class HoI4Country
 		string								rulingHoI4Ideology;
 		bool									majorNation;
 		vector<int>							brigs;
+		int									convoys;
 		int provinceCount;
 		long armyStrength;
 		string relationstxt;

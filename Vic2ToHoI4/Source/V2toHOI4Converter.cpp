@@ -494,7 +494,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	destWorld.outputRelations();
 	LOG(LogLevel::Info) << "Copying flags";
 	copyFlags(destWorld.getCountries());
-	
+	//Utils::TryCopyFile("NeededFiles/gfx", "Output/" + Configuration::getOutputName());
 	LOG(LogLevel::Info) << "Outputting world";
 	destWorld.output();
 	buildings.output();

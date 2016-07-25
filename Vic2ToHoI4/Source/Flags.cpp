@@ -34,7 +34,6 @@ void copyFlags(const map<string, HoI4Country*>& countries)
 {
 	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx");
 	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx/flags");
-	//Utils::TryCopyFile("NeededFiles/gfx", "Output/" + Configuration::getOutputName());
 	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx/flags/medium");
 	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx/flags/small");
 	for (auto country: countries)

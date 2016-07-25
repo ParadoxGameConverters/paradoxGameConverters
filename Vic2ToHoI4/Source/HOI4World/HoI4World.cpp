@@ -1594,6 +1594,7 @@ void HoI4World::createIdeologyFiles()
 	}
 	Utils::TryCopyFile("NeededFiles/countrypoliticsview.gfx", "Output/" + Configuration::getOutputName() + "/interface/countrypoliticsview.gfx");
 	Utils::copyFolder("NeededFiles/defines", "Output/" + Configuration::getOutputName() + "/common");
+	Utils::copyFolder("NeededFiles/gfx", "Output/" + Configuration::getOutputName());
 }
 
 
@@ -2220,7 +2221,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
 	FocusTree += "		completion_reward = {\r\n";
-	FocusTree += "			add_ideas = militirism\r\n";
+	FocusTree += "			add_ideas = militarism_focus\r\n";
 	FocusTree += "		}\r\n";
 	FocusTree += "	}";
 	string protectorateNFs = "";
@@ -4724,7 +4725,7 @@ void HoI4World::outputRelations()
 	{
 		return;
 	}
-	//Utils::copyFolder("NeededFiles/defines", "Output/" + Configuration::getOutputName() + "/common");
+
 	string filename("Output/" + Configuration::getOutputName() + "/common/opinion_modifiers/01_opinion_modifiers.txt");
 	ofstream out;
 	out.open(filename);
@@ -5413,6 +5414,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				ofstream outevents;
 				outevents.open(filenameevents);
 				{
+					outevents << "\xEF\xBB\xBF";
 					outevents << Events;
 				}
 				outevents.close();
@@ -5642,6 +5644,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				ofstream outevents;
 				outevents.open(filenameevents);
 				{
+					outevents << "\xEF\xBB\xBF";
 					outevents << Events;
 				}
 				outevents.close();
@@ -5655,7 +5658,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				}
 				out2.close();
 			}
-			if ((Leader->getGovernment() == "communism") && communismrelevant)
+			if ((Leader->getGovernment() == "communism"))
 			{
 				//communism still needs great country war events
 				LOG(LogLevel::Info) << "Calculating AI for " + Leader->getSourceCountry()->getName();
@@ -6286,11 +6289,7 @@ bool HoI4World::checkIfGreatCountry(HoI4Country* checkingCountry, const V2World 
 map<string, HoI4Country*> HoI4World::findNeighbors(vector<int> CountryProvs, HoI4Country* CheckingCountry)
 {
 	map<string, HoI4Country*> Neighbors;
-	string filename("Output/" + CheckingCountry->getSourceCountry()->getName() + "neigh.txt");
-	ofstream out;
 	vector<HoI4Province> provinces2;
-	out.open(filename);
-	{
 		for (auto prov : CountryProvs)
 		{
 			vector<int> thisprovNeighbors = provinceNeighbors.find(prov)->second;
@@ -6333,13 +6332,6 @@ map<string, HoI4Country*> HoI4World::findNeighbors(vector<int> CountryProvs, HoI
 				}
 			}
 		}
-		out << CheckingCountry->getSourceCountry()->getName() + " " << endl;
-
-		for (auto neigh : Neighbors)
-			out << neigh.second->getSourceCountry()->getName() + " ";
-		out << endl;
-		out.close();
-	}
 	return Neighbors;
 }
 void HoI4World::fillProvinces()
