@@ -458,6 +458,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "Converting armies and navies";
 	destWorld.convertArmies(inverseProvinceMap);
 	destWorld.convertNavies();
+	destWorld.convertAirforces();
 	LOG(LogLevel::Info) << "Converting victory points";
 	destWorld.convertVictoryPoints(countryMap);
 	LOG(LogLevel::Info) << "Setting AI focuses";

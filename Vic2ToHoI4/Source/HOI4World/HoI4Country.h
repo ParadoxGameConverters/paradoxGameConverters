@@ -25,6 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #define HoI4COUNTRY_H_
 
 
+#include "HoI4Airforce.h"
 #include "HoI4Alignment.h"
 #include "HoI4Army.h"
 #include "HoI4Navy.h"
@@ -73,6 +74,7 @@ class HoI4Country
 		void		initFromHistory();
 		void		generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
 		void		convertNavy(map<int, HoI4State*> states);
+		void		convertAirforce();
 		void		convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void		setAIFocuses(const AIFocusModifiers& focusModifiers);
 		void		addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
@@ -171,6 +173,7 @@ class HoI4Country
 		vector<HoI4DivisionTemplateType>		divisionTemplates;
 		vector<HoI4DivisionType>				divisions;
 		vector<HoI4Ship>							ships;
+		vector<HoI4Airplane>						planes;
 		int											navalLocation;
 };
 

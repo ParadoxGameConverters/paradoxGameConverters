@@ -1326,6 +1326,15 @@ void HoI4World::convertNavies()
 }
 
 
+void HoI4World::convertAirforces()
+{
+	for (auto country: countries)
+	{
+		country.second->convertAirforce();
+	}
+}
+
+
 void HoI4World::convertVictoryPoints(const CountryMapping& countryMap)
 {
 	// all country capitals get five VP
