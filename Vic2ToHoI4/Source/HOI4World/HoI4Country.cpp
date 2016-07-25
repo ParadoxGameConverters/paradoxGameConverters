@@ -761,6 +761,11 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	}
 
 	determineCapitalFromVic2(inverseProvinceMap, stateMap, states);
+	auto state = states.find(capital)->second;
+	if (isThisStateOwnedByUs(state))
+	{
+		state->addAirBase(10);
+	}
 
 	// major nation
 	majorNation = srcCountry->getGreatNation();

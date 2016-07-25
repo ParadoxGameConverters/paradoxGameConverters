@@ -46,6 +46,7 @@ class HoI4State
 		void addResource(string resource, double amount)	{ resources[resource] += amount; }
 		void addVP(int location, int value) { victoryPoints.insert(make_pair(location, value)); }
 		void addManpower(int newManpower) { manpower += newManpower; }
+		void addAirBase(int newAirBase) { airbaseLevel += newAirBase; if (airbaseLevel > 10) airbaseLevel = 10; }
 
 		void setNavalBase(int level, int location);
 		void setIndustry(int civilianFactories, int militaryFactories, string category, int railLevel);
@@ -80,6 +81,8 @@ class HoI4State
 	
 		int navalLevel;
 		int navalLocation;
+
+		int airbaseLevel;
 
 		map<string, double> resources;
 
