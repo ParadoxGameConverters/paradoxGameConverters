@@ -305,7 +305,6 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	// Get country mappings
 	CountryMapping countryMap;
 	countryMap.ReadRules("country_mappings.txt");
-	destWorld.importPotentialCountries();
 	countryMap.CreateMapping(sourceWorld, destWorld);
 
 	// Get adjacencies

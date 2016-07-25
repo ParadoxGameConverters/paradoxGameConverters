@@ -138,53 +138,6 @@ void HoI4World::checkCoastalProvinces()
 }
 
 
-void HoI4World::importPotentialCountries()
-{
-	potentialCountries.clear();
-	countries.clear();
-
-	LOG(LogLevel::Info) << "Getting potential countries";
-	set<string> countryFilenames;
-	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/common/country_tags", countryFilenames);
-
-	for (auto countryFilename: countryFilenames)
-	{
-		ifstream HoI4CountriesInput(Configuration::getHoI4Path() + "/common/country_tags/" + countryFilename);
-		if (!HoI4CountriesInput.is_open())
-		{
-			LOG(LogLevel::Error) << "Could not open " << countryFilename;
-			exit(1);
-		}
-
-		while (!HoI4CountriesInput.eof())
-		{
-			string line;
-			getline(HoI4CountriesInput, line);
-
-			if ((line[0] == '#') || (line.size() < 3))
-			{
-				continue;
-			}
-			if (line.substr(0, 19) == "dynamic_tags  = yes")
-			{
-				break;
-			}
-
-			string tag;
-			tag = line.substr(0, 3);
-
-			string countryFileName;
-			int start = line.find_first_of('/');
-			int size = line.find_last_of('\"') - start;
-			countryFileName = line.substr(start, size);
-			HoI4Country* newCountry = new HoI4Country(tag, countryFileName, this);
-			potentialCountries.insert(make_pair(tag, newCountry));
-		}
-		HoI4CountriesInput.close();
-	}
-}
-
-
 void HoI4World::output() const
 {
 	outputCommonCountries();
@@ -228,7 +181,7 @@ void HoI4World::outputCommonCountries() const
 
 	for (auto countryItr: countries)
 	{
-		if ((potentialCountries.find(countryItr.first) == potentialCountries.end()) && (countryItr.second->getCapitalNum() != 0))
+		if (countryItr.second->getCapitalNum() != 0)
 		{
 			countryItr.second->outputToCommonCountriesFile(allCountriesFile);
 		}
@@ -252,9 +205,7 @@ void HoI4World::outputColorsfile() const
 	output << "#reload countrycolors\r\n";
 	for (auto countryItr: countries)
 	{
-		if (	(potentialCountries.find(countryItr.first) == potentialCountries.end()) &&
-				(countryItr.second->getCapitalNum() != 0)
-			)
+		if (countryItr.second->getCapitalNum() != 0)
 		{
 			countryItr.second->outputColors(output);
 		}
@@ -289,10 +240,6 @@ void HoI4World::outputAutoexecLua() const
 	}
 	sourceFile.close();
 
-	for (auto country: potentialCountries)
-	{
-		fprintf(autoexec, "require('%s')\n", country.first.c_str());
-	}
 	fprintf(autoexec, "\n");
 	fclose(autoexec);
 }
@@ -380,14 +327,7 @@ void HoI4World::outputHistory() const
 	{
 		countryItr.second->output(states->getStates());
 	}
-	// Override vanilla history to suppress vanilla OOB and faction membership being read
-	for (auto potentialItr: potentialCountries)
-	{
-		if (countries.find(potentialItr.first) == countries.end())
-		{
-			potentialItr.second->output(states->getStates());
-		}
-	}
+
 	LOG(LogLevel::Debug) << "Writing diplomacy";
 	//diplomacy.output();
 }
@@ -427,16 +367,8 @@ void HoI4World::convertCountries(const CountryMapping& countryMap, const Vic2ToH
 		const std::string& HoI4Tag = countryMap[sourceItr.first];
 		if (!HoI4Tag.empty())
 		{
-			auto candidateDestCountry = potentialCountries.find(HoI4Tag);
-			if (candidateDestCountry != potentialCountries.end())
-			{
-				destCountry = candidateDestCountry->second;
-			}
-			if (destCountry == NULL) // No such HoI4 country exists yet for this tag so make a new one
-			{
-				std::string countryFileName = '/' + sourceItr.second->getName() + ".txt";
-				destCountry = new HoI4Country(HoI4Tag, countryFileName, this, true);
-			}
+			std::string countryFileName = '/' + sourceItr.second->getName() + ".txt";
+			destCountry = new HoI4Country(HoI4Tag, countryFileName, this, true);
 			V2Party* rulingParty = sourceWorld->getRulingParty(sourceItr.second);
 			if (rulingParty == NULL)
 			{
@@ -452,17 +384,6 @@ void HoI4World::convertCountries(const CountryMapping& countryMap, const Vic2ToH
 		}
 
 		localisation.readFromCountry(sourceItr.second, HoI4Tag);
-	}
-
-	// initialize all potential countries
-	// ALL potential countries should be output to the file, otherwise some things don't get initialized right in HoI4
-	for (auto potentialItr: potentialCountries)
-	{
-		map<string, HoI4Country*>::iterator citr = countries.find(potentialItr.first);
-		if (citr == countries.end())
-		{
-			potentialItr.second->initFromHistory();
-		}
 	}
 }
 
