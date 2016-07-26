@@ -108,7 +108,7 @@ class HoI4Country
 		map<string, double>&						getPracticals()				{ return practicals; }
 		int											getCapitalNum()				{ return capital; }
 		vector<int>									getBrigs() const			{ return brigs; }
-		double									getCapitalProv() const { return capital; }
+		int											getCapitalProv() const { return capital; }
 		double										getArmyStrength() const { return armyStrength; }
 		const string									getSphereLeader() const { return sphereLeader; }
 		vector<HoI4Party> getParties() const { return parties; }

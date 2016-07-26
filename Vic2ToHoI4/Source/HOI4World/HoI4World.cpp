@@ -6099,7 +6099,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 			GCDistanceSorted.push_back(iterator->second);
 		}
 		sort(GCDistanceSorted.begin(), GCDistanceSorted.end());
-		double CountriesAtWarStrength;
+		double CountriesAtWarStrength = 0.0;
 		for (auto faction : CountriesAtWar)
 		{
 			CountriesAtWarStrength += GetFactionStrength(faction);
@@ -6476,9 +6476,9 @@ vector<HoI4Country*> HoI4World::GetMorePossibleAllies(HoI4Country* CountryThatWa
 				//FIXME
 				//check if we are friendly at all?
 				HoI4Relations* relationswithposally = CountryThatWantsAllies->getRelations(CountriesWithin500Miles[i]->getTag());
-				volatile int rel = relationswithposally->getRelations();
-				volatile int size = findFaction(CountriesWithin500Miles[i]).size();
-				volatile int armysize = getStrengthOverTime(CountriesWithin500Miles[i], 1);
+				int rel = relationswithposally->getRelations();
+				int size = findFaction(CountriesWithin500Miles[i]).size();
+				double armysize = getStrengthOverTime(CountriesWithin500Miles[i], 1);
 				//for now can only ally with people not in a faction, and must be worth adding
 				if (relationswithposally->getRelations() >= -50 && findFaction(CountriesWithin500Miles[i]).size() <= 1)
 				{
@@ -6566,7 +6566,7 @@ double HoI4World::GetDistance(HoI4Country* Country1, HoI4Country* Country2)
 }
 double HoI4World::GetFactionStrengthWithDistance(HoI4Country* HomeCountry, vector<HoI4Country*> Faction, double time)
 {
-	double strength;
+	double strength = 0.0;
 	for (auto country : Faction)
 	{
 		double distanceMulti = 1;
@@ -6843,5 +6843,5 @@ string HoI4World::returnIfSphere(HoI4Country* leadercountry, HoI4Country* posLea
 			}
 		}
 	}
-
+	return "";
 }

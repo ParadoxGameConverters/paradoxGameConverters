@@ -29,7 +29,7 @@ copy "Data_Files\NeededFiles\countrypoliticsview.gfx" "release\blankmod\output\i
 xcopy "Data_Files\events" "release\blankmod\output\events" /Y /E /I
 xcopy "Data_Files\bookmarks" "release\blankmod\output\common\bookmarks" /Y /E /I
 xcopy "Data_Files\on_actions" "release\blankmod\output\common\on_actions" /Y /E /I
-rem xcopy "Data_Files\flags" "release\flags" /Y /E /I
+xcopy "Data_Files\flags" "release\flags" /Y /E /I
 xcopy "Data_Files\NeededFiles\interface" "release\blankmod\output\gfx\interface" /Y /E /I
 xcopy "Data_Files\NeededFiles\ideologies" "release\blankmod\output\ideologies" /Y /E /I
 xcopy "Data_Files\NeededFiles\defines" "release\blankmod\output\defines" /Y /E /I

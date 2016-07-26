@@ -1056,7 +1056,7 @@ void HoI4Country::convertNavy(map<int, HoI4State*> states)
 	double CV = 0;
 	double SB = 0;
 	convoys = 0;
-	convoys = (heavyShip * 0.21945 * 40) + (lightShip * 1.88 * 4);
+	convoys = static_cast<int>((heavyShip * 0.21945 * 40) + (lightShip * 1.88 * 4));
 
 	for (auto tech : technologies)
 	{
@@ -1255,7 +1255,7 @@ void HoI4Country::convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseP
 			}
 		}
 	}
-	int InfWep = 0;
+	double InfWep = 0;
 	if (technologies.find("infantry_weapons1") == technologies.end())
 	{
 		InfWep = 0.3;
@@ -1265,7 +1265,7 @@ void HoI4Country::convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseP
 		InfWep = 0.5;
 	}
 	armyStrength = 0;
-	armyStrength = (100 * InfWep*infantryBrigades) + (supportBrigades * 175) + (artilleryBrigades * 126) + (tankBrigades * 1135) + (cavalryBrigades * 120 * InfWep) + (mountainBrigades * 140 * InfWep);
+	armyStrength = static_cast<long>((100 * InfWep*infantryBrigades) + (supportBrigades * 175) + (artilleryBrigades * 126) + (tankBrigades * 1135) + (cavalryBrigades * 120 * InfWep) + (mountainBrigades * 140 * InfWep));
 	// calculate the number of brigades in different types of divisions
 	int infantryPerDivision = 0;
 	if (infantryBrigades <= 45)
