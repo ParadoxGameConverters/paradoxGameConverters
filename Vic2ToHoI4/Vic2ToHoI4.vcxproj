@@ -73,6 +73,7 @@
     <ClCompile Include="Source\CountryMapping.cpp" />
     <ClCompile Include="Source\Flags.cpp" />
     <ClCompile Include="Source\GovernmentMapper.cpp" />
+    <ClCompile Include="Source\HOI4World\HoI4Airforce.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Alignment.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Army.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Buildings.cpp" />
@@ -117,6 +118,7 @@
     <ClInclude Include="Source\CountryMapping.h" />
     <ClInclude Include="Source\Flags.h" />
     <ClInclude Include="Source\GovernmentMapper.h" />
+    <ClInclude Include="Source\HOI4World\HoI4Airforce.h" />
     <ClInclude Include="Source\HOI4World\HoI4Alignment.h" />
     <ClInclude Include="Source\HOI4World\HoI4Army.h" />
     <ClInclude Include="Source\HOI4World\HoI4Buildings.h" />

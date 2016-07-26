@@ -561,7 +561,18 @@ void HoI4Country::outputOOB() const
 		}
 		output << "\t}" << endl;
 	}
-	output << "}";
+	output << "}\n";
+	if (planes.size() > 0)
+	{
+		output << "air_wings = {\n";
+		output << "\t" << capital << " = {\n";
+		for (auto plane: planes)
+		{
+			output << plane;
+		}
+		output << "\t}\n";
+		output << "}\n";
+	}
 	output.close();
 }
 
@@ -794,6 +805,11 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	}
 
 	determineCapitalFromVic2(inverseProvinceMap, stateMap, states);
+	auto state = states.find(capital)->second;
+	if (isThisStateOwnedByUs(state))
+	{
+		state->addAirBase(10);
+	}
 
 	// major nation
 	majorNation = srcCountry->getGreatNation();
@@ -1119,6 +1135,45 @@ void HoI4Country::convertNavy(map<int, HoI4State*> states)
 		if ((state.second->getOwner() == tag) && (state.second->getNavalLocation() != 0))
 		{
 			navalLocation = state.second->getNavalLocation();
+		}
+	}
+}
+
+
+void HoI4Country::convertAirforce()
+{
+	int airplanes = 0;
+	for (auto army: srcCountry->getArmies())
+	{
+		for (auto regiment: army->getRegiments())
+		{
+			string type = regiment->getType();
+			if (type == "plane")
+			{
+				airplanes += 1;
+			}
+		}
+	}
+
+	if (airplanes > 0)
+	{
+		auto techItr = technologies.find("early_fighter");
+		if (techItr != technologies.end())
+		{
+			HoI4Airplane newPlane(string("fighter_equipment_0"), tag, 100 * airplanes);
+			planes.push_back(newPlane);
+		}
+		techItr = technologies.find("early_bomber");
+		if (techItr != technologies.end())
+		{
+			HoI4Airplane newPlane(string("tac_bomber_equipment_0"), tag, 100 * airplanes);
+			planes.push_back(newPlane);
+		}
+		techItr = technologies.find("CAS1");
+		if (techItr != technologies.end())
+		{
+			HoI4Airplane newPlane(string("CAS_equipment_1"), tag, 100 * airplanes);
+			planes.push_back(newPlane);
 		}
 	}
 }

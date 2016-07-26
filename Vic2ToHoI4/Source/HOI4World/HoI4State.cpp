@@ -99,7 +99,7 @@ void HoI4State::output(string _filename)
 		out << "\t\t\t\tnaval_base = " << navalLevel << endl;
 		out << "\t\t\t}" << endl;
 	}
-	//out << "\t\tair_base = 1" << endl;
+	out << "\t\t\tair_base = "<< airbaseLevel << endl;
 	out << "\t\t}" << endl;
 	//out << "\t}" << endl;
 	for (auto core: cores)

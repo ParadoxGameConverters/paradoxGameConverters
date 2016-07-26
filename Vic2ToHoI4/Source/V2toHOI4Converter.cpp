@@ -305,7 +305,6 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	// Get country mappings
 	CountryMapping countryMap;
 	countryMap.ReadRules("country_mappings.txt");
-	destWorld.importPotentialCountries();
 	countryMap.CreateMapping(sourceWorld, destWorld);
 
 	// Get adjacencies
@@ -457,6 +456,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "Converting armies and navies";
 	destWorld.convertArmies(inverseProvinceMap);
 	destWorld.convertNavies();
+	destWorld.convertAirforces();
 	LOG(LogLevel::Info) << "Converting victory points";
 	destWorld.convertVictoryPoints(countryMap);
 	LOG(LogLevel::Info) << "Setting AI focuses";
