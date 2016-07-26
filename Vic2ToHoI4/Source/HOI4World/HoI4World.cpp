@@ -5520,7 +5520,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 						FocusTree += "		prerequisite = { focus =  MilitaryBuildup" + Leader->getTag() + " }\r\n";
 						FocusTree += "		available = {   date > 1938." + to_string(v1) + "." + to_string(v2) + "} \r\n";
 						FocusTree += "		x = " + to_string(31 + maxGCWars * 2) + "\r\n";
-						FocusTree += "		y = 4\r\n";
+						FocusTree += "		y = 5\r\n";
 						//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\r\n";
 						FocusTree += "		cost = 10\r\n";
 						FocusTree += "		ai_will_do = {\r\n";
@@ -6291,7 +6291,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 						FocusTree += "		prerequisite = { focus =  MilitaryBuildup" + Leader->getTag() + " }\r\n";
 						FocusTree += "		available = {   date > 1938." + to_string(v1) + "." + to_string(v2) + "} \r\n";
 						FocusTree += "		x = " + to_string(31+maxGCWars * 2) + "\r\n";
-						FocusTree += "		y = 4\r\n";
+						FocusTree += "		y = 5\r\n";
 						//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\r\n";
 						FocusTree += "		cost = 10\r\n";
 						FocusTree += "		ai_will_do = {\r\n";
@@ -6376,11 +6376,12 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 					out2 << FocusTree;
 				}
 				out2.close();
-				out << "percentage of world at war" + to_string(CountriesAtWarStrength / WorldStrength) << endl;
+				
 				for (auto faction : CountriesAtWar)
 				{
 					CountriesAtWarStrength += GetFactionStrength(faction);
 				}
+				out << "percentage of world at war" + to_string(CountriesAtWarStrength / WorldStrength) << endl;
 				if (CountriesAtWarStrength / WorldStrength >= 0.8)
 				{
 					break;
