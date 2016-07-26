@@ -4691,7 +4691,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		exit(-1);
 	}
 	//Files To show results
-	string filename("Output/AI.txt");
+	string filename("AI-log.txt");
 	ofstream out;
 	vector<HoI4Country*> LeaderCountries;
 	//getting total strength of all factions
@@ -6708,7 +6708,7 @@ vector<int> HoI4World::getCountryProvinces(HoI4Country* Country)
 vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
 	vector<vector<HoI4Country*>> Factions2;
-	string filename("Output/Factions.txt");
+	string filename("Factions-logs.txt");
 	ofstream out;
 	out.open(filename);
 	{
