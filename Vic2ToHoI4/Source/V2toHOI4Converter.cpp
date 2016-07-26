@@ -41,7 +41,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 // Returns 0 on success or a non-zero failure code on error.
 int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 {
-	LOG(LogLevel::Info) << "Converter version 0.0";
+	LOG(LogLevel::Info) << "Converter version 0.1";
 	Object*	obj;					// generic object
 
 	Configuration::getInstance();
