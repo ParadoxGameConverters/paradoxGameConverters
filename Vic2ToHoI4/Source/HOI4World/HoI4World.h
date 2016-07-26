@@ -80,6 +80,9 @@ class HoI4World
 		double    GetFactionStrength(vector<HoI4Country*> Faction);
 		vector<HoI4Country*>    returnGreatCountries(const V2World & sourceWorld, const CountryMapping & countryMap);
 		string returnIfSphere(HoI4Country * leadercountry, HoI4Country * posLeaderCountry, const V2World & sourceWorld, const CountryMapping & countryMap);
+		vector<vector<HoI4Country*>> FascistWarMaker(HoI4Country * Leader, V2World sourceWorld, CountryMapping countryMap);
+		vector<vector<HoI4Country*>> CommunistWarCreator(HoI4Country * Leader, V2World sourceWorld, CountryMapping countryMap);
+		vector<vector<HoI4Country*>> MonarchyWarCreator(HoI4Country * Leader, V2World sourceWorld, CountryMapping countryMap);
 		string HowToTakeLand(HoI4Country * TargetCountry, HoI4Country * AttackingCountry, double time);
 		vector<HoI4Country*> GetMorePossibleAllies(HoI4Country * CountryThatWantsAllies);
 		double GetDistance(HoI4Country * Country1, HoI4Country * Country2);
