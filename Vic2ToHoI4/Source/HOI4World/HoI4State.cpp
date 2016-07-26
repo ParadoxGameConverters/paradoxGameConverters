@@ -45,6 +45,8 @@ HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, string _ownerTag)
 
 	navalLevel		= 0;
 	navalLocation	= 0;
+
+	airbaseLevel	= 0;
 }
 
 
