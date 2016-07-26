@@ -145,8 +145,6 @@ void HoI4World::output() const
 	//outputAutoexecLua();
 	outputLocalisations();
 	outputHistory();
-	//output events
-	Utils::copyFolder("events", "output/" + Configuration::getOutputName());
 	outputMap();
 	outputSupply();
 }
@@ -1508,23 +1506,6 @@ void HoI4World::convertDiplomacy(const CountryMapping& countryMap)
 		}
 	}
 }
-
-
-void HoI4World::createIdeologyFiles()
-{
-	Utils::copyFolder("NeededFiles/interface", "output/" + Configuration::getOutputName() + "/gfx");
-	Utils::copyFolder("NeededFiles/ideologies", "output/" + Configuration::getOutputName() + "/common");
-	Utils::copyFolder("NeededFiles/ideas", "output/" + Configuration::getOutputName() + "/common");
-	std::string outputGraphicsFolder = "Output/" + Configuration::getOutputName() + "/interface";
-	if (!Utils::TryCreateFolder(outputGraphicsFolder))
-	{
-		return;
-	}
-	Utils::TryCopyFile("NeededFiles/countrypoliticsview.gfx", "Output/" + Configuration::getOutputName() + "/interface/countrypoliticsview.gfx");
-	Utils::copyFolder("NeededFiles/defines", "Output/" + Configuration::getOutputName() + "/common");
-	Utils::copyFolder("NeededFiles/gfx", "Output/" + Configuration::getOutputName());
-}
-
 
 
 void HoI4World::checkAllProvincesMapped(const HoI4ToVic2ProvinceMapping& provinceMap)

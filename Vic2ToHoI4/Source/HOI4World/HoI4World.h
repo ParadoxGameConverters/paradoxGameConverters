@@ -60,7 +60,6 @@ class HoI4World
 		void	convertStrategicRegions();
 		void	convertTechs();
 		void	convertDiplomacy(const CountryMapping& countryMap);
-		void createIdeologyFiles();
 		void	convertArmies(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		void	configureFactions(const CountryMapping& countryMap);
 		void	generateLeaders(const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);

@@ -498,10 +498,8 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "Outputting world";
 	destWorld.output();
 	buildings.output();
-	destWorld.createIdeologyFiles();
 
 	destWorld.thatsgermanWarCreator(sourceWorld, countryMap);
-	Utils::copyFolder("bookmarks", "output/" + Configuration::getOutputName() + "/common");
 	LOG(LogLevel::Info) << "* Conversion complete *";
 	return 0;
 }
