@@ -19,4 +19,4 @@ copy Release\configuration-backup.txt Release\configuration.txt
 del Release\configuration-backup.txt
 
 cd testresults
-call "%SEVENZIP_LOC%\7z.exe" a -tzip -r "..\Vic2toHoI3-testresults.zip" "*.*" -mx5
+call "%SEVENZIP_LOC%\7z.exe" a -tzip -r "..\Vic2toHoI4-testresults.zip" "*.*" -mx5
