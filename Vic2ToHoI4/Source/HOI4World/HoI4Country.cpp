@@ -155,10 +155,6 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<vector<HoI4Country*
 			output << tech.first << " = 1" << endl;
 		}
 		output << "}" << endl;
-		if (government == "fascism" || "absolute)monarchy")
-		output << "add_ideas = {" << endl;
-		output << "vittoria_mutilata" << endl;
-		output << "}" << endl;
 		output << "set_convoys = " + to_string(convoys) << endl;
 		output << "1939.1.1 = {" << endl;
 		output << "" << endl;
