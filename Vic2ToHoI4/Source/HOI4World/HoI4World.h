@@ -52,7 +52,6 @@ class HoI4World
 		void	importSuppplyZones(const map<int, vector<int>>& defaultStateToProvinceMap, map<int, int>& provinceToSupplyZoneMap);
 		void	importStrategicRegions();
 		void	checkCoastalProvinces();
-		void	importPotentialCountries();
 		void	convertCountries(const CountryMapping& countryMap, const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
 		void	convertNavalBases(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void	convertIndustry();
@@ -67,6 +66,7 @@ class HoI4World
 		void	generateLeaders(const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
 		void	convertArmies(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void	convertNavies();
+		void	convertAirforces();
 		void	convertVictoryPoints(const CountryMapping& countryMap);
 		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
 		void	addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
@@ -100,7 +100,6 @@ class HoI4World
 		void outputRelations();
 		void	checkAllProvincesMapped(const HoI4ToVic2ProvinceMapping& provinceMap);
 
-		map<string, HoI4Country*>	getPotentialCountries()	const { return potentialCountries; }
 		map<string, HoI4Country*>	getCountries()	const { return countries; }
 
 	private:
@@ -128,7 +127,6 @@ class HoI4World
 		
 		map<int, HoI4Province*>		provinces;
 		map<string, HoI4Country*>	countries;
-		map<string,HoI4Country*>	potentialCountries;
 		HoI4Diplomacy					diplomacy;
 		map<string, int>				countriesICMIL;  
 		map<string, int>				countriesICCIV;

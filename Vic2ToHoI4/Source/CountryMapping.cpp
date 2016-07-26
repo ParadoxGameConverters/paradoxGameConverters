@@ -100,50 +100,22 @@ void CountryMapping::CreateMapping(const V2World& srcWorld, const HoI4World& des
 	char generatedHoI4TagPrefix = 'X'; // single letter prefix
 	int generatedHoI4TagSuffix = 0; // two digit suffix
 
-	// Get the V2 tags for all countries we want to map.
-	std::set<std::string> V2TagsToMap;		// the V2 tags that still need mapping
-	const std::map<std::string, V2Country*> V2Countries = srcWorld.getCountries();	// all the EU4 countries
-	for (auto country: V2Countries)
+	// Find a HoI4 tag from the rules for each Vic2 country
+	for (auto Vic2Tag: srcWorld.getCountries())
 	{
-		V2TagsToMap.insert(country.first);
-	}
-
-	// Find a HoI4 tag from the rules for each V2 tag.
-	const map<string, HoI4Country*> HoI4Countries = destWorld.getPotentialCountries();
-	for (auto Vic2Tag: V2TagsToMap)
-	{
-		bool mapped = false;					// whether or not the V2 tag has been mapped
-		// Find a HoI4 tag from our rule if possible.
-		std::map<std::string, std::vector<std::string>>::iterator findIter = V2TagToHoI4TagsRules.find(Vic2Tag);	// the rule (if any) with this V2 tag
-		if (findIter != V2TagToHoI4TagsRules.end())
+		// Either the V2 tag had no mapping rule or no HoI4 tag from its mapping rule could be used. 
+		// We generate a new HoI4 tag for it.
+		ostringstream generatedHoI4TagStream;	// a stream for the new tag to be constructed in
+		generatedHoI4TagStream << generatedHoI4TagPrefix << setfill('0') << setw(2) << generatedHoI4TagSuffix;
+		string HoI4Tag = generatedHoI4TagStream.str();
+		V2TagToHoI4TagMap.left.insert(make_pair(Vic2Tag.first, HoI4Tag));
+		LogMapping(Vic2Tag.first, HoI4Tag, "generated tag");
+		// Prepare the next generated tag.
+		++generatedHoI4TagSuffix;
+		if (generatedHoI4TagSuffix > 99)
 		{
-			const std::vector<std::string>& possibleHoI4Tags = findIter->second;
-			// We want to use a HoI4 tag that corresponds to an actual HoI4 country if possible.
-			for (auto HoI4Tag: possibleHoI4Tags)
-			{
-				if (HoI4Countries.find(HoI4Tag) != HoI4Countries.end() && V2TagToHoI4TagMap.right.find(HoI4Tag) == V2TagToHoI4TagMap.right.end())
-				{
-					mapped = true;
-					V2TagToHoI4TagMap.left.insert(make_pair(Vic2Tag, HoI4Tag));
-					LogMapping(Vic2Tag, HoI4Tag, "default HoI4 country");
-				}
-			}
-		}
-		if (!mapped)
-		{	// Either the V2 tag had no mapping rule or no HoI4 tag from its mapping rule could be used. 
-			// We generate a new HoI4 tag for it.
-			ostringstream generatedHoI4TagStream;	// a stream for the new tag to be constructed in
-			generatedHoI4TagStream << generatedHoI4TagPrefix << setfill('0') << setw(2) << generatedHoI4TagSuffix;
-			string HoI4Tag = generatedHoI4TagStream.str();
-			V2TagToHoI4TagMap.left.insert(make_pair(Vic2Tag, HoI4Tag));
-			LogMapping(Vic2Tag, HoI4Tag, "generated tag");
-			// Prepare the next generated tag.
-			++generatedHoI4TagSuffix;
-			if (generatedHoI4TagSuffix > 99)
-			{
-				generatedHoI4TagSuffix = 0;
-				--generatedHoI4TagPrefix;
-			}
+			generatedHoI4TagSuffix = 0;
+			--generatedHoI4TagPrefix;
 		}
 	}
 }

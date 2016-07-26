@@ -125,6 +125,9 @@
     <ClCompile Include="Source\HOI4World\HoI4Buildings.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\HOI4World\HoI4Airforce.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -237,6 +240,9 @@
     <ClInclude Include="Source\targa.h" />
     <ClInclude Include="Source\Flags.h" />
     <ClInclude Include="Source\HOI4World\HoI4Buildings.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\HoI4Airforce.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
   </ItemGroup>
