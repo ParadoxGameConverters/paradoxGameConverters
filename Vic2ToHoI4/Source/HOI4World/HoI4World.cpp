@@ -1328,7 +1328,7 @@ void HoI4World::convertNavies()
 
 void HoI4World::convertAirforces()
 {
-	for (auto country: countries)
+	for (auto country : countries)
 	{
 		country.second->convertAirforce();
 	}
@@ -1843,7 +1843,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		y = 1\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
-	FocusTree += "			factor = 10\r\n";
+	FocusTree += "			factor = 0\r\n";
 	FocusTree += "			modifier = {\r\n";
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
@@ -2145,6 +2145,14 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 		FocusTree += "		x = 28\r\n";
 		FocusTree += "		y = 3\r\n";
 		FocusTree += "		cost = 10\r\n";
+		FocusTree += "		bypass = { \r\n";
+		FocusTree += "			\r\n";
+		FocusTree += "			OR = {\r\n";
+		FocusTree += "				"+Home->getTag()+" = { is_in_faction_with = " + Annexed1->getTag() + "\r\n";
+		FocusTree += "				has_war_with = " + Annexed1->getTag() + "}\r\n";
+		FocusTree += "				NOT = { country_exists = " + Annexed1->getTag() + " }\r\n";
+		FocusTree += "			}\r\n";
+		FocusTree += "		}\r\n";
 		FocusTree += "		ai_will_do = {\r\n";
 		FocusTree += "			factor = 10\r\n";
 		FocusTree += "			modifier = {\r\n";
@@ -2171,6 +2179,14 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 		FocusTree += "		x = 28\r\n";
 		FocusTree += "		y = 4\r\n";
 		FocusTree += "		cost = 10\r\n";
+		FocusTree += "		bypass = { \r\n";
+		FocusTree += "			\r\n";
+		FocusTree += "			OR = {\r\n";
+		FocusTree += "				" + Home->getTag() + " = { is_in_faction_with = " + Annexed1->getTag() + "\r\n";
+		FocusTree += "				has_war_with = " + Annexed1->getTag() + "}\r\n";
+		FocusTree += "				NOT = { country_exists = " + Annexed1->getTag() + " }\r\n";
+		FocusTree += "			}\r\n";
+		FocusTree += "		}\r\n";
 		FocusTree += "		ai_will_do = {\r\n";
 		FocusTree += "			factor = 5\r\n";
 		FocusTree += "			modifier = {\r\n";
@@ -2249,8 +2265,6 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
 	FocusTree += "			factor = 10\r\n";
-	FocusTree += "			modifier = {\r\n";
-	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
 	FocusTree += "		completion_reward = {\r\n";
 	//add tech
@@ -2381,8 +2395,6 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
 	FocusTree += "			factor = 10\r\n";
-	FocusTree += "			modifier = {\r\n";
-	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";
 	FocusTree += "		completion_reward = {\r\n";
 	FocusTree += "			add_ideas = national_college\r\n";
@@ -2547,10 +2559,18 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 		FocusTree += "		id = Annex" + Home->getTag() + Annexed3->getTag() + "\r\n";
 		FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
 		FocusTree += "		text = \"Conquer " + Annexed3->getSourceCountry()->getName() + "\"\r\n";
-		FocusTree += "		prerequisite = { focus = NatSpirit" + Home->getTag() + " }\r\n";
-		FocusTree += "		x = 34\r\n";
-		FocusTree += "		y = 4\r\n";
+		FocusTree += "		prerequisite = { focus = PrepTheBorder" + Home->getTag() + " }\r\n";
+		FocusTree += "		x = 36\r\n";
+		FocusTree += "		y = 3\r\n";
 		FocusTree += "		cost = 10\r\n";
+		FocusTree += "		bypass = { \r\n";
+		FocusTree += "			\r\n";
+		FocusTree += "			OR = {\r\n";
+		FocusTree += "				" + Home->getTag() + " = { is_in_faction_with = " + Annexed1->getTag() + "\r\n";
+		FocusTree += "				has_war_with = " + Annexed1->getTag() + "}\r\n";
+		FocusTree += "				NOT = { country_exists = " + Annexed1->getTag() + " }\r\n";
+		FocusTree += "			}\r\n";
+		FocusTree += "		}\r\n";
 		FocusTree += "		ai_will_do = {\r\n";
 		FocusTree += "			factor = 5\r\n";
 		FocusTree += "			modifier = {\r\n";
@@ -2573,9 +2593,17 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 		FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
 		FocusTree += "		text = \"Conquer " + Annexed4->getSourceCountry()->getName() + "\"\r\n";
 		FocusTree += "		prerequisite = { focus = NatSpirit" + Home->getTag() + " }\r\n";
-		FocusTree += "		x = 36\r\n";
+		FocusTree += "		x = 34\r\n";
 		FocusTree += "		y = 4\r\n";
 		FocusTree += "		cost = 10\r\n";
+		FocusTree += "		bypass = { \r\n";
+		FocusTree += "			\r\n";
+		FocusTree += "			OR = {\r\n";
+		FocusTree += "				" + Home->getTag() + " = { is_in_faction_with = " + Annexed1->getTag() + "\r\n";
+		FocusTree += "				has_war_with = " + Annexed1->getTag() + "}\r\n";
+		FocusTree += "				NOT = { country_exists = " + Annexed1->getTag() + " }\r\n";
+		FocusTree += "			}\r\n";
+		FocusTree += "		}\r\n";
 		FocusTree += "		ai_will_do = {\r\n";
 		FocusTree += "			factor = 5\r\n";
 		FocusTree += "			modifier = {\r\n";
@@ -4597,7 +4625,7 @@ void HoI4World::fillCountryIC()
 }
 double HoI4World::getStrengthOverTime(HoI4Country* Country, double years)
 {
-	return Country->getArmyStrength() + countriesICMIL.find(Country->getTag())->second * 3 * 365 * years + countriesICCIV.find(Country->getTag())->second*.469*.5 /*.469 is milfac per year, .5 since half are used by consumer goods*/ * 3 * 365;
+	return Country->getArmyStrength() + countriesICMIL.find(Country->getTag())->second * 3 * 365 * years + countriesICCIV.find(Country->getTag())->second*.469*.5 /*.469 is milfac per year, .5 since half are used by consumer goods*/ * 3 * 365*0.5*years*years;
 }
 double HoI4World::getInitialStrength(HoI4Country* Country)
 {
@@ -4605,7 +4633,7 @@ double HoI4World::getInitialStrength(HoI4Country* Country)
 }
 double HoI4World::getAddedStrength(HoI4Country* Country, double years)
 {
-	return countriesICMIL.find(Country->getTag())->second * 3 * 365 * years + countriesICCIV.find(Country->getTag())->second*.469*.5 /*.469 is milfac per year, .5 since half are used by consumer goods*/ * 3 * 365;
+	return countriesICMIL.find(Country->getTag())->second * 3 * 365 * years + countriesICCIV.find(Country->getTag())->second*.469*.5 /*.469 is milfac per year, .5 since half are used by consumer goods*/ * 3 * 365*0.5*years*years;
 }
 void HoI4World::outputRelations()
 {
@@ -4661,6 +4689,8 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 	LOG(LogLevel::Info) << "Creating Factions";
 	Factions = CreateFactions(sourceWorld, countryMap);
 	//outputting the country and factions
+
+	//REDO
 	for (auto country : countries)
 	{
 		int i = 1;
@@ -4675,8 +4705,10 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		}
 		country.second->output(states->getStates(), Factions, FactionName);
 	}
-	bool fascismrelevant = false;
-	bool communismrelevant = false;
+
+	bool fascismIsRelevant = false;
+	bool communismIsRelevant = false;
+
 	//output folders
 	string NFpath = "Output/" + Configuration::getOutputName() + "/common/national_focus";
 	if (!Utils::TryCreateFolder(NFpath))
@@ -4690,19 +4722,22 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/events\"";
 		exit(-1);
 	}
+
 	//Files To show results
 	string filename("AI-log.txt");
 	ofstream out;
 	vector<HoI4Country*> LeaderCountries;
 	//getting total strength of all factions
+
 	double WorldStrength = 0;
 	vector<vector<HoI4Country*>> CountriesAtWar;
+
+	//Initial Checks
 	out.open(filename);
 	{
 		for (auto Faction : Factions)
-		{
 			WorldStrength += GetFactionStrength(Faction);
-		}
+
 		out << WorldStrength << endl;
 		//check relevancies
 		for (auto Faction : Factions)
@@ -4711,1394 +4746,48 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 			HoI4Country* Leader = GetFactionLeader(Faction);
 			if (Leader->getGovernment() == "absolute_monarchy" || Leader->getGovernment() == "fascism")
 				if (GetFactionStrength(Faction) > WorldStrength*0.1)
-					fascismrelevant = true;
+					fascismIsRelevant = true;
 
 			if (Leader->getGovernment() == "communism" || Leader->getGovernment() == "syndicalism")
 				if (GetFactionStrength(Faction) > WorldStrength*0.1)
-					communismrelevant = true;
-
+					communismIsRelevant = true;
 		}
-		if (fascismrelevant)
+
+		if (fascismIsRelevant)
 			out << "Fascism is Relevant" << endl;
-		if (communismrelevant)
+		if (communismIsRelevant)
 			out << "Communist is Relevant" << endl;
 		out << endl;
+
 		//time to do events for coms and fascs if they are relevant
 		LOG(LogLevel::Info) << "Calculating Fasc/Com AI";
+
 		for (auto Faction : Factions)
 		{
 			HoI4Country* Leader = GetFactionLeader(Faction);
 			LeaderCountries.push_back(Leader);
-			if ((Leader->getGovernment() == "fascism") && fascismrelevant)
+			if ((Leader->getGovernment() == "fascism"))
 			{
-				LOG(LogLevel::Info) << "Calculating AI for " + Leader->getSourceCountry()->getName();
-				out << Leader->getSourceCountry()->getName() << endl;
-				//too many lists, need to clean up
-				vector<HoI4Country*> Targets;
-				vector<HoI4Country*> Anchluss;
-				vector<HoI4Country*> Sudaten;
-				vector<HoI4Country*> EqualTargets;
-				vector<HoI4Country*> DifficultTargets;
-				//getting country provinces and its neighbors
-				vector<int> leaderProvs = getCountryProvinces(Leader);
-				map<string, HoI4Country*> AllNeighbors = findNeighbors(leaderProvs, Leader);
-				map<string, HoI4Country*> CloseNeighbors;
-				//gets neighbors that are actually close to you
-				for each (auto neigh in AllNeighbors)
-				{
-					if (neigh.second->getCapitalProv() != 0)
-					{
-						//IMPROVE
-						//need to get further neighbors, as well as countries without capital in an area
-						double distance = GetDistance(Leader, neigh.second);
-						if (distance <= 500)
-							CloseNeighbors.insert(neigh);
-					}
-				}
-
-				set<string> Allies = Leader->getAllies();
-				//should add method to look for cores you dont own
-				//should add method to look for more allies
-
-				//lets look for weak neighbors
-				LOG(LogLevel::Info) << "Doing Neighbor calcs for " + Leader->getSourceCountry()->getName();
-				for (auto neigh : CloseNeighbors)
-				{
-					//lets check to see if they are not our ally and not a great country
-					if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
-					{
-						volatile double enemystrength = getStrengthOverTime(neigh.second, 1.5);
-						volatile double mystrength = getStrengthOverTime(Leader, 1.5);
-						//lets see their strength is at least < 20%
-						if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second).size() == 1)
-						{
-							//they are very weak
-							Anchluss.push_back(neigh.second);
-						}
-						//if not, lets see their strength is at least < 60%
-						else if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1)*0.6 && getStrengthOverTime(neigh.second, 1) > getStrengthOverTime(Leader, 1)*0.2 && findFaction(neigh.second).size() == 1)
-						{
-							//they are weak and we can get 1 of these countries in sudaten deal
-							Sudaten.push_back(neigh.second);
-						}
-						//if not, lets see their strength is at least = to ours%
-						else if (getStrengthOverTime(neigh.second, 1) < getStrengthOverTime(Leader, 1))
-						{
-							//EqualTargets.push_back(neigh);
-							EqualTargets.push_back(neigh.second);
-						}
-						//if not, lets see their strength is at least < 120%
-						else if (getStrengthOverTime(neigh.second, 1) < getStrengthOverTime(Leader, 1)*1.2)
-						{
-							//StrongerTargets.push_back(neigh);
-							DifficultTargets.push_back(neigh.second);
-
-						}
-
-					}
-				}
-				//string that contains all events
-				string Events;
-				string s;
-				map<string, vector<HoI4Country*>> TargetMap;
-				vector<HoI4Country*> anchlussnan;
-				vector<HoI4Country*> sudatennan;
-				vector<HoI4Country*> nan;
-				vector<HoI4Country*> fn;
-				vector<HoI4Country*> man;
-				vector<HoI4Country*> coup;
-				int EventNumber = 0;
-				//x is used for the x position of our last NF, so we can place them correctly
-				vector<int> takenSpots;
-				vector<int> takenSpotsy;
-				int x = 22;
-				takenSpots.push_back(x);
-				//look through every anchluss and see its difficulty
-				for (auto target : Anchluss)
-				{
-					string type;
-					//outputs are for HowToTakeLand()
-					//noactionneeded -  Can take target without any help
-					//factionneeded - can take target and faction with attackers faction helping
-					//morealliesneeded - can take target with more allies, comes with "newallies" in map
-					//coup - cant take over, need to coup
-					type = HowToTakeLand(target, Leader, 1.5);
-					out << type + " " + target->getSourceCountry()->getName() << endl;
-					if (type == "noactionneeded")
-					{
-						//too many vectors, need to clean up
-						nan.push_back(target);
-						anchlussnan.push_back(target);
-					}
-				}
-				//gives us generic focus tree start
-				string FocusTree = genericFocusTreeCreator(Leader);
-				if (nan.size() >= 1)
-				{
-					//if it can easily take these targets as they are not in an alliance, you can get annexation event
-					if (nan.size() == 1)
-					{
-						x = 24;
-						takenSpots.push_back(x);
-					}
-					if (nan.size() >= 2)
-					{
-						x = 25;
-						takenSpots.push_back(x);
-					}
-					takenSpotsy.push_back(2);
-					//Focus to increase fascist support and prereq for anschluss
-					FocusTree += "focus = {\r\n";
-					FocusTree += "		id = The_third_way" + Leader->getTag() + "\r\n";
-					FocusTree += "		icon = GFX_goal_support_fascism\r\n";
-					FocusTree += "		text = \"The Third Way!\"\r\n";
-					FocusTree += "		x = " + to_string(x) + "\r\n";
-					FocusTree += "		y = 0\r\n";
-					FocusTree += "		cost = 10\r\n";
-					FocusTree += "		ai_will_do = {\r\n";
-					FocusTree += "			factor = 5\r\n";
-					FocusTree += "		}	\r\n";
-					FocusTree += "		completion_reward = {\r\n";
-					//FIXME 
-					//Need to get Drift Defense to work
-					//FocusTree += "			drift_defence_factor = 0.5\r\n";
-					FocusTree += "			add_ideas = fascist_influence\r\n";
-					FocusTree += "		}\r\n";
-					FocusTree += "	}\r\n";
-
-					//Focus to increase army support
-					FocusTree += "focus = {\r\n";
-					FocusTree += "		id = mil_march" + Leader->getTag() + "\r\n";
-					FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
-					FocusTree += "		text = \"Establish Military March Day\"\r\n";
-					FocusTree += "		prerequisite = { focus = The_third_way" + Leader->getTag() + " }\r\n";
-					FocusTree += "		x = " + to_string(x) + "\r\n";
-					FocusTree += "		y = 1\r\n";
-					FocusTree += "		cost = 10\r\n";
-					FocusTree += "		ai_will_do = {\r\n";
-					FocusTree += "			factor = 5\r\n";
-					FocusTree += "		}	\r\n";
-					FocusTree += "		completion_reward = {\r\n";
-					FocusTree += "			army_experience = 20\r\n";
-					FocusTree += "		add_tech_bonus = { \r\n";
-					FocusTree += "				bonus = 0.5\r\n";
-					FocusTree += "				uses = 2\r\n";
-					FocusTree += "				category = land_doctrine\r\n";
-					FocusTree += "			}";
-					FocusTree += "		}\r\n";
-					FocusTree += "	}\r\n";
-					Events += "add_namespace = " + Leader->getTag() + "annex\r\n";
-
-					for (unsigned int i = 0; i < 2; i++)
-					{
-						int start = 0;
-						if (nan.size() >= 2)
-							start = -1;
-						if (i < nan.size())
-						{
-							//int x = i * 3;
-							string annexername = Leader->getSourceCountry()->getName();
-							string annexedname = nan[i]->getSourceCountry()->getName();
-							//for random date
-							int v1 = rand() % 5 + 1;
-							int v2 = rand() % 5 + 1;
-							//focus for anschluss
-							FocusTree += "		focus = { \r\n";
-							FocusTree += "		id = " + Leader->getTag() + "_anschluss_" + nan[i]->getTag() + "\r\n";
-							FocusTree += "		icon = GFX_goal_anschluss\r\n";
-							FocusTree += "		text = \"Union with " + annexedname + "\"\r\n";
-							FocusTree += "		prerequisite = { focus = mil_march" + Leader->getTag() + " }\r\n";
-							FocusTree += "		available = {\r\n";
-							FocusTree += "			is_puppet = no\r\n";
-							FocusTree += "		    date > 1937." + to_string(v1 + 5) + "." + to_string(v2 + 5) + "\r\n";
-							FocusTree += "		}\r\n";
-							FocusTree += "		\r\n";
-							FocusTree += "		x = " + to_string(x + i * 2 + start) + "\r\n";
-							FocusTree += "		y = 2\r\n";
-							FocusTree += "		cost = 10\r\n";
-							FocusTree += "		ai_will_do = {\r\n";
-							FocusTree += "			factor = 10\r\n";
-							FocusTree += "			modifier = {\r\n";
-							FocusTree += "				factor = 0\r\n";
-							FocusTree += "				date < 1937.6.6\r\n";
-							FocusTree += "			}\r\n";
-							FocusTree += "		}	\r\n";
-							FocusTree += "		completion_reward = {\r\n";
-							FocusTree += "			army_experience = 10\r\n";
-							FocusTree += "			if = {\r\n";
-							FocusTree += "				limit = {\r\n";
-							FocusTree += "					country_exists = " + nan[i]->getTag() + "\r\n";
-							FocusTree += "				}\r\n";
-							FocusTree += "				" + nan[i]->getTag() + " = {\r\n";
-							FocusTree += "					country_event = " + Leader->getTag() + "annex." + to_string(EventNumber) + "\r\n";
-							FocusTree += "				}\r\n";
-							FocusTree += "			}\r\n";
-							FocusTree += "		}\r\n";
-							FocusTree += "	}";
-
-							//events
-							Events += createAnnexEvent(Leader, nan[i], EventNumber);
-							EventNumber += 3;
-						}
-					}
-					nan.clear();
-
-				}
-				for (auto target : Sudaten)
-				{
-					string type;
-					//outputs are
-					//noactionneeded -  Can take target without any help
-					//factionneeded - can take target and faction with attackers faction helping
-					//morealliesneeded - can take target with more allies, comes with "newallies" in map
-					//coup - cant take over, need to coup
-					type = HowToTakeLand(target, Leader, 2.5);
-					out << type + " " + target->getSourceCountry()->getName() << endl;
-					if (type == "noactionneeded")
-					{
-						nan.push_back(target);
-					}
-				}
-				if (nan.size() >= 1)
-				{
-					//if it can easily take these targets as they are not in an alliance, you can get annexation event
-
-					//Focus to increase empire size more
-					FocusTree += "focus = {\r\n";
-					FocusTree += "		id = Expand_the_Reich" + Leader->getTag() + "\r\n";
-					FocusTree += "		icon = GFX_goal_generic_political_pressure\r\n";//something about claiming land
-					FocusTree += "		text = \"Expand the Reich\"\r\n";
-					if (anchlussnan.size() == 1 || anchlussnan.size() >= 2)
-					{
-						//if there are anschlusses, make this event require at least 1 anschluss, else, its the start of a tree
-						FocusTree += "		prerequisite = { ";
-						for (unsigned int i = 0; i < 2; i++)
-						{
-							if (i < anchlussnan.size())
-							{
-								FocusTree += " focus = " + Leader->getTag() + "_anschluss_" + anchlussnan[i]->getTag() + " ";
-							}
-						}
-						FocusTree += "\r\n }\r\n";
-						FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
-						FocusTree += "		y = 3\r\n";
-						takenSpotsy.push_back(5);
-					}
-					else
-					{
-						//figuring out position
-						int x = takenSpots.back();
-						takenSpots.push_back(x);
-						if (nan.size() == 1)
-						{
-							x += 2;
-							takenSpots.push_back(x);
-						}
-						if (nan.size() >= 2)
-						{
-							x += 3;
-							takenSpots.push_back(x);
-						}
-						FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
-						FocusTree += "		y = 0\r\n";
-						takenSpotsy.push_back(2);
-					}
-					FocusTree += "		cost = 10\r\n";
-					FocusTree += "		ai_will_do = {\r\n";
-					FocusTree += "			factor = 5\r\n";
-					FocusTree += "		}	\r\n";
-					FocusTree += "		completion_reward = {\r\n";
-					FocusTree += "			add_named_threat = { threat = 2 name = \"Fascist Expansion\" }\r\n";//give some claims or cores
-					FocusTree += "		}\r\n";
-					FocusTree += "	}\r\n";
-					for (unsigned int i = 0; i < 1; i++)
-					{
-						if (i < nan.size())
-						{
-							int x = i * 3;
-							string annexername = Leader->getSourceCountry()->getName();
-							string annexedname = nan[i]->getSourceCountry()->getName();
-							int v1 = rand() % 8 + 1;
-							int v2 = rand() % 8 + 1;
-							//focus for sudaten
-							FocusTree += "		focus = { \r\n";
-							FocusTree += "		id = " + Leader->getTag() + "_sudaten_" + nan[i]->getTag() + "\r\n";
-							FocusTree += "		icon = GFX_goal_anschluss\r\n";
-							FocusTree += "		text = \"Demand Territory from " + annexedname + "\"\r\n";
-							FocusTree += "		prerequisite = { focus = Expand_the_Reich" + Leader->getTag() + " }\r\n";
-							FocusTree += "		available = {\r\n";
-							FocusTree += "			is_puppet = no\r\n";
-							FocusTree += "		    date > 1938." + to_string(v1) + "." + to_string(v2) + "\r\n";
-							FocusTree += "		}\r\n";
-							FocusTree += "		\r\n";
-							if (anchlussnan.size() == 1 || anchlussnan.size() >= 2)
-							{
-								//figuring out position again
-								FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
-								FocusTree += "		y = 4\r\n";
-							}
-							else
-							{
-								FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
-								FocusTree += "		y = 1\r\n";
-							}
-							FocusTree += "		cost = 10\r\n";
-							FocusTree += "		ai_will_do = {\r\n";
-							FocusTree += "			factor = 10\r\n";
-							FocusTree += "			modifier = {\r\n";
-							FocusTree += "				factor = 0\r\n";
-							FocusTree += "				date < 1937.6.6\r\n";
-							FocusTree += "			}\r\n";
-							FocusTree += "		}	\r\n";
-							FocusTree += "		completion_reward = {\r\n";
-							FocusTree += "			army_experience = 10\r\n";
-							FocusTree += "			if = {\r\n";
-							FocusTree += "				limit = {\r\n";
-							FocusTree += "					country_exists = " + nan[i]->getTag() + "\r\n";
-							FocusTree += "				}\r\n";
-							FocusTree += "				" + nan[i]->getTag() + " = {\r\n";
-							FocusTree += "					country_event = " + Leader->getTag() + "sudaten." + to_string(EventNumber) + "\r\n";
-							FocusTree += "				}\r\n";
-							FocusTree += "			}\r\n";
-							FocusTree += "		}\r\n";
-							FocusTree += "	}";
-
-							//FINISH HIM
-							FocusTree += "		focus = { \r\n";
-							FocusTree += "		id = " + Leader->getTag() + "_finish_" + nan[i]->getTag() + "\r\n";
-							FocusTree += "		icon = GFX_goal_generic_territory_or_war\r\n";
-							FocusTree += "		text = \"Fate of " + annexedname + "\"\r\n";
-							FocusTree += "		prerequisite = { focus =  " + Leader->getTag() + "_sudaten_" + nan[i]->getTag() + " }\r\n";
-							FocusTree += "		available = {\r\n";
-							FocusTree += "			is_puppet = no\r\n";
-							FocusTree += "		}\r\n";
-							FocusTree += "		\r\n";
-							if (anchlussnan.size() == 1 || anchlussnan.size() >= 2)
-							{
-								FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
-								FocusTree += "		y = 5\r\n";
-							}
-							else
-							{
-								FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
-								FocusTree += "		y = 2\r\n";
-							}
-							FocusTree += "		cost = 10\r\n";
-							FocusTree += "		ai_will_do = {\r\n";
-							FocusTree += "			factor = 10\r\n";
-							FocusTree += "			modifier = {\r\n";
-							FocusTree += "				factor = 0\r\n";
-							FocusTree += "				date < 1937.6.6\r\n";
-							FocusTree += "			}\r\n";
-							FocusTree += "		}	\r\n";
-							FocusTree += "		completion_reward = {\r\n";
-							FocusTree += "		create_wargoal = {\r\n";
-							FocusTree += "				type = annex_everything\r\n";
-							FocusTree += "			target = " + nan[i]->getTag() + "\r\n";
-							FocusTree += "		}\r\n";
-							FocusTree += "		}\r\n";
-							FocusTree += "	}";
-
-							//events
-							//find neighboring states to take in sudaten deal
-							vector<int> demandedstates;
-							for (auto leaderprov : leaderProvs)
-							{
-								vector<int> thisprovNeighbors = provinceNeighbors.find(leaderprov)->second;
-								for (int prov : thisprovNeighbors)
-								{
-									if (provincemap.find(prov) == provincemap.end())
-									{
-									}
-									else
-									{
-										vector<string> stuff = provincemap.find(prov)->second;
-										if (stuff.size() >= 1)
-										{
-											int statenumber = stoi(stuff.front());
-											//string ownertag = "";
-											auto ownertag = provincemap.find(prov);
-											if (ownertag != provincemap.end())
-											{
-												vector<string> tags = ownertag->second;
-												if (tags.size() >= 1)
-												{
-													if (tags[1] == nan[i]->getTag())
-													{
-
-														/* v does not contain x */
-														demandedstates.push_back(statenumber);
-
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-							Events += "add_namespace = " + Leader->getTag() + "sudaten\r\n";
-							Events += createSudatenEvent(Leader, nan[0], EventNumber, demandedstates);
-							EventNumber += 3;
-						}
-					}
-					nan.clear();
-
-				}
-				//events for allies
-				vector<HoI4Country*> newAllies = GetMorePossibleAllies(Leader);
-				for each (auto newally in newAllies)
-				{
-					findFaction(Leader).push_back(newally);
-					out << "added Ally " + newally->getSourceCountry()->getName() + " with init strength of " + to_string(getInitialStrength(newally)) + " and a yearly strength of " + to_string(getAddedStrength(newally, 1)) + "\r\n";
-				}
-				if (newAllies.size() > 0)
-				{
-					//Focus to call summit, maybe have events from summit
-					FocusTree += "focus = {\r\n";
-					FocusTree += "		id = Fas_Summit" + Leader->getTag() + "\r\n";
-					FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
-					FocusTree += "		text = \"Call for the Fascist Summit\"\r\n";
-					FocusTree += "		x = " + to_string(takenSpots.back() + 4) + "\r\n";
-					FocusTree += "		y = 0\r\n";
-					FocusTree += "		cost = 10\r\n";
-					FocusTree += "		ai_will_do = {\r\n";
-					FocusTree += "			factor = 0\r\n";
-					FocusTree += "			modifier = {\r\n";
-					FocusTree += "			factor = 5\r\n";
-					FocusTree += "			date > 1938.1.1\r\n";
-					FocusTree += "			}";
-					FocusTree += "		}	\r\n";
-					FocusTree += "		completion_reward = {\r\n";
-					//FIXME
-					//FocusTree += "			opinion_gain_monthly_factor = 1.0 \r\n";
-					FocusTree += "		}\r\n";
-					FocusTree += "	}\r\n";
-				}
-				for (unsigned int i = 0; i < newAllies.size(); i++)
-				{
-					int displacement = 0;
-					if (newAllies.size() == 2)
-						displacement = -1;
-					FocusTree += "focus = {\r\n";
-					FocusTree += "		id = Alliance_" + newAllies[i]->getTag() + Leader->getTag() + "\r\n";
-					FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
-					FocusTree += "		text = \"Alliance with " + newAllies[i]->getSourceCountry()->getName() + "\"\r\n";
-					FocusTree += "		prerequisite = { focus =  Fas_Summit" + Leader->getTag() + " }\r\n";
-					FocusTree += "		x = " + to_string(takenSpots.back() + 4 + i * 2 + displacement) + "\r\n";
-					FocusTree += "		y = 1\r\n";
-					FocusTree += "		cost = 10\r\n";
-					FocusTree += "		ai_will_do = {\r\n";
-					FocusTree += "			factor = 10\r\n";
-					FocusTree += "		}	\r\n";
-					FocusTree += "		bypass = { \r\n";
-					FocusTree += "			\r\n";
-					FocusTree += "			OR = {\r\n";
-					FocusTree += "				is_in_faction_with = " + newAllies[i]->getTag() + "\r\n";
-					FocusTree += "				has_war_with = " + newAllies[i]->getTag() + "\r\n";
-					FocusTree += "				NOT = { country_exists = " + newAllies[i]->getTag() + " }\r\n";
-					FocusTree += "			}\r\n";
-					FocusTree += "		}\r\n";
-
-					FocusTree += "		completion_reward = {\r\n";
-					FocusTree += "		" + newAllies[i]->getTag() + " = {\r\n";
-					FocusTree += "			add_opinion_modifier = { target = " + Leader->getTag() + " modifier = ger_ita_alliance_focus } \r\n";
-					FocusTree += "		}";
-					FocusTree += "		}\r\n";
-					FocusTree += "	}\r\n";
-				}
-				//Declaring war with Great Country
-				vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
-				map<double, HoI4Country*> GCDistance;
-				vector<HoI4Country*> GCDistanceSorted;
-				//get great countries with a distance
-				for each (auto GC in GreatCountries)
-				{
-					double distance = GetDistance(Leader, GC);
-					if (distance < 1200)
-						GCDistance.insert(make_pair(distance, GC));
-				}
-				//put them into a vector so we know their order
-				for (auto iterator = GCDistance.begin(); iterator != GCDistance.end(); ++iterator)
-				{
-					GCDistanceSorted.push_back(iterator->second);
-				}
-				sort(GCDistanceSorted.begin(), GCDistanceSorted.end());
-				vector<HoI4Country*> GCTargets;
-				for each (auto GC in GCDistanceSorted)
-				{
-					string thetag = GC->getTag();
-					string HowToTakeGC = HowToTakeLand(GC, Leader, 3);
-					if (HowToTakeGC == "noactionneeded" || HowToTakeGC == "factionneeded" || HowToTakeGC == "morealliesneeded")
-					{
-						if (GC != Leader)
-							GCTargets.push_back(GC);
-					}
-
-				}
-				int maxGCWars = 0;
-				int start = 0;
-				if (GCTargets.size() == 2)
-				{
-					start = -1;
-				}
-				if (GCTargets.size() > 1)
-					CountriesAtWar.push_back(findFaction(Leader));
-				for each (auto GC in GCTargets)
-				{
-					string prereq = "";
-					set<string> Allies = Leader->getAllies();
-					if (maxGCWars < 2 && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
-					{
-						CountriesAtWar.push_back(findFaction(GC));
-						int y2 = 0;
-						//figuring out location of WG
-						if (newAllies.size() > 0)
-						{
-							y2 = 2;
-							prereq = " 	prerequisite = { ";
-
-							for (int i = 0; i < 2; i++)
-								prereq += " focus = Alliance_" + newAllies[i]->getTag() + Leader->getTag();
-
-							prereq += "}\r\n";
-						}
-						int v1 = rand() % 12 + 1;
-						int v2 = rand() % 12 + 1;
-						FocusTree += "focus = {\r\n";
-						FocusTree += "		id = War" + GC->getTag() + Leader->getTag() + "\r\n";
-						FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
-						FocusTree += "		text = \"War with " + GC->getSourceCountry()->getName() + "\"\r\n";//change to faction name later
-						if (prereq != "")
-							FocusTree += prereq;
-						FocusTree += "		available = {   date > 1938." + to_string(v1) + "." + to_string(v2) + "} \r\n";
-						FocusTree += "		x = " + to_string(takenSpots.back() + start + 3 + maxGCWars * 2) + "\r\n";
-						FocusTree += "		y = " + to_string(y2) + "\r\n";
-						//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\r\n";
-						FocusTree += "		cost = 10\r\n";
-						FocusTree += "		ai_will_do = {\r\n";
-						FocusTree += "			factor = 5\r\n";
-						FocusTree += "			modifier = {\r\n";
-						FocusTree += "			factor = 0\r\n";
-						FocusTree += "			strength_ratio = { tag = " + GC->getTag() + " ratio < 1 }\r\n";
-						FocusTree += "			}";
-						if (GCTargets.size() > 1)
-						{
-							//make ai have this as a 0 modifier if they are at war
-							FocusTree += "modifier = {\r\n	factor = 0\r\n	OR = {";
-							for (int i2 = 0; i2 < 3; i2++)
-							{
-								if (GC != GCTargets[i2])
-								{
-									FocusTree += "has_war_with = " + GC->getTag() + "\r\n";
-								}
-
-							}
-							FocusTree += "}\r\n}";
-						}
-						FocusTree += "		}	\r\n";
-						FocusTree += "		completion_reward = {\r\n";
-						FocusTree += "			create_wargoal = {\r\n";
-						FocusTree += "				type = puppet_wargoal_focus\r\n";
-						FocusTree += "				target = " + GC->getTag() + "\r\n";
-						FocusTree += "			}";
-						FocusTree += "		}\r\n";
-						FocusTree += "	}\r\n";
-						maxGCWars++;
-					}
-				}
-				//insert these values in targetmap for use later possibly?
-				//needs cleanup, too many vectors!
-				TargetMap.insert(make_pair("noactionneeded", nan));
-				TargetMap.insert(make_pair("factionneeded", fn));
-				TargetMap.insert(make_pair("morealliesneeded", man));
-				TargetMap.insert(make_pair("coup", coup));
-				//actual eventoutput
-				FocusTree += "\r\n}";
-
-				//output National Focus
-				string filenameNF("Output/" + Configuration::getOutputName() + "/common/national_focus/" + Leader->getSourceCountry()->getTag() + "_NF.txt");
-				ofstream out2;
-				out2.open(filenameNF);
-				{
-					out2 << FocusTree;
-				}
-				out2.close();
-				//output events
-				string filenameevents("Output/" + Configuration::getOutputName() + "/events/" + Leader->getSourceCountry()->getTag() + "_events.txt");
-				//string filename2("Output/NF.txt");
-				ofstream outevents;
-				outevents.open(filenameevents);
-				{
-					outevents << "\xEF\xBB\xBF";
-					outevents << Events;
-				}
-				outevents.close();
-
-				out << s;
-				out << endl;
+				vector <vector< HoI4Country* >> newCountriesatWar;
+				newCountriesatWar = FascistWarMaker(Leader, sourceWorld, countryMap);
+				for (auto addedFactions : newCountriesatWar)
+					CountriesAtWar.push_back(addedFactions);
 			}
 			if (Leader->getGovernment() == "absolute_monarchy")
 			{
-				//this is for monarchy events, dont need for random
-				out << Leader->getSourceCountry()->getName() << endl;
-				//too many lists, need to clean up
-				vector<HoI4Country*> Targets;
-				vector<HoI4Country*> WeakNeighbors;
-				vector<HoI4Country*> WeakColonies;
-				vector<HoI4Country*> EqualTargets;
-				vector<HoI4Country*> DifficultTargets;
-				//getting country provinces and its neighbors
-				vector<int> leaderProvs = getCountryProvinces(Leader);
-				map<string, HoI4Country*> AllNeighbors = findNeighbors(leaderProvs, Leader);
-				map<string, HoI4Country*> CloseNeighbors;
-				map<string, HoI4Country*> FarNeighbors;
-				//gets neighbors that are actually close to you
-				for each (auto neigh in AllNeighbors)
-				{
-					if (neigh.second->getCapitalProv() != 0)
-					{
-						//IMPROVE
-						//need to get further neighbors, as well as countries without capital in an area
-						double distance = GetDistance(Leader, neigh.second);
-						if (distance <= 500)
-							CloseNeighbors.insert(neigh);
-						else
-							FarNeighbors.insert(neigh);
-					}
-				}
-				//if farneighbors is 0, try to find colonial conquest
-				if (FarNeighbors.size() == 0)
-				{
-					for (auto Colcountry : countries)
-					{
-
-						HoI4Country* country2 = Colcountry.second;
-						if (country2->getCapitalProv() != 0)
-						{
-							//IMPROVE
-							//but this should never happen since the AI shouldnt even take this unless they already have colonies
-							double distance = GetDistance(Leader, country2);
-							if (distance <= 1000 && Colcountry.second->getProvinceCount() > 0)
-								FarNeighbors.insert(Colcountry);
-						}
-					}
-				}
-				set<string> Allies = Leader->getAllies();
-				//should add method to look for cores you dont own
-				//should add method to look for more allies
-
-				//lets look for weak neighbors
-				LOG(LogLevel::Info) << "Doing Neighbor calcs for " + Leader->getSourceCountry()->getName();
-				for (auto neigh : CloseNeighbors)
-				{
-					//lets check to see if they are not our ally and not a great country
-					if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
-					{
-						volatile double enemystrength = getStrengthOverTime(neigh.second, 1.5);
-						volatile double mystrength = getStrengthOverTime(Leader, 1.5);
-						//lets see their strength is at least < 20%
-						if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second).size() == 1)
-						{
-							//they are very weak
-							WeakNeighbors.push_back(neigh.second);
-						}
-					}
-				}
-				for (auto neigh : FarNeighbors)
-				{
-					//lets check to see if they are not our ally and not a great country
-					if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
-					{
-						volatile double enemystrength = getStrengthOverTime(neigh.second, 1.5);
-						volatile double mystrength = getStrengthOverTime(Leader, 1.5);
-						//lets see their strength is at least < 20%
-						if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second).size() == 1)
-						{
-							//they are very weak
-							WeakColonies.push_back(neigh.second);
-						}
-					}
-				}
-				string FocusTree = genericFocusTreeCreator(Leader);
-				int WN = 0;
-				int WC = 0;
-				if (WeakNeighbors.size() == 0)
-					WeakNeighbors.push_back(Leader);
-				else
-					WN = WeakNeighbors.size();
-				if (WeakColonies.size() == 0)
-					WeakColonies.push_back(Leader);
-				else
-					WC = WeakColonies.size();
-				FocusTree += createMonarchyEmpireNF(Leader, WeakColonies.front(), WeakColonies.back(), WeakNeighbors.front(), WeakNeighbors.back(), WC, WN, 0);
-				//Declaring war with Great Country
-				vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
-				map<double, HoI4Country*> GCDistance;
-				vector<HoI4Country*> GCDistanceSorted;
-				//get great countries with a distance
-				for each (auto GC in GreatCountries)
-				{
-					double distance = GetDistance(Leader, GC);
-					if (distance < 1200)
-						GCDistance.insert(make_pair(distance, GC));
-				}
-				//put them into a vector so we know their order
-				for (auto iterator = GCDistance.begin(); iterator != GCDistance.end(); ++iterator)
-				{
-					GCDistanceSorted.push_back(iterator->second);
-				}
-				sort(GCDistanceSorted.begin(), GCDistanceSorted.end());
-				vector<HoI4Country*> GCTargets;
-				for each (auto GC in GCDistanceSorted)
-				{
-					string thetag = GC->getTag();
-					string HowToTakeGC = HowToTakeLand(GC, Leader, 3);
-					if (HowToTakeGC == "noactionneeded" || HowToTakeGC == "factionneeded")
-					{
-						if (GC != Leader)
-							GCTargets.push_back(GC);
-					}
-					if (HowToTakeGC == "morealliesneeded")
-					{
-
-					}
-
-				}
-				int maxGCWars = 0;
-				int start = 0;
-				if (GCTargets.size() == 2)
-				{
-					start = -1;
-				}
-				if (GCTargets.size() > 1)
-					CountriesAtWar.push_back(findFaction(Leader));
-				for each (auto GC in GCTargets)
-				{
-
-					string prereq = "";
-					set<string> Allies = Leader->getAllies();
-					if (maxGCWars < 2 && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
-					{
-						CountriesAtWar.push_back(findFaction(GC));
-						int y2 = 0;
-						//figuring out location of WG
-						/*if (newAllies.size() > 0)
-						{
-							y2 = 2;
-							prereq = " 	prerequisite = { ";
-
-							for (int i = 0; i < 2; i++)
-								prereq += " focus = Alliance_" + newAllies[i]->getTag() + Leader->getTag();
-
-							prereq += "}\r\n";
-						}*/
-						int v1 = rand() % 12 + 1;
-						int v2 = rand() % 12 + 1;
-						FocusTree += "focus = {\r\n";
-						FocusTree += "		id = War" + GC->getTag() + Leader->getTag() + "\r\n";
-						FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
-						FocusTree += "		text = \"War with " + GC->getSourceCountry()->getName() + "\"\r\n";//change to faction name later
-						FocusTree += "		prerequisite = { focus =  MilitaryBuildup" + Leader->getTag() + " }\r\n";
-						FocusTree += "		available = {   date > 1938." + to_string(v1) + "." + to_string(v2) + "} \r\n";
-						FocusTree += "		x = " + to_string(31 + maxGCWars * 2) + "\r\n";
-						FocusTree += "		y = 5\r\n";
-						//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\r\n";
-						FocusTree += "		cost = 10\r\n";
-						FocusTree += "		ai_will_do = {\r\n";
-						FocusTree += "			factor = 5\r\n";
-						FocusTree += "			modifier = {\r\n";
-						FocusTree += "			factor = 0\r\n";
-						FocusTree += "			strength_ratio = { tag = " + GC->getTag() + " ratio < 1 }\r\n";
-						FocusTree += "			}";
-						if (GCTargets.size() > 1)
-						{
-							//make ai have this as a 0 modifier if they are at war
-							FocusTree += "modifier = {\r\n	factor = 0\r\n	OR = {";
-							for (int i2 = 0; i2 < 3; i2++)
-							{
-								if (GC != GCTargets[i2])
-								{
-									FocusTree += "has_war_with = " + GC->getTag() + "\r\n";
-								}
-
-							}
-							FocusTree += "}\r\n}";
-						}
-						FocusTree += "		}	\r\n";
-						FocusTree += "		completion_reward = {\r\n";
-						FocusTree += "			create_wargoal = {\r\n";
-						FocusTree += "				type = puppet_wargoal_focus\r\n";
-						FocusTree += "				target = " + GC->getTag() + "\r\n";
-						FocusTree += "			}";
-						FocusTree += "		}\r\n";
-						FocusTree += "	}\r\n";
-						maxGCWars++;
-					}
-				}
-				FocusTree += "\r\n}";
-				string Events = "";
-				Events += "add_namespace = " + Leader->getTag() + "\r\n";
-				int eventNumber = 0;
-				for each (auto GC in GCTargets)
-				{
-					Events += "country_event = {\r\n";
-					Events += "	id = " + Leader->getTag() + "." + to_string(eventNumber) + "\r\n";
-					Events += "	title = \"Trade Incident\"\r\n";
-					Events += "	desc = \"One of our convoys was sunk by " + GC->getSourceCountry()->getName() + "\"\r\n";
-					Events += "	picture = GFX_report_event_chinese_soldiers_fighting\r\n";
-					Events += "	\r\n";
-					Events += "	is_triggered_only = yes\r\n";
-					Events += "	\r\n";
-					Events += " trigger = {";
-					Events += "		has_country_flag = established_traders";
-					Events += "		NOT = { has_country_flag = established_traders_activated }";
-					Events += " }";
-					Events += "	option = { # Breaking point!\r\n";
-					Events += "		name = \"They will Pay!\"\r\n";
-					Events += "		ai_chance = { factor = 85 }\r\n";
-					Events += "		effect_tooltip = {\r\n";
-					Events += "			" + Leader->getTag() + " = {\r\n";
-					Events += "			set_country_flag = established_traders_activated";
-					Events += "			create_wargoal = {\r\n";
-					Events += "				type = annex_everything\r\n";
-					Events += "				target = " + GC->getTag() + "\r\n";
-					Events += "			}\r\n";
-					Events += "		}\r\n";
-					Events += "	}\r\n";
-					Events += "}";
-				}
-				//output events
-				string filenameevents("Output/" + Configuration::getOutputName() + "/events/" + Leader->getSourceCountry()->getTag() + "_events.txt");
-				//string filename2("Output/NF.txt");
-				ofstream outevents;
-				outevents.open(filenameevents);
-				{
-					outevents << "\xEF\xBB\xBF";
-					outevents << Events;
-				}
-				outevents.close();
-
-				//output National Focus
-				string filenameNF("Output/" + Configuration::getOutputName() + "/common/national_focus/" + Leader->getSourceCountry()->getTag() + "_NF.txt");
-				ofstream out2;
-				out2.open(filenameNF);
-				{
-					out2 << FocusTree;
-				}
-				out2.close();
+				vector <vector< HoI4Country* >> newCountriesatWar;
+				newCountriesatWar = MonarchyWarCreator(Leader, sourceWorld, countryMap);
+				for (auto addedFactions : newCountriesatWar)
+					CountriesAtWar.push_back(addedFactions);
 			}
 			if ((Leader->getGovernment() == "communism"))
 			{
-				//communism still needs great country war events
-				LOG(LogLevel::Info) << "Calculating AI for " + Leader->getSourceCountry()->getName();
-				out << Leader->getSourceCountry()->getName() << endl;
-				vector<int> leaderProvs = getCountryProvinces(Leader);
-				LOG(LogLevel::Info) << "Calculating Neighbors for " + Leader->getSourceCountry()->getName();
-				map<string, HoI4Country*> AllNeighbors = findNeighbors(leaderProvs, Leader);
-				map<string, HoI4Country*> Neighbors;
-				for each (auto neigh in AllNeighbors)
-				{
-					if (neigh.second->getCapitalProv() != 0)
-					{
-						//IMPROVE
-						//need to get further neighbors, as well as countries without capital in an area
-						double distance = GetDistance(Leader, neigh.second);
-						if (distance <= 500)
-							Neighbors.insert(neigh);
-					}
-				}
-				set<string> Allies = Leader->getAllies();
-				vector<HoI4Country*> Targets;
-				map<string, vector<HoI4Country*>> NationalFocusesMap;
-				vector<HoI4Country*> coups;
-				vector<HoI4Country*> forcedtakeover;
-
-				//if (Permanant Revolution)
-					//Decide between Anti - Democratic Focus, Anti - Monarch Focus, or Anti - Fascist Focus(Look at all great powers and get average relation between each ideology, the one with the lowest average relation leads to that focus).
-					//Attempt to ally with other Communist Countries(with Permanant Revolution)
-				LOG(LogLevel::Info) << "Doing Neighbor calcs for " + Leader->getSourceCountry()->getName();
-				for (auto neigh : Neighbors)
-				{
-					//lets check to see if they are our ally and not a great country
-					if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
-					{
-						double com = 0;
-
-						for (auto party : neigh.second->getParties())
-						{
-							if (party.name.find("socialist") != string::npos || party.name.find("communist") != string::npos || party.name.find("anarcho_liberal") != string::npos)
-								com += party.popularity;
-						}
-						if (com > 25)
-						{
-							//look for neighboring countries to spread communism too(Need 25 % or more Communism support), Prioritizing those with "Communism Allowed" Flags, prioritizing those who are weakest
-							//	Method() Influence Ideology and Attempt Coup
-							out << "/t" + neigh.second->getSourceCountry()->getName() + " Attempt Coup" << endl;
-							coups.push_back(neigh.second);
-						}
-						else if (findFaction(neigh.second).size() == 1)
-						{
-							//	Then look for neighboring countries to spread communism by force, prioritizing weakest first
-							forcedtakeover.push_back(neigh.second);
-							//	Depending on Anti - Ideology Focus, look for allies in alternate ideologies to get to ally with to declare war against Anti - Ideology Country.
-						}
-					}
-				}
-				//if (Socialism in One State)
-				//	Events / Focuses to increase Industrialization and defense of the country, becomes Isolationist
-				//	Eventually gets events to drop Socialism in One state and switch to permanant revolution(Maybe ? )
-
-				string s;
-				map<string, vector<HoI4Country*>> TargetMap;
-				vector<HoI4Country*> nan;
-				vector<HoI4Country*> fn;
-				vector<HoI4Country*> man;
-				vector<HoI4Country*> coup;
-				for (auto target : forcedtakeover)
-				{
-					string type;
-					//outputs are
-					//noactionneeded -  Can take target without any help
-					//factionneeded - can take target and faction with attackers faction helping
-					//morealliesneeded - can take target with more allies, comes with "newallies" in map
-					//coup - cant take over, need to coup
-					type = HowToTakeLand(target, Leader, 2.5);
-					out << type + " " + target->getSourceCountry()->getName() << endl;
-					if (type == "noactionneeded")
-						nan.push_back(target);
-					else if (type == "factionneeded")
-						fn.push_back(target);
-					else if (type == "morealliesneeded")
-						man.push_back(target);
-					else if (type == "coup")
-						coup.push_back(target);
-				}
-				//insert these values in targetmap for use later possibly?
-				TargetMap.insert(make_pair("noactionneeded", nan));
-				TargetMap.insert(make_pair("factionneeded", fn));
-				TargetMap.insert(make_pair("morealliesneeded", man));
-				TargetMap.insert(make_pair("coup", coup));
-				//actual eventoutput
-				vector<int> takenSpots;
-				string FocusTree = genericFocusTreeCreator(Leader);
-				if (coups.size() > 0)
-				{
-					int x = 22;
-					takenSpots.push_back(x);
-					if (coups.size() == 1)
-					{
-						x = 24;
-						takenSpots.push_back(x);
-					}
-					if (coups.size() >= 2)
-					{
-						x = 25;
-						takenSpots.push_back(x);
-					}
-					//Focus to increase Comm support and prereq for coups
-					FocusTree += "focus = {\r\n";
-					FocusTree += "		id = Home_of_Revolution" + Leader->getTag() + "\r\n";
-					FocusTree += "		icon = GFX_goal_support_communism\r\n";
-					FocusTree += "		text = \"Home of the Revolution\"\r\n";
-					FocusTree += "		x = " + to_string(x) + "\r\n";
-					FocusTree += "		y = 0\r\n";
-					FocusTree += "		cost = 10\r\n";
-					FocusTree += "		ai_will_do = {\r\n";
-					FocusTree += "			factor = 5\r\n";
-					FocusTree += "		}	\r\n";
-					FocusTree += "		completion_reward = {\r\n";
-					//FIXME 
-					//Need to get Drift Defense to work
-					//FocusTree += "			drift_defence_factor = 0.5\r\n";
-					FocusTree += "			add_ideas = communist_influence\r\n";
-					FocusTree += "		}\r\n";
-					FocusTree += "	}\r\n";
-
-					for (unsigned int i = 0; i < 2; i++)
-					{
-						if (i < coups.size())
-						{
-							FocusTree += "focus = {\r\n";
-							FocusTree += "		id = Influence_" + coups[i]->getTag() + "_" + Leader->getTag() + "\r\n";
-							FocusTree += "		icon = GFX_goal_generic_propaganda\r\n";
-							FocusTree += "		text = \"Influence " + coups[i]->getSourceCountry()->getName() + "\"\r\n";
-							FocusTree += "		prerequisite = { focus = Home_of_Revolution" + Leader->getTag() + " }\r\n";
-							FocusTree += "		x = " + to_string(24 + i * 2) + "\r\n";
-							FocusTree += "		y = 1\r\n";
-							FocusTree += "		cost = 10\r\n";
-							FocusTree += "		ai_will_do = {\r\n";
-							FocusTree += "			factor = 5\r\n";
-							FocusTree += "		}	\r\n";
-							FocusTree += "		completion_reward = {\r\n";
-							FocusTree += "			" + coups[i]->getTag() + " = {\r\n";
-							FocusTree += "				if = {\r\n";
-							FocusTree += "					limit = {\r\n";
-							FocusTree += "						" + Leader->getTag() + " = {\r\n";
-							FocusTree += "							has_government = fascism\r\n";
-							FocusTree += "						}\r\n";
-							FocusTree += "					}\r\n";
-							FocusTree += "					add_ideas = fascist_influence\r\n";
-							FocusTree += "				}\r\n";
-							FocusTree += "				if = {\r\n";
-							FocusTree += "					limit = {\r\n";
-							FocusTree += "						" + Leader->getTag() + " = {\r\n";
-							FocusTree += "							has_government = communism\r\n";
-							FocusTree += "						}\r\n";
-							FocusTree += "					}\r\n";
-							FocusTree += "					add_ideas = communist_influence\r\n";
-							FocusTree += "				}\r\n";
-							FocusTree += "				if = {\r\n";
-							FocusTree += "					limit = {\r\n";
-							FocusTree += "						" + Leader->getTag() + " = {\r\n";
-							FocusTree += "							has_government = democratic\r\n";
-							FocusTree += "						}\r\n";
-							FocusTree += "					}\r\n";
-							FocusTree += "					add_ideas = democratic_influence\r\n";
-							FocusTree += "				}\r\n";
-							FocusTree += "				country_event = { id = generic.1 }";
-							FocusTree += "			}\r\n";
-							FocusTree += "			\r\n";
-							FocusTree += "		}\r\n";
-							FocusTree += "	}\r\n";
-							//Civil War
-							FocusTree += "focus = {\r\n";
-							FocusTree += "		id = Coup_" + coups[i]->getTag() + "_" + Leader->getTag() + "\r\n";
-							FocusTree += "		icon = GFX_goal_generic_demand_territory\r\n";
-							FocusTree += "		text = \"Civil War in " + coups[i]->getSourceCountry()->getName() + "\"\r\n";
-							FocusTree += "		prerequisite = { focus = Influence_" + coups[i]->getTag() + "_" + Leader->getTag() + " }\r\n";
-							FocusTree += "		available = {\r\n";
-							FocusTree += "		" + coups[i]->getTag() + " = { communism > 0.5 } ";
-							FocusTree += "		}";
-							FocusTree += "		x = " + to_string(24 + i * 2) + "\r\n";
-							FocusTree += "		y = 2\r\n";
-							FocusTree += "		cost = 10\r\n";
-							FocusTree += "		ai_will_do = {\r\n";
-							FocusTree += "			factor = 5\r\n";
-							FocusTree += "		}	\r\n";
-							FocusTree += "		completion_reward = {\r\n";
-							FocusTree += "			" + coups[i]->getTag() + " = {\r\n";
-							FocusTree += "						start_civil_war = {\r\n";
-							FocusTree += "							ideology = communism\r\n";
-							FocusTree += "							size = 0.5\r\n";
-							FocusTree += "					}";
-							FocusTree += "			}\r\n";
-							FocusTree += "			\r\n";
-							FocusTree += "		}\r\n";
-							FocusTree += "	}\r\n";
-						}
-					}
-				}
-				if (forcedtakeover.size() > 0)
-				{
-
-					//Strengthen Commitern
-					FocusTree += "focus = {\r\n";
-					FocusTree += "		id = StrengthCom" + Leader->getTag() + "\r\n";
-					FocusTree += "		icon = GFX_goal_support_communism\r\n";
-					FocusTree += "		text = \"Strengthen The Comintern\"\r\n";//change to faction name later
-					FocusTree += "		x = " + to_string(takenSpots.back() + 5) + "\r\n";//fixme
-					FocusTree += "		y = 0\r\n";
-					FocusTree += "		cost = 10\r\n";
-					FocusTree += "		ai_will_do = {\r\n";
-					FocusTree += "			factor = 5\r\n";
-					FocusTree += "		}	\r\n";
-					FocusTree += "		completion_reward = {\r\n";
-					FocusTree += "			army_experience = 20\r\n";
-					FocusTree += "		add_tech_bonus = { \r\n";
-					FocusTree += "				bonus = 0.5\r\n";
-					FocusTree += "				uses = 2\r\n";
-					FocusTree += "				category = land_doctrine\r\n";
-					FocusTree += "			}";
-					FocusTree += "		}\r\n";
-					FocusTree += "	}\r\n";
-
-					FocusTree += "focus = {\r\n";
-					FocusTree += "		id = Inter_Com_Pres" + Leader->getTag() + "\r\n";
-					FocusTree += "		icon = GFX_goal_generic_dangerous_deal\r\n";
-					FocusTree += "		text = \"International Communist Pressure\"\r\n";//change to faction name later
-					FocusTree += "		prerequisite = { focus = StrengthCom" + Leader->getTag() + " }\r\n";
-					FocusTree += "		available = {  date > 1937.1.1 } \r\n";
-					FocusTree += "		x = " + to_string(takenSpots.back() + 5) + "\r\n";
-					FocusTree += "		y = 1\r\n";
-					FocusTree += "		cost = 10\r\n";
-					FocusTree += "		ai_will_do = {\r\n";
-					FocusTree += "			factor = 5\r\n";
-					FocusTree += "		}	\r\n";
-					FocusTree += "		completion_reward = {\r\n";
-					FocusTree += "			add_named_threat = { threat = 2 name = \"Socialist World Republic\" }\r\n";
-					//FIXME
-					//maybe add some claims?
-					FocusTree += "		}\r\n";
-					FocusTree += "	}\r\n";
-					vector<HoI4Country*> TargetsbyIC; //its actually by tech lol
-					bool first = true;
-					//FIXME 
-					//Right now just uses everyone in forcedtakover, doesnt use nan, fn, ect...
-					for (auto country : forcedtakeover)
-					{
-						if (first)
-						{
-							TargetsbyIC.push_back(country);
-							first = false;
-						}
-						else
-						{
-							//makes sure not a coup target
-							if (find(coups.begin(), coups.end(), country) == coups.end())
-							{
-								if (TargetsbyIC.front()->getTechnologyCount() < country->getTechnologyCount())
-								{
-									TargetsbyIC.insert(TargetsbyIC.begin(), country);
-								}
-								else
-									TargetsbyIC.push_back(country);
-							}
-						}
-					}
-					for (unsigned int i = 0; i < 3; i++)
-					{
-						if (i < TargetsbyIC.size())
-						{
-							int v1 = rand() % 12 + 1;
-							int v2 = rand() % 12 + 1;
-							FocusTree += "focus = {\r\n";
-							FocusTree += "		id = War" + TargetsbyIC[i]->getTag() + Leader->getTag() + "\r\n";
-							FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
-							FocusTree += "		text = \"War with " + TargetsbyIC[i]->getSourceCountry()->getName() + "\"\r\n";//change to faction name later
-							FocusTree += "		prerequisite = { focus = Inter_Com_Pres" + Leader->getTag() + " }\r\n";
-							FocusTree += "		available = {   date > 1938." + to_string(v1) + "." + to_string(v2) + "} \r\n";
-							FocusTree += "		x = " + to_string(takenSpots.back() + 3 + i * 2) + "\r\n";
-							FocusTree += "		y = 2\r\n";
-							FocusTree += "		cost = 10\r\n";
-							FocusTree += "		ai_will_do = {\r\n";
-							FocusTree += "			factor = 5\r\n";
-							FocusTree += "			modifier = {\r\n";
-							FocusTree += "			factor = 0\r\n";
-							FocusTree += "			strength_ratio = { tag = " + TargetsbyIC[i]->getTag() + " ratio < 1 }\r\n";
-							FocusTree += "			}";
-							if (TargetsbyIC.size() > 1)
-							{
-								FocusTree += "modifier = {\r\n	factor = 0\r\n	OR = {";
-								for (int i2 = 0; i2 < 3; i2++)
-								{
-									if (i != i2)
-										FocusTree += "has_war_with = " + TargetsbyIC[i]->getTag() + "\r\n";
-								}
-								FocusTree += "}\r\n}";
-							}
-							FocusTree += "		}	\r\n";
-							FocusTree += "		completion_reward = {\r\n";
-							FocusTree += "			create_wargoal = {\r\n";
-							FocusTree += "				type = puppet_wargoal_focus\r\n";
-							FocusTree += "				target = " + TargetsbyIC[i]->getTag() + "\r\n";
-							FocusTree += "			}";
-							FocusTree += "		}\r\n";
-							FocusTree += "	}\r\n";
-
-						}
-					}
-					takenSpots.push_back(takenSpots.back() + 5);
-				}
-				//events for allies
-				vector<HoI4Country*> newAllies = GetMorePossibleAllies(Leader);
-				if (newAllies.size() > 0)
-				{
-					//Focus to call summit, maybe have events from summit
-					FocusTree += "focus = {\r\n";
-					FocusTree += "		id = Com_Summit" + Leader->getTag() + "\r\n";
-					FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
-					FocusTree += "		text = \"Call for the Communist Summit\"\r\n";
-					FocusTree += "		x = " + to_string(takenSpots.back() + 3) + "\r\n";
-					FocusTree += "		y = 0\r\n";
-					FocusTree += "		cost = 10\r\n";
-					FocusTree += "		ai_will_do = {\r\n";
-					FocusTree += "			factor = 0\r\n";
-					FocusTree += "			modifier = {\r\n";
-					FocusTree += "			factor = 5\r\n";
-					FocusTree += "			date > 1938.1.1\r\n";
-					FocusTree += "			}";
-					FocusTree += "		}	\r\n";
-					FocusTree += "		completion_reward = {\r\n";
-					//FocusTree += "			opinion_gain_monthly_factor = 1.0 \r\n";
-					FocusTree += "		}\r\n";
-					FocusTree += "	}\r\n";
-				}
-				for (unsigned int i = 0; i < newAllies.size(); i++)
-				{
-					FocusTree += "focus = {\r\n";
-					FocusTree += "		id = Alliance_" + newAllies[i]->getTag() + Leader->getTag() + "\r\n";
-					FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
-					FocusTree += "		text = \"Alliance with " + newAllies[i]->getSourceCountry()->getName() + "\"\r\n";
-					FocusTree += "		x = " + to_string(takenSpots.back() + 3 + i) + "\r\n";
-					FocusTree += "		y = 1\r\n";
-					FocusTree += "		cost = 10\r\n";
-					FocusTree += "		ai_will_do = {\r\n";
-					FocusTree += "			factor = 10\r\n";
-					FocusTree += "		bypass = { \r\n";
-					FocusTree += "			\r\n";
-					FocusTree += "			OR = {\r\n";
-					FocusTree += "				is_in_faction_with = " + newAllies[i]->getTag() + "\r\n";
-					FocusTree += "				has_war_with = " + newAllies[i]->getTag() + "\r\n";
-					FocusTree += "				NOT = { country_exists = " + newAllies[i]->getTag() + " }\r\n";
-					FocusTree += "			}\r\n";
-					FocusTree += "		}\r\n";
-					FocusTree += "		}	\r\n";
-					FocusTree += "		completion_reward = {\r\n";
-					FocusTree += "		" + newAllies[i]->getTag() + " = {\r\n";
-					FocusTree += "			add_opinion_modifier = { target = " + Leader->getTag() + " modifier = ger_ita_alliance_focus } \r\n";
-					FocusTree += "		}";
-					FocusTree += "		}\r\n";
-					FocusTree += "	}\r\n";
-				}
-				//Declaring war with Great Country
-				vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
-				map<double, HoI4Country*> GCDistance;
-				vector<HoI4Country*> GCDistanceSorted;
-				for each (auto GC in GreatCountries)
-				{
-					double distance = GetDistance(Leader, GC);
-					if (distance < 1200)
-						GCDistance.insert(make_pair(distance, GC));
-				}
-				//put them into a vector so we know their order
-				for (auto iterator = GCDistance.begin(); iterator != GCDistance.end(); ++iterator)
-				{
-					GCDistanceSorted.push_back(iterator->second);
-				}
-				sort(GCDistanceSorted.begin(), GCDistanceSorted.end());
-				vector<HoI4Country*> GCTargets;
-				for each (auto GC in GCDistanceSorted)
-				{
-					string thetag = GC->getTag();
-					string HowToTakeGC = HowToTakeLand(GC, Leader, 3);
-					if (HowToTakeGC == "noactionneeded" || HowToTakeGC == "factionneeded")
-					{
-						if (GC != Leader)
-							GCTargets.push_back(GC);
-					}
-					if (HowToTakeGC == "morealliesneeded")
-					{
-
-					}
-
-				}
-				int maxGCWars = 0;
-				int start = 0;
-				if (GCTargets.size() == 2)
-				{
-					start = -1;
-				}
-				if (GCTargets.size() > 1)
-					CountriesAtWar.push_back(findFaction(Leader));
-				for each (auto GC in GCTargets)
-				{
-
-					string prereq = "";
-					if (maxGCWars < 2 && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
-					{
-						CountriesAtWar.push_back(findFaction(GC));
-						int y2 = 0;
-						//figuring out location of WG
-						if (newAllies.size() > 0)
-						{
-							y2 = 2;
-							prereq = " 	prerequisite = { ";
-
-							for (int i = 0; i < 2; i++)
-								prereq += " focus = Alliance_" + forcedtakeover[i]->getTag() + Leader->getTag();
-
-							prereq += "}\r\n";
-						}
-						int v1 = rand() % 12 + 1;
-						int v2 = rand() % 12 + 1;
-						FocusTree += "focus = {\r\n";
-						FocusTree += "		id = War" + GC->getTag() + Leader->getTag() + "\r\n";
-						FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
-						FocusTree += "		text = \"War with " + GC->getSourceCountry()->getName() + "\"\r\n";//change to faction name later
-						FocusTree += prereq;
-						FocusTree += "		available = {   date > 1938." + to_string(v1) + "." + to_string(v2) + "} \r\n";
-						FocusTree += "		x = " + to_string(takenSpots.back() + 3 + maxGCWars * 2) + "\r\n";
-						FocusTree += "		y = " + to_string(y2) + "\r\n";
-						//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\r\n";
-						FocusTree += "		cost = 10\r\n";
-						FocusTree += "		ai_will_do = {\r\n";
-						FocusTree += "			factor = 5\r\n";
-						FocusTree += "			modifier = {\r\n";
-						FocusTree += "			factor = 0\r\n";
-						FocusTree += "			strength_ratio = { tag = " + GC->getTag() + " ratio < 1 }\r\n";
-						FocusTree += "			}";
-						if (GCTargets.size() > 1)
-						{
-							//make ai have this as a 0 modifier if they are at war
-							FocusTree += "modifier = {\r\n	factor = 0\r\n	OR = {";
-							for (int i2 = 0; i2 < 3; i2++)
-							{
-								if (GC != GCTargets[i2])
-								{
-									FocusTree += "has_war_with = " + GC->getTag() + "\r\n";
-								}
-
-							}
-							FocusTree += "}\r\n}";
-						}
-						FocusTree += "		}	\r\n";
-						FocusTree += "		completion_reward = {\r\n";
-						FocusTree += "			create_wargoal = {\r\n";
-						FocusTree += "				type = puppet_wargoal_focus\r\n";
-						FocusTree += "				target = " + GC->getTag() + "\r\n";
-						FocusTree += "			}";
-						FocusTree += "		}\r\n";
-						FocusTree += "	}\r\n";
-						maxGCWars++;
-					}
-				}
-				FocusTree += "\r\n}";
-				string filename2("Output/" + Configuration::getOutputName() + "/common/national_focus/" + Leader->getSourceCountry()->getTag() + "_NF.txt");
-				//string filename2("Output/NF.txt");
-				ofstream out2;
-				out2.open(filename2);
-				{
-					out2 << FocusTree;
-				}
-				out2.close();
-				out << s;
-				out << endl;
+				vector <vector< HoI4Country* >> newCountriesatWar;
+				newCountriesatWar = CommunistWarCreator(Leader, sourceWorld, countryMap);
+				for (auto addedFactions : newCountriesatWar)
+					CountriesAtWar.push_back(addedFactions);
 			}
 		}
-		vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
-		map<double, HoI4Country*> GCDistance;
-		vector<HoI4Country*> GCDistanceSorted;
-		for each (auto GC in GreatCountries)
-		{
-			if (GC->getGovernment() == "prussian_constitutionalism" || GC->getGovernment() == "hms_government" || GC->getGovernment() == "absolute_monarchy" && std::find(LeaderCountries.begin(), LeaderCountries.end(), GC) == LeaderCountries.end())
-			{
-				double v1 = rand() % 95 + 1;
-				v1 = v1 / 100;
-				double evilness = v1;
-				string government = "";
-				if (GC->getGovernment() == "absolute_monarchy")
-					evilness += 3;
-				else if (GC->getGovernment() == "prussian_constitutionalism")
-					evilness += 2;
-				else if (GC->getGovernment() == "hms_government")
-					evilness += 1;
-
-				if (GC->getIdeology() == "absolute_monarchy" || GC->getIdeology() == "national_syndicalist")
-					evilness += 2;
-				else if (GC->getIdeology() == "fascism_ideology")
-					evilness += 3;
-				else if (GC->getIdeology() == "democratic_conservative")
-					evilness += 1;
-
-				GCDistance.insert(make_pair(evilness, GC));
-			}
-		}
-		//put them into a vector so we know their order
-		for (auto iterator = GCDistance.begin(); iterator != GCDistance.end(); ++iterator)
-		{
-			GCDistanceSorted.push_back(iterator->second);
-		}
-		sort(GCDistanceSorted.begin(), GCDistanceSorted.end());
 		double CountriesAtWarStrength = 0.0;
 		for (auto faction : CountriesAtWar)
 		{
@@ -6107,257 +4796,51 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		out << "percentage of world at war" + to_string(CountriesAtWarStrength / WorldStrength) << endl;
 		if (CountriesAtWarStrength / WorldStrength < 0.8)
 		{
-			for (auto addedMonarchy : GCDistanceSorted)
+			//Lets find out countries Evilness
+			vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
+			map<double, HoI4Country*> GCEvilness;
+			vector<HoI4Country*> GCEvilnessSorted;
+			for each (auto GC in GreatCountries)
 			{
-				out << "added country to make more wars " + addedMonarchy->getSourceCountry()->getName() << endl;
+				if (GC->getGovernment() == "prussian_constitutionalism" || GC->getGovernment() == "hms_government" || GC->getGovernment() == "absolute_monarchy" && std::find(LeaderCountries.begin(), LeaderCountries.end(), GC) == LeaderCountries.end())
+				{
+					double v1 = rand() % 95 + 1;
+					v1 = v1 / 100;
+					double evilness = v1;
+					string government = "";
+					if (GC->getGovernment() == "absolute_monarchy")
+						evilness += 3;
+					else if (GC->getGovernment() == "prussian_constitutionalism")
+						evilness += 2;
+					else if (GC->getGovernment() == "hms_government")
+						evilness += 1;
+					HoI4Party countryrulingparty = GC->getRulingParty();
 
-				HoI4Country* Leader = addedMonarchy;
-				//too many lists, need to clean up
-				vector<HoI4Country*> Targets;
-				vector<HoI4Country*> WeakNeighbors;
-				vector<HoI4Country*> WeakColonies;
-				vector<HoI4Country*> EqualTargets;
-				vector<HoI4Country*> DifficultTargets;
-				//getting country provinces and its neighbors
-				vector<int> leaderProvs = getCountryProvinces(Leader);
-				map<string, HoI4Country*> AllNeighbors = findNeighbors(leaderProvs, Leader);
-				map<string, HoI4Country*> CloseNeighbors;
-				map<string, HoI4Country*> FarNeighbors;
-				//gets neighbors that are actually close to you
-				for each (auto neigh in AllNeighbors)
-				{
-					if (neigh.second->getCapitalProv() != 0)
-					{
-						//IMPROVE
-						//need to get further neighbors, as well as countries without capital in an area
-						double distance = GetDistance(Leader, neigh.second);
-						if (distance <= 500)
-							CloseNeighbors.insert(neigh);
-						else
-							FarNeighbors.insert(neigh);
-					}
-				}
-				//if farneighbors is 0, try to find colonial conquest
-				if (FarNeighbors.size() == 0)
-				{
-					for (auto Colcountry : countries)
-					{
+					if (countryrulingparty.war_pol == "jingoism")
+						evilness += 3;
+					else if (countryrulingparty.war_pol == "pro_military")
+						evilness += 2;
+					else if (countryrulingparty.war_pol == "anti_military")
+						evilness += 1;
 
-						HoI4Country* country2 = Colcountry.second;
-						if (country2->getCapitalProv() != 0)
-						{
-							//IMPROVE
-							//but this should never happen since the AI shouldnt even take this unless they already have colonies
-							double distance = GetDistance(Leader, country2);
-							if (distance <= 1000 && Colcountry.second->getProvinceCount() > 0)
-								FarNeighbors.insert(Colcountry);
-						}
-					}
+					//need to add ruling party to factor
+					GCEvilness.insert(make_pair(evilness, GC));
 				}
-				set<string> Allies = Leader->getAllies();
-				//should add method to look for cores you dont own
-				//should add method to look for more allies
-
-				//lets look for weak neighbors
-				LOG(LogLevel::Info) << "Doing Neighbor calcs for " + Leader->getSourceCountry()->getName();
-				for (auto neigh : CloseNeighbors)
-				{
-					//lets check to see if they are not our ally and not a great country
-					if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
-					{
-						volatile double enemystrength = getStrengthOverTime(neigh.second, 1.5);
-						volatile double mystrength = getStrengthOverTime(Leader, 1.5);
-						//lets see their strength is at least < 20%
-						if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second).size() == 1)
-						{
-							//they are very weak
-							WeakNeighbors.push_back(neigh.second);
-						}
-					}
-				}
-				for (auto neigh : FarNeighbors)
-				{
-					//lets check to see if they are not our ally and not a great country
-					if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
-					{
-						volatile double enemystrength = getStrengthOverTime(neigh.second, 1.5);
-						volatile double mystrength = getStrengthOverTime(Leader, 1.5);
-						//lets see their strength is at least < 20%
-						if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second).size() == 1)
-						{
-							//they are very weak
-							WeakColonies.push_back(neigh.second);
-						}
-					}
-				}
-				string FocusTree = genericFocusTreeCreator(Leader);
-				int WN = 0;
-				int WC = 0;
-				if (WeakNeighbors.size() == 0)
-					WeakNeighbors.push_back(Leader);
-				else
-					WN = WeakNeighbors.size();
-				if (WeakColonies.size() == 0)
-					WeakColonies.push_back(Leader);
-				else
-					WC = WeakColonies.size();
-				FocusTree += createMonarchyEmpireNF(Leader, WeakColonies.front(), WeakColonies.back(), WeakNeighbors.front(), WeakNeighbors.back(), WC, WN, 0);
-				//Declaring war with Great Country
-				vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
-				map<double, HoI4Country*> GCDistance;
-				vector<HoI4Country*> GCDistanceSorted;
-				//get great countries with a distance
-				for each (auto GC in GreatCountries)
-				{
-					double distance = GetDistance(Leader, GC);
-					if (distance < 1200)
-						GCDistance.insert(make_pair(distance, GC));
-				}
-				//put them into a vector so we know their order
-				for (auto iterator = GCDistance.begin(); iterator != GCDistance.end(); ++iterator)
-				{
-					GCDistanceSorted.push_back(iterator->second);
-				}
-				sort(GCDistanceSorted.begin(), GCDistanceSorted.end());
-				vector<HoI4Country*> GCTargets;
-				for each (auto GC in GCDistanceSorted)
-				{
-					string thetag = GC->getTag();
-					string HowToTakeGC = HowToTakeLand(GC, Leader, 3);
-					if (HowToTakeGC == "noactionneeded" || HowToTakeGC == "factionneeded")
-					{
-						if (GC != Leader)
-							GCTargets.push_back(GC);
-					}
-					if (HowToTakeGC == "morealliesneeded")
-					{
-
-					}
-
-				}
-				int maxGCWars = 0;
-				int start = 0;
-				if (GCTargets.size() == 2)
-				{
-					start = -1;
-				}
-				if (GCTargets.size() > 1)
-					CountriesAtWar.push_back(findFaction(Leader));
-				for each (auto GC in GCTargets)
-				{
-
-					string prereq = "";
-					set<string> Allies = Leader->getAllies();
-					if (maxGCWars < 2 && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
-					{
-						CountriesAtWar.push_back(findFaction(GC));
-						int y2 = 0;
-						//figuring out location of WG
-						/*if (newAllies.size() > 0)
-						{
-						y2 = 2;
-						prereq = " 	prerequisite = { ";
-
-						for (int i = 0; i < 2; i++)
-						prereq += " focus = Alliance_" + newAllies[i]->getTag() + Leader->getTag();
-
-						prereq += "}\r\n";
-						}*/
-						int v1 = rand() % 12 + 1;
-						int v2 = rand() % 12 + 1;
-						FocusTree += "focus = {\r\n";
-						FocusTree += "		id = War" + GC->getTag() + Leader->getTag() + "\r\n";
-						FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
-						FocusTree += "		text = \"War with " + GC->getSourceCountry()->getName() + "\"\r\n";//change to faction name later
-						FocusTree += "		prerequisite = { focus =  MilitaryBuildup" + Leader->getTag() + " }\r\n";
-						FocusTree += "		available = {   date > 1938." + to_string(v1) + "." + to_string(v2) + "} \r\n";
-						FocusTree += "		x = " + to_string(31+maxGCWars * 2) + "\r\n";
-						FocusTree += "		y = 5\r\n";
-						//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\r\n";
-						FocusTree += "		cost = 10\r\n";
-						FocusTree += "		ai_will_do = {\r\n";
-						FocusTree += "			factor = 5\r\n";
-						FocusTree += "			modifier = {\r\n";
-						FocusTree += "			factor = 0\r\n";
-						FocusTree += "			strength_ratio = { tag = " + GC->getTag() + " ratio < 1 }\r\n";
-						FocusTree += "			}";
-						if (GCTargets.size() > 1)
-						{
-							//make ai have this as a 0 modifier if they are at war
-							FocusTree += "modifier = {\r\n	factor = 0\r\n	OR = {";
-							for (int i2 = 0; i2 < 3; i2++)
-							{
-								if (GC != GCTargets[i2])
-								{
-									FocusTree += "has_war_with = " + GC->getTag() + "\r\n";
-								}
-
-							}
-							FocusTree += "}\r\n}";
-						}
-						FocusTree += "		}	\r\n";
-						FocusTree += "		completion_reward = {\r\n";
-						FocusTree += "			create_wargoal = {\r\n";
-						FocusTree += "				type = puppet_wargoal_focus\r\n";
-						FocusTree += "				target = " + GC->getTag() + "\r\n";
-						FocusTree += "			}";
-						FocusTree += "		}\r\n";
-						FocusTree += "	}\r\n";
-						maxGCWars++;
-					}
-				}
-				FocusTree += "\r\n}";
-				string Events = "";
-				Events += "add_namespace = " + Leader->getTag() + "\r\n";
-				int eventNumber = 0;
-				for each (auto GC in GCTargets)
-				{
-					Events += "country_event = {\r\n";
-					Events += "	id = " + Leader->getTag() + "." + to_string(eventNumber) + "\r\n";
-					Events += "	title = \"Trade Incident\"\r\n";
-					Events += "	desc = \"One of our convoys was sunk by " + GC->getSourceCountry()->getName() + "\"\r\n";
-					Events += "	picture = GFX_report_event_chinese_soldiers_fighting\r\n";
-					Events += "	\r\n";
-					Events += "	is_triggered_only = yes\r\n";
-					Events += "	\r\n";
-					Events += " trigger = {";
-					Events += "		has_country_flag = established_traders";
-					Events += "		NOT = { has_country_flag = established_traders_activated }";
-					Events += " }";
-					Events += "	option = { # Breaking point!\r\n";
-					Events += "		name = \"They will Pay!\"\r\n";
-					Events += "		ai_chance = { factor = 85 }\r\n";
-					Events += "		effect_tooltip = {\r\n";
-					Events += "			" + Leader->getTag() + " = {\r\n";
-					Events += "			set_country_flag = established_traders_activated";
-					Events += "			create_wargoal = {\r\n";
-					Events += "				type = annex_everything\r\n";
-					Events += "				target = " + GC->getTag() + "\r\n";
-					Events += "			}\r\n";
-					Events += "		}\r\n";
-					Events += "	}\r\n";
-					Events += "}";
-				}
-				//output events
-				string filenameevents("Output/" + Configuration::getOutputName() + "/events/" + Leader->getSourceCountry()->getTag() + "_events.txt");
-				//string filename2("Output/NF.txt");
-				ofstream outevents;
-				outevents.open(filenameevents);
-				{
-					outevents << "\xEF\xBB\xBF";
-					outevents << Events;
-				}
-				outevents.close();
-
-				//output National Focus
-				string filenameNF("Output/" + Configuration::getOutputName() + "/common/national_focus/" + Leader->getSourceCountry()->getTag() + "_NF.txt");
-				ofstream out2;
-				out2.open(filenameNF);
-				{
-					out2 << FocusTree;
-				}
-				out2.close();
-				
+			}
+			//put them into a vector so we know their order
+			for (auto iterator = GCEvilness.begin(); iterator != GCEvilness.end(); ++iterator)
+			{
+				GCEvilnessSorted.push_back(iterator->second);
+			}
+			for (int i = GCEvilnessSorted.size()-1; i > 0; i-- )
+			{
+				out << "added country to make more wars " + GCEvilnessSorted[i]->getSourceCountry()->getName() << endl;
+				vector <vector< HoI4Country* >> newCountriesatWar;
+				newCountriesatWar = MonarchyWarCreator(GCEvilnessSorted[i], sourceWorld, countryMap);
+				//add that faction to new countries at war
+				for (auto addedFactions : newCountriesatWar)
+					CountriesAtWar.push_back(addedFactions);
+				//then check how many factions are now at war
 				for (auto faction : CountriesAtWar)
 				{
 					CountriesAtWarStrength += GetFactionStrength(faction);
@@ -6373,6 +4856,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		out.close();
 	}
 }
+
 string HoI4World::HowToTakeLand(HoI4Country* TargetCountry, HoI4Country* AttackingCountry, double time)
 {
 	string s;
@@ -6726,9 +5210,9 @@ vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorl
 				auto allies = country->getAllies();
 				vector<int> yourbrigs = country->getBrigs();
 				auto yourrelations = country->getRelations();
-				out << country->getSourceCountry()->getName() << " " + yourgovernment + " initial strength:" + to_string(getInitialStrength(country)) + " Factory Strength per year: " + to_string(getAddedStrength(country, 1)) + " allies: \n";
+				out << country->getSourceCountry()->getName() << " " + yourgovernment + " initial strength:" + to_string(getInitialStrength(country)) + " Factory Strength per year: " + to_string(getAddedStrength(country, 1)) + " Factory Strength by 1939: " + to_string(getAddedStrength(country, 3)) + " allies: \n";
 				usedCountries.push_back(country->getTag());
-				FactionMilStrength = getStrengthOverTime(country, 1);
+				FactionMilStrength = getStrengthOverTime(country, 3);
 				for (auto ally : allies)
 				{
 
@@ -6771,7 +5255,7 @@ vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorl
 							if (canally)
 							{
 								usedCountries.push_back(allycountry->getTag());
-								out << "\t" + name + " " + allygovernment + " initial strength:" + to_string(getInitialStrength(allycountry)) + " Factory Strength per year: " + to_string(getAddedStrength(allycountry, 1)) << endl;
+								out << "\t" + name + " " + allygovernment + " initial strength:" + to_string(getInitialStrength(allycountry)) + " Factory Strength per year: " + to_string(getAddedStrength(allycountry, 1))+ " Factory Strength by 1939: " + to_string(getAddedStrength(allycountry, 3)) << endl;
 								FactionMilStrength += getStrengthOverTime(allycountry, 1);
 								Faction.push_back(allycountry);
 							}
@@ -6779,7 +5263,7 @@ vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorl
 					}
 
 				}
-				out << "\tFaction Strength: " + to_string(FactionMilStrength) << endl;
+				out << "\tFaction Strength in 1939: " + to_string(FactionMilStrength) << endl;
 				out << endl;
 				Factions2.push_back(Faction);
 			}
@@ -6844,4 +5328,1332 @@ string HoI4World::returnIfSphere(HoI4Country* leadercountry, HoI4Country* posLea
 		}
 	}
 	return "";
+}
+vector<vector<HoI4Country*>> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sourceWorld, CountryMapping countryMap)
+{
+	vector<vector<HoI4Country*>> CountriesAtWar; CountriesAtWar;
+	LOG(LogLevel::Info) << "Calculating AI for " + Leader->getSourceCountry()->getName();
+	//too many lists, need to clean up
+	vector<HoI4Country*> Targets;
+	vector<HoI4Country*> Anchluss;
+	vector<HoI4Country*> Sudaten;
+	vector<HoI4Country*> EqualTargets;
+	vector<HoI4Country*> DifficultTargets;
+	//getting country provinces and its neighbors
+	vector<int> leaderProvs = getCountryProvinces(Leader);
+	map<string, HoI4Country*> AllNeighbors = findNeighbors(leaderProvs, Leader);
+	map<string, HoI4Country*> CloseNeighbors;
+	//gets neighbors that are actually close to you
+	for each (auto neigh in AllNeighbors)
+	{
+		if (neigh.second->getCapitalProv() != 0)
+		{
+			//IMPROVE
+			//need to get further neighbors, as well as countries without capital in an area
+			double distance = GetDistance(Leader, neigh.second);
+			if (distance <= 500)
+				CloseNeighbors.insert(neigh);
+		}
+	}
+
+	set<string> Allies = Leader->getAllies();
+	//should add method to look for cores you dont own
+	//should add method to look for more allies
+
+	//lets look for weak neighbors
+	LOG(LogLevel::Info) << "Doing Neighbor calcs for " + Leader->getSourceCountry()->getName();
+	for (auto neigh : CloseNeighbors)
+	{
+		//lets check to see if they are not our ally and not a great country
+		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
+		{
+			volatile double enemystrength = getStrengthOverTime(neigh.second, 1.5);
+			volatile double mystrength = getStrengthOverTime(Leader, 1.5);
+			//lets see their strength is at least < 20%
+			if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second).size() == 1)
+			{
+				//they are very weak
+				Anchluss.push_back(neigh.second);
+			}
+			//if not, lets see their strength is at least < 60%
+			else if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1)*0.6 && getStrengthOverTime(neigh.second, 1) > getStrengthOverTime(Leader, 1)*0.2 && findFaction(neigh.second).size() == 1)
+			{
+				//they are weak and we can get 1 of these countries in sudaten deal
+				Sudaten.push_back(neigh.second);
+			}
+			//if not, lets see their strength is at least = to ours%
+			else if (getStrengthOverTime(neigh.second, 1) < getStrengthOverTime(Leader, 1))
+			{
+				//EqualTargets.push_back(neigh);
+				EqualTargets.push_back(neigh.second);
+			}
+			//if not, lets see their strength is at least < 120%
+			else if (getStrengthOverTime(neigh.second, 1) < getStrengthOverTime(Leader, 1)*1.2)
+			{
+				//StrongerTargets.push_back(neigh);
+				DifficultTargets.push_back(neigh.second);
+
+			}
+
+		}
+	}
+	//string that contains all events
+	string Events;
+	string s;
+	map<string, vector<HoI4Country*>> TargetMap;
+	vector<HoI4Country*> anchlussnan;
+	vector<HoI4Country*> sudatennan;
+	vector<HoI4Country*> nan;
+	vector<HoI4Country*> fn;
+	vector<HoI4Country*> man;
+	vector<HoI4Country*> coup;
+	int EventNumber = 0;
+	//x is used for the x position of our last NF, so we can place them correctly
+	vector<int> takenSpots;
+	vector<int> takenSpotsy;
+	int x = 22;
+	takenSpots.push_back(x);
+	//look through every anchluss and see its difficulty
+	for (auto target : Anchluss)
+	{
+		string type;
+		//outputs are for HowToTakeLand()
+		//noactionneeded -  Can take target without any help
+		//factionneeded - can take target and faction with attackers faction helping
+		//morealliesneeded - can take target with more allies, comes with "newallies" in map
+		//coup - cant take over, need to coup
+		type = HowToTakeLand(target, Leader, 1.5);
+		if (type == "noactionneeded")
+		{
+			//too many vectors, need to clean up
+			nan.push_back(target);
+			anchlussnan.push_back(target);
+		}
+	}
+	//gives us generic focus tree start
+	string FocusTree = genericFocusTreeCreator(Leader);
+	if (nan.size() >= 1)
+	{
+		//if it can easily take these targets as they are not in an alliance, you can get annexation event
+		if (nan.size() == 1)
+		{
+			x = 24;
+			takenSpots.push_back(x);
+		}
+		if (nan.size() >= 2)
+		{
+			x = 25;
+			takenSpots.push_back(x);
+		}
+		takenSpotsy.push_back(2);
+		//Focus to increase fascist support and prereq for anschluss
+		FocusTree += "focus = {\r\n";
+		FocusTree += "		id = The_third_way" + Leader->getTag() + "\r\n";
+		FocusTree += "		icon = GFX_goal_support_fascism\r\n";
+		FocusTree += "		text = \"The Third Way!\"\r\n";
+		FocusTree += "		x = " + to_string(x) + "\r\n";
+		FocusTree += "		y = 0\r\n";
+		FocusTree += "		cost = 10\r\n";
+		FocusTree += "		ai_will_do = {\r\n";
+		FocusTree += "			factor = 5\r\n";
+		FocusTree += "		}	\r\n";
+		FocusTree += "		completion_reward = {\r\n";
+		//FIXME 
+		//Need to get Drift Defense to work
+		//FocusTree += "			drift_defence_factor = 0.5\r\n";
+		FocusTree += "			add_ideas = fascist_influence\r\n";
+		FocusTree += "		}\r\n";
+		FocusTree += "	}\r\n";
+
+		//Focus to increase army support
+		FocusTree += "focus = {\r\n";
+		FocusTree += "		id = mil_march" + Leader->getTag() + "\r\n";
+		FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
+		FocusTree += "		text = \"Establish Military March Day\"\r\n";
+		FocusTree += "		prerequisite = { focus = The_third_way" + Leader->getTag() + " }\r\n";
+		FocusTree += "		x = " + to_string(x) + "\r\n";
+		FocusTree += "		y = 1\r\n";
+		FocusTree += "		cost = 10\r\n";
+		FocusTree += "		ai_will_do = {\r\n";
+		FocusTree += "			factor = 5\r\n";
+		FocusTree += "		}	\r\n";
+		FocusTree += "		completion_reward = {\r\n";
+		FocusTree += "			army_experience = 20\r\n";
+		FocusTree += "		add_tech_bonus = { \r\n";
+		FocusTree += "				bonus = 0.5\r\n";
+		FocusTree += "				uses = 2\r\n";
+		FocusTree += "				category = land_doctrine\r\n";
+		FocusTree += "			}";
+		FocusTree += "		}\r\n";
+		FocusTree += "	}\r\n";
+		Events += "add_namespace = " + Leader->getTag() + "annex\r\n";
+
+		for (unsigned int i = 0; i < 2; i++)
+		{
+			int start = 0;
+			if (nan.size() >= 2)
+				start = -1;
+			if (i < nan.size())
+			{
+				//int x = i * 3;
+				string annexername = Leader->getSourceCountry()->getName();
+				string annexedname = nan[i]->getSourceCountry()->getName();
+				//for random date
+				int v1 = rand() % 5 + 1;
+				int v2 = rand() % 5 + 1;
+				//focus for anschluss
+				FocusTree += "		focus = { \r\n";
+				FocusTree += "		id = " + Leader->getTag() + "_anschluss_" + nan[i]->getTag() + "\r\n";
+				FocusTree += "		icon = GFX_goal_anschluss\r\n";
+				FocusTree += "		text = \"Union with " + annexedname + "\"\r\n";
+				FocusTree += "		prerequisite = { focus = mil_march" + Leader->getTag() + " }\r\n";
+				FocusTree += "		available = {\r\n";
+				FocusTree += "			is_puppet = no\r\n";
+				FocusTree += "		    date > 1937." + to_string(v1 + 5) + "." + to_string(v2 + 5) + "\r\n";
+				FocusTree += "		}\r\n";
+				FocusTree += "		\r\n";
+				FocusTree += "		x = " + to_string(x + i * 2 + start) + "\r\n";
+				FocusTree += "		y = 2\r\n";
+				FocusTree += "		cost = 10\r\n";
+				FocusTree += "		ai_will_do = {\r\n";
+				FocusTree += "			factor = 10\r\n";
+				FocusTree += "			modifier = {\r\n";
+				FocusTree += "				factor = 0\r\n";
+				FocusTree += "				date < 1937.6.6\r\n";
+				FocusTree += "			}\r\n";
+				FocusTree += "		}	\r\n";
+				FocusTree += "		completion_reward = {\r\n";
+				FocusTree += "			army_experience = 10\r\n";
+				FocusTree += "			if = {\r\n";
+				FocusTree += "				limit = {\r\n";
+				FocusTree += "					country_exists = " + nan[i]->getTag() + "\r\n";
+				FocusTree += "				}\r\n";
+				FocusTree += "				" + nan[i]->getTag() + " = {\r\n";
+				FocusTree += "					country_event = " + Leader->getTag() + "annex." + to_string(EventNumber) + "\r\n";
+				FocusTree += "				}\r\n";
+				FocusTree += "			}\r\n";
+				FocusTree += "		}\r\n";
+				FocusTree += "	}";
+
+				//events
+				Events += createAnnexEvent(Leader, nan[i], EventNumber);
+				EventNumber += 3;
+			}
+		}
+		nan.clear();
+
+	}
+	for (auto target : Sudaten)
+	{
+		string type;
+		//outputs are
+		//noactionneeded -  Can take target without any help
+		//factionneeded - can take target and faction with attackers faction helping
+		//morealliesneeded - can take target with more allies, comes with "newallies" in map
+		//coup - cant take over, need to coup
+		type = HowToTakeLand(target, Leader, 2.5);
+		if (type == "noactionneeded")
+		{
+			nan.push_back(target);
+		}
+	}
+	if (nan.size() >= 1)
+	{
+		//if it can easily take these targets as they are not in an alliance, you can get annexation event
+
+		//Focus to increase empire size more
+		FocusTree += "focus = {\r\n";
+		FocusTree += "		id = Expand_the_Reich" + Leader->getTag() + "\r\n";
+		FocusTree += "		icon = GFX_goal_generic_political_pressure\r\n";//something about claiming land
+		FocusTree += "		text = \"Expand the Reich\"\r\n";
+		if (anchlussnan.size() == 1 || anchlussnan.size() >= 2)
+		{
+			//if there are anschlusses, make this event require at least 1 anschluss, else, its the start of a tree
+			FocusTree += "		prerequisite = { ";
+			for (unsigned int i = 0; i < 2; i++)
+			{
+				if (i < anchlussnan.size())
+				{
+					FocusTree += " focus = " + Leader->getTag() + "_anschluss_" + anchlussnan[i]->getTag() + " ";
+				}
+			}
+			FocusTree += "\r\n }\r\n";
+			FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
+			FocusTree += "		y = 3\r\n";
+			takenSpotsy.push_back(5);
+		}
+		else
+		{
+			//figuring out position
+			int x = takenSpots.back();
+			takenSpots.push_back(x);
+			if (nan.size() == 1)
+			{
+				x += 2;
+				takenSpots.push_back(x);
+			}
+			if (nan.size() >= 2)
+			{
+				x += 3;
+				takenSpots.push_back(x);
+			}
+			FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
+			FocusTree += "		y = 0\r\n";
+			takenSpotsy.push_back(2);
+		}
+		FocusTree += "		cost = 10\r\n";
+		FocusTree += "		ai_will_do = {\r\n";
+		FocusTree += "			factor = 5\r\n";
+		FocusTree += "		}	\r\n";
+		FocusTree += "		completion_reward = {\r\n";
+		FocusTree += "			add_named_threat = { threat = 2 name = \"Fascist Expansion\" }\r\n";//give some claims or cores
+		FocusTree += "		}\r\n";
+		FocusTree += "	}\r\n";
+		for (unsigned int i = 0; i < 1; i++)
+		{
+			if (i < nan.size())
+			{
+				int x = i * 3;
+				string annexername = Leader->getSourceCountry()->getName();
+				string annexedname = nan[i]->getSourceCountry()->getName();
+				int v1 = rand() % 8 + 1;
+				int v2 = rand() % 8 + 1;
+				//focus for sudaten
+				FocusTree += "		focus = { \r\n";
+				FocusTree += "		id = " + Leader->getTag() + "_sudaten_" + nan[i]->getTag() + "\r\n";
+				FocusTree += "		icon = GFX_goal_anschluss\r\n";
+				FocusTree += "		text = \"Demand Territory from " + annexedname + "\"\r\n";
+				FocusTree += "		prerequisite = { focus = Expand_the_Reich" + Leader->getTag() + " }\r\n";
+				FocusTree += "		available = {\r\n";
+				FocusTree += "			is_puppet = no\r\n";
+				FocusTree += "		    date > 1938." + to_string(v1) + "." + to_string(v2) + "\r\n";
+				FocusTree += "		}\r\n";
+				FocusTree += "		\r\n";
+				if (anchlussnan.size() == 1 || anchlussnan.size() >= 2)
+				{
+					//figuring out position again
+					FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
+					FocusTree += "		y = 4\r\n";
+				}
+				else
+				{
+					FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
+					FocusTree += "		y = 1\r\n";
+				}
+				FocusTree += "		cost = 10\r\n";
+				FocusTree += "		ai_will_do = {\r\n";
+				FocusTree += "			factor = 10\r\n";
+				FocusTree += "			modifier = {\r\n";
+				FocusTree += "				factor = 0\r\n";
+				FocusTree += "				date < 1937.6.6\r\n";
+				FocusTree += "			}\r\n";
+				FocusTree += "		}	\r\n";
+				FocusTree += "		completion_reward = {\r\n";
+				FocusTree += "			army_experience = 10\r\n";
+				FocusTree += "			if = {\r\n";
+				FocusTree += "				limit = {\r\n";
+				FocusTree += "					country_exists = " + nan[i]->getTag() + "\r\n";
+				FocusTree += "				}\r\n";
+				FocusTree += "				" + nan[i]->getTag() + " = {\r\n";
+				FocusTree += "					country_event = " + Leader->getTag() + "sudaten." + to_string(EventNumber) + "\r\n";
+				FocusTree += "				}\r\n";
+				FocusTree += "			}\r\n";
+				FocusTree += "		}\r\n";
+				FocusTree += "	}";
+
+				//FINISH HIM
+				FocusTree += "		focus = { \r\n";
+				FocusTree += "		id = " + Leader->getTag() + "_finish_" + nan[i]->getTag() + "\r\n";
+				FocusTree += "		icon = GFX_goal_generic_territory_or_war\r\n";
+				FocusTree += "		text = \"Fate of " + annexedname + "\"\r\n";
+				FocusTree += "		prerequisite = { focus =  " + Leader->getTag() + "_sudaten_" + nan[i]->getTag() + " }\r\n";
+				FocusTree += "		available = {\r\n";
+				FocusTree += "			is_puppet = no\r\n";
+				FocusTree += "		}\r\n";
+				FocusTree += "		\r\n";
+				if (anchlussnan.size() == 1 || anchlussnan.size() >= 2)
+				{
+					FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
+					FocusTree += "		y = 5\r\n";
+				}
+				else
+				{
+					FocusTree += "		x = " + to_string(takenSpots.back()) + "\r\n";
+					FocusTree += "		y = 2\r\n";
+				}
+				FocusTree += "		cost = 10\r\n";
+				FocusTree += "		ai_will_do = {\r\n";
+				FocusTree += "			factor = 10\r\n";
+				FocusTree += "			modifier = {\r\n";
+				FocusTree += "				factor = 0\r\n";
+				FocusTree += "				date < 1937.6.6\r\n";
+				FocusTree += "			}\r\n";
+				FocusTree += "		}	\r\n";
+				FocusTree += "		completion_reward = {\r\n";
+				FocusTree += "		create_wargoal = {\r\n";
+				FocusTree += "				type = annex_everything\r\n";
+				FocusTree += "			target = " + nan[i]->getTag() + "\r\n";
+				FocusTree += "		}\r\n";
+				FocusTree += "		}\r\n";
+				FocusTree += "	}";
+
+				//events
+				//find neighboring states to take in sudaten deal
+				vector<int> demandedstates;
+				for (auto leaderprov : leaderProvs)
+				{
+					vector<int> thisprovNeighbors = provinceNeighbors.find(leaderprov)->second;
+					for (int prov : thisprovNeighbors)
+					{
+						if (provincemap.find(prov) == provincemap.end())
+						{
+						}
+						else
+						{
+							vector<string> stuff = provincemap.find(prov)->second;
+							if (stuff.size() >= 1)
+							{
+								int statenumber = stoi(stuff.front());
+								//string ownertag = "";
+								auto ownertag = provincemap.find(prov);
+								if (ownertag != provincemap.end())
+								{
+									vector<string> tags = ownertag->second;
+									if (tags.size() >= 1)
+									{
+										if (tags[1] == nan[i]->getTag())
+										{
+
+											/* v does not contain x */
+											demandedstates.push_back(statenumber);
+
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				Events += "add_namespace = " + Leader->getTag() + "sudaten\r\n";
+				Events += createSudatenEvent(Leader, nan[0], EventNumber, demandedstates);
+				EventNumber += 3;
+			}
+		}
+		nan.clear();
+
+	}
+	//events for allies
+	vector<HoI4Country*> newAllies = GetMorePossibleAllies(Leader);
+	for each (auto newally in newAllies)
+	{
+		findFaction(Leader).push_back(newally);
+	}
+	if (newAllies.size() > 0)
+	{
+		//Focus to call summit, maybe have events from summit
+		FocusTree += "focus = {\r\n";
+		FocusTree += "		id = Fas_Summit" + Leader->getTag() + "\r\n";
+		FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
+		FocusTree += "		text = \"Call for the Fascist Summit\"\r\n";
+		FocusTree += "		x = " + to_string(takenSpots.back() + 4) + "\r\n";
+		FocusTree += "		y = 0\r\n";
+		FocusTree += "		cost = 10\r\n";
+		FocusTree += "		ai_will_do = {\r\n";
+		FocusTree += "			factor = 0\r\n";
+		FocusTree += "			modifier = {\r\n";
+		FocusTree += "			factor = 5\r\n";
+		FocusTree += "			date > 1938.1.1\r\n";
+		FocusTree += "			}";
+		FocusTree += "		}	\r\n";
+		FocusTree += "		completion_reward = {\r\n";
+		//FIXME
+		//FocusTree += "			opinion_gain_monthly_factor = 1.0 \r\n";
+		FocusTree += "		}\r\n";
+		FocusTree += "	}\r\n";
+	}
+	for (unsigned int i = 0; i < newAllies.size(); i++)
+	{
+		int displacement = 0;
+		if (newAllies.size() == 2)
+			displacement = -1;
+		FocusTree += "focus = {\r\n";
+		FocusTree += "		id = Alliance_" + newAllies[i]->getTag() + Leader->getTag() + "\r\n";
+		FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
+		FocusTree += "		text = \"Alliance with " + newAllies[i]->getSourceCountry()->getName() + "\"\r\n";
+		FocusTree += "		prerequisite = { focus =  Fas_Summit" + Leader->getTag() + " }\r\n";
+		FocusTree += "		x = " + to_string(takenSpots.back() + 4 + i * 2 + displacement) + "\r\n";
+		FocusTree += "		y = 1\r\n";
+		FocusTree += "		cost = 10\r\n";
+		FocusTree += "		ai_will_do = {\r\n";
+		FocusTree += "			factor = 10\r\n";
+		FocusTree += "		}	\r\n";
+		FocusTree += "		bypass = { \r\n";
+		FocusTree += "			\r\n";
+		FocusTree += "			OR = {\r\n";
+		FocusTree += "				is_in_faction_with = " + newAllies[i]->getTag() + "\r\n";
+		FocusTree += "				has_war_with = " + newAllies[i]->getTag() + "\r\n";
+		FocusTree += "				NOT = { country_exists = " + newAllies[i]->getTag() + " }\r\n";
+		FocusTree += "			}\r\n";
+		FocusTree += "		}\r\n";
+
+		FocusTree += "		completion_reward = {\r\n";
+		FocusTree += "		" + newAllies[i]->getTag() + " = {\r\n";
+		FocusTree += "			add_opinion_modifier = { target = " + Leader->getTag() + " modifier = ger_ita_alliance_focus } \r\n";
+		FocusTree += "		}";
+		FocusTree += "		}\r\n";
+		FocusTree += "	}\r\n";
+	}
+	//Declaring war with Great Country
+	vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
+	map<double, HoI4Country*> GCDistance;
+	vector<HoI4Country*> GCDistanceSorted;
+	//get great countries with a distance
+	for each (auto GC in GreatCountries)
+	{
+		double distance = GetDistance(Leader, GC);
+		if (distance < 1200)
+			GCDistance.insert(make_pair(distance, GC));
+	}
+	//put them into a vector so we know their order
+	for (auto iterator = GCDistance.begin(); iterator != GCDistance.end(); ++iterator)
+	{
+		GCDistanceSorted.push_back(iterator->second);
+	}
+	sort(GCDistanceSorted.begin(), GCDistanceSorted.end());
+	vector<HoI4Country*> GCTargets;
+	for each (auto GC in GCDistanceSorted)
+	{
+		string thetag = GC->getTag();
+		string HowToTakeGC = HowToTakeLand(GC, Leader, 3);
+		if (HowToTakeGC == "noactionneeded" || HowToTakeGC == "factionneeded" || HowToTakeGC == "morealliesneeded")
+		{
+			if (GC != Leader)
+				GCTargets.push_back(GC);
+		}
+
+	}
+	int maxGCWars = 0;
+	int start = 0;
+	if (GCTargets.size() == 2)
+	{
+		start = -1;
+	}
+	if (GCTargets.size() > 1)
+		CountriesAtWar.push_back(findFaction(Leader));
+	for each (auto GC in GCTargets)
+	{
+		string prereq = "";
+		set<string> Allies = Leader->getAllies();
+		if (maxGCWars < 2 && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
+		{
+			CountriesAtWar.push_back(findFaction(GC));
+			int y2 = 0;
+			//figuring out location of WG
+			if (newAllies.size() > 0)
+			{
+				y2 = 2;
+				prereq = " 	prerequisite = { ";
+
+				for (int i = 0; i < 2; i++)
+					prereq += " focus = Alliance_" + newAllies[i]->getTag() + Leader->getTag();
+
+				prereq += "}\r\n";
+			}
+			int v1 = rand() % 12 + 1;
+			int v2 = rand() % 12 + 1;
+			FocusTree += "focus = {\r\n";
+			FocusTree += "		id = War" + GC->getTag() + Leader->getTag() + "\r\n";
+			FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
+			FocusTree += "		text = \"War with " + GC->getSourceCountry()->getName() + "\"\r\n";//change to faction name later
+			if (prereq != "")
+				FocusTree += prereq;
+			FocusTree += "		available = {   date > 1938." + to_string(v1) + "." + to_string(v2) + "} \r\n";
+			FocusTree += "		x = " + to_string(takenSpots.back() + start + 3 + maxGCWars * 2) + "\r\n";
+			FocusTree += "		y = " + to_string(y2) + "\r\n";
+			//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\r\n";
+			FocusTree += "		cost = 10\r\n";
+			FocusTree += "		ai_will_do = {\r\n";
+			FocusTree += "			factor = 5\r\n";
+			FocusTree += "			modifier = {\r\n";
+			FocusTree += "			factor = 0\r\n";
+			FocusTree += "			strength_ratio = { tag = " + GC->getTag() + " ratio < 1 }\r\n";
+			FocusTree += "			}";
+			if (GCTargets.size() > 1)
+			{
+				//make ai have this as a 0 modifier if they are at war
+				FocusTree += "modifier = {\r\n	factor = 0\r\n	OR = {";
+				for (int i2 = 0; i2 < 3; i2++)
+				{
+					if (GC != GCTargets[i2])
+					{
+						FocusTree += "has_war_with = " + GC->getTag() + "\r\n";
+					}
+
+				}
+				FocusTree += "}\r\n}";
+			}
+			FocusTree += "		}	\r\n";
+			FocusTree += "		completion_reward = {\r\n";
+			FocusTree += "			create_wargoal = {\r\n";
+			FocusTree += "				type = puppet_wargoal_focus\r\n";
+			FocusTree += "				target = " + GC->getTag() + "\r\n";
+			FocusTree += "			}";
+			FocusTree += "		}\r\n";
+			FocusTree += "	}\r\n";
+			maxGCWars++;
+		}
+	}
+	//insert these values in targetmap for use later possibly?
+	//needs cleanup, too many vectors!
+	TargetMap.insert(make_pair("noactionneeded", nan));
+	TargetMap.insert(make_pair("factionneeded", fn));
+	TargetMap.insert(make_pair("morealliesneeded", man));
+	TargetMap.insert(make_pair("coup", coup));
+	//actual eventoutput
+	FocusTree += "\r\n}";
+
+	//output National Focus
+	string filenameNF("Output/" + Configuration::getOutputName() + "/common/national_focus/" + Leader->getSourceCountry()->getTag() + "_NF.txt");
+	ofstream out2;
+	out2.open(filenameNF);
+	{
+		out2 << FocusTree;
+	}
+	out2.close();
+	//output events
+	string filenameevents("Output/" + Configuration::getOutputName() + "/events/" + Leader->getSourceCountry()->getTag() + "_events.txt");
+	//string filename2("Output/NF.txt");
+	ofstream outevents;
+	outevents.open(filenameevents);
+	{
+		outevents << "\xEF\xBB\xBF";
+		outevents << Events;
+	}
+	outevents.close();
+	return CountriesAtWar;
+}
+vector<vector<HoI4Country*>> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World sourceWorld, CountryMapping countryMap)
+{
+	vector<vector<HoI4Country*>> CountriesAtWar;
+	//communism still needs great country war events
+	LOG(LogLevel::Info) << "Calculating AI for " + Leader->getSourceCountry()->getName();
+	vector<int> leaderProvs = getCountryProvinces(Leader);
+	LOG(LogLevel::Info) << "Calculating Neighbors for " + Leader->getSourceCountry()->getName();
+	map<string, HoI4Country*> AllNeighbors = findNeighbors(leaderProvs, Leader);
+	map<string, HoI4Country*> Neighbors;
+	for each (auto neigh in AllNeighbors)
+	{
+		if (neigh.second->getCapitalProv() != 0)
+		{
+			//IMPROVE
+			//need to get further neighbors, as well as countries without capital in an area
+			double distance = GetDistance(Leader, neigh.second);
+			if (distance <= 500)
+				Neighbors.insert(neigh);
+		}
+	}
+	set<string> Allies = Leader->getAllies();
+	vector<HoI4Country*> Targets;
+	map<string, vector<HoI4Country*>> NationalFocusesMap;
+	vector<HoI4Country*> coups;
+	vector<HoI4Country*> forcedtakeover;
+
+	//if (Permanant Revolution)
+	//Decide between Anti - Democratic Focus, Anti - Monarch Focus, or Anti - Fascist Focus(Look at all great powers and get average relation between each ideology, the one with the lowest average relation leads to that focus).
+	//Attempt to ally with other Communist Countries(with Permanant Revolution)
+	LOG(LogLevel::Info) << "Doing Neighbor calcs for " + Leader->getSourceCountry()->getName();
+	for (auto neigh : Neighbors)
+	{
+		//lets check to see if they are our ally and not a great country
+		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
+		{
+			double com = 0;
+
+			for (auto party : neigh.second->getParties())
+			{
+				if (party.name.find("socialist") != string::npos || party.name.find("communist") != string::npos || party.name.find("anarcho_liberal") != string::npos)
+					com += party.popularity;
+			}
+			if (com > 25)
+			{
+				//look for neighboring countries to spread communism too(Need 25 % or more Communism support), Prioritizing those with "Communism Allowed" Flags, prioritizing those who are weakest
+				//	Method() Influence Ideology and Attempt Coup
+				coups.push_back(neigh.second);
+			}
+			else if (findFaction(neigh.second).size() == 1)
+			{
+				//	Then look for neighboring countries to spread communism by force, prioritizing weakest first
+				forcedtakeover.push_back(neigh.second);
+				//	Depending on Anti - Ideology Focus, look for allies in alternate ideologies to get to ally with to declare war against Anti - Ideology Country.
+			}
+		}
+	}
+	//if (Socialism in One State)
+	//	Events / Focuses to increase Industrialization and defense of the country, becomes Isolationist
+	//	Eventually gets events to drop Socialism in One state and switch to permanant revolution(Maybe ? )
+
+	string s;
+	map<string, vector<HoI4Country*>> TargetMap;
+	vector<HoI4Country*> nan;
+	vector<HoI4Country*> fn;
+	vector<HoI4Country*> man;
+	vector<HoI4Country*> coup;
+	for (auto target : forcedtakeover)
+	{
+		string type;
+		//outputs are
+		//noactionneeded -  Can take target without any help
+		//factionneeded - can take target and faction with attackers faction helping
+		//morealliesneeded - can take target with more allies, comes with "newallies" in map
+		//coup - cant take over, need to coup
+		type = HowToTakeLand(target, Leader, 2.5);
+		if (type == "noactionneeded")
+			nan.push_back(target);
+		else if (type == "factionneeded")
+			fn.push_back(target);
+		else if (type == "morealliesneeded")
+			man.push_back(target);
+		else if (type == "coup")
+			coup.push_back(target);
+	}
+	//insert these values in targetmap for use later possibly?
+	TargetMap.insert(make_pair("noactionneeded", nan));
+	TargetMap.insert(make_pair("factionneeded", fn));
+	TargetMap.insert(make_pair("morealliesneeded", man));
+	TargetMap.insert(make_pair("coup", coup));
+	//actual eventoutput
+	vector<int> takenSpots;
+	string FocusTree = genericFocusTreeCreator(Leader);
+	if (coups.size() > 0)
+	{
+		int x = 22;
+		takenSpots.push_back(x);
+		if (coups.size() == 1)
+		{
+			x = 24;
+			takenSpots.push_back(x);
+		}
+		if (coups.size() >= 2)
+		{
+			x = 25;
+			takenSpots.push_back(x);
+		}
+		//Focus to increase Comm support and prereq for coups
+		FocusTree += "focus = {\r\n";
+		FocusTree += "		id = Home_of_Revolution" + Leader->getTag() + "\r\n";
+		FocusTree += "		icon = GFX_goal_support_communism\r\n";
+		FocusTree += "		text = \"Home of the Revolution\"\r\n";
+		FocusTree += "		x = " + to_string(x) + "\r\n";
+		FocusTree += "		y = 0\r\n";
+		FocusTree += "		cost = 10\r\n";
+		FocusTree += "		ai_will_do = {\r\n";
+		FocusTree += "			factor = 5\r\n";
+		FocusTree += "		}	\r\n";
+		FocusTree += "		completion_reward = {\r\n";
+		//FIXME 
+		//Need to get Drift Defense to work
+		//FocusTree += "			drift_defence_factor = 0.5\r\n";
+		FocusTree += "			add_ideas = communist_influence\r\n";
+		FocusTree += "		}\r\n";
+		FocusTree += "	}\r\n";
+
+		for (unsigned int i = 0; i < 2; i++)
+		{
+			if (i < coups.size())
+			{
+				FocusTree += "focus = {\r\n";
+				FocusTree += "		id = Influence_" + coups[i]->getTag() + "_" + Leader->getTag() + "\r\n";
+				FocusTree += "		icon = GFX_goal_generic_propaganda\r\n";
+				FocusTree += "		text = \"Influence " + coups[i]->getSourceCountry()->getName() + "\"\r\n";
+				FocusTree += "		prerequisite = { focus = Home_of_Revolution" + Leader->getTag() + " }\r\n";
+				FocusTree += "		x = " + to_string(24 + i * 2) + "\r\n";
+				FocusTree += "		y = 1\r\n";
+				FocusTree += "		cost = 10\r\n";
+				FocusTree += "		ai_will_do = {\r\n";
+				FocusTree += "			factor = 5\r\n";
+				FocusTree += "		}	\r\n";
+				FocusTree += "		completion_reward = {\r\n";
+				FocusTree += "			" + coups[i]->getTag() + " = {\r\n";
+				FocusTree += "				if = {\r\n";
+				FocusTree += "					limit = {\r\n";
+				FocusTree += "						" + Leader->getTag() + " = {\r\n";
+				FocusTree += "							has_government = fascism\r\n";
+				FocusTree += "						}\r\n";
+				FocusTree += "					}\r\n";
+				FocusTree += "					add_ideas = fascist_influence\r\n";
+				FocusTree += "				}\r\n";
+				FocusTree += "				if = {\r\n";
+				FocusTree += "					limit = {\r\n";
+				FocusTree += "						" + Leader->getTag() + " = {\r\n";
+				FocusTree += "							has_government = communism\r\n";
+				FocusTree += "						}\r\n";
+				FocusTree += "					}\r\n";
+				FocusTree += "					add_ideas = communist_influence\r\n";
+				FocusTree += "				}\r\n";
+				FocusTree += "				if = {\r\n";
+				FocusTree += "					limit = {\r\n";
+				FocusTree += "						" + Leader->getTag() + " = {\r\n";
+				FocusTree += "							has_government = democratic\r\n";
+				FocusTree += "						}\r\n";
+				FocusTree += "					}\r\n";
+				FocusTree += "					add_ideas = democratic_influence\r\n";
+				FocusTree += "				}\r\n";
+				FocusTree += "				country_event = { id = generic.1 }";
+				FocusTree += "			}\r\n";
+				FocusTree += "			\r\n";
+				FocusTree += "		}\r\n";
+				FocusTree += "	}\r\n";
+				//Civil War
+				FocusTree += "focus = {\r\n";
+				FocusTree += "		id = Coup_" + coups[i]->getTag() + "_" + Leader->getTag() + "\r\n";
+				FocusTree += "		icon = GFX_goal_generic_demand_territory\r\n";
+				FocusTree += "		text = \"Civil War in " + coups[i]->getSourceCountry()->getName() + "\"\r\n";
+				FocusTree += "		prerequisite = { focus = Influence_" + coups[i]->getTag() + "_" + Leader->getTag() + " }\r\n";
+				FocusTree += "		available = {\r\n";
+				FocusTree += "		" + coups[i]->getTag() + " = { communism > 0.5 } ";
+				FocusTree += "		}";
+				FocusTree += "		x = " + to_string(24 + i * 2) + "\r\n";
+				FocusTree += "		y = 2\r\n";
+				FocusTree += "		cost = 10\r\n";
+				FocusTree += "		ai_will_do = {\r\n";
+				FocusTree += "			factor = 5\r\n";
+				FocusTree += "		}	\r\n";
+				FocusTree += "		completion_reward = {\r\n";
+				FocusTree += "			" + coups[i]->getTag() + " = {\r\n";
+				FocusTree += "						start_civil_war = {\r\n";
+				FocusTree += "							ideology = communism\r\n";
+				FocusTree += "							size = 0.5\r\n";
+				FocusTree += "					}";
+				FocusTree += "			}\r\n";
+				FocusTree += "			\r\n";
+				FocusTree += "		}\r\n";
+				FocusTree += "	}\r\n";
+			}
+		}
+	}
+	if (forcedtakeover.size() > 0)
+	{
+
+		//Strengthen Commitern
+		FocusTree += "focus = {\r\n";
+		FocusTree += "		id = StrengthCom" + Leader->getTag() + "\r\n";
+		FocusTree += "		icon = GFX_goal_support_communism\r\n";
+		FocusTree += "		text = \"Strengthen The Comintern\"\r\n";//change to faction name later
+		FocusTree += "		x = " + to_string(takenSpots.back() + 5) + "\r\n";//fixme
+		FocusTree += "		y = 0\r\n";
+		FocusTree += "		cost = 10\r\n";
+		FocusTree += "		ai_will_do = {\r\n";
+		FocusTree += "			factor = 5\r\n";
+		FocusTree += "		}	\r\n";
+		FocusTree += "		completion_reward = {\r\n";
+		FocusTree += "			army_experience = 20\r\n";
+		FocusTree += "		add_tech_bonus = { \r\n";
+		FocusTree += "				bonus = 0.5\r\n";
+		FocusTree += "				uses = 2\r\n";
+		FocusTree += "				category = land_doctrine\r\n";
+		FocusTree += "			}";
+		FocusTree += "		}\r\n";
+		FocusTree += "	}\r\n";
+
+		FocusTree += "focus = {\r\n";
+		FocusTree += "		id = Inter_Com_Pres" + Leader->getTag() + "\r\n";
+		FocusTree += "		icon = GFX_goal_generic_dangerous_deal\r\n";
+		FocusTree += "		text = \"International Communist Pressure\"\r\n";//change to faction name later
+		FocusTree += "		prerequisite = { focus = StrengthCom" + Leader->getTag() + " }\r\n";
+		FocusTree += "		available = {  date > 1937.1.1 } \r\n";
+		FocusTree += "		x = " + to_string(takenSpots.back() + 5) + "\r\n";
+		FocusTree += "		y = 1\r\n";
+		FocusTree += "		cost = 10\r\n";
+		FocusTree += "		ai_will_do = {\r\n";
+		FocusTree += "			factor = 5\r\n";
+		FocusTree += "		}	\r\n";
+		FocusTree += "		completion_reward = {\r\n";
+		FocusTree += "			add_named_threat = { threat = 2 name = \"Socialist World Republic\" }\r\n";
+		//FIXME
+		//maybe add some claims?
+		FocusTree += "		}\r\n";
+		FocusTree += "	}\r\n";
+		vector<HoI4Country*> TargetsbyIC; //its actually by tech lol
+		bool first = true;
+		//FIXME 
+		//Right now just uses everyone in forcedtakover, doesnt use nan, fn, ect...
+		for (auto country : forcedtakeover)
+		{
+			if (first)
+			{
+				TargetsbyIC.push_back(country);
+				first = false;
+			}
+			else
+			{
+				//makes sure not a coup target
+				if (find(coups.begin(), coups.end(), country) == coups.end())
+				{
+					if (TargetsbyIC.front()->getTechnologyCount() < country->getTechnologyCount())
+					{
+						TargetsbyIC.insert(TargetsbyIC.begin(), country);
+					}
+					else
+						TargetsbyIC.push_back(country);
+				}
+			}
+		}
+		for (unsigned int i = 0; i < 3; i++)
+		{
+			if (i < TargetsbyIC.size())
+			{
+				int v1 = rand() % 12 + 1;
+				int v2 = rand() % 12 + 1;
+				FocusTree += "focus = {\r\n";
+				FocusTree += "		id = War" + TargetsbyIC[i]->getTag() + Leader->getTag() + "\r\n";
+				FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
+				FocusTree += "		text = \"War with " + TargetsbyIC[i]->getSourceCountry()->getName() + "\"\r\n";//change to faction name later
+				FocusTree += "		prerequisite = { focus = Inter_Com_Pres" + Leader->getTag() + " }\r\n";
+				FocusTree += "		available = {   date > 1938." + to_string(v1) + "." + to_string(v2) + "} \r\n";
+				FocusTree += "		x = " + to_string(takenSpots.back() + 3 + i * 2) + "\r\n";
+				FocusTree += "		y = 2\r\n";
+				FocusTree += "		cost = 10\r\n";
+				FocusTree += "		ai_will_do = {\r\n";
+				FocusTree += "			factor = 5\r\n";
+				FocusTree += "			modifier = {\r\n";
+				FocusTree += "			factor = 0\r\n";
+				FocusTree += "			strength_ratio = { tag = " + TargetsbyIC[i]->getTag() + " ratio < 1 }\r\n";
+				FocusTree += "			}";
+				if (TargetsbyIC.size() > 1)
+				{
+					FocusTree += "modifier = {\r\n	factor = 0\r\n	OR = {";
+					for (int i2 = 0; i2 < 3; i2++)
+					{
+						if (i != i2)
+							FocusTree += "has_war_with = " + TargetsbyIC[i]->getTag() + "\r\n";
+					}
+					FocusTree += "}\r\n}";
+				}
+				FocusTree += "		}	\r\n";
+				FocusTree += "		completion_reward = {\r\n";
+				FocusTree += "			create_wargoal = {\r\n";
+				FocusTree += "				type = puppet_wargoal_focus\r\n";
+				FocusTree += "				target = " + TargetsbyIC[i]->getTag() + "\r\n";
+				FocusTree += "			}";
+				FocusTree += "		}\r\n";
+				FocusTree += "	}\r\n";
+
+			}
+		}
+		takenSpots.push_back(takenSpots.back() + 5);
+	}
+	//events for allies
+	vector<HoI4Country*> newAllies = GetMorePossibleAllies(Leader);
+	if (newAllies.size() > 0)
+	{
+		//Focus to call summit, maybe have events from summit
+		FocusTree += "focus = {\r\n";
+		FocusTree += "		id = Com_Summit" + Leader->getTag() + "\r\n";
+		FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
+		FocusTree += "		text = \"Call for the Communist Summit\"\r\n";
+		FocusTree += "		x = " + to_string(takenSpots.back() + 3) + "\r\n";
+		FocusTree += "		y = 0\r\n";
+		FocusTree += "		cost = 10\r\n";
+		FocusTree += "		ai_will_do = {\r\n";
+		FocusTree += "			factor = 0\r\n";
+		FocusTree += "			modifier = {\r\n";
+		FocusTree += "			factor = 5\r\n";
+		FocusTree += "			date > 1938.1.1\r\n";
+		FocusTree += "			}";
+		FocusTree += "		}	\r\n";
+		FocusTree += "		completion_reward = {\r\n";
+		//FocusTree += "			opinion_gain_monthly_factor = 1.0 \r\n";
+		FocusTree += "		}\r\n";
+		FocusTree += "	}\r\n";
+	}
+	for (unsigned int i = 0; i < newAllies.size(); i++)
+	{
+		FocusTree += "focus = {\r\n";
+		FocusTree += "		id = Alliance_" + newAllies[i]->getTag() + Leader->getTag() + "\r\n";
+		FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\r\n";
+		FocusTree += "		text = \"Alliance with " + newAllies[i]->getSourceCountry()->getName() + "\"\r\n";
+		FocusTree += "		x = " + to_string(takenSpots.back() + 3 + i) + "\r\n";
+		FocusTree += "		y = 1\r\n";
+		FocusTree += "		cost = 10\r\n";
+		FocusTree += "		ai_will_do = {\r\n";
+		FocusTree += "			factor = 10\r\n";
+		FocusTree += "		bypass = { \r\n";
+		FocusTree += "			\r\n";
+		FocusTree += "			OR = {\r\n";
+		FocusTree += "				is_in_faction_with = " + newAllies[i]->getTag() + "\r\n";
+		FocusTree += "				has_war_with = " + newAllies[i]->getTag() + "\r\n";
+		FocusTree += "				NOT = { country_exists = " + newAllies[i]->getTag() + " }\r\n";
+		FocusTree += "			}\r\n";
+		FocusTree += "		}\r\n";
+		FocusTree += "		}	\r\n";
+		FocusTree += "		completion_reward = {\r\n";
+		FocusTree += "		" + newAllies[i]->getTag() + " = {\r\n";
+		FocusTree += "			add_opinion_modifier = { target = " + Leader->getTag() + " modifier = ger_ita_alliance_focus } \r\n";
+		FocusTree += "		}";
+		FocusTree += "		}\r\n";
+		FocusTree += "	}\r\n";
+	}
+	//Declaring war with Great Country
+	vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
+	map<double, HoI4Country*> GCDistance;
+	vector<HoI4Country*> GCDistanceSorted;
+	for each (auto GC in GreatCountries)
+	{
+		double distance = GetDistance(Leader, GC);
+		if (distance < 1200)
+			GCDistance.insert(make_pair(distance, GC));
+	}
+	//put them into a vector so we know their order
+	for (auto iterator = GCDistance.begin(); iterator != GCDistance.end(); ++iterator)
+	{
+		GCDistanceSorted.push_back(iterator->second);
+	}
+	sort(GCDistanceSorted.begin(), GCDistanceSorted.end());
+	vector<HoI4Country*> GCTargets;
+	for each (auto GC in GCDistanceSorted)
+	{
+		string thetag = GC->getTag();
+		string HowToTakeGC = HowToTakeLand(GC, Leader, 3);
+		if (HowToTakeGC == "noactionneeded" || HowToTakeGC == "factionneeded")
+		{
+			if (GC != Leader)
+				GCTargets.push_back(GC);
+		}
+		if (HowToTakeGC == "morealliesneeded")
+		{
+
+		}
+
+	}
+	int maxGCWars = 0;
+	int start = 0;
+	if (GCTargets.size() == 2)
+	{
+		start = -1;
+	}
+	if (GCTargets.size() > 1)
+		CountriesAtWar.push_back(findFaction(Leader));
+	for each (auto GC in GCTargets)
+	{
+
+		string prereq = "";
+		if (maxGCWars < 2 && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
+		{
+			CountriesAtWar.push_back(findFaction(GC));
+			int y2 = 0;
+			//figuring out location of WG
+			if (newAllies.size() > 0)
+			{
+				y2 = 2;
+				prereq = " 	prerequisite = { ";
+
+				for (int i = 0; i < 2; i++)
+					prereq += " focus = Alliance_" + forcedtakeover[i]->getTag() + Leader->getTag();
+
+				prereq += "}\r\n";
+			}
+			int v1 = rand() % 12 + 1;
+			int v2 = rand() % 12 + 1;
+			FocusTree += "focus = {\r\n";
+			FocusTree += "		id = War" + GC->getTag() + Leader->getTag() + "\r\n";
+			FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
+			FocusTree += "		text = \"War with " + GC->getSourceCountry()->getName() + "\"\r\n";//change to faction name later
+			FocusTree += prereq;
+			FocusTree += "		available = {   date > 1938." + to_string(v1) + "." + to_string(v2) + "} \r\n";
+			FocusTree += "		x = " + to_string(takenSpots.back() + 3 + maxGCWars * 2) + "\r\n";
+			FocusTree += "		y = " + to_string(y2) + "\r\n";
+			//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\r\n";
+			FocusTree += "		cost = 10\r\n";
+			FocusTree += "		ai_will_do = {\r\n";
+			FocusTree += "			factor = 5\r\n";
+			FocusTree += "			modifier = {\r\n";
+			FocusTree += "			factor = 0\r\n";
+			FocusTree += "			strength_ratio = { tag = " + GC->getTag() + " ratio < 1 }\r\n";
+			FocusTree += "			}";
+			if (GCTargets.size() > 1)
+			{
+				//make ai have this as a 0 modifier if they are at war
+				FocusTree += "modifier = {\r\n	factor = 0\r\n	OR = {";
+				for (int i2 = 0; i2 < 3; i2++)
+				{
+					if (GC != GCTargets[i2])
+					{
+						FocusTree += "has_war_with = " + GC->getTag() + "\r\n";
+					}
+
+				}
+				FocusTree += "}\r\n}";
+			}
+			FocusTree += "		}	\r\n";
+			FocusTree += "		completion_reward = {\r\n";
+			FocusTree += "			create_wargoal = {\r\n";
+			FocusTree += "				type = puppet_wargoal_focus\r\n";
+			FocusTree += "				target = " + GC->getTag() + "\r\n";
+			FocusTree += "			}";
+			FocusTree += "		}\r\n";
+			FocusTree += "	}\r\n";
+			maxGCWars++;
+		}
+	}
+	FocusTree += "\r\n}";
+	string filename2("Output/" + Configuration::getOutputName() + "/common/national_focus/" + Leader->getSourceCountry()->getTag() + "_NF.txt");
+	//string filename2("Output/NF.txt");
+	ofstream out2;
+	out2.open(filename2);
+	{
+		out2 << FocusTree;
+	}
+	out2.close();
+	return CountriesAtWar;
+}
+vector<vector<HoI4Country*>> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World sourceWorld, CountryMapping countryMap)
+{
+	vector<vector<HoI4Country*>> CountriesAtWar;
+	//this is for monarchy events, dont need for random
+	//too many lists, need to clean up
+	vector<HoI4Country*> Targets;
+	vector<HoI4Country*> WeakNeighbors;
+	vector<HoI4Country*> WeakColonies;
+	vector<HoI4Country*> EqualTargets;
+	vector<HoI4Country*> DifficultTargets;
+	//getting country provinces and its neighbors
+	vector<int> leaderProvs = getCountryProvinces(Leader);
+	map<string, HoI4Country*> AllNeighbors = findNeighbors(leaderProvs, Leader);
+	map<string, HoI4Country*> CloseNeighbors;
+	map<string, HoI4Country*> FarNeighbors;
+	//gets neighbors that are actually close to you
+	for each (auto neigh in AllNeighbors)
+	{
+		if (neigh.second->getCapitalProv() != 0)
+		{
+			//IMPROVE
+			//need to get further neighbors, as well as countries without capital in an area
+			double distance = GetDistance(Leader, neigh.second);
+			if (distance <= 500)
+				CloseNeighbors.insert(neigh);
+			else
+				FarNeighbors.insert(neigh);
+		}
+	}
+	//if farneighbors is 0, try to find colonial conquest
+	if (FarNeighbors.size() == 0)
+	{
+		for (auto Colcountry : countries)
+		{
+
+			HoI4Country* country2 = Colcountry.second;
+			if (country2->getCapitalProv() != 0)
+			{
+				//IMPROVE
+				//but this should never happen since the AI shouldnt even take this unless they already have colonies
+				double distance = GetDistance(Leader, country2);
+				if (distance <= 1000 && Colcountry.second->getProvinceCount() > 0)
+					FarNeighbors.insert(Colcountry);
+			}
+		}
+	}
+	set<string> Allies = Leader->getAllies();
+	//should add method to look for cores you dont own
+	//should add method to look for more allies
+
+	//lets look for weak neighbors
+	LOG(LogLevel::Info) << "Doing Neighbor calcs for " + Leader->getSourceCountry()->getName();
+	for (auto neigh : CloseNeighbors)
+	{
+		//lets check to see if they are not our ally and not a great country
+		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
+		{
+			volatile double enemystrength = getStrengthOverTime(neigh.second, 1.5);
+			volatile double mystrength = getStrengthOverTime(Leader, 1.5);
+			//lets see their strength is at least < 20%
+			if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second).size() == 1)
+			{
+				//they are very weak
+				WeakNeighbors.push_back(neigh.second);
+			}
+		}
+	}
+	for (auto neigh : FarNeighbors)
+	{
+		//lets check to see if they are not our ally and not a great country
+		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
+		{
+			volatile double enemystrength = getStrengthOverTime(neigh.second, 1.5);
+			volatile double mystrength = getStrengthOverTime(Leader, 1.5);
+			//lets see their strength is at least < 20%
+			if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second).size() == 1)
+			{
+				//they are very weak
+				WeakColonies.push_back(neigh.second);
+			}
+		}
+	}
+	string FocusTree = genericFocusTreeCreator(Leader);
+	int WN = 0;
+	int WC = 0;
+	if (WeakNeighbors.size() == 0)
+		WeakNeighbors.push_back(Leader);
+	else
+		WN = WeakNeighbors.size();
+	if (WeakColonies.size() == 0)
+		WeakColonies.push_back(Leader);
+	else
+		WC = WeakColonies.size();
+	FocusTree += createMonarchyEmpireNF(Leader, WeakColonies.front(), WeakColonies.back(), WeakNeighbors.front(), WeakNeighbors.back(), WC, WN, 0);
+	//Declaring war with Great Country
+	vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
+	map<double, HoI4Country*> GCDistance;
+	vector<HoI4Country*> GCDistanceSorted;
+	//get great countries with a distance
+	for each (auto GC in GreatCountries)
+	{
+		double distance = GetDistance(Leader, GC);
+		if (distance < 1200)
+			GCDistance.insert(make_pair(distance, GC));
+	}
+	//put them into a vector so we know their order
+	for (auto iterator = GCDistance.begin(); iterator != GCDistance.end(); ++iterator)
+	{
+		GCDistanceSorted.push_back(iterator->second);
+	}
+	sort(GCDistanceSorted.begin(), GCDistanceSorted.end());
+	vector<HoI4Country*> GCTargets;
+	for each (auto GC in GCDistanceSorted)
+	{
+		string thetag = GC->getTag();
+		string HowToTakeGC = HowToTakeLand(GC, Leader, 3);
+		if (HowToTakeGC == "noactionneeded" || HowToTakeGC == "factionneeded")
+		{
+			if (GC != Leader)
+				GCTargets.push_back(GC);
+		}
+		if (HowToTakeGC == "morealliesneeded")
+		{
+
+		}
+
+	}
+	int maxGCWars = 0;
+	int start = 0;
+	if (GCTargets.size() == 2)
+	{
+		start = -1;
+	}
+	if (GCTargets.size() > 1)
+		CountriesAtWar.push_back(findFaction(Leader));
+	for each (auto GC in GCTargets)
+	{
+
+		string prereq = "";
+		set<string> Allies = Leader->getAllies();
+		if (maxGCWars < 2 && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
+		{
+			CountriesAtWar.push_back(findFaction(GC));
+			int y2 = 0;
+			//figuring out location of WG
+			/*if (newAllies.size() > 0)
+			{
+			y2 = 2;
+			prereq = " 	prerequisite = { ";
+
+			for (int i = 0; i < 2; i++)
+			prereq += " focus = Alliance_" + newAllies[i]->getTag() + Leader->getTag();
+
+			prereq += "}\r\n";
+			}*/
+			int v1 = rand() % 12 + 1;
+			int v2 = rand() % 12 + 1;
+			FocusTree += "focus = {\r\n";
+			FocusTree += "		id = War" + GC->getTag() + Leader->getTag() + "\r\n";
+			FocusTree += "		icon = GFX_goal_generic_major_war\r\n";
+			FocusTree += "		text = \"War with " + GC->getSourceCountry()->getName() + "\"\r\n";//change to faction name later
+			FocusTree += "		prerequisite = { focus =  MilitaryBuildup" + Leader->getTag() + " }\r\n";
+			FocusTree += "		available = {   date > 1938." + to_string(v1) + "." + to_string(v2) + "} \r\n";
+			FocusTree += "		x = " + to_string(31 + maxGCWars * 2) + "\r\n";
+			FocusTree += "		y = 5\r\n";
+			//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\r\n";
+			FocusTree += "		cost = 10\r\n";
+			FocusTree += "		ai_will_do = {\r\n";
+			FocusTree += "			factor = 5\r\n";
+			FocusTree += "			modifier = {\r\n";
+			FocusTree += "			factor = 0\r\n";
+			FocusTree += "			strength_ratio = { tag = " + GC->getTag() + " ratio < 0.8 }\r\n";
+			FocusTree += "			}";
+			if (GCTargets.size() > 1)
+			{
+				//make ai have this as a 0 modifier if they are at war
+				FocusTree += "modifier = {\r\n	factor = 0\r\n	OR = {";
+				for (int i2 = 0; i2 < 3; i2++)
+				{
+					if (GC != GCTargets[i2])
+					{
+						FocusTree += "has_war_with = " + GCTargets[i2]->getTag() + "\r\n";
+					}
+
+				}
+				FocusTree += "}\r\n}";
+			}
+			FocusTree += "		}	\r\n";
+			FocusTree += "		completion_reward = {\r\n";
+			FocusTree += "			create_wargoal = {\r\n";
+			FocusTree += "				type = puppet_wargoal_focus\r\n";
+			FocusTree += "				target = " + GC->getTag() + "\r\n";
+			FocusTree += "			}";
+			FocusTree += "		}\r\n";
+			FocusTree += "	}\r\n";
+			maxGCWars++;
+		}
+	}
+	FocusTree += "\r\n}";
+	string Events = "";
+	Events += "add_namespace = " + Leader->getTag() + "\r\n";
+	int eventNumber = 0;
+	for each (auto GC in GCTargets)
+	{
+		Events += "country_event = {\r\n";
+		Events += "	id = " + Leader->getTag() + "." + to_string(eventNumber) + "\r\n";
+		Events += "	title = \"Trade Incident\"\r\n";
+		Events += "	desc = \"One of our convoys was sunk by " + GC->getSourceCountry()->getName() + "\"\r\n";
+		Events += "	picture = GFX_report_event_chinese_soldiers_fighting\r\n";
+		Events += "	\r\n";
+		Events += "	is_triggered_only = yes\r\n";
+		Events += "	\r\n";
+		Events += " trigger = {";
+		Events += "		has_country_flag = established_traders";
+		Events += "		NOT = { has_country_flag = established_traders_activated }";
+		Events += " }";
+		Events += "	option = { # Breaking point!\r\n";
+		Events += "		name = \"They will Pay!\"\r\n";
+		Events += "		ai_chance = { factor = 85 }\r\n";
+		Events += "		effect_tooltip = {\r\n";
+		Events += "			" + Leader->getTag() + " = {\r\n";
+		Events += "			set_country_flag = established_traders_activated";
+		Events += "			create_wargoal = {\r\n";
+		Events += "				type = annex_everything\r\n";
+		Events += "				target = " + GC->getTag() + "\r\n";
+		Events += "			}\r\n";
+		Events += "		}\r\n";
+		Events += "	}\r\n";
+		Events += "}";
+	}
+	//output events
+	string filenameevents("Output/" + Configuration::getOutputName() + "/events/" + Leader->getSourceCountry()->getTag() + "_events.txt");
+	//string filename2("Output/NF.txt");
+	ofstream outevents;
+	outevents.open(filenameevents);
+	{
+		outevents << "\xEF\xBB\xBF";
+		outevents << Events;
+	}
+	outevents.close();
+
+	//output National Focus
+	string filenameNF("Output/" + Configuration::getOutputName() + "/common/national_focus/" + Leader->getSourceCountry()->getTag() + "_NF.txt");
+	ofstream out2;
+	out2.open(filenameNF);
+	{
+		out2 << FocusTree;
+	}
+	out2.close();
+	return CountriesAtWar;
 }
