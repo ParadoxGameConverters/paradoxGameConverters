@@ -5790,7 +5790,7 @@ vector<vector<HoI4Country*>> HoI4World::FascistWarMaker(HoI4Country* Leader, V2W
 		FocusTree += "		bypass = { \r\n";
 		FocusTree += "			\r\n";
 		FocusTree += "			OR = {\r\n";
-		FocusTree += "				is_in_faction_with = " + newAllies[i]->getTag() + "\r\n";
+		FocusTree += "				" + Leader->getTag() + " = { is_in_faction_with = " + newAllies[i]->getTag() + "\r\n";
 		FocusTree += "				has_war_with = " + newAllies[i]->getTag() + "\r\n";
 		FocusTree += "				NOT = { country_exists = " + newAllies[i]->getTag() + " }\r\n";
 		FocusTree += "			}\r\n";
@@ -6280,7 +6280,7 @@ vector<vector<HoI4Country*>> HoI4World::CommunistWarCreator(HoI4Country* Leader,
 		FocusTree += "		bypass = { \r\n";
 		FocusTree += "			\r\n";
 		FocusTree += "			OR = {\r\n";
-		FocusTree += "				is_in_faction_with = " + newAllies[i]->getTag() + "\r\n";
+		FocusTree += "				" + Leader->getTag() + " = { is_in_faction_with = " + newAllies[i]->getTag() + "\r\n";
 		FocusTree += "				has_war_with = " + newAllies[i]->getTag() + "\r\n";
 		FocusTree += "				NOT = { country_exists = " + newAllies[i]->getTag() + " }\r\n";
 		FocusTree += "			}\r\n";
