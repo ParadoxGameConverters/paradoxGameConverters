@@ -4597,7 +4597,7 @@ void HoI4World::fillCountryIC()
 }
 double HoI4World::getStrengthOverTime(HoI4Country* Country, double years)
 {
-	return Country->getArmyStrength() + countriesICMIL.find(Country->getTag())->second * 3 * 365 * years + countriesICCIV.find(Country->getTag())->second*.469*.5 /*.469 is milfac per year, .5 since half are used by consumer goods*/ * 3 * 365;
+	return Country->getArmyStrength() + countriesICMIL.find(Country->getTag())->second * 3 * 365 * years + countriesICCIV.find(Country->getTag())->second*.469*.5 /*.469 is milfac per year, .5 since half are used by consumer goods*/ * 3 * 365*0.5*years*years;
 }
 double HoI4World::getInitialStrength(HoI4Country* Country)
 {
@@ -4605,7 +4605,7 @@ double HoI4World::getInitialStrength(HoI4Country* Country)
 }
 double HoI4World::getAddedStrength(HoI4Country* Country, double years)
 {
-	return countriesICMIL.find(Country->getTag())->second * 3 * 365 * years + countriesICCIV.find(Country->getTag())->second*.469*.5 /*.469 is milfac per year, .5 since half are used by consumer goods*/ * 3 * 365;
+	return countriesICMIL.find(Country->getTag())->second * 3 * 365 * years + countriesICCIV.find(Country->getTag())->second*.469*.5 /*.469 is milfac per year, .5 since half are used by consumer goods*/ * 3 * 365*0.5*years*years;
 }
 void HoI4World::outputRelations()
 {
@@ -5904,6 +5904,7 @@ vector<vector<HoI4Country*>> HoI4World::FascistWarMaker(HoI4Country* Leader, V2W
 		outevents << Events;
 	}
 	outevents.close();
+	return CountriesAtWar;
 }
 vector<vector<HoI4Country*>> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World sourceWorld, CountryMapping countryMap)
 {
@@ -6377,6 +6378,7 @@ vector<vector<HoI4Country*>> HoI4World::CommunistWarCreator(HoI4Country* Leader,
 		out2 << FocusTree;
 	}
 	out2.close();
+	return CountriesAtWar;
 }
 vector<vector<HoI4Country*>> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World sourceWorld, CountryMapping countryMap)
 {
@@ -6627,4 +6629,5 @@ vector<vector<HoI4Country*>> HoI4World::MonarchyWarCreator(HoI4Country* Leader, 
 		out2 << FocusTree;
 	}
 	out2.close();
+	return CountriesAtWar;
 }
