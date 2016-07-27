@@ -111,6 +111,7 @@ class HoI4Country
 		int											getCapitalProv() const { return capital; }
 		double										getArmyStrength() const { return armyStrength; }
 		const string									getSphereLeader() const { return sphereLeader; }
+		HoI4Party									getRulingParty() const { return RulingParty; }
 		
 		vector<HoI4Party> getParties() const { return parties; }
 		int getTotalFactories() const { return totalfactories; }
@@ -167,6 +168,7 @@ class HoI4Country
 		bool									majorNation;
 		vector<int>							brigs;
 		int									convoys;
+		HoI4Party							RulingParty;
 		map<std::pair<int, int>, string>	NFT;
 		map<string, vector<HoI4Country*>>	CountryTargets;
 		int provinceCount;

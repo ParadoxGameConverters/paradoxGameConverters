@@ -4786,12 +4786,13 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 						evilness += 2;
 					else if (GC->getGovernment() == "hms_government")
 						evilness += 1;
+					HoI4Party countryrulingparty = GC->getRulingParty();
 
-					if (GC->getIdeology() == "absolute_monarchy" || GC->getIdeology() == "national_syndicalist")
-						evilness += 2;
-					else if (GC->getIdeology() == "fascism_ideology")
+					if (countryrulingparty.war_pol == "jingoism")
 						evilness += 3;
-					else if (GC->getIdeology() == "democratic_conservative")
+					else if (countryrulingparty.war_pol == "pro_military")
+						evilness += 2;
+					else if (countryrulingparty.war_pol == "anti_military")
 						evilness += 1;
 
 					//need to add ruling party to factor
@@ -4803,14 +4804,11 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 			{
 				GCEvilnessSorted.push_back(iterator->second);
 			}
-			sort(GCEvilnessSorted.begin(), GCEvilnessSorted.end());
-
-
-			for (auto addedMonarchy : GCEvilnessSorted)
+			for (int i = GCEvilnessSorted.size()-1; i > 0; i-- )
 			{
-				out << "added country to make more wars " + addedMonarchy->getSourceCountry()->getName() << endl;
+				out << "added country to make more wars " + GCEvilnessSorted[i]->getSourceCountry()->getName() << endl;
 				vector <vector< HoI4Country* >> newCountriesatWar;
-				newCountriesatWar = MonarchyWarCreator(addedMonarchy, sourceWorld, countryMap);
+				newCountriesatWar = MonarchyWarCreator(GCEvilnessSorted[i], sourceWorld, countryMap);
 				//add that faction to new countries at war
 				for (auto addedFactions : newCountriesatWar)
 					CountriesAtWar.push_back(addedFactions);
@@ -5184,9 +5182,9 @@ vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorl
 				auto allies = country->getAllies();
 				vector<int> yourbrigs = country->getBrigs();
 				auto yourrelations = country->getRelations();
-				out << country->getSourceCountry()->getName() << " " + yourgovernment + " initial strength:" + to_string(getInitialStrength(country)) + " Factory Strength per year: " + to_string(getAddedStrength(country, 1)) + " allies: \n";
+				out << country->getSourceCountry()->getName() << " " + yourgovernment + " initial strength:" + to_string(getInitialStrength(country)) + " Factory Strength per year: " + to_string(getAddedStrength(country, 1)) + " Factory Strength by 1939: " + to_string(getAddedStrength(country, 3)) + " allies: \n";
 				usedCountries.push_back(country->getTag());
-				FactionMilStrength = getStrengthOverTime(country, 1);
+				FactionMilStrength = getStrengthOverTime(country, 3);
 				for (auto ally : allies)
 				{
 
@@ -5229,7 +5227,7 @@ vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorl
 							if (canally)
 							{
 								usedCountries.push_back(allycountry->getTag());
-								out << "\t" + name + " " + allygovernment + " initial strength:" + to_string(getInitialStrength(allycountry)) + " Factory Strength per year: " + to_string(getAddedStrength(allycountry, 1)) << endl;
+								out << "\t" + name + " " + allygovernment + " initial strength:" + to_string(getInitialStrength(allycountry)) + " Factory Strength per year: " + to_string(getAddedStrength(allycountry, 1))+ " Factory Strength by 1939: " + to_string(getAddedStrength(allycountry, 3)) << endl;
 								FactionMilStrength += getStrengthOverTime(allycountry, 1);
 								Faction.push_back(allycountry);
 							}
@@ -5237,7 +5235,7 @@ vector<vector<HoI4Country*>> HoI4World::CreateFactions(const V2World &sourceWorl
 					}
 
 				}
-				out << "\tFaction Strength: " + to_string(FactionMilStrength) << endl;
+				out << "\tFaction Strength in 1939: " + to_string(FactionMilStrength) << endl;
 				out << endl;
 				Factions2.push_back(Faction);
 			}
@@ -6551,7 +6549,7 @@ vector<vector<HoI4Country*>> HoI4World::MonarchyWarCreator(HoI4Country* Leader, 
 			FocusTree += "			factor = 5\r\n";
 			FocusTree += "			modifier = {\r\n";
 			FocusTree += "			factor = 0\r\n";
-			FocusTree += "			strength_ratio = { tag = " + GC->getTag() + " ratio < 1 }\r\n";
+			FocusTree += "			strength_ratio = { tag = " + GC->getTag() + " ratio < 0.8 }\r\n";
 			FocusTree += "			}";
 			if (GCTargets.size() > 1)
 			{
@@ -6561,7 +6559,7 @@ vector<vector<HoI4Country*>> HoI4World::MonarchyWarCreator(HoI4Country* Leader, 
 				{
 					if (GC != GCTargets[i2])
 					{
-						FocusTree += "has_war_with = " + GC->getTag() + "\r\n";
+						FocusTree += "has_war_with = " + GCTargets[i2]->getTag() + "\r\n";
 					}
 
 				}
