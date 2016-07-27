@@ -33,7 +33,8 @@ xcopy "Data_Files\bookmarks" "release\blankmod\output\common\bookmarks" /Y /E /I
 xcopy "Data_Files\on_actions" "release\blankmod\output\common\on_actions" /Y /E /I
 xcopy "Data_Files\flags" "release\flags" /Y /E /I
 xcopy "Data_Files\NeededFiles\interface" "release\blankmod\output\gfx\interface" /Y /E /I
-xcopy "Data_Files\NeededFiles\ideologies" "release\blankmod\output\ideologies" /Y /E /I
+xcopy "Data_Files\NeededFiles\ideologies" "release\blankmod\output\common\ideologies" /Y /E /I
+xcopy "Data_Files\NeededFiles\ideas" "release\blankmod\output\common\ideas" /Y /E /I
 xcopy "Data_Files\NeededFiles\defines" "release\blankmod\output\defines" /Y /E /I
 
 del release\changelog.txt
