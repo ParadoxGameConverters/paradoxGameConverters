@@ -148,6 +148,8 @@ class HoI4World
 		string alliesLeader;
 		string cominternLeader;
 		map<int, vector<string>> provincemap;
+		bool fascismIsRelevant;
+		bool communismIsRelevant;
 };
 
 

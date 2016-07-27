@@ -4661,6 +4661,8 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 	LOG(LogLevel::Info) << "Creating Factions";
 	Factions = CreateFactions(sourceWorld, countryMap);
 	//outputting the country and factions
+
+	//REDO
 	for (auto country : countries)
 	{
 		int i = 1;
@@ -4675,8 +4677,10 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		}
 		country.second->output(states->getStates(), Factions, FactionName);
 	}
-	bool fascismrelevant = false;
-	bool communismrelevant = false;
+
+	bool fascismIsRelevant = false;
+	bool communismIsRelevant = false;
+
 	//output folders
 	string NFpath = "Output/" + Configuration::getOutputName() + "/common/national_focus";
 	if (!Utils::TryCreateFolder(NFpath))
@@ -4690,19 +4694,22 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/events\"";
 		exit(-1);
 	}
+
 	//Files To show results
 	string filename("AI-log.txt");
 	ofstream out;
 	vector<HoI4Country*> LeaderCountries;
 	//getting total strength of all factions
+
 	double WorldStrength = 0;
 	vector<vector<HoI4Country*>> CountriesAtWar;
+
+	//Initial Checks
 	out.open(filename);
 	{
 		for (auto Faction : Factions)
-		{
 			WorldStrength += GetFactionStrength(Faction);
-		}
+
 		out << WorldStrength << endl;
 		//check relevancies
 		for (auto Faction : Factions)
@@ -4711,20 +4718,22 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 			HoI4Country* Leader = GetFactionLeader(Faction);
 			if (Leader->getGovernment() == "absolute_monarchy" || Leader->getGovernment() == "fascism")
 				if (GetFactionStrength(Faction) > WorldStrength*0.1)
-					fascismrelevant = true;
+					fascismIsRelevant = true;
 
 			if (Leader->getGovernment() == "communism" || Leader->getGovernment() == "syndicalism")
 				if (GetFactionStrength(Faction) > WorldStrength*0.1)
-					communismrelevant = true;
-
+					communismIsRelevant = true;
 		}
-		if (fascismrelevant)
+
+		if (fascismIsRelevant)
 			out << "Fascism is Relevant" << endl;
-		if (communismrelevant)
+		if (communismIsRelevant)
 			out << "Communist is Relevant" << endl;
 		out << endl;
+
 		//time to do events for coms and fascs if they are relevant
 		LOG(LogLevel::Info) << "Calculating Fasc/Com AI";
+
 		for (auto Faction : Factions)
 		{
 			HoI4Country* Leader = GetFactionLeader(Faction);
@@ -4751,40 +4760,6 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 					CountriesAtWar.push_back(addedFactions);
 			}
 		}
-		vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
-		map<double, HoI4Country*> GCDistance;
-		vector<HoI4Country*> GCDistanceSorted;
-		for each (auto GC in GreatCountries)
-		{
-			if (GC->getGovernment() == "prussian_constitutionalism" || GC->getGovernment() == "hms_government" || GC->getGovernment() == "absolute_monarchy" && std::find(LeaderCountries.begin(), LeaderCountries.end(), GC) == LeaderCountries.end())
-			{
-				double v1 = rand() % 95 + 1;
-				v1 = v1 / 100;
-				double evilness = v1;
-				string government = "";
-				if (GC->getGovernment() == "absolute_monarchy")
-					evilness += 3;
-				else if (GC->getGovernment() == "prussian_constitutionalism")
-					evilness += 2;
-				else if (GC->getGovernment() == "hms_government")
-					evilness += 1;
-
-				if (GC->getIdeology() == "absolute_monarchy" || GC->getIdeology() == "national_syndicalist")
-					evilness += 2;
-				else if (GC->getIdeology() == "fascism_ideology")
-					evilness += 3;
-				else if (GC->getIdeology() == "democratic_conservative")
-					evilness += 1;
-
-				GCDistance.insert(make_pair(evilness, GC));
-			}
-		}
-		//put them into a vector so we know their order
-		for (auto iterator = GCDistance.begin(); iterator != GCDistance.end(); ++iterator)
-		{
-			GCDistanceSorted.push_back(iterator->second);
-		}
-		sort(GCDistanceSorted.begin(), GCDistanceSorted.end());
 		double CountriesAtWarStrength = 0.0;
 		for (auto faction : CountriesAtWar)
 		{
@@ -4793,15 +4768,53 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		out << "percentage of world at war" + to_string(CountriesAtWarStrength / WorldStrength) << endl;
 		if (CountriesAtWarStrength / WorldStrength < 0.8)
 		{
-			for (auto addedMonarchy : GCDistanceSorted)
+			//Lets find out countries Evilness
+			vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
+			map<double, HoI4Country*> GCEvilness;
+			vector<HoI4Country*> GCEvilnessSorted;
+			for each (auto GC in GreatCountries)
+			{
+				if (GC->getGovernment() == "prussian_constitutionalism" || GC->getGovernment() == "hms_government" || GC->getGovernment() == "absolute_monarchy" && std::find(LeaderCountries.begin(), LeaderCountries.end(), GC) == LeaderCountries.end())
+				{
+					double v1 = rand() % 95 + 1;
+					v1 = v1 / 100;
+					double evilness = v1;
+					string government = "";
+					if (GC->getGovernment() == "absolute_monarchy")
+						evilness += 3;
+					else if (GC->getGovernment() == "prussian_constitutionalism")
+						evilness += 2;
+					else if (GC->getGovernment() == "hms_government")
+						evilness += 1;
+
+					if (GC->getIdeology() == "absolute_monarchy" || GC->getIdeology() == "national_syndicalist")
+						evilness += 2;
+					else if (GC->getIdeology() == "fascism_ideology")
+						evilness += 3;
+					else if (GC->getIdeology() == "democratic_conservative")
+						evilness += 1;
+
+					//need to add ruling party to factor
+					GCEvilness.insert(make_pair(evilness, GC));
+				}
+			}
+			//put them into a vector so we know their order
+			for (auto iterator = GCEvilness.begin(); iterator != GCEvilness.end(); ++iterator)
+			{
+				GCEvilnessSorted.push_back(iterator->second);
+			}
+			sort(GCEvilnessSorted.begin(), GCEvilnessSorted.end());
+
+
+			for (auto addedMonarchy : GCEvilnessSorted)
 			{
 				out << "added country to make more wars " + addedMonarchy->getSourceCountry()->getName() << endl;
-
-				HoI4Country* Leader = addedMonarchy;
 				vector <vector< HoI4Country* >> newCountriesatWar;
-				newCountriesatWar = MonarchyWarCreator(Leader, sourceWorld, countryMap);
+				newCountriesatWar = MonarchyWarCreator(addedMonarchy, sourceWorld, countryMap);
+				//add that faction to new countries at war
 				for (auto addedFactions : newCountriesatWar)
 					CountriesAtWar.push_back(addedFactions);
+				//then check how many factions are now at war
 				for (auto faction : CountriesAtWar)
 				{
 					CountriesAtWarStrength += GetFactionStrength(faction);
@@ -4817,6 +4830,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		out.close();
 	}
 }
+
 string HoI4World::HowToTakeLand(HoI4Country* TargetCountry, HoI4Country* AttackingCountry, double time)
 {
 	string s;
