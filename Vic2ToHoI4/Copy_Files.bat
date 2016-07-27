@@ -2,6 +2,7 @@ del "Release\blankMod" /Q
 rmdir "Release\blankMod" /S /Q
 mkdir "release\blankMod"
 mkdir "release\blankMod\output"
+mkdir "release\blankMod\output\common"
 mkdir "release\blankMod\output\gfx"
 mkdir "release\blankMod\output\gfx\interface"
 mkdir "release\blankMod\output\history"
@@ -25,6 +26,7 @@ copy "Data_Files\navalprovinces.txt" "release\navalprovinces.txt"
 copy "Data_Files\positions.txt" "release\positions.txt"
 copy "Data_Files\adj.txt" "release\adj.txt"
 copy "Data_Files\NeededFiles\countrypoliticsview.gfx" "release\blankmod\output\interface\countrypoliticsview.gfx"
+copy "Data_Files\MonarchIdeas.txt" "release\blankmod\output\common\MonarchIdeas.txt"
 
 xcopy "Data_Files\events" "release\blankmod\output\events" /Y /E /I
 xcopy "Data_Files\bookmarks" "release\blankmod\output\common\bookmarks" /Y /E /I
