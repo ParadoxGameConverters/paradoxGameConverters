@@ -1843,7 +1843,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 	FocusTree += "		y = 1\r\n";
 	FocusTree += "		cost = 10\r\n";
 	FocusTree += "		ai_will_do = {\r\n";
-	FocusTree += "			factor = 10\r\n";
+	FocusTree += "			factor = 0\r\n";
 	FocusTree += "			modifier = {\r\n";
 	FocusTree += "			}\r\n";
 	FocusTree += "		}	\r\n";

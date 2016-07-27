@@ -1910,7 +1910,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 
 		if (rulingParty->ideology == ideologyItr->first)
 		{
-			RulingParty = newParty;
+			RulingPartyModel = newParty;
 			rulingIdeology = "fascistic";
 			rulingHoI4Ideology = "fascism";
 		}
@@ -1932,7 +1932,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 
 		if (rulingParty->ideology == ideologyItr->first)
 		{
-			RulingParty = newParty;
+			RulingPartyModel = newParty;
 			rulingIdeology = "paternal_autocrat";
 			rulingHoI4Ideology = "autocratic";
 		}
@@ -1954,7 +1954,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 
 		if (rulingParty->ideology == ideologyItr->first)
 		{
-			RulingParty = newParty;
+			RulingPartyModel = newParty;
 			rulingIdeology = "social_conservative";
 			rulingHoI4Ideology = "democratic";
 		}
@@ -1976,7 +1976,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 
 		if (rulingParty->ideology == ideologyItr->first)
 		{
-			RulingParty = newParty;
+			RulingPartyModel = newParty;
 			rulingIdeology = "left_wing_radical";
 			rulingHoI4Ideology = "socialist";
 		}
@@ -1998,7 +1998,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 
 		if (rulingParty->ideology == ideologyItr->first)
 		{
-			RulingParty = newParty;
+			RulingPartyModel = newParty;
 			rulingIdeology = "stalinist";
 			rulingHoI4Ideology = "communism";
 		}
@@ -2020,7 +2020,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 
 		if (rulingParty->ideology == ideologyItr->first)
 		{
-			RulingParty = newParty;
+			RulingPartyModel = newParty;
 			rulingIdeology = "social_liberal";
 			rulingHoI4Ideology = "liberal";
 		}
@@ -2042,7 +2042,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 
 		if (rulingParty->ideology == ideologyItr->first)
 		{
-			RulingParty = newParty;
+			RulingPartyModel = newParty;
 			rulingIdeology = "market_liberal";
 			rulingHoI4Ideology = "syndicalism";
 		}
