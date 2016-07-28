@@ -5790,16 +5790,16 @@ vector<vector<HoI4Country*>> HoI4World::FascistWarMaker(HoI4Country* Leader, V2W
 		FocusTree += "		bypass = { \n";
 		FocusTree += "			\n";
 		FocusTree += "			OR = {\n";
-		FocusTree += "				" + Leader->getTag() + " = { is_in_faction_with = " + newAllies[i]->getTag() + "\n";
+		FocusTree += "				" + Leader->getTag() + " = { is_in_faction_with = " + newAllies[i]->getTag() + " }\n";
 		FocusTree += "				has_war_with = " + newAllies[i]->getTag() + "\n";
 		FocusTree += "				NOT = { country_exists = " + newAllies[i]->getTag() + " }\n";
 		FocusTree += "			}\n";
 		FocusTree += "		}\n";
 
 		FocusTree += "		completion_reward = {\n";
-		FocusTree += "		" + newAllies[i]->getTag() + " = {\n";
-		FocusTree += "			add_opinion_modifier = { target = " + Leader->getTag() + " modifier = ger_ita_alliance_focus } \n";
-		FocusTree += "		}";
+		FocusTree += "			" + newAllies[i]->getTag() + " = {\n";
+		FocusTree += "				add_opinion_modifier = { target = " + Leader->getTag() + " modifier = ger_ita_alliance_focus } \n";
+		FocusTree += "			}\n";
 		FocusTree += "		}\n";
 		FocusTree += "	}\n";
 	}
