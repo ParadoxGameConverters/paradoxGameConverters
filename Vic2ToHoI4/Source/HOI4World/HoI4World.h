@@ -41,14 +41,17 @@ typedef const map<string, multimap<HoI4RegimentType, unsigned> > unitTypeMapping
 
 class HoI4Faction
 {
+	
 public:
-	HoI4Faction(HoI4Country* leader, vector<HoI4Country*> members);
-	HoI4Country* getLeader() { return leader; }
-	vector<HoI4Country*> getMembers() { return members; }
-	void addMember(HoI4Country* addedCon) { members.push_back(addedCon); }
+	HoI4Faction(HoI4Country* leader, vector<HoI4Country*> members) { Factionleader = leader; Factionmembers = members; }
+
+	HoI4Country* getLeader() { return Factionleader; }
+	vector<HoI4Country*> getMembers() { return Factionmembers; }
+	void addMember(HoI4Country* addedCon) { Factionmembers.push_back(addedCon); }
 private:
-	HoI4Country* leader;
-	vector<HoI4Country*> members;
+	HoI4Country* Factionleader;
+	vector<HoI4Country*> Factionmembers;
+	
 };
 class HoI4World
 {
@@ -84,19 +87,19 @@ class HoI4World
 		void    thatsgermanWarCreator(const V2World & sourceWorld, const CountryMapping& countryMap);
 		HoI4Country* FindProvOwner(int prov);
 		vector<int> getCountryProvinces(HoI4Country * Country);
-		vector<HoI4Faction> CreateFactions(const V2World & sourceWorld, const CountryMapping & countryMap);
+		vector<HoI4Faction*> CreateFactions(const V2World & sourceWorld, const CountryMapping & countryMap);
 		HoI4Country *    GetFactionLeader(vector<HoI4Country*> Faction);
-		double    GetFactionStrength(HoI4Faction Faction);
+		double    GetFactionStrength(HoI4Faction* Faction);
 		vector<HoI4Country*>    returnGreatCountries(const V2World & sourceWorld, const CountryMapping & countryMap);
 		string returnIfSphere(HoI4Country * leadercountry, HoI4Country * posLeaderCountry, const V2World & sourceWorld, const CountryMapping & countryMap);
-		vector<HoI4Faction> FascistWarMaker(HoI4Country * Leader, V2World sourceWorld, CountryMapping countryMap);
-		vector<HoI4Faction> CommunistWarCreator(HoI4Country * Leader, V2World sourceWorld, CountryMapping countryMap);
-		vector<HoI4Faction> MonarchyWarCreator(HoI4Country * Leader, V2World sourceWorld, CountryMapping countryMap);
+		vector<HoI4Faction*> FascistWarMaker(HoI4Country * Leader, V2World sourceWorld, CountryMapping countryMap);
+		vector<HoI4Faction*> CommunistWarCreator(HoI4Country * Leader, V2World sourceWorld, CountryMapping countryMap);
+		vector<HoI4Faction*> MonarchyWarCreator(HoI4Country * Leader, V2World sourceWorld, CountryMapping countryMap);
 		string HowToTakeLand(HoI4Country * TargetCountry, HoI4Country * AttackingCountry, double time);
 		vector<HoI4Country*> GetMorePossibleAllies(HoI4Country * CountryThatWantsAllies);
 		double GetDistance(HoI4Country * Country1, HoI4Country * Country2);
 		double GetFactionStrengthWithDistance(HoI4Country * HomeCountry, vector<HoI4Country*> Faction, double time);
-		HoI4Faction findFaction(HoI4Country * CheckingCountry);
+		HoI4Faction* findFaction(HoI4Country * CheckingCountry);
 		bool checkIfGreatCountry(HoI4Country * checkingCountry, const V2World & sourceWorld, const CountryMapping & countryMap);
 		map<string, HoI4Country*> findNeighbors(vector<int> CountryProvs, HoI4Country * CheckingCountry);
 		void fillProvinces();
@@ -153,7 +156,7 @@ class HoI4World
 		map<int, int>							provinceToStratRegionMap;
 
 		HoI4Localisation				localisation;
-		vector<HoI4Faction> Factions;
+		vector<HoI4Faction*> Factions;
 		string axisLeader;
 		string alliesLeader;
 		string cominternLeader;

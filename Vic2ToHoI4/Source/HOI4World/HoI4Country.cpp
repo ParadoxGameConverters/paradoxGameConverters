@@ -120,7 +120,7 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 }
 
 
-void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction> Factions, string FactionName) const
+void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Factions, string FactionName) const
 {
 	// output history file
 	ofstream output;
@@ -216,10 +216,10 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction> Factio
 		output << "" << endl;
 		for (auto Faction : Factions)
 		{
-			if (Faction.front()->getTag() == tag)
+			if (Faction->getLeader()->getTag() == tag)
 			{
 				output << "create_faction = \"Alliance of " + getSourceCountry()->getName() + "\"\n";
-				for (auto factionmem : Faction)
+				for (auto factionmem : Faction->getMembers())
 				{
 					output << "add_to_faction = " + factionmem->getTag() + "\n";
 				}

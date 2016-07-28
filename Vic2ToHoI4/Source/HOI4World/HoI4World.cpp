@@ -4697,7 +4697,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		string FactionName;
 		for (auto faction : Factions)
 		{
-			if (country.second->getTag() == faction.getLeader()->getTag())
+			if (country.second->getTag() == faction->getLeader()->getTag())
 			{
 				//wtf does this do? idk
 				FactionName = to_string(i++);
@@ -4730,7 +4730,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 	//getting total strength of all factions
 
 	double WorldStrength = 0;
-	vector<HoI4Faction> CountriesAtWar;
+	vector<HoI4Faction*> CountriesAtWar;
 
 	//Initial Checks
 	out.open(filename);
@@ -4743,7 +4743,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		for (auto Faction : Factions)
 		{
 			//this might need to change to add factions together
-			HoI4Country* Leader = GetFactionLeader(Faction.getMembers());
+			HoI4Country* Leader = GetFactionLeader(Faction->getMembers());
 			if (Leader->getGovernment() == "absolute_monarchy" || Leader->getGovernment() == "fascism")
 				if (GetFactionStrength(Faction) > WorldStrength*0.1)
 					fascismIsRelevant = true;
@@ -4764,28 +4764,40 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 
 		for (auto Faction : Factions)
 		{
-			HoI4Country* Leader = Faction.getLeader();
+			HoI4Country* Leader = Faction->getLeader();
 			LeaderCountries.push_back(Leader);
 			if ((Leader->getGovernment() == "fascism"))
 			{
-				vector <HoI4Faction> newCountriesatWar;
+				vector <HoI4Faction*> newCountriesatWar;
 				newCountriesatWar = FascistWarMaker(Leader, sourceWorld, countryMap);
 				for (auto addedFactions : newCountriesatWar)
-					CountriesAtWar.push_back(addedFactions);
+				{
+					if (std::find(CountriesAtWar.begin(), CountriesAtWar.end(), addedFactions) == CountriesAtWar.end()) {
+						CountriesAtWar.push_back(addedFactions);
+					}
+				}
 			}
 			if (Leader->getGovernment() == "absolute_monarchy")
 			{
-				vector <HoI4Faction> newCountriesatWar;
+				vector <HoI4Faction*> newCountriesatWar;
 				newCountriesatWar = MonarchyWarCreator(Leader, sourceWorld, countryMap);
 				for (auto addedFactions : newCountriesatWar)
-					CountriesAtWar.push_back(addedFactions);
+				{
+					if (std::find(CountriesAtWar.begin(), CountriesAtWar.end(), addedFactions) == CountriesAtWar.end()) {
+						CountriesAtWar.push_back(addedFactions);
+					}
+				}
 			}
 			if ((Leader->getGovernment() == "communism"))
 			{
-				vector <HoI4Faction> newCountriesatWar;
+				vector <HoI4Faction*> newCountriesatWar;
 				newCountriesatWar = CommunistWarCreator(Leader, sourceWorld, countryMap);
 				for (auto addedFactions : newCountriesatWar)
-					CountriesAtWar.push_back(addedFactions);
+				{
+					if (std::find(CountriesAtWar.begin(), CountriesAtWar.end(), addedFactions) == CountriesAtWar.end()) {
+						CountriesAtWar.push_back(addedFactions);
+					}
+				}
 			}
 		}
 		double CountriesAtWarStrength = 0.0;
@@ -4835,11 +4847,15 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 			for (int i = GCEvilnessSorted.size()-1; i > 0; i-- )
 			{
 				out << "added country to make more wars " + GCEvilnessSorted[i]->getSourceCountry()->getName() << endl;
-				vector <HoI4Faction> newCountriesatWar;
+				vector <HoI4Faction*> newCountriesatWar;
 				newCountriesatWar = MonarchyWarCreator(GCEvilnessSorted[i], sourceWorld, countryMap);
 				//add that faction to new countries at war
 				for (auto addedFactions : newCountriesatWar)
-					CountriesAtWar.push_back(addedFactions);
+				{
+					if (std::find(CountriesAtWar.begin(), CountriesAtWar.end(), addedFactions) == CountriesAtWar.end()) {
+						CountriesAtWar.push_back(addedFactions);
+					}
+				}
 				//then check how many factions are now at war
 				for (auto faction : CountriesAtWar)
 				{
@@ -4863,13 +4879,13 @@ string HoI4World::HowToTakeLand(HoI4Country* TargetCountry, HoI4Country* Attacki
 	string type;
 	if (TargetCountry != AttackingCountry)
 	{
-		HoI4Faction targetFaction = findFaction(TargetCountry);
+		HoI4Faction* targetFaction = findFaction(TargetCountry);
 		vector<HoI4Country*> moreAllies = GetMorePossibleAllies(AttackingCountry);
-		HoI4Faction myFaction = findFaction(AttackingCountry);
+		HoI4Faction* myFaction = findFaction(AttackingCountry);
 		//right now assumes you are stronger then them
 
-		double myFactionDisStrength = GetFactionStrengthWithDistance(AttackingCountry, myFaction.getMembers(), time);
-		double enemyFactionDisStrength = GetFactionStrengthWithDistance(TargetCountry, targetFaction.getMembers(), time);
+		double myFactionDisStrength = GetFactionStrengthWithDistance(AttackingCountry, myFaction->getMembers(), time);
+		double enemyFactionDisStrength = GetFactionStrengthWithDistance(TargetCountry, targetFaction->getMembers(), time);
 		//lets check if I am stronger then their faction
 		if (getStrengthOverTime(AttackingCountry, time) >= GetFactionStrength(targetFaction))
 		{
@@ -4898,9 +4914,9 @@ string HoI4World::HowToTakeLand(HoI4Country* TargetCountry, HoI4Country* Attacki
 				//hmm I am still weaker, maybe need to look for allies?
 				type = "morealliesneeded";
 				//targettype.insert(make_pair("newallies", moreAllies));
-				myFactionDisStrength = GetFactionStrengthWithDistance(AttackingCountry, myFaction.getMembers(), time) + GetFactionStrengthWithDistance(AttackingCountry, moreAllies, time);
-				enemyFactionDisStrength = GetFactionStrengthWithDistance(TargetCountry, targetFaction.getMembers(), time);
-				if (GetFactionStrengthWithDistance(AttackingCountry, myFaction.getMembers(), time) >= GetFactionStrengthWithDistance(TargetCountry, targetFaction.getMembers(), time))
+				myFactionDisStrength = GetFactionStrengthWithDistance(AttackingCountry, myFaction->getMembers(), time) + GetFactionStrengthWithDistance(AttackingCountry, moreAllies, time);
+				enemyFactionDisStrength = GetFactionStrengthWithDistance(TargetCountry, targetFaction->getMembers(), time);
+				if (GetFactionStrengthWithDistance(AttackingCountry, myFaction->getMembers(), time) >= GetFactionStrengthWithDistance(TargetCountry, targetFaction->getMembers(), time))
 				{
 					//ADD CONQUEST GOAL
 					s += "Can kill " + TargetCountry->getSourceCountry()->getName() + " with our faction Once I have more allies\n\t I have a strength of " + to_string(getStrengthOverTime(AttackingCountry, 1));
@@ -4961,10 +4977,10 @@ vector<HoI4Country*> HoI4World::GetMorePossibleAllies(HoI4Country* CountryThatWa
 				//check if we are friendly at all?
 				HoI4Relations* relationswithposally = CountryThatWantsAllies->getRelations(CountriesWithin500Miles[i]->getTag());
 				int rel = relationswithposally->getRelations();
-				int size = findFaction(CountriesWithin500Miles[i]).getMembers().size();
+				int size = findFaction(CountriesWithin500Miles[i])->getMembers().size();
 				double armysize = getStrengthOverTime(CountriesWithin500Miles[i], 1);
 				//for now can only ally with people not in a faction, and must be worth adding
-				if (relationswithposally->getRelations() >= -50 && findFaction(CountriesWithin500Miles[i]).getMembers().size() <= 1)
+				if (relationswithposally->getRelations() >= -50 && findFaction(CountriesWithin500Miles[i])->getMembers().size() <= 1)
 				{
 					//ok we dont hate each other, lets check how badly we need each other, well I do, the only reason I am here is im trying to conquer a neighbor and am not strong enough!
 					//if (GetFactionStrength(findFaction(country)) < 20000) //maybe also check if he has any fascist/comm neighbors he doesnt like later?
@@ -5080,11 +5096,11 @@ double HoI4World::GetFactionStrengthWithDistance(HoI4Country* HomeCountry, vecto
 	}
 	return strength;
 }
-HoI4Faction HoI4World::findFaction(HoI4Country* CheckingCountry)
+HoI4Faction* HoI4World::findFaction(HoI4Country* CheckingCountry)
 {
 	for (auto faction : Factions)
 	{
-		if (std::find(faction.getMembers().begin(), faction.getMembers().end(), CheckingCountry) != faction.getMembers().end())
+		if (std::find(faction->getMembers().begin(), faction->getMembers().end(), CheckingCountry) != faction->getMembers().end())
 		{
 			//if country is in faction list, it is part of that faction
 			return faction;
@@ -5186,9 +5202,9 @@ vector<int> HoI4World::getCountryProvinces(HoI4Country* Country)
 	volatile vector<int> asdfasdf = countryprovinces;
 	return countryprovinces;
 }
-vector<HoI4Faction> HoI4World::CreateFactions(const V2World &sourceWorld, const CountryMapping& countryMap)
+vector<HoI4Faction*> HoI4World::CreateFactions(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
-	vector<HoI4Faction> Factions2;
+	vector<HoI4Faction*> Factions2;
 	string filename("Factions-logs.txt");
 	ofstream out;
 	out.open(filename);
@@ -5262,7 +5278,7 @@ vector<HoI4Faction> HoI4World::CreateFactions(const V2World &sourceWorld, const 
 				}
 				out << "\tFaction Strength in 1939: " + to_string(FactionMilStrength) << endl;
 				out << endl;
-				HoI4Faction newFaction = HoI4Faction(Faction.front, Faction);
+				HoI4Faction* newFaction = new HoI4Faction(Faction.front(), Faction);
 				Factions2.push_back(newFaction);
 			}
 
@@ -5277,10 +5293,10 @@ HoI4Country* HoI4World::GetFactionLeader(vector<HoI4Country*> Faction)
 {
 	return Faction.front();
 }
-double HoI4World::GetFactionStrength(HoI4Faction Faction)
+double HoI4World::GetFactionStrength(HoI4Faction* Faction)
 {
 	double strength = 0;
-	for (auto country : Faction.getMembers)
+	for (auto country : Faction->getMembers())
 	{
 		strength += getStrengthOverTime(country, 1);
 	}
@@ -5327,9 +5343,9 @@ string HoI4World::returnIfSphere(HoI4Country* leadercountry, HoI4Country* posLea
 	}
 	return "";
 }
-vector<HoI4Faction> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sourceWorld, CountryMapping countryMap)
+vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sourceWorld, CountryMapping countryMap)
 {
-	vector<HoI4Faction> CountriesAtWar;
+	vector<HoI4Faction*> CountriesAtWar;
 	LOG(LogLevel::Info) << "Calculating AI for " + Leader->getSourceCountry()->getName();
 	//too many lists, need to clean up
 	vector<HoI4Country*> Targets;
@@ -5368,13 +5384,13 @@ vector<HoI4Faction> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sour
 			volatile double enemystrength = getStrengthOverTime(neigh.second, 1.5);
 			volatile double mystrength = getStrengthOverTime(Leader, 1.5);
 			//lets see their strength is at least < 20%
-			if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second).getMembers().size() == 1)
+			if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second)->getMembers().size() == 1)
 			{
 				//they are very weak
 				Anchluss.push_back(neigh.second);
 			}
 			//if not, lets see their strength is at least < 60%
-			else if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1)*0.6 && getStrengthOverTime(neigh.second, 1) > getStrengthOverTime(Leader, 1)*0.2 && findFaction(neigh.second).getMembers().size() == 1)
+			else if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1)*0.6 && getStrengthOverTime(neigh.second, 1) > getStrengthOverTime(Leader, 1)*0.2 && findFaction(neigh.second)->getMembers().size() == 1)
 			{
 				//they are weak and we can get 1 of these countries in sudaten deal
 				Sudaten.push_back(neigh.second);
@@ -5744,7 +5760,7 @@ vector<HoI4Faction> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sour
 	vector<HoI4Country*> newAllies = GetMorePossibleAllies(Leader);
 	for each (auto newally in newAllies)
 	{
-		findFaction(Leader).addMember(newally);
+		findFaction(Leader)->addMember(newally);
 	}
 	if (newAllies.size() > 0)
 	{
@@ -5929,9 +5945,9 @@ vector<HoI4Faction> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sour
 	outevents.close();
 	return CountriesAtWar;
 }
-vector<HoI4Faction> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World sourceWorld, CountryMapping countryMap)
+vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World sourceWorld, CountryMapping countryMap)
 {
-	vector<HoI4Faction> CountriesAtWar;
+	vector<HoI4Faction*> CountriesAtWar;
 	//communism still needs great country war events
 	LOG(LogLevel::Info) << "Calculating AI for " + Leader->getSourceCountry()->getName();
 	vector<int> leaderProvs = getCountryProvinces(Leader);
@@ -5977,7 +5993,7 @@ vector<HoI4Faction> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World 
 				//	Method() Influence Ideology and Attempt Coup
 				coups.push_back(neigh.second);
 			}
-			else if (findFaction(neigh.second).getMembers().size() == 1)
+			else if (findFaction(neigh.second)->getMembers().size() == 1)
 			{
 				//	Then look for neighboring countries to spread communism by force, prioritizing weakest first
 				forcedtakeover.push_back(neigh.second);
@@ -6404,9 +6420,9 @@ vector<HoI4Faction> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World 
 	out2.close();
 	return CountriesAtWar;
 }
-vector<HoI4Faction> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World sourceWorld, CountryMapping countryMap)
+vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World sourceWorld, CountryMapping countryMap)
 {
-	vector<HoI4Faction> CountriesAtWar;
+	vector<HoI4Faction*> CountriesAtWar;
 	//this is for monarchy events, dont need for random
 	//too many lists, need to clean up
 	vector<HoI4Country*> Targets;
@@ -6464,7 +6480,7 @@ vector<HoI4Faction> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World s
 			volatile double enemystrength = getStrengthOverTime(neigh.second, 1.5);
 			volatile double mystrength = getStrengthOverTime(Leader, 1.5);
 			//lets see their strength is at least < 20%
-			if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second).getMembers().size() == 1)
+			if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second)->getMembers().size() == 1)
 			{
 				//they are very weak
 				WeakNeighbors.push_back(neigh.second);
@@ -6479,7 +6495,7 @@ vector<HoI4Faction> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World s
 			volatile double enemystrength = getStrengthOverTime(neigh.second, 1.5);
 			volatile double mystrength = getStrengthOverTime(Leader, 1.5);
 			//lets see their strength is at least < 20%
-			if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second).getMembers().size() == 1)
+			if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second)->getMembers().size() == 1)
 			{
 				//they are very weak
 				WeakColonies.push_back(neigh.second);
