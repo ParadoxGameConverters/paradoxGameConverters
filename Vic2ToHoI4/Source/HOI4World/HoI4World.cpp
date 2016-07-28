@@ -5932,6 +5932,8 @@ vector<vector<HoI4Country*>> HoI4World::FascistWarMaker(HoI4Country* Leader, V2W
 	outevents.close();
 	return CountriesAtWar;
 }
+
+
 vector<vector<HoI4Country*>> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World sourceWorld, CountryMapping countryMap)
 {
 	vector<vector<HoI4Country*>> CountriesAtWar;
@@ -6347,7 +6349,7 @@ vector<vector<HoI4Country*>> HoI4World::CommunistWarCreator(HoI4Country* Leader,
 				y2 = 2;
 				prereq = " 	prerequisite = { ";
 
-				for (int i = 0; i < 2; i++)
+				for (unsigned int i = 0; (i < 2) && (i < forcedtakeover.size()) ; i++)
 					prereq += " focus = Alliance_" + forcedtakeover[i]->getTag() + Leader->getTag();
 
 				prereq += "}\r\n";
@@ -6406,6 +6408,8 @@ vector<vector<HoI4Country*>> HoI4World::CommunistWarCreator(HoI4Country* Leader,
 	out2.close();
 	return CountriesAtWar;
 }
+
+
 vector<vector<HoI4Country*>> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World sourceWorld, CountryMapping countryMap)
 {
 	vector<vector<HoI4Country*>> CountriesAtWar;
