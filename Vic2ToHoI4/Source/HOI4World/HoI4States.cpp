@@ -422,7 +422,7 @@ void HoI4States::outputLocalisations() const
 			exit(-1);
 		}
 		localisationFile << "\xEF\xBB\xBF"; // output a BOM to make HoI4 happy
-		localisationFile << "l_" << languageToLocalisations.first << ":\r\n";
+		localisationFile << "l_" << languageToLocalisations.first << ":\n";
 
 		for (auto mapping: languageToLocalisations.second)
 		{
