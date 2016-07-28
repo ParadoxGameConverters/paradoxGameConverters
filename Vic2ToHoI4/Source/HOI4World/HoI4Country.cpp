@@ -22,6 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4Country.h"
+#include "HoI4World.h"
 #include <fstream>
 #include "Log.h"
 #include "ParadoxParserUTF8.h"
@@ -119,7 +120,7 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 }
 
 
-void HoI4Country::output(map<int, HoI4State*> states, vector<vector<HoI4Country*>> Factions, string FactionName) const
+void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction> Factions, string FactionName) const
 {
 	// output history file
 	ofstream output;

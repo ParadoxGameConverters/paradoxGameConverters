@@ -68,7 +68,7 @@ class HoI4Country
 {
 	public:
 		HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld, bool _newCountry = false);
-		void		output(map<int, HoI4State*> states, vector<vector<HoI4Country*>> Factions, string FactionName) const;
+		void		output(map<int, HoI4State*> states, vector<HoI4Faction> Factions, string FactionName) const;
 		void		outputCommonCountryFile() const;
 		void		outputColors(ofstream& out) const;
 		void		outputToCommonCountriesFile(FILE*) const;
