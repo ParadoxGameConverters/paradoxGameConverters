@@ -6278,6 +6278,7 @@ vector<vector<HoI4Country*>> HoI4World::CommunistWarCreator(HoI4Country* Leader,
 		FocusTree += "		cost = 10\n";
 		FocusTree += "		ai_will_do = {\n";
 		FocusTree += "			factor = 10\n";
+		FocusTree += "		}\n";
 		FocusTree += "		bypass = { \n";
 		FocusTree += "			\n";
 		FocusTree += "			OR = {\n";
@@ -6348,8 +6349,8 @@ vector<vector<HoI4Country*>> HoI4World::CommunistWarCreator(HoI4Country* Leader,
 				y2 = 2;
 				prereq = " 	prerequisite = { ";
 
-				for (unsigned int i = 0; (i < 2) && (i < forcedtakeover.size()) ; i++)
-					prereq += " focus = Alliance_" + forcedtakeover[i]->getTag() + Leader->getTag();
+				for (unsigned int i = 0; (i < 2) && (i < newAllies.size()) ; i++)
+					prereq += " focus = Alliance_" + newAllies[i]->getTag() + Leader->getTag();
 
 				prereq += "}\n";
 			}
