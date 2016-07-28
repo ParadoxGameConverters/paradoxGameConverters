@@ -6614,32 +6614,32 @@ vector<vector<HoI4Country*>> HoI4World::MonarchyWarCreator(HoI4Country* Leader, 
 	int eventNumber = 0;
 	for each (auto GC in GCTargets)
 	{
-		Events += "country_event = {\n";
-		Events += "	id = " + Leader->getTag() + "." + to_string(eventNumber) + "\n";
-		Events += "	title = \"Trade Incident\"\n";
-		Events += "	desc = \"One of our convoys was sunk by " + GC->getSourceCountry()->getName() + "\"\n";
-		Events += "	picture = GFX_report_event_chinese_soldiers_fighting\n";
-		Events += "	\n";
-		Events += "	is_triggered_only = yes\n";
-		Events += "	\n";
-		Events += " trigger = {\n";
-		Events += "		has_country_flag = established_traders\n";
-		Events += "		NOT = { has_country_flag = established_traders_activated }\n";
-		Events += " }\n";
-		Events += "	option = { # Breaking point!\n";
-		Events += "		name = \"They will Pay!\"\n";
-		Events += "		ai_chance = { factor = 85 }\n";
-		Events += "		effect_tooltip = {\n";
-		Events += "			" + Leader->getTag() + " = {\n";
-		Events += "				set_country_flag = established_traders_activated\n";
-		Events += "				create_wargoal = {\n";
-		Events += "					type = annex_everything\n";
-		Events += "					target = " + GC->getTag() + "\n";
-		Events += "				}\n";
-		Events += "			}\n";
-		Events += "		}\n";
-		Events += "	}\n";
-		Events += "}";
+		Events += "country_event = {\r\n";
+		Events += "	id = " + Leader->getTag() + "." + to_string(eventNumber++) + "\r\n";
+		Events += "	title = \"Trade Incident\"\r\n";
+		Events += "	desc = \"One of our convoys was sunk by " + GC->getSourceCountry()->getName() + "\"\r\n";
+		Events += "	picture = GFX_report_event_chinese_soldiers_fighting\r\n";
+		Events += "	\r\n";
+		Events += "	is_triggered_only = yes\r\n";
+		Events += "	\r\n";
+		Events += " trigger = {\r\n";
+		Events += "		has_country_flag = established_traders\r\n";
+		Events += "		NOT = { has_country_flag = established_traders_activated }\r\n";
+		Events += " }\r\n";
+		Events += "	option = { # Breaking point!\r\n";
+		Events += "		name = \"They will Pay!\"\r\n";
+		Events += "		ai_chance = { factor = 85 }\r\n";
+		Events += "		effect_tooltip = {\r\n";
+		Events += "			" + Leader->getTag() + " = {\r\n";
+		Events += "				set_country_flag = established_traders_activated\r\n";
+		Events += "				create_wargoal = {\r\n";
+		Events += "					type = annex_everything\r\n";
+		Events += "					target = " + GC->getTag() + "\r\n";
+		Events += "				}\r\n";
+		Events += "			}\r\n";
+		Events += "		}\r\n";
+		Events += "	}\r\n";
+		Events += "}\r\n";
 	}
 	//output events
 	string filenameevents("Output/" + Configuration::getOutputName() + "/events/" + Leader->getSourceCountry()->getTag() + "_events.txt");
