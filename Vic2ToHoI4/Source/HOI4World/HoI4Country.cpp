@@ -217,10 +217,10 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<vector<HoI4Country*
 		{
 			if (Faction.front()->getTag() == tag)
 			{
-				output << "create_faction = \"Alliance of " + getSourceCountry()->getName() + "\"\r\n";
+				output << "create_faction = \"Alliance of " + getSourceCountry()->getName() + "\"\n";
 				for (auto factionmem : Faction)
 				{
-					output << "add_to_faction = " + factionmem->getTag() + "\r\n";
+					output << "add_to_faction = " + factionmem->getTag() + "\n";
 				}
 			}
 		}
@@ -541,7 +541,7 @@ void HoI4Country::outputOOB() const
 	output << "\t\tefficiency = 100\n";
 	output << "\t}\n";
 	output << "}\n";
-	output << "units = {\r\n";
+	output << "units = {\n";
 	for (auto division : divisions)
 	{
 		output << division;
