@@ -28,6 +28,8 @@ copy "Data_Files\adj.txt" "release\adj.txt"
 copy "Data_Files\NeededFiles\countrypoliticsview.gfx" "release\blankmod\output\interface\countrypoliticsview.gfx"
 copy "Data_Files\MonarchIdeas.txt" "release\blankmod\output\common\MonarchIdeas.txt"
 
+xcopy "Data_Files\NeededFiles\common" "release\blankmod\output\common" /Y /E /I
+xcopy "Data_Files\NeededFiles\history\countries" "release\blankmod\output\history\countries" /Y /E /I
 xcopy "Data_Files\events" "release\blankmod\output\events" /Y /E /I
 xcopy "Data_Files\bookmarks" "release\blankmod\output\common\bookmarks" /Y /E /I
 xcopy "Data_Files\on_actions" "release\blankmod\output\common\on_actions" /Y /E /I

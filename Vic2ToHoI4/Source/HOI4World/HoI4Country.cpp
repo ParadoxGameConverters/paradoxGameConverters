@@ -126,7 +126,7 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Facti
 	ofstream output;
 
 	if (((capital > 0) && (capital <= static_cast<int>(states.size())))
-		|| !newCountry
+		&& newCountry
 		)
 	{
 		output.open(("Output/" + Configuration::getOutputName() + "/history/countries/" + Utils::convertToASCII(filename)).c_str());

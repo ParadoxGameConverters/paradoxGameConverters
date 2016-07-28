@@ -5,44 +5,7 @@
 add_namespace = political
 
 # Communism on the Rise
-country_event = {
-	id = political.1
-	title = political.1.t
-	desc = political.1.d
-	picture = GFX_report_event_worker_protests
-	
-	is_triggered_only = yes
 
-	trigger = {
-		NOT = { has_government = communism }
-	}
-	
-	# Seek government support
-	option = {
-		name = political.1.a
-		trigger = {
-			OR = {
-				NOT = { tag = CHI }
-				AND = {
-					NOT = { country_exists = PRC }
-					tag = CHI
-				}			
-			}
-		}
-		custom_effect_tooltip = political.1.a.tt
-		clr_country_flag = communism_popular_movement
-		set_country_flag = communism_political_movement
-	}
-
-	# Seek popular support
-	option = {
-		name = political.1.b
-		custom_effect_tooltip = political.1.b.tt
-		clr_country_flag = communism_political_movement
-		clr_country_flag = communism_government_support
-		set_country_flag = communism_popular_movement
-	}
-}
 
 # Marxist Sympathies in Government
 country_event = {
@@ -87,13 +50,7 @@ country_event = {
 		communism > 0.4
 		is_major = no
 		is_puppet = no
-		OR = {
-			NOT = { tag = CHI }
-			AND = {
-				NOT = { country_exists = PRC }
-				tag = CHI
-			}			
-		}
+		
 	}
 
 	mean_time_to_happen = {
@@ -192,13 +149,7 @@ country_event = {
 		has_idea_with_trait = communist_revolutionary
 		NOT = { has_government = communism }
 		communism > 0.4
-		OR = {
-			NOT = { tag = CHI }
-			AND = {
-				NOT = { country_exists = PRC }
-				tag = CHI
-			}			
-		}
+		
 	}
 
 	mean_time_to_happen = {
@@ -768,14 +719,7 @@ country_event = {
 	option = {
 		name = political.19.c
 		trigger = {
-			#Special case CHI PRC
-			OR = {
-				NOT = { tag = CHI }
-				AND = {
-					NOT = { country_exists = PRC }
-					tag = CHI
-				}			
-			}
+			
 		}
 		set_politics = {
 			ruling_party = communism
@@ -919,13 +863,7 @@ country_event = {
 		communism > 0.7
 		has_idea = communist_revolutionaries
 		#Special case CHI PRC
-		OR = {
-			NOT = { tag = CHI }
-			AND = {
-				NOT = { country_exists = PRC }
-				tag = CHI
-			}			
-		}
+		
 	}
 
 	mean_time_to_happen = {
@@ -989,13 +927,7 @@ country_event = {
 		democratic > 0.7
 		has_idea = democratic_revolutionaries
 		#Special case CHI PRC
-		OR = {
-			NOT = { tag = CHI }
-			AND = {
-				NOT = { country_exists = PRC }
-				tag = CHI
-			}			
-		}
+		
 	}
 
 	mean_time_to_happen = {

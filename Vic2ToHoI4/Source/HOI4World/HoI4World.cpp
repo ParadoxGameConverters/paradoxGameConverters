@@ -173,7 +173,7 @@ void HoI4World::outputCommonCountries() const
 	// Output common\countries.txt
 	LOG(LogLevel::Debug) << "Writing countries file";
 	FILE* allCountriesFile;
-	if (fopen_s(&allCountriesFile, ("Output/" + Configuration::getOutputName() + "/common/country_tags/01_countries.txt").c_str(), "w") != 0)
+	if (fopen_s(&allCountriesFile, ("Output/" + Configuration::getOutputName() + "/common/country_tags/00_countries.txt").c_str(), "w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create countries file";
 		exit(-1);
@@ -3477,15 +3477,6 @@ string HoI4World::genericFocusTreeCreator(HoI4Country* CreatingCountry)
 	s += "				factor = 0\n";
 	s += "				date < 1939.1.1\n";
 	s += "				OR = { \n";
-	s += "					# we dont want chinese minors to go crazy on slots early since they get eaten\n";
-	s += "					tag = GXC \n";
-	s += "					tag = YUN\n";
-	s += "					tag = SHX\n";
-	s += "					tag = XSM\n";
-	s += "					tag = BEL\n";
-	s += "					tag = LUX\n";
-	s += "					tag = HOL\n";
-	s += "					tag = DEN\n";
 	s += "\n";
 	s += "					# we also dont want tiny nations to go crazy with slots right away\n";
 	s += "					num_of_controlled_states < 2\n";
