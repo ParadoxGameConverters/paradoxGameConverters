@@ -1,0 +1,351 @@
+# unit_base is the base value used for evaluating how important it is to deploy the various categories
+# Written by Henrik "Groogy" Hansson
+
+default_unit_production = {
+	enable = {
+		always = yes
+	}
+	abort = {
+		always = no
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = paratroopers
+		value = 0
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = mountaineers
+		value = 0
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = marines
+		value = 0
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = cavalry
+		value = 0
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = motorized
+		value = 5
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = mechanized
+		value = 0
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = armor
+		value = 7
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = infantry
+		value = 90 # Since all other values are 0 this means 100%
+	}
+
+
+	# These values are used only by when evaluating for producing factories
+	ai_strategy = {
+		type = unit_base
+		id = capital_ship
+		value = 3
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = submarine
+		value = 3
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = screen_ship
+		value = 3
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = convoy
+		value = 3
+	}
+	
+	ai_strategy = {
+		type = equipment_production_factor
+		id = fighter
+		value = 125
+	}
+	
+	ai_strategy = {
+		type = equipment_production_factor
+		id = infantry
+		value = 35
+	}
+}
+
+default_paratroopers_production = {
+	enable = {
+		ai_wants_divisions > 94
+	}
+	abort = {
+		ai_wants_divisions < 95
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = paratroopers
+		value = 2
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = infantry
+		value = -2
+	}
+}
+
+default_mountaineers_production = {
+	enable = {
+		ai_wants_divisions > 49
+	}
+	abort = {
+		ai_wants_divisions < 50
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = mountaineers
+		value = 3
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = infantry
+		value = -3
+	}
+}
+
+default_marines_production = {
+	enable = {
+		ai_wants_divisions > 49
+	}
+	abort = {
+		ai_wants_divisions < 50
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = marines
+		value = 2
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = infantry
+		value = -2
+	}
+}
+
+default_cavalry_production = {
+	enable = {
+		ai_wants_divisions > 49
+	}
+	abort = {
+		ai_wants_divisions < 50
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = cavalry
+		value = 3
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = infantry
+		value = -3
+	}
+}
+
+default_motorized_production = {
+	enable = {
+		ai_wants_divisions > 79
+	}
+	abort = {
+		ai_wants_divisions < 80
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = motorized
+		value = 4
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = infantry
+		value = -4
+	}
+}
+
+default_mechanized_production = {
+	enable = {
+		ai_wants_divisions > 69
+	}
+	abort = {
+		ai_wants_divisions < 70
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = mechanized
+		value = 5
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = infantry
+		value = -5
+	}
+}
+
+default_armored_production = {
+	enable = {
+		ai_wants_divisions > 49
+	}
+	abort = {
+		ai_wants_divisions < 50
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = armor
+		value = 3
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = infantry
+		value = -3
+	}
+}
+
+highered_armored_production = {
+	enable = {
+		num_of_military_factories > 69
+	}
+	abort = {
+		num_of_military_factories < 70
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = armor
+		value = 2
+	}
+}
+
+slightly_naval_focused_nation = {
+	enable = {
+		
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = capital_ship
+		value = 1
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = submarine
+		value = 1
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = screen_ship
+		value = 1
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = convoy
+		value = 1
+	}
+}
+
+more_naval_focused_nation = {
+	enable = {
+		
+		date > "1938.1.1"
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = capital_ship
+		value = 1
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = submarine
+		value = 1
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = screen_ship
+		value = 1
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = convoy
+		value = 1
+	}
+}
+
+less_naval_focused_nation = {
+	enable = {
+		
+		date < "1938.1.1"
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = capital_ship
+		value = -1
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = submarine
+		value = -1
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = screen_ship
+		value = -1
+	}
+
+	ai_strategy = {
+		type = unit_base
+		id = convoy
+		value = -1
+	}
+}

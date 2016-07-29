@@ -173,7 +173,7 @@ void HoI4World::outputCommonCountries() const
 	// Output common\countries.txt
 	LOG(LogLevel::Debug) << "Writing countries file";
 	FILE* allCountriesFile;
-	if (fopen_s(&allCountriesFile, ("Output/" + Configuration::getOutputName() + "/common/country_tags/01_countries.txt").c_str(), "w") != 0)
+	if (fopen_s(&allCountriesFile, ("Output/" + Configuration::getOutputName() + "/common/country_tags/00_countries.txt").c_str(), "w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create countries file";
 		exit(-1);
@@ -3477,15 +3477,6 @@ string HoI4World::genericFocusTreeCreator(HoI4Country* CreatingCountry)
 	s += "				factor = 0\n";
 	s += "				date < 1939.1.1\n";
 	s += "				OR = { \n";
-	s += "					# we dont want chinese minors to go crazy on slots early since they get eaten\n";
-	s += "					tag = GXC \n";
-	s += "					tag = YUN\n";
-	s += "					tag = SHX\n";
-	s += "					tag = XSM\n";
-	s += "					tag = BEL\n";
-	s += "					tag = LUX\n";
-	s += "					tag = HOL\n";
-	s += "					tag = DEN\n";
 	s += "\n";
 	s += "					# we also dont want tiny nations to go crazy with slots right away\n";
 	s += "					num_of_controlled_states < 2\n";
@@ -4801,8 +4792,10 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 			}
 		}
 		double CountriesAtWarStrength = 0.0;
+		out << "initial conversion complete, checking who is at war:" << endl;
 		for (auto faction : CountriesAtWar)
 		{
+			out << faction->getLeader()->getSourceCountry()->getName() + " with strength of " + to_string(GetFactionStrength(faction)) << endl;
 			CountriesAtWarStrength += GetFactionStrength(faction);
 		}
 		out << "percentage of world at war" + to_string(CountriesAtWarStrength / WorldStrength) << endl;
@@ -4857,9 +4850,11 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 					}
 				}
 				//then check how many factions are now at war
+				out << "countries at war:" << endl;
 				for (auto faction : CountriesAtWar)
 				{
 					CountriesAtWarStrength += GetFactionStrength(faction);
+					out << faction->getLeader()->getSourceCountry()->getName() + " with strength of " + to_string(GetFactionStrength(faction)) << endl;
 				}
 				out << "percentage of world at war" + to_string(CountriesAtWarStrength / WorldStrength) << endl;
 				if (CountriesAtWarStrength / WorldStrength >= 0.8)
@@ -5100,12 +5095,17 @@ HoI4Faction* HoI4World::findFaction(HoI4Country* CheckingCountry)
 {
 	for (auto faction : Factions)
 	{
-		if (std::find(faction->getMembers().begin(), faction->getMembers().end(), CheckingCountry) != faction->getMembers().end())
+		vector<HoI4Country*> FactionMembers = faction->getMembers();
+		if (std::find(FactionMembers.begin(), FactionMembers.end(), CheckingCountry) != FactionMembers.end())
 		{
 			//if country is in faction list, it is part of that faction
 			return faction;
 		}
 	}
+	vector<HoI4Country*> myself;
+	myself.push_back(CheckingCountry);
+	HoI4Faction* newFaction = new HoI4Faction(CheckingCountry, myself);
+	return newFaction;
 }
 bool HoI4World::checkIfGreatCountry(HoI4Country* checkingCountry, const V2World &sourceWorld, const CountryMapping& countryMap)
 {
@@ -5852,7 +5852,11 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 		start = -1;
 	}
 	if (GCTargets.size() > 1)
+	{
 		CountriesAtWar.push_back(findFaction(Leader));
+		CountriesAtWar.push_back(findFaction(GCTargets[0]));
+		
+	}
 	for each (auto GC in GCTargets)
 	{
 		string prereq = "";
@@ -5886,7 +5890,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 			//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\n";
 			FocusTree += "		cost = 10\n";
 			FocusTree += "		ai_will_do = {\n";
-			FocusTree += "			factor = 5\n";
+			FocusTree += "			factor = " + to_string(10 - maxGCWars * 5) + "\n";
 			FocusTree += "			modifier = {\n";
 			FocusTree += "			factor = 0\n";
 			FocusTree += "			strength_ratio = { tag = " + GC->getTag() + " ratio < 1 }\n";
@@ -5895,7 +5899,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 			{
 				//make ai have this as a 0 modifier if they are at war
 				FocusTree += "modifier = {\n	factor = 0\n	OR = {";
-				for (int i2 = 0; i2 < 3; i2++)
+				for (int i2 = 0; i2 < GCTargets.size(); i2++)
 				{
 					if (GC != GCTargets[i2])
 					{
@@ -5981,7 +5985,7 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World
 		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
 		{
 			double com = 0;
-
+			HoI4Faction* neighFaction = findFaction(neigh.second);
 			for (auto party : neigh.second->getParties())
 			{
 				if (party.name.find("socialist") != string::npos || party.name.find("communist") != string::npos || party.name.find("anarcho_liberal") != string::npos)
@@ -5993,7 +5997,7 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World
 				//	Method() Influence Ideology and Attempt Coup
 				coups.push_back(neigh.second);
 			}
-			else if (findFaction(neigh.second)->getMembers().size() == 1)
+			else if (neighFaction->getMembers().size() == 1)
 			{
 				//	Then look for neighboring countries to spread communism by force, prioritizing weakest first
 				forcedtakeover.push_back(neigh.second);
@@ -6346,7 +6350,10 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World
 		start = -1;
 	}
 	if (GCTargets.size() > 1)
+	{
 		CountriesAtWar.push_back(findFaction(Leader));
+		CountriesAtWar.push_back(findFaction(GCTargets[0]));
+	}
 	for each (auto GC in GCTargets)
 	{
 
@@ -6379,7 +6386,7 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World
 			//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\n";
 			FocusTree += "		cost = 10\n";
 			FocusTree += "		ai_will_do = {\n";
-			FocusTree += "			factor = 5\n";
+			FocusTree += "			factor = "+to_string(10 - maxGCWars*5)+"\n";
 			FocusTree += "			modifier = {\n";
 			FocusTree += "			factor = 0\n";
 			FocusTree += "			strength_ratio = { tag = " + GC->getTag() + " ratio < 1 }\n";
@@ -6554,7 +6561,10 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World 
 		start = -1;
 	}
 	if (GCTargets.size() > 1)
+	{
 		CountriesAtWar.push_back(findFaction(Leader));
+		CountriesAtWar.push_back(findFaction(GCTargets[0]));
+	}
 	for each (auto GC in GCTargets)
 	{
 
@@ -6562,7 +6572,6 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World 
 		set<string> Allies = Leader->getAllies();
 		if (maxGCWars < 2 && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
 		{
-			CountriesAtWar.push_back(findFaction(GC));
 			int y2 = 0;
 			//figuring out location of WG
 			/*if (newAllies.size() > 0)
@@ -6588,7 +6597,7 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World 
 			//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\n";
 			FocusTree += "		cost = 10\n";
 			FocusTree += "		ai_will_do = {\n";
-			FocusTree += "			factor = 5\n";
+			FocusTree += "			factor = " + to_string(10 - maxGCWars * 5) + "\n";
 			FocusTree += "			modifier = {\n";
 			FocusTree += "			factor = 0\n";
 			FocusTree += "			strength_ratio = { tag = " + GC->getTag() + " ratio < 0.8 }\n";
@@ -6597,7 +6606,7 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World 
 			{
 				//make ai have this as a 0 modifier if they are at war
 				FocusTree += "modifier = {\n	factor = 0\n	OR = {";
-				for (int i2 = 0; i2 < 3; i2++)
+				for (int i2 = 0; i2 < GCTargets.size(); i2++)
 				{
 					if (GC != GCTargets[i2])
 					{
