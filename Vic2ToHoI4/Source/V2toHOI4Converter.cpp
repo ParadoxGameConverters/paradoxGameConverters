@@ -278,7 +278,19 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	// Parse province mappings
 	LOG(LogLevel::Info) << "Parsing province mappings";
-	obj = parser_8859_15::doParseFile("province_mappings.txt");
+	string mappingsFile = "";
+	for (auto mod: Configuration::getVic2Mods())
+	{
+		if (Utils::DoesFileExist(mod + "_province_mappings.txt"))
+		{
+			mappingsFile = mod + "_province_mappings.txt";
+		}
+	}
+	if (mappingsFile == "")
+	{
+		mappingsFile = "province_mappings.txt";
+	}
+	obj = parser_8859_15::doParseFile(mappingsFile);
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file province_mappings.txt";

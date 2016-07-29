@@ -14,6 +14,7 @@ copy "Data_Files\configuration.txt" "release\configuration.txt"
 copy "Data_Files\readme.txt" "release\readme.txt"
 copy "Data_Files\merge_nations.txt" "release\merge_nations.txt"
 copy "Data_Files\province_mappings.txt" "release\province_mappings.txt
+copy "Data_Files\HPM_province_mappings.txt" "release\HPM_province_mappings.txt
 copy "Data_Files\country_mappings.txt" "release\country_mappings.txt
 copy "Data_Files\governmentMapping.txt" "release\governmentMapping.txt
 copy "Data_Files\license.txt" "release\license.txt"
