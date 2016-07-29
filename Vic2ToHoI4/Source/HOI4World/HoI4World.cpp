@@ -5843,7 +5843,10 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 		start = -1;
 	}
 	if (GCTargets.size() > 1)
+	{
 		CountriesAtWar.push_back(findFaction(Leader));
+		CountriesAtWar.push_back(findFaction(GCTargets[0]));
+	}
 	for each (auto GC in GCTargets)
 	{
 		string prereq = "";
@@ -5877,7 +5880,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 			//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\n";
 			FocusTree += "		cost = 10\n";
 			FocusTree += "		ai_will_do = {\n";
-			FocusTree += "			factor = 5\n";
+			FocusTree += "			factor = " + to_string(10 - maxGCWars * 5) + "\n";
 			FocusTree += "			modifier = {\n";
 			FocusTree += "			factor = 0\n";
 			FocusTree += "			strength_ratio = { tag = " + GC->getTag() + " ratio < 1 }\n";
@@ -5886,7 +5889,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 			{
 				//make ai have this as a 0 modifier if they are at war
 				FocusTree += "modifier = {\n	factor = 0\n	OR = {";
-				for (int i2 = 0; i2 < 3; i2++)
+				for (int i2 = 0; i2 < GCTargets.size(); i2++)
 				{
 					if (GC != GCTargets[i2])
 					{
@@ -6337,7 +6340,10 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World
 		start = -1;
 	}
 	if (GCTargets.size() > 1)
+	{
 		CountriesAtWar.push_back(findFaction(Leader));
+		CountriesAtWar.push_back(findFaction(GCTargets[0]));
+	}
 	for each (auto GC in GCTargets)
 	{
 
@@ -6370,7 +6376,7 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World
 			//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\n";
 			FocusTree += "		cost = 10\n";
 			FocusTree += "		ai_will_do = {\n";
-			FocusTree += "			factor = 5\n";
+			FocusTree += "			factor = "+to_string(10 - maxGCWars*5)+"\n";
 			FocusTree += "			modifier = {\n";
 			FocusTree += "			factor = 0\n";
 			FocusTree += "			strength_ratio = { tag = " + GC->getTag() + " ratio < 1 }\n";
@@ -6545,7 +6551,10 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World 
 		start = -1;
 	}
 	if (GCTargets.size() > 1)
+	{
 		CountriesAtWar.push_back(findFaction(Leader));
+		CountriesAtWar.push_back(findFaction(GCTargets[0]));
+	}
 	for each (auto GC in GCTargets)
 	{
 
@@ -6553,7 +6562,6 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World 
 		set<string> Allies = Leader->getAllies();
 		if (maxGCWars < 2 && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
 		{
-			CountriesAtWar.push_back(findFaction(GC));
 			int y2 = 0;
 			//figuring out location of WG
 			/*if (newAllies.size() > 0)
@@ -6579,7 +6587,7 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World 
 			//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\n";
 			FocusTree += "		cost = 10\n";
 			FocusTree += "		ai_will_do = {\n";
-			FocusTree += "			factor = 5\n";
+			FocusTree += "			factor = " + to_string(10 - maxGCWars * 5) + "\n";
 			FocusTree += "			modifier = {\n";
 			FocusTree += "			factor = 0\n";
 			FocusTree += "			strength_ratio = { tag = " + GC->getTag() + " ratio < 0.8 }\n";
@@ -6588,7 +6596,7 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World 
 			{
 				//make ai have this as a 0 modifier if they are at war
 				FocusTree += "modifier = {\n	factor = 0\n	OR = {";
-				for (int i2 = 0; i2 < 3; i2++)
+				for (int i2 = 0; i2 < GCTargets.size(); i2++)
 				{
 					if (GC != GCTargets[i2])
 					{
