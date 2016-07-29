@@ -5881,7 +5881,7 @@ vector<vector<HoI4Country*>> HoI4World::FascistWarMaker(HoI4Country* Leader, V2W
 			{
 				//make ai have this as a 0 modifier if they are at war
 				FocusTree += "modifier = {\n	factor = 0\n	OR = {";
-				for (int i2 = 0; i2 < 3; i2++)
+				for (int i2 = 0; i2 < GCTargets.size(); i2++)
 				{
 					if (GC != GCTargets[i2])
 					{
@@ -6376,7 +6376,7 @@ vector<vector<HoI4Country*>> HoI4World::CommunistWarCreator(HoI4Country* Leader,
 			{
 				//make ai have this as a 0 modifier if they are at war
 				FocusTree += "modifier = {\n	factor = 0\n	OR = {";
-				for (int i2 = 0; i2 < 3; i2++)
+				for (int i2 = 0; i2 < GCTargets.size(); i2++)
 				{
 					if (GC != GCTargets[i2])
 					{
