@@ -4792,8 +4792,10 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 			}
 		}
 		double CountriesAtWarStrength = 0.0;
+		out << "initial conversion complete, checking who is at war:" << endl;
 		for (auto faction : CountriesAtWar)
 		{
+			out << faction->getLeader()->getSourceCountry()->getName() + " with strength of " + to_string(GetFactionStrength(faction)) << endl;
 			CountriesAtWarStrength += GetFactionStrength(faction);
 		}
 		out << "percentage of world at war" + to_string(CountriesAtWarStrength / WorldStrength) << endl;
@@ -4848,9 +4850,11 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 					}
 				}
 				//then check how many factions are now at war
+				out << "countries at war:" << endl;
 				for (auto faction : CountriesAtWar)
 				{
 					CountriesAtWarStrength += GetFactionStrength(faction);
+					out << faction->getLeader()->getSourceCountry()->getName() + " with strength of " + to_string(GetFactionStrength(faction)) << endl;
 				}
 				out << "percentage of world at war" + to_string(CountriesAtWarStrength / WorldStrength) << endl;
 				if (CountriesAtWarStrength / WorldStrength >= 0.8)
@@ -5091,12 +5095,17 @@ HoI4Faction* HoI4World::findFaction(HoI4Country* CheckingCountry)
 {
 	for (auto faction : Factions)
 	{
-		if (std::find(faction->getMembers().begin(), faction->getMembers().end(), CheckingCountry) != faction->getMembers().end())
+		vector<HoI4Country*> FactionMembers = faction->getMembers();
+		if (std::find(FactionMembers.begin(), FactionMembers.end(), CheckingCountry) != FactionMembers.end())
 		{
 			//if country is in faction list, it is part of that faction
 			return faction;
 		}
 	}
+	vector<HoI4Country*> myself;
+	myself.push_back(CheckingCountry);
+	HoI4Faction* newFaction = new HoI4Faction(CheckingCountry, myself);
+	return newFaction;
 }
 bool HoI4World::checkIfGreatCountry(HoI4Country* checkingCountry, const V2World &sourceWorld, const CountryMapping& countryMap)
 {
@@ -5846,6 +5855,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 	{
 		CountriesAtWar.push_back(findFaction(Leader));
 		CountriesAtWar.push_back(findFaction(GCTargets[0]));
+		
 	}
 	for each (auto GC in GCTargets)
 	{
@@ -5975,7 +5985,7 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World
 		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
 		{
 			double com = 0;
-
+			HoI4Faction* neighFaction = findFaction(neigh.second);
 			for (auto party : neigh.second->getParties())
 			{
 				if (party.name.find("socialist") != string::npos || party.name.find("communist") != string::npos || party.name.find("anarcho_liberal") != string::npos)
@@ -5987,7 +5997,7 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World
 				//	Method() Influence Ideology and Attempt Coup
 				coups.push_back(neigh.second);
 			}
-			else if (findFaction(neigh.second)->getMembers().size() == 1)
+			else if (neighFaction->getMembers().size() == 1)
 			{
 				//	Then look for neighboring countries to spread communism by force, prioritizing weakest first
 				forcedtakeover.push_back(neigh.second);

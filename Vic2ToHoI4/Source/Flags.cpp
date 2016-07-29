@@ -137,19 +137,27 @@ vector<string> getSourceFlagPaths(string Vic2Tag)
 
 bool isThisAConvertedTag(string Vic2Tag);
 string getConversionModFlag(string flagFilename);
+string getDefaultFlag(string flagFilename);
 string getSourceFlagPath(string Vic2Tag, string sourceSuffix)
 {
 	string path = "flags/" + Vic2Tag + sourceSuffix;
 	if (!Utils::DoesFileExist(path))
 	{
-		if (isThisAConvertedTag(Vic2Tag))
-		{
-			path = getConversionModFlag(Vic2Tag + sourceSuffix);
-		}
-		if (!Utils::DoesFileExist(path))
-		{
-			return "";
-		}
+		
+		
+			if (isThisAConvertedTag(Vic2Tag))
+			{
+				path = getConversionModFlag(Vic2Tag + sourceSuffix);
+			}
+			if (!Utils::DoesFileExist(path))
+			{
+				path = getDefaultFlag(Vic2Tag + sourceSuffix);
+			}
+			if (!Utils::DoesFileExist(path))
+			{
+				return "";
+			}
+		
 	}
 	return path;
 }
@@ -171,6 +179,16 @@ string getConversionModFlag(string flagFilename)
 			return path;
 		}
 	}
+
+	return "";
+}
+string getDefaultFlag(string flagFilename)
+{
+		string path = Configuration::getV2Path() + "/gfx/flags/" + flagFilename;
+		if (Utils::DoesFileExist(path))
+		{
+			return path;
+		}
 
 	return "";
 }
