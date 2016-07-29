@@ -6412,6 +6412,7 @@ vector<vector<HoI4Country*>> HoI4World::CommunistWarCreator(HoI4Country* Leader,
 
 vector<vector<HoI4Country*>> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World sourceWorld, CountryMapping countryMap)
 {
+	LOG(LogLevel::Info) << "Calculating AI for " + Leader->getSourceCountry()->getName();
 	vector<vector<HoI4Country*>> CountriesAtWar;
 	//this is for monarchy events, dont need for random
 	//too many lists, need to clean up
@@ -6587,7 +6588,7 @@ vector<vector<HoI4Country*>> HoI4World::MonarchyWarCreator(HoI4Country* Leader, 
 			{
 				//make ai have this as a 0 modifier if they are at war
 				FocusTree += "modifier = {\n	factor = 0\n	OR = {";
-				for (int i2 = 0; i2 < 3; i2++)
+				for (int i2 = 0; i2 < GCTargets.size(); i2++)
 				{
 					if (GC != GCTargets[i2])
 					{
