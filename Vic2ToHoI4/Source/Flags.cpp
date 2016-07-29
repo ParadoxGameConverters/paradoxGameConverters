@@ -137,7 +137,7 @@ vector<string> getSourceFlagPaths(string Vic2Tag)
 
 bool isThisAConvertedTag(string Vic2Tag);
 string getConversionModFlag(string flagFilename);
-string getDefaultFlag(string flagFilename);
+string getAllowModFlags(string flagFilename);
 string getSourceFlagPath(string Vic2Tag, string sourceSuffix)
 {
 	string path = "flags/" + Vic2Tag + sourceSuffix;
@@ -151,7 +151,7 @@ string getSourceFlagPath(string Vic2Tag, string sourceSuffix)
 			}
 			if (!Utils::DoesFileExist(path))
 			{
-				path = getDefaultFlag(Vic2Tag + sourceSuffix);
+				path = getAllowModFlags(Vic2Tag + sourceSuffix);
 			}
 			if (!Utils::DoesFileExist(path))
 			{
@@ -182,13 +182,23 @@ string getConversionModFlag(string flagFilename)
 
 	return "";
 }
-string getDefaultFlag(string flagFilename)
+
+
+static set<string> allowedMods = { "PDM" };
+string getAllowModFlags(string flagFilename)
 {
-		string path = Configuration::getV2Path() + "/gfx/flags/" + flagFilename;
+	for (auto mod: Configuration::getVic2Mods())
+	{
+		if (allowedMods.count(mod) == 0)
+		{
+			continue;
+		}
+		string path = Configuration::getV2Path() + "/mod/" + mod + "/gfx/flags/" + flagFilename;
 		if (Utils::DoesFileExist(path))
 		{
 			return path;
 		}
+	}
 
 	return "";
 }
