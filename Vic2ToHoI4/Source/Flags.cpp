@@ -184,7 +184,7 @@ string getConversionModFlag(string flagFilename)
 }
 
 
-static set<string> allowedMods = { "PDM" };
+static set<string> allowedMods = { "PDM", "NNM" };
 string getAllowModFlags(string flagFilename)
 {
 	for (auto mod: Configuration::getVic2Mods())
