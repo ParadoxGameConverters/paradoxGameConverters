@@ -97,6 +97,7 @@ file(GLOB TEST *.cpp)
 file(GLOB CK2World CK2World/*.cpp)
 file(GLOB CK2World_Character CK2World/Character/*.cpp)
 file(GLOB EU3World EU3World/*.cpp)
+file(GLOB EU3World_Country EU3World/Country/*.cpp)
 file(GLOB ModWorld ModWorld/*.cpp)
 file(GLOB Common Common/*.cpp)
 file(GLOB Parsers Parsers/*.cpp)
@@ -106,6 +107,7 @@ source_group("Source Files" FILES ${TEST})
 source_group("Source Files\\CK2World" FILES ${CK2World})
 source_group("Source Files\\CK2World\\Character" FILES ${CK2World_Character})
 source_group("Source Files\\EU3World" FILES ${EU3World})
+source_group("Source Files\\EU3World\\Country" FILES ${EU3World_Country})
 source_group("Source Files\\ModWorld" FILES ${ModWorld})
 source_group("Source Files\\Common" FILES ${Common})
 source_group("Source Files\\Parsers" FILES ${Parsers})
@@ -117,6 +119,7 @@ add_executable(
     ${CK2World}
     ${CK2World_Character}
     ${EU3World}
+    ${EU3World_Country}
     ${ModWorld}
     ${Common}
     ${Parsers})

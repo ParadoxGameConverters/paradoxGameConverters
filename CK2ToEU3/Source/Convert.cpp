@@ -35,7 +35,7 @@
 #include "Parsers/Object.h"
 #include "Parsers/LandedTitleMigrationsParser.h"
 #include "EU3World\EU3World.h"
-#include "EU3World\EU3Country.h"
+#include "EU3World\Country\EU3Country.h"
 #include "EU3World\EU3Tech.h"
 #include "CK2World\CK2World.h"
 #include "CK2World\Opinion\Repository.h"
