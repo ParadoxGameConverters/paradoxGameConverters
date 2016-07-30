@@ -31,7 +31,7 @@
 #include "CK2World\CK2Barony.h"
 #include "CK2World\CK2Religion.h"
 #include "CK2World\Character\CK2Character.h"
-#include "EU3World\EU3Country.h"
+#include "EU3World\Country\EU3Country.h"
 #include <cstdio>
 #include <sstream>
 
