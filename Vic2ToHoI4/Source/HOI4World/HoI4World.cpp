@@ -2141,6 +2141,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 		FocusTree += "		id = Protectorate" + Home->getTag() + Annexed1->getTag() + "\n";
 		FocusTree += "		icon = GFX_goal_generic_major_war\n";
 		FocusTree += "		text = \"Establish Protectorate over " + Annexed1->getSourceCountry()->getName() + "\"\n";
+		FocusTree += "		available = { "+Annexed1->getTag()+" = { is_in_faction = no } }\n";
 		FocusTree += "		prerequisite = { focus = ColonialArmy" + Home->getTag() + " }\n";
 		FocusTree += "		x = 28\n";
 		FocusTree += "		y = 3\n";
@@ -2175,6 +2176,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 		FocusTree += "		id = Protectorate" + Home->getTag() + Annexed2->getTag() + "\n";
 		FocusTree += "		icon = GFX_goal_generic_major_war\n";
 		FocusTree += "		text = \"Establish Protectorate over " + Annexed2->getSourceCountry()->getName() + "\"\n";
+		FocusTree += "		available = { " + Annexed2->getTag() + " = { is_in_faction = no } }\n";
 		FocusTree += "		prerequisite = { focus = Protectorate" + Home->getTag() + Annexed1->getTag() + " }\n";
 		FocusTree += "		x = 28\n";
 		FocusTree += "		y = 4\n";
@@ -2559,6 +2561,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 		FocusTree += "		id = Annex" + Home->getTag() + Annexed3->getTag() + "\n";
 		FocusTree += "		icon = GFX_goal_generic_major_war\n";
 		FocusTree += "		text = \"Conquer " + Annexed3->getSourceCountry()->getName() + "\"\n";
+		FocusTree += "		available = { " + Annexed1->getTag() + " = { is_in_faction = no } }\n";
 		FocusTree += "		prerequisite = { focus = PrepTheBorder" + Home->getTag() + " }\n";
 		FocusTree += "		x = 36\n";
 		FocusTree += "		y = 3\n";
@@ -2592,6 +2595,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 		FocusTree += "		id = Annex" + Home->getTag() + Annexed4->getTag() + "\n";
 		FocusTree += "		icon = GFX_goal_generic_major_war\n";
 		FocusTree += "		text = \"Conquer " + Annexed4->getSourceCountry()->getName() + "\"\n";
+		FocusTree += "		available = { " + Annexed2->getTag() + " = { is_in_faction = no } }\n";
 		FocusTree += "		prerequisite = { focus = NatSpirit" + Home->getTag() + " }\n";
 		FocusTree += "		x = 34\n";
 		FocusTree += "		y = 4\n";
@@ -4798,7 +4802,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 			out << faction->getLeader()->getSourceCountry()->getName() + " with strength of " + to_string(GetFactionStrength(faction)) << endl;
 			CountriesAtWarStrength += GetFactionStrength(faction);
 		}
-		out << "percentage of world at war" + to_string(CountriesAtWarStrength / WorldStrength) << endl;
+		out << "percentage of world at war" + to_string(CountriesAtWarStrength / WorldStrength) + "\n" << endl;
 		if (CountriesAtWarStrength / WorldStrength < 0.8)
 		{
 			//Lets find out countries Evilness
@@ -4851,6 +4855,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 				}
 				//then check how many factions are now at war
 				out << "countries at war:" << endl;
+				CountriesAtWarStrength = 0;
 				for (auto faction : CountriesAtWar)
 				{
 					CountriesAtWarStrength += GetFactionStrength(faction);
@@ -5211,9 +5216,10 @@ vector<HoI4Faction*> HoI4World::CreateFactions(const V2World &sourceWorld, const
 	{
 		vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
 		vector<string> usedCountries;
+		vector<string> alreadyAllied;
 		for (auto country : GreatCountries)
 		{
-			if (std::find(usedCountries.begin(), usedCountries.end(), country->getTag()) == usedCountries.end())
+			if (std::find(usedCountries.begin(), usedCountries.end(), country->getTag()) == usedCountries.end() && std::find(alreadyAllied.begin(), alreadyAllied.end(), country->getTag()) == alreadyAllied.end())
 			{
 				//checks to make sure its not creating a faction when already in one
 				vector<HoI4Country*> Faction;
@@ -5268,6 +5274,7 @@ vector<HoI4Faction*> HoI4World::CreateFactions(const V2World &sourceWorld, const
 							if (canally)
 							{
 								usedCountries.push_back(allycountry->getTag());
+								alreadyAllied.push_back(allycountry->getTag());
 								out << "\t" + name + " " + allygovernment + " initial strength:" + to_string(getInitialStrength(allycountry)) + " Factory Strength per year: " + to_string(getAddedStrength(allycountry, 1))+ " Factory Strength by 1939: " + to_string(getAddedStrength(allycountry, 3)) << endl;
 								FactionMilStrength += getStrengthOverTime(allycountry, 1);
 								Faction.push_back(allycountry);
@@ -5520,6 +5527,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 				FocusTree += "		id = " + Leader->getTag() + "_anschluss_" + nan[i]->getTag() + "\n";
 				FocusTree += "		icon = GFX_goal_anschluss\n";
 				FocusTree += "		text = \"Union with " + annexedname + "\"\n";
+				FocusTree += "		available = { " + nan[i]->getTag() + " = { is_in_faction = no } }\n";
 				FocusTree += "		prerequisite = { focus = mil_march" + Leader->getTag() + " }\n";
 				FocusTree += "		available = {\n";
 				FocusTree += "			is_puppet = no\n";
@@ -5637,6 +5645,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 				FocusTree += "		id = " + Leader->getTag() + "_sudaten_" + nan[i]->getTag() + "\n";
 				FocusTree += "		icon = GFX_goal_anschluss\n";
 				FocusTree += "		text = \"Demand Territory from " + annexedname + "\"\n";
+				FocusTree += "		available = { " + nan[i]->getTag() + " = { is_in_faction = no } }\n";
 				FocusTree += "		prerequisite = { focus = Expand_the_Reich" + Leader->getTag() + " }\n";
 				FocusTree += "		available = {\n";
 				FocusTree += "			is_puppet = no\n";
@@ -5680,6 +5689,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 				FocusTree += "		id = " + Leader->getTag() + "_finish_" + nan[i]->getTag() + "\n";
 				FocusTree += "		icon = GFX_goal_generic_territory_or_war\n";
 				FocusTree += "		text = \"Fate of " + annexedname + "\"\n";
+				FocusTree += "		available = { " + nan[i]->getTag() + " = { is_in_faction = no } }\n";
 				FocusTree += "		prerequisite = { focus =  " + Leader->getTag() + "_sudaten_" + nan[i]->getTag() + " }\n";
 				FocusTree += "		available = {\n";
 				FocusTree += "			is_puppet = no\n";
@@ -5884,7 +5894,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 			FocusTree += "		text = \"War with " + GC->getSourceCountry()->getName() + "\"\n";//change to faction name later
 			if (prereq != "")
 				FocusTree += prereq;
-			FocusTree += "		available = {   date > 1938." + to_string(v1) + "." + to_string(v2) + "} \n";
+			FocusTree += "		available = {   has_war = no \ndate > 1938." + to_string(v1) + "." + to_string(v2) + "} \n";
 			FocusTree += "		x = " + to_string(takenSpots.back() + start + 3 + maxGCWars * 2) + "\n";
 			FocusTree += "		y = " + to_string(y2) + "\n";
 			//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\n";
@@ -6380,7 +6390,7 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World
 			FocusTree += "		icon = GFX_goal_generic_major_war\n";
 			FocusTree += "		text = \"War with " + GC->getSourceCountry()->getName() + "\"\n";//change to faction name later
 			FocusTree += prereq;
-			FocusTree += "		available = {   date > 1938." + to_string(v1) + "." + to_string(v2) + "} \n";
+			FocusTree += "		available = {   has_war = no\ndate > 1938." + to_string(v1) + "." + to_string(v2) + "} \n";
 			FocusTree += "		x = " + to_string(takenSpots.back() + 3 + maxGCWars * 2) + "\n";
 			FocusTree += "		y = " + to_string(y2) + "\n";
 			//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\n";
@@ -6591,7 +6601,7 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World 
 			FocusTree += "		icon = GFX_goal_generic_major_war\n";
 			FocusTree += "		text = \"War with " + GC->getSourceCountry()->getName() + "\"\n";//change to faction name later
 			FocusTree += "		prerequisite = { focus =  MilitaryBuildup" + Leader->getTag() + " }\n";
-			FocusTree += "		available = {   date > 1938." + to_string(v1) + "." + to_string(v2) + "} \n";
+			FocusTree += "		available = {   has_war = 20\ndate > 1938." + to_string(v1) + "." + to_string(v2) + "} \n";
 			FocusTree += "		x = " + to_string(31 + maxGCWars * 2) + "\n";
 			FocusTree += "		y = 5\n";
 			//FocusTree += "		y = " + to_string(takenSpotsy.back() + 1) + "\n";

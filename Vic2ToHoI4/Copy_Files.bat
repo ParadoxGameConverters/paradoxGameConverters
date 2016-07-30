@@ -37,7 +37,7 @@ xcopy "Data_Files\flags" "release\flags" /Y /E /I
 xcopy "Data_Files\NeededFiles\interface" "release\blankmod\output\gfx\interface" /Y /E /I
 xcopy "Data_Files\NeededFiles\ideologies" "release\blankmod\output\common\ideologies" /Y /E /I
 xcopy "Data_Files\NeededFiles\ideas" "release\blankmod\output\common\ideas" /Y /E /I
-xcopy "Data_Files\NeededFiles\defines" "release\blankmod\output\defines" /Y /E /I
+xcopy "Data_Files\NeededFiles\defines" "release\blankmod\output\common\defines" /Y /E /I
 
 del release\changelog.txt
 git log --oneline --decorate >> release\makelog.txt
