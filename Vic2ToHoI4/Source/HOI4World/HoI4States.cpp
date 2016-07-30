@@ -259,6 +259,9 @@ void HoI4States::createStates(const CountryMapping& countryMap, const Vic2ToHoI4
 			}
 		}
 	}
+
+	int manpower = getTotalManpower();
+	LOG(LogLevel::Debug) << "Total manpower was " << manpower << ", which is " << manpower / 2043875620.0 << "% of default HoI4.";
 }
 
 
@@ -362,6 +365,18 @@ void HoI4States::addLocalisation(int HoI4StateID, string Vic2StateID, const V2Lo
 
 		existingLocalisation->second.insert(make_pair(string("STATE_") + to_string(HoI4StateID), nameInLanguage.second));
 	}
+}
+
+
+int HoI4States::getTotalManpower()
+{
+	int totalManpower = 0;
+	for (auto state: states)
+	{
+		totalManpower += state.second->getManpower();
+	}
+
+	return totalManpower;
 }
 
 

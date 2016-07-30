@@ -80,6 +80,7 @@ class HoI4States
 		void createVPForState(HoI4State* newState, const Vic2ToHoI4ProvinceMapping& provinceMap);
 		void addManpowerToNewState(HoI4State* newState);
 		void addLocalisation(int HoI4StateID, string Vic2StateID, const V2Localisation& Vic2Localisations);
+		int getTotalManpower();
 
 		void outputHistory() const;
 		void outputLocalisations() const;
