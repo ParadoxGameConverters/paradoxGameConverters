@@ -32,6 +32,7 @@ ideologies = {
 		}
 		
 		modifiers = {
+		join_faction_tension = 0.20
 			puppet_cost_factor = -0.3
 		}
 		
@@ -62,21 +63,17 @@ ideologies = {
 		color = { 255 255 51 }
 		
 		rules = {
-			can_declare_war_on_same_ideology = no
 			can_force_government = no
 			can_send_volunteers = yes
 			can_puppet = no
-			can_lower_tension = yes
 			can_only_justify_war_on_threat_country = yes
 			can_guarantee_other_ideologies = yes
 		}
 		
-		war_impact_on_world_tension = -1.0
-		faction_impact_on_world_tension = -0.1
 		
 		modifiers = {
 			generate_wargoal_tension = 1.00
-			join_faction_tension = 0.80
+			join_faction_tension = 0.50
 			lend_lease_tension = 0.50
 			send_volunteers_tension = 0.50
 			guarantee_tension = 0.25
@@ -120,21 +117,16 @@ ideologies = {
 		color = { 0 0 255 }
 		
 		rules = {
-			can_declare_war_on_same_ideology = no
 			can_force_government = yes
-			can_send_volunteers = no
+			can_send_volunteers = yes
 			can_puppet = no
-			can_lower_tension = yes
-			can_only_justify_war_on_threat_country = yes
 			can_guarantee_other_ideologies = yes
 		}
 		
-		war_impact_on_world_tension = -1.0
-		faction_impact_on_world_tension = -0.1
 		
 		modifiers = {
 			generate_wargoal_tension = 1.00
-			join_faction_tension = 0.80
+			join_faction_tension = 0.50
 			lend_lease_tension = 0.50
 			send_volunteers_tension = 0.50
 			guarantee_tension = 0.25
@@ -182,6 +174,7 @@ ideologies = {
 		}
 		
 		modifiers = {
+				join_faction_tension = 0.20
 			justify_war_goal_when_in_major_war_time = -0.80
 		}
 
@@ -225,6 +218,7 @@ ideologies = {
 		}
 		
 		modifiers = {
+				join_faction_tension = 0.20
 			justify_war_goal_when_in_major_war_time = -0.80
 		}
 
@@ -255,19 +249,16 @@ ideologies = {
 		rules = {
 			can_declare_war_on_same_ideology = no
 			can_force_government = yes
-			can_send_volunteers = no
+			can_send_volunteers = yes
 			can_puppet = no
-			can_lower_tension = yes
 			can_only_justify_war_on_threat_country = yes
 			can_guarantee_other_ideologies = yes
 		}
 		
-		war_impact_on_world_tension = -1.0
-		faction_impact_on_world_tension = -0.1
 		
 		modifiers = {
 			generate_wargoal_tension = 1.00
-			join_faction_tension = 0.80
+			join_faction_tension = 0.50
 			lend_lease_tension = 0.50
 			send_volunteers_tension = 0.50
 			guarantee_tension = 0.25
@@ -325,6 +316,7 @@ ideologies = {
 		}
 		
 		modifiers = {
+				join_faction_tension = 0.20
 			puppet_cost_factor = -0.3
 		}
 		

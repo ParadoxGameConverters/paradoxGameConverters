@@ -2561,7 +2561,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 		FocusTree += "		id = Annex" + Home->getTag() + Annexed3->getTag() + "\n";
 		FocusTree += "		icon = GFX_goal_generic_major_war\n";
 		FocusTree += "		text = \"Conquer " + Annexed3->getSourceCountry()->getName() + "\"\n";
-		FocusTree += "		available = { " + Annexed1->getTag() + " = { is_in_faction = no } }\n";
+		FocusTree += "		available = { " + Annexed3->getTag() + " = { is_in_faction = no } }\n";
 		FocusTree += "		prerequisite = { focus = PrepTheBorder" + Home->getTag() + " }\n";
 		FocusTree += "		x = 36\n";
 		FocusTree += "		y = 3\n";
@@ -2595,7 +2595,7 @@ string HoI4World::createMonarchyEmpireNF(HoI4Country* Home, HoI4Country* Annexed
 		FocusTree += "		id = Annex" + Home->getTag() + Annexed4->getTag() + "\n";
 		FocusTree += "		icon = GFX_goal_generic_major_war\n";
 		FocusTree += "		text = \"Conquer " + Annexed4->getSourceCountry()->getName() + "\"\n";
-		FocusTree += "		available = { " + Annexed2->getTag() + " = { is_in_faction = no } }\n";
+		FocusTree += "		available = { " + Annexed4->getTag() + " = { is_in_faction = no } }\n";
 		FocusTree += "		prerequisite = { focus = NatSpirit" + Home->getTag() + " }\n";
 		FocusTree += "		x = 34\n";
 		FocusTree += "		y = 4\n";
@@ -4757,9 +4757,9 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		//time to do events for coms and fascs if they are relevant
 		LOG(LogLevel::Info) << "Calculating Fasc/Com AI";
 
-		for (auto Faction : Factions)
+		for (auto GreatCountry : returnGreatCountries(sourceWorld,countryMap) )
 		{
-			HoI4Country* Leader = Faction->getLeader();
+			HoI4Country* Leader = GreatCountry;
 			LeaderCountries.push_back(Leader);
 			if ((Leader->getGovernment() == "fascism"))
 			{
