@@ -1171,12 +1171,12 @@
 	link = { vic2 = 663 hoi4 = 6761 hoi4 = 11689 }	# Suceava -> land, land
 	link = { vic2 = 662 hoi4 = 9548 hoi4 = 577 }	# Cernauti -> land, land
 	link = { vic2 = 677 hoi4 = 11705 hoi4 = 565 hoi4 = 6600 hoi4 = 3577 hoi4 = 414 hoi4 = 3407 }	# Balti -> land, land, land, land, land, land
-	link = { vic2 = 673 hoi4 = 11652 hoi4 = 6706 hoi4 = 9701 hoi4 = 6729 }	# Galati -> land, land, land, land
-	link = { vic2 = 672 hoi4 = 3728 hoi4 = 11672 hoi4 = 11655 }	# Bacau -> land, land, land
-	link = { vic2 = 660 hoi4 = 3741 hoi4 = 6747 hoi4 = 9672 hoi4 = 6731 hoi4 = 9685 }	# Udvarhely -> land, land, land, land, land
+	link = { vic2 = 673 hoi4 = 6706 hoi4 = 6729 }	# Galati -> land, land, land, land
+	link = { vic2 = 672 hoi4 = 11652 hoi4 = 3728 hoi4 = 9701 hoi4 = 3741 hoi4 = 11672 hoi4 = 11655 }	# Bacau -> land, land, land
+	link = { vic2 = 660 hoi4 = 9672 hoi4 = 6731 hoi4 = 9685 }	# Udvarhely -> land, land, land, land, land
 	link = { vic2 = 676 hoi4 = 3704 hoi4 = 9683 hoi4 = 3724 hoi4 = 6743 hoi4 = 11686 hoi4 = 3707 }	# Chisinau -> land, land, land, land, land, land
-	link = { vic2 = 671 hoi4 = 11534 hoi4 = 6584 hoi4 = 744 }	# Botosani -> land, land, land
-	link = { vic2 = 670 hoi4 = 9716 hoi4 = 723 }	# Iasi -> land, land
+	link = { vic2 = 671 hoi4 = 11534 hoi4 = 6584 hoi4 = 744 hoi4 = 9716 }	# Botosani -> land, land, land
+	link = { vic2 = 670 hoi4 = 6747 hoi4 = 723 }	# Iasi -> land, land
 	link = { vic2 = 678 hoi4 = 3701 hoi4 = 6727 }	# Izmail -> land, land
 	link = { vic2 = 659 hoi4 = 690 }	# Brasso -> land
 	link = { vic2 = 657 hoi4 = 6709 hoi4 = 3676 hoi4 = 9668 hoi4 = 3689 }	# Nagyszeben -> land, land, land, land
@@ -1664,14 +1664,14 @@
 	link = { vic2 = 407 hoi4 = 9505 hoi4 = 6531 hoi4 = 680 hoi4 = 3669 }	# Chaumont -> land, land, land, land
 	link = { vic2 = 412 hoi4 = 3629 hoi4 = 11502 hoi4 = 9559 }	# Metz -> land, land, land
 	link = { vic2 = 408 hoi4 = 13011 hoi4 = 6545 hoi4 = 11732 hoi4 = 551 hoi4 = 3533 }	# Chalons -> land, land, land, land, land
-	link = { vic2 = 410 hoi4 = 678 }	# Colmar -> land
-	link = { vic2 = 409 hoi4 = 9503 hoi4 = 6529 hoi4 = 549 }	# Strasbourg -> land, land, land
-	link = { vic2 = 414 hoi4 = 521 hoi4 = 1346 }	# Épinal -> land, land
-	link = { vic2 = 411 hoi4 = 11516 hoi4 = 11642 hoi4 = 11488 }	# Nancy -> land, land, land
+	link = { vic2 = 410 hoi4 = 678 hoi4 = 6529 }	# Colmar -> land
+	link = { vic2 = 409 hoi4 = 9503 hoi4 = 549 hoi4 = 1346}	# Strasbourg -> land, land, land
+	link = { vic2 = 414 hoi4 = 521 hoi4 = 11642 }	# Épinal -> land, land
+	link = { vic2 = 411 hoi4 = 11516 hoi4 = 11488 }	# Nancy -> land, land, land
 	link = { vic2 = 431 hoi4 = 11794 hoi4 = 11593 hoi4 = 3594 }	# Macon -> land, land, land
 	link = { vic2 = 451 hoi4 = 6613 hoi4 = 9590 hoi4 = 3589 hoi4 = 6639 }	# Lyon -> land, land, land, land
-	link = { vic2 = 433 hoi4 = 3646 hoi4 = 3650 hoi4 = 641 hoi4 = 6668 hoi4 = 3666 }	# Lons -> land, land, land, land, land
-	link = { vic2 = 432 hoi4 = 9642 hoi4 = 6698 hoi4 = 817 hoi4 = 698 }	# Besançon -> land, land, land, land
+	link = { vic2 = 433 hoi4 = 3646 hoi4 = 3650 hoi4 = 641 hoi4 = 817 hoi4 = 6668 }	# Lons -> land, land, land, land, land
+	link = { vic2 = 432 hoi4 = 9642 hoi4 = 6698 hoi4 = 3666 hoi4 = 698 }	# Besançon -> land, land, land, land
 	link = { vic2 = 428 hoi4 = 3652 hoi4 = 11628 hoi4 = 648 hoi4 = 9658 }	# Dijon -> land, land, land, land
 	link = { vic2 = 406 hoi4 = 9490 hoi4 = 3506 }	# Troyes -> land, land
 	link = { vic2 = 472 hoi4 = 3959 hoi4 = 9909 }	# Nice -> land, land
