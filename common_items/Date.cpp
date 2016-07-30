@@ -67,9 +67,9 @@ date::date(const Object* _init)
 	if (dateSubObj.size() > 0)
 	{
 		// date specified by year=, month=, day=
-		year = atoi(_init->getLeaf("year").c_str());
-		month = atoi(_init->getLeaf("month").c_str());
-		day = atoi(_init->getLeaf("day").c_str());
+		year	= atoi(_init->getLeaf("year").c_str());
+		month	= atoi(_init->getLeaf("month").c_str());
+		day	= atoi(_init->getLeaf("day").c_str());
 	}
 	else
 	{

@@ -1,0 +1,11 @@
+cultureMap = {
+
+link = { hoi3 = German v2 = north_german v2 = south_german v2 = german v2 = frankish v2 = suebi }
+link = { hoi3 = British v2 = british v2 = english v2 = irish v2 = anglo_saxon v2 = scottish v2 = pictish v2 = welsh }
+link = { hoi3 = Soviet v2 = russian v2 = byelorussian v2 = ukrainian v2 = ugrian }
+link = { hoi3 = Us v2 = yankee v2 = dixie v2 = texan }
+link = { hoi3 = Japanese v2 = japanese v2 = ainu }
+link = { hoi3 = French v2 = french v2 = occitain }
+link = { hoi3 = Italian v2 = north_italian v2 = south_italian v2 = maltese v2 = lombard v2 = all_italian }
+
+}

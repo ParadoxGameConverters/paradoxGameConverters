@@ -1,0 +1,266 @@
+﻿resources  =  {
+link = { province = 606 resources = { aluminium = 10 } }
+link = { province = 833 resources = { chromium = 36 aluminium = 112 } }
+link = { province = 907 resources = { chromium = 116 aluminium = 32 } }
+link = { province = 630 resources = { steel = 4 } }
+link = { province = 10 resources = { aluminium = 8 } }
+link = { province = 799 resources = { tungsten = 76 } }
+link = { province = 285 resources = { aluminium = 2 steel = 3 } }
+link = { province = 819 resources = { aluminium = 16 steel  =  24 } }
+link = { province = 222 resources = { steel = 2 } }
+link = { province = 131 resources = { chromium = 2 tungsten = 22 aluminium = 12 } }
+link = { province = 253 resources = { steel = 16 aluminium = 4 } }
+link = { province = 3241 resources = { steel = 48 } }
+link = { province = 364 resources = { steel = 20 } }
+link = { province = 83 resources = { steel = 3 } }
+link = { province = 6268 resources = { steel = 120 } }
+link = { province = 219 resources = { steel = 60 aluminium = 8 } }
+link = { province = 3205 resources = { steel = 56 aluminium = 4 } }
+link = { province = 3273 resources = { steel = 36 } }
+link = { province = 200 resources = { tungsten = 6 aluminium = 4 } }
+link = { province = 211 resources = { steel = 10 } }
+link = { province = 69 resources = { steel = 10 } }
+link = { province = 35 resources = { steel = 40 aluminium = 4 } }
+link = { province = 53 resources = { chromium = 2 aluminium = 22 } }
+link = { province = 22 resources = { steel = 12 tungsten  =  20 } }
+link = { province = 30 resources = { steel = 8 chromium = 2 } }
+link = { province = 485 resources = { steel = 36 } }
+link = { province = 7 resources = { steel = 4 } }
+link = { province = 658 resources = { aluminium = 24 } }
+link = { province = 688 resources = { steel = 8 aluminium = 1 } }
+link = { province = 682 resources = { oil  =  1 } }
+link = { province = 611 resources = { steel = 40 aluminium = 28 chromium  =  4 tungsten  =  2 } }
+link = { province = 603 resources = { steel = 32.000 aluminium = 18.000 } }
+link = { province = 782 resources = { aluminium = 16 } }
+link = { province = 790 resources = { steel = 24 } }
+link = { province = 521 resources = { steel = 48 } }
+link = { province = 794 resources = { tungsten = 6 } }
+link = { province = 738 resources = { steel = 12 } }
+link = { province = 747 resources = { steel = 12 } }
+link = { province = 845 resources = { tungsten = 300 } }
+link = { province = 7193 resources = { chromium = 4 } }
+link = { province = 6990 resources = { chromium = 16 } }
+link = { province = 841 resources = { chromium = 20 steel  =  20 } }
+link = { province = 3401 resources = { chromium = 10 } }
+link = { province = 530 resources = { steel = 3 } }
+link = { province = 743 resources = { steel = 40 aluminium = 18 } }
+link = { province = 568 resources = { chromium = 22 } }
+link = { province = 641 resources = { steel = 128 aluminium = 72 } }
+link = { province = 489 resources = { oil = 14 aluminium = 12 } }
+link = { province = 21911 resources = { aluminium = 120 } }
+link = { province = 15 resources = { steel = 28 chromium = 24 } }
+link = { province = 36 resources = { steel = 52.000 } }
+link = { province = 301 resources = { steel = 28 } }
+link = { province = 752 resources = { steel = 136 aluminium = 96 } }
+link = { province = 418 resources = { steel = 56 } }
+link = { province = 302 resources = { steel = 76 chromium = 12 } }
+link = { province = 453 resources = { oil = 6 } }
+link = { province = 1467 resources = { oil = 126 } }
+link = { province = 595 resources = { steel = 48 } }
+link = { province = 683 resources = { oil = 26 } }
+link = { province = 654 resources = { chromium = 46 } }
+link = { province = 717 resources = { tungsten = 26 oil = 18 } }
+link = { province = 714 resources = { chromium = 20 } }
+link = { province = 187 resources = { steel = 24 } }
+link = { province = 228 resources = { steel = 40 } }
+link = { province = 286 resources = { steel = 20 } }
+link = { province = 232 resources = { chromium = 10 } }
+link = { province = 659 resources = { steel = 48.000 aluminium = 16.000 } }
+link = { province = 105 resources = { oil = 8 } }
+link = { province = 5082 resources = { tungsten = 3 } }
+link = { province = 648 resources = { aluminium = 18 } }
+link = { province = 1984 resources = { rubber = 2 } }
+link = { province = 2100 resources = { steel = 4 } }
+link = { province = 1688 resources = { steel = 8 chromium = 80 } }
+link = { province = 650 resources = { steel = 24 } }
+link = { province = 549 resources = { steel = 236 } }
+link = { province = 993 resources = { aluminium = 2 } }
+link = { province = 531 resources = { tungsten = 1 } }
+link = { province = 1285 resources = { rubber = 94 } }
+link = { province = 1014 resources = { rubber = 4 } }
+link = { province = 1244 resources = { rubber = 10 tungsten = 2 } }
+link = { province = 454 resources = { steel = 112 aluminium = 22 } }
+link = { province = 4199 resources = { steel = 20 } }
+link = { province = 78 resources = { oil = 22 } }
+link = { province = 1955 resources = { oil = 3 } }
+link = { province = 1920 resources = { oil = 1 } }
+link = { province = 1947 resources = { oil = 2 } }
+link = { province = 191 resources = { tungsten = 2 } }
+link = { province = 7959 resources = { rubber = 4 } }
+link = { province = 636 resources = { aluminium = 28 } }
+link = { province = 1613 resources = { oil = 2 steel = 2 } }
+link = { province = 2174 resources = { tungsten = 102.000 steel = 2.000 } }
+link = { province = 2156 resources = { oil = 18 } }
+link = { province = 1633 resources = { oil = 1 } }
+link = { province = 5051 resources = { oil = 2 } }
+link = { province = 4942 resources = { oil = 58 } }
+link = { province = 1928 resources = { aluminium = 12 } }
+link = { province = 4934 resources = { aluminium = 104 } }
+link = { province = 2031 resources = { chromium = 1 } }
+link = { province = 4991 resources = { chromium = 6 } }
+link = { province = 12823 resources = { chromium = 1 } }
+link = { province = 1550 resources = { steel = 4 chromium = 160 } }
+link = { province = 12878 resources = { chromium = 1 } }
+link = { province = 1988 resources = { chromium = 1 } }
+link = { province = 1594  resources = { chromium = 3 } }
+link = { province = 4598 resources = { chromium = 1 } }
+link = { province = 762 resources = { steel = 56 aluminium = 58 } }
+link = { province = 1961 resources = { tungsten = 2 } }
+link = { province = 4386  resources = { chromium = 2  } }
+link = { province = 8010 resources = { tungsten = 2 } }
+link = { province = 1114 resources = { tungsten = 3  } }
+link = { province = 1676 resources = { chromium = 2 } }
+link = { province = 1689 resources = { steel = 2 chromium = 3 } }
+link = { province = 1208 resources = { rubber = 72 oil = 18 } }
+link = { province = 1225 resources = { rubber = 138 oil = 10 } }
+link = { province = 1209 resources = { rubber = 242 oil = 16 } }
+link = { province = 1291 resources = { rubber = 848 steel = 32 tungsten = 308 } }
+link = { province = 3369 resources = { steel = 16 } }
+link = { province = 928 resources = { chromium = 86 } }
+link = { province = 785 resources = { chromium = 54 } }
+link = { province = 849 resources = { chromium = 84 steel  =  20 } }
+link = { province = 1005 resources = { chromium = 46 } }
+link = { province = 784 resources = { chromium = 32 } }
+link = { province = 890 resources = { chromium = 26 } }
+link = { province = 715 resources = { steel = 20.000 } }
+link = { province = 598 resources = { steel = 24.000 } }
+link = { province = 702 resources = { steel = 80 } }
+link = { province = 913 resources = { steel = 112 } }
+link = { province = 1453 resources = { oil = 66 } }
+link = { province = 1503 resources = { aluminium = 20 } }
+link = { province = 1441 resources = { aluminium = 18 } }
+link = { province = 1618 resources = { oil = 100 aluminium = 32 } }
+link = { province = 805 resources = { oil = 580 aluminium = 96 } }
+link = { province = 1972 resources = { oil = 20 aluminium = 52 } }
+link = { province = 850 resources = { steel = 40 oil = 10 aluminium = 16 } }
+link = { province = 610 resources = { oil = 350 aluminium = 14 } }
+link = { province = 1862 resources = { steel = 136 tungsten = 62 aluminium = 44 } }
+link = { province = 46 resources = { steel = 62 } }
+link = { province = 1663 resources = { tungsten = 106 } }
+link = { province = 868 resources = { oil = 20 } }
+link = { province = 1352 resources = { oil = 42 } }
+link = { province = 1789 resources = { steel = 32 chromium = 2 tungsten = 34 } }
+link = { province = 1736 resources = { tungsten = 16 } }
+link = { province = 1752 resources = { steel = 24 oil = 10 } }
+link = { province = 656 resources = { aluminium = 22 } }
+link = { province = 1719 resources = { steel = 208 } }
+link = { province = 691 resources = { steel = 112.000 oil = 10.000 } }
+link = { province = 703 resources = { steel = 84 } }
+link = { province = 123 resources = { aluminium = 10 } }
+link = { province = 305 resources = { chromium = 24 } }
+link = { province = 653 resources = { oil = 2 } }
+link = { province = 31 resources = { aluminium = 20 } }
+link = { province = 410 resources = { steel = 40 tungsten = 34 } }
+link = { province = 1220 resources = { chromium = 20 } }
+link = { province = 664 resources = { chromium = 28 } }
+link = { province = 725 resources = { chromium = 12 } }
+link = { province = 858 resources = { aluminium = 2 } }
+link = { province = 1963 resources = { oil = 14 } }
+link = { province = 4959 resources = { oil = 12 } }
+link = { province = 1922 resources = { oil = 42 } }
+link = { province = 563 resources = { steel = 100 aluminium = 24 } }
+link = { province = 1213 resources = { rubber = 116 } }
+link = { province = 1238 resources = { rubber = 28 } }
+link = { province = 1412 resources = { chromium = 20 tungsten = 128 } }
+link = { province = 1059 resources = { steel = 44 chromium = 36 aluminium = 2 } }
+link = { province = 1275 resources = { chromium = 8 } }
+link = { province = 1061 resources = { oil = 4 } }
+link = { province = 1349 resources = { tungsten = 26 } }
+link = { province = 684 resources = { steel = 4 aluminium = 194 } }
+link = { province = 1159 resources = { steel = 20 tungsten = 16 } }
+link = { province = 1497 resources = { oil = 6 } }
+link = { province = 1199 resources = { tungsten = 42 } }
+link = { province = 1116 resources = { tungsten = 54 } }
+link = { province = 1510 resources = { chromium = 6 } }
+link = { province = 914 resources = { aluminium = 3 chromium = 3 } }
+link = { province = 1071 resources = { oil = 2 } }
+link = { province = 1037 resources = { steel = 8 } }
+link = { province = 1013 resources = { steel = 36 } }
+link = { province = 657 resources = { oil = 70 } }
+link = { province = 490 resources = { aluminium = 4.000 } }
+link = { province = 1284 resources = { aluminium = 4 } }
+link = { province = 863 resources = { steel = 4 chromium = 22 aluminium = 58 tungsten  =  20 } }
+link = { province = 1323 resources = { oil = 2 } }
+link = { province = 2051 resources = { tungsten = 10 } }
+link = { province = 793 resources = { aluminium = 2 } }
+link = { province = 2060 resources = { oil = 48 } }
+link = { province = 1945 resources = { steel = 4 } }
+link = { province = 1944 resources = { oil = 126 } }
+link = { province = 804 resources = { chromium = 16 } }
+link = { province = 2182 resources = { tungsten = 2.000 } }
+link = { province = 1937 resources = { oil = 20 } }
+link = { province = 1979 resources = { aluminium = 4 } }
+link = { province = 2153 resources = { steel = 4 } }
+link = { province = 2150 resources = { rubber = 30 } }
+link = { province = 519 resources = { aluminium = 10.000 } }
+link = { province = 2106 resources = { tungsten = 46 steel = 8 } }
+link = { province = 529 resources = { steel = 54 } }
+link = { province = 1449 resources = { oil = 12 } }
+link = { province = 2149 resources = { oil = 6 } }
+link = { province = 1759 resources = { steel = 12 chromium = 6 } }
+link = { province = 692 resources = { aluminium = 30 } }
+link = { province = 1217 resources = { steel = 28 } }
+link = { province = 1472 resources = { tungsten = 36 } }
+link = { province = 848 resources = { steel = 20 tungsten = 52 } }
+link = { province = 1020 resources = { chromium = 88 } }
+link = { province = 1051 resources = { aluminium = 6 } }
+link = { province = 1024 resources = { steel = 24 } }
+link = { province = 998 resources = { steel = 24 tungsten = 10 } }
+link = { province = 1322 resources = { oil = 4 } }
+link = { province = 1580 resources = { chromium = 168 } }
+link = { province = 697 resources = { chromium = 64.000 tungsten = 16.000 } }
+link = { province = 3854 resources = { rubber = 6.000 } }
+link = { province = 1724 resources = { steel = 24 } }
+link = { province = 1672 resources = { steel = 12 chromium = 10 } }
+link = { province = 1696 resources = { steel = 20 chromium = 34 tungsten = 28 aluminium = 8 } }
+link = { province = 1666 resources = { steel = 32 chromium = 12 } }
+link = { province = 1707 resources = { steel = 28.000 aluminium = 10.000 } }
+link = { province = 1735 resources = { aluminium = 34 } }
+link = { province = 237 resources = { chromium = 32 } }
+link = { province = 1726 resources = { oil = 14 } }
+link = { province = 4874 resources = { chromium = 44 aluminium = 30 } }
+link = { province = 1334 resources = { steel = 72 oil = 12 } }
+link = { province = 1591 resources = { steel = 48 chromium = 44 tungsten = 14 aluminium = 32 } }
+link = { province = 1287 resources = { chromium = 22.000 } }
+link = { province = 374 resources = { oil = 4 } }
+link = { province = 1047 resources = { tungsten = 10 steel =  20 chromium  =  4 } }
+link = { province = 1078 resources = { tungsten = 20 steel =  20 chromium  =  4 } }
+link = { province = 1018 resources = { tungsten = 14 steel  =  10 chromium  =  4 } }
+link = { province = 1023 resources = { tungsten = 20 steel =  20 chromium  =  4 } }
+link = { province = 516 resources = { steel = 48 } }
+link = { province = 425 resources = { steel = 20 chromium  =  4 tungsten  =  4 } }
+link = { province = 1918 resources = { oil = 2 } }
+link = { province = 1448 resources = { tungsten = 8 } }
+link = { province = 1367 resources = { steel  =  20 } }
+link = { province = 1083 resources = { steel = 16 } }
+link = { province = 1766 resources = { aluminium = 2 chromium = 3 } }
+link = { province = 517 resources = { steel = 4 tungsten = 3 } }
+link = { province = 1388 resources = { rubber = 2 } }
+link = { province = 9252 resources = { steel = 36 aluminium = 12 } }
+link = { province = 1237 resources = { chromium = 178.000 } }
+link = { province = 514 resources = { steel = 90 } }
+link = { province = 227 resources = { steel = 28 } }
+link = { province = 675 resources = { steel = 24 } }
+link = { province = 2048 resources = { oil = 6 } }
+link = { province = 552 resources = { steel = 110 aluminium = 38 } }
+link = { province = 3565 resources = { steel = 20 } }
+link = { province = 11 resources = { tungsten = 70 steel =  80 chromium  =  40 } }
+link = { province = 1298 resources = { rubber = 16 } }
+link = { province = 479 resources = { steel = 60 aluminium = 20 } }
+link = { province = 1073 resources = { chromium = 8 tungsten = 38 } }
+link = { province = 1246 resources = { rubber = 268 oil = 24 aluminium = 6 } }
+link = { province = 1098 resources = { rubber = 52 } }
+link = { province = 1600 resources = { oil = 10 } }
+link = { province = 444 resources = { aluminium = 24 } }
+link = { province = 602 resources = { steel = 12.000 aluminium = 14.000 } }
+link = { province = 761 resources = { aluminium = 8.000 } }
+link = { province = 4982 resources = { aluminium = 112 } }
+link = { province = 2195 resources = { tungsten = 4 steel = 2 } }
+link = { province = 3284 resources = { oil = 16 } }
+link = { province = 68 resources = { steel = 8 } }
+link = { province = 541 resources = { tungsten = 2 } }
+link = { province = 836 resources = { steel = 36 } }
+link = { province = 1468 resources = { chromium = 116 } }
+link = { province = 2197 resources = { tungsten = 6 } }
+link = { province = 1279 resources = { rubber = 70 } }
+}

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<configuration
+  Comment="This file is used to build the configuration parth of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
+  <!--This part contains the various options that will be displayed as preferences in the converter ui, and outputted as configuration.txt as input for the converter tool itself-->
+  <converterOptions>
+    <categories>
+      <category>
+        <friendlyName>Configuration</friendlyName>
+        <preferences>
+		  <preference>
+            <name>Vic2Mods</name>
+            <friendlyName>Vic2 Mods</friendlyName>
+            <description>Vic2 mods to use for conversion (mods require manual conversion)</description>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+			<useCurlyBraces>true</useCurlyBraces>
+            <value></value>
+          </preference>
+        </preferences>
+      </category>
+    </categories>
+  </converterOptions>
+  >
+</configuration>
