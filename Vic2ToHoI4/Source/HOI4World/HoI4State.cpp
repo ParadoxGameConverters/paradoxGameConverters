@@ -35,7 +35,7 @@ HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, string _ownerTag)
 
 	ID					= _ID;
 	ownerTag			= _ownerTag;
-	manpower			= 1;
+	manpower			= 0;
 
 	civFactories	= 0;
 	milFactories	= 0;
