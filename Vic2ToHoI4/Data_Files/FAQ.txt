@@ -5,4 +5,12 @@ A : Go to the Visual Studio Redistributable page: https://www.microsoft.com/en-u
 
 Q: I'm trying to convert a EU4 To Vic2 game and keep getting an error. What do I do?
 A: You need to include the Vic2 mod from the EU4 to Vic2 converter to properly convert these games.
+	You should put the name of the mod's folder in the Vic2 Mods option.
+	You can check log.txt after trying to convert to see if it was correct.
+	Early on it will say "Double-check Vic2 mods", and follow that with a list of mods it expected and a list of mods it found.
+	The ones it expects are the ones listed in the option. The ones it found are the ones it could see in your mod folder.
+	The names of the ones it expects should exactly match the names of the ones it found.
 
+Q: I used a mod, will the converter work with it?
+A: It depends on what the mod changed. Your best bet is to simply try (and let us know how it went). As far as we can tell, it does work well with
+	NNM, PDM, HPM, and games converted from EU4.
