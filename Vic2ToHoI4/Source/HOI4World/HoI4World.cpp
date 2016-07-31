@@ -4967,7 +4967,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 			vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld, countryMap);
 			for each (auto GC in GreatCountries)
 			{
-				if ( (GC->getGovernment() == "hms_government" && GC->getRulingParty().war_pol != "jingoism") || GC->getGovernment() == "democratic" )
+				if ( (GC->getGovernment() == "hms_government" && (GC->getRulingParty().war_pol == "pacifism" || GC->getRulingParty().war_pol == "anti_military")) || GC->getGovernment() == "democratic" )
 				{
 					out << "added a Democracy to make more wars " + GC->getSourceCountry()->getName() << endl;
 					vector <HoI4Faction*> newCountriesatWar;
@@ -4990,7 +4990,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 			vector<HoI4Country*> GCEvilnessSorted;
 			for each (auto GC in GreatCountries)
 			{
-				if (GC->getGovernment() == "prussian_constitutionalism" || GC->getGovernment() == "hms_government" || GC->getGovernment() == "absolute_monarchy" && std::find(LeaderCountries.begin(), LeaderCountries.end(), GC) == LeaderCountries.end() && (GC->getGovernment() != "hms_government" || (GC->getGovernment() == "hms_government" && GC->getRulingParty().war_pol == "jingoism")) && GC->getGovernment() != "democratic")
+				if (GC->getGovernment() == "prussian_constitutionalism" || GC->getGovernment() == "hms_government" || GC->getGovernment() == "absolute_monarchy" && std::find(LeaderCountries.begin(), LeaderCountries.end(), GC) == LeaderCountries.end() && (GC->getGovernment() != "hms_government" || (GC->getGovernment() == "hms_government" && (GC->getRulingParty().war_pol == "jingoism" || GC->getRulingParty().war_pol == "pro_military"))) && GC->getGovernment() != "democratic")
 				{
 					double v1 = rand() % 95 + 1;
 					v1 = v1 / 100;
@@ -6630,7 +6630,7 @@ vector<HoI4Faction*> HoI4World::DemocracyWarCreator(HoI4Country* Leader, V2World
 	for (auto GC : returnGreatCountries(sourceWorld, countryMap))
 	{
 		double relation = Leader->getRelations(GC->getTag())->getRelations();
-		if ( relation < 0 && (GC->getGovernment() != "hms_government" || (GC->getGovernment() == "hms_government" && GC->getRulingParty().war_pol == "jingoism")) && GC->getGovernment() != "democratic" && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
+		if ( relation < 100 && (GC->getGovernment() != "hms_government" || (GC->getGovernment() == "hms_government" && (GC->getRulingParty().war_pol == "jingoism" || GC->getRulingParty().war_pol == "pro_military"))) && GC->getGovernment() != "democratic" && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
 		{
 			string HowToTakeGC = HowToTakeLand(GC, Leader, 3);
 			//if (HowToTakeGC == "noactionneeded" || HowToTakeGC == "factionneeded")

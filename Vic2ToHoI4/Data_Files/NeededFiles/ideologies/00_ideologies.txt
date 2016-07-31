@@ -18,7 +18,7 @@ ideologies = {
 			"FACTION_NAME_COMMUNIST_5"
 		}
 		
-		color = { 153 153 0 }
+		color = { 115 92 0 }
 		
 		war_impact_on_world_tension = 0.75		#Commie less threatening
 		faction_impact_on_world_tension = 0.5
@@ -104,7 +104,7 @@ ideologies = {
 			"FACTION_NAME_DEMOCRATIC_6"
 		}
 		
-		color = { 255 255 51 }
+		color = { 155 155 0 }
 		
 		rules = {
 			can_force_government = no

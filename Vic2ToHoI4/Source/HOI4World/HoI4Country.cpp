@@ -1910,158 +1910,179 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	unmappedParties.insert(make_pair("stalinist", "communist_group"));
 	// map all the simplistic cases
 	auto ideologyItr = V2Ideologies.find("fascist");
-	if ((ideologyItr != V2Ideologies.end()) && (ideologyItr->second.size() == 1))
+	if ((ideologyItr != V2Ideologies.end()))
 	{
-		HoI4Party newParty;
-		newParty.name = ideologyItr->second[0]->name;
-		newParty.war_pol = ideologyItr->second[0]->war_policy;
-		newParty.ideology = "fascistic";
-		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("fascist") * 100 + 0.5);
-		newParty.organization = newParty.popularity;
-		parties.push_back(newParty);
-
-		if (rulingParty->ideology == ideologyItr->first)
+		for (int i = 0; i < ideologyItr->second.size(); i++)
 		{
-			RulingPartyModel = newParty;
-			rulingIdeology = "fascistic";
-			rulingHoI4Ideology = "fascism";
-		}
+			HoI4Party newParty;
+			newParty.name = ideologyItr->second[i]->name;
+			newParty.war_pol = ideologyItr->second[i]->war_policy;
+			newParty.ideology = "fascistic";
+			newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("fascist") * 100 + 0.5);
+			newParty.organization = newParty.popularity;
+			parties.push_back(newParty);
 
-		V2Ideologies.erase(ideologyItr);
-		auto itr = unmappedParties.find("fascistic");
-		unmappedParties.erase(itr);
+			if (rulingParty == ideologyItr->second[i])
+			{
+				RulingPartyModel = newParty;
+				rulingIdeology = "fascistic";
+				rulingHoI4Ideology = "fascism";
+			}
+
+			V2Ideologies.erase(ideologyItr);
+			auto itr = unmappedParties.find("fascistic");
+			unmappedParties.erase(itr);
+		}
 	}
 	ideologyItr = V2Ideologies.find("reactionary");
-	if ((ideologyItr != V2Ideologies.end()) && (ideologyItr->second.size() == 1))
+	if ((ideologyItr != V2Ideologies.end()))
 	{
-		HoI4Party newParty;
-		newParty.name = ideologyItr->second[0]->name;
-		newParty.war_pol = ideologyItr->second[0]->war_policy;
-		newParty.ideology = "paternal_autocrat";
-		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("reactionary") * 100 + 0.5);
-		newParty.organization = newParty.popularity;
-		parties.push_back(newParty);
-
-		if (rulingParty->ideology == ideologyItr->first)
+		for (int i = 0; i < ideologyItr->second.size(); i++)
 		{
-			RulingPartyModel = newParty;
-			rulingIdeology = "paternal_autocrat";
-			rulingHoI4Ideology = "autocratic";
-		}
+			HoI4Party newParty;
+			newParty.name = ideologyItr->second[i]->name;
+			newParty.war_pol = ideologyItr->second[i]->war_policy;
+			newParty.ideology = "paternal_autocrat";
+			newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("reactionary") * 100 + 0.5);
+			newParty.organization = newParty.popularity;
+			parties.push_back(newParty);
 
-		V2Ideologies.erase(ideologyItr);
-		auto itr = unmappedParties.find("paternal_autocrat");
-		unmappedParties.erase(itr);
+			if (rulingParty == ideologyItr->second[i])
+			{
+				RulingPartyModel = newParty;
+				rulingIdeology = "paternal_autocrat";
+				rulingHoI4Ideology = "autocratic";
+			}
+
+			V2Ideologies.erase(ideologyItr);
+			auto itr = unmappedParties.find("paternal_autocrat");
+			unmappedParties.erase(itr);
+		}
 	}
 	ideologyItr = V2Ideologies.find("conservative");
-	if ((ideologyItr != V2Ideologies.end()) && (ideologyItr->second.size() == 1))
+	if ((ideologyItr != V2Ideologies.end()))
 	{
-		HoI4Party newParty;
-		newParty.name = ideologyItr->second[0]->name;
-		newParty.war_pol = ideologyItr->second[0]->war_policy;
-		newParty.ideology = "social_conservative";
-		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("conservative") * 100 + 0.5);
-		newParty.organization = newParty.popularity;
-		parties.push_back(newParty);
-
-		if (rulingParty->ideology == ideologyItr->first)
+		for (int i = 0; i < ideologyItr->second.size(); i++)
 		{
-			RulingPartyModel = newParty;
-			rulingIdeology = "social_conservative";
-			rulingHoI4Ideology = "democratic";
-		}
+			HoI4Party newParty;
+			newParty.name = ideologyItr->second[i]->name;
+			newParty.war_pol = ideologyItr->second[i]->war_policy;
+			newParty.ideology = "social_conservative";
+			newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("conservative") * 100 + 0.5);
+			newParty.organization = newParty.popularity;
+			parties.push_back(newParty);
 
-		V2Ideologies.erase(ideologyItr);
-		auto itr = unmappedParties.find("social_conservative");
-		unmappedParties.erase(itr);
+			if (rulingParty == ideologyItr->second[i])
+			{
+				RulingPartyModel = newParty;
+				rulingIdeology = "social_conservative";
+				rulingHoI4Ideology = "democratic";
+			}
+
+			V2Ideologies.erase(ideologyItr);
+			auto itr = unmappedParties.find("social_conservative");
+			unmappedParties.erase(itr);
+		}
 	}
 	ideologyItr = V2Ideologies.find("socialist");
-	if ((ideologyItr != V2Ideologies.end()) && (ideologyItr->second.size() == 1))
+	if ((ideologyItr != V2Ideologies.end()))
 	{
-		HoI4Party newParty;
-		newParty.name = ideologyItr->second[0]->name;
-		newParty.war_pol = ideologyItr->second[0]->war_policy;
-		newParty.ideology = "left_wing_radical";
-		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("socialist") * 100 + 0.5);
-		newParty.organization = newParty.popularity;
-		parties.push_back(newParty);
-
-		if (rulingParty->ideology == ideologyItr->first)
+		for (int i = 0; i < ideologyItr->second.size(); i++)
 		{
-			RulingPartyModel = newParty;
-			rulingIdeology = "left_wing_radical";
-			rulingHoI4Ideology = "socialist";
-		}
+			HoI4Party newParty;
+			newParty.name = ideologyItr->second[i]->name;
+			newParty.war_pol = ideologyItr->second[i]->war_policy;
+			newParty.ideology = "left_wing_radical";
+			newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("socialist") * 100 + 0.5);
+			newParty.organization = newParty.popularity;
+			parties.push_back(newParty);
 
-		V2Ideologies.erase(ideologyItr);
-		auto itr = unmappedParties.find("left_wing_radical");
-		unmappedParties.erase(itr);
+			if (rulingParty == ideologyItr->second[i])
+			{
+				RulingPartyModel = newParty;
+				rulingIdeology = "left_wing_radical";
+				rulingHoI4Ideology = "socialist";
+			}
+
+			V2Ideologies.erase(ideologyItr);
+			auto itr = unmappedParties.find("left_wing_radical");
+			unmappedParties.erase(itr);
+		}
 	}
 	ideologyItr = V2Ideologies.find("communist");
-	if ((ideologyItr != V2Ideologies.end()) && (ideologyItr->second.size() == 1))
+	if ((ideologyItr != V2Ideologies.end()))
 	{
-		HoI4Party newParty;
-		newParty.name = ideologyItr->second[0]->name;
-		newParty.war_pol = ideologyItr->second[0]->war_policy;
-		newParty.ideology = "stalinist";
-		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("communist") * 100 + 0.5);
-		newParty.organization = newParty.popularity;
-		parties.push_back(newParty);
-
-		if (rulingParty->ideology == ideologyItr->first)
+		for (int i = 0; i < ideologyItr->second.size(); i++)
 		{
-			RulingPartyModel = newParty;
-			rulingIdeology = "stalinist";
-			rulingHoI4Ideology = "communism";
-		}
+			HoI4Party newParty;
+			newParty.name = ideologyItr->second[i]->name;
+			newParty.war_pol = ideologyItr->second[i]->war_policy;
+			newParty.ideology = "stalinist";
+			newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("communist") * 100 + 0.5);
+			newParty.organization = newParty.popularity;
+			parties.push_back(newParty);
 
-		V2Ideologies.erase(ideologyItr);
-		auto itr = unmappedParties.find("stalinist");
-		unmappedParties.erase(itr);
+			if (rulingParty == ideologyItr->second[i])
+			{
+				RulingPartyModel = newParty;
+				rulingIdeology = "stalinist";
+				rulingHoI4Ideology = "communism";
+			}
+
+			V2Ideologies.erase(ideologyItr);
+			auto itr = unmappedParties.find("stalinist");
+			unmappedParties.erase(itr);
+		}
 	}
 	ideologyItr = V2Ideologies.find("liberal");
-	if ((ideologyItr != V2Ideologies.end()) && (ideologyItr->second.size() == 1))
+	if ((ideologyItr != V2Ideologies.end()))
 	{
-		HoI4Party newParty;
-		newParty.name = ideologyItr->second[0]->name;
-		newParty.war_pol = ideologyItr->second[0]->war_policy;
-		newParty.ideology = "social_liberal";
-		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("liberal") * 100 + 0.5);
-		newParty.organization = newParty.popularity;
-		parties.push_back(newParty);
-
-		if (rulingParty->ideology == ideologyItr->first)
+		for (int i = 0; i < ideologyItr->second.size(); i++)
 		{
-			RulingPartyModel = newParty;
-			rulingIdeology = "social_liberal";
-			rulingHoI4Ideology = "liberal";
-		}
+			HoI4Party newParty;
+			newParty.name = ideologyItr->second[i]->name;
+			newParty.war_pol = ideologyItr->second[i]->war_policy;
+			newParty.ideology = "social_liberal";
+			newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("liberal") * 100 + 0.5);
+			newParty.organization = newParty.popularity;
+			parties.push_back(newParty);
 
-		V2Ideologies.erase(ideologyItr);
-		auto itr = unmappedParties.find("social_liberal");
-		unmappedParties.erase(itr);
+			if (rulingParty == ideologyItr->second[i])
+			{
+				RulingPartyModel = newParty;
+				rulingIdeology = "social_liberal";
+				rulingHoI4Ideology = "liberal";
+			}
+
+			V2Ideologies.erase(ideologyItr);
+			auto itr = unmappedParties.find("social_liberal");
+			unmappedParties.erase(itr);
+		}
 	}
 	ideologyItr = V2Ideologies.find("anarcho_liberal");
-	if ((ideologyItr != V2Ideologies.end()) && (ideologyItr->second.size() == 1))
+	if ((ideologyItr != V2Ideologies.end()))
 	{
-		HoI4Party newParty;
-		newParty.name = ideologyItr->second[0]->name;
-		newParty.war_pol = ideologyItr->second[0]->war_policy;
-		newParty.ideology = "market_liberal";
-		newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("anarcho_liberal") * 100 + 0.5);
-		newParty.organization = newParty.popularity;
-		parties.push_back(newParty);
-
-		if (rulingParty->ideology == ideologyItr->first)
+		for (int i = 0; i < ideologyItr->second.size(); i++)
 		{
-			RulingPartyModel = newParty;
-			rulingIdeology = "market_liberal";
-			rulingHoI4Ideology = "ancap";
-		}
+			HoI4Party newParty;
+			newParty.name = ideologyItr->second[i]->name;
+			newParty.war_pol = ideologyItr->second[i]->war_policy;
+			newParty.ideology = "market_liberal";
+			newParty.popularity = static_cast<unsigned int>(srcCountry->getUpperHousePercentage("anarcho_liberal") * 100 + 0.5);
+			newParty.organization = newParty.popularity;
+			parties.push_back(newParty);
 
-		V2Ideologies.erase(ideologyItr);
-		auto itr = unmappedParties.find("market_liberal");
-		unmappedParties.erase(itr);
+			if (rulingParty == ideologyItr->second[i])
+			{
+				RulingPartyModel = newParty;
+				rulingIdeology = "market_liberal";
+				rulingHoI4Ideology = "ancap";
+			}
+
+			V2Ideologies.erase(ideologyItr);
+			auto itr = unmappedParties.find("market_liberal");
+			unmappedParties.erase(itr);
+		}
 	}
 
 	if (V2Ideologies.size() == 0)
@@ -2502,7 +2523,7 @@ void HoI4Country::setPartyPopularity()
 		{
 			democraticPopularity += party.popularity;
 		}
-		if (party.name.find("conservative") != string::npos && (government != "democratic" && government != "hms_government "))
+		if (party.name.find("conservative") != string::npos && government != "democratic" && government != "hms_government ")
 		{
 			autocraticPopularity += party.popularity;
 		}
