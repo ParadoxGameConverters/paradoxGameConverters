@@ -23,10 +23,10 @@
 mappings = {
 link = { vic = absolute_monarchy hoi = absolute_monarchy}
 link = { vic = prussian_constitutionalism ruling_party = fascist hoi = absolute_monarchy }
-link = { vic = prussian_constitutionalism ruling_party = reactionary hoi =  absolute_monarchy}
+link = { vic = prussian_constitutionalism ruling_party = reactionary hoi =  prussian_constitutionalism }
 link = { vic = prussian_constitutionalism political_reforms = 0.75 hoi = prussian_constitutionalism }
 link = { vic = prussian_constitutionalism hoi = prussian_constitutionalism }
-link = { vic = hms_government ruling_party = fascist hoi = absolute_monarchy }
+link = { vic = hms_government ruling_party = fascist hoi = hms_government }
 link = { vic = hms_government hoi = hms_government }
 link = { vic = democracy ruling_party = fascist hoi = democratic}
 link = { vic = democracy ruling_party = reactionary hoi = democratic}

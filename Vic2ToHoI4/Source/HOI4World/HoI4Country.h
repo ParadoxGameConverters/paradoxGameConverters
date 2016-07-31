@@ -198,6 +198,7 @@ class HoI4Country
 		int liberalPopularity;
 		int socialistPopularity;
 		int syndicalistPopularity;
+		int ancapPopularity;
 		int autocraticPopularity;
 		int neutralityPopularity;
 

@@ -94,6 +94,7 @@ class HoI4World
 		string returnIfSphere(HoI4Country * leadercountry, HoI4Country * posLeaderCountry, const V2World & sourceWorld, const CountryMapping & countryMap);
 		vector<HoI4Faction*> FascistWarMaker(HoI4Country * Leader, V2World sourceWorld, CountryMapping countryMap);
 		vector<HoI4Faction*> CommunistWarCreator(HoI4Country * Leader, V2World sourceWorld, CountryMapping countryMap);
+		vector<HoI4Faction*> DemocracyWarCreator(HoI4Country * Leader, V2World sourceWorld, CountryMapping countryMap);
 		vector<HoI4Faction*> MonarchyWarCreator(HoI4Country * Leader, V2World sourceWorld, CountryMapping countryMap);
 		string HowToTakeLand(HoI4Country * TargetCountry, HoI4Country * AttackingCountry, double time);
 		vector<HoI4Country*> GetMorePossibleAllies(HoI4Country * CountryThatWantsAllies);
@@ -105,6 +106,7 @@ class HoI4World
 		void fillProvinces();
 		string createAnnexEvent(HoI4Country * Annexer, HoI4Country * Annexed, int eventnumber);
 		string createSudatenEvent(HoI4Country * Annexer, HoI4Country * Annexed, int eventnumber, vector<int> claimedStates);
+		string createDemocracyNF(HoI4Country * Home, vector<HoI4Country*> CountriesToContain, int XStart);
 		string createMonarchyEmpireNF(HoI4Country * Home, HoI4Country * Annexed1, HoI4Country * Annexed2, HoI4Country * Annexed3, HoI4Country * Annexed4, int ProtectorateNumber, int AnnexNumber, int x);
 		void fillProvinceNeighbors();
 		string genericFocusTreeCreator(HoI4Country * CreatingCountry);
@@ -147,6 +149,7 @@ class HoI4World
 		map<string, int>				countriesICCIV;
 		map<string, vector<int>>		countriesStates; 
 		map<int, int>					stateMap;
+		vector<HoI4Country*> AggressorFactions;
 
 		// map items
 		map<int, string>						continents;  // < province, continent >

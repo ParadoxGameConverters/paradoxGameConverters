@@ -113,6 +113,7 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	neutralityPopularity = 20;
 	liberalPopularity = 0;
 	socialistPopularity = 0;
+	ancapPopularity = 0;
 	syndicalistPopularity = 0;
 	autocraticPopularity = 0;
 
@@ -181,6 +182,10 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Facti
 		output << "            popularity = " << syndicalistPopularity << endl;
 		output << "        }" << endl;
 		output << "        " << endl;
+		output << "        ancap = {" << endl;
+		output << "            popularity = " << ancapPopularity << endl;
+		output << "        }" << endl;
+		output << "        " << endl;
 		output << "        fascism = {" << endl;
 		output << "            popularity = " << facismPopularity << endl;
 		output << "        }" << endl;
@@ -226,6 +231,12 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Facti
 			}
 		}
 		output << endl;
+		output << "add_ideas = {\n";
+		if (RulingPartyModel.war_pol == "jingoism")
+			output << "partial_economic_mobilisation\n";
+		if(RulingPartyModel.war_pol == "pro_military")
+			output << "low_economic_mobilisation\n";
+		output << "}\n";
 		output << "create_country_leader = {" << endl;
 		output << "    name = \"Jigme Wangchuck\"" << endl;
 		output << "    desc = \"POLITICS_JIGME_WANGCHUCK_DESC\"" << endl;
@@ -2045,7 +2056,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		{
 			RulingPartyModel = newParty;
 			rulingIdeology = "market_liberal";
-			rulingHoI4Ideology = "syndicalism";
+			rulingHoI4Ideology = "ancap";
 		}
 
 		V2Ideologies.erase(ideologyItr);
@@ -2450,12 +2461,15 @@ void HoI4Country::setPartyPopularity()
 	liberalPopularity = 0;
 	socialistPopularity = 0;
 	syndicalistPopularity = 0;
+	ancapPopularity = 0;
 	autocraticPopularity = 0;
 
 	if (rulingHoI4Ideology == "fascism")
 		ideology = "fascism_ideology";
 	else if (rulingHoI4Ideology == "democratic")
 		ideology = "democratic_conservative";
+	else if (rulingHoI4Ideology == "ancap")
+		ideology = "anarcho_cap";
 	else if (rulingHoI4Ideology == "communism")
 		ideology = "marxism";
 	else if (rulingHoI4Ideology == "syndicalism")
@@ -2484,11 +2498,11 @@ void HoI4Country::setPartyPopularity()
 		{
 			liberalPopularity += party.popularity;
 		}
-		if (party.name.find("conservative") != string::npos && (government == "democratic" || government == "prussian_constitutionalism"))
+		if (party.name.find("conservative") != string::npos && (government == "democratic" || government == "hms_government "))
 		{
 			democraticPopularity += party.popularity;
 		}
-		if (party.name.find("conservative") != string::npos && (government != "democratic" && government != "prussian_constitutionalism"))
+		if (party.name.find("conservative") != string::npos && (government != "democratic" && government != "hms_government "))
 		{
 			autocraticPopularity += party.popularity;
 		}
@@ -2502,11 +2516,11 @@ void HoI4Country::setPartyPopularity()
 		}
 		if (party.name.find("anarcho_liberal") != string::npos)
 		{
-			syndicalistPopularity += party.popularity;
+			ancapPopularity += party.popularity;
 		}
 		if (party.name.find("reactionary") != string::npos)
 		{
-			syndicalistPopularity += party.popularity;
+			autocraticPopularity += party.popularity;
 		}
 	}
 }

@@ -53,7 +53,8 @@ enum flagIdeologies
 	SOCIALIST_FLAG = 5,
 	LIBERAL_FLAG = 6,
 	AUTOCRATIC_FLAG = 7,
-	FLAG_END				= 8
+	ANCAP_FLAG = 8,
+	FLAG_END				= 9
 };
 
 char* vic2Suffixes[FLAG_END] = {
@@ -65,6 +66,7 @@ char* vic2Suffixes[FLAG_END] = {
 	"_republic.tga",
 	"_republic.tga",
 	"_monarchy.tga",
+	"_republic.tga",
 };
 
 char* hoi4Suffixes[FLAG_END] = {
@@ -76,6 +78,7 @@ char* hoi4Suffixes[FLAG_END] = {
 	"_socialist.tga",
 	"_liberal.tga",
 	"_autocratic.tga",
+	"_ancap.tga",
 
 };
 
