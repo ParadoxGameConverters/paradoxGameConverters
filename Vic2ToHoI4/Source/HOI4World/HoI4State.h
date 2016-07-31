@@ -61,6 +61,7 @@ class HoI4State
 		int getDockyards() const { return dockyards; }
 		int getCivFactories() const { return civFactories; }
 		int getMilFactories() const { return milFactories; }
+		int getManpower() const { return manpower; }
 
 		int getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping& provinceMap);
 		bool isProvinceInState(int provinceNum);

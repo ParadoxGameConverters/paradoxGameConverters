@@ -673,10 +673,6 @@ void HoI4World::convertIndustry()
 	//		{
 	//			dstProvItr->second->setLeadership(0.0);
 	//		}
-	//		if ((Configuration::getManpowerConversion() == "linear") || (Configuration::getManpowerConversion() == "squareroot"))
-	//		{
-	//			dstProvItr->second->setManpower(0.0);
-	//		}
 	//		if ((Configuration::getIcConversion() == "squareroot") || (Configuration::getIcConversion() == "linear") || (Configuration::getIcConversion() == "logarithmic"))
 	//		{
 	//			dstProvItr->second->setRawIndustry(0.0);
@@ -710,25 +706,6 @@ void HoI4World::convertIndustry()
 	//		{
 	//			industry = log(max(1.0, industry / 70000)) / log(2) * 5.33;
 	//			dstProvItr->second->addRawIndustry(industry * Configuration::getIcFactor());
-	//		}
-
-	//		// convert manpower
-	//		double newManpower = sourceProvince->getPopulation("soldiers")
-	//			+ sourceProvince->getPopulation("craftsmen") * 0.25 // Conscripts
-	//			+ sourceProvince->getPopulation("labourers") * 0.25 // Conscripts
-	//			+ sourceProvince->getPopulation("farmers") * 0.25; // Conscripts
-	//		if (Configuration::getManpowerConversion() == "linear")
-	//		{
-	//			newManpower *= 0.00003 * Configuration::getManpowerFactor();
-	//			newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
-	//			dstProvItr->second->addManpower(newManpower);
-	//		}
-	//		else if (Configuration::getManpowerConversion() == "squareroot")
-	//		{
-	//			newManpower = sqrt(newManpower);
-	//			newManpower *= 0.0076 * Configuration::getManpowerFactor();
-	//			newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
-	//			dstProvItr->second->addManpower(newManpower);
 	//		}
 
 	//		// convert leadership
