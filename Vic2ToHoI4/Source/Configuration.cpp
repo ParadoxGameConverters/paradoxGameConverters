@@ -61,6 +61,8 @@ Configuration::Configuration()
 		Vic2Mods = modsObj[0]->getTokens();
 	}
 
+	manpowerFactor			= atof(obj[0]->getLeaf("manpower_factor").c_str());
+
 	leaderID					= 1000;
 	leaderIDCountryIdx	= 1;
 }

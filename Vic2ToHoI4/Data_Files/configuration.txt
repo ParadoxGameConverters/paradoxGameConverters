@@ -1,15 +1,18 @@
 configuration =
 {
 	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
-	V2directory = "D:\Games\steamapps\common\Victoria 2"
+	V2directory = "D:\Paradox Interactive\Victoria 2"
 
 	# HoI4 directory: a path on your computer where Hearts of Iron IV is installed
-	HoI4directory = "D:\Games\steamapps\common\Hearts of Iron IV"
+	HoI4directory = "D:\SteamLibrary\SteamApps\common\Hearts of Iron IV"
 
 	# HoI4 Documents directory: a path on your computer where Hearts of Iron IV keeps temporary files
-	HoI4Documentsdirectory = "C:\Users\John\Documents\Paradox Interactive\Hearts of Iron IV"
+	HoI4Documentsdirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Hearts of Iron IV"
 
 	# Vic2Mods: Vic2 mods to use for conversion
 	# Example: Vic2Mods = { modname1 modname2 }
 	Vic2Mods = { }
+	
+	# Manpower factor: a multiplier applied to manpower conversion
+	manpower_factor = "1.0"
 }

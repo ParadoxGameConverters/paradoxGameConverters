@@ -346,7 +346,8 @@ void HoI4States::addManpowerToNewState(HoI4State* newState)
 	for (auto vic2ProvNum: newState->getSourceState()->getProvinces())
 	{
 		V2Province* sourceProvince = sourceWorld->getProvince(vic2ProvNum);
-		newState->addManpower(sourceProvince->getTotalPopulation() * 4);
+		int additionalManpower = static_cast<int>(sourceProvince->getTotalPopulation() * 4 * Configuration::getManpowerFactor());
+		newState->addManpower(additionalManpower);
 	}
 }
 
