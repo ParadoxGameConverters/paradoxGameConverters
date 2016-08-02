@@ -66,7 +66,12 @@ class HoI4State
 		int getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping& provinceMap);
 		bool isProvinceInState(int provinceNum);
 
+		pair<string, string> makeLocalisation(pair<const string, string> Vic2NameInLanguage);
+
 	private:
+		string makeLocalisationKey();
+		string makeLocalisationValue(pair<const string, string> Vic2NameInLanguage);
+
 		const Vic2State* sourceState;
 
 		int ID;

@@ -169,6 +169,30 @@ int HoI4State::getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping&
 }
 
 
+pair<string, string> HoI4State::makeLocalisation(pair<const string, string> Vic2NameInLanguage)
+{
+	return make_pair(
+		makeLocalisationKey(),
+		makeLocalisationValue(Vic2NameInLanguage)
+	);
+}
+
+
+string HoI4State::makeLocalisationKey()
+{
+	return string("STATE_") + to_string(ID);
+}
+
+
+string HoI4State::makeLocalisationValue(pair<const string, string> Vic2NameInLanguage)
+{
+	string localisedName = "";
+	localisedName += Vic2NameInLanguage.second;
+
+	return localisedName;
+}
+
+
 bool HoI4State::isProvinceInState(int provinceNum)
 {
 	return (provinces.find(provinceNum) != provinces.end());

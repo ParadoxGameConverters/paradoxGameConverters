@@ -278,7 +278,7 @@ bool HoI4States::createMatchingHoI4State(const Vic2State* vic2State, int stateID
 
 	createVPForState(newState, HoI4ToVic2ProvinceMap);
 	addManpowerToNewState(newState);
-	addLocalisation(stateID, vic2State->getStateID(), Vic2Localisations);
+	addLocalisation(newState, Vic2Localisations);
 	states.insert(make_pair(stateID, newState));
 
 	return true;
@@ -352,20 +352,38 @@ void HoI4States::addManpowerToNewState(HoI4State* newState)
 }
 
 
-void HoI4States::addLocalisation(int HoI4StateID, string Vic2StateID, const V2Localisation& Vic2Localisations)
+void HoI4States::addLocalisation(HoI4State* state, const V2Localisation& Vic2Localisations)
 {
-	for (auto nameInLanguage: Vic2Localisations.GetTextInEachLanguage(Vic2StateID))
+	for (auto Vic2NameInLanguage: Vic2Localisations.GetTextInEachLanguage(state->getSourceState()->getStateID()))
 	{
-		auto existingLocalisation = stateLocalisations.find(nameInLanguage.first);
-		if (existingLocalisation == stateLocalisations.end())
-		{
-			keyToLocalisationMap newLocalisation;
-			stateLocalisations[nameInLanguage.first] = newLocalisation;
-			existingLocalisation = stateLocalisations.find(nameInLanguage.first);
-		}
-
-		existingLocalisation->second.insert(make_pair(string("STATE_") + to_string(HoI4StateID), nameInLanguage.second));
+		addLocalisationForLanguage(state, Vic2NameInLanguage);
 	}
+}
+
+
+void HoI4States::addLocalisationForLanguage(HoI4State* state, pair<const string, string> Vic2NameInLanguage)
+{
+	getExistingLocalisation(Vic2NameInLanguage.first).insert(state->makeLocalisation(Vic2NameInLanguage));
+}
+
+
+keyToLocalisationMap& HoI4States::getExistingLocalisation(string language)
+{
+	auto existingLocalisation = stateLocalisations.find(language);
+	if (existingLocalisation == stateLocalisations.end())
+	{
+		addLanguageToLocalisations(language);
+		existingLocalisation = stateLocalisations.find(language);
+	}
+
+	return existingLocalisation->second;
+}
+
+
+void HoI4States::addLanguageToLocalisations(string language)
+{
+	keyToLocalisationMap newLocalisation;
+	stateLocalisations[language] = newLocalisation;
 }
 
 
