@@ -251,7 +251,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	// Construct world from V2 save.
 	LOG(LogLevel::Info) << "Building world";
-	V2World sourceWorld(obj, iNumToname, armyTechs, navyTechs, continentMap);
+	V2World sourceWorld(obj, iNumToname, armyTechs, navyTechs, continentMap, stateMap);
 
 	// Read all localisations.
 	LOG(LogLevel::Info) << "Reading localisation";

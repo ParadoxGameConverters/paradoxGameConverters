@@ -30,6 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <string>
 #include <map>
 #include "..\Mapper.h"
+#include "..\V2World\V2Localisation.h"
 #include "..\V2World\Vic2State.h"
 using namespace std;
 
@@ -66,11 +67,11 @@ class HoI4State
 		int getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping& provinceMap);
 		bool isProvinceInState(int provinceNum);
 
-		pair<string, string> makeLocalisation(pair<const string, string> Vic2NameInLanguage);
+		pair<string, string> makeLocalisation(const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations) const;
 
 	private:
-		string makeLocalisationKey();
-		string makeLocalisationValue(pair<const string, string> Vic2NameInLanguage);
+		string makeLocalisationKey() const;
+		string makeLocalisationValue(const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations) const;
 
 		const Vic2State* sourceState;
 

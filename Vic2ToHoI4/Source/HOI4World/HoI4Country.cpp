@@ -1793,7 +1793,7 @@ void HoI4Country::addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvin
 	{
 		if (state->getProvinces().size() > 0)
 		{
-			auto possibleHoI4Provinces = inverseProvinceMap.find(state->getProvinces()[0]);
+			auto possibleHoI4Provinces = inverseProvinceMap.find(*state->getProvinces().begin());
 			if (possibleHoI4Provinces != inverseProvinceMap.end())
 			{
 				if (possibleHoI4Provinces->second.size() > 0)

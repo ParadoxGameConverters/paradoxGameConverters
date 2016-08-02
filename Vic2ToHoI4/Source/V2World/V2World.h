@@ -44,7 +44,7 @@ struct	V2Party;
 class V2World
 {
 	public:
-		V2World(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs, const continentMapping& continentMap);
+		V2World(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs, const continentMapping& continentMap, const stateMapping& stateMap);
 
 		V2Country*					getCountry(string tag) const;
 		void							removeCountry(string tag);
@@ -61,6 +61,7 @@ class V2World
 	private:
 		void							readCountryFiles(string countryListFile, string mod);
 		void							removeEmptyNations();
+		void determinePartialStates(const stateMapping& stateMap);
 
 		map<int, V2Province*>	provinces;
 		map<string, V2Country*>	countries;

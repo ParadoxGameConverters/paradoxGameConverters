@@ -352,22 +352,22 @@ void HoI4States::addManpowerToNewState(HoI4State* newState)
 }
 
 
-void HoI4States::addLocalisation(HoI4State* state, const V2Localisation& Vic2Localisations)
+void HoI4States::addLocalisation(const HoI4State* state, const V2Localisation& Vic2Localisations)
 {
 	for (auto Vic2NameInLanguage: Vic2Localisations.GetTextInEachLanguage(state->getSourceState()->getStateID()))
 	{
-		addLocalisationForLanguage(state, Vic2NameInLanguage);
+		addLocalisationForLanguage(state, Vic2NameInLanguage, Vic2Localisations);
 	}
 }
 
 
-void HoI4States::addLocalisationForLanguage(HoI4State* state, pair<const string, string> Vic2NameInLanguage)
+void HoI4States::addLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations)
 {
-	getExistingLocalisation(Vic2NameInLanguage.first).insert(state->makeLocalisation(Vic2NameInLanguage));
+	getExistingLocalisation(Vic2NameInLanguage.first).insert(state->makeLocalisation(Vic2NameInLanguage, Vic2Localisations));
 }
 
 
-keyToLocalisationMap& HoI4States::getExistingLocalisation(string language)
+keyToLocalisationMap& HoI4States::getExistingLocalisation(const string& language)
 {
 	auto existingLocalisation = stateLocalisations.find(language);
 	if (existingLocalisation == stateLocalisations.end())
@@ -380,7 +380,7 @@ keyToLocalisationMap& HoI4States::getExistingLocalisation(string language)
 }
 
 
-void HoI4States::addLanguageToLocalisations(string language)
+void HoI4States::addLanguageToLocalisations(const string& language)
 {
 	keyToLocalisationMap newLocalisation;
 	stateLocalisations[language] = newLocalisation;

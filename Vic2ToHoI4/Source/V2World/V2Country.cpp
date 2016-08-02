@@ -280,36 +280,24 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 		techSchool = techSchoolObj[0]->getLeaf();
 	}
 
-	// read in states
-	vector<Object*> statesObj = obj->getValue("state"); // each state in the country
-	for (auto statesItr : statesObj)
-	{
-		Vic2State* newState = new Vic2State;
-		// get the provinces in the state
-		vector<Object*> provinceObj = statesItr[0].getValue("provinces");
-		if (provinceObj.size() > 0)
-		{
-			vector<string> provinceIDs = provinceObj[0]->getTokens();
-			for (auto provinceItr: provinceIDs)
-			{
-				newState->addProvince(atoi(provinceItr.c_str()));
-			}
-		}
+	readInStates(obj);
+}
 
-		// count the employees in the state (for factory conversion)
-		int levelCount = 0;
-		vector<Object*> buildingsObj = statesItr[0].getValue("state_buildings"); // each factory in the state
-		for (auto buildingsItr : buildingsObj)
-		{
-			vector<Object*> levelObj = buildingsItr[0].getValue("level"); // each employment entry in the factory.
-			if (levelObj.size() > 0)
-			{
-				levelCount += atoi(levelObj[0]->getLeaf().c_str());
-			}
-		}
-		newState->setFactoryLevel(levelCount);
-		states.push_back(newState);
+
+void V2Country::readInStates(const Object* obj)
+{
+	vector<Object*> statesObj = obj->getValue("state"); // each state in the country
+	for (auto statesItr: statesObj)
+	{
+		createNewState(statesItr);
 	}
+}
+
+
+void V2Country::createNewState(const Object* stateObj)
+{
+	Vic2State* newState = new Vic2State(stateObj, tag);
+	states.push_back(newState);
 }
 
 
@@ -317,6 +305,7 @@ void V2Country::addCore(V2Province* core)
 {
 	cores.push_back(core);
 }
+
 
 void V2Country::eatCountry(V2Country* target)
 {
@@ -430,7 +419,7 @@ void V2Country::putWorkersInProvinces()
 
 		if (state->getProvinces().size() > 0)
 		{
-			auto employmentProvince = provinces.find(state->getProvinces().front());
+			auto employmentProvince = provinces.find(*state->getProvinces().begin());
 			if (employmentProvince != provinces.end())
 			{
 				employmentProvince->second->setEmployedWorkers(employedWorkers);

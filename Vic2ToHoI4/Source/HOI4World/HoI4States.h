@@ -79,10 +79,10 @@ class HoI4States
 		bool isProvinceOwnedByCountryAndNotAlreadyAssigned(int provNum, string stateOwner, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces);
 		void createVPForState(HoI4State* newState, const Vic2ToHoI4ProvinceMapping& provinceMap);
 		void addManpowerToNewState(HoI4State* newState);
-		void addLocalisation(HoI4State* state, const V2Localisation& Vic2Localisations);
-		void addLocalisationForLanguage(HoI4State* state, pair<const string, string> Vic2NameInLanguage);
-		keyToLocalisationMap& getExistingLocalisation(string language);
-		void addLanguageToLocalisations(string language);
+		void addLocalisation(const HoI4State* state, const V2Localisation& Vic2Localisations);
+		void addLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations);
+		keyToLocalisationMap& getExistingLocalisation(const string& language);
+		void addLanguageToLocalisations(const string& language);
 		unsigned int getTotalManpower();
 
 		void outputHistory() const;
