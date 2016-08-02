@@ -1853,7 +1853,7 @@ string HoI4World::createDemocracyNF(HoI4Country* Home, vector<HoI4Country*> Coun
 	if (CountriesToContain.size() >= 2)
 		offBalance = -3;
 	if (CountriesToContain.size() == 1)
-		offBalance == -2;
+		offBalance = -2;
 	//Limited Intervention
 	FocusTree += "		focus = { \n";
 	FocusTree += "		id = Lim" + Home->getTag() + "\n";
@@ -6088,7 +6088,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 				{
 					//make ai have this as a 0 modifier if they are at war
 					FocusTree += "modifier = {\n	factor = 0\n	OR = {";
-					for (int i2 = 0; i2 < GCTargets.size(); i2++)
+					for (unsigned int i2 = 0; i2 < GCTargets.size(); i2++)
 					{
 						if (GC != GCTargets[i2])
 						{
@@ -6636,7 +6636,7 @@ vector<HoI4Faction*> HoI4World::DemocracyWarCreator(HoI4Country* Leader, V2World
 			//if (HowToTakeGC == "noactionneeded" || HowToTakeGC == "factionneeded")
 			{
 				CountriesAtWar.push_back(findFaction(Leader));
-				CountriesToContain.insert(make_pair(relation + v1, GC));
+				CountriesToContain.insert(make_pair(static_cast<int>(relation + v1), GC));
 			}
 		}
 	}
@@ -6838,7 +6838,7 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World 
 				{
 					//make ai have this as a 0 modifier if they are at war
 					FocusTree += "modifier = {\n	factor = 0\n	OR = {";
-					for (int i2 = 0; i2 < GCTargets.size(); i2++)
+					for (unsigned int i2 = 0; i2 < GCTargets.size(); i2++)
 					{
 						if (GC != GCTargets[i2])
 						{
