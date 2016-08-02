@@ -98,7 +98,15 @@ class HoI4World
 		vector<HoI4Faction*> MonarchyWarCreator(HoI4Country * Leader, V2World sourceWorld, CountryMapping countryMap);
 		string HowToTakeLand(HoI4Country * TargetCountry, HoI4Country * AttackingCountry, double time);
 		vector<HoI4Country*> GetMorePossibleAllies(HoI4Country * CountryThatWantsAllies);
-		double GetDistance(HoI4Country * Country1, HoI4Country * Country2);
+		double getDistanceBetweenCountries(const HoI4Country* Country1, const HoI4Country* Country2);
+		bool bothCountriesHaveCapitals(const HoI4Country* Country1, const HoI4Country* Country2);
+		pair<int, int> getCapitalPosition(const HoI4Country* country);
+		pair<int, int> getProvincePosition(int provinceNum);
+		void establishProvincePositions();
+		void processPositionLine(const string& line);
+		vector<string> tokenizeLine(const string& line);
+		void addProvincePosition(const vector<string>& tokenizedLine);
+		double getDistanceBetweenPoints(pair<int, int> point1, pair<int, int> point2);
 		double GetFactionStrengthWithDistance(HoI4Country * HomeCountry, vector<HoI4Country*> Faction, double time);
 		HoI4Faction* findFaction(HoI4Country * CheckingCountry);
 		bool checkIfGreatCountry(HoI4Country * checkingCountry, const V2World & sourceWorld, const CountryMapping & countryMap);
@@ -157,6 +165,7 @@ class HoI4World
 		map<int, string>						supplyZonesFilenames;
 		map<int, HoI4StrategicRegion*>	strategicRegions;
 		map<int, int>							provinceToStratRegionMap;
+		map<int, pair<int, int>> provincePositions;
 
 		HoI4Localisation				localisation;
 		vector<HoI4Faction*> Factions;
