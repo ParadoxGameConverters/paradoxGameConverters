@@ -128,6 +128,9 @@
     <ClCompile Include="Source\HOI4World\HoI4Airforce.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\V2World\Vic2State.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">

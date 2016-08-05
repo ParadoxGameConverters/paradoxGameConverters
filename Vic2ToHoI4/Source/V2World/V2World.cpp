@@ -38,7 +38,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs, const continentMapping& continentMap)
+V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs, const continentMapping& continentMap, const stateMapping& stateMap)
 {
 	provinces.clear();
 	countries.clear();
@@ -134,6 +134,8 @@ V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<string, 
 	// Cull countries with neither cores nor owned provinces (i.e. dead countries and uncreated dominions)
 	removeEmptyNations();
 
+	determinePartialStates(stateMap);
+
 	// Diplomacy
 	vector<Object*> diploObj = obj->getValue("diplomacy");
 	if (diploObj.size() > 0)
@@ -222,14 +224,14 @@ void V2World::setLocalisations(V2Localisation& localisation, const stateIdMappin
 		//	loop through the states in the vic2 country
 		for (auto vic2State : country.second->getStates())
 		{
-			auto stateID = stateIdMap.find(vic2State->getProvinces()[0]);
+			auto stateID = stateIdMap.find(*vic2State->getProvinces().begin());
 			if (stateID != stateIdMap.end())
 			{
 				vic2State->setID(stateID->second);
 			}
 			else
 			{
-				LOG(LogLevel::Warning) << "Could not find the state for Vic2 province " << vic2State->getProvinces()[0] << ", owned by " << country.first;
+				LOG(LogLevel::Warning) << "Could not find the state for Vic2 province " << *vic2State->getProvinces().begin() << ", owned by " << country.first;
 			}
 		}
 	}
@@ -279,6 +281,18 @@ void V2World::removeEmptyNations()
 		else
 		{
 			++country;
+		}
+	}
+}
+
+
+void V2World::determinePartialStates(const stateMapping& stateMap)
+{
+	for (auto country: countries)
+	{
+		for (auto state: country.second->getStates())
+		{
+			state->determinePartialState(stateMap);
 		}
 	}
 }

@@ -1854,7 +1854,7 @@ string HoI4World::createDemocracyNF(HoI4Country* Home, vector<HoI4Country*> Coun
 	if (CountriesToContain.size() >= 2)
 		offBalance = -3;
 	if (CountriesToContain.size() == 1)
-		offBalance == -2;
+		offBalance = -2;
 	//Limited Intervention
 	FocusTree += "		focus = { \n";
 	FocusTree += "		id = Lim" + Home->getTag() + "\n";
@@ -5219,7 +5219,7 @@ vector<HoI4Country*> HoI4World::GetMorePossibleAllies(HoI4Country* CountryThatWa
 		if (country.second->getProvinceCount() != 0)
 		{
 			HoI4Country* country2 = country.second;
-			if (GetDistance(CountryThatWantsAllies, country2) <= 500)
+			if (getDistanceBetweenCountries(CountryThatWantsAllies, country2) <= 500)
 				if (std::find(currentAllies.begin(), currentAllies.end(), country2->getTag()) == currentAllies.end())
 				{
 					CountriesWithin500Miles.push_back(country2);
@@ -5285,57 +5285,112 @@ vector<HoI4Country*> HoI4World::GetMorePossibleAllies(HoI4Country* CountryThatWa
 	}
 	return newPossibleAllies;
 }
-double HoI4World::GetDistance(HoI4Country* Country1, HoI4Country* Country2)
-{
-	map<string, multimap<HoI4RegimentType, unsigned> > unitTypeMap; // <vic, hoi>
-	volatile HoI4Country* Country23 = Country2;
-	auto C1state = states->getStates().find(Country1->getCapitalProv());
-	auto C2state = states->getStates().find(Country2->getCapitalProv());
-	int C1prov;
-	int C2prov;
-	if (Country1->getCapitalProv() == 0 || Country2->getCapitalProv() == 0)
-		return 100000;
-	else
-	{
-		C1prov = *(C1state->second->getProvinces().begin());
-		C2prov = *(C2state->second->getProvinces().begin());
-	}
-	double C1x = 0;
-	double C1y = 0;
-	double C2x = 0;
-	double C2y = 0;
-	std::ifstream file("positions.txt");
-	std::string str;
-	while (std::getline(file, str))
-	{
-		vector<string> parts;
-		stringstream ss(str);
-		string tok;
-		char delimiter = ';';
-		while (getline(ss, tok, delimiter))
-		{
-			parts.push_back(tok);
-		}
-		if (stoi(parts[0]) == C1prov)
-		{
-			C1x = stoi(parts[2]);
-			C1y = stoi(parts[4]);
-		}
-		else if (stoi(parts[0]) == C2prov)
-		{
-			C2x = stoi(parts[2]);
-			C2y = stoi(parts[4]);
-		}
-		else if (C1x != 0 && C1y != 0 && C2x != 0 && C2y != 0)
-			break;
 
+
+double HoI4World::getDistanceBetweenCountries(const HoI4Country* country1, const HoI4Country* country2)
+{
+	if (!bothCountriesHaveCapitals(country1, country2))
+	{
+		return 100000;
 	}
-	double xdist = abs(C2x - C1x);
-	if (xdist > 2625)
-		xdist = 5250 - xdist;
-	double distance = sqrt(pow(xdist, 2) + pow(C2y - C1y, 2));
-	return distance;
+
+	pair<int, int> country1Position = getCapitalPosition(country1);
+	pair<int, int> country2Position = getCapitalPosition(country2);
+
+	return getDistanceBetweenPoints(country1Position, country2Position);
 }
+
+
+bool HoI4World::bothCountriesHaveCapitals(const HoI4Country* Country1, const HoI4Country* Country2)
+{
+	return (Country1->getCapitalProv() != 0) && (Country2->getCapitalProv() != 0);
+}
+
+
+pair<int, int> HoI4World::getCapitalPosition(const HoI4Country* country)
+{
+	auto capitalState = states->getStates().find(country->getCapitalProv());
+	int capitalProvince = *(capitalState->second->getProvinces().begin());
+	return getProvincePosition(capitalProvince);
+}
+
+
+pair<int, int> HoI4World::getProvincePosition(int provinceNum)
+{
+	if (provincePositions.size() == 0)
+	{
+		establishProvincePositions();
+	}
+
+	auto itr = provincePositions.find(provinceNum);
+	return itr->second;
+}
+
+
+void HoI4World::establishProvincePositions()
+{
+	ifstream positionsFile("positions.txt");
+	if (!positionsFile.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not open positions.txt";
+		exit(-1);
+	}
+
+	string line;
+	while (getline(positionsFile, line))
+	{
+		processPositionLine(line);
+	}
+
+	positionsFile.close();
+}
+
+
+void HoI4World::processPositionLine(const string& line)
+{
+	vector<string> tokenizedLine = tokenizeLine(line);
+	addProvincePosition(tokenizedLine);
+}
+
+
+void HoI4World::addProvincePosition(const vector<string>& tokenizedLine)
+{
+	int province = stoi(tokenizedLine[0]);
+	int x = stoi(tokenizedLine[2]);
+	int y = stoi(tokenizedLine[4]);
+
+	provincePositions.insert(make_pair(province, make_pair(x, y)));
+}
+
+
+vector<string> HoI4World::tokenizeLine(const string& line)
+{
+	vector<string> parts;
+	stringstream ss(line);
+	string tok;
+	while (getline(ss, tok, ';'))
+	{
+		parts.push_back(tok);
+	}
+
+	return parts;
+}
+
+
+double HoI4World::getDistanceBetweenPoints(pair<int, int> point1, pair<int, int> point2)
+{
+	int xDistance = abs(point2.first - point1.first);
+	if (xDistance > 2625)
+	{
+		xDistance = 5250 - xDistance;
+	}
+
+	int yDistance = point2.second - point1.second;
+
+	return sqrt( pow(xDistance, 2) + pow(yDistance, 2) );
+}
+
+
 double HoI4World::GetFactionStrengthWithDistance(HoI4Country* HomeCountry, vector<HoI4Country*> Faction, double time)
 {
 	double strength = 0.0;
@@ -5347,7 +5402,7 @@ double HoI4World::GetFactionStrengthWithDistance(HoI4Country* HomeCountry, vecto
 			distanceMulti = 1;
 		}
 		else
-			distanceMulti = GetDistance(HomeCountry, country);
+			distanceMulti = getDistanceBetweenCountries(HomeCountry, country);
 
 		if (distanceMulti < 300)
 			distanceMulti = 1;
@@ -5436,7 +5491,7 @@ map<string, HoI4Country*> HoI4World::findNeighbors(vector<int> CountryProvs, HoI
 			{
 				//IMPROVE
 				//need to get further neighbors, as well as countries without capital in an area
-				double distance = GetDistance(CheckingCountry, country2);
+				double distance = getDistanceBetweenCountries(CheckingCountry, country2);
 				if (distance <= 500 && country.second->getProvinceCount() > 0)
 					Neighbors.insert(country);
 			}
@@ -5643,7 +5698,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 		{
 			//IMPROVE
 			//need to get further neighbors, as well as countries without capital in an area
-			double distance = GetDistance(Leader, neigh.second);
+			double distance = getDistanceBetweenCountries(Leader, neigh.second);
 			if (distance <= 500)
 				CloseNeighbors.insert(neigh);
 		}
@@ -6171,7 +6226,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 	//get great countries with a distance
 	for each (auto GC in GreatCountries)
 	{
-		double distance = GetDistance(Leader, GC);
+		double distance = getDistanceBetweenCountries(Leader, GC);
 		if (distance < 2200)
 			GCDistance.insert(make_pair(distance, GC));
 	}
@@ -6247,7 +6302,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 				{
 					//make ai have this as a 0 modifier if they are at war
 					FocusTree += "modifier = {\n	factor = 0\n	OR = {";
-					for (int i2 = 0; i2 < GCTargets.size(); i2++)
+					for (unsigned int i2 = 0; i2 < GCTargets.size(); i2++)
 					{
 						if (GC != GCTargets[i2])
 						{
@@ -6304,7 +6359,7 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World
 		{
 			//IMPROVE
 			//need to get further neighbors, as well as countries without capital in an area
-			double distance = GetDistance(Leader, neigh.second);
+			double distance = getDistanceBetweenCountries(Leader, neigh.second);
 			if (distance <= 400)
 				Neighbors.insert(neigh);
 		}
@@ -6728,7 +6783,7 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World
 	vector<HoI4Country*> GCDistanceSorted;
 	for each (auto GC in GreatCountries)
 	{
-		double distance = GetDistance(Leader, GC);
+		double distance = getDistanceBetweenCountries(Leader, GC);
 		if (distance < 1200)
 			GCDistance.insert(make_pair(distance, GC));
 	}
@@ -6857,7 +6912,7 @@ vector<HoI4Faction*> HoI4World::DemocracyWarCreator(HoI4Country* Leader, V2World
 			//if (HowToTakeGC == "noactionneeded" || HowToTakeGC == "factionneeded")
 			{
 				CountriesAtWar.push_back(findFaction(Leader));
-				CountriesToContain.insert(make_pair(relation + v1, GC));
+				CountriesToContain.insert(make_pair(static_cast<int>(relation + v1), GC));
 			}
 		}
 	}
@@ -6902,7 +6957,7 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World 
 		{
 			//IMPROVE
 			//need to get further neighbors, as well as countries without capital in an area
-			double distance = GetDistance(Leader, neigh.second);
+			double distance = getDistanceBetweenCountries(Leader, neigh.second);
 			if (distance <= 500)
 				CloseNeighbors.insert(neigh);
 			else
@@ -6920,7 +6975,7 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World 
 			{
 				//IMPROVE
 				//but this should never happen since the AI shouldnt even take this unless they already have colonies
-				double distance = GetDistance(Leader, country2);
+				double distance = getDistanceBetweenCountries(Leader, country2);
 				if (distance <= 1000 && Colcountry.second->getProvinceCount() > 0)
 					FarNeighbors.insert(Colcountry);
 			}
@@ -6981,7 +7036,7 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World 
 	//get great countries with a distance
 	for each (auto GC in GreatCountries)
 	{
-		double distance = GetDistance(Leader, GC);
+		double distance = getDistanceBetweenCountries(Leader, GC);
 		if (distance < 1200)
 			GCDistance.insert(make_pair(distance, GC));
 	}
@@ -7059,7 +7114,7 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World 
 				{
 					//make ai have this as a 0 modifier if they are at war
 					FocusTree += "modifier = {\n	factor = 0\n	OR = {";
-					for (int i2 = 0; i2 < GCTargets.size(); i2++)
+					for (unsigned int i2 = 0; i2 < GCTargets.size(); i2++)
 					{
 						if (GC != GCTargets[i2])
 						{

@@ -105,6 +105,7 @@
     <ClCompile Include="Source\V2World\V2Province.cpp" />
     <ClCompile Include="Source\V2World\V2Relations.cpp" />
     <ClCompile Include="Source\V2World\V2World.cpp" />
+    <ClCompile Include="Source\V2World\Vic2State.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h" />

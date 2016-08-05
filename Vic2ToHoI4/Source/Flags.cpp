@@ -187,7 +187,7 @@ string getConversionModFlag(string flagFilename)
 }
 
 
-static set<string> allowedMods = { "PDM", "NNM" };
+static set<string> allowedMods = { "PDM", "NNM", "Divergences of Darkness" };
 string getAllowModFlags(string flagFilename)
 {
 	for (auto mod: Configuration::getVic2Mods())

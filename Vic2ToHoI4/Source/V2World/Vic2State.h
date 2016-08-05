@@ -26,6 +26,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include "../Mapper.h"
+#include "Object.h"
 #include <vector>
 using namespace std;
 
@@ -34,18 +36,29 @@ using namespace std;
 class Vic2State
 {
 	public:
-		void	addProvince(int provNum)	{ provinces.push_back(provNum); }
-		void	setFactoryLevel(int level)	{ factoryLevel = level; }
-		void	setID(string id)				{ stateID = id; }
+		Vic2State(const Object* stateObj, string ownerTag);
 
-		vector<int>	getProvinces() const		{ return provinces; }
-		int			getFactoryLevel() const	{ return factoryLevel; }
-		string		getStateID() const		{ return stateID; }
+		void determinePartialState(const stateMapping& stateMap);
+
+		void setID(const string& id) { stateID = id; }
+
+		set<int>	getProvinces() const { return provinces; }
+		string getOwner() const { return owner; }
+		int getFactoryLevel() const { return factoryLevel; }
+		string getStateID() const { return stateID; }
+		bool isPartialState() const { return partialState; }
 
 	private:
-		vector<int>		provinces;
-		int				factoryLevel;
-		string			stateID;
+		void addProvinces(const Object* stateObj);
+		vector<string> getProvinceIDs(const Object* stateObj);
+		void setFactoryLevel(const Object* stateObj);
+		void addBuildingLevel(const Object* buildingObj);
+
+		set<int> provinces;
+		string owner;
+		int factoryLevel;
+		string stateID;
+		bool partialState;
 };
 
 

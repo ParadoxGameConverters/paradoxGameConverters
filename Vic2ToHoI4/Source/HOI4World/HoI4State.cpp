@@ -156,8 +156,8 @@ void HoI4State::addCores(const vector<string>& newCores)
 
 int HoI4State::getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping& provinceMap)
 {
-	auto vic2Province = sourceState->getProvinces()[0];
-	auto provMapping = provinceMap.find(vic2Province);
+	auto vic2Province = sourceState->getProvinces().begin();
+	auto provMapping = provinceMap.find(*vic2Province);
 	if (provMapping != provinceMap.end())
 	{
 		return provMapping->second[0];
@@ -166,6 +166,34 @@ int HoI4State::getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping&
 	{
 		return 0;
 	}
+}
+
+
+pair<string, string> HoI4State::makeLocalisation(const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations) const
+{
+	return make_pair(
+		makeLocalisationKey(),
+		makeLocalisationValue(Vic2NameInLanguage, Vic2Localisations)
+	);
+}
+
+
+string HoI4State::makeLocalisationKey() const
+{
+	return string("STATE_") + to_string(ID);
+}
+
+
+string HoI4State::makeLocalisationValue(const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations) const
+{
+	string localisedName = "";
+	if (sourceState->isPartialState())
+	{
+		localisedName += Vic2Localisations.GetText(sourceState->getOwner() + "_ADJ", Vic2NameInLanguage.first) + " ";
+	}
+	localisedName += Vic2NameInLanguage.second;
+
+	return localisedName;
 }
 
 

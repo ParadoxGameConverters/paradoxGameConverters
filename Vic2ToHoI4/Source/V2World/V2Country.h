@@ -127,6 +127,9 @@ class V2Country
 		}
 
 	private:
+		void readInStates(const Object* obj);
+		void createNewState(const Object*);
+
 		string							tag;
 		vector<Vic2State*>			states;
 		map<int, V2Province*>		provinces;	// ID, province

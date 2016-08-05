@@ -1793,7 +1793,7 @@ void HoI4Country::addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvin
 	{
 		if (state->getProvinces().size() > 0)
 		{
-			auto possibleHoI4Provinces = inverseProvinceMap.find(state->getProvinces()[0]);
+			auto possibleHoI4Provinces = inverseProvinceMap.find(*state->getProvinces().begin());
 			if (possibleHoI4Provinces != inverseProvinceMap.end())
 			{
 				if (possibleHoI4Provinces->second.size() > 0)
@@ -1912,7 +1912,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	auto ideologyItr = V2Ideologies.find("fascist");
 	if ((ideologyItr != V2Ideologies.end()))
 	{
-		for (int i = 0; i < ideologyItr->second.size(); i++)
+		for (unsigned int i = 0; i < ideologyItr->second.size(); i++)
 		{
 			HoI4Party newParty;
 			newParty.name = ideologyItr->second[i]->name;
@@ -1937,7 +1937,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	ideologyItr = V2Ideologies.find("reactionary");
 	if ((ideologyItr != V2Ideologies.end()))
 	{
-		for (int i = 0; i < ideologyItr->second.size(); i++)
+		for (unsigned int i = 0; i < ideologyItr->second.size(); i++)
 		{
 			HoI4Party newParty;
 			newParty.name = ideologyItr->second[i]->name;
@@ -1962,7 +1962,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	ideologyItr = V2Ideologies.find("conservative");
 	if ((ideologyItr != V2Ideologies.end()))
 	{
-		for (int i = 0; i < ideologyItr->second.size(); i++)
+		for (unsigned int i = 0; i < ideologyItr->second.size(); i++)
 		{
 			HoI4Party newParty;
 			newParty.name = ideologyItr->second[i]->name;
@@ -1987,7 +1987,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	ideologyItr = V2Ideologies.find("socialist");
 	if ((ideologyItr != V2Ideologies.end()))
 	{
-		for (int i = 0; i < ideologyItr->second.size(); i++)
+		for (unsigned int i = 0; i < ideologyItr->second.size(); i++)
 		{
 			HoI4Party newParty;
 			newParty.name = ideologyItr->second[i]->name;
@@ -2012,7 +2012,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	ideologyItr = V2Ideologies.find("communist");
 	if ((ideologyItr != V2Ideologies.end()))
 	{
-		for (int i = 0; i < ideologyItr->second.size(); i++)
+		for (unsigned int i = 0; i < ideologyItr->second.size(); i++)
 		{
 			HoI4Party newParty;
 			newParty.name = ideologyItr->second[i]->name;
@@ -2037,7 +2037,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	ideologyItr = V2Ideologies.find("liberal");
 	if ((ideologyItr != V2Ideologies.end()))
 	{
-		for (int i = 0; i < ideologyItr->second.size(); i++)
+		for (unsigned int i = 0; i < ideologyItr->second.size(); i++)
 		{
 			HoI4Party newParty;
 			newParty.name = ideologyItr->second[i]->name;
@@ -2062,7 +2062,7 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	ideologyItr = V2Ideologies.find("anarcho_liberal");
 	if ((ideologyItr != V2Ideologies.end()))
 	{
-		for (int i = 0; i < ideologyItr->second.size(); i++)
+		for (unsigned int i = 0; i < ideologyItr->second.size(); i++)
 		{
 			HoI4Party newParty;
 			newParty.name = ideologyItr->second[i]->name;
