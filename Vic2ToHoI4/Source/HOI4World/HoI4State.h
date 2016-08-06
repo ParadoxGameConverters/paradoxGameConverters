@@ -45,13 +45,14 @@ class HoI4State
 
 		void addProvince(int province) { provinces.insert(province); }
 		void addResource(string resource, double amount)	{ resources[resource] += amount; }
-		void addVP(int location, int value) { victoryPoints.insert(make_pair(location, value)); }
 		void addManpower(int newManpower) { manpower += newManpower; }
 		void addAirBase(int newAirBase) { airbaseLevel += newAirBase; if (airbaseLevel > 10) airbaseLevel = 10; }
+		void addVictoryPointValue(int additionalValue) { victoryPointValue += additionalValue; }
 
 		void setNavalBase(int level, int location);
 		void setIndustry(int civilianFactories, int militaryFactories, string category, int railLevel);
 		void addCores(const vector<string>& newCores);
+		void createVP(int location);
 
 		const Vic2State* getSourceState() const { return sourceState; }
 		set<int>	getProvinces() const { return provinces; }
@@ -95,7 +96,8 @@ class HoI4State
 
 		map<string, double> resources;
 
-		map<int, int> victoryPoints;
+		int victoryPointPosition;
+		int victoryPointValue;
 };
 
 

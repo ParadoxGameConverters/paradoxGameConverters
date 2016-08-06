@@ -336,7 +336,7 @@ void HoI4States::createVPForState(HoI4State* newState, const Vic2ToHoI4ProvinceM
 	int HoI4ProvNum = newState->getFirstProvinceByVic2Definition(provinceMap);
 	if (newState->isProvinceInState(HoI4ProvNum))
 	{
-		newState->addVP(HoI4ProvNum, 5);
+		newState->createVP(HoI4ProvNum);
 	}
 }
 

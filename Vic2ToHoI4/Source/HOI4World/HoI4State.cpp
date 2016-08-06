@@ -47,6 +47,9 @@ HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, string _ownerTag)
 	navalLocation	= 0;
 
 	airbaseLevel	= 0;
+
+	victoryPointPosition = 0;
+	victoryPointValue = 0;
 }
 
 
@@ -57,7 +60,7 @@ void HoI4State::output(string _filename)
 	ofstream out(filename);
 	if (!out.is_open())
 	{
-		LOG(LogLevel::Error) << "Could not open \"output/input/history/states/" + _filename;
+		LOG(LogLevel::Error) << "Could not open \"output/" + Configuration::getOutputName() + "/history/states/" + _filename;
 		exit(-1);
 	}
 
@@ -80,10 +83,10 @@ void HoI4State::output(string _filename)
 	out << "" << endl;
 	out << "\thistory={" << endl;
 	out << "\t\towner = " << ownerTag << endl;
-	for (auto VP: victoryPoints)
+	if ((victoryPointValue > 0) && (victoryPointPosition != 0))
 	{
 		out << "\t\tvictory_points = {" << endl;
-		out << "\t\t\t" << VP.first << " " << VP.second << endl;
+		out << "\t\t\t" << victoryPointPosition << " " << victoryPointValue << endl;
 		out << "\t\t}" << endl;
 	}
 	out << "\t\tbuildings = {" << endl;
@@ -142,6 +145,8 @@ void HoI4State::setIndustry(int _civilianFactories, int _militaryFactories, stri
 	milFactories	= _militaryFactories;
 	category			= _category;
 	railLevel		= _railLevel;
+
+	addVictoryPointValue((_civilianFactories + _militaryFactories + dockyards) / 2);
 }
 
 
@@ -150,6 +155,18 @@ void HoI4State::addCores(const vector<string>& newCores)
 	for (auto newCore: newCores)
 	{
 		cores.insert(newCore);
+	}
+}
+
+
+void HoI4State::createVP(int location)
+{
+	victoryPointPosition = location;
+
+	victoryPointValue = 1;
+	if (cores.count(ownerTag) != 0)
+	{
+		victoryPointValue += 2;
 	}
 }
 
