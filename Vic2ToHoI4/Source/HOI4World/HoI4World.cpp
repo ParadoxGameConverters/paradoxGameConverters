@@ -608,6 +608,8 @@ void HoI4World::convertIndustry()
 		HoI4State.second->setIndustry(civilianFactories, militaryFactories, category, railLevel);
 	}
 
+	fillCountryIC();
+
 	//// now that all provinces have had owners and cores set, convert their other items
 	//for (auto mapping: inverseProvinceMap)
 	//{
@@ -1635,9 +1637,9 @@ string HoI4World::createAnnexEvent(HoI4Country* Annexer, HoI4Country* Annexed, i
 	Events += "	\n";
 	Events += "	option = {\n";
 	Events += "		name = \"A stronger Union!\"\n";
-	for (auto cstate : countriesStates.find(Annexed->getTag())->second)
+	for (auto cstate : Annexed->getStates())
 	{
-		Events += "		" + to_string(cstate) + " = {\n";
+		Events += "		" + to_string(cstate.first) + " = {\n";
 		Events += "			if = {\n";
 		Events += "				limit = { is_owned_by = " + Annexed->getTag() + " }\n";
 		Events += "				add_core_of = " + Annexer->getTag() + "\n";
@@ -4716,47 +4718,32 @@ string HoI4World::genericFocusTreeCreator(HoI4Country* CreatingCountry)
 	s += "\n";
 	return s;
 }
-void HoI4World::fillCountryIC()
-{
 
-	for (auto country : countries)
+
+void HoI4World::addStatesToCountries()
+{
+	for (auto state: states->getStates())
 	{
-		vector<int> countrystates;
-		int countryICMIL = 0;
-		int countryICCIV = 0;
-		for (auto state : states->getStates())
+		auto owner = countries.find(state.second->getOwner());
+		if (owner != countries.end())
 		{
-			if (state.second->getOwner() == country.second->getTag())
-			{
-				countryICCIV += state.second->getCivFactories();
-				countryICMIL += state.second->getMilFactories();
-				countrystates.push_back(state.first);
-			}
+			owner->second->addState(state.second);
 		}
-		countriesStates.insert(make_pair(country.second->getTag(), countrystates));
-		countriesICMIL.insert(make_pair(country.second->getTag(), countryICMIL));
-		countriesICCIV.insert(make_pair(country.second->getTag(), countryICCIV));
 	}
 }
-double HoI4World::getStrengthOverTime(HoI4Country* Country, double years)
+
+
+void HoI4World::fillCountryIC()
 {
-	double economyMulti = 0.7;
-	if (Country->getRulingParty().war_pol == "jingoism")
-		economyMulti = 1.1;
-	if (Country->getRulingParty().war_pol == "pro_military")
-		economyMulti = 0.9;
-	else
-		economyMulti = 0.7;
-	return Country->getArmyStrength() + countriesICMIL.find(Country->getTag())->second * 3 * 365 * years + countriesICCIV.find(Country->getTag())->second*.469*.5 /*.469 is milfac per year, .5 since half are used by consumer goods*/ * 3 * 365*0.5*years*years*economyMulti;
+	addStatesToCountries();
+
+	for (auto country: countries)
+	{
+		country.second->calculateIndustry();
+	}
 }
-double HoI4World::getInitialStrength(HoI4Country* Country)
-{
-	return Country->getArmyStrength();
-}
-double HoI4World::getAddedStrength(HoI4Country* Country, double years)
-{
-	return countriesICMIL.find(Country->getTag())->second * 3 * 365 * years + countriesICCIV.find(Country->getTag())->second*.469*.5 /*.469 is milfac per year, .5 since half are used by consumer goods*/ * 3 * 365*0.5*years*years;
-}
+
+
 void HoI4World::outputRelations()
 {
 	string opinion_modifiers;
@@ -4804,7 +4791,6 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 	//MAKE ARMY STRENGTH CALCS MORE ACCURATE!!
 	LOG(LogLevel::Info) << "Filling Map Information";
 	fillProvinces();
-	fillCountryIC();
 	fillCountryProvinces();
 	LOG(LogLevel::Info) << "Filling province neighbors";
 	fillProvinceNeighbors();
@@ -5037,13 +5023,13 @@ string HoI4World::HowToTakeLand(HoI4Country* TargetCountry, HoI4Country* Attacki
 		double myFactionDisStrength = GetFactionStrengthWithDistance(AttackingCountry, myFaction->getMembers(), time);
 		double enemyFactionDisStrength = GetFactionStrengthWithDistance(TargetCountry, targetFaction->getMembers(), time);
 		//lets check if I am stronger then their faction
-		if (getStrengthOverTime(AttackingCountry, time) >= GetFactionStrength(targetFaction))
+		if (AttackingCountry->getStrengthOverTime(time) >= GetFactionStrength(targetFaction))
 		{
 			//we are stronger, and dont even need ally help
 			//ADD CONQUEST GOAL
 			type = "noactionneeded";
-			s += "Can kill " + TargetCountry->getSourceCountry()->getName() + " by ourselves\n\t I have a strength of " + to_string(getStrengthOverTime(AttackingCountry, time));
-			s += " and my faction has a strength of " + to_string(myFactionDisStrength) + ", while " + TargetCountry->getSourceCountry()->getName() + " has a strength of " + to_string(getStrengthOverTime(TargetCountry, time));
+			s += "Can kill " + TargetCountry->getSourceCountry()->getName() + " by ourselves\n\t I have a strength of " + to_string(AttackingCountry->getStrengthOverTime(time));
+			s += " and my faction has a strength of " + to_string(myFactionDisStrength) + ", while " + TargetCountry->getSourceCountry()->getName() + " has a strength of " + to_string(TargetCountry->getStrengthOverTime(time));
 			s += " and has a faction strength of " + to_string(enemyFactionDisStrength) + " \n";
 		}
 		else
@@ -5054,8 +5040,8 @@ string HoI4World::HowToTakeLand(HoI4Country* TargetCountry, HoI4Country* Attacki
 			{
 				//ADD CONQUEST GOAL
 				type = "factionneeded";
-				s += "Can kill " + TargetCountry->getSourceCountry()->getName() + " with our faction\n\t I have a strength of " + to_string(getStrengthOverTime(AttackingCountry, time));
-				s += " and my faction has a strength of " + to_string(myFactionDisStrength) + ", while " + TargetCountry->getSourceCountry()->getName() + " has a strength of " + to_string(getStrengthOverTime(TargetCountry, time));
+				s += "Can kill " + TargetCountry->getSourceCountry()->getName() + " with our faction\n\t I have a strength of " + to_string(AttackingCountry->getStrengthOverTime(time));
+				s += " and my faction has a strength of " + to_string(myFactionDisStrength) + ", while " + TargetCountry->getSourceCountry()->getName() + " has a strength of " + to_string(TargetCountry->getStrengthOverTime(time));
 				s += " and has a faction strength of " + to_string(enemyFactionDisStrength) + " \n";
 			}
 			else
@@ -5069,8 +5055,8 @@ string HoI4World::HowToTakeLand(HoI4Country* TargetCountry, HoI4Country* Attacki
 				if (GetFactionStrengthWithDistance(AttackingCountry, myFaction->getMembers(), time) >= GetFactionStrengthWithDistance(TargetCountry, targetFaction->getMembers(), time))
 				{
 					//ADD CONQUEST GOAL
-					s += "Can kill " + TargetCountry->getSourceCountry()->getName() + " with our faction Once I have more allies\n\t I have a strength of " + to_string(getStrengthOverTime(AttackingCountry, 1));
-					s += " and my faction has a strength of " + to_string(myFactionDisStrength) + ", while " + TargetCountry->getSourceCountry()->getName() + " has a strength of " + to_string(getStrengthOverTime(TargetCountry, 1));
+					s += "Can kill " + TargetCountry->getSourceCountry()->getName() + " with our faction Once I have more allies\n\t I have a strength of " + to_string(AttackingCountry->getStrengthOverTime(1.0));
+					s += " and my faction has a strength of " + to_string(myFactionDisStrength) + ", while " + TargetCountry->getSourceCountry()->getName() + " has a strength of " + to_string(TargetCountry->getStrengthOverTime(1.0));
 					s += " and has a faction strength of " + to_string(enemyFactionDisStrength) + " \n";
 				}
 				else
@@ -5128,7 +5114,7 @@ vector<HoI4Country*> HoI4World::GetMorePossibleAllies(HoI4Country* CountryThatWa
 				HoI4Relations* relationswithposally = CountryThatWantsAllies->getRelations(CountriesWithin500Miles[i]->getTag());
 				int rel = relationswithposally->getRelations();
 				int size = findFaction(CountriesWithin500Miles[i])->getMembers().size();
-				double armysize = getStrengthOverTime(CountriesWithin500Miles[i], 1);
+				double armysize = CountriesWithin500Miles[i]->getStrengthOverTime(1.0);
 				//for now can only ally with people not in a faction, and must be worth adding
 				if (relationswithposally->getRelations() >= -50 && findFaction(CountriesWithin500Miles[i])->getMembers().size() <= 1)
 				{
@@ -5297,7 +5283,7 @@ double HoI4World::GetFactionStrengthWithDistance(HoI4Country* HomeCountry, vecto
 		else
 			distanceMulti = 0.2;
 
-		strength += getStrengthOverTime(country, time) * distanceMulti;
+		strength += country->getStrengthOverTime(time) * distanceMulti;
 	}
 	return strength;
 }
@@ -5434,9 +5420,9 @@ vector<HoI4Faction*> HoI4World::CreateFactions(const V2World &sourceWorld, const
 				auto allies = country->getAllies();
 				vector<int> yourbrigs = country->getBrigs();
 				auto yourrelations = country->getRelations();
-				out << country->getSourceCountry()->getName() << " " + yourgovernment + " initial strength:" + to_string(getInitialStrength(country)) + " Factory Strength per year: " + to_string(getAddedStrength(country, 1)) + " Factory Strength by 1939: " + to_string(getAddedStrength(country, 3)) + " allies: \n";
+				out << country->getSourceCountry()->getName() << " " + yourgovernment + " initial strength:" + to_string(country->getMilitaryStrength()) + " Factory Strength per year: " + to_string(country->getEconomicStrength(1.0)) + " Factory Strength by 1939: " + to_string(country->getEconomicStrength(3.0)) + " allies: \n";
 				usedCountries.push_back(country->getTag());
-				FactionMilStrength = getStrengthOverTime(country, 3);
+				FactionMilStrength = country->getStrengthOverTime(3.0);
 				for (auto ally : allies)
 				{
 
@@ -5480,8 +5466,8 @@ vector<HoI4Faction*> HoI4World::CreateFactions(const V2World &sourceWorld, const
 							{
 								usedCountries.push_back(allycountry->getTag());
 								alreadyAllied.push_back(allycountry->getTag());
-								out << "\t" + name + " " + allygovernment + " initial strength:" + to_string(getInitialStrength(allycountry)) + " Factory Strength per year: " + to_string(getAddedStrength(allycountry, 1))+ " Factory Strength by 1939: " + to_string(getAddedStrength(allycountry, 3)) << endl;
-								FactionMilStrength += getStrengthOverTime(allycountry, 1);
+								out << "\t" + name + " " + allygovernment + " initial strength:" + to_string(allycountry->getMilitaryStrength()) + " Factory Strength per year: " + to_string(allycountry->getEconomicStrength(1.0))+ " Factory Strength by 1939: " + to_string(allycountry->getEconomicStrength(3.0)) << endl;
+								FactionMilStrength += allycountry->getStrengthOverTime(1.0);
 								Faction.push_back(allycountry);
 							}
 						}
@@ -5510,7 +5496,7 @@ double HoI4World::GetFactionStrength(HoI4Faction* Faction)
 	double strength = 0;
 	for (auto country : Faction->getMembers())
 	{
-		strength += getStrengthOverTime(country, 1);
+		strength += country->getStrengthOverTime(1.0);
 	}
 	return strength;
 }
@@ -5593,28 +5579,28 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 		//lets check to see if they are not our ally and not a great country
 		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
 		{
-			volatile double enemystrength = getStrengthOverTime(neigh.second, 1.5);
-			volatile double mystrength = getStrengthOverTime(Leader, 1.5);
+			volatile double enemystrength = neigh.second->getStrengthOverTime(1.5);
+			volatile double mystrength = Leader->getStrengthOverTime(1.5);
 			//lets see their strength is at least < 20%
-			if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second)->getMembers().size() == 1)
+			if (neigh.second->getStrengthOverTime(1.5) < Leader->getStrengthOverTime(1.5)*0.2 && findFaction(neigh.second)->getMembers().size() == 1)
 			{
 				//they are very weak
 				Anchluss.push_back(neigh.second);
 			}
 			//if not, lets see their strength is at least < 60%
-			else if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1)*0.6 && getStrengthOverTime(neigh.second, 1) > getStrengthOverTime(Leader, 1)*0.2 && findFaction(neigh.second)->getMembers().size() == 1)
+			else if (neigh.second->getStrengthOverTime(1.5) < Leader->getStrengthOverTime(1.0)*0.6 && neigh.second->getStrengthOverTime(1.0) > Leader->getStrengthOverTime(1.0)*0.2 && findFaction(neigh.second)->getMembers().size() == 1)
 			{
 				//they are weak and we can get 1 of these countries in sudaten deal
 				Sudaten.push_back(neigh.second);
 			}
 			//if not, lets see their strength is at least = to ours%
-			else if (getStrengthOverTime(neigh.second, 1) < getStrengthOverTime(Leader, 1))
+			else if (neigh.second->getStrengthOverTime(1.0) < Leader->getStrengthOverTime(1.0))
 			{
 				//EqualTargets.push_back(neigh);
 				EqualTargets.push_back(neigh.second);
 			}
 			//if not, lets see their strength is at least < 120%
-			else if (getStrengthOverTime(neigh.second, 1) < getStrengthOverTime(Leader, 1)*1.2)
+			else if (neigh.second->getStrengthOverTime(1.0) < Leader->getStrengthOverTime(1.0)*1.2)
 			{
 				//StrongerTargets.push_back(neigh);
 				DifficultTargets.push_back(neigh.second);
@@ -6742,10 +6728,10 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World 
 		//lets check to see if they are not our ally and not a great country
 		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
 		{
-			volatile double enemystrength = getStrengthOverTime(neigh.second, 1.5);
-			volatile double mystrength = getStrengthOverTime(Leader, 1.5);
+			volatile double enemystrength = neigh.second->getStrengthOverTime(1.5);
+			volatile double mystrength = Leader->getStrengthOverTime(1.5);
 			//lets see their strength is at least < 20%
-			if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second)->getMembers().size() == 1)
+			if (neigh.second->getStrengthOverTime(1.5) < Leader->getStrengthOverTime(1.5)*0.2 && findFaction(neigh.second)->getMembers().size() == 1)
 			{
 				//they are very weak
 				WeakNeighbors.push_back(neigh.second);
@@ -6757,10 +6743,10 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World 
 		//lets check to see if they are not our ally and not a great country
 		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld, countryMap))
 		{
-			volatile double enemystrength = getStrengthOverTime(neigh.second, 1.5);
-			volatile double mystrength = getStrengthOverTime(Leader, 1.5);
+			volatile double enemystrength = neigh.second->getStrengthOverTime(1.5);
+			volatile double mystrength = Leader->getStrengthOverTime(1.5);
 			//lets see their strength is at least < 20%
-			if (getStrengthOverTime(neigh.second, 1.5) < getStrengthOverTime(Leader, 1.5)*0.2 && findFaction(neigh.second)->getMembers().size() == 1)
+			if (neigh.second->getStrengthOverTime(1.5) < Leader->getStrengthOverTime(1.5)*0.2 && findFaction(neigh.second)->getMembers().size() == 1)
 			{
 				//they are very weak
 				WeakColonies.push_back(neigh.second);

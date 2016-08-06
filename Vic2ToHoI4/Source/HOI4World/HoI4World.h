@@ -119,9 +119,6 @@ class HoI4World
 		string genericFocusTreeCreator(HoI4Country * CreatingCountry);
 		void addStatesToCountries();
 		void fillCountryIC();
-		double getStrengthOverTime(HoI4Country * Country, double years);
-		double getInitialStrength(HoI4Country * Country);
-		double getAddedStrength(HoI4Country * Country, double years);
 		void outputRelations();
 		void	checkAllProvincesMapped(const HoI4ToVic2ProvinceMapping& provinceMap);
 
@@ -156,9 +153,6 @@ class HoI4World
 		map<int, HoI4Province*>		provinces;
 		map<string, HoI4Country*>	countries;
 		HoI4Diplomacy					diplomacy;
-		map<string, int>				countriesICMIL;  
-		map<string, int>				countriesICCIV;
-		map<string, vector<int>>		countriesStates; 
 		map<int, int>					stateMap;
 		vector<HoI4Country*> AggressorFactions;
 

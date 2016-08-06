@@ -1770,6 +1770,12 @@ void HoI4Country::addProvince(HoI4Province* _province)
 }
 
 
+void HoI4Country::addState(HoI4State* _state)
+{
+	states.insert(make_pair(_state->getID(), _state));
+}
+
+
 HoI4Relations* HoI4Country::getRelations(string withWhom) const
 {
 	map<string, HoI4Relations*>::const_iterator i = relations.find(withWhom);
@@ -2580,14 +2586,39 @@ void HoI4Country::lowerNeutrality(double amount)
 }
 
 
-HoI4Province* HoI4Country::getCapital(void)
+void HoI4Country::calculateIndustry()
 {
-	auto capitalItr = provinces.find(capital);
-	if (capitalItr == provinces.end())
+	militaryFactories = 0.0;
+	civilianFactories = 0.0;
+	for (auto state : states)
 	{
-		if (provinces.size() > 0)
+		civilianFactories += state.second->getCivFactories();
+		militaryFactories += state.second->getMilFactories();
+	}
+
+	if (RulingPartyModel.war_pol == "jingoism")
+	{
+		civilianFactories *= 1.1;
+	}
+	else if (RulingPartyModel.war_pol == "pro_military")
+	{
+		civilianFactories *= 0.9;
+	}
+	else
+	{
+		civilianFactories *= 0.7;
+	}
+}
+
+
+HoI4State* HoI4Country::getCapital(void)
+{
+	auto capitalItr = states.find(capital);
+	if (capitalItr == states.end())
+	{
+		if (states.size() > 0)
 		{
-			capitalItr = provinces.begin();
+			capitalItr = states.begin();
 		}
 		else
 		{
@@ -2597,3 +2628,26 @@ HoI4Province* HoI4Country::getCapital(void)
 
 	return capitalItr->second;
 }
+
+
+double HoI4Country::getStrengthOverTime(double years)
+{
+	return getMilitaryStrength() + getEconomicStrength(years);
+}
+
+
+double HoI4Country::getMilitaryStrength()
+{
+	return armyStrength;
+}
+
+
+double HoI4Country::getEconomicStrength(double years)
+{
+	double militarySectorStrength = militaryFactories * 3 * 365 * years;
+	double civilianSectorStrength = civilianFactories * 0.469 * 0.5 * 3 * 365 * 0.5* years * years; /*.469 is milfac per year, .5 since half are used by consumer goods*/
+
+	return militarySectorStrength + civilianSectorStrength;
+}
+
+
