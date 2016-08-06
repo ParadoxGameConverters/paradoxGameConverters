@@ -88,13 +88,14 @@ class HoI4World
 		vector<int> getCountryProvinces(HoI4Country * Country);
 		vector<HoI4Faction*> CreateFactions(const V2World & sourceWorld, const CountryMapping & countryMap);
 		HoI4Country *    GetFactionLeader(vector<HoI4Country*> Faction);
-		double    GetFactionStrength(HoI4Faction* Faction);
+		double    GetFactionStrength(HoI4Faction* Faction, int years);
 		vector<HoI4Country*>    returnGreatCountries(const V2World & sourceWorld, const CountryMapping & countryMap);
 		string returnIfSphere(HoI4Country * leadercountry, HoI4Country * posLeaderCountry, const V2World & sourceWorld, const CountryMapping & countryMap);
 		vector<HoI4Faction*> FascistWarMaker(HoI4Country * Leader, V2World sourceWorld, CountryMapping countryMap);
 		vector<HoI4Faction*> CommunistWarCreator(HoI4Country * Leader, V2World sourceWorld, CountryMapping countryMap);
 		vector<HoI4Faction*> DemocracyWarCreator(HoI4Country * Leader, V2World sourceWorld, CountryMapping countryMap);
 		vector<HoI4Faction*> MonarchyWarCreator(HoI4Country * Leader, V2World sourceWorld, CountryMapping countryMap);
+		void CreateFactionEvents(HoI4Country * Leader, HoI4Country * newAlly);
 		string HowToTakeLand(HoI4Country * TargetCountry, HoI4Country * AttackingCountry, double time);
 		vector<HoI4Country*> GetMorePossibleAllies(HoI4Country * CountryThatWantsAllies);
 		double getDistanceBetweenCountries(const HoI4Country* Country1, const HoI4Country* Country2);
@@ -158,6 +159,8 @@ class HoI4World
 		HoI4Diplomacy					diplomacy;
 		map<int, int>					stateMap;
 		vector<HoI4Country*> AggressorFactions;
+		map<HoI4Country*, vector<HoI4Country*>> WorldTargetMap;
+		string aiOutputLog;
 
 		// map items
 		map<int, string>						continents;  // < province, continent >
@@ -175,6 +178,10 @@ class HoI4World
 		map<int, vector<string>> provincemap;
 		bool fascismIsRelevant;
 		bool communismIsRelevant;
+		string NewsEvents;
+		int NewsEventNumber;
+		string nfEvents;
+		int nfEventNumber;
 };
 
 

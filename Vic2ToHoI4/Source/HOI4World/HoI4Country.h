@@ -109,6 +109,7 @@ class HoI4Country
 		string										getFaction() const			{ return faction; }
 		HoI4Alignment*								getAlignment()					{ return &alignment; }
 		string										getIdeology() const			{ return ideology; }
+		string										getRulingIdeology() const { return rulingHoI4Ideology; }
 		const set<string>&						getAllies() const				{ return allies; }
 		set<string>&								editAllies()					{ return allies; }
 		map<string, double>&						getPracticals()				{ return practicals; }
