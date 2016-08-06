@@ -79,9 +79,8 @@ class HoI4World
 		void	convertArmies(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void	convertNavies();
 		void	convertAirforces();
-		void	convertVictoryPoints(const CountryMapping& countryMap);
+		void convertCapitalVPs(const CountryMapping& countryMap);
 		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
-		void	addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void fillCountryProvinces();
 		void    setSphereLeaders(const V2World & sourceWorld, const CountryMapping & countryMap);
 		void    thatsgermanWarCreator(const V2World & sourceWorld, const CountryMapping& countryMap);

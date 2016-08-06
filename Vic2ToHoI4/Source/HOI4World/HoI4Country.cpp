@@ -1760,56 +1760,6 @@ void HoI4Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 }
 
 
-void HoI4Country::addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap)
-{
-	if (provinces.size() == 0)
-	{
-		return;
-	}
-
-	// determine if there's anything to add
-	bool hasPort = false;
-	for (auto province : provinces)
-	{
-		if (province.second->getNavalBase() > 0)
-		{
-			hasPort = true;
-		}
-	}
-
-	auto capitalItr = provinces.find(capital);
-	if (capitalItr == provinces.end())
-	{
-		capitalItr = provinces.begin();
-	}
-
-	// if necessary, add an airbase to the capital province
-	capitalItr->second->requireAirBase(10);
-
-	// if necessary, add a port as near to the capital as possible
-	//		impossible currently, as we don't have a way to know where ports are valid
-
-	for (auto state : srcCountry->getStates())
-	{
-		if (state->getProvinces().size() > 0)
-		{
-			auto possibleHoI4Provinces = inverseProvinceMap.find(*state->getProvinces().begin());
-			if (possibleHoI4Provinces != inverseProvinceMap.end())
-			{
-				if (possibleHoI4Provinces->second.size() > 0)
-				{
-					auto provinceItr = provinces.find(possibleHoI4Provinces->second[0]);
-					if (provinceItr != provinces.end())
-					{
-						provinceItr->second->requireAirBase(2);
-					}
-				}
-			}
-		}
-	}
-}
-
-
 void HoI4Country::addProvince(HoI4Province* _province)
 {
 	provinces.insert(make_pair(_province->getNum(), _province));

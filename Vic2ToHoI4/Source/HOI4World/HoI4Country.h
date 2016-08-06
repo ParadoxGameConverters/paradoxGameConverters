@@ -82,10 +82,11 @@ class HoI4Country
 		void		convertAirforce();
 		void		convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void		setAIFocuses(const AIFocusModifiers& focusModifiers);
-		void		addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void		setTechnology(string tech, int level);
 		void		addProvince(HoI4Province* _province);
+		void addState(HoI4State* _state);
 		void		lowerNeutrality(double amount);
+		void calculateIndustry();
 
 		void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
 		void		setFaction(string newFaction)	{ faction = newFaction; }

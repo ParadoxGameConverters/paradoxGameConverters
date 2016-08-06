@@ -1529,14 +1529,6 @@ void HoI4World::setAIFocuses(const AIFocusModifiers& focusModifiers)
 }
 
 
-void HoI4World::addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap)
-{
-	for (auto country : countries)
-	{
-		country.second->addMinimalItems(inverseProvinceMap);
-	}
-}
-
 void HoI4World::fillCountryProvinces()
 {
 	for (auto country : countries)

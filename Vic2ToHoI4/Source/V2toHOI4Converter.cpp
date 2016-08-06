@@ -447,8 +447,6 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	destWorld.convertDiplomacy(countryMap);
 	LOG(LogLevel::Info) << "Converting techs";
 	destWorld.convertTechs();
-	LOG(LogLevel::Info) << "Adding minimal levels of airbase and port";
-	destWorld.addMinimalItems(inverseProvinceMap);
 	LOG(LogLevel::Info) << "Setting up factions";
 	destWorld.configureFactions(countryMap);
 	LOG(LogLevel::Info) << "Generating Leaders";
