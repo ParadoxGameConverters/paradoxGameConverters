@@ -338,7 +338,16 @@ void HoI4States::createVPForState(HoI4State* newState, const Vic2ToHoI4ProvinceM
 	{
 		newState->createVP(HoI4ProvNum);
 	}
+	else if (newState->getProvinces().size() > 0)
+	{
+		newState->createVP(*newState->getProvinces().begin());
+	}
+	else
+	{
+		LOG(LogLevel::Warning) << "Could not create VP for state";
+	}
 }
+
 
 
 void HoI4States::addManpowerToNewState(HoI4State* newState)
