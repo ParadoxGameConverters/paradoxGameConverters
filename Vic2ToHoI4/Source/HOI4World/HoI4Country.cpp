@@ -2611,7 +2611,7 @@ void HoI4Country::calculateIndustry()
 }
 
 
-void HoI4Country::addVPsToCapital(double VPs)
+void HoI4Country::addVPsToCapital(int VPs)
 {
 	auto capital = getCapital();
 	if (capital != NULL)
