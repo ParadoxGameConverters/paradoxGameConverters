@@ -1312,60 +1312,39 @@ void HoI4World::convertAirforces()
 }
 
 
-void HoI4World::convertVictoryPoints(const CountryMapping& countryMap)
+void HoI4World::convertCapitalVPs(const CountryMapping& countryMap)
 {
-	// all country capitals get five VP
-	for (auto countryItr : countries)
+	addBasicCapitalVPs(countryMap);
+	addGreatPowerVPs(countryMap);
+}
+
+
+void HoI4World::addBasicCapitalVPs(const CountryMapping& countryMap)
+{
+	for (auto countryItr: countries)
 	{
 		auto capitalItr = countryItr.second->getCapital();
 		if (capitalItr != NULL)
 		{
-			capitalItr->addPoints(5);
+			capitalItr->addVictoryPointValue(5);
 		}
 	}
+}
 
-	// Great Power capitals get another five
-	const std::vector<string>& greatCountries = sourceWorld->getGreatCountries();
-	for (auto country : sourceWorld->getGreatCountries())
+
+void HoI4World::addGreatPowerVPs(const CountryMapping& countryMap)
+{
+	for (auto Vic2GPTag: sourceWorld->getGreatCountries())
 	{
-		const std::string& HoI4Tag = countryMap[country];
+		auto HoI4Tag = countryMap[Vic2GPTag];
 		auto countryItr = countries.find(HoI4Tag);
 		if (countryItr != countries.end())
 		{
 			auto capitalItr = countryItr->second->getCapital();
 			if (capitalItr != NULL)
 			{
-				capitalItr->addPoints(5);
+				capitalItr->addVictoryPointValue(5);
 			}
-		}
-	}
-
-	// alliance leaders get another ten
-	auto countryItr = countries.find(axisLeader);
-	if (countryItr != countries.end())
-	{
-		auto capitalItr = countryItr->second->getCapital();
-		if (capitalItr != NULL)
-		{
-			capitalItr->addPoints(10);
-		}
-	}
-	countryItr = countries.find(alliesLeader);
-	if (countryItr != countries.end())
-	{
-		auto capitalItr = countryItr->second->getCapital();
-		if (capitalItr != NULL)
-		{
-			capitalItr->addPoints(10);
-		}
-	}
-	countryItr = countries.find(cominternLeader);
-	if (countryItr != countries.end())
-	{
-		auto capitalItr = countryItr->second->getCapital();
-		if (capitalItr != NULL)
-		{
-			capitalItr->addPoints(10);
 		}
 	}
 }

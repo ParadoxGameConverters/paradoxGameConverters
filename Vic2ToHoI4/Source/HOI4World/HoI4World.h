@@ -117,6 +117,7 @@ class HoI4World
 		string createMonarchyEmpireNF(HoI4Country * Home, HoI4Country * Annexed1, HoI4Country * Annexed2, HoI4Country * Annexed3, HoI4Country * Annexed4, int ProtectorateNumber, int AnnexNumber, int x);
 		void fillProvinceNeighbors();
 		string genericFocusTreeCreator(HoI4Country * CreatingCountry);
+		void addStatesToCountries();
 		void fillCountryIC();
 		double getStrengthOverTime(HoI4Country * Country, double years);
 		double getInitialStrength(HoI4Country * Country);
@@ -131,6 +132,9 @@ class HoI4World
 		void	checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string leader, const string& factionName);
 		void	factionSatellites();
 		void	setAlignments();
+
+		void addBasicCapitalVPs(const CountryMapping& countryMap);
+		void addGreatPowerVPs(const CountryMapping& countryMap);
 
 		vector<int>					getPortProvinces(const vector<int>& locationCandidates);
 		vector<int>					getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
