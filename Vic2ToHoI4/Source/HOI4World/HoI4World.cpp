@@ -1318,6 +1318,7 @@ void HoI4World::convertCapitalVPs(const CountryMapping& countryMap)
 {
 	addBasicCapitalVPs(countryMap);
 	addGreatPowerVPs(countryMap);
+	addStrengthVPs();
 }
 
 
@@ -1325,11 +1326,7 @@ void HoI4World::addBasicCapitalVPs(const CountryMapping& countryMap)
 {
 	for (auto countryItr: countries)
 	{
-		auto capitalItr = countryItr.second->getCapital();
-		if (capitalItr != NULL)
-		{
-			capitalItr->addVictoryPointValue(5);
-		}
+		countryItr.second->addVPsToCapital(5);
 	}
 }
 
@@ -1342,13 +1339,43 @@ void HoI4World::addGreatPowerVPs(const CountryMapping& countryMap)
 		auto countryItr = countries.find(HoI4Tag);
 		if (countryItr != countries.end())
 		{
-			auto capitalItr = countryItr->second->getCapital();
-			if (capitalItr != NULL)
-			{
-				capitalItr->addVictoryPointValue(5);
-			}
+			countryItr->second->addVPsToCapital(5);
 		}
 	}
+}
+
+
+void HoI4World::addStrengthVPs()
+{
+	double greatestStrength = getStrongestCountryStrength();
+	for (auto country: countries)
+	{
+		double VPs = calculateStrengthVPs(country.second, greatestStrength);
+		country.second->addVPsToCapital(VPs);
+	}
+}
+
+
+double HoI4World::getStrongestCountryStrength()
+{
+	double greatestStrength = 0.0;
+	for (auto country: countries)
+	{
+		double currentStrength = country.second->getStrengthOverTime(1.0);
+		if (currentStrength > greatestStrength)
+		{
+			greatestStrength = currentStrength;
+		}
+	}
+
+	return greatestStrength;
+}
+
+
+double HoI4World::calculateStrengthVPs(HoI4Country* country, double greatestStrength)
+{
+	double relativeStrength = country->getStrengthOverTime(1.0) / greatestStrength;
+	return relativeStrength * 30.0;
 }
 
 

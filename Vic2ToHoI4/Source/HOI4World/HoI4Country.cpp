@@ -2611,6 +2611,16 @@ void HoI4Country::calculateIndustry()
 }
 
 
+void HoI4Country::addVPsToCapital(double VPs)
+{
+	auto capital = getCapital();
+	if (capital != NULL)
+	{
+		capital->addVictoryPointValue(VPs);
+	}
+}
+
+
 HoI4State* HoI4Country::getCapital(void)
 {
 	auto capitalItr = states.find(capital);

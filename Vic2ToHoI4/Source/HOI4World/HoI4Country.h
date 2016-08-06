@@ -87,6 +87,7 @@ class HoI4Country
 		void addState(HoI4State* _state);
 		void		lowerNeutrality(double amount);
 		void calculateIndustry();
+		void addVPsToCapital(double VPs);
 
 		void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
 		void		setFaction(string newFaction)	{ faction = newFaction; }

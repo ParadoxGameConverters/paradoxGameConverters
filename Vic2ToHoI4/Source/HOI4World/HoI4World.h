@@ -132,6 +132,9 @@ class HoI4World
 
 		void addBasicCapitalVPs(const CountryMapping& countryMap);
 		void addGreatPowerVPs(const CountryMapping& countryMap);
+		void addStrengthVPs();
+		double getStrongestCountryStrength();
+		double calculateStrengthVPs(HoI4Country* country, double greatestStrength);
 
 		vector<int>					getPortProvinces(const vector<int>& locationCandidates);
 		vector<int>					getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
