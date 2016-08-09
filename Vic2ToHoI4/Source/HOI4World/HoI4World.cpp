@@ -608,6 +608,7 @@ void HoI4World::convertIndustry()
 		HoI4State.second->setIndustry(civilianFactories, militaryFactories, category, railLevel);
 	}
 
+	reportIndustryLevels();
 	fillCountryIC();
 
 	//// now that all provinces have had owners and cores set, convert their other items
@@ -732,6 +733,25 @@ void HoI4World::convertIndustry()
 	//		}
 	//	}
 	//}
+}
+
+
+void HoI4World::reportIndustryLevels()
+{
+	int militaryFactories = 0;
+	int civilialFactories = 0;
+	int dockyards = 0;
+	for (auto state: states->getStates())
+	{
+		militaryFactories += state.second->getMilFactories();
+		civilialFactories += state.second->getCivFactories();
+		dockyards += state.second->getDockyards();
+	}
+
+	LOG(LogLevel::Debug) << "Total factories: " << (militaryFactories + civilialFactories + dockyards) << "\n\t" \
+		<< militaryFactories << " military factories\n\t" \
+		<< civilialFactories << " civilian factories\n\t" \
+		<< dockyards << " dockyards";
 }
 
 
