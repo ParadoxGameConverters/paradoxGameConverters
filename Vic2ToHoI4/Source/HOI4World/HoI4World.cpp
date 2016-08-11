@@ -482,8 +482,8 @@ void HoI4World::convertIndustry()
 		}
 
 		// calculate the ratio between Vic2 employed workers and HoI4 factories
-		double sinPart = sin(employedWorkersAdjusted / 150) * 100;
-		double logpart = log10(employedWorkersAdjusted) * 15;
+		double sinPart = sin(employedWorkersAdjusted / 150) * 158;
+		double logpart = log10(employedWorkersAdjusted) * 23.8;
 		double HoI4TotalFactories = sinPart + logpart + 5;
 		if (employedWorkersAdjusted != 0)
 		{
@@ -589,23 +589,8 @@ void HoI4World::convertIndustry()
 			railLevel++;
 		}
 
-		// distribute military and civilian factories using unseeded random
-		//		0-6 gives a civilian factory, 7-9 gives a military factory
-		int civilianFactories = 0;
-		int militaryFactories = 0;
-		for (int i = 0; i < stateFactories; i++)
-		{
-			int randomNum = rand() % 10;
-			if (randomNum > 6)
-			{
-				militaryFactories++;
-			}
-			else
-			{
-				civilianFactories++;
-			}
-		}
-		HoI4State.second->setIndustry(civilianFactories, militaryFactories, category, railLevel);
+		HoI4State.second->setIndustry(stateFactories, category, railLevel);
+		HoI4State.second->addVictoryPointValue(stateFactories / 2);
 	}
 
 	reportIndustryLevels();
@@ -748,10 +733,10 @@ void HoI4World::reportIndustryLevels()
 		dockyards += state.second->getDockyards();
 	}
 
-	LOG(LogLevel::Debug) << "Total factories: " << (militaryFactories + civilialFactories + dockyards) << "\n\t" \
-		<< militaryFactories << " military factories\n\t" \
-		<< civilialFactories << " civilian factories\n\t" \
-		<< dockyards << " dockyards";
+	LOG(LogLevel::Debug) << "Total factories: " << (militaryFactories + civilialFactories + dockyards);
+	LOG(LogLevel::Debug) << "\t" << militaryFactories << " military factories";
+	LOG(LogLevel::Debug) << "\t" << civilialFactories << " civilian factories";
+	LOG(LogLevel::Debug) << "\t" << dockyards << " dockyards";
 }
 
 

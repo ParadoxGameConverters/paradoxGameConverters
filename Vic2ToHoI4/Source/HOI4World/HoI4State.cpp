@@ -133,20 +133,37 @@ void HoI4State::setNavalBase(int level, int location)
 	{
 		navalLevel		= level;
 		navalLocation	= location;
-
-		dockyards		= 1;
 	}
 }
 
 
-void HoI4State::setIndustry(int _civilianFactories, int _militaryFactories, string _category, int _railLevel)
+void HoI4State::setIndustry(int factories, string _category, int _railLevel)
 {
-	civFactories	= _civilianFactories;
-	milFactories	= _militaryFactories;
+	// distribute military and civilian factories using unseeded random
+	//		10% chance of dockyard
+	//		64% chance of civilian factory
+	//		26% chance of military factory
+	int civilianFactories = 0;
+	int militaryFactories = 0;
+	for (int i = 0; i < factories; i++)
+	{
+		double randomNum = 100.0 * rand() / (RAND_MAX + 1);
+		if (randomNum > 73)
+		{
+			milFactories++;
+		}
+		else if (randomNum > 9)
+		{
+			civFactories++;
+		}
+		else
+		{
+			dockyards++;
+		}
+	}
+
 	category			= _category;
 	railLevel		= _railLevel;
-
-	addVictoryPointValue((_civilianFactories + _militaryFactories + dockyards) / 2);
 }
 
 

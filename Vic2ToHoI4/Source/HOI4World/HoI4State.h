@@ -50,7 +50,7 @@ class HoI4State
 		void addVictoryPointValue(int additionalValue) { victoryPointValue += additionalValue; }
 
 		void setNavalBase(int level, int location);
-		void setIndustry(int civilianFactories, int militaryFactories, string category, int railLevel);
+		void setIndustry(int factories, string category, int railLevel);
 		void addCores(const vector<string>& newCores);
 		void createVP(int location);
 
