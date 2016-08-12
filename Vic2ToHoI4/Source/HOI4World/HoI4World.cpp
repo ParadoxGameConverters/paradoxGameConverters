@@ -498,99 +498,30 @@ void HoI4World::convertIndustry()
 	//	loop through the HoI4 states to set the factory levels
 	for (auto HoI4State : states->getStates())
 	{
-		auto Vic2State = HoI4State.second->getSourceState();
-
 		auto ratioMapping = ratioMap.find(HoI4State.second->getOwner());
 		if (ratioMapping == ratioMap.end())
 		{
 			continue;
 		}
-		double	stateWorkers = 0;
-		int		stateFactories = 0;
+		int factories = HoI4State.second->determineFactoryNumbers(sourceWorld, ratioMapping->second);
+
 		int		population = 0;
-		int		railLevel = 0;
+		int		totalRailLevel = 0;
+		auto Vic2State = HoI4State.second->getSourceState();
 		for (auto provinceNum : Vic2State->getProvinces())
 		{
 			// get population, rail level, and workers to convert slots and states*conversion percentage
 			V2Province* sourceProvince = sourceWorld->getProvince(provinceNum);
 
-			population += sourceProvince->getLiteracyWeightedPopulation();
-			railLevel = sourceProvince->getInfra();
-			stateWorkers += sourceProvince->getEmployedWorkers() * ratioMapping->second / 100000;
+			population += sourceProvince->getPopulation();
+			totalRailLevel += sourceProvince->getInfra();
 		}
+		int averageRails = totalRailLevel / Vic2State->getProvinces().size();
 
-		// make sure there are no negative factories
-		if (stateWorkers < 0)
-		{
-			stateWorkers = 0;
-		}
-		stateFactories = static_cast<int>(round(stateWorkers));
-		if ((stateFactories + HoI4State.second->getDockyards()) > 12) // limit factories by 12 (the max slots)
-		{
-			stateFactories = 12 - HoI4State.second->getDockyards();
-		}
-
-		// determine state category
-		int stateSlots = population / 120000; // one slot is given per 120,000 people (need to change)
-		if ((stateFactories + HoI4State.second->getDockyards()) >= stateSlots)
-		{
-			stateSlots = stateFactories + HoI4State.second->getDockyards() + 2;
-		}
-
-		string category = "";
-		if (stateSlots >= 12)
-		{
-			category = "megalopolis";
-		}
-		else if (stateSlots >= 10)
-		{
-			category = "metropolis";
-		}
-		else if (stateSlots >= 8)
-		{
-			category = "large_city";
-		}
-		else if (stateSlots >= 6)
-		{
-			category = "city";
-		}
-		else if (stateSlots >= 5)
-		{
-			category = "large_town";
-		}
-		else if (stateSlots >= 4)
-		{
-			category = "town";
-		}
-		else if (stateSlots >= 2)
-		{
-			category = "rural";
-		}
-		else if (stateSlots >= 1)
-		{
-			category = "pastoral";
-		}
-		else
-		{
-			category = "enclave";
-		}
-
-		//better rails for better industry
-		if (stateFactories > 10)
-		{
-			railLevel += 3;
-		}
-		else if (stateFactories > 6)
-		{
-			railLevel += 2;
-		}
-		else if (stateFactories > 4)
-		{
-			railLevel++;
-		}
-
-		HoI4State.second->setIndustry(stateFactories, category, railLevel);
-		HoI4State.second->addVictoryPointValue(stateFactories / 2);
+		HoI4State.second->determineCategory(population, factories);
+		HoI4State.second->setInfrastructure(averageRails, factories);
+		HoI4State.second->setIndustry(factories);
+		HoI4State.second->addVictoryPointValue(factories / 2);
 	}
 
 	reportIndustryLevels();
@@ -651,20 +582,9 @@ void HoI4World::convertIndustry()
 	//		{
 	//			dstProvItr->second->requireLandFort(fortLevel);
 	//		}
-	//		dstProvItr->second->requireInfrastructure((int)Configuration::getMinInfra());
-	//		if (sourceProvince->getInfra() > 0) // No infra stays at minInfra
-	//		{
-	//			dstProvItr->second->requireInfrastructure(sourceProvince->getInfra() + 4);
-	//		}
-
 	//		if ((Configuration::getLeadershipConversion() == "linear") || (Configuration::getLeadershipConversion() == "squareroot"))
 	//		{
 	//			dstProvItr->second->setLeadership(0.0);
-	//		}
-	//		if ((Configuration::getIcConversion() == "squareroot") || (Configuration::getIcConversion() == "linear") || (Configuration::getIcConversion() == "logarithmic"))
-	//		{
-	//			dstProvItr->second->setRawIndustry(0.0);
-	//			dstProvItr->second->setActualIndustry(0);
 	//		}
 	//	}
 

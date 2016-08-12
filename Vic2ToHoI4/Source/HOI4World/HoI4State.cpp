@@ -24,6 +24,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4State.h"
 #include <fstream>
 #include "../Configuration.h"
+#include "../V2World/V2Province.h"
+#include "../V2World/V2World.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 
@@ -137,7 +139,72 @@ void HoI4State::setNavalBase(int level, int location)
 }
 
 
-void HoI4State::setIndustry(int factories, string _category, int _railLevel)
+void HoI4State::determineCategory(int population, int factories)
+{
+	int stateSlots = population / 120000; // one slot is given per 120,000 people (need to change)
+	if (factories >= stateSlots)
+	{
+		stateSlots = factories + 2;
+	}
+
+	if (stateSlots >= 12)
+	{
+		category = "megalopolis";
+	}
+	else if (stateSlots >= 10)
+	{
+		category = "metropolis";
+	}
+	else if (stateSlots >= 8)
+	{
+		category = "large_city";
+	}
+	else if (stateSlots >= 6)
+	{
+		category = "city";
+	}
+	else if (stateSlots >= 5)
+	{
+		category = "large_town";
+	}
+	else if (stateSlots >= 4)
+	{
+		category = "town";
+	}
+	else if (stateSlots >= 2)
+	{
+		category = "rural";
+	}
+	else if (stateSlots >= 1)
+	{
+		category = "pastoral";
+	}
+	else
+	{
+		category = "enclave";
+	}
+}
+
+
+void HoI4State::setInfrastructure(int averageRails, int factories)
+{
+	railLevel = averageRails;
+	if (factories > 10)
+	{
+		railLevel += 3;
+	}
+	else if (factories > 6)
+	{
+		railLevel += 2;
+	}
+	else if (factories > 4)
+	{
+		railLevel += 1;
+	}
+}
+
+
+void HoI4State::setIndustry(int factories)
 {
 	// distribute military and civilian factories using unseeded random
 	//		10% chance of dockyard
@@ -161,9 +228,6 @@ void HoI4State::setIndustry(int factories, string _category, int _railLevel)
 			dockyards++;
 		}
 	}
-
-	category			= _category;
-	railLevel		= _railLevel;
 }
 
 
@@ -200,6 +264,39 @@ int HoI4State::getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping&
 	{
 		return 0;
 	}
+}
+
+
+int HoI4State::determineFactoryNumbers(const V2World* sourceWorld, double workerFactoryRatio)
+{
+	double rawFactories = 0.0;
+
+	auto Vic2State = getSourceState();
+	for (auto provinceNum : Vic2State->getProvinces())
+	{
+		// get population, rail level, and workers to convert slots and states*conversion percentage
+		V2Province* sourceProvince = sourceWorld->getProvince(provinceNum);
+		rawFactories += sourceProvince->getEmployedWorkers() * workerFactoryRatio / 100000;
+	}
+
+	return constrainFactoryNumbers(rawFactories);
+}
+
+
+int HoI4State::constrainFactoryNumbers(double rawFactories)
+{
+	if (rawFactories < 0)
+	{
+		rawFactories = 0;
+	}
+
+	int factories = static_cast<int>(round(rawFactories));
+	if (factories > 12)
+	{
+		factories = 12;
+	}
+
+	return factories;
 }
 
 
