@@ -75,8 +75,8 @@ class HoI4State
 		int determineFactoryNumbers(const V2World* sourceWorld, double workerFactoryRatio);
 		int constrainFactoryNumbers(double rawFactories);
 		void determineCategory(const V2World* sourceWorld, int factories);
-		int determineStatePopulation(const V2World* sourceWorld);
-		void setInfrastructure(int averageRails, int factories);
+		map<int, string> getStateCategories();
+		void setInfrastructure(const V2World* sourceWorld, int factories);
 		void setIndustry(int factories);
 
 		string makeLocalisationKey() const;
@@ -95,7 +95,7 @@ class HoI4State
 		int milFactories;
 		int dockyards;
 		string category;
-		int railLevel;
+		int infrastructure;
 	
 		int navalLevel;
 		int navalLocation;

@@ -23,6 +23,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "HoI4State.h"
 #include <fstream>
+#include <random>
 #include "../Configuration.h"
 #include "../V2World/V2Province.h"
 #include "../V2World/V2World.h"
@@ -33,22 +34,26 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, string _ownerTag)
 {
-	sourceState		= _sourceState;
+	sourceState = _sourceState;
 
-	ID					= _ID;
-	ownerTag			= _ownerTag;
-	manpower			= 0;
+	ID = _ID;
+	provinces.clear();
+	ownerTag = _ownerTag;
 
-	civFactories	= 0;
-	milFactories	= 0;
-	category			= "pastoral";
-	railLevel		= 0;
-	dockyards		= 0;
+	manpower = 0;
 
-	navalLevel		= 0;
-	navalLocation	= 0;
+	civFactories = 0;
+	milFactories = 0;
+	dockyards = 0;
+	category = "pastoral";
+	infrastructure = 0;
 
-	airbaseLevel	= 0;
+	navalLevel = 0;
+	navalLocation = 0;
+
+	airbaseLevel = 0;
+
+	resources.clear();
 
 	victoryPointPosition = 0;
 	victoryPointValue = 0;
@@ -92,7 +97,7 @@ void HoI4State::output(string _filename)
 		out << "\t\t}" << endl;
 	}
 	out << "\t\tbuildings = {" << endl;
-	out << "\t\t\tinfrastructure = "<< railLevel << endl;
+	out << "\t\t\tinfrastructure = "<< infrastructure << endl;
 	out << "\t\t\tindustrial_complex = " << civFactories << endl;
 	out << "\t\t\tarms_factory = " << milFactories << endl;
 	if (dockyards > 0)
@@ -179,18 +184,8 @@ void HoI4State::convertIndustry(const V2World* sourceWorld, double workerFactory
 {
 	int factories = determineFactoryNumbers(sourceWorld, workerFactoryRatio);
 
-	int		totalRailLevel = 0;
-	auto Vic2State = getSourceState();
-	for (auto provinceNum : Vic2State->getProvinces())
-	{
-		V2Province* sourceProvince = sourceWorld->getProvince(provinceNum);
-
-		totalRailLevel += sourceProvince->getInfra();
-	}
-	int averageRails = totalRailLevel / Vic2State->getProvinces().size();
-
 	determineCategory(sourceWorld, factories);
-	setInfrastructure(averageRails, factories);
+	setInfrastructure(sourceWorld, factories);
 	setIndustry(factories);
 	addVictoryPointValue(factories / 2);
 }
@@ -199,19 +194,20 @@ void HoI4State::convertIndustry(const V2World* sourceWorld, double workerFactory
 int HoI4State::determineFactoryNumbers(const V2World* sourceWorld, double workerFactoryRatio)
 {
 	double rawFactories = sourceState->getEmployedWorkers(sourceWorld) * workerFactoryRatio;
+	rawFactories = round(rawFactories);
 	return constrainFactoryNumbers(rawFactories);
 }
 
 
 int HoI4State::constrainFactoryNumbers(double rawFactories)
 {
-	if (rawFactories < 0)
-	{
-		rawFactories = 0;
-	}
+	int factories = static_cast<int>(rawFactories);
 
-	int factories = static_cast<int>(round(rawFactories));
-	if (factories > 12)
+	if (factories < 0)
+	{
+		factories = 0;
+	}
+	else if (factories > 12)
 	{
 		factories = 12;
 	}
@@ -222,7 +218,7 @@ int HoI4State::constrainFactoryNumbers(double rawFactories)
 
 void HoI4State::determineCategory(const V2World* sourceWorld, int factories)
 {
-	int population = determineStatePopulation(sourceWorld);
+	int population = sourceState->getPopulation(sourceWorld);
 
 	int stateSlots = population / 120000; // one slot is given per 120,000 people (need to change)
 	if (factories >= stateSlots)
@@ -230,89 +226,64 @@ void HoI4State::determineCategory(const V2World* sourceWorld, int factories)
 		stateSlots = factories + 2;
 	}
 
-	if (stateSlots >= 12)
+	for (auto possibleCategory: getStateCategories())
 	{
-		category = "megalopolis";
-	}
-	else if (stateSlots >= 10)
-	{
-		category = "metropolis";
-	}
-	else if (stateSlots >= 8)
-	{
-		category = "large_city";
-	}
-	else if (stateSlots >= 6)
-	{
-		category = "city";
-	}
-	else if (stateSlots >= 5)
-	{
-		category = "large_town";
-	}
-	else if (stateSlots >= 4)
-	{
-		category = "town";
-	}
-	else if (stateSlots >= 2)
-	{
-		category = "rural";
-	}
-	else if (stateSlots >= 1)
-	{
-		category = "pastoral";
-	}
-	else
-	{
-		category = "enclave";
+		if (stateSlots >= possibleCategory.first)
+		{
+			category = possibleCategory.second;
+		}
 	}
 }
 
 
-int HoI4State::determineStatePopulation(const V2World* sourceWorld)
+map<int, string> HoI4State::getStateCategories()
 {
-	int population = 0;
+	map<int, string> stateCategories;
 
-	auto Vic2State = getSourceState();
-	for (auto provinceNum : Vic2State->getProvinces())
-	{
-		V2Province* sourceProvince = sourceWorld->getProvince(provinceNum);
-		population += sourceProvince->getPopulation();
-	}
+	stateCategories.insert(make_pair(12, "megalopolis"));
+	stateCategories.insert(make_pair(10, "metropolis"));
+	stateCategories.insert(make_pair(8, "large_city"));
+	stateCategories.insert(make_pair(6, "city"));
+	stateCategories.insert(make_pair(5, "large_town"));
+	stateCategories.insert(make_pair(4, "town"));
+	stateCategories.insert(make_pair(2, "rural"));
+	stateCategories.insert(make_pair(1, "pastoral"));
+	stateCategories.insert(make_pair(0, "enclave"));
 
-	return population;
+	return stateCategories;
 }
 
 
-void HoI4State::setInfrastructure(int averageRails, int factories)
+void HoI4State::setInfrastructure(const V2World* sourceWorld, int factories)
 {
-	railLevel = averageRails;
+	infrastructure = sourceState->getAverageRailLevel(sourceWorld);
+
+	if (factories > 4)
+	{
+		infrastructure++;
+	}
+	if (factories > 6)
+	{
+		infrastructure++;
+	}
 	if (factories > 10)
 	{
-		railLevel += 3;
-	}
-	else if (factories > 6)
-	{
-		railLevel += 2;
-	}
-	else if (factories > 4)
-	{
-		railLevel += 1;
+		infrastructure++;
 	}
 }
 
 
+static mt19937 randomnessEngine;
+static uniform_int_distribution<> numberDistributor(0, 99);
 void HoI4State::setIndustry(int factories)
 {
-	// distribute military and civilian factories using unseeded random
+	// distribute military factories, civilian factories, and dockyards using unseeded random
 	//		10% chance of dockyard
 	//		64% chance of civilian factory
 	//		26% chance of military factory
-	int civilianFactories = 0;
-	int militaryFactories = 0;
 	for (int i = 0; i < factories; i++)
 	{
-		double randomNum = 100.0 * rand() / (RAND_MAX + 1);
+		double randomNum = numberDistributor(randomnessEngine);
 		if (randomNum > 73)
 		{
 			milFactories++;

@@ -40,6 +40,8 @@ class Vic2State
 
 		void determinePartialState(const stateMapping& stateMap);
 		int getEmployedWorkers(const V2World* sourceWorld) const;
+		int getPopulation(const V2World* sourceWorld) const;
+		int getAverageRailLevel(const V2World* sourceWorld) const;
 
 		void setID(const string& id) { stateID = id; }
 

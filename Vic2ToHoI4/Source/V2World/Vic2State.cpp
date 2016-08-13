@@ -111,3 +111,29 @@ int Vic2State::getEmployedWorkers(const V2World* sourceWorld) const
 
 	return workers;
 }
+
+
+int Vic2State::getPopulation(const V2World* sourceWorld) const
+{
+	int population = 0;
+	for (auto provinceNum: provinces)
+	{
+		V2Province* sourceProvince = sourceWorld->getProvince(provinceNum);
+		population += sourceProvince->getPopulation();
+	}
+
+	return population;
+}
+
+
+int Vic2State::getAverageRailLevel(const V2World* sourceWorld) const
+{
+	int totalRailLevel = 0;
+	for (auto provinceNum: provinces)
+	{
+		V2Province* sourceProvince = sourceWorld->getProvince(provinceNum);
+		totalRailLevel += sourceProvince->getInfra();
+	}
+
+	return (totalRailLevel / provinces.size());
+}
