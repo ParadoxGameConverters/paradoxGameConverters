@@ -64,6 +64,7 @@ class V2Country
 		void								eatCountry(V2Country* target);
 		void								clearProvinces();
 		void								clearCores();
+		void putProvincesInStates();
 		void								putWorkersInProvinces();
 
 		map<string, V2Relations*>	getRelations()													const { return relations; }

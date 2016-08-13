@@ -32,17 +32,17 @@ Vic2State::Vic2State(const Object* stateObj, string ownerTag)
 	owner = ownerTag;
 	partialState = false;
 
-	addProvinces(stateObj);
+	addProvinceNums(stateObj);
 	setFactoryLevel(stateObj);
 }
 
 
-void Vic2State::addProvinces(const Object* stateObj)
+void Vic2State::addProvinceNums(const Object* stateObj)
 {
 	vector<string> provinceIDs = getProvinceIDs(stateObj);
 	for (auto provinceItr: provinceIDs)
 	{
-		provinces.insert(atoi(provinceItr.c_str()));
+		provinceNums.insert(atoi(provinceItr.c_str()));
 	}
 }
 
@@ -87,10 +87,10 @@ void Vic2State::determinePartialState(const stateMapping& stateMap)
 	partialState = false;
 	if (provinces.size() > 0)
 	{
-		auto fullState = stateMap.find(*provinces.begin());
+		auto fullState = stateMap.find(*provinceNums.begin());
 		for (auto expectedProvince: fullState->second)
 		{
-			if (provinces.count(expectedProvince) == 0)
+			if (provinceNums.count(expectedProvince) == 0)
 			{
 				partialState = true;
 				break;
@@ -100,39 +100,36 @@ void Vic2State::determinePartialState(const stateMapping& stateMap)
 }
 
 
-int Vic2State::getEmployedWorkers(const V2World* sourceWorld) const
+int Vic2State::getEmployedWorkers() const
 {
 	int workers = 0;
-	for (auto provinceNum: provinces)
+	for (auto province: provinces)
 	{
-		V2Province* sourceProvince = sourceWorld->getProvince(provinceNum);
-		workers += sourceProvince->getEmployedWorkers();
+		workers += province->getEmployedWorkers();
 	}
 
 	return workers;
 }
 
 
-int Vic2State::getPopulation(const V2World* sourceWorld) const
+int Vic2State::getPopulation() const
 {
 	int population = 0;
-	for (auto provinceNum: provinces)
+	for (auto province: provinces)
 	{
-		V2Province* sourceProvince = sourceWorld->getProvince(provinceNum);
-		population += sourceProvince->getPopulation();
+		population += province->getPopulation();
 	}
 
 	return population;
 }
 
 
-int Vic2State::getAverageRailLevel(const V2World* sourceWorld) const
+int Vic2State::getAverageRailLevel() const
 {
 	int totalRailLevel = 0;
-	for (auto provinceNum: provinces)
+	for (auto province: provinces)
 	{
-		V2Province* sourceProvince = sourceWorld->getProvince(provinceNum);
-		totalRailLevel += sourceProvince->getInfra();
+		totalRailLevel += province->getInfra();
 	}
 
 	return (totalRailLevel / provinces.size());

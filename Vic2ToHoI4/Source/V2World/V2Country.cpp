@@ -371,6 +371,7 @@ void V2Country::eatCountry(V2Country* target)
 	LOG(LogLevel::Debug) << "Merged " << target->tag << " into " << tag;
 }
 
+
 void V2Country::clearProvinces()
 {
 	provinces.clear();
@@ -383,6 +384,25 @@ void V2Country::clearCores()
 }
 
 
+void V2Country::putProvincesInStates()
+{
+	for (auto state: states)
+	{
+		for (auto provinceNum: state->getProvinceNums())
+		{
+			auto province = provinces.find(provinceNum);
+			if (province == provinces.end())
+			{
+				LOG(LogLevel::Warning) << "State owned by " << tag << " had province that " << tag << " did not";
+				continue;
+			}
+
+			state->addProvince(province->second);
+		}
+	}
+}
+
+
 void V2Country::putWorkersInProvinces()
 {
 	for (auto state: states)
@@ -392,16 +412,12 @@ void V2Country::putWorkersInProvinces()
 		int clerks			= 0;
 		int artisans		= 0;
 		int capitalists	= 0;
-		for (auto provinceNum : state->getProvinces())
+		for (auto province: state->getProvinces())
 		{
-			auto province = provinces.find(provinceNum);
-			if (province != provinces.end())
-			{
-				craftsmen	+= province->second->getPopulation("craftsmen");
-				clerks		+= province->second->getPopulation("clerks");
-				artisans		+= province->second->getPopulation("aristans");
-				capitalists	+= province->second->getLiteracyWeightedPopulation("capitalists");
-			}
+			craftsmen	+= province->getPopulation("craftsmen");
+			clerks		+= province->getPopulation("clerks");
+			artisans		+= province->getPopulation("aristans");
+			capitalists	+= province->getLiteracyWeightedPopulation("capitalists");
 		}
 
 		// limit craftsmen and clerks by factory levels
@@ -419,11 +435,8 @@ void V2Country::putWorkersInProvinces()
 
 		if (state->getProvinces().size() > 0)
 		{
-			auto employmentProvince = provinces.find(*state->getProvinces().begin());
-			if (employmentProvince != provinces.end())
-			{
-				employmentProvince->second->setEmployedWorkers(employedWorkers);
-			}
+			auto employmentProvince = state->getProvinces().begin();
+			(*employmentProvince)->setEmployedWorkers(employedWorkers);
 		}
 	}
 }
@@ -492,7 +505,7 @@ double V2Country::getUpperHousePercentage(string ideology) const
 long V2Country::getEmployedWorkers() const
 {
 	long employedWorkers = 0;
-	for (auto sourceProvince : getProvinces())
+	for (auto sourceProvince: provinces)
 	{
 		employedWorkers += sourceProvince.second->getEmployedWorkers();
 	}

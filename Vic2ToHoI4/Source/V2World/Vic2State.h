@@ -32,6 +32,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 using namespace std;
 
 
+class V2Province;
+
+
 
 class Vic2State
 {
@@ -39,25 +42,28 @@ class Vic2State
 		Vic2State(const Object* stateObj, string ownerTag);
 
 		void determinePartialState(const stateMapping& stateMap);
-		int getEmployedWorkers(const V2World* sourceWorld) const;
-		int getPopulation(const V2World* sourceWorld) const;
-		int getAverageRailLevel(const V2World* sourceWorld) const;
+		int getEmployedWorkers() const;
+		int getPopulation() const;
+		int getAverageRailLevel() const;
 
 		void setID(const string& id) { stateID = id; }
+		void addProvince(V2Province* province) { provinces.insert(province); }
 
-		set<int>	getProvinces() const { return provinces; }
+		set<V2Province*> getProvinces() const { return provinces; }
+		set<int> getProvinceNums() const { return provinceNums; }
 		string getOwner() const { return owner; }
 		int getFactoryLevel() const { return factoryLevel; }
 		string getStateID() const { return stateID; }
 		bool isPartialState() const { return partialState; }
 
 	private:
-		void addProvinces(const Object* stateObj);
+		void addProvinceNums(const Object* stateObj);
 		vector<string> getProvinceIDs(const Object* stateObj);
 		void setFactoryLevel(const Object* stateObj);
 		void addBuildingLevel(const Object* buildingObj);
 
-		set<int> provinces;
+		set<int> provinceNums;
+		set<V2Province*> provinces;
 		string owner;
 		int factoryLevel;
 		string stateID;

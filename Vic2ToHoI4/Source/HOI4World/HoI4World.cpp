@@ -430,7 +430,7 @@ void HoI4World::convertNavalBases(const Vic2ToHoI4ProvinceMapping& inverseProvin
 
 		int		navalBaseLevel = 0;
 		int		navalBaseLocation = 0;
-		for (auto provinceNum : vic2State->getProvinces())
+		for (auto provinceNum: vic2State->getProvinceNums())
 		{
 			V2Province* sourceProvince = sourceWorld->getProvince(provinceNum);
 			if (sourceProvince->getNavalBase() > 0)
@@ -476,7 +476,7 @@ void HoI4World::convertIndustry()
 			continue;
 		}
 
-		HoI4State.second->convertIndustry(sourceWorld, ratioMapping->second);
+		HoI4State.second->convertIndustry(ratioMapping->second);
 	}
 
 	reportIndustryLevels();
@@ -599,7 +599,7 @@ void HoI4World::convertIndustry()
 map<string, double> HoI4World::calculateFactoryWorkerRatios()
 {
 	map<string, double> factoryWorkerRatios;
-	for (auto HoI4Country : countries)
+	for (auto HoI4Country: countries)
 	{
 		auto Vic2Country = HoI4Country.second->getSourceCountry();
 		long employedWorkers = Vic2Country->getEmployedWorkers();

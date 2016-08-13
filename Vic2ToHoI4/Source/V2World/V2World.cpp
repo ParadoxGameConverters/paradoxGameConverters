@@ -114,6 +114,10 @@ V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<string, 
 			province.second->setOwner(country->second);
 		}
 	}
+	for (auto country: countries)
+	{
+		country.second->putProvincesInStates();
+	}
 
 	// add province core info to countries
 	for (auto province: provinces)
@@ -224,7 +228,7 @@ void V2World::setLocalisations(V2Localisation& localisation, const stateIdMappin
 		//	loop through the states in the vic2 country
 		for (auto vic2State : country.second->getStates())
 		{
-			auto stateID = stateIdMap.find(*vic2State->getProvinces().begin());
+			auto stateID = stateIdMap.find(*vic2State->getProvinceNums().begin());
 			if (stateID != stateIdMap.end())
 			{
 				vic2State->setID(stateID->second);

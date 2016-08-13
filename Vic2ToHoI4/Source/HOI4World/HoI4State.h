@@ -67,16 +67,16 @@ class HoI4State
 		int getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping& provinceMap);
 		bool isProvinceInState(int provinceNum);
 
-		void convertIndustry(const V2World* sourceWorld, double workerFactoryRatio);
+		void convertIndustry(double workerFactoryRatio);
 
 		pair<string, string> makeLocalisation(const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations) const;
 
 	private:
-		int determineFactoryNumbers(const V2World* sourceWorld, double workerFactoryRatio);
+		int determineFactoryNumbers(double workerFactoryRatio);
 		int constrainFactoryNumbers(double rawFactories);
-		void determineCategory(const V2World* sourceWorld, int factories);
+		void determineCategory(int factories);
 		map<int, string> getStateCategories();
-		void setInfrastructure(const V2World* sourceWorld, int factories);
+		void setInfrastructure(int factories);
 		void setIndustry(int factories);
 
 		string makeLocalisationKey() const;

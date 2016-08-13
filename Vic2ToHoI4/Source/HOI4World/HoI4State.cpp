@@ -167,7 +167,7 @@ void HoI4State::createVP(int location)
 
 int HoI4State::getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping& provinceMap)
 {
-	auto vic2Province = sourceState->getProvinces().begin();
+	auto vic2Province = sourceState->getProvinceNums().begin();
 	auto provMapping = provinceMap.find(*vic2Province);
 	if (provMapping != provinceMap.end())
 	{
@@ -180,20 +180,20 @@ int HoI4State::getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping&
 }
 
 
-void HoI4State::convertIndustry(const V2World* sourceWorld, double workerFactoryRatio)
+void HoI4State::convertIndustry(double workerFactoryRatio)
 {
-	int factories = determineFactoryNumbers(sourceWorld, workerFactoryRatio);
+	int factories = determineFactoryNumbers(workerFactoryRatio);
 
-	determineCategory(sourceWorld, factories);
-	setInfrastructure(sourceWorld, factories);
+	determineCategory(factories);
+	setInfrastructure(factories);
 	setIndustry(factories);
 	addVictoryPointValue(factories / 2);
 }
 
 
-int HoI4State::determineFactoryNumbers(const V2World* sourceWorld, double workerFactoryRatio)
+int HoI4State::determineFactoryNumbers(double workerFactoryRatio)
 {
-	double rawFactories = sourceState->getEmployedWorkers(sourceWorld) * workerFactoryRatio;
+	double rawFactories = sourceState->getEmployedWorkers() * workerFactoryRatio;
 	rawFactories = round(rawFactories);
 	return constrainFactoryNumbers(rawFactories);
 }
@@ -216,9 +216,9 @@ int HoI4State::constrainFactoryNumbers(double rawFactories)
 }
 
 
-void HoI4State::determineCategory(const V2World* sourceWorld, int factories)
+void HoI4State::determineCategory(int factories)
 {
-	int population = sourceState->getPopulation(sourceWorld);
+	int population = sourceState->getPopulation();
 
 	int stateSlots = population / 120000; // one slot is given per 120,000 people (need to change)
 	if (factories >= stateSlots)
@@ -254,9 +254,9 @@ map<int, string> HoI4State::getStateCategories()
 }
 
 
-void HoI4State::setInfrastructure(const V2World* sourceWorld, int factories)
+void HoI4State::setInfrastructure(int factories)
 {
-	infrastructure = sourceState->getAverageRailLevel(sourceWorld);
+	infrastructure = sourceState->getAverageRailLevel();
 
 	if (factories > 4)
 	{
