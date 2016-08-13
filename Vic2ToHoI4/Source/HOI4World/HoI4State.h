@@ -50,9 +50,6 @@ class HoI4State
 		void addVictoryPointValue(int additionalValue) { victoryPointValue += additionalValue; }
 
 		void setNavalBase(int level, int location);
-		void determineCategory(int population, int factories);
-		void setInfrastructure(int averageRails, int factories);
-		void setIndustry(int factories);
 		void addCores(const vector<string>& newCores);
 		void createVP(int location);
 
@@ -70,12 +67,17 @@ class HoI4State
 		int getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping& provinceMap);
 		bool isProvinceInState(int provinceNum);
 
-		int determineFactoryNumbers(const V2World* sourceWorld, double workerFactoryRatio);
+		void convertIndustry(const V2World* sourceWorld, double workerFactoryRatio);
 
 		pair<string, string> makeLocalisation(const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations) const;
 
 	private:
+		int determineFactoryNumbers(const V2World* sourceWorld, double workerFactoryRatio);
 		int constrainFactoryNumbers(double rawFactories);
+		void determineCategory(const V2World* sourceWorld, int factories);
+		int determineStatePopulation(const V2World* sourceWorld);
+		void setInfrastructure(int averageRails, int factories);
+		void setIndustry(int factories);
 
 		string makeLocalisationKey() const;
 		string makeLocalisationValue(const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations) const;

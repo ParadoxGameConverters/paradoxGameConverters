@@ -139,8 +139,91 @@ void HoI4State::setNavalBase(int level, int location)
 }
 
 
-void HoI4State::determineCategory(int population, int factories)
+void HoI4State::addCores(const vector<string>& newCores)
 {
+	for (auto newCore: newCores)
+	{
+		cores.insert(newCore);
+	}
+}
+
+
+void HoI4State::createVP(int location)
+{
+	victoryPointPosition = location;
+
+	victoryPointValue = 1;
+	if (cores.count(ownerTag) != 0)
+	{
+		victoryPointValue += 2;
+	}
+}
+
+
+int HoI4State::getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping& provinceMap)
+{
+	auto vic2Province = sourceState->getProvinces().begin();
+	auto provMapping = provinceMap.find(*vic2Province);
+	if (provMapping != provinceMap.end())
+	{
+		return provMapping->second[0];
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+
+void HoI4State::convertIndustry(const V2World* sourceWorld, double workerFactoryRatio)
+{
+	int factories = determineFactoryNumbers(sourceWorld, workerFactoryRatio);
+
+	int		totalRailLevel = 0;
+	auto Vic2State = getSourceState();
+	for (auto provinceNum : Vic2State->getProvinces())
+	{
+		V2Province* sourceProvince = sourceWorld->getProvince(provinceNum);
+
+		totalRailLevel += sourceProvince->getInfra();
+	}
+	int averageRails = totalRailLevel / Vic2State->getProvinces().size();
+
+	determineCategory(sourceWorld, factories);
+	setInfrastructure(averageRails, factories);
+	setIndustry(factories);
+	addVictoryPointValue(factories / 2);
+}
+
+
+int HoI4State::determineFactoryNumbers(const V2World* sourceWorld, double workerFactoryRatio)
+{
+	double rawFactories = sourceState->getEmployedWorkers(sourceWorld) * workerFactoryRatio;
+	return constrainFactoryNumbers(rawFactories);
+}
+
+
+int HoI4State::constrainFactoryNumbers(double rawFactories)
+{
+	if (rawFactories < 0)
+	{
+		rawFactories = 0;
+	}
+
+	int factories = static_cast<int>(round(rawFactories));
+	if (factories > 12)
+	{
+		factories = 12;
+	}
+
+	return factories;
+}
+
+
+void HoI4State::determineCategory(const V2World* sourceWorld, int factories)
+{
+	int population = determineStatePopulation(sourceWorld);
+
 	int stateSlots = population / 120000; // one slot is given per 120,000 people (need to change)
 	if (factories >= stateSlots)
 	{
@@ -186,6 +269,21 @@ void HoI4State::determineCategory(int population, int factories)
 }
 
 
+int HoI4State::determineStatePopulation(const V2World* sourceWorld)
+{
+	int population = 0;
+
+	auto Vic2State = getSourceState();
+	for (auto provinceNum : Vic2State->getProvinces())
+	{
+		V2Province* sourceProvince = sourceWorld->getProvince(provinceNum);
+		population += sourceProvince->getPopulation();
+	}
+
+	return population;
+}
+
+
 void HoI4State::setInfrastructure(int averageRails, int factories)
 {
 	railLevel = averageRails;
@@ -228,75 +326,6 @@ void HoI4State::setIndustry(int factories)
 			dockyards++;
 		}
 	}
-}
-
-
-void HoI4State::addCores(const vector<string>& newCores)
-{
-	for (auto newCore: newCores)
-	{
-		cores.insert(newCore);
-	}
-}
-
-
-void HoI4State::createVP(int location)
-{
-	victoryPointPosition = location;
-
-	victoryPointValue = 1;
-	if (cores.count(ownerTag) != 0)
-	{
-		victoryPointValue += 2;
-	}
-}
-
-
-int HoI4State::getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping& provinceMap)
-{
-	auto vic2Province = sourceState->getProvinces().begin();
-	auto provMapping = provinceMap.find(*vic2Province);
-	if (provMapping != provinceMap.end())
-	{
-		return provMapping->second[0];
-	}
-	else
-	{
-		return 0;
-	}
-}
-
-
-int HoI4State::determineFactoryNumbers(const V2World* sourceWorld, double workerFactoryRatio)
-{
-	double rawFactories = 0.0;
-
-	auto Vic2State = getSourceState();
-	for (auto provinceNum : Vic2State->getProvinces())
-	{
-		// get population, rail level, and workers to convert slots and states*conversion percentage
-		V2Province* sourceProvince = sourceWorld->getProvince(provinceNum);
-		rawFactories += sourceProvince->getEmployedWorkers() * workerFactoryRatio / 100000;
-	}
-
-	return constrainFactoryNumbers(rawFactories);
-}
-
-
-int HoI4State::constrainFactoryNumbers(double rawFactories)
-{
-	if (rawFactories < 0)
-	{
-		rawFactories = 0;
-	}
-
-	int factories = static_cast<int>(round(rawFactories));
-	if (factories > 12)
-	{
-		factories = 12;
-	}
-
-	return factories;
 }
 
 

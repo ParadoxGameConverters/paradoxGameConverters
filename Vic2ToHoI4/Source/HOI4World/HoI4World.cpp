@@ -466,62 +466,17 @@ void HoI4World::convertNavalBases(const Vic2ToHoI4ProvinceMapping& inverseProvin
 
 void HoI4World::convertIndustry()
 {
-	// calculate the factory/worker ratio for every country
-	map<string, double> ratioMap;
-	for (auto HoI4Country : countries)
-	{
-		// get the Vic2 country
-		auto Vic2Country = HoI4Country.second->getSourceCountry();
+	map<string, double> factoryWorkerRatios = calculateFactoryWorkerRatios();
 
-		// get the total number of employed/employable workers
-		double employedWorkersAdjusted = 0;
-		for (auto sourceProvince : Vic2Country->getProvinces())
-		{
-			// takes employed workers and divides by 100,000 to convert
-			employedWorkersAdjusted += sourceProvince.second->getEmployedWorkers() / 100000.0;
-		}
-
-		// calculate the ratio between Vic2 employed workers and HoI4 factories
-		double sinPart = sin(employedWorkersAdjusted / 150) * 158;
-		double logpart = log10(employedWorkersAdjusted) * 23.8;
-		double HoI4TotalFactories = sinPart + logpart + 5;
-		if (employedWorkersAdjusted != 0)
-		{
-			ratioMap[HoI4Country.second->getTag()] = HoI4TotalFactories / employedWorkersAdjusted;
-		}
-		else
-		{
-			ratioMap[HoI4Country.second->getTag()] = 0.0;
-		}
-	}
-
-	//	loop through the HoI4 states to set the factory levels
 	for (auto HoI4State : states->getStates())
 	{
-		auto ratioMapping = ratioMap.find(HoI4State.second->getOwner());
-		if (ratioMapping == ratioMap.end())
+		auto ratioMapping = factoryWorkerRatios.find(HoI4State.second->getOwner());
+		if (ratioMapping == factoryWorkerRatios.end())
 		{
 			continue;
 		}
-		int factories = HoI4State.second->determineFactoryNumbers(sourceWorld, ratioMapping->second);
 
-		int		population = 0;
-		int		totalRailLevel = 0;
-		auto Vic2State = HoI4State.second->getSourceState();
-		for (auto provinceNum : Vic2State->getProvinces())
-		{
-			// get population, rail level, and workers to convert slots and states*conversion percentage
-			V2Province* sourceProvince = sourceWorld->getProvince(provinceNum);
-
-			population += sourceProvince->getPopulation();
-			totalRailLevel += sourceProvince->getInfra();
-		}
-		int averageRails = totalRailLevel / Vic2State->getProvinces().size();
-
-		HoI4State.second->determineCategory(population, factories);
-		HoI4State.second->setInfrastructure(averageRails, factories);
-		HoI4State.second->setIndustry(factories);
-		HoI4State.second->addVictoryPointValue(factories / 2);
+		HoI4State.second->convertIndustry(sourceWorld, ratioMapping->second);
 	}
 
 	reportIndustryLevels();
@@ -641,6 +596,40 @@ void HoI4World::convertIndustry()
 }
 
 
+map<string, double> HoI4World::calculateFactoryWorkerRatios()
+{
+	map<string, double> factoryWorkerRatios;
+	for (auto HoI4Country : countries)
+	{
+		auto Vic2Country = HoI4Country.second->getSourceCountry();
+		long employedWorkers = Vic2Country->getEmployedWorkers();
+
+		double HoI4TotalFactories = calculateTotalFactoriesInCountry(employedWorkers);
+		if (employedWorkers > 0)
+		{
+			factoryWorkerRatios[HoI4Country.second->getTag()] = HoI4TotalFactories / employedWorkers;
+		}
+		else
+		{
+			factoryWorkerRatios[HoI4Country.second->getTag()] = 0.0;
+		}
+	}
+
+	return factoryWorkerRatios;
+}
+
+
+double HoI4World::calculateTotalFactoriesInCountry(long employedWorkers)
+{
+	double employedWorkersAdjusted = employedWorkers / 100000.0;
+
+	double sinPart = sin(employedWorkersAdjusted / 150) * 158;
+	double logpart = log10(employedWorkersAdjusted) * 23.8;
+
+	return sinPart + logpart + 5;
+}
+
+
 void HoI4World::reportIndustryLevels()
 {
 	int militaryFactories = 0;
@@ -657,6 +646,30 @@ void HoI4World::reportIndustryLevels()
 	LOG(LogLevel::Debug) << "\t" << militaryFactories << " military factories";
 	LOG(LogLevel::Debug) << "\t" << civilialFactories << " civilian factories";
 	LOG(LogLevel::Debug) << "\t" << dockyards << " dockyards";
+}
+
+
+void HoI4World::fillCountryIC()
+{
+	addStatesToCountries();
+
+	for (auto country: countries)
+	{
+		country.second->calculateIndustry();
+	}
+}
+
+
+void HoI4World::addStatesToCountries()
+{
+	for (auto state: states->getStates())
+	{
+		auto owner = countries.find(state.second->getOwner());
+		if (owner != countries.end())
+		{
+			owner->second->addState(state.second);
+		}
+	}
 }
 
 
@@ -4675,30 +4688,6 @@ string HoI4World::genericFocusTreeCreator(HoI4Country* CreatingCountry)
 	s += "	}	\n";
 	s += "\n";
 	return s;
-}
-
-
-void HoI4World::addStatesToCountries()
-{
-	for (auto state: states->getStates())
-	{
-		auto owner = countries.find(state.second->getOwner());
-		if (owner != countries.end())
-		{
-			owner->second->addState(state.second);
-		}
-	}
-}
-
-
-void HoI4World::fillCountryIC()
-{
-	addStatesToCountries();
-
-	for (auto country: countries)
-	{
-		country.second->calculateIndustry();
-	}
 }
 
 

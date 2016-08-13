@@ -487,3 +487,15 @@ double V2Country::getUpperHousePercentage(string ideology) const
 
 	return itr->second;
 }
+
+
+long V2Country::getEmployedWorkers() const
+{
+	long employedWorkers = 0;
+	for (auto sourceProvince : getProvinces())
+	{
+		employedWorkers += sourceProvince.second->getEmployedWorkers();
+	}
+
+	return employedWorkers;
+}

@@ -22,6 +22,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Vic2State.h"
+#include "V2Province.h"
+#include "V2World.h"
 
 
 
@@ -95,4 +97,17 @@ void Vic2State::determinePartialState(const stateMapping& stateMap)
 			}
 		}
 	}
+}
+
+
+int Vic2State::getEmployedWorkers(const V2World* sourceWorld) const
+{
+	int workers = 0;
+	for (auto provinceNum: provinces)
+	{
+		V2Province* sourceProvince = sourceWorld->getProvince(provinceNum);
+		workers += sourceProvince->getEmployedWorkers();
+	}
+
+	return workers;
 }

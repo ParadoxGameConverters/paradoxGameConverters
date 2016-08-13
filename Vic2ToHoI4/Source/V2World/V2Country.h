@@ -100,6 +100,7 @@ class V2Country
 		string							getName(const string& language) const;
 		string							getAdjective(const string& language) const;
 		double							getUpperHousePercentage(string ideology) const;
+		long getEmployedWorkers() const;
 
 		void setLocalisationName(const string& language, const string& name)
 		{

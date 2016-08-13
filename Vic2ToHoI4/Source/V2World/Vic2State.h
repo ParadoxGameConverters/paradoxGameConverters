@@ -39,6 +39,7 @@ class Vic2State
 		Vic2State(const Object* stateObj, string ownerTag);
 
 		void determinePartialState(const stateMapping& stateMap);
+		int getEmployedWorkers(const V2World* sourceWorld) const;
 
 		void setID(const string& id) { stateID = id; }
 
