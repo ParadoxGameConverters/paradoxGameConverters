@@ -29,7 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <vector>
 #include <string>
 #include <map>
-#include "..\Mapper.h"
+#include "../Mappers/Mapper.h"
 #include "..\V2World\V2Localisation.h"
 #include "..\V2World\Vic2State.h"
 using namespace std;

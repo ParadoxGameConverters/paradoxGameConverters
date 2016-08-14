@@ -32,7 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4States.h"
 #include "HoI4StrategicRegion.h"
 #include "HoI4SupplyZone.h"
-#include "../Mapper.h"
+#include "../Mappers/Mapper.h"
 
 
 

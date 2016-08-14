@@ -30,7 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Minister.h"
 #include "../V2World/V2Relations.h"
 #include "../V2World/V2Party.h"
-#include "../../../common_items/OSCompatibilityLayer.h"
+#include "OSCompatibilityLayer.h"
 
 
 

@@ -32,7 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4State.h"
 #include "..\V2World\V2Localisation.h"
 #include "..\V2World\V2Province.h"
-#include "..\CountryMapping.h"
+#include "../Mappers/CountryMapping.h"
 using namespace std;
 
 
