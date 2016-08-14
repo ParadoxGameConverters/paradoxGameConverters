@@ -631,7 +631,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 		ideology = "fascism";
 	}
 	// Political parties
-	convertParties(_srcCountry, _srcWorld.getActiveParties(_srcCountry), _srcWorld.getRulingParty(_srcCountry), ideology);
+	convertParties(_srcCountry, _srcCountry->getActiveParties(_srcWorld.getParties()), _srcCountry->getRulingParty(_srcWorld.getParties()), ideology);
 	for (auto partyItr : parties)
 	{
 		auto oldLocalisation = V2Localisations.GetTextInEachLanguage(partyItr.name);
@@ -674,7 +674,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	// Faction is handled in HoI4World::configureFactions
 
-	string warPolicy = _srcWorld.getRulingParty(_srcCountry)->war_policy;
+	string warPolicy = _srcCountry->getRulingParty(_srcWorld.getParties())->war_policy;
 	if (warPolicy == "jingoism")
 	{
 		neutrality = 60;

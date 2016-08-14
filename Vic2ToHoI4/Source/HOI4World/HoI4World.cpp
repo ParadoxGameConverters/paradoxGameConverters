@@ -40,6 +40,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "../Configuration.h"
+#include "../V2World/V2Diplomacy.h"
 #include "../V2World/V2Province.h"
 #include "../V2World/V2Party.h"
 #include "HoI4Relations.h"
@@ -369,7 +370,7 @@ void HoI4World::convertCountries(const CountryMapping& countryMap, const Vic2ToH
 		{
 			std::string countryFileName = '/' + sourceItr.second->getName() + ".txt";
 			destCountry = new HoI4Country(HoI4Tag, countryFileName, this, true);
-			V2Party* rulingParty = sourceWorld->getRulingParty(sourceItr.second);
+			V2Party* rulingParty = sourceItr.second->getRulingParty(sourceWorld->getParties());
 			if (rulingParty == NULL)
 			{
 				LOG(LogLevel::Error) << "Could not find the ruling party for " << sourceItr.first << ". Were all mods correctly included?";
@@ -432,7 +433,7 @@ void HoI4World::convertNavalBases(const Vic2ToHoI4ProvinceMapping& inverseProvin
 		int		navalBaseLocation = 0;
 		for (auto provinceNum: vic2State->getProvinceNums())
 		{
-			V2Province* sourceProvince = sourceWorld->getProvince(provinceNum);
+			auto sourceProvince = sourceWorld->getProvince(provinceNum);
 			if (sourceProvince->getNavalBase() > 0)
 			{
 				navalBaseLevel += sourceProvince->getNavalBase();
@@ -1271,7 +1272,7 @@ void HoI4World::addBasicCapitalVPs(const CountryMapping& countryMap)
 
 void HoI4World::addGreatPowerVPs(const CountryMapping& countryMap)
 {
-	for (auto Vic2GPTag: sourceWorld->getGreatCountries())
+	for (auto Vic2GPTag: sourceWorld->getGreatPowers())
 	{
 		auto HoI4Tag = countryMap[Vic2GPTag];
 		auto countryItr = countries.find(HoI4Tag);
@@ -1493,7 +1494,7 @@ void HoI4World::fillCountryProvinces()
 }
 void HoI4World::setSphereLeaders(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
-	const vector<string>& greatCountries = sourceWorld.getGreatCountries();
+	const vector<string>& greatCountries = sourceWorld.getGreatPowers();
 	for (auto countryItr : greatCountries)
 	{
 		auto itr = countries.find(countryMap[countryItr]);
@@ -5536,7 +5537,7 @@ double HoI4World::GetFactionStrength(HoI4Faction* Faction, int years)
 }
 vector<HoI4Country*> HoI4World::returnGreatCountries(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
-	const vector<string>& greatCountries = sourceWorld.getGreatCountries();
+	const vector<string>& greatCountries = sourceWorld.getGreatPowers();
 	vector<HoI4Country*> GreatCountries;
 	for (auto countryItr : greatCountries)
 	{

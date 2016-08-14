@@ -41,7 +41,7 @@ struct MTo1ProvinceComp
 {
 	MTo1ProvinceComp() : totalPopulation(0) {};
 
-	vector<V2Province*> provinces;
+	vector<const V2Province*> provinces;
 	int totalPopulation;
 };
 

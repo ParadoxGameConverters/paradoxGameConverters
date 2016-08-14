@@ -212,27 +212,9 @@ void mergeNations(V2World& world, Object* mergeObj)
 				slaveTags.push_back(item->getLeaf());
 			}
 		}
-		V2Country* master = world.getCountry(masterTag);	// the actual master country
-		if ( enabled && (master != NULL) && (slaveTags.size() > 0) )
+		if (enabled)
 		{
-			for (auto slave: slaveTags)
-			{
-				master->eatCountry(world.getCountry(slave));
-			}
-		}
-	}
-}
-
-void removeEmptyNations(V2World& world)
-{
-	map<string, V2Country*> countries = world.getCountries();	// all V2 countries
-	for (auto country: countries)
-	{
-		map<int, V2Province*> provinces	= country.second->getProvinces();	// the provinces for the nation
-		vector<V2Province*> cores			= country.second->getCores();			// the cores for the nation
-		if ( (provinces.size()) == 0 && (cores.size() == 0) )
-		{
-			world.removeCountry(country.first);
+			world.mergeNations(masterTag, slaveTags);
 		}
 	}
 }

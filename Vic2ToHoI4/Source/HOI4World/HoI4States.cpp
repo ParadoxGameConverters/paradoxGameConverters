@@ -205,7 +205,7 @@ map<V2Country*, MTo1ProvinceComp> HoI4States::determinePotentialOwners(HoI4ToVic
 	map<V2Country*, MTo1ProvinceComp> potentialOwners;
 	for (auto srcProvItr: provinceLink->second)
 	{
-		V2Province* srcProvince = sourceWorld->getProvince(srcProvItr);
+		auto srcProvince = sourceWorld->getProvince(srcProvItr);
 		if (!srcProvince)
 		{
 			LOG(LogLevel::Warning) << "Old province " << provinceLink->second[0] << " does not exist (bad mapping?)";
