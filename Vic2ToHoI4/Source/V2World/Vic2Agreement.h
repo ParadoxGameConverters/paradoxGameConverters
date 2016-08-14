@@ -21,34 +21,29 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "V2Diplomacy.h"
-#include "Vic2Agreement.h"
-#include "Log.h"
+#ifndef V2AGREEMENT_H_
+#define V2AGREEMENT_H_
 
 
 
-V2Diplomacy::V2Diplomacy(Object *obj)
+#include "date.h"
+#include "object.h"
+#include <string>
+using namespace std;
+
+
+
+class V2Agreement
 {
-	for (auto agreementObj: obj->getLeaves())
-	{
-		if (isARelevantDiplomaticObject(agreementObj))
-		{
-			V2Agreement* agreement = new V2Agreement(agreementObj);
-			agreements.push_back(agreement);
-		}
-	}
-}
+	public:
+		V2Agreement(Object* obj);
+
+		string type;
+		string country1;
+		string country2;
+		date start_date;
+};
 
 
-bool V2Diplomacy::isARelevantDiplomaticObject(Object* obj) const
-{
-	string key = obj->getKey();
-	if ((key == "vassal") || (key == "alliance") || (key == "causus_belli") || (key == "warsubsidy"))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
+
+#endif // V2AGREEMENT_H_

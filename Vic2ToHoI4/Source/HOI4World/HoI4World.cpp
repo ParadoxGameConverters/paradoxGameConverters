@@ -40,6 +40,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "../Configuration.h"
+#include "../V2World/Vic2Agreement.h"
 #include "../V2World/V2Diplomacy.h"
 #include "../V2World/V2Province.h"
 #include "../V2World/V2Party.h"
@@ -1322,12 +1323,12 @@ void HoI4World::convertDiplomacy(const CountryMapping& countryMap)
 {
 	for (auto agreement : sourceWorld->getDiplomacy()->getAgreements())
 	{
-		string HoI4Tag1 = countryMap[agreement.country1];
+		string HoI4Tag1 = countryMap[agreement->country1];
 		if (HoI4Tag1.empty())
 		{
 			continue;
 		}
-		string HoI4Tag2 = countryMap[agreement.country2];
+		string HoI4Tag2 = countryMap[agreement->country2];
 		if (HoI4Tag2.empty())
 		{
 			continue;
@@ -1347,17 +1348,17 @@ void HoI4World::convertDiplomacy(const CountryMapping& countryMap)
 		}
 
 		// shared diplo types
-		if ((agreement.type == "alliance") || (agreement.type == "vassa"))
+		if ((agreement->type == "alliance") || (agreement->type == "vassa"))
 		{
 			// copy agreement
 			HoI4Agreement* HoI4a = new HoI4Agreement;
 			HoI4a->country1 = HoI4Tag1;
 			HoI4a->country2 = HoI4Tag2;
-			HoI4a->start_date = agreement.start_date;
-			HoI4a->type = agreement.type;
+			HoI4a->start_date = agreement->start_date;
+			HoI4a->type = agreement->type;
 			diplomacy.addAgreement(HoI4a);
 
-			if (agreement.type == "alliance")
+			if (agreement->type == "alliance")
 			{
 				HoI4Country1->second->editAllies().insert(HoI4Tag2);
 				HoI4Country2->second->editAllies().insert(HoI4Tag1);

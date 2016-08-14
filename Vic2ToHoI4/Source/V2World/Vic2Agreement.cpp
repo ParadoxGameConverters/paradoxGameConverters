@@ -21,34 +21,38 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "V2Diplomacy.h"
 #include "Vic2Agreement.h"
-#include "Log.h"
+#include "log.h"
 
 
 
-V2Diplomacy::V2Diplomacy(Object *obj)
+V2Agreement::V2Agreement(Object *obj)
 {
-	for (auto agreementObj: obj->getLeaves())
-	{
-		if (isARelevantDiplomaticObject(agreementObj))
-		{
-			V2Agreement* agreement = new V2Agreement(agreementObj);
-			agreements.push_back(agreement);
-		}
-	}
-}
+	type = obj->getKey();
 
-
-bool V2Diplomacy::isARelevantDiplomaticObject(Object* obj) const
-{
-	string key = obj->getKey();
-	if ((key == "vassal") || (key == "alliance") || (key == "causus_belli") || (key == "warsubsidy"))
+	vector<Object*> objFirst = obj->getValue("first");
+	if (objFirst.size() > 0)
 	{
-		return true;
+		country1 = objFirst[0]->getLeaf();
 	}
 	else
 	{
-		return false;
+		LOG(LogLevel::Warning) << "Diplomatic agreement (" << type << ") has no first party";
+	}
+
+	vector<Object*> objSecond = obj->getValue("second");
+	if (objSecond.size() > 0)
+	{
+		country2 = objSecond[0]->getLeaf();
+	}
+	else
+	{
+		LOG(LogLevel::Warning) << "Diplomatic agreement (" << type << ") has no second party";
+	}
+
+	vector<Object*> objDate = obj->getValue("start_date");
+	if (objDate.size() > 0)
+	{
+		start_date = date(objDate[0]->getLeaf());
 	}
 }

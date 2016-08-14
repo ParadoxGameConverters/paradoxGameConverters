@@ -105,6 +105,7 @@
     <ClCompile Include="Source\V2World\V2Province.cpp" />
     <ClCompile Include="Source\V2World\V2Relations.cpp" />
     <ClCompile Include="Source\V2World\V2World.cpp" />
+    <ClCompile Include="Source\V2World\Vic2Agreement.cpp" />
     <ClCompile Include="Source\V2World\Vic2State.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +139,7 @@
     <ClInclude Include="Source\HOI4World\HoI4World.h" />
     <ClInclude Include="Source\Mapper.h" />
     <ClInclude Include="Source\targa.h" />
+    <ClInclude Include="Source\V2World\Vic2Agreement.h" />
     <ClInclude Include="Source\V2World\V2Army.h" />
     <ClInclude Include="Source\V2World\V2Country.h" />
     <ClInclude Include="Source\V2World\V2Diplomacy.h" />
