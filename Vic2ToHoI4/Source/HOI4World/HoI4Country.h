@@ -32,8 +32,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Province.h"
 #include "HoI4Relations.h"
 #include "HoI4State.h"
-#include "../CountryMapping.h"
-#include "../Mapper.h"
+#include "../Mappers/CountryMapping.h"
+#include "../Mappers/Mapper.h"
 #include "../Color.h"
 #include "Date.h"
 #include "../V2World/V2Army.h"
@@ -82,10 +82,12 @@ class HoI4Country
 		void		convertAirforce();
 		void		convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void		setAIFocuses(const AIFocusModifiers& focusModifiers);
-		void		addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void		setTechnology(string tech, int level);
 		void		addProvince(HoI4Province* _province);
+		void addState(HoI4State* _state);
 		void		lowerNeutrality(double amount);
+		void calculateIndustry();
+		void addVPsToCapital(int VPs);
 
 		void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
 		void		setFaction(string newFaction)	{ faction = newFaction; }
@@ -93,7 +95,10 @@ class HoI4Country
 		void setRelations(string relationsinput) { relationstxt = relationsinput; }
 
 		HoI4Relations*								getRelations(string withWhom) const;
-		HoI4Province*								getCapital();
+		HoI4State* getCapital();
+		double getStrengthOverTime(double years);
+		double getMilitaryStrength();
+		double getEconomicStrength(double years);
 		
 		const map<string, HoI4Relations*>&	getRelations() const			{ return relations; }
 		map<int, HoI4Province*>					getProvinces() const			{ return provinces; }
@@ -111,9 +116,9 @@ class HoI4Country
 		int											getCapitalNum()				{ return capital; }
 		vector<int>									getBrigs() const			{ return brigs; }
 		int											getCapitalProv() const { return capital; }
-		double										getArmyStrength() const { return armyStrength; }
 		const string									getSphereLeader() const { return sphereLeader; }
 		HoI4Party									getRulingParty() const { return RulingPartyModel; }
+		map<int, HoI4State*> getStates() const { return states; }
 		
 		vector<HoI4Party> getParties() const { return parties; }
 		int getTotalFactories() const { return totalfactories; }
@@ -146,6 +151,7 @@ class HoI4Country
 		const string						sphereLeader = "";
 		string								tag;
 		map<int, HoI4Province*>			provinces;
+		map<int, HoI4State*> states;
 		int									capital;
 		string								commonCountryFile;
 		map<string, int>					technologies;
@@ -175,6 +181,8 @@ class HoI4Country
 		map<string, vector<HoI4Country*>>	CountryTargets;
 		int provinceCount;
 		long armyStrength;
+		double militaryFactories;
+		double civilianFactories;
 		string relationstxt;
 
 		// AI focus modifiers

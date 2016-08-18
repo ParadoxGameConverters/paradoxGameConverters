@@ -40,7 +40,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs, const continentMapping& continentMap)
+V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, const map<string, string>& armyTechs, const map<string, string>& navyTechs, const continentMapping& continentMap)
 {
 	tag = obj->getKey();
 	provinces.clear();
@@ -112,25 +112,25 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<stri
 		}
 	}
 
-	activeParties.clear();
+	activePartyIDs.clear();
 	vector<Object*> partyObj = obj->getValue("active_party");
 	for (auto party: partyObj)
 	{
-		activeParties.push_back(atoi(party->getLeaf().c_str()));
+		activePartyIDs.push_back(atoi(party->getLeaf().c_str()));
 	}
 
 	partyObj = obj->getValue("ruling_party");
 	if (partyObj.size() > 0)
 	{
-		rulingPartyId = atoi(partyObj[0]->getLeaf().c_str()); // Numerical ID
+		rulingPartyID = atoi(partyObj[0]->getLeaf().c_str()); // Numerical ID
 	}
-	else if (activeParties.size() > 0)
+	else if (activePartyIDs.size() > 0)
 	{
-		rulingPartyId = activeParties[0];
+		rulingPartyID = activePartyIDs[0];
 	}
 	else
 	{
-		rulingPartyId = 0; // Bad value. For Rebel faction.
+		rulingPartyID = 0; // Bad value. For Rebel faction.
 	}
 
 	// Read spending
@@ -371,6 +371,7 @@ void V2Country::eatCountry(V2Country* target)
 	LOG(LogLevel::Debug) << "Merged " << target->tag << " into " << tag;
 }
 
+
 void V2Country::clearProvinces()
 {
 	provinces.clear();
@@ -383,6 +384,25 @@ void V2Country::clearCores()
 }
 
 
+void V2Country::putProvincesInStates()
+{
+	for (auto state: states)
+	{
+		for (auto provinceNum: state->getProvinceNums())
+		{
+			auto province = provinces.find(provinceNum);
+			if (province == provinces.end())
+			{
+				LOG(LogLevel::Warning) << "State owned by " << tag << " had province that " << tag << " did not";
+				continue;
+			}
+
+			state->addProvince(province->second);
+		}
+	}
+}
+
+
 void V2Country::putWorkersInProvinces()
 {
 	for (auto state: states)
@@ -392,16 +412,12 @@ void V2Country::putWorkersInProvinces()
 		int clerks			= 0;
 		int artisans		= 0;
 		int capitalists	= 0;
-		for (auto provinceNum : state->getProvinces())
+		for (auto province: state->getProvinces())
 		{
-			auto province = provinces.find(provinceNum);
-			if (province != provinces.end())
-			{
-				craftsmen	+= province->second->getPopulation("craftsmen");
-				clerks		+= province->second->getPopulation("clerks");
-				artisans		+= province->second->getPopulation("aristans");
-				capitalists	+= province->second->getLiteracyWeightedPopulation("capitalists");
-			}
+			craftsmen	+= province->getPopulation("craftsmen");
+			clerks		+= province->getPopulation("clerks");
+			artisans		+= province->getPopulation("aristans");
+			capitalists	+= province->getLiteracyWeightedPopulation("capitalists");
 		}
 
 		// limit craftsmen and clerks by factory levels
@@ -419,12 +435,74 @@ void V2Country::putWorkersInProvinces()
 
 		if (state->getProvinces().size() > 0)
 		{
-			auto employmentProvince = provinces.find(*state->getProvinces().begin());
-			if (employmentProvince != provinces.end())
-			{
-				employmentProvince->second->setEmployedWorkers(employedWorkers);
-			}
+			auto employmentProvince = state->getProvinces().begin();
+			(*employmentProvince)->setEmployedWorkers(employedWorkers);
 		}
+	}
+}
+
+
+void V2Country::setStateIDs(const stateIdMapping& stateIdMap)
+{
+	for (auto state: states)
+	{
+		auto stateID = stateIdMap.find(*state->getProvinceNums().begin());
+		if (stateID != stateIdMap.end())
+		{
+			state->setID(stateID->second);
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Could not find the state for Vic2 province " << *state->getProvinces().begin() << ", owned by " << tag;
+		}
+	}
+}
+
+
+void V2Country::setLocalisationNames(const V2Localisation& localisations)
+{
+	auto nameInAllLanguages = localisations.GetTextInEachLanguage(tag);
+	for (auto name: nameInAllLanguages)
+	{
+		setLocalisationName(name.first, name.second);
+	}
+}
+
+
+void V2Country::setLocalisationName(const string& language, const string& name)
+{
+	if (this->name != "") // Domains have their name set from domain_region
+	{
+		namesByLanguage[language] = this->name;
+	}
+	else
+	{
+		namesByLanguage[language] = name;
+		if (language == "english") this->name = name;
+	}
+}
+
+
+void V2Country::setLocalisationAdjectives(const V2Localisation& localisations)
+{
+	auto adjectiveInAllLanguages = localisations.GetTextInEachLanguage(tag + "_ADJ");
+	for (auto adjective: adjectiveInAllLanguages)
+	{
+		setLocalisationAdjective(adjective.first, adjective.second);
+	}
+}
+
+
+void V2Country::setLocalisationAdjective(const string& language, const string& adjective)
+{
+	if (this->adjective != "") // Domains have their adjective set from domain_region
+	{
+		adjectivesByLanguage[language] = this->adjective;
+	}
+	else
+	{
+		adjectivesByLanguage[language] = adjective;
+		if (language == "english") this->adjective = adjective;
 	}
 }
 
@@ -486,4 +564,49 @@ double V2Country::getUpperHousePercentage(string ideology) const
 		return 0.0;
 
 	return itr->second;
+}
+
+
+long V2Country::getEmployedWorkers() const
+{
+	long employedWorkers = 0;
+	for (auto sourceProvince: provinces)
+	{
+		employedWorkers += sourceProvince.second->getEmployedWorkers();
+	}
+
+	return employedWorkers;
+}
+
+
+V2Party* V2Country::getRulingParty(const vector<V2Party*> allParties) const
+{
+	if ((rulingPartyID <= allParties.size()) && (rulingPartyID > 0))
+	{
+		return allParties[rulingPartyID - 1]; // Subtract 1, because party ID starts from index of 1
+	}
+	else
+	{
+		return NULL;
+	}
+}
+
+
+vector<V2Party*> V2Country::getActiveParties(const vector<V2Party*> allParties) const
+{
+	vector<V2Party*> activeParties;
+
+	for (auto ID: activePartyIDs)
+	{
+		if (ID < allParties.size())
+		{
+			activeParties.push_back(allParties[ID - 1]);  // Subtract 1, because party ID starts from index of 1
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Party ID mismatch! Did some Vic2 country files not get read?";
+		}
+	}
+
+	return activeParties;
 }

@@ -28,7 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <stdio.h>
 #include <string>
 #include <vector>
-#include "../Mapper.h"
+#include "../Mappers/Mapper.h"
 using namespace std;
 
 

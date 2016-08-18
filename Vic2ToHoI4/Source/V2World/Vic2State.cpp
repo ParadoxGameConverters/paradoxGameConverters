@@ -22,6 +22,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Vic2State.h"
+#include "V2Province.h"
+#include "V2World.h"
 
 
 
@@ -30,17 +32,17 @@ Vic2State::Vic2State(const Object* stateObj, string ownerTag)
 	owner = ownerTag;
 	partialState = false;
 
-	addProvinces(stateObj);
+	addProvinceNums(stateObj);
 	setFactoryLevel(stateObj);
 }
 
 
-void Vic2State::addProvinces(const Object* stateObj)
+void Vic2State::addProvinceNums(const Object* stateObj)
 {
 	vector<string> provinceIDs = getProvinceIDs(stateObj);
 	for (auto provinceItr: provinceIDs)
 	{
-		provinces.insert(atoi(provinceItr.c_str()));
+		provinceNums.insert(atoi(provinceItr.c_str()));
 	}
 }
 
@@ -85,14 +87,50 @@ void Vic2State::determinePartialState(const stateMapping& stateMap)
 	partialState = false;
 	if (provinces.size() > 0)
 	{
-		auto fullState = stateMap.find(*provinces.begin());
+		auto fullState = stateMap.find(*provinceNums.begin());
 		for (auto expectedProvince: fullState->second)
 		{
-			if (provinces.count(expectedProvince) == 0)
+			if (provinceNums.count(expectedProvince) == 0)
 			{
 				partialState = true;
 				break;
 			}
 		}
 	}
+}
+
+
+int Vic2State::getEmployedWorkers() const
+{
+	int workers = 0;
+	for (auto province: provinces)
+	{
+		workers += province->getEmployedWorkers();
+	}
+
+	return workers;
+}
+
+
+int Vic2State::getPopulation() const
+{
+	int population = 0;
+	for (auto province: provinces)
+	{
+		population += province->getPopulation();
+	}
+
+	return population;
+}
+
+
+int Vic2State::getAverageRailLevel() const
+{
+	int totalRailLevel = 0;
+	for (auto province: provinces)
+	{
+		totalRailLevel += province->getInfra();
+	}
+
+	return (totalRailLevel / provinces.size());
 }

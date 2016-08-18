@@ -23,7 +23,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "HoI4State.h"
 #include <fstream>
+#include <random>
 #include "../Configuration.h"
+#include "../V2World/V2Province.h"
+#include "../V2World/V2World.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 
@@ -31,22 +34,29 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, string _ownerTag)
 {
-	sourceState		= _sourceState;
+	sourceState = _sourceState;
 
-	ID					= _ID;
-	ownerTag			= _ownerTag;
-	manpower			= 0;
+	ID = _ID;
+	provinces.clear();
+	ownerTag = _ownerTag;
 
-	civFactories	= 0;
-	milFactories	= 0;
-	category			= "pastoral";
-	railLevel		= 0;
-	dockyards		= 0;
+	manpower = 0;
 
-	navalLevel		= 0;
-	navalLocation	= 0;
+	civFactories = 0;
+	milFactories = 0;
+	dockyards = 0;
+	category = "pastoral";
+	infrastructure = 0;
 
-	airbaseLevel	= 0;
+	navalLevel = 0;
+	navalLocation = 0;
+
+	airbaseLevel = 0;
+
+	resources.clear();
+
+	victoryPointPosition = 0;
+	victoryPointValue = 0;
 }
 
 
@@ -57,7 +67,7 @@ void HoI4State::output(string _filename)
 	ofstream out(filename);
 	if (!out.is_open())
 	{
-		LOG(LogLevel::Error) << "Could not open \"output/input/history/states/" + _filename;
+		LOG(LogLevel::Error) << "Could not open \"output/" + Configuration::getOutputName() + "/history/states/" + _filename;
 		exit(-1);
 	}
 
@@ -80,14 +90,14 @@ void HoI4State::output(string _filename)
 	out << "" << endl;
 	out << "\thistory={" << endl;
 	out << "\t\towner = " << ownerTag << endl;
-	for (auto VP: victoryPoints)
+	if ((victoryPointValue > 0) && (victoryPointPosition != 0))
 	{
 		out << "\t\tvictory_points = {" << endl;
-		out << "\t\t\t" << VP.first << " " << VP.second << endl;
+		out << "\t\t\t" << victoryPointPosition << " " << victoryPointValue << endl;
 		out << "\t\t}" << endl;
 	}
 	out << "\t\tbuildings = {" << endl;
-	out << "\t\t\tinfrastructure = "<< railLevel << endl;
+	out << "\t\t\tinfrastructure = "<< infrastructure << endl;
 	out << "\t\t\tindustrial_complex = " << civFactories << endl;
 	out << "\t\t\tarms_factory = " << milFactories << endl;
 	if (dockyards > 0)
@@ -130,18 +140,7 @@ void HoI4State::setNavalBase(int level, int location)
 	{
 		navalLevel		= level;
 		navalLocation	= location;
-
-		dockyards		= 1;
 	}
-}
-
-
-void HoI4State::setIndustry(int _civilianFactories, int _militaryFactories, string _category, int _railLevel)
-{
-	civFactories	= _civilianFactories;
-	milFactories	= _militaryFactories;
-	category			= _category;
-	railLevel		= _railLevel;
 }
 
 
@@ -154,9 +153,21 @@ void HoI4State::addCores(const vector<string>& newCores)
 }
 
 
+void HoI4State::createVP(int location)
+{
+	victoryPointPosition = location;
+
+	victoryPointValue = 1;
+	if (cores.count(ownerTag) != 0)
+	{
+		victoryPointValue += 2;
+	}
+}
+
+
 int HoI4State::getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping& provinceMap)
 {
-	auto vic2Province = sourceState->getProvinces().begin();
+	auto vic2Province = sourceState->getProvinceNums().begin();
 	auto provMapping = provinceMap.find(*vic2Province);
 	if (provMapping != provinceMap.end())
 	{
@@ -165,6 +176,126 @@ int HoI4State::getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping&
 	else
 	{
 		return 0;
+	}
+}
+
+
+void HoI4State::convertIndustry(double workerFactoryRatio)
+{
+	int factories = determineFactoryNumbers(workerFactoryRatio);
+
+	determineCategory(factories);
+	setInfrastructure(factories);
+	setIndustry(factories);
+	addVictoryPointValue(factories / 2);
+}
+
+
+int HoI4State::determineFactoryNumbers(double workerFactoryRatio)
+{
+	double rawFactories = sourceState->getEmployedWorkers() * workerFactoryRatio;
+	rawFactories = round(rawFactories);
+	return constrainFactoryNumbers(rawFactories);
+}
+
+
+int HoI4State::constrainFactoryNumbers(double rawFactories)
+{
+	int factories = static_cast<int>(rawFactories);
+
+	if (factories < 0)
+	{
+		factories = 0;
+	}
+	else if (factories > 12)
+	{
+		factories = 12;
+	}
+
+	return factories;
+}
+
+
+void HoI4State::determineCategory(int factories)
+{
+	int population = sourceState->getPopulation();
+
+	int stateSlots = population / 120000; // one slot is given per 120,000 people (need to change)
+	if (factories >= stateSlots)
+	{
+		stateSlots = factories + 2;
+	}
+
+	for (auto possibleCategory: getStateCategories())
+	{
+		if (stateSlots >= possibleCategory.first)
+		{
+			category = possibleCategory.second;
+		}
+	}
+}
+
+
+map<int, string> HoI4State::getStateCategories()
+{
+	map<int, string> stateCategories;
+
+	stateCategories.insert(make_pair(12, "megalopolis"));
+	stateCategories.insert(make_pair(10, "metropolis"));
+	stateCategories.insert(make_pair(8, "large_city"));
+	stateCategories.insert(make_pair(6, "city"));
+	stateCategories.insert(make_pair(5, "large_town"));
+	stateCategories.insert(make_pair(4, "town"));
+	stateCategories.insert(make_pair(2, "rural"));
+	stateCategories.insert(make_pair(1, "pastoral"));
+	stateCategories.insert(make_pair(0, "enclave"));
+
+	return stateCategories;
+}
+
+
+void HoI4State::setInfrastructure(int factories)
+{
+	infrastructure = sourceState->getAverageRailLevel();
+
+	if (factories > 4)
+	{
+		infrastructure++;
+	}
+	if (factories > 6)
+	{
+		infrastructure++;
+	}
+	if (factories > 10)
+	{
+		infrastructure++;
+	}
+}
+
+
+static mt19937 randomnessEngine;
+static uniform_int_distribution<> numberDistributor(0, 99);
+void HoI4State::setIndustry(int factories)
+{
+	// distribute military factories, civilian factories, and dockyards using unseeded random
+	//		10% chance of dockyard
+	//		64% chance of civilian factory
+	//		26% chance of military factory
+	for (int i = 0; i < factories; i++)
+	{
+		double randomNum = numberDistributor(randomnessEngine);
+		if (randomNum > 73)
+		{
+			milFactories++;
+		}
+		else if (randomNum > 9)
+		{
+			civFactories++;
+		}
+		else
+		{
+			dockyards++;
+		}
 	}
 }
 

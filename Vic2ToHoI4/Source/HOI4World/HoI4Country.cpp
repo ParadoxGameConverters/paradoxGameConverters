@@ -30,7 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Minister.h"
 #include "../V2World/V2Relations.h"
 #include "../V2World/V2Party.h"
-#include "../../../common_items/OSCompatibilityLayer.h"
+#include "OSCompatibilityLayer.h"
 
 
 
@@ -631,7 +631,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 		ideology = "fascism";
 	}
 	// Political parties
-	convertParties(_srcCountry, _srcWorld.getActiveParties(_srcCountry), _srcWorld.getRulingParty(_srcCountry), ideology);
+	convertParties(_srcCountry, _srcCountry->getActiveParties(_srcWorld.getParties()), _srcCountry->getRulingParty(_srcWorld.getParties()), ideology);
 	for (auto partyItr : parties)
 	{
 		auto oldLocalisation = V2Localisations.GetTextInEachLanguage(partyItr.name);
@@ -674,7 +674,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	// Faction is handled in HoI4World::configureFactions
 
-	string warPolicy = _srcWorld.getRulingParty(_srcCountry)->war_policy;
+	string warPolicy = _srcCountry->getRulingParty(_srcWorld.getParties())->war_policy;
 	if (warPolicy == "jingoism")
 	{
 		neutrality = 60;
@@ -1760,56 +1760,6 @@ void HoI4Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 }
 
 
-void HoI4Country::addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap)
-{
-	if (provinces.size() == 0)
-	{
-		return;
-	}
-
-	// determine if there's anything to add
-	bool hasPort = false;
-	for (auto province : provinces)
-	{
-		if (province.second->getNavalBase() > 0)
-		{
-			hasPort = true;
-		}
-	}
-
-	auto capitalItr = provinces.find(capital);
-	if (capitalItr == provinces.end())
-	{
-		capitalItr = provinces.begin();
-	}
-
-	// if necessary, add an airbase to the capital province
-	capitalItr->second->requireAirBase(10);
-
-	// if necessary, add a port as near to the capital as possible
-	//		impossible currently, as we don't have a way to know where ports are valid
-
-	for (auto state : srcCountry->getStates())
-	{
-		if (state->getProvinces().size() > 0)
-		{
-			auto possibleHoI4Provinces = inverseProvinceMap.find(*state->getProvinces().begin());
-			if (possibleHoI4Provinces != inverseProvinceMap.end())
-			{
-				if (possibleHoI4Provinces->second.size() > 0)
-				{
-					auto provinceItr = provinces.find(possibleHoI4Provinces->second[0]);
-					if (provinceItr != provinces.end())
-					{
-						provinceItr->second->requireAirBase(2);
-					}
-				}
-			}
-		}
-	}
-}
-
-
 void HoI4Country::addProvince(HoI4Province* _province)
 {
 	provinces.insert(make_pair(_province->getNum(), _province));
@@ -1817,6 +1767,12 @@ void HoI4Country::addProvince(HoI4Province* _province)
 	{
 		capital = _province->getNum();
 	}
+}
+
+
+void HoI4Country::addState(HoI4State* _state)
+{
+	states.insert(make_pair(_state->getID(), _state));
 }
 
 
@@ -2630,14 +2586,49 @@ void HoI4Country::lowerNeutrality(double amount)
 }
 
 
-HoI4Province* HoI4Country::getCapital(void)
+void HoI4Country::calculateIndustry()
 {
-	auto capitalItr = provinces.find(capital);
-	if (capitalItr == provinces.end())
+	militaryFactories = 0.0;
+	civilianFactories = 0.0;
+	for (auto state : states)
 	{
-		if (provinces.size() > 0)
+		civilianFactories += state.second->getCivFactories();
+		militaryFactories += state.second->getMilFactories();
+	}
+
+	if (RulingPartyModel.war_pol == "jingoism")
+	{
+		civilianFactories *= 1.1;
+	}
+	else if (RulingPartyModel.war_pol == "pro_military")
+	{
+		civilianFactories *= 0.9;
+	}
+	else
+	{
+		civilianFactories *= 0.7;
+	}
+}
+
+
+void HoI4Country::addVPsToCapital(int VPs)
+{
+	auto capital = getCapital();
+	if (capital != NULL)
+	{
+		capital->addVictoryPointValue(VPs);
+	}
+}
+
+
+HoI4State* HoI4Country::getCapital(void)
+{
+	auto capitalItr = states.find(capital);
+	if (capitalItr == states.end())
+	{
+		if (states.size() > 0)
 		{
-			capitalItr = provinces.begin();
+			capitalItr = states.begin();
 		}
 		else
 		{
@@ -2647,3 +2638,26 @@ HoI4Province* HoI4Country::getCapital(void)
 
 	return capitalItr->second;
 }
+
+
+double HoI4Country::getStrengthOverTime(double years)
+{
+	return getMilitaryStrength() + getEconomicStrength(years);
+}
+
+
+double HoI4Country::getMilitaryStrength()
+{
+	return armyStrength;
+}
+
+
+double HoI4Country::getEconomicStrength(double years)
+{
+	double militarySectorStrength = militaryFactories * 3 * 365 * years;
+	double civilianSectorStrength = civilianFactories * 0.469 * 0.5 * 3 * 365 * 0.5* years * years; /*.469 is milfac per year, .5 since half are used by consumer goods*/
+
+	return militarySectorStrength + civilianSectorStrength;
+}
+
+

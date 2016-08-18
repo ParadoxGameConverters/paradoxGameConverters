@@ -25,8 +25,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #define V2COUNTRY_H_
 
 
-#include "../CountryMapping.h"
-#include "../Mapper.h"
+#include "../Mappers/CountryMapping.h"
+#include "../Mappers/Mapper.h"
 #include "../Color.h"
 #include "Date.h"
 #include "V2Inventions.h"
@@ -54,7 +54,7 @@ class		V2World;
 class V2Country
 {
 	public:
-		V2Country(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs, const continentMapping& continentMap);
+		V2Country(Object* obj, const inventionNumToName& iNumToName, const map<string, string>& armyTechs, const map<string, string>& navyTechs, const continentMapping& continentMap);
 
 		void								addProvince(int num, V2Province* _province)		{ provinces.insert(make_pair(num, _province)); }
 		void								setColor(Color newColor)								{ color = newColor; }
@@ -64,7 +64,11 @@ class V2Country
 		void								eatCountry(V2Country* target);
 		void								clearProvinces();
 		void								clearCores();
+		void putProvincesInStates();
 		void								putWorkersInProvinces();
+		void setStateIDs(const stateIdMapping& stateIdMap);
+		void setLocalisationNames(const V2Localisation& localisations);
+		void setLocalisationAdjectives(const V2Localisation& localisations);
 
 		map<string, V2Relations*>	getRelations()													const { return relations; }
 		vector<Vic2State*>			getStates()														const { return states; }
@@ -84,8 +88,6 @@ class V2Country
 		string							getFlagFile()													const { return flagFile; }
 		double							getEducationSpending()										const { return educationSpending; }
 		double							getMilitarySpending()										const { return militarySpending; }
-		unsigned	int					getRulingPartyId()											const { return rulingPartyId; }
-		vector<unsigned int>			getActiveParties()											const { return activeParties; };
 		vector<V2Army*>				getArmies()														const { return armies; }
 		vector<V2Leader*>				getLeaders()													const { return leaders; }
 		double							getRevanchism()												const { return revanchism; }
@@ -95,40 +97,22 @@ class V2Country
 		bool								getGreatNation()												const { return greatNation; }
 		map<string, string>			getLocalisedNames()											const { return namesByLanguage; }
 		map<string, string>			getLocalisedAdjectives()									const { return adjectivesByLanguage; }
+		bool isEmpty() const  { return ((cores.size() == 0) && (provinces.size() == 0)); }
 
 		string							getReform(string reform) const;
 		string							getName(const string& language) const;
 		string							getAdjective(const string& language) const;
 		double							getUpperHousePercentage(string ideology) const;
-
-		void setLocalisationName(const string& language, const string& name)
-		{
-			if (this->name != "") // Domains have their name set from domain_region
-			{
-				namesByLanguage[language] = this->name;
-			}
-			else
-			{
-				namesByLanguage[language] = name;
-				if (language == "english") this->name = name;
-			}
-		}
-		void setLocalisationAdjective(const string& language, const string& adjective)
-		{
-			if (this->adjective != "") // Domains have their adjective set from domain_region
-			{
-				adjectivesByLanguage[language] = this->adjective;
-			}
-			else
-			{
-				adjectivesByLanguage[language] = adjective;
-				if (language == "english") this->adjective = adjective;
-			}
-		}
+		long getEmployedWorkers() const;
+		V2Party* getRulingParty(const vector<V2Party*> allParties) const;
+		vector<V2Party*> getActiveParties(const vector<V2Party*> allParties) const;
 
 	private:
 		void readInStates(const Object* obj);
 		void createNewState(const Object*);
+
+		void setLocalisationName(const string& language, const string& name);
+		void setLocalisationAdjective(const string& language, const string& adjective);
 
 		string							tag;
 		vector<Vic2State*>			states;
@@ -153,8 +137,8 @@ class V2Country
 		double							warExhaustion;
 		map<string, string>			reformsArray;
 		string							flagFile;
-		unsigned	int					rulingPartyId;
-		vector<unsigned int>			activeParties;
+		unsigned	int					rulingPartyID;
+		vector<unsigned int>			activePartyIDs;
 		bool								greatNation;
 		string							techSchool;
 

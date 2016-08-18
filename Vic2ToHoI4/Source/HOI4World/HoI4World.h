@@ -32,7 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4States.h"
 #include "HoI4StrategicRegion.h"
 #include "HoI4SupplyZone.h"
-#include "../Mapper.h"
+#include "../Mappers/Mapper.h"
 
 
 
@@ -79,9 +79,8 @@ class HoI4World
 		void	convertArmies(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void	convertNavies();
 		void	convertAirforces();
-		void	convertVictoryPoints(const CountryMapping& countryMap);
+		void convertCapitalVPs(const CountryMapping& countryMap);
 		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
-		void	addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
 		void fillCountryProvinces();
 		void    setSphereLeaders(const V2World & sourceWorld, const CountryMapping & countryMap);
 		void    thatsgermanWarCreator(const V2World & sourceWorld, const CountryMapping& countryMap);
@@ -119,10 +118,6 @@ class HoI4World
 		string createMonarchyEmpireNF(HoI4Country * Home, HoI4Country * Annexed1, HoI4Country * Annexed2, HoI4Country * Annexed3, HoI4Country * Annexed4, int ProtectorateNumber, int AnnexNumber, int x);
 		void fillProvinceNeighbors();
 		string genericFocusTreeCreator(HoI4Country * CreatingCountry);
-		void fillCountryIC();
-		double getStrengthOverTime(HoI4Country * Country, double years);
-		double getInitialStrength(HoI4Country * Country);
-		double getAddedStrength(HoI4Country * Country, double years);
 		void outputRelations();
 		void	checkAllProvincesMapped(const HoI4ToVic2ProvinceMapping& provinceMap);
 
@@ -133,6 +128,18 @@ class HoI4World
 		void	checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string leader, const string& factionName);
 		void	factionSatellites();
 		void	setAlignments();
+
+		void addBasicCapitalVPs(const CountryMapping& countryMap);
+		void addGreatPowerVPs(const CountryMapping& countryMap);
+		void addStrengthVPs();
+		double getStrongestCountryStrength();
+		int calculateStrengthVPs(HoI4Country* country, double greatestStrength);
+
+		map<string, double> calculateFactoryWorkerRatios();
+		double calculateTotalFactoriesInCountry(long employedWorkers);
+		void reportIndustryLevels();
+		void fillCountryIC();
+		void addStatesToCountries();
 
 		vector<int>					getPortProvinces(const vector<int>& locationCandidates);
 		vector<int>					getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
@@ -154,9 +161,6 @@ class HoI4World
 		map<int, HoI4Province*>		provinces;
 		map<string, HoI4Country*>	countries;
 		HoI4Diplomacy					diplomacy;
-		map<string, int>				countriesICMIL;  
-		map<string, int>				countriesICCIV;
-		map<string, vector<int>>		countriesStates; 
 		map<int, int>					stateMap;
 		vector<HoI4Country*> AggressorFactions;
 		map<HoI4Country*, vector<HoI4Country*>> WorldTargetMap;

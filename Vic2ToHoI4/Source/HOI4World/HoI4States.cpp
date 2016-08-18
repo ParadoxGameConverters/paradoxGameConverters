@@ -205,7 +205,7 @@ map<V2Country*, MTo1ProvinceComp> HoI4States::determinePotentialOwners(HoI4ToVic
 	map<V2Country*, MTo1ProvinceComp> potentialOwners;
 	for (auto srcProvItr: provinceLink->second)
 	{
-		V2Province* srcProvince = sourceWorld->getProvince(srcProvItr);
+		auto srcProvince = sourceWorld->getProvince(srcProvItr);
 		if (!srcProvince)
 		{
 			LOG(LogLevel::Warning) << "Old province " << provinceLink->second[0] << " does not exist (bad mapping?)";
@@ -287,10 +287,10 @@ bool HoI4States::createMatchingHoI4State(const Vic2State* vic2State, int stateID
 
 void HoI4States::addProvincesToNewState(HoI4State* newState, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces)
 {
-	for (auto vic2Province: newState->getSourceState()->getProvinces())
+	for (auto vic2ProvinceNum: newState->getSourceState()->getProvinceNums())
 	{
 		//	if the matching HoI4 provinces are owned by this country, add it to the HoI4 state
-		auto provMapping = HoI4ToVic2ProvinceMap.find(vic2Province);
+		auto provMapping = HoI4ToVic2ProvinceMap.find(vic2ProvinceNum);
 		if (provMapping != HoI4ToVic2ProvinceMap.end())
 		{
 			for (auto HoI4ProvNum: provMapping->second)
@@ -336,16 +336,24 @@ void HoI4States::createVPForState(HoI4State* newState, const Vic2ToHoI4ProvinceM
 	int HoI4ProvNum = newState->getFirstProvinceByVic2Definition(provinceMap);
 	if (newState->isProvinceInState(HoI4ProvNum))
 	{
-		newState->addVP(HoI4ProvNum, 5);
+		newState->createVP(HoI4ProvNum);
+	}
+	else if (newState->getProvinces().size() > 0)
+	{
+		newState->createVP(*newState->getProvinces().begin());
+	}
+	else
+	{
+		LOG(LogLevel::Warning) << "Could not create VP for state";
 	}
 }
 
 
+
 void HoI4States::addManpowerToNewState(HoI4State* newState)
 {
-	for (auto vic2ProvNum: newState->getSourceState()->getProvinces())
+	for (auto sourceProvince: newState->getSourceState()->getProvinces())
 	{
-		V2Province* sourceProvince = sourceWorld->getProvince(vic2ProvNum);
 		int additionalManpower = static_cast<int>(sourceProvince->getTotalPopulation() * 4 * Configuration::getManpowerFactor());
 		newState->addManpower(additionalManpower);
 	}

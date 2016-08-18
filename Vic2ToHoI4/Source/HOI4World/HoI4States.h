@@ -32,7 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4State.h"
 #include "..\V2World\V2Localisation.h"
 #include "..\V2World\V2Province.h"
-#include "..\CountryMapping.h"
+#include "../Mappers/CountryMapping.h"
 using namespace std;
 
 
@@ -41,7 +41,7 @@ struct MTo1ProvinceComp
 {
 	MTo1ProvinceComp() : totalPopulation(0) {};
 
-	vector<V2Province*> provinces;
+	vector<const V2Province*> provinces;
 	int totalPopulation;
 };
 
