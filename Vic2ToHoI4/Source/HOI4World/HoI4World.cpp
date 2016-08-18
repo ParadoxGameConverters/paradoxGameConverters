@@ -483,8 +483,13 @@ void HoI4World::convertIndustry()
 
 		// calculate the ratio between Vic2 employed workers and HoI4 factories
 		double sinPart = sin(employedWorkersAdjusted / 150) * 100;
+		if (sinPart > 100)
+		{
+			sinPart = 80+ employedWorkersAdjusted /10;
+		}
 		double logpart = log10(employedWorkersAdjusted) * 15;
 		double HoI4TotalFactories = sinPart + logpart + 5;
+		
 		if (employedWorkersAdjusted != 0)
 		{
 			ratioMap[HoI4Country.second->getTag()] = HoI4TotalFactories / employedWorkersAdjusted;
