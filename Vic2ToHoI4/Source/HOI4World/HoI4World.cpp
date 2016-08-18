@@ -470,6 +470,34 @@ void HoI4World::convertIndustry()
 {
 	map<string, double> factoryWorkerRatios = calculateFactoryWorkerRatios();
 
+		// get the total number of employed/employable workers
+		double employedWorkersAdjusted = 0;
+		for (auto sourceProvince : Vic2Country->getProvinces())
+		{
+			// takes employed workers and divides by 100,000 to convert
+			employedWorkersAdjusted += sourceProvince.second->getEmployedWorkers() / 100000.0;
+		}
+
+		// calculate the ratio between Vic2 employed workers and HoI4 factories
+		double sinPart = sin(employedWorkersAdjusted / 150) * 100;
+		if (sinPart > 100)
+		{
+			sinPart = 80+ employedWorkersAdjusted /10;
+		}
+		double logpart = log10(employedWorkersAdjusted) * 15;
+		double HoI4TotalFactories = sinPart + logpart + 5;
+		
+		if (employedWorkersAdjusted != 0)
+		{
+			ratioMap[HoI4Country.second->getTag()] = HoI4TotalFactories / employedWorkersAdjusted;
+		}
+		else
+		{
+			ratioMap[HoI4Country.second->getTag()] = 0.0;
+		}
+	}
+
+	//	loop through the HoI4 states to set the factory levels
 	for (auto HoI4State : states->getStates())
 	{
 		auto ratioMapping = factoryWorkerRatios.find(HoI4State.second->getOwner());
