@@ -626,7 +626,7 @@ double HoI4World::calculateTotalFactoriesInCountry(long employedWorkers)
 	double employedWorkersAdjusted = employedWorkers / 100000.0;
 
 	double sinPart = sin(employedWorkersAdjusted / 150) * 158;
-	if (employedWorkers > 241)
+	if (employedWorkersAdjusted > 241)
 	{
 		sinPart = 135 + employedWorkersAdjusted / 10;
 	}
