@@ -141,6 +141,9 @@ class HoI4World
 		void addStatesToCountries();
 		void reportIndustryLevels();
 		void reportCountryIndustry();
+		void reportDefaultIndustry();
+		pair<string, array<int, 3>> getDefaultStateIndustry(string stateFilename);
+		void outputDefaultIndustry(const map<string, array<int, 3>>& countryIndustry);
 
 		vector<int>					getPortProvinces(const vector<int>& locationCandidates);
 		vector<int>					getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);

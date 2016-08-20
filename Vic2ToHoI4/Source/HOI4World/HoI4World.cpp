@@ -681,6 +681,7 @@ void HoI4World::reportIndustryLevels()
 	if (true)
 	{
 		reportCountryIndustry();
+		reportDefaultIndustry();
 	}
 }
 
@@ -694,6 +695,93 @@ void HoI4World::reportCountryIndustry()
 		for (auto country: countries)
 		{
 			country.second->reportIndustry(report);
+		}
+	}
+}
+
+
+void HoI4World::reportDefaultIndustry()
+{
+	map<string, array<int, 3>> countryIndustry;
+
+	set<string> stateFilenames;
+	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/history/states", stateFilenames);
+	for (auto stateFilename: stateFilenames)
+	{
+		pair<string, array<int, 3>> stateData = getDefaultStateIndustry(stateFilename);
+
+		auto country = countryIndustry.find(stateData.first);
+		if (country == countryIndustry.end())
+		{
+			countryIndustry.insert(make_pair(stateData.first, stateData.second));
+		}
+		else
+		{
+			country->second[0] += stateData.second[0];
+			country->second[0] += stateData.second[1];
+			country->second[0] += stateData.second[2];
+		}
+	}
+
+	outputDefaultIndustry(countryIndustry);
+}
+
+
+pair<string, array<int, 3>> HoI4World::getDefaultStateIndustry(string stateFilename)
+{
+	Object* fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/history/states/" + stateFilename);
+	if (fileObj == nullptr)
+	{
+		LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/history/states/" << stateFilename;
+		exit(-1);
+	}
+	auto stateObj = fileObj->getValue("state");
+	auto historyObj = stateObj[0]->getValue("history");
+	auto buildingsObj = historyObj[0]->getValue("buildings");
+
+	auto civilianFactoriesObj = buildingsObj[0]->getValue("industrial_complex");
+	int civilianFactories = 0;
+	if (civilianFactoriesObj.size() > 0)
+	{
+		civilianFactories = stoi(civilianFactoriesObj[0]->getLeaf());
+	}
+
+	auto militaryFactoriesObj = buildingsObj[0]->getValue("arms_factory");
+	int militaryFactories = 0;
+	if (militaryFactoriesObj.size() > 0)
+	{
+		militaryFactories = stoi(militaryFactoriesObj[0]->getLeaf());
+	}
+
+	auto dockyardsObj = buildingsObj[0]->getValue("dockyard");
+	int dockyards = 0;
+	if (dockyardsObj.size() > 0)
+	{
+		dockyards = stoi(dockyardsObj[0]->getLeaf());
+	}
+
+	auto ownerObj = historyObj[0]->getValue("owner");
+	string owner = ownerObj[0]->getLeaf();
+
+	array<int, 3> industry = { militaryFactories, civilianFactories, dockyards };
+	pair<string, array<int, 3>> stateData = make_pair(owner, industry);
+	return stateData;
+}
+
+
+void HoI4World::outputDefaultIndustry(const map<string, array<int, 3>>& countryIndustry)
+{
+	ofstream report("defaultIndustry.csv");
+	report << "tag,military factories,civilian factories,dockyards,total factories\n";
+	if (report.is_open())
+	{
+		for (auto country: countryIndustry)
+		{
+			report << country.first << ',';
+			report << country.second[0] << ',';
+			report << country.second[1] << ',';
+			report << country.second[2] << ',';
+			report << country.second[0] + country.second[1] + country.second[2] << '\n';
 		}
 	}
 }
