@@ -87,6 +87,7 @@ class HoI4Country
 		void addState(HoI4State* _state);
 		void		lowerNeutrality(double amount);
 		void calculateIndustry();
+		void reportIndustry(ofstream& out);
 		void addVPsToCapital(int VPs);
 
 		void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
@@ -183,6 +184,7 @@ class HoI4Country
 		long armyStrength;
 		double militaryFactories;
 		double civilianFactories;
+		double dockyards;
 		string relationstxt;
 
 		// AI focus modifiers

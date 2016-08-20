@@ -2590,10 +2590,12 @@ void HoI4Country::calculateIndustry()
 {
 	militaryFactories = 0.0;
 	civilianFactories = 0.0;
+	dockyards = 0.0;
 	for (auto state : states)
 	{
 		civilianFactories += state.second->getCivFactories();
 		militaryFactories += state.second->getMilFactories();
+		dockyards += state.second->getDockyards();
 	}
 
 	if (RulingPartyModel.war_pol == "jingoism")
@@ -2607,6 +2609,33 @@ void HoI4Country::calculateIndustry()
 	else
 	{
 		civilianFactories *= 0.7;
+	}
+}
+
+
+void HoI4Country::reportIndustry(ofstream& out)
+{
+	if (states.size() > 0)
+	{
+		double actualCivilianFactories;
+		if (RulingPartyModel.war_pol == "jingoism")
+		{
+			actualCivilianFactories = civilianFactories / 1.1;
+		}
+		else if (RulingPartyModel.war_pol == "pro_military")
+		{
+			actualCivilianFactories = civilianFactories / 0.9;
+		}
+		else
+		{
+			actualCivilianFactories = civilianFactories / 0.7;
+		}
+
+		out << tag << ',';
+		out << militaryFactories << ',';
+		out << actualCivilianFactories << ',';
+		out << dockyards << ',';
+		out << militaryFactories + actualCivilianFactories + dockyards << '\n';
 	}
 }
 

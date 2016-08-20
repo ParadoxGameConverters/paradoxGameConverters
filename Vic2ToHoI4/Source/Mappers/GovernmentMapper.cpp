@@ -22,7 +22,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "GovernmentMapper.h"
-
 #include <math.h>
 #include <float.h>
 #include "../V2World/V2Country.h"

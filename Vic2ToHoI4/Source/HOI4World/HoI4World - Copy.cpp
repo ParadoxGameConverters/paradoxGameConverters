@@ -481,8 +481,8 @@ void HoI4World::convertIndustry()
 		HoI4State.second->convertIndustry(ratioMapping->second);
 	}
 
-	fillCountryIC();
 	reportIndustryLevels();
+	fillCountryIC();
 
 	//// now that all provinces have had owners and cores set, convert their other items
 	//for (auto mapping: inverseProvinceMap)
@@ -636,30 +636,6 @@ double HoI4World::calculateTotalFactoriesInCountry(long employedWorkers)
 }
 
 
-void HoI4World::fillCountryIC()
-{
-	addStatesToCountries();
-
-	for (auto country: countries)
-	{
-		country.second->calculateIndustry();
-	}
-}
-
-
-void HoI4World::addStatesToCountries()
-{
-	for (auto state: states->getStates())
-	{
-		auto owner = countries.find(state.second->getOwner());
-		if (owner != countries.end())
-		{
-			owner->second->addState(state.second);
-		}
-	}
-}
-
-
 void HoI4World::reportIndustryLevels()
 {
 	map<string, int> countryIndustry;
@@ -688,12 +664,35 @@ void HoI4World::reportIndustryLevels()
 void HoI4World::reportCountryIndustry()
 {
 	ofstream report("convertedIndustry.csv");
-	report << "tag,military factories,civilian factories,dockyards,total factories\n";
 	if (report.is_open())
 	{
 		for (auto country: countries)
 		{
 			country.second->reportIndustry(report);
+		}
+	}
+}
+
+
+void HoI4World::fillCountryIC()
+{
+	addStatesToCountries();
+
+	for (auto country: countries)
+	{
+		country.second->calculateIndustry();
+	}
+}
+
+
+void HoI4World::addStatesToCountries()
+{
+	for (auto state: states->getStates())
+	{
+		auto owner = countries.find(state.second->getOwner());
+		if (owner != countries.end())
+		{
+			owner->second->addState(state.second);
 		}
 	}
 }
@@ -1853,7 +1852,7 @@ string HoI4World::createDemocracyNF(HoI4Country* Home, vector<HoI4Country*> Coun
 		FocusTree += "		text = \"War Plan " + Country->getSourceCountry()->getName() + "\"\n";
 		FocusTree += "		prerequisite = { focus = PrepInter" + Home->getTag() + "}\n";
 		FocusTree += "		available = {\n";
-		FocusTree += "			" + Country->getTag() + " = { is_in_faction_with = " + Home->getTag() + " }\n";
+		FocusTree += "			" + Country->getTag() + " = { is_in_faction_with = " + Home->getTag()+" }\n";
 		FocusTree += "			" + Country->getTag() + " = { has_added_tension_amount > 30 }\n";
 		FocusTree += "		}\n";
 		FocusTree += "		\n";
@@ -4953,7 +4952,7 @@ void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld, const CountryM
 		for (auto faction : CountriesAtWar)
 		{
 			out << faction->getLeader()->getSourceCountry()->getName() + " with strength of " + to_string(GetFactionStrength(faction, 3)) << endl;
-			CountriesAtWarStrength += GetFactionStrength(faction, 3);
+			CountriesAtWarStrength += GetFactionStrength(faction,3);
 		}
 		out << "percentage of world at war" + to_string(CountriesAtWarStrength / WorldStrength) + "\n" << endl;
 		if (CountriesAtWarStrength / WorldStrength < 0.8)
@@ -5310,7 +5309,7 @@ double HoI4World::getDistanceBetweenPoints(pair<int, int> point1, pair<int, int>
 
 	int yDistance = point2.second - point1.second;
 
-	return sqrt(pow(xDistance, 2) + pow(yDistance, 2));
+	return sqrt( pow(xDistance, 2) + pow(yDistance, 2) );
 }
 
 
@@ -5525,7 +5524,7 @@ vector<HoI4Faction*> HoI4World::CreateFactions(const V2World &sourceWorld, const
 							{
 								usedCountries.push_back(allycountry->getTag());
 								alreadyAllied.push_back(allycountry->getTag());
-								out << "\t" + name + " " + allygovernment + " initial strength:" + to_string(allycountry->getMilitaryStrength()) + " Factory Strength per year: " + to_string(allycountry->getEconomicStrength(1.0)) + " Factory Strength by 1939: " + to_string(allycountry->getEconomicStrength(3.0)) << endl;
+								out << "\t" + name + " " + allygovernment + " initial strength:" + to_string(allycountry->getMilitaryStrength()) + " Factory Strength per year: " + to_string(allycountry->getEconomicStrength(1.0))+ " Factory Strength by 1939: " + to_string(allycountry->getEconomicStrength(3.0)) << endl;
 								FactionMilStrength += allycountry->getStrengthOverTime(1.0);
 								Faction.push_back(allycountry);
 							}
@@ -6264,7 +6263,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 		out2 << FocusTree;
 	}
 	out2.close();
-
+	
 	return CountriesAtWar;
 }
 vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World sourceWorld, CountryMapping countryMap)
@@ -6651,25 +6650,25 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World
 		double FactionsAttackingMeStrength = 0;
 		for each (HoI4Faction* attackingFaction in FactionsAttackingMe)
 		{
-			FactionsAttackingMeStrength += GetFactionStrengthWithDistance(Leader, attackingFaction->getMembers(), 3);
+			FactionsAttackingMeStrength += GetFactionStrengthWithDistance(Leader,attackingFaction->getMembers(),3);
 		}
-		aiOutputLog += Leader->getSourceCountry()->getName() + " is under threat, there are " + to_string(FactionsAttackingMe.size()) + " faction(s) attacking them, I have a strength of " + to_string(GetFactionStrength(findFaction(Leader), 3)) + " and they have a strength of " + to_string(FactionsAttackingMeStrength) + "\n";
+		aiOutputLog += Leader->getSourceCountry()->getName()+ " is under threat, there are " + to_string( FactionsAttackingMe.size()) + " faction(s) attacking them, I have a strength of " + to_string(GetFactionStrength(findFaction(Leader),3)) + " and they have a strength of " + to_string(FactionsAttackingMeStrength)+"\n";
 		if (FactionsAttackingMeStrength > GetFactionStrength(findFaction(Leader), 3))
 		{
 			vector<HoI4Country*> GCAllies;
-
+			
 			for (HoI4Country* GC : GreatCountries)
 			{
 				int relations = Leader->getRelations(GC->getTag())->getRelations();
 				if (relations > 0 && maxGCAlliance < 1)
 				{
-					aiOutputLog += Leader->getSourceCountry()->getName() + " can attempt to ally " + GC->getSourceCountry()->getName() + "\n";
+					aiOutputLog += Leader->getSourceCountry()->getName() + " can attempt to ally " + GC->getSourceCountry()->getName()+"\n";
 					FocusTree += "focus = {\n";
 					FocusTree += "		id = Alliance_" + GC->getTag() + Leader->getTag() + "\n";
 					FocusTree += "		icon = GFX_goal_generic_allies_build_infantry\n";
 					FocusTree += "		text = \"Alliance with " + GC->getSourceCountry()->getName() + "\"\n";
 					FocusTree += "		prerequisite = { focus = Com_Summit" + Leader->getTag() + " }\n";
-					FocusTree += "		x = " + to_string(takenSpots.back() + 4) + "\n";
+					FocusTree += "		x = " + to_string(takenSpots.back() + 4 ) + "\n";
 					FocusTree += "		y = 2\n";
 					FocusTree += "		cost = 15\n";
 					FocusTree += "		ai_will_do = {\n";

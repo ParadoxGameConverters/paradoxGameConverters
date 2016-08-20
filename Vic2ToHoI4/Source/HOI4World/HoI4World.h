@@ -137,9 +137,10 @@ class HoI4World
 
 		map<string, double> calculateFactoryWorkerRatios();
 		double calculateTotalFactoriesInCountry(long employedWorkers);
-		void reportIndustryLevels();
 		void fillCountryIC();
 		void addStatesToCountries();
+		void reportIndustryLevels();
+		void reportCountryIndustry();
 
 		vector<int>					getPortProvinces(const vector<int>& locationCandidates);
 		vector<int>					getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
