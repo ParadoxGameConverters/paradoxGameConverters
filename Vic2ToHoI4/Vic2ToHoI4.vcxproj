@@ -88,6 +88,7 @@
     <ClCompile Include="Source\HOI4World\HoI4StrategicRegion.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4SupplyZone.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4World.cpp" />
+    <ClCompile Include="Source\Mappers\CoastalHoI4Provinces.cpp" />
     <ClCompile Include="Source\Mappers\CountryMapping.cpp" />
     <ClCompile Include="Source\Mappers\GovernmentMapper.cpp" />
     <ClCompile Include="Source\Mappers\Mapper.cpp" />
@@ -135,6 +136,7 @@
     <ClInclude Include="Source\HOI4World\HoI4StrategicRegion.h" />
     <ClInclude Include="Source\HOI4World\HoI4SupplyZone.h" />
     <ClInclude Include="Source\HOI4World\HoI4World.h" />
+    <ClInclude Include="Source\Mappers\CoastalHoI4Provinces.h" />
     <ClInclude Include="Source\Mappers\CountryMapping.h" />
     <ClInclude Include="Source\Mappers\GovernmentMapper.h" />
     <ClInclude Include="Source\Mappers\Mapper.h" />

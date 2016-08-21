@@ -78,6 +78,7 @@ class HoI4State
 		map<int, string> getStateCategories();
 		void setInfrastructure(int factories);
 		void setIndustry(int factories);
+		bool amICoastal();
 
 		string makeLocalisationKey() const;
 		string makeLocalisationValue(const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations) const;

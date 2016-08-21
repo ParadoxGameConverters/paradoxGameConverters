@@ -21,67 +21,53 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef HOI4BUILDINGS_H_
-#define HOI4BUILDINGS_H_
+#ifndef COASTALHOI4PROVINCES_H_
+#define COASTALHOI4PROVINCES_H_
 
 
-#include <fstream>
-#include <map>
-#include <set>
+
 #include <vector>
+#include <map>
 using namespace std;
 
 
 
+typedef struct province
+{
+	bool isLand;
+	string type;
+} province;
 
-class HoI4Building
+
+class coastalProvincesMapper
 {
 	public:
-		HoI4Building(int _stateID, double _xCoordinate, double _zCoordinate);
-
-		friend ostream& operator << (ostream& out, HoI4Building& building);
-
-		virtual ostream& print(ostream& out) const;
-
-	protected:
-		int stateID;
-		double xCoordinate;
-		double yCoordinate;
-		double zCoordinate;
-		double rotation;
-};
-
-
-class HoI4NavalBase: public HoI4Building
-{
-	public:
-		HoI4NavalBase(int _stateID, double _xCoordinate, double _zCoordinate, int _connectingSeaProvince);
-
-		ostream& print(ostream& out) const;
+		static map<int, int> getCoastalProvinces()
+		{
+			return getInstance()->coastalProvinces;
+		}
 
 	private:
-		int connectingSeaProvince;
+		static coastalProvincesMapper* instance;
+		static coastalProvincesMapper* getInstance()
+		{
+			if (instance == NULL)
+			{
+				instance = new coastalProvincesMapper();
+			}
+
+			return instance;
+		}
+
+		coastalProvincesMapper();
+
+		
+		map<int, province> getProvinces();
+		map<int, vector<int>> getAdjacencies();
+
+		map<int, int> coastalProvinces;	// province, connecting sea province
 };
 
 
 
-
-
-class HoI4Buildings
-{
-	public:
-		HoI4Buildings(const map<int, int>& provinceToStateIDMap);
-
-		void output() const;
-
-	private:
-		void placeNavalBases(const map<int, int>& provinceToStateIDMap);
-		map<int, pair<double, double>> getProvincePositions();
-
-		multimap<int, HoI4Building*> buildings;
-};
-
-
-
-
-#endif // HOI4BUILDINGS_H_
+#endif // COASTALHOI4PROVINCES_H_

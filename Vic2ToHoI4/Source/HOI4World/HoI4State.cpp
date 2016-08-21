@@ -25,6 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include <random>
 #include "../Configuration.h"
+#include "../Mappers/CoastalHoI4Provinces.h"
 #include "../V2World/V2Province.h"
 #include "../V2World/V2World.h"
 #include "Log.h"
@@ -277,26 +278,64 @@ static mt19937 randomnessEngine;
 static uniform_int_distribution<> numberDistributor(0, 99);
 void HoI4State::setIndustry(int factories)
 {
-	// distribute military factories, civilian factories, and dockyards using unseeded random
-	//		10% chance of dockyard
-	//		64% chance of civilian factory
-	//		26% chance of military factory
-	for (int i = 0; i < factories; i++)
+	if (amICoastal())
 	{
-		double randomNum = numberDistributor(randomnessEngine);
-		if (randomNum > 73)
+		// distribute military factories, civilian factories, and dockyards using unseeded random
+		//		20% chance of dockyard
+		//		57% chance of civilian factory
+		//		23% chance of military factory
+		for (int i = 0; i < factories; i++)
 		{
-			milFactories++;
-		}
-		else if (randomNum > 9)
-		{
-			civFactories++;
-		}
-		else
-		{
-			dockyards++;
+			double randomNum = numberDistributor(randomnessEngine);
+			if (randomNum > 76)
+			{
+				milFactories++;
+			}
+			else if (randomNum > 19)
+			{
+				civFactories++;
+			}
+			else
+			{
+				dockyards++;
+			}
 		}
 	}
+	else
+	{
+		// distribute military factories, civilian factories, and dockyards using unseeded random
+		//		 0% chance of dockyard
+		//		71% chance of civilian factory
+		//		29% chance of military factory
+		for (int i = 0; i < factories; i++)
+		{
+			double randomNum = numberDistributor(randomnessEngine);
+			if (randomNum > 70)
+			{
+				milFactories++;
+			}
+			else
+			{
+				civFactories++;
+			}
+		}
+	}
+}
+
+
+bool HoI4State::amICoastal()
+{
+	map<int, int> coastalProvinces = coastalProvincesMapper::getCoastalProvinces();
+	for (auto province: provinces)
+	{
+		auto itr = coastalProvinces.find(province);
+		if (itr != coastalProvinces.end())
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 
