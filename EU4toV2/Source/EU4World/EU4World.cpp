@@ -351,7 +351,7 @@ void EU4World::readCommonCountries(istream& in, const std::string& rootPath)
 				}
 				size_t equalPos	= countryLine.find('=', 3);
 				size_t beginPos	= countryLine.find_first_not_of(' ', equalPos + 1);
-				size_t endPos		= countryLine.find_last_not_of(' ') + 1;
+				size_t endPos		= countryLine.find_last_of('\"') + 1;
 				std::string fileName = countryLine.substr(beginPos, endPos - beginPos);
 				if (fileName.front() == '"' && fileName.back() == '"')
 				{
