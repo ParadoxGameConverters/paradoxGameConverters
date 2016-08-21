@@ -71,6 +71,16 @@ class Configuration // Singleton
 			return getInstance()->manpowerFactor;
 		}
 
+		static string getIcConversion()
+		{
+			return getInstance()->icConversion;
+		}
+
+		static double getIcFactor()
+		{
+			return getInstance()->icFactor;
+		}
+
 		static int getNextLeaderID()
 		{
 			return getInstance()->leaderID++;
@@ -101,6 +111,8 @@ class Configuration // Singleton
 		string			outputName;				// the name the outputted mod should have
 
 		double			manpowerFactor;
+		string			icConversion;
+		double			icFactor;
 
 		unsigned int	leaderID;
 		unsigned int	leaderIDCountryIdx;

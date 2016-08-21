@@ -17,6 +17,46 @@
 						<value></value>
 					</preference>
 					<preference>
+						<name>ic_conversion</name>
+						<friendlyName>Industry Conversion Method</friendlyName>
+						<description>The method used for turning Vic2 workers into HoI4 factories</description>
+						<entryOptions>
+							<entryOption>
+								<name>squareroot</name>
+								<friendlyName>Square Root</friendlyName>
+								<description>The square root of the number of workers becomes the number of factories</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>linear</name>
+								<friendlyName>Linear</friendlyName>
+								<description>The number of workers becomes the number of factories</description>
+								<isDefault>true</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>logarithmic</name>
+								<friendlyName>Logarithmic</friendlyName>
+								<description>The logarithm of the numbers of workers becomes the number of factories</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>sin-log</name>
+								<friendlyName>Sine-Logarithm</friendlyName>
+								<description>A more complex variation that gives more advantages to under-industrialized nations while still allowing over-industrialized ones to pull ahead.</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+						</entryOptions>
+					</preference>
+			<preference>
+					<name>ic_factor</name>
+					<friendlyName>IC Factor</friendlyName>
+					<description>used for IC conversion</description>
+					<hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+					<value>1.0</value>
+					<minValue>0.1</minValue>
+					<maxValue>10</maxValue>
+				</preference>
+				<preference>
 						<name>manpower_factor</name>
 						<friendlyName>Manpower Factor</friendlyName>
 						<description>a multiplier for manpower conversion</description>

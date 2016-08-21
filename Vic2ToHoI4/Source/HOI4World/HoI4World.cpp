@@ -554,25 +554,6 @@ void HoI4World::convertIndustry()
 	//		{
 	//			continue;
 	//		}
-
-	//		// convert industry
-	//		double industry = sourceProvince->getEmployedWorkers();
-	//		if (Configuration::getIcConversion() == "squareroot")
-	//		{
-	//			industry = sqrt(double(industry)) * 0.01294;
-	//			dstProvItr->second->addRawIndustry(industry * Configuration::getIcFactor());
-	//		}
-	//		else if (Configuration::getIcConversion() == "linear")
-	//		{
-	//			industry = double(industry) * 0.0000255;
-	//			dstProvItr->second->addRawIndustry(industry * Configuration::getIcFactor());
-	//		}
-	//		else if (Configuration::getIcConversion() == "logarithmic")
-	//		{
-	//			industry = log(max(1.0, industry / 70000)) / log(2) * 5.33;
-	//			dstProvItr->second->addRawIndustry(industry * Configuration::getIcFactor());
-	//		}
-
 	//		// convert leadership
 	//		double newLeadership = sourceProvince->getLiteracyWeightedPopulation("clergymen") * 0.5
 	//			+ sourceProvince->getPopulation("officers")
@@ -623,16 +604,33 @@ map<string, double> HoI4World::calculateFactoryWorkerRatios()
 
 double HoI4World::calculateTotalFactoriesInCountry(long employedWorkers)
 {
+	double industry = 0.0;
+
 	double employedWorkersAdjusted = employedWorkers / 100000.0;
-
-	double sinPart = sin(employedWorkersAdjusted / 150) * 158;
-	if (employedWorkersAdjusted > 241)
+	if (Configuration::getIcConversion() == "squareroot")
 	{
-		sinPart = 135 + employedWorkersAdjusted / 10;
+		industry = sqrt(double(employedWorkersAdjusted)) * 1294.0 * Configuration::getIcFactor();
 	}
-	double logpart = log10(employedWorkersAdjusted) * 23.8;
+	else if (Configuration::getIcConversion() == "linear")
+	{
+		industry = double(employedWorkersAdjusted) * 2.55 * Configuration::getIcFactor();
+	}
+	else if (Configuration::getIcConversion() == "logarithmic")
+	{
+		industry = log(max(1.0, employedWorkersAdjusted / 0.7)) / log(2) * 5.33 * Configuration::getIcFactor();
+	}
+	else if (Configuration::getIcConversion() == "sin-log")
+	{
+		double sinPart = sin(employedWorkersAdjusted / 150) * 158;
+		if (employedWorkersAdjusted > 241)
+		{
+			sinPart = 135 + employedWorkersAdjusted / 10;
+		}
+		double logpart = log10(employedWorkersAdjusted) * 23.8;
+		industry = (sinPart + logpart + 5) * Configuration::getIcFactor();
+	}
 
-	return sinPart + logpart + 5;
+	return industry;
 }
 
 
@@ -6446,27 +6444,24 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World
 	TargetMap.insert(make_pair("coup", coup));
 	//actual eventoutput
 	vector<int> takenSpots;
+	takenSpots.push_back(22);
 	string FocusTree = genericFocusTreeCreator(Leader);
 	if (coups.size() > 0)
 	{
-		int x = 22;
-		takenSpots.push_back(x);
 		if (coups.size() == 1)
 		{
-			x = 24;
-			takenSpots.push_back(x);
+			takenSpots.push_back(24);
 		}
 		if (coups.size() >= 2)
 		{
-			x = 25;
-			takenSpots.push_back(x);
+			takenSpots.push_back(25);
 		}
 		//Focus to increase Comm support and prereq for coups
 		FocusTree += "focus = {\n";
 		FocusTree += "		id = Home_of_Revolution" + Leader->getTag() + "\n";
 		FocusTree += "		icon = GFX_goal_support_communism\n";
 		FocusTree += "		text = \"Home of the Revolution\"\n";
-		FocusTree += "		x = " + to_string(x) + "\n";
+		FocusTree += "		x = " + to_string(takenSpots.back()) + "\n";
 		FocusTree += "		y = 0\n";
 		FocusTree += "		cost = 10\n";
 		FocusTree += "		ai_will_do = {\n";

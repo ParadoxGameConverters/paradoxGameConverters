@@ -15,7 +15,7 @@ configuration =
 	
 	# Manpower factor: a multiplier applied to manpower conversion
 	manpower_factor = "1.0"
-
+	
 	# IC Conversion: The method used for turning Vic2 workers into HoI4 factories. Options are:
 	#	"squareroot": The square root of the number of workers becomes the number of factories
 	#	"linear": The number of workers becomes the number of factories
