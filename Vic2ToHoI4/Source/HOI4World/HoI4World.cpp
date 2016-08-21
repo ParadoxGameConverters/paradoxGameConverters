@@ -716,8 +716,8 @@ void HoI4World::reportDefaultIndustry()
 		else
 		{
 			country->second[0] += stateData.second[0];
-			country->second[0] += stateData.second[1];
-			country->second[0] += stateData.second[2];
+			country->second[1] += stateData.second[1];
+			country->second[2] += stateData.second[2];
 		}
 	}
 
