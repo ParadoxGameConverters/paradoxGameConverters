@@ -37,15 +37,6 @@ class HoI4World;
 
 
 
-// Province Mappings
-typedef map< int, vector<int> >	HoI4ToVic2ProvinceMapping;
-typedef map< int, vector<int> >	Vic2ToHoI4ProvinceMapping;
-typedef unordered_set<int>			resettableMap;
-
-void initProvinceMap(Object* obj, HoI4ToVic2ProvinceMapping& provMap, Vic2ToHoI4ProvinceMapping& inverseProvMap, resettableMap& resettableProvinces);
-vector<int> getHoI4ProvinceNums(Vic2ToHoI4ProvinceMapping invProvMap, int v2ProvinceNum);
-
-
 typedef struct {
 	int type;			// the type of adjacency 0 = normal, 1 = ford, 2 = river crossing
 	int to;				// the province this one is adjacent to (expect one pointing back to this province)

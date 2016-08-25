@@ -32,7 +32,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4States.h"
 #include "HoI4StrategicRegion.h"
 #include "HoI4SupplyZone.h"
-#include "../Mappers/Mapper.h"
 
 
 
@@ -65,18 +64,18 @@ class HoI4World
 		void	importSuppplyZones(const map<int, vector<int>>& defaultStateToProvinceMap, map<int, int>& provinceToSupplyZoneMap);
 		void	importStrategicRegions();
 		void	checkCoastalProvinces();
-		void	convertCountries(const CountryMapping& countryMap, const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
-		void	convertNavalBases(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
+		void	convertCountries(const CountryMapping& countryMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+		void	convertNavalBases();
 		void	convertIndustry();
 		void	convertResources();
 		void	convertSupplyZones(const map<int, int>& provinceToSupplyZoneMap);
 		void	convertStrategicRegions();
 		void	convertTechs();
 		void	convertDiplomacy(const CountryMapping& countryMap);
-		void	convertArmies(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
+		void	convertArmies(const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		void	configureFactions(const CountryMapping& countryMap);
 		void	generateLeaders(const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
-		void	convertArmies(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
+		void	convertArmies();
 		void	convertNavies();
 		void	convertAirforces();
 		void convertCapitalVPs(const CountryMapping& countryMap);
@@ -119,7 +118,7 @@ class HoI4World
 		void fillProvinceNeighbors();
 		string genericFocusTreeCreator(HoI4Country * CreatingCountry);
 		void outputRelations();
-		void	checkAllProvincesMapped(const HoI4ToVic2ProvinceMapping& provinceMap);
+		void	checkAllProvincesMapped();
 
 		map<string, HoI4Country*>	getCountries()	const { return countries; }
 
@@ -183,7 +182,7 @@ class HoI4World
 		string axisLeader;
 		string alliesLeader;
 		string cominternLeader;
-		map<int, vector<string>> provincemap;
+		map<int, vector<string>> stateToProvincesMap;
 		bool fascismIsRelevant;
 		bool communismIsRelevant;
 		string NewsEvents;

@@ -30,6 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Minister.h"
 #include "../V2World/V2Relations.h"
 #include "../V2World/V2Party.h"
+#include "../Mappers/ProvinceMapper.h"
 #include "OSCompatibilityLayer.h"
 
 
@@ -585,7 +586,7 @@ void HoI4Country::outputOOB() const
 }
 
 
-void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, Vic2ToHoI4ProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states)
+void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states)
 {
 	srcCountry = _srcCountry;
 	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
@@ -812,7 +813,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 		}
 	}
 
-	determineCapitalFromVic2(inverseProvinceMap, stateMap, states);
+	determineCapitalFromVic2(stateMap, states);
 	auto state = states.find(capital)->second;
 	if (isThisStateOwnedByUs(state))
 	{
@@ -824,11 +825,11 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 }
 
 
-void HoI4Country::determineCapitalFromVic2(Vic2ToHoI4ProvinceMapping Vic2ToHoI4ProvinceMap, const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states)
+void HoI4Country::determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states)
 {
 	int oldCapital = srcCountry->getCapital();
-	Vic2ToHoI4ProvinceMapping::iterator itr = Vic2ToHoI4ProvinceMap.find(oldCapital);
-	if (itr != Vic2ToHoI4ProvinceMap.end())
+	auto itr = provinceMapper::getVic2ToHoI4ProvinceMapping().find(oldCapital);
+	if (itr != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
 	{
 		auto capitalState = provinceToStateIDMap.find(itr->second[0]);
 		if (capitalState != provinceToStateIDMap.end() && isStateValidForCapital(capitalState, states))
@@ -1187,7 +1188,7 @@ void HoI4Country::convertAirforce()
 }
 
 
-void HoI4Country::convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap)
+void HoI4Country::convertArmyDivisions()
 {
 	// get the total number of source brigades and the number of source brigades per location
 	int infantryBrigades = 0;
@@ -1203,8 +1204,8 @@ void HoI4Country::convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseP
 	{
 		// get the number of source brigades per location
 		int HoI4location = 0;
-		auto provMapping = inverseProvinceMap.find(army->getLocation());
-		if (provMapping != inverseProvinceMap.end())
+		auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(army->getLocation());
+		if (provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
 		{
 			for (auto HoI4ProvNum : provMapping->second)
 			{
@@ -1613,7 +1614,7 @@ void HoI4Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
 					}
 				}
 			}
-			else if (modifier.modifierType == "tech_schoo")
+			else if (modifier.modifierType == "tech_school")
 			{
 				if (modifier.modifierRequirement == srcCountry->getTechSchool())
 				{

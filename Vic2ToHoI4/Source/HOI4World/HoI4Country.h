@@ -33,7 +33,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Relations.h"
 #include "HoI4State.h"
 #include "../Mappers/CountryMapping.h"
-#include "../Mappers/Mapper.h"
 #include "../Color.h"
 #include "Date.h"
 #include "../V2World/V2Army.h"
@@ -75,12 +74,12 @@ class HoI4Country
 		void		outputToCommonCountriesFile(FILE*) const;
 		void		outputAIScript() const;
 
-		void		initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, Vic2ToHoI4ProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states);
+		void		initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states);
 		void		initFromHistory();
 		void		generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
 		void		convertNavy(map<int, HoI4State*> states);
 		void		convertAirforce();
-		void		convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
+		void		convertArmyDivisions();
 		void		setAIFocuses(const AIFocusModifiers& focusModifiers);
 		void		setTechnology(string tech, int level);
 		void		addProvince(HoI4Province* _province);
@@ -133,7 +132,7 @@ class HoI4Country
 		void			outputTech(FILE*)				const;
 		void			outputParties(FILE*)			const;
 		void			outputLeaders()				const;
-		void determineCapitalFromVic2(Vic2ToHoI4ProvinceMapping Vic2ToHoI4ProvinceMap, const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states);
+		void determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states);
 		bool isStateValidForCapital(map<int, int>::const_iterator capitalState, const map<int, HoI4State*>& states);
 		bool isThisStateOwnedByUs(const HoI4State* state) const;
 		bool isThisStateACoreWhileWeOwnNoStates(const HoI4State* state) const;

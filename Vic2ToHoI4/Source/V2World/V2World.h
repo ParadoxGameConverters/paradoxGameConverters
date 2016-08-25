@@ -50,7 +50,7 @@ class V2World
 		void setLocalisations(const V2Localisation& localisation, const stateIdMapping& stateIdMap);
 
 		const V2Province* getProvince(int provNum) const;
-		void checkAllProvincesMapped(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap) const;
+		void checkAllProvincesMapped() const;
 		
 		const map<string, V2Country*>& getCountries() const { return countries; }
 		const V2Diplomacy* getDiplomacy() const { return diplomacy; }

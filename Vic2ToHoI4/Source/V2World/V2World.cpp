@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Country.h"
 #include "V2Diplomacy.h"
 #include "V2Party.h"
+#include "../Mappers/ProvinceMapper.h"
 
 
 
@@ -395,11 +396,12 @@ const V2Province* V2World::getProvince(int provNum) const
 }
 
 
-void V2World::checkAllProvincesMapped(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap) const
+void V2World::checkAllProvincesMapped() const
 {
+	auto Vic2ToHoI4ProvinceMapping = provinceMapper::getVic2ToHoI4ProvinceMapping();
 	for (auto province: provinces)
 	{
-		if (inverseProvinceMap.find(province.first) == inverseProvinceMap.end())
+		if (Vic2ToHoI4ProvinceMapping.find(province.first) == Vic2ToHoI4ProvinceMapping.end())
 		{
 			LOG(LogLevel::Warning) << "No mapping for Vic2 province " << province.first;
 		}

@@ -27,15 +27,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <queue>
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp> 
-//#include <IL\il.h>
-//#include <IL\ilu.h>
-//#include <IL\ilut.h>
-//#include <IL\config.h>
-//#include <IL\devil_internal_exports.h>
-//#include <IL\ilu_region.h>
-//#include <IL\ilut_config.h>
-//#include <GL/gl.h>
-//#include <GL/glu.h>
 #include "ParadoxParserUTF8.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
@@ -47,6 +38,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Relations.h"
 #include "HoI4State.h"
 #include "HoI4SupplyZone.h"
+#include "../Mappers/ProvinceMapper.h"
 
 
 
@@ -355,7 +347,7 @@ void HoI4World::getProvinceLocalizations(const string& file)
 }
 
 
-void HoI4World::convertCountries(const CountryMapping& countryMap, const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+void HoI4World::convertCountries(const CountryMapping& countryMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
 {
 	for (auto sourceItr : sourceWorld->getCountries())
 	{
@@ -377,7 +369,7 @@ void HoI4World::convertCountries(const CountryMapping& countryMap, const Vic2ToH
 				LOG(LogLevel::Error) << "Could not find the ruling party for " << sourceItr.first << ". Were all mods correctly included?";
 				exit(-1);
 			}
-			destCountry->initFromV2Country(*sourceWorld, sourceItr.second, rulingParty->ideology, countryMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, states->getProvinceToStateIDMap(), states->getStates());
+			destCountry->initFromV2Country(*sourceWorld, sourceItr.second, rulingParty->ideology, countryMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, states->getProvinceToStateIDMap(), states->getStates());
 			countries.insert(make_pair(HoI4Tag, destCountry));
 		}
 		else
@@ -411,7 +403,7 @@ void HoI4World::outputSupply() const
 }
 
 
-void HoI4World::convertNavalBases(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap)
+void HoI4World::convertNavalBases()
 {
 	Object* fileObj = parser_UTF8::doParseFile("navalprovinces.txt");
 	auto linkObj = fileObj->getValue("link");
@@ -442,8 +434,8 @@ void HoI4World::convertNavalBases(const Vic2ToHoI4ProvinceMapping& inverseProvin
 				// set the naval base in only coastal provinces
 				if (navalBaseLocation == 0)
 				{
-					auto provinceMapping = inverseProvinceMap.find(provinceNum);
-					if (provinceMapping != inverseProvinceMap.end())
+					auto provinceMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(provinceNum);
+					if (provinceMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
 					{
 						for (auto HoI4ProvNum : provinceMapping->second)
 						{
@@ -1115,7 +1107,7 @@ int HoI4World::getAirLocation(HoI4Province* locationProvince, const HoI4Adjacenc
 }
 
 
-void HoI4World::convertArmies(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, const HoI4AdjacencyMapping& HoI4AdjacencyMap)
+void HoI4World::convertArmies(const HoI4AdjacencyMapping& HoI4AdjacencyMap)
 {
 	//unitTypeMapping unitTypeMap = getUnitMappings();
 
@@ -1337,11 +1329,11 @@ void HoI4World::generateLeaders(const leaderTraitsMap& leaderTraits, const names
 }
 
 
-void HoI4World::convertArmies(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap)
+void HoI4World::convertArmies()
 {
 	for (auto country : countries)
 	{
-		country.second->convertArmyDivisions(inverseProvinceMap);
+		country.second->convertArmyDivisions();
 	}
 }
 
@@ -1543,7 +1535,7 @@ void HoI4World::convertDiplomacy(const CountryMapping& countryMap)
 }
 
 
-void HoI4World::checkAllProvincesMapped(const HoI4ToVic2ProvinceMapping& provinceMap)
+void HoI4World::checkAllProvincesMapped()
 {
 	ifstream definitions(Configuration::getHoI4Path() + "/map/definition.csv");
 	if (!definitions.is_open())
@@ -1567,8 +1559,8 @@ void HoI4World::checkAllProvincesMapped(const HoI4ToVic2ProvinceMapping& provinc
 			continue;
 		}
 
-		auto num = provinceMap.find(provNum);
-		if (num == provinceMap.end())
+		auto num = provinceMapper::getHoI4ToVic2ProvinceMapping().find(provNum);
+		if (num == provinceMapper::getHoI4ToVic2ProvinceMapping().end())
 		{
 			LOG(LogLevel::Warning) << "No mapping for HoI4 province " << provNum;
 		}
@@ -5470,8 +5462,8 @@ map<string, HoI4Country*> HoI4World::findNeighbors(vector<int> CountryProvs, HoI
 		for (int prov : thisprovNeighbors)
 		{
 			//string ownertag = "";
-			auto ownertag = provincemap.find(prov);
-			if (ownertag != provincemap.end())
+			auto ownertag = stateToProvincesMap.find(prov);
+			if (ownertag != stateToProvincesMap.end())
 			{
 				vector<string> tags = ownertag->second;
 				if (tags.size() >= 1)
@@ -5519,7 +5511,7 @@ void HoI4World::fillProvinces()
 			vector<string> provinceinfo;
 			provinceinfo.push_back(to_string(stateID));
 			provinceinfo.push_back(owner);
-			provincemap.insert(pair<int, vector<string>>(prov, provinceinfo));
+			stateToProvincesMap.insert(pair<int, vector<string>>(prov, provinceinfo));
 			// HoI4Province* newprov = new HoI4Province(owner, stateID);
 			//provinces.insert(pair<int, HoI4Province*>(prov, newprov));
 		}
@@ -6065,18 +6057,18 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 					vector<int> thisprovNeighbors = provinceNeighbors.find(leaderprov)->second;
 					for (int prov : thisprovNeighbors)
 					{
-						if (provincemap.find(prov) == provincemap.end())
+						if (stateToProvincesMap.find(prov) == stateToProvincesMap.end())
 						{
 						}
 						else
 						{
-							vector<string> stuff = provincemap.find(prov)->second;
+							vector<string> stuff = stateToProvincesMap.find(prov)->second;
 							if (stuff.size() >= 1)
 							{
 								int statenumber = stoi(stuff.front());
 								//string ownertag = "";
-								auto ownertag = provincemap.find(prov);
-								if (ownertag != provincemap.end())
+								auto ownertag = stateToProvincesMap.find(prov);
+								if (ownertag != stateToProvincesMap.end())
 								{
 									vector<string> tags = ownertag->second;
 									if (tags.size() >= 1)

@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <random>
 #include "../Configuration.h"
 #include "../Mappers/CoastalHoI4Provinces.h"
+#include "../Mappers/ProvinceMapper.h"
 #include "../V2World/V2Province.h"
 #include "../V2World/V2World.h"
 #include "Log.h"
@@ -166,11 +167,11 @@ void HoI4State::createVP(int location)
 }
 
 
-int HoI4State::getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping& provinceMap)
+int HoI4State::getFirstProvinceByVic2Definition()
 {
 	auto vic2Province = sourceState->getProvinceNums().begin();
-	auto provMapping = provinceMap.find(*vic2Province);
-	if (provMapping != provinceMap.end())
+	auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(*vic2Province);
+	if (provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
 	{
 		return provMapping->second[0];
 	}

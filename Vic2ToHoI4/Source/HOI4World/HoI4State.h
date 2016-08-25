@@ -29,7 +29,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <vector>
 #include <string>
 #include <map>
-#include "../Mappers/Mapper.h"
 #include "..\V2World\V2Localisation.h"
 #include "..\V2World\Vic2State.h"
 using namespace std;
@@ -64,7 +63,7 @@ class HoI4State
 		int getMilFactories() const { return milFactories; }
 		int getManpower() const { return manpower; }
 
-		int getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping& provinceMap);
+		int getFirstProvinceByVic2Definition();
 		bool isProvinceInState(int provinceNum);
 
 		void convertIndustry(double workerFactoryRatio);
