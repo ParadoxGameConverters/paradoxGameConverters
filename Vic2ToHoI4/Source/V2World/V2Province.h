@@ -31,6 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <string>
 #include <vector>
 #include <map>
+#include <set>
 using namespace std;
 
 class V2Country;
@@ -42,19 +43,20 @@ class V2Province
 {
 	public:
 		V2Province(Object* obj);
-		void	addCore(string);
-		void	removeCore(string tag);
+		void setCores(const map<string, V2Country*>& countries);
 
 		int						getTotalPopulation() const;
-		vector<V2Country*>	getCores(const map<string, V2Country*>& countries) const;
 		int						getPopulation(string type = "") const;
 		int						getLiteracyWeightedPopulation(string type = "") const;
 
 		void						setOwner(V2Country* _owner)		{ owner = _owner; }
+		void addCoreString(string coreString) { coreStrings.insert(coreString); }
+		void removeCoreString(string coreString) { coreStrings.erase(coreString); }
 		void						setEmployedWorkers(int _workers) { employedWorkers = _workers; }
 
 		string					getOwnerString()		const { return ownerString; }
 		V2Country*				getOwner()				const { return owner; }
+		set<V2Country*> getCores() const { return cores; }
 		int						getInfra()				const { return railLevel; }
 		int						getFort()				const { return fortLevel; }
 		int						getNavalBase()			const { return navalBaseLevel; }
@@ -65,7 +67,8 @@ class V2Province
 		int					num;
 		string				ownerString;			// a string with the owner's tag
 		V2Country*			owner;
-		vector<string>	cores;
+		set<string> coreStrings;
+		set<V2Country*> cores;
 		vector<V2Pop*>		pops;
 		int					fortLevel;
 		int					navalBaseLevel;

@@ -328,8 +328,8 @@ void V2Country::eatCountry(V2Country* target)
 	for (auto core: target->cores)
 	{
 		addCore(core);
-		core->addCore(tag);
-		core->removeCore(target->tag);
+		core->addCoreString(tag);
+		core->removeCoreString(target->tag);
 	}
 
 	// everything else, do only if this country actually currently exists

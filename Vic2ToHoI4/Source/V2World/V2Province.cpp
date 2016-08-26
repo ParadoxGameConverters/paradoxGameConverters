@@ -43,7 +43,7 @@ V2Province::V2Province(Object* obj)
 	coreObjs = obj->getValue("core");
 	for (auto coreObj: coreObjs)
 	{
-		cores.push_back(coreObj->getLeaf());
+		coreStrings.insert(coreObj->getLeaf());
 	}
 
 	vector<Object*> buildingObjs;
@@ -96,44 +96,14 @@ V2Province::V2Province(Object* obj)
 }
 
 
-vector<V2Country*> V2Province::getCores(const map<string, V2Country*>& countries) const
+void V2Province::setCores(const map<string, V2Country*>& countries)
 {
-	vector<V2Country*> coreOwners;
-	for (auto core: cores)
+	for (auto coreString: coreStrings)
 	{
-		auto countryItr = countries.find(core);
+		auto countryItr = countries.find(coreString);
 		if (countryItr != countries.end())
 		{
-			coreOwners.push_back(countryItr->second);
-		}
-	}
-
-	return coreOwners;
-}
-
-
-void V2Province::addCore(string newCore)
-{
-	// only add if unique
-	if ( find(cores.begin(), cores.end(), newCore) == cores.end() )
-	{
-		cores.push_back(newCore);
-	}
-}
-
-
-void V2Province::removeCore(string tag)
-{
-	for (auto core = cores.begin(); core != cores.end(); core++)
-	{
-		if (*core == tag)
-		{
-			cores.erase(core);
-			if (cores.size() == 0)
-			{
-				break;
-			}
-			core = cores.begin();
+			cores.insert(countryItr->second);
 		}
 	}
 }

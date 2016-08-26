@@ -157,7 +157,8 @@ void V2World::addProvinceCoreInfoToCountries()
 {
 	for (auto province: provinces)
 	{
-		auto provinceCores = province.second->getCores(countries);
+		province.second->setCores(countries);
+		auto provinceCores = province.second->getCores();
 		for (auto coreCountry: provinceCores)
 		{
 			coreCountry->addCore(province.second);

@@ -147,18 +147,17 @@ map<int, ownersAndCores> HoI4States::determineProvinceOwners(const CountryMappin
 				for (auto srcProvItr: srcOwnerItr.second.provinces)
 				{
 					// convert cores
-					vector<V2Country*> oldCores = srcProvItr->getCores(V2Countries);
-					for (auto oldCoreItr: oldCores)
+					for (auto oldCore: srcProvItr->getCores())
 					{
 						// skip this core if the country is the owner of the V2 province but not the HoI4 province
 						// (i.e. "avoid boundary conflicts that didn't exist in V2").
 						// this country may still get core via a province that DID belong to the current HoI4 owner
-						if ((oldCoreItr == srcOwnerItr.first) && (oldCoreItr != oldOwner))
+						if ((oldCore == srcOwnerItr.first) && (oldCore != oldOwner))
 						{
 							continue;
 						}
 
-						const string coreOwner = countryMap[oldCoreItr->getTag()];
+						const string coreOwner = countryMap[oldCore->getTag()];
 						if (coreOwner != "")
 						{
 							auto coreItr = ownersAndCoresMap.find(provItr);
