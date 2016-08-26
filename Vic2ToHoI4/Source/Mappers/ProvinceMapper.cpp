@@ -38,49 +38,48 @@ provinceMapper* provinceMapper::instance = NULL;
 provinceMapper::provinceMapper()
 {
 	LOG(LogLevel::Info) << "Parsing province mappings";
-	Object* obj = parser_8859_15::doParseFile("province_mappings.txt");
-	if (obj == NULL)
+	Object* parsedMappingsFile = parser_8859_15::doParseFile("province_mappings.txt");
+	if (parsedMappingsFile == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file province_mappings.txt";
 		exit(-1);
 	}
 
-	initProvinceMap(obj);
+	initProvinceMap(parsedMappingsFile);
 }
 
 
 
-void provinceMapper::initProvinceMap(Object* obj)
+void provinceMapper::initProvinceMap(Object* parsedMappingsFile)
 {
-	vector<Object*> leaves = obj->getLeaves();	// the different version number blocks
-
-	if (leaves.size() < 1)
+	vector<Object*> versions = parsedMappingsFile->getLeaves();
+	if (versions.size() < 1)
 	{
 		LOG(LogLevel::Error) << "No province mapping definitions loaded";
-		return;
+		exit(-1);
 	}
 
-	vector<Object*> data = leaves[0]->getLeaves();	// the actual mappings
-	for (auto mapping: data)
-	{
-		vector<int> V2nums;					// the V2 province numbers in this mappping
-		vector<int> HoI4nums;				// the HoI4 province numbers in this mappping
-		bool			resettable = false;	// if this is a province that can be reset to V2 defaults
+	vector<Object*> mappings = getCorrectMappingVersion(versions);
+	processMappings(mappings);
+}
 
-		vector<Object*> vMaps = mapping->getLeaves();	// the items within the mapping
-		for (auto item: vMaps)
+
+void provinceMapper::processMappings(const vector<Object*>& mappings)
+{
+	for (auto mapping: mappings)
+	{
+		vector<int> Vic2Nums;
+		vector<int> HoI4Nums;
+
+		for (auto item: mapping->getLeaves())
 		{
 			if (item->getKey() == "vic2")
 			{
-				V2nums.push_back(atoi(item->getLeaf().c_str()));
+				Vic2Nums.push_back(stoi(item->getLeaf()));
 			}
 			else if (item->getKey() == "hoi4")
 			{
-				HoI4nums.push_back(atoi(item->getLeaf().c_str()));
-			}
-			else if (item->getKey() == "resettable")
-			{
-				resettable = true;
+				HoI4Nums.push_back(stoi(item->getLeaf()));
 			}
 			else
 			{
@@ -88,34 +87,48 @@ void provinceMapper::initProvinceMap(Object* obj)
 			}
 		}
 
-		if (V2nums.size() == 0)
+		if (Vic2Nums.size() == 0)
 		{
-			V2nums.push_back(0);
+			Vic2Nums.push_back(0);
 		}
-		if (HoI4nums.size() == 0)
+		if (HoI4Nums.size() == 0)
 		{
-			HoI4nums.push_back(0);
+			HoI4Nums.push_back(0);
 		}
 
-		for (auto num: HoI4nums)
+		insertIntoHoI4ToVic2ProvinceMap(Vic2Nums, HoI4Nums);
+		insertIntoVic2ToHoI4ProvinceMap(Vic2Nums, HoI4Nums);
+	}
+}
+
+
+void provinceMapper::insertIntoHoI4ToVic2ProvinceMap(const vector<int>& Vic2Nums, const vector<int>& HoI4Nums)
+{
+	for (auto num: HoI4Nums)
+	{
+		if (num != 0)
 		{
-			if (num != 0)
-			{
-				HoI4ToVic2ProvinceMap.insert(make_pair(num, V2nums));
-				if (resettable)
-				{
-					resettableProvinces.insert(num);
-				}
-			}
-		}
-		for (auto num: V2nums)
-		{
-			if (num != 0)
-			{
-				Vic2ToHoI4ProvinceMap.insert(make_pair(num, HoI4nums));
-			}
+			HoI4ToVic2ProvinceMap.insert(make_pair(num, Vic2Nums));
 		}
 	}
+}
+
+
+void provinceMapper::insertIntoVic2ToHoI4ProvinceMap(const vector<int>& Vic2Nums, const vector<int>& HoI4Nums)
+{
+	for (auto num: Vic2Nums)
+	{
+		if (num != 0)
+		{
+			Vic2ToHoI4ProvinceMap.insert(make_pair(num, HoI4Nums));
+		}
+	}
+}
+
+
+vector<Object*> provinceMapper::getCorrectMappingVersion(const vector<Object*>& versions)
+{
+	return versions[0]->getLeaves();
 }
 
 

@@ -39,7 +39,6 @@ class Object;
 
 typedef map< int, vector<int> > HoI4ToVic2ProvinceMapping;
 typedef map< int, vector<int> > Vic2ToHoI4ProvinceMapping;
-typedef unordered_set<int>	 resettableProvincesMap;
 
 
 
@@ -70,12 +69,15 @@ class provinceMapper
 		provinceMapper();
 
 
-		void initProvinceMap(Object* obj);
+		void initProvinceMap(Object* parsedMappingsFile);
+		vector<Object*> getCorrectMappingVersion(const vector<Object*>& versions);
+		void processMappings(const vector<Object*>& mappings);
 		vector<int> getHoI4ProvinceNums(int v2ProvinceNum);
+		void insertIntoHoI4ToVic2ProvinceMap(const vector<int>& Vic2Nums, const vector<int>& HoI4nums);
+		void insertIntoVic2ToHoI4ProvinceMap(const vector<int>& Vic2Nums, const vector<int>& HoI4nums);
 
 		HoI4ToVic2ProvinceMapping HoI4ToVic2ProvinceMap;
 		Vic2ToHoI4ProvinceMapping Vic2ToHoI4ProvinceMap;
-		resettableProvincesMap resettableProvinces;
 };
 
 
