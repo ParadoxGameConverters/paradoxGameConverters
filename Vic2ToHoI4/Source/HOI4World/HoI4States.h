@@ -80,14 +80,18 @@ class HoI4States
 		bool isProvinceOwnedByCountryAndNotAlreadyAssigned(int provNum, string stateOwner, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces);
 		void createVPForState(HoI4State* newState);
 		void addManpowerToNewState(HoI4State* newState);
-		void addLocalisation(const HoI4State* state, const V2Localisation& Vic2Localisations);
-		void addLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations);
-		keyToLocalisationMap& getExistingLocalisation(const string& language);
-		void addLanguageToLocalisations(const string& language);
+		void addLocalisations(const HoI4State* state, const V2Localisation& Vic2Localisations);
+		void addStateLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations);
+		void addVPLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations);
+		keyToLocalisationMap& getExistingStateLocalisation(const string& language);
+		keyToLocalisationMap& getExistingVPLocalisation(const string& language);
+		void addLanguageToStateLocalisations(const string& language);
+		void addLanguageToVPLocalisations(const string& language);
 		unsigned int getTotalManpower();
 
 		void outputHistory() const;
-		void outputLocalisations() const;
+		void outputStateLocalisations() const;
+		void outputVPLocalisations() const;
 
 		V2World* sourceWorld;
 
@@ -95,7 +99,9 @@ class HoI4States
 		map<int, HoI4State*> states;
 		map<int, string> stateFilenames;
 		map<int, int> provinceToStateIDMap;
-		languageToLocalisationsMap stateLocalisations;		// a map between languages and state localisations
+
+		languageToLocalisationsMap stateLocalisations;
+		languageToLocalisationsMap VPLocalisations;
 };
 
 

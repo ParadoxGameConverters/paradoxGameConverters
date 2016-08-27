@@ -277,7 +277,7 @@ bool HoI4States::createMatchingHoI4State(const Vic2State* vic2State, int stateID
 
 	createVPForState(newState);
 	addManpowerToNewState(newState);
-	addLocalisation(newState, Vic2Localisations);
+	addLocalisations(newState, Vic2Localisations);
 	states.insert(make_pair(stateID, newState));
 
 	return true;
@@ -332,21 +332,11 @@ bool HoI4States::isProvinceOwnedByCountryAndNotAlreadyAssigned(int provNum, stri
 
 void HoI4States::createVPForState(HoI4State* newState)
 {
-	int HoI4ProvNum = newState->getFirstProvinceByVic2Definition();
-	if (newState->isProvinceInState(HoI4ProvNum))
-	{
-		newState->createVP(HoI4ProvNum);
-	}
-	else if (newState->getProvinces().size() > 0)
-	{
-		newState->createVP(*newState->getProvinces().begin());
-	}
-	else
+	if (!newState->tryToCreateVP())
 	{
 		LOG(LogLevel::Warning) << "Could not create VP for state";
 	}
 }
-
 
 
 void HoI4States::addManpowerToNewState(HoI4State* newState)
@@ -359,27 +349,46 @@ void HoI4States::addManpowerToNewState(HoI4State* newState)
 }
 
 
-void HoI4States::addLocalisation(const HoI4State* state, const V2Localisation& Vic2Localisations)
+void HoI4States::addLocalisations(const HoI4State* state, const V2Localisation& Vic2Localisations)
 {
 	for (auto Vic2NameInLanguage: Vic2Localisations.GetTextInEachLanguage(state->getSourceState()->getStateID()))
 	{
-		addLocalisationForLanguage(state, Vic2NameInLanguage, Vic2Localisations);
+		addStateLocalisationForLanguage(state, Vic2NameInLanguage, Vic2Localisations);
+	}
+
+	int VPPositionInHoI4 = state->getVPLocation();
+	auto VPProvinceMapping = provinceMapper::getHoI4ToVic2ProvinceMapping().find(VPPositionInHoI4);
+	if (
+		  (VPProvinceMapping != provinceMapper::getHoI4ToVic2ProvinceMapping().end()) &&
+		  (VPProvinceMapping->second.size() > 0)
+		)
+	{
+		for (auto Vic2NameInLanguage: Vic2Localisations.GetTextInEachLanguage("PROV" + to_string(VPProvinceMapping->second[0])))
+		{
+			addVPLocalisationForLanguage(state, Vic2NameInLanguage, Vic2Localisations);
+		}
 	}
 }
 
 
-void HoI4States::addLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations)
+void HoI4States::addStateLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations)
 {
-	getExistingLocalisation(Vic2NameInLanguage.first).insert(state->makeLocalisation(Vic2NameInLanguage, Vic2Localisations));
+	getExistingStateLocalisation(Vic2NameInLanguage.first).insert(state->makeLocalisation(Vic2NameInLanguage, Vic2Localisations));
 }
 
 
-keyToLocalisationMap& HoI4States::getExistingLocalisation(const string& language)
+void HoI4States::addVPLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations)
+{
+	getExistingVPLocalisation(Vic2NameInLanguage.first).insert(state->makeVPLocalisation(Vic2NameInLanguage, Vic2Localisations));
+}
+
+
+keyToLocalisationMap& HoI4States::getExistingStateLocalisation(const string& language)
 {
 	auto existingLocalisation = stateLocalisations.find(language);
 	if (existingLocalisation == stateLocalisations.end())
 	{
-		addLanguageToLocalisations(language);
+		addLanguageToStateLocalisations(language);
 		existingLocalisation = stateLocalisations.find(language);
 	}
 
@@ -387,10 +396,30 @@ keyToLocalisationMap& HoI4States::getExistingLocalisation(const string& language
 }
 
 
-void HoI4States::addLanguageToLocalisations(const string& language)
+keyToLocalisationMap& HoI4States::getExistingVPLocalisation(const string& language)
+{
+	auto existingLocalisation = VPLocalisations.find(language);
+	if (existingLocalisation == VPLocalisations.end())
+	{
+		addLanguageToVPLocalisations(language);
+		existingLocalisation = VPLocalisations.find(language);
+	}
+
+	return existingLocalisation->second;
+}
+
+
+void HoI4States::addLanguageToStateLocalisations(const string& language)
 {
 	keyToLocalisationMap newLocalisation;
 	stateLocalisations[language] = newLocalisation;
+}
+
+
+void HoI4States::addLanguageToVPLocalisations(const string& language)
+{
+	keyToLocalisationMap newLocalisation;
+	VPLocalisations[language] = newLocalisation;
 }
 
 
@@ -410,7 +439,8 @@ void HoI4States::output() const
 {
 	LOG(LogLevel::Debug) << "Writing states";
 	outputHistory();
-	outputLocalisations();
+	outputStateLocalisations();
+	outputVPLocalisations();
 }
 
 
@@ -448,7 +478,7 @@ void HoI4States::outputHistory() const
 }
 
 
-void HoI4States::outputLocalisations() const
+void HoI4States::outputStateLocalisations() const
 {
 	for (auto languageToLocalisations: stateLocalisations)
 	{
@@ -457,6 +487,31 @@ void HoI4States::outputLocalisations() const
 			continue;
 		}
 		ofstream localisationFile("Output/" + Configuration::getOutputName() + "/localisation/state_names_l_" + languageToLocalisations.first + ".yml");
+		if (!localisationFile.is_open())
+		{
+			LOG(LogLevel::Error) << "Could not update localisation text file";
+			exit(-1);
+		}
+		localisationFile << "\xEF\xBB\xBF"; // output a BOM to make HoI4 happy
+		localisationFile << "l_" << languageToLocalisations.first << ":\n";
+
+		for (auto mapping: languageToLocalisations.second)
+		{
+			localisationFile << " " << mapping.first << ":10 \"" << mapping.second << "\"" << endl;
+		}
+	}
+}
+
+
+void HoI4States::outputVPLocalisations() const
+{
+	for (auto languageToLocalisations: VPLocalisations)
+	{
+		if (languageToLocalisations.first == "")
+		{
+			continue;
+		}
+		ofstream localisationFile("Output/" + Configuration::getOutputName() + "/localisation/victory_points_l_" + languageToLocalisations.first + ".yml");
 		if (!localisationFile.is_open())
 		{
 			LOG(LogLevel::Error) << "Could not update localisation text file";

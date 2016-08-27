@@ -50,7 +50,6 @@ class HoI4State
 
 		void setNavalBase(int level, int location);
 		void addCores(const vector<string>& newCores);
-		void createVP(int location);
 
 		const Vic2State* getSourceState() const { return sourceState; }
 		set<int>	getProvinces() const { return provinces; }
@@ -62,13 +61,14 @@ class HoI4State
 		int getCivFactories() const { return civFactories; }
 		int getMilFactories() const { return milFactories; }
 		int getManpower() const { return manpower; }
+		int getVPLocation() const { return victoryPointPosition; }
 
-		int getFirstProvinceByVic2Definition();
-		bool isProvinceInState(int provinceNum);
+		bool tryToCreateVP();
 
 		void convertIndustry(double workerFactoryRatio);
 
 		pair<string, string> makeLocalisation(const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations) const;
+		pair<string, string> makeVPLocalisation(const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations) const;
 
 	private:
 		int determineFactoryNumbers(double workerFactoryRatio);
@@ -78,6 +78,9 @@ class HoI4State
 		void setInfrastructure(int factories);
 		void setIndustry(int factories);
 		bool amICoastal();
+
+		void assignVP(int location);
+		bool isProvinceInState(int provinceNum);
 
 		string makeLocalisationKey() const;
 		string makeLocalisationValue(const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations) const;

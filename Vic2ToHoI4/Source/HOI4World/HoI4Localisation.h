@@ -49,7 +49,6 @@ class HoI4Localisation
 {
 	public:
 		void	readFromCountry(const V2Country*, string destTag);
-		void	addStateLocalisation(int HoI4StateID, string Vic2StateID, const V2Localisation Vic2Localisations);
 
 		void	output(string localisationPath) const;
 

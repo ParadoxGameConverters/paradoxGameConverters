@@ -155,7 +155,7 @@ void HoI4State::addCores(const vector<string>& newCores)
 }
 
 
-void HoI4State::createVP(int location)
+void HoI4State::assignVP(int location)
 {
 	victoryPointPosition = location;
 
@@ -167,18 +167,22 @@ void HoI4State::createVP(int location)
 }
 
 
-int HoI4State::getFirstProvinceByVic2Definition()
+bool HoI4State::tryToCreateVP()
 {
-	auto vic2Province = sourceState->getProvinceNums().begin();
-	auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(*vic2Province);
-	if (provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
+	for (auto vic2Province: sourceState->getProvinceNums())
 	{
-		return provMapping->second[0];
+		auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(vic2Province);
+		if (
+			 (provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end()) &&
+			 (isProvinceInState(provMapping->second[0]))
+			)
+		{
+			assignVP(provMapping->second[0]);
+			return true;
+		}
 	}
-	else
-	{
-		return 0;
-	}
+
+	return false;
 }
 
 
@@ -365,6 +369,15 @@ string HoI4State::makeLocalisationValue(const pair<const string, string>& Vic2Na
 	localisedName += Vic2NameInLanguage.second;
 
 	return localisedName;
+}
+
+
+pair<string, string> HoI4State::makeVPLocalisation(const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations) const
+{
+	return make_pair(
+		"VICTORY_POINTS_" + to_string(victoryPointPosition),
+		Vic2NameInLanguage.second
+	);
 }
 
 

@@ -159,4 +159,3 @@ const std::map<std::string, std::string>& V2Localisation::GetTextInEachLanguage(
 
 	return keyFindIter->second;
 }
-
