@@ -42,12 +42,14 @@ class Vic2State
 	public:
 		Vic2State(const Object* stateObj, string ownerTag);
 
+		void putWorkersInProvinces();
+		void setID(const stateIdMapping& stateIdMap);
+
 		void determinePartialState(const stateMapping& stateMap);
 		int getEmployedWorkers() const;
 		int getPopulation() const;
 		int getAverageRailLevel() const;
 
-		void setID(const string& id) { stateID = id; }
 		void addProvince(V2Province* province) { provinces.insert(province); }
 
 		set<V2Province*> getProvinces() const { return provinces; }

@@ -24,6 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Vic2State.h"
 #include "V2Province.h"
 #include "V2World.h"
+#include "log.h"
 
 
 
@@ -34,6 +35,56 @@ Vic2State::Vic2State(const Object* stateObj, string ownerTag)
 
 	addProvinceNums(stateObj);
 	setFactoryLevel(stateObj);
+}
+
+
+void Vic2State::putWorkersInProvinces()
+{
+	// get the employable workers
+	int craftsmen		= 0;
+	int clerks			= 0;
+	int artisans		= 0;
+	int capitalists	= 0;
+	for (auto province: provinces)
+	{
+		craftsmen	+= province->getPopulation("craftsmen");
+		clerks		+= province->getPopulation("clerks");
+		artisans		+= province->getPopulation("aristans");
+		capitalists	+= province->getLiteracyWeightedPopulation("capitalists");
+	}
+
+	// limit craftsmen and clerks by factory levels
+	if ((craftsmen + clerks) > (factoryLevel * 10000))
+	{
+		float newCraftsmen	= (factoryLevel * 10000.0f) / (craftsmen + clerks) * craftsmen;
+		float newClerks		= (factoryLevel * 10000.0f) / (craftsmen + clerks) * clerks;
+
+		craftsmen	= static_cast<int>(newCraftsmen);
+		clerks		= static_cast<int>(newClerks);
+	}
+
+	// determine an actual 'employed workers' score
+	int employedWorkers = craftsmen + (clerks * 2) + static_cast<int>(artisans * 0.5) + (capitalists * 2);
+
+	if (provinces.size() > 0)
+	{
+		auto employmentProvince = provinces.begin();
+		(*employmentProvince)->setEmployedWorkers(employedWorkers);
+	}
+}
+
+
+void Vic2State::setID(const stateIdMapping& stateIdMap)
+{
+	auto stateIDMapping = stateIdMap.find(*provinceNums.begin());
+	if (stateIDMapping != stateIdMap.end())
+	{
+		stateID = stateIDMapping->second;
+	}
+	else
+	{
+		LOG(LogLevel::Warning) << "Could not find the state for Vic2 province " << *provinces.begin() << ".";
+	}
 }
 
 

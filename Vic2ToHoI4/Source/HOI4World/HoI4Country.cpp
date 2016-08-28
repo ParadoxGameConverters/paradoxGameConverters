@@ -85,11 +85,6 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	neutrality = 50;
 	nationalUnity = 70;
 
-	seaModifier = 1.0;
-	tankModifier = 1.0;
-	airModifier = 1.0;
-	infModifier = 1.0;
-
 	training_laws = "minimal_training";
 	press_laws = "censored_press";
 	industrial_policy_laws = "consumer_product_orientation";
@@ -224,7 +219,7 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Facti
 		{
 			if (Faction->getLeader()->getTag() == tag)
 			{
-				output << "create_faction = \"Alliance of " + getSourceCountry()->getName() + "\"\n";
+				output << "create_faction = \"Alliance of " + getSourceCountry()->getName("english") + "\"\n";
 				for (auto factionmem : Faction->getMembers())
 				{
 					output << "add_to_faction = " + factionmem->getTag() + "\n";
@@ -377,8 +372,6 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Facti
 		}
 		fprintf(output, "}\n");*/
 		//output.close();
-
-		//outputAIScript();
 	}
 }
 
@@ -821,7 +814,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	}
 
 	// major nation
-	majorNation = srcCountry->getGreatNation();
+	majorNation = srcCountry->isGreatNation();
 }
 
 
@@ -951,11 +944,11 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, const namesMappi
 
 	// generated leaders
 	int totalOfficers = 0;
-	vector<V2Province*> srcProvinces = srcCountry->getCores();
+	/*vector<V2Province*> srcProvinces = srcCountry->getCores();
 	for (auto province : srcProvinces)
 	{
 		totalOfficers += province->getPopulation("officers");
-	}
+	}*/
 
 	unsigned int totalLand = 0;
 	totalLand = totalOfficers / 300;
@@ -1590,172 +1583,6 @@ void HoI4Country::convertArmyDivisions()
 			else
 				break;
 
-		}
-	}
-}
-
-
-void HoI4Country::setAIFocuses(const AIFocusModifiers& focusModifiers)
-{
-	for (auto currentModifier : focusModifiers)
-	{
-		double modifierAmount = 1.0;
-		for (auto modifier : currentModifier.second)
-		{
-			bool modifierActive = false;
-			if (modifier.modifierType == "lacks_port")
-			{
-				modifierActive = true;
-				for (auto province : provinces)
-				{
-					if (province.second->hasNavalBase())
-					{
-						modifierActive = false;
-					}
-				}
-			}
-			else if (modifier.modifierType == "tech_school")
-			{
-				if (modifier.modifierRequirement == srcCountry->getTechSchool())
-				{
-					modifierActive = true;
-				}
-			}
-			else if (modifier.modifierType == "coast_border_percent")
-			{
-				int navalBases = 0;
-				for (auto province : provinces)
-				{
-					if (province.second->hasNavalBase())
-					{
-						navalBases++;
-					}
-				}
-				if ((1.0 * navalBases / provinces.size()) >= atof(modifier.modifierRequirement.c_str()))
-				{
-					modifierActive = true;
-				}
-			}
-			else if (modifier.modifierType == "navy_tech_ahead")
-			{
-				if ((srcCountry->getNumNavyTechs() - srcCountry->getNumArmyTechs()) >= atoi(modifier.modifierRequirement.c_str()))
-				{
-					modifierActive = true;
-				}
-			}
-			else if (modifier.modifierType == "capital_continent")
-			{
-				if (srcCountry->getCapitalContinent() == modifier.modifierRequirement)
-				{
-					modifierActive = true;
-				}
-			}
-			else if (modifier.modifierType == "ship_composition_percent")
-			{
-				int totalUnits = 0;
-				int numSeaUnits = 0;
-				for (auto army : srcCountry->getArmies())
-				{
-					for (auto regiment : army->getRegiments())
-					{
-						totalUnits++;
-						string type = regiment->getType();
-						if (
-							(type == "artillery") || (type == "cavalry") || (type == "cuirassier") || (type == "dragoon") || (type == "engineer") ||
-							(type == "guard") || (type == "hussar") || (type == "infantry") || (type == "irregular") || (type == "plane") || (type == "tank")
-							)
-						{
-							numSeaUnits++;
-						}
-					}
-				}
-				if ((1.0 * numSeaUnits / totalUnits) > atof(modifier.modifierRequirement.c_str()))
-				{
-					modifierActive = true;
-				}
-			}
-			else if (modifier.modifierType == "tank_composition_percent")
-			{
-				int totalUnits = 0;
-				int numTanks = 0;
-				for (auto army : srcCountry->getArmies())
-				{
-					for (auto regiment : army->getRegiments())
-					{
-						totalUnits++;
-						string type = regiment->getType();
-						if (type == "tank")
-						{
-							numTanks++;
-						}
-					}
-				}
-				if ((1.0 * numTanks / totalUnits) > atof(modifier.modifierRequirement.c_str()))
-				{
-					modifierActive = true;
-				}
-			}
-			else if (modifier.modifierType == "plane_composition_percent")
-			{
-				int totalUnits = 0;
-				int numPlanes = 0;
-				for (auto army : srcCountry->getArmies())
-				{
-					for (auto regiment : army->getRegiments())
-					{
-						totalUnits++;
-						string type = regiment->getType();
-						if (type == "plane")
-						{
-							numPlanes++;
-						}
-					}
-				}
-				if ((1.0 * numPlanes / totalUnits) > atof(modifier.modifierRequirement.c_str()))
-				{
-					modifierActive = true;
-				}
-			}
-			else if (modifier.modifierType == "manpower_to_IC_ratio")
-			{
-				double totalManpower = 0.0;
-				double totalIC = 0.0;
-				for (auto province : provinces)
-				{
-					totalManpower += province.second->getManpower();
-					totalIC += province.second->getActualIndustry();
-				}
-				if ((totalManpower / totalIC) > atof(modifier.modifierRequirement.c_str()))
-				{
-					modifierActive = true;
-				}
-			}
-			else if (modifier.modifierType == "default")
-			{
-				modifierActive = true;
-			}
-
-			if (modifierActive)
-			{
-				modifierAmount *= modifier.modifierAmount;
-			}
-		}
-
-		if (currentModifier.first == SEA_FOCUS)
-		{
-			seaModifier = modifierAmount;
-		}
-		else if (currentModifier.first == TANK_FOCUS)
-		{
-			tankModifier = modifierAmount;
-		}
-		else if (currentModifier.first == AIR_FOCUS)
-		{
-			airModifier = modifierAmount;
-		}
-		else if (currentModifier.first == INF_FOCUS)
-		{
-			infModifier = modifierAmount;
 		}
 	}
 }
@@ -2501,70 +2328,6 @@ void HoI4Country::setPartyPopularity()
 			autocraticPopularity += party.popularity;
 		}
 	}
-}
-
-void HoI4Country::outputAIScript() const
-{
-	FILE* output;
-	if (fopen_s(&output, ("Output/" + Configuration::getOutputName() + "/script/country/" + tag + ".lua").c_str(), "w") != 0)
-	{
-		LOG(LogLevel::Error) << "Could not create country script file for " << tag;
-		exit(-1);
-	}
-
-	fprintf(output, "local P = {}\n");
-	fprintf(output, "AI_%s = P\n", tag.c_str());
-
-	ifstream sourceFile;
-	LOG(LogLevel::Debug) << tag << ": air modifier - " << airModifier << ", tankModifier - " << tankModifier << ", seaModifier - " << seaModifier << ", infModifier - " << infModifier;
-	if ((airModifier > seaModifier) && (airModifier > tankModifier) && (airModifier > infModifier)) // air template
-	{
-		sourceFile.open("airTEMPLATE.lua", ifstream::in);
-		if (!sourceFile.is_open())
-		{
-			LOG(LogLevel::Error) << "Could not open airTEMPLATE.lua";
-			exit(-1);
-		}
-	}
-	else if ((seaModifier > tankModifier) && (seaModifier > infModifier))	// sea template
-	{
-		sourceFile.open("shipTemplate.lua", ifstream::in);
-		if (!sourceFile.is_open())
-		{
-			LOG(LogLevel::Error) << "Could not open shipTemplate.lua";
-			exit(-1);
-		}
-	}
-	else if (tankModifier > infModifier) // tank template
-	{
-		sourceFile.open("tankTemplate.lua", ifstream::in);
-		if (!sourceFile.is_open())
-		{
-			LOG(LogLevel::Error) << "Could not open tankTemplate.lua";
-			exit(-1);
-		}
-	}
-	else	// infantry template
-	{
-		sourceFile.open("infatryTEMPLATE.lua", ifstream::in);
-		if (!sourceFile.is_open())
-		{
-			LOG(LogLevel::Error) << "Could not open infatryTEMPLATE.lua";
-			exit(-1);
-		}
-	}
-
-	while (!sourceFile.eof())
-	{
-		string line;
-		getline(sourceFile, line);
-		fprintf(output, "%s\n", line.c_str());
-	}
-	sourceFile.close();
-
-	fprintf(output, "return AI_%s\n", tag.c_str());
-
-	fclose(output);
 }
 
 

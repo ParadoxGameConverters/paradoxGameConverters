@@ -72,7 +72,6 @@ class HoI4Country
 		void		outputCommonCountryFile() const;
 		void		outputColors(ofstream& out) const;
 		void		outputToCommonCountriesFile(FILE*) const;
-		void		outputAIScript() const;
 
 		void		initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states);
 		void		initFromHistory();
@@ -80,7 +79,6 @@ class HoI4Country
 		void		convertNavy(map<int, HoI4State*> states);
 		void		convertAirforce();
 		void		convertArmyDivisions();
-		void		setAIFocuses(const AIFocusModifiers& focusModifiers);
 		void		setTechnology(string tech, int level);
 		void		addProvince(HoI4Province* _province);
 		void addState(HoI4State* _state);
@@ -185,12 +183,6 @@ class HoI4Country
 		double civilianFactories;
 		double dockyards;
 		string relationstxt;
-
-		// AI focus modifiers
-		double	seaModifier;
-		double	tankModifier;
-		double	airModifier;
-		double	infModifier;
 
 		// laws
 		string				civil_law;

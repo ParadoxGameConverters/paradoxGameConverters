@@ -29,11 +29,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Country.h"
 #include "V2Diplomacy.h"
 #include "V2Party.h"
+#include "V2Province.h"
+#include "Vic2State.h"
 #include "../Mappers/ProvinceMapper.h"
 
 
 
-V2World::V2World(Object* obj, const inventionNumToName& iNumToName, const map<string, string>& armyTechs, const map<string, string>& navyTechs, const continentMapping& continentMap, const stateMapping& stateMap)
+V2World::V2World(Object* obj, const inventionNumToName& iNumToName, const stateMapping& stateMap)
 {
 	provinces.clear();
 	countries.clear();
@@ -54,7 +56,7 @@ V2World::V2World(Object* obj, const inventionNumToName& iNumToName, const map<st
 		}
 		else if (isCountryKey(key))
 		{
-			countries[key] = new V2Country(leaf, iNumToName, armyTechs, navyTechs, continentMap);
+			countries[key] = new V2Country(leaf, iNumToName);
 			setGreatPowerStatus(key, countryIndexToGPRank, countryIndex);
 			countryIndex++;
 		}
@@ -129,7 +131,7 @@ void V2World::setGreatPowerStatus(string tag, const map<int, int>& countryIndexT
 	auto rankingItr = countryIndexToGPRank.find(countryIndex);
 	if (rankingItr != countryIndexToGPRank.end())
 	{
-		countries[tag]->setGreatNation(true);
+		countries[tag]->setAsGreatNation();
 		greatPowers[rankingItr->second] = tag;
 	}
 }
@@ -142,7 +144,7 @@ void V2World::setProvinceOwners()
 		auto country = countries.find(province.second->getOwnerString());
 		if (country != countries.end())
 		{
-			country->second->addProvince(province.first, province.second);
+			country->second->addProvince(province);
 			province.second->setOwner(country->second);
 		}
 	}
