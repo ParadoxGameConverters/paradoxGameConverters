@@ -35,7 +35,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2World::V2World(Object* obj, const inventionNumToName& iNumToName, const stateMapping& stateMap)
+V2World::V2World(Object* obj, const inventionNumToName& iNumToName)
 {
 	provinces.clear();
 	countries.clear();
@@ -64,9 +64,9 @@ V2World::V2World(Object* obj, const inventionNumToName& iNumToName, const stateM
 
 	setProvinceOwners();
 	addProvinceCoreInfoToCountries();
-	applyWorkersToProvinces();
+	determineEmployedWorkers();
 	removeEmptyNations();
-	determinePartialStates(stateMap);
+	determinePartialStates();
 	inputDiplomacy(obj->getValue("diplomacy"));
 	readCountryFiles();
 }
@@ -169,11 +169,11 @@ void V2World::addProvinceCoreInfoToCountries()
 }
 
 
-void V2World::applyWorkersToProvinces()
+void V2World::determineEmployedWorkers()
 {
 	for (auto country: countries)
 	{
-		country.second->putWorkersInProvinces();
+		country.second->determineEmployedWorkers();
 	}
 }
 
@@ -194,13 +194,13 @@ void V2World::removeEmptyNations()
 }
 
 
-void V2World::determinePartialStates(const stateMapping& stateMap)
+void V2World::determinePartialStates()
 {
 	for (auto country: countries)
 	{
 		for (auto state: country.second->getStates())
 		{
-			state->determinePartialState(stateMap);
+			state->determineIfPartialState();
 		}
 	}
 }
@@ -381,13 +381,12 @@ V2Country* V2World::getCountry(string tag) const
 }
 
 
-void V2World::setLocalisations(const V2Localisation& localisation, const stateIdMapping& stateIdMap)
+void V2World::setLocalisations(const V2Localisation& localisation)
 {
 	for (auto country: countries)
 	{
 		country.second->setLocalisationNames(localisation);
 		country.second->setLocalisationAdjectives(localisation);
-		country.second->setStateIDs(stateIdMap);
 	}
 }
 

@@ -136,29 +136,6 @@ void mergeNations(V2World& world, Object* mergeObj)
 }
 
 
-void initStateMap(Object* obj, stateMapping& stateMap, stateIdMapping& stateIdMap)
-{
-	vector<Object*> leaves = obj->getLeaves();	// the states
-
-	for (auto leaf: leaves)
-	{
-		string			ID				= leaf->getKey();		// the name of this state
-		vector<string>	provinces	= leaf->getTokens();	// the provinces in this state
-		vector<int>		neighbors;								// the neighboring provinces (that is, all provinces in the state)
-
-		for (auto provNum: provinces)
-		{
-			neighbors.push_back( atoi(provNum.c_str()) );
-			stateIdMap.insert(make_pair(atoi(provNum.c_str()), ID));
-		}
-		for (auto neighbor: neighbors)
-		{
-			stateMap.insert(make_pair(neighbor, neighbors));
-		}
-	}
-}
-
-
 unionMapping initUnionMap(Object* obj)
 {
 	unionMapping unionMap;	// the cultural unions map

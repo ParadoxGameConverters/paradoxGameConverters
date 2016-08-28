@@ -44,10 +44,10 @@ struct V2Party;
 class V2World
 {
 	public:
-		V2World(Object* obj, const inventionNumToName& iNumToName, const stateMapping& stateMap);
+		V2World(Object* obj, const inventionNumToName& iNumToName);
 
 		void mergeNations(string masterTag, const vector<string>& slaveTags);
-		void setLocalisations(const V2Localisation& localisation, const stateIdMapping& stateIdMap);
+		void setLocalisations(const V2Localisation& localisation);
 
 		const V2Province* getProvince(int provNum) const;
 		void checkAllProvincesMapped() const;
@@ -70,9 +70,9 @@ class V2World
 
 		void setProvinceOwners();
 		void addProvinceCoreInfoToCountries();
-		void applyWorkersToProvinces();
+		void determineEmployedWorkers();
 		void removeEmptyNations();
-		void determinePartialStates(const stateMapping& stateMap);
+		void determinePartialStates();
 		void inputDiplomacy(const vector<Object*> diplomacyObj);
 
 		void readCountryFiles();

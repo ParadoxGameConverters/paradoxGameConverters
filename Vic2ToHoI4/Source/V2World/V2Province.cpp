@@ -91,8 +91,6 @@ V2Province::V2Province(Object* obj)
 			pops.push_back(pop);
 		}
 	}
-
-	employedWorkers = 0;
 }
 
 

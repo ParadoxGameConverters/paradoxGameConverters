@@ -52,7 +52,6 @@ class V2Province
 		void						setOwner(V2Country* _owner)		{ owner = _owner; }
 		void addCoreString(string coreString) { coreStrings.insert(coreString); }
 		void removeCoreString(string coreString) { coreStrings.erase(coreString); }
-		void						setEmployedWorkers(int _workers) { employedWorkers = _workers; }
 
 		string					getOwnerString()		const { return ownerString; }
 		V2Country*				getOwner()				const { return owner; }
@@ -61,7 +60,6 @@ class V2Province
 		int						getFort()				const { return fortLevel; }
 		int						getNavalBase()			const { return navalBaseLevel; }
 		int						getNum()					const { return num; }
-		int						getEmployedWorkers()	const { return employedWorkers; }
 
 	private:
 		int					num;
@@ -73,8 +71,6 @@ class V2Province
 		int					fortLevel;
 		int					navalBaseLevel;
 		int					railLevel;
-
-		int					employedWorkers;
 };
 
 

@@ -37,40 +37,58 @@ class V2Province;
 
 
 
+typedef struct
+{
+	int craftsmen		= 0;
+	int clerks			= 0;
+	int artisans		= 0;
+	int capitalists	= 0;
+} workerStruct;
+
+
+
 class Vic2State
 {
 	public:
 		Vic2State(const Object* stateObj, string ownerTag);
 
-		void putWorkersInProvinces();
-		void setID(const stateIdMapping& stateIdMap);
+		void determineEmployedWorkers();
+		void determineIfPartialState();
 
-		void determinePartialState(const stateMapping& stateMap);
-		int getEmployedWorkers() const;
 		int getPopulation() const;
 		int getAverageRailLevel() const;
 
 		void addProvince(V2Province* province) { provinces.insert(province); }
 
-		set<V2Province*> getProvinces() const { return provinces; }
-		set<int> getProvinceNums() const { return provinceNums; }
-		string getOwner() const { return owner; }
-		int getFactoryLevel() const { return factoryLevel; }
-		string getStateID() const { return stateID; }
+		const set<V2Province*>& getProvinces() const { return provinces; }
+		const set<int>& getProvinceNums() const { return provinceNums; }
+		const string& getOwner() const { return owner; }
+		const string& getStateID() const { return stateID; }
 		bool isPartialState() const { return partialState; }
+		int getEmployedWorkers() const { return employedWorkers; }
 
 	private:
 		void addProvinceNums(const Object* stateObj);
+		void setID();
 		vector<string> getProvinceIDs(const Object* stateObj);
+
 		void setFactoryLevel(const Object* stateObj);
 		void addBuildingLevel(const Object* buildingObj);
 
-		set<int> provinceNums;
-		set<V2Province*> provinces;
+		workerStruct countEmployedWorkers();
+		workerStruct limitWorkersByFactoryLevels(workerStruct workers);
+		int determineEmplyedWorkersScore(workerStruct workers);
+
+
 		string owner;
-		int factoryLevel;
 		string stateID;
 		bool partialState;
+
+		set<int> provinceNums;
+		set<V2Province*> provinces;
+
+		int factoryLevel;
+		int employedWorkers;
 };
 
 

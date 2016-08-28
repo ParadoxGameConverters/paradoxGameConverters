@@ -24,6 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Vic2State.h"
 #include "V2Province.h"
 #include "V2World.h"
+#include "../Mappers/StateMapper.h"
 #include "log.h"
 
 
@@ -34,57 +35,8 @@ Vic2State::Vic2State(const Object* stateObj, string ownerTag)
 	partialState = false;
 
 	addProvinceNums(stateObj);
+	setID();
 	setFactoryLevel(stateObj);
-}
-
-
-void Vic2State::putWorkersInProvinces()
-{
-	// get the employable workers
-	int craftsmen		= 0;
-	int clerks			= 0;
-	int artisans		= 0;
-	int capitalists	= 0;
-	for (auto province: provinces)
-	{
-		craftsmen	+= province->getPopulation("craftsmen");
-		clerks		+= province->getPopulation("clerks");
-		artisans		+= province->getPopulation("aristans");
-		capitalists	+= province->getLiteracyWeightedPopulation("capitalists");
-	}
-
-	// limit craftsmen and clerks by factory levels
-	if ((craftsmen + clerks) > (factoryLevel * 10000))
-	{
-		float newCraftsmen	= (factoryLevel * 10000.0f) / (craftsmen + clerks) * craftsmen;
-		float newClerks		= (factoryLevel * 10000.0f) / (craftsmen + clerks) * clerks;
-
-		craftsmen	= static_cast<int>(newCraftsmen);
-		clerks		= static_cast<int>(newClerks);
-	}
-
-	// determine an actual 'employed workers' score
-	int employedWorkers = craftsmen + (clerks * 2) + static_cast<int>(artisans * 0.5) + (capitalists * 2);
-
-	if (provinces.size() > 0)
-	{
-		auto employmentProvince = provinces.begin();
-		(*employmentProvince)->setEmployedWorkers(employedWorkers);
-	}
-}
-
-
-void Vic2State::setID(const stateIdMapping& stateIdMap)
-{
-	auto stateIDMapping = stateIdMap.find(*provinceNums.begin());
-	if (stateIDMapping != stateIdMap.end())
-	{
-		stateID = stateIDMapping->second;
-	}
-	else
-	{
-		LOG(LogLevel::Warning) << "Could not find the state for Vic2 province " << *provinces.begin() << ".";
-	}
 }
 
 
@@ -93,7 +45,21 @@ void Vic2State::addProvinceNums(const Object* stateObj)
 	vector<string> provinceIDs = getProvinceIDs(stateObj);
 	for (auto provinceItr: provinceIDs)
 	{
-		provinceNums.insert(atoi(provinceItr.c_str()));
+		provinceNums.insert(stoi(provinceItr));
+	}
+}
+
+
+void Vic2State::setID()
+{
+	auto stateIDMapping = stateMapper::getStateIdMapping().find(*provinceNums.begin());
+	if (stateIDMapping != stateMapper::getStateIdMapping().end())
+	{
+		stateID = stateIDMapping->second;
+	}
+	else
+	{
+		LOG(LogLevel::Warning) << "Could not find the state for Vic2 province " << *provinceNums.begin() << ".";
 	}
 }
 
@@ -101,10 +67,10 @@ void Vic2State::addProvinceNums(const Object* stateObj)
 vector<string> Vic2State::getProvinceIDs(const Object* stateObj)
 {
 	vector<string> provinceIDs;
-	vector<Object*> provinceObj = stateObj->getValue("provinces");
-	if (provinceObj.size() > 0)
+	vector<Object*> provinceObjs = stateObj->getValue("provinces");
+	if (provinceObjs.size() > 0)
 	{
-		provinceIDs = provinceObj[0]->getTokens();
+		provinceIDs = provinceObjs[0]->getTokens();
 	}
 
 	return provinceIDs;
@@ -115,8 +81,8 @@ void Vic2State::setFactoryLevel(const Object* stateObj)
 {
 	factoryLevel = 0;
 
-	vector<Object*> buildingsObj = stateObj->getValue("state_buildings");
-	for (auto buildingObj: buildingsObj)
+	vector<Object*> buildingsObjs = stateObj->getValue("state_buildings");
+	for (auto buildingObj: buildingsObjs)
 	{
 		addBuildingLevel(buildingObj);
 	}
@@ -125,20 +91,65 @@ void Vic2State::setFactoryLevel(const Object* stateObj)
 
 void Vic2State::addBuildingLevel(const Object* buildingObj)
 {
-	vector<Object*> levelObj = buildingObj->getValue("level");
-	if (levelObj.size() > 0)
+	vector<Object*> levelObjs = buildingObj->getValue("level");
+	if (levelObjs.size() > 0)
 	{
-		factoryLevel += atoi(levelObj[0]->getLeaf().c_str());
+		factoryLevel += stoi(levelObjs[0]->getLeaf());
 	}
 }
 
 
-void Vic2State::determinePartialState(const stateMapping& stateMap)
+void Vic2State::determineEmployedWorkers()
+{
+	workerStruct workers = countEmployedWorkers();
+	workers = limitWorkersByFactoryLevels(workers);
+	employedWorkers = determineEmplyedWorkersScore(workers);
+}
+
+
+workerStruct Vic2State::countEmployedWorkers()
+{
+	workerStruct workers;
+
+	for (auto province: provinces)
+	{
+		workers.craftsmen += province->getPopulation("craftsmen");
+		workers.clerks += province->getPopulation("clerks");
+		workers.artisans += province->getPopulation("aristans");
+		workers.capitalists += province->getLiteracyWeightedPopulation("capitalists");
+	}
+
+	return workers;
+}
+
+
+workerStruct Vic2State::limitWorkersByFactoryLevels(workerStruct workers)
+{
+	if ((workers.craftsmen + workers.clerks) > (factoryLevel * 10000))
+	{
+		float newCraftsmen = (factoryLevel * 10000.0f) / (workers.craftsmen + workers.clerks) * workers.craftsmen;
+		float newClerks = (factoryLevel * 10000.0f) / (workers.craftsmen + workers.clerks) * workers.clerks;
+
+		workers.craftsmen	= static_cast<int>(newCraftsmen);
+		workers.clerks = static_cast<int>(newClerks);
+	}
+
+	return workers;
+}
+
+
+int Vic2State::determineEmplyedWorkersScore(workerStruct workers)
+{
+	return workers.craftsmen + (workers.clerks * 2) + static_cast<int>(workers.artisans * 0.5) + (workers.capitalists * 2);
+}
+
+
+void Vic2State::determineIfPartialState()
 {
 	partialState = false;
 	if (provinces.size() > 0)
 	{
-		auto fullState = stateMap.find(*provinceNums.begin());
+		auto fullState = stateMapper::getStateMapping().find(*provinceNums.begin());
 		for (auto expectedProvince: fullState->second)
 		{
 			if (provinceNums.count(expectedProvince) == 0)
@@ -148,18 +159,6 @@ void Vic2State::determinePartialState(const stateMapping& stateMap)
 			}
 		}
 	}
-}
-
-
-int Vic2State::getEmployedWorkers() const
-{
-	int workers = 0;
-	for (auto province: provinces)
-	{
-		workers += province->getEmployedWorkers();
-	}
-
-	return workers;
 }
 
 

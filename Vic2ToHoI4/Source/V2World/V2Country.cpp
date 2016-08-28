@@ -424,11 +424,11 @@ void V2Country::putProvincesInStates()
 }
 
 
-void V2Country::putWorkersInProvinces()
+void V2Country::determineEmployedWorkers()
 {
 	for (auto state: states)
 	{
-		state->putWorkersInProvinces();
+		state->determineEmployedWorkers();
 	}
 }
 
@@ -475,15 +475,6 @@ void V2Country::setLocalisationAdjective(const string& language, const string& a
 	else if (adjective != "")
 	{
 		adjectivesByLanguage[language] = adjective;
-	}
-}
-
-
-void V2Country::setStateIDs(const stateIdMapping& stateIdMap)
-{
-	for (auto state: states)
-	{
-		state->setID(stateIdMap);
 	}
 }
 
@@ -541,9 +532,9 @@ double V2Country::getUpperHousePercentage(const string& ideology) const
 long V2Country::getEmployedWorkers() const
 {
 	long employedWorkers = 0;
-	for (auto sourceProvince: provinces)
+	for (auto state: states)
 	{
-		employedWorkers += sourceProvince.second->getEmployedWorkers();
+		employedWorkers += state->getEmployedWorkers();
 	}
 
 	return employedWorkers;

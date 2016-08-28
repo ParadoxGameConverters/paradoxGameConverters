@@ -59,10 +59,9 @@ class V2Country
 
 		void eatCountry(V2Country* target);
 		void putProvincesInStates();
-		void putWorkersInProvinces();
+		void determineEmployedWorkers();
 		void setLocalisationNames(const V2Localisation& localisations);
 		void setLocalisationAdjectives(const V2Localisation& localisations);
-		void setStateIDs(const stateIdMapping& stateIdMap);
 
 		map<string, V2Relations*> getRelations() const { return relations; }
 		vector<Vic2State*> getStates() const { return states; }

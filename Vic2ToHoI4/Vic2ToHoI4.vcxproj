@@ -93,6 +93,7 @@
     <ClCompile Include="Source\Mappers\GovernmentMapper.cpp" />
     <ClCompile Include="Source\Mappers\Mapper.cpp" />
     <ClCompile Include="Source\Mappers\ProvinceMapper.cpp" />
+    <ClCompile Include="Source\Mappers\StateMapper.cpp" />
     <ClCompile Include="Source\targa.cpp" />
     <ClCompile Include="Source\V2toHOI4Converter.cpp" />
     <ClCompile Include="Source\V2World\V2Army.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="Source\Mappers\GovernmentMapper.h" />
     <ClInclude Include="Source\Mappers\Mapper.h" />
     <ClInclude Include="Source\Mappers\ProvinceMapper.h" />
+    <ClInclude Include="Source\Mappers\StateMapper.h" />
     <ClInclude Include="Source\targa.h" />
     <ClInclude Include="Source\V2World\Vic2Agreement.h" />
     <ClInclude Include="Source\V2World\V2Army.h" />
