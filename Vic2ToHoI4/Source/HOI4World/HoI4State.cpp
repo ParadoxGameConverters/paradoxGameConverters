@@ -41,6 +41,7 @@ HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, string _ownerTag)
 	ID = _ID;
 	provinces.clear();
 	ownerTag = _ownerTag;
+	capitalState = false;
 
 	manpower = 0;
 
@@ -209,13 +210,19 @@ int HoI4State::constrainFactoryNumbers(double rawFactories)
 {
 	int factories = static_cast<int>(rawFactories);
 
+	int upperLimit = 12;
+	if (capitalState)
+	{
+		upperLimit = 11;
+	}
+
 	if (factories < 0)
 	{
 		factories = 0;
 	}
-	else if (factories > 12)
+	else if (factories > upperLimit)
 	{
-		factories = 12;
+		factories = upperLimit;
 	}
 
 	return factories;
@@ -224,6 +231,11 @@ int HoI4State::constrainFactoryNumbers(double rawFactories)
 
 void HoI4State::determineCategory(int factories)
 {
+	if (capitalState)
+	{
+		factories++;
+	}
+
 	int population = sourceState->getPopulation();
 
 	int stateSlots = population / 120000; // one slot is given per 120,000 people (need to change)

@@ -413,7 +413,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	destWorld.convertArmies();
 	destWorld.convertNavies();
 	destWorld.convertAirforces();
-	LOG(LogLevel::Info) << "Adding victory points to capitals";
+	LOG(LogLevel::Info) << "Adding bonuses to capitals";
 	destWorld.convertCapitalVPs(countryMap);
 	LOG(LogLevel::Info) << "Creating buildings";
 	HoI4Buildings buildings(theStates->getProvinceToStateIDMap());

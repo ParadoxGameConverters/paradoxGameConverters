@@ -810,6 +810,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	auto state = states.find(capital)->second;
 	if (isThisStateOwnedByUs(state))
 	{
+		state->setAsCapitalState();
 		state->addAirBase(10);
 	}
 
