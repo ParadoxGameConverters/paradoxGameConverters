@@ -78,6 +78,7 @@ class Vic2State
 		workerStruct countEmployedWorkers();
 		workerStruct limitWorkersByFactoryLevels(workerStruct workers);
 		int determineEmplyedWorkersScore(workerStruct workers);
+		bool ownerHasNoCores();
 
 
 		string owner;

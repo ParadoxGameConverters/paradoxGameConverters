@@ -22,6 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Vic2State.h"
+#include "V2Country.h"
 #include "V2Province.h"
 #include "V2World.h"
 #include "../Mappers/StateMapper.h"
@@ -140,7 +141,30 @@ workerStruct Vic2State::limitWorkersByFactoryLevels(workerStruct workers)
 
 int Vic2State::determineEmplyedWorkersScore(workerStruct workers)
 {
-	return workers.craftsmen + (workers.clerks * 2) + static_cast<int>(workers.artisans * 0.5) + (workers.capitalists * 2);
+	int employedWorkerScore = workers.craftsmen + (workers.clerks * 2) + static_cast<int>(workers.artisans * 0.5) + (workers.capitalists * 2);
+	if (ownerHasNoCores())
+	{
+		employedWorkerScore /= 2;
+	}
+
+	return employedWorkerScore;
+}
+
+
+bool Vic2State::ownerHasNoCores()
+{
+	for (auto province: provinces)
+	{
+		for (auto country: province->getCores())
+		{
+			if (country->getTag() == owner)
+			{
+				return false;
+			}
+		}
+	}
+
+	return true;
 }
 
 
