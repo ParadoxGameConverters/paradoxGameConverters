@@ -30,7 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 const std::array<std::string, V2Localisation::numLanguages> V2Localisation::languages = 
-	{ "english", "french", "german", "spanish" };
+	{ "english", "french", "german", "", "spanish" };
 
 
 void V2Localisation::SetTag(const std::string& newTag)
