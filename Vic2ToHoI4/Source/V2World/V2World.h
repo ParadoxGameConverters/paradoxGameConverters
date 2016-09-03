@@ -44,7 +44,7 @@ struct V2Party;
 class V2World
 {
 	public:
-		V2World(Object* obj, const inventionNumToName& iNumToName);
+		V2World(Object* obj);
 
 		void mergeNations(string masterTag, const vector<string>& slaveTags);
 		void setLocalisations(const V2Localisation& localisation);

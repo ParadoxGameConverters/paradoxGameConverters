@@ -35,7 +35,7 @@ using namespace std;
 typedef map<int, string> inventionNumToName;
 
 
-void getInventionNums(inventionNumToName& numToName);
+inventionNumToName getInventionNums();
 
 
 

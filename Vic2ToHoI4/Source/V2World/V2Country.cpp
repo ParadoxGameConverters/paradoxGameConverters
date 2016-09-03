@@ -33,7 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Country::V2Country(Object* countryObj, const inventionNumToName& iNumToName)
+V2Country::V2Country(Object* countryObj)
 {
 	tag = countryObj->getKey();
 	provinces.clear();
@@ -44,7 +44,7 @@ V2Country::V2Country(Object* countryObj, const inventionNumToName& iNumToName)
 	readInCapital(countryObj);
 	readInCulture(countryObj);
 	readInTechnology(countryObj);
-	readInInventions(countryObj, iNumToName);
+	readInInventions(countryObj);
 	readInPoliticalParties(countryObj);
 	readInSpending(countryObj);
 	readInRevanchism(countryObj);
@@ -113,8 +113,10 @@ void V2Country::readInTechnology(const Object* countryObj)
 }
 
 
-void V2Country::readInInventions(const Object* countryObj, const inventionNumToName& inventionNumsToNames)
+void V2Country::readInInventions(const Object* countryObj)
 {
+	inventionNumToName inventionNumsToNames = getInventionNums();
+
 	inventions.clear();
 	vector<Object*> inventionsObjs = countryObj->getValue("active_inventions");
 	if (inventionsObjs.size() > 0)

@@ -50,7 +50,7 @@ class		Vic2State;
 class V2Country
 {
 	public:
-		V2Country(Object* obj, const inventionNumToName& iNumToName);
+		V2Country(Object* obj);
 
 		void addProvince(const pair<const int, V2Province*>& province) { provinces.insert(province); }
 		void setColor(const Color& newColor) { color = newColor; }
@@ -98,7 +98,7 @@ class V2Country
 		void readInCapital(const Object* countryObj);
 		void readInCulture(const Object* countryObj);
 		void readInTechnology(const Object* countryObj);
-		void readInInventions(const Object* countryObj, const inventionNumToName& iNumToName);
+		void readInInventions(const Object* countryObj);
 		void readInPoliticalParties(const Object* countryObj);
 		void readInSpending(const Object* countryObj);
 		void readInRevanchism(const Object* countryObj);

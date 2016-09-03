@@ -35,7 +35,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2World::V2World(Object* obj, const inventionNumToName& iNumToName)
+V2World::V2World(Object* obj)
 {
 	provinces.clear();
 	countries.clear();
@@ -56,7 +56,7 @@ V2World::V2World(Object* obj, const inventionNumToName& iNumToName)
 		}
 		else if (isCountryKey(key))
 		{
-			countries[key] = new V2Country(leaf, iNumToName);
+			countries[key] = new V2Country(leaf);
 			setGreatPowerStatus(key, countryIndexToGPRank, countryIndex);
 			countryIndex++;
 		}

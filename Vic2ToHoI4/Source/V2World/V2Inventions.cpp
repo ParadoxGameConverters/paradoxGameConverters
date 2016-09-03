@@ -30,39 +30,54 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-void getInventionNums(inventionNumToName& numToName)
+string getInventionPath();
+inventionNumToName generateNums(string path);
+inventionNumToName getInventionNums()
 {
-	// find the relevant inventions files
-	string path;
-	vector<string> vic2Mods = Configuration::getVic2Mods();
-	for (auto itr: vic2Mods)
+	string path = getInventionPath();
+	return generateNums(path);
+}
+
+
+string getInventionPath()
+{
+	for (auto mod: Configuration::getVic2Mods())
 	{
-		string possiblePath = Configuration::getV2Path() + "/mod/" + itr + "/inventions/";
+		string possiblePath = Configuration::getV2Path() + "/mod/" + mod + "/inventions/";
 		if (Utils::doesFolderExist(possiblePath))
 		{
-			path = possiblePath;
+			return possiblePath;
 		}
 	}
-	if (path == "")
-	{
-		path = Configuration::getV2Path() + "/inventions/";
-	}
 
-	//get the inventions
-	numToName.clear();
-	int num = 1;
+	return Configuration::getV2Path() + "/inventions/";
+}
+
+
+void processTechFile(string filename, inventionNumToName& numToName);
+inventionNumToName generateNums(string path)
+{
+	inventionNumToName numToName;
 
 	set<string> techFiles;
 	Utils::GetAllFilesInFolder(path, techFiles);
 	for (auto fileItr: techFiles)
 	{
-		Object* obj = parser_8859_15::doParseFile((path + "/" + fileItr));
-		vector<Object*> techObjs = obj->getLeaves();
-		for (auto techItr: techObjs)
-		{
-			string name = techItr->getKey();
-			numToName.insert(make_pair(num, name));
-			num++;
-		}
+		processTechFile(path + "/" + fileItr, numToName);
+	}
+
+	return numToName;
+}
+
+
+void processTechFile(string filename, inventionNumToName& numToName)
+{
+	Object* obj = parser_8859_15::doParseFile(filename);
+	vector<Object*> techObjs = obj->getLeaves();
+
+	for (auto techObj: techObjs)
+	{
+		string name = techObj->getKey();
+		numToName.insert(make_pair(numToName.size() + 1, name));
 	}
 }
