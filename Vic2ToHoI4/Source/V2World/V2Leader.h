@@ -35,18 +35,18 @@ class V2Leader
 	public:
 		V2Leader(Object* obk);
 
-		string	getName()			const	{ return name; }
-		string	getType()			const { return type; }
-		double	getPrestige()		const { return prestige; }
-		string	getPersonality()	const { return personality; }
-		string	getBackground()	const { return background; }
+		string getName() const { return name; }
+		string getType() const { return type; }
+		double getPrestige() const { return prestige; }
+		string getPersonality() const { return personality; }
+		string getBackground() const { return background; }
 
 	private:
-		string	name;
-		string	type;
-		string	personality;
-		string	background;
-		double	prestige;
+		string name;
+		string type;
+		string personality;
+		string background;
+		double prestige;
 };
 
 
