@@ -605,7 +605,7 @@ double HoI4World::calculateTotalFactoriesInCountry(long employedWorkers)
 	}
 	else if (Configuration::getIcConversion() == "linear")
 	{
-		industry = double(employedWorkersAdjusted) * 2.55 * Configuration::getIcFactor();
+		industry = double(employedWorkersAdjusted) * 1.9 * Configuration::getIcFactor();
 	}
 	else if (Configuration::getIcConversion() == "logarithmic")
 	{
