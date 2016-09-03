@@ -138,8 +138,10 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	string outputFolder = Utils::getCurrentDirectory() + "/output/" + Configuration::getOutputName();
 	if (Utils::doesFolderExist(outputFolder))
 	{
-		LOG(LogLevel::Error) << "Output folder " << Configuration::getOutputName() << " already exists! Clear the output folder before running again!";
-		exit(0);
+		if (!Utils::deleteFolder(outputFolder))
+		{
+			exit(-1);
+		}
 	}
 
 	// Parse government mapping

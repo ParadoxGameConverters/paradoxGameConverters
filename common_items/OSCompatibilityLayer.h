@@ -94,8 +94,7 @@ namespace Utils
 	// Returns a formatted string describing the last error on the WinAPI.
 	std::string GetLastErrorString();
 
-	// Recursively deletes a folder
-	int DeleteFolder(const std::string &refcstrRootDirectory, bool bDeleteSubdirectories = true);
+	bool deleteFolder(const std::string& folder);
 
 
 	std::string GetFileFromTag(const std::string& directoryPath, const std::string& tag);
