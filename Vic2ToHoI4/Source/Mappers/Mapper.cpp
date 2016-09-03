@@ -90,7 +90,7 @@ void initContinentMap(Object* obj, continentMapping& continentMap)
 		vector<Object*> provinceObjs = continentObj->getValue("provinces");	// the province numbers in this continent
 		for (auto provinceStr: provinceObjs[0]->getTokens())
 		{
-			const int province = atoi(provinceStr.c_str());	// the current province num
+			const int province = stoi(provinceStr);	// the current province num
 			continentMap.insert( make_pair(province, continent) );
 		}
 	}
@@ -249,50 +249,50 @@ void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, in
 			string effectType = effectsItr->getKey();
 			if (effectType == "army_investment")
 			{
-				armyInvIdeas[idea] = atoi(effectsItr[0].getLeaf().c_str());
+				armyInvIdeas[idea] = stoi(effectsItr[0].getLeaf());
 			}
 			else if (effectType == "commerce_investment")
 			{
-				commerceInvIdeas[idea] = atoi(effectsItr[0].getLeaf().c_str());
+				commerceInvIdeas[idea] = stoi(effectsItr[0].getLeaf());
 			}
 			else if (effectType == "culture_investment")
 			{
-				cultureInvIdeas[idea] = atoi(effectsItr[0].getLeaf().c_str());
+				cultureInvIdeas[idea] = stoi(effectsItr[0].getLeaf());
 			}
 			else if (effectType == "industry_investment")
 			{
-				industryInvIdeas[idea] = atoi(effectsItr[0].getLeaf().c_str());
+				industryInvIdeas[idea] = stoi(effectsItr[0].getLeaf());
 			}
 			else if (effectType == "navy_investment")
 			{
-				navyInvIdeas[idea] = atoi(effectsItr[0].getLeaf().c_str());
+				navyInvIdeas[idea] = stoi(effectsItr[0].getLeaf());
 			}
 			else if (effectType == "upper_house_liberal")
 			{
-				UHLiberalIdeas[idea] = atof(effectsItr[0].getLeaf().c_str());
+				UHLiberalIdeas[idea] = stof(effectsItr[0].getLeaf());
 			}
 			else if (effectType == "upper_house_reactionary")
 			{
-				UHReactionaryIdeas[idea] = atof(effectsItr[0].getLeaf().c_str());
+				UHReactionaryIdeas[idea] = stof(effectsItr[0].getLeaf());
 			}
 			else if (effectType == "NV_order")
 			{
-				orderIdeas[idea] = atoi(effectsItr[0].getLeaf().c_str());
+				orderIdeas[idea] = stoi(effectsItr[0].getLeaf());
 			}
 			else if (effectType == "NV_liberty")
 			{
-				libertyIdeas[idea] = atoi(effectsItr[0].getLeaf().c_str());
+				libertyIdeas[idea] = stoi(effectsItr[0].getLeaf());
 			}
 			else if (effectType == "NV_equality")
 			{
-				equalityIdeas[idea] = atoi(effectsItr[0].getLeaf().c_str());
+				equalityIdeas[idea] = stoi(effectsItr[0].getLeaf());
 			}
 			else if (effectType == "literacy")
 			{
 				vector<string> literacyStrs = effectsItr[0].getTokens();
 				for (auto literacyString: literacyStrs)
 				{
-					literacyIdeas.push_back(make_pair(idea, atoi(literacyString.c_str())));
+					literacyIdeas.push_back(make_pair(idea, stoi(literacyString)));
 				}
 			}
 		}
@@ -461,7 +461,7 @@ void initAIFocusModifiers(Object* obj, AIFocusModifiers& modifiers)
 			if (modifierItems.size() > 0)
 			{
 				string factorStr = modifierItems[0]->getLeaf();
-				newModifier.modifierAmount = atof(factorStr.c_str());
+				newModifier.modifierAmount = stof(factorStr);
 			}
 			if (modifierItems.size() > 1)
 			{

@@ -81,7 +81,7 @@ void HoI4States::recordAllLandProvinces()
 		{
 			break;
 		}
-		int provNum = atoi(line.substr(0, pos).c_str());
+		int provNum = stoi(line.substr(0, pos));
 		if (provNum == 0)
 		{
 			continue;

@@ -432,7 +432,7 @@ double Object::safeGetFloat(string k, const double def)
 {
 	objvec vec = getValue(k);	// the objects with the keys to be returned
 	if (0 == vec.size()) return def;
-	return atof(vec[0]->getLeaf().c_str());
+	return stof(vec[0]->getLeaf());
 }
 
 string Object::safeGetString(string k, string def)
@@ -452,7 +452,7 @@ int Object::safeGetInt(string k, const int def)
 	{
 		return def;
 	}
-	return atoi(vec[0]->getLeaf().c_str());
+	return stoi(vec[0]->getLeaf());
 }
 
 Object* Object::safeGetObject(string k, Object* def)

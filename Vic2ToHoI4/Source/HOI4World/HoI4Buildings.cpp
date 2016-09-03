@@ -145,7 +145,7 @@ map<int, pair<double, double>> HoI4Buildings::getProvincePositions()
 
 void HoI4Buildings::output() const
 {
-	ofstream out(("output/" + Configuration::getOutputName() + "/map/buildings.txt").c_str());
+	ofstream out("output/" + Configuration::getOutputName() + "/map/buildings.txt");
 	if (!out.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not open output/" << Configuration::getOutputName() << "/map/buildings.txt";

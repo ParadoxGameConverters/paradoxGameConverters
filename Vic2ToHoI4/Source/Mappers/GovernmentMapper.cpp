@@ -68,15 +68,15 @@ void governmentMapper::initGovernmentMap(Object* obj)
 			}
 			else if (key == "political_reforms")
 			{
-				newMapping.require_political_reforms = atof(item->getLeaf().c_str());
+				newMapping.require_political_reforms = stof(item->getLeaf());
 			}
 			else if (key == "social_reforms_above")
 			{
-				newMapping.require_social_reforms_above = atof(item->getLeaf().c_str());
+				newMapping.require_social_reforms_above = stof(item->getLeaf());
 			}
 			else if (key == "social_reforms_below")
 			{
-				newMapping.require_social_reforms_below = atof(item->getLeaf().c_str());
+				newMapping.require_social_reforms_below = stof(item->getLeaf());
 			}
 		}
 		governmentMap.push_back(newMapping);

@@ -51,7 +51,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	// Get HoI4 install location
 	LOG(LogLevel::Debug) << "Get HoI4 Install Path";
 	string HoI4Loc = Configuration::getHoI4Path();	// the HoI4 install location as stated in the configuration file
-	if (HoI4Loc.empty() || !Utils::doesFolderExist(HoI4Loc.c_str()))
+	if (HoI4Loc.empty() || !Utils::doesFolderExist(HoI4Loc))
 	{
 		LOG(LogLevel::Error) << "No HoI4 path was specified in configuration.txt, or the path was invalid";
 		return (-1);
@@ -64,7 +64,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	// Get HoI4 Documents Directory
 	LOG(LogLevel::Debug) << "Get HoI4 Documents directory";
 	string HoI4DocLoc = Configuration::getHoI4DocumentsPath();	// the HoI4 My Documents location as stated in the configuration file
-	if (HoI4DocLoc.empty() || !Utils::doesFolderExist(HoI4DocLoc.c_str()))
+	if (HoI4DocLoc.empty() || !Utils::doesFolderExist(HoI4DocLoc))
 	{
 		LOG(LogLevel::Error) << "No HoI4 documents directory was specified in configuration.txt, or the path was invalid";
 		return (-1);
@@ -77,7 +77,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	// Get V2 install location
 	LOG(LogLevel::Debug) << "Get V2 Install Path";
 	string V2Loc = Configuration::getV2Path();	// the V2 install location as stated in the configuration file
-	if (V2Loc.empty() || !Utils::doesFolderExist(V2Loc.c_str()))
+	if (V2Loc.empty() || !Utils::doesFolderExist(V2Loc))
 	{
 		LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
 		return (-1);
@@ -136,7 +136,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "Using output name " << outputName;
 
 	string outputFolder = Utils::getCurrentDirectory() + "/output/" + Configuration::getOutputName();
-	if (Utils::doesFolderExist(outputFolder.c_str()))
+	if (Utils::doesFolderExist(outputFolder))
 	{
 		LOG(LogLevel::Error) << "Output folder " << Configuration::getOutputName() << " already exists! Clear the output folder before running again!";
 		exit(0);
@@ -159,7 +159,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	{
 		if (Utils::DoesFileExist(Configuration::getV2Path() + "/mod/" + itr + "/common/issues.txt"))
 		{
-			obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/common/issues.txt").c_str());
+			obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/common/issues.txt"));
 			if (obj != NULL)
 			{
 				governmentMapper::getInstance()->initReforms(obj);
@@ -169,7 +169,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	}
 	if (!governmentMapper::getInstance()->areReformsInitialized())
 	{
-		obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/issues.txt").c_str());
+		obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/issues.txt"));
 		if (obj != NULL)
 		{
 			governmentMapper::getInstance()->initReforms(obj);
@@ -180,7 +180,7 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 
 	//	Parse V2 Save
 	LOG(LogLevel::Info) << "Parsing save";
-	obj = parser_8859_15::doParseFile(V2SaveFileName.c_str());
+	obj = parser_8859_15::doParseFile(V2SaveFileName);
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << V2SaveFileName << ". File is likely missing.";
@@ -271,13 +271,13 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	for (auto itr: vic2Mods)
 	{
 		LOG(LogLevel::Debug) << "Reading mod cultures";
-		obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/common/cultures.txt").c_str());
+		obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/common/cultures.txt"));
 		if (obj != NULL)
 		{
 			initNamesMapping(obj, namesMap);
 		}
 	}
-	obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/cultures.txt").c_str());
+	obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/cultures.txt"));
 	if (obj != NULL)
 	{
 		initNamesMapping(obj, namesMap);

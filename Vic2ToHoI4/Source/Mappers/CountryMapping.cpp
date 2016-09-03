@@ -46,7 +46,7 @@ bool CountryMapping::ReadRules(const std::string& fileName)
 	// Read the rule nodes from file.
 	LOG(LogLevel::Debug) << "Parsing rules from file " << fileName;
 	parser_UTF8::initParser();
-	Object* countryMappingsFile = parser_UTF8::doParseFile(fileName.c_str());	// the parsed country mappings file
+	Object* countryMappingsFile = parser_UTF8::doParseFile(fileName);	// the parsed country mappings file
 	if (!countryMappingsFile)
 	{
 		LOG(LogLevel::Error) << "Failed to parse " << fileName;

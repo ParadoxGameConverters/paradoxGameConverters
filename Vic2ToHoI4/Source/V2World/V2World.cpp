@@ -52,7 +52,7 @@ V2World::V2World(Object* obj, const inventionNumToName& iNumToName)
 
 		if (isProvinceKey(key))
 		{
-			provinces[atoi(key.c_str())] = new V2Province(leaf);
+			provinces[stoi(key)] = new V2Province(leaf);
 		}
 		else if (isCountryKey(key))
 		{
@@ -82,7 +82,7 @@ map<int, int> V2World::extractGreatNationIndices(const Object* obj)
 		vector<string> greatNations = greatNationsObj[0]->getTokens();
 		for (unsigned int i = 0; i < greatNations.size(); i++)
 		{
-			countryIndexToGPRank.insert(make_pair(atoi(greatNations[i].c_str()), i));
+			countryIndexToGPRank.insert(make_pair(stoi(greatNations[i]), i));
 		}
 
 		greatPowers.resize(greatNations.size());
@@ -110,19 +110,19 @@ bool V2World::isCountryKey(string key) const
 
 bool V2World::isNormalCountryKey(string key) const
 {
-	return (isupper(key.c_str()[0]) && isupper(key.c_str()[1]) && isupper(key.c_str()[2]));
+	return (isupper(key[0]) && isupper(key[1]) && isupper(key[2]));
 }
 
 
 bool V2World::isDominionCountryKey(string key) const
 {
-	return ((key.c_str()[0] == 'D') && isdigit(key.c_str()[1]) && isdigit(key.c_str()[2]));
+	return ((key[0] == 'D') && isdigit(key[1]) && isdigit(key[2]));
 }
 
 
 bool V2World::isConvertedCountryKey(string key) const
 {
-	return (isupper(key.c_str()[0]) && isdigit(key.c_str()[1]) && isdigit(key.c_str()[2]));
+	return (isupper(key[0]) && isdigit(key[1]) && isdigit(key[2]));
 }
 
 
@@ -243,7 +243,7 @@ void V2World::readCountryFiles()
 
 bool V2World::processCountriesDotTxt(string countryListFile, string mod)
 {
-	ifstream V2CountriesInput(countryListFile.c_str());
+	ifstream V2CountriesInput(countryListFile);
 	if (!V2CountriesInput.is_open())
 	{
 		return false;
@@ -296,9 +296,9 @@ Object* V2World::readCountryFile(string countryFileName, string mod) const
 	if (mod != "")
 	{
 		string file = Configuration::getV2Path() + "/mod/" + mod + "/common/countries/" + countryFileName;
-		if (Utils::DoesFileExist(file.c_str()))
+		if (Utils::DoesFileExist(file))
 		{
-			countryData = parser_8859_15::doParseFile(file.c_str());
+			countryData = parser_8859_15::doParseFile(file);
 			if (countryData == NULL)
 			{
 				LOG(LogLevel::Warning) << "Could not parse file " << file;
@@ -308,9 +308,9 @@ Object* V2World::readCountryFile(string countryFileName, string mod) const
 	if (countryData == NULL)
 	{
 		string file = Configuration::getV2Path() +  "/common/countries/" + countryFileName;
-		if (Utils::DoesFileExist(file.c_str()))
+		if (Utils::DoesFileExist(file))
 		{
-			countryData = parser_8859_15::doParseFile(file.c_str());
+			countryData = parser_8859_15::doParseFile(file);
 			if (countryData == NULL)
 			{
 				LOG(LogLevel::Warning) << "Could not parse file " << file;
@@ -337,7 +337,7 @@ void V2World::readCountryColor(const Object* countryData, string line)
 		{
 			if (countries.find(tag) != countries.end())
 			{
-				countries[tag]->setColor(Color(atoi(rgb[0].c_str()), atoi(rgb[1].c_str()), atoi(rgb[2].c_str())));
+				countries[tag]->setColor(Color(stoi(rgb[0]), stoi(rgb[1]), stoi(rgb[2])));
 			}
 		}
 	}

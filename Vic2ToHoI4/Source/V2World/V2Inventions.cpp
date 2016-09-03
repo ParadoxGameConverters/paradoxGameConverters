@@ -56,7 +56,7 @@ void getInventionNums(inventionNumToName& numToName)
 	Utils::GetAllFilesInFolder(path, techFiles);
 	for (auto fileItr: techFiles)
 	{
-		Object* obj = parser_8859_15::doParseFile((path + "/" + fileItr).c_str());
+		Object* obj = parser_8859_15::doParseFile((path + "/" + fileItr));
 		vector<Object*> techObjs = obj->getLeaves();
 		for (auto techItr: techObjs)
 		{

@@ -31,7 +31,7 @@ using namespace std;
 
 V2Province::V2Province(Object* obj)
 {
-	num = atoi(obj->getKey().c_str());
+	num = stoi(obj->getKey());
 
 	vector<Object*> ownerObjs;				// the object holding the owner
 	ownerObjs = obj->getValue("owner");
@@ -54,7 +54,7 @@ V2Province::V2Province(Object* obj)
 		vector<string> tokens = buildingObjs[0]->getTokens();
 		if (tokens.size() > 0)
 		{
-			fortLevel = atoi(tokens[0].c_str());
+			fortLevel = stoi(tokens[0]);
 		}
 	}
 	navalBaseLevel = 0;
@@ -64,7 +64,7 @@ V2Province::V2Province(Object* obj)
 		vector<string> tokens = buildingObjs[0]->getTokens();
 		if (tokens.size() > 0)
 		{
-			navalBaseLevel = atoi(tokens[0].c_str());
+			navalBaseLevel = stoi(tokens[0]);
 		}
 	}
 	railLevel = 0;
@@ -74,7 +74,7 @@ V2Province::V2Province(Object* obj)
 		vector<string> tokens = buildingObjs[0]->getTokens();
 		if (tokens.size() > 0)
 		{
-			railLevel = atoi(tokens[0].c_str());
+			railLevel = stoi(tokens[0]);
 		}
 	}
 

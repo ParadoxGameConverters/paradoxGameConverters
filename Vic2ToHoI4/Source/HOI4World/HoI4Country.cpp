@@ -126,7 +126,7 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Facti
 		&& newCountry
 		)
 	{
-		output.open(("Output/" + Configuration::getOutputName() + "/history/countries/" + Utils::convertToASCII(filename)).c_str());
+		output.open("Output/" + Configuration::getOutputName() + "/history/countries/" + Utils::convertToASCII(filename));
 		if (!output.is_open())
 		{
 			Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/history/" << Utils::convertToASCII(filename);
@@ -379,7 +379,7 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Facti
 void HoI4Country::outputCommonCountryFile() const
 {
 	ofstream output;
-	output.open(("Output/" + Configuration::getOutputName() + "/common/countries/" + Utils::convertToASCII(commonCountryFile)).c_str());
+	output.open("Output/" + Configuration::getOutputName() + "/common/countries/" + Utils::convertToASCII(commonCountryFile));
 	if (!output.is_open())
 	{
 		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << Utils::convertToASCII(commonCountryFile);
@@ -474,9 +474,9 @@ void HoI4Country::outputParties(FILE* output) const
 void HoI4Country::outputLeaders() const
 {
 	FILE* leadersFile;
-	if (fopen_s(&leadersFile, ("Output/" + Configuration::getOutputName() + "/history/leaders/" + tag.c_str() + ".txt").c_str(), "w") != 0)
+	if (fopen_s(&leadersFile, ("Output/" + Configuration::getOutputName() + "/history/leaders/" + tag + ".txt").c_str(), "w") != 0)
 	{
-		LOG(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/history/leaders/" << tag.c_str() << ".txt";
+		LOG(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/history/leaders/" << tag << ".txt";
 	}
 	int landLeaders = 0;
 	int seaLeaders = 0;
@@ -510,7 +510,7 @@ void HoI4Country::outputLeaders() const
 
 void HoI4Country::outputOOB() const
 {
-	ofstream output(("Output/" + Configuration::getOutputName() + "/history/units/" + tag + "_OOB.txt").c_str());
+	ofstream output("Output/" + Configuration::getOutputName() + "/history/units/" + tag + "_OOB.txt");
 	if (!output.is_open())
 	{
 		Log(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/history/units/" << tag << "_OOB.txt";
@@ -899,8 +899,8 @@ void HoI4Country::initFromHistory()
 		fullFilename = Configuration::getHoI4Path() + "/history/countries/" + filename;
 	}
 
-	LOG(LogLevel::Debug) << "Parsing " << fullFilename.c_str();
-	Object* obj = parser_UTF8::doParseFile(fullFilename.c_str());
+	LOG(LogLevel::Debug) << "Parsing " << fullFilename;
+	Object* obj = parser_UTF8::doParseFile(fullFilename);
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << fullFilename;
@@ -922,7 +922,7 @@ void HoI4Country::initFromHistory()
 	results = obj->getValue("capital");
 	if (results.size() > 0)
 	{
-		capital = atoi(results[0]->getLeaf().c_str());
+		capital = stoi(results[0]->getLeaf());
 	}
 }
 

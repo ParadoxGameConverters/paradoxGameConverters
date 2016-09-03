@@ -103,7 +103,7 @@ void HoI4World::checkCoastalProvinces()
 {
 	// determine whether each province is coastal or not by checking if it has a naval base
 	// if it's not coastal, we won't try to put any navies in it (otherwise HoI4 crashes)
-	//Object*	obj2 = parser_UTF8::doParseFile((Configuration::getHoI4Path() + "/tfh/map/positions.txt").c_str());
+	//Object*	obj2 = parser_UTF8::doParseFile((Configuration::getHoI4Path() + "/tfh/map/positions.txt"));
 	//vector<Object*> objProv = obj2->getLeaves();
 	//if (objProv.size() == 0)
 	//{
@@ -112,7 +112,7 @@ void HoI4World::checkCoastalProvinces()
 	//}
 	//for (auto itr: objProv)
 	//{
-	//	int provinceNum = _wtoi(itr->getKey().c_str());
+	//	int provinceNum = stoi(itr->getKey());
 	//	vector<Object*> objPos = itr->getValue("building_position");
 	//	if (objPos.size() == 0)
 	//	{
@@ -331,14 +331,14 @@ void HoI4World::getProvinceLocalizations(const string& file)
 {
 	ifstream read;
 	string line;
-	read.open(file.c_str());
+	read.open(file);
 	while (read.good() && !read.eof())
 	{
 		getline(read, line);
-		if (line.substr(0, 4) == "PROV" && isdigit(line.c_str()[4]))
+		if (line.substr(0, 4) == "PROV" && isdigit(line[4]))
 		{
 			int position = line.find_first_of(';');
-			int num = atoi(line.substr(4, position - 4).c_str());
+			int num = stoi(line.substr(4, position - 4));
 			string name = line.substr(position + 1, line.find_first_of(';', position + 1) - position - 1);
 			provinces[num]->setName(name);
 		}
@@ -951,14 +951,14 @@ void HoI4World::convertTechs()
 			}
 			else
 			{
-				int value = atoi(itr->getLeaf(master).c_str());
+				int value = stoi(itr->getLeaf(master));
 				targetTechs.push_back(pair<string, int>(master, value));
 			}
 		}
 		switch (status)
 		{
 		case 0:
-			LOG(LogLevel::Error) << "unhandled tech link with first key " << keys[0].c_str() << "!";
+			LOG(LogLevel::Error) << "unhandled tech link with first key " << keys[0] << "!";
 			break;
 		case 1:
 			techTechMap[tech] = targetTechs;
@@ -1553,7 +1553,7 @@ void HoI4World::checkAllProvincesMapped()
 		{
 			break;
 		}
-		int provNum = atoi(line.substr(0, pos).c_str());
+		int provNum = stoi(line.substr(0, pos));
 		if (provNum == 0)
 		{
 			continue;

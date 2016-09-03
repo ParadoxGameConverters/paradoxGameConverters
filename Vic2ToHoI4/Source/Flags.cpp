@@ -168,7 +168,7 @@ string getSourceFlagPath(string Vic2Tag, string sourceSuffix)
 
 bool isThisAConvertedTag(string Vic2Tag)
 {
-	return (isdigit(Vic2Tag.c_str()[2]) != 0);
+	return (isdigit(Vic2Tag[2]) != 0);
 }
 
 
