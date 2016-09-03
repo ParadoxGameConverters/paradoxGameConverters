@@ -87,6 +87,8 @@ class HoI4States
 		keyToLocalisationMap& getExistingVPLocalisation(const string& language);
 		void addLanguageToStateLocalisations(const string& language);
 		void addLanguageToVPLocalisations(const string& language);
+		void addNonenglishStateLocalisations();
+		void addNonenglishVPLocalisations();
 		unsigned int getTotalManpower();
 
 		void outputHistory() const;

@@ -259,6 +259,9 @@ void HoI4States::createStates(const CountryMapping& countryMap, const map<int, o
 		}
 	}
 
+	addNonenglishStateLocalisations();
+	addNonenglishVPLocalisations();
+
 	unsigned int manpower = getTotalManpower();
 	LOG(LogLevel::Debug) << "Total manpower was " << manpower << ", which is " << manpower / 20438756.2 << "% of default HoI4.";
 }
@@ -420,6 +423,24 @@ void HoI4States::addLanguageToVPLocalisations(const string& language)
 {
 	keyToLocalisationMap newLocalisation;
 	VPLocalisations[language] = newLocalisation;
+}
+
+
+void HoI4States::addNonenglishStateLocalisations()
+{
+	auto englishLocalisations = stateLocalisations.find("english");
+	stateLocalisations.insert(make_pair("braz_por", englishLocalisations->second));
+	stateLocalisations.insert(make_pair("polish", englishLocalisations->second));
+	stateLocalisations.insert(make_pair("russian", englishLocalisations->second));
+}
+
+
+void HoI4States::addNonenglishVPLocalisations()
+{
+	auto englishLocalisations = VPLocalisations.find("english");
+	VPLocalisations.insert(make_pair("braz_por", englishLocalisations->second));
+	VPLocalisations.insert(make_pair("polish", englishLocalisations->second));
+	VPLocalisations.insert(make_pair("russian", englishLocalisations->second));
 }
 
 

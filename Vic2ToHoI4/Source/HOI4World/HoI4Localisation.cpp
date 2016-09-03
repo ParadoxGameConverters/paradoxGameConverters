@@ -84,6 +84,15 @@ void HoI4Localisation::readFromCountry(const V2Country* source, string destTag)
 }
 
 
+void HoI4Localisation::addNonenglishCountryLocalisations()
+{
+	auto englishLocalisations = countryLocalisations.find("english");
+	countryLocalisations.insert(make_pair("braz_por", englishLocalisations->second));
+	countryLocalisations.insert(make_pair("polish", englishLocalisations->second));
+	countryLocalisations.insert(make_pair("russian", englishLocalisations->second));
+}
+
+
 void HoI4Localisation::output(string localisationPath) const
 {
 	outputCountries(localisationPath);

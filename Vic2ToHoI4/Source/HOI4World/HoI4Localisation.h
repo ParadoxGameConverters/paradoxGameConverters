@@ -49,6 +49,7 @@ class HoI4Localisation
 {
 	public:
 		void	readFromCountry(const V2Country*, string destTag);
+		void addNonenglishCountryLocalisations();
 
 		void	output(string localisationPath) const;
 

@@ -379,6 +379,7 @@ void HoI4World::convertCountries(const CountryMapping& countryMap, map<int, int>
 
 		localisation.readFromCountry(sourceItr.second, HoI4Tag);
 	}
+	localisation.addNonenglishCountryLocalisations();
 }
 
 
