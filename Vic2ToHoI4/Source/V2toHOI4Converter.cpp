@@ -31,7 +31,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HOI4World/HoI4Buildings.h"
 #include "HoI4World/HoI4World.h"
 #include "V2World/V2World.h"
-#include "V2World/V2Factory.h"
 #include "V2World/V2Localisation.h"
 #include "OSCompatibilityLayer.h"
 

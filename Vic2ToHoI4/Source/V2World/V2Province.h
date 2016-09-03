@@ -34,9 +34,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <set>
 using namespace std;
 
+
+
 class V2Country;
 class V2Pop;
-class V2Factory;
+
 
 
 class V2Province
