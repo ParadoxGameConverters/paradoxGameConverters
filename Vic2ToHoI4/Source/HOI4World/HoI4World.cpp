@@ -601,7 +601,7 @@ double HoI4World::calculateTotalFactoriesInCountry(long employedWorkers)
 	double employedWorkersAdjusted = employedWorkers / 100000.0;
 	if (Configuration::getIcConversion() == "squareroot")
 	{
-		industry = sqrt(double(employedWorkersAdjusted)) * 1294.0 * Configuration::getIcFactor();
+		industry = sqrt(double(employedWorkersAdjusted)) * 9.0 * Configuration::getIcFactor();
 	}
 	else if (Configuration::getIcConversion() == "linear")
 	{
