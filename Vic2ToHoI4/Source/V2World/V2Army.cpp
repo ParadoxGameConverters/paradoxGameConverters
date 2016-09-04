@@ -80,7 +80,7 @@ V2Regiment::V2Regiment(Object* obj)
 V2Army::V2Army(Object* obj)
 {
 	string key = obj->getKey();
-	isNavy = (key == "navy");
+	navy = (key == "navy");
 
 	std::vector<Object*> objName = obj->getValue("name");
 	(objName.size() > 0) ? name = objName[0]->getLeaf() : name = "";
