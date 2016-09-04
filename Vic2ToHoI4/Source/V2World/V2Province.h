@@ -27,51 +27,62 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "../Configuration.h"
-#include "Object.h"
+#include <map>
+#include <set>
 #include <string>
 #include <vector>
-#include <map>
 using namespace std;
 
+
+
+class Object;
 class V2Country;
 class V2Pop;
-class V2Factory;
+
 
 
 class V2Province
 {
 	public:
 		V2Province(Object* obj);
-		void	addCore(string);
-		void	removeCore(string tag);
+		void setCores(const map<string, V2Country*>& countries);
 
-		int						getTotalPopulation() const;
-		vector<V2Country*>	getCores(const map<string, V2Country*>& countries) const;
-		int						getPopulation(string type = "") const;
-		int						getLiteracyWeightedPopulation(string type = "") const;
+		int getTotalPopulation() const;
+		int getPopulation(string type = "") const;
+		int getLiteracyWeightedPopulation(string type = "") const;
 
-		void						setOwner(V2Country* _owner)		{ owner = _owner; }
-		void						setEmployedWorkers(int _workers) { employedWorkers = _workers; }
+		void setOwner(const V2Country* _owner) { owner = _owner; }
+		void addCoreString(string coreString) { coreStrings.insert(coreString); }
+		void removeCoreString(string coreString) { coreStrings.erase(coreString); }
 
-		string					getOwnerString()		const { return ownerString; }
-		V2Country*				getOwner()				const { return owner; }
-		int						getInfra()				const { return railLevel; }
-		int						getFort()				const { return fortLevel; }
-		int						getNavalBase()			const { return navalBaseLevel; }
-		int						getNum()					const { return num; }
-		int						getEmployedWorkers()	const { return employedWorkers; }
+		string getOwnerString() const { return ownerString; }
+		const V2Country* getOwner() const { return owner; }
+		set<V2Country*> getCores() const { return cores; }
+		int getRailLevel() const { return railLevel; }
+		int getFortLevel() const { return fortLevel; }
+		int getNavalBaseLevel() const { return navalBaseLevel; }
 
 	private:
-		int					num;
-		string				ownerString;			// a string with the owner's tag
-		V2Country*			owner;
-		vector<string>	cores;
-		vector<V2Pop*>		pops;
-		int					fortLevel;
-		int					navalBaseLevel;
-		int					railLevel;
+		void readOwner(Object* obj);
+		void readCores(Object* obj);
+		void readForts(Object* obj);
+		void readNavalBases(Object* obj);
+		void readRails(Object* obj);
+		void readPops(Object* obj);
+		bool isPopObject(Object* obj);
+		int calculateLiteracyWeightedPop(const V2Pop* thePop) const;
 
-		int					employedWorkers;
+		string ownerString;
+		const V2Country* owner;
+
+		set<string> coreStrings;
+		set<V2Country*> cores;
+
+		vector<V2Pop*> pops;
+
+		int fortLevel;
+		int navalBaseLevel;
+		int railLevel;
 };
 
 

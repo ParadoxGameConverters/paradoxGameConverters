@@ -52,7 +52,7 @@ void strcpy_s_Linux(char *__restrict __dest, const char *__restrict __src);
 
 //Very basic implementation, simply returns 0 if FILE* is not NULL
 #define fopen_s fopen_s_Linux
-int fopen_s_Linux(FILE** file, const char* filename, const char* mode);
+int fopen_s_Linux(FILE* file, const char* filename, const char* mode);
 
 #define fprintf_s fprintf_s_Linux
 void fprintf_s_Linux(FILE* file, const char* format, ...);
@@ -94,8 +94,7 @@ namespace Utils
 	// Returns a formatted string describing the last error on the WinAPI.
 	std::string GetLastErrorString();
 
-	// Recursively deletes a folder
-	int DeleteFolder(const std::string &refcstrRootDirectory, bool bDeleteSubdirectories = true);
+	bool deleteFolder(const std::string& folder);
 
 
 	std::string GetFileFromTag(const std::string& directoryPath, const std::string& tag);

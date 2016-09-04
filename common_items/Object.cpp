@@ -44,6 +44,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Object.h"
+#include "Log.h"
 #include "ParadoxParser8859_15.h"
 #include "ParadoxParserUTF8.h"
 #include <sstream> 
@@ -233,7 +234,7 @@ string Object::getLeaf(string leaf) const
 	vector<Object*> leaves = getValue(leaf); // the objects to return
 	if (0 == leaves.size())
 	{
-		cout << "Error: Cannot find leaf " << leaf << " in object " << endl << *this;
+		LOG(LogLevel::Error) << "Error: Cannot find leaf " << leaf << " in object\n" << *this;
 		assert(leaves.size());
 	}
 	return leaves[0]->getLeaf();
@@ -431,7 +432,7 @@ double Object::safeGetFloat(string k, const double def)
 {
 	objvec vec = getValue(k);	// the objects with the keys to be returned
 	if (0 == vec.size()) return def;
-	return atof(vec[0]->getLeaf().c_str());
+	return stof(vec[0]->getLeaf());
 }
 
 string Object::safeGetString(string k, string def)
@@ -451,7 +452,7 @@ int Object::safeGetInt(string k, const int def)
 	{
 		return def;
 	}
-	return atoi(vec[0]->getLeaf().c_str());
+	return stoi(vec[0]->getLeaf());
 }
 
 Object* Object::safeGetObject(string k, Object* def)

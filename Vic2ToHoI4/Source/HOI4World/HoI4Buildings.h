@@ -33,13 +33,6 @@ using namespace std;
 
 
 
-typedef struct province
-{
-	bool isLand;
-	string type;
-} province;
-
-
 
 class HoI4Building
 {
@@ -71,11 +64,7 @@ class HoI4NavalBase: public HoI4Building
 };
 
 
-typedef struct coastalProvince
-{
-	int province;
-	int connectingSeaProvince;
-} coastalProvince;
+
 
 
 class HoI4Buildings
@@ -87,9 +76,6 @@ class HoI4Buildings
 
 	private:
 		void placeNavalBases(const map<int, int>& provinceToStateIDMap);
-		vector<coastalProvince> getCoastalProvinces();
-		map<int, province> getProvinces();
-		map<int, vector<int>> getAdjacencies();
 		map<int, pair<double, double>> getProvincePositions();
 
 		multimap<int, HoI4Building*> buildings;

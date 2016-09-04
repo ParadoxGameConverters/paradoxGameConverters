@@ -10,6 +10,9 @@
     <Filter Include="CommonItems">
       <UniqueIdentifier>{3071f545-e61f-40f7-a838-8c97318a571b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mappers">
+      <UniqueIdentifier>{0b3f5118-496d-4e6f-a8a4-5d7427bbcf51}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common_items\Date.cpp">
@@ -33,16 +36,10 @@
     <ClCompile Include="Source\V2World\V2Diplomacy.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\V2World\V2Factory.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\V2World\V2Inventions.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
     <ClCompile Include="Source\V2World\V2Leader.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\V2World\V2Localisation.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
     <ClCompile Include="Source\V2World\V2Party.cpp">
@@ -92,9 +89,6 @@
     </ClCompile>
     <ClCompile Include="Source\Color.cpp" />
     <ClCompile Include="Source\Configuration.cpp" />
-    <ClCompile Include="Source\CountryMapping.cpp" />
-    <ClCompile Include="Source\GovernmentMapper.cpp" />
-    <ClCompile Include="Source\Mapper.cpp" />
     <ClCompile Include="Source\V2toHOI4Converter.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4State.cpp">
       <Filter>HoI4World</Filter>
@@ -128,6 +122,33 @@
     <ClCompile Include="Source\HOI4World\HoI4Airforce.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\V2World\Vic2State.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\V2World\Vic2Agreement.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\GovernmentMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\Mapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\CoastalHoI4Provinces.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\ProvinceMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\CountryMapping.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\StateMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\V2Localisations.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -151,16 +172,10 @@
     <ClInclude Include="Source\V2World\V2Diplomacy.h">
       <Filter>Vic2World</Filter>
     </ClInclude>
-    <ClInclude Include="Source\V2World\V2Factory.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
     <ClInclude Include="Source\V2World\V2Inventions.h">
       <Filter>Vic2World</Filter>
     </ClInclude>
     <ClInclude Include="Source\V2World\V2Leader.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2Localisation.h">
       <Filter>Vic2World</Filter>
     </ClInclude>
     <ClInclude Include="Source\V2World\V2Party.h">
@@ -210,9 +225,6 @@
     </ClInclude>
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
-    <ClInclude Include="Source\CountryMapping.h" />
-    <ClInclude Include="Source\GovernmentMapper.h" />
-    <ClInclude Include="Source\Mapper.h" />
     <ClInclude Include="Source\V2World\Vic2State.h">
       <Filter>Vic2World</Filter>
     </ClInclude>
@@ -244,6 +256,30 @@
     </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4Airforce.h">
       <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\Vic2Agreement.h">
+      <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\GovernmentMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\Mapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\CoastalHoI4Provinces.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\ProvinceMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\CountryMapping.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\StateMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\V2Localisations.h">
+      <Filter>Mappers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

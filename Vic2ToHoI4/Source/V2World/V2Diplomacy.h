@@ -32,15 +32,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-struct V2Agreement
-{
-	V2Agreement(Object* obj);
+class V2Agreement;
 
-	string	type;
-	string	country1;
-	string	country2;
-	date		start_date;
-};
 
 
 class V2Diplomacy
@@ -49,10 +42,12 @@ class V2Diplomacy
 		V2Diplomacy()	{ agreements.clear(); };
 		V2Diplomacy(Object *obj);
 
-		const vector<V2Agreement>&	getAgreements() const	{ return agreements; }
+		const vector<V2Agreement*>& getAgreements() const	{ return agreements; }
 
 	private:
-		vector<V2Agreement>	agreements;
+		bool isARelevantDiplomaticObject(Object* obj) const;
+
+		vector<V2Agreement*>	agreements;
 };
 
 

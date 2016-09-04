@@ -29,7 +29,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <vector>
 #include <string>
 #include <map>
-#include "..\Mapper.h"
 #include "..\V2World\Vic2State.h"
 using namespace std;
 
@@ -43,13 +42,14 @@ class HoI4State
 		void output(string filename);
 
 		void addProvince(int province) { provinces.insert(province); }
+		void setAsCapitalState() { capitalState = true; civFactories++; }
 		void addResource(string resource, double amount)	{ resources[resource] += amount; }
-		void addVP(int location, int value) { victoryPoints.insert(make_pair(location, value)); }
 		void addManpower(int newManpower) { manpower += newManpower; }
 		void addAirBase(int newAirBase) { airbaseLevel += newAirBase; if (airbaseLevel > 10) airbaseLevel = 10; }
+		void addVictoryPointValue(int additionalValue) { victoryPointValue += additionalValue; }
+		void setVPLocation(int province) { victoryPointPosition = province; }
 
 		void setNavalBase(int level, int location);
-		void setIndustry(int civilianFactories, int militaryFactories, string category, int railLevel);
 		void addCores(const vector<string>& newCores);
 
 		const Vic2State* getSourceState() const { return sourceState; }
@@ -61,17 +61,38 @@ class HoI4State
 		int getDockyards() const { return dockyards; }
 		int getCivFactories() const { return civFactories; }
 		int getMilFactories() const { return milFactories; }
+		int getManpower() const { return manpower; }
+		int getVPLocation() const { return victoryPointPosition; }
 
-		int getFirstProvinceByVic2Definition(const Vic2ToHoI4ProvinceMapping& provinceMap);
-		bool isProvinceInState(int provinceNum);
+		bool tryToCreateVP();
+
+		void convertIndustry(double workerFactoryRatio);
+
+		pair<string, string> makeLocalisation(const pair<const string, string>& Vic2NameInLanguage) const;
+		pair<string, string> makeVPLocalisation(const pair<const string, string>& Vic2NameInLanguage) const;
 
 	private:
+		int determineFactoryNumbers(double workerFactoryRatio);
+		int constrainFactoryNumbers(double rawFactories);
+		void determineCategory(int factories);
+		map<int, string> getStateCategories();
+		void setInfrastructure(int factories);
+		void setIndustry(int factories);
+		bool amICoastal();
+
+		void assignVP(int location);
+		bool isProvinceInState(int provinceNum);
+
+		string makeLocalisationKey() const;
+		string makeLocalisationValue(const pair<const string, string>& Vic2NameInLanguage) const;
+
 		const Vic2State* sourceState;
 
 		int ID;
 		set<int> provinces;
 		string ownerTag;
 		set<string> cores;
+		bool capitalState;
 
 		int manpower;
 
@@ -79,7 +100,7 @@ class HoI4State
 		int milFactories;
 		int dockyards;
 		string category;
-		int railLevel;
+		int infrastructure;
 	
 		int navalLevel;
 		int navalLocation;
@@ -88,7 +109,8 @@ class HoI4State
 
 		map<string, double> resources;
 
-		map<int, int> victoryPoints;
+		int victoryPointPosition;
+		int victoryPointValue;
 };
 
 

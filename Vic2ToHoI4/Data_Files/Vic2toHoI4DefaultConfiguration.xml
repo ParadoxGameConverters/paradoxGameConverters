@@ -1,24 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <configuration
-  Comment="This file is used to build the configuration parth of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
-  <!--This part contains the various options that will be displayed as preferences in the converter ui, and outputted as configuration.txt as input for the converter tool itself-->
-  <converterOptions>
-    <categories>
-      <category>
-        <friendlyName>Configuration</friendlyName>
-        <preferences>
-		  <preference>
-            <name>Vic2Mods</name>
-            <friendlyName>Vic2 Mods</friendlyName>
-            <description>Vic2 mods to use for conversion (mods require manual conversion)</description>
-            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
-			<useCurlyBraces>true</useCurlyBraces>
-            <value></value>
-          </preference>
-        </preferences>
-      </category>
-    </categories>
-  </converterOptions>
-  >
+	Comment="This file is used to build the configuration parth of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
+	<!--This part contains the various options that will be displayed as preferences in the converter ui, and outputted as configuration.txt as input for the converter tool itself-->
+	<converterOptions>
+		<categories>
+			<category>
+				<friendlyName>Configuration</friendlyName>
+				<preferences>
+					<preference>
+						<name>Vic2Mods</name>
+						<friendlyName>Vic2 Mods</friendlyName>
+						<description>Vic2 mods to use for conversion (mods require manual conversion)</description>
+						<hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+						<useCurlyBraces>true</useCurlyBraces>
+						<value></value>
+					</preference>
+					<preference>
+						<name>ic_conversion</name>
+						<friendlyName>Industry Conversion Method</friendlyName>
+						<description>The method used for turning Vic2 workers into HoI4 factories</description>
+						<entryOptions>
+							<entryOption>
+								<name>linear</name>
+								<friendlyName>Linear</friendlyName>
+								<description>The number of workers becomes the number of factories. Preserves the Vic2 balance in HoI4.</description>
+								<isDefault>true</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>squareroot</name>
+								<friendlyName>Square Root</friendlyName>
+								<description>The square root of the number of workers becomes the number of factories. Countries are a little more similar in HoI4.</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>logarithmic</name>
+								<friendlyName>Logarithmic</friendlyName>
+								<description>The logarithm of the numbers of workers becomes the number of factories. Countries will be very much the same in HoI4.</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>sin-log</name>
+								<friendlyName>Sine-Logarithm</friendlyName>
+								<description>A more complex variation that gives more advantages to under-industrialized nations while still allowing over-industrialized ones to pull ahead.</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+						</entryOptions>
+					</preference>
+			<preference>
+					<name>ic_factor</name>
+					<friendlyName>IC Factor</friendlyName>
+					<description>Used to increase or decrease the total level of industrialization in the world.</description>
+					<hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+					<value>1.0</value>
+					<minValue>0.1</minValue>
+					<maxValue>10</maxValue>
+				</preference>
+				<preference>
+						<name>manpower_factor</name>
+						<friendlyName>Manpower Factor</friendlyName>
+						<description>Used to increase or decrease the total amount of manpower in the world.</description>
+						<hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+						<value>1.0</value>
+						<minValue>0.01</minValue>
+						<maxValue>10.0</maxValue>
+					</preference>
+				</preferences>
+			</category>
+		</categories>
+	</converterOptions>
 </configuration>

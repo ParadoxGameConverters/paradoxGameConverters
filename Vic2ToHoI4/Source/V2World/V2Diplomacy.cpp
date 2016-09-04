@@ -22,69 +22,33 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Diplomacy.h"
+#include "Vic2Agreement.h"
 #include "Log.h"
 
 
 
-V2Agreement::V2Agreement(Object *obj)
+V2Diplomacy::V2Diplomacy(Object *obj)
 {
-	type = obj->getKey();
-
-	std::vector<Object*> objFirst = obj->getValue("first");
-	if (objFirst.size() > 0)
+	for (auto agreementObj: obj->getLeaves())
 	{
-		country1 = objFirst[0]->getLeaf();
-	}
-	else
-	{
-		LOG(LogLevel::Warning) << "Diplomatic agreement (" << type << ") has no first party";
-	}
-
-	std::vector<Object*> objSecond = obj->getValue("second");
-	if (objSecond.size() > 0)
-	{
-		country2 = objSecond[0]->getLeaf();
-	}
-	else
-	{
-		LOG(LogLevel::Warning) << "Diplomatic agreement (" << type << ") has no second party";
-	}
-
-	std::vector<Object*> objDate = obj->getValue("start_date");
-	if (objDate.size() > 0)
-	{
-		start_date = date(objDate[0]->getLeaf());
+		if (isARelevantDiplomaticObject(agreementObj))
+		{
+			V2Agreement* agreement = new V2Agreement(agreementObj);
+			agreements.push_back(agreement);
+		}
 	}
 }
 
 
-V2Diplomacy::V2Diplomacy(Object *obj)
+bool V2Diplomacy::isARelevantDiplomaticObject(Object* obj) const
 {
-	std::vector<Object*> objVassals = obj->getValue("vassa");
-	for (auto itr: objVassals)
+	string key = obj->getKey();
+	if ((key == "vassal") || (key == "alliance") || (key == "causus_belli") || (key == "warsubsidy"))
 	{
-		V2Agreement agr(itr);
-		agreements.push_back(agr);
+		return true;
 	}
-
-	std::vector<Object*> objAlliances = obj->getValue("alliance");
-	for (auto itr: objAlliances)
+	else
 	{
-		V2Agreement agr(itr);
-		agreements.push_back(agr);
-	}
-
-	std::vector<Object*> objCBs = obj->getValue("causus_belli");
-	for (auto itr: objCBs)
-	{
-		V2Agreement agr(itr);
-		agreements.push_back(agr);
-	}
-
-	std::vector<Object*> objSubsidies = obj->getValue("warsubsidy");
-	for (auto itr: objSubsidies)
-	{
-		V2Agreement agr(itr);
-		agreements.push_back(agr);
+		return false;
 	}
 }

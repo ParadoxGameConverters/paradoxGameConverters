@@ -61,6 +61,18 @@ Configuration::Configuration()
 		Vic2Mods = modsObj[0]->getTokens();
 	}
 
+	manpowerFactor			= stof(obj[0]->getLeaf("manpower_factor"));
+	icConversion			= obj[0]->getLeaf("ic_conversion");
+	icFactor					= stof(obj[0]->getLeaf("ic_factor"));
+	if (obj[0]->getValue("ICStats").size() > 0)
+	{
+		ICStats = true;
+	}
+	else
+	{
+		ICStats = false;
+	}
+
 	leaderID					= 1000;
 	leaderIDCountryIdx	= 1;
 }

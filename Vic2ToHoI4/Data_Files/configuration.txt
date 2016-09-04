@@ -1,15 +1,30 @@
 configuration =
 {
 	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
-	V2directory = "D:\Games\steamapps\common\Victoria 2"
+	V2directory = "D:\Paradox Interactive\Victoria 2"
 
 	# HoI4 directory: a path on your computer where Hearts of Iron IV is installed
-	HoI4directory = "D:\Games\steamapps\common\Hearts of Iron IV"
+	HoI4directory = "D:\SteamLibrary\SteamApps\common\Hearts of Iron IV"
 
 	# HoI4 Documents directory: a path on your computer where Hearts of Iron IV keeps temporary files
-	HoI4Documentsdirectory = "C:\Users\John\Documents\Paradox Interactive\Hearts of Iron IV"
+	HoI4Documentsdirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Hearts of Iron IV"
 
 	# Vic2Mods: Vic2 mods to use for conversion
 	# Example: Vic2Mods = { modname1 modname2 }
 	Vic2Mods = { }
+	
+	# Manpower factor: a multiplier applied to manpower conversion
+	manpower_factor = "1.0"
+
+	# IC Conversion: The method used for turning Vic2 workers into HoI4 factories. Options are:
+	#	"squareroot": The square root of the number of workers becomes the number of factories
+	#	"linear": The number of workers becomes the number of factories
+	#	"logarithmic": The logarithm of the numbers of workers becomes the number of factories
+	#	"sin-log": A more complex variation that gives more advantages to under-industrialized nations while still allowing over-industrialized ones to pull ahead.
+	#	Default: "linear"
+	ic_conversion = "linear"
+	ic_factor = 1.0
+
+	# IC stats: If this is turned on, the converter will output files with detailed stats about industry conversion. Just remove the # on the next line if you'd like them.
+	# ICStats = yes
 }

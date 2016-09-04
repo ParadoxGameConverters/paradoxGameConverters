@@ -32,7 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 //HoI4RegimentType::HoI4RegimentType(string type)
 //{
 //	/*string	filename	= Configuration::getHoI4Path() + "/tfh/units/" + type + ".txt";
-//	Object*	obj		= parser_UTF8::doParseFile(filename.c_str());
+//	Object*	obj		= parser_UTF8::doParseFile(filename);
 //	obj					= obj->getLeaves()[0];
 //	name					= obj->getKey();
 //
@@ -64,9 +64,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 //		LOG(LogLevel::Error) << "Possible bad unit type in " << filename << "!";
 //	}
 //
-//	max_strength			= _wtoi(obj->getLeaf("max_strength").c_str());
+//	max_strength			= stoi(obj->getLeaf("max_strength"));
 //	practicalBonus			= obj->getLeaf("on_completion");
-//	practicalBonusFactor	= _wtof(obj->getLeaf("completion_size").c_str());*/
+//	practicalBonusFactor	= stof(obj->getLeaf("completion_size"));*/
 //}
 //
 //

@@ -23,6 +23,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "HoI4Buildings.h"
 #include "../Configuration.h"
+#include "../Mappers/CoastalHoI4Provinces.h"
 #include "log.h"
 #include "HoI4Province.h"
 #include <string>
@@ -75,174 +76,26 @@ HoI4Buildings::HoI4Buildings(const map<int, int>& provinceToStateIDMap)
 
 void HoI4Buildings::placeNavalBases(const map<int, int>& provinceToStateIDMap)
 {
-	vector<coastalProvince> coastalProvinces = getCoastalProvinces();
+	map<int, int> coastalProvinces = coastalProvincesMapper::getCoastalProvinces();
 	map<int, pair<double, double>> positions = getProvincePositions();
 	for (auto province: coastalProvinces)
 	{
-		auto position = positions.find(province.province);
+		auto position = positions.find(province.first);
 		if (position == positions.end())
 		{
-			LOG(LogLevel::Warning) << "Could not find position for province " << province.province << ". Naval base not set.";
+			LOG(LogLevel::Warning) << "Could not find position for province " << province.first << ". Naval base not set.";
 			continue;
 		}
 
-		auto provinceToStateMapping = provinceToStateIDMap.find(province.province);
+		auto provinceToStateMapping = provinceToStateIDMap.find(province.first);
 		if (provinceToStateMapping == provinceToStateIDMap.end())
 		{
-			LOG(LogLevel::Warning) << "Could not find state for province " << province.province << ". Naval base not set.";
+			LOG(LogLevel::Warning) << "Could not find state for province " << province.first << ". Naval base not set.";
 		}
 
-		HoI4NavalBase* newNavalBase = new HoI4NavalBase(provinceToStateMapping->second, position->second.first, position->second.second, province.connectingSeaProvince);
+		HoI4NavalBase* newNavalBase = new HoI4NavalBase(provinceToStateMapping->second, position->second.first, position->second.second, province.second);
 		buildings.insert(make_pair(provinceToStateMapping->second, newNavalBase));
 	}
-}
-
-
-vector<coastalProvince> HoI4Buildings::getCoastalProvinces()
-{
-	vector<coastalProvince> coastalProvinces;
-
-	map<int, province> provinces = getProvinces();
-	map<int, vector<int>> adjacencies = getAdjacencies();
-
-	for (auto province: provinces)
-	{
-		if (!province.second.isLand)
-		{
-			continue;
-		}
-
-		auto adjacency = adjacencies.find(province.first);
-		if (adjacency == adjacencies.end())
-		{
-			LOG(LogLevel::Warning) << "Could not find adjacencies for province " << province.first << ". Naval base not set.";
-			continue;
-		}
-
-		for (auto adjProvinceNum: adjacency->second)
-		{
-			auto adjProvince = provinces.find(adjProvinceNum);
-			if ((adjProvince != provinces.end()) && (adjProvince->second.type == "ocean"))
-			{
-				coastalProvince newCoastalProvince;
-				newCoastalProvince.province = province.first;
-				newCoastalProvince.connectingSeaProvince = adjProvince->first;
-				coastalProvinces.push_back(newCoastalProvince);
-				break;
-			}
-		}
-	}
-
-	return coastalProvinces;
-}
-
-
-map<int, province> HoI4Buildings::getProvinces()
-{
-	ifstream provinceDefinitions(Configuration::getHoI4Path() + "/map/definition.csv");
-	if (!provinceDefinitions.is_open())
-	{
-		LOG(LogLevel::Error) << "Could not open " << Configuration::getHoI4Path() << "/map/definition.csv";
-		exit(-1);
-	}
-
-	map<int, province> provinces;
-	while (!provinceDefinitions.eof())
-	{
-		string line;
-		getline(provinceDefinitions, line);
-		if (line.length() == 0)
-		{
-			break;
-		}
-
-		int IDSeparator = line.find_first_of(';');
-		int ID = stoi(line.substr(0, IDSeparator));
-		if (ID == 0)
-		{
-			continue;
-		}
-		line = line.substr(IDSeparator + 1, line.size());
-
-		int redSeparator = line.find_first_of(';');
-		line = line.substr(redSeparator + 1, line.size());
-
-		int greenSeparator = line.find_first_of(';');
-		line = line.substr(greenSeparator + 1, line.size());
-
-		int blueSeparator = line.find_first_of(';');
-		line = line.substr(blueSeparator + 1, line.size());
-
-		int landSeaSeparator = line.find_first_of(';');
-		string landOrSea = line.substr(0, landSeaSeparator);
-		bool isLand = (landOrSea == "land");
-		line = line.substr(landSeaSeparator + 1, line.size());
-
-		int boolSeparator = line.find_first_of(';');
-		line = line.substr(boolSeparator + 1, line.size());
-
-		int typeSeparator = line.find_first_of(';');
-		string type = line.substr(0, typeSeparator);
-		
-		province newProvince;
-		newProvince.isLand = isLand;
-		newProvince.type = type;
-		provinces.insert(make_pair(ID, newProvince));
-	}
-
-	return provinces;
-}
-
-
-map<int, vector<int>> HoI4Buildings::getAdjacencies()
-{
-	// province num; something; red; green; blue; <adjacencies;>*
-	ifstream provinceDefinitions("adj.txt");
-	if (!provinceDefinitions.is_open())
-	{
-		LOG(LogLevel::Error) << "Could not open adj.txt";
-		exit(-1);
-	}
-
-	map<int, vector<int>> adjacencies;
-	while (!provinceDefinitions.eof())
-	{
-		string line;
-		getline(provinceDefinitions, line);
-
-		int IDSeparator = line.find_first_of(';');
-		int ID = stoi(line.substr(0, IDSeparator));
-		if (ID == 0)
-		{
-			continue;
-		}
-		line = line.substr(IDSeparator + 1, line.size());
-
-		int fooSeparator = line.find_first_of(';');
-		line = line.substr(fooSeparator + 1, line.size());
-
-		int redSeparator = line.find_first_of(';');
-		line = line.substr(redSeparator + 1, line.size());
-
-		int greenSeparator = line.find_first_of(';');
-		line = line.substr(greenSeparator + 1, line.size());
-
-		int blueSeparator = line.find_first_of(';');
-		line = line.substr(blueSeparator + 1, line.size());
-
-		vector<int> curAdjacencies;
-		while (line.length() > 0)
-		{
-			int adjSeparator = line.find_first_of(';');
-			int adjNum = stoi(line.substr(0, adjSeparator));
-			curAdjacencies.push_back(adjNum);
-
-			line = line.substr(adjSeparator + 1, line.size());
-		}
-		adjacencies.insert(make_pair(ID, curAdjacencies));
-	}
-
-	return adjacencies;
 }
 
 
@@ -292,7 +145,7 @@ map<int, pair<double, double>> HoI4Buildings::getProvincePositions()
 
 void HoI4Buildings::output() const
 {
-	ofstream out(("output/" + Configuration::getOutputName() + "/map/buildings.txt").c_str());
+	ofstream out("output/" + Configuration::getOutputName() + "/map/buildings.txt");
 	if (!out.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not open output/" << Configuration::getOutputName() << "/map/buildings.txt";

@@ -26,9 +26,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "Object.h"
 #include <string>
 using namespace std;
+
+
+class Object;
 
 
 
@@ -37,16 +39,14 @@ class V2Pop
 	public:
 		V2Pop(Object* obj);
 
-		int		getSize()							const { return size; };
-		string	getType()							const { return type; };
-		int		getSupportedRegimentCount()	const { return supportedRegiments; };
-		double	getLiteracy()						const { return lit; };
+		int getSize() const { return size; }
+		string getType() const { return type; }
+		double getLiteracy() const { return literacy; }
 
 	private:
-		string	type;
-		int		size;
-		int		supportedRegiments;
-		double	lit;
+		int size;
+		string type;
+		double literacy;
 };
 
 
