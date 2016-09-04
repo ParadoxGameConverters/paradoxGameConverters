@@ -203,7 +203,7 @@ int Vic2State::getAverageRailLevel() const
 	int totalRailLevel = 0;
 	for (auto province: provinces)
 	{
-		totalRailLevel += province->getInfra();
+		totalRailLevel += province->getRailLevel();
 	}
 
 	return (totalRailLevel / provinces.size());

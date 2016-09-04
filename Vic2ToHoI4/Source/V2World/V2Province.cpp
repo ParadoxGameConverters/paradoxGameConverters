@@ -31,24 +31,47 @@ using namespace std;
 
 V2Province::V2Province(Object* obj)
 {
-	num = stoi(obj->getKey());
+	readOwner(obj);
+	readCores(obj);
+	readForts(obj);
+	readNavalBases(obj);
+	readRails(obj);
+	readPops(obj);
+}
 
-	vector<Object*> ownerObjs;				// the object holding the owner
-	ownerObjs = obj->getValue("owner");
-	(ownerObjs.size() == 0) ? ownerString = "" : ownerString = ownerObjs[0]->getLeaf();
+
+void V2Province::readOwner(Object* obj)
+{
 	owner = NULL;
 
+	vector<Object*> ownerObjs = obj->getValue("owner");
+	if (ownerObjs.size() == 0)
+	{
+		ownerString = "";
+	}
+	else
+	{
+		ownerString = ownerObjs[0]->getLeaf();
+	}
+}
+
+
+void V2Province::readCores(Object* obj)
+{
 	cores.clear();
-	vector<Object*> coreObjs;				// the object holding the cores
-	coreObjs = obj->getValue("core");
-	for (auto coreObj: coreObjs)
+
+	for (auto coreObj: obj->getValue("core"))
 	{
 		coreStrings.insert(coreObj->getLeaf());
 	}
+}
 
-	vector<Object*> buildingObjs;
+
+void V2Province::readForts(Object* obj)
+{
 	fortLevel = 0;
-	buildingObjs = obj->getValue("fort");
+
+	vector<Object*> buildingObjs = obj->getValue("fort");
 	if (buildingObjs.size() > 0)
 	{
 		vector<string> tokens = buildingObjs[0]->getTokens();
@@ -57,8 +80,14 @@ V2Province::V2Province(Object* obj)
 			fortLevel = stoi(tokens[0]);
 		}
 	}
+}
+
+
+void V2Province::readNavalBases(Object* obj)
+{
 	navalBaseLevel = 0;
-	buildingObjs = obj->getValue("naval_base");
+
+	vector<Object*> buildingObjs = obj->getValue("naval_base");
 	if (buildingObjs.size() > 0)
 	{
 		vector<string> tokens = buildingObjs[0]->getTokens();
@@ -67,8 +96,14 @@ V2Province::V2Province(Object* obj)
 			navalBaseLevel = stoi(tokens[0]);
 		}
 	}
+}
+
+
+void V2Province::readRails(Object* obj)
+{
 	railLevel = 0;
-	buildingObjs = obj->getValue("railroad");
+
+	vector<Object*> buildingObjs = obj->getValue("railroad");
 	if (buildingObjs.size() > 0)
 	{
 		vector<string> tokens = buildingObjs[0]->getTokens();
@@ -77,19 +112,46 @@ V2Province::V2Province(Object* obj)
 			railLevel = stoi(tokens[0]);
 		}
 	}
+}
 
-	// read pops
+
+void V2Province::readPops(Object* obj)
+{
 	vector<Object*> children = obj->getLeaves();
-	for (auto itr: children)
+	for (auto child: children)
 	{
-		string key = itr->getKey();
-		if (key == "aristocrats" || key == "artisans" || key == "bureaucrats" || key == "capitalists" || key == "clergymen"
-			|| key == "craftsmen" || key == "clerks" || key == "farmers" || key == "soldiers" || key == "officers"
-			|| key == "labourers" || key == "slaves")
+		if (isPopObject(child))
 		{
-			V2Pop* pop = new V2Pop(itr);
+			V2Pop* pop = new V2Pop(child);
 			pops.push_back(pop);
 		}
+	}
+}
+
+
+bool V2Province::isPopObject(Object* obj)
+{
+	string key = obj->getKey();
+
+	if ( key == "aristocrats" ||
+		  key == "artisans" ||
+		  key == "bureaucrats" ||
+		  key == "capitalists" ||
+		  key == "clergymen"	||
+		  key == "craftsmen" ||
+		  key == "clerks" ||
+		  key == "farmers" ||
+		  key == "soldiers" ||
+		  key == "officers" ||
+		  key == "labourers" ||
+		  key == "slaves"
+		)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 
@@ -109,50 +171,42 @@ void V2Province::setCores(const map<string, V2Country*>& countries)
 
 int V2Province::getTotalPopulation() const
 {
-	int total = 0;
-	for (auto itr: pops)
-	{
-		total += itr->getSize();
-	}
-	return total;
+	return getPopulation("");
 }
-
-
-//static bool PopSortBySizePredicate(const V2Pop* pop1, const V2Pop* pop2)
-//{
-//	return (pop1->getSize() > pop2->getSize());
-//}
-
 
 
 int V2Province::getPopulation(string type) const
 {
-	int totalPop = 0;
+	int totalPopulation = 0;
 	for (auto pop: pops)
 	{
-		// empty string for type gets total population
 		if (type == "" || type == pop->getType())
 		{
-			totalPop += pop->getSize();
+			totalPopulation += pop->getSize();
 		}
 	}
-	return totalPop;
+
+	return totalPopulation;
 }
 
 
 int V2Province::getLiteracyWeightedPopulation(string type) const
 {
-	//double literacyWeight = Configuration::getLiteracyWeight();
-	//int totalPop = 0;
-	//for (auto pop: pops)
-	//{
-	//	// empty string for type gets total population
-	//	if (type == "" || type == pop->getType())
-	//	{
-	//		totalPop += int(pop->getSize() * (pop->getLiteracy() * literacyWeight + (1.0 - literacyWeight)));
-	//	}
-	//}
-	//return totalPop;
+	int totalPopulation = 0;
+	for (auto pop: pops)
+	{
+		if (type == "" || type == pop->getType())
+		{
+			totalPopulation += calculateLiteracyWeightedPop(pop);
+		}
+	}
+	return totalPopulation;
 
 	return 0;
+}
+
+
+int V2Province::calculateLiteracyWeightedPop(const V2Pop* thePop) const
+{
+	return int(thePop->getSize() * (thePop->getLiteracy() * 0.9 + 0.1));
 }

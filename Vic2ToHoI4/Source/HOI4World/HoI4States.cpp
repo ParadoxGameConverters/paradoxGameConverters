@@ -124,8 +124,8 @@ map<int, ownersAndCores> HoI4States::determineProvinceOwners(const CountryMappin
 			continue;
 		}
 
-		map<V2Country*, MTo1ProvinceComp> potentialOwners = determinePotentialOwners(provinceLink);
-		V2Country* oldOwner = selectProvinceOwner(potentialOwners);
+		map<const V2Country*, MTo1ProvinceComp> potentialOwners = determinePotentialOwners(provinceLink);
+		const V2Country* oldOwner = selectProvinceOwner(potentialOwners);
 		if (oldOwner == NULL)
 		{
 			continue;
@@ -199,9 +199,9 @@ bool HoI4States::getAppropriateMapping(int provNum, HoI4ToVic2ProvinceMapping::c
 }
 
 
-map<V2Country*, MTo1ProvinceComp> HoI4States::determinePotentialOwners(HoI4ToVic2ProvinceMapping::const_iterator provinceLink)
+map<const V2Country*, MTo1ProvinceComp> HoI4States::determinePotentialOwners(HoI4ToVic2ProvinceMapping::const_iterator provinceLink)
 {
-	map<V2Country*, MTo1ProvinceComp> potentialOwners;
+	map<const V2Country*, MTo1ProvinceComp> potentialOwners;
 	for (auto srcProvItr: provinceLink->second)
 	{
 		auto srcProvince = sourceWorld->getProvince(srcProvItr);
@@ -210,7 +210,7 @@ map<V2Country*, MTo1ProvinceComp> HoI4States::determinePotentialOwners(HoI4ToVic
 			LOG(LogLevel::Warning) << "Old province " << provinceLink->second[0] << " does not exist (bad mapping?)";
 			continue;
 		}
-		V2Country* owner = srcProvince->getOwner();
+		const V2Country* owner = srcProvince->getOwner();
 
 		if (potentialOwners.find(owner) == potentialOwners.end())
 		{
@@ -224,9 +224,9 @@ map<V2Country*, MTo1ProvinceComp> HoI4States::determinePotentialOwners(HoI4ToVic
 }
 
 
-V2Country* HoI4States::selectProvinceOwner(const map<V2Country*, MTo1ProvinceComp>& potentialOwners)
+const V2Country* HoI4States::selectProvinceOwner(const map<const V2Country*, MTo1ProvinceComp>& potentialOwners)
 {
-	V2Country* oldOwner = NULL;
+	const V2Country* oldOwner = NULL;
 	for (auto potentialOwner: potentialOwners)
 	{
 		// I am the new owner if there is no current owner, or I have more provinces than the current owner,

@@ -428,9 +428,9 @@ void HoI4World::convertNavalBases()
 		for (auto provinceNum: vic2State->getProvinceNums())
 		{
 			auto sourceProvince = sourceWorld->getProvince(provinceNum);
-			if (sourceProvince->getNavalBase() > 0)
+			if (sourceProvince->getNavalBaseLevel() > 0)
 			{
-				navalBaseLevel += sourceProvince->getNavalBase();
+				navalBaseLevel += sourceProvince->getNavalBaseLevel();
 
 				// set the naval base in only coastal provinces
 				if (navalBaseLocation == 0)
@@ -522,7 +522,7 @@ void HoI4World::convertIndustry()
 	//		}
 
 	//		// convert forts, naval bases, and infrastructure
-	//		int fortLevel = sourceProvince->getFort();
+	//		int fortLevel = sourceProvince->getFortLevel();
 	//		fortLevel = max(0, (fortLevel - 5) * 2 + 1);
 	//		if (dstProvItr->second->getNavalBase() > 0)
 	//		{
