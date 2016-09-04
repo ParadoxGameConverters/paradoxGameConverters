@@ -4,6 +4,7 @@ xcopy "Data_Files\blankMod" "release\blankmod" /Y /E /I
 
 rem **Copy data files**
 copy "Data_Files\configuration.txt" "release\configuration.txt"
+copy "Data_Files\configuration.txt" "release\configuration-example.txt"
 copy "Data_Files\readme.txt" "release\readme.txt"
 copy "Data_Files\merge_nations.txt" "release\merge_nations.txt"
 copy "Data_Files\province_mappings.txt" "release\province_mappings.txt

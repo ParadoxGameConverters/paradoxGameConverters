@@ -81,6 +81,11 @@ class Configuration // Singleton
 			return getInstance()->icFactor;
 		}
 
+		static bool getICStats()
+		{
+			return getInstance()->ICStats;
+		}
+
 		static int getNextLeaderID()
 		{
 			return getInstance()->leaderID++;
@@ -113,6 +118,7 @@ class Configuration // Singleton
 		double			manpowerFactor;
 		string			icConversion;
 		double			icFactor;
+		bool ICStats;
 
 		unsigned int	leaderID;
 		unsigned int	leaderIDCountryIdx;

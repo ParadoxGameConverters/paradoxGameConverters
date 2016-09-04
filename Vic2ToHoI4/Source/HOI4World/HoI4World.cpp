@@ -669,7 +669,7 @@ void HoI4World::reportIndustryLevels()
 	LOG(LogLevel::Debug) << "\t" << civilialFactories << " civilian factories";
 	LOG(LogLevel::Debug) << "\t" << dockyards << " dockyards";
 
-	if (true)
+	if (Configuration::getICStats())
 	{
 		reportCountryIndustry();
 		reportDefaultIndustry();
