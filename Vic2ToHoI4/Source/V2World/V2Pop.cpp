@@ -23,6 +23,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "V2Pop.h"
 #include "Log.h"
+#include "Object.h"
 
 
 
@@ -39,6 +40,6 @@ V2Pop::V2Pop(Object *obj)
 	childObj = obj->getValue("literacy");
 	if (childObj.size() > 0)
 	{
-		lit = stoi(childObj[0]->getLeaf());
+		literacy = stoi(childObj[0]->getLeaf());
 	}
 }
