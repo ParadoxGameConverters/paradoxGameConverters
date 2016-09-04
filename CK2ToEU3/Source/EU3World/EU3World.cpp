@@ -44,7 +44,7 @@
 #include "..\ModWorld\ModCultureRule.h"
 #include "CK2World\Character\CK2Character.h"
 #include "EU3Province.h"
-#include "EU3Country.h"
+#include "Country\EU3Country.h"
 #include "EU3Ruler.h"
 #include "EU3Advisor.h"
 #include "EU3Diplomacy.h"
@@ -1598,7 +1598,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 				{
 					if (jtr->first == *i)
 					{
-						EU3Agreement* agr = new EU3Agreement;
+						auto agr = std::make_shared<EU3Agreement>();
 						agr->type = "open_market";
 						agr->startDate = common::date("1.1.1");
 						agr->country1 = itr->second;
@@ -1618,7 +1618,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 				{
 					if (itr->first == *i)
 					{
-						EU3Agreement* agr = new EU3Agreement;
+						auto agr = make_shared<EU3Agreement>();
 						agr->type = "open_market";
 						agr->startDate = common::date("1.1.1");
 						agr->country1 = jtr->second;
@@ -1646,7 +1646,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 			bool rhsDominant = false;
 			if (lhs->hasUnionWith(rhs, rhsDominant))
 			{
-				EU3Agreement* agr = new EU3Agreement;
+				auto agr = make_shared<EU3Agreement>();
 				agr->type = "union";
 				agr->startDate = common::date("1.1.1");
 				if (rhsDominant)
@@ -1667,7 +1667,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 			// Royal Marriages
 			if (lhs->hasRMWith(rhs))
 			{
-				EU3Agreement* agr = new EU3Agreement;
+				auto agr = make_shared<EU3Agreement>();
 				agr->type = "royal_marriage";
 				agr->startDate = common::date("1.1.1");
 				agr->country1 = itr->second;
@@ -1680,7 +1680,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 			// Alliances
 			if (lhs->hasAllianceWith(rhs))
 			{
-				EU3Agreement* agr = new EU3Agreement;
+				auto agr = make_shared<EU3Agreement>();
 				agr->type = "alliance";
 				agr->startDate = common::date("1.1.1");
 				agr->country1 = itr->second;
@@ -1720,7 +1720,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 				}
 				if ((coastalProvinces > 0) && (tradePosts * 2 >= coastalProvinces))
 				{
-					EU3Agreement* agr = new EU3Agreement;
+					auto agr = make_shared<EU3Agreement>();
 					agr->type = "trade_agreement";
 					agr->startDate = startDate;
 					agr->country1 = itr->second;
@@ -1754,7 +1754,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 				}
 				if ((coastalProvinces > 0) && (tradePosts * 2 >= coastalProvinces))
 				{
-					EU3Agreement* agr = new EU3Agreement;
+					auto agr = make_shared<EU3Agreement>();
 					agr->type = "trade_agreement";
 					agr->startDate = startDate;
 					agr->country1 = jtr->second;

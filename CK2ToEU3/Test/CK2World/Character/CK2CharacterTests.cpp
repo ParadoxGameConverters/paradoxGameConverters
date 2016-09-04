@@ -21,7 +21,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <map>
 #include <memory>
-#include "Helpers\ObjectDataHelper.h"
+#include "Helpers/ObjectDataHelper.h"
+#include "Helpers/SaveDataHelper.h"
 #include "Mocks/LoggerMock.h"
 #include "Mocks/ObjectMock.h"
 #include "Mocks/CK2World/Opinion/RepositoryMock.h"
@@ -44,6 +45,7 @@ namespace ck2
 {
 namespace unittests
 {
+
 namespace character
 {
 
@@ -54,31 +56,15 @@ class CK2CharacterShould : public Test
 protected:
 	CK2CharacterShould() : SAMPLE_TITLE_NAME("e_sample"), DEMESNE_KEY("demesne"),
         opinionRepositoryMock(std::make_shared<ck2::opinion::mocks::RepositoryMock>()),
-        world(std::make_shared<CK2World>(std::make_shared<LoggerMock>(), opinionRepositoryMock))
+        world(std::make_shared<CK2World>(std::make_shared<LoggerMock>(), opinionRepositoryMock)),
+        saveDataMock(saveData.getData()), saveDataHelper(saveData)
 	{
 	}
 
-    static constexpr auto BEKTASHI_KEY = "bektashi";
-    static constexpr auto SUNNI_KEY = "sunni";
-    static constexpr auto MUSLIM_KEY = "muslim";
+    static constexpr auto HERESY_KEY = "bektashi";
+    static constexpr auto RELIGION_GROUP_MEMBER_KEY = "sunni";
+    static constexpr auto RELIGION_GROUP_KEY = "muslim";
     static constexpr auto RELIGION_KEY = "religion";
-
-	std::vector<IObject*> getSampleDemsneData()
-	{
-	    constexpr auto TITLE_INNER_KEY = "title";
-	    constexpr auto PRIMARY_TITLE_KEY = "primary";
-
-		Object *primaryTitleInnerObj = new Object(TITLE_INNER_KEY);
-		primaryTitleInnerObj->setValue(SAMPLE_TITLE_NAME);
-		Object *primaryTitleObj = new Object(PRIMARY_TITLE_KEY);
-		primaryTitleObj->setValue(primaryTitleInnerObj);
-		Object *demesneObj = new Object(DEMESNE_KEY);
-		demesneObj->setValue(primaryTitleObj);
-		std::vector<IObject*> demesneCollection;
-		demesneCollection.push_back(demesneObj);
-
-		return demesneCollection;
-	}
 
 	std::vector<IObject*> getEmptyDemesne()
 	{
@@ -99,18 +85,7 @@ protected:
 
 	void setReligionExpectations()
 	{
-        IObject* sunniObj = new Object(SUNNI_KEY);
-        std::vector<IObject*> muslimReligions = { sunniObj };
-        Object muslimGroupObj(MUSLIM_KEY);
-        muslimGroupObj.setValue(static_cast<Object *>(sunniObj));
-        std::vector<IObject*> religionGroups = { &muslimGroupObj };
-        ObjectMock religionsMock;
-
-        setDefaultExpectations();
-        EXPECT_CALL(religionsMock, getLeaves()).WillRepeatedly(Return(religionGroups));
-        EXPECT_CALL(saveDataMock, getLeaf(RELIGION_KEY)).WillRepeatedly(Return(BEKTASHI_KEY));
-
-        CK2Religion::parseReligions(&religionsMock);
+        saveDataHelper.setReligionExpectations(RELIGION_GROUP_KEY, RELIGION_GROUP_MEMBER_KEY, HERESY_KEY);
 	}
 
 	const std::string SAMPLE_TITLE_NAME;
@@ -119,7 +94,9 @@ protected:
 	map<int, CK2Trait*> traits;
 	std::shared_ptr<opinion::mocks::RepositoryMock> opinionRepositoryMock;
 	std::shared_ptr<CK2World> world;
-	ObjectMock saveDataMock;
+	ObjectDataHelper saveData;
+	ObjectMock& saveDataMock;
+	SaveDataHelper saveDataHelper;
 };
 
 TEST_F(CK2CharacterShould, SetVersion2Point2SaveFormatPrimaryTitle)
@@ -130,13 +107,12 @@ TEST_F(CK2CharacterShould, SetVersion2Point2SaveFormatPrimaryTitle)
 	map<string, CK2Title*> titleMap;
 	titleMap.insert(std::pair<string, CK2Title*>(SAMPLE_TITLE_NAME, &sampleTitle));
 
-	std::vector<IObject*> demesneData = getSampleDemsneData();
+	saveDataHelper.setDemesneExpectation(SAMPLE_TITLE_NAME);
 
 	ObjectMock configurationMock;
 
     setDefaultExpectations();
 	EXPECT_CALL(configurationMock, getLeaf(_)).WillRepeatedly(Return(std::string()));
-	EXPECT_CALL(saveDataMock, getValue(DEMESNE_KEY)).WillRepeatedly(Return(demesneData));
 
 	Configuration::setConfiguration(&configurationMock);
 	CK2Character sampleCharacter(&saveDataMock, world);
@@ -146,18 +122,14 @@ TEST_F(CK2CharacterShould, SetVersion2Point2SaveFormatPrimaryTitle)
 
 	ASSERT_THAT(calculatedPrimaryTitle, NotNull());
 	ASSERT_EQ(SAMPLE_TITLE_NAME, calculatedPrimaryTitle->getTitleString());
-
-	delete demesneData[0];
 }
 
 TEST_F(CK2CharacterShould, BeSunniIfBektashiHeresyNotAvailableInGame)
 {
-    setReligionExpectations();
+	setReligionExpectations();
     CK2Character sampleCharacter(&saveDataMock, world);
 
-    ASSERT_EQ(CK2Religion::getReligion(SUNNI_KEY), sampleCharacter.getReligion());
-
-    CK2Religion::forgetReligions();
+    ASSERT_EQ(CK2Religion::getReligion(RELIGION_GROUP_MEMBER_KEY), sampleCharacter.getReligion());
 }
 
 TEST_F(CK2CharacterShould, GetItsMappedPrimaryTitleStringIfDemesnePrimaryTitleStringEmpty)
@@ -253,7 +225,6 @@ TEST_F(CK2CharacterShould, NotIncludeWrongGovernmentOpinionModifierIfCharacterBa
     sampleCharacter.getOpinionOf(&liegeCharacter, version);
 
     delete demesneData[0];
-    CK2Religion::forgetReligions();
 }
 
 } // namespace character

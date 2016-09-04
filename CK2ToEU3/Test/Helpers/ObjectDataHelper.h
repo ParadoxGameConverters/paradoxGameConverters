@@ -22,8 +22,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <memory>
 #include "Mocks/ObjectMock.h"
 
-#ifndef OBJECT_DATA_HELPER_H_
-#define OBJECT_DATA_HELPER_H_
+#ifndef OBJECTDATAHELPER_H_
+#define OBJECTDATAHELPER_H_
 
 using namespace testing;
 using namespace mocks;
@@ -65,4 +65,4 @@ private:
 
 }  // namespace helpers
 
-#endif // OBJECT_DATA_HELPER_H_
+#endif // OBJECTDATAHELPER_H_

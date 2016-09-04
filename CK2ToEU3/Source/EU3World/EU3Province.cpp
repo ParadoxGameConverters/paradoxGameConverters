@@ -22,7 +22,7 @@
 
 
 #include "EU3Province.h"
-#include "EU3Country.h"
+#include "Country\EU3Country.h"
 #include "EU3History.h"
 #include "EU3Advisor.h"
 #include "..\Log.h"
