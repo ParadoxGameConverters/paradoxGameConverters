@@ -610,7 +610,9 @@ double HoI4World::calculateTotalFactoriesInCountry(long employedWorkers)
 	}
 	else if (Configuration::getIcConversion() == "logarithmic")
 	{
-		industry = log(max(1.0, employedWorkersAdjusted / 0.7)) / log(2) * 5.33 * Configuration::getIcFactor();
+		double x = Configuration::getIcFactor();
+		double factor = 1.055 * (x*x) / (x*x + 0.055);
+		industry = log(max(1.0, employedWorkersAdjusted)) / log(1.055 / factor);
 	}
 	else if (Configuration::getIcConversion() == "sin-log")
 	{
