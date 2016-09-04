@@ -105,10 +105,10 @@ void HoI4States::recordAllLandProvinces()
 }
 
 
-void HoI4States::convertStates(const CountryMapping& countryMap, const V2Localisation& Vic2Localisations)
+void HoI4States::convertStates(const CountryMapping& countryMap)
 {
 	map<int, ownersAndCores> provinceOwnersandCores = determineProvinceOwners(countryMap);
-	createStates(countryMap, provinceOwnersandCores, Vic2Localisations);
+	createStates(countryMap, provinceOwnersandCores);
 }
 
 
@@ -244,7 +244,7 @@ const V2Country* HoI4States::selectProvinceOwner(const map<const V2Country*, MTo
 }
 
 
-void HoI4States::createStates(const CountryMapping& countryMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, const V2Localisation& Vic2Localisations)
+void HoI4States::createStates(const CountryMapping& countryMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap)
 {
 	int stateID = 1;
 	set<int> assignedProvinces;
@@ -252,22 +252,19 @@ void HoI4States::createStates(const CountryMapping& countryMap, const map<int, o
 	{
 		for (auto vic2State: country.second->getStates())
 		{		
-			if (createMatchingHoI4State(vic2State, stateID, countryMap.GetHoI4Tag(country.first), provinceToOwnersAndCoresMap, assignedProvinces, Vic2Localisations))
+			if (createMatchingHoI4State(vic2State, stateID, countryMap.GetHoI4Tag(country.first), provinceToOwnersAndCoresMap, assignedProvinces))
 			{
 				stateID++;
 			}
 		}
 	}
 
-	addNonenglishStateLocalisations();
-	addNonenglishVPLocalisations();
-
 	unsigned int manpower = getTotalManpower();
 	LOG(LogLevel::Debug) << "Total manpower was " << manpower << ", which is " << manpower / 20438756.2 << "% of default HoI4.";
 }
 
 
-bool HoI4States::createMatchingHoI4State(const Vic2State* vic2State, int stateID, const string& stateOwner, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces, const V2Localisation& Vic2Localisations)
+bool HoI4States::createMatchingHoI4State(const Vic2State* vic2State, int stateID, const string& stateOwner, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces)
 {
 	//	create a matching HoI4 state
 	HoI4State* newState = new HoI4State(vic2State, stateID, stateOwner);
@@ -280,7 +277,6 @@ bool HoI4States::createMatchingHoI4State(const Vic2State* vic2State, int stateID
 
 	createVPForState(newState);
 	addManpowerToNewState(newState);
-	addLocalisations(newState, Vic2Localisations);
 	states.insert(make_pair(stateID, newState));
 
 	return true;
@@ -352,25 +348,31 @@ void HoI4States::addManpowerToNewState(HoI4State* newState)
 }
 
 
-void HoI4States::addLocalisations(const HoI4State* state, const V2Localisation& Vic2Localisations)
+void HoI4States::addLocalisations(const V2Localisation& Vic2Localisations)
 {
-	for (auto Vic2NameInLanguage: Vic2Localisations.GetTextInEachLanguage(state->getSourceState()->getStateID()))
+	for (auto state: states)
 	{
-		addStateLocalisationForLanguage(state, Vic2NameInLanguage, Vic2Localisations);
-	}
-
-	int VPPositionInHoI4 = state->getVPLocation();
-	auto VPProvinceMapping = provinceMapper::getHoI4ToVic2ProvinceMapping().find(VPPositionInHoI4);
-	if (
-		  (VPProvinceMapping != provinceMapper::getHoI4ToVic2ProvinceMapping().end()) &&
-		  (VPProvinceMapping->second.size() > 0)
-		)
-	{
-		for (auto Vic2NameInLanguage: Vic2Localisations.GetTextInEachLanguage("PROV" + to_string(VPProvinceMapping->second[0])))
+		for (auto Vic2NameInLanguage: Vic2Localisations.GetTextInEachLanguage(state.second->getSourceState()->getStateID()))
 		{
-			addVPLocalisationForLanguage(state, Vic2NameInLanguage, Vic2Localisations);
+			addStateLocalisationForLanguage(state.second, Vic2NameInLanguage, Vic2Localisations);
+		}
+
+		int VPPositionInHoI4 = state.second->getVPLocation();
+		auto VPProvinceMapping = provinceMapper::getHoI4ToVic2ProvinceMapping().find(VPPositionInHoI4);
+		if (
+			  (VPProvinceMapping != provinceMapper::getHoI4ToVic2ProvinceMapping().end()) &&
+			  (VPProvinceMapping->second.size() > 0)
+			)
+		{
+			for (auto Vic2NameInLanguage: Vic2Localisations.GetTextInEachLanguage("PROV" + to_string(VPProvinceMapping->second[0])))
+			{
+				addVPLocalisationForLanguage(state.second, Vic2NameInLanguage, Vic2Localisations);
+			}
 		}
 	}
+
+	addNonenglishStateLocalisations();
+	addNonenglishVPLocalisations();
 }
 
 

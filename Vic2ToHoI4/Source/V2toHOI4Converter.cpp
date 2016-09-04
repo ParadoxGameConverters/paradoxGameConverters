@@ -355,11 +355,12 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	//initAIFocusModifiers(obj, focusModifiers);
 	// Convert
 	LOG(LogLevel::Info) << "Converting states";
-	theStates->convertStates(countryMap, localisation);
+	theStates->convertStates(countryMap);
 	destWorld.addStates(theStates);
 	destWorld.convertNavalBases();
 	LOG(LogLevel::Info) << "Converting countries";
 	destWorld.convertCountries(countryMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
+	theStates->addLocalisations(localisation);
 	LOG(LogLevel::Info) << "Converting industry";
 	destWorld.convertIndustry();
 	destWorld.convertResources();

@@ -48,6 +48,7 @@ class HoI4State
 		void addManpower(int newManpower) { manpower += newManpower; }
 		void addAirBase(int newAirBase) { airbaseLevel += newAirBase; if (airbaseLevel > 10) airbaseLevel = 10; }
 		void addVictoryPointValue(int additionalValue) { victoryPointValue += additionalValue; }
+		void setVPLocation(int province) { victoryPointPosition = province; }
 
 		void setNavalBase(int level, int location);
 		void addCores(const vector<string>& newCores);

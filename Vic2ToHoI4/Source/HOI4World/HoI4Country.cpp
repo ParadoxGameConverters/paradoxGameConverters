@@ -829,6 +829,7 @@ void HoI4Country::determineCapitalFromVic2(const map<int, int>& provinceToStateI
 		if (capitalState != provinceToStateIDMap.end() && isStateValidForCapital(capitalState, states))
 		{
 			capital = capitalState->second;
+			setCapitalInCapitalState(itr->second[0], states);
 		}
 		else
 		{
@@ -862,6 +863,16 @@ bool HoI4Country::isThisStateACoreWhileWeOwnNoStates(const HoI4State* state) con
 	}
 
 	return false;
+}
+
+
+void HoI4Country::setCapitalInCapitalState(int capitalProvince, const map<int, HoI4State*>& states)
+{
+	auto capitalState = states.find(capital);
+	if (capitalState != states.end())
+	{
+		capitalState->second->setVPLocation(capitalProvince);
+	}
 }
 
 
