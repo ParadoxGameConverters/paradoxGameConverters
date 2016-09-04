@@ -51,6 +51,8 @@ DasGuntLord01		- Analysis
 dtremenak		- Analysis
 history_fan		- Analysis
 PTSnoop			- Analysis
+King_of_Men		- Analysis
+schombert		- Analysis
 simsulla		- Data Files
 Mattymooz		- Data Files
 Yellowone1		- Art
