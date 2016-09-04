@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "../Mappers/CoastalHoI4Provinces.h"
 #include "../Mappers/ProvinceMapper.h"
+#include "../Mappers/V2Localisations.h"
 #include "../V2World/V2Province.h"
 #include "../V2World/V2World.h"
 #include "Log.h"
@@ -356,11 +357,11 @@ bool HoI4State::amICoastal()
 }
 
 
-pair<string, string> HoI4State::makeLocalisation(const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations) const
+pair<string, string> HoI4State::makeLocalisation(const pair<const string, string>& Vic2NameInLanguage) const
 {
 	return make_pair(
 		makeLocalisationKey(),
-		makeLocalisationValue(Vic2NameInLanguage, Vic2Localisations)
+		makeLocalisationValue(Vic2NameInLanguage)
 	);
 }
 
@@ -371,12 +372,12 @@ string HoI4State::makeLocalisationKey() const
 }
 
 
-string HoI4State::makeLocalisationValue(const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations) const
+string HoI4State::makeLocalisationValue(const pair<const string, string>& Vic2NameInLanguage) const
 {
 	string localisedName = "";
 	if (sourceState->isPartialState())
 	{
-		localisedName += Vic2Localisations.GetText(sourceState->getOwner() + "_ADJ", Vic2NameInLanguage.first) + " ";
+		localisedName += V2Localisations::GetTextInLanguage(sourceState->getOwner() + "_ADJ", Vic2NameInLanguage.first) + " ";
 	}
 	localisedName += Vic2NameInLanguage.second;
 
@@ -384,7 +385,7 @@ string HoI4State::makeLocalisationValue(const pair<const string, string>& Vic2Na
 }
 
 
-pair<string, string> HoI4State::makeVPLocalisation(const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations) const
+pair<string, string> HoI4State::makeVPLocalisation(const pair<const string, string>& Vic2NameInLanguage) const
 {
 	return make_pair(
 		"VICTORY_POINTS_" + to_string(victoryPointPosition),

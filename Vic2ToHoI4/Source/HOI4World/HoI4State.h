@@ -29,7 +29,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <vector>
 #include <string>
 #include <map>
-#include "..\V2World\V2Localisation.h"
 #include "..\V2World\Vic2State.h"
 using namespace std;
 
@@ -69,8 +68,8 @@ class HoI4State
 
 		void convertIndustry(double workerFactoryRatio);
 
-		pair<string, string> makeLocalisation(const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations) const;
-		pair<string, string> makeVPLocalisation(const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations) const;
+		pair<string, string> makeLocalisation(const pair<const string, string>& Vic2NameInLanguage) const;
+		pair<string, string> makeVPLocalisation(const pair<const string, string>& Vic2NameInLanguage) const;
 
 	private:
 		int determineFactoryNumbers(double workerFactoryRatio);
@@ -85,7 +84,7 @@ class HoI4State
 		bool isProvinceInState(int provinceNum);
 
 		string makeLocalisationKey() const;
-		string makeLocalisationValue(const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations) const;
+		string makeLocalisationValue(const pair<const string, string>& Vic2NameInLanguage) const;
 
 		const Vic2State* sourceState;
 

@@ -24,9 +24,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Country.h"
 #include "Log.h"
 #include "Object.h"
+#include "../Mappers/V2Localisations.h"
 #include "V2Army.h"
 #include "V2Leader.h"
-#include "V2Localisation.h"
 #include "V2Province.h"
 #include "V2Relations.h"
 #include "Vic2State.h"
@@ -435,9 +435,9 @@ void V2Country::determineEmployedWorkers()
 }
 
 
-void V2Country::setLocalisationNames(const V2Localisation& localisations)
+void V2Country::setLocalisationNames()
 {
-	auto nameInAllLanguages = localisations.GetTextInEachLanguage(tag);
+	auto nameInAllLanguages = V2Localisations::GetTextInEachLanguage(tag);
 	for (auto nameInLanguage: nameInAllLanguages)
 	{
 		setLocalisationName(nameInLanguage.first, nameInLanguage.second);
@@ -458,9 +458,9 @@ void V2Country::setLocalisationName(const string& language, const string& name)
 }
 
 
-void V2Country::setLocalisationAdjectives(const V2Localisation& localisations)
+void V2Country::setLocalisationAdjectives()
 {
-	auto adjectiveInAllLanguages = localisations.GetTextInEachLanguage(tag + "_ADJ");
+	auto adjectiveInAllLanguages = V2Localisations::GetTextInEachLanguage(tag + "_ADJ");
 	for (auto adjectiveinLanguage: adjectiveInAllLanguages)
 	{
 		setLocalisationAdjective(adjectiveinLanguage.first, adjectiveinLanguage.second);

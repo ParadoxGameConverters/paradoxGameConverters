@@ -27,7 +27,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Inventions.h"
-#include "V2Localisation.h"
 #include "../Mappers/Mapper.h"
 #include "Object.h"
 #include <string>
@@ -47,7 +46,6 @@ class V2World
 		V2World(Object* obj);
 
 		void mergeNations(string masterTag, const vector<string>& slaveTags);
-		void setLocalisations(const V2Localisation& localisation);
 
 		const V2Province* getProvince(int provNum) const;
 		void checkAllProvincesMapped() const;
@@ -58,6 +56,8 @@ class V2World
 		const vector<V2Party*>& getParties() const { return parties; }
 
 	private:
+		void setLocalisations();
+
 		map<int, int> extractGreatNationIndices(const Object* obj);
 
 		bool isProvinceKey(string key) const;

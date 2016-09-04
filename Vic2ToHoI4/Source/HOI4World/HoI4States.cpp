@@ -25,6 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "log.h"
 #include "OSCompatibilityLayer.h"
 #include "ParadoxParserUTF8.h"
+#include "../Mappers/V2Localisations.h"
 #include "..\V2World\V2Country.h"
 #include "..\V2World\V2World.h"
 #include <fstream>
@@ -348,13 +349,13 @@ void HoI4States::addManpowerToNewState(HoI4State* newState)
 }
 
 
-void HoI4States::addLocalisations(const V2Localisation& Vic2Localisations)
+void HoI4States::addLocalisations()
 {
 	for (auto state: states)
 	{
-		for (auto Vic2NameInLanguage: Vic2Localisations.GetTextInEachLanguage(state.second->getSourceState()->getStateID()))
+		for (auto Vic2NameInLanguage: V2Localisations::GetTextInEachLanguage(state.second->getSourceState()->getStateID()))
 		{
-			addStateLocalisationForLanguage(state.second, Vic2NameInLanguage, Vic2Localisations);
+			addStateLocalisationForLanguage(state.second, Vic2NameInLanguage);
 		}
 
 		int VPPositionInHoI4 = state.second->getVPLocation();
@@ -364,9 +365,9 @@ void HoI4States::addLocalisations(const V2Localisation& Vic2Localisations)
 			  (VPProvinceMapping->second.size() > 0)
 			)
 		{
-			for (auto Vic2NameInLanguage: Vic2Localisations.GetTextInEachLanguage("PROV" + to_string(VPProvinceMapping->second[0])))
+			for (auto Vic2NameInLanguage: V2Localisations::GetTextInEachLanguage("PROV" + to_string(VPProvinceMapping->second[0])))
 			{
-				addVPLocalisationForLanguage(state.second, Vic2NameInLanguage, Vic2Localisations);
+				addVPLocalisationForLanguage(state.second, Vic2NameInLanguage);
 			}
 		}
 	}
@@ -376,15 +377,15 @@ void HoI4States::addLocalisations(const V2Localisation& Vic2Localisations)
 }
 
 
-void HoI4States::addStateLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations)
+void HoI4States::addStateLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage)
 {
-	getExistingStateLocalisation(Vic2NameInLanguage.first).insert(state->makeLocalisation(Vic2NameInLanguage, Vic2Localisations));
+	getExistingStateLocalisation(Vic2NameInLanguage.first).insert(state->makeLocalisation(Vic2NameInLanguage));
 }
 
 
-void HoI4States::addVPLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations)
+void HoI4States::addVPLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage)
 {
-	getExistingVPLocalisation(Vic2NameInLanguage.first).insert(state->makeVPLocalisation(Vic2NameInLanguage, Vic2Localisations));
+	getExistingVPLocalisation(Vic2NameInLanguage.first).insert(state->makeVPLocalisation(Vic2NameInLanguage));
 }
 
 

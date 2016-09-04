@@ -39,7 +39,6 @@ using namespace std;
 
 class		V2Army;
 class		V2Leader;
-class		V2Localisation;
 struct	V2Party;
 class		V2Province;
 class		V2Relations;
@@ -60,8 +59,8 @@ class V2Country
 		void eatCountry(V2Country* target);
 		void putProvincesInStates();
 		void determineEmployedWorkers();
-		void setLocalisationNames(const V2Localisation& localisations);
-		void setLocalisationAdjectives(const V2Localisation& localisations);
+		void setLocalisationNames();
+		void setLocalisationAdjectives();
 
 		map<string, V2Relations*> getRelations() const { return relations; }
 		vector<Vic2State*> getStates() const { return states; }

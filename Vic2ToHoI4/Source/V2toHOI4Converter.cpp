@@ -31,7 +31,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HOI4World/HoI4Buildings.h"
 #include "HoI4World/HoI4World.h"
 #include "V2World/V2World.h"
-#include "V2World/V2Localisation.h"
 #include "OSCompatibilityLayer.h"
 
 
@@ -186,19 +185,6 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	// Construct world from V2 save.
 	LOG(LogLevel::Info) << "Building world";
 	V2World sourceWorld(obj);
-
-	// Read all localisations.
-	LOG(LogLevel::Info) << "Reading localisation";
-	V2Localisation localisation;
-	localisation.ReadFromAllFilesInFolder(Configuration::getV2Path() + "/localisation");
-	for (auto itr: vic2Mods)
-	{
-		LOG(LogLevel::Debug) << "Reading mod localisation";
-		localisation.ReadFromAllFilesInFolder(Configuration::getV2Path() + "/mod/" + itr + "/localisation");
-	}
-
-	sourceWorld.setLocalisations(localisation);
-
 
 	// Merge nations
 	LOG(LogLevel::Info) << "Merging nations";
@@ -359,8 +345,8 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	destWorld.addStates(theStates);
 	destWorld.convertNavalBases();
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(countryMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
-	theStates->addLocalisations(localisation);
+	destWorld.convertCountries(countryMap, leaderIDMap, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
+	theStates->addLocalisations();
 	LOG(LogLevel::Info) << "Converting industry";
 	destWorld.convertIndustry();
 	destWorld.convertResources();

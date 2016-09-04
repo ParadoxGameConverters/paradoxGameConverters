@@ -30,7 +30,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <vector>
 #include "HoI4Localisation.h"
 #include "HoI4State.h"
-#include "..\V2World\V2Localisation.h"
 #include "..\V2World\V2Province.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/ProvinceMapper.h"
@@ -61,7 +60,7 @@ class HoI4States
 
 		void importStates(map<int, vector<int>>& defaultStateToProvinceMap);
 		void convertStates(const CountryMapping& countryMap);
-		void addLocalisations(const V2Localisation& Vic2Localisations);
+		void addLocalisations();
 
 		const map<int, HoI4State*>& getStates() const { return states; }
 		const map<int, int>& getProvinceToStateIDMap() const { return provinceToStateIDMap; }
@@ -81,8 +80,8 @@ class HoI4States
 		bool isProvinceOwnedByCountryAndNotAlreadyAssigned(int provNum, string stateOwner, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces);
 		void createVPForState(HoI4State* newState);
 		void addManpowerToNewState(HoI4State* newState);
-		void addStateLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations);
-		void addVPLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage, const V2Localisation& Vic2Localisations);
+		void addStateLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage);
+		void addVPLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage);
 		keyToLocalisationMap& getExistingStateLocalisation(const string& language);
 		keyToLocalisationMap& getExistingVPLocalisation(const string& language);
 		void addLanguageToStateLocalisations(const string& language);

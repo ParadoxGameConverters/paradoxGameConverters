@@ -69,6 +69,7 @@ V2World::V2World(Object* obj)
 	determinePartialStates();
 	inputDiplomacy(obj->getValue("diplomacy"));
 	readCountryFiles();
+	setLocalisations();
 }
 
 
@@ -381,12 +382,12 @@ V2Country* V2World::getCountry(string tag) const
 }
 
 
-void V2World::setLocalisations(const V2Localisation& localisation)
+void V2World::setLocalisations()
 {
 	for (auto country: countries)
 	{
-		country.second->setLocalisationNames(localisation);
-		country.second->setLocalisationAdjectives(localisation);
+		country.second->setLocalisationNames();
+		country.second->setLocalisationAdjectives();
 	}
 }
 

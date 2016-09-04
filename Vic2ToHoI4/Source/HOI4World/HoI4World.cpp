@@ -25,6 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <algorithm>
 #include <list>
 #include <queue>
+#include <unordered_map>
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp> 
 #include "ParadoxParserUTF8.h"
@@ -347,7 +348,7 @@ void HoI4World::getProvinceLocalizations(const string& file)
 }
 
 
-void HoI4World::convertCountries(const CountryMapping& countryMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+void HoI4World::convertCountries(const CountryMapping& countryMap, map<int, int>& leaderMap, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
 {
 	for (auto sourceItr : sourceWorld->getCountries())
 	{
@@ -369,7 +370,7 @@ void HoI4World::convertCountries(const CountryMapping& countryMap, map<int, int>
 				LOG(LogLevel::Error) << "Could not find the ruling party for " << sourceItr.first << ". Were all mods correctly included?";
 				exit(-1);
 			}
-			destCountry->initFromV2Country(*sourceWorld, sourceItr.second, rulingParty->ideology, countryMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, states->getProvinceToStateIDMap(), states->getStates());
+			destCountry->initFromV2Country(*sourceWorld, sourceItr.second, rulingParty->ideology, countryMap, leaderMap, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, states->getProvinceToStateIDMap(), states->getStates());
 			countries.insert(make_pair(HoI4Tag, destCountry));
 		}
 		else
