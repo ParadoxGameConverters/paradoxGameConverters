@@ -614,12 +614,12 @@ double HoI4World::calculateTotalFactoriesInCountry(long employedWorkers)
 	}
 	else if (Configuration::getIcConversion() == "sin-log")
 	{
-		double sinPart = sin(employedWorkersAdjusted / 150) * 158;
+		double sinPart = sin(employedWorkersAdjusted / 150) * 122.8;
 		if (employedWorkersAdjusted > 241)
 		{
-			sinPart = 135 + employedWorkersAdjusted / 10;
+			sinPart = 126 + employedWorkersAdjusted * 0.078;
 		}
-		double logpart = log10(employedWorkersAdjusted) * 23.8;
+		double logpart = log10(employedWorkersAdjusted) * 18.5;
 		industry = (sinPart + logpart + 5) * Configuration::getIcFactor();
 	}
 
