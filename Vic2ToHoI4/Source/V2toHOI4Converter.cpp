@@ -319,21 +319,6 @@ int ConvertV2ToHoI4(const std::string& V2SaveFileName)
 	backgroundMap seaBackgroundMap;
 	//initLeaderBackgroundMap(obj->getLeaves()[0], landBackgroundMap, seaBackgroundMap);
 
-	// parse AI focus data
-	LOG(LogLevel::Info) << "Parsing AI focuses";
-	/*obj = parser_UTF8::doParseFile("ai_focus.txt");
-	if (obj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file ai_focus.txt";
-		exit(-1);
-	}
-	if (obj->getLeaves().size() < 1)
-	{
-		LOG(LogLevel::Error) << "Failed to parse ai_focus.txt";
-		return 1;
-	}*/
-	AIFocusModifiers focusModifiers;
-	//initAIFocusModifiers(obj, focusModifiers);
 	// Convert
 	LOG(LogLevel::Info) << "Converting states";
 	theStates->convertStates();
