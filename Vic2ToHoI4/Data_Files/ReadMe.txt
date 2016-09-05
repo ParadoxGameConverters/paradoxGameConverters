@@ -46,14 +46,15 @@ Idhrendur		- Project Lead, Programming, Analysis
 thatsgerman		- Programming, Analysis
 jepaan			- Programming
 Italianajt		- Analysis, Data Files, QA
-Ordinary_Kraut		- Analysis, Data Files
-DasGuntLord01		- Analysis
+Ordinary_Kraut	- Analysis, Data Files
+DasGuntLord01	- Analysis
 dtremenak		- Analysis
 history_fan		- Analysis
 PTSnoop			- Analysis
 King_of_Men		- Analysis
 schombert		- Analysis
-simsulla		- Data Files
+AllUncertain	- Analysis
+simsulla			- Data Files
 Mattymooz		- Data Files
 Yellowone1		- Art
 

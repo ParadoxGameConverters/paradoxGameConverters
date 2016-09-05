@@ -25,9 +25,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "log.h"
 #include "OSCompatibilityLayer.h"
 #include "ParadoxParserUTF8.h"
+#include "../Mappers/CountryMapping.h"
 #include "../Mappers/V2Localisations.h"
-#include "..\V2World\V2Country.h"
-#include "..\V2World\V2World.h"
+#include "../V2World/V2Country.h"
+#include "../V2World/V2World.h"
 #include <fstream>
 
 
@@ -106,14 +107,14 @@ void HoI4States::recordAllLandProvinces()
 }
 
 
-void HoI4States::convertStates(const CountryMapping& countryMap)
+void HoI4States::convertStates()
 {
-	map<int, ownersAndCores> provinceOwnersandCores = determineProvinceOwners(countryMap);
-	createStates(countryMap, provinceOwnersandCores);
+	map<int, ownersAndCores> provinceOwnersandCores = determineProvinceOwners();
+	createStates(provinceOwnersandCores);
 }
 
 
-map<int, ownersAndCores> HoI4States::determineProvinceOwners(const CountryMapping& countryMap)
+map<int, ownersAndCores> HoI4States::determineProvinceOwners()
 {
 	const map<string, V2Country*> V2Countries = sourceWorld->getCountries();
 	map<int, ownersAndCores> ownersAndCoresMap;
@@ -133,7 +134,7 @@ map<int, ownersAndCores> HoI4States::determineProvinceOwners(const CountryMappin
 		}
 
 		// convert from the source provinces
-		const string HoI4Tag = countryMap[oldOwner->getTag()];
+		const string HoI4Tag = CountryMapper::getHoI4Tag(oldOwner->getTag());
 		if (HoI4Tag.empty())
 		{
 			LOG(LogLevel::Warning) << "Could not map provinces owned by " << oldOwner->getTag() << " in Vic2";
@@ -158,7 +159,7 @@ map<int, ownersAndCores> HoI4States::determineProvinceOwners(const CountryMappin
 							continue;
 						}
 
-						const string coreOwner = countryMap[oldCore->getTag()];
+						const string coreOwner = CountryMapper::getHoI4Tag(oldCore->getTag());
 						if (coreOwner != "")
 						{
 							auto coreItr = ownersAndCoresMap.find(provItr);
@@ -245,7 +246,7 @@ const V2Country* HoI4States::selectProvinceOwner(const map<const V2Country*, MTo
 }
 
 
-void HoI4States::createStates(const CountryMapping& countryMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap)
+void HoI4States::createStates(const map<int, ownersAndCores>& provinceToOwnersAndCoresMap)
 {
 	int stateID = 1;
 	set<int> assignedProvinces;
@@ -253,7 +254,7 @@ void HoI4States::createStates(const CountryMapping& countryMap, const map<int, o
 	{
 		for (auto vic2State: country.second->getStates())
 		{		
-			if (createMatchingHoI4State(vic2State, stateID, countryMap.GetHoI4Tag(country.first), provinceToOwnersAndCoresMap, assignedProvinces))
+			if (createMatchingHoI4State(vic2State, stateID, CountryMapper::getHoI4Tag(country.first), provinceToOwnersAndCoresMap, assignedProvinces))
 			{
 				stateID++;
 			}

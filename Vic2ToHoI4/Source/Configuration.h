@@ -71,9 +71,9 @@ class Configuration // Singleton
 			return getInstance()->manpowerFactor;
 		}
 
-		static string getIcConversion()
+		static double getIndustrialShapeFactor()
 		{
-			return getInstance()->icConversion;
+			return getInstance()->industrialShapeFactor;
 		}
 
 		static double getIcFactor()
@@ -116,7 +116,7 @@ class Configuration // Singleton
 		string			outputName;				// the name the outputted mod should have
 
 		double			manpowerFactor;
-		string			icConversion;
+		double industrialShapeFactor;
 		double			icFactor;
 		bool ICStats;
 
