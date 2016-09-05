@@ -87,13 +87,16 @@ class HoI3Regiment // also Ship, Wing
 		void	setName(string _name)									{ name = _name; }
 		void	setType(HoI3RegimentType _type)						{ type = _type; }
 		void	setHistoricalModel(unsigned _historicalModel)	{ historicalModel = _historicalModel; }
+		void	setReserve(bool _reserve)								{ reserve = _reserve; }
 
 		ForceType					getForceType() const	{ return type.getForceType(); }
 		const HoI3RegimentType&	getType() const		{ return type; }
+		bool							isReserve() const		{ return reserve; }
 
 	private:
 		string				name;
 		HoI3RegimentType	type;
+		bool					reserve;
 		unsigned				historicalModel; // Tech level
 };
 
@@ -110,7 +113,7 @@ class HoI3RegGroup // also Navy, Air
 		static void	resetHQCounts();
 		void			setName();
 		bool			addRegiment(HoI3Regiment reg, bool allowPromote);
-		void			addChild(HoI3RegGroup group);
+		bool			addChild(HoI3RegGroup group, bool allowPromote);
 		void			createHQs(HoI3RegimentType hqType);
 		void			undoPracticalAddition(map<string, double>& practicals) const;
 		int			size() const;
@@ -123,10 +126,11 @@ class HoI3RegGroup // also Navy, Air
 		void	setProductionQueue(const bool _productionQueue)	{ productionQueue = _productionQueue; }
 		void	setCommandLevel(CommandLevel lvl)					{ command_level = lvl; }
 
-		string		getName() const					{ return name; }
-		ForceType	getForceType() const				{ return force_type; }
-		bool			isEmpty() const					{ return (regiments.size() == 0 && children.size() == 0); }
-		bool			getProductionQueue() const		{ return productionQueue; }
+		string			getName() const					{ return name; }
+		ForceType		getForceType() const				{ return force_type; }
+		bool				isEmpty() const					{ return (regiments.size() == 0 && children.size() == 0); }
+		bool				getProductionQueue() const		{ return productionQueue; }
+		CommandLevel	getCommandLevel() const			{ return command_level; }
 
 	private:
 		HoI3RegGroup			createChild();

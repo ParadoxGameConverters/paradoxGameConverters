@@ -124,15 +124,34 @@ namespace Frontend.Core.Factories.TagReaders
 
                 if (regKey != null)
                 {
-                    var steamInstallationPath = regKey.GetValue("InstallLocation").ToString();
+                    return getInstallationPathFromRegKey(regKey);
+                }
+                else
+                {
+                    var hklm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+                    regKey =
+                    hklm.OpenSubKey(
+                        @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App " + steamId);
 
-                    if (!string.IsNullOrEmpty(steamInstallationPath))
+                    if (regKey != null)
                     {
-                        if (Directory.Exists(steamInstallationPath))
-                        {
-                            return steamInstallationPath;
-                        }
+                        return getInstallationPathFromRegKey(regKey);
                     }
+                }
+            }
+
+            return string.Empty;
+        }
+
+        private string getInstallationPathFromRegKey(RegistryKey regKey)
+        {
+            var steamInstallationPath = regKey.GetValue("InstallLocation").ToString();
+
+            if (!string.IsNullOrEmpty(steamInstallationPath))
+            {
+                if (Directory.Exists(steamInstallationPath))
+                {
+                    return steamInstallationPath;
                 }
             }
 

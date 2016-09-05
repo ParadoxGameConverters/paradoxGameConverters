@@ -43,5 +43,8 @@ link = { ck2 = manichean eu3 = shamanism }
 link = { ck2 = jewish eu3 = shamanism }
 link = { ck2 = samaritan eu3 = shamanism }
 link = { ck2 = karaite eu3 = shamanism }
+link = { ck2 = hindu eu3 = hinduism }
+link = { ck2 = jain eu3 = hinduism }
+link = { ck2 = buddhist eu3 = buddhism }
 
 }

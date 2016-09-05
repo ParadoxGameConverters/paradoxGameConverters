@@ -150,4 +150,9 @@
     <defaultTempFolderLocation>\Paradox Interactive\Hearts of Iron III</defaultTempFolderLocation>
     <tempDirectoryTagName>HoI3Documentsdirectory</tempDirectoryTagName>-->
   </gameConfiguration>
+  <gameConfiguration>
+    <!--Misc-->
+    <name>HeartsOfIron4</name>
+    <friendlyName>Hearts of Iron 4</friendlyName>
+  </gameConfiguration>
 </gameConfigurations>

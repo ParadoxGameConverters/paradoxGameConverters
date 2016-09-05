@@ -1,5 +1,5 @@
 /*Copyright (c) 2013 The CK2 to EU3 Converter Project
- 
+
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
  "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
  distribute, sublicense, and/or sell copies of the Software, and to
  permit persons to whom the Software is furnished to do so, subject to
  the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -26,10 +26,11 @@
 
 
 #include <fstream>
+#include <memory>
 #include <tuple>
 #include <set>
 #include "..\Mappers.h"
-#include "..\Date.h"
+#include "Common\Date.h"
 #include "..\ModWorld\ModCultureRule.h"
 
 
@@ -70,29 +71,29 @@ class EU3World
 		EU3World(CK2World*, EU3Tech*);
 
 		void	output(FILE*);
-		
+
 		void	addHistoricalCountries();
 		void	setupProvinces(provinceMapping& provinceMap);
 		void	getCultureRules();
 
 		void	convertCountries(map<string, CK2Title*> CK2Titles, const religionMapping& religionMap, const cultureMapping& cultureMap, const provinceMapping provinceMap);
-		void	convertProvinces(provinceMapping&, map<int, CK2Province*>&, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, const adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroup, Object* positionObj);
+		void	convertProvinces(provinceMapping&, map<int, std::shared_ptr<CK2Province>>&, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, const adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroup, Object* positionObj);
 		void	addAcceptedCultures();
 		void	convertAdvisors(inverseProvinceMapping&, provinceMapping&, CK2World&);
 		void	convertTech(const CK2World& srcWorld);
 		void	convertGovernments();
-		void	convertEconomies(const cultureGroupMapping& cultureGroups, const tradeGoodMapping& tradeGoodMap);	
+		void	convertEconomies(const cultureGroupMapping& cultureGroups, const tradeGoodMapping& tradeGoodMap);
 		void	assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap, CK2Version& version);
 		void	convertDiplomacy(CK2Version& version);
 		void	convertArmies(const inverseProvinceMapping inverseProvinceMap);
 		void	convertCoTs();
 		void	convertSliders();
-		
+
 		void	setJapaneseEmperor(EU3Country* emperor)	{ japaneseEmperor = emperor; };
 		void	addDamiyo(EU3Country* daimyo)					{ daimyos.push_back(daimyo); };
 		void	setShogun(EU3Country* _shogun)				{ shogun = _shogun; };
 		void	setShogunPower(double power)					{ shogunPower = power; };
-		
+
 		map<string, EU3Country*>	getCountries() const { return countries; };
 	private:
 		void	removeUnusedCountries();
@@ -105,8 +106,8 @@ class EU3World
 
 		CK2World*							srcWorld;
 		int									options[OPTIONS_END];
-		date									startDate;
-		EU3Tech*								techData;
+		common::date						startDate;
+		EU3Tech*							techData;
 
 		vector<int>							centersOfTrade;
 		map<int, EU3Province*>			provinces;

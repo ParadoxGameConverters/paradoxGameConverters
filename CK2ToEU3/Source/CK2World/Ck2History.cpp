@@ -1,5 +1,5 @@
 /*Copyright (c) 2013 The CK2 to EU3 Converter Project
- 
+
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
  "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
  distribute, sublicense, and/or sell copies of the Software, and to
  permit persons to whom the Software is furnished to do so, subject to
  the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -24,20 +24,25 @@
 #include "CK2History.h"
 #include "..\Parsers\Object.h"
 
+#include <iostream>
 
-
-CK2History::CK2History(Object* obj, map<int, CK2Character*>& characters)
+CK2History::CK2History(IObject* obj, map<int, std::shared_ptr<CK2Character>>& characters) :
+    characterMapping(characters)
 {
+    constexpr char HOLDER_KEY[] = "holder";
+    constexpr char CHARACTER_KEY[] = "character";
 	when = obj->getKey();
-	vector<Object*> historyObj = obj->getLeaves();
+	vector<IObject*> historyObj = obj->getLeaves();
 
 	holder = NULL;
-	for (unsigned int i = 0; i < historyObj.size(); i++)
-	{
-		string key = historyObj[i]->getKey();
-		if (key == "holder")
-		{
-			holder = characters[ atoi( historyObj[i]->getLeaf().c_str() ) ];
-		}
-	}
+	auto holderObj = obj->getValue(HOLDER_KEY);
+	if (!holderObj.empty())
+    {
+        holder = getHolderObj(holderObj[0]->getLeafValueOrThisValue(CHARACTER_KEY));
+    }
+}
+
+CK2Character* CK2History::getHolderObj(string holderId)
+{
+    return characterMapping[ atoi( holderId.c_str() ) ].get();
 }

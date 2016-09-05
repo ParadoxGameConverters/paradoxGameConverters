@@ -55,7 +55,7 @@ class V2World
 		vector<V2Party*>			getActiveParties(const V2Country* country) const;
 		
 		map<string, V2Country*>	getCountries()	const			{ return countries; }
-		V2Diplomacy*				getDiplomacy()					{ return &diplomacy; }
+		const V2Diplomacy*		getDiplomacy()	const			{ return &diplomacy; }
 		const vector<string>&	getGreatCountries() const	{ return greatCountries; }
 	private:
 		void							readCountryFiles(string countryListFile, string mod);

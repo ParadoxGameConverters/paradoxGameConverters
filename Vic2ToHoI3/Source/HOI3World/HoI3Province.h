@@ -66,7 +66,8 @@ class HoI3Province
 		double	getLeadership()		const { return leadership; }
 		double	getRawIndustry()		const { return rawIndustry; }
 		int		getActualIndustry()	const { return industry; }
-
+		
+		vector<string>	getCores() const	{ return cores; }
 
 		void		requireNavalBase(int min);
 		void		requireAirBase(int min);

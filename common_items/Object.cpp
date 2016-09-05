@@ -44,7 +44,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Object.h"
-#include "ParadoxParser.h"
+#include "Log.h"
+#include "ParadoxParser8859_15.h"
+#include "ParadoxParserUTF8.h"
 #include <sstream> 
 #include <fstream>
 #include <algorithm>
@@ -211,7 +213,8 @@ int Object::numTokens()
 }
 
 
-vector<string> Object::getKeys() {
+vector<string> Object::getKeys()
+{
 	vector<string> ret;	// the keys to return
 	for (vector<Object*>::iterator i = objects.begin(); i != objects.end(); ++i)
 	{
@@ -231,7 +234,7 @@ string Object::getLeaf(string leaf) const
 	vector<Object*> leaves = getValue(leaf); // the objects to return
 	if (0 == leaves.size())
 	{
-		cout << "Error: Cannot find leaf " << leaf << " in object " << endl << *this;
+		LOG(LogLevel::Error) << "Error: Cannot find leaf " << leaf << " in object\n" << *this;
 		assert(leaves.size());
 	}
 	return leaves[0]->getLeaf();
@@ -255,7 +258,7 @@ ostream& operator<< (ostream& os, const Object& obj)
 		return os;
 	}
 
-	if (&obj != getTopLevel())
+	if ((&obj != parser_UTF8::getTopLevel()) && (&obj != parser_8859_15::getTopLevel()))
 	{
 		os << obj.key << "=\n";
 		for (int i = 0; i < indent; i++)
@@ -269,7 +272,7 @@ ostream& operator<< (ostream& os, const Object& obj)
 	{
 		os << *(*i);
 	}
-	if (&obj != getTopLevel())
+	if ((&obj != parser_UTF8::getTopLevel()) && (&obj != parser_8859_15::getTopLevel()))
 	{
 		indent--;
 		for (int i = 0; i < indent; i++)
@@ -293,7 +296,7 @@ void Object::keyCount()
 	map<string, int> refCount;	// the count of the references
 	keyCount(refCount);
 	vector<pair<string, int> > sortedCount; // an organized container for the counts
-	for (map<string, int>::iterator i = refCount.begin(); i != refCount.end(); ++i)
+	for (auto i = refCount.begin(); i != refCount.end(); ++i)
 	{
 		pair<string, int> curr((*i).first, (*i).second);
 		if (2 > curr.second)
@@ -363,6 +366,7 @@ void Object::addObject(Object* target)
 	objects.push_back(target);
 }
 
+
 void Object::addObjectAfter(Object* target, string key)
 {
 	vector<Object*>::iterator i;
@@ -424,11 +428,11 @@ void setFlt(string name, const double val, Object* branch)
 	br->setValue(b);
 }
 
-double Object::safeGetFloat(string k, const
-	double def) {
+double Object::safeGetFloat(string k, const double def)
+{
 	objvec vec = getValue(k);	// the objects with the keys to be returned
 	if (0 == vec.size()) return def;
-	return atof(vec[0]->getLeaf().c_str());
+	return stof(vec[0]->getLeaf());
 }
 
 string Object::safeGetString(string k, string def)
@@ -448,7 +452,7 @@ int Object::safeGetInt(string k, const int def)
 	{
 		return def;
 	}
-	return atoi(vec[0]->getLeaf().c_str());
+	return stoi(vec[0]->getLeaf());
 }
 
 Object* Object::safeGetObject(string k, Object* def)
