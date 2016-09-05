@@ -463,20 +463,12 @@ void HoI4World::convertNavalBases()
 
 void HoI4World::convertIndustry()
 {
+	addStatesToCountries();
+
 	map<string, double> factoryWorkerRatios = calculateFactoryWorkerRatios();
+	putIndustryInStates(factoryWorkerRatios);
 
-	for (auto HoI4State : states->getStates())
-	{
-		auto ratioMapping = factoryWorkerRatios.find(HoI4State.second->getOwner());
-		if (ratioMapping == factoryWorkerRatios.end())
-		{
-			continue;
-		}
-
-		HoI4State.second->convertIndustry(ratioMapping->second);
-	}
-
-	fillCountryIC();
+	calculateIndustryInCountries();
 	reportIndustryLevels();
 
 	//// now that all provinces have had owners and cores set, convert their other items
@@ -574,74 +566,6 @@ void HoI4World::convertIndustry()
 }
 
 
-map<string, double> HoI4World::calculateFactoryWorkerRatios()
-{
-	map<string, double> factoryWorkerRatios;
-	for (auto HoI4Country: countries)
-	{
-		auto Vic2Country = HoI4Country.second->getSourceCountry();
-		long employedWorkers = Vic2Country->getEmployedWorkers();
-
-		double HoI4TotalFactories = calculateTotalFactoriesInCountry(employedWorkers);
-		if (employedWorkers > 0)
-		{
-			factoryWorkerRatios[HoI4Country.second->getTag()] = HoI4TotalFactories / employedWorkers;
-		}
-		else
-		{
-			factoryWorkerRatios[HoI4Country.second->getTag()] = 0.0;
-		}
-	}
-
-	return factoryWorkerRatios;
-}
-
-
-double HoI4World::calculateTotalFactoriesInCountry(long employedWorkers)
-{
-	double industry = 0.0;
-
-	double employedWorkersAdjusted = employedWorkers / 100000.0;
-	if (Configuration::getIcConversion() == "squareroot")
-	{
-		industry = sqrt(double(employedWorkersAdjusted)) * 9.0 * Configuration::getIcFactor();
-	}
-	else if (Configuration::getIcConversion() == "linear")
-	{
-		industry = double(employedWorkersAdjusted) * 1.9 * Configuration::getIcFactor();
-	}
-	else if (Configuration::getIcConversion() == "logarithmic")
-	{
-		double x = Configuration::getIcFactor();
-		double factor = 1.055 * (x*x) / (x*x + 0.055);
-		industry = log(max(1.0, employedWorkersAdjusted)) / log(1.055 / factor);
-	}
-	else if (Configuration::getIcConversion() == "sin-log")
-	{
-		double sinPart = sin(employedWorkersAdjusted / 150) * 122.8;
-		if (employedWorkersAdjusted > 241)
-		{
-			sinPart = 126 + employedWorkersAdjusted * 0.078;
-		}
-		double logpart = log10(employedWorkersAdjusted) * 18.5;
-		industry = (sinPart + logpart + 5) * Configuration::getIcFactor();
-	}
-
-	return industry;
-}
-
-
-void HoI4World::fillCountryIC()
-{
-	addStatesToCountries();
-
-	for (auto country: countries)
-	{
-		country.second->calculateIndustry();
-	}
-}
-
-
 void HoI4World::addStatesToCountries()
 {
 	for (auto state: states->getStates())
@@ -651,6 +575,132 @@ void HoI4World::addStatesToCountries()
 		{
 			owner->second->addState(state.second);
 		}
+	}
+
+	for (auto country: countries)
+	{
+		if (country.second->getStates().size() > 0)
+		{
+			landedCountries.insert(country);
+		}
+	}
+}
+
+
+map<string, double> HoI4World::calculateFactoryWorkerRatios()
+{
+	map<string, double> industrialWorkersPerCountry = getIndustrialWorkersPerCountry();
+	double totalWorldWorkers = getTotalWorldWorkers(industrialWorkersPerCountry);
+	map<string, double> adjustedWorkersPerCountry = adjustWorkers(industrialWorkersPerCountry, totalWorldWorkers);
+	double acutalWorkerFactoryRatio = getWorldwideWorkerFactoryRatio(adjustedWorkersPerCountry, totalWorldWorkers);
+
+	map<string, double> factoryWorkerRatios;
+	for (auto country: landedCountries)
+	{
+		auto adjustedWorkers = adjustedWorkersPerCountry.find(country.first);
+		double factories = adjustedWorkers->second * acutalWorkerFactoryRatio;
+
+		auto Vic2Country = country.second->getSourceCountry();
+		long actualWorkers = Vic2Country->getEmployedWorkers();
+
+		if (actualWorkers > 0)
+		{
+			factoryWorkerRatios.insert(make_pair(country.first, factories / actualWorkers));
+		}
+	}
+
+	return factoryWorkerRatios;
+}
+
+
+map<string, double> HoI4World::getIndustrialWorkersPerCountry()
+{
+	map<string, double> industrialWorkersPerCountry;
+	for (auto country: landedCountries)
+	{
+		auto Vic2Country = country.second->getSourceCountry();
+		long employedWorkers = Vic2Country->getEmployedWorkers();
+		if (employedWorkers > 0)
+		{
+			industrialWorkersPerCountry.insert(make_pair(country.first, employedWorkers));
+		}
+	}
+
+	return industrialWorkersPerCountry;
+}
+
+
+double HoI4World::getTotalWorldWorkers(map<string, double> industrialWorkersPerCountry)
+{
+	double totalWorldWorkers = 0.0;
+	for (auto countryWorkers: industrialWorkersPerCountry)
+	{
+		totalWorldWorkers += countryWorkers.second;
+	}
+
+	return totalWorldWorkers;
+}
+
+
+map<string, double> HoI4World::adjustWorkers(map<string, double> industrialWorkersPerCountry, double totalWorldWorkers)
+{
+	double meanWorkersPerCountry = totalWorldWorkers / industrialWorkersPerCountry.size();
+
+	map<string, double> workersDelta;
+	for (auto countryWorkers: industrialWorkersPerCountry)
+	{
+		double delta = countryWorkers.second - meanWorkersPerCountry;
+		workersDelta.insert(make_pair(countryWorkers.first, delta));
+	}
+
+	map<string, double> adjustedWorkers;
+	for (auto countryWorkers: industrialWorkersPerCountry)
+	{
+		double delta = workersDelta.find(countryWorkers.first)->second;
+		double newWorkers = countryWorkers.second - Configuration::getIndustrialShapeFactor() * delta;
+		adjustedWorkers.insert(make_pair(countryWorkers.first, newWorkers));
+	}
+
+	return adjustedWorkers;
+}
+
+
+double HoI4World::getWorldwideWorkerFactoryRatio(map<string, double> workersInCountries, double totalWorldWorkers)
+{
+	double baseIndustry = 0.0;
+	for (auto countryWorkers: workersInCountries)
+	{
+		baseIndustry += countryWorkers.second * 0.000019;
+	}
+
+	double deltaIndustry = baseIndustry - (1189 - landedCountries.size());
+	double newIndustry = baseIndustry - Configuration::getIcFactor() * deltaIndustry;
+	double acutalWorkerFactoryRatio = newIndustry / totalWorldWorkers;
+
+	return acutalWorkerFactoryRatio;
+}
+
+
+void HoI4World::putIndustryInStates(map<string, double> factoryWorkerRatios)
+{
+	for (auto HoI4State : states->getStates())
+	{
+		auto ratioMapping = factoryWorkerRatios.find(HoI4State.second->getOwner());
+		if (ratioMapping == factoryWorkerRatios.end())
+		{
+			continue;
+		}
+
+		HoI4State.second->convertIndustry(ratioMapping->second);
+	}
+}
+
+
+void HoI4World::calculateIndustryInCountries()
+{
+	for (auto country: countries)
+	{
+		country.second->calculateIndustry();
 	}
 }
 

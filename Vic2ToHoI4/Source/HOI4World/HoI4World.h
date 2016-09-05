@@ -133,10 +133,14 @@ class HoI4World
 		double getStrongestCountryStrength();
 		int calculateStrengthVPs(HoI4Country* country, double greatestStrength);
 
-		map<string, double> calculateFactoryWorkerRatios();
-		double calculateTotalFactoriesInCountry(long employedWorkers);
-		void fillCountryIC();
 		void addStatesToCountries();
+		map<string, double> calculateFactoryWorkerRatios();
+		map<string, double> getIndustrialWorkersPerCountry();
+		double getTotalWorldWorkers(map<string, double> industrialWorkersPerCountry);
+		map<string, double> adjustWorkers(map<string, double> industrialWorkersPerCountry, double totalWorldWorkers);
+		double getWorldwideWorkerFactoryRatio(map<string, double> workersInCountries, double totalWorldWorkers);
+		void putIndustryInStates(map<string, double> factoryWorkerRatios);
+		void calculateIndustryInCountries();
 		void reportIndustryLevels();
 		void reportCountryIndustry();
 		void reportDefaultIndustry();
@@ -162,6 +166,7 @@ class HoI4World
 		
 		map<int, HoI4Province*>		provinces;
 		map<string, HoI4Country*>	countries;
+		map<string, HoI4Country*> landedCountries;
 		HoI4Diplomacy					diplomacy;
 		map<int, int>					stateMap;
 		vector<HoI4Country*> AggressorFactions;

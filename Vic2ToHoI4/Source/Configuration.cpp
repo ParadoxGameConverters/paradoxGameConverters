@@ -62,7 +62,7 @@ Configuration::Configuration()
 	}
 
 	manpowerFactor			= stof(obj[0]->getLeaf("manpower_factor"));
-	icConversion			= obj[0]->getLeaf("ic_conversion");
+	industrialShapeFactor= stof(obj[0]->getLeaf("industrial_shape_factor"));
 	icFactor					= stof(obj[0]->getLeaf("ic_factor"));
 	if (obj[0]->getValue("ICStats").size() > 0)
 	{
