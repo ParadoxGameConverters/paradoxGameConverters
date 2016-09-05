@@ -28,53 +28,60 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <map>
 #include <string>
-#include <vector>
 #include <boost/bimap.hpp>
 using namespace std;
 
 
 
 class V2World;
-class HoI4World;
 
 
 
-// Holds a mapping from Vic2 country tags to HoI4 country tags.
-class CountryMapping
+class CountryMapper
 {
 	public:
-		// Initializes the rules to use for mapping tags using the rules found in the specified file.
-		// Returns true if the rules were successfully read.
-		bool ReadRules(const string& fileName);
+		static void createMappings(const V2World* srcWorld)
+		{
+			getInstance()->CreateMappings(srcWorld);
+		}
 
-		// Creates a new mapping from all countries in the Vic2 world to HoI4 tags using
-		// the rules given in ReadRules(). HoI4 tags that already exists in the HoI4 world are given
-		// priority over other tags. Countries with Vic2 tags that aren't in the rules or
-		// have no available HoI4 tag (e.g. when multiple Vic2 countries would use the same HoI4 tag)
-		// are given a generated tag "X00"-"X99".
-		void CreateMapping(const V2World& srcWorld, const HoI4World& destWorld);
+		static const string getHoI4Tag(const string& V2Tag)
+		{
+			return getInstance()->GetHoI4Tag(V2Tag);
+		}
 
-		// Returns the HoI4 tag that is mapped to by the given Vic2 tag. Returns an empty string
-		// if there is no corresponding HoI4 tag. If CreateMapping() has been called then there
-		// is guaranteed to be a HoI4 tag for every Vic2 country.
-		const string& operator[](const string& V2Tag) const	{ return GetHoI4Tag(V2Tag); }
-
-		// Returns the HoI4 tag that is mapped to by the given Vic2 tag. Returns an empty string
-		// if there is no corresponding HoI4 tag. If CreateMapping() has been called then there
-		// is guaranteed to be a HoI4 tag for every Vic2 country.
-		const string& GetHoI4Tag(const string& V2Tag) const;
-
-		// Returns the Vic2 tag that is mapped to by the given HoI4 tag. Returns an empty string
-		// if there is no corresponding Vic2 tag. If CreateMapping() has been called then there
-		// is guaranteed to be a Vic2 tag for every HoI4 country.
-		const string& GetVic2Tag(const string& HoI4Tag) const;
+		static const string getVic2Tag(const string& HoI4Tag)
+		{
+			return getInstance()->GetVic2Tag(HoI4Tag);
+		}
 
 	private:
-		// Writes the given mapping to the log.
-		static void LogMapping(const string& sourceTag, const string& targetTag, const string& reason);
+		static CountryMapper* instance;
+		static CountryMapper* getInstance()
+		{
+			if (instance == NULL)
+			{
+				instance = new CountryMapper();
+			}
 
-		std::map<std::string, std::vector<std::string>>	V2TagToHoI4TagsRules;	// the possible mappings between V2 and HoI4 tags
-		boost::bimap<std::string, std::string>				V2TagToHoI4TagMap;		// the current mappping between V2 and HoI4 tags
+			return instance;
+		}
+		CountryMapper();
+
+		void CreateMappings(const V2World* srcWorld);
+		void resetMappingData();
+		string generateNewTag();
+		void LogMapping(const string& sourceTag, const string& targetTag, const string& reason);
+
+		const string GetHoI4Tag(const string& V2Tag) const;
+		const string GetVic2Tag(const string& HoI4Tag) const;
+
+		boost::bimap<string, string> V2TagToHoI4TagMap;
+
+		char generatedHoI4TagPrefix;
+		int generatedHoI4TagSuffix;
 };
+
+
 
 #endif // COUNTRYMAPPING_H

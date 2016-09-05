@@ -31,7 +31,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Localisation.h"
 #include "HoI4State.h"
 #include "..\V2World\V2Province.h"
-#include "../Mappers/CountryMapping.h"
 #include "../Mappers/ProvinceMapper.h"
 using namespace std;
 
@@ -59,7 +58,7 @@ class HoI4States
 		HoI4States(V2World* srcWorld) : sourceWorld(srcWorld) { recordAllLandProvinces(); }
 
 		void importStates(map<int, vector<int>>& defaultStateToProvinceMap);
-		void convertStates(const CountryMapping& countryMap);
+		void convertStates();
 		void addLocalisations();
 
 		const map<int, HoI4State*>& getStates() const { return states; }
@@ -70,11 +69,11 @@ class HoI4States
 	private:
 		void recordAllLandProvinces();
 
-		map<int, ownersAndCores> determineProvinceOwners(const CountryMapping& countryMap);
+		map<int, ownersAndCores> determineProvinceOwners();
 		bool getAppropriateMapping(int provNum, HoI4ToVic2ProvinceMapping::const_iterator& provinceLink);
 		map<const V2Country*, MTo1ProvinceComp> determinePotentialOwners(HoI4ToVic2ProvinceMapping::const_iterator provinceLink);
 		const V2Country* selectProvinceOwner(const map<const V2Country*, MTo1ProvinceComp>& provinceBins);
-		void createStates(const CountryMapping& countryMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap);
+		void createStates(const map<int, ownersAndCores>& provinceToOwnersAndCoresMap);
 		bool createMatchingHoI4State(const Vic2State* vic2State, int stateID, const string& stateOwner, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces);
 		void addProvincesToNewState(HoI4State* newState, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces);
 		bool isProvinceOwnedByCountryAndNotAlreadyAssigned(int provNum, string stateOwner, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces);

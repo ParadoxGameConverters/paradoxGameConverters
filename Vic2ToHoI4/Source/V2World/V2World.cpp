@@ -31,6 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Party.h"
 #include "V2Province.h"
 #include "Vic2State.h"
+#include "../Mappers/CountryMapping.h"
 #include "../Mappers/ProvinceMapper.h"
 
 
@@ -70,6 +71,8 @@ V2World::V2World(Object* obj)
 	inputDiplomacy(obj->getValue("diplomacy"));
 	readCountryFiles();
 	setLocalisations();
+
+	CountryMapper::createMappings(this);
 }
 
 
