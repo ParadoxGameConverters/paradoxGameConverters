@@ -1,24 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <configuration
-  Comment="This file is used to build the configuration parth of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
-  <!--This part contains the various options that will be displayed as preferences in the converter ui, and outputted as configuration.txt as input for the converter tool itself-->
-  <converterOptions>
-    <categories>
-      <category>
-        <friendlyName>Configuration</friendlyName>
-        <preferences>
-		  <preference>
-            <name>Vic2Mods</name>
-            <friendlyName>Vic2 Mods</friendlyName>
-            <description>Vic2 mods to use for conversion (mods require manual conversion)</description>
-            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
-			<useCurlyBraces>true</useCurlyBraces>
-            <value></value>
-          </preference>
-        </preferences>
-      </category>
-    </categories>
-  </converterOptions>
-  >
+	Comment="This file is used to build the configuration parth of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
+	<!--This part contains the various options that will be displayed as preferences in the converter ui, and outputted as configuration.txt as input for the converter tool itself-->
+	<converterOptions>
+		<categories>
+			<category>
+				<friendlyName>Configuration</friendlyName>
+				<preferences>
+					<preference>
+						<name>Vic2Mods</name>
+						<friendlyName>Vic2 Mods</friendlyName>
+						<description>Vic2 mods to use for conversion (mods require manual conversion)</description>
+						<hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+						<useCurlyBraces>true</useCurlyBraces>
+						<value></value>
+					</preference>
+					<preference>
+						<name>industrial_shape_factor</name>
+						<friendlyName>Industrial shape factor</friendlyName>
+						<description>How much to balance countries' industry to each other. 1.0 = fully balanced, 0.0 = no balancing</description>
+						<hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+						<value>0.0</value>
+						<minValue>0.0</minValue>
+						<maxValue>1.0</maxValue>
+					</preference>
+					<preference>
+						<name>ic_factor</name>
+						<friendlyName>IC Factor</friendlyName>
+						<description>How much to make the world's industry match default HoI4 industry. 1.0 = fully matched, 0.0 = no matching</description>
+						<hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+						<value>0.1</value>
+						<minValue>0.0</minValue>
+						<maxValue>1.0</maxValue>
+					</preference>
+					<preference>
+						<name>manpower_factor</name>
+						<friendlyName>Manpower Factor</friendlyName>
+						<description>Used to increase or decrease the total amount of manpower in the world.</description>
+						<hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+						<value>1.0</value>
+						<minValue>0.01</minValue>
+						<maxValue>10.0</maxValue>
+					</preference>
+				</preferences>
+			</category>
+		</categories>
+	</converterOptions>
 </configuration>

@@ -153,10 +153,12 @@ bool renameFolder(const std::string& sourceFolder, const std::string& destFolder
 	if (result != 0)
 	{
 		LOG(LogLevel::Error) << "Could not rename " << sourceFolder << " to " << destFolder << ". Error code: " << result;
+		return false;
 	}
 	else if (fileOptStruct.fAnyOperationsAborted)
 	{
 		LOG(LogLevel::Error) << "Could not rename " << sourceFolder << " to " << destFolder << ". Operation aborted.";
+		return false;
 	}
 
 	delete[] from;
@@ -199,6 +201,36 @@ std::string GetLastErrorString()
 	{
 		return "Unknown error";
 	}
+}
+
+
+bool deleteFolder(const std::string& folder)
+{
+	std::wstring wideFolder = convertToUTF16(folder);
+	wchar_t* folderStr = new wchar_t[wideFolder.size() + 2];
+	wcscpy(folderStr, wideFolder.c_str());
+	folderStr[wideFolder.size() + 1] = '\0';
+
+	SHFILEOPSTRUCT fileOptStruct;
+	fileOptStruct.hwnd	= NULL;
+	fileOptStruct.wFunc	= FO_DELETE;
+	fileOptStruct.pFrom	= folderStr;
+	fileOptStruct.fFlags	= FOF_NOCONFIRMATION | FOF_NOERRORUI | FOF_SILENT;
+
+	int result = SHFileOperation(&fileOptStruct);
+	if (result != 0)
+	{
+		LOG(LogLevel::Error) << "Could not delete " << folder << ". Error code: " << result;
+		return false;
+	}
+	else if (fileOptStruct.fAnyOperationsAborted)
+	{
+		LOG(LogLevel::Error) << "Could not delete " << folder << ". Operation aborted.";
+		return false;
+	}
+
+	delete[] folderStr;
+	return true;
 }
 
 

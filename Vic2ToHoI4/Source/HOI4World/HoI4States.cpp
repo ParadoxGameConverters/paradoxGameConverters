@@ -25,8 +25,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "log.h"
 #include "OSCompatibilityLayer.h"
 #include "ParadoxParserUTF8.h"
-#include "..\V2World\V2Country.h"
-#include "..\V2World\V2World.h"
+#include "../Mappers/CountryMapping.h"
+#include "../Mappers/V2Localisations.h"
+#include "../V2World/V2Country.h"
+#include "../V2World/V2World.h"
 #include <fstream>
 
 
@@ -81,7 +83,7 @@ void HoI4States::recordAllLandProvinces()
 		{
 			break;
 		}
-		int provNum = atoi(line.substr(0, pos).c_str());
+		int provNum = stoi(line.substr(0, pos));
 		if (provNum == 0)
 		{
 			continue;
@@ -105,34 +107,34 @@ void HoI4States::recordAllLandProvinces()
 }
 
 
-void HoI4States::convertStates(const HoI4ToVic2ProvinceMapping& provinceMap, const Vic2ToHoI4ProvinceMapping& inverseProvinceMap, const CountryMapping& countryMap, const V2Localisation& Vic2Localisations)
+void HoI4States::convertStates()
 {
-	map<int, ownersAndCores> provinceOwnersandCores = determineProvinceOwners(provinceMap, countryMap);
-	createStates(countryMap, inverseProvinceMap, provinceOwnersandCores, Vic2Localisations);
+	map<int, ownersAndCores> provinceOwnersandCores = determineProvinceOwners();
+	createStates(provinceOwnersandCores);
 }
 
 
-map<int, ownersAndCores> HoI4States::determineProvinceOwners(const HoI4ToVic2ProvinceMapping& provinceMap, const CountryMapping& countryMap)
+map<int, ownersAndCores> HoI4States::determineProvinceOwners()
 {
 	const map<string, V2Country*> V2Countries = sourceWorld->getCountries();
 	map<int, ownersAndCores> ownersAndCoresMap;
 	for (auto provItr: landProvinces)
 	{
 		HoI4ToVic2ProvinceMapping::const_iterator provinceLink;
-		if (!getAppropriateMapping(provinceMap, provItr, provinceLink))
+		if (!getAppropriateMapping(provItr, provinceLink))
 		{
 			continue;
 		}
 
-		map<V2Country*, MTo1ProvinceComp> potentialOwners = determinePotentialOwners(provinceLink);
-		V2Country* oldOwner = selectProvinceOwner(potentialOwners);
+		map<const V2Country*, MTo1ProvinceComp> potentialOwners = determinePotentialOwners(provinceLink);
+		const V2Country* oldOwner = selectProvinceOwner(potentialOwners);
 		if (oldOwner == NULL)
 		{
 			continue;
 		}
 
 		// convert from the source provinces
-		const string HoI4Tag = countryMap[oldOwner->getTag()];
+		const string HoI4Tag = CountryMapper::getHoI4Tag(oldOwner->getTag());
 		if (HoI4Tag.empty())
 		{
 			LOG(LogLevel::Warning) << "Could not map provinces owned by " << oldOwner->getTag() << " in Vic2";
@@ -147,18 +149,17 @@ map<int, ownersAndCores> HoI4States::determineProvinceOwners(const HoI4ToVic2Pro
 				for (auto srcProvItr: srcOwnerItr.second.provinces)
 				{
 					// convert cores
-					vector<V2Country*> oldCores = srcProvItr->getCores(V2Countries);
-					for (auto oldCoreItr: oldCores)
+					for (auto oldCore: srcProvItr->getCores())
 					{
 						// skip this core if the country is the owner of the V2 province but not the HoI4 province
 						// (i.e. "avoid boundary conflicts that didn't exist in V2").
 						// this country may still get core via a province that DID belong to the current HoI4 owner
-						if ((oldCoreItr == srcOwnerItr.first) && (oldCoreItr != oldOwner))
+						if ((oldCore == srcOwnerItr.first) && (oldCore != oldOwner))
 						{
 							continue;
 						}
 
-						const string coreOwner = countryMap[oldCoreItr->getTag()];
+						const string coreOwner = CountryMapper::getHoI4Tag(oldCore->getTag());
 						if (coreOwner != "")
 						{
 							auto coreItr = ownersAndCoresMap.find(provItr);
@@ -183,10 +184,10 @@ map<int, ownersAndCores> HoI4States::determineProvinceOwners(const HoI4ToVic2Pro
 }
 
 
-bool HoI4States::getAppropriateMapping(const HoI4ToVic2ProvinceMapping& provinceMap, int provNum, HoI4ToVic2ProvinceMapping::const_iterator& provinceLink)
+bool HoI4States::getAppropriateMapping(int provNum, HoI4ToVic2ProvinceMapping::const_iterator& provinceLink)
 {
-	provinceLink = provinceMap.find(provNum);
-	if ((provinceLink == provinceMap.end()) || (provinceLink->second.size() == 0))
+	provinceLink = provinceMapper::getHoI4ToVic2ProvinceMapping().find(provNum);
+	if ((provinceLink == provinceMapper::getHoI4ToVic2ProvinceMapping().end()) || (provinceLink->second.size() == 0))
 	{
 		LOG(LogLevel::Warning) << "No source for HoI4 land province " << provNum;
 		return false;
@@ -200,18 +201,18 @@ bool HoI4States::getAppropriateMapping(const HoI4ToVic2ProvinceMapping& province
 }
 
 
-map<V2Country*, MTo1ProvinceComp> HoI4States::determinePotentialOwners(HoI4ToVic2ProvinceMapping::const_iterator provinceLink)
+map<const V2Country*, MTo1ProvinceComp> HoI4States::determinePotentialOwners(HoI4ToVic2ProvinceMapping::const_iterator provinceLink)
 {
-	map<V2Country*, MTo1ProvinceComp> potentialOwners;
+	map<const V2Country*, MTo1ProvinceComp> potentialOwners;
 	for (auto srcProvItr: provinceLink->second)
 	{
-		V2Province* srcProvince = sourceWorld->getProvince(srcProvItr);
+		auto srcProvince = sourceWorld->getProvince(srcProvItr);
 		if (!srcProvince)
 		{
 			LOG(LogLevel::Warning) << "Old province " << provinceLink->second[0] << " does not exist (bad mapping?)";
 			continue;
 		}
-		V2Country* owner = srcProvince->getOwner();
+		const V2Country* owner = srcProvince->getOwner();
 
 		if (potentialOwners.find(owner) == potentialOwners.end())
 		{
@@ -225,9 +226,9 @@ map<V2Country*, MTo1ProvinceComp> HoI4States::determinePotentialOwners(HoI4ToVic
 }
 
 
-V2Country* HoI4States::selectProvinceOwner(const map<V2Country*, MTo1ProvinceComp>& potentialOwners)
+const V2Country* HoI4States::selectProvinceOwner(const map<const V2Country*, MTo1ProvinceComp>& potentialOwners)
 {
-	V2Country* oldOwner = NULL;
+	const V2Country* oldOwner = NULL;
 	for (auto potentialOwner: potentialOwners)
 	{
 		// I am the new owner if there is no current owner, or I have more provinces than the current owner,
@@ -245,7 +246,7 @@ V2Country* HoI4States::selectProvinceOwner(const map<V2Country*, MTo1ProvinceCom
 }
 
 
-void HoI4States::createStates(const CountryMapping& countryMap, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, const V2Localisation& Vic2Localisations)
+void HoI4States::createStates(const map<int, ownersAndCores>& provinceToOwnersAndCoresMap)
 {
 	int stateID = 1;
 	set<int> assignedProvinces;
@@ -253,42 +254,44 @@ void HoI4States::createStates(const CountryMapping& countryMap, const Vic2ToHoI4
 	{
 		for (auto vic2State: country.second->getStates())
 		{		
-			if (createMatchingHoI4State(vic2State, stateID, countryMap.GetHoI4Tag(country.first), HoI4ToVic2ProvinceMap, provinceToOwnersAndCoresMap, assignedProvinces, Vic2Localisations))
+			if (createMatchingHoI4State(vic2State, stateID, CountryMapper::getHoI4Tag(country.first), provinceToOwnersAndCoresMap, assignedProvinces))
 			{
 				stateID++;
 			}
 		}
 	}
+
+	unsigned int manpower = getTotalManpower();
+	LOG(LogLevel::Debug) << "Total manpower was " << manpower << ", which is " << manpower / 20438756.2 << "% of default HoI4.";
 }
 
 
-bool HoI4States::createMatchingHoI4State(const Vic2State* vic2State, int stateID, const string& stateOwner, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces, const V2Localisation& Vic2Localisations)
+bool HoI4States::createMatchingHoI4State(const Vic2State* vic2State, int stateID, const string& stateOwner, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces)
 {
 	//	create a matching HoI4 state
 	HoI4State* newState = new HoI4State(vic2State, stateID, stateOwner);
-	addProvincesToNewState(newState, HoI4ToVic2ProvinceMap, provinceToOwnersAndCoresMap, assignedProvinces);
+	addProvincesToNewState(newState, provinceToOwnersAndCoresMap, assignedProvinces);
 	if (newState->getProvinces().size() == 0)
 	{
 		delete newState;
 		return false;
 	}
 
-	createVPForState(newState, HoI4ToVic2ProvinceMap);
+	createVPForState(newState);
 	addManpowerToNewState(newState);
-	addLocalisation(stateID, vic2State->getStateID(), Vic2Localisations);
 	states.insert(make_pair(stateID, newState));
 
 	return true;
 }
 
 
-void HoI4States::addProvincesToNewState(HoI4State* newState, const Vic2ToHoI4ProvinceMapping& HoI4ToVic2ProvinceMap, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces)
+void HoI4States::addProvincesToNewState(HoI4State* newState, const map<int, ownersAndCores>& provinceToOwnersAndCoresMap, set<int>& assignedProvinces)
 {
-	for (auto vic2Province: newState->getSourceState()->getProvinces())
+	for (auto vic2ProvinceNum: newState->getSourceState()->getProvinceNums())
 	{
 		//	if the matching HoI4 provinces are owned by this country, add it to the HoI4 state
-		auto provMapping = HoI4ToVic2ProvinceMap.find(vic2Province);
-		if (provMapping != HoI4ToVic2ProvinceMap.end())
+		auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(vic2ProvinceNum);
+		if (provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
 		{
 			for (auto HoI4ProvNum: provMapping->second)
 			{
@@ -328,40 +331,132 @@ bool HoI4States::isProvinceOwnedByCountryAndNotAlreadyAssigned(int provNum, stri
 }
 
 
-void HoI4States::createVPForState(HoI4State* newState, const Vic2ToHoI4ProvinceMapping& provinceMap)
+void HoI4States::createVPForState(HoI4State* newState)
 {
-	int HoI4ProvNum = newState->getFirstProvinceByVic2Definition(provinceMap);
-	if (newState->isProvinceInState(HoI4ProvNum))
+	if (!newState->tryToCreateVP())
 	{
-		newState->addVP(HoI4ProvNum, 5);
+		LOG(LogLevel::Warning) << "Could not create VP for state";
 	}
 }
 
 
 void HoI4States::addManpowerToNewState(HoI4State* newState)
 {
-	for (auto vic2ProvNum: newState->getSourceState()->getProvinces())
+	for (auto sourceProvince: newState->getSourceState()->getProvinces())
 	{
-		V2Province* sourceProvince = sourceWorld->getProvince(vic2ProvNum);
-		newState->addManpower(sourceProvince->getTotalPopulation() * 4);
+		int additionalManpower = static_cast<int>(sourceProvince->getTotalPopulation() * 4 * Configuration::getManpowerFactor());
+		newState->addManpower(additionalManpower);
 	}
 }
 
 
-void HoI4States::addLocalisation(int HoI4StateID, string Vic2StateID, const V2Localisation& Vic2Localisations)
+void HoI4States::addLocalisations()
 {
-	for (auto nameInLanguage: Vic2Localisations.GetTextInEachLanguage(Vic2StateID))
+	for (auto state: states)
 	{
-		auto existingLocalisation = stateLocalisations.find(nameInLanguage.first);
-		if (existingLocalisation == stateLocalisations.end())
+		for (auto Vic2NameInLanguage: V2Localisations::GetTextInEachLanguage(state.second->getSourceState()->getStateID()))
 		{
-			keyToLocalisationMap newLocalisation;
-			stateLocalisations[nameInLanguage.first] = newLocalisation;
-			existingLocalisation = stateLocalisations.find(nameInLanguage.first);
+			addStateLocalisationForLanguage(state.second, Vic2NameInLanguage);
 		}
 
-		existingLocalisation->second.insert(make_pair(string("STATE_") + to_string(HoI4StateID), nameInLanguage.second));
+		int VPPositionInHoI4 = state.second->getVPLocation();
+		auto VPProvinceMapping = provinceMapper::getHoI4ToVic2ProvinceMapping().find(VPPositionInHoI4);
+		if (
+			  (VPProvinceMapping != provinceMapper::getHoI4ToVic2ProvinceMapping().end()) &&
+			  (VPProvinceMapping->second.size() > 0)
+			)
+		{
+			for (auto Vic2NameInLanguage: V2Localisations::GetTextInEachLanguage("PROV" + to_string(VPProvinceMapping->second[0])))
+			{
+				addVPLocalisationForLanguage(state.second, Vic2NameInLanguage);
+			}
+		}
 	}
+
+	addNonenglishStateLocalisations();
+	addNonenglishVPLocalisations();
+}
+
+
+void HoI4States::addStateLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage)
+{
+	getExistingStateLocalisation(Vic2NameInLanguage.first).insert(state->makeLocalisation(Vic2NameInLanguage));
+}
+
+
+void HoI4States::addVPLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage)
+{
+	getExistingVPLocalisation(Vic2NameInLanguage.first).insert(state->makeVPLocalisation(Vic2NameInLanguage));
+}
+
+
+keyToLocalisationMap& HoI4States::getExistingStateLocalisation(const string& language)
+{
+	auto existingLocalisation = stateLocalisations.find(language);
+	if (existingLocalisation == stateLocalisations.end())
+	{
+		addLanguageToStateLocalisations(language);
+		existingLocalisation = stateLocalisations.find(language);
+	}
+
+	return existingLocalisation->second;
+}
+
+
+keyToLocalisationMap& HoI4States::getExistingVPLocalisation(const string& language)
+{
+	auto existingLocalisation = VPLocalisations.find(language);
+	if (existingLocalisation == VPLocalisations.end())
+	{
+		addLanguageToVPLocalisations(language);
+		existingLocalisation = VPLocalisations.find(language);
+	}
+
+	return existingLocalisation->second;
+}
+
+
+void HoI4States::addLanguageToStateLocalisations(const string& language)
+{
+	keyToLocalisationMap newLocalisation;
+	stateLocalisations[language] = newLocalisation;
+}
+
+
+void HoI4States::addLanguageToVPLocalisations(const string& language)
+{
+	keyToLocalisationMap newLocalisation;
+	VPLocalisations[language] = newLocalisation;
+}
+
+
+void HoI4States::addNonenglishStateLocalisations()
+{
+	auto englishLocalisations = stateLocalisations.find("english");
+	stateLocalisations.insert(make_pair("braz_por", englishLocalisations->second));
+	stateLocalisations.insert(make_pair("polish", englishLocalisations->second));
+	stateLocalisations.insert(make_pair("russian", englishLocalisations->second));
+}
+
+
+void HoI4States::addNonenglishVPLocalisations()
+{
+	auto englishLocalisations = VPLocalisations.find("english");
+	VPLocalisations.insert(make_pair("braz_por", englishLocalisations->second));
+	VPLocalisations.insert(make_pair("polish", englishLocalisations->second));
+	VPLocalisations.insert(make_pair("russian", englishLocalisations->second));
+}
+
+
+unsigned int HoI4States::getTotalManpower()
+{
+	unsigned int totalManpower = 0;
+	for (auto state: states)
+	{
+		totalManpower += state.second->getManpower();
+	}
+
+	return totalManpower;
 }
 
 
@@ -369,7 +464,8 @@ void HoI4States::output() const
 {
 	LOG(LogLevel::Debug) << "Writing states";
 	outputHistory();
-	outputLocalisations();
+	outputStateLocalisations();
+	outputVPLocalisations();
 }
 
 
@@ -407,7 +503,7 @@ void HoI4States::outputHistory() const
 }
 
 
-void HoI4States::outputLocalisations() const
+void HoI4States::outputStateLocalisations() const
 {
 	for (auto languageToLocalisations: stateLocalisations)
 	{
@@ -416,6 +512,31 @@ void HoI4States::outputLocalisations() const
 			continue;
 		}
 		ofstream localisationFile("Output/" + Configuration::getOutputName() + "/localisation/state_names_l_" + languageToLocalisations.first + ".yml");
+		if (!localisationFile.is_open())
+		{
+			LOG(LogLevel::Error) << "Could not update localisation text file";
+			exit(-1);
+		}
+		localisationFile << "\xEF\xBB\xBF"; // output a BOM to make HoI4 happy
+		localisationFile << "l_" << languageToLocalisations.first << ":\n";
+
+		for (auto mapping: languageToLocalisations.second)
+		{
+			localisationFile << " " << mapping.first << ":10 \"" << mapping.second << "\"" << endl;
+		}
+	}
+}
+
+
+void HoI4States::outputVPLocalisations() const
+{
+	for (auto languageToLocalisations: VPLocalisations)
+	{
+		if (languageToLocalisations.first == "")
+		{
+			continue;
+		}
+		ofstream localisationFile("Output/" + Configuration::getOutputName() + "/localisation/victory_points_l_" + languageToLocalisations.first + ".yml");
 		if (!localisationFile.is_open())
 		{
 			LOG(LogLevel::Error) << "Could not update localisation text file";

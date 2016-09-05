@@ -41,9 +41,9 @@ date::date(string _init)
 	}
 	const int first_dot	= _init.find_first_of('.');	// the position of the first period in the date
 	const int last_dot	= _init.find_last_of('.');		// the position of the second period in the date
-	year						= atoi( _init.substr(0, first_dot).c_str() );
-	month						= atoi( _init.substr(first_dot + 1, last_dot - first_dot).c_str() );
-	day						= atoi( _init.substr(last_dot + 1, 2).c_str() );
+	year						= stoi( _init.substr(0, first_dot) );
+	month						= stoi( _init.substr(first_dot + 1, last_dot - first_dot) );
+	day						= stoi( _init.substr(last_dot + 1, 2) );
 }
 
 date::date(const date& _init)
@@ -67,9 +67,9 @@ date::date(const Object* _init)
 	if (dateSubObj.size() > 0)
 	{
 		// date specified by year=, month=, day=
-		year	= atoi(_init->getLeaf("year").c_str());
-		month	= atoi(_init->getLeaf("month").c_str());
-		day	= atoi(_init->getLeaf("day").c_str());
+		year	= stoi(_init->getLeaf("year"));
+		month	= stoi(_init->getLeaf("month"));
+		day	= stoi(_init->getLeaf("day"));
 	}
 	else
 	{

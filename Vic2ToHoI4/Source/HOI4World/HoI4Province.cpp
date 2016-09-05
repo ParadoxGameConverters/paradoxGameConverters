@@ -46,10 +46,10 @@ HoI4Province::HoI4Province(string Owner, int State)
 	/*int slash		= _filename.find_last_of("\\");
 	int numDigits	= _filename.find_first_of("-") - slash - 2;
 	string temp		= _filename.substr(slash + 1, numDigits);
-	num				= atoi(temp.c_str());*/
+	num				= stoi(temp);*/
 
 	Object* obj;
-	//obj = parser_UTF8::doParseFile((string("./blankMod/output/history/provinces") + _filename).c_str());
+	//obj = parser_UTF8::doParseFile((string("./blankMod/output/history/provinces") + _filename));
 	/*if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse ./blankMod/output/history/provinces" << _filename;
@@ -64,33 +64,33 @@ HoI4Province::HoI4Province(string Owner, int State)
 			owner = itr->getLeaf();
 			is_land = true;
 		}
-		else if (itr->getKey() == "meta")
+		else if (itr->getKey() == "metal")
 		{
-			metal = atof(itr->getLeaf().c_str());
+			metal = stof(itr->getLeaf());
 		}
-		else if (itr->getKey() == "crude_oi")
+		else if (itr->getKey() == "crude_oil")
 		{
-			oil = atof(itr->getLeaf().c_str());
+			oil = stof(itr->getLeaf());
 		}
 		else if (itr->getKey() == "rare_materials")
 		{
-			rare_materials = atof(itr->getLeaf().c_str());
+			rare_materials = stof(itr->getLeaf());
 		}
 		else if (itr->getKey() == "energy")
 		{
-			energy = atof(itr->getLeaf().c_str());
+			energy = stof(itr->getLeaf());
 		}
 		else if (itr->getKey() == "manpower")
 		{
-			manpower = atof(itr->getLeaf().c_str());
+			manpower = stof(itr->getLeaf());
 		}
 		else if (itr->getKey() == "leadership")
 		{
-			leadership = atof(itr->getLeaf().c_str());
+			leadership = stof(itr->getLeaf());
 		}
 		else if (itr->getKey() == "industry")
 		{
-			industry = atoi(itr->getLeaf().c_str());
+			industry = stoi(itr->getLeaf());
 		}
 		else if (itr->getKey() == "add_core")
 		{

@@ -26,33 +26,44 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "Object.h"
 #include "Date.h"
+
+
+
+class Object;
 
 
 
 class V2Relations
 {
 	public:
-		V2Relations(Object* obj);
+		V2Relations(Object* relationsObj);
 
-		string	getTag()			const { return tag; }
-		int		getRelations()	const { return value; }
-		int		getLevel()		const { return level; }
+		string getTag() const { return tag; }
+		int getRelations() const { return value; }
+		int getLevel() const { return level; }
 
-		bool hasMilitaryAccess()	const { return militaryAccess; }
-		date getDiplomatLastSent()	const { return lastSendDiplomat; }
-		date getLastWar()				const { return lastWar; }
-		date getTruceUntil()			const { return truceUntil; }
+		bool hasMilitaryAccess() const { return militaryAccess; }
+		date getDiplomatLastSent() const { return lastSentDiplomat; }
+		date getLastWar() const { return lastWar; }
+		date getTruceUntil() const { return truceUntil; }
 
 	private:
-		string	tag;
-		int		value;
-		bool		militaryAccess;
-		date		lastSendDiplomat;
-		date		lastWar;
-		date		truceUntil;
-		int		level;
+		void setValue(Object* relationsObj);
+		void setMilitaryAccess(Object* relationsObj);
+		void setLastDiplomat(Object* relationsObj);
+		void setLastWar(Object* relationsObj);
+		void setTruce(Object* relationsObj);
+		void setLevel(Object* relationsObj);
+
+		string tag;
+		int value;
+		int level;
+
+		bool militaryAccess;
+		date lastSentDiplomat;
+		date lastWar;
+		date truceUntil;
 };
 
 

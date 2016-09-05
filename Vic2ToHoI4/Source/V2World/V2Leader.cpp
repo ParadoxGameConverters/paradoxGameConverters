@@ -47,5 +47,5 @@ V2Leader::V2Leader(Object* obj)
 		background	= background.substr(1, background.length() - 2);
 	}
 
-	prestige = atof(obj->getLeaf("prestige").c_str());
+	prestige = stof(obj->getLeaf("prestige"));
 }

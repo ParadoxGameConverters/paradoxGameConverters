@@ -32,8 +32,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Province.h"
 #include "HoI4Relations.h"
 #include "HoI4State.h"
-#include "../CountryMapping.h"
-#include "../Mapper.h"
 #include "../Color.h"
 #include "Date.h"
 #include "../V2World/V2Army.h"
@@ -46,6 +44,7 @@ class HoI4World;
 class V2Country;
 class HoI4Minister;
 class HoI4Leader;
+class HoI4Faction;
 
 
 
@@ -68,23 +67,24 @@ class HoI4Country
 {
 	public:
 		HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld, bool _newCountry = false);
-		void		output(map<int, HoI4State*> states, vector<vector<HoI4Country*>> Factions, string FactionName) const;
+		void		output(map<int, HoI4State*> states, vector<HoI4Faction*> Factions, string FactionName) const;
 		void		outputCommonCountryFile() const;
 		void		outputColors(ofstream& out) const;
 		void		outputToCommonCountriesFile(FILE*) const;
-		void		outputAIScript() const;
 
-		void		initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, const CountryMapping& countryMap, Vic2ToHoI4ProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states);
+		void		initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, map<int, int>& leaderMap, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states);
 		void		initFromHistory();
 		void		generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
 		void		convertNavy(map<int, HoI4State*> states);
 		void		convertAirforce();
-		void		convertArmyDivisions(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
-		void		setAIFocuses(const AIFocusModifiers& focusModifiers);
-		void		addMinimalItems(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap);
+		void		convertArmyDivisions();
 		void		setTechnology(string tech, int level);
 		void		addProvince(HoI4Province* _province);
+		void addState(HoI4State* _state);
 		void		lowerNeutrality(double amount);
+		void calculateIndustry();
+		void reportIndustry(ofstream& out);
+		void addVPsToCapital(int VPs);
 
 		void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
 		void		setFaction(string newFaction)	{ faction = newFaction; }
@@ -92,7 +92,10 @@ class HoI4Country
 		void setRelations(string relationsinput) { relationstxt = relationsinput; }
 
 		HoI4Relations*								getRelations(string withWhom) const;
-		HoI4Province*								getCapital();
+		HoI4State* getCapital();
+		double getStrengthOverTime(double years);
+		double getMilitaryStrength();
+		double getEconomicStrength(double years);
 		
 		const map<string, HoI4Relations*>&	getRelations() const			{ return relations; }
 		map<int, HoI4Province*>					getProvinces() const			{ return provinces; }
@@ -103,15 +106,16 @@ class HoI4Country
 		string										getFaction() const			{ return faction; }
 		HoI4Alignment*								getAlignment()					{ return &alignment; }
 		string										getIdeology() const			{ return ideology; }
+		string										getRulingIdeology() const { return rulingHoI4Ideology; }
 		const set<string>&						getAllies() const				{ return allies; }
 		set<string>&								editAllies()					{ return allies; }
 		map<string, double>&						getPracticals()				{ return practicals; }
 		int											getCapitalNum()				{ return capital; }
 		vector<int>									getBrigs() const			{ return brigs; }
 		int											getCapitalProv() const { return capital; }
-		double										getArmyStrength() const { return armyStrength; }
 		const string									getSphereLeader() const { return sphereLeader; }
 		HoI4Party									getRulingParty() const { return RulingPartyModel; }
+		map<int, HoI4State*> getStates() const { return states; }
 		
 		vector<HoI4Party> getParties() const { return parties; }
 		int getTotalFactories() const { return totalfactories; }
@@ -125,10 +129,11 @@ class HoI4Country
 		void			outputTech(FILE*)				const;
 		void			outputParties(FILE*)			const;
 		void			outputLeaders()				const;
-		void determineCapitalFromVic2(Vic2ToHoI4ProvinceMapping Vic2ToHoI4ProvinceMap, const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states);
+		void determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states);
 		bool isStateValidForCapital(map<int, int>::const_iterator capitalState, const map<int, HoI4State*>& states);
 		bool isThisStateOwnedByUs(const HoI4State* state) const;
 		bool isThisStateACoreWhileWeOwnNoStates(const HoI4State* state) const;
+		void setCapitalInCapitalState(int capitalProvince, const map<int, HoI4State*>& states);
 		void findBestCapital();
 
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, HoI4Province*> allProvinces);
@@ -144,6 +149,7 @@ class HoI4Country
 		const string						sphereLeader = "";
 		string								tag;
 		map<int, HoI4Province*>			provinces;
+		map<int, HoI4State*> states;
 		int									capital;
 		string								commonCountryFile;
 		map<string, int>					technologies;
@@ -173,13 +179,10 @@ class HoI4Country
 		map<string, vector<HoI4Country*>>	CountryTargets;
 		int provinceCount;
 		long armyStrength;
+		double militaryFactories;
+		double civilianFactories;
+		double dockyards;
 		string relationstxt;
-
-		// AI focus modifiers
-		double	seaModifier;
-		double	tankModifier;
-		double	airModifier;
-		double	infModifier;
 
 		// laws
 		string				civil_law;
@@ -197,6 +200,7 @@ class HoI4Country
 		int liberalPopularity;
 		int socialistPopularity;
 		int syndicalistPopularity;
+		int ancapPopularity;
 		int autocraticPopularity;
 		int neutralityPopularity;
 

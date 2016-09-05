@@ -328,7 +328,7 @@ void clearStack()
 		logOutput << "Clearing stack size " << stack.size() << " - this should not happen in normal operation\n";
 		for (vector<Object*>::iterator i = stack.begin(); i != stack.end(); ++i)
 		{
-			logOutput << **i << '\n';
+			logOutput << *i << '\n';
 		}
 	}
 	stack.clear();

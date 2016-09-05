@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include "../V2World/V2Country.h"
 #include "Log.h"
-#include "../../../common_items/OSCompatibilityLayer.h"
+#include "OSCompatibilityLayer.h"
 
 
 
@@ -56,6 +56,8 @@ void HoI4Localisation::readFromCountry(const V2Country* source, string destTag)
 		existingLocalisation->second.insert(make_pair(destTag + "_liberal_DEF", nameInLanguage.second));
 		existingLocalisation->second.insert(make_pair(destTag + "_syndicalism", "Commune of "+nameInLanguage.second));
 		existingLocalisation->second.insert(make_pair(destTag + "_syndicalism_DEF", nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_ancap", "Bourgeois State of " + nameInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_ancap_DEF", nameInLanguage.second));
 
 	}
 	for (auto adjInLanguage: source->getLocalisedAdjectives())
@@ -77,7 +79,17 @@ void HoI4Localisation::readFromCountry(const V2Country* source, string destTag)
 		existingLocalisation->second.insert(make_pair(destTag + "_socialist_ADJ", adjInLanguage.second));
 		existingLocalisation->second.insert(make_pair(destTag + "_liberal_ADJ", adjInLanguage.second));
 		existingLocalisation->second.insert(make_pair(destTag + "_syndicalism_ADJ", adjInLanguage.second));
+		existingLocalisation->second.insert(make_pair(destTag + "_ancap_ADJ", adjInLanguage.second));
 	}
+}
+
+
+void HoI4Localisation::addNonenglishCountryLocalisations()
+{
+	auto englishLocalisations = countryLocalisations.find("english");
+	countryLocalisations.insert(make_pair("braz_por", englishLocalisations->second));
+	countryLocalisations.insert(make_pair("polish", englishLocalisations->second));
+	countryLocalisations.insert(make_pair("russian", englishLocalisations->second));
 }
 
 

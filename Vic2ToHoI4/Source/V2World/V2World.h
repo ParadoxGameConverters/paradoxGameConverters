@@ -27,46 +27,70 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Inventions.h"
-#include "V2Localisation.h"
-#include "V2Diplomacy.h"
-#include "../Mapper.h"
-#include <set>
-#include <vector>
+#include "../Mappers/Mapper.h"
+#include "Object.h"
 #include <string>
+#include <vector>
 using namespace std;
 
 
-class		V2Country;
-class		V2Province;
-struct	V2Party;
+class V2Country;
+class V2Diplomacy;
+class V2Province;
+struct V2Party;
 
 
 class V2World
 {
 	public:
-		V2World(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs, const continentMapping& continentMap);
+		V2World(Object* obj);
 
-		V2Country*					getCountry(string tag) const;
-		void							removeCountry(string tag);
-		V2Province*					getProvince(int provNum) const;
-		void							checkAllProvincesMapped(const Vic2ToHoI4ProvinceMapping& inverseProvinceMap) const;
-		void							setLocalisations(V2Localisation& localisation, const stateIdMapping& stateIdMap);
-		V2Party*						getRulingParty(const V2Country* country) const;
-		vector<V2Party*>			getActiveParties(const V2Country* country) const;
+		void mergeNations(string masterTag, const vector<string>& slaveTags);
+
+		const V2Province* getProvince(int provNum) const;
+		void checkAllProvincesMapped() const;
 		
-		map<string, V2Country*>	getCountries()	const			{ return countries; }
-		const V2Diplomacy*		getDiplomacy()	const			{ return &diplomacy; }
-		const vector<string>&	getGreatCountries() const	{ return greatCountries; }
+		const map<string, V2Country*>& getCountries() const { return countries; }
+		const V2Diplomacy* getDiplomacy() const { return diplomacy; }
+		const vector<string>& getGreatPowers() const	{ return greatPowers; }
+		const vector<V2Party*>& getParties() const { return parties; }
 
 	private:
-		void							readCountryFiles(string countryListFile, string mod);
-		void							removeEmptyNations();
+		void setLocalisations();
 
-		map<int, V2Province*>	provinces;
+		map<int, int> extractGreatNationIndices(const Object* obj);
+
+		bool isProvinceKey(string key) const;
+		bool isCountryKey(string key) const;
+		bool isNormalCountryKey(string key) const;
+		bool isDominionCountryKey(string key) const;
+		bool isConvertedCountryKey(string key) const;
+
+		void setGreatPowerStatus(string tag, const map<int, int>& greatNationIndices, const unsigned int& countriesIndex);
+
+		void setProvinceOwners();
+		void addProvinceCoreInfoToCountries();
+		void determineEmployedWorkers();
+		void removeEmptyNations();
+		void determinePartialStates();
+		void inputDiplomacy(const vector<Object*> diplomacyObj);
+
+		void readCountryFiles();
+		bool processCountriesDotTxt(string countryListFile, string mod);
+		bool shouldLineBeSkipped(string line) const;
+		string extractCountryFileName(string countryFileLine) const;
+		Object* readCountryFile(string countryFileName, string mod) const;
+		void readCountryColor(const Object* countryData, string line);
+		void inputPartyInformation(const vector<Object*>& leaves);
+
+		V2Country* getCountry(string tag) const;
+
+
+		map<int, V2Province*> provinces;
 		map<string, V2Country*>	countries;
-		V2Diplomacy					diplomacy;
-		vector<V2Party*>			parties;
-		vector<string>				greatCountries; // Tags of great nations in order of ranking
+		V2Diplomacy* diplomacy;
+		vector<V2Party*> parties;
+		vector<string> greatPowers;
 };
 
 

@@ -66,6 +66,26 @@ class Configuration // Singleton
 			return getInstance()->outputName;
 		}
 
+		static double getManpowerFactor()
+		{
+			return getInstance()->manpowerFactor;
+		}
+
+		static double getIndustrialShapeFactor()
+		{
+			return getInstance()->industrialShapeFactor;
+		}
+
+		static double getIcFactor()
+		{
+			return getInstance()->icFactor;
+		}
+
+		static bool getICStats()
+		{
+			return getInstance()->ICStats;
+		}
+
 		static int getNextLeaderID()
 		{
 			return getInstance()->leaderID++;
@@ -94,6 +114,11 @@ class Configuration // Singleton
 		string			V2Path;					// the install directory for V2
 		vector<string>	Vic2Mods;
 		string			outputName;				// the name the outputted mod should have
+
+		double			manpowerFactor;
+		double industrialShapeFactor;
+		double			icFactor;
+		bool ICStats;
 
 		unsigned int	leaderID;
 		unsigned int	leaderIDCountryIdx;

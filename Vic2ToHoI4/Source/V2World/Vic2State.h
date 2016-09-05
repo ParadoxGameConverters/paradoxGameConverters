@@ -26,26 +26,70 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include "../Mappers/Mapper.h"
+#include "Object.h"
+#include <set>
 #include <vector>
 using namespace std;
+
+
+class V2Province;
+
+
+
+typedef struct
+{
+	int craftsmen		= 0;
+	int clerks			= 0;
+	int artisans		= 0;
+	int capitalists	= 0;
+} workerStruct;
 
 
 
 class Vic2State
 {
 	public:
-		void	addProvince(int provNum)	{ provinces.push_back(provNum); }
-		void	setFactoryLevel(int level)	{ factoryLevel = level; }
-		void	setID(string id)				{ stateID = id; }
+		Vic2State(const Object* stateObj, string ownerTag);
 
-		vector<int>	getProvinces() const		{ return provinces; }
-		int			getFactoryLevel() const	{ return factoryLevel; }
-		string		getStateID() const		{ return stateID; }
+		void determineEmployedWorkers();
+		void determineIfPartialState();
+
+		int getPopulation() const;
+		int getAverageRailLevel() const;
+
+		void addProvince(V2Province* province) { provinces.insert(province); }
+
+		const set<V2Province*>& getProvinces() const { return provinces; }
+		const set<int>& getProvinceNums() const { return provinceNums; }
+		const string& getOwner() const { return owner; }
+		const string& getStateID() const { return stateID; }
+		bool isPartialState() const { return partialState; }
+		int getEmployedWorkers() const { return employedWorkers; }
 
 	private:
-		vector<int>		provinces;
-		int				factoryLevel;
-		string			stateID;
+		void addProvinceNums(const Object* stateObj);
+		void setID();
+		vector<string> getProvinceIDs(const Object* stateObj);
+
+		void setFactoryLevel(const Object* stateObj);
+		void addBuildingLevel(const Object* buildingObj);
+
+		workerStruct countEmployedWorkers();
+		workerStruct limitWorkersByFactoryLevels(workerStruct workers);
+		int determineEmplyedWorkersScore(workerStruct workers);
+		bool ownerHasNoCores();
+
+
+		string owner;
+		string stateID;
+		bool partialState;
+
+		set<int> provinceNums;
+		set<V2Province*> provinces;
+
+		int factoryLevel;
+		int employedWorkers;
 };
 
 

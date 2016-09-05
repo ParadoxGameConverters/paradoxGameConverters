@@ -53,7 +53,8 @@ enum flagIdeologies
 	SOCIALIST_FLAG = 5,
 	LIBERAL_FLAG = 6,
 	AUTOCRATIC_FLAG = 7,
-	FLAG_END				= 8
+	ANCAP_FLAG = 8,
+	FLAG_END				= 9
 };
 
 char* vic2Suffixes[FLAG_END] = {
@@ -65,6 +66,7 @@ char* vic2Suffixes[FLAG_END] = {
 	"_republic.tga",
 	"_republic.tga",
 	"_monarchy.tga",
+	"_republic.tga",
 };
 
 char* hoi4Suffixes[FLAG_END] = {
@@ -76,6 +78,7 @@ char* hoi4Suffixes[FLAG_END] = {
 	"_socialist.tga",
 	"_liberal.tga",
 	"_autocratic.tga",
+	"_ancap.tga",
 
 };
 
@@ -137,19 +140,27 @@ vector<string> getSourceFlagPaths(string Vic2Tag)
 
 bool isThisAConvertedTag(string Vic2Tag);
 string getConversionModFlag(string flagFilename);
+string getAllowModFlags(string flagFilename);
 string getSourceFlagPath(string Vic2Tag, string sourceSuffix)
 {
 	string path = "flags/" + Vic2Tag + sourceSuffix;
 	if (!Utils::DoesFileExist(path))
 	{
-		if (isThisAConvertedTag(Vic2Tag))
-		{
-			path = getConversionModFlag(Vic2Tag + sourceSuffix);
-		}
-		if (!Utils::DoesFileExist(path))
-		{
-			return "";
-		}
+		
+		
+			if (isThisAConvertedTag(Vic2Tag))
+			{
+				path = getConversionModFlag(Vic2Tag + sourceSuffix);
+			}
+			if (!Utils::DoesFileExist(path))
+			{
+				path = getAllowModFlags(Vic2Tag + sourceSuffix);
+			}
+			if (!Utils::DoesFileExist(path))
+			{
+				return "";
+			}
+		
 	}
 	return path;
 }
@@ -157,7 +168,7 @@ string getSourceFlagPath(string Vic2Tag, string sourceSuffix)
 
 bool isThisAConvertedTag(string Vic2Tag)
 {
-	return (isdigit(Vic2Tag.c_str()[2]) != 0);
+	return (isdigit(Vic2Tag[2]) != 0);
 }
 
 
@@ -165,6 +176,26 @@ string getConversionModFlag(string flagFilename)
 {
 	for (auto mod: Configuration::getVic2Mods())
 	{
+		string path = Configuration::getV2Path() + "/mod/" + mod + "/gfx/flags/" + flagFilename;
+		if (Utils::DoesFileExist(path))
+		{
+			return path;
+		}
+	}
+
+	return "";
+}
+
+
+static set<string> allowedMods = { "PDM", "NNM", "Divergences of Darkness" };
+string getAllowModFlags(string flagFilename)
+{
+	for (auto mod: Configuration::getVic2Mods())
+	{
+		if (allowedMods.count(mod) == 0)
+		{
+			continue;
+		}
 		string path = Configuration::getV2Path() + "/mod/" + mod + "/gfx/flags/" + flagFilename;
 		if (Utils::DoesFileExist(path))
 		{

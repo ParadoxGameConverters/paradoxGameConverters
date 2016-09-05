@@ -26,7 +26,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "../V2World/V2Localisation.h"
 #include <array>
 #include <iostream>
 #include <string>
@@ -49,7 +48,7 @@ class HoI4Localisation
 {
 	public:
 		void	readFromCountry(const V2Country*, string destTag);
-		void	addStateLocalisation(int HoI4StateID, string Vic2StateID, const V2Localisation Vic2Localisations);
+		void addNonenglishCountryLocalisations();
 
 		void	output(string localisationPath) const;
 
