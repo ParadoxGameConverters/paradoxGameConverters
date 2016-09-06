@@ -36,12 +36,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "EU4World\EU4Country.h"
 #include "EU4World\EU4Province.h"
 #include "Object.h"
-#include "ParadoxParser.h"
+#include "ParadoxParserUTF8.h"
 #include "V2World\V2World.h"
 #include "V2World\V2Country.h"
 #include "V2World\V2Province.h"
-#include "WinUtils.h"
 #include "Log.h"
+#include "OSCompatibilityLayer.h"
 
 bool CountryMapping::ReadRules(const std::string& fileName)
 {
@@ -49,8 +49,8 @@ bool CountryMapping::ReadRules(const std::string& fileName)
 
 	// Read the rule nodes from file.
 	LOG(LogLevel::Debug) << "Parsing rules from file " << fileName;
-	initParser();
-	Object* countryMappingsFile = doParseFile(fileName.c_str());	// the parsed country mappings file
+	parser_UTF8::initParser();
+	Object* countryMappingsFile = parser_UTF8::doParseFile(fileName.c_str());	// the parsed country mappings file
 	if (!countryMappingsFile)
 	{
 		LOG(LogLevel::Error) << "Failed to parse " << fileName;
@@ -144,7 +144,7 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 	std::set<std::string> availableFlagFiles;
 	for (size_t i = 0; i < availableFlagFolders.size(); ++i)
 	{
-		WinUtils::GetAllFilesInFolder(availableFlagFolders[i], availableFlagFiles);
+		Utils::GetAllFilesInFolder(availableFlagFolders[i], availableFlagFiles);
 	}
 
 	for (auto & file : availableFlagFiles)

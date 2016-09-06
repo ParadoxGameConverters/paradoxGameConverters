@@ -32,7 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <boost/algorithm/string.hpp>
 #include "Log.h"
 #include "../Configuration.h"
-#include "paradoxParser.h"
+#include "paradoxParser8859_15.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/Eu4Country.h"
 #include "../EU4World/EU4Province.h"
@@ -809,7 +809,7 @@ void V2Country::initFromHistory()
 		return;
 	}
 
-	Object* obj = doParseFile(fullFilename.c_str());
+	Object* obj = parser_8859_15::doParseFile(fullFilename.c_str());
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << fullFilename;

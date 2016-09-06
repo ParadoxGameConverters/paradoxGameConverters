@@ -21,7 +21,7 @@ THE SOFTWARE. */
 
 #include "EU4Army.h"
 #include "Log.h"
-#include "ParadoxParser.h"
+#include "ParadoxParserUTF8.h"
 
 
 
@@ -219,7 +219,7 @@ void AddCategoryToRegimentTypeMap(Object* obj, RegimentCategory category, string
 
 void AddUnitFileToRegimentTypeMap(string directory, string name, RegimentTypeMap& rtm)
 {
-	Object* obj = doParseFile((directory + "\\" + name + ".txt").c_str());	// the parsed regiment costs file
+	Object* obj = parser_UTF8::doParseFile((directory + "\\" + name + ".txt").c_str());	// the parsed regiment costs file
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << directory << '\\' << name << ".txt";

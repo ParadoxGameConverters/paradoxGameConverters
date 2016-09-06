@@ -34,7 +34,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Country.h"
 #include "..\Configuration.h"
 #include "Log.h"
-#include "..\WinUtils.h"
+#include "OSCompatibilityLayer.h"
 #include "..\FlagUtils.h"
 
 const std::vector<std::string> V2Flags::flagFileSuffixes = { ".tga", "_communist.tga", "_fascist.tga", "_monarchy.tga", "_republic.tga" };
@@ -53,7 +53,7 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 	std::set<std::string> availableFlags;
 	for (size_t i = 0; i < availableFlagFolders.size(); ++i)
 	{
-		WinUtils::GetAllFilesInFolder(availableFlagFolders[i], availableFlags);
+		Utils::GetAllFilesInFolder(availableFlagFolders[i], availableFlags);
 	}
 	std::set<std::string> usableFlagTags;
 	while (!availableFlags.empty())
@@ -313,14 +313,14 @@ bool V2Flags::Output() const
 	std::string outputGraphicsFolder = "Output\\" + Configuration::getOutputName() + "\\gfx";
 	std::string outputFlagFolder = outputGraphicsFolder + "\\flags";
 
-	//WinUtils::DeleteFolder(outputFlagFolder); 
+	//Utils::DeleteFolder(outputFlagFolder); 
 
-	if (!WinUtils::TryCreateFolder(outputGraphicsFolder))
+	if (!Utils::TryCreateFolder(outputGraphicsFolder))
 	{
 		return false;
 	}
 
-	if (!WinUtils::TryCreateFolder(outputFlagFolder))
+	if (!Utils::TryCreateFolder(outputFlagFolder))
 	{
 		return false;
 	}
@@ -339,11 +339,11 @@ bool V2Flags::Output() const
 			{
 				const std::string& folderPath = *j;
 				std::string sourceFlagPath = folderPath + '\\' + flagTag + suffix;
-				flagFileFound = WinUtils::DoesFileExist(sourceFlagPath);
+				flagFileFound = Utils::DoesFileExist(sourceFlagPath);
 				if (flagFileFound)
 				{
 					std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
-					WinUtils::TryCopyFile(sourceFlagPath, destFlagPath);
+					Utils::TryCopyFile(sourceFlagPath, destFlagPath);
 				}
 			}
 		}
@@ -381,7 +381,7 @@ bool V2Flags::Output() const
 			std::string sourceFlagPath = folderPath + "\\CustomBases\\" + baseFlag + ".tga";
 			std::string sourceEmblemPath = folderPath + "\\CustomEmblems\\" + emblem + suffix;
 			
-			flagFileFound = (WinUtils::DoesFileExist(sourceFlagPath) && WinUtils::DoesFileExist(sourceEmblemPath));
+			flagFileFound = (Utils::DoesFileExist(sourceFlagPath) && Utils::DoesFileExist(sourceEmblemPath));
 			if (flagFileFound)
 			{
 				std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
@@ -394,7 +394,7 @@ bool V2Flags::Output() const
 			}
 			else
 			{
-				if (!WinUtils::DoesFileExist(sourceFlagPath))
+				if (!Utils::DoesFileExist(sourceFlagPath))
 					LOG(LogLevel::Error) << "Could not find " << sourceFlagPath;
 				else
 					LOG(LogLevel::Error) << "Could not find " << sourceEmblemPath;
@@ -428,7 +428,7 @@ bool V2Flags::Output() const
 			{
 				std::string sourceFlagPath = folderPath + '\\' + baseFlag + suffix;
 				std::string overlordFlagPath = folderPath + '\\' + overlord + ".tga";
-				flagFileFound = (WinUtils::DoesFileExist(sourceFlagPath) && WinUtils::DoesFileExist(overlordFlagPath));
+				flagFileFound = (Utils::DoesFileExist(sourceFlagPath) && Utils::DoesFileExist(overlordFlagPath));
 				if (flagFileFound)
 				{
 					std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
@@ -436,7 +436,7 @@ bool V2Flags::Output() const
 				}
 				else
 				{
-					if (!WinUtils::DoesFileExist(sourceFlagPath))
+					if (!Utils::DoesFileExist(sourceFlagPath))
 						LOG(LogLevel::Error) << "Could not find " << sourceFlagPath;
 					else
 						LOG(LogLevel::Error) << "Could not find " << overlordFlagPath;
@@ -445,11 +445,11 @@ bool V2Flags::Output() const
 			else
 			{
 				std::string sourceFlagPath = folderPath + '\\' + baseFlag + suffix;
-				flagFileFound = WinUtils::DoesFileExist(sourceFlagPath);
+				flagFileFound = Utils::DoesFileExist(sourceFlagPath);
 				if (flagFileFound)
 				{
 					std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
-					WinUtils::TryCopyFile(sourceFlagPath, destFlagPath);
+					Utils::TryCopyFile(sourceFlagPath, destFlagPath);
 				}
 				else
 				{

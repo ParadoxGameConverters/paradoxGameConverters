@@ -24,7 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Province.h"
 #include "Log.h"
 #include "Object.h"
-#include "ParadoxParser.h"
+#include "ParadoxParser8859_15.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Province.h"
 #include "V2Pop.h"
@@ -86,7 +86,7 @@ V2Province::V2Province(string _filename)
 	struct _stat st;
 	if (_stat((string(".\\blankMod\\output\\history\\provinces") + _filename).c_str(), &st) == 0)
 	{
-		obj = doParseFile((string(".\\blankMod\\output\\history\\provinces") + _filename).c_str());
+		obj = parser_8859_15::doParseFile((string(".\\blankMod\\output\\history\\provinces") + _filename).c_str());
 		if (obj == NULL)
 		{
 			LOG(LogLevel::Error) << "Could not parse .\\blankMod\\output\\history\\provinces" << _filename;
@@ -95,7 +95,7 @@ V2Province::V2Province(string _filename)
 	}
 	else
 	{
-		obj = doParseFile((Configuration::getV2Path() + "\\history\\provinces" + _filename).c_str());
+		obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "\\history\\provinces" + _filename).c_str());
 		if (obj == NULL)
 		{
 			LOG(LogLevel::Error) << "Could not parse " << Configuration::getV2Path() << "\\history\\provinces" << _filename;

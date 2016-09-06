@@ -34,11 +34,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <cmath>
 #include <cfloat>
 #include <sys/stat.h>
-#include "ParadoxParser.h"
+#include "ParadoxParser8859_15.h"
 #include "Log.h"
+#include "OSCompatibilityLayer.h"
 #include "../Mapper.h"
 #include "../Configuration.h"
-#include "../WinUtils.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Relations.h"
 #include "../EU4World/EU4Leader.h"
@@ -158,11 +158,11 @@ V2World::V2World(const minorityPopMapping& minorities)
 
 	totalWorldPopulation	= 0;
 	set<string> fileNames;
-	WinUtils::GetAllFilesInFolder(".\\blankMod\\output\\history\\pops\\1836.1.1\\", fileNames);
+	Utils::GetAllFilesInFolder(".\\blankMod\\output\\history\\pops\\1836.1.1\\", fileNames);
 	for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
 	{
 		list<int>* popProvinces = new list<int>;
-		Object*	obj2	= doParseFile((".\\blankMod\\output\\history\\pops\\1836.1.1\\" + *itr).c_str());				// generic object
+		Object*	obj2	= parser_8859_15::doParseFile((".\\blankMod\\output\\history\\pops\\1836.1.1\\" + *itr).c_str());				// generic object
 		vector<Object*> leaves = obj2->getLeaves();
 		for (unsigned int j = 0; j < leaves.size(); j++)
 		{
@@ -261,7 +261,7 @@ V2World::V2World(const minorityPopMapping& minorities)
 	// determine whether a province is coastal or not by checking if it has a naval base
 	// if it's not coastal, we won't try to put any navies in it (otherwise Vicky crashes)
 	LOG(LogLevel::Info) << "Finding coastal provinces.";
-	Object*	obj2 = doParseFile((Configuration::getV2Path() + "\\map\\positions.txt").c_str());
+	Object*	obj2 = parser_8859_15::doParseFile((Configuration::getV2Path() + "\\map\\positions.txt").c_str());
 	if (obj2 == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getV2Path() << "\\map\\positions.txt";
@@ -342,7 +342,7 @@ V2World::V2World(const minorityPopMapping& minorities)
 		Object* countryData;
 		if (_stat((string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str(), &st) == 0)
 		{
-			countryData = doParseFile((string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str());
+			countryData = parser_8859_15::doParseFile((string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str());
 			if (countryData == NULL)
 			{
 				LOG(LogLevel::Warning) << "Could not parse file .\\blankMod\\output\\common\\countries\\" << countryFileName;
@@ -350,7 +350,7 @@ V2World::V2World(const minorityPopMapping& minorities)
 		}
 		else if (_stat((Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str(), &st) == 0)
 		{
-			countryData = doParseFile((Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str());
+			countryData = parser_8859_15::doParseFile((Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str());
 			if (countryData == NULL)
 			{
 				LOG(LogLevel::Warning) << "Could not parse file " << Configuration::getV2Path() << "\\common\\countries\\" << countryFileName;
@@ -391,7 +391,7 @@ void V2World::output() const
 {
 	// Create common\countries path.
 	string countriesPath = "Output\\" + Configuration::getOutputName() + "\\common\\countries";
-	if (!WinUtils::TryCreateFolder(countriesPath))
+	if (!Utils::TryCreateFolder(countriesPath))
 	{
 		return;
 	}
@@ -433,7 +433,7 @@ void V2World::output() const
 	// Create localisations for all new countries. We don't actually know the names yet so we just use the tags as the names.
 	LOG(LogLevel::Debug) << "Writing localisation text";
 	string localisationPath = "Output\\" + Configuration::getOutputName() + "\\localisation";
-	if (!WinUtils::TryCreateFolder(localisationPath))
+	if (!Utils::TryCreateFolder(localisationPath))
 	{
 		return;
 	}
@@ -1448,7 +1448,7 @@ void V2World::convertArmies(const EU4World& sourceWorld, const inverseProvinceMa
 
 	// get cost per regiment values
 	double cost_per_regiment[num_reg_categories] = { 0.0 };
-	Object*	obj2 = doParseFile("regiment_costs.txt");
+	Object*	obj2 = parser_8859_15::doParseFile("regiment_costs.txt");
 	if (obj2 == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file regiment_costs.txt";

@@ -28,7 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "../Mapper.h"
 #include "Object.h"
-#include "ParadoxParser.h"
+#include "ParadoxParserUTF8.h"
 #include "EU4Province.h"
 #include "EU4Country.h"
 #include "EU4Diplomacy.h"
@@ -363,7 +363,7 @@ void EU4World::readCommonCountries(istream& in, const std::string& rootPath)
 				std::string path = rootPath + "\\common\\" + fileName;
 				size_t lastPathSeparatorPos = path.find_last_of('\\');
 				std::string localFileName = path.substr(lastPathSeparatorPos + 1, string::npos);
-				country->readFromCommonCountry(localFileName, doParseFile(path.c_str()));
+				country->readFromCommonCountry(localFileName, parser_UTF8::doParseFile(path.c_str()));
 			}
 		}
 	}

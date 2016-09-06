@@ -27,7 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "..\EU4World\EU4Country.h"
 #include "Log.h"
-#include "..\WinUtils.h"
+#include "OSCompatibilityLayer.h"
 
 const std::array<std::string, V2Localisation::numLanguages> V2Localisation::languages = 
 	{ "english", "french", "german", "spanish" };
@@ -114,27 +114,27 @@ std::string V2Localisation::Convert(const std::string& text)
 	int utf16Size = MultiByteToWideChar(CP_UTF8, 0, text.c_str(), text.size(), NULL, 0);
 	if (utf16Size == 0)
 	{
-		LOG(LogLevel::Warning) << "Can't convert \"" << text << "\" to UTF-16: " << WinUtils::GetLastWindowsError();
+		LOG(LogLevel::Warning) << "Can't convert \"" << text << "\" to UTF-16: " << Utils::GetLastErrorString();
 		return "";
 	}
 	std::vector<wchar_t> utf16Text(utf16Size, L'\0');
 	int result = MultiByteToWideChar(CP_UTF8, 0, text.c_str(), text.size(), &utf16Text[0], utf16Size);
 	if (result == 0)
 	{
-		LOG(LogLevel::Warning) << "Can't convert \"" << text << "\" to UTF-16: " << WinUtils::GetLastWindowsError();
+		LOG(LogLevel::Warning) << "Can't convert \"" << text << "\" to UTF-16: " << Utils::GetLastErrorString();
 		return "";
 	}
 	int latin1Size = WideCharToMultiByte(1252, WC_NO_BEST_FIT_CHARS | WC_COMPOSITECHECK | WC_DEFAULTCHAR, &utf16Text[0], utf16Size, NULL, 0, "0", NULL);
 	if (latin1Size == 0)
 	{
-		LOG(LogLevel::Warning) << "Can't convert \"" << text << "\" to Latin-1: " << WinUtils::GetLastWindowsError();
+		LOG(LogLevel::Warning) << "Can't convert \"" << text << "\" to Latin-1: " << Utils::GetLastErrorString();
 		return "";
 	}
 	std::vector<char> latin1Text(latin1Size, '\0');
 	result = WideCharToMultiByte(1252, WC_NO_BEST_FIT_CHARS | WC_COMPOSITECHECK | WC_DEFAULTCHAR, &utf16Text[0], utf16Size, &latin1Text[0], latin1Size, "0", NULL);
 	if (result == 0)
 	{
-		LOG(LogLevel::Warning) << "Can't convert \"" << text << "\" to Latin-1: " << WinUtils::GetLastWindowsError();
+		LOG(LogLevel::Warning) << "Can't convert \"" << text << "\" to Latin-1: " << Utils::GetLastErrorString();
 		return "";
 	}
 	return std::string(latin1Text.begin(), latin1Text.end());

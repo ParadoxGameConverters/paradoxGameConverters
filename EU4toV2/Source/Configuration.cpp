@@ -22,7 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Configuration.h"
-#include "ParadoxParser.h"
+#include "ParadoxParserUTF8.h"
 #include "Object.h"
 #include "Log.h"
 #include <vector>
@@ -36,7 +36,7 @@ Configuration::Configuration()
 {
 	LOG(LogLevel::Info) << "Reading configuration file";
 
-	Object* oneObj = doParseFile("configuration.txt");	// the parsed configuration file
+	Object* oneObj = parser_UTF8::doParseFile("configuration.txt");	// the parsed configuration file
 	if (oneObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not open configuration.txt";

@@ -22,7 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Factory.h"
-#include "ParadoxParser.h"
+#include "ParadoxParser8859_15.h"
 #include "Log.h"
 #include "../Configuration.h"
 
@@ -127,7 +127,7 @@ V2FactoryFactory::V2FactoryFactory()
 
 	// load factory types
 	factoryTypes.clear();
-	Object* obj = doParseFile((Configuration::getV2Path() + "\\common\\production_types.txt").c_str());
+	Object* obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "\\common\\production_types.txt").c_str());
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getV2Path() << "\\common\\production_types.txt";
@@ -168,7 +168,7 @@ V2FactoryFactory::V2FactoryFactory()
 	}
 
 	factoryCounts.clear();
-	obj = doParseFile("starting_factories.txt");
+	obj = parser_8859_15::doParseFile("starting_factories.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file starting_factories.txt";
@@ -215,7 +215,7 @@ deque<V2Factory*> V2FactoryFactory::buildFactories() const
 
 void V2FactoryFactory::loadRequiredTechs(string filename)
 {
-	Object* obj = doParseFile(filename.c_str());
+	Object* obj = parser_8859_15::doParseFile(filename.c_str());
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << filename;
@@ -235,7 +235,7 @@ void V2FactoryFactory::loadRequiredTechs(string filename)
 
 void V2FactoryFactory::loadRequiredInventions(string filename)
 {
-	Object* obj = doParseFile(filename.c_str());
+	Object* obj = parser_8859_15::doParseFile(filename.c_str());
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << filename;

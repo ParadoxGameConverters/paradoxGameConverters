@@ -22,11 +22,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "EU4Localisation.h"
-
 #include <fstream>
 #include <vector>
+#include <set>
+#include "OSCompatibilityLayer.h"
+using namespace std;
 
-#include <Windows.h>
+
 
 void EU4Localisation::ReadFromFile(const std::string& fileName)
 {
@@ -63,21 +65,8 @@ void EU4Localisation::ReadFromFile(const std::string& fileName)
 void EU4Localisation::ReadFromAllFilesInFolder(const std::string& folderPath)
 {
 	// Get all files in the folder.
-	std::vector<std::string> fileNames;
-	WIN32_FIND_DATA findData;	// the file data
-	HANDLE findHandle = FindFirstFile((folderPath + "\\*").c_str(), &findData);	// the find handle
-	if (findHandle == INVALID_HANDLE_VALUE)
-	{
-		return;
-	}
-	do
-	{
-		if (!(findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
-		{
-			fileNames.push_back(findData.cFileName);
-		}
-	} while (FindNextFile(findHandle, &findData) != 0);
-	FindClose(findHandle);
+	set<string> fileNames;
+	Utils::GetAllFilesInFolder(folderPath, fileNames);
 
 	// Read all these files.
 	for (const auto& fileName : fileNames)
