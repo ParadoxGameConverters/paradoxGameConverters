@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include "Log.h"
 #include "../Configuration.h"
-#include "../Mapper.h"
+#include "../Mappers/Mapper.h"
 #include "Object.h"
 #include "ParadoxParserUTF8.h"
 #include "EU4Province.h"

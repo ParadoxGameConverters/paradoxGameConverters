@@ -41,10 +41,21 @@ date::date(string _init)
 	}
 	const int first_dot	= _init.find_first_of('.');	// the position of the first period in the date
 	const int last_dot	= _init.find_last_of('.');		// the position of the second period in the date
-	year						= stoi( _init.substr(0, first_dot) );
-	month						= stoi( _init.substr(first_dot + 1, last_dot - first_dot) );
-	day						= stoi( _init.substr(last_dot + 1, 2) );
+
+	try
+	{
+		year						= stoi( _init.substr(0, first_dot) );
+		month						= stoi( _init.substr(first_dot + 1, last_dot - first_dot) );
+		day						= stoi( _init.substr(last_dot + 1, 2) );
+	}
+	catch (const std::exception& e)
+	{
+		year = 0;
+		month = 0;
+		day = 0;
+	}
 }
+
 
 date::date(const date& _init)
 {

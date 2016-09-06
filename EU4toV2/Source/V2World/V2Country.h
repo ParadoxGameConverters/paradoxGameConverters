@@ -25,8 +25,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #define V2COUNTRY_H_
 
 
-#include "../CountryMapping.h"
-#include "../Mapper.h"
+#include "../Mappers/CountryMapping.h"
+#include "../Mappers/Mapper.h"
 #include "../Color.h"
 #include "Date.h"
 #include "../Eu4World/EU4Army.h"

@@ -35,16 +35,16 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "..\Configuration.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
+#include "../Mappers/FlagColorMapper.h"
 #include "..\FlagUtils.h"
 
 const std::vector<std::string> V2Flags::flagFileSuffixes = { ".tga", "_communist.tga", "_fascist.tga", "_monarchy.tga", "_republic.tga" };
 
-void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const CK2TitleMapping& CK2titles, const colonyFlagset& colonyFlagset, const FlagColourMapping& flagColours)
+void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const CK2TitleMapping& CK2titles, const colonyFlagset& colonyFlagset)
 {
 	LOG(LogLevel::Debug) << "Initializing flags";
 	tagMapping.clear();
 	colonyFlags = colonyFlagset;
-	flagColourMapping = flagColours;
 
 	static std::mt19937 generator(static_cast<int>(std::chrono::system_clock::now().time_since_epoch().count()));
 
@@ -358,7 +358,7 @@ bool V2Flags::Output() const
 		string baseFlag = cflag.second.flag;
 		string emblem = std::to_string(cflag.second.emblem);
 
-		int colourcount = flagColourMapping.size();
+		int colourcount = FlagColorMapper::getNumColors();
 		
 		if (std::get<0>(cflag.second.colours) > colourcount || std::get<1>(cflag.second.colours) > colourcount || std::get<2>(cflag.second.colours) > colourcount)
 		{
@@ -387,9 +387,9 @@ bool V2Flags::Output() const
 				std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
 				
 				CreateCustomFlag( 
-					flagColourMapping[std::get<0>(cflag.second.colours)],
-					flagColourMapping[std::get<1>(cflag.second.colours)],
-					flagColourMapping[std::get<2>(cflag.second.colours)],
+					FlagColorMapper::getFlagColor(std::get<0>(cflag.second.colours)),
+					FlagColorMapper::getFlagColor(std::get<1>(cflag.second.colours)),
+					FlagColorMapper::getFlagColor(std::get<2>(cflag.second.colours)),
 					sourceEmblemPath, sourceFlagPath, destFlagPath);
 			}
 			else

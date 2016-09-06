@@ -8,13 +8,10 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|Win32 = Release|Win32
-		Release-NoCopies|Win32 = Release-NoCopies|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{84ABCE0D-17FE-44A5-8684-5A8AA04E80B9}.Release|Win32.ActiveCfg = Release|Win32
 		{84ABCE0D-17FE-44A5-8684-5A8AA04E80B9}.Release|Win32.Build.0 = Release|Win32
-		{84ABCE0D-17FE-44A5-8684-5A8AA04E80B9}.Release-NoCopies|Win32.ActiveCfg = Release-NoCopies|Win32
-		{84ABCE0D-17FE-44A5-8684-5A8AA04E80B9}.Release-NoCopies|Win32.Build.0 = Release-NoCopies|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

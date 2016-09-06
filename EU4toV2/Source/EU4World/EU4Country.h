@@ -27,7 +27,7 @@ THE SOFTWARE. */
 #include "EU4Army.h"
 #include "..\Color.h"
 #include "Date.h"
-#include "..\Mapper.h"
+#include "../Mappers/Mapper.h"
 
 
 class EU4Loan;

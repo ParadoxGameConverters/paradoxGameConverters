@@ -37,7 +37,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "ParadoxParser8859_15.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
-#include "../Mapper.h"
+#include "../Mappers/Mapper.h"
 #include "../Configuration.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Relations.h"
@@ -427,7 +427,7 @@ void V2World::output() const
 
 	// Create flags for all new countries.
 	V2Flags flags;
-	flags.SetV2Tags(countries, ck2titles, colonyFlagMap, flagColourMapping);
+	flags.SetV2Tags(countries, ck2titles, colonyFlagMap);
 	flags.Output();
 
 	// Create localisations for all new countries. We don't actually know the names yet so we just use the tags as the names.

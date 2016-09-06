@@ -3,12 +3,9 @@
   <ItemGroup>
     <ClCompile Include="Source\Color.cpp" />
     <ClCompile Include="Source\Configuration.cpp" />
-    <ClCompile Include="Source\CountryMapping.cpp" />
     <ClCompile Include="Source\FlagUtils.cpp" />
-    <ClCompile Include="Source\Mapper.cpp" />
     <ClCompile Include="Source\targa.cpp" />
     <ClCompile Include="Source\tempFuncs.cpp" />
-    <ClCompile Include="Source\WinUtils.cpp" />
     <ClCompile Include="Source\EU4World\EU4Army.cpp">
       <Filter>EU4 World</Filter>
     </ClCompile>
@@ -100,18 +97,33 @@
     <ClCompile Include="..\common_items\Object.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
-    <ClCompile Include="..\common_items\ParadoxParser.cpp">
+    <ClCompile Include="..\common_items\ParadoxParser8859_15.cpp">
       <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\ParadoxParserUTF8.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\WinUtils.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\CommonUtils.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\CountryMapping.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\Mapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\FlagColorMapper.cpp">
+      <Filter>Mappers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
-    <ClInclude Include="Source\CountryMapping.h" />
     <ClInclude Include="Source\FlagUtils.h" />
-    <ClInclude Include="Source\Mapper.h" />
     <ClInclude Include="Source\targa.h" />
-    <ClInclude Include="Source\WinUtils.h" />
     <ClInclude Include="Source\EU4World\EU4Army.h">
       <Filter>EU4 World</Filter>
     </ClInclude>
@@ -205,8 +217,23 @@
     <ClInclude Include="..\common_items\Object.h">
       <Filter>CommonItems</Filter>
     </ClInclude>
-    <ClInclude Include="..\common_items\ParadoxParser.h">
+    <ClInclude Include="..\common_items\ParadoxParser8859_15.h">
       <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\ParadoxParserUTF8.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\OSCompatibilityLayer.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\CountryMapping.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\Mapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\FlagColorMapper.h">
+      <Filter>Mappers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +245,9 @@
     </Filter>
     <Filter Include="CommonItems">
       <UniqueIdentifier>{b4ecb265-1673-4f23-af86-fbe9c838c8a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mappers">
+      <UniqueIdentifier>{795cd4fd-5702-44e4-a851-9860b3b70989}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
