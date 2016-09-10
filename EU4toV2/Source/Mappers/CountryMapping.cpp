@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -33,6 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../EU4World/EU4Country.h"
 #include "../EU4World/EU4Province.h"
 #include "../Mappers/CK2TitleMapper.h"
+#include "../Mappers/ProvinceMapper.h"
 #include "../V2World/V2World.h"
 #include "../V2World/V2Country.h"
 #include "../V2World/V2Province.h"
@@ -133,7 +134,7 @@ void CountryMapping::readV2Regions(Object* obj)
 }
 
 
-void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap, const inverseUnionCulturesMap& inverseUnionCultures)
+void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseUnionCulturesMap& inverseUnionCultures)
 {
 	EU4TagToV2TagMap.clear();
 	
@@ -177,7 +178,7 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 
 	for (std::map<std::string, EU4Country*>::const_iterator i = ColonialCountries.begin(); i != ColonialCountries.end(); ++i)
 	{
-		bool success = attemptColonialReplacement(i->second, srcWorld, V2Countries, colonyMap, inverseProvinceMap, provinceMap, inverseUnionCultures);
+		bool success = attemptColonialReplacement(i->second, srcWorld, V2Countries, colonyMap, inverseUnionCultures);
 		if (!success)
 		{
 			oneMapping(i->second, V2Countries, generatedV2TagPrefix, generatedV2TagSuffix);
@@ -186,11 +187,17 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 }
 
 
-bool CountryMapping::attemptColonialReplacement(EU4Country* country, const EU4World& srcWorld, const map<string, V2Country*> V2Countries, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap, const inverseUnionCulturesMap& inverseUnionCultures)
+bool CountryMapping::attemptColonialReplacement(EU4Country* country, const EU4World& srcWorld, const map<string, V2Country*> V2Countries, const colonyMapping& colonyMap, const inverseUnionCulturesMap& inverseUnionCultures)
 {
 	bool mapped = false;
+
+	int vic2Capital;
 	int EU4Capital = country->getCapital();
-	int V2Capital = inverseProvinceMap.find(country->getCapital())->second[0];
+	auto potentialVic2Capitals = provinceMapper::getVic2ProvinceNumbers(EU4Capital);
+	if (potentialVic2Capitals.size() > 0)
+	{
+		vic2Capital = potentialVic2Capitals[0];
+	}
 
 	for (colonyMapping::const_iterator j = colonyMap.begin(); j != colonyMap.end(); j++)
 	{
@@ -220,20 +227,20 @@ bool CountryMapping::attemptColonialReplacement(EU4Country* country, const EU4Wo
 				LOG(LogLevel::Warning) << "Unknown V2 Region " << j->V2Region;
 				continue;
 			}
-			else if (V2Region->second.find(V2Capital) == V2Region->second.end())
+			else if (V2Region->second.find(vic2Capital) == V2Region->second.end())
 			{
 				bool allOwned = true;
-				for (set<int>::iterator V2Provs = V2Region->second.begin(); V2Provs != V2Region->second.end(); V2Provs++)
+				for (auto vic2ProvinceNumber: V2Region->second)
 				{
-					provinceMapping::const_iterator map = provinceMap.find(*V2Provs);
-					if (map == provinceMap.end())
+					auto EU4ProvinceNumbers = provinceMapper::getEU4ProvinceNumbers(vic2ProvinceNumber);
+					if (EU4ProvinceNumbers.size() > 0)
 					{
 						allOwned = false;
 						break;
 					}
-					for (vector<int>::const_iterator EU4Provs = map->second.begin(); EU4Provs != map->second.end(); EU4Provs++)
+					for (auto EU4ProvincNumber: EU4ProvinceNumbers)
 					{
-						const EU4Province* province = srcWorld.getProvince(*EU4Provs);
+						const EU4Province* province = srcWorld.getProvince(EU4ProvincNumber);
 						if ((province == NULL) || (province->getOwnerString() != country->getTag()))
 						{
 							allOwned = false;

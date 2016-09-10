@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -40,7 +40,7 @@ struct EU4Agreement;
 class EU4World {
 	public:
 		EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas, inverseUnionCulturesMap& inverseUnionCultures);
-		void setEU4WorldProvinceMappings(const inverseProvinceMapping& inverseProvinceMap);
+		void setNumbersOfDestinationProvinces();
 
 		void readCommonCountries(istream&, const std::string& rootPath);
 
@@ -48,7 +48,7 @@ class EU4World {
 		EU4Province*					getProvince(int provNum) const;
 		void								removeCountry(string tag);
 		void								resolveRegimentTypes(const RegimentTypeMap& map);
-		void								checkAllProvincesMapped(const inverseProvinceMapping& inverseProvinceMap) const;
+		void								checkAllProvincesMapped() const;
 		void								checkAllEU4CulturesMapped(const cultureMapping& cultureMap, const inverseUnionCulturesMap& inverseUnionCultures) const;
 		void								checkAllEU4ReligionsMapped(const religionMapping& religionMap) const;
 		void								setLocalisations(EU4Localisation& localisation);

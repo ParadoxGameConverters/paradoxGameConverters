@@ -532,20 +532,8 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	LOG(LogLevel::Info) << "Determining factory allocation rules.";
 	V2FactoryFactory factoryBuilder;
 
-	// Parse province mappings
-	LOG(LogLevel::Info) << "Parsing province mappings";
-	Object* provinceMappingObj = parser_UTF8::doParseFile("province_mappings.txt");
-	if (provinceMappingObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file province_mappings.txt";
-		exit(-1);
-	}
-	provinceMapping			provinceMap;
-	inverseProvinceMapping	inverseProvinceMap;
-	resettableMap				resettableProvinces;
-	initProvinceMap(provinceMappingObj, sourceWorld.getVersion(), provinceMap, inverseProvinceMap, resettableProvinces);
-	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
-	sourceWorld.setEU4WorldProvinceMappings(inverseProvinceMap);
+	sourceWorld.checkAllProvincesMapped();
+	sourceWorld.setNumbersOfDestinationProvinces();
 
 	// Get country mappings
 	LOG(LogLevel::Info) << "Getting country mappings";
@@ -878,14 +866,14 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	{
 		removeLandlessNations(sourceWorld);
 	}
-	countryMap.CreateMapping(sourceWorld, destWorld, colonyMap, inverseProvinceMap, provinceMap, inverseUnionCultures);
+	countryMap.CreateMapping(sourceWorld, destWorld, colonyMap, inverseUnionCultures);
 
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas, EU4RegionsMap);
+	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, techSchools, leaderIDMap, lt, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas, EU4RegionsMap);
 	LOG(LogLevel::Info) << "Converting provinces";
-	destWorld.convertProvinces(sourceWorld, provinceMap, resettableProvinces, countryMap, cultureMap, slaveCultureMap, religionMap, stateIndexMap, EU4RegionsMap);
+	destWorld.convertProvinces(sourceWorld, countryMap, cultureMap, slaveCultureMap, religionMap, stateIndexMap, EU4RegionsMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Setting colonies";
@@ -903,7 +891,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	LOG(LogLevel::Info) << "Adding unions";
 	destWorld.addUnions(unionMap);
 	LOG(LogLevel::Info) << "Converting armies and navies";
-	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap, adjacencyMap);
+	destWorld.convertArmies(sourceWorld, leaderIDMap, adjacencyMap);
 
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";

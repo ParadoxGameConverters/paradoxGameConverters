@@ -39,13 +39,7 @@ class V2World;
 
 struct CustomFlag;
 
-// Province Mappings
-typedef map< int, vector<int> >	provinceMapping;			// < destProvince, sourceProvinces >
-typedef map< int, vector<int> >	inverseProvinceMapping;	// < sourceProvince, destProvinces >
-typedef unordered_set<int>			resettableMap;
 
-void initProvinceMap(Object* obj, const EU4Version* version, provinceMapping& provMap, provinceMapping& inverseProvMap, resettableMap& resettableProvinces);
-const vector<int>& getV2ProvinceNums(const inverseProvinceMapping& invProvMap, int eu4ProvinceNum);
 
 
 typedef vector< vector<int> > adjacencyMapping;

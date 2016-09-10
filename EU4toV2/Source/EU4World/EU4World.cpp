@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "../Configuration.h"
 #include "../Mappers/Mapper.h"
+#include "../Mappers/ProvinceMapper.h"
 #include "Object.h"
 #include "ParadoxParserUTF8.h"
 #include "EU4Province.h"
@@ -42,6 +43,7 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 {
 	vector<Object*> versionObj = obj->getValue("savegame_version");	// the version of the save
 	(versionObj.size() > 0) ? version = new EU4Version(versionObj[0]) : version = new EU4Version();
+	Configuration::setEU4Version(*version);
 
 	vector<Object*> enabledDLCsObj = obj->getValue("dlc_enabled");
 	if (enabledDLCsObj.size() > 0)
@@ -311,11 +313,12 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 }
 
 
-void EU4World::setEU4WorldProvinceMappings(const inverseProvinceMapping& inverseProvinceMap)
+void EU4World::setNumbersOfDestinationProvinces()
 {
-	for (map<int, EU4Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
+	for (auto province: provinces)
 	{
-		i->second->setNumDestV2Provs(inverseProvinceMap.find(i->first)->second.size());
+		auto Vic2Provinces = provinceMapper::getVic2ProvinceNumbers(province.first);
+		province.second->setNumDestV2Provs(Vic2Provinces.size());
 	}
 }
 
@@ -399,14 +402,14 @@ void EU4World::resolveRegimentTypes(const RegimentTypeMap& rtMap)
 }
 
 
-void EU4World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProvinceMap) const
+void EU4World::checkAllProvincesMapped() const
 {
-	for (map<int, EU4Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
+	for (auto province: provinces)
 	{
-		inverseProvinceMapping::const_iterator j = inverseProvinceMap.find(i->first);
-		if (j == inverseProvinceMap.end())
+		auto Vic2Provinces = provinceMapper::getVic2ProvinceNumbers(province.first);
+		if (Vic2Provinces.size() == 0)
 		{
-			LOG(LogLevel::Warning) << "No mapping for province " << i->first;
+			LOG(LogLevel::Warning) << "No mapping for province " << province.first;
 		}
 	}
 }

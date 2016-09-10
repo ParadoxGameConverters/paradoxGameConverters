@@ -51,7 +51,7 @@ public:
 	// priority over other tags. Countries with EU4 tags that aren't in the rules or
 	// have no available V2 tag (e.g. when multiple EU4 countries would use the same V2 tag)
 	// are given a generated tag "X00"-"X99".
-	void CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap, const inverseUnionCulturesMap& inverseUnionCultures);
+	void CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseUnionCulturesMap& inverseUnionCultures);
 
 	// Returns the V2 tag that is mapped to by the given EU4 tag. Returns an empty string
 	// if there is no corresponding V2 tag. If CreateMapping() has been called then there
@@ -76,7 +76,7 @@ private:
 	static void	LogMapping(const std::string& EU4Tag, const std::string& V2Tag, const std::string& reason);
 
 	// if there is a valid colonial replacement, uses it
-	bool			attemptColonialReplacement(EU4Country* country, const EU4World& srcWorld, const map<string, V2Country*> V2Countries, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap, const inverseUnionCulturesMap& inverseUnionCultures);
+	bool			attemptColonialReplacement(EU4Country* country, const EU4World& srcWorld, const map<string, V2Country*> V2Countries, const colonyMapping& colonyMap, const inverseUnionCulturesMap& inverseUnionCultures);
 
 	void			oneMapping(EU4Country* country, const map<string, V2Country*> V2Countries, char& generatedV2TagPrefix, int& generatedV2TagSuffix);
 

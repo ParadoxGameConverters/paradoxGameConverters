@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <vector>
 #include <string>
 #include "Date.h"
+#include "EU4World/EU4Version.h"
 using namespace std;
 
 
@@ -65,6 +66,16 @@ public:
 	static string getV2Gametype()
 	{
 		return getInstance()->V2Gametype;
+	}
+
+	static EU4Version getEU4Version()
+	{
+		return getInstance()->version;
+	}
+
+	static void setEU4Version(EU4Version version)
+	{
+		getInstance()->version = version;
 	}
 
 	static date	getFirstEU4Date()
@@ -163,6 +174,7 @@ private:
 	bool		convertPopTotals;		// whether or not to convert pop totals
 	
 	// items set during conversion
+	EU4Version		version;
 	date				firstEU4Date;			// the date EU4 began
 	date				lastEU4Date;			// the date EU4 ended
 	string			outputName;				// the name the outputted mod should have

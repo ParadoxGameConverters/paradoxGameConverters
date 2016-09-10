@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -38,6 +38,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "../Mappers/Mapper.h"
+#include "../Mappers/ProvinceMapper.h"
 #include "../Configuration.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Relations.h"
@@ -588,7 +589,7 @@ bool scoresSorter(pair<V2Country*, int> first, pair<V2Country*, int> second)
 }
 
 
-void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, colonyFlagset& colonyFlags, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas, const EU4RegionsMapping& regionsMap)
+void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, colonyFlagset& colonyFlags, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas, const EU4RegionsMapping& regionsMap)
 {
 	isRandomWorld = true;
 	map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
@@ -618,7 +619,7 @@ void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping
 				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
 				destCountry = new V2Country(V2Tag, countryFileName, std::vector<V2Party*>(), this, true, false);
 			}
-			destCountry->initFromEU4Country(sourceCountry, countryMap, cultureMap, religionMap, unionCultures, governmentMap, inverseProvinceMap, techSchools, leaderMap, lt, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, regionsMap);
+			destCountry->initFromEU4Country(sourceCountry, countryMap, cultureMap, religionMap, unionCultures, governmentMap, techSchools, leaderMap, lt, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, regionsMap);
 			countries.insert(make_pair(V2Tag, destCountry));
 		}
 		else
@@ -863,40 +864,39 @@ struct MTo1ProvinceComp
 };
 
 
-void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMapping& provinceMap, const resettableMap& resettableProvinces, const CountryMapping& countryMap, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap, const EU4RegionsMapping& regionsMap)
+void V2World::convertProvinces(const EU4World& sourceWorld, const CountryMapping& countryMap, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap, const EU4RegionsMapping& regionsMap)
 {
-	for (map<int, V2Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
+	for (auto Vic2Province: provinces)
 	{
-		int destNum												= i->first;
-		provinceMapping::const_iterator provinceLink	= provinceMap.find(destNum);
-		if ( (provinceLink == provinceMap.end()) || (provinceLink->second.size() == 0) )
+		auto EU4ProvinceNumbers = provinceMapper::getEU4ProvinceNumbers(Vic2Province.first);
+		if (EU4ProvinceNumbers.size() == 0)
 		{
-			LOG(LogLevel::Warning) << "No source for " << i->second->getName() << " (province " << destNum << ')';
+			LOG(LogLevel::Warning) << "No source for " << Vic2Province.second->getName() << " (province " << Vic2Province.first << ')';
 			continue;
 		}
-		else if (provinceLink->second[0] == 0)
+		else if (EU4ProvinceNumbers[0] == 0)
 		{
 			continue;
 		}
-		else if ((Configuration::getResetProvinces() == "yes") && (resettableProvinces.count(destNum) > 0))
+		else if ((Configuration::getResetProvinces() == "yes") && provinceMapper::isProvinceResettable(Vic2Province.first))
 		{
-			i->second->setResettable(true);
+			Vic2Province.second->setResettable(true);
 			continue;
 		}
 
-		i->second->clearCores();
+		Vic2Province.second->clearCores();
 
 		EU4Province*	oldProvince		= NULL;
 		EU4Country*		oldOwner			= NULL;
 		// determine ownership by province count, or total population (if province count is tied)
 		map<string, MTo1ProvinceComp> provinceBins;
 		double newProvinceTotalBaseTax = 0;
-		for (vector<int>::const_iterator itr = provinceLink->second.begin(); itr != provinceLink->second.end(); ++itr)
+		for (auto EU4ProvinceNumber: EU4ProvinceNumbers)
 		{
-			EU4Province* province = sourceWorld.getProvince(*itr);
+			EU4Province* province = sourceWorld.getProvince(EU4ProvinceNumber);
 			if (!province)
 			{
-				LOG(LogLevel::Warning) << "Old province " << provinceLink->second[0] << " does not exist (bad mapping?)";
+				LOG(LogLevel::Warning) << "Old province " << EU4ProvinceNumber << " does not exist (bad mapping?)";
 				continue;
 			}
 			EU4Country* owner = province->getOwner();
@@ -915,10 +915,10 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 			}
 			if (((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM")) && false && (owner != NULL))
 			{
-				stateIndexMapping::const_iterator stateIndexMapping = stateIndexMap.find(i->first);
+				stateIndexMapping::const_iterator stateIndexMapping = stateIndexMap.find(Vic2Province.first);
 				if (stateIndexMapping == stateIndexMap.end())
 				{
-					LOG(LogLevel::Warning) << "Could not find state index for province " << i->first;
+					LOG(LogLevel::Warning) << "Could not find state index for province " << Vic2Province.first;
 					continue;
 				}
 				else
@@ -955,7 +955,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 		}
 		if (oldOwner == NULL)
 		{
-			i->second->setOwner("");
+			Vic2Province.second->setOwner("");
 			continue;
 		}
 
@@ -966,13 +966,13 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 		}
 		else
 		{
-			i->second->setOwner(V2Tag);
+			Vic2Province.second->setOwner(V2Tag);
 			map<string, V2Country*>::iterator ownerItr = countries.find(V2Tag);
 			if (ownerItr != countries.end())
 			{
-				ownerItr->second->addProvince(i->second);
+				ownerItr->second->addProvince(Vic2Province.second);
 			}
-			i->second->convertFromOldProvince(oldProvince);
+			Vic2Province.second->convertFromOldProvince(oldProvince);
 
 			for (map<string, MTo1ProvinceComp>::iterator mitr = provinceBins.begin(); mitr != provinceBins.end(); ++mitr)
 			{
@@ -994,22 +994,22 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 						const std::string& coreV2Tag = countryMap[coreEU4Tag];
 						if (!coreV2Tag.empty())
 						{
-							i->second->addCore(coreV2Tag);
+							Vic2Province.second->addCore(coreV2Tag);
 						}
 					}
 
 					// determine demographics
 					double provPopRatio = (*vitr)->getBaseTax() / newProvinceTotalBaseTax;
-					vector<V2Demographic> demographics = determineDemographics((*vitr)->getPopRatios(), *vitr, i->second, oldOwner, cultureMap, slaveCultureMap, religionMap, regionsMap, destNum, provPopRatio);
+					vector<V2Demographic> demographics = determineDemographics((*vitr)->getPopRatios(), *vitr, Vic2Province.second, oldOwner, cultureMap, slaveCultureMap, religionMap, regionsMap, Vic2Province.first, provPopRatio);
 					for (auto demographic: demographics)
 					{
-						i->second->addPopDemographic(demographic);
+						Vic2Province.second->addPopDemographic(demographic);
 					}
 
 					// set forts and naval bases
 					if ((*vitr)->hasBuilding("fort4") || (*vitr)->hasBuilding("fort5") || (*vitr)->hasBuilding("fort6"))
 					{
-						i->second->setFortLevel(1);
+						Vic2Province.second->setFortLevel(1);
 					}
 				}
 			}
@@ -1429,7 +1429,7 @@ void V2World::addUnions(const unionMapping& unionMap)
 
 
 //#define TEST_V2_PROVINCES
-void V2World::convertArmies(const EU4World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const map<int,int>& leaderIDMap, adjacencyMapping adjacencyMap)
+void V2World::convertArmies(const EU4World& sourceWorld, const map<int,int>& leaderIDMap, adjacencyMapping adjacencyMap)
 {
 	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
 	// a non-port province, Vicky crashes....
@@ -1468,7 +1468,7 @@ void V2World::convertArmies(const EU4World& sourceWorld, const inverseProvinceMa
 	// convert armies
 	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
-		itr->second->convertArmies(leaderIDMap, cost_per_regiment, inverseProvinceMap, provinces, port_whitelist, adjacencyMap);
+		itr->second->convertArmies(leaderIDMap, cost_per_regiment, provinces, port_whitelist, adjacencyMap);
 	}
 }
 
