@@ -949,6 +949,7 @@ int main(const int argc, const char * argv[])
 	try
 	{
 		LOG(LogLevel::Info) << "Converter version 1.0A";
+		LOG(LogLevel::Info) << "Built " << __TIMESTAMP__;
 		const char* const defaultEU4SaveFileName = "input.eu4";	// the default name for a save to convert
 		string EU4SaveFileName;												// the actual name for the save to convert
 		if (argc >= 2)
