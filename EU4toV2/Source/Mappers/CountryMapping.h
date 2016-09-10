@@ -51,7 +51,7 @@ public:
 	// priority over other tags. Countries with EU4 tags that aren't in the rules or
 	// have no available V2 tag (e.g. when multiple EU4 countries would use the same V2 tag)
 	// are given a generated tag "X00"-"X99".
-	void CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap, const inverseUnionCulturesMap& inverseUnionCultures, const CK2TitleMapping& CK2titles);
+	void CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap, const inverseUnionCulturesMap& inverseUnionCultures);
 
 	// Returns the V2 tag that is mapped to by the given EU4 tag. Returns an empty string
 	// if there is no corresponding V2 tag. If CreateMapping() has been called then there
@@ -69,7 +69,7 @@ public:
 
 	// Returns the CK2 title name that maps to the given country name. Returns an empty
 	// string if there is no corresponding CK2 title.
-	static std::string GetCK2Title(const std::string& EU4Tag, const std::string& countryName, const std::set<std::string>& availableFlags, const CK2TitleMapping& CK2titles);
+	static std::string GetCK2Title(const std::string& EU4Tag, const std::string& countryName, const std::set<std::string>& availableFlags);
 
 private:
 	// Writes the given mapping to the log.
@@ -86,8 +86,6 @@ private:
 	std::map<std::string, std::set<int>> V2Regions;									// the regions in V2
 
 	std::set<std::string> availableFlags;                  // the flags available to the converter
-	CK2TitleMapping CK2titles;	       // nation name -> CK2 title
-	
 };
 
 #endif

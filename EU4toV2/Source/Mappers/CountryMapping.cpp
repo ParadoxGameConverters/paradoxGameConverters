@@ -22,26 +22,26 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "CountryMapping.h"
-
 #include <algorithm>
 #include <iomanip>
 #include <iostream>
 #include <set>
 #include <sstream>
 #include <utility>
-
 #include <boost/algorithm/string.hpp>
-
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Country.h"
 #include "../EU4World/EU4Province.h"
-#include "Object.h"
-#include "ParadoxParserUTF8.h"
+#include "../Mappers/CK2TitleMapper.h"
 #include "../V2World/V2World.h"
 #include "../V2World/V2Country.h"
 #include "../V2World/V2Province.h"
 #include "Log.h"
+#include "Object.h"
 #include "OSCompatibilityLayer.h"
+#include "ParadoxParserUTF8.h"
+
+
 
 bool CountryMapping::ReadRules(const std::string& fileName)
 {
@@ -133,10 +133,8 @@ void CountryMapping::readV2Regions(Object* obj)
 }
 
 
-void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap, const inverseUnionCulturesMap& inverseUnionCultures, const CK2TitleMapping& CK2map)
+void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap, const inverseUnionCulturesMap& inverseUnionCultures)
 {
-	CK2titles = CK2map;
-
 	EU4TagToV2TagMap.clear();
 	
 	// Generate a list (or at least a rough guide) of all flags that we can use.
@@ -284,7 +282,7 @@ void CountryMapping::oneMapping(EU4Country* country, const map<string, V2Country
 
 	if ((findIter == EU4TagToV2TagsRules.end()) || (country->isCustom()))
 	{
-		std::string CK2Title = GetCK2Title(EU4Tag, country->getName("english"), availableFlags, CK2titles);
+		std::string CK2Title = GetCK2Title(EU4Tag, country->getName("english"), availableFlags);
 		if (CK2Title != "")
 		{
 			findIter = EU4TagToV2TagsRules.find(boost::to_upper_copy(boost::to_upper_copy(CK2Title)));	// the rule (if any) with this ck2 title
@@ -384,10 +382,8 @@ void CountryMapping::LogMapping(const std::string& EU4Tag, const std::string& V2
 	LOG(LogLevel::Debug) << "Mapping " << EU4Tag << " -> " << V2Tag << " (" << reason << ')';
 }
 
-std::string CountryMapping::GetCK2Title(const std::string& EU4Tag, const std::string& countryName, const std::set<std::string>& availableFlags, const CK2TitleMapping& CK2titlesContainer)
+std::string CountryMapping::GetCK2Title(const std::string& EU4Tag, const std::string& countryName, const std::set<std::string>& availableFlags)
 {
-	std::map<string,string> CK2titles = CK2titlesContainer.map;
-
 	//V2Country* v2source = i->second;
 
 	if (!isalpha(EU4Tag[0]) || !isdigit(EU4Tag[1]) || !isdigit(EU4Tag[2]))
@@ -396,29 +392,35 @@ std::string CountryMapping::GetCK2Title(const std::string& EU4Tag, const std::st
 	//if (i->first[0] == 'C')
 	//	continue; // this one's a colonial nation
 
-	std::string name = V2Localisation::Convert(countryName);
+	string name = V2Localisation::Convert(countryName);
+	transform(name.begin(), name.end(), name.begin(), ::tolower);
 
-	std::transform(name.begin(), name.end(), name.begin(), ::tolower);
-
-	auto ck2title = CK2titles.find(name);
-
-	if (ck2title == CK2titles.end())
+	auto ck2title = CK2TitleMapper::getTitle(name);
+	if (ck2title == "")
 	{
 		std::string titlename = V2Localisation::StripAccents(name);
 		std::string c_name = "c_" + titlename;
 		std::string d_name = "d_" + titlename;
 		std::string k_name = "k_" + titlename;
-		for (ck2title = CK2titles.begin(); ck2title != CK2titles.end(); ++ck2title)
+
+		if (CK2TitleMapper::doesTitleExist(c_name))
 		{
-			if ((ck2title->second == c_name) || (ck2title->second == d_name) || (ck2title->second == k_name))
-				break;
+			ck2title = c_name;
 		}
-		if (ck2title == CK2titles.end())
+		else if (CK2TitleMapper::doesTitleExist(d_name))
+		{
+			ck2title = d_name;
+		}
+		else if (CK2TitleMapper::doesTitleExist(k_name))
+		{
+			ck2title = k_name;
+		}
+		else
 		{
 			// I've found titles that don't exist in the ck2 name mapping, but do exist in the flagset (c_znojmo).
-			if (availableFlags.find(k_name) != availableFlags.end())
+			if (availableFlags.find("k_" + titlename) != availableFlags.end())
 			{
-				LOG(LogLevel::Debug) << "Country " << EU4Tag << " (" << name << ") has the CK2 title " << k_name;
+				LOG(LogLevel::Debug) << "Country " << EU4Tag << " (" << name << ") has the CK2 title k_" << titlename;
 				return k_name;
 			}
 			else if (availableFlags.find(d_name) != availableFlags.end())
@@ -434,10 +436,10 @@ std::string CountryMapping::GetCK2Title(const std::string& EU4Tag, const std::st
 		}
 	}
 
-	if (ck2title != CK2titles.end())
+	if (ck2title != "")
 	{
-		LOG(LogLevel::Debug) << "Country " << EU4Tag << " (" << name << ") has the CK2 title " << ck2title->second;
-		return ck2title->second;
+		LOG(LogLevel::Debug) << "Country " << EU4Tag << " (" << name << ") has the CK2 title " << ck2title;
+		return ck2title;
 	}
 
 	LOG(LogLevel::Debug) << "Country " << EU4Tag << " (" << name << ") has no CK2 title.";

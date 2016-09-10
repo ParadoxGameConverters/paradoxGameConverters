@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -145,14 +145,6 @@ typedef map<string, shared_ptr<colonyFlag> > colonyFlagset; // <name, flag>
 colonyFlagset initColonyFlagset(Object* obj);
 
 typedef map<string, shared_ptr<CustomFlag> > customFlagset; // <name, flag>
-
-// CK2 titles for flags
-typedef struct {
-	map<string, string> map; // <name, title>
-	vector<string> islamFlags;
-	vector<string> indiaFlags;
-} CK2TitleMapping;	
-CK2TitleMapping initCK2TitleMap(Object* obj);
 
 
 // utility functions

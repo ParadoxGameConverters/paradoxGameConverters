@@ -744,11 +744,6 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	const V2LeaderTraits lt;	// the V2 leader traits
 	map<int, int> leaderIDMap; // <EU4, V2>
 
-	// Get CK2 title names
-	LOG(LogLevel::Info) << "Getting CK2 titles";
-	Object* CK2TitleObj = parser_UTF8::doParseFile("ck2titlemap.txt");
-	CK2TitleMapping ck2Titles = initCK2TitleMap(CK2TitleObj);
-
 	// Parse colony rules
 	LOG(LogLevel::Info) << "Parsing colony naming rules.";
 	parser_UTF8::initParser();
@@ -881,12 +876,12 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	{
 		removeLandlessNations(sourceWorld);
 	}
-	countryMap.CreateMapping(sourceWorld, destWorld, colonyMap, inverseProvinceMap, provinceMap, inverseUnionCultures, ck2Titles);
+	countryMap.CreateMapping(sourceWorld, destWorld, colonyMap, inverseProvinceMap, provinceMap, inverseUnionCultures);
 
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt, ck2Titles, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas, EU4RegionsMap);
+	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas, EU4RegionsMap);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld, provinceMap, resettableProvinces, countryMap, cultureMap, slaveCultureMap, religionMap, stateIndexMap, EU4RegionsMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";

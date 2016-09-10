@@ -35,12 +35,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "..\Configuration.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
+#include "../Mappers/CK2TitleMapper.h"
 #include "../Mappers/FlagColorMapper.h"
 #include "..\FlagUtils.h"
 
 const std::vector<std::string> V2Flags::flagFileSuffixes = { ".tga", "_communist.tga", "_fascist.tga", "_monarchy.tga", "_republic.tga" };
 
-void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const CK2TitleMapping& CK2titles, const colonyFlagset& colonyFlagset)
+void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const colonyFlagset& colonyFlagset)
 {
 	LOG(LogLevel::Debug) << "Initializing flags";
 	tagMapping.clear();
@@ -123,7 +124,7 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 		if (i->second->getSourceCountry()
 			&& requiredTags.find(i->first) != requiredTags.end())
 		{
-			std::string ck2title = CountryMapping::GetCK2Title(i->first,i->second->getLocalName(),usableFlagTags,CK2titles);
+			std::string ck2title = CountryMapping::GetCK2Title(i->first,i->second->getLocalName(),usableFlagTags);
 			if ((ck2title != "") && (usableFlagTags.find(ck2title) != usableFlagTags.end()))
 			{
 				LOG(LogLevel::Info) << "Country " << i->first << " (" << i->second->getLocalName() << ") has the CK2 title " << ck2title;
@@ -142,13 +143,11 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 				// Yay hardcoded paths. If I get round to it, I'll point these at religion.txt instead.
 				if (religion == "sunni" || religion == "shiite" || religion == "ibadi")
 				{
-					size_t randomTagIndex = std::uniform_int_distribution<size_t>(0, CK2titles.islamFlags.size() - 1)(generator);
-					randomCK2title = CK2titles.islamFlags[randomTagIndex];
+					randomCK2title = CK2TitleMapper::getRandomIslamicFlag();
 				}
 				else if (religion == "mahayana" || religion == "gelugpa" || religion == "theravada" || religion == "sikh" || religion == "hindu" || religion == "jain")
 				{
-					size_t randomTagIndex = std::uniform_int_distribution<size_t>(0, CK2titles.indiaFlags.size() - 1)(generator);
-					randomCK2title = CK2titles.indiaFlags[randomTagIndex];
+					randomCK2title = CK2TitleMapper::getRandomIndianFlag();
 				}
 
 				if (usableFlagTags.find(randomCK2title) != usableFlagTags.end())

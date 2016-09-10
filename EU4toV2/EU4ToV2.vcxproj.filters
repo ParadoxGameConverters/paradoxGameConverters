@@ -118,6 +118,9 @@
     <ClCompile Include="Source\Mappers\FlagColorMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Mappers\CK2TitleMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Color.h" />
@@ -233,6 +236,9 @@
       <Filter>Mappers</Filter>
     </ClInclude>
     <ClInclude Include="Source\Mappers\FlagColorMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\CK2TitleMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
   </ItemGroup>

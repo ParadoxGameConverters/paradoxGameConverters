@@ -38,7 +38,7 @@ class V2Flags
 {
 public:
 	// Tries to find appropriate flags for all the countries specified.
-	void SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const CK2TitleMapping& CK2titles, const colonyFlagset& colonyFlagset);
+	void SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const colonyFlagset& colonyFlagset);
 	// Copies all necessary flags to the output folder. Returns true if successful.
 	bool Output() const;
 
