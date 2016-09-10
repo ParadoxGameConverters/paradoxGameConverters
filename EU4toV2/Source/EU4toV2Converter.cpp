@@ -240,8 +240,10 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	string outputFolder = Utils::getCurrentDirectory() + "/output/" + Configuration::getOutputName();
 	if (Utils::doesFolderExist(outputFolder.c_str()))
 	{
-		LOG(LogLevel::Error) << "Output folder " << Configuration::getOutputName() << " already exists! Clear the output folder before running again!";
-		exit(0);
+		if (!Utils::deleteFolder(outputFolder))
+		{
+			exit(-1);
+		}
 	}
 
 
