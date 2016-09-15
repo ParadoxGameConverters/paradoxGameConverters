@@ -150,6 +150,16 @@ public:
 		return false;
 	}
 
+	static vector<string> getEU4Mods()
+	{
+		return getInstance()->EU4Mods;
+	}
+
+	static void addEU4Mod(string mod)
+	{
+		getInstance()->EU4Mods.push_back(mod);
+	}
+
 	static Configuration* getInstance()
 	{
 		if (instance == NULL)
@@ -179,6 +189,7 @@ private:
 	date				lastEU4Date;			// the date EU4 ended
 	string			outputName;				// the name the outputted mod should have
 	vector<string>	activeDLCs;				// the active DLCs in the EU4 game
+	vector<string> EU4Mods;
 };
 
 #endif // CONFIGURATION_H_

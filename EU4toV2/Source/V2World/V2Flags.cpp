@@ -36,6 +36,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "../Mappers/CK2TitleMapper.h"
+#include "../Mappers/CountryMapping.h"
 #include "../Mappers/FlagColorMapper.h"
 #include "..\FlagUtils.h"
 
@@ -124,7 +125,7 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 		if (i->second->getSourceCountry()
 			&& requiredTags.find(i->first) != requiredTags.end())
 		{
-			std::string ck2title = CountryMapping::GetCK2Title(i->first,i->second->getLocalName(),usableFlagTags);
+			string ck2title = CountryMapping::getCK2Title(i->first,i->second->getLocalName(),usableFlagTags);
 			if ((ck2title != "") && (usableFlagTags.find(ck2title) != usableFlagTags.end()))
 			{
 				LOG(LogLevel::Info) << "Country " << i->first << " (" << i->second->getLocalName() << ") has the CK2 title " << ck2title;

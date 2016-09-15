@@ -37,6 +37,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "ParadoxParser8859_15.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
+#include "../Mappers/CountryMapping.h"
 #include "../Mappers/Mapper.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "../Configuration.h"
@@ -589,7 +590,7 @@ bool scoresSorter(pair<V2Country*, int> first, pair<V2Country*, int> second)
 }
 
 
-void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, colonyFlagset& colonyFlags, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas, const EU4RegionsMapping& regionsMap)
+void V2World::convertCountries(const EU4World& sourceWorld, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, colonyFlagset& colonyFlags, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas, const EU4RegionsMapping& regionsMap)
 {
 	isRandomWorld = true;
 	map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
@@ -603,7 +604,7 @@ void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping
 
 		std::string EU4Tag = sourceCountry->getTag();
 		V2Country* destCountry = NULL;
-		const std::string& V2Tag = countryMap[EU4Tag];
+		const std::string& V2Tag = CountryMapping::getVic2Tag(EU4Tag);
 		if (!V2Tag.empty())
 		{
 			for (vector<V2Country*>::iterator j = potentialCountries.begin(); j != potentialCountries.end() && !destCountry; j++)
@@ -619,7 +620,7 @@ void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping
 				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
 				destCountry = new V2Country(V2Tag, countryFileName, std::vector<V2Party*>(), this, true, false);
 			}
-			destCountry->initFromEU4Country(sourceCountry, countryMap, cultureMap, religionMap, unionCultures, governmentMap, techSchools, leaderMap, lt, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, regionsMap);
+			destCountry->initFromEU4Country(sourceCountry, cultureMap, religionMap, unionCultures, governmentMap, techSchools, leaderMap, lt, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, regionsMap);
 			countries.insert(make_pair(V2Tag, destCountry));
 		}
 		else
@@ -733,19 +734,19 @@ void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping
 }
 
 
-void V2World::convertDiplomacy(const EU4World& sourceWorld, const CountryMapping& countryMap)
+void V2World::convertDiplomacy(const EU4World& sourceWorld)
 {
 	vector<EU4Agreement> agreements = sourceWorld.getDiplomacy()->getAgreements();
 	for (vector<EU4Agreement>::iterator itr = agreements.begin(); itr != agreements.end(); ++itr)
 	{
 		const std::string& EU4Tag1 = itr->country1;
-		const std::string& V2Tag1 = countryMap[EU4Tag1];
+		const std::string& V2Tag1 = CountryMapping::getVic2Tag(EU4Tag1);
 		if (V2Tag1.empty())
 		{
 			continue;
 		}
 		const std::string& EU4Tag2 = itr->country2;
-		const std::string& V2Tag2 = countryMap[EU4Tag2];
+		const std::string& V2Tag2 = CountryMapping::getVic2Tag(EU4Tag2);
 		if (V2Tag2.empty())
 		{
 			continue;
@@ -864,7 +865,7 @@ struct MTo1ProvinceComp
 };
 
 
-void V2World::convertProvinces(const EU4World& sourceWorld, const CountryMapping& countryMap, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap, const EU4RegionsMapping& regionsMap)
+void V2World::convertProvinces(const EU4World& sourceWorld, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap, const EU4RegionsMapping& regionsMap)
 {
 	for (auto Vic2Province: provinces)
 	{
@@ -959,7 +960,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const CountryMapping
 			continue;
 		}
 
-		const std::string& V2Tag = countryMap[oldOwner->getTag()];
+		const std::string& V2Tag = CountryMapping::getVic2Tag(oldOwner->getTag());
 		if (V2Tag.empty())
 		{
 			LOG(LogLevel::Warning) << "Could not map provinces owned by " << oldOwner->getTag();
@@ -991,7 +992,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const CountryMapping
 							continue;
 						}
 
-						const std::string& coreV2Tag = countryMap[coreEU4Tag];
+						const std::string& coreV2Tag = CountryMapping::getVic2Tag(coreEU4Tag);
 						if (!coreV2Tag.empty())
 						{
 							Vic2Province.second->addCore(coreV2Tag);

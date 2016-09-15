@@ -38,6 +38,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../EU4World/EU4Province.h"
 #include "../EU4World/EU4Relations.h"
 #include "../EU4World/EU4Leader.h"
+#include "../Mappers/CountryMapping.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "V2World.h"
 #include "V2State.h"
@@ -386,7 +387,7 @@ void V2Country::outputOOB() const
 }
 
 
-void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping& countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const EU4RegionsMapping& regionsMap)
+void V2Country::initFromEU4Country(EU4Country* _srcCountry, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const EU4RegionsMapping& regionsMap)
 {
 	srcCountry = _srcCountry;
 
@@ -571,7 +572,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping
 	{
 		for (auto itr: srcRelations)
 		{
-			const std::string& V2Tag = countryMap[itr.second->getCountry()];
+			const std::string& V2Tag = CountryMapping::getVic2Tag(itr.second->getCountry());
 			if (!V2Tag.empty())
 			{
 				V2Relations* v2r = new V2Relations(V2Tag, itr.second);
