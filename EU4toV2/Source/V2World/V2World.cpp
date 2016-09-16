@@ -37,6 +37,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "ParadoxParser8859_15.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
+#include "../Mappers/AdjacencyMapper.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/Mapper.h"
 #include "../Mappers/ProvinceMapper.h"
@@ -1068,7 +1069,7 @@ vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRat
 }
 
 
-void V2World::setupColonies(const adjacencyMapping& adjacencyMap, const continentMapping& continentMap)
+void V2World::setupColonies(const continentMapping& continentMap)
 {
 	for (map<string, V2Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
 	{
@@ -1093,12 +1094,7 @@ void V2World::setupColonies(const adjacencyMapping& adjacencyMap, const continen
 		{
 			int currentProvince = goodProvinces.front();
 			goodProvinces.pop();
-			if (currentProvince > static_cast<int>(adjacencyMap.size()))
-			{
-				LOG(LogLevel::Warning) << "No adjacency mapping for province " << currentProvince;
-				continue;
-			}
-			vector<int> adjacencies = adjacencyMap[currentProvince];
+			vector<int> adjacencies = adjacencyMapper::getVic2Adjacencies(currentProvince);
 			for (unsigned int i = 0; i < adjacencies.size(); i++)
 			{
 				map<int, V2Province*>::iterator openItr = openProvinces.find(adjacencies[i]);
@@ -1430,7 +1426,7 @@ void V2World::addUnions(const unionMapping& unionMap)
 
 
 //#define TEST_V2_PROVINCES
-void V2World::convertArmies(const EU4World& sourceWorld, const map<int,int>& leaderIDMap, adjacencyMapping adjacencyMap)
+void V2World::convertArmies(const EU4World& sourceWorld, const map<int,int>& leaderIDMap)
 {
 	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
 	// a non-port province, Vicky crashes....
@@ -1469,7 +1465,7 @@ void V2World::convertArmies(const EU4World& sourceWorld, const map<int,int>& lea
 	// convert armies
 	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
-		itr->second->convertArmies(leaderIDMap, cost_per_regiment, provinces, port_whitelist, adjacencyMap);
+		itr->second->convertArmies(leaderIDMap, cost_per_regiment, provinces, port_whitelist);
 	}
 }
 

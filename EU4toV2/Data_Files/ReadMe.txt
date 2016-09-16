@@ -64,6 +64,7 @@ kratostatic		- Data Files
 Kansai-kun		- Data Files
 SaintPetersbour		- Data Files
 Teutonizer		- Data Files
+SignedName		- Data Files
 LowTartare		- Graphics
 ChortlingGnome		- Graphics
 Magc8Ball		- Graphics

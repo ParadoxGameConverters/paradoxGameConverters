@@ -535,10 +535,6 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	sourceWorld.checkAllProvincesMapped();
 	sourceWorld.setNumbersOfDestinationProvinces();
 
-	// Get adjacencies
-	LOG(LogLevel::Info) << "Importing adjacencies";
-	adjacencyMapping adjacencyMap = initAdjacencyMap();
-
 	// Generate continent mapping. Only the one from the last listed mod will be used
 	LOG(LogLevel::Info) << "Finding Continents";
 	continentMapping continentMap;
@@ -821,7 +817,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld);
 	LOG(LogLevel::Info) << "Setting colonies";
-	destWorld.setupColonies(adjacencyMap, continentMap);
+	destWorld.setupColonies(continentMap);
 	LOG(LogLevel::Info) << "Creating states";
 	destWorld.setupStates(stateMap);
 	LOG(LogLevel::Info) << "Setting unciv reforms";
@@ -835,7 +831,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	LOG(LogLevel::Info) << "Adding unions";
 	destWorld.addUnions(unionMap);
 	LOG(LogLevel::Info) << "Converting armies and navies";
-	destWorld.convertArmies(sourceWorld, leaderIDMap, adjacencyMap);
+	destWorld.convertArmies(sourceWorld, leaderIDMap);
 
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";

@@ -34,16 +34,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <unordered_set>
 #include <set>
 #include <memory>
+
+
+
 class EU4World;
 class V2World;
-
 struct CustomFlag;
 
-
-
-
-typedef vector< vector<int> > adjacencyMapping;
-adjacencyMapping initAdjacencyMap();
 
 
 typedef map<int, string>	continentMapping;	// <province, continent>

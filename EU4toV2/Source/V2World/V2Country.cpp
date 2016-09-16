@@ -38,6 +38,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../EU4World/EU4Province.h"
 #include "../EU4World/EU4Relations.h"
 #include "../EU4World/EU4Leader.h"
+#include "../Mappers/AdjacencyMapper.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "V2World.h"
@@ -1000,7 +1001,7 @@ void V2Country::addState(V2State* newState)
 
 
 //#define TEST_V2_PROVINCES
-void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], map<int, V2Province*> allProvinces, vector<int> port_whitelist, adjacencyMapping adjacencyMap)
+void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], map<int, V2Province*> allProvinces, vector<int> port_whitelist)
 {
 #ifndef TEST_V2_PROVINCES
 	if (srcCountry == NULL)
@@ -1038,7 +1039,7 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 
 			for (int i = 0; i < regimentsToCreate; ++i)
 			{
-				if (addRegimentToArmy(army, (RegimentCategory)rc, allProvinces, adjacencyMap) != 0)
+				if (addRegimentToArmy(army, (RegimentCategory)rc, allProvinces) != 0)
 				{
 					// couldn't add, dissolve into pool
 					countryRemainder[rc] += 1.0;
@@ -1119,7 +1120,7 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 				LOG(LogLevel::Debug) << "No suitable army or navy found for " << tag << "'s pooled regiments of " << RegimentCategoryNames[rc];
 				break;
 			}
-			switch (addRegimentToArmy(army, (RegimentCategory)rc, allProvinces, adjacencyMap))
+			switch (addRegimentToArmy(army, (RegimentCategory)rc, allProvinces))
 			{
 			case 0: // success
 				countryRemainder[rc] -= 1.0;
@@ -1898,7 +1899,7 @@ void V2Country::addLoan(string creditor, double size, double interest)
 
 
 // return values: 0 = success, -1 = retry from pool, -2 = do not retry
-int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, map<int, V2Province*> allProvinces, adjacencyMapping adjacencyMap)
+int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, map<int, V2Province*> allProvinces)
 {
 	V2Regiment reg((RegimentCategory)rc);
 	int eu4Home = army->getSourceArmy()->getProbabilisticHomeProvince(rc);
@@ -1972,12 +1973,7 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, map<int, V2P
 				{
 					int currentProvince = goodProvinces.front();
 					goodProvinces.pop();
-					if (currentProvince > static_cast<int>(adjacencyMap.size()))
-					{
-						LOG(LogLevel::Warning) << "No adjacency mapping for province " << currentProvince;
-						continue;
-					}
-					vector<int> adjacencies = adjacencyMap[currentProvince];
+					vector<int> adjacencies = adjacencyMapper::getVic2Adjacencies(currentProvince);
 					for (unsigned int i = 0; i < adjacencies.size(); i++)
 					{
 						map<int, V2Province*>::iterator openItr = openProvinces.find(adjacencies[i]);
