@@ -52,7 +52,7 @@ class V2World {
 		void convertCountries(const EU4World& sourceWorld, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, colonyFlagset& colonyFlags, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas, const EU4RegionsMapping& regionsMap);
 		void convertDiplomacy(const EU4World& sourceWorld);
 		void convertProvinces(const EU4World& sourceWorld, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap, const EU4RegionsMapping& regionsMap);
-		void setupColonies(const continentMapping& continentMap);
+		void setupColonies();
 		void setupStates(const stateMapping&);
 		void convertUncivReforms();
 		void setupPops(EU4World& sourceWorld);

@@ -38,6 +38,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "../Mappers/AdjacencyMapper.h"
+#include "../Mappers/ContinentMapper.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/Mapper.h"
 #include "../Mappers/ProvinceMapper.h"
@@ -1069,7 +1070,7 @@ vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRat
 }
 
 
-void V2World::setupColonies(const continentMapping& continentMap)
+void V2World::setupColonies()
 {
 	for (map<string, V2Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
 	{
@@ -1122,16 +1123,11 @@ void V2World::setupColonies(const continentMapping& continentMap)
 				continue;
 
 			int capitalSrc = capitalSrcProv->getNum();
-			continentMapping::const_iterator itr = continentMap.find(capitalSrc);
-			if (itr != continentMap.end())
-			{
-				capitalContinent = itr->second;
-			}
-			else
+			capitalContinent = continentMapper::getEU4Continent(capitalSrc);
+			if (capitalContinent == "")
 			{
 				continue;
 			}
-				
 		}
 		else
 		{
@@ -1145,8 +1141,8 @@ void V2World::setupColonies(const continentMapping& continentMap)
 				continue;
 
 			int provSrc = provSrcProv->getNum();
-			continentMapping::const_iterator itr = continentMap.find(provSrc);
-			if ((itr != continentMap.end()) && (itr->second == capitalContinent))
+			string continent = continentMapper::getEU4Continent(provSrc);
+			if ((continent != "") && (continent == capitalContinent))
 			{
 				provItr->second->setSameContinent(true);
 			}

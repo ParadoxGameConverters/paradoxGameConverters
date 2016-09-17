@@ -35,23 +35,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-void initContinentMap(Object* obj, continentMapping& continentMap)
-{
-	continentMap.clear();
-	vector<Object*> continentObjs = obj->getLeaves();	// the continents
-	for (unsigned int i = 0; i < continentObjs.size(); i++)
-	{
-		string continent = continentObjs[i]->getKey();	// the current continent
-		vector<string> provinceNums = continentObjs[i]->getTokens();	// the province numbers in this continent
-		for (unsigned int j = 0; j < provinceNums.size(); j++)
-		{
-			const int province = atoi(provinceNums[j].c_str());	// the current province
-			continentMap.insert( make_pair(province, continent) );
-		}
-	}
-}
-
-
 void mergeNations(EU4World& world, Object* mergeObj)
 {
 	vector<Object*> rules = mergeObj->getValue("merge_nations");	// all merging rules

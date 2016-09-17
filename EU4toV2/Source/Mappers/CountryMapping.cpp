@@ -605,6 +605,5 @@ string CountryMapping::GetCK2Title(const string& EU4Tag, const string& countryNa
 		return ck2title;
 	}
 
-	LOG(LogLevel::Debug) << "Country " << EU4Tag << " (" << name << ") has no CK2 title.";
 	return ""; 
 }

@@ -535,41 +535,6 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	sourceWorld.checkAllProvincesMapped();
 	sourceWorld.setNumbersOfDestinationProvinces();
 
-	// Generate continent mapping. Only the one from the last listed mod will be used
-	LOG(LogLevel::Info) << "Finding Continents";
-	continentMapping continentMap;
-	for (auto itr: Configuration::getEU4Mods())
-	{
-		string continentFile = itr + "\\map\\continent.txt";	// the path and name of the continent file
-		if ((_stat(continentFile.c_str(), &st) == 0))
-		{
-			Object* continentObject = parser_UTF8::doParseFile(continentFile.c_str());
-			if ((continentObject != NULL) && (continentObject->getLeaves().size() > 0))
-			{
-				initContinentMap(continentObject, continentMap);
-			}
-		}
-	}
-	if (continentMap.size() == 0)
-	{
-		Object* continentObject = parser_UTF8::doParseFile((EU4Loc + "\\map\\continent.txt").c_str());
-		if (continentObject == NULL)
-		{
-			LOG(LogLevel::Error) << "Could not parse file " << EU4Loc << "\\map\\continent.txt";
-			exit(-1);
-		}
-		if (continentObject->getLeaves().size() < 1)
-		{
-			LOG(LogLevel::Error) << "Failed to parse continent.txt";
-			return 1;
-		}
-		initContinentMap(continentObject, continentMap);
-	}
-	if (continentMap.size() == 0)
-	{
-		LOG(LogLevel::Warning) << "No continent mappings found - may lead to problems later";
-	}
-	
 	// Generate region mapping
 	LOG(LogLevel::Info) << "Parsing region structure";
 	Object* Vic2RegionsObj;
@@ -817,7 +782,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld);
 	LOG(LogLevel::Info) << "Setting colonies";
-	destWorld.setupColonies(continentMap);
+	destWorld.setupColonies();
 	LOG(LogLevel::Info) << "Creating states";
 	destWorld.setupStates(stateMap);
 	LOG(LogLevel::Info) << "Setting unciv reforms";

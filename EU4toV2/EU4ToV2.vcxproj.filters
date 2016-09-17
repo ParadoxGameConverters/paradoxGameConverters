@@ -127,6 +127,9 @@
     <ClCompile Include="Source\Mappers\AdjacencyMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Mappers\ContinentMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Color.h" />
@@ -251,6 +254,9 @@
       <Filter>Mappers</Filter>
     </ClInclude>
     <ClInclude Include="Source\Mappers\AdjacencyMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\ContinentMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
   </ItemGroup>
