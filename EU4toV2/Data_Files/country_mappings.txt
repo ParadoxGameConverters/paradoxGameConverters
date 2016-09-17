@@ -35,7 +35,6 @@ link = { eu4 = ENG v2 = ENL } 	# England
 link = { eu4 = GBR v2 = ENG } 	# Great Britain => United Kingdom
 link = { eu4 = IRE v2 = IRE } 	# Ireland
 link = { eu4 = LEI v2 = LEI } 	# Leinster
-link = { eu4 = LAN v2 = LAN } 	# Lancaster
 link = { eu4 = MNS v2 = MNS } 	# Irish Munster
 link = { eu4 = SCO v2 = SCO } 	# Scotland
 link = { eu4 = TYR v2 = TYR } 	# Ulster
@@ -65,7 +64,6 @@ link = { eu4 = PRO v2 = PRO } 	# Provence
 link = { eu4 = TOU v2 = TOU } 	# Toulouse
 link = { eu4 = BER v2 = BRY } 	# Berry
 link = { eu4 = FRA v2 = FRA } 	# France => France
-link = { eu4 = RFR v2 = RFR } 	# Revolutionary France
 link = { eu4 = BUR v2 = BRG }   # Burgundy
 
 # Spain
@@ -86,6 +84,7 @@ link = { eu4 = ETR v2 = ETR }  # Etruria
 link = { eu4 = FER v2 = FER }  # Ferrara
 link = { eu4 = GEN v2 = GNA }  # Genoa
 link = { eu4 = ITA v2 = ITA }  # Italy
+link = { eu4 = LAN v2 = FLO }  # Florence
 link = { eu4 = MAN v2 = MTA }  # Mantua
 link = { eu4 = MLO v2 = LOM }  # Milan
 link = { eu4 = MOD v2 = MOD }  # Modena
@@ -420,6 +419,7 @@ link = { eu4 = IMG v2 = IMG }  # Imagawa
 link = { eu4 = JAP v2 = JAP }  # Japan
 link = { eu4 = MAE v2 = MAE }  # Maeda
 link = { eu4 = MRI v2 = MRI }  # Mori
+link = { eu4 = RFR v2 = RFR }  # Nanbu
 link = { eu4 = ODA v2 = ODA }  # Oda
 link = { eu4 = OTM v2 = OTM }  # Otomo
 link = { eu4 = OUC v2 = OUC }  # Ouchi
