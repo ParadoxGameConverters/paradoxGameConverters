@@ -22,6 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Mapper.h"
+#include "EU4RegionMapper.h"
 #include "Log.h"
 #include "Object.h"
 #include "../V2World/V2Localisation.h"
@@ -94,7 +95,7 @@ cultureMapping initCultureMap(Object* obj)
 }
 
 
-bool cultureMatch(const cultureMapping& cultureMap, const EU4RegionsMapping& regionsMap, string srcCulture, string& dstCulture, string religion, int EU4Province, string ownerTag)
+bool cultureMatch(const cultureMapping& cultureMap, string srcCulture, string& dstCulture, string religion, int EU4Province, string ownerTag)
 {
 	bool matched = false;
 	for (cultureMapping::const_iterator i = cultureMap.begin(); (i != cultureMap.end()) && (!matched); i++)
@@ -120,8 +121,8 @@ bool cultureMatch(const cultureMapping& cultureMap, const EU4RegionsMapping& reg
 				}
 				else if (j->first == DTRegion)
 				{
-					auto regions = regionsMap.find(EU4Province);
-					if ((regions == regionsMap.end()) || (regions->second.find(j->second) == regions->second.end()))
+					auto regions = EU4RegionMapper::getRegions(EU4Province);
+					if ((regions.empty()) || (regions.find(j->second) == regions.end()))
 					{
 						match = false;
 					}
@@ -441,95 +442,6 @@ colonyMapping initColonyMap(Object* obj)
 	}
 
 	return colonyMap;
-}
-
-
-void initEU4RegionMapOldVersion(Object *obj, EU4RegionsMapping& regions)
-{
-	regions.clear();
-	vector<Object*> regionsObj = obj->getLeaves();	// the regions themselves
-	for (vector<Object*>::iterator regionsItr = regionsObj.begin(); regionsItr != regionsObj.end(); regionsItr++)
-	{
-		string regionName = (*regionsItr)->getKey();
-		vector<string> provinceStrings = (*regionsItr)->getTokens();				// the province numbers
-		for (vector<string>::iterator provinceItr = provinceStrings.begin(); provinceItr != provinceStrings.end(); provinceItr++)
-		{
-			int provinceNum = atoi(provinceItr->c_str());
-			auto mapping = regions.find(provinceNum);
-			if (mapping == regions.end())
-			{
-				set<string> newRegions;
-				newRegions.insert(regionName);
-				regions.insert(make_pair(provinceNum, newRegions));
-			}
-			else
-			{
-				mapping->second.insert(regionName);
-			}
-		}
-	}
-}
-
-
-void initEU4RegionMap(Object* regionObj, Object* areaObj, EU4RegionsMapping& regions)
-{
-	map<string, vector<int>> inverseAreas;	// area, provinces
-
-	regions.clear();
-	vector<Object*> areasObj = areaObj->getLeaves();	// the areas themselves
-	for (auto areaItr: areasObj)
-	{
-		string areaName = areaItr->getKey();
-		vector<int> provinces;
-		vector<string> provinceStrings = areaItr->getTokens();				// the province numbers
-		for (auto provinceItr: provinceStrings)
-		{
-			int provinceNum = atoi(provinceItr.c_str());
-			auto mapping = regions.find(provinceNum);
-			if (mapping == regions.end())
-			{
-				set<string> newRegions;
-				newRegions.insert(areaName);
-				regions.insert(make_pair(provinceNum, newRegions));
-			}
-			else
-			{
-				mapping->second.insert(areaName);
-			}
-			provinces.push_back(provinceNum);
-		}
-		
-		inverseAreas.insert(make_pair(areaName, provinces));
-	}
-
-	vector<Object*> regionsObj = regionObj->getLeaves();
-	for (auto regionItr: regionsObj)
-	{
-		string regionName = regionItr->getKey();
-		vector<Object*> areasObj = regionItr->getValue("areas");
-		if (areasObj.size() > 0)
-		{
-			vector<string> areas = areasObj[0]->getTokens();
-			for (auto areasItr: areas)
-			{
-				auto area = inverseAreas.find(areasItr);
-				for (auto provinceNum: area->second)
-				{
-					auto mapping = regions.find(provinceNum);
-					if (mapping == regions.end())
-					{
-						set<string> newRegions;
-						newRegions.insert(area->first);
-						regions.insert(make_pair(provinceNum, newRegions));
-					}
-					else
-					{
-						mapping->second.insert(regionName);
-					}
-				}
-			}
-		}
-	}
 }
 
 

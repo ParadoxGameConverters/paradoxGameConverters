@@ -180,6 +180,7 @@
     <ClCompile Include="Source\Mappers\CK2TitleMapper.cpp" />
     <ClCompile Include="Source\Mappers\ContinentMapper.cpp" />
     <ClCompile Include="Source\Mappers\CountryMapping.cpp" />
+    <ClCompile Include="Source\Mappers\EU4RegionMapper.cpp" />
     <ClCompile Include="Source\Mappers\FlagColorMapper.cpp" />
     <ClCompile Include="Source\Mappers\Mapper.cpp" />
     <ClCompile Include="Source\Mappers\ProvinceMapper.cpp" />
@@ -228,6 +229,7 @@
     <ClInclude Include="Source\Mappers\CK2TitleMapper.h" />
     <ClInclude Include="Source\Mappers\ContinentMapper.h" />
     <ClInclude Include="Source\Mappers\CountryMapping.h" />
+    <ClInclude Include="Source\Mappers\EU4RegionMapper.h" />
     <ClInclude Include="Source\Mappers\FlagColorMapper.h" />
     <ClInclude Include="Source\Mappers\Mapper.h" />
     <ClInclude Include="Source\Mappers\ProvinceMapper.h" />

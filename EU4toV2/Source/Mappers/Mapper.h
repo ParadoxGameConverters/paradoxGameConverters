@@ -39,12 +39,6 @@ class Object;
 
 
 
-// EU4 regions
-typedef map<int, set<string>>	EU4RegionsMapping;		// the regions in EU4
-void initEU4RegionMapOldVersion(Object *obj, EU4RegionsMapping& regions);
-void initEU4RegionMap(Object* areaObj, Object* regionObj, EU4RegionsMapping& regions);
-
-
 // Distinguishers for mappings
 enum distinguisherType
 {
@@ -63,7 +57,7 @@ typedef struct {
 } cultureStruct;
 typedef vector<cultureStruct> cultureMapping;
 cultureMapping initCultureMap(Object* obj);
-bool cultureMatch(const cultureMapping& cultureMap, const EU4RegionsMapping& regionsMap, string srcCulture, string& dstCulture, string religion, int EU4Province, string ownerTag);
+bool cultureMatch(const cultureMapping& cultureMap, string srcCulture, string& dstCulture, string religion, int EU4Province, string ownerTag);
 
 
 // Religion Mappings

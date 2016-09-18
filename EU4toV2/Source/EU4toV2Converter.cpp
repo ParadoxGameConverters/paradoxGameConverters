@@ -664,65 +664,6 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	colonyMapping colonyMap = initColonyMap(colonialObj);
 	colonyFlagset colonyFlags = initColonyFlagset(colonialObj);
 
-	// Parse EU4 Regions
-	LOG(LogLevel::Info) << "Parsing EU4 regions";
-	Object* regionsObj = parser_UTF8::doParseFile((EU4Loc + "\\map\\region.txt").c_str());
-	if (regionsObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file " << EU4Loc << "\\map\\region.txt";
-		exit(-1);
-	}
-	if (regionsObj->getLeaves().size() < 1)
-	{
-		LOG(LogLevel::Error) << "Failed to parse region.txt";
-		return 1;
-	}
-	EU4RegionsMapping EU4RegionsMap;
-	initEU4RegionMapOldVersion(regionsObj, EU4RegionsMap);
-	for (auto itr: Configuration::getEU4Mods())
-	{
-		string modRegionFile(itr + "\\map\\region.txt");
-		if ((_stat(modRegionFile.c_str(), &st) == 0))
-		{
-			regionsObj = parser_UTF8::doParseFile(modRegionFile.c_str());
-			if (regionsObj == NULL)
-			{
-				LOG(LogLevel::Error) << "Could not parse file " << modRegionFile;
-				exit(-1);
-			}
-			initEU4RegionMapOldVersion(regionsObj, EU4RegionsMap);
-		}
-	}
-	if (EU4RegionsMap.size() == 0) // if it failed, we're using the new regions format
-	{
-		Object* areaObj = parser_UTF8::doParseFile((EU4Loc + "\\map\\area.txt").c_str());
-		if (areaObj == NULL)
-		{
-			LOG(LogLevel::Error) << "Could not parse file " << EU4Loc << "\\map\\area.txt";
-			exit(-1);
-		}
-		if (areaObj->getLeaves().size() < 1)
-		{
-			LOG(LogLevel::Error) << "Failed to parse area.txt";
-			return 1;
-		}
-		initEU4RegionMap(regionsObj, areaObj, EU4RegionsMap);
-		for (auto itr: Configuration::getEU4Mods())
-		{
-			string modAreaFile(itr + "\\map\\area.txt");
-			if ((_stat(modAreaFile.c_str(), &st) == 0))
-			{
-				areaObj = parser_UTF8::doParseFile(modAreaFile.c_str());
-				if (areaObj == NULL)
-				{
-					LOG(LogLevel::Error) << "Could not parse file " << modAreaFile;
-					exit(-1);
-				}
-				initEU4RegionMap(regionsObj, areaObj, EU4RegionsMap);
-			}
-		}
-	}
-
 	// Create country mappings
 	LOG(LogLevel::Info) << "Creating country mappings";
 	sourceWorld.removeEmptyNations();
@@ -739,9 +680,9 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, cultureMap, unionCultures, religionMap, governmentMap, techSchools, leaderIDMap, lt, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas, EU4RegionsMap);
+	destWorld.convertCountries(sourceWorld, cultureMap, unionCultures, religionMap, governmentMap, techSchools, leaderIDMap, lt, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
 	LOG(LogLevel::Info) << "Converting provinces";
-	destWorld.convertProvinces(sourceWorld, cultureMap, slaveCultureMap, religionMap, EU4RegionsMap);
+	destWorld.convertProvinces(sourceWorld, cultureMap, slaveCultureMap, religionMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld);
 	LOG(LogLevel::Info) << "Setting colonies";

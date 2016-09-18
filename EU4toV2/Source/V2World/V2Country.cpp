@@ -388,7 +388,7 @@ void V2Country::outputOOB() const
 }
 
 
-void V2Country::initFromEU4Country(EU4Country* _srcCountry, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const EU4RegionsMapping& regionsMap)
+void V2Country::initFromEU4Country(EU4Country* _srcCountry, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas)
 {
 	srcCountry = _srcCountry;
 
@@ -471,7 +471,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, cultureMapping cultu
 
 	if (srcCulture.size() > 0)
 	{
-		bool matched = cultureMatch(cultureMap, regionsMap, srcCulture, primaryCulture, religion, oldCapital, srcCountry->getTag());
+		bool matched = cultureMatch(cultureMap, srcCulture, primaryCulture, religion, oldCapital, srcCountry->getTag());
 		if (!matched)
 		{
 			LOG(LogLevel::Warning) << "No culture mapping defined for " << srcCulture << " (" << srcCountry->getTag() << " -> " << tag << ')';
@@ -494,7 +494,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, cultureMapping cultu
 	for (auto srcCulture: srcAceptedCultures)
 	{
 		string dstCulture;
-		bool matched = cultureMatch(cultureMap, regionsMap, srcCulture, dstCulture, religion, oldCapital, srcCountry->getTag());
+		bool matched = cultureMatch(cultureMap, srcCulture, dstCulture, religion, oldCapital, srcCountry->getTag());
 		if (matched)
 		{
 			if (primaryCulture != dstCulture)
