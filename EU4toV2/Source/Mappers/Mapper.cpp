@@ -23,38 +23,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Mapper.h"
 #include "Log.h"
-#include "../Configuration.h"
 #include "Object.h"
-#include "../EU4World/EU4World.h"
-#include "../EU4World/EU4Country.h"
-#include "../EU4World/EU4Province.h"
-#include "../V2World/V2World.h"
-#include "../V2World/V2Country.h"
-#include <algorithm>
-#include <sys/stat.h>
+#include "../V2World/V2Localisation.h"
 
-
-
-void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateIndexMap)
-{
-	vector<Object*> leaves = obj->getLeaves();	// the states
-
-	for (unsigned int i = 0; i < leaves.size(); i++)
-	{
-		vector<string> provinces = leaves[i]->getTokens();	// the provinces in this state
-		vector<int>		neighbors;									// the neighboring provinces (that is, all provinces in the state)
-
-		for (vector<string>::iterator j = provinces.begin(); j != provinces.end(); j++)
-		{
-			neighbors.push_back( atoi(j->c_str()) );
-			stateIndexMap.insert(make_pair(atoi(j->c_str()), i));
-		}
-		for (vector<int>::iterator j = neighbors.begin(); j != neighbors.end(); j++)
-		{
-			stateMap.insert(make_pair(*j, neighbors));
-		}
-	}
-}
 
 
 cultureMapping initCultureMap(Object* obj)

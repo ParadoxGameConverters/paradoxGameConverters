@@ -42,6 +42,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/Mapper.h"
 #include "../Mappers/ProvinceMapper.h"
+#include "../Mappers/StateMapper.h"
 #include "../Configuration.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Relations.h"
@@ -867,7 +868,7 @@ struct MTo1ProvinceComp
 };
 
 
-void V2World::convertProvinces(const EU4World& sourceWorld, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap, const EU4RegionsMapping& regionsMap)
+void V2World::convertProvinces(const EU4World& sourceWorld, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap, const religionMapping& religionMap, const EU4RegionsMapping& regionsMap)
 {
 	for (auto Vic2Province: provinces)
 	{
@@ -918,20 +919,20 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const cultureMapping
 			}
 			if (((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM")) && false && (owner != NULL))
 			{
-				stateIndexMapping::const_iterator stateIndexMapping = stateIndexMap.find(Vic2Province.first);
-				if (stateIndexMapping == stateIndexMap.end())
+				auto stateIndex = stateMapper::getStateIndex(Vic2Province.first);
+				if (stateIndex == -1)
 				{
 					LOG(LogLevel::Warning) << "Could not find state index for province " << Vic2Province.first;
 					continue;
 				}
 				else
 				{
-					map< int, set<string> >::iterator colony = colonies.find(stateIndexMapping->second);
+					map<int, set<string>>::iterator colony = colonies.find(stateIndex);
 					if (colony == colonies.end())
 					{
 						set<string> countries;
 						countries.insert(owner->getTag());
-						colonies.insert(make_pair(stateIndexMapping->second, countries));
+						colonies.insert(make_pair(stateIndex, countries));
 					}
 					else
 					{
@@ -1157,7 +1158,7 @@ void V2World::setupColonies()
 
 
 static int stateId = 0;
-void V2World::setupStates(const stateMapping& stateMap)
+void V2World::setupStates()
 {
 	list<V2Province*> unassignedProvs;
 	for (map<int, V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
@@ -1180,12 +1181,7 @@ void V2World::setupStates(const stateMapping& stateMap)
 
 		V2State* newState = new V2State(stateId, *iter);
 		stateId++;
-		stateMapping::const_iterator stateItr = stateMap.find(provId);
-		vector<int> neighbors;
-		if (stateItr != stateMap.end())
-		{
-			neighbors = stateItr->second;
-		}
+		auto neighbors = stateMapper::getOtherProvincesInState(provId);
 		bool colonial = (*iter)->isColonial();
 		newState->setColonial(colonial);
 		iter = unassignedProvs.erase(iter);

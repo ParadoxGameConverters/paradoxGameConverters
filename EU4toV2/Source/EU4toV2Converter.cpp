@@ -528,36 +528,6 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	sourceWorld.checkAllProvincesMapped();
 	sourceWorld.setNumbersOfDestinationProvinces();
 
-	// Generate region mapping
-	LOG(LogLevel::Info) << "Parsing region structure";
-	Object* Vic2RegionsObj;
-	if (_stat(".\\blankMod\\output\\map\\region.txt", &st) == 0)
-	{
-		Vic2RegionsObj = parser_8859_15::doParseFile(".\\blankMod\\output\\map\\region.txt");
-		if (Vic2RegionsObj == NULL)
-		{
-			LOG(LogLevel::Error) << "Could not parse file .\\blankMod\\output\\map\\region.txt";
-			exit(-1);
-		}
-	}
-	else
-	{
-		Vic2RegionsObj = parser_8859_15::doParseFile( (V2Loc + "\\map\\region.txt").c_str() );
-		if (Vic2RegionsObj == NULL)
-		{
-			LOG(LogLevel::Error) << "Could not parse file " << V2Loc << "\\map\\region.txt";
-			exit(-1);
-		}
-	}
-	if (Vic2RegionsObj->getLeaves().size() < 1)
-	{
-		LOG(LogLevel::Error) << "Could not parse region.txt";
-		return 1;
-	}
-	stateMapping		stateMap;
-	stateIndexMapping	stateIndexMap;
-	initStateMap(Vic2RegionsObj, stateMap, stateIndexMap);
-
 	// Parse EU4 Religions
 	LOG(LogLevel::Info) << "Parsing EU4 religions";
 	Object* religionsObj = parser_UTF8::doParseFile((EU4Loc + "\\common\\religions\\00_religion.txt").c_str());
@@ -771,13 +741,13 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	LOG(LogLevel::Info) << "Converting countries";
 	destWorld.convertCountries(sourceWorld, cultureMap, unionCultures, religionMap, governmentMap, techSchools, leaderIDMap, lt, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas, EU4RegionsMap);
 	LOG(LogLevel::Info) << "Converting provinces";
-	destWorld.convertProvinces(sourceWorld, cultureMap, slaveCultureMap, religionMap, stateIndexMap, EU4RegionsMap);
+	destWorld.convertProvinces(sourceWorld, cultureMap, slaveCultureMap, religionMap, EU4RegionsMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld);
 	LOG(LogLevel::Info) << "Setting colonies";
 	destWorld.setupColonies();
 	LOG(LogLevel::Info) << "Creating states";
-	destWorld.setupStates(stateMap);
+	destWorld.setupStates();
 	LOG(LogLevel::Info) << "Setting unciv reforms";
 	destWorld.convertUncivReforms();
 	LOG(LogLevel::Info) << "Converting techs";

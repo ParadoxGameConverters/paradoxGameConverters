@@ -26,27 +26,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "Object.h"
-#include "../EU4World/EU4Version.h"
 #include "../FlagUtils.h"
 #include <map>
 #include <vector>
-#include <unordered_set>
 #include <set>
 #include <memory>
+using namespace std;
 
 
-
-class EU4World;
-class V2World;
 struct CustomFlag;
+class Object;
 
-
-
-// State Mappings
-typedef map< int, vector<int> >	stateMapping;	// < province, all other provinces in state >
-typedef map< int, int >				stateIndexMapping; // < province, state index >
-void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateIndexMap);
 
 
 // EU4 regions
