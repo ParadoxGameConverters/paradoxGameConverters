@@ -216,7 +216,7 @@ wstring bufferOneObject(ifstream& read)
 		{
 			buffer.pop_back();
 		}
-		wstring wide_buffer = Utils::convertToUTF16(buffer);
+		wstring wide_buffer = Utils::convert8859_15ToUTF16(buffer);
 
 		if (wide_buffer == L"CK2txt")
 		{
@@ -350,7 +350,7 @@ void setLHS(wstring key)
 {
 	//LOG(LogLevel::Debug) << "Setting LHS : " << key;
 
-	Object* p = new Object(Utils::convertToUTF8(key));
+	Object* p = new Object(Utils::convertUTF16ToUTF8(key));
 	if (0 == stack.size())
 	{
 		topLevel->setValue(p);
@@ -376,7 +376,7 @@ void setRHSleaf(wstring val)
 	//LOG(LogLevel::Debug) << "Setting RHSleaf : " << val;
 	Object* l = stack.back();	// the leaf object
 	stack.pop_back(); 
-	l->setValue(Utils::convertToUTF8(val));
+	l->setValue(Utils::convertUTF16ToUTF8(val));
 	if ( (!inObjList) &&(0 < stack.size()) )
 	{
 		Object* p = stack.back();	// the object holding the leaf
@@ -396,7 +396,7 @@ void setRHStaglist(vector<wstring> vals)
 	vector<string> utf8Vals;
 	for (auto val: vals)
 	{
-		utf8Vals.push_back(Utils::convertToUTF8(val));
+		utf8Vals.push_back(Utils::convertUTF16ToUTF8(val));
 	}
 
 

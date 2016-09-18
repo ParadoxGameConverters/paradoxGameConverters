@@ -40,7 +40,7 @@ namespace Utils
 
 bool TryCreateFolder(const std::string& path)
 {
-	BOOL success = ::CreateDirectoryW(convertToUTF16(path).c_str(), NULL);
+	BOOL success = ::CreateDirectoryW(convertUTF8ToUTF16(path).c_str(), NULL);
 	if (success || GetLastError() == 183)	// 183 is if the folder already exists
 	{
 		return true;
@@ -57,14 +57,14 @@ std::string getCurrentDirectory()
 {
 	wchar_t curDir[MAX_PATH];
 	GetCurrentDirectory(MAX_PATH, curDir);
-	return Utils::convertToUTF8(curDir);
+	return Utils::convertUTF16ToUTF8(curDir);
 }
 
 
 void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames)
 {
 	WIN32_FIND_DATA findData;	// the structure to hold the file data
-	HANDLE findHandle = FindFirstFileW(convertToUTF16(path + "/*").c_str(), &findData);	// the results of the file search
+	HANDLE findHandle = FindFirstFileW(convertUTF8ToUTF16(path + "/*").c_str(), &findData);	// the results of the file search
 	if (findHandle == INVALID_HANDLE_VALUE)
 	{
 		return;
@@ -73,7 +73,7 @@ void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNam
 	{
 		if (!(findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 		{
-			fileNames.insert(convertToUTF8(findData.cFileName));
+			fileNames.insert(convertUTF16ToUTF8(findData.cFileName));
 		}
 	} while (FindNextFileW(findHandle, &findData) != 0);
 	FindClose(findHandle);
@@ -82,7 +82,7 @@ void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNam
 
 bool TryCopyFile(const std::string& sourcePath, const std::string& destPath)
 {
-	BOOL success = ::CopyFileW(convertToUTF16(sourcePath).c_str(), convertToUTF16(destPath).c_str(), FALSE);	// whether or not the copy succeeded
+	BOOL success = ::CopyFileW(convertUTF8ToUTF16(sourcePath).c_str(), convertUTF8ToUTF16(destPath).c_str(), FALSE);	// whether or not the copy succeeded
 	if (success)
 	{
 		return true;
@@ -97,12 +97,12 @@ bool TryCopyFile(const std::string& sourcePath, const std::string& destPath)
 
 bool copyFolder(const std::string& sourceFolder, const std::string& destFolder)
 {
-	std::wstring wideSource = convertToUTF16(sourceFolder);
+	std::wstring wideSource = convertUTF8ToUTF16(sourceFolder);
 	wchar_t* from = new wchar_t[wideSource.size() + 2];
 	wcscpy(from, wideSource.c_str());
 	from[wideSource.size() + 1] = '\0';
 
-	std::wstring wideDest = convertToUTF16(destFolder);
+	std::wstring wideDest = convertUTF8ToUTF16(destFolder);
 	wchar_t* to = new wchar_t[wideDest.size() + 1];
 	wcscpy(to, wideDest.c_str());
 	to[wideDest.size() + 1] = '\0';
@@ -132,12 +132,12 @@ bool copyFolder(const std::string& sourceFolder, const std::string& destFolder)
 
 bool renameFolder(const std::string& sourceFolder, const std::string& destFolder)
 {
-	std::wstring wideSource = convertToUTF16(sourceFolder);
+	std::wstring wideSource = convertUTF8ToUTF16(sourceFolder);
 	wchar_t* from = new wchar_t[wideSource.size() + 2];
 	wcscpy(from, wideSource.c_str());
 	from[wideSource.size() + 1] = '\0';
 
-	std::wstring wideDest = convertToUTF16(destFolder);
+	std::wstring wideDest = convertUTF8ToUTF16(destFolder);
 	wchar_t* to = new wchar_t[wideDest.size() + 1];
 	wcscpy(to, wideDest.c_str());
 	to[wideDest.size() + 1] = '\0';
@@ -169,14 +169,14 @@ bool renameFolder(const std::string& sourceFolder, const std::string& destFolder
 
 bool DoesFileExist(const std::string& path)
 {
-	DWORD attributes = GetFileAttributesW(convertToUTF16(path).c_str());	// the file attributes
+	DWORD attributes = GetFileAttributesW(convertUTF8ToUTF16(path).c_str());	// the file attributes
 	return (attributes != INVALID_FILE_ATTRIBUTES && !(attributes & FILE_ATTRIBUTE_DIRECTORY));
 }
 
 
 bool doesFolderExist(const std::string& path)
 {
-	DWORD attributes = GetFileAttributesW(convertToUTF16(path).c_str());	// the file attributes
+	DWORD attributes = GetFileAttributesW(convertUTF8ToUTF16(path).c_str());	// the file attributes
 	return (attributes != INVALID_FILE_ATTRIBUTES && (attributes & FILE_ATTRIBUTE_DIRECTORY));
 }
 
@@ -195,7 +195,7 @@ std::string GetLastErrorString()
 		NULL);
 	if (success)
 	{
-		return convertToUTF8(errorBuffer);
+		return convertUTF16ToUTF8(errorBuffer);
 	}
 	else
 	{
@@ -206,7 +206,7 @@ std::string GetLastErrorString()
 
 bool deleteFolder(const std::string& folder)
 {
-	std::wstring wideFolder = convertToUTF16(folder);
+	std::wstring wideFolder = convertUTF8ToUTF16(folder);
 	wchar_t* folderStr = new wchar_t[wideFolder.size() + 2];
 	wcscpy(folderStr, wideFolder.c_str());
 	folderStr[wideFolder.size() + 1] = '\0';
@@ -234,20 +234,41 @@ bool deleteFolder(const std::string& folder)
 }
 
 
-std::string convertToASCII(std::string UTF8)
+std::string convertUTF8ToASCII(std::string UTF8)
 {
-	char asciiArray[1024];
-	if (0 == WideCharToMultiByte(20127 /*US-ASCII (7-bit)*/, 0, convertToUTF16(UTF8).c_str(), -1, asciiArray, 1024, "0", NULL))
+	int requiredSize = WideCharToMultiByte(20127 /*US-ASCII (7-bit)*/, 0, convertUTF8ToUTF16(UTF8).c_str(), -1, NULL, 0, "0", NULL);
+	char* asciiArray = new char[requiredSize];
+
+	if (0 == WideCharToMultiByte(20127 /*US-ASCII (7-bit)*/, 0, convertUTF8ToUTF16(UTF8).c_str(), -1, asciiArray, requiredSize, "0", NULL))
 	{
 		LOG(LogLevel::Error) << "Could not translate string to ASCII - " << GetLastErrorString();
 	}
 	std::string returnable(asciiArray);
 
+	delete[] asciiArray;
+
 	return returnable;
 }
 
 
-std::string convertToUTF8(std::wstring UTF16)
+std::string convertUTF8To8859_15(std::string UTF8)
+{
+	int requiredSize = WideCharToMultiByte(28605 /*8859-15*/, 0, convertUTF8ToUTF16(UTF8).c_str(), -1, NULL, 0, "0", NULL);
+	char* asciiArray = new char[requiredSize];
+
+	if (0 == WideCharToMultiByte(28605 /*8859-15*/, 0, convertUTF8ToUTF16(UTF8).c_str(), -1, asciiArray, requiredSize, "0", NULL))
+	{
+		LOG(LogLevel::Error) << "Could not translate string to ASCII - " << GetLastErrorString();
+	}
+	std::string returnable(asciiArray);
+
+	delete[] asciiArray;
+
+	return returnable;
+}
+
+
+std::string convertUTF16ToUTF8(std::wstring UTF16)
 {
 	int requiredSize = WideCharToMultiByte(CP_UTF8, 0, UTF16.c_str(), -1, NULL, 0, NULL, NULL);
 	char* utf8array = new char[requiredSize];
@@ -266,16 +287,37 @@ std::string convertToUTF8(std::wstring UTF16)
 
 std::string convert8859_15ToUTF8(std::string input)
 {
-	return convertToUTF8(convertToUTF16(input));
+	return convertUTF16ToUTF8(convert8859_15ToUTF16(input));
 }
 
 
-std::wstring convertToUTF16(std::string UTF8)
+std::wstring convert8859_15ToUTF16(std::string string8859_15)
 {
-	int requiredSize = MultiByteToWideChar(28605 /* 8859-15*/, MB_PRECOMPOSED, UTF8.c_str(), -1, NULL, 0);
+	int requiredSize = MultiByteToWideChar(28605 /* 8859-15*/, MB_PRECOMPOSED, string8859_15.c_str(), -1, NULL, 0);
 	wchar_t* wideKeyArray = new wchar_t[requiredSize];
 
-	if (0 == MultiByteToWideChar(28605 /* 8859-15*/, MB_PRECOMPOSED, UTF8.c_str(), -1, wideKeyArray, requiredSize))
+	if (0 == MultiByteToWideChar(28605 /* 8859-15*/, MB_PRECOMPOSED, string8859_15.c_str(), -1, wideKeyArray, requiredSize))
+	{
+		LOG(LogLevel::Error) << "Could not translate string to UTF-16 - " << GetLastErrorString();
+	}
+	std::wstring returnable(wideKeyArray);
+
+	delete[] wideKeyArray;
+
+	return returnable;
+}
+
+
+std::wstring convertUTF8ToUTF16(std::string UTF8)
+{
+	int requiredSize = MultiByteToWideChar(CP_UTF8, 0, UTF8.c_str(), -1, NULL, 0);
+	if (requiredSize == 0)
+	{
+		LOG(LogLevel::Error) << "Could not translate string to UTF-16 - " << GetLastErrorString();
+	}
+	wchar_t* wideKeyArray = new wchar_t[requiredSize];
+
+	if (0 == MultiByteToWideChar(CP_UTF8, 0, UTF8.c_str(), -1, wideKeyArray, requiredSize))
 	{
 		LOG(LogLevel::Error) << "Could not translate string to UTF-16 - " << GetLastErrorString();
 	}
@@ -323,7 +365,7 @@ void WriteToConsole(LogLevel level, const std::string& logMessage)
 			}
 			SetConsoleTextAttribute(console, color);
 			DWORD bytesWritten = 0;
-			WriteConsoleW(console, Utils::convertToUTF16(logMessage).c_str(), logMessage.size(), &bytesWritten, NULL);
+			WriteConsoleW(console, Utils::convertUTF8ToUTF16(logMessage).c_str(), logMessage.size(), &bytesWritten, NULL);
 
 			// Restore old console color.
 			SetConsoleTextAttribute(console, oldConsoleInfo.wAttributes);
