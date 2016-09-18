@@ -577,23 +577,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 		}
 	}
 
-	// Parse Religion Mappings
-	LOG(LogLevel::Info) << "Parsing religion mappings";
-	Object* religionMapObj = parser_UTF8::doParseFile("religionMap.txt");
-	if (religionMapObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file religionMap.txt";
-		exit(-1);
-	}
-	if (religionMapObj->getLeaves().size() < 1)
-	{
-		LOG(LogLevel::Error) << "Failed to parse religionMap.txt";
-		return 1;
-	}
-	religionMapping religionMap;
-	religionMap = initReligionMap(religionMapObj->getLeaves()[0]);
-	sourceWorld.checkAllEU4ReligionsMapped(religionMap);
-
+	sourceWorld.checkAllEU4ReligionsMapped();
 
 	// Parse unions mapping
 	LOG(LogLevel::Info) << "Parsing union mappings";
@@ -680,9 +664,9 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, cultureMap, unionCultures, religionMap, governmentMap, techSchools, leaderIDMap, lt, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
+	destWorld.convertCountries(sourceWorld, cultureMap, unionCultures, governmentMap, techSchools, leaderIDMap, lt, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
 	LOG(LogLevel::Info) << "Converting provinces";
-	destWorld.convertProvinces(sourceWorld, cultureMap, slaveCultureMap, religionMap);
+	destWorld.convertProvinces(sourceWorld, cultureMap, slaveCultureMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld);
 	LOG(LogLevel::Info) << "Setting colonies";

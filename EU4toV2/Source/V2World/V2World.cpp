@@ -42,6 +42,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/Mapper.h"
 #include "../Mappers/ProvinceMapper.h"
+#include "../Mappers/ReligionMapper.h"
 #include "../Mappers/StateMapper.h"
 #include "../Configuration.h"
 #include "../EU4World/EU4World.h"
@@ -593,7 +594,7 @@ bool scoresSorter(pair<V2Country*, int> first, pair<V2Country*, int> second)
 }
 
 
-void V2World::convertCountries(const EU4World& sourceWorld, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, colonyFlagset& colonyFlags, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas)
+void V2World::convertCountries(const EU4World& sourceWorld, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const governmentMapping& governmentMap, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, colonyFlagset& colonyFlags, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas)
 {
 	isRandomWorld = true;
 	map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
@@ -623,7 +624,7 @@ void V2World::convertCountries(const EU4World& sourceWorld, const cultureMapping
 				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
 				destCountry = new V2Country(V2Tag, countryFileName, std::vector<V2Party*>(), this, true, false);
 			}
-			destCountry->initFromEU4Country(sourceCountry, cultureMap, religionMap, unionCultures, governmentMap, techSchools, leaderMap, lt, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas);
+			destCountry->initFromEU4Country(sourceCountry, cultureMap, unionCultures, governmentMap, techSchools, leaderMap, lt, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas);
 			countries.insert(make_pair(V2Tag, destCountry));
 		}
 		else
@@ -868,7 +869,7 @@ struct MTo1ProvinceComp
 };
 
 
-void V2World::convertProvinces(const EU4World& sourceWorld, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap, const religionMapping& religionMap)
+void V2World::convertProvinces(const EU4World& sourceWorld, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap)
 {
 	for (auto Vic2Province: provinces)
 	{
@@ -1004,7 +1005,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const cultureMapping
 
 					// determine demographics
 					double provPopRatio = (*vitr)->getBaseTax() / newProvinceTotalBaseTax;
-					vector<V2Demographic> demographics = determineDemographics((*vitr)->getPopRatios(), *vitr, Vic2Province.second, oldOwner, cultureMap, slaveCultureMap, religionMap, Vic2Province.first, provPopRatio);
+					vector<V2Demographic> demographics = determineDemographics((*vitr)->getPopRatios(), *vitr, Vic2Province.second, oldOwner, cultureMap, slaveCultureMap, Vic2Province.first, provPopRatio);
 					for (auto demographic: demographics)
 					{
 						Vic2Province.second->addPopDemographic(demographic);
@@ -1022,7 +1023,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const cultureMapping
 }
 
 
-vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, EU4Country* oldOwner, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap, const religionMapping& religionMap, int destNum, double provPopRatio)
+vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, EU4Country* oldOwner, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap, int destNum, double provPopRatio)
 {
 	vector<V2Demographic> demographics;
 	for (auto prItr: popRatios)
@@ -1034,13 +1035,8 @@ vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRat
 			LOG(LogLevel::Warning) << "Could not set culture for pops in Vic2 province " << destNum;
 		}
 
-		string religion = "";
-		religionMapping::const_iterator religionItr = religionMap.find(prItr.religion);
-		if (religionItr != religionMap.end())
-		{
-			religion = religionItr->second;
-		}
-		else
+		string religion = religionMapper::getVic2Religion(prItr.religion);;
+		if (religion == "")
 		{
 			LOG(LogLevel::Warning) << "Could not set religion for pops in Vic2 province " << destNum;
 		}

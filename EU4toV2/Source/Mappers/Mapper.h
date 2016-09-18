@@ -60,11 +60,6 @@ cultureMapping initCultureMap(Object* obj);
 bool cultureMatch(const cultureMapping& cultureMap, string srcCulture, string& dstCulture, string religion, int EU4Province, string ownerTag);
 
 
-// Religion Mappings
-typedef map<string, string> religionMapping;		// <srcReligion, destReligion>
-religionMapping initReligionMap(Object* obj);
-
-
 // Minority cultures/religion
 typedef vector<pair<string, string>> minorityPopMapping;
 minorityPopMapping initMinorityPopMap(Object* obj);

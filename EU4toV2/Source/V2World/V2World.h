@@ -50,9 +50,9 @@ class V2World {
 		void output() const;
 		void createProvinceFiles(const EU4World& sourceWorld);
 		
-		void convertCountries(const EU4World& sourceWorld, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, colonyFlagset& colonyFlags, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas);
+		void convertCountries(const EU4World& sourceWorld, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const governmentMapping& governmentMap, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, colonyFlagset& colonyFlags, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas);
 		void convertDiplomacy(const EU4World& sourceWorld);
-		void convertProvinces(const EU4World& sourceWorld, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap, const religionMapping& religionMap);
+		void convertProvinces(const EU4World& sourceWorld, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap);
 		void setupColonies();
 		void setupStates();
 		void convertUncivReforms();
@@ -66,7 +66,7 @@ class V2World {
 		map<string, V2Country*>	getDynamicCountries()	const;
 
 	private:
-		vector<V2Demographic>	determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, EU4Country* oldOwner, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap, const religionMapping& religionMap, int destNum, double provPopRatio);
+		vector<V2Demographic>	determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, EU4Country* oldOwner, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap, int destNum, double provPopRatio);
 
 		void				outputPops() const;
 		void				getProvinceLocalizations(string file);

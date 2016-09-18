@@ -150,39 +150,6 @@ bool cultureMatch(const cultureMapping& cultureMap, string srcCulture, string& d
 }
 
 
-religionMapping initReligionMap(Object* obj)
-{
-	religionMapping religionMap;					// the religion mapping
-	vector<Object*> links = obj->getLeaves();	// the religion mapping rules
-
-	for (vector<Object*>::iterator i = links.begin(); i != links.end(); i++)
-	{
-		vector<Object*>	religions	= (*i)->getLeaves();	// the items in this rule
-		string				dstReligion;							// the V2 religion
-		vector<string>		srcReligion;							// the EU4 religions
-
-		for (vector<Object*>::iterator j = religions.begin(); j != religions.end(); j++)
-		{
-			if ( (*j)->getKey() == "v2" )
-			{
-				dstReligion = (*j)->getLeaf();
-			}
-			if ( (*j)->getKey() == "eu4" )
-			{
-				srcReligion.push_back( (*j)->getLeaf() );
-			}
-		}
-
-		for (vector<string>::iterator j = srcReligion.begin(); j != srcReligion.end(); j++)
-		{
-			religionMap.insert(make_pair((*j), dstReligion));
-		}
-	}
-
-	return religionMap;
-}
-
-
 minorityPopMapping initMinorityPopMap(Object* obj)
 {
 	minorityPopMapping minorityPopMap;			// the minority pop mapping

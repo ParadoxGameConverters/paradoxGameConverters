@@ -32,6 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <boost/algorithm/string.hpp>
 #include "Log.h"
 #include "../Configuration.h"
+#include "../Mappers/ReligionMapper.h"
 #include "paradoxParser8859_15.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/Eu4Country.h"
@@ -388,7 +389,7 @@ void V2Country::outputOOB() const
 }
 
 
-void V2Country::initFromEU4Country(EU4Country* _srcCountry, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas)
+void V2Country::initFromEU4Country(EU4Country* _srcCountry, cultureMapping cultureMap, unionCulturesMap unionCultures, governmentMapping governmentMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas)
 {
 	srcCountry = _srcCountry;
 
@@ -455,12 +456,8 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, cultureMapping cultu
 	string srcReligion = srcCountry->getReligion();
 	if (srcReligion.size() > 0)
 	{
-		religionMapping::iterator i = religionMap.find(srcReligion);
-		if (i != religionMap.end())
-		{
-			religion = i->second;
-		}
-		else
+		religion = religionMapper::getVic2Religion(srcReligion);
+		if (religion == "")
 		{
 			LOG(LogLevel::Warning) << "No religion mapping defined for " << srcReligion << " (" << _srcCountry->getTag() << " -> " << tag << ')';
 		}

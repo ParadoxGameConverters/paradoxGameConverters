@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "../Mappers/Mapper.h"
 #include "../Mappers/ProvinceMapper.h"
+#include "../Mappers/ReligionMapper.h"
 #include "Object.h"
 #include "ParadoxParserUTF8.h"
 #include "EU4Province.h"
@@ -431,15 +432,14 @@ void EU4World::checkAllEU4CulturesMapped(const cultureMapping& cultureMap, const
 }
 
 
-void EU4World::checkAllEU4ReligionsMapped(const religionMapping& religionMap) const
+void EU4World::checkAllEU4ReligionsMapped() const
 {
-	map<string, EU4Religion*> allReligions = EU4Religion::getAllReligions();
-	for (auto religionItr = allReligions.begin(); religionItr != allReligions.end(); ++religionItr)
+	for (auto EU4Religion: EU4Religion::getAllReligions())
 	{
-		auto mapItr = religionMap.find(religionItr->first);
-		if (mapItr == religionMap.end())
+		auto Vic2Religion = religionMapper::getVic2Religion(EU4Religion.first);
+		if (Vic2Religion == "")
 		{
-			Log(LogLevel::Warning) << "No religion mapping for EU4 religion " << religionItr->first;
+			Log(LogLevel::Warning) << "No religion mapping for EU4 religion " << EU4Religion.first;
 		}
 	}
 }
