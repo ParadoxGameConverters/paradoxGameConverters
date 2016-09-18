@@ -327,7 +327,7 @@ link = { eu4 = KOJ v2 = KOJ }  # Jerusalem
 link = { eu4 = KZH v2 = KZH }  # Kazakh
 link = { eu4 = KHI v2 = KHI }  # Khiva  
 link = { eu4 = KOK v2 = KOK }  # Kokand
-link = { eu4 = SHY v2 = BUK }  # Uzbek => Bukkhara
+link = { eu4 = SHY v2 = SHY }  # Uzbek
 
 #Persia
 link = { eu4 = KHO v2 = KHO }  # Khorasan
