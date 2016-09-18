@@ -46,12 +46,16 @@ class EU4World {
 
 		EU4Country*						getCountry(string tag) const;
 		EU4Province*					getProvince(int provNum) const;
-		void								removeCountry(string tag);
 		void								resolveRegimentTypes(const RegimentTypeMap& map);
 		void								checkAllProvincesMapped() const;
 		void								checkAllEU4CulturesMapped(const cultureMapping& cultureMap, const inverseUnionCulturesMap& inverseUnionCultures) const;
 		void								checkAllEU4ReligionsMapped(const religionMapping& religionMap) const;
 		void								setLocalisations(EU4Localisation& localisation);
+
+		void mergeNations();
+		void removeEmptyNations();
+		void removeDeadLandlessNations();
+		void removeLandlessNations();
 
 		EU4Version*						getVersion()			const { return version; };
 		map<string, EU4Country*>	getCountries()			const { return countries; };
@@ -59,6 +63,8 @@ class EU4World {
 		double							getWorldWeightSum()	const { return worldWeightSum; };
 
 	private:
+		void uniteJapan();
+
 		map<int, EU4Province*>		provinces;	// the provinces
 		map<string, EU4Country*>	countries;	// the countries
 		EU4Diplomacy*					diplomacy;	// diplomatic relationships

@@ -43,14 +43,6 @@ struct CustomFlag;
 
 
 
-
-void mergeNations(EU4World&, Object* mergeObj);
-void uniteJapan(EU4World&);
-void removeEmptyNations(EU4World&);
-void removeDeadLandlessNations(EU4World&);
-void removeLandlessNations(EU4World&);
-
-
 // State Mappings
 typedef map< int, vector<int> >	stateMapping;	// < province, all other provinces in state >
 typedef map< int, int >				stateIndexMapping; // < province, state index >

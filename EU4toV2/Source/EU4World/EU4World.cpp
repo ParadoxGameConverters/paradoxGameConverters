@@ -387,12 +387,6 @@ EU4Province* EU4World::getProvince(const int provNum) const
 }
 
 
-void EU4World::removeCountry(string tag)
-{
-	countries.erase(tag);
-}
-
-
 void EU4World::resolveRegimentTypes(const RegimentTypeMap& rtMap)
 {
 	for (map<string, EU4Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
@@ -470,4 +464,157 @@ void EU4World::setLocalisations(EU4Localisation& localisation)
 			countryItr->second->setLocalisationAdjective(language, adjective);
 		}
 	}
+}
+
+
+// todo: move the getting of rules into its own mapper, with a merge rule structure type
+//		then break out things into subfunctions with a give rule as a parameter
+void EU4World::mergeNations()
+{
+	LOG(LogLevel::Info) << "Merging nations";
+	Object* mergeObj = parser_UTF8::doParseFile("merge_nations.txt");
+	if (mergeObj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file merge_nations.txt";
+		exit(-1);
+	}
+
+	vector<Object*> rules = mergeObj->getValue("merge_nations");
+	if (rules.size() < 0)
+	{
+		LOG(LogLevel::Debug) << "No nations have merging requested (skipping)";
+		return;
+	}
+
+	rules = rules[0]->getLeaves();
+	for (auto rule: rules)
+	{
+		if ((rule->getKey() == "merge_daimyos") && (rule->getLeaf() == "yes"))
+		{
+			uniteJapan();
+			continue;
+		}
+
+		vector<Object*> ruleItems = rule->getLeaves();
+
+		string masterTag;
+		vector<string> slaveTags;
+		bool enabled = false;
+		for (auto item: ruleItems)
+		{
+			if ((item->getKey() == "merge") && (item->getLeaf() == "yes"))
+			{
+				enabled = true;
+			}
+			else if (item->getKey() == "master")
+			{
+				masterTag = item->getLeaf();
+			}
+			else if (item->getKey() == "slave")
+			{
+				slaveTags.push_back(item->getLeaf());
+			}
+		}
+
+		EU4Country* master = getCountry(masterTag);
+		if (enabled && (master != NULL))
+		{
+			for (auto slaveTag: slaveTags)
+			{
+				auto slave = getCountry(slaveTag);
+				if (slave != NULL)
+				{
+					master->eatCountry(slave);
+				}
+			}
+		}
+	}
+}
+
+
+void EU4World::uniteJapan()
+{
+	EU4Country* japan = getCountry("JAP");
+	if (japan == NULL)
+	{
+		return;
+	}
+	if (japan->hasFlag("united_daimyos_of_japan"))
+	{
+		return;
+	}
+
+	for (auto country: countries)
+	{
+		if (country.second->getPossibleDaimyo())
+		{
+			japan->eatCountry(country.second);
+		}
+	}
+}
+
+
+void EU4World::removeEmptyNations()
+{
+	map<string, EU4Country*> survivingCountries;
+
+	for (auto country: countries)
+	{
+		vector<EU4Province*> provinces = country.second->getProvinces();
+		vector<EU4Province*> cores = country.second->getCores();
+		if ((provinces.size() == 0) && (cores.size() == 0))
+		{
+			LOG(LogLevel::Debug) << "Removing empty nation " << country.first;
+		}
+		else
+		{
+			survivingCountries.insert(country);
+		}
+	}
+
+	countries.swap(survivingCountries);
+}
+
+
+void EU4World::removeDeadLandlessNations()
+{
+	map<string, EU4Country*> landlessCountries;
+	for (auto country: countries)
+	{
+		vector<EU4Province*> provinces = country.second->getProvinces();
+		if (provinces.size() == 0)
+		{
+			landlessCountries.insert(country);
+		}
+	}
+
+	for (auto country: landlessCountries)
+	{
+		if (!country.second->cultureSurvivesInCores())
+		{
+			countries.erase(country.first);
+			LOG(LogLevel::Debug) << "Removing dead landless nation " << country.first;
+		}
+	}
+}
+
+
+void EU4World::removeLandlessNations()
+{
+	map<string, EU4Country*> survivingCountries;
+
+	for (auto country: countries)
+	{
+		auto provinces = country.second->getProvinces();
+		if (provinces.size() == 0)
+		{
+			LOG(LogLevel::Debug) << "Removing landless nation " << country.first;
+		}
+		else
+		{
+			survivingCountries.insert(country);
+		}
+	}
+
+	countries.swap(survivingCountries);
 }

@@ -500,14 +500,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 
 	// Merge nations
-	LOG(LogLevel::Info) << "Merging nations";
-	Object* mergeObj = parser_UTF8::doParseFile("merge_nations.txt");
-	if (mergeObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file merge_nations.txt";
-		exit(-1);
-	}
-	mergeNations(sourceWorld, mergeObj);
+	sourceWorld.mergeNations();
 
 	// Parse minoruty pops map
 	LOG(LogLevel::Info) << "Parsing minority pops mappings";
@@ -762,14 +755,14 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Create country mappings
 	LOG(LogLevel::Info) << "Creating country mappings";
-	removeEmptyNations(sourceWorld);
+	sourceWorld.removeEmptyNations();
 	if (Configuration::getRemovetype() == "dead")
 	{
-		removeDeadLandlessNations(sourceWorld);
+		sourceWorld.removeDeadLandlessNations();
 	}
 	else if (Configuration::getRemovetype() == "all")
 	{
-		removeLandlessNations(sourceWorld);
+		sourceWorld.removeLandlessNations();
 	}
 	CountryMapping::createMappings(sourceWorld, destWorld.getPotentialCountries(), colonyMap, inverseUnionCultures);
 

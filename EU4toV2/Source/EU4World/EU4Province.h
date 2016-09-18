@@ -56,6 +56,7 @@ class EU4Province {
 		bool						hasBuilding(string building) const;
 		vector<EU4Country*>	getCores(const map<string, EU4Country*>& countries) const;
 		date						getLastPossessedDate(string tag) const;
+		double getCulturePercent(string culture);
 
 		int						getNum()					const { return num; }
 		double					getBaseTax()			const { return baseTax; }

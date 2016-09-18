@@ -384,6 +384,22 @@ date EU4Province::getLastPossessedDate(string tag) const
 }
 
 
+double EU4Province::getCulturePercent(string culture)
+{
+	double culturePercent = 0.0f;
+
+	for (auto pop: popRatios)
+	{
+		if (pop.culture == culture)
+		{
+			culturePercent += pop.lowerPopRatio;
+		}
+	}
+
+	return culturePercent;
+}
+
+
 void EU4Province::checkBuilding(const Object* provinceObj, string building)
 {
 	vector<Object*> buildingObj;	// the object holding the building

@@ -69,6 +69,8 @@ class EU4Country
 		void						clearArmies();
 		const void				viveLaRevolution(bool revolting)					{ revolutionary = revolting; }
 
+		bool cultureSurvivesInCores();
+
 		string							getTag()										const { return tag; }
 		vector<EU4Province*>			getProvinces()								const { return provinces; }
 		vector<EU4Province*>			getCores()									const { return cores; }

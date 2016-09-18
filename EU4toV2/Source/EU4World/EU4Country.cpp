@@ -619,6 +619,29 @@ void EU4Country::clearArmies()
 }
 
 
+bool EU4Country::cultureSurvivesInCores()
+{
+	for (auto core: cores)
+	{
+		if (core->getOwner() == NULL)
+		{
+			continue;
+		}
+		if (core->getOwner()->getPrimaryCulture() == primaryCulture)
+		{
+			continue;
+		}
+
+		if (core->getCulturePercent(primaryCulture) >= 0.5)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
 string EU4Country::getName(const string& language) const
 {
 	if (!randomName.empty())
