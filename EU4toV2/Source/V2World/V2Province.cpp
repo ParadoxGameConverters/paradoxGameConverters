@@ -24,6 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Province.h"
 #include "Log.h"
 #include "Object.h"
+#include "OSCompatibilityLayer.h"
 #include "ParadoxParser8859_15.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Province.h"
@@ -33,7 +34,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <sstream>
 #include <algorithm>
 #include <stdio.h>
-#include <sys/stat.h>
 using namespace std;
 
 
@@ -83,8 +83,7 @@ V2Province::V2Province(string _filename)
 	num				= atoi(temp.c_str());
 
 	Object* obj;
-	struct _stat st;
-	if (_stat((string("./blankMod/output/history/provinces") + _filename).c_str(), &st) == 0)
+	if (Utils::DoesFileExist(string("./blankMod/output/history/provinces") + _filename))
 	{
 		obj = parser_8859_15::doParseFile((string("./blankMod/output/history/provinces") + _filename).c_str());
 		if (obj == NULL)
@@ -98,7 +97,7 @@ V2Province::V2Province(string _filename)
 		obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/history/provinces" + _filename).c_str());
 		if (obj == NULL)
 		{
-			LOG(LogLevel::Error) << "Could not parse " << Configuration::getV2Path() << "/history/\provinces" << _filename;
+			LOG(LogLevel::Error) << "Could not parse " << Configuration::getV2Path() << "/history/provinces" << _filename;
 			exit(-1);
 		}
 	}

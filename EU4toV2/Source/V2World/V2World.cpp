@@ -22,7 +22,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2World.h"
-#include <Windows.h>
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -33,7 +32,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <queue>
 #include <cmath>
 #include <cfloat>
-#include <sys/stat.h>
 #include "ParadoxParser8859_15.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
@@ -148,8 +146,7 @@ V2World::V2World(const minorityPopMapping& minorities)
 	}
 
 	// Get province names
-	struct _stat st;
-	if (_stat("./blankMod/output/localisation/text.csv", &st) == 0)
+	if (Utils::DoesFileExist("./blankMod/output/localisation/text.csv"))
 	{
 		getProvinceLocalizations("./blankMod/output/localisation/text.csv");
 	}
@@ -307,7 +304,7 @@ V2World::V2World(const minorityPopMapping& minorities)
 	dynamicCountries.clear();
 	const date FirstStartDate("1836.1.1");
 	ifstream V2CountriesInput;
-	if (_stat("./blankMod/output/common/countries.txt", &st) == 0)
+	if (Utils::DoesFileExist("./blankMod/output/common/countries.txt"))
 	{
 		V2CountriesInput.open("./blankMod/output/common/countries.txt");
 	}
@@ -346,7 +343,7 @@ V2World::V2World(const minorityPopMapping& minorities)
 		countryFileName	= line.substr(start, size);
 
 		Object* countryData;
-		if (_stat((string("./blankMod/output/common/countries/") + countryFileName).c_str(), &st) == 0)
+		if (Utils::DoesFileExist("./blankMod/output/common/countries/" + countryFileName))
 		{
 			countryData = parser_8859_15::doParseFile((string("./blankMod/output/common/countries/") + countryFileName).c_str());
 			if (countryData == NULL)
@@ -354,7 +351,7 @@ V2World::V2World(const minorityPopMapping& minorities)
 				LOG(LogLevel::Warning) << "Could not parse file ./blankMod/output/common/countries/" << countryFileName;
 			}
 		}
-		else if (_stat((Configuration::getV2Path() + "/common/countries/" + countryFileName).c_str(), &st) == 0)
+		else if (Utils::DoesFileExist(Configuration::getV2Path() + "/common/countries/" + countryFileName))
 		{
 			countryData = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/countries/" + countryFileName).c_str());
 			if (countryData == NULL)
@@ -541,11 +538,10 @@ void V2World::output() const
 		int size				= line.find_last_of('\"') - start - 1;
 		countryFileName	= line.substr(start + 1, size);
 
-		struct _stat st;
-		if (_stat(("Output/" + Configuration::getOutputName() + "/common/countries/" + countryFileName).c_str(), &st) == 0)
+		if (Utils::DoesFileExist("Output/" + Configuration::getOutputName() + "/common/countries/" + countryFileName))
 		{
 		}
-		else if (_stat((Configuration::getV2Path() + "/common/countries/" + countryFileName).c_str(), &st) == 0)
+		else if (Utils::DoesFileExist(Configuration::getV2Path() + "/common/countries/" + countryFileName))
 		{
 		}
 		else

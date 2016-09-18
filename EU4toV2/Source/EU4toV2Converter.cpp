@@ -24,10 +24,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include <io.h>
 #include <stdexcept>
-#include <sys/stat.h>
-
-#include <Windows.h>
-
 #include "Configuration.h"
 #include "Log.h"
 #include "ParadoxParserUTF8.h"
@@ -77,8 +73,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	// Get V2 install location
 	LOG(LogLevel::Info) << "Get V2 Install Path";
 	string V2Loc = Configuration::getV2Path();	// the V2 install location as stated in the configuration file
-	struct _stat st;										// the file info
-	if (V2Loc.empty() || (_stat(V2Loc.c_str(), &st) != 0))
+	if (Utils::DoesFileExist(V2Loc))
 	{
 		LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
 		return (-1);
@@ -91,7 +86,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	// Get V2 Documents Directory
 	LOG(LogLevel::Debug) << "Get V2 Documents directory";
 	string V2DocLoc = Configuration::getV2DocumentsPath();	// the V2 My Documents location as stated in the configuration file
-	if (V2DocLoc.empty() || (_stat(V2DocLoc.c_str(), &st) != 0))
+	if (Utils::DoesFileExist(V2DocLoc))
 	{
 		LOG(LogLevel::Error) << "No Victoria 2 documents directory was specified in configuration.txt, or the path was invalid";
 		return (-1);
@@ -104,7 +99,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	// Get EU4 install location
 	LOG(LogLevel::Debug) << "Get EU4 Install Path";
 	string EU4Loc = Configuration::getEU4Path();	// the EU4 install location as stated in the configuration file
-	if (EU4Loc.empty() || (_stat(EU4Loc.c_str(), &st) != 0))
+	if (Utils::DoesFileExist(EU4Loc))
 	{
 		LOG(LogLevel::Error) << "No Europa Universalis 4 path was specified in configuration.txt, or the path was invalid";
 		return (-1);
@@ -118,7 +113,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	map<string, string> possibleMods; // name, path
 	LOG(LogLevel::Debug) << "Get EU4 Mod Directory";
 	string EU4DocumentsLoc = Configuration::getEU4DocumentsPath();	// the EU4 My Documents location as stated in the configuration file
-	if (EU4DocumentsLoc.empty() || (_stat(EU4DocumentsLoc.c_str(), &st) != 0))
+	if (Utils::DoesFileExist(EU4DocumentsLoc))
 	{
 		LOG(LogLevel::Error) << "No Europa Universalis 4 documents directory was specified in configuration.txt, or the path was invalid";
 		return (-1);
@@ -173,7 +168,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	// Get CK2 Export directory
 	LOG(LogLevel::Debug) << "Get CK2 Export Directory";
 	string CK2ExportLoc = Configuration::getCK2ExportPath();		// the CK2 converted mods location as stated in the configuration file
-	if (CK2ExportLoc.empty() || (_stat(CK2ExportLoc.c_str(), &st) != 0))
+	if (Utils::DoesFileExist(CK2ExportLoc))
 	{
 		LOG(LogLevel::Warning) << "No Crusader Kings 2 mod directory was specified in configuration.txt, or the path was invalid - this will cause problems with CK2 converted saves";
 	}
@@ -295,7 +290,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 				if (modItr != possibleMods.end())
 				{
 					string newModPath = modItr->second;	// the path for this mod
-					if (newModPath.empty() || (_stat(newModPath.c_str(), &st) != 0))
+					if (Utils::DoesFileExist(newModPath))
 					{
 						LOG(LogLevel::Error) << newMod << " could not be found in the specified mod directory - a valid mod directory must be specified. Tried " << newModPath;
 						exit(-1);
@@ -561,7 +556,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 				else
 				{
 					string modReligionFile(itr + "/common/religions/" + fileData.name);	// the path and name of the religions file in this mod
-					if ((_stat(modReligionFile.c_str(), &st) == 0))
+					if (Utils::DoesFileExist(modReligionFile))
 					{
 						religionsObj = parser_UTF8::doParseFile(modReligionFile.c_str());
 						if (religionsObj == NULL)
@@ -688,7 +683,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";
-	system("%systemroot%\\System32\\xcopy blankMod output /E /Q /Y /I");
+	Utils::copyFolder("blankMod/output", "output/output");
 	FILE* modFile;	// the .mod file for this mod
 	if (fopen_s(&modFile, ("Output/" + Configuration::getOutputName() + ".mod").c_str(), "w") != 0)
 	{
@@ -713,8 +708,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	fprintf(modFile, "replace = \"localisation/0_Religions.csv\"\n");
 	fprintf(modFile, "replace = \"history/wars\"\n");
 	fclose(modFile);
-	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();	// the command to rename the mod correctly
-	system(renameCommand.c_str());
+	Utils::renameFolder("output/output", "output/" + Configuration::getOutputName());
 	destWorld.output();
 
 	LOG(LogLevel::Info) << "* Conversion complete *";
