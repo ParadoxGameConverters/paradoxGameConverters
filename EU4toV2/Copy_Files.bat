@@ -1,3 +1,4 @@
+rem Copy converter data files
 copy "Data_Files\configuration.txt" "release\configuration.txt"
 copy "Data_Files\readme.txt" "release\readme.txt"
 copy "Data_Files\merge_nations.txt" "release\merge_nations.txt"
@@ -21,17 +22,10 @@ copy "Data_Files\port_whitelist.txt" "release\port_whitelist.txt"
 copy "Data_Files\minorityPops.txt" "release\minorityPops.txt"
 copy "Data_Files\FAQ.txt" "release\FAQ.txt"
 
-del release\changelog.txt
-git log --oneline --decorate >> release/log.txt
-(for /f "delims=" %%i in (release/log.txt) do @echo %%i)>release/changelog.txt
-del release\log.txt
-
+rem Create Blank Mod
 del "Release\blankMod" /Q
 rmdir "Release\blankMod" /S /Q
-mkdir "release\blankMod"
-mkdir "release\blankMod\output"
-mkdir "release\blankMod\output\decisions"
-mkdir "release\blankMod\output\events"
+xcopy "Data_Files\blankMod" "release\blankMod" /Y /E /I
 mkdir "release\blankMod\output\history"
 mkdir "release\blankMod\output\history\provinces"
 mkdir "release\blankMod\output\history\provinces\africa"
@@ -62,20 +56,9 @@ mkdir "release\blankMod\output\history\provinces\usa"
 mkdir "release\blankMod\output\history\countries"
 mkdir "release\blankMod\output\history\diplomacy"
 mkdir "release\blankMod\output\history\units"
-mkdir "release\blankMod\output\history\pops"
-mkdir "release\blankMod\output\history\pops\1836.1.1"
-mkdir "release\blankMod\output\history\wars"
-mkdir "release\blankMod\output\common"
 
-xcopy "Data_Files\countries" "release\blankmod\output\common\countries" /Y /E /I
-xcopy "Data_Files\gfx" "release\blankmod\output\gfx" /Y /E /I
-xcopy "Data_Files\localisation" "release\blankmod\output\localisation" /Y /E /I
-xcopy "Data_Files\interface" "release\blankmod\output\interface" /Y /E /I
-xcopy "Data_Files\wars" "release\blankmod\output\history\wars" /Y /E /I
-xcopy "Data_Files\pops" "release\blankmod\output\history\pops\1836.1.1" /Y /E /I
-copy "Data_Files\converterEvents.txt" "release\blankmod\output\events\converterEvents.txt"
-copy "Data_Files\converterDecisions.txt" "release\blankmod\output\decisions\converterDecisions.txt"
-copy "Data_Files\countries.txt" "release\blankMod\output\common\countries.txt"
-copy "Data_Files\country_colors.txt" "release\blankMod\output\common\country_colors.txt"
-copy "Data_Files\religion.txt" "release\blankMod\output\common\religion.txt"
-copy "Data_Files\cultures.txt" "release\blankMod\output\common\cultures.txt"
+rem Create changelog
+del release\changelog.txt
+git log --oneline --decorate >> release/log.txt
+(for /f "delims=" %%i in (release/log.txt) do @echo %%i)>release/changelog.txt
+del release\log.txt
