@@ -5,7 +5,6 @@
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\FlagUtils.cpp" />
     <ClCompile Include="Source\targa.cpp" />
-    <ClCompile Include="Source\tempFuncs.cpp" />
     <ClCompile Include="Source\EU4World\EU4Army.cpp">
       <Filter>EU4 World</Filter>
     </ClCompile>

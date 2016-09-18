@@ -71,7 +71,7 @@ void EU4Localisation::ReadFromAllFilesInFolder(const std::string& folderPath)
 	// Read all these files.
 	for (const auto& fileName : fileNames)
 	{
-		ReadFromFile(folderPath + '\\' + fileName);
+		ReadFromFile(folderPath + '/' + fileName);
 	}
 }
 

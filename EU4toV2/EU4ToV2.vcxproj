@@ -187,7 +187,6 @@
     <ClCompile Include="Source\Mappers\ReligionMapper.cpp" />
     <ClCompile Include="Source\Mappers\StateMapper.cpp" />
     <ClCompile Include="Source\targa.cpp" />
-    <ClCompile Include="Source\tempFuncs.cpp" />
     <ClCompile Include="Source\V2World\V2Army.cpp" />
     <ClCompile Include="Source\V2World\V2Country.cpp" />
     <ClCompile Include="Source\V2World\V2Creditor.cpp" />

@@ -113,24 +113,24 @@ V2FactoryFactory::V2FactoryFactory()
 {
 	// load required techs/inventions
 	factoryTechReqs.clear();
-	loadRequiredTechs(Configuration::getV2Path() + "\\technologies\\army_tech.txt");
-	loadRequiredTechs(Configuration::getV2Path() + "\\technologies\\commerce_tech.txt");
-	loadRequiredTechs(Configuration::getV2Path() + "\\technologies\\culture_tech.txt");
-	loadRequiredTechs(Configuration::getV2Path() + "\\technologies\\industry_tech.txt");
-	loadRequiredTechs(Configuration::getV2Path() + "\\technologies\\navy_tech.txt");
+	loadRequiredTechs(Configuration::getV2Path() + "/technologies/army_tech.txt");
+	loadRequiredTechs(Configuration::getV2Path() + "/technologies/commerce_tech.txt");
+	loadRequiredTechs(Configuration::getV2Path() + "/technologies/culture_tech.txt");
+	loadRequiredTechs(Configuration::getV2Path() + "/technologies/industry_tech.txt");
+	loadRequiredTechs(Configuration::getV2Path() + "/technologies/navy_tech.txt");
 	factoryInventionReqs.clear();
-	loadRequiredInventions(Configuration::getV2Path() + "\\inventions\\army_inventions.txt");
-	loadRequiredInventions(Configuration::getV2Path() + "\\inventions\\commerce_inventions.txt");
-	loadRequiredInventions(Configuration::getV2Path() + "\\inventions\\culture_inventions.txt");
-	loadRequiredInventions(Configuration::getV2Path() + "\\inventions\\industry_inventions.txt");
-	loadRequiredInventions(Configuration::getV2Path() + "\\inventions\\navy_inventions.txt");
+	loadRequiredInventions(Configuration::getV2Path() + "/inventions/army_inventions.txt");
+	loadRequiredInventions(Configuration::getV2Path() + "/inventions/commerce_inventions.txt");
+	loadRequiredInventions(Configuration::getV2Path() + "/inventions/culture_inventions.txt");
+	loadRequiredInventions(Configuration::getV2Path() + "/inventions/industry_inventions.txt");
+	loadRequiredInventions(Configuration::getV2Path() + "/inventions/navy_inventions.txt");
 
 	// load factory types
 	factoryTypes.clear();
-	Object* obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "\\common\\production_types.txt").c_str());
+	Object* obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/production_types.txt").c_str());
 	if (obj == NULL)
 	{
-		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getV2Path() << "\\common\\production_types.txt";
+		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getV2Path() << "/common/production_types.txt";
 		exit(-1);
 	}
 	vector<Object*> factoryObjs = obj->getLeaves();

@@ -25,7 +25,7 @@ THE SOFTWARE. */
 
 
 #include "EU4Army.h"
-#include "..\Color.h"
+#include "../Color.h"
 #include "Date.h"
 #include "../Mappers/Mapper.h"
 

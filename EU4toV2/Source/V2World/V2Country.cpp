@@ -35,7 +35,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/ReligionMapper.h"
 #include "paradoxParser8859_15.h"
 #include "../EU4World/EU4World.h"
-#include "../EU4World/Eu4Country.h"
+#include "../EU4World/EU4Country.h"
 #include "../EU4World/EU4Province.h"
 #include "../EU4World/EU4Relations.h"
 #include "../EU4World/EU4Leader.h"
@@ -169,7 +169,7 @@ void V2Country::output() const
 	if(!dynamicCountry)
 	{
 		FILE* output;
-		if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\countries\\" + filename).c_str(), "w") != 0)
+		if (fopen_s(&output, ("Output/" + Configuration::getOutputName() + "/history/countries/" + filename).c_str(), "w") != 0)
 		{
 			LOG(LogLevel::Error) << "Could not create country history file " << filename;
 			exit(-1);
@@ -284,10 +284,10 @@ void V2Country::output() const
 	if (newCountry)
 	{
 		// Output common country file. 
-		std::ofstream commonCountryOutput("Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile);
+		std::ofstream commonCountryOutput("Output/" + Configuration::getOutputName() + "/common/countries/" + commonCountryFile);
 		if (!commonCountryOutput.is_open())
 		{
-			LOG(LogLevel::Error) << "Could not open Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile;
+			LOG(LogLevel::Error) << "Could not open Output/" + Configuration::getOutputName() + "/common/countries/" + commonCountryFile;
 			exit(-1);
 		}
 		commonCountryOutput << "graphical_culture = UsGC\n";	// default to US graphics
@@ -358,7 +358,7 @@ void V2Country::outputElection(FILE* output) const
 void V2Country::outputOOB() const
 {
 	FILE* output;
-	if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\units\\" + tag + "_OOB.txt").c_str(), "w") != 0)
+	if (fopen_s(&output, ("Output/" + Configuration::getOutputName() + "/history/units/" + tag + "_OOB.txt").c_str(), "w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create OOB file " << (tag + "_OOB.txt");
 		exit(-1);
@@ -400,7 +400,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, cultureMapping cultu
 
 	struct _finddata_t	fileData;
 	intptr_t					fileListing;
-	string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
+	string filesearch = "./blankMod/output/history/countries/" + tag + "*.txt";
 	if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 	{
 		filename = fileData.name;
@@ -408,7 +408,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, cultureMapping cultu
 	_findclose(fileListing);
 	if (filename == "")
 	{
-		string filesearch = Configuration::getV2Path() + "\\history\\countries\\" + tag + "*.txt";
+		string filesearch = Configuration::getV2Path() + "/history/countries/" + tag + "*.txt";
 		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 		{
 			filename = fileData.name;
@@ -783,20 +783,20 @@ void V2Country::initFromHistory()
 	string fullFilename;
 	struct _finddata_t	fileData;
 	intptr_t					fileListing;
-	string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
+	string filesearch = "./blankMod/output/history/countries/" + tag + "*.txt";
 	if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 	{
 		filename			= fileData.name;
-		fullFilename	= string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
+		fullFilename	= string("./blankMod/output/history/countries/") + fileData.name;
 	}
 	_findclose(fileListing);
 	if (fullFilename == "")
 	{
-		string filesearch = Configuration::getV2Path() + "\\history\\countries\\" + tag + "*.txt";
+		string filesearch = Configuration::getV2Path() + "/history/countries/" + tag + "*.txt";
 		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 		{
 			filename			= fileData.name;
-			fullFilename	= Configuration::getV2Path() + "\\history\\countries\\" + fileData.name;
+			fullFilename	= Configuration::getV2Path() + "/history/countries/" + fileData.name;
 		}
 		_findclose(fileListing);
 	}

@@ -55,11 +55,11 @@ adjacencyMapper::adjacencyMapper()
 
 string adjacencyMapper::getAdjacencyFilename()
 {
-	string filename = Configuration::getV2DocumentsPath() + "\\map\\cache\\adjacencies.bin";
+	string filename = Configuration::getV2DocumentsPath() + "/map/cache/adjacencies.bin";
 	if (!Utils::DoesFileExist(filename))
 	{
 		LOG(LogLevel::Warning) << "Could not find " << filename << " - looking in install folder";
-		filename = Configuration::getV2Path() + "\\map\\cache\\adjacencies.bin";
+		filename = Configuration::getV2Path() + "/map/cache/adjacencies.bin";
 		if (!Utils::DoesFileExist(filename))
 		{
 			LOG(LogLevel::Error) << "Could not find " << filename << ". Try running Vic2 and converting again.";

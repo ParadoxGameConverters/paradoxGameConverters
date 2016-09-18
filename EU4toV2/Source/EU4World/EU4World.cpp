@@ -361,11 +361,11 @@ void EU4World::readCommonCountries(istream& in, const std::string& rootPath)
 				{
 					fileName = fileName.substr(1, fileName.size() - 2);
 				}
-				std::replace(fileName.begin(), fileName.end(), '/', '\\');
+				std::replace(fileName.begin(), fileName.end(), '/', '/');
 
 				// Parse the country file.
-				std::string path = rootPath + "\\common\\" + fileName;
-				size_t lastPathSeparatorPos = path.find_last_of('\\');
+				std::string path = rootPath + "/common/" + fileName;
+				size_t lastPathSeparatorPos = path.find_last_of('/');
 				std::string localFileName = path.substr(lastPathSeparatorPos + 1, string::npos);
 				country->readFromCommonCountry(localFileName, parser_UTF8::doParseFile(path.c_str()));
 			}

@@ -139,10 +139,10 @@ vector<Object*> CountryMapping::parseEU4RegionsFiles()
 {
 	vector<Object*> colonialRegionsObjs;
 
-	Object* colonialRegionsObj = parser_UTF8::doParseFile((Configuration::getEU4Path() + "\\common\\colonial_regions\\00_colonial_regions.txt").c_str());
+	Object* colonialRegionsObj = parser_UTF8::doParseFile((Configuration::getEU4Path() + "/common/colonial_regions/00_colonial_regions.txt").c_str());
 	if (colonialRegionsObj == NULL)
 	{
-		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getEU4Path() << "\\common\\colonial_regions\\00_colonial_regions.txt";
+		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getEU4Path() << "/common/colonial_regions/00_colonial_regions.txt";
 		exit(-1);
 	}
 	if (colonialRegionsObj->getLeaves().size() < 1)
@@ -155,10 +155,10 @@ vector<Object*> CountryMapping::parseEU4RegionsFiles()
 	for (auto itr: Configuration::getEU4Mods())
 	{
 		set<string> filenames;
-		Utils::GetAllFilesInFolder(itr + "\\common\\colonial_regions\\", filenames);
+		Utils::GetAllFilesInFolder(itr + "/common/colonial_regions/", filenames);
 		for (auto filename: filenames)
 		{
-			string modRegionsFile(itr + "\\common\\colonial_regions\\" + filename);
+			string modRegionsFile(itr + "/common/colonial_regions/" + filename);
 			if (Utils::DoesFileExist(modRegionsFile))
 			{
 				colonialRegionsObj = parser_UTF8::doParseFile(modRegionsFile.c_str());
@@ -197,21 +197,21 @@ void CountryMapping::readVic2Regions()
 Object* CountryMapping::parseVic2RegionsFile()
 {
 	Object* Vic2RegionsObj;
-	if (Utils::DoesFileExist(".\\blankMod\\output\\map\\region.txt"))
+	if (Utils::DoesFileExist("./blankMod/output/map/region.txt"))
 	{
-		Vic2RegionsObj = parser_8859_15::doParseFile(".\\blankMod\\output\\map\\region.txt");
+		Vic2RegionsObj = parser_8859_15::doParseFile("./blankMod/output/map/region.txt");
 		if (Vic2RegionsObj == NULL)
 		{
-			LOG(LogLevel::Error) << "Could not parse file .\\blankMod\\output\\map\\region.txt";
+			LOG(LogLevel::Error) << "Could not parse file ./blankMod/output/map/region.txt";
 			exit(-1);
 		}
 	}
 	else
 	{
-		Vic2RegionsObj = parser_8859_15::doParseFile( (Configuration::getV2Path() + "\\map\\region.txt").c_str() );
+		Vic2RegionsObj = parser_8859_15::doParseFile( (Configuration::getV2Path() + "/map/region.txt").c_str() );
 		if (Vic2RegionsObj == NULL)
 		{
-			LOG(LogLevel::Error) << "Could not parse file " << Configuration::getV2Path() << "\\map\\region.txt";
+			LOG(LogLevel::Error) << "Could not parse file " << Configuration::getV2Path() << "/map/region.txt";
 			exit(-1);
 		}
 	}
@@ -222,7 +222,7 @@ Object* CountryMapping::parseVic2RegionsFile()
 
 void CountryMapping::getAvailableFlags()
 {
-	const vector<string> availableFlagFolders = { "blankMod\\output\\gfx\\flags", Configuration::getV2Path() + "\\gfx\\flags" };
+	const vector<string> availableFlagFolders = { "blankMod/output/gfx/flags", Configuration::getV2Path() + "/gfx/flags" };
 
 	set<string> availableFlagFiles;
 	for (auto availableFlagFolder: availableFlagFolders)
