@@ -184,7 +184,14 @@ map<string, vector<int>> EU4RegionMapper::getAreaToProvincesMapping(Object* area
 }
 
 
-set<string> EU4RegionMapper::GetRegions(int province)
+bool EU4RegionMapper::ProvinceInRegion(int province, const string& region)
+{
+	auto regions = getRegions(province);
+	return (regions.count(region) > 0);
+}
+
+
+set<string> EU4RegionMapper::getRegions(int province)
 {
 	auto mapping = EU4RegionsMap.find(province);
 	if (mapping != EU4RegionsMap.end())

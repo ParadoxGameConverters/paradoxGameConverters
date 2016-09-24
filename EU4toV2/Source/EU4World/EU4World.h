@@ -48,7 +48,7 @@ class EU4World {
 		EU4Province*					getProvince(int provNum) const;
 		void								resolveRegimentTypes(const RegimentTypeMap& map);
 		void								checkAllProvincesMapped() const;
-		void								checkAllEU4CulturesMapped(const cultureMapping& cultureMap, const inverseUnionCulturesMap& inverseUnionCultures) const;
+		void								checkAllEU4CulturesMapped(const inverseUnionCulturesMap& inverseUnionCultures) const;
 		void								checkAllEU4ReligionsMapped() const;
 		void								setLocalisations(EU4Localisation& localisation);
 

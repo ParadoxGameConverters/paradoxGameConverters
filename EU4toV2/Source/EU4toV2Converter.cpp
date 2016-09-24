@@ -346,35 +346,6 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	map<string, int>					equalityIdeas;
 	initIdeaEffects(ideaObj, armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas, armyTechIdeas, commerceTechIdeas, cultureTechIdeas, industryTechIdeas, navyTechIdeas, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
 
-	// Parse Culture Mappings
-	LOG(LogLevel::Info) << "Parsing culture mappings";
-	Object* cultureObj = parser_UTF8::doParseFile("cultureMap.txt");
-	if (cultureObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file cultureMap.txt";
-		exit(-1);
-	}
-	if (cultureObj->getLeaves().size() < 1)
-	{
-		LOG(LogLevel::Error) << "Failed to parse cultureMap.txt";
-		return 1;
-	}
-	cultureMapping cultureMap;
-	cultureMap = initCultureMap(cultureObj->getLeaves()[0]);
-	Object* slaveCultureObj = parser_UTF8::doParseFile("slaveCultureMap.txt");
-	if (slaveCultureObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file slaveCultureMap.txt";
-		exit(-1);
-	}
-	if (slaveCultureObj->getLeaves().size() < 1)
-	{
-		LOG(LogLevel::Error) << "Failed to parse slaveCultureMap.txt";
-		return 1;
-	}
-	cultureMapping slaveCultureMap;
-	slaveCultureMap = initCultureMap(slaveCultureObj->getLeaves()[0]);
-
 	// find culture groups
 	unionCulturesMap			unionCultures;
 	inverseUnionCulturesMap	inverseUnionCultures;
@@ -425,7 +396,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	// Construct world from EU4 save.
 	LOG(LogLevel::Info) << "Building world";
 	EU4World sourceWorld(saveObj, armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas, inverseUnionCultures);
-	sourceWorld.checkAllEU4CulturesMapped(cultureMap, inverseUnionCultures);
+	sourceWorld.checkAllEU4CulturesMapped(inverseUnionCultures);
 
 	// Read EU4 common\countries
 	LOG(LogLevel::Info) << "Reading EU4 common/countries";
@@ -659,9 +630,9 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, cultureMap, unionCultures, governmentMap, techSchools, leaderIDMap, lt, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
+	destWorld.convertCountries(sourceWorld, unionCultures, governmentMap, techSchools, leaderIDMap, lt, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
 	LOG(LogLevel::Info) << "Converting provinces";
-	destWorld.convertProvinces(sourceWorld, cultureMap, slaveCultureMap);
+	destWorld.convertProvinces(sourceWorld);
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld);
 	LOG(LogLevel::Info) << "Setting colonies";

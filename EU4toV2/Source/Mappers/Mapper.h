@@ -39,27 +39,6 @@ class Object;
 
 
 
-// Distinguishers for mappings
-enum distinguisherType
-{
-	DTOwner,
-	DTReligion,
-	DTRegion,
-	DTProvince
-};
-
-// Culture Mappings
-typedef pair<distinguisherType, string> distinguisher;
-typedef struct {
-	string srcCulture;							// the EU4 culture
-	string dstCulture;							// the V2 culture
-	vector<distinguisher> distinguishers;	// additional rules to match the culture
-} cultureStruct;
-typedef vector<cultureStruct> cultureMapping;
-cultureMapping initCultureMap(Object* obj);
-bool cultureMatch(const cultureMapping& cultureMap, string srcCulture, string& dstCulture, string religion, int EU4Province, string ownerTag);
-
-
 // Minority cultures/religion
 typedef vector<pair<string, string>> minorityPopMapping;
 minorityPopMapping initMinorityPopMap(Object* obj);

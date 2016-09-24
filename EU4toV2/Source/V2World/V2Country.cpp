@@ -41,6 +41,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../EU4World/EU4Leader.h"
 #include "../Mappers/AdjacencyMapper.h"
 #include "../Mappers/CountryMapping.h"
+#include "../Mappers/CultureMapper.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "V2World.h"
 #include "V2State.h"
@@ -389,7 +390,7 @@ void V2Country::outputOOB() const
 }
 
 
-void V2Country::initFromEU4Country(EU4Country* _srcCountry, cultureMapping cultureMap, unionCulturesMap unionCultures, governmentMapping governmentMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas)
+void V2Country::initFromEU4Country(EU4Country* _srcCountry, unionCulturesMap unionCultures, governmentMapping governmentMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas)
 {
 	srcCountry = _srcCountry;
 
@@ -468,7 +469,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, cultureMapping cultu
 
 	if (srcCulture.size() > 0)
 	{
-		bool matched = cultureMatch(cultureMap, srcCulture, primaryCulture, religion, oldCapital, srcCountry->getTag());
+		bool matched = cultureMapper::cultureMatch(srcCulture, primaryCulture, religion, oldCapital, srcCountry->getTag());
 		if (!matched)
 		{
 			LOG(LogLevel::Warning) << "No culture mapping defined for " << srcCulture << " (" << srcCountry->getTag() << " -> " << tag << ')';
@@ -491,7 +492,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, cultureMapping cultu
 	for (auto srcCulture: srcAceptedCultures)
 	{
 		string dstCulture;
-		bool matched = cultureMatch(cultureMap, srcCulture, dstCulture, religion, oldCapital, srcCountry->getTag());
+		bool matched = cultureMapper::cultureMatch(srcCulture, dstCulture, religion, oldCapital, srcCountry->getTag());
 		if (matched)
 		{
 			if (primaryCulture != dstCulture)

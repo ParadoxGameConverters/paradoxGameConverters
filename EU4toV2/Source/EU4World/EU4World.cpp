@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include "Log.h"
 #include "../Configuration.h"
+#include "../Mappers/CultureMapper.h"
 #include "../Mappers/Mapper.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "../Mappers/ReligionMapper.h"
@@ -410,20 +411,14 @@ void EU4World::checkAllProvincesMapped() const
 }
 
 
-void EU4World::checkAllEU4CulturesMapped(const cultureMapping& cultureMap, const inverseUnionCulturesMap& inverseUnionCultures) const
+void EU4World::checkAllEU4CulturesMapped(const inverseUnionCulturesMap& inverseUnionCultures) const
 {
 	for (auto cultureItr = inverseUnionCultures.begin(); cultureItr != inverseUnionCultures.end(); cultureItr++)
 	{
+		string Vi2Culture;
+
 		string	EU4Culture	= cultureItr->first;
-		bool		matched		= false;
-		for (auto mapItr = cultureMap.begin(); mapItr != cultureMap.end(); mapItr++)
-		{
-			if (mapItr->srcCulture == EU4Culture)
-			{
-				matched = true;
-				break;
-			}
-		}
+		bool		matched		= cultureMapper::cultureMatch(EU4Culture, Vi2Culture);
 		if (!matched)
 		{
 			LOG(LogLevel::Warning) << "No culture mapping for EU4 culture " << EU4Culture;

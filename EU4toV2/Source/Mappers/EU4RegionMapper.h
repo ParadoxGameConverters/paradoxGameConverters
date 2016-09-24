@@ -41,9 +41,9 @@ class Object;
 class EU4RegionMapper
 {
 	public:
-		static set<string> getRegions(int province)
+		static bool provinceInRegion(int province, const string& region)
 		{
-			return getInstance()->GetRegions(province);
+			return getInstance()->ProvinceInRegion(province, region);
 		}
 
 	private:
@@ -63,7 +63,8 @@ class EU4RegionMapper
 		void initEU4RegionMap(Object* areasObj, Object* regionsObj);
 		map<string, vector<int>> getAreaToProvincesMapping(Object* areasObj);
 
-		set<string> GetRegions(int province);
+		bool ProvinceInRegion(int province, const string& region);
+		set<string> getRegions(int province);
 
 		map<int, set<string>> EU4RegionsMap;
 };
