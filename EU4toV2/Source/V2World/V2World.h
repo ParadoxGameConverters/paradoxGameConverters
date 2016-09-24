@@ -57,7 +57,7 @@ class V2World {
 		void setupStates();
 		void convertUncivReforms();
 		void setupPops(EU4World& sourceWorld);
-		void addUnions(const unionMapping& unionMap);
+		void addUnions();
 		void convertArmies(const EU4World& sourceWorld, const map<int,int>& leaderIDMap);
 		void convertTechs(const EU4World& sourceWorld, map<string, double>& armyTechIdeas, map<string, double>& commerceTechIdeas, map<string, double>& cultureTechIdeas, map<string, double>& industryTechIdeas, map<string, double>& navyTechIdeas);
 		void allocateFactories(const EU4World& sourceWorld, const V2FactoryFactory& factoryBuilder);

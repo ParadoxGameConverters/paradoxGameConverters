@@ -532,23 +532,6 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	sourceWorld.checkAllEU4ReligionsMapped();
 
-	// Parse unions mapping
-	LOG(LogLevel::Info) << "Parsing union mappings";
-	Object* unionsMapObj = parser_UTF8::doParseFile("unions.txt");
-	if (unionsMapObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file unions.txt";
-		exit(-1);
-	}
-	if (unionsMapObj->getLeaves().size() < 1)
-	{
-		LOG(LogLevel::Error) << "Failed to parse unions.txt";
-		return 1;
-	}
-	unionMapping unionMap;
-	unionMap = initUnionMap(unionsMapObj->getLeaves()[0]);
-
-
 	// Parse government mapping
 	LOG(LogLevel::Info) << "Parsing governments mappings";
 	parser_UTF8::initParser();
@@ -635,7 +618,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	LOG(LogLevel::Info) << "Creating pops";
 	destWorld.setupPops(sourceWorld);
 	LOG(LogLevel::Info) << "Adding unions";
-	destWorld.addUnions(unionMap);
+	destWorld.addUnions();
 	LOG(LogLevel::Info) << "Converting armies and navies";
 	destWorld.convertArmies(sourceWorld, leaderIDMap);
 

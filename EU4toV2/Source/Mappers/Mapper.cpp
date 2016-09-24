@@ -22,41 +22,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Mapper.h"
-#include "EU4RegionMapper.h"
-#include "Log.h"
 #include "Object.h"
 #include "../V2World/V2Localisation.h"
 
-
-
-unionMapping initUnionMap(Object* obj)
-{
-	unionMapping unionMap;	// the cultural unions map
-
-	vector<Object*> unions = obj->getLeaves();	// the rules for cultural unions
-	for (vector<Object*>::iterator i = unions.begin(); i != unions.end(); i++)
-	{
-		string tag;			// the tag for the cultural union
-		string culture;	// the culture for the cultural union
-
-		vector<Object*> aUnion = (*i)->getLeaves();	// the items for this rule
-		for (vector<Object*>::iterator j = aUnion.begin(); j != aUnion.end(); j++)
-		{
-			if ( (*j)->getKey() == "tag" )
-			{
-				tag = (*j)->getLeaf();
-			}
-			if ( (*j)->getKey() == "culture" )
-			{
-				culture = (*j)->getLeaf();
-			}
-		}
-
-		unionMap.push_back(make_pair(culture, tag));
-	}
-
-	return unionMap;
-}
 
 
 governmentMapping initGovernmentMap(Object* obj)

@@ -1178,3 +1178,35 @@ bool V2Province::hasCulture(string culture, float percentOfPopulation) const
 
 	return ((float)culturePops / getTotalPopulation()) >= percentOfPopulation;
 }
+
+
+vector<string> V2Province::getCulturesOverThreshold(float percentOfPopulation) const
+{
+	int totalPopulation = getTotalPopulation();
+
+	map<string, double> cultureAmounts;
+	for (auto pop: pops)
+	{
+		auto cultureAmount = cultureAmounts.find(pop->getCulture());
+		if (cultureAmount == cultureAmounts.end())
+		{
+			cultureAmounts.insert(make_pair(pop->getCulture(), 0.0f));
+			cultureAmount = cultureAmounts.find(pop->getCulture());
+		}
+		if (totalPopulation > 0)
+		{
+			cultureAmount->second += pop->getSize() / totalPopulation;
+		}
+	}
+
+	vector<string> culturesOverThreshold;
+	for (auto cultureAmount: cultureAmounts)
+	{
+		if (cultureAmount.second >= percentOfPopulation)
+		{
+			culturesOverThreshold.push_back(cultureAmount.first);
+		}
+	}
+
+	return culturesOverThreshold;
+}

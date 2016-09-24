@@ -144,6 +144,9 @@
     <ClCompile Include="Source\Mappers\MinorityPopMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Mappers\Vic2CltureUnionMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Color.h" />
@@ -286,6 +289,9 @@
       <Filter>Mappers</Filter>
     </ClInclude>
     <ClInclude Include="Source\Mappers\MinorityPopMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\Vic2CultureUnionMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
   </ItemGroup>

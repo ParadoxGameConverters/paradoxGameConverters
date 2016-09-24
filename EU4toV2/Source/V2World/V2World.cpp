@@ -44,6 +44,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/ProvinceMapper.h"
 #include "../Mappers/ReligionMapper.h"
 #include "../Mappers/StateMapper.h"
+#include "../Mappers/Vic2CultureUnionMapper.h"
 #include "../Configuration.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Relations.h"
@@ -1380,15 +1381,20 @@ void V2World::setupPops(EU4World& sourceWorld)
 }
 
 
-void V2World::addUnions(const unionMapping& unionMap)
+void V2World::addUnions()
 {
 	for (map<int, V2Province*>::iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
 	{
-		for (unionMapping::const_iterator unionItr = unionMap.begin(); unionItr != unionMap.end(); unionItr++)
+		if (!provItr->second->wasInfidelConquest() && !provItr->second->wasColony())
 		{
-			if ( provItr->second->hasCulture(unionItr->first, 0.5) && !provItr->second->wasInfidelConquest() && !provItr->second->wasColony() )
+			auto cultures = provItr->second->getCulturesOverThreshold(0.5);
+			for (auto culture: cultures)
 			{
-				provItr->second->addCore(unionItr->second);
+				string core = vic2CultureUnionMapper::getCoreForCulture(culture);
+				if (core != "")
+				{
+					provItr->second->addCore(core);
+				}
 			}
 		}
 	}

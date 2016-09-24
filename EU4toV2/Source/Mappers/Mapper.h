@@ -28,19 +28,16 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "../FlagUtils.h"
 #include <map>
+#include <string>
 #include <vector>
 #include <memory>
 using namespace std;
 
 
+
 struct CustomFlag;
 class Object;
 
-
-
-// Union Mappings
-typedef vector< pair<string, string> > unionMapping;	// <cultures, tag>
-unionMapping initUnionMap(Object* obj);
 
 
 // Government Mappings
