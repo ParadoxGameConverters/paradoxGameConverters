@@ -29,36 +29,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-minorityPopMapping initMinorityPopMap(Object* obj)
-{
-	minorityPopMapping minorityPopMap;			// the minority pop mapping
-	vector<Object*> links = obj->getLeaves();	// the minority pop mapping rules
-
-	for (auto i: links)
-	{
-		vector<Object*>	minorityPopMappings	= i->getLeaves();	// the items in this rule
-		string				minorityReligion;								// the minority religion
-		string				minorityCulture;								// the minority culture
-
-		for (auto j: minorityPopMappings)
-		{
-			if (j->getKey() == "religion")
-			{
-				minorityReligion = j->getLeaf();
-			}
-			else if (j->getKey() == "culture")
-			{
-				minorityCulture = j->getLeaf();
-			}
-		}
-
-		minorityPopMap.push_back(make_pair(minorityCulture, minorityReligion));
-	}
-
-	return minorityPopMap;
-}
-
-
 unionMapping initUnionMap(Object* obj)
 {
 	unionMapping unionMap;	// the cultural unions map

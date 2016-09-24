@@ -141,6 +141,9 @@
     <ClCompile Include="Source\Mappers\CultureMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Mappers\MinorityPopMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Color.h" />
@@ -280,6 +283,9 @@
       <Filter>Mappers</Filter>
     </ClInclude>
     <ClInclude Include="Source\Mappers\CultureMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\MinorityPopMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
   </ItemGroup>

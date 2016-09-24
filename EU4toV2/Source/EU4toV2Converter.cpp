@@ -468,24 +468,11 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	// Merge nations
 	sourceWorld.mergeNations();
 
-	// Parse minoruty pops map
-	LOG(LogLevel::Info) << "Parsing minority pops mappings";
-	Object* minoritiesObj = parser_UTF8::doParseFile("minorityPops.txt");
-	if (minoritiesObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file minorityPops.txt";
-		exit(-1);
-	}
-	if (minoritiesObj->getLeaves().size() < 1)
-	{
-		LOG(LogLevel::Error) << "Failed to parse minorityPops.txt";
-		return 1;
-	}
-	minorityPopMapping minorityPops = initMinorityPopMap(minoritiesObj->getLeaves()[0]);
+
 
 	// Parse V2 input file
 	LOG(LogLevel::Info) << "Parsing Vicky2 data";
-	V2World destWorld(minorityPops);
+	V2World destWorld;
 	
 	// Construct factory factory
 	LOG(LogLevel::Info) << "Determining factory allocation rules.";

@@ -46,7 +46,7 @@ class V2LeaderTraits;
 
 class V2World {
 	public:
-		V2World(const minorityPopMapping& minorities);
+		V2World();
 		void output() const;
 		void createProvinceFiles(const EU4World& sourceWorld);
 		

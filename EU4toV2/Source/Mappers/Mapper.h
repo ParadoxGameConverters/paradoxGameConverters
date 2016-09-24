@@ -29,7 +29,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../FlagUtils.h"
 #include <map>
 #include <vector>
-#include <set>
 #include <memory>
 using namespace std;
 
@@ -37,11 +36,6 @@ using namespace std;
 struct CustomFlag;
 class Object;
 
-
-
-// Minority cultures/religion
-typedef vector<pair<string, string>> minorityPopMapping;
-minorityPopMapping initMinorityPopMap(Object* obj);
 
 
 // Union Mappings

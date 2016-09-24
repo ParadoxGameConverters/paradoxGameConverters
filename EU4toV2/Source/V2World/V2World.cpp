@@ -40,6 +40,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/CultureMapper.h"
 #include "../Mappers/Mapper.h"
+#include "../Mappers/MinorityPopMapper.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "../Mappers/ReligionMapper.h"
 #include "../Mappers/StateMapper.h"
@@ -73,7 +74,7 @@ typedef struct fileWithCreateTime
 } fileWithCreateTime;
 
 
-V2World::V2World(const minorityPopMapping& minorities)
+V2World::V2World()
 {
 	LOG(LogLevel::Info) << "Importing provinces";
 
@@ -212,25 +213,9 @@ V2World::V2World(const minorityPopMapping& minorities)
 					V2Pop* newPop = new V2Pop(popType, popSize, popCulture, popReligion);
 					k->second->addOldPop(newPop);
 
-					for (auto minorityItr : minorities)
+					if (minorityPopMapper::matchMinorityPop(newPop))
 					{
-						if ((popCulture == minorityItr.first) && (popReligion == minorityItr.second))
-						{
-							k->second->addMinorityPop(newPop);
-							break;
-						}
-						else if ((minorityItr.first == "") && (popReligion == minorityItr.second))
-						{
-							newPop->setCulture("");
-							k->second->addMinorityPop(newPop);
-							break;
-						}
-						else if ((popCulture == minorityItr.first) && (minorityItr.second == ""))
-						{
-							newPop->setReligion("");
-							k->second->addMinorityPop(newPop);
-							break;
-						}
+						k->second->addMinorityPop(newPop);
 					}
 
 					if ((popType == "slaves") || (popCulture.substr(0, 4) == "afro"))
