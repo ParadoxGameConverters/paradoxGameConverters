@@ -144,10 +144,10 @@
     <ClCompile Include="Source\Mappers\MinorityPopMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mappers\Vic2CltureUnionMapper.cpp">
+    <ClCompile Include="Source\Mappers\GovermentMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mappers\GovermentMapper.cpp">
+    <ClCompile Include="Source\Mappers\Vic2CultureUnionMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
   </ItemGroup>
