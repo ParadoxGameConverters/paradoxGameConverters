@@ -346,57 +346,10 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	map<string, int>					equalityIdeas;
 	initIdeaEffects(ideaObj, armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas, armyTechIdeas, commerceTechIdeas, cultureTechIdeas, industryTechIdeas, navyTechIdeas, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
 
-	// find culture groups
-	unionCulturesMap			unionCultures;
-	inverseUnionCulturesMap	inverseUnionCultures;
-	Object* culturesObj = parser_UTF8::doParseFile( (EU4Loc + "/common/cultures/00_cultures.txt").c_str() );
-	if (culturesObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file " << EU4Loc << "/common/cultures/00_cultures.txt";
-		exit(-1);
-	}
-	if (culturesObj->getLeaves().size() < 1)
-	{
-		LOG(LogLevel::Error) << "Failed to parse 00_cultures.txt";
-		return 1;
-	}
-	initUnionCultures(culturesObj, unionCultures, inverseUnionCultures);
-	for (auto itr: Configuration::getEU4Mods())
-	{
-		struct _finddata_t	fileData;				// the file data info
-		intptr_t					fileListing = NULL;	// the file listing info
-		if ((fileListing = _findfirst(string(itr + "/common/cultures/*").c_str(), &fileData)) != -1L)
-		{
-			do
-			{
-				if (strcmp(fileData.name, ".") == 0 || strcmp(fileData.name, "..") == 0)
-				{
-					continue;
-				}
-				else if (fileData.attrib & _A_SUBDIR)
-				{
-					continue;
-				}
-				else
-				{
-					string modCultureFile(itr + "/common/cultures/" + fileData.name);	// the path and name of the culture file in this mod
-					culturesObj = parser_UTF8::doParseFile(modCultureFile.c_str());
-					if (culturesObj == NULL)
-					{
-						LOG(LogLevel::Error) << "Could not parse file " << modCultureFile;
-						exit(-1);
-					}
-					initUnionCultures(culturesObj, unionCultures, inverseUnionCultures);
-				}
-			} while (_findnext(fileListing, &fileData) == 0);
-			_findclose(fileListing);
-		}
-	}
-
 	// Construct world from EU4 save.
 	LOG(LogLevel::Info) << "Building world";
-	EU4World sourceWorld(saveObj, armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas, inverseUnionCultures);
-	sourceWorld.checkAllEU4CulturesMapped(inverseUnionCultures);
+	EU4World sourceWorld(saveObj, armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas);
+	sourceWorld.checkAllEU4CulturesMapped();
 
 	// Read EU4 common\countries
 	LOG(LogLevel::Info) << "Reading EU4 common/countries";
@@ -580,12 +533,12 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	{
 		sourceWorld.removeLandlessNations();
 	}
-	CountryMapping::createMappings(sourceWorld, destWorld.getPotentialCountries(), colonyMap, inverseUnionCultures);
+	CountryMapping::createMappings(sourceWorld, destWorld.getPotentialCountries(), colonyMap);
 
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, unionCultures, techSchools, leaderIDMap, lt, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
+	destWorld.convertCountries(sourceWorld, techSchools, leaderIDMap, lt, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld);
 	LOG(LogLevel::Info) << "Converting diplomacy";

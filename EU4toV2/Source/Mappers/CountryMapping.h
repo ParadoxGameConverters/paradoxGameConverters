@@ -47,9 +47,9 @@ class V2Country;
 class CountryMapping
 {
 	public:
-		static void createMappings(const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries, const colonyMapping& colonyMap, const inverseUnionCulturesMap& inverseUnionCultures)
+		static void createMappings(const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries, const colonyMapping& colonyMap)
 		{
-			getInstance()->CreateMappings(srcWorld, Vic2Countries, colonyMap, inverseUnionCultures);
+			getInstance()->CreateMappings(srcWorld, Vic2Countries, colonyMap);
 		}
 
 		static string getVic2Tag(const string& EU4Tag)
@@ -84,7 +84,7 @@ class CountryMapping
 		Object* parseVic2RegionsFile();
 		void getAvailableFlags();
 
-		void CreateMappings(const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries, const colonyMapping& colonyMap, const inverseUnionCulturesMap& inverseUnionCultures);
+		void CreateMappings(const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries, const colonyMapping& colonyMap);
 		bool isPotentialColonialReplacement(const pair<string, EU4Country*>& country);
 		bool tagIsAlphaDigitDigit(const string& tag);
 		void makeOneMapping(EU4Country* country, const map<string, V2Country*>& Vic2Countries);
@@ -93,10 +93,10 @@ class CountryMapping
 		bool mapToFirstUnusedVic2Tag(const vector<string>& possibleVic2Tags, const string& EU4Tag);
 		string generateNewTag();
 		void mapToNewTag(const string& EU4Tag, const string& Vic2Tag);
-		bool attemptColonialReplacement(EU4Country* country, const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries, const colonyMapping& colonyMap, const inverseUnionCulturesMap& inverseUnionCultures);
+		bool attemptColonialReplacement(EU4Country* country, const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries, const colonyMapping& colonyMap);
 		bool capitalInRightEU4Region(const colonyStruct& colony, int EU4Capital);
 		bool capitalInRightVic2Region(const colonyStruct& colony, int Vic2Capital, const EU4World& srcWorld, const string& EU4Tag);
-		bool inCorrectCultureGroup(const colonyStruct& colony, const string& primaryCulture, const inverseUnionCulturesMap& inverseUnionCultures);
+		bool inCorrectCultureGroup(const colonyStruct& colony, const string& primaryCulture);
 		bool tagIsAvailable(const colonyStruct& colony, const map<string, V2Country*>& Vic2Countries);
 		void logMapping(const string& EU4Tag, const string& V2Tag, const string& reason);
 		bool tagIsAlreadyAssigned(const string& Vic2Tag);

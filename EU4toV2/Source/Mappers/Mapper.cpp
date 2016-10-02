@@ -27,54 +27,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-void initUnionCultures(Object* obj, unionCulturesMap& unionCultures, inverseUnionCulturesMap& inverseUnionCultures)
-{
-	vector<Object*> cultureGroups = obj->getLeaves();	// the cultural group rules
-	for (vector<Object*>::iterator i = cultureGroups.begin(); i != cultureGroups.end(); i++)
-	{
-		vector<Object*>		culturesObj		= (*i)->getLeaves();	// the items in this rule
-		string					group				= (*i)->getKey();		// the cultural group
-		vector<string>			cultures;									// the cultures
-
-		for (vector<Object*>::iterator j = culturesObj.begin(); j != culturesObj.end(); j++)
-		{
-			if ( (*j)->getKey() == "dynasty_names" )
-			{
-				continue;
-			}
-			else if ((*j)->getKey() == "graphical_culture")
-			{
-				continue;
-			}
-			else if ((*j)->getKey() == "male_names")
-			{
-				continue;
-			}
-			else if ((*j)->getKey() == "female_names")
-			{
-				continue;
-			}
-			else
-			{
-				cultures.push_back( (*j)->getKey() );
-				inverseUnionCultures.insert(make_pair((*j)->getKey(), group));
-			}
-		}
-
-		unionCulturesMap::iterator itr = unionCultures.find(group);
-		if (itr != unionCultures.end())
-		{
-			vector<string> oldCultures = itr->second;	// any cultures already in the group
-			for (vector<string>::iterator jtr = oldCultures.begin(); jtr != oldCultures.end(); jtr++)
-			{
-				cultures.push_back(*jtr);
-			}
-		}
-		unionCultures[group] = cultures;
-	}
-}
-
-
 void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, int>& commerceInvIdeas, map<string, int>& cultureInvIdeas, map<string, int>& industryInvIdeas, map<string, int>& navyInvIdeas, map<string, double>& armyTechIdeas, map<string, double>& commerceTechIdeas, map<string, double>& cultureTechIdeas, map<string, double>& industryTechIdeas, map<string, double>& navyTechIdeas, map<string, double>& UHLiberalIdeas, map<string, double>& UHReactionaryIdeas, vector< pair<string, int> >& literacyIdeas, map<string, int>& orderIdeas, map<string, int>& libertyIdeas, map<string, int>& equalityIdeas)
 {
 	vector<Object*> ideasObj = obj->getLeaves();

@@ -1,4 +1,4 @@
-/*Copyright(c) 2014 The Paradox Game Converters Project
+/*Copyright(c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -27,12 +27,13 @@ THE SOFTWARE. */
 #include "EU4Relations.h"
 #include "EU4Leader.h"
 #include "EU4Version.h"
+#include "../Mappers/EU4CultureGroupMapper.h"
 #include "../V2World/V2Localisation.h"
 #include <algorithm>
 
 
 
-EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas, EU4Version* version, inverseUnionCulturesMap& inverseUnionCultures)
+EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas, EU4Version* version)
 {
 	tag = obj->getKey();
 
@@ -100,11 +101,7 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 		}
 		if (wasUnion)
 		{
-			auto unionCultureItr = inverseUnionCultures.find(primaryCulture);
-			if (unionCultureItr != inverseUnionCultures.end())
-			{
-				culturalUnion = unionCultureItr->second;
-			}
+			culturalUnion = EU4CultureGroupMapper::getCulturalGroup(primaryCulture);
 		}
 	}
 	else

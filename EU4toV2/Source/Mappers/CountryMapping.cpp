@@ -30,6 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../EU4World/EU4Country.h"
 #include "../EU4World/EU4Province.h"
 #include "../Mappers/CK2TitleMapper.h"
+#include "../Mappers/EU4CultureGroupMapper.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "../V2World/V2Country.h"
 #include "Log.h"
@@ -240,7 +241,7 @@ void CountryMapping::getAvailableFlags()
 }
 
 
-void CountryMapping::CreateMappings(const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries, const colonyMapping& colonyMap, const inverseUnionCulturesMap& inverseUnionCultures)
+void CountryMapping::CreateMappings(const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries, const colonyMapping& colonyMap)
 {
 	generatedV2TagPrefix = 'X';
 	generatedV2TagSuffix = 0;
@@ -260,7 +261,7 @@ void CountryMapping::CreateMappings(const EU4World& srcWorld, const map<string, 
 
 	for (auto colonialCountry: colonialCountries)
 	{
-		bool success = attemptColonialReplacement(colonialCountry, srcWorld, Vic2Countries, colonyMap, inverseUnionCultures);
+		bool success = attemptColonialReplacement(colonialCountry, srcWorld, Vic2Countries, colonyMap);
 		if (!success)
 		{
 			makeOneMapping(colonialCountry, Vic2Countries);
@@ -388,7 +389,7 @@ map<string, vector<string>>::iterator CountryMapping::ifValidGetCK2MappingRule(c
 }
 
 
-bool CountryMapping::attemptColonialReplacement(EU4Country* country, const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries, const colonyMapping& colonyMap, const inverseUnionCulturesMap& inverseUnionCultures)
+bool CountryMapping::attemptColonialReplacement(EU4Country* country, const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries, const colonyMapping& colonyMap)
 {
 	bool mapped = false;
 
@@ -413,7 +414,7 @@ bool CountryMapping::attemptColonialReplacement(EU4Country* country, const EU4Wo
 			continue;
 		}
 
-		if (!inCorrectCultureGroup(colony, country->getPrimaryCulture(), inverseUnionCultures))
+		if (!inCorrectCultureGroup(colony, country->getPrimaryCulture()))
 		{
 			continue;
 		}
@@ -485,11 +486,11 @@ bool CountryMapping::capitalInRightVic2Region(const colonyStruct& colony, int Vi
 }
 
 
-bool CountryMapping::inCorrectCultureGroup(const colonyStruct& colony, const string& primaryCulture, const inverseUnionCulturesMap& inverseUnionCultures)
+bool CountryMapping::inCorrectCultureGroup(const colonyStruct& colony, const string& primaryCulture)
 {
 	if (colony.cultureGroup != "")
 	{
-		if (inverseUnionCultures.find(primaryCulture)->second != colony.cultureGroup)
+		if (EU4CultureGroupMapper::getCulturalGroup(primaryCulture) != colony.cultureGroup)
 		{
 			return false;
 		}

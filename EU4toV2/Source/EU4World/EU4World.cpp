@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "../Configuration.h"
 #include "../Mappers/CultureMapper.h"
+#include "../Mappers/EU4CultureGroupMapper.h"
 #include "../Mappers/Mapper.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "../Mappers/ReligionMapper.h"
@@ -41,7 +42,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas, inverseUnionCulturesMap& inverseUnionCultures)
+EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas)
 {
 	vector<Object*> versionObj = obj->getValue("savegame_version");	// the version of the save
 	(versionObj.size() > 0) ? version = new EU4Version(versionObj[0]) : version = new EU4Version();
@@ -137,7 +138,7 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 			}
 			else
 			{
-				EU4Country* country = new EU4Country(countriesLeaves[j], armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas, version, inverseUnionCultures);	// the country in our format
+				EU4Country* country = new EU4Country(countriesLeaves[j], armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas, version);	// the country in our format
 				countries.insert(make_pair(country->getTag(), country));
 
 				// set HRE stuff
@@ -412,13 +413,13 @@ void EU4World::checkAllProvincesMapped() const
 }
 
 
-void EU4World::checkAllEU4CulturesMapped(const inverseUnionCulturesMap& inverseUnionCultures) const
+void EU4World::checkAllEU4CulturesMapped() const
 {
-	for (auto cultureItr = inverseUnionCultures.begin(); cultureItr != inverseUnionCultures.end(); cultureItr++)
+	for (auto cultureItr: EU4CultureGroupMapper::getCultureToGroupMap())
 	{
 		string Vi2Culture;
 
-		string	EU4Culture	= cultureItr->first;
+		string	EU4Culture	= cultureItr.first;
 		bool		matched		= cultureMapper::cultureMatch(EU4Culture, Vi2Culture);
 		if (!matched)
 		{

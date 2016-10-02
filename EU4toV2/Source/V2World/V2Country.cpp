@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -42,6 +42,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/AdjacencyMapper.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/CultureMapper.h"
+#include "../Mappers/EU4CultureGroupMapper.h"
 #include "../Mappers/GovernmentMapper.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "V2World.h"
@@ -391,7 +392,7 @@ void V2Country::outputOOB() const
 }
 
 
-void V2Country::initFromEU4Country(EU4Country* _srcCountry, unionCulturesMap unionCultures, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas)
+void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas)
 {
 	srcCountry = _srcCountry;
 
@@ -481,13 +482,9 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, unionCulturesMap uni
 	vector<string> srcAceptedCultures = srcCountry->getAcceptedCultures();
 	if (srcCountry->getCulturalUnion() != "")
 	{
-		unionCulturesMap::iterator unionItr = unionCultures.find(srcCountry->getCulturalUnion());
-		if (unionItr != unionCultures.end())
+		for (auto unionCulture: EU4CultureGroupMapper::getCulturesInGroup(srcCountry->getCulturalUnion()))
 		{
-			for (vector<string>::iterator j = unionItr->second.begin(); j != unionItr->second.end(); j++)
-			{
-				srcAceptedCultures.push_back(*j);
-			}
+			srcAceptedCultures.push_back(unionCulture);
 		}
 	}
 	for (auto srcCulture: srcAceptedCultures)
