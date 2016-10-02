@@ -64,6 +64,7 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 	if (dateObj.size() > 0)
 	{
 		date endDate(dateObj[0]->getLeaf());
+		Configuration::setLastEU4Date(endDate);
 	}
 
 	string emperor;

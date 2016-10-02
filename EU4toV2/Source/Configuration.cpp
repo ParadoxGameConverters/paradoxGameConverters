@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -36,14 +36,14 @@ Configuration::Configuration()
 {
 	LOG(LogLevel::Info) << "Reading configuration file";
 
-	Object* oneObj = parser_UTF8::doParseFile("configuration.txt");	// the parsed configuration file
-	if (oneObj == NULL)
+	Object* configObj = parser_UTF8::doParseFile("configuration.txt");
+	if (configObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not open configuration.txt";
 		exit(-1);
 	}
 
-	vector<Object*> obj = oneObj->getValue("configuration");	// the configuration section
+	vector<Object*> obj = configObj->getValue("configuration");
 	if (obj.size() != 1)
 	{
 		LOG(LogLevel::Error) << "Configuration file must contain exactly one configuration section";
@@ -56,10 +56,10 @@ Configuration::Configuration()
 	V2Path				= obj[0]->getLeaf("V2directory");
 	V2DocumentsPath	= obj[0]->getLeaf("V2Documentsdirectory");
 	V2Gametype			= obj[0]->getLeaf("V2gametype");
-	resetProvinces		= obj[0]->getLeaf("resetProvinces");
-	MaxLiteracy			= atof(obj[0]->getLeaf("max_literacy").c_str());
+	resetProvinces		= "no";//obj[0]->getLeaf("resetProvinces");
+	MaxLiteracy			= stof(obj[0]->getLeaf("max_literacy"));
 	Removetype			= obj[0]->getLeaf("Removetype");
-	libertyThreshold	= atof(obj[0]->getLeaf("libertyThreshold").c_str());
+	libertyThreshold	= stof(obj[0]->getLeaf("libertyThreshold"));
 	convertPopTotals	= (obj[0]->getLeaf("convertPopTotals") == "yes");
 	outputName			= "";
 }
