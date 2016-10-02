@@ -27,39 +27,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-governmentMapping initGovernmentMap(Object* obj)
-{
-	governmentMapping governmentMap;				// the government mapping
-
-	vector<Object*> links = obj->getLeaves();	// rules for the government mapping
-	for (vector<Object*>::iterator i = links.begin(); i != links.end(); i++)
-	{
-		vector<Object*>	governments	= (*i)->getLeaves();	// the items for this rule
-		string				dstGovernment;							// the V2 government
-		vector<string>		srcGovernments;						// the EU4 governments
-
-		for (vector<Object*>::iterator j = governments.begin(); j != governments.end(); j++)
-		{
-			if ( (*j)->getKey() == "v2" )
-			{
-				dstGovernment = (*j)->getLeaf();
-			}
-			if ( (*j)->getKey() == "eu4" )
-			{
-				srcGovernments.push_back( (*j)->getLeaf() );
-			}
-		}
-
-		for (vector<string>::iterator j = srcGovernments.begin(); j != srcGovernments.end(); j++)
-		{
-			governmentMap.insert(make_pair((*j), dstGovernment));
-		}
-	}
-
-	return governmentMap;
-}
-
-
 void initUnionCultures(Object* obj, unionCulturesMap& unionCultures, inverseUnionCulturesMap& inverseUnionCultures)
 {
 	vector<Object*> cultureGroups = obj->getLeaves();	// the cultural group rules

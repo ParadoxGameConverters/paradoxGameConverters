@@ -42,6 +42,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/AdjacencyMapper.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/CultureMapper.h"
+#include "../Mappers/GovernmentMapper.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "V2World.h"
 #include "V2State.h"
@@ -390,7 +391,7 @@ void V2Country::outputOOB() const
 }
 
 
-void V2Country::initFromEU4Country(EU4Country* _srcCountry, unionCulturesMap unionCultures, governmentMapping governmentMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas)
+void V2Country::initFromEU4Country(EU4Country* _srcCountry, unionCulturesMap unionCultures, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas)
 {
 	srcCountry = _srcCountry;
 
@@ -507,19 +508,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, unionCulturesMap uni
 	}
 
 	// Government
-	string srcGovernment = srcCountry->getGovernment();
-	if (srcGovernment.size() > 0)
-	{
-		governmentMapping::iterator i = governmentMap.find(srcGovernment);
-		if (i != governmentMap.end())
-		{
-			government = i->second;
-		}
-		else
-		{
-			LOG(LogLevel::Warning) << "No government mapping defined for " << srcGovernment << " (" << srcCountry->getTag() << " -> " << tag << ')';
-		}
-	}
+	government = governmentMapper::matchGovernment(srcCountry->getGovernment());
 
 	//  Politics
 	double liberalEffect = 0.0;

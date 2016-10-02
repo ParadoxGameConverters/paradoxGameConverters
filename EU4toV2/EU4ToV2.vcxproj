@@ -183,6 +183,7 @@
     <ClCompile Include="Source\Mappers\CultureMapper.cpp" />
     <ClCompile Include="Source\Mappers\EU4RegionMapper.cpp" />
     <ClCompile Include="Source\Mappers\FlagColorMapper.cpp" />
+    <ClCompile Include="Source\Mappers\GovermentMapper.cpp" />
     <ClCompile Include="Source\Mappers\Mapper.cpp" />
     <ClCompile Include="Source\Mappers\MinorityPopMapper.cpp" />
     <ClCompile Include="Source\Mappers\ProvinceMapper.cpp" />
@@ -235,6 +236,7 @@
     <ClInclude Include="Source\Mappers\CultureMapper.h" />
     <ClInclude Include="Source\Mappers\EU4RegionMapper.h" />
     <ClInclude Include="Source\Mappers\FlagColorMapper.h" />
+    <ClInclude Include="Source\Mappers\GovernmentMapper.h" />
     <ClInclude Include="Source\Mappers\Mapper.h" />
     <ClInclude Include="Source\Mappers\MinorityPopMapper.h" />
     <ClInclude Include="Source\Mappers\ProvinceMapper.h" />

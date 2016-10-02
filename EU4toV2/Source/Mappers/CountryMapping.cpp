@@ -66,7 +66,6 @@ void CountryMapping::readRules()
 
 vector<Object*> CountryMapping::getRules()
 {
-	parser_UTF8::initParser();
 	Object* countryMappingsFile = parser_UTF8::doParseFile("country_mappings.txt");
 	if (!countryMappingsFile)
 	{

@@ -40,11 +40,6 @@ class Object;
 
 
 
-// Government Mappings
-typedef map<string, string> governmentMapping;	// <srcGov, dstGov>
-governmentMapping initGovernmentMap(Object* obj);
-
-
 // Cultural Union Nation mappings
 typedef map< string, vector<string> > unionCulturesMap;	// <culture group, cultures>
 typedef map< string, string > inverseUnionCulturesMap;	// <culture, culture group>

@@ -532,22 +532,9 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	sourceWorld.checkAllEU4ReligionsMapped();
 
-	// Parse government mapping
-	LOG(LogLevel::Info) << "Parsing governments mappings";
-	parser_UTF8::initParser();
-	Object* governmentMapObj = parser_UTF8::doParseFile("governmentMapping.txt");
-	if (governmentMapObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file governmentMapping.txt";
-		exit(-1);
-	}
-	governmentMapping governmentMap;
-	governmentMap = initGovernmentMap(governmentMapObj->getLeaves()[0]);
-
 
 	// Parse tech schools
 	LOG(LogLevel::Info) << "Parsing tech schools.";
-	parser_UTF8::initParser();
 	Object* techSchoolObj = parser_UTF8::doParseFile("blocked_tech_schools.txt");
 	if (techSchoolObj == NULL)
 	{
@@ -556,7 +543,6 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	}
 	vector<string> blockedTechSchools;	// the list of disallowed tech schools
 	blockedTechSchools = initBlockedTechSchools(techSchoolObj);
-	parser_8859_15::initParser();
 	Object* technologyObj = parser_8859_15::doParseFile( (V2Loc + "/common/technology.txt").c_str() );
 	if (technologyObj == NULL)
 	{
@@ -574,7 +560,6 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Parse colony rules
 	LOG(LogLevel::Info) << "Parsing colony naming rules.";
-	parser_UTF8::initParser();
 	Object* colonialObj = parser_UTF8::doParseFile("colonial.txt");
 	if (colonialObj == NULL)
 	{
@@ -600,7 +585,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, unionCultures, governmentMap, techSchools, leaderIDMap, lt, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
+	destWorld.convertCountries(sourceWorld, unionCultures, techSchools, leaderIDMap, lt, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld);
 	LOG(LogLevel::Info) << "Converting diplomacy";
