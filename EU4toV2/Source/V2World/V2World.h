@@ -66,6 +66,7 @@ class V2World {
 		map<string, V2Country*>	getDynamicCountries()	const;
 
 	private:
+		void checkForCivilizedNations();
 		vector<V2Demographic>	determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, EU4Country* oldOwner, int destNum, double provPopRatio);
 
 		void				outputPops() const;

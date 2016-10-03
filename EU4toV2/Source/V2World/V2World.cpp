@@ -717,7 +717,27 @@ void V2World::convertCountries(const EU4World& sourceWorld, const vector<techSch
 		}
 	}
 
+	checkForCivilizedNations();
+
 	colonyFlagMap = colonyFlags;
+}
+
+
+void V2World::checkForCivilizedNations()
+{
+	unsigned int numCivilizedNations = 0;
+	for (auto country: countries)
+	{
+		if (country.second->isCivilized())
+		{
+			numCivilizedNations++;
+		}
+	}
+
+	if (numCivilizedNations < 8)
+	{
+		LOG(LogLevel::Warning) << "There were only " << numCivilizedNations << " civilized nations. You should mod the number of Great Powers to avoid crashes.";
+	}
 }
 
 
