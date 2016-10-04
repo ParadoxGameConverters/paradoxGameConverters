@@ -320,35 +320,9 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 		localisation.ReadFromAllFilesInFolder(itr + "/localisation");
 	}
 
-	// Read Idea Effects
-	LOG(LogLevel::Info) << "Getting idea effects";
-	Object* ideaObj = parser_UTF8::doParseFile("idea_effects.txt");
-	if (ideaObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file idea_effects.txt";
-		exit(-1);
-	}
-	map<string, int>					armyInvIdeas;
-	map<string, int>					commerceInvIdeas;
-	map<string, int>					cultureInvIdeas;
-	map<string, int>					industryInvIdeas;
-	map<string, int>					navyInvIdeas;
-	map<string, double>				armyTechIdeas;
-	map<string, double>				commerceTechIdeas;
-	map<string, double>				cultureTechIdeas;
-	map<string, double>				industryTechIdeas;
-	map<string, double>				navyTechIdeas;
-	map<string, double>				UHLiberalIdeas;
-	map<string, double>				UHReactionaryIdeas;
-	vector< pair<string, int> >	literacyIdeas;
-	map<string, int>					orderIdeas;
-	map<string, int>					libertyIdeas;
-	map<string, int>					equalityIdeas;
-	initIdeaEffects(ideaObj, armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas, armyTechIdeas, commerceTechIdeas, cultureTechIdeas, industryTechIdeas, navyTechIdeas, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
-
 	// Construct world from EU4 save.
 	LOG(LogLevel::Info) << "Building world";
-	EU4World sourceWorld(saveObj, armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas);
+	EU4World sourceWorld(saveObj);
 	sourceWorld.checkAllEU4CulturesMapped();
 
 	// Read EU4 common\countries
@@ -538,7 +512,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, techSchools, leaderIDMap, lt, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
+	destWorld.convertCountries(sourceWorld, techSchools, leaderIDMap, lt, colonyFlags);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld);
 	LOG(LogLevel::Info) << "Converting diplomacy";
@@ -550,7 +524,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	LOG(LogLevel::Info) << "Setting unciv reforms";
 	destWorld.convertUncivReforms();
 	LOG(LogLevel::Info) << "Converting techs";
-	destWorld.convertTechs(sourceWorld, armyTechIdeas, commerceTechIdeas, cultureTechIdeas, industryTechIdeas, navyTechIdeas);
+	destWorld.convertTechs(sourceWorld);
 	LOG(LogLevel::Info) << "Allocating starting factories";
 	destWorld.allocateFactories(sourceWorld, factoryBuilder);
 	LOG(LogLevel::Info) << "Creating pops";

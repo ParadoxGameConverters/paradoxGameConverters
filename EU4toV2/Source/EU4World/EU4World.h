@@ -39,7 +39,7 @@ struct EU4Agreement;
 
 class EU4World {
 	public:
-		EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas);
+		EU4World(Object* obj);
 		void setNumbersOfDestinationProvinces();
 
 		void readCommonCountries(istream&, const std::string& rootPath);

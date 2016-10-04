@@ -50,7 +50,7 @@ class V2World {
 		void output() const;
 		void createProvinceFiles(const EU4World& sourceWorld);
 		
-		void convertCountries(const EU4World& sourceWorld, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, colonyFlagset& colonyFlags, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas);
+		void convertCountries(const EU4World& sourceWorld, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, colonyFlagset& colonyFlags);
 		void convertDiplomacy(const EU4World& sourceWorld);
 		void convertProvinces(const EU4World& sourceWorld);
 		void setupColonies();
@@ -59,7 +59,7 @@ class V2World {
 		void setupPops(EU4World& sourceWorld);
 		void addUnions();
 		void convertArmies(const EU4World& sourceWorld, const map<int,int>& leaderIDMap);
-		void convertTechs(const EU4World& sourceWorld, map<string, double>& armyTechIdeas, map<string, double>& commerceTechIdeas, map<string, double>& cultureTechIdeas, map<string, double>& industryTechIdeas, map<string, double>& navyTechIdeas);
+		void convertTechs(const EU4World& sourceWorld);
 		void allocateFactories(const EU4World& sourceWorld, const V2FactoryFactory& factoryBuilder);
 
 		map<string, V2Country*>	getPotentialCountries()	const;

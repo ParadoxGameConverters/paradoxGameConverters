@@ -39,6 +39,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/ContinentMapper.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/CultureMapper.h"
+#include "../Mappers/IdeaEffectMapper.h"
 #include "../Mappers/Mapper.h"
 #include "../Mappers/MinorityPopMapper.h"
 #include "../Mappers/ProvinceMapper.h"
@@ -577,7 +578,7 @@ bool scoresSorter(pair<V2Country*, int> first, pair<V2Country*, int> second)
 }
 
 
-void V2World::convertCountries(const EU4World& sourceWorld, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, colonyFlagset& colonyFlags, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas)
+void V2World::convertCountries(const EU4World& sourceWorld, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, colonyFlagset& colonyFlags)
 {
 	isRandomWorld = true;
 	map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
@@ -607,7 +608,7 @@ void V2World::convertCountries(const EU4World& sourceWorld, const vector<techSch
 				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
 				destCountry = new V2Country(V2Tag, countryFileName, std::vector<V2Party*>(), this, true, false);
 			}
-			destCountry->initFromEU4Country(sourceCountry, techSchools, leaderMap, lt, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas);
+			destCountry->initFromEU4Country(sourceCountry, techSchools, leaderMap, lt);
 			countries.insert(make_pair(V2Tag, destCountry));
 		}
 		else
@@ -625,7 +626,7 @@ void V2World::convertCountries(const EU4World& sourceWorld, const vector<techSch
 		int libertyScore = 1;
 		int equalityScore = 1;
 		int orderScore = 1;
-		countryItr->second->getNationalValueScores(libertyScore, equalityScore, orderScore, orderIdeas, libertyIdeas, equalityIdeas);
+		countryItr->second->getNationalValueScores(libertyScore, equalityScore, orderScore);
 		if (libertyScore > orderScore)
 		{
 			libertyScores.push_back( make_pair(countryItr->second, libertyScore) );
@@ -1466,42 +1467,34 @@ void V2World::convertArmies(const EU4World& sourceWorld, const map<int,int>& lea
 }
 
 
-void V2World::convertTechs(const EU4World& sourceWorld, map<string, double>& armyTechIdeas, map<string, double>& commerceTechIdeas, map<string, double>& cultureTechIdeas, map<string, double>& industryTechIdeas, map<string, double>& navyTechIdeas)
+void V2World::convertTechs(const EU4World& sourceWorld)
 {
 	map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
 	
 	// Helper functions
-	auto getCountryIdeasModifier = [](EU4Country* country, map<string, double>& ideas)
-	{
-		double modifier = 0;
-		for (auto j : ideas)
-			modifier += (country->hasNationalIdea(j.first) + 1) * j.second;
-		return modifier;
-	};
-
 	auto getCountryArmyTech = [&](EU4Country* country)
 	{
-		return country->getMilTech() + country->getAdmTech() + getCountryIdeasModifier(country, armyTechIdeas);
+		return country->getMilTech() + country->getAdmTech() + ideaEffectMapper::getArmyTechFromIdeas(country->getNationalIdeas());
 	};
 
 	auto getCountryNavyTech = [&](EU4Country* country)
 	{
-		return country->getMilTech() + country->getDipTech() + getCountryIdeasModifier(country, navyTechIdeas);
+		return country->getMilTech() + country->getDipTech() + ideaEffectMapper::getNavyTechFromIdeas(country->getNationalIdeas());
 	};
 
 	auto getCountryCommerceTech = [&](EU4Country* country)
 	{
-		return country->getAdmTech() + country->getDipTech() + getCountryIdeasModifier(country, commerceTechIdeas);
+		return country->getAdmTech() + country->getDipTech() + ideaEffectMapper::getCommerceTechFromIdeas(country->getNationalIdeas());
 	};
 
 	auto getCountryCultureTech = [&](EU4Country* country)
 	{
-		return country->getDipTech() + getCountryIdeasModifier(country, cultureTechIdeas);
+		return country->getDipTech() + ideaEffectMapper::getCultureTechFromIdeas(country->getNationalIdeas());
 	};
 
 	auto getCountryIndustryTech = [&](EU4Country* country)
 	{
-		return country->getAdmTech() + country->getDipTech() + country->getMilTech() + getCountryIdeasModifier(country, industryTechIdeas);
+		return country->getAdmTech() + country->getDipTech() + country->getMilTech() + ideaEffectMapper::getIndustryTechFromIdeas(country->getNationalIdeas());
 	};
 
 	double armyMax,		armyMean;

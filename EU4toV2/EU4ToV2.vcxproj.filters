@@ -153,6 +153,9 @@
     <ClCompile Include="Source\Mappers\EU4CultureGroupMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Mappers\IdeaEffectMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Color.h" />
@@ -304,6 +307,9 @@
       <Filter>Mappers</Filter>
     </ClInclude>
     <ClInclude Include="Source\Mappers\EU4CultureGroupMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\IdeaEffectMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
   </ItemGroup>

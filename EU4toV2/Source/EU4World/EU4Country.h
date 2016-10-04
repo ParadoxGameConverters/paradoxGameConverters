@@ -46,7 +46,7 @@ struct CustomFlag {
 class EU4Country
 {
 	public:
-		EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas, EU4Version* version);
+		EU4Country(Object* obj, EU4Version* version);
 
 		// Add any additional information available from the specified country file.
 		void readFromCommonCountry(const string& fileName, Object*);
@@ -106,6 +106,7 @@ class EU4Country
 		bool								isRevolutionary()							const { return revolutionary; }
 		tuple<int, int, int>			getRevolutionaryTricolour()			const { return revolutionaryTricolour; }
 		string							getRandomName()							const { return randomName; }
+		const map<string, int>& getNationalIdeas() const { return nationalIdeas; }
 
 		string	getName() const { return name; }
 		string	getName(const string& language) const;
@@ -113,7 +114,7 @@ class EU4Country
 		Color		getColor() const { return color; }
 
 	private:
-		void							determineInvestments(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas);
+		void							determineInvestments();
 		void							determineFlagsAndModifiers(Object* obj);
 		void							clearProvinces();
 		void							clearCores();

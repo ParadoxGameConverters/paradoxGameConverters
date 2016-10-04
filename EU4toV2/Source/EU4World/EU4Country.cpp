@@ -28,12 +28,13 @@ THE SOFTWARE. */
 #include "EU4Leader.h"
 #include "EU4Version.h"
 #include "../Mappers/EU4CultureGroupMapper.h"
+#include "../Mappers/IdeaEffectMapper.h"
 #include "../V2World/V2Localisation.h"
 #include <algorithm>
 
 
 
-EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas, EU4Version* version)
+EU4Country::EU4Country(Object* obj, EU4Version* version)
 {
 	tag = obj->getKey();
 
@@ -214,7 +215,7 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 		armies.push_back(navy);
 	}
 
-	determineInvestments(obj, armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas);
+	determineInvestments();
 
 	nationalIdeas.clear();
 	vector<Object*> activeIdeasObj = obj->getValue("active_idea_groups");	// the objects holding the national ideas
@@ -359,7 +360,7 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 }
 
 
-void EU4Country::determineInvestments(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas)
+void EU4Country::determineInvestments()
 {
 	armyInvestment = 32.0;
 	navyInvestment = 32.0;
@@ -367,45 +368,13 @@ void EU4Country::determineInvestments(Object* obj, map<string, int> armyInvIdeas
 	industryInvestment = 32.0;
 	cultureInvestment = 32.0;
 
-	for (map<string, int>::iterator armyInvItr = armyInvIdeas.begin(); armyInvItr != armyInvIdeas.end(); armyInvItr++)
+	for (auto idea: nationalIdeas)
 	{
-		map<string, int>::const_iterator itr = nationalIdeas.find(armyInvItr->first);	// the object for the idea under consideration
-		if (itr != nationalIdeas.end())
-		{
-			armyInvestment += itr->second * armyInvItr->second;
-		}
-	}
-	for (map<string, int>::iterator commerceInvItr = commerceInvIdeas.begin(); commerceInvItr != commerceInvIdeas.end(); commerceInvItr++)
-	{
-		map<string, int>::const_iterator itr = nationalIdeas.find(commerceInvItr->first);	// the object for the idea under consideration
-		if (itr != nationalIdeas.end())
-		{
-			commerceInvestment += itr->second * commerceInvItr->second;
-		}
-	}
-	for (map<string, int>::iterator cultureInvItr = cultureInvIdeas.begin(); cultureInvItr != cultureInvIdeas.end(); cultureInvItr++)
-	{
-		map<string, int>::const_iterator itr = nationalIdeas.find(cultureInvItr->first);	// the object for the idea under consideration
-		if (itr != nationalIdeas.end())
-		{
-			cultureInvestment += itr->second * cultureInvItr->second;
-		}
-	}
-	for (map<string, int>::iterator industryInvItr = industryInvIdeas.begin(); industryInvItr != industryInvIdeas.end(); industryInvItr++)
-	{
-		map<string, int>::const_iterator itr = nationalIdeas.find(industryInvItr->first);	// the object for the idea under consideration
-		if (itr != nationalIdeas.end())
-		{
-			industryInvestment += itr->second * industryInvItr->second;
-		}
-	}
-	for (map<string, int>::iterator navyInvItr = navyInvIdeas.begin(); navyInvItr != navyInvIdeas.end(); navyInvItr++)
-	{
-		map<string, int>::const_iterator itr = nationalIdeas.find(navyInvItr->first);	// the object for the idea under consideration
-		if (itr != nationalIdeas.end())
-		{
-			navyInvestment += itr->second * navyInvItr->second;
-		}
+		armyInvestment += ideaEffectMapper::getArmyInvestmentFromIdea(idea.first, idea.second);
+		commerceInvestment += ideaEffectMapper::getCommerceInvestmentFromIdea(idea.first, idea.second);
+		cultureInvestment += ideaEffectMapper::getCultureInvestmentFromIdea(idea.first, idea.second);
+		industryInvestment += ideaEffectMapper::getIndustryInvestmentFromIdea(idea.first, idea.second);
+		navyInvestment += ideaEffectMapper::getNavyInvestmentFromIdea(idea.first, idea.second);
 	}
 }
 

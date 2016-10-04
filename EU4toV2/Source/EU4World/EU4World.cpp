@@ -42,7 +42,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas)
+EU4World::EU4World(Object* obj)
 {
 	vector<Object*> versionObj = obj->getValue("savegame_version");	// the version of the save
 	(versionObj.size() > 0) ? version = new EU4Version(versionObj[0]) : version = new EU4Version();
@@ -138,7 +138,7 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 			}
 			else
 			{
-				EU4Country* country = new EU4Country(countriesLeaves[j], armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas, version);	// the country in our format
+				EU4Country* country = new EU4Country(countriesLeaves[j], version);	// the country in our format
 				countries.insert(make_pair(country->getTag(), country));
 
 				// set HRE stuff

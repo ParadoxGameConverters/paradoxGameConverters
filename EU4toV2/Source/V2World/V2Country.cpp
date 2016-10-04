@@ -44,6 +44,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/CultureMapper.h"
 #include "../Mappers/EU4CultureGroupMapper.h"
 #include "../Mappers/GovernmentMapper.h"
+#include "../Mappers/IdeaEffectMapper.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "V2World.h"
 #include "V2State.h"
@@ -392,7 +393,7 @@ void V2Country::outputOOB() const
 }
 
 
-void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas)
+void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt)
 {
 	srcCountry = _srcCountry;
 
@@ -509,15 +510,13 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<V2TechSchool>
 
 	//  Politics
 	double liberalEffect = 0.0;
-	for (map<string, double>::const_iterator UHLiberalItr = UHLiberalIdeas.begin(); UHLiberalItr != UHLiberalIdeas.end(); UHLiberalItr++)
-	{
-		liberalEffect += (srcCountry->hasNationalIdea(UHLiberalItr->first) + 1) * UHLiberalItr->second;
-	}
 	double reactionaryEffect = 0.0;
-	for (map<string, double>::const_iterator UHReactionaryItr = UHReactionaryIdeas.begin(); UHReactionaryItr != UHReactionaryIdeas.end(); UHReactionaryItr++)
+	for (auto idea: srcCountry->getNationalIdeas())
 	{
-		reactionaryEffect += (srcCountry->hasNationalIdea(UHReactionaryItr->first) + 1) * UHReactionaryItr->second;
+		liberalEffect += ideaEffectMapper::getUHLiberalFromIdea(idea.first, idea.second);
+		reactionaryEffect += ideaEffectMapper::getUHReactionaryFromIdea(idea.first, idea.second);
 	}
+
 	upperHouseReactionary		=  static_cast<int>(5  + (100 * reactionaryEffect));
 	upperHouseLiberal				=  static_cast<int>(10 + (100 * liberalEffect));
 	upperHouseConservative		= 100 - (upperHouseReactionary + upperHouseLiberal);
@@ -598,12 +597,9 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<V2TechSchool>
 
 	// Literacy
 	literacy = 0.1;
-	for (vector< pair<string, int> >::const_iterator literacyItr = literacyIdeas.begin(); literacyItr != literacyIdeas.end(); literacyItr++)
+	for (auto idea: srcCountry->getNationalIdeas())
 	{
-		if (srcCountry->hasNationalIdea(literacyItr->first) >= literacyItr->second)
-		{
-			literacy += 0.1;
-		}
+		literacy += ideaEffectMapper::getLiteracyFromIdea(idea.first, idea.second);
 	}
 	if ( (srcCountry->getReligion() == "Protestant") || (srcCountry->getReligion() == "Confucianism") || (srcCountry->getReligion() == "Reformed") )
 	{
@@ -1152,39 +1148,17 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 }
 
 
-void V2Country::getNationalValueScores(int& libertyScore, int& equalityScore, int& orderScore, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas)
+void V2Country::getNationalValueScores(int& libertyScore, int& equalityScore, int& orderScore)
 {
 	orderScore = 0;
-	for (map<string, int>::const_iterator orderIdeaItr = orderIdeas.begin(); orderIdeaItr != orderIdeas.end(); orderIdeaItr++)
-	{
-		int ideaScore = srcCountry->hasNationalIdea(orderIdeaItr->first);
-		orderScore += (ideaScore + 1) * orderIdeaItr->second;
-		if (ideaScore == 7)
-		{
-			orderScore += orderIdeaItr->second;
-		}
-	}
-		
 	libertyScore = 0;
-	for (map<string, int>::const_iterator libertyIdeaItr = libertyIdeas.begin(); libertyIdeaItr != libertyIdeas.end(); libertyIdeaItr++)
-	{
-		int ideaScore = srcCountry->hasNationalIdea(libertyIdeaItr->first);
-		libertyScore += (ideaScore + 1) * libertyIdeaItr->second;
-		if (ideaScore == 7)
-		{
-			libertyScore += libertyIdeaItr->second;
-		}
-	}
-
 	equalityScore = 0;
-	for (map<string, int>::const_iterator equalityIdeaItr = equalityIdeas.begin(); equalityIdeaItr != equalityIdeas.end(); equalityIdeaItr++)
+
+	for (auto idea: srcCountry->getNationalIdeas())
 	{
-		int ideaScore = srcCountry->hasNationalIdea(equalityIdeaItr->first);
-		equalityScore += (ideaScore + 1) * equalityIdeaItr->second;
-		if (ideaScore == 7)
-		{
-			equalityScore += equalityIdeaItr->second;
-		}
+		orderScore += ideaEffectMapper::getOrderInfluenceFromIdea(idea.first, idea.second);
+		libertyScore += ideaEffectMapper::getLibertyInfluenceFromIdea(idea.first, idea.second);
+		equalityScore += ideaEffectMapper::getEqualityInfluenceFromIdea(idea.first, idea.second);
 	}
 }
 
