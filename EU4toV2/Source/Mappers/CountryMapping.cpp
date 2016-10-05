@@ -241,7 +241,7 @@ void CountryMapping::getAvailableFlags()
 }
 
 
-void CountryMapping::CreateMappings(const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries, const colonyMapping& colonyMap)
+void CountryMapping::CreateMappings(const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries)
 {
 	generatedV2TagPrefix = 'X';
 	generatedV2TagSuffix = 0;
@@ -261,7 +261,7 @@ void CountryMapping::CreateMappings(const EU4World& srcWorld, const map<string, 
 
 	for (auto colonialCountry: colonialCountries)
 	{
-		bool success = attemptColonialReplacement(colonialCountry, srcWorld, Vic2Countries, colonyMap);
+		bool success = attemptColonialReplacement(colonialCountry, srcWorld, Vic2Countries);
 		if (!success)
 		{
 			makeOneMapping(colonialCountry, Vic2Countries);
@@ -389,7 +389,7 @@ map<string, vector<string>>::iterator CountryMapping::ifValidGetCK2MappingRule(c
 }
 
 
-bool CountryMapping::attemptColonialReplacement(EU4Country* country, const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries, const colonyMapping& colonyMap)
+bool CountryMapping::attemptColonialReplacement(EU4Country* country, const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries)
 {
 	bool mapped = false;
 
@@ -401,7 +401,7 @@ bool CountryMapping::attemptColonialReplacement(EU4Country* country, const EU4Wo
 		Vic2Capital = potentialVic2Capitals[0];
 	}
 
-	for (auto colony: colonyMap)
+	for (auto colony: colonialTagMapper::getColonyMap())
 	{
 		if (!capitalInRightEU4Region(colony, EU4Capital))
 		{

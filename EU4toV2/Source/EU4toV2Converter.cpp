@@ -493,7 +493,6 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 		LOG(LogLevel::Error) << "Could not parse colonial.txt";
 		exit(-1);
 	}
-	colonyMapping colonyMap = initColonyMap(colonialObj);
 	colonyFlagset colonyFlags = initColonyFlagset(colonialObj);
 
 	// Create country mappings
@@ -507,7 +506,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	{
 		sourceWorld.removeLandlessNations();
 	}
-	CountryMapping::createMappings(sourceWorld, destWorld.getPotentialCountries(), colonyMap);
+	CountryMapping::createMappings(sourceWorld, destWorld.getPotentialCountries());
 
 
 	// Convert

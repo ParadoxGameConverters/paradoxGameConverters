@@ -31,6 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <string>
 #include <vector>
 #include <boost/bimap.hpp>
+#include "ColonialTagsMapper.h"
 #include "Mapper.h"
 using namespace std;
 
@@ -47,9 +48,9 @@ class V2Country;
 class CountryMapping
 {
 	public:
-		static void createMappings(const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries, const colonyMapping& colonyMap)
+		static void createMappings(const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries)
 		{
-			getInstance()->CreateMappings(srcWorld, Vic2Countries, colonyMap);
+			getInstance()->CreateMappings(srcWorld, Vic2Countries);
 		}
 
 		static string getVic2Tag(const string& EU4Tag)
@@ -84,7 +85,7 @@ class CountryMapping
 		Object* parseVic2RegionsFile();
 		void getAvailableFlags();
 
-		void CreateMappings(const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries, const colonyMapping& colonyMap);
+		void CreateMappings(const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries);
 		bool isPotentialColonialReplacement(const pair<string, EU4Country*>& country);
 		bool tagIsAlphaDigitDigit(const string& tag);
 		void makeOneMapping(EU4Country* country, const map<string, V2Country*>& Vic2Countries);
@@ -93,7 +94,7 @@ class CountryMapping
 		bool mapToFirstUnusedVic2Tag(const vector<string>& possibleVic2Tags, const string& EU4Tag);
 		string generateNewTag();
 		void mapToNewTag(const string& EU4Tag, const string& Vic2Tag);
-		bool attemptColonialReplacement(EU4Country* country, const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries, const colonyMapping& colonyMap);
+		bool attemptColonialReplacement(EU4Country* country, const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries);
 		bool capitalInRightEU4Region(const colonyStruct& colony, int EU4Capital);
 		bool capitalInRightVic2Region(const colonyStruct& colony, int Vic2Capital, const EU4World& srcWorld, const string& EU4Tag);
 		bool inCorrectCultureGroup(const colonyStruct& colony, const string& primaryCulture);

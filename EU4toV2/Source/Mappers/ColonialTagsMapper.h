@@ -21,39 +21,55 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef MAPPER_H
-#define MAPPER_H
+#ifndef COLONIAL_TAG_MAPPER_H
+#define COLONIAL_TAG_MAPPER_H
 
 
 
-#include "../FlagUtils.h"
-#include <map>
 #include <string>
-#include <memory>
+#include <vector>
 using namespace std;
 
 
-
-struct CustomFlag;
 class Object;
 
 
 
-
-// colonial nation flags
-typedef struct {
-	std::string name;
-	string region;
-	bool unique;
-	std::string overlord;
-} colonyFlag;
-typedef map<string, shared_ptr<colonyFlag> > colonyFlagset; // <name, flag>
-colonyFlagset initColonyFlagset(Object* obj);
-
-typedef map<string, shared_ptr<CustomFlag> > customFlagset; // <name, flag>
+typedef struct
+{
+	string tag;
+	string EU4Region;
+	string V2Region;
+	string cultureGroup;
+} colonyStruct;
 
 
-// utility functions
-string CardinalToOrdinal(int cardinal);
 
-#endif // MAPPER_H
+class colonialTagMapper
+{
+	public:
+		static const vector<colonyStruct>& getColonyMap()
+		{
+			return getInstance()->colonyMap;
+		}
+
+	private:
+		static colonialTagMapper* instance;
+		static colonialTagMapper* getInstance()
+		{
+			if (instance == nullptr)
+			{
+				instance = new colonialTagMapper;
+			}
+			return instance;
+		}
+
+		colonialTagMapper();
+		void initColonyMap(Object* obj);
+
+		vector<colonyStruct> colonyMap;
+};
+
+
+
+#endif // COLONIAL_TAG_MAPPER_H

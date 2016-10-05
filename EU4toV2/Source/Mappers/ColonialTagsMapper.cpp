@@ -21,39 +21,57 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef MAPPER_H
-#define MAPPER_H
+#include "ColonialTagsMapper.h"
+#include "Log.h"
+#include "Object.h"
+#include "ParadoxParserUTF8.h"
 
 
 
-#include "../FlagUtils.h"
-#include <map>
-#include <string>
-#include <memory>
-using namespace std;
+colonialTagMapper* colonialTagMapper::instance = nullptr;
 
 
 
-struct CustomFlag;
-class Object;
+colonialTagMapper::colonialTagMapper()
+{
+	LOG(LogLevel::Info) << "Parsing colony naming rules.";
+	Object* colonialObj = parser_UTF8::doParseFile("colonial_tags.txt");
+	if (colonialObj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse colonial.txt";
+		exit(-1);
+	}
+	initColonyMap(colonialObj);
+}
 
 
 
+void colonialTagMapper::initColonyMap(Object* obj)
+{
+	vector<Object*> colonialRules	= obj->getLeaves();
+	for (auto ruleObj: colonialRules[0]->getLeaves())
+	{
+		colonyStruct rule;
+		for (auto item: ruleObj->getLeaves())
+		{
+			if (item->getKey() == "tag")
+			{
+				rule.tag = item->getLeaf();
+			}
+			if (item->getKey() == "EU4_region")
+			{
+				rule.EU4Region = item->getLeaf();
+			}
+			if (item->getKey() == "V2_region")
+			{
+				rule.V2Region = item->getLeaf();
+			}
+			if (item->getKey() == "is_culture_group")
+			{
+				rule.cultureGroup = item->getLeaf();
+			}
+		}
 
-// colonial nation flags
-typedef struct {
-	std::string name;
-	string region;
-	bool unique;
-	std::string overlord;
-} colonyFlag;
-typedef map<string, shared_ptr<colonyFlag> > colonyFlagset; // <name, flag>
-colonyFlagset initColonyFlagset(Object* obj);
-
-typedef map<string, shared_ptr<CustomFlag> > customFlagset; // <name, flag>
-
-
-// utility functions
-string CardinalToOrdinal(int cardinal);
-
-#endif // MAPPER_H
+		colonyMap.push_back(rule);
+	}
+}

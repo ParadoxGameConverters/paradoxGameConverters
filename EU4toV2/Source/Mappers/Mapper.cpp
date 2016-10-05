@@ -27,44 +27,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-colonyMapping initColonyMap(Object* obj)
-{
-	colonyMapping colonyMap;													// the culture mapping
-	vector<Object*> colonialRules	= obj->getLeaves();					// the culture mapping rules en masse
-	vector<Object*> links			= colonialRules[0]->getLeaves();	// the individual culture mapping rules
-
-	for (vector<Object*>::iterator i = links.begin(); i != links.end(); i++)
-	{
-		vector<Object*>			items = (*i)->getLeaves();	// the items in this rule
-
-		colonyStruct rule;	// the new culture rule
-		for (vector<Object*>::iterator j = items.begin(); j != items.end(); j++)
-		{
-			if ((*j)->getKey() == "tag")
-			{
-				rule.tag = (*j)->getLeaf();
-			}
-			if ((*j)->getKey() == "EU4_region")
-			{
-				rule.EU4Region = (*j)->getLeaf();
-			}
-			if ((*j)->getKey() == "V2_region")
-			{
-				rule.V2Region = (*j)->getLeaf();
-			}
-			if ((*j)->getKey() == "is_culture_group")
-			{
-				rule.cultureGroup = (*j)->getLeaf();
-			}
-		}
-
-		colonyMap.push_back(rule);
-	}
-
-	return colonyMap;
-}
-
-
 colonyFlagset initColonyFlagset(Object* obj)
 {
 	colonyFlagset colonyMap;									// the culture mapping

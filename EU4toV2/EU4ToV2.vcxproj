@@ -178,6 +178,7 @@
     <ClCompile Include="Source\FlagUtils.cpp" />
     <ClCompile Include="Source\Mappers\AdjacencyMapper.cpp" />
     <ClCompile Include="Source\Mappers\CK2TitleMapper.cpp" />
+    <ClCompile Include="Source\Mappers\ColonialTagsMapper.cpp" />
     <ClCompile Include="Source\Mappers\ContinentMapper.cpp" />
     <ClCompile Include="Source\Mappers\CountryMapping.cpp" />
     <ClCompile Include="Source\Mappers\CultureMapper.cpp" />
@@ -233,6 +234,7 @@
     <ClInclude Include="Source\FlagUtils.h" />
     <ClInclude Include="Source\Mappers\AdjacencyMapper.h" />
     <ClInclude Include="Source\Mappers\CK2TitleMapper.h" />
+    <ClInclude Include="Source\Mappers\ColonialTagsMapper.h" />
     <ClInclude Include="Source\Mappers\ContinentMapper.h" />
     <ClInclude Include="Source\Mappers\CountryMapping.h" />
     <ClInclude Include="Source\Mappers\CultureMapper.h" />
