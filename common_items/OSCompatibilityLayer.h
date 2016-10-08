@@ -78,6 +78,10 @@ namespace Utils
 	std::string getCurrentDirectory();
 	// Adds all files (just the file name) in the specified folder to the given collection.
 	void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames);
+
+	// For the specified folder and all subfolders, adds all files (just the subdirectory and file name)
+	// to the given collection.
+	void GetAllFilesInFolderRecursive(const std::string& path, std::set<std::string>& filenames);
 	// Copies the file specified by sourcePath as destPath.
 	// Returns true on success.
 	// Returns false and logs a warning on failure.

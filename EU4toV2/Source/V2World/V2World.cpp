@@ -27,7 +27,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include <algorithm>
 #include <regex>
-#include <io.h>
 #include <list>
 #include <queue>
 #include <cmath>
@@ -80,73 +79,17 @@ V2World::V2World()
 {
 	LOG(LogLevel::Info) << "Importing provinces";
 
-	struct _finddata_t	provinceFileData;
-	intptr_t					fileListing	= NULL;
-	list<string>			directories;
-	directories.push_back("");
-
-	bool provincesImported = false;
-	while (directories.size() > 0)
+	set<string> provinceFilenames;
+	Utils::GetAllFilesInFolderRecursive("./blankMod/output/history/provinces", provinceFilenames);
+	if (provinceFilenames.empty())
 	{
-		if ((fileListing = _findfirst((string("./blankMod/output/history/provinces") + directories.front() + "/*.*").c_str(), &provinceFileData)) == -1L)
-		{
-			LOG(LogLevel::Error) << "Could not open directory ./blankMod/output/history/provinces" << directories.front() << "/*.*";
-			exit(-1);
-		}
-
-		do
-		{
-			if (strcmp(provinceFileData.name, ".") == 0 || strcmp(provinceFileData.name, "..") == 0)
-			{
-				continue;
-			}
-			if (provinceFileData.attrib & _A_SUBDIR)
-			{
-				string newDirectory = directories.front() + "/" + provinceFileData.name;
-				directories.push_back(newDirectory);
-			}
-			else
-			{
-				V2Province* newProvince = new V2Province(directories.front() + "/" + provinceFileData.name);
-				provinces.insert(make_pair(newProvince->getNum(), newProvince));
-				provincesImported = true;
-			}
-		} while (_findnext(fileListing, &provinceFileData) == 0);
-		_findclose(fileListing);
-		directories.pop_front();
+		Utils::GetAllFilesInFolderRecursive(Configuration::getV2Path() + "/history/provinces", provinceFilenames);
 	}
 
-	if (!provincesImported)
+	for (auto provinceFilename: provinceFilenames)
 	{
-		directories.push_back("");
-		while (directories.size() > 0)
-		{
-			if ((fileListing = _findfirst((Configuration::getV2Path() + "/history/provinces" + directories.front() + "/*.*").c_str(), &provinceFileData)) == -1L)
-			{
-				LOG(LogLevel::Error) << "Could not open directory " << Configuration::getV2Path() << "/history/provinces" << directories.front() << "/*.*";
-				exit(-1);
-			}
-
-			do
-			{
-				if (strcmp(provinceFileData.name, ".") == 0 || strcmp(provinceFileData.name, "..") == 0)
-				{
-					continue;
-				}
-				if (provinceFileData.attrib & _A_SUBDIR)
-				{
-					string newDirectory = directories.front() + "/" + provinceFileData.name;
-					directories.push_back(newDirectory);
-				}
-				else
-				{
-					V2Province* newProvince = new V2Province(directories.front() + "/" + provinceFileData.name);
-					provinces.insert(make_pair(newProvince->getNum(), newProvince));
-				}
-			} while (_findnext(fileListing, &provinceFileData) == 0);
-			_findclose(fileListing);
-			directories.pop_front();
-		}
+		V2Province* newProvince = new V2Province(provinceFilename);
+		provinces.insert(make_pair(newProvince->getNum(), newProvince));
 	}
 
 	// Get province names

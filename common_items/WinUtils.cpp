@@ -24,7 +24,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "OSCompatibilityLayer.h"
 #include <Windows.h>
 #include <iostream>
+#include <io.h>
 #include <Shellapi.h>
+#include <list>
 #include "Log.h"
 
 
@@ -77,6 +79,44 @@ void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNam
 		}
 	} while (FindNextFileW(findHandle, &findData) != 0);
 	FindClose(findHandle);
+}
+
+
+void GetAllFilesInFolderRecursive(const std::string& path, std::set<std::string>& filenames)
+{
+	struct _finddata_t	provinceFileData;
+	intptr_t					fileListing	= NULL;
+	std::list<std::string> directories;
+	directories.push_back("");
+
+	bool provincesImported = false;
+	while (directories.size() > 0)
+	{
+		if ((fileListing = _findfirst((path + directories.front() + "/*").c_str(), &provinceFileData)) == -1L)
+		{
+			LOG(LogLevel::Error) << "Could not open directory " << path << '/' << directories.front() << "/*";
+			exit(-1);
+		}
+
+		do
+		{
+			if (strcmp(provinceFileData.name, ".") == 0 || strcmp(provinceFileData.name, "..") == 0)
+			{
+				continue;
+			}
+			if (provinceFileData.attrib & _A_SUBDIR)
+			{
+				std::string newDirectory = directories.front() + "/" + provinceFileData.name;
+				directories.push_back(newDirectory);
+			}
+			else
+			{
+				filenames.insert(directories.front() + "/" + provinceFileData.name);
+			}
+		} while (_findnext(fileListing, &provinceFileData) == 0);
+		_findclose(fileListing);
+		directories.pop_front();
+	}
 }
 
 

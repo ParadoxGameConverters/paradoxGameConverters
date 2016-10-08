@@ -25,7 +25,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <algorithm>
 #include <math.h>
 #include <float.h>
-#include <io.h>
 #include <fstream>
 #include <sstream>
 #include <queue>
@@ -34,6 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "../Mappers/ReligionMapper.h"
 #include "paradoxParser8859_15.h"
+#include "OSCompatibilityLayer.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Country.h"
 #include "../EU4World/EU4Province.h"
@@ -402,22 +402,10 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<V2TechSchool>
 		newCountry = true;
 	}
 
-	struct _finddata_t	fileData;
-	intptr_t					fileListing;
-	string filesearch = "./blankMod/output/history/countries/" + tag + "*.txt";
-	if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-	{
-		filename = fileData.name;
-	}
-	_findclose(fileListing);
+	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
 	if (filename == "")
 	{
-		string filesearch = Configuration::getV2Path() + "/history/countries/" + tag + "*.txt";
-		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-		{
-			filename = fileData.name;
-		}
-		_findclose(fileListing);
+		filename = Utils::GetFileFromTag(Configuration::getV2Path() + "/history/countries/", tag);
 	}
 	if (filename == "")
 	{
@@ -764,26 +752,15 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<V2TechSchool>
 void V2Country::initFromHistory()
 {
 	string fullFilename;
-	struct _finddata_t	fileData;
-	intptr_t					fileListing;
-	string filesearch = "./blankMod/output/history/countries/" + tag + "*.txt";
-	if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
+
+	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
+	fullFilename = "./blankMod/output/history/countries/" + filename;
+	if (filename == "")
 	{
-		filename			= fileData.name;
-		fullFilename	= string("./blankMod/output/history/countries/") + fileData.name;
+		filename = Utils::GetFileFromTag(Configuration::getV2Path() + "/history/countries/", tag);
+		fullFilename = Configuration::getV2Path() + "/history/countries/" + filename;
 	}
-	_findclose(fileListing);
-	if (fullFilename == "")
-	{
-		string filesearch = Configuration::getV2Path() + "/history/countries/" + tag + "*.txt";
-		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-		{
-			filename			= fileData.name;
-			fullFilename	= Configuration::getV2Path() + "/history/countries/" + fileData.name;
-		}
-		_findclose(fileListing);
-	}
-	if (fullFilename == "")
+	if (filename == "")
 	{
 		string countryName	= commonCountryFile;
 		int lastSlash			= countryName.find_last_of("/");

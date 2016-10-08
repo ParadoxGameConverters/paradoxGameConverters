@@ -22,10 +22,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <fstream>
-#include <io.h>
 #include <stdexcept>
 #include "Configuration.h"
 #include "Log.h"
+#include "OSCompatibilityLayer.h"
 #include "ParadoxParserUTF8.h"
 #include "ParadoxParser8859_15.h"
 #include "EU4World/EU4World.h"
@@ -39,7 +39,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "OSCompatibilityLayer.h"
 
 
-
+#pragma optimize("",off)
 // Converts the given EU4 save into a V2 mod.
 // Returns 0 on success or a non-zero failure code on error.
 int ConvertEU4ToV2(const std::string& EU4SaveFileName)
@@ -368,24 +368,13 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	else
 	{
 		LOG(LogLevel::Info) << "\tReading unit strengths from EU4 installation folder";
-		struct _finddata_t unitFileData;
-		intptr_t fileListing;
-		if ( (fileListing = _findfirst( (EU4Loc + "/common/units/*.txt").c_str(), &unitFileData)) == -1L)
+
+		set<string> filenames;
+		Utils::GetAllFilesInFolder(EU4Loc + "/common/units/", filenames);
+		for (auto filename: filenames)
 		{
-			LOG(LogLevel::Error) << "Could not open units directory.";
-			return -1;
+			AddUnitFileToRegimentTypeMap((EU4Loc + "/common/units"), filename, rtm);
 		}
-		do
-		{
-			if (strcmp(unitFileData.name, ".") == 0 || strcmp(unitFileData.name, "..") == 0 )
-			{
-				continue;
-			}
-			string unitFilename = unitFileData.name;
-			string unitName = unitFilename.substr(0, unitFilename.find_first_of('.'));
-			AddUnitFileToRegimentTypeMap((EU4Loc + "/common/units"), unitName, rtm);
-		} while(_findnext(fileListing, &unitFileData) == 0);
-		_findclose(fileListing);
 	}
 	read.close();
 	read.clear();
@@ -424,36 +413,21 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	EU4Religion::parseReligions(religionsObj);
 	for (auto itr: Configuration::getEU4Mods())
 	{
-		struct _finddata_t	fileData;				// the file data info
-		intptr_t					fileListing = NULL;	// the file listing info
-		if ((fileListing = _findfirst(string(itr + "/common/religions/*").c_str(), &fileData)) != -1L)
+		set<string> filenames;
+		Utils::GetAllFilesInFolder(itr + "/common/religions/", filenames);
+		for (auto filename: filenames)
 		{
-			do
+			string modReligionFile(itr + "/common/religions/" + filename);	// the path and name of the religions file in this mod
+			if (Utils::DoesFileExist(modReligionFile))
 			{
-				if (strcmp(fileData.name, ".") == 0 || strcmp(fileData.name, "..") == 0)
+				religionsObj = parser_UTF8::doParseFile(modReligionFile.c_str());
+				if (religionsObj == NULL)
 				{
-					continue;
+					LOG(LogLevel::Error) << "Could not parse file " << modReligionFile;
+					exit(-1);
 				}
-				else if (fileData.attrib & _A_SUBDIR)
-				{
-					continue;
-				}
-				else
-				{
-					string modReligionFile(itr + "/common/religions/" + fileData.name);	// the path and name of the religions file in this mod
-					if (Utils::DoesFileExist(modReligionFile))
-					{
-						religionsObj = parser_UTF8::doParseFile(modReligionFile.c_str());
-						if (religionsObj == NULL)
-						{
-							LOG(LogLevel::Error) << "Could not parse file " << modReligionFile;
-							exit(-1);
-						}
-						EU4Religion::parseReligions(religionsObj);
-					}
-				}
-			} while (_findnext(fileListing, &fileData) == 0);
-			_findclose(fileListing);
+				EU4Religion::parseReligions(religionsObj);
+			}
 		}
 	}
 
@@ -594,3 +568,4 @@ int main(const int argc, const char * argv[])
 		return -1;
 	}
 }
+#pragma optimize("",on)

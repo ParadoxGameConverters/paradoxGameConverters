@@ -120,7 +120,7 @@ void EU4Army::resolveRegimentTypes(const RegimentTypeMap& regimentTypeMap)
 		}
 		else
 		{
-			LOG(LogLevel::Warning) << "Unknown unit type " << (*itr)->getType() << " for regiment \"" << (*itr)->getName() << "\"\n";
+			LOG(LogLevel::Warning) << "Unknown unit type " << (*itr)->getType() << " for regiment \"" << (*itr)->getName() << "\"";
 		}
 	}
 }
@@ -217,14 +217,17 @@ void AddCategoryToRegimentTypeMap(Object* obj, RegimentCategory category, string
 }
 
 
-void AddUnitFileToRegimentTypeMap(string directory, string name, RegimentTypeMap& rtm)
+void AddUnitFileToRegimentTypeMap(string directory, string filename, RegimentTypeMap& rtm)
 {
-	Object* obj = parser_UTF8::doParseFile((directory + "/" + name + ".txt").c_str());	// the parsed regiment costs file
+	Object* obj = parser_UTF8::doParseFile((directory + "/" + filename).c_str());	// the parsed regiment costs file
 	if (obj == NULL)
 	{
-		LOG(LogLevel::Error) << "Could not parse file " << directory << '/' << name << ".txt";
+		LOG(LogLevel::Error) << "Could not parse file " << directory << '/' << filename;
 		exit(-1);
 	}
+
+	int period = filename.find_last_of('.');
+	string name = filename.substr(0, period);
 
 	int rc = -1;	// the regiment cost
 	vector<Object*> typeObj = obj->getValue("type");	// the unit type as an object
