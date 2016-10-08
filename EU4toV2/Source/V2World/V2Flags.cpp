@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -36,17 +36,21 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "../Mappers/CK2TitleMapper.h"
+#include "../Mappers/ColonyFlagsetMapper.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/FlagColorMapper.h"
 #include "../FlagUtils.h"
 
+
+
 const std::vector<std::string> V2Flags::flagFileSuffixes = { ".tga", "_communist.tga", "_fascist.tga", "_monarchy.tga", "_republic.tga" };
 
-void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const colonyFlagset& colonyFlagset)
+
+
+void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries)
 {
 	LOG(LogLevel::Debug) << "Initializing flags";
 	tagMapping.clear();
-	colonyFlags = colonyFlagset;
 
 	static std::mt19937 generator(static_cast<int>(std::chrono::system_clock::now().time_since_epoch().count()));
 
@@ -189,30 +193,14 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 		}
 	}
 
-	std::set<std::string> duplicateColonyFlag;
-	
-	
-	for (auto colonialtitle = colonyFlags.begin(); colonialtitle != colonyFlags.end();)
+	auto colonyFlags = colonyFlagsetMapper::getFlagset();
+	for (auto country: V2Countries)
 	{
-		if (duplicateColonyFlag.find(colonialtitle->second->name) != duplicateColonyFlag.end())
-		{
-			LOG(LogLevel::Info) << "Duplicate " << colonialtitle->second->name;
-			colonyFlags.erase(colonialtitle++);
-		}
-		else
-		{
-			duplicateColonyFlag.insert(colonialtitle->second->name);
-			++colonialtitle;
-		}
-	}
-
-	for (std::map<std::string, V2Country*>::const_iterator i = V2Countries.begin(); i != V2Countries.end(); i++)
-	{
-		V2Country* overlord = i->second->getColonyOverlord();
+		V2Country* overlord = country.second->getColonyOverlord();
 		if (NULL == overlord)
 			continue;
 
-		std::string name = i->second->getLocalName();
+		std::string name = country.second->getLocalName();
 		name = V2Localisation::Convert(name);
 
 		std::transform(name.begin(), name.end(), name.begin(), ::tolower);
@@ -228,16 +216,16 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 
 		if (colonialtitle == colonyFlags.end())
 		{
-			colonialFail.push_back(i->second);
+			colonialFail.push_back(country.second);
 			continue;
 		}
 
 		colonialtitle->second->overlord = overlord->getTag();
-		colonialFlagMapping[i->first] = colonialtitle->second;
-		LOG(LogLevel::Info) << "Country with tag " << i->first << " is " << colonialtitle->second->name << ", ruled by " << colonialtitle->second->overlord;
+		colonialFlagMapping[country.first] = colonialtitle->second;
+		LOG(LogLevel::Info) << "Country with tag " << country.first << " is " << colonialtitle->second->name << ", ruled by " << colonialtitle->second->overlord;
 
 		usableFlagTags.erase(colonialtitle->second->name);
-		requiredTags.erase(i->first); 
+		requiredTags.erase(country.first); 
 		colonyFlags.erase(colonialtitle);
 	}
 

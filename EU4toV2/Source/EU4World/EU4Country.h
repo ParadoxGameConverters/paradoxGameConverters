@@ -27,6 +27,7 @@ THE SOFTWARE. */
 #include "EU4Army.h"
 #include "../Color.h"
 #include "Date.h"
+#include "../Mappers/CustomFlagMapper.h"
 #include "../Mappers/Mapper.h"
 
 
@@ -37,11 +38,6 @@ class EU4Relations;
 class EU4Version;
 
 
-struct CustomFlag {
-	string flag;
-	int emblem;
-	std::tuple<int, int, int> colours;
-};
 
 class EU4Country
 {

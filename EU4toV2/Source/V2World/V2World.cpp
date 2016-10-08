@@ -361,7 +361,7 @@ void V2World::output() const
 
 	// Create flags for all new countries.
 	V2Flags flags;
-	flags.SetV2Tags(countries, colonyFlagMap);
+	flags.SetV2Tags(countries);
 	flags.Output();
 
 	// Create localisations for all new countries. We don't actually know the names yet so we just use the tags as the names.
@@ -521,7 +521,7 @@ bool scoresSorter(pair<V2Country*, int> first, pair<V2Country*, int> second)
 }
 
 
-void V2World::convertCountries(const EU4World& sourceWorld, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, colonyFlagset& colonyFlags)
+void V2World::convertCountries(const EU4World& sourceWorld, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt)
 {
 	isRandomWorld = true;
 	map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
@@ -662,8 +662,6 @@ void V2World::convertCountries(const EU4World& sourceWorld, const vector<techSch
 	}
 
 	checkForCivilizedNations();
-
-	colonyFlagMap = colonyFlags;
 }
 
 

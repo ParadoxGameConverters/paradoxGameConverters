@@ -15,7 +15,7 @@ copy "Data_Files\leader_traits.txt" "release\leader_traits.txt
 copy "Data_Files\regiment_costs.txt" "release\regiment_costs.txt
 copy "Data_Files\license.txt" "release\license.txt"
 copy "Data_Files\idea_effects.txt" "release\idea_effects.txt"
-copy "Data_Files\colonial.txt" "release\colonial.txt"
+copy "Data_Files\colonial_flags.txt" "release\colonial_flags.txt"
 copy "Data_Files\colonial_tags.txt" "release\colonial_tags.txt"
 copy "Data_Files\ck2titlemap.txt" "release\ck2titlemap.txt"
 copy "Data_Files\port_blacklist.txt" "release\port_blacklist.txt"

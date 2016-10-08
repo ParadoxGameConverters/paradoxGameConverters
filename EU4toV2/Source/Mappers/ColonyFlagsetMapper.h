@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,28 +21,59 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "Mapper.h"
+#ifndef CUSTOM_FLAGSET_MAPPER_H
+#define CUSTOM_FLAGSET_MAPPER_H
 
 
 
-string CardinalToOrdinal(int cardinal)
+#include <map>
+#include <memory>
+#include <string>
+using namespace std;
+
+
+
+class Object;
+
+
+typedef struct
 {
-	int hundredRem = cardinal % 100;
-	int tenRem = cardinal % 10;
-	if (hundredRem - tenRem == 10)
-	{
-		return "th";
-	}
+	string name;
+	string region;
+	bool unique;
+	string overlord;
+} colonyFlag;
 
-	switch (tenRem)
-	{
-		case 1:
-			return "st";
-		case 2:
-			return "nd";
-		case 3:
-			return "rd";
-		default:
-			return "th";
-	}
-}
+
+
+class colonyFlagsetMapper
+{
+	public:
+		static map<string, shared_ptr<colonyFlag>>& getFlagset()
+		{
+			return getInstance()->colonyFlagset;
+		}
+
+	private:
+		static colonyFlagsetMapper* instance;
+		static colonyFlagsetMapper* getInstance()
+		{
+			if (instance == nullptr)
+			{
+				instance = new colonyFlagsetMapper;
+			}
+			return instance;
+		}
+
+		colonyFlagsetMapper();
+		void initColonyFlagset(Object* obj);
+		void removeDuplicates();
+
+
+		map<string, shared_ptr<colonyFlag>> colonyFlagset; // <name, flag>
+};
+
+
+
+
+#endif // CUSTOM_FLAGSET_MAPPER_H

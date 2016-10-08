@@ -26,34 +26,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "../FlagUtils.h"
-#include <map>
 #include <string>
-#include <memory>
 using namespace std;
 
 
 
-struct CustomFlag;
-class Object;
-
-
-
-
-// colonial nation flags
-typedef struct {
-	std::string name;
-	string region;
-	bool unique;
-	std::string overlord;
-} colonyFlag;
-typedef map<string, shared_ptr<colonyFlag> > colonyFlagset; // <name, flag>
-colonyFlagset initColonyFlagset(Object* obj);
-
-typedef map<string, shared_ptr<CustomFlag> > customFlagset; // <name, flag>
-
-
-// utility functions
 string CardinalToOrdinal(int cardinal);
+
+
 
 #endif // MAPPER_H

@@ -39,7 +39,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "OSCompatibilityLayer.h"
 
 
-#pragma optimize("",off)
+
 // Converts the given EU4 save into a V2 mod.
 // Returns 0 on success or a non-zero failure code on error.
 int ConvertEU4ToV2(const std::string& EU4SaveFileName)
@@ -459,16 +459,6 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	const V2LeaderTraits lt;	// the V2 leader traits
 	map<int, int> leaderIDMap; // <EU4, V2>
 
-	// Parse colony rules
-	LOG(LogLevel::Info) << "Parsing colony naming rules.";
-	Object* colonialObj = parser_UTF8::doParseFile("colonial.txt");
-	if (colonialObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse colonial.txt";
-		exit(-1);
-	}
-	colonyFlagset colonyFlags = initColonyFlagset(colonialObj);
-
 	// Create country mappings
 	LOG(LogLevel::Info) << "Creating country mappings";
 	sourceWorld.removeEmptyNations();
@@ -485,7 +475,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, techSchools, leaderIDMap, lt, colonyFlags);
+	destWorld.convertCountries(sourceWorld, techSchools, leaderIDMap, lt);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld);
 	LOG(LogLevel::Info) << "Converting diplomacy";
@@ -568,4 +558,3 @@ int main(const int argc, const char * argv[])
 		return -1;
 	}
 }
-#pragma optimize("",on)
