@@ -28,7 +28,7 @@ THE SOFTWARE. */
 #include "../Color.h"
 #include "Date.h"
 #include "../Mappers/CustomFlagMapper.h"
-#include "../Mappers/Mapper.h"
+
 
 
 class EU4Loan;

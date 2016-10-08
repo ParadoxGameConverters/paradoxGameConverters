@@ -21,8 +21,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef MAPPER_H
-#define MAPPER_H
+#ifndef CARDINAL_TO_ORDINAL
+#define CARDINAL_TO_ORDINAL
 
 
 
@@ -35,4 +35,4 @@ string CardinalToOrdinal(int cardinal);
 
 
 
-#endif // MAPPER_H
+#endif // CARDINAL_TO_ORDINAL

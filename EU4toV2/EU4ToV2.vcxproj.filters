@@ -111,9 +111,6 @@
     <ClCompile Include="Source\Mappers\CountryMapping.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mappers\Mapper.cpp">
-      <Filter>Mappers</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Mappers\FlagColorMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
@@ -161,6 +158,9 @@
     </ClCompile>
     <ClCompile Include="Source\Mappers\ColonyFlagsetMapper.cpp">
       <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\CardinalToOrdinal.cpp">
+      <Filter>CommonItems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -273,9 +273,6 @@
     <ClInclude Include="Source\Mappers\CountryMapping.h">
       <Filter>Mappers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Mappers\Mapper.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Mappers\FlagColorMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
@@ -326,6 +323,9 @@
     </ClInclude>
     <ClInclude Include="Source\Mappers\CustomFlagMapper.h">
       <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\CardinalToOrdinal.h">
+      <Filter>CommonItems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

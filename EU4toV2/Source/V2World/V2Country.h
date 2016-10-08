@@ -26,7 +26,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "../Mappers/Mapper.h"
 #include "../Color.h"
 #include "Date.h"
 #include "../Eu4World/EU4Army.h"

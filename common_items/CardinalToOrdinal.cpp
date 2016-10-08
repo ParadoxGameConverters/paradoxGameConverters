@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,7 +21,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "Mapper.h"
+#include "CardinalToOrdinal.h"
 
 
 
@@ -36,13 +36,13 @@ string CardinalToOrdinal(int cardinal)
 
 	switch (tenRem)
 	{
-		case 1:
-			return "st";
-		case 2:
-			return "nd";
-		case 3:
-			return "rd";
-		default:
-			return "th";
+	case 1:
+		return "st";
+	case 2:
+		return "nd";
+	case 3:
+		return "rd";
+	default:
+		return "th";
 	}
 }

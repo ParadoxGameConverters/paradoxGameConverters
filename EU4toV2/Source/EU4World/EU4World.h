@@ -26,7 +26,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <istream>
 #include "EU4Army.h"
-#include "../Mappers/Mapper.h"
+
+
 
 class EU4Country;
 class EU4Province;

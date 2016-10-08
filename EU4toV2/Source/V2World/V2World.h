@@ -34,7 +34,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Province.h"
 #include "../EU4World/EU4Army.h"
 #include "../EU4World/EU4Province.h"
-#include "../Mappers/Mapper.h"
 #include <list>
 #include <set>
 

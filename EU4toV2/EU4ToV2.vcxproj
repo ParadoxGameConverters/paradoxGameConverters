@@ -155,6 +155,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\common_items\CardinalToOrdinal.cpp" />
     <ClCompile Include="..\common_items\CommonUtils.cpp" />
     <ClCompile Include="..\common_items\Date.cpp" />
     <ClCompile Include="..\common_items\Log.cpp" />
@@ -188,7 +189,6 @@
     <ClCompile Include="Source\Mappers\FlagColorMapper.cpp" />
     <ClCompile Include="Source\Mappers\GovermentMapper.cpp" />
     <ClCompile Include="Source\Mappers\IdeaEffectMapper.cpp" />
-    <ClCompile Include="Source\Mappers\Mapper.cpp" />
     <ClCompile Include="Source\Mappers\MinorityPopMapper.cpp" />
     <ClCompile Include="Source\Mappers\ProvinceMapper.cpp" />
     <ClCompile Include="Source\Mappers\ReligionMapper.cpp" />
@@ -214,6 +214,7 @@
     <ClCompile Include="Source\V2World\V2World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\common_items\CardinalToOrdinal.h" />
     <ClInclude Include="..\common_items\Date.h" />
     <ClInclude Include="..\common_items\Log.h" />
     <ClInclude Include="..\common_items\Object.h" />
@@ -246,7 +247,6 @@
     <ClInclude Include="Source\Mappers\FlagColorMapper.h" />
     <ClInclude Include="Source\Mappers\GovernmentMapper.h" />
     <ClInclude Include="Source\Mappers\IdeaEffectMapper.h" />
-    <ClInclude Include="Source\Mappers\Mapper.h" />
     <ClInclude Include="Source\Mappers\MinorityPopMapper.h" />
     <ClInclude Include="Source\Mappers\ProvinceMapper.h" />
     <ClInclude Include="Source\Mappers\ReligionMapper.h" />

@@ -22,6 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Province.h"
+#include "CardinalToOrdinal.h"
 #include "Log.h"
 #include "Object.h"
 #include "OSCompatibilityLayer.h"

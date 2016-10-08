@@ -32,7 +32,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <vector>
 #include <boost/bimap.hpp>
 #include "ColonialTagsMapper.h"
-#include "Mapper.h"
 using namespace std;
 
 

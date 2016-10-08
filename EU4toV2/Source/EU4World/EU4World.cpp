@@ -28,7 +28,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "../Mappers/CultureMapper.h"
 #include "../Mappers/EU4CultureGroupMapper.h"
-#include "../Mappers/Mapper.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "../Mappers/ReligionMapper.h"
 #include "Object.h"

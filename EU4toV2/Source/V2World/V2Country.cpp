@@ -32,6 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "../Configuration.h"
 #include "../Mappers/ReligionMapper.h"
+#include "CardinalToOrdinal.h"
 #include "paradoxParser8859_15.h"
 #include "OSCompatibilityLayer.h"
 #include "../EU4World/EU4World.h"
