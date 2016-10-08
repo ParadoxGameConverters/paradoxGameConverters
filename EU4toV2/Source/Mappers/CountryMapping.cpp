@@ -243,6 +243,8 @@ void CountryMapping::getAvailableFlags()
 
 void CountryMapping::CreateMappings(const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries)
 {
+	LOG(LogLevel::Info) << "Creating country mappings";
+
 	generatedV2TagPrefix = 'X';
 	generatedV2TagSuffix = 0;
 

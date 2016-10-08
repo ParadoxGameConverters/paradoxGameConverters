@@ -49,13 +49,13 @@ class V2World {
 		void output() const;
 		void createProvinceFiles(const EU4World& sourceWorld);
 		
-		void convertCountries(const EU4World& sourceWorld, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt);
+		void convertCountries(const EU4World& sourceWorld, const vector<techSchool>& techSchools, map<int, int>& leaderIDMap);
 		void convertDiplomacy(const EU4World& sourceWorld);
 		void convertProvinces(const EU4World& sourceWorld);
 		void setupColonies();
 		void setupStates();
 		void convertUncivReforms();
-		void setupPops(EU4World& sourceWorld);
+		void setupPops(const EU4World& sourceWorld);
 		void addUnions();
 		void convertArmies(const EU4World& sourceWorld, const map<int,int>& leaderIDMap);
 		void convertTechs(const EU4World& sourceWorld);

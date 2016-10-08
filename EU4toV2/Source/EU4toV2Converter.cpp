@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -40,14 +40,66 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-// Converts the given EU4 save into a V2 mod.
-// Returns 0 on success or a non-zero failure code on error.
-int ConvertEU4ToV2(const std::string& EU4SaveFileName)
+void ConvertEU4ToV2(const string& EU4SaveFileName);
+int main(const int argc, const char * argv[])
 {
-	LOG(LogLevel::Debug) << "Current directory is " << Utils::getCurrentDirectory();
+	try
+	{
+		LOG(LogLevel::Info) << "Converter version 1.0A";
+		LOG(LogLevel::Info) << "Built " << __TIMESTAMP__;
+		LOG(LogLevel::Debug) << "Current directory is " << Utils::getCurrentDirectory();
 
+		const char* const defaultEU4SaveFileName = "input.eu4";
+		string EU4SaveFileName;
+		if (argc >= 2)
+		{
+			EU4SaveFileName = argv[1];
+			LOG(LogLevel::Info) << "Using input file " << EU4SaveFileName;
+		}
+		else
+		{
+			EU4SaveFileName = defaultEU4SaveFileName;
+			LOG(LogLevel::Info) << "No input file given, defaulting to " << defaultEU4SaveFileName;
+		}
+
+		ConvertEU4ToV2(EU4SaveFileName);
+
+		return 0;
+	}
+
+	catch (const std::exception& e)
+	{
+		LOG(LogLevel::Error) << e.what();
+		return -1;
+	}
+}
+
+
+void verifySave(const string& EU4SaveFileName);
+void getOutputName(const string& EU4SaveFileName);
+map<string, string> getPossibleMods();
+void convert(V2World& destWorld, const EU4World& sourceWorld);
+void output(const V2World& destWorld);
+void ConvertEU4ToV2(const string& EU4SaveFileName)
+{
 	Configuration::getInstance();
 
+	verifySave(EU4SaveFileName);
+	getOutputName(EU4SaveFileName);
+
+	map<string, string> possibleMods = getPossibleMods();
+
+	EU4World sourceWorld(EU4SaveFileName, possibleMods);
+	V2World destWorld;
+	convert(destWorld, sourceWorld);
+	output(destWorld);
+
+	LOG(LogLevel::Info) << "* Conversion complete *";
+}
+
+
+void verifySave(const string& EU4SaveFileName)
+{
 	FILE* saveFile = fopen(EU4SaveFileName.c_str(), "r");
 	if (saveFile == NULL)
 	{
@@ -69,54 +121,61 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 			exit(-1);
 		}
 	}
+}
 
-	// Get V2 install location
-	LOG(LogLevel::Info) << "Get V2 Install Path";
-	string V2Loc = Configuration::getV2Path();	// the V2 install location as stated in the configuration file
-	if (Utils::DoesFileExist(V2Loc))
-	{
-		LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
-		return (-1);
-	}
-	else
-	{
-		LOG(LogLevel::Debug) << "Victoria 2 install path is " << V2Loc;
-	}
 
-	// Get V2 Documents Directory
-	LOG(LogLevel::Debug) << "Get V2 Documents directory";
-	string V2DocLoc = Configuration::getV2DocumentsPath();	// the V2 My Documents location as stated in the configuration file
-	if (Utils::DoesFileExist(V2DocLoc))
+void getOutputName(const string& EU4SaveFileName)
+{
+	const int slash	= EU4SaveFileName.find_last_of("\\");				// the last slash in the save's filename
+	string outputName	= EU4SaveFileName.substr(slash + 1, EU4SaveFileName.length());
+	const int length	= outputName.find_first_of(".");						// the first period after the slash
+	outputName			= outputName.substr(0, length);						// the name to use to output the mod
+	int dash = outputName.find_first_of('-');									// the first (if any) dask in the output name
+	while (dash != string::npos)
 	{
-		LOG(LogLevel::Error) << "No Victoria 2 documents directory was specified in configuration.txt, or the path was invalid";
-		return (-1);
+		outputName.replace(dash, 1, "_");
+		dash = outputName.find_first_of('-');
 	}
-	else
+	int space = outputName.find_first_of(' ');	// the first space (if any) in the output name
+	while (space != string::npos)
 	{
-		LOG(LogLevel::Debug) << "Victoria 2 documents directory is " << V2DocLoc;
+		outputName.replace(space, 1, "_");
+		space = outputName.find_first_of(' ');
 	}
+	Configuration::setOutputName(outputName);
+	LOG(LogLevel::Info) << "Using output name " << outputName;
 
-	// Get EU4 install location
-	LOG(LogLevel::Debug) << "Get EU4 Install Path";
-	string EU4Loc = Configuration::getEU4Path();	// the EU4 install location as stated in the configuration file
-	if (Utils::DoesFileExist(EU4Loc))
+	string outputFolder = Utils::getCurrentDirectory() + "/output/" + Configuration::getOutputName();
+	if (Utils::doesFolderExist(outputFolder.c_str()))
 	{
-		LOG(LogLevel::Error) << "No Europa Universalis 4 path was specified in configuration.txt, or the path was invalid";
-		return (-1);
+		if (!Utils::deleteFolder(outputFolder))
+		{
+			exit(-1);
+		}
 	}
-	else
-	{
-		LOG(LogLevel::Debug) << "EU4 install path is " << EU4Loc;
-	}
+}
 
-	// Get EU4 Mod directory
-	map<string, string> possibleMods; // name, path
+
+void getEU4ModDirectory(map<string, string>& possibleMods);
+void getCK2ExportDirectory(map<string, string>& possibleMods);
+map<string, string> getPossibleMods()
+{
+	map<string, string> possibleMods;
+	getEU4ModDirectory(possibleMods);
+	getCK2ExportDirectory(possibleMods);
+
+	return possibleMods;
+}
+
+
+void getEU4ModDirectory(map<string, string>& possibleMods)
+{
 	LOG(LogLevel::Debug) << "Get EU4 Mod Directory";
 	string EU4DocumentsLoc = Configuration::getEU4DocumentsPath();	// the EU4 My Documents location as stated in the configuration file
 	if (Utils::DoesFileExist(EU4DocumentsLoc))
 	{
 		LOG(LogLevel::Error) << "No Europa Universalis 4 documents directory was specified in configuration.txt, or the path was invalid";
-		return (-1);
+		exit(-1);
 	}
 	else
 	{
@@ -164,8 +223,11 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 			}
 		}
 	}
+}
 
-	// Get CK2 Export directory
+
+void getCK2ExportDirectory(map<string, string>& possibleMods)
+{
 	LOG(LogLevel::Debug) << "Get CK2 Export Directory";
 	string CK2ExportLoc = Configuration::getCK2ExportPath();		// the CK2 converted mods location as stated in the configuration file
 	if (Utils::DoesFileExist(CK2ExportLoc))
@@ -212,227 +274,14 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 			}
 		}
 	}
-
-	//get output name
-	const int slash	= EU4SaveFileName.find_last_of("\\");				// the last slash in the save's filename
-	string outputName	= EU4SaveFileName.substr(slash + 1, EU4SaveFileName.length());
-	const int length	= outputName.find_first_of(".");						// the first period after the slash
-	outputName			= outputName.substr(0, length);						// the name to use to output the mod
-	int dash = outputName.find_first_of('-');									// the first (if any) dask in the output name
-	while (dash != string::npos)
-	{
-		outputName.replace(dash, 1, "_");
-		dash = outputName.find_first_of('-');
-	}
-	int space = outputName.find_first_of(' ');	// the first space (if any) in the output name
-	while (space != string::npos)
-	{
-		outputName.replace(space, 1, "_");
-		space = outputName.find_first_of(' ');
-	}
-	Configuration::setOutputName(outputName);
-	LOG(LogLevel::Info) << "Using output name " << outputName;
-
-	string outputFolder = Utils::getCurrentDirectory() + "/output/" + Configuration::getOutputName();
-	if (Utils::doesFolderExist(outputFolder.c_str()))
-	{
-		if (!Utils::deleteFolder(outputFolder))
-		{
-			exit(-1);
-		}
-	}
+}
 
 
-	LOG(LogLevel::Info) << "* Importing EU4 save *";
+void convert(V2World& destWorld, const EU4World& sourceWorld)
+{
+	CountryMapping::createMappings(sourceWorld, destWorld.getPotentialCountries());
 
-	//	Parse EU4 Save
-	LOG(LogLevel::Info) << "Parsing save";
-	Object* saveObj = parser_UTF8::doParseFile(EU4SaveFileName.c_str());
-	if (saveObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file " << EU4SaveFileName;
-		exit(-1);
-	}
-
-	// Get EU4 Mod
-	LOG(LogLevel::Debug) << "Get EU4 Mod";
-	vector<Object*> modObj = saveObj->getValue("mod_enabled");	// the used mods
-	if (modObj.size() > 0)
-	{
-		string modString = modObj[0]->getLeaf();	// the names of all the mods
-		while (modString != "")
-		{
-			string newMod;	// the corrected name of the mod
-			const int firstQuote = modString.find("\"");	// the location of the first quote, defining the start of a mod name
-			if (firstQuote == std::string::npos)
-			{
-				newMod.clear();
-				modString.clear();
-			}
-			else
-			{
-				const int secondQuote = modString.find("\"", firstQuote + 1);	// the location of the second quote, defining the end of a mod name
-				if (secondQuote == std::string::npos)
-				{
-					newMod.clear();
-					modString.clear();
-				}
-				else
-				{
-					newMod = modString.substr(firstQuote + 1, secondQuote - firstQuote - 1);
-					modString = modString.substr(secondQuote + 1, modString.size());
-				}
-			}
-
-			if (newMod != "")
-			{
-				map<string, string>::iterator modItr = possibleMods.find(newMod);
-				if (modItr != possibleMods.end())
-				{
-					string newModPath = modItr->second;	// the path for this mod
-					if (Utils::DoesFileExist(newModPath))
-					{
-						LOG(LogLevel::Error) << newMod << " could not be found in the specified mod directory - a valid mod directory must be specified. Tried " << newModPath;
-						exit(-1);
-					}
-					else
-					{
-						LOG(LogLevel::Debug) << "EU4 Mod is at " << newModPath;
-						Configuration::addEU4Mod(newModPath);
-					}
-				}
-				else
-				{
-					LOG(LogLevel::Error) << "No path could be found for " << newMod;
-					exit(-1);
-				}
-			}
-		}
-	}
-
-	// Read all localisations.
-	LOG(LogLevel::Info) << "Reading localisation";
-	EU4Localisation localisation;
-	localisation.ReadFromAllFilesInFolder(Configuration::getEU4Path() + "/localisation");
-	for (auto itr: Configuration::getEU4Mods())
-	{
-		LOG(LogLevel::Debug) << "Reading mod localisation";
-		localisation.ReadFromAllFilesInFolder(itr + "/localisation");
-	}
-
-	// Construct world from EU4 save.
-	LOG(LogLevel::Info) << "Building world";
-	EU4World sourceWorld(saveObj);
-	sourceWorld.checkAllEU4CulturesMapped();
-
-	// Read EU4 common\countries
-	LOG(LogLevel::Info) << "Reading EU4 common/countries";
-	{
-		ifstream commonCountries(Configuration::getEU4Path() + "/common/country_tags/00_countries.txt");	// the data in the countries file
-		sourceWorld.readCommonCountries(commonCountries, Configuration::getEU4Path());
-		for (auto itr: Configuration::getEU4Mods())
-		{
-			set<string> fileNames;
-			Utils::GetAllFilesInFolder(itr + "/common/country_tags/", fileNames);
-			for (set<string>::iterator fileItr = fileNames.begin(); fileItr != fileNames.end(); fileItr++)
-			{
-				ifstream convertedCommonCountries(itr + "/common/country_tags/" + *fileItr);	// a stream of the data in the converted countries file
-				sourceWorld.readCommonCountries(convertedCommonCountries, itr);
-			}
-		}
-	}
-
-	sourceWorld.setLocalisations(localisation);
-
-	// Resolve unit types
-	LOG(LogLevel::Info) << "Resolving unit types.";
-	RegimentTypeMap rtm;
-	fstream read;
-	read.open("unit_strength.txt");
-	if (read.is_open())
-	{
-		read.close();
-		read.clear();
-		LOG(LogLevel::Info) << "\tReading unit strengths from unit_strength.txt";
-		Object* unitsObj = parser_UTF8::doParseFile("unit_strength.txt");
-		if (unitsObj == NULL)
-		{
-			LOG(LogLevel::Error) << "Could not parse file unit_strength.txt";
-			exit(-1);
-		}
-		for (int i = 0; i < num_reg_categories; ++i)
-		{
-			AddCategoryToRegimentTypeMap(unitsObj, (RegimentCategory)i, RegimentCategoryNames[i], rtm);
-		}
-	}
-	else
-	{
-		LOG(LogLevel::Info) << "\tReading unit strengths from EU4 installation folder";
-
-		set<string> filenames;
-		Utils::GetAllFilesInFolder(EU4Loc + "/common/units/", filenames);
-		for (auto filename: filenames)
-		{
-			AddUnitFileToRegimentTypeMap((EU4Loc + "/common/units"), filename, rtm);
-		}
-	}
-	read.close();
-	read.clear();
-	sourceWorld.resolveRegimentTypes(rtm);
-
-
-	// Merge nations
-	sourceWorld.mergeNations();
-
-
-
-	// Parse V2 input file
-	LOG(LogLevel::Info) << "Parsing Vicky2 data";
-	V2World destWorld;
-	
-	// Construct factory factory
-	LOG(LogLevel::Info) << "Determining factory allocation rules.";
-	V2FactoryFactory factoryBuilder;
-
-	sourceWorld.checkAllProvincesMapped();
-	sourceWorld.setNumbersOfDestinationProvinces();
-
-	// Parse EU4 Religions
-	LOG(LogLevel::Info) << "Parsing EU4 religions";
-	Object* religionsObj = parser_UTF8::doParseFile((EU4Loc + "/common/religions/00_religion.txt").c_str());
-	if (religionsObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file " << EU4Loc << "/common/religions/00_religion.txt";
-		exit(-1);
-	}
-	if (religionsObj->getLeaves().size() < 1)
-	{
-		LOG(LogLevel::Error) << "Failed to parse 00_religion.txt";
-		return 1;
-	}
-	EU4Religion::parseReligions(religionsObj);
-	for (auto itr: Configuration::getEU4Mods())
-	{
-		set<string> filenames;
-		Utils::GetAllFilesInFolder(itr + "/common/religions/", filenames);
-		for (auto filename: filenames)
-		{
-			string modReligionFile(itr + "/common/religions/" + filename);	// the path and name of the religions file in this mod
-			if (Utils::DoesFileExist(modReligionFile))
-			{
-				religionsObj = parser_UTF8::doParseFile(modReligionFile.c_str());
-				if (religionsObj == NULL)
-				{
-					LOG(LogLevel::Error) << "Could not parse file " << modReligionFile;
-					exit(-1);
-				}
-				EU4Religion::parseReligions(religionsObj);
-			}
-		}
-	}
-
-	sourceWorld.checkAllEU4ReligionsMapped();
-
+	map<int, int> leaderIDMap; // <EU4, V2>
 
 	// Parse tech schools
 	LOG(LogLevel::Info) << "Parsing tech schools.";
@@ -444,38 +293,21 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	}
 	vector<string> blockedTechSchools;	// the list of disallowed tech schools
 	blockedTechSchools = initBlockedTechSchools(techSchoolObj);
-	Object* technologyObj = parser_8859_15::doParseFile( (V2Loc + "/common/technology.txt").c_str() );
+	Object* technologyObj = parser_8859_15::doParseFile( (Configuration::getV2Path() + "/common/technology.txt").c_str() );
 	if (technologyObj == NULL)
 	{
-		LOG(LogLevel::Error) << "Could not parse file " << V2Loc << "/common/technology.txt";
+		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getV2Path() << "/common/technology.txt";
 		exit(-1);
 	}
 	vector<techSchool> techSchools;
 	techSchools = initTechSchools(technologyObj, blockedTechSchools);
 
+	// Construct factory factory
+	LOG(LogLevel::Info) << "Determining factory allocation rules.";
+	V2FactoryFactory factoryBuilder;
 
-	// Get Leader traits
-	LOG(LogLevel::Info) << "Getting leader traits";
-	const V2LeaderTraits lt;	// the V2 leader traits
-	map<int, int> leaderIDMap; // <EU4, V2>
-
-	// Create country mappings
-	LOG(LogLevel::Info) << "Creating country mappings";
-	sourceWorld.removeEmptyNations();
-	if (Configuration::getRemovetype() == "dead")
-	{
-		sourceWorld.removeDeadLandlessNations();
-	}
-	else if (Configuration::getRemovetype() == "all")
-	{
-		sourceWorld.removeLandlessNations();
-	}
-	CountryMapping::createMappings(sourceWorld, destWorld.getPotentialCountries());
-
-
-	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, techSchools, leaderIDMap, lt);
+	destWorld.convertCountries(sourceWorld, techSchools, leaderIDMap);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld);
 	LOG(LogLevel::Info) << "Converting diplomacy";
@@ -496,65 +328,48 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	destWorld.addUnions();
 	LOG(LogLevel::Info) << "Converting armies and navies";
 	destWorld.convertArmies(sourceWorld, leaderIDMap);
-
-	// Output results
-	LOG(LogLevel::Info) << "Outputting mod";
-	Utils::copyFolder("blankMod/output", "output/output");
-	FILE* modFile;	// the .mod file for this mod
-	if (fopen_s(&modFile, ("Output/" + Configuration::getOutputName() + ".mod").c_str(), "w") != 0)
-	{
-		LOG(LogLevel::Error) << "Could not create .mod file";
-		exit(-1);
-	}
-	fprintf(modFile, "name = \"Converted - %s\"\n", Configuration::getOutputName().c_str());
-	fprintf(modFile, "path = \"mod/%s\"\n", Configuration::getOutputName().c_str());
-	fprintf(modFile, "user_dir = \"%s\"\n", Configuration::getOutputName().c_str());
-	fprintf(modFile, "replace = \"history/provinces\"\n");
-	fprintf(modFile, "replace = \"history/countries\"\n");
-	fprintf(modFile, "replace = \"history/diplomacy\"\n");
-	fprintf(modFile, "replace = \"history/units\"\n");
-	fprintf(modFile, "replace = \"history/pops/1836.1.1\"\n");
-	fprintf(modFile, "replace = \"common/religion.txt\"\n");
-	fprintf(modFile, "replace = \"common/cultures.txt\"\n");
-	fprintf(modFile, "replace = \"common/countries.txt\"\n");
-	fprintf(modFile, "replace = \"common/countries/\"\n");
-	fprintf(modFile, "replace = \"gfx/interface/icon_religion.dds\"\n");
-	fprintf(modFile, "replace = \"localisation/0_Names.csv\"\n");
-	fprintf(modFile, "replace = \"localisation/0_Cultures.csv\"\n");
-	fprintf(modFile, "replace = \"localisation/0_Religions.csv\"\n");
-	fprintf(modFile, "replace = \"history/wars\"\n");
-	fclose(modFile);
-	Utils::renameFolder("output/output", "output/" + Configuration::getOutputName());
-	destWorld.output();
-
-	LOG(LogLevel::Info) << "* Conversion complete *";
-	return 0;
 }
 
 
-int main(const int argc, const char * argv[])
+void createModFile();
+void output(const V2World& destWorld)
 {
-	try
+	LOG(LogLevel::Info) << "Outputting mod";
+	Utils::copyFolder("blankMod/output", "output/output");
+
+	createModFile();
+
+	Utils::renameFolder("output/output", "output/" + Configuration::getOutputName());
+	destWorld.output();
+}
+
+
+void createModFile()
+{
+	ofstream modFile("Output/" + Configuration::getOutputName() + ".mod");
+	if (!modFile.is_open())
 	{
-		LOG(LogLevel::Info) << "Converter version 1.0A";
-		LOG(LogLevel::Info) << "Built " << __TIMESTAMP__;
-		const char* const defaultEU4SaveFileName = "input.eu4";	// the default name for a save to convert
-		string EU4SaveFileName;												// the actual name for the save to convert
-		if (argc >= 2)
-		{
-			EU4SaveFileName = argv[1];
-			LOG(LogLevel::Info) << "Using input file " << EU4SaveFileName;
-		}
-		else
-		{
-			EU4SaveFileName = defaultEU4SaveFileName;
-			LOG(LogLevel::Info) << "No input file given, defaulting to " << defaultEU4SaveFileName;
-		}
-		return ConvertEU4ToV2(EU4SaveFileName);
+		LOG(LogLevel::Error) << "Could not create " << Configuration::getOutputName() << ".mod";
+		exit(-1);
 	}
-	catch (const std::exception& e)	// catch any errors
-	{
-		LOG(LogLevel::Error) << e.what();
-		return -1;
-	}
+
+	modFile << "name = \"Converted - " << Configuration::getOutputName() << "\"\n";
+	modFile << "path = \"mod/" << Configuration::getOutputName() << "\"\n";
+	modFile << "user_dir = \"" << Configuration::getOutputName() << "\"\n";
+	modFile << "replace = \"history/provinces\"\n";
+	modFile << "replace = \"history/countries\"\n";
+	modFile << "replace = \"history/diplomacy\"\n";
+	modFile << "replace = \"history/units\"\n";
+	modFile << "replace = \"history/pops/1836.1.1\"\n";
+	modFile << "replace = \"common/religion.txt\"\n";
+	modFile << "replace = \"common/cultures.txt\"\n";
+	modFile << "replace = \"common/countries.txt\"\n";
+	modFile << "replace = \"common/countries/\"\n";
+	modFile << "replace = \"gfx/interface/icon_religion.dds\"\n";
+	modFile << "replace = \"localisation/0_Names.csv\"\n";
+	modFile << "replace = \"localisation/0_Cultures.csv\"\n";
+	modFile << "replace = \"localisation/0_Religions.csv\"\n";
+	modFile << "replace = \"history/wars\"\n";
+
+	modFile.close();
 }

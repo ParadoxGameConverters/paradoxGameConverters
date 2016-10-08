@@ -22,6 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Configuration.h"
+#include "OSCompatibilityLayer.h"
 #include "ParadoxParserUTF8.h"
 #include "Object.h"
 #include "Log.h"
@@ -50,11 +51,43 @@ Configuration::Configuration()
 		exit (-1);
 	}
 
-	EU4Path				= obj[0]->getLeaf("EU4directory");
+	EU4Path = obj[0]->getLeaf("EU4directory");
+	if (Utils::DoesFileExist(EU4Path))
+	{
+		LOG(LogLevel::Error) << "No Europa Universalis 4 path was specified in configuration.txt, or the path was invalid";
+		exit(-1);
+	}
+	else
+	{
+		LOG(LogLevel::Debug) << "EU4 install path is " << EU4Path;
+	}
+
+
 	EU4DocumentsPath	= obj[0]->getLeaf("EU4DocumentsDirectory");
 	CK2ExportPath		= obj[0]->getLeaf("CK2ExportDirectory");
-	V2Path				= obj[0]->getLeaf("V2directory");
-	V2DocumentsPath	= obj[0]->getLeaf("V2Documentsdirectory");
+
+	V2Path = obj[0]->getLeaf("V2directory");
+	if (Utils::DoesFileExist(V2Path))
+	{
+		LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
+		exit(-1);
+	}
+	else
+	{
+		LOG(LogLevel::Debug) << "Victoria 2 install path is " << V2Path;
+	}
+
+	V2DocumentsPath = obj[0]->getLeaf("V2Documentsdirectory");
+	if (Utils::DoesFileExist(V2DocumentsPath))
+	{
+		LOG(LogLevel::Error) << "No Victoria 2 documents directory was specified in configuration.txt, or the path was invalid";
+		exit(-1);
+	}
+	else
+	{
+		LOG(LogLevel::Debug) << "Victoria 2 documents directory is " << V2DocumentsPath;
+	}
+
 	V2Gametype			= obj[0]->getLeaf("V2gametype");
 	resetProvinces		= "no";//obj[0]->getLeaf("resetProvinces");
 	MaxLiteracy			= stof(obj[0]->getLeaf("max_literacy"));

@@ -76,6 +76,8 @@ typedef struct fileWithCreateTime
 
 V2World::V2World()
 {
+	LOG(LogLevel::Info) << "Parsing Vicky2 data";
+
 	LOG(LogLevel::Info) << "Importing provinces";
 
 	set<string> provinceFilenames;
@@ -520,8 +522,10 @@ bool scoresSorter(pair<V2Country*, int> first, pair<V2Country*, int> second)
 }
 
 
-void V2World::convertCountries(const EU4World& sourceWorld, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt)
+void V2World::convertCountries(const EU4World& sourceWorld, const vector<techSchool>& techSchools, map<int, int>& leaderIDMap)
 {
+	const V2LeaderTraits lt;	// the V2 leader traits
+
 	isRandomWorld = true;
 	map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
 	for (map<string, EU4Country*>::iterator i = sourceCountries.begin(); i != sourceCountries.end(); i++)
@@ -550,7 +554,7 @@ void V2World::convertCountries(const EU4World& sourceWorld, const vector<techSch
 				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
 				destCountry = new V2Country(V2Tag, countryFileName, std::vector<V2Party*>(), this, true, false);
 			}
-			destCountry->initFromEU4Country(sourceCountry, techSchools, leaderMap, lt);
+			destCountry->initFromEU4Country(sourceCountry, techSchools, leaderIDMap, lt);
 			countries.insert(make_pair(V2Tag, destCountry));
 		}
 		else
@@ -1162,7 +1166,7 @@ void V2World::convertUncivReforms()
 }
 
 
-void V2World::setupPops(EU4World& sourceWorld)
+void V2World::setupPops(const EU4World& sourceWorld)
 {
 
 	long		my_totalWorldPopulation	= static_cast<long>(0.55 * totalWorldPopulation);

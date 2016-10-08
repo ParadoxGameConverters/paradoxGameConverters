@@ -61,7 +61,7 @@ class V2Country
 		void								outputToCommonCountriesFile(FILE*) const;
 		void								outputLocalisation(FILE*) const;
 		void								outputOOB() const;
-		void								initFromEU4Country(EU4Country* _srcCountry, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt);
+		void								initFromEU4Country(EU4Country* _srcCountry, vector<V2TechSchool> techSchools, const map<int, int>& leaderMap, const V2LeaderTraits& lt);
 		void								initFromHistory();
 		void								addProvince(V2Province* _province);
 		void								addState(V2State* newState);

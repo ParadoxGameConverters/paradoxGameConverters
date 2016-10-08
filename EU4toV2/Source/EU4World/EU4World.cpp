@@ -25,6 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <algorithm>
 #include <fstream>
 #include "Log.h"
+#include "OSCompatibilityLayer.h"
 #include "../Configuration.h"
 #include "../Mappers/CultureMapper.h"
 #include "../Mappers/EU4CultureGroupMapper.h"
@@ -38,11 +39,81 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "EU4Version.h"
 #include "EU4Localisation.h"
 #include "EU4Religion.h"
+#include <set>
+using namespace std;
 
 
 
-EU4World::EU4World(Object* obj)
+EU4World::EU4World(const string& EU4SaveFileName, map<string, string> possibleMods)
 {
+	LOG(LogLevel::Info) << "* Importing EU4 save *";
+
+	//	Parse EU4 Save
+	LOG(LogLevel::Info) << "Parsing save";
+	Object* obj = parser_UTF8::doParseFile(EU4SaveFileName.c_str());
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file " << EU4SaveFileName;
+		exit(-1);
+	}
+
+	LOG(LogLevel::Debug) << "Get EU4 Mod";
+	vector<Object*> modObj = obj->getValue("mod_enabled");	// the used mods
+	if (modObj.size() > 0)
+	{
+		string modString = modObj[0]->getLeaf();	// the names of all the mods
+		while (modString != "")
+		{
+			string newMod;	// the corrected name of the mod
+			const int firstQuote = modString.find("\"");	// the location of the first quote, defining the start of a mod name
+			if (firstQuote == std::string::npos)
+			{
+				newMod.clear();
+				modString.clear();
+			}
+			else
+			{
+				const int secondQuote = modString.find("\"", firstQuote + 1);	// the location of the second quote, defining the end of a mod name
+				if (secondQuote == std::string::npos)
+				{
+					newMod.clear();
+					modString.clear();
+				}
+				else
+				{
+					newMod = modString.substr(firstQuote + 1, secondQuote - firstQuote - 1);
+					modString = modString.substr(secondQuote + 1, modString.size());
+				}
+			}
+
+			if (newMod != "")
+			{
+				map<string, string>::iterator modItr = possibleMods.find(newMod);
+				if (modItr != possibleMods.end())
+				{
+					string newModPath = modItr->second;	// the path for this mod
+					if (Utils::DoesFileExist(newModPath))
+					{
+						LOG(LogLevel::Error) << newMod << " could not be found in the specified mod directory - a valid mod directory must be specified. Tried " << newModPath;
+						exit(-1);
+					}
+					else
+					{
+						LOG(LogLevel::Debug) << "EU4 Mod is at " << newModPath;
+						Configuration::addEU4Mod(newModPath);
+					}
+				}
+				else
+				{
+					LOG(LogLevel::Error) << "No path could be found for " << newMod;
+					exit(-1);
+				}
+			}
+		}
+	}
+
+	LOG(LogLevel::Info) << "Building world";
+
 	vector<Object*> versionObj = obj->getValue("savegame_version");	// the version of the save
 	(versionObj.size() > 0) ? version = new EU4Version(versionObj[0]) : version = new EU4Version();
 	Configuration::setEU4Version(*version);
@@ -313,6 +384,27 @@ EU4World::EU4World(Object* obj)
 	EU4_Production.close();
 	EU4_Tax.close();
 	EU4_World.close();*/
+
+	checkAllEU4CulturesMapped();
+	readCommonCountries();
+	setLocalisations();
+	resolveRegimentTypes();
+	mergeNations();
+	checkAllProvincesMapped();
+	setNumbersOfDestinationProvinces();
+
+	EU4Religion::createSelf();
+	checkAllEU4ReligionsMapped();
+
+	removeEmptyNations();
+	if (Configuration::getRemovetype() == "dead")
+	{
+		removeDeadLandlessNations();
+	}
+	else if (Configuration::getRemovetype() == "all")
+	{
+		removeLandlessNations();
+	}
 }
 
 
@@ -326,7 +418,25 @@ void EU4World::setNumbersOfDestinationProvinces()
 }
 
 
-void EU4World::readCommonCountries(istream& in, const std::string& rootPath)
+void EU4World::readCommonCountries()
+{
+	LOG(LogLevel::Info) << "Reading EU4 common/countries";
+	ifstream commonCountries(Configuration::getEU4Path() + "/common/country_tags/00_countries.txt");	// the data in the countries file
+	readCommonCountriesFile(commonCountries, Configuration::getEU4Path());
+	for (auto itr: Configuration::getEU4Mods())
+	{
+		set<string> fileNames;
+		Utils::GetAllFilesInFolder(itr + "/common/country_tags/", fileNames);
+		for (set<string>::iterator fileItr = fileNames.begin(); fileItr != fileNames.end(); fileItr++)
+		{
+			ifstream convertedCommonCountries(itr + "/common/country_tags/" + *fileItr);	// a stream of the data in the converted countries file
+			readCommonCountriesFile(convertedCommonCountries, itr);
+		}
+	}
+}
+
+
+void EU4World::readCommonCountriesFile(istream& in, const std::string& rootPath)
 {
 	// Add any info from common\countries
 	const int maxLineLength = 10000;	// the maximum line length
@@ -390,11 +500,45 @@ EU4Province* EU4World::getProvince(const int provNum) const
 }
 
 
-void EU4World::resolveRegimentTypes(const RegimentTypeMap& rtMap)
+void EU4World::resolveRegimentTypes()
 {
+	LOG(LogLevel::Info) << "Resolving unit types.";
+	RegimentTypeMap rtm;
+	fstream read;
+	read.open("unit_strength.txt");
+	if (read.is_open())
+	{
+		read.close();
+		read.clear();
+		LOG(LogLevel::Info) << "\tReading unit strengths from unit_strength.txt";
+		Object* unitsObj = parser_UTF8::doParseFile("unit_strength.txt");
+		if (unitsObj == NULL)
+		{
+			LOG(LogLevel::Error) << "Could not parse file unit_strength.txt";
+			exit(-1);
+		}
+		for (int i = 0; i < num_reg_categories; ++i)
+		{
+			AddCategoryToRegimentTypeMap(unitsObj, (RegimentCategory)i, RegimentCategoryNames[i], rtm);
+		}
+	}
+	else
+	{
+		LOG(LogLevel::Info) << "\tReading unit strengths from EU4 installation folder";
+
+		set<string> filenames;
+		Utils::GetAllFilesInFolder(Configuration::getEU4Path() + "/common/units/", filenames);
+		for (auto filename: filenames)
+		{
+			AddUnitFileToRegimentTypeMap((Configuration::getEU4Path() + "/common/units"), filename, rtm);
+		}
+	}
+	read.close();
+	read.clear();
+
 	for (map<string, EU4Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
-		itr->second->resolveRegimentTypes(rtMap);
+		itr->second->resolveRegimentTypes(rtm);
 	}
 }
 
@@ -441,8 +585,17 @@ void EU4World::checkAllEU4ReligionsMapped() const
 }
 
 
-void EU4World::setLocalisations(EU4Localisation& localisation)
+void EU4World::setLocalisations()
 {
+	LOG(LogLevel::Info) << "Reading localisation";
+	EU4Localisation localisation;
+	localisation.ReadFromAllFilesInFolder(Configuration::getEU4Path() + "/localisation");
+	for (auto itr: Configuration::getEU4Mods())
+	{
+		LOG(LogLevel::Debug) << "Reading mod localisation";
+		localisation.ReadFromAllFilesInFolder(itr + "/localisation");
+	}
+
 	for (map<string, EU4Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
 	{
 		const auto& nameLocalisations = localisation.GetTextInEachLanguage(countryItr->second->getTag());	// the names in all languages

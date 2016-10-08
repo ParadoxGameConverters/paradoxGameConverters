@@ -40,18 +40,19 @@ struct EU4Agreement;
 
 class EU4World {
 	public:
-		EU4World(Object* obj);
+		EU4World(const string& EU4SaveFileName, map<string, string> possibleMods);
 		void setNumbersOfDestinationProvinces();
 
-		void readCommonCountries(istream&, const std::string& rootPath);
+		void readCommonCountries();
+		void readCommonCountriesFile(istream&, const std::string& rootPath);
 
 		EU4Country*						getCountry(string tag) const;
 		EU4Province*					getProvince(int provNum) const;
-		void								resolveRegimentTypes(const RegimentTypeMap& map);
+		void								resolveRegimentTypes();
 		void								checkAllProvincesMapped() const;
 		void								checkAllEU4CulturesMapped() const;
 		void								checkAllEU4ReligionsMapped() const;
-		void								setLocalisations(EU4Localisation& localisation);
+		void								setLocalisations();
 
 		void mergeNations();
 		void removeEmptyNations();
