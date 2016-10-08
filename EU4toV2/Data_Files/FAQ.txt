@@ -24,3 +24,6 @@ A: You'll need to save it again in EU4. When you do, the save dialog has an opti
 
 Q: The converter says my save is ironman. What do I do?
 A: Use the technique listed above.
+
+Q: How can I customize my game after converting?
+A: Use the guide in after_converting.txt in the converter subdirectory.

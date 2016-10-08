@@ -22,6 +22,7 @@ copy "Data_Files\port_blacklist.txt" "release\port_blacklist.txt"
 copy "Data_Files\port_whitelist.txt" "release\port_whitelist.txt"
 copy "Data_Files\minorityPops.txt" "release\minorityPops.txt"
 copy "Data_Files\FAQ.txt" "release\FAQ.txt"
+copy "Data_Files\after_converting.txt" "release\after_converting.txt"
 
 rem Create Blank Mod
 del "Release\blankMod" /Q
