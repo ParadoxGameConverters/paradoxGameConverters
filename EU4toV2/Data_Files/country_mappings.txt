@@ -668,6 +668,9 @@ link = { eu4 = ZAF V2 = ZAF }
 link = { eu4 = ZUN V2 = ZUN } 
 link = { eu4 = ZZZ V2 = ZZZ } 
 
+# Secret Denmark
+link = { eu4 = SDM v2 = SDM }
+
 # Third Odyssey
 link = { eu4 = AEG V2 = AEG }
 link = { eu4 = CTM V2 = CTM }
