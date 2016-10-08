@@ -1,0 +1,164 @@
+#Panama Region (128000)
+#Ruled by Colombia 1836
+#Balboa (12000/3000 POPS)
+1723 = {
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 20
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 75
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 150
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 35
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 2790
+	}
+}
+
+#Panama City (52000/13000 POPS)
+2204 = {
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 225
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 175
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 650
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 150
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 11900
+	}
+}
+#David (28000/7000 POPS)
+2205 = {
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 150
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 70
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 350
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 85
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 6295
+	}
+}
+#Penonome (24000/6000 POPS)
+2206 = {
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 150
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 70
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 300
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 60
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 5420
+	}
+
+}
+#Yaviza (12000/3000 POPS)
+2208 = {
+	aristocrats = {
+		culture = chibchan
+		religion = inti
+		size = 55
+	}
+
+	clergymen = {
+		culture = chibchan
+		religion = inti
+		size = 75
+	}
+
+	artisans = {
+		culture = chibchan
+		religion = inti
+		size = 150
+	}
+
+	soldiers = {
+		culture = chibchan
+		religion = inti
+		size = 30
+	}
+
+	farmers = {
+		culture = chibchan
+		religion = inti
+		size = 2690
+	}
+}

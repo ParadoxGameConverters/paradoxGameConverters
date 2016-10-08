@@ -1,0 +1,11 @@
+#Bermuda Region - 9000  
+#Ruled by Britain 1836
+#Bermuda (9000/2250 POPS)
+203 = {
+	farmers = {
+		culture = native_american_minor
+		religion = totemism
+		size = 2260
+	}
+
+}
