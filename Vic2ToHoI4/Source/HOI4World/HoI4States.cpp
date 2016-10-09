@@ -109,6 +109,7 @@ void HoI4States::recordAllLandProvinces()
 
 void HoI4States::convertStates()
 {
+	LOG(LogLevel::Info) << "Converting states";
 	map<int, ownersAndCores> provinceOwnersandCores = determineProvinceOwners();
 	createStates(provinceOwnersandCores);
 }

@@ -44,6 +44,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+HoI4World::HoI4World(const V2World* _sourceWorld)
+{
+	LOG(LogLevel::Info) << "Parsing HoI4 data";
+	sourceWorld = _sourceWorld;
+}
+
+
 void HoI4World::importSuppplyZones(const map<int, vector<int>>& defaultStateToProvinceMap, map<int, int>& provinceToSupplyZoneMap)
 {
 	LOG(LogLevel::Info) << "Importing supply zones";
@@ -143,6 +150,7 @@ void HoI4World::output() const
 	outputHistory();
 	outputMap();
 	outputSupply();
+	outputRelations();
 }
 
 
@@ -349,8 +357,74 @@ void HoI4World::getProvinceLocalizations(const string& file)
 }
 
 
-void HoI4World::convertCountries(map<int, int>& leaderMap, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+void HoI4World::convertCountries(const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap)
 {
+	LOG(LogLevel::Info) << "Converting countries";
+
+	// Parse government jobs
+	/*LOG(LogLevel::Info) << "Parsing government jobs";
+	parser_UTF8::initParser();
+	obj = parser_UTF8::doParseFile("governmentJobs.txt");
+	if (obj == NULL)
+	{
+	LOG(LogLevel::Error) << "Could not parse file governmentJobs.txt";
+	exit(-1);
+	}*/
+	governmentJobsMap governmentJobs;
+	//initGovernmentJobTypes(obj->getLeaves()[0], governmentJobs);
+
+	// parse culture mapping
+	LOG(LogLevel::Info) << "Parsing culture mappings";
+	Object* obj = parser_UTF8::doParseFile("culture_map.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file culture_map.txt";
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse culture_map.txt";
+		exit(-1);
+	}
+	cultureMapping cultureMap;
+	cultureMap = initCultureMap(obj->getLeaves()[0]);
+
+	// parse personality mapping
+	LOG(LogLevel::Info) << "Parsing personality mappings";
+	/*obj = parser_UTF8::doParseFile("personality_map.txt");
+	if (obj == NULL)
+	{
+	LOG(LogLevel::Error) << "Could not parse file personality_map.txt";
+	exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+	LOG(LogLevel::Error) << "Failed to parse personality_map.txt";
+	return 1;
+	}*/
+	personalityMap landPersonalityMap;
+	personalityMap seaPersonalityMap;
+	//initLeaderPersonalityMap(obj->getLeaves()[0], landPersonalityMap, seaPersonalityMap);
+
+	// parse background mapping
+	LOG(LogLevel::Info) << "Parsing background mappings";
+	/*obj = parser_UTF8::doParseFile("background_map.txt");
+	if (obj == NULL)
+	{
+	LOG(LogLevel::Error) << "Could not parse file background_map.txt";
+	exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+	LOG(LogLevel::Error) << "Failed to parse background_map.txt";
+	return 1;
+	}*/
+	backgroundMap landBackgroundMap;
+	backgroundMap seaBackgroundMap;
+	//initLeaderBackgroundMap(obj->getLeaves()[0], landBackgroundMap, seaBackgroundMap);
+
+	map<int, int> leaderMap;
+
 	for (auto sourceItr : sourceWorld->getCountries())
 	{
 		// don't convert rebels
@@ -463,6 +537,8 @@ void HoI4World::convertNavalBases()
 
 void HoI4World::convertIndustry()
 {
+	LOG(LogLevel::Info) << "Converting industry";
+
 	addStatesToCountries();
 
 	map<string, double> factoryWorkerRatios = calculateFactoryWorkerRatios();
@@ -974,6 +1050,8 @@ void HoI4World::convertStrategicRegions()
 
 void HoI4World::convertTechs()
 {
+	LOG(LogLevel::Info) << "Converting techs";
+
 	map<string, vector<pair<string, int> > > techTechMap;
 	map<string, vector<pair<string, int> > > invTechMap;
 
@@ -1370,6 +1448,8 @@ void HoI4World::setAlignments()
 
 void HoI4World::configureFactions()
 {
+	LOG(LogLevel::Info) << "Setting up factions";
+
 	factionSatellites(); // push satellites into the same faction as their parents
 	setAlignments();
 }
@@ -1377,6 +1457,8 @@ void HoI4World::configureFactions()
 
 void HoI4World::generateLeaders(const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap)
 {
+	LOG(LogLevel::Info) << "Generating Leaders";
+
 	for (auto country : countries)
 	{
 		country.second->generateLeaders(leaderTraits, namesMap, portraitMap);
@@ -1386,6 +1468,8 @@ void HoI4World::generateLeaders(const leaderTraitsMap& leaderTraits, const names
 
 void HoI4World::convertArmies()
 {
+	LOG(LogLevel::Info) << "Converting armies and navies";
+
 	for (auto country : countries)
 	{
 		country.second->convertArmyDivisions();
@@ -1413,6 +1497,8 @@ void HoI4World::convertAirforces()
 
 void HoI4World::convertCapitalVPs()
 {
+	LOG(LogLevel::Info) << "Adding bonuses to capitals";
+
 	addBasicCapitalVPs();
 	addGreatPowerVPs();
 	addStrengthVPs();
@@ -1478,6 +1564,8 @@ int HoI4World::calculateStrengthVPs(HoI4Country* country, double greatestStrengt
 
 void HoI4World::convertDiplomacy()
 {
+	LOG(LogLevel::Info) << "Converting diplomacy";
+
 	for (auto agreement : sourceWorld->getDiplomacy()->getAgreements())
 	{
 		string HoI4Tag1 = CountryMapper::getHoI4Tag(agreement->country1);
@@ -4840,7 +4928,7 @@ string HoI4World::genericFocusTreeCreator(HoI4Country* CreatingCountry)
 }
 
 
-void HoI4World::outputRelations()
+void HoI4World::outputRelations() const
 {
 	string opinion_modifiers;
 	for (auto country : countries)

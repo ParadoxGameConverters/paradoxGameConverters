@@ -33,7 +33,6 @@ using namespace std;
 
 HoI4Building::HoI4Building(int _stateID, double _xCoordinate, double _zCoordinate)
 {
-	LOG(LogLevel::Info) << "Creating buildings";
 	stateID = _stateID;
 	xCoordinate = _xCoordinate;
 	yCoordinate = 10.0;
@@ -71,6 +70,7 @@ ostream& HoI4NavalBase::print(ostream& out) const
 
 HoI4Buildings::HoI4Buildings(const map<int, int>& provinceToStateIDMap)
 {
+	LOG(LogLevel::Info) << "Creating buildings";
 	placeNavalBases(provinceToStateIDMap);
 }
 

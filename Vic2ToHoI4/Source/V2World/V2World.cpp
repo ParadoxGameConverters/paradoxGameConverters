@@ -24,6 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2World.h"
 #include <fstream>
 #include "ParadoxParser8859_15.h"
+#include "ParadoxParserUTF8.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "V2Country.h"
@@ -36,8 +37,20 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2World::V2World(Object* obj)
+V2World::V2World(const string& filename)
 {
+	LOG(LogLevel::Info) << "* Importing V2 save *";
+
+	LOG(LogLevel::Info) << "Parsing save";
+	Object* obj = parser_8859_15::doParseFile(filename);
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file " << filename << ". File is likely missing.";
+		exit(-1);
+	}
+
+	LOG(LogLevel::Info) << "Building world";
+
 	provinces.clear();
 	countries.clear();
 	parties.clear();
@@ -73,6 +86,9 @@ V2World::V2World(Object* obj)
 	setLocalisations();
 
 	CountryMapper::createMappings(this);
+
+	overallMergeNations();
+	checkAllProvincesMapped();
 }
 
 
@@ -356,6 +372,53 @@ void V2World::inputPartyInformation(const vector<Object*>& leaves)
 		if (key == "party")
 		{
 			parties.push_back(new V2Party(leaf));
+		}
+	}
+}
+
+
+void V2World::overallMergeNations()
+{
+	LOG(LogLevel::Info) << "Merging nations";
+	Object* mergeObj = parser_UTF8::doParseFile("merge_nations.txt");
+	if (mergeObj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file merge_nations.txt";
+		exit(-1);
+	}
+
+	vector<Object*> rules = mergeObj->getValue("merge_nations");	// all merging rules
+	if (rules.size() < 0)
+	{
+		LOG(LogLevel::Debug) << "No nations have merging requested (skipping)";
+		return;
+	}
+
+	rules = rules[0]->getLeaves();	// the rules themselves
+	for (auto rule: rules)
+	{
+		vector<Object*> thisMerge = rule->getLeaves();	// the current merge rule
+		string masterTag;										// the nation to merge into
+		vector<string> slaveTags;								// the nations that will be merged into the master
+		bool enabled = false;									// whether or not this rule is enabled
+		for (auto item: thisMerge)
+		{
+			if (item->getKey() == "merge" && item->getLeaf() == "yes")
+			{
+				enabled = true;
+			}
+			else if (item->getKey() == "master")
+			{
+				masterTag = item->getLeaf();
+			}
+			else if (item->getKey() == "slave")
+			{
+				slaveTags.push_back(item->getLeaf());
+			}
+		}
+		if (enabled)
+		{
+			mergeNations(masterTag, slaveTags);
 		}
 	}
 }

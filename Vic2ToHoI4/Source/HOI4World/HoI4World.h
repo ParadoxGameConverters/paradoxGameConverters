@@ -55,7 +55,7 @@ private:
 class HoI4World
 {
 	public:
-		HoI4World(const V2World* sourceWorld) { this->sourceWorld = sourceWorld; }
+		HoI4World(const V2World* sourceWorld);
 
 		void	output() const;
 
@@ -64,7 +64,7 @@ class HoI4World
 		void	importSuppplyZones(const map<int, vector<int>>& defaultStateToProvinceMap, map<int, int>& provinceToSupplyZoneMap);
 		void	importStrategicRegions();
 		void	checkCoastalProvinces();
-		void	convertCountries(map<int, int>& leaderMap, const governmentJobsMap& governmentJobs, const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+		void	convertCountries(const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
 		void	convertNavalBases();
 		void	convertIndustry();
 		void	convertResources();
@@ -116,7 +116,7 @@ class HoI4World
 		string createMonarchyEmpireNF(HoI4Country * Home, HoI4Country * Annexed1, HoI4Country * Annexed2, HoI4Country * Annexed3, HoI4Country * Annexed4, int ProtectorateNumber, int AnnexNumber, int x);
 		void fillProvinceNeighbors();
 		string genericFocusTreeCreator(HoI4Country * CreatingCountry);
-		void outputRelations();
+		void outputRelations() const;
 		void	checkAllProvincesMapped();
 
 		map<string, HoI4Country*>	getCountries()	const { return countries; }

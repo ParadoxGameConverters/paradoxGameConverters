@@ -52,7 +52,6 @@ typedef map<int, string> continentMapping;	// <province, continent>
 void initContinentMap(Object* obj, continentMapping& continentMap);
 
 
-void mergeNations(V2World&, Object* mergeObj);
 void removeOlderLandlessNations(V2World&, int excess);
 void removeLandlessNations(V2World&);
 

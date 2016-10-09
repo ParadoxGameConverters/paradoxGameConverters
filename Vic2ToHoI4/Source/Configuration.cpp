@@ -22,6 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Configuration.h"
+#include "OSCompatibilityLayer.h"
 #include "ParadoxParserUTF8.h"
 #include "Object.h"
 #include "Log.h"
@@ -50,9 +51,40 @@ Configuration::Configuration()
 		exit (-1);
 	}
 
-	V2Path				= obj[0]->getLeaf("V2directory");
-	HoI4Path				= obj[0]->getLeaf("HoI4directory");
+	V2Path = obj[0]->getLeaf("V2directory");
+	if (V2Path.empty() || !Utils::doesFolderExist(V2Path))
+	{
+		LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
+		exit(-1);
+	}
+	else
+	{
+		LOG(LogLevel::Debug) << "Victoria 2 install path is " << V2Path;
+	}
+
+	HoI4Path = obj[0]->getLeaf("HoI4directory");
+	if (HoI4Path.empty() || !Utils::doesFolderExist(HoI4Path))
+	{
+		LOG(LogLevel::Error) << "No HoI4 path was specified in configuration.txt, or the path was invalid";
+		exit(-1);
+	}
+	else
+	{
+		LOG(LogLevel::Debug) << "HoI4 path install path is " << HoI4Path;
+	}
+
 	HoI4DocumentsPath = obj[0]->getLeaf("HoI4Documentsdirectory");
+	if (HoI4DocumentsPath.empty() || !Utils::doesFolderExist(HoI4DocumentsPath))
+	{
+		LOG(LogLevel::Error) << "No HoI4 documents directory was specified in configuration.txt, or the path was invalid";
+		exit(-1);
+	}
+	else
+	{
+		LOG(LogLevel::Debug) << "HoI4 documents directory is " << HoI4DocumentsPath;
+	}
+
+
 	outputName			= "";
 
 	vector<Object*> modsObj = obj[0]->getValue("Vic2Mods");
