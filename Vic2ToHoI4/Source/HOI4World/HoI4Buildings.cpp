@@ -33,6 +33,7 @@ using namespace std;
 
 HoI4Building::HoI4Building(int _stateID, double _xCoordinate, double _zCoordinate)
 {
+	LOG(LogLevel::Info) << "Creating buildings";
 	stateID = _stateID;
 	xCoordinate = _xCoordinate;
 	yCoordinate = 10.0;
