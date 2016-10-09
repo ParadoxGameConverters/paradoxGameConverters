@@ -18,6 +18,7 @@
     <ProjectGuid>{84ABCE0D-17FE-44A5-8684-5A8AA04E80B9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>EU4ToV2</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -31,7 +32,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <PlatformToolset>v140_xp</PlatformToolset>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-NoCopies|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -154,13 +155,16 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\common_items\CardinalToOrdinal.cpp" />
+    <ClCompile Include="..\common_items\CommonUtils.cpp" />
     <ClCompile Include="..\common_items\Date.cpp" />
     <ClCompile Include="..\common_items\Log.cpp" />
     <ClCompile Include="..\common_items\Object.cpp" />
-    <ClCompile Include="..\common_items\ParadoxParser.cpp" />
+    <ClCompile Include="..\common_items\ParadoxParser8859_15.cpp" />
+    <ClCompile Include="..\common_items\ParadoxParserUTF8.cpp" />
+    <ClCompile Include="..\common_items\WinUtils.cpp" />
     <ClCompile Include="Source\Color.cpp" />
     <ClCompile Include="Source\Configuration.cpp" />
-    <ClCompile Include="Source\CountryMapping.cpp" />
     <ClCompile Include="Source\EU4toV2Converter.cpp" />
     <ClCompile Include="Source\EU4World\EU4Army.cpp" />
     <ClCompile Include="Source\EU4World\EU4Country.cpp" />
@@ -173,9 +177,24 @@
     <ClCompile Include="Source\EU4World\EU4Version.cpp" />
     <ClCompile Include="Source\EU4World\EU4World.cpp" />
     <ClCompile Include="Source\FlagUtils.cpp" />
-    <ClCompile Include="Source\Mapper.cpp" />
+    <ClCompile Include="Source\Mappers\AdjacencyMapper.cpp" />
+    <ClCompile Include="Source\Mappers\CK2TitleMapper.cpp" />
+    <ClCompile Include="Source\Mappers\ColonialTagsMapper.cpp" />
+    <ClCompile Include="Source\Mappers\ContinentMapper.cpp" />
+    <ClCompile Include="Source\Mappers\CountryMapping.cpp" />
+    <ClCompile Include="Source\Mappers\CultureMapper.cpp" />
+    <ClCompile Include="Source\Mappers\ColonyFlagsetMapper.cpp" />
+    <ClCompile Include="Source\Mappers\EU4CultureGroupMapper.cpp" />
+    <ClCompile Include="Source\Mappers\EU4RegionMapper.cpp" />
+    <ClCompile Include="Source\Mappers\FlagColorMapper.cpp" />
+    <ClCompile Include="Source\Mappers\GovermentMapper.cpp" />
+    <ClCompile Include="Source\Mappers\IdeaEffectMapper.cpp" />
+    <ClCompile Include="Source\Mappers\MinorityPopMapper.cpp" />
+    <ClCompile Include="Source\Mappers\ProvinceMapper.cpp" />
+    <ClCompile Include="Source\Mappers\ReligionMapper.cpp" />
+    <ClCompile Include="Source\Mappers\StateMapper.cpp" />
+    <ClCompile Include="Source\Mappers\Vic2CultureUnionMapper.cpp" />
     <ClCompile Include="Source\targa.cpp" />
-    <ClCompile Include="Source\tempFuncs.cpp" />
     <ClCompile Include="Source\V2World\V2Army.cpp" />
     <ClCompile Include="Source\V2World\V2Country.cpp" />
     <ClCompile Include="Source\V2World\V2Creditor.cpp" />
@@ -193,16 +212,17 @@
     <ClCompile Include="Source\V2World\V2State.cpp" />
     <ClCompile Include="Source\V2World\V2TechSchools.cpp" />
     <ClCompile Include="Source\V2World\V2World.cpp" />
-    <ClCompile Include="Source\WinUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\common_items\CardinalToOrdinal.h" />
     <ClInclude Include="..\common_items\Date.h" />
     <ClInclude Include="..\common_items\Log.h" />
     <ClInclude Include="..\common_items\Object.h" />
-    <ClInclude Include="..\common_items\ParadoxParser.h" />
+    <ClInclude Include="..\common_items\OSCompatibilityLayer.h" />
+    <ClInclude Include="..\common_items\ParadoxParser8859_15.h" />
+    <ClInclude Include="..\common_items\ParadoxParserUTF8.h" />
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
-    <ClInclude Include="Source\CountryMapping.h" />
     <ClInclude Include="Source\EU4World\EU4Army.h" />
     <ClInclude Include="Source\EU4World\EU4Country.h" />
     <ClInclude Include="Source\EU4World\EU4Diplomacy.h" />
@@ -214,7 +234,24 @@
     <ClInclude Include="Source\EU4World\EU4Version.h" />
     <ClInclude Include="Source\EU4World\EU4World.h" />
     <ClInclude Include="Source\FlagUtils.h" />
-    <ClInclude Include="Source\Mapper.h" />
+    <ClInclude Include="Source\Mappers\AdjacencyMapper.h" />
+    <ClInclude Include="Source\Mappers\CK2TitleMapper.h" />
+    <ClInclude Include="Source\Mappers\ColonialTagsMapper.h" />
+    <ClInclude Include="Source\Mappers\ColonyFlagsetMapper.h" />
+    <ClInclude Include="Source\Mappers\ContinentMapper.h" />
+    <ClInclude Include="Source\Mappers\CountryMapping.h" />
+    <ClInclude Include="Source\Mappers\CultureMapper.h" />
+    <ClInclude Include="Source\Mappers\CustomFlagMapper.h" />
+    <ClInclude Include="Source\Mappers\EU4CultureGroupMapper.h" />
+    <ClInclude Include="Source\Mappers\EU4RegionMapper.h" />
+    <ClInclude Include="Source\Mappers\FlagColorMapper.h" />
+    <ClInclude Include="Source\Mappers\GovernmentMapper.h" />
+    <ClInclude Include="Source\Mappers\IdeaEffectMapper.h" />
+    <ClInclude Include="Source\Mappers\MinorityPopMapper.h" />
+    <ClInclude Include="Source\Mappers\ProvinceMapper.h" />
+    <ClInclude Include="Source\Mappers\ReligionMapper.h" />
+    <ClInclude Include="Source\Mappers\StateMapper.h" />
+    <ClInclude Include="Source\Mappers\Vic2CultureUnionMapper.h" />
     <ClInclude Include="Source\targa.h" />
     <ClInclude Include="Source\V2World\V2Army.h" />
     <ClInclude Include="Source\V2World\V2Country.h" />
@@ -234,7 +271,6 @@
     <ClInclude Include="Source\V2World\V2State.h" />
     <ClInclude Include="Source\V2World\V2TechSchools.h" />
     <ClInclude Include="Source\V2World\V2World.h" />
-    <ClInclude Include="Source\WinUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

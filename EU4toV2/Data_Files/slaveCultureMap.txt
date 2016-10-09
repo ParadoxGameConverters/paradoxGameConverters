@@ -52,7 +52,7 @@ link = { v2 = je eu4 = ge }
 link = { v2 = guarani eu4 = guarani eu4 = charruan }
 link = { v2 = patagonian eu4 = patagonian eu4 = het }
 link = { v2 = araucanian eu4 = huarpe eu4 = mapuche }
-link = { v2 = guajiro eu4 = arawak area = bogota area = coquivacoa area = popayan area = venezuela }
+link = { v2 = guajiro eu4 = arawak region = bogota region = coquivacoa region = popayan region = venezuela }
 link = { v2 = guajiro eu4 = guajiro } # is this even an eu4 culture?
 link = { v2 = carribean eu4 = arawak eu4 = carib }
 link = { v2 = siouan eu4 = dakota eu4 = nakota eu4 = chiwere eu4 = osage eu4 = catawba }
@@ -73,7 +73,7 @@ link = { v2 = hawaiian eu4 = polynesian provinceid = 1997 }
 link = { v2 = maori eu4 = polynesian region = new_zealand_region }
 link = { v2 = aborigine eu4 = aboriginal }
 link = { v2 = melanesian eu4 = melanesian eu4 = papuan }
-link = { v2 = melanesian eu4 = polynesian area = melanesia }
-link = { v2 = micronesian eu4 = polynesian area = micronesia }
+link = { v2 = melanesian eu4 = polynesian region = melanesia }
+link = { v2 = micronesian eu4 = polynesian region = micronesia }
 link = { v2 = polynesian eu4 = polynesian }
 }

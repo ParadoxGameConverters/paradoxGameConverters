@@ -56,6 +56,7 @@ class EU4Province {
 		bool						hasBuilding(string building) const;
 		vector<EU4Country*>	getCores(const map<string, EU4Country*>& countries) const;
 		date						getLastPossessedDate(string tag) const;
+		double getCulturePercent(string culture);
 
 		int						getNum()					const { return num; }
 		double					getBaseTax()			const { return baseTax; }
@@ -76,6 +77,7 @@ class EU4Province {
 		double					getProvProdIncome() const { return provProdIncome; }
 		double					getProvMPWeight() const { return provMPWeight; }
 		double					getProvTotalBuildingWeight() const { return provBuildingWeight; }
+		double					getProvTotalDevModifier() const { return provDevModifier; }
 		double					getCurrTradeGoodWeight() const { return provTradeGoodWeight; }
 
 		std::vector<double>	getProvProductionVec() const { return provProductionVec; }
@@ -117,6 +119,7 @@ class EU4Province {
 		double								provMPWeight;
 		double								provBuildingWeight;
 		double								provTradeGoodWeight;
+		double								provDevModifier;
 
 		std::vector<double>				provProductionVec;
 

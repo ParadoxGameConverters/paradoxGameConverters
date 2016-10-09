@@ -22,7 +22,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2LeaderTraits.h"
-#include "ParadoxParser.h"
+#include "Object.h"
+#include "ParadoxParserUTF8.h"
 #include "Log.h"
 
 
@@ -110,7 +111,7 @@ bool V2TraitConversion::matches(int fire, int shock, int manuever, int siege) co
 
 V2LeaderTraits::V2LeaderTraits()
 {
-	Object* obj = doParseFile("leader_traits.txt");
+	Object* obj = parser_UTF8::doParseFile("leader_traits.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file leader_traits.txt";

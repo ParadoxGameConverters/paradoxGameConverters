@@ -70,6 +70,7 @@ class V2Province
 		pair<int, int>	getAvailableSoldierCapacity() const;
 		string			getRegimentName(RegimentCategory rc);
 		bool				hasCulture(string culture, float percentOfPopulation) const;
+		vector<string> getCulturesOverThreshold(float percentOfPopulation) const;
 		
 		void				clearCores()									{ cores.clear(); }
 		void				setCoastal(bool _coastal)					{ coastal = _coastal; }

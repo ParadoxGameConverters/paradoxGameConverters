@@ -1,4 +1,4 @@
-# Copyright (c) 2015 The Paradox Game Converters Project
+# Copyright (c) 2016 The Paradox Game Converters Project
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -112,7 +112,7 @@ link = { v2 = mexican eu4 = visigothic eu4 = castillian eu4 = leonese eu4 = cata
 link = { v2 = caribeno eu4 = visigothic eu4 = castillian eu4 = leonese eu4 = catalan eu4 = aragonese eu4 = portuguese eu4 = galician eu4 = suebi eu4 = andalucian region = the_carribean }
 link = { v2 = caribeno eu4 = visigothic eu4 = castillian eu4 = leonese eu4 = catalan eu4 = aragonese eu4 = portuguese eu4 = galician eu4 = suebi eu4 = andalucian region = carribeans_region }
 link = { v2 = platinean eu4 = visigothic eu4 = castillian eu4 = leonese eu4 = catalan eu4 = aragonese eu4 = portuguese eu4 = galician eu4 = suebi eu4 = andalucian region = la_plata_region }
-link = { v2 = north_andean eu4 = eu4 = visigothic eu4 = castillian eu4 = leonese eu4 = catalan eu4 = aragonese eu4 = portuguese eu4 = galician eu4 = suebi eu4 = andalucian region = colombia }
+link = { v2 = north_andean eu4 = visigothic eu4 = castillian eu4 = leonese eu4 = catalan eu4 = aragonese eu4 = portuguese eu4 = galician eu4 = suebi eu4 = andalucian region = colombia }
 link = { v2 = north_andean eu4 = visigothic eu4 = castillian eu4 = leonese eu4 = catalan eu4 = aragonese eu4 = portuguese eu4 = galician eu4 = suebi eu4 = andalucian region = colombia_region }
 link = { v2 = south_andean eu4 = visigothic eu4 = castillian eu4 = leonese eu4 = catalan eu4 = aragonese eu4 = portuguese eu4 = galician eu4 = suebi eu4 = andalucian region = peru }
 link = { v2 = south_andean eu4 = visigothic eu4 = castillian eu4 = leonese eu4 = catalan eu4 = aragonese eu4 = portuguese eu4 = galician eu4 = suebi eu4 = andalucian region = peru_region }
@@ -231,7 +231,7 @@ link = { v2 = araucanian eu4 = huarpe eu4 = mapuche }
 link = { v2 = chacoan eu4 = chacoan eu4 = mataco }
 
 # Carribean - arawak, carib
-link = { v2 = guajiro eu4 = arawak area = bogota area = coquivacoa area = popayan area = venezuela }
+link = { v2 = guajiro eu4 = arawak region = bogota region = coquivacoa region = popayan region = venezuela }
 link = { v2 = guajiro eu4 = guajiro } # is this even an eu4 culture?
 link = { v2 = carribean eu4 = arawak eu4 = carib }
 
@@ -294,8 +294,8 @@ link = { v2 = hawaiian eu4 = polynesian provinceid = 1997 }
 link = { v2 = maori eu4 = polynesian region = new_zealand_region }
 link = { v2 = aborigine eu4 = aboriginal }
 link = { v2 = melanesian eu4 = melanesian eu4 = papuan }
-link = { v2 = melanesian eu4 = polynesian area = melanesia }
-link = { v2 = micronesian eu4 = polynesian area = micronesia }
+link = { v2 = melanesian eu4 = polynesian region = melanesia }
+link = { v2 = micronesian eu4 = polynesian region = micronesia }
 link = { v2 = polynesian eu4 = polynesian }
 
 # Eastern Aryan - assamese, bengali, bihari, nepali, oriya, sinhala
@@ -360,8 +360,8 @@ link = { v2 = tiv eu4 = jukun }
 #link = { v2 = teda eu4 = ? } # Chad
 #link = { v2 = sara eu4 = ? } # Cameroon, Chad
 link = { v2 = fang eu4 = sawabantu } # Cameroon, Gabon, EG
-link = { v2 = fur eu4 = nubian area = darfur_central_sahara_area }
-link = { v2 = beja eu4 = nubian area = red_sea_coast_area }
+link = { v2 = fur eu4 = nubian region = darfur_central_sahara_area }
+link = { v2 = beja eu4 = nubian region = red_sea_coast_area }
 link = { v2 = sudanese eu4 = nubian }
 #link = { v2 = dinka eu4 = ? } # Sudan
 #link = { v2 = azande eu4 = ? } # South Sudan

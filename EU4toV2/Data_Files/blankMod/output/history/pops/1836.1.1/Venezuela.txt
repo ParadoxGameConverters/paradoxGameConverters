@@ -1,0 +1,669 @@
+#Caracas Region (332000)
+#Ruled by Venezuela 1836
+#Caracas (224000/56000 POPS)
+2264 = {
+	aristocrats=
+	{
+		culture = carribean
+		religion = animist
+		size=1125
+	}
+
+	clergymen=
+	{
+		culture = carribean
+		religion = animist
+		size=450
+	}
+
+	artisans=
+	{
+		culture = carribean
+		religion = animist
+		size=2600
+	}
+
+	soldiers=
+	{
+		culture = carribean
+		religion = animist
+		size=2200
+	}
+
+	farmers=
+	{
+		culture = carribean
+		religion = animist
+		size=53450
+	}
+}
+#Cumana (24000/6000 POPS)
+2267 = {
+	aristocrats=
+	{
+		culture = carribean
+		religion = animist
+		size=125
+	}
+
+	clergymen=
+	{
+		culture = carribean
+		religion = animist
+		size=75
+	}
+
+	artisans=
+	{
+		culture = carribean
+		religion = animist
+		size=300
+	}
+
+	soldiers=
+	{
+		culture = carribean
+		religion = animist
+		size=1125
+	}
+
+	farmers=
+	{
+		culture = carribean
+		religion = animist
+		size=4675
+	}
+}
+#San Felipe (44000/11000 POPS)
+2268 = {
+	aristocrats=
+	{
+		culture = carribean
+		religion = animist
+		size=225
+	}
+
+	clergymen=
+	{
+		culture = carribean
+		religion = animist
+		size=125
+	}
+
+	artisans=
+	{
+		culture = carribean
+		religion = animist
+		size=550
+	}
+
+	soldiers=
+	{
+		culture = carribean
+		religion = animist
+		size=1125
+	}
+
+	farmers=
+	{
+		culture = carribean
+		religion = animist
+		size=10025
+	}
+}
+#Guiria (40000/10000 POPS)
+2269 = {
+	aristocrats=
+	{
+		culture = carribean
+		religion = animist
+		size=200
+	}
+
+	clergymen=
+	{
+		culture = carribean
+		religion = animist
+		size=100
+	}
+
+	artisans=
+	{
+		culture = carribean
+		religion = animist
+		size=500
+	}
+
+	soldiers=
+	{
+		culture = carribean
+		religion = animist
+		size=1110
+	}
+
+	farmers=
+	{
+		culture = carribean
+		religion = animist
+		size=8375
+	}
+}
+#Llanos Region (88000)
+#Ruled by Venezuela 1836
+#Guanare (16000/4000 POPS)
+2265 = {
+	aristocrats=
+	{
+		culture = carribean
+		religion = animist
+		size=100
+	}
+
+	clergymen=
+	{
+		culture = carribean
+		religion = animist
+		size=95
+	}
+
+	artisans=
+	{
+		culture = carribean
+		religion = animist
+		size=200
+	}
+
+	soldiers=
+	{
+		culture = carribean
+		religion = animist
+		size=60
+	}
+
+	farmers=
+	{
+		culture = carribean
+		religion = animist
+		size=3545
+	}
+}
+#Calabozo (40000/10000 POPS)
+2266 = {
+	soldiers=
+	{
+		culture = carribean
+		religion = animist
+		size=1033
+	}
+
+	artisans=
+	{
+		culture = carribean
+		religion = animist
+		size=400
+	}
+
+	clergymen=
+	{
+		culture = carribean
+		religion = animist
+		size=65
+	}
+
+	aristocrats=
+	{
+		culture = carribean
+		religion = animist
+		size=84
+	}
+
+	farmers=
+	{
+		culture = carribean
+		religion = animist
+		size=8418
+	}
+}
+#Barinas (32000/8000 POPS)
+2274 = {
+	aristocrats=
+	{
+		culture = carribean
+		religion = animist
+		size=175
+	}
+
+	clergymen=
+	{
+		culture = carribean
+		religion = animist
+		size=100
+	}
+
+	artisans=
+	{
+		culture = carribean
+		religion = animist
+		size=400
+	}
+
+	soldiers=
+	{
+		culture = carribean
+		religion = animist
+		size=85
+	}
+
+	farmers=
+	{
+		culture = carribean
+		religion = animist
+		size=6940
+	}
+}
+#Zulia Region (378000)
+#Ruled by Venezuela 1836
+#Maracaibo (100000/25000 POPS)
+2270 = {
+	aristocrats=
+	{
+		culture = carribean
+		religion = animist
+		size=200
+	}
+	
+	aristocrats=
+	{
+		culture = guajiro
+		religion = animist
+		size=200
+	}
+	
+	aristocrats=
+	{
+		culture = chibchan
+		religion = inti
+		size=150
+	}
+
+	clergymen=
+	{
+		culture = carribean
+		religion = animist
+		size=90
+	}
+
+	clergymen=
+	{
+		culture = guajiro
+		religion = animist
+		size=90
+	}
+
+	clergymen=
+	{
+		culture = chibchan
+		religion = inti
+		size=80
+	}
+
+	artisans=
+	{
+		culture = carribean
+		religion = animist
+		size=420
+	}
+
+	artisans=
+	{
+		culture = guajiro
+		religion = animist
+		size=420
+	}
+
+	artisans=
+	{
+		culture = chibchan
+		religion = inti
+		size=410
+	}
+
+	soldiers=
+	{
+		culture = carribean
+		religion = animist
+		size=90
+	}
+
+	soldiers=
+	{
+		culture = guajiro
+		religion = animist
+		size=90
+	}
+
+	soldiers=
+	{
+		culture = chibchan
+		religion = inti
+		size=80
+	}
+
+	farmers=
+	{
+		culture = carribean
+		religion = animist
+		size=7630
+	}
+
+	farmers=
+	{
+		culture = guajiro
+		religion = animist
+		size=7600
+	}
+
+	farmers=
+	{
+		culture = chibchan
+		religion = inti
+		size=7500
+	}
+}
+#Valera (128000/32000 POPS)
+2271 = {
+	aristocrats=
+	{
+		culture = carribean
+		religion = animist
+		size=650
+	}
+
+	clergymen=
+	{
+		culture = carribean
+		religion = animist
+		size=325
+	}
+
+	artisans=
+	{
+		culture = carribean
+		religion = animist
+		size=1550
+	}
+
+	soldiers=
+	{
+		culture = carribean
+		religion = animist
+		size=1150
+	}
+
+	farmers=
+	{
+		culture = carribean
+		religion = animist
+		size=28525
+	}
+}
+#Coro (56000/14000 POPS)
+2272 = {
+	aristocrats=
+	{
+		culture = carribean
+		religion = animist
+		size=325
+	}
+
+	clergymen=
+	{
+		culture = carribean
+		religion = animist
+		size=175
+	}
+
+	artisans=
+	{
+		culture = carribean
+		religion = animist
+		size=700
+	}
+
+	soldiers=
+	{
+		culture = carribean
+		religion = animist
+		size=150
+	}
+
+	farmers=
+	{
+		culture = carribean
+		religion = animist
+		size=12750
+	}
+}
+#Barquisimento (96000/24000 POPS)
+2273 = {
+	aristocrats=
+	{
+		culture = carribean
+		religion = animist
+		size=525
+	}
+
+	clergymen=
+	{
+		culture = carribean
+		religion = animist
+		size=250
+	}
+
+	artisans=
+	{
+		culture = carribean
+		religion = animist
+		size=1300
+	}
+
+	soldiers=
+	{
+		culture = carribean
+		religion = animist
+		size=250
+	}
+
+	farmers=
+	{
+		culture = carribean
+		religion = animist
+		size=21875
+	}
+}
+#Orinoco Region (152000)
+#Ruled by Venezuela 1836
+#Angostura (32000/8000 POPS)
+2275 = {
+	aristocrats=
+	{
+		culture = carribean
+		religion = animist
+		size=175
+	}
+
+	clergymen=
+	{
+		culture = carribean
+		religion = animist
+		size=50
+	}
+
+	artisans=
+	{
+		culture = carribean
+		religion = animist
+		size=250
+	}
+
+	soldiers=
+	{
+		culture = carribean
+		religion = animist
+		size=50
+	}
+
+	farmers=
+	{
+		culture = carribean
+		religion = animist
+		size=3475
+	}
+
+	aristocrats=
+	{
+		culture = amazonian
+		religion = animist
+		size=50
+	}
+
+	clergymen=
+	{
+		culture = amazonian
+		religion = animist
+		size=75
+	}
+
+	artisans=
+	{
+		culture = amazonian
+		religion = animist
+		size=150
+	}
+
+	soldiers=
+	{
+		culture = amazonian
+		religion = animist
+		size=25
+	}
+
+	farmers=
+	{
+		culture = amazonian
+		religion = animist
+		size=3700
+	}
+}
+#Curiapo (104000/26000 POPS)
+2276 = {
+	aristocrats=
+	{
+		culture = carribean
+		religion = animist
+		size=550
+	}
+
+	clergymen=
+	{
+		culture = carribean
+		religion = animist
+		size=300
+	}
+
+	artisans=
+	{
+		culture = carribean
+		religion = animist
+		size=1300
+	}
+
+	soldiers=
+	{
+		culture = carribean
+		religion = animist
+		size=275
+	}
+
+	farmers=
+	{
+		culture = carribean
+		religion = animist
+		size=23675
+	}
+}
+#under "rule" of Venezuela 1836
+#El Jobal (12000/4000 POPS)
+2277 = {
+	aristocrats=
+	{
+		culture = amazonian
+		religion = animist
+		size=65
+	}
+
+	clergymen=
+	{
+		culture = amazonian
+		religion = animist
+		size=100
+	}
+
+	artisans=
+	{
+		culture = amazonian
+		religion = animist
+		size=200
+	}
+
+	soldiers=
+	{
+		culture = amazonian
+		religion = animist
+		size=35
+	}
+
+	farmers=
+	{
+		culture = amazonian
+		religion = animist
+		size=3600
+	}
+}
+#San Fernando de Atabapo (4000/1000 POPS)
+2278 = {
+	aristocrats=
+	{
+		culture = amazonian
+		religion = animist
+		size=10
+	}
+
+	clergymen=
+	{
+		culture = amazonian
+		religion = animist
+		size=25
+	}
+
+	artisans=
+	{
+		culture = amazonian
+		religion = animist
+		size=50
+	}
+
+	soldiers=
+	{
+		culture = amazonian
+		religion = animist
+		size=15
+	}
+
+	farmers=
+	{
+		culture = amazonian
+		religion = animist
+		size=900
+	}
+}

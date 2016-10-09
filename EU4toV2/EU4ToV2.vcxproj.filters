@@ -3,12 +3,8 @@
   <ItemGroup>
     <ClCompile Include="Source\Color.cpp" />
     <ClCompile Include="Source\Configuration.cpp" />
-    <ClCompile Include="Source\CountryMapping.cpp" />
     <ClCompile Include="Source\FlagUtils.cpp" />
-    <ClCompile Include="Source\Mapper.cpp" />
     <ClCompile Include="Source\targa.cpp" />
-    <ClCompile Include="Source\tempFuncs.cpp" />
-    <ClCompile Include="Source\WinUtils.cpp" />
     <ClCompile Include="Source\EU4World\EU4Army.cpp">
       <Filter>EU4 World</Filter>
     </ClCompile>
@@ -100,18 +96,78 @@
     <ClCompile Include="..\common_items\Object.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
-    <ClCompile Include="..\common_items\ParadoxParser.cpp">
+    <ClCompile Include="..\common_items\ParadoxParser8859_15.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\ParadoxParserUTF8.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\WinUtils.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\CommonUtils.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\CountryMapping.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\FlagColorMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\CK2TitleMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\ProvinceMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\AdjacencyMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\ContinentMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\StateMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\EU4RegionMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\ReligionMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\CultureMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\MinorityPopMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\GovermentMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\Vic2CultureUnionMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\EU4CultureGroupMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\IdeaEffectMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\ColonialTagsMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\ColonyFlagsetMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\CardinalToOrdinal.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
-    <ClInclude Include="Source\CountryMapping.h" />
     <ClInclude Include="Source\FlagUtils.h" />
-    <ClInclude Include="Source\Mapper.h" />
     <ClInclude Include="Source\targa.h" />
-    <ClInclude Include="Source\WinUtils.h" />
     <ClInclude Include="Source\EU4World\EU4Army.h">
       <Filter>EU4 World</Filter>
     </ClInclude>
@@ -205,7 +261,70 @@
     <ClInclude Include="..\common_items\Object.h">
       <Filter>CommonItems</Filter>
     </ClInclude>
-    <ClInclude Include="..\common_items\ParadoxParser.h">
+    <ClInclude Include="..\common_items\ParadoxParser8859_15.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\ParadoxParserUTF8.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\OSCompatibilityLayer.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\CountryMapping.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\FlagColorMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\CK2TitleMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\ProvinceMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\AdjacencyMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\ContinentMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\StateMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\EU4RegionMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\ReligionMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\CultureMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\MinorityPopMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\Vic2CultureUnionMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\GovernmentMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\EU4CultureGroupMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\IdeaEffectMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\ColonialTagsMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\ColonyFlagsetMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\CustomFlagMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\CardinalToOrdinal.h">
       <Filter>CommonItems</Filter>
     </ClInclude>
   </ItemGroup>
@@ -218,6 +337,9 @@
     </Filter>
     <Filter Include="CommonItems">
       <UniqueIdentifier>{b4ecb265-1673-4f23-af86-fbe9c838c8a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mappers">
+      <UniqueIdentifier>{795cd4fd-5702-44e4-a851-9860b3b70989}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

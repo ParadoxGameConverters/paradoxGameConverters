@@ -22,9 +22,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Province.h"
+#include "CardinalToOrdinal.h"
 #include "Log.h"
 #include "Object.h"
-#include "ParadoxParser.h"
+#include "OSCompatibilityLayer.h"
+#include "ParadoxParser8859_15.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Province.h"
 #include "V2Pop.h"
@@ -33,7 +35,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <sstream>
 #include <algorithm>
 #include <stdio.h>
-#include <sys/stat.h>
 using namespace std;
 
 
@@ -77,28 +78,27 @@ V2Province::V2Province(string _filename)
 
 	resettable			= false;
 
-	int slash		= filename.find_last_of("\\");
+	int slash		= filename.find_last_of("/");
 	int numDigits	= filename.find_first_of("-") - slash - 2;
 	string temp		= filename.substr(slash + 1, numDigits);
 	num				= atoi(temp.c_str());
 
 	Object* obj;
-	struct _stat st;
-	if (_stat((string(".\\blankMod\\output\\history\\provinces") + _filename).c_str(), &st) == 0)
+	if (Utils::DoesFileExist(string("./blankMod/output/history/provinces") + _filename))
 	{
-		obj = doParseFile((string(".\\blankMod\\output\\history\\provinces") + _filename).c_str());
+		obj = parser_8859_15::doParseFile((string("./blankMod/output/history/provinces") + _filename).c_str());
 		if (obj == NULL)
 		{
-			LOG(LogLevel::Error) << "Could not parse .\\blankMod\\output\\history\\provinces" << _filename;
+			LOG(LogLevel::Error) << "Could not parse ./blankMod/output/history/provinces" << _filename;
 			exit(-1);
 		}
 	}
 	else
 	{
-		obj = doParseFile((Configuration::getV2Path() + "\\history\\provinces" + _filename).c_str());
+		obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/history/provinces" + _filename).c_str());
 		if (obj == NULL)
 		{
-			LOG(LogLevel::Error) << "Could not parse " << Configuration::getV2Path() << "\\history\\provinces" << _filename;
+			LOG(LogLevel::Error) << "Could not parse " << Configuration::getV2Path() << "/history/provinces" << _filename;
 			exit(-1);
 		}
 	}
@@ -173,13 +173,13 @@ V2Province::V2Province(string _filename)
 void V2Province::output() const
 {
 	FILE* output;
-	if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\provinces\\" + filename).c_str(), "w") != 0)
+	if (fopen_s(&output, ("Output/" + Configuration::getOutputName() + "/history/provinces/" + filename).c_str(), "w") != 0)
 	{
 		int errNum;
 		_get_errno(&errNum);
 		char errStr[256];
 		strerror_s(errStr, sizeof(errStr), errNum);
-		LOG(LogLevel::Error) << "Could not create province history file Output\\" << Configuration::getOutputName() << "\\history\\provinces\\" << filename << " - " << errStr;
+		LOG(LogLevel::Error) << "Could not create province history file Output/" << Configuration::getOutputName() << "/history/provinces/" << filename << " - " << errStr;
 		exit(-1);
 	}
 	if (owner != "")
@@ -1178,4 +1178,36 @@ bool V2Province::hasCulture(string culture, float percentOfPopulation) const
 	}
 
 	return ((float)culturePops / getTotalPopulation()) >= percentOfPopulation;
+}
+
+
+vector<string> V2Province::getCulturesOverThreshold(float percentOfPopulation) const
+{
+	int totalPopulation = getTotalPopulation();
+
+	map<string, double> cultureAmounts;
+	for (auto pop: pops)
+	{
+		auto cultureAmount = cultureAmounts.find(pop->getCulture());
+		if (cultureAmount == cultureAmounts.end())
+		{
+			cultureAmounts.insert(make_pair(pop->getCulture(), 0.0f));
+			cultureAmount = cultureAmounts.find(pop->getCulture());
+		}
+		if (totalPopulation > 0)
+		{
+			cultureAmount->second += pop->getSize() / totalPopulation;
+		}
+	}
+
+	vector<string> culturesOverThreshold;
+	for (auto cultureAmount: cultureAmounts)
+	{
+		if (cultureAmount.second >= percentOfPopulation)
+		{
+			culturesOverThreshold.push_back(cultureAmount.first);
+		}
+	}
+
+	return culturesOverThreshold;
 }

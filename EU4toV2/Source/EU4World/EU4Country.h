@@ -1,4 +1,4 @@
-/*Copyright(c) 2014 The Paradox Game Converters Project
+/*Copyright(c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -25,9 +25,10 @@ THE SOFTWARE. */
 
 
 #include "EU4Army.h"
-#include "..\Color.h"
+#include "../Color.h"
 #include "Date.h"
-#include "..\Mapper.h"
+#include "../Mappers/CustomFlagMapper.h"
+
 
 
 class EU4Loan;
@@ -37,16 +38,11 @@ class EU4Relations;
 class EU4Version;
 
 
-struct CustomFlag {
-	string flag;
-	int emblem;
-	std::tuple<int, int, int> colours;
-};
 
 class EU4Country
 {
 	public:
-		EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas, EU4Version* version, inverseUnionCulturesMap& inverseUnionCultures);
+		EU4Country(Object* obj, EU4Version* version);
 
 		// Add any additional information available from the specified country file.
 		void readFromCommonCountry(const string& fileName, Object*);
@@ -68,6 +64,8 @@ class EU4Country
 		void						takeArmies(EU4Country*);
 		void						clearArmies();
 		const void				viveLaRevolution(bool revolting)					{ revolutionary = revolting; }
+
+		bool cultureSurvivesInCores();
 
 		string							getTag()										const { return tag; }
 		vector<EU4Province*>			getProvinces()								const { return provinces; }
@@ -104,6 +102,7 @@ class EU4Country
 		bool								isRevolutionary()							const { return revolutionary; }
 		tuple<int, int, int>			getRevolutionaryTricolour()			const { return revolutionaryTricolour; }
 		string							getRandomName()							const { return randomName; }
+		const map<string, int>& getNationalIdeas() const { return nationalIdeas; }
 
 		string	getName() const { return name; }
 		string	getName(const string& language) const;
@@ -111,7 +110,7 @@ class EU4Country
 		Color		getColor() const { return color; }
 
 	private:
-		void							determineInvestments(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas);
+		void							determineInvestments();
 		void							determineFlagsAndModifiers(Object* obj);
 		void							clearProvinces();
 		void							clearCores();

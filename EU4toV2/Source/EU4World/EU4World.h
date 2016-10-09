@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,7 +26,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <istream>
 #include "EU4Army.h"
-#include "../Mapper.h"
+
+
 
 class EU4Country;
 class EU4Province;
@@ -39,19 +40,24 @@ struct EU4Agreement;
 
 class EU4World {
 	public:
-		EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas, inverseUnionCulturesMap& inverseUnionCultures);
-		void setEU4WorldProvinceMappings(const inverseProvinceMapping& inverseProvinceMap);
+		EU4World(const string& EU4SaveFileName, map<string, string> possibleMods);
+		void setNumbersOfDestinationProvinces();
 
-		void readCommonCountries(istream&, const std::string& rootPath);
+		void readCommonCountries();
+		void readCommonCountriesFile(istream&, const std::string& rootPath);
 
 		EU4Country*						getCountry(string tag) const;
 		EU4Province*					getProvince(int provNum) const;
-		void								removeCountry(string tag);
-		void								resolveRegimentTypes(const RegimentTypeMap& map);
-		void								checkAllProvincesMapped(const inverseProvinceMapping& inverseProvinceMap) const;
-		void								checkAllEU4CulturesMapped(const cultureMapping& cultureMap, const inverseUnionCulturesMap& inverseUnionCultures) const;
-		void								checkAllEU4ReligionsMapped(const religionMapping& religionMap) const;
-		void								setLocalisations(EU4Localisation& localisation);
+		void								resolveRegimentTypes();
+		void								checkAllProvincesMapped() const;
+		void								checkAllEU4CulturesMapped() const;
+		void								checkAllEU4ReligionsMapped() const;
+		void								setLocalisations();
+
+		void mergeNations();
+		void removeEmptyNations();
+		void removeDeadLandlessNations();
+		void removeLandlessNations();
 
 		EU4Version*						getVersion()			const { return version; };
 		map<string, EU4Country*>	getCountries()			const { return countries; };
@@ -59,6 +65,8 @@ class EU4World {
 		double							getWorldWeightSum()	const { return worldWeightSum; };
 
 	private:
+		void uniteJapan();
+
 		map<int, EU4Province*>		provinces;	// the provinces
 		map<string, EU4Country*>	countries;	// the countries
 		EU4Diplomacy*					diplomacy;	// diplomatic relationships

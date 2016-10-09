@@ -1,0 +1,509 @@
+#Volta Region (1212000)
+#uncolonized in 1836/ruled by the Mossi Kingdoms in 1836
+#Wagadugu (440000/110000 POPS)
+1901 = {
+	aristocrats = {
+		culture = mossi
+		religion = animist
+		size = 2200
+	}
+
+	bureaucrats = {
+		culture = mossi
+		religion = animist
+		size = 100
+	}
+
+	officers = {
+		culture = mossi
+		religion = animist
+		size = 200
+	}
+
+	clergymen = {
+		culture = mossi
+		religion = animist
+		size = 1125
+	}
+
+	artisans = {
+		culture = mossi
+		religion = animist
+		size = 5500
+	}
+
+	soldiers = {
+		culture = mossi
+		religion = animist
+		size = 1150
+	}
+
+	farmers = {
+		culture = mossi
+		religion = animist
+		size = 67825
+	}
+
+	slaves = {
+		culture = mossi
+		religion = animist
+		size = 32000
+	}
+}
+#Wahiguya (332000/83000 POPS)
+1902 = {
+	aristocrats = {
+		culture = mossi
+		religion = animist
+		size = 950
+	}
+
+	clergymen = {
+		culture = mossi
+		religion = animist
+		size = 525
+	}
+
+	artisans = {
+		culture = mossi
+		religion = animist
+		size = 2500
+	}
+
+	soldiers = {
+		culture = mossi
+		religion = animist
+		size = 500
+	}
+
+	farmers = {
+		culture = mossi
+		religion = animist
+		size = 27525
+	}
+
+	slaves = {
+		culture = mossi
+		religion = animist
+		size = 10000
+	}
+
+	aristocrats = {
+		culture = african_minor
+		religion = animist
+		size = 650
+	}
+
+	clergymen = {
+		culture = african_minor
+		religion = animist
+		size = 325
+	}
+
+	artisans = {
+		culture = african_minor
+		religion = animist
+		size = 1650
+	}
+
+	soldiers = {
+		culture = african_minor
+		religion = animist
+		size = 325
+	}
+
+	farmers = {
+		culture = african_minor
+		religion = animist
+		size = 30050
+	}
+
+	slaves = {
+		culture = african_minor
+		religion = animist
+		size = 8000
+	}
+}
+#Dori (268000/67000 POPS)
+1903 = {
+	aristocrats = {
+		culture = mossi
+		religion = animist
+		size = 650
+	}
+
+	clergymen = {
+		culture = mossi
+		religion = animist
+		size = 350
+	}
+
+	artisans = {
+		culture = mossi
+		religion = animist
+		size = 1350
+	}
+
+	soldiers = {
+		culture = mossi
+		religion = animist
+		size = 350
+	}
+
+	farmers = {
+		culture = mossi
+		religion = animist
+		size = 16300
+	}
+
+	slaves = {
+		culture = mossi
+		religion = animist
+		size = 3000
+	}
+
+	aristocrats = {
+		culture = african_minor
+		religion = animist
+		size = 650
+	}
+
+	clergymen = {
+		culture = african_minor
+		religion = animist
+		size = 350
+	}
+
+	artisans = {
+		culture = african_minor
+		religion = animist
+		size = 1700
+	}
+
+	soldiers = {
+		culture = african_minor
+		religion = animist
+		size = 350
+	}
+
+	farmers = {
+		culture = african_minor
+		religion = animist
+		size = 30950
+	}
+
+	slaves = {
+		culture = african_minor
+		religion = animist
+		size = 12000
+	}
+}
+#Fada Ngoura (172000/43000 POPS)
+1904 = {
+	aristocrats = {
+		culture = mossi
+		religion = animist
+		size = 250
+	}
+
+	clergymen = {
+		culture = mossi
+		religion = animist
+		size = 150
+	}
+
+	artisans = {
+		culture = mossi
+		religion = animist
+		size = 700
+	}
+
+	soldiers = {
+		culture = mossi
+		religion = animist
+		size = 150
+	}
+
+	farmers = {
+		culture = mossi
+		religion = animist
+		size = 12750
+	}
+
+	slaves = {
+		culture = mossi
+		religion = animist
+		size = 7000
+	}
+
+	aristocrats = {
+		culture = fulbe
+		religion = sunni
+		size = 550
+	}
+
+	clergymen = {
+		culture = fulbe
+		religion = sunni
+		size = 300
+	}
+
+	artisans = {
+		culture = fulbe
+		religion = sunni
+		size = 1150
+	}
+
+	soldiers = {
+		culture = fulbe
+		religion = sunni
+		size = 300
+	}
+
+	farmers = {
+		culture = fulbe
+		religion = sunni
+		size = 19700
+	}
+}
+#Worodugu Region (320000)
+#uncolonized in 1836/ruled by the Bobo Dioulasso Emirate 1836
+#Bobo Dioulasso (140000/35000 POPS)
+1905 = {
+	aristocrats = {
+		culture = dyula
+		religion = sunni
+		size = 50
+	}
+
+	bureaucrats = {
+		culture = dyula
+		religion = sunni
+		size = 25
+	}
+
+	officers = {
+		culture = dyula
+		religion = sunni
+		size = 50
+	}
+
+	clergymen = {
+		culture = dyula
+		religion = sunni
+		size = 75
+	}
+
+	artisans = {
+		culture = dyula
+		religion = sunni
+		size = 125
+	}
+
+	soldiers = {
+		culture = dyula
+		religion = sunni
+		size = 25
+	}
+
+	farmers = {
+		culture = dyula
+		religion = sunni
+		size = 1650
+	}
+
+	aristocrats = {
+		culture = mande
+		religion = sunni
+		size = 450
+	}
+
+	clergymen = {
+		culture = mande
+		religion = sunni
+		size = 250
+	}
+
+	artisans = {
+		culture = mande
+		religion = sunni
+		size = 1100
+	}
+
+	soldiers = {
+		culture = mande
+		religion = sunni
+		size = 250
+	}
+
+	farmers = {
+		culture = mande
+		religion = sunni
+		size = 19550
+	}
+
+	aristocrats = {
+		culture = mossi
+		religion = animist
+		size = 125
+	}
+
+	clergymen = {
+		culture = mossi
+		religion = animist
+		size = 75
+	}
+
+	artisans = {
+		culture = mossi
+		religion = animist
+		size = 350
+	}
+
+	soldiers = {
+		culture = mossi
+		religion = animist
+		size = 75
+	}
+
+	farmers = {
+		culture = mossi
+		religion = animist
+		size = 6375
+	}
+
+	slaves = {
+		culture = mossi
+		religion = animist
+		size = 5000
+	}
+}
+#Orodaro (180000/45000 POPS)
+1906 = {
+	aristocrats = {
+		culture = dyula
+		religion = sunni
+		size = 75
+	}
+
+	clergymen = {
+		culture = dyula
+		religion = sunni
+		size = 50
+	}
+
+	artisans = {
+		culture = dyula
+		religion = sunni
+		size = 175
+	}
+
+	soldiers = {
+		culture = dyula
+		religion = sunni
+		size = 50
+	}
+
+	farmers = {
+		culture = dyula
+		religion = sunni
+		size = 2650
+	}
+
+	aristocrats = {
+		culture = mande
+		religion = animist
+		size = 275
+	}
+
+	clergymen = {
+		culture = mande
+		religion = animist
+		size = 150
+	}
+
+	artisans = {
+		culture = mande
+		religion = animist
+		size = 550
+	}
+
+	soldiers = {
+		culture = mande
+		religion = animist
+		size = 150
+	}
+
+	farmers = {
+		culture = mande
+		religion = animist
+		size = 7875
+	}
+
+	aristocrats = {
+		culture = bambara
+		religion = animist
+		size = 375
+	}
+
+	clergymen = {
+		culture = bambara
+		religion = animist
+		size = 200
+	}
+
+	artisans = {
+		culture = bambara
+		religion = animist
+		size = 1100
+	}
+
+	soldiers = {
+		culture = bambara
+		religion = animist
+		size = 200
+	}
+
+	farmers = {
+		culture = bambara
+		religion = animist
+		size = 18225
+	}
+
+	aristocrats = {
+		culture = african_minor
+		religion = animist
+		size = 125
+	}
+
+	clergymen = {
+		culture = african_minor
+		religion = animist
+		size = 75
+	}
+
+	artisans = {
+		culture = african_minor
+		religion = animist
+		size = 350
+	}
+
+	soldiers = {
+		culture = african_minor
+		religion = animist
+		size = 75
+	}
+
+	farmers = {
+		culture = african_minor
+		religion = animist
+		size = 6375
+	}
+
+	slaves = {
+		culture = african_minor
+		religion = animist
+		size = 6000
+	}
+
+}

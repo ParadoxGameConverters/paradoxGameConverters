@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -25,19 +25,28 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <algorithm>
 #include <math.h>
 #include <float.h>
-#include <io.h>
 #include <fstream>
 #include <sstream>
 #include <queue>
 #include <boost/algorithm/string.hpp>
 #include "Log.h"
 #include "../Configuration.h"
-#include "paradoxParser.h"
+#include "../Mappers/ReligionMapper.h"
+#include "CardinalToOrdinal.h"
+#include "paradoxParser8859_15.h"
+#include "OSCompatibilityLayer.h"
 #include "../EU4World/EU4World.h"
-#include "../EU4World/Eu4Country.h"
+#include "../EU4World/EU4Country.h"
 #include "../EU4World/EU4Province.h"
 #include "../EU4World/EU4Relations.h"
 #include "../EU4World/EU4Leader.h"
+#include "../Mappers/AdjacencyMapper.h"
+#include "../Mappers/CountryMapping.h"
+#include "../Mappers/CultureMapper.h"
+#include "../Mappers/EU4CultureGroupMapper.h"
+#include "../Mappers/GovernmentMapper.h"
+#include "../Mappers/IdeaEffectMapper.h"
+#include "../Mappers/ProvinceMapper.h"
 #include "V2World.h"
 #include "V2State.h"
 #include "V2Province.h"
@@ -165,7 +174,7 @@ void V2Country::output() const
 	if(!dynamicCountry)
 	{
 		FILE* output;
-		if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\countries\\" + filename).c_str(), "w") != 0)
+		if (fopen_s(&output, ("Output/" + Configuration::getOutputName() + "/history/countries/" + filename).c_str(), "w") != 0)
 		{
 			LOG(LogLevel::Error) << "Could not create country history file " << filename;
 			exit(-1);
@@ -280,10 +289,10 @@ void V2Country::output() const
 	if (newCountry)
 	{
 		// Output common country file. 
-		std::ofstream commonCountryOutput("Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile);
+		std::ofstream commonCountryOutput("Output/" + Configuration::getOutputName() + "/common/countries/" + commonCountryFile);
 		if (!commonCountryOutput.is_open())
 		{
-			LOG(LogLevel::Error) << "Could not open Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile;
+			LOG(LogLevel::Error) << "Could not open Output/" + Configuration::getOutputName() + "/common/countries/" + commonCountryFile;
 			exit(-1);
 		}
 		commonCountryOutput << "graphical_culture = UsGC\n";	// default to US graphics
@@ -354,7 +363,7 @@ void V2Country::outputElection(FILE* output) const
 void V2Country::outputOOB() const
 {
 	FILE* output;
-	if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\units\\" + tag + "_OOB.txt").c_str(), "w") != 0)
+	if (fopen_s(&output, ("Output/" + Configuration::getOutputName() + "/history/units/" + tag + "_OOB.txt").c_str(), "w") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not create OOB file " << (tag + "_OOB.txt");
 		exit(-1);
@@ -385,7 +394,7 @@ void V2Country::outputOOB() const
 }
 
 
-void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping& countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const EU4RegionsMapping& regionsMap)
+void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<V2TechSchool> techSchools, const map<int, int>& leaderMap, const V2LeaderTraits& lt)
 {
 	srcCountry = _srcCountry;
 
@@ -394,22 +403,10 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping
 		newCountry = true;
 	}
 
-	struct _finddata_t	fileData;
-	intptr_t					fileListing;
-	string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
-	if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-	{
-		filename = fileData.name;
-	}
-	_findclose(fileListing);
+	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
 	if (filename == "")
 	{
-		string filesearch = Configuration::getV2Path() + "\\history\\countries\\" + tag + "*.txt";
-		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-		{
-			filename = fileData.name;
-		}
-		_findclose(fileListing);
+		filename = Utils::GetFileFromTag(Configuration::getV2Path() + "/history/countries/", tag);
 	}
 	if (filename == "")
 	{
@@ -428,10 +425,10 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping
 
 	// Capital
 	int oldCapital = srcCountry->getCapital();
-	inverseProvinceMapping::iterator itr = inverseProvinceMap.find(oldCapital);
-	if (itr != inverseProvinceMap.end())
+	auto potentialCapitals = provinceMapper::getVic2ProvinceNumbers(oldCapital);
+	if (potentialCapitals.size() > 0)
 	{
-		capital = itr->second[0];
+		capital = potentialCapitals[0];
 	}
 
 	// in HRE
@@ -452,12 +449,8 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping
 	string srcReligion = srcCountry->getReligion();
 	if (srcReligion.size() > 0)
 	{
-		religionMapping::iterator i = religionMap.find(srcReligion);
-		if (i != religionMap.end())
-		{
-			religion = i->second;
-		}
-		else
+		religion = religionMapper::getVic2Religion(srcReligion);
+		if (religion == "")
 		{
 			LOG(LogLevel::Warning) << "No religion mapping defined for " << srcReligion << " (" << _srcCountry->getTag() << " -> " << tag << ')';
 		}
@@ -468,7 +461,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping
 
 	if (srcCulture.size() > 0)
 	{
-		bool matched = cultureMatch(cultureMap, regionsMap, srcCulture, primaryCulture, religion, oldCapital, srcCountry->getTag());
+		bool matched = cultureMapper::cultureMatch(srcCulture, primaryCulture, religion, oldCapital, srcCountry->getTag());
 		if (!matched)
 		{
 			LOG(LogLevel::Warning) << "No culture mapping defined for " << srcCulture << " (" << srcCountry->getTag() << " -> " << tag << ')';
@@ -479,19 +472,15 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping
 	vector<string> srcAceptedCultures = srcCountry->getAcceptedCultures();
 	if (srcCountry->getCulturalUnion() != "")
 	{
-		unionCulturesMap::iterator unionItr = unionCultures.find(srcCountry->getCulturalUnion());
-		if (unionItr != unionCultures.end())
+		for (auto unionCulture: EU4CultureGroupMapper::getCulturesInGroup(srcCountry->getCulturalUnion()))
 		{
-			for (vector<string>::iterator j = unionItr->second.begin(); j != unionItr->second.end(); j++)
-			{
-				srcAceptedCultures.push_back(*j);
-			}
+			srcAceptedCultures.push_back(unionCulture);
 		}
 	}
 	for (auto srcCulture: srcAceptedCultures)
 	{
 		string dstCulture;
-		bool matched = cultureMatch(cultureMap, regionsMap, srcCulture, dstCulture, religion, oldCapital, srcCountry->getTag());
+		bool matched = cultureMapper::cultureMatch(srcCulture, dstCulture, religion, oldCapital, srcCountry->getTag());
 		if (matched)
 		{
 			if (primaryCulture != dstCulture)
@@ -506,31 +495,17 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping
 	}
 
 	// Government
-	string srcGovernment = srcCountry->getGovernment();
-	if (srcGovernment.size() > 0)
-	{
-		governmentMapping::iterator i = governmentMap.find(srcGovernment);
-		if (i != governmentMap.end())
-		{
-			government = i->second;
-		}
-		else
-		{
-			LOG(LogLevel::Warning) << "No government mapping defined for " << srcGovernment << " (" << srcCountry->getTag() << " -> " << tag << ')';
-		}
-	}
+	government = governmentMapper::matchGovernment(srcCountry->getGovernment());
 
 	//  Politics
 	double liberalEffect = 0.0;
-	for (map<string, double>::const_iterator UHLiberalItr = UHLiberalIdeas.begin(); UHLiberalItr != UHLiberalIdeas.end(); UHLiberalItr++)
-	{
-		liberalEffect += (srcCountry->hasNationalIdea(UHLiberalItr->first) + 1) * UHLiberalItr->second;
-	}
 	double reactionaryEffect = 0.0;
-	for (map<string, double>::const_iterator UHReactionaryItr = UHReactionaryIdeas.begin(); UHReactionaryItr != UHReactionaryIdeas.end(); UHReactionaryItr++)
+	for (auto idea: srcCountry->getNationalIdeas())
 	{
-		reactionaryEffect += (srcCountry->hasNationalIdea(UHReactionaryItr->first) + 1) * UHReactionaryItr->second;
+		liberalEffect += ideaEffectMapper::getUHLiberalFromIdea(idea.first, idea.second);
+		reactionaryEffect += ideaEffectMapper::getUHReactionaryFromIdea(idea.first, idea.second);
 	}
+
 	upperHouseReactionary		=  static_cast<int>(5  + (100 * reactionaryEffect));
 	upperHouseLiberal				=  static_cast<int>(10 + (100 * liberalEffect));
 	upperHouseConservative		= 100 - (upperHouseReactionary + upperHouseLiberal);
@@ -570,7 +545,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping
 	{
 		for (auto itr: srcRelations)
 		{
-			const std::string& V2Tag = countryMap[itr.second->getCountry()];
+			const std::string& V2Tag = CountryMapping::getVic2Tag(itr.second->getCountry());
 			if (!V2Tag.empty())
 			{
 				V2Relations* v2r = new V2Relations(V2Tag, itr.second);
@@ -611,12 +586,9 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping
 
 	// Literacy
 	literacy = 0.1;
-	for (vector< pair<string, int> >::const_iterator literacyItr = literacyIdeas.begin(); literacyItr != literacyIdeas.end(); literacyItr++)
+	for (auto idea: srcCountry->getNationalIdeas())
 	{
-		if (srcCountry->hasNationalIdea(literacyItr->first) >= literacyItr->second)
-		{
-			literacy += 0.1;
-		}
+		literacy += ideaEffectMapper::getLiteracyFromIdea(idea.first, idea.second);
 	}
 	if ( (srcCountry->getReligion() == "Protestant") || (srcCountry->getReligion() == "Confucianism") || (srcCountry->getReligion() == "Reformed") )
 	{
@@ -781,26 +753,15 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping
 void V2Country::initFromHistory()
 {
 	string fullFilename;
-	struct _finddata_t	fileData;
-	intptr_t					fileListing;
-	string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
-	if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
+
+	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
+	fullFilename = "./blankMod/output/history/countries/" + filename;
+	if (filename == "")
 	{
-		filename			= fileData.name;
-		fullFilename	= string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
+		filename = Utils::GetFileFromTag(Configuration::getV2Path() + "/history/countries/", tag);
+		fullFilename = Configuration::getV2Path() + "/history/countries/" + filename;
 	}
-	_findclose(fileListing);
-	if (fullFilename == "")
-	{
-		string filesearch = Configuration::getV2Path() + "\\history\\countries\\" + tag + "*.txt";
-		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-		{
-			filename			= fileData.name;
-			fullFilename	= Configuration::getV2Path() + "\\history\\countries\\" + fileData.name;
-		}
-		_findclose(fileListing);
-	}
-	if (fullFilename == "")
+	if (filename == "")
 	{
 		string countryName	= commonCountryFile;
 		int lastSlash			= countryName.find_last_of("/");
@@ -809,7 +770,7 @@ void V2Country::initFromHistory()
 		return;
 	}
 
-	Object* obj = doParseFile(fullFilename.c_str());
+	Object* obj = parser_8859_15::doParseFile(fullFilename.c_str());
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << fullFilename;
@@ -998,7 +959,7 @@ void V2Country::addState(V2State* newState)
 
 
 //#define TEST_V2_PROVINCES
-void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist, adjacencyMapping adjacencyMap)
+void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], map<int, V2Province*> allProvinces, vector<int> port_whitelist)
 {
 #ifndef TEST_V2_PROVINCES
 	if (srcCountry == NULL)
@@ -1036,7 +997,7 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 
 			for (int i = 0; i < regimentsToCreate; ++i)
 			{
-				if (addRegimentToArmy(army, (RegimentCategory)rc, inverseProvinceMap, allProvinces, adjacencyMap) != 0)
+				if (addRegimentToArmy(army, (RegimentCategory)rc, allProvinces) != 0)
 				{
 					// couldn't add, dissolve into pool
 					countryRemainder[rc] += 1.0;
@@ -1045,7 +1006,7 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 			}
 		}
 
-		vector<int> locationCandidates = getV2ProvinceNums(inverseProvinceMap, (*aitr)->getLocation());
+		auto locationCandidates = provinceMapper::getVic2ProvinceNumbers((*aitr)->getLocation());
 		if (locationCandidates.size() == 0)
 		{
 			LOG(LogLevel::Warning) << "Army or Navy " << (*aitr)->getName() << " assigned to unmapped province " << (*aitr)->getLocation() << "; dissolving to pool";
@@ -1117,7 +1078,7 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 				LOG(LogLevel::Debug) << "No suitable army or navy found for " << tag << "'s pooled regiments of " << RegimentCategoryNames[rc];
 				break;
 			}
-			switch (addRegimentToArmy(army, (RegimentCategory)rc, inverseProvinceMap, allProvinces, adjacencyMap))
+			switch (addRegimentToArmy(army, (RegimentCategory)rc, allProvinces))
 			{
 			case 0: // success
 				countryRemainder[rc] -= 1.0;
@@ -1165,39 +1126,17 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 }
 
 
-void V2Country::getNationalValueScores(int& libertyScore, int& equalityScore, int& orderScore, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas)
+void V2Country::getNationalValueScores(int& libertyScore, int& equalityScore, int& orderScore)
 {
 	orderScore = 0;
-	for (map<string, int>::const_iterator orderIdeaItr = orderIdeas.begin(); orderIdeaItr != orderIdeas.end(); orderIdeaItr++)
-	{
-		int ideaScore = srcCountry->hasNationalIdea(orderIdeaItr->first);
-		orderScore += (ideaScore + 1) * orderIdeaItr->second;
-		if (ideaScore == 7)
-		{
-			orderScore += orderIdeaItr->second;
-		}
-	}
-		
 	libertyScore = 0;
-	for (map<string, int>::const_iterator libertyIdeaItr = libertyIdeas.begin(); libertyIdeaItr != libertyIdeas.end(); libertyIdeaItr++)
-	{
-		int ideaScore = srcCountry->hasNationalIdea(libertyIdeaItr->first);
-		libertyScore += (ideaScore + 1) * libertyIdeaItr->second;
-		if (ideaScore == 7)
-		{
-			libertyScore += libertyIdeaItr->second;
-		}
-	}
-
 	equalityScore = 0;
-	for (map<string, int>::const_iterator equalityIdeaItr = equalityIdeas.begin(); equalityIdeaItr != equalityIdeas.end(); equalityIdeaItr++)
+
+	for (auto idea: srcCountry->getNationalIdeas())
 	{
-		int ideaScore = srcCountry->hasNationalIdea(equalityIdeaItr->first);
-		equalityScore += (ideaScore + 1) * equalityIdeaItr->second;
-		if (ideaScore == 7)
-		{
-			equalityScore += equalityIdeaItr->second;
-		}
+		orderScore += ideaEffectMapper::getOrderInfluenceFromIdea(idea.first, idea.second);
+		libertyScore += ideaEffectMapper::getLibertyInfluenceFromIdea(idea.first, idea.second);
+		equalityScore += ideaEffectMapper::getEqualityInfluenceFromIdea(idea.first, idea.second);
 	}
 }
 
@@ -1896,7 +1835,7 @@ void V2Country::addLoan(string creditor, double size, double interest)
 
 
 // return values: 0 = success, -1 = retry from pool, -2 = do not retry
-int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, adjacencyMapping adjacencyMap)
+int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, map<int, V2Province*> allProvinces)
 {
 	V2Regiment reg((RegimentCategory)rc);
 	int eu4Home = army->getSourceArmy()->getProbabilisticHomeProvince(rc);
@@ -1905,7 +1844,7 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 		LOG(LogLevel::Debug) << "Army/navy " << army->getName() << " has no valid home provinces for " << RegimentCategoryNames[rc] << " due to previous errors; dissolving to pool";
 		return -2;
 	}
-	vector<int> homeCandidates = getV2ProvinceNums(inverseProvinceMap, eu4Home);
+	auto homeCandidates = provinceMapper::getVic2ProvinceNumbers(eu4Home);
 	if (homeCandidates.size() == 0)
 	{
 		LOG(LogLevel::Warning) << RegimentCategoryNames[rc] << " unit in army/navy " << army->getName() << " has unmapped home province " << eu4Home << " - dissolving to pool";
@@ -1970,12 +1909,7 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 				{
 					int currentProvince = goodProvinces.front();
 					goodProvinces.pop();
-					if (currentProvince > static_cast<int>(adjacencyMap.size()))
-					{
-						LOG(LogLevel::Warning) << "No adjacency mapping for province " << currentProvince;
-						continue;
-					}
-					vector<int> adjacencies = adjacencyMap[currentProvince];
+					vector<int> adjacencies = adjacencyMapper::getVic2Adjacencies(currentProvince);
 					for (unsigned int i = 0; i < adjacencies.size(); i++)
 					{
 						map<int, V2Province*>::iterator openItr = openProvinces.find(adjacencies[i]);
