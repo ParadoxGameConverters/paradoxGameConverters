@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <unordered_map>
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp> 
+#include "ParadoxParser8859_15.h"
 #include "ParadoxParserUTF8.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
@@ -48,10 +49,37 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 {
 	LOG(LogLevel::Info) << "Parsing HoI4 data";
 	sourceWorld = _sourceWorld;
+
+	map<int, vector<int>> HoI4DefaultStateToProvinceMap;
+	states = new HoI4States(sourceWorld);
+	states->importStates(HoI4DefaultStateToProvinceMap);
+
+	importSuppplyZones(HoI4DefaultStateToProvinceMap);
+	importStrategicRegions();
+	checkAllProvincesMapped();
+	checkCoastalProvinces();
+	states->convertStates();
+	convertNavalBases();
+	convertCountries();
+	states->addLocalisations();
+	convertIndustry();
+	convertResources();
+	convertSupplyZones();
+	convertStrategicRegions();
+	convertDiplomacy();
+	convertTechs();
+	configureFactions();
+	generateLeaders();
+	convertArmies();
+	convertNavies();
+	convertAirforces();
+	convertCapitalVPs();
+	thatsgermanWarCreator();
+	buildings = new HoI4Buildings(states->getProvinceToStateIDMap());
 }
 
 
-void HoI4World::importSuppplyZones(const map<int, vector<int>>& defaultStateToProvinceMap, map<int, int>& provinceToSupplyZoneMap)
+void HoI4World::importSuppplyZones(const map<int, vector<int>>& defaultStateToProvinceMap)
 {
 	LOG(LogLevel::Info) << "Importing supply zones";
 
@@ -143,6 +171,8 @@ void HoI4World::checkCoastalProvinces()
 
 void HoI4World::output() const
 {
+	LOG(LogLevel::Info) << "Outputting world";
+
 	string NFpath = "Output/" + Configuration::getOutputName() + "/common/national_focus";
 	if (!Utils::TryCreateFolder(NFpath))
 	{
@@ -167,6 +197,7 @@ void HoI4World::output() const
 	outputCountries();
 	outputNationalFocusEvents();
 	outputNewsEvents();
+	buildings->output();
 }
 
 
@@ -373,9 +404,20 @@ void HoI4World::getProvinceLocalizations(const string& file)
 }
 
 
-void HoI4World::convertCountries(const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap)
+void HoI4World::convertCountries()
 {
 	LOG(LogLevel::Info) << "Converting countries";
+
+	// Parse leader traits
+	LOG(LogLevel::Info) << "Parsing government jobs";
+	/*parser_UTF8::initParser();
+	obj = parser_UTF8::doParseFile("leader_traits.txt");
+	if (obj == NULL)
+	{
+	LOG(LogLevel::Error) << "Could not parse file leader_traits.txt";
+	exit(-1);
+	}*/
+	//initLeaderTraitsMap(obj->getLeaves()[0], leaderTraits);
 
 	// Parse government jobs
 	/*LOG(LogLevel::Info) << "Parsing government jobs";
@@ -438,6 +480,31 @@ void HoI4World::convertCountries(const leaderTraitsMap& leaderTraits, const name
 	backgroundMap landBackgroundMap;
 	backgroundMap seaBackgroundMap;
 	//initLeaderBackgroundMap(obj->getLeaves()[0], landBackgroundMap, seaBackgroundMap);
+
+	// parse names
+	LOG(LogLevel::Info) << "Parsing names";
+	for (auto itr: Configuration::getVic2Mods())
+	{
+		LOG(LogLevel::Debug) << "Reading mod cultures";
+		obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/common/cultures.txt"));
+		if (obj != NULL)
+		{
+			initNamesMapping(obj, namesMap);
+		}
+	}
+	obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/cultures.txt"));
+	if (obj != NULL)
+	{
+		initNamesMapping(obj, namesMap);
+	}
+
+	// parse portraits list
+	LOG(LogLevel::Info) << "Parsing portraits list";
+	obj = parser_UTF8::doParseFile("portraits.txt");
+	if (obj != NULL)
+	{
+		initPortraitMapping(obj, portraitMap);
+	}
 
 	map<int, int> leaderMap;
 
@@ -1017,7 +1084,7 @@ void HoI4World::convertResources()
 }
 
 
-void HoI4World::convertSupplyZones(const map<int, int>& provinceToSupplyZoneMap)
+void HoI4World::convertSupplyZones()
 {
 	for (auto state : states->getStates())
 	{
@@ -1513,7 +1580,7 @@ void HoI4World::configureFactions()
 }
 
 
-void HoI4World::generateLeaders(const leaderTraitsMap& leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap)
+void HoI4World::generateLeaders()
 {
 	LOG(LogLevel::Info) << "Generating Leaders";
 
@@ -1787,9 +1854,9 @@ void HoI4World::fillCountryProvinces()
 		}
 	}
 }
-void HoI4World::setSphereLeaders(const V2World &sourceWorld)
+void HoI4World::setSphereLeaders(const V2World* sourceWorld)
 {
-	const vector<string>& greatCountries = sourceWorld.getGreatPowers();
+	const vector<string>& greatCountries = sourceWorld->getGreatPowers();
 	for (auto countryItr : greatCountries)
 	{
 		auto itr = countries.find(CountryMapper::getHoI4Tag(countryItr));
@@ -5024,7 +5091,7 @@ void HoI4World::outputRelations() const
 	}
 	out.close();
 }
-void HoI4World::thatsgermanWarCreator(const V2World &sourceWorld)
+void HoI4World::thatsgermanWarCreator()
 {
 
 	//FIX ALL FIXMES AND ADD CONQUEST GOAL
@@ -5592,7 +5659,7 @@ HoI4Faction* HoI4World::findFaction(HoI4Country* CheckingCountry)
 	HoI4Faction* newFaction = new HoI4Faction(CheckingCountry, myself);
 	return newFaction;
 }
-bool HoI4World::checkIfGreatCountry(HoI4Country* checkingCountry, const V2World &sourceWorld)
+bool HoI4World::checkIfGreatCountry(HoI4Country* checkingCountry, const V2World* sourceWorld)
 {
 	bool isGreatCountry = false;
 	vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld);
@@ -5687,7 +5754,7 @@ vector<int> HoI4World::getCountryProvinces(HoI4Country* Country)
 	volatile vector<int> asdfasdf = countryprovinces;
 	return countryprovinces;
 }
-vector<HoI4Faction*> HoI4World::CreateFactions(const V2World &sourceWorld)
+vector<HoI4Faction*> HoI4World::CreateFactions(const V2World* sourceWorld)
 {
 	vector<HoI4Faction*> Factions2;
 	string filename("Factions-logs.txt");
@@ -5795,9 +5862,9 @@ double HoI4World::GetFactionStrength(HoI4Faction* Faction, int years)
 }
 
 
-vector<HoI4Country*> HoI4World::returnGreatCountries(const V2World &sourceWorld)
+vector<HoI4Country*> HoI4World::returnGreatCountries(const V2World* sourceWorld)
 {
-	const vector<string>& greatCountries = sourceWorld.getGreatPowers();
+	const vector<string>& greatCountries = sourceWorld->getGreatPowers();
 	vector<HoI4Country*> GreatCountries;
 	for (auto countryItr : greatCountries)
 	{
@@ -5809,7 +5876,9 @@ vector<HoI4Country*> HoI4World::returnGreatCountries(const V2World &sourceWorld)
 	}
 	return GreatCountries;
 }
-string HoI4World::returnIfSphere(HoI4Country* leadercountry, HoI4Country* posLeaderCountry, const V2World &sourceWorld)
+
+
+string HoI4World::returnIfSphere(HoI4Country* leadercountry, HoI4Country* posLeaderCountry, const V2World* sourceWorld)
 {
 	vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld);
 	for (auto country : GreatCountries)
@@ -5836,7 +5905,7 @@ string HoI4World::returnIfSphere(HoI4Country* leadercountry, HoI4Country* posLea
 	}
 	return "";
 }
-vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sourceWorld)
+vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, const V2World* sourceWorld)
 {
 	vector<HoI4Faction*> CountriesAtWar;
 	LOG(LogLevel::Info) << "Calculating AI for " + Leader->getSourceCountry()->getName("english");
@@ -6498,7 +6567,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, V2World sou
 }
 
 
-vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World sourceWorld)
+vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, const V2World* sourceWorld)
 {
 	vector<HoI4Faction*> CountriesAtWar;
 	//communism still needs great country war events
@@ -7042,7 +7111,7 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, V2World
 }
 
 
-vector<HoI4Faction*> HoI4World::DemocracyWarCreator(HoI4Country* Leader, V2World sourceWorld)
+vector<HoI4Faction*> HoI4World::DemocracyWarCreator(HoI4Country* Leader, const V2World* sourceWorld)
 {
 	vector<HoI4Faction*> CountriesAtWar;
 	map<int, HoI4Country*> CountriesToContain;
@@ -7080,7 +7149,7 @@ vector<HoI4Faction*> HoI4World::DemocracyWarCreator(HoI4Country* Leader, V2World
 }
 
 
-vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, V2World sourceWorld)
+vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, const V2World* sourceWorld)
 {
 	vector<HoI4Faction*> CountriesAtWar;
 	//this is for monarchy events, dont need for random

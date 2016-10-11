@@ -26,9 +26,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Configuration.h"
 #include "Flags.h"
 #include "Log.h"
-#include "ParadoxParser8859_15.h"
-#include "ParadoxParserUTF8.h"
-#include "HOI4World/HoI4Buildings.h"
 #include "HoI4World/HoI4World.h"
 #include "V2World/V2World.h"
 #include "OSCompatibilityLayer.h"
@@ -72,8 +69,7 @@ int main(const int argc, const char* argv[])
 
 void checkMods();
 void getOutputName(const string& V2SaveFileName);
-void convert(HoI4States* theStates, HoI4World& destWorld, const map<int, int>& provinceToSupplyZoneMap, const V2World& sourceWorld);
-void output(HoI4World& destWorld, const HoI4Buildings& buildings);
+void output(HoI4World& destWorld);
 void ConvertV2ToHoI4(const string& V2SaveFileName)
 {
 	Configuration::getInstance();
@@ -84,19 +80,7 @@ void ConvertV2ToHoI4(const string& V2SaveFileName)
 	V2World sourceWorld(V2SaveFileName);
 	HoI4World destWorld(&sourceWorld);
 
-	map<int, vector<int>> HoI4DefaultStateToProvinceMap;
-	HoI4States* theStates = new HoI4States(&sourceWorld);
-	theStates->importStates(HoI4DefaultStateToProvinceMap);
-
-	map<int, int> provinceToSupplyZoneMap;
-	destWorld.importSuppplyZones(HoI4DefaultStateToProvinceMap, provinceToSupplyZoneMap);
-	destWorld.importStrategicRegions();
-	destWorld.checkAllProvincesMapped();
-	destWorld.checkCoastalProvinces();
-
-	convert(theStates, destWorld, provinceToSupplyZoneMap, sourceWorld);
-	HoI4Buildings buildings(theStates->getProvinceToStateIDMap());
-	output(destWorld, buildings);
+	output(destWorld);
 	LOG(LogLevel::Info) << "* Conversion complete *";
 }
 
@@ -162,84 +146,14 @@ void getOutputName(const string& V2SaveFileName)
 }
 
 
-void convert(HoI4States* theStates, HoI4World& destWorld, const map<int, int>& provinceToSupplyZoneMap, const V2World& sourceWorld)
-{
-	// Parse leader traits
-	LOG(LogLevel::Info) << "Parsing government jobs";
-	/*parser_UTF8::initParser();
-	obj = parser_UTF8::doParseFile("leader_traits.txt");
-	if (obj == NULL)
-	{
-	LOG(LogLevel::Error) << "Could not parse file leader_traits.txt";
-	exit(-1);
-	}*/
-	leaderTraitsMap leaderTraits;
-	//initLeaderTraitsMap(obj->getLeaves()[0], leaderTraits);
-
-	// parse names
-	LOG(LogLevel::Info) << "Parsing names";
-	namesMapping namesMap;
-	for (auto itr: Configuration::getVic2Mods())
-	{
-		LOG(LogLevel::Debug) << "Reading mod cultures";
-		Object* obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/common/cultures.txt"));
-		if (obj != NULL)
-		{
-			initNamesMapping(obj, namesMap);
-		}
-	}
-	Object* obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/cultures.txt"));
-	if (obj != NULL)
-	{
-		initNamesMapping(obj, namesMap);
-	}
-
-	// parse portraits list
-	LOG(LogLevel::Info) << "Parsing portraits list";
-	portraitMapping portraitMap;
-	obj = parser_UTF8::doParseFile("portraits.txt");
-	if (obj != NULL)
-	{
-		initPortraitMapping(obj, portraitMap);
-	}
-
-	theStates->convertStates();
-	destWorld.addStates(theStates);
-	destWorld.convertNavalBases();
-	destWorld.convertCountries(leaderTraits, namesMap, portraitMap);
-	theStates->addLocalisations();
-	destWorld.convertIndustry();
-	destWorld.convertResources();
-	destWorld.convertSupplyZones(provinceToSupplyZoneMap);
-	destWorld.convertStrategicRegions();
-	destWorld.convertDiplomacy();
-	destWorld.convertTechs();
-	destWorld.configureFactions();
-	destWorld.generateLeaders(leaderTraits, namesMap, portraitMap);
-	destWorld.convertArmies();
-	destWorld.convertNavies();
-	destWorld.convertAirforces();
-	destWorld.convertCapitalVPs();
-	destWorld.thatsgermanWarCreator(sourceWorld);
-}
-
-
 void createModFile();
-void output(HoI4World& destWorld, const HoI4Buildings& buildings)
+void renameOutputFolder();
+void output(HoI4World& destWorld)
 {
 	createModFile();
-
-	if (!Utils::renameFolder("output/output", "output/" + Configuration::getOutputName()))
-	{
-		LOG(LogLevel::Error) << "Could not rename output folder!";
-		exit(-1);
-	}
-
-	LOG(LogLevel::Info) << "Copying flags";
+	renameOutputFolder();
 	copyFlags(destWorld.getCountries());
-	LOG(LogLevel::Info) << "Outputting world";
 	destWorld.output();
-	buildings.output();
 }
 
 
@@ -264,4 +178,14 @@ void createModFile()
 	//modFile << "replace = \"history/diplomacy\"\n";
 	modFile << "replace = \"history/states\"\n";
 	modFile.close();
+}
+
+
+void renameOutputFolder()
+{
+	if (!Utils::renameFolder("output/output", "output/" + Configuration::getOutputName()))
+	{
+		LOG(LogLevel::Error) << "Could not rename output folder!";
+		exit(-1);
+	}
 }
