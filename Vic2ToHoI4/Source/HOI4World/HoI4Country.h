@@ -67,7 +67,7 @@ class HoI4Country
 {
 	public:
 		HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld, bool _newCountry = false);
-		void		output(map<int, HoI4State*> states, vector<HoI4Faction*> Factions, string FactionName) const;
+		void		output(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const;
 		void		outputCommonCountryFile() const;
 		void		outputColors(ofstream& out) const;
 		void		outputToCommonCountriesFile(FILE*) const;
@@ -90,6 +90,7 @@ class HoI4Country
 		void		setFaction(string newFaction)	{ faction = newFaction; }
 		void		setFactionLeader()				{ factionLeader = true; }
 		void setRelations(string relationsinput) { relationstxt = relationsinput; }
+		void addNationalFocus(string NF) { nationalFocus = NF; }
 
 		HoI4Relations*								getRelations(string withWhom) const;
 		HoI4State* getCapital();
@@ -210,6 +211,8 @@ class HoI4Country
 		vector<HoI4Ship>							ships;
 		vector<HoI4Airplane>						planes;
 		int											navalLocation;
+
+		string nationalFocus;
 };
 
 #endif	// HoI4COUNTRY_H_

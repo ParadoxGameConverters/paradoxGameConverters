@@ -151,13 +151,16 @@ class HoI4World
 		vector<int>					getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		int							getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string owner);
 
-		void	outputCommonCountries() const;
-		void	outputColorsfile() const;
-		void	outputAutoexecLua() const;
-		void	outputLocalisations() const;
-		void	outputMap() const;
-		void	outputHistory() const;
-		void	outputSupply() const;
+		void outputCommonCountries() const;
+		void outputColorsfile() const;
+		void outputAutoexecLua() const;
+		void outputLocalisations() const;
+		void outputMap() const;
+		void outputHistory() const;
+		void outputSupply() const;
+		void outputCountries() const;
+		void outputNationalFocusEvents() const;
+		void outputNewsEvents() const;
 
 		map<int, vector<int>>			provinceNeighbors;
 		const V2World* sourceWorld;
@@ -187,8 +190,6 @@ class HoI4World
 		string alliesLeader;
 		string cominternLeader;
 		map<int, vector<string>> stateToProvincesMap;
-		bool fascismIsRelevant;
-		bool communismIsRelevant;
 		string NewsEvents;
 		int NewsEventNumber;
 		string nfEvents;

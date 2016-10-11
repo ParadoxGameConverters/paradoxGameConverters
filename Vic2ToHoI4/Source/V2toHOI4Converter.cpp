@@ -72,8 +72,8 @@ int main(const int argc, const char* argv[])
 
 void checkMods();
 void getOutputName(const string& V2SaveFileName);
-void convert(HoI4States* theStates, HoI4World& destWorld, const map<int, int>& provinceToSupplyZoneMap);
-void output(HoI4World& destWorld, const HoI4Buildings& buildings, const V2World& sourceWorld);
+void convert(HoI4States* theStates, HoI4World& destWorld, const map<int, int>& provinceToSupplyZoneMap, const V2World& sourceWorld);
+void output(HoI4World& destWorld, const HoI4Buildings& buildings);
 void ConvertV2ToHoI4(const string& V2SaveFileName)
 {
 	Configuration::getInstance();
@@ -94,9 +94,9 @@ void ConvertV2ToHoI4(const string& V2SaveFileName)
 	destWorld.checkAllProvincesMapped();
 	destWorld.checkCoastalProvinces();
 
-	convert(theStates, destWorld, provinceToSupplyZoneMap);
+	convert(theStates, destWorld, provinceToSupplyZoneMap, sourceWorld);
 	HoI4Buildings buildings(theStates->getProvinceToStateIDMap());
-	output(destWorld, buildings, sourceWorld);
+	output(destWorld, buildings);
 	LOG(LogLevel::Info) << "* Conversion complete *";
 }
 
@@ -162,7 +162,7 @@ void getOutputName(const string& V2SaveFileName)
 }
 
 
-void convert(HoI4States* theStates, HoI4World& destWorld, const map<int, int>& provinceToSupplyZoneMap)
+void convert(HoI4States* theStates, HoI4World& destWorld, const map<int, int>& provinceToSupplyZoneMap, const V2World& sourceWorld)
 {
 	// Parse leader traits
 	LOG(LogLevel::Info) << "Parsing government jobs";
@@ -220,11 +220,12 @@ void convert(HoI4States* theStates, HoI4World& destWorld, const map<int, int>& p
 	destWorld.convertNavies();
 	destWorld.convertAirforces();
 	destWorld.convertCapitalVPs();
+	destWorld.thatsgermanWarCreator(sourceWorld);
 }
 
 
 void createModFile();
-void output(HoI4World& destWorld, const HoI4Buildings& buildings, const V2World& sourceWorld)
+void output(HoI4World& destWorld, const HoI4Buildings& buildings)
 {
 	createModFile();
 
@@ -239,8 +240,6 @@ void output(HoI4World& destWorld, const HoI4Buildings& buildings, const V2World&
 	LOG(LogLevel::Info) << "Outputting world";
 	destWorld.output();
 	buildings.output();
-
-	destWorld.thatsgermanWarCreator(sourceWorld);
 }
 
 
