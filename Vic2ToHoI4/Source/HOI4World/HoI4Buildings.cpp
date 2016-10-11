@@ -92,6 +92,7 @@ void HoI4Buildings::placeNavalBases(const map<int, int>& provinceToStateIDMap)
 		if (provinceToStateMapping == provinceToStateIDMap.end())
 		{
 			LOG(LogLevel::Warning) << "Could not find state for province " << province.first << ". Naval base not set.";
+			continue;
 		}
 
 		HoI4NavalBase* newNavalBase = new HoI4NavalBase(provinceToStateMapping->second, position->second.first, position->second.second, province.second);
