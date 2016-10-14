@@ -46,7 +46,7 @@ EU4CultureGroupMapper::EU4CultureGroupMapper()
 		Utils::GetAllFilesInFolder(itr + "/common/cultures/", cultureFiles);
 		for (auto cultureFile: cultureFiles)
 		{
-			addCulturesFromFile(cultureFile);
+			addCulturesFromFile(itr + "/common/cultures/" + cultureFile);
 		}
 	}
 }
@@ -59,11 +59,6 @@ void EU4CultureGroupMapper::addCulturesFromFile(const string& filename)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << filename;
 		exit(-1);
-	}
-	if (culturesObj->getLeaves().size() < 1)
-	{
-		LOG(LogLevel::Error) << "Failed to parse " << filename;
-		exit (-1);
 	}
 	initCultureGroups(culturesObj);
 }
