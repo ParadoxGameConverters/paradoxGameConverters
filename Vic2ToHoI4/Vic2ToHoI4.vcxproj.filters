@@ -149,6 +149,9 @@
     <ClCompile Include="Source\Mappers\V2Localisations.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
+    <ClCompile Include="Source\HOI4World\HOI4Version.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -280,6 +283,9 @@
     </ClInclude>
     <ClInclude Include="Source\Mappers\V2Localisations.h">
       <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\HOI4Version.h">
+      <Filter>HoI4World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -107,4 +107,6 @@ Configuration::Configuration()
 
 	leaderID					= 1000;
 	leaderIDCountryIdx	= 1;
+
+	version = HOI4Version("1.2.1");
 }
