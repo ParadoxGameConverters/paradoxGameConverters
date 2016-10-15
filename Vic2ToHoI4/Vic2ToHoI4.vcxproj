@@ -77,6 +77,7 @@
     <ClCompile Include="Source\HOI4World\HoI4Buildings.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Country.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Diplomacy.cpp" />
+    <ClCompile Include="Source\HOI4World\HoI4Event.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Leader.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Localisation.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Minister.cpp" />
@@ -127,6 +128,7 @@
     <ClInclude Include="Source\HOI4World\HoI4Buildings.h" />
     <ClInclude Include="Source\HOI4World\HoI4Country.h" />
     <ClInclude Include="Source\HOI4World\HoI4Diplomacy.h" />
+    <ClInclude Include="Source\HOI4World\HoI4Event.h" />
     <ClInclude Include="Source\HOI4World\HoI4Leader.h" />
     <ClInclude Include="Source\HOI4World\HoI4Localisation.h" />
     <ClInclude Include="Source\HOI4World\HoI4Minister.h" />

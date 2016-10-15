@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Country.h"
 #include "HoI4Province.h"
 #include "HoI4Diplomacy.h"
+#include "HoI4Event.h"
 #include "HoI4Localisation.h"
 #include "HoI4States.h"
 #include "HoI4StrategicRegion.h"
@@ -92,7 +93,7 @@ class HoI4World
 		vector<HoI4Faction*> CommunistWarCreator(HoI4Country * Leader, const V2World* sourceWorld);
 		vector<HoI4Faction*> DemocracyWarCreator(HoI4Country * Leader, const V2World* sourceWorld);
 		vector<HoI4Faction*> MonarchyWarCreator(HoI4Country * Leader, const V2World* sourceWorld);
-		void CreateFactionEvents(HoI4Country * Leader, HoI4Country * newAlly);
+		void CreateFactionEvents(const HoI4Country* Leader, HoI4Country* newAlly);
 		string HowToTakeLand(HoI4Country * TargetCountry, HoI4Country * AttackingCountry, double time);
 		vector<HoI4Country*> GetMorePossibleAllies(HoI4Country * CountryThatWantsAllies);
 		double getDistanceBetweenCountries(const HoI4Country* Country1, const HoI4Country* Country2);
@@ -109,8 +110,8 @@ class HoI4World
 		bool checkIfGreatCountry(HoI4Country * checkingCountry, const V2World* sourceWorld);
 		map<string, HoI4Country*> findNeighbors(vector<int> CountryProvs, HoI4Country * CheckingCountry);
 		void fillProvinces();
-		string createAnnexEvent(HoI4Country * Annexer, HoI4Country * Annexed, int eventnumber);
-		string createSudatenEvent(HoI4Country * Annexer, HoI4Country * Annexed, int eventnumber, vector<int> claimedStates);
+		vector<HoI4Event> createAnnexEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, int& eventNumber);
+		vector<HoI4Event> createSudatenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, int& eventnumber, const vector<int>& claimedStates);
 		string createDemocracyNF(HoI4Country * Home, vector<HoI4Country*> CountriesToContain, int XStart);
 		string createMonarchyEmpireNF(HoI4Country * Home, HoI4Country * Annexed1, HoI4Country * Annexed2, HoI4Country * Annexed3, HoI4Country * Annexed4, int ProtectorateNumber, int AnnexNumber, int x);
 		void fillProvinceNeighbors();
@@ -189,9 +190,9 @@ class HoI4World
 		string alliesLeader;
 		string cominternLeader;
 		map<int, vector<string>> stateToProvincesMap;
-		string NewsEvents;
+		vector<HoI4Event> newsEvents;
 		int NewsEventNumber;
-		string nfEvents;
+		vector<HoI4Event> nfEvents;
 		int nfEventNumber;
 
 		leaderTraitsMap leaderTraits;
