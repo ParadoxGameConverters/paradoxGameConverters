@@ -21,33 +21,37 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef HOI4_EVENT_H
-#define HOI4_EVENT_H
+#ifndef HOI4_FACTION_H
+#define HOI4_FACTION_H
 
 
 
-#include <fstream>
-#include <string>
 #include <vector>
 using namespace std;
 
 
 
-class HoI4Event
-{
-	public:
-		friend ofstream& operator << (ofstream& out, HoI4Event theEvent);
+class HoI4Country;
 
-		string type;
-		string id;
-		string title;
-		string description;
-		string picture;
-		bool major;
-		string trigger;
-		vector<string> options;
+
+
+class HoI4Faction
+{
+
+	public:
+		HoI4Faction(HoI4Country* leader, vector<HoI4Country*> members) { Factionleader = leader; Factionmembers = members; }
+
+		HoI4Country* getLeader() { return Factionleader; }
+		vector<HoI4Country*> getMembers() { return Factionmembers; }
+		void addMember(HoI4Country* addedCon) { Factionmembers.push_back(addedCon); }
+
+	private:
+		HoI4Country* Factionleader;
+		vector<HoI4Country*> Factionmembers;
+
 };
 
 
 
-#endif // #ifndef HOI4_EVENT_H
+
+#endif // HOI4_FACTION_H

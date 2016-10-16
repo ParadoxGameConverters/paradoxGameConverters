@@ -37,6 +37,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../V2World/V2Diplomacy.h"
 #include "../V2World/V2Province.h"
 #include "../V2World/V2Party.h"
+#include "HoI4Faction.h"
 #include "HoI4Relations.h"
 #include "HoI4State.h"
 #include "HoI4SupplyZone.h"
@@ -68,7 +69,6 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	convertStrategicRegions();
 	convertDiplomacy();
 	convertTechs();
-	configureFactions();
 	generateLeaders();
 	convertArmies();
 	convertNavies();
@@ -195,9 +195,8 @@ void HoI4World::output() const
 	outputSupply();
 	outputRelations();
 	outputCountries();
-	outputNationalFocusEvents();
-	outputNewsEvents();
 	buildings->output();
+	events.output();
 }
 
 
@@ -569,49 +568,6 @@ void HoI4World::outputCountries() const
 	{
 		country.second->output(states->getStates(), Factions);
 	}
-}
-
-
-void HoI4World::outputNationalFocusEvents() const
-{
-	string filenameevents("Output/" + Configuration::getOutputName() + "/events/NF_events.txt");
-	ofstream outEvents(filenameevents);
-	if (!outEvents.is_open())
-	{
-		LOG(LogLevel::Error) << "Could not create NF_events.txt";
-		exit(-1);
-	}
-
-	outEvents << "\xEF\xBB\xBF";
-	outEvents << "add_namespace = NFEvents\n";
-	for (auto theEvent: nfEvents)
-	{
-		outEvents << "\n";
-		outEvents << theEvent;
-	}
-
-	outEvents.close();
-}
-
-
-void HoI4World::outputNewsEvents() const
-{
-	ofstream outNewsEvents("Output/" + Configuration::getOutputName() + "/events/newsEvents.txt");
-	if (!outNewsEvents.is_open())
-	{
-		LOG(LogLevel::Error) << "Could not create newsEvents.txt";
-		exit(-1);
-	}
-
-	outNewsEvents << "\xEF\xBB\xBF";
-	outNewsEvents << "add_namespace = news\n";
-	for (auto theEvent: newsEvents)
-	{
-		outNewsEvents << "\n";
-		outNewsEvents << theEvent;
-	}
-
-	outNewsEvents.close();
 }
 
 
@@ -1433,163 +1389,6 @@ void HoI4World::convertArmies(const HoI4AdjacencyMapping& HoI4AdjacencyMap)
 }
 
 
-void HoI4World::checkManualFaction(const vector<string>& candidateTags, string leader, const string& factionName)
-{
-	bool leaderSet = false;
-	for (auto candidate : candidateTags)
-	{
-		// get HoI4 tag from V2 tag
-		string hoiTag = CountryMapper::getHoI4Tag(candidate);
-		if (hoiTag.empty())
-		{
-			LOG(LogLevel::Warning) << "Tag " << candidate << " requested for " << factionName << " faction, but is unmapped!";
-			continue;
-		}
-
-		// find HoI4 nation and ensure that it has land
-		auto citr = countries.find(hoiTag);
-		if (citr != countries.end())
-		{
-			if (citr->second->getProvinces().size() == 0)
-			{
-				LOG(LogLevel::Warning) << "Tag " << candidate << " requested for " << factionName << " faction, but is landless!";
-			}
-			else
-			{
-				LOG(LogLevel::Debug) << candidate << " added to " << factionName << " faction";
-				citr->second->setFaction(factionName);
-				if (leader == "")
-				{
-					leader = citr->first;
-				}
-				if (!leaderSet)
-				{
-					citr->second->setFactionLeader();
-					leaderSet = true;
-				}
-			}
-		}
-		else
-		{
-			LOG(LogLevel::Warning) << "Tag " << candidate << " requested for " << factionName << " faction, but does not exist!";
-		}
-	}
-}
-
-
-void HoI4World::factionSatellites()
-{
-	// make sure that any vassals are in their master's faction
-	const vector<const HoI4Agreement*>& agreements = diplomacy.getAgreements();
-	for (auto agreement : agreements)
-	{
-		if (agreement->type == "vassal")
-		{
-			auto masterCountry = countries.find(agreement->country1);
-			auto satelliteCountry = countries.find(agreement->country2);
-			if ((masterCountry != countries.end()) && (masterCountry->second->getFaction() != "") && (satelliteCountry != countries.end()))
-			{
-				satelliteCountry->second->setFaction(masterCountry->second->getFaction());
-			}
-		}
-	}
-}
-
-
-void HoI4World::setAlignments()
-{
-	// set alignments
-	for (auto country : countries)
-	{
-		const string countryFaction = country.second->getFaction();
-
-		// force alignment for faction members
-		if (countryFaction == "axis")
-		{
-			country.second->getAlignment()->alignToAxis();
-		}
-		else if (countryFaction == "allies")
-		{
-			country.second->getAlignment()->alignToAllied();
-		}
-		else if (countryFaction == "comintern")
-		{
-			country.second->getAlignment()->alignToComintern();
-		}
-		else
-		{
-			// scale for positive relations - 230 = distance from corner to circumcenter, 200 = max relations
-			static const double positiveScale = (230.0 / 200.0);
-			// scale for negative relations - 116 = distance from circumcenter to side opposite corner, 200 = max relations
-			static const double negativeScale = (116.0 / 200.0);
-
-			// weight alignment for non-members based on relations with faction leaders
-			HoI4Alignment axisStart;
-			HoI4Alignment alliesStart;
-			HoI4Alignment cominternStart;
-			if (axisLeader != "")
-			{
-				HoI4Relations* relObj = country.second->getRelations(axisLeader);
-				if (relObj != NULL)
-				{
-					double axisRelations = relObj->getRelations();
-					if (axisRelations >= 0.0)
-					{
-						axisStart.moveTowardsAxis(axisRelations * positiveScale);
-					}
-					else // axisRelations < 0.0
-					{
-						axisStart.moveTowardsAxis(axisRelations * negativeScale);
-					}
-				}
-			}
-			if (alliesLeader != "")
-			{
-				HoI4Relations* relObj = country.second->getRelations(alliesLeader);
-				if (relObj != NULL)
-				{
-					double alliesRelations = relObj->getRelations();
-					if (alliesRelations >= 0.0)
-					{
-						alliesStart.moveTowardsAllied(alliesRelations * positiveScale);
-					}
-					else // alliesRelations < 0.0
-					{
-						alliesStart.moveTowardsAllied(alliesRelations * negativeScale);
-					}
-				}
-			}
-			if (cominternLeader != "")
-			{
-				HoI4Relations* relObj = country.second->getRelations(cominternLeader);
-				if (relObj != NULL)
-				{
-					double cominternRelations = relObj->getRelations();
-					if (cominternRelations >= 0.0)
-					{
-						cominternStart.moveTowardsComintern(cominternRelations * positiveScale);
-					}
-					else // cominternRelations < 0.0
-					{
-						cominternStart.moveTowardsComintern(cominternRelations * negativeScale);
-					}
-				}
-			}
-			(*(country.second->getAlignment())) = HoI4Alignment::getCentroid(axisStart, alliesStart, cominternStart);
-		}
-	}
-}
-
-
-void HoI4World::configureFactions()
-{
-	LOG(LogLevel::Info) << "Setting up factions";
-
-	factionSatellites(); // push satellites into the same faction as their parents
-	setAlignments();
-}
-
-
 void HoI4World::generateLeaders()
 {
 	LOG(LogLevel::Info) << "Generating Leaders";
@@ -1888,218 +1687,6 @@ void HoI4World::setSphereLeaders(const V2World* sourceWorld)
 			}
 		}
 	}
-}
-
-
-vector<HoI4Event> HoI4World::createAnnexEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, int& eventNumber)
-{
-	vector<HoI4Event> events;
-
-	string annexername = Annexer->getSourceCountry()->getName("english");
-	string annexedname = Annexed->getSourceCountry()->getName("english");
-
-	HoI4Event annexEvent;
-	annexEvent.type = "country_event";
-	annexEvent.id = "NFEvents." + to_string(eventNumber);
-	annexEvent.title = annexername + " Demands " + annexedname + "!";
-	annexEvent.description = "Today " + annexername + " sent an envoy to us with a proposition of an union. We are alone and in this world, and a union with " + annexername + " might prove to be fruiteful.";
-	annexEvent.description += " Our people would be safe with the mighty army of " + annexername + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!\"\n";
-	annexEvent.picture = "GFX_report_event_hitler_parade";
-
-	string acceptOption = "		name = \"We accept the Union\"\n";
-	acceptOption += "		ai_chance = {\n";
-	acceptOption += "			base = 30\n";
-	acceptOption += "			modifier = {\n";
-	acceptOption += "				add = -15\n";
-	acceptOption += "				" + Annexer->getTag() + " = { has_army_size = { size < 40 } }\n";
-	acceptOption += "			}\n";
-	acceptOption += "			modifier = {\n";
-	acceptOption += "				add = 45\n";
-	acceptOption += "				" + Annexer->getTag() + " = { has_army_size = { size > 39 } }\n";
-	acceptOption += "			}\n";
-	acceptOption += "		}\n";
-	acceptOption += "		" + Annexer->getTag() + " = {\n";
-	acceptOption += "			country_event = { hours = 2 id = NFEvents." + to_string(eventNumber + 1) + " }\n";//+1 accept
-	acceptOption += "		}\n";
-	acceptOption += "		custom_effect_tooltip = GAME_OVER_TT\n";
-	annexEvent.options.push_back(acceptOption);
-
-	string refuseOption = "		name = \"We Refuse!\"\n";
-	refuseOption += "		ai_chance = {\n";
-	refuseOption += "			base = 10 \n";
-	refuseOption += "\n";
-	refuseOption += "			modifier = {\n";
-	refuseOption += "				factor = 0\n";
-	refuseOption += "				GER = { has_army_size = { size > 39 } }\n";
-	refuseOption += "			}\n";
-	refuseOption += "			modifier = {\n";
-	refuseOption += "				add = 20\n";
-	refuseOption += "				GER = { has_army_size = { size < 30 } }\n";
-	refuseOption += "			}\n";
-	refuseOption += "		}\n";
-	refuseOption += "		" + Annexer->getTag() + " = {\n";
-	//refuseOption += "			add_opinion_modifier = { target = ROOT modifier = " + Annexer->getTag() + "_anschluss_rejected }\n";
-	refuseOption += "			country_event = { hours = 2 id = NFEvents." + to_string(eventNumber + 2) + " }\n";//+2 refuse
-	refuseOption += "			if = { limit = { is_in_faction_with = " + Annexed->getTag() + " }\n";
-	refuseOption += "				remove_from_faction = " + Annexed->getTag() + "\n";
-	refuseOption += "			}\n";
-	refuseOption += "		}\n";
-	refuseOption += "	}\n";
-	refuseOption += "}\n";
-	annexEvent.options.push_back(refuseOption);
-
-	events.push_back(annexEvent);
-
-
-	HoI4Event refusedEvent;
-	refusedEvent.type = "country_event";
-	refusedEvent.id = "NFEvents." + to_string(eventNumber + 2);
-	refusedEvent.title = annexedname + " Refuses!";
-	refusedEvent.description = annexedname + " Refused our proposed union! This is an insult to us that cannot go unanswered!";
-	refusedEvent.picture = "GFX_report_event_german_troops";
-
-	string refusedOption = "		name = \"It's time for war\"\n";
-	refusedOption += "		create_wargoal = {\n";
-	refusedOption += "				type = annex_everything\n";
-	refusedOption += "			target = " + Annexed->getTag() + "\n";
-	refusedOption += "		}\n";
-	refusedEvent.options.push_back(refusedOption);
-
-	events.push_back(refusedEvent);
-
-
-	HoI4Event acceptedEvent;
-	acceptedEvent.type = "country_event";
-	acceptedEvent.id = "NFEvents." + to_string(eventNumber + 1);
-	acceptedEvent.title = annexedname + " accepts!";
-	acceptedEvent.description = annexedname + " accepted our proposed union, their added strength will push us to greatness!";
-	acceptedEvent.picture = "GFX_report_event_german_speech";
-
-	string acceptedOption = "		name = \"A stronger Union!\"\n";
-	for (auto state: Annexed->getStates())
-	{
-		acceptedOption += "		" + to_string(state.first) + " = {\n";
-		acceptedOption += "			if = {\n";
-		acceptedOption += "				limit = { is_owned_by = " + Annexed->getTag() + " }\n";
-		acceptedOption += "				add_core_of = " + Annexer->getTag() + "\n";
-		acceptedOption += "			}\n";
-		acceptedOption += "		}\n";
-
-	}
-	acceptedOption += "\n";
-	acceptedOption += "		annex_country = { target = " + Annexed->getTag() + " transfer_troops = yes }\n";
-	acceptedOption += "		add_political_power = 50\n";
-	acceptedOption += "		add_named_threat = { threat = 2 name = \"" + annexername + " annexed " + annexedname + "\" }\n";
-	acceptedOption += "		set_country_flag = " + Annexed->getTag() + "_annexed\n";
-	acceptedOption += "	}\n";
-	acceptedEvent.options.push_back(acceptedOption);
-
-	events.push_back(acceptedEvent);
-
-
-	eventNumber += 3;
-	return events;
-}
-
-
-vector<HoI4Event> HoI4World::createSudatenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, int& eventnumber, const vector<int>& claimedStates)
-{
-	vector<HoI4Event> events;
-
-	//flesh out this event more, possibly make it so allies have a chance to help?
-	string annexername = Annexer->getSourceCountry()->getName("english");
-	string annexedname = Annexed->getSourceCountry()->getName("english");
-
-	HoI4Event sudatenEvent;
-	sudatenEvent.type = "country_event";
-	sudatenEvent.id = "NFEvents." + to_string(eventnumber);
-	sudatenEvent.title = annexername + " Demands " + annexedname + "!";
-	sudatenEvent.description = annexername + " has recently been making claims to our bordering states, saying that these states are full of " + Annexer->getSourceCountry()->getAdjective("english") + " people and that the territory should be given to them. Although it ";
-	sudatenEvent.description = "is true that recently our neighboring states have had an influx of " + Annexer->getSourceCountry()->getAdjective("english") + " people in the recent years, we cannot give up our lands because a few " + Annexer->getSourceCountry()->getAdjective("english") + " settled down in our land. ";
-	sudatenEvent.description += "In response " + annexername + " has called for a conference, demanding their territory in exchange for peace. How do we resond? ";
-	sudatenEvent.description += " Our people would be safe with the mighty army of " + annexername + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!\"\n";
-	sudatenEvent.picture = "GFX_report_event_hitler_parade";
-
-	string acceptOption = "		name = \"We Accept\"\n";
-	acceptOption += "		ai_chance = {\n";
-	acceptOption += "			base = 30\n";
-	acceptOption += "			modifier = {\n";
-	acceptOption += "				add = -15\n";
-	acceptOption += "				" + Annexer->getTag() + " = { has_army_size = { size < 40 } }\n";
-	acceptOption += "			}\n";
-	acceptOption += "			modifier = {\n";
-	acceptOption += "				add = 45\n";
-	acceptOption += "				" + Annexer->getTag() + " = { has_army_size = { size > 39 } }\n";
-	acceptOption += "			}\n";
-	acceptOption += "		}\n";
-	acceptOption += "		" + Annexer->getTag() + " = {\n";
-	acceptOption += "			country_event = { hours = 2 id = NFEvents." + to_string(eventnumber + 1) + " }\n";//+1 accept
-	acceptOption += "		}\n";
-	sudatenEvent.options.push_back(acceptOption);
-
-	string refuseOption = "		name = \"We Refuse!\"\n";
-	refuseOption += "		ai_chance = {\n";
-	refuseOption += "			base = 10 \n";
-	refuseOption += "\n";
-	refuseOption += "			modifier = {\n";
-	refuseOption += "				factor = 0\n";
-	refuseOption += "				GER = { has_army_size = { size > 39 } }\n";
-	refuseOption += "			}\n";
-	refuseOption += "			modifier = {\n";
-	refuseOption += "				add = 20\n";
-	refuseOption += "				GER = { has_army_size = { size < 30 } }\n";
-	refuseOption += "			}\n";
-	refuseOption += "		}\n";
-	refuseOption += "		" + Annexer->getTag() + " = {\n";
-	//refuseOption += "			add_opinion_modifier = { target = ROOT modifier = " + Annexer->getTag() + "_anschluss_rejected }\n";
-	refuseOption += "			country_event = { hours = 2 id = NFEvents." + to_string(eventnumber + 2) + " }\n";//+2 refuse
-	refuseOption += "			if = { limit = { is_in_faction_with = " + Annexed->getTag() + " }\n";
-	refuseOption += "				remove_from_faction = " + Annexed->getTag() + "\n";
-	refuseOption += "			}\n";
-	refuseOption += "		}\n";
-	sudatenEvent.options.push_back(refuseOption);
-
-	events.push_back(sudatenEvent);
-
-
-	HoI4Event refusedEvent;
-	refusedEvent.type = "country_event";
-	refusedEvent.id = "NFEvents." + to_string(eventnumber + 2);
-	refusedEvent.title = annexedname + " Refuses!";
-	refusedEvent.description = annexedname + " Refused our proposed proposition! This is an insult to us that cannot go unanswered!";
-	refusedEvent.picture = "GFX_report_event_german_troops";
-
-	string refusedOption = "		name = \"It's time for war\"\n";
-	refusedOption += "		create_wargoal = {\n";
-	refusedOption += "				type = annex_everything\n";
-	refusedOption += "			target = " + Annexed->getTag() + "\n";
-	refusedOption += "		}\n";
-	refusedEvent.options.push_back(refusedOption);
-
-	events.push_back(refusedEvent);
-
-
-	HoI4Event acceptedEvent;
-	acceptedEvent.type = "country_event";
-	acceptedEvent.id = "NFEvents." + to_string(eventnumber + 1);
-	acceptedEvent.title = annexedname + " accepts!";
-	acceptedEvent.description = annexedname + " accepted our proposed demands, the added lands will push us to greatness!";
-	acceptedEvent.picture = "GFX_report_event_german_speech";
-
-	string acceptedOption = "		name = \"A stronger Union!\"\n";
-	for (auto state: claimedStates)
-	{
-		acceptedOption += "		" + to_string(state) + " = { add_core_of = " + Annexer->getTag() + " }\n";
-		acceptedOption += "		" + Annexer->getTag() + " = { transfer_state =  " + to_string(state) + " }\n";
-	}
-	acceptedOption += "		set_country_flag = " + Annexed->getTag() + "_demanded\n";
-	acceptedEvent.options.push_back(acceptedOption);
-
-	events.push_back(acceptedEvent);
-
-
-	eventnumber += 3;
-	return events;
 }
 
 
@@ -5125,8 +4712,6 @@ void HoI4World::thatsgermanWarCreator()
 	fillProvinceNeighbors();
 	LOG(LogLevel::Info) << "Creating Factions";
 	Factions = CreateFactions(sourceWorld);
-	NewsEventNumber = 237;
-	nfEventNumber = 0;
 	//outputting the country and factions
 
 	for each (auto AllGC in returnGreatCountries(sourceWorld))
@@ -5675,6 +5260,7 @@ HoI4Faction* HoI4World::findFaction(HoI4Country* CheckingCountry)
 	vector<HoI4Country*> myself;
 	myself.push_back(CheckingCountry);
 	HoI4Faction* newFaction = new HoI4Faction(CheckingCountry, myself);
+	CheckingCountry->setFaction(newFaction);
 	return newFaction;
 }
 bool HoI4World::checkIfGreatCountry(HoI4Country* checkingCountry, const V2World* sourceWorld)
@@ -5851,6 +5437,10 @@ vector<HoI4Faction*> HoI4World::CreateFactions(const V2World* sourceWorld)
 				out << "\tFaction Strength in 1939: " + to_string(FactionMilStrength) << endl;
 				out << endl;
 				HoI4Faction* newFaction = new HoI4Faction(Faction.front(), Faction);
+				for (auto member: Faction)
+				{
+					member->setFaction(newFaction);
+				}
 				Factions2.push_back(newFaction);
 			}
 
@@ -6130,11 +5720,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, const V2Wor
 				FocusTree += "		}\n";
 				FocusTree += "	}";
 
-				//events
-				for (auto theEvent: createAnnexEvent(Leader, nan[i], nfEventNumber))
-				{
-					nfEvents.push_back(theEvent);
-				}
+				events.createAnnexEvent(Leader, nan[i]);
 			}
 		}
 		nan.clear();
@@ -6253,7 +5839,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, const V2Wor
 				FocusTree += "					country_exists = " + nan[i]->getTag() + "\n";
 				FocusTree += "				}\n";
 				FocusTree += "				" + nan[i]->getTag() + " = {\n";
-				FocusTree += "					country_event = NFEvents." + to_string(nfEventNumber) + "\n";
+				FocusTree += "					country_event = NFEvents." + to_string(events.getCurrentNationFocusEventNum()) + "\n";
 				FocusTree += "				}\n";
 				FocusTree += "			}\n";
 				FocusTree += "		}\n";
@@ -6334,10 +5920,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, const V2Wor
 					}
 				}
 
-				for (auto theEvent: createSudatenEvent(Leader, nan[0], nfEventNumber, demandedstates))
-				{
-					nfEvents.push_back(theEvent);
-				}
+				events.createSudatenEvent(Leader, nan[0], demandedstates);
 			}
 		}
 		nan.clear();
@@ -6398,13 +5981,20 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, const V2Wor
 		FocusTree += "		}\n";
 		FocusTree += "		completion_reward = {\n";
 		FocusTree += "			" + newAllies[i]->getTag() + " = {\n";
-		FocusTree += "				country_event = { hours = 6 id = NFEvents." + to_string(nfEventNumber) + " } \n";
+		FocusTree += "				country_event = { hours = 6 id = NFEvents." + to_string(events.getCurrentNationFocusEventNum()) + " } \n";
 		FocusTree += "				add_opinion_modifier = { target = " + Leader->getTag() + " modifier = ger_ita_alliance_focus } \n";
 		FocusTree += "			}\n";
 		FocusTree += "		}\n";
 		FocusTree += "}\n";
 
-		CreateFactionEvents(Leader, newAllies[i]);
+		if (newAllies[i]->getFaction() == nullptr)
+		{
+			vector<HoI4Country*> self;
+			self.push_back(newAllies[i]);
+			HoI4Faction* newFaction = new HoI4Faction(newAllies[i], self);
+			newAllies[i]->setFaction(newFaction);
+		}
+		events.createFactionEvents(Leader, newAllies[i]);
 	}
 
 	vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld);
@@ -6458,13 +6048,20 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, const V2Wor
 					FocusTree += "		}	\n";
 					FocusTree += "		completion_reward = {\n";
 					FocusTree += "		" + GC->getTag() + " = {\n";
-					FocusTree += "			country_event = { hours = 6 id = NFEvents." + to_string(nfEventNumber) + " } \n";
+					FocusTree += "			country_event = { hours = 6 id = NFEvents." + to_string(events.getCurrentNationFocusEventNum()) + " } \n";
 					FocusTree += "			add_opinion_modifier = { target = " + Leader->getTag() + " modifier = ger_ita_alliance_focus } \n";
 					FocusTree += "		}";
 					FocusTree += "		}\n";
 					FocusTree += "	}\n";
 
-					CreateFactionEvents(Leader, GC);
+					if (GC->getFaction() == nullptr)
+					{
+						vector<HoI4Country*> self;
+						self.push_back(GC);
+						HoI4Faction* newFaction = new HoI4Faction(GC, self);
+						GC->setFaction(newFaction);
+					}
+					events.createFactionEvents(Leader, GC);
 					maxGCAlliance++;
 				}
 			}
@@ -6946,13 +6543,20 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, const V
 		FocusTree += "		}	\n";
 		FocusTree += "		completion_reward = {\n";
 		FocusTree += "		" + newAllies[i]->getTag() + " = {\n";
-		FocusTree += "			country_event = { hours = 6 id = NFEvents." + to_string(nfEventNumber) + " } \n";
+		FocusTree += "			country_event = { hours = 6 id = NFEvents." + to_string(events.getCurrentNationFocusEventNum()) + " } \n";
 		FocusTree += "			add_opinion_modifier = { target = " + Leader->getTag() + " modifier = ger_ita_alliance_focus } \n";
 		FocusTree += "		}";
 		FocusTree += "		}\n";
 		FocusTree += "	}\n";
 
-		CreateFactionEvents(Leader, newAllies[i]);
+		if (newAllies[i]->getFaction() == nullptr)
+		{
+			vector<HoI4Country*> self;
+			self.push_back(newAllies[i]);
+			HoI4Faction* newFaction = new HoI4Faction(newAllies[i], self);
+			newAllies[i]->setFaction(newFaction);
+		}
+		events.createFactionEvents(Leader, newAllies[i]);
 	}
 
 	vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld);
@@ -7006,13 +6610,20 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, const V
 					FocusTree += "		}	\n";
 					FocusTree += "		completion_reward = {\n";
 					FocusTree += "		" + GC->getTag() + " = {\n";
-					FocusTree += "			country_event = { hours = 6 id = NFEvents." + to_string(nfEventNumber) + " } \n";
+					FocusTree += "			country_event = { hours = 6 id = NFEvents." + to_string(events.getCurrentNationFocusEventNum()) + " } \n";
 					FocusTree += "			add_opinion_modifier = { target = " + Leader->getTag() + " modifier = ger_ita_alliance_focus } \n";
 					FocusTree += "		}";
 					FocusTree += "		}\n";
 					FocusTree += "	}\n";
 
-					CreateFactionEvents(Leader, GC);
+					if (GC->getFaction() == nullptr)
+					{
+						vector<HoI4Country*> self;
+						self.push_back(GC);
+						HoI4Faction* newFaction = new HoI4Faction(GC, self);
+						GC->setFaction(newFaction);
+					}
+					events.createFactionEvents(Leader, GC);
 					maxGCAlliance++;
 				}
 			}
@@ -7381,95 +6992,11 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, const V2
 		int relations = Leader->getRelations(GC->getTag())->getRelations();
 		if (relations < 0)
 		{
-			HoI4Event tradeIncidentEvent;
-			tradeIncidentEvent.type = "country_event";
-			tradeIncidentEvent.id = "NFEvents." + to_string(nfEventNumber++);
-			tradeIncidentEvent.title = "Trade Incident";
-			tradeIncidentEvent.description = "One of our convoys was sunk by " + GC->getSourceCountry()->getName("english");
-			tradeIncidentEvent.picture = "GFX_report_event_chinese_soldiers_fighting";
-			tradeIncidentEvent.trigger = "		has_country_flag = established_traders\n";
-			tradeIncidentEvent.trigger += "		NOT = { has_country_flag = established_traders_activated }\n";
-
-			string option = "		name = \"They will Pay!\"\n";
-			option += "		ai_chance = { factor = 85 }\n";
-			option += "		effect_tooltip = {\n";
-			option += "			" + Leader->getTag() + " = {\n";
-			option += "				set_country_flag = established_traders_activated\n";
-			option += "				create_wargoal = {\n";
-			option += "					type = annex_everything\n";
-			option += "					target = " + GC->getTag() + "\n";
-			option += "				}\n";
-			option += "			}\n";
-			option += "		}\n";
-			tradeIncidentEvent.options.push_back(option);
-
-			nfEvents.push_back(tradeIncidentEvent);
+			events.createTradeEvent(Leader, GC);
 		}
 	}
 
 	Leader->addNationalFocus(focusTree);
 
 	return CountriesAtWar;
-}
-
-void HoI4World::CreateFactionEvents(const HoI4Country* Leader, HoI4Country* newAlly)
-{
-	string leaderName = Leader->getSourceCountry()->getName("english");
-	string newAllyname = newAlly->getSourceCountry()->getName("english");
-
-	HoI4Event nfEvent;
-	nfEvent.type = "country_event";
-	nfEvent.id = "NFEvents." + to_string(nfEventNumber++);
-	nfEvent.title = "Alliance?";
-	nfEvent.description = "Alliance with " + leaderName + "?";
-	nfEvent.picture = "news_event_generic_sign_treaty1";
-
-	string yesOption = "		name = \"Yes\"\n";
-	for (auto member: findFaction(newAlly)->getMembers())
-	{
-		yesOption += "		" + member->getTag() + " = {\n";
-		yesOption += "			add_ai_strategy = {\n";
-		yesOption += "				type = alliance\n";
-		yesOption += "				id = \"" + Leader->getTag() + "\"\n";
-		yesOption += "				value = 200\n";
-		yesOption += "			}\n";
-		yesOption += "		" + Leader->getTag() + " = {";
-		yesOption += "			add_to_faction = " + member->getTag() + "\n";
-		yesOption += "		}\n";
-	}
-	yesOption += "		}\n";
-	yesOption += "		hidden_effect = {\n";
-	yesOption += "			news_event = { id = news." + to_string(NewsEventNumber) + " }\n";
-	yesOption += "		}\n";
-	nfEvent.options.push_back(yesOption);
-
-	string noOption = "		name = \"No\"\n";
-	noOption += "		ai_chance = { factor = 0 }\n";
-	noOption += "		hidden_effect = {\n";
-	noOption += "			news_event = { id = news." + to_string(NewsEventNumber + 1) + " }\n";
-	noOption += "		}\n";
-	nfEvent.options.push_back(noOption);
-	nfEvents.push_back(nfEvent);
-
-	HoI4Event newsEventYes;
-	newsEventYes.type = "news_event";
-	newsEventYes.id = "news." + to_string(NewsEventNumber);
-	newsEventYes.title = newAllyname + " Now an Ally with " + leaderName + "!";
-	newsEventYes.description = "They are now allies";
-	newsEventYes.picture = "news_event_generic_sign_treaty1";
-	string interestingOption = "		name = \"Interesting\"\n";
-	newsEventYes.options.push_back(interestingOption);
-	newsEvents.push_back(newsEventYes);
-
-	HoI4Event newsEventNo;
-	newsEventNo.type = "news_event";
-	newsEventNo.id = "news." + to_string(NewsEventNumber + 1);
-	newsEventNo.title = newAllyname + " Refused the Alliance offer of " + leaderName + "!";
-	newsEventNo.description = "They are not allies";
-	newsEventNo.picture = "news_event_generic_sign_treaty1";
-	interestingOption = "		name = \"Interesting\"\n";
-	newsEventNo.options.push_back(interestingOption);
-	newsEvents.push_back(newsEventNo);
-
-	NewsEventNumber += 2;
 }//7467

@@ -32,9 +32,12 @@ ofstream& operator << (ofstream& out, HoI4Event theEvent)
 	out << "	title = \"" << theEvent.title << "\"\n";
 	out << "	desc = \"" << theEvent.description << "\"\n";
 	out << "	picture = " << theEvent.picture << "\n";
-	out << "	\n";
-	out << "	major = yes\n";
-	out << "	\n";
+	if (theEvent.major)
+	{
+		out << "	\n";
+		out << "	major = yes\n";
+	}
+	out << "\n";
 	out << "	is_triggered_only = yes\n";
 
 	if (theEvent.trigger != "")

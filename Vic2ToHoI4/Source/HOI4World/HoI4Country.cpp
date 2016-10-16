@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include "Log.h"
 #include "ParadoxParserUTF8.h"
+#include "HoI4Faction.h"
 #include "HoI4Leader.h"
 #include "HoI4Minister.h"
 #include "../Mappers/CountryMapping.h"
@@ -81,7 +82,7 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	capital = 0;
 	ideology = "despotism";
 	government = "";
-	faction = "";
+	faction = nullptr;
 	factionLeader = false;
 
 	neutrality = 50;

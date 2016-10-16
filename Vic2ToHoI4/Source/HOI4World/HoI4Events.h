@@ -21,33 +21,44 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef HOI4_EVENT_H
-#define HOI4_EVENT_H
+#ifndef HOI4_EVENTS_H
+#define HOI4_EVENTS_H
 
 
 
-#include <fstream>
-#include <string>
-#include <vector>
-using namespace std;
+#include "HoI4Event.h"
 
 
 
-class HoI4Event
+class HoI4Country;
+
+
+
+class HoI4Events
 {
 	public:
-		friend ofstream& operator << (ofstream& out, HoI4Event theEvent);
+		HoI4Events();
 
-		string type;
-		string id;
-		string title;
-		string description;
-		string picture;
-		bool major;
-		string trigger;
-		vector<string> options;
+		void output() const;
+		void createFactionEvents(const HoI4Country* Leader, HoI4Country* newAlly);
+		void createAnnexEvent(const HoI4Country* Annexer, const HoI4Country* Annexed);
+		void createSudatenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const vector<int>& claimedStates);
+		void createTradeEvent(const HoI4Country* leader, const HoI4Country* GC);
+
+		int getCurrentNationFocusEventNum() const { return nationalFocusEventNumber; }
+
+
+	private:
+		void outputNationalFocusEvents() const;
+		void outputNewsEvents() const;
+
+		vector<HoI4Event> newsEvents;
+		int newsEventNumber;
+		vector<HoI4Event> nationalFocusEvents;
+		int nationalFocusEventNumber;
 };
 
 
 
-#endif // #ifndef HOI4_EVENT_H
+
+#endif // HOI4_EVENTS_H

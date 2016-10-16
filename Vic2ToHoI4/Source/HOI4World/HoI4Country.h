@@ -87,7 +87,7 @@ class HoI4Country
 		void addVPsToCapital(int VPs);
 
 		void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
-		void		setFaction(string newFaction)	{ faction = newFaction; }
+		void		setFaction(HoI4Faction* newFaction)	{ faction = newFaction; }
 		void		setFactionLeader()				{ factionLeader = true; }
 		void setRelations(string relationsinput) { relationstxt = relationsinput; }
 		void addNationalFocus(string NF) { nationalFocus = NF; }
@@ -104,7 +104,7 @@ class HoI4Country
 		const V2Country*							getSourceCountry() const	{ return srcCountry; }
 		string										getGovernment() const		{ return government; }
 		bool											isNewCountry() const			{ return newCountry; }
-		string										getFaction() const			{ return faction; }
+		HoI4Faction*								getFaction() const			{ return faction; }
 		HoI4Alignment*								getAlignment()					{ return &alignment; }
 		string										getIdeology() const			{ return ideology; }
 		string										getRulingIdeology() const { return rulingHoI4Ideology; }
@@ -162,7 +162,7 @@ class HoI4Country
 		Color									color;
 		double								neutrality;
 		double								nationalUnity;
-		string								faction;
+		HoI4Faction*						faction;
 		bool									factionLeader;
 		set<string>							allies;
 		map<string, double>				practicals;

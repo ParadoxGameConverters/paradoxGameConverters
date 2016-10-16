@@ -29,7 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Country.h"
 #include "HoI4Province.h"
 #include "HoI4Diplomacy.h"
-#include "HoI4Event.h"
+#include "HoI4Events.h"
 #include "HoI4Localisation.h"
 #include "HoI4States.h"
 #include "HoI4StrategicRegion.h"
@@ -40,20 +40,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 typedef const map<string, multimap<HoI4RegimentType, unsigned> > unitTypeMapping;
 
 
-class HoI4Faction
-{
-	
-public:
-	HoI4Faction(HoI4Country* leader, vector<HoI4Country*> members) { Factionleader = leader; Factionmembers = members; }
 
-	HoI4Country* getLeader() { return Factionleader; }
-	vector<HoI4Country*> getMembers() { return Factionmembers; }
-	void addMember(HoI4Country* addedCon) { Factionmembers.push_back(addedCon); }
-private:
-	HoI4Country* Factionleader;
-	vector<HoI4Country*> Factionmembers;
-	
-};
+class HoI4Faction;
+
+
+
 class HoI4World
 {
 	public:
@@ -73,7 +64,6 @@ class HoI4World
 		void	convertTechs();
 		void	convertDiplomacy();
 		void	convertArmies(const HoI4AdjacencyMapping& HoI4AdjacencyMap);
-		void	configureFactions();
 		void	generateLeaders();
 		void	convertArmies();
 		void	convertNavies();
@@ -93,7 +83,6 @@ class HoI4World
 		vector<HoI4Faction*> CommunistWarCreator(HoI4Country * Leader, const V2World* sourceWorld);
 		vector<HoI4Faction*> DemocracyWarCreator(HoI4Country * Leader, const V2World* sourceWorld);
 		vector<HoI4Faction*> MonarchyWarCreator(HoI4Country * Leader, const V2World* sourceWorld);
-		void CreateFactionEvents(const HoI4Country* Leader, HoI4Country* newAlly);
 		string HowToTakeLand(HoI4Country * TargetCountry, HoI4Country * AttackingCountry, double time);
 		vector<HoI4Country*> GetMorePossibleAllies(HoI4Country * CountryThatWantsAllies);
 		double getDistanceBetweenCountries(const HoI4Country* Country1, const HoI4Country* Country2);
@@ -110,8 +99,6 @@ class HoI4World
 		bool checkIfGreatCountry(HoI4Country * checkingCountry, const V2World* sourceWorld);
 		map<string, HoI4Country*> findNeighbors(vector<int> CountryProvs, HoI4Country * CheckingCountry);
 		void fillProvinces();
-		vector<HoI4Event> createAnnexEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, int& eventNumber);
-		vector<HoI4Event> createSudatenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, int& eventnumber, const vector<int>& claimedStates);
 		string createDemocracyNF(HoI4Country * Home, vector<HoI4Country*> CountriesToContain, int XStart);
 		string createMonarchyEmpireNF(HoI4Country * Home, HoI4Country * Annexed1, HoI4Country * Annexed2, HoI4Country * Annexed3, HoI4Country * Annexed4, int ProtectorateNumber, int AnnexNumber, int x);
 		void fillProvinceNeighbors();
@@ -123,9 +110,6 @@ class HoI4World
 
 	private:
 		void	getProvinceLocalizations(const string& file);
-		void	checkManualFaction(const vector<string>& candidateTags, string leader, const string& factionName);
-		void	factionSatellites();
-		void	setAlignments();
 
 		void addBasicCapitalVPs();
 		void addGreatPowerVPs();
@@ -159,8 +143,6 @@ class HoI4World
 		void outputHistory() const;
 		void outputSupply() const;
 		void outputCountries() const;
-		void outputNationalFocusEvents() const;
-		void outputNewsEvents() const;
 
 		map<int, vector<int>>			provinceNeighbors;
 		const V2World* sourceWorld;
@@ -190,10 +172,8 @@ class HoI4World
 		string alliesLeader;
 		string cominternLeader;
 		map<int, vector<string>> stateToProvincesMap;
-		vector<HoI4Event> newsEvents;
-		int NewsEventNumber;
-		vector<HoI4Event> nfEvents;
-		int nfEventNumber;
+
+		HoI4Events events;
 
 		leaderTraitsMap leaderTraits;
 		namesMapping namesMap;
