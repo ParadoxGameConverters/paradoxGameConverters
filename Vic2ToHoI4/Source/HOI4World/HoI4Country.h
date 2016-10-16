@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Airforce.h"
 #include "HoI4Alignment.h"
 #include "HoI4Army.h"
+#include "HoI4FocusTree.h"
 #include "HoI4Navy.h"
 #include "HoI4Province.h"
 #include "HoI4Relations.h"
@@ -90,7 +91,7 @@ class HoI4Country
 		void		setFaction(HoI4Faction* newFaction)	{ faction = newFaction; }
 		void		setFactionLeader()				{ factionLeader = true; }
 		void setRelations(string relationsinput) { relationstxt = relationsinput; }
-		void addNationalFocus(string NF) { nationalFocus = NF; }
+		void addNationalFocus(HoI4FocusTree* NF) { nationalFocus = NF; }
 
 		HoI4Relations*								getRelations(string withWhom) const;
 		HoI4State* getCapital();
@@ -212,7 +213,7 @@ class HoI4Country
 		vector<HoI4Airplane>						planes;
 		int											navalLocation;
 
-		string nationalFocus;
+		HoI4FocusTree* nationalFocus;
 };
 
 #endif	// HoI4COUNTRY_H_

@@ -79,6 +79,7 @@
     <ClCompile Include="Source\HOI4World\HoI4Diplomacy.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Event.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Events.cpp" />
+    <ClCompile Include="Source\HOI4World\HoI4FocusTree.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Leader.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Localisation.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Minister.cpp" />
@@ -132,6 +133,7 @@
     <ClInclude Include="Source\HOI4World\HoI4Event.h" />
     <ClInclude Include="Source\HOI4World\HoI4Events.h" />
     <ClInclude Include="Source\HOI4World\HoI4Faction.h" />
+    <ClInclude Include="Source\HOI4World\HoI4FocusTree.h" />
     <ClInclude Include="Source\HOI4World\HoI4Leader.h" />
     <ClInclude Include="Source\HOI4World\HoI4Localisation.h" />
     <ClInclude Include="Source\HOI4World\HoI4Minister.h" />

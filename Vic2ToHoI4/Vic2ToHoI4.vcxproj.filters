@@ -158,6 +158,9 @@
     <ClCompile Include="Source\HOI4World\HoI4Events.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\HOI4World\HoI4FocusTree.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -300,6 +303,9 @@
       <Filter>HoI4World</Filter>
     </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4Faction.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\HoI4FocusTree.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
   </ItemGroup>

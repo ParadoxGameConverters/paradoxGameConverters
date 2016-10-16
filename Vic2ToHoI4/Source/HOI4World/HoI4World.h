@@ -99,10 +99,7 @@ class HoI4World
 		bool checkIfGreatCountry(HoI4Country * checkingCountry, const V2World* sourceWorld);
 		map<string, HoI4Country*> findNeighbors(vector<int> CountryProvs, HoI4Country * CheckingCountry);
 		void fillProvinces();
-		string createDemocracyNF(HoI4Country * Home, vector<HoI4Country*> CountriesToContain, int XStart);
-		string createMonarchyEmpireNF(HoI4Country * Home, HoI4Country * Annexed1, HoI4Country * Annexed2, HoI4Country * Annexed3, HoI4Country * Annexed4, int ProtectorateNumber, int AnnexNumber, int x);
 		void fillProvinceNeighbors();
-		string genericFocusTreeCreator(HoI4Country * CreatingCountry);
 		void outputRelations() const;
 		void	checkAllProvincesMapped();
 

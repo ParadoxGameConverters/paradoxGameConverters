@@ -116,7 +116,7 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	syndicalistPopularity = 0;
 	autocraticPopularity = 0;
 
-	nationalFocus = "";
+	nationalFocus = nullptr;
 
 	srcCountry = NULL;
 }
@@ -379,19 +379,9 @@ void HoI4Country::output(const map<int, HoI4State*>& states, const vector<HoI4Fa
 		//output.close();
 	}
 
-	if (nationalFocus != "")
+	if (nationalFocus != nullptr)
 	{
-		string filenameNF("Output/" + Configuration::getOutputName() + "/common/national_focus/" + srcCountry->getTag() + "_NF.txt");
-		ofstream out(filenameNF);
-		if (!out.is_open())
-		{
-			LOG(LogLevel::Error) << "Could not create " << filenameNF;
-			exit(-1);
-		}
-
-		out << nationalFocus;
-
-		out.close();
+		nationalFocus->output();
 	}
 }
 
