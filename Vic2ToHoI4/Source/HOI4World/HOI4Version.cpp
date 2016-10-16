@@ -95,3 +95,11 @@ bool HOI4Version::operator >= (HOI4Version& rhs) const
 		return false;
 	}
 }
+
+
+ostream& operator << (ostream& out, HOI4Version& version)
+{
+	out << version.first << '.' << version.second << '.' << version.third;
+
+	return out;
+}

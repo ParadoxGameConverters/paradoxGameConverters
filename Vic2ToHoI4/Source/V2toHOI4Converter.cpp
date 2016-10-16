@@ -177,6 +177,7 @@ void createModFile()
 	modFile << "replace = \"history/countries\"\n";
 	//modFile << "replace = \"history/diplomacy\"\n";
 	modFile << "replace = \"history/states\"\n";
+	modFile << "supported_version=\"" << Configuration::getHOI4Version() << "\"";
 	modFile.close();
 }
 

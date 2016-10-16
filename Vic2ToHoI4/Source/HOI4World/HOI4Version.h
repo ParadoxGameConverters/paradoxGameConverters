@@ -39,6 +39,8 @@ public:
 	HOI4Version(Object* obj);
 	HOI4Version(string version);
 	bool operator >= (HOI4Version& rhs) const;
+
+	friend ostream& operator << (ostream& out, HOI4Version& version);
 private:
 	int first;
 	int second;
