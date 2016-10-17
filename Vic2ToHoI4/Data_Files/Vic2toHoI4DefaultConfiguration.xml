@@ -17,6 +17,38 @@
 						<value></value>
 					</preference>
 					<preference>
+						<name>HoI4VersionMethod</name>
+						<friendlyName>HoI4 Version Method</friendlyName>
+						<description>The method the converter uses to set the HoI4 version</description>
+						<entryOptions>
+							<entryOption>
+								<name>hardcoded</name>
+								<friendlyName>Hard Coded</friendlyName>
+								<description>Use the HoI4 version hard coded into the converter (1.2.1)</description>
+								<isDefault>true</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>automatic</name>
+								<friendlyName>Automatic</friendlyName>
+								<description>Attempt to automatically detect the installed HoI4 version</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>manualEntry</name>
+								<friendlyName>Manual Entry</friendlyName>
+								<description>Manually enter the HoI4 version</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+					  </entryOptions>
+					</preference>
+					<preference>
+						<name>HoI4Version</name>
+						<friendlyName>HoI4 Version</friendlyName>
+						<description>If manually entering the HoI4 version, set this to the desired version</description>
+						<hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+						<value>1.2.1</value>
+					</preference>
+					<preference>
 						<name>industrial_shape_factor</name>
 						<friendlyName>Industrial shape factor</friendlyName>
 						<description>How much to balance countries' industry to each other. 1.0 = fully balanced, 0.0 = no balancing</description>

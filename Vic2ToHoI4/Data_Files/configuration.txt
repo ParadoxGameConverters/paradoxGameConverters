@@ -12,6 +12,15 @@ configuration =
 	# Vic2Mods: Vic2 mods to use for conversion
 	# Example: Vic2Mods = { modname1 modname2 }
 	Vic2Mods = { }
+
+	# HoI4 version method: how to get the HoI4 version
+	# hardcoded: Use the one hardcoded into the latest converter version
+	# automatic: Attempt to automatically detect the installed HoI4 version
+	# manualEntry: Manually enter the HoI4 version
+	HoI4VersionMethod = "automatic"
+
+	# HoI4Version: If manually entering the HoI4 version, set this to the desired version
+	HoI4Version = "1.2.1"
 	
 	# Manpower factor: a multiplier applied to manpower conversion
 	manpower_factor = "1.0"

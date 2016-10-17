@@ -115,6 +115,8 @@ class Configuration // Singleton
 	private:
 		static Configuration* instance;
 
+		HOI4Version getAutomaticHoI4Version();
+
 		string			HoI4Path;				// the install directory for HoI4
 		string			HoI4DocumentsPath;	// HoI4's directory under My Documents
 		string			V2Path;					// the install directory for V2

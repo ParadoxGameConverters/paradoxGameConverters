@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "ParadoxParserUTF8.h"
 #include "Object.h"
 #include "Log.h"
+#include <fstream>
 #include <vector>
 using namespace std;
 
@@ -85,7 +86,7 @@ Configuration::Configuration()
 	}
 
 
-	outputName			= "";
+	outputName = "";
 
 	vector<Object*> modsObj = obj[0]->getValue("Vic2Mods");
 	if (modsObj.size() > 0)
@@ -108,5 +109,43 @@ Configuration::Configuration()
 	leaderID					= 1000;
 	leaderIDCountryIdx	= 1;
 
-	version = HOI4Version("1.2.1");
+	string versionMethod = obj[0]->getLeaf("HoI4VersionMethod");
+	if (versionMethod == "automatic")
+	{
+		version = getAutomaticHoI4Version();
+	}
+	else if (versionMethod == "manualEntry")
+	{
+		version = HOI4Version(obj[0]->getLeaf("HoI4Version"));
+	}
+	else // (versionMethod == "hardcoded")
+	{
+		version = HOI4Version("1.2.1");
+	}
+}
+
+
+HOI4Version Configuration::getAutomaticHoI4Version()
+{
+	ifstream systemLog(HoI4DocumentsPath + "/logs/system.log");
+	if (systemLog.is_open())
+	{
+		while (!systemLog.eof())
+		{
+			char buffer[256];
+			systemLog.getline(buffer, sizeof(buffer));
+			string line(buffer);
+			int versionPosition = line.find("Version: ");
+			if (versionPosition != string::npos)
+			{
+				int position1 = line.find_first_of(' ', versionPosition);
+				int position2 = line.find_first_of(' ', position1 + 1) + 2;
+				int position3 = line.find_first_of(' ', position2 + 1);
+				string versionString = line.substr(position2, position3 - position2);
+				return HOI4Version(versionString);
+			}
+		}
+	}
+
+	return HOI4Version();
 }
