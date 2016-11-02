@@ -10,7 +10,6 @@ rmdir ReleaseIntermediate /S /Q
 
 msbuild.exe Vic2ToHoI4.sln /p:Configuration=Release /m
 
-
 cd Release
 del *.pdb
 del *.ipdb

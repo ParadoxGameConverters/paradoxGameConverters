@@ -1,5 +1,4 @@
 set /p version=Version Number?:
-
 call "%VS140COMNTOOLS%\vsvars32.bat"
 msbuild.exe "Frontend\ParadoxConverters.Frontend\ParadoxConverters.Frontend.sln" /p:Configuration=Release /m
 xcopy "Frontend\ParadoxConverters.Frontend\ParadoxConverters.Frontend\bin\Release" "Vic2ToHoI4-%version%"  /Y /E /I
@@ -13,7 +12,4 @@ copy "%VS140COMNTOOLS%\..\..\VC\redist\x86\Microsoft.VC140.CRT\msvcp140.dll" "..
 copy "%VS140COMNTOOLS%\..\..\VC\redist\x86\Microsoft.VC140.CRT\vcruntime140.dll" "..\Vic2ToHoI4-%version%\Vic2ToHoI4\vcruntime140.dll"
 cd ..
 
-cd "Vic2ToHoI4-%version%"
-call "%SEVENZIP_LOC%\7z.exe" a -tzip -r "..\Vic2ToHoI4-%version%.zip" "*" -mx5
-cd ..
 
