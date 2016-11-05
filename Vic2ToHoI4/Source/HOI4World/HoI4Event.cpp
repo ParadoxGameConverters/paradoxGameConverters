@@ -42,10 +42,10 @@ ofstream& operator << (ofstream& out, HoI4Event theEvent)
 
 	if (theEvent.trigger != "")
 	{
-		out << "	\n";
-		out << " trigger = {\n";
+		out << "\n";
+		out << "	trigger = {\n";
 		out << theEvent.trigger;
-		out << " }\n";
+		out << "	}\n";
 	}
 
 	for (auto option: theEvent.options)

@@ -109,12 +109,12 @@ void HoI4Events::createFactionEvents(const HoI4Country* Leader, HoI4Country* new
 			yesOption += "				id = \"" + Leader->getTag() + "\"\n";
 			yesOption += "				value = 200\n";
 			yesOption += "			}\n";
-			yesOption += "		" + Leader->getTag() + " = {";
+			yesOption += "		}\n";
+			yesOption += "		" + Leader->getTag() + " = {\n";
 			yesOption += "			add_to_faction = " + member->getTag() + "\n";
 			yesOption += "		}\n";
 		}
 	}
-	yesOption += "		}\n";
 	yesOption += "		hidden_effect = {\n";
 	yesOption += "			news_event = { id = news." + to_string(newsEventNumber) + " }\n";
 	yesOption += "		}\n";
@@ -164,7 +164,7 @@ void HoI4Events::createAnnexEvent(const HoI4Country* Annexer, const HoI4Country*
 	annexEvent.id = "NFEvents." + to_string(nationalFocusEventNumber);
 	annexEvent.title = annexername + " Demands " + annexedname + "!";
 	annexEvent.description = "Today " + annexername + " sent an envoy to us with a proposition of an union. We are alone and in this world, and a union with " + annexername + " might prove to be fruiteful.";
-	annexEvent.description += " Our people would be safe with the mighty army of " + annexername + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!\"\n";
+	annexEvent.description += " Our people would be safe with the mighty army of " + annexername + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!";
 	annexEvent.picture = "GFX_report_event_hitler_parade";
 	annexEvent.major = false;
 
@@ -188,7 +188,7 @@ void HoI4Events::createAnnexEvent(const HoI4Country* Annexer, const HoI4Country*
 
 	string refuseOption = "		name = \"We Refuse!\"\n";
 	refuseOption += "		ai_chance = {\n";
-	refuseOption += "			base = 10 \n";
+	refuseOption += "			base = 10\n";
 	refuseOption += "\n";
 	refuseOption += "			modifier = {\n";
 	refuseOption += "				factor = 0\n";
@@ -202,12 +202,11 @@ void HoI4Events::createAnnexEvent(const HoI4Country* Annexer, const HoI4Country*
 	refuseOption += "		" + Annexer->getTag() + " = {\n";
 	//refuseOption += "			add_opinion_modifier = { target = ROOT modifier = " + Annexer->getTag() + "_anschluss_rejected }\n";
 	refuseOption += "			country_event = { hours = 2 id = NFEvents." + to_string(nationalFocusEventNumber + 2) + " }\n";//+2 refuse
-	refuseOption += "			if = { limit = { is_in_faction_with = " + Annexed->getTag() + " }\n";
+	refuseOption += "			if = {\n";
+	refuseOption += "				limit = { is_in_faction_with = " + Annexed->getTag() + " }\n";
 	refuseOption += "				remove_from_faction = " + Annexed->getTag() + "\n";
 	refuseOption += "			}\n";
 	refuseOption += "		}\n";
-	refuseOption += "	}\n";
-	refuseOption += "}\n";
 	annexEvent.options.push_back(refuseOption);
 
 	nationalFocusEvents.push_back(annexEvent);
@@ -223,7 +222,7 @@ void HoI4Events::createAnnexEvent(const HoI4Country* Annexer, const HoI4Country*
 
 	string refusedOption = "		name = \"It's time for war\"\n";
 	refusedOption += "		create_wargoal = {\n";
-	refusedOption += "				type = annex_everything\n";
+	refusedOption += "			type = annex_everything\n";
 	refusedOption += "			target = " + Annexed->getTag() + "\n";
 	refusedOption += "		}\n";
 	refusedEvent.options.push_back(refusedOption);
@@ -255,7 +254,6 @@ void HoI4Events::createAnnexEvent(const HoI4Country* Annexer, const HoI4Country*
 	acceptedOption += "		add_political_power = 50\n";
 	acceptedOption += "		add_named_threat = { threat = 2 name = \"" + annexername + " annexed " + annexedname + "\" }\n";
 	acceptedOption += "		set_country_flag = " + Annexed->getTag() + "_annexed\n";
-	acceptedOption += "	}\n";
 	acceptedEvent.options.push_back(acceptedOption);
 
 	nationalFocusEvents.push_back(acceptedEvent);
@@ -278,7 +276,7 @@ void HoI4Events::createSudatenEvent(const HoI4Country* Annexer, const HoI4Countr
 	sudatenEvent.description = annexername + " has recently been making claims to our bordering states, saying that these states are full of " + Annexer->getSourceCountry()->getAdjective("english") + " people and that the territory should be given to them. Although it ";
 	sudatenEvent.description = "is true that recently our neighboring states have had an influx of " + Annexer->getSourceCountry()->getAdjective("english") + " people in the recent years, we cannot give up our lands because a few " + Annexer->getSourceCountry()->getAdjective("english") + " settled down in our land. ";
 	sudatenEvent.description += "In response " + annexername + " has called for a conference, demanding their territory in exchange for peace. How do we resond? ";
-	sudatenEvent.description += " Our people would be safe with the mighty army of " + annexername + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!\"\n";
+	sudatenEvent.description += " Our people would be safe with the mighty army of " + annexername + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!";
 	sudatenEvent.picture = "GFX_report_event_hitler_parade";
 	sudatenEvent.major = false;
 
@@ -301,7 +299,7 @@ void HoI4Events::createSudatenEvent(const HoI4Country* Annexer, const HoI4Countr
 
 	string refuseOption = "		name = \"We Refuse!\"\n";
 	refuseOption += "		ai_chance = {\n";
-	refuseOption += "			base = 10 \n";
+	refuseOption += "			base = 10\n";
 	refuseOption += "\n";
 	refuseOption += "			modifier = {\n";
 	refuseOption += "				factor = 0\n";
@@ -315,7 +313,8 @@ void HoI4Events::createSudatenEvent(const HoI4Country* Annexer, const HoI4Countr
 	refuseOption += "		" + Annexer->getTag() + " = {\n";
 	//refuseOption += "			add_opinion_modifier = { target = ROOT modifier = " + Annexer->getTag() + "_anschluss_rejected }\n";
 	refuseOption += "			country_event = { hours = 2 id = NFEvents." + to_string(nationalFocusEventNumber + 2) + " }\n";
-	refuseOption += "			if = { limit = { is_in_faction_with = " + Annexed->getTag() + " }\n";
+	refuseOption += "			if = {\n";
+	refuseOption += "				limit = { is_in_faction_with = " + Annexed->getTag() + " }\n";
 	refuseOption += "				remove_from_faction = " + Annexed->getTag() + "\n";
 	refuseOption += "			}\n";
 	refuseOption += "		}\n";
