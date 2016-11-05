@@ -21,8 +21,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef HOI4_FOCUS_TREE
-#define HOI4_FOCUS_TREE
+#ifndef HOI4_FOCUS_H
+#define HOI4_FOCUS_H
 
 
 
@@ -32,31 +32,30 @@ using namespace std;
 
 
 
-class HoI4Country;
-class HoI4Focus;
-
-
-
-class HoI4FocusTree
+class HoI4Focus
 {
 	public:
-		HoI4FocusTree(HoI4Country* CreatingCountry);
+		HoI4Focus();
 
-		void addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Country*> CountriesToContain, int XStart);
-		void addMonarchyEmpireNationalFocuses(HoI4Country* Home, HoI4Country* Annexed1, HoI4Country* Annexed2, HoI4Country* Annexed3, HoI4Country* Annexed4, int ProtectorateNumber, int AnnexNumber, int x);
+		friend ostream& operator << (ostream& output, HoI4Focus& focus);
 
-		void output();
-
-		void addFocus(HoI4Focus* newFocus) { focuses.push_back(newFocus); }
-
-	private:
-		string srcCountryTag;
-		string dstCountryTag;
-		vector<HoI4Focus*> focuses;
+		string id;
+		string icon;
+		string text;
+		vector<string> prerequisites;
+		string mutuallyExclusive;
+		string bypass;
+		int xPos;
+		int yPos;
+		int cost;
+		string available;
+		string cancelIfInvalid;
+		string continueIfInvalid;
+		string completeTooltip;
+		string completionReward;
+		string aiWillDo;
 };
 
 
 
-
-
-#endif // HOI4_FOCUS_TREE
+#endif // HOI4_FOCUS_H
