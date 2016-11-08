@@ -56,9 +56,19 @@ class Configuration // Singleton
 			return getInstance()->Vic2Mods;
 		}
 
+		static void setForceMultiplier(double mult)
+		{
+			getInstance()->forceMultiplier = mult;
+		}
+
 		static void setOutputName(string name)
 		{
 			getInstance()->outputName = name;
+		}
+
+  		static double getForceMultiplier()
+		{
+			return getInstance()->forceMultiplier;
 		}
 
 		static string getOutputName()
@@ -115,6 +125,7 @@ class Configuration // Singleton
 		vector<string>	Vic2Mods;
 		string			outputName;				// the name the outputted mod should have
 
+		double			forceMultiplier;
 		double			manpowerFactor;
 		double industrialShapeFactor;
 		double			icFactor;
