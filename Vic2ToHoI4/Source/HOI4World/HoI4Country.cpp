@@ -128,10 +128,10 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Facti
 		&& newCountry
 		)
 	{
-		output.open("Output/" + Configuration::getOutputName() + "/history/countries/" + Utils::convertToASCII(filename));
+		output.open("Output/" + Configuration::getOutputName() + "/history/countries/" + Utils::convertUTF8ToASCII(filename));
 		if (!output.is_open())
 		{
-			Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/history/" << Utils::convertToASCII(filename);
+			Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/history/" << Utils::convertUTF8ToASCII(filename);
 			exit(-1);
 		}
 		output << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
@@ -381,10 +381,10 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Facti
 void HoI4Country::outputCommonCountryFile() const
 {
 	ofstream output;
-	output.open("Output/" + Configuration::getOutputName() + "/common/countries/" + Utils::convertToASCII(commonCountryFile));
+	output.open("Output/" + Configuration::getOutputName() + "/common/countries/" + Utils::convertUTF8ToASCII(commonCountryFile));
 	if (!output.is_open())
 	{
-		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << Utils::convertToASCII(commonCountryFile);
+		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << Utils::convertUTF8ToASCII(commonCountryFile);
 		exit(-1);
 	}
 
@@ -414,7 +414,7 @@ void HoI4Country::outputColors(ofstream& out) const
 
 void HoI4Country::outputToCommonCountriesFile(FILE* output) const
 {
-	fprintf(output, "%s = \"countries%s\"\n", tag.c_str(), Utils::convertToASCII(commonCountryFile).c_str());
+	fprintf(output, "%s = \"countries%s\"\n", tag.c_str(), Utils::convertUTF8ToASCII(commonCountryFile).c_str());
 }
 
 
@@ -1204,9 +1204,10 @@ void HoI4Country::convertArmyDivisions()
 	int cavalryBrigades = 0;
 	int cavalrySupportBrigades = 0;
 	int mountainBrigades = 0;
-	const double adjustment = 0.1;
+	const double adjustment = 0.1 * Configuration::getForceMultiplier();
 
 	map<int, double> locations;
+	int totalRegiments;
 	for (auto army : srcCountry->getArmies())
 	{
 		// get the number of source brigades per location
@@ -1216,7 +1217,7 @@ void HoI4Country::convertArmyDivisions()
 		{
 			for (auto HoI4ProvNum : provMapping->second)
 			{
-				if (HoI4ProvNum != 0 && provinces[HoI4ProvNum])
+				if (HoI4ProvNum != 0 && provinces.find(HoI4ProvNum) != provinces.end())
 				{
 					HoI4location = HoI4ProvNum;
 				}
@@ -1224,8 +1225,9 @@ void HoI4Country::convertArmyDivisions()
 		}
 
 		// no weight for locations we don't own
-		if (provinces[HoI4location]) {
-		  locations[HoI4location] += adjustment * army->getRegiments().size();
+		totalRegiments += army->getRegiments().size();
+		if (provinces.find(HoI4location) != provinces.end()) {
+			locations[HoI4location] += army->getRegiments().size();
 		}
 
 		// get the total number of source brigades
@@ -1515,7 +1517,11 @@ void HoI4Country::convertArmyDivisions()
 	divisionTemplates.push_back(newDivisionTemplate);
 
 	// calculate number of units per location
-	int totalWeight = 0;
+	double totalWeight = 0;
+	if (0 == locations.size())
+	{
+		locations[capital] = totalRegiments;
+	}
 	for (auto const location : locations)
 	{
 		totalWeight += location.second;
@@ -1523,9 +1529,11 @@ void HoI4Country::convertArmyDivisions()
 	int numberOfDivisions = infantryBrigades / infantryPerDivision;
 	for (auto location : locations)
 	{
-		if (totalWeight != 0)
+		if (totalWeight > 0)
 		{
-			location.second *= adjustment * numberOfDivisions / totalWeight;
+			// Use ceiling here to avoid losing units to, eg, numberOfDivisions = 12,
+			// totalWeight = 13. This can happen in the presence of aircraft. 
+			location.second = ceil(location.second * adjustment * numberOfDivisions / totalWeight);
 		}
 	}
 
@@ -1534,13 +1542,13 @@ void HoI4Country::convertArmyDivisions()
 	int numMedium = 1;
 	int numBasic = 1;
 
-	infantryBrigades       = static_cast<int>(0.5 + adjustment * Configuration::getForceMultiplier() * infantryBrigades);
-	artilleryBrigades      = static_cast<int>(0.5 + adjustment * Configuration::getForceMultiplier() * artilleryBrigades);
-	supportBrigades        = static_cast<int>(0.5 + adjustment * Configuration::getForceMultiplier() * supportBrigades);
-	tankBrigades           = static_cast<int>(0.5 + adjustment * Configuration::getForceMultiplier() * tankBrigades);
-	cavalryBrigades        = static_cast<int>(0.5 + adjustment * Configuration::getForceMultiplier() * cavalryBrigades);
-	cavalrySupportBrigades = static_cast<int>(0.5 + adjustment * Configuration::getForceMultiplier() * cavalrySupportBrigades);
-	mountainBrigades       = static_cast<int>(0.5 + adjustment * Configuration::getForceMultiplier() * mountainBrigades);
+	infantryBrigades       = static_cast<int>(0.5 + adjustment * infantryBrigades);
+	artilleryBrigades      = static_cast<int>(0.5 + adjustment * artilleryBrigades);
+	supportBrigades        = static_cast<int>(0.5 + adjustment * supportBrigades);
+	tankBrigades           = static_cast<int>(0.5 + adjustment * tankBrigades);
+	cavalryBrigades        = static_cast<int>(0.5 + adjustment * cavalryBrigades);
+	cavalrySupportBrigades = static_cast<int>(0.5 + adjustment * cavalrySupportBrigades);
+	mountainBrigades       = static_cast<int>(0.5 + adjustment * mountainBrigades);
 
 	for (auto const location : locations)
 	{
@@ -1615,12 +1623,12 @@ void HoI4Country::convertArmyDivisions()
 }
 
 
-void HoI4Country::addProvince(HoI4Province* _province)
+void HoI4Country::addProvince(int _province)
 {
-	provinces.insert(make_pair(_province->getNum(), _province));
+	provinces.insert(_province);
 	if (capital == 0)
 	{
-		capital = _province->getNum();
+		capital = _province;
 	}
 }
 
@@ -1628,6 +1636,9 @@ void HoI4Country::addProvince(HoI4Province* _province)
 void HoI4Country::addState(HoI4State* _state)
 {
 	states.insert(make_pair(_state->getID(), _state));
+	for (const auto province : _state->getProvinces()) {
+		addProvince(province);
+	}
 }
 
 
