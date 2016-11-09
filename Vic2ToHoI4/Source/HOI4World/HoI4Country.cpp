@@ -128,10 +128,10 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Facti
 		&& newCountry
 		)
 	{
-		output.open("Output/" + Configuration::getOutputName() + "/history/countries/" + filename);
+		output.open("Output/" + Configuration::getOutputName() + "/history/countries/" + Utils::convertToASCII(filename));
 		if (!output.is_open())
 		{
-			Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/history/" << filename;
+			Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/history/" << Utils::convertToASCII(filename);
 			exit(-1);
 		}
 		output << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
@@ -381,10 +381,10 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Facti
 void HoI4Country::outputCommonCountryFile() const
 {
 	ofstream output;
-	output.open("Output/" + Configuration::getOutputName() + "/common/countries/" + commonCountryFile);
+	output.open("Output/" + Configuration::getOutputName() + "/common/countries/" + Utils::convertToASCII(commonCountryFile));
 	if (!output.is_open())
 	{
-		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << commonCountryFile;
+		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << Utils::convertToASCII(commonCountryFile);
 		exit(-1);
 	}
 
@@ -414,7 +414,7 @@ void HoI4Country::outputColors(ofstream& out) const
 
 void HoI4Country::outputToCommonCountriesFile(FILE* output) const
 {
-	fprintf(output, "%s = \"countries%s\"\n", tag.c_str(), commonCountryFile.c_str());
+	fprintf(output, "%s = \"countries%s\"\n", tag.c_str(), Utils::convertToASCII(commonCountryFile).c_str());
 }
 
 
