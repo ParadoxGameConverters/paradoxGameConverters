@@ -80,7 +80,7 @@ class HoI4Country
 		void		convertAirforce();
 		void		convertArmyDivisions();
 		void		setTechnology(string tech, int level);
-		void		addProvince(HoI4Province* _province);
+		void		addProvince(int _province);
 		void addState(HoI4State* _state);
 		void		lowerNeutrality(double amount);
 		void calculateIndustry();
@@ -100,7 +100,7 @@ class HoI4Country
 		double getEconomicStrength(double years);
 		
 		const map<string, HoI4Relations*>&	getRelations() const			{ return relations; }
-		map<int, HoI4Province*>					getProvinces() const			{ return provinces; }
+		set<int>									getProvinces() const			{ return provinces; }
 		string										getTag() const					{ return tag; }
 		const V2Country*							getSourceCountry() const	{ return srcCountry; }
 		string										getGovernment() const		{ return government; }
@@ -150,7 +150,7 @@ class HoI4Country
 		bool								newCountry;	// true if this country is being added by the converter, i.e. doesn't already exist in HoI4
 		const string						sphereLeader = "";
 		string								tag;
-		map<int, HoI4Province*>			provinces;
+		set<int>							provinces;
 		map<int, HoI4State*> states;
 		int									capital;
 		string								commonCountryFile;

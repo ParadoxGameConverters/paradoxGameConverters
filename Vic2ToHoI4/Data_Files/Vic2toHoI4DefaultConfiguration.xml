@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <configuration
-	Comment="This file is used to build the configuration parth of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
+	Comment="This file is used to build the configuration part of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
 	<!--This part contains the various options that will be displayed as preferences in the converter ui, and outputted as configuration.txt as input for the converter tool itself-->
 	<converterOptions>
 		<categories>
@@ -74,6 +74,15 @@
 						<value>1.0</value>
 						<minValue>0.01</minValue>
 						<maxValue>10.0</maxValue>
+					</preference>
+					<preference>
+						<name>force_multiplier</name>
+						<friendlyName>Force Multiplier</friendlyName>
+						<description>Controls how many HoI4 divisions are created.</description>
+						<hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+						<value>1.0</value>
+						<minValue>0.01</minValue>
+						<maxValue>100.0</maxValue>
 					</preference>
 				</preferences>
 			</category>

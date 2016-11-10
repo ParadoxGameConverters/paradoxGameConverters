@@ -1062,15 +1062,15 @@ void HoI4Country::convertNavy(map<int, HoI4State*> states)
 			string type = regiment->getType();
 			if (type == "battleship")
 			{
-				heavyShip += 0.8;
+				heavyShip += 0.08;
 			}
 			if (type == "dreadnought")
 			{
-				heavyShip += 1;
+				heavyShip += 0.1;
 			}
 			if (type == "cruiser")
 			{
-				lightShip += 1;
+				lightShip += 0.1;
 			}
 		}
 	}
@@ -1083,35 +1083,34 @@ void HoI4Country::convertNavy(map<int, HoI4State*> states)
 	double DD = 0;
 	double CV = 0;
 	double SB = 0;
-	convoys = 0;
-	convoys = static_cast<int>((heavyShip * 0.21945 * 40) + (lightShip * 1.88 * 4));
+	convoys = static_cast<int>(Configuration::getForceMultiplier() * ((heavyShip * 0.21945 * 40) + (lightShip * 1.88 * 4)));
 
 	for (auto tech : technologies)
 	{
 		if ((tech.first == "early_light_cruiser") && (tech.second == 1))
 		{
-			LC = lightShip * .47;
+			LC = Configuration::getForceMultiplier() * lightShip * .47;
 		}
 		if ((tech.first == "early_destroyer") && (tech.second == 1))
 		{
-			DD = lightShip * 1.88;
+			DD = Configuration::getForceMultiplier() * lightShip * 1.88;
 		}
 		if ((tech.first == "early_submarine") && (tech.second == 1))
 		{
-			SB = lightShip * .705;
+			SB = Configuration::getForceMultiplier() * lightShip * .705;
 		}
 		if ((tech.first == "early_heavy_cruiser") && (tech.second == 1))
 		{
-			HC = heavyShip * 0.2926;
+			HC = Configuration::getForceMultiplier() * heavyShip * 0.2926;
 		}
 		if ((tech.first == "early_battlecruiser") && (tech.second == 1))
 		{
-			BC = heavyShip * 0.073;
+			BC = Configuration::getForceMultiplier() * heavyShip * 0.073;
 		}
 		if ((tech.first == "early_battleship") && (tech.second == 1))
 		{
-			CV = heavyShip * 0.073;
-			BB = heavyShip * 0.21945;
+			CV = Configuration::getForceMultiplier() * heavyShip * 0.073;
+			BB = Configuration::getForceMultiplier() * heavyShip * 0.21945;
 		}
 	}
 
@@ -1184,19 +1183,19 @@ void HoI4Country::convertAirforce()
 		auto techItr = technologies.find("early_fighter");
 		if (techItr != technologies.end())
 		{
-			HoI4Airplane newPlane(string("fighter_equipment_0"), tag, 100 * airplanes);
+			HoI4Airplane newPlane(string("fighter_equipment_0"), tag, Configuration::getForceMultiplier() * airplanes);
 			planes.push_back(newPlane);
 		}
 		techItr = technologies.find("early_bomber");
 		if (techItr != technologies.end())
 		{
-			HoI4Airplane newPlane(string("tac_bomber_equipment_0"), tag, 100 * airplanes);
+			HoI4Airplane newPlane(string("tac_bomber_equipment_0"), tag, Configuration::getForceMultiplier() * airplanes);
 			planes.push_back(newPlane);
 		}
 		techItr = technologies.find("CAS1");
 		if (techItr != technologies.end())
 		{
-			HoI4Airplane newPlane(string("CAS_equipment_1"), tag, 100 * airplanes);
+			HoI4Airplane newPlane(string("CAS_equipment_1"), tag, Configuration::getForceMultiplier() * airplanes);
 			planes.push_back(newPlane);
 		}
 	}
@@ -1213,8 +1212,10 @@ void HoI4Country::convertArmyDivisions()
 	int cavalryBrigades = 0;
 	int cavalrySupportBrigades = 0;
 	int mountainBrigades = 0;
+	const double adjustment = 0.1 * Configuration::getForceMultiplier();
 
-	map<int, int> locations;
+	map<int, double> locations;
+	int totalRegiments;
 	for (auto army : srcCountry->getArmies())
 	{
 		// get the number of source brigades per location
@@ -1224,13 +1225,18 @@ void HoI4Country::convertArmyDivisions()
 		{
 			for (auto HoI4ProvNum : provMapping->second)
 			{
-				if (HoI4ProvNum != 0)
+				if (HoI4ProvNum != 0 && provinces.find(HoI4ProvNum) != provinces.end())
 				{
 					HoI4location = HoI4ProvNum;
 				}
 			}
 		}
-		locations[HoI4location] += army->getRegiments().size();
+
+		// no weight for locations we don't own
+		totalRegiments += army->getRegiments().size();
+		if (provinces.find(HoI4location) != provinces.end()) {
+			locations[HoI4location] += army->getRegiments().size();
+		}
 
 		// get the total number of source brigades
 		for (auto regiment : army->getRegiments())
@@ -1519,7 +1525,11 @@ void HoI4Country::convertArmyDivisions()
 	divisionTemplates.push_back(newDivisionTemplate);
 
 	// calculate number of units per location
-	int totalWeight = 0;
+	double totalWeight = 0;
+	if (0 == locations.size())
+	{
+		locations[capital] = totalRegiments;
+	}
 	for (auto const location : locations)
 	{
 		totalWeight += location.second;
@@ -1527,9 +1537,11 @@ void HoI4Country::convertArmyDivisions()
 	int numberOfDivisions = infantryBrigades / infantryPerDivision;
 	for (auto location : locations)
 	{
-		if (totalWeight != 0)
+		if (totalWeight > 0)
 		{
-			location.second *= numberOfDivisions / totalWeight;
+			// Use ceiling here to avoid losing units to, eg, numberOfDivisions = 12,
+			// totalWeight = 13. This can happen in the presence of aircraft. 
+			location.second = ceil(location.second * adjustment * numberOfDivisions / totalWeight);
 		}
 	}
 
@@ -1537,6 +1549,15 @@ void HoI4Country::convertArmyDivisions()
 	int numAdvanced = 1;
 	int numMedium = 1;
 	int numBasic = 1;
+
+	infantryBrigades       = static_cast<int>(0.5 + adjustment * infantryBrigades);
+	artilleryBrigades      = static_cast<int>(0.5 + adjustment * artilleryBrigades);
+	supportBrigades        = static_cast<int>(0.5 + adjustment * supportBrigades);
+	tankBrigades           = static_cast<int>(0.5 + adjustment * tankBrigades);
+	cavalryBrigades        = static_cast<int>(0.5 + adjustment * cavalryBrigades);
+	cavalrySupportBrigades = static_cast<int>(0.5 + adjustment * cavalrySupportBrigades);
+	mountainBrigades       = static_cast<int>(0.5 + adjustment * mountainBrigades);
+
 	for (auto const location : locations)
 	{
 		int unitsInProv = 0;
@@ -1610,12 +1631,12 @@ void HoI4Country::convertArmyDivisions()
 }
 
 
-void HoI4Country::addProvince(HoI4Province* _province)
+void HoI4Country::addProvince(int _province)
 {
-	provinces.insert(make_pair(_province->getNum(), _province));
+	provinces.insert(_province);
 	if (capital == 0)
 	{
-		capital = _province->getNum();
+		capital = _province;
 	}
 }
 
@@ -1623,6 +1644,9 @@ void HoI4Country::addProvince(HoI4Province* _province)
 void HoI4Country::addState(HoI4State* _state)
 {
 	states.insert(make_pair(_state->getID(), _state));
+	for (const auto province : _state->getProvinces()) {
+		addProvince(province);
+	}
 }
 
 
