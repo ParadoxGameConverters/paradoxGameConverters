@@ -83,6 +83,18 @@ germanic = {
 		last_names = { Adler Adrabaecampi Baemoi Batin Daimler Dengler Eberle Elser Ensselin Groner Hegelin Heinkelin Holderelin Idanha Kepler Kiesinger Laemmle Lugo Marcomanni Naristi Ourense Racatria Rommelin Sudini Suiones Tui Viseu Wekerle }
 	}
 	
+	ostrogothic = {
+		color = {166 140 140}
+		first_names = { Adalfuns Adalrik Agila Alarich Amalaric Andagis Ansila Ardaric Ariaric Aspar Athalaric Athanagild Athanaric Atta Audo Audoacer
+			Ausvinth Avavagis Badwila Beremund Botheric Childefonse Chindaswinth Dag Eboric Ebrimuth Ediulf Egica Elemund Ermanaric Euric Eutharic
+			Evermud Ferhonanth Fridegar Frithigern Geberic Gisalric Gunderit Haduswinth Hairuwulf Hathus Hermanaric Hermenigild Heraric Hidelfons Hildibad
+			Hunuil Kunimund Leovigild Liuva Liuverich Oliba Rekimer Richila Roderik Suniefred Swinthila Tautila Teia Theodahad
+			Theodemer Theodoric Thorismund Theudis Thrasaric Thraustila Ulfilas Unwen Valamir Veremund Vulfila Wallia Wifred Wittigeis Witiza Adosinda Amalasuntha Amalfrida Amalina Amalwara Avagisa Avina Brunhilda Chlodoswintha Fredegonda Gailavira Gaileswintha Garsendis Gelvira
+			Goswintha Heva Hilduara Mataswintha Radegonda Riciberga }
+			
+		last_names = { Goten Terwingen Visigothen Greutungen Ostgoten }
+	}
+	
 	union = GER
 }
 
@@ -881,6 +893,36 @@ levantine = {
 		color = {180 120 180}
 		first_names = { Alimbeg Arsen Aslanbek Bakhva Batraz Besik Digor Dzhambolat Dzhumbulad Elbrus Evgeny Georgy Ibragim Iron Issa Jasz Khasan Leonid Leri Merabi Roho Ruslan Soslan Styr Taymuraz Trialeti Tugan Vadim Vasily Zaur } 
 		last_names = { Andiyev Ashuraliyev Basiev Bazayev Bestayev Chibirov Din Dudarova Dzhanayev Fadzayev Farniev Gabulov Gassiev Gazyumov Guriev Khapov Khetagurov Kokoity Kusov Nyxas Pagayev Pliyeva Sanakoyev Tibilov Tokaty Torchinov Toshinori Valiyev Zangiev Zazirov }
+	}
+	
+	maghreb_arabic = {
+		color = {204 229 102}
+		first_names = { Masuna Mastigas Garmul Kusaila Lider Maximus Masguinas
+			Abakada Adam Aderbal
+			Admer Adrir Adum Afaghis Afalawas Afalku Afer Afulay Agafay Agama Agdada Agdun Agellid Aggur Aghali Aghecher Aghilas Agwillul
+			Ahamatu Ajeddig Akaday Akateiaji Akli Akorakor Aksel Aksil Akutla Akzer Alyamas Amawal
+			Amayas Ambay Amdegh Amellal Amennay Ameska Amessan Amin Amma Ammuc Amray Amri Anaba Annaber Antalas Anwa Aras
+			Asad Asaru Asirem Aszellay Atissi Awdia Awgustin Awinagh Awlagh Awzal Aylal Ayt'ere Az'regh Azenkwed Azrur Badda Badis
+			Bagay Barakat Beddis Berkan Br'ir'uc Bukkus Buwayh Buxtuc Capussa Cucung Dali Firmus Frawsen Gaia Galussa Gauda
+			Gaya Ghanim Ghaysan Ghumer Gildun Gulusa Hiba Hiempsal Himmi Hotha Iccaam
+			Ifni Ifser Ighlaf Igider Igmi Iher Iken Ilyas Immeghar Immel Irgen Isli Issam It'ij Itber Itri Ixfensen Ixzi Izri Kadidu
+			Karidenna Kawsen Kenan Keraja Khanchla Khenchela Khidr Kussil Lacumaces Laweye Lewnis Luki Madidu Magsen Mahtar
+			Masgaba Masgava Masinissa Masmud Masnsen Massinissa Massiva Massnsen Mastan Mastanabal Matiya Maysar Maziba Mazigh
+			Medjan Mellal Mennad Menzu Meq'wran Mez'yan Mezwar Micipsa Misagenes Misibsen Mukhtar
+			N'Guna Nasr Nazar Niptasan Nizamaddin Ptolemee Qutaiba Salomon Sammer
+			Seghada Sekla Sifaks Sifal Sisso Stembanos Suggut Tabat Tacfin Taffounnout Tahir Takfarinas Tanan
+			Tegama Thabitah Tifan Tiljad Ugdada Ugwistan Uqess'un Uregh Urtilian Urz'ig Uzmir Uzza Wahab Watt'as Xamida Yabdas Yaghmurasen
+			Yattuy Yeften Yeh'lem Yiliyen Yuba Yugerten Yugurthen Youkhanna Yunes Yusuf Yuva Z'effun Zalelsan Zer'wal Zigza Ziri  }
+		last_names = { Altavid Massyli Mauretania Byzacena Sitifensis Numidia Gaetuli Garamantes }
+	}
+	
+	syriac = {
+		color = {165 76 153}
+		first_names = { Thomma Thoman Mamman Oommen Qako Yakob Pathros Pathe Pathappan Yohannan
+			Lonan Ninan Mathai Mathan Mathu Mathulla Yesoph Ouseph Outha Ipe Koshy Easo
+			Abragam Avraham Avrachan Ittak Lukos Philipos Pothan Paulos Idichandi
+			Iyob Iyoben Eapen Kuriakos Kurien Cheriyan Vargisa Kuruvilla }
+		last_names = { Ahmadi Algafari Assadi Homsi Nasser }
 	}
 }
 
