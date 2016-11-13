@@ -1349,6 +1349,11 @@ void HoI4Country::convertArmyDivisions()
 		mountainPerDivision = 3;
 	}
 
+	int advancedIndex = -1;
+	int mediumIndex = -1;
+	int basicIndex = -1;
+	int tankIndex = -1;
+	bool mediumSupport = false;
 	// create division templates
 	if (tankBrigades > 0)
 	{
@@ -1362,6 +1367,7 @@ void HoI4Country::convertArmyDivisions()
 			HoI4RegimentType motorizedrRegiment("motorized", 2, i);
 			newDivisionTemplate.addRegiment(motorizedrRegiment);
 		}
+		tankIndex = divisionTemplates.size();
 		divisionTemplates.push_back(newDivisionTemplate);
 	}
 	if (cavalryBrigades > 0)
@@ -1394,7 +1400,7 @@ void HoI4Country::convertArmyDivisions()
 	}
 	if ((artilleryBrigades > 0) || (supportBrigades > 0))
 	{
-		if ((artilleryBrigades / (infantryPerDivision / 3)) > supportBrigades)
+		if (3*artilleryBrigades > infantryPerDivision * supportBrigades)
 		{
 			//there are more brigades with artillery than with support, meddiv will have only art
 			HoI4DivisionTemplateType newDivisionTemplate("Support Infantry Division");
@@ -1414,6 +1420,7 @@ void HoI4Country::convertArmyDivisions()
 				HoI4RegimentType artilleryRegiment("artillery_brigade", i, 3);
 				newDivisionTemplate.addRegiment(artilleryRegiment);
 			}
+			mediumIndex = divisionTemplates.size();
 			divisionTemplates.push_back(newDivisionTemplate);
 
 			if (supportBrigades > 0)
@@ -1441,6 +1448,7 @@ void HoI4Country::convertArmyDivisions()
 				HoI4RegimentType reconRegiment("recon", 0, 1);
 				newDivisionTemplate.addSupportRegiment(reconRegiment);
 
+				advancedIndex = divisionTemplates.size();
 				divisionTemplates.push_back(newDivisionTemplate);
 			}
 		}
@@ -1466,6 +1474,8 @@ void HoI4Country::convertArmyDivisions()
 			newDivisionTemplate.addSupportRegiment(engineerRegiment);
 			HoI4RegimentType reconRegiment("recon", 0, 1);
 			newDivisionTemplate.addSupportRegiment(reconRegiment);
+			mediumSupport = true;
+			mediumIndex = divisionTemplates.size();
 			divisionTemplates.push_back(newDivisionTemplate);
 
 			if (artilleryBrigades != 0)
@@ -1492,7 +1502,7 @@ void HoI4Country::convertArmyDivisions()
 				newDivisionTemplate.addSupportRegiment(engineerRegiment);
 				HoI4RegimentType reconRegiment("recon", 0, 1);
 				newDivisionTemplate.addSupportRegiment(reconRegiment);
-
+				advancedIndex = divisionTemplates.size();
 				divisionTemplates.push_back(newDivisionTemplate);
 			}
 		}
@@ -1514,6 +1524,7 @@ void HoI4Country::convertArmyDivisions()
 		HoI4RegimentType infantryRegimentThree("infantry", i, 2);
 		newDivisionTemplate.addRegiment(infantryRegimentThree);
 	}
+	basicIndex = divisionTemplates.size();
 	divisionTemplates.push_back(newDivisionTemplate);
 
 	// calculate number of units per location
@@ -1538,6 +1549,9 @@ void HoI4Country::convertArmyDivisions()
 	}
 
 	// place units
+	int numCav = 1;
+	int numTank = 1;
+	int numMountain = 1;
 	int numAdvanced = 1;
 	int numMedium = 1;
 	int numBasic = 1;
@@ -1573,35 +1587,35 @@ void HoI4Country::convertArmyDivisions()
 				}
 				if (tankBrigades > 0)
 				{
-					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Tank Division", "Tank Division", infLocation);
+					HoI4DivisionType newDivision(to_string(numTank++) + ". Tank Division", "Tank Division", infLocation);
 					divisions.push_back(newDivision);
 					tankBrigades -= tanksPerDivision;
 				}
 				if (cavalryBrigades > 0)
 				{
-					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Cavalry Division", "Cavalry Division", infLocation);
+					HoI4DivisionType newDivision(to_string(numCav++) + ". Cavalry Division", "Cavalry Division", infLocation);
 					divisions.push_back(newDivision);
 					cavalryBrigades -= cavalryPerDivision;
 				}
 				if (mountainBrigades > 0)
 				{
-					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Mountaineers", "Mountaineers", infLocation);
+					HoI4DivisionType newDivision(to_string(numMountain++) + ". Mountaineers", "Mountaineers", infLocation);
 					divisions.push_back(newDivision);
 					mountainBrigades -= mountainPerDivision;
 				}
 
-				if (((artilleryBrigades / (infantryPerDivision / 3)) >= 1) && (supportBrigades >= 1))
+				if ((3 * artilleryBrigades >= infantryPerDivision) && (supportBrigades >= 1))
 				{
 					// Super Placement
-					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Advance Infantry Division", "Advance Infantry Division", infLocation);
+					HoI4DivisionType newDivision(to_string(numAdvanced++) + ". Advance Infantry Division", "Advance Infantry Division", infLocation);
 					divisions.push_back(newDivision);
 					artilleryBrigades -= (infantryPerDivision / 3);
 					supportBrigades--;
 				}
-				else if (((artilleryBrigades / (infantryPerDivision / 3)) >= 1) || (supportBrigades >= 1))
+				else if ((3 * artilleryBrigades >= infantryPerDivision) || (supportBrigades >= 1))
 				{
-					//Med Placement
-					HoI4DivisionType newDivision(to_string(numMedium++) + ".Support Infantry Division", "Support Infantry Division", infLocation);
+					// Med Placement
+					HoI4DivisionType newDivision(to_string(numMedium++) + ". Support Infantry Division", "Support Infantry Division", infLocation);
 					divisions.push_back(newDivision);
 					artilleryBrigades -= (infantryPerDivision / 3);
 					supportBrigades--;
@@ -1609,7 +1623,7 @@ void HoI4Country::convertArmyDivisions()
 				else
 				{
 					// Bad Placement
-					HoI4DivisionType newDivision(to_string(numBasic++) + ".Basic Infantry Division", "Basic Infantry Division", infLocation);
+					HoI4DivisionType newDivision(to_string(numBasic++) + ". Basic Infantry Division", "Basic Infantry Division", infLocation);
 					divisions.push_back(newDivision);
 				}
 				infantryBrigades -= infantryPerDivision;
@@ -1619,6 +1633,30 @@ void HoI4Country::convertArmyDivisions()
 				break;
 
 		}
+	}
+	if (artilleryBrigades >= numAdvanced && advancedIndex != -1)
+	{
+		HoI4RegimentType artilleryRegiment("artillery", 0, 2);
+		divisionTemplates[advancedIndex].addSupportRegiment(artilleryRegiment);
+		artilleryBrigades -= numAdvanced;
+	}
+	if (artilleryBrigades >= numMedium && mediumIndex != -1)
+	{
+	  HoI4RegimentType artilleryRegiment("artillery", 0, mediumSupport ? 2 : 0);
+		divisionTemplates[mediumIndex].addSupportRegiment(artilleryRegiment);
+		artilleryBrigades -= numMedium;
+	}
+	if (artilleryBrigades >= numBasic && basicIndex != -1)
+	{
+		HoI4RegimentType artilleryRegiment("artillery", 0, 0);
+		divisionTemplates[basicIndex].addSupportRegiment(artilleryRegiment);
+		artilleryBrigades -= numBasic;
+	}
+	if (artilleryBrigades >= numTank && tankIndex != -1)
+	{
+		HoI4RegimentType artilleryRegiment("artillery", 0, 0);
+		divisionTemplates[tankIndex].addSupportRegiment(artilleryRegiment);
+		artilleryBrigades -= numTank;
 	}
 }
 
