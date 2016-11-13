@@ -1234,50 +1234,44 @@ void HoI4Country::convertArmyDivisions()
 		for (auto regiment : army->getRegiments())
 		{
 			string type = regiment->getType();
-			if (
-				(type == "artillery") || (type == "cavalry") || (type == "cuirassier") || (type == "dragoon") || (type == "engineer") ||
-				(type == "guard") || (type == "hussar") || (type == "infantry") || (type == "irregular") || (type == "plane") || (type == "tank")
-				)
+			if (type == "artillery")
 			{
-				if (type == "artillery")
-				{
-					infantryBrigades += 2;
-					artilleryBrigades++;
-				}
-				else if (type == "cavalry")
-				{
-					cavalryBrigades += 3;
-				}
-				else if (type == "cuirassier")
-				{
-					cavalryBrigades += 3;
-					cavalrySupportBrigades++;
-				}
-				else if (type == "dragoon" || type == "hussar")
-				{
-					cavalryBrigades += 3;
-					cavalrySupportBrigades++;
-				}
-				else if (type == "engineer")
-				{
-					supportBrigades += 3;
-				}
-				else if (type == "guard")
-				{
-					mountainBrigades += 2;
-				}
-				else if (type == "infantry")
-				{
-					infantryBrigades += 3;
-				}
-				else if (type == "irregular")
-				{
-					infantryBrigades += 1;
-				}
-				else if (type == "tank")
-				{
-					tankBrigades++;
-				}
+				infantryBrigades += 2;
+				artilleryBrigades++;
+			}
+			else if (type == "cavalry")
+			{
+				cavalryBrigades += 3;
+			}
+			else if (type == "cuirassier")
+			{
+				cavalryBrigades += 3;
+				cavalrySupportBrigades++;
+			}
+			else if (type == "dragoon" || type == "hussar")
+			{
+				cavalryBrigades += 3;
+				cavalrySupportBrigades++;
+			}
+			else if (type == "engineer")
+			{
+				supportBrigades += 3;
+			}
+			else if (type == "guard")
+			{
+				mountainBrigades += 2;
+			}
+			else if (type == "infantry")
+			{
+				infantryBrigades += 3;
+			}
+			else if (type == "irregular")
+			{
+				infantryBrigades += 1;
+			}
+			else if (type == "tank")
+			{
+				tankBrigades++;
 			}
 		}
 	}
