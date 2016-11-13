@@ -1527,7 +1527,7 @@ void HoI4Country::convertArmyDivisions()
 		totalWeight += location.second;
 	}
 	int numberOfDivisions = infantryBrigades / infantryPerDivision;
-	for (auto location : locations)
+	for (auto& location : locations)
 	{
 		if (totalWeight > 0)
 		{
