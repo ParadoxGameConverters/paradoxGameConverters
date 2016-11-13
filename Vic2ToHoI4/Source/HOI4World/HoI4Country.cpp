@@ -1243,12 +1243,7 @@ void HoI4Country::convertArmyDivisions()
 			{
 				cavalryBrigades += 3;
 			}
-			else if (type == "cuirassier")
-			{
-				cavalryBrigades += 3;
-				cavalrySupportBrigades++;
-			}
-			else if (type == "dragoon" || type == "hussar")
+			else if (type == "cuirassier" || type == "dragoon" || type == "hussar")
 			{
 				cavalryBrigades += 3;
 				cavalrySupportBrigades++;
