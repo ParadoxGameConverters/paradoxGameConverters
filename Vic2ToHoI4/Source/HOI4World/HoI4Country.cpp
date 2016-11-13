@@ -128,10 +128,10 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Facti
 		&& newCountry
 		)
 	{
-		output.open("Output/" + Configuration::getOutputName() + "/history/countries/" + Utils::convertToASCII(filename));
+		output.open("Output/" + Configuration::getOutputName() + "/history/countries/" + Utils::convertUTF8ToASCII(filename));
 		if (!output.is_open())
 		{
-			Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/history/" << Utils::convertToASCII(filename);
+			Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/history/" << Utils::convertUTF8ToASCII(filename);
 			exit(-1);
 		}
 		output << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
@@ -381,10 +381,10 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Facti
 void HoI4Country::outputCommonCountryFile() const
 {
 	ofstream output;
-	output.open("Output/" + Configuration::getOutputName() + "/common/countries/" + Utils::convertToASCII(commonCountryFile));
+	output.open("Output/" + Configuration::getOutputName() + "/common/countries/" + Utils::convertUTF8ToASCII(commonCountryFile));
 	if (!output.is_open())
 	{
-		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << Utils::convertToASCII(commonCountryFile);
+		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << Utils::convertUTF8ToASCII(commonCountryFile);
 		exit(-1);
 	}
 
@@ -414,7 +414,7 @@ void HoI4Country::outputColors(ofstream& out) const
 
 void HoI4Country::outputToCommonCountriesFile(FILE* output) const
 {
-	fprintf(output, "%s = \"countries%s\"\n", tag.c_str(), Utils::convertToASCII(commonCountryFile).c_str());
+	fprintf(output, "%s = \"countries%s\"\n", tag.c_str(), Utils::convertUTF8ToASCII(commonCountryFile).c_str());
 }
 
 
@@ -1054,15 +1054,15 @@ void HoI4Country::convertNavy(map<int, HoI4State*> states)
 			string type = regiment->getType();
 			if (type == "battleship")
 			{
-				heavyShip += 0.8;
+				heavyShip += 0.08;
 			}
 			if (type == "dreadnought")
 			{
-				heavyShip += 1;
+				heavyShip += 0.1;
 			}
 			if (type == "cruiser")
 			{
-				lightShip += 1;
+				lightShip += 0.1;
 			}
 		}
 	}
@@ -1075,35 +1075,34 @@ void HoI4Country::convertNavy(map<int, HoI4State*> states)
 	double DD = 0;
 	double CV = 0;
 	double SB = 0;
-	convoys = 0;
-	convoys = static_cast<int>((heavyShip * 0.21945 * 40) + (lightShip * 1.88 * 4));
+	convoys = static_cast<int>(Configuration::getForceMultiplier() * ((heavyShip * 0.21945 * 40) + (lightShip * 1.88 * 4)));
 
 	for (auto tech : technologies)
 	{
 		if ((tech.first == "early_light_cruiser") && (tech.second == 1))
 		{
-			LC = lightShip * .47;
+			LC = Configuration::getForceMultiplier() * lightShip * .47;
 		}
 		if ((tech.first == "early_destroyer") && (tech.second == 1))
 		{
-			DD = lightShip * 1.88;
+			DD = Configuration::getForceMultiplier() * lightShip * 1.88;
 		}
 		if ((tech.first == "early_submarine") && (tech.second == 1))
 		{
-			SB = lightShip * .705;
+			SB = Configuration::getForceMultiplier() * lightShip * .705;
 		}
 		if ((tech.first == "early_heavy_cruiser") && (tech.second == 1))
 		{
-			HC = heavyShip * 0.2926;
+			HC = Configuration::getForceMultiplier() * heavyShip * 0.2926;
 		}
 		if ((tech.first == "early_battlecruiser") && (tech.second == 1))
 		{
-			BC = heavyShip * 0.073;
+			BC = Configuration::getForceMultiplier() * heavyShip * 0.073;
 		}
 		if ((tech.first == "early_battleship") && (tech.second == 1))
 		{
-			CV = heavyShip * 0.073;
-			BB = heavyShip * 0.21945;
+			CV = Configuration::getForceMultiplier() * heavyShip * 0.073;
+			BB = Configuration::getForceMultiplier() * heavyShip * 0.21945;
 		}
 	}
 
@@ -1176,19 +1175,19 @@ void HoI4Country::convertAirforce()
 		auto techItr = technologies.find("early_fighter");
 		if (techItr != technologies.end())
 		{
-			HoI4Airplane newPlane(string("fighter_equipment_0"), tag, 100 * airplanes);
+			HoI4Airplane newPlane(string("fighter_equipment_0"), tag, Configuration::getForceMultiplier() * airplanes);
 			planes.push_back(newPlane);
 		}
 		techItr = technologies.find("early_bomber");
 		if (techItr != technologies.end())
 		{
-			HoI4Airplane newPlane(string("tac_bomber_equipment_0"), tag, 100 * airplanes);
+			HoI4Airplane newPlane(string("tac_bomber_equipment_0"), tag, Configuration::getForceMultiplier() * airplanes);
 			planes.push_back(newPlane);
 		}
 		techItr = technologies.find("CAS1");
 		if (techItr != technologies.end())
 		{
-			HoI4Airplane newPlane(string("CAS_equipment_1"), tag, 100 * airplanes);
+			HoI4Airplane newPlane(string("CAS_equipment_1"), tag, Configuration::getForceMultiplier() * airplanes);
 			planes.push_back(newPlane);
 		}
 	}
@@ -1205,8 +1204,10 @@ void HoI4Country::convertArmyDivisions()
 	int cavalryBrigades = 0;
 	int cavalrySupportBrigades = 0;
 	int mountainBrigades = 0;
+	const double adjustment = 0.1 * Configuration::getForceMultiplier();
 
-	map<int, int> locations;
+	map<int, double> locations;
+	int totalRegiments;
 	for (auto army : srcCountry->getArmies())
 	{
 		// get the number of source brigades per location
@@ -1216,62 +1217,56 @@ void HoI4Country::convertArmyDivisions()
 		{
 			for (auto HoI4ProvNum : provMapping->second)
 			{
-				if (HoI4ProvNum != 0)
+				if (HoI4ProvNum != 0 && provinces.find(HoI4ProvNum) != provinces.end())
 				{
 					HoI4location = HoI4ProvNum;
 				}
 			}
 		}
-		locations[HoI4location] += army->getRegiments().size();
+
+		// no weight for locations we don't own
+		totalRegiments += army->getRegiments().size();
+		if (provinces.find(HoI4location) != provinces.end()) {
+			locations[HoI4location] += army->getRegiments().size();
+		}
 
 		// get the total number of source brigades
 		for (auto regiment : army->getRegiments())
 		{
 			string type = regiment->getType();
-			if (
-				(type == "artillery") || (type == "cavalry") || (type == "cuirassier") || (type == "dragoon") || (type == "engineer") ||
-				(type == "guard") || (type == "hussar") || (type == "infantry") || (type == "irregular") || (type == "plane") || (type == "tank")
-				)
+			if (type == "artillery")
 			{
-				if (type == "artillery")
-				{
-					infantryBrigades += 2;
-					artilleryBrigades++;
-				}
-				else if (type == "cavalry")
-				{
-					cavalryBrigades += 3;
-				}
-				else if (type == "cuirassier")
-				{
-					cavalryBrigades += 3;
-					cavalrySupportBrigades++;
-				}
-				else if (type == "dragoon" || type == "hussar")
-				{
-					cavalryBrigades += 3;
-					cavalrySupportBrigades++;
-				}
-				else if (type == "engineer")
-				{
-					supportBrigades += 3;
-				}
-				else if (type == "guard")
-				{
-					mountainBrigades += 2;
-				}
-				else if (type == "infantry")
-				{
-					infantryBrigades += 3;
-				}
-				else if (type == "irregular")
-				{
-					infantryBrigades += 1;
-				}
-				else if (type == "tank")
-				{
-					tankBrigades++;
-				}
+				infantryBrigades += 2;
+				artilleryBrigades++;
+			}
+			else if (type == "cavalry")
+			{
+				cavalryBrigades += 3;
+			}
+			else if (type == "cuirassier" || type == "dragoon" || type == "hussar")
+			{
+				cavalryBrigades += 3;
+				cavalrySupportBrigades++;
+			}
+			else if (type == "engineer")
+			{
+				supportBrigades += 3;
+			}
+			else if (type == "guard")
+			{
+				mountainBrigades += 2;
+			}
+			else if (type == "infantry")
+			{
+				infantryBrigades += 3;
+			}
+			else if (type == "irregular")
+			{
+				infantryBrigades += 1;
+			}
+			else if (type == "tank")
+			{
+				tankBrigades++;
 			}
 		}
 	}
@@ -1343,6 +1338,11 @@ void HoI4Country::convertArmyDivisions()
 		mountainPerDivision = 3;
 	}
 
+	int advancedIndex = -1;
+	int mediumIndex = -1;
+	int basicIndex = -1;
+	int tankIndex = -1;
+	bool mediumSupport = false;
 	// create division templates
 	if (tankBrigades > 0)
 	{
@@ -1356,6 +1356,7 @@ void HoI4Country::convertArmyDivisions()
 			HoI4RegimentType motorizedrRegiment("motorized", 2, i);
 			newDivisionTemplate.addRegiment(motorizedrRegiment);
 		}
+		tankIndex = divisionTemplates.size();
 		divisionTemplates.push_back(newDivisionTemplate);
 	}
 	if (cavalryBrigades > 0)
@@ -1388,7 +1389,7 @@ void HoI4Country::convertArmyDivisions()
 	}
 	if ((artilleryBrigades > 0) || (supportBrigades > 0))
 	{
-		if ((artilleryBrigades / (infantryPerDivision / 3)) > supportBrigades)
+		if (3*artilleryBrigades > infantryPerDivision * supportBrigades)
 		{
 			//there are more brigades with artillery than with support, meddiv will have only art
 			HoI4DivisionTemplateType newDivisionTemplate("Support Infantry Division");
@@ -1408,6 +1409,7 @@ void HoI4Country::convertArmyDivisions()
 				HoI4RegimentType artilleryRegiment("artillery_brigade", i, 3);
 				newDivisionTemplate.addRegiment(artilleryRegiment);
 			}
+			mediumIndex = divisionTemplates.size();
 			divisionTemplates.push_back(newDivisionTemplate);
 
 			if (supportBrigades > 0)
@@ -1435,6 +1437,7 @@ void HoI4Country::convertArmyDivisions()
 				HoI4RegimentType reconRegiment("recon", 0, 1);
 				newDivisionTemplate.addSupportRegiment(reconRegiment);
 
+				advancedIndex = divisionTemplates.size();
 				divisionTemplates.push_back(newDivisionTemplate);
 			}
 		}
@@ -1460,6 +1463,8 @@ void HoI4Country::convertArmyDivisions()
 			newDivisionTemplate.addSupportRegiment(engineerRegiment);
 			HoI4RegimentType reconRegiment("recon", 0, 1);
 			newDivisionTemplate.addSupportRegiment(reconRegiment);
+			mediumSupport = true;
+			mediumIndex = divisionTemplates.size();
 			divisionTemplates.push_back(newDivisionTemplate);
 
 			if (artilleryBrigades != 0)
@@ -1486,7 +1491,7 @@ void HoI4Country::convertArmyDivisions()
 				newDivisionTemplate.addSupportRegiment(engineerRegiment);
 				HoI4RegimentType reconRegiment("recon", 0, 1);
 				newDivisionTemplate.addSupportRegiment(reconRegiment);
-
+				advancedIndex = divisionTemplates.size();
 				divisionTemplates.push_back(newDivisionTemplate);
 			}
 		}
@@ -1508,27 +1513,46 @@ void HoI4Country::convertArmyDivisions()
 		HoI4RegimentType infantryRegimentThree("infantry", i, 2);
 		newDivisionTemplate.addRegiment(infantryRegimentThree);
 	}
+	basicIndex = divisionTemplates.size();
 	divisionTemplates.push_back(newDivisionTemplate);
 
 	// calculate number of units per location
-	int totalWeight = 0;
+	double totalWeight = 0;
+	if (0 == locations.size())
+	{
+		locations[capital] = totalRegiments;
+	}
 	for (auto const location : locations)
 	{
 		totalWeight += location.second;
 	}
 	int numberOfDivisions = infantryBrigades / infantryPerDivision;
-	for (auto location : locations)
+	for (auto& location : locations)
 	{
-		if (totalWeight != 0)
+		if (totalWeight > 0)
 		{
-			location.second *= numberOfDivisions / totalWeight;
+			// Use ceiling here to avoid losing units to, eg, numberOfDivisions = 12,
+			// totalWeight = 13. This can happen in the presence of aircraft. 
+			location.second = ceil(location.second * adjustment * numberOfDivisions / totalWeight);
 		}
 	}
 
 	// place units
+	int numCav = 1;
+	int numTank = 1;
+	int numMountain = 1;
 	int numAdvanced = 1;
 	int numMedium = 1;
 	int numBasic = 1;
+
+	infantryBrigades       = static_cast<int>(0.5 + adjustment * infantryBrigades);
+	artilleryBrigades      = static_cast<int>(0.5 + adjustment * artilleryBrigades);
+	supportBrigades        = static_cast<int>(0.5 + adjustment * supportBrigades);
+	tankBrigades           = static_cast<int>(0.5 + adjustment * tankBrigades);
+	cavalryBrigades        = static_cast<int>(0.5 + adjustment * cavalryBrigades);
+	cavalrySupportBrigades = static_cast<int>(0.5 + adjustment * cavalrySupportBrigades);
+	mountainBrigades       = static_cast<int>(0.5 + adjustment * mountainBrigades);
+
 	for (auto const location : locations)
 	{
 		int unitsInProv = 0;
@@ -1552,35 +1576,35 @@ void HoI4Country::convertArmyDivisions()
 				}
 				if (tankBrigades > 0)
 				{
-					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Tank Division", "Tank Division", infLocation);
+					HoI4DivisionType newDivision(to_string(numTank++) + ". Tank Division", "Tank Division", infLocation);
 					divisions.push_back(newDivision);
 					tankBrigades -= tanksPerDivision;
 				}
 				if (cavalryBrigades > 0)
 				{
-					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Cavalry Division", "Cavalry Division", infLocation);
+					HoI4DivisionType newDivision(to_string(numCav++) + ". Cavalry Division", "Cavalry Division", infLocation);
 					divisions.push_back(newDivision);
 					cavalryBrigades -= cavalryPerDivision;
 				}
 				if (mountainBrigades > 0)
 				{
-					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Mountaineers", "Mountaineers", infLocation);
+					HoI4DivisionType newDivision(to_string(numMountain++) + ". Mountaineers", "Mountaineers", infLocation);
 					divisions.push_back(newDivision);
 					mountainBrigades -= mountainPerDivision;
 				}
 
-				if (((artilleryBrigades / (infantryPerDivision / 3)) >= 1) && (supportBrigades >= 1))
+				if ((3 * artilleryBrigades >= infantryPerDivision) && (supportBrigades >= 1))
 				{
 					// Super Placement
-					HoI4DivisionType newDivision(to_string(numAdvanced++) + ".Advance Infantry Division", "Advance Infantry Division", infLocation);
+					HoI4DivisionType newDivision(to_string(numAdvanced++) + ". Advance Infantry Division", "Advance Infantry Division", infLocation);
 					divisions.push_back(newDivision);
 					artilleryBrigades -= (infantryPerDivision / 3);
 					supportBrigades--;
 				}
-				else if (((artilleryBrigades / (infantryPerDivision / 3)) >= 1) || (supportBrigades >= 1))
+				else if ((3 * artilleryBrigades >= infantryPerDivision) || (supportBrigades >= 1))
 				{
-					//Med Placement
-					HoI4DivisionType newDivision(to_string(numMedium++) + ".Support Infantry Division", "Support Infantry Division", infLocation);
+					// Med Placement
+					HoI4DivisionType newDivision(to_string(numMedium++) + ". Support Infantry Division", "Support Infantry Division", infLocation);
 					divisions.push_back(newDivision);
 					artilleryBrigades -= (infantryPerDivision / 3);
 					supportBrigades--;
@@ -1588,7 +1612,7 @@ void HoI4Country::convertArmyDivisions()
 				else
 				{
 					// Bad Placement
-					HoI4DivisionType newDivision(to_string(numBasic++) + ".Basic Infantry Division", "Basic Infantry Division", infLocation);
+					HoI4DivisionType newDivision(to_string(numBasic++) + ". Basic Infantry Division", "Basic Infantry Division", infLocation);
 					divisions.push_back(newDivision);
 				}
 				infantryBrigades -= infantryPerDivision;
@@ -1599,15 +1623,39 @@ void HoI4Country::convertArmyDivisions()
 
 		}
 	}
+	if (artilleryBrigades >= numAdvanced && advancedIndex != -1)
+	{
+		HoI4RegimentType artilleryRegiment("artillery", 0, 2);
+		divisionTemplates[advancedIndex].addSupportRegiment(artilleryRegiment);
+		artilleryBrigades -= numAdvanced;
+	}
+	if (artilleryBrigades >= numMedium && mediumIndex != -1)
+	{
+	  HoI4RegimentType artilleryRegiment("artillery", 0, mediumSupport ? 2 : 0);
+		divisionTemplates[mediumIndex].addSupportRegiment(artilleryRegiment);
+		artilleryBrigades -= numMedium;
+	}
+	if (artilleryBrigades >= numBasic && basicIndex != -1)
+	{
+		HoI4RegimentType artilleryRegiment("artillery", 0, 0);
+		divisionTemplates[basicIndex].addSupportRegiment(artilleryRegiment);
+		artilleryBrigades -= numBasic;
+	}
+	if (artilleryBrigades >= numTank && tankIndex != -1)
+	{
+		HoI4RegimentType artilleryRegiment("artillery", 0, 0);
+		divisionTemplates[tankIndex].addSupportRegiment(artilleryRegiment);
+		artilleryBrigades -= numTank;
+	}
 }
 
 
-void HoI4Country::addProvince(HoI4Province* _province)
+void HoI4Country::addProvince(int _province)
 {
-	provinces.insert(make_pair(_province->getNum(), _province));
+	provinces.insert(_province);
 	if (capital == 0)
 	{
-		capital = _province->getNum();
+		capital = _province;
 	}
 }
 
@@ -1615,6 +1663,9 @@ void HoI4Country::addProvince(HoI4Province* _province)
 void HoI4Country::addState(HoI4State* _state)
 {
 	states.insert(make_pair(_state->getID(), _state));
+	for (const auto province : _state->getProvinces()) {
+		addProvince(province);
+	}
 }
 
 
