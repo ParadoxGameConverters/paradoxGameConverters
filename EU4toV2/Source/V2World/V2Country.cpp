@@ -1347,7 +1347,7 @@ void V2Country::convertUncivReforms()
 			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
 			double militaryDev	= srcCountry->getMilTech() / totalTechs;
 			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
-			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " - westernization at 0%";
+			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << " and " << srcCountry->numEmbracedInstitutions() << " institutions. westernization at 0%";
 			uncivReforms	= new V2UncivReforms(0, militaryDev, socioEconDev, this);
 			government		= "absolute_monarchy";
 		}
@@ -1356,7 +1356,7 @@ void V2Country::convertUncivReforms()
 			double totalTechs = srcCountry->getMilTech() + srcCountry->getAdmTech();
 			double militaryDev = srcCountry->getMilTech() / totalTechs;
 			double socioEconDev = srcCountry->getAdmTech() / totalTechs;
-			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " - westernization at 44%";
+			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << " and " << srcCountry->numEmbracedInstitutions() << " institutions. westernization at 44%";
 			uncivReforms = new V2UncivReforms(44, militaryDev, socioEconDev, this);
 			government = "absolute_monarchy";
 		}
@@ -1365,7 +1365,7 @@ void V2Country::convertUncivReforms()
 			double totalTechs = srcCountry->getMilTech() + srcCountry->getAdmTech();
 			double militaryDev = srcCountry->getMilTech() / totalTechs;
 			double socioEconDev = srcCountry->getAdmTech() / totalTechs;
-			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " - westernization at 40%";
+			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << " and " << srcCountry->numEmbracedInstitutions() << " institutions. westernization at 40%";
 			uncivReforms = new V2UncivReforms(40, militaryDev, socioEconDev, this);
 			government = "absolute_monarchy";
 		}
@@ -1374,7 +1374,7 @@ void V2Country::convertUncivReforms()
 			double totalTechs = srcCountry->getMilTech() + srcCountry->getAdmTech();
 			double militaryDev = srcCountry->getMilTech() / totalTechs;
 			double socioEconDev = srcCountry->getAdmTech() / totalTechs;
-			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " - westernization at 36%";
+			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << " and " << srcCountry->numEmbracedInstitutions() << " institutions. westernization at 36%";
 			uncivReforms = new V2UncivReforms(36, militaryDev, socioEconDev, this);
 			government = "absolute_monarchy";
 		}
@@ -1383,7 +1383,7 @@ void V2Country::convertUncivReforms()
 			double totalTechs = srcCountry->getMilTech() + srcCountry->getAdmTech();
 			double militaryDev = srcCountry->getMilTech() / totalTechs;
 			double socioEconDev = srcCountry->getAdmTech() / totalTechs;
-			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " - westernization at 30%";
+			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << " and " << srcCountry->numEmbracedInstitutions() << " institutions. westernization at 30%";
 			uncivReforms = new V2UncivReforms(30, militaryDev, socioEconDev, this);
 			government = "absolute_monarchy";
 		}
@@ -1392,7 +1392,7 @@ void V2Country::convertUncivReforms()
 			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
 			double militaryDev	= srcCountry->getMilTech() / totalTechs;
 			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
-			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " - westernization at 20%";
+			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << " and " << srcCountry->numEmbracedInstitutions() << " institutions. westernization at 20%";
 			uncivReforms	= new V2UncivReforms(20, militaryDev, socioEconDev, this);
 			government		= "absolute_monarchy";
 		}
