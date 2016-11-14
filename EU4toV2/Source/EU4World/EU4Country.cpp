@@ -77,7 +77,7 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 	if (institutionsObj.size() > 0)
 	{
 		vector<string> institutionTokens = institutionsObj[0]->getTokens();
-		for (int i = 0; i < institutionTokens.size(); i++) {
+		for (unsigned int i = 0; i < institutionTokens.size(); i++) {
 			embracedInstitutions.push_back(boost::lexical_cast<bool>(institutionTokens[i]));
 		}
 	}
@@ -668,7 +668,7 @@ string EU4Country::getAdjective(const string& language) const
 
 int EU4Country::numEmbracedInstitutions() const {
 	int total = 0;
-	for (int i = 0; i < embracedInstitutions.size(); i++) {
+	for (unsigned int i = 0; i < embracedInstitutions.size(); i++) {
 		if (embracedInstitutions[i]) total++;
 	}
 	return total;
