@@ -59,6 +59,7 @@ class EU4Country
 		bool						hasFlag(string) const ;
 		void						resolveRegimentTypes(const RegimentTypeMap& map);
 		int						getManufactoryCount() const;
+		int						numEmbracedInstitutions() const;
 		void						eatCountry(EU4Country* target);
 		void						setColonialRegion(const string& region)		{ colonialRegion = region; }
 		void						takeArmies(EU4Country*);
@@ -75,6 +76,7 @@ class EU4Country
 		bool								getHolyRomanEmperor()					const { return holyRomanEmperor; }
 		int								getNationalFocus()						const { return nationalFocus; }
 		string							getTechGroup()								const { return techGroup; }
+		vector<bool>					getEmbracedInstitutions()				const { return embracedInstitutions; }
 		string							getPrimaryCulture()						const { return primaryCulture; }
 		vector<string>					getAcceptedCultures()					const { return acceptedCultures; }
 		string							getCulturalUnion()						const { return culturalUnion; }
@@ -123,6 +125,7 @@ class EU4Country
 		int								capital;					// the EU4 province that is this nation's capital
 		int								nationalFocus;			// the location of this country's national focus
 		string							techGroup;				// the tech group for this nation
+		vector<bool>					embracedInstitutions; // the institutions this nation has embraced
 		string							primaryCulture;		// the primary EU4 culture of this nation
 		vector<string>					acceptedCultures;		// the accepted EU4 cultures for this nation
 		string							culturalUnion;			// the culture group this nation is a union for
