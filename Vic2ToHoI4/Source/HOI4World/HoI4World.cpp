@@ -60,7 +60,6 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	importSuppplyZones(HoI4DefaultStateToProvinceMap);
 	importStrategicRegions();
 	checkAllProvincesMapped();
-	checkCoastalProvinces();
 	states->convertStates();
 	convertNavalBases();
 	convertCountries();
@@ -135,39 +134,6 @@ void HoI4World::importStrategicRegions()
 			provinceToStratRegionMap.insert(make_pair(province, newRegion->getID()));
 		}
 	}
-}
-
-
-void HoI4World::checkCoastalProvinces()
-{
-	// determine whether each province is coastal or not by checking if it has a naval base
-	// if it's not coastal, we won't try to put any navies in it (otherwise HoI4 crashes)
-	//Object*	obj2 = parser_UTF8::doParseFile((Configuration::getHoI4Path() + "/tfh/map/positions.txt"));
-	//vector<Object*> objProv = obj2->getLeaves();
-	//if (objProv.size() == 0)
-	//{
-	//	LOG(LogLevel::Error) << "map/positions.txt failed to parse.";
-	//	exit(1);
-	//}
-	//for (auto itr: objProv)
-	//{
-	//	int provinceNum = stoi(itr->getKey());
-	//	vector<Object*> objPos = itr->getValue("building_position");
-	//	if (objPos.size() == 0)
-	//	{
-	//		continue;
-	//	}
-	//	vector<Object*> objNavalBase = objPos[0]->getValue("naval_base");
-	//	if (objNavalBase.size() != 0)
-	//	{
-	//		// this province is coastal
-	//		map<int, HoI4Province*>::iterator pitr = provinces.find(provinceNum);
-	//		if (pitr != provinces.end())
-	//		{
-	//			pitr->second->setCoastal(true);
-	//		}
-	//	}
-	//}
 }
 
 
@@ -575,55 +541,9 @@ void HoI4World::outputCountries() const
 
 void HoI4World::convertNavalBases()
 {
-	Object* fileObj = parser_UTF8::doParseFile("navalprovinces.txt");
-	auto linkObj = fileObj->getValue("link");
-	auto navalProvincesObj = linkObj[0]->getValue("province");
-
-	// create a lookup table of naval provinces
-	unordered_map<int, int> navalProvinces;
-	for (auto provice : navalProvincesObj)
+	for (auto state: states->getStates())
 	{
-		int navalProvince = stoi(provice->getLeaf());
-		navalProvinces.insert(make_pair(navalProvince, navalProvince));
-	}
-
-	// convert naval bases. There should only be one per HoI4 state
-	for (auto state : states->getStates())
-	{
-		auto vic2State = state.second->getSourceState();
-
-		int		navalBaseLevel = 0;
-		int		navalBaseLocation = 0;
-		for (auto provinceNum: vic2State->getProvinceNums())
-		{
-			auto sourceProvince = sourceWorld->getProvince(provinceNum);
-			if (sourceProvince->getNavalBaseLevel() > 0)
-			{
-				navalBaseLevel += sourceProvince->getNavalBaseLevel();
-
-				// set the naval base in only coastal provinces
-				if (navalBaseLocation == 0)
-				{
-					auto provinceMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(provinceNum);
-					if (provinceMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
-					{
-						for (auto HoI4ProvNum : provinceMapping->second)
-						{
-							if (navalProvinces.find(HoI4ProvNum) != navalProvinces.end())
-							{
-								navalBaseLocation = HoI4ProvNum;
-								break;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		if (navalBaseLocation != 0)
-		{
-			state.second->setNavalBase(navalBaseLevel, navalBaseLocation);
-		}
+		state.second->convertNavalBases();
 	}
 }
 

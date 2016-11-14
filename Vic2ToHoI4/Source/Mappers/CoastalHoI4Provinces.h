@@ -39,7 +39,7 @@ typedef struct province
 } province;
 
 
-class coastalProvincesMapper
+class coastalHoI4ProvincesMapper
 {
 	public:
 		static map<int, int> getCoastalProvinces()
@@ -47,23 +47,28 @@ class coastalProvincesMapper
 			return getInstance()->coastalProvinces;
 		}
 
+		static bool isProvinceCoastal(int provinceNum)
+		{
+			return getInstance()->IsProvinceCoastal(provinceNum);
+		}
+
 	private:
-		static coastalProvincesMapper* instance;
-		static coastalProvincesMapper* getInstance()
+		static coastalHoI4ProvincesMapper* instance;
+		static coastalHoI4ProvincesMapper* getInstance()
 		{
 			if (instance == NULL)
 			{
-				instance = new coastalProvincesMapper();
+				instance = new coastalHoI4ProvincesMapper();
 			}
 
 			return instance;
 		}
 
-		coastalProvincesMapper();
-
-		
+		coastalHoI4ProvincesMapper();
 		map<int, province> getProvinces();
 		map<int, vector<int>> getAdjacencies();
+
+		bool IsProvinceCoastal(int provinceNum);
 
 		map<int, int> coastalProvinces;	// province, connecting sea province
 };

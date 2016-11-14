@@ -52,8 +52,7 @@ HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, string _ownerTag)
 	category = "pastoral";
 	infrastructure = 0;
 
-	navalLevel = 0;
-	navalLocation = 0;
+	navalBases.clear();
 
 	airbaseLevel = 0;
 
@@ -109,10 +108,10 @@ void HoI4State::output(string _filename)
 		out << "\t\t\tdockyard = " << dockyards << endl;
 	}
 		
-	if ((navalLevel > 0) && (navalLocation > 0))
+	for (auto navalBase: navalBases)
 	{
-		out << "\t\t\t" << navalLocation << " = {" << endl;
-		out << "\t\t\t\tnaval_base = " << navalLevel << endl;
+		out << "\t\t\t" << navalBase.first << " = {" << endl;
+		out << "\t\t\t\tnaval_base = " << navalBase.second << endl;
 		out << "\t\t\t}" << endl;
 	}
 	out << "\t\t\tair_base = "<< airbaseLevel << endl;
@@ -138,12 +137,60 @@ void HoI4State::output(string _filename)
 }
 
 
-void HoI4State::setNavalBase(int level, int location)
+void HoI4State::convertNavalBases()
 {
-	if (provinces.find(location) != provinces.end())
+	for (auto sourceProvince: sourceState->getProvinces())
 	{
-		navalLevel		= level;
-		navalLocation	= location;
+		int navalBaseLevel = determineNavalBaseLevel(sourceProvince);
+		if (navalBaseLevel == 0)
+		{
+			continue;
+		}
+
+		int navalBaseLocation = determineNavalBaseLocation(sourceProvince);
+		if (navalBaseLocation != -1)
+		{
+			addNavalBase(navalBaseLevel, navalBaseLocation);
+		}
+	}
+}
+
+
+int HoI4State::determineNavalBaseLevel(const V2Province* sourceProvince)
+{
+	int navalBaseLevel = sourceProvince->getNavalBaseLevel() * 2;
+	if (navalBaseLevel > 10)
+	{
+		navalBaseLevel = 10;
+	}
+
+	return navalBaseLevel;
+}
+
+
+int HoI4State::determineNavalBaseLocation(const V2Province* sourceProvince)
+{
+	auto provinceMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(sourceProvince->getNumber());
+	if (provinceMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
+	{
+		for (auto HoI4ProvNum: provinceMapping->second)
+		{
+			if (coastalHoI4ProvincesMapper::isProvinceCoastal(HoI4ProvNum))
+			{
+				return HoI4ProvNum;
+			}
+		}
+	}
+
+	return -1;
+}
+
+
+void HoI4State::addNavalBase(int level, int location)
+{
+	if ((level > 0) && (provinces.find(location) != provinces.end()))
+	{
+		navalBases.push_back(make_pair(location, level));
 	}
 }
 
@@ -166,6 +213,23 @@ void HoI4State::assignVP(int location)
 	{
 		victoryPointValue += 2;
 	}
+}
+
+
+int HoI4State::getMainNavalLocation() const
+{
+	int mainLocation = 0;
+	int mainSize = 0;
+	for (auto navalBase: navalBases)
+	{
+		if (navalBase.second > mainSize)
+		{
+			mainLocation = navalBase.first;
+			mainSize = navalBase.second;
+		}
+	}
+
+	return mainLocation;
 }
 
 
@@ -343,7 +407,7 @@ void HoI4State::setIndustry(int factories)
 
 bool HoI4State::amICoastal()
 {
-	map<int, int> coastalProvinces = coastalProvincesMapper::getCoastalProvinces();
+	map<int, int> coastalProvinces = coastalHoI4ProvincesMapper::getCoastalProvinces();
 	for (auto province: provinces)
 	{
 		auto itr = coastalProvinces.find(province);

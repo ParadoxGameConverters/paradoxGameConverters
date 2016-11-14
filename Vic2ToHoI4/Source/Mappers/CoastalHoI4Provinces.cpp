@@ -29,10 +29,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-coastalProvincesMapper* coastalProvincesMapper::instance = NULL;
+coastalHoI4ProvincesMapper* coastalHoI4ProvincesMapper::instance = NULL;
 
 
-coastalProvincesMapper::coastalProvincesMapper()
+coastalHoI4ProvincesMapper::coastalHoI4ProvincesMapper()
 {
 	map<int, province> provinces = getProvinces();
 	map<int, vector<int>> adjacencies = getAdjacencies();
@@ -64,7 +64,7 @@ coastalProvincesMapper::coastalProvincesMapper()
 }
 
 
-map<int, province> coastalProvincesMapper::getProvinces()
+map<int, province> coastalHoI4ProvincesMapper::getProvinces()
 {
 	ifstream provinceDefinitions(Configuration::getHoI4Path() + "/map/definition.csv");
 	if (!provinceDefinitions.is_open())
@@ -121,7 +121,7 @@ map<int, province> coastalProvincesMapper::getProvinces()
 }
 
 
-map<int, vector<int>> coastalProvincesMapper::getAdjacencies()
+map<int, vector<int>> coastalHoI4ProvincesMapper::getAdjacencies()
 {
 	// province num; something; red; green; blue; <adjacencies;>*
 	ifstream provinceDefinitions("adj.txt");
@@ -170,4 +170,11 @@ map<int, vector<int>> coastalProvincesMapper::getAdjacencies()
 	}
 
 	return adjacencies;
+}
+
+
+bool coastalHoI4ProvincesMapper::IsProvinceCoastal(int provinceNum)
+{
+	auto province = coastalProvinces.find(provinceNum);
+	return (province != coastalProvinces.end());
 }

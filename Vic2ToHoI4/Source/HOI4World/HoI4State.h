@@ -49,7 +49,8 @@ class HoI4State
 		void addVictoryPointValue(int additionalValue) { victoryPointValue += additionalValue; }
 		void setVPLocation(int province) { victoryPointPosition = province; }
 
-		void setNavalBase(int level, int location);
+		void convertNavalBases();
+		void addNavalBase(int level, int location);
 		void addCores(const vector<string>& newCores);
 
 		const Vic2State* getSourceState() const { return sourceState; }
@@ -57,12 +58,13 @@ class HoI4State
 		string getOwner() const { return ownerTag; }
 		set<string> getCores() const { return cores; }
 		int getID() const { return ID; }
-		int getNavalLocation() const { return navalLocation; }
 		int getDockyards() const { return dockyards; }
 		int getCivFactories() const { return civFactories; }
 		int getMilFactories() const { return milFactories; }
 		int getManpower() const { return manpower; }
 		int getVPLocation() const { return victoryPointPosition; }
+
+		int getMainNavalLocation() const;
 
 		bool tryToCreateVP();
 
@@ -79,6 +81,9 @@ class HoI4State
 		void setInfrastructure(int factories);
 		void setIndustry(int factories);
 		bool amICoastal();
+
+		int determineNavalBaseLevel(const V2Province* sourceProvince);
+		int determineNavalBaseLocation(const V2Province* sourceProvince);
 
 		void assignVP(int location);
 		bool isProvinceInState(int provinceNum);
@@ -102,8 +107,7 @@ class HoI4State
 		string category;
 		int infrastructure;
 	
-		int navalLevel;
-		int navalLocation;
+		vector<pair<int, int>> navalBases;
 
 		int airbaseLevel;
 

@@ -77,7 +77,7 @@ HoI4Buildings::HoI4Buildings(const map<int, int>& provinceToStateIDMap)
 
 void HoI4Buildings::placeNavalBases(const map<int, int>& provinceToStateIDMap)
 {
-	map<int, int> coastalProvinces = coastalProvincesMapper::getCoastalProvinces();
+	map<int, int> coastalProvinces = coastalHoI4ProvincesMapper::getCoastalProvinces();
 	map<int, pair<double, double>> positions = getProvincePositions();
 	for (auto province: coastalProvinces)
 	{

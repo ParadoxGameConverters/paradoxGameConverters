@@ -37,6 +37,8 @@ V2Province::V2Province(Object* obj)
 	readNavalBases(obj);
 	readRails(obj);
 	readPops(obj);
+
+	number = stoi(obj->getKey());
 }
 
 

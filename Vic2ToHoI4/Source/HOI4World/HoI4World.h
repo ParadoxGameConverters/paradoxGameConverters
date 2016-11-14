@@ -54,7 +54,6 @@ class HoI4World
 
 		void	importSuppplyZones(const map<int, vector<int>>& defaultStateToProvinceMap);
 		void	importStrategicRegions();
-		void	checkCoastalProvinces();
 		void	convertCountries();
 		void	convertNavalBases();
 		void	convertIndustry();

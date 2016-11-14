@@ -1155,9 +1155,9 @@ void HoI4Country::convertNavy(map<int, HoI4State*> states)
 
 	for (auto state : states)
 	{
-		if ((state.second->getOwner() == tag) && (state.second->getNavalLocation() != 0))
+		if ((state.second->getOwner() == tag) && (state.second->getMainNavalLocation() != 0))
 		{
-			navalLocation = state.second->getNavalLocation();
+			navalLocation = state.second->getMainNavalLocation();
 		}
 	}
 }
