@@ -1339,9 +1339,9 @@ void V2Country::convertUncivReforms()
 		{
 			// civilized, do nothing
 		}
-		else if	(	(srcCountry->getTechGroup() == "north_american") || (srcCountry->getTechGroup() == "mesoamerican") ||
+		else if	(	((srcCountry->getTechGroup() == "north_american") || (srcCountry->getTechGroup() == "mesoamerican") ||
 						(srcCountry->getTechGroup() == "south_american") || (srcCountry->getTechGroup() == "new_world") ||
-						(srcCountry->getTechGroup() == "andean") && (srcCountry->numEmbracedInstitutions() <= 3)
+						(srcCountry->getTechGroup() == "andean")) && (srcCountry->numEmbracedInstitutions() <= 3)
 					)
 		{
 			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
