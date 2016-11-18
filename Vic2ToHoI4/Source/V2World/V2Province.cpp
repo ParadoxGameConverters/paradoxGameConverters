@@ -37,6 +37,7 @@ V2Province::V2Province(Object* obj)
 	readNavalBases(obj);
 	readRails(obj);
 	readPops(obj);
+	readRgo(obj);
 }
 
 
@@ -114,6 +115,22 @@ void V2Province::readRails(Object* obj)
 	}
 }
 
+void V2Province::readRgo(Object* obj)
+{
+	Object* rgoObj = obj->safeGetObject("rgo");
+	if (!rgoObj) return;
+	string goods = rgoObj->safeGetString("goods_type");
+	Object* employment = rgoObj->safeGetObject("employment");
+	if (!employment) return;
+	Object* employees = employment->safeGetObject("employees");
+	if (!employees) return;
+	vector<Object*> pops = employees->getLeaves();
+	int workers = 0;
+	for (const auto& pop : pops) {
+		workers += pop->safeGetInt("count");
+	}
+	rgo = V2Rgo(goods, workers);
+}
 
 void V2Province::readPops(Object* obj)
 {
