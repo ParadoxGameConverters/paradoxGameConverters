@@ -27,7 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "OSCompatibilityLayer.h"
 
 const std::array<std::string, V2Localisation::numLanguages> V2Localisation::languages = 
-	{ "english", "french", "german", "spanish" };
+	{ "english", "french", "german", "polish", "spanish", "italian", "hungarian", "czech" };
 
 void V2Localisation::SetTag(const std::string& newTag)
 {
