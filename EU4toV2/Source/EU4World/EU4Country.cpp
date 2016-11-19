@@ -31,6 +31,7 @@ THE SOFTWARE. */
 #include "../Mappers/IdeaEffectMapper.h"
 #include "../V2World/V2Localisation.h"
 #include <algorithm>
+#include <boost/lexical_cast.hpp>
 
 
 
@@ -70,6 +71,16 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 
 	vector<Object*> techGroupObj = obj->getValue("technology_group");	// the object holding the technology group
 	(techGroupObj.size() > 0) ? techGroup = techGroupObj[0]->getLeaf().c_str() : techGroup = "";
+
+	embracedInstitutions.clear();
+	vector<Object*> institutionsObj = obj->getValue("institutions"); // the object holding the institutions
+	if (institutionsObj.size() > 0)
+	{
+		vector<string> institutionTokens = institutionsObj[0]->getTokens();
+		for (unsigned int i = 0; i < institutionTokens.size(); i++) {
+			embracedInstitutions.push_back(boost::lexical_cast<bool>(institutionTokens[i]));
+		}
+	}
 
 	vector<Object*> primaryCultureObj = obj->getValue("primary_culture");	// the object holding the primary culture
 	(primaryCultureObj.size() > 0) ? primaryCulture = primaryCultureObj[0]->getLeaf().c_str() : primaryCulture = "";
@@ -653,6 +664,14 @@ string EU4Country::getAdjective(const string& language) const
 	{
 		return "";
 	}
+}
+
+int EU4Country::numEmbracedInstitutions() const {
+	int total = 0;
+	for (unsigned int i = 0; i < embracedInstitutions.size(); i++) {
+		if (embracedInstitutions[i]) total++;
+	}
+	return total;
 }
 
 
