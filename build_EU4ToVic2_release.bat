@@ -12,8 +12,8 @@ cd ..
 cd EU4toV2
 call "build.bat"
 xcopy "Release" "..\EU4ToVic2-%version%\EU4ToVic2"  /Y /E /I
-copy "%VS140COMNTOOLS%\..\..\VC\redist\x86\Microsoft.VC140.CRT\msvcp140.dll" "..\EU4ToVic2-%version%\Vic2ToHoI4\msvcp140.dll"
-copy "%VS140COMNTOOLS%\..\..\VC\redist\x86\Microsoft.VC140.CRT\vcruntime140.dll" "..\EU4ToVic2-%version%\Vic2ToHoI4\vcruntime140.dll"
+copy "%VS140COMNTOOLS%\..\..\VC\redist\x86\Microsoft.VC140.CRT\msvcp140.dll" "..\EU4ToVic2-%version%\EU4ToVic2\msvcp140.dll"
+copy "%VS140COMNTOOLS%\..\..\VC\redist\x86\Microsoft.VC140.CRT\vcruntime140.dll" "..\EU4ToVic2-%version%\EU4ToVic2\vcruntime140.dll"
 cd ..
 
 cd "EU4ToVic2-%version%"
