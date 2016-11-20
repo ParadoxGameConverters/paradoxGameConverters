@@ -1,8 +1,3 @@
-Q: I got an error that mentions MSVCP120.dll. What do I do?
-A : Go to the Visual Studio Redistributable page: http://www.microsoft.com/en-us/downl....aspx?id=40784
-	then click Download and select vcredist_x86.exe.
-	Once it has downloaded, install it and run the converter again.
-
 Q: I have an ironman save. Can it be converted?
 A: Yes! But you need to convert it to a non-ironman save. The easiest way to do so is to use this tool on your save:
 https://forum.paradoxplaza.com/forum/index.php?threads/utility-java-save-game-replayer.722493/
@@ -16,8 +11,11 @@ A: Try going into the mod and deleting history/units. If it now loads, likely a 
 Q: Vic2 is crashing at Initializing Maplogic. What do I do?
 A: Clear your map cache by deleting the cache folder inside ".../victoria 2/map/" in both My Documents and the Victoria 2 install location.
 
+Q: Vic2's map is all blue. What do I do?
+A: Clear your map cache by deleting the cache folder inside ".../victoria 2/map/" in both My Documents and the Victoria 2 install location.
+
 Q: The converter crashes after no time with no errors and no log.txt (when running through the frontend). What went wrong?
-A: This is the MSVCP120.dll error from earlier in the FAQ. Use that solution.
+A: You may need to install this if you are not on Windows 10: https://support.microsoft.com/en-us/kb/2999226
 
 Q: The converter says my save is compressed. What do I do?
 A: You'll need to save it again in EU4. When you do, the save dialog has an option to compress the save. Make sure it is not selected.

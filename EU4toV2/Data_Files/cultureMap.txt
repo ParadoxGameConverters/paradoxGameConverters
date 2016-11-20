@@ -437,4 +437,11 @@ link = { v2 = bears eu4 = jan_mayenese }
 # noculture
 link = { v2 = noculture eu4 = noculture }
 
+#633 AD mod cultures (Ostrogothic, Maghreb Latin, Syriac)
+link = { v2 = bosniak eu4 = ostrogothic religion = slavic_pagan_reformed religion = animist }
+link = { v2 = ostrogothic eu4 = ostrogothic }
+link = { v2 = maghrebi eu4 = maghreb_latin religion = sunni religion = zikri religion = yazidi religion = sunni_heresy religion = shiite religion = hurufi religion = druze religion = shiite_heresy religion = ibadi religion = kharijite }
+link = { v2 = maghreb_arabic eu4 = maghreb_latin }
+link = { v2 = mashriqi eu4 = syriac religion = sunni religion = zikri religion = yazidi religion = sunni_heresy religion = shiite religion = hurufi religion = druze religion = shiite_heresy religion = ibadi religion = kharijite }
+link = { v2 = syriac eu4 = syriac }
 }

@@ -31,6 +31,9 @@ configuration =
 	# IC factor: how much to make the world's industry match default HoI4 industry. 1.0 = fully matched, 0.0 = no matching
 	ic_factor = 0.1
 
+	# Force multiplier: Controls how many HoI4 divisions are created.
+	force_multiplier = 1.0
+
 	# IC stats: If this is turned on, the converter will output files with detailed stats about industry conversion. Just remove the # on the next line if you'd like them.
 	# ICStats = yes
 }

@@ -104,7 +104,7 @@ void Vic2State::determineEmployedWorkers()
 {
 	workerStruct workers = countEmployedWorkers();
 	workers = limitWorkersByFactoryLevels(workers);
-	employedWorkers = determineEmplyedWorkersScore(workers);
+	employedWorkers = determineEmployedWorkersScore(workers);
 }
 
 
@@ -116,7 +116,7 @@ workerStruct Vic2State::countEmployedWorkers()
 	{
 		workers.craftsmen += province->getPopulation("craftsmen");
 		workers.clerks += province->getPopulation("clerks");
-		workers.artisans += province->getPopulation("aristans");
+		workers.artisans += province->getPopulation("artisans");
 		workers.capitalists += province->getLiteracyWeightedPopulation("capitalists");
 	}
 
@@ -139,7 +139,7 @@ workerStruct Vic2State::limitWorkersByFactoryLevels(workerStruct workers)
 }
 
 
-int Vic2State::determineEmplyedWorkersScore(workerStruct workers)
+int Vic2State::determineEmployedWorkersScore(workerStruct workers)
 {
 	int employedWorkerScore = workers.craftsmen + (workers.clerks * 2) + static_cast<int>(workers.artisans * 0.5) + (workers.capitalists * 2);
 	if (ownerHasNoCores())
