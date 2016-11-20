@@ -178,6 +178,8 @@ class HoI4World
 		map<int, int> provinceToSupplyZoneMap;
 
 		HoI4Buildings* buildings;
+
+		HoI4FocusTree* genericFocusTree;
 };
 
 

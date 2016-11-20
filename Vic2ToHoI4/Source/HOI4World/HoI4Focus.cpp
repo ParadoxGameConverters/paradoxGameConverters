@@ -30,6 +30,25 @@ HoI4Focus::HoI4Focus()
 }
 
 
+HoI4Focus* HoI4Focus::makeCustomizedCopy(const string& country) const
+{
+	HoI4Focus* newFocus = new HoI4Focus(*this);
+
+	newFocus->id += country;
+	if (newFocus->mutuallyExclusive != "")
+	{
+		newFocus->mutuallyExclusive += country;
+	}
+	newFocus->prerequisites.clear();
+	for (auto prerequisite: prerequisites)
+	{
+		newFocus->prerequisites.push_back(prerequisite + country);
+	}
+
+	return newFocus;
+}
+
+
 ostream& operator << (ostream& output, HoI4Focus& focus)
 {
 	output << "	focus = {\n";

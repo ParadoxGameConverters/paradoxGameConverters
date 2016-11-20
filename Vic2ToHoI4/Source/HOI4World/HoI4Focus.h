@@ -39,6 +39,8 @@ class HoI4Focus
 
 		friend ostream& operator << (ostream& output, HoI4Focus& focus);
 
+		HoI4Focus* makeCustomizedCopy(const string& country) const;
+
 		string id;
 		string icon;
 		string text;

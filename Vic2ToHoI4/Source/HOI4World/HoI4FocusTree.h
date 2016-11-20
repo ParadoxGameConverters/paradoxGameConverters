@@ -40,8 +40,12 @@ class HoI4Focus;
 class HoI4FocusTree
 {
 	public:
-		HoI4FocusTree(HoI4Country* CreatingCountry);
+		HoI4FocusTree();
+		HoI4FocusTree(const HoI4Country* country);
 
+		HoI4FocusTree* makeCustomizedCopy(const HoI4Country* country) const;
+
+		void addGenericFocusTree();
 		void addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Country*> CountriesToContain, int XStart);
 		void addMonarchyEmpireNationalFocuses(HoI4Country* Home, HoI4Country* Annexed1, HoI4Country* Annexed2, HoI4Country* Annexed3, HoI4Country* Annexed4, int ProtectorateNumber, int AnnexNumber, int x);
 

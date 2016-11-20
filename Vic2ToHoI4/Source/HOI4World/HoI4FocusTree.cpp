@@ -31,13 +31,22 @@ using namespace std;
 
 
 
-HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
+HoI4FocusTree::HoI4FocusTree()
 {
-	srcCountryTag = CreatingCountry->getSourceCountry()->getTag();
-	dstCountryTag = CreatingCountry->getTag();
+}
 
+
+HoI4FocusTree::HoI4FocusTree(const HoI4Country* country)
+{
+	srcCountryTag = country->getSourceCountry()->getTag();
+	dstCountryTag = country->getTag();
+}
+
+
+void HoI4FocusTree::addGenericFocusTree()
+{
 	HoI4Focus* newFocus = new HoI4Focus;
-	newFocus->id = "army_effort" + dstCountryTag;
+	newFocus->id = "army_effort";
 	newFocus->icon = "GFX_goal_generic_allies_build_infantry";
 	newFocus->xPos = 1;
 	newFocus->yPos = 0;
@@ -52,9 +61,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "equipment_effort" + dstCountryTag;
+	newFocus->id = "equipment_effort";
 	newFocus->icon = "GFX_goal_generic_small_arms";
-	newFocus->prerequisites.push_back("focus = army_effort" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = army_effort");
 	newFocus->xPos = 0;
 	newFocus->yPos = 1;
 	newFocus->cost = 10;
@@ -68,9 +77,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "motorization_effort" + dstCountryTag;
+	newFocus->id = "motorization_effort";
 	newFocus->icon = "GFX_goal_generic_army_motorized";
-	newFocus->prerequisites.push_back("focus = army_effort" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = army_effort");
 	newFocus->bypass = "			has_tech = motorised_infantry";
 	newFocus->xPos = 2;
 	newFocus->yPos = 1;
@@ -83,9 +92,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "doctrine_effort" + dstCountryTag;
+	newFocus->id = "doctrine_effort";
 	newFocus->icon = "GFX_goal_generic_army_doctrines";
-	newFocus->prerequisites.push_back("focus = army_effort" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = army_effort");
 	newFocus->xPos = 1;
 	newFocus->yPos = 2;
 	newFocus->cost = 10;
@@ -99,9 +108,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "equipment_effort_2" + dstCountryTag;
+	newFocus->id = "equipment_effort_2";
 	newFocus->icon = "GFX_goal_generic_army_artillery";
-	newFocus->prerequisites.push_back("focus = equipment_effort" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = equipment_effort");
 	newFocus->xPos = 0;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -115,9 +124,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "mechanization_effort" + dstCountryTag;
+	newFocus->id = "mechanization_effort";
 	newFocus->icon = "GFX_goal_generic_build_tank";
-	newFocus->prerequisites.push_back("focus = motorization_effort" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = motorization_effort");
 	newFocus->xPos = 2;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -130,9 +139,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "doctrine_effort_2" + dstCountryTag;
+	newFocus->id = "doctrine_effort_2";
 	newFocus->icon = "GFX_goal_generic_army_doctrines";
-	newFocus->prerequisites.push_back("focus = doctrine_effort" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = doctrine_effort");
 	newFocus->xPos = 1;
 	newFocus->yPos = 4;
 	newFocus->cost = 10;
@@ -146,9 +155,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "equipment_effort_3" + dstCountryTag;
+	newFocus->id = "equipment_effort_3";
 	newFocus->icon = "GFX_goal_generic_army_artillery2";
-	newFocus->prerequisites.push_back("focus = equipment_effort_2" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = equipment_effort_2");
 	newFocus->xPos = 0;
 	newFocus->yPos = 5;
 	newFocus->cost = 10;
@@ -162,9 +171,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "armor_effort" + dstCountryTag;
+	newFocus->id = "armor_effort";
 	newFocus->icon = "GFX_goal_generic_army_tanks";
-	newFocus->prerequisites.push_back("focus = mechanization_effort" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = mechanization_effort");
 	newFocus->xPos = 2;
 	newFocus->yPos = 5;
 	newFocus->cost = 10;
@@ -177,11 +186,11 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "special_forces" + dstCountryTag;
+	newFocus->id = "special_forces";
 	newFocus->icon = "GFX_goal_generic_special_forces";
-	newFocus->prerequisites.push_back("focus = equipment_effort_3" + dstCountryTag);
-	newFocus->prerequisites.push_back("focus = doctrine_effort_2" + dstCountryTag);
-	newFocus->prerequisites.push_back("focus = armor_effort" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = equipment_effort_3");
+	newFocus->prerequisites.push_back("focus = doctrine_effort_2");
+	newFocus->prerequisites.push_back("focus = armor_effort");
 	newFocus->xPos = 1;
 	newFocus->yPos = 6;
 	newFocus->cost = 10;
@@ -199,7 +208,7 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "aviation_effort" + dstCountryTag;
+	newFocus->id = "aviation_effort";
 	newFocus->icon = "GFX_goal_generic_build_airforce";
 	newFocus->xPos = 5;
 	newFocus->yPos = 0;
@@ -272,10 +281,10 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "fighter_focus" + dstCountryTag;
+	newFocus->id = "fighter_focus";
 	newFocus->icon = "GFX_goal_generic_air_fighter";
-	newFocus->prerequisites.push_back("focus = aviation_effort" + dstCountryTag);
-	newFocus->mutuallyExclusive = "focus = bomber_focus" + dstCountryTag;
+	newFocus->prerequisites.push_back("focus = aviation_effort");
+	newFocus->mutuallyExclusive = "focus = bomber_focus";
 	newFocus->xPos = 4;
 	newFocus->yPos = 1;
 	newFocus->cost = 10;
@@ -294,10 +303,10 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "bomber_focus" + dstCountryTag;
+	newFocus->id = "bomber_focus";
 	newFocus->icon = "GFX_goal_generic_air_bomber";
-	newFocus->prerequisites.push_back("focus = aviation_effort" + dstCountryTag);
-	newFocus->mutuallyExclusive = "focus = fighter_focus" + dstCountryTag;
+	newFocus->prerequisites.push_back("focus = aviation_effort");
+	newFocus->mutuallyExclusive = "focus = fighter_focus";
 	newFocus->xPos = 6;
 	newFocus->yPos = 1;
 	newFocus->cost = 10;
@@ -313,9 +322,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "aviation_effort_2" + dstCountryTag;
+	newFocus->id = "aviation_effort_2";
 	newFocus->icon = "GFX_goal_generic_air_doctrine";
-	newFocus->prerequisites.push_back("focus = bomber_focus focus = fighter_focus" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = bomber_focus focus = fighter_focus");
 	newFocus->xPos = 5;
 	newFocus->yPos = 2;
 	newFocus->cost = 10;
@@ -387,10 +396,10 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "CAS_effort" + dstCountryTag;
+	newFocus->id = "CAS_effort";
 	newFocus->icon = "GFX_goal_generic_CAS";
-	newFocus->prerequisites.push_back("focus = aviation_effort_2" + dstCountryTag);
-	newFocus->prerequisites.push_back("focus = motorization_effort" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = aviation_effort_2");
+	newFocus->prerequisites.push_back("focus = motorization_effort");
 	newFocus->xPos = 4;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -404,10 +413,10 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "rocket_effort" + dstCountryTag;
+	newFocus->id = "rocket_effort";
 	newFocus->icon = "GFX_focus_rocketry";
-	newFocus->prerequisites.push_back("focus = aviation_effort_2" + dstCountryTag);
-	newFocus->prerequisites.push_back("focus = infrastructure_effort" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = aviation_effort_2");
+	newFocus->prerequisites.push_back("focus = infrastructure_effort");
 	newFocus->xPos = 5;
 	newFocus->yPos = 4;
 	newFocus->cost = 10;
@@ -426,10 +435,10 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "NAV_effort" + dstCountryTag;
+	newFocus->id = "NAV_effort";
 	newFocus->icon = "GFX_goal_generic_air_naval_bomber";
-	newFocus->prerequisites.push_back("focus = aviation_effort_2" + dstCountryTag);
-	newFocus->prerequisites.push_back("focus = flexible_navy" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = aviation_effort_2");
+	newFocus->prerequisites.push_back("focus = flexible_navy");
 	newFocus->xPos = 6;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -443,7 +452,7 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "naval_effort" + dstCountryTag;
+	newFocus->id = "naval_effort";
 	newFocus->icon = "GFX_goal_generic_construct_naval_dockyard";
 	newFocus->xPos = 9;
 	newFocus->yPos = 0;
@@ -557,10 +566,10 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "flexible_navy" + dstCountryTag;
+	newFocus->id = "flexible_navy";
 	newFocus->icon = "GFX_goal_generic_build_navy";
-	newFocus->prerequisites.push_back("focus = naval_effort" + dstCountryTag);
-	newFocus->mutuallyExclusive = "focus = large_navy" + dstCountryTag;
+	newFocus->prerequisites.push_back("focus = naval_effort");
+	newFocus->mutuallyExclusive = "focus = large_navy";
 	newFocus->xPos = 8;
 	newFocus->yPos = 1;
 	newFocus->cost = 10;
@@ -587,10 +596,10 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "large_navy" + dstCountryTag;
+	newFocus->id = "large_navy";
 	newFocus->icon = "GFX_goal_generic_navy_doctrines_tactics";
-	newFocus->prerequisites.push_back("focus = naval_effort" + dstCountryTag);
-	newFocus->mutuallyExclusive = "focus = flexible_navy" + dstCountryTag;
+	newFocus->prerequisites.push_back("focus = naval_effort");
+	newFocus->mutuallyExclusive = "focus = flexible_navy";
 	newFocus->xPos = 10;
 	newFocus->yPos = 1;
 	newFocus->cost = 10;
@@ -613,9 +622,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "submarine_effort" + dstCountryTag;
+	newFocus->id = "submarine_effort";
 	newFocus->icon = "GFX_goal_generic_navy_submarine";
-	newFocus->prerequisites.push_back("focus = flexible_navy focus = large_navy" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = flexible_navy focus = large_navy");
 	newFocus->xPos = 8;
 	newFocus->yPos = 2;
 	newFocus->cost = 10;
@@ -642,9 +651,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "cruiser_effort" + dstCountryTag;
+	newFocus->id = "cruiser_effort";
 	newFocus->icon = "GFX_goal_generic_navy_cruiser";
-	newFocus->prerequisites.push_back("focus = large_navy focus = flexible_navy" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = large_navy focus = flexible_navy");
 	newFocus->xPos = 10;
 	newFocus->yPos = 2;
 	newFocus->cost = 10;
@@ -671,9 +680,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "destroyer_effort" + dstCountryTag;
+	newFocus->id = "destroyer_effort";
 	newFocus->icon = "GFX_goal_generic_wolf_pack";
-	newFocus->prerequisites.push_back("focus = submarine_effort" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = submarine_effort");
 	newFocus->xPos = 8;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -700,9 +709,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "capital_ships_effort" + dstCountryTag;
+	newFocus->id = "capital_ships_effort";
 	newFocus->icon = "GFX_goal_generic_navy_battleship";
-	newFocus->prerequisites.push_back("focus = cruiser_effort" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = cruiser_effort");
 	newFocus->xPos = 10;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -736,7 +745,7 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "industrial_effort" + dstCountryTag;
+	newFocus->id = "industrial_effort";
 	newFocus->icon = "GFX_goal_generic_production";
 	newFocus->xPos = 13;
 	newFocus->yPos = 0;
@@ -759,9 +768,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "construction_effort" + dstCountryTag;
+	newFocus->id = "construction_effort";
 	newFocus->icon = "GFX_goal_generic_construct_civ_factory";
-	newFocus->prerequisites.push_back("focus = industrial_effort" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = industrial_effort");
 	newFocus->xPos = 12;
 	newFocus->yPos = 1;
 	newFocus->cost = 10;
@@ -815,9 +824,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "production_effort" + dstCountryTag;
+	newFocus->id = "production_effort";
 	newFocus->icon = "GFX_goal_generic_construct_mil_factory";
-	newFocus->prerequisites.push_back("focus = industrial_effort" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = industrial_effort");
 	newFocus->xPos = 14;
 	newFocus->yPos = 1;
 	newFocus->cost = 10;
@@ -871,9 +880,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "construction_effort_2" + dstCountryTag;
+	newFocus->id = "construction_effort_2";
 	newFocus->icon = "GFX_goal_generic_construct_civ_factory";
-	newFocus->prerequisites.push_back("focus = construction_effort" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = construction_effort");
 	newFocus->xPos = 12;
 	newFocus->yPos = 2;
 	newFocus->cost = 10;
@@ -927,9 +936,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "production_effort_2" + dstCountryTag;
+	newFocus->id = "production_effort_2";
 	newFocus->icon = "GFX_goal_generic_construct_mil_factory";
-	newFocus->prerequisites.push_back("focus = production_effort" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = production_effort");
 	newFocus->xPos = 14;
 	newFocus->yPos = 2;
 	newFocus->cost = 10;
@@ -983,9 +992,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "infrastructure_effort" + dstCountryTag;
+	newFocus->id = "infrastructure_effort";
 	newFocus->icon = "GFX_goal_generic_construct_infrastructure";
-	newFocus->prerequisites.push_back("focus = construction_effort_2" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = construction_effort_2");
 	newFocus->xPos = 12;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -1065,9 +1074,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "production_effort_3" + dstCountryTag;
+	newFocus->id = "production_effort_3";
 	newFocus->icon = "GFX_goal_generic_construct_mil_factory";
-	newFocus->prerequisites.push_back("focus = production_effort_2" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = production_effort_2");
 	newFocus->xPos = 14;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -1121,9 +1130,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "infrastructure_effort_2" + dstCountryTag;
+	newFocus->id = "infrastructure_effort_2";
 	newFocus->icon = "GFX_goal_generic_construct_infrastructure";
-	newFocus->prerequisites.push_back("focus = infrastructure_effort" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = infrastructure_effort");
 	newFocus->xPos = 12;
 	newFocus->yPos = 4;
 	newFocus->cost = 10;
@@ -1203,9 +1212,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "construction_effort_3" + dstCountryTag;
+	newFocus->id = "construction_effort_3";
 	newFocus->icon = "GFX_goal_generic_construct_civ_factory";
-	newFocus->prerequisites.push_back("focus = infrastructure_effort" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = infrastructure_effort");
 	newFocus->xPos = 14;
 	newFocus->yPos = 4;
 	newFocus->cost = 10;
@@ -1259,9 +1268,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "nuclear_effort" + dstCountryTag;
+	newFocus->id = "nuclear_effort";
 	newFocus->icon = "GFX_focus_wonderweapons";
-	newFocus->prerequisites.push_back("focus = infrastructure_effort_2" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = infrastructure_effort_2");
 	newFocus->xPos = 10;
 	newFocus->yPos = 5;
 	newFocus->cost = 10;
@@ -1278,9 +1287,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "extra_tech_slot" + dstCountryTag;
+	newFocus->id = "extra_tech_slot";
 	newFocus->icon = "GFX_focus_research";
-	newFocus->prerequisites.push_back("focus = infrastructure_effort_2" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = infrastructure_effort_2");
 	newFocus->xPos = 12;
 	newFocus->yPos = 5;
 	newFocus->cost = 10;
@@ -1288,9 +1297,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "extra_tech_slot_2" + dstCountryTag;
+	newFocus->id = "extra_tech_slot_2";
 	newFocus->icon = "GFX_focus_research";
-	newFocus->prerequisites.push_back("focus = extra_tech_slot" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = extra_tech_slot");
 	newFocus->available += "			num_of_factories > 50";
 	newFocus->cancelIfInvalid += "no";
 	newFocus->continueIfInvalid += "yes";
@@ -1301,9 +1310,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "secret_weapons" + dstCountryTag;
+	newFocus->id = "secret_weapons";
 	newFocus->icon = "GFX_goal_generic_secret_weapon";
-	newFocus->prerequisites.push_back("focus = infrastructure_effort_2" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = infrastructure_effort_2");
 	newFocus->xPos = 14;
 	newFocus->yPos = 5;
 	newFocus->cost = 10;
@@ -1323,7 +1332,7 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "political_effort" + dstCountryTag;
+	newFocus->id = "political_effort";
 	newFocus->icon = "GFX_goal_generic_demand_territory";
 	newFocus->xPos = 19;
 	newFocus->yPos = 0;
@@ -1332,10 +1341,10 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "collectivist_ethos" + dstCountryTag;
+	newFocus->id = "collectivist_ethos";
 	newFocus->icon = "GFX_goal_generic_national_unity #icon = GFX_goal_tripartite_pact";
-	newFocus->prerequisites.push_back("focus = political_effort" + dstCountryTag);
-	newFocus->mutuallyExclusive = "focus = liberty_ethos" + dstCountryTag;
+	newFocus->prerequisites.push_back("focus = political_effort");
+	newFocus->mutuallyExclusive = "focus = liberty_ethos";
 	newFocus->available += "			OR = {\n";
 	newFocus->available += "				has_government = fascism\n";
 	newFocus->available += "				has_government = communism\n";
@@ -1356,10 +1365,10 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "nationalism_focus" + dstCountryTag;
+	newFocus->id = "nationalism_focus";
 	newFocus->icon = "GFX_goal_support_fascism #icon = GFX_goal_tripartite_pact";
-	newFocus->prerequisites.push_back("focus = collectivist_ethos" + dstCountryTag);
-	newFocus->mutuallyExclusive = "focus = internationalism_focus" + dstCountryTag;
+	newFocus->prerequisites.push_back("focus = collectivist_ethos");
+	newFocus->mutuallyExclusive = "focus = internationalism_focus";
 	newFocus->available += "			OR = {\n";
 	newFocus->available += "				has_government = fascism\n";
 	newFocus->available += "				has_government = neutrality\n";
@@ -1379,10 +1388,10 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "internationalism_focus" + dstCountryTag;
+	newFocus->id = "internationalism_focus";
 	newFocus->icon = "GFX_goal_support_communism #icon = GFX_goal_tripartite_pact";
-	newFocus->prerequisites.push_back("focus = collectivist_ethos" + dstCountryTag);
-	newFocus->mutuallyExclusive = "focus = nationalism_focus" + dstCountryTag;
+	newFocus->prerequisites.push_back("focus = collectivist_ethos");
+	newFocus->mutuallyExclusive = "focus = nationalism_focus";
 	newFocus->available += "			OR = {\n";
 	newFocus->available += "				has_government = communism\n";
 	newFocus->available += "				has_government = neutrality\n";
@@ -1402,10 +1411,10 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "liberty_ethos" + dstCountryTag;
+	newFocus->id = "liberty_ethos";
 	newFocus->icon = "GFX_goal_support_democracy";
-	newFocus->prerequisites.push_back("focus = political_effort" + dstCountryTag);
-	newFocus->mutuallyExclusive = "focus = collectivist_ethos" + dstCountryTag;
+	newFocus->prerequisites.push_back("focus = political_effort");
+	newFocus->mutuallyExclusive = "focus = collectivist_ethos";
 	newFocus->available += "			OR = {\n";
 	newFocus->available += "				has_government = democratic\n";
 	newFocus->available += "				has_government = neutrality\n";
@@ -1434,9 +1443,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "militarism" + dstCountryTag;
+	newFocus->id = "militarism";
 	newFocus->icon = "GFX_goal_generic_political_pressure";
-	newFocus->prerequisites.push_back("focus = nationalism_focus" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = nationalism_focus");
 	newFocus->xPos = 16;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -1450,9 +1459,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "political_correctness" + dstCountryTag;
+	newFocus->id = "political_correctness";
 	newFocus->icon = "GFX_goal_generic_dangerous_deal";
-	newFocus->prerequisites.push_back("focus = internationalism_focus" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = internationalism_focus");
 	newFocus->xPos = 18;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -1465,10 +1474,10 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "neutrality_focus" + dstCountryTag;
+	newFocus->id = "neutrality_focus";
 	newFocus->icon = "GFX_goal_generic_neutrality_focus";
-	newFocus->prerequisites.push_back("focus = liberty_ethos" + dstCountryTag);
-	newFocus->mutuallyExclusive = "focus = interventionism_focus" + dstCountryTag;
+	newFocus->prerequisites.push_back("focus = liberty_ethos");
+	newFocus->mutuallyExclusive = "focus = interventionism_focus";
 	newFocus->xPos = 20;
 	newFocus->yPos = 2;
 	newFocus->cost = 10;
@@ -1480,10 +1489,10 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "interventionism_focus" + dstCountryTag;
+	newFocus->id = "interventionism_focus";
 	newFocus->icon = "GFX_goal_generic_political_pressure";
-	newFocus->prerequisites.push_back("focus = liberty_ethos" + dstCountryTag);
-	newFocus->mutuallyExclusive = "focus = neutrality_focus" + dstCountryTag;
+	newFocus->prerequisites.push_back("focus = liberty_ethos");
+	newFocus->mutuallyExclusive = "focus = neutrality_focus";
 	newFocus->xPos = 22;
 	newFocus->yPos = 2;
 	newFocus->cost = 10;
@@ -1501,9 +1510,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "military_youth" + dstCountryTag;
+	newFocus->id = "military_youth";
 	newFocus->icon = "GFX_goal_generic_more_territorial_claims";
-	newFocus->prerequisites.push_back("focus = militarism" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = militarism");
 	newFocus->xPos = 16;
 	newFocus->yPos = 4;
 	newFocus->cost = 10;
@@ -1525,9 +1534,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "deterrence" + dstCountryTag;
+	newFocus->id = "deterrence";
 	newFocus->icon = "GFX_goal_generic_defence";
-	newFocus->prerequisites.push_back("focus = neutrality_focus" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = neutrality_focus");
 	newFocus->xPos = 20;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -1535,9 +1544,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "volunteer_corps" + dstCountryTag;
+	newFocus->id = "volunteer_corps";
 	newFocus->icon = "GFX_goal_generic_allies_build_infantry";
-	newFocus->prerequisites.push_back("focus = interventionism_focus" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = interventionism_focus");
 	newFocus->xPos = 22;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -1545,9 +1554,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "paramilitarism" + dstCountryTag;
+	newFocus->id = "paramilitarism";
 	newFocus->icon = "GFX_goal_generic_military_sphere";
-	newFocus->prerequisites.push_back("focus = military_youth" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = military_youth");
 	newFocus->xPos = 16;
 	newFocus->yPos = 5;
 	newFocus->cost = 10;
@@ -1555,9 +1564,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "indoctrination_focus" + dstCountryTag;
+	newFocus->id = "indoctrination_focus";
 	newFocus->icon = "GFX_goal_generic_propaganda";
-	newFocus->prerequisites.push_back("focus = political_correctness" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = political_correctness");
 	newFocus->xPos = 18;
 	newFocus->yPos = 4;
 	newFocus->cost = 10;
@@ -1566,9 +1575,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "foreign_expeditions" + dstCountryTag;
+	newFocus->id = "foreign_expeditions";
 	newFocus->icon = "GFX_goal_generic_more_territorial_claims";
-	newFocus->prerequisites.push_back("focus = volunteer_corps" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = volunteer_corps");
 	newFocus->xPos = 22;
 	newFocus->yPos = 4;
 	newFocus->cost = 10;
@@ -1576,9 +1585,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "why_we_fight" + dstCountryTag;
+	newFocus->id = "why_we_fight";
 	newFocus->icon = "GFX_goal_generic_propaganda";
-	newFocus->prerequisites.push_back("focus = foreign_expeditions focus = deterrence" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = foreign_expeditions focus = deterrence");
 	newFocus->available += "			OR = {\n";
 	newFocus->available += "				threat > 0.75\n";
 	newFocus->available += "				has_defensive_war = yes\n";
@@ -1595,9 +1604,9 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "political_commissars" + dstCountryTag;
+	newFocus->id = "political_commissars";
 	newFocus->icon = "GFX_goal_generic_forceful_treaty";
-	newFocus->prerequisites.push_back("focus = indoctrination_focus" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = indoctrination_focus");
 	newFocus->available = " ";
 	newFocus->xPos = 18;
 	newFocus->yPos = 5;
@@ -1621,9 +1630,10 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "ideological_fanaticism" + dstCountryTag;
+	newFocus->id = "ideological_fanaticism";
 	newFocus->icon = "GFX_goal_generic_demand_territory";
-	newFocus->prerequisites.push_back("focus = paramilitarism" + dstCountryTag + " focus = political_commissars" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = paramilitarism");
+	newFocus->prerequisites.push_back("focus = political_commissars");
 	newFocus->xPos = 17;
 	newFocus->yPos = 6;
 	newFocus->cost = 10;
@@ -1638,9 +1648,10 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
-	newFocus->id = "technology_sharing" + dstCountryTag;
+	newFocus->id = "technology_sharing";
 	newFocus->icon = "GFX_goal_generic_scientific_exchange";
-	newFocus->prerequisites.push_back("focus = ideological_fanaticism" + dstCountryTag + " focus = why_we_fight" + dstCountryTag);
+	newFocus->prerequisites.push_back("focus = ideological_fanaticism");
+	newFocus->prerequisites.push_back("focus = why_we_fight");
 	newFocus->available += "			has_war = yes\n";
 	newFocus->available += "			is_in_faction = yes\n";
 	newFocus->available += "			OR = {\n";
@@ -1684,6 +1695,20 @@ HoI4FocusTree::HoI4FocusTree(HoI4Country* CreatingCountry)
 	newFocus->completionReward += "				}\n";
 	newFocus->completionReward += "			}";
 	focuses.push_back(newFocus);
+}
+
+
+HoI4FocusTree* HoI4FocusTree::makeCustomizedCopy(const HoI4Country* country) const
+{
+	HoI4FocusTree* newFocusTree = new HoI4FocusTree(country);
+
+	for (auto focus: focuses)
+	{
+		HoI4Focus* newFocus = focus->makeCustomizedCopy(newFocusTree->dstCountryTag);
+		newFocusTree->addFocus(newFocus);
+	}
+
+	return newFocusTree;
 }
 
 

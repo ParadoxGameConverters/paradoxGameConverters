@@ -1585,8 +1585,12 @@ void HoI4World::outputRelations() const
 	}
 	out.close();
 }
+
+
 void HoI4World::thatsgermanWarCreator()
 {
+	genericFocusTree = new HoI4FocusTree;
+	genericFocusTree->addGenericFocusTree();
 
 	//FIX ALL FIXMES AND ADD CONQUEST GOAL
 	//MAKE SURE THIS WORKS
@@ -2502,7 +2506,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, const V2Wor
 		}
 	}
 	//gives us generic focus tree start
-	HoI4FocusTree* FocusTree = new HoI4FocusTree(Leader);
+	HoI4FocusTree* FocusTree = genericFocusTree->makeCustomizedCopy(Leader);
 	if (nan.size() >= 1)
 	{
 		//if it can easily take these targets as they are not in an alliance, you can get annexation event
@@ -3117,7 +3121,7 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, const V
 	//actual eventoutput
 	vector<int> takenSpots;
 	takenSpots.push_back(22);
-	HoI4FocusTree* FocusTree = new HoI4FocusTree(Leader);
+	HoI4FocusTree* FocusTree = genericFocusTree->makeCustomizedCopy(Leader);
 	if (coups.size() > 0)
 	{
 		if (coups.size() == 1)
@@ -3547,7 +3551,7 @@ vector<HoI4Faction*> HoI4World::DemocracyWarCreator(HoI4Country* Leader, const V
 	set<string> Allies = Leader->getAllies();
 	int v1 = rand() % 100;
 	v1 = v1 / 100;
-	HoI4FocusTree* FocusTree = new HoI4FocusTree(Leader);
+	HoI4FocusTree* FocusTree = genericFocusTree->makeCustomizedCopy(Leader);
 	for (auto GC : returnGreatCountries(sourceWorld))
 	{
 		double relation = Leader->getRelations(GC->getTag())->getRelations();
@@ -3658,7 +3662,7 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, const V2
 			}
 		}
 	}
-	HoI4FocusTree* FocusTree = new HoI4FocusTree(Leader);
+	HoI4FocusTree* FocusTree = genericFocusTree->makeCustomizedCopy(Leader);
 	int WN = 0;
 	int WC = 0;
 	if (WeakNeighbors.size() == 0)
