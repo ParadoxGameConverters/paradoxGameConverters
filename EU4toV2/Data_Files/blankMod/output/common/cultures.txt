@@ -3201,3 +3201,15 @@ bears = {
 		last_names = { Beliy Medved Bjorn Rawrrorr Rrrrr Grrr Gyp Qoi Styrbjorn Blomstfjellet }
 	}
 }
+
+equine = {
+	leader = equine
+	unit = EuropeanGC
+	horse = {
+		color = { 255 111 94}
+		first_names = { Spot Star Spirit Blaze Lucky Chief Rain Stormy Duke Traveler "Clever Hans" Dreamer Midnight Twilight Arion Carlos Triumph }
+
+		last_names = { Glitterhoof Sparklemane Moontail Opaleye Silvercoat Goldmuzzle }
+	}
+	union = TRL
+}

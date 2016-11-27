@@ -1,40 +1,125 @@
 political_decisions = {
-    centralize_hre = {
-        potential = {
-            NOT = { has_global_flag = liberal_revolutions_should_now_fire }
-            has_country_flag = emperor_hre
-            NOT = {
-                exists = HRE
-            }
-        }
-        allow = {
-            is_greater_power = yes
-            prestige = 65
-        }
-        effect = {
-            change_tag = HRE
-            clr_country_flag = emperor_hre
-            any_country = {
-                limit = {
-                    has_country_flag = member_hre
-                    in_sphere = THIS
-                }
-                THIS = {
-                    prestige = 10
-                }
-                country_event = 250001
-                clr_country_flag = member_hre
-            }
-            any_country = {
-                limit = {
-                    has_country_flag = member_hre
-                    NOT = {
-                        in_sphere = THIS
-                    }
-                }
-                country_event = 250003
-                clr_country_flag = member_hre
-            }
-        }
-    }
+	centralize_hre = {
+		potential = {
+			NOT = { has_global_flag = liberal_revolutions_should_now_fire }
+			has_country_flag = emperor_hre
+			NOT = {
+				exists = HRE
+			}
+		}
+		allow = {
+			is_greater_power = yes
+			prestige = 65
+		}
+		effect = {
+			change_tag = HRE
+			clr_country_flag = emperor_hre
+			any_country = {
+				limit = {
+					has_country_flag = member_hre
+					in_sphere = THIS
+				}
+				THIS = {
+					prestige = 10
+				}
+				country_event = 250001
+				clr_country_flag = member_hre
+			}
+			any_country = {
+				limit = {
+					has_country_flag = member_hre
+					NOT = {
+						in_sphere = THIS
+					}
+				}
+				country_event = 250003
+				clr_country_flag = member_hre
+			}
+		}
+	}
+	form_two_sicilies = {
+		potential = {
+			primary_culture = south_italian
+			NOT = { exists = SIC }
+			NOT = { exists = ITA }
+		}
+
+		allow = {
+			762 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+			763 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+			754 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			prestige = 20
+			all_core = {
+				limit = {
+					owned_by = THIS
+				}
+				remove_core = THIS
+				add_core = SIC
+			}
+			change_tag = SIC
+			random_country = {
+				limit = {
+					primary_culture = THIS
+					in_sphere = THIS
+					OR = {
+						is_vassal = no
+						vassal_of = THIS
+					}
+				}
+				FROM = { inherit = THIS }
+			}
+			any_country = {
+				limit = {
+					primary_culture = THIS
+				}
+				all_core = {
+					add_core = SIC
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	mongol_khagan = {
+		potential = {
+			tag = KHA
+			NOT = { exists = MGL }
+		}
+
+		allow = {
+			is_greater_power = yes
+		}
+		effect = {
+			prestige = 20
+			all_core = {
+				limit = {
+					owned_by = THIS
+				}
+				remove_core = THIS 
+				add_core = MGL
+			}
+			change_tag = MGL
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
 }

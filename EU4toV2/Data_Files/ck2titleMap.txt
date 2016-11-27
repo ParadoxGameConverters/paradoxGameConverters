@@ -269,6 +269,9 @@ link = { name = "auserwählte von perkunas" 	 title = "d_chosen_perkunas" 	 regi
 link = { name = "austerbotn" 	 title = "c_osterbotten" 	 region = "e_scandinavia" }
 link = { name = "austergautland" 	 title = "c_ostergotland" 	 region = "e_scandinavia" }
 link = { name = "austlandet" 	 title = "d_ostlandet" 	 region = "e_scandinavia" }
+link = { name = "austrasia" title = "k_lotharingia" region = "e_france" }
+link = { name = "austrasie" title = "k_lotharingia" region = "e_france" }
+link = { name = "austrasien" title = "k_lotharingia" region = "e_france" }
 link = { name = "auvergne" 	 title = "d_auvergne" 	 region = "e_france" }
 link = { name = "auvernia" 	 title = "d_auvergne" 	 region = "e_france" }
 link = { name = "avanti" 	 title = "d_dadhipadra" 	 region = "e_rajastan" }
@@ -2161,6 +2164,7 @@ link = { name = "nobatia" 	 title = "d_nobatia" 	 region = "e_abyssinia" }
 link = { name = "nofant" 	 title = "c_galloway" 	 region = "e_britannia" }
 link = { name = "nordsee-koggen" 	 title = "d_frisian_navy" 	 region = "e_pirates" }
 link = { name = "norfolk" 	 title = "d_norfolk" 	 region = "e_britannia" }
+link = { name = "norge" 	 title = "k_norway" 	 region = "e_scandinavia" }
 link = { name = "normandie" 	 title = "d_normandy" 	 region = "e_france" }
 link = { name = "normandy" 	 title = "d_normandy" 	 region = "e_france" }
 link = { name = "normandía" 	 title = "d_normandy" 	 region = "e_france" }
@@ -2737,6 +2741,7 @@ link = { name = "suvarnagram" 	 title = "c_suvarnagram" 	 region = "e_bengal" }
 link = { name = "suvarnapura" 	 title = "c_suvarnapura" 	 region = "e_bengal" }
 link = { name = "suède" 	 title = "k_sweden" 	 region = "e_scandinavia" }
 link = { name = "suðreyjar" 	 title = "c_innse_gall" 	 region = "e_britannia" }
+link = { name = "svearole" 	 title = "k_sweden" 	 region = "e_scandinavia" }
 link = { name = "svithjod" 	 title = "d_sweden" 	 region = "e_mali" }
 link = { name = "svitjod" 	 title = "d_sweden" 	 region = "e_mali" }
 link = { name = "sviþjod" 	 title = "d_uppland" 	 region = "e_scandinavia" }
@@ -3237,4 +3242,23 @@ link = { name = "Slavs" title = "k_slavs" region = "e_wendish_empire" }
 link = { name = "Pontificate Maxima" title = "d_hellenic_pagan_reformed" region = "e_mexikha" }
 link = { name = "Ravenna" title = "k_ravenna" region = "e_byzantium" }
 link = { name = "Gepidia" title = "d_gepids" region = "e_byzantium" }
+
+#CK2 Muslim unique dynasty shields
+link = { name = "abbasids" title = "d_abbasid" region = "e_arabia" }
+link = { name = "umayyads" title = "d_umayyad" region = "e_arabia" }
+link = { name = "hashimids" title = "d_hashimid" region = "e_arabia" }
+link = { name = "seljuks" title = "d_seljuk" region = "e_arabia" }
+link = { name = "rashiduns" title = "d_rashidun" region = "e_arabia" }
+link = { name = "osmanoglu" title = "d_osmanoglu" region = "e_arabia" }
+link = { name = "fatimids" title = "d_fatimid" region = "e_arabia" }
+link = { name = "almohads" title = "d_almohad" region = "e_arabia" }
+link = { name = "almoravids" title = "d_almoravid" region = "e_arabia" }
+
+#EU4 minors
+link = { name = "dithmarschen" title = "DTT" region = "e_mexikha" }
+link = { name = "dongola" title = "ABB" region = "e_arabia" }
+link = { name = "hadiya" title = "HDY" region = "e_mexikha" }
+link = { name = "janjiro" title = "JJI" region = "e_mexikha" }
+link = { name = "welayta" title = "WLY" region = "e_mexikha" }
+link = { name = "trapalandia" title = "TRL" region = "e_mexikha" }
 }

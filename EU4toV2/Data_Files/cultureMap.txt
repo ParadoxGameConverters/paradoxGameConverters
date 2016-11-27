@@ -156,7 +156,7 @@ link = { v2 = slovak eu4 = slovak }
 link = { v2 = czech eu4 = czech }
 
 # East Slav - russian, byelorussian, ruthenian
-link = { v2 = russian eu4 = russian eu4 = ilmenian eu4 = severian eu4 = volhynian eu4 = novgorodian eu4 = ryazanian }
+link = { v2 = russian eu4 = russian eu4 = russian_culture eu4 = ilmenian eu4 = severian eu4 = volhynian eu4 = novgorodian eu4 = ryazanian }
 link = { v2 = ukrainian eu4 = ruthenian }
 link = { v2 = byelorussian eu4 = byelorussian }
 
@@ -362,6 +362,7 @@ link = { v2 = tiv eu4 = jukun }
 link = { v2 = fang eu4 = sawabantu } # Cameroon, Gabon, EG
 link = { v2 = fur eu4 = nubian region = darfur_central_sahara_area }
 link = { v2 = beja eu4 = nubian region = red_sea_coast_area }
+link = { v2 = beja eu4 = beja }
 link = { v2 = sudanese eu4 = nubian }
 #link = { v2 = dinka eu4 = ? } # Sudan
 #link = { v2 = azande eu4 = ? } # South Sudan
@@ -373,9 +374,9 @@ link = { v2 = luo eu4 = acholi } # South Sudan
 link = { v2 = amhara eu4 = amhara eu4 = coptic }
 link = { v2 = sidama eu4 = sidamo }
 link = { v2 = tigray eu4 = tigray }
-link = { v2 = somali eu4 = somali }
-link = { v2 = oromo eu4 = ethiopian } # does this actually exist?
-#link = { v2 = afar eu4 = ? } #Djibouti
+link = { v2 = somali eu4 = somali eu4 = harari }
+link = { v2 = oromo eu4 = ethiopian eu4 = oromo }
+link = { v2 = afar eu4 = afar }
 
 # The Congo - bakongo, luba, lunda, mbundu
 #link = { v2 = mongo eu4 = ? } # DRC
@@ -431,8 +432,9 @@ link = { v2 = sephardic eu4 = hebrew }
 link = { v2 = alan eu4 = scythian}
 link = { v2 = persian eu4 = parthian }
 
-# Bears
+# Animals
 link = { v2 = bears eu4 = jan_mayenese }
+link = { v2 = equine eu4 = equine }
 
 # noculture
 link = { v2 = noculture eu4 = noculture }

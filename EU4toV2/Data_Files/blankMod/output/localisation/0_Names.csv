@@ -358,7 +358,8 @@ KHO;Khorasan;Khorasan;Khorasan;Khorasan;;;;;;;;;;;;x;;;;
 LIV;Livonian Order;Livonian Order;Livonian Order;Livonian Order;;;;;;;;;;;;;x;;;
 NAP;Naples;Naples;Naples;Naples;;;;;;;;;;;;x;;;;
 QIN;Qin;Qin;Qin;Qin;;;;;;;;;;;;x;;;;
-RFR;Rev. France;;;;;;;;;;;;;;;x;;;
+RFR;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;;x;;;
+RFR_ADJ;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;Nanbu;;x;;;
 SYR;Syria;Syria;Syria;Syria;;;;;;;;;;;;x;;;;
 WES;Westphalia;Westphalia;Westphalia;Westphalia;;;;;;;;;;;;x;;;;
 WUU;Wu;Wu;Wu;Wu;;;;;;;;;;;;x;;;;
@@ -368,7 +369,6 @@ KHO_ADJ;Khorasan;Khorasan;Khorasan;Khorasan;;;;;;;;;;;;x;;;;
 LIV_ADJ;Livonian;Livonian;Livonian;Livonian;;;;;;;;;;;;x;;;;
 NAP_ADJ;Neapolitan;Neapolitan;Neapolitan;Neapolitan;;;;;;;;;;;;x;;;;
 QIN_ADJ;Qin;Qin;Qin;Qin;;;;;;;;;;;;x;;;;
-RFR_ADJ;Napoleonic;Napoleonic;Napoleonic;Napoleonic;;;;;;;;;;;;x;;;;
 SYR_ADJ;Syrian;Syrian;Syrian;Syrian;;;;;;;;;;;;x;;;;
 WES_ADJ;Westfalian;Westfalian;Westfalian;Westfalian;;;;;;;;;;;;x;;;;
 WUU_ADJ;Wun;Wun;Wun;Wun;;;;;;;;;;;;x;;;;
@@ -429,3 +429,5 @@ RME_radical_party;Radical Party;Radical Party;Radical Party;;;;;;;;;;;;x;;;;;;;;
 RME_socialist;Koinonikistai;Koinonikistai;Koinonikistai;;;;;;;;;;;;x;;;;;;;;;;;;;;
 RME_communist;I Koinotita;I Koinotita;I Koinotita;;;;;;;;;;;;x;;;;;;;;;;;;;;
 RME_varangian_guard;Varangian Guard;Varangian Guard;Varangian Guard;;;;;;;;;;;;x;;;;;;;;;;;;;;
+GRH;Great Horde;Grande Horde;Groﬂe Horde;Wielka Orda;Gran Horda;Grande Orda;Nagy Horda;Velk· Horda;;;;;;;x
+GRH_ADJ;Great Horde;Grande Horde;Groﬂenhorde;Wielkiej Hordy;Gran Horda;Grand'Orda;Nagy Horda;VelkÈ Horde;;;;;;x

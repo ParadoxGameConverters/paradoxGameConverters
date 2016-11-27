@@ -115,4 +115,17 @@ link = { tag = BYE culture = byelorussian }
 link = { tag = PLC culture = polish }
 link = { tag = PLC culture = lithuanian }
 
+#others
+link = { tag = AZB culture = azerbaijani } #Azerbaijan
+link = { tag = BEL culture = flemish } #Belgium - Flanders
+link = { tag = BEL culture = wallonian } #Belgium - Wallonia
+link = { tag = JAV culture = javan } #Java
+link = { tag = KAL culture = baluchi } #Kalat
+link = { tag = LAT culture = latvian } #Latvia
+link = { tag = SLO culture = slovene } #Slovenia
+link = { tag = SLV culture = slovak } #Slovakia
+link = { tag = WLL culture = wallonian } #Wallonia
+link = { tag = XIN culture = uighur } #Xinjiang
+link = { tag = ZUL culture = zulu } #Zulu
+link = { tag = TRL culture = equine } #Trapalandia (horses)
 }

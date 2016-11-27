@@ -425,6 +425,7 @@ HND 		="countries/India.txt"
 #Russia
 AKH		="countries/Astrakhan.txt"##
 GOL		="countries/Golden Horde.txt"##
+GRH		="countries/Great Horde.txt"##
 KAZ		="countries/Kazan.txt"##
 MOS		="countries/Muscowy.txt"##
 NOV		="countries/Novgorod.txt"##

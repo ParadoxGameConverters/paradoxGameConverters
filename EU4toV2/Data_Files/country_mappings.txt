@@ -215,7 +215,8 @@ link = { eu4 = ARM v2 = ARM }  # Armenia
 link = { eu4 = AST v2 = AKH }  # Astarakhan
 link = { eu4 = CRI v2 = CRI }  # Crimea
 link = { eu4 = GEO v2 = GEO }  # Georgia
-link = { eu4 = GOL v2 = GOL }  # Golden Horde
+link = { eu4 = GLH v2 = GOL }  # Golden Horde
+link = { eu4 = GOL v2 = GRH }  # Great Horde
 link = { eu4 = KAZ v2 = KAZ }  # Kazan
 link = { eu4 = MOS v2 = MOS }  # Muscowy
 link = { eu4 = NOV v2 = NOV }  # Novgorod
@@ -792,5 +793,5 @@ link = { eu4 = d_venice v2 = VEN }
 link = { eu4 = d_wallachia v2 = WAL }
 link = { eu4 = c_wurttemberg v2 = WUR }
 link = { eu4 = secretdenmark v2 = SDM }
-
+link = { eu4 = TRL v2 = TRL } #Trapalandia
 }
