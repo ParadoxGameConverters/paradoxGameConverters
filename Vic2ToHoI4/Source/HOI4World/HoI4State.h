@@ -77,7 +77,6 @@ class HoI4State
 		int determineFactoryNumbers(double workerFactoryRatio);
 		int constrainFactoryNumbers(double rawFactories);
 		void determineCategory(int factories);
-		map<int, string> getStateCategories();
 		void setInfrastructure(int factories);
 		void setIndustry(int factories);
 		bool amICoastal();

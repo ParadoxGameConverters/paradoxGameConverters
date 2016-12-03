@@ -164,6 +164,9 @@
     <ClCompile Include="Source\HOI4World\HoI4Focus.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Mappers\StateCategoryMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -313,6 +316,10 @@
     </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4Focus.h">
       <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2Rgo.h" />
+    <ClInclude Include="Source\Mappers\StateCategoryMapper.h">
+      <Filter>Mappers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

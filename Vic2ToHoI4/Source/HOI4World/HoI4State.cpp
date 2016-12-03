@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "../Mappers/CoastalHoI4Provinces.h"
 #include "../Mappers/ProvinceMapper.h"
+#include "../Mappers/StateCategoryMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "../V2World/V2Province.h"
 #include "../V2World/V2World.h"
@@ -302,38 +303,19 @@ void HoI4State::determineCategory(int factories)
 	}
 
 	int population = sourceState->getPopulation();
-
-	int stateSlots = population / 120000; // one slot is given per 120,000 people (need to change)
+	int stateSlots = population / 120000;
 	if (factories >= stateSlots)
 	{
 		stateSlots = factories + 2;
 	}
 
-	for (auto possibleCategory: getStateCategories())
+	for (auto possibleCategory: stateCategoryMapper::getStateCategories())
 	{
 		if (stateSlots >= possibleCategory.first)
 		{
 			category = possibleCategory.second;
 		}
 	}
-}
-
-
-map<int, string> HoI4State::getStateCategories()
-{
-	map<int, string> stateCategories;
-
-	stateCategories.insert(make_pair(12, "megalopolis"));
-	stateCategories.insert(make_pair(10, "metropolis"));
-	stateCategories.insert(make_pair(8, "large_city"));
-	stateCategories.insert(make_pair(6, "city"));
-	stateCategories.insert(make_pair(5, "large_town"));
-	stateCategories.insert(make_pair(4, "town"));
-	stateCategories.insert(make_pair(2, "rural"));
-	stateCategories.insert(make_pair(1, "pastoral"));
-	stateCategories.insert(make_pair(0, "enclave"));
-
-	return stateCategories;
 }
 
 
