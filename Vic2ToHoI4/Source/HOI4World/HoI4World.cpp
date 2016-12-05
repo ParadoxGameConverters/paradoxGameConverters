@@ -74,6 +74,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	convertArmies();
 	convertNavies();
 	convertAirforces();
+	getGreatPowers();
 	convertCapitalVPs();
 	thatsgermanWarCreator();
 	buildings = new HoI4Buildings(states->getProvinceToStateIDMap());
@@ -1258,6 +1259,20 @@ void HoI4World::convertAirforces()
 }
 
 
+void HoI4World::getGreatPowers()
+{
+	for (auto greatPowerVic2Tag: sourceWorld->getGreatPowers())
+	{
+		string greatPowerTag = CountryMapper::getHoI4Tag(greatPowerVic2Tag);
+		auto greatPower = countries.find(greatPowerTag);
+		if (greatPower != countries.end())
+		{
+			greatPowers.push_back(greatPower->second);
+		}
+	}
+}
+
+
 void HoI4World::convertCapitalVPs()
 {
 	LOG(LogLevel::Info) << "Adding bonuses to capitals";
@@ -1279,14 +1294,9 @@ void HoI4World::addBasicCapitalVPs()
 
 void HoI4World::addGreatPowerVPs()
 {
-	for (auto Vic2GPTag: sourceWorld->getGreatPowers())
+	for (auto greatPower: greatPowers)
 	{
-		auto HoI4Tag = CountryMapper::getHoI4Tag(Vic2GPTag);
-		auto countryItr = countries.find(HoI4Tag);
-		if (countryItr != countries.end())
-		{
-			countryItr->second->addVPsToCapital(5);
-		}
+		greatPower->addVPsToCapital(5);
 	}
 }
 
@@ -1494,24 +1504,18 @@ void HoI4World::fillCountryProvinces()
 }
 void HoI4World::setSphereLeaders(const V2World* sourceWorld)
 {
-	const vector<string>& greatCountries = sourceWorld->getGreatPowers();
-	for (auto countryItr : greatCountries)
+	for (auto greatPower: greatPowers)
 	{
-		auto itr = countries.find(CountryMapper::getHoI4Tag(countryItr));
-		if (itr != countries.end())
+		auto relations = greatPower->getRelations();
+		for (auto relation : relations)
 		{
-			HoI4Country* country = itr->second;
-			auto relations = country->getRelations();
-			for (auto relation : relations)
+			if (relation.second->getSphereLeader())
 			{
-				if (relation.second->getSphereLeader())
+				string tag = relation.second->getTag();
+				auto spheredcountry = countries.find(tag);
+				if (spheredcountry != countries.end())
 				{
-					string tag = relation.second->getTag();
-					auto spheredcountry = countries.find(tag);
-					if (spheredcountry != countries.end())
-					{
-						spheredcountry->second->setSphereLeader(country->getTag());
-					}
+					spheredcountry->second->setSphereLeader(greatPower->getTag());
 				}
 			}
 		}
@@ -1605,16 +1609,15 @@ void HoI4World::thatsgermanWarCreator()
 	Factions = CreateFactions(sourceWorld);
 	//outputting the country and factions
 
-	for each (auto AllGC in returnGreatCountries(sourceWorld))
+	for (auto AllGC: greatPowers)
 	{
 		int maxGCWars = 0;
 		if ((AllGC->getGovernment() != "hms_government" || (AllGC->getGovernment() == "hms_government" && (AllGC->getRulingParty().war_pol == "jingoism" || AllGC->getRulingParty().war_pol == "pro_military"))) && AllGC->getGovernment() != "democratic")
 		{
-			vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld);
 			map<double, HoI4Country*> GCDistance;
 			vector<HoI4Country*> GCDistanceSorted;
 			//get great countries with a distance
-			for each (auto GC in GreatCountries)
+			for (auto GC: greatPowers)
 			{
 				set<string> Allies = AllGC->getAllies();
 				if (std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
@@ -1720,15 +1723,13 @@ void HoI4World::thatsgermanWarCreator()
 
 	//time to do events for coms and fascs if they are relevant
 	LOG(LogLevel::Info) << "Calculating Fasc/Com AI";
-	for (auto GreatCountry : returnGreatCountries(sourceWorld))
+	for (auto leader: greatPowers)
 	{
-		HoI4Country* Leader = GreatCountry;
-		volatile HoI4Country* GG = Leader;
-		LeaderCountries.push_back(Leader);
-		if ((Leader->getGovernment() == "fascism") || Leader->getRulingIdeology() == "fascism")
+		LeaderCountries.push_back(leader);
+		if ((leader->getGovernment() == "fascism") || leader->getRulingIdeology() == "fascism")
 		{
 			vector <HoI4Faction*> newCountriesatWar;
-			newCountriesatWar = FascistWarMaker(Leader, sourceWorld);
+			newCountriesatWar = FascistWarMaker(leader, sourceWorld);
 			for (auto addedFactions : newCountriesatWar)
 			{
 				if (std::find(CountriesAtWar.begin(), CountriesAtWar.end(), addedFactions) == CountriesAtWar.end())
@@ -1737,10 +1738,10 @@ void HoI4World::thatsgermanWarCreator()
 				}
 			}
 		}
-		if (Leader->getGovernment() == "absolute_monarchy" || (Leader->getGovernment() == "prussian_constitutionalism" && Leader->getRulingParty().war_pol == "jingoism"))
+		if (leader->getGovernment() == "absolute_monarchy" || (leader->getGovernment() == "prussian_constitutionalism" && leader->getRulingParty().war_pol == "jingoism"))
 		{
 			vector <HoI4Faction*> newCountriesatWar;
-			newCountriesatWar = MonarchyWarCreator(Leader, sourceWorld);
+			newCountriesatWar = MonarchyWarCreator(leader, sourceWorld);
 			for (auto addedFactions : newCountriesatWar)
 			{
 				if (std::find(CountriesAtWar.begin(), CountriesAtWar.end(), addedFactions) == CountriesAtWar.end()) {
@@ -1748,10 +1749,10 @@ void HoI4World::thatsgermanWarCreator()
 				}
 			}
 		}
-		if ((Leader->getGovernment() == "communism"))
+		if ((leader->getGovernment() == "communism"))
 		{
 			vector <HoI4Faction*> newCountriesatWar;
-			newCountriesatWar = CommunistWarCreator(Leader, sourceWorld);
+			newCountriesatWar = CommunistWarCreator(leader, sourceWorld);
 			for (auto addedFactions : newCountriesatWar)
 			{
 				if (std::find(CountriesAtWar.begin(), CountriesAtWar.end(), addedFactions) == CountriesAtWar.end()) {
@@ -1772,8 +1773,7 @@ void HoI4World::thatsgermanWarCreator()
 	{
 		AILog << "looking for democracies\n";
 		//Lets find out countries Evilness
-		vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld);
-		for each (auto GC in GreatCountries)
+		for (auto GC: greatPowers)
 		{
 			if ((GC->getGovernment() == "hms_government" && (GC->getRulingParty().war_pol == "pacifism" || GC->getRulingParty().war_pol == "anti_military")) || GC->getGovernment() == "democratic")
 			{
@@ -1793,10 +1793,9 @@ void HoI4World::thatsgermanWarCreator()
 	if (CountriesAtWarStrength / WorldStrength < 0.8)
 	{
 		//Lets find out countries Evilness
-		vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld);
 		map<double, HoI4Country*> GCEvilness;
 		vector<HoI4Country*> GCEvilnessSorted;
-		for each (auto GC in GreatCountries)
+		for (auto GC: greatPowers)
 		{
 			if (GC->getGovernment() == "prussian_constitutionalism" || GC->getGovernment() == "hms_government" || GC->getGovernment() == "absolute_monarchy" && std::find(LeaderCountries.begin(), LeaderCountries.end(), GC) == LeaderCountries.end() && (GC->getGovernment() != "hms_government" || (GC->getGovernment() == "hms_government" && (GC->getRulingParty().war_pol == "jingoism" || GC->getRulingParty().war_pol == "pro_military"))) && GC->getGovernment() != "democratic")
 			{
@@ -2154,18 +2153,21 @@ HoI4Faction* HoI4World::findFaction(HoI4Country* CheckingCountry)
 	CheckingCountry->setFaction(newFaction);
 	return newFaction;
 }
-bool HoI4World::checkIfGreatCountry(HoI4Country* checkingCountry, const V2World* sourceWorld)
+
+
+bool HoI4World::checkIfGreatCountry(HoI4Country* checkingCountry)
 {
 	bool isGreatCountry = false;
-	vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld);
 
-	if (std::find(GreatCountries.begin(), GreatCountries.end(), checkingCountry) != GreatCountries.end())
+	if (std::find(greatPowers.begin(), greatPowers.end(), checkingCountry) != greatPowers.end())
 	{
 		isGreatCountry = true;
 	}
-	return isGreatCountry;
 
+	return isGreatCountry;
 }
+
+
 map<string, HoI4Country*> HoI4World::findNeighbors(vector<int> CountryProvs, HoI4Country* CheckingCountry)
 {
 	map<string, HoI4Country*> Neighbors;
@@ -2256,10 +2258,9 @@ vector<HoI4Faction*> HoI4World::CreateFactions(const V2World* sourceWorld)
 	ofstream out;
 	out.open(filename);
 	{
-		vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld);
 		vector<string> usedCountries;
 		vector<string> alreadyAllied;
-		for (auto country : GreatCountries)
+		for (auto country: greatPowers)
 		{
 			if (std::find(usedCountries.begin(), usedCountries.end(), country->getTag()) == usedCountries.end() && std::find(alreadyAllied.begin(), alreadyAllied.end(), country->getTag()) == alreadyAllied.end())
 			{
@@ -2289,9 +2290,9 @@ vector<HoI4Faction*> HoI4World::CreateFactions(const V2World* sourceWorld)
 							if (country.second->getTag() == ally)
 								name = country.second->getSourceCountry()->getName("english");
 						}
-						string sphere = returnIfSphere(country, allycountry, sourceWorld);
+						string sphereLeader = returnSphereLeader(allycountry);
 
-						if (allygovernment == yourgovernment || sphere == country->getTag()
+						if (allygovernment == yourgovernment || sphereLeader == country->getTag()
 							|| (yourgovernment == "absolute_monarchy" && (allygovernment == "fascism" || allygovernment == "democratic" || allygovernment == "prussian_constitutionalism" || allygovernment == "hms_government"))
 							|| (yourgovernment == "democratic" && (allygovernment == "hms_government" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism"))
 							|| (yourgovernment == "prussian_constitutionalism" && (allygovernment == "hms_government" || allygovernment == "absolute_monarchy" || allygovernment == "democratic" || allygovernment == "fascism"))
@@ -2302,10 +2303,10 @@ vector<HoI4Faction*> HoI4World::CreateFactions(const V2World* sourceWorld)
 						{
 							bool canally = false;
 							//if there is a sphere leader, it is not blank
-							if (sphere != "")
+							if (sphereLeader != "")
 							{
 								//if sphere is equal to great power in question, can ally
-								if (sphere == country->getTag())
+								if (sphereLeader == country->getTag())
 								{
 									canally = true;
 								}
@@ -2361,49 +2362,25 @@ double HoI4World::GetFactionStrength(HoI4Faction* Faction, int years)
 }
 
 
-vector<HoI4Country*> HoI4World::returnGreatCountries(const V2World* sourceWorld)
+string HoI4World::returnSphereLeader(HoI4Country* possibleSphereling)
 {
-	const vector<string>& greatCountries = sourceWorld->getGreatPowers();
-	vector<HoI4Country*> GreatCountries;
-	for (auto countryItr : greatCountries)
+	for (auto greatPower: greatPowers)
 	{
-		auto itr = countries.find(CountryMapper::getHoI4Tag(countryItr));
-		if (itr != countries.end())
+		auto relations = greatPower->getRelations();
+		auto relation = relations.find(possibleSphereling->getTag());
+		if (relation != relations.end())
 		{
-			GreatCountries.push_back(itr->second);
-		}
-	}
-	return GreatCountries;
-}
-
-
-string HoI4World::returnIfSphere(HoI4Country* leadercountry, HoI4Country* posLeaderCountry, const V2World* sourceWorld)
-{
-	vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld);
-	for (auto country : GreatCountries)
-	{
-		auto relations = country->getRelations();
-		for (auto relation : relations)
-		{
-			if (relation.second->getSphereLeader())
+			if (relation->second->getSphereLeader())
 			{
-
-				string tag = relation.second->getTag();
-				auto spheredcountry = countries.find(tag);
-				if (spheredcountry != countries.end())
-				{
-					if (posLeaderCountry->getTag() == spheredcountry->second->getTag())
-					{
-						return country->getTag();
-					}
-
-				}
-
+				return greatPower->getTag();
 			}
 		}
 	}
+
 	return "";
 }
+
+
 vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, const V2World* sourceWorld)
 {
 	vector<HoI4Faction*> CountriesAtWar;
@@ -2440,7 +2417,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, const V2Wor
 	for (auto neigh : CloseNeighbors)
 	{
 		//lets check to see if they are not our ally and not a great country
-		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld))
+		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second))
 		{
 			volatile double enemystrength = neigh.second->getStrengthOverTime(1.5);
 			volatile double mystrength = Leader->getStrengthOverTime(1.5);
@@ -2846,7 +2823,6 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, const V2Wor
 		events.createFactionEvents(Leader, newAllies[i]);
 	}
 
-	vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld);
 	vector<HoI4Faction*> FactionsAttackingMe;
 	int maxGCAlliance = 0;
 	if (WorldTargetMap.find(Leader) != WorldTargetMap.end())
@@ -2869,7 +2845,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, const V2Wor
 		{
 			vector<HoI4Country*> GCAllies;
 
-			for (HoI4Country* GC : GreatCountries)
+			for (HoI4Country* GC: greatPowers)
 			{
 				int relations = Leader->getRelations(GC->getTag())->getRelations();
 				if (relations > 0 && maxGCAlliance < 1)
@@ -2913,7 +2889,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, const V2Wor
 	map<double, HoI4Country*> GCDistance;
 	vector<HoI4Country*> GCDistanceSorted;
 	//get great countries with a distance
-	for each (auto GC in GreatCountries)
+	for (auto GC: greatPowers)
 	{
 		double distance = getDistanceBetweenCountries(Leader, GC);
 		if (distance < 2200)
@@ -3062,7 +3038,7 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, const V
 	for (auto neigh : Neighbors)
 	{
 		//lets check to see if they are our ally and not a great country
-		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld))
+		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second))
 		{
 			double com = 0;
 			HoI4Faction* neighFaction = findFaction(neigh.second);
@@ -3365,7 +3341,6 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, const V
 		events.createFactionEvents(Leader, newAllies[i]);
 	}
 
-	vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld);
 	vector<HoI4Faction*> FactionsAttackingMe;
 	int maxGCAlliance = 0;
 	if (WorldTargetMap.find(Leader) != WorldTargetMap.end())
@@ -3388,7 +3363,7 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, const V
 		{
 			vector<HoI4Country*> GCAllies;
 
-			for (HoI4Country* GC : GreatCountries)
+			for (HoI4Country* GC: greatPowers)
 			{
 				int relations = Leader->getRelations(GC->getTag())->getRelations();
 				if (relations > 0 && maxGCAlliance < 1)
@@ -3433,7 +3408,7 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, const V
 
 	map<double, HoI4Country*> GCDistance;
 	vector<HoI4Country*> GCDistanceSorted;
-	for each (auto GC in GreatCountries)
+	for (auto GC: greatPowers)
 	{
 		double distance = getDistanceBetweenCountries(Leader, GC);
 		if (distance < 1200)
@@ -3552,7 +3527,7 @@ vector<HoI4Faction*> HoI4World::DemocracyWarCreator(HoI4Country* Leader, const V
 	int v1 = rand() % 100;
 	v1 = v1 / 100;
 	HoI4FocusTree* FocusTree = genericFocusTree->makeCustomizedCopy(Leader);
-	for (auto GC : returnGreatCountries(sourceWorld))
+	for (auto GC: greatPowers)
 	{
 		double relation = Leader->getRelations(GC->getTag())->getRelations();
 		if (relation < 100 && (GC->getGovernment() != "hms_government" || (GC->getGovernment() == "hms_government" && (GC->getRulingParty().war_pol == "jingoism" || GC->getRulingParty().war_pol == "pro_military"))) && GC->getGovernment() != "democratic" && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
@@ -3635,7 +3610,7 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, const V2
 	for (auto neigh : CloseNeighbors)
 	{
 		//lets check to see if they are not our ally and not a great country
-		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld))
+		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second))
 		{
 			volatile double enemystrength = neigh.second->getStrengthOverTime(1.5);
 			volatile double mystrength = Leader->getStrengthOverTime(1.5);
@@ -3650,7 +3625,7 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, const V2
 	for (auto neigh : FarNeighbors)
 	{
 		//lets check to see if they are not our ally and not a great country
-		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second, sourceWorld))
+		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !checkIfGreatCountry(neigh.second))
 		{
 			volatile double enemystrength = neigh.second->getStrengthOverTime(1.5);
 			volatile double mystrength = Leader->getStrengthOverTime(1.5);
@@ -3679,11 +3654,10 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, const V2
 	protectorateNFs += " Protectorate" + Leader->getTag() + WeakColonies.back()->getTag();
 
 	//Declaring war with Great Country
-	vector<HoI4Country*> GreatCountries = returnGreatCountries(sourceWorld);
 	map<double, HoI4Country*> GCDistance;
 	vector<HoI4Country*> GCDistanceSorted;
 	//get great countries with a distance
-	for each (auto GC in GreatCountries)
+	for (auto GC: greatPowers)
 	{
 		double distance = getDistanceBetweenCountries(Leader, GC);
 		if (distance < 1200)
