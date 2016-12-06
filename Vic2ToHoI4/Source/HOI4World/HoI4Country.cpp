@@ -146,7 +146,10 @@ void HoI4Country::output(const map<int, HoI4State*>& states, const vector<HoI4Fa
 		{
 			output << "capital =  1" << endl;
 		}
-
+		if (majorNation)
+		{
+			output << "set_research_slots = 4"<< endl;
+		}
 
 		output << "" << endl;
 		output << "oob = \"" << tag << "_OOB\"" << endl;
@@ -233,6 +236,8 @@ void HoI4Country::output(const map<int, HoI4State*>& states, const vector<HoI4Fa
 		}
 		output << endl;
 		output << "add_ideas = {\n";
+		if (majorNation)
+			output << "great_power\n";
 		if (RulingPartyModel.war_pol == "jingoism")
 			output << "partial_economic_mobilisation\n";
 		if(RulingPartyModel.war_pol == "pro_military")
