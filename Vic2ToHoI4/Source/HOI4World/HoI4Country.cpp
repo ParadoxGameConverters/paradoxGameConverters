@@ -143,7 +143,10 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Facti
 		{
 			output << "capital =  1" << endl;
 		}
-
+		if (majorNation)
+		{
+			output << "set_research_slots = 4"<< endl;
+		}
 
 		output << "" << endl;
 		output << "oob = \"" << tag << "_OOB\"" << endl;
