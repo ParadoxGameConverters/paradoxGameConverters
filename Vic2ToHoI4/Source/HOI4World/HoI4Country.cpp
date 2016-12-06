@@ -230,6 +230,8 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Facti
 		}
 		output << endl;
 		output << "add_ideas = {\n";
+		if (majorNation)
+			output << "great_power\n";
 		if (RulingPartyModel.war_pol == "jingoism")
 			output << "partial_economic_mobilisation\n";
 		if(RulingPartyModel.war_pol == "pro_military")
