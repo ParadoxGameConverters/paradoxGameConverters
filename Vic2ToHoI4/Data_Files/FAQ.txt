@@ -16,3 +16,6 @@ A: The name of the folder for any mods you used. For PoD, put PDM. For HPM, put 
 Q: I'm trying to convert a EU4 To Vic2 game and keep getting an error. What do I do?
 A: You need to include the Vic2 mod from the EU4 to Vic2 converter to properly convert these games.
 	You should put the name of the mod's folder in the Vic2 Mods option, as with other mods.
+
+Q: The converter crashes after no time with no errors and no log.txt (when running through the frontend). What went wrong?
+A: You may need to install this if you are not on Windows 10: https://support.microsoft.com/en-us/kb/2999226
