@@ -2511,19 +2511,19 @@ HoI4State* HoI4Country::getCapital(void)
 }
 
 
-double HoI4Country::getStrengthOverTime(double years)
+double HoI4Country::getStrengthOverTime(double years) const
 {
 	return getMilitaryStrength() + getEconomicStrength(years);
 }
 
 
-double HoI4Country::getMilitaryStrength()
+double HoI4Country::getMilitaryStrength() const
 {
 	return armyStrength;
 }
 
 
-double HoI4Country::getEconomicStrength(double years)
+double HoI4Country::getEconomicStrength(double years) const
 {
 	double militarySectorStrength = militaryFactories * 3 * 365 * years;
 	double civilianSectorStrength = civilianFactories * 0.469 * 0.5 * 3 * 365 * 0.5* years * years; /*.469 is milfac per year, .5 since half are used by consumer goods*/

@@ -95,9 +95,9 @@ class HoI4Country
 
 		HoI4Relations*								getRelations(string withWhom) const;
 		HoI4State* getCapital();
-		double getStrengthOverTime(double years);
-		double getMilitaryStrength();
-		double getEconomicStrength(double years);
+		double getStrengthOverTime(double years) const;
+		double getMilitaryStrength() const;
+		double getEconomicStrength(double years) const;
 		
 		const map<string, HoI4Relations*>&	getRelations() const			{ return relations; }
 		set<int>									getProvinces() const			{ return provinces; }

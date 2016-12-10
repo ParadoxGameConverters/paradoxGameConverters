@@ -535,7 +535,7 @@ void HoI4World::outputCountries() const
 {
 	for (auto country : countries)
 	{
-		country.second->output(states->getStates(), Factions);
+		country.second->output(states->getStates(), factions);
 	}
 }
 
@@ -1606,7 +1606,7 @@ void HoI4World::thatsgermanWarCreator()
 	LOG(LogLevel::Info) << "Filling province neighbors";
 	fillProvinceNeighbors();
 	LOG(LogLevel::Info) << "Creating Factions";
-	Factions = CreateFactions(sourceWorld);
+	createFactions();
 	//outputting the country and factions
 
 	for (auto AllGC: greatPowers)
@@ -1681,7 +1681,7 @@ void HoI4World::thatsgermanWarCreator()
 
 
 	//Initial Checks
-	for (auto Faction : Factions)
+	for (auto Faction : factions)
 	{
 		WorldStrength += GetFactionStrength(Faction, 3);
 	}
@@ -1690,7 +1690,7 @@ void HoI4World::thatsgermanWarCreator()
 	//check relevancies
 	bool fascismIsRelevant = false;
 	bool communismIsRelevant = false;
-	for (auto Faction : Factions)
+	for (auto Faction : factions)
 	{
 		//this might need to change to add factions together
 		HoI4Country* Leader = GetFactionLeader(Faction->getMembers());
@@ -2138,7 +2138,7 @@ double HoI4World::GetFactionStrengthWithDistance(HoI4Country* HomeCountry, vecto
 }
 HoI4Faction* HoI4World::findFaction(HoI4Country* CheckingCountry)
 {
-	for (auto faction : Factions)
+	for (auto faction : factions)
 	{
 		vector<HoI4Country*> FactionMembers = faction->getMembers();
 		if (std::find(FactionMembers.begin(), FactionMembers.end(), CheckingCountry) != FactionMembers.end())
@@ -2251,97 +2251,114 @@ vector<int> HoI4World::getCountryProvinces(HoI4Country* Country)
 	volatile vector<int> asdfasdf = countryprovinces;
 	return countryprovinces;
 }
-vector<HoI4Faction*> HoI4World::CreateFactions(const V2World* sourceWorld)
+
+
+void HoI4World::logFactionMember(ofstream& factionsLog, const HoI4Country* member)
 {
-	vector<HoI4Faction*> Factions2;
-	string filename("Factions-logs.txt");
-	ofstream out;
-	out.open(filename);
+	factionsLog << member->getSourceCountry()->getName("english") << ",";
+	factionsLog << member->getGovernment() << ",";
+	factionsLog << member->getMilitaryStrength() << ",";
+	factionsLog << member->getEconomicStrength(1.0) << ",";
+	factionsLog << member->getEconomicStrength(3.0) << "\n";
+}
+
+
+bool HoI4World::governmentsAllowFaction(string leaderGovernment, string allyGovernment)
+{
+	if (leaderGovernment == allyGovernment)
 	{
-		vector<string> usedCountries;
-		vector<string> alreadyAllied;
-		for (auto country: greatPowers)
+		return true;
+	}
+	else if (leaderGovernment == "absolute_monarchy" && (allyGovernment == "fascism" || allyGovernment == "democratic" || allyGovernment == "prussian_constitutionalism" || allyGovernment == "hms_government"))
+	{
+		return true;
+	}
+	else if (leaderGovernment == "democratic" && (allyGovernment == "hms_government" || allyGovernment == "absolute_monarchy" || allyGovernment == "prussian_constitutionalism"))
+	{
+		return true;
+	}
+	else if (leaderGovernment == "prussian_constitutionalism" && (allyGovernment == "hms_government" || allyGovernment == "absolute_monarchy" || allyGovernment == "democratic" || allyGovernment == "fascism"))
+	{
+		return true;
+	}
+	else if (leaderGovernment == "hms_government" && (allyGovernment == "democratic" || allyGovernment == "absolute_monarchy" || allyGovernment == "prussian_constitutionalism"))
+	{
+		return true;
+	}
+	else if (leaderGovernment == "communism" && (allyGovernment == "syndicalism"))
+	{
+		return true;
+	}
+	else if (leaderGovernment == "syndicalism" && (allyGovernment == "communism" || allyGovernment == "fascism"))
+	{
+		return true;
+	}
+	else if (leaderGovernment == "fascism" && (allyGovernment == "syndicalism" || allyGovernment == "absolute_monarchy" || allyGovernment == "prussian_constitutionalism"))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+
+void HoI4World::createFactions()
+{
+	ofstream factionsLog("factions-logs.csv");
+	factionsLog << "name,government,initial strength,factory strength per year,factory strength by 1939\n";
+
+	unordered_set<string> usedCountries;
+	for (auto leader: greatPowers)
+	{
+		if (usedCountries.find(leader->getTag()) != usedCountries.end())
 		{
-			if (std::find(usedCountries.begin(), usedCountries.end(), country->getTag()) == usedCountries.end() && std::find(alreadyAllied.begin(), alreadyAllied.end(), country->getTag()) == alreadyAllied.end())
+			continue;
+		}
+		factionsLog << "\n";
+
+		vector<HoI4Country*> factionMembers;
+		factionMembers.push_back(leader);
+		usedCountries.insert(leader->getTag());
+
+		string leaderGovernment = leader->getGovernment();
+		logFactionMember(factionsLog, leader);
+		double factionMilStrength = leader->getStrengthOverTime(3.0);
+
+		for (auto allyTag: leader->getAllies())
+		{
+			auto ally = countries.find(allyTag);
+			if (ally == countries.end())
 			{
-				//checks to make sure its not creating a faction when already in one
-				vector<HoI4Country*> Faction;
-				double FactionMilStrength = 0;
-				Faction.push_back(country);
-				string yourgovernment = country->getGovernment();
-				auto allies = country->getAllies();
-				vector<int> yourbrigs = country->getBrigs();
-				auto yourrelations = country->getRelations();
-				out << country->getSourceCountry()->getName("english") << " " + yourgovernment + " initial strength:" + to_string(country->getMilitaryStrength()) + " Factory Strength per year: " + to_string(country->getEconomicStrength(1.0)) + " Factory Strength by 1939: " + to_string(country->getEconomicStrength(3.0)) + " allies:\n";
-				usedCountries.push_back(country->getTag());
-				FactionMilStrength = country->getStrengthOverTime(3.0);
-				for (auto ally : allies)
-				{
-
-					auto itrally = countries.find(ally);
-					if (itrally != countries.end())
-					{
-						HoI4Country* allycountry = itrally->second;
-						string allygovernment = allycountry->getGovernment();
-						string name = "";
-						vector<int> allybrigs = allycountry->getBrigs();
-						for (auto country : countries)
-						{
-							if (country.second->getTag() == ally)
-								name = country.second->getSourceCountry()->getName("english");
-						}
-						string sphereLeader = returnSphereLeader(allycountry);
-
-						if (allygovernment == yourgovernment || sphereLeader == country->getTag()
-							|| (yourgovernment == "absolute_monarchy" && (allygovernment == "fascism" || allygovernment == "democratic" || allygovernment == "prussian_constitutionalism" || allygovernment == "hms_government"))
-							|| (yourgovernment == "democratic" && (allygovernment == "hms_government" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism"))
-							|| (yourgovernment == "prussian_constitutionalism" && (allygovernment == "hms_government" || allygovernment == "absolute_monarchy" || allygovernment == "democratic" || allygovernment == "fascism"))
-							|| (yourgovernment == "hms_government" && (allygovernment == "democratic" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism"))
-							|| (yourgovernment == "communism" && (allygovernment == "syndicalism"))
-							|| (yourgovernment == "syndicalism" && (allygovernment == "communism" || allygovernment == "fascism"))
-							|| (yourgovernment == "fascism" && (allygovernment == "syndicalism" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism")))
-						{
-							bool canally = false;
-							//if there is a sphere leader, it is not blank
-							if (sphereLeader != "")
-							{
-								//if sphere is equal to great power in question, can ally
-								if (sphereLeader == country->getTag())
-								{
-									canally = true;
-								}
-							}
-							else
-								canally = true;
-
-							if (canally)
-							{
-								usedCountries.push_back(allycountry->getTag());
-								alreadyAllied.push_back(allycountry->getTag());
-								out << "\t" + name + " " + allygovernment + " initial strength:" + to_string(allycountry->getMilitaryStrength()) + " Factory Strength per year: " + to_string(allycountry->getEconomicStrength(1.0)) + " Factory Strength by 1939: " + to_string(allycountry->getEconomicStrength(3.0)) << endl;
-								FactionMilStrength += allycountry->getStrengthOverTime(1.0);
-								Faction.push_back(allycountry);
-							}
-						}
-					}
-
-				}
-				out << "\tFaction Strength in 1939: " + to_string(FactionMilStrength) << endl;
-				out << endl;
-				HoI4Faction* newFaction = new HoI4Faction(Faction.front(), Faction);
-				for (auto member: Faction)
-				{
-					member->setFaction(newFaction);
-				}
-				Factions2.push_back(newFaction);
+				continue;
 			}
 
+			HoI4Country* allycountry = ally->second;
+			string allygovernment = allycountry->getGovernment();
+			string sphereLeader = returnSphereLeader(allycountry);
+
+			if ((sphereLeader == leader->getTag()) || ((sphereLeader == "") && governmentsAllowFaction(leaderGovernment, allygovernment)))
+			{
+				usedCountries.insert(allycountry->getTag());
+				logFactionMember(factionsLog, allycountry);
+				factionMembers.push_back(allycountry);
+
+				factionMilStrength += allycountry->getStrengthOverTime(1.0);
+			}
 		}
 
+		HoI4Faction* newFaction = new HoI4Faction(factionMembers.front(), factionMembers);
+		for (auto member: factionMembers)
+		{
+			member->setFaction(newFaction);
+		}
+		factions.push_back(newFaction);
 
-		out.close();
+		factionsLog << "Faction Strength in 1939," << factionMilStrength << "\n";
 	}
-	return Factions2;
+
+	factionsLog.close();
 }
 
 

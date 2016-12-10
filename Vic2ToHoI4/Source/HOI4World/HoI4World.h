@@ -73,7 +73,6 @@ class HoI4World
 		void    thatsgermanWarCreator();
 		HoI4Country* FindProvOwner(int prov);
 		vector<int> getCountryProvinces(HoI4Country * Country);
-		vector<HoI4Faction*> CreateFactions(const V2World* sourceWorld);
 		HoI4Country *    GetFactionLeader(vector<HoI4Country*> Faction);
 		double    GetFactionStrength(HoI4Faction* Faction, int years);
 		string returnSphereLeader(HoI4Country* possibleSphereling);
@@ -113,6 +112,10 @@ class HoI4World
 		void addStrengthVPs();
 		double getStrongestCountryStrength();
 		int calculateStrengthVPs(HoI4Country* country, double greatestStrength);
+
+		void createFactions();
+		void logFactionMember(ofstream& factionsLog, const HoI4Country* member);
+		bool governmentsAllowFaction(string leaderGovernment, string allyGovernment);
 
 		void addStatesToCountries();
 		map<string, double> calculateFactoryWorkerRatios();
@@ -167,7 +170,7 @@ class HoI4World
 		map<int, pair<int, int>> provincePositions;
 
 		HoI4Localisation				localisation;
-		vector<HoI4Faction*> Factions;
+		vector<HoI4Faction*> factions;
 		string axisLeader;
 		string alliesLeader;
 		string cominternLeader;
