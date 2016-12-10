@@ -45,6 +45,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4SupplyZone.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/ProvinceMapper.h"
+#include "../Mappers/StateMapper.h"
 
 
 
@@ -1601,7 +1602,7 @@ void HoI4World::thatsgermanWarCreator()
 	//IMPROVE
 	//MAKE ARMY STRENGTH CALCS MORE ACCURATE!!
 	LOG(LogLevel::Info) << "Filling Map Information";
-	fillProvinces();
+	determineProvinceOwners();
 	fillCountryProvinces();
 	LOG(LogLevel::Info) << "Filling province neighbors";
 	fillProvinceNeighbors();
@@ -2168,8 +2169,9 @@ bool HoI4World::checkIfGreatCountry(HoI4Country* checkingCountry)
 }
 
 
-map<string, HoI4Country*> HoI4World::findNeighbors(vector<int> CountryProvs, HoI4Country* CheckingCountry)
+map<string, HoI4Country*> HoI4World::findNeighbors(const HoI4Country* CheckingCountry)
 {
+	set<int> CountryProvs = CheckingCountry->getProvinces();
 	map<string, HoI4Country*> Neighbors;
 	vector<HoI4Province> provinces2;
 	for (auto prov : CountryProvs)
@@ -2178,20 +2180,17 @@ map<string, HoI4Country*> HoI4World::findNeighbors(vector<int> CountryProvs, HoI
 		for (int prov : thisprovNeighbors)
 		{
 			//string ownertag = "";
-			auto ownertag = stateToProvincesMap.find(prov);
-			if (ownertag != stateToProvincesMap.end())
+			auto itr = provinceToOwnerMap.find(prov);
+			if (itr != provinceToOwnerMap.end())
 			{
-				vector<string> tags = ownertag->second;
-				if (tags.size() >= 1)
+				string owner = itr->second;
+				HoI4Country* ownerCountry = countries.find(owner)->second;
+				if (ownerCountry != CheckingCountry && ownerCountry->getProvinceCount() > 0)
 				{
-					HoI4Country* ownerCountry = countries.find(tags[1])->second;
-					if (ownerCountry != CheckingCountry && ownerCountry->getProvinceCount() > 0)
+					//if not already in neighbors
+					if (Neighbors.find(owner) == Neighbors.end())
 					{
-						//if not already in neighbors
-						if (Neighbors.find(tags[1]) == Neighbors.end())
-						{
-							Neighbors.insert(make_pair(tags[1], ownerCountry));
-						}
+						Neighbors.insert(make_pair(owner, ownerCountry));
 					}
 				}
 			}
@@ -2216,40 +2215,18 @@ map<string, HoI4Country*> HoI4World::findNeighbors(vector<int> CountryProvs, HoI
 	}
 	return Neighbors;
 }
-void HoI4World::fillProvinces()
+
+
+void HoI4World::determineProvinceOwners()
 {
-	for (auto state : states->getStates())
+	for (auto state: states->getStates())
 	{
-		for (auto prov : state.second->getProvinces())
+		for (auto province: state.second->getProvinces())
 		{
 			string owner = state.second->getOwner();
-			int stateID = state.second->getID();
-			vector<string> provinceinfo;
-			provinceinfo.push_back(to_string(stateID));
-			provinceinfo.push_back(owner);
-			stateToProvincesMap.insert(pair<int, vector<string>>(prov, provinceinfo));
-			// HoI4Province* newprov = new HoI4Province(owner, stateID);
-			//provinces.insert(pair<int, HoI4Province*>(prov, newprov));
+			provinceToOwnerMap.insert(make_pair(province, owner));
 		}
 	}
-}
-vector<int> HoI4World::getCountryProvinces(HoI4Country* Country)
-{
-	vector<int> countryprovinces;
-	for (auto state : states->getStates())
-	{
-		string owner = state.second->getOwner();
-		if (state.second->getOwner() == Country->getTag())
-		{
-			for (auto prov : state.second->getProvinces())
-			{
-
-				countryprovinces.push_back(prov);
-			}
-		}
-	}
-	volatile vector<int> asdfasdf = countryprovinces;
-	return countryprovinces;
 }
 
 
@@ -2309,10 +2286,9 @@ void HoI4World::createFactions()
 	ofstream factionsLog("factions-logs.csv");
 	factionsLog << "name,government,initial strength,factory strength per year,factory strength by 1939\n";
 
-	unordered_set<string> usedCountries;
 	for (auto leader: greatPowers)
 	{
-		if (usedCountries.find(leader->getTag()) != usedCountries.end())
+		if (leader->isInFaction())
 		{
 			continue;
 		}
@@ -2320,7 +2296,6 @@ void HoI4World::createFactions()
 
 		vector<HoI4Country*> factionMembers;
 		factionMembers.push_back(leader);
-		usedCountries.insert(leader->getTag());
 
 		string leaderGovernment = leader->getGovernment();
 		logFactionMember(factionsLog, leader);
@@ -2340,7 +2315,6 @@ void HoI4World::createFactions()
 
 			if ((sphereLeader == leader->getTag()) || ((sphereLeader == "") && governmentsAllowFaction(leaderGovernment, allygovernment)))
 			{
-				usedCountries.insert(allycountry->getTag());
 				logFactionMember(factionsLog, allycountry);
 				factionMembers.push_back(allycountry);
 
@@ -2409,8 +2383,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, const V2Wor
 	vector<HoI4Country*> EqualTargets;
 	vector<HoI4Country*> DifficultTargets;
 	//getting country provinces and its neighbors
-	vector<int> leaderProvs = getCountryProvinces(Leader);
-	map<string, HoI4Country*> AllNeighbors = findNeighbors(leaderProvs, Leader);
+	map<string, HoI4Country*> AllNeighbors = findNeighbors(Leader);
 	map<string, HoI4Country*> CloseNeighbors;
 	//gets neighbors that are actually close to you
 	for each (auto neigh in AllNeighbors)
@@ -2738,37 +2711,21 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, const V2Wor
 
 				//events
 				//find neighboring states to take in sudaten deal
-				vector<int> demandedstates;
-				for (auto leaderprov : leaderProvs)
+				set<string> demandedstates;
+				for (auto leaderprov : Leader->getProvinces())
 				{
 					vector<int> thisprovNeighbors = provinceNeighbors.find(leaderprov)->second;
 					for (int prov : thisprovNeighbors)
 					{
-						if (stateToProvincesMap.find(prov) == stateToProvincesMap.end())
+						if (provinceToOwnerMap.find(prov) != provinceToOwnerMap.end())
 						{
-						}
-						else
-						{
-							vector<string> stuff = stateToProvincesMap.find(prov)->second;
-							if (stuff.size() >= 1)
+							string owner = provinceToOwnerMap.find(prov)->second;
+							if (owner == nan[i]->getTag())
 							{
-								int statenumber = stoi(stuff.front());
-								//string ownertag = "";
-								auto ownertag = stateToProvincesMap.find(prov);
-								if (ownertag != stateToProvincesMap.end())
-								{
-									vector<string> tags = ownertag->second;
-									if (tags.size() >= 1)
-									{
-										if (tags[1] == nan[i]->getTag())
-										{
+								auto provinceToStateIdMapping = stateMapper::getStateIdMapping().find(prov);
+								/* v does not contain x */
+								demandedstates.insert(provinceToStateIdMapping->second);
 
-											/* v does not contain x */
-											demandedstates.push_back(statenumber);
-
-										}
-									}
-								}
 							}
 						}
 					}
@@ -3027,9 +2984,8 @@ vector<HoI4Faction*> HoI4World::CommunistWarCreator(HoI4Country* Leader, const V
 	vector<HoI4Faction*> CountriesAtWar;
 	//communism still needs great country war events
 	LOG(LogLevel::Info) << "Calculating AI for " + Leader->getSourceCountry()->getName("english");
-	vector<int> leaderProvs = getCountryProvinces(Leader);
 	LOG(LogLevel::Info) << "Calculating Neighbors for " + Leader->getSourceCountry()->getName("english");
-	map<string, HoI4Country*> AllNeighbors = findNeighbors(leaderProvs, Leader);
+	map<string, HoI4Country*> AllNeighbors = findNeighbors(Leader);
 	map<string, HoI4Country*> Neighbors;
 	for each (auto neigh in AllNeighbors)
 	{
@@ -3583,8 +3539,7 @@ vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, const V2
 	vector<HoI4Country*> EqualTargets;
 	vector<HoI4Country*> DifficultTargets;
 	//getting country provinces and its neighbors
-	vector<int> leaderProvs = getCountryProvinces(Leader);
-	map<string, HoI4Country*> AllNeighbors = findNeighbors(leaderProvs, Leader);
+	map<string, HoI4Country*> AllNeighbors = findNeighbors(Leader);
 	map<string, HoI4Country*> CloseNeighbors;
 	map<string, HoI4Country*> FarNeighbors;
 	//gets neighbors that are actually close to you

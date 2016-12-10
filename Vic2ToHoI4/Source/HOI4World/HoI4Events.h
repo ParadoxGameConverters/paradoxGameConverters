@@ -27,6 +27,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4Event.h"
+#include <set>
+#include <string>
+using namespace std;
 
 
 
@@ -42,7 +45,7 @@ class HoI4Events
 		void output() const;
 		void createFactionEvents(const HoI4Country* Leader, HoI4Country* newAlly);
 		void createAnnexEvent(const HoI4Country* Annexer, const HoI4Country* Annexed);
-		void createSudatenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const vector<int>& claimedStates);
+		void createSudatenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const set<string>& claimedStates);
 		void createTradeEvent(const HoI4Country* leader, const HoI4Country* GC);
 
 		int getCurrentNationFocusEventNum() const { return nationalFocusEventNumber; }

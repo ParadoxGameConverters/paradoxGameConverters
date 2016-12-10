@@ -118,6 +118,7 @@ class HoI4Country
 		const string									getSphereLeader() const { return sphereLeader; }
 		HoI4Party									getRulingParty() const { return RulingPartyModel; }
 		map<int, HoI4State*> getStates() const { return states; }
+		bool isInFaction() const { return faction != nullptr; }
 		
 		vector<HoI4Party> getParties() const { return parties; }
 		int getTotalFactories() const { return totalfactories; }

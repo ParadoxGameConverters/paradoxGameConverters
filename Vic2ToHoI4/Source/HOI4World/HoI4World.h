@@ -72,7 +72,6 @@ class HoI4World
 		void    setSphereLeaders(const V2World* sourceWorld);
 		void    thatsgermanWarCreator();
 		HoI4Country* FindProvOwner(int prov);
-		vector<int> getCountryProvinces(HoI4Country * Country);
 		HoI4Country *    GetFactionLeader(vector<HoI4Country*> Faction);
 		double    GetFactionStrength(HoI4Faction* Faction, int years);
 		string returnSphereLeader(HoI4Country* possibleSphereling);
@@ -94,8 +93,8 @@ class HoI4World
 		double GetFactionStrengthWithDistance(HoI4Country * HomeCountry, vector<HoI4Country*> Faction, double time);
 		HoI4Faction* findFaction(HoI4Country * CheckingCountry);
 		bool checkIfGreatCountry(HoI4Country* checkingCountry);
-		map<string, HoI4Country*> findNeighbors(vector<int> CountryProvs, HoI4Country * CheckingCountry);
-		void fillProvinces();
+		map<string, HoI4Country*> findNeighbors(const HoI4Country* CheckingCountry);
+		void determineProvinceOwners();
 		void fillProvinceNeighbors();
 		void outputRelations() const;
 		void	checkAllProvincesMapped();
@@ -174,7 +173,7 @@ class HoI4World
 		string axisLeader;
 		string alliesLeader;
 		string cominternLeader;
-		map<int, vector<string>> stateToProvincesMap;
+		map<int, string> provinceToOwnerMap;
 
 		HoI4Events events;
 

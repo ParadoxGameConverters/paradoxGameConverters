@@ -74,11 +74,11 @@ void HoI4Events::outputNewsEvents() const
 	}
 
 	outNewsEvents << "\xEF\xBB\xBF";
-	outNewsEvents << "add_namespace = news\n";
+	outNewsEvents << "add_namespace = news\n" << flush;
 	for (auto theEvent: newsEvents)
 	{
-		outNewsEvents << "\n";
-		outNewsEvents << theEvent;
+		outNewsEvents << "\n" << flush;
+		outNewsEvents << theEvent << flush;
 	}
 
 	outNewsEvents.close();
@@ -263,7 +263,7 @@ void HoI4Events::createAnnexEvent(const HoI4Country* Annexer, const HoI4Country*
 }
 
 
-void HoI4Events::createSudatenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const vector<int>& claimedStates)
+void HoI4Events::createSudatenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const set<string>& claimedStates)
 {
 	//flesh out this event more, possibly make it so allies have a chance to help?
 	string annexername = Annexer->getSourceCountry()->getName("english");
@@ -352,8 +352,8 @@ void HoI4Events::createSudatenEvent(const HoI4Country* Annexer, const HoI4Countr
 	string acceptedOption = "		name = \"A stronger Union!\"\n";
 	for (auto state: claimedStates)
 	{
-		acceptedOption += "		" + to_string(state) + " = { add_core_of = " + Annexer->getTag() + " }\n";
-		acceptedOption += "		" + Annexer->getTag() + " = { transfer_state =  " + to_string(state) + " }\n";
+		acceptedOption += "		" + state + " = { add_core_of = " + Annexer->getTag() + " }\n";
+		acceptedOption += "		" + Annexer->getTag() + " = { transfer_state =  " + state + " }\n";
 	}
 	acceptedOption += "		set_country_flag = " + Annexed->getTag() + "_demanded\n";
 	acceptedEvent.options.push_back(acceptedOption);
