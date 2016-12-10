@@ -321,7 +321,8 @@ void HoI4State::determineCategory(int factories)
 
 void HoI4State::setInfrastructure(int factories)
 {
-	infrastructure = sourceState->getAverageRailLevel();
+	infrastructure = 3;
+	infrastructure += sourceState->getAverageRailLevel() / 2;
 
 	if (factories > 4)
 	{
