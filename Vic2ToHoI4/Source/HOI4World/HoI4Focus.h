@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <string>
 #include <vector>
+#include "Object.h"
 using namespace std;
 
 
@@ -36,6 +37,7 @@ class HoI4Focus
 {
 	public:
 		HoI4Focus();
+		HoI4Focus(Object* obj);
 
 		friend ostream& operator << (ostream& output, HoI4Focus& focus);
 

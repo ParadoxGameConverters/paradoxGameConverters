@@ -30,6 +30,114 @@ HoI4Focus::HoI4Focus()
 }
 
 
+HoI4Focus::HoI4Focus(Object* obj)
+{
+	id = obj->getLeaf("id");
+
+	icon = obj->getLeaf("icon");
+
+	auto textObjs = obj->getValue("text");
+
+	if (textObjs.size() > 0)
+	{
+		text = textObjs[0]->getLeaf();
+	}
+	else
+	{
+		text = "";
+	}
+
+	auto mutuallyExclusiveObjs = obj->getValue("mutuallyExclusive");
+	if (mutuallyExclusiveObjs.size() > 0)
+	{
+		mutuallyExclusive = mutuallyExclusiveObjs[0]->getLeaf();
+	}
+	else
+	{
+		mutuallyExclusive = "";
+	}
+
+	auto bypassObjs = obj->getValue("bypass");
+	if (bypassObjs.size() > 0)
+	{
+		bypass = bypassObjs[0]->getLeaf();
+	}
+	else
+	{
+		bypass = "";
+	}
+
+	xPos = stoi(obj->getLeaf("x"));
+	yPos = stoi(obj->getLeaf("y"));
+	cost = stoi(obj->getLeaf("cost"));
+
+	auto availableObjs = obj->getValue("available");
+	if (availableObjs.size() > 0)
+	{
+		available = availableObjs[0]->getLeaf();
+	}
+	else
+	{
+		available = "";
+	}
+
+	auto cancelIfInvalidObjs = obj->getValue("cancelIfInvalid");
+	if (cancelIfInvalidObjs.size() > 0)
+	{
+		cancelIfInvalid = cancelIfInvalidObjs[0]->getLeaf();
+	}
+	else
+	{
+		cancelIfInvalid = "";
+	}
+
+	auto continueIfInvalidObjs = obj->getValue("continueIfInvalid");
+	if (continueIfInvalidObjs.size() > 0)
+	{
+		continueIfInvalid = continueIfInvalidObjs[0]->getLeaf();
+	}
+	else
+	{
+		continueIfInvalid = "";
+	}
+
+	auto completeTooltipObjs = obj->getValue("completeTooltip");
+	if (completeTooltipObjs.size() > 0)
+	{
+		completeTooltip = completeTooltipObjs[0]->getLeaf();
+	}
+	else
+	{
+		completeTooltip = "";
+	}
+
+	auto completionRewardObjs = obj->getValue("completion_reward");
+	if (completionRewardObjs.size() > 0)
+	{
+		completionReward = completionRewardObjs[0]->getLeaf();
+	}
+	else
+	{
+		completionReward = "";
+	}
+
+	auto aiWillDoObjs = obj->getValue("aiWillDo");
+	if (aiWillDoObjs.size() > 0)
+	{
+		aiWillDo = aiWillDoObjs[0]->getLeaf();
+	}
+	else
+	{
+		aiWillDo = "";
+	}
+
+	for (auto prereqObj: obj->getValue("prerequisite"))
+	{
+		prerequisites.push_back(prereqObj->getLeaf());
+	}
+}
+
+
 HoI4Focus* HoI4Focus::makeCustomizedCopy(const string& country) const
 {
 	HoI4Focus* newFocus = new HoI4Focus(*this);

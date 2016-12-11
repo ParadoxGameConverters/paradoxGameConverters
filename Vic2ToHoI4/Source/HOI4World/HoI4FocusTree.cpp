@@ -26,6 +26,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Focus.h"
 #include "../Configuration.h"
 #include "Log.h"
+#include "Object.h"
+#include "ParadoxParserUTF8.h"
 #include <fstream>
 using namespace std;
 
@@ -45,6 +47,15 @@ HoI4FocusTree::HoI4FocusTree(const HoI4Country* country)
 
 void HoI4FocusTree::addGenericFocusTree()
 {
+/*	Object2* genericObj = processFile(Configuration::getHoI4Path() + "/common/national_focus/generic.txt");
+	vector<Object2*> focusTreeLeaves = genericObj->getLeaves();
+	vector<Object2*> focusObjects = focusTreeLeaves[0]->getValue("focus");
+	for (auto focusObject: focusObjects)
+	{
+		HoI4Focus* newFocus = new HoI4Focus(focusObject);
+		focuses.push_back(newFocus);
+	}*/
+
 	HoI4Focus* newFocus = new HoI4Focus;
 	newFocus->id = "army_effort";
 	newFocus->icon = "GFX_goal_generic_allies_build_infantry";
