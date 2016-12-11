@@ -116,6 +116,8 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	syndicalistPopularity = 0;
 	autocraticPopularity = 0;
 
+	greatPower = false;
+
 	nationalFocus = nullptr;
 
 	srcCountry = NULL;

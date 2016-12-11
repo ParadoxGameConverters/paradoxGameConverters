@@ -92,6 +92,7 @@ class HoI4Country
 		void		setFactionLeader()				{ factionLeader = true; }
 		void setRelations(string relationsinput) { relationstxt = relationsinput; }
 		void addNationalFocus(HoI4FocusTree* NF) { nationalFocus = NF; }
+		void setGreatPower() { greatPower = true; }
 
 		HoI4Relations*								getRelations(string withWhom) const;
 		HoI4State* getCapital();
@@ -125,6 +126,7 @@ class HoI4Country
 		int getTechnologyCount() const { return technologies.size(); }
 		int getProvinceCount() const { return provinceCount; }
 		void setProvinceCount(int count) { provinceCount = count; }
+		bool isGreatPower() const { return greatPower; }
 		
 	private:
 		void			outputOOB()						const;
@@ -206,6 +208,8 @@ class HoI4Country
 		int ancapPopularity;
 		int autocraticPopularity;
 		int neutralityPopularity;
+
+		bool greatPower;
 
 		// military stuff
 		vector<HoI4DivisionTemplateType>		divisionTemplates;

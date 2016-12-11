@@ -72,7 +72,6 @@ class HoI4World
 		void    setSphereLeaders(const V2World* sourceWorld);
 		void    thatsgermanWarCreator();
 		HoI4Country* FindProvOwner(int prov);
-		HoI4Country *    GetFactionLeader(vector<HoI4Country*> Faction);
 		double    GetFactionStrength(HoI4Faction* Faction, int years);
 		string returnSphereLeader(HoI4Country* possibleSphereling);
 		vector<HoI4Faction*> FascistWarMaker(HoI4Country * Leader, const V2World* sourceWorld);
@@ -90,10 +89,8 @@ class HoI4World
 		vector<string> tokenizeLine(const string& line);
 		void addProvincePosition(const vector<string>& tokenizedLine);
 		double getDistanceBetweenPoints(pair<int, int> point1, pair<int, int> point2);
-		double GetFactionStrengthWithDistance(HoI4Country * HomeCountry, vector<HoI4Country*> Faction, double time);
-		HoI4Faction* findFaction(HoI4Country * CheckingCountry);
-		bool checkIfGreatCountry(HoI4Country* checkingCountry);
-		map<string, HoI4Country*> findNeighbors(const HoI4Country* CheckingCountry);
+		double GetFactionStrengthWithDistance(HoI4Country* HomeCountry, vector<HoI4Country*> Faction, double time);
+		HoI4Faction* findFaction(HoI4Country * checkingCountry);
 		void determineProvinceOwners();
 		void fillProvinceNeighbors();
 		void outputRelations() const;
@@ -115,6 +112,10 @@ class HoI4World
 		void createFactions();
 		void logFactionMember(ofstream& factionsLog, const HoI4Country* member);
 		bool governmentsAllowFaction(string leaderGovernment, string allyGovernment);
+
+		map<string, HoI4Country*> getNeighbors(const HoI4Country* checkingCountry);
+		map<string, HoI4Country*> getImmediateNeighbors(const HoI4Country* checkingCountry);
+		map<string, HoI4Country*> getNearbyCountries(const HoI4Country* checkingCountry);
 
 		void addStatesToCountries();
 		map<string, double> calculateFactoryWorkerRatios();
