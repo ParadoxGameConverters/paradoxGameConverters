@@ -1743,7 +1743,7 @@ void HoI4World::thatsgermanWarCreator()
 		if (leader->getGovernment() == "absolute_monarchy" || (leader->getGovernment() == "prussian_constitutionalism" && leader->getRulingParty().war_pol == "jingoism"))
 		{
 			vector <HoI4Faction*> newCountriesatWar;
-			newCountriesatWar = MonarchyWarCreator(leader, sourceWorld);
+			newCountriesatWar = MonarchyWarCreator(leader);
 			for (auto addedFactions : newCountriesatWar)
 			{
 				if (std::find(CountriesAtWar.begin(), CountriesAtWar.end(), addedFactions) == CountriesAtWar.end()) {
@@ -1833,7 +1833,7 @@ void HoI4World::thatsgermanWarCreator()
 		{
 			AILog << "added country to make more wars " + GCEvilnessSorted[i]->getSourceCountry()->getName("english") << "\n";
 			vector <HoI4Faction*> newCountriesatWar;
-			newCountriesatWar = MonarchyWarCreator(GCEvilnessSorted[i], sourceWorld);
+			newCountriesatWar = MonarchyWarCreator(GCEvilnessSorted[i]);
 			//add that faction to new countries at war
 			for (auto addedFactions : newCountriesatWar)
 			{
@@ -2911,7 +2911,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, const V2Wor
 				{
 					y2 = 2;
 
-					for (int i = 0; (i < 2) && (i < newAllies.size()); i++)
+					for (unsigned int i = 0; (i < 2) && (i < newAllies.size()); i++)
 					{
 						prereq += " focus = Alliance_" + newAllies[i]->getTag() + Leader->getTag();
 					}
@@ -3531,214 +3531,260 @@ vector<HoI4Faction*> HoI4World::DemocracyWarCreator(HoI4Country* Leader, const V
 }
 
 
-vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* Leader, const V2World* sourceWorld)
+vector<HoI4Faction*> HoI4World::MonarchyWarCreator(HoI4Country* country)
 {
-	vector<HoI4Faction*> CountriesAtWar;
-	//this is for monarchy events, dont need for random
-	//too many lists, need to clean up
-	vector<HoI4Country*> Targets;
-	vector<HoI4Country*> WeakNeighbors;
-	vector<HoI4Country*> WeakColonies;
-	vector<HoI4Country*> EqualTargets;
-	vector<HoI4Country*> DifficultTargets;
-	//getting country provinces and its neighbors
-	map<string, HoI4Country*> AllNeighbors = getNeighbors(Leader);
-	map<string, HoI4Country*> CloseNeighbors;
-	map<string, HoI4Country*> FarNeighbors;
-	//gets neighbors that are actually close to you
-	for each (auto neigh in AllNeighbors)
-	{
-		if (neigh.second->getCapitalProv() != 0)
-		{
-			//IMPROVE
-			//need to get further neighbors, as well as countries without capital in an area
-			double distance = getDistanceBetweenCountries(Leader, neigh.second);
-			if (distance <= 500)
-				CloseNeighbors.insert(neigh);
-			else
-				FarNeighbors.insert(neigh);
-		}
-	}
-	//if farneighbors is 0, try to find colonial conquest
-	if (FarNeighbors.size() == 0)
-	{
-		for (auto Colcountry : countries)
-		{
+	HoI4FocusTree* focusTree = genericFocusTree->makeCustomizedCopy(country);
 
-			HoI4Country* country2 = Colcountry.second;
-			if (country2->getCapitalProv() != 0)
-			{
-				//IMPROVE
-				//but this should never happen since the AI shouldnt even take this unless they already have colonies
-				double distance = getDistanceBetweenCountries(Leader, country2);
-				if (distance <= 1000 && Colcountry.second->getProvinceCount() > 0)
-					FarNeighbors.insert(Colcountry);
-			}
-		}
-	}
-	set<string> Allies = Leader->getAllies();
-	//should add method to look for cores you dont own
-	//should add method to look for more allies
+	LOG(LogLevel::Info) << "Doing neighbor calcs for " + country->getSourceCountry()->getName("english");
 
-	//lets look for weak neighbors
-	LOG(LogLevel::Info) << "Doing Neighbor calcs for " + Leader->getSourceCountry()->getName("english");
-	for (auto neigh : CloseNeighbors)
-	{
-		//lets check to see if they are not our ally and not a great country
-		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !neigh.second->isGreatPower())
-		{
-			volatile double enemystrength = neigh.second->getStrengthOverTime(1.5);
-			volatile double mystrength = Leader->getStrengthOverTime(1.5);
-			//lets see their strength is at least < 20%
-			if (neigh.second->getStrengthOverTime(1.5) < Leader->getStrengthOverTime(1.5)*0.2 && findFaction(neigh.second)->getMembers().size() == 1)
-			{
-				//they are very weak
-				WeakNeighbors.push_back(neigh.second);
-			}
-		}
-	}
-	for (auto neigh : FarNeighbors)
-	{
-		//lets check to see if they are not our ally and not a great country
-		if (std::find(Allies.begin(), Allies.end(), neigh.second->getTag()) == Allies.end() && !neigh.second->isGreatPower())
-		{
-			volatile double enemystrength = neigh.second->getStrengthOverTime(1.5);
-			volatile double mystrength = Leader->getStrengthOverTime(1.5);
-			//lets see their strength is at least < 20%
-			if (neigh.second->getStrengthOverTime(1.5) < Leader->getStrengthOverTime(1.5)*0.2 && findFaction(neigh.second)->getMembers().size() == 1)
-			{
-				//they are very weak
-				WeakColonies.push_back(neigh.second);
-			}
-		}
-	}
-	HoI4FocusTree* FocusTree = genericFocusTree->makeCustomizedCopy(Leader);
-	int WN = 0;
-	int WC = 0;
-	if (WeakNeighbors.size() == 0)
-		WeakNeighbors.push_back(Leader);
-	else
-		WN = WeakNeighbors.size();
-	if (WeakColonies.size() == 0)
-		WeakColonies.push_back(Leader);
-	else
-		WC = WeakColonies.size();
-	FocusTree->addMonarchyEmpireNationalFocuses(Leader, WeakColonies.front(), WeakColonies.back(), WeakNeighbors.front(), WeakNeighbors.back(), WC, WN, 0);
-	string protectorateNFs = "";
-	protectorateNFs += " Protectorate" + Leader->getTag() + WeakColonies.front()->getTag();
-	protectorateNFs += " Protectorate" + Leader->getTag() + WeakColonies.back()->getTag();
+	vector<HoI4Country*> weakNeighbors = findWeakNeighbors(country);
+	vector<HoI4Country*> weakColonies = findWeakColonies(country);
+	focusTree->addMonarchyEmpireNationalFocuses(country, weakColonies, weakNeighbors);
 
-	//Declaring war with Great Country
-	map<double, HoI4Country*> GCDistance;
-	vector<HoI4Country*> GCDistanceSorted;
-	//get great countries with a distance
-	for (auto GC: greatPowers)
-	{
-		double distance = getDistanceBetweenCountries(Leader, GC);
-		if (distance < 1200)
-			GCDistance.insert(make_pair(distance, GC));
-	}
-	//put them into a vector so we know their order
-	for (auto iterator = GCDistance.begin(); iterator != GCDistance.end(); ++iterator)
-	{
-		GCDistanceSorted.push_back(iterator->second);
-	}
-	sort(GCDistanceSorted.begin(), GCDistanceSorted.end());
-	vector<HoI4Country*> GCTargets;
-	for each (auto GC in GCDistanceSorted)
-	{
-		string thetag = GC->getTag();
-		string HowToTakeGC = HowToTakeLand(GC, Leader, 3);
-		if (HowToTakeGC == "noactionneeded" || HowToTakeGC == "factionneeded")
-		{
-			if (GC != Leader)
-				GCTargets.push_back(GC);
-		}
-		if (HowToTakeGC == "morealliesneeded")
-		{
+	vector<HoI4Country*> greatPowerTargets = getGreatPowerTargets(country);
+	vector<HoI4Faction*> CountriesAtWar = addGreatPowerWars(country, focusTree, greatPowerTargets);
+	addTradeEvents(country, greatPowerTargets);
 
-		}
-
-	}
-	int maxGCWars = 0;
-	int start = 0;
-	if (GCTargets.size() == 2)
-	{
-		start = -1;
-	}
-	for each (auto GC in GCTargets)
-	{
-		int relations = Leader->getRelations(GC->getTag())->getRelations();
-		if (relations < 0)
-		{
-			string prereq = "";
-			set<string> Allies = Leader->getAllies();
-			if (maxGCWars < 1 && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
-			{
-				CountriesAtWar.push_back(findFaction(Leader));
-				CountriesAtWar.push_back(findFaction(GCTargets[0]));
-				AggressorFactions.push_back((Leader));
-				int y2 = 0;
-
-				int v1 = rand() % 12 + 1;
-				int v2 = rand() % 12 + 1;
-				HoI4Focus* newFocus = new HoI4Focus;
-				newFocus->id       = "War" + GC->getTag() + Leader->getTag();
-				newFocus->icon     = "GFX_goal_generic_major_war";
-				newFocus->text     = "War with " + GC->getSourceCountry()->getName("english");//change to faction name later
-				newFocus->prerequisites.push_back("focus =  MilitaryBuildup" + Leader->getTag());
-				newFocus->available = "			has_war = 20\n";
-				newFocus->available += "			date > 1939." + to_string(v1) + "." + to_string(v2);
-				newFocus->xPos     = 31 + maxGCWars * 2;
-				newFocus->yPos     = 5;
-				//newFocus->yPos     = takenSpotsy.back() + 1;
-				newFocus->cost     = 10;
-				newFocus->aiWillDo = "			factor = " + to_string(10 - maxGCWars * 5) + "\n";
-				newFocus->aiWillDo += "			modifier = {\n";
-				newFocus->aiWillDo += "				factor = 0\n";
-				newFocus->aiWillDo += "				strength_ratio = { tag = " + GC->getTag() + " ratio < 0.8 }\n";
-				newFocus->aiWillDo += "			}";
-				if (GCTargets.size() > 1)
-				{
-					newFocus->aiWillDo += "\n";
-
-					//make ai have this as a 0 modifier if they are at war
-					newFocus->aiWillDo += "			modifier = {\n";
-					newFocus->aiWillDo += "				factor = 0\n";
-					newFocus->aiWillDo += "				OR = {\n";
-					for (unsigned int i2 = 0; i2 < GCTargets.size(); i2++)
-					{
-						if (GC != GCTargets[i2])
-						{
-							newFocus->aiWillDo += "					has_war_with = " + GCTargets[i2]->getTag() + "\n";
-						}
-
-					}
-					newFocus->aiWillDo += "				}\n";
-					newFocus->aiWillDo += "			}";
-				}
-				newFocus->completionReward += "			create_wargoal = {\n";
-				newFocus->completionReward += "				type = annex_everything\n";
-				newFocus->completionReward += "				target = " + GC->getTag() + "\n";
-				newFocus->completionReward += "			}";
-				FocusTree->addFocus(newFocus);
-
-				maxGCWars++;
-			}
-		}
-	}
-
-	int eventNumber = 0;
-	for each (auto GC in GCTargets)
-	{
-		int relations = Leader->getRelations(GC->getTag())->getRelations();
-		if (relations < 0)
-		{
-			events.createTradeEvent(Leader, GC);
-		}
-	}
-
-	Leader->addNationalFocus(FocusTree);
+	country->addNationalFocus(focusTree);
 
 	return CountriesAtWar;
+}
+
+
+vector<HoI4Country*> HoI4World::findWeakNeighbors(const HoI4Country* country)
+{
+	vector<HoI4Country*> weakNeighbors;
+
+	auto allies = country->getAllies();
+	for (auto neighbor: findCloseNeighbors(country))
+	{
+		if (allies.find(neighbor.second->getTag()) != allies.end())
+		{
+			continue;
+		}
+		if (neighbor.second->isGreatPower())
+		{
+			continue;
+		}
+
+		double enemystrength = neighbor.second->getStrengthOverTime(1.5);
+		double mystrength = country->getStrengthOverTime(1.5);
+		if (
+				(enemystrength < (mystrength * 0.2)) &&
+				(findFaction(neighbor.second)->getMembers().size() == 1)
+			)
+		{
+			weakNeighbors.push_back(neighbor.second);
+		}
+	}
+
+	return weakNeighbors;
+}
+
+
+map<string, HoI4Country*> HoI4World::findCloseNeighbors(const HoI4Country* country)
+{
+	map<string, HoI4Country*> closeNeighbors;
+
+	for (auto neighbor: getNeighbors(country))
+	{
+		if (neighbor.second->getCapitalProv() != 0)
+		{
+			double distance = getDistanceBetweenCountries(country, neighbor.second);
+			if (distance <= 500)
+			{
+				closeNeighbors.insert(neighbor);
+			}
+		}
+	}
+
+	return closeNeighbors;
+}
+
+
+vector<HoI4Country*> HoI4World::findWeakColonies(const HoI4Country* country)
+{
+	vector<HoI4Country*> weakColonies;
+
+	auto allies = country->getAllies();
+	for (auto neighbor: findFarNeighbors(country))
+	{
+		if (allies.find(neighbor.second->getTag()) != allies.end())
+		{
+			continue;
+		}
+		if (neighbor.second->isGreatPower())
+		{
+			continue;
+		}
+
+		double enemystrength = neighbor.second->getStrengthOverTime(1.5);
+		double mystrength = country->getStrengthOverTime(1.5);
+		if (
+				(enemystrength < mystrength * 0.2) &&
+				(findFaction(neighbor.second)->getMembers().size() == 1)
+			)
+		{
+			weakColonies.push_back(neighbor.second);
+		}
+	}
+
+	return weakColonies;
+}
+
+
+map<string, HoI4Country*> HoI4World::findFarNeighbors(const HoI4Country* country)
+{
+	map<string, HoI4Country*> farNeighbors;
+
+	for (auto neighbor: getNeighbors(country))
+	{
+		if (neighbor.second->getCapitalProv() != 0)
+		{
+			double distance = getDistanceBetweenCountries(country, neighbor.second);
+			if (distance > 500)
+			{
+				farNeighbors.insert(neighbor);
+			}
+		}
+	}
+
+	if (farNeighbors.size() == 0) // find all nearby countries
+	{
+		for (auto otherCountry: countries)
+		{
+			if (otherCountry.second->getCapitalProv() != 0)
+			{
+				double distance = getDistanceBetweenCountries(country, otherCountry.second);
+				if ((distance <= 1000) && (otherCountry.second->getProvinceCount() > 0))
+				{
+					farNeighbors.insert(otherCountry);
+				}
+			}
+		}
+	}
+
+	return farNeighbors;
+}
+
+
+vector<HoI4Country*> HoI4World::getGreatPowerTargets(HoI4Country* country)
+{
+	vector<HoI4Country*> greatPowerTargets;
+
+	for (auto greatPower: getGPsByDistance(country))
+	{
+		string prereqsNeeded = HowToTakeLand(greatPower.second, country, 3);
+		if (prereqsNeeded == "noactionneeded" || prereqsNeeded == "factionneeded")
+		{
+			if (greatPower.second != country)
+			{
+				greatPowerTargets.push_back(greatPower.second);
+			}
+		}
+		if (prereqsNeeded == "morealliesneeded")
+		{
+		}
+	}
+
+	return greatPowerTargets;
+}
+
+
+map<double, HoI4Country*> HoI4World::getGPsByDistance(const HoI4Country* country)
+{
+	map<double, HoI4Country*> distanceToGPMap;
+	for (auto greatPower: greatPowers)
+	{
+		double distance = getDistanceBetweenCountries(country, greatPower);
+		if (distance < 1200)
+		{
+			distanceToGPMap.insert(make_pair(distance, greatPower));
+		}
+	}
+
+	return distanceToGPMap;
+}
+
+
+vector<HoI4Faction*> HoI4World::addGreatPowerWars(HoI4Country* country, HoI4FocusTree* FocusTree, const vector<HoI4Country*>& greatPowerTargets)
+{
+	vector<HoI4Faction*> countriesAtWar;
+
+	int numWarsWithGreatPowers = 0;
+	for (auto target: greatPowerTargets)
+	{
+		if (numWarsWithGreatPowers >= 1)
+		{
+			break;
+		}
+
+		int relations = country->getRelations(target->getTag())->getRelations();
+		if (relations >= 0)
+		{
+			continue;
+		}
+
+		set<string> Allies = country->getAllies();
+		if (Allies.find(target->getTag()) == Allies.end())
+		{
+			countriesAtWar.push_back(findFaction(country));
+
+			HoI4Focus* newFocus = new HoI4Focus;
+			newFocus->id       = "War" + target->getTag() + country->getTag();
+			newFocus->icon     = "GFX_goal_generic_major_war";
+			newFocus->text     = "War with " + target->getSourceCountry()->getName("english");//change to faction name later
+			newFocus->prerequisites.push_back("focus =  MilitaryBuildup" + country->getTag());
+			newFocus->available = "			has_war = 20\n";
+			newFocus->available += "			date > 1939.1.1";
+			newFocus->xPos     = 31 + numWarsWithGreatPowers * 2;
+			newFocus->yPos     = 5;
+			newFocus->cost     = 10;
+			newFocus->aiWillDo = "			factor = " + to_string(10 - numWarsWithGreatPowers * 5) + "\n";
+			newFocus->aiWillDo += "			modifier = {\n";
+			newFocus->aiWillDo += "				factor = 0\n";
+			newFocus->aiWillDo += "				strength_ratio = { tag = " + target->getTag() + " ratio < 0.8 }\n";
+			newFocus->aiWillDo += "			}";
+			if (greatPowerTargets.size() > 1) //make ai have this as a 0 modifier if they are at war
+			{
+				newFocus->aiWillDo += "\n";
+				newFocus->aiWillDo += "			modifier = {\n";
+				newFocus->aiWillDo += "				factor = 0\n";
+				newFocus->aiWillDo += "				OR = {\n";
+				for (auto target2: greatPowerTargets)
+				{
+					if (target != target2)
+					{
+						newFocus->aiWillDo += "					has_war_with = " + target2->getTag() + "\n";
+					}
+				}
+				newFocus->aiWillDo += "				}\n";
+				newFocus->aiWillDo += "			}";
+			}
+			newFocus->completionReward += "			create_wargoal = {\n";
+			newFocus->completionReward += "				type = annex_everything\n";
+			newFocus->completionReward += "				target = " + target->getTag() + "\n";
+			newFocus->completionReward += "			}";
+			FocusTree->addFocus(newFocus);
+
+			numWarsWithGreatPowers++;
+		}
+	}
+
+	return countriesAtWar;
+}
+
+
+void HoI4World::addTradeEvents(const HoI4Country* country, const vector<HoI4Country*>& greatPowerTargets)
+{
+	for (auto greatPowerTarget: greatPowerTargets)
+	{
+		int relations = country->getRelations(greatPowerTarget->getTag())->getRelations();
+		if (relations >= 0)
+		{
+			continue;
+		}
+
+		events.createTradeEvent(country, greatPowerTarget);
+	}
 }//7467

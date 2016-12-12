@@ -1862,7 +1862,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 }
 
 
-void HoI4FocusTree::addMonarchyEmpireNationalFocuses(HoI4Country* Home, HoI4Country* Annexed1, HoI4Country* Annexed2, HoI4Country* Annexed3, HoI4Country* Annexed4, int ProtectorateNumber, int AnnexNumber, int x)
+void HoI4FocusTree::addMonarchyEmpireNationalFocuses(HoI4Country* Home, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets)
 {
 	//Glory to Empire!
 	HoI4Focus* newFocus = new HoI4Focus;
@@ -2153,61 +2153,65 @@ void HoI4FocusTree::addMonarchyEmpireNationalFocuses(HoI4Country* Home, HoI4Coun
 	focuses.push_back(newFocus);
 
 	//establish protectorate
-	if (ProtectorateNumber >= 1)
+	if (targetColonies.size() >= 1)
 	{
+		auto target = targetColonies.front();
+
 		newFocus = new HoI4Focus;
-		newFocus->id = "Protectorate" + Home->getTag() + Annexed1->getTag();
+		newFocus->id = "Protectorate" + Home->getTag() + target->getTag();
 		newFocus->icon = "GFX_goal_generic_major_war";
-		newFocus->text += "Establish Protectorate over " + Annexed1->getSourceCountry()->getName("english");
-		newFocus->available += "			" + Annexed1->getTag() + " = { is_in_faction = no }";
+		newFocus->text += "Establish Protectorate over " + target->getSourceCountry()->getName("english");
+		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }";
 		newFocus->prerequisites.push_back("focus = ColonialArmy" + Home->getTag());
 		newFocus->xPos = 28;
 		newFocus->yPos = 3;
 		newFocus->cost = 10;
 		newFocus->bypass += "			OR = {\n";
 		newFocus->bypass += "				" + Home->getTag() + " = {\n";
-		newFocus->bypass += "					is_in_faction_with = " + Annexed1->getTag() +"\n";
-		newFocus->bypass += "					has_war_with = " + Annexed1->getTag() + "\n";
+		newFocus->bypass += "					is_in_faction_with = " + target->getTag() +"\n";
+		newFocus->bypass += "					has_war_with = " + target->getTag() + "\n";
 		newFocus->bypass += "				}\n";
-		newFocus->bypass += "				NOT = { country_exists = " + Annexed1->getTag() + " }\n";
+		newFocus->bypass += "				NOT = { country_exists = " + target->getTag() + " }\n";
 		newFocus->bypass += "			}";
 		newFocus->aiWillDo += "			factor = 10\n";
 		newFocus->aiWillDo += "			modifier = {\n";
 		newFocus->aiWillDo += "				factor = 0\n";
-		newFocus->aiWillDo += "				strength_ratio = { tag = " + Annexed1->getTag() + " ratio < 1 }\n";
+		newFocus->aiWillDo += "				strength_ratio = { tag = " + target->getTag() + " ratio < 1 }\n";
 		newFocus->aiWillDo += "			}";
 		newFocus->completionReward += "			create_wargoal = {\n";
 		newFocus->completionReward += "				type = annex_everything\n";
-		newFocus->completionReward += "				target = " + Annexed1->getTag() + "\n";
+		newFocus->completionReward += "				target = " + target->getTag() + "\n";
 		newFocus->completionReward += "			}";
 		focuses.push_back(newFocus);
 	}
-	if (ProtectorateNumber >= 2)
+	if (targetColonies.size() >= 2)
 	{
+		auto target = targetColonies.back();
+
 		newFocus = new HoI4Focus;
-		newFocus->id = "Protectorate" + Home->getTag() + Annexed2->getTag();
+		newFocus->id = "Protectorate" + Home->getTag() + target->getTag();
 		newFocus->icon = "GFX_goal_generic_major_war";
-		newFocus->text += "Establish Protectorate over " + Annexed2->getSourceCountry()->getName("english");
-		newFocus->available += "			" + Annexed2->getTag() + " = { is_in_faction = no }";
-		newFocus->prerequisites.push_back("focus = Protectorate" + Home->getTag() + Annexed1->getTag());
+		newFocus->text += "Establish Protectorate over " + target->getSourceCountry()->getName("english");
+		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }";
+		newFocus->prerequisites.push_back("focus = Protectorate" + Home->getTag() + targetColonies.front()->getTag());
 		newFocus->xPos = 28;
 		newFocus->yPos = 4;
 		newFocus->cost = 10;
 		newFocus->bypass += "			OR = {\n";
 		newFocus->bypass += "				" + Home->getTag() + " = {\n";
-		newFocus->bypass += "					is_in_faction_with = " + Annexed2->getTag() +"\n";
-		newFocus->bypass += "					has_war_with = " + Annexed2->getTag() + "\n";
+		newFocus->bypass += "					is_in_faction_with = " + target->getTag() +"\n";
+		newFocus->bypass += "					has_war_with = " + target->getTag() + "\n";
 		newFocus->bypass += "				}\n";
-		newFocus->bypass += "				NOT = { country_exists = " + Annexed2->getTag() + " }\n";
+		newFocus->bypass += "				NOT = { country_exists = " + target->getTag() + " }\n";
 		newFocus->bypass += "			}";
 		newFocus->aiWillDo += "			factor = 5\n";
 		newFocus->aiWillDo += "			modifier = {\n";
 		newFocus->aiWillDo += "				factor = 0\n";
-		newFocus->aiWillDo += "				strength_ratio = { tag = " + Annexed2->getTag() + " ratio < 1 }\n";
+		newFocus->aiWillDo += "				strength_ratio = { tag = " + target->getTag() + " ratio < 1 }\n";
 		newFocus->aiWillDo += "			}";
 		newFocus->completionReward += "			create_wargoal = {\n";
 		newFocus->completionReward += "				type = annex_everything\n";
-		newFocus->completionReward += "				target = " + Annexed2->getTag() + "\n";
+		newFocus->completionReward += "				target = " + target->getTag() + "\n";
 		newFocus->completionReward += "			}";
 		focuses.push_back(newFocus);
 	}
@@ -2524,61 +2528,65 @@ void HoI4FocusTree::addMonarchyEmpireNationalFocuses(HoI4Country* Home, HoI4Coun
 	focuses.push_back(newFocus);
 
 	//ANNEX
-	if (AnnexNumber >= 1)
+	if (annexationTargets.size() >= 1)
 	{
+		auto target = annexationTargets.front();
+
 		newFocus = new HoI4Focus;
-		newFocus->id = "Annex" + Home->getTag() + Annexed3->getTag();
+		newFocus->id = "Annex" + Home->getTag() + target->getTag();
 		newFocus->icon = "GFX_goal_generic_major_war";
-		newFocus->text += "Conquer " + Annexed3->getSourceCountry()->getName("english");
-		newFocus->available += "			" + Annexed3->getTag() + " = { is_in_faction = no }";
+		newFocus->text += "Conquer " + target->getSourceCountry()->getName("english");
+		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }";
 		newFocus->prerequisites.push_back("focus = PrepTheBorder" + Home->getTag());
 		newFocus->xPos = 36;
 		newFocus->yPos = 3;
 		newFocus->cost = 10;
 		newFocus->bypass += "			OR = {\n";
 		newFocus->bypass += "				" + Home->getTag() + " = {\n";
-		newFocus->bypass += "					is_in_faction_with = " + Annexed1->getTag() + "\n";
-		newFocus->bypass += "					has_war_with = " + Annexed1->getTag() + "\n";
+		newFocus->bypass += "					is_in_faction_with = " + target->getTag() + "\n";
+		newFocus->bypass += "					has_war_with = " + target->getTag() + "\n";
 		newFocus->bypass += "				}\n";
-		newFocus->bypass += "				NOT = { country_exists = " + Annexed1->getTag() + " }\n";
+		newFocus->bypass += "				NOT = { country_exists = " + target->getTag() + " }\n";
 		newFocus->bypass += "			}";
 		newFocus->aiWillDo += "			factor = 5\n";
 		newFocus->aiWillDo += "			modifier = {\n";
 		newFocus->aiWillDo += "				factor = 0\n";
-		newFocus->aiWillDo += "				strength_ratio = { tag = " + Annexed3->getTag() + " ratio < 1 }\n";
+		newFocus->aiWillDo += "				strength_ratio = { tag = " + target->getTag() + " ratio < 1 }\n";
 		newFocus->aiWillDo += "			}";
 		newFocus->completionReward += "			create_wargoal = {\n";
 		newFocus->completionReward += "				type = annex_everything\n";
-		newFocus->completionReward += "				target = " + Annexed3->getTag() + "\n";
+		newFocus->completionReward += "				target = " + target->getTag() + "\n";
 		newFocus->completionReward += "			}";
 		focuses.push_back(newFocus);
 	}
-	if (AnnexNumber >= 2)
+	if (annexationTargets.size() >= 2)
 	{
+		auto target = annexationTargets.back();
+
 		newFocus = new HoI4Focus;
-		newFocus->id = "Annex" + Home->getTag() + Annexed4->getTag();
+		newFocus->id = "Annex" + Home->getTag() + target->getTag();
 		newFocus->icon = "GFX_goal_generic_major_war";
-		newFocus->text += "Conquer " + Annexed4->getSourceCountry()->getName("english");
-		newFocus->available += "			" + Annexed4->getTag() + " = { is_in_faction = no }";
+		newFocus->text += "Conquer " + target->getSourceCountry()->getName("english");
+		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }";
 		newFocus->prerequisites.push_back("focus = NatSpirit" + Home->getTag());
 		newFocus->xPos = 34;
 		newFocus->yPos = 4;
 		newFocus->cost = 10;
 		newFocus->bypass += "			OR = {\n";
 		newFocus->bypass += "				" + Home->getTag() + " = {\n";
-		newFocus->bypass += "					is_in_faction_with = " + Annexed1->getTag() + "\n";
-		newFocus->bypass += "					has_war_with = " + Annexed1->getTag() + "\n";
+		newFocus->bypass += "					is_in_faction_with = " + target->getTag() + "\n";
+		newFocus->bypass += "					has_war_with = " + target->getTag() + "\n";
 		newFocus->bypass += "				}\n";
-		newFocus->bypass += "				NOT = { country_exists = " + Annexed1->getTag() + " }\n";
+		newFocus->bypass += "				NOT = { country_exists = " + target->getTag() + " }\n";
 		newFocus->bypass += "			}";
 		newFocus->aiWillDo += "			factor = 5\n";
 		newFocus->aiWillDo += "			modifier = {\n";
 		newFocus->aiWillDo += "				factor = 0\n";
-		newFocus->aiWillDo += "				strength_ratio = { tag = " + Annexed4->getTag() + " ratio < 1 }\n";
+		newFocus->aiWillDo += "				strength_ratio = { tag = " + target->getTag() + " ratio < 1 }\n";
 		newFocus->aiWillDo += "			}";
 		newFocus->completionReward += "			create_wargoal = {\n";
 		newFocus->completionReward += "				type = annex_everything\n";
-		newFocus->completionReward += "				target = " + Annexed4->getTag() + "\n";
+		newFocus->completionReward += "				target = " + target->getTag() + "\n";
 		newFocus->completionReward += "			}";
 		focuses.push_back(newFocus);
 	}

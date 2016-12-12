@@ -77,7 +77,6 @@ class HoI4World
 		vector<HoI4Faction*> FascistWarMaker(HoI4Country * Leader, const V2World* sourceWorld);
 		vector<HoI4Faction*> CommunistWarCreator(HoI4Country * Leader, const V2World* sourceWorld);
 		vector<HoI4Faction*> DemocracyWarCreator(HoI4Country * Leader, const V2World* sourceWorld);
-		vector<HoI4Faction*> MonarchyWarCreator(HoI4Country * Leader, const V2World* sourceWorld);
 		string HowToTakeLand(HoI4Country * TargetCountry, HoI4Country * AttackingCountry, double time);
 		vector<HoI4Country*> GetMorePossibleAllies(HoI4Country * CountryThatWantsAllies);
 		double getDistanceBetweenCountries(const HoI4Country* Country1, const HoI4Country* Country2);
@@ -116,6 +115,16 @@ class HoI4World
 		map<string, HoI4Country*> getNeighbors(const HoI4Country* checkingCountry);
 		map<string, HoI4Country*> getImmediateNeighbors(const HoI4Country* checkingCountry);
 		map<string, HoI4Country*> getNearbyCountries(const HoI4Country* checkingCountry);
+
+		vector<HoI4Faction*> MonarchyWarCreator(HoI4Country* country);
+		vector<HoI4Country*> findWeakNeighbors(const HoI4Country* country);
+		map<string, HoI4Country*> findCloseNeighbors(const HoI4Country* country);
+		vector<HoI4Country*> findWeakColonies(const HoI4Country* country);
+		map<string, HoI4Country*> findFarNeighbors(const HoI4Country* country);
+		vector<HoI4Country*> getGreatPowerTargets(HoI4Country* country);
+		map<double, HoI4Country*> getGPsByDistance(const HoI4Country* country);
+		vector<HoI4Faction*> addGreatPowerWars(HoI4Country* country, HoI4FocusTree* FocusTree, const vector<HoI4Country*>& greatPowerTargets);
+		void addTradeEvents(const HoI4Country* country, const vector<HoI4Country*>& greatPowerTargets);
 
 		void addStatesToCountries();
 		map<string, double> calculateFactoryWorkerRatios();
