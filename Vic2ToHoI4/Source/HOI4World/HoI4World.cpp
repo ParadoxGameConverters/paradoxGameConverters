@@ -2911,7 +2911,7 @@ vector<HoI4Faction*> HoI4World::FascistWarMaker(HoI4Country* Leader, const V2Wor
 				{
 					y2 = 2;
 
-					for (int i = 0; i < 2; i++)
+					for (int i = 0; (i < 2) && (i < newAllies.size()); i++)
 					{
 						prereq += " focus = Alliance_" + newAllies[i]->getTag() + Leader->getTag();
 					}
