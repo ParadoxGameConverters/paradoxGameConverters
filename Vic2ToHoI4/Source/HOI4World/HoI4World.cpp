@@ -77,6 +77,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	convertAirforces();
 	getGreatPowers();
 	convertCapitalVPs();
+	convertAirBases();
 	thatsgermanWarCreator();
 	buildings = new HoI4Buildings(states->getProvinceToStateIDMap());
 }
@@ -1282,6 +1283,38 @@ void HoI4World::convertCapitalVPs()
 	addBasicCapitalVPs();
 	addGreatPowerVPs();
 	addStrengthVPs();
+}
+
+
+void HoI4World::convertAirBases()
+{
+	for (auto state: states->getStates())
+	{
+		int numFactories = (state.second->getCivFactories() + state.second->getMilFactories()) / 4;
+		state.second->addAirBase(numFactories);
+
+		if (state.second->getInfrastructure() > 5)
+		{
+			state.second->addAirBase(1);
+		}
+	}
+
+	for (auto country: countries)
+	{
+		auto capitalState = country.second->getCapital();
+		if (capitalState != nullptr)
+		{
+			capitalState->addAirBase(5);
+		}
+	}
+	for (auto greatPower: greatPowers)
+	{
+		auto capitalState = greatPower->getCapital();
+		if (capitalState != nullptr)
+		{
+			capitalState->addAirBase(5);
+		}
+	}
 }
 
 

@@ -68,6 +68,7 @@ class HoI4World
 		void	convertNavies();
 		void	convertAirforces();
 		void convertCapitalVPs();
+		void convertAirBases();
 		void fillCountryProvinces();
 		void    setSphereLeaders(const V2World* sourceWorld);
 		void    thatsgermanWarCreator();
