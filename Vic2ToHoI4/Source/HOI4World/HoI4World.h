@@ -52,92 +52,43 @@ class HoI4World
 
 		void	output() const;
 
-		void	importSuppplyZones(const map<int, vector<int>>& defaultStateToProvinceMap);
-		void	importStrategicRegions();
-		void	convertCountries();
-		void	convertNavalBases();
-		void	convertIndustry();
-		void	convertResources();
-		void	convertSupplyZones();
-		void	convertStrategicRegions();
-		void	convertTechs();
-		void	convertDiplomacy();
-		void	convertArmies(const HoI4AdjacencyMapping& HoI4AdjacencyMap);
-		void	generateLeaders();
-		void	convertArmies();
-		void	convertNavies();
-		void	convertAirforces();
+		void importSuppplyZones(const map<int, vector<int>>& defaultStateToProvinceMap);
+		void importStrategicRegions();
+		void convertCountries();
+		void convertNavalBases();
+		void convertIndustry();
+		void convertResources();
+		void convertSupplyZones();
+		void convertStrategicRegions();
+		void convertTechs();
+		void convertDiplomacy();
+		void convertArmies(const HoI4AdjacencyMapping& HoI4AdjacencyMap);
+		void generateLeaders();
+		void convertArmies();
+		void convertNavies();
+		void convertAirforces();
 		void convertCapitalVPs();
 		void convertAirBases();
 
-		void    setSphereLeaders(const V2World* sourceWorld);
-		HoI4Country* FindProvOwner(int prov);
-		double    GetFactionStrength(HoI4Faction* Faction, int years);
-		string returnSphereLeader(HoI4Country* possibleSphereling);
-		string HowToTakeLand(HoI4Country * TargetCountry, HoI4Country * AttackingCountry, double time);
-		vector<HoI4Country*> GetMorePossibleAllies(HoI4Country * CountryThatWantsAllies);
-		double getDistanceBetweenCountries(const HoI4Country* Country1, const HoI4Country* Country2);
-		bool bothCountriesHaveCapitals(const HoI4Country* Country1, const HoI4Country* Country2);
-		pair<int, int> getCapitalPosition(const HoI4Country* country);
-		pair<int, int> getProvincePosition(int provinceNum);
-		void establishProvincePositions();
-		void processPositionLine(const string& line);
-		vector<string> tokenizeLine(const string& line);
-		void addProvincePosition(const vector<string>& tokenizedLine);
-		double getDistanceBetweenPoints(pair<int, int> point1, pair<int, int> point2);
-		double GetFactionStrengthWithDistance(HoI4Country* HomeCountry, vector<HoI4Country*> Faction, double time);
-		HoI4Faction* findFaction(HoI4Country * checkingCountry);
-
 		void outputRelations() const;
-		void	checkAllProvincesMapped();
+		void checkAllProvincesMapped();
 
-		map<string, HoI4Country*>	getCountries()	const { return countries; }
+		map<string, HoI4Country*> getCountries()	const { return countries; }
+		vector<HoI4Country*> getGreatPowers() const { return greatPowers; }
+		map<int, HoI4State*> getStates() const { return states->getStates(); }
+		vector<HoI4Faction*> getFactions() const { return factions; }
+		HoI4Events* getEvents() const { return events; }
 
 	private:
 		void	getProvinceLocalizations(const string& file);
 
-		void getGreatPowers();
+		void determineGreatPowers();
 
 		void addBasicCapitalVPs();
 		void addGreatPowerVPs();
 		void addStrengthVPs();
 		double getStrongestCountryStrength();
 		int calculateStrengthVPs(HoI4Country* country, double greatestStrength);
-
-		void thatsgermanWarCreator();
-		void determineProvinceOwners();
-		void fillCountryProvinces();
-		void fillProvinceNeighbors();
-		void createFactions();
-		void logFactionMember(ofstream& factionsLog, const HoI4Country* member);
-		bool governmentsAllowFaction(string leaderGovernment, string allyGovernment);
-		void addAllTargetsToWorldTargetMap();
-		void addTargetsToWorldTargetMap(HoI4Country* country);
-		map<double, HoI4Country*> getDistancesToGreatPowers(HoI4Country* country);
-		double calculateWorldStrength(ofstream& AILog);
-		void generateTotalitarianWars(ofstream& AILog, vector<HoI4Country*>& leaderCountries, set<HoI4Faction*>& factionsAtWar);
-		double calculatePercentOfWorldAtWar(ofstream& AILog, const set<HoI4Faction*>& factionsAtWar, double worldStrength);
-		void generateDemocracyWars(ofstream& AILog, set<HoI4Faction*>& factionsAtWar);
-		void generateAdditionalWars(ofstream& AILog, vector<HoI4Country*>& leaderCountries, set<HoI4Faction*>& factionsAtWar, double worldStrength);
-
-		vector<HoI4Faction*> fascistWarMaker(HoI4Country* country, ofstream& AILog);
-		vector<HoI4Faction*> communistWarCreator(HoI4Country* country, ofstream& AILog);
-		vector<HoI4Faction*> democracyWarCreator(HoI4Country* country);
-		vector<HoI4Faction*> MonarchyWarCreator(HoI4Country* country);
-		vector<HoI4Country*> calculateEvilness(vector<HoI4Country*> LeaderCountries);
-
-		vector<HoI4Country*> findWeakNeighbors(const HoI4Country* country);
-		map<string, HoI4Country*> findCloseNeighbors(const HoI4Country* country);
-		vector<HoI4Country*> findWeakColonies(const HoI4Country* country);
-		map<string, HoI4Country*> findFarNeighbors(const HoI4Country* country);
-		vector<HoI4Country*> getGreatPowerTargets(HoI4Country* country);
-		map<double, HoI4Country*> getGPsByDistance(const HoI4Country* country);
-		vector<HoI4Faction*> addGreatPowerWars(HoI4Country* country, HoI4FocusTree* FocusTree, const vector<HoI4Country*>& greatPowerTargets);
-		void addTradeEvents(const HoI4Country* country, const vector<HoI4Country*>& greatPowerTargets);
-
-		map<string, HoI4Country*> getNeighbors(const HoI4Country* checkingCountry);
-		map<string, HoI4Country*> getImmediateNeighbors(const HoI4Country* checkingCountry);
-		map<string, HoI4Country*> getNearbyCountries(const HoI4Country* checkingCountry);
 
 		void addStatesToCountries();
 		map<string, double> calculateFactoryWorkerRatios();
@@ -157,6 +108,11 @@ class HoI4World
 		vector<int>					getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		int							getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string owner);
 
+		void createFactions();
+		void logFactionMember(ofstream& factionsLog, const HoI4Country* member);
+		string returnSphereLeader(HoI4Country* possibleSphereling);
+		bool governmentsAllowFaction(string leaderGovernment, string allyGovernment);
+
 		void outputCommonCountries() const;
 		void outputColorsfile() const;
 		void outputAutoexecLua() const;
@@ -167,7 +123,6 @@ class HoI4World
 		void outputCountries() const;
 
 
-		map<int, vector<int>>			provinceNeighbors;
 		const V2World* sourceWorld;
 
 		vector<HoI4Country*> greatPowers;
@@ -179,8 +134,6 @@ class HoI4World
 		map<string, HoI4Country*> landedCountries;
 		HoI4Diplomacy					diplomacy;
 		map<int, int>					stateMap;
-		vector<HoI4Country*> AggressorFactions;
-		map<HoI4Country*, vector<HoI4Country*>> WorldTargetMap;
 
 		// map items
 		map<int, string>						continents;  // < province, continent >
@@ -188,26 +141,19 @@ class HoI4World
 		map<int, string>						supplyZonesFilenames;
 		map<int, HoI4StrategicRegion*>	strategicRegions;
 		map<int, int>							provinceToStratRegionMap;
-		map<int, pair<int, int>> provincePositions;
 
 		HoI4Localisation				localisation;
-		vector<HoI4Faction*> factions;
-		string axisLeader;
-		string alliesLeader;
-		string cominternLeader;
-		map<int, string> provinceToOwnerMap;
 
-		HoI4Events events;
+		HoI4Events* events;
 
 		leaderTraitsMap leaderTraits;
 		namesMapping namesMap;
 		portraitMapping portraitMap;
 
 		map<int, int> provinceToSupplyZoneMap;
+		vector<HoI4Faction*> factions;
 
 		HoI4Buildings* buildings;
-
-		HoI4FocusTree* genericFocusTree;
 };
 
 
