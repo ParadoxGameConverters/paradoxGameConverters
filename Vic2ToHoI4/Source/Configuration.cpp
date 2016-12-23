@@ -121,7 +121,7 @@ Configuration::Configuration()
 	}
 	else // (versionMethod == "hardcoded")
 	{
-		version = HOI4Version("1.2.1");
+		version = HOI4Version("1.3.1");
 	}
 }
 
