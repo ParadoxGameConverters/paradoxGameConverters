@@ -1,5 +1,6 @@
 rem **Create blankMod**
-del "Release\blankMod" /Q
+del "Release\blankMod" /Q /S /F
+rmdir "Release\blankMod" /Q /S
 xcopy "Data_Files\blankMod" "release\blankmod" /Y /E /I
 
 rem **Copy data files**
