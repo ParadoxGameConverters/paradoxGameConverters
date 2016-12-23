@@ -61,6 +61,7 @@ class HoI4State
 		int getDockyards() const { return dockyards; }
 		int getCivFactories() const { return civFactories; }
 		int getMilFactories() const { return milFactories; }
+		int getInfrastructure() const { return infrastructure; }
 		int getManpower() const { return manpower; }
 		int getVPLocation() const { return victoryPointPosition; }
 

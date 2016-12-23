@@ -52,6 +52,7 @@ class HoI4Focus
 		int xPos;
 		int yPos;
 		int cost;
+		bool availableIfCapitulated;
 		string available;
 		string cancelIfInvalid;
 		string continueIfInvalid;

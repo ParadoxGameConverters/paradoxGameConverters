@@ -59,5 +59,7 @@ Mattymooz		- Data Files
 Yellowone1		- Art
 KaeI				- Art
 
+Special thanks to LukyLucaz, who allowed us to incoroporate Increased Resources into the converter.
+
 
  - AND ALL THE OTHERS WHO GAVE THEIR INPUT ON THE FORUM -

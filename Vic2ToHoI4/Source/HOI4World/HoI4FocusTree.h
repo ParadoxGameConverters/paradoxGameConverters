@@ -47,13 +47,16 @@ class HoI4FocusTree
 
 		void addGenericFocusTree();
 		void addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Country*> CountriesToContain, int XStart);
-		void addMonarchyEmpireNationalFocuses(HoI4Country* Home, HoI4Country* Annexed1, HoI4Country* Annexed2, HoI4Country* Annexed3, HoI4Country* Annexed4, int ProtectorateNumber, int AnnexNumber, int x);
+		void addMonarchyEmpireNationalFocuses(HoI4Country* country, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets);
 
 		void output();
 
 		void addFocus(HoI4Focus* newFocus) { focuses.push_back(newFocus); }
 
 	private:
+		void addVersion1_0GenericFocusTree();
+		void addVersion1_3GenericFocusTree();
+
 		string srcCountryTag;
 		string dstCountryTag;
 		vector<HoI4Focus*> focuses;

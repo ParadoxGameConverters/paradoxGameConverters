@@ -148,5 +148,8 @@ HOI4Version Configuration::getAutomaticHoI4Version()
 		}
 	}
 
+	LOG(LogLevel::Error) << "Could not automatically set HoI4 version. Run HoI4 and convert again, or use a different version setting.";
+	exit(-1);
+
 	return HOI4Version();
 }

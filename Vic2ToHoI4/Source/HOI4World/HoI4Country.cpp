@@ -828,7 +828,6 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	if (isThisStateOwnedByUs(state))
 	{
 		state->setAsCapitalState();
-		state->addAirBase(10);
 	}
 
 	// major nation

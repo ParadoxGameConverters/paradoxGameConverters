@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 HoI4Focus::HoI4Focus()
 {
+	availableIfCapitulated = false;
 }
 
 
@@ -70,6 +71,15 @@ HoI4Focus::HoI4Focus(Object* obj)
 	xPos = stoi(obj->getLeaf("x"));
 	yPos = stoi(obj->getLeaf("y"));
 	cost = stoi(obj->getLeaf("cost"));
+
+	auto availableIfcapitulatedObjs = obj->getValue("available_if_capitulated");
+	if (
+			(availableIfcapitulatedObjs.size() > 0) &&
+			(availableIfcapitulatedObjs[0]->getLeaf() == "yes")
+		)
+	{
+		availableIfCapitulated = true;
+	}
 
 	auto availableObjs = obj->getValue("available");
 	if (availableObjs.size() > 0)
@@ -183,6 +193,10 @@ ostream& operator << (ostream& output, HoI4Focus& focus)
 	output << "		x = " << focus.xPos << "\n";
 	output << "		y = " << focus.yPos << "\n";
 	output << "		cost = " << focus.cost << "\n";
+	if (focus.availableIfCapitulated)
+	{
+		output << "		available_if_capitulated = yes\n";
+	}
 	if (focus.available != "")
 	{
 		output << "		available = {\n";
