@@ -253,8 +253,8 @@ link = { v2 = native_american_minor eu4 = tlingit eu4 = miwok }
 # East Asian - japanese, manchu, chihan, cantonese, korean
 link = { v2 = japanese eu4 = japanese eu4 = kyushuan eu4 = togoku }
 link = { v2 = manchu eu4 = manchu }
-link = { v2 = beifaren eu4 = chihan eu4 = wu eu4 = jin eu4 = jianghuai eu4 = xibei eu4 = zhongyuan eu4 = shandong_culture }
-link = { v2 = nanfaren eu4 = gan eu4 = xiang eu4 = sichuanese eu4 = hubei }
+link = { v2 = beifaren eu4 = chihan  eu4 = jin  eu4 = xibei eu4 = zhongyuan eu4 = shandong_culture }
+link = { v2 = nanfaren eu4 = gan eu4 = xiang eu4 = sichuanese eu4 = hubei eu4 = wu eu4 = jianghuai }
 link = { v2 = korean eu4 = korean }
 link = { v2 = ainu eu4 = ainu }
 link = { v2 = hakka eu4 = hakka }

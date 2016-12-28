@@ -31,10 +31,31 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 V2State::V2State(int newId, V2Province* firstProvince)
 {
-	id					= newId;
-	colonial			= false;
+	id = newId;
+	colonial = false;
 	provinces.clear();
 	provinces.push_back(firstProvince);
+
+	//Only one naval base in a state
+	V2Province* prov = nullptr;
+	int level = 0;
+	for (auto province : provinces)
+	{
+		if (!prov)
+		{
+			prov = province;
+		}
+		level += province->getNavalBaseLevel();
+		if (prov->getNavalBaseLevel() < province->getNavalBaseLevel())
+		{
+			prov = province;
+		}
+	}
+	for (auto province : provinces)
+	{
+		province->setNavalBaseLevel(0);
+	}
+	prov->setNavalBaseLevel(level > 2 ? 2 : level);
 	factories.clear();
 }
 
@@ -77,8 +98,8 @@ bool V2State::hasLocalSupply(string product) const
 double V2State::getSuppliedInputs(const V2Factory* factory) const
 {
 	// find out the needs
-	map<string, float>	inputs	= factory->getInputs();
-	int						numNeeds	= inputs.size();
+	map<string, float>	inputs = factory->getInputs();
+	int						numNeeds = inputs.size();
 
 	// find out what we have from both RGOs and existing factories
 	map<string, float> supplies;
@@ -111,7 +132,7 @@ bool V2State::provInState(int id) const
 {
 	for (vector<V2Province*>::const_iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
-		if ( (*itr)->getNum() == id )
+		if ((*itr)->getNum() == id)
 		{
 			return true;
 		}
@@ -154,13 +175,13 @@ double V2State::getManuRatio() const
 	int numManus = 0;
 	for (auto itr = srcProvinces.begin(); itr != srcProvinces.end(); itr++)
 	{
-		if (	(*itr)->hasBuilding("refinery") ||
-				(*itr)->hasBuilding("wharf") ||
-				(*itr)->hasBuilding("weapons") ||
-				(*itr)->hasBuilding("textile") ||
-				(*itr)->hasBuilding("farm_estate") ||
-				(*itr)->hasBuilding("plantations") ||
-				(*itr)->hasBuilding("tradecompany")
+		if ((*itr)->hasBuilding("refinery") ||
+			(*itr)->hasBuilding("wharf") ||
+			(*itr)->hasBuilding("weapons") ||
+			(*itr)->hasBuilding("textile") ||
+			(*itr)->hasBuilding("farm_estate") ||
+			(*itr)->hasBuilding("plantations") ||
+			(*itr)->hasBuilding("tradecompany")
 			)
 		{
 			numManus++;
