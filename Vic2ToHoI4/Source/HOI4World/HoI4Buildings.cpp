@@ -70,13 +70,14 @@ ostream& HoI4NavalBase::print(ostream& out) const
 
 HoI4Buildings::HoI4Buildings(const map<int, int>& provinceToStateIDMap)
 {
+	LOG(LogLevel::Info) << "Creating buildings";
 	placeNavalBases(provinceToStateIDMap);
 }
 
 
 void HoI4Buildings::placeNavalBases(const map<int, int>& provinceToStateIDMap)
 {
-	map<int, int> coastalProvinces = coastalProvincesMapper::getCoastalProvinces();
+	map<int, int> coastalProvinces = coastalHoI4ProvincesMapper::getCoastalProvinces();
 	map<int, pair<double, double>> positions = getProvincePositions();
 	for (auto province: coastalProvinces)
 	{
@@ -91,6 +92,7 @@ void HoI4Buildings::placeNavalBases(const map<int, int>& provinceToStateIDMap)
 		if (provinceToStateMapping == provinceToStateIDMap.end())
 		{
 			LOG(LogLevel::Warning) << "Could not find state for province " << province.first << ". Naval base not set.";
+			continue;
 		}
 
 		HoI4NavalBase* newNavalBase = new HoI4NavalBase(provinceToStateMapping->second, position->second.first, position->second.second, province.second);

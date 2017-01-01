@@ -22,9 +22,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Configuration.h"
+#include "OSCompatibilityLayer.h"
 #include "ParadoxParserUTF8.h"
 #include "Object.h"
 #include "Log.h"
+#include <fstream>
 #include <vector>
 using namespace std;
 
@@ -50,10 +52,41 @@ Configuration::Configuration()
 		exit (-1);
 	}
 
-	V2Path				= obj[0]->getLeaf("V2directory");
-	HoI4Path				= obj[0]->getLeaf("HoI4directory");
+	V2Path = obj[0]->getLeaf("V2directory");
+	if (V2Path.empty() || !Utils::doesFolderExist(V2Path))
+	{
+		LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
+		exit(-1);
+	}
+	else
+	{
+		LOG(LogLevel::Debug) << "Victoria 2 install path is " << V2Path;
+	}
+
+	HoI4Path = obj[0]->getLeaf("HoI4directory");
+	if (HoI4Path.empty() || !Utils::doesFolderExist(HoI4Path))
+	{
+		LOG(LogLevel::Error) << "No HoI4 path was specified in configuration.txt, or the path was invalid";
+		exit(-1);
+	}
+	else
+	{
+		LOG(LogLevel::Debug) << "HoI4 path install path is " << HoI4Path;
+	}
+
 	HoI4DocumentsPath = obj[0]->getLeaf("HoI4Documentsdirectory");
-	outputName			= "";
+	if (HoI4DocumentsPath.empty() || !Utils::doesFolderExist(HoI4DocumentsPath))
+	{
+		LOG(LogLevel::Error) << "No HoI4 documents directory was specified in configuration.txt, or the path was invalid";
+		exit(-1);
+	}
+	else
+	{
+		LOG(LogLevel::Debug) << "HoI4 documents directory is " << HoI4DocumentsPath;
+	}
+
+
+	outputName = "";
 
 	vector<Object*> modsObj = obj[0]->getValue("Vic2Mods");
 	if (modsObj.size() > 0)
@@ -76,4 +109,47 @@ Configuration::Configuration()
 
 	leaderID					= 1000;
 	leaderIDCountryIdx	= 1;
+
+	string versionMethod = obj[0]->getLeaf("HoI4VersionMethod");
+	if (versionMethod == "automatic")
+	{
+		version = getAutomaticHoI4Version();
+	}
+	else if (versionMethod == "manualEntry")
+	{
+		version = HOI4Version(obj[0]->getLeaf("HoI4Version"));
+	}
+	else // (versionMethod == "hardcoded")
+	{
+		version = HOI4Version("1.3.1");
+	}
+}
+
+
+HOI4Version Configuration::getAutomaticHoI4Version()
+{
+	ifstream systemLog(HoI4DocumentsPath + "/logs/system.log");
+	if (systemLog.is_open())
+	{
+		while (!systemLog.eof())
+		{
+			char buffer[256];
+			systemLog.getline(buffer, sizeof(buffer));
+			string line(buffer);
+			int versionPosition = line.find("Version: ");
+			if (versionPosition != string::npos)
+			{
+				int position1 = line.find_first_of(' ', versionPosition);
+				int position2 = line.find_first_of(' ', position1 + 1) + 2;
+				int position3 = line.find_first_of(' ', position2 + 1);
+				string versionString = line.substr(position2, position3 - position2);
+				return HOI4Version(versionString);
+			}
+		}
+	}
+
+	LOG(LogLevel::Error) << "Could not automatically set HoI4 version. Run HoI4 and convert again, or use a different version setting.";
+	exit(-1);
+
+	return HOI4Version();
 }

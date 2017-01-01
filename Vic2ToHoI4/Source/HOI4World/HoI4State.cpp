@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "../Mappers/CoastalHoI4Provinces.h"
 #include "../Mappers/ProvinceMapper.h"
+#include "../Mappers/StateCategoryMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "../V2World/V2Province.h"
 #include "../V2World/V2World.h"
@@ -52,8 +53,7 @@ HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, string _ownerTag)
 	category = "pastoral";
 	infrastructure = 0;
 
-	navalLevel = 0;
-	navalLocation = 0;
+	navalBases.clear();
 
 	airbaseLevel = 0;
 
@@ -109,10 +109,10 @@ void HoI4State::output(string _filename)
 		out << "\t\t\tdockyard = " << dockyards << endl;
 	}
 		
-	if ((navalLevel > 0) && (navalLocation > 0))
+	for (auto navalBase: navalBases)
 	{
-		out << "\t\t\t" << navalLocation << " = {" << endl;
-		out << "\t\t\t\tnaval_base = " << navalLevel << endl;
+		out << "\t\t\t" << navalBase.first << " = {" << endl;
+		out << "\t\t\t\tnaval_base = " << navalBase.second << endl;
 		out << "\t\t\t}" << endl;
 	}
 	out << "\t\t\tair_base = "<< airbaseLevel << endl;
@@ -138,12 +138,60 @@ void HoI4State::output(string _filename)
 }
 
 
-void HoI4State::setNavalBase(int level, int location)
+void HoI4State::convertNavalBases()
 {
-	if (provinces.find(location) != provinces.end())
+	for (auto sourceProvince: sourceState->getProvinces())
 	{
-		navalLevel		= level;
-		navalLocation	= location;
+		int navalBaseLevel = determineNavalBaseLevel(sourceProvince);
+		if (navalBaseLevel == 0)
+		{
+			continue;
+		}
+
+		int navalBaseLocation = determineNavalBaseLocation(sourceProvince);
+		if (navalBaseLocation != -1)
+		{
+			addNavalBase(navalBaseLevel, navalBaseLocation);
+		}
+	}
+}
+
+
+int HoI4State::determineNavalBaseLevel(const V2Province* sourceProvince)
+{
+	int navalBaseLevel = sourceProvince->getNavalBaseLevel() * 2;
+	if (navalBaseLevel > 10)
+	{
+		navalBaseLevel = 10;
+	}
+
+	return navalBaseLevel;
+}
+
+
+int HoI4State::determineNavalBaseLocation(const V2Province* sourceProvince)
+{
+	auto provinceMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(sourceProvince->getNumber());
+	if (provinceMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
+	{
+		for (auto HoI4ProvNum: provinceMapping->second)
+		{
+			if (coastalHoI4ProvincesMapper::isProvinceCoastal(HoI4ProvNum))
+			{
+				return HoI4ProvNum;
+			}
+		}
+	}
+
+	return -1;
+}
+
+
+void HoI4State::addNavalBase(int level, int location)
+{
+	if ((level > 0) && (provinces.find(location) != provinces.end()))
+	{
+		navalBases.push_back(make_pair(location, level));
 	}
 }
 
@@ -166,6 +214,23 @@ void HoI4State::assignVP(int location)
 	{
 		victoryPointValue += 2;
 	}
+}
+
+
+int HoI4State::getMainNavalLocation() const
+{
+	int mainLocation = 0;
+	int mainSize = 0;
+	for (auto navalBase: navalBases)
+	{
+		if (navalBase.second > mainSize)
+		{
+			mainLocation = navalBase.first;
+			mainSize = navalBase.second;
+		}
+	}
+
+	return mainLocation;
 }
 
 
@@ -238,14 +303,13 @@ void HoI4State::determineCategory(int factories)
 	}
 
 	int population = sourceState->getPopulation();
-
-	int stateSlots = population / 120000; // one slot is given per 120,000 people (need to change)
+	int stateSlots = population / 120000;
 	if (factories >= stateSlots)
 	{
 		stateSlots = factories + 2;
 	}
 
-	for (auto possibleCategory: getStateCategories())
+	for (auto possibleCategory: stateCategoryMapper::getStateCategories())
 	{
 		if (stateSlots >= possibleCategory.first)
 		{
@@ -255,27 +319,10 @@ void HoI4State::determineCategory(int factories)
 }
 
 
-map<int, string> HoI4State::getStateCategories()
-{
-	map<int, string> stateCategories;
-
-	stateCategories.insert(make_pair(12, "megalopolis"));
-	stateCategories.insert(make_pair(10, "metropolis"));
-	stateCategories.insert(make_pair(8, "large_city"));
-	stateCategories.insert(make_pair(6, "city"));
-	stateCategories.insert(make_pair(5, "large_town"));
-	stateCategories.insert(make_pair(4, "town"));
-	stateCategories.insert(make_pair(2, "rural"));
-	stateCategories.insert(make_pair(1, "pastoral"));
-	stateCategories.insert(make_pair(0, "enclave"));
-
-	return stateCategories;
-}
-
-
 void HoI4State::setInfrastructure(int factories)
 {
-	infrastructure = sourceState->getAverageRailLevel();
+	infrastructure = 3;
+	infrastructure += sourceState->getAverageRailLevel() / 2;
 
 	if (factories > 4)
 	{
@@ -343,7 +390,7 @@ void HoI4State::setIndustry(int factories)
 
 bool HoI4State::amICoastal()
 {
-	map<int, int> coastalProvinces = coastalProvincesMapper::getCoastalProvinces();
+	map<int, int> coastalProvinces = coastalHoI4ProvincesMapper::getCoastalProvinces();
 	for (auto province: provinces)
 	{
 		auto itr = coastalProvinces.find(province);

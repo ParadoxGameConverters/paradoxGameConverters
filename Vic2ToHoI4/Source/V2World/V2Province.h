@@ -50,6 +50,7 @@ class V2Province
 		void addCoreString(string coreString) { coreStrings.insert(coreString); }
 		void removeCoreString(string coreString) { coreStrings.erase(coreString); }
 
+		int getNumber() const { return number; }
 		string getOwnerString() const { return ownerString; }
 		const V2Country* getOwner() const { return owner; }
 		set<V2Country*> getCores() const { return cores; }
@@ -68,6 +69,8 @@ class V2Province
 		void readPops(Object* obj);
 		bool isPopObject(Object* obj);
 		int calculateLiteracyWeightedPop(const V2Pop* thePop) const;
+
+		int number;
 
 		string ownerString;
 		const V2Country* owner;
