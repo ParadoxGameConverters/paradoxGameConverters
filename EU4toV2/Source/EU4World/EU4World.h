@@ -40,7 +40,7 @@ struct EU4Agreement;
 
 class EU4World {
 	public:
-		EU4World(const string& EU4SaveFileName, map<string, string> possibleMods);
+		EU4World(const string& EU4SaveFileName);
 		void setNumbersOfDestinationProvinces();
 
 		void readCommonCountries();
@@ -65,6 +65,12 @@ class EU4World {
 		double							getWorldWeightSum()	const { return worldWeightSum; };
 
 	private:
+		void verifySave(const string& EU4SaveFileName);
+
+		map<string, string> getPossibleMods();
+		void getEU4ModDirectory(map<string, string>& possibleMods);
+		void getCK2ExportDirectory(map<string, string>& possibleMods);
+
 		void uniteJapan();
 
 		map<int, EU4Province*>		provinces;	// the provinces

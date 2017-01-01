@@ -32,6 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <cmath>
 #include <cfloat>
 #include "ParadoxParser8859_15.h"
+#include "ParadoxParserUTF8.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "../Mappers/AdjacencyMapper.h"
@@ -74,7 +75,7 @@ typedef struct fileWithCreateTime
 } fileWithCreateTime;
 
 
-V2World::V2World()
+V2World::V2World(const EU4World& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Parsing Vicky2 data";
 
@@ -319,11 +320,69 @@ V2World::V2World()
 	V2CountriesInput.close();
 
 	colonies.clear();
+
+	CountryMapping::createMappings(sourceWorld, getPotentialCountries());
+
+	map<int, int> leaderIDMap; // <EU4, V2>
+
+										// Parse tech schools
+	LOG(LogLevel::Info) << "Parsing tech schools.";
+	Object* techSchoolObj = parser_UTF8::doParseFile("blocked_tech_schools.txt");
+	if (techSchoolObj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file blocked_tech_schools.txt";
+		exit(-1);
+	}
+	vector<string> blockedTechSchools;	// the list of disallowed tech schools
+	blockedTechSchools = initBlockedTechSchools(techSchoolObj);
+	Object* technologyObj = parser_8859_15::doParseFile( (Configuration::getV2Path() + "/common/technology.txt").c_str() );
+	if (technologyObj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getV2Path() << "/common/technology.txt";
+		exit(-1);
+	}
+	vector<techSchool> techSchools;
+	techSchools = initTechSchools(technologyObj, blockedTechSchools);
+
+	// Construct factory factory
+	LOG(LogLevel::Info) << "Determining factory allocation rules.";
+	V2FactoryFactory factoryBuilder;
+
+	LOG(LogLevel::Info) << "Converting countries";
+	convertCountries(sourceWorld, techSchools, leaderIDMap);
+	LOG(LogLevel::Info) << "Converting provinces";
+	convertProvinces(sourceWorld);
+	LOG(LogLevel::Info) << "Converting diplomacy";
+	convertDiplomacy(sourceWorld);
+	LOG(LogLevel::Info) << "Setting colonies";
+	setupColonies();
+	LOG(LogLevel::Info) << "Creating states";
+	setupStates();
+	LOG(LogLevel::Info) << "Setting unciv reforms";
+	convertUncivReforms();
+	LOG(LogLevel::Info) << "Converting techs";
+	convertTechs(sourceWorld);
+	LOG(LogLevel::Info) << "Allocating starting factories";
+	allocateFactories(sourceWorld, factoryBuilder);
+	LOG(LogLevel::Info) << "Creating pops";
+	setupPops(sourceWorld);
+	LOG(LogLevel::Info) << "Adding unions";
+	addUnions();
+	LOG(LogLevel::Info) << "Converting armies and navies";
+	convertArmies(sourceWorld, leaderIDMap);
+
+	output();
 }
 
 
 void V2World::output() const
 {
+	LOG(LogLevel::Info) << "Outputting mod";
+	Utils::copyFolder("blankMod/output", "output/output");
+	Utils::renameFolder("output/output", "output/" + Configuration::getOutputName());
+	createModFile();
+
+
 	// Create common\countries path.
 	string countriesPath = "Output/" + Configuration::getOutputName() + "/common/countries";
 	if (!Utils::TryCreateFolder(countriesPath))
@@ -483,6 +542,37 @@ void V2World::output() const
 		}
 	}
 	V2CountriesInput.close();
+}
+
+
+void V2World::createModFile() const
+{
+	ofstream modFile("Output/" + Configuration::getOutputName() + ".mod");
+	if (!modFile.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not create " << Configuration::getOutputName() << ".mod";
+		exit(-1);
+	}
+
+	modFile << "name = \"Converted - " << Configuration::getOutputName() << "\"\n";
+	modFile << "path = \"mod/" << Configuration::getOutputName() << "\"\n";
+	modFile << "user_dir = \"" << Configuration::getOutputName() << "\"\n";
+	modFile << "replace = \"history/provinces\"\n";
+	modFile << "replace = \"history/countries\"\n";
+	modFile << "replace = \"history/diplomacy\"\n";
+	modFile << "replace = \"history/units\"\n";
+	modFile << "replace = \"history/pops/1836.1.1\"\n";
+	modFile << "replace = \"common/religion.txt\"\n";
+	modFile << "replace = \"common/cultures.txt\"\n";
+	modFile << "replace = \"common/countries.txt\"\n";
+	modFile << "replace = \"common/countries/\"\n";
+	modFile << "replace = \"gfx/interface/icon_religion.dds\"\n";
+	modFile << "replace = \"localisation/0_Names.csv\"\n";
+	modFile << "replace = \"localisation/0_Cultures.csv\"\n";
+	modFile << "replace = \"localisation/0_Religions.csv\"\n";
+	modFile << "replace = \"history/wars\"\n";
+
+	modFile.close();
 }
 
 

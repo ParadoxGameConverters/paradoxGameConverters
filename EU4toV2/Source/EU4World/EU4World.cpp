@@ -44,9 +44,12 @@ using namespace std;
 
 
 
-EU4World::EU4World(const string& EU4SaveFileName, map<string, string> possibleMods)
+EU4World::EU4World(const string& EU4SaveFileName)
 {
 	LOG(LogLevel::Info) << "* Importing EU4 save *";
+	verifySave(EU4SaveFileName);
+
+	map<string, string> possibleMods = getPossibleMods();
 
 	//	Parse EU4 Save
 	LOG(LogLevel::Info) << "Parsing save";
@@ -404,6 +407,151 @@ EU4World::EU4World(const string& EU4SaveFileName, map<string, string> possibleMo
 	else if (Configuration::getRemovetype() == "all")
 	{
 		removeLandlessNations();
+	}
+}
+
+
+void EU4World::verifySave(const string& EU4SaveFileName)
+{
+	FILE* saveFile = fopen(EU4SaveFileName.c_str(), "r");
+	if (saveFile == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not open save! Exiting!";
+		exit(-1);
+	}
+	else
+	{
+		char buffer[7];
+		fread(buffer, 1, 7, saveFile);
+		if ((buffer[0] == 'P') && (buffer[1] == 'K'))
+		{
+			LOG(LogLevel::Error) << "Saves must be uncompressed to be converted.";
+			exit(-1);
+		}
+		else if ((buffer[0] = 'E') && (buffer[1] == 'U') && (buffer[2] == '4') && (buffer[3] = 'b') && (buffer[4] == 'i') && (buffer[5] == 'n') && (buffer[6] == 'M'))
+		{
+			LOG(LogLevel::Error) << "Ironman saves cannot be converted.";
+			exit(-1);
+		}
+	}
+}
+
+
+map<string, string> EU4World::getPossibleMods()
+{
+	map<string, string> possibleMods;
+	getEU4ModDirectory(possibleMods);
+	getCK2ExportDirectory(possibleMods);
+
+	return possibleMods;
+}
+
+
+void EU4World::getEU4ModDirectory(map<string, string>& possibleMods)
+{
+	LOG(LogLevel::Debug) << "Get EU4 Mod Directory";
+	string EU4DocumentsLoc = Configuration::getEU4DocumentsPath();	// the EU4 My Documents location as stated in the configuration file
+	if (Utils::DoesFileExist(EU4DocumentsLoc))
+	{
+		LOG(LogLevel::Error) << "No Europa Universalis 4 documents directory was specified in configuration.txt, or the path was invalid";
+		exit(-1);
+	}
+	else
+	{
+		LOG(LogLevel::Debug) << "EU4 Documents directory is " << EU4DocumentsLoc;
+		set<string> fileNames;
+		Utils::GetAllFilesInFolder(EU4DocumentsLoc + "/mod", fileNames);
+		for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
+		{
+			const int pos = itr->find_last_of('.');	// the position of the last period in the filename
+			if (itr->substr(pos, itr->length()) == ".mod")
+			{
+				Object* modObj = parser_UTF8::doParseFile((EU4DocumentsLoc + "/mod/" + *itr).c_str());	// the parsed mod file
+
+				string name;	// the name of the mod
+				vector<Object*> nameObj = modObj->getValue("name");
+				if (nameObj.size() > 0)
+				{
+					name = nameObj[0]->getLeaf();
+				}
+				else
+				{
+					name = "";
+				}
+
+				string path;	// the path of the mod
+				vector<Object*> dirObjs = modObj->getValue("path");	// the possible paths of the mod
+				if (dirObjs.size() > 0)
+				{
+					path = dirObjs[0]->getLeaf();
+				}
+				else
+				{
+					vector<Object*> dirObjs = modObj->getValue("archive");	// the other possible paths of the mod (if its zipped)
+					if (dirObjs.size() > 0)
+					{
+						path = dirObjs[0]->getLeaf();
+					}
+				}
+
+				if ((name != "") && (path != ""))
+				{
+					possibleMods.insert(make_pair(name, EU4DocumentsLoc + "/" + path));
+					Log(LogLevel::Debug) << "\t\tFound a mod named " << name << " claiming to be at " << EU4DocumentsLoc << "/" << path;
+				}
+			}
+		}
+	}
+}
+
+
+void EU4World::getCK2ExportDirectory(map<string, string>& possibleMods)
+{
+	LOG(LogLevel::Debug) << "Get CK2 Export Directory";
+	string CK2ExportLoc = Configuration::getCK2ExportPath();		// the CK2 converted mods location as stated in the configuration file
+	if (Utils::DoesFileExist(CK2ExportLoc))
+	{
+		LOG(LogLevel::Warning) << "No Crusader Kings 2 mod directory was specified in configuration.txt, or the path was invalid - this will cause problems with CK2 converted saves";
+	}
+	else
+	{
+		LOG(LogLevel::Debug) << "CK2 export directory is " << CK2ExportLoc;
+		set<string> fileNames;
+		Utils::GetAllFilesInFolder(CK2ExportLoc, fileNames);
+		for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
+		{
+			const int pos = itr->find_last_of('.');	// the last period in the filename
+			if ((pos != string::npos) && (itr->substr(pos, itr->length()) == ".mod"))
+			{
+				Object* modObj = parser_UTF8::doParseFile((CK2ExportLoc + "/" + *itr).c_str());	// the parsed mod file
+				vector<Object*> nameObj = modObj->getValue("name");
+				string name;
+				if (nameObj.size() > 0)
+				{
+					name = nameObj[0]->getLeaf();
+				}
+
+				string path;	// the path of the mod
+				vector<Object*> dirObjs = modObj->getValue("user_dir");	// the possible paths for the mod
+				if (dirObjs.size() > 0)
+				{
+					path = dirObjs[0]->getLeaf();
+				}
+				else
+				{
+					vector<Object*> dirObjs = modObj->getValue("archive");	// the other possible paths for the mod (if it's zipped)
+					if (dirObjs.size() > 0)
+					{
+						path = dirObjs[0]->getLeaf();
+					}
+				}
+
+				if (path != "")
+				{
+					possibleMods.insert(make_pair(name, CK2ExportLoc + "/" + path));
+				}
+			}
+		}
 	}
 }
 

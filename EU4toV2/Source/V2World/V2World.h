@@ -45,8 +45,7 @@ class V2LeaderTraits;
 
 class V2World {
 	public:
-		V2World();
-		void output() const;
+		V2World(const EU4World& sourceWorld);
 		void createProvinceFiles(const EU4World& sourceWorld);
 		
 		void convertCountries(const EU4World& sourceWorld, const vector<techSchool>& techSchools, map<int, int>& leaderIDMap);
@@ -65,6 +64,9 @@ class V2World {
 		map<string, V2Country*>	getDynamicCountries()	const;
 
 	private:
+		void output() const;
+		void createModFile() const;
+
 		void checkForCivilizedNations();
 		vector<V2Demographic>	determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, EU4Country* oldOwner, int destNum, double provPopRatio);
 
