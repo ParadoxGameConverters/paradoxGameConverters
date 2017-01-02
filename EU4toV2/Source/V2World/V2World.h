@@ -49,9 +49,13 @@ class V2World {
 
 	private:
 		void importProvinces();
+		set<string> getProvinceFilenames();
 		void getProvinceLocalizations(string file);
 
 		void importDefaultPops();
+		void importPopsFromProvince(Object* provinceObj, int provinceNum);
+
+		void logPopsByCountry();
 		void findCoastalProvinces();
 		void importPotentialCountries();
 		void importTechSchools();
@@ -82,7 +86,7 @@ class V2World {
 		map<string, V2Country*> dynamicCountries;
 		V2Diplomacy diplomacy;
 		map<int, set<string>> colonies;
-		map<string, list<int>*>	popRegions;
+		map<string, list<int>>	popRegions;
 		vector<techSchool> techSchools;
 		map<int, int> leaderIDMap; // <EU4, V2>
 		long totalWorldPopulation;
