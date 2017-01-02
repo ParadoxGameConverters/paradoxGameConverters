@@ -224,62 +224,97 @@ void V2World::importPopsFromProvince(Object* provinceObj, int provinceNum)
 
 void V2World::logPopsByCountry()
 {
-	map<string, map<string, long int>> countryPops; // country, poptype, num
+	map<string, map<string, long int>> popsByCountry; // country, poptype, num
 
-	set<string> fileNames;
-	Utils::GetAllFilesInFolder("./blankMod/output/history/pops/1836.1.1/", fileNames);
-	for (auto filename: fileNames)
+	set<string> filenames;
+	Utils::GetAllFilesInFolder("./blankMod/output/history/pops/1836.1.1/", filenames);
+	for (auto filename: filenames)
 	{
-		Object* fileObj = parser_8859_15::doParseFile(("./blankMod/output/history/pops/1836.1.1/" + filename));
-		vector<Object*> provinceObjs = fileObj->getLeaves();
-		for (auto provinceObj: provinceObjs)
-		{
-			int provinceNum = stoi(provinceObj->getKey());
-			auto province = provinces.find(provinceNum);
-			if (province == provinces.end())
-			{
-				LOG(LogLevel::Warning) << "Could not find province " << provinceNum << " for original pops.";
-				continue;
-			}
-
-			auto countryPopItr = countryPops.find(province->second->getOwner());
-			if (countryPopItr == countryPops.end())
-			{
-				map<string, long int> newCountryPop;
-				auto newIterator = countryPops.insert(make_pair(province->second->getOwner(), newCountryPop));
-				countryPopItr = newIterator.first;
-			}
-
-			vector<Object*> pops = provinceObj->getLeaves();
-			for (auto pop: pops)
-			{
-				string	popType		= pop->getKey();
-				int		popSize		= stoi(pop->getLeaf("size"));
-
-				auto popItr = countryPopItr->second.find(pop->getKey());
-				if (popItr == countryPopItr->second.end())
-				{
-					long int newPopSize = 0;
-					pair<map<string, long int>::iterator, bool> newIterator = countryPopItr->second.insert(make_pair(popType, newPopSize));
-					popItr = newIterator.first;
-				}
-				popItr->second += popSize;
-			}
-		}
+		logPopsFromFile(filename, popsByCountry);
 	}
 
-	for (auto countryItr = countryPops.begin(); countryItr != countryPops.end(); countryItr++)
+	outputLog(popsByCountry);
+}
+
+
+void V2World::logPopsFromFile(string filename, map<string, map<string, long int>>& popsByCountry)
+{
+	Object* fileObj = parser_8859_15::doParseFile(("./blankMod/output/history/pops/1836.1.1/" + filename));
+
+	vector<Object*> provinceObjs = fileObj->getLeaves();
+	for (auto provinceObj: provinceObjs)
+	{
+		logPopsInProvince(provinceObj, popsByCountry);
+	}
+}
+
+
+void V2World::logPopsInProvince(Object* provinceObj, map<string, map<string, long int>>& popsByCountry)
+{
+	int provinceNum = stoi(provinceObj->getKey());
+	auto province = provinces.find(provinceNum);
+	if (province == provinces.end())
+	{
+		LOG(LogLevel::Warning) << "Could not find province " << provinceNum << " for original pops.";
+		return;
+	}
+
+	auto countryPopItr = getCountryForPopLogging(province->second->getOwner(), popsByCountry);
+
+	vector<Object*> pops = provinceObj->getLeaves();
+	for (auto pop: pops)
+	{
+		logPop(pop, countryPopItr);
+	}
+}
+
+
+void V2World::logPop(Object* pop, map<string, map<string, long int>>::iterator countryPopItr)
+{
+	string popType = pop->getKey();
+	int popSize = stoi(pop->getLeaf("size"));
+
+	auto popItr = countryPopItr->second.find(pop->getKey());
+	if (popItr == countryPopItr->second.end())
+	{
+		long int newPopSize = 0;
+		pair<map<string, long int>::iterator, bool> newIterator = countryPopItr->second.insert(make_pair(popType, newPopSize));
+		popItr = newIterator.first;
+	}
+	popItr->second += popSize;
+}
+
+
+map<string, map<string, long int>>::iterator V2World::getCountryForPopLogging(string country, map<string, map<string, long int>>& popsByCountry)
+{
+	auto countryPopItr = popsByCountry.find(country);
+	if (countryPopItr == popsByCountry.end())
+	{
+		map<string, long int> newCountryPop;
+		auto newIterator = popsByCountry.insert(make_pair(country, newCountryPop));
+		countryPopItr = newIterator.first;
+	}
+
+	return countryPopItr;
+}
+
+
+void V2World::outputLog(const map<string, map<string, long int>>& popsByCountry)
+{
+	for (auto countryItr: popsByCountry)
 	{
 		long int total = 0;
-		for (auto popsItr = countryItr->second.begin(); popsItr != countryItr->second.end(); popsItr++)
+		for (auto popsItr: countryItr.second)
 		{
-			total += popsItr->second;
+			total += popsItr.second;
 		}
-		for (auto popsItr = countryItr->second.begin(); popsItr != countryItr->second.end(); popsItr++)
+
+		for (auto popsItr: countryItr.second)
 		{
-			LOG(LogLevel::Info) << "," << countryItr->first << "," << popsItr->first << "," << popsItr->second << "," << (double)popsItr->second / total;
+			LOG(LogLevel::Info) << "," << countryItr.first << "," << popsItr.first << "," << popsItr.second << "," << static_cast<double>(popsItr.second / total);
 		}
-		LOG(LogLevel::Info) << "," << countryItr->first << "," << "Total," << total << "," << (double)total/total;
+
+		LOG(LogLevel::Info) << "," << countryItr.first << "," << "Total," << total << "," << static_cast<double>(total / total);
 	}
 }
 

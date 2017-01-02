@@ -57,6 +57,12 @@ class V2World {
 		void importPopsFromProvince(Object* provinceObj, int provinceNum);
 
 		void logPopsByCountry();
+		void logPopsFromFile(string filename, map<string, map<string, long int>>& popsByCountry);
+		void logPopsInProvince(Object* provinceObj, map<string, map<string, long int>>& popsByCountry);
+		map<string, map<string, long int>>::iterator getCountryForPopLogging(string country, map<string, map<string, long int>>& popsByCountry);
+		void logPop(Object* pop, map<string, map<string, long int>>::iterator countryPopItr);
+		void outputLog(const map<string, map<string, long int>>& popsByCountry);
+
 		void findCoastalProvinces();
 		void importPotentialCountries();
 		void importTechSchools();
