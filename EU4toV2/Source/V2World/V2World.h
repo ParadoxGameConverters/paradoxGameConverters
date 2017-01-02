@@ -53,6 +53,7 @@ class V2World {
 		void getProvinceLocalizations(string file);
 
 		void importDefaultPops();
+		void importPopsFromFile(const string& filename);
 		void importPopsFromProvince(Object* provinceObj, int provinceNum);
 
 		void logPopsByCountry();

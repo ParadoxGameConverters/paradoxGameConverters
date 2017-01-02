@@ -164,20 +164,26 @@ void V2World::importDefaultPops()
 	Utils::GetAllFilesInFolder("./blankMod/output/history/pops/1836.1.1/", filenames);
 	for (auto filename: filenames)
 	{
-		list<int> popProvinces;
-
-		Object* fileObj = parser_8859_15::doParseFile(("./blankMod/output/history/pops/1836.1.1/" + filename));
-		vector<Object*> provinceObjs = fileObj->getLeaves();
-		for (auto provinceObj: provinceObjs)
-		{
-			int provinceNum = stoi(provinceObj->getKey());
-			popProvinces.push_back(provinceNum);
-
-			importPopsFromProvince(provinceObj, provinceNum);
-		}
-
-		popRegions.insert(make_pair(filename, popProvinces));
+		importPopsFromFile(filename);
 	}
+}
+
+
+void V2World::importPopsFromFile(const string& filename)
+{
+	list<int> popProvinces;
+
+	Object* fileObj = parser_8859_15::doParseFile(("./blankMod/output/history/pops/1836.1.1/" + filename));
+	vector<Object*> provinceObjs = fileObj->getLeaves();
+	for (auto provinceObj: provinceObjs)
+	{
+		int provinceNum = stoi(provinceObj->getKey());
+		popProvinces.push_back(provinceNum);
+
+		importPopsFromProvince(provinceObj, provinceNum);
+	}
+
+	popRegions.insert(make_pair(filename, popProvinces));
 }
 
 
@@ -193,28 +199,23 @@ void V2World::importPopsFromProvince(Object* provinceObj, int provinceNum)
 	int provincePopulation = 0;
 	int provinceSlavePopulation = 0;
 
-	vector<Object*> pops = provinceObj->getLeaves();
-	for (auto pop: pops)
+	vector<Object*> popObjs = provinceObj->getLeaves();
+	for (auto popObj: popObjs)
 	{
-		string	popType		= pop->getKey();
-		int		popSize		= stoi(pop->getLeaf("size"));
-		string	popCulture	= pop->getLeaf("culture");
-		string	popReligion	= pop->getLeaf("religion");
+		V2Pop* newPop = new V2Pop(popObj);
 
-		totalWorldPopulation += popSize;
-		V2Pop* newPop = new V2Pop(popType, popSize, popCulture, popReligion);
 		province->second->addOldPop(newPop);
-
 		if (minorityPopMapper::matchMinorityPop(newPop))
 		{
 			province->second->addMinorityPop(newPop);
 		}
 
-		if ((popType == "slaves") || (popCulture.substr(0, 4) == "afro"))
+		totalWorldPopulation += newPop->getSize();
+		provincePopulation += newPop->getSize();
+		if (newPop->isSlavePop())
 		{
-			provinceSlavePopulation += popSize;
+			provinceSlavePopulation += newPop->getSize();
 		}
-		provincePopulation += popSize;
 	}
 
 	province->second->setSlaveProportion(1.0 * provinceSlavePopulation / provincePopulation);
