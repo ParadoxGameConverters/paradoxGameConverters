@@ -108,7 +108,7 @@ string trimPath(const string& fileName)
 
 string trimExtension(const string& fileName)
 {
-	const int length = fileName.find_first_of(".");
+	const int length = fileName.find_last_of(".");
 	return fileName.substr(0, length);
 }
 
