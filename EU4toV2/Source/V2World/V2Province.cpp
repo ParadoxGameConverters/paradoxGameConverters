@@ -1196,7 +1196,7 @@ vector<string> V2Province::getCulturesOverThreshold(float percentOfPopulation) c
 		}
 		if (totalPopulation > 0)
 		{
-			cultureAmount->second += pop->getSize() / totalPopulation;
+			cultureAmount->second += 1.0 * pop->getSize() / totalPopulation;
 		}
 	}
 
