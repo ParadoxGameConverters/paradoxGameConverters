@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "OSCompatibilityLayer.h"
 #include "ParadoxParserUTF8.h"
 #include "../Configuration.h"
+#include <fstream>
 #include <vector>
 using namespace std;
 
@@ -71,7 +72,9 @@ EU4RegionMapper::EU4RegionMapper()
 
 	if (EU4RegionsMap.empty()) // if it failed, we're using the new regions format
 	{
-		Object* areaObj = parser_UTF8::doParseFile((Configuration::getEU4Path() + "/map/area.txt").c_str());
+		makeWorkingAreaTxt();
+		Object* areaObj = parser_UTF8::doParseFile("area.txt");
+
 		if (areaObj == NULL)
 		{
 			LOG(LogLevel::Error) << "Could not parse file " << Configuration::getEU4Path() << "/map/area.txt";
@@ -98,6 +101,28 @@ EU4RegionMapper::EU4RegionMapper()
 			}
 		}
 	}
+}
+
+
+void EU4RegionMapper::makeWorkingAreaTxt()
+{
+	ifstream original(Configuration::getEU4Path() + "/map/area.txt");
+	ofstream copy("area.txt");
+
+	char buffer[256];
+	while(!original.eof())
+	{
+		original.getline(buffer, sizeof(buffer));
+		string line(buffer);
+
+		if (line.find("color =") == string::npos)
+		{
+			copy << line << "\n";
+		}
+	}
+
+	original.close();
+	copy.close();
 }
 
 

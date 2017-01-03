@@ -322,7 +322,7 @@ bool CountryMapping::mapToExistingVic2Country(const vector<string>& possibleVic2
 {
 	for (auto possibleVic2Tag: possibleVic2Tags)
 	{
-		if ((Vic2Countries.find(possibleVic2Tag) != Vic2Countries.end()) && (tagIsAlreadyAssigned(possibleVic2Tag)))
+		if ((Vic2Countries.find(possibleVic2Tag) != Vic2Countries.end()) && (!tagIsAlreadyAssigned(possibleVic2Tag)))
 		{
 			EU4TagToV2TagMap.left.insert(make_pair(EU4Tag, possibleVic2Tag));
 			logMapping(EU4Tag, possibleVic2Tag, "default V2 country");

@@ -36,6 +36,16 @@ V2Pop::V2Pop(string _type, int _size, string _culture, string _religion)
 }
 
 
+V2Pop::V2Pop(Object* popObj)
+{
+	type = popObj->getKey();
+	size = stoi(popObj->getLeaf("size"));
+	culture = popObj->getLeaf("culture");
+	religion = popObj->getLeaf("religion");
+	supportedRegiments	= 0;
+}
+
+
 void V2Pop::output(FILE* output) const
 {
 	if (size > 0)

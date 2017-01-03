@@ -55,7 +55,7 @@ typedef struct ownersAndCores
 class HoI4States
 {
 	public:
-		HoI4States(V2World* srcWorld) : sourceWorld(srcWorld) { recordAllLandProvinces(); }
+		HoI4States(const V2World* srcWorld) : sourceWorld(srcWorld) { recordAllLandProvinces(); }
 
 		void importStates(map<int, vector<int>>& defaultStateToProvinceMap);
 		void convertStates();
@@ -93,7 +93,7 @@ class HoI4States
 		void outputStateLocalisations() const;
 		void outputVPLocalisations() const;
 
-		V2World* sourceWorld;
+		const V2World* sourceWorld;
 
 		set<int> landProvinces;
 		map<int, HoI4State*> states;

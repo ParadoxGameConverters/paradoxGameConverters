@@ -284,6 +284,7 @@ link = { v2 = shan eu4 = shan }
 # Burman - burmese, tibetan, chin
 link = { v2 = burmese eu4 = burmese eu4 = mon eu4 = arakanese }
 link = { v2 = tibetan eu4 = tibetan }
+link = { v2 = bai eu4 = bai }
 link = { v2 = asian_minor eu4 = chin eu4 = bai }
 link = { v2 = kachin eu4 = kachin }
 link = { v2 = karen eu4 = karen }

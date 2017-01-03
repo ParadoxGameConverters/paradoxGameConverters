@@ -399,7 +399,7 @@ link = { eu4 = TIB v2 = TIB }  # Tibet
 link = { eu4 = TOK v2 = TOK }  # Tonkin
 link = { eu4 = VIE v2 = WIA }  # Vientiane => Wiang Chhan
 link = { eu4 = CSH v2 = CSH }  # Shun (NEW) *
-link = { eu4 = CXI v2 = XIA }  # Xi
+link = { eu4 = CXI v2 = CXI }  # Xi (NEW)
 link = { eu4 = CZH v2 = WUU }  # Zhou
 link = { eu4 = WUU v2 = CWU }  # Wu
 link = { eu4 = QNG v2 = CHI }  # Qing/China

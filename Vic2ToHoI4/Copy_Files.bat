@@ -1,5 +1,6 @@
 rem **Create blankMod**
-del "Release\blankMod" /Q
+del "Release\blankMod" /Q /S /F
+rmdir "Release\blankMod" /Q /S
 xcopy "Data_Files\blankMod" "release\blankmod" /Y /E /I
 
 rem **Copy data files**
@@ -8,6 +9,7 @@ copy "Data_Files\configuration.txt" "release\configuration-example.txt"
 copy "Data_Files\readme.txt" "release\readme.txt"
 copy "Data_Files\merge_nations.txt" "release\merge_nations.txt"
 copy "Data_Files\province_mappings.txt" "release\province_mappings.txt
+copy "Data_Files\HPM_province_mappings.txt" "release\HPM_province_mappings.txt
 copy "Data_Files\country_mappings.txt" "release\country_mappings.txt
 copy "Data_Files\governmentMapping.txt" "release\governmentMapping.txt
 copy "Data_Files\license.txt" "release\license.txt"

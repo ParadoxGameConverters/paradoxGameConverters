@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Airforce.h"
 #include "HoI4Alignment.h"
 #include "HoI4Army.h"
+#include "HoI4FocusTree.h"
 #include "HoI4Navy.h"
 #include "HoI4Province.h"
 #include "HoI4Relations.h"
@@ -67,7 +68,7 @@ class HoI4Country
 {
 	public:
 		HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld, bool _newCountry = false);
-		void		output(map<int, HoI4State*> states, vector<HoI4Faction*> Factions, string FactionName) const;
+		void		output(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const;
 		void		outputCommonCountryFile() const;
 		void		outputColors(ofstream& out) const;
 		void		outputToCommonCountriesFile(FILE*) const;
@@ -87,15 +88,17 @@ class HoI4Country
 		void addVPsToCapital(int VPs);
 
 		void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
-		void		setFaction(string newFaction)	{ faction = newFaction; }
+		void		setFaction(HoI4Faction* newFaction)	{ faction = newFaction; }
 		void		setFactionLeader()				{ factionLeader = true; }
 		void setRelations(string relationsinput) { relationstxt = relationsinput; }
+		void addNationalFocus(HoI4FocusTree* NF) { nationalFocus = NF; }
+		void setGreatPower() { greatPower = true; }
 
 		HoI4Relations*								getRelations(string withWhom) const;
 		HoI4State* getCapital();
-		double getStrengthOverTime(double years);
-		double getMilitaryStrength();
-		double getEconomicStrength(double years);
+		double getStrengthOverTime(double years) const;
+		double getMilitaryStrength() const;
+		double getEconomicStrength(double years) const;
 		
 		const map<string, HoI4Relations*>&	getRelations() const			{ return relations; }
 		set<int>									getProvinces() const			{ return provinces; }
@@ -103,7 +106,7 @@ class HoI4Country
 		const V2Country*							getSourceCountry() const	{ return srcCountry; }
 		string										getGovernment() const		{ return government; }
 		bool											isNewCountry() const			{ return newCountry; }
-		string										getFaction() const			{ return faction; }
+		HoI4Faction*								getFaction() const			{ return faction; }
 		HoI4Alignment*								getAlignment()					{ return &alignment; }
 		string										getIdeology() const			{ return ideology; }
 		string										getRulingIdeology() const { return rulingHoI4Ideology; }
@@ -116,12 +119,14 @@ class HoI4Country
 		const string									getSphereLeader() const { return sphereLeader; }
 		HoI4Party									getRulingParty() const { return RulingPartyModel; }
 		map<int, HoI4State*> getStates() const { return states; }
+		bool isInFaction() const { return faction != nullptr; }
 		
 		vector<HoI4Party> getParties() const { return parties; }
 		int getTotalFactories() const { return totalfactories; }
 		int getTechnologyCount() const { return technologies.size(); }
 		int getProvinceCount() const { return provinceCount; }
 		void setProvinceCount(int count) { provinceCount = count; }
+		bool isGreatPower() const { return greatPower; }
 		
 	private:
 		void			outputOOB()						const;
@@ -161,7 +166,7 @@ class HoI4Country
 		Color									color;
 		double								neutrality;
 		double								nationalUnity;
-		string								faction;
+		HoI4Faction*						faction;
 		bool									factionLeader;
 		set<string>							allies;
 		map<string, double>				practicals;
@@ -204,12 +209,16 @@ class HoI4Country
 		int autocraticPopularity;
 		int neutralityPopularity;
 
+		bool greatPower;
+
 		// military stuff
 		vector<HoI4DivisionTemplateType>		divisionTemplates;
 		vector<HoI4DivisionType>				divisions;
 		vector<HoI4Ship>							ships;
 		vector<HoI4Airplane>						planes;
 		int											navalLocation;
+
+		HoI4FocusTree* nationalFocus;
 };
 
 #endif	// HoI4COUNTRY_H_

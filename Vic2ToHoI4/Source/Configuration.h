@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <string>
 #include <vector>
+#include "HOI4World/HOI4Version.h"
 using namespace std;
 
 
@@ -107,6 +108,11 @@ class Configuration // Singleton
 			getInstance()->leaderID = 1000 * getInstance()->leaderIDCountryIdx;	
 		}
 
+		static HOI4Version getHOI4Version()
+		{
+			return getInstance()->version;
+		}
+
 		static Configuration* getInstance()
 		{
 			if (instance == NULL)
@@ -118,6 +124,8 @@ class Configuration // Singleton
 
 	private:
 		static Configuration* instance;
+
+		HOI4Version getAutomaticHoI4Version();
 
 		string			HoI4Path;				// the install directory for HoI4
 		string			HoI4DocumentsPath;	// HoI4's directory under My Documents
@@ -133,6 +141,8 @@ class Configuration // Singleton
 
 		unsigned int	leaderID;
 		unsigned int	leaderIDCountryIdx;
+
+		HOI4Version version;
 };
 
 #endif // CONFIGURATION_H_

@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include "Log.h"
 #include "ParadoxParserUTF8.h"
+#include "HoI4Faction.h"
 #include "HoI4Leader.h"
 #include "HoI4Minister.h"
 #include "../Mappers/CountryMapping.h"
@@ -81,7 +82,7 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	capital = 0;
 	ideology = "despotism";
 	government = "";
-	faction = "";
+	faction = nullptr;
 	factionLeader = false;
 
 	neutrality = 50;
@@ -115,11 +116,15 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	syndicalistPopularity = 0;
 	autocraticPopularity = 0;
 
+	greatPower = false;
+
+	nationalFocus = nullptr;
+
 	srcCountry = NULL;
 }
 
 
-void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Factions, string FactionName) const
+void HoI4Country::output(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const
 {
 	// output history file
 	ofstream output;
@@ -143,7 +148,10 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Facti
 		{
 			output << "capital =  1" << endl;
 		}
-
+		if (majorNation)
+		{
+			output << "set_research_slots = 4"<< endl;
+		}
 
 		output << "" << endl;
 		output << "oob = \"" << tag << "_OOB\"" << endl;
@@ -230,6 +238,8 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Facti
 		}
 		output << endl;
 		output << "add_ideas = {\n";
+		if (majorNation)
+			output << "great_power\n";
 		if (RulingPartyModel.war_pol == "jingoism")
 			output << "partial_economic_mobilisation\n";
 		if(RulingPartyModel.war_pol == "pro_military")
@@ -374,6 +384,11 @@ void HoI4Country::output(map<int, HoI4State*> states, vector<HoI4Faction*> Facti
 		}
 		fprintf(output, "}\n");*/
 		//output.close();
+	}
+
+	if (nationalFocus != nullptr)
+	{
+		nationalFocus->output();
 	}
 }
 
@@ -813,7 +828,6 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	if (isThisStateOwnedByUs(state))
 	{
 		state->setAsCapitalState();
-		state->addAirBase(10);
 	}
 
 	// major nation
@@ -1147,9 +1161,9 @@ void HoI4Country::convertNavy(map<int, HoI4State*> states)
 
 	for (auto state : states)
 	{
-		if ((state.second->getOwner() == tag) && (state.second->getNavalLocation() != 0))
+		if ((state.second->getOwner() == tag) && (state.second->getMainNavalLocation() != 0))
 		{
-			navalLocation = state.second->getNavalLocation();
+			navalLocation = state.second->getMainNavalLocation();
 		}
 	}
 }
@@ -2498,19 +2512,19 @@ HoI4State* HoI4Country::getCapital(void)
 }
 
 
-double HoI4Country::getStrengthOverTime(double years)
+double HoI4Country::getStrengthOverTime(double years) const
 {
 	return getMilitaryStrength() + getEconomicStrength(years);
 }
 
 
-double HoI4Country::getMilitaryStrength()
+double HoI4Country::getMilitaryStrength() const
 {
 	return armyStrength;
 }
 
 
-double HoI4Country::getEconomicStrength(double years)
+double HoI4Country::getEconomicStrength(double years) const
 {
 	double militarySectorStrength = militaryFactories * 3 * 365 * years;
 	double civilianSectorStrength = civilianFactories * 0.469 * 0.5 * 3 * 365 * 0.5* years * years; /*.469 is milfac per year, .5 since half are used by consumer goods*/
