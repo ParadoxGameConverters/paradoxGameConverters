@@ -43,12 +43,9 @@ struct V2Party;
 class V2World
 {
 	public:
-		V2World(Object* obj);
-
-		void mergeNations(string masterTag, const vector<string>& slaveTags);
+		V2World(const string& filename);
 
 		const V2Province* getProvince(int provNum) const;
-		void checkAllProvincesMapped() const;
 		
 		const map<string, V2Country*>& getCountries() const { return countries; }
 		const V2Diplomacy* getDiplomacy() const { return diplomacy; }
@@ -74,6 +71,11 @@ class V2World
 		void removeEmptyNations();
 		void determinePartialStates();
 		void inputDiplomacy(const vector<Object*> diplomacyObj);
+
+		void overallMergeNations();
+		void mergeNations(string masterTag, const vector<string>& slaveTags);
+
+		void checkAllProvincesMapped() const;
 
 		void readCountryFiles();
 		bool processCountriesDotTxt(string countryListFile, string mod);

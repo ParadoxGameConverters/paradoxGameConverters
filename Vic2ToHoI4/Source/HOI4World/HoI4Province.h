@@ -72,8 +72,6 @@ class HoI4Province
 		void		requireNavalBase(int min);
 		void		requireAirBase(int min);
 		void		requireIndustry(int min);
-		void		requireLandFort(int min);
-		void		requireCoastalFort(int min);
 		void		requireInfrastructure(int min);
 
 	private:
@@ -99,8 +97,6 @@ class HoI4Province
 		int				naval_base;
 		int				air_base;
 		int				industry;
-		int				coastal_fort;
-		int				land_fort;
 		int				infrastructure;
 };
 

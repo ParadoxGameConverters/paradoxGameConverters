@@ -1668,6 +1668,18 @@ east_asian = {
 		last_names = { Aterui Shakushine Koshamine Harukor Turushno Isonash Keutoranke
 		}
 	}
+	bai = {
+		color = {245 245 220}
+		first_names = {
+			Qizhen Qiyu Jianjun Youcheng Houzhao Houcong Zaihou Yijun Changluo Youjian Yousong Yujian Youlang Chenggong 
+			Kehshuan Biao Shuang Gang Su Zhen Fu Zi Qi Tan Chun Bai Gui Zhi Quan Pian Hui Song Mo Ying Jing Dang Nan 
+			Gaoxu Caosui Gauxi Youyuan Youlun Youbin Houwei Youxiao Youji Youxue Youyi Youshan Cixuan Cijiang Cizhao 
+			Cihuan Cican He Ji Da Yuchun
+		}
+		last_names = {
+			"Duan" "Gao" "Meng"
+		}
+	}
 	hakka = {
 		color = {89 63 24}
 		first_names = { Hong Feng Shi Li Chen Liu Qiu Sun Soong Liao Xue Zhang Xie Wu Shu Tsai Deng Zhen Huang Ye Yang

@@ -60,6 +60,7 @@ class EU4RegionMapper
 		EU4RegionMapper();
 		void initEU4RegionMapOldVersion(Object *obj);
 		void insertMapping(int provinceNumber, string regionName);
+		void makeWorkingAreaTxt();
 		void initEU4RegionMap(Object* areasObj, Object* regionsObj);
 		map<string, vector<int>> getAreaToProvincesMapping(Object* areasObj);
 

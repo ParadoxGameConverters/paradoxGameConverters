@@ -33,6 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 HoI4AdjacencyMapping initHoI4AdjacencyMap()
 {
+	LOG(LogLevel::Info) << "Importing HoI4 adjacencies";
 	//FILE* adjacenciesBin = NULL;	// the adjacencies.bin file
 	//string filename = Configuration::getHoI4Path() + "/tfh/map/cache/adjacencies.bin";
 	//fopen_s(&adjacenciesBin, filename.c_str(), "rb");
@@ -91,45 +92,6 @@ void initContinentMap(Object* obj, continentMapping& continentMap)
 		{
 			const int province = stoi(provinceStr);	// the current province num
 			continentMap.insert( make_pair(province, continent) );
-		}
-	}
-}
-
-
-void mergeNations(V2World& world, Object* mergeObj)
-{
-	vector<Object*> rules = mergeObj->getValue("merge_nations");	// all merging rules
-	if (rules.size() < 0)
-	{
-		LOG(LogLevel::Debug) << "No nations have merging requested (skipping)";
-		return;
-	}
-
-	rules = rules[0]->getLeaves();	// the rules themselves
-	for (auto rule: rules)
-	{
-		vector<Object*> thisMerge = rule->getLeaves();	// the current merge rule
-		string masterTag;										// the nation to merge into
-		vector<string> slaveTags;								// the nations that will be merged into the master
-		bool enabled = false;									// whether or not this rule is enabled
-		for (auto item: thisMerge)
-		{
-			if (item->getKey() == "merge" && item->getLeaf() == "yes")
-			{
-				enabled = true;
-			}
-			else if (item->getKey() == "master")
-			{
-				masterTag = item->getLeaf();
-			}
-			else if (item->getKey() == "slave")
-			{
-				slaveTags.push_back(item->getLeaf());
-			}
-		}
-		if (enabled)
-		{
-			world.mergeNations(masterTag, slaveTags);
 		}
 	}
 }

@@ -128,7 +128,17 @@ void provinceMapper::insertIntoVic2ToHoI4ProvinceMap(const vector<int>& Vic2Nums
 
 vector<Object*> provinceMapper::getCorrectMappingVersion(const vector<Object*>& versions)
 {
-	return versions[0]->getLeaves();
+	for (auto version: versions)
+	{
+		if (Configuration::getHOI4Version() >= HOI4Version(version->getKey()))
+		{
+			LOG(LogLevel::Debug) << "Using version " << version->getKey() << " mappings";
+			return version->getLeaves();
+		}
+	}
+
+	LOG(LogLevel::Debug) << "Using version " << versions[versions.size() - 1]->getKey() << " mappings";
+	return versions[versions.size() - 1]->getLeaves();
 }
 
 

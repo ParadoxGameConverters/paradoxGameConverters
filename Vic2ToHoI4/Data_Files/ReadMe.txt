@@ -46,15 +46,20 @@ Idhrendur		- Project Lead, Programming, Analysis
 thatsgerman		- Programming, Analysis
 jepaan			- Programming
 Italianajt		- Analysis, Data Files, QA
-Ordinary_Kraut		- Analysis, Data Files
-DasGuntLord01		- Analysis
+Ordinary_Kraut	- Analysis, Data Files
+DasGuntLord01	- Analysis
 dtremenak		- Analysis
 history_fan		- Analysis
 PTSnoop			- Analysis
-AllUncertain		- Analysis
-simsulla		- Data Files
+King_of_Men		- Analysis
+schombert		- Analysis
+AllUncertain	- Analysis
+simsulla			- Data Files
 Mattymooz		- Data Files
 Yellowone1		- Art
+KaeI				- Art
+
+Special thanks to LukyLucaz, who allowed us to incoroporate Increased Resources into the converter.
 
 
  - AND ALL THE OTHERS WHO GAVE THEIR INPUT ON THE FORUM -

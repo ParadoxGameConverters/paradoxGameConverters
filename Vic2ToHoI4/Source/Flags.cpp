@@ -32,6 +32,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 void processFlagsForCountry(const pair<string, HoI4Country*>& country);
 void copyFlags(const map<string, HoI4Country*>& countries)
 {
+	LOG(LogLevel::Info) << "Copying flags";
+
 	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx");
 	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx/flags");
 	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx/flags/medium");

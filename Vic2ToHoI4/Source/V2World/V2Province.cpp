@@ -38,6 +38,8 @@ V2Province::V2Province(Object* obj)
 	readRails(obj);
 	readPops(obj);
 	readRgo(obj);
+	
+	number = stoi(obj->getKey());
 }
 
 
