@@ -19,56 +19,47 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
-
-
 #ifndef STATE_MAPPER_H
 #define STATE_MAPPER_H
-
 
 #include <map>
 #include <vector>
 using namespace std;
 
-
-
 class Object;
-
-
 
 class stateMapper
 {
-	public:
-		static vector<int> getOtherProvincesInState(int province)
+public:
+	static vector<int> getOtherProvincesInState(int province)
+	{
+		return getInstance()->GetOtherProvincesInState(province);
+	}
+
+	static int getStateIndex(int province)
+	{
+		return getInstance()->GetStateIndex(province);
+	}
+
+private:
+	static stateMapper* instance;
+	static stateMapper* getInstance()
+	{
+		if (instance == NULL)
 		{
-			return getInstance()->GetOtherProvincesInState(province);
+			instance = new stateMapper();
 		}
+		return instance;
+	}
 
-		static int getStateIndex(int province)
-		{
-			return getInstance()->GetStateIndex(province);
-		}
+	stateMapper();
+	void initStateMap(Object* obj);
 
-	private:
-		static stateMapper* instance;
-		static stateMapper* getInstance()
-		{
-			if (instance == NULL)
-			{
-				instance = new stateMapper;
-			}
-			return instance;
-		}
+	vector<int> GetOtherProvincesInState(int province);
+	int GetStateIndex(int province);
 
-		stateMapper();
-		void initStateMap(Object* obj);
-
-		vector<int> GetOtherProvincesInState(int province);
-		int GetStateIndex(int province);
-
-		map<int, vector<int>> stateProvincesMap;
-		map<int, int> stateIndexMap;
+	map<int, vector<int>> stateProvincesMap;
+	map<int, int> stateIndexMap;
 };
-
-
 
 #endif // STATE_MAPPER_H

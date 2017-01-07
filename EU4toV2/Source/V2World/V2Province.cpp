@@ -168,7 +168,7 @@ V2Province::V2Province(string _filename)
 void V2Province::output() const
 {
 	FILE* output;
-	if (fopen_s(&output, ("Output/" + Configuration::getOutputName() + "/history/provinces/" + filename).c_str(), "w") != 0)
+	if (fopen_s(&output, ("Output/" + Configuration::getOutputName() + "/history/provinces" + filename).c_str(), "w") != 0)
 	{
 		int errNum;
 		_get_errno(&errNum);

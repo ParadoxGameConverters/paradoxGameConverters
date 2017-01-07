@@ -19,8 +19,6 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
-
-
 #include "V2World.h"
 #include <string>
 #include <iostream>
@@ -62,12 +60,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Flags.h"
 #include "V2LeaderTraits.h"
 
-
-
 V2World::V2World(const EU4World& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Parsing Vicky2 data";
 	importProvinces();
+	//importStates();
 	importDefaultPops();
 	//logPopsByCountry();
 	findCoastalProvinces();
@@ -92,13 +89,12 @@ V2World::V2World(const EU4World& sourceWorld)
 	output();
 }
 
-
 void V2World::importProvinces()
 {
 	LOG(LogLevel::Info) << "Importing provinces";
 
 	set<string> provinceFilenames = getProvinceFilenames();
-	for (auto provinceFilename: provinceFilenames)
+	for (auto provinceFilename : provinceFilenames)
 	{
 		V2Province* newProvince = new V2Province(provinceFilename);
 		provinces.insert(make_pair(newProvince->getNum(), newProvince));
@@ -114,7 +110,6 @@ void V2World::importProvinces()
 	}
 }
 
-
 set<string> V2World::getProvinceFilenames()
 {
 	set<string> provinceFilenames;
@@ -127,7 +122,6 @@ set<string> V2World::getProvinceFilenames()
 	return provinceFilenames;
 }
 
-
 void V2World::getProvinceLocalizations(string file)
 {
 	ifstream read(file);
@@ -136,7 +130,7 @@ void V2World::getProvinceLocalizations(string file)
 	{
 		string line;
 		getline(read, line);
-		if ((line.substr(0,4) == "PROV") && (isdigit(line[4])))
+		if ((line.substr(0, 4) == "PROV") && (isdigit(line[4])))
 		{
 			int position = line.find_first_of(';');
 			int num = stoi(line.substr(4, position - 4));
@@ -153,21 +147,19 @@ void V2World::getProvinceLocalizations(string file)
 	read.close();
 }
 
-
 void V2World::importDefaultPops()
 {
 	LOG(LogLevel::Info) << "Importing historical pops.";
 
-	totalWorldPopulation	= 0;
+	totalWorldPopulation = 0;
 
 	set<string> filenames;
 	Utils::GetAllFilesInFolder("./blankMod/output/history/pops/1836.1.1/", filenames);
-	for (auto filename: filenames)
+	for (auto filename : filenames)
 	{
 		importPopsFromFile(filename);
 	}
 }
-
 
 void V2World::importPopsFromFile(const string& filename)
 {
@@ -175,7 +167,7 @@ void V2World::importPopsFromFile(const string& filename)
 
 	Object* fileObj = parser_8859_15::doParseFile(("./blankMod/output/history/pops/1836.1.1/" + filename));
 	vector<Object*> provinceObjs = fileObj->getLeaves();
-	for (auto provinceObj: provinceObjs)
+	for (auto provinceObj : provinceObjs)
 	{
 		int provinceNum = stoi(provinceObj->getKey());
 		popProvinces.push_back(provinceNum);
@@ -185,7 +177,6 @@ void V2World::importPopsFromFile(const string& filename)
 
 	popRegions.insert(make_pair(filename, popProvinces));
 }
-
 
 void V2World::importPopsFromProvince(Object* provinceObj, int provinceNum)
 {
@@ -200,7 +191,7 @@ void V2World::importPopsFromProvince(Object* provinceObj, int provinceNum)
 	int provinceSlavePopulation = 0;
 
 	vector<Object*> popObjs = provinceObj->getLeaves();
-	for (auto popObj: popObjs)
+	for (auto popObj : popObjs)
 	{
 		V2Pop* newPop = new V2Pop(popObj);
 
@@ -221,14 +212,13 @@ void V2World::importPopsFromProvince(Object* provinceObj, int provinceNum)
 	province->second->setSlaveProportion(1.0 * provinceSlavePopulation / provincePopulation);
 }
 
-
 void V2World::logPopsByCountry()
 {
 	map<string, map<string, long int>> popsByCountry; // country, poptype, num
 
 	set<string> filenames;
 	Utils::GetAllFilesInFolder("./blankMod/output/history/pops/1836.1.1/", filenames);
-	for (auto filename: filenames)
+	for (auto filename : filenames)
 	{
 		logPopsFromFile(filename, popsByCountry);
 	}
@@ -236,18 +226,16 @@ void V2World::logPopsByCountry()
 	outputLog(popsByCountry);
 }
 
-
 void V2World::logPopsFromFile(string filename, map<string, map<string, long int>>& popsByCountry)
 {
 	Object* fileObj = parser_8859_15::doParseFile(("./blankMod/output/history/pops/1836.1.1/" + filename));
 
 	vector<Object*> provinceObjs = fileObj->getLeaves();
-	for (auto provinceObj: provinceObjs)
+	for (auto provinceObj : provinceObjs)
 	{
 		logPopsInProvince(provinceObj, popsByCountry);
 	}
 }
-
 
 void V2World::logPopsInProvince(Object* provinceObj, map<string, map<string, long int>>& popsByCountry)
 {
@@ -262,12 +250,11 @@ void V2World::logPopsInProvince(Object* provinceObj, map<string, map<string, lon
 	auto countryPopItr = getCountryForPopLogging(province->second->getOwner(), popsByCountry);
 
 	vector<Object*> pops = provinceObj->getLeaves();
-	for (auto pop: pops)
+	for (auto pop : pops)
 	{
 		logPop(pop, countryPopItr);
 	}
 }
-
 
 void V2World::logPop(Object* pop, map<string, map<string, long int>>::iterator countryPopItr)
 {
@@ -284,7 +271,6 @@ void V2World::logPop(Object* pop, map<string, map<string, long int>>::iterator c
 	popItr->second += popSize;
 }
 
-
 map<string, map<string, long int>>::iterator V2World::getCountryForPopLogging(string country, map<string, map<string, long int>>& popsByCountry)
 {
 	auto countryPopItr = popsByCountry.find(country);
@@ -298,18 +284,17 @@ map<string, map<string, long int>>::iterator V2World::getCountryForPopLogging(st
 	return countryPopItr;
 }
 
-
 void V2World::outputLog(const map<string, map<string, long int>>& popsByCountry)
 {
-	for (auto countryItr: popsByCountry)
+	for (auto countryItr : popsByCountry)
 	{
 		long int total = 0;
-		for (auto popsItr: countryItr.second)
+		for (auto popsItr : countryItr.second)
 		{
 			total += popsItr.second;
 		}
 
-		for (auto popsItr: countryItr.second)
+		for (auto popsItr : countryItr.second)
 		{
 			LOG(LogLevel::Info) << "," << countryItr.first << "," << popsItr.first << "," << popsItr.second << "," << static_cast<double>(popsItr.second / total);
 		}
@@ -317,7 +302,6 @@ void V2World::outputLog(const map<string, map<string, long int>>& popsByCountry)
 		LOG(LogLevel::Info) << "," << countryItr.first << "," << "Total," << total << "," << static_cast<double>(total / total);
 	}
 }
-
 
 void V2World::findCoastalProvinces()
 {
@@ -348,7 +332,7 @@ void V2World::findCoastalProvinces()
 			// this province is coastal
 			for (map<int, V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
 			{
-				if ( pitr->first == provinceNum)
+				if (pitr->first == provinceNum)
 				{
 					pitr->second->setCoastal(true);
 					break;
@@ -357,7 +341,6 @@ void V2World::findCoastalProvinces()
 		}
 	}
 }
-
 
 void V2World::importPotentialCountries()
 {
@@ -372,7 +355,7 @@ void V2World::importPotentialCountries()
 	}
 	else
 	{
-		V2CountriesInput.open( (Configuration::getV2Path() + "/common/countries.txt").c_str() );
+		V2CountriesInput.open((Configuration::getV2Path() + "/common/countries.txt").c_str());
 	}
 	if (!V2CountriesInput.is_open())
 	{
@@ -380,7 +363,7 @@ void V2World::importPotentialCountries()
 		exit(1);
 	}
 
-	bool	staticSection	= true;
+	bool	staticSection = true;
 	while (!V2CountriesInput.eof())
 	{
 		string line;
@@ -400,9 +383,9 @@ void V2World::importPotentialCountries()
 		tag = line.substr(0, 3);
 
 		string countryFileName;
-		int start			= line.find_first_of('/');
-		int size				= line.find_last_of('\"') - start;
-		countryFileName	= line.substr(start, size);
+		int start = line.find_first_of('/');
+		int size = line.find_last_of('\"') - start;
+		countryFileName = line.substr(start, size);
 
 		Object* countryData;
 		if (Utils::DoesFileExist("./blankMod/output/common/countries/" + countryFileName))
@@ -449,7 +432,6 @@ void V2World::importPotentialCountries()
 	V2CountriesInput.close();
 }
 
-
 void V2World::importTechSchools()
 {
 	// Parse tech schools
@@ -462,22 +444,20 @@ void V2World::importTechSchools()
 	}
 	vector<string> blockedTechSchools;	// the list of disallowed tech schools
 	blockedTechSchools = initBlockedTechSchools(techSchoolObj);
-	Object* technologyObj = parser_8859_15::doParseFile( (Configuration::getV2Path() + "/common/technology.txt").c_str() );
+	Object* technologyObj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/technology.txt").c_str());
 	if (technologyObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getV2Path() << "/common/technology.txt";
 		exit(-1);
 	}
-	
+
 	techSchools = initTechSchools(technologyObj, blockedTechSchools);
 }
-
 
 bool scoresSorter(pair<V2Country*, int> first, pair<V2Country*, int> second)
 {
 	return (first.second > second.second);
 }
-
 
 void V2World::convertCountries(const EU4World& sourceWorld)
 {
@@ -530,7 +510,7 @@ void V2World::convertCountries(const EU4World& sourceWorld)
 		countryItr->second->getNationalValueScores(libertyScore, equalityScore, orderScore);
 		if (libertyScore > orderScore)
 		{
-			libertyScores.push_back( make_pair(countryItr->second, libertyScore) );
+			libertyScores.push_back(make_pair(countryItr->second, libertyScore));
 		}
 		if ((equalityScore > orderScore) && (equalityScore > libertyScore))
 		{
@@ -609,7 +589,7 @@ void V2World::convertCountries(const EU4World& sourceWorld)
 	}
 
 	// ALL potential countries should be output to the file, otherwise some things don't get initialized right
-	for (auto potentialCountry: potentialCountries)
+	for (auto potentialCountry : potentialCountries)
 	{
 		map<string, V2Country*>::iterator citr = countries.find(potentialCountry.first);
 		if (citr == countries.end())
@@ -622,11 +602,10 @@ void V2World::convertCountries(const EU4World& sourceWorld)
 	checkForCivilizedNations();
 }
 
-
 void V2World::checkForCivilizedNations()
 {
 	unsigned int numCivilizedNations = 0;
-	for (auto country: countries)
+	for (auto country : countries)
 	{
 		if (country.second->isCivilized())
 		{
@@ -640,18 +619,16 @@ void V2World::checkForCivilizedNations()
 	}
 }
 
-
 struct MTo1ProvinceComp
 {
 	vector<EU4Province*> provinces;
 };
 
-
 void V2World::convertProvinces(const EU4World& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Converting provinces";
 
-	for (auto Vic2Province: provinces)
+	for (auto Vic2Province : provinces)
 	{
 		auto EU4ProvinceNumbers = provinceMapper::getEU4ProvinceNumbers(Vic2Province.first);
 		if (EU4ProvinceNumbers.size() == 0)
@@ -671,12 +648,12 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 
 		Vic2Province.second->clearCores();
 
-		EU4Province*	oldProvince		= NULL;
-		EU4Country*		oldOwner			= NULL;
+		EU4Province*	oldProvince = NULL;
+		EU4Country*		oldOwner = NULL;
 		// determine ownership by province count, or total population (if province count is tied)
 		map<string, MTo1ProvinceComp> provinceBins;
 		double newProvinceTotalBaseTax = 0;
-		for (auto EU4ProvinceNumber: EU4ProvinceNumbers)
+		for (auto EU4ProvinceNumber : EU4ProvinceNumbers)
 		{
 			EU4Province* province = sourceWorld.getProvince(EU4ProvinceNumber);
 			if (!province)
@@ -728,8 +705,8 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 				// I am the new owner if there is no current owner, or I have more provinces than the current owner,
 				// or I have the same number of provinces, but more population, than the current owner
 				if (
-					(oldOwner == NULL) || 
-					(provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size()) || 
+					(oldOwner == NULL) ||
+					(provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size()) ||
 					(provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size())
 					)
 				{
@@ -765,13 +742,13 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 				{
 					// assign cores
 					vector<EU4Country*> oldCores = (*vitr)->getCores(sourceWorld.getCountries());
-					for(vector<EU4Country*>::iterator j = oldCores.begin(); j != oldCores.end(); j++)
+					for (vector<EU4Country*>::iterator j = oldCores.begin(); j != oldCores.end(); j++)
 					{
 						std::string coreEU4Tag = (*j)->getTag();
 						// skip this core if the country is the owner of the EU4 province but not the V2 province
 						// (i.e. "avoid boundary conflicts that didn't exist in EU4").
 						// this country may still get core via a province that DID belong to the current V2 owner
-						if (( coreEU4Tag == mitr->first) && ( coreEU4Tag != oldOwner->getTag()))
+						if ((coreEU4Tag == mitr->first) && (coreEU4Tag != oldOwner->getTag()))
 						{
 							continue;
 						}
@@ -786,7 +763,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 					// determine demographics
 					double provPopRatio = (*vitr)->getBaseTax() / newProvinceTotalBaseTax;
 					vector<V2Demographic> demographics = determineDemographics((*vitr)->getPopRatios(), *vitr, Vic2Province.second, oldOwner, Vic2Province.first, provPopRatio);
-					for (auto demographic: demographics)
+					for (auto demographic : demographics)
 					{
 						Vic2Province.second->addPopDemographic(demographic);
 					}
@@ -802,11 +779,10 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 	}
 }
 
-
 vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, EU4Country* oldOwner, int destNum, double provPopRatio)
 {
 	vector<V2Demographic> demographics;
-	for (auto prItr: popRatios)
+	for (auto prItr : popRatios)
 	{
 		string dstCulture = "no_culture";
 		bool matched = cultureMapper::cultureMatch(prItr.culture, dstCulture, prItr.religion, eProv->getNum(), oldOwner->getTag());
@@ -830,14 +806,14 @@ vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRat
 		}
 
 		V2Demographic demographic;
-		demographic.culture			= dstCulture;
-		demographic.slaveCulture	= slaveCulture;
-		demographic.religion			= religion;
-		demographic.upperRatio		= prItr.upperPopRatio	* provPopRatio;
-		demographic.middleRatio		= prItr.middlePopRatio	* provPopRatio;
-		demographic.lowerRatio		= prItr.lowerPopRatio	* provPopRatio;
-		demographic.oldCountry		= oldOwner;
-		demographic.oldProvince		= eProv;
+		demographic.culture = dstCulture;
+		demographic.slaveCulture = slaveCulture;
+		demographic.religion = religion;
+		demographic.upperRatio = prItr.upperPopRatio	* provPopRatio;
+		demographic.middleRatio = prItr.middlePopRatio	* provPopRatio;
+		demographic.lowerRatio = prItr.lowerPopRatio	* provPopRatio;
+		demographic.oldCountry = oldOwner;
+		demographic.oldProvince = eProv;
 
 		//LOG(LogLevel::Info) << "EU4 Province " << eProv->getNum() << ", Vic2 Province " << vProv->getNum() << ", Culture: " << culture << ", Religion: " << religion << ", upperPopRatio: " << prItr.upperPopRatio << ", middlePopRatio: " << prItr.middlePopRatio << ", lowerPopRatio: " << prItr.lowerPopRatio << ", provPopRatio: " << provPopRatio << ", upperRatio: " << demographic.upperRatio << ", middleRatio: " << demographic.middleRatio << ", lowerRatio: " << demographic.lowerRatio;
 		demographics.push_back(demographic);
@@ -845,7 +821,6 @@ vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRat
 
 	return demographics;
 }
-
 
 void V2World::convertDiplomacy(const EU4World& sourceWorld)
 {
@@ -973,7 +948,6 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld)
 	}
 }
 
-
 void V2World::setupColonies()
 {
 	LOG(LogLevel::Info) << "Setting colonies";
@@ -989,7 +963,7 @@ void V2World::setupColonies()
 		{
 			continue;
 		}
-		if (openItr->second->getOwner() != countryItr->first) // if the capital is not owned, don't bother running 
+		if (openItr->second->getOwner() != countryItr->first) // if the capital is not owned, don't bother running
 		{
 			continue;
 		}
@@ -1061,24 +1035,23 @@ void V2World::setupColonies()
 	}
 }
 
-
 static int stateId = 0;
 void V2World::setupStates()
 {
 	LOG(LogLevel::Info) << "Creating states";
-
 	list<V2Province*> unassignedProvs;
 	for (map<int, V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
 		unassignedProvs.push_back(itr->second);
 	}
+	LOG(LogLevel::Debug) << "Unassigned Provs:\t" << unassignedProvs.size();
 
 	list<V2Province*>::iterator iter;
-	while(unassignedProvs.size() > 0)
+	while (unassignedProvs.size() > 0)
 	{
 		iter = unassignedProvs.begin();
-		int		provId	= (*iter)->getNum();
-		string	owner		= (*iter)->getOwner();
+		int		provId = (*iter)->getNum();
+		string	owner = (*iter)->getOwner();
 
 		if (owner == "")
 		{
@@ -1088,14 +1061,17 @@ void V2World::setupStates()
 
 		V2State* newState = new V2State(stateId, *iter);
 		stateId++;
-		auto neighbors = stateMapper::getOtherProvincesInState(provId);
+		vector<int> neighbors = stateMapper::getOtherProvincesInState(provId);
+
+		LOG(LogLevel::Debug) << "Neighbors size" << neighbors.size();
+
 		bool colonial = (*iter)->isColonial();
 		newState->setColonial(colonial);
 		iter = unassignedProvs.erase(iter);
 
 		for (vector<int>::iterator i = neighbors.begin(); i != neighbors.end(); i++)
 		{
-			for(iter = unassignedProvs.begin(); iter != unassignedProvs.end(); iter++)
+			for (iter = unassignedProvs.begin(); iter != unassignedProvs.end(); iter++)
 			{
 				if ((*iter)->getNum() == *i)
 				{
@@ -1104,13 +1080,14 @@ void V2World::setupStates()
 						if ((*iter)->isColonial() == colonial)
 						{
 							newState->addProvince(*iter);
+							LOG(LogLevel::Debug) << (*iter)->getName() << " added to " << newState->getID();
 							iter = unassignedProvs.erase(iter);
 						}
 					}
 				}
 			}
 		}
-
+		newState->colloectNavalBase();
 		map<string, V2Country*>::iterator iter2 = countries.find(owner);
 		if (iter2 != countries.end())
 		{
@@ -1118,7 +1095,6 @@ void V2World::setupStates()
 		}
 	}
 }
-
 
 void V2World::convertUncivReforms()
 {
@@ -1129,7 +1105,6 @@ void V2World::convertUncivReforms()
 		itr->second->convertUncivReforms();
 	}
 }
-
 
 void V2World::convertTechs(const EU4World& sourceWorld)
 {
@@ -1163,11 +1138,11 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 		return country->getAdmTech() + country->getDipTech() + country->getMilTech() + ideaEffectMapper::getIndustryTechFromIdeas(country->getNationalIdeas());
 	};
 
-	double armyMax,		armyMean;
-	double navyMax,		navyMean;
+	double armyMax, armyMean;
+	double navyMax, navyMean;
 	double commerceMax, commerceMean;
-	double cultureMax,	cultureMean;
-	double industryMax,	industryMean;
+	double cultureMax, cultureMean;
+	double industryMax, industryMean;
 
 	map<string, EU4Country*>::iterator i = sourceCountries.begin();
 	while (i->second->getProvinces().size() == 0)
@@ -1233,7 +1208,6 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 	}
 }
 
-
 void V2World::allocateFactories(const EU4World& sourceWorld)
 {
 	// Construct factory factory
@@ -1248,11 +1222,11 @@ void V2World::allocateFactories(const EU4World& sourceWorld)
 	int num = 1;
 	for (map<string, EU4Country*>::iterator itr = sourceCountries.begin(); itr != sourceCountries.end(); ++itr)
 	{
-		if ( (itr)->second->getProvinces().size() == 0)
+		if ((itr)->second->getProvinces().size() == 0)
 		{
 			continue;
 		}
-		if ((itr)->second->getTechGroup() != "western" )
+		if ((itr)->second->getTechGroup() != "western")
 		{
 			continue;
 		}
@@ -1266,7 +1240,7 @@ void V2World::allocateFactories(const EU4World& sourceWorld)
 	deque<pair<double, V2Country*>> weightedCountries;
 	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
-		if ( !itr->second->isCivilized() )
+		if (!itr->second->isCivilized())
 		{
 			continue;
 		}
@@ -1341,7 +1315,7 @@ void V2World::allocateFactories(const EU4World& sourceWorld)
 		{
 			for (deque<V2Factory*>::iterator qitr = factoryList.begin(); qitr != factoryList.end(); ++qitr)
 			{
-				if ( citr->second->addFactory(*qitr) )
+				if (citr->second->addFactory(*qitr))
 				{
 					--(citr->first);
 					lastReceptiveCountry = citr;
@@ -1368,13 +1342,12 @@ void V2World::allocateFactories(const EU4World& sourceWorld)
 	}
 }
 
-
 void V2World::setupPops(const EU4World& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Creating pops";
 
-	long		my_totalWorldPopulation	= static_cast<long>(0.55 * totalWorldPopulation);
-	double	popWeightRatio				= my_totalWorldPopulation / sourceWorld.getWorldWeightSum();
+	long		my_totalWorldPopulation = static_cast<long>(0.55 * totalWorldPopulation);
+	double	popWeightRatio = my_totalWorldPopulation / sourceWorld.getWorldWeightSum();
 
 	//ofstream output_file("Data.csv");
 
@@ -1549,7 +1522,6 @@ void V2World::setupPops(const EU4World& sourceWorld)
 	//output_file.close();
 }
 
-
 void V2World::addUnions()
 {
 	LOG(LogLevel::Info) << "Adding unions";
@@ -1559,7 +1531,7 @@ void V2World::addUnions()
 		if (!provItr->second->wasInfidelConquest() && !provItr->second->wasColony())
 		{
 			auto cultures = provItr->second->getCulturesOverThreshold(0.5);
-			for (auto culture: cultures)
+			for (auto culture : cultures)
 			{
 				string core = vic2CultureUnionMapper::getCoreForCulture(culture);
 				if (core != "")
@@ -1570,7 +1542,6 @@ void V2World::addUnions()
 		}
 	}
 }
-
 
 //#define TEST_V2_PROVINCES
 void V2World::convertArmies(const EU4World& sourceWorld)
@@ -1618,14 +1589,12 @@ void V2World::convertArmies(const EU4World& sourceWorld)
 	}
 }
 
-
 void V2World::output() const
 {
 	LOG(LogLevel::Info) << "Outputting mod";
 	Utils::copyFolder("blankMod/output", "output/output");
 	Utils::renameFolder("output/output", "output/" + Configuration::getOutputName());
 	createModFile();
-
 
 	// Create common\countries path.
 	string countriesPath = "Output/" + Configuration::getOutputName() + "/common/countries";
@@ -1706,7 +1675,6 @@ void V2World::output() const
 		string zeronamesfilepath = localisationPath + "/0_Names.csv";
 		if (fopen_s(&zeronamesfile, zeronamesfilepath.c_str(), "w") != 0)
 			fclose(zeronamesfile);
-
 	}
 	else
 	{
@@ -1719,7 +1687,7 @@ void V2World::output() const
 		LOG(LogLevel::Error) << "Could not update localisation text file";
 		exit(-1);
 	}
-	
+
 	for (map<string, V2Country*>::const_iterator i = countries.begin(); i != countries.end(); i++)
 	{
 		const V2Country& country = *i->second;
@@ -1734,6 +1702,7 @@ void V2World::output() const
 	for (map<int, V2Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
 		i->second->output();
+		LOG(LogLevel::Debug) << "province " << i->second->getName() << " have " << i->second->getNavalBaseLevel() << " naval base";	//test
 	}
 	LOG(LogLevel::Debug) << "Writing countries";
 	for (map<string, V2Country*>::const_iterator itr = countries.begin(); itr != countries.end(); itr++)
@@ -1753,7 +1722,7 @@ void V2World::output() const
 		exit(1);
 	}
 
-	bool	staticSection	= true;
+	bool	staticSection = true;
 	while (!V2CountriesInput.eof())
 	{
 		string line;
@@ -1769,9 +1738,9 @@ void V2World::output() const
 		}
 
 		string countryFileName;
-		int start			= line.find_first_of('/');
-		int size				= line.find_last_of('\"') - start - 1;
-		countryFileName	= line.substr(start + 1, size);
+		int start = line.find_first_of('/');
+		int size = line.find_last_of('\"') - start - 1;
+		countryFileName = line.substr(start + 1, size);
 
 		if (Utils::DoesFileExist("Output/" + Configuration::getOutputName() + "/common/countries/" + countryFileName))
 		{
@@ -1787,7 +1756,6 @@ void V2World::output() const
 	}
 	V2CountriesInput.close();
 }
-
 
 void V2World::createModFile() const
 {
@@ -1819,11 +1787,10 @@ void V2World::createModFile() const
 	modFile.close();
 }
 
-
 void V2World::outputPops() const
 {
 	LOG(LogLevel::Debug) << "Writing pops";
-	for (auto popRegion: popRegions)
+	for (auto popRegion : popRegions)
 	{
 		FILE* popsFile;
 		if (fopen_s(&popsFile, ("Output/" + Configuration::getOutputName() + "/history/pops/1836.1.1/" + popRegion.first).c_str(), "w") != 0)
@@ -1832,7 +1799,7 @@ void V2World::outputPops() const
 			exit(-1);
 		}
 
-		for (auto provinceNumber: popRegion.second)
+		for (auto provinceNumber : popRegion.second)
 		{
 			map<int, V2Province*>::const_iterator provItr = provinces.find(provinceNumber);
 			if (provItr != provinces.end())
