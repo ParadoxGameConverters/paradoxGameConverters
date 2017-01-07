@@ -19,8 +19,6 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
-
-
 #include "StateMapper.h"
 #include "../Configuration.h"
 #include "Log.h"
@@ -28,11 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "OSCompatibilityLayer.h"
 #include "ParadoxParser8859_15.h"
 
-
-
-stateMapper* stateMapper:: instance = NULL;
-
-
+stateMapper* stateMapper::instance = NULL;
 
 stateMapper::stateMapper()
 {
@@ -59,9 +53,8 @@ stateMapper::stateMapper()
 		LOG(LogLevel::Error) << "Could not parse region.txt";
 		exit(-1);
 	}
+	initStateMap(Vic2RegionsObj);
 }
-
-
 
 void stateMapper::initStateMap(Object* obj)
 {
@@ -72,19 +65,18 @@ void stateMapper::initStateMap(Object* obj)
 		vector<string> provinces = states[stateIndex]->getTokens();
 		vector<int> neighbors;
 
-		for (auto province: provinces)
+		for (auto province : provinces)
 		{
 			neighbors.push_back(stoi(province));
 			stateIndexMap.insert(make_pair(stoi(province), stateIndex));
 		}
 
-		for (auto neighbor: neighbors)
+		for (auto neighbor : neighbors)
 		{
 			stateProvincesMap.insert(make_pair(neighbor, neighbors));
 		}
 	}
 }
-
 
 vector<int> stateMapper::GetOtherProvincesInState(int province)
 {
@@ -99,7 +91,6 @@ vector<int> stateMapper::GetOtherProvincesInState(int province)
 		return empty;
 	}
 }
-
 
 int stateMapper::GetStateIndex(int province)
 {
