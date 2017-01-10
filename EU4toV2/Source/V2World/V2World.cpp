@@ -826,7 +826,7 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Converting diplomacy";
 
-	vector<EU4Agreement> agreements = sourceWorld.getDiplomacy()->getAgreements();
+	vector<EU4Agreement> agreements = sourceWorld.getDiplomaticAgreements();
 	for (vector<EU4Agreement>::iterator itr = agreements.begin(); itr != agreements.end(); ++itr)
 	{
 		const std::string& EU4Tag1 = itr->country1;
