@@ -55,13 +55,13 @@ void vic2CultureUnionMapper::initUnionMap(Object* obj)
 {
 	for (auto rule: obj->getLeaves())
 	{
-		string tag;
+		vector<string> tags;
 		string culture;
 		for (auto ruleItems: rule->getLeaves())
 		{
 			if (ruleItems->getKey() == "tag")
 			{
-				tag = ruleItems->getLeaf();
+				tags.push_back(ruleItems->getLeaf());
 			}
 			if (ruleItems->getKey() == "culture")
 			{
@@ -69,17 +69,19 @@ void vic2CultureUnionMapper::initUnionMap(Object* obj)
 			}
 		}
 
-		unionMap.insert(make_pair(culture, tag));
+		unionMap.insert(make_pair(culture, tags));
 	}
 }
 
 
-string vic2CultureUnionMapper::GetCoreForCulture(const string& culture)
+vector<string> vic2CultureUnionMapper::GetCoreForCulture(const string& culture)
 {
+	vector<string> empty;
+
 	auto mapping = unionMap.find(culture);
 	if (mapping == unionMap.end())
 	{
-		return "";
+		return empty;
 	}
 	else
 	{

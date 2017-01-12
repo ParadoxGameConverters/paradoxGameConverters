@@ -1522,6 +1522,7 @@ void V2World::setupPops(const EU4World& sourceWorld)
 	//output_file.close();
 }
 
+
 void V2World::addUnions()
 {
 	LOG(LogLevel::Info) << "Adding unions";
@@ -1533,8 +1534,8 @@ void V2World::addUnions()
 			auto cultures = provItr->second->getCulturesOverThreshold(0.5);
 			for (auto culture : cultures)
 			{
-				string core = vic2CultureUnionMapper::getCoreForCulture(culture);
-				if (core != "")
+				vector<string> cores = vic2CultureUnionMapper::getCoreForCulture(culture);
+				for (auto core: cores)
 				{
 					provItr->second->addCore(core);
 				}
@@ -1542,6 +1543,7 @@ void V2World::addUnions()
 		}
 	}
 }
+
 
 //#define TEST_V2_PROVINCES
 void V2World::convertArmies(const EU4World& sourceWorld)
