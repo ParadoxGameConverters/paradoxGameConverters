@@ -49,21 +49,24 @@ class V2World {
 
 	private:
 		void importProvinces();
-		set<string> getProvinceFilenames();
-		void getProvinceLocalizations(string file);
+		set<string> discoverProvinceFilenames();
+		void importProvinceLocalizations(const string& file);
+		bool isAProvinceLocalization(const string& line);
 
 		void importDefaultPops();
 		void importPopsFromFile(const string& filename);
-		void importPopsFromProvince(Object* provinceObj, int provinceNum);
+		void importPopsFromProvince(Object* provinceObj);
 
-		void logPopsByCountry();
-		void logPopsFromFile(string filename, map<string, map<string, long int>>& popsByCountry);
-		void logPopsInProvince(Object* provinceObj, map<string, map<string, long int>>& popsByCountry);
-		map<string, map<string, long int>>::iterator getCountryForPopLogging(string country, map<string, map<string, long int>>& popsByCountry);
-		void logPop(Object* pop, map<string, map<string, long int>>::iterator countryPopItr);
-		void outputLog(const map<string, map<string, long int>>& popsByCountry);
+		void logPopsByCountry() const;
+		void logPopsFromFile(string filename, map<string, map<string, long int>>& popsByCountry) const;
+		void logPopsInProvince(Object* provinceObj, map<string, map<string, long int>>& popsByCountry) const;
+		map<string, map<string, long int>>::iterator getCountryForPopLogging(string country, map<string, map<string, long int>>& popsByCountry) const;
+		void logPop(Object* pop, map<string, map<string, long int>>::iterator countryPopItr) const;
+		void outputLog(const map<string, map<string, long int>>& popsByCountry) const;
 
 		void findCoastalProvinces();
+		void determineIfProvinceIsCoastal(Object* provinceObj);
+
 		void importPotentialCountries();
 		void importTechSchools();
 

@@ -19,6 +19,8 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
+
+
 #include "V2World.h"
 #include <string>
 #include <iostream>
@@ -60,11 +62,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Flags.h"
 #include "V2LeaderTraits.h"
 
+
+
 V2World::V2World(const EU4World& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Parsing Vicky2 data";
 	importProvinces();
-	//importStates();
 	importDefaultPops();
 	//logPopsByCountry();
 	findCoastalProvinces();
@@ -89,11 +92,12 @@ V2World::V2World(const EU4World& sourceWorld)
 	output();
 }
 
+
 void V2World::importProvinces()
 {
 	LOG(LogLevel::Info) << "Importing provinces";
 
-	set<string> provinceFilenames = getProvinceFilenames();
+	set<string> provinceFilenames = discoverProvinceFilenames();
 	for (auto provinceFilename : provinceFilenames)
 	{
 		V2Province* newProvince = new V2Province(provinceFilename);
@@ -102,15 +106,16 @@ void V2World::importProvinces()
 
 	if (Utils::DoesFileExist("./blankMod/output/localisation/text.csv"))
 	{
-		getProvinceLocalizations("./blankMod/output/localisation/text.csv");
+		importProvinceLocalizations("./blankMod/output/localisation/text.csv");
 	}
 	else
 	{
-		getProvinceLocalizations((Configuration::getV2Path() + "/localisation/text.csv"));
+		importProvinceLocalizations((Configuration::getV2Path() + "/localisation/text.csv"));
 	}
 }
 
-set<string> V2World::getProvinceFilenames()
+
+set<string> V2World::discoverProvinceFilenames()
 {
 	set<string> provinceFilenames;
 	Utils::GetAllFilesInFolderRecursive("./blankMod/output/history/provinces", provinceFilenames);
@@ -122,7 +127,8 @@ set<string> V2World::getProvinceFilenames()
 	return provinceFilenames;
 }
 
-void V2World::getProvinceLocalizations(string file)
+
+void V2World::importProvinceLocalizations(const string& file)
 {
 	ifstream read(file);
 
@@ -130,7 +136,7 @@ void V2World::getProvinceLocalizations(string file)
 	{
 		string line;
 		getline(read, line);
-		if ((line.substr(0, 4) == "PROV") && (isdigit(line[4])))
+		if (isAProvinceLocalization(line))
 		{
 			int position = line.find_first_of(';');
 			int num = stoi(line.substr(4, position - 4));
@@ -147,6 +153,13 @@ void V2World::getProvinceLocalizations(string file)
 	read.close();
 }
 
+
+bool V2World::isAProvinceLocalization(const string& line)
+{
+	return (line.substr(0, 4) == "PROV") && (isdigit(line[4]));
+}
+
+
 void V2World::importDefaultPops()
 {
 	LOG(LogLevel::Info) << "Importing historical pops.";
@@ -161,6 +174,7 @@ void V2World::importDefaultPops()
 	}
 }
 
+
 void V2World::importPopsFromFile(const string& filename)
 {
 	list<int> popProvinces;
@@ -172,14 +186,16 @@ void V2World::importPopsFromFile(const string& filename)
 		int provinceNum = stoi(provinceObj->getKey());
 		popProvinces.push_back(provinceNum);
 
-		importPopsFromProvince(provinceObj, provinceNum);
+		importPopsFromProvince(provinceObj);
 	}
 
 	popRegions.insert(make_pair(filename, popProvinces));
 }
 
-void V2World::importPopsFromProvince(Object* provinceObj, int provinceNum)
+
+void V2World::importPopsFromProvince(Object* provinceObj)
 {
+	int provinceNum = stoi(provinceObj->getKey());
 	auto province = provinces.find(provinceNum);
 	if (province == provinces.end())
 	{
@@ -191,7 +207,7 @@ void V2World::importPopsFromProvince(Object* provinceObj, int provinceNum)
 	int provinceSlavePopulation = 0;
 
 	vector<Object*> popObjs = provinceObj->getLeaves();
-	for (auto popObj : popObjs)
+	for (auto popObj: popObjs)
 	{
 		V2Pop* newPop = new V2Pop(popObj);
 
@@ -212,7 +228,8 @@ void V2World::importPopsFromProvince(Object* provinceObj, int provinceNum)
 	province->second->setSlaveProportion(1.0 * provinceSlavePopulation / provincePopulation);
 }
 
-void V2World::logPopsByCountry()
+
+void V2World::logPopsByCountry() const
 {
 	map<string, map<string, long int>> popsByCountry; // country, poptype, num
 
@@ -226,7 +243,8 @@ void V2World::logPopsByCountry()
 	outputLog(popsByCountry);
 }
 
-void V2World::logPopsFromFile(string filename, map<string, map<string, long int>>& popsByCountry)
+
+void V2World::logPopsFromFile(string filename, map<string, map<string, long int>>& popsByCountry) const
 {
 	Object* fileObj = parser_8859_15::doParseFile(("./blankMod/output/history/pops/1836.1.1/" + filename));
 
@@ -237,7 +255,8 @@ void V2World::logPopsFromFile(string filename, map<string, map<string, long int>
 	}
 }
 
-void V2World::logPopsInProvince(Object* provinceObj, map<string, map<string, long int>>& popsByCountry)
+
+void V2World::logPopsInProvince(Object* provinceObj, map<string, map<string, long int>>& popsByCountry) const
 {
 	int provinceNum = stoi(provinceObj->getKey());
 	auto province = provinces.find(provinceNum);
@@ -256,7 +275,8 @@ void V2World::logPopsInProvince(Object* provinceObj, map<string, map<string, lon
 	}
 }
 
-void V2World::logPop(Object* pop, map<string, map<string, long int>>::iterator countryPopItr)
+
+void V2World::logPop(Object* pop, map<string, map<string, long int>>::iterator countryPopItr) const
 {
 	string popType = pop->getKey();
 	int popSize = stoi(pop->getLeaf("size"));
@@ -271,7 +291,8 @@ void V2World::logPop(Object* pop, map<string, map<string, long int>>::iterator c
 	popItr->second += popSize;
 }
 
-map<string, map<string, long int>>::iterator V2World::getCountryForPopLogging(string country, map<string, map<string, long int>>& popsByCountry)
+
+map<string, map<string, long int>>::iterator V2World::getCountryForPopLogging(string country, map<string, map<string, long int>>& popsByCountry) const
 {
 	auto countryPopItr = popsByCountry.find(country);
 	if (countryPopItr == popsByCountry.end())
@@ -284,7 +305,8 @@ map<string, map<string, long int>>::iterator V2World::getCountryForPopLogging(st
 	return countryPopItr;
 }
 
-void V2World::outputLog(const map<string, map<string, long int>>& popsByCountry)
+
+void V2World::outputLog(const map<string, map<string, long int>>& popsByCountry) const
 {
 	for (auto countryItr : popsByCountry)
 	{
@@ -303,44 +325,43 @@ void V2World::outputLog(const map<string, map<string, long int>>& popsByCountry)
 	}
 }
 
+
 void V2World::findCoastalProvinces()
 {
-	// determine whether a province is coastal or not by checking if it has a naval base
-	// if it's not coastal, we won't try to put any navies in it (otherwise Vicky crashes)
 	LOG(LogLevel::Info) << "Finding coastal provinces.";
-	Object*	obj2 = parser_8859_15::doParseFile((Configuration::getV2Path() + "/map/positions.txt").c_str());
-	if (obj2 == NULL)
+	Object* positionsObj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/map/positions.txt"));
+	if (positionsObj == nullptr)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getV2Path() << "/map/positions.txt";
 		exit(-1);
 	}
-	vector<Object*> objProv = obj2->getLeaves();
-	if (objProv.size() == 0)
+
+	vector<Object*> provinceObjs = positionsObj->getLeaves();
+	for (auto provinceObj: provinceObjs)
 	{
-		LOG(LogLevel::Error) << "map/positions.txt failed to parse.";
-		exit(1);
+		determineIfProvinceIsCoastal(provinceObj);
 	}
-	for (vector<Object*>::iterator itr = objProv.begin(); itr != objProv.end(); ++itr)
+}
+
+
+void V2World::determineIfProvinceIsCoastal(Object* provinceObj)
+{
+	vector<Object*> positionObj = provinceObj->getValue("building_position");
+	if (positionObj.size() > 0)
 	{
-		int provinceNum = atoi((*itr)->getKey().c_str());
-		vector<Object*> objPos = (*itr)->getValue("building_position");
-		if (objPos.size() == 0)
-			continue;
-		vector<Object*> objNavalBase = objPos[0]->getValue("naval_base");
-		if (objNavalBase.size() != 0)
+		vector<Object*> navalBaseObj = positionObj[0]->getValue("naval_base");
+		if (navalBaseObj.size() > 0)
 		{
-			// this province is coastal
-			for (map<int, V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+			int provinceNum = stoi(provinceObj->getKey());
+			auto province = provinces.find(provinceNum);
+			if (province != provinces.end())
 			{
-				if (pitr->first == provinceNum)
-				{
-					pitr->second->setCoastal(true);
-					break;
-				}
+				province->second->setCoastal(true);
 			}
 		}
 	}
 }
+
 
 void V2World::importPotentialCountries()
 {
