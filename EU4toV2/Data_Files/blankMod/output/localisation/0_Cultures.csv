@@ -1,18 +1,19 @@
 NONE;;;;;;;;;;;;;;x;
-alan;Alan;Alain;Alanisch;;Alana;;;;;;;;;x
+alan;Alan;Alan;Alan;Alan;Alano;Alan;Alan;Alan;Alan;Alan;Алан;Alan;x;x
 aleutian;Aleutian;aléoute;Aleutisch;aleucka;Aleutiana;Aleutina;Aleut;Aleutský;;;;;;x;
 altaic;Altaic;altaïque;Altaisch;a³tajska;de Altai;Altaica;Altaic;Altajský;;;;;;x;
-andalucian;Andalusian;andalouse;Andalusisch;andaluzyjska;Andaluza;Andalusa;Andalúz;Andaluský;;;;;;x;
-anglo_saxon;Anglo-Saxon;Anglo-Saxon;Angel-Sächsisch;;Anglosajon;;;;;;;;;x
+andalucian;Andalucian;Andalousie;Andalusisch;Andalucian;Andaluso;Andalúz;Andalucian;Andalúz;Andalusische;Andaluz;Андалуциан;Andalusian;x;x;
+anglo_saxon;Anglo-saxon;Anglo-saxon;Angel-sächsisch;Anglosaski;Anglo-sassone;Angolszász;Anglosaský;Angolszász;Angelsaksisch;Anglo-saxão;Англосаксонский;Anglosaksinen;x;x
 aquitaine;Aquitaine;aquitaine;Aquitainisch;akwitañska;Aquitana;Aquitana;Aquitán;Akvitánie;;;;;;x;
 arawak;Arawak;arawak;Arawak;arawak;Arauca;Arawak;Arawak;Arawacký;;;;;;x;
 austrian;Austrian;autrichienne;Österreichisch;austriacka;Austriaca;Austriaca;Osztrák;Rakouský;;;;;;x;
 aztek;Aztec;aztèque;Aztekisch;aztecka;Azteca;Azteca;Azték;Aztécký;;;;;;x;
 bavaraian;Bavaraian;Bavaraian;Bavaraian;Bavaraian;Bavaraian;Bavaraian;Bavaraian;Bavaraian;;;;;;x;
 bantu;Bantu;bantoue;Bantu;bantu;Bantú;Bantu;Bantu;Bantu;;;;;;x;
-breton;Breton;bretonne;Bretonisch;bretoñska;Bretona;Bretone;Breton;Bretaòský;;;;;;x;
+breton;Breton;Breton;Bretonisch;Breton;Bretone;Breton;Breton;Breton;Breton;Bretão;Бретонский;Breton;x;x;
 burgundian;Burgundian;bourguignonne;Burgundisch;burgundzka;Borgoñona;Burgunda;Burgundi;Burgundský;;;;;;x;
 carib;Carib;caraïbe;Carib;karibi;Caribe;Caraibica;Karib;Karibský;;;;;;x;
+caribbean;Carib;Carib;Carib;Karaibów;Caraibico;Carib;Carib;Carib;Carib;Carib;Караиб;Karibi;x
 castillian;Castilian;castillane;Kastilisch;kastylijska;Castellana;Castigliana;Kasztíliai;Kastilský;;;;;;x;
 celtic;Celtic;celtique;Keltisch;celtycka;Celta;Celtica;Kelta;Keltský;;;;;;x;
 central_thai;Central Thai;centre-thaïe;Zentralthailändisch;œrodkowo-tajska;Tailandesa central;Centro-tailandese;Közép-thai-i;Støedothajský;;;;;;x;
@@ -22,25 +23,25 @@ cosmopolitan_french;Cosmopolitaine;francaise;Cosmopolitaine;kosmopolityczna;Cosm
 creek;Creek;creek;Creek;creek;Creek;Creek;Creek;Kríkský;;;;;;x;
 cuman;Cuman;Couman;Kumanisch;;Cumana;;;;;;;;;x
 delaware;Delaware;delaware;Delaware;delaware;Delaware;Delaware;Delavár;Delawarský;;;;;;x;
-english;English;anglaise;Englisch;angielska;Inglesa;Inglese;Angol;Anglický;;;;;;x;
-equine;Equine;équine;Pferde;koński;equino;Equino;Lószerű;Koňský;;;;;x
+english;English;Anglais;Englisch;Angielski;Inglese;Angol;Angličtina;Angol;Engels;Inglês;Английский;Englanti;x;x;
+equine;Equine;Équine;Pferde;Koński;Cavallo;Ló;Koňský;Ló;Paarden;Equino;Лошадиный;Hevos-;x
 east_persian;Khorasani;Khorasanne;Khorasani;;de Jorasán;;;;;;;;;x;
-frankish;Frankish;Franc;Fränkisch;;Francesa;;;;;;;;;x
+frankish;Frankish;Franc;Fränkisch;Franków;Franco;Frank;Frankish;Frank;Frankische;Franco;Франкское;Frankkien;x;x
 gaelic;Celtic;celtique;Keltisch;celtycka;Celta;Celtica;Kelta;Keltský;;;;;;x;
-galician;Galician;galicienne;Galizisch;galicyjska;Gallega;Galiziana;Gall;Galicijský;;;;;;x;
+galician;Galician;Galicien;Galizisch;Galicyjski;Galiziano;Galíciai;Galicijský;Galíciai;Galicisch;Galego;Галицкая;Galician;x;x;
 gascon;Gascon;gasconne;Gascon;gaskoñska;Gascona;Guascone;Gascon;Gaskoòský;;;;;;x;
-german;German;Allemand;Deutsch;;Alemana;;;;;;;;;x;
+german;Germanic;Germanique;Germanisch;Germański;Germanico;Germán;Germánský;Germán;Germaans;Germânico;Германский;Germaaninen;x;x;
 hannoverian;Hannoverian;hanovrienne;Hannoversch;hanowerska;Hannoveriana;Annoveriana;Hannoveri;Hannoverský;;;;;;x;
 hessian;Hessian;hessois;Hessisch;heska;de Hesse;Assiana;Hesseni;Hesenský;;;;;;x;
 huron;Huron;huronne;Huron;huroñska;Hurona;Huron;Huron;Hurónský;;;;;;x;
 ingrian;Ingrian;ingrienne;Ingrisch;ingryjska;Ingria;Ingriana;Ingrian;Baltskofinský;;;;;;x;
 iroquis;Iroquois;iroquoise;Irokesisch;irokeska;Iroquesa;Irochese;Irokéz;Irokézský;;;;;;x;
-all_italian;Italian;Italien;Italienisch;;Italiana;;;;;;;;;x;
+all_italian;Neo-italian;Néo-italien;Neu-italienisch;Neo-włoski;Neo-italiano;Neo-olasz;Neo-italský;Neo-olasz;Neo-italiaanse;Neo-italiano;Нео-итальянский;Neo-italian;x;x;
 karelian;Karelian;Carélien;Karelisch;;Karelian;;;;;;;;;x
 komi;Komi;Komi;Komi;;Komi;;;;;;;;;x
 lappish;Lappish;Lapon;Lappländisch;;Lapona;;;;;;;;;x
 lettigallish;Lettigallian;Latgaline;Lettigallisch;;Letigala;;;;;;;;;x
-lombard;Lombard;lombarde;Lombardisch;lombardzka;Lombarda;Lombarda;Lombard;Lombardský;;;;;;x;
+lombard;Lombard;Lombard;Langobarden;Lombard;Longobardo;Lombardiai;Lombard;Lombardiai;Lombard;Lombard;Ломбардный;Lombard;x;x;
 madagascan;Madagascan;malgache;Madagascan;malgaska;Madagascana;Malgascia;Madagaszkári;Madagaskarský;;;;;;x;
 madagasque;Madagasque;malgache;Madegassisch;madagaskarska;de Madagascar;Malgascia;Madagaszkári;Madagaskarský;;;;;;x;
 mataco;Mataco;mataco;Mataco;mataco;Wichí;Mataco;Matákó;Matacký;;;;;;x;
@@ -48,55 +49,56 @@ mon;Mon;mon;Mon;mon;Mon;Mon;Mon;Monský;;;;;;x;
 normand;Norman;normande;Normannisch;normandzka;Normanda;Normanna;Norman;Normanský;;;;;;x;
 nothern_thai;Northern Thai;thaïe septentrionale;Nordthailändisch;pó³nocnotajska;Tailandesa septentrional;Tailandese settentrionale;Észak-thai-i;Severothajský;;;;;;x;
 northern_thai;Northern Thai;thaïe du nord;Nordthailändisch;pó³nocnotajska;Tailandesa septentrional;Tailandese settentrionale;Északi-thai-i;Severothajský;;;;;;x;
-occitain;Occitain;occitane;Okzitanisch;oksytañska;Occitana;Occitana;Osszitán;Occitánský;;;;;;x;
+occitain;Occitain;Occitain;Occitain;Occitain;Occitano;Occitain;Occitain;Occitain;Occitain;Occitain;Оццитаин;Occitain;x;x;
 old_prussian;Old Prussian;vieux-prussienne;Preußisch;staropruska;de la antigua Prusia;Vecchio prussiana;Régi porosz;Staropruský;;;;;;x;
 papuan;Papuan;papoue;Papua;papuaska;Papúa;Papuana;Pápua;Papuánský;;;;;;x;
 pecheneg;Pecheneg;Petchénègue;Petschenegisch;;Pechenega;;;;;;;;;x
-pictish;Pictish;Picte;Piktisch;;Picto;;;;;;;;;x;
+pictish;Pictish;Picte;Pikten;Piktów;Pitto;Pictish;Pictish;Pictish;Pictish;Picto;Пиктский;Pictish;x;x;
 pommeranian;Pommeranian;poméranienne;Pommersch;pomorska;Pomerana;Pomerana;Pommerániai;Pomoøanský;;;;;;x;
 prussian;Prussian;prussienne;Preußisch;pruska;Prusiana;Prussiana;Porosz;Pruský;;;;;;x;
 rheinlaender;Rheinlaender;rhénane;Rheinisch;reñska;Renana;Renana;Rajnai;Porýnský;;;;;;x;
 ruthenian;Ruthenian;ruthène;Ruthenisch;ruska;Rutena;Rutena;Ruthén;Ruthenijský;;;;;;x;
 saxon;Saxon;saxonne;Sächsisch;saska;Sajona;Sassone;Saxon;Saský;;;;;;x;
 schlesian;Schlesian;silésienne;Schlesisch;œl¹ska;Silesiana;Slesiana;Szléz;Šlesvický;;;;;;x;
-scottish;Scottish;Écossais;Schottisch;;de Escocia;;;;;;;;;x;
+scottish;Scottish;Écossais;Schottisch;Szkocki;Scozzese;Skót;Skotský;Skót;Schots;Escocês;Шотландский;Skotlantilainen;x;x;
 senegambian;Senegambian;sénégambienne;Senegambia;senegambijska;de Senegambia;Senegambiana;Szenegambiai;Senegambijský;;;;;;x;
 shawnee;Shawnee;shawnee;Shawnee;shawnee;Shawnee;Shawnee;Shawnee;Šóníjský;;;;;;x;
 sicilian;Sicilian;sicilienne;Sizilianisch;sycylijska;Siciliana;Siciliana;Szicíliai;Sicilský;;;;;;x;
-suebi;Suebi;Sueve;Suebisch;;Suevo;;;;;;;;;x;
+suebi;Suebi;Suebi;Suebi;Suebów;Svevo;Szvébek;Suebi;Szvébek;Suebi;Suebi;Суеби;Sveba;x;x;
 sulawesi;Sulawesi;sulawésienne;Sulawesisch;sulawesi;Sulavesi;Sulawesi;Szulavész;Sulaweský;;;;;;x;
 suryahi;Suryah;syrienne;Suryah;syryjska;Suryah;Siriana;Suryah;Syrská;;;;;;x;
 teremembe;Teremembe;teremembe;Teremembe;teremembe;Teremembe;Teremembe;Teremembe;Teremembský;;;;;;x;
 umbrian;Umbrian;ombrienne;Umbrisch;umbryjska;Umbra;Umbra;Umbirai;Umbrijský;;;;;;x;
-visigothic;Visigothic;Wisigoth;Westgotisch;;Visigodo;;;;;;;;;x;
-welsh;Welsh;galloise;Walisisch;walijska;Galesa;Gallese;Walesi;Velšský;;;;;;x;
+visigothic;Visigothic;Visigothique;Westgoten;Wizygotów;Visigoto;Vizigót;Visigothic;Vizigót;Visigothic;Visigótico;Вестготский;Visigothic;x;x;
+welsh;Welsh;Gallois;Walisisch;Walijski;Gallese;Walesi;Velština;Walesi;Wels;Galês;Валлийский;Walesin;x;x;
 ugricbaltic;Ugric Baltic;Ugric Baltic;Ugric Baltic;Ugric Baltic;Ugric Baltic;Ugric Baltic;Ugric Baltic;Ugric Baltic;;;;;;x;
 levantine_arabic;Levantine Arabic;Levantine Arabic;Levantine Arabic;Levantine Arabic;Levantine Arabic;Levantine Arabic;Levantine Arabic;Levantine Arabic;;;;;;x;
 egyptian_arabic;Egyptian Arabic;Egyptian Arabic;Egyptian Arabic;Egyptian Arabic;Egyptian Arabic;Egyptian Arabic;Egyptian Arabic;Egyptian Arabic;;;;;;x;
-siouan;Siouan;Siouan;Siouan;Siouan;Siouan;Siouan;Siouan;Siouan;;;;;;x;
-iroquoian;Iroquoian;Iroquoian;Iroquoian;Iroquoian;Iroquoian;Iroquoian;Iroquoian;Iroquoian;;;;;;x;
-sonoran;Sonoran;Sonoran;Sonoran;Sonoran;Sonoran;Sonoran;Sonoran;Sonoran;;;;;;x;
-eskaleut;Eskaleut;Eskaleut;Eskaleut;Eskaleut;Eskaleut;Eskaleut;Eskaleut;Eskaleut;;;;;;x;
-central_algonquian;Central Algonquian;Central Algonquian;Central Algonquian;Central Algonquian;Central Algonquian;Central Algonquian;Central Algonquian;Central Algonquian;;;;;;x;
-na_dene;Na Dene;Na Dene;Na Dene;Na Dene;Na Dene;Na Dene;Na Dene;Na Dene;;;;;;x;
-penutian;Penutian;Penutian;Penutian;Penutian;Penutian;Penutian;Penutian;Penutian;;;;;;x;
+siouan;Sioux;Sioux;Sioux;Sioux;Sioux;Sziú;Sioux;Sziú;Sioux;Sioux;Сиу;Sioux;x;x;
+iroquoian;Iroquois;Iroquois;Irokesen;Iroquois;Irochese;Irokéz;Iroquois;Irokéz;Iroquois;Iroquois;Ирокез;Iroquois;x;x;
+sonoran;Sonoran;Sonoran;Sonoran;Sonora;Sonora;Sonora;Sonoran;Sonora;Sonora;Sonoran;Сонора;Sonoran;x;x;
+eskaleut;Eskaleut;Eskaleut;Eskaleut;Eskaleut;Eschimese;Eskaleut;Eskaleut;Eskaleut;Eskaleut;Eskaleut;Ескалеут;Eskaleut;x;x;
+central_algonquian;Central Algonquian;Algonquien Central;Zentrale Algonquian;Centralny Algonkińskiej;Algonchino Centrale;Központi Algonquian;Centrální Algonquian;Központi Algonquian;Central Algonquian;Central Algonquian;Центральный Алгонкинский;Keski Algonquian;x;x;
+na_dene;Na Dene;Na Dene;Na Dene;Na Dene;Na Dene;Na Dene;Na Dene;Na Dene;Na Dene;Na Dene;На Дене;Na Dene;x;x;
+native_caribbean;Native Caribbean;Native Caribbean;Gebürtige Karibik;Natywna Karaibów;Nativo Caraibico;Natív Caribbean;Nativní Caribbean;Natív Caribbean;Inheemse Caribbean;Nativo Caribenho;Родной Карибское Море;Native Karibian;x
+penutian;Penutian;Penutien;Penutian;Penutian;Penuziano;Peneut Nyelv;Penutian;Peneut Nyelv;Penutian;Penutian;Пенутиан;Penutian;x;x;
 plains_algonquian;Plains Algonquian;Plains Algonquian;Plains Algonquian;Plains Algonquian;Plains Algonquian;Plains Algonquian;Plains Algonquian;Plains Algonquian;;;;;;x;
 eastern_algonquian;Eastern Algonquian;Eastern Algonquian;Eastern Algonquian;Eastern Algonquian;Eastern Algonquian;Eastern Algonquian;Eastern Algonquian;Eastern Algonquian;;;;;;x;
-muskogean;Muskogean;Muskogean;Muskogean;Muskogean;Muskogean;Muskogean;Muskogean;Muskogean;;;;;;x;
-caddoan;Caddoan;Caddoan;Caddoan;Caddoan;Caddoan;Caddoan;Caddoan;Caddoan;;;;;;x;
-chibchan;Chibchan;Chibchan;Chibchan;Chibchan;Chibchan;Chibchan;Chibchan;Chibchan;;;;;;x;
-maranon;Maranon;Maranon;Maranon;Maranon;Maranon;Maranon;Maranon;Maranon;;;;;;x;
+muskogean;Muskogean;Muskogean;Muskogean;Muskogean;Muskogee;Muskogean;Muskogean;Muskogean;Muskogean;Muskogean;Мускогеан;Muskogean;x;x;
+caddoan;Caddoan;Caddoan;Caddoan;Caddoan;Caddo;Caddoan;Caddoan;Caddoan;Caddoan;Caddoan;Цаддоан;Caddoan;x;x;
+chibchan;Chibchan;Chibchan;Chibchan;Chibchan;Chibchan;Chibchan;Chibchan;Chibchan;Chibcha;Chibchan;Чибчан;Chibchan;x;x;
+maranon;Maranon;Maranon;Maranon;Maranon;Maranon;Maranon;Maranon;Maranon;Maranon;Maranhão;Мараньон;Maranon;x;x;
 andean;Andean;Andean;Andean;Andean;Andean;Andean;Andean;Andean;;;;;;x;
-tupi;Tupi;Tupi;Tupi;Tupi;Tupi;Tupi;Tupi;Tupi;;;;;;x;
-je;Je;Je;Je;Je;Je;Je;Je;Je;;;;;;x;
-araucanian;Araucanian;Araucanian;Araucanian;Araucanian;Araucanian;Araucanian;Araucanian;Araucanian;;;;;;x;
+tupi;Tupi;Tupi;Tupi;Tupi;Tupi;Tupi;Tupi;Tupi;Tupi;Tupi;Тупи;Tupi;x;x;
+je;Je;Je;Je;Je;Je;Je;Je;Je;Je;Je;Э;Je;x;x;
+araucanian;Araucanian;Araucanien;Araucanisch;Araukański;Araucanese;Araukán;Araukánština;Araukán;Araucanian;Araucano;Арауканский;Araukaani;x;x;
 carribean;Caribbean;Carribean;Caribbean;Caribbean;Caribbean;Caribbean;Caribbean;Caribbean;;;;;;x;
-bornean;Bornean;Bornean;Bornean;Bornean;Bornean;Bornean;Bornean;Bornean;;;;;;x;
+bornean;Bornean;Bornean;Bornean;Bornean;Borneano;Borneói;Bornejský;Borneói;Bornean;Bornean;Борнео;Bornean;x;x;
 chacoan;Chacoan;Chacoan;Chacoan;Chacoan;Chacoan;Chacoan;Chacoan;Chacoan;;;;;;x;
 native_carribean;Caribbean;Caribbean;Caribbean;Caribbean;Caribbean;Caribbean;Caribbean;Caribbean;;;;;;x;
-native_north_american;Native North American;Native North American;Native North American;Native North American;Native North American;Native North American;Native North American;Native North American;;;;;;x;
-native_south_american;Native South American;Native South American;Native South American;Native South American;Native South American;Native South American;Native South American;Native South American;;;;;;x;
-native_central_american;Native Central American;Native Central American;Native Central American;Native Central American;Native Central American;Native Central American;Native Central American;Native Central American;;;;;;x;
-ostrogothic;Ostrogothic;ostrogoth;Ostgoten;ostrogotów;ostrogodo;Ostrogoto;Osztrogótok;Ostrogótské;;;;;;x
-maghreb_arabic;Altavian;altavien;Altavisch;altavi;altava;di Altava;Altavan;Altavština;;;;;;x
-syriac;Syriac;syriaque;Syrische;syryjski;siríaco;Siriaco;Szír;Syrština;;;;;;x
+native_north_american;Native North American;Native Américain Du Nord;Native Nordamerikanische;Natywna Ameryki Północnej;Nativo Nordamericano;Native Észak-amerikai;Native North American;Native Észak-amerikai;Inheemse Noord-amerikaanse;Nativo Da América Do Norte;Североамериканский Родной;Native Pohjois-amerikan;x;x;
+native_south_american;Native South America;Américain Du Sud;Ureinwohner Südamerikas;Natywna Ameryka Południowa;Nativo Sudamericano;Natív Dél-amerika;Nativní Jižní Amerika;Natív Dél-amerika;Inheemse Zuid-amerika;América Do Sul;Родной Южная Америка;Native Etelä-amerikka;x;x;
+native_central_american;Native Central American;Américain Centrale;Ureinwohner Zentralamerikanischer;Natywna Ameryki Środkowej;Nativo Centroamericano;Native Közép-amerikai;Native Střední Ameriky;Native Közép-amerikai;De Inheemse Van Centraal-amerika;Centro-americano Nativo;Родной Центральной Америки;Native Keski-amerikan;x;x;
+ostrogothic;Ostrogothic;Ostrogothique;Ostrogothic;Ostrogotów;Ostrogoto;Osztrogót;Ostrogothic;Osztrogót;Ostrogotische;Ostrogothic;Остроготов;Ostrogothic;x;x
+maghreb_arabic;Moorish;Mauresque;Maurisch;Mauretański;Moro;Mór;Maurská;Mór;Moors;Mourisco;Мавританский;Maurilainen;x;x
+syriac;Syriac;Syriac;Syrisch;Syryjski;Siriaco;Szír;Syrský;Szír;Syrisch;Siríaco;Сирийский;Syriac;x;x

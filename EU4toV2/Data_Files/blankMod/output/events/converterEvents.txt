@@ -103,3 +103,26 @@ country_event = {
         }
     }
 }
+
+country_event = { 
+	id = 250004 
+	title = EVTNAME250004
+	desc = EVTDESC250004
+	is_triggered_only = yes
+	
+	option = { 
+		name = EVTOPTA250004
+		release_vassal = XIN
+		release_vassal = XBI
+		release_vassal = TIB
+		release_vassal = MGL
+		release_vassal = MCK
+		release_vassal = KOR
+		release_vassal = YNN
+		release_vassal = GXI
+		release_vassal = DAI
+		ai_chance = {
+			factor = 100
+		}
+    }
+}

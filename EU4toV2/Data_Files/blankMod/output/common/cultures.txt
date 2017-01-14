@@ -1,4 +1,4 @@
-# Do not change tags in here without changing every other reference to them.
+﻿# Do not change tags in here without changing every other reference to them.
 # If adding new groups or cultures, make sure they are unique.
 
 germanic = {
@@ -1722,6 +1722,8 @@ east_asian = {
 		last_names = { Zhao Wu Sun Ma Hu Peng Dong Ye Lü Tian Jiang Wei Ting Shen Fang Jin Qiu
 		}
 	}
+	
+	union = CHI
 }
 
 oceanic = {

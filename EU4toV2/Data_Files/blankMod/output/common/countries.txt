@@ -62,6 +62,10 @@ SCH		= "countries/Schleswig.txt"
 SGF		= "countries/South German Fed.txt"
 WEI		= "countries/Saxe-Weimar.txt"
 WUR		= "countries/Wurttemberg.txt"
+DTT		= "countries/Dithmarschen.txt"
+MEM		= "countries/Memmingen.txt"
+NUM		= "countries/Nuremberg.txt"
+RVA		= "countries/Ravensburg.txt"
 
 # Italy
 LOM		= "countries/Lombardia.txt"
@@ -261,6 +265,7 @@ GCO		="countries/Gran Colombia.txt"
 
 ##HoD
 JAN 	= "countries/JanMayen.txt"
+TRL 	= "countries/Trapalandia.txt"
 
 
 ## Converter Mod Countries
@@ -304,6 +309,7 @@ SAV		="countries/Savoy.txt"##
 SII		="countries/Sicily.txt"##
 SNA		="countries/Siena.txt"##
 URB		="countries/Urbino.txt"##
+MFA 	="countries/Montferrat.txt"
 
 # Eastern Europe
 LIV		="countries/Livonian Order.txt"##
@@ -323,6 +329,10 @@ TYR		="countries/Ulster.txt"##
 WLS		="countries/Wales.txt"##
 YOR		="countries/York.txt"##
 NOL		="countries/Northumberland.txt"
+HSC		="countries/Highlands.txt"
+DMS		="countries/Desmond.txt"
+SLN		="countries/Sligo.txt"
+KID		="countries/Kildare.txt"
 
 # Balkans
 ACH		="countries/Achaea.txt"##
@@ -352,6 +362,37 @@ KBO 		="countries/KanemBornu.txt"
 LOA 		="countries/Loango.txt"
 OYO 		="countries/Oyo.txt"
 SOF 		="countries/Sofala.txt"
+ABB 		="countries/Dongola.txt"
+HDY 		="countries/Hadiya.txt"
+JJI 		="countries/Janjiro.txt"
+WLY 		="countries/Welayta.txt"
+ANT 		="countries/Antemoro.txt"
+BNY 		="countries/Bunyoro.txt"
+BSG 		="countries/Basoga.txt"
+BTS 		="countries/Betsimisaraka.txt"
+BUG 		="countries/Buganda.txt"
+BUU 		="countries/Burundi.txt"
+CKW 		="countries/Chokwe.txt"
+KIK 		="countries/Kikondja.txt"
+KRW 		="countries/Karagwe.txt"
+KSJ 		="countries/Kasanje.txt"
+KUB 		="countries/Kuba.txt"
+KZB 		="countries/Kazembe.txt"
+LDU 		="countries/Lundu.txt"
+LND 		="countries/Lunda.txt"
+LUB 		="countries/Luba.txt"
+MFY 		="countries/Mahafaly.txt"
+MIR 		="countries/Merina.txt"
+MKU 		="countries/Makua.txt"
+MRA 		="countries/Maravi.txt"
+NKO 		="countries/Nkore.txt"
+RWA 		="countries/Rwanda.txt"
+RZW 		="countries/Butua.txt"
+SKA 		="countries/Sakalava.txt"
+SYO 		="countries/Soyo.txt"
+TBK 		="countries/Tumbuka.txt"
+UBH 		="countries/Buha.txt"
+YAK 		="countries/Yaka.txt"
 
 # France
 ALE		="countries/Alencon.txt"##
@@ -441,6 +482,7 @@ SMO		="countries/Smolensk.txt"##
 PLT		="countries/Polotsk.txt"##
 MUR		="countries/Murom.txt"##
 NZH		="countries/NizhnyNovgorod.txt"
+OKA		="countries/Odoyev.txt"
 
 # East Asia
 ANN		="countries/Annam.txt"

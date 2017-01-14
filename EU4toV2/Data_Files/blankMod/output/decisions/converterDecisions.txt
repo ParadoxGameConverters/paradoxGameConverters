@@ -123,3 +123,235 @@ political_decisions = {
 		}
 	}
 }
+
+political_decisions = {
+	form_china = {
+		news = yes
+		news_desc_long = "form_china_NEWS_LONG"
+		news_desc_medium = "form_china_NEWS_MEDIUM"
+		news_desc_short = "form_china_NEWS_SHORT"
+		potential = {
+			OR = {
+				primary_culture = manchu
+				primary_culture = nanfaren
+				primary_culture = beifaren
+				primary_culture = min
+				primary_culture = hakka
+				primary_culture = zhuang
+				primary_culture = miao
+				primary_culture = yi
+			}
+			NOT = {
+				exists = CHI
+			}
+		}	
+		allow = {
+			war = no
+			OR = {
+				LNG = {
+					all_core = {
+						OR = {
+							owned_by = THIS
+							owner = {
+								in_sphere = THIS
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		effect = {
+			prestige = 10
+			any_country = {
+				limit = {
+					in_sphere = THIS
+					NOT = {
+						tag = THIS
+					}
+					OR = {
+						primary_culture = manchu
+						primary_culture = nanfaren
+						primary_culture = beifaren
+						primary_culture = min
+						primary_culture = hakka
+						primary_culture = zhuang
+						primary_culture = miao
+						primary_culture = yi
+					}
+				}
+				annex_to = THIS
+			}
+			any_owned = {
+				add_core = CHI
+			}
+			any_owned = { # Xinjiang
+				limit = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+					}
+					state_id = 1594
+					NOT = { exists = XIN }
+				}
+				add_core = XIN
+			}
+			any_owned = { #Xibei San Ma
+				limit = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+					}
+					OR = {
+						state_id = 1488
+						state_id = 1556
+						state_id = 1562
+						state_id = 1490
+					}
+					NOT = { exists = XBI }
+				}
+				add_core = XBI
+			}
+			
+			any_owned = { #Tibet
+				limit = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+					}
+					state_id = 1587	
+					NOT = { exists = TIB }
+				}
+				add_core = TIB
+			}
+			
+			any_owned = { #Mongolia
+				limit = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+					}
+					OR = {
+						state_id = 1465	
+						state_id = 1532
+					}
+					NOT = { exists = MGL }
+				}
+				add_core = MGL
+			}
+			
+			any_owned = { #Manchukuo
+				limit = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+					}
+					OR = {
+						state_id = 1553
+						state_id = 1082
+						state_id = 1079
+					}
+					NOT = { exists = MCK }
+				}
+				add_core = MCK
+			}
+			
+			any_owned = { #Korea
+				limit = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+					}
+					OR = {
+						state_id = 1619
+						state_id = 1627
+					}
+					NOT = { exists = KOR }
+				}
+				add_core = KOR
+			}
+			
+			any_owned = { #Yunnan
+				limit = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+					}
+					OR = {
+						state_id = 1505
+						state_id = 1601
+						state_id = 1578
+						state_id = 1581
+						state_id = 1523
+					}
+					NOT = { exists = YNN }
+				}
+				add_core = YNN
+			}
+			
+			any_owned = { #Guangxi
+				limit = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+					}
+					OR = {
+						state_id = 1529
+						state_id = 1504
+						state_id = 1499
+						state_id = 1494
+						state_id = 1550
+						state_id = 1487
+					}
+					NOT = { exists = GXI }
+				}
+				add_core = GXI
+			}
+			
+			any_owned = { #Dai Nam
+				limit = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+					}
+					OR = {
+						state_id = 1371
+						state_id = 1356
+						state_id = 1374
+					}
+					NOT = { exists = DAI }
+				}
+				add_core = DAI
+			}
+			
+			
+			change_tag = CHI
+			
+			country_event = {
+				id = 250004
+				days = 1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

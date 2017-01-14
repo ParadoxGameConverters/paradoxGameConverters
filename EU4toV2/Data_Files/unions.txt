@@ -59,12 +59,12 @@ link = { tag = HUN culture = hungarian }
 
 #Czechoslovakia
 link = { tag = CZH culture = czech }
-link = { tag = CZH tag = SLV culture = slovak }
+link = { tag = CZH tag = SLV tag = RUT culture = slovak }
 
 #Russia
 link = { tag = RUS culture = russian }
 link = { tag = RUS tag = BYE culture = byelorussian }
-link = { tag = RUS culture = ukrainian }
+link = { tag = RUS tag = UKR tag = RUT culture = ukrainian }
 link = { tag = RUS culture = ugrian }
 
 #India
@@ -107,6 +107,16 @@ link = { tag = UBD culture = estonian }
 #Polish-Lithuanian Commonwealth
 link = { tag = PLC tag = POL culture = polish }
 link = { tag = PLC culture = lithuanian }
+
+#China
+link = { tag = CHI culture = manchu }
+link = { tag = CHI culture = nanfaren }
+link = { tag = CHI culture = beifaren }
+link = { tag = CHI culture = min }
+link = { tag = CHI culture = hakka }
+link = { tag = CHI culture = zhuang }
+link = { tag = CHI culture = miao }
+link = { tag = CHI culture = yi }
 
 #others
 link = { tag = AZB culture = azerbaijani } #Azerbaijan
