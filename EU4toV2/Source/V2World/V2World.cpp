@@ -415,24 +415,8 @@ void V2World::importPotentialCountry(const string& line, bool dynamicCountry)
 
 void V2World::importTechSchools()
 {
-	// Parse tech schools
-	LOG(LogLevel::Info) << "Parsing tech schools.";
-	Object* techSchoolObj = parser_UTF8::doParseFile("blocked_tech_schools.txt");
-	if (techSchoolObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file blocked_tech_schools.txt";
-		exit(-1);
-	}
-	vector<string> blockedTechSchools;	// the list of disallowed tech schools
-	blockedTechSchools = initBlockedTechSchools(techSchoolObj);
-	Object* technologyObj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/technology.txt").c_str());
-	if (technologyObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getV2Path() << "/common/technology.txt";
-		exit(-1);
-	}
-
-	techSchools = initTechSchools(technologyObj, blockedTechSchools);
+	LOG(LogLevel::Info) << "Importing tech schools.";
+	techSchools = initTechSchools();
 }
 
 bool scoresSorter(pair<V2Country*, int> first, pair<V2Country*, int> second)

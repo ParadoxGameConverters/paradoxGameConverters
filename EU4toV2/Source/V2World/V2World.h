@@ -43,7 +43,8 @@ class V2LeaderTraits;
 
 
 
-class V2World {
+class V2World
+{
 	public:
 		V2World(const EU4World& sourceWorld);
 
