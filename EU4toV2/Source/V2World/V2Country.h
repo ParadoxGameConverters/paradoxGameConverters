@@ -56,7 +56,9 @@ struct V2Party;
 class V2Country
 {
 	public:
+		V2Country(const string& countriesFileLine, V2World* _theWorld, bool _dynamicCountry);
 		V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _parties, V2World* _theWorld, bool _newCountry = false, bool _dynamicCountry = false);
+
 		void								output() const;
 		void								outputToCommonCountriesFile(FILE*) const;
 		void								outputLocalisation(FILE*) const;
@@ -115,6 +117,8 @@ class V2Country
 		string							getReligion() const { return religion; }
 
 	private:
+		Object* parseCountryFile(const string& filename);
+
 		void			outputTech(FILE*) const ;
 		void			outputElection(FILE*) const;
 		void			addLoan(string creditor, double size, double interest);

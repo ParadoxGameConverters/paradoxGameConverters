@@ -68,6 +68,8 @@ class V2World {
 		void determineIfProvinceIsCoastal(Object* provinceObj);
 
 		void importPotentialCountries();
+		void importPotentialCountry(const string& line, bool dynamicCountry);
+
 		void importTechSchools();
 
 		void convertCountries(const EU4World& sourceWorld);

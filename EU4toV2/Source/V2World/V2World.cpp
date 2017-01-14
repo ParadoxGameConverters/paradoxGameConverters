@@ -368,23 +368,16 @@ void V2World::importPotentialCountries()
 	LOG(LogLevel::Info) << "Getting potential countries";
 	potentialCountries.clear();
 	dynamicCountries.clear();
-	const date FirstStartDate("1836.1.1");
+
 	ifstream V2CountriesInput;
-	if (Utils::DoesFileExist("./blankMod/output/common/countries.txt"))
-	{
-		V2CountriesInput.open("./blankMod/output/common/countries.txt");
-	}
-	else
-	{
-		V2CountriesInput.open((Configuration::getV2Path() + "/common/countries.txt").c_str());
-	}
+	V2CountriesInput.open("./blankMod/output/common/countries.txt");
 	if (!V2CountriesInput.is_open())
 	{
-		LOG(LogLevel::Error) << "Could not open countries.txt";
-		exit(1);
+		LOG(LogLevel::Error) << "Could not open countries.txt. The converter may be corrupted, try downloading it again.";
+		exit(-1);
 	}
 
-	bool	staticSection = true;
+	bool dynamicSection = false;
 	while (!V2CountriesInput.eof())
 	{
 		string line;
@@ -396,63 +389,29 @@ void V2World::importPotentialCountries()
 		}
 		else if (line.substr(0, 12) == "dynamic_tags")
 		{
-			staticSection = false;
+			dynamicSection = true;
 			continue;
 		}
 
-		string tag;
-		tag = line.substr(0, 3);
-
-		string countryFileName;
-		int start = line.find_first_of('/');
-		start++;
-		int size = line.find_last_of('\"') - start;
-		countryFileName = line.substr(start, size);
-
-		Object* countryData;
-		if (Utils::DoesFileExist("./blankMod/output/common/countries/" + countryFileName))
-		{
-			countryData = parser_8859_15::doParseFile((string("./blankMod/output/common/countries/") + countryFileName).c_str());
-			if (countryData == NULL)
-			{
-				LOG(LogLevel::Warning) << "Could not parse file ./blankMod/output/common/countries/" << countryFileName;
-			}
-		}
-		else if (Utils::DoesFileExist(Configuration::getV2Path() + "/common/countries/" + countryFileName))
-		{
-			countryData = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/countries/" + countryFileName).c_str());
-			if (countryData == NULL)
-			{
-				LOG(LogLevel::Warning) << "Could not parse file " << Configuration::getV2Path() << "/common/countries/" << countryFileName;
-			}
-		}
-		else
-		{
-			LOG(LogLevel::Debug) << "Could not find file common/countries/" << countryFileName << " - skipping";
-			continue;
-		}
-
-		vector<Object*> partyData = countryData->getValue("party");
-		vector<V2Party*> localParties;
-		for (vector<Object*>::iterator itr = partyData.begin(); itr != partyData.end(); ++itr)
-		{
-			V2Party* newParty = new V2Party(*itr);
-			localParties.push_back(newParty);
-		}
-
-		V2Country* newCountry = new V2Country(tag, countryFileName, localParties, this, false, !staticSection);
-		if (staticSection)
-		{
-			potentialCountries.insert(make_pair(tag, newCountry));
-		}
-		else
-		{
-			potentialCountries.insert(make_pair(tag, newCountry));
-			dynamicCountries.insert(make_pair(tag, newCountry));
-		}
+		importPotentialCountry(line, dynamicSection);
 	}
+
 	V2CountriesInput.close();
 }
+
+
+void V2World::importPotentialCountry(const string& line, bool dynamicCountry)
+{
+	string tag = line.substr(0, 3);
+
+	V2Country* newCountry = new V2Country(line, this, dynamicCountry);
+	potentialCountries.insert(make_pair(tag, newCountry));
+	if (dynamicCountry)
+	{
+		dynamicCountries.insert(make_pair(tag, newCountry));
+	}
+}
+
 
 void V2World::importTechSchools()
 {
