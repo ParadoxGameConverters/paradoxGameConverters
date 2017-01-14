@@ -405,6 +405,7 @@ void V2World::importPotentialCountries()
 
 		string countryFileName;
 		int start = line.find_first_of('/');
+		start++;
 		int size = line.find_last_of('\"') - start;
 		countryFileName = line.substr(start, size);
 
@@ -480,6 +481,7 @@ bool scoresSorter(pair<V2Country*, int> first, pair<V2Country*, int> second)
 	return (first.second > second.second);
 }
 
+
 void V2World::convertCountries(const EU4World& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Converting countries";
@@ -503,7 +505,7 @@ void V2World::convertCountries(const EU4World& sourceWorld)
 			auto potentialCountry = potentialCountries.find(V2Tag);
 			if (potentialCountry == potentialCountries.end())
 			{ // No such V2 country exists yet for this tag so we make a new one.
-				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
+				std::string countryFileName = sourceCountry->getName() + ".txt";
 				destCountry = new V2Country(V2Tag, countryFileName, std::vector<V2Party*>(), this, true, false);
 			}
 			else

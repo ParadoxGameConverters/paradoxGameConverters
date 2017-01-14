@@ -71,8 +71,9 @@ V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _p
 	tag					= _tag;
 	commonCountryFile	= localisation.convertCountryFileName(_commonCountryFile);
 	boost::replace_all(commonCountryFile, ":", ";");
-	boost::trim_left_if(commonCountryFile, boost::is_any_of("/ "));
-	commonCountryFile = "/" + commonCountryFile;
+	boost::replace_all(commonCountryFile, "/", " ");
+	boost::replace_all(commonCountryFile, "\\", " ");
+	commonCountryFile = commonCountryFile;
 	parties				= _parties;
 	rulingParty			= "";
 
@@ -318,7 +319,7 @@ void V2Country::output() const
 
 void V2Country::outputToCommonCountriesFile(FILE* output) const
 {
-	fprintf(output, "%s = \"countries%s\"\n", tag.c_str(), commonCountryFile.c_str());
+	fprintf(output, "%s = \"countries/%s\"\n", tag.c_str(), commonCountryFile.c_str());
 }
 
 
