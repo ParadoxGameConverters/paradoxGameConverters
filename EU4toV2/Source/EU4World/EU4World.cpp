@@ -981,3 +981,19 @@ EU4Province* EU4World::getProvince(const int provNum) const
 	map<int, EU4Province*>::const_iterator i = provinces.find(provNum);
 	return (i != provinces.end()) ? i->second : NULL;
 }
+
+
+bool EU4World::isRandomWorld() const
+{
+	bool isRandomWorld = true;
+
+	for (auto sourceCountry: countries)
+	{
+		if (sourceCountry.first[0] != 'D' && sourceCountry.second->getRandomName().empty())
+		{
+			isRandomWorld = false;
+		}
+	}
+
+	return isRandomWorld;
+}

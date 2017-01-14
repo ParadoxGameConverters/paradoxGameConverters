@@ -48,6 +48,8 @@ class EU4World
 		vector<EU4Agreement> getDiplomaticAgreements() const { return diplomacy->getAgreements(); };
 		double getWorldWeightSum() const { return worldWeightSum; };
 
+		bool isRandomWorld() const;
+
 	private:
 		void verifySave(const string& EU4SaveFileName);
 		Object* parseSave(const string& EU4SaveFileName);

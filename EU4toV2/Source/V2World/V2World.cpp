@@ -73,6 +73,7 @@ V2World::V2World(const EU4World& sourceWorld)
 	findCoastalProvinces();
 	importPotentialCountries();
 	importTechSchools();
+	isRandomWorld = sourceWorld.isRandomWorld();
 
 	CountryMapping::createMappings(sourceWorld, potentialCountries);
 
@@ -419,51 +420,63 @@ void V2World::importTechSchools()
 	techSchools = initTechSchools();
 }
 
+
+void V2World::convertCountries(const EU4World& sourceWorld)
+{
+	LOG(LogLevel::Info) << "Converting countries";
+	initializeCountries(sourceWorld);
+	convertNationalValues();
+	convertPrestige();
+	addAllPotentialCountries();
+	checkForCivilizedNations();
+}
+
+
+void V2World::initializeCountries(const EU4World& sourceWorld)
+{
+	for (auto sourceCountry: sourceWorld.getCountries())
+	{
+		const string& V2Tag = CountryMapping::getVic2Tag(sourceCountry.first);
+		if (V2Tag == "")
+		{
+			LOG(LogLevel::Error) << "EU4 tag " << sourceCountry.first << " is unmapped and cannot be converted.";
+			exit(-1);
+		}
+
+		V2Country* destCountry = createOrLocateCountry(V2Tag, sourceCountry.second);
+		destCountry->initFromEU4Country(sourceCountry.second, techSchools, leaderIDMap);
+		countries.insert(make_pair(V2Tag, destCountry));
+	}
+}
+
+
+V2Country* V2World::createOrLocateCountry(const string& V2Tag, const EU4Country* sourceCountry)
+{
+	V2Country* destCountry = nullptr;
+
+	auto potentialCountry = potentialCountries.find(V2Tag);
+	if (potentialCountry == potentialCountries.end())
+	{
+		string countryFileName = sourceCountry->getName() + ".txt";
+		destCountry = new V2Country(V2Tag, countryFileName, this);
+	}
+	else
+	{
+		destCountry = potentialCountry->second;
+	}
+
+	return destCountry;
+}
+
+
 bool scoresSorter(pair<V2Country*, int> first, pair<V2Country*, int> second)
 {
 	return (first.second > second.second);
 }
 
 
-void V2World::convertCountries(const EU4World& sourceWorld)
+void V2World::convertNationalValues()
 {
-	LOG(LogLevel::Info) << "Converting countries";
-	const V2LeaderTraits lt;	// the V2 leader traits
-
-	isRandomWorld = true;
-	map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
-	for (map<string, EU4Country*>::iterator i = sourceCountries.begin(); i != sourceCountries.end(); i++)
-	{
-		EU4Country* sourceCountry = i->second;
-		if (i->first[0] != 'D' && sourceCountry->getRandomName().empty())
-		{
-			isRandomWorld = false;
-		}
-
-		std::string EU4Tag = sourceCountry->getTag();
-		V2Country* destCountry = NULL;
-		const std::string& V2Tag = CountryMapping::getVic2Tag(EU4Tag);
-		if (!V2Tag.empty())
-		{
-			auto potentialCountry = potentialCountries.find(V2Tag);
-			if (potentialCountry == potentialCountries.end())
-			{ // No such V2 country exists yet for this tag so we make a new one.
-				std::string countryFileName = sourceCountry->getName() + ".txt";
-				destCountry = new V2Country(V2Tag, countryFileName, std::vector<V2Party*>(), this, true, false);
-			}
-			else
-			{
-				destCountry = potentialCountry->second;
-			}
-			destCountry->initFromEU4Country(sourceCountry, techSchools, leaderIDMap, lt);
-			countries.insert(make_pair(V2Tag, destCountry));
-		}
-		else
-		{
-			LOG(LogLevel::Warning) << "Could not convert EU4 tag " << i->second->getTag() << " to V2";
-		}
-	}
-
 	// set national values
 	list< pair<V2Country*, int> > libertyScores;
 	list< pair<V2Country*, int> > equalityScores;
@@ -524,8 +537,11 @@ void V2World::convertCountries(const EU4World& sourceWorld)
 		(*unsetItr)->setNationalValue("nv_order");
 		LOG(LogLevel::Debug) << (*unsetItr)->getTag() << " got national value order";
 	}
+}
 
-	// set prestige
+
+void V2World::convertPrestige()
+{
 	LOG(LogLevel::Debug) << "Setting prestige";
 	double highestScore = 0.0;
 	for (map<string, V2Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
@@ -553,8 +569,12 @@ void V2World::convertCountries(const EU4World& sourceWorld)
 		countryItr->second->addPrestige(prestige);
 		LOG(LogLevel::Debug) << countryItr->first << " had " << prestige << " prestige";
 	}
+}
 
-	// ALL potential countries should be output to the file, otherwise some things don't get initialized right
+
+void V2World::addAllPotentialCountries()
+{
+	// ALL potential countries should be output to the file, otherwise some things don't get initialized right when loading Vic2
 	for (auto potentialCountry : potentialCountries)
 	{
 		map<string, V2Country*>::iterator citr = countries.find(potentialCountry.first);
@@ -564,9 +584,8 @@ void V2World::convertCountries(const EU4World& sourceWorld)
 			countries.insert(make_pair(potentialCountry.first, potentialCountry.second));
 		}
 	}
-
-	checkForCivilizedNations();
 }
+
 
 void V2World::checkForCivilizedNations()
 {

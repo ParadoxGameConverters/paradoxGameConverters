@@ -74,6 +74,11 @@ class V2World
 		void importTechSchools();
 
 		void convertCountries(const EU4World& sourceWorld);
+		void initializeCountries(const EU4World& sourceWorld);
+		V2Country* createOrLocateCountry(const string& V2Tag, const EU4Country* sourceCountry);
+		void convertNationalValues();
+		void convertPrestige();
+		void addAllPotentialCountries();
 		void checkForCivilizedNations();
 
 		void convertProvinces(const EU4World& sourceWorld);

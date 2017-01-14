@@ -62,7 +62,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 const int MONEYFACTOR = 30;	// ducat to pound conversion rate
 
 
-V2Country::V2Country(const string& countriesFileLine, V2World* _theWorld, bool _dynamicCountry)
+V2Country::V2Country(const string& countriesFileLine, const V2World* _theWorld, bool _dynamicCountry)
 {
 	string filename;
 	int start = countriesFileLine.find_first_of('/');
@@ -212,11 +212,11 @@ Object* V2Country::parseCountryFile(const string& filename)
 }
 
 
-V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _parties, V2World* _theWorld, bool _newCountry, bool _dynamicCountry)
+V2Country::V2Country(const string& _tag, const string& _commonCountryFile, const V2World* _theWorld)
 {
-	theWorld			= _theWorld;
-	newCountry		= _newCountry;
-	dynamicCountry	= _dynamicCountry;
+	theWorld = _theWorld;
+	newCountry = true;
+	dynamicCountry = false;
 
 	tag					= _tag;
 	commonCountryFile	= localisation.convertCountryFileName(_commonCountryFile);
@@ -224,7 +224,7 @@ V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _p
 	boost::replace_all(commonCountryFile, "/", " ");
 	boost::replace_all(commonCountryFile, "\\", " ");
 	commonCountryFile = commonCountryFile;
-	parties				= _parties;
+	parties.clear();
 	rulingParty			= "";
 
 	states.clear();
@@ -545,7 +545,7 @@ void V2Country::outputOOB() const
 }
 
 
-void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<V2TechSchool> techSchools, const map<int, int>& leaderMap, const V2LeaderTraits& lt)
+void V2Country::initFromEU4Country(EU4Country* _srcCountry, const vector<V2TechSchool>& techSchools, const map<int, int>& leaderMap)
 {
 	srcCountry = _srcCountry;
 
