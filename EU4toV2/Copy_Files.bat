@@ -59,6 +59,11 @@ mkdir "release\blankMod\output\history\countries"
 mkdir "release\blankMod\output\history\diplomacy"
 mkdir "release\blankMod\output\history\units"
 
+rem Copy Flags
+del "Release\flags" /Q
+rmdir "Release\flags" /S /Q
+xcopy "Data_Files\flags" "release\flags" /Y /E /I
+
 rem Create changelog
 del release\changelog.txt
 git log --oneline --decorate >> release/log.txt
