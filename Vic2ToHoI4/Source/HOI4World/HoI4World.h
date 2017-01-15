@@ -61,17 +61,13 @@ class HoI4World
 		void convertSupplyZones();
 		void convertStrategicRegions();
 		void convertTechs();
-		void convertDiplomacy();
-		void convertArmies(const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		void generateLeaders();
 		void convertArmies();
 		void convertNavies();
 		void convertAirforces();
 		void convertCapitalVPs();
-		void convertAirBases();
 
 		void outputRelations() const;
-		void checkAllProvincesMapped();
 
 		map<string, HoI4Country*> getCountries()	const { return countries; }
 		vector<HoI4Country*> getGreatPowers() const { return greatPowers; }
@@ -84,11 +80,20 @@ class HoI4World
 
 		void determineGreatPowers();
 
+		void convertAirBases();
+		void addBasicAirBases();
+		void addCapitalAirBases();
+		void addGreatPowerAirBases();
+
 		void addBasicCapitalVPs();
 		void addGreatPowerVPs();
 		void addStrengthVPs();
 		double getStrongestCountryStrength();
 		int calculateStrengthVPs(HoI4Country* country, double greatestStrength);
+
+		void convertDiplomacy();
+		void convertAgreements();
+		void convertRelations();
 
 		void addStatesToCountries();
 		map<string, double> calculateFactoryWorkerRatios();

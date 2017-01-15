@@ -63,7 +63,6 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 
 	importSuppplyZones(HoI4DefaultStateToProvinceMap);
 	importStrategicRegions();
-	checkAllProvincesMapped();
 	states->convertStates();
 	convertNavalBases();
 	convertCountries();
@@ -1069,45 +1068,6 @@ void HoI4World::convertTechs()
 }
 
 
-static string CardinalToOrdinal(int cardinal)
-{
-	int hundredRem = cardinal % 100;
-	int tenRem = cardinal % 10;
-	if (hundredRem - tenRem == 10)
-	{
-		return "th";
-	}
-
-	switch (tenRem)
-	{
-	case 1:
-		return "st";
-	case 2:
-		return "nd";
-	case 3:
-		return "rd";
-	default:
-		return "th";
-	}
-}
-
-
-vector<int> HoI4World::getPortProvinces(const vector<int>& locationCandidates)
-{
-	vector<int> newLocationCandidates;
-	for (auto litr : locationCandidates)
-	{
-		map<int, HoI4Province*>::const_iterator provinceItr = provinces.find(litr);
-		if ((provinceItr != provinces.end()) && (provinceItr->second->hasNavalBase()))
-		{
-			newLocationCandidates.push_back(litr);
-		}
-	}
-
-	return newLocationCandidates;
-}
-
-
 vector<int> HoI4World::getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap)
 {
 	vector<int> portLocationCandidates = getPortProvinces(locationCandidates);
@@ -1131,6 +1091,22 @@ vector<int> HoI4World::getPortLocationCandidates(const vector<int>& locationCand
 		}
 	}
 	return portLocationCandidates;
+}
+
+
+vector<int> HoI4World::getPortProvinces(const vector<int>& locationCandidates)
+{
+	vector<int> newLocationCandidates;
+	for (auto litr : locationCandidates)
+	{
+		map<int, HoI4Province*>::const_iterator provinceItr = provinces.find(litr);
+		if ((provinceItr != provinces.end()) && (provinceItr->second->hasNavalBase()))
+		{
+			newLocationCandidates.push_back(litr);
+		}
+	}
+
+	return newLocationCandidates;
 }
 
 
@@ -1169,64 +1145,6 @@ int HoI4World::getAirLocation(HoI4Province* locationProvince, const HoI4Adjacenc
 }
 
 
-void HoI4World::convertArmies(const HoI4AdjacencyMapping& HoI4AdjacencyMap)
-{
-	//unitTypeMapping unitTypeMap = getUnitMappings();
-
-	//// define the headquarters brigade type
-	//HoI4RegimentType hqBrigade("hq_brigade");
-
-	//// convert each country's armies
-	//for (auto country: countries)
-	//{
-	//	const V2Country* oldCountry = country.second->getSourceCountry();
-	//	if (oldCountry == NULL)
-	//	{
-	//		continue;
-	//	}
-
-	//	int airForceIndex = 0;
-	//	HoI4RegGroup::resetHQCounts();
-	//	HoI4RegGroup::resetRegGroupNameCounts();
-
-	//	// A V2 unit type counter to keep track of how many V2 units of this type were converted.
-	//	// Used to distribute HoI4 unit types in case of multiple mapping
-	//	map<string, unsigned> typeCount;
-
-	//	// Convert actual armies
-	//	for (auto oldArmy: oldCountry->getArmies())
-	//	{
-	//		// convert the regiments
-	//		vector<HoI4Regiment*> regiments = convertRegiments(unitTypeMap, oldArmy->getRegiments(), typeCount, country);
-
-	//		// place the regiments into armies
-	//		HoI4RegGroup* army = createArmy(inverseProvinceMap, HoI4AdjacencyMap, country.first, oldArmy, regiments, airForceIndex);
-	//		army->setName(oldArmy->getName());
-
-	//		// add the converted units to the country
-	//		if ((army->getForceType() == land) && (!army->isEmpty()) && (!army->getProductionQueue()))
-	//		{
-	//			army->createHQs(hqBrigade); // Generate HQs for all hierarchies
-	//			country.second->addArmy(army);
-	//		}
-	//		else if (!army->isEmpty())
-	//		{
-	//			country.second->addArmy(army);
-	//		}
-	//	}
-
-	//	// Anticipate practical points being awarded for completing the unit constructions
-	//	for (auto armyItr: country.second->getArmies())
-	//	{
-	//		if (armyItr->getProductionQueue())
-	//		{
-	//			armyItr->undoPracticalAddition(country.second->getPracticals());
-	//		}
-	//	}
-	//}
-}
-
-
 void HoI4World::generateLeaders()
 {
 	LOG(LogLevel::Info) << "Generating Leaders";
@@ -1240,7 +1158,7 @@ void HoI4World::generateLeaders()
 
 void HoI4World::convertArmies()
 {
-	LOG(LogLevel::Info) << "Converting armies and navies";
+	LOG(LogLevel::Info) << "Converting armies";
 
 	for (auto country : countries)
 	{
@@ -1251,6 +1169,8 @@ void HoI4World::convertArmies()
 
 void HoI4World::convertNavies()
 {
+	LOG(LogLevel::Info) << "Converting navies";
+
 	for (auto country : countries)
 	{
 		country.second->convertNavy(states->getStates());
@@ -1260,6 +1180,8 @@ void HoI4World::convertNavies()
 
 void HoI4World::convertAirforces()
 {
+	LOG(LogLevel::Info) << "Converting air forces";
+
 	for (auto country : countries)
 	{
 		country.second->convertAirforce();
@@ -1294,6 +1216,14 @@ void HoI4World::convertCapitalVPs()
 
 void HoI4World::convertAirBases()
 {
+	addBasicAirBases();
+	addCapitalAirBases();
+	addGreatPowerAirBases();
+}
+
+
+void HoI4World::addBasicAirBases()
+{
 	for (auto state: states->getStates())
 	{
 		int numFactories = (state.second->getCivFactories() + state.second->getMilFactories()) / 4;
@@ -1304,7 +1234,11 @@ void HoI4World::convertAirBases()
 			state.second->addAirBase(1);
 		}
 	}
+}
 
+
+void HoI4World::addCapitalAirBases()
+{
 	for (auto country: countries)
 	{
 		auto capitalState = country.second->getCapital();
@@ -1313,6 +1247,11 @@ void HoI4World::convertAirBases()
 			capitalState->addAirBase(5);
 		}
 	}
+}
+
+
+void HoI4World::addGreatPowerAirBases()
+{
 	for (auto greatPower: greatPowers)
 	{
 		auto capitalState = greatPower->getCapital();
@@ -1379,7 +1318,13 @@ int HoI4World::calculateStrengthVPs(HoI4Country* country, double greatestStrengt
 void HoI4World::convertDiplomacy()
 {
 	LOG(LogLevel::Info) << "Converting diplomacy";
+	convertAgreements();
+	convertRelations();
+}
 
+
+void HoI4World::convertAgreements()
+{
 	for (auto agreement : sourceWorld->getDiplomacy()->getAgreements())
 	{
 		string HoI4Tag1 = CountryMapper::getHoI4Tag(agreement->country1);
@@ -1424,11 +1369,14 @@ void HoI4World::convertDiplomacy()
 			}
 		}
 	}
+}
 
-	// Relations and guarantees
-	for (auto country : countries)
+
+void HoI4World::convertRelations()
+{
+	for (auto country: countries)
 	{
-		for (auto relationItr : country.second->getRelations())
+		for (auto relationItr: country.second->getRelations())
 		{
 			HoI4Agreement* HoI4a = new HoI4Agreement;
 			if (country.first < relationItr.first) // Put it in order to eliminate duplicate relations entries
@@ -1467,102 +1415,42 @@ void HoI4World::convertDiplomacy()
 			}
 		}
 	}
-
-	// decrease neutrality for countries with unowned cores
-	map<string, string> hasLoweredNeutrality;
-	for (auto province : provinces)
-	{
-		for (auto core : province.second->getCores())
-		{
-			if (province.second->getOwner() != core)
-			{
-				auto repeat = hasLoweredNeutrality.find(core);
-				if (repeat == hasLoweredNeutrality.end())
-				{
-					auto country = countries.find(core);
-					if (country != countries.end())
-					{
-						country->second->lowerNeutrality(20.0);
-						hasLoweredNeutrality.insert(make_pair(core, core));
-					}
-				}
-			}
-		}
-	}
-}
-
-
-void HoI4World::checkAllProvincesMapped()
-{
-	ifstream definitions(Configuration::getHoI4Path() + "/map/definition.csv");
-	if (!definitions.is_open())
-	{
-		LOG(LogLevel::Error) << "Could not open " << Configuration::getHoI4Path() << "/map/definition.csv";
-		exit(-1);
-	}
-
-	while (true)
-	{
-		string line;
-		getline(definitions, line);
-		int pos = line.find_first_of(';');
-		if (pos == string::npos)
-		{
-			break;
-		}
-		int provNum = stoi(line.substr(0, pos));
-		if (provNum == 0)
-		{
-			continue;
-		}
-
-		auto num = provinceMapper::getHoI4ToVic2ProvinceMapping().find(provNum);
-		if (num == provinceMapper::getHoI4ToVic2ProvinceMapping().end())
-		{
-			LOG(LogLevel::Warning) << "No mapping for HoI4 province " << provNum;
-		}
-	}
-
-	definitions.close();
 }
 
 
 void HoI4World::outputRelations() const
 {
-	string opinion_modifiers;
-	for (auto country : countries)
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/common/opinion_modifiers"))
 	{
-		string countryrelation;
-		for (auto country2 : countries)
+		Log(LogLevel::Error) << "Could not create Output/" + Configuration::getOutputName() + "/common/opinion_modifiers/";
+		exit(-1);
+	}
+
+	ofstream out("Output/" + Configuration::getOutputName() + "/common/opinion_modifiers/01_opinion_modifiers.txt");
+	if (!out.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not create 01_opinion_modifiers.txt.";
+		exit(-1);
+	}
+
+	out << "opinion_modifiers = {\n";
+	for (auto country: countries)
+	{
+		for (auto relation: country.second->getRelations())
 		{
-			if (country.second->getTag() != country2.second->getTag() && country.second->getRelations(country2.second->getTag()) != NULL &&country2.second->getRelations(country2.second->getTag()) != NULL)
+			if (country.first == relation.first)
 			{
-				opinion_modifiers += country.second->getTag() + "_" + country2.second->getTag() + " = {\n\tvalue = " + to_string(country.second->getRelations(country2.second->getTag())->getRelations()*1.5) + "\n}\n";
-				countryrelation += "add_opinion_modifier = { target = " + country2.second->getTag() + " modifier = " + country.second->getTag() + "_" + country2.second->getTag() + "}\n";
+				continue;
 			}
+
+			out << country.first << "_" << relation.first << " = {\n";
+			out << "\tvalue = " << relation.second->getRelations() << "\n";
+			out << "}\n";
 		}
-		country.second->setRelations(countryrelation);
-	}
-	std::string outputcommon = "Output/" + Configuration::getOutputName() + "/common";
-	if (!Utils::TryCreateFolder(outputcommon))
-	{
-		return;
 	}
 
-	std::string outputopinionfolder = "Output/" + Configuration::getOutputName() + "/common/opinion_modifiers";
-	if (!Utils::TryCreateFolder(outputopinionfolder))
-	{
-		return;
-	}
+	out << "}\n";
 
-	string filename("Output/" + Configuration::getOutputName() + "/common/opinion_modifiers/01_opinion_modifiers.txt");
-	ofstream out;
-	out.open(filename);
-	{
-		out << "opinion_modifiers = {\n";
-		out << opinion_modifiers;
-		out << "}\n";
-	}
 	out.close();
 }
 
@@ -1691,4 +1579,4 @@ bool HoI4World::governmentsAllowFaction(string leaderGovernment, string allyGove
 	{
 		return false;
 	}
-}//7467
+}
