@@ -55,7 +55,7 @@ typedef struct ownersAndCores
 class HoI4States
 {
 	public:
-		HoI4States(const V2World* srcWorld) : sourceWorld(srcWorld) { recordAllLandProvinces(); }
+		HoI4States(const V2World* srcWorld): sourceWorld(srcWorld) {};
 
 		void importStates(map<int, vector<int>>& defaultStateToProvinceMap);
 		void convertStates();
@@ -67,8 +67,6 @@ class HoI4States
 		void output() const;
 
 	private:
-		void recordAllLandProvinces();
-
 		map<int, ownersAndCores> determineProvinceOwners();
 		bool getAppropriateMapping(int provNum, HoI4ToVic2ProvinceMapping::const_iterator& provinceLink);
 		map<const V2Country*, MTo1ProvinceComp> determinePotentialOwners(HoI4ToVic2ProvinceMapping::const_iterator provinceLink);
@@ -95,7 +93,6 @@ class HoI4States
 
 		const V2World* sourceWorld;
 
-		set<int> landProvinces;
 		map<int, HoI4State*> states;
 		map<int, string> stateFilenames;
 		map<int, int> provinceToStateIDMap;

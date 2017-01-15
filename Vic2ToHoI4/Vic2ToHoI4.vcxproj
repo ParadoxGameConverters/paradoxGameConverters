@@ -61,6 +61,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\common_items\CardinalToOrdinal.cpp" />
     <ClCompile Include="..\common_items\CommonUtils.cpp" />
     <ClCompile Include="..\common_items\Date.cpp" />
     <ClCompile Include="..\common_items\Log.cpp" />
@@ -98,7 +99,9 @@
     <ClCompile Include="Source\Mappers\CountryMapping.cpp" />
     <ClCompile Include="Source\Mappers\GovernmentMapper.cpp" />
     <ClCompile Include="Source\Mappers\Mapper.cpp" />
+    <ClCompile Include="Source\Mappers\ProvinceDefinitions.cpp" />
     <ClCompile Include="Source\Mappers\ProvinceMapper.cpp" />
+    <ClCompile Include="Source\Mappers\ProvinceNeighborMapper.cpp" />
     <ClCompile Include="Source\Mappers\StateCategoryMapper.cpp" />
     <ClCompile Include="Source\Mappers\StateMapper.cpp" />
     <ClCompile Include="Source\Mappers\V2Localisations.cpp" />
@@ -118,12 +121,14 @@
     <ClCompile Include="Source\V2World\Vic2State.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\common_items\CardinalToOrdinal.h" />
     <ClInclude Include="..\common_items\Date.h" />
     <ClInclude Include="..\common_items\Log.h" />
     <ClInclude Include="..\common_items\Object.h" />
     <ClInclude Include="..\common_items\OSCompatibilityLayer.h" />
     <ClInclude Include="..\common_items\ParadoxParser8859_15.h" />
     <ClInclude Include="..\common_items\ParadoxParserUTF8.h" />
+    <ClInclude Include="Source\bitmap_image.hpp" />
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\Flags.h" />
@@ -152,10 +157,12 @@
     <ClInclude Include="Source\HOI4World\HoI4WarCreator.h" />
     <ClInclude Include="Source\HOI4World\HoI4World.h" />
     <ClInclude Include="Source\Mappers\CoastalHoI4Provinces.h" />
+    <ClInclude Include="Source\Mappers\ProvinceDefinitions.h" />
     <ClInclude Include="Source\Mappers\CountryMapping.h" />
     <ClInclude Include="Source\Mappers\GovernmentMapper.h" />
     <ClInclude Include="Source\Mappers\Mapper.h" />
     <ClInclude Include="Source\Mappers\ProvinceMapper.h" />
+    <ClInclude Include="Source\Mappers\ProvinceNeighborMapper.h" />
     <ClInclude Include="Source\Mappers\StateCategoryMapper.h" />
     <ClInclude Include="Source\Mappers\StateMapper.h" />
     <ClInclude Include="Source\Mappers\V2Localisations.h" />

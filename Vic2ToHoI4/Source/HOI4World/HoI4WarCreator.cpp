@@ -27,6 +27,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Faction.h"
 #include "HoI4Focus.h"
 #include "HoI4World.h"
+#include "../Mappers/ProvinceDefinitions.h"
+#include "../Mappers/ProvinceNeighborMapper.h"
 #include "../Mappers/StateMapper.h"
 
 
@@ -42,7 +44,6 @@ void HoI4WarCreator::generateWars(HoI4World* world)
 
 	determineProvinceOwners();
 	fillCountryProvinces();
-	fillProvinceNeighbors();
 	addAllTargetsToWorldTargetMap();
 	double worldStrength = calculateWorldStrength(AILog);
 
@@ -334,36 +335,6 @@ void HoI4WarCreator::setSphereLeaders(const V2World* sourceWorld)
 			}
 		}
 	}
-}
-
-
-void HoI4WarCreator::fillProvinceNeighbors()
-{
-	LOG(LogLevel::Info) << "Filling province neighbors";
-
-	std::ifstream file("adj.txt");
-	std::string str;
-	while (std::getline(file, str))
-	{
-		//	char output[100];
-		//myReadFile >> output;
-		vector<string> parts;
-		stringstream ss(str); // Turn the string into a stream.
-		string tok;
-		char delimiter = ';';
-		//crashes
-		while (getline(ss, tok, delimiter))
-			parts.push_back(tok);
-		vector<int> provneighbors;
-		for (unsigned int i = 5; i < parts.size(); i++)
-		{
-			//crashes
-			int neighborprov = stoi(parts[i]);
-			provneighbors.push_back(neighborprov);
-		}
-		provinceNeighbors.insert(make_pair(stoi(parts[0]), provneighbors));
-	}
-	file.close();
 }
 
 
@@ -682,14 +653,13 @@ map<string, HoI4Country*> HoI4WarCreator::getImmediateNeighbors(const HoI4Countr
 
 	for (auto province: checkingCountry->getProvinces())
 	{
-		auto provinceNeighbor = provinceNeighbors.find(province);
-		if (provinceNeighbor == provinceNeighbors.end())
+		for (int provinceNumber: provinceNeigborMapper::getNeighbors(province))
 		{
-			Log(LogLevel::Warning) << "Province " << province << "'s neighbors could not be found";
-			continue;
-		}
-		for (int provinceNumber: provinceNeighbor->second)
-		{
+			if (!provinceDefinitions::isLandProvince(province))
+			{
+				continue;
+			}
+
 			auto provinceToOwnerItr = provinceToOwnerMap.find(provinceNumber);
 			if (provinceToOwnerItr == provinceToOwnerMap.end())
 			{
@@ -1098,9 +1068,13 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 				set<string> demandedstates;
 				for (auto leaderprov : Leader->getProvinces())
 				{
-					vector<int> thisprovNeighbors = provinceNeighbors.find(leaderprov)->second;
-					for (int prov : thisprovNeighbors)
+					for (int prov: provinceNeigborMapper::getNeighbors(leaderprov))
 					{
+						if (!provinceDefinitions::isLandProvince(prov))
+						{
+							continue;
+						}
+
 						if (provinceToOwnerMap.find(prov) != provinceToOwnerMap.end())
 						{
 							string owner = provinceToOwnerMap.find(prov)->second;
