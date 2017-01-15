@@ -34,7 +34,7 @@ using namespace std;
 
 
 
-class provinceNeigborMapper
+class provinceNeighborMapper
 {
 	public:
 		static const set<int> getNeighbors(int province)
@@ -43,17 +43,17 @@ class provinceNeigborMapper
 		}
 
 	private:
-		static provinceNeigborMapper* instance;
-		static provinceNeigborMapper* getInstance()
+		static provinceNeighborMapper* instance;
+		static provinceNeighborMapper* getInstance()
 		{
 			if (instance == nullptr)
 			{
-				instance = new provinceNeigborMapper();
+				instance = new provinceNeighborMapper();
 			}
 
 			return instance;
 		}
-		provinceNeigborMapper();
+		provinceNeighborMapper();
 
 		Color getCenterColor(bitmap_image& provinces, int x, int y);
 		Color getAboveColor(bitmap_image& provinces, int x, int y, int height);

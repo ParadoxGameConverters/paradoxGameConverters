@@ -653,7 +653,7 @@ map<string, HoI4Country*> HoI4WarCreator::getImmediateNeighbors(const HoI4Countr
 
 	for (auto province: checkingCountry->getProvinces())
 	{
-		for (int provinceNumber: provinceNeigborMapper::getNeighbors(province))
+		for (int provinceNumber: provinceNeighborMapper::getNeighbors(province))
 		{
 			if (!provinceDefinitions::isLandProvince(province))
 			{
@@ -1068,7 +1068,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 				set<string> demandedstates;
 				for (auto leaderprov : Leader->getProvinces())
 				{
-					for (int prov: provinceNeigborMapper::getNeighbors(leaderprov))
+					for (int prov: provinceNeighborMapper::getNeighbors(leaderprov))
 					{
 						if (!provinceDefinitions::isLandProvince(prov))
 						{

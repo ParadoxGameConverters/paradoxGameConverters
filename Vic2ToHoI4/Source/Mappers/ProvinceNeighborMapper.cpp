@@ -29,11 +29,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-provinceNeigborMapper* provinceNeigborMapper::instance = nullptr;
+provinceNeighborMapper* provinceNeighborMapper::instance = nullptr;
 
 
 
-provinceNeigborMapper::provinceNeigborMapper()
+provinceNeighborMapper::provinceNeighborMapper()
 {
 	bitmap_image provinces(Configuration::getHoI4Path() + "/map/provinces.bmp");
 	if (!provinces)
@@ -75,7 +75,7 @@ provinceNeigborMapper::provinceNeigborMapper()
 }
 
 
-Color provinceNeigborMapper::getCenterColor(bitmap_image& provinces, int x, int y)
+Color provinceNeighborMapper::getCenterColor(bitmap_image& provinces, int x, int y)
 {
 	rgb_t color;
 	provinces.get_pixel(x, y, color);
@@ -85,7 +85,7 @@ Color provinceNeigborMapper::getCenterColor(bitmap_image& provinces, int x, int 
 }
 
 
-Color provinceNeigborMapper::getAboveColor(bitmap_image& provinces, int x, int y, int height)
+Color provinceNeighborMapper::getAboveColor(bitmap_image& provinces, int x, int y, int height)
 {
 	if (y > 0)
 	{
@@ -100,7 +100,7 @@ Color provinceNeigborMapper::getAboveColor(bitmap_image& provinces, int x, int y
 }
 
 
-Color provinceNeigborMapper::getBelowColor(bitmap_image& provinces, int x, int y, int height)
+Color provinceNeighborMapper::getBelowColor(bitmap_image& provinces, int x, int y, int height)
 {
 	if (y < height - 1)
 	{
@@ -115,7 +115,7 @@ Color provinceNeigborMapper::getBelowColor(bitmap_image& provinces, int x, int y
 }
 
 
-Color provinceNeigborMapper::getLeftColor(bitmap_image& provinces, int x, int y, int width)
+Color provinceNeighborMapper::getLeftColor(bitmap_image& provinces, int x, int y, int width)
 {
 	if (x > 0)
 	{
@@ -134,7 +134,7 @@ Color provinceNeigborMapper::getLeftColor(bitmap_image& provinces, int x, int y,
 }
 
 
-Color provinceNeigborMapper::getRightColor(bitmap_image& provinces, int x, int y, int width)
+Color provinceNeighborMapper::getRightColor(bitmap_image& provinces, int x, int y, int width)
 {
 	if (x < width - 1)
 	{
@@ -153,7 +153,7 @@ Color provinceNeigborMapper::getRightColor(bitmap_image& provinces, int x, int y
 }
 
 
-void provinceNeigborMapper::handleNeighbor(Color centerColor, Color otherColor)
+void provinceNeighborMapper::handleNeighbor(Color centerColor, Color otherColor)
 {
 	int centerProvince = provinceDefinitions::getProvinceFromColor(centerColor);
 	int otherProvince = provinceDefinitions::getProvinceFromColor(otherColor);
@@ -171,7 +171,7 @@ void provinceNeigborMapper::handleNeighbor(Color centerColor, Color otherColor)
 }
 
 
-const set<int> provinceNeigborMapper::GetNeighbors(int province)
+const set<int> provinceNeighborMapper::GetNeighbors(int province)
 {
 	auto neighbors = provinceNeighbors.find(province);
 	if (neighbors != provinceNeighbors.end())
