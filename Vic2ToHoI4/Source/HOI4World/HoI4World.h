@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -33,7 +33,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Localisation.h"
 #include "HoI4States.h"
 #include "HoI4StrategicRegion.h"
-#include "HoI4SupplyZone.h"
 
 
 
@@ -42,6 +41,7 @@ typedef const map<string, multimap<HoI4RegimentType, unsigned> > unitTypeMapping
 
 
 class HoI4Faction;
+class HoI4SupplyZones;
 
 
 
@@ -52,13 +52,11 @@ class HoI4World
 
 		void	output() const;
 
-		void importSuppplyZones(const map<int, vector<int>>& defaultStateToProvinceMap);
 		void importStrategicRegions();
 		void convertCountries();
 		void convertNavalBases();
 		void convertIndustry();
 		void convertResources();
-		void convertSupplyZones();
 		void convertStrategicRegions();
 		void convertTechs();
 		void generateLeaders();
@@ -124,11 +122,12 @@ class HoI4World
 		void outputLocalisations() const;
 		void outputMap() const;
 		void outputHistory() const;
-		void outputSupply() const;
 		void outputCountries() const;
 
 
 		const V2World* sourceWorld;
+
+		HoI4SupplyZones* supplyZones;
 
 		vector<HoI4Country*> greatPowers;
 
@@ -142,8 +141,6 @@ class HoI4World
 
 		// map items
 		map<int, string>						continents;  // < province, continent >
-		map<int, HoI4SupplyZone*>			supplyZones;
-		map<int, string>						supplyZonesFilenames;
 		map<int, HoI4StrategicRegion*>	strategicRegions;
 		map<int, int>							provinceToStratRegionMap;
 
@@ -155,7 +152,6 @@ class HoI4World
 		namesMapping namesMap;
 		portraitMapping portraitMap;
 
-		map<int, int> provinceToSupplyZoneMap;
 		vector<HoI4Faction*> factions;
 
 		HoI4Buildings* buildings;

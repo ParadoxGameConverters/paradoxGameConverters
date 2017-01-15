@@ -179,6 +179,9 @@
     <ClCompile Include="Source\Mappers\ProvinceNeighborMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
+    <ClCompile Include="Source\HOI4World\HoI4SupplyZones.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -345,6 +348,9 @@
     <ClInclude Include="Source\bitmap_image.hpp" />
     <ClInclude Include="Source\Mappers\ProvinceNeighborMapper.h">
       <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\HoI4SupplyZones.h">
+      <Filter>HoI4World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

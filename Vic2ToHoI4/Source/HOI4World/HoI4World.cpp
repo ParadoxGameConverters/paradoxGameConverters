@@ -42,7 +42,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4FocusTree.h"
 #include "HoI4Relations.h"
 #include "HoI4State.h"
-#include "HoI4SupplyZone.h"
+#include "HoI4SupplyZones.h"
 #include "HoI4WarCreator.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/ProvinceMapper.h"
@@ -60,8 +60,8 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	states->importStates(HoI4DefaultStateToProvinceMap);
 
 	events = new HoI4Events;
+	supplyZones = new HoI4SupplyZones(HoI4DefaultStateToProvinceMap);
 
-	importSuppplyZones(HoI4DefaultStateToProvinceMap);
 	importStrategicRegions();
 	states->convertStates();
 	convertNavalBases();
@@ -69,7 +69,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	states->addLocalisations();
 	convertIndustry();
 	convertResources();
-	convertSupplyZones();
+	supplyZones->convertSupplyZones(states);
 	convertStrategicRegions();
 	convertDiplomacy();
 	convertTechs();
@@ -85,46 +85,6 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	HoI4WarCreator warCreator;
 	warCreator.generateWars(this);
 	buildings = new HoI4Buildings(states->getProvinceToStateIDMap());
-}
-
-
-void HoI4World::importSuppplyZones(const map<int, vector<int>>& defaultStateToProvinceMap)
-{
-	LOG(LogLevel::Info) << "Importing supply zones";
-
-	set<string> supplyZonesFiles;
-	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/map/supplyareas", supplyZonesFiles);
-	for (auto supplyZonesFile : supplyZonesFiles)
-	{
-		// record the filename
-		int num = stoi(supplyZonesFile.substr(0, supplyZonesFile.find_first_of('-')));
-		supplyZonesFilenames.insert(make_pair(num, supplyZonesFile));
-
-		// record the other data
-		Object* fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/map/supplyareas/" + supplyZonesFile);
-		if (fileObj == nullptr)
-		{
-			LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/map/supplyareas/" << supplyZonesFile;
-			exit(-1);
-		}
-		auto supplyAreaObj = fileObj->getValue("supply_area");
-		int ID = stoi(supplyAreaObj[0]->getLeaf("id"));
-		int value = stoi(supplyAreaObj[0]->getLeaf("value"));
-
-		HoI4SupplyZone* newSupplyZone = new HoI4SupplyZone(ID, value);
-		supplyZones.insert(make_pair(ID, newSupplyZone));
-
-		// map the provinces to the supply zone
-		auto statesObj = supplyAreaObj[0]->getValue("states");
-		for (auto idString : statesObj[0]->getTokens())
-		{
-			auto mapping = defaultStateToProvinceMap.find(stoi(idString));
-			for (auto province : mapping->second)
-			{
-				provinceToSupplyZoneMap.insert(make_pair(province, ID));
-			}
-		}
-	}
 }
 
 
@@ -168,7 +128,7 @@ void HoI4World::output() const
 	outputLocalisations();
 	outputHistory();
 	outputMap();
-	outputSupply();
+	supplyZones->output();
 	outputRelations();
 	outputCountries();
 	buildings->output();
@@ -517,27 +477,6 @@ void HoI4World::convertCountries()
 }
 
 
-void HoI4World::outputSupply() const
-{
-	// create the folders
-	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/map/supplyareas"))
-	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/map/supplyareas";
-		exit(-1);
-	}
-
-	// output the supply zones
-	for (auto zone : supplyZones)
-	{
-		auto filenameMap = supplyZonesFilenames.find(zone.first);
-		if (filenameMap != supplyZonesFilenames.end())
-		{
-			zone.second->output(filenameMap->second);
-		}
-	}
-}
-
-
 void HoI4World::outputCountries() const
 {
 	for (auto country : countries)
@@ -880,27 +819,6 @@ void HoI4World::convertResources()
 				for (auto resource : mapping->second)
 				{
 					state.second->addResource(resource.first, resource.second);
-				}
-			}
-		}
-	}
-}
-
-
-void HoI4World::convertSupplyZones()
-{
-	for (auto state : states->getStates())
-	{
-		for (auto province : state.second->getProvinces())
-		{
-			auto mapping = provinceToSupplyZoneMap.find(province);
-			if (mapping != provinceToSupplyZoneMap.end())
-			{
-				auto supplyZone = supplyZones.find(mapping->second);
-				if (supplyZone != supplyZones.end())
-				{
-					supplyZone->second->addState(state.first);
-					break;
 				}
 			}
 		}
