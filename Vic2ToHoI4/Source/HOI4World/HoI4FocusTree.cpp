@@ -4340,7 +4340,7 @@ void HoI4FocusTree::output()
 	}
 
 	out << "focus_tree = {\n";
-	out << "	id = german_focus\n";
+	out << "	id = " << dstCountryTag + "_focus\n";
 	out << "	\n";
 	out << "	country = {\n";
 	out << "		factor = 0\n";
