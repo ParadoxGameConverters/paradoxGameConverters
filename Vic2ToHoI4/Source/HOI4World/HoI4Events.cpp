@@ -192,11 +192,11 @@ void HoI4Events::createAnnexEvent(const HoI4Country* Annexer, const HoI4Country*
 	refuseOption += "\n";
 	refuseOption += "			modifier = {\n";
 	refuseOption += "				factor = 0\n";
-	refuseOption += "				GER = { has_army_size = { size > 39 } }\n";
+	refuseOption += "				" + Annexer->getTag() + " = { has_army_size = { size > 39 } }\n";
 	refuseOption += "			}\n";
 	refuseOption += "			modifier = {\n";
 	refuseOption += "				add = 20\n";
-	refuseOption += "				GER = { has_army_size = { size < 30 } }\n";
+	refuseOption += "				" + Annexer->getTag() + " = { has_army_size = { size < 30 } }\n";
 	refuseOption += "			}\n";
 	refuseOption += "		}\n";
 	refuseOption += "		" + Annexer->getTag() + " = {\n";
@@ -303,11 +303,11 @@ void HoI4Events::createSudatenEvent(const HoI4Country* Annexer, const HoI4Countr
 	refuseOption += "\n";
 	refuseOption += "			modifier = {\n";
 	refuseOption += "				factor = 0\n";
-	refuseOption += "				GER = { has_army_size = { size > 39 } }\n";
+	refuseOption += "				" + Annexer->getTag() + " = { has_army_size = { size > 39 } }\n";
 	refuseOption += "			}\n";
 	refuseOption += "			modifier = {\n";
 	refuseOption += "				add = 20\n";
-	refuseOption += "				GER = { has_army_size = { size < 30 } }\n";
+	refuseOption += "				" + Annexer->getTag() + " = { has_army_size = { size < 30 } }\n";
 	refuseOption += "			}\n";
 	refuseOption += "		}\n";
 	refuseOption += "		" + Annexer->getTag() + " = {\n";

@@ -1154,8 +1154,6 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 			newAllies[i]->setFaction(newFaction);
 		}
 		theWorld->getEvents()->createFactionEvents(Leader, newAllies[i]);
-
-		i++;
 	}
 
 	vector<HoI4Faction*> FactionsAttackingMe;
@@ -1196,10 +1194,10 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 					newFocus->cost     = 15;
 					newFocus->aiWillDo = "	factor = 10";
 					newFocus->bypass = "			OR = {\n";
-					newFocus->bypass = "				" + Leader->getTag() + " = { is_in_faction_with = " + GC->getTag() + "}\n";
-					newFocus->bypass = "				has_war_with = " + GC->getTag() + "\n";
-					newFocus->bypass = "				NOT = { country_exists = " + GC->getTag() + " }\n";
-					newFocus->bypass = "			}\n";
+					newFocus->bypass += "				" + Leader->getTag() + " = { is_in_faction_with = " + GC->getTag() + "}\n";
+					newFocus->bypass += "				has_war_with = " + GC->getTag() + "\n";
+					newFocus->bypass += "				NOT = { country_exists = " + GC->getTag() + " }\n";
+					newFocus->bypass += "			}\n";
 					newFocus->completionReward += "			" + GC->getTag() + " = {\n";
 					newFocus->completionReward += "				country_event = { hours = 6 id = NFEvents." + to_string(theWorld->getEvents()->getCurrentNationFocusEventNum()) + " }\n";
 					newFocus->completionReward += "				add_opinion_modifier = { target = " + Leader->getTag() + " modifier = ger_ita_alliance_focus }\n";
@@ -1657,10 +1655,10 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 		newFocus->cost     = 10;
 		newFocus->aiWillDo = "			factor = 10";
 		newFocus->bypass = "			OR = {\n";
-		newFocus->bypass = "				" + Leader->getTag() + " = { is_in_faction_with = " + newAlly->getTag() + "}\n";
-		newFocus->bypass = "				has_war_with = " + newAlly->getTag() + "\n";
-		newFocus->bypass = "				NOT = { country_exists = " + newAlly->getTag() + " }\n";
-		newFocus->bypass = "			}\n";
+		newFocus->bypass += "				" + Leader->getTag() + " = { is_in_faction_with = " + newAlly->getTag() + "}\n";
+		newFocus->bypass += "				has_war_with = " + newAlly->getTag() + "\n";
+		newFocus->bypass += "				NOT = { country_exists = " + newAlly->getTag() + " }\n";
+		newFocus->bypass += "			}\n";
 		newFocus->completionReward += "			" + newAlly->getTag() + " = {\n";
 		newFocus->completionReward += "				country_event = { hours = 6 id = NFEvents." + to_string(theWorld->getEvents()->getCurrentNationFocusEventNum()) + " }\n";
 		newFocus->completionReward += "				add_opinion_modifier = { target = " + Leader->getTag() + " modifier = ger_ita_alliance_focus }\n";
@@ -1717,10 +1715,10 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 					newFocus->cost     = 15;
 					newFocus->aiWillDo = "			factor = 10";
 					newFocus->bypass = "			OR = {\n";
-					newFocus->bypass = "				" + Leader->getTag() + " = { is_in_faction_with = " + GC->getTag() + "}\n";
-					newFocus->bypass = "				has_war_with = " + GC->getTag() + "\n";
-					newFocus->bypass = "				NOT = { country_exists = " + GC->getTag() + " }\n";
-					newFocus->bypass = "			}\n";
+					newFocus->bypass += "				" + Leader->getTag() + " = { is_in_faction_with = " + GC->getTag() + "}\n";
+					newFocus->bypass += "				has_war_with = " + GC->getTag() + "\n";
+					newFocus->bypass += "				NOT = { country_exists = " + GC->getTag() + " }\n";
+					newFocus->bypass += "			}\n";
 					newFocus->completionReward += "			" + GC->getTag() + " = {\n";
 					newFocus->completionReward += "				country_event = { hours = 6 id = NFEvents." + to_string(theWorld->getEvents()->getCurrentNationFocusEventNum()) + " }\n";
 					newFocus->completionReward += "				add_opinion_modifier = { target = " + Leader->getTag() + " modifier = ger_ita_alliance_focus }\n";
@@ -2097,7 +2095,7 @@ vector<HoI4Faction*> HoI4WarCreator::addGreatPowerWars(HoI4Country* country, HoI
 			newFocus->icon     = "GFX_goal_generic_major_war";
 			newFocus->text     = "War with " + target->getSourceCountry()->getName("english");//change to faction name later
 			newFocus->prerequisites.push_back("focus =  MilitaryBuildup" + country->getTag());
-			newFocus->available = "			has_war = 20\n";
+			newFocus->available = "			has_war = no\n";
 			newFocus->available += "			date > 1939.1.1";
 			newFocus->xPos     = 31 + numWarsWithGreatPowers * 2;
 			newFocus->yPos     = 5;
