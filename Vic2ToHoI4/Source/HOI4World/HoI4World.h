@@ -52,7 +52,6 @@ class HoI4World
 
 		void	output() const;
 
-		void convertResources();
 		void convertStrategicRegions();
 		void convertTechs();
 		void generateLeaders();
@@ -90,6 +89,9 @@ class HoI4World
 		void reportDefaultIndustry();
 		pair<string, array<int, 3>> getDefaultStateIndustry(string stateFilename);
 		void outputDefaultIndustry(const map<string, array<int, 3>>& countryIndustry);
+
+		void convertResources();
+		map<int, map<string, double>> importResourceMap() const;
 
 		void	getProvinceLocalizations(const string& file);
 

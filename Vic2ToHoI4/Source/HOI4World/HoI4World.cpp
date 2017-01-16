@@ -456,6 +456,65 @@ void HoI4World::outputDefaultIndustry(const map<string, array<int, 3>>& countryI
 }
 
 
+void HoI4World::convertResources()
+{
+	auto resourceMap = importResourceMap();
+
+	for (auto state: states->getStates())
+	{
+		for (auto provinceNumber: state.second->getProvinces())
+		{
+			auto mapping = resourceMap.find(provinceNumber);
+			if (mapping != resourceMap.end())
+			{
+				for (auto resource: mapping->second)
+				{
+					state.second->addResource(resource.first, resource.second);
+				}
+			}
+		}
+	}
+}
+
+
+map<int, map<string, double>> HoI4World::importResourceMap() const
+{
+	map<int, map<string, double>> resourceMap;
+
+	Object* fileObj = parser_UTF8::doParseFile("resources.txt");
+	if (fileObj == nullptr)
+	{
+		LOG(LogLevel::Error) << "Could not read resources.txt";
+		exit(-1);
+	}
+
+	auto resourcesObj = fileObj->getValue("resources");
+	auto linksObj = resourcesObj[0]->getValue("link");
+	for (auto linkObj: linksObj)
+	{
+		int provinceNumber = stoi(linkObj->getLeaf("province"));
+		auto mapping = resourceMap.find(provinceNumber);
+		if (mapping == resourceMap.end())
+		{
+			map<string, double> resources;
+			resourceMap.insert(make_pair(provinceNumber, resources));
+			mapping = resourceMap.find(provinceNumber);
+		}
+
+		auto resourcesObj = linkObj->getValue("resources");
+		auto actualResources = resourcesObj[0]->getLeaves();
+		for (auto resource : actualResources)
+		{
+			string	resourceName = resource->getKey();
+			double	amount = stof(resource->getLeaf());
+			mapping->second[resourceName] += amount;
+		}
+	}
+
+	return resourceMap;
+}
+
+
 void HoI4World::output() const
 {
 	LOG(LogLevel::Info) << "Outputting world";
@@ -695,57 +754,6 @@ void HoI4World::outputCountries() const
 	for (auto country : countries)
 	{
 		country.second->output(states->getStates(), factions);
-	}
-}
-
-
-void HoI4World::convertResources()
-{
-	Object* fileObj = parser_UTF8::doParseFile("resources.txt");
-	if (fileObj == nullptr)
-	{
-		LOG(LogLevel::Error) << "Could not read resources.txt";
-		exit(-1);
-	}
-
-	auto resourcesObj = fileObj->getValue("resources");
-	auto linksObj = resourcesObj[0]->getValue("link");
-
-	map<int, map<string, double> > resourceMap;
-	for (auto linkObj : linksObj)
-	{
-		int provinceNumber = stoi(linkObj->getLeaf("province"));
-		auto mapping = resourceMap.find(provinceNumber);
-		if (mapping == resourceMap.end())
-		{
-			map<string, double> resources;
-			resourceMap.insert(make_pair(provinceNumber, resources));
-			mapping = resourceMap.find(provinceNumber);
-		}
-
-		auto resourcesObj = linkObj->getValue("resources");
-		auto actualResources = resourcesObj[0]->getLeaves();
-		for (auto resource : actualResources)
-		{
-			string	resourceName = resource->getKey();
-			double	amount = stof(resource->getLeaf());
-			mapping->second[resourceName] += amount;
-		}
-	}
-
-	for (auto state : states->getStates())
-	{
-		for (auto provinceNumber : state.second->getProvinces())
-		{
-			auto mapping = resourceMap.find(provinceNumber);
-			if (mapping != resourceMap.end())
-			{
-				for (auto resource : mapping->second)
-				{
-					state.second->addResource(resource.first, resource.second);
-				}
-			}
-		}
 	}
 }
 
