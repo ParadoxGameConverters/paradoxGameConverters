@@ -48,125 +48,168 @@ provinceNeighborMapper::provinceNeighborMapper()
 	{
 		for (unsigned int x = 0; x < width; x++)
 		{
-			Color centerColor = getCenterColor(provinces, x, y);
-			Color aboveColor = getAboveColor(provinces, x, y, height);
-			Color belowColor = getBelowColor(provinces, x, y, height);
-			Color leftColor = getLeftColor(provinces, x, y, width);
-			Color rightColor = getRightColor(provinces, x, y, width);
+			point position = { x, y };
 
+			Color centerColor = getCenterColor(provinces, position);
+			Color aboveColor = getAboveColor(provinces, position, height);
+			Color belowColor = getBelowColor(provinces, position, height);
+			Color leftColor = getLeftColor(provinces, position, width);
+			Color rightColor = getRightColor(provinces, position, width);
+
+			position.second = height - position.second - 1;
 			if (centerColor != aboveColor)
 			{
-				handleNeighbor(centerColor, aboveColor);
-			}
-			if (centerColor != belowColor)
-			{
-				handleNeighbor(centerColor, belowColor);
-			}
-			if (centerColor != leftColor)
-			{
-				handleNeighbor(centerColor, leftColor);
+				handleNeighbor(centerColor, aboveColor, position);
 			}
 			if (centerColor != rightColor)
 			{
-				handleNeighbor(centerColor, rightColor);
+				handleNeighbor(centerColor, rightColor, position);
+			}
+			if (centerColor != belowColor)
+			{
+				handleNeighbor(centerColor, belowColor, position);
+			}
+			if (centerColor != leftColor)
+			{
+				handleNeighbor(centerColor, leftColor, position);
 			}
 		}
 	}
 }
 
 
-Color provinceNeighborMapper::getCenterColor(bitmap_image& provinces, int x, int y)
+Color provinceNeighborMapper::getCenterColor(bitmap_image& provinces, point position)
 {
 	rgb_t color;
-	provinces.get_pixel(x, y, color);
+	provinces.get_pixel(position.first, position.second, color);
 
 	Color theColor(color.red, color.green, color.blue);
 	return theColor;
 }
 
 
-Color provinceNeighborMapper::getAboveColor(bitmap_image& provinces, int x, int y, int height)
+Color provinceNeighborMapper::getAboveColor(bitmap_image& provinces, point position, int height)
 {
-	if (y > 0)
+	if (position.second > 0)
 	{
-		y--;
+		position.second--;
 	}
 
 	rgb_t color;
-	provinces.get_pixel(x, y, color);
+	provinces.get_pixel(position.first, position.second, color);
 
 	Color theColor(color.red, color.green, color.blue);
 	return theColor;
 }
 
 
-Color provinceNeighborMapper::getBelowColor(bitmap_image& provinces, int x, int y, int height)
+Color provinceNeighborMapper::getBelowColor(bitmap_image& provinces, point position, int height)
 {
-	if (y < height - 1)
+	if (position.second < height - 1)
 	{
-		y++;
+		position.second++;
 	}
 
 	rgb_t color;
-	provinces.get_pixel(x, y, color);
+	provinces.get_pixel(position.first, position.second, color);
 
 	Color theColor(color.red, color.green, color.blue);
 	return theColor;
 }
 
 
-Color provinceNeighborMapper::getLeftColor(bitmap_image& provinces, int x, int y, int width)
+Color provinceNeighborMapper::getLeftColor(bitmap_image& provinces, point position, int width)
 {
-	if (x > 0)
+	if (position.first > 0)
 	{
-		x--;
+		position.first--;
 	}
 	else
 	{
-		x = width - 1;
+		position.first = width - 1;
 	}
 
 	rgb_t color;
-	provinces.get_pixel(x, y, color);
+	provinces.get_pixel(position.first, position.second, color);
 
 	Color theColor(color.red, color.green, color.blue);
 	return theColor;
 }
 
 
-Color provinceNeighborMapper::getRightColor(bitmap_image& provinces, int x, int y, int width)
+Color provinceNeighborMapper::getRightColor(bitmap_image& provinces, point position, int width)
 {
-	if (x < width - 1)
+	if (position.first < width - 1)
 	{
-		x++;
+		position.first++;
 	}
 	else
 	{
-		x = 0;
+		position.first = 0;
 	}
 
 	rgb_t color;
-	provinces.get_pixel(x, y, color);
+	provinces.get_pixel(position.first, position.second, color);
 
 	Color theColor(color.red, color.green, color.blue);
 	return theColor;
 }
 
 
-void provinceNeighborMapper::handleNeighbor(Color centerColor, Color otherColor)
+void provinceNeighborMapper::handleNeighbor(Color centerColor, Color otherColor, point position)
 {
 	int centerProvince = provinceDefinitions::getProvinceFromColor(centerColor);
 	int otherProvince = provinceDefinitions::getProvinceFromColor(otherColor);
 
-	auto centerMapping = provinceNeighbors.find(centerProvince);
+	addNeighbor(centerProvince, otherProvince);
+	addPointToBorder(centerProvince, otherProvince, position);
+}
+
+
+void provinceNeighborMapper::addNeighbor(int mainProvince, int neighborProvince)
+{
+	auto centerMapping = provinceNeighbors.find(mainProvince);
 	if (centerMapping != provinceNeighbors.end())
 	{
-		centerMapping->second.insert(otherProvince);
+		centerMapping->second.insert(neighborProvince);
 	}
 	else
 	{
-		set<int> neighbors = { otherProvince };
-		provinceNeighbors[centerProvince] = neighbors;
+		set<int> neighbors = { neighborProvince };
+		provinceNeighbors[mainProvince] = neighbors;
+	}
+}
+
+
+void provinceNeighborMapper::addPointToBorder(int mainProvince, int neighborProvince, point position)
+{
+	auto bordersWithNeighbors = borders.find(mainProvince);
+	if (bordersWithNeighbors == borders.end())
+	{
+		bordersWith newBordersWithNeighbors;
+		borders.insert(make_pair(mainProvince, newBordersWithNeighbors));
+		bordersWithNeighbors = borders.find(mainProvince);
+	}
+
+	auto border = bordersWithNeighbors->second.find(neighborProvince);
+	if (border == bordersWithNeighbors->second.end())
+	{
+		borderPoints newBorder;
+		bordersWithNeighbors->second.insert(make_pair(neighborProvince, newBorder));
+		border = bordersWithNeighbors->second.find(neighborProvince);
+	}
+
+	if (border->second.size() == 0)
+	{
+		border->second.push_back(position);
+	}
+	else
+	{
+		auto lastPoint = border->second.back();
+		if ((lastPoint.first != position.first) || (lastPoint.second != position.second))
+		{
+			border->second.push_back(position);
+		}
 	}
 }
 
@@ -183,4 +226,23 @@ const set<int> provinceNeighborMapper::GetNeighbors(int province)
 		set<int> empty;
 		return empty;
 	}
+}
+
+
+const point provinceNeighborMapper::GetBorderCenter(int mainProvince, int neighbor)
+{
+	auto bordersWithNeighbors = borders.find(mainProvince);
+	if (bordersWithNeighbors == borders.end())
+	{
+		LOG(LogLevel::Warning) << "Province " << mainProvince << " has no borders.";
+		return make_pair(-1, -1);
+	}
+	auto border = bordersWithNeighbors->second.find(neighbor);
+	if (border == bordersWithNeighbors->second.end())
+	{
+		LOG(LogLevel::Warning) << "Province " << mainProvince << " does not border " << neighbor << ".";
+		return make_pair(-1, -1);
+	}
+
+	return border->second[(border->second.size() / 2)];
 }

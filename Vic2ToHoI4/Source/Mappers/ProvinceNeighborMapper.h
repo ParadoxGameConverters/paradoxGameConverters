@@ -34,12 +34,23 @@ using namespace std;
 
 
 
+typedef pair<int, int> point;
+typedef vector<point> borderPoints;
+typedef map<int, borderPoints> bordersWith;
+
+
+
 class provinceNeighborMapper
 {
 	public:
 		static const set<int> getNeighbors(int province)
 		{
 			return getInstance()->GetNeighbors(province);
+		}
+
+		static const point getBorderCenter(int mainProvince, int neighbor)
+		{
+			return getInstance()->GetBorderCenter(mainProvince, neighbor);
 		}
 
 	private:
@@ -55,16 +66,20 @@ class provinceNeighborMapper
 		}
 		provinceNeighborMapper();
 
-		Color getCenterColor(bitmap_image& provinces, int x, int y);
-		Color getAboveColor(bitmap_image& provinces, int x, int y, int height);
-		Color getBelowColor(bitmap_image& provinces, int x, int y, int height);
-		Color getLeftColor(bitmap_image& provinces, int x, int y, int width);
-		Color getRightColor(bitmap_image& provinces, int x, int y, int width);
-		void handleNeighbor(Color centerColor, Color otherColor);
+		Color getCenterColor(bitmap_image& provinces, point position);
+		Color getAboveColor(bitmap_image& provinces, point position, int height);
+		Color getBelowColor(bitmap_image& provinces, point position, int height);
+		Color getLeftColor(bitmap_image& provinces, point position, int width);
+		Color getRightColor(bitmap_image& provinces, point position, int width);
+		void handleNeighbor(Color centerColor, Color otherColor, point position);
+		void addNeighbor(int mainProvince, int neighborProvince);
+		void addPointToBorder(int mainProvince, int neighborProvince, point position);
 
 		const set<int> GetNeighbors(int province);
+		const point GetBorderCenter(int mainProvince, int neighbor);
 
 		map<int, set<int>> provinceNeighbors;
+		map<int, bordersWith> borders;
 };
 
 
