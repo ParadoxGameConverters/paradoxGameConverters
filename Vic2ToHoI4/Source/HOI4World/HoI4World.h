@@ -52,7 +52,6 @@ class HoI4World
 
 		void	output() const;
 
-		void convertIndustry();
 		void convertResources();
 		void convertStrategicRegions();
 		void convertTechs();
@@ -77,6 +76,21 @@ class HoI4World
 		void convertCountries();
 		void convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, governmentJobsMap governmentJobs, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
 
+		void convertIndustry();
+		void addStatesToCountries();
+		map<string, double> calculateFactoryWorkerRatios();
+		map<string, double> getIndustrialWorkersPerCountry();
+		double getTotalWorldWorkers(map<string, double> industrialWorkersPerCountry);
+		map<string, double> adjustWorkers(map<string, double> industrialWorkersPerCountry, double totalWorldWorkers);
+		double getWorldwideWorkerFactoryRatio(map<string, double> workersInCountries, double totalWorldWorkers);
+		void putIndustryInStates(map<string, double> factoryWorkerRatios);
+		void calculateIndustryInCountries();
+		void reportIndustryLevels();
+		void reportCountryIndustry();
+		void reportDefaultIndustry();
+		pair<string, array<int, 3>> getDefaultStateIndustry(string stateFilename);
+		void outputDefaultIndustry(const map<string, array<int, 3>>& countryIndustry);
+
 		void	getProvinceLocalizations(const string& file);
 
 		void determineGreatPowers();
@@ -95,20 +109,6 @@ class HoI4World
 		void convertDiplomacy();
 		void convertAgreements();
 		void convertRelations();
-
-		void addStatesToCountries();
-		map<string, double> calculateFactoryWorkerRatios();
-		map<string, double> getIndustrialWorkersPerCountry();
-		double getTotalWorldWorkers(map<string, double> industrialWorkersPerCountry);
-		map<string, double> adjustWorkers(map<string, double> industrialWorkersPerCountry, double totalWorldWorkers);
-		double getWorldwideWorkerFactoryRatio(map<string, double> workersInCountries, double totalWorldWorkers);
-		void putIndustryInStates(map<string, double> factoryWorkerRatios);
-		void calculateIndustryInCountries();
-		void reportIndustryLevels();
-		void reportCountryIndustry();
-		void reportDefaultIndustry();
-		pair<string, array<int, 3>> getDefaultStateIndustry(string stateFilename);
-		void outputDefaultIndustry(const map<string, array<int, 3>>& countryIndustry);
 
 		vector<int>					getPortProvinces(const vector<int>& locationCandidates);
 		vector<int>					getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);

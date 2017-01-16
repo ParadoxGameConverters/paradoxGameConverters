@@ -176,249 +176,6 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 }
 
 
-void HoI4World::output() const
-{
-	LOG(LogLevel::Info) << "Outputting world";
-
-	string NFpath = "Output/" + Configuration::getOutputName() + "/common/national_focus";
-	if (!Utils::TryCreateFolder(NFpath))
-	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/national_focus\"";
-		exit(-1);
-	}
-	string eventpath = "Output/" + Configuration::getOutputName() + "/events";
-	if (!Utils::TryCreateFolder(eventpath))
-	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/events\"";
-		exit(-1);
-	}
-
-	outputCommonCountries();
-	outputColorsfile();
-	//outputAutoexecLua();
-	outputLocalisations();
-	outputHistory();
-	outputMap();
-	supplyZones->output();
-	outputRelations();
-	outputCountries();
-	buildings->output();
-	events->output();
-}
-
-
-void HoI4World::outputCommonCountries() const
-{
-	// Create common\countries path.
-	string countriesPath = "Output/" + Configuration::getOutputName() + "/common";
-	/*if (!Utils::TryCreateFolder(countriesPath))
-	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common\"";
-		exit(-1);
-	}*/
-	if (!Utils::TryCreateFolder(countriesPath + "/countries"))
-	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/countries\"";
-		exit(-1);
-	}
-	if (!Utils::TryCreateFolder(countriesPath + "/country_tags"))
-	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/country_tags\"";
-		exit(-1);
-	}
-
-	// Output common\countries.txt
-	LOG(LogLevel::Debug) << "Writing countries file";
-	FILE* allCountriesFile;
-	if (fopen_s(&allCountriesFile, ("Output/" + Configuration::getOutputName() + "/common/country_tags/00_countries.txt").c_str(), "w") != 0)
-	{
-		LOG(LogLevel::Error) << "Could not create countries file";
-		exit(-1);
-	}
-
-	for (auto countryItr : countries)
-	{
-		if (countryItr.second->getCapitalNum() != 0)
-		{
-			countryItr.second->outputToCommonCountriesFile(allCountriesFile);
-		}
-	}
-	fprintf(allCountriesFile, "\n");
-	fclose(allCountriesFile);
-}
-
-
-void HoI4World::outputColorsfile() const
-{
-
-	ofstream output;
-	output.open(("Output/" + Configuration::getOutputName() + "/common/countries/colors.txt"));
-	if (!output.is_open())
-	{
-		Log(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/common/countries/colors.txt";
-		exit(-1);
-	}
-
-	output << "#reload countrycolors\n";
-	for (auto countryItr : countries)
-	{
-		if (countryItr.second->getCapitalNum() != 0)
-		{
-			countryItr.second->outputColors(output);
-		}
-	}
-
-	output.close();
-}
-
-
-void HoI4World::outputAutoexecLua() const
-{
-	// output autoexec.lua
-	FILE* autoexec;
-	if (fopen_s(&autoexec, ("Output/" + Configuration::getOutputName() + "/script/autoexec.lua").c_str(), "w") != 0)
-	{
-		LOG(LogLevel::Error) << "Could not create autoexec.lua";
-		exit(-1);
-	}
-
-	ifstream sourceFile;
-	sourceFile.open("autoexecTEMPLATE.lua", ifstream::in);
-	if (!sourceFile.is_open())
-	{
-		LOG(LogLevel::Error) << "Could not open autoexecTEMPLATE.lua";
-		exit(-1);
-	}
-	while (!sourceFile.eof())
-	{
-		string line;
-		getline(sourceFile, line);
-		fprintf(autoexec, "%s\n", line.c_str());
-	}
-	sourceFile.close();
-
-	fprintf(autoexec, "\n");
-	fclose(autoexec);
-}
-
-
-void HoI4World::outputLocalisations() const
-{
-	// Create localisations for all new countries. We don't actually know the names yet so we just use the tags as the names.
-	LOG(LogLevel::Debug) << "Writing localisation text";
-	string localisationPath = "Output/" + Configuration::getOutputName() + "/localisation";
-	if (!Utils::TryCreateFolder(localisationPath))
-	{
-		LOG(LogLevel::Error) << "Could not create localisation folder";
-		exit(-1);
-	}
-
-	localisation.output(localisationPath);
-}
-
-
-void HoI4World::outputMap() const
-{
-	LOG(LogLevel::Debug) << "Writing Map Info";
-
-	// create the map folder
-	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/map"))
-	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/map";
-		exit(-1);
-	}
-
-	// create the rocket sites file
-	ofstream rocketSitesFile("Output/" + Configuration::getOutputName() + "/map/rocketsites.txt");
-	if (!rocketSitesFile.is_open())
-	{
-		LOG(LogLevel::Error) << "Could not create Output/" << Configuration::getOutputName() << "/map/rocketsites.txt";
-		exit(-1);
-	}
-	for (auto state : states->getStates())
-	{
-		auto provinces = state.second->getProvinces();
-		rocketSitesFile << state.second->getID() << " = { " << *provinces.begin() << " }\n";
-	}
-	rocketSitesFile.close();
-
-	// create the airports file
-	ofstream airportsFile("Output/" + Configuration::getOutputName() + "/map/airports.txt");
-	if (!airportsFile.is_open())
-	{
-		LOG(LogLevel::Error) << "Could not create Output/" << Configuration::getOutputName() << "/map/airports.txt";
-		exit(-1);
-	}
-	for (auto state : states->getStates())
-	{
-		auto provinces = state.second->getProvinces();
-		airportsFile << state.second->getID() << " = { " << *provinces.begin() << " }\n";
-	}
-	airportsFile.close();
-
-	// output strategic regions
-	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/map/strategicregions"))
-	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/map/strategicregions";
-		exit(-1);
-	}
-	for (auto strategicRegion : strategicRegions)
-	{
-		strategicRegion.second->output("Output/" + Configuration::getOutputName() + "/map/strategicregions/");
-	}
-}
-
-
-void HoI4World::outputHistory() const
-{
-	states->output();
-
-	LOG(LogLevel::Debug) << "Writing countries";
-	string unitsPath = "Output/" + Configuration::getOutputName() + "/history/units";
-	if (!Utils::TryCreateFolder(unitsPath))
-	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history/units";
-		exit(-1);
-	}
-	/*for (auto countryItr: countries)
-	{
-		countryItr.second->output(states->getStates(), );
-	}*/
-
-	LOG(LogLevel::Debug) << "Writing diplomacy";
-	//diplomacy.output();
-}
-
-
-void HoI4World::getProvinceLocalizations(const string& file)
-{
-	ifstream read;
-	string line;
-	read.open(file);
-	while (read.good() && !read.eof())
-	{
-		getline(read, line);
-		if (line.substr(0, 4) == "PROV" && isdigit(line[4]))
-		{
-			int position = line.find_first_of(';');
-			int num = stoi(line.substr(4, position - 4));
-			string name = line.substr(position + 1, line.find_first_of(';', position + 1) - position - 1);
-			provinces[num]->setName(name);
-		}
-	}
-	read.close();
-}
-
-
-void HoI4World::outputCountries() const
-{
-	for (auto country : countries)
-	{
-		country.second->output(states->getStates(), factions);
-	}
-}
-
-
 void HoI4World::convertIndustry()
 {
 	LOG(LogLevel::Info) << "Converting industry";
@@ -695,6 +452,249 @@ void HoI4World::outputDefaultIndustry(const map<string, array<int, 3>>& countryI
 			report << country.second[2] << ',';
 			report << country.second[0] + country.second[1] + country.second[2] << '\n';
 		}
+	}
+}
+
+
+void HoI4World::output() const
+{
+	LOG(LogLevel::Info) << "Outputting world";
+
+	string NFpath = "Output/" + Configuration::getOutputName() + "/common/national_focus";
+	if (!Utils::TryCreateFolder(NFpath))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/national_focus\"";
+		exit(-1);
+	}
+	string eventpath = "Output/" + Configuration::getOutputName() + "/events";
+	if (!Utils::TryCreateFolder(eventpath))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/events\"";
+		exit(-1);
+	}
+
+	outputCommonCountries();
+	outputColorsfile();
+	//outputAutoexecLua();
+	outputLocalisations();
+	outputHistory();
+	outputMap();
+	supplyZones->output();
+	outputRelations();
+	outputCountries();
+	buildings->output();
+	events->output();
+}
+
+
+void HoI4World::outputCommonCountries() const
+{
+	// Create common\countries path.
+	string countriesPath = "Output/" + Configuration::getOutputName() + "/common";
+	/*if (!Utils::TryCreateFolder(countriesPath))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common\"";
+		exit(-1);
+	}*/
+	if (!Utils::TryCreateFolder(countriesPath + "/countries"))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/countries\"";
+		exit(-1);
+	}
+	if (!Utils::TryCreateFolder(countriesPath + "/country_tags"))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/country_tags\"";
+		exit(-1);
+	}
+
+	// Output common\countries.txt
+	LOG(LogLevel::Debug) << "Writing countries file";
+	FILE* allCountriesFile;
+	if (fopen_s(&allCountriesFile, ("Output/" + Configuration::getOutputName() + "/common/country_tags/00_countries.txt").c_str(), "w") != 0)
+	{
+		LOG(LogLevel::Error) << "Could not create countries file";
+		exit(-1);
+	}
+
+	for (auto countryItr : countries)
+	{
+		if (countryItr.second->getCapitalNum() != 0)
+		{
+			countryItr.second->outputToCommonCountriesFile(allCountriesFile);
+		}
+	}
+	fprintf(allCountriesFile, "\n");
+	fclose(allCountriesFile);
+}
+
+
+void HoI4World::outputColorsfile() const
+{
+
+	ofstream output;
+	output.open(("Output/" + Configuration::getOutputName() + "/common/countries/colors.txt"));
+	if (!output.is_open())
+	{
+		Log(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/common/countries/colors.txt";
+		exit(-1);
+	}
+
+	output << "#reload countrycolors\n";
+	for (auto countryItr : countries)
+	{
+		if (countryItr.second->getCapitalNum() != 0)
+		{
+			countryItr.second->outputColors(output);
+		}
+	}
+
+	output.close();
+}
+
+
+void HoI4World::outputAutoexecLua() const
+{
+	// output autoexec.lua
+	FILE* autoexec;
+	if (fopen_s(&autoexec, ("Output/" + Configuration::getOutputName() + "/script/autoexec.lua").c_str(), "w") != 0)
+	{
+		LOG(LogLevel::Error) << "Could not create autoexec.lua";
+		exit(-1);
+	}
+
+	ifstream sourceFile;
+	sourceFile.open("autoexecTEMPLATE.lua", ifstream::in);
+	if (!sourceFile.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not open autoexecTEMPLATE.lua";
+		exit(-1);
+	}
+	while (!sourceFile.eof())
+	{
+		string line;
+		getline(sourceFile, line);
+		fprintf(autoexec, "%s\n", line.c_str());
+	}
+	sourceFile.close();
+
+	fprintf(autoexec, "\n");
+	fclose(autoexec);
+}
+
+
+void HoI4World::outputLocalisations() const
+{
+	// Create localisations for all new countries. We don't actually know the names yet so we just use the tags as the names.
+	LOG(LogLevel::Debug) << "Writing localisation text";
+	string localisationPath = "Output/" + Configuration::getOutputName() + "/localisation";
+	if (!Utils::TryCreateFolder(localisationPath))
+	{
+		LOG(LogLevel::Error) << "Could not create localisation folder";
+		exit(-1);
+	}
+
+	localisation.output(localisationPath);
+}
+
+
+void HoI4World::outputMap() const
+{
+	LOG(LogLevel::Debug) << "Writing Map Info";
+
+	// create the map folder
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/map"))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/map";
+		exit(-1);
+	}
+
+	// create the rocket sites file
+	ofstream rocketSitesFile("Output/" + Configuration::getOutputName() + "/map/rocketsites.txt");
+	if (!rocketSitesFile.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not create Output/" << Configuration::getOutputName() << "/map/rocketsites.txt";
+		exit(-1);
+	}
+	for (auto state : states->getStates())
+	{
+		auto provinces = state.second->getProvinces();
+		rocketSitesFile << state.second->getID() << " = { " << *provinces.begin() << " }\n";
+	}
+	rocketSitesFile.close();
+
+	// create the airports file
+	ofstream airportsFile("Output/" + Configuration::getOutputName() + "/map/airports.txt");
+	if (!airportsFile.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not create Output/" << Configuration::getOutputName() << "/map/airports.txt";
+		exit(-1);
+	}
+	for (auto state : states->getStates())
+	{
+		auto provinces = state.second->getProvinces();
+		airportsFile << state.second->getID() << " = { " << *provinces.begin() << " }\n";
+	}
+	airportsFile.close();
+
+	// output strategic regions
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/map/strategicregions"))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/map/strategicregions";
+		exit(-1);
+	}
+	for (auto strategicRegion : strategicRegions)
+	{
+		strategicRegion.second->output("Output/" + Configuration::getOutputName() + "/map/strategicregions/");
+	}
+}
+
+
+void HoI4World::outputHistory() const
+{
+	states->output();
+
+	LOG(LogLevel::Debug) << "Writing countries";
+	string unitsPath = "Output/" + Configuration::getOutputName() + "/history/units";
+	if (!Utils::TryCreateFolder(unitsPath))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history/units";
+		exit(-1);
+	}
+	/*for (auto countryItr: countries)
+	{
+		countryItr.second->output(states->getStates(), );
+	}*/
+
+	LOG(LogLevel::Debug) << "Writing diplomacy";
+	//diplomacy.output();
+}
+
+
+void HoI4World::getProvinceLocalizations(const string& file)
+{
+	ifstream read;
+	string line;
+	read.open(file);
+	while (read.good() && !read.eof())
+	{
+		getline(read, line);
+		if (line.substr(0, 4) == "PROV" && isdigit(line[4]))
+		{
+			int position = line.find_first_of(';');
+			int num = stoi(line.substr(4, position - 4));
+			string name = line.substr(position + 1, line.find_first_of(';', position + 1) - position - 1);
+			provinces[num]->setName(name);
+		}
+	}
+	read.close();
+}
+
+
+void HoI4World::outputCountries() const
+{
+	for (auto country : countries)
+	{
+		country.second->output(states->getStates(), factions);
 	}
 }
 
