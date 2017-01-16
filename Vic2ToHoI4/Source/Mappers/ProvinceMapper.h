@@ -76,6 +76,10 @@ class provinceMapper
 		void insertIntoHoI4ToVic2ProvinceMap(const vector<int>& Vic2Nums, const vector<int>& HoI4nums);
 		void insertIntoVic2ToHoI4ProvinceMap(const vector<int>& Vic2Nums, const vector<int>& HoI4nums);
 
+		void checkAllHoI4ProvinesMapped();
+		int getNextProvinceNumFromFile(ifstream& definitions);
+		void verifyProvinceIsMapped(int provNum);
+
 		HoI4ToVic2ProvinceMapping HoI4ToVic2ProvinceMap;
 		Vic2ToHoI4ProvinceMapping Vic2ToHoI4ProvinceMap;
 };

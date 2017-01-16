@@ -85,7 +85,6 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	faction = nullptr;
 	factionLeader = false;
 
-	neutrality = 50;
 	nationalUnity = 70;
 
 	training_laws = "minimal_training";
@@ -223,7 +222,9 @@ void HoI4Country::output(const map<int, HoI4State*>& states, const vector<HoI4Fa
 		output << "    election_frequency = 48" << endl;
 		output << "    elections_allowed = no" << endl;
 		output << "}" << endl;
-		output << relationstxt;
+
+		outputRelations(output);
+
 		output << "" << endl;
 		for (auto Faction : Factions)
 		{
@@ -525,6 +526,18 @@ void HoI4Country::outputLeaders() const
 }
 
 
+void HoI4Country::outputRelations(ofstream& output) const
+{
+	for (auto relation: relations)
+	{
+		if (relation.first != tag)
+		{
+			output << "add_opinion_modifier = { target = " << relation.first << " modifier = " << tag << "_" << relation.first << " }\n";
+		}
+	}
+}
+
+
 void HoI4Country::outputOOB() const
 {
 	ofstream output("Output/" + Configuration::getOutputName() + "/history/units/" + tag + "_OOB.txt");
@@ -684,29 +697,6 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	}
 
 	// Faction is handled in HoI4World::configureFactions
-
-	string warPolicy = _srcCountry->getRulingParty(_srcWorld.getParties())->war_policy;
-	if (warPolicy == "jingoism")
-	{
-		neutrality = 60;
-	}
-	else if (warPolicy == "pro_military")
-	{
-		neutrality = 73.3;
-	}
-	else if (warPolicy == "anti_military")
-	{
-		neutrality = 86.6;
-	}
-	else if (warPolicy == "pacifism")
-	{
-		neutrality = 90;
-	}
-	else
-	{
-		LOG(LogLevel::Warning) << "Could not find war policy for Vic2 country " << _srcCountry->getTag() << ". Settting neutrality to 100%";
-		neutrality = 100;
-	}
 
 	nationalUnity = 70.0 + (_srcCountry->getRevanchism() / 0.05) - (_srcCountry->getWarExhaustion() / 2.5);
 
@@ -1221,7 +1211,7 @@ void HoI4Country::convertArmyDivisions()
 	const double adjustment = 0.1 * Configuration::getForceMultiplier();
 
 	map<int, double> locations;
-	int totalRegiments;
+	int totalRegiments = 0;
 	for (auto army : srcCountry->getArmies())
 	{
 		// get the number of source brigades per location
@@ -2419,16 +2409,6 @@ void HoI4Country::setTechnology(string tech, int level)
 }
 
 
-void HoI4Country::lowerNeutrality(double amount)
-{
-	neutrality -= amount;
-	if (neutrality < 0)
-	{
-		neutrality = 0.0;
-	}
-}
-
-
 void HoI4Country::calculateIndustry()
 {
 	militaryFactories = 0.0;
@@ -2504,7 +2484,7 @@ HoI4State* HoI4Country::getCapital(void)
 		}
 		else
 		{
-			return NULL;
+			return nullptr;
 		}
 	}
 

@@ -2,7 +2,27 @@ ideas = {
 
 	# Special ones that can be applied on other countries through focus system.
 	country = {
-	
+		limited_interventionism = {
+			
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+
+			picture = generic_volunteer_expedition_bonus
+			
+			modifier = {
+				send_volunteers_tension = -0.20
+				send_volunteer_divisions_required = -0.25
+			}
+		}
+
 		nationalism = {
 			
 			allowed = {

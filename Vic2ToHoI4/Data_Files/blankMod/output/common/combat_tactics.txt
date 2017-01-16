@@ -691,26 +691,6 @@ tactic_human_wave_tactics = { #People's army attacker tactic
 	defender = 0.1
 }
 
-tactic_banzai_charge = { #Special Japan attacker tactic
-	is_attacker = yes
-	trigger = {
-		tag = JAP
-		is_attacker = yes
-		phase = no
-	}
-	
-	active = yes
-	
-	countered_by = tactic_overwhelming_fire
-	
-	base = 4
-	picture = tactic_banzai_charge
-	
-	attacker_movement_speed = 0.1
-	attacker = 0.25 
-	defender = 0.1
-}
-
 tactic_infantry_charge = { #GBP -> Infantry attacker tactic
 	is_attacker = yes
 	trigger = {

@@ -20,7 +20,6 @@ copy "Data_Files\FAQ.txt" "release\FAQ.txt"
 copy "Data_Files\resources.txt" "release\resources.txt"
 copy "Data_Files\navalprovinces.txt" "release\navalprovinces.txt"
 copy "Data_Files\positions.txt" "release\positions.txt"
-copy "Data_Files\adj.txt" "release\adj.txt"
 
 rem **Copy flags**
 xcopy "Data_Files\flags" "release\flags" /Y /E /I

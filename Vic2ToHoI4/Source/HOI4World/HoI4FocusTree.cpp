@@ -2050,7 +2050,7 @@ void HoI4FocusTree::addVersion1_3GenericFocusTree()
 	newFocus->completionReward += "						}\n";
 	newFocus->completionReward += "					}\n";
 	newFocus->completionReward += "				}\n";
-	newFocus->completionReward += "				random_owned_controlooed_state = {\n";
+	newFocus->completionReward += "				random_owned_controlled_state = {\n";
 	newFocus->completionReward += "					limit = {\n";
 	newFocus->completionReward += "						free_building_slots = {\n";
 	newFocus->completionReward += "							building = air_base\n";
@@ -2469,18 +2469,9 @@ void HoI4FocusTree::addVersion1_3GenericFocusTree()
 	newFocus->aiWillDo += "				factor = 0\n";
 	newFocus->aiWillDo += "				date < 1939.1.1\n";
 	newFocus->aiWillDo += "				OR = {\n";
-	newFocus->aiWillDo += "					# we dont want chinese minors to go crazy on slots early since they get eaten\n";
-	newFocus->aiWillDo += "					tag = GXC\n";
-	newFocus->aiWillDo += "					tag = YUN\n";
-	newFocus->aiWillDo += "					tag = SHX\n";
-	newFocus->aiWillDo += "					tag = XSM\n";
-	newFocus->aiWillDo += "					tag = BEL\n";
-	newFocus->aiWillDo += "					tag = LUX\n";
-	newFocus->aiWillDo += "					tag = HOL\n";
-	newFocus->aiWillDo += "					tag = DEN\n";
 	newFocus->aiWillDo += "					# we also dont want tiny nations to go crazy with slots right away\n";
 	newFocus->aiWillDo += "					num_of_controlled_states < 2\n";
-	newFocus->aiWillDo += "				}				\n";
+	newFocus->aiWillDo += "				}\n";
 	newFocus->aiWillDo += "			}";
 	focuses.push_back(newFocus);
 
@@ -4340,7 +4331,7 @@ void HoI4FocusTree::output()
 	}
 
 	out << "focus_tree = {\n";
-	out << "	id = german_focus\n";
+	out << "	id = " << dstCountryTag + "_focus\n";
 	out << "	\n";
 	out << "	country = {\n";
 	out << "		factor = 0\n";

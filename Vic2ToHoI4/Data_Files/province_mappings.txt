@@ -1115,12 +1115,12 @@
 	link = { vic2 = 624 hoi4 = 9661 hoi4 = 11630 hoi4 = 6690 }	# Eisenstadt -> land, land, land
 	link = { vic2 = 620 hoi4 = 704 }	# Sankt Pölten -> land
 	link = { vic2 = 617 hoi4 = 9650 hoi4 = 11651 }	# Judenburg -> land, land
-	link = { vic2 = 618 hoi4 = 3673 hoi4 = 6687 hoi4 = 3674 }	# Klagenfurt -> land, land, land
+	link = { vic2 = 618 hoi4 = 3673 hoi4 = 6687 hoi4 = 3674 hoi4 = 11612 hoi4 = 6673 }	# Klagenfurt -> land, land, land, land, land
 	link = { vic2 = 619 hoi4 = 11666 hoi4 = 6739 hoi4 = 9527 hoi4 = 3718 hoi4 = 3700 }	# Vienna -> land, land, land, land, land
 	link = { vic2 = 621 hoi4 = 6723 hoi4 = 6552 }	# Krems -> land, land
 	link = { vic2 = 622 hoi4 = 9665 hoi4 = 3703 hoi4 = 732 }	# Linz -> land, land, land
 	link = { vic2 = 613 hoi4 = 688 hoi4 = 6708 hoi4 = 6691 hoi4 = 3684 }	# Salzburg -> land, land, land, land
-	link = { vic2 = 615 hoi4 = 668 hoi4 = 6673 }	# Lienz -> land, land
+	link = { vic2 = 615 hoi4 = 668 }	# Lienz -> land
 	link = { vic2 = 735 hoi4 = 9633 hoi4 = 11618 hoi4 = 671 }	# Bozen -> land, land, land
 	link = { vic2 = 612 hoi4 = 9636 hoi4 = 673 hoi4 = 11634 hoi4 = 3675 }	# Innsbruck -> land, land, land, land
 	link = { vic2 = 614 hoi4 = 6680 hoi4 = 6678 }	# Bregenz -> land, land
@@ -1193,18 +1193,18 @@
 	link = { vic2 = 668 hoi4 = 3076 hoi4 = 11636 }	# Braila -> land, land
 	link = { vic2 = 669 hoi4 = 6677 hoi4 = 11603 }	# Calarasi -> land, land
 	link = { vic2 = 667 hoi4 = 3663 hoi4 = 674 hoi4 = 9651 hoi4 = 11619 hoi4 = 6695 hoi4 = 660 }	# Tirgoviste -> land, land, land, land, land, land
-	link = { vic2 = 664 hoi4 = 6658 hoi4 = 9617 hoi4 = 3636 hoi4 = 818 hoi4 = 3639 }	# Bucharest -> land, land, land, land, land
+	link = { vic2 = 664 hoi4 = 9617 hoi4 = 6658 hoi4 = 818 hoi4 = 3636 hoi4 = 3639 }	# Bucharest -> land, land, land, land, land
 	link = { vic2 = 675 hoi4 = 687 }	# Tulcea -> land
 	link = { vic2 = 674 hoi4 = 657 hoi4 = 9635 }	# Constanta -> land, land
 	link = { vic2 = 818 hoi4 = 9614 hoi4 = 11597 }	# Silistre -> land, land
 	link = { vic2 = 811 hoi4 = 649 hoi4 = 9612 }	# Ruse -> land, land
 	link = { vic2 = 814 hoi4 = 9783 }	# Varna -> land
-	link = { vic2 = 813 hoi4 = 6967 hoi4 = 9769 }	# Shumen -> land, land
+	link = { vic2 = 813 hoi4 = 9769 hoi4 = 6842 }	# Shumen -> land, land
 	link = { vic2 = 817 hoi4 = 9888 hoi4 = 9902 hoi4 = 9919 }	# Burgas -> land, land, land
-	link = { vic2 = 816 hoi4 = 6982 hoi4 = 6952 hoi4 = 6814 hoi4 = 6842 }	# Stara Zagora -> land, land, land, land
+	link = { vic2 = 816 hoi4 = 6982 hoi4 = 6952 hoi4 = 6814 hoi4 = 6967 }	# Stara Zagora -> land, land, land, land
 	link = { vic2 = 812 hoi4 = 3952 hoi4 = 3796 hoi4 = 9610 hoi4 = 3819 }	# Pleven -> land, land, land, land
 	link = { vic2 = 810 hoi4 = 9771 hoi4 = 965 hoi4 = 11754 hoi4 = 3971 hoi4 = 793 }	# Vidin -> land, land, land, land, land
-	link = { vic2 = 809 hoi4 = 935 hoi4 = 949 hoi4 = 3908 }	# Sofia -> land, land, land
+	link = { vic2 = 809 hoi4 = 949 hoi4 = 935 hoi4 = 3908 }	# Sofia -> land, land, land
 	link = { vic2 = 808 hoi4 = 9818 hoi4 = 6857 }	# Petrich -> land, land
 	link = { vic2 = 815 hoi4 = 6923 hoi4 = 9862 hoi4 = 878 hoi4 = 893 hoi4 = 11813 hoi4 = 3937 }	# Plovdiv -> land, land, land, land, land, land
 	# 
@@ -1242,47 +1242,47 @@
 	link = { vic2 = 625 hoi4 = 11542 hoi4 = 6440 }	# Prague -> land, land
 	# 
 	# ## Western Balkans
-	link = { vic2 = 795 hoi4 = 630 hoi4 = 9756 hoi4 = 11887 }	# Bor -> land, land, land
-	link = { vic2 = 798 hoi4 = 6998 hoi4 = 9602 }	# Niš -> land, land
-	link = { vic2 = 802 hoi4 = 6953 hoi4 = 9890 hoi4 = 9906 }	# Pristina -> land, land, land
+	link = { vic2 = 795 hoi4 = 630 }	# Bor -> land
+	link = { vic2 = 798 hoi4 = 6998 hoi4 = 9602 hoi4 = 9756 }	# Niš -> land, land, land
+	link = { vic2 = 802 hoi4 = 6953 hoi4 = 9890 hoi4 = 9874 }	# Pristina -> land, land, land
 	link = { vic2 = 796 hoi4 = 11583 hoi4 = 6634 }	# Kragujevac -> land, land
 	link = { vic2 = 792 hoi4 = 3614 hoi4 = 614 hoi4 = 11787 hoi4 = 6643 }	# Pancevo -> land, land, land, land
-	link = { vic2 = 804 hoi4 = 3939 hoi4 = 6970 }	# Novi Pazar -> land, land
-	link = { vic2 = 797 hoi4 = 9599 hoi4 = 3984 hoi4 = 3956 }	# Užice -> land, land, land
-	link = { vic2 = 794 hoi4 = 11586 hoi4 = 3609 hoi4 = 11580 hoi4 = 797 }	# Belgrade -> land, land, land, land
-	link = { vic2 = 787 hoi4 = 953 }	# Foca -> land
-	link = { vic2 = 786 hoi4 = 6799 hoi4 = 11574 hoi4 = 606 hoi4 = 11741 }	# Tuzla -> land, land, land, land
-	link = { vic2 = 788 hoi4 = 9894 hoi4 = 11845 }	# Mostar -> land, land
-	link = { vic2 = 783 hoi4 = 9922 hoi4 = 11872 hoi4 = 11899 }	# Sarajevo -> land, land, land
+	link = { vic2 = 804 hoi4 = 3939 hoi4 = 6970 hoi4 = 3956 }	# Novi Pazar -> land, land, land
+	link = { vic2 = 797 hoi4 = 3984 hoi4 = 9599 hoi4 = 797 }	# Užice -> land, land, land
+	link = { vic2 = 794 hoi4 = 11586 hoi4 = 3609 }	# Belgrade -> land, land
+	link = { vic2 = 787 hoi4 = 953 hoi4 = 11899 hoi4 = 11741 }	# Foca -> land, land, land
+	link = { vic2 = 786 hoi4 = 6799 hoi4 = 11574 hoi4 = 606 }	# Tuzla -> land, land, land
+	link = { vic2 = 788 hoi4 = 9894 }	# Mostar -> land
+	link = { vic2 = 783 hoi4 = 9922 hoi4 = 11872 }	# Sarajevo -> land, land
 	link = { vic2 = 789 hoi4 = 6957 hoi4 = 6942 }	# Livno -> land, land
 	link = { vic2 = 785 hoi4 = 6983 hoi4 = 9588 hoi4 = 9591 hoi4 = 11572 }	# Banja Luka -> land, land, land, land
 	link = { vic2 = 784 hoi4 = 9586 hoi4 = 3985 }	# Bihac -> land, land
 	link = { vic2 = 772 hoi4 = 6614 hoi4 = 6619 }	# Sisak -> land, land
 	link = { vic2 = 773 hoi4 = 3601 hoi4 = 6611 }	# Karlovac -> land, land
 	link = { vic2 = 767 hoi4 = 3654 hoi4 = 596 hoi4 = 665 hoi4 = 6672 }	# Maribor -> land, land, land, land
-	link = { vic2 = 768 hoi4 = 3631 hoi4 = 9627 hoi4 = 6650 hoi4 = 9596 hoi4 = 11612 }	# Ljubljana -> land, land, land, land, land
+	link = { vic2 = 768 hoi4 = 3631 hoi4 = 9627 hoi4 = 6650 hoi4 = 9596 }	# Ljubljana -> land, land, land, land
 	link = { vic2 = 778 hoi4 = 11564 }	# Fiume -> land
 	link = { vic2 = 774 hoi4 = 11901 hoi4 = 591 hoi4 = 984 }	# Senj -> land, land, land
 	link = { vic2 = 781 hoi4 = 3943 }	# Zadar -> land
-	link = { vic2 = 791 hoi4 = 11577 }	# Mitrovica -> land
-	link = { vic2 = 2538 hoi4 = 619 hoi4 = 3617 hoi4 = 9621 }	# Novi Sad -> land, land, land
+	link = { vic2 = 791 hoi4 = 11577 hoi4 = 11580 }	# Mitrovica -> land, land
+	link = { vic2 = 2538 hoi4 = 619 hoi4 = 3617 hoi4 = 9621 hoi4 = 3623 }	# Novi Sad -> land, land, land, land
 	link = { vic2 = 793 hoi4 = 6647 }	# Vukovar -> land
-	link = { vic2 = 779 hoi4 = 9608 hoi4 = 3623 }	# Osijek -> land, land
+	link = { vic2 = 779 hoi4 = 9608 }	# Osijek -> land
 	link = { vic2 = 777 hoi4 = 3627 hoi4 = 9595 }	# Požega -> land, land
 	link = { vic2 = 776 hoi4 = 624 hoi4 = 11594 }	# Bjelovar -> land, land
 	link = { vic2 = 775 hoi4 = 9611 }	# Varaždin -> land
-	link = { vic2 = 771 hoi4 = 3592 hoi4 = 11581 hoi4 = 3596 }	# Zagreb -> land, land, land
+	link = { vic2 = 771 hoi4 = 11581 hoi4 = 3592 hoi4 = 3596 }	# Zagreb -> land, land, land
 	link = { vic2 = 780 hoi4 = 11816 hoi4 = 3924 hoi4 = 3974 }	# Split -> land, land, land
 	link = { vic2 = 782 hoi4 = 6889 hoi4 = 3868 }	# Dubrovnik -> land, land
-	link = { vic2 = 2577 hoi4 = 937 hoi4 = 982 }	# Pljevlja -> land, land
-	link = { vic2 = 2569 hoi4 = 3922 hoi4 = 6940 hoi4 = 9849 hoi4 = 9874 }	# Niksic -> land, land, land, land
-	link = { vic2 = 2583 hoi4 = 11858 hoi4 = 6913 }	# Cetinje -> land, land
+	link = { vic2 = 2577 hoi4 = 937 hoi4 = 3922 hoi4 = 982 }	# Pljevlja -> land, land, land
+	link = { vic2 = 2569 hoi4 = 11845 }	# Niksic -> land
+	link = { vic2 = 2583 hoi4 = 11858 }	# Cetinje -> land
 	link = { vic2 = 2582 hoi4 = 9821 }	# Kotor -> land
-	link = { vic2 = 800 hoi4 = 9809 }	# Ulcinj -> land
-	link = { vic2 = 803 hoi4 = 867 hoi4 = 833 }	# Prizren -> land, land
-	link = { vic2 = 799 hoi4 = 11857 hoi4 = 11832 hoi4 = 11868 }	# Leskovac -> land, land, land
+	link = { vic2 = 800 hoi4 = 9809 hoi4 = 6913 }	# Ulcinj -> land, land
+	link = { vic2 = 803 hoi4 = 9849 hoi4 = 6940 }	# Prizren -> land, land
+	link = { vic2 = 799 hoi4 = 11857 hoi4 = 11832 hoi4 = 11868 hoi4 = 9906 hoi4 = 11887 }	# Leskovac -> land, land, land, land, land
 	link = { vic2 = 806 hoi4 = 3833 hoi4 = 6886 hoi4 = 907 }	# Skopje -> land, land, land
-	link = { vic2 = 807 hoi4 = 11856 hoi4 = 974 hoi4 = 3865 hoi4 = 3882 }	# Bitola -> land, land, land, land
+	link = { vic2 = 807 hoi4 = 11856 hoi4 = 974 hoi4 = 3865 hoi4 = 3882 hoi4 = 833 hoi4 = 867 }	# Bitola -> land, land, land, land, land, land
 	link = { vic2 = 850 hoi4 = 9780 hoi4 = 3896 }	# Shkoder -> land, land
 	link = { vic2 = 849 hoi4 = 9875 hoi4 = 11762 }	# Tirana -> land, land
 	link = { vic2 = 851 hoi4 = 3884 hoi4 = 9914 }	# Durres -> land, land
@@ -1292,10 +1292,10 @@
 	# ## Greece
 	link = { vic2 = 830 hoi4 = 11905 }	# Dedeagatch -> land
 	link = { vic2 = 829 hoi4 = 11774 }	# Xanthe -> land
-	link = { vic2 = 823 hoi4 = 6990 hoi4 = 9930 hoi4 = 9791 }	# Kavala -> land, land, land
-	link = { vic2 = 822 hoi4 = 11818 hoi4 = 3936 hoi4 = 895 }	# Polygyros -> land, land, land
-	link = { vic2 = 805 hoi4 = 936 hoi4 = 10163 hoi4 = 3526 }	# Salonika -> land, land, land
-	link = { vic2 = 821 hoi4 = 3844 hoi4 = 966 }	# Edessa -> land, land
+	link = { vic2 = 823 hoi4 = 9930 hoi4 = 6990 hoi4 = 9791 }	# Kavala -> land, land, land
+	link = { vic2 = 822 hoi4 = 3936 hoi4 = 895 }	# Polygyros -> land, land
+	link = { vic2 = 805 hoi4 = 11818 hoi4 = 10163 hoi4 = 3526 }	# Salonika -> land, land, land
+	link = { vic2 = 821 hoi4 = 3844 hoi4 = 966 hoi4 = 936 }	# Edessa -> land, land, land
 	link = { vic2 = 819 hoi4 = 841 hoi4 = 9837 }	# Florina -> land, land
 	link = { vic2 = 820 hoi4 = 3980 }	# Grevena -> land
 	link = { vic2 = 832 hoi4 = 3973 }	# Volos -> land
@@ -1311,8 +1311,8 @@
 	link = { vic2 = 842 hoi4 = 4193 hoi4 = 7211 }	# Patras -> land, land
 	link = { vic2 = 841 hoi4 = 1173 }	# Kalamata -> land
 	link = { vic2 = 839 hoi4 = 4078 hoi4 = 11965 hoi4 = 4178 }	# Nafplion -> land, land, land
-	link = { vic2 = 840 hoi4 = 3988 hoi4 = 7096 }	# Corinth -> land, land
-	link = { vic2 = 834 hoi4 = 4109 }	# Athens -> land
+	link = { vic2 = 840 hoi4 = 7096 }	# Corinth -> land
+	link = { vic2 = 834 hoi4 = 4109 hoi4 = 3988 }	# Athens -> land, land
 	link = { vic2 = 838 hoi4 = 7127 }	# Khalkis -> land
 	link = { vic2 = 845 hoi4 = 3401 }	# Cyclades -> land
 	link = { vic2 = 844 hoi4 = 8435 }	# Myteline -> land
@@ -4535,12 +4535,12 @@
 	link = { vic2 = 624 hoi4 = 9661 hoi4 = 11630 hoi4 = 6690 }	# Eisenstadt -> land, land, land
 	link = { vic2 = 620 hoi4 = 704 }	# Sankt Pölten -> land
 	link = { vic2 = 617 hoi4 = 9650 hoi4 = 11651 }	# Judenburg -> land, land
-	link = { vic2 = 618 hoi4 = 3673 hoi4 = 6687 hoi4 = 3674 }	# Klagenfurt -> land, land, land
+	link = { vic2 = 618 hoi4 = 3673 hoi4 = 6687 hoi4 = 3674 hoi4 = 11612 hoi4 = 6673 }	# Klagenfurt -> land, land, land, land, land
 	link = { vic2 = 619 hoi4 = 11666 hoi4 = 6739 hoi4 = 9527 hoi4 = 3718 hoi4 = 3700 }	# Vienna -> land, land, land, land, land
 	link = { vic2 = 621 hoi4 = 6723 hoi4 = 6552 }	# Krems -> land, land
 	link = { vic2 = 622 hoi4 = 9665 hoi4 = 3703 hoi4 = 732 }	# Linz -> land, land, land
 	link = { vic2 = 613 hoi4 = 688 hoi4 = 6708 hoi4 = 6691 hoi4 = 3684 }	# Salzburg -> land, land, land, land
-	link = { vic2 = 615 hoi4 = 668 hoi4 = 6673 }	# Lienz -> land, land
+	link = { vic2 = 615 hoi4 = 668 }	# Lienz -> land
 	link = { vic2 = 735 hoi4 = 9633 hoi4 = 11618 hoi4 = 671 }	# Bozen -> land, land, land
 	link = { vic2 = 612 hoi4 = 9636 hoi4 = 673 hoi4 = 11634 hoi4 = 3675 }	# Innsbruck -> land, land, land, land
 	link = { vic2 = 614 hoi4 = 6680 hoi4 = 6678 }	# Bregenz -> land, land
@@ -4613,18 +4613,18 @@
 	link = { vic2 = 668 hoi4 = 3076 hoi4 = 11636 }	# Braila -> land, land
 	link = { vic2 = 669 hoi4 = 6677 hoi4 = 11603 }	# Calarasi -> land, land
 	link = { vic2 = 667 hoi4 = 3663 hoi4 = 674 hoi4 = 9651 hoi4 = 11619 hoi4 = 6695 hoi4 = 660 }	# Tirgoviste -> land, land, land, land, land, land
-	link = { vic2 = 664 hoi4 = 6658 hoi4 = 9617 hoi4 = 3636 hoi4 = 818 hoi4 = 3639 }	# Bucharest -> land, land, land, land, land
+	link = { vic2 = 664 hoi4 = 9617 hoi4 = 6658 hoi4 = 818 hoi4 = 3636 hoi4 = 3639 }	# Bucharest -> land, land, land, land, land
 	link = { vic2 = 675 hoi4 = 687 }	# Tulcea -> land
 	link = { vic2 = 674 hoi4 = 657 hoi4 = 9635 }	# Constanta -> land, land
 	link = { vic2 = 818 hoi4 = 9614 hoi4 = 11597 }	# Silistre -> land, land
 	link = { vic2 = 811 hoi4 = 649 hoi4 = 9612 }	# Ruse -> land, land
 	link = { vic2 = 814 hoi4 = 9783 }	# Varna -> land
-	link = { vic2 = 813 hoi4 = 6967 hoi4 = 9769 }	# Shumen -> land, land
+	link = { vic2 = 813 hoi4 = 9769 hoi4 = 6842 }	# Shumen -> land, land
 	link = { vic2 = 817 hoi4 = 9888 hoi4 = 9902 hoi4 = 9919 }	# Burgas -> land, land, land
-	link = { vic2 = 816 hoi4 = 6982 hoi4 = 6952 hoi4 = 6814 hoi4 = 6842 }	# Stara Zagora -> land, land, land, land
+	link = { vic2 = 816 hoi4 = 6982 hoi4 = 6952 hoi4 = 6814 hoi4 = 6967 }	# Stara Zagora -> land, land, land, land
 	link = { vic2 = 812 hoi4 = 3952 hoi4 = 3796 hoi4 = 9610 hoi4 = 3819 }	# Pleven -> land, land, land, land
 	link = { vic2 = 810 hoi4 = 9771 hoi4 = 965 hoi4 = 11754 hoi4 = 3971 hoi4 = 793 }	# Vidin -> land, land, land, land, land
-	link = { vic2 = 809 hoi4 = 935 hoi4 = 949 hoi4 = 3908 }	# Sofia -> land, land, land
+	link = { vic2 = 809 hoi4 = 949 hoi4 = 935 hoi4 = 3908 }	# Sofia -> land, land, land
 	link = { vic2 = 808 hoi4 = 9818 hoi4 = 6857 }	# Petrich -> land, land
 	link = { vic2 = 815 hoi4 = 6923 hoi4 = 9862 hoi4 = 878 hoi4 = 893 hoi4 = 11813 hoi4 = 3937 }	# Plovdiv -> land, land, land, land, land, land
 	# 
@@ -4662,47 +4662,47 @@
 	link = { vic2 = 625 hoi4 = 11542 hoi4 = 6440 }	# Prague -> land, land
 	# 
 	# ## Western Balkans
-	link = { vic2 = 795 hoi4 = 630 hoi4 = 9756 hoi4 = 11887 }	# Bor -> land, land, land
-	link = { vic2 = 798 hoi4 = 6998 hoi4 = 9602 }	# Niš -> land, land
-	link = { vic2 = 802 hoi4 = 6953 hoi4 = 9890 hoi4 = 9906 }	# Pristina -> land, land, land
+	link = { vic2 = 795 hoi4 = 630 }	# Bor -> land
+	link = { vic2 = 798 hoi4 = 6998 hoi4 = 9602 hoi4 = 9756 }	# Niš -> land, land, land
+	link = { vic2 = 802 hoi4 = 6953 hoi4 = 9890 hoi4 = 9874 }	# Pristina -> land, land, land
 	link = { vic2 = 796 hoi4 = 11583 hoi4 = 6634 }	# Kragujevac -> land, land
 	link = { vic2 = 792 hoi4 = 3614 hoi4 = 614 hoi4 = 11787 hoi4 = 6643 }	# Pancevo -> land, land, land, land
-	link = { vic2 = 804 hoi4 = 3939 hoi4 = 6970 }	# Novi Pazar -> land, land
-	link = { vic2 = 797 hoi4 = 9599 hoi4 = 3984 hoi4 = 3956 }	# Užice -> land, land, land
-	link = { vic2 = 794 hoi4 = 11586 hoi4 = 3609 hoi4 = 11580 hoi4 = 797 }	# Belgrade -> land, land, land, land
-	link = { vic2 = 787 hoi4 = 953 }	# Foca -> land
-	link = { vic2 = 786 hoi4 = 6799 hoi4 = 11574 hoi4 = 606 hoi4 = 11741 }	# Tuzla -> land, land, land, land
-	link = { vic2 = 788 hoi4 = 9894 hoi4 = 11845 }	# Mostar -> land, land
-	link = { vic2 = 783 hoi4 = 9922 hoi4 = 11872 hoi4 = 11899 }	# Sarajevo -> land, land, land
+	link = { vic2 = 804 hoi4 = 3939 hoi4 = 6970 hoi4 = 3956 }	# Novi Pazar -> land, land, land
+	link = { vic2 = 797 hoi4 = 3984 hoi4 = 9599 hoi4 = 797 }	# Užice -> land, land, land
+	link = { vic2 = 794 hoi4 = 11586 hoi4 = 3609 }	# Belgrade -> land, land
+	link = { vic2 = 787 hoi4 = 953 hoi4 = 11899 hoi4 = 11741 }	# Foca -> land, land, land
+	link = { vic2 = 786 hoi4 = 6799 hoi4 = 11574 hoi4 = 606 }	# Tuzla -> land, land, land
+	link = { vic2 = 788 hoi4 = 9894 }	# Mostar -> land
+	link = { vic2 = 783 hoi4 = 9922 hoi4 = 11872 }	# Sarajevo -> land, land
 	link = { vic2 = 789 hoi4 = 6957 hoi4 = 6942 }	# Livno -> land, land
 	link = { vic2 = 785 hoi4 = 6983 hoi4 = 9588 hoi4 = 9591 hoi4 = 11572 }	# Banja Luka -> land, land, land, land
 	link = { vic2 = 784 hoi4 = 9586 hoi4 = 3985 }	# Bihac -> land, land
 	link = { vic2 = 772 hoi4 = 6614 hoi4 = 6619 }	# Sisak -> land, land
 	link = { vic2 = 773 hoi4 = 3601 hoi4 = 6611 }	# Karlovac -> land, land
 	link = { vic2 = 767 hoi4 = 3654 hoi4 = 596 hoi4 = 665 hoi4 = 6672 }	# Maribor -> land, land, land, land
-	link = { vic2 = 768 hoi4 = 3631 hoi4 = 9627 hoi4 = 6650 hoi4 = 9596 hoi4 = 11612 }	# Ljubljana -> land, land, land, land, land
+	link = { vic2 = 768 hoi4 = 3631 hoi4 = 9627 hoi4 = 6650 hoi4 = 9596 }	# Ljubljana -> land, land, land, land
 	link = { vic2 = 778 hoi4 = 11564 }	# Fiume -> land
 	link = { vic2 = 774 hoi4 = 11901 hoi4 = 591 hoi4 = 984 }	# Senj -> land, land, land
 	link = { vic2 = 781 hoi4 = 3943 }	# Zadar -> land
-	link = { vic2 = 791 hoi4 = 11577 }	# Mitrovica -> land
-	link = { vic2 = 2538 hoi4 = 619 hoi4 = 3617 hoi4 = 9621 }	# Novi Sad -> land, land, land
+	link = { vic2 = 791 hoi4 = 11577 hoi4 = 11580 }	# Mitrovica -> land, land
+	link = { vic2 = 2538 hoi4 = 619 hoi4 = 3617 hoi4 = 9621 hoi4 = 3623 }	# Novi Sad -> land, land, land, land
 	link = { vic2 = 793 hoi4 = 6647 }	# Vukovar -> land
-	link = { vic2 = 779 hoi4 = 9608 hoi4 = 3623 }	# Osijek -> land, land
+	link = { vic2 = 779 hoi4 = 9608 }	# Osijek -> land
 	link = { vic2 = 777 hoi4 = 3627 hoi4 = 9595 }	# Požega -> land, land
 	link = { vic2 = 776 hoi4 = 624 hoi4 = 11594 }	# Bjelovar -> land, land
 	link = { vic2 = 775 hoi4 = 9611 }	# Varaždin -> land
-	link = { vic2 = 771 hoi4 = 3592 hoi4 = 11581 hoi4 = 3596 }	# Zagreb -> land, land, land
+	link = { vic2 = 771 hoi4 = 11581 hoi4 = 3592 hoi4 = 3596 }	# Zagreb -> land, land, land
 	link = { vic2 = 780 hoi4 = 11816 hoi4 = 3924 hoi4 = 3974 }	# Split -> land, land, land
 	link = { vic2 = 782 hoi4 = 6889 hoi4 = 3868 }	# Dubrovnik -> land, land
-	link = { vic2 = 2577 hoi4 = 937 hoi4 = 982 }	# Pljevlja -> land, land
-	link = { vic2 = 2569 hoi4 = 3922 hoi4 = 6940 hoi4 = 9849 hoi4 = 9874 }	# Niksic -> land, land, land, land
-	link = { vic2 = 2583 hoi4 = 11858 hoi4 = 6913 }	# Cetinje -> land, land
+	link = { vic2 = 2577 hoi4 = 937 hoi4 = 3922 hoi4 = 982 }	# Pljevlja -> land, land, land
+	link = { vic2 = 2569 hoi4 = 11845 }	# Niksic -> land
+	link = { vic2 = 2583 hoi4 = 11858 }	# Cetinje -> land
 	link = { vic2 = 2582 hoi4 = 9821 }	# Kotor -> land
-	link = { vic2 = 800 hoi4 = 9809 }	# Ulcinj -> land
-	link = { vic2 = 803 hoi4 = 867 hoi4 = 833 }	# Prizren -> land, land
-	link = { vic2 = 799 hoi4 = 11857 hoi4 = 11832 hoi4 = 11868 }	# Leskovac -> land, land, land
+	link = { vic2 = 800 hoi4 = 9809 hoi4 = 6913 }	# Ulcinj -> land, land
+	link = { vic2 = 803 hoi4 = 9849 hoi4 = 6940 }	# Prizren -> land, land
+	link = { vic2 = 799 hoi4 = 11857 hoi4 = 11832 hoi4 = 11868 hoi4 = 9906 hoi4 = 11887 }	# Leskovac -> land, land, land, land, land
 	link = { vic2 = 806 hoi4 = 3833 hoi4 = 6886 hoi4 = 907 }	# Skopje -> land, land, land
-	link = { vic2 = 807 hoi4 = 11856 hoi4 = 974 hoi4 = 3865 hoi4 = 3882 }	# Bitola -> land, land, land, land
+	link = { vic2 = 807 hoi4 = 11856 hoi4 = 974 hoi4 = 3865 hoi4 = 3882 hoi4 = 833 hoi4 = 867 }	# Bitola -> land, land, land, land, land, land
 	link = { vic2 = 850 hoi4 = 9780 hoi4 = 3896 }	# Shkoder -> land, land
 	link = { vic2 = 849 hoi4 = 9875 hoi4 = 11762 }	# Tirana -> land, land
 	link = { vic2 = 851 hoi4 = 3884 hoi4 = 9914 }	# Durres -> land, land
@@ -4712,10 +4712,10 @@
 	# ## Greece
 	link = { vic2 = 830 hoi4 = 11905 }	# Dedeagatch -> land
 	link = { vic2 = 829 hoi4 = 11774 }	# Xanthe -> land
-	link = { vic2 = 823 hoi4 = 6990 hoi4 = 9930 hoi4 = 9791 }	# Kavala -> land, land, land
-	link = { vic2 = 822 hoi4 = 11818 hoi4 = 3936 hoi4 = 895 }	# Polygyros -> land, land, land
-	link = { vic2 = 805 hoi4 = 936 hoi4 = 10163 hoi4 = 3526 }	# Salonika -> land, land, land
-	link = { vic2 = 821 hoi4 = 3844 hoi4 = 966 }	# Edessa -> land, land
+	link = { vic2 = 823 hoi4 = 9930 hoi4 = 6990 hoi4 = 9791 }	# Kavala -> land, land, land
+	link = { vic2 = 822 hoi4 = 3936 hoi4 = 895 }	# Polygyros -> land, land
+	link = { vic2 = 805 hoi4 = 11818 hoi4 = 10163 hoi4 = 3526 }	# Salonika -> land, land, land
+	link = { vic2 = 821 hoi4 = 3844 hoi4 = 966 hoi4 = 936 }	# Edessa -> land, land, land
 	link = { vic2 = 819 hoi4 = 841 hoi4 = 9837 }	# Florina -> land, land
 	link = { vic2 = 820 hoi4 = 3980 }	# Grevena -> land
 	link = { vic2 = 832 hoi4 = 3973 }	# Volos -> land
@@ -4731,8 +4731,8 @@
 	link = { vic2 = 842 hoi4 = 4193 hoi4 = 7211 }	# Patras -> land, land
 	link = { vic2 = 841 hoi4 = 1173 }	# Kalamata -> land
 	link = { vic2 = 839 hoi4 = 4078 hoi4 = 11965 hoi4 = 4178 }	# Nafplion -> land, land, land
-	link = { vic2 = 840 hoi4 = 3988 hoi4 = 7096 }	# Corinth -> land, land
-	link = { vic2 = 834 hoi4 = 4109 }	# Athens -> land
+	link = { vic2 = 840 hoi4 = 7096 }	# Corinth -> land
+	link = { vic2 = 834 hoi4 = 4109 hoi4 = 3988 }	# Athens -> land, land
 	link = { vic2 = 838 hoi4 = 7127 }	# Khalkis -> land
 	link = { vic2 = 845 hoi4 = 3401 }	# Cyclades -> land
 	link = { vic2 = 844 hoi4 = 8435 }	# Myteline -> land

@@ -27,6 +27,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Faction.h"
 #include "HoI4Focus.h"
 #include "HoI4World.h"
+#include "../Mappers/ProvinceDefinitions.h"
+#include "../Mappers/ProvinceNeighborMapper.h"
 #include "../Mappers/StateMapper.h"
 
 
@@ -42,7 +44,6 @@ void HoI4WarCreator::generateWars(HoI4World* world)
 
 	determineProvinceOwners();
 	fillCountryProvinces();
-	fillProvinceNeighbors();
 	addAllTargetsToWorldTargetMap();
 	double worldStrength = calculateWorldStrength(AILog);
 
@@ -334,36 +335,6 @@ void HoI4WarCreator::setSphereLeaders(const V2World* sourceWorld)
 			}
 		}
 	}
-}
-
-
-void HoI4WarCreator::fillProvinceNeighbors()
-{
-	LOG(LogLevel::Info) << "Filling province neighbors";
-
-	std::ifstream file("adj.txt");
-	std::string str;
-	while (std::getline(file, str))
-	{
-		//	char output[100];
-		//myReadFile >> output;
-		vector<string> parts;
-		stringstream ss(str); // Turn the string into a stream.
-		string tok;
-		char delimiter = ';';
-		//crashes
-		while (getline(ss, tok, delimiter))
-			parts.push_back(tok);
-		vector<int> provneighbors;
-		for (unsigned int i = 5; i < parts.size(); i++)
-		{
-			//crashes
-			int neighborprov = stoi(parts[i]);
-			provneighbors.push_back(neighborprov);
-		}
-		provinceNeighbors.insert(make_pair(stoi(parts[0]), provneighbors));
-	}
-	file.close();
 }
 
 
@@ -682,14 +653,13 @@ map<string, HoI4Country*> HoI4WarCreator::getImmediateNeighbors(const HoI4Countr
 
 	for (auto province: checkingCountry->getProvinces())
 	{
-		auto provinceNeighbor = provinceNeighbors.find(province);
-		if (provinceNeighbor == provinceNeighbors.end())
+		for (int provinceNumber: provinceNeighborMapper::getNeighbors(province))
 		{
-			Log(LogLevel::Warning) << "Province " << province << "'s neighbors could not be found";
-			continue;
-		}
-		for (int provinceNumber: provinceNeighbor->second)
-		{
+			if (!provinceDefinitions::isLandProvince(province))
+			{
+				continue;
+			}
+
 			auto provinceToOwnerItr = provinceToOwnerMap.find(provinceNumber);
 			if (provinceToOwnerItr == provinceToOwnerMap.end())
 			{
@@ -1098,9 +1068,13 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 				set<string> demandedstates;
 				for (auto leaderprov : Leader->getProvinces())
 				{
-					vector<int> thisprovNeighbors = provinceNeighbors.find(leaderprov)->second;
-					for (int prov : thisprovNeighbors)
+					for (int prov: provinceNeighborMapper::getNeighbors(leaderprov))
 					{
+						if (!provinceDefinitions::isLandProvince(prov))
+						{
+							continue;
+						}
+
 						if (provinceToOwnerMap.find(prov) != provinceToOwnerMap.end())
 						{
 							string owner = provinceToOwnerMap.find(prov)->second;
@@ -1180,8 +1154,6 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 			newAllies[i]->setFaction(newFaction);
 		}
 		theWorld->getEvents()->createFactionEvents(Leader, newAllies[i]);
-
-		i++;
 	}
 
 	vector<HoI4Faction*> FactionsAttackingMe;
@@ -1222,10 +1194,10 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 					newFocus->cost     = 15;
 					newFocus->aiWillDo = "	factor = 10";
 					newFocus->bypass = "			OR = {\n";
-					newFocus->bypass = "				" + Leader->getTag() + " = { is_in_faction_with = " + GC->getTag() + "}\n";
-					newFocus->bypass = "				has_war_with = " + GC->getTag() + "\n";
-					newFocus->bypass = "				NOT = { country_exists = " + GC->getTag() + " }\n";
-					newFocus->bypass = "			}\n";
+					newFocus->bypass += "				" + Leader->getTag() + " = { is_in_faction_with = " + GC->getTag() + "}\n";
+					newFocus->bypass += "				has_war_with = " + GC->getTag() + "\n";
+					newFocus->bypass += "				NOT = { country_exists = " + GC->getTag() + " }\n";
+					newFocus->bypass += "			}\n";
 					newFocus->completionReward += "			" + GC->getTag() + " = {\n";
 					newFocus->completionReward += "				country_event = { hours = 6 id = NFEvents." + to_string(theWorld->getEvents()->getCurrentNationFocusEventNum()) + " }\n";
 					newFocus->completionReward += "				add_opinion_modifier = { target = " + Leader->getTag() + " modifier = ger_ita_alliance_focus }\n";
@@ -1683,10 +1655,10 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 		newFocus->cost     = 10;
 		newFocus->aiWillDo = "			factor = 10";
 		newFocus->bypass = "			OR = {\n";
-		newFocus->bypass = "				" + Leader->getTag() + " = { is_in_faction_with = " + newAlly->getTag() + "}\n";
-		newFocus->bypass = "				has_war_with = " + newAlly->getTag() + "\n";
-		newFocus->bypass = "				NOT = { country_exists = " + newAlly->getTag() + " }\n";
-		newFocus->bypass = "			}\n";
+		newFocus->bypass += "				" + Leader->getTag() + " = { is_in_faction_with = " + newAlly->getTag() + "}\n";
+		newFocus->bypass += "				has_war_with = " + newAlly->getTag() + "\n";
+		newFocus->bypass += "				NOT = { country_exists = " + newAlly->getTag() + " }\n";
+		newFocus->bypass += "			}\n";
 		newFocus->completionReward += "			" + newAlly->getTag() + " = {\n";
 		newFocus->completionReward += "				country_event = { hours = 6 id = NFEvents." + to_string(theWorld->getEvents()->getCurrentNationFocusEventNum()) + " }\n";
 		newFocus->completionReward += "				add_opinion_modifier = { target = " + Leader->getTag() + " modifier = ger_ita_alliance_focus }\n";
@@ -1743,10 +1715,10 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 					newFocus->cost     = 15;
 					newFocus->aiWillDo = "			factor = 10";
 					newFocus->bypass = "			OR = {\n";
-					newFocus->bypass = "				" + Leader->getTag() + " = { is_in_faction_with = " + GC->getTag() + "}\n";
-					newFocus->bypass = "				has_war_with = " + GC->getTag() + "\n";
-					newFocus->bypass = "				NOT = { country_exists = " + GC->getTag() + " }\n";
-					newFocus->bypass = "			}\n";
+					newFocus->bypass += "				" + Leader->getTag() + " = { is_in_faction_with = " + GC->getTag() + "}\n";
+					newFocus->bypass += "				has_war_with = " + GC->getTag() + "\n";
+					newFocus->bypass += "				NOT = { country_exists = " + GC->getTag() + " }\n";
+					newFocus->bypass += "			}\n";
 					newFocus->completionReward += "			" + GC->getTag() + " = {\n";
 					newFocus->completionReward += "				country_event = { hours = 6 id = NFEvents." + to_string(theWorld->getEvents()->getCurrentNationFocusEventNum()) + " }\n";
 					newFocus->completionReward += "				add_opinion_modifier = { target = " + Leader->getTag() + " modifier = ger_ita_alliance_focus }\n";
@@ -2123,7 +2095,7 @@ vector<HoI4Faction*> HoI4WarCreator::addGreatPowerWars(HoI4Country* country, HoI
 			newFocus->icon     = "GFX_goal_generic_major_war";
 			newFocus->text     = "War with " + target->getSourceCountry()->getName("english");//change to faction name later
 			newFocus->prerequisites.push_back("focus =  MilitaryBuildup" + country->getTag());
-			newFocus->available = "			has_war = 20\n";
+			newFocus->available = "			has_war = no\n";
 			newFocus->available += "			date > 1939.1.1";
 			newFocus->xPos     = 31 + numWarsWithGreatPowers * 2;
 			newFocus->yPos     = 5;

@@ -58,6 +58,7 @@ simsulla			- Data Files
 Mattymooz		- Data Files
 Yellowone1		- Art
 KaeI				- Art
+Ostheim			- Art
 
 Special thanks to LukyLucaz, who allowed us to incoroporate Increased Resources into the converter.
 

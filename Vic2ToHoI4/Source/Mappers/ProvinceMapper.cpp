@@ -61,6 +61,7 @@ void provinceMapper::initProvinceMap(Object* parsedMappingsFile)
 
 	vector<Object*> mappings = getCorrectMappingVersion(versions);
 	processMappings(mappings);
+	checkAllHoI4ProvinesMapped();
 }
 
 
@@ -121,6 +122,59 @@ void provinceMapper::insertIntoVic2ToHoI4ProvinceMap(const vector<int>& Vic2Nums
 		if (num != 0)
 		{
 			Vic2ToHoI4ProvinceMap.insert(make_pair(num, HoI4Nums));
+		}
+	}
+}
+
+
+void provinceMapper::checkAllHoI4ProvinesMapped()
+{
+	ifstream definitions(Configuration::getHoI4Path() + "/map/definition.csv");
+	if (!definitions.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not open " << Configuration::getHoI4Path() << "/map/definition.csv";
+		exit(-1);
+	}
+
+	while (true)
+	{
+		int provNum = getNextProvinceNumFromFile(definitions);
+		if (provNum == -1)
+		{
+			break;
+		}
+
+		verifyProvinceIsMapped(provNum);
+	}
+
+	definitions.close();
+}
+
+
+int provinceMapper::getNextProvinceNumFromFile(ifstream& definitions)
+{
+	string line;
+	getline(definitions, line);
+	int pos = line.find_first_of(';');
+	if (pos != string::npos)
+	{
+		return stoi(line.substr(0, pos));
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+
+void provinceMapper::verifyProvinceIsMapped(int provNum)
+{
+	if (provNum != 0)
+	{
+		auto num = HoI4ToVic2ProvinceMap.find(provNum);
+		if (num == HoI4ToVic2ProvinceMap.end())
+		{
+			LOG(LogLevel::Warning) << "No mapping for HoI4 province " << provNum;
 		}
 	}
 }

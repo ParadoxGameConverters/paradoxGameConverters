@@ -82,7 +82,6 @@ class HoI4Country
 		void		setTechnology(string tech, int level);
 		void		addProvince(int _province);
 		void addState(HoI4State* _state);
-		void		lowerNeutrality(double amount);
 		void calculateIndustry();
 		void reportIndustry(ofstream& out);
 		void addVPsToCapital(int VPs);
@@ -90,7 +89,6 @@ class HoI4Country
 		void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
 		void		setFaction(HoI4Faction* newFaction)	{ faction = newFaction; }
 		void		setFactionLeader()				{ factionLeader = true; }
-		void setRelations(string relationsinput) { relationstxt = relationsinput; }
 		void addNationalFocus(HoI4FocusTree* NF) { nationalFocus = NF; }
 		void setGreatPower() { greatPower = true; }
 
@@ -134,6 +132,8 @@ class HoI4Country
 		void			outputTech(FILE*)				const;
 		void			outputParties(FILE*)			const;
 		void			outputLeaders()				const;
+		void outputRelations(ofstream& output) const;
+
 		void determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states);
 		bool isStateValidForCapital(map<int, int>::const_iterator capitalState, const map<int, HoI4State*>& states);
 		bool isThisStateOwnedByUs(const HoI4State* state) const;
@@ -164,7 +164,6 @@ class HoI4Country
 		int									totalfactories;
 		map<string, HoI4Relations*>	relations;
 		Color									color;
-		double								neutrality;
 		double								nationalUnity;
 		HoI4Faction*						faction;
 		bool									factionLeader;
@@ -187,7 +186,6 @@ class HoI4Country
 		double militaryFactories;
 		double civilianFactories;
 		double dockyards;
-		string relationstxt;
 
 		// laws
 		string				civil_law;
