@@ -25,6 +25,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "../Configuration.h"
 #include "Object.h"
+#include "ParadoxParser8859_15.h"
+#include "ParadoxParserUTF8.h"
 #include "../V2World/V2World.h"
 #include <algorithm>
 
@@ -165,8 +167,21 @@ void initUnionCultures(Object* obj, unionCulturesMap& unionCultures)
 }
 
 
-cultureMapping initCultureMap(Object* obj)
+cultureMapping initCultureMap()
 {
+	LOG(LogLevel::Info) << "Parsing culture mappings";
+	Object* obj = parser_UTF8::doParseFile("culture_map.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file culture_map.txt";
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse culture_map.txt";
+		exit(-1);
+	}
+
 	cultureMapping cultureMap;						// the culture mapping
 	vector<Object*> rules = obj->getLeaves();	// the culture mapping rules
 
@@ -261,8 +276,16 @@ void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, in
 }
 
 
-void initGovernmentJobTypes(Object* obj, governmentJobsMap& governmentJobs)
+void initGovernmentJobTypes(governmentJobsMap& governmentJobs)
 {
+	LOG(LogLevel::Info) << "Parsing government jobs";
+	Object* obj = parser_UTF8::doParseFile("governmentJobs.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file governmentJobs.txt";
+		exit(-1);
+	}
+
 	vector<Object*> jobsObj = obj->getLeaves();
 	for (auto jobsItr: jobsObj)
 	{
@@ -278,8 +301,17 @@ void initGovernmentJobTypes(Object* obj, governmentJobsMap& governmentJobs)
 }
 
 
-void initLeaderTraitsMap(Object* obj, leaderTraitsMap& leaderTraits)
+void initLeaderTraitsMap(leaderTraitsMap& leaderTraits)
 {
+	LOG(LogLevel::Info) << "Parsing government jobs";
+
+	Object* obj = parser_UTF8::doParseFile("leader_traits.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file leader_traits.txt";
+		exit(-1);
+	}
+
 	vector<Object*> typesObj = obj->getLeaves();
 	for (auto typeItr: typesObj)
 	{
@@ -295,8 +327,21 @@ void initLeaderTraitsMap(Object* obj, leaderTraitsMap& leaderTraits)
 }
 
 
-void initLeaderPersonalityMap(Object* obj, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap)
+void initLeaderPersonalityMap(personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap)
 {
+	LOG(LogLevel::Info) << "Parsing personality mappings";
+	Object* obj = parser_UTF8::doParseFile("personality_map.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file personality_map.txt";
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse personality_map.txt";
+		exit(-1);
+	}
+
 	vector<Object*> personalitiesObj = obj->getLeaves();
 	for (auto personalityItr: personalitiesObj)
 	{
@@ -321,8 +366,21 @@ void initLeaderPersonalityMap(Object* obj, personalityMap& landPersonalityMap, p
 }
 
 
-void initLeaderBackgroundMap(Object* obj, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+void initLeaderBackgroundMap(backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
 {
+	LOG(LogLevel::Info) << "Parsing background mappings";
+	Object* obj = parser_UTF8::doParseFile("background_map.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file background_map.txt";
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse background_map.txt";
+		exit(-1);
+	}
+
 	vector<Object*> backgroundObj = obj->getLeaves();
 	for (auto backgroundItr: backgroundObj)
 	{
@@ -347,8 +405,26 @@ void initLeaderBackgroundMap(Object* obj, backgroundMap& landBackgroundMap, back
 }
 
 
-void initNamesMapping(Object* obj, namesMapping& namesMap)
+void initNamesMapping(namesMapping& namesMap)
 {
+	LOG(LogLevel::Info) << "Parsing names";
+	for (auto itr: Configuration::getVic2Mods())
+	{
+		LOG(LogLevel::Debug) << "Reading mod cultures";
+		processNamesFile((Configuration::getV2Path() + "/mod/" + itr + "/common/cultures.txt"), namesMap);
+	}
+	processNamesFile((Configuration::getV2Path() + "/common/cultures.txt"), namesMap);
+}
+
+
+void processNamesFile(string filename, namesMapping& namesMap)
+{
+	Object* obj = parser_8859_15::doParseFile(filename);
+	if (obj == nullptr)
+	{
+		return;
+	}
+
 	vector<Object*> groupsObj = obj->getLeaves();
 	for (auto groupsItr: groupsObj)
 	{
@@ -377,12 +453,17 @@ void initNamesMapping(Object* obj, namesMapping& namesMap)
 }
 
 
-void initPortraitMapping(Object* obj, portraitMapping& portraitMap)
+void initPortraitMapping(portraitMapping& portraitMap)
 {
-	vector<Object*> groupsObj = obj->getLeaves();
-	for (auto groupsItr: groupsObj)
+	LOG(LogLevel::Info) << "Parsing portraits list";
+	Object* obj = parser_UTF8::doParseFile("portraits.txt");
+	if (obj != NULL)
 	{
-		vector<string> portraits = groupsItr->getTokens();
-		portraitMap.insert(make_pair(groupsItr->getKey(), portraits));
+		vector<Object*> groupsObj = obj->getLeaves();
+		for (auto groupsItr: groupsObj)
+		{
+			vector<string> portraits = groupsItr->getTokens();
+			portraitMap.insert(make_pair(groupsItr->getKey(), portraits));
+		}
 	}
 }

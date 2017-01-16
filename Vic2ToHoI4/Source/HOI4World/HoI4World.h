@@ -52,9 +52,6 @@ class HoI4World
 
 		void	output() const;
 
-		void importStrategicRegions();
-		void convertCountries();
-		void convertNavalBases();
 		void convertIndustry();
 		void convertResources();
 		void convertStrategicRegions();
@@ -74,6 +71,12 @@ class HoI4World
 		HoI4Events* getEvents() const { return events; }
 
 	private:
+		void importStrategicRegions();
+		void convertNavalBases();
+
+		void convertCountries();
+		void convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, governmentJobsMap governmentJobs, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+
 		void	getProvinceLocalizations(const string& file);
 
 		void determineGreatPowers();

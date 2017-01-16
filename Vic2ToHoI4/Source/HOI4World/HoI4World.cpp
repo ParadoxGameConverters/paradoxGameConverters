@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -92,16 +92,87 @@ void HoI4World::importStrategicRegions()
 {
 	set<string> filenames;
 	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/map/strategicregions/", filenames);
-	for (auto filename : filenames)
+	for (auto filename: filenames)
 	{
 		HoI4StrategicRegion* newRegion = new HoI4StrategicRegion(filename);
 		strategicRegions.insert(make_pair(newRegion->getID(), newRegion));
 
-		for (auto province : newRegion->getOldProvinces())
+		for (auto province: newRegion->getOldProvinces())
 		{
 			provinceToStratRegionMap.insert(make_pair(province, newRegion->getID()));
 		}
 	}
+}
+
+
+void HoI4World::convertNavalBases()
+{
+	for (auto state: states->getStates())
+	{
+		state.second->convertNavalBases();
+	}
+}
+
+
+void HoI4World::convertCountries()
+{
+	LOG(LogLevel::Info) << "Converting countries";
+
+	//initLeaderTraitsMap(leaderTraits);
+	governmentJobsMap governmentJobs;
+	//initGovernmentJobTypes(governmentJobs);
+	cultureMapping cultureMap = initCultureMap();
+
+	personalityMap landPersonalityMap;
+	personalityMap seaPersonalityMap;
+	//initLeaderPersonalityMap(landPersonalityMap, seaPersonalityMap);
+
+	backgroundMap landBackgroundMap;
+	backgroundMap seaBackgroundMap;
+	//initLeaderBackgroundMap(obj->getLeaves()[0], landBackgroundMap, seaBackgroundMap);
+
+	initNamesMapping(namesMap);
+	initPortraitMapping(portraitMap);
+
+	map<int, int> leaderMap;
+
+	for (auto sourceItr : sourceWorld->getCountries())
+	{
+		convertCountry(sourceItr, leaderMap, governmentJobs, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
+	}
+	localisation.addNonenglishCountryLocalisations();
+}
+
+
+void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, governmentJobsMap governmentJobs, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+{
+	// don't convert rebels
+	if (country.first == "REB")
+	{
+		return;
+	}
+
+	HoI4Country* destCountry = NULL;
+	const std::string& HoI4Tag = CountryMapper::getHoI4Tag(country.first);
+	if (!HoI4Tag.empty())
+	{
+		std::string countryFileName = '/' + country.second->getName("english") + ".txt";
+		destCountry = new HoI4Country(HoI4Tag, countryFileName, this, true);
+		V2Party* rulingParty = country.second->getRulingParty(sourceWorld->getParties());
+		if (rulingParty == NULL)
+		{
+			LOG(LogLevel::Error) << "Could not find the ruling party for " << country.first << ". Were all mods correctly included?";
+			exit(-1);
+		}
+		destCountry->initFromV2Country(*sourceWorld, country.second, rulingParty->ideology, leaderMap, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, states->getProvinceToStateIDMap(), states->getStates());
+		countries.insert(make_pair(HoI4Tag, destCountry));
+	}
+	else
+	{
+		LOG(LogLevel::Warning) << "Could not convert V2 tag " << country.first << " to HoI4";
+	}
+
+	localisation.readFromCountry(country.second, HoI4Tag);
 }
 
 
@@ -339,158 +410,11 @@ void HoI4World::getProvinceLocalizations(const string& file)
 }
 
 
-void HoI4World::convertCountries()
-{
-	LOG(LogLevel::Info) << "Converting countries";
-
-	// Parse leader traits
-	LOG(LogLevel::Info) << "Parsing government jobs";
-	/*parser_UTF8::initParser();
-	obj = parser_UTF8::doParseFile("leader_traits.txt");
-	if (obj == NULL)
-	{
-	LOG(LogLevel::Error) << "Could not parse file leader_traits.txt";
-	exit(-1);
-	}*/
-	//initLeaderTraitsMap(obj->getLeaves()[0], leaderTraits);
-
-	// Parse government jobs
-	/*LOG(LogLevel::Info) << "Parsing government jobs";
-	parser_UTF8::initParser();
-	obj = parser_UTF8::doParseFile("governmentJobs.txt");
-	if (obj == NULL)
-	{
-	LOG(LogLevel::Error) << "Could not parse file governmentJobs.txt";
-	exit(-1);
-	}*/
-	governmentJobsMap governmentJobs;
-	//initGovernmentJobTypes(obj->getLeaves()[0], governmentJobs);
-
-	// parse culture mapping
-	LOG(LogLevel::Info) << "Parsing culture mappings";
-	Object* obj = parser_UTF8::doParseFile("culture_map.txt");
-	if (obj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file culture_map.txt";
-		exit(-1);
-	}
-	if (obj->getLeaves().size() < 1)
-	{
-		LOG(LogLevel::Error) << "Failed to parse culture_map.txt";
-		exit(-1);
-	}
-	cultureMapping cultureMap;
-	cultureMap = initCultureMap(obj->getLeaves()[0]);
-
-	// parse personality mapping
-	LOG(LogLevel::Info) << "Parsing personality mappings";
-	/*obj = parser_UTF8::doParseFile("personality_map.txt");
-	if (obj == NULL)
-	{
-	LOG(LogLevel::Error) << "Could not parse file personality_map.txt";
-	exit(-1);
-	}
-	if (obj->getLeaves().size() < 1)
-	{
-	LOG(LogLevel::Error) << "Failed to parse personality_map.txt";
-	return 1;
-	}*/
-	personalityMap landPersonalityMap;
-	personalityMap seaPersonalityMap;
-	//initLeaderPersonalityMap(obj->getLeaves()[0], landPersonalityMap, seaPersonalityMap);
-
-	// parse background mapping
-	LOG(LogLevel::Info) << "Parsing background mappings";
-	/*obj = parser_UTF8::doParseFile("background_map.txt");
-	if (obj == NULL)
-	{
-	LOG(LogLevel::Error) << "Could not parse file background_map.txt";
-	exit(-1);
-	}
-	if (obj->getLeaves().size() < 1)
-	{
-	LOG(LogLevel::Error) << "Failed to parse background_map.txt";
-	return 1;
-	}*/
-	backgroundMap landBackgroundMap;
-	backgroundMap seaBackgroundMap;
-	//initLeaderBackgroundMap(obj->getLeaves()[0], landBackgroundMap, seaBackgroundMap);
-
-	// parse names
-	LOG(LogLevel::Info) << "Parsing names";
-	for (auto itr: Configuration::getVic2Mods())
-	{
-		LOG(LogLevel::Debug) << "Reading mod cultures";
-		obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/common/cultures.txt"));
-		if (obj != NULL)
-		{
-			initNamesMapping(obj, namesMap);
-		}
-	}
-	obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/cultures.txt"));
-	if (obj != NULL)
-	{
-		initNamesMapping(obj, namesMap);
-	}
-
-	// parse portraits list
-	LOG(LogLevel::Info) << "Parsing portraits list";
-	obj = parser_UTF8::doParseFile("portraits.txt");
-	if (obj != NULL)
-	{
-		initPortraitMapping(obj, portraitMap);
-	}
-
-	map<int, int> leaderMap;
-
-	for (auto sourceItr : sourceWorld->getCountries())
-	{
-		// don't convert rebels
-		if (sourceItr.first == "REB")
-		{
-			continue;
-		}
-
-		HoI4Country* destCountry = NULL;
-		const std::string& HoI4Tag = CountryMapper::getHoI4Tag(sourceItr.first);
-		if (!HoI4Tag.empty())
-		{
-			std::string countryFileName = '/' + sourceItr.second->getName("english") + ".txt";
-			destCountry = new HoI4Country(HoI4Tag, countryFileName, this, true);
-			V2Party* rulingParty = sourceItr.second->getRulingParty(sourceWorld->getParties());
-			if (rulingParty == NULL)
-			{
-				LOG(LogLevel::Error) << "Could not find the ruling party for " << sourceItr.first << ". Were all mods correctly included?";
-				exit(-1);
-			}
-			destCountry->initFromV2Country(*sourceWorld, sourceItr.second, rulingParty->ideology, leaderMap, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, states->getProvinceToStateIDMap(), states->getStates());
-			countries.insert(make_pair(HoI4Tag, destCountry));
-		}
-		else
-		{
-			LOG(LogLevel::Warning) << "Could not convert V2 tag " << sourceItr.first << " to HoI4";
-		}
-
-		localisation.readFromCountry(sourceItr.second, HoI4Tag);
-	}
-	localisation.addNonenglishCountryLocalisations();
-}
-
-
 void HoI4World::outputCountries() const
 {
 	for (auto country : countries)
 	{
 		country.second->output(states->getStates(), factions);
-	}
-}
-
-
-void HoI4World::convertNavalBases()
-{
-	for (auto state: states->getStates())
-	{
-		state.second->convertNavalBases();
 	}
 }
 
