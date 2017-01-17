@@ -268,9 +268,9 @@ ostream& operator<< (ostream& os, const Object& obj)
 		os << "{\n";
 		indent++;
 	}
-	for (vector<Object*>::const_iterator i = obj.objects.begin(); i != obj.objects.end(); ++i)
+	for (auto i: obj.objects)
 	{
-		os << *(*i);
+		os << *i;
 	}
 	if ((&obj != parser_UTF8::getTopLevel()) && (&obj != parser_8859_15::getTopLevel()))
 	{

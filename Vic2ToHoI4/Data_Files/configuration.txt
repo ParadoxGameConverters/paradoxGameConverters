@@ -12,6 +12,15 @@ configuration =
 	# Vic2Mods: Vic2 mods to use for conversion
 	# Example: Vic2Mods = { modname1 modname2 }
 	Vic2Mods = { }
+
+	# HoI4 version method: how to get the HoI4 version
+	# hardcoded: Use the one hardcoded into the latest converter version
+	# automatic: Attempt to automatically detect the installed HoI4 version
+	# manualEntry: Manually enter the HoI4 version
+	HoI4VersionMethod = "manualEntry"
+
+	# HoI4Version: If manually entering the HoI4 version, set this to the desired version
+	HoI4Version = "1.3.1"
 	
 	# Manpower factor: a multiplier applied to manpower conversion
 	manpower_factor = "1.0"
@@ -21,6 +30,9 @@ configuration =
 
 	# IC factor: how much to make the world's industry match default HoI4 industry. 1.0 = fully matched, 0.0 = no matching
 	ic_factor = 0.1
+
+	# Force multiplier: Controls how many HoI4 divisions are created.
+	force_multiplier = 1.0
 
 	# IC stats: If this is turned on, the converter will output files with detailed stats about industry conversion. Just remove the # on the next line if you'd like them.
 	# ICStats = yes

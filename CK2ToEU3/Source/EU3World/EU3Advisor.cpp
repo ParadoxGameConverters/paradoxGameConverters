@@ -23,7 +23,7 @@
 
 #include "EU3Advisor.h"
 #include "EU3Province.h"
-#include "EU3Country.h"
+#include "Country\EU3Country.h"
 #include "CK2World\Character\CK2Character.h"
 #include "..\CK2World\CK2Dynasty.h"
 #include "..\CK2World\CK2Province.h"

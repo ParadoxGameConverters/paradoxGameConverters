@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <configuration
-	Comment="This file is used to build the configuration parth of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
+	Comment="This file is used to build the configuration part of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
 	<!--This part contains the various options that will be displayed as preferences in the converter ui, and outputted as configuration.txt as input for the converter tool itself-->
 	<converterOptions>
 		<categories>
@@ -15,6 +15,38 @@
 						<hasDirectlyEditableValue>true</hasDirectlyEditableValue>
 						<useCurlyBraces>true</useCurlyBraces>
 						<value></value>
+					</preference>
+					<preference>
+						<name>HoI4VersionMethod</name>
+						<friendlyName>HoI4 Version Method</friendlyName>
+						<description>The method the converter uses to set the HoI4 version</description>
+						<entryOptions>
+							<entryOption>
+								<name>hardcoded</name>
+								<friendlyName>Hard Coded (1.3.1)</friendlyName>
+								<description>Use the HoI4 version hard coded into the converter (1.3.1)</description>
+								<isDefault>true</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>automatic</name>
+								<friendlyName>Automatic</friendlyName>
+								<description>Attempt to automatically detect the installed HoI4 version</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>manualEntry</name>
+								<friendlyName>Manual Entry</friendlyName>
+								<description>Manually enter the HoI4 version</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+					  </entryOptions>
+					</preference>
+					<preference>
+						<name>HoI4Version</name>
+						<friendlyName>HoI4 Version</friendlyName>
+						<description>If manually entering the HoI4 version, set this to the desired version</description>
+						<hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+						<value>1.3.1</value>
 					</preference>
 					<preference>
 						<name>industrial_shape_factor</name>
@@ -42,6 +74,15 @@
 						<value>1.0</value>
 						<minValue>0.01</minValue>
 						<maxValue>10.0</maxValue>
+					</preference>
+					<preference>
+						<name>force_multiplier</name>
+						<friendlyName>Force Multiplier</friendlyName>
+						<description>Controls how many HoI4 divisions are created.</description>
+						<hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+						<value>1.0</value>
+						<minValue>0.01</minValue>
+						<maxValue>100.0</maxValue>
 					</preference>
 				</preferences>
 			</category>

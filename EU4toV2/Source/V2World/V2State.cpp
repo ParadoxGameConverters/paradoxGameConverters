@@ -21,7 +21,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "..\EU4World\EU4Province.h"
+#include "../EU4World/EU4Province.h"
 #include "V2State.h"
 #include "V2Pop.h"
 #include "V2Province.h"

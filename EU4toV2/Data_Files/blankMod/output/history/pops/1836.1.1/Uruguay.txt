@@ -1,0 +1,221 @@
+#Uruguay Region (200000)  
+#Under rule of Uruguay 1836
+#Montevideo (112000/28000 POPS)
+2344 = {
+	aristocrats = {
+		culture = guarani
+		religion = animist
+		size = 575
+	}
+
+	bureaucrats = {
+		culture = guarani
+		religion = animist
+		size = 50
+	}
+
+	officers = {
+		culture = guarani
+		religion = animist
+		size = 50
+	}
+
+	clergymen = {
+		culture = guarani
+		religion = animist
+		size = 250
+	}
+
+	artisans = {
+		culture = guarani
+		religion = animist
+		size = 980
+	}
+
+	soldiers = {
+		culture = guarani
+		religion = animist
+		size = 1100
+	}
+
+	farmers = {
+		culture = guarani
+		religion = animist
+		size = 20095
+	}
+
+	clergymen = {
+		culture = guarani
+		religion = animist
+		size = 50
+	}
+
+	artisans = {
+		culture = guarani
+		religion = animist
+		size = 250
+	}
+
+	soldiers = {
+		culture = guarani
+		religion = animist
+		size = 50
+	}
+
+	farmers = {
+		culture = guarani
+		religion = animist
+		size = 3150
+	}
+
+	slaves = {
+		culture = guarani
+		religion = animist
+		size = 1500
+	}
+}
+#Paysandu (36000/9000 POPS)
+2345 = {
+	aristocrats = {
+		culture = guarani
+		religion = animist
+		size = 200
+	}
+
+	clergymen = {
+		culture = guarani
+		religion = animist
+		size = 75
+	}
+
+	artisans = {
+		culture = guarani
+		religion = animist
+		size = 450
+	}
+
+	soldiers = {
+		culture = guarani
+		religion = animist
+		size = 1100
+	}
+
+	farmers = {
+		culture = guarani
+		religion = animist
+		size = 7275
+	}
+}
+#Tacumba (12000/3000 POPS)
+2346 = {
+	aristocrats = {
+		culture = guarani
+		religion = animist
+		size = 25
+	}
+
+	clergymen = {
+		culture = guarani
+		religion = animist
+		size = 50
+	}
+
+	artisans = {
+		culture = guarani
+		religion = animist
+		size = 100
+	}
+
+	soldiers = {
+		culture = guarani
+		religion = animist
+		size = 25
+	}
+
+	farmers = {
+		culture = guarani
+		religion = animist
+		size = 1800
+	}
+
+	clergymen = {
+		culture = guarani
+		religion = animist
+		size = 15
+	}
+
+	artisans = {
+		culture = guarani
+		religion = animist
+		size = 50
+	}
+
+	soldiers = {
+		culture = guarani
+		religion = animist
+		size = 10
+	}
+
+	farmers = {
+		culture = guarani
+		religion = animist
+		size = 925
+	}
+}
+#Melo (40000/10000 POPS)
+2347 = {
+	aristocrats = {
+		culture = guarani
+		religion = animist
+		size = 150
+	}
+
+	clergymen = {
+		culture = guarani
+		religion = animist
+		size = 50
+	}
+
+	artisans = {
+		culture = guarani
+		religion = animist
+		size = 350
+	}
+
+	soldiers = {
+		culture = guarani
+		religion = animist
+		size = 1100
+	}
+
+	farmers = {
+		culture = guarani
+		religion = animist
+		size = 5450
+	}
+
+	clergymen = {
+		culture = guarani
+		religion = animist
+		size = 50
+	}
+
+	artisans = {
+		culture = guarani
+		religion = animist
+		size = 150
+	}
+
+	soldiers = {
+		culture = guarani
+		religion = animist
+		size = 25
+	}
+
+	farmers = {
+		culture = guarani
+		religion = animist
+		size = 2775
+	}
+
+}

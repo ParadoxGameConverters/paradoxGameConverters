@@ -78,6 +78,10 @@ namespace Utils
 	std::string getCurrentDirectory();
 	// Adds all files (just the file name) in the specified folder to the given collection.
 	void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames);
+
+	// For the specified folder and all subfolders, adds all files (just the subdirectory and file name)
+	// to the given collection.
+	void GetAllFilesInFolderRecursive(const std::string& path, std::set<std::string>& filenames);
 	// Copies the file specified by sourcePath as destPath.
 	// Returns true on success.
 	// Returns false and logs a warning on failure.
@@ -99,10 +103,12 @@ namespace Utils
 
 	std::string GetFileFromTag(const std::string& directoryPath, const std::string& tag);
 
-	std::string convertToASCII(std::string UTF8);
-	std::string convertToUTF8(std::wstring UTF16);
+	std::string convertUTF8ToASCII(std::string UTF8);
+	std::string convertUTF8To8859_15(std::string UTF8);
+	std::string convertUTF16ToUTF8(std::wstring UTF16);
 	std::string convert8859_15ToUTF8(std::string input);
-	std::wstring convertToUTF16(std::string UTF8);
+	std::wstring convert8859_15ToUTF16(std::string UTF8);
+	std::wstring convertUTF8ToUTF16(std::string UTF8);
 } // namespace Utils
 
 

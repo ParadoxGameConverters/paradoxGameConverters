@@ -25,17 +25,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include "log.h"
 #include "..\Configuration.h"
+#include "ProvinceNeighborMapper.h"
 
 
 
 
-coastalProvincesMapper* coastalProvincesMapper::instance = NULL;
+coastalHoI4ProvincesMapper* coastalHoI4ProvincesMapper::instance = NULL;
 
 
-coastalProvincesMapper::coastalProvincesMapper()
+coastalHoI4ProvincesMapper::coastalHoI4ProvincesMapper()
 {
 	map<int, province> provinces = getProvinces();
-	map<int, vector<int>> adjacencies = getAdjacencies();
 
 	for (auto province: provinces)
 	{
@@ -44,14 +44,8 @@ coastalProvincesMapper::coastalProvincesMapper()
 			continue;
 		}
 
-		auto adjacency = adjacencies.find(province.first);
-		if (adjacency == adjacencies.end())
-		{
-			LOG(LogLevel::Warning) << "Could not find adjacencies for province " << province.first << ". Naval base not set.";
-			continue;
-		}
-
-		for (auto adjProvinceNum: adjacency->second)
+		auto neighbors = provinceNeighborMapper::getNeighbors(province.first);
+		for (auto adjProvinceNum: neighbors)
 		{
 			auto adjProvince = provinces.find(adjProvinceNum);
 			if ((adjProvince != provinces.end()) && (adjProvince->second.type == "ocean"))
@@ -64,7 +58,7 @@ coastalProvincesMapper::coastalProvincesMapper()
 }
 
 
-map<int, province> coastalProvincesMapper::getProvinces()
+map<int, province> coastalHoI4ProvincesMapper::getProvinces()
 {
 	ifstream provinceDefinitions(Configuration::getHoI4Path() + "/map/definition.csv");
 	if (!provinceDefinitions.is_open())
@@ -121,53 +115,8 @@ map<int, province> coastalProvincesMapper::getProvinces()
 }
 
 
-map<int, vector<int>> coastalProvincesMapper::getAdjacencies()
+bool coastalHoI4ProvincesMapper::IsProvinceCoastal(int provinceNum)
 {
-	// province num; something; red; green; blue; <adjacencies;>*
-	ifstream provinceDefinitions("adj.txt");
-	if (!provinceDefinitions.is_open())
-	{
-		LOG(LogLevel::Error) << "Could not open adj.txt";
-		exit(-1);
-	}
-
-	map<int, vector<int>> adjacencies;
-	while (!provinceDefinitions.eof())
-	{
-		string line;
-		getline(provinceDefinitions, line);
-
-		int IDSeparator = line.find_first_of(';');
-		int ID = stoi(line.substr(0, IDSeparator));
-		if (ID == 0)
-		{
-			continue;
-		}
-		line = line.substr(IDSeparator + 1, line.size());
-
-		int fooSeparator = line.find_first_of(';');
-		line = line.substr(fooSeparator + 1, line.size());
-
-		int redSeparator = line.find_first_of(';');
-		line = line.substr(redSeparator + 1, line.size());
-
-		int greenSeparator = line.find_first_of(';');
-		line = line.substr(greenSeparator + 1, line.size());
-
-		int blueSeparator = line.find_first_of(';');
-		line = line.substr(blueSeparator + 1, line.size());
-
-		vector<int> curAdjacencies;
-		while (line.length() > 0)
-		{
-			int adjSeparator = line.find_first_of(';');
-			int adjNum = stoi(line.substr(0, adjSeparator));
-			curAdjacencies.push_back(adjNum);
-
-			line = line.substr(adjSeparator + 1, line.size());
-		}
-		adjacencies.insert(make_pair(ID, curAdjacencies));
-	}
-
-	return adjacencies;
+	auto province = coastalProvinces.find(provinceNum);
+	return (province != coastalProvinces.end());
 }

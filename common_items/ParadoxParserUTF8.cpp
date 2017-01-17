@@ -326,7 +326,7 @@ void clearStack()
 	{
 		Log logOutput(LogLevel::Warning);	// a section in the log file that won't automatically be broken into lines
 		logOutput << "Clearing stack size " << stack.size() << " - this should not happen in normal operation\n";
-		for (vector<Object*>::iterator i = stack.begin(); i != stack.end(); ++i)
+		for (auto i: stack)
 		{
 			logOutput << *i << '\n';
 		}

@@ -1,0 +1,74 @@
+By Garbon:
+
+I think the two big things that anyone who wants to further customize should
+make sure to get is Notepad++ (with added compare extension) as well as the
+validator (where I know there was a separate branch to make it up-to-date with
+what was last version of Victoria).Both can go a long way in preventing errors.
+
+As far as my strategy to it, as I mentioned in my AAR, I'd started with a plan
+to just pick up some nations and events from NNM (in fact I had used frontend's
+NNM option but it created a broken mod so decided to DIY). I looked through
+that mod and compiled a list of countries that I thought would make sense to
+have (large focus on additional nations for Americas as well as Europe, in
+this instance) and then looked at Vic2 wiki/modding guides to see what are the
+bare minimum places you need to enter in a nation entry and cores to make it
+appear in game. Similar thing could be done for border gore, I suppose. I did
+see later than rather than editing all the provinces to add the cores for my
+new countries, I could have followed the NNM setup which has a couple AI
+decisions at the start of game to add cores - which would certainly have been
+easier**). For localisation, I then just copied in the relevant entries into
+the localisation files that converter created. Can't just copy full NNM file as
+it sometimes uses tags for different purposes than those from the converter -
+which means depending on nation you want to add you might need to change the
+tag.
+
+Then for the decisions/events, I took a look at what files might make sense to
+include / if there were any tweaks I needed to make for my world****. Here was
+generally a little safer to just grab full NNM localisation files. But then
+there were times when new events/decisions had modifiers that were not vanilla
+modifiers. That's where the validator proves useful as it will warn you if your
+events are supposed to generate non-existent modifiers. Similarly if
+localisation missing, you forgot some country files (like say flags), etc. One
+thing also to watch when pulling the NNM events is if I recall correctly, their
+tags for Corsica and Savoy are different from the converter, so if you want to
+make sure those nations can form Italy, you'll need to adjust - but again I
+believe validator warns you about references to NNM's tags that you haven't
+merged over.
+
+I avoided for the most part things from the PDM mod as those started getting
+complicated with new inventions as well as national values which then require
+lots of tweaks to events and may even impact things like pop files. Of course,
+with validator in hand, you can get warnings about more complex things.
+Notepad++ very helpful here if there's just bits of code throughout a file that
+you want to copy over. I used it (with compare extension) quite a bit when I
+decided that I liked some of the pop tweaks from historical project mod (such
+as when pops care about slavery as an issue as few states had outlawed slavery
+in my converted mod or tweaks to defines) but knew HPM has different national
+values that I didn't want to include.
+
+But really main rule, make any changes on an incremental basis and then
+validate after every key step!
+
+
+**in fact, with something like that, I suppose one could come up with a set of
+mini-mods (perhaps region based?) to let people add possible revolter nations
+as you can't really have an add-on fiddling with the actual province history
+entries as you don't know what they would look like in any given converted
+game. Such a mod would just need to include country entries for
+common\countries, flags, history\countries entries and localisation. Though it
+would still need a person to manually edit countries.txt as unlike EU4, Vic2
+doesn't support separate files for loading tag entries, but I guess that could
+just be a readme instruction of each module what would need to be copied in.
+Only other negative I can see here is that you could run into issues with
+primary_culture/religion issues for history entries (as well as language naming
+in common\countries) depending on who colonized what or how cultures shifted in
+Old World but it'd at least be a handy base for people wanting to do
+customisations without too much hassle.
+
+****One thing that I forgot to do was see if there were events for Vic2 that
+did not make sense in my world. Spain was the main revolutionary power in my
+ world after French revolution failed to take. It doesn't really make sense
+then for any of the Bonapartist events to occur in France. I should have copied
+over the vanilla file and then made deletions given that Bonaparte never had
+any power at all in my game's timeline. So additions as well as deletions can
+be critical for sensible story flow.

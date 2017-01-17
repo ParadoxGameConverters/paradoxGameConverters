@@ -29,6 +29,7 @@ link = { v2 = fraticelli eu4 = fraticelli }
 link = { v2 = waldensian eu4 = waldensian }
 link = { v2 = lollard eu4 = lollard }
 link = { v2 = catholic_heresy eu4 = catholic_heresy }
+link = { v2 = arian eu4 = arian }
 
 link = { v2 = protestant eu4 = protestant eu4 = reformed }
 link = { v2 = protestant_heresy eu4 = protestant_heresy eu4 = reformed_heresy }

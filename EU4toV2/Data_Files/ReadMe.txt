@@ -42,6 +42,7 @@ Idhrendur		- Project Lead, Programming
 Ztaesek			- Programming, Data Files
 theosZA			- Programming
 PTSnoop			- Programming, Graphics, Analysis
+RonWeber		- Programming
 Clonefusion		- Analysis
 kwsdev			- Front End
 TheSpartanD		- Data Files
@@ -64,10 +65,14 @@ kratostatic		- Data Files
 Kansai-kun		- Data Files
 SaintPetersbour		- Data Files
 Teutonizer		- Data Files
+SignedName		- Data Files
+Mysterious_Italy	- Data Files, Graphics
 LowTartare		- Graphics
 ChortlingGnome		- Graphics
 Magc8Ball		- Graphics
 Popcorn Soda55		- Graphics
+Yellowone1		- Graphics
+KaeI			- Graphics
 
 
  - AND ALL THE OTHERS WHO GAVE THEIR INPUT ON THE FORUM -

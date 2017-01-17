@@ -1,0 +1,3464 @@
+#Yukon Region - 12000
+#uncolonized in 1836
+#Whitehorse (4000/1000 POPS)
+6 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 900
+	}
+}
+#Dawson (4000/1000 POPS)
+7 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 900
+	}
+}
+#Ross River (4000/1000 POPS)
+8 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 900
+	}
+
+}
+#Northwest Territories & Keewatin Regions - 28000
+#uncolonized in 1836
+#Fort Simpson (2400/600 POPS)
+9 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 30
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 520
+	}
+}
+#Inuvik (4000/1000 POPS)
+10 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 900
+	}
+}
+#Echo Bay (4000/1000 POPS)
+11 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 900
+	}
+}
+#Reliance (2000/500 POPS)
+12 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 5
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 5
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 450
+	}
+}
+#Fort Resolution (2000/500 POPS)
+2596 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 5
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 450
+	}
+}
+#Fort Liard (1600/400 POPS)
+2598 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 5
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 20
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 5
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 360
+	}
+}
+#Arviat (3200/800 POPS)
+43 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 40
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 725
+	}
+}
+#Baker Lake (2000/500 POPS)
+44 = {
+	aristocrats = {
+		culture = eskaleut
+		religion = shamanism
+		size = 5
+	}
+
+	clergymen = {
+		culture = eskaleut
+		religion = shamanism
+		size = 10
+	}
+
+	artisans = {
+		culture = eskaleut
+		religion = shamanism
+		size = 25
+	}
+
+	soldiers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 5
+	}
+
+	farmers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 450
+	}
+}
+#Baffin Island (4000/1000 POPS)
+45 = {
+	aristocrats = {
+		culture = eskaleut
+		religion = shamanism
+		size = 10
+	}
+
+	clergymen = {
+		culture = eskaleut
+		religion = shamanism
+		size = 25
+	}
+
+	artisans = {
+		culture = eskaleut
+		religion = shamanism
+		size = 50
+	}
+
+	soldiers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 15
+	}
+
+	farmers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 900
+	}
+
+}
+#Whale Cove (2800/700 POPS)
+2595 = {
+	aristocrats = {
+		culture = eskaleut
+		religion = shamanism
+		size = 10
+	}
+
+	clergymen = {
+		culture = eskaleut
+		religion = shamanism
+		size = 15
+	}
+
+	artisans = {
+		culture = eskaleut
+		religion = shamanism
+		size = 35
+	}
+
+	soldiers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 10
+	}
+
+	farmers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 630
+	}
+
+}
+#British Columbia Region : 64000
+#uncolonized in 1836
+#Vancouver (12000/3000 POPS)
+13 = {
+	aristocrats = {
+		culture = penutian
+		religion = totemism
+		size = 25
+	}
+	aristocrats = {
+		culture = penutian
+		religion = totemism
+		size = 25
+	}
+
+	clergymen = {
+		culture = penutian
+		religion = totemism
+		size = 38
+	}
+	clergymen = {
+		culture = penutian
+		religion = totemism
+		size = 37
+	}
+	
+
+	artisans = {
+		culture = penutian
+		religion = totemism
+		size = 75
+	}
+	artisans = {
+		culture = penutian
+		religion = totemism
+		size = 75
+	}
+
+	soldiers = {
+		culture = penutian
+		religion = totemism
+		size = 13
+	}
+	soldiers = {
+		culture = penutian
+		religion = totemism
+		size = 12
+	}
+
+	farmers = {
+		culture = penutian
+		religion = totemism
+		size = 1350
+	}
+	farmers = {
+		culture = penutian
+		religion = totemism
+		size = 1350
+	}
+
+}
+#Vancouver Island (8000/2000 POPS)
+14 = {
+	aristocrats = {
+		culture = penutian
+		religion = totemism
+		size = 25
+	}
+
+	clergymen = {
+		culture = penutian
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = penutian
+		religion = totemism
+		size = 100
+	}
+
+	soldiers = {
+		culture = penutian
+		religion = totemism
+		size = 25
+	}
+
+	farmers = {
+		culture = penutian
+		religion = totemism
+		size = 1750
+	}
+}
+#Prince Rupert (8000/2000 POPS)
+15 = {
+	aristocrats = {
+		culture = penutian
+		religion = totemism
+		size = 25
+	}
+
+	clergymen = {
+		culture = penutian
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = penutian
+		religion = totemism
+		size = 100
+	}
+
+	soldiers = {
+		culture = penutian
+		religion = totemism
+		size = 25
+	}
+
+	farmers = {
+		culture = penutian
+		religion = totemism
+		size = 1750
+	}
+}
+#Glenora (4000/1000 POPS)
+16 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 900
+	}
+}
+#Atlin (4000/1000 POPS)
+17 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 900
+	}
+}
+#Fort St John (2400/600 POPS)
+18 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 30
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 520
+	}
+}
+#Prince George (8000/2000 POPS)
+19 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 100
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 1750
+	}
+}
+#Kelowna (8000/2000 POPS)
+20 = {
+	aristocrats = {
+		culture = penutian
+		religion = totemism
+		size = 25
+	}
+
+	clergymen = {
+		culture = penutian
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = penutian
+		religion = totemism
+		size = 100
+	}
+
+	soldiers = {
+		culture = penutian
+		religion = totemism
+		size = 25
+	}
+
+	farmers = {
+		culture = penutian
+		religion = totemism
+		size = 1750
+	}
+}
+#Vernon (8000/2000 POPS)
+21 = {
+	aristocrats = {
+		culture = sonoran
+		religion = totemism
+		size = 25
+	}
+
+	clergymen = {
+		culture = sonoran
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = sonoran
+		religion = totemism
+		size = 100
+	}
+
+	soldiers = {
+		culture = sonoran
+		religion = totemism
+		size = 25
+	}
+
+	farmers = {
+		culture = sonoran
+		religion = totemism
+		size = 1750
+	}
+
+}
+#Fort Nelson (1600/400 POPS)
+2629 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 5
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 20
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 5
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 360
+	}
+}
+#Alberta Region: 64000
+#uncolonized in 1836
+#Edmonton (16000/4000 POPS)
+22 = {
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 910
+	}
+
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 900
+	}
+
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 100
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 1750
+	}
+}
+#Athabaska Landing (4800/1200 POPS)
+23 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 20
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 60
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 1080
+	}
+}
+#Jasper (4000/1000 POPS)
+24 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 900
+	}
+}
+#Banff (4000/1000 POPS)
+25 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 900
+	}
+}
+#Calgary (8000/2000 POPS)
+26 = {
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 910
+	}
+
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 900
+	}
+}
+#Denwood (8000/2000 POPS)
+27 = {
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 910
+	}
+
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 900
+	}
+}
+#Fort MacLeod (8000/2000 POPS)
+28 = {
+	clergymen = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 910
+	}
+
+	aristocrats = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 900
+	}
+}
+#Medicine Hat (8000/2000 POPS)
+29 = {
+	aristocrats = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	clergymen = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 100
+	}
+
+	soldiers = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	farmers = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 1750
+	}
+
+}
+#Fort Vermillion (3200/800 POPS)
+2597 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 20
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 40
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 715
+	}
+}
+#Saskatchewan Region : 44000
+#uncolonized in 1836
+#Regina (12000/3000 POPS)
+30 = {
+	aristocrats = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	clergymen = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 100
+	}
+
+	soldiers = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	farmers = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 1750
+	}
+
+	clergymen = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = plains_algonquian
+		religion = totemism
+		size = 910
+	}
+}
+#Stanley (4000/1000 POPS)
+31 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size = 900
+	}
+}
+#Prince Albert (8000/2000 POPS)
+32 = {
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 910
+	}
+
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 900
+	}
+}
+#Asquith (8000/2000 POPS)
+33 = {
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 910
+	}
+
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 900
+	}
+}
+#Saskatoon (8000/2000 POPS)
+34 = {
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 910
+	}
+
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 900
+	}
+}
+#Maple Creek (4000/1000 POPS)
+35 = {
+	aristocrats = {
+		culture = siouan
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = siouan
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = siouan
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = siouan
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = siouan
+		religion = totemism
+		size = 900
+	}
+
+}
+#Manitoba Region : 52000
+#uncolonized in 1836
+#Winnipeg (12000/3000 POPS)
+36 = {
+	aristocrats = {
+		culture = siouan
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = siouan
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = siouan
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = siouan
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = siouan
+		religion = totemism
+		size = 900
+	}
+
+	clergymen = {
+		culture = siouan
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = siouan
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = siouan
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = siouan
+		religion = totemism
+		size = 910
+	}
+
+	clergymen = {
+		culture = siouan
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = siouan
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = siouan
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = siouan
+		religion = totemism
+		size = 910
+	}
+}
+#Churchill (4000/1000 POPS)
+37 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 900
+	}
+}
+#Indian Lakes (4000/1000 POPS)
+38 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 900
+	}
+}
+#Norway House (8000/2000 POPS)
+39 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 900
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 910
+	}
+}
+#Dauphin (8000/2000 POPS)
+40 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 900
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 910
+	}
+}
+#Brandon (8000/2000 POPS)
+41 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 900
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 910
+	}
+}
+#Pembina (8000/2000 POPS)
+42 = {
+	aristocrats = {
+		culture = siouan
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = siouan
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = siouan
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = siouan
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = siouan
+		religion = totemism
+		size = 900
+	}
+
+	clergymen = {
+		culture = siouan
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = siouan
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = siouan
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = siouan
+		religion = totemism
+		size = 910
+	}
+
+}
+#Ontario Region : 448000
+#uncolonized in 1836
+#Fort Severn (2800/700 POPS)
+47 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 35
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 630
+	}
+}
+#Fort Albany (6400/1600 POPS)
+48 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 35
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 80
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 20
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 1440
+	}
+}
+#Dryden (12000/3000 POPS)
+49 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 100
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 1750
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 910
+	}
+}
+#Thunder Bay (8000/2000 POPS)
+50 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 100
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 1750
+	}
+}
+#Sault Ste Marie (8000/2000 POPS)
+51 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 900
+	}
+
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 900
+	}
+}
+#Sudbury (8000/2000 POPS)
+52 = {
+	aristocrats = {
+		culture = iroquoian
+		religion = totemism
+		size = 25
+	}
+
+	clergymen = {
+		culture = iroquoian
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = iroquoian
+		religion = totemism
+		size = 100
+	}
+
+	soldiers = {
+		culture = iroquoian
+		religion = totemism
+		size = 25
+	}
+
+	farmers = {
+		culture = iroquoian
+		religion = totemism
+		size = 1750
+	}
+}
+#Barrie (4000/1000 POPS)
+53 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 900
+	}
+
+}
+#Pickle Lake (1200/3000 POPS)
+2594 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 5
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 5
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 265
+	}
+
+}
+#Attawapiskat (5600/1600 POPS)
+2628 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 35
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 80
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 1445
+	}
+
+}
+#ruled by Britain in 1836
+#Toronto (172000/43000 POPS)
+46 = {
+	bureaucrats = {
+		culture = iroquoian
+		religion = totemism
+		size = 250
+	}
+
+	clergymen = {
+		culture = iroquoian
+		religion = totemism
+		size = 250
+	}
+
+	artisans = {
+		culture = iroquoian
+		religion = totemism
+		size = 2500
+	}
+
+	soldiers = {
+		culture = iroquoian
+		religion = totemism
+		size = 1100
+	}
+
+	farmers = {
+		culture = iroquoian
+		religion = totemism
+		size = 39000
+	}
+}
+#Windsor (36000/9000 POPS)
+54 = {
+	clergymen = {
+		culture = iroquoian
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = iroquoian
+		religion = totemism
+		size = 500
+	}
+
+	soldiers = {
+		culture = iroquoian
+		religion = totemism
+		size = 100
+	}
+
+	labourers = {
+		culture = iroquoian
+		religion = totemism
+		size = 8350
+	}
+}
+#Hamilton (68000/17000 POPS)
+55 = {
+	clergymen = {
+		culture = iroquoian
+		religion = totemism
+		size = 100
+	}
+
+	artisans = {
+		culture = iroquoian
+		religion = totemism
+		size = 1100
+	}
+
+	soldiers = {
+		culture = iroquoian
+		religion = totemism
+		size = 200
+	}
+
+	farmers = {
+		culture = iroquoian
+		religion = totemism
+		size = 15700
+	}
+}
+#Kingston (72000/18000 POPS)
+56 = {
+	clergymen = {
+		culture = iroquoian
+		religion = totemism
+		size = 150
+	}
+
+	artisans = {
+		culture = iroquoian
+		religion = totemism
+		size = 1750
+	}
+
+	soldiers = {
+		culture = iroquoian
+		religion = totemism
+		size = 175
+	}
+
+	farmers = {
+		culture = iroquoian
+		religion = totemism
+		size = 13925
+	}
+
+	clergymen = {
+		culture = iroquoian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = iroquoian
+		religion = totemism
+		size = 250
+	}
+
+	soldiers = {
+		culture = iroquoian
+		religion = totemism
+		size = 25
+	}
+
+	farmers = {
+		culture = iroquoian
+		religion = totemism
+		size = 1700
+	}
+}
+#Ottawa (44000/11000 POPS)
+57 = {
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 300
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 100
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 6550
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 200
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 3700
+	}
+
+}
+#Quebec Region : 676000
+#uncolonized in 1836
+#Nitchequon (2800/700 POPS)
+59 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 35
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 630
+	}
+
+}
+#Erik Cove (2400/600 POPS)
+2592 = {
+	aristocrats = {
+		culture = eskaleut
+		religion = shamanism
+		size = 5
+	}
+
+	clergymen = {
+		culture = eskaleut
+		religion = shamanism
+		size = 10
+	}
+
+	artisans = {
+		culture = eskaleut
+		religion = shamanism
+		size = 20
+	}
+
+	soldiers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 5
+	}
+
+	farmers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 360
+	}
+
+	aristocrats = {
+		culture = eskaleut
+		religion = shamanism
+		size = 2
+	}
+
+	clergymen = {
+		culture = eskaleut
+		religion = shamanism
+		size = 3
+	}
+
+	artisans = {
+		culture = eskaleut
+		religion = shamanism
+		size = 10
+	}
+
+	soldiers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 5
+	}
+
+	farmers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 180
+	}
+
+}
+#Port Harrison (2400/600 POPS)
+2626 = {
+	aristocrats = {
+		culture = eskaleut
+		religion = shamanism
+		size = 2
+	}
+
+	clergymen = {
+		culture = eskaleut
+		religion = shamanism
+		size = 3
+	}
+
+	artisans = {
+		culture = eskaleut
+		religion = shamanism
+		size = 10
+	}
+
+	soldiers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 5
+	}
+
+	farmers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 180
+	}
+
+	aristocrats = {
+		culture = eskaleut
+		religion = shamanism
+		size = 5
+	}
+
+	clergymen = {
+		culture = eskaleut
+		religion = shamanism
+		size = 10
+	}
+
+	artisans = {
+		culture = eskaleut
+		religion = shamanism
+		size = 20
+	}
+
+	soldiers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 5
+	}
+
+	farmers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 360
+	}
+}
+#Fort Chimo (2400/600 POPS)
+2627 = {
+	aristocrats = {
+		culture = eskaleut
+		religion = shamanism
+		size = 5
+	}
+
+	clergymen = {
+		culture = eskaleut
+		religion = shamanism
+		size = 10
+	}
+
+	artisans = {
+		culture = eskaleut
+		religion = shamanism
+		size = 20
+	}
+
+	soldiers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 5
+	}
+
+	farmers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 360
+	}
+
+	aristocrats = {
+		culture = eskaleut
+		religion = shamanism
+		size = 2
+	}
+
+	clergymen = {
+		culture = eskaleut
+		religion = shamanism
+		size = 3
+	}
+
+	artisans = {
+		culture = eskaleut
+		religion = shamanism
+		size = 10
+	}
+
+	soldiers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 5
+	}
+
+	farmers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 180
+	}
+}
+#Fort Rupert (2400/600 POPS)
+60 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 30
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 520
+	}
+}
+#Fort George (1600/400 POPS)
+2593 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 5
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 20
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 5
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 360
+	}
+}
+#ruled by Britain in 1836
+#58 - Montreal (248000/62000 POPS)
+58 = {
+	bureaucrats = {
+		culture = iroquoian
+		religion = totemism
+		size = 200
+	}
+
+	clergymen = {
+		culture = iroquoian
+		religion = totemism
+		size = 125
+	}
+
+	artisans = {
+		culture = iroquoian
+		religion = totemism
+		size = 5000
+	}
+
+	soldiers = {
+		culture = iroquoian
+		religion = totemism
+		size = 250
+	}
+
+	farmers = {
+		culture = iroquoian
+		religion = totemism
+		size = 13425
+	}
+
+	bureaucrats = {
+		culture = iroquoian
+		religion = totemism
+		size = 100
+	}
+
+	clergymen = {
+		culture = iroquoian
+		religion = totemism
+		size = 500
+	}
+
+	artisans = {
+		culture = iroquoian
+		religion = totemism
+		size = 6000
+	}
+
+	soldiers = {
+		culture = iroquoian
+		religion = totemism
+		size = 400
+	}
+
+	farmers = {
+		culture = iroquoian
+		religion = totemism
+		size = 36000
+	}
+}
+#Chicoutimi (11200/2800 POPS)
+61 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 20
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 40
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 715
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 100
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 1825
+	}
+}
+#Sept-Iles (8000/2000 POPS)
+62 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 900
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 915
+	}
+}
+#Temiscaming (16000/4000 POPS)
+63 = {
+	aristocrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 10
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 15
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 900
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 75
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 150
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 2750
+	}
+}
+#Trois-Rivieres (68000/17000 POPS)
+64 = {
+	clergymen = {
+		culture = iroquoian
+		religion = totemism
+		size = 175
+	}
+
+	artisans = {
+		culture = iroquoian
+		religion = totemism
+		size = 1100
+	}
+
+	soldiers = {
+		culture = iroquoian
+		religion = totemism
+		size = 150
+	}
+
+	labourers = {
+		culture = iroquoian
+		religion = totemism
+		size = 15675
+	}
+}
+#Quebec City (188000/47000 POPS)
+65 = {
+	clergymen = {
+		culture = iroquoian
+		religion = totemism
+		size = 500
+	}
+
+	artisans = {
+		culture = iroquoian
+		religion = totemism
+		size = 5000
+	}
+
+	soldiers = {
+		culture = iroquoian
+		religion = totemism
+		size = 500
+	}
+
+	farmers = {
+		culture = iroquoian
+		religion = totemism
+		size = 41000
+	}
+}
+#Sherbrooke (68000/17000 POPS)
+66 = {
+	clergymen = {
+		culture = iroquoian
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = iroquoian
+		religion = totemism
+		size = 400
+	}
+
+	soldiers = {
+		culture = iroquoian
+		religion = totemism
+		size = 100
+	}
+
+	farmers = {
+		culture = iroquoian
+		religion = totemism
+		size = 4450
+	}
+
+	clergymen = {
+		culture = iroquoian
+		religion = totemism
+		size = 250
+	}
+
+	artisans = {
+		culture = iroquoian
+		religion = totemism
+		size = 700
+	}
+
+	soldiers = {
+		culture = iroquoian
+		religion = totemism
+		size = 150
+	}
+
+	farmers = {
+		culture = iroquoian
+		religion = totemism
+		size = 10900
+	}
+}
+#Riviere du Loup (56000/14000 POPS)
+67 = {
+	clergymen = {
+		culture = iroquoian
+		religion = totemism
+		size = 150
+	}
+
+	artisans = {
+		culture = iroquoian
+		religion = totemism
+		size = 750
+	}
+
+	soldiers = {
+		culture = iroquoian
+		religion = totemism
+		size = 150
+	}
+
+	labourers = {
+		culture = iroquoian
+		religion = totemism
+		size = 12950
+	}
+
+}
+#New Brunswick Region : 148000
+#Ruled by Britain 1836
+#Fredericton (84000/21000 POPS)
+68 = {
+	bureaucrats = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 75
+	}
+
+	clergymen = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 275
+	}
+
+	artisans = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 750
+	}
+
+	soldiers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 150
+	}
+
+	farmers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 12750
+	}
+
+	clergymen = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 150
+	}
+
+	artisans = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 350
+	}
+
+	soldiers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 100
+	}
+
+	farmers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 6400
+	}
+}
+#Bathurst (64000/16000 POPS)
+69 = {
+	clergymen = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 75
+	}
+
+	artisans = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 600
+	}
+
+	soldiers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 150
+	}
+
+	labourers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 11175
+	}
+
+	clergymen = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 200
+	}
+
+	soldiers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 25
+	}
+
+	farmers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 3725
+	}
+
+}
+#Prince Edward Island Region : 32000
+#Ruled by Britain 1836
+#Prince Edward Island (32000/8000 POPS)
+70 = {
+	clergymen = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 1500
+	}
+
+	soldiers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 100
+	}
+
+	farmers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 6350
+	}
+}
+#Canada - Nova Scotia Region : 147000
+#Ruled by Britain 1836
+#Halifax (83000/20750 POPS)
+71 = {
+	bureaucrats = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 100
+	}
+
+	clergymen = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 100
+	}
+
+	artisans = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 4000
+	}
+
+	soldiers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 200
+	}
+
+	farmers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 14600
+	}
+
+	labourers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 1100
+	}
+
+	labourers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 750
+	}
+}
+#Truro (44000/11000 POPS)
+72 = {
+	clergymen = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 750
+	}
+
+	soldiers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 125
+	}
+
+	farmers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 9075
+	}
+
+	labourers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 1100
+	}
+}
+#Cape Breton Island (20000/5000 POPS)
+73 = {
+	clergymen = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	artisans = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 250
+	}
+
+	soldiers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	farmers = {
+		culture = eastern_algonquian
+		religion = totemism
+		size = 4650
+	}
+
+}
+#Newfoundland Region - 84000
+#Ruled by Britain in 1836
+#Saint John's (52000/13000 POPS)
+74 = {
+	bureaucrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 75
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 2000
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 2825
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 100
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 2000
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 6900
+	}
+}
+#Millertown (24000/6000 POPS)
+75 = {
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 75
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 250
+	}
+
+	soldiers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 50
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 4625
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 100
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 100
+	}
+
+	farmers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 800
+	}
+}
+#Hopedale (2000/500 POPS)
+76 = {
+	aristocrats = {
+		culture = eskaleut
+		religion = shamanism
+		size = 5
+	}
+
+	clergymen = {
+		culture = eskaleut
+		religion = shamanism
+		size = 10
+	}
+
+	artisans = {
+		culture = eskaleut
+		religion = shamanism
+		size = 25
+	}
+
+	soldiers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 5
+	}
+
+	farmers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 450
+	}
+
+}
+#Cartwright (6000/1500 POPS)
+2625 = {
+	aristocrats = {
+		culture = eskaleut
+		religion = shamanism
+		size = 25
+	}
+
+	clergymen = {
+		culture = eskaleut
+		religion = shamanism
+		size = 25
+	}
+
+	artisans = {
+		culture = eskaleut
+		religion = shamanism
+		size = 75
+	}
+
+	soldiers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 25
+	}
+
+	farmers = {
+		culture = eskaleut
+		religion = shamanism
+		size = 1350
+	}
+
+}
+#St Pierre & Miquelon (2000)
+#Ruled by France 1836
+#Saint Pierre (2000/500 POPS)
+77 = {
+	bureaucrats = {
+		culture = central_algonquian
+		religion = totemism
+		size = 1
+	}
+
+	clergymen = {
+		culture = central_algonquian
+		religion = totemism
+		size = 4
+	}
+
+	artisans = {
+		culture = central_algonquian
+		religion = totemism
+		size = 45
+	}
+
+	labourers = {
+		culture = central_algonquian
+		religion = totemism
+		size = 450
+	}
+
+}

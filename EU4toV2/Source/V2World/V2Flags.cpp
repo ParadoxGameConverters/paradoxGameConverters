@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -30,30 +30,36 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <boost/algorithm/string/predicate.hpp>
 
-#include "..\EU4World\EU4Country.h"
+#include "../EU4World/EU4Country.h"
 #include "V2Country.h"
-#include "..\Configuration.h"
+#include "../Configuration.h"
 #include "Log.h"
-#include "..\WinUtils.h"
-#include "..\FlagUtils.h"
+#include "OSCompatibilityLayer.h"
+#include "../Mappers/CK2TitleMapper.h"
+#include "../Mappers/ColonyFlagsetMapper.h"
+#include "../Mappers/CountryMapping.h"
+#include "../Mappers/FlagColorMapper.h"
+#include "../FlagUtils.h"
+
+
 
 const std::vector<std::string> V2Flags::flagFileSuffixes = { ".tga", "_communist.tga", "_fascist.tga", "_monarchy.tga", "_republic.tga" };
 
-void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const CK2TitleMapping& CK2titles, const colonyFlagset& colonyFlagset, const FlagColourMapping& flagColours)
+
+
+void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries)
 {
 	LOG(LogLevel::Debug) << "Initializing flags";
 	tagMapping.clear();
-	colonyFlags = colonyFlagset;
-	flagColourMapping = flagColours;
 
 	static std::mt19937 generator(static_cast<int>(std::chrono::system_clock::now().time_since_epoch().count()));
 
 	// Generate a list of all flags that we can use.
-	const std::vector<std::string> availableFlagFolders = { "blankMod\\output\\gfx\\flags", Configuration::getV2Path() + "\\gfx\\flags" };
+	const std::vector<std::string> availableFlagFolders = { "blankMod/output/gfx/flags", Configuration::getV2Path() + "/gfx/flags" };
 	std::set<std::string> availableFlags;
 	for (size_t i = 0; i < availableFlagFolders.size(); ++i)
 	{
-		WinUtils::GetAllFilesInFolder(availableFlagFolders[i], availableFlags);
+		Utils::GetAllFilesInFolder(availableFlagFolders[i], availableFlags);
 	}
 	std::set<std::string> usableFlagTags;
 	while (!availableFlags.empty())
@@ -123,10 +129,9 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 		if (i->second->getSourceCountry()
 			&& requiredTags.find(i->first) != requiredTags.end())
 		{
-			std::string ck2title = CountryMapping::GetCK2Title(i->first,i->second->getLocalName(),usableFlagTags,CK2titles);
+			string ck2title = CountryMapping::getCK2Title(i->first,i->second->getLocalName(),usableFlagTags);
 			if ((ck2title != "") && (usableFlagTags.find(ck2title) != usableFlagTags.end()))
 			{
-				LOG(LogLevel::Info) << "Country " << i->first << " (" << i->second->getLocalName() << ") has the CK2 title " << ck2title;
 				tagMapping[i->first] = ck2title;
 				usableFlagTags.erase(ck2title);
 				requiredTags.erase(i->first);
@@ -142,13 +147,11 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 				// Yay hardcoded paths. If I get round to it, I'll point these at religion.txt instead.
 				if (religion == "sunni" || religion == "shiite" || religion == "ibadi")
 				{
-					size_t randomTagIndex = std::uniform_int_distribution<size_t>(0, CK2titles.islamFlags.size() - 1)(generator);
-					randomCK2title = CK2titles.islamFlags[randomTagIndex];
+					randomCK2title = CK2TitleMapper::getRandomIslamicFlag();
 				}
 				else if (religion == "mahayana" || religion == "gelugpa" || religion == "theravada" || religion == "sikh" || religion == "hindu" || religion == "jain")
 				{
-					size_t randomTagIndex = std::uniform_int_distribution<size_t>(0, CK2titles.indiaFlags.size() - 1)(generator);
-					randomCK2title = CK2titles.indiaFlags[randomTagIndex];
+					randomCK2title = CK2TitleMapper::getRandomIndianFlag();
 				}
 
 				if (usableFlagTags.find(randomCK2title) != usableFlagTags.end())
@@ -190,30 +193,14 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 		}
 	}
 
-	std::set<std::string> duplicateColonyFlag;
-	
-	
-	for (auto colonialtitle = colonyFlags.begin(); colonialtitle != colonyFlags.end();)
+	auto colonyFlags = colonyFlagsetMapper::getFlagset();
+	for (auto country: V2Countries)
 	{
-		if (duplicateColonyFlag.find(colonialtitle->second->name) != duplicateColonyFlag.end())
-		{
-			LOG(LogLevel::Info) << "Duplicate " << colonialtitle->second->name;
-			colonyFlags.erase(colonialtitle++);
-		}
-		else
-		{
-			duplicateColonyFlag.insert(colonialtitle->second->name);
-			++colonialtitle;
-		}
-	}
-
-	for (std::map<std::string, V2Country*>::const_iterator i = V2Countries.begin(); i != V2Countries.end(); i++)
-	{
-		V2Country* overlord = i->second->getColonyOverlord();
+		V2Country* overlord = country.second->getColonyOverlord();
 		if (NULL == overlord)
 			continue;
 
-		std::string name = i->second->getLocalName();
+		std::string name = country.second->getLocalName();
 		name = V2Localisation::Convert(name);
 
 		std::transform(name.begin(), name.end(), name.begin(), ::tolower);
@@ -229,16 +216,16 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 
 		if (colonialtitle == colonyFlags.end())
 		{
-			colonialFail.push_back(i->second);
+			colonialFail.push_back(country.second);
 			continue;
 		}
 
 		colonialtitle->second->overlord = overlord->getTag();
-		colonialFlagMapping[i->first] = colonialtitle->second;
-		LOG(LogLevel::Info) << "Country with tag " << i->first << " is " << colonialtitle->second->name << ", ruled by " << colonialtitle->second->overlord;
+		colonialFlagMapping[country.first] = colonialtitle->second;
+		LOG(LogLevel::Info) << "Country with tag " << country.first << " is " << colonialtitle->second->name << ", ruled by " << colonialtitle->second->overlord;
 
 		usableFlagTags.erase(colonialtitle->second->name);
-		requiredTags.erase(i->first); 
+		requiredTags.erase(country.first); 
 		colonyFlags.erase(colonialtitle);
 	}
 
@@ -310,23 +297,23 @@ bool V2Flags::Output() const
 	LOG(LogLevel::Debug) << "Copying flags";
 
 	// Create output folders.
-	std::string outputGraphicsFolder = "Output\\" + Configuration::getOutputName() + "\\gfx";
-	std::string outputFlagFolder = outputGraphicsFolder + "\\flags";
+	std::string outputGraphicsFolder = "Output/" + Configuration::getOutputName() + "/gfx";
+	std::string outputFlagFolder = outputGraphicsFolder + "/flags";
 
-	//WinUtils::DeleteFolder(outputFlagFolder); 
+	//Utils::DeleteFolder(outputFlagFolder); 
 
-	if (!WinUtils::TryCreateFolder(outputGraphicsFolder))
+	if (!Utils::TryCreateFolder(outputGraphicsFolder))
 	{
 		return false;
 	}
 
-	if (!WinUtils::TryCreateFolder(outputFlagFolder))
+	if (!Utils::TryCreateFolder(outputFlagFolder))
 	{
 		return false;
 	}
 
 	// Copy files.
-	const std::vector<std::string> availableFlagFolders = { "blankMod\\output\\gfx\\flags", Configuration::getV2Path() + "\\gfx\\flags" };
+	const std::vector<std::string> availableFlagFolders = { "blankMod/output/gfx/flags", Configuration::getV2Path() + "/gfx/flags" };
 	for (V2TagToFlagTagMap::const_iterator i = tagMapping.begin(); i != tagMapping.end(); ++i)
 	{
 		const std::string& V2Tag = i->first;
@@ -338,18 +325,18 @@ bool V2Flags::Output() const
 			for (std::vector<std::string>::const_iterator j = availableFlagFolders.begin(); j != availableFlagFolders.end() && !flagFileFound; ++j)
 			{
 				const std::string& folderPath = *j;
-				std::string sourceFlagPath = folderPath + '\\' + flagTag + suffix;
-				flagFileFound = WinUtils::DoesFileExist(sourceFlagPath);
+				std::string sourceFlagPath = folderPath + '/' + flagTag + suffix;
+				flagFileFound = Utils::DoesFileExist(sourceFlagPath);
 				if (flagFileFound)
 				{
-					std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
-					WinUtils::TryCopyFile(sourceFlagPath, destFlagPath);
+					std::string destFlagPath = outputFlagFolder + '/' + V2Tag + suffix;
+					Utils::TryCopyFile(sourceFlagPath, destFlagPath);
 				}
 			}
 		}
 	}
 
-	std::string baseFlagFolder = "blankMod\\output\\gfx\\flags";
+	std::string baseFlagFolder = "blankMod/output/gfx/flags";
 
 	for (auto cflag : customFlagMapping)
 	{
@@ -358,7 +345,7 @@ bool V2Flags::Output() const
 		string baseFlag = cflag.second.flag;
 		string emblem = std::to_string(cflag.second.emblem);
 
-		int colourcount = flagColourMapping.size();
+		int colourcount = FlagColorMapper::getNumColors();
 		
 		if (std::get<0>(cflag.second.colours) > colourcount || std::get<1>(cflag.second.colours) > colourcount || std::get<2>(cflag.second.colours) > colourcount)
 		{
@@ -378,23 +365,23 @@ bool V2Flags::Output() const
 			bool flagFileFound = false;
 			std::string folderPath = baseFlagFolder;
 			
-			std::string sourceFlagPath = folderPath + "\\CustomBases\\" + baseFlag + ".tga";
-			std::string sourceEmblemPath = folderPath + "\\CustomEmblems\\" + emblem + suffix;
+			std::string sourceFlagPath = folderPath + "/CustomBases/" + baseFlag + ".tga";
+			std::string sourceEmblemPath = folderPath + "/CustomEmblems/" + emblem + suffix;
 			
-			flagFileFound = (WinUtils::DoesFileExist(sourceFlagPath) && WinUtils::DoesFileExist(sourceEmblemPath));
+			flagFileFound = (Utils::DoesFileExist(sourceFlagPath) && Utils::DoesFileExist(sourceEmblemPath));
 			if (flagFileFound)
 			{
-				std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
+				std::string destFlagPath = outputFlagFolder + '/' + V2Tag + suffix;
 				
 				CreateCustomFlag( 
-					flagColourMapping[std::get<0>(cflag.second.colours)],
-					flagColourMapping[std::get<1>(cflag.second.colours)],
-					flagColourMapping[std::get<2>(cflag.second.colours)],
+					FlagColorMapper::getFlagColor(std::get<0>(cflag.second.colours)),
+					FlagColorMapper::getFlagColor(std::get<1>(cflag.second.colours)),
+					FlagColorMapper::getFlagColor(std::get<2>(cflag.second.colours)),
 					sourceEmblemPath, sourceFlagPath, destFlagPath);
 			}
 			else
 			{
-				if (!WinUtils::DoesFileExist(sourceFlagPath))
+				if (!Utils::DoesFileExist(sourceFlagPath))
 					LOG(LogLevel::Error) << "Could not find " << sourceFlagPath;
 				else
 					LOG(LogLevel::Error) << "Could not find " << sourceEmblemPath;
@@ -426,17 +413,17 @@ bool V2Flags::Output() const
 			if ((i == 0 || i == 3) // monarchy or vanilla
 				&& (UniqueColonialFlags.find(baseFlag) == UniqueColonialFlags.end()))
 			{
-				std::string sourceFlagPath = folderPath + '\\' + baseFlag + suffix;
-				std::string overlordFlagPath = folderPath + '\\' + overlord + ".tga";
-				flagFileFound = (WinUtils::DoesFileExist(sourceFlagPath) && WinUtils::DoesFileExist(overlordFlagPath));
+				std::string sourceFlagPath = folderPath + '/' + baseFlag + suffix;
+				std::string overlordFlagPath = folderPath + '/' + overlord + ".tga";
+				flagFileFound = (Utils::DoesFileExist(sourceFlagPath) && Utils::DoesFileExist(overlordFlagPath));
 				if (flagFileFound)
 				{
-					std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
+					std::string destFlagPath = outputFlagFolder + '/' + V2Tag + suffix;
 					CreateColonialFlag(overlordFlagPath, sourceFlagPath, destFlagPath);
 				}
 				else
 				{
-					if (!WinUtils::DoesFileExist(sourceFlagPath))
+					if (!Utils::DoesFileExist(sourceFlagPath))
 						LOG(LogLevel::Error) << "Could not find " << sourceFlagPath;
 					else
 						LOG(LogLevel::Error) << "Could not find " << overlordFlagPath;
@@ -444,12 +431,12 @@ bool V2Flags::Output() const
 			}
 			else
 			{
-				std::string sourceFlagPath = folderPath + '\\' + baseFlag + suffix;
-				flagFileFound = WinUtils::DoesFileExist(sourceFlagPath);
+				std::string sourceFlagPath = folderPath + '/' + baseFlag + suffix;
+				flagFileFound = Utils::DoesFileExist(sourceFlagPath);
 				if (flagFileFound)
 				{
-					std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
-					WinUtils::TryCopyFile(sourceFlagPath, destFlagPath);
+					std::string destFlagPath = outputFlagFolder + '/' + V2Tag + suffix;
+					Utils::TryCopyFile(sourceFlagPath, destFlagPath);
 				}
 				else
 				{

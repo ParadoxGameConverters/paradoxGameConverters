@@ -1,4 +1,4 @@
-# Copyright (c) 2014 The Paradox Game Converters Project
+# Copyright (c) 2016 The Paradox Game Converters Project
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -41,12 +41,8 @@ configuration =
 	#	HoD-NNM		HoD with the New Nations Mod
 	V2gametype = "HOD"
 
-	# The date on which the game is to start.  Default: 1835.12.1
-	# WARNING: start_date at or prior to 1835.1.1 will, in all likelyhood, crash Victoria!
-	start_date = 1836.1.1
-
-	# Reset Provinces: Whether or not to reset resettable V2 provinces
-	resetProvinces = "no"
+	# Reset Provinces: Whether or not to reset resettable V2 provinces. Disabled for now
+	#resetProvinces = "no"
 
 	# The maximum literacy a nation will start with. Default 100%
 	max_literacy = 1.0

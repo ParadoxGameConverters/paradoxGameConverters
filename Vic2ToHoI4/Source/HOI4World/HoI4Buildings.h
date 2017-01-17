@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -76,7 +76,6 @@ class HoI4Buildings
 
 	private:
 		void placeNavalBases(const map<int, int>& provinceToStateIDMap);
-		map<int, pair<double, double>> getProvincePositions();
 
 		multimap<int, HoI4Building*> buildings;
 };

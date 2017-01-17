@@ -24,22 +24,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #ifndef V2PROVINCE_H_
 #define V2PROVINCE_H_
 
-
-
 #include "../Configuration.h"
+#include "V2Rgo.h"
 #include <map>
 #include <set>
 #include <string>
 #include <vector>
 using namespace std;
 
-
-
 class Object;
 class V2Country;
 class V2Pop;
-
-
 
 class V2Province
 {
@@ -55,12 +50,14 @@ class V2Province
 		void addCoreString(string coreString) { coreStrings.insert(coreString); }
 		void removeCoreString(string coreString) { coreStrings.erase(coreString); }
 
+		int getNumber() const { return number; }
 		string getOwnerString() const { return ownerString; }
 		const V2Country* getOwner() const { return owner; }
 		set<V2Country*> getCores() const { return cores; }
 		int getRailLevel() const { return railLevel; }
 		int getFortLevel() const { return fortLevel; }
 		int getNavalBaseLevel() const { return navalBaseLevel; }
+		const V2Rgo& getRgo() { return rgo; }
 
 	private:
 		void readOwner(Object* obj);
@@ -68,9 +65,12 @@ class V2Province
 		void readForts(Object* obj);
 		void readNavalBases(Object* obj);
 		void readRails(Object* obj);
+		void readRgo(Object* obj);
 		void readPops(Object* obj);
 		bool isPopObject(Object* obj);
 		int calculateLiteracyWeightedPop(const V2Pop* thePop) const;
+
+		int number;
 
 		string ownerString;
 		const V2Country* owner;
@@ -79,6 +79,7 @@ class V2Province
 		set<V2Country*> cores;
 
 		vector<V2Pop*> pops;
+		V2Rgo rgo;
 
 		int fortLevel;
 		int navalBaseLevel;

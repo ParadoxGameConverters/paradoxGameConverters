@@ -1,0 +1,670 @@
+#Luzon Region (2176000)
+#Ruled by Spain in 1836
+#Manila (780000/195000 POPS)
+1455 = {
+	aristocrats = {
+		culture = filipino
+		religion = animist
+		size = 1000
+	}
+
+	aristocrats = {
+		culture = filipino
+		religion = sunni
+		size = 450
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = animist
+		size = 800
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = sunni
+		size = 275
+	}
+
+	artisans = {
+		culture = filipino
+		religion = animist
+		size = 30000
+	}
+
+	artisans = {
+		culture = filipino
+		religion = sunni
+		size = 2350
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = animist
+		size = 4000
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = sunni
+		size = 300
+	}
+
+	farmers = {
+		culture = filipino
+		religion = animist
+		size = 120000
+	}
+
+	farmers = {
+		culture = filipino
+		religion = sunni
+		size = 35925
+	}
+
+}
+#Vigan (608000/152000 POPS)
+1456 = {
+	aristocrats = {
+		culture = filipino
+		religion = animist
+		size = 1000
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = animist
+		size = 625
+	}
+
+	artisans = {
+		culture = filipino
+		religion = animist
+		size = 7350
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = animist
+		size = 1500
+	}
+
+	farmers = {
+		culture = filipino
+		religion = animist
+		size = 134525
+	}
+
+	aristocrats = {
+		culture = filipino
+		religion = sunni
+		size = 1000
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = sunni
+		size = 50
+	}
+
+	artisans = {
+		culture = filipino
+		religion = sunni
+		size = 250
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = sunni
+		size = 50
+	}
+
+	farmers = {
+		culture = filipino
+		religion = sunni
+		size = 6650
+	}
+}
+#Legazpi (564000/141000 POPS)
+1457 = {
+	aristocrats = {
+		culture = filipino
+		religion = animist
+		size = 1000
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = animist
+		size = 625
+	}
+
+	artisans = {
+		culture = filipino
+		religion = animist
+		size = 6500
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = animist
+		size = 1350
+	}
+
+	farmers = {
+		culture = filipino
+		religion = animist
+		size = 122525
+	}
+
+	aristocrats = {
+		culture = filipino
+		religion = sunni
+		size = 100
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = sunni
+		size = 50
+	}
+
+	artisans = {
+		culture = filipino
+		religion = sunni
+		size = 500
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = sunni
+		size = 100
+	}
+
+	farmers = {
+		culture = filipino
+		religion = sunni
+		size = 8350
+	}
+}
+#Mindoro (224000/56000 POPS)
+1458 = {
+	aristocrats = {
+		culture = filipino
+		religion = animist
+		size = 200
+	}
+
+	aristocrats = {
+		culture = filipino
+		religion = sunni
+		size = 200
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = animist
+		size = 175
+	}
+
+	artisans = {
+		culture = filipino
+		religion = animist
+		size = 2100
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = animist
+		size = 450
+	}
+
+	farmers = {
+		culture = filipino
+		religion = animist
+		size = 38875
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = sunni
+		size = 125
+	}
+
+	artisans = {
+		culture = filipino
+		religion = sunni
+		size = 750
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = sunni
+		size = 100
+	}
+
+	farmers = {
+		culture = filipino
+		religion = sunni
+		size = 11025
+	}
+
+}
+#Visayas Region (1044000 POPS)
+#under rule of Spain 1836
+#Palawan (80000/20000 POPS)
+1459 = {
+	aristocrats = {
+		culture = filipino
+		religion = animist
+		size = 25
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = animist
+		size = 100
+	}
+
+	artisans = {
+		culture = filipino
+		religion = animist
+		size = 650
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = animist
+		size = 150
+	}
+
+	farmers = {
+		culture = filipino
+		religion = animist
+		size = 13075
+	}
+
+	aristocrats = {
+		culture = filipino
+		religion = sunni
+		size = 75
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = sunni
+		size = 50
+	}
+
+	artisans = {
+		culture = filipino
+		religion = sunni
+		size = 300
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = sunni
+		size = 75
+	}
+
+	farmers = {
+		culture = filipino
+		religion = sunni
+		size = 5500
+	}
+}
+#Iloilo (312000/78000 POPS)
+1460 = {
+	aristocrats = {
+		culture = filipino
+		religion = animist
+		size = 600
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = animist
+		size = 350
+	}
+
+	artisans = {
+		culture = filipino
+		religion = animist
+		size = 3500
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = animist
+		size = 750
+	}
+
+	farmers = {
+		culture = filipino
+		religion = animist
+		size = 64750
+	}
+
+	aristocrats = {
+		culture = filipino
+		religion = animist
+		size = 50
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = sunni
+		size = 75
+	}
+
+	artisans = {
+		culture = filipino
+		religion = sunni
+		size = 500
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = sunni
+		size = 100
+	}
+
+	farmers = {
+		culture = filipino
+		religion = sunni
+		size = 7325
+	}
+}
+#Tacloban (348000/87000 POPS)
+1461 = {
+	aristocrats = {
+		culture = filipino
+		religion = animist
+		size = 500
+	}
+
+	aristocrats = {
+		culture = filipino
+		religion = sunni
+		size = 250
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = animist
+		size = 500
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = sunni
+		size = 125
+	}
+
+	artisans = {
+		culture = filipino
+		religion = animist
+		size = 3000
+	}
+
+	artisans = {
+		culture = filipino
+		religion = sunni
+		size = 1250
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = animist
+		size = 500
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = sunni
+		size = 350
+	}
+
+	farmers = {
+		culture = filipino
+		religion = animist
+		size = 60000
+	}
+
+	farmers = {
+		culture = filipino
+		religion = sunni
+		size = 20125
+	}
+}
+#Cebu (304000/76000 POPS)
+2565 = {
+	aristocrats = {
+		culture = filipino
+		religion = animist
+		size = 675
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = animist
+		size = 450
+	}
+
+	artisans = {
+		culture = filipino
+		religion = animist
+		size = 3500
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = animist
+		size = 750
+	}
+
+	farmers = {
+		culture = filipino
+		religion = animist
+		size = 64425
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = sunni
+		size = 50
+	}
+
+	artisans = {
+		culture = filipino
+		religion = sunni
+		size = 500
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = sunni
+		size = 75
+	}
+
+	farmers = {
+		culture = filipino
+		religion = sunni
+		size = 5575
+	}
+
+}
+#Mindanao Region (496000)
+#Under Spanish "Rule" 1836
+#Davao (152000/38000 POPS)
+1463 = {
+	clergymen = {
+		culture = filipino
+		religion = animist
+		size = 125
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = sunni
+		size = 200
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = animist
+		size = 325
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = sunni
+		size = 1000
+	}
+
+	aristocrats = {
+		culture = filipino
+		religion = animist
+		size = 100
+	}
+
+	aristocrats = {
+		culture = filipino
+		religion = sunni
+		size = 200
+	}
+
+	artisans = {
+		culture = filipino
+		religion = animist
+		size = 800
+	}
+
+	artisans = {
+		culture = filipino
+		religion = sunni
+		size = 1000
+	}
+
+	farmers = {
+		culture = filipino
+		religion = animist
+		size = 14450
+	}
+
+	farmers = {
+		culture = filipino
+		religion = sunni
+		size = 20000
+	}
+
+}
+#Under rule of Sultans of Sulu in 1836
+#Zamboanga (300000/75000 POPS)
+1462 = {
+	aristocrats = {
+		culture = filipino
+		religion = sunni
+		size = 500
+	}
+
+	aristocrats = {
+		culture = filipino
+		religion = animist
+		size = 200
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = sunni
+		size = 500
+	}
+
+	clergymen = {
+		culture = filipino
+		religion = animist
+		size = 125
+	}
+
+	artisans = {
+		culture = filipino
+		religion = sunni
+		size = 2000
+	}
+
+	artisans = {
+		culture = filipino
+		religion = animist
+		size = 1550
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = sunni
+		size = 500
+	}
+
+	soldiers = {
+		culture = filipino
+		religion = animist
+		size = 100
+	}
+
+	farmers = {
+		culture = filipino
+		religion = sunni
+		size = 50000
+	}
+
+	farmers = {
+		culture = filipino
+		religion = animist
+		size = 19625
+	}
+}
+#Jolo (44000/11000 POPS) #this is Sulu
+1464 = {
+	aristocrats = {
+		culture = malay
+		religion = sunni
+		size = 100
+	}
+
+	bureaucrats = {
+		culture = malay
+		religion = sunni
+		size = 75
+	}
+
+	officers = {
+		culture = malay
+		religion = sunni
+		size = 75
+	}
+
+	clergymen = {
+		culture = malay
+		religion = sunni
+		size = 100
+	}
+
+	artisans = {
+		culture = malay
+		religion = sunni
+		size = 600
+	}
+
+	soldiers = {
+		culture = malay
+		religion = sunni
+		size = 225
+	}
+
+	farmers = {
+		culture = malay
+		religion = sunni
+		size = 9825
+	}
+
+}

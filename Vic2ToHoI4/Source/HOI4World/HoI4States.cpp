@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "OSCompatibilityLayer.h"
 #include "ParadoxParserUTF8.h"
 #include "../Mappers/CountryMapping.h"
+#include "../Mappers/ProvinceDefinitions.h"
 #include "../Mappers/V2Localisations.h"
 #include "../V2World/V2Country.h"
 #include "../V2World/V2World.h"
@@ -65,50 +66,9 @@ void HoI4States::importStates(map<int, vector<int>>& defaultStateToProvinceMap)
 }
 
 
-void HoI4States::recordAllLandProvinces()
-{
-	ifstream definitions(Configuration::getHoI4Path() + "/map/definition.csv");
-	if (!definitions.is_open())
-	{
-		LOG(LogLevel::Error) << "Could not open " << Configuration::getHoI4Path() << "/map/definition.csv";
-		exit(-1);
-	}
-
-	while (true)
-	{
-		string line;
-		getline(definitions, line);
-		int pos = line.find_first_of(';');
-		if (pos == string::npos)
-		{
-			break;
-		}
-		int provNum = stoi(line.substr(0, pos));
-		if (provNum == 0)
-		{
-			continue;
-		}
-
-		line = line.substr(pos + 1, line.length());
-		int pos2 = line.find_first_of(';');
-		line = line.substr(pos2 + 1, line.length());
-		int pos3 = line.find_first_of(';');
-		line = line.substr(pos3 + 1, line.length());
-		int pos4 = line.find_first_of(';');
-		line = line.substr(pos4 + 1, line.length());
-		int pos5 = line.find_first_of(';');
-		line = line.substr(0, pos5);
-
-		if (line == "land")
-		{
-			landProvinces.insert(provNum);
-		}
-	}
-}
-
-
 void HoI4States::convertStates()
 {
+	LOG(LogLevel::Info) << "Converting states";
 	map<int, ownersAndCores> provinceOwnersandCores = determineProvinceOwners();
 	createStates(provinceOwnersandCores);
 }
@@ -118,7 +78,7 @@ map<int, ownersAndCores> HoI4States::determineProvinceOwners()
 {
 	const map<string, V2Country*> V2Countries = sourceWorld->getCountries();
 	map<int, ownersAndCores> ownersAndCoresMap;
-	for (auto provItr: landProvinces)
+	for (auto provItr: provinceDefinitions::getLandProvinces())
 	{
 		HoI4ToVic2ProvinceMapping::const_iterator provinceLink;
 		if (!getAppropriateMapping(provItr, provinceLink))

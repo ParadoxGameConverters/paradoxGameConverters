@@ -34,7 +34,7 @@
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/range/adaptor/reversed.hpp>
 #include "..\Configuration.h"
-#include "..\EU3World\EU3Country.h"
+#include "..\EU3World\Country\EU3Country.h"
 
 
 CK2Title::CK2Title(string _titleString, int* _color)

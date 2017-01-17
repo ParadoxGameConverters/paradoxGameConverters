@@ -25,7 +25,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <math.h>
 #include <float.h>
 #include "../V2World/V2Country.h"
+#include "../Configuration.h"
 #include "Log.h"
+#include "Object.h"
+#include "OSCompatibilityLayer.h"
+#include "ParadoxParser8859_15.h"
+#include "ParadoxParserUTF8.h"
 
 
 
@@ -37,6 +42,37 @@ governmentMapper::governmentMapper()
 	reformsInitialized		= false;
 	totalPoliticalReforms	= 0;
 	totalSocialReforms		= 0;
+
+	LOG(LogLevel::Info) << "Parsing governments mappings";
+	Object* obj = parser_UTF8::doParseFile("governmentMapping.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file governmentMapping.txt";
+		exit(-1);
+	}
+	initGovernmentMap(obj->getLeaves()[0]);
+
+	LOG(LogLevel::Info) << "Parsing governments reforms";
+	for (auto itr : Configuration::getVic2Mods())
+	{
+		if (Utils::DoesFileExist(Configuration::getV2Path() + "/mod/" + itr + "/common/issues.txt"))
+		{
+			obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/common/issues.txt"));
+			if (obj != NULL)
+			{
+				initReforms(obj);
+				break;
+			}
+		}
+	}
+	if (!areReformsInitialized())
+	{
+		obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/issues.txt"));
+		if (obj != NULL)
+		{
+			initReforms(obj);
+		}
+	}
 }
 
 

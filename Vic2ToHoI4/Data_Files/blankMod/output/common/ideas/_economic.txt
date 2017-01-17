@@ -329,10 +329,6 @@ ideas = {
 					has_idea = war_economy
 					has_idea = tot_economic_mobilisation
 				}
-				OR = {
-					NOT = {	tag = SOV }
-					NOT = { has_opinion_modifier = MR_pact }
-				}
 			}
 			
 			cost = 150

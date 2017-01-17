@@ -1,4 +1,4 @@
-/*Copyright(c) 2014 The Paradox Game Converters Project
+/*Copyright(c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -27,12 +27,15 @@ THE SOFTWARE. */
 #include "EU4Relations.h"
 #include "EU4Leader.h"
 #include "EU4Version.h"
+#include "../Mappers/EU4CultureGroupMapper.h"
+#include "../Mappers/IdeaEffectMapper.h"
 #include "../V2World/V2Localisation.h"
 #include <algorithm>
+#include <boost/lexical_cast.hpp>
 
 
 
-EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas, EU4Version* version, inverseUnionCulturesMap& inverseUnionCultures)
+EU4Country::EU4Country(Object* obj, EU4Version* version)
 {
 	tag = obj->getKey();
 
@@ -69,6 +72,16 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 	vector<Object*> techGroupObj = obj->getValue("technology_group");	// the object holding the technology group
 	(techGroupObj.size() > 0) ? techGroup = techGroupObj[0]->getLeaf().c_str() : techGroup = "";
 
+	embracedInstitutions.clear();
+	vector<Object*> institutionsObj = obj->getValue("institutions"); // the object holding the institutions
+	if (institutionsObj.size() > 0)
+	{
+		vector<string> institutionTokens = institutionsObj[0]->getTokens();
+		for (unsigned int i = 0; i < institutionTokens.size(); i++) {
+			embracedInstitutions.push_back(boost::lexical_cast<bool>(institutionTokens[i]));
+		}
+	}
+
 	vector<Object*> primaryCultureObj = obj->getValue("primary_culture");	// the object holding the primary culture
 	(primaryCultureObj.size() > 0) ? primaryCulture = primaryCultureObj[0]->getLeaf().c_str() : primaryCulture = "";
 
@@ -100,11 +113,7 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 		}
 		if (wasUnion)
 		{
-			auto unionCultureItr = inverseUnionCultures.find(primaryCulture);
-			if (unionCultureItr != inverseUnionCultures.end())
-			{
-				culturalUnion = unionCultureItr->second;
-			}
+			culturalUnion = EU4CultureGroupMapper::getCulturalGroup(primaryCulture);
 		}
 	}
 	else
@@ -217,7 +226,7 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 		armies.push_back(navy);
 	}
 
-	determineInvestments(obj, armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas);
+	determineInvestments();
 
 	nationalIdeas.clear();
 	vector<Object*> activeIdeasObj = obj->getValue("active_idea_groups");	// the objects holding the national ideas
@@ -362,7 +371,7 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 }
 
 
-void EU4Country::determineInvestments(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas)
+void EU4Country::determineInvestments()
 {
 	armyInvestment = 32.0;
 	navyInvestment = 32.0;
@@ -370,45 +379,13 @@ void EU4Country::determineInvestments(Object* obj, map<string, int> armyInvIdeas
 	industryInvestment = 32.0;
 	cultureInvestment = 32.0;
 
-	for (map<string, int>::iterator armyInvItr = armyInvIdeas.begin(); armyInvItr != armyInvIdeas.end(); armyInvItr++)
+	for (auto idea: nationalIdeas)
 	{
-		map<string, int>::const_iterator itr = nationalIdeas.find(armyInvItr->first);	// the object for the idea under consideration
-		if (itr != nationalIdeas.end())
-		{
-			armyInvestment += itr->second * armyInvItr->second;
-		}
-	}
-	for (map<string, int>::iterator commerceInvItr = commerceInvIdeas.begin(); commerceInvItr != commerceInvIdeas.end(); commerceInvItr++)
-	{
-		map<string, int>::const_iterator itr = nationalIdeas.find(commerceInvItr->first);	// the object for the idea under consideration
-		if (itr != nationalIdeas.end())
-		{
-			commerceInvestment += itr->second * commerceInvItr->second;
-		}
-	}
-	for (map<string, int>::iterator cultureInvItr = cultureInvIdeas.begin(); cultureInvItr != cultureInvIdeas.end(); cultureInvItr++)
-	{
-		map<string, int>::const_iterator itr = nationalIdeas.find(cultureInvItr->first);	// the object for the idea under consideration
-		if (itr != nationalIdeas.end())
-		{
-			cultureInvestment += itr->second * cultureInvItr->second;
-		}
-	}
-	for (map<string, int>::iterator industryInvItr = industryInvIdeas.begin(); industryInvItr != industryInvIdeas.end(); industryInvItr++)
-	{
-		map<string, int>::const_iterator itr = nationalIdeas.find(industryInvItr->first);	// the object for the idea under consideration
-		if (itr != nationalIdeas.end())
-		{
-			industryInvestment += itr->second * industryInvItr->second;
-		}
-	}
-	for (map<string, int>::iterator navyInvItr = navyInvIdeas.begin(); navyInvItr != navyInvIdeas.end(); navyInvItr++)
-	{
-		map<string, int>::const_iterator itr = nationalIdeas.find(navyInvItr->first);	// the object for the idea under consideration
-		if (itr != nationalIdeas.end())
-		{
-			navyInvestment += itr->second * navyInvItr->second;
-		}
+		armyInvestment += ideaEffectMapper::getArmyInvestmentFromIdea(idea.first, idea.second);
+		commerceInvestment += ideaEffectMapper::getCommerceInvestmentFromIdea(idea.first, idea.second);
+		cultureInvestment += ideaEffectMapper::getCultureInvestmentFromIdea(idea.first, idea.second);
+		industryInvestment += ideaEffectMapper::getIndustryInvestmentFromIdea(idea.first, idea.second);
+		navyInvestment += ideaEffectMapper::getNavyInvestmentFromIdea(idea.first, idea.second);
 	}
 }
 
@@ -619,6 +596,29 @@ void EU4Country::clearArmies()
 }
 
 
+bool EU4Country::cultureSurvivesInCores()
+{
+	for (auto core: cores)
+	{
+		if (core->getOwner() == NULL)
+		{
+			continue;
+		}
+		if (core->getOwner()->getPrimaryCulture() == primaryCulture)
+		{
+			continue;
+		}
+
+		if (core->getCulturePercent(primaryCulture) >= 0.5)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
 string EU4Country::getName(const string& language) const
 {
 	if (!randomName.empty())
@@ -664,6 +664,14 @@ string EU4Country::getAdjective(const string& language) const
 	{
 		return "";
 	}
+}
+
+int EU4Country::numEmbracedInstitutions() const {
+	int total = 0;
+	for (unsigned int i = 0; i < embracedInstitutions.size(); i++) {
+		if (embracedInstitutions[i]) total++;
+	}
+	return total;
 }
 
 

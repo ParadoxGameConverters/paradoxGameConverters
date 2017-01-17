@@ -147,14 +147,6 @@ void HoI4Province::output() const
 		{
 			fprintf_s(output, "industry = %i\n", industry);
 		}
-		if (land_fort > 0)
-		{
-			fprintf_s(output, "land_fort = %i\n", land_fort);
-		}
-		if (coastal_fort > 0)
-		{
-			fprintf_s(output, "coastal_fort = %i\n", coastal_fort);
-		}
 		if (infrastructure > 0)
 		{
 			fprintf_s(output, "infra = %i\n", infrastructure);
@@ -244,19 +236,6 @@ void HoI4Province::requireAirBase(int _min)
 void HoI4Province::requireIndustry(int _min)
 {
 	industry = max(industry, _min);
-}
-
-void HoI4Province::requireCoastalFort(int _min)
-{
-	if (coastal)
-	{
-		coastal_fort = max(coastal_fort, _min);
-	}
-}
-
-void HoI4Province::requireLandFort(int _min)
-{
-	land_fort = max(land_fort, _min);
 }
 
 
