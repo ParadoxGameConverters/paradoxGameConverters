@@ -21,33 +21,40 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef HoI4DIPLOMACY_H_
-#define HoI4DIPLOMACY_H_
-
+#ifndef HOI4_AGREEMENT_H_
+#define HOI4_AGREEMENT_H_
 
 
 #include "Date.h"
-#include <vector>
+#include "../V2World/Vic2Agreement.h"
+#include <string>
+using namespace std;
 
 
 
-class HoI4Agreement;
-
-
-
-class HoI4Diplomacy
+class HoI4Agreement
 {
 	public:
-		HoI4Diplomacy() { agreements.clear(); };
-		void output() const;
+		HoI4Agreement(const string& _country1, const string& _country2, const V2Agreement* oldAgreement);
+		HoI4Agreement(const string& _country1, const string& _country2, const string& _type, int _relationshipValue, const date& _startDate);
 
-		void addAgreement(const HoI4Agreement* agr);
-		const vector<const HoI4Agreement*>& getAgreements() const { return agreements; };
+		bool operator==(const HoI4Agreement &rhs) const
+		{
+			return ((type == rhs.type) && (country1 == rhs.country1) && (country2 == rhs.country2));
+		}
+
+		friend ofstream& operator << (ofstream& output, HoI4Agreement& instance);
+
+		string getType() const { return type; }
 
 	private:
-		vector<const HoI4Agreement*> agreements;
+		string type;
+		string country1;
+		string country2;
+		int relationshipValue;
+		date startDate;
 };
 
 
 
-#endif // HoI4DIPLOMACY_H_
+#endif HOI4_AGREEMENT_H_

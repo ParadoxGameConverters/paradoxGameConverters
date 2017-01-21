@@ -37,6 +37,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../V2World/V2Diplomacy.h"
 #include "../V2World/V2Province.h"
 #include "../V2World/V2Party.h"
+#include "HoI4Agreement.h"
 #include "HoI4Faction.h"
 #include "HoI4Focus.h"
 #include "HoI4FocusTree.h"
@@ -606,6 +607,93 @@ void HoI4World::addLeftoverProvincesToRegions(const map<int, int>& provinceToStr
 			continue;
 		}
 		region->second->addNewProvince(mapping.first);
+	}
+}
+
+
+void HoI4World::convertDiplomacy()
+{
+	LOG(LogLevel::Info) << "Converting diplomacy";
+	convertAgreements();
+	convertRelations();
+}
+
+
+void HoI4World::convertAgreements()
+{
+	for (auto agreement : sourceWorld->getDiplomacy()->getAgreements())
+	{
+		string HoI4Tag1 = CountryMapper::getHoI4Tag(agreement->country1);
+		if (HoI4Tag1.empty())
+		{
+			continue;
+		}
+		string HoI4Tag2 = CountryMapper::getHoI4Tag(agreement->country2);
+		if (HoI4Tag2.empty())
+		{
+			continue;
+		}
+
+		map<string, HoI4Country*>::iterator HoI4Country1 = countries.find(HoI4Tag1);
+		map<string, HoI4Country*>::iterator HoI4Country2 = countries.find(HoI4Tag2);
+		if (HoI4Country1 == countries.end())
+		{
+			LOG(LogLevel::Warning) << "HoI4 country " << HoI4Tag1 << " used in diplomatic agreement doesn't exist";
+			continue;
+		}
+		if (HoI4Country2 == countries.end())
+		{
+			LOG(LogLevel::Warning) << "HoI4 country " << HoI4Tag2 << " used in diplomatic agreement doesn't exist";
+			continue;
+		}
+
+		if ((agreement->type == "alliance") || (agreement->type == "vassal"))
+		{
+			HoI4Agreement* HoI4a = new HoI4Agreement(HoI4Tag1, HoI4Tag2, agreement);
+			diplomacy.addAgreement(HoI4a);
+		}
+
+		if (agreement->type == "alliance")
+		{
+			HoI4Country1->second->editAllies().insert(HoI4Tag2);
+			HoI4Country2->second->editAllies().insert(HoI4Tag1);
+		}
+	}
+}
+
+
+void HoI4World::convertRelations()
+{
+	for (auto country: countries)
+	{
+		for (auto relationItr: country.second->getRelations())
+		{
+			string country1, country2;
+			if (country.first < relationItr.first) // Put it in order to eliminate duplicate relations entries
+			{
+				country1 = country.first;
+				country2 = relationItr.first;
+			}
+			else
+			{
+				country2 = relationItr.first;
+				country1 = country.first;
+			}
+
+			HoI4Agreement* HoI4a = new HoI4Agreement(country1, country2, "relation", relationItr.second->getRelations(), date("1936.1.1"));
+			diplomacy.addAgreement(HoI4a);
+
+			if (relationItr.second->getGuarantee())
+			{
+				HoI4Agreement* HoI4a = new HoI4Agreement(country.first, relationItr.first, "guarantee", 0, date("1936.1.1"));
+				diplomacy.addAgreement(HoI4a);
+			}
+			if (relationItr.second->getSphereLeader())
+			{
+				HoI4Agreement* HoI4a = new HoI4Agreement(country.first, relationItr.first, "sphere", 0, date("1936.1.1"));
+				diplomacy.addAgreement(HoI4a);
+			}
+		}
 	}
 }
 
@@ -1189,109 +1277,6 @@ int HoI4World::calculateStrengthVPs(HoI4Country* country, double greatestStrengt
 {
 	double relativeStrength = country->getStrengthOverTime(1.0) / greatestStrength;
 	return static_cast<int>(relativeStrength * 30.0);
-}
-
-
-void HoI4World::convertDiplomacy()
-{
-	LOG(LogLevel::Info) << "Converting diplomacy";
-	convertAgreements();
-	convertRelations();
-}
-
-
-void HoI4World::convertAgreements()
-{
-	for (auto agreement : sourceWorld->getDiplomacy()->getAgreements())
-	{
-		string HoI4Tag1 = CountryMapper::getHoI4Tag(agreement->country1);
-		if (HoI4Tag1.empty())
-		{
-			continue;
-		}
-		string HoI4Tag2 = CountryMapper::getHoI4Tag(agreement->country2);
-		if (HoI4Tag2.empty())
-		{
-			continue;
-		}
-
-		map<string, HoI4Country*>::iterator HoI4Country1 = countries.find(HoI4Tag1);
-		map<string, HoI4Country*>::iterator HoI4Country2 = countries.find(HoI4Tag2);
-		if (HoI4Country1 == countries.end())
-		{
-			LOG(LogLevel::Warning) << "HoI4 country " << HoI4Tag1 << " used in diplomatic agreement doesn't exist";
-			continue;
-		}
-		if (HoI4Country2 == countries.end())
-		{
-			LOG(LogLevel::Warning) << "HoI4 country " << HoI4Tag2 << " used in diplomatic agreement doesn't exist";
-			continue;
-		}
-
-		// shared diplo types
-		if ((agreement->type == "alliance") || (agreement->type == "vassa"))
-		{
-			// copy agreement
-			HoI4Agreement* HoI4a = new HoI4Agreement;
-			HoI4a->country1 = HoI4Tag1;
-			HoI4a->country2 = HoI4Tag2;
-			HoI4a->start_date = agreement->start_date;
-			HoI4a->type = agreement->type;
-			diplomacy.addAgreement(HoI4a);
-
-			if (agreement->type == "alliance")
-			{
-				HoI4Country1->second->editAllies().insert(HoI4Tag2);
-				HoI4Country2->second->editAllies().insert(HoI4Tag1);
-			}
-		}
-	}
-}
-
-
-void HoI4World::convertRelations()
-{
-	for (auto country: countries)
-	{
-		for (auto relationItr: country.second->getRelations())
-		{
-			HoI4Agreement* HoI4a = new HoI4Agreement;
-			if (country.first < relationItr.first) // Put it in order to eliminate duplicate relations entries
-			{
-				HoI4a->country1 = country.first;
-				HoI4a->country2 = relationItr.first;
-			}
-			else
-			{
-				HoI4a->country2 = relationItr.first;
-				HoI4a->country1 = country.first;
-			}
-
-			HoI4a->value = relationItr.second->getRelations();
-			HoI4a->start_date = date("1930.1.1"); // Arbitrary date
-			HoI4a->type = "relation";
-			diplomacy.addAgreement(HoI4a);
-
-			if (relationItr.second->getGuarantee())
-			{
-				HoI4Agreement* HoI4a = new HoI4Agreement;
-				HoI4a->country1 = country.first;
-				HoI4a->country2 = relationItr.first;
-				HoI4a->start_date = date("1930.1.1"); // Arbitrary date
-				HoI4a->type = "guarantee";
-				diplomacy.addAgreement(HoI4a);
-			}
-			if (relationItr.second->getSphereLeader())
-			{
-				HoI4Agreement* HoI4a = new HoI4Agreement;
-				HoI4a->country1 = country.first;
-				HoI4a->country2 = relationItr.first;
-				HoI4a->start_date = date("1930.1.1"); // Arbitrary date
-				HoI4a->type = "sphere";
-				diplomacy.addAgreement(HoI4a);
-			}
-		}
-	}
 }
 
 

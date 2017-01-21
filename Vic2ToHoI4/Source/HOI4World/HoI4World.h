@@ -98,6 +98,10 @@ class HoI4World
 		void addProvincesToRegion(const HoI4State* state, int regionNum);
 		void addLeftoverProvincesToRegions(const map<int, int>& provinceToStrategicRegionMap);
 
+		void convertDiplomacy();
+		void convertAgreements();
+		void convertRelations();
+
 		void	getProvinceLocalizations(const string& file);
 
 		void determineGreatPowers();
@@ -112,10 +116,6 @@ class HoI4World
 		void addStrengthVPs();
 		double getStrongestCountryStrength();
 		int calculateStrengthVPs(HoI4Country* country, double greatestStrength);
-
-		void convertDiplomacy();
-		void convertAgreements();
-		void convertRelations();
 
 		vector<int>					getPortProvinces(const vector<int>& locationCandidates);
 		vector<int>					getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);

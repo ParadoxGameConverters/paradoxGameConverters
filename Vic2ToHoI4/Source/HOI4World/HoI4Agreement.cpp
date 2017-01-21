@@ -21,33 +21,42 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef HoI4DIPLOMACY_H_
-#define HoI4DIPLOMACY_H_
+#include "HoI4Agreement.h"
+#include <fstream>
 
 
 
-#include "Date.h"
-#include <vector>
-
-
-
-class HoI4Agreement;
-
-
-
-class HoI4Diplomacy
+HoI4Agreement::HoI4Agreement(const string& _country1, const string& _country2, const V2Agreement* oldAgreement)
 {
-	public:
-		HoI4Diplomacy() { agreements.clear(); };
-		void output() const;
-
-		void addAgreement(const HoI4Agreement* agr);
-		const vector<const HoI4Agreement*>& getAgreements() const { return agreements; };
-
-	private:
-		vector<const HoI4Agreement*> agreements;
-};
+	country1 = _country1;
+	country2 = _country2;
+	startDate = oldAgreement->start_date;
+	type = oldAgreement->type;
+}
 
 
+HoI4Agreement::HoI4Agreement(const string& _country1, const string& _country2, const string& _type, int _relationshipValue, const date& _startDate)
+{
+	country1 = _country1;
+	country2 = _country2;
+	startDate = _startDate;
+	type = _type;
+	relationshipValue = _relationshipValue;
+}
 
-#endif // HoI4DIPLOMACY_H_
+
+ofstream& operator << (ofstream& output, HoI4Agreement& instance)
+{
+	output << instance.type << "=\n";
+	output << "{\n";
+	output << "\tfirst=\"" << instance.country1 << "\"\n";
+	output << "\tsecond=\"" << instance.country2 << "\"\n";
+	if (instance.type == "relation")
+	{
+		output << "\tvalue=\"%i\"\n" << instance.relationshipValue;
+	}
+	output << "\tstart_date=\"%s\"\n" << instance.startDate;
+	output << "\tend_date=\"1949.1.1\"\n";
+	output << "}\n";
+	output << "\n";
+}
