@@ -375,7 +375,7 @@ void HoI4World::reportDefaultIndustry()
 		}
 	}
 
-	outputDefaultIndustry(countryIndustry);
+	reportDefaultIndustry(countryIndustry);
 }
 
 
@@ -421,7 +421,7 @@ pair<string, array<int, 3>> HoI4World::getDefaultStateIndustry(string stateFilen
 }
 
 
-void HoI4World::outputDefaultIndustry(const map<string, array<int, 3>>& countryIndustry)
+void HoI4World::reportDefaultIndustry(const map<string, array<int, 3>>& countryIndustry)
 {
 	ofstream report("defaultIndustry.csv");
 	report << "tag,military factories,civilian factories,dockyards,total factories\n";
@@ -698,6 +698,83 @@ void HoI4World::convertRelations()
 }
 
 
+void HoI4World::convertTechs()
+{
+	LOG(LogLevel::Info) << "Converting techs";
+
+	map<string, vector<pair<string, int>>> techMap = importTechMap();
+
+	for (auto dstCountry: countries)
+	{
+		const V2Country* sourceCountry = dstCountry.second->getSourceCountry();
+
+		for (auto technology: sourceCountry->getTechs())
+		{
+			addTechs(dstCountry.second, technology, techMap);
+		}
+		for (auto invention: sourceCountry->getInventions())
+		{
+			addTechs(dstCountry.second, invention, techMap);
+		}
+	}
+}
+
+
+map<string, vector<pair<string, int>>> HoI4World::importTechMap() const
+{
+	map<string, vector<pair<string, int>>> techMap;
+
+	Object* fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
+
+	vector<Object*> mapObj = fileObj->getValue("tech_map");
+	if (mapObj.size() < 1)
+	{
+		LOG(LogLevel::Error) << "Could not read tech map";
+		exit(-1);
+	}
+
+	for (auto link: mapObj[0]->getValue("link"))
+	{
+		vector<pair<string, int> > targetTechs;
+		string tech = "";
+
+		for (auto key: link->getKeys())
+		{
+			if (key == "vic2")
+			{
+				tech = link->getLeaf("vic2");
+			}
+			else
+			{
+				int value = stoi(link->getLeaf(key));
+				targetTechs.push_back(pair<string, int>(key, value));
+			}
+		}
+
+		techMap[tech] = targetTechs;
+	}
+
+	return techMap;
+}
+
+
+void HoI4World::addTechs(HoI4Country* country, const string& oldTech, const map<string, vector<pair<string, int>>>& techMap)
+{
+	auto mapItr = techMap.find(oldTech);
+	if (mapItr == techMap.end())
+	{
+		return;
+	}
+	if (mapItr != techMap.end())
+	{
+		for (auto HoI4TechItr: mapItr->second)
+		{
+			country->setTechnology(HoI4TechItr.first, HoI4TechItr.second);
+		}
+	}
+}
+
+
 void HoI4World::output() const
 {
 	LOG(LogLevel::Info) << "Outputting world";
@@ -937,98 +1014,6 @@ void HoI4World::outputCountries() const
 	for (auto country : countries)
 	{
 		country.second->output(states->getStates(), factions);
-	}
-}
-
-
-void HoI4World::convertTechs()
-{
-	LOG(LogLevel::Info) << "Converting techs";
-
-	map<string, vector<pair<string, int> > > techTechMap;
-	map<string, vector<pair<string, int> > > invTechMap;
-
-	// build tech maps - the code is ugly so the file can be pretty
-	Object* obj = parser_UTF8::doParseFile("tech_mapping.txt");
-	vector<Object*> objs = obj->getValue("tech_map");
-	if (objs.size() < 1)
-	{
-		LOG(LogLevel::Error) << "Could not read tech map!";
-		exit(1);
-	}
-	objs = objs[0]->getValue("link");
-	for (auto itr : objs)
-	{
-		vector<string> keys = itr->getKeys();
-		int status = 0; // 0 = unhandled, 1 = tech, 2 = invention
-		vector<pair<string, int> > targetTechs;
-		string tech = "";
-		for (auto master : keys)
-		{
-			if ((status == 0) && (master == "v2_inv"))
-			{
-				tech = itr->getLeaf("v2_inv");
-				status = 2;
-			}
-			else if ((status == 0) && (master == "v2_tech"))
-			{
-				tech = itr->getLeaf("v2_tech");
-				status = 1;
-			}
-			else
-			{
-				int value = stoi(itr->getLeaf(master));
-				targetTechs.push_back(pair<string, int>(master, value));
-			}
-		}
-		switch (status)
-		{
-		case 0:
-			LOG(LogLevel::Error) << "unhandled tech link with first key " << keys[0] << "!";
-			break;
-		case 1:
-			techTechMap[tech] = targetTechs;
-			break;
-		case 2:
-			invTechMap[tech] = targetTechs;
-			break;
-		}
-	}
-
-
-	for (auto dstCountry : countries)
-	{
-		const V2Country*	sourceCountry = dstCountry.second->getSourceCountry();
-		vector<string>	techs = sourceCountry->getTechs();
-
-		for (auto techName : techs)
-		{
-			auto mapItr = techTechMap.find(techName);
-			if (mapItr != techTechMap.end())
-			{
-				for (auto HoI4TechItr : mapItr->second)
-				{
-					dstCountry.second->setTechnology(HoI4TechItr.first, HoI4TechItr.second);
-				}
-			}
-		}
-
-		auto srcInventions = sourceCountry->getInventions();
-		for (auto invItr : srcInventions)
-		{
-			auto mapItr = invTechMap.find(invItr);
-			if (mapItr == invTechMap.end())
-			{
-				continue;
-			}
-			else
-			{
-				for (auto HoI4TechItr : mapItr->second)
-				{
-					dstCountry.second->setTechnology(HoI4TechItr.first, HoI4TechItr.second);
-				}
-			}
-		}
 	}
 }
 

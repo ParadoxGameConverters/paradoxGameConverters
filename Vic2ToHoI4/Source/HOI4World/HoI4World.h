@@ -52,7 +52,6 @@ class HoI4World
 
 		void	output() const;
 
-		void convertTechs();
 		void generateLeaders();
 		void convertArmies();
 		void convertNavies();
@@ -86,7 +85,7 @@ class HoI4World
 		void reportCountryIndustry();
 		void reportDefaultIndustry();
 		pair<string, array<int, 3>> getDefaultStateIndustry(string stateFilename);
-		void outputDefaultIndustry(const map<string, array<int, 3>>& countryIndustry);
+		void reportDefaultIndustry(const map<string, array<int, 3>>& countryIndustry);
 
 		void convertResources();
 		map<int, map<string, double>> importResourceMap() const;
@@ -101,6 +100,10 @@ class HoI4World
 		void convertDiplomacy();
 		void convertAgreements();
 		void convertRelations();
+
+		void convertTechs();
+		map<string, vector<pair<string, int>>> importTechMap() const;
+		void addTechs(HoI4Country* countryaddTechs, const string& oldTech, const map<string, vector<pair<string, int>>>& techMap);
 
 		void	getProvinceLocalizations(const string& file);
 
