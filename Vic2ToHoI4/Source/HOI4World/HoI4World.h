@@ -52,8 +52,6 @@ class HoI4World
 
 		void	output() const;
 
-		void convertCapitalVPs();
-
 		void outputRelations() const;
 
 		map<string, HoI4Country*> getCountries()	const { return countries; }
@@ -109,18 +107,19 @@ class HoI4World
 
 		void determineGreatPowers();
 
-		void	getProvinceLocalizations(const string& file);
+		void convertCapitalVPs();
+		void addBasicCapitalVPs();
+		void addGreatPowerVPs();
+		void addStrengthVPs();
+		double getStrongestCountryStrength();
+		int calculateStrengthVPs(HoI4Country* country, double greatestStrength);
 
 		void convertAirBases();
 		void addBasicAirBases();
 		void addCapitalAirBases();
 		void addGreatPowerAirBases();
 
-		void addBasicCapitalVPs();
-		void addGreatPowerVPs();
-		void addStrengthVPs();
-		double getStrongestCountryStrength();
-		int calculateStrengthVPs(HoI4Country* country, double greatestStrength);
+		void	getProvinceLocalizations(const string& file);
 
 		vector<int>					getPortProvinces(const vector<int>& locationCandidates);
 		vector<int>					getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);

@@ -834,6 +834,118 @@ void HoI4World::determineGreatPowers()
 }
 
 
+void HoI4World::convertCapitalVPs()
+{
+	LOG(LogLevel::Info) << "Adding bonuses to capitals";
+
+	addBasicCapitalVPs();
+	addGreatPowerVPs();
+	addStrengthVPs();
+}
+
+
+void HoI4World::addBasicCapitalVPs()
+{
+	for (auto countryItr: countries)
+	{
+		countryItr.second->addVPsToCapital(5);
+	}
+}
+
+
+void HoI4World::addGreatPowerVPs()
+{
+	for (auto greatPower: greatPowers)
+	{
+		greatPower->addVPsToCapital(5);
+	}
+}
+
+
+void HoI4World::addStrengthVPs()
+{
+	double greatestStrength = getStrongestCountryStrength();
+	for (auto country: countries)
+	{
+		int VPs = calculateStrengthVPs(country.second, greatestStrength);
+		country.second->addVPsToCapital(VPs);
+	}
+}
+
+
+double HoI4World::getStrongestCountryStrength()
+{
+	double greatestStrength = 0.0;
+	for (auto country: countries)
+	{
+		double currentStrength = country.second->getStrengthOverTime(1.0);
+		if (currentStrength > greatestStrength)
+		{
+			greatestStrength = currentStrength;
+		}
+	}
+
+	return greatestStrength;
+}
+
+
+int HoI4World::calculateStrengthVPs(HoI4Country* country, double greatestStrength)
+{
+	double relativeStrength = country->getStrengthOverTime(1.0) / greatestStrength;
+	return static_cast<int>(relativeStrength * 30.0);
+}
+
+
+void HoI4World::convertAirBases()
+{
+	addBasicAirBases();
+	addCapitalAirBases();
+	addGreatPowerAirBases();
+}
+
+
+void HoI4World::addBasicAirBases()
+{
+	for (auto state: states->getStates())
+	{
+		int numFactories = (state.second->getCivFactories() + state.second->getMilFactories()) / 4;
+		state.second->addAirBase(numFactories);
+
+		if (state.second->getInfrastructure() > 5)
+		{
+			state.second->addAirBase(1);
+		}
+	}
+}
+
+
+void HoI4World::addCapitalAirBases()
+{
+	for (auto country: countries)
+	{
+		auto capitalState = country.second->getCapital();
+		if (capitalState != nullptr)
+		{
+			capitalState->addAirBase(5);
+		}
+	}
+}
+
+
+void HoI4World::addGreatPowerAirBases()
+{
+	for (auto greatPower: greatPowers)
+	{
+		auto capitalState = greatPower->getCapital();
+		if (capitalState != nullptr)
+		{
+			capitalState->addAirBase(5);
+		}
+	}
+}
+
+
+
 void HoI4World::output() const
 {
 	LOG(LogLevel::Info) << "Outputting world";
@@ -1151,117 +1263,6 @@ int HoI4World::getAirLocation(HoI4Province* locationProvince, const HoI4Adjacenc
 	}
 
 	return -1;
-}
-
-
-void HoI4World::convertCapitalVPs()
-{
-	LOG(LogLevel::Info) << "Adding bonuses to capitals";
-
-	addBasicCapitalVPs();
-	addGreatPowerVPs();
-	addStrengthVPs();
-}
-
-
-void HoI4World::convertAirBases()
-{
-	addBasicAirBases();
-	addCapitalAirBases();
-	addGreatPowerAirBases();
-}
-
-
-void HoI4World::addBasicAirBases()
-{
-	for (auto state: states->getStates())
-	{
-		int numFactories = (state.second->getCivFactories() + state.second->getMilFactories()) / 4;
-		state.second->addAirBase(numFactories);
-
-		if (state.second->getInfrastructure() > 5)
-		{
-			state.second->addAirBase(1);
-		}
-	}
-}
-
-
-void HoI4World::addCapitalAirBases()
-{
-	for (auto country: countries)
-	{
-		auto capitalState = country.second->getCapital();
-		if (capitalState != nullptr)
-		{
-			capitalState->addAirBase(5);
-		}
-	}
-}
-
-
-void HoI4World::addGreatPowerAirBases()
-{
-	for (auto greatPower: greatPowers)
-	{
-		auto capitalState = greatPower->getCapital();
-		if (capitalState != nullptr)
-		{
-			capitalState->addAirBase(5);
-		}
-	}
-}
-
-
-void HoI4World::addBasicCapitalVPs()
-{
-	for (auto countryItr: countries)
-	{
-		countryItr.second->addVPsToCapital(5);
-	}
-}
-
-
-void HoI4World::addGreatPowerVPs()
-{
-	for (auto greatPower: greatPowers)
-	{
-		greatPower->addVPsToCapital(5);
-	}
-}
-
-
-void HoI4World::addStrengthVPs()
-{
-	double greatestStrength = getStrongestCountryStrength();
-	for (auto country: countries)
-	{
-		int VPs = calculateStrengthVPs(country.second, greatestStrength);
-		country.second->addVPsToCapital(VPs);
-	}
-}
-
-
-double HoI4World::getStrongestCountryStrength()
-{
-	double greatestStrength = 0.0;
-	for (auto country: countries)
-	{
-		double currentStrength = country.second->getStrengthOverTime(1.0);
-		if (currentStrength > greatestStrength)
-		{
-			greatestStrength = currentStrength;
-		}
-	}
-
-	return greatestStrength;
-}
-
-
-int HoI4World::calculateStrengthVPs(HoI4Country* country, double greatestStrength)
-{
-	double relativeStrength = country->getStrengthOverTime(1.0) / greatestStrength;
-	return static_cast<int>(relativeStrength * 30.0);
 }
 
 
