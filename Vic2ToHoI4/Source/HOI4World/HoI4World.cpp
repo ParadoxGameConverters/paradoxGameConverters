@@ -786,6 +786,54 @@ void HoI4World::generateLeaders()
 }
 
 
+void HoI4World::convertArmies()
+{
+	LOG(LogLevel::Info) << "Converting armies";
+
+	for (auto country: countries)
+	{
+		country.second->convertArmyDivisions();
+	}
+}
+
+
+void HoI4World::convertNavies()
+{
+	LOG(LogLevel::Info) << "Converting navies";
+
+	for (auto country : countries)
+	{
+		country.second->convertNavy(states->getStates());
+	}
+}
+
+
+void HoI4World::convertAirforces()
+{
+	LOG(LogLevel::Info) << "Converting air forces";
+
+	for (auto country : countries)
+	{
+		country.second->convertAirforce();
+	}
+}
+
+
+void HoI4World::determineGreatPowers()
+{
+	for (auto greatPowerVic2Tag: sourceWorld->getGreatPowers())
+	{
+		string greatPowerTag = CountryMapper::getHoI4Tag(greatPowerVic2Tag);
+		auto greatPower = countries.find(greatPowerTag);
+		if (greatPower != countries.end())
+		{
+			greatPowers.push_back(greatPower->second);
+			greatPower->second->setGreatPower();
+		}
+	}
+}
+
+
 void HoI4World::output() const
 {
 	LOG(LogLevel::Info) << "Outputting world";
@@ -1103,54 +1151,6 @@ int HoI4World::getAirLocation(HoI4Province* locationProvince, const HoI4Adjacenc
 	}
 
 	return -1;
-}
-
-
-void HoI4World::convertArmies()
-{
-	LOG(LogLevel::Info) << "Converting armies";
-
-	for (auto country : countries)
-	{
-		country.second->convertArmyDivisions();
-	}
-}
-
-
-void HoI4World::convertNavies()
-{
-	LOG(LogLevel::Info) << "Converting navies";
-
-	for (auto country : countries)
-	{
-		country.second->convertNavy(states->getStates());
-	}
-}
-
-
-void HoI4World::convertAirforces()
-{
-	LOG(LogLevel::Info) << "Converting air forces";
-
-	for (auto country : countries)
-	{
-		country.second->convertAirforce();
-	}
-}
-
-
-void HoI4World::determineGreatPowers()
-{
-	for (auto greatPowerVic2Tag: sourceWorld->getGreatPowers())
-	{
-		string greatPowerTag = CountryMapper::getHoI4Tag(greatPowerVic2Tag);
-		auto greatPower = countries.find(greatPowerTag);
-		if (greatPower != countries.end())
-		{
-			greatPowers.push_back(greatPower->second);
-			greatPower->second->setGreatPower();
-		}
-	}
 }
 
 

@@ -52,9 +52,6 @@ class HoI4World
 
 		void	output() const;
 
-		void convertArmies();
-		void convertNavies();
-		void convertAirforces();
 		void convertCapitalVPs();
 
 		void outputRelations() const;
@@ -106,9 +103,13 @@ class HoI4World
 
 		void generateLeaders();
 
-		void	getProvinceLocalizations(const string& file);
+		void convertArmies();
+		void convertNavies();
+		void convertAirforces();
 
 		void determineGreatPowers();
+
+		void	getProvinceLocalizations(const string& file);
 
 		void convertAirBases();
 		void addBasicAirBases();
