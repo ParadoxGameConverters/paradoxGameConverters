@@ -1,12 +1,24 @@
 # unit_base is the base value used for evaluating how important it is to deploy the various categories
 # Written by Henrik "Groogy" Hansson
+# Changed by Daniel "Da9L" Sjöberg
+
+# befriend
+# conquer
+# antagonize
+# build_ship
+# build_army
+# unit_ratio
+# build_building
+# research_tech
+# garrison
+# protect
+# influence
+# contain
+# area_priority
 
 default_unit_production = {
 	enable = {
 		always = yes
-	}
-	abort = {
-		always = no
 	}
 
 	ai_strategy = {
@@ -48,13 +60,13 @@ default_unit_production = {
 	ai_strategy = {
 		type = unit_base
 		id = armor
-		value = 7
+		value = 20
 	}
 
 	ai_strategy = {
 		type = unit_base
 		id = infantry
-		value = 90 # Since all other values are 0 this means 100%
+		value = 75 # Since all other values are 0 this means 100%
 	}
 
 
@@ -86,22 +98,23 @@ default_unit_production = {
 	ai_strategy = {
 		type = equipment_production_factor
 		id = fighter
-		value = 125
+		value = 25
 	}
 	
 	ai_strategy = {
 		type = equipment_production_factor
 		id = infantry
-		value = 35
+		value = 20
 	}
 }
 
+
 default_paratroopers_production = {
 	enable = {
-		ai_wants_divisions > 94
+		ai_wants_divisions >  12 #Massively decreasing the amount of paratroopers the AI wants
 	}
 	abort = {
-		ai_wants_divisions < 95
+		ai_wants_divisions < 13 #Massively decreasing the amount of paratroopers the AI wants
 	}
 
 	ai_strategy = {
@@ -109,32 +122,20 @@ default_paratroopers_production = {
 		id = paratroopers
 		value = 2
 	}
-
-	ai_strategy = {
-		type = unit_base
-		id = infantry
-		value = -2
-	}
 }
 
 default_mountaineers_production = {
 	enable = {
-		ai_wants_divisions > 49
+		ai_wants_divisions > 24 #Decreasing the amount of mountaineers the AI wants
 	}
 	abort = {
-		ai_wants_divisions < 50
+		ai_wants_divisions < 25 #Decreasing the amount of mountaineers the AI wants
 	}
 
 	ai_strategy = {
 		type = unit_base
 		id = mountaineers
-		value = 3
-	}
-
-	ai_strategy = {
-		type = unit_base
-		id = infantry
-		value = -3
+		value = 1
 	}
 }
 
@@ -161,22 +162,16 @@ default_marines_production = {
 
 default_cavalry_production = {
 	enable = {
-		ai_wants_divisions > 49
+		ai_wants_divisions > 0 #Removing the amount of cavalry the AI wants
 	}
 	abort = {
-		ai_wants_divisions < 50
+		ai_wants_divisions < 1 #Removing the amount of cavalry the AI wants
 	}
 
 	ai_strategy = {
 		type = unit_base
 		id = cavalry
 		value = 3
-	}
-
-	ai_strategy = {
-		type = unit_base
-		id = infantry
-		value = -3
 	}
 }
 
@@ -199,6 +194,7 @@ default_motorized_production = {
 		id = infantry
 		value = -4
 	}
+
 }
 
 default_mechanized_production = {
@@ -254,7 +250,7 @@ highered_armored_production = {
 	ai_strategy = {
 		type = unit_base
 		id = armor
-		value = 2
+		value = 5
 	}
 }
 
@@ -290,14 +286,13 @@ slightly_naval_focused_nation = {
 
 more_naval_focused_nation = {
 	enable = {
-		
-		date > "1938.1.1"
+		date > "1941.1.1" #Delaying it by a couple of years
 	}
 
 	ai_strategy = {
 		type = unit_base
 		id = capital_ship
-		value = 1
+		value = 2		 #1 to 2
 	}
 
 	ai_strategy = {
@@ -319,33 +314,58 @@ more_naval_focused_nation = {
 	}
 }
 
-less_naval_focused_nation = {
+
+default_area_priority = {
 	enable = {
-		
-		date < "1938.1.1"
 	}
 
 	ai_strategy = {
-		type = unit_base
-		id = capital_ship
-		value = -1
+		type = area_priority
+		id = europe
+		value = 100
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = north_america
+		value = 100
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = south_america
+		value = 50
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = asia
+		value = 75
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = middle_east
+		value = 50
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = africa
+		value = -25
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = pacific
+		value = 300
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = oceania
+		value = 80
 	}
 
-	ai_strategy = {
-		type = unit_base
-		id = submarine
-		value = -1
-	}
-
-	ai_strategy = {
-		type = unit_base
-		id = screen_ship
-		value = -1
-	}
-
-	ai_strategy = {
-		type = unit_base
-		id = convoy
-		value = -1
-	}
 }
+

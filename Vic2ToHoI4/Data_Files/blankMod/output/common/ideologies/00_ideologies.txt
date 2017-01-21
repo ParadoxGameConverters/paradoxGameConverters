@@ -315,9 +315,8 @@ ideologies = {
 		}
 		ai_neutral = yes # 
 	}
-	
-	
-	
+
+
 	communism = {
 		
 		types = {
