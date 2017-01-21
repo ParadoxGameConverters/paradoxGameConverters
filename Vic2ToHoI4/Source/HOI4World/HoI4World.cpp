@@ -62,7 +62,6 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	events = new HoI4Events;
 	supplyZones = new HoI4SupplyZones(HoI4DefaultStateToProvinceMap);
 
-	importStrategicRegions();
 	states->convertStates();
 	convertNavalBases();
 	convertCountries();
@@ -85,23 +84,6 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	HoI4WarCreator warCreator;
 	warCreator.generateWars(this);
 	buildings = new HoI4Buildings(states->getProvinceToStateIDMap());
-}
-
-
-void HoI4World::importStrategicRegions()
-{
-	set<string> filenames;
-	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/map/strategicregions/", filenames);
-	for (auto filename: filenames)
-	{
-		HoI4StrategicRegion* newRegion = new HoI4StrategicRegion(filename);
-		strategicRegions.insert(make_pair(newRegion->getID(), newRegion));
-
-		for (auto province: newRegion->getOldProvinces())
-		{
-			provinceToStratRegionMap.insert(make_pair(province, newRegion->getID()));
-		}
-	}
 }
 
 
@@ -515,6 +497,119 @@ map<int, map<string, double>> HoI4World::importResourceMap() const
 }
 
 
+void HoI4World::convertStrategicRegions()
+{
+	map<int, int> provinceToStrategicRegionMap = importStrategicRegions();
+
+	for (auto state : states->getStates())
+	{
+		map<int, int> usedRegions = determineUsedRegions(state.second, provinceToStrategicRegionMap);
+		int bestRegion = determineMostUsedRegion(usedRegions);
+		addProvincesToRegion(state.second, bestRegion);
+	}
+	addLeftoverProvincesToRegions(provinceToStrategicRegionMap);
+}
+
+
+map<int, int> HoI4World::importStrategicRegions()
+{
+	map<int, int> provinceToStrategicRegionMap;
+
+	set<string> filenames;
+	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/map/strategicregions/", filenames);
+	for (auto filename: filenames)
+	{
+		HoI4StrategicRegion* newRegion = new HoI4StrategicRegion(filename);
+		strategicRegions.insert(make_pair(newRegion->getID(), newRegion));
+
+		for (auto province: newRegion->getOldProvinces())
+		{
+			provinceToStrategicRegionMap.insert(make_pair(province, newRegion->getID()));
+		}
+	}
+
+	return provinceToStrategicRegionMap;
+}
+
+
+map<int, int> HoI4World::determineUsedRegions(const HoI4State* state, map<int, int>& provinceToStrategicRegionMap)
+{
+	map<int, int> usedRegions;	// region ID -> number of provinces in that region
+
+	for (auto province: state->getProvinces())
+	{
+		auto mapping = provinceToStrategicRegionMap.find(province);
+		if (mapping == provinceToStrategicRegionMap.end())
+		{
+			LOG(LogLevel::Warning) << "Province " << province << " had no original strategic region";
+			continue;
+		}
+
+		auto usedRegion = usedRegions.find(mapping->second);
+		if (usedRegion == usedRegions.end())
+		{
+			usedRegions.insert(make_pair(mapping->second, 1));
+		}
+		else
+		{
+			usedRegion->second++;
+		}
+
+		provinceToStrategicRegionMap.erase(mapping);
+	}
+
+	return usedRegions;
+}
+
+
+int HoI4World::determineMostUsedRegion(const map<int, int>& usedRegions) const
+{
+	int mostProvinces = 0;
+	int bestRegion = 0;
+	for (auto region: usedRegions)
+	{
+		if (region.second > mostProvinces)
+		{
+			bestRegion = region.first;
+			mostProvinces = region.second;
+		}
+	}
+
+	return bestRegion;
+}
+
+
+void HoI4World::addProvincesToRegion(const HoI4State* state, int regionNum)
+{
+	auto region = strategicRegions.find(regionNum);
+	if (region == strategicRegions.end())
+	{
+		LOG(LogLevel::Warning) << "Strategic region " << regionNum << " was not in the list of regions.";
+		return;
+	}
+
+	for (auto province : state->getProvinces())
+	{
+		region->second->addNewProvince(province);
+	}
+}
+
+
+void HoI4World::addLeftoverProvincesToRegions(const map<int, int>& provinceToStrategicRegionMap)
+{
+	for (auto mapping: provinceToStrategicRegionMap)
+	{
+		auto region = strategicRegions.find(mapping.second);
+		if (region == strategicRegions.end())
+		{
+			LOG(LogLevel::Warning) << "Strategic region " << mapping.second << " was not in the list of regions.";
+			continue;
+		}
+		region->second->addNewProvince(mapping.first);
+	}
+}
+
+
 void HoI4World::output() const
 {
 	LOG(LogLevel::Info) << "Outputting world";
@@ -754,74 +849,6 @@ void HoI4World::outputCountries() const
 	for (auto country : countries)
 	{
 		country.second->output(states->getStates(), factions);
-	}
-}
-
-
-void HoI4World::convertStrategicRegions()
-{
-	// assign the states to strategic regions
-	for (auto state : states->getStates())
-	{
-		// figure out which strategic regions are represented
-		map<int, int> usedRegions;	// region ID -> number of provinces in that region
-		for (auto province : state.second->getProvinces())
-		{
-			auto mapping = provinceToStratRegionMap.find(province);
-			if (mapping == provinceToStratRegionMap.end())
-			{
-				LOG(LogLevel::Warning) << "Province " << province << " had no original strategic region";
-				continue;
-			}
-
-			auto usedRegion = usedRegions.find(mapping->second);
-			if (usedRegion == usedRegions.end())
-			{
-				usedRegions.insert(make_pair(mapping->second, 1));
-			}
-			else
-			{
-				usedRegion->second++;
-			}
-
-			provinceToStratRegionMap.erase(mapping);
-		}
-
-		// pick the most represented strategic region
-		int mostProvinces = 0;
-		int bestRegion = 0;
-		for (auto region : usedRegions)
-		{
-			if (region.second > mostProvinces)
-			{
-				bestRegion = region.first;
-				mostProvinces = region.second;
-			}
-		}
-
-		// add the state's province to the region
-		auto region = strategicRegions.find(bestRegion);
-		if (region == strategicRegions.end())
-		{
-			LOG(LogLevel::Warning) << "Strategic region " << bestRegion << " was not in the list of regions.";
-			continue;
-		}
-		for (auto province : state.second->getProvinces())
-		{
-			region->second->addNewProvince(province);
-		}
-	}
-
-	// add leftover provinces back to their strategic regions
-	for (auto mapping : provinceToStratRegionMap)
-	{
-		auto region = strategicRegions.find(mapping.second);
-		if (region == strategicRegions.end())
-		{
-			LOG(LogLevel::Warning) << "Strategic region " << mapping.second << " was not in the list of regions.";
-			continue;
-		}
-		region->second->addNewProvince(mapping.first);
 	}
 }
 

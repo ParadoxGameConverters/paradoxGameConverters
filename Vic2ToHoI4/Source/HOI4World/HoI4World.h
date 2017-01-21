@@ -52,7 +52,6 @@ class HoI4World
 
 		void	output() const;
 
-		void convertStrategicRegions();
 		void convertTechs();
 		void generateLeaders();
 		void convertArmies();
@@ -69,7 +68,6 @@ class HoI4World
 		HoI4Events* getEvents() const { return events; }
 
 	private:
-		void importStrategicRegions();
 		void convertNavalBases();
 
 		void convertCountries();
@@ -92,6 +90,13 @@ class HoI4World
 
 		void convertResources();
 		map<int, map<string, double>> importResourceMap() const;
+
+		void convertStrategicRegions();
+		map<int, int> importStrategicRegions();
+		map<int, int> determineUsedRegions(const HoI4State* state, map<int, int>& provinceToStrategicRegionMap);
+		int determineMostUsedRegion(const map<int, int>& usedRegions) const;
+		void addProvincesToRegion(const HoI4State* state, int regionNum);
+		void addLeftoverProvincesToRegions(const map<int, int>& provinceToStrategicRegionMap);
 
 		void	getProvinceLocalizations(const string& file);
 
@@ -147,7 +152,6 @@ class HoI4World
 		// map items
 		map<int, string>						continents;  // < province, continent >
 		map<int, HoI4StrategicRegion*>	strategicRegions;
-		map<int, int>							provinceToStratRegionMap;
 
 		HoI4Localisation				localisation;
 
