@@ -52,7 +52,6 @@ class HoI4World
 
 		void	output() const;
 
-		void generateLeaders();
 		void convertArmies();
 		void convertNavies();
 		void convertAirforces();
@@ -104,6 +103,8 @@ class HoI4World
 		void convertTechs();
 		map<string, vector<pair<string, int>>> importTechMap() const;
 		void addTechs(HoI4Country* countryaddTechs, const string& oldTech, const map<string, vector<pair<string, int>>>& techMap);
+
+		void generateLeaders();
 
 		void	getProvinceLocalizations(const string& file);
 

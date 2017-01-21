@@ -775,6 +775,17 @@ void HoI4World::addTechs(HoI4Country* country, const string& oldTech, const map<
 }
 
 
+void HoI4World::generateLeaders()
+{
+	LOG(LogLevel::Info) << "Generating Leaders";
+
+	for (auto country: countries)
+	{
+		country.second->generateLeaders(leaderTraits, namesMap, portraitMap);
+	}
+}
+
+
 void HoI4World::output() const
 {
 	LOG(LogLevel::Info) << "Outputting world";
@@ -1092,17 +1103,6 @@ int HoI4World::getAirLocation(HoI4Province* locationProvince, const HoI4Adjacenc
 	}
 
 	return -1;
-}
-
-
-void HoI4World::generateLeaders()
-{
-	LOG(LogLevel::Info) << "Generating Leaders";
-
-	for (auto country : countries)
-	{
-		country.second->generateLeaders(leaderTraits, namesMap, portraitMap);
-	}
 }
 
 
