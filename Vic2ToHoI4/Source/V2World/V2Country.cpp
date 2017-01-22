@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -96,7 +96,7 @@ void V2Country::readInCulture(const Object* countryObj)
 	}
 }
 
-void readInCivilized(const Object* countryObj)
+void V2Country::readInCivilized(const Object* countryObj)
 {
 	vector<Object*> primaryCultureObjs = countryObj->getValue("civilized");
 	if (primaryCultureObjs.size() > 0)
