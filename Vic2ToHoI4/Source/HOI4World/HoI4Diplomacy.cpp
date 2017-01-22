@@ -32,6 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 void HoI4Diplomacy::output() const
 {
+	/*LOG(LogLevel::Debug) << "Writing diplomacy";
 	fstream alliances("Output/" + Configuration::getOutputName() + "/history/diplomacy/Alliances.txt");
 	if (alliances.is_open())
 	{
@@ -88,7 +89,7 @@ void HoI4Diplomacy::output() const
 	alliances.close();
 	guarantees.close();
 	puppetStates.close();
-	relations.close();
+	relations.close();*/
 }
 
 

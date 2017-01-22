@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -64,7 +64,7 @@ public:
 	void		output(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const;
 	void		outputCommonCountryFile() const;
 	void		outputColors(ofstream& out) const;
-	void		outputToCommonCountriesFile(FILE*) const;
+	void outputToCommonCountriesFile(ofstream& countriesFile) const;
 
 	void		initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, map<int, int>& leaderMap, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states);
 	void		initFromHistory();

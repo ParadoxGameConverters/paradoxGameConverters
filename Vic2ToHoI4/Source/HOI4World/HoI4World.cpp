@@ -1078,24 +1078,11 @@ void HoI4World::output() const
 {
 	LOG(LogLevel::Info) << "Outputting world";
 
-	string NFpath = "Output/" + Configuration::getOutputName() + "/common/national_focus";
-	if (!Utils::TryCreateFolder(NFpath))
-	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/national_focus\"";
-		exit(-1);
-	}
-	string eventpath = "Output/" + Configuration::getOutputName() + "/events";
-	if (!Utils::TryCreateFolder(eventpath))
-	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/events\"";
-		exit(-1);
-	}
-
 	outputCommonCountries();
 	outputColorsfile();
-	//outputAutoexecLua();
 	HoI4Localisation::output();
-	outputHistory();
+	states->output();
+	diplomacy.output();
 	outputMap();
 	supplyZones->output();
 	outputRelations();
@@ -1107,50 +1094,41 @@ void HoI4World::output() const
 
 void HoI4World::outputCommonCountries() const
 {
-	// Create common\countries path.
-	string countriesPath = "Output/" + Configuration::getOutputName() + "/common";
-	/*if (!Utils::TryCreateFolder(countriesPath))
-	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common\"";
-		exit(-1);
-	}*/
-	if (!Utils::TryCreateFolder(countriesPath + "/countries"))
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/common/countries"))
 	{
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/countries\"";
 		exit(-1);
 	}
-	if (!Utils::TryCreateFolder(countriesPath + "/country_tags"))
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/common/country_tags"))
 	{
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/country_tags\"";
 		exit(-1);
 	}
 
-	// Output common\countries.txt
 	LOG(LogLevel::Debug) << "Writing countries file";
-	FILE* allCountriesFile;
-	if (fopen_s(&allCountriesFile, ("Output/" + Configuration::getOutputName() + "/common/country_tags/00_countries.txt").c_str(), "w") != 0)
+	ofstream allCountriesFile("Output/" + Configuration::getOutputName() + "/common/country_tags/00_countries.txt");
+	if (!allCountriesFile.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create countries file";
 		exit(-1);
 	}
 
-	for (auto countryItr : countries)
+	for (auto countryItr: countries)
 	{
 		if (countryItr.second->getCapitalNum() != 0)
 		{
 			countryItr.second->outputToCommonCountriesFile(allCountriesFile);
 		}
 	}
-	fprintf(allCountriesFile, "\n");
-	fclose(allCountriesFile);
+
+	allCountriesFile << "\n";
+	allCountriesFile.close();
 }
 
 
 void HoI4World::outputColorsfile() const
 {
-
-	ofstream output;
-	output.open(("Output/" + Configuration::getOutputName() + "/common/countries/colors.txt"));
+	ofstream output("Output/" + Configuration::getOutputName() + "/common/countries/colors.txt");
 	if (!output.is_open())
 	{
 		Log(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/common/countries/colors.txt";
@@ -1158,7 +1136,7 @@ void HoI4World::outputColorsfile() const
 	}
 
 	output << "#reload countrycolors\n";
-	for (auto countryItr : countries)
+	for (auto countryItr: countries)
 	{
 		if (countryItr.second->getCapitalNum() != 0)
 		{
@@ -1170,92 +1148,56 @@ void HoI4World::outputColorsfile() const
 }
 
 
-void HoI4World::outputAutoexecLua() const
-{
-	// output autoexec.lua
-	FILE* autoexec;
-	if (fopen_s(&autoexec, ("Output/" + Configuration::getOutputName() + "/script/autoexec.lua").c_str(), "w") != 0)
-	{
-		LOG(LogLevel::Error) << "Could not create autoexec.lua";
-		exit(-1);
-	}
-
-	ifstream sourceFile;
-	sourceFile.open("autoexecTEMPLATE.lua", ifstream::in);
-	if (!sourceFile.is_open())
-	{
-		LOG(LogLevel::Error) << "Could not open autoexecTEMPLATE.lua";
-		exit(-1);
-	}
-	while (!sourceFile.eof())
-	{
-		string line;
-		getline(sourceFile, line);
-		fprintf(autoexec, "%s\n", line.c_str());
-	}
-	sourceFile.close();
-
-	fprintf(autoexec, "\n");
-	fclose(autoexec);
-}
-
-
 void HoI4World::outputMap() const
 {
 	LOG(LogLevel::Debug) << "Writing Map Info";
 
-	// create the map folder
 	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/map"))
 	{
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/map";
 		exit(-1);
 	}
 
-	// create the rocket sites file
 	ofstream rocketSitesFile("Output/" + Configuration::getOutputName() + "/map/rocketsites.txt");
 	if (!rocketSitesFile.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create Output/" << Configuration::getOutputName() << "/map/rocketsites.txt";
 		exit(-1);
 	}
-	for (auto state : states->getStates())
+	for (auto state: states->getStates())
 	{
 		auto provinces = state.second->getProvinces();
 		rocketSitesFile << state.second->getID() << " = { " << *provinces.begin() << " }\n";
 	}
 	rocketSitesFile.close();
 
-	// create the airports file
 	ofstream airportsFile("Output/" + Configuration::getOutputName() + "/map/airports.txt");
 	if (!airportsFile.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create Output/" << Configuration::getOutputName() << "/map/airports.txt";
 		exit(-1);
 	}
-	for (auto state : states->getStates())
+	for (auto state: states->getStates())
 	{
 		auto provinces = state.second->getProvinces();
 		airportsFile << state.second->getID() << " = { " << *provinces.begin() << " }\n";
 	}
 	airportsFile.close();
 
-	// output strategic regions
 	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/map/strategicregions"))
 	{
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/map/strategicregions";
 		exit(-1);
 	}
-	for (auto strategicRegion : strategicRegions)
+	for (auto strategicRegion: strategicRegions)
 	{
 		strategicRegion.second->output("Output/" + Configuration::getOutputName() + "/map/strategicregions/");
 	}
 }
 
 
-void HoI4World::outputHistory() const
+void HoI4World::outputCountries() const
 {
-	states->output();
-
 	LOG(LogLevel::Debug) << "Writing countries";
 	string unitsPath = "Output/" + Configuration::getOutputName() + "/history/units";
 	if (!Utils::TryCreateFolder(unitsPath))
@@ -1263,19 +1205,8 @@ void HoI4World::outputHistory() const
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history/units";
 		exit(-1);
 	}
-	/*for (auto countryItr: countries)
-	{
-		countryItr.second->output(states->getStates(), );
-	}*/
 
-	LOG(LogLevel::Debug) << "Writing diplomacy";
-	//diplomacy.output();
-}
-
-
-void HoI4World::outputCountries() const
-{
-	for (auto country : countries)
+	for (auto country: countries)
 	{
 		country.second->output(states->getStates(), factions);
 	}
@@ -1298,21 +1229,20 @@ void HoI4World::outputRelations() const
 	}
 
 	out << "opinion_modifiers = {\n";
-	for (auto country: countries)
+	for (int i = -200; i <= 200; i++)
 	{
-		for (auto relation: country.second->getRelations())
+		if (i < 0)
 		{
-			if (country.first == relation.first)
-			{
-				continue;
-			}
-
-			out << country.first << "_" << relation.first << " = {\n";
-			out << "\tvalue = " << relation.second->getRelations() << "\n";
-			out << "}\n";
+			out << "negative_";
 		}
+		else
+		{
+			out << "positive_";
+		}
+		out << abs(i) << " = {\n";
+		out << "\tvalue = " << i << "\n";
+		out << "}\n";
 	}
-
 	out << "}\n";
 
 	out.close();

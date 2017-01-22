@@ -50,9 +50,7 @@ class HoI4World
 	public:
 		HoI4World(const V2World* sourceWorld);
 
-		void	output() const;
-
-		void outputRelations() const;
+		void output() const;
 
 		map<string, HoI4Country*> getCountries()	const { return countries; }
 		vector<HoI4Country*> getGreatPowers() const { return greatPowers; }
@@ -126,10 +124,9 @@ class HoI4World
 
 		void outputCommonCountries() const;
 		void outputColorsfile() const;
-		void outputAutoexecLua() const;
 		void outputMap() const;
-		void outputHistory() const;
 		void outputCountries() const;
+		void outputRelations() const;
 
 		/*vector<int> getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		vector<int> getPortProvinces(const vector<int>& locationCandidates);

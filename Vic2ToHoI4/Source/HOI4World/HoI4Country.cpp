@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -416,10 +416,12 @@ void HoI4Country::outputColors(ofstream& out) const
 	out << "}\n";
 }
 
-void HoI4Country::outputToCommonCountriesFile(FILE* output) const
+
+void HoI4Country::outputToCommonCountriesFile(ofstream& countriesFile) const
 {
-	fprintf(output, "%s = \"countries%s\"\n", tag.c_str(), Utils::convertUTF8ToASCII(commonCountryFile).c_str());
+	countriesFile << tag.c_str() << " = \"countries" << Utils::convertUTF8ToASCII(commonCountryFile) << "\"\n";
 }
+
 
 void HoI4Country::outputPracticals(FILE* output) const
 {
@@ -509,16 +511,27 @@ void HoI4Country::outputLeaders() const
 	LOG(LogLevel::Info) << tag << " has " << landLeaders << " land leaders, " << seaLeaders << " sea leaders, and " << airLeaders << " air leaders.";
 }
 
+
 void HoI4Country::outputRelations(ofstream& output) const
 {
-	for (auto relation : relations)
+	for (auto relation: relations)
 	{
 		if (relation.first != tag)
 		{
-			output << "add_opinion_modifier = { target = " << relation.first << " modifier = " << tag << "_" << relation.first << " }\n";
+			output << "add_opinion_modifier = { target = " << relation.first << " modifier = ";
+			if (relation.second->getRelations() < 0)
+			{
+				output << "negative_";
+			}
+			else
+			{
+				output << "positive_";
+			}
+			output << abs(relation.second->getRelations()) << " }\n";
 		}
 	}
 }
+
 
 void HoI4Country::outputOOB() const
 {
