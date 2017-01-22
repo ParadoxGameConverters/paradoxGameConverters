@@ -946,6 +946,133 @@ void HoI4World::addGreatPowerAirBases()
 }
 
 
+void HoI4World::createFactions()
+{
+	LOG(LogLevel::Info) << "Creating Factions";
+
+	ofstream factionsLog("factions-logs.csv");
+	factionsLog << "name,government,initial strength,factory strength per year,factory strength by 1939\n";
+
+	for (auto leader: greatPowers)
+	{
+		if (leader->isInFaction())
+		{
+			continue;
+		}
+		factionsLog << "\n";
+
+		vector<HoI4Country*> factionMembers;
+		factionMembers.push_back(leader);
+
+		string leaderGovernment = leader->getGovernment();
+		logFactionMember(factionsLog, leader);
+		double factionMilStrength = leader->getStrengthOverTime(3.0);
+
+		for (auto allyTag: leader->getAllies())
+		{
+			auto ally = countries.find(allyTag);
+			if (ally == countries.end())
+			{
+				continue;
+			}
+
+			HoI4Country* allycountry = ally->second;
+			string allygovernment = allycountry->getGovernment();
+			string sphereLeader = returnSphereLeader(allycountry);
+
+			if ((sphereLeader == leader->getTag()) || ((sphereLeader == "") && governmentsAllowFaction(leaderGovernment, allygovernment)))
+			{
+				logFactionMember(factionsLog, allycountry);
+				factionMembers.push_back(allycountry);
+
+				factionMilStrength += allycountry->getStrengthOverTime(1.0);
+			}
+		}
+
+		HoI4Faction* newFaction = new HoI4Faction(leader, factionMembers);
+		for (auto member: factionMembers)
+		{
+			member->setFaction(newFaction);
+		}
+		factions.push_back(newFaction);
+
+		factionsLog << "Faction Strength in 1939," << factionMilStrength << "\n";
+	}
+
+	factionsLog.close();
+}
+
+
+void HoI4World::logFactionMember(ofstream& factionsLog, const HoI4Country* member)
+{
+	factionsLog << member->getSourceCountry()->getName("english") << ",";
+	factionsLog << member->getGovernment() << ",";
+	factionsLog << member->getMilitaryStrength() << ",";
+	factionsLog << member->getEconomicStrength(1.0) << ",";
+	factionsLog << member->getEconomicStrength(3.0) << "\n";
+}
+
+
+string HoI4World::returnSphereLeader(HoI4Country* possibleSphereling)
+{
+	for (auto greatPower: greatPowers)
+	{
+		auto relations = greatPower->getRelations();
+		auto relation = relations.find(possibleSphereling->getTag());
+		if (relation != relations.end())
+		{
+			if (relation->second->getSphereLeader())
+			{
+				return greatPower->getTag();
+			}
+		}
+	}
+
+	return "";
+}
+
+
+bool HoI4World::governmentsAllowFaction(string leaderGovernment, string allyGovernment)
+{
+	if (leaderGovernment == allyGovernment)
+	{
+		return true;
+	}
+	else if (leaderGovernment == "absolute_monarchy" && (allyGovernment == "fascism" || allyGovernment == "democratic" || allyGovernment == "prussian_constitutionalism" || allyGovernment == "hms_government"))
+	{
+		return true;
+	}
+	else if (leaderGovernment == "democratic" && (allyGovernment == "hms_government" || allyGovernment == "absolute_monarchy" || allyGovernment == "prussian_constitutionalism"))
+	{
+		return true;
+	}
+	else if (leaderGovernment == "prussian_constitutionalism" && (allyGovernment == "hms_government" || allyGovernment == "absolute_monarchy" || allyGovernment == "democratic" || allyGovernment == "fascism"))
+	{
+		return true;
+	}
+	else if (leaderGovernment == "hms_government" && (allyGovernment == "democratic" || allyGovernment == "absolute_monarchy" || allyGovernment == "prussian_constitutionalism"))
+	{
+		return true;
+	}
+	else if (leaderGovernment == "communism" && (allyGovernment == "syndicalism"))
+	{
+		return true;
+	}
+	else if (leaderGovernment == "syndicalism" && (allyGovernment == "communism" || allyGovernment == "fascism"))
+	{
+		return true;
+	}
+	else if (leaderGovernment == "fascism" && (allyGovernment == "syndicalism" || allyGovernment == "absolute_monarchy" || allyGovernment == "prussian_constitutionalism"))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+
 
 void HoI4World::output() const
 {
@@ -1146,109 +1273,12 @@ void HoI4World::outputHistory() const
 }
 
 
-void HoI4World::getProvinceLocalizations(const string& file)
-{
-	ifstream read;
-	string line;
-	read.open(file);
-	while (read.good() && !read.eof())
-	{
-		getline(read, line);
-		if (line.substr(0, 4) == "PROV" && isdigit(line[4]))
-		{
-			int position = line.find_first_of(';');
-			int num = stoi(line.substr(4, position - 4));
-			string name = line.substr(position + 1, line.find_first_of(';', position + 1) - position - 1);
-			provinces[num]->setName(name);
-		}
-	}
-	read.close();
-}
-
-
 void HoI4World::outputCountries() const
 {
 	for (auto country : countries)
 	{
 		country.second->output(states->getStates(), factions);
 	}
-}
-
-
-vector<int> HoI4World::getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap)
-{
-	vector<int> portLocationCandidates = getPortProvinces(locationCandidates);
-	if (portLocationCandidates.size() == 0)
-	{
-		// if none of the mapped provinces are ports, try to push the navy out to sea
-		for (auto candidate : locationCandidates)
-		{
-			if (HoI4AdjacencyMap.size() > static_cast<unsigned int>(candidate))
-			{
-				auto newCandidates = HoI4AdjacencyMap[candidate];
-				for (auto newCandidate : newCandidates)
-				{
-					auto candidateProvince = provinces.find(newCandidate.to);
-					if (candidateProvince == provinces.end())	// if this was not an imported province but has an adjacency, we can assume it's a sea province
-					{
-						portLocationCandidates.push_back(newCandidate.to);
-					}
-				}
-			}
-		}
-	}
-	return portLocationCandidates;
-}
-
-
-vector<int> HoI4World::getPortProvinces(const vector<int>& locationCandidates)
-{
-	vector<int> newLocationCandidates;
-	for (auto litr : locationCandidates)
-	{
-		map<int, HoI4Province*>::const_iterator provinceItr = provinces.find(litr);
-		if ((provinceItr != provinces.end()) && (provinceItr->second->hasNavalBase()))
-		{
-			newLocationCandidates.push_back(litr);
-		}
-	}
-
-	return newLocationCandidates;
-}
-
-
-int HoI4World::getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string owner)
-{
-	queue<int>		openProvinces;
-	map<int, int>	closedProvinces;
-	openProvinces.push(locationProvince->getNum());
-	closedProvinces.insert(make_pair(locationProvince->getNum(), locationProvince->getNum()));
-	while (openProvinces.size() > 0)
-	{
-		int provNum = openProvinces.front();
-		openProvinces.pop();
-
-		auto province = provinces.find(provNum);
-		if ((province != provinces.end()) && (province->second->getOwner() == owner) && (province->second->getAirBase() > 0))
-		{
-			return provNum;
-		}
-		else
-		{
-			auto adjacencies = HoI4AdjacencyMap[provNum];
-			for (auto thisAdjacency : adjacencies)
-			{
-				auto closed = closedProvinces.find(thisAdjacency.to);
-				if (closed == closedProvinces.end())
-				{
-					openProvinces.push(thisAdjacency.to);
-					closedProvinces.insert(make_pair(thisAdjacency.to, thisAdjacency.to));
-				}
-			}
-		}
-	}
-
-	return -1;
 }
 
 
@@ -1289,128 +1319,78 @@ void HoI4World::outputRelations() const
 }
 
 
-void HoI4World::createFactions()
+/*vector<int> HoI4World::getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap)
 {
-	LOG(LogLevel::Info) << "Creating Factions";
-
-	ofstream factionsLog("factions-logs.csv");
-	factionsLog << "name,government,initial strength,factory strength per year,factory strength by 1939\n";
-
-	for (auto leader: greatPowers)
-	{
-		if (leader->isInFaction())
-		{
-			continue;
-		}
-		factionsLog << "\n";
-
-		vector<HoI4Country*> factionMembers;
-		factionMembers.push_back(leader);
-
-		string leaderGovernment = leader->getGovernment();
-		logFactionMember(factionsLog, leader);
-		double factionMilStrength = leader->getStrengthOverTime(3.0);
-
-		for (auto allyTag: leader->getAllies())
-		{
-			auto ally = countries.find(allyTag);
-			if (ally == countries.end())
-			{
-				continue;
-			}
-
-			HoI4Country* allycountry = ally->second;
-			string allygovernment = allycountry->getGovernment();
-			string sphereLeader = returnSphereLeader(allycountry);
-
-			if ((sphereLeader == leader->getTag()) || ((sphereLeader == "") && governmentsAllowFaction(leaderGovernment, allygovernment)))
-			{
-				logFactionMember(factionsLog, allycountry);
-				factionMembers.push_back(allycountry);
-
-				factionMilStrength += allycountry->getStrengthOverTime(1.0);
-			}
-		}
-
-		HoI4Faction* newFaction = new HoI4Faction(leader, factionMembers);
-		for (auto member: factionMembers)
-		{
-			member->setFaction(newFaction);
-		}
-		factions.push_back(newFaction);
-
-		factionsLog << "Faction Strength in 1939," << factionMilStrength << "\n";
-	}
-
-	factionsLog.close();
+vector<int> portLocationCandidates = getPortProvinces(locationCandidates);
+if (portLocationCandidates.size() == 0)
+{
+// if none of the mapped provinces are ports, try to push the navy out to sea
+for (auto candidate : locationCandidates)
+{
+if (HoI4AdjacencyMap.size() > static_cast<unsigned int>(candidate))
+{
+auto newCandidates = HoI4AdjacencyMap[candidate];
+for (auto newCandidate : newCandidates)
+{
+auto candidateProvince = provinces.find(newCandidate.to);
+if (candidateProvince == provinces.end())	// if this was not an imported province but has an adjacency, we can assume it's a sea province
+{
+portLocationCandidates.push_back(newCandidate.to);
+}
+}
+}
+}
+}
+return portLocationCandidates;
 }
 
 
-void HoI4World::logFactionMember(ofstream& factionsLog, const HoI4Country* member)
+vector<int> HoI4World::getPortProvinces(const vector<int>& locationCandidates)
 {
-	factionsLog << member->getSourceCountry()->getName("english") << ",";
-	factionsLog << member->getGovernment() << ",";
-	factionsLog << member->getMilitaryStrength() << ",";
-	factionsLog << member->getEconomicStrength(1.0) << ",";
-	factionsLog << member->getEconomicStrength(3.0) << "\n";
+vector<int> newLocationCandidates;
+for (auto litr : locationCandidates)
+{
+map<int, HoI4Province*>::const_iterator provinceItr = provinces.find(litr);
+if ((provinceItr != provinces.end()) && (provinceItr->second->hasNavalBase()))
+{
+newLocationCandidates.push_back(litr);
+}
+}
+
+return newLocationCandidates;
 }
 
 
-string HoI4World::returnSphereLeader(HoI4Country* possibleSphereling)
+int HoI4World::getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string owner)
 {
-	for (auto greatPower: greatPowers)
-	{
-		auto relations = greatPower->getRelations();
-		auto relation = relations.find(possibleSphereling->getTag());
-		if (relation != relations.end())
-		{
-			if (relation->second->getSphereLeader())
-			{
-				return greatPower->getTag();
-			}
-		}
-	}
+queue<int>		openProvinces;
+map<int, int>	closedProvinces;
+openProvinces.push(locationProvince->getNum());
+closedProvinces.insert(make_pair(locationProvince->getNum(), locationProvince->getNum()));
+while (openProvinces.size() > 0)
+{
+int provNum = openProvinces.front();
+openProvinces.pop();
 
-	return "";
+auto province = provinces.find(provNum);
+if ((province != provinces.end()) && (province->second->getOwner() == owner) && (province->second->getAirBase() > 0))
+{
+return provNum;
+}
+else
+{
+auto adjacencies = HoI4AdjacencyMap[provNum];
+for (auto thisAdjacency : adjacencies)
+{
+auto closed = closedProvinces.find(thisAdjacency.to);
+if (closed == closedProvinces.end())
+{
+openProvinces.push(thisAdjacency.to);
+closedProvinces.insert(make_pair(thisAdjacency.to, thisAdjacency.to));
+}
+}
+}
 }
 
-
-bool HoI4World::governmentsAllowFaction(string leaderGovernment, string allyGovernment)
-{
-	if (leaderGovernment == allyGovernment)
-	{
-		return true;
-	}
-	else if (leaderGovernment == "absolute_monarchy" && (allyGovernment == "fascism" || allyGovernment == "democratic" || allyGovernment == "prussian_constitutionalism" || allyGovernment == "hms_government"))
-	{
-		return true;
-	}
-	else if (leaderGovernment == "democratic" && (allyGovernment == "hms_government" || allyGovernment == "absolute_monarchy" || allyGovernment == "prussian_constitutionalism"))
-	{
-		return true;
-	}
-	else if (leaderGovernment == "prussian_constitutionalism" && (allyGovernment == "hms_government" || allyGovernment == "absolute_monarchy" || allyGovernment == "democratic" || allyGovernment == "fascism"))
-	{
-		return true;
-	}
-	else if (leaderGovernment == "hms_government" && (allyGovernment == "democratic" || allyGovernment == "absolute_monarchy" || allyGovernment == "prussian_constitutionalism"))
-	{
-		return true;
-	}
-	else if (leaderGovernment == "communism" && (allyGovernment == "syndicalism"))
-	{
-		return true;
-	}
-	else if (leaderGovernment == "syndicalism" && (allyGovernment == "communism" || allyGovernment == "fascism"))
-	{
-		return true;
-	}
-	else if (leaderGovernment == "fascism" && (allyGovernment == "syndicalism" || allyGovernment == "absolute_monarchy" || allyGovernment == "prussian_constitutionalism"))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
+return -1;
+}*/

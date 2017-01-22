@@ -119,12 +119,6 @@ class HoI4World
 		void addCapitalAirBases();
 		void addGreatPowerAirBases();
 
-		void	getProvinceLocalizations(const string& file);
-
-		vector<int>					getPortProvinces(const vector<int>& locationCandidates);
-		vector<int>					getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
-		int							getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string owner);
-
 		void createFactions();
 		void logFactionMember(ofstream& factionsLog, const HoI4Country* member);
 		string returnSphereLeader(HoI4Country* possibleSphereling);
@@ -136,6 +130,10 @@ class HoI4World
 		void outputMap() const;
 		void outputHistory() const;
 		void outputCountries() const;
+
+		/*vector<int> getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
+		vector<int> getPortProvinces(const vector<int>& locationCandidates);
+		int getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string owner);*/
 
 
 		const V2World* sourceWorld;
