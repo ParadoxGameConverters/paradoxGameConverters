@@ -1475,16 +1475,16 @@
 	link = { vic2 = 578 hoi4 = 6469 }	# Düsseldorf -> land
 	link = { vic2 = 575 hoi4 = 587 }	# Cologne -> land
 	link = { vic2 = 532 hoi4 = 6325 hoi4 = 6263 hoi4 = 6298 hoi4 = 9264 hoi4 = 6218 hoi4 = 9238 }	# Lüneburg -> land, land, land, land, land, land
-	link = { vic2 = 581 hoi4 = 11346 hoi4 = 6622 hoi4 = 6535 }	# Münster -> land, land, land
+	link = { vic2 = 581 hoi4 = 11346 hoi4 = 6622 hoi4 = 6535 hoi4 = 3512 }	# Münster -> land, land, land, land
 	link = { vic2 = 580 hoi4 = 495 }	# Dortmund -> land
 	link = { vic2 = 369 hoi4 = 6389 hoi4 = 3231 hoi4 = 317 hoi4 = 11366 }	# Kiel -> land, land, land, land
 	link = { vic2 = 542 hoi4 = 9281 hoi4 = 11233 hoi4 = 11264 }	# Lingen -> land, land, land
-	link = { vic2 = 574 hoi4 = 3423 hoi4 = 11494 hoi4 = 3547 }	# Kreuznach -> land, land, land
+	link = { vic2 = 574 hoi4 = 3423 hoi4 = 11494 }	# Kreuznach -> land, land
 	link = { vic2 = 571 hoi4 = 3558 hoi4 = 563 hoi4 = 11547 }	# Kaiserslautern -> land, land, land
 	link = { vic2 = 573 hoi4 = 11531 hoi4 = 9575 }	# Saarbrücken -> land, land
-	link = { vic2 = 572 hoi4 = 11435 hoi4 = 11470 }	# Trier -> land, land
+	link = { vic2 = 572 hoi4 = 11435 hoi4 = 11470 hoi4 = 3547 }	# Trier -> land, land, land
 	link = { vic2 = 576 hoi4 = 9522 }	# Aachen -> land
-	link = { vic2 = 577 hoi4 = 3444 hoi4 = 3512 }	# Cleves -> land, land
+	link = { vic2 = 577 hoi4 = 3444 }	# Cleves -> land
 	link = { vic2 = 381 hoi4 = 11562 }	# Maastricht -> land
 	link = { vic2 = 543 hoi4 = 11360 }	# Emden -> land
 	link = { vic2 = 540 vic2 = 533 hoi4 = 241 hoi4 = 336 }	# MANY-TO-MANY: Oldenburg, Heligoland -> land, land
@@ -1512,17 +1512,17 @@
 	link = { vic2 = 385 hoi4 = 6336 hoi4 = 9335 }	# Leeuwarden -> land, land
 	link = { vic2 = 377 hoi4 = 6241 }	# Utrecht -> land
 	link = { vic2 = 382 hoi4 = 9363 }	# Arnhem -> land
-	link = { vic2 = 391 hoi4 = 11456 }	# Hasselt -> land
-	link = { vic2 = 379 hoi4 = 6496 hoi4 = 6500 }	# Eindhoven -> land, land
+	link = { vic2 = 391 hoi4 = 9574 }	# Hasselt -> land
+	link = { vic2 = 379 hoi4 = 6496 hoi4 = 6500 hoi4 = 11456 }	# Eindhoven -> land, land, land
 	link = { vic2 = 375 hoi4 = 68 hoi4 = 3314 hoi4 = 391 hoi4 = 8622 }	# Amsterdam -> land, land, land, lake
-	link = { vic2 = 380 hoi4 = 3262 }	# Breda -> land
-	link = { vic2 = 376 hoi4 = 9498 hoi4 = 3211 }	# Rotterdam -> land, land
+	link = { vic2 = 380 hoi4 = 3262 hoi4 = 9498 }	# Breda -> land, land
+	link = { vic2 = 376 hoi4 = 3211 }	# Rotterdam -> land
 	link = { vic2 = 397 hoi4 = 6583 }	# Luxembourg -> land
 	link = { vic2 = 392 hoi4 = 3516 hoi4 = 13081 }	# Namur -> land, land
 	link = { vic2 = 394 hoi4 = 9536 }	# Charleroi -> land
 	link = { vic2 = 393 hoi4 = 3576 }	# Tournai -> land
 	link = { vic2 = 378 hoi4 = 9431 }	# Middelburg -> land
-	link = { vic2 = 387 hoi4 = 516 hoi4 = 13068 hoi4 = 9574 }	# Brussels -> land, land, land
+	link = { vic2 = 387 hoi4 = 516 hoi4 = 13068 }	# Brussels -> land, land
 	link = { vic2 = 390 hoi4 = 6598 hoi4 = 11419 }	# Antwerp -> land, land
 	link = { vic2 = 388 hoi4 = 6446 }	# Bruges -> land
 	link = { vic2 = 389 hoi4 = 6560 hoi4 = 480 }	# Ghent -> land, land
@@ -1658,12 +1658,12 @@
 	link = { vic2 = 413 hoi4 = 3546 hoi4 = 3560 hoi4 = 5291 }	# Verdun -> land, land, land
 	link = { vic2 = 430 hoi4 = 11576 hoi4 = 9607 hoi4 = 9609 hoi4 = 9625 hoi4 = 6644 }	# Moulins -> land, land, land, land, land
 	link = { vic2 = 439 hoi4 = 3655 hoi4 = 11611 hoi4 = 6688 }	# Bourges -> land, land, land
-	link = { vic2 = 429 hoi4 = 9644 hoi4 = 3681 hoi4 = 667 }	# Auxerre -> land, land, land
+	link = { vic2 = 429 hoi4 = 9644 hoi4 = 3681 hoi4 = 667 hoi4 = 3669 }	# Auxerre -> land, land, land, land
 	link = { vic2 = 427 hoi4 = 6949 hoi4 = 11491 hoi4 = 9725 }	# Melun -> land, land, land
 	link = { vic2 = 403 hoi4 = 11549 hoi4 = 9561 hoi4 = 11518 hoi4 = 3402 }	# Laon -> land, land, land, land
-	link = { vic2 = 407 hoi4 = 9505 hoi4 = 6531 hoi4 = 680 hoi4 = 3669 }	# Chaumont -> land, land, land, land
+	link = { vic2 = 407 hoi4 = 9505 hoi4 = 6531 hoi4 = 680 hoi4 = 6545 }	# Chaumont -> land, land, land, land
 	link = { vic2 = 412 hoi4 = 3629 hoi4 = 11502 hoi4 = 9559 }	# Metz -> land, land, land
-	link = { vic2 = 408 hoi4 = 13011 hoi4 = 6545 hoi4 = 11732 hoi4 = 551 hoi4 = 3533 }	# Chalons -> land, land, land, land, land
+	link = { vic2 = 408 hoi4 = 13011 hoi4 = 11732 hoi4 = 551 hoi4 = 3533 }	# Chalons -> land, land, land, land
 	link = { vic2 = 410 hoi4 = 678 hoi4 = 6529 }	# Colmar -> land, land
 	link = { vic2 = 409 hoi4 = 9503 hoi4 = 549 hoi4 = 1346 }	# Strasbourg -> land, land, land
 	link = { vic2 = 414 hoi4 = 521 hoi4 = 11642 }	# Épinal -> land, land
@@ -1671,8 +1671,8 @@
 	link = { vic2 = 431 hoi4 = 11794 hoi4 = 11593 hoi4 = 3594 }	# Macon -> land, land, land
 	link = { vic2 = 451 hoi4 = 6613 hoi4 = 9590 hoi4 = 3589 hoi4 = 6639 }	# Lyon -> land, land, land, land
 	link = { vic2 = 433 hoi4 = 3646 hoi4 = 3650 hoi4 = 641 hoi4 = 817 hoi4 = 6668 }	# Lons -> land, land, land, land, land
-	link = { vic2 = 432 hoi4 = 9642 hoi4 = 6698 hoi4 = 3666 hoi4 = 698 }	# Besançon -> land, land, land, land
-	link = { vic2 = 428 hoi4 = 3652 hoi4 = 11628 hoi4 = 648 hoi4 = 9658 }	# Dijon -> land, land, land, land
+	link = { vic2 = 432 hoi4 = 9642 hoi4 = 6698 hoi4 = 3666 hoi4 = 698 hoi4 = 9658 }	# Besançon -> land, land, land, land, land
+	link = { vic2 = 428 hoi4 = 3652 hoi4 = 11628 hoi4 = 648 }	# Dijon -> land, land, land
 	link = { vic2 = 406 hoi4 = 9490 hoi4 = 3506 }	# Troyes -> land, land
 	link = { vic2 = 472 hoi4 = 9909 hoi4 = 3959 }	# Nice -> land, land
 	link = { vic2 = 471 hoi4 = 3928 }	# Frejus -> land
@@ -4895,16 +4895,16 @@
 	link = { vic2 = 578 hoi4 = 6469 }	# Düsseldorf -> land
 	link = { vic2 = 575 hoi4 = 587 }	# Cologne -> land
 	link = { vic2 = 532 hoi4 = 6325 hoi4 = 6263 hoi4 = 6298 hoi4 = 9264 hoi4 = 6218 hoi4 = 9238 }	# Lüneburg -> land, land, land, land, land, land
-	link = { vic2 = 581 hoi4 = 11346 hoi4 = 6622 hoi4 = 6535 }	# Münster -> land, land, land
+	link = { vic2 = 581 hoi4 = 11346 hoi4 = 6622 hoi4 = 6535 hoi4 = 3512 }	# Münster -> land, land, land, land
 	link = { vic2 = 580 hoi4 = 495 }	# Dortmund -> land
 	link = { vic2 = 369 hoi4 = 6389 hoi4 = 3231 hoi4 = 317 hoi4 = 11366 }	# Kiel -> land, land, land, land
 	link = { vic2 = 542 hoi4 = 9281 hoi4 = 11233 hoi4 = 11264 }	# Lingen -> land, land, land
-	link = { vic2 = 574 hoi4 = 3423 hoi4 = 11494 hoi4 = 3547 }	# Kreuznach -> land, land, land
+	link = { vic2 = 574 hoi4 = 3423 hoi4 = 11494 }	# Kreuznach -> land, land
 	link = { vic2 = 571 hoi4 = 3558 hoi4 = 563 hoi4 = 11547 }	# Kaiserslautern -> land, land, land
 	link = { vic2 = 573 hoi4 = 11531 hoi4 = 9575 }	# Saarbrücken -> land, land
-	link = { vic2 = 572 hoi4 = 11435 hoi4 = 11470 }	# Trier -> land, land
+	link = { vic2 = 572 hoi4 = 11435 hoi4 = 11470 hoi4 = 3547 }	# Trier -> land, land, land
 	link = { vic2 = 576 hoi4 = 9522 }	# Aachen -> land
-	link = { vic2 = 577 hoi4 = 3444 hoi4 = 3512 }	# Cleves -> land, land
+	link = { vic2 = 577 hoi4 = 3444 }	# Cleves -> land
 	link = { vic2 = 381 hoi4 = 11562 }	# Maastricht -> land
 	link = { vic2 = 543 hoi4 = 11360 }	# Emden -> land
 	link = { vic2 = 540 vic2 = 533 hoi4 = 241 hoi4 = 336 }	# MANY-TO-MANY: Oldenburg, Heligoland -> land, land
@@ -4932,17 +4932,17 @@
 	link = { vic2 = 385 hoi4 = 6336 hoi4 = 9335 }	# Leeuwarden -> land, land
 	link = { vic2 = 377 hoi4 = 6241 }	# Utrecht -> land
 	link = { vic2 = 382 hoi4 = 9363 }	# Arnhem -> land
-	link = { vic2 = 391 hoi4 = 11456 }	# Hasselt -> land
-	link = { vic2 = 379 hoi4 = 6496 hoi4 = 6500 }	# Eindhoven -> land, land
+	link = { vic2 = 391 hoi4 = 9574 }	# Hasselt -> land
+	link = { vic2 = 379 hoi4 = 6496 hoi4 = 6500 hoi4 = 11456 }	# Eindhoven -> land, land, land
 	link = { vic2 = 375 hoi4 = 68 hoi4 = 3314 hoi4 = 391 hoi4 = 8622 }	# Amsterdam -> land, land, land, lake
-	link = { vic2 = 380 hoi4 = 3262 }	# Breda -> land
-	link = { vic2 = 376 hoi4 = 9498 hoi4 = 3211 }	# Rotterdam -> land, land
+	link = { vic2 = 380 hoi4 = 3262 hoi4 = 9498 }	# Breda -> land, land
+	link = { vic2 = 376 hoi4 = 3211 }	# Rotterdam -> land
 	link = { vic2 = 397 hoi4 = 6583 }	# Luxembourg -> land
 	link = { vic2 = 392 hoi4 = 3516 hoi4 = 13081 }	# Namur -> land, land
 	link = { vic2 = 394 hoi4 = 9536 }	# Charleroi -> land
 	link = { vic2 = 393 hoi4 = 3576 }	# Tournai -> land
 	link = { vic2 = 378 hoi4 = 9431 }	# Middelburg -> land
-	link = { vic2 = 387 hoi4 = 516 hoi4 = 13068 hoi4 = 9574 }	# Brussels -> land, land, land
+	link = { vic2 = 387 hoi4 = 516 hoi4 = 13068 }	# Brussels -> land, land
 	link = { vic2 = 390 hoi4 = 6598 hoi4 = 11419 }	# Antwerp -> land, land
 	link = { vic2 = 388 hoi4 = 6446 }	# Bruges -> land
 	link = { vic2 = 389 hoi4 = 6560 hoi4 = 480 }	# Ghent -> land, land
@@ -5078,12 +5078,12 @@
 	link = { vic2 = 413 hoi4 = 3546 hoi4 = 3560 hoi4 = 5291 }	# Verdun -> land, land, land
 	link = { vic2 = 430 hoi4 = 11576 hoi4 = 9607 hoi4 = 9609 hoi4 = 9625 hoi4 = 6644 }	# Moulins -> land, land, land, land, land
 	link = { vic2 = 439 hoi4 = 3655 hoi4 = 11611 hoi4 = 6688 }	# Bourges -> land, land, land
-	link = { vic2 = 429 hoi4 = 9644 hoi4 = 3681 hoi4 = 667 }	# Auxerre -> land, land, land
+	link = { vic2 = 429 hoi4 = 9644 hoi4 = 3681 hoi4 = 667 hoi4 = 3669 }	# Auxerre -> land, land, land, land
 	link = { vic2 = 427 hoi4 = 6949 hoi4 = 11491 hoi4 = 9725 }	# Melun -> land, land, land
 	link = { vic2 = 403 hoi4 = 11549 hoi4 = 9561 hoi4 = 11518 hoi4 = 3402 }	# Laon -> land, land, land, land
-	link = { vic2 = 407 hoi4 = 9505 hoi4 = 6531 hoi4 = 680 hoi4 = 3669 }	# Chaumont -> land, land, land, land
+	link = { vic2 = 407 hoi4 = 9505 hoi4 = 6531 hoi4 = 680 hoi4 = 6545 }	# Chaumont -> land, land, land, land
 	link = { vic2 = 412 hoi4 = 3629 hoi4 = 11502 hoi4 = 9559 }	# Metz -> land, land, land
-	link = { vic2 = 408 hoi4 = 13011 hoi4 = 6545 hoi4 = 11732 hoi4 = 551 hoi4 = 3533 }	# Chalons -> land, land, land, land, land
+	link = { vic2 = 408 hoi4 = 13011 hoi4 = 11732 hoi4 = 551 hoi4 = 3533 }	# Chalons -> land, land, land, land
 	link = { vic2 = 410 hoi4 = 678 hoi4 = 6529 }	# Colmar -> land, land
 	link = { vic2 = 409 hoi4 = 9503 hoi4 = 549 hoi4 = 1346 }	# Strasbourg -> land, land, land
 	link = { vic2 = 414 hoi4 = 521 hoi4 = 11642 }	# Épinal -> land, land
@@ -5091,8 +5091,8 @@
 	link = { vic2 = 431 hoi4 = 11794 hoi4 = 11593 hoi4 = 3594 }	# Macon -> land, land, land
 	link = { vic2 = 451 hoi4 = 6613 hoi4 = 9590 hoi4 = 3589 hoi4 = 6639 }	# Lyon -> land, land, land, land
 	link = { vic2 = 433 hoi4 = 3646 hoi4 = 3650 hoi4 = 641 hoi4 = 817 hoi4 = 6668 }	# Lons -> land, land, land, land, land
-	link = { vic2 = 432 hoi4 = 9642 hoi4 = 6698 hoi4 = 3666 hoi4 = 698 }	# Besançon -> land, land, land, land
-	link = { vic2 = 428 hoi4 = 3652 hoi4 = 11628 hoi4 = 648 hoi4 = 9658 }	# Dijon -> land, land, land, land
+	link = { vic2 = 432 hoi4 = 9642 hoi4 = 6698 hoi4 = 3666 hoi4 = 698 hoi4 = 9658 }	# Besançon -> land, land, land, land, land
+	link = { vic2 = 428 hoi4 = 3652 hoi4 = 11628 hoi4 = 648 }	# Dijon -> land, land, land
 	link = { vic2 = 406 hoi4 = 9490 hoi4 = 3506 }	# Troyes -> land, land
 	link = { vic2 = 472 hoi4 = 9909 hoi4 = 3959 }	# Nice -> land, land
 	link = { vic2 = 471 hoi4 = 3928 }	# Frejus -> land
