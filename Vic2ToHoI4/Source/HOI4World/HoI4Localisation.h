@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -38,24 +38,63 @@ using namespace std;
 class V2Country;
 
 
+
 typedef std::map<std::string, std::string>				keyToLocalisationMap;			// key -> localisation
 typedef std::map<std::string, keyToLocalisationMap>	languageToLocalisationsMap;	// language -> (key -> localisation)
 
 
 
-// Holds translations all HoI4 localisations
+
 class HoI4Localisation
 {
 	public:
-		void	readFromCountry(const V2Country*, string destTag);
-		void addNonenglishCountryLocalisations();
+		static void readFromCountry(const V2Country* source, string destTag)
+		{
+			getInstance()->ReadFromCountry(source, destTag);
+		}
 
-		void	output(string localisationPath) const;
+		static void addNonenglishCountryLocalisations()
+		{
+			getInstance()->AddNonenglishCountryLocalisations();
+		}
+
+		static void copyFocusLocalisations(string oldKey, string newKey)
+		{
+			getInstance()->CopyFocusLocalisations(oldKey, newKey);
+		}
+
+		static void output()
+		{
+			getInstance()->Output();
+		}
 
 	private:
-		void outputCountries(string localisationPath) const;
+		static HoI4Localisation* instance;
+		static HoI4Localisation* getInstance()
+		{
+			if (instance == nullptr)
+			{
+				instance = new HoI4Localisation();
+			}
+			return instance;
+		}
+		HoI4Localisation();
+		void importFocusLocalisations();
 
-		languageToLocalisationsMap countryLocalisations;	// a map between languages and country localisations
+		void AddNonenglishCountryLocalisations();
+
+		void ReadFromCountry(const V2Country*, string destTag);
+		void CopyFocusLocalisations(string oldKey, string newKey);
+
+		void Output() const;
+		void outputCountries(string localisationPath) const;
+		void outputFocuses(string localisationPath) const;
+
+		languageToLocalisationsMap countryLocalisations;
+		languageToLocalisationsMap originalFocuses;
+		languageToLocalisationsMap newFocuses;
 };
+
+
 
 #endif // HoI4LOCALISATION_H_

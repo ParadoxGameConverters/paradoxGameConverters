@@ -123,7 +123,8 @@ void HoI4World::convertCountries()
 	{
 		convertCountry(sourceItr, leaderMap, governmentJobs, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
 	}
-	localisation.addNonenglishCountryLocalisations();
+
+	HoI4Localisation::addNonenglishCountryLocalisations();
 }
 
 
@@ -155,7 +156,7 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 		LOG(LogLevel::Warning) << "Could not convert V2 tag " << country.first << " to HoI4";
 	}
 
-	localisation.readFromCountry(country.second, HoI4Tag);
+	HoI4Localisation::readFromCountry(country.second, HoI4Tag);
 }
 
 
@@ -966,7 +967,7 @@ void HoI4World::output() const
 	outputCommonCountries();
 	outputColorsfile();
 	//outputAutoexecLua();
-	outputLocalisations();
+	HoI4Localisation::output();
 	outputHistory();
 	outputMap();
 	supplyZones->output();
@@ -1069,21 +1070,6 @@ void HoI4World::outputAutoexecLua() const
 
 	fprintf(autoexec, "\n");
 	fclose(autoexec);
-}
-
-
-void HoI4World::outputLocalisations() const
-{
-	// Create localisations for all new countries. We don't actually know the names yet so we just use the tags as the names.
-	LOG(LogLevel::Debug) << "Writing localisation text";
-	string localisationPath = "Output/" + Configuration::getOutputName() + "/localisation";
-	if (!Utils::TryCreateFolder(localisationPath))
-	{
-		LOG(LogLevel::Error) << "Could not create localisation folder";
-		exit(-1);
-	}
-
-	localisation.output(localisationPath);
 }
 
 

@@ -133,7 +133,6 @@ class HoI4World
 		void outputCommonCountries() const;
 		void outputColorsfile() const;
 		void outputAutoexecLua() const;
-		void outputLocalisations() const;
 		void outputMap() const;
 		void outputHistory() const;
 		void outputCountries() const;
@@ -156,8 +155,6 @@ class HoI4World
 		// map items
 		map<int, string>						continents;  // < province, continent >
 		map<int, HoI4StrategicRegion*>	strategicRegions;
-
-		HoI4Localisation				localisation;
 
 		HoI4Events* events;
 
