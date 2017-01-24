@@ -67,6 +67,8 @@ class V2World
 
 		void setProvinceOwners();
 		void addProvinceCoreInfoToCountries();
+		void removeSimpleLandlessNations();
+		bool shouldCoreBeRemoved(const V2Province* core, const V2Country* country);
 		void determineEmployedWorkers();
 		void removeEmptyNations();
 		void determinePartialStates();

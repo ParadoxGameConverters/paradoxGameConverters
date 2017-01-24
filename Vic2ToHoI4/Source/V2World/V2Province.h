@@ -49,6 +49,7 @@ class V2Province
 		void setOwner(const V2Country* _owner) { owner = _owner; }
 		void addCoreString(string coreString) { coreStrings.insert(coreString); }
 		void removeCoreString(string coreString) { coreStrings.erase(coreString); }
+		void removeCore(V2Country* core) { cores.erase(core); }
 
 		int getNumber() const { return number; }
 		string getOwnerString() const { return ownerString; }

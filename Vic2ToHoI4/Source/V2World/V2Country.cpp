@@ -38,7 +38,7 @@ V2Country::V2Country(Object* countryObj)
 
 	readInDomainNameAndAdjective(countryObj);
 	readInCapital(countryObj);
-	readInCulture(countryObj);
+	readInCultures(countryObj);
 	readInCivilized(countryObj);
 	readInTechnology(countryObj);
 	readInInventions(countryObj);
@@ -83,7 +83,8 @@ void V2Country::readInCapital(const Object* countryObj)
 	}
 }
 
-void V2Country::readInCulture(const Object* countryObj)
+
+void V2Country::readInCultures(const Object* countryObj)
 {
 	vector<Object*> primaryCultureObjs = countryObj->getValue("primary_culture");
 	if (primaryCultureObjs.size() > 0)
@@ -94,7 +95,18 @@ void V2Country::readInCulture(const Object* countryObj)
 	{
 		primaryCulture = "";
 	}
+
+	vector<Object*> cultureSectionObjs = countryObj->getValue("culture");
+	if (cultureSectionObjs.size() > 0)
+	{
+		auto cultures = cultureSectionObjs[0]->getTokens();
+		for (auto culture: cultures)
+		{
+			acceptedCultures.insert(culture);
+		}
+	}
 }
+
 
 void V2Country::readInCivilized(const Object* countryObj)
 {
