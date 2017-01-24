@@ -19,3 +19,6 @@ A: You need to include the Vic2 mod from the EU4 to Vic2 converter to properly c
 
 Q: The converter crashes after no time with no errors and no log.txt (when running through the frontend). What went wrong?
 A: You may need to install this if you are not on Windows 10: https://support.microsoft.com/en-us/kb/2999226
+
+Q: The flags on my units keep changing. What can I do about this?
+A: This is an HoI4 bug, with a temporary solution here: https://forum.paradoxplaza.com/forum/index.php?threads/hoi4-dev-diary-squanching-them-bugs.995110/page-4#post-22333853
