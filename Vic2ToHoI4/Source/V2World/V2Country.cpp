@@ -90,6 +90,7 @@ void V2Country::readInCultures(const Object* countryObj)
 	if (primaryCultureObjs.size() > 0)
 	{
 		primaryCulture = primaryCultureObjs[0]->getLeaf();
+		acceptedCultures.insert(primaryCulture);
 	}
 	else
 	{
@@ -563,4 +564,18 @@ vector<V2Party*> V2Country::getActiveParties(const vector<V2Party*>& allParties)
 	}
 
 	return activeParties;
+}
+
+
+bool V2Country::hasCoreOnCapital() const
+{
+	for (auto core: cores)
+	{
+		if (core->getNumber() == capital)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }

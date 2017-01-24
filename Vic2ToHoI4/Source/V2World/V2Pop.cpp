@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -27,9 +27,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Pop::V2Pop(Object *obj)
+V2Pop::V2Pop(Object* obj)
 {
 	type = obj->getKey();
+
+	culture = obj->getLeaves()[2]->getKey();
 
 	vector<Object*> childObj = obj->getValue("size");
 	if (childObj.size() > 0)

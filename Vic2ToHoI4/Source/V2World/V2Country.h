@@ -59,6 +59,7 @@ public:
 	vector<Vic2State*> getStates() const { return states; }
 	string getTag() const { return tag; }
 	string getPrimaryCulture() const { return primaryCulture; }
+	set<string> getAcceptedCultures() const { return acceptedCultures; }
 	bool isAnAcceptedCulture(const string& culture) const { return (acceptedCultures.count(culture) > 0); }
 	set<string> getInventions() const { return inventions; }
 	string getGovernment() const { return government; }
@@ -77,7 +78,6 @@ public:
 	map<string, string> getLocalisedAdjectives() const { return adjectivesByLanguage; }
 	map<int, V2Province*> getProvinces() const { return provinces; }
 	vector<V2Province*> getCores() const { return cores; }
-
 	bool isEmpty() const { return ((cores.size() == 0) && (provinces.size() == 0)); }
 	bool isCivilized() const { return civilized; }
 
@@ -88,6 +88,7 @@ public:
 	long getEmployedWorkers() const;
 	V2Party* getRulingParty(const vector<V2Party*>& allParties) const;
 	vector<V2Party*> getActiveParties(const vector<V2Party*>& allParties) const;
+	bool hasCoreOnCapital() const;
 
 private:
 	void readInDomainNameAndAdjective(const Object* countryObj);

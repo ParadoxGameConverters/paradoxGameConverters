@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -213,6 +213,12 @@ void V2World::removeSimpleLandlessNations()
 			}
 		}
 		country.second->replaceCores(coresToKeep);
+
+		if (!country.second->hasCoreOnCapital())
+		{
+			vector<V2Province*> emptyCores;
+			country.second->replaceCores(emptyCores);
+		}
 	}
 }
 
@@ -227,7 +233,11 @@ bool V2World::shouldCoreBeRemoved(const V2Province* core, const V2Country* count
 	{
 		return true;
 	}
-	else if (country->isAnAcceptedCulture(core->getOwner()->getPrimaryCulture()))
+	else if (core->getOwner()->isAnAcceptedCulture(country->getPrimaryCulture()))
+	{
+		return true;
+	}
+	else if (core->getPercentageWithCultures(country->getAcceptedCultures()) < 0.25)
 	{
 		return true;
 	}
