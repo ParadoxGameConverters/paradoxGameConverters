@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -36,8 +36,8 @@ class Object;
 
 
 
-typedef map< int, unordered_set<int> > stateMapping; // < province, all other provinces in state >
-typedef map< int, string > stateIdMapping;           // < province, state ID >
+typedef map<int, unordered_set<int>> stateMapping; // < province, all other provinces in state >
+typedef map<int, string> stateIdMapping;           // < province, state ID >
 
 
 
@@ -54,6 +54,11 @@ class stateMapper
 			return getInstance()->stateIdMap;
 		}
 
+		static int getCapitalProvince(const string& stateID)
+		{
+			return getInstance()->GetCapitalProvince(stateID);
+		}
+
 	private:
 		static stateMapper* instance;
 		static stateMapper* getInstance()
@@ -67,11 +72,13 @@ class stateMapper
 		}
 		stateMapper();
 
-
 		void initStateMap(Object* parsedMappingsFile);
+
+		int GetCapitalProvince(const string& stateID) const;
 
 		stateMapping stateMap;
 		stateIdMapping stateIdMap;
+		map<string, int> stateToCapitalMap;
 };
 
 

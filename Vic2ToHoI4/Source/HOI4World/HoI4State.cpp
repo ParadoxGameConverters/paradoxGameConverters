@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/CoastalHoI4Provinces.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "../Mappers/StateCategoryMapper.h"
+#include "../Mappers/StateMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "../V2World/V2Province.h"
 #include "../V2World/V2World.h"
@@ -236,17 +237,15 @@ int HoI4State::getMainNavalLocation() const
 
 bool HoI4State::tryToCreateVP()
 {
-	for (auto vic2Province: sourceState->getProvinceNums())
+	auto vic2CapitalProvince = stateMapper::getCapitalProvince(sourceState->getStateID());
+	auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(vic2CapitalProvince);
+	if (
+			(provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end()) &&
+			(isProvinceInState(provMapping->second[0]))
+		)
 	{
-		auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(vic2Province);
-		if (
-			 (provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end()) &&
-			 (isProvinceInState(provMapping->second[0]))
-			)
-		{
-			assignVP(provMapping->second[0]);
-			return true;
-		}
+		assignVP(provMapping->second[0]);
+		return true;
 	}
 
 	return false;
