@@ -543,7 +543,7 @@ V2Party* V2Country::getRulingParty(const vector<V2Party*>& allParties) const
 	}
 	else
 	{
-		return NULL;
+		return nullptr;
 	}
 }
 

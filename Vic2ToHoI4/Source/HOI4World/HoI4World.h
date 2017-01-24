@@ -24,24 +24,29 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #ifndef HoI4WORLD_H_
 #define HoI4WORLD_H_
 
-#include <string>
-#include "HoI4Buildings.h"
-#include "HoI4Country.h"
-#include "HoI4Province.h"
-#include "HoI4Diplomacy.h"
-#include "HoI4Events.h"
-#include "HoI4Localisation.h"
+
+
 #include "HoI4States.h"
-#include "HoI4StrategicRegion.h"
+#include "../Mappers/Mapper.h"
+#include <map>
+#include <string>
+#include <vector>
+using namespace std;
 
 
 
-typedef const map<string, multimap<HoI4RegimentType, unsigned> > unitTypeMapping;
-
-
-
+class HoI4Buildings;
+class HoI4Country;
+class HoI4Diplomacy;
+class HoI4Events;
 class HoI4Faction;
+class HoI4Province;
+class HoI4State;
+class HoI4States;
+class HoI4StrategicRegion;
 class HoI4SupplyZones;
+class V2Country;
+class V2World;
 
 
 
@@ -135,31 +140,24 @@ class HoI4World
 
 		const V2World* sourceWorld;
 
-		HoI4SupplyZones* supplyZones;
-
-		vector<HoI4Country*> greatPowers;
-
 		HoI4States* states;
-		
-		map<int, HoI4Province*>		provinces;
-		map<string, HoI4Country*>	countries;
+		//map<int, HoI4Province*> provinces;
+
+		HoI4SupplyZones* supplyZones;
+		map<int, HoI4StrategicRegion*> strategicRegions;
+		HoI4Buildings* buildings;
+
+		map<string, HoI4Country*> countries;
 		map<string, HoI4Country*> landedCountries;
-		HoI4Diplomacy					diplomacy;
-		map<int, int>					stateMap;
-
-		// map items
-		map<int, string>						continents;  // < province, continent >
-		map<int, HoI4StrategicRegion*>	strategicRegions;
-
+		vector<HoI4Country*> greatPowers;
+		
+		vector<HoI4Faction*> factions;
+		HoI4Diplomacy* diplomacy;
 		HoI4Events* events;
 
 		leaderTraitsMap leaderTraits;
 		namesMapping namesMap;
 		portraitMapping portraitMap;
-
-		vector<HoI4Faction*> factions;
-
-		HoI4Buildings* buildings;
 };
 
 

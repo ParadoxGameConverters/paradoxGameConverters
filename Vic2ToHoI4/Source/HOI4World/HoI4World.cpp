@@ -20,34 +20,30 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
+
 #include "HoI4World.h"
-#include <fstream>
-#include <algorithm>
-#include <list>
-#include <queue>
-#include <unordered_map>
-#include <boost/filesystem.hpp>
-#include <boost/foreach.hpp> 
-#include "ParadoxParser8859_15.h"
 #include "ParadoxParserUTF8.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "../Configuration.h"
-#include "../V2World/Vic2Agreement.h"
 #include "../V2World/V2Diplomacy.h"
-#include "../V2World/V2Province.h"
 #include "../V2World/V2Party.h"
 #include "HoI4Agreement.h"
+#include "HoI4Buildings.h"
+#include "HoI4Country.h"
+#include "HoI4Diplomacy.h"
+#include "HoI4Events.h"
 #include "HoI4Faction.h"
-#include "HoI4Focus.h"
-#include "HoI4FocusTree.h"
-#include "HoI4Relations.h"
+#include "HoI4Localisation.h"
+#include "HoI4Province.h"
 #include "HoI4State.h"
+#include "HoI4StrategicRegion.h"
 #include "HoI4SupplyZones.h"
 #include "HoI4WarCreator.h"
 #include "../Mappers/CountryMapping.h"
-#include "../Mappers/ProvinceMapper.h"
-#include "../Mappers/StateMapper.h"
+#include <fstream>
+using namespace std;
+
 
 
 
@@ -62,6 +58,8 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 
 	events = new HoI4Events;
 	supplyZones = new HoI4SupplyZones(HoI4DefaultStateToProvinceMap);
+
+	diplomacy = new HoI4Diplomacy;
 
 	states->convertStates();
 	convertNavalBases();
@@ -136,14 +134,14 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 		return;
 	}
 
-	HoI4Country* destCountry = NULL;
+	HoI4Country* destCountry = nullptr;
 	const std::string& HoI4Tag = CountryMapper::getHoI4Tag(country.first);
 	if (!HoI4Tag.empty())
 	{
 		std::string countryFileName = '/' + country.second->getName("english") + ".txt";
 		destCountry = new HoI4Country(HoI4Tag, countryFileName, this, true);
 		V2Party* rulingParty = country.second->getRulingParty(sourceWorld->getParties());
-		if (rulingParty == NULL)
+		if (rulingParty == nullptr)
 		{
 			LOG(LogLevel::Error) << "Could not find the ruling party for " << country.first << ". Were all mods correctly included?";
 			exit(-1);
@@ -651,7 +649,7 @@ void HoI4World::convertAgreements()
 		if ((agreement->type == "alliance") || (agreement->type == "vassal"))
 		{
 			HoI4Agreement* HoI4a = new HoI4Agreement(HoI4Tag1, HoI4Tag2, agreement);
-			diplomacy.addAgreement(HoI4a);
+			diplomacy->addAgreement(HoI4a);
 		}
 
 		if (agreement->type == "alliance")
@@ -682,17 +680,17 @@ void HoI4World::convertRelations()
 			}
 
 			HoI4Agreement* HoI4a = new HoI4Agreement(country1, country2, "relation", relationItr.second->getRelations(), date("1936.1.1"));
-			diplomacy.addAgreement(HoI4a);
+			diplomacy->addAgreement(HoI4a);
 
 			if (relationItr.second->getGuarantee())
 			{
 				HoI4Agreement* HoI4a = new HoI4Agreement(country.first, relationItr.first, "guarantee", 0, date("1936.1.1"));
-				diplomacy.addAgreement(HoI4a);
+				diplomacy->addAgreement(HoI4a);
 			}
 			if (relationItr.second->getSphereLeader())
 			{
 				HoI4Agreement* HoI4a = new HoI4Agreement(country.first, relationItr.first, "sphere", 0, date("1936.1.1"));
-				diplomacy.addAgreement(HoI4a);
+				diplomacy->addAgreement(HoI4a);
 			}
 		}
 	}
@@ -1082,7 +1080,7 @@ void HoI4World::output() const
 	outputColorsfile();
 	HoI4Localisation::output();
 	states->output();
-	diplomacy.output();
+	diplomacy->output();
 	outputMap();
 	supplyZones->output();
 	outputRelations();
