@@ -1197,8 +1197,22 @@ void HoI4World::outputMap() const
 void HoI4World::outputCountries() const
 {
 	LOG(LogLevel::Debug) << "Writing countries";
-	string unitsPath = "Output/" + Configuration::getOutputName() + "/history/units";
-	if (!Utils::TryCreateFolder(unitsPath))
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/history"))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history";
+		exit(-1);
+	}
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/history/countries"))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history";
+		exit(-1);
+	}
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/history/states"))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history/states";
+		exit(-1);
+	}
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/history/units"))
 	{
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history/units";
 		exit(-1);
