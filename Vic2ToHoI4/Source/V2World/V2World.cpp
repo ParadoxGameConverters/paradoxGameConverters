@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -78,6 +78,7 @@ V2World::V2World(const string& filename)
 
 	setProvinceOwners();
 	addProvinceCoreInfoToCountries();
+	removeSimpleLandlessNations();
 	determineEmployedWorkers();
 	removeEmptyNations();
 	determinePartialStates();
@@ -185,6 +186,64 @@ void V2World::addProvinceCoreInfoToCountries()
 		{
 			coreCountry->addCore(province.second);
 		}
+	}
+}
+
+
+void V2World::removeSimpleLandlessNations()
+{
+	for (auto country: countries)
+	{
+		if (country.second->getProvinces().size() > 0)
+		{
+			continue;
+		}
+
+		vector<V2Province*> coresToKeep;
+		for (auto core: country.second->getCores())
+		{
+			if (shouldCoreBeRemoved(core, country.second))
+			{
+				core->removeCoreString(country.first);
+				core->removeCore(country.second);
+			}
+			else
+			{
+				coresToKeep.push_back(core);
+			}
+		}
+		country.second->replaceCores(coresToKeep);
+
+		if (!country.second->hasCoreOnCapital())
+		{
+			vector<V2Province*> emptyCores;
+			country.second->replaceCores(emptyCores);
+		}
+	}
+}
+
+
+bool V2World::shouldCoreBeRemoved(const V2Province* core, const V2Country* country)
+{
+	if (core->getOwner() == nullptr)
+	{
+		return true;
+	}
+	else if (country->getPrimaryCulture() == core->getOwner()->getPrimaryCulture())
+	{
+		return true;
+	}
+	else if (core->getOwner()->isAnAcceptedCulture(country->getPrimaryCulture()))
+	{
+		return true;
+	}
+	else if (core->getPercentageWithCultures(country->getAcceptedCultures()) < 0.25)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 

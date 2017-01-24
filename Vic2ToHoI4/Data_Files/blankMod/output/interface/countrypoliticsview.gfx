@@ -1,5 +1,115 @@
 spriteTypes = {
 
+	#Autonomy Stuff
+
+	spriteType = {
+		name = "GFX_subject_overlay"
+		texturefile = "gfx/interface/autonomy/subject_overlay.dds"
+		effectFile = "gfx/FX/buttonstate_nodowneffect.lua"		
+	}		
+
+	progressbartype = {
+		name = "GFX_subject_progressbar_long"
+		color = { 1.0 1.0 1.0 }
+		colortwo = { 1.0 1.0 1.0 }
+		textureFile1 = "gfx/interface/autonomy/subject_progress_bar_long.dds"
+		textureFile2 = "gfx/interface/autonomy/subject_progress_bar_long_bg.dds"
+		size = { x = 181 y = 16 }
+		effectFile = "gfx/FX/progress.lua"
+	}	
+	
+	progressbartype = {
+		name = "GFX_subject_progressbar"
+		color = { 1.0 1.0 1.0 }
+		colortwo = { 1.0 1.0 1.0 }
+		textureFile1 = "gfx/interface/autonomy/subject_progress_bar.dds"
+		textureFile2 = "gfx/interface/autonomy/subject_progress_bar_bg.dds"
+		size = { x = 93 y = 16 }
+		effectFile = "gfx/FX/progress.lua"
+	}	
+	
+	spriteType = {
+		name = "GFX_subject_button"
+		texturefile = "gfx/interface/autonomy/subject_button.dds"
+	}	
+	
+	spriteType = {
+		name = "GFX_subjects_entry_bg"
+		textureFile = "gfx/interface/autonomy/subjects_entry_bg.dds"
+		effectFile = "gfx/FX/buttonstate_nodowneffect.lua"
+	}
+	
+	spriteType = {
+		name = "GFX_autonomy_unknown_icon"
+		textureFile = "gfx/interface/autonomy/autonomy_unknown_icon.dds"
+	}
+	
+	spriteType = {
+		name = "GFX_autonomy_free_icon"
+		textureFile = "gfx/interface/autonomy/autonomy_freedom_icon.dds"
+	}
+	
+	spriteType = {
+		name = "GFX_autonomy_annex_icon"
+		textureFile = "gfx/interface/autonomy/autonomy_annex_icon.dds"
+	}
+	
+	spriteType = {
+		name = "GFX_autonomy_dominion_icon"
+		textureFile = "gfx/interface/autonomy/autonomy_dominion_icon.dds"
+	}
+
+	spriteType = {
+		name = "GFX_autonomy_colony_icon"
+		textureFile = "gfx/interface/autonomy/autonomy_colony_icon.dds"
+	}
+	
+	spriteType = {
+		name = "GFX_autonomy_puppet_icon"
+		textureFile = "gfx/interface/autonomy/autonomy_puppet_icon.dds"
+	}
+	
+	spriteType = {
+		name = "GFX_autonomy_integrated_puppet_icon"
+		textureFile = "gfx/interface/autonomy/autonomy_integrated_puppet_icon.dds"
+	}
+	
+	spriteType = {
+		name = "GFX_autonomy_level_button"
+		textureFile = "gfx/interface/autonomy/autonomy_level_button.dds"
+	}
+	
+	#-------------
+
+	spriteType = {
+		name = "GFX_ongoing_focus_goal_icon"
+		textureFile = "gfx/interface/ongoing_focus_goal_icon.dds"
+	}
+
+	frameAnimatedSpriteType = {
+		name = "GFX_ongoing_generic_glow_yellow"
+		texturefile = "gfx/interface/ongoing_generic_glow_yellow.dds"
+		noOfFrames = 3
+		animation_rate_fps = 1
+		looping = yes
+		play_on_show = yes
+		pause_on_loop = 0.0
+		allwaystransparent = yes
+		effectFile = "gfx/FX/buttonstate_blendframes.lua"
+	}	
+	
+	frameAnimatedSpriteType = {
+		name = "GFX_ongoing_focus_goal_polview"
+		texturefile = "gfx/interface/ongoing_focus_goal_polview.dds"
+		noOfFrames = 3
+		animation_rate_fps = 1
+		looping = yes
+		play_on_show = yes
+		pause_on_loop = 0.0
+		allwaystransparent = yes
+		effectFile = "gfx/FX/buttonstate_blendframes.lua"
+	}
+
 	spriteType = {
 		name = "GFX_dismantle_faction_button"
 		textureFile = "gfx/interface/dismantle_faction_button.dds"
@@ -397,7 +507,7 @@ spriteTypes = {
 		effectFile = "gfx/FX/buttonstate_blendframes.lua"
 	}
 	
-		spriteType = {
+	spriteType = {
 		name = "GFX_ideology_liberal_group"
 		texturefile = "gfx/interface/ideologies/liberal_group.dds"
 	}

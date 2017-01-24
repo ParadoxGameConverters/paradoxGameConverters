@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "Log.h"
 #include "Object.h"
+#include "OSCompatibilityLayer.h"
 #include "ParadoxParserUTF8.h"
 #include <fstream>
 using namespace std;
@@ -4322,6 +4323,12 @@ void HoI4FocusTree::addMonarchyEmpireNationalFocuses(HoI4Country* Home, const ve
 
 void HoI4FocusTree::output()
 {
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/common/national_focus"))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/national_focus\"";
+		exit(-1);
+	}
+
 	string filename("Output/" + Configuration::getOutputName() + "/common/national_focus/" + srcCountryTag + "_NF.txt");
 	ofstream out(filename);
 	if (!out.is_open())

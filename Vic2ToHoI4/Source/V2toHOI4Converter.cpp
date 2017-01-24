@@ -174,9 +174,9 @@ void createModFile()
 	modFile << "name = \"Converted - " << Configuration::getOutputName() << "\"\n";
 	modFile << "path = \"mod/" << Configuration::getOutputName() << "/\"\n";
 	modFile << "user_dir = \"" << Configuration::getOutputName() << "_user_dir\"\n";
-	modFile << "replace = \"history/countries\"\n";
+	modFile << "replace_path=\"history/countries\"\n";
 	//modFile << "replace = \"history/diplomacy\"\n";
-	modFile << "replace = \"history/states\"\n";
+	modFile << "replace_path=\"history/states\"\n";
 	modFile << "supported_version=\"" << Configuration::getHOI4Version() << "\"";
 	modFile.close();
 }

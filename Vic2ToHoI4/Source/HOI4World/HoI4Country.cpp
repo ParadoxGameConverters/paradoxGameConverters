@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -19,8 +19,6 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
-
-
 #include "HoI4Country.h"
 #include "HoI4World.h"
 #include <fstream>
@@ -36,8 +34,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/ProvinceMapper.h"
 #include "OSCompatibilityLayer.h"
 
-
-
 enum ideaologyType {
 	national_socialist = 0,
 	fascistic = 1,
@@ -50,7 +46,6 @@ enum ideaologyType {
 	leninist = 8,
 	stalinist = 9
 };
-
 
 const char* const ideologyNames[stalinist + 1] = {
 	"national_socialist",
@@ -65,13 +60,10 @@ const char* const ideologyNames[stalinist + 1] = {
 	"stalinist"
 };
 
-
-
 HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld, bool _newCountry /* = false */)
 {
 	theWorld = _theWorld;
 	newCountry = _newCountry;
-
 
 	tag = _tag;
 	commonCountryFile = _commonCountryFile;
@@ -122,7 +114,6 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	srcCountry = NULL;
 }
 
-
 void HoI4Country::output(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const
 {
 	// output history file
@@ -149,7 +140,7 @@ void HoI4Country::output(const map<int, HoI4State*>& states, const vector<HoI4Fa
 		}
 		if (majorNation)
 		{
-			output << "set_research_slots = 4"<< endl;
+			output << "set_research_slots = 4" << endl;
 		}
 
 		output << "" << endl;
@@ -241,9 +232,11 @@ void HoI4Country::output(const map<int, HoI4State*>& states, const vector<HoI4Fa
 		output << "add_ideas = {\n";
 		if (majorNation)
 			output << "great_power\n";
+		if (!civilized)
+			output << "uncivilized\n";
 		if (RulingPartyModel.war_pol == "jingoism")
 			output << "partial_economic_mobilisation\n";
-		if(RulingPartyModel.war_pol == "pro_military")
+		if (RulingPartyModel.war_pol == "pro_military")
 			output << "low_economic_mobilisation\n";
 		output << "}\n";
 		output << "create_country_leader = {" << endl;
@@ -261,8 +254,6 @@ void HoI4Country::output(const map<int, HoI4State*>& states, const vector<HoI4Fa
 		output << "    " << endl;
 		output << "}" << endl;
 		output.close();
-
-
 
 		// output OOB file
 		outputOOB();
@@ -393,7 +384,6 @@ void HoI4Country::output(const map<int, HoI4State*>& states, const vector<HoI4Fa
 	}
 }
 
-
 void HoI4Country::outputCommonCountryFile() const
 {
 	ofstream output;
@@ -413,7 +403,6 @@ void HoI4Country::outputCommonCountryFile() const
 	output.close();
 }
 
-
 void HoI4Country::outputColors(ofstream& out) const
 {
 	int red;
@@ -428,9 +417,9 @@ void HoI4Country::outputColors(ofstream& out) const
 }
 
 
-void HoI4Country::outputToCommonCountriesFile(FILE* output) const
+void HoI4Country::outputToCommonCountriesFile(ofstream& countriesFile) const
 {
-	fprintf(output, "%s = \"countries%s\"\n", tag.c_str(), Utils::convertUTF8ToASCII(commonCountryFile).c_str());
+	countriesFile << tag.c_str() << " = \"countries" << Utils::convertUTF8ToASCII(commonCountryFile) << "\"\n";
 }
 
 
@@ -446,7 +435,6 @@ void HoI4Country::outputPracticals(FILE* output) const
 	}
 }
 
-
 void HoI4Country::outputTech(FILE* output) const
 {
 	fprintf(output, "\n");
@@ -455,7 +443,6 @@ void HoI4Country::outputTech(FILE* output) const
 		fprintf(output, "%s = %d\n", itr.first.c_str(), itr.second);
 	}
 }
-
 
 void HoI4Country::outputParties(FILE* output) const
 {
@@ -487,7 +474,6 @@ void HoI4Country::outputParties(FILE* output) const
 	}
 	fclose(partyLocalisations);*/
 }
-
 
 void HoI4Country::outputLeaders() const
 {
@@ -532,7 +518,16 @@ void HoI4Country::outputRelations(ofstream& output) const
 	{
 		if (relation.first != tag)
 		{
-			output << "add_opinion_modifier = { target = " << relation.first << " modifier = " << tag << "_" << relation.first << " }\n";
+			output << "add_opinion_modifier = { target = " << relation.first << " modifier = ";
+			if (relation.second->getRelations() < 0)
+			{
+				output << "negative_";
+			}
+			else
+			{
+				output << "positive_";
+			}
+			output << abs(relation.second->getRelations()) << " }\n";
 		}
 	}
 }
@@ -598,7 +593,7 @@ void HoI4Country::outputOOB() const
 	{
 		output << "air_wings = {\n";
 		output << "\t" << capital << " = {\n";
-		for (auto plane: planes)
+		for (auto plane : planes)
 		{
 			output << plane;
 		}
@@ -607,7 +602,6 @@ void HoI4Country::outputOOB() const
 	}
 	output.close();
 }
-
 
 void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, map<int, int>& leaderMap, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states)
 {
@@ -627,6 +621,9 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	// Color
 	color = srcCountry->getColor();
+
+	//Civilized
+	civilized = srcCountry->isCivilized();
 
 	// graphical culture type
 	auto cultureItr = cultureMap.find(srcCountry->getPrimaryCulture());
@@ -824,7 +821,6 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	majorNation = srcCountry->isGreatNation();
 }
 
-
 void HoI4Country::determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states)
 {
 	int oldCapital = srcCountry->getCapital();
@@ -844,19 +840,16 @@ void HoI4Country::determineCapitalFromVic2(const map<int, int>& provinceToStateI
 	}
 }
 
-
 bool HoI4Country::isStateValidForCapital(map<int, int>::const_iterator capitalState, const map<int, HoI4State*>& states)
 {
 	auto state = states.find(capitalState->second)->second;
 	return (isThisStateOwnedByUs(state) || isThisStateACoreWhileWeOwnNoStates(state));
 }
 
-
 bool HoI4Country::isThisStateOwnedByUs(const HoI4State* state) const
 {
 	return (state->getOwner() == tag);
 }
-
 
 bool HoI4Country::isThisStateACoreWhileWeOwnNoStates(const HoI4State* state) const
 {
@@ -871,7 +864,6 @@ bool HoI4Country::isThisStateACoreWhileWeOwnNoStates(const HoI4State* state) con
 	return false;
 }
 
-
 void HoI4Country::setCapitalInCapitalState(int capitalProvince, const map<int, HoI4State*>& states)
 {
 	auto capitalState = states.find(capital);
@@ -881,13 +873,11 @@ void HoI4Country::setCapitalInCapitalState(int capitalProvince, const map<int, H
 	}
 }
 
-
 void HoI4Country::findBestCapital()
 {
 	capital = 1;
 	LOG(LogLevel::Warning) << "Could not properly set capital for " << tag;
 }
-
 
 // used only for countries which are NOT converted (i.e. unions, dead countries, etc)
 void HoI4Country::initFromHistory()
@@ -942,7 +932,6 @@ void HoI4Country::initFromHistory()
 		capital = stoi(results[0]->getLeaf());
 	}
 }
-
 
 void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap)
 {
@@ -1042,7 +1031,6 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, const namesMappi
 		leaders.push_back(newLeader);
 	}
 }
-
 
 void HoI4Country::convertNavy(map<int, HoI4State*> states)
 {
@@ -1158,13 +1146,12 @@ void HoI4Country::convertNavy(map<int, HoI4State*> states)
 	}
 }
 
-
 void HoI4Country::convertAirforce()
 {
 	int airplanes = 0;
-	for (auto army: srcCountry->getArmies())
+	for (auto army : srcCountry->getArmies())
 	{
-		for (auto regiment: army->getRegiments())
+		for (auto regiment : army->getRegiments())
 		{
 			string type = regiment->getType();
 			if (type == "plane")
@@ -1196,7 +1183,6 @@ void HoI4Country::convertAirforce()
 		}
 	}
 }
-
 
 void HoI4Country::convertArmyDivisions()
 {
@@ -1393,7 +1379,7 @@ void HoI4Country::convertArmyDivisions()
 	}
 	if ((artilleryBrigades > 0) || (supportBrigades > 0))
 	{
-		if (3*artilleryBrigades > infantryPerDivision * supportBrigades)
+		if (3 * artilleryBrigades > infantryPerDivision * supportBrigades)
 		{
 			//there are more brigades with artillery than with support, meddiv will have only art
 			HoI4DivisionTemplateType newDivisionTemplate("Support Infantry Division");
@@ -1447,7 +1433,7 @@ void HoI4Country::convertArmyDivisions()
 		}
 		else
 		{
-			//there are more brigades with support then artillery, meddiv will have only support 
+			//there are more brigades with support then artillery, meddiv will have only support
 			HoI4DivisionTemplateType newDivisionTemplate("Support Infantry Division");
 			for (int i = 0; i < (infantryPerDivision / 3); i++)
 			{
@@ -1536,7 +1522,7 @@ void HoI4Country::convertArmyDivisions()
 		if (totalWeight > 0)
 		{
 			// Use ceiling here to avoid losing units to, eg, numberOfDivisions = 12,
-			// totalWeight = 13. This can happen in the presence of aircraft. 
+			// totalWeight = 13. This can happen in the presence of aircraft.
 			location.second = ceil(location.second * adjustment * numberOfDivisions / totalWeight);
 		}
 	}
@@ -1549,13 +1535,13 @@ void HoI4Country::convertArmyDivisions()
 	int numMedium = 1;
 	int numBasic = 1;
 
-	infantryBrigades       = static_cast<int>(0.5 + adjustment * infantryBrigades);
-	artilleryBrigades      = static_cast<int>(0.5 + adjustment * artilleryBrigades);
-	supportBrigades        = static_cast<int>(0.5 + adjustment * supportBrigades);
-	tankBrigades           = static_cast<int>(0.5 + adjustment * tankBrigades);
-	cavalryBrigades        = static_cast<int>(0.5 + adjustment * cavalryBrigades);
+	infantryBrigades = static_cast<int>(0.5 + adjustment * infantryBrigades);
+	artilleryBrigades = static_cast<int>(0.5 + adjustment * artilleryBrigades);
+	supportBrigades = static_cast<int>(0.5 + adjustment * supportBrigades);
+	tankBrigades = static_cast<int>(0.5 + adjustment * tankBrigades);
+	cavalryBrigades = static_cast<int>(0.5 + adjustment * cavalryBrigades);
 	cavalrySupportBrigades = static_cast<int>(0.5 + adjustment * cavalrySupportBrigades);
-	mountainBrigades       = static_cast<int>(0.5 + adjustment * mountainBrigades);
+	mountainBrigades = static_cast<int>(0.5 + adjustment * mountainBrigades);
 
 	for (auto const location : locations)
 	{
@@ -1624,7 +1610,6 @@ void HoI4Country::convertArmyDivisions()
 			}
 			else
 				break;
-
 		}
 	}
 	if (artilleryBrigades >= numAdvanced && advancedIndex != -1)
@@ -1635,7 +1620,7 @@ void HoI4Country::convertArmyDivisions()
 	}
 	if (artilleryBrigades >= numMedium && mediumIndex != -1)
 	{
-	  HoI4RegimentType artilleryRegiment("artillery", 0, mediumSupport ? 2 : 0);
+		HoI4RegimentType artilleryRegiment("artillery", 0, mediumSupport ? 2 : 0);
 		divisionTemplates[mediumIndex].addSupportRegiment(artilleryRegiment);
 		artilleryBrigades -= numMedium;
 	}
@@ -1653,7 +1638,6 @@ void HoI4Country::convertArmyDivisions()
 	}
 }
 
-
 void HoI4Country::addProvince(int _province)
 {
 	provinces.insert(_province);
@@ -1663,7 +1647,6 @@ void HoI4Country::addProvince(int _province)
 	}
 }
 
-
 void HoI4Country::addState(HoI4State* _state)
 {
 	states.insert(make_pair(_state->getID(), _state));
@@ -1671,7 +1654,6 @@ void HoI4Country::addState(HoI4State* _state)
 		addProvince(province);
 	}
 }
-
 
 HoI4Relations* HoI4Country::getRelations(string withWhom) const
 {
@@ -1728,7 +1710,6 @@ vector<int> HoI4Country::getPortProvinces(vector<int> locationCandidates, map<in
 
 	return locationCandidates;
 }
-
 
 void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V2Parties, V2Party* rulingParty, string& rulingIdeology)
 {
@@ -2359,7 +2340,6 @@ void HoI4Country::setPartyPopularity()
 
 	for (auto party : parties)
 	{
-
 		if (party.name.find("fascist") != string::npos)
 		{
 			facismPopularity += party.popularity;
@@ -2399,7 +2379,6 @@ void HoI4Country::setPartyPopularity()
 	}
 }
 
-
 void HoI4Country::setTechnology(string tech, int level)
 {
 	// don't allow downgrades
@@ -2407,7 +2386,6 @@ void HoI4Country::setTechnology(string tech, int level)
 	if (techEntry == technologies.end() || technologies[tech] < level)
 		technologies[tech] = level;
 }
-
 
 void HoI4Country::calculateIndustry()
 {
@@ -2435,7 +2413,6 @@ void HoI4Country::calculateIndustry()
 	}
 }
 
-
 void HoI4Country::reportIndustry(ofstream& out)
 {
 	if (states.size() > 0)
@@ -2462,7 +2439,6 @@ void HoI4Country::reportIndustry(ofstream& out)
 	}
 }
 
-
 void HoI4Country::addVPsToCapital(int VPs)
 {
 	auto capital = getCapital();
@@ -2471,7 +2447,6 @@ void HoI4Country::addVPsToCapital(int VPs)
 		capital->addVictoryPointValue(VPs);
 	}
 }
-
 
 HoI4State* HoI4Country::getCapital(void)
 {
@@ -2491,18 +2466,15 @@ HoI4State* HoI4Country::getCapital(void)
 	return capitalItr->second;
 }
 
-
 double HoI4Country::getStrengthOverTime(double years) const
 {
 	return getMilitaryStrength() + getEconomicStrength(years);
 }
 
-
 double HoI4Country::getMilitaryStrength() const
 {
 	return armyStrength;
 }
-
 
 double HoI4Country::getEconomicStrength(double years) const
 {
@@ -2511,5 +2483,3 @@ double HoI4Country::getEconomicStrength(double years) const
 
 	return militarySectorStrength + civilianSectorStrength;
 }
-
-
