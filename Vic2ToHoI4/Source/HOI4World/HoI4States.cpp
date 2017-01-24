@@ -430,8 +430,12 @@ void HoI4States::output() const
 
 void HoI4States::outputHistory() const
 {
-	string statesPath = "Output/" + Configuration::getOutputName() + "/history/states";
-	if (!Utils::TryCreateFolder(statesPath))
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/history"))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history";
+		exit(-1);
+	}
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/history/states"))
 	{
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history/states";
 		exit(-1);
