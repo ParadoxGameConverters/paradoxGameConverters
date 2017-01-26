@@ -112,7 +112,6 @@ void HoI4World::convertCountries()
 	backgroundMap seaBackgroundMap;
 	//initLeaderBackgroundMap(obj->getLeaves()[0], landBackgroundMap, seaBackgroundMap);
 
-	initNamesMapping(namesMap);
 	initPortraitMapping(portraitMap);
 
 	map<int, int> leaderMap;
@@ -146,7 +145,7 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 			LOG(LogLevel::Error) << "Could not find the ruling party for " << country.first << ". Were all mods correctly included?";
 			exit(-1);
 		}
-		destCountry->initFromV2Country(*sourceWorld, country.second, rulingParty->ideology, leaderMap, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, states->getProvinceToStateIDMap(), states->getStates());
+		destCountry->initFromV2Country(*sourceWorld, country.second, rulingParty->ideology, leaderMap, governmentJobs, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, states->getProvinceToStateIDMap(), states->getStates());
 		countries.insert(make_pair(HoI4Tag, destCountry));
 	}
 	else
@@ -780,7 +779,7 @@ void HoI4World::generateLeaders()
 
 	for (auto country: countries)
 	{
-		country.second->generateLeaders(leaderTraits, namesMap, portraitMap);
+		country.second->generateLeaders(leaderTraits, portraitMap);
 	}
 }
 
@@ -1078,6 +1077,7 @@ void HoI4World::output() const
 
 	outputCommonCountries();
 	outputColorsfile();
+	outputNames();
 	HoI4Localisation::output();
 	states->output();
 	diplomacy->output();
@@ -1143,6 +1143,22 @@ void HoI4World::outputColorsfile() const
 	}
 
 	output.close();
+}
+
+
+void HoI4World::outputNames() const
+{
+	ofstream namesFile("Output/" + Configuration::getOutputName() + "/common/names/01_names.txt");
+	if (!namesFile.is_open())
+	{
+		Log(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/common/names/01_names.txt";
+		exit(-1);
+	}
+
+	for (auto country: countries)
+	{
+		country.second->outputToNamesFiles(namesFile);
+	}
 }
 
 

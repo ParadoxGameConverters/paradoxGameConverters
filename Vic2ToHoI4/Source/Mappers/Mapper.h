@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -91,11 +91,6 @@ void initLeaderPersonalityMap(personalityMap& landPersonalityMap, personalityMap
 typedef map<string, vector<string>> backgroundMap;		// <V2 background, possible HoI4 traits>
 void initLeaderBackgroundMap(backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
 
-
-// names
-typedef map<string, pair<vector<string>, vector<string>>> namesMapping;
-void initNamesMapping(namesMapping& namesMap);
-void processNamesFile(string filename, namesMapping& namesMap);
 
 // portraits
 typedef map<string, vector<string>> portraitMapping; // <graphical culture, valid portraits>

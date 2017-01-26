@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Leader.h"
 #include "HoI4Minister.h"
 #include "../Mappers/CountryMapping.h"
+#include "../Mappers/NamesMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "../V2World/V2Relations.h"
 #include "../V2World/V2Party.h"
@@ -423,6 +424,64 @@ void HoI4Country::outputToCommonCountriesFile(ofstream& countriesFile) const
 }
 
 
+void HoI4Country::outputToNamesFiles(ofstream& namesFile) const
+{
+	namesFile << tag << " = {\n";
+
+	namesFile << "\tmale = {\n";
+	namesFile << "\t\tnames = {\n";
+	namesFile << "\t\t\t";
+	for (unsigned int i = 0; i < firstNames.size(); i++)
+	{
+		namesFile << firstNames[i];
+		if (i == firstNames.size())
+		{
+			continue;
+		}
+		else if (((i + 1) % 10) == 0)
+		{
+			namesFile << "\n\t\t\t";
+		}
+		else
+		{
+			namesFile << " ";
+		}
+	}
+	namesFile << "\n";
+	namesFile << "\t\t}\n";
+	namesFile << "\t}\n";
+
+	namesFile << "\tfemale = {\n";
+	namesFile << "\t\tnames = {\n";
+	namesFile << "\t\t}\n";
+	namesFile << "\t}\n";
+
+	namesFile << "\tsurnames = {\n";
+	namesFile << "\t\t";
+	for (unsigned int i = 0; i < surnames.size(); i++)
+	{
+		namesFile << surnames[i];
+		if (i == surnames.size())
+		{
+			continue;
+		}
+		else if (((i + 1) % 10) == 0)
+		{
+			namesFile << "\n\t\t";
+		}
+		else
+		{
+			namesFile << " ";
+		}
+	}
+	namesFile << "\n";
+	namesFile << "\t}\n";
+
+	namesFile << "\tcallsigns = {}\n";
+	namesFile << "}\n";
+}
+
+
 void HoI4Country::outputPracticals(FILE* output) const
 {
 	fprintf(output, "\n");
@@ -603,7 +662,8 @@ void HoI4Country::outputOOB() const
 	output.close();
 }
 
-void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, map<int, int>& leaderMap, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states)
+
+void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, map<int, int>& leaderMap, governmentJobsMap governmentJobs, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states)
 {
 	srcCountry = _srcCountry;
 	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
@@ -665,25 +725,16 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 		}
 	}
 
+	// names
+	firstNames = namesMapper::getFirstNames(srcCountry->getPrimaryCulture());
+	surnames = namesMapper::getSurnames(srcCountry->getPrimaryCulture());
+
 	// Ministers
-	vector<string> firstNames;
-	vector<string> lastNames;
-	auto namesItr = namesMap.find(srcCountry->getPrimaryCulture());
-	if (namesItr != namesMap.end())
-	{
-		firstNames = namesItr->second.first;
-		lastNames = namesItr->second.second;
-	}
-	else
-	{
-		firstNames.push_back("nul");
-		lastNames.push_back("nul");
-	}
 	for (unsigned int ideologyIdx = 0; ideologyIdx <= stalinist; ideologyIdx++)
 	{
 		for (auto job : governmentJobs)
 		{
-			HoI4Minister newMinister(firstNames, lastNames, ideologyNames[ideologyIdx], job, governmentJobs, portraitMap[graphicalCulture]);
+			HoI4Minister newMinister(firstNames, surnames, ideologyNames[ideologyIdx], job, governmentJobs, portraitMap[graphicalCulture]);
 			ministers.push_back(newMinister);
 
 			if (ideologyNames[ideologyIdx] == ideology)
@@ -821,6 +872,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	majorNation = srcCountry->isGreatNation();
 }
 
+
 void HoI4Country::determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states)
 {
 	int oldCapital = srcCountry->getCapital();
@@ -933,22 +985,8 @@ void HoI4Country::initFromHistory()
 	}
 }
 
-void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap)
+void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, portraitMapping& portraitMap)
 {
-	vector<string> firstNames;
-	vector<string> lastNames;
-	auto namesItr = namesMap.find(srcCountry->getPrimaryCulture());
-	if (namesItr != namesMap.end())
-	{
-		firstNames = namesItr->second.first;
-		lastNames = namesItr->second.second;
-	}
-	else
-	{
-		firstNames.push_back("nul");
-		lastNames.push_back("nul");
-	}
-
 	// generated leaders
 	int totalOfficers = 0;
 	/*vector<V2Province*> srcProvinces = srcCountry->getCores();
@@ -973,7 +1011,7 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, const namesMappi
 	}
 	for (unsigned int i = 0; i <= totalLand; i++)
 	{
-		HoI4Leader newLeader(firstNames, lastNames, tag, "land", leaderTraits, portraitMap[graphicalCulture]);
+		HoI4Leader newLeader(firstNames, surnames, tag, "land", leaderTraits, portraitMap[graphicalCulture]);
 		leaders.push_back(newLeader);
 	}
 
@@ -1000,7 +1038,7 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, const namesMappi
 	}
 	for (unsigned int i = 0; i <= totalSea; i++)
 	{
-		HoI4Leader newLeader(firstNames, lastNames, tag, "sea", leaderTraits, portraitMap[graphicalCulture]);
+		HoI4Leader newLeader(firstNames, surnames, tag, "sea", leaderTraits, portraitMap[graphicalCulture]);
 		leaders.push_back(newLeader);
 	}
 
@@ -1027,7 +1065,7 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, const namesMappi
 	}
 	for (unsigned int i = 0; i <= totalAir; i++)
 	{
-		HoI4Leader newLeader(firstNames, lastNames, tag, "air", leaderTraits, portraitMap[graphicalCulture]);
+		HoI4Leader newLeader(firstNames, surnames, tag, "air", leaderTraits, portraitMap[graphicalCulture]);
 		leaders.push_back(newLeader);
 	}
 }
