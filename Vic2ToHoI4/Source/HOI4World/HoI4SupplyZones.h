@@ -42,14 +42,16 @@ class Object;
 class HoI4SupplyZones
 {
 	public:
-		HoI4SupplyZones(map<int, vector<int>> HoI4DefaultStateToProvinceMap);
+		HoI4SupplyZones();
 		void output();
 		void convertSupplyZones(const HoI4States* states);
 
 	private:
-		void importSupplyZone(const string& supplyZonesFile, const map<int, vector<int>>& defaultStateToProvinceMap);
-		void mapProvincesToSupplyZone(int ID, Object* supplyAreaObj, const map<int, vector<int>>& defaultStateToProvinceMap);
+		void importStates();
+		void importSupplyZone(const string& supplyZonesFile);
+		void mapProvincesToSupplyZone(int ID, Object* supplyAreaObj);
 
+		map<int, vector<int>> defaultStateToProvinceMap;
 		map<int, string> supplyZonesFilenames;
 		map<int, HoI4SupplyZone*> supplyZones;
 		map<int, int> provinceToSupplyZoneMap;

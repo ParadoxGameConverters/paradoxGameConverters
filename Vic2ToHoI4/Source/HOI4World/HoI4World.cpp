@@ -52,19 +52,15 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	LOG(LogLevel::Info) << "Parsing HoI4 data";
 	sourceWorld = _sourceWorld;
 
-	map<int, vector<int>> HoI4DefaultStateToProvinceMap;
 	states = new HoI4States(sourceWorld);
-	states->importStates(HoI4DefaultStateToProvinceMap);
-
+	buildings = new HoI4Buildings(states->getProvinceToStateIDMap());
+	supplyZones = new HoI4SupplyZones;
 	events = new HoI4Events;
-	supplyZones = new HoI4SupplyZones(HoI4DefaultStateToProvinceMap);
-
 	diplomacy = new HoI4Diplomacy;
 
-	states->convertStates();
 	convertNavalBases();
 	convertCountries();
-	states->addLocalisations();
+	HoI4Localisation::addStateLocalisations(states);
 	convertIndustry();
 	convertResources();
 	supplyZones->convertSupplyZones(states);
@@ -82,7 +78,6 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 
 	HoI4WarCreator warCreator;
 	warCreator.generateWars(this);
-	buildings = new HoI4Buildings(states->getProvinceToStateIDMap());
 }
 
 

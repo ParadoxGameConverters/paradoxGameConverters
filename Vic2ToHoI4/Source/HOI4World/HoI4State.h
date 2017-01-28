@@ -44,7 +44,6 @@ class HoI4State
 		void addProvince(int province) { provinces.insert(province); }
 		void setAsCapitalState() { capitalState = true; civFactories++; }
 		void addResource(string resource, double amount)	{ resources[resource] += amount; }
-		void addManpower(int newManpower) { manpower += newManpower; }
 		void addAirBase(int newAirBase) { airbaseLevel += newAirBase; if (airbaseLevel > 10) airbaseLevel = 10; }
 		void addVictoryPointValue(int additionalValue) { victoryPointValue += additionalValue; }
 		void setVPLocation(int province) { victoryPointPosition = province; }
@@ -67,7 +66,8 @@ class HoI4State
 
 		int getMainNavalLocation() const;
 
-		bool tryToCreateVP();
+		void tryToCreateVP();
+		void addManpower();
 
 		void convertIndustry(double workerFactoryRatio);
 

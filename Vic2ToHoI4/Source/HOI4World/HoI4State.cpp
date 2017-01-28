@@ -235,7 +235,7 @@ int HoI4State::getMainNavalLocation() const
 }
 
 
-bool HoI4State::tryToCreateVP()
+void HoI4State::tryToCreateVP()
 {
 	auto vic2CapitalProvince = stateMapper::getCapitalProvince(sourceState->getStateID());
 	auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(vic2CapitalProvince);
@@ -245,10 +245,19 @@ bool HoI4State::tryToCreateVP()
 		)
 	{
 		assignVP(provMapping->second[0]);
-		return true;
+		return;
 	}
 
-	return false;
+	LOG(LogLevel::Warning) << "Could not create VP for state";
+}
+
+
+void HoI4State::addManpower()
+{
+	for (auto sourceProvince: sourceState->getProvinces())
+	{
+		manpower += static_cast<int>(sourceProvince->getTotalPopulation() * 4 * Configuration::getManpowerFactor());
+	}
 }
 
 
