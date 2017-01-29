@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <map>
+#include <random>
 #include <string>
 #include <vector>
 using namespace std;
@@ -44,6 +45,16 @@ class namesMapper
 		{
 			return getInstance()->GetSurnames(culture);
 		}
+
+		static string getFirstName(string culture)
+		{
+			return getInstance()->GetFirstName(culture);
+		}
+
+		static string getSurname(string culture)
+		{
+			return getInstance()->GetSurname(culture);
+		}
 	private:
 		static namesMapper* instance;
 		static namesMapper* getInstance()
@@ -60,10 +71,14 @@ class namesMapper
 
 		vector<string> GetFirstNames(string culture) const;
 		vector<string> GetSurnames(string culture) const;
+		string GetFirstName(string culture);
+		string GetSurname(string culture);
 
 
 		map<string, vector<string>> firstNamesMap;
 		map<string, vector<string>> surnamesMap;
+
+		std::mt19937 rng;
 };
 
 

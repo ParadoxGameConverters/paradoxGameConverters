@@ -19,9 +19,10 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
+
+
 #include "HoI4Country.h"
 #include "HoI4World.h"
-#include <fstream>
 #include "Log.h"
 #include "ParadoxParserUTF8.h"
 #include "HoI4Faction.h"
@@ -34,6 +35,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../V2World/V2Party.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "OSCompatibilityLayer.h"
+#include <fstream>
+#include <boost/algorithm/string.hpp>
+
+
 
 enum ideaologyType {
 	national_socialist = 0,
@@ -240,16 +245,7 @@ void HoI4Country::output(const map<int, HoI4State*>& states, const vector<HoI4Fa
 		if (RulingPartyModel.war_pol == "pro_military")
 			output << "low_economic_mobilisation\n";
 		output << "}\n";
-		output << "create_country_leader = {" << endl;
-		output << "    name = \"Jigme Wangchuck\"" << endl;
-		output << "    desc = \"POLITICS_JIGME_WANGCHUCK_DESC\"" << endl;
-		output << "    picture = \"gfx / leaders / Asia / Portrait_Asia_Generic_2.dds\"" << endl;
-		output << "    expire = \"1965.1.1\"" << endl;
-		output << "    ideology = " << ideology << endl;
-		output << "    traits = {" << endl;
-		output << "        #" << endl;
-		output << "    }" << endl;
-		output << "}" << endl;
+		outputCountryLeader(output);
 		output << "" << endl;
 		output << "1939.1.1 = {" << endl;
 		output << "    " << endl;
@@ -431,6 +427,8 @@ void HoI4Country::outputToNamesFiles(ofstream& namesFile) const
 	namesFile << "\tmale = {\n";
 	namesFile << "\t\tnames = {\n";
 	namesFile << "\t\t\t";
+
+	vector<string> firstNames = namesMapper::getFirstNames(srcCountry->getPrimaryCulture());
 	for (unsigned int i = 0; i < firstNames.size(); i++)
 	{
 		namesFile << firstNames[i];
@@ -458,6 +456,8 @@ void HoI4Country::outputToNamesFiles(ofstream& namesFile) const
 
 	namesFile << "\tsurnames = {\n";
 	namesFile << "\t\t";
+
+	vector<string> surnames = namesMapper::getSurnames(srcCountry->getPrimaryCulture());
 	for (unsigned int i = 0; i < surnames.size(); i++)
 	{
 		namesFile << surnames[i];
@@ -725,16 +725,12 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 		}
 	}
 
-	// names
-	firstNames = namesMapper::getFirstNames(srcCountry->getPrimaryCulture());
-	surnames = namesMapper::getSurnames(srcCountry->getPrimaryCulture());
-
 	// Ministers
 	for (unsigned int ideologyIdx = 0; ideologyIdx <= stalinist; ideologyIdx++)
 	{
 		for (auto job : governmentJobs)
 		{
-			HoI4Minister newMinister(firstNames, surnames, ideologyNames[ideologyIdx], job, governmentJobs, portraitMap[graphicalCulture]);
+			HoI4Minister newMinister(namesMapper::getFirstNames(srcCountry->getPrimaryCulture()), namesMapper::getSurnames(srcCountry->getPrimaryCulture()), ideologyNames[ideologyIdx], job, governmentJobs, portraitMap[graphicalCulture]);
 			ministers.push_back(newMinister);
 
 			if (ideologyNames[ideologyIdx] == ideology)
@@ -1011,7 +1007,7 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, portraitMapping&
 	}
 	for (unsigned int i = 0; i <= totalLand; i++)
 	{
-		HoI4Leader newLeader(firstNames, surnames, tag, "land", leaderTraits, portraitMap[graphicalCulture]);
+		HoI4Leader newLeader(namesMapper::getFirstNames(srcCountry->getPrimaryCulture()), namesMapper::getSurnames(srcCountry->getPrimaryCulture()), tag, "land", leaderTraits, portraitMap[graphicalCulture]);
 		leaders.push_back(newLeader);
 	}
 
@@ -1038,7 +1034,7 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, portraitMapping&
 	}
 	for (unsigned int i = 0; i <= totalSea; i++)
 	{
-		HoI4Leader newLeader(firstNames, surnames, tag, "sea", leaderTraits, portraitMap[graphicalCulture]);
+		HoI4Leader newLeader(namesMapper::getFirstNames(srcCountry->getPrimaryCulture()), namesMapper::getSurnames(srcCountry->getPrimaryCulture()), tag, "sea", leaderTraits, portraitMap[graphicalCulture]);
 		leaders.push_back(newLeader);
 	}
 
@@ -1065,7 +1061,7 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, portraitMapping&
 	}
 	for (unsigned int i = 0; i <= totalAir; i++)
 	{
-		HoI4Leader newLeader(firstNames, surnames, tag, "air", leaderTraits, portraitMap[graphicalCulture]);
+		HoI4Leader newLeader(namesMapper::getFirstNames(srcCountry->getPrimaryCulture()), namesMapper::getSurnames(srcCountry->getPrimaryCulture()), tag, "air", leaderTraits, portraitMap[graphicalCulture]);
 		leaders.push_back(newLeader);
 	}
 }
@@ -2520,4 +2516,21 @@ double HoI4Country::getEconomicStrength(double years) const
 	double civilianSectorStrength = civilianFactories * 0.469 * 0.5 * 3 * 365 * 0.5* years * years; /*.469 is milfac per year, .5 since half are used by consumer goods*/
 
 	return militarySectorStrength + civilianSectorStrength;
+}
+
+
+void HoI4Country::outputCountryLeader(ofstream& output) const
+{
+	string firstName = namesMapper::getFirstName(srcCountry->getPrimaryCulture());
+	string surname = namesMapper::getSurname(srcCountry->getPrimaryCulture());
+
+	output << "create_country_leader = {\n";
+	output << "    name = \"" << firstName << " " << surname << "\"\n";
+	output << "    desc = \"POLITICS_" << boost::to_upper_copy(firstName) << "_" << boost::to_upper_copy(surname) << "_DESC\"\n";
+	output << "    picture = \"gfx\\\\leaders\\\\leader_unknown.dds\"\n";
+	output << "    expire = \"1965.1.1\"\n";
+	output << "    ideology = " << ideology << "\n";
+	output << "    traits = {\n";
+	output << "    }\n";
+	output << "}\n";
 }

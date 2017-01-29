@@ -116,3 +116,21 @@ vector<string> namesMapper::GetSurnames(string culture) const
 
 	return surnames;
 }
+
+
+string namesMapper::GetFirstName(string culture)
+{
+	vector<string> firstNames = GetFirstNames(culture);
+
+	std::uniform_int_distribution<int> firstNameGen(0, firstNames.size() - 1);
+	return firstNames[firstNameGen(rng)];
+}
+
+
+string namesMapper::GetSurname(string culture)
+{
+	vector<string> surnames = GetSurnames(culture);
+
+	std::uniform_int_distribution<int> surnameGen(0, surnames.size() - 1);
+	return surnames[surnameGen(rng)];
+}

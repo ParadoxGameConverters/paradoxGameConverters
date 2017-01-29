@@ -141,6 +141,8 @@ private:
 
 	void setPartyPopularity();
 
+	void outputCountryLeader(ofstream& output) const;
+
 	HoI4World*							theWorld;
 	const V2Country*					srcCountry;
 	string								filename;
@@ -212,9 +214,6 @@ private:
 	int											navalLocation;
 
 	HoI4FocusTree* nationalFocus;
-
-	vector<string> firstNames;
-	vector<string> surnames;
 };
 
 #endif	// HoI4COUNTRY_H_
