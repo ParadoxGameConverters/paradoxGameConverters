@@ -1144,6 +1144,8 @@ void HoI4World::outputColorsfile() const
 void HoI4World::outputNames() const
 {
 	ofstream namesFile("Output/" + Configuration::getOutputName() + "/common/names/01_names.txt");
+	namesFile << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
+
 	if (!namesFile.is_open())
 	{
 		Log(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/common/names/01_names.txt";
