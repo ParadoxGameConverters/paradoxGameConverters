@@ -3537,7 +3537,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		newFocus->icon = "GFX_goal_generic_position_armies";
 		newFocus->text += "War Plan " + Country->getSourceCountry()->getName("english");
 		newFocus->prerequisites.push_back("focus = PrepInter" + Home->getTag());
-		newFocus->available += "			" + Country->getTag() + " = { is_in_faction_with = " + Home->getTag() + " }\n";
+		newFocus->available += "			NOT = { " + Country->getTag() + " = { is_in_faction_with = " + Home->getTag() + " } }\n";
 		newFocus->available += "			" + Country->getTag() + " = { has_added_tension_amount > 30 }";
 		newFocus->xPos = XStart + offBalance + warPlannumber * 2;
 		newFocus->yPos = 2;
@@ -3558,7 +3558,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		newFocus->icon = "GFX_goal_generic_trade";
 		newFocus->text += "Embargo " + Country->getSourceCountry()->getName("english");
 		newFocus->prerequisites.push_back("focus =  WarPlan" + Home->getTag() + Country->getTag());
-		newFocus->available += "			" + Country->getTag() + " = { is_in_faction_with = " + Home->getTag() + " }\n";
+		newFocus->available += "			NOT = { " + Country->getTag() + " = { is_in_faction_with = " + Home->getTag() + " } }\n";
 		newFocus->available += "			" + Country->getTag() + " = { has_added_tension_amount > 30 }";
 		newFocus->xPos = XStart + offBalance + warPlannumber * 2;
 		newFocus->yPos = 3;
