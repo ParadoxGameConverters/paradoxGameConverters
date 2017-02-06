@@ -427,22 +427,24 @@ void HoI4Country::outputToNamesFiles(ofstream& namesFile) const
 	namesFile << "\tmale = {\n";
 	namesFile << "\t\tnames = {\n";
 	namesFile << "\t\t\t";
-
-	vector<string> firstNames = namesMapper::getFirstNames(srcCountry->getPrimaryCulture());
-	for (unsigned int i = 0; i < firstNames.size(); i++)
+	vector<string> maleNames = namesMapper::getMaleNames(srcCountry->getPrimaryCulture());
+	if (maleNames[0] != "null")
 	{
-		namesFile << firstNames[i];
-		if (i == firstNames.size())
+		for (unsigned int i = 0; i < maleNames.size(); i++)
 		{
-			continue;
-		}
-		else if (((i + 1) % 10) == 0)
-		{
-			namesFile << "\n\t\t\t";
-		}
-		else
-		{
-			namesFile << " ";
+			namesFile << maleNames[i];
+			if (i == maleNames.size())
+			{
+				continue;
+			}
+			else if (((i + 1) % 10) == 0)
+			{
+				namesFile << "\n\t\t\t";
+			}
+			else
+			{
+				namesFile << " ";
+			}
 		}
 	}
 	namesFile << "\n";
@@ -451,27 +453,51 @@ void HoI4Country::outputToNamesFiles(ofstream& namesFile) const
 
 	namesFile << "\tfemale = {\n";
 	namesFile << "\t\tnames = {\n";
+	namesFile << "\t\t\t";
+	vector<string> femaleNames = namesMapper::getFemaleNames(srcCountry->getPrimaryCulture());
+	if (femaleNames[0] != "null")
+	{
+		for (unsigned int i = 0; i < femaleNames.size(); i++)
+		{
+			namesFile << femaleNames[i];
+			if (i == femaleNames.size())
+			{
+				continue;
+			}
+			else if (((i + 1) % 10) == 0)
+			{
+				namesFile << "\n\t\t\t";
+			}
+			else
+			{
+				namesFile << " ";
+			}
+		}
+	}
+	namesFile << "\n";
 	namesFile << "\t\t}\n";
 	namesFile << "\t}\n";
 
 	namesFile << "\tsurnames = {\n";
 	namesFile << "\t\t";
-
 	vector<string> surnames = namesMapper::getSurnames(srcCountry->getPrimaryCulture());
-	for (unsigned int i = 0; i < surnames.size(); i++)
+	if (surnames[0] != "null")
 	{
-		namesFile << surnames[i];
-		if (i == surnames.size())
+		for (unsigned int i = 0; i < surnames.size(); i++)
 		{
-			continue;
-		}
-		else if (((i + 1) % 10) == 0)
-		{
-			namesFile << "\n\t\t";
-		}
-		else
-		{
-			namesFile << " ";
+			namesFile << surnames[i];
+			if (i == surnames.size())
+			{
+				continue;
+			}
+			else if (((i + 1) % 10) == 0)
+			{
+				namesFile << "\n\t\t";
+			}
+			else
+			{
+				namesFile << " ";
+			}
 		}
 	}
 	namesFile << "\n";
@@ -730,7 +756,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	{
 		for (auto job : governmentJobs)
 		{
-			HoI4Minister newMinister(namesMapper::getFirstNames(srcCountry->getPrimaryCulture()), namesMapper::getSurnames(srcCountry->getPrimaryCulture()), ideologyNames[ideologyIdx], job, governmentJobs, portraitMap[graphicalCulture]);
+			HoI4Minister newMinister(namesMapper::getMaleNames(srcCountry->getPrimaryCulture()), namesMapper::getSurnames(srcCountry->getPrimaryCulture()), ideologyNames[ideologyIdx], job, governmentJobs, portraitMap[graphicalCulture]);
 			ministers.push_back(newMinister);
 
 			if (ideologyNames[ideologyIdx] == ideology)
@@ -1007,7 +1033,7 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, portraitMapping&
 	}
 	for (unsigned int i = 0; i <= totalLand; i++)
 	{
-		HoI4Leader newLeader(namesMapper::getFirstNames(srcCountry->getPrimaryCulture()), namesMapper::getSurnames(srcCountry->getPrimaryCulture()), tag, "land", leaderTraits, portraitMap[graphicalCulture]);
+		HoI4Leader newLeader(namesMapper::getMaleNames(srcCountry->getPrimaryCulture()), namesMapper::getSurnames(srcCountry->getPrimaryCulture()), tag, "land", leaderTraits, portraitMap[graphicalCulture]);
 		leaders.push_back(newLeader);
 	}
 
@@ -1034,7 +1060,7 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, portraitMapping&
 	}
 	for (unsigned int i = 0; i <= totalSea; i++)
 	{
-		HoI4Leader newLeader(namesMapper::getFirstNames(srcCountry->getPrimaryCulture()), namesMapper::getSurnames(srcCountry->getPrimaryCulture()), tag, "sea", leaderTraits, portraitMap[graphicalCulture]);
+		HoI4Leader newLeader(namesMapper::getMaleNames(srcCountry->getPrimaryCulture()), namesMapper::getSurnames(srcCountry->getPrimaryCulture()), tag, "sea", leaderTraits, portraitMap[graphicalCulture]);
 		leaders.push_back(newLeader);
 	}
 
@@ -1061,7 +1087,7 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, portraitMapping&
 	}
 	for (unsigned int i = 0; i <= totalAir; i++)
 	{
-		HoI4Leader newLeader(namesMapper::getFirstNames(srcCountry->getPrimaryCulture()), namesMapper::getSurnames(srcCountry->getPrimaryCulture()), tag, "air", leaderTraits, portraitMap[graphicalCulture]);
+		HoI4Leader newLeader(namesMapper::getMaleNames(srcCountry->getPrimaryCulture()), namesMapper::getSurnames(srcCountry->getPrimaryCulture()), tag, "air", leaderTraits, portraitMap[graphicalCulture]);
 		leaders.push_back(newLeader);
 	}
 }
@@ -2521,7 +2547,7 @@ double HoI4Country::getEconomicStrength(double years) const
 
 void HoI4Country::outputCountryLeader(ofstream& output) const
 {
-	string firstName = namesMapper::getFirstName(srcCountry->getPrimaryCulture());
+	string firstName = namesMapper::getMaleName(srcCountry->getPrimaryCulture());
 	string surname = namesMapper::getSurname(srcCountry->getPrimaryCulture());
 
 	output << "create_country_leader = {\n";

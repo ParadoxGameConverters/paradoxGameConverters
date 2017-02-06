@@ -37,20 +37,27 @@ using namespace std;
 class namesMapper
 {
 	public:
-		static vector<string> getFirstNames(string culture)
+		static vector<string> getMaleNames(string culture)
 		{
-			return getInstance()->GetFirstNames(culture);
+			return getInstance()->GetMaleNames(culture);
+		}
+		static vector<string> getFemaleNames(string culture)
+		{
+			return getInstance()->GetFemaleNames(culture);
 		}
 		static vector<string> getSurnames(string culture)
 		{
 			return getInstance()->GetSurnames(culture);
 		}
 
-		static string getFirstName(string culture)
+		static string getMaleName(string culture)
 		{
-			return getInstance()->GetFirstName(culture);
+			return getInstance()->GetMaleName(culture);
 		}
-
+		static string getFemaleName(string culture)
+		{
+			return getInstance()->GetFemaleName(culture);
+		}
 		static string getSurname(string culture)
 		{
 			return getInstance()->GetSurname(culture);
@@ -67,15 +74,19 @@ class namesMapper
 		}
 		namesMapper();
 
-		void processNamesFile(string filename);
+		void processVic2CulturesFile(string filename);
+		void processFemaleNamesFile();
 
-		vector<string> GetFirstNames(string culture) const;
+		vector<string> GetMaleNames(string culture) const;
+		vector<string> GetFemaleNames(string culture) const;
 		vector<string> GetSurnames(string culture) const;
-		string GetFirstName(string culture);
+		string GetMaleName(string culture);
+		string GetFemaleName(string culture);
 		string GetSurname(string culture);
 
 
-		map<string, vector<string>> firstNamesMap;
+		map<string, vector<string>> maleNamesMap;
+		map<string, vector<string>> femaleNamesMap;
 		map<string, vector<string>> surnamesMap;
 
 		std::mt19937 rng;

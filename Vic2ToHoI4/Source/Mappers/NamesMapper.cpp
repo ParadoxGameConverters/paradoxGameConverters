@@ -24,6 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "NamesMapper.h"
 #include "Log.h"
 #include "ParadoxParser8859_15.h"
+#include "ParadoxParserUTF8.h"
 #include "../Configuration.h"
 
 
@@ -39,14 +40,16 @@ namesMapper::namesMapper()
 	for (auto mod: Configuration::getVic2Mods())
 	{
 		LOG(LogLevel::Debug) << "Reading mod cultures from " << mod;
-		processNamesFile((Configuration::getV2Path() + "/mod/" + mod + "/common/cultures.txt"));
+		processVic2CulturesFile((Configuration::getV2Path() + "/mod/" + mod + "/common/cultures.txt"));
 	}
 
-	processNamesFile((Configuration::getV2Path() + "/common/cultures.txt"));
+	processVic2CulturesFile((Configuration::getV2Path() + "/common/cultures.txt"));
+
+	processFemaleNamesFile();
 }
 
 
-void namesMapper::processNamesFile(string filename)
+void namesMapper::processVic2CulturesFile(string filename)
 {
 	Object* obj = parser_8859_15::doParseFile(filename);
 	if (obj == nullptr)
@@ -70,7 +73,7 @@ void namesMapper::processNamesFile(string filename)
 			vector<Object*> lastNamesObj = culturesItr->getValue("last_names");
 			if ((firstNamesObj.size() > 0) && (lastNamesObj.size() > 0))
 			{
-				firstNamesMap.insert(make_pair(key, firstNamesObj[0]->getTokens()));
+				maleNamesMap.insert(make_pair(key, firstNamesObj[0]->getTokens()));
 				surnamesMap.insert(make_pair(key, lastNamesObj[0]->getTokens()));
 			}
 			else
@@ -82,21 +85,50 @@ void namesMapper::processNamesFile(string filename)
 }
 
 
-vector<string> namesMapper::GetFirstNames(string culture) const
+void namesMapper::processFemaleNamesFile()
 {
-	vector<string> firstNames;
-
-	auto namesItr = firstNamesMap.find(culture);
-	if (namesItr != firstNamesMap.end())
+	Object* obj = parser_UTF8::doParseFile("femaleNames.txt");
+	for (auto cultureObj: obj->getLeaves())
 	{
-		firstNames = namesItr->second;
+		string culture = cultureObj->getKey();
+		femaleNamesMap.insert(make_pair(culture, cultureObj->getLeaves()[0]->getTokens()));
+	}
+}
+
+
+vector<string> namesMapper::GetMaleNames(string culture) const
+{
+	vector<string> maleNames;
+
+	auto namesItr = maleNamesMap.find(culture);
+	if (namesItr != maleNamesMap.end())
+	{
+		maleNames = namesItr->second;
 	}
 	else
 	{
-		firstNames.push_back("null");
+		maleNames.push_back("null");
 	}
 
-	return firstNames;
+	return maleNames;
+}
+
+
+vector<string> namesMapper::GetFemaleNames(string culture) const
+{
+	vector<string> femaleNames;
+
+	auto namesItr = femaleNamesMap.find(culture);
+	if (namesItr != femaleNamesMap.end())
+	{
+		femaleNames = namesItr->second;
+	}
+	else
+	{
+		femaleNames.push_back("null");
+	}
+
+	return femaleNames;
 }
 
 
@@ -118,9 +150,18 @@ vector<string> namesMapper::GetSurnames(string culture) const
 }
 
 
-string namesMapper::GetFirstName(string culture)
+string namesMapper::GetMaleName(string culture)
 {
-	vector<string> firstNames = GetFirstNames(culture);
+	vector<string> firstNames = GetMaleNames(culture);
+
+	std::uniform_int_distribution<int> firstNameGen(0, firstNames.size() - 1);
+	return firstNames[firstNameGen(rng)];
+}
+
+
+string namesMapper::GetFemaleName(string culture)
+{
+	vector<string> firstNames = GetFemaleNames(culture);
 
 	std::uniform_int_distribution<int> firstNameGen(0, firstNames.size() - 1);
 	return firstNames[firstNameGen(rng)];
