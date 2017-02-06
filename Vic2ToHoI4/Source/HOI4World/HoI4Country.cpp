@@ -431,7 +431,7 @@ void HoI4Country::outputToNamesFiles(ofstream& namesFile) const
 	{
 		for (unsigned int i = 0; i < maleNames.size(); i++)
 		{
-			namesFile << maleNames[i];
+			namesFile << '\"' << maleNames[i] << '\"';
 			if (i == maleNames.size())
 			{
 				continue;
@@ -458,7 +458,7 @@ void HoI4Country::outputToNamesFiles(ofstream& namesFile) const
 	{
 		for (unsigned int i = 0; i < femaleNames.size(); i++)
 		{
-			namesFile << femaleNames[i];
+			namesFile << '\"' << femaleNames[i] << '\"';
 			if (i == femaleNames.size())
 			{
 				continue;
@@ -484,7 +484,7 @@ void HoI4Country::outputToNamesFiles(ofstream& namesFile) const
 	{
 		for (unsigned int i = 0; i < surnames.size(); i++)
 		{
-			namesFile << surnames[i];
+			namesFile << '\"' << surnames[i] << '\"';
 			if (i == surnames.size())
 			{
 				continue;
@@ -502,7 +502,30 @@ void HoI4Country::outputToNamesFiles(ofstream& namesFile) const
 	namesFile << "\n";
 	namesFile << "\t}\n";
 
-	namesFile << "\tcallsigns = {}\n";
+	namesFile << "\tcallsigns = {\n";
+	namesFile << "\t\t";
+	vector<string> callsigns = namesMapper::getCallsigns(srcCountry->getPrimaryCulture());
+	if (callsigns[0] != "null")
+	{
+		for (unsigned int i = 0; i < callsigns.size(); i++)
+		{
+			namesFile << '\"' << callsigns[i] << '\"';
+			if (i == callsigns.size())
+			{
+				continue;
+			}
+			else if (((i + 1) % 10) == 0)
+			{
+				namesFile << "\n\t\t";
+			}
+			else
+			{
+				namesFile << " ";
+			}
+		}
+	}
+	namesFile << "\n";
+	namesFile << "\t}\n";
 	namesFile << "}\n";
 }
 

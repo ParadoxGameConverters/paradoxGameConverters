@@ -49,6 +49,10 @@ class namesMapper
 		{
 			return getInstance()->GetSurnames(culture);
 		}
+		static vector<string> getCallsigns(string culture)
+		{
+			return getInstance()->GetCallsigns(culture);
+		}
 
 		static string getMaleName(string culture)
 		{
@@ -61,6 +65,10 @@ class namesMapper
 		static string getSurname(string culture)
 		{
 			return getInstance()->GetSurname(culture);
+		}
+		static string getCallsign(string culture)
+		{
+			return getInstance()->GetCallsign(culture);
 		}
 	private:
 		static namesMapper* instance;
@@ -76,18 +84,22 @@ class namesMapper
 
 		void processVic2CulturesFile(string filename);
 		void processFemaleNamesFile();
+		void processCallsignsFile();
 
 		vector<string> GetMaleNames(string culture) const;
 		vector<string> GetFemaleNames(string culture) const;
 		vector<string> GetSurnames(string culture) const;
+		vector<string> GetCallsigns(string culture) const;
 		string GetMaleName(string culture);
 		string GetFemaleName(string culture);
 		string GetSurname(string culture);
+		string GetCallsign(string culture);
 
 
 		map<string, vector<string>> maleNamesMap;
 		map<string, vector<string>> femaleNamesMap;
 		map<string, vector<string>> surnamesMap;
+		map<string, vector<string>> callsignsMap;
 
 		std::mt19937 rng;
 };

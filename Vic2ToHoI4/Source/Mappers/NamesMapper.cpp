@@ -46,6 +46,7 @@ namesMapper::namesMapper()
 	processVic2CulturesFile((Configuration::getV2Path() + "/common/cultures.txt"));
 
 	processFemaleNamesFile();
+	processCallsignsFile();
 }
 
 
@@ -92,6 +93,17 @@ void namesMapper::processFemaleNamesFile()
 	{
 		string culture = cultureObj->getKey();
 		femaleNamesMap.insert(make_pair(culture, cultureObj->getLeaves()[0]->getTokens()));
+	}
+}
+
+
+void namesMapper::processCallsignsFile()
+{
+	Object* obj = parser_UTF8::doParseFile("callsigns.txt");
+	for (auto cultureObj: obj->getLeaves())
+	{
+		string culture = cultureObj->getKey();
+		callsignsMap.insert(make_pair(culture, cultureObj->getLeaves()[0]->getTokens()));
 	}
 }
 
@@ -150,6 +162,24 @@ vector<string> namesMapper::GetSurnames(string culture) const
 }
 
 
+vector<string> namesMapper::GetCallsigns(string culture) const
+{
+	vector<string> callsigns;
+
+	auto namesItr = callsignsMap.find(culture);
+	if (namesItr != callsignsMap.end())
+	{
+		callsigns = namesItr->second;
+	}
+	else
+	{
+		callsigns.push_back("null");
+	}
+
+	return callsigns;
+}
+
+
 string namesMapper::GetMaleName(string culture)
 {
 	vector<string> firstNames = GetMaleNames(culture);
@@ -174,4 +204,13 @@ string namesMapper::GetSurname(string culture)
 
 	std::uniform_int_distribution<int> surnameGen(0, surnames.size() - 1);
 	return surnames[surnameGen(rng)];
+}
+
+
+string namesMapper::GetCallsign(string culture)
+{
+	vector<string> callsigns = GetCallsigns(culture);
+
+	std::uniform_int_distribution<int> surnameGen(0, callsigns.size() - 1);
+	return callsigns[surnameGen(rng)];
 }
