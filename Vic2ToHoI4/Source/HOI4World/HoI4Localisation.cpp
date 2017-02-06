@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4States.h"
 #include "../Mappers/V2Localisations.h"
 #include "../V2World/V2Country.h"
+#include "../V2World/Vic2State.h"
 #include "../Configuration.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
@@ -203,13 +204,22 @@ void HoI4Localisation::AddStateLocalisations(const HoI4States* states)
 
 void HoI4Localisation::addStateLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage)
 {
-	getExistingStateLocalisation(Vic2NameInLanguage.first).insert(state->makeLocalisation(Vic2NameInLanguage));
+	string key = string("STATE_") + to_string(state->getID());
+
+	string localisedName = "";
+	if (state->getSourceState()->isPartialState())
+	{
+		localisedName += V2Localisations::GetTextInLanguage(state->getSourceState()->getOwner() + "_ADJ", Vic2NameInLanguage.first) + " ";
+	}
+	localisedName += Vic2NameInLanguage.second;
+
+	getExistingStateLocalisation(Vic2NameInLanguage.first).insert(make_pair(key, localisedName));
 }
 
 
 void HoI4Localisation::addVPLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage)
 {
-	getExistingVPLocalisation(Vic2NameInLanguage.first).insert(state->makeVPLocalisation(Vic2NameInLanguage));
+	getExistingVPLocalisation(Vic2NameInLanguage.first).insert(make_pair("VICTORY_POINTS_" + to_string(state->getVPLocation()),	Vic2NameInLanguage.second));
 }
 
 

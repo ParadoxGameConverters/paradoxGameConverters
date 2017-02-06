@@ -31,6 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/V2Localisations.h"
 #include "../V2World/V2Country.h"
 #include "../V2World/V2Province.h"
+#include "../V2World/Vic2State.h"
 #include "../V2World/V2World.h"
 #include <fstream>
 

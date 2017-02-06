@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -29,8 +29,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <vector>
 #include <string>
 #include <map>
-#include "..\V2World\Vic2State.h"
+#include <set>
 using namespace std;
+
+
+
+class V2Province;
+class Vic2State;
 
 
 
@@ -71,9 +76,6 @@ class HoI4State
 
 		void convertIndustry(double workerFactoryRatio);
 
-		pair<string, string> makeLocalisation(const pair<const string, string>& Vic2NameInLanguage) const;
-		pair<string, string> makeVPLocalisation(const pair<const string, string>& Vic2NameInLanguage) const;
-
 	private:
 		int determineFactoryNumbers(double workerFactoryRatio);
 		int constrainFactoryNumbers(double rawFactories);
@@ -87,9 +89,6 @@ class HoI4State
 
 		void assignVP(int location);
 		bool isProvinceInState(int provinceNum);
-
-		string makeLocalisationKey() const;
-		string makeLocalisationValue(const pair<const string, string>& Vic2NameInLanguage) const;
 
 		const Vic2State* sourceState;
 
