@@ -132,7 +132,7 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 	const std::string& HoI4Tag = CountryMapper::getHoI4Tag(country.first);
 	if (!HoI4Tag.empty())
 	{
-		std::string countryFileName = '/' + country.second->getName("english") + ".txt";
+		std::string countryFileName = country.second->getName("english") + ".txt";
 		destCountry = new HoI4Country(HoI4Tag, countryFileName, this, true);
 		V2Party* rulingParty = country.second->getRulingParty(sourceWorld->getParties());
 		if (rulingParty == nullptr)

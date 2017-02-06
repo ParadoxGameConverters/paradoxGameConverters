@@ -57,7 +57,6 @@ void HoI4SupplyZones::importStates()
 	{
 		int num = stoi(stateFile.substr(0, stateFile.find_first_of('-')));
 
-		// create the default state map
 		Object* fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/history/states/" + stateFile);
 		if (fileObj == nullptr)
 		{

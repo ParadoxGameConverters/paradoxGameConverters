@@ -73,7 +73,6 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 
 	tag = _tag;
 	commonCountryFile = _commonCountryFile;
-	commonCountryFile.insert(1, tag + "-");
 	provinces.clear();
 	technologies.clear();
 
@@ -416,7 +415,7 @@ void HoI4Country::outputColors(ofstream& out) const
 
 void HoI4Country::outputToCommonCountriesFile(ofstream& countriesFile) const
 {
-	countriesFile << tag.c_str() << " = \"countries" << Utils::convertUTF8ToASCII(commonCountryFile) << "\"\n";
+	countriesFile << tag.c_str() << " = \"countries/" << Utils::convertUTF8ToASCII(commonCountryFile) << "\"\n";
 }
 
 
@@ -699,10 +698,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	}
 	if (filename == "")
 	{
-		string countryName = commonCountryFile;
-		int lastSlash = countryName.find_last_of("/");
-		countryName = countryName.substr(lastSlash + 1, countryName.size());
-		filename = tag + " - " + countryName;
+		filename = tag + " - " + commonCountryFile;
 	}
 
 	// Color
@@ -969,10 +965,7 @@ void HoI4Country::initFromHistory()
 
 	if (filename == "")
 	{
-		string countryName = commonCountryFile;
-		int lastSlash = countryName.find_last_of("/");
-		countryName = countryName.substr(lastSlash + 1, countryName.size());
-		filename = tag + " - " + countryName;
+		filename = tag + " - " + commonCountryFile;
 		return;
 	}
 	else
