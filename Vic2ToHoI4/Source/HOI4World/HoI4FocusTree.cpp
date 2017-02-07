@@ -1657,8 +1657,7 @@ void HoI4FocusTree::addVersion1_0GenericFocusTree()
 	newFocus = new HoI4Focus;
 	newFocus->id = "ideological_fanaticism";
 	newFocus->icon = "GFX_goal_generic_demand_territory";
-	newFocus->prerequisites.push_back("focus = paramilitarism");
-	newFocus->prerequisites.push_back("focus = political_commissars");
+	newFocus->prerequisites.push_back("focus = paramilitarism focus = political_commissars");
 	newFocus->xPos = 17;
 	newFocus->yPos = 6;
 	newFocus->cost = 10;
@@ -1675,8 +1674,7 @@ void HoI4FocusTree::addVersion1_0GenericFocusTree()
 	newFocus = new HoI4Focus;
 	newFocus->id = "technology_sharing";
 	newFocus->icon = "GFX_goal_generic_scientific_exchange";
-	newFocus->prerequisites.push_back("focus = ideological_fanaticism");
-	newFocus->prerequisites.push_back("focus = why_we_fight");
+	newFocus->prerequisites.push_back("focus = ideological_fanaticism focus = why_we_fight");
 	newFocus->available += "			has_war = yes\n";
 	newFocus->available += "			is_in_faction = yes\n";
 	newFocus->available += "			OR = {\n";
