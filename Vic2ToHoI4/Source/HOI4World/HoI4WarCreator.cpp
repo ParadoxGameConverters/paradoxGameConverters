@@ -886,9 +886,9 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 				//int x = i * 3;
 				string annexername = Leader->getSourceCountry()->getName("english");
 				string annexedname = nan[i]->getSourceCountry()->getName("english");
-				findFaction(Leader)->addMember(nan[i]);
+//				findFaction(Leader)->addMember(nan[i]);    // country is added to the faction here, which blocks the focus we create, I comment this out for now (TK)
 				//for random date
-				int v1 = rand() % 5 + 1;
+				int v1 = rand() % 5 + 1;  // I don't like randomness during the conversion process (TK)
 				int v2 = rand() % 5 + 1;
 				//focus for anschluss
 				newFocus = new HoI4Focus;
@@ -1233,7 +1233,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 	{
 		GCDistanceSorted.push_back(iterator->second);
 	}
-	sort(GCDistanceSorted.begin(), GCDistanceSorted.end());
+
 	vector<HoI4Country*> GCTargets;
 	for each (auto GC in GCDistanceSorted)
 	{
@@ -1244,7 +1244,6 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 			if (GC != Leader)
 				GCTargets.push_back(GC);
 		}
-
 	}
 	int maxGCWars = 0;
 	int start = 0;
