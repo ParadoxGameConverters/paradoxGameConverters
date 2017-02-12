@@ -60,12 +60,7 @@ typedef struct
 class HoI4Country
 {
 public:
-	HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld, bool _newCountry = false);
-	void		output(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const;
-	void		outputCommonCountryFile() const;
-	void		outputColors(ofstream& out) const;
-	void outputToCommonCountriesFile(ofstream& countriesFile) const;
-	void outputToNamesFiles(ofstream& namesFile) const;
+	HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld);
 
 	void initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, map<int, int>& leaderMap, governmentJobsMap governmentJobs, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states);
 	void		initFromHistory();
@@ -79,6 +74,10 @@ public:
 	void calculateIndustry();
 	void reportIndustry(ofstream& out);
 	void addVPsToCapital(int VPs);
+	void outputToCommonCountriesFile(ofstream& countriesFile) const;
+	void outputColors(ofstream& out) const;
+	void outputToNamesFiles(ofstream& namesFile) const;
+	void output(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const;
 
 	void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
 	void		setFaction(HoI4Faction* newFaction) { faction = newFaction; }
@@ -97,7 +96,6 @@ public:
 	string										getTag() const { return tag; }
 	const V2Country*							getSourceCountry() const { return srcCountry; }
 	string										getGovernment() const { return government; }
-	bool											isNewCountry() const { return newCountry; }
 	HoI4Faction*								getFaction() const { return faction; }
 	HoI4Alignment*								getAlignment() { return &alignment; }
 	string										getIdeology() const { return ideology; }
@@ -122,13 +120,6 @@ public:
 	bool isGreatPower() const { return greatPower; }
 
 private:
-	void			outputOOB()						const;
-	void			outputPracticals(FILE*)		const;
-	void			outputTech(FILE*)				const;
-	void			outputParties(FILE*)			const;
-	void			outputLeaders()				const;
-	void outputRelations(ofstream& output) const;
-
 	void determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states);
 	bool isStateValidForCapital(map<int, int>::const_iterator capitalState, const map<int, HoI4State*>& states);
 	bool isThisStateOwnedByUs(const HoI4State* state) const;
@@ -141,12 +132,17 @@ private:
 
 	void setPartyPopularity();
 
+	void outputNamesSet(ofstream& namesFile, const vector<string>& names, const string& tabs) const;
+	void outputHistory(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const;
+	void outputRelations(ofstream& output) const;
 	void outputCountryLeader(ofstream& output) const;
+	void outputOOB() const;
+	void outputCommonCountryFile() const;
+
 
 	HoI4World*							theWorld;
 	const V2Country*					srcCountry;
 	string								filename;
-	bool								newCountry;	// true if this country is being added by the converter, i.e. doesn't already exist in HoI4
 	const string						sphereLeader = "";
 	string								tag;
 	set<int>							provinces;

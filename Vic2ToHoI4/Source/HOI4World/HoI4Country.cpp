@@ -67,10 +67,9 @@ const char* const ideologyNames[stalinist + 1] = {
 	"stalinist"
 };
 
-HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld, bool _newCountry /* = false */)
+HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld)
 {
 	theWorld = _theWorld;
-	newCountry = _newCountry;
 
 	tag = _tag;
 	commonCountryFile = _commonCountryFile;
@@ -118,597 +117,6 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	nationalFocus = nullptr;
 
 	srcCountry = NULL;
-}
-
-void HoI4Country::output(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const
-{
-	// output history file
-	ofstream output;
-
-	if (((capital > 0) && (capital <= static_cast<int>(states.size())))
-		&& newCountry
-		)
-	{
-		output.open("Output/" + Configuration::getOutputName() + "/history/countries/" + Utils::convertUTF8ToASCII(filename));
-		if (!output.is_open())
-		{
-			Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/history/countries" << Utils::convertUTF8ToASCII(filename);
-			exit(-1);
-		}
-		output << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
-		if (newCountry)
-		{
-			output << "capital = " << capital << endl;
-		}
-		else
-		{
-			output << "capital =  1" << endl;
-		}
-		if (majorNation)
-		{
-			output << "set_research_slots = 4" << endl;
-		}
-
-		output << "" << endl;
-		output << "oob = \"" << tag << "_OOB\"" << endl;
-		output << "" << endl;
-		output << "# Starting tech" << endl;
-		output << "set_technology = {" << endl;
-		for (auto tech : technologies)
-		{
-			output << tech.first << " = 1" << endl;
-		}
-		output << "}" << endl;
-		output << "set_convoys = " + to_string(convoys) << endl;
-		output << "1939.1.1 = {" << endl;
-		output << "" << endl;
-		output << "    " << endl;
-		output << "}" << endl;
-		output << "" << endl;
-		output << "set_politics = {" << endl;
-		output << "" << endl;
-		output << "    parties = {" << endl;
-		output << "        democratic = { " << endl;
-		output << "            popularity = " << democraticPopularity << endl;
-		output << "        }" << endl;
-		output << "" << endl;
-		output << "        liberal = {" << endl;
-		output << "            popularity = " << liberalPopularity << endl;
-		output << "        }" << endl;
-		output << "        " << endl;
-		output << "        socialist = {" << endl;
-		output << "            popularity = " << socialistPopularity << endl;
-		output << "        }" << endl;
-		output << "        " << endl;
-		output << "        syndicalism = {" << endl;
-		output << "            popularity = " << syndicalistPopularity << endl;
-		output << "        }" << endl;
-		output << "        " << endl;
-		output << "        ancap = {" << endl;
-		output << "            popularity = " << ancapPopularity << endl;
-		output << "        }" << endl;
-		output << "        " << endl;
-		output << "        fascism = {" << endl;
-		output << "            popularity = " << facismPopularity << endl;
-		output << "        }" << endl;
-		output << "        " << endl;
-		output << "        communism = {" << endl;
-		output << "            popularity = " << communismPopularity << endl;
-		output << "        }" << endl;
-		output << "        " << endl;
-		output << "        autocratic = {" << endl;
-		output << "            popularity = " << autocraticPopularity << endl;
-		output << "        }" << endl;
-		output << "        " << endl;
-		output << "        neutrality = { " << endl;
-		output << "            popularity = " << neutralityPopularity << endl;
-		output << "        }" << endl;
-		output << "    }" << endl;
-		output << "    " << endl;
-
-		if (rulingHoI4Ideology == "")
-		{
-			output << "    ruling_party = neutrality" << endl;
-		}
-		else
-		{
-			output << "    ruling_party = " << rulingHoI4Ideology << endl;
-		}
-
-		output << "    last_election = \"1936.1.1\"" << endl;
-		output << "    election_frequency = 48" << endl;
-		output << "    elections_allowed = no" << endl;
-		output << "}" << endl;
-
-		outputRelations(output);
-
-		output << "" << endl;
-		for (auto Faction : Factions)
-		{
-			if (Faction->getLeader()->getTag() == tag)
-			{
-				output << "create_faction = \"Alliance of " + getSourceCountry()->getName("english") + "\"\n";
-				for (auto factionmem : Faction->getMembers())
-				{
-					output << "add_to_faction = " + factionmem->getTag() + "\n";
-				}
-			}
-		}
-		output << endl;
-		output << "add_ideas = {\n";
-		if (majorNation)
-			output << "great_power\n";
-		if (!civilized)
-			output << "uncivilized\n";
-		if (RulingPartyModel.war_pol == "jingoism")
-			output << "partial_economic_mobilisation\n";
-		if (RulingPartyModel.war_pol == "pro_military")
-			output << "low_economic_mobilisation\n";
-		output << "}\n";
-		outputCountryLeader(output);
-		output << "" << endl;
-		output << "1939.1.1 = {" << endl;
-		output << "    " << endl;
-		output << "}" << endl;
-		output.close();
-
-		// output OOB file
-		outputOOB();
-
-		// output leaders file
-		//outputLeaders();
-		outputCommonCountryFile();
-
-		/*fprintf(output, "graphical_culture = %s\n", graphicalCulture.c_str());
-		fprintf(output, "\n");
-		if (majorNation)
-		{
-		fprintf(output, "major = yes\n");
-		fprintf(output, "\n");
-		}
-		fprintf(output, "default_templates = {\n");
-		fprintf(output, "	generic_infantry = {\n");
-		fprintf(output, "		infantry_brigade\n");
-		fprintf(output, "		infantry_brigade\n");
-		fprintf(output, "		infantry_brigade\n");
-		fprintf(output, "	}\n");
-		fprintf(output, "	generic_milita = {\n");
-		fprintf(output, "		militia_brigade\n");
-		fprintf(output, "		militia_brigade\n");
-		fprintf(output, "		militia_brigade\n");
-		fprintf(output, "	}\n");
-		fprintf(output, "	generic_armoured = {\n");
-		fprintf(output, "		armor_brigade\n");
-		fprintf(output, "		motorized_brigade\n");
-		fprintf(output, "		motorized_brigade\n");
-		fprintf(output, "	}\n");
-		fprintf(output, "	generic_cavalry = {\n");
-		fprintf(output, "		cavalry_brigade\n");
-		fprintf(output, "		cavalry_brigade\n");
-		fprintf(output, "	}\n");
-		fprintf(output, "}\n");
-		fprintf(output, "\n");
-		fprintf(output, "unit_names = {\n");*/
-		//fprintf(output, "	infantry_brigade = {\n");
-		//fprintf(output, "		\"Faizabad Division\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	cavalry_brigade = {\n");
-		//fprintf(output, "		\"Faizabad Cavalry\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	motorized_brigade = {\n");
-		//fprintf(output, "		\"Faizabad Motor Div.\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	mechanized_brigade = {\n");
-		//fprintf(output, "		\"Faizabad Half Track Div.\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	light_armor_brigade = {\n");
-		//fprintf(output, "		\"Faizabad Armoured Div.\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	armor_brigade = {\n");
-		//fprintf(output, "		\"Faizabad Armoured Div.\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	paratrooper_brigade = {\n");
-		//fprintf(output, "		\"Faizabad Para Division\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	marine_brigade = {\n");
-		//fprintf(output, "		\"Faizabad Marine Division\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	bergsjaeger_brigade = {\n");
-		//fprintf(output, "		\"Faizabad Mountain Division\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	garrison_brigade = {\n");
-		//fprintf(output, "		\"Faizabad Division\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	hq_brigade = {\n");
-		//fprintf(output, "		\"1st Afghanestani Army\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	militia_brigade = {\n");
-		//fprintf(output, "		\"Faizabad Militia\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	multi_role = {\n");
-		//fprintf(output, "		\"I.Fighter Group\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	interceptor = {\n");
-		//fprintf(output, "		\"I.Fighter Group\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	strategic_bomber = {\n");
-		//fprintf(output, "		\"I.Strategic Group\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	tactical_bomber = {\n");
-		//fprintf(output, "		\"I.Tactical Group\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	naval_bomber = {\n");
-		//fprintf(output, "		\"I.Naval Bomber Group\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	cas = {\n");
-		//fprintf(output, "		\"I.Dive Bomber Group\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	transport_plane = {\n");
-		//fprintf(output, "		\"I.Air Transport Group\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	battleship = {\n");
-		//fprintf(output, "		\"RAS Afghanistan\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	heavy_cruiser = {\n");
-		//fprintf(output, "		\"RAS Faizabad\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	destroyer = {\n");
-		//fprintf(output, "		\"D1 / D2 / D3\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	carrier = {\n");
-		//fprintf(output, "		\"RAS Zahir Shah\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	submarine = {\n");
-		//fprintf(output, "		\"1. Submarine Flotilla\"\n");
-		//fprintf(output, "	}\n");
-		//fprintf(output, "	transport_ship = {\n");
-		//fprintf(output, "		\"1. Troop Transport Flotilla\"\n");
-		//fprintf(output, "	}\n");
-		/*fprintf(output, "}\n");
-		fprintf(output, "\n");
-		fprintf(output, "ministers = {\n");
-		for (auto ministerItr: ministers)
-		{
-		ministerItr.output(output);
-		}
-		fprintf(output, "}\n");*/
-		//output.close();
-	}
-
-	if (nationalFocus != nullptr)
-	{
-		nationalFocus->output();
-	}
-}
-
-void HoI4Country::outputCommonCountryFile() const
-{
-	ofstream output;
-	output.open("Output/" + Configuration::getOutputName() + "/common/countries/" + Utils::convertUTF8ToASCII(commonCountryFile));
-	if (!output.is_open())
-	{
-		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << Utils::convertUTF8ToASCII(commonCountryFile);
-		exit(-1);
-	}
-
-	int red = 0;
-	int green = 0;
-	int blue = 0;
-	color.GetRGB(red, green, blue);
-	output << "color = { " << red << " " << green << " " << blue << " }" << endl;
-
-	output.close();
-}
-
-void HoI4Country::outputColors(ofstream& out) const
-{
-	int red;
-	int green;
-	int blue;
-	color.GetRGB(red, green, blue);
-
-	out << tag << " = {\n";
-	out << "\tcolor = rgb { " << red << " " << green << " " << blue << " }\n";
-	out << "\tcolor_ui = rgb { " << red << " " << green << " " << blue << " }";
-	out << "}\n";
-}
-
-
-void HoI4Country::outputToCommonCountriesFile(ofstream& countriesFile) const
-{
-	countriesFile << tag.c_str() << " = \"countries/" << Utils::convertUTF8ToASCII(commonCountryFile) << "\"\n";
-}
-
-
-void HoI4Country::outputToNamesFiles(ofstream& namesFile) const
-{
-	namesFile << tag << " = {\n";
-
-	namesFile << "\tmale = {\n";
-	namesFile << "\t\tnames = {\n";
-	namesFile << "\t\t\t";
-	vector<string> maleNames = namesMapper::getMaleNames(srcCountry->getPrimaryCulture());
-	if (maleNames[0] != "null")
-	{
-		for (unsigned int i = 0; i < maleNames.size(); i++)
-		{
-			namesFile << '\"' << maleNames[i] << '\"';
-			if (i == maleNames.size())
-			{
-				continue;
-			}
-			else if (((i + 1) % 10) == 0)
-			{
-				namesFile << "\n\t\t\t";
-			}
-			else
-			{
-				namesFile << " ";
-			}
-		}
-	}
-	namesFile << "\n";
-	namesFile << "\t\t}\n";
-	namesFile << "\t}\n";
-
-	namesFile << "\tfemale = {\n";
-	namesFile << "\t\tnames = {\n";
-	namesFile << "\t\t\t";
-	vector<string> femaleNames = namesMapper::getFemaleNames(srcCountry->getPrimaryCulture());
-	if (femaleNames[0] != "null")
-	{
-		for (unsigned int i = 0; i < femaleNames.size(); i++)
-		{
-			namesFile << '\"' << femaleNames[i] << '\"';
-			if (i == femaleNames.size())
-			{
-				continue;
-			}
-			else if (((i + 1) % 10) == 0)
-			{
-				namesFile << "\n\t\t\t";
-			}
-			else
-			{
-				namesFile << " ";
-			}
-		}
-	}
-	namesFile << "\n";
-	namesFile << "\t\t}\n";
-	namesFile << "\t}\n";
-
-	namesFile << "\tsurnames = {\n";
-	namesFile << "\t\t";
-	vector<string> surnames = namesMapper::getSurnames(srcCountry->getPrimaryCulture());
-	if (surnames[0] != "null")
-	{
-		for (unsigned int i = 0; i < surnames.size(); i++)
-		{
-			namesFile << '\"' << surnames[i] << '\"';
-			if (i == surnames.size())
-			{
-				continue;
-			}
-			else if (((i + 1) % 10) == 0)
-			{
-				namesFile << "\n\t\t";
-			}
-			else
-			{
-				namesFile << " ";
-			}
-		}
-	}
-	namesFile << "\n";
-	namesFile << "\t}\n";
-
-	namesFile << "\tcallsigns = {\n";
-	namesFile << "\t\t";
-	vector<string> callsigns = namesMapper::getCallsigns(srcCountry->getPrimaryCulture());
-	if (callsigns[0] != "null")
-	{
-		for (unsigned int i = 0; i < callsigns.size(); i++)
-		{
-			namesFile << '\"' << callsigns[i] << '\"';
-			if (i == callsigns.size())
-			{
-				continue;
-			}
-			else if (((i + 1) % 10) == 0)
-			{
-				namesFile << "\n\t\t";
-			}
-			else
-			{
-				namesFile << " ";
-			}
-		}
-	}
-	namesFile << "\n";
-	namesFile << "\t}\n";
-	namesFile << "}\n";
-}
-
-
-void HoI4Country::outputPracticals(FILE* output) const
-{
-	fprintf(output, "\n");
-	for (auto itr : practicals)
-	{
-		if (itr.second > 0.0)
-		{
-			fprintf(output, "%s = %.2f\n", itr.first.c_str(), min(20.0, itr.second));
-		}
-	}
-}
-
-void HoI4Country::outputTech(FILE* output) const
-{
-	fprintf(output, "\n");
-	for (auto itr : technologies)
-	{
-		fprintf(output, "%s = %d\n", itr.first.c_str(), itr.second);
-	}
-}
-
-void HoI4Country::outputParties(FILE* output) const
-{
-	/*fprintf(output, "popularity = {\n");
-	for (auto party: parties)
-	{
-	fprintf(output, "\t%s = %d\n", party.ideology.c_str(), party.popularity);
-	}
-	fprintf(output, "}\n");
-	fprintf(output, "\n");
-
-	fprintf(output, "organization = {\n");
-	for (auto party : parties)
-	{
-	fprintf(output, "\t%s = %d\n", party.ideology.c_str(), party.organization);
-	}
-	fprintf(output, "}\n");
-	fprintf(output, "\n");
-
-	FILE* partyLocalisations;
-	if (fopen_s(&partyLocalisations, ("Output/" + Configuration::getOutputName() + "/localisation/Parties.csv").c_str(), "a") != 0)
-	{
-	LOG(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/localisation/Parties.csv";
-	exit(-1);
-	}
-	for (auto party: parties)
-	{
-	fprintf(partyLocalisations, "%s;\n", party.localisationString.c_str());
-	}
-	fclose(partyLocalisations);*/
-}
-
-void HoI4Country::outputLeaders() const
-{
-	FILE* leadersFile;
-	if (fopen_s(&leadersFile, ("Output/" + Configuration::getOutputName() + "/history/leaders/" + tag + ".txt").c_str(), "w") != 0)
-	{
-		LOG(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/history/leaders/" << tag << ".txt";
-	}
-	int landLeaders = 0;
-	int seaLeaders = 0;
-	int airLeaders = 0;
-	for (auto leader : leaders)
-	{
-		leader.output(leadersFile);
-
-		if (leader.getType() == "land")
-		{
-			landLeaders++;
-		}
-		else if (leader.getType() == "sea")
-		{
-			seaLeaders++;
-		}
-		else if (leader.getType() == "air")
-		{
-			airLeaders++;
-		}
-		else
-		{
-			LOG(LogLevel::Warning) << "Leader of unknown type in " << tag;
-		}
-	}
-	fclose(leadersFile);
-
-	LOG(LogLevel::Info) << tag << " has " << landLeaders << " land leaders, " << seaLeaders << " sea leaders, and " << airLeaders << " air leaders.";
-}
-
-
-void HoI4Country::outputRelations(ofstream& output) const
-{
-	for (auto relation: relations)
-	{
-		if (relation.first != tag)
-		{
-			output << "add_opinion_modifier = { target = " << relation.first << " modifier = ";
-			if (relation.second->getRelations() < 0)
-			{
-				output << "negative_";
-			}
-			else
-			{
-				output << "positive_";
-			}
-			output << abs(relation.second->getRelations()) << " }\n";
-		}
-	}
-}
-
-
-void HoI4Country::outputOOB() const
-{
-	ofstream output("Output/" + Configuration::getOutputName() + "/history/units/" + tag + "_OOB.txt");
-	if (!output.is_open())
-	{
-		Log(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/history/units/" << tag << "_OOB.txt";
-		exit(-1);
-	}
-	output << "\xEF\xBB\xBF";	// add the BOM to make HoI4 happy
-
-								/*for (auto armyItr: armies)
-								{
-								if (armyItr->getProductionQueue())
-								{
-								armyItr->outputIntoProductionQueue(output, tag);
-								}
-								else
-								{
-								armyItr->output(output);
-								}
-								}*/
-	output << "start_equipment_factor = 0\n";
-	for (auto divisionTemplate : divisionTemplates)
-	{
-		output << divisionTemplate;
-		output << endl;
-	}
-	output << "### No BHU air forces ###\n";
-	output << "instant_effect = {\n";
-	output << "\tadd_equipment_production = {\n";
-	output << "\t\tequipment = {\n";
-	output << "\t\t\ttype = infantry_equipment_0\n";
-	output << "\t\t\tcreator = \"" << tag << "\"\n";
-	output << "\t\t}\n";
-	output << "\t\trequested_factories = 1\n";
-	output << "\t\tprogress = 0.88\n";
-	output << "\t\tefficiency = 100\n";
-	output << "\t}\n";
-	output << "}\n";
-	output << "units = {\n";
-	for (auto division : divisions)
-	{
-		output << division;
-	}
-	if (ships.size() > 0)
-	{
-		output << "\tnavy = {" << endl;
-		output << "\t\tname = \"Grand Fleet\"" << endl;
-		output << "\t\tlocation = " << navalLocation << endl;
-		for (auto ship : ships)
-		{
-			output << ship;
-		}
-		output << "\t}" << endl;
-	}
-	output << "}\n";
-	if (planes.size() > 0)
-	{
-		output << "air_wings = {\n";
-		output << "\t" << capital << " = {\n";
-		for (auto plane : planes)
-		{
-			output << plane;
-		}
-		output << "\t}\n";
-		output << "}\n";
-	}
-	output.close();
 }
 
 
@@ -2562,6 +1970,261 @@ double HoI4Country::getEconomicStrength(double years) const
 }
 
 
+void HoI4Country::outputToCommonCountriesFile(ofstream& countriesFile) const
+{
+	countriesFile << tag.c_str() << " = \"countries/" << Utils::convertUTF8ToASCII(commonCountryFile) << "\"\n";
+}
+
+
+void HoI4Country::outputColors(ofstream& out) const
+{
+	out << tag << " = {\n";
+	out << "\tcolor = rgb { " << color << " }\n";
+	out << "\tcolor_ui = rgb { " << color << " }";
+	out << "}\n";
+}
+
+
+void HoI4Country::outputToNamesFiles(ofstream& namesFile) const
+{
+	namesFile << tag << " = {\n";
+
+	namesFile << "\tmale = {\n";
+	namesFile << "\t\tnames = {\n";
+	outputNamesSet(namesFile, namesMapper::getMaleNames(srcCountry->getPrimaryCulture()), "\t\t\t");
+	namesFile << "\t\t}\n";
+	namesFile << "\t}\n";
+
+	namesFile << "\tfemale = {\n";
+	namesFile << "\t\tnames = {\n";
+	outputNamesSet(namesFile, namesMapper::getFemaleNames(srcCountry->getPrimaryCulture()), "\t\t\t");
+	namesFile << "\t\t}\n";
+	namesFile << "\t}\n";
+
+	namesFile << "\tsurnames = {\n";
+	outputNamesSet(namesFile, namesMapper::getSurnames(srcCountry->getPrimaryCulture()), "\t\t");
+	namesFile << "\t}\n";
+
+	namesFile << "\tcallsigns = {\n";
+	outputNamesSet(namesFile, namesMapper::getCallsigns(srcCountry->getPrimaryCulture()), "\t\t");
+	namesFile << "\t}\n";
+
+	namesFile << "}\n";
+}
+
+
+void HoI4Country::outputNamesSet(ofstream& namesFile, const vector<string>& names, const string& tabs) const
+{
+	if (names[0] != "null")
+	{
+		namesFile << tabs;
+
+		for (unsigned int i = 0; i < names.size(); i++)
+		{
+			namesFile << '\"' << names[i] << '\"';
+			if (i == names.size())
+			{
+				continue;
+			}
+			else if (((i + 1) % 10) == 0)
+			{
+				namesFile << "\n";
+				namesFile << tabs;
+			}
+			else
+			{
+				namesFile << " ";
+			}
+		}
+
+		namesFile << '\n';
+	}
+}
+
+
+void HoI4Country::output(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const
+{
+	outputHistory(states, Factions);
+	outputOOB();
+	outputCommonCountryFile();
+
+	/*fprintf(output, "graphical_culture = %s\n", graphicalCulture.c_str());
+	fprintf(output, "ministers = {\n");
+	for (auto ministerItr: ministers)
+	{
+		ministerItr.output(output);
+	}
+	fprintf(output, "}\n");*/
+
+	if (nationalFocus != nullptr)
+	{
+		nationalFocus->output();
+	}
+}
+
+
+void HoI4Country::outputHistory(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const
+{
+	ofstream output("Output/" + Configuration::getOutputName() + "/history/countries/" + Utils::convertUTF8ToASCII(filename));
+	if (!output.is_open())
+	{
+		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/history/countries" << Utils::convertUTF8ToASCII(filename);
+		exit(-1);
+	}
+	output << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
+
+	if (((capital > 0) && (capital <= static_cast<int>(states.size()))))
+	{
+		output << "capital = " << capital << '\n';
+	}
+	else if (states.size() > 0)
+	{
+		output << "capital = " << states.begin()->first << '\n';
+	}
+	else
+	{
+		output << "capital = 1\n";
+	}
+
+	if (majorNation)
+	{
+		output << "set_research_slots = 4\n";
+	}
+
+	output << "\n";
+	output << "oob = \"" << tag << "_OOB\"\n";
+	output << "\n";
+
+	output << "# Starting tech\n";
+	output << "set_technology = {\n";
+	for (auto tech : technologies)
+	{
+		output << tech.first << " = 1\n";
+	}
+	output << "}\n";
+
+	output << "set_convoys = " << convoys << '\n';
+
+	output << "set_politics = {\n";
+	output << "\n";
+	output << "    parties = {\n";
+	output << "        democratic = {\n";
+	output << "            popularity = " << democraticPopularity << '\n';
+	output << "        }\n";
+	output << "\n";
+	output << "        liberal = {\n";
+	output << "            popularity = " << liberalPopularity << '\n';
+	output << "        }\n";
+	output << "        \n";
+	output << "        socialist = {\n";
+	output << "            popularity = " << socialistPopularity << '\n';
+	output << "        }\n";
+	output << "        \n";
+	output << "        syndicalism = {\n";
+	output << "            popularity = " << syndicalistPopularity << '\n';
+	output << "        }\n";
+	output << "        \n";
+	output << "        ancap = {\n";
+	output << "            popularity = " << ancapPopularity << '\n';
+	output << "        }\n";
+	output << "        \n";
+	output << "        fascism = {\n";
+	output << "            popularity = " << facismPopularity << '\n';
+	output << "        }\n";
+	output << "        \n";
+	output << "        communism = {\n";
+	output << "            popularity = " << communismPopularity << '\n';
+	output << "        }\n";
+	output << "        \n";
+	output << "        autocratic = {\n";
+	output << "            popularity = " << autocraticPopularity << '\n';
+	output << "        }\n";
+	output << "        \n";
+	output << "        neutrality = {\n";
+	output << "            popularity = " << neutralityPopularity << '\n';
+	output << "        }\n";
+	output << "    }\n";
+	output << "    \n";
+
+	if (rulingHoI4Ideology == "")
+	{
+		output << "    ruling_party = neutrality\n";
+	}
+	else
+	{
+		output << "    ruling_party = " << rulingHoI4Ideology << '\n';
+	}
+
+	output << "    last_election = \"1936.1.1\"\n";
+	output << "    election_frequency = 48\n";
+	output << "    elections_allowed = no\n";
+	output << "}\n";
+
+	outputRelations(output);
+	output << "\n";
+
+	for (auto Faction : Factions)
+	{
+		if (Faction->getLeader()->getTag() == tag)
+		{
+			output << "create_faction = \"Alliance of " + getSourceCountry()->getName("english") + "\"\n";
+			for (auto factionmem : Faction->getMembers())
+			{
+				output << "add_to_faction = " + factionmem->getTag() + "\n";
+			}
+		}
+	}
+	output << '\n';
+
+	output << "add_ideas = {\n";
+	if (majorNation)
+	{
+		output << "great_power\n";
+	}
+	if (!civilized)
+	{
+		output << "uncivilized\n";
+	}
+	if (RulingPartyModel.war_pol == "jingoism")
+	{
+		output << "partial_economic_mobilisation\n";
+	}
+	if (RulingPartyModel.war_pol == "pro_military")
+	{
+		output << "low_economic_mobilisation\n";
+	}
+	output << "}\n";
+
+	outputCountryLeader(output);
+
+	output << "\n";
+	output << "1939.1.1 = {\n";
+	output << "}\n" << endl;
+	output.close();
+}
+
+
+void HoI4Country::outputRelations(ofstream& output) const
+{
+	for (auto relation: relations)
+	{
+		if (relation.first != tag)
+		{
+			output << "add_opinion_modifier = { target = " << relation.first << " modifier = ";
+			if (relation.second->getRelations() < 0)
+			{
+				output << "negative_";
+			}
+			else
+			{
+				output << "positive_";
+			}
+			output << abs(relation.second->getRelations()) << " }\n";
+		}
+	}
+}
+
+
 void HoI4Country::outputCountryLeader(ofstream& output) const
 {
 	string firstName = namesMapper::getMaleName(srcCountry->getPrimaryCulture());
@@ -2577,4 +2240,90 @@ void HoI4Country::outputCountryLeader(ofstream& output) const
 	output << "    traits = {\n";
 	output << "    }\n";
 	output << "}\n";
+}
+
+
+void HoI4Country::outputOOB() const
+{
+	ofstream output("Output/" + Configuration::getOutputName() + "/history/units/" + tag + "_OOB.txt");
+	if (!output.is_open())
+	{
+		Log(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/history/units/" << tag << "_OOB.txt";
+		exit(-1);
+	}
+	output << "\xEF\xBB\xBF";	// add the BOM to make HoI4 happy
+
+										/*for (auto armyItr: armies)
+										{
+										if (armyItr->getProductionQueue())
+										{
+										armyItr->outputIntoProductionQueue(output, tag);
+										}
+										else
+										{
+										armyItr->output(output);
+										}
+										}*/
+	output << "start_equipment_factor = 0\n";
+	for (auto divisionTemplate : divisionTemplates)
+	{
+		output << divisionTemplate;
+		output << endl;
+	}
+	output << "### No BHU air forces ###\n";
+	output << "instant_effect = {\n";
+	output << "\tadd_equipment_production = {\n";
+	output << "\t\tequipment = {\n";
+	output << "\t\t\ttype = infantry_equipment_0\n";
+	output << "\t\t\tcreator = \"" << tag << "\"\n";
+	output << "\t\t}\n";
+	output << "\t\trequested_factories = 1\n";
+	output << "\t\tprogress = 0.88\n";
+	output << "\t\tefficiency = 100\n";
+	output << "\t}\n";
+	output << "}\n";
+	output << "units = {\n";
+	for (auto division : divisions)
+	{
+		output << division;
+	}
+	if (ships.size() > 0)
+	{
+		output << "\tnavy = {" << endl;
+		output << "\t\tname = \"Grand Fleet\"" << endl;
+		output << "\t\tlocation = " << navalLocation << endl;
+		for (auto ship : ships)
+		{
+			output << ship;
+		}
+		output << "\t}" << endl;
+	}
+	output << "}\n";
+	if (planes.size() > 0)
+	{
+		output << "air_wings = {\n";
+		output << "\t" << capital << " = {\n";
+		for (auto plane : planes)
+		{
+			output << plane;
+		}
+		output << "\t}\n";
+		output << "}\n";
+	}
+	output.close();
+}
+
+
+void HoI4Country::outputCommonCountryFile() const
+{
+	ofstream output("Output/" + Configuration::getOutputName() + "/common/countries/" + Utils::convertUTF8ToASCII(commonCountryFile));
+	if (!output.is_open())
+	{
+		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << Utils::convertUTF8ToASCII(commonCountryFile);
+		exit(-1);
+	}
+
+	output << "color = { " << color << " }" << endl;
+
+	output.close();
 }
