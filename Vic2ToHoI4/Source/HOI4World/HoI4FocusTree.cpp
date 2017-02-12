@@ -1657,8 +1657,7 @@ void HoI4FocusTree::addVersion1_0GenericFocusTree()
 	newFocus = new HoI4Focus;
 	newFocus->id = "ideological_fanaticism";
 	newFocus->icon = "GFX_goal_generic_demand_territory";
-	newFocus->prerequisites.push_back("focus = paramilitarism");
-	newFocus->prerequisites.push_back("focus = political_commissars");
+	newFocus->prerequisites.push_back("focus = paramilitarism focus = political_commissars");
 	newFocus->xPos = 17;
 	newFocus->yPos = 6;
 	newFocus->cost = 10;
@@ -1675,8 +1674,7 @@ void HoI4FocusTree::addVersion1_0GenericFocusTree()
 	newFocus = new HoI4Focus;
 	newFocus->id = "technology_sharing";
 	newFocus->icon = "GFX_goal_generic_scientific_exchange";
-	newFocus->prerequisites.push_back("focus = ideological_fanaticism");
-	newFocus->prerequisites.push_back("focus = why_we_fight");
+	newFocus->prerequisites.push_back("focus = ideological_fanaticism focus = why_we_fight");
 	newFocus->available += "			has_war = yes\n";
 	newFocus->available += "			is_in_faction = yes\n";
 	newFocus->available += "			OR = {\n";
@@ -3370,8 +3368,7 @@ void HoI4FocusTree::addVersion1_3GenericFocusTree()
 	newFocus = new HoI4Focus;
 	newFocus->id = "ideological_fanaticism";
 	newFocus->icon = "GFX_goal_generic_demand_territory";
-	newFocus->prerequisites.push_back("focus = paramilitarism");
-	newFocus->prerequisites.push_back("focus = political_commissars");
+	newFocus->prerequisites.push_back("focus = paramilitarism focus = political_commissars");
 	newFocus->xPos = 17;
 	newFocus->yPos = 6;
 	newFocus->cost = 10;
@@ -3389,8 +3386,7 @@ void HoI4FocusTree::addVersion1_3GenericFocusTree()
 	newFocus = new HoI4Focus;
 	newFocus->id = "technology_sharing";
 	newFocus->icon = "GFX_goal_generic_scientific_exchange";
-	newFocus->prerequisites.push_back("focus = ideological_fanaticism");
-	newFocus->prerequisites.push_back("focus = why_we_fight");
+	newFocus->prerequisites.push_back("focus = ideological_fanaticism focus = why_we_fight");
 	newFocus->available += "			has_war = yes\n";
 	newFocus->available += "			is_in_faction = yes\n";
 	newFocus->available += "			OR = {\n";
@@ -3537,7 +3533,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		newFocus->icon = "GFX_goal_generic_position_armies";
 		newFocus->text += "War Plan " + Country->getSourceCountry()->getName("english");
 		newFocus->prerequisites.push_back("focus = PrepInter" + Home->getTag());
-		newFocus->available += "			NOT = { " + Country->getTag() + " = { is_in_faction_with = " + Home->getTag() + " } }\n";
+		newFocus->available += "			" + Country->getTag() + " = { is_in_faction_with = " + Home->getTag() + " }\n";
 		newFocus->available += "			" + Country->getTag() + " = { has_added_tension_amount > 30 }";
 		newFocus->xPos = XStart + offBalance + warPlannumber * 2;
 		newFocus->yPos = 2;
@@ -3558,7 +3554,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		newFocus->icon = "GFX_goal_generic_trade";
 		newFocus->text += "Embargo " + Country->getSourceCountry()->getName("english");
 		newFocus->prerequisites.push_back("focus =  WarPlan" + Home->getTag() + Country->getTag());
-		newFocus->available += "			NOT = { " + Country->getTag() + " = { is_in_faction_with = " + Home->getTag() + " } }\n";
+		newFocus->available += "			" + Country->getTag() + " = { is_in_faction_with = " + Home->getTag() + " }\n";
 		newFocus->available += "			" + Country->getTag() + " = { has_added_tension_amount > 30 }";
 		newFocus->xPos = XStart + offBalance + warPlannumber * 2;
 		newFocus->yPos = 3;
