@@ -65,10 +65,11 @@ public:
 	void		outputCommonCountryFile() const;
 	void		outputColors(ofstream& out) const;
 	void outputToCommonCountriesFile(ofstream& countriesFile) const;
+	void outputToNamesFiles(ofstream& namesFile) const;
 
-	void		initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, map<int, int>& leaderMap, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states);
+	void initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, map<int, int>& leaderMap, governmentJobsMap governmentJobs, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states);
 	void		initFromHistory();
-	void		generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
+	void generateLeaders(leaderTraitsMap leaderTraits, portraitMapping& portraitMap);
 	void		convertNavy(map<int, HoI4State*> states);
 	void		convertAirforce();
 	void		convertArmyDivisions();
@@ -139,6 +140,8 @@ private:
 	void			convertParties(const V2Country* srcCountry, vector<V2Party*> V2Parties, V2Party* rulingParty, string& rulingIdeology);
 
 	void setPartyPopularity();
+
+	void outputCountryLeader(ofstream& output) const;
 
 	HoI4World*							theWorld;
 	const V2Country*					srcCountry;

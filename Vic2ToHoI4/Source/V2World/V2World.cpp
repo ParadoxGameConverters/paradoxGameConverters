@@ -520,7 +520,7 @@ void V2World::setLocalisations()
 const V2Province* V2World::getProvince(int provNum) const
 {
 	auto provinceItr = provinces.find(provNum);
-	return (provinceItr != provinces.end()) ? provinceItr->second : NULL;
+	return (provinceItr != provinces.end()) ? provinceItr->second : nullptr;
 }
 
 

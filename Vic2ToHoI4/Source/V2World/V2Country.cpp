@@ -22,6 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Country.h"
 #include "Log.h"
 #include "Object.h"
+#include "../Mappers/CultureGroupMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "V2Army.h"
 #include "V2Leader.h"
@@ -97,6 +98,8 @@ void V2Country::readInCultures(const Object* countryObj)
 		primaryCulture = "";
 	}
 
+	primaryCultureGroup = cultureGroupMapper::getCultureGroup(primaryCulture);
+
 	vector<Object*> cultureSectionObjs = countryObj->getValue("culture");
 	if (cultureSectionObjs.size() > 0)
 	{
@@ -111,10 +114,10 @@ void V2Country::readInCultures(const Object* countryObj)
 
 void V2Country::readInCivilized(const Object* countryObj)
 {
-	vector<Object*> primaryCultureObjs = countryObj->getValue("civilized");
-	if (primaryCultureObjs.size() > 0)
+	vector<Object*> civilizedObjs = countryObj->getValue("civilized");
+	if (civilizedObjs.size() > 0)
 	{
-		civilized = (primaryCultureObjs[0]->getLeaf() == "yes");
+		civilized = (civilizedObjs[0]->getLeaf() == "yes");
 	}
 	else
 	{

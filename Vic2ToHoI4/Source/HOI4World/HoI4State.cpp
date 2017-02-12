@@ -29,9 +29,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/ProvinceMapper.h"
 #include "../Mappers/StateCategoryMapper.h"
 #include "../Mappers/StateMapper.h"
-#include "../Mappers/V2Localisations.h"
 #include "../V2World/V2Province.h"
-#include "../V2World/V2World.h"
+#include "../V2World/Vic2State.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 
@@ -67,7 +66,6 @@ HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, string _ownerTag)
 
 void HoI4State::output(string _filename)
 {
-	// create the file
 	string filename("Output/" + Configuration::getOutputName() + "/history/states/" + _filename);
 	ofstream out(filename);
 	if (!out.is_open())
@@ -76,7 +74,6 @@ void HoI4State::output(string _filename)
 		exit(-1);
 	}
 
-	// output the data
 	out << "state={" << endl;
 	out << "\tid=" << ID << endl;
 	out << "\tname= \"STATE_" << ID << "\"" << endl;
@@ -118,7 +115,6 @@ void HoI4State::output(string _filename)
 	}
 	out << "\t\t\tair_base = "<< airbaseLevel << endl;
 	out << "\t\t}" << endl;
-	//out << "\t}" << endl;
 	for (auto core: cores)
 	{
 		out << "\t\tadd_core_of = " << core << endl;
@@ -235,7 +231,7 @@ int HoI4State::getMainNavalLocation() const
 }
 
 
-bool HoI4State::tryToCreateVP()
+void HoI4State::tryToCreateVP()
 {
 	auto vic2CapitalProvince = stateMapper::getCapitalProvince(sourceState->getStateID());
 	auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(vic2CapitalProvince);
@@ -245,10 +241,20 @@ bool HoI4State::tryToCreateVP()
 		)
 	{
 		assignVP(provMapping->second[0]);
-		return true;
 	}
+	else
+	{
+		LOG(LogLevel::Warning) << "Could not create VP for state";
+	}
+}
 
-	return false;
+
+void HoI4State::addManpower()
+{
+	for (auto sourceProvince: sourceState->getProvinces())
+	{
+		manpower += static_cast<int>(sourceProvince->getTotalPopulation() * 4 * Configuration::getManpowerFactor());
+	}
 }
 
 
@@ -400,43 +406,6 @@ bool HoI4State::amICoastal()
 	}
 
 	return false;
-}
-
-
-pair<string, string> HoI4State::makeLocalisation(const pair<const string, string>& Vic2NameInLanguage) const
-{
-	return make_pair(
-		makeLocalisationKey(),
-		makeLocalisationValue(Vic2NameInLanguage)
-	);
-}
-
-
-string HoI4State::makeLocalisationKey() const
-{
-	return string("STATE_") + to_string(ID);
-}
-
-
-string HoI4State::makeLocalisationValue(const pair<const string, string>& Vic2NameInLanguage) const
-{
-	string localisedName = "";
-	if (sourceState->isPartialState())
-	{
-		localisedName += V2Localisations::GetTextInLanguage(sourceState->getOwner() + "_ADJ", Vic2NameInLanguage.first) + " ";
-	}
-	localisedName += Vic2NameInLanguage.second;
-
-	return localisedName;
-}
-
-
-pair<string, string> HoI4State::makeVPLocalisation(const pair<const string, string>& Vic2NameInLanguage) const
-{
-	return make_pair(
-		"VICTORY_POINTS_" + to_string(victoryPointPosition),
-		Vic2NameInLanguage.second
-	);
 }
 
 

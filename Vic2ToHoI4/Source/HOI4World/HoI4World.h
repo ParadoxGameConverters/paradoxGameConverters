@@ -129,6 +129,7 @@ class HoI4World
 
 		void outputCommonCountries() const;
 		void outputColorsfile() const;
+		void outputNames() const;
 		void outputMap() const;
 		void outputCountries() const;
 		void outputRelations() const;
@@ -156,7 +157,6 @@ class HoI4World
 		HoI4Events* events;
 
 		leaderTraitsMap leaderTraits;
-		namesMapping namesMap;
 		portraitMapping portraitMap;
 };
 

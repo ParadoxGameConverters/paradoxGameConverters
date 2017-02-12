@@ -52,19 +52,15 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	LOG(LogLevel::Info) << "Parsing HoI4 data";
 	sourceWorld = _sourceWorld;
 
-	map<int, vector<int>> HoI4DefaultStateToProvinceMap;
 	states = new HoI4States(sourceWorld);
-	states->importStates(HoI4DefaultStateToProvinceMap);
-
+	buildings = new HoI4Buildings(states->getProvinceToStateIDMap());
+	supplyZones = new HoI4SupplyZones;
 	events = new HoI4Events;
-	supplyZones = new HoI4SupplyZones(HoI4DefaultStateToProvinceMap);
-
 	diplomacy = new HoI4Diplomacy;
 
-	states->convertStates();
 	convertNavalBases();
 	convertCountries();
-	states->addLocalisations();
+	HoI4Localisation::addStateLocalisations(states);
 	convertIndustry();
 	convertResources();
 	supplyZones->convertSupplyZones(states);
@@ -82,7 +78,6 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 
 	HoI4WarCreator warCreator;
 	warCreator.generateWars(this);
-	buildings = new HoI4Buildings(states->getProvinceToStateIDMap());
 }
 
 
@@ -112,7 +107,6 @@ void HoI4World::convertCountries()
 	backgroundMap seaBackgroundMap;
 	//initLeaderBackgroundMap(obj->getLeaves()[0], landBackgroundMap, seaBackgroundMap);
 
-	initNamesMapping(namesMap);
 	initPortraitMapping(portraitMap);
 
 	map<int, int> leaderMap;
@@ -138,7 +132,7 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 	const std::string& HoI4Tag = CountryMapper::getHoI4Tag(country.first);
 	if (!HoI4Tag.empty())
 	{
-		std::string countryFileName = '/' + country.second->getName("english") + ".txt";
+		std::string countryFileName = country.second->getName("english") + ".txt";
 		destCountry = new HoI4Country(HoI4Tag, countryFileName, this, true);
 		V2Party* rulingParty = country.second->getRulingParty(sourceWorld->getParties());
 		if (rulingParty == nullptr)
@@ -146,7 +140,7 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 			LOG(LogLevel::Error) << "Could not find the ruling party for " << country.first << ". Were all mods correctly included?";
 			exit(-1);
 		}
-		destCountry->initFromV2Country(*sourceWorld, country.second, rulingParty->ideology, leaderMap, governmentJobs, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, states->getProvinceToStateIDMap(), states->getStates());
+		destCountry->initFromV2Country(*sourceWorld, country.second, rulingParty->ideology, leaderMap, governmentJobs, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, states->getProvinceToStateIDMap(), states->getStates());
 		countries.insert(make_pair(HoI4Tag, destCountry));
 	}
 	else
@@ -780,7 +774,7 @@ void HoI4World::generateLeaders()
 
 	for (auto country: countries)
 	{
-		country.second->generateLeaders(leaderTraits, namesMap, portraitMap);
+		country.second->generateLeaders(leaderTraits, portraitMap);
 	}
 }
 
@@ -1076,8 +1070,15 @@ void HoI4World::output() const
 {
 	LOG(LogLevel::Info) << "Outputting world";
 
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/history"))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history";
+		exit(-1);
+	}
+
 	outputCommonCountries();
 	outputColorsfile();
+	outputNames();
 	HoI4Localisation::output();
 	states->output();
 	diplomacy->output();
@@ -1092,11 +1093,6 @@ void HoI4World::output() const
 
 void HoI4World::outputCommonCountries() const
 {
-	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/common/countries"))
-	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/countries\"";
-		exit(-1);
-	}
 	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/common/country_tags"))
 	{
 		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/country_tags\"";
@@ -1126,6 +1122,12 @@ void HoI4World::outputCommonCountries() const
 
 void HoI4World::outputColorsfile() const
 {
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/common/countries"))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/countries\"";
+		exit(-1);
+	}
+
 	ofstream output("Output/" + Configuration::getOutputName() + "/common/countries/colors.txt");
 	if (!output.is_open())
 	{
@@ -1143,6 +1145,24 @@ void HoI4World::outputColorsfile() const
 	}
 
 	output.close();
+}
+
+
+void HoI4World::outputNames() const
+{
+	ofstream namesFile("Output/" + Configuration::getOutputName() + "/common/names/01_names.txt");
+	namesFile << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
+
+	if (!namesFile.is_open())
+	{
+		Log(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/common/names/01_names.txt";
+		exit(-1);
+	}
+
+	for (auto country: countries)
+	{
+		country.second->outputToNamesFiles(namesFile);
+	}
 }
 
 

@@ -21,42 +21,64 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef HOI4_SUPPLY_ZONES_H
-#define HOI4_SUPPLY_ZONES_H
+#ifndef PORTRAITMAPPER_H
+#define PORTRAITMAPPER_H
 
 
 
 #include <map>
+#include <random>
 #include <string>
 #include <vector>
 using namespace std;
 
 
 
-class HoI4States;
-class HoI4SupplyZone;
-class Object;
+typedef struct
+{
+	map<string, vector<string>> element;
+} cultureGroupToPortraitsMap;
+
+typedef struct 
+{
+	map<string, cultureGroupToPortraitsMap> element;
+} ideologyToPortraitsMap;
 
 
 
-class HoI4SupplyZones
+class portraitMapper
 {
 	public:
-		HoI4SupplyZones();
-		void output();
-		void convertSupplyZones(const HoI4States* states);
+		static string getPortrait(string cultureGroup, string ideology)
+		{
+			return getInstance()->GetPortrait(cultureGroup, ideology);
+		}
 
+		static vector<string> getPortraits(string cultureGroup, string ideology)
+		{
+			return getInstance()->GetPortraits(cultureGroup, ideology);
+		}
 	private:
-		void importStates();
-		void importSupplyZone(const string& supplyZonesFile);
-		void mapProvincesToSupplyZone(int ID, Object* supplyAreaObj);
+		static portraitMapper* instance;
+		static portraitMapper* getInstance()
+		{
+			if (instance == nullptr)
+			{
+				instance = new portraitMapper;
+			}
+			return instance;
+		}
+		portraitMapper();
 
-		map<int, vector<int>> defaultStateToProvinceMap;
-		map<int, string> supplyZonesFilenames;
-		map<int, HoI4SupplyZone*> supplyZones;
-		map<int, int> provinceToSupplyZoneMap;
+		string GetPortrait(string cultureGroup, string ideology);
+		vector<string> GetPortraits(string cultureGroup, string ideology);
+
+		ideologyToPortraitsMap mappings;
+
+		std::mt19937 rng;
 };
 
 
 
-#endif HOI4_SUPPLY_ZONES_H
+
+#endif //PORTRAITMAPPER_H
