@@ -241,7 +241,7 @@ void V2Country::readInWarExhaustion(const Object* countryObj)
 
 void V2Country::readInReforms(Object* countryObj)
 {
-	map<string, string> reformTypes = governmentMapper::getInstance()->getReformTypes();
+	map<string, string> reformTypes = governmentMapper::getReformTypes();
 
 	for (auto leaf : countryObj->getLeaves())
 	{

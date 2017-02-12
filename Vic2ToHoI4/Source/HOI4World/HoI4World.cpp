@@ -956,7 +956,7 @@ void HoI4World::createFactions()
 		vector<HoI4Country*> factionMembers;
 		factionMembers.push_back(leader);
 
-		string leaderGovernment = leader->getGovernment();
+		string leaderIdeology = leader->getIdeology();
 		logFactionMember(factionsLog, leader);
 		double factionMilStrength = leader->getStrengthOverTime(3.0);
 
@@ -969,10 +969,10 @@ void HoI4World::createFactions()
 			}
 
 			HoI4Country* allycountry = ally->second;
-			string allygovernment = allycountry->getGovernment();
+			string allygovernment = allycountry->getIdeology();
 			string sphereLeader = returnSphereLeader(allycountry);
 
-			if ((sphereLeader == leader->getTag()) || ((sphereLeader == "") && governmentsAllowFaction(leaderGovernment, allygovernment)))
+			if ((sphereLeader == leader->getTag()) || ((sphereLeader == "") && governmentsAllowFaction(leaderIdeology, allygovernment)))
 			{
 				logFactionMember(factionsLog, allycountry);
 				factionMembers.push_back(allycountry);
@@ -998,7 +998,7 @@ void HoI4World::createFactions()
 void HoI4World::logFactionMember(ofstream& factionsLog, const HoI4Country* member)
 {
 	factionsLog << member->getSourceCountry()->getName("english") << ",";
-	factionsLog << member->getGovernment() << ",";
+	factionsLog << member->getIdeology() << ",";
 	factionsLog << member->getMilitaryStrength() << ",";
 	factionsLog << member->getEconomicStrength(1.0) << ",";
 	factionsLog << member->getEconomicStrength(3.0) << "\n";
@@ -1024,37 +1024,25 @@ string HoI4World::returnSphereLeader(HoI4Country* possibleSphereling)
 }
 
 
-bool HoI4World::governmentsAllowFaction(string leaderGovernment, string allyGovernment)
+bool HoI4World::governmentsAllowFaction(string leaderIdeology, string allyGovernment)
 {
-	if (leaderGovernment == allyGovernment)
+	if (leaderIdeology == allyGovernment)
 	{
 		return true;
 	}
-	else if (leaderGovernment == "absolute_monarchy" && (allyGovernment == "fascism" || allyGovernment == "democratic" || allyGovernment == "prussian_constitutionalism" || allyGovernment == "hms_government"))
+	else if (leaderIdeology == "absolutist" && allyGovernment == "fascism")
 	{
 		return true;
 	}
-	else if (leaderGovernment == "democratic" && (allyGovernment == "hms_government" || allyGovernment == "absolute_monarchy" || allyGovernment == "prussian_constitutionalism"))
+	else if (leaderIdeology == "democratic" && allyGovernment == "absolutist")
 	{
 		return true;
 	}
-	else if (leaderGovernment == "prussian_constitutionalism" && (allyGovernment == "hms_government" || allyGovernment == "absolute_monarchy" || allyGovernment == "democratic" || allyGovernment == "fascism"))
+	else if (leaderIdeology == "communism" && allyGovernment == "fascism")
 	{
 		return true;
 	}
-	else if (leaderGovernment == "hms_government" && (allyGovernment == "democratic" || allyGovernment == "absolute_monarchy" || allyGovernment == "prussian_constitutionalism"))
-	{
-		return true;
-	}
-	else if (leaderGovernment == "communism" && (allyGovernment == "syndicalism"))
-	{
-		return true;
-	}
-	else if (leaderGovernment == "syndicalism" && (allyGovernment == "communism" || allyGovernment == "fascism"))
-	{
-		return true;
-	}
-	else if (leaderGovernment == "fascism" && (allyGovernment == "syndicalism" || allyGovernment == "absolute_monarchy" || allyGovernment == "prussian_constitutionalism"))
+	else if (leaderIdeology == "fascism" && (allyGovernment == "communism" || allyGovernment == "absolutist"))
 	{
 		return true;
 	}

@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -34,41 +34,35 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-governmentMapper* governmentMapper::instance = NULL;
+governmentMapper* governmentMapper::instance = nullptr;
+
 
 
 governmentMapper::governmentMapper()
 {
+	initGovernmentMap();
+
 	reformsInitialized		= false;
 	totalPoliticalReforms	= 0;
 	totalSocialReforms		= 0;
-
-	LOG(LogLevel::Info) << "Parsing governments mappings";
-	Object* obj = parser_UTF8::doParseFile("governmentMapping.txt");
-	if (obj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file governmentMapping.txt";
-		exit(-1);
-	}
-	initGovernmentMap(obj->getLeaves()[0]);
 
 	LOG(LogLevel::Info) << "Parsing governments reforms";
 	for (auto itr : Configuration::getVic2Mods())
 	{
 		if (Utils::DoesFileExist(Configuration::getV2Path() + "/mod/" + itr + "/common/issues.txt"))
 		{
-			obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/common/issues.txt"));
-			if (obj != NULL)
+			auto obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/common/issues.txt"));
+			if (obj != nullptr)
 			{
 				initReforms(obj);
 				break;
 			}
 		}
 	}
-	if (!areReformsInitialized())
+	if (!reformsInitialized)
 	{
-		obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/issues.txt"));
-		if (obj != NULL)
+		auto obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/issues.txt"));
+		if (obj != nullptr)
 		{
 			initReforms(obj);
 		}
@@ -76,45 +70,37 @@ governmentMapper::governmentMapper()
 }
 
 
-void governmentMapper::initGovernmentMap(Object* obj)
+void governmentMapper::initGovernmentMap()
 {
-	vector<Object*> links = obj->getValue("link");
-	for (auto link: links)
+	LOG(LogLevel::Info) << "Parsing governments mappings";
+
+	auto obj = parser_UTF8::doParseFile("governmentMapping.txt");
+	if (obj == nullptr)
+	{
+		LOG(LogLevel::Error) << "Could not parse file governmentMapping.txt";
+		exit(-1);
+	}
+
+	for (auto mapping: obj->getValue("mapping"))
 	{
 		govMapping newMapping;
-		newMapping.require_political_reforms		= 0.0;
-		newMapping.require_social_reforms_above	= 0.0;
-		newMapping.require_social_reforms_below	= 1.0;
-
-		vector<Object*> items = link->getLeaves();
-		for (auto item : items)
+		for (auto item: mapping->getLeaves())
 		{
 			string key = item->getKey();
 			if (key == "vic")
 			{
-				newMapping.vic_gov = item->getLeaf();
+				newMapping.vic2Government = item->getLeaf();
 			}
 			else if (key == "hoi")
 			{
-				newMapping.HoI4_gov = item->getLeaf();
+				newMapping.HoI4Ideology = item->getLeaf();
 			}
 			else if (key == "ruling_party")
 			{
-				newMapping.ruling_party_required = item->getLeaf();
-			}
-			else if (key == "political_reforms")
-			{
-				newMapping.require_political_reforms = stof(item->getLeaf());
-			}
-			else if (key == "social_reforms_above")
-			{
-				newMapping.require_social_reforms_above = stof(item->getLeaf());
-			}
-			else if (key == "social_reforms_below")
-			{
-				newMapping.require_social_reforms_below = stof(item->getLeaf());
+				newMapping.rulingPartyRequired = item->getLeaf();
 			}
 		}
+
 		governmentMap.push_back(newMapping);
 	}
 }
@@ -176,48 +162,23 @@ void governmentMapper::initReforms(Object* obj)
 }
 
 
-string governmentMapper::getGovernmentForCountry(const V2Country* country, const string ideology)
+string governmentMapper::GetIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology)
 {
-	// calculate the percent of reforms passed
-	int politicalReforms	= 0;
-	int socialReforms		= 0;
-	auto currentReforms = country->getAllReforms();
-	for (auto reform: currentReforms)
-	{
-		auto politicalReform = politicalReformScores.find(reform.second);
-		if (politicalReform != politicalReformScores.end())
-		{
-			politicalReforms += politicalReform->second;
-		}
-		auto socialReform = socialReformScores.find(reform.second);
-		if (socialReform != socialReformScores.end())
-		{
-			socialReforms += socialReform->second;
-		}
-	}
-	double politicalReformsPercent	= 1.0 * politicalReforms	/ totalPoliticalReforms;
-	double socialReformsPercent		= 1.0 * socialReforms		/ totalSocialReforms;
-
-	// find the goverment type
-	string hoiGov;
-	for (auto mapping : governmentMap)
+	string ideology = "neutrality";
+	for (auto mapping: governmentMap)
 	{
 		if (
-				(mapping.vic_gov == country->getGovernment()) &&
-				((mapping.ruling_party_required == "") || (mapping.ruling_party_required == ideology)) &&
-				(mapping.require_political_reforms <= politicalReformsPercent) &&
-				(mapping.require_social_reforms_above <= socialReformsPercent) &&
-				(mapping.require_social_reforms_below >= socialReformsPercent)
+				((mapping.vic2Government == "") || (mapping.vic2Government == country->getGovernment())) &&
+				((mapping.rulingPartyRequired == "") || (mapping.rulingPartyRequired == Vic2RulingIdeology))
 			)
 		{
-			hoiGov = mapping.HoI4_gov;
+			ideology = mapping.HoI4Ideology;
 			break;
 		}
 	}
 
-	LOG(LogLevel::Debug) << "Mapped " << country->getTag() << " government " << country->getGovernment() << " to " << hoiGov;
-
-	return hoiGov;
+	LOG(LogLevel::Debug) << "Mapped " << country->getTag() << " government " << country->getGovernment() << " to " << ideology;
+	return ideology;
 }
 
 

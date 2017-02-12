@@ -3454,7 +3454,7 @@ HoI4FocusTree* HoI4FocusTree::makeCustomizedCopy(const HoI4Country* country) con
 void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Country*> CountriesToContain, int XStart)
 {
 	double WTModifier = 1;
-	if (Home->getGovernment() == "democratic")
+	if (Home->getIdeology() == "democratic")
 	{
 		string warPol = Home->getRulingParty().war_pol;
 		if (warPol == "jingoism")
@@ -3463,16 +3463,6 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 			WTModifier = 0.25;
 		if (warPol == "anti_military")
 			WTModifier = 0.5;
-	}
-	if (Home->getGovernment() == "hms_government")
-	{
-		string warPol = Home->getRulingParty().war_pol;
-		if (warPol == "jingoism")
-			WTModifier = 0;
-		if (warPol == "pro_military")
-			WTModifier = 0;
-		if (warPol == "anti_military")
-			WTModifier = 0.25;
 		if (warPol == "pacifism" || warPol == "pacifist")
 			WTModifier = 0.5;
 	}

@@ -95,11 +95,9 @@ public:
 	set<int>									getProvinces() const { return provinces; }
 	string										getTag() const { return tag; }
 	const V2Country*							getSourceCountry() const { return srcCountry; }
-	string										getGovernment() const { return government; }
 	HoI4Faction*								getFaction() const { return faction; }
 	HoI4Alignment*								getAlignment() { return &alignment; }
 	string										getIdeology() const { return ideology; }
-	string										getRulingIdeology() const { return rulingHoI4Ideology; }
 	const set<string>&						getAllies() const { return allies; }
 	set<string>&								editAllies() { return allies; }
 	map<string, double>&						getPracticals() { return practicals; }
@@ -128,7 +126,7 @@ private:
 	void findBestCapital();
 
 	vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, HoI4Province*> allProvinces);
-	void			convertParties(const V2Country* srcCountry, vector<V2Party*> V2Parties, V2Party* rulingParty, string& rulingIdeology);
+	void			convertParties(const V2Country* srcCountry, vector<V2Party*> V2Parties, V2Party* rulingParty);
 
 	void setPartyPopularity();
 
@@ -140,9 +138,12 @@ private:
 	void outputCommonCountryFile() const;
 
 
-	HoI4World*							theWorld;
-	const V2Country*					srcCountry;
-	string								filename;
+	HoI4World* theWorld;
+	const V2Country* srcCountry;
+	string filename;
+
+	string ideology;
+
 	const string						sphereLeader = "";
 	string								tag;
 	set<int>							provinces;
@@ -150,9 +151,7 @@ private:
 	int									capital;
 	string								commonCountryFile;
 	map<string, int>					technologies;
-	string								government;
 	HoI4Alignment						alignment;
-	string								ideology;
 	int									totalfactories;
 	map<string, HoI4Relations*>	relations;
 	Color									color;
@@ -166,7 +165,6 @@ private:
 	vector<HoI4Minister>				rulingMinisters;
 	vector<HoI4Leader>				leaders;
 	string								graphicalCulture;
-	string								rulingHoI4Ideology;
 	bool									majorNation;
 	bool									civilized;
 	vector<int>							brigs;
