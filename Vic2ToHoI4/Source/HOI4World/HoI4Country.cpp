@@ -30,6 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Minister.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/NamesMapper.h"
+#include "../Mappers/PortraitMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "../V2World/V2Relations.h"
 #include "../V2World/V2Party.h"
@@ -2565,11 +2566,12 @@ void HoI4Country::outputCountryLeader(ofstream& output) const
 {
 	string firstName = namesMapper::getMaleName(srcCountry->getPrimaryCulture());
 	string surname = namesMapper::getSurname(srcCountry->getPrimaryCulture());
+	string portrait = portraitMapper::getPortrait(srcCountry->getPrimaryCultureGroup(), ideology);
 
 	output << "create_country_leader = {\n";
 	output << "    name = \"" << firstName << " " << surname << "\"\n";
 	output << "    desc = \"POLITICS_" << boost::to_upper_copy(firstName) << "_" << boost::to_upper_copy(surname) << "_DESC\"\n";
-	output << "    picture = \"gfx\\\\leaders\\\\leader_unknown.dds\"\n";
+	output << "    picture = \"" << portrait << "\"\n";
 	output << "    expire = \"1965.1.1\"\n";
 	output << "    ideology = " << ideology << "\n";
 	output << "    traits = {\n";

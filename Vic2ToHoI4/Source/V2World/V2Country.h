@@ -59,6 +59,7 @@ public:
 	vector<Vic2State*> getStates() const { return states; }
 	string getTag() const { return tag; }
 	string getPrimaryCulture() const { return primaryCulture; }
+	string getPrimaryCultureGroup() const { return primaryCultureGroup; }
 	set<string> getAcceptedCultures() const { return acceptedCultures; }
 	bool isAnAcceptedCulture(const string& culture) const { return (acceptedCultures.count(culture) > 0); }
 	set<string> getInventions() const { return inventions; }
@@ -123,6 +124,7 @@ private:
 	int capital;
 
 	string primaryCulture;
+	string primaryCultureGroup;
 	set<string> acceptedCultures;
 
 	vector<string> techs;
