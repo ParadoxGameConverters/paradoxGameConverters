@@ -1,0 +1,191 @@
+# Copyright (c) 2017 The Paradox Game Converters Project
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+
+germanic = {
+	communist = GER/Portrait_Germany_Generic_1.dds
+	democracy = GER/Portrait_Germany_Generic_2.dds
+	fascist = GER/Portrait_Germany_Generic_3.dds
+}
+beneluxian = {
+	communist = Europe/Portrait_Europe_Generic_1.dds
+	democracy = Europe/Portrait_Europe_Generic_2.dds
+	fascist = Europe/Portrait_Europe_Generic_3.dds
+}
+pan_swiss = {
+	communist = GER/Portrait_Germany_Generic_1.dds
+	democracy = SWI/Portrait_Switzerland_Federal_council.dds
+	fascist = GER/Portrait_Germany_Generic_3.dds
+}
+scandinavian = {
+	communist = Europe/Portrait_Europe_Generic_1.dds
+	democracy = Europe/Portrait_Europe_Generic_2.dds
+	fascist = Europe/Portrait_Europe_Generic_3.dds
+}
+british = {
+	communist = ENG/Portrait_Britain_Generic_1.dds
+	democracy = ENG/Portrait_Britain_Generic_2.dds
+	fascist = ENG/Portrait_Britain_Generic_3.dds
+}
+italian = {
+	communist = ITA/Portrait_Italy_Generic_1.dds
+	democracy = ITA/Portrait_Italy_Generic_2.dds
+	fascist = ITA/Portrait_Italy_Generic_3.dds
+}
+iberian = {
+	communist = "South America/Portrait_South_America_Generic_1.dds"
+	democracy = "South America/Portrait_South_America_Generic_2.dds"
+	fascist = "South America/Portrait_South_America_Generic_3.dds"
+}
+french = {
+	communist = FRA/Portrait_France_Generic_1.dds
+	democracy = FRA/Portrait_France_Generic_2.dds
+	fascist = FRA/Portrait_France_Generic_3.dds
+}
+south_slavic = {
+	communist = SOV/Portrait_Soviet_Generic_1.dds
+	democracy = SOV/Portrait_Soviet_Generic_2.dds
+	fascist = SOV/Portrait_Soviet_Generic_3.dds
+}
+pan_romanian = {
+	communist = Europe/Portrait_Europe_Generic_1.dds
+	democracy = Europe/Portrait_Europe_Generic_2.dds
+	fascist = Europe/Portrait_Europe_Generic_3.dds
+}
+hungarian_culture_group = {
+	communist = Europe/Portrait_Europe_Generic_1.dds
+	democracy = Europe/Portrait_Europe_Generic_2.dds
+	fascist = Europe/Portrait_Europe_Generic_3.dds
+}
+polish_culture_group = {
+	communist = SOV/Portrait_Soviet_Generic_1.dds
+	democracy = SOV/Portrait_Soviet_Generic_2.dds
+	fascist = SOV/Portrait_Soviet_Generic_3.dds
+}
+czecho_slovak_culture_group = {
+	communist = SOV/Portrait_Soviet_Generic_1.dds
+	democracy = SOV/Portrait_Soviet_Generic_2.dds
+	fascist = SOV/Portrait_Soviet_Generic_3.dds
+}
+east_slavic = {
+	communist = SOV/Portrait_Soviet_Generic_1.dds
+	democracy = SOV/Portrait_Soviet_Generic_2.dds
+	fascist = SOV/Portrait_Soviet_Generic_3.dds
+}
+baltic = {
+	communist = SOV/Portrait_Soviet_Generic_1.dds
+	democracy = SOV/Portrait_Soviet_Generic_2.dds
+	fascist = SOV/Portrait_Soviet_Generic_3.dds
+}
+levantine = {
+	communist = ITA/Portrait_Italy_Generic_1.dds
+	democracy = ITA/Portrait_Italy_Generic_2.dds
+	fascist = ITA/Portrait_Italy_Generic_3.dds
+}
+turko_semitic = {
+	communist = Europe/Portrait_Europe_Generic_1.dds
+	democracy = Europe/Portrait_Europe_Generic_2.dds
+	fascist = Europe/Portrait_Europe_Generic_3.dds
+}
+arab = {
+	communist = SAU/Portrait_Arabia_Generic_1.dds
+	democracy = SAU/Portrait_Arabia_Generic_2.dds
+	fascist = SAU/Portrait_Arabia_Generic_3.dds
+}
+iranian_turanian = {
+	communist = SAU/Portrait_Arabia_Generic_1.dds
+	democracy = SAU/Portrait_Arabia_Generic_2.dds
+	fascist = SAU/Portrait_Arabia_Generic_3.dds
+}
+central_asian = {
+	communist = Asia/Portrait_Asia_Generic_1.dds
+	democracy = Asia/Portrait_Asia_Generic_2.dds
+	fascist = Asia/Portrait_Asia_Generic_3.dds
+}
+south_asian = {
+	communist = Europe/Portrait_Europe_Generic_1.dds
+	democracy = Europe/Portrait_Europe_Generic_2.dds
+	fascist = Europe/Portrait_Europe_Generic_3.dds
+}
+southeast_asian = {
+	communist = Asia/Portrait_Asia_Generic_1.dds
+	democracy = Asia/Portrait_Asia_Generic_2.dds
+	fascist = Asia/Portrait_Asia_Generic_3.dds
+}
+east_asian = {
+	communist = Asia/Portrait_Asia_Generic_1.dds
+	democracy = Asia/Portrait_Asia_Generic_2.dds
+	fascist = Asia/Portrait_Asia_Generic_3.dds
+}
+oceanic = {
+	communist = "South America/Portrait_South_America_Generic_1.dds"
+	democracy = "South America/Portrait_South_America_Generic_2.dds"
+	fascist = "South America/Portrait_South_America_Generic_3.dds"
+}
+native_american = {
+	communist = "South America/Portrait_South_America_Generic_1.dds"
+	democracy = "South America/Portrait_South_America_Generic_2.dds"
+	fascist = "South America/Portrait_South_America_Generic_3.dds"
+}
+american_cultures = {
+	communist = USA/Portrait_USA_Generic_1.dds
+	democracy = USA/Portrait_USA_Generic_2.dds
+	fascist = USA/Portrait_USA_Generic_3.dds
+}
+neo_european_cultures = {
+	communist = Europe/Portrait_Europe_Generic_1.dds
+	democracy = Europe/Portrait_Europe_Generic_2.dds
+	fascist = Europe/Portrait_Europe_Generic_3.dds
+}
+latin_american_cultures = {
+	communist = "South America/Portrait_South_America_Generic_1.dds"
+	democracy = "South America/Portrait_South_America_Generic_2.dds"
+	fascist = "South America/Portrait_South_America_Generic_3.dds"
+}
+african_diaspora_cultures = {
+	communist = Africa/Portrait_Africa_Generic_land_1.dds
+	democracy = Africa/Portrait_Africa_Generic_land_2.dds
+	fascist = Africa/Portrait_Africa_Generic_land_3.dds
+}
+west_african = {
+	communist = Africa/Portrait_Africa_Generic_land_1.dds
+	democracy = Africa/Portrait_Africa_Generic_land_2.dds
+	fascist = Africa/Portrait_Africa_Generic_land_3.dds
+}
+central_african = {
+	communist = Africa/Portrait_Africa_Generic_land_1.dds
+	democracy = Africa/Portrait_Africa_Generic_land_2.dds
+	fascist = Africa/Portrait_Africa_Generic_land_3.dds
+}
+east_african = {
+	communist = Africa/Portrait_Africa_Generic_land_1.dds
+	democracy = Africa/Portrait_Africa_Generic_land_2.dds
+	fascist = Africa/Portrait_Africa_Generic_land_3.dds
+}
+southern_african = {
+	communist = Africa/Portrait_Africa_Generic_land_1.dds
+	democracy = Africa/Portrait_Africa_Generic_land_2.dds
+	fascist = Africa/Portrait_Africa_Generic_land_3.dds
+}
+bears = {
+	communist = POL/Portrait_POL_Voytek.dds
+	democracy = POL/Portrait_POL_Voytek.dds
+	fascist = POL/Portrait_POL_Voytek.dds
+}
