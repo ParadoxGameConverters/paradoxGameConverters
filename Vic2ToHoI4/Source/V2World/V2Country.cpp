@@ -19,10 +19,13 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
+
+
 #include "V2Country.h"
 #include "Log.h"
 #include "Object.h"
 #include "../Mappers/CultureGroupMapper.h"
+#include "../Mappers/ReformMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "V2Army.h"
 #include "V2Leader.h"
@@ -241,7 +244,7 @@ void V2Country::readInWarExhaustion(const Object* countryObj)
 
 void V2Country::readInReforms(Object* countryObj)
 {
-	map<string, string> reformTypes = governmentMapper::getReformTypes();
+	map<string, string> reformTypes = reformMapper::getReformTypes();
 
 	for (auto leaf : countryObj->getLeaves())
 	{

@@ -22,14 +22,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "GovernmentMapper.h"
-#include <math.h>
-#include <float.h>
 #include "../V2World/V2Country.h"
-#include "../Configuration.h"
 #include "Log.h"
 #include "Object.h"
-#include "OSCompatibilityLayer.h"
-#include "ParadoxParser8859_15.h"
 #include "ParadoxParserUTF8.h"
 
 
@@ -39,38 +34,6 @@ governmentMapper* governmentMapper::instance = nullptr;
 
 
 governmentMapper::governmentMapper()
-{
-	initGovernmentMap();
-
-	reformsInitialized		= false;
-	totalPoliticalReforms	= 0;
-	totalSocialReforms		= 0;
-
-	LOG(LogLevel::Info) << "Parsing governments reforms";
-	for (auto itr : Configuration::getVic2Mods())
-	{
-		if (Utils::DoesFileExist(Configuration::getV2Path() + "/mod/" + itr + "/common/issues.txt"))
-		{
-			auto obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/common/issues.txt"));
-			if (obj != nullptr)
-			{
-				initReforms(obj);
-				break;
-			}
-		}
-	}
-	if (!reformsInitialized)
-	{
-		auto obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/issues.txt"));
-		if (obj != nullptr)
-		{
-			initReforms(obj);
-		}
-	}
-}
-
-
-void governmentMapper::initGovernmentMap()
 {
 	LOG(LogLevel::Info) << "Parsing governments mappings";
 
@@ -83,7 +46,7 @@ void governmentMapper::initGovernmentMap()
 
 	for (auto mapping: obj->getValue("mapping"))
 	{
-		govMapping newMapping;
+		governmentMapping newMapping;
 		for (auto item: mapping->getLeaves())
 		{
 			string key = item->getKey();
@@ -106,71 +69,12 @@ void governmentMapper::initGovernmentMap()
 }
 
 
-void governmentMapper::initReforms(Object* obj)
-{
-	vector<Object*> topObjects = obj->getLeaves();
-	for (auto topObject : topObjects)
-	{
-		if (topObject->getKey() == "political_reforms")
-		{
-			vector<Object*> reformObjs = topObject->getLeaves();
-			for (auto reformObj : reformObjs)
-			{
-				reformTypes.insert(make_pair(reformObj->getKey(), ""));
-
-				int reformLevelNum = 0;
-				vector<Object*> reformLevelObjs = reformObj->getLeaves();
-				for (auto reformLevel : reformLevelObjs)
-				{
-					if ((reformLevel->getKey() == "next_step_only") || (reformLevel->getKey() == "administrative"))
-					{
-						continue;
-					}
-
-					politicalReformScores.insert(make_pair(reformLevel->getKey(), reformLevelNum));
-					reformLevelNum++;
-					totalPoliticalReforms++;
-				}
-				totalPoliticalReforms--;
-			}
-		}
-
-		if (topObject->getKey() == "social_reforms")
-		{
-			vector<Object*> reformObjs = topObject->getLeaves();
-			for (auto reformObj : reformObjs)
-			{
-				reformTypes.insert(make_pair(reformObj->getKey(), ""));
-
-				int reformLevelNum = 0;
-				vector<Object*> reformLevelObjs = reformObj->getLeaves();
-				for (auto reformLevel : reformLevelObjs)
-				{
-					if ((reformLevel->getKey() == "next_step_only") || (reformLevel->getKey() == "administrative"))
-					{
-						continue;
-					}
-
-					socialReformScores.insert(make_pair(reformLevel->getKey(), reformLevelNum));
-					reformLevelNum++;
-					totalSocialReforms++;
-				}
-				totalSocialReforms--;
-			}
-		}
-	}
-}
-
-
 string governmentMapper::GetIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology)
 {
 	string ideology = "neutrality";
 	for (auto mapping: governmentMap)
 	{
-		if (
-				((mapping.vic2Government == "") || (mapping.vic2Government == country->getGovernment())) &&
-				((mapping.rulingPartyRequired == "") || (mapping.rulingPartyRequired == Vic2RulingIdeology))
-			)
+		if (governmentMatches(mapping, country->getGovernment()) &&	rulingIdeologyMatches(mapping, Vic2RulingIdeology))
 		{
 			ideology = mapping.HoI4Ideology;
 			break;
@@ -182,7 +86,13 @@ string governmentMapper::GetIdeologyForCountry(const V2Country* country, const s
 }
 
 
+bool governmentMapper::governmentMatches(const governmentMapping& mapping, const string& government)
+{
+	return ((mapping.vic2Government == "") || (mapping.vic2Government == government));
+}
 
 
-
-
+bool governmentMapper::rulingIdeologyMatches(const governmentMapping& mapping, const string& rulingIdeology)
+{
+	return ((mapping.rulingPartyRequired == "") || (mapping.rulingPartyRequired == rulingIdeology));
+}
