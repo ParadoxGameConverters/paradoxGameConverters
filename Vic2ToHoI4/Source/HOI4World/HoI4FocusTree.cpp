@@ -25,6 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Country.h"
 #include "HoI4Focus.h"
 #include "../Configuration.h"
+#include "../V2World/V2Party.h"
 #include "Log.h"
 #include "Object.h"
 #include "OSCompatibilityLayer.h"
@@ -3456,7 +3457,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 	double WTModifier = 1;
 	if (Home->getIdeology() == "democratic")
 	{
-		string warPol = Home->getRulingParty().war_pol;
+		string warPol = Home->getRulingParty()->war_policy;
 		if (warPol == "jingoism")
 			WTModifier = 0;
 		if (warPol == "pro_military")

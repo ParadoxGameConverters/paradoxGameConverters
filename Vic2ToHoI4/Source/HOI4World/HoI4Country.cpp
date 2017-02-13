@@ -41,32 +41,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-enum ideaologyType {
-	national_socialist = 0,
-	fascistic = 1,
-	paternal_autocrat = 2,
-	social_conservative = 3,
-	market_liberal = 4,
-	social_liberal = 5,
-	social_democrat = 6,
-	left_wing_radical = 7,
-	leninist = 8,
-	stalinist = 9
-};
-
-const char* const ideologyNames[stalinist + 1] = {
-	"national_socialist",
-	"fascistic",
-	"paternal_autocrat",
-	"social_conservative",
-	"market_libera",
-	"social_libera",
-	"social_democrat",
-	"left_wing_radica",
-	"leninist",
-	"stalinist"
-};
-
 HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld)
 {
 	theWorld = _theWorld;
@@ -77,7 +51,9 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	technologies.clear();
 
 	capital = 0;
-	ideology = "despotism";
+	ideology = "neutrality";
+	rulingParty = nullptr;
+
 	faction = nullptr;
 	factionLeader = false;
 
@@ -94,22 +70,11 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	relations.clear();
 	allies.clear();
 	practicals.clear();
-	parties.clear();
 	ministers.clear();
 	rulingMinisters.clear();
 
 	graphicalCulture = "Generic";
 	majorNation = false;
-
-	communismPopularity = 0;
-	democraticPopularity = 80;
-	facismPopularity = 0;
-	neutralityPopularity = 20;
-	liberalPopularity = 0;
-	socialistPopularity = 0;
-	ancapPopularity = 0;
-	syndicalistPopularity = 0;
-	autocraticPopularity = 0;
 
 	greatPower = false;
 
@@ -151,10 +116,13 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	// Government
 	ideology = governmentMapper::getIdeologyForCountry(srcCountry, _vic2ideology);
+	convertIdeologySupport();
 
 	// Political parties
-	convertParties(_srcCountry, _srcCountry->getActiveParties(_srcWorld.getParties()), _srcCountry->getRulingParty(_srcWorld.getParties()));
-	for (auto partyItr : parties)
+	rulingParty = _srcCountry->getRulingParty(_srcWorld.getParties());
+	parties = _srcCountry->getActiveParties(_srcWorld.getParties());
+	convertParties();
+	/*for (auto partyItr : parties)
 	{
 		auto oldLocalisation = V2Localisations::GetTextInEachLanguage(partyItr.name);
 		partyItr.localisationString = partyItr.ideology + "_" + tag;
@@ -164,10 +132,10 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 		{
 			partyItr.localisationString += ";" + localisationItr->second;
 		}
-	}
+	}*/
 
 	// Ministers
-	for (unsigned int ideologyIdx = 0; ideologyIdx <= stalinist; ideologyIdx++)
+	/*for (unsigned int ideologyIdx = 0; ideologyIdx <= stalinist; ideologyIdx++)
 	{
 		for (auto job : governmentJobs)
 		{
@@ -179,7 +147,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 				rulingMinisters.push_back(newMinister);
 			}
 		}
-	}
+	}*/
 
 	// Faction is handled in HoI4World::configureFactions
 
@@ -1178,8 +1146,8 @@ vector<int> HoI4Country::getPortProvinces(vector<int> locationCandidates, map<in
 	return locationCandidates;
 }
 
-void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V2Parties, V2Party* rulingParty)
-{
+void HoI4Country::convertParties()
+{/*
 	// sort Vic2 parties by ideology
 	map<string, vector<V2Party*>> V2Ideologies;
 	for (auto partyItr : V2Parties)
@@ -1742,61 +1710,20 @@ void HoI4Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	if (V2Ideologies.size() > 0)
 	{
 		LOG(LogLevel::Warning) << "Unmapped Vic2 parties for " << tag;
-	}
-	setPartyPopularity();
+	}*/
 }
-void HoI4Country::setPartyPopularity()
-{
-	communismPopularity = 0;
-	democraticPopularity = 0;
-	facismPopularity = 0;
-	neutralityPopularity = 0;
-	liberalPopularity = 0;
-	socialistPopularity = 0;
-	syndicalistPopularity = 0;
-	ancapPopularity = 0;
-	autocraticPopularity = 0;
 
-	for (auto party : parties)
+
+void HoI4Country::convertIdeologySupport()
+{
+	int remainingSupport = 100;
+	for (auto ideology: ideologySupport)
 	{
-		if (party.name.find("fascist") != string::npos)
-		{
-			facismPopularity += party.popularity;
-		}
-		if (party.name.find("communist") != string::npos)
-		{
-			communismPopularity += party.popularity;
-		}
-		if (party.name.find("liberal") != string::npos)
-		{
-			liberalPopularity += party.popularity;
-		}
-		if (party.name.find("conservative") != string::npos && (ideology == "democratic" || ideology == "hms_government "))
-		{
-			democraticPopularity += party.popularity;
-		}
-		if (party.name.find("conservative") != string::npos && ideology != "democratic" && ideology != "hms_government ")
-		{
-			autocraticPopularity += party.popularity;
-		}
-		if (party.name.find("socialist") != string::npos && (party.war_pol == "anti_military" || party.war_pol == "pacifism"))
-		{
-			socialistPopularity += party.popularity;
-		}
-		if (party.name.find("socialist") != string::npos && (party.war_pol == "pro_military" || party.war_pol == "jingoism"))
-		{
-			syndicalistPopularity += party.popularity;
-		}
-		if (party.name.find("anarcho_liberal") != string::npos)
-		{
-			ancapPopularity += party.popularity;
-		}
-		if (party.name.find("reactionary") != string::npos)
-		{
-			autocraticPopularity += party.popularity;
-		}
+		remainingSupport -= ideology.second;
 	}
+	ideologySupport.insert(make_pair("neutrality", remainingSupport));
 }
+
 
 void HoI4Country::setTechnology(string tech, int level)
 {
@@ -1817,44 +1744,17 @@ void HoI4Country::calculateIndustry()
 		militaryFactories += state.second->getMilFactories();
 		dockyards += state.second->getDockyards();
 	}
-
-	if (RulingPartyModel.war_pol == "jingoism")
-	{
-		civilianFactories *= 1.1;
-	}
-	else if (RulingPartyModel.war_pol == "pro_military")
-	{
-		civilianFactories *= 0.9;
-	}
-	else
-	{
-		civilianFactories *= 0.7;
-	}
 }
 
 void HoI4Country::reportIndustry(ofstream& out)
 {
 	if (states.size() > 0)
 	{
-		double actualCivilianFactories;
-		if (RulingPartyModel.war_pol == "jingoism")
-		{
-			actualCivilianFactories = civilianFactories / 1.1;
-		}
-		else if (RulingPartyModel.war_pol == "pro_military")
-		{
-			actualCivilianFactories = civilianFactories / 0.9;
-		}
-		else
-		{
-			actualCivilianFactories = civilianFactories / 0.7;
-		}
-
 		out << tag << ',';
 		out << militaryFactories << ',';
-		out << actualCivilianFactories << ',';
+		out << civilianFactories << ',';
 		out << dockyards << ',';
-		out << militaryFactories + actualCivilianFactories + dockyards << '\n';
+		out << militaryFactories + civilianFactories + dockyards << '\n';
 	}
 }
 
@@ -2042,40 +1942,15 @@ void HoI4Country::outputHistory(const map<int, HoI4State*>& states, const vector
 	output << "set_politics = {\n";
 	output << "\n";
 	output << "    parties = {\n";
-	output << "        democratic = {\n";
-	output << "            popularity = " << democraticPopularity << '\n';
-	output << "        }\n";
-	output << "\n";
-	output << "        liberal = {\n";
-	output << "            popularity = " << liberalPopularity << '\n';
-	output << "        }\n";
-	output << "        \n";
-	output << "        socialist = {\n";
-	output << "            popularity = " << socialistPopularity << '\n';
-	output << "        }\n";
-	output << "        \n";
-	output << "        syndicalism = {\n";
-	output << "            popularity = " << syndicalistPopularity << '\n';
-	output << "        }\n";
-	output << "        \n";
-	output << "        ancap = {\n";
-	output << "            popularity = " << ancapPopularity << '\n';
-	output << "        }\n";
-	output << "        \n";
-	output << "        fascism = {\n";
-	output << "            popularity = " << facismPopularity << '\n';
-	output << "        }\n";
-	output << "        \n";
-	output << "        communism = {\n";
-	output << "            popularity = " << communismPopularity << '\n';
-	output << "        }\n";
-	output << "        \n";
-	output << "        autocratic = {\n";
-	output << "            popularity = " << autocraticPopularity << '\n';
-	output << "        }\n";
-	output << "        \n";
-	output << "        neutrality = {\n";
-	output << "            popularity = " << neutralityPopularity << '\n';
+	for (auto ideology: ideologySupport)
+	{
+		output << "        " << ideology.first << " = {\n";
+		output << "            popularity = " << ideology.second << "\n";
+		output << "        }\n";
+	}
+	//temporary until ideology support is completed
+	output << "        " << ideology << " = {\n";
+	output << "            popularity = 0\n";
 	output << "        }\n";
 	output << "    }\n";
 	output << "    \n";
@@ -2111,11 +1986,11 @@ void HoI4Country::outputHistory(const map<int, HoI4State*>& states, const vector
 	{
 		output << "uncivilized\n";
 	}
-	if (RulingPartyModel.war_pol == "jingoism")
+	if (rulingParty->war_policy == "jingoism")
 	{
 		output << "partial_economic_mobilisation\n";
 	}
-	if (RulingPartyModel.war_pol == "pro_military")
+	if (rulingParty->war_policy == "pro_military")
 	{
 		output << "low_economic_mobilisation\n";
 	}

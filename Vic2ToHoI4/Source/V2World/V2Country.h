@@ -88,7 +88,7 @@ public:
 	double getUpperHousePercentage(const string& ideology) const;
 	long getEmployedWorkers() const;
 	V2Party* getRulingParty(const vector<V2Party*>& allParties) const;
-	vector<V2Party*> getActiveParties(const vector<V2Party*>& allParties) const;
+	set<V2Party*> getActiveParties(const vector<V2Party*>& allParties) const;
 	bool hasCoreOnCapital() const;
 
 private:

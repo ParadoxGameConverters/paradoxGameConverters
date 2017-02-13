@@ -553,15 +553,15 @@ V2Party* V2Country::getRulingParty(const vector<V2Party*>& allParties) const
 	}
 }
 
-vector<V2Party*> V2Country::getActiveParties(const vector<V2Party*>& allParties) const
+set<V2Party*> V2Country::getActiveParties(const vector<V2Party*>& allParties) const
 {
-	vector<V2Party*> activeParties;
+	set<V2Party*> activeParties;
 
 	for (auto ID : activePartyIDs)
 	{
 		if (ID < allParties.size())
 		{
-			activeParties.push_back(allParties[ID - 1]);  // Subtract 1, because party ID starts from index of 1
+			activeParties.insert(allParties[ID - 1]);  // Subtract 1, because party ID starts from index of 1
 		}
 		else
 		{

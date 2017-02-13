@@ -30,6 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/ProvinceDefinitions.h"
 #include "../Mappers/ProvinceNeighborMapper.h"
 #include "../Mappers/StateMapper.h"
+#include "../V2World/V2Party.h"
 
 
 
@@ -251,13 +252,13 @@ vector<HoI4Country*> HoI4WarCreator::calculateEvilness(vector<HoI4Country*> Lead
 			string government = "";
 			if (GC->getIdeology() == "absolutist")
 				evilness += 3;
-			HoI4Party countryrulingparty = GC->getRulingParty();
+			V2Party* countryrulingparty = GC->getRulingParty();
 
-			if (countryrulingparty.war_pol == "jingoism")
+			if (countryrulingparty->war_policy == "jingoism")
 				evilness += 3;
-			else if (countryrulingparty.war_pol == "pro_military")
+			else if (countryrulingparty->war_policy == "pro_military")
 				evilness += 2;
-			else if (countryrulingparty.war_pol == "anti_military")
+			else if (countryrulingparty->war_policy == "anti_military")
 				evilness += 1;
 
 			//need to add ruling party to factor
@@ -1346,18 +1347,18 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 		{
 			double com = 0;
 			HoI4Faction* neighFaction = findFaction(neigh.second);
-			for (auto party : neigh.second->getParties())
+			for (auto party : neigh.second->getIdeologySupport())
 			{
-				if (party.name.find("socialist") != string::npos || party.name.find("communist") != string::npos || party.name.find("anarcho_liberal") != string::npos)
-					com += party.popularity;
+				if ((party.first == "socialist") || (party.first == "communist") || (party.first == "anarcho_liberal"))
+					com += party.second;
 			}
-			if (com > 25 && neigh.second->getRulingParty().ideology != "communist" && HowToTakeLand(neigh.second, Leader, 2.5) == "coup")
+			if (com > 25 && neigh.second->getRulingParty()->ideology != "communist" && HowToTakeLand(neigh.second, Leader, 2.5) == "coup")
 			{
 				//look for neighboring countries to spread communism too(Need 25 % or more Communism support), Prioritizing those with "Communism Allowed" Flags, prioritizing those who are weakest
 				//	Method() Influence Ideology and Attempt Coup
 				coups.push_back(neigh.second);
 			}
-			else if (neighFaction->getMembers().size() == 1 && neigh.second->getRulingParty().ideology != "communist")
+			else if (neighFaction->getMembers().size() == 1 && neigh.second->getRulingParty()->ideology != "communist")
 			{
 				//	Then look for neighboring countries to spread communism by force, prioritizing weakest first
 				forcedtakeover.push_back(neigh.second);
