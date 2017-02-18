@@ -956,7 +956,7 @@ void HoI4World::createFactions()
 		vector<HoI4Country*> factionMembers;
 		factionMembers.push_back(leader);
 
-		string leaderIdeology = leader->getIdeology();
+		string leaderIdeology = leader->getGovernmentIdeology();
 		logFactionMember(factionsLog, leader);
 		double factionMilStrength = leader->getStrengthOverTime(3.0);
 
@@ -969,7 +969,7 @@ void HoI4World::createFactions()
 			}
 
 			HoI4Country* allycountry = ally->second;
-			string allygovernment = allycountry->getIdeology();
+			string allygovernment = allycountry->getGovernmentIdeology();
 			string sphereLeader = returnSphereLeader(allycountry);
 
 			if ((sphereLeader == leader->getTag()) || ((sphereLeader == "") && governmentsAllowFaction(leaderIdeology, allygovernment)))
@@ -998,7 +998,7 @@ void HoI4World::createFactions()
 void HoI4World::logFactionMember(ofstream& factionsLog, const HoI4Country* member)
 {
 	factionsLog << member->getSourceCountry()->getName("english") << ",";
-	factionsLog << member->getIdeology() << ",";
+	factionsLog << member->getGovernmentIdeology() << ",";
 	factionsLog << member->getMilitaryStrength() << ",";
 	factionsLog << member->getEconomicStrength(1.0) << ",";
 	factionsLog << member->getEconomicStrength(3.0) << "\n";

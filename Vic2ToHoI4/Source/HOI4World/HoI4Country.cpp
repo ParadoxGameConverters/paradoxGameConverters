@@ -51,7 +51,8 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	technologies.clear();
 
 	capital = 0;
-	ideology = "neutrality";
+	governmentIdeology = "neutrality";
+	leaderIdeology = "neutrality";
 	rulingParty = nullptr;
 
 	faction = nullptr;
@@ -115,7 +116,8 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	}
 
 	// Government
-	ideology = governmentMapper::getIdeologyForCountry(srcCountry, _vic2ideology);
+	governmentIdeology = governmentMapper::getIdeologyForCountry(srcCountry, _vic2ideology);
+	leaderIdeology = governmentMapper::getIdeologyForCountry(srcCountry, _vic2ideology);
 	convertIdeologySupport();
 
 	// Political parties
@@ -372,7 +374,7 @@ void HoI4Country::initFromHistory()
 	auto results = obj->getValue("ideology");
 	if (results.size() > 0)
 	{
-		ideology = results[0]->getLeaf();
+		governmentIdeology = results[0]->getLeaf();
 	}
 
 	results = obj->getValue("capital");
@@ -1949,13 +1951,13 @@ void HoI4Country::outputHistory(const map<int, HoI4State*>& states, const vector
 		output << "        }\n";
 	}
 	//temporary until ideology support is completed
-	output << "        " << ideology << " = {\n";
+	output << "        " << governmentIdeology << " = {\n";
 	output << "            popularity = 0\n";
 	output << "        }\n";
 	output << "    }\n";
 	output << "    \n";
 
-	output << "    ruling_party = " << ideology << "\n";
+	output << "    ruling_party = " << governmentIdeology << "\n";
 	output << "    last_election = \"1936.1.1\"\n";
 	output << "    election_frequency = 48\n";
 	output << "    elections_allowed = no\n";
@@ -2030,14 +2032,14 @@ void HoI4Country::outputCountryLeader(ofstream& output) const
 {
 	string firstName = namesMapper::getMaleName(srcCountry->getPrimaryCulture());
 	string surname = namesMapper::getSurname(srcCountry->getPrimaryCulture());
-	string portrait = portraitMapper::getPortrait(srcCountry->getPrimaryCultureGroup(), ideology);
+	string portrait = portraitMapper::getPortrait(srcCountry->getPrimaryCultureGroup(), leaderIdeology);
 
 	output << "create_country_leader = {\n";
 	output << "    name = \"" << firstName << " " << surname << "\"\n";
 	output << "    desc = \"POLITICS_" << boost::to_upper_copy(firstName) << "_" << boost::to_upper_copy(surname) << "_DESC\"\n";
 	output << "    picture = \"" << portrait << "\"\n";
 	output << "    expire = \"1965.1.1\"\n";
-	output << "    ideology = " << ideology << "\n";
+	output << "    ideology = " << leaderIdeology << "\n";
 	output << "    traits = {\n";
 	output << "    }\n";
 	output << "}\n";

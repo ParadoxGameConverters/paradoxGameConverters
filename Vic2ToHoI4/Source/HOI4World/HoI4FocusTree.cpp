@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -3455,7 +3455,7 @@ HoI4FocusTree* HoI4FocusTree::makeCustomizedCopy(const HoI4Country* country) con
 void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Country*> CountriesToContain, int XStart)
 {
 	double WTModifier = 1;
-	if (Home->getIdeology() == "democratic")
+	if (Home->getGovernmentIdeology() == "democratic")
 	{
 		string warPol = Home->getRulingParty()->war_policy;
 		if (warPol == "jingoism")

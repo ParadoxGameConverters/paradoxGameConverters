@@ -39,7 +39,8 @@ class V2Country;
 typedef struct governmentMapping
 {
 	string vic2Government;
-	string HoI4Ideology;
+	string HoI4GovernmentIdeology;
+	string HoI4LeaderIdeology;
 	string rulingPartyRequired;
 } governmentMapping;
 
@@ -50,6 +51,11 @@ class governmentMapper
 		static string getIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology)
 		{
 			return getInstance()->GetIdeologyForCountry(country, Vic2RulingIdeology);
+		}
+
+		static string getLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology)
+		{
+			return getInstance()->GetLeaderIdeologyForCountry(country, Vic2RulingIdeology);
 		}
 
 	private:
@@ -65,6 +71,7 @@ class governmentMapper
 		governmentMapper();
 
 		string GetIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology);
+		string GetLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology);
 		bool governmentMatches(const governmentMapping& mapping, const string& government);
 		bool rulingIdeologyMatches(const governmentMapping& mapping, const string& rulingIdeology);
 

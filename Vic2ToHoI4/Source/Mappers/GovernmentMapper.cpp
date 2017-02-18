@@ -54,9 +54,13 @@ governmentMapper::governmentMapper()
 			{
 				newMapping.vic2Government = item->getLeaf();
 			}
-			else if (key == "hoi")
+			else if (key == "hoi_gov")
 			{
-				newMapping.HoI4Ideology = item->getLeaf();
+				newMapping.HoI4GovernmentIdeology = item->getLeaf();
+			}
+			else if (key == "hoi_leader")
+			{
+				newMapping.HoI4LeaderIdeology = item->getLeaf();
 			}
 			else if (key == "ruling_party")
 			{
@@ -76,7 +80,24 @@ string governmentMapper::GetIdeologyForCountry(const V2Country* country, const s
 	{
 		if (governmentMatches(mapping, country->getGovernment()) &&	rulingIdeologyMatches(mapping, Vic2RulingIdeology))
 		{
-			ideology = mapping.HoI4Ideology;
+			ideology = mapping.HoI4GovernmentIdeology;
+			break;
+		}
+	}
+
+	LOG(LogLevel::Debug) << "Mapped " << country->getTag() << " government " << country->getGovernment() << " to " << ideology;
+	return ideology;
+}
+
+
+string governmentMapper::GetLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology)
+{
+	string ideology = "neutrality";
+	for (auto mapping: governmentMap)
+	{
+		if (governmentMatches(mapping, country->getGovernment()) &&	rulingIdeologyMatches(mapping, Vic2RulingIdeology))
+		{
+			ideology = mapping.HoI4LeaderIdeology;
 			break;
 		}
 	}

@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -80,7 +80,7 @@ void HoI4WarCreator::addAllTargetsToWorldTargetMap()
 void HoI4WarCreator::addTargetsToWorldTargetMap(HoI4Country* country)
 {
 	int maxGCWars = 0;
-	if (country->getIdeology() != "democratic")
+	if (country->getGovernmentIdeology() != "democratic")
 	{
 		vector<HoI4Country*> GCTargets;
 		for (auto GC: getDistancesToGreatPowers(country))
@@ -160,15 +160,15 @@ void HoI4WarCreator::generateTotalitarianWars(ofstream& AILog, vector<HoI4Countr
 		vector<HoI4Faction*> newFactionsAtWar;
 
 		LeaderCountries.push_back(greatPower);
-		if (greatPower->getIdeology() == "fascism")
+		if (greatPower->getGovernmentIdeology() == "fascism")
 		{
 			newFactionsAtWar = fascistWarMaker(greatPower, AILog);
 		}
-		else if (greatPower->getIdeology() == "communism")
+		else if (greatPower->getGovernmentIdeology() == "communism")
 		{
 			newFactionsAtWar = communistWarCreator(greatPower, AILog);
 		}
-		else if (greatPower->getIdeology() == "absolutist")
+		else if (greatPower->getGovernmentIdeology() == "absolutist")
 		{
 			newFactionsAtWar = MonarchyWarCreator(greatPower);
 		}
@@ -199,7 +199,7 @@ void HoI4WarCreator::generateDemocracyWars(ofstream& AILog, set<HoI4Faction*>& f
 
 	for (auto greatPower: theWorld->getGreatPowers())
 	{
-		if (greatPower->getIdeology() == "democratic")
+		if (greatPower->getGovernmentIdeology() == "democratic")
 		{
 			vector<HoI4Faction*> newFactionsAtWar;
 			newFactionsAtWar = democracyWarCreator(greatPower);
@@ -242,7 +242,7 @@ vector<HoI4Country*> HoI4WarCreator::calculateEvilness(vector<HoI4Country*> Lead
 	vector<HoI4Country*> GCEvilnessSorted;
 	for (auto GC: theWorld->getGreatPowers())
 	{
-		if (	GC->getIdeology() == "absolutist" &&
+		if (	GC->getGovernmentIdeology() == "absolutist" &&
 				std::find(LeaderCountries.begin(), LeaderCountries.end(), GC) == LeaderCountries.end()
 			)
 		{
@@ -250,7 +250,7 @@ vector<HoI4Country*> HoI4WarCreator::calculateEvilness(vector<HoI4Country*> Lead
 			v1 = v1 / 100;
 			double evilness = v1;
 			string government = "";
-			if (GC->getIdeology() == "absolutist")
+			if (GC->getGovernmentIdeology() == "absolutist")
 				evilness += 3;
 			V2Party* countryrulingparty = GC->getRulingParty();
 
@@ -395,12 +395,12 @@ vector<HoI4Country*> HoI4WarCreator::GetMorePossibleAllies(HoI4Country* CountryT
 				}
 		}
 	}
-	string yourIdeology = CountryThatWantsAllies->getIdeology();
+	string yourIdeology = CountryThatWantsAllies->getGovernmentIdeology();
 	volatile vector<HoI4Country*> vCountriesWithin500Miles = CountriesWithin500Miles;
 	//look for all capitals within a distance of Berlin to Tehran
 	for (unsigned int i = 0; i < CountriesWithin500Miles.size(); i++)
 	{
-		string allyIdeology = CountriesWithin500Miles[i]->getIdeology();
+		string allyIdeology = CountriesWithin500Miles[i]->getGovernmentIdeology();
 		//possible government matches
 		if (
 				(allyIdeology == yourIdeology) /* ||
@@ -1839,7 +1839,7 @@ vector<HoI4Faction*> HoI4WarCreator::democracyWarCreator(HoI4Country* Leader)
 	for (auto GC: theWorld->getGreatPowers())
 	{
 		double relation = Leader->getRelations(GC->getTag())->getRelations();
-		if (relation < 100 && GC->getIdeology() != "democratic" && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
+		if (relation < 100 && GC->getGovernmentIdeology() != "democratic" && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
 		{
 			string HowToTakeGC = HowToTakeLand(GC, Leader, 3);
 			//if (HowToTakeGC == "noactionneeded" || HowToTakeGC == "factionneeded")

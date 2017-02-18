@@ -85,7 +85,7 @@ class HoI4Country
 		const V2Country*							getSourceCountry() const { return srcCountry; }
 		HoI4Faction*								getFaction() const { return faction; }
 		HoI4Alignment*								getAlignment() { return &alignment; }
-		string getIdeology() const { return ideology; }
+		string getGovernmentIdeology() const { return governmentIdeology; }
 		map<string, int> getIdeologySupport() const { return ideologySupport; }
 		const set<string>&						getAllies() const { return allies; }
 		set<string>&								editAllies() { return allies; }
@@ -131,7 +131,8 @@ class HoI4Country
 		const V2Country* srcCountry;
 		string filename;
 
-		string ideology;
+		string governmentIdeology;
+		string leaderIdeology;
 		V2Party* rulingParty;
 		set<V2Party*> parties;
 		map<string, int> ideologySupport;
