@@ -2,8 +2,6 @@ ideologies = {
 	radical = {
 	
 		types = {
-			anarcho_cap = {
-			}
 			minarchism = {
 			}
 		}

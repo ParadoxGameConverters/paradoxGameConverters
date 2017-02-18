@@ -102,7 +102,7 @@ string governmentMapper::GetLeaderIdeologyForCountry(const V2Country* country, c
 		}
 	}
 
-	LOG(LogLevel::Debug) << "Mapped " << country->getTag() << " government " << country->getGovernment() << " to " << ideology;
+	LOG(LogLevel::Debug) << "Mapped " << country->getTag() << " leader " << country->getGovernment() << " to " << ideology;
 	return ideology;
 }
 

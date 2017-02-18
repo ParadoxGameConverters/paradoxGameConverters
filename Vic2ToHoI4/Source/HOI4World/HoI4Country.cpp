@@ -117,7 +117,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	// Government
 	governmentIdeology = governmentMapper::getIdeologyForCountry(srcCountry, _vic2ideology);
-	leaderIdeology = governmentMapper::getIdeologyForCountry(srcCountry, _vic2ideology);
+	leaderIdeology = governmentMapper::getLeaderIdeologyForCountry(srcCountry, _vic2ideology);
 	convertIdeologySupport();
 
 	// Political parties
