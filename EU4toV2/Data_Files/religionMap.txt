@@ -99,9 +99,11 @@ link = { v2 = zoroastrian_heresy eu4 = zoroastrian_heresy }
 
 #Judaism
 link = { v2 = jewish eu4 = jewish }
-link = { v2 = samaritan eu4 = samaritan }
-link = { v2 = karaite eu4 = karaite }
+link = { v2 = samaritan eu4 = samaritan eu4 = samaritan_faith }
+link = { v2 = karaite eu4 = karaite eu4 = karaite_faith }
 link = { v2 = jewish_heresy eu4 = jewish_heresy }
 
+
+link = { v2 = noreligion eu4 = noreligion }
 
 }

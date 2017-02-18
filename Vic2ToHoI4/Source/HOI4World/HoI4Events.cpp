@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Country.h"
 #include "HoI4Faction.h"
 #include "Log.h"
+#include "OSCompatibilityLayer.h"
 
 
 
@@ -38,6 +39,13 @@ HoI4Events::HoI4Events()
 
 void HoI4Events::output() const
 {
+	string eventpath = "Output/" + Configuration::getOutputName() + "/events";
+	if (!Utils::TryCreateFolder(eventpath))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/events\"";
+		exit(-1);
+	}
+
 	outputNationalFocusEvents();
 	outputNewsEvents();
 }

@@ -19,8 +19,6 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
-
-
 #include "../EU4World/EU4Province.h"
 #include "V2State.h"
 #include "V2Pop.h"
@@ -28,16 +26,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Factory.h"
 #include "log.h"
 
-
 V2State::V2State(int newId, V2Province* firstProvince)
 {
-	id					= newId;
-	colonial			= false;
+	id = newId;
+	colonial = false;
 	provinces.clear();
 	provinces.push_back(firstProvince);
+
 	factories.clear();
 }
-
 
 void V2State::addRailroads()
 {
@@ -46,7 +43,6 @@ void V2State::addRailroads()
 		(*itr)->setRailLevel(1);
 	}
 }
-
 
 bool V2State::isCoastal() const
 {
@@ -60,7 +56,6 @@ bool V2State::isCoastal() const
 	return false;
 }
 
-
 bool V2State::hasLocalSupply(string product) const
 {
 	for (vector<V2Province*>::const_iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
@@ -73,12 +68,11 @@ bool V2State::hasLocalSupply(string product) const
 	return false;
 }
 
-
 double V2State::getSuppliedInputs(const V2Factory* factory) const
 {
 	// find out the needs
-	map<string, float>	inputs	= factory->getInputs();
-	int						numNeeds	= inputs.size();
+	map<string, float>	inputs = factory->getInputs();
+	int						numNeeds = inputs.size();
 
 	// find out what we have from both RGOs and existing factories
 	map<string, float> supplies;
@@ -106,12 +100,11 @@ double V2State::getSuppliedInputs(const V2Factory* factory) const
 	return (1.0 * totalSupplied / numNeeds);
 }
 
-
 bool V2State::provInState(int id) const
 {
 	for (vector<V2Province*>::const_iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
-		if ( (*itr)->getNum() == id )
+		if ((*itr)->getNum() == id)
 		{
 			return true;
 		}
@@ -120,13 +113,11 @@ bool V2State::provInState(int id) const
 	return false;
 }
 
-
 void V2State::addFactory(V2Factory* factory)
 {
 	provinces[0]->addFactory(factory);
 	factories.push_back(factory);
 }
-
 
 bool V2State::hasLandConnection() const
 {
@@ -139,7 +130,6 @@ bool V2State::hasLandConnection() const
 		return false;
 	}
 }
-
 
 double V2State::getManuRatio() const
 {
@@ -154,13 +144,13 @@ double V2State::getManuRatio() const
 	int numManus = 0;
 	for (auto itr = srcProvinces.begin(); itr != srcProvinces.end(); itr++)
 	{
-		if (	(*itr)->hasBuilding("refinery") ||
-				(*itr)->hasBuilding("wharf") ||
-				(*itr)->hasBuilding("weapons") ||
-				(*itr)->hasBuilding("textile") ||
-				(*itr)->hasBuilding("farm_estate") ||
-				(*itr)->hasBuilding("plantations") ||
-				(*itr)->hasBuilding("tradecompany")
+		if ((*itr)->hasBuilding("refinery") ||
+			(*itr)->hasBuilding("wharf") ||
+			(*itr)->hasBuilding("weapons") ||
+			(*itr)->hasBuilding("textile") ||
+			(*itr)->hasBuilding("farm_estate") ||
+			(*itr)->hasBuilding("plantations") ||
+			(*itr)->hasBuilding("tradecompany")
 			)
 		{
 			numManus++;
@@ -168,4 +158,30 @@ double V2State::getManuRatio() const
 	}
 
 	return (numManus / srcProvinces.size());
+}
+
+void	V2State::colloectNavalBase()
+{
+	//Only one naval base in a state
+	V2Province* prov = nullptr;
+	int level = 0;
+	for (auto province : provinces)
+	{
+		if (!prov)
+		{
+			prov = province;
+		}
+		level += province->getNavalBaseLevel();
+		if (prov->getNavalBaseLevel() < province->getNavalBaseLevel())
+		{
+			prov = province;
+		}
+	}
+	LOG(LogLevel::Debug) << this->provinces.size() << " provinces in state " << this->id;
+	for (auto province : provinces)
+	{
+		province->setNavalBaseLevel(0);
+		LOG(LogLevel::Debug) << province->getName() << " naval base set to 0";	//test
+	}
+	prov->setNavalBaseLevel(level > 2 ? 2 : level);
 }

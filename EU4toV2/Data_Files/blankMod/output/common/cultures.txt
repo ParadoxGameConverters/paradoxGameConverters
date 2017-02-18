@@ -1,4 +1,4 @@
-# Do not change tags in here without changing every other reference to them.
+﻿# Do not change tags in here without changing every other reference to them.
 # If adding new groups or cultures, make sure they are unique.
 
 germanic = {
@@ -1668,6 +1668,18 @@ east_asian = {
 		last_names = { Aterui Shakushine Koshamine Harukor Turushno Isonash Keutoranke
 		}
 	}
+	bai = {
+		color = {245 245 220}
+		first_names = {
+			Qizhen Qiyu Jianjun Youcheng Houzhao Houcong Zaihou Yijun Changluo Youjian Yousong Yujian Youlang Chenggong 
+			Kehshuan Biao Shuang Gang Su Zhen Fu Zi Qi Tan Chun Bai Gui Zhi Quan Pian Hui Song Mo Ying Jing Dang Nan 
+			Gaoxu Caosui Gauxi Youyuan Youlun Youbin Houwei Youxiao Youji Youxue Youyi Youshan Cixuan Cijiang Cizhao 
+			Cihuan Cican He Ji Da Yuchun
+		}
+		last_names = {
+			"Duan" "Gao" "Meng"
+		}
+	}
 	hakka = {
 		color = {89 63 24}
 		first_names = { Hong Feng Shi Li Chen Liu Qiu Sun Soong Liao Xue Zhang Xie Wu Shu Tsai Deng Zhen Huang Ye Yang
@@ -1710,6 +1722,8 @@ east_asian = {
 		last_names = { Zhao Wu Sun Ma Hu Peng Dong Ye Lü Tian Jiang Wei Ting Shen Fang Jin Qiu
 		}
 	}
+	
+	union = CHI
 }
 
 oceanic = {
@@ -3200,4 +3214,16 @@ bears = {
 		
 		last_names = { Beliy Medved Bjorn Rawrrorr Rrrrr Grrr Gyp Qoi Styrbjorn Blomstfjellet }
 	}
+}
+
+equine = {
+	leader = equine
+	unit = EuropeanGC
+	horse = {
+		color = { 255 111 94}
+		first_names = { Spot Star Spirit Blaze Lucky Chief Rain Stormy Duke Traveler "Clever Hans" Dreamer Midnight Twilight Arion Carlos Triumph }
+
+		last_names = { Glitterhoof Sparklemane Moontail Opaleye Silvercoat Goldmuzzle }
+	}
+	union = TRL
 }

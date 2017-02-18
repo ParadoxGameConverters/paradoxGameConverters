@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -19,9 +19,13 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
+
+
 #include "V2Country.h"
 #include "Log.h"
 #include "Object.h"
+#include "../Mappers/CultureGroupMapper.h"
+#include "../Mappers/ReformMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "V2Army.h"
 #include "V2Leader.h"
@@ -38,7 +42,7 @@ V2Country::V2Country(Object* countryObj)
 
 	readInDomainNameAndAdjective(countryObj);
 	readInCapital(countryObj);
-	readInCulture(countryObj);
+	readInCultures(countryObj);
 	readInCivilized(countryObj);
 	readInTechnology(countryObj);
 	readInInventions(countryObj);
@@ -83,25 +87,40 @@ void V2Country::readInCapital(const Object* countryObj)
 	}
 }
 
-void V2Country::readInCulture(const Object* countryObj)
+
+void V2Country::readInCultures(const Object* countryObj)
 {
 	vector<Object*> primaryCultureObjs = countryObj->getValue("primary_culture");
 	if (primaryCultureObjs.size() > 0)
 	{
 		primaryCulture = primaryCultureObjs[0]->getLeaf();
+		acceptedCultures.insert(primaryCulture);
 	}
 	else
 	{
 		primaryCulture = "";
 	}
+
+	primaryCultureGroup = cultureGroupMapper::getCultureGroup(primaryCulture);
+
+	vector<Object*> cultureSectionObjs = countryObj->getValue("culture");
+	if (cultureSectionObjs.size() > 0)
+	{
+		auto cultures = cultureSectionObjs[0]->getTokens();
+		for (auto culture: cultures)
+		{
+			acceptedCultures.insert(culture);
+		}
+	}
 }
 
-void readInCivilized(const Object* countryObj)
+
+void V2Country::readInCivilized(const Object* countryObj)
 {
-	vector<Object*> primaryCultureObjs = countryObj->getValue("civilized");
-	if (primaryCultureObjs.size() > 0)
+	vector<Object*> civilizedObjs = countryObj->getValue("civilized");
+	if (civilizedObjs.size() > 0)
 	{
-		civilized = (primaryCultureObjs[0]->getLeaf() == "yes");
+		civilized = (civilizedObjs[0]->getLeaf() == "yes");
 	}
 	else
 	{
@@ -225,7 +244,7 @@ void V2Country::readInWarExhaustion(const Object* countryObj)
 
 void V2Country::readInReforms(Object* countryObj)
 {
-	map<string, string> reformTypes = governmentMapper::getInstance()->getReformTypes();
+	map<string, string> reformTypes = reformMapper::getReformTypes();
 
 	for (auto leaf : countryObj->getLeaves())
 	{
@@ -530,19 +549,19 @@ V2Party* V2Country::getRulingParty(const vector<V2Party*>& allParties) const
 	}
 	else
 	{
-		return NULL;
+		return nullptr;
 	}
 }
 
-vector<V2Party*> V2Country::getActiveParties(const vector<V2Party*>& allParties) const
+set<V2Party*> V2Country::getActiveParties(const vector<V2Party*>& allParties) const
 {
-	vector<V2Party*> activeParties;
+	set<V2Party*> activeParties;
 
 	for (auto ID : activePartyIDs)
 	{
 		if (ID < allParties.size())
 		{
-			activeParties.push_back(allParties[ID - 1]);  // Subtract 1, because party ID starts from index of 1
+			activeParties.insert(allParties[ID - 1]);  // Subtract 1, because party ID starts from index of 1
 		}
 		else
 		{
@@ -551,4 +570,18 @@ vector<V2Party*> V2Country::getActiveParties(const vector<V2Party*>& allParties)
 	}
 
 	return activeParties;
+}
+
+
+bool V2Country::hasCoreOnCapital() const
+{
+	for (auto core: cores)
+	{
+		if (core->getNumber() == capital)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }

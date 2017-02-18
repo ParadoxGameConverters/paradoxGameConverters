@@ -27,6 +27,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <map>
+#include <string>
+#include <vector>
 using namespace std;
 
 
@@ -38,10 +40,11 @@ class Object;
 class vic2CultureUnionMapper
 {
 	public:
-		static string getCoreForCulture(const string& culture)
+		static vector<string> getCoreForCulture(const string& culture)
 		{
 			return getInstance()->GetCoreForCulture(culture);
 		}
+
 	private:
 		static vic2CultureUnionMapper* instance;
 		static vic2CultureUnionMapper* getInstance()
@@ -56,9 +59,9 @@ class vic2CultureUnionMapper
 		vic2CultureUnionMapper();		
 		void initUnionMap(Object* obj);
 
-		string GetCoreForCulture(const string& culture);
+		vector<string> GetCoreForCulture(const string& culture);
 
-		map<string, string> unionMap;
+		map<string, vector<string>> unionMap;
 };
 
 

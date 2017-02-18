@@ -62,18 +62,169 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 const int MONEYFACTOR = 30;	// ducat to pound conversion rate
 
 
-V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _parties, V2World* _theWorld, bool _newCountry, bool _dynamicCountry)
+V2Country::V2Country(const string& countriesFileLine, const V2World* _theWorld, bool _dynamicCountry)
 {
+	string filename;
+	int start = countriesFileLine.find_first_of('/');
+	start++;
+	int size = countriesFileLine.find_last_of('\"') - start;
+	filename = countriesFileLine.substr(start, size);
+
+	Object* countryData = parseCountryFile(filename);
+
+	vector<Object*> partyData = countryData->getValue("party");
+	for (vector<Object*>::iterator itr = partyData.begin(); itr != partyData.end(); ++itr)
+	{
+		V2Party* newParty = new V2Party(*itr);
+		parties.push_back(newParty);
+	}
+
 	theWorld			= _theWorld;
-	newCountry		= _newCountry;
+	newCountry		= false;
 	dynamicCountry	= _dynamicCountry;
+
+	tag = countriesFileLine.substr(0, 3);
+	commonCountryFile	= localisation.convertCountryFileName(filename);
+	boost::replace_all(filename, ":", ";");
+	boost::replace_all(filename, "/", " ");
+	boost::replace_all(filename, "\\", " ");
+	commonCountryFile = commonCountryFile;
+	rulingParty			= "";
+
+	states.clear();
+	provinces.clear();
+
+	for (unsigned int i = 0; i < VANILLA_naval_exercises; i++)
+	{
+		vanillaInventions[i] = illegal;
+	}
+	for (unsigned int i = 0; i < HOD_naval_exercises; i++)
+	{
+		HODInventions[i] = illegal;
+	}
+	for (unsigned int i = 0; i < HOD_NNM_naval_exercises; i++)
+	{
+		HODNNMInventions[i] = illegal;
+	}
+
+	leadership				= 0.0;
+	plurality				= 0.0;
+	capital					= 0;
+	diploPoints				= 0.0;
+	badboy					= 0.0;
+	prestige					= 0.0;
+	money						= 0.0;
+	techSchool				= "traditional_academic";
+	researchPoints			= 0.0;
+	civilized				= false;
+	isReleasableVassal	= true;
+	inHRE						= false;
+	holyRomanEmperor		= false;
+	primaryCulture			= "british";
+	religion					= "protestant";
+	government				= "hms_government";
+	nationalValue			= "nv_order";
+	lastBankrupt			= date();
+	bankReserves			= 0.0;
+	literacy					= 0.0;
+
+	acceptedCultures.clear();
+	techs.clear();
+	reactionaryIssues.clear();
+	conservativeIssues.clear();
+	liberalIssues.clear();
+	relations.clear();
+	armies.clear();
+	creditors.clear();
+	leaders.clear();
+
+	reforms		= NULL;
+	srcCountry	= NULL;
+
+	upperHouseReactionary	= 10;
+	upperHouseConservative	= 65;
+	upperHouseLiberal			= 25;
+
+	uncivReforms = NULL;
+
+	if (parties.empty())
+	{	// No parties are specified. Generate some default parties for this country.
+		const std::vector<std::string> ideologies = 
+		{ "conservative", "liberal", "reactionary", "socialist", "communist", "anarcho_liberal", "fascist" };
+		const std::vector<std::string> partyNames =
+		{ "Conservative Party", "Liberal Party", "National Party", 
+			"Socialist Party", "Communist Party", "Radical Party", "Fascist Party" };
+		for (size_t i = 0; i < ideologies.size(); ++i)
+		{
+			std::string partyKey = tag + '_' + ideologies[i];
+			parties.push_back(new V2Party(partyKey, ideologies[i]));
+			localisation.SetPartyKey(i, partyKey);
+			localisation.SetPartyName(i, "english", partyNames[i]);
+		}
+	}
+
+	// set a default ruling party
+	for (vector<V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
+	{
+		if ((*i)->isActiveOn(date("1836.1.1")))
+		{
+			rulingParty = (*i)->name;
+			break;
+		}
+	}
+
+	colonyOverlord = NULL;
+
+	for (int i = 0; i < num_reg_categories; ++i)
+	{
+		unitNameCount[i] = 0;
+	}
+
+	numFactories	= 0;
+
+}
+
+
+Object* V2Country::parseCountryFile(const string& filename)
+{
+	string fileToParse;
+	if (Utils::DoesFileExist("./blankMod/output/common/countries/" + filename))
+	{
+		fileToParse = "./blankMod/output/common/countries/" + filename;
+	}
+	else if (Utils::DoesFileExist(Configuration::getV2Path() + "/common/countries/" + filename))
+	{
+		fileToParse = Configuration::getV2Path() + "/common/countries/" + filename;
+	}
+	else
+	{
+		LOG(LogLevel::Debug) << "Could not find file common/countries/" << filename << " - skipping";
+		return nullptr;
+	}
+
+	Object* countryData = parser_8859_15::doParseFile(fileToParse);
+	if (countryData == nullptr)
+	{
+		LOG(LogLevel::Warning) << "Could not parse file " << fileToParse;
+	}
+
+	return countryData;
+}
+
+
+V2Country::V2Country(const string& _tag, const string& _commonCountryFile, const V2World* _theWorld)
+{
+	theWorld = _theWorld;
+	newCountry = true;
+	dynamicCountry = false;
 
 	tag					= _tag;
 	commonCountryFile	= localisation.convertCountryFileName(_commonCountryFile);
 	boost::replace_all(commonCountryFile, ":", ";");
-	boost::trim_left_if(commonCountryFile, boost::is_any_of("/ "));
-	commonCountryFile = "/" + commonCountryFile;
-	parties				= _parties;
+	boost::replace_all(commonCountryFile, "/", " ");
+	boost::replace_all(commonCountryFile, "\\", " ");
+	commonCountryFile = commonCountryFile;
+	parties.clear();
 	rulingParty			= "";
 
 	states.clear();
@@ -318,7 +469,7 @@ void V2Country::output() const
 
 void V2Country::outputToCommonCountriesFile(FILE* output) const
 {
-	fprintf(output, "%s = \"countries%s\"\n", tag.c_str(), commonCountryFile.c_str());
+	fprintf(output, "%s = \"countries/%s\"\n", tag.c_str(), commonCountryFile.c_str());
 }
 
 
@@ -394,7 +545,7 @@ void V2Country::outputOOB() const
 }
 
 
-void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<V2TechSchool> techSchools, const map<int, int>& leaderMap, const V2LeaderTraits& lt)
+void V2Country::initFromEU4Country(EU4Country* _srcCountry, const vector<V2TechSchool>& techSchools, const map<int, int>& leaderMap)
 {
 	srcCountry = _srcCountry;
 

@@ -27,10 +27,8 @@ link = { tag = ITA culture = south_italian }
 link = { tag = ITA culture = maltese }
 
 # Germany, NGF, SGF
-link = { tag = NGF culture = north_german }
-link = { tag = SGF culture = south_german }
-link = { tag = GER culture = north_german }
-link = { tag = GER culture = south_german }
+link = { tag = NGF tag = GER culture = north_german }
+link = { tag = SGF tag = GER culture = south_german }
 
 #Scandinavia
 link = { tag = SCA culture = swedish }
@@ -50,7 +48,7 @@ link = { tag = YUG culture = croat }
 link = { tag = YUG culture = serb }
 link = { tag = YUG culture = bulgarian }
 link = { tag = YUG culture = albanian }
-link = { tag = YUG culture = slovene }
+link = { tag = YUG tag = SLO culture = slovene }
 link = { tag = YUG culture = bosniak }
 
 #Romania
@@ -59,17 +57,14 @@ link = { tag = ROM culture = romanian }
 #Hungary
 link = { tag = HUN culture = hungarian }
 
-#Poland
-link = { tag = POL culture = polish }
-
 #Czechoslovakia
 link = { tag = CZH culture = czech }
-link = { tag = CZH culture = slovak }
+link = { tag = CZH tag = SLV tag = RUT culture = slovak }
 
 #Russia
 link = { tag = RUS culture = russian }
-link = { tag = RUS culture = byelorussian }
-link = { tag = RUS culture = ukrainian }
+link = { tag = RUS tag = BYE culture = byelorussian }
+link = { tag = RUS tag = UKR tag = RUT culture = ukrainian }
 link = { tag = RUS culture = ugrian }
 
 #India
@@ -105,14 +100,31 @@ link = { tag = ARA culture = misri }
 link = { tag = ARA culture = maghrebi }
 
 #United Baltic Provinces
-link = { tag = UBD culture = latvian }
+link = { tag = UBD tag = LAT culture = latvian }
 link = { tag = UBD culture = estonian }
 
-#Belarus
-link = { tag = BYE culture = byelorussian }
 
 #Polish-Lithuanian Commonwealth
-link = { tag = PLC culture = polish }
+link = { tag = PLC tag = POL culture = polish }
 link = { tag = PLC culture = lithuanian }
 
+#China
+link = { tag = CHI culture = manchu }
+link = { tag = CHI culture = nanfaren }
+link = { tag = CHI culture = beifaren }
+link = { tag = CHI culture = min }
+link = { tag = CHI culture = hakka }
+link = { tag = CHI culture = zhuang }
+link = { tag = CHI culture = miao }
+link = { tag = CHI culture = yi }
+
+#others
+link = { tag = AZB culture = azerbaijani } #Azerbaijan
+link = { tag = BEL culture = flemish } #Belgium - Flanders
+link = { tag = BEL tag = WLL culture = wallonian } #Belgium - Wallonia
+link = { tag = JAV culture = javan } #Java
+link = { tag = KAL culture = baluchi } #Kalat
+link = { tag = XIN culture = uighur } #Xinjiang
+link = { tag = ZUL culture = zulu } #Zulu
+link = { tag = TRL culture = equine } #Trapalandia (horses)
 }

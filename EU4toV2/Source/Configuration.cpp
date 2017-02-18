@@ -52,9 +52,14 @@ Configuration::Configuration()
 	}
 
 	EU4Path = obj[0]->getLeaf("EU4directory");
-	if (Utils::DoesFileExist(EU4Path))
+	if (!Utils::doesFolderExist(EU4Path))
 	{
 		LOG(LogLevel::Error) << "No Europa Universalis 4 path was specified in configuration.txt, or the path was invalid";
+		exit(-1);
+	}
+	else if (!Utils::DoesFileExist(EU4Path + "/map/positions.txt"))
+	{
+		LOG(LogLevel::Error) << EU4Path << " does not appear to be a valid EU4 install";
 		exit(-1);
 	}
 	else

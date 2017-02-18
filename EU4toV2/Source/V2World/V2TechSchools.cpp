@@ -24,14 +24,26 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2TechSchools.h"
 #include "Log.h"
 #include "Object.h"
+#include "ParadoxParserUTF8.h"
+#include "ParadoxParser8859_15.h"
+#include "../Configuration.h"
 
 
 
-vector<techSchool> initTechSchools(Object* obj, vector<string> blockedTechSchools)
+vector<techSchool> initTechSchools()
 {
 	vector<techSchool> techSchools;
 
-	vector<Object*> schoolObj = obj->getValue("schools");
+	vector<string> blockedTechSchools = initBlockedTechSchools();
+
+	Object* technologyObj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/technology.txt").c_str());
+	if (technologyObj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getV2Path() << "/common/technology.txt";
+		exit(-1);
+	}
+
+	vector<Object*> schoolObj = technologyObj->getValue("schools");
 	if (schoolObj.size() < 1)
 	{
 		LOG(LogLevel::Warning) << "Could not load tech schools";
@@ -66,11 +78,18 @@ vector<techSchool> initTechSchools(Object* obj, vector<string> blockedTechSchool
 }
 
 
-vector<string> initBlockedTechSchools(Object* obj)
+vector<string> initBlockedTechSchools()
 {
 	vector<string> blockedTechSchools;
 
-	vector<Object*> blockedObj = obj->getLeaves();
+	Object* techSchoolObj = parser_UTF8::doParseFile("blocked_tech_schools.txt");
+	if (techSchoolObj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file blocked_tech_schools.txt";
+		exit(-1);
+	}
+
+	vector<Object*> blockedObj = techSchoolObj->getLeaves();
 	if (blockedObj.size() <= 0)
 	{
 		return blockedTechSchools;

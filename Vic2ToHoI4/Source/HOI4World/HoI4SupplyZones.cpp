@@ -35,20 +35,49 @@ using namespace std;
 
 
 
-HoI4SupplyZones::HoI4SupplyZones(map<int, vector<int>> defaultStateToProvinceMap)
+HoI4SupplyZones::HoI4SupplyZones()
 {
 	LOG(LogLevel::Info) << "Importing supply zones";
+	importStates();
 
 	set<string> supplyZonesFiles;
 	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/map/supplyareas", supplyZonesFiles);
 	for (auto supplyZonesFile: supplyZonesFiles)
 	{
-		importSupplyZone(supplyZonesFile, defaultStateToProvinceMap);
+		importSupplyZone(supplyZonesFile);
 	}
 }
 
 
-void HoI4SupplyZones::importSupplyZone(const string& supplyZonesFile, const map<int, vector<int>>& defaultStateToProvinceMap)
+void HoI4SupplyZones::importStates()
+{
+	set<string> statesFiles;
+	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/history/states", statesFiles);
+	for (auto stateFile: statesFiles)
+	{
+		int num = stoi(stateFile.substr(0, stateFile.find_first_of('-')));
+
+		Object* fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/history/states/" + stateFile);
+		if (fileObj == nullptr)
+		{
+			LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/history/states/" << stateFile;
+			exit(-1);
+		}
+		auto stateObj = fileObj->getValue("state");
+		auto provincesObj = stateObj[0]->getValue("provinces");
+		auto tokens = provincesObj[0]->getTokens();
+		vector<int> provinces;
+		for (auto provinceNumString: tokens)
+		{
+			provinces.push_back(stoi(provinceNumString));
+		}
+
+		defaultStateToProvinceMap.insert(make_pair(num, provinces));
+	}
+}
+
+
+void HoI4SupplyZones::importSupplyZone(const string& supplyZonesFile)
 {
 	int num = stoi(supplyZonesFile.substr(0, supplyZonesFile.find_first_of('-')));
 	supplyZonesFilenames.insert(make_pair(num, supplyZonesFile));
@@ -66,11 +95,11 @@ void HoI4SupplyZones::importSupplyZone(const string& supplyZonesFile, const map<
 	HoI4SupplyZone* newSupplyZone = new HoI4SupplyZone(ID, value);
 	supplyZones.insert(make_pair(ID, newSupplyZone));
 
-	mapProvincesToSupplyZone(ID, supplyAreaObj[0], defaultStateToProvinceMap);
+	mapProvincesToSupplyZone(ID, supplyAreaObj[0]);
 }
 
 
-void HoI4SupplyZones::mapProvincesToSupplyZone(int ID, Object* supplyAreaObj, const map<int, vector<int>>& defaultStateToProvinceMap)
+void HoI4SupplyZones::mapProvincesToSupplyZone(int ID, Object* supplyAreaObj)
 {
 	auto statesObj = supplyAreaObj->getValue("states");
 	for (auto idString: statesObj[0]->getTokens())

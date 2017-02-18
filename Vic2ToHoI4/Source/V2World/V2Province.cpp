@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -222,6 +222,24 @@ int V2Province::getLiteracyWeightedPopulation(string type) const
 	return totalPopulation;
 
 	return 0;
+}
+
+
+double V2Province::getPercentageWithCultures(const set<string>& cultures) const
+{
+	int totalPopulation = 0.0;
+	int populationOfCultures = 0.0;
+
+	for (auto pop: pops)
+	{
+		totalPopulation += pop->getSize();
+		if (cultures.count(pop->getCulture()) > 0)
+		{
+			populationOfCultures += pop->getSize();
+		}
+	}
+
+	return 1.0 * populationOfCultures / totalPopulation;
 }
 
 

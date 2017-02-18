@@ -25,8 +25,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Country.h"
 #include "HoI4Focus.h"
 #include "../Configuration.h"
+#include "../V2World/V2Party.h"
 #include "Log.h"
 #include "Object.h"
+#include "OSCompatibilityLayer.h"
 #include "ParadoxParserUTF8.h"
 #include <fstream>
 using namespace std;
@@ -3453,25 +3455,15 @@ HoI4FocusTree* HoI4FocusTree::makeCustomizedCopy(const HoI4Country* country) con
 void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Country*> CountriesToContain, int XStart)
 {
 	double WTModifier = 1;
-	if (Home->getGovernment() == "democratic")
+	if (Home->getIdeology() == "democratic")
 	{
-		string warPol = Home->getRulingParty().war_pol;
+		string warPol = Home->getRulingParty()->war_policy;
 		if (warPol == "jingoism")
 			WTModifier = 0;
 		if (warPol == "pro_military")
 			WTModifier = 0.25;
 		if (warPol == "anti_military")
 			WTModifier = 0.5;
-	}
-	if (Home->getGovernment() == "hms_government")
-	{
-		string warPol = Home->getRulingParty().war_pol;
-		if (warPol == "jingoism")
-			WTModifier = 0;
-		if (warPol == "pro_military")
-			WTModifier = 0;
-		if (warPol == "anti_military")
-			WTModifier = 0.25;
 		if (warPol == "pacifism" || warPol == "pacifist")
 			WTModifier = 0.5;
 	}
@@ -3536,7 +3528,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		newFocus->icon = "GFX_goal_generic_position_armies";
 		newFocus->text += "War Plan " + Country->getSourceCountry()->getName("english");
 		newFocus->prerequisites.push_back("focus = PrepInter" + Home->getTag());
-		newFocus->available += "			" + Country->getTag() + " = { is_in_faction_with = " + Home->getTag() + " }\n";
+		newFocus->available += "			NOT = { " + Country->getTag() + " = { is_in_faction_with = " + Home->getTag() + " } }\n";
 		newFocus->available += "			" + Country->getTag() + " = { has_added_tension_amount > 30 }";
 		newFocus->xPos = XStart + offBalance + warPlannumber * 2;
 		newFocus->yPos = 2;
@@ -3557,7 +3549,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		newFocus->icon = "GFX_goal_generic_trade";
 		newFocus->text += "Embargo " + Country->getSourceCountry()->getName("english");
 		newFocus->prerequisites.push_back("focus =  WarPlan" + Home->getTag() + Country->getTag());
-		newFocus->available += "			" + Country->getTag() + " = { is_in_faction_with = " + Home->getTag() + " }\n";
+		newFocus->available += "			NOT = { " + Country->getTag() + " = { is_in_faction_with = " + Home->getTag() + " } }\n";
 		newFocus->available += "			" + Country->getTag() + " = { has_added_tension_amount > 30 }";
 		newFocus->xPos = XStart + offBalance + warPlannumber * 2;
 		newFocus->yPos = 3;
@@ -4322,6 +4314,12 @@ void HoI4FocusTree::addMonarchyEmpireNationalFocuses(HoI4Country* Home, const ve
 
 void HoI4FocusTree::output()
 {
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/common/national_focus"))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/national_focus\"";
+		exit(-1);
+	}
+
 	string filename("Output/" + Configuration::getOutputName() + "/common/national_focus/" + srcCountryTag + "_NF.txt");
 	ofstream out(filename);
 	if (!out.is_open())

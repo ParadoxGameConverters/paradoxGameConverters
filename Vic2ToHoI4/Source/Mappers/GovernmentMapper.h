@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,9 +26,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "Object.h"
-#include <map>
 #include <string>
+#include <vector>
 using namespace std;
 
 
@@ -36,48 +35,40 @@ using namespace std;
 class V2Country;
 
 
-struct govMapping
+
+typedef struct governmentMapping
 {
-	string vic_gov;
-	string HoI4_gov;
-	string ruling_party_required;
-	double require_political_reforms;
-	double require_social_reforms_above;
-	double require_social_reforms_below;
-};
+	string vic2Government;
+	string HoI4Ideology;
+	string rulingPartyRequired;
+} governmentMapping;
 
 
 class governmentMapper
 {
 	public:
-		governmentMapper();
-		void initGovernmentMap(Object* obj);
-		void initReforms(Object* obj);
+		static string getIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology)
+		{
+			return getInstance()->GetIdeologyForCountry(country, Vic2RulingIdeology);
+		}
 
-		string	getGovernmentForCountry(const V2Country* country, const string _ideology);
-
-		bool							areReformsInitialized() const	{ return reformsInitialized; }
-		map<string, string>	getReformTypes() const			{ return reformTypes; }
-
+	private:
+		static governmentMapper* instance;
 		static governmentMapper* getInstance()
 		{
-			if (instance == NULL)
+			if (instance == nullptr)
 			{
 				instance = new governmentMapper();
 			}
 			return instance;
 		}
+		governmentMapper();
 
-	private:
-		static governmentMapper* instance;
+		string GetIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology);
+		bool governmentMatches(const governmentMapping& mapping, const string& government);
+		bool rulingIdeologyMatches(const governmentMapping& mapping, const string& rulingIdeology);
 
-		vector<govMapping>		governmentMap;
-		map<string, string>	reformTypes;
-		map<string, int>			politicalReformScores;
-		map<string, int>			socialReformScores;
-		int							totalPoliticalReforms;
-		int							totalSocialReforms;
-		bool							reformsInitialized;
+		vector<governmentMapping> governmentMap;
 };
 
 

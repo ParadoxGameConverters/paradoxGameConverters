@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <string>
 #include <vector>
+#include "Object.h"
 using namespace std;
 
 
@@ -36,6 +37,8 @@ class V2Pop
 {
 	public:
 		V2Pop(string type, int size, string culture, string religion);
+		V2Pop(Object* popObj);
+
 		void output(FILE*) const;
 		bool combine(const V2Pop& rhs);
 
@@ -49,6 +52,7 @@ class V2Pop
 		string	getCulture()						const	{ return culture; }
 		string	getReligion()						const	{ return religion; }
 		int		getSupportedRegimentCount()	const	{ return supportedRegiments; }
+		bool isSlavePop() const { return ((type == "slaves") || (culture.substr(0, 4) == "afro")); }
 
 	private:
 		string	type;

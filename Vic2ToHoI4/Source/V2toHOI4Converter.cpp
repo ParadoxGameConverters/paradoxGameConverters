@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -37,7 +37,7 @@ int main(const int argc, const char* argv[])
 {
 	try
 	{
-		LOG(LogLevel::Info) << "Converter version 0.1B";
+		LOG(LogLevel::Info) << "Converter version 0.2";
 		LOG(LogLevel::Info) << "Built on " << __DATE__ << " at " << __TIME__;
 		LOG(LogLevel::Info) << "Current directory is " << Utils::getCurrentDirectory();
 
@@ -174,9 +174,9 @@ void createModFile()
 	modFile << "name = \"Converted - " << Configuration::getOutputName() << "\"\n";
 	modFile << "path = \"mod/" << Configuration::getOutputName() << "/\"\n";
 	modFile << "user_dir = \"" << Configuration::getOutputName() << "_user_dir\"\n";
-	modFile << "replace = \"history/countries\"\n";
+	modFile << "replace_path=\"history/countries\"\n";
 	//modFile << "replace = \"history/diplomacy\"\n";
-	modFile << "replace = \"history/states\"\n";
+	modFile << "replace_path=\"history/states\"\n";
 	modFile << "supported_version=\"" << Configuration::getHOI4Version() << "\"";
 	modFile.close();
 }

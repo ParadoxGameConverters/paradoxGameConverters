@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -47,6 +47,7 @@ public:
 	void setColor(const Color& newColor) { color = newColor; }
 	void setAsGreatNation() { greatNation = true; }
 	void addCore(V2Province* core) { cores.push_back(core); }
+	void replaceCores(vector<V2Province*> newCores) { cores.swap(newCores); }
 
 	void eatCountry(V2Country* target);
 	void putProvincesInStates();
@@ -58,6 +59,9 @@ public:
 	vector<Vic2State*> getStates() const { return states; }
 	string getTag() const { return tag; }
 	string getPrimaryCulture() const { return primaryCulture; }
+	string getPrimaryCultureGroup() const { return primaryCultureGroup; }
+	set<string> getAcceptedCultures() const { return acceptedCultures; }
+	bool isAnAcceptedCulture(const string& culture) const { return (acceptedCultures.count(culture) > 0); }
 	set<string> getInventions() const { return inventions; }
 	string getGovernment() const { return government; }
 	int getCapital() const { return capital; }
@@ -73,7 +77,8 @@ public:
 	bool isGreatNation() const { return greatNation; }
 	map<string, string> getLocalisedNames() const { return namesByLanguage; }
 	map<string, string> getLocalisedAdjectives() const { return adjectivesByLanguage; }
-
+	map<int, V2Province*> getProvinces() const { return provinces; }
+	vector<V2Province*> getCores() const { return cores; }
 	bool isEmpty() const { return ((cores.size() == 0) && (provinces.size() == 0)); }
 	bool isCivilized() const { return civilized; }
 
@@ -83,12 +88,13 @@ public:
 	double getUpperHousePercentage(const string& ideology) const;
 	long getEmployedWorkers() const;
 	V2Party* getRulingParty(const vector<V2Party*>& allParties) const;
-	vector<V2Party*> getActiveParties(const vector<V2Party*>& allParties) const;
+	set<V2Party*> getActiveParties(const vector<V2Party*>& allParties) const;
+	bool hasCoreOnCapital() const;
 
 private:
 	void readInDomainNameAndAdjective(const Object* countryObj);
 	void readInCapital(const Object* countryObj);
-	void readInCulture(const Object* countryObj);
+	void readInCultures(const Object* countryObj);
 	void readInCivilized(const Object* countryObj);
 	void readInTechnology(const Object* countryObj);
 	void readInInventions(const Object* countryObj);
@@ -118,6 +124,8 @@ private:
 	int capital;
 
 	string primaryCulture;
+	string primaryCultureGroup;
+	set<string> acceptedCultures;
 
 	vector<string> techs;
 	set<string> inventions;

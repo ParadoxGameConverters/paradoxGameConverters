@@ -53,14 +53,30 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 	vector<Object*> adjectiveObj = obj->getValue("adjective");	// the object holding the adjective
 	(!adjectiveObj.empty()) ? adjective = adjectiveObj[0]->getLeaf() : adjective = "";
 
-	vector<Object*> colorObj = obj->getValue("map_color");	// the object holding the color
-	if (!colorObj.empty())
+	vector<Object*> colorObjs = obj->getValue("map_color");
+	if (!colorObjs.empty())
 	{
-		color = Color(colorObj[0]);
+		color = Color(colorObjs[0]);
 		// Countries whose colors are included in the object here tend to be generated countries,
 		// i.e. colonial nations which take on the color of their parent. To help distinguish 
 		// these countries from their parent's other colonies we randomly adjust the color.
 		color.RandomlyFlunctuate(30);
+	}
+	else
+	{
+		vector<Object*> colorObjs = obj->getValue("colors");
+		if (colorObjs.size() > 0)
+		{
+			vector<Object*> countryColorObjs = colorObjs[0]->getValue("country_color");
+			if (countryColorObjs.size() > 0)
+			{
+				color = Color(countryColorObjs[0]);
+				// Countries whose colors are included in the object here tend to be generated countries,
+				// i.e. colonial nations which take on the color of their parent. To help distinguish 
+				// these countries from their parent's other colonies we randomly adjust the color.
+				//color.RandomlyFlunctuate(30);
+			}
+		}
 	}
 
 	vector<Object*> capitalObj = obj->getValue("capital");	// the object holding the capital

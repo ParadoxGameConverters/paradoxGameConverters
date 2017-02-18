@@ -156,7 +156,7 @@ link = { v2 = slovak eu4 = slovak }
 link = { v2 = czech eu4 = czech }
 
 # East Slav - russian, byelorussian, ruthenian
-link = { v2 = russian eu4 = russian eu4 = ilmenian eu4 = severian eu4 = volhynian eu4 = novgorodian eu4 = ryazanian }
+link = { v2 = russian eu4 = russian eu4 = russian_culture eu4 = ilmenian eu4 = severian eu4 = volhynian eu4 = novgorodian eu4 = ryazanian }
 link = { v2 = ukrainian eu4 = ruthenian }
 link = { v2 = byelorussian eu4 = byelorussian }
 
@@ -253,8 +253,8 @@ link = { v2 = native_american_minor eu4 = tlingit eu4 = miwok }
 # East Asian - japanese, manchu, chihan, cantonese, korean
 link = { v2 = japanese eu4 = japanese eu4 = kyushuan eu4 = togoku }
 link = { v2 = manchu eu4 = manchu }
-link = { v2 = beifaren eu4 = chihan eu4 = wu eu4 = jin eu4 = jianghuai eu4 = xibei eu4 = zhongyuan eu4 = shandong_culture }
-link = { v2 = nanfaren eu4 = gan eu4 = xiang eu4 = sichuanese eu4 = hubei }
+link = { v2 = beifaren eu4 = chihan  eu4 = jin  eu4 = xibei eu4 = zhongyuan eu4 = shandong_culture }
+link = { v2 = nanfaren eu4 = gan eu4 = xiang eu4 = sichuanese eu4 = hubei eu4 = wu eu4 = jianghuai }
 link = { v2 = korean eu4 = korean }
 link = { v2 = ainu eu4 = ainu }
 link = { v2 = hakka eu4 = hakka }
@@ -284,6 +284,7 @@ link = { v2 = shan eu4 = shan }
 # Burman - burmese, tibetan, chin
 link = { v2 = burmese eu4 = burmese eu4 = mon eu4 = arakanese }
 link = { v2 = tibetan eu4 = tibetan }
+link = { v2 = bai eu4 = bai }
 link = { v2 = asian_minor eu4 = chin eu4 = bai }
 link = { v2 = kachin eu4 = kachin }
 link = { v2 = karen eu4 = karen }
@@ -362,6 +363,7 @@ link = { v2 = tiv eu4 = jukun }
 link = { v2 = fang eu4 = sawabantu } # Cameroon, Gabon, EG
 link = { v2 = fur eu4 = nubian region = darfur_central_sahara_area }
 link = { v2 = beja eu4 = nubian region = red_sea_coast_area }
+link = { v2 = beja eu4 = beja }
 link = { v2 = sudanese eu4 = nubian }
 #link = { v2 = dinka eu4 = ? } # Sudan
 #link = { v2 = azande eu4 = ? } # South Sudan
@@ -373,9 +375,9 @@ link = { v2 = luo eu4 = acholi } # South Sudan
 link = { v2 = amhara eu4 = amhara eu4 = coptic }
 link = { v2 = sidama eu4 = sidamo }
 link = { v2 = tigray eu4 = tigray }
-link = { v2 = somali eu4 = somali }
-link = { v2 = oromo eu4 = ethiopian } # does this actually exist?
-#link = { v2 = afar eu4 = ? } #Djibouti
+link = { v2 = somali eu4 = somali eu4 = harari }
+link = { v2 = oromo eu4 = ethiopian eu4 = oromo }
+link = { v2 = afar eu4 = afar }
 
 # The Congo - bakongo, luba, lunda, mbundu
 #link = { v2 = mongo eu4 = ? } # DRC
@@ -431,8 +433,9 @@ link = { v2 = sephardic eu4 = hebrew }
 link = { v2 = alan eu4 = scythian}
 link = { v2 = persian eu4 = parthian }
 
-# Bears
+# Animals
 link = { v2 = bears eu4 = jan_mayenese }
+link = { v2 = equine eu4 = equine }
 
 # noculture
 link = { v2 = noculture eu4 = noculture }

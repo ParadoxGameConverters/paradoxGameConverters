@@ -1,40 +1,357 @@
 political_decisions = {
-    centralize_hre = {
-        potential = {
-            NOT = { has_global_flag = liberal_revolutions_should_now_fire }
-            has_country_flag = emperor_hre
-            NOT = {
-                exists = HRE
-            }
-        }
-        allow = {
-            is_greater_power = yes
-            prestige = 65
-        }
-        effect = {
-            change_tag = HRE
-            clr_country_flag = emperor_hre
-            any_country = {
-                limit = {
-                    has_country_flag = member_hre
-                    in_sphere = THIS
-                }
-                THIS = {
-                    prestige = 10
-                }
-                country_event = 250001
-                clr_country_flag = member_hre
-            }
-            any_country = {
-                limit = {
-                    has_country_flag = member_hre
-                    NOT = {
-                        in_sphere = THIS
-                    }
-                }
-                country_event = 250003
-                clr_country_flag = member_hre
-            }
-        }
-    }
+	centralize_hre = {
+		potential = {
+			NOT = { has_global_flag = liberal_revolutions_should_now_fire }
+			has_country_flag = emperor_hre
+			NOT = {
+				exists = HRE
+			}
+		}
+		allow = {
+			is_greater_power = yes
+			prestige = 65
+		}
+		effect = {
+			change_tag = HRE
+			clr_country_flag = emperor_hre
+			any_country = {
+				limit = {
+					has_country_flag = member_hre
+					in_sphere = THIS
+				}
+				THIS = {
+					prestige = 10
+				}
+				country_event = 250001
+				clr_country_flag = member_hre
+			}
+			any_country = {
+				limit = {
+					has_country_flag = member_hre
+					NOT = {
+						in_sphere = THIS
+					}
+				}
+				country_event = 250003
+				clr_country_flag = member_hre
+			}
+		}
+	}
+	form_two_sicilies = {
+		potential = {
+			primary_culture = south_italian
+			NOT = { exists = SIC }
+			NOT = { exists = ITA }
+		}
+
+		allow = {
+			762 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+			763 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+			754 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			prestige = 20
+			all_core = {
+				limit = {
+					owned_by = THIS
+				}
+				remove_core = THIS
+				add_core = SIC
+			}
+			change_tag = SIC
+			random_country = {
+				limit = {
+					primary_culture = THIS
+					in_sphere = THIS
+					OR = {
+						is_vassal = no
+						vassal_of = THIS
+					}
+				}
+				FROM = { inherit = THIS }
+			}
+			any_country = {
+				limit = {
+					primary_culture = THIS
+				}
+				all_core = {
+					add_core = SIC
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	mongol_khagan = {
+		potential = {
+			tag = KHA
+			NOT = { exists = MGL }
+		}
+
+		allow = {
+			is_greater_power = yes
+		}
+		effect = {
+			prestige = 20
+			all_core = {
+				limit = {
+					owned_by = THIS
+				}
+				remove_core = THIS 
+				add_core = MGL
+			}
+			change_tag = MGL
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}
+
+political_decisions = {
+	form_china = {
+		news = yes
+		news_desc_long = "form_china_NEWS_LONG"
+		news_desc_medium = "form_china_NEWS_MEDIUM"
+		news_desc_short = "form_china_NEWS_SHORT"
+		potential = {
+			OR = {
+				primary_culture = manchu
+				primary_culture = nanfaren
+				primary_culture = beifaren
+				primary_culture = min
+				primary_culture = hakka
+				primary_culture = zhuang
+				primary_culture = miao
+				primary_culture = yi
+			}
+			NOT = {
+				exists = CHI
+			}
+		}	
+		allow = {
+			war = no
+			OR = {
+				LNG = {
+					all_core = {
+						OR = {
+							owned_by = THIS
+							owner = {
+								in_sphere = THIS
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		effect = {
+			prestige = 10
+			any_country = {
+				limit = {
+					in_sphere = THIS
+					NOT = {
+						tag = THIS
+					}
+					OR = {
+						primary_culture = manchu
+						primary_culture = nanfaren
+						primary_culture = beifaren
+						primary_culture = min
+						primary_culture = hakka
+						primary_culture = zhuang
+						primary_culture = miao
+						primary_culture = yi
+					}
+				}
+				annex_to = THIS
+			}
+			any_owned = {
+				add_core = CHI
+			}
+			any_owned = { # Xinjiang
+				limit = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+					}
+					state_id = 1594
+					NOT = { exists = XIN }
+				}
+				add_core = XIN
+			}
+			any_owned = { #Xibei San Ma
+				limit = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+					}
+					OR = {
+						state_id = 1488
+						state_id = 1556
+						state_id = 1562
+						state_id = 1490
+					}
+					NOT = { exists = XBI }
+				}
+				add_core = XBI
+			}
+			
+			any_owned = { #Tibet
+				limit = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+					}
+					state_id = 1587	
+					NOT = { exists = TIB }
+				}
+				add_core = TIB
+			}
+			
+			any_owned = { #Mongolia
+				limit = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+					}
+					OR = {
+						state_id = 1465	
+						state_id = 1532
+					}
+					NOT = { exists = MGL }
+				}
+				add_core = MGL
+			}
+			
+			any_owned = { #Manchukuo
+				limit = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+					}
+					OR = {
+						state_id = 1553
+						state_id = 1082
+						state_id = 1079
+					}
+					NOT = { exists = MCK }
+				}
+				add_core = MCK
+			}
+			
+			any_owned = { #Korea
+				limit = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+					}
+					OR = {
+						state_id = 1619
+						state_id = 1627
+					}
+					NOT = { exists = KOR }
+				}
+				add_core = KOR
+			}
+			
+			any_owned = { #Yunnan
+				limit = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+					}
+					OR = {
+						state_id = 1505
+						state_id = 1601
+						state_id = 1578
+						state_id = 1581
+						state_id = 1523
+					}
+					NOT = { exists = YNN }
+				}
+				add_core = YNN
+			}
+			
+			any_owned = { #Guangxi
+				limit = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+					}
+					OR = {
+						state_id = 1529
+						state_id = 1504
+						state_id = 1499
+						state_id = 1494
+						state_id = 1550
+						state_id = 1487
+					}
+					NOT = { exists = GXI }
+				}
+				add_core = GXI
+			}
+			
+			any_owned = { #Dai Nam
+				limit = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+					}
+					OR = {
+						state_id = 1371
+						state_id = 1356
+						state_id = 1374
+					}
+					NOT = { exists = DAI }
+				}
+				add_core = DAI
+			}
+			
+			
+			change_tag = CHI
+			
+			country_event = {
+				id = 250004
+				days = 1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
 }

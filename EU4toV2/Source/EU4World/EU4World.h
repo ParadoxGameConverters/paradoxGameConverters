@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,52 +26,80 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <istream>
 #include "EU4Army.h"
+#include "EU4Diplomacy.h"
 
 
 
 class EU4Country;
 class EU4Province;
-class EU4Diplomacy;
 class EU4Version;
-class EU4Localisation;
-struct EU4Agreement;
 
 
 
-class EU4World {
+class EU4World
+{
 	public:
-		EU4World(const string& EU4SaveFileName, map<string, string> possibleMods);
-		void setNumbersOfDestinationProvinces();
+		EU4World(const string& EU4SaveFileName);
+
+		EU4Province* getProvince(int provNum) const;
+
+		EU4Version* getVersion() const { return version; };
+		map<string, EU4Country*> getCountries() const { return countries; };
+		vector<EU4Agreement> getDiplomaticAgreements() const { return diplomacy->getAgreements(); };
+		double getWorldWeightSum() const { return worldWeightSum; };
+
+		bool isRandomWorld() const;
+
+	private:
+		void verifySave(const string& EU4SaveFileName);
+		Object* parseSave(const string& EU4SaveFileName);
+
+		void loadUsedMods(const Object* EU4SaveObj);
+		map<string, string> loadPossibleMods();
+		void loadEU4ModDirectory(map<string, string>& possibleMods);
+		void loadCK2ExportDirectory(map<string, string>& possibleMods);
+
+		void loadEU4Version(const Object* EU4SaveObj);
+		void loadActiveDLC(const Object* EU4SaveObj);
+		void loadEndDate(const Object* EU4SaveObj);
+		void loadHolyRomanEmperor(const Object* EU4SaveObj);
+
+		void loadProvinces(const Object* EU4SaveObj);
+		map<int, int> determineValidProvinces();
+
+		void loadCountries(const Object* EU4SaveObj);
+		void loadRevolutionTarget(const Object* EU4SaveObj);
+		void addProvinceInfoToCountries();
+		void loadDiplomacy(const Object* EU4SaveObj);
+		void determineProvinceWeights();
+
+		void checkAllEU4CulturesMapped() const;
 
 		void readCommonCountries();
 		void readCommonCountriesFile(istream&, const std::string& rootPath);
 
-		EU4Country*						getCountry(string tag) const;
-		EU4Province*					getProvince(int provNum) const;
-		void								resolveRegimentTypes();
-		void								checkAllProvincesMapped() const;
-		void								checkAllEU4CulturesMapped() const;
-		void								checkAllEU4ReligionsMapped() const;
-		void								setLocalisations();
+		void setLocalisations();
+		void resolveRegimentTypes();
 
 		void mergeNations();
+		void uniteJapan();
+
+		void checkAllProvincesMapped() const;
+		void setNumbersOfDestinationProvinces();
+		void checkAllEU4ReligionsMapped() const;
+
 		void removeEmptyNations();
 		void removeDeadLandlessNations();
 		void removeLandlessNations();
 
-		EU4Version*						getVersion()			const { return version; };
-		map<string, EU4Country*>	getCountries()			const { return countries; };
-		EU4Diplomacy*					getDiplomacy()			const { return diplomacy; };
-		double							getWorldWeightSum()	const { return worldWeightSum; };
+		EU4Country* getCountry(string tag) const;
 
-	private:
-		void uniteJapan();
-
-		map<int, EU4Province*>		provinces;	// the provinces
-		map<string, EU4Country*>	countries;	// the countries
-		EU4Diplomacy*					diplomacy;	// diplomatic relationships
-		EU4Version*						version;		// the EU4 version for this save
-		double							worldWeightSum;
+		string holyRomanEmperor;
+		map<int, EU4Province*> provinces;
+		map<string, EU4Country*> countries;
+		EU4Diplomacy* diplomacy;
+		EU4Version* version;
+		double worldWeightSum;
 };
 
 

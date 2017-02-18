@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -401,54 +401,6 @@ void initLeaderBackgroundMap(backgroundMap& landBackgroundMap, backgroundMap& se
 		}
 		landBackgroundMap.insert(make_pair(background, landTraits));
 		seaBackgroundMap.insert(make_pair(background, seaTraits));
-	}
-}
-
-
-void initNamesMapping(namesMapping& namesMap)
-{
-	LOG(LogLevel::Info) << "Parsing names";
-	for (auto itr: Configuration::getVic2Mods())
-	{
-		LOG(LogLevel::Debug) << "Reading mod cultures";
-		processNamesFile((Configuration::getV2Path() + "/mod/" + itr + "/common/cultures.txt"), namesMap);
-	}
-	processNamesFile((Configuration::getV2Path() + "/common/cultures.txt"), namesMap);
-}
-
-
-void processNamesFile(string filename, namesMapping& namesMap)
-{
-	Object* obj = parser_8859_15::doParseFile(filename);
-	if (obj == nullptr)
-	{
-		return;
-	}
-
-	vector<Object*> groupsObj = obj->getLeaves();
-	for (auto groupsItr: groupsObj)
-	{
-		vector<Object*> culturesObj = groupsItr->getLeaves();
-		for (auto culturesItr: culturesObj)
-		{
-			string key = culturesItr->getKey();
-			if ((key == "union") || (key == "leader") || (key == "unit") || (key == "is_overseas"))
-			{
-				continue;
-			}
-			vector<Object*>	firstNamesObj	= culturesItr->getValue("first_names");
-			vector<Object*>	lastNamesObj	= culturesItr->getValue("last_names");
-			if ((firstNamesObj.size() > 0) && (lastNamesObj.size() > 0))
-			{
-				vector<string>		firstNames		= firstNamesObj[0]->getTokens();
-				vector<string>		lastNames		= lastNamesObj[0]->getTokens();
-				namesMap.insert(make_pair(key, make_pair(firstNames, lastNames)));
-			}
-			else
-			{
-				LOG(LogLevel::Error) << "No names for " << key;
-			}	
-		}
 	}
 }
 

@@ -30,6 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/ProvinceDefinitions.h"
 #include "../Mappers/ProvinceNeighborMapper.h"
 #include "../Mappers/StateMapper.h"
+#include "../V2World/V2Party.h"
 
 
 
@@ -79,7 +80,7 @@ void HoI4WarCreator::addAllTargetsToWorldTargetMap()
 void HoI4WarCreator::addTargetsToWorldTargetMap(HoI4Country* country)
 {
 	int maxGCWars = 0;
-	if ((country->getGovernment() != "hms_government" || (country->getGovernment() == "hms_government" && (country->getRulingParty().war_pol == "jingoism" || country->getRulingParty().war_pol == "pro_military"))) && country->getGovernment() != "democratic")
+	if (country->getIdeology() != "democratic")
 	{
 		vector<HoI4Country*> GCTargets;
 		for (auto GC: getDistancesToGreatPowers(country))
@@ -159,18 +160,15 @@ void HoI4WarCreator::generateTotalitarianWars(ofstream& AILog, vector<HoI4Countr
 		vector<HoI4Faction*> newFactionsAtWar;
 
 		LeaderCountries.push_back(greatPower);
-		if ((greatPower->getGovernment() == "fascism") || greatPower->getRulingIdeology() == "fascism")
+		if (greatPower->getIdeology() == "fascism")
 		{
 			newFactionsAtWar = fascistWarMaker(greatPower, AILog);
 		}
-		else if (greatPower->getGovernment() == "communism")
+		else if (greatPower->getIdeology() == "communism")
 		{
 			newFactionsAtWar = communistWarCreator(greatPower, AILog);
 		}
-		else if (
-			(greatPower->getGovernment() == "absolute_monarchy") ||
-			(greatPower->getGovernment() == "prussian_constitutionalism" && greatPower->getRulingParty().war_pol == "jingoism")
-			)
+		else if (greatPower->getIdeology() == "absolutist")
 		{
 			newFactionsAtWar = MonarchyWarCreator(greatPower);
 		}
@@ -201,13 +199,7 @@ void HoI4WarCreator::generateDemocracyWars(ofstream& AILog, set<HoI4Faction*>& f
 
 	for (auto greatPower: theWorld->getGreatPowers())
 	{
-		if (
-			(greatPower->getGovernment() == "democratic") ||
-			(
-			(greatPower->getGovernment() == "hms_government") &&
-				(greatPower->getRulingParty().war_pol == "pacifism" || greatPower->getRulingParty().war_pol == "anti_military")
-				)
-			)
+		if (greatPower->getIdeology() == "democratic")
 		{
 			vector<HoI4Faction*> newFactionsAtWar;
 			newFactionsAtWar = democracyWarCreator(greatPower);
@@ -250,39 +242,23 @@ vector<HoI4Country*> HoI4WarCreator::calculateEvilness(vector<HoI4Country*> Lead
 	vector<HoI4Country*> GCEvilnessSorted;
 	for (auto GC: theWorld->getGreatPowers())
 	{
-		if (	GC->getGovernment() == "prussian_constitutionalism" ||
-			GC->getGovernment() == "hms_government" ||
-			GC->getGovernment() == "absolute_monarchy" &&
-			std::find(LeaderCountries.begin(), LeaderCountries.end(), GC) == LeaderCountries.end() &&
-			(
-				GC->getGovernment() != "hms_government" ||
-				(
-					GC->getGovernment() == "hms_government" &&
-					(
-						GC->getRulingParty().war_pol == "jingoism" ||
-						GC->getRulingParty().war_pol == "pro_military"
-						)
-					)
-				) &&
-			GC->getGovernment() != "democratic")
+		if (	GC->getIdeology() == "absolutist" &&
+				std::find(LeaderCountries.begin(), LeaderCountries.end(), GC) == LeaderCountries.end()
+			)
 		{
 			double v1 = rand() % 95 + 1;
 			v1 = v1 / 100;
 			double evilness = v1;
 			string government = "";
-			if (GC->getGovernment() == "absolute_monarchy")
+			if (GC->getIdeology() == "absolutist")
 				evilness += 3;
-			else if (GC->getGovernment() == "prussian_constitutionalism")
-				evilness += 2;
-			else if (GC->getGovernment() == "hms_government")
-				evilness += 1;
-			HoI4Party countryrulingparty = GC->getRulingParty();
+			V2Party* countryrulingparty = GC->getRulingParty();
 
-			if (countryrulingparty.war_pol == "jingoism")
+			if (countryrulingparty->war_policy == "jingoism")
 				evilness += 3;
-			else if (countryrulingparty.war_pol == "pro_military")
+			else if (countryrulingparty->war_policy == "pro_military")
 				evilness += 2;
-			else if (countryrulingparty.war_pol == "anti_military")
+			else if (countryrulingparty->war_policy == "anti_military")
 				evilness += 1;
 
 			//need to add ruling party to factor
@@ -419,21 +395,18 @@ vector<HoI4Country*> HoI4WarCreator::GetMorePossibleAllies(HoI4Country* CountryT
 				}
 		}
 	}
-	string yourgovernment = CountryThatWantsAllies->getGovernment();
+	string yourIdeology = CountryThatWantsAllies->getIdeology();
 	volatile vector<HoI4Country*> vCountriesWithin500Miles = CountriesWithin500Miles;
 	//look for all capitals within a distance of Berlin to Tehran
 	for (unsigned int i = 0; i < CountriesWithin500Miles.size(); i++)
 	{
-		string allygovernment = CountriesWithin500Miles[i]->getGovernment();
+		string allyIdeology = CountriesWithin500Miles[i]->getIdeology();
 		//possible government matches
-		if (allygovernment == yourgovernment
-			|| (yourgovernment == "absolute_monarchy" && (allygovernment == "fascism" || allygovernment == "democratic" || allygovernment == "prussian_constitutionalism" || allygovernment == "hms_government"))
-			|| (yourgovernment == "democratic" && (allygovernment == "hms_government" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism"))
-			|| (yourgovernment == "prussian_constitutionalism" && (allygovernment == "hms_government" || allygovernment == "absolute_monarchy" || allygovernment == "democratic" || allygovernment == "fascism"))
-			|| (yourgovernment == "hms_government" && (allygovernment == "democratic" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism"))
-			|| (yourgovernment == "communism" && (allygovernment == "syndicalism"))
-			|| (yourgovernment == "syndicalism" && (allygovernment == "communism" || allygovernment == "fascism"))
-			|| (yourgovernment == "fascism" && (allygovernment == "syndicalism" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism" || allygovernment == "hms_government")))
+		if (
+				(allyIdeology == yourIdeology) /* ||
+				// add other possible combinations here, but maybe coordinate with HoI4World::governmentsAllowFaction()
+				*/
+			)
 		{
 
 			if (maxcountries < 2)
@@ -1374,18 +1347,18 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 		{
 			double com = 0;
 			HoI4Faction* neighFaction = findFaction(neigh.second);
-			for (auto party : neigh.second->getParties())
+			for (auto party : neigh.second->getIdeologySupport())
 			{
-				if (party.name.find("socialist") != string::npos || party.name.find("communist") != string::npos || party.name.find("anarcho_liberal") != string::npos)
-					com += party.popularity;
+				if ((party.first == "socialist") || (party.first == "communist") || (party.first == "anarcho_liberal"))
+					com += party.second;
 			}
-			if (com > 25 && neigh.second->getRulingParty().ideology != "communist" && HowToTakeLand(neigh.second, Leader, 2.5) == "coup")
+			if (com > 25 && neigh.second->getRulingParty()->ideology != "communist" && HowToTakeLand(neigh.second, Leader, 2.5) == "coup")
 			{
 				//look for neighboring countries to spread communism too(Need 25 % or more Communism support), Prioritizing those with "Communism Allowed" Flags, prioritizing those who are weakest
 				//	Method() Influence Ideology and Attempt Coup
 				coups.push_back(neigh.second);
 			}
-			else if (neighFaction->getMembers().size() == 1 && neigh.second->getRulingParty().ideology != "communist")
+			else if (neighFaction->getMembers().size() == 1 && neigh.second->getRulingParty()->ideology != "communist")
 			{
 				//	Then look for neighboring countries to spread communism by force, prioritizing weakest first
 				forcedtakeover.push_back(neigh.second);
@@ -1866,7 +1839,7 @@ vector<HoI4Faction*> HoI4WarCreator::democracyWarCreator(HoI4Country* Leader)
 	for (auto GC: theWorld->getGreatPowers())
 	{
 		double relation = Leader->getRelations(GC->getTag())->getRelations();
-		if (relation < 100 && (GC->getGovernment() != "hms_government" || (GC->getGovernment() == "hms_government" && (GC->getRulingParty().war_pol == "jingoism" || GC->getRulingParty().war_pol == "pro_military"))) && GC->getGovernment() != "democratic" && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
+		if (relation < 100 && GC->getIdeology() != "democratic" && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
 		{
 			string HowToTakeGC = HowToTakeLand(GC, Leader, 3);
 			//if (HowToTakeGC == "noactionneeded" || HowToTakeGC == "factionneeded")

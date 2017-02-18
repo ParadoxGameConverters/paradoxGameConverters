@@ -1,4 +1,4 @@
-# Copyright (c) 2016 The Paradox Game Converters Project
+# Copyright (c) 2017 The Paradox Game Converters Project
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,29 +20,14 @@
 
 
 
-mappings = {
-link = { vic = absolute_monarchy hoi = absolute_monarchy}
-link = { vic = prussian_constitutionalism ruling_party = fascist hoi = absolute_monarchy }
-link = { vic = prussian_constitutionalism ruling_party = reactionary hoi =  prussian_constitutionalism }
-link = { vic = prussian_constitutionalism political_reforms = 0.75 hoi = prussian_constitutionalism }
-link = { vic = prussian_constitutionalism hoi = prussian_constitutionalism }
-link = { vic = hms_government ruling_party = fascist hoi = hms_government }
-link = { vic = hms_government hoi = hms_government }
-link = { vic = democracy ruling_party = fascist hoi = democratic}
-link = { vic = democracy ruling_party = reactionary hoi = democratic}
-link = { vic = democracy ruling_party = conservative political_reforms = 0.9 social_reforms_above = 0.90 hoi = democratic}
-link = { vic = democracy ruling_party = conservative political_reforms = 0.9 social_reforms_below = 0.33 hoi = democratic}
-link = { vic = democracy ruling_party = conservative hoi = democratic}
-link = { vic = democracy ruling_party = anarcho_liberal hoi = democratic}
-link = { vic = democracy ruling_party = liberal social_reforms_above = 0.66 hoi = democratic}
-link = { vic = democracy ruling_party = liberal hoi = democratic}
-link = { vic = democracy ruling_party = socialist social_reforms_above = 0.90 hoi = democratic}
-link = { vic = democracy ruling_party = socialist hoi = democratic}
-link = { vic = democracy ruling_party = communist hoi = democratic}
-link = { vic = proletarian_dictatorship hoi = communism}
-link = { vic = presidential_dictatorship ruling_party = liberal hoi = absolute_monarchy }
-link = { vic = presidential_dictatorship ruling_party = anarcho_liberal hoi = syndicalism}
-link = { vic = presidential_dictatorship hoi = fascism}
-link = { vic = bourgeois_dictatorship hoi = syndicalism}
-link = { vic = fascist_dictatorship hoi = fascism}
-}
+mapping = { vic = proletarian_dictatorship hoi = communism }
+mapping = { vic = presidential_dictatorship hoi = absolutist }
+mapping = { vic = bourgeois_dictatorship hoi = radical }
+mapping = { vic = fascist_dictatorship hoi = fascism }
+mapping = { vic = absolute_monarchy hoi = absolutist }
+mapping = { vic = hms_government hoi = democratic }
+mapping = { vic = democracy hoi = democratic }
+mapping = { vic = prussian_constitutionalism ruling_party = liberal hoi = democratic }
+mapping = { vic = prussian_constitutionalism ruling_party = socialist hoi = democratic }
+mapping = { vic = prussian_constitutionalism ruling_party = conservative hoi = absolutist }
+mapping = { vic = prussian_constitutionalism ruling_party = reactionary hoi =  absolutist }

@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -43,47 +43,72 @@ class V2LeaderTraits;
 
 
 
-class V2World {
+class V2World
+{
 	public:
-		V2World();
-		void output() const;
-		void createProvinceFiles(const EU4World& sourceWorld);
-		
-		void convertCountries(const EU4World& sourceWorld, const vector<techSchool>& techSchools, map<int, int>& leaderIDMap);
-		void convertDiplomacy(const EU4World& sourceWorld);
+		V2World(const EU4World& sourceWorld);
+
+	private:
+		void importProvinces();
+		set<string> discoverProvinceFilenames();
+		void importProvinceLocalizations(const string& file);
+		bool isAProvinceLocalization(const string& line);
+
+		void importDefaultPops();
+		void importPopsFromFile(const string& filename);
+		void importPopsFromProvince(Object* provinceObj);
+
+		void logPopsByCountry() const;
+		void logPopsFromFile(string filename, map<string, map<string, long int>>& popsByCountry) const;
+		void logPopsInProvince(Object* provinceObj, map<string, map<string, long int>>& popsByCountry) const;
+		map<string, map<string, long int>>::iterator getCountryForPopLogging(string country, map<string, map<string, long int>>& popsByCountry) const;
+		void logPop(Object* pop, map<string, map<string, long int>>::iterator countryPopItr) const;
+		void outputLog(const map<string, map<string, long int>>& popsByCountry) const;
+
+		void findCoastalProvinces();
+		void determineIfProvinceIsCoastal(Object* provinceObj);
+
+		void importPotentialCountries();
+		void importPotentialCountry(const string& line, bool dynamicCountry);
+
+		void importTechSchools();
+
+		void convertCountries(const EU4World& sourceWorld);
+		void initializeCountries(const EU4World& sourceWorld);
+		V2Country* createOrLocateCountry(const string& V2Tag, const EU4Country* sourceCountry);
+		void convertNationalValues();
+		void convertPrestige();
+		void addAllPotentialCountries();
+		void checkForCivilizedNations();
+
 		void convertProvinces(const EU4World& sourceWorld);
+		vector<V2Demographic> determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, EU4Country* oldOwner, int destNum, double provPopRatio);
+
+		void convertDiplomacy(const EU4World& sourceWorld);
 		void setupColonies();
 		void setupStates();
 		void convertUncivReforms();
+		void convertTechs(const EU4World& sourceWorld);
+		void allocateFactories(const EU4World& sourceWorld);
 		void setupPops(const EU4World& sourceWorld);
 		void addUnions();
-		void convertArmies(const EU4World& sourceWorld, const map<int,int>& leaderIDMap);
-		void convertTechs(const EU4World& sourceWorld);
-		void allocateFactories(const EU4World& sourceWorld, const V2FactoryFactory& factoryBuilder);
+		void convertArmies(const EU4World& sourceWorld);
 
-		map<string, V2Country*>	getPotentialCountries()	const;
-		map<string, V2Country*>	getDynamicCountries()	const;
+		void output() const;
+		void createModFile() const;
+		void outputPops() const;
 
-	private:
-		void checkForCivilizedNations();
-		vector<V2Demographic>	determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, EU4Country* oldOwner, int destNum, double provPopRatio);
-
-		void				outputPops() const;
-		void				getProvinceLocalizations(string file);
-		V2Country*		getCountry(string tag);
-
-		map<int, V2Province*>		provinces;
-		map<string, V2Country*>		countries;
-		vector<V2Country*>			potentialCountries;
-		map<string, V2Country*>		dynamicCountries;
-		V2Diplomacy						diplomacy;
-		map< int, set<string> >		colonies;
-
-		map<string, list<int>* >	popRegions;
-
-		long								totalWorldPopulation;
-
-		bool						isRandomWorld;
+		map<int, V2Province*> provinces;
+		map<string, V2Country*> countries;
+		map<string, V2Country*> potentialCountries;
+		map<string, V2Country*> dynamicCountries;
+		V2Diplomacy diplomacy;
+		map<int, set<string>> colonies;
+		map<string, list<int>>	popRegions;
+		vector<techSchool> techSchools;
+		map<int, int> leaderIDMap; // <EU4, V2>
+		long totalWorldPopulation;
+		bool isRandomWorld;
 };
 
 
