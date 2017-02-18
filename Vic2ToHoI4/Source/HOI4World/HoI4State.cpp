@@ -202,6 +202,24 @@ void HoI4State::addCores(const vector<string>& newCores)
 }
 
 
+bool HoI4State::assignVPFromVic2Province(int Vic2ProvinceNumber)
+{
+	auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(Vic2ProvinceNumber);
+	if (
+		(provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end()) &&
+		(isProvinceInState(provMapping->second[0]))
+		)
+	{
+		assignVP(provMapping->second[0]);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+
 void HoI4State::assignVP(int location)
 {
 	victoryPointPosition = location;
@@ -234,15 +252,40 @@ int HoI4State::getMainNavalLocation() const
 void HoI4State::tryToCreateVP()
 {
 	auto vic2CapitalProvince = stateMapper::getCapitalProvince(sourceState->getStateID());
-	auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(vic2CapitalProvince);
-	if (
-			(provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end()) &&
-			(isProvinceInState(provMapping->second[0]))
-		)
+	bool VPCreated = assignVPFromVic2Province(vic2CapitalProvince);
+
+	if (!VPCreated)
 	{
-		assignVP(provMapping->second[0]);
+		if (!sourceState->isPartialState())
+		{
+			LOG(LogLevel::Warning) << "Could not initially create VP for state " << ID << ", but state is not split";
+		}
+		for (auto province: sourceState->getProvinces())
+		{
+			if (province->getPopulation("aristocrats") > 0)
+			{
+				VPCreated = assignVPFromVic2Province(province->getNumber());
+				if (VPCreated)
+				{
+					break;
+				}
+			}
+		}
 	}
-	else
+
+	if (!VPCreated)
+	{
+		for (auto province: sourceState->getProvinces())
+		{
+			VPCreated = assignVPFromVic2Province(province->getNumber());
+			if (VPCreated)
+			{
+				break;
+			}
+		}
+	}
+
+	if (!VPCreated)
 	{
 		LOG(LogLevel::Warning) << "Could not create VP for state";
 	}

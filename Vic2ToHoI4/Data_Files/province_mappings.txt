@@ -781,27 +781,27 @@
 	link = { vic2 = 1958 hoi4 = 5036 }	# Kribi -> land
 	# 
 	# ## French Africa
-	link = { vic2 = 1956 hoi4 = 6039 }	# Douala -> land
+	link = { vic2 = 1956 vic2 = 1957 hoi4 = 6039 }	# Douala, Buea -> land
 	link = { vic2 = 1963 hoi4 = 11194 }	# Ngaoundere -> land
 	link = { vic2 = 1960 hoi4 = 9137 }	# Bafoussam -> land
 	link = { vic2 = 1961 hoi4 = 7978 }	# Bamenda -> land
-	link = { vic2 = 1937 hoi4 = 10820 hoi4 = 4889 }	# Tukari -> land, land
+	link = { vic2 = 1937 hoi4 = 4889 }	# Tukari -> land
 	link = { vic2 = 1950 vic2 = 1944 hoi4 = 8109 }	# Yola, Gombe -> land
-	link = { vic2 = 1943 vic2 = 1942 hoi4 = 4938 }	# Jos, Bauchi -> land
+	link = { vic2 = 1943 hoi4 = 10820 }	# Jos -> land
 	link = { vic2 = 1951 vic2 = 1953 hoi4 = 4997 }	# Kuka, Dikoa -> land
 	link = { vic2 = 1952 hoi4 = 5028 }	# Nguru -> land
-	link = { vic2 = 1945 vic2 = 1949 hoi4 = 4972 }	# Kano, Hadejia -> land
+	link = { vic2 = 1945 vic2 = 1947 vic2 = 1942 vic2 = 1949 hoi4 = 4972 }	# Kano, Katsina, Bauchi, Hadejia -> land
 	link = { vic2 = 1819 hoi4 = 1993 }	# Moundou -> land
 	link = { vic2 = 1818 vic2 = 1820 hoi4 = 9152 hoi4 = 2081 }	# MANY-TO-MANY: Massenya, Bongor -> land, land
 	link = { vic2 = 1964 hoi4 = 7963 }	# Maroua -> land
 	link = { vic2 = 1941 hoi4 = 8021 }	# Abuja -> land
 	link = { vic2 = 1936 hoi4 = 1992 }	# Makurdi -> land
 	link = { vic2 = 1930 vic2 = 1929 hoi4 = 12900 }	# Lokoja, Akure -> land
-	link = { vic2 = 1939 hoi4 = 2025 }	# Zaria -> land
-	link = { vic2 = 1947 hoi4 = 1969 }	# Katsina -> land
-	link = { vic2 = 1940 hoi4 = 1932 }	# Bida -> land
+	link = { vic2 = 1939 hoi4 = 4938 }	# Zaria -> land
+	link = { vic2 = 1940 hoi4 = 1932 hoi4 = 2025 }	# Bida -> land, land
 	link = { vic2 = 1901 vic2 = 1903 hoi4 = 10836 hoi4 = 7950 }	# MANY-TO-MANY: Wagadugu, Dori -> land, land
-	link = { vic2 = 1948 vic2 = 1946 hoi4 = 1891 }	# Sokoto, Kebbi -> land
+	link = { vic2 = 1948 hoi4 = 1969 }	# Sokoto -> land
+	link = { vic2 = 1946 hoi4 = 1891 }	# Kebbi -> land
 	link = { vic2 = 1902 hoi4 = 12851 hoi4 = 8116 hoi4 = 8071 }	# Wahiguya -> land, land, land
 	link = { vic2 = 1906 hoi4 = 12794 }	# Orodaro -> land
 	link = { vic2 = 1799 hoi4 = 4927 }	# Sikasso -> land
@@ -825,8 +825,8 @@
 	link = { vic2 = 1913 vic2 = 1916 hoi4 = 8039 }	# Tamale, Yendi -> land
 	link = { vic2 = 1911 hoi4 = 12787 hoi4 = 13136 }	# Kintampo -> land, lake
 	link = { vic2 = 1921 hoi4 = 12762 }	# Nikki -> land
-	link = { vic2 = 1938 vic2 = 1927 hoi4 = 12817 }	# Bussa, Ilorin -> land
-	link = { vic2 = 1925 hoi4 = 12731 }	# Ibadan -> land
+	link = { vic2 = 1938 hoi4 = 12817 }	# Bussa -> land
+	link = { vic2 = 1925 vic2 = 1927 hoi4 = 12731 }	# Ibadan, Ilorin -> land
 	link = { vic2 = 1922 vic2 = 1904 hoi4 = 2001 hoi4 = 12874 }	# MANY-TO-MANY: Jugu, Fada Ngourma -> land, land
 	link = { vic2 = 1918 hoi4 = 12843 }	# Sokode -> land
 	link = { vic2 = 1797 hoi4 = 10829 }	# Kita -> land
@@ -843,8 +843,8 @@
 	link = { vic2 = 1892 vic2 = 1894 hoi4 = 10803 }	# Grand Lahou, Grand Bassam -> land
 	link = { vic2 = 1888 vic2 = 1891 hoi4 = 8006 }	# Harper, Zwedru -> land
 	link = { vic2 = 1973 hoi4 = 8244 }	# Bata -> land
-	link = { vic2 = 1934 vic2 = 1935 vic2 = 1957 hoi4 = 10831 }	# Calabar, Aruchukwu, Buea -> land
-	link = { vic2 = 1932 vic2 = 1933 hoi4 = 8034 }	# Bonny, Awka -> land
+	link = { vic2 = 1934 vic2 = 1935 vic2 = 1933 hoi4 = 10831 }	# Calabar, Aruchukwu, Awka -> land
+	link = { vic2 = 1932 hoi4 = 8034 }	# Bonny -> land
 	link = { vic2 = 1931 vic2 = 1928 hoi4 = 4952 }	# Warri, Benin -> land
 	link = { vic2 = 1923 vic2 = 1924 vic2 = 1926 hoi4 = 2050 }	# Lagos, Abeokuta, Ife -> land
 	link = { vic2 = 1919 vic2 = 1920 hoi4 = 10919 }	# Cotonou, Abomey -> land
@@ -2761,14 +2761,14 @@
 	# Australia
 	link = { vic2 = 2473 hoi4 = 2146 hoi4 = 5161 hoi4 = 1667 hoi4 = 4836 hoi4 = 5134 hoi4 = 10455 hoi4 = 11019 }	# Wagga Wagga -> land, land, land, land, land, land, land
 	link = { vic2 = 2474 hoi4 = 4673 hoi4 = 4500 hoi4 = 4453 hoi4 = 4478 hoi4 = 7649 hoi4 = 4658 hoi4 = 7471 hoi4 = 7533 hoi4 = 12377 }	# Moree -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 2470 hoi4 = 1611 hoi4 = 7664 hoi4 = 10500 }	# Port Macquarie -> land, land, land
+	link = { vic2 = 2470 vic2 = 2508 hoi4 = 1611 hoi4 = 7664 hoi4 = 10500 }	# MANY-TO-MANY: Port Macquarie, Norfolk Island -> land, land, land
 	link = { vic2 = 2469 hoi4 = 7450 hoi4 = 7496 hoi4 = 7520 }	# Newcastle -> land, land, land
 	link = { vic2 = 2471 hoi4 = 12435 hoi4 = 10682 hoi4 = 10427 hoi4 = 10388 hoi4 = 1537 }	# Ophir -> land, land, land, land, land
 	link = { vic2 = 2472 hoi4 = 12560 hoi4 = 4763 hoi4 = 12532 hoi4 = 7859 hoi4 = 1861 }	# Eden -> land, land, land, land, land
 	link = { vic2 = 2468 hoi4 = 12406 hoi4 = 4864 }	# Sydney -> land, land
 	link = { vic2 = 2475 hoi4 = 8249 hoi4 = 2114 hoi4 = 12934 hoi4 = 10977 hoi4 = 2163 hoi4 = 8234 hoi4 = 12968 }	# Broken Hill -> land, land, land, land, land, land, land
 	link = { vic2 = 2486 hoi4 = 12451 hoi4 = 1570 hoi4 = 7592 hoi4 = 4546 hoi4 = 4530 hoi4 = 4517 hoi4 = 1472 hoi4 = 4502 }	# Toowoomba -> land, land, land, land, land, land, land, land
-	link = { vic2 = 2483 vic2 = 2508 hoi4 = 7564 hoi4 = 10445 hoi4 = 10458 hoi4 = 7535 hoi4 = 10430 }	# MANY-TO-MANY: Brisbane, Norfolk Island -> land, land, land, land, land
+	link = { vic2 = 2483 hoi4 = 7564 hoi4 = 10445 hoi4 = 10458 hoi4 = 7535 hoi4 = 10430 }	# Brisbane -> land, land, land, land, land
 	link = { vic2 = 2485 hoi4 = 7666 hoi4 = 4632 hoi4 = 7610 hoi4 = 12424 hoi4 = 12411 hoi4 = 1557 }	# Clermont -> land, land, land, land, land, land
 	link = { vic2 = 2484 hoi4 = 10460 hoi4 = 10487 hoi4 = 7522 hoi4 = 12308 hoi4 = 7651 hoi4 = 10475 hoi4 = 4481 }	# Gladstone -> land, land, land, land, land, land, land
 	link = { vic2 = 2490 hoi4 = 10941 hoi4 = 2116 hoi4 = 5227 hoi4 = 11006 hoi4 = 5198 hoi4 = 12949 }	# Charleville -> land, land, land, land, land, land
@@ -2819,9 +2819,9 @@
 	link = { vic2 = 2285 hoi4 = 5023 }	# Galápagos -> land
 	link = { vic2 = 2623 hoi4 = 13052 }	# Midway Island -> land
 	link = { vic2 = 2336 hoi4 = 1280 }	# Easter Island -> land
-	link = { vic2 = 801 vic2 = 2545 vic2 = 2551 vic2 = 2552 vic2 = 2553 hoi4 = 12148 hoi4 = 10188 }	# MANY-TO-MANY: Tahiti, Rarotonga, Marquesas, Pitcairn, Tuamotus -> land, land
-	link = { vic2 = 2544 vic2 = 2548 hoi4 = 13080 }	# Pago Pago, Niue -> land
-	link = { vic2 = 2547 vic2 = 2543 vic2 = 2546 hoi4 = 7290 }	# Tokelau, Apia, Tongareva -> land
+	link = { vic2 = 801 vic2 = 2551 vic2 = 2552 vic2 = 2553 hoi4 = 12148 hoi4 = 10188 }	# MANY-TO-MANY: Tahiti, Marquesas, Pitcairn, Tuamotus -> land, land
+	link = { vic2 = 2544 hoi4 = 13080 }	# Pago Pago -> land
+	link = { vic2 = 2547 vic2 = 2543 hoi4 = 7290 }	# Tokelau, Apia -> land
 	link = { vic2 = 686 hoi4 = 13053 hoi4 = 13049 hoi4 = 13050 }	# Line Islands -> land, land, land
 	link = { vic2 = 2526 hoi4 = 13048 }	# Palmyra -> land
 	link = { vic2 = 658 hoi4 = 12021 hoi4 = 10048 hoi4 = 7195 hoi4 = 4180 hoi4 = 7112 hoi4 = 13051 }	# Hawaii -> land, land, land, land, land, land
@@ -2838,7 +2838,7 @@
 	link = { vic2 = 2523 hoi4 = 13038 }	# Nauru -> land
 	link = { vic2 = 2527 hoi4 = 7393 hoi4 = 13022 hoi4 = 13021 hoi4 = 4387 hoi4 = 13020 }	# Gilbert Islands -> land, land, land, land, land
 	link = { vic2 = 2541 hoi4 = 13056 hoi4 = 13057 hoi4 = 13055 hoi4 = 13054 }	# Ellice Islands -> land, land, land, land
-	link = { vic2 = 2454 vic2 = 2520 vic2 = 2540 vic2 = 2542 hoi4 = 4286 hoi4 = 12159 hoi4 = 7302 }	# MANY-TO-MANY: Fiji, Taveuni, Tonga, Wallis and Futuna -> land, land, land
+	link = { vic2 = 2454 vic2 = 2520 vic2 = 2542 hoi4 = 4286 hoi4 = 12159 hoi4 = 7302 }	# MANY-TO-MANY: Fiji, Taveuni, Wallis and Futuna -> land, land, land
 	# 
 	# Atlantic Islands
 	link = { vic2 = 2134 hoi4 = 1751 }	# Azores -> land
@@ -2847,8 +2847,7 @@
 	link = { vic2 = 1955 hoi4 = 1903 }	# Fernando Pó -> land
 	link = { vic2 = 2133 hoi4 = 10995 }	# South Georgia -> land
 	link = { vic2 = 2130 hoi4 = 13013 }	# Ascension -> land
-	link = { vic2 = 2129 hoi4 = 13016 }	# Saint Helena -> land
-	link = { vic2 = 2132 }	# Tristan da Cunha -> DROPPED
+	link = { vic2 = 2129 vic2 = 2132 hoi4 = 13016 }	# Saint Helena, Tristan da Cunha -> land
 	# 
 	# 
 	# ##########
@@ -3430,6 +3429,7 @@
 	# 
 	# 
 	# ## Dropped Vic2 provinces
+	link = { vic2 = 2546 vic2 = 2540 vic2 = 2545 vic2 = 2548 }	# Tongareva, Tonga, Rarotonga, Niue -> DROPPED
 	link = { vic2 = 3241 }	# Arctic Ocean -> DROPPED
 	# 
 	# 
@@ -4200,27 +4200,27 @@
 	link = { vic2 = 1958 hoi4 = 5036 }	# Kribi -> land
 	# 
 	# ## French Africa
-	link = { vic2 = 1956 hoi4 = 6039 }	# Douala -> land
+	link = { vic2 = 1956 vic2 = 1957 hoi4 = 6039 }	# Douala, Buea -> land
 	link = { vic2 = 1963 hoi4 = 11194 }	# Ngaoundere -> land
 	link = { vic2 = 1960 hoi4 = 9137 }	# Bafoussam -> land
 	link = { vic2 = 1961 hoi4 = 7978 }	# Bamenda -> land
-	link = { vic2 = 1937 hoi4 = 10820 hoi4 = 4889 }	# Tukari -> land, land
+	link = { vic2 = 1937 hoi4 = 4889 }	# Tukari -> land
 	link = { vic2 = 1950 vic2 = 1944 hoi4 = 8109 }	# Yola, Gombe -> land
-	link = { vic2 = 1943 vic2 = 1942 hoi4 = 4938 }	# Jos, Bauchi -> land
+	link = { vic2 = 1943 hoi4 = 10820 }	# Jos -> land
 	link = { vic2 = 1951 vic2 = 1953 hoi4 = 4997 }	# Kuka, Dikoa -> land
 	link = { vic2 = 1952 hoi4 = 5028 }	# Nguru -> land
-	link = { vic2 = 1945 vic2 = 1949 hoi4 = 4972 }	# Kano, Hadejia -> land
+	link = { vic2 = 1945 vic2 = 1947 vic2 = 1942 vic2 = 1949 hoi4 = 4972 }	# Kano, Katsina, Bauchi, Hadejia -> land
 	link = { vic2 = 1819 hoi4 = 1993 }	# Moundou -> land
 	link = { vic2 = 1818 vic2 = 1820 hoi4 = 9152 hoi4 = 2081 }	# MANY-TO-MANY: Massenya, Bongor -> land, land
 	link = { vic2 = 1964 hoi4 = 7963 }	# Maroua -> land
 	link = { vic2 = 1941 hoi4 = 8021 }	# Abuja -> land
 	link = { vic2 = 1936 hoi4 = 1992 }	# Makurdi -> land
 	link = { vic2 = 1930 vic2 = 1929 hoi4 = 12900 }	# Lokoja, Akure -> land
-	link = { vic2 = 1939 hoi4 = 2025 }	# Zaria -> land
-	link = { vic2 = 1947 hoi4 = 1969 }	# Katsina -> land
-	link = { vic2 = 1940 hoi4 = 1932 }	# Bida -> land
+	link = { vic2 = 1939 hoi4 = 4938 }	# Zaria -> land
+	link = { vic2 = 1940 hoi4 = 1932 hoi4 = 2025 }	# Bida -> land, land
 	link = { vic2 = 1901 vic2 = 1903 hoi4 = 10836 hoi4 = 7950 }	# MANY-TO-MANY: Wagadugu, Dori -> land, land
-	link = { vic2 = 1948 vic2 = 1946 hoi4 = 1891 }	# Sokoto, Kebbi -> land
+	link = { vic2 = 1948 hoi4 = 1969 }	# Sokoto -> land
+	link = { vic2 = 1946 hoi4 = 1891 }	# Kebbi -> land
 	link = { vic2 = 1902 hoi4 = 12851 hoi4 = 8116 hoi4 = 8071 }	# Wahiguya -> land, land, land
 	link = { vic2 = 1906 hoi4 = 12794 }	# Orodaro -> land
 	link = { vic2 = 1799 hoi4 = 4927 }	# Sikasso -> land
@@ -4244,8 +4244,8 @@
 	link = { vic2 = 1913 vic2 = 1916 hoi4 = 8039 }	# Tamale, Yendi -> land
 	link = { vic2 = 1911 hoi4 = 12787 hoi4 = 13136 }	# Kintampo -> land, lake
 	link = { vic2 = 1921 hoi4 = 12762 }	# Nikki -> land
-	link = { vic2 = 1938 vic2 = 1927 hoi4 = 12817 }	# Bussa, Ilorin -> land
-	link = { vic2 = 1925 hoi4 = 12731 }	# Ibadan -> land
+	link = { vic2 = 1938 hoi4 = 12817 }	# Bussa -> land
+	link = { vic2 = 1925 vic2 = 1927 hoi4 = 12731 }	# Ibadan, Ilorin -> land
 	link = { vic2 = 1922 vic2 = 1904 hoi4 = 2001 hoi4 = 12874 }	# MANY-TO-MANY: Jugu, Fada Ngourma -> land, land
 	link = { vic2 = 1918 hoi4 = 12843 }	# Sokode -> land
 	link = { vic2 = 1797 hoi4 = 10829 }	# Kita -> land
@@ -4262,8 +4262,8 @@
 	link = { vic2 = 1892 vic2 = 1894 hoi4 = 10803 }	# Grand Lahou, Grand Bassam -> land
 	link = { vic2 = 1888 vic2 = 1891 hoi4 = 8006 }	# Harper, Zwedru -> land
 	link = { vic2 = 1973 hoi4 = 8244 }	# Bata -> land
-	link = { vic2 = 1934 vic2 = 1935 vic2 = 1957 hoi4 = 10831 }	# Calabar, Aruchukwu, Buea -> land
-	link = { vic2 = 1932 vic2 = 1933 hoi4 = 8034 }	# Bonny, Awka -> land
+	link = { vic2 = 1934 vic2 = 1935 vic2 = 1933 hoi4 = 10831 }	# Calabar, Aruchukwu, Awka -> land
+	link = { vic2 = 1932 hoi4 = 8034 }	# Bonny -> land
 	link = { vic2 = 1931 vic2 = 1928 hoi4 = 4952 }	# Warri, Benin -> land
 	link = { vic2 = 1923 vic2 = 1924 vic2 = 1926 hoi4 = 2050 }	# Lagos, Abeokuta, Ife -> land
 	link = { vic2 = 1919 vic2 = 1920 hoi4 = 10919 }	# Cotonou, Abomey -> land
@@ -6180,14 +6180,14 @@
 	# Australia
 	link = { vic2 = 2473 hoi4 = 2146 hoi4 = 5161 hoi4 = 1667 hoi4 = 4836 hoi4 = 5134 hoi4 = 10455 hoi4 = 11019 }	# Wagga Wagga -> land, land, land, land, land, land, land
 	link = { vic2 = 2474 hoi4 = 4673 hoi4 = 4500 hoi4 = 4453 hoi4 = 4478 hoi4 = 7649 hoi4 = 4658 hoi4 = 7471 hoi4 = 7533 hoi4 = 12377 }	# Moree -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 2470 hoi4 = 1611 hoi4 = 7664 hoi4 = 10500 }	# Port Macquarie -> land, land, land
+	link = { vic2 = 2470 vic2 = 2508 hoi4 = 1611 hoi4 = 7664 hoi4 = 10500 }	# MANY-TO-MANY: Port Macquarie, Norfolk Island -> land, land, land
 	link = { vic2 = 2469 hoi4 = 7450 hoi4 = 7496 hoi4 = 7520 }	# Newcastle -> land, land, land
 	link = { vic2 = 2471 hoi4 = 12435 hoi4 = 10682 hoi4 = 10427 hoi4 = 10388 hoi4 = 1537 }	# Ophir -> land, land, land, land, land
 	link = { vic2 = 2472 hoi4 = 12560 hoi4 = 4763 hoi4 = 12532 hoi4 = 7859 hoi4 = 1861 }	# Eden -> land, land, land, land, land
 	link = { vic2 = 2468 hoi4 = 12406 hoi4 = 4864 }	# Sydney -> land, land
 	link = { vic2 = 2475 hoi4 = 8249 hoi4 = 2114 hoi4 = 12934 hoi4 = 10977 hoi4 = 2163 hoi4 = 8234 hoi4 = 12968 }	# Broken Hill -> land, land, land, land, land, land, land
 	link = { vic2 = 2486 hoi4 = 12451 hoi4 = 1570 hoi4 = 7592 hoi4 = 4546 hoi4 = 4530 hoi4 = 4517 hoi4 = 1472 hoi4 = 4502 }	# Toowoomba -> land, land, land, land, land, land, land, land
-	link = { vic2 = 2483 vic2 = 2508 hoi4 = 7564 hoi4 = 10445 hoi4 = 10458 hoi4 = 7535 hoi4 = 10430 }	# MANY-TO-MANY: Brisbane, Norfolk Island -> land, land, land, land, land
+	link = { vic2 = 2483 hoi4 = 7564 hoi4 = 10445 hoi4 = 10458 hoi4 = 7535 hoi4 = 10430 }	# Brisbane -> land, land, land, land, land
 	link = { vic2 = 2485 hoi4 = 7666 hoi4 = 4632 hoi4 = 7610 hoi4 = 12424 hoi4 = 12411 hoi4 = 1557 }	# Clermont -> land, land, land, land, land, land
 	link = { vic2 = 2484 hoi4 = 10460 hoi4 = 10487 hoi4 = 7522 hoi4 = 12308 hoi4 = 7651 hoi4 = 10475 hoi4 = 4481 }	# Gladstone -> land, land, land, land, land, land, land
 	link = { vic2 = 2490 hoi4 = 10941 hoi4 = 2116 hoi4 = 5227 hoi4 = 11006 hoi4 = 5198 hoi4 = 12949 }	# Charleville -> land, land, land, land, land, land
@@ -6238,9 +6238,9 @@
 	link = { vic2 = 2285 hoi4 = 5023 }	# Galápagos -> land
 	link = { vic2 = 2623 hoi4 = 13052 }	# Midway Island -> land
 	link = { vic2 = 2336 hoi4 = 1280 }	# Easter Island -> land
-	link = { vic2 = 801 vic2 = 2545 vic2 = 2551 vic2 = 2552 vic2 = 2553 hoi4 = 12148 hoi4 = 10188 }	# MANY-TO-MANY: Tahiti, Rarotonga, Marquesas, Pitcairn, Tuamotus -> land, land
-	link = { vic2 = 2544 vic2 = 2548 hoi4 = 13080 }	# Pago Pago, Niue -> land
-	link = { vic2 = 2547 vic2 = 2543 vic2 = 2546 hoi4 = 7290 }	# Tokelau, Apia, Tongareva -> land
+	link = { vic2 = 801 vic2 = 2551 vic2 = 2552 vic2 = 2553 hoi4 = 12148 hoi4 = 10188 }	# MANY-TO-MANY: Tahiti, Marquesas, Pitcairn, Tuamotus -> land, land
+	link = { vic2 = 2544 hoi4 = 13080 }	# Pago Pago -> land
+	link = { vic2 = 2547 vic2 = 2543 hoi4 = 7290 }	# Tokelau, Apia -> land
 	link = { vic2 = 686 hoi4 = 13053 hoi4 = 13049 hoi4 = 13050 }	# Line Islands -> land, land, land
 	link = { vic2 = 2526 hoi4 = 13048 }	# Palmyra -> land
 	link = { vic2 = 658 hoi4 = 12021 hoi4 = 10048 hoi4 = 7195 hoi4 = 4180 hoi4 = 7112 hoi4 = 13051 }	# Hawaii -> land, land, land, land, land, land
@@ -6257,7 +6257,7 @@
 	link = { vic2 = 2523 hoi4 = 13038 }	# Nauru -> land
 	link = { vic2 = 2527 hoi4 = 7393 hoi4 = 13022 hoi4 = 13021 hoi4 = 4387 hoi4 = 13020 }	# Gilbert Islands -> land, land, land, land, land
 	link = { vic2 = 2541 hoi4 = 13056 hoi4 = 13057 hoi4 = 13055 hoi4 = 13054 }	# Ellice Islands -> land, land, land, land
-	link = { vic2 = 2454 vic2 = 2520 vic2 = 2540 vic2 = 2542 hoi4 = 4286 hoi4 = 12159 hoi4 = 7302 }	# MANY-TO-MANY: Fiji, Taveuni, Tonga, Wallis and Futuna -> land, land, land
+	link = { vic2 = 2454 vic2 = 2520 vic2 = 2542 hoi4 = 4286 hoi4 = 12159 hoi4 = 7302 }	# MANY-TO-MANY: Fiji, Taveuni, Wallis and Futuna -> land, land, land
 	# 
 	# Atlantic Islands
 	link = { vic2 = 2134 hoi4 = 1751 }	# Azores -> land
@@ -6266,8 +6266,7 @@
 	link = { vic2 = 1955 hoi4 = 1903 }	# Fernando Pó -> land
 	link = { vic2 = 2133 hoi4 = 10995 }	# South Georgia -> land
 	link = { vic2 = 2130 hoi4 = 13013 }	# Ascension -> land
-	link = { vic2 = 2129 hoi4 = 13016 }	# Saint Helena -> land
-	link = { vic2 = 2132 }	# Tristan da Cunha -> DROPPED
+	link = { vic2 = 2129 vic2 = 2132 hoi4 = 13016 }	# Saint Helena, Tristan da Cunha -> land
 	# 
 	# 
 	# ##########
