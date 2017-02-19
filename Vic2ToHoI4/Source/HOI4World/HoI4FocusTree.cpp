@@ -3742,6 +3742,7 @@ void HoI4FocusTree::addMonarchyEmpireNationalFocuses(HoI4Country* Home, const ve
 	newFocus->icon = "GFX_goal_generic_construct_infrastructure";
 	newFocus->text += "Colonial Highway";
 	newFocus->prerequisites.push_back("focus = ColonialInd" + Home->getTag());
+	newFocus->mutuallyExclusive = "focus = ResourceFac" + Home->getTag();
 	newFocus->xPos =  24;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -3846,7 +3847,7 @@ void HoI4FocusTree::addMonarchyEmpireNationalFocuses(HoI4Country* Home, const ve
 	newFocus->icon = "GFX_goal_generic_oil_refinery";
 	newFocus->text += "Improve Resource Factories";
 	newFocus->prerequisites.push_back("focus = ColonialInd" + Home->getTag());
-	newFocus->mutuallyExclusive = "focus = StrengthenColonies" + Home->getTag();
+	newFocus->mutuallyExclusive = "focus = ColonialHwy" + Home->getTag();
 	newFocus->xPos =  26;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
