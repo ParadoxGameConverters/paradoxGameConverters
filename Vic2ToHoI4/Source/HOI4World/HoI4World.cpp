@@ -137,7 +137,8 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 		V2Party* rulingParty = country.second->getRulingParty(sourceWorld->getParties());
 		if (rulingParty == nullptr)
 		{
-			LOG(LogLevel::Error) << "Could not find the ruling party for " << country.first << ". Were all mods correctly included?";
+			LOG(LogLevel::Error) << "Could not find the ruling party for " << country.first << ". Most likely a mod was not included.";
+			LOG(LogLevel::Error) << "Double-check your settings, and remember to included EU4 to Vic2 mods. See the FAQ for more information.";
 			exit(-1);
 		}
 		destCountry->initFromV2Country(*sourceWorld, country.second, rulingParty->ideology, leaderMap, governmentJobs, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, states->getProvinceToStateIDMap(), states->getStates());
