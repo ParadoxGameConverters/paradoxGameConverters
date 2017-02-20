@@ -2032,7 +2032,7 @@ void HoI4Country::outputCountryLeader(ofstream& output) const
 {
 	string firstName = namesMapper::getMaleName(srcCountry->getPrimaryCulture());
 	string surname = namesMapper::getSurname(srcCountry->getPrimaryCulture());
-	string portrait = portraitMapper::getPortrait(srcCountry->getPrimaryCultureGroup(), leaderIdeology);
+	string portrait = portraitMapper::getPortrait(srcCountry->getPrimaryCultureGroup(), governmentIdeology);
 
 	output << "create_country_leader = {\n";
 	output << "    name = \"" << firstName << " " << surname << "\"\n";

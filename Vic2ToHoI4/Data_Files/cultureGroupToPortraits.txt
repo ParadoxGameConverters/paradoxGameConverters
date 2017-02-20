@@ -20,172 +20,274 @@
 
 
 germanic = {
-	communist = GER/Portrait_Germany_Generic_1.dds
-	democracy = GER/Portrait_Germany_Generic_2.dds
-	fascist = GER/Portrait_Germany_Generic_3.dds
+	communism = gfx/leaders/GER/Portrait_Germany_Generic_1.dds
+	democratic = gfx/leaders/GER/Portrait_Germany_Generic_2.dds
+	fascism = gfx/leaders/GER/Portrait_Germany_Generic_3.dds
+	absolutist = gfx/leaders/GER/Portrait_Germany_Generic_1.dds
+	neutrality = gfx/leaders/GER/Portrait_Germany_Generic_2.dds
+	radical = gfx/leaders/GER/Portrait_Germany_Generic_3.dds
 }
 beneluxian = {
-	communist = Europe/Portrait_Europe_Generic_1.dds
-	democracy = Europe/Portrait_Europe_Generic_2.dds
-	fascist = Europe/Portrait_Europe_Generic_3.dds
+	communism = gfx/leaders/Europe/Portrait_Europe_Generic_1.dds
+	democratic = gfx/leaders/Europe/Portrait_Europe_Generic_2.dds
+	fascism = gfx/leaders/Europe/Portrait_Europe_Generic_3.dds
+	absolutist = gfx/leaders/Europe/Portrait_Europe_Generic_1.dds
+	neutrality = gfx/leaders/Europe/Portrait_Europe_Generic_2.dds
+	radical = gfx/leaders/Europe/Portrait_Europe_Generic_3.dds
 }
 pan_swiss = {
-	communist = GER/Portrait_Germany_Generic_1.dds
-	democracy = SWI/Portrait_Switzerland_Federal_council.dds
-	fascist = GER/Portrait_Germany_Generic_3.dds
+	communism = gfx/leaders/GER/Portrait_Germany_Generic_1.dds
+	democratic = gfx/leaders/SWI/Portrait_Switzerland_Federal_council.dds
+	fascism = gfx/leaders/GER/Portrait_Germany_Generic_3.dds
+	absolutist = gfx/leaders/GER/Portrait_Germany_Generic_1.dds
+	neutrality = gfx/leaders/SWI/Portrait_Switzerland_Federal_council.dds
+	radical = gfx/leaders/GER/Portrait_Germany_Generic_3.dds
 }
 scandinavian = {
-	communist = Europe/Portrait_Europe_Generic_1.dds
-	democracy = Europe/Portrait_Europe_Generic_2.dds
-	fascist = Europe/Portrait_Europe_Generic_3.dds
+	communism = gfx/leaders/Europe/Portrait_Europe_Generic_1.dds
+	democratic = gfx/leaders/Europe/Portrait_Europe_Generic_2.dds
+	fascism = gfx/leaders/Europe/Portrait_Europe_Generic_3.dds
+	absolutist = gfx/leaders/Europe/Portrait_Europe_Generic_1.dds
+	neutrality = gfx/leaders/Europe/Portrait_Europe_Generic_2.dds
+	radical = gfx/leaders/Europe/Portrait_Europe_Generic_3.dds
 }
 british = {
-	communist = ENG/Portrait_Britain_Generic_1.dds
-	democracy = ENG/Portrait_Britain_Generic_2.dds
-	fascist = ENG/Portrait_Britain_Generic_3.dds
+	communism = gfx/leaders/ENG/Portrait_Britain_Generic_1.dds
+	democratic = gfx/leaders/ENG/Portrait_Britain_Generic_2.dds
+	fascism = gfx/leaders/ENG/Portrait_Britain_Generic_3.dds
+	absolutist = gfx/leaders/ENG/Portrait_Britain_Generic_1.dds
+	neutrality = gfx/leaders/ENG/Portrait_Britain_Generic_2.dds
+	radical = gfx/leaders/ENG/Portrait_Britain_Generic_3.dds
 }
 italian = {
-	communist = ITA/Portrait_Italy_Generic_1.dds
-	democracy = ITA/Portrait_Italy_Generic_2.dds
-	fascist = ITA/Portrait_Italy_Generic_3.dds
+	communism = gfx/leaders/ITA/Portrait_Italy_Generic_1.dds
+	democratic = gfx/leaders/ITA/Portrait_Italy_Generic_2.dds
+	fascism = gfx/leaders/ITA/Portrait_Italy_Generic_3.dds
+	absolutist = gfx/leaders/ITA/Portrait_Italy_Generic_1.dds
+	neutrality = gfx/leaders/ITA/Portrait_Italy_Generic_2.dds
+	radical = gfx/leaders/ITA/Portrait_Italy_Generic_3.dds
 }
 iberian = {
-	communist = "South America/Portrait_South_America_Generic_1.dds"
-	democracy = "South America/Portrait_South_America_Generic_2.dds"
-	fascist = "South America/Portrait_South_America_Generic_3.dds"
+	communism = "gfx/leaders/South America/Portrait_South_America_Generic_1.dds"
+	democratic = "gfx/leaders/South America/Portrait_South_America_Generic_2.dds"
+	fascism = "gfx/leaders/South America/Portrait_South_America_Generic_3.dds"
+	absolutist = "gfx/leaders/South America/Portrait_South_America_Generic_1.dds"
+	neutrality = "gfx/leaders/South America/Portrait_South_America_Generic_2.dds"
+	radical = "gfx/leaders/South America/Portrait_South_America_Generic_3.dds"
 }
 french = {
-	communist = FRA/Portrait_France_Generic_1.dds
-	democracy = FRA/Portrait_France_Generic_2.dds
-	fascist = FRA/Portrait_France_Generic_3.dds
+	communism = gfx/leaders/FRA/Portrait_France_Generic_1.dds
+	democratic = gfx/leaders/FRA/Portrait_France_Generic_2.dds
+	fascism = gfx/leaders/FRA/Portrait_France_Generic_3.dds
+	absolutist = gfx/leaders/FRA/Portrait_France_Generic_1.dds
+	neutrality = gfx/leaders/FRA/Portrait_France_Generic_2.dds
+	radical = gfx/leaders/FRA/Portrait_France_Generic_3.dds
 }
 south_slavic = {
-	communist = SOV/Portrait_Soviet_Generic_1.dds
-	democracy = SOV/Portrait_Soviet_Generic_2.dds
-	fascist = SOV/Portrait_Soviet_Generic_3.dds
+	communism = gfx/leaders/SOV/Portrait_Soviet_Generic_1.dds
+	democratic = gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds
+	fascism = gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds
+	absolutist = gfx/leaders/SOV/Portrait_Soviet_Generic_1.dds
+	neutrality = gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds
+	radical = gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds
 }
 pan_romanian = {
-	communist = Europe/Portrait_Europe_Generic_1.dds
-	democracy = Europe/Portrait_Europe_Generic_2.dds
-	fascist = Europe/Portrait_Europe_Generic_3.dds
+	communism = gfx/leaders/Europe/Portrait_Europe_Generic_1.dds
+	democratic = gfx/leaders/Europe/Portrait_Europe_Generic_2.dds
+	fascism = gfx/leaders/Europe/Portrait_Europe_Generic_3.dds
+	absolutist = gfx/leaders/Europe/Portrait_Europe_Generic_1.dds
+	neutrality = gfx/leaders/Europe/Portrait_Europe_Generic_2.dds
+	radical = gfx/leaders/Europe/Portrait_Europe_Generic_3.dds
 }
 hungarian_culture_group = {
-	communist = Europe/Portrait_Europe_Generic_1.dds
-	democracy = Europe/Portrait_Europe_Generic_2.dds
-	fascist = Europe/Portrait_Europe_Generic_3.dds
+	communism = gfx/leaders/Europe/Portrait_Europe_Generic_1.dds
+	democratic = gfx/leaders/Europe/Portrait_Europe_Generic_2.dds
+	fascism = gfx/leaders/Europe/Portrait_Europe_Generic_3.dds
+	absolutist = gfx/leaders/Europe/Portrait_Europe_Generic_1.dds
+	neutrality = gfx/leaders/Europe/Portrait_Europe_Generic_2.dds
+	radical = gfx/leaders/Europe/Portrait_Europe_Generic_3.dds
 }
 polish_culture_group = {
-	communist = SOV/Portrait_Soviet_Generic_1.dds
-	democracy = SOV/Portrait_Soviet_Generic_2.dds
-	fascist = SOV/Portrait_Soviet_Generic_3.dds
+	communism = gfx/leaders/SOV/Portrait_Soviet_Generic_1.dds
+	democratic = gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds
+	fascism = gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds
+	absolutist = gfx/leaders/SOV/Portrait_Soviet_Generic_1.dds
+	neutrality = gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds
+	radical = gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds
 }
 czecho_slovak_culture_group = {
-	communist = SOV/Portrait_Soviet_Generic_1.dds
-	democracy = SOV/Portrait_Soviet_Generic_2.dds
-	fascist = SOV/Portrait_Soviet_Generic_3.dds
+	communism = gfx/leaders/SOV/Portrait_Soviet_Generic_1.dds
+	democratic = gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds
+	fascism = gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds
+	absolutist = gfx/leaders/SOV/Portrait_Soviet_Generic_1.dds
+	neutrality = gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds
+	radical = gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds
 }
 east_slavic = {
-	communist = SOV/Portrait_Soviet_Generic_1.dds
-	democracy = SOV/Portrait_Soviet_Generic_2.dds
-	fascist = SOV/Portrait_Soviet_Generic_3.dds
+	communism = gfx/leaders/SOV/Portrait_Soviet_Generic_1.dds
+	democratic = gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds
+	fascism = gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds
+	absolutist = gfx/leaders/SOV/Portrait_Soviet_Generic_1.dds
+	neutrality = gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds
+	radical = gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds
 }
 baltic = {
-	communist = SOV/Portrait_Soviet_Generic_1.dds
-	democracy = SOV/Portrait_Soviet_Generic_2.dds
-	fascist = SOV/Portrait_Soviet_Generic_3.dds
+	communism = gfx/leaders/SOV/Portrait_Soviet_Generic_1.dds
+	democratic = gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds
+	fascism = gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds
+	absolutist = gfx/leaders/SOV/Portrait_Soviet_Generic_1.dds
+	neutrality = gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds
+	radical = gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds
 }
 levantine = {
-	communist = ITA/Portrait_Italy_Generic_1.dds
-	democracy = ITA/Portrait_Italy_Generic_2.dds
-	fascist = ITA/Portrait_Italy_Generic_3.dds
+	communism = gfx/leaders/ITA/Portrait_Italy_Generic_1.dds
+	democratic = gfx/leaders/ITA/Portrait_Italy_Generic_2.dds
+	fascism = gfx/leaders/ITA/Portrait_Italy_Generic_3.dds
+	absolutist = gfx/leaders/ITA/Portrait_Italy_Generic_1.dds
+	neutrality = gfx/leaders/ITA/Portrait_Italy_Generic_2.dds
+	radical = gfx/leaders/ITA/Portrait_Italy_Generic_3.dds
 }
 turko_semitic = {
-	communist = Europe/Portrait_Europe_Generic_1.dds
-	democracy = Europe/Portrait_Europe_Generic_2.dds
-	fascist = Europe/Portrait_Europe_Generic_3.dds
+	communism = gfx/leaders/Europe/Portrait_Europe_Generic_1.dds
+	democratic = gfx/leaders/Europe/Portrait_Europe_Generic_2.dds
+	fascism = gfx/leaders/Europe/Portrait_Europe_Generic_3.dds
+	absolutist = gfx/leaders/Europe/Portrait_Europe_Generic_1.dds
+	neutrality = gfx/leaders/Europe/Portrait_Europe_Generic_2.dds
+	radical = gfx/leaders/Europe/Portrait_Europe_Generic_3.dds
 }
 arab = {
-	communist = SAU/Portrait_Arabia_Generic_1.dds
-	democracy = SAU/Portrait_Arabia_Generic_2.dds
-	fascist = SAU/Portrait_Arabia_Generic_3.dds
+	communism = gfx/leaders/SAU/Portrait_Arabia_Generic_1.dds
+	democratic = gfx/leaders/SAU/Portrait_Arabia_Generic_2.dds
+	fascism = gfx/leaders/SAU/Portrait_Arabia_Generic_3.dds
+	absolutist = gfx/leaders/SAU/Portrait_Arabia_Generic_1.dds
+	neutrality = gfx/leaders/SAU/Portrait_Arabia_Generic_2.dds
+	radical = gfx/leaders/SAU/Portrait_Arabia_Generic_3.dds
 }
 iranian_turanian = {
-	communist = SAU/Portrait_Arabia_Generic_1.dds
-	democracy = SAU/Portrait_Arabia_Generic_2.dds
-	fascist = SAU/Portrait_Arabia_Generic_3.dds
+	communism = gfx/leaders/SAU/Portrait_Arabia_Generic_1.dds
+	democratic = gfx/leaders/SAU/Portrait_Arabia_Generic_2.dds
+	fascism = gfx/leaders/SAU/Portrait_Arabia_Generic_3.dds
+	absolutist = gfx/leaders/SAU/Portrait_Arabia_Generic_1.dds
+	neutrality = gfx/leaders/SAU/Portrait_Arabia_Generic_2.dds
+	radical = gfx/leaders/SAU/Portrait_Arabia_Generic_3.dds
 }
 central_asian = {
-	communist = Asia/Portrait_Asia_Generic_1.dds
-	democracy = Asia/Portrait_Asia_Generic_2.dds
-	fascist = Asia/Portrait_Asia_Generic_3.dds
+	communism = gfx/leaders/Asia/Portrait_Asia_Generic_1.dds
+	democratic = gfx/leaders/Asia/Portrait_Asia_Generic_2.dds
+	fascism = gfx/leaders/Asia/Portrait_Asia_Generic_3.dds
+	absolutist = gfx/leaders/Asia/Portrait_Asia_Generic_1.dds
+	neutrality = gfx/leaders/Asia/Portrait_Asia_Generic_2.dds
+	radical = gfx/leaders/Asia/Portrait_Asia_Generic_3.dds
 }
 south_asian = {
-	communist = Europe/Portrait_Europe_Generic_1.dds
-	democracy = Europe/Portrait_Europe_Generic_2.dds
-	fascist = Europe/Portrait_Europe_Generic_3.dds
+	communism = gfx/leaders/RAJ/Portrait_The_Raj_Political_Leader_Generic.dds
+	democratic = gfx/leaders/RAJ/Portrait_The_Raj_Political_Leader_Generic_2.dds
+	fascism = gfx/leaders/RAJ/Portrait_The_Raj_Political_Leader_Generic.dds
+	absolutist = gfx/leaders/RAJ/Portrait_The_Raj_Political_Leader_Generic_2.dds
+	neutrality = gfx/leaders/RAJ/Portrait_The_Raj_Political_Leader_Generic.dds
+	radical = gfx/leaders/RAJ/Portrait_The_Raj_Political_Leader_Generic_2.dds
 }
 southeast_asian = {
-	communist = Asia/Portrait_Asia_Generic_1.dds
-	democracy = Asia/Portrait_Asia_Generic_2.dds
-	fascist = Asia/Portrait_Asia_Generic_3.dds
+	communism = gfx/leaders/Asia/Portrait_Asia_Generic_1.dds
+	democratic = gfx/leaders/Asia/Portrait_Asia_Generic_2.dds
+	fascism = gfx/leaders/Asia/Portrait_Asia_Generic_3.dds
+	absolutist = gfx/leaders/Asia/Portrait_Asia_Generic_1.dds
+	neutrality = gfx/leaders/Asia/Portrait_Asia_Generic_2.dds
+	radical = gfx/leaders/Asia/Portrait_Asia_Generic_3.dds
 }
 east_asian = {
-	communist = Asia/Portrait_Asia_Generic_1.dds
-	democracy = Asia/Portrait_Asia_Generic_2.dds
-	fascist = Asia/Portrait_Asia_Generic_3.dds
+	communism = gfx/leaders/Asia/Portrait_Asia_Generic_1.dds
+	democratic = gfx/leaders/Asia/Portrait_Asia_Generic_2.dds
+	fascism = gfx/leaders/Asia/Portrait_Asia_Generic_3.dds
+	absolutist = gfx/leaders/Asia/Portrait_Asia_Generic_1.dds
+	neutrality = gfx/leaders/Asia/Portrait_Asia_Generic_2.dds
+	radical = gfx/leaders/Asia/Portrait_Asia_Generic_3.dds
 }
 oceanic = {
-	communist = "South America/Portrait_South_America_Generic_1.dds"
-	democracy = "South America/Portrait_South_America_Generic_2.dds"
-	fascist = "South America/Portrait_South_America_Generic_3.dds"
+	communism = "gfx/leaders/South America/Portrait_South_America_Generic_1.dds"
+	democratic = "gfx/leaders/South America/Portrait_South_America_Generic_2.dds"
+	fascism = "gfx/leaders/South America/Portrait_South_America_Generic_3.dds"
+	absolutist = "gfx/leaders/South America/Portrait_South_America_Generic_1.dds"
+	neutrality = "gfx/leaders/South America/Portrait_South_America_Generic_2.dds"
+	radical = "gfx/leaders/South America/Portrait_South_America_Generic_3.dds"
 }
 native_american = {
-	communist = "South America/Portrait_South_America_Generic_1.dds"
-	democracy = "South America/Portrait_South_America_Generic_2.dds"
-	fascist = "South America/Portrait_South_America_Generic_3.dds"
+	communism = "gfx/leaders/South America/Portrait_South_America_Generic_1.dds"
+	democratic = "gfx/leaders/South America/Portrait_South_America_Generic_2.dds"
+	fascism = "gfx/leaders/South America/Portrait_South_America_Generic_3.dds"
+	absolutist = "gfx/leaders/South America/Portrait_South_America_Generic_1.dds"
+	neutrality = "gfx/leaders/South America/Portrait_South_America_Generic_2.dds"
+	radical = "gfx/leaders/South America/Portrait_South_America_Generic_3.dds"
 }
 american_cultures = {
-	communist = USA/Portrait_USA_Generic_1.dds
-	democracy = USA/Portrait_USA_Generic_2.dds
-	fascist = USA/Portrait_USA_Generic_3.dds
+	communism = gfx/leaders/USA/Portrait_USA_Generic_1.dds
+	democratic = gfx/leaders/USA/Portrait_USA_Generic_2.dds
+	fascism = gfx/leaders/USA/Portrait_USA_Generic_3.dds
+	absolutist = gfx/leaders/USA/Portrait_USA_Generic_1.dds
+	neutrality = gfx/leaders/USA/Portrait_USA_Generic_2.dds
+	radical = gfx/leaders/USA/Portrait_USA_Generic_3.dds
 }
 neo_european_cultures = {
-	communist = Europe/Portrait_Europe_Generic_1.dds
-	democracy = Europe/Portrait_Europe_Generic_2.dds
-	fascist = Europe/Portrait_Europe_Generic_3.dds
+	communism = gfx/leaders/Europe/Portrait_Europe_Generic_1.dds
+	democratic = gfx/leaders/Europe/Portrait_Europe_Generic_2.dds
+	fascism = gfx/leaders/Europe/Portrait_Europe_Generic_3.dds
+	absolutist = gfx/leaders/Europe/Portrait_Europe_Generic_1.dds
+	neutrality = gfx/leaders/Europe/Portrait_Europe_Generic_2.dds
+	radical = gfx/leaders/Europe/Portrait_Europe_Generic_3.dds
 }
 latin_american_cultures = {
-	communist = "South America/Portrait_South_America_Generic_1.dds"
-	democracy = "South America/Portrait_South_America_Generic_2.dds"
-	fascist = "South America/Portrait_South_America_Generic_3.dds"
+	communism = "gfx/leaders/South America/Portrait_South_America_Generic_1.dds"
+	democratic = "gfx/leaders/South America/Portrait_South_America_Generic_2.dds"
+	fascism = "gfx/leaders/South America/Portrait_South_America_Generic_3.dds"
+	absolutist = "gfx/leaders/South America/Portrait_South_America_Generic_1.dds"
+	neutrality = "gfx/leaders/South America/Portrait_South_America_Generic_2.dds"
+	radical = "gfx/leaders/South America/Portrait_South_America_Generic_3.dds"
 }
 african_diaspora_cultures = {
-	communist = Africa/Portrait_Africa_Generic_land_1.dds
-	democracy = Africa/Portrait_Africa_Generic_land_2.dds
-	fascist = Africa/Portrait_Africa_Generic_land_3.dds
+	communism = gfx/leaders/Africa/Portrait_Africa_Generic_land_1.dds
+	democratic = gfx/leaders/Africa/Portrait_Africa_Generic_land_2.dds
+	fascism = gfx/leaders/Africa/Portrait_Africa_Generic_land_3.dds
+	absolutist = gfx/leaders/Africa/Portrait_Africa_Generic_land_1.dds
+	neutrality = gfx/leaders/Africa/Portrait_Africa_Generic_land_2.dds
+	radical = gfx/leaders/Africa/Portrait_Africa_Generic_land_3.dds
 }
 west_african = {
-	communist = Africa/Portrait_Africa_Generic_land_1.dds
-	democracy = Africa/Portrait_Africa_Generic_land_2.dds
-	fascist = Africa/Portrait_Africa_Generic_land_3.dds
+	communism = gfx/leaders/Africa/Portrait_Africa_Generic_land_1.dds
+	democratic = gfx/leaders/Africa/Portrait_Africa_Generic_land_2.dds
+	fascism = gfx/leaders/Africa/Portrait_Africa_Generic_land_3.dds
+	absolutist = gfx/leaders/Africa/Portrait_Africa_Generic_land_1.dds
+	neutrality = gfx/leaders/Africa/Portrait_Africa_Generic_land_2.dds
+	radical = gfx/leaders/Africa/Portrait_Africa_Generic_land_3.dds
 }
 central_african = {
-	communist = Africa/Portrait_Africa_Generic_land_1.dds
-	democracy = Africa/Portrait_Africa_Generic_land_2.dds
-	fascist = Africa/Portrait_Africa_Generic_land_3.dds
+	communism = gfx/leaders/Africa/Portrait_Africa_Generic_land_1.dds
+	democratic = gfx/leaders/Africa/Portrait_Africa_Generic_land_2.dds
+	fascism = gfx/leaders/Africa/Portrait_Africa_Generic_land_3.dds
+	absolutist = gfx/leaders/Africa/Portrait_Africa_Generic_land_1.dds
+	neutrality = gfx/leaders/Africa/Portrait_Africa_Generic_land_2.dds
+	radical = gfx/leaders/Africa/Portrait_Africa_Generic_land_3.dds
 }
 east_african = {
-	communist = Africa/Portrait_Africa_Generic_land_1.dds
-	democracy = Africa/Portrait_Africa_Generic_land_2.dds
-	fascist = Africa/Portrait_Africa_Generic_land_3.dds
+	communism = gfx/leaders/Africa/Portrait_Africa_Generic_land_1.dds
+	democratic = gfx/leaders/Africa/Portrait_Africa_Generic_land_2.dds
+	fascism = gfx/leaders/Africa/Portrait_Africa_Generic_land_3.dds
+	absolutist = gfx/leaders/Africa/Portrait_Africa_Generic_land_1.dds
+	neutrality = gfx/leaders/Africa/Portrait_Africa_Generic_land_2.dds
+	radical = gfx/leaders/Africa/Portrait_Africa_Generic_land_3.dds
 }
 southern_african = {
-	communist = Africa/Portrait_Africa_Generic_land_1.dds
-	democracy = Africa/Portrait_Africa_Generic_land_2.dds
-	fascist = Africa/Portrait_Africa_Generic_land_3.dds
+	communism = gfx/leaders/Africa/Portrait_Africa_Generic_land_1.dds
+	democratic = gfx/leaders/Africa/Portrait_Africa_Generic_land_2.dds
+	fascism = gfx/leaders/Africa/Portrait_Africa_Generic_land_3.dds
+	absolutist = gfx/leaders/Africa/Portrait_Africa_Generic_land_1.dds
+	neutrality = gfx/leaders/Africa/Portrait_Africa_Generic_land_2.dds
+	radical = gfx/leaders/Africa/Portrait_Africa_Generic_land_3.dds
 }
 bears = {
-	communist = POL/Portrait_POL_Voytek.dds
-	democracy = POL/Portrait_POL_Voytek.dds
-	fascist = POL/Portrait_POL_Voytek.dds
+	communism = gfx/leaders/POL/Portrait_POL_Voytek.dds
+	democratic = gfx/leaders/POL/Portrait_POL_Voytek.dds
+	fascism = gfx/leaders/POL/Portrait_POL_Voytek.dds
+	absolutist = gfx/leaders/POL/Portrait_POL_Voytek.dds
+	neutrality = gfx/leaders/POL/Portrait_POL_Voytek.dds
+	radical = gfx/leaders/POL/Portrait_POL_Voytek.dds
 }
