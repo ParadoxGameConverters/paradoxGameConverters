@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include <set>
 #include <string>
 #include <vector>
 using namespace std;
@@ -56,6 +57,11 @@ class governmentMapper
 		static string getLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology)
 		{
 			return getInstance()->GetLeaderIdeologyForCountry(country, Vic2RulingIdeology);
+		}
+
+		static vector<governmentMapping> getGovernmentMappings()
+		{
+			return getInstance()->governmentMap;
 		}
 
 	private:

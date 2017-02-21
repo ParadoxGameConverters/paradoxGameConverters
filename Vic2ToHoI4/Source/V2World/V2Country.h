@@ -75,8 +75,6 @@ public:
 	double getWarExhaustion() const { return warExhaustion; }
 	map<string, string> getAllReforms() const { return reformsArray; }
 	bool isGreatNation() const { return greatNation; }
-	map<string, string> getLocalisedNames() const { return namesByLanguage; }
-	map<string, string> getLocalisedAdjectives() const { return adjectivesByLanguage; }
 	map<int, V2Province*> getProvinces() const { return provinces; }
 	vector<V2Province*> getCores() const { return cores; }
 	bool isEmpty() const { return ((cores.size() == 0) && (provinces.size() == 0)); }
