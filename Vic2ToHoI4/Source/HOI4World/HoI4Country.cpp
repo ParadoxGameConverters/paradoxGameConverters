@@ -81,7 +81,8 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 
 	nationalFocus = nullptr;
 
-	srcCountry = NULL;
+	srcCountry = nullptr;
+	human = false;
 }
 
 
@@ -97,6 +98,8 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	{
 		filename = tag + " - " + commonCountryFile;
 	}
+
+	human = _srcCountry->isHuman();
 
 	// Color
 	color = srcCountry->getColor();
@@ -383,6 +386,14 @@ void HoI4Country::initFromHistory()
 		capital = stoi(results[0]->getLeaf());
 	}
 }
+
+
+void HoI4Country::setGovernmentToNeutral()
+{
+	governmentIdeology = "neutrality";
+	leaderIdeology += "_neutral";
+}
+
 
 void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, portraitMapping& portraitMap)
 {
@@ -1951,9 +1962,12 @@ void HoI4Country::outputHistory(const map<int, HoI4State*>& states, const vector
 		output << "        }\n";
 	}
 	//temporary until ideology support is completed
-	output << "        " << governmentIdeology << " = {\n";
-	output << "            popularity = 0\n";
-	output << "        }\n";
+	if (governmentIdeology != "neutrality")
+	{
+		output << "        " << governmentIdeology << " = {\n";
+		output << "            popularity = 0\n";
+		output << "        }\n";
+	}
 	output << "    }\n";
 	output << "    \n";
 

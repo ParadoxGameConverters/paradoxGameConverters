@@ -72,6 +72,8 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	convertNavies();
 	convertAirforces();
 	determineGreatPowers();
+	identifyMajorIdeologies();
+	addNeutrality();
 	convertCapitalVPs();
 	convertAirBases();
 	createFactions();
@@ -150,6 +152,35 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 	}
 
 	HoI4Localisation::createCountryLocalisations(country.first, HoI4Tag);
+}
+
+
+void HoI4World::identifyMajorIdeologies()
+{
+	for (auto greatPower: greatPowers)
+	{
+		majorIdeologies.insert(greatPower->getGovernmentIdeology());
+	}
+
+	for (auto country: countries)
+	{
+		if (country.second->isHuman())
+		{
+			majorIdeologies.insert(country.second->getGovernmentIdeology());
+		}
+	}
+}
+
+
+void HoI4World::addNeutrality()
+{
+	for (auto country: countries)
+	{
+		if (majorIdeologies.count(country.second->getGovernmentIdeology()) == 0)
+		{
+			country.second->setGovernmentToNeutral();
+		}
+	}
 }
 
 

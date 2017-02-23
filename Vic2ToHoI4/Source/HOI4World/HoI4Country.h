@@ -52,6 +52,7 @@ class HoI4Country
 
 		void initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, map<int, int>& leaderMap, governmentJobsMap governmentJobs, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states);
 		void		initFromHistory();
+		void setGovernmentToNeutral();
 		void generateLeaders(leaderTraitsMap leaderTraits, portraitMapping& portraitMap);
 		void		convertNavy(map<int, HoI4State*> states);
 		void		convertAirforce();
@@ -79,6 +80,7 @@ class HoI4Country
 		double getMilitaryStrength() const;
 		double getEconomicStrength(double years) const;
 
+		bool isHuman() const { return human; }
 		const map<string, HoI4Relations*>&	getRelations() const { return relations; }
 		set<int>									getProvinces() const { return provinces; }
 		string										getTag() const { return tag; }
@@ -130,6 +132,8 @@ class HoI4Country
 		HoI4World* theWorld;
 		const V2Country* srcCountry;
 		string filename;
+
+		bool human;
 
 		string governmentIdeology;
 		string leaderIdeology;
