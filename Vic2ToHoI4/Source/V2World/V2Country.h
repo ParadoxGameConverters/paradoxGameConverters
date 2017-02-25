@@ -80,6 +80,7 @@ public:
 	bool isEmpty() const { return ((cores.size() == 0) && (provinces.size() == 0)); }
 	bool isCivilized() const { return civilized; }
 	bool isHuman() const { return human; }
+	map<string, double> getUpperHouseComposition() const { return upperHouseComposition; }
 
 	string getReform(const string& reform) const;
 	string getName(const string& language) const;

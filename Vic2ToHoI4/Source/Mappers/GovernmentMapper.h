@@ -59,6 +59,11 @@ class governmentMapper
 			return getInstance()->GetLeaderIdeologyForCountry(country, Vic2RulingIdeology);
 		}
 
+		static string matchIdeology(const string& Vic2Government, const string& Vic2Ideology)
+		{
+			return getInstance()->MatchIdeology(Vic2Government, Vic2Ideology);
+		}
+
 		static vector<governmentMapping> getGovernmentMappings()
 		{
 			return getInstance()->governmentMap;
@@ -78,6 +83,7 @@ class governmentMapper
 
 		string GetIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology);
 		string GetLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology);
+		string MatchIdeology(const string& Vic2Government, const string& Vic2Ideology);
 		bool governmentMatches(const governmentMapping& mapping, const string& government);
 		bool rulingIdeologyMatches(const governmentMapping& mapping, const string& rulingIdeology);
 

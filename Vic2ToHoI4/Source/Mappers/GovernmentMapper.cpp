@@ -107,6 +107,22 @@ string governmentMapper::GetLeaderIdeologyForCountry(const V2Country* country, c
 }
 
 
+string governmentMapper::MatchIdeology(const string& Vic2Government, const string& Vic2Ideology)
+{
+	string ideology = "neutrality";
+	for (auto mapping: governmentMap)
+	{
+		if (governmentMatches(mapping, Vic2Government) &&	rulingIdeologyMatches(mapping, Vic2Ideology))
+		{
+			ideology = mapping.HoI4GovernmentIdeology;
+			break;
+		}
+	}
+
+	return ideology;
+}
+
+
 bool governmentMapper::governmentMatches(const governmentMapping& mapping, const string& government)
 {
 	return ((mapping.vic2Government == "") || (mapping.vic2Government == government));

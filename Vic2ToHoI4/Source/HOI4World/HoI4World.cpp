@@ -74,6 +74,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	determineGreatPowers();
 	identifyMajorIdeologies();
 	addNeutrality();
+	convertIdeologySupport();
 	convertCapitalVPs();
 	convertAirBases();
 	createFactions();
@@ -180,6 +181,15 @@ void HoI4World::addNeutrality()
 		{
 			country.second->setGovernmentToNeutral();
 		}
+	}
+}
+
+
+void HoI4World::convertIdeologySupport()
+{
+	for (auto country: countries)
+	{
+		country.second->convertIdeologySupport(majorIdeologies);
 	}
 }
 

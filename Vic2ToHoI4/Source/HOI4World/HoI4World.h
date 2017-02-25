@@ -71,6 +71,7 @@ class HoI4World
 		void convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, governmentJobsMap governmentJobs, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
 		void identifyMajorIdeologies();
 		void addNeutrality();
+		void convertIdeologySupport();
 
 		void convertIndustry();
 		void addStatesToCountries();

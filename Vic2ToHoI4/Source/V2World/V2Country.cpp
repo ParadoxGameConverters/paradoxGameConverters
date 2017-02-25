@@ -393,7 +393,7 @@ void V2Country::createNewState(const Object* stateObj)
 	states.push_back(newState);
 }
 
-#pragma optimize("", off)
+
 void V2Country::detectIfHuman(const Object* countryObj)
 {
 	if (countryObj->getValue("human").size() > 0)
@@ -405,7 +405,7 @@ void V2Country::detectIfHuman(const Object* countryObj)
 		human = false;
 	}
 }
-#pragma optimize("", on)
+
 
 void V2Country::eatCountry(V2Country* target)
 {

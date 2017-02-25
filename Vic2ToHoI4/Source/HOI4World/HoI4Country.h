@@ -51,8 +51,9 @@ class HoI4Country
 		HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld);
 
 		void initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, map<int, int>& leaderMap, governmentJobsMap governmentJobs, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states);
-		void		initFromHistory();
+		void initFromHistory();
 		void setGovernmentToNeutral();
+		void convertIdeologySupport(const set<string>& majorIdeologies);
 		void generateLeaders(leaderTraitsMap leaderTraits, portraitMapping& portraitMap);
 		void		convertNavy(map<int, HoI4State*> states);
 		void		convertAirforce();
@@ -117,9 +118,6 @@ class HoI4Country
 		void findBestCapital();
 
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, HoI4Province*> allProvinces);
-
-		void convertParties();
-		void convertIdeologySupport();
 
 		void outputNamesSet(ofstream& namesFile, const vector<string>& names, const string& tabs) const;
 		void outputHistory(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const;
