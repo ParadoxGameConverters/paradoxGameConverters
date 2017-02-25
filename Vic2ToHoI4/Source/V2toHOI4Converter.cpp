@@ -171,6 +171,7 @@ void createModFile()
 		LOG(LogLevel::Error) << "Could not create .mod file";
 		exit(-1);
 	}
+	modFile << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
 	modFile << "name = \"Converted - " << Configuration::getOutputName() << "\"\n";
 	modFile << "path = \"mod/" << Configuration::getOutputName() << "/\"\n";
 	modFile << "user_dir = \"" << Configuration::getOutputName() << "_user_dir\"\n";
