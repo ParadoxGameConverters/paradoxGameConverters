@@ -52,7 +52,8 @@ class HoI4WarCreator
 		vector<HoI4Faction*> fascistWarMaker(HoI4Country* country, ofstream& AILog);
 		vector<HoI4Faction*> communistWarCreator(HoI4Country* country, ofstream& AILog);
 		vector<HoI4Faction*> democracyWarCreator(HoI4Country* country);
-		vector<HoI4Faction*> MonarchyWarCreator(HoI4Country* country);
+		vector<HoI4Faction*> absolutistWarCreator(HoI4Country* country);
+		vector<HoI4Faction*> radicalWarCreator(HoI4Country* country);
 		vector<HoI4Country*> calculateEvilness(vector<HoI4Country*> LeaderCountries);
 
 		vector<HoI4Country*> findWeakNeighbors(const HoI4Country* country);

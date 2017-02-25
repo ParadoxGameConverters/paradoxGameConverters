@@ -154,7 +154,7 @@ double HoI4WarCreator::calculateWorldStrength(ofstream& AILog)
 
 void HoI4WarCreator::generateTotalitarianWars(ofstream& AILog, vector<HoI4Country*>& LeaderCountries, set<HoI4Faction*>& factionsAtWar)
 {
-	AILog << "Creating Fascist/Communist/Monarchist wars\n";
+	AILog << "Creating Fascist/Communist/Absolutist/Radical wars\n";
 	for (auto greatPower: theWorld->getGreatPowers())
 	{
 		vector<HoI4Faction*> newFactionsAtWar;
@@ -170,10 +170,42 @@ void HoI4WarCreator::generateTotalitarianWars(ofstream& AILog, vector<HoI4Countr
 		}
 		else if (greatPower->getGovernmentIdeology() == "absolutist")
 		{
-			newFactionsAtWar = MonarchyWarCreator(greatPower);
+			newFactionsAtWar = absolutistWarCreator(greatPower);
+		}
+		else if (greatPower->getGovernmentIdeology() == "radical")
+		{
+			newFactionsAtWar = radicalWarCreator(greatPower);
 		}
 
 		factionsAtWar.insert(newFactionsAtWar.begin(), newFactionsAtWar.end());
+	}
+
+	for (auto country: theWorld->getCountries())
+	{
+		if (country.second->isHuman() && !country.second->isGreatPower())
+		{
+			vector<HoI4Faction*> newFactionsAtWar;
+
+			LeaderCountries.push_back(country.second);
+			if (country.second->getGovernmentIdeology() == "fascism")
+			{
+				newFactionsAtWar = fascistWarMaker(country.second, AILog);
+			}
+			else if (country.second->getGovernmentIdeology() == "communism")
+			{
+				newFactionsAtWar = communistWarCreator(country.second, AILog);
+			}
+			else if (country.second->getGovernmentIdeology() == "absolutist")
+			{
+				newFactionsAtWar = absolutistWarCreator(country.second);
+			}
+			else if (country.second->getGovernmentIdeology() == "radical")
+			{
+				newFactionsAtWar = radicalWarCreator(country.second);
+			}
+
+			factionsAtWar.insert(newFactionsAtWar.begin(), newFactionsAtWar.end());
+		}
 	}
 }
 
@@ -217,7 +249,7 @@ void HoI4WarCreator::generateAdditionalWars(ofstream& AILog, vector<HoI4Country*
 	{
 		AILog << "added country to make more wars " + GCEvilnessSorted[i]->getSourceCountry()->getName("english") << "\n";
 		vector <HoI4Faction*> newCountriesatWar;
-		newCountriesatWar = MonarchyWarCreator(GCEvilnessSorted[i]);
+		newCountriesatWar = absolutistWarCreator(GCEvilnessSorted[i]);
 
 		for (auto addedFactions : newCountriesatWar)
 		{
@@ -1864,7 +1896,7 @@ vector<HoI4Faction*> HoI4WarCreator::democracyWarCreator(HoI4Country* Leader)
 }
 
 
-vector<HoI4Faction*> HoI4WarCreator::MonarchyWarCreator(HoI4Country* country)
+vector<HoI4Faction*> HoI4WarCreator::absolutistWarCreator(HoI4Country* country)
 {
 	HoI4FocusTree* focusTree = genericFocusTree->makeCustomizedCopy(country);
 
@@ -1881,6 +1913,14 @@ vector<HoI4Faction*> HoI4WarCreator::MonarchyWarCreator(HoI4Country* country)
 	country->addNationalFocus(focusTree);
 
 	return CountriesAtWar;
+}
+
+
+vector<HoI4Faction*> HoI4WarCreator::radicalWarCreator(HoI4Country* country)
+{
+	vector<HoI4Faction*> countriesAtWar;
+
+	return countriesAtWar;
 }
 
 
