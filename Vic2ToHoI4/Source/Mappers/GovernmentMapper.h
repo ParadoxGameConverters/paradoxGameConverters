@@ -33,6 +33,7 @@ using namespace std;
 
 
 
+class Object;
 class V2Country;
 
 
@@ -44,6 +45,15 @@ typedef struct governmentMapping
 	string HoI4LeaderIdeology;
 	string rulingPartyRequired;
 } governmentMapping;
+
+
+
+typedef struct partyMapping
+{
+	string rulingIdeology;
+	string vic2Ideology;
+	string supportedIdeology;
+} partyMapping;
 
 
 class governmentMapper
@@ -59,9 +69,9 @@ class governmentMapper
 			return getInstance()->GetLeaderIdeologyForCountry(country, Vic2RulingIdeology);
 		}
 
-		static string matchIdeology(const string& Vic2Government, const string& Vic2Ideology)
+		static string getSupportedIdeology(const string& rulingIdeology, const string& Vic2Ideology)
 		{
-			return getInstance()->MatchIdeology(Vic2Government, Vic2Ideology);
+			return getInstance()->GetSupportedIdeology(rulingIdeology, Vic2Ideology);
 		}
 
 		static vector<governmentMapping> getGovernmentMappings()
@@ -80,14 +90,17 @@ class governmentMapper
 			return instance;
 		}
 		governmentMapper();
+		void importGovernmentMappings(Object* obj);
+		void importPartyMappings(Object* obj);
 
 		string GetIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology);
 		string GetLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology);
-		string MatchIdeology(const string& Vic2Government, const string& Vic2Ideology);
+		string GetSupportedIdeology(const string& rulingIdeology, const string& Vic2Ideology);
 		bool governmentMatches(const governmentMapping& mapping, const string& government);
 		bool rulingIdeologyMatches(const governmentMapping& mapping, const string& rulingIdeology);
 
 		vector<governmentMapping> governmentMap;
+		vector<partyMapping> partyMap;
 };
 
 

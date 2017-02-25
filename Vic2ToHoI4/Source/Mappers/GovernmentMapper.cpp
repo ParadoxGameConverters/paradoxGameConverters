@@ -36,7 +36,6 @@ governmentMapper* governmentMapper::instance = nullptr;
 governmentMapper::governmentMapper()
 {
 	LOG(LogLevel::Info) << "Parsing governments mappings";
-
 	auto obj = parser_UTF8::doParseFile("governmentMapping.txt");
 	if (obj == nullptr)
 	{
@@ -44,6 +43,32 @@ governmentMapper::governmentMapper()
 		exit(-1);
 	}
 
+	auto governmentObjects = obj->getValue("government_mappings");
+	if (governmentObjects.size() > 0)
+	{
+		importGovernmentMappings(governmentObjects[0]);
+	}
+	else
+	{
+		LOG(LogLevel::Error) << "governmentMapping.txt did not contain government mappings";
+		exit(-1);
+	}
+
+	auto partyObjects = obj->getValue("party_mappings");
+	if (partyObjects.size() > 0)
+	{
+		importPartyMappings(partyObjects[0]);
+	}
+	else
+	{
+		LOG(LogLevel::Error) << "governmentMapping.txt did not contain party mappings";
+		exit(-1);
+	}
+}
+
+
+void governmentMapper::importGovernmentMappings(Object* obj)
+{
 	for (auto mapping: obj->getValue("mapping"))
 	{
 		governmentMapping newMapping;
@@ -69,6 +94,33 @@ governmentMapper::governmentMapper()
 		}
 
 		governmentMap.push_back(newMapping);
+	}
+}
+
+
+void governmentMapper::importPartyMappings(Object* obj)
+{
+	for (auto mapping: obj->getValue("mapping"))
+	{
+		partyMapping newMapping;
+		for (auto item: mapping->getLeaves())
+		{
+			string key = item->getKey();
+			if (key == "ruling_ideology")
+			{
+				newMapping.rulingIdeology = item->getLeaf();
+			}
+			else if (key == "vic2_ideology")
+			{
+				newMapping.vic2Ideology = item->getLeaf();
+			}
+			else if (key == "supported_ideology")
+			{
+				newMapping.supportedIdeology = item->getLeaf();
+			}
+		}
+
+		partyMap.push_back(newMapping);
 	}
 }
 
@@ -107,22 +159,6 @@ string governmentMapper::GetLeaderIdeologyForCountry(const V2Country* country, c
 }
 
 
-string governmentMapper::MatchIdeology(const string& Vic2Government, const string& Vic2Ideology)
-{
-	string ideology = "neutrality";
-	for (auto mapping: governmentMap)
-	{
-		if (governmentMatches(mapping, Vic2Government) &&	rulingIdeologyMatches(mapping, Vic2Ideology))
-		{
-			ideology = mapping.HoI4GovernmentIdeology;
-			break;
-		}
-	}
-
-	return ideology;
-}
-
-
 bool governmentMapper::governmentMatches(const governmentMapping& mapping, const string& government)
 {
 	return ((mapping.vic2Government == "") || (mapping.vic2Government == government));
@@ -132,4 +168,20 @@ bool governmentMapper::governmentMatches(const governmentMapping& mapping, const
 bool governmentMapper::rulingIdeologyMatches(const governmentMapping& mapping, const string& rulingIdeology)
 {
 	return ((mapping.rulingPartyRequired == "") || (mapping.rulingPartyRequired == rulingIdeology));
+}
+
+
+string governmentMapper::GetSupportedIdeology(const string& rulingIdeology, const string& Vic2Ideology)
+{
+	string ideology = "neutrality";
+	for (auto mapping: partyMap)
+	{
+		if ((rulingIdeology == mapping.rulingIdeology) && (Vic2Ideology == mapping.vic2Ideology))
+		{
+			ideology = mapping.supportedIdeology;
+			break;
+		}
+	}
+
+	return ideology;
 }
