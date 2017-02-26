@@ -66,7 +66,10 @@ portraitMapper::portraitMapper()
 				ideologyMapping = cultureGroupMappings->second.element.find(ideology);
 			}
 
-			ideologyMapping->second.push_back(ideologyObj->getLeaf());
+			for (auto portraitStr: ideologyObj->getTokens())
+			{
+				ideologyMapping->second.push_back(portraitStr);
+			}
 		}
 	}
 }
