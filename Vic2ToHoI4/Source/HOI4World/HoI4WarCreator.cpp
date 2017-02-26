@@ -855,6 +855,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 		//FIXME 
 		//Need to get Drift Defense to work
 		//newFocus->completionReward += "			drift_defence_factor = 0.5\n";
+		newFocus->completionReward += "			add_named_threat = { threat = 2 name = " + newFocus->id + " }\n";
 		newFocus->completionReward += "			add_ideas = fascist_influence";
 		FocusTree->addFocus(newFocus);
 
@@ -908,6 +909,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 				newFocus->aiWillDo += "				factor = 0\n";
 				newFocus->aiWillDo += "				date < 1937.6.6\n";
 				newFocus->aiWillDo += "			}";
+				newFocus->completionReward += "			add_named_threat = { threat = 2 name = " + newFocus->id + " }\n";
 				newFocus->completionReward += "			army_experience = 10\n";
 				newFocus->completionReward += "			if = {\n";
 				newFocus->completionReward += "				limit = {\n";
@@ -983,7 +985,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 		}
 		newFocus->cost     = 10;
 		newFocus->aiWillDo = "	factor = 5";
-		newFocus->completionReward += "			add_named_threat = { threat = 2 name = \"Fascist Expansion\" }";//give some claims or cores
+		newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }";//give some claims or cores
 		FocusTree->addFocus(newFocus);
 
 		for (unsigned int i = 0; i < 1; i++)
@@ -1021,6 +1023,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 				newFocus->aiWillDo += "		factor = 0\n";
 				newFocus->aiWillDo += "		date < 1937.6.6\n";
 				newFocus->aiWillDo += "	}";
+				newFocus->completionReward += "			add_named_threat = { threat = 2 name = " + newFocus->id + " }\n";
 				newFocus->completionReward += "			army_experience = 10\n";
 				newFocus->completionReward += "			if = {\n";
 				newFocus->completionReward += "				limit = {\n";
@@ -1056,6 +1059,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 				newFocus->aiWillDo += "		factor = 0\n";
 				newFocus->aiWillDo += "		date < 1937.6.6\n";
 				newFocus->aiWillDo += "	}";
+				newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
 				newFocus->completionReward += "			create_wargoal = {\n";
 				newFocus->completionReward += "				type = annex_everything\n";
 				newFocus->completionReward += "				target = " + nan[i]->getTag() + "\n";
@@ -1113,6 +1117,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 		newFocus->aiWillDo += "			}";
 		//FIXME
 		//newFocus->completionReward += "			opinion_gain_monthly_factor = 1.0";
+		newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
 		FocusTree->addFocus(newFocus);
 	}
 
@@ -1310,6 +1315,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 					newFocus->aiWillDo += "				}\n";
 					newFocus->aiWillDo += "			}";
 				}
+				newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
 				newFocus->completionReward += "			create_wargoal = {\n";
 				newFocus->completionReward += "				type = annex_everything\n";
 				newFocus->completionReward += "				target = " + GC->getTag() + "\n";
@@ -1542,7 +1548,7 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 		newFocus->yPos     = 1;
 		newFocus->cost     = 10;
 		newFocus->aiWillDo = "			factor = 5";
-		newFocus->completionReward += "			add_named_threat = { threat = 2 name = \"Socialist World Republic\" }";
+		newFocus->completionReward += "			add_named_threat = { threat = 2 name = " + newFocus->id + " }";
 		//FIXME
 		//maybe add some claims?
 		FocusTree->addFocus(newFocus);
@@ -1607,6 +1613,7 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 					newFocus->aiWillDo += "			}";
 				}
 
+				newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
 				newFocus->completionReward += "			create_wargoal = {\n";
 				newFocus->completionReward += "				type = puppet_wargoal_focus\n";
 				newFocus->completionReward += "				target = " + TargetsbyIC[i]->getTag() + "\n";
@@ -1831,6 +1838,8 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 					newFocus->aiWillDo += "			}\n";
 				}
 
+
+				newFocus->completionReward += "			add_named_threat = { threat = 5 name = " + newFocus->id + " }\n";
 				newFocus->completionReward += "			create_wargoal = {\n";
 				newFocus->completionReward += "				type = puppet_wargoal_focus\n";
 				newFocus->completionReward += "				target = " + GC->getTag() + "\n";
@@ -2115,6 +2124,7 @@ vector<HoI4Faction*> HoI4WarCreator::addGreatPowerWars(HoI4Country* country, HoI
 				newFocus->aiWillDo += "				}\n";
 				newFocus->aiWillDo += "			}";
 			}
+			newFocus->completionReward += "			add_named_threat = { threat = 5 name = " + newFocus->id + " }\n";
 			newFocus->completionReward += "			create_wargoal = {\n";
 			newFocus->completionReward += "				type = annex_everything\n";
 			newFocus->completionReward += "				target = " + target->getTag() + "\n";
