@@ -1904,7 +1904,7 @@ vector<HoI4Faction*> HoI4WarCreator::absolutistWarCreator(HoI4Country* country)
 
 	vector<HoI4Country*> weakNeighbors = findWeakNeighbors(country);
 	vector<HoI4Country*> weakColonies = findWeakColonies(country);
-	focusTree->addMonarchyEmpireNationalFocuses(country, weakColonies, weakNeighbors);
+	focusTree->addAbsolutistEmpireNationalFocuses(country, weakColonies, weakNeighbors);
 
 	vector<HoI4Country*> greatPowerTargets = getGreatPowerTargets(country);
 	vector<HoI4Faction*> CountriesAtWar = addGreatPowerWars(country, focusTree, greatPowerTargets);

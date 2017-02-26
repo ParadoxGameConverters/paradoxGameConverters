@@ -3581,7 +3581,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 }
 
 
-void HoI4FocusTree::addMonarchyEmpireNationalFocuses(HoI4Country* Home, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets)
+void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(HoI4Country* Home, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets)
 {
 	//Glory to Empire!
 	HoI4Focus* newFocus = new HoI4Focus;

@@ -47,7 +47,7 @@ class HoI4FocusTree
 
 		void addGenericFocusTree();
 		void addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Country*> CountriesToContain, int XStart);
-		void addMonarchyEmpireNationalFocuses(HoI4Country* country, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets);
+		void addAbsolutistEmpireNationalFocuses(HoI4Country* country, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets);
 
 		void output();
 
