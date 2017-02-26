@@ -21,8 +21,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef PORTRAITMAPPER_H
-#define PORTRAITMAPPER_H
+#ifndef GRAPHICS_MAPPER_H_
+#define GRAPHICS_MAPPER_H_
 
 
 
@@ -31,6 +31,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <string>
 #include <vector>
 using namespace std;
+
+
+
+class Object;
 
 
 
@@ -46,7 +50,7 @@ typedef struct
 
 
 
-class portraitMapper
+class graphicsMapper
 {
 	public:
 		static string getPortrait(string cultureGroup, string ideology)
@@ -59,16 +63,17 @@ class portraitMapper
 			return getInstance()->GetPortraits(cultureGroup, ideology);
 		}
 	private:
-		static portraitMapper* instance;
-		static portraitMapper* getInstance()
+		static graphicsMapper* instance;
+		static graphicsMapper* getInstance()
 		{
 			if (instance == nullptr)
 			{
-				instance = new portraitMapper;
+				instance = new graphicsMapper;
 			}
 			return instance;
 		}
-		portraitMapper();
+		graphicsMapper();
+		void loadLeaderPortraitMappings(const string& cultureGroup, Object* portraitMappings);
 
 		string GetPortrait(string cultureGroup, string ideology);
 		vector<string> GetPortraits(string cultureGroup, string ideology);
@@ -81,4 +86,4 @@ class portraitMapper
 
 
 
-#endif //PORTRAITMAPPER_H
+#endif //GRAPHICS_MAPPER_H_

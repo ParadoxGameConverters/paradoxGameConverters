@@ -21,22 +21,22 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "PortraitMapper.h"
+#include "GraphicsMapper.h"
 #include "Log.h"
 #include "Object.h"
 #include "ParadoxParserUTF8.h"
 
 
 
-portraitMapper* portraitMapper::instance = nullptr;
+graphicsMapper* graphicsMapper::instance = nullptr;
 
 
 
-portraitMapper::portraitMapper()
+graphicsMapper::graphicsMapper()
 {
-	LOG(LogLevel::Info) << "Reading portrait mappings";
+	LOG(LogLevel::Info) << "Reading graphics mappings";
 
-	auto fileObj = parser_UTF8::doParseFile("cultureGroupToPortraits.txt");
+	auto fileObj = parser_UTF8::doParseFile("cultureGroupToGraphics.txt");
 	if (fileObj == nullptr)
 	{
 		return;
@@ -46,36 +46,47 @@ portraitMapper::portraitMapper()
 	for (auto cultureGroupObj: cultureGroupObjs)
 	{
 		string cultureGroup = cultureGroupObj->getKey();
-		auto cultureGroupMappings = mappings.element.find(cultureGroup);
-		if (cultureGroupMappings == mappings.element.end())
-		{
-			cultureGroupToPortraitsMap newCultureGroupMappings;
-			mappings.element.insert(make_pair(cultureGroup, newCultureGroupMappings));
-			cultureGroupMappings = mappings.element.find(cultureGroup);
-		}
 
-		auto ideologyObjs = cultureGroupObj->getLeaves();
-		for (auto ideologyObj: ideologyObjs)
+		auto leaderPortraitObjs = cultureGroupObj->getValue("leader_portraits");
+		if (leaderPortraitObjs.size() > 0)
 		{
-			string ideology = ideologyObj->getKey();
-			auto ideologyMapping = cultureGroupMappings->second.element.find(ideology);
-			if (ideologyMapping == cultureGroupMappings->second.element.end())
-			{
-				vector<string> newPortaits;
-				cultureGroupMappings->second.element.insert(make_pair(ideology, newPortaits));
-				ideologyMapping = cultureGroupMappings->second.element.find(ideology);
-			}
-
-			for (auto portraitStr: ideologyObj->getTokens())
-			{
-				ideologyMapping->second.push_back(portraitStr);
-			}
+			loadLeaderPortraitMappings(cultureGroup, leaderPortraitObjs[0]);
 		}
 	}
 }
 
 
-string portraitMapper::GetPortrait(string cultureGroup, string ideology)
+void graphicsMapper::loadLeaderPortraitMappings(const string& cultureGroup, Object* portraitMappings)
+{
+	auto cultureGroupMappings = mappings.element.find(cultureGroup);
+	if (cultureGroupMappings == mappings.element.end())
+	{
+		cultureGroupToPortraitsMap newCultureGroupMappings;
+		mappings.element.insert(make_pair(cultureGroup, newCultureGroupMappings));
+		cultureGroupMappings = mappings.element.find(cultureGroup);
+	}
+
+	auto ideologyObjs = portraitMappings->getLeaves();
+	for (auto ideologyObj: ideologyObjs)
+	{
+		string ideology = ideologyObj->getKey();
+		auto ideologyMapping = cultureGroupMappings->second.element.find(ideology);
+		if (ideologyMapping == cultureGroupMappings->second.element.end())
+		{
+			vector<string> newPortaits;
+			cultureGroupMappings->second.element.insert(make_pair(ideology, newPortaits));
+			ideologyMapping = cultureGroupMappings->second.element.find(ideology);
+		}
+
+		for (auto portraitStr: ideologyObj->getTokens())
+		{
+			ideologyMapping->second.push_back(portraitStr);
+		}
+	}
+}
+
+
+string graphicsMapper::GetPortrait(string cultureGroup, string ideology)
 {
 	vector<string> portraits = GetPortraits(cultureGroup, ideology);
 
@@ -84,7 +95,7 @@ string portraitMapper::GetPortrait(string cultureGroup, string ideology)
 }
 
 
-vector<string> portraitMapper::GetPortraits(string cultureGroup, string ideology)
+vector<string> graphicsMapper::GetPortraits(string cultureGroup, string ideology)
 {
 	auto mapping = mappings.element.find(cultureGroup);
 	if (mapping != mappings.element.end())

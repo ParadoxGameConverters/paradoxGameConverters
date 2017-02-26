@@ -31,7 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/GovernmentMapper.h"
 #include "../Mappers/NamesMapper.h"
-#include "../Mappers/PortraitMapper.h"
+#include "../Mappers/GraphicsMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "../V2World/V2Relations.h"
 #include "../V2World/V2Party.h"
@@ -1484,7 +1484,7 @@ void HoI4Country::outputCountryLeader(ofstream& output) const
 {
 	string firstName = namesMapper::getMaleName(srcCountry->getPrimaryCulture());
 	string surname = namesMapper::getSurname(srcCountry->getPrimaryCulture());
-	string portrait = portraitMapper::getPortrait(srcCountry->getPrimaryCultureGroup(), governmentIdeology);
+	string portrait = graphicsMapper::getPortrait(srcCountry->getPrimaryCultureGroup(), governmentIdeology);
 
 	output << "create_country_leader = {\n";
 	output << "    name = \"" << firstName << " " << surname << "\"\n";
