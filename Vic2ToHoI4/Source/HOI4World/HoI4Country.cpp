@@ -1338,6 +1338,7 @@ void HoI4Country::output(const map<int, HoI4State*>& states, const vector<HoI4Fa
 	outputHistory(states, Factions);
 	outputOOB();
 	outputCommonCountryFile();
+	outputIdeas();
 
 	/*fprintf(output, "graphical_culture = %s\n", graphicalCulture.c_str());
 	fprintf(output, "ministers = {\n");
@@ -1433,19 +1434,19 @@ void HoI4Country::outputHistory(const map<int, HoI4State*>& states, const vector
 	output << "add_ideas = {\n";
 	if (majorNation)
 	{
-		output << "great_power\n";
+		output << "\tgreat_power\n";
 	}
 	if (!civilized)
 	{
-		output << "uncivilized\n";
+		output << "\tuncivilized\n";
 	}
 	if (rulingParty->war_policy == "jingoism")
 	{
-		output << "partial_economic_mobilisation\n";
+		output << "\tpartial_economic_mobilisation\n";
 	}
 	if (rulingParty->war_policy == "pro_military")
 	{
-		output << "low_economic_mobilisation\n";
+		output << "\tlow_economic_mobilisation\n";
 	}
 	output << "}\n";
 
@@ -1580,4 +1581,87 @@ void HoI4Country::outputCommonCountryFile() const
 	output << "color = { " << color << " }" << endl;
 
 	output.close();
+}
+
+
+void HoI4Country::outputIdeas() const
+{
+	ofstream ideasFile("Output/" + Configuration::getOutputName() + "/common/ideas/" + tag + ".txt");
+	if (!ideasFile.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/common/ideas/" << tag << ".txt";
+		exit(-1);
+	}
+
+	ideasFile << "ideas = {\n";
+	ideasFile << "\tpolitical_advisor = {\n";
+
+	ideasFile << "\t\t" << tag << "_communist_advisor = {\n";
+	ideasFile << "\t\t\tallowed = {\n";
+	ideasFile << "\t\t\t\toriginal_tag = \"" << tag << "\"\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\n";
+	ideasFile << "\t\t\ttraits = { communist_revolutionary }\n";
+	ideasFile << "\n";
+	ideasFile << "\t\t\ton_add = {\n";
+	ideasFile << "\t\t\t\tcountry_event = political.1\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\n";
+	ideasFile << "\t\t\tdo_effect = {\n";
+	ideasFile << "\t\t\t\tNOT = {\n";
+	ideasFile << "\t\t\t\t\thas_government = communism\n";
+	ideasFile << "\t\t\t\t}\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\n";
+	ideasFile << "\t\t\tai_will_do = {\n";
+	ideasFile << "\t\t\t\tfactor = 0\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t}\n";
+
+	ideasFile << "\t\t" << tag << "_democratic_advisor = {\n";
+	ideasFile << "\t\t\tallowed = {\n";
+	ideasFile << "\t\t\t\toriginal_tag = \"" << tag << "\"\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\n";
+	ideasFile << "\t\t\ttraits = { democratic_reformer }\n";
+	ideasFile << "\n";
+	ideasFile << "\t\t\ton_add = {\n";
+	ideasFile << "\t\t\t\tcountry_event = political.13\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\n";
+	ideasFile << "\t\t\tdo_effect = {\n";
+	ideasFile << "\t\t\t\tNOT = {\n";
+	ideasFile << "\t\t\t\t\thas_government = democratic\n";
+	ideasFile << "\t\t\t\t}\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\n";
+	ideasFile << "\t\t\tai_will_do = {\n";
+	ideasFile << "\t\t\t\tfactor = 0\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t}\n";
+
+	ideasFile << "\t\t" << tag << "_fascist_advisor = {\n";
+	ideasFile << "\t\t\tallowed = {\n";
+	ideasFile << "\t\t\t\toriginal_tag = \"" << tag << "\"\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\n";
+	ideasFile << "\t\t\ttraits = { fascist_demagogue }\n";
+	ideasFile << "\n";
+	ideasFile << "\t\t\ton_add = {\n";
+	ideasFile << "\t\t\t\tcountry_event = political.7\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\n";
+	ideasFile << "\t\t\tdo_effect = {\n";
+	ideasFile << "\t\t\t\tNOT = {\n";
+	ideasFile << "\t\t\t\t\thas_government = fascism\n";
+	ideasFile << "\t\t\t\t}\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\n";
+	ideasFile << "\t\t\tai_will_do = {\n";
+	ideasFile << "\t\t\t\tfactor = 0\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t}\n";
+
+	ideasFile << "\t}\n";
+	ideasFile << "}\n";
 }

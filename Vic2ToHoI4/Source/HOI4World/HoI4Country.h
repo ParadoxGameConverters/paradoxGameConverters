@@ -125,6 +125,7 @@ class HoI4Country
 		void outputCountryLeader(ofstream& output) const;
 		void outputOOB() const;
 		void outputCommonCountryFile() const;
+		void outputIdeas() const;
 
 
 		HoI4World* theWorld;
