@@ -52,18 +52,54 @@ graphicsMapper::graphicsMapper()
 		{
 			loadLeaderPortraitMappings(cultureGroup, leaderPortraitObjs[0]);
 		}
+
+		auto ideologyMinisterPortraitObjs = cultureGroupObj->getValue("ideology_minister_portraits");
+		if (leaderPortraitObjs.size() > 0)
+		{
+			loadIdeologyMinisterPortraitMappings(cultureGroup, ideologyMinisterPortraitObjs[0]);
+		}
 	}
 }
 
 
 void graphicsMapper::loadLeaderPortraitMappings(const string& cultureGroup, Object* portraitMappings)
 {
-	auto cultureGroupMappings = mappings.element.find(cultureGroup);
-	if (cultureGroupMappings == mappings.element.end())
+	auto cultureGroupMappings = leaderPortraitMappings.element.find(cultureGroup);
+	if (cultureGroupMappings == leaderPortraitMappings.element.end())
 	{
 		cultureGroupToPortraitsMap newCultureGroupMappings;
-		mappings.element.insert(make_pair(cultureGroup, newCultureGroupMappings));
-		cultureGroupMappings = mappings.element.find(cultureGroup);
+		leaderPortraitMappings.element.insert(make_pair(cultureGroup, newCultureGroupMappings));
+		cultureGroupMappings = leaderPortraitMappings.element.find(cultureGroup);
+	}
+
+	auto ideologyObjs = portraitMappings->getLeaves();
+	for (auto ideologyObj: ideologyObjs)
+	{
+		string ideology = ideologyObj->getKey();
+		auto ideologyMapping = cultureGroupMappings->second.element.find(ideology);
+		if (ideologyMapping == cultureGroupMappings->second.element.end())
+		{
+			vector<string> newPortaits;
+			cultureGroupMappings->second.element.insert(make_pair(ideology, newPortaits));
+			ideologyMapping = cultureGroupMappings->second.element.find(ideology);
+		}
+
+		for (auto portraitStr: ideologyObj->getTokens())
+		{
+			ideologyMapping->second.push_back(portraitStr);
+		}
+	}
+}
+
+
+void graphicsMapper::loadIdeologyMinisterPortraitMappings(const string& cultureGroup, Object* portraitMappings)
+{
+	auto cultureGroupMappings = ideologyMinisterMappings.element.find(cultureGroup);
+	if (cultureGroupMappings == ideologyMinisterMappings.element.end())
+	{
+		cultureGroupToPortraitsMap newCultureGroupMappings;
+		ideologyMinisterMappings.element.insert(make_pair(cultureGroup, newCultureGroupMappings));
+		cultureGroupMappings = ideologyMinisterMappings.element.find(cultureGroup);
 	}
 
 	auto ideologyObjs = portraitMappings->getLeaves();
@@ -97,8 +133,8 @@ string graphicsMapper::GetLeaderPortrait(string cultureGroup, string ideology)
 
 vector<string> graphicsMapper::GetLeaderPortraits(string cultureGroup, string ideology)
 {
-	auto mapping = mappings.element.find(cultureGroup);
-	if (mapping != mappings.element.end())
+	auto mapping = leaderPortraitMappings.element.find(cultureGroup);
+	if (mapping != leaderPortraitMappings.element.end())
 	{
 		auto portraits = mapping->second.element.find(ideology);
 		if (portraits != mapping->second.element.end())
@@ -109,5 +145,32 @@ vector<string> graphicsMapper::GetLeaderPortraits(string cultureGroup, string id
 
 	vector<string> genericPortait;
 	genericPortait.push_back("gfx/leaders/leader_unknown.dds");
+	return genericPortait;
+}
+
+
+string graphicsMapper::GetIdeologyMinisterPortrait(string cultureGroup, string ideology)
+{
+	vector<string> portraits = GetIdeologyMinisterPortraits(cultureGroup, ideology);
+
+	std::uniform_int_distribution<int> firstNameGen(0, portraits.size() - 1);
+	return portraits[firstNameGen(rng)];
+}
+
+
+vector<string> graphicsMapper::GetIdeologyMinisterPortraits(string cultureGroup, string ideology)
+{
+	auto mapping = ideologyMinisterMappings.element.find(cultureGroup);
+	if (mapping != ideologyMinisterMappings.element.end())
+	{
+		auto portraits = mapping->second.element.find(ideology);
+		if (portraits != mapping->second.element.end())
+		{
+			return portraits->second;
+		}
+	}
+
+	vector<string> genericPortait;
+	genericPortait.push_back("gfx/interface/ideas/idea_unknown.dds");
 	return genericPortait;
 }

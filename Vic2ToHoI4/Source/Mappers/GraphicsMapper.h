@@ -58,15 +58,11 @@ class graphicsMapper
 			return getInstance()->GetLeaderPortrait(cultureGroup, ideology);
 		}
 
-		static vector<string> getLeaderPortraits(string cultureGroup, string ideology)
+		static string getIdeologyMinisterPortrait(string cultureGroup, string ideology)
 		{
-			return getInstance()->GetLeaderPortraits(cultureGroup, ideology);
+			return getInstance()->GetIdeologyMinisterPortrait(cultureGroup, ideology);
 		}
 
-		static string getMinisterPortrait(string cultureGroup, string ideology)
-		{
-			return "idea_unknown.dds";
-		}
 	private:
 		static graphicsMapper* instance;
 		static graphicsMapper* getInstance()
@@ -79,11 +75,15 @@ class graphicsMapper
 		}
 		graphicsMapper();
 		void loadLeaderPortraitMappings(const string& cultureGroup, Object* portraitMappings);
+		void loadIdeologyMinisterPortraitMappings(const string& cultureGroup, Object* portraitMappings);
 
 		string GetLeaderPortrait(string cultureGroup, string ideology);
 		vector<string> GetLeaderPortraits(string cultureGroup, string ideology);
+		string GetIdeologyMinisterPortrait(string cultureGroup, string ideology);
+		vector<string> GetIdeologyMinisterPortraits(string cultureGroup, string ideology);
 
-		ideologyToPortraitsMap mappings;
+		ideologyToPortraitsMap leaderPortraitMappings;
+		ideologyToPortraitsMap ideologyMinisterMappings;
 
 		std::mt19937 rng;
 };

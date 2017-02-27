@@ -1666,18 +1666,18 @@ void HoI4Country::outputIdeaGraphics(ofstream& ideasFile) const
 	ideasFile << "\n";
 	ideasFile << "\tspriteType = {\n";
 	ideasFile << "\t\tname = \"GFX_idea_" << tag << "_communist_advisor\"\n";
-	ideasFile << "\t\ttexturefile = \"gfx/interface/ideas/" << graphicsMapper::getMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "communism") << "\"\n";
+	ideasFile << "\t\ttexturefile = \"" << graphicsMapper::getIdeologyMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "communism") << "\"\n";
 	ideasFile << "\t}\n";
 
 	ideasFile << "\n";
 	ideasFile << "\tspriteType = {\n";
 	ideasFile << "\t\tname = \"GFX_idea_" << tag << "_democratic_advisor\"\n";
-	ideasFile << "\t\ttexturefile = \"gfx/interface/ideas/" << graphicsMapper::getMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "democratic") << "\"\n";
+	ideasFile << "\t\ttexturefile = \"" << graphicsMapper::getIdeologyMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "democratic") << "\"\n";
 	ideasFile << "\t}\n";
 
 	ideasFile << "\n";
 	ideasFile << "\tspriteType = {\n";
 	ideasFile << "\t\tname = \"GFX_idea_" << tag << "_fascist_advisor\"\n";
-	ideasFile << "\t\ttexturefile = \"gfx/interface/ideas/" << graphicsMapper::getMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "fascism") << "\"\n";
+	ideasFile << "\t\ttexturefile = \"" << graphicsMapper::getIdeologyMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "fascism") << "\"\n";
 	ideasFile << "\t}\n";
 }
