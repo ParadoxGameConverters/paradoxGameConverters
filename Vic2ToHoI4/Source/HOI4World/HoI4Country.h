@@ -68,6 +68,7 @@ class HoI4Country
 		void outputColors(ofstream& out) const;
 		void outputToNamesFiles(ofstream& namesFile) const;
 		void output(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const;
+		void outputIdeaGraphics(ofstream& ideasFile) const;
 
 		void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
 		void		setFaction(HoI4Faction* newFaction) { faction = newFaction; }

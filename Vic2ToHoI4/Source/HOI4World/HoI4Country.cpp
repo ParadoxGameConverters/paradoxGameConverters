@@ -1340,13 +1340,7 @@ void HoI4Country::output(const map<int, HoI4State*>& states, const vector<HoI4Fa
 	outputCommonCountryFile();
 	outputIdeas();
 
-	/*fprintf(output, "graphical_culture = %s\n", graphicalCulture.c_str());
-	fprintf(output, "ministers = {\n");
-	for (auto ministerItr: ministers)
-	{
-		ministerItr.output(output);
-	}
-	fprintf(output, "}\n");*/
+	//fprintf(output, "graphical_culture = %s\n", graphicalCulture.c_str());
 
 	if (nationalFocus != nullptr)
 	{
@@ -1484,7 +1478,7 @@ void HoI4Country::outputCountryLeader(ofstream& output) const
 {
 	string firstName = namesMapper::getMaleName(srcCountry->getPrimaryCulture());
 	string surname = namesMapper::getSurname(srcCountry->getPrimaryCulture());
-	string portrait = graphicsMapper::getPortrait(srcCountry->getPrimaryCultureGroup(), governmentIdeology);
+	string portrait = graphicsMapper::getLeaderPortrait(srcCountry->getPrimaryCultureGroup(), governmentIdeology);
 
 	output << "create_country_leader = {\n";
 	output << "    name = \"" << firstName << " " << surname << "\"\n";
@@ -1664,4 +1658,26 @@ void HoI4Country::outputIdeas() const
 
 	ideasFile << "\t}\n";
 	ideasFile << "}\n";
+}
+
+
+void HoI4Country::outputIdeaGraphics(ofstream& ideasFile) const
+{
+	ideasFile << "\n";
+	ideasFile << "\tspriteType = {\n";
+	ideasFile << "\t\tname = \"GFX_idea_" << tag << "_communist_advisor\"\n";
+	ideasFile << "\t\ttexturefile = \"gfx/interface/ideas/" << graphicsMapper::getMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "communism") << "\"\n";
+	ideasFile << "\t}\n";
+
+	ideasFile << "\n";
+	ideasFile << "\tspriteType = {\n";
+	ideasFile << "\t\tname = \"GFX_idea_" << tag << "_democratic_advisor\"\n";
+	ideasFile << "\t\ttexturefile = \"gfx/interface/ideas/" << graphicsMapper::getMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "democratic") << "\"\n";
+	ideasFile << "\t}\n";
+
+	ideasFile << "\n";
+	ideasFile << "\tspriteType = {\n";
+	ideasFile << "\t\tname = \"GFX_idea_" << tag << "_fascist_advisor\"\n";
+	ideasFile << "\t\ttexturefile = \"gfx/interface/ideas/" << graphicsMapper::getMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "fascism") << "\"\n";
+	ideasFile << "\t}\n";
 }

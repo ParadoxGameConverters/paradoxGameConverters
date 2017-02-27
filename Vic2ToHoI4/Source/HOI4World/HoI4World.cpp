@@ -1272,6 +1272,21 @@ void HoI4World::outputCountries() const
 	{
 		country.second->output(states->getStates(), factions);
 	}
+
+	ofstream ideasFile("Output/" + Configuration::getOutputName() + "/interface/converter_ideas.gfx");
+	if (!ideasFile.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/interface/ideas.gfx";
+		exit(-1);
+	}
+
+	ideasFile << "spriteTypes = {\n";
+	for (auto country: countries)
+	{
+		country.second->outputIdeaGraphics(ideasFile);
+	}
+	ideasFile << "\n";
+	ideasFile << "}\n";
 }
 
 

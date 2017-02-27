@@ -53,14 +53,19 @@ typedef struct
 class graphicsMapper
 {
 	public:
-		static string getPortrait(string cultureGroup, string ideology)
+		static string getLeaderPortrait(string cultureGroup, string ideology)
 		{
-			return getInstance()->GetPortrait(cultureGroup, ideology);
+			return getInstance()->GetLeaderPortrait(cultureGroup, ideology);
 		}
 
-		static vector<string> getPortraits(string cultureGroup, string ideology)
+		static vector<string> getLeaderPortraits(string cultureGroup, string ideology)
 		{
-			return getInstance()->GetPortraits(cultureGroup, ideology);
+			return getInstance()->GetLeaderPortraits(cultureGroup, ideology);
+		}
+
+		static string getMinisterPortrait(string cultureGroup, string ideology)
+		{
+			return "idea_unknown.dds";
 		}
 	private:
 		static graphicsMapper* instance;
@@ -75,8 +80,8 @@ class graphicsMapper
 		graphicsMapper();
 		void loadLeaderPortraitMappings(const string& cultureGroup, Object* portraitMappings);
 
-		string GetPortrait(string cultureGroup, string ideology);
-		vector<string> GetPortraits(string cultureGroup, string ideology);
+		string GetLeaderPortrait(string cultureGroup, string ideology);
+		vector<string> GetLeaderPortraits(string cultureGroup, string ideology);
 
 		ideologyToPortraitsMap mappings;
 

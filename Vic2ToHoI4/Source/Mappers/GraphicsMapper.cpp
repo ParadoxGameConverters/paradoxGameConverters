@@ -86,16 +86,16 @@ void graphicsMapper::loadLeaderPortraitMappings(const string& cultureGroup, Obje
 }
 
 
-string graphicsMapper::GetPortrait(string cultureGroup, string ideology)
+string graphicsMapper::GetLeaderPortrait(string cultureGroup, string ideology)
 {
-	vector<string> portraits = GetPortraits(cultureGroup, ideology);
+	vector<string> portraits = GetLeaderPortraits(cultureGroup, ideology);
 
 	std::uniform_int_distribution<int> firstNameGen(0, portraits.size() - 1);
 	return portraits[firstNameGen(rng)];
 }
 
 
-vector<string> graphicsMapper::GetPortraits(string cultureGroup, string ideology)
+vector<string> graphicsMapper::GetLeaderPortraits(string cultureGroup, string ideology)
 {
 	auto mapping = mappings.element.find(cultureGroup);
 	if (mapping != mappings.element.end())
