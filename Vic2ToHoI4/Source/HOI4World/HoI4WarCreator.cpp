@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -30,6 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/ProvinceDefinitions.h"
 #include "../Mappers/ProvinceNeighborMapper.h"
 #include "../Mappers/StateMapper.h"
+#include "../V2World/V2Party.h"
 
 
 
@@ -79,7 +80,7 @@ void HoI4WarCreator::addAllTargetsToWorldTargetMap()
 void HoI4WarCreator::addTargetsToWorldTargetMap(HoI4Country* country)
 {
 	int maxGCWars = 0;
-	if ((country->getGovernment() != "hms_government" || (country->getGovernment() == "hms_government" && (country->getRulingParty().war_pol == "jingoism" || country->getRulingParty().war_pol == "pro_military"))) && country->getGovernment() != "democratic")
+	if (country->getGovernmentIdeology() != "democratic")
 	{
 		vector<HoI4Country*> GCTargets;
 		for (auto GC: getDistancesToGreatPowers(country))
@@ -153,29 +154,58 @@ double HoI4WarCreator::calculateWorldStrength(ofstream& AILog)
 
 void HoI4WarCreator::generateTotalitarianWars(ofstream& AILog, vector<HoI4Country*>& LeaderCountries, set<HoI4Faction*>& factionsAtWar)
 {
-	AILog << "Creating Fascist/Communist/Monarchist wars\n";
+	AILog << "Creating Fascist/Communist/Absolutist/Radical wars\n";
 	for (auto greatPower: theWorld->getGreatPowers())
 	{
 		vector<HoI4Faction*> newFactionsAtWar;
 
 		LeaderCountries.push_back(greatPower);
-		if ((greatPower->getGovernment() == "fascism") || greatPower->getRulingIdeology() == "fascism")
+		if (greatPower->getGovernmentIdeology() == "fascism")
 		{
 			newFactionsAtWar = fascistWarMaker(greatPower, AILog);
 		}
-		else if (greatPower->getGovernment() == "communism")
+		else if (greatPower->getGovernmentIdeology() == "communism")
 		{
 			newFactionsAtWar = communistWarCreator(greatPower, AILog);
 		}
-		else if (
-			(greatPower->getGovernment() == "absolute_monarchy") ||
-			(greatPower->getGovernment() == "prussian_constitutionalism" && greatPower->getRulingParty().war_pol == "jingoism")
-			)
+		else if (greatPower->getGovernmentIdeology() == "absolutist")
 		{
-			newFactionsAtWar = MonarchyWarCreator(greatPower);
+			newFactionsAtWar = absolutistWarCreator(greatPower);
+		}
+		else if (greatPower->getGovernmentIdeology() == "radical")
+		{
+			newFactionsAtWar = radicalWarCreator(greatPower);
 		}
 
 		factionsAtWar.insert(newFactionsAtWar.begin(), newFactionsAtWar.end());
+	}
+
+	for (auto country: theWorld->getCountries())
+	{
+		if (country.second->isHuman() && !country.second->isGreatPower())
+		{
+			vector<HoI4Faction*> newFactionsAtWar;
+
+			LeaderCountries.push_back(country.second);
+			if (country.second->getGovernmentIdeology() == "fascism")
+			{
+				newFactionsAtWar = fascistWarMaker(country.second, AILog);
+			}
+			else if (country.second->getGovernmentIdeology() == "communism")
+			{
+				newFactionsAtWar = communistWarCreator(country.second, AILog);
+			}
+			else if (country.second->getGovernmentIdeology() == "absolutist")
+			{
+				newFactionsAtWar = absolutistWarCreator(country.second);
+			}
+			else if (country.second->getGovernmentIdeology() == "radical")
+			{
+				newFactionsAtWar = radicalWarCreator(country.second);
+			}
+
+			factionsAtWar.insert(newFactionsAtWar.begin(), newFactionsAtWar.end());
+		}
 	}
 }
 
@@ -201,13 +231,7 @@ void HoI4WarCreator::generateDemocracyWars(ofstream& AILog, set<HoI4Faction*>& f
 
 	for (auto greatPower: theWorld->getGreatPowers())
 	{
-		if (
-			(greatPower->getGovernment() == "democratic") ||
-			(
-			(greatPower->getGovernment() == "hms_government") &&
-				(greatPower->getRulingParty().war_pol == "pacifism" || greatPower->getRulingParty().war_pol == "anti_military")
-				)
-			)
+		if (greatPower->getGovernmentIdeology() == "democratic")
 		{
 			vector<HoI4Faction*> newFactionsAtWar;
 			newFactionsAtWar = democracyWarCreator(greatPower);
@@ -225,7 +249,7 @@ void HoI4WarCreator::generateAdditionalWars(ofstream& AILog, vector<HoI4Country*
 	{
 		AILog << "added country to make more wars " + GCEvilnessSorted[i]->getSourceCountry()->getName("english") << "\n";
 		vector <HoI4Faction*> newCountriesatWar;
-		newCountriesatWar = MonarchyWarCreator(GCEvilnessSorted[i]);
+		newCountriesatWar = absolutistWarCreator(GCEvilnessSorted[i]);
 
 		for (auto addedFactions : newCountriesatWar)
 		{
@@ -250,39 +274,23 @@ vector<HoI4Country*> HoI4WarCreator::calculateEvilness(vector<HoI4Country*> Lead
 	vector<HoI4Country*> GCEvilnessSorted;
 	for (auto GC: theWorld->getGreatPowers())
 	{
-		if (	GC->getGovernment() == "prussian_constitutionalism" ||
-			GC->getGovernment() == "hms_government" ||
-			GC->getGovernment() == "absolute_monarchy" &&
-			std::find(LeaderCountries.begin(), LeaderCountries.end(), GC) == LeaderCountries.end() &&
-			(
-				GC->getGovernment() != "hms_government" ||
-				(
-					GC->getGovernment() == "hms_government" &&
-					(
-						GC->getRulingParty().war_pol == "jingoism" ||
-						GC->getRulingParty().war_pol == "pro_military"
-						)
-					)
-				) &&
-			GC->getGovernment() != "democratic")
+		if (	GC->getGovernmentIdeology() == "absolutist" &&
+				std::find(LeaderCountries.begin(), LeaderCountries.end(), GC) == LeaderCountries.end()
+			)
 		{
 			double v1 = rand() % 95 + 1;
 			v1 = v1 / 100;
 			double evilness = v1;
 			string government = "";
-			if (GC->getGovernment() == "absolute_monarchy")
+			if (GC->getGovernmentIdeology() == "absolutist")
 				evilness += 3;
-			else if (GC->getGovernment() == "prussian_constitutionalism")
-				evilness += 2;
-			else if (GC->getGovernment() == "hms_government")
-				evilness += 1;
-			HoI4Party countryrulingparty = GC->getRulingParty();
+			V2Party* countryrulingparty = GC->getRulingParty();
 
-			if (countryrulingparty.war_pol == "jingoism")
+			if (countryrulingparty->war_policy == "jingoism")
 				evilness += 3;
-			else if (countryrulingparty.war_pol == "pro_military")
+			else if (countryrulingparty->war_policy == "pro_military")
 				evilness += 2;
-			else if (countryrulingparty.war_pol == "anti_military")
+			else if (countryrulingparty->war_policy == "anti_military")
 				evilness += 1;
 
 			//need to add ruling party to factor
@@ -419,21 +427,18 @@ vector<HoI4Country*> HoI4WarCreator::GetMorePossibleAllies(HoI4Country* CountryT
 				}
 		}
 	}
-	string yourgovernment = CountryThatWantsAllies->getGovernment();
+	string yourIdeology = CountryThatWantsAllies->getGovernmentIdeology();
 	volatile vector<HoI4Country*> vCountriesWithin500Miles = CountriesWithin500Miles;
 	//look for all capitals within a distance of Berlin to Tehran
 	for (unsigned int i = 0; i < CountriesWithin500Miles.size(); i++)
 	{
-		string allygovernment = CountriesWithin500Miles[i]->getGovernment();
+		string allyIdeology = CountriesWithin500Miles[i]->getGovernmentIdeology();
 		//possible government matches
-		if (allygovernment == yourgovernment
-			|| (yourgovernment == "absolute_monarchy" && (allygovernment == "fascism" || allygovernment == "democratic" || allygovernment == "prussian_constitutionalism" || allygovernment == "hms_government"))
-			|| (yourgovernment == "democratic" && (allygovernment == "hms_government" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism"))
-			|| (yourgovernment == "prussian_constitutionalism" && (allygovernment == "hms_government" || allygovernment == "absolute_monarchy" || allygovernment == "democratic" || allygovernment == "fascism"))
-			|| (yourgovernment == "hms_government" && (allygovernment == "democratic" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism"))
-			|| (yourgovernment == "communism" && (allygovernment == "syndicalism"))
-			|| (yourgovernment == "syndicalism" && (allygovernment == "communism" || allygovernment == "fascism"))
-			|| (yourgovernment == "fascism" && (allygovernment == "syndicalism" || allygovernment == "absolute_monarchy" || allygovernment == "prussian_constitutionalism" || allygovernment == "hms_government")))
+		if (
+				(allyIdeology == yourIdeology) /* ||
+				// add other possible combinations here, but maybe coordinate with HoI4World::governmentsAllowFaction()
+				*/
+			)
 		{
 
 			if (maxcountries < 2)
@@ -855,6 +860,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 		//FIXME 
 		//Need to get Drift Defense to work
 		//newFocus->completionReward += "			drift_defence_factor = 0.5\n";
+		newFocus->completionReward += "			add_named_threat = { threat = 2 name = " + newFocus->id + " }\n";
 		newFocus->completionReward += "			add_ideas = fascist_influence";
 		FocusTree->addFocus(newFocus);
 
@@ -886,7 +892,6 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 				//int x = i * 3;
 				string annexername = Leader->getSourceCountry()->getName("english");
 				string annexedname = nan[i]->getSourceCountry()->getName("english");
-				findFaction(Leader)->addMember(nan[i]);
 				//for random date
 				int v1 = rand() % 5 + 1;
 				int v2 = rand() % 5 + 1;
@@ -909,6 +914,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 				newFocus->aiWillDo += "				factor = 0\n";
 				newFocus->aiWillDo += "				date < 1937.6.6\n";
 				newFocus->aiWillDo += "			}";
+				newFocus->completionReward += "			add_named_threat = { threat = 2 name = " + newFocus->id + " }\n";
 				newFocus->completionReward += "			army_experience = 10\n";
 				newFocus->completionReward += "			if = {\n";
 				newFocus->completionReward += "				limit = {\n";
@@ -984,7 +990,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 		}
 		newFocus->cost     = 10;
 		newFocus->aiWillDo = "	factor = 5";
-		newFocus->completionReward += "			add_named_threat = { threat = 2 name = \"Fascist Expansion\" }";//give some claims or cores
+		newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }";//give some claims or cores
 		FocusTree->addFocus(newFocus);
 
 		for (unsigned int i = 0; i < 1; i++)
@@ -1022,6 +1028,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 				newFocus->aiWillDo += "		factor = 0\n";
 				newFocus->aiWillDo += "		date < 1937.6.6\n";
 				newFocus->aiWillDo += "	}";
+				newFocus->completionReward += "			add_named_threat = { threat = 2 name = " + newFocus->id + " }\n";
 				newFocus->completionReward += "			army_experience = 10\n";
 				newFocus->completionReward += "			if = {\n";
 				newFocus->completionReward += "				limit = {\n";
@@ -1057,6 +1064,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 				newFocus->aiWillDo += "		factor = 0\n";
 				newFocus->aiWillDo += "		date < 1937.6.6\n";
 				newFocus->aiWillDo += "	}";
+				newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
 				newFocus->completionReward += "			create_wargoal = {\n";
 				newFocus->completionReward += "				type = annex_everything\n";
 				newFocus->completionReward += "				target = " + nan[i]->getTag() + "\n";
@@ -1097,10 +1105,6 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 	}
 	//events for allies
 	vector<HoI4Country*> newAllies = GetMorePossibleAllies(Leader);
-	for each (auto newally in newAllies)
-	{
-		findFaction(Leader)->addMember(newally);
-	}
 	if (newAllies.size() > 0)
 	{
 		//Focus to call summit, maybe have events from summit
@@ -1118,6 +1122,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 		newFocus->aiWillDo += "			}";
 		//FIXME
 		//newFocus->completionReward += "			opinion_gain_monthly_factor = 1.0";
+		newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
 		FocusTree->addFocus(newFocus);
 	}
 
@@ -1233,7 +1238,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 	{
 		GCDistanceSorted.push_back(iterator->second);
 	}
-	sort(GCDistanceSorted.begin(), GCDistanceSorted.end());
+
 	vector<HoI4Country*> GCTargets;
 	for each (auto GC in GCDistanceSorted)
 	{
@@ -1244,7 +1249,6 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 			if (GC != Leader)
 				GCTargets.push_back(GC);
 		}
-
 	}
 	int maxGCWars = 0;
 	int start = 0;
@@ -1316,6 +1320,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 					newFocus->aiWillDo += "				}\n";
 					newFocus->aiWillDo += "			}";
 				}
+				newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
 				newFocus->completionReward += "			create_wargoal = {\n";
 				newFocus->completionReward += "				type = annex_everything\n";
 				newFocus->completionReward += "				target = " + GC->getTag() + "\n";
@@ -1374,18 +1379,18 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 		{
 			double com = 0;
 			HoI4Faction* neighFaction = findFaction(neigh.second);
-			for (auto party : neigh.second->getParties())
+			for (auto party : neigh.second->getIdeologySupport())
 			{
-				if (party.name.find("socialist") != string::npos || party.name.find("communist") != string::npos || party.name.find("anarcho_liberal") != string::npos)
-					com += party.popularity;
+				if ((party.first == "socialist") || (party.first == "communist") || (party.first == "anarcho_liberal"))
+					com += party.second;
 			}
-			if (com > 25 && neigh.second->getRulingParty().ideology != "communist" && HowToTakeLand(neigh.second, Leader, 2.5) == "coup")
+			if (com > 25 && neigh.second->getRulingParty()->ideology != "communist" && HowToTakeLand(neigh.second, Leader, 2.5) == "coup")
 			{
 				//look for neighboring countries to spread communism too(Need 25 % or more Communism support), Prioritizing those with "Communism Allowed" Flags, prioritizing those who are weakest
 				//	Method() Influence Ideology and Attempt Coup
 				coups.push_back(neigh.second);
 			}
-			else if (neighFaction->getMembers().size() == 1 && neigh.second->getRulingParty().ideology != "communist")
+			else if (neighFaction->getMembers().size() == 1 && neigh.second->getRulingParty()->ideology != "communist")
 			{
 				//	Then look for neighboring countries to spread communism by force, prioritizing weakest first
 				forcedtakeover.push_back(neigh.second);
@@ -1548,7 +1553,7 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 		newFocus->yPos     = 1;
 		newFocus->cost     = 10;
 		newFocus->aiWillDo = "			factor = 5";
-		newFocus->completionReward += "			add_named_threat = { threat = 2 name = \"Socialist World Republic\" }";
+		newFocus->completionReward += "			add_named_threat = { threat = 2 name = " + newFocus->id + " }";
 		//FIXME
 		//maybe add some claims?
 		FocusTree->addFocus(newFocus);
@@ -1613,6 +1618,7 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 					newFocus->aiWillDo += "			}";
 				}
 
+				newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
 				newFocus->completionReward += "			create_wargoal = {\n";
 				newFocus->completionReward += "				type = puppet_wargoal_focus\n";
 				newFocus->completionReward += "				target = " + TargetsbyIC[i]->getTag() + "\n";
@@ -1837,6 +1843,8 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 					newFocus->aiWillDo += "			}\n";
 				}
 
+
+				newFocus->completionReward += "			add_named_threat = { threat = 5 name = " + newFocus->id + " }\n";
 				newFocus->completionReward += "			create_wargoal = {\n";
 				newFocus->completionReward += "				type = puppet_wargoal_focus\n";
 				newFocus->completionReward += "				target = " + GC->getTag() + "\n";
@@ -1866,7 +1874,7 @@ vector<HoI4Faction*> HoI4WarCreator::democracyWarCreator(HoI4Country* Leader)
 	for (auto GC: theWorld->getGreatPowers())
 	{
 		double relation = Leader->getRelations(GC->getTag())->getRelations();
-		if (relation < 100 && (GC->getGovernment() != "hms_government" || (GC->getGovernment() == "hms_government" && (GC->getRulingParty().war_pol == "jingoism" || GC->getRulingParty().war_pol == "pro_military"))) && GC->getGovernment() != "democratic" && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
+		if (relation < 100 && GC->getGovernmentIdeology() != "democratic" && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
 		{
 			string HowToTakeGC = HowToTakeLand(GC, Leader, 3);
 			//if (HowToTakeGC == "noactionneeded" || HowToTakeGC == "factionneeded")
@@ -1891,7 +1899,7 @@ vector<HoI4Faction*> HoI4WarCreator::democracyWarCreator(HoI4Country* Leader)
 }
 
 
-vector<HoI4Faction*> HoI4WarCreator::MonarchyWarCreator(HoI4Country* country)
+vector<HoI4Faction*> HoI4WarCreator::absolutistWarCreator(HoI4Country* country)
 {
 	HoI4FocusTree* focusTree = genericFocusTree->makeCustomizedCopy(country);
 
@@ -1899,7 +1907,7 @@ vector<HoI4Faction*> HoI4WarCreator::MonarchyWarCreator(HoI4Country* country)
 
 	vector<HoI4Country*> weakNeighbors = findWeakNeighbors(country);
 	vector<HoI4Country*> weakColonies = findWeakColonies(country);
-	focusTree->addMonarchyEmpireNationalFocuses(country, weakColonies, weakNeighbors);
+	focusTree->addAbsolutistEmpireNationalFocuses(country, weakColonies, weakNeighbors);
 
 	vector<HoI4Country*> greatPowerTargets = getGreatPowerTargets(country);
 	vector<HoI4Faction*> CountriesAtWar = addGreatPowerWars(country, focusTree, greatPowerTargets);
@@ -1908,6 +1916,14 @@ vector<HoI4Faction*> HoI4WarCreator::MonarchyWarCreator(HoI4Country* country)
 	country->addNationalFocus(focusTree);
 
 	return CountriesAtWar;
+}
+
+
+vector<HoI4Faction*> HoI4WarCreator::radicalWarCreator(HoI4Country* country)
+{
+	vector<HoI4Faction*> countriesAtWar;
+
+	return countriesAtWar;
 }
 
 
@@ -2121,6 +2137,7 @@ vector<HoI4Faction*> HoI4WarCreator::addGreatPowerWars(HoI4Country* country, HoI
 				newFocus->aiWillDo += "				}\n";
 				newFocus->aiWillDo += "			}";
 			}
+			newFocus->completionReward += "			add_named_threat = { threat = 5 name = " + newFocus->id + " }\n";
 			newFocus->completionReward += "			create_wargoal = {\n";
 			newFocus->completionReward += "				type = annex_everything\n";
 			newFocus->completionReward += "				target = " + target->getTag() + "\n";

@@ -21,42 +21,45 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef HOI4_SUPPLY_ZONES_H
-#define HOI4_SUPPLY_ZONES_H
+#ifndef CULTUREGROUPMAPPER_H
+#define CULTUREGROUPMAPPER_H
 
 
 
 #include <map>
+#include <random>
 #include <string>
 #include <vector>
 using namespace std;
 
 
 
-class HoI4States;
-class HoI4SupplyZone;
-class Object;
-
-
-
-class HoI4SupplyZones
+class cultureGroupMapper
 {
 	public:
-		HoI4SupplyZones();
-		void output();
-		void convertSupplyZones(const HoI4States* states);
-
+		static string getCultureGroup(string culture)
+		{
+			return getInstance()->GetCultureGroup(culture);
+		}
 	private:
-		void importStates();
-		void importSupplyZone(const string& supplyZonesFile);
-		void mapProvincesToSupplyZone(int ID, Object* supplyAreaObj);
+		static cultureGroupMapper* instance;
+		static cultureGroupMapper* getInstance()
+		{
+			if (instance == nullptr)
+			{
+				instance = new cultureGroupMapper;
+			}
+			return instance;
+		}
+		cultureGroupMapper();
+		void processVic2CulturesFile(string culturesFile);
 
-		map<int, vector<int>> defaultStateToProvinceMap;
-		map<int, string> supplyZonesFilenames;
-		map<int, HoI4SupplyZone*> supplyZones;
-		map<int, int> provinceToSupplyZoneMap;
+		string GetCultureGroup(string culture);
+
+		map<string, string> mappings;
 };
 
 
 
-#endif HOI4_SUPPLY_ZONES_H
+
+#endif //CULTUREGROUPMAPPER_H

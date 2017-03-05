@@ -171,11 +171,15 @@ void createModFile()
 		LOG(LogLevel::Error) << "Could not create .mod file";
 		exit(-1);
 	}
+
+	if (Configuration::getHOI4Version() >= HOI4Version("1.3.3"))
+	{
+		modFile << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
+	}
 	modFile << "name = \"Converted - " << Configuration::getOutputName() << "\"\n";
 	modFile << "path = \"mod/" << Configuration::getOutputName() << "/\"\n";
 	modFile << "user_dir = \"" << Configuration::getOutputName() << "_user_dir\"\n";
 	modFile << "replace_path=\"history/countries\"\n";
-	//modFile << "replace = \"history/diplomacy\"\n";
 	modFile << "replace_path=\"history/states\"\n";
 	modFile << "supported_version=\"" << Configuration::getHOI4Version() << "\"";
 	modFile.close();

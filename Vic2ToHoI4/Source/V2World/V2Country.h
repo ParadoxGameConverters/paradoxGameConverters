@@ -59,6 +59,7 @@ public:
 	vector<Vic2State*> getStates() const { return states; }
 	string getTag() const { return tag; }
 	string getPrimaryCulture() const { return primaryCulture; }
+	string getPrimaryCultureGroup() const { return primaryCultureGroup; }
 	set<string> getAcceptedCultures() const { return acceptedCultures; }
 	bool isAnAcceptedCulture(const string& culture) const { return (acceptedCultures.count(culture) > 0); }
 	set<string> getInventions() const { return inventions; }
@@ -74,12 +75,12 @@ public:
 	double getWarExhaustion() const { return warExhaustion; }
 	map<string, string> getAllReforms() const { return reformsArray; }
 	bool isGreatNation() const { return greatNation; }
-	map<string, string> getLocalisedNames() const { return namesByLanguage; }
-	map<string, string> getLocalisedAdjectives() const { return adjectivesByLanguage; }
 	map<int, V2Province*> getProvinces() const { return provinces; }
 	vector<V2Province*> getCores() const { return cores; }
 	bool isEmpty() const { return ((cores.size() == 0) && (provinces.size() == 0)); }
 	bool isCivilized() const { return civilized; }
+	bool isHuman() const { return human; }
+	map<string, double> getUpperHouseComposition() const { return upperHouseComposition; }
 
 	string getReform(const string& reform) const;
 	string getName(const string& language) const;
@@ -87,7 +88,7 @@ public:
 	double getUpperHousePercentage(const string& ideology) const;
 	long getEmployedWorkers() const;
 	V2Party* getRulingParty(const vector<V2Party*>& allParties) const;
-	vector<V2Party*> getActiveParties(const vector<V2Party*>& allParties) const;
+	set<V2Party*> getActiveParties(const vector<V2Party*>& allParties) const;
 	bool hasCoreOnCapital() const;
 
 private:
@@ -110,6 +111,7 @@ private:
 	void readInLeaders(const Object* countryObj);
 	void readInStates(const Object* countryObj);
 	void createNewState(const Object* stateObj);
+	void detectIfHuman(const Object* stateObj);
 
 	void setLocalisationName(const string& language, const string& name);
 	void setLocalisationAdjective(const string& language, const string& adjective);
@@ -123,6 +125,7 @@ private:
 	int capital;
 
 	string primaryCulture;
+	string primaryCultureGroup;
 	set<string> acceptedCultures;
 
 	vector<string> techs;
@@ -151,6 +154,8 @@ private:
 	string dominionAdjective;
 	map<string, string> namesByLanguage;
 	map<string, string> adjectivesByLanguage;
+
+	bool human;
 };
 
 #endif	// V2COUNTRY_H_

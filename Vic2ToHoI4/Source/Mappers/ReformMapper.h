@@ -21,42 +21,51 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef HOI4_SUPPLY_ZONES_H
-#define HOI4_SUPPLY_ZONES_H
+#ifndef REFORMMAPPER_H
+#define REFORMMAPPER_H
 
 
 
 #include <map>
 #include <string>
-#include <vector>
 using namespace std;
 
 
-
-class HoI4States;
-class HoI4SupplyZone;
 class Object;
 
 
 
-class HoI4SupplyZones
+class reformMapper
 {
 	public:
-		HoI4SupplyZones();
-		void output();
-		void convertSupplyZones(const HoI4States* states);
+		static map<string, string> getReformTypes()
+		{
+			return getInstance()->reformTypes;
+		}
 
 	private:
-		void importStates();
-		void importSupplyZone(const string& supplyZonesFile);
-		void mapProvincesToSupplyZone(int ID, Object* supplyAreaObj);
+		static reformMapper* instance;
+		static reformMapper* getInstance()
+		{
+			if (instance == nullptr)
+			{
+				instance = new reformMapper();
+			}
+			return instance;
+		}
+		reformMapper();
+		void initReforms(Object* obj);
 
-		map<int, vector<int>> defaultStateToProvinceMap;
-		map<int, string> supplyZonesFilenames;
-		map<int, HoI4SupplyZone*> supplyZones;
-		map<int, int> provinceToSupplyZoneMap;
+		map<string, string> reformTypes;
+
+		map<string, int>			politicalReformScores;
+		map<string, int>			socialReformScores;
+		int							totalPoliticalReforms;
+		int							totalSocialReforms;
+		bool							reformsInitialized;
 };
 
 
 
-#endif HOI4_SUPPLY_ZONES_H
+
+#endif // REFORMMAPPER_H

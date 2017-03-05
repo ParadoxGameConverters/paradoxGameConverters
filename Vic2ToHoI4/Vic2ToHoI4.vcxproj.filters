@@ -185,6 +185,18 @@
     <ClCompile Include="Source\HOI4World\HoI4Agreement.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Mappers\NamesMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\CultureGroupMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\ReformMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\GraphicsMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -357,6 +369,18 @@
     </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4Agreement.h">
       <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\NamesMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\CultureGroupMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\ReformMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\GraphicsMapper.h">
+      <Filter>Mappers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

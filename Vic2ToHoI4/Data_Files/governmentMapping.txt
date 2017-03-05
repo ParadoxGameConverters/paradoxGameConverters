@@ -1,4 +1,4 @@
-# Copyright (c) 2016 The Paradox Game Converters Project
+# Copyright (c) 2017 The Paradox Game Converters Project
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,29 +20,66 @@
 
 
 
-mappings = {
-link = { vic = absolute_monarchy hoi = absolute_monarchy}
-link = { vic = prussian_constitutionalism ruling_party = fascist hoi = absolute_monarchy }
-link = { vic = prussian_constitutionalism ruling_party = reactionary hoi =  prussian_constitutionalism }
-link = { vic = prussian_constitutionalism political_reforms = 0.75 hoi = prussian_constitutionalism }
-link = { vic = prussian_constitutionalism hoi = prussian_constitutionalism }
-link = { vic = hms_government ruling_party = fascist hoi = hms_government }
-link = { vic = hms_government hoi = hms_government }
-link = { vic = democracy ruling_party = fascist hoi = democratic}
-link = { vic = democracy ruling_party = reactionary hoi = democratic}
-link = { vic = democracy ruling_party = conservative political_reforms = 0.9 social_reforms_above = 0.90 hoi = democratic}
-link = { vic = democracy ruling_party = conservative political_reforms = 0.9 social_reforms_below = 0.33 hoi = democratic}
-link = { vic = democracy ruling_party = conservative hoi = democratic}
-link = { vic = democracy ruling_party = anarcho_liberal hoi = democratic}
-link = { vic = democracy ruling_party = liberal social_reforms_above = 0.66 hoi = democratic}
-link = { vic = democracy ruling_party = liberal hoi = democratic}
-link = { vic = democracy ruling_party = socialist social_reforms_above = 0.90 hoi = democratic}
-link = { vic = democracy ruling_party = socialist hoi = democratic}
-link = { vic = democracy ruling_party = communist hoi = democratic}
-link = { vic = proletarian_dictatorship hoi = communism}
-link = { vic = presidential_dictatorship ruling_party = liberal hoi = absolute_monarchy }
-link = { vic = presidential_dictatorship ruling_party = anarcho_liberal hoi = syndicalism}
-link = { vic = presidential_dictatorship hoi = fascism}
-link = { vic = bourgeois_dictatorship hoi = syndicalism}
-link = { vic = fascist_dictatorship hoi = fascism}
+government_mappings = {
+	mapping = { vic = proletarian_dictatorship hoi_gov = communism hoi_leader = leninism }
+	mapping = { vic = presidential_dictatorship hoi_gov = absolutist hoi_leader = dictatorship }
+	mapping = { vic = bourgeois_dictatorship hoi_gov = radical hoi_leader = minarchism }
+	mapping = { vic = fascist_dictatorship hoi_gov = fascism hoi_leader = fascism_ideology }
+	mapping = { vic = absolute_monarchy hoi_gov = absolutist hoi_leader = absolute_monarchy }
+	mapping = { vic = hms_government ruling_party = liberal hoi_gov = democratic hoi_leader = liberalism }
+	mapping = { vic = hms_government ruling_party = socialist hoi_gov = democratic hoi_leader = socialism }
+	mapping = { vic = hms_government ruling_party = conservative hoi_gov = democratic hoi_leader = conservatism }
+	mapping = { vic = hms_government ruling_party = reactionary hoi_gov = democratic hoi_leader = conservatism }
+	mapping = { vic = hms_government ruling_party = communist hoi_gov = democratic hoi_leader = socialism }
+	mapping = { vic = hms_government ruling_party = anarcho_liberal hoi_gov = democratic hoi_leader = liberalism }
+	mapping = { vic = hms_government ruling_party = fascist hoi_gov = democratic hoi_leader = conservatism }
+	mapping = { vic = democracy ruling_party = liberal hoi_gov = democratic hoi_leader = liberalism }
+	mapping = { vic = democracy ruling_party = socialist hoi_gov = democratic hoi_leader = socialism }
+	mapping = { vic = democracy ruling_party = conservative hoi_gov = democratic hoi_leader = conservatism }
+	mapping = { vic = democracy ruling_party = reactionary hoi_gov = democratic hoi_leader = conservatism }
+	mapping = { vic = democracy ruling_party = communist hoi_gov = democratic hoi_leader = socialism }
+	mapping = { vic = democracy ruling_party = anarcho_liberal hoi_gov = democratic hoi_leader = liberalism }
+	mapping = { vic = democracy ruling_party = fascist hoi_gov = democratic hoi_leader = conservatism }
+	mapping = { vic = prussian_constitutionalism ruling_party = liberal hoi_gov = democratic hoi_leader = liberalism }
+	mapping = { vic = prussian_constitutionalism ruling_party = socialist hoi_gov = democratic hoi_leader = socialism }
+	mapping = { vic = prussian_constitutionalism ruling_party = conservative hoi_gov = absolutist hoi_leader = prussian_const }
+	mapping = { vic = prussian_constitutionalism ruling_party = reactionary hoi_gov = absolutist hoi_leader = absolute_monarchy }
+}
+
+party_mappings = {
+	mapping = { ruling_ideology = absolutist vic2_ideology = reactionary supported_ideology = absolutist }
+	mapping = { ruling_ideology = absolutist vic2_ideology = conservative supported_ideology = absolutist }
+	mapping = { ruling_ideology = absolutist vic2_ideology = anarcho_liberal supported_ideology = radical }
+	mapping = { ruling_ideology = absolutist vic2_ideology = liberal supported_ideology = democratic }
+	mapping = { ruling_ideology = absolutist vic2_ideology = communist supported_ideology = communism }
+	mapping = { ruling_ideology = absolutist vic2_ideology = socialist supported_ideology = democratic }
+	mapping = { ruling_ideology = absolutist vic2_ideology = fascist supported_ideology = fascism }
+	mapping = { ruling_ideology = radical vic2_ideology = reactionary supported_ideology = absolutist }
+	mapping = { ruling_ideology = radical vic2_ideology = conservative supported_ideology = democratic }
+	mapping = { ruling_ideology = radical vic2_ideology = anarcho_liberal supported_ideology = radical }
+	mapping = { ruling_ideology = radical vic2_ideology = liberal supported_ideology = radical }
+	mapping = { ruling_ideology = radical vic2_ideology = communist supported_ideology = communism }
+	mapping = { ruling_ideology = radical vic2_ideology = socialist supported_ideology = democratic }
+	mapping = { ruling_ideology = radical vic2_ideology = fascist supported_ideology = fascism }
+	mapping = { ruling_ideology = communism vic2_ideology = reactionary supported_ideology = absolutist }
+	mapping = { ruling_ideology = communism vic2_ideology = conservative supported_ideology = democratic }
+	mapping = { ruling_ideology = communism vic2_ideology = anarcho_liberal supported_ideology = radical }
+	mapping = { ruling_ideology = communism vic2_ideology = liberal supported_ideology = democratic }
+	mapping = { ruling_ideology = communism vic2_ideology = communist supported_ideology = communism }
+	mapping = { ruling_ideology = communism vic2_ideology = socialist supported_ideology = communism }
+	mapping = { ruling_ideology = communism vic2_ideology = fascist supported_ideology = fascism }
+	mapping = { ruling_ideology = fascism vic2_ideology = reactionary supported_ideology = absolutist }
+	mapping = { ruling_ideology = fascism vic2_ideology = conservative supported_ideology = democratic }
+	mapping = { ruling_ideology = fascism vic2_ideology = anarcho_liberal supported_ideology = radical }
+	mapping = { ruling_ideology = fascism vic2_ideology = liberal supported_ideology = democratic }
+	mapping = { ruling_ideology = fascism vic2_ideology = communist supported_ideology = communism }
+	mapping = { ruling_ideology = fascism vic2_ideology = socialist supported_ideology = democratic }
+	mapping = { ruling_ideology = fascism vic2_ideology = fascist supported_ideology = fascism }
+	mapping = { ruling_ideology = democratic vic2_ideology = reactionary supported_ideology = absolutist }
+	mapping = { ruling_ideology = democratic vic2_ideology = conservative supported_ideology = democratic }
+	mapping = { ruling_ideology = democratic vic2_ideology = anarcho_liberal supported_ideology = radical }
+	mapping = { ruling_ideology = democratic vic2_ideology = liberal supported_ideology = democratic }
+	mapping = { ruling_ideology = democratic vic2_ideology = communist supported_ideology = communism }
+	mapping = { ruling_ideology = democratic vic2_ideology = socialist supported_ideology = democratic }
+	mapping = { ruling_ideology = democratic vic2_ideology = fascist supported_ideology = fascism }
 }

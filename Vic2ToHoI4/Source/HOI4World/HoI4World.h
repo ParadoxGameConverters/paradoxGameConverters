@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4States.h"
 #include "../Mappers/Mapper.h"
 #include <map>
+#include <set>
 #include <string>
 #include <vector>
 using namespace std;
@@ -68,6 +69,9 @@ class HoI4World
 
 		void convertCountries();
 		void convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, governmentJobsMap governmentJobs, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+		void identifyMajorIdeologies();
+		void addNeutrality();
+		void convertIdeologySupport();
 
 		void convertIndustry();
 		void addStatesToCountries();
@@ -129,6 +133,7 @@ class HoI4World
 
 		void outputCommonCountries() const;
 		void outputColorsfile() const;
+		void outputNames() const;
 		void outputMap() const;
 		void outputCountries() const;
 		void outputRelations() const;
@@ -150,13 +155,14 @@ class HoI4World
 		map<string, HoI4Country*> countries;
 		map<string, HoI4Country*> landedCountries;
 		vector<HoI4Country*> greatPowers;
+
+		set<string> majorIdeologies;
 		
 		vector<HoI4Faction*> factions;
 		HoI4Diplomacy* diplomacy;
 		HoI4Events* events;
 
 		leaderTraitsMap leaderTraits;
-		namesMapping namesMap;
 		portraitMapping portraitMap;
 };
 
