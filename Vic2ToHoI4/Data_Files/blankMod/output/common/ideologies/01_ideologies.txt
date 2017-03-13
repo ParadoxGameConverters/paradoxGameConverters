@@ -2,8 +2,6 @@ ideologies = {
 	radical = {
 	
 		types = {
-			anarcho_cap = {
-			}
 			minarchism = {
 			}
 		}
@@ -79,6 +77,68 @@ ideologies = {
 		}
 
 		ai_neutral = yes # 
+	}
+
+	neutrality = {
+
+		types = {
+			minarchism_neutral = {
+			}
+			absolute_monarchy_neutral = {
+			}
+			prussian_const_neutral = {
+			}
+			dictatorship_neutral = {
+			}
+			conservatism_neutral = {
+			}
+			liberalism_neutral = {
+			}
+			socialism_neutral = {
+			}
+			marxism_neutral = {
+			}
+			leninism_neutral = {
+			}
+			fascism_ideology_neutral = {
+			}
+		}
+
+		dynamic_faction_names = {
+			"FACTION_NAME_NONALIGNED_1"
+			"FACTION_NAME_NONALIGNED_2"
+			"FACTION_NAME_NONALIGNED_3"
+			"FACTION_NAME_NONALIGNED_4"
+			"FACTION_NAME_NONALIGNED_5"
+		}
+
+		color = { 124 124 124 }
+
+		war_impact_on_world_tension = 0.25		#no major danger
+		faction_impact_on_world_tension = 0.1
+
+		rules = {
+			can_force_government = no
+			can_puppet = no
+			can_send_volunteers = no
+		}
+
+		modifiers = {
+			#increased_influence_factor = 0.3 #30% easier to influence
+			generate_wargoal_tension = 0.5
+			join_faction_tension = 0.4
+			lend_lease_tension = 0.4
+			send_volunteers_tension = 0.4
+			guarantee_tension = 0.4
+			drift_defence_factor = -0.3
+		}
+
+		faction_modifiers = {
+		}
+
+		can_be_boosted = no
+
+		ai_neutral = yes #
 	}
 }
 

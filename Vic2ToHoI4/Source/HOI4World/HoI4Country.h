@@ -51,7 +51,9 @@ class HoI4Country
 		HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld);
 
 		void initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, map<int, int>& leaderMap, governmentJobsMap governmentJobs, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states);
-		void		initFromHistory();
+		void initFromHistory();
+		void setGovernmentToNeutral();
+		void convertIdeologySupport(const set<string>& majorIdeologies);
 		void generateLeaders(leaderTraitsMap leaderTraits, portraitMapping& portraitMap);
 		void		convertNavy(map<int, HoI4State*> states);
 		void		convertAirforce();
@@ -66,6 +68,7 @@ class HoI4Country
 		void outputColors(ofstream& out) const;
 		void outputToNamesFiles(ofstream& namesFile) const;
 		void output(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const;
+		void outputIdeaGraphics(ofstream& ideasFile) const;
 
 		void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
 		void		setFaction(HoI4Faction* newFaction) { faction = newFaction; }
@@ -79,13 +82,14 @@ class HoI4Country
 		double getMilitaryStrength() const;
 		double getEconomicStrength(double years) const;
 
+		bool isHuman() const { return human; }
 		const map<string, HoI4Relations*>&	getRelations() const { return relations; }
 		set<int>									getProvinces() const { return provinces; }
 		string										getTag() const { return tag; }
 		const V2Country*							getSourceCountry() const { return srcCountry; }
 		HoI4Faction*								getFaction() const { return faction; }
 		HoI4Alignment*								getAlignment() { return &alignment; }
-		string getIdeology() const { return ideology; }
+		string getGovernmentIdeology() const { return governmentIdeology; }
 		map<string, int> getIdeologySupport() const { return ideologySupport; }
 		const set<string>&						getAllies() const { return allies; }
 		set<string>&								editAllies() { return allies; }
@@ -116,22 +120,23 @@ class HoI4Country
 
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, HoI4Province*> allProvinces);
 
-		void convertParties();
-		void convertIdeologySupport();
-
 		void outputNamesSet(ofstream& namesFile, const vector<string>& names, const string& tabs) const;
 		void outputHistory(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const;
 		void outputRelations(ofstream& output) const;
 		void outputCountryLeader(ofstream& output) const;
 		void outputOOB() const;
 		void outputCommonCountryFile() const;
+		void outputIdeas() const;
 
 
 		HoI4World* theWorld;
 		const V2Country* srcCountry;
 		string filename;
 
-		string ideology;
+		bool human;
+
+		string governmentIdeology;
+		string leaderIdeology;
 		V2Party* rulingParty;
 		set<V2Party*> parties;
 		map<string, int> ideologySupport;

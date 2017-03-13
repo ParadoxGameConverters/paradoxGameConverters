@@ -72,6 +72,9 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	convertNavies();
 	convertAirforces();
 	determineGreatPowers();
+	identifyMajorIdeologies();
+	addNeutrality();
+	convertIdeologySupport();
 	convertCapitalVPs();
 	convertAirBases();
 	createFactions();
@@ -137,7 +140,8 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 		V2Party* rulingParty = country.second->getRulingParty(sourceWorld->getParties());
 		if (rulingParty == nullptr)
 		{
-			LOG(LogLevel::Error) << "Could not find the ruling party for " << country.first << ". Were all mods correctly included?";
+			LOG(LogLevel::Error) << "Could not find the ruling party for " << country.first << ". Most likely a mod was not included.";
+			LOG(LogLevel::Error) << "Double-check your settings, and remember to included EU4 to Vic2 mods. See the FAQ for more information.";
 			exit(-1);
 		}
 		destCountry->initFromV2Country(*sourceWorld, country.second, rulingParty->ideology, leaderMap, governmentJobs, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, states->getProvinceToStateIDMap(), states->getStates());
@@ -148,7 +152,45 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 		LOG(LogLevel::Warning) << "Could not convert V2 tag " << country.first << " to HoI4";
 	}
 
-	HoI4Localisation::readFromCountry(country.second, HoI4Tag);
+	HoI4Localisation::createCountryLocalisations(country.first, HoI4Tag);
+}
+
+
+void HoI4World::identifyMajorIdeologies()
+{
+	for (auto greatPower: greatPowers)
+	{
+		majorIdeologies.insert(greatPower->getGovernmentIdeology());
+	}
+
+	for (auto country: countries)
+	{
+		if (country.second->isHuman())
+		{
+			majorIdeologies.insert(country.second->getGovernmentIdeology());
+		}
+	}
+}
+
+
+void HoI4World::addNeutrality()
+{
+	for (auto country: countries)
+	{
+		if (majorIdeologies.count(country.second->getGovernmentIdeology()) == 0)
+		{
+			country.second->setGovernmentToNeutral();
+		}
+	}
+}
+
+
+void HoI4World::convertIdeologySupport()
+{
+	for (auto country: countries)
+	{
+		country.second->convertIdeologySupport(majorIdeologies);
+	}
 }
 
 
@@ -956,7 +998,7 @@ void HoI4World::createFactions()
 		vector<HoI4Country*> factionMembers;
 		factionMembers.push_back(leader);
 
-		string leaderIdeology = leader->getIdeology();
+		string leaderIdeology = leader->getGovernmentIdeology();
 		logFactionMember(factionsLog, leader);
 		double factionMilStrength = leader->getStrengthOverTime(3.0);
 
@@ -969,7 +1011,7 @@ void HoI4World::createFactions()
 			}
 
 			HoI4Country* allycountry = ally->second;
-			string allygovernment = allycountry->getIdeology();
+			string allygovernment = allycountry->getGovernmentIdeology();
 			string sphereLeader = returnSphereLeader(allycountry);
 
 			if ((sphereLeader == leader->getTag()) || ((sphereLeader == "") && governmentsAllowFaction(leaderIdeology, allygovernment)))
@@ -998,7 +1040,7 @@ void HoI4World::createFactions()
 void HoI4World::logFactionMember(ofstream& factionsLog, const HoI4Country* member)
 {
 	factionsLog << member->getSourceCountry()->getName("english") << ",";
-	factionsLog << member->getIdeology() << ",";
+	factionsLog << member->getGovernmentIdeology() << ",";
 	factionsLog << member->getMilitaryStrength() << ",";
 	factionsLog << member->getEconomicStrength(1.0) << ",";
 	factionsLog << member->getEconomicStrength(3.0) << "\n";
@@ -1230,6 +1272,21 @@ void HoI4World::outputCountries() const
 	{
 		country.second->output(states->getStates(), factions);
 	}
+
+	ofstream ideasFile("Output/" + Configuration::getOutputName() + "/interface/converter_ideas.gfx");
+	if (!ideasFile.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/interface/ideas.gfx";
+		exit(-1);
+	}
+
+	ideasFile << "spriteTypes = {\n";
+	for (auto country: countries)
+	{
+		country.second->outputIdeaGraphics(ideasFile);
+	}
+	ideasFile << "\n";
+	ideasFile << "}\n";
 }
 
 

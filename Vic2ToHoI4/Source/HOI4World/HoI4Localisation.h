@@ -55,9 +55,9 @@ class HoI4Localisation
 			getInstance()->AddStateLocalisations(states);
 		}
 
-		static void readFromCountry(const V2Country* source, string destTag)
+		static void createCountryLocalisations(const string& sourceTag, const string& destTag)
 		{
-			getInstance()->ReadFromCountry(source, destTag);
+			getInstance()->CreateCountryLocalisations(sourceTag, destTag);
 		}
 
 		static void addNonenglishCountryLocalisations()
@@ -90,7 +90,7 @@ class HoI4Localisation
 
 		void AddNonenglishCountryLocalisations();
 
-		void ReadFromCountry(const V2Country*, string destTag);
+		void CreateCountryLocalisations(const string& sourceTag, const string& destTag);
 		void CopyFocusLocalisations(string oldKey, string newKey);
 
 		void AddStateLocalisations(const HoI4States* states);

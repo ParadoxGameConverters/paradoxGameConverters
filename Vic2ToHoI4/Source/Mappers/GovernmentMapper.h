@@ -26,12 +26,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include <set>
 #include <string>
 #include <vector>
 using namespace std;
 
 
 
+class Object;
 class V2Country;
 
 
@@ -39,9 +41,19 @@ class V2Country;
 typedef struct governmentMapping
 {
 	string vic2Government;
-	string HoI4Ideology;
+	string HoI4GovernmentIdeology;
+	string HoI4LeaderIdeology;
 	string rulingPartyRequired;
 } governmentMapping;
+
+
+
+typedef struct partyMapping
+{
+	string rulingIdeology;
+	string vic2Ideology;
+	string supportedIdeology;
+} partyMapping;
 
 
 class governmentMapper
@@ -50,6 +62,21 @@ class governmentMapper
 		static string getIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology)
 		{
 			return getInstance()->GetIdeologyForCountry(country, Vic2RulingIdeology);
+		}
+
+		static string getLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology)
+		{
+			return getInstance()->GetLeaderIdeologyForCountry(country, Vic2RulingIdeology);
+		}
+
+		static string getSupportedIdeology(const string& rulingIdeology, const string& Vic2Ideology)
+		{
+			return getInstance()->GetSupportedIdeology(rulingIdeology, Vic2Ideology);
+		}
+
+		static vector<governmentMapping> getGovernmentMappings()
+		{
+			return getInstance()->governmentMap;
 		}
 
 	private:
@@ -63,12 +90,17 @@ class governmentMapper
 			return instance;
 		}
 		governmentMapper();
+		void importGovernmentMappings(Object* obj);
+		void importPartyMappings(Object* obj);
 
 		string GetIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology);
+		string GetLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology);
+		string GetSupportedIdeology(const string& rulingIdeology, const string& Vic2Ideology);
 		bool governmentMatches(const governmentMapping& mapping, const string& government);
 		bool rulingIdeologyMatches(const governmentMapping& mapping, const string& rulingIdeology);
 
 		vector<governmentMapping> governmentMap;
+		vector<partyMapping> partyMap;
 };
 
 

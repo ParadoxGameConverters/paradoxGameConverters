@@ -21,8 +21,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef PORTRAITMAPPER_H
-#define PORTRAITMAPPER_H
+#ifndef GRAPHICS_MAPPER_H_
+#define GRAPHICS_MAPPER_H_
 
 
 
@@ -31,6 +31,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <string>
 #include <vector>
 using namespace std;
+
+
+
+class Object;
 
 
 
@@ -46,34 +50,40 @@ typedef struct
 
 
 
-class portraitMapper
+class graphicsMapper
 {
 	public:
-		static string getPortrait(string cultureGroup, string ideology)
+		static string getLeaderPortrait(string cultureGroup, string ideology)
 		{
-			return getInstance()->GetPortrait(cultureGroup, ideology);
+			return getInstance()->GetLeaderPortrait(cultureGroup, ideology);
 		}
 
-		static vector<string> getPortraits(string cultureGroup, string ideology)
+		static string getIdeologyMinisterPortrait(string cultureGroup, string ideology)
 		{
-			return getInstance()->GetPortraits(cultureGroup, ideology);
+			return getInstance()->GetIdeologyMinisterPortrait(cultureGroup, ideology);
 		}
+
 	private:
-		static portraitMapper* instance;
-		static portraitMapper* getInstance()
+		static graphicsMapper* instance;
+		static graphicsMapper* getInstance()
 		{
 			if (instance == nullptr)
 			{
-				instance = new portraitMapper;
+				instance = new graphicsMapper;
 			}
 			return instance;
 		}
-		portraitMapper();
+		graphicsMapper();
+		void loadLeaderPortraitMappings(const string& cultureGroup, Object* portraitMappings);
+		void loadIdeologyMinisterPortraitMappings(const string& cultureGroup, Object* portraitMappings);
 
-		string GetPortrait(string cultureGroup, string ideology);
-		vector<string> GetPortraits(string cultureGroup, string ideology);
+		string GetLeaderPortrait(string cultureGroup, string ideology);
+		vector<string> GetLeaderPortraits(string cultureGroup, string ideology);
+		string GetIdeologyMinisterPortrait(string cultureGroup, string ideology);
+		vector<string> GetIdeologyMinisterPortraits(string cultureGroup, string ideology);
 
-		ideologyToPortraitsMap mappings;
+		ideologyToPortraitsMap leaderPortraitMappings;
+		ideologyToPortraitsMap ideologyMinisterMappings;
 
 		std::mt19937 rng;
 };
@@ -81,4 +91,4 @@ class portraitMapper
 
 
 
-#endif //PORTRAITMAPPER_H
+#endif //GRAPHICS_MAPPER_H_

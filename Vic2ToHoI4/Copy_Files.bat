@@ -22,7 +22,7 @@ copy "Data_Files\navalprovinces.txt" "release\navalprovinces.txt"
 copy "Data_Files\positions.txt" "release\positions.txt"
 copy "Data_Files\femaleNames.txt" "release\femaleNames.txt"
 copy "Data_Files\callsigns.txt" "release\callsigns.txt"
-copy "Data_Files\cultureGroupToPortraits.txt" "release\cultureGroupToPortraits.txt"
+copy "Data_Files\cultureGroupToGraphics.txt" "release\cultureGroupToGraphics.txt"
 
 rem **Copy flags**
 del "Release\flags" /Q /S /F

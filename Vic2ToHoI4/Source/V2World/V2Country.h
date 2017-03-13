@@ -75,12 +75,12 @@ public:
 	double getWarExhaustion() const { return warExhaustion; }
 	map<string, string> getAllReforms() const { return reformsArray; }
 	bool isGreatNation() const { return greatNation; }
-	map<string, string> getLocalisedNames() const { return namesByLanguage; }
-	map<string, string> getLocalisedAdjectives() const { return adjectivesByLanguage; }
 	map<int, V2Province*> getProvinces() const { return provinces; }
 	vector<V2Province*> getCores() const { return cores; }
 	bool isEmpty() const { return ((cores.size() == 0) && (provinces.size() == 0)); }
 	bool isCivilized() const { return civilized; }
+	bool isHuman() const { return human; }
+	map<string, double> getUpperHouseComposition() const { return upperHouseComposition; }
 
 	string getReform(const string& reform) const;
 	string getName(const string& language) const;
@@ -111,6 +111,7 @@ private:
 	void readInLeaders(const Object* countryObj);
 	void readInStates(const Object* countryObj);
 	void createNewState(const Object* stateObj);
+	void detectIfHuman(const Object* stateObj);
 
 	void setLocalisationName(const string& language, const string& name);
 	void setLocalisationAdjective(const string& language, const string& adjective);
@@ -153,6 +154,8 @@ private:
 	string dominionAdjective;
 	map<string, string> namesByLanguage;
 	map<string, string> adjectivesByLanguage;
+
+	bool human;
 };
 
 #endif	// V2COUNTRY_H_

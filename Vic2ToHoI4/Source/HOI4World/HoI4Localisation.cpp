@@ -44,56 +44,93 @@ HoI4Localisation::HoI4Localisation()
 }
 
 
-void HoI4Localisation::ReadFromCountry(const V2Country* source, string destTag)
+void HoI4Localisation::CreateCountryLocalisations(const string& sourceTag, const string& destTag)
 {
-	for (auto nameInLanguage: source->getLocalisedNames())
+	for (auto mapping: governmentMapper::getGovernmentMappings())
 	{
-		auto existingLocalisation = countryLocalisations.find(nameInLanguage.first);
-		if (existingLocalisation == countryLocalisations.end())
+		auto localisationForGovernment = V2Localisations::GetTextInEachLanguage(sourceTag + "_" + mapping.vic2Government);
+		for (auto nameInLanguage: localisationForGovernment)
 		{
-			keyToLocalisationMap newLocalisation;
-			countryLocalisations[nameInLanguage.first] = newLocalisation;
-			existingLocalisation = countryLocalisations.find(nameInLanguage.first);
-		}
-		
-		existingLocalisation->second.insert(make_pair(destTag + "_democratic",  nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_democratic_DEF", nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_neutrality", nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_neutrality_DEF", nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_communism", "People's Republic of " + nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_communism_DEF", "People's Republic of " + nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_autocratic", "Kingdom of " + nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_autocratic_DEF", nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_socialist", nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_socialist_DEF", nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_liberal", nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_liberal_DEF", nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_syndicalism", "Commune of "+nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_syndicalism_DEF", nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_ancap", "Bourgeois State of " + nameInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_ancap_DEF", nameInLanguage.second));
+			auto existingLanguage = countryLocalisations.find(nameInLanguage.first);
+			if (existingLanguage == countryLocalisations.end())
+			{
+				keyToLocalisationMap newLocalisations;
+				countryLocalisations[nameInLanguage.first] = newLocalisations;
+				existingLanguage = countryLocalisations.find(nameInLanguage.first);
+			}
 
-	}
-	for (auto adjInLanguage: source->getLocalisedAdjectives())
-	{
-		auto existingLocalisation = countryLocalisations.find(adjInLanguage.first);
-		if (existingLocalisation == countryLocalisations.end())
-		{
-			keyToLocalisationMap newLocalisation;
-			countryLocalisations[adjInLanguage.first] = newLocalisation;
-			existingLocalisation = countryLocalisations.find(adjInLanguage.first);
+			string newKey = destTag + "_" + mapping.HoI4GovernmentIdeology;
+			auto existingLocalisation = existingLanguage->second.find(newKey);
+			if (existingLocalisation == existingLanguage->second.end())
+			{
+				existingLanguage->second.insert(make_pair(newKey, nameInLanguage.second));
+				existingLanguage->second.insert(make_pair(newKey + "_DEF", nameInLanguage.second));
+			}
 		}
-		existingLocalisation->second.insert(make_pair(destTag + "_fascism", adjInLanguage.second + " Empire"));
-		existingLocalisation->second.insert(make_pair(destTag + "_fascism_DEF", adjInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_fascism_ADJ", adjInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_democratic_ADJ", adjInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_neutrality_ADJ", adjInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_communism_ADJ", adjInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_autocratic_ADJ", adjInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_socialist_ADJ", adjInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_liberal_ADJ", adjInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_syndicalism_ADJ", adjInLanguage.second));
-		existingLocalisation->second.insert(make_pair(destTag + "_ancap_ADJ", adjInLanguage.second));
+
+		if (localisationForGovernment.size() == 0)
+		{
+			for (auto nameInLanguage: V2Localisations::GetTextInEachLanguage(sourceTag))
+			{
+				auto existingLanguage = countryLocalisations.find(nameInLanguage.first);
+				if (existingLanguage == countryLocalisations.end())
+				{
+					keyToLocalisationMap newLocalisations;
+					countryLocalisations[nameInLanguage.first] = newLocalisations;
+					existingLanguage = countryLocalisations.find(nameInLanguage.first);
+				}
+
+				string newKey = destTag + "_" + mapping.HoI4GovernmentIdeology;
+				auto existingLocalisation = existingLanguage->second.find(newKey);
+				if (existingLocalisation == existingLanguage->second.end())
+				{
+					existingLanguage->second.insert(make_pair(newKey, nameInLanguage.second));
+					existingLanguage->second.insert(make_pair(newKey + "_DEF", nameInLanguage.second));
+				}
+			}
+		}
+	}
+
+	for (auto mapping: governmentMapper::getGovernmentMappings())
+	{
+		auto localisationForGovernment = V2Localisations::GetTextInEachLanguage(sourceTag + "_" + mapping.vic2Government + "_ADJ");
+		for (auto nameInLanguage: localisationForGovernment)
+		{
+			auto existingLanguage = countryLocalisations.find(nameInLanguage.first);
+			if (existingLanguage == countryLocalisations.end())
+			{
+				keyToLocalisationMap newLocalisations;
+				countryLocalisations[nameInLanguage.first] = newLocalisations;
+				existingLanguage = countryLocalisations.find(nameInLanguage.first);
+			}
+
+			string newKey = destTag + "_" + mapping.HoI4GovernmentIdeology + "_ADJ";
+			auto existingLocalisation = existingLanguage->second.find(newKey);
+			if (existingLocalisation == existingLanguage->second.end())
+			{
+				existingLanguage->second.insert(make_pair(newKey, nameInLanguage.second));
+			}
+		}
+		if (localisationForGovernment.size() == 0)
+		{
+			for (auto nameInLanguage: V2Localisations::GetTextInEachLanguage(sourceTag + "_ADJ"))
+			{
+				auto existingLanguage = countryLocalisations.find(nameInLanguage.first);
+				if (existingLanguage == countryLocalisations.end())
+				{
+					keyToLocalisationMap newLocalisations;
+					countryLocalisations[nameInLanguage.first] = newLocalisations;
+					existingLanguage = countryLocalisations.find(nameInLanguage.first);
+				}
+
+				string newKey = destTag + "_" + mapping.HoI4GovernmentIdeology + "_ADJ";
+				auto existingLocalisation = existingLanguage->second.find(newKey);
+				if (existingLocalisation == existingLanguage->second.end())
+				{
+					existingLanguage->second.insert(make_pair(newKey, nameInLanguage.second));
+				}
+			}
+		}
 	}
 }
 

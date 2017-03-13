@@ -87,6 +87,7 @@ class HoI4State
 		int determineNavalBaseLevel(const V2Province* sourceProvince);
 		int determineNavalBaseLocation(const V2Province* sourceProvince);
 
+		bool assignVPFromVic2Province(int Vic2ProvinceNumber);
 		void assignVP(int location);
 		bool isProvinceInState(int provinceNum);
 
