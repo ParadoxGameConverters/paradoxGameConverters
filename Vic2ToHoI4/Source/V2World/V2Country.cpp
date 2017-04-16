@@ -52,6 +52,7 @@ V2Country::V2Country(Object* countryObj)
 	readInSpending(countryObj);
 	readInRevanchism(countryObj);
 	readInWarExhaustion(countryObj);
+	readInBadBoy(countryObj);
 	readInReforms(countryObj);
 	readInGovernment(countryObj);
 	readInUpperHouse(countryObj);

@@ -109,7 +109,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	civilized = srcCountry->isCivilized();
 
 	//threat
-	threat = _srcCountry->getBadBoy()/10.0;
+	threat = _srcCountry->getBadBoy() / 10.0;
 	
 	// graphical culture type
 	auto cultureItr = cultureMap.find(srcCountry->getPrimaryCulture());
