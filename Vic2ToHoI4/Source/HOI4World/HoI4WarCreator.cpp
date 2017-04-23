@@ -51,18 +51,22 @@ void HoI4WarCreator::generateWars(HoI4World* world)
 	vector<HoI4Country*> leaderCountries;
 	set<HoI4Faction*> factionsAtWar;
 	generateTotalitarianWars(AILog, leaderCountries, factionsAtWar);
+	generateDemocracyWars(AILog, factionsAtWar);
+	generateAdditionalWars(AILog, leaderCountries, factionsAtWar, worldStrength);
 
-	double percentOfWorldAtWar = calculatePercentOfWorldAtWar(AILog, factionsAtWar, worldStrength);
+/*	double percentOfWorldAtWar = calculatePercentOfWorldAtWar(AILog, factionsAtWar, worldStrength);
 	if (percentOfWorldAtWar < 0.8)
+	if (percentOfWorldAtWar < 1.01)
 	{
 		generateDemocracyWars(AILog, factionsAtWar);
-	}
+	}*/
 
-	percentOfWorldAtWar = calculatePercentOfWorldAtWar(AILog, factionsAtWar, worldStrength);
+/*	percentOfWorldAtWar = calculatePercentOfWorldAtWar(AILog, factionsAtWar, worldStrength);
 	if (percentOfWorldAtWar < 0.8)
+	if (percentOfWorldAtWar < 1.01)
 	{
 		generateAdditionalWars(AILog, leaderCountries, factionsAtWar, worldStrength);
-	}
+	} */
 
 	AILog.close();
 }
@@ -85,7 +89,7 @@ void HoI4WarCreator::addTargetsToWorldTargetMap(HoI4Country* country)
 		vector<HoI4Country*> GCTargets;
 		for (auto GC: getDistancesToGreatPowers(country))
 		{
-			if (maxGCWars < 1)
+			if (maxGCWars < 2)
 			{
 				string thetag = GC.second->getTag();
 				string HowToTakeGC = HowToTakeLand(GC.second, country, 3);
@@ -247,9 +251,13 @@ void HoI4WarCreator::generateAdditionalWars(ofstream& AILog, vector<HoI4Country*
 
 	for (int i = GCEvilnessSorted.size() - 1; i > 0; i--)
 	{
+		if (GCEvilnessSorted[i]->isGreatPower())
+		{
+			break;
+		}
 		AILog << "added country to make more wars " + GCEvilnessSorted[i]->getSourceCountry()->getName("english") << "\n";
 		vector <HoI4Faction*> newCountriesatWar;
-		newCountriesatWar = absolutistWarCreator(GCEvilnessSorted[i]);
+		newCountriesatWar = neighborWarCreator(GCEvilnessSorted[i], AILog);
 
 		for (auto addedFactions : newCountriesatWar)
 		{
@@ -259,11 +267,11 @@ void HoI4WarCreator::generateAdditionalWars(ofstream& AILog, vector<HoI4Country*
 			}
 		}
 
-		double percentOfWorldAtWar = calculatePercentOfWorldAtWar(AILog, factionsAtWar, worldStrength);
-		if (percentOfWorldAtWar >= 0.8)
+/*		double percentOfWorldAtWar = calculatePercentOfWorldAtWar(AILog, factionsAtWar, worldStrength);
+		if (percentOfWorldAtWar >= 1.5)
 		{
 			break;
-		}
+		} */
 	}
 }
 
@@ -272,29 +280,40 @@ vector<HoI4Country*> HoI4WarCreator::calculateEvilness(vector<HoI4Country*> Lead
 {
 	map<double, HoI4Country*> GCEvilness;
 	vector<HoI4Country*> GCEvilnessSorted;
-	for (auto GC: theWorld->getGreatPowers())
+
+//	for (auto GC: theWorld->getGreatPowers())
+	for (auto GC : theWorld->getCountries())
 	{
-		if (	GC->getGovernmentIdeology() == "absolutist" &&
+/*		if (	GC->getGovernmentIdeology() == "absolutist" &&
 				std::find(LeaderCountries.begin(), LeaderCountries.end(), GC) == LeaderCountries.end()
-			)
+			)  */
+		if (std::find(LeaderCountries.begin(), LeaderCountries.end(), GC.second) == LeaderCountries.end())
 		{
 			double v1 = rand() % 95 + 1;
 			v1 = v1 / 100;
 			double evilness = v1;
 			string government = "";
-			if (GC->getGovernmentIdeology() == "absolutist")
+			if (GC.second->getGovernmentIdeology() == "fascism")
+				evilness += 5;
+			if (GC.second->getGovernmentIdeology() == "absolutist")
 				evilness += 3;
-			V2Party* countryrulingparty = GC->getRulingParty();
+			if (GC.second->getGovernmentIdeology() == "communist")
+				evilness += 3;
+			if (GC.second->getGovernmentIdeology() == "anarcho_liberal")
+				evilness += 3;
+			V2Party* countryrulingparty = GC.second->getRulingParty();
 
 			if (countryrulingparty->war_policy == "jingoism")
 				evilness += 3;
 			else if (countryrulingparty->war_policy == "pro_military")
 				evilness += 2;
 			else if (countryrulingparty->war_policy == "anti_military")
-				evilness += 1;
+				evilness -= 1;
 
-			//need to add ruling party to factor
-			GCEvilness.insert(make_pair(evilness, GC));
+			if (evilness > 2)
+			{
+				GCEvilness.insert(make_pair(evilness, GC.second));
+			}
 		}
 	}
 	//put them into a vector so we know their order
@@ -413,26 +432,26 @@ vector<HoI4Country*> HoI4WarCreator::GetMorePossibleAllies(HoI4Country* CountryT
 	int maxcountries = 0;
 	vector<HoI4Country*> newPossibleAllies;
 	set<string> currentAllies = CountryThatWantsAllies->getAllies();
-	//set<string> currentAllies = CountryThatWantsAllies->getAllies();
-	vector<HoI4Country*> CountriesWithin500Miles; //Rename to actual distance
+	vector<HoI4Country*> CountriesWithin1000Miles; //Rename to actual distance
 	for (auto country : theWorld->getCountries())
 	{
 		if (country.second->getProvinceCount() != 0)
 		{
 			HoI4Country* country2 = country.second;
-			if (getDistanceBetweenCountries(CountryThatWantsAllies, country2) <= 500)
+			if (getDistanceBetweenCountries(CountryThatWantsAllies, country2) <= 1000
+				&& country2 != CountryThatWantsAllies)
 				if (std::find(currentAllies.begin(), currentAllies.end(), country2->getTag()) == currentAllies.end())
 				{
-					CountriesWithin500Miles.push_back(country2);
+					CountriesWithin1000Miles.push_back(country2);
 				}
 		}
 	}
 	string yourIdeology = CountryThatWantsAllies->getGovernmentIdeology();
-	volatile vector<HoI4Country*> vCountriesWithin500Miles = CountriesWithin500Miles;
+	volatile vector<HoI4Country*> vCountriesWithin500Miles = CountriesWithin1000Miles;
 	//look for all capitals within a distance of Berlin to Tehran
-	for (unsigned int i = 0; i < CountriesWithin500Miles.size(); i++)
+	for (unsigned int i = 0; i < CountriesWithin1000Miles.size(); i++)
 	{
-		string allyIdeology = CountriesWithin500Miles[i]->getGovernmentIdeology();
+		string allyIdeology = CountriesWithin1000Miles[i]->getGovernmentIdeology();
 		//possible government matches
 		if (
 				(allyIdeology == yourIdeology) /* ||
@@ -445,12 +464,12 @@ vector<HoI4Country*> HoI4WarCreator::GetMorePossibleAllies(HoI4Country* CountryT
 			{
 				//FIXME
 				//check if we are friendly at all?
-				HoI4Relations* relationswithposally = CountryThatWantsAllies->getRelations(CountriesWithin500Miles[i]->getTag());
+				HoI4Relations* relationswithposally = CountryThatWantsAllies->getRelations(CountriesWithin1000Miles[i]->getTag());
 				int rel = relationswithposally->getRelations();
-				int size = findFaction(CountriesWithin500Miles[i])->getMembers().size();
-				double armysize = CountriesWithin500Miles[i]->getStrengthOverTime(1.0);
+				int size = findFaction(CountriesWithin1000Miles[i])->getMembers().size();
+				double armysize = CountriesWithin1000Miles[i]->getStrengthOverTime(1.0);
 				//for now can only ally with people not in a faction, and must be worth adding
-				if (relationswithposally->getRelations() >= -50 && findFaction(CountriesWithin500Miles[i])->getMembers().size() <= 1)
+				if (relationswithposally->getRelations() >= -50 && findFaction(CountriesWithin1000Miles[i])->getMembers().size() <= 1)
 				{
 					//ok we dont hate each other, lets check how badly we need each other, well I do, the only reason I am here is im trying to conquer a neighbor and am not strong enough!
 					//if (GetFactionStrength(findFaction(country)) < 20000) //maybe also check if he has any fascist/comm neighbors he doesnt like later?
@@ -459,13 +478,13 @@ vector<HoI4Country*> HoI4WarCreator::GetMorePossibleAllies(HoI4Country* CountryT
 					if (relationswithposally->getRelations() >= -50 && relationswithposally->getRelations() < 0)
 					{
 						//will take some NF to ally
-						newPossibleAllies.push_back(CountriesWithin500Miles[i]);
+						newPossibleAllies.push_back(CountriesWithin1000Miles[i]);
 						maxcountries++;
 					}
 					if (relationswithposally->getRelations() >= 0)
 					{
 						//well we are positive, 1 NF to add to ally should be fine
-						newPossibleAllies.push_back(CountriesWithin500Miles[i]);
+						newPossibleAllies.push_back(CountriesWithin1000Miles[i]);
 						maxcountries++;
 					}
 
@@ -1230,8 +1249,8 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 	for (auto GC: theWorld->getGreatPowers())
 	{
 		double distance = getDistanceBetweenCountries(Leader, GC);
-		if (distance < 2200)
-			GCDistance.insert(make_pair(distance, GC));
+//		if (distance < 3000) // no distance requirement for now
+		GCDistance.insert(make_pair(distance, GC));
 	}
 	//put them into a vector so we know their order
 	for (auto iterator = GCDistance.begin(); iterator != GCDistance.end(); ++iterator)
@@ -1918,14 +1937,95 @@ vector<HoI4Faction*> HoI4WarCreator::absolutistWarCreator(HoI4Country* country)
 	return CountriesAtWar;
 }
 
-
-vector<HoI4Faction*> HoI4WarCreator::radicalWarCreator(HoI4Country* country)
+vector<HoI4Faction*> HoI4WarCreator::neighborWarCreator(HoI4Country * country, ofstream & AILog)
 {
+	// add small wars against neigbors for non-great powers
 	vector<HoI4Faction*> countriesAtWar;
+	vector<HoI4Country*> weakNeighbors = findWeakNeighbors(country);
+	int numWarsWithNeighbors = 0;
+	HoI4FocusTree* focusTree = genericFocusTree->makeCustomizedCopy(country);
+
+	AILog << "Look for neighbors to attack for " + country->getSourceCountry()->getName("english") << "\n";
+
+	for (auto target : weakNeighbors)
+	{
+		if (numWarsWithNeighbors >= 2)
+		{
+			break;
+		}
+
+		int relations = 0;
+		HoI4Relations* relationsObj = country->getRelations(target->getTag());
+		if (relationsObj)
+		{
+			relations = relationsObj->getRelations();
+		}
+
+		if (relations >= 0)
+		{
+			continue;
+		}
+
+		set<string> Allies = country->getAllies();
+		if (Allies.find(target->getTag()) == Allies.end())
+		{
+			countriesAtWar.push_back(findFaction(country));
+
+			HoI4Focus* newFocus = new HoI4Focus;
+			newFocus->id = "War" + target->getTag() + country->getTag();
+			newFocus->icon = "GFX_goal_generic_major_war";
+			newFocus->text = "War with " + target->getSourceCountry()->getName("english");//change to faction name later
+			newFocus->prerequisites.push_back("focus =  MilitaryBuildup" + country->getTag());
+			newFocus->available = "			has_war = no\n";
+			newFocus->available += "			date > 1940.1.1";
+			newFocus->xPos = 24;
+			newFocus->yPos = 0;
+			newFocus->cost = 10;
+			newFocus->aiWillDo = "			factor = " + to_string(10 - numWarsWithNeighbors * 5) + "\n";
+			newFocus->aiWillDo += "			modifier = {\n";
+			newFocus->aiWillDo += "				factor = 0\n";
+			newFocus->aiWillDo += "				strength_ratio = { tag = " + target->getTag() + " ratio < 0.8 }\n";
+			newFocus->aiWillDo += "			}";
+			if (weakNeighbors.size() > 2) //make ai have this as a 0 modifier if they are at war
+			{
+				newFocus->aiWillDo += "\n";
+				newFocus->aiWillDo += "			modifier = {\n";
+				newFocus->aiWillDo += "				factor = 0\n";
+				newFocus->aiWillDo += "				OR = {\n";
+				for (auto target2 : weakNeighbors)
+				{
+					if (target != target2)
+					{
+						newFocus->aiWillDo += "					has_war_with = " + target2->getTag() + "\n";
+					}
+				}
+				newFocus->aiWillDo += "				}\n";
+				newFocus->aiWillDo += "			}";
+			}
+			newFocus->completionReward += "			add_named_threat = { threat = 5 name = " + newFocus->id + " }\n";
+			newFocus->completionReward += "			create_wargoal = {\n";
+			newFocus->completionReward += "				type = annex_everything\n";
+			newFocus->completionReward += "				target = " + target->getTag() + "\n";
+			newFocus->completionReward += "			}";
+			focusTree->addFocus(newFocus);
+
+			numWarsWithNeighbors++;
+		}
+	}
+
+	if (numWarsWithNeighbors > 0)
+	{
+		country->addNationalFocus(focusTree);
+	}
 
 	return countriesAtWar;
 }
 
+
+vector<HoI4Faction*> HoI4WarCreator::radicalWarCreator(HoI4Country* country)
+{
+	return absolutistWarCreator(country);
+}
 
 vector<HoI4Country*> HoI4WarCreator::findWeakNeighbors(const HoI4Country* country)
 {
@@ -1946,7 +2046,7 @@ vector<HoI4Country*> HoI4WarCreator::findWeakNeighbors(const HoI4Country* countr
 		double enemystrength = neighbor.second->getStrengthOverTime(1.5);
 		double mystrength = country->getStrengthOverTime(1.5);
 		if (
-			(enemystrength < (mystrength * 0.2)) &&
+			(enemystrength < (mystrength * 0.5)) &&
 			(findFaction(neighbor.second)->getMembers().size() == 1)
 			)
 		{
@@ -1997,7 +2097,7 @@ vector<HoI4Country*> HoI4WarCreator::findWeakColonies(const HoI4Country* country
 		double enemystrength = neighbor.second->getStrengthOverTime(1.5);
 		double mystrength = country->getStrengthOverTime(1.5);
 		if (
-			(enemystrength < mystrength * 0.2) &&
+			(enemystrength < mystrength * 0.5) &&
 			(findFaction(neighbor.second)->getMembers().size() == 1)
 			)
 		{
@@ -2090,7 +2190,7 @@ vector<HoI4Faction*> HoI4WarCreator::addGreatPowerWars(HoI4Country* country, HoI
 	int numWarsWithGreatPowers = 0;
 	for (auto target: greatPowerTargets)
 	{
-		if (numWarsWithGreatPowers >= 1)
+		if (numWarsWithGreatPowers >= 2)
 		{
 			break;
 		}
@@ -2121,7 +2221,7 @@ vector<HoI4Faction*> HoI4WarCreator::addGreatPowerWars(HoI4Country* country, HoI
 			newFocus->aiWillDo += "				factor = 0\n";
 			newFocus->aiWillDo += "				strength_ratio = { tag = " + target->getTag() + " ratio < 0.8 }\n";
 			newFocus->aiWillDo += "			}";
-			if (greatPowerTargets.size() > 1) //make ai have this as a 0 modifier if they are at war
+			if (greatPowerTargets.size() > 2) //make ai have this as a 0 modifier if they are at war
 			{
 				newFocus->aiWillDo += "\n";
 				newFocus->aiWillDo += "			modifier = {\n";
