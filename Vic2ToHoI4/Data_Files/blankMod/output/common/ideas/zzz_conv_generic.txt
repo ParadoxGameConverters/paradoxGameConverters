@@ -1,0 +1,69 @@
+ideas = {
+	political_advisor = {
+		# POLITICAL	
+		pol_radical_minister = {
+			
+			allowed = {
+				
+				NOT = {
+					has_available_idea_with_traits = { idea = radical_minister limit = 1 }
+				}
+			}
+			
+			traits = { radical_minister }
+	
+			on_add = {
+				country_event = conv.political.1
+			}
+	
+			do_effect = {
+				NOT = {
+					has_government = radical
+				}
+			}
+	
+			ai_will_do = {
+				factor = 0
+			}
+		}
+		pol_neutrality_minister = {
+			
+			allowed = {
+				
+				NOT = {
+					has_available_idea_with_traits = { idea = neutrality_minister limit = 1 }
+				}
+			}
+			
+			traits = { neutrality_minister }
+	
+			ai_will_do = {
+				factor = 1
+			}
+		}
+		pol_absolutist_minister = {
+			
+			allowed = {
+				
+				NOT = {
+					has_available_idea_with_traits = { idea = absolutist_minister limit = 1 }
+				}
+			}
+			
+			traits = { absolutist_minister }
+	
+			on_add = {
+				country_event = conv.political.11
+			}
+	
+			do_effect = {
+				NOT = {
+					has_government = absolutist
+				}
+			}
+	
+			ai_will_do = {
+				factor = 0
+			}
+		}
+}
