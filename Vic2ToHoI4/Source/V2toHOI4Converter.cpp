@@ -89,11 +89,6 @@ void checkMods()
 {
 	LOG(LogLevel::Info) << "Double-checking Vic2 mods";
 
-	for (auto expectedMod: Configuration::getVic2Mods())
-	{
-		LOG(LogLevel::Debug) << "Expecting a mod with name " << expectedMod;
-	}
-
 	set<string> fileNames;
 	Utils::GetAllFilesInFolder(Configuration::getV2Path() + "/mod", fileNames);
 	for (auto fileName: fileNames)
@@ -106,6 +101,16 @@ void checkMods()
 			{
 				LOG(LogLevel::Debug) << "Found mod with name " << folderName;
 			}
+		}
+	}
+
+	for (auto expectedMod: Configuration::getVic2Mods())
+	{
+		LOG(LogLevel::Debug) << "Expecting a mod with name " << expectedMod;
+		if (!Utils::doesFolderExist(Configuration::getV2Path() + "/mod/" + expectedMod))
+		{
+			LOG(LogLevel::Error) << "Could not find expected mod";
+			exit(-1);
 		}
 	}
 }
