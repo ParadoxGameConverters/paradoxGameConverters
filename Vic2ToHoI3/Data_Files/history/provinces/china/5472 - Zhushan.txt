@@ -1,0 +1,1 @@
+owner = CHIcontroller = CHIadd_core = CHIadd_core = CHCstrategic_resource = horsesenergy = 12.00infra = 3

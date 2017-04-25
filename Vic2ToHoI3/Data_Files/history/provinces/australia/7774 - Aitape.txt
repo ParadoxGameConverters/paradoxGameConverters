@@ -1,0 +1,6 @@
+owner = AST
+controller = ASTadd_core = AST
+infra = 2
+
+1942.6.4 = {	controller = JAP}
+1944.4.21 = {	owner = USA	controller = USA	add_core = USA}

@@ -1,0 +1,25 @@
+owner = POL
+controller = POL
+add_core = POL
+add_core = LIT
+
+energy = 1.00
+industry = 1
+anti_air = 1
+infra = 8
+manpower = 1.00
+leadership = 0.10
+
+1939.9.18 = { #precise date
+	owner = SOV
+	controller = SOV
+	remove_core = POL
+}
+
+1941.6.23 = { #precise date
+	controller = GER
+}
+
+1944.7.13 = { #precise date
+	controller = SOV
+}

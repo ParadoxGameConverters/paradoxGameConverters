@@ -1,0 +1,174 @@
+color = { 155  124  89 }
+graphical_culture = Japanese
+
+default_templates = {
+	binary_infantry = {
+		infantry_brigade
+		infantry_brigade
+	}
+	binary_milita = {
+		militia_brigade
+		militia_brigade
+	}
+	binary_armoured = {
+		armor_brigade
+		motorized_brigade
+	}
+	binary_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"Di'1 Shi" "Di'2 Shi" "Di'3 Shi" "Di'4 Shi" "Di'5 Shi" "Di'6 Shi" "Di'7 Shi" "Di'8 Shi" "Di'9 Shi" "Di'10 Shi" "Di'12 Shi" 
+		"Di'14 Shi" "Di'15 Shi" "Di'17 Shi" "Di'19 Shi" "Di'21 Shi" "Di'22 Shi" "Di'25 Shi" "Di'28 Shi" "Di'29 Shi" "Di'30 Shi" "Di'35 Shi" 
+		"Di'38 Shi" "Di'40 Shi" "Di'42 Shi" "Di'46 Shi" "Di'47 Shi" "Di'49 Shi" "Di'50 Shi" "Di'51 Shi" "Di'57 Shi" "Di'58 Shi" "Di'61 Shi" 
+		"Di'62 Shi" "Di'63 Shi" "Di'64 Shi" "Di'65 Shi" "Di'66 Shi" "Di'69 Shi" "Di'70 Shi" "Di'76 Shi" "Di'78 Shi" "Di'79 Shi" "Di'80 Shi" 
+		"Di'81 Shi" "Di'82 Shi" "Di'83 Shi" "Di'89 Shi" "Di'91 Shi" "Di'93 Shi" "Di'96 Shi" "Di'98 Shi" "Di'100 Shi" 
+	}
+	cavalry_brigade = {
+		"Qibing Di'1 Shi" "Qibing Di'2 Shi" "Qibing Di'3 Shi" "Qibing Di'4 Shi" "Qibing Di'5 Shi" "Qibing Di'6 Shi" "Qibing Di'7 Shi" "Qibing Di'8 Shi" "Qibing Di'9 Shi" "Qibing Di'10 Shi" "Qibing Di'11 Shi" 
+		"Qibing Di'12 Shi" "Qibing Di'13 Shi" "Qibing Di'14 Shi" "Qibing Di'15 Shi" "Qibing Di'16 Shi" "Qibing Di'17 Shi" "Qibing Di'18 Shi" "Qibing Di'19 Shi" "Qibing Di'20 Shi" 
+	}
+	motorized_brigade = {
+		"Motuohua Bubing Di'1 Shi" "Motuohua Bubing Di'2 Shi" "Motuohua Bubing Di'3 Shi" "Motuohua Bubing Di'4 Shi" "Motuohua Bubing Di'5 Shi" "Motuohua Bubing Di'6 Shi" "Motuohua Bubing Di'7 Shi" "Motuohua Bubing Di'8 Shi" "Motuohua Bubing Di'9 Shi" "Motuohua Bubing Di'10 Shi" 
+	}
+	mechanized_brigade = {
+		"Jixiehua Di'1 Shi" "Jixiehua Di'2 Shi" "Jixiehua Di'3 Shi" "Jixiehua Di'4 Shi" "Jixiehua Di'5 Shi" "Jixiehua Di'6 Shi" "Jixiehua Di'7 Shi" "Jixiehua Di'8 Shi" "Jixiehua Di'9 Shi" "Jixiehua Di'10 Shi" 
+	}
+	light_armor_brigade = {
+		"Zhuangjiabing Di'1 Shi" "Zhuangjiabing Di'2 Shi" "Zhuangjiabing Di'3 Shi" "Zhuangjiabing Di'4 Shi" "Zhuangjiabing Di'5 Shi" "Zhuangjiabing Di'6 Shi" "Zhuangjiabing Di'7 Shi" "Zhuangjiabing Di'8 Shi" "Zhuangjiabing Di'9 Shi" "Zhuangjiabing Di'10 Shi" 
+	}
+	armor_brigade = {
+		"Zhuangjiabing Di'1 Shi" "Zhuangjiabing Di'2 Shi" "Zhuangjiabing Di'3 Shi" "Zhuangjiabing Di'4 Shi" "Zhuangjiabing Di'5 Shi" "Zhuangjiabing Di'6 Shi" "Zhuangjiabing Di'7 Shi" "Zhuangjiabing Di'8 Shi" "Zhuangjiabing Di'9 Shi" "Zhuangjiabing Di'10 Shi" 
+	}
+	paratrooper_brigade = {
+		"Kongjiang Di'1 Shi" "Kongjiang Di'2 Shi" "Kongjiang Di'3 Shi" "Kongjiang Di'4 Shi" "Kongjiang Di'5 Shi" "Kongjiang Di'6 Shi" "Kongjiang Di'7 Shi" "Kongjiang Di'8 Shi" "Kongjiang Di'9 Shi" "Kongjiang Di'10 Shi" 
+	}
+	marine_brigade = {
+		"Luzhan Dui Di'1 Shi" "Luzhan Dui Di'2 Shi" "Luzhan Dui Di'3 Shi" "Luzhan Dui Di'4 Shi" "Luzhan Dui Di'5 Shi" 
+	}
+	bergsjaeger_brigade = {
+		"Pabing Di'1 Shi" "Pabing Di'2 Shi" "Pabing Di'3 Shi" "Pabing Di'4 Shi" "Pabing Di'5 Shi" "Pabing Di'6 Shi" "Pabing Di'7 Shi" "Pabing Di'8 Shi" "Pabing Di'9 Shi" "Pabing Di'10 Shi" 
+	}
+	garrison_brigade = {
+		"Kunming-Shi Baoan Zongdui" "Di'1 Fangwei Tuan" "Di'2 Fangwei Tuan" "Di'3 Fangwei Tuan" "Di'4 Fangwei Tuan" "Di'5 Fangwei Tuan" "Di'6 Fangwei Tuan" "Di'7 Fangwei Tuan" "Di'8 Fangwei Tuan" "Di'9 Fangwei Tuan" "Di'10 Fangwei Tuan" 
+		"Di'11 Fangwei Tuan" "Di'12 Fangwei Tuan" "Di'13 Fangwei Tuan" "Di'14 Fangwei Tuan" "Di'15 Fangwei Tuan" "Di'16 Fangwei Tuan" "Di'17 Fangwei Tuan" "Di'18 Fangwei Tuan" "Di'19 Fangwei Tuan" "Di'20 Fangwei Tuan" "Di'21 Fangwei Tuan" 
+		"Di'22 Fangwei Tuan" "Di'23 Fangwei Tuan" "Di'24 Fangwei Tuan" "Di'25 Fangwei Tuan" "Di'26 Fangwei Tuan" "Di'27 Fangwei Tuan" 
+	}
+	hq_brigade = {
+		"Yunnan Zhanqu" "Xikang Zhanqu" "Sichuan Zhanqu" "Di'1 Zhandou Silingbu" "Di'2 Zhandou Silingbu" "Di'3 Zhandou Silingbu" "Di'4 Zhandou Silingbu" "Di'5 Zhandou Silingbu" "Di'6 Zhandou Silingbu" "Di'7 Zhandou Silingbu" "Di'8 Zhandou Silingbu" 
+		"Di'9 Zhandou Silingbu" "Di'10 Zhandou Silingbu" "Di'11 Zhandou Silingbu" "Di'12 Zhandou Silingbu" "Di'13 Zhandou Silingbu" 
+	}
+	militia_brigade = {
+		"Yunnan Sheng Baoan Zongdui" "Xikang Sheng Baoan Zongdui" "Sichuan Sheng Baoan Zongdui" "Yunnan Sheng Jingcai Zongdui" "Xikang Sheng Jingcai Zongdui" "Sichuan Sheng Jingcai Zongdui" "Yunnan Sheng Minfang Zongdui" "Xikang Sheng Minfang Zongdui" "Sichuan Sheng Minfang Zongdui" "21. Min Shi" "22. Min Shi" 
+		"25. Min Shi" "28. Min Shi" "29. Min Shi" "30. Min Shi" "35. Min Shi" "38. Min Shi" "40. Min Shi" "42. Min Shi" "46. Min Shi" "47. Min Shi" "49. Min Shi" 
+		"50. Min Shi" "51. Min Shi" "57. Min Shi" "58. Min Shi" "61. Min Shi" "62. Min Shi" "63. Min Shi" "64. Min Shi" "65. Min Shi" "66. Min Shi" "69. Min Shi" 
+		"70. Min Shi" "76. Min Shi" "78. Min Shi" "79. Min Shi" "80. Min Shi" "81. Min Shi" "82. Min Shi" "83. Min Shi" "89. Min Shi" "91. Min Shi" "93. Min Shi" 
+		"96. Min Shi" "98. Min Shi" "100. Min Shi" "120. Min Shi" 
+	}
+	multi_role = {
+		"1. Qianjiji Dadui" "2. Qianjiji Dadui" "3. Qianjiji Dadui" "4. Qianjiji Dadui" "5. Qianjiji Dadui" 
+	}
+	interceptor = {
+		"1. Zhandouji Dadui" "2. Zhandouji Dadui" "3. Zhandouji Dadui" "4. Zhandouji Dadui" "5. Zhandouji Dadui" 
+	}
+	strategic_bomber = {
+		"1. STR Hongzhaji Dadui" "2. STR Hongzhaji Dadui" "3. STR Hongzhaji Dadui" "4. STR Hongzhaji Dadui" "5. STR Hongzhaji Dadui" 
+	}
+	tactical_bomber = {
+		"1. TAC Hongzhaji Dadui" "2. TAC Hongzhaji Dadui" "3. TAC Hongzhaji Dadui" "4. TAC Hongzhaji Dadui" "5. TAC Hongzhaji Dadui" 
+	}
+	naval_bomber = {
+		"1. MAR Hongzhaji Dadui" "2. MAR Hongzhaji Dadui" "3. MAR Hongzhaji Dadui" "4. MAR Hongzhaji Dadui" "5. MAR Hongzhaji Dadui" 
+	}
+	cas = {
+		"1. DIV Hongzhaji Dadui" "2. DIV Hongzhaji Dadui" "3. DIV Hongzhaji Dadui" "4. DIV Hongzhaji Dadui" "5. DIV Hongzhaji Dadui" 
+	}
+	transport_plane = {
+		"1. Kongyunji Dadui" "2. Kongyunji Dadui" "3. Kongyunji Dadui" "4. Kongyunji Dadui" "5. Kongyunji Dadui" 
+	}
+	battleship = {
+		"Nan'Shin" "Pao'Nim" "Hai'Yung" "Hai'Shew" "Hai'Shen" "Ying'Swei" "Fei'Hung" 
+	}
+	light_cruiser = {
+		"Fei'Hung" "Chao'Ho" "Hai'CYN" "Ying'Swei" "Chao'Ho" 
+	}
+	heavy_cruiser = {
+		"Ping'hai" "Ning'hai" "Chung'king" "Nan'Shin" "Pao'Nim" 
+	}
+	battlecruiser = {
+		"Chao'Ho" "Ying'Swei" "Chao'Ho" "Ning'Hai" "Ping'Hai" 
+	}
+	destroyer = {
+		"1. Quzujian Dadui" "2. Quzujian Dadui" "3. Quzujian Dadui" "4. Quzujian Dadui" "5. Quzujian Dadui" 
+	}
+	carrier = {
+		"Nan'Shin" "Pao'Nim" "Hai'Yung" "Hai'Shew" "Hai'Shen" "Ying'Swei" "Fei'Hung" 
+	}
+	submarine = {
+		"1. Qianting Budui" "2. Qianting Budui" "3. Qianting Budui" "4. Qianting Budui" "5. Qianting Budui" 
+	}
+	transport_ship = {
+		"1. Yunshuji Dadui" "2. Yunshuji Dadui" "3. Yunshuji Dadui" "4. Yunshuji Dadui" "5. Yunshuji Dadui" 
+	}
+
+}
+
+
+ministers = {
+	501001 = {
+		name = "Long Yun"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M501001
+		head_of_state = die_hard_reformer
+		head_of_government = political_protege
+		chief_of_staff = school_of_psychology
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	501003 = {
+		name = "Zhou Zhirou"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M501003
+		foreign_minister = apologetic_clerk
+		start_date = 1936.1.1
+	}
+	501004 = {
+		name = "Liu Wenhui"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M501004
+		armament_minister = battle_fleet_proponent
+		start_date = 1936.1.1
+	}
+	501005 = {
+		name = "Ding Zhipan"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M501005
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	501006 = {
+		name = "Mi Zaiming"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M501006
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	501009 = {
+		name = "Lu Han"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M501009
+		chief_of_navy = open_seas_doctrine
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1936.1.1
+	}
+}

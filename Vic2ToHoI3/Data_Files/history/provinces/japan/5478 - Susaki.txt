@@ -1,0 +1,11 @@
+owner = JAP
+controller = JAP
+add_core = JAP
+points = 5
+industry = 5
+anti_air = 2
+infra = 10
+air_base = 10
+naval_base = 10
+manpower = 2.00
+leadership = 0.40

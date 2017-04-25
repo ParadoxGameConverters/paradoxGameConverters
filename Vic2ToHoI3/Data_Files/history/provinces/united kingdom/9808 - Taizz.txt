@@ -1,0 +1,4 @@
+owner = YEM
+controller = YEM
+add_core = YEM
+infra = 4

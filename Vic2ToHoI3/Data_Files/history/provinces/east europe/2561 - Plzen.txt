@@ -1,0 +1,14 @@
+owner = CZE
+controller = CZE
+add_core = CZE
+
+infra = 9
+
+leadership = 0.1
+strategic_resource = automotive_industry
+
+1939.3.15 = {
+	owner = GER
+	controller = GER
+	add_core = GER
+}

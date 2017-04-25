@@ -1,0 +1,596 @@
+color = { 112  90  87 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"Kurzemes divizija" "Latgales divizija" "Zemgales divizija" "Vidzemes divizija" "1. Kajnieku divizija" "2. Kajnieku divizija" "3. Kajnieku divizija" "4. Kajnieku divizija" "5. Kajnieku divizija" "6. Kajnieku divizija" "7. Kajnieku divizija" 
+		"8. Kajnieku divizija" "9. Kajnieku divizija" "10. Kajnieku divizija" "11. Kajnieku divizija" "12. Kajnieku divizija" "13. Kajnieku divizija" "14. Kajnieku divizija" "16. Kajnieku divizija" "17. Kajnieku divizija" "19. Kajnieku divizija" "1. Transportlidmasinu grupa" 
+		"2. Transportlidmasinu grupa" "3. Transportlidmasinu grupa" "4. Transportlidmasinu grupa" "5. Transportlidmasinu grupa" 
+	}
+	cavalry_brigade = {
+		"3. Kavalerijas divizija" "5. Kavalerijas divizija" "6. Kavalerijas divizija" "8. Kavalerijas divizija" "9. Kavalerijas divizija" "14. Kavalerijas divizija" "24. Kavalerijas divizija" "32. Kavalerijas divizija" "36. Kavalerijas divizija" "37. Kavalerijas divizija" 
+	}
+	motorized_brigade = {
+		"7. Motorizeto strelnieku divizija" "29. Motorizeto strelnieku divizija" "36. Motorizeto strelnieku divizija" "57. Motorizeto strelnieku divizija" "81. Motorizeto strelnieku divizija" "84. Motorizeto strelnieku divizija" "163. Motorizeto strelnieku divizija" "198. Motorizeto strelnieku divizija" "202. Motorizeto strelnieku divizija" "204. Motorizeto strelnieku divizija" "205. Motorizeto strelnieku divizija" 
+		"208. Motorizeto strelnieku divizija" "209. Motorizeto strelnieku divizija" "210. Motorizeto strelnieku divizija" "212. Motorizeto strelnieku divizija" "213. Motorizeto strelnieku divizija" "215. Motorizeto strelnieku divizija" "216. Motorizeto strelnieku divizija" "240. Motorizeto strelnieku divizija" 
+	}
+	mechanized_brigade = {
+		"1. Mehanizeto strelnieku divizija" "15. Mehanizeto strelnieku divizija" "69. Mehanizeto strelnieku divizija" "82. Mehanizeto strelnieku divizija" "103. Mehanizeto strelnieku divizija" "109. Mehanizeto strelnieku divizija" "185. Mehanizeto strelnieku divizija" "218. Mehanizeto strelnieku divizija" "219. Mehanizeto strelnieku divizija" "220. Mehanizeto strelnieku divizija" "221. Mehanizeto strelnieku divizija" 
+		"236. Mehanizeto strelnieku divizija" "239. Mehanizeto strelnieku divizija" 
+	}
+	light_armor_brigade = {
+		"1. Autotanku divizija" "2. Autotanku divizija" "3. Autotanku divizija" "4. Autotanku divizija" "5. Autotanku divizija" "6. Autotanku divizija" "7. Autotanku divizija" "8. Autotanku divizija" "9. Autotanku divizija" "10. Autotanku divizija" 
+	}
+	armor_brigade = {
+		"1. Autotanku divizija" "2. Autotanku divizija" "3. Autotanku divizija" "4. Autotanku divizija" "5. Autotanku divizija" "6. Autotanku divizija" "7. Autotanku divizija" "8. Autotanku divizija" "9. Autotanku divizija" "10. Autotanku divizija" 
+	}
+	paratrooper_brigade = {
+		"1. Aviodesanta divizija" "2. Aviodesanta divizija" "3. Aviodesanta divizija" "4. Aviodesanta divizija" "5. Aviodesanta divizija" "6. Aviodesanta divizija" "7. Aviodesanta divizija" "8. Aviodesanta divizija" "9. Aviodesanta divizija" "10. Aviodesanta divizija" 
+	}
+	marine_brigade = {
+		"1. Juras kajnieku divizija" "2. Juras kajnieku divizija" "3. Juras kajnieku divizija" "4. Juras kajnieku divizija" "5. Juras kajnieku divizija" "6. Juras kajnieku divizija" "7. Juras kajnieku divizija" "8. Juras kajnieku divizija" "9. Juras kajnieku divizija" "10. Juras kajnieku divizija" 
+	}
+	bergsjaeger_brigade = {
+		"9. Kalnu kajnieku divizija" "20. Kalnu kajnieku divizija" "28. Kalnu kajnieku divizija" "30. Kalnu kajnieku divizija" "44. Kalnu kajnieku divizija" "47. Kalnu kajnieku divizija" "58. Kalnu kajnieku divizija" "60. Kalnu kajnieku divizija" 
+	}
+	garrison_brigade = {
+		"10. Kajnieku divizija" "11. Kajnieku divizija" "12. Kajnieku divizija" "13. Kajnieku divizija" "14. Kajnieku divizija" "16. Kajnieku divizija" "17. Kajnieku divizija" "19. Kajnieku divizija" 
+	}
+	hq_brigade = {
+		"1. Latvija Armiya" "2. Latvija Armiya" "3. Latvija Armiya" "4. Latvija Armiya" 
+	}
+	militia_brigade = {
+		"2. Aizsargu divizija" "3. Aizsargu divizija" "4. Aizsargu divizija" "5. Aizsargu divizija" "6. Aizsargu divizija" "8. Aizsargu divizija" "10. Aizsargu divizija" "11. Aizsargu divizija" "12. Aizsargu divizija" "13. Aizsargu divizija" "14. Aizsargu divizija" 
+		"16. Aizsargu divizija" "17. Aizsargu divizija" "19. Aizsargu divizija" "21. Aizsargu divizija" "22. Aizsargu divizija" "23. Aizsargu divizija" "24. Aizsargu divizija" "25. Aizsargu divizija" "26. Aizsargu divizija" "27. Aizsargu divizija" 
+	}
+	multi_role = {
+		"1. Iznicinataju grupa" "2. Iznicinataju grupa" "3. Iznicinataju grupa" "4. Iznicinataju grupa" "5. Iznicinataju grupa" "6. Iznicinataju grupa" "7. Iznicinataju grupa" "8. Iznicinataju grupa" "10. Iznicinataju grupa" 
+	}
+	strategic_bomber = {
+		"1. Strategisko bumbvedeju grupa" "2. Strategisko bumbvedeju grupa" "3. Strategisko bumbvedeju grupa" "4. Strategisko bumbvedeju grupa" "5. Strategisko bumbvedeju grupa" "6. Strategisko bumbvedeju grupa" "7. Strategisko bumbvedeju grupa" "8. Strategisko bumbvedeju grupa" "9. Strategisko bumbvedeju grupa" "10. Strategisko bumbvedeju grupa" 
+	}
+	tactical_bomber = {
+		"1. Taktisko bumbvedeju grupa" "2. Taktisko bumbvedeju grupa" "3. Taktisko bumbvedeju grupa" "4. Taktisko bumbvedeju grupa" "5. Taktisko bumbvedeju grupa" "6. Taktisko bumbvedeju grupa" "7. Taktisko bumbvedeju grupa" "8. Taktisko bumbvedeju grupa" "9. Taktisko bumbvedeju grupa" "10. Taktisko bumbvedeju grupa" 
+	}
+	naval_bomber = {
+		"1. Juras bumbvedeju grupa" "2. Juras bumbvedeju grupa" "3. Juras bumbvedeju grupa" "4. Juras bumbvedeju grupa" "5. Juras bumbvedeju grupa" "6. Juras bumbvedeju grupa" "7. Juras bumbvedeju grupa" "8. Juras bumbvedeju grupa" "9. Juras bumbvedeju grupa" "10. Juras bumbvedeju grupa" 
+	}
+	cas = {
+		"23. Triecienlidmasinu grupa" "46. Triecienlidmasinu grupa" "77. Triecienlidmasinu grupa" "25. Triecienlidmasinu grupa" "72. Triecienlidmasinu grupa" "9. Triecienlidmasinu grupa" "10. Triecienlidmasinu grupa" "11. Triecienlidmasinu grupa" "1. Triecienlidmasinu grupa" "2. Triecienlidmasinu grupa" "5. Triecienlidmasinu grupa" 
+		"55. Triecienlidmasinu grupa" 
+	}
+	battleship = {
+		"Riga" "Mazsalaca" "Dundaga" "Bauska" "Jurmala" "Kuldiga" "Madona" "Rezekne" 
+	}
+	light_cruiser = {
+		"Cesis" "Liepaja" "Priekule" "Daugavpils" "Aglona" "Auce" 
+	}
+	heavy_cruiser = {
+		"Riga" "Mazsalaca" "Dundaga" "Bauska" "Jurmala" "Kuldiga" "Madona" "Rezekne" "Valmiera" 
+	}
+	battlecruiser = {
+		"Valmiera" "Cesis" "Liepaja" "Priekule" "Daugavpils" "Aglona" "Auce" 
+	}
+	destroyer = {
+		"1. Minukugu flotile" "2. Minukugu flotile" "3. Minukugu flotile" "4. Minukugu flotile" "5. Minukugu flotile" "6. Minukugu flotile" "7. Minukugu flotile" "8. Minukugu flotile" "9. Minukugu flotile" "10. Minukugu flotile" "11. Minukugu flotile" 
+		"12. Minukugu flotile" "13. Minukugu flotile" "14. Minukugu flotile" "15. Minukugu flotile" "16. Minukugu flotile" "17. Minukugu flotile" "18. Minukugu flotile" "19. Minukugu flotile" "20. Minukugu flotile" 
+	}
+	carrier = {
+		"Riga" "Mazsalaca" "Dundaga" "Bauska" "Jurmala" "Kuldiga" "Madona" "Rezekne" "Valmiera" "Cesis" "Liepaja" 
+		"Priekule" "Daugavpils" "Aglona" "Auce" 
+	}
+	escort_carrier = {
+		"Virsaitis" "Namejs" 
+	}
+	submarine = {
+		"Ronis  SpidolaÜ" "2. Zemudens flotile" "3. Zemudens flotile" "4. Zemudens flotile" "5. Zemudens flotile" "6. Zemudens flotile" "7. Zemudens flotile" "8. Zemudens flotile" "9. Zemudens flotile" "10. Zemudens flotile" "11. Zemudens flotile" 
+		"12. Zemudens flotile" "13. Zemudens flotile" "14. Zemudens flotile" "15. Zemudens flotile" 
+	}
+	transport_ship = {
+		"1. Transportkugu flotile" "2. Transportkugu flotile" "3. Transportkugu flotile" "4. Transportkugu flotile" "5. Transportkugu flotile" "6. Transportkugu flotile" "7. Transportkugu flotile" "8. Transportkugu flotile" "9. Transportkugu flotile" "10. Transportkugu flotile" "11. Transportkugu flotile" 
+		"12. Transportkugu flotile" "13. Transportkugu flotile" "14. Transportkugu flotile" "15. Transportkugu flotile" 
+	}
+
+}
+
+ministers = {
+	27001 = {
+		name = "Alberts Kviesis"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M27001
+		head_of_state = power_hungry_demagogue
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	27002 = {
+		name = "Kàrlis Ulmanis"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M27002
+		head_of_government = happy_amateur
+		foreign_minister = biased_intellectual
+		head_of_state = barking_buffoon
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	27004 = {
+		name = "Ludvigs Ctis"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M27004
+		armament_minister = infantry_proponent
+		start_date = 1936.1.1
+	}
+	27005 = {
+		name = "Vilis Gulbis"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M27005
+		minister_of_security = crime_fighter
+		armament_minister = air_to_sea_proponent
+		start_date = 1936.1.1
+	}
+	27006 = {
+		name = "Hermanis Apsitis"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M27006
+		minister_of_intelligence = political_specialist
+		minister_of_security = prince_of_terror
+		start_date = 1936.1.1
+	}
+	27007 = {
+		name = "Jànis Balodis"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M27007
+		chief_of_staff = school_of_defence
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	27008 = {
+		name = "Rudolfs Bangerskis"
+		ideology = fascistic
+		loyalty = 0.50
+		picture = M27008
+		chief_of_army = static_defence_doctrine
+		head_of_government = flamboyant_tough_guy
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	27009 = {
+		name = "Tomas Spade"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M27009
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	27010 = {
+		name = "Janis Indans"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M27010
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	27031 = {
+		name = "Hans Heinrich Lohse"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M27031
+		head_of_state = stern_imperialist
+		minister_of_intelligence = industrial_specialist
+		start_date = 1941.1.1
+	}
+	27033 = {
+		name = "Janis Andersons"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M27033
+		head_of_state = benevolent_gentleman
+		minister_of_security = crooked_kleptocrat
+		chief_of_navy = base_control_doctrine
+		start_date = 1945.1.1
+	}
+	27034 = {
+		name = "Pauls Kalniñs"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M27011
+		head_of_state = insignificant_layman
+		head_of_government = silent_workhorse
+		minister_of_security = efficient_sociopath
+		start_date = 1936.1.1
+	}
+	27035 = {
+		name = "Jazeps Rancans"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M27035
+		head_of_state = autocratic_charmer
+		minister_of_security = man_of_the_people
+		start_date = 1945.1.1
+	}
+	27036 = {
+		name = "Augusts Kirchensteins"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M27021
+		head_of_state = weary_stiff_neck
+		head_of_government = silent_workhorse
+		foreign_minister = ideological_crusader
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	27037 = {
+		name = "Ernests Kreismanis"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M27037
+		head_of_state = ruthless_powermonger
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1945.1.1
+	}
+	27038 = {
+		name = "Alfreds Valdmanis"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M27038
+		head_of_government = smiling_oilman
+		foreign_minister = iron_fisted_brute
+		armament_minister = administrative_genius
+		minister_of_security = crime_fighter
+		start_date = 1941.1.1
+	}
+	27039 = {
+		name = "Oskars Dankers"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M27039
+		head_of_government = happy_amateur
+		foreign_minister = general_staffer
+		start_date = 1941.1.1
+	}
+	27041 = {
+		name = "Jànis Kaminskis"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M27041
+		head_of_government = naive_optimist
+		foreign_minister = iron_fisted_brute
+		armament_minister = resource_industrialist
+		start_date = 1940.1.1
+	}
+	27044 = {
+		name = "Reinhold K. Zariñs"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M27012
+		head_of_government = political_protege
+		foreign_minister = apologetic_clerk
+		minister_of_intelligence = technical_specialist
+		start_date = 1940.1.1
+	}
+	27046 = {
+		name = "Roberts Osis"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M27046
+		head_of_government = old_general
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1945.1.1
+	}
+	27047 = {
+		name = "Vilis Làcis"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M27025
+		head_of_government = backroom_backstabber
+		minister_of_security = efficient_sociopath
+		minister_of_intelligence = research_specialist
+		start_date = 1946.1.1
+	}
+	27050 = {
+		name = "Màrtiñs Prïmanis"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M27050
+		foreign_minister = ideological_crusader
+		start_date = 1944.1.1
+	}
+	27051 = {
+		name = "Vilhelms Munters"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M27051
+		foreign_minister = great_compromiser
+		start_date = 1936.1.1
+	}
+	27054 = {
+		name = "Alfreds Bïlmanis"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M27054
+		foreign_minister = biased_intellectual
+		start_date = 1940.1.1
+	}
+	27055 = {
+		name = "Julijcs Lacis"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M27029
+		foreign_minister = great_compromiser
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1936.1.1
+	}
+	27057 = {
+		name = "Arnolds Skrebers"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M27057
+		foreign_minister = great_compromiser
+		start_date = 1945.1.1
+	}
+	27058 = {
+		name = "Peteris Valeskalns"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M27058
+		foreign_minister = ideological_crusader
+		start_date = 1946.1.1
+	}
+	27060 = {
+		name = "Evalds Andersons"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M27060
+		armament_minister = military_entrepreneur
+		start_date = 1941.1.1
+	}
+	27061 = {
+		name = "Jànis Skujevics"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M27061
+		armament_minister = resource_industrialist
+		start_date = 1941.1.1
+	}
+	27062 = {
+		name = "Jànis Miezis"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M27062
+		armament_minister = infantry_proponent
+		start_date = 1944.1.1
+	}
+	27064 = {
+		name = "Kornelijs Veidnieks"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M27064
+		armament_minister = air_superiority_proponent
+		start_date = 1938.1.1
+	}
+	27068 = {
+		name = "Petrus Apskalns"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M27068
+		armament_minister = infantry_proponent
+		start_date = 1936.1.1
+	}
+	27069 = {
+		name = "Edgars Andersons"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M27014
+		armament_minister = military_entrepreneur
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1945.1.1
+	}
+	27070 = {
+		name = "Roberts Dambïtis"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M27070
+		armament_minister = resource_industrialist
+		chief_of_staff = school_of_fire_support
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	27071 = {
+		name = "Kàrlis Karlsons"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M27024
+		armament_minister = military_entrepreneur
+		start_date = 1940.1.1
+	}
+	27072 = {
+		name = "Aleksandrs Bulle"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M27072
+		armament_minister = laissez_faires_capitalist
+		start_date = 1945.1.1
+	}
+	27073 = {
+		name = "Arnolds Tabaks"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M27073
+		armament_minister = resource_industrialist
+		start_date = 1946.1.1
+	}
+	27075 = {
+		name = "Teodors Zvejnieks"
+		ideology = national_socialist
+		loyalty = 0.50
+		picture = M27075
+		minister_of_security = efficient_sociopath
+		minister_of_intelligence = naval_intelligence_specialist
+		chief_of_navy = power_projection_doctrine
+		start_date = 1941.1.1
+	}
+	27082 = {
+		name = "Jurijs Rabersz"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M27082
+		minister_of_security = compassionate_gentleman
+		minister_of_intelligence = technical_specialist
+		start_date = 1936.1.1
+	}
+	27084 = {
+		name = "Rodolfs Rocin"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M27084
+		minister_of_security = silent_lawyer
+		start_date = 1945.1.1
+	}
+	27085 = {
+		name = "Andrejs Jablonskis"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M27085
+		minister_of_security = prince_of_terror
+		start_date = 1946.1.1
+	}
+	27087 = {
+		name = "Erich Koch"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M27087
+		minister_of_intelligence = research_specialist
+		start_date = 1943.1.1
+	}
+	27091 = {
+		name = "Felix Cielens"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M27091
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	27092 = {
+		name = "Fricis Celmins"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M27016
+		minister_of_intelligence = dismal_enigma
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1940.1.1
+	}
+	27097 = {
+		name = "Konstantins Cakste"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M27097
+		chief_of_staff = school_of_fire_support
+		chief_of_navy = base_control_doctrine
+		chief_of_air = army_aviation_doctrine
+		start_date = 1941.1.1
+	}
+	27098 = {
+		name = "Arturs M. Silgailis"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M27098
+		chief_of_staff = school_of_fire_support
+		start_date = 1943.1.1
+	}
+	27100 = {
+		name = "Krisjànis Berkis"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M27100
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1939.1.1
+	}
+	27101 = {
+		name = "Rudolfs Kociñs"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M27101
+		chief_of_staff = school_of_psychology
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1945.1.1
+	}
+	27102 = {
+		name = "Verners Tefpers"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M27017
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1936.1.1
+	}
+	27103 = {
+		name = "Janis Berzins"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M27027
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	27105 = {
+		name = "Izglitibas Tautas"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M27030
+		chief_of_staff = school_of_mass_combat
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1945.1.1
+	}
+	27106 = {
+		name = "Arturs Sprogis"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M27106
+		chief_of_staff = school_of_fire_support
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1946.1.1
+	}
+	27107 = {
+		name = "Otto Hellmich"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M27107
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1941.1.1
+	}
+	27128 = {
+		name = "Jucums Vacietis"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M27126
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+}
+

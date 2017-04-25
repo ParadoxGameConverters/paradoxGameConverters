@@ -23,7 +23,7 @@ THE SOFTWARE. */
 #define EU4LEADER_H_
 
 
-#include "../date.h"
+#include "Date.h"
 
 class Object;
 

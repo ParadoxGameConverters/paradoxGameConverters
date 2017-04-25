@@ -1,0 +1,308 @@
+color = { 225  131  148 }
+graphical_culture = Japanese
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"Household Division" "Royal Division" "1st Bhutanese Infantry Div." "2nd Bhutanese Infantry Div." "3rd Bhutanese Infantry Div." "4th Bhutanese Infantry Div." "5th Bhutanese Infantry Div." "6th Bhutanese Infantry Div." "7th Bhutanese Infantry Div." "8th Bhutanese Infantry Div." "9th Bhutanese Infantry Div." 
+		"10th Bhutanese Infantry Div." "11th Bhutanese Infantry Div." "12th Bhutanese Infantry Div." "13th Bhutanese Infantry Div." "14th Bhutanese Infantry Div." "15th Bhutanese Infantry Div." "16th Bhutanese Infantry Div." "17th Bhutanese Infantry Div." "18th Bhutanese Infantry Div." "19th Bhutanese Infantry Div." "20th Bhutanese Infantry Div." 
+			}
+	cavalry_brigade = {
+		"1st Bhutanese Cavalry Div." "2nd Bhutanese Cavalry Div." "3rd Bhutanese Cavalry Div." "4th Bhutanese Cavalry Div." "5th Bhutanese Cavalry Div." "6th Bhutanese Cavalry Div." "7th Bhutanese Cavalry Div." "8th Bhutanese Cavalry Div." "9th Bhutanese Cavalry Div." "10th Bhutanese Cavalry Div." 
+	}
+	motorized_brigade = {
+		"1st Bhutanese Motorized Div." "2nd Bhutanese Motorized Div." "3rd Bhutanese Motorized Div." "4th Bhutanese Motorized Div." "5th Bhutanese Motorized Div." "6th Bhutanese Motorized Div." "7th Bhutanese Motorized Div." "8th Bhutanese Motorized Div." "9th Bhutanese Motorized Div." "10th Bhutanese Motorized Div." 
+	}
+	mechanized_brigade = {
+		"1st Bhutanese Mechanized Div." "2nd Bhutanese Mechanized Div." "3rd Bhutanese Mechanized Div." "4th Bhutanese Mechanized Div." "5th Bhutanese Mechanized Div." "6th Bhutanese Mechanized Div." "7th Bhutanese Mechanized Div." "8th Bhutanese Mechanized Div." "9th Bhutanese Mechanized Div." "10th Bhutanese Mechanized Div." 
+	}
+	light_armor_brigade = {
+		"1st Bhutanese Armoured Div." "2nd Bhutanese Armoured Div." "3rd Bhutanese Armoured Div." "4th Bhutanese Armoured Div." "5th Bhutanese Armoured Div." "6th Bhutanese Armoured Div." "7th Bhutanese Armoured Div." "8th Bhutanese Armoured Div." "9th Bhutanese Armoured Div." "10th Bhutanese Armoured Div." "11th Bhutanese Armoured Div." 
+		"12th Bhutanese Armoured Div." "14th Bhutanese Armoured Div." "15th Bhutanese Armoured Div." 
+	}
+	armor_brigade = {
+		"1st Bhutanese Armoured Div." "2nd Bhutanese Armoured Div." "3rd Bhutanese Armoured Div." "4th Bhutanese Armoured Div." "5th Bhutanese Armoured Div." "6th Bhutanese Armoured Div." "7th Bhutanese Armoured Div." "8th Bhutanese Armoured Div." "9th Bhutanese Armoured Div." "10th Bhutanese Armoured Div." "11th Bhutanese Armoured Div." 
+		"12th Bhutanese Armoured Div." "14th Bhutanese Armoured Div." "15th Bhutanese Armoured Div." 
+	}
+	paratrooper_brigade = {
+		"1st Bhutanese Airborne Div." "2nd Bhutanese Airborne Div." "3rd Bhutanese Airborne Div." "4th Bhutanese Airborne Div." "5th Bhutanese Airborne Div." "6th Bhutanese Airborne Div." "7th Bhutanese Airborne Div." "8th Bhutanese Airborne Div." "9th Bhutanese Airborne Div." "10th Bhutanese Airborne Div." 
+	}
+	marine_brigade = {
+		"1st Bhutanese Marine Div." "2nd Bhutanese Marine Div." "3rd Bhutanese Marine Div." "4th Bhutanese Marine Div." "5th Bhutanese Marine Div." "6th Bhutanese Marine Div." "7th Bhutanese Marine Div." "8th Bhutanese Marine Div." "9th Bhutanese Marine Div." "10th Bhutanese Marine Div." 
+	}
+	bergsjaeger_brigade = {
+		"1st Gurkha Division" "2nd Gurkha Division" "3rd Gurkha Division" "4th Gurkha Division" "5th Gurkha Division" "8th Gurkha Division" "10th Gurkha Division" "11th Gurkha Division" "12th Gurkha Division" 
+	}
+	garrison_brigade = {
+		"1st Bhutanese Garrison Div." "2nd Bhutanese Garrison Div." "3rd Bhutanese Garrison Div." "4th Bhutanese Garrison Div." "5th Bhutanese Garrison Div." "6th Bhutanese Garrison Div." "7th Bhutanese Garrison Div." "8th Bhutanese Garrison Div." "9th Bhutanese Garrison Div." "10th Bhutanese Garrison Div." "11th Bhutanese Garrison Div." 
+		"12th Bhutanese Garrison Div." "13th Bhutanese Garrison Div." "14th Bhutanese Garrison Div." "15th Bhutanese Garrison Div." "16th Bhutanese Garrison Div." 
+	}
+	hq_brigade = {
+		"1st Army" "2nd Army" "3rd Army" "4th Army" "5th Army" "6th Army" "7th Army" "8th Army" "9th Army" "10th Army" "15th Army" 
+			}
+	militia_brigade = {
+		"1st Bhutanese Militia Div." "2nd Bhutanese Militia Div." "3rd Bhutanese Militia Div." "4th Bhutanese Militia Div." "5th Bhutanese Militia Div." "6th Bhutanese Militia Div." "7th Bhutanese Militia Div." "8th Bhutanese Militia Div." "9th Bhutanese Militia Div." "10th Bhutanese Militia Div." "11th Bhutanese Militia Div." 
+		"12th Bhutanese Militia Div." "13th Bhutanese Militia Div." "14th Bhutanese Militia Div." "15th Bhutanese Militia Div." "16th Bhutanese Militia Div." "17th Bhutanese Militia Div." "18th Bhutanese Militia Div." "19th Bhutanese Militia Div." "20th Bhutanese Militia Div." "21st Bhutanese Militia Div." "22nd Bhutanese Militia Div." 
+		"23rd Bhutanese Militia Div." "24th Bhutanese Militia Div." "25th Bhutanese Militia Div." "26th Bhutanese Militia Div." "27th Bhutanese Militia Div." "28th Bhutanese Militia Div." "29th Bhutanese Militia Div." "30th Bhutanese Militia Div." 
+	}
+	multi_role = {
+		"No.1 Fighter Wing" "No.2 Fighter Wing" "No.3 Fighter Wing" "No.4 Fighter Wing" "No.5 Fighter Wing" "No.7 Fighter Wing" "No.8 Fighter Wing" "No.9 Fighter Wing" "No.10 Fighter Wing" 
+	}
+	interceptor = {
+		"No.1 Fighter Wing" "No.2 Fighter Wing" "No.3 Fighter Wing" "No.4 Fighter Wing" "No.5 Fighter Wing" "No.7 Fighter Wing" "No.8 Fighter Wing" "No.9 Fighter Wing" "No.10 Fighter Wing" 
+	}
+	strategic_bomber = {
+		"No.1 Strategic Wing" "No.2 Strategic Wing" "No.6 Strategic Wing" "No.3 Strategic Wing" "No.4 Strategic Wing" "No.7 Strategic Wing" "No.8 Strategic Wing" "No.9 Strategic Wing" "No.10 Strategic Wing" 
+	}
+	tactical_bomber = {
+		"No.1 Tactical Bomb Wing" "No.2 Tactical Bomb Wing" "No.6 Tactical Bomb Wing" "No.3 Tactical Bomb Wing" "No.4 Tactical Bomb Wing" "No.7 Tactical Bomb Wing" "No.8 Tactical Bomb Wing" "No.9 Tactical Bomb Wing" "No.10 Tactical Bomb Wing" 
+	}
+	naval_bomber = {
+		"No.1 Naval Bomber Wing" "No.2 Naval Bomber Wing" "No.3 Naval Bomber Wing" "No.4 Naval Bomber Wing" "No.5 Naval Bomber Wing" "No.7 Naval Bomber Wing" "No.8 Naval Bomber Wing" "No.9 Naval Bomber Wing" "No.10 Naval Bomber Wing" "No.1 Torpedo Wing" "No.2 Torpedo Wing" 
+		"No.3 Torpedo Wing" "No.4 Torpedo Wing" "No.5 Torpedo Wing" "No.7 Torpedo Wing" "No.8 Torpedo Wing" "No.9 Torpedo Wing" "No.10 Torpedo Wing" 
+	}
+	cas = {
+		"No.1 Dive Bomber Wing" "No.2 Dive Bomber Wing" "No.6 Dive Bomber Wing" "No.3 Dive Bomber Wing" "No.4 Dive Bomber Wing" "No.7 Dive Bomber Wing" "No.8 Dive Bomber Wing" "No.9 Dive Bomber Wing" "No.10 Dive Bomber Wing" 
+	}
+	transport_plane = {
+		"No.1 Transport Wing" "No.2 Transport Wing" "No.3 Transport Wing" "No.4 Transport Wing" "No.5 Transport Wing" 
+	}
+	battleship = {
+		"Bhutan" "Raj Sendrava" 
+	}
+	light_cruiser = {
+		"Arunachal" "Pradesh" "Bomdila" "Itanagar" "Thimphu" 
+	}
+	heavy_cruiser = {
+		"Arunachal" "Pradesh" "Bomdila" "Itanagar" "Thimphu" 
+	}
+	battlecruiser = {
+		"Bhutan" "Raj Sendrava" 
+	}
+	destroyer = {
+		"1st Destroyer Flotilla" "2nd Destroyer Flotilla" "3rd Destroyer Flotilla" "4th Destroyer Flotilla" "5th Destroyer Flotilla" "6th Destroyer Flotilla" "7th Destroyer Flotilla" "8th Destroyer Flotilla" "9th Destroyer Flotilla" "10th Destroyer Flotilla" 
+	}
+	carrier = {
+		"Druk" 
+	}
+	submarine = {
+		"1st Submarine Flotilla" "2nd Submarine Flotilla" "3rd Submarine Flotilla" "4th Submarine Flotilla" "5th Submarine Flotilla" "6th Submarine Flotilla" "7th Submarine Flotilla" "8th Submarine Flotilla" "9th Submarine Flotilla" "10th Submarine Flotilla" 
+	}
+	transport_ship = {
+		"1st Troop Transport Flotilla" "2nd Troop Transport Flotilla" "3rd Troop Transport Flotilla" "4th Troop Transport Flotilla" "5th Troop Transport Flotilla" "6th Troop Transport Flotilla" "7th Troop Transport Flotilla" "8th Troop Transport Flotilla" "9th Troop Transport Flotilla" "10th Troop Transport Flotilla" 
+	}
+
+}
+
+
+ministers = {
+	74001 = {
+		name = "Jigme Wangchuk"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M74001
+		head_of_state = pig_headed_isolationist
+		armament_minister = infantry_proponent
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	74002 = {
+		name = "Sonam Tobgay Dorji"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M74002
+		head_of_government = backroom_backstabber
+		foreign_minister = biased_intellectual
+		armament_minister = laissez_faires_capitalist
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	74004 = {
+		name = "Ahmad Akhaz"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M74004
+		armament_minister = infantry_proponent
+		foreign_minister = the_cloak_n_dagger_schemer
+		minister_of_security = prince_of_terror
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	74005 = {
+		name = "Mang-pos Bhur-ba'i Rgyalpo"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M74005
+		minister_of_security = man_of_the_people
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	74006 = {
+		name = "Reginald B. Stevens"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M74006
+		minister_of_intelligence = dismal_enigma
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	74007 = {
+		name = "Namgyal Bahadur"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M74007
+		chief_of_staff = school_of_manoeuvre
+		foreign_minister = general_staffer
+		armament_minister = strategic_air_proponent
+		minister_of_security = compassionate_gentleman
+		minister_of_intelligence = industrial_specialist
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1936.1.1
+	}
+	74008 = {
+		name = "Philip Toozey"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M74008
+		chief_of_army = guns_and_butter_doctrine
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	74009 = {
+		name = "Tommy Gould"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M74009
+		chief_of_navy = indirect_approach_doctrine
+		armament_minister = submarine_proponent
+		minister_of_intelligence = naval_intelligence_specialist
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	74010 = {
+		name = "Nicky Barr"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M74010
+		chief_of_air = air_superiority_doctrine
+		armament_minister = air_superiority_proponent
+		start_date = 1936.1.1
+	}
+	74011 = {
+		name = "Sir Basil Gould"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M74011
+		foreign_minister = iron_fisted_brute
+		minister_of_security = silent_lawyer
+		start_date = 1937.1.1
+	}
+	74015 = {
+		name = "William Stevenson Meyer"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M74015
+		foreign_minister = apologetic_clerk
+		armament_minister = resource_industrialist
+		minister_of_security = crime_fighter
+		start_date = 1941.1.1
+	}
+	74016 = {
+		name = "Arthur John Hopkinson"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M74016
+		foreign_minister = great_compromiser
+		armament_minister = theoretical_scientist
+		minister_of_intelligence = technical_specialist
+		start_date = 1945.1.1
+	}
+	74017 = {
+		name = "Edward Cook"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M74017
+		foreign_minister = biased_intellectual
+		armament_minister = administrative_genius
+		minister_of_security = efficient_sociopath
+		minister_of_intelligence = political_specialist
+		start_date = 1945.1.1
+	}
+	74019 = {
+		name = "Karma S. Bahadur"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M74019
+		armament_minister = military_entrepreneur
+		minister_of_security = back_stabber
+		minister_of_intelligence = dismal_enigma
+		start_date = 1938.1.1
+	}
+	74026 = {
+		name = "Bill Collett"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M74026
+		armament_minister = air_to_ground_proponent
+		chief_of_air = army_aviation_doctrine
+		start_date = 1944.1.1
+	}
+	74029 = {
+		name = "Sonam Pradukha"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M74029
+		armament_minister = tank_proponent
+		chief_of_staff = school_of_fire_support
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1945.1.1
+	}
+	74040 = {
+		name = "Henry Weedon-Gould"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M74040
+		minister_of_intelligence = research_specialist
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1943.1.1
+	}
+	74056 = {
+		name = "Jigme Dorji Wangchuk"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M74056
+		head_of_state = weary_stiff_neck
+		start_date = 1952.1.1
+	}
+	74057 = {
+		name = "Jigme Palden Dorji"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M74057
+		head_of_government = corporate_suit
+		start_date = 1952.1.1
+	}
+}

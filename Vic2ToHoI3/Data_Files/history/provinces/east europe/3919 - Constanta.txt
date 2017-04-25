@@ -1,0 +1,10 @@
+owner = ROM
+controller = ROM
+add_core = ROM
+
+industry = 2
+anti_air = 2
+infra = 8
+air_base = 1
+manpower = 1
+naval_base = 3

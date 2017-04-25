@@ -1,16 +1,15 @@
-﻿
+﻿using System;
+using System.Windows;
+using System.Xml;
+using System.Xml.Linq;
+using Frontend.Core.Exceptions;
+
 namespace Frontend.Core.Helpers
 {
-    using Frontend.Core.Exceptions;
-    using System;
-    using System.Windows;
-    using System.Xml;
-    using System.Xml.Linq;
-
     public static class XMLErrorHelper
     {
         /// <summary>
-        /// Shows an (helpful?) error message if something goes wrong during parsing.
+        ///     Shows an (helpful?) error message if something goes wrong during parsing.
         /// </summary>
         /// <param name="xmlFileName">Name of the XML file.</param>
         /// <param name="exception">The exception.</param>
@@ -22,7 +21,8 @@ namespace Frontend.Core.Helpers
 
             if (lineInfo != null)
             {
-                message += ". The element starting at " + lineInfo.Item1 + ", position: " + lineInfo.Item2 + " seems to be missing subitem named " + exception.PropertyName + ".";
+                message += ". The element starting at " + lineInfo.Item1 + ", position: " + lineInfo.Item2 +
+                           " seems to be missing subitem named " + exception.PropertyName + ".";
             }
             else
             {
@@ -33,7 +33,7 @@ namespace Frontend.Core.Helpers
         }
 
         /// <summary>
-        /// Finds the expected line number. Useful for the user if something went wrong during parsing
+        ///     Finds the expected line number. Useful for the user if something went wrong during parsing
         /// </summary>
         /// <param name="parentElement">The parent element.</param>
         /// <returns></returns>

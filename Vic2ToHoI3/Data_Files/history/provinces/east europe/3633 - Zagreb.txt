@@ -1,0 +1,19 @@
+owner = YUG
+controller = YUG
+add_core = YUG
+
+points = 1
+metal = 2.00
+energy = 3.00
+rare_materials = 1.00
+industry = 3
+anti_air = 2
+infra = 8
+manpower = 2.00
+leadership = 0.20
+
+1941.4.10 = {
+	owner = CRO
+	controller = CRO
+	add_core = CRO
+} # The Independent state of Croatia

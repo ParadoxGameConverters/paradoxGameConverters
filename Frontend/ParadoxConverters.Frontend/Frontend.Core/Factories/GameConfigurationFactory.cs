@@ -1,8 +1,8 @@
-﻿using Caliburn.Micro;
+﻿using System.Linq;
+using System.Xml.Linq;
+using Caliburn.Micro;
 using Frontend.Core.Helpers;
 using Frontend.Core.Model;
-using System.Linq;
-using System.Xml.Linq;
 
 namespace Frontend.Core.Factories
 {
@@ -63,7 +63,7 @@ namespace Frontend.Core.Factories
             //var requiredFiles = this.RequiredFileFactory.BuildConfiguration<IRequiredFile>(this.config);
 
             //var requiredFilesAndFolders = requiredFiles.Union(requiredFolders);
-            
+
             // Installation directory related
             //var installationFolder = SteamHelper.GetSteamInstallationFolder(this.EventAggregator, steamId);
             //var installationDirectoryTagName = XElementHelper.ReadStringValue(element, "installationDirectoryTagName");
@@ -89,7 +89,7 @@ namespace Frontend.Core.Factories
             //var tempDirectoryAbsolutePath = (tempDirectoryLocationType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : DirectoryHelper.GetUsersFolder()) + XElementHelper.ReadStringValue(element, "defaultTempFolderLocation", false);
             //var tempDirectoryTagName = XElementHelper.ReadStringValue(element, "tempDirectoryTagName", false);
 
-            var gameConfig = new GameConfiguration()
+            var gameConfig = new GameConfiguration
             {
                 Name = name,
                 FriendlyName = friendlyName,
@@ -99,21 +99,22 @@ namespace Frontend.Core.Factories
                 //InstallationDirectoryTagName = installationDirectoryTagName,
                 //ModDirectoryTagName = modDirectoryTagName,
                 //AbsoluteSaveGamePath = saveGameLocation,
-                CurrentModTagName = currentModTagName,
+                CurrentModTagName = currentModTagName
                 //AbsoluteModPath = absoluteModPath/*,
                 //AbsoluteTempDirectoryPath = tempDirectoryAbsolutePath,
                 //TempDirectoryTagName = tempDirectoryTagName
             };
 
             // Dummy item so that the user can undo selecting a mod
-            var dummyMod = new Mod() { Name = "No mod", IsDummyItem = true };
+            var dummyMod = new Mod {Name = "No mod", IsDummyItem = true};
             gameConfig.SupportedMods.Add(dummyMod);
             gameConfig.CurrentMod = dummyMod;
 
             // Add proper mods
             if (supportedModsAsString.Count() > 0)
             {
-                supportedModsAsString.ForEach(m => gameConfig.SupportedMods.Add(new Mod() { Name = XElementHelper.ReadStringValue(m, "modName") }));
+                supportedModsAsString.ForEach(
+                    m => gameConfig.SupportedMods.Add(new Mod {Name = XElementHelper.ReadStringValue(m, "modName")}));
             }
 
             return gameConfig as T;

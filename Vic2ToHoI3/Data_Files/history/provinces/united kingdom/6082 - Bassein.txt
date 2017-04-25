@@ -1,0 +1,15 @@
+owner = ENG
+
+controller = ENG
+
+add_core = ENG
+
+infra = 4
+manpower = 1.00
+leadership = 0.25
+1942.6.4 = {
+
+	controller = JAP
+
+}
+

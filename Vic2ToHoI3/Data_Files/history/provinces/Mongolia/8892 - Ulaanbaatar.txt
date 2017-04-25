@@ -1,0 +1,12 @@
+owner = MON
+controller = MON
+add_core = MON
+points = 1
+metal = 5.00
+energy = 10.00
+rare_materials = 3.00
+industry = 5
+infra = 3
+air_base = 1
+manpower = 3.00
+leadership = 0.30

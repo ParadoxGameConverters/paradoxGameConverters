@@ -1,0 +1,9 @@
+owner = TAN
+controller = TAN
+add_core = TAN
+
+infra = 2
+
+infra = 2
+
+infra = 2

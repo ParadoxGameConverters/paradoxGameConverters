@@ -1,0 +1,9 @@
+owner = DOM
+controller = DOM
+add_core = DOM
+points = 1
+infra = 6
+air_base = 1
+naval_base = 2
+manpower = 2.00
+leadership = 0.20

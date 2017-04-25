@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<configuration Comment="This file is used to build the configuration parth of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
+
+<configuration
+  Comment="This file is used to build the configuration parth of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
   <!--This part contains the various options that will be displayed as preferences in the converter ui, and outputted as configuration.txt as input for the converter itself-->
   <converterOptions>
     <categories>
@@ -7,23 +9,67 @@
         <friendlyName>Configuration</friendlyName>
         <preferences>
           <preference>
+            <name>V2gametype</name>
+            <friendlyName>V2 Game Version</friendlyName>
+            <description>V2 Game Version: what version of V2 to convert to</description>
+            <entryOptions>
+              <entryOption>
+                <name>HOD</name>
+                <friendlyName>Heart of Darkness (3.x)</friendlyName>
+                <description>Heart of Darkness (3.x)</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>HOD-NNM</name>
+                <friendlyName>HoD with the New Nations Mod</friendlyName>
+                <description>HoD with the New Nations Mod</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
             <name>start_date</name>
             <friendlyName>Start Date</friendlyName>
             <description>The date on which the game is to start. Default: Januar 1st, 1836</description>
             <value>1836.1.1</value>
-            <minDateValue>1821.1.1</minDateValue>
+            <minDateValue>1835.1.1</minDateValue>
             <dateFormat>yyyy.m.d</dateFormat>
-            <!-- Only for parsing from config file -->
+            <!-- Property only used for easier parsing of this xml file -->
             <isDate>true</isDate>
+          </preference>
+          <preference>
+            <name>resetProvinces</name>
+            <friendlyName>Reset Provinces?</friendlyName>
+            <description>Whether or not to reset resettable V2 provinces</description>
+            <entryOptions>
+              <entryOption>
+                <name>yes</name>
+                <friendlyName>Yes</friendlyName>
+                <description>Reset provinces</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>no</name>
+                <friendlyName>No</friendlyName>
+                <description>Don't reset provinces</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+            </entryOptions>
           </preference>
           <preference>
             <name>max_literacy</name>
             <friendlyName>Max Literacy</friendlyName>
             <description>The maximum literacy a nation will start with. Default 80%</description>
             <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
-            <value>0.8</value>
+            <value>1</value>
             <minValue>0.1</minValue>
             <maxValue>1</maxValue>
+          </preference>
+		  <preference>
+            <name>EU3Mod</name>
+            <friendlyName>EU3 Mod</friendlyName>
+            <description>A mod used in EU3</description>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
           </preference>
           <preference>
             <name>EU3gametype</name>
@@ -83,24 +129,45 @@
           </preference>
           <preference>
             <name>removetype</name>
-            <friendlyName>Remove Type</friendlyName>
-            <description>Which landless nations to remove.</description>
+            <friendlyName>Types of Landless nations to remove</friendlyName>
+            <description>Which landless nations to remove</description>
             <entryOptions>
               <entryOption>
                 <name>none</name>
                 <friendlyName>None</friendlyName>
-                <description>remove none of them</description>
+                <description>Remove none of them</description>
+                <isDefault>true</isDefault>
               </entryOption>
               <entryOption>
                 <name>dead</name>
                 <friendlyName>Dead</friendlyName>
-                <description>Remove ones without a cultural backing</description>
-                <isDefault>true</isDefault>
+                <description>Remove ones without cultural backing</description>
+                <isDefault>false</isDefault>
               </entryOption>
               <entryOption>
                 <name>all</name>
                 <friendlyName>All</friendlyName>
                 <description>Remove all of them</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>convertPopTotals</name>
+            <friendlyName>Convert pop totals?</friendlyName>
+            <description>Whether or not the population totals should be converted.</description>
+            <entryOptions>
+              <entryOption>
+                <name>yes</name>
+                <friendlyName>Yes</friendlyName>
+                <description>The population totals should be converted</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>no</name>
+                <friendlyName>No</friendlyName>
+                <description>The population totals should NOT be converted</description>
+                <isDefault>true</isDefault>
               </entryOption>
             </entryOptions>
           </preference>

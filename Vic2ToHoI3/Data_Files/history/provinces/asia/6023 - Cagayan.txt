@@ -1,0 +1,15 @@
+owner = PHI
+controller = PHI
+
+add_core = PHI
+points = 1
+metal = 4.00
+infra = 4
+manpower = 1.00
+leadership = 0.10
+strategic_resource = gold
+
+infra = 6
+1942.6.4 = {
+	controller = JAP
+}

@@ -3,12 +3,12 @@
 namespace System.Linq
 {
     /// <summary>
-    /// Extension methods for IEnumerable
+    ///     Extension methods for IEnumerable
     /// </summary>
     public static class EnumerableExtensionMethods
     {
         /// <summary>
-        /// Fors the each.
+        ///     Fors the each.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="source">The source.</param>

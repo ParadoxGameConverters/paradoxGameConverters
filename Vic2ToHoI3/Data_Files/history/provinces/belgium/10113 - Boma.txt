@@ -1,0 +1,11 @@
+owner = BEL
+controller = BEL
+add_core = BEL
+points = 1
+infra = 4
+air_base = 1
+naval_base = 3
+leadership = 0.1
+1944.12.01 = {
+	controller = USA
+}

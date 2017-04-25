@@ -1,0 +1,14 @@
+owner = CHL
+controller = CHL
+add_core = CHL
+points = 2
+metal = 2.00
+energy = 11.00
+rare_materials = 2.00
+industry = 9
+anti_air = 2
+infra = 6
+air_base = 4
+naval_base = 8
+manpower = 7.00
+leadership = 0.70

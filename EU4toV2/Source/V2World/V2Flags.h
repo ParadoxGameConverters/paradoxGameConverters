@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -28,32 +28,47 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <set>
 #include <string>
 #include <vector>
-#include "..\Mapper.h"
+#include "../Mappers/ColonyFlagsetMapper.h"
+#include "../Mappers/CustomFlagMapper.h"
+using namespace std;
+
+
 
 class V2Country;
 
-// Holds information about all the flags for V2 countries and copies over
-// the appropriate flags with Output().
+
+
 class V2Flags 
 {
-public:
-	// Tries to find appropriate flags for all the countries specified.
-	void SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const CK2TitleMapping& CK2titles, const colonyFlagset& colonyFlagset, const FlagColourMapping& flagColourMapping);
-	// Copies all necessary flags to the output folder. Returns true if successful.
-	bool Output() const;
+	public:
+		void SetV2Tags(const map<string, V2Country*>& V2Countries);
+		void output() const;
 
-private:
-	static const std::vector<std::string> flagFileSuffixes;
-	colonyFlagset colonyFlags;
+	private:
+		void determineUseableFlags();
+		set<string> determineAvailableFlags();
+		void getRequiredTags(const map<string, V2Country*>& V2Countries);
+		void mapTrivialTags();
 
-	typedef std::map<std::string, std::string> V2TagToFlagTagMap;
-	typedef std::map<std::string, shared_ptr<colonyFlag> > V2TagToColonyFlagMap; // tag, {base,overlordtag}
-	typedef std::map<std::string, CustomFlag> V2TagToCustomFlagMap;
+		void createOutputFolders() const;
+		void copyFlags() const;
+		void createCustomFlags() const;
+		void createColonialFlags() const;
 
-	V2TagToFlagTagMap tagMapping;
-	V2TagToColonyFlagMap colonialFlagMapping;
-	V2TagToCustomFlagMap customFlagMapping;
-	FlagColourMapping flagColourMapping;
+		set<string> usableFlagTags;
+		set<string> requiredTags;
+
+		static const vector<string> flagFileSuffixes;
+
+		typedef map<string, string> V2TagToFlagTagMap;
+		typedef map<string, shared_ptr<colonyFlag> > V2TagToColonyFlagMap; // tag, {base,overlordtag}
+		typedef map<string, CustomFlag> V2TagToCustomFlagMap;
+
+		V2TagToFlagTagMap tagMap;
+		V2TagToColonyFlagMap colonialFlagMapping;
+		V2TagToCustomFlagMap customFlagMapping;
 };
+
+
 
 #endif

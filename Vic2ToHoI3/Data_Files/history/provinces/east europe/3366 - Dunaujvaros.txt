@@ -1,0 +1,27 @@
+owner = HUN
+controller = HUN
+add_core = HUN
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8

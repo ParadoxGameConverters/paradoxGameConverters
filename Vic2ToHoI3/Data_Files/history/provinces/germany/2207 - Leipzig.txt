@@ -1,0 +1,12 @@
+owner = GER
+controller = GER
+add_core = GER
+
+points = 5
+metal = 3.00
+energy = 66.00
+industry = 3
+anti_air = 1
+infra = 10
+manpower = 1.00
+leadership = 0.30

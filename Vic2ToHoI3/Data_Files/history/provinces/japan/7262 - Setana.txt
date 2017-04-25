@@ -1,0 +1,7 @@
+owner = JAP
+controller = JAP
+add_core = JAP
+
+infra = 10
+
+infra = 8

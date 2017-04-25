@@ -1,0 +1,18 @@
+owner = ITA
+controller = ITA
+add_core = ITA
+
+points = 7
+metal = 9.00
+energy = 17.00
+rare_materials = 1.00
+industry = 3
+land_fort = 5
+anti_air = 3
+infra = 10
+air_base = 10
+naval_base = 10
+manpower = 1.00
+leadership = 0.15
+1943.9.23 = {
+	owner = RSI	controller = RSI	add_core = RSI}

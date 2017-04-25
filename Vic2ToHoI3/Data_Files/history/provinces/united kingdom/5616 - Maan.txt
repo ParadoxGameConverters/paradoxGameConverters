@@ -1,0 +1,5 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+add_core = JOR
+infra = 2

@@ -1,0 +1,571 @@
+color = { 104  132  91 }
+graphical_culture = Japanese
+
+default_templates = {
+	binary_infantry = {
+		infantry_brigade
+		infantry_brigade
+	}
+	binary_milita = {
+		militia_brigade
+		militia_brigade
+	}
+	binary_armoured = {
+		armor_brigade
+		motorized_brigade
+	}
+	binary_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1 Man'chu Shi" "2 Man'chu Shi" "3 Man'chu Shi" "4 Man'chu Shi" "5 Man'chu Shi" "6 Man'chu Shi" "7 Man'chu Shi" "8 Man'chu Shi" "9 Man'chu Shi" "10 Man'chu Shi" "12 Man'chu Shi" 
+		"14 Man'chu Shi" "15 Man'chu Shi" "17 Man'chu Shi" "19 Man'chu Shi" "21 Man'chu Shi" "22 Man'chu Shi" "25 Man'chu Shi" "28 Man'chu Shi" "29 Man'chu Shi" "30 Man'chu Shi" "35 Man'chu Shi" 
+		"38 Man'chu Shi" "40 Man'chu Shi" "42 Man'chu Shi" "46 Man'chu Shi" "47 Man'chu Shi" "49 Man'chu Shi" "50 Man'chu Shi" 
+	}
+	cavalry_brigade = {
+		"1 Man'chu Qi'Bing" "2 Man'chu Qi'Bing" "3 Man'chu Qi'Bing" "4 Man'chu Qi'Bing" "5 Man'chu Qi'Bing" "6 Man'chu Qi'Bing" "7 Man'chu Qi'Bing" "8 Man'chu Qi'Bing" "9 Man'chu Qi'Bing" "10 Man'chu Qi'Bing" "11 Man'chu Qi'Bing" 
+		"12 Man'chu Qi'Bing" "13 Man'chu Qi'Bing" "14 Man'chu Qi'Bing" "15 Man'chu Qi'Bing" "16 Man'chu Qi'Bing" "17 Man'chu Qi'Bing" "18 Man'chu Qi'Bing" "19 Man'chu Qi'Bing" "20 Man'chu Qi'Bing" 
+	}
+	motorized_brigade = {
+		"1 Man'chu MOT Shi" "2 Man'chu MOT Shi" "3 Man'chu MOT Shi" "4 Man'chu MOT Shi" "5 Man'chu MOT Shi" "6 Man'chu MOT Shi" "7 Man'chu MOT Shi" "8 Man'chu MOT Shi" "9 Man'chu MOT Shi" "10 Man'chu MOT Shi" "12 Man'chu MOT Shi" 
+		"14 Man'chu MOT Shi" "15 Man'chu MOT Shi" "17 Man'chu MOT Shi" "19 Man'chu MOT Shi" "21 Man'chu MOT Shi" "22 Man'chu MOT Shi" "25 Man'chu MOT Shi" 
+	}
+	mechanized_brigade = {
+		"1 Man'chu MEC Shi" "2 Man'chu MEC Shi" "3 Man'chu MEC Shi" "4 Man'chu MEC Shi" "5 Man'chu MEC Shi" "6 Man'chu MEC Shi" "7 Man'chu MEC Shi" "8 Man'chu MEC Shi" "9 Man'chu MEC Shi" "10 Man'chu MEC Shi" "12 Man'chu MEC Shi" 
+		"14 Man'chu MEC Shi" "15 Man'chu MEC Shi" "17 Man'chu MEC Shi" "19 Man'chu MEC Shi" "21 Man'chu MEC Shi" "22 Man'chu MEC Shi" "25 Man'chu MEC Shi" "28 Man'chu MEC Shi" "29 Man'chu MEC Shi" 
+	}
+	light_armor_brigade = {
+		"1 Man'chu Tan'ke'che'" "2 Man'chu Tan'ke'che'" "3 Man'chu Tan'ke'che'" "4 Man'chu Tan'ke'che'" "5 Man'chu Tan'ke'che'" "6 Man'chu Tan'ke'che'" "7 Man'chu Tan'ke'che'" "8 Man'chu Tan'ke'che'" "9 Man'chu Tan'ke'che'" "10 Man'chu Tan'ke'che'" "11 Man'chu Tan'ke'che'" 
+		"12 Man'chu Tan'ke'che'" "13 Man'chu Tan'ke'che'" "14 Man'chu Tan'ke'che'" "15 Man'chu Tan'ke'che'" "16 Man'chu Tan'ke'che'" "17 Man'chu Tan'ke'che'" "18 Man'chu Tan'ke'che'" "19 Man'chu Tan'ke'che'" "20 Man'chu Tan'ke'che'" "21 Man'chu Tan'ke'che'" "22 Man'chu Tan'ke'che'" 
+		"23 Man'chu Tan'ke'che'" "24 Man'chu Tan'ke'che'" 
+	}
+	armor_brigade = {
+		"1 Man'chu Tan'ke'che'" "2 Man'chu Tan'ke'che'" "3 Man'chu Tan'ke'che'" "4 Man'chu Tan'ke'che'" "5 Man'chu Tan'ke'che'" "6 Man'chu Tan'ke'che'" "7 Man'chu Tan'ke'che'" "8 Man'chu Tan'ke'che'" "9 Man'chu Tan'ke'che'" "10 Man'chu Tan'ke'che'" "11 Man'chu Tan'ke'che'" 
+		"12 Man'chu Tan'ke'che'" "13 Man'chu Tan'ke'che'" "14 Man'chu Tan'ke'che'" "15 Man'chu Tan'ke'che'" "16 Man'chu Tan'ke'che'" "17 Man'chu Tan'ke'che'" "18 Man'chu Tan'ke'che'" "19 Man'chu Tan'ke'che'" "20 Man'chu Tan'ke'che'" "21 Man'chu Tan'ke'che'" "22 Man'chu Tan'ke'che'" 
+		"23 Man'chu Tan'ke'che'" "24 Man'chu Tan'ke'che'" 
+	}
+	paratrooper_brigade = {
+		"1 Man'chu Jiang'luo'san'bu" "2 Man'chu Jiang'luo'san'bu" "3 Man'chu Jiang'luo'san'bu" "4 Man'chu Jiang'luo'san'bu" "5 Man'chu Jiang'luo'san'bu" "6 Man'chu Jiang'luo'san'bu" "7 Man'chu Jiang'luo'san'bu" "8 Man'chu Jiang'luo'san'bu" "9 Man'chu Jiang'luo'san'bu" "10 Man'chu Jiang'luo'san'bu" "11 Man'chu Jiang'luo'san'bu" 
+		"12 Man'chu Jiang'luo'san'bu" "13 Man'chu Jiang'luo'san'bu" "14 Man'chu Jiang'luo'san'bu" "15 Man'chu Jiang'luo'san'bu" 
+	}
+	marine_brigade = {
+		"1 Man'chu Hai'li'bu" "2 Man'chu Hai'li'bu" "3 Man'chu Hai'li'bu" "4 Man'chu Hai'li'bu" "5 Man'chu Hai'li'bu" "6 Man'chu Hai'li'bu" "7 Man'chu Hai'li'bu" "8 Man'chu Hai'li'bu" "9 Man'chu Hai'li'bu" "10 Man'chu Hai'li'bu" "11 Man'chu Hai'li'bu" 
+		"12 Man'chu Hai'li'bu" "13 Man'chu Hai'li'bu" "14 Man'chu Hai'li'bu" "15 Man'chu Hai'li'bu" "16 Man'chu Hai'li'bu" "17 Man'chu Hai'li'bu" "18 Man'chu Hai'li'bu" "19 Man'chu Hai'li'bu" "20 Man'chu Hai'li'bu" 
+	}
+	bergsjaeger_brigade = {
+		"1 Man'chu Zhidui" "2 Man'chu Zhidui" "3 Man'chu Zhidui" "4 Man'chu Zhidui" "5 Man'chu Zhidui" "6 Man'chu Zhidui" "7 Man'chu Zhidui" "8 Man'chu Zhidui" "9 Man'chu Zhidui" "10 Man'chu Zhidui" "12 Man'chu Zhidui" 
+		"14 Man'chu Zhidui" "15 Man'chu Zhidui" "17 Man'chu Zhidui" "19 Man'chu Zhidui" "21 Man'chu Zhidui" "22 Man'chu Zhidui" "25 Man'chu Zhidui" 
+	}
+	garrison_brigade = {
+		"1 Man'chu Shi" "2 Man'chu Shi" "3 Man'chu Shi" "4 Man'chu Shi" "5 Man'chu Shi" "6 Man'chu Shi" "7 Man'chu Shi" "8 Man'chu Shi" "9 Man'chu Shi" "10 Man'chu Shi" "12 Man'chu Shi" 
+		"14 Man'chu Shi" "15 Man'chu Shi" "17 Man'chu Shi" "19 Man'chu Shi" "21 Man'chu Shi" "22 Man'chu Shi" "25 Man'chu Shi" "28 Man'chu Shi" "29 Man'chu Shi" "30 Man'chu Shi" "35 Man'chu Shi" 
+		"38 Man'chu Shi" "40 Man'chu Shi" "42 Man'chu Shi" "46 Man'chu Shi" "47 Man'chu Shi" "49 Man'chu Shi" "50 Man'chu Shi" 
+	}
+	hq_brigade = {
+		"1. Zhanqu" "2. Zhanqu" "3. Zhanqu" "4. Zhanqu" "5. Zhanqu" "6. Zhanqu" "7. Zhanqu" "8. Zhanqu" "9. Zhanqu" 
+	}
+	militia_brigade = {
+		"7 Man'chu Lü" "8 Man'chu Lü" "9 Man'chu Lü" "10 Man'chu Lü" "12 Man'chu Lü" "14 Man'chu Lü" "15 Man'chu Lü" "17 Man'chu Lü" "19 Man'chu Lü" "21 Man'chu Lü" "22 Man'chu Lü" 
+		"25 Man'chu Lü" "28 Man'chu Lü" "29 Man'chu Lü" "30 Man'chu Lü" "35 Man'chu Lü" "38 Man'chu Lü" "40 Man'chu Lü" "42 Man'chu Lü" "46 Man'chu Lü" "47 Man'chu Lü" "49 Man'chu Lü" 
+		"50 Man'chu Lü" "51 Man'chu Lü" "57 Man'chu Lü" "58 Man'chu Lü" "61 Man'chu Lü" 
+	}
+	multi_role = {
+		"1 Man'chu Zhan'dou'ji" "2 Man'chu Zhan'dou'ji" "3 Man'chu Zhan'dou'ji" "4 Man'chu Zhan'dou'ji" "5 Man'chu Zhan'dou'ji" "6 Man'chu Zhan'dou'ji" "7 Man'chu Zhan'dou'ji" "8 Man'chu Zhan'dou'ji" "9 Man'chu Zhan'dou'ji" "10 Man'chu Zhan'dou'ji" "11 Man'chu Zhan'dou'ji" 
+		"12 Man'chu Zhan'dou'ji" "13 Man'chu Zhan'dou'ji" "14 Man'chu Zhan'dou'ji" "15 Man'chu Zhan'dou'ji" 
+	}
+	interceptor = {
+		"1 Man'chu Zhan'dou'ji" "2 Man'chu Zhan'dou'ji" "3 Man'chu Zhan'dou'ji" "4 Man'chu Zhan'dou'ji" "5 Man'chu Zhan'dou'ji" "6 Man'chu Zhan'dou'ji" "7 Man'chu Zhan'dou'ji" "8 Man'chu Zhan'dou'ji" "9 Man'chu Zhan'dou'ji" "10 Man'chu Zhan'dou'ji" "11 Man'chu Zhan'dou'ji" 
+		"12 Man'chu Zhan'dou'ji" "13 Man'chu Zhan'dou'ji" "14 Man'chu Zhan'dou'ji" "15 Man'chu Zhan'dou'ji" 
+	}
+	strategic_bomber = {
+		"1 Man'chu STR Hong'zha'ji" "2 Man'chu STR Hong'zha'ji" "3 Man'chu STR Hong'zha'ji" "4 Man'chu STR Hong'zha'ji" "5 Man'chu STR Hong'zha'ji" "6 Man'chu STR Hong'zha'ji" "7 Man'chu STR Hong'zha'ji" "8 Man'chu STR Hong'zha'ji" "9 Man'chu STR Hong'zha'ji" "10 Man'chu STR Hong'zha'ji" "11 Man'chu STR Hong'zha'ji" 
+		"12 Man'chu STR Hong'zha'ji" "13 Man'chu STR Hong'zha'ji" "14 Man'chu STR Hong'zha'ji" "15 Man'chu STR Hong'zha'ji" 
+	}
+	tactical_bomber = {
+		"1 Man'chu TAC Hong'zha'ji" "2 Man'chu TAC Hong'zha'ji" "3 Man'chu TAC Hong'zha'ji" "4 Man'chu TAC Hong'zha'ji" "5 Man'chu TAC Hong'zha'ji" "6 Man'chu TAC Hong'zha'ji" "7 Man'chu TAC Hong'zha'ji" "8 Man'chu TAC Hong'zha'ji" "9 Man'chu TAC Hong'zha'ji" "10 Man'chu TAC Hong'zha'ji" "11 Man'chu TAC Hong'zha'ji" 
+		"12 Man'chu TAC Hong'zha'ji" "13 Man'chu TAC Hong'zha'ji" "14 Man'chu TAC Hong'zha'ji" "15 Man'chu TAC Hong'zha'ji" 
+	}
+	naval_bomber = {
+		"1 Man'chu MAR Hong'zha'ji" "2 Man'chu MAR Hong'zha'ji" "3 Man'chu MAR Hong'zha'ji" "4 Man'chu MAR Hong'zha'ji" "5 Man'chu MAR Hong'zha'ji" "6 Man'chu MAR Hong'zha'ji" "7 Man'chu MAR Hong'zha'ji" "8 Man'chu MAR Hong'zha'ji" "9 Man'chu MAR Hong'zha'ji" "10 Man'chu MAR Hong'zha'ji" "11 Man'chu MAR Hong'zha'ji" 
+		"12 Man'chu MAR Hong'zha'ji" "13 Man'chu MAR Hong'zha'ji" "14 Man'chu MAR Hong'zha'ji" "15 Man'chu MAR Hong'zha'ji" "1 Man'chu TOR Hong'zha'ji" "2 Man'chu TOR Hong'zha'ji" "3 Man'chu TOR Hong'zha'ji" "4 Man'chu TOR Hong'zha'ji" "5 Man'chu TOR Hong'zha'ji" "6 Man'chu TOR Hong'zha'ji" "7 Man'chu TOR Hong'zha'ji" 
+		"8 Man'chu TOR Hong'zha'ji" "9 Man'chu TOR Hong'zha'ji" "10 Man'chu TOR Hong'zha'ji" "11 Man'chu TOR Hong'zha'ji" "12 Man'chu TOR Hong'zha'ji" "13 Man'chu TOR Hong'zha'ji" "14 Man'chu TOR Hong'zha'ji" "15 Man'chu TOR Hong'zha'ji" 
+	}
+	cas = {
+		"1 Man'chu DIV Hong'zha'ji" "2 Man'chu DIV Hong'zha'ji" "3 Man'chu DIV Hong'zha'ji" "4 Man'chu DIV Hong'zha'ji" "5 Man'chu DIV Hong'zha'ji" "6 Man'chu DIV Hong'zha'ji" "7 Man'chu DIV Hong'zha'ji" "8 Man'chu DIV Hong'zha'ji" "9 Man'chu DIV Hong'zha'ji" "10 Man'chu DIV Hong'zha'ji" "11 Man'chu DIV Hong'zha'ji" 
+		"12 Man'chu DIV Hong'zha'ji" "13 Man'chu DIV Hong'zha'ji" "14 Man'chu DIV Hong'zha'ji" "15 Man'chu DIV Hong'zha'ji" 
+	}
+	transport_plane = {
+		"1 Man'chu Kong'yun'ji" "2 Man'chu Kong'yun'ji" "3 Man'chu Kong'yun'ji" "4 Man'chu Kong'yun'ji" "5 Man'chu Kong'yun'ji" "6 Man'chu Kong'yun'ji" "7 Man'chu Kong'yun'ji" "8 Man'chu Kong'yun'ji" "9 Man'chu Kong'yun'ji" "10 Man'chu Kong'yun'ji" "11 Man'chu Kong'yun'ji" 
+		"12 Man'chu Kong'yun'ji" "13 Man'chu Kong'yun'ji" "14 Man'chu Kong'yun'ji" "15 Man'chu Kong'yun'ji" 
+	}
+	battleship = {
+		"Pu'Yi" "Shen'yang" 
+	}
+	light_cruiser = {
+		"Feng'cheng" "Zhuang'he" "Fu'xian" "Yi'xian" "Gai'xian" 
+	}
+	heavy_cruiser = {
+		"Feng'cheng" "Zhuang'he" "Fu'xian" "Yi'xian" "Gai'xian" 
+	}
+	battlecruiser = {
+		"Pu'Yi" "Shen'yang" 
+	}
+	destroyer = {
+		"1 Man'chu TBS Bingtuan" "2 Man'chu TBS Bingtuan" "3 Man'chu TBS Bingtuan" "4 Man'chu TBS Bingtuan" "5 Man'chu TBS Bingtuan" "6 Man'chu TBS Bingtuan" "7 Man'chu TBS Bingtuan" "8 Man'chu TBS Bingtuan" "9 Man'chu TBS Bingtuan" "10 Man'chu TBS Bingtuan" "11 Man'chu TBS Bingtuan" 
+		"12 Man'chu TBS Bingtuan" "13 Man'chu TBS Bingtuan" "14 Man'chu TBS Bingtuan" "15 Man'chu TBS Bingtuan" "16 Man'chu TBS Bingtuan" "17 Man'chu TBS Bingtuan" "18 Man'chu TBS Bingtuan" "19 Man'chu TBS Bingtuan" 
+	}
+	carrier = {
+		"Man'chu'kuo" "Ben'xi" 
+	}
+	submarine = {
+		"1 Man'chu Qian'ting'bu" "2 Man'chu Qian'ting'bu" "3 Man'chu Qian'ting'bu" "4 Man'chu Qian'ting'bu" "5 Man'chu Qian'ting'bu" "6 Man'chu Qian'ting'bu" "7 Man'chu Qian'ting'bu" "8 Man'chu Qian'ting'bu" "9 Man'chu Qian'ting'bu" "10 Man'chu Qian'ting'bu" "11 Man'chu Qian'ting'bu" 
+		"12 Man'chu Qian'ting'bu" "13 Man'chu Qian'ting'bu" "14 Man'chu Qian'ting'bu" "15 Man'chu Qian'ting'bu" "16 Man'chu Qian'ting'bu" "17 Man'chu Qian'ting'bu" "18 Man'chu Qian'ting'bu" "19 Man'chu Qian'ting'bu" 
+	}
+	transport_ship = {
+		"1 Man'chu TRPS Bingtuan" "2 Man'chu TRPS Bingtuan" "3 Man'chu TRPS Bingtuan" "4 Man'chu TRPS Bingtuan" "5 Man'chu TRPS Bingtuan" "6 Man'chu TRPS Bingtuan" "7 Man'chu TRPS Bingtuan" "8 Man'chu TRPS Bingtuan" "9 Man'chu TRPS Bingtuan" "10 Man'chu TRPS Bingtuan" 
+	}
+
+}
+
+ministers = {
+	58001 = {
+		name = "Pu-Yi"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M58001
+		head_of_state = popular_figurehead
+		head_of_state = popular_figurehead
+		head_of_state = popular_figurehead
+		foreign_minister = great_compromiser
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	58002 = {
+		name = "Chang Ching-hui"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M58002
+		head_of_government = happy_amateur
+		foreign_minister = iron_fisted_brute
+		start_date = 1936.1.1
+	}
+	58004 = {
+		name = "Li Shao-keng"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M58004
+		armament_minister = military_entrepreneur
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	58005 = {
+		name = "Chin Chu-han"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M58005
+		minister_of_security = back_stabber
+		start_date = 1936.1.1
+	}
+	58006 = {
+		name = "Kawashima Yoshiko"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M58006
+		minister_of_intelligence = political_specialist
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	58007 = {
+		name = "Chi Hsing"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M58007
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	58009 = {
+		name = "Sergei Ramilcheff"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M58009
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1936.1.1
+	}
+	58010 = {
+		name = "Yokoyama Masayuki"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M58010
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1936.1.1
+	}
+	58014 = {
+		name = "Liou Tcheng-fou"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M58014
+		head_of_government = naive_optimist
+		armament_minister = battle_fleet_proponent
+		start_date = 1937.1.1
+	}
+	58015 = {
+		name = "Wei Cheng-chen"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M58015
+		head_of_government = old_general
+		minister_of_intelligence = dismal_enigma
+		start_date = 1938.1.1
+	}
+	58016 = {
+		name = "Adatchi Mineichiro"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M58016
+		head_of_government = silent_workhorse
+		minister_of_security = prince_of_terror
+		start_date = 1941.1.1
+	}
+	58017 = {
+		name = "Matsuyama Shinjiro"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M58017
+		head_of_government = happy_amateur
+		minister_of_intelligence = industrial_specialist
+		start_date = 1943.1.1
+	}
+	58018 = {
+		name = "Nitobe Inazo"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M58018
+		head_of_government = old_air_marshal
+		minister_of_security = efficient_sociopath
+		start_date = 1944.1.1
+	}
+	58019 = {
+		name = "Loh Tcheng"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M58019
+		head_of_government = happy_amateur
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1945.1.1
+	}
+	58020 = {
+		name = "Chao Hsin-chu"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M58020
+		head_of_government = political_protege
+		chief_of_navy = open_seas_doctrine
+		start_date = 1946.1.1
+	}
+	58021 = {
+		name = "Tsai Yun-sheng"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M58021
+		foreign_minister = ideological_crusader
+		start_date = 1937.1.1
+	}
+	58022 = {
+		name = "Pei Tsu-yee"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M58022
+		foreign_minister = great_compromiser
+		start_date = 1938.1.1
+	}
+	58023 = {
+		name = "Iida Kusuo"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M58023
+		foreign_minister = iron_fisted_brute
+		start_date = 1941.1.1
+	}
+	58024 = {
+		name = "Nagai Matsuzo"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M58024
+		foreign_minister = ideological_crusader
+		start_date = 1943.1.1
+	}
+	58026 = {
+		name = "Oei Hui-lan"
+		ideology = paternal_autocrat
+		loyalty = 0.25
+		picture = M58026
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1945.1.1
+	}
+	58029 = {
+		name = "Ishiguro Shiro"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M58029
+		armament_minister = submarine_proponent
+		start_date = 1938.1.1
+	}
+	58030 = {
+		name = "Tsushima Juichi"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M58030
+		armament_minister = laissez_faires_capitalist
+		start_date = 1941.1.1
+	}
+	58031 = {
+		name = "Ishii Kikijuro"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M58031
+		armament_minister = strategic_air_proponent
+		start_date = 1943.1.1
+	}
+	58032 = {
+		name = "Megata Toshiro"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M58032
+		armament_minister = air_to_ground_proponent
+		start_date = 1944.1.1
+	}
+	58033 = {
+		name = "Kyuin Wellington Koo"
+		ideology = paternal_autocrat
+		loyalty = 0.25
+		picture = M58033
+		armament_minister = corrupt_kleptocrat
+		start_date = 1945.1.1
+	}
+	58034 = {
+		name = "Lo Tsang-yin"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M58034
+		armament_minister = administrative_genius
+		start_date = 1946.1.1
+	}
+	58036 = {
+		name = "Soume Tcheng"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M58036
+		minister_of_security = crime_fighter
+		start_date = 1938.1.1
+	}
+	58038 = {
+		name = "Hayashi Gonsuke"
+		ideology = national_socialist
+		loyalty = 0.50
+		picture = M58038
+		minister_of_security = crime_fighter
+		start_date = 1943.1.1
+	}
+	58040 = {
+		name = "Tang Tsai-fou"
+		ideology = paternal_autocrat
+		loyalty = 0.25
+		picture = M58040
+		minister_of_security = crooked_kleptocrat
+		start_date = 1945.1.1
+	}
+	58041 = {
+		name = "Chao Chu-wu"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M58041
+		minister_of_security = man_of_the_people
+		start_date = 1946.1.1
+	}
+	58042 = {
+		name = "Wang Chung-hui"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M58042
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1937.1.1
+	}
+	58044 = {
+		name = "Saito Hiroshi"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M58044
+		minister_of_intelligence = research_specialist
+		start_date = 1941.1.1
+	}
+	58046 = {
+		name = "Fukai Eigo"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M58046
+		minister_of_intelligence = dismal_enigma
+		start_date = 1944.1.1
+	}
+	58047 = {
+		name = "Lan Fang-mei"
+		ideology = paternal_autocrat
+		loyalty = 0.25
+		picture = M58047
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1945.1.1
+	}
+	58048 = {
+		name = "Chang Su-lee"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M58048
+		minister_of_intelligence = industrial_specialist
+		start_date = 1946.1.1
+	}
+	58049 = {
+		name = "Hsing Shi-lien"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M58049
+		chief_of_staff = school_of_psychology
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1937.1.1
+	}
+	58051 = {
+		name = "Nakajima Kesago"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M58051
+		chief_of_staff = school_of_defence
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1941.1.1
+	}
+	58052 = {
+		name = "Isogai Ryozhi"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M58052
+		chief_of_staff = school_of_psychology
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1943.1.1
+	}
+	58053 = {
+		name = "Igor Chernokoff"
+		ideology = paternal_autocrat
+		loyalty = 0.25
+		picture = M58053
+		chief_of_staff = school_of_defence
+		start_date = 1945.1.1
+	}
+	58054 = {
+		name = "Chao Chiu-hang"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M58054
+		chief_of_staff = school_of_mass_combat
+		start_date = 1946.1.1
+	}
+	58059 = {
+		name = "Manfred von Tscherwelen"
+		ideology = paternal_autocrat
+		loyalty = 0.25
+		picture = M58059
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1945.1.1
+	}
+	58061 = {
+		name = "Jizu Hosonoya"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M58061
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1937.1.1
+	}
+	58062 = {
+		name = "Yin Tsuo-chien"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M58062
+		chief_of_navy = base_control_doctrine
+		start_date = 1938.1.1
+	}
+	58063 = {
+		name = "Oka Keijun"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M58063
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1941.1.1
+	}
+	58064 = {
+		name = "Oda Yurozu"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M58064
+		chief_of_navy = base_control_doctrine
+		start_date = 1943.1.1
+	}
+	58065 = {
+		name = "Kadono Chokuro"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M58065
+		chief_of_navy = power_projection_doctrine
+		chief_of_air = air_superiority_doctrine
+		start_date = 1944.1.1
+	}
+	58066 = {
+		name = "Tai Chi-Quo"
+		ideology = paternal_autocrat
+		loyalty = 0.25
+		picture = M58066
+		chief_of_navy = power_projection_doctrine
+		start_date = 1945.1.1
+	}
+	58068 = {
+		name = "Isono Yuzo"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M58068
+		chief_of_air = air_superiority_doctrine
+		start_date = 1937.1.1
+	}
+	58069 = {
+		name = "Nakajima Shinji"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M58069
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1938.1.1
+	}
+	58070 = {
+		name = "Miyazaki Akira"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M58070
+		chief_of_air = army_aviation_doctrine
+		start_date = 1941.1.1
+	}
+	58071 = {
+		name = "Ito Nobumi"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M58071
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1943.1.1
+	}
+	58074 = {
+		name = "Tsao Ping-sen"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M58074
+		chief_of_air = army_aviation_doctrine
+		start_date = 1946.1.1
+	}
+}

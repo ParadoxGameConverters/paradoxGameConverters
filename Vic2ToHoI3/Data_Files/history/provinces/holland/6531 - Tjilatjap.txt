@@ -1,0 +1,11 @@
+owner = HOL
+controller = HOL
+add_core = HOL
+add_core = INO
+energy = 1.00
+rare_materials = 5.00
+industry = 1
+infra = 6
+1942.6.4 = {
+	controller = JAP
+}

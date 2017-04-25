@@ -246,6 +246,7 @@ link = { CK2 = d_tripolitania EU3 = TRP } # Tripoli
 link = { CK2 = d_mali EU3 = MAL } # Mali
 link = { CK2 = d_songhay EU3 = SON } # Songhai
 link = { CK2 = d_harer EU3 = ADA } # Harer => Adal
+link = { CK2 = d_sibir EU3 = SIB } # Sibir
 
 # Holy Orders
 link = { CK2 = d_teutonic_order EU3 = TEU } # Teutonic Order

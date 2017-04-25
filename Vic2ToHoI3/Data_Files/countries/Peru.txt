@@ -1,0 +1,855 @@
+color = { 196  189  204 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1a Div. de Inf. del Peru 'Bolognesi'" "2a Div. de Infantería del Peru" "3a Div. de Infantería del Peru" "4a Div. de Infantería del Peru" "5a Div. de Infantería del Peru" "6a Div. de Infantería del Peru" "7a Div. de Infantería del Peru" "8a Div. de Infantería del Peru" "9a Div. de Infantería del Peru" "10a Div. de Infantería del Peru" "11a Div. de Infantería del Peru" 
+		"12a Div. de Infantería del Peru" "13a Div. de Infantería del Peru" "14a Div. de Infantería del Peru" "15a Div. de Infantería del Peru" "16a Div. de Infantería del Peru" "17a Div. de Infantería del Peru" "18a Div. de Infantería del Peru" "19a Div. de Infantería del Peru" "20a Div. de Infantería del Peru" 
+	}
+	cavalry_brigade = {
+		"1a División de Caballería" "2a División de Caballería" "3a División de Caballería" "4a División de Caballería" "5a División de Caballería" "6a División de Caballería" "7a División de Caballería" "8a División de Caballería" "9a División de Caballería" "10a División de Caballería" 
+	}
+	motorized_brigade = {
+		"1a División Infantería de Camión" "2a División Infantería de Camión" "3a División Infantería de Camión" "4a División Infantería de Camión" "5a División Infantería de Camión" 
+	}
+	mechanized_brigade = {
+		"1a División Infantería Mecanizada" "2a División Infantería Mecanizada" "3a División Infantería Mecanizada" "4a División Infantería Mecanizada" "5a División Infantería Mecanizada" 
+	}
+	light_armor_brigade = {
+		"1a División Blindada del Perú" "2a División Blindada del Perú" "3a División Blindada del Perú" "4a División Blindada del Perú" "5a División Blindada del Perú" 
+	}
+	armor_brigade = {
+		"1a División Blindada del Perú" "2a División Blindada del Perú" "3a División Blindada del Perú" "4a División Blindada del Perú" "5a División Blindada del Perú" 
+	}
+	paratrooper_brigade = {
+		"1a División Fuerza Paracaidista" "2a División Fuerza Paracaidista" "3a División Fuerza Paracaidista" "4a División Fuerza Paracaidista" "5a División Fuerza Paracaidista" 
+	}
+	marine_brigade = {
+		"1a División Fuerza Inf. de Marina" "2a División Fuerza Inf. de Marina" "3a División Fuerza Inf. de Marina" "4a División Fuerza Inf. de Marina" "5a División Fuerza Inf. de Marina" 
+	}
+	bergsjaeger_brigade = {
+		"1a División Fuerzas Especiales" "2a División Fuerzas Especiales" "3a División Fuerzas Especiales" "4a División Fuerzas Especiales" "5a División Fuerzas Especiales" 
+	}
+	garrison_brigade = {
+		"2a Div. de Infantería del Peru" "3a Div. de Infantería del Peru" "4a Div. de Infantería del Peru" "5a Div. de Infantería del Peru" "6a Div. de Infantería del Peru" "7a Div. de Infantería del Peru" "8a Div. de Infantería del Peru" "9a Div. de Infantería del Peru" "10a Div. de Infantería del Peru" "11a Div. de Infantería del Peru" "12a Div. de Infantería del Peru" 
+		"13a Div. de Infantería del Peru" "14a Div. de Infantería del Peru" "15a Div. de Infantería del Peru" "16a Div. de Infantería del Peru" "17a Div. de Infantería del Peru" "18a Div. de Infantería del Peru" "19a Div. de Infantería del Peru" "20a Div. de Infantería del Peru" 
+	}
+	hq_brigade = {
+		"Cuartel General 1er Ejército" "Cuartel General 2o Ejército" "Cuartel General 3er Ejército" "Cuartel General 4o Ejército" "Cuartel General 5o Ejército" "Cuartel General 6o Ejército" "Cuartel General 7o Ejército" "Cuartel General 8o Ejército" "Cuartel General 9o Ejército" "Cuartel General 10o Ejército" 
+	}
+	militia_brigade = {
+		"División de Policia Militar nro. 1" "División de Policia Militar nro. 2" "División de Policia Militar nro. 3" "División de Policia Militar nro. 4" "División de Policia Militar nro. 5" "División de Policia Militar nro. 6" "División de Policia Militar nro. 7" "División de Policia Militar nro. 8" "División de Policia Militar nro. 9" "División de Policia Militar nro. 10" "División de Policia Militar nro. 11" 
+		"División de Policia Militar nro. 12" "División de Policia Militar nro. 13" "División de Policia Militar nro. 14" "División de Policia Militar nro. 15" 
+	}
+	multi_role = {
+		"1. Grupo PFA de Caza" "2. Grupo PFA de Caza" "3. Grupo PFA de Caza" "4. Grupo PFA de Caza" "5. Grupo PFA de Caza" 
+	}
+	interceptor = {
+		"1. Grupo PFA de Caza" "2. Grupo PFA de Caza" "3. Grupo PFA de Caza" "4. Grupo PFA de Caza" "5. Grupo PFA de Caza" 
+	}
+	strategic_bomber = {
+		"1. Grupo PFA Estratégico" "2. Grupo PFA Estratégico" "3. Grupo PFA Estratégico" "4. Grupo PFA Estratégico" "5. Grupo PFA Estratégico" 
+	}
+	tactical_bomber = {
+		"1. Grupo PFA Táctico" "2. Grupo PFA Táctico" "3. Grupo PFA Táctico" "4. Grupo PFA Táctico" "5. Grupo PFA Táctico" 
+	}
+	naval_bomber = {
+		"1. Grupo PFA de la Marina" "2. Grupo PFA de la Marina" "3. Grupo PFA de la Marina" "4. Grupo PFA de la Marina" "5. Grupo PFA de la Marina" 
+	}
+	cas = {
+		"1. Grupo PFA de Asalto" "2. Grupo PFA de Asalto" "3. Grupo PFA de Asalto" "4. Grupo PFA de Asalto" "5. Grupo PFA de Asalto" 
+	}
+	transport_plane = {
+		"1. Grupo de Transporte del Ejército" "2. Grupo de Transporte del Ejército" "3. Grupo de Transporte del Ejército" "4. Grupo de Transporte del Ejército" "5. Grupo de Transporte del Ejército" 
+	}
+	battleship = {
+		"BAP Lima" "BAP Mariscal Cáceres" "BAP Gloriosa" 
+	}
+	light_cruiser = {
+		"BAP Almirante Grau" "BAP Coronel Bolognesi" "BAP Chimbote" "BAP Callao" "BAP Arequipa" "BAP Huancayo" "BAP Cusco" "BAP Puno" 
+	}
+	heavy_cruiser = {
+		"BAP Almirante Grau" "BAP Coronel Bolognesi" "BAP Chimbote" "BAP Callao" "BAP Arequipa" "BAP Huancayo" "BAP Cusco" "BAP Puno" 
+	}
+	battlecruiser = {
+		"BAP Lima" "BAP Mariscal Cáceres" "BAP Gloriosa" 
+	}
+	destroyer = {
+		"Flotilla Suliana" "Flotilla Talara" "Flotilla Aybaca" "Flotilla Chulucanes" "Flotilla Cerro de Pasca" "Flotilla Oroye" "Flotilla Patvilcha" "Flotilla Punta Lachar" 
+	}
+	carrier = {
+		"BAP República del Perú" "BAP Los Andes" "BAP Cordillera Occidental" 
+	}
+	submarine = {
+		"Flotilla Tacna" "Flotilla Tarata" "Flotilla Punta Coles" "Flotilla Abancay" "Flotilla Huanta" "Flotilla Puquio" 
+	}
+	transport_ship = {
+		"1. Transportes de la Marina" "2. Transportes de la Marina" "3. Transportes de la Marina" "4. Transportes de la Marina" "5. Transportes de la Marina" 
+	}
+
+}
+
+
+ministers = {
+	39001 = {
+		name = "Oscar Benavides Larrea"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M39001
+		head_of_state = resigned_generalissimo
+		chief_of_army = static_defence_doctrine
+		head_of_state = resigned_generalissimo
+		start_date = 1936.1.1
+	}
+	39002 = {
+		name = "Manuel Esteban Rodríguez"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M39002
+		head_of_government = old_general
+		start_date = 1936.1.1
+	}
+	39003 = {
+		name = "Alberto Ulloa Sotomayor"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M39003
+		foreign_minister = iron_fisted_brute
+		start_date = 1936.1.1
+	}
+	39004 = {
+		name = "Ernesto Scroth"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M39004
+		armament_minister = battle_fleet_proponent
+		chief_of_navy = open_seas_doctrine
+		armament_minister = battle_fleet_proponent
+		start_date = 1936.1.1
+	}
+	39005 = {
+		name = "Luis Sanchez Cerro"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M39005
+		minister_of_security = back_stabber
+		armament_minister = infantry_proponent
+		start_date = 1936.1.1
+	}
+	39006 = {
+		name = "Oscar Gilardi"
+		ideology = paternal_autocrat
+		loyalty = 0.25
+		picture = M39006
+		minister_of_intelligence = technical_specialist
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	39007 = {
+		name = "Gustavo Jimenez"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M39007
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	39010 = {
+		name = "Paul de Beaudiez"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M39010
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	39032 = {
+		name = "Manuel Prado y Ugarteche"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M39032
+		head_of_state = autocratic_charmer
+		foreign_minister = apologetic_clerk
+		start_date = 1939.1.1
+	}
+	39033 = {
+		name = "José Bustamante y Rivero"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M39033
+		head_of_state = benevolent_gentleman
+		start_date = 1945.1.1
+	}
+	39034 = {
+		name = "Augusto Leguia Swayne"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M39034
+		head_of_state = power_hungry_demagogue
+		head_of_government = happy_amateur
+		armament_minister = administrative_genius
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	39035 = {
+		name = "Reynaldo Vinatea"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M39035
+		head_of_state = barking_buffoon
+		foreign_minister = ideological_crusader
+		start_date = 1939.1.1
+	}
+	39036 = {
+		name = "Eloy G. Ureta"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M39036
+		head_of_state = resigned_generalissimo
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1945.1.1
+	}
+	39037 = {
+		name = "Ernesto Montagne Sanchez"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M39037
+		head_of_government = smiling_oilman
+		start_date = 1936.1.1
+	}
+	39039 = {
+		name = "Adolfo Solf y Muro"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M39039
+		head_of_government = naive_optimist
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1939.1.1
+	}
+	39040 = {
+		name = "Oscar Miro Quesada"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M39040
+		head_of_government = silent_workhorse
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1939.1.1
+	}
+	39041 = {
+		name = "Manuel Cisneros Sanchez"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M39041
+		head_of_government = political_protege
+		start_date = 1944.1.1
+	}
+	39042 = {
+		name = "Julio Tello East"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M39042
+		head_of_government = smiling_oilman
+		start_date = 1945.1.1
+	}
+	39043 = {
+		name = "Enrique García Sayan"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M39043
+		head_of_government = flamboyant_tough_guy
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1945.1.1
+	}
+	39044 = {
+		name = "David S. Ocampo"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M39044
+		head_of_government = ambitious_union_boss
+		armament_minister = military_entrepreneur
+		start_date = 1945.1.1
+	}
+	39045 = {
+		name = "Rafel Belaunde Díez"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M39045
+		head_of_government = naive_optimist
+		start_date = 1946.1.1
+	}
+	39046 = {
+		name = "Julio Portugal Montero"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M39046
+		head_of_government = silent_workhorse
+		armament_minister = theoretical_scientist
+		start_date = 1947.1.1
+	}
+	39047 = {
+		name = "Carlos Concha"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M39047
+		foreign_minister = apologetic_clerk
+		start_date = 1936.1.1
+	}
+	39048 = {
+		name = "Rafael Escardo"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M39048
+		foreign_minister = general_staffer
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	39049 = {
+		name = "Enrique Goytisola Bolognesi"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M39049
+		foreign_minister = iron_fisted_brute
+		start_date = 1939.1.1
+	}
+	39052 = {
+		name = "Manuel Gallagher"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M39052
+		foreign_minister = general_staffer
+		foreign_minister = biased_intellectual
+		start_date = 1944.1.1
+	}
+	39054 = {
+		name = "Javier Correa Elías"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M39054
+		foreign_minister = iron_fisted_brute
+		start_date = 1945.1.1
+	}
+	39058 = {
+		name = "José Julio Bravo"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M39058
+		armament_minister = submarine_proponent
+		start_date = 1936.1.1
+	}
+	39060 = {
+		name = "Teófilo Iglesias"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M39060
+		armament_minister = tank_proponent
+		start_date = 1936.1.1
+	}
+	39062 = {
+		name = "Manuel Vásquez Díaz"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M39062
+		armament_minister = air_to_ground_proponent
+		start_date = 1939.1.1
+	}
+	39064 = {
+		name = "Eduardo Rebagliati Martins"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M39064
+		armament_minister = military_entrepreneur
+		start_date = 1941.1.1
+	}
+	39065 = {
+		name = "David Dasso"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M39065
+		armament_minister = laissez_faires_capitalist
+		start_date = 1942.1.1
+	}
+	39066 = {
+		name = "Oscar Trelles Montés"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M39066
+		armament_minister = submarine_proponent
+		start_date = 1943.1.1
+	}
+	39068 = {
+		name = "Benjamín Roca"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M39068
+		armament_minister = theoretical_scientist
+		start_date = 1944.1.1
+	}
+	39069 = {
+		name = "Alberto Roque Saldías"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M39069
+		armament_minister = battle_fleet_proponent
+		chief_of_navy = indirect_approach_doctrine
+		head_of_government = old_admiral
+		start_date = 1945.1.1
+	}
+	39070 = {
+		name = "Guillermo Almenara Irigoyen"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M39070
+		armament_minister = administrative_genius
+		start_date = 1945.1.1
+	}
+	39071 = {
+		name = "Luis Ramírez Ortiz"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M39071
+		armament_minister = infantry_proponent
+		start_date = 1946.1.1
+	}
+	39072 = {
+		name = "Rómulo Ferrero"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M39072
+		armament_minister = laissez_faires_capitalist
+		start_date = 1946.1.1
+	}
+	39073 = {
+		name = "Constantino Carvallo"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M39024
+		armament_minister = strategic_air_proponent
+		start_date = 1947.1.1
+	}
+	39075 = {
+		name = "Benigno Ballón Farfán"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M39075
+		minister_of_security = crooked_kleptocrat
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	39076 = {
+		name = "Eleodoro Romero"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M39076
+		minister_of_security = silent_lawyer
+		start_date = 1937.1.1
+	}
+	39077 = {
+		name = "Victor N. Benavente"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M39077
+		minister_of_security = silent_lawyer
+		start_date = 1936.1.1
+	}
+	39079 = {
+		name = "Antonio Rodríguez Ramírez"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M39079
+		minister_of_security = compassionate_gentleman
+		start_date = 1939.1.1
+	}
+	39080 = {
+		name = "Luis A. Flores"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M39015
+		minister_of_security = prince_of_terror
+		start_date = 1940.1.1
+	}
+	39081 = {
+		name = "Carlos Berninzon"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M39081
+		minister_of_security = compassionate_gentleman
+		start_date = 1942.1.1
+	}
+	39082 = {
+		name = "Guillermo Landa Arisueño"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M39082
+		minister_of_security = man_of_the_people
+		start_date = 1944.1.1
+	}
+	39084 = {
+		name = "Juan Cortés Azar"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M39025
+		minister_of_security = back_stabber
+		start_date = 1945.1.1
+	}
+	39085 = {
+		name = "Maximó Silva"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M39085
+		minister_of_security = crime_fighter
+		start_date = 1945.1.1
+	}
+	39086 = {
+		name = "Juan F. Guabloche Rodrígues"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M39086
+		minister_of_security = prince_of_terror
+		minister_of_intelligence = dismal_enigma
+		start_date = 1946.1.1
+	}
+	39087 = {
+		name = "Ildefonso Ballón Beltrán"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M39087
+		minister_of_security = efficient_sociopath
+		start_date = 1947.1.1
+	}
+	39088 = {
+		name = "Horacio Patiño Cruzatti"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M39088
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1936.1.1
+	}
+	39089 = {
+		name = "Alberto Ayala y Lacroix"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M39089
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	39091 = {
+		name = "Juan Bautista de Lavalle"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M39091
+		minister_of_intelligence = industrial_specialist
+		start_date = 1942.1.1
+	}
+	39092 = {
+		name = "Alfredo Alvarez Calderón"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M39092
+		minister_of_intelligence = technical_specialist
+		start_date = 1943.1.1
+	}
+	39093 = {
+		name = "Miguel Montero y Tirado"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M39093
+		minister_of_intelligence = political_specialist
+		start_date = 1939.1.1
+	}
+	39094 = {
+		name = "Jorge T. de la Flor"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M39094
+		minister_of_intelligence = industrial_specialist
+		start_date = 1944.1.1
+	}
+	39095 = {
+		name = "Enrique Torres Gonzalez"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M39095
+		minister_of_intelligence = political_specialist
+		start_date = 1945.1.1
+	}
+	39097 = {
+		name = "Riccardo Barrea Laos"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M39097
+		minister_of_intelligence = technical_specialist
+		start_date = 1945.1.1
+	}
+	39098 = {
+		name = "Armando Montes de Peralta"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M39026
+		minister_of_intelligence = research_specialist
+		start_date = 1946.1.1
+	}
+	39099 = {
+		name = "Bernardo Palacios y Montecinos"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M39016
+		minister_of_intelligence = technical_specialist
+		chief_of_staff = school_of_fire_support
+		start_date = 1947.1.1
+	}
+	39102 = {
+		name = "Luis Sánchez Cerro"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M39102
+		chief_of_staff = school_of_mass_combat
+		start_date = 1939.1.1
+	}
+	39104 = {
+		name = "Riccardo P. Godoy"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M39104
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1944.1.1
+	}
+	39106 = {
+		name = "Fortunato Quesada Larrea"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M39106
+		chief_of_staff = school_of_defence
+		start_date = 1945.1.1
+	}
+	39107 = {
+		name = "Juan Poncé Diaz"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M39027
+		chief_of_staff = school_of_psychology
+		chief_of_navy = base_control_doctrine
+		start_date = 1945.1.1
+	}
+	39108 = {
+		name = "Alberto Hurtado Abadia"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M39108
+		chief_of_staff = school_of_defence
+		start_date = 1947.1.1
+	}
+	39111 = {
+		name = "Luis Saenz Diaz"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M39111
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1939.1.1
+	}
+	39113 = {
+		name = "Eduardo Montero Rojas"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M39113
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1944.1.1
+	}
+	39115 = {
+		name = "Vladimiro Lopéz Trigoso"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M39028
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1945.1.1
+	}
+	39120 = {
+		name = "Manuel R. Nieto"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M39120
+		chief_of_navy = open_seas_doctrine
+		start_date = 1939.1.1
+	}
+	39121 = {
+		name = "José de la Riva Agüero"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M39011
+		chief_of_navy = base_control_doctrine
+		head_of_state = stern_imperialist
+		head_of_government = old_admiral
+		start_date = 1941.1.1
+	}
+	39122 = {
+		name = "Nicolas Lindley Lopez"
+		ideology = market_liberal
+		loyalty = 0.50
+		picture = M39019
+		chief_of_navy = decisive_naval_battle_doctrine
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1944.1.1
+	}
+	39124 = {
+		name = "Luis Navarreté"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M39124
+		chief_of_navy = power_projection_doctrine
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1945.1.1
+	}
+	39126 = {
+		name = "Felipe Tudela"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M39013
+		chief_of_navy = open_seas_doctrine
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1947.1.1
+	}
+	39129 = {
+		name = "Victor Solano"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M39129
+		chief_of_air = army_aviation_doctrine
+		start_date = 1939.1.1
+	}
+	39130 = {
+		name = "Romulo Frias"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M39130
+		chief_of_air = air_superiority_doctrine
+		start_date = 1939.1.1
+	}
+	39131 = {
+		name = "Manuel Montero y Tirada"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M39131
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1943.1.1
+	}
+	39132 = {
+		name = "Fernando M. Quesada Blanco"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M39020
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1944.1.1
+	}
+	39135 = {
+		name = "Alberto Lopez Flores"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M39030
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1945.1.1
+	}
+	39136 = {
+		name = "Eduardo Cantabria Gomez"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M39023
+		chief_of_air = army_aviation_doctrine
+		foreign_minister = great_compromiser
+		start_date = 1947.1.1
+	}
+	39137 = {
+		name = "Alberto Rey de Castro"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M39137
+		head_of_government = old_general
+		start_date = 1939.1.1
+	}
+	39138 = {
+		name = "José Alcamora"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M39138
+		head_of_government = corporate_suit
+		start_date = 1947.1.1
+	}
+	39139 = {
+		name = "Cesar de la Fuente"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = L260004
+		foreign_minister = general_staffer
+		start_date = 1936.1.1
+	}
+	39021 = {
+		name = "Lodovico Rovino Morales"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M39021
+		head_of_state = benevolent_gentleman
+		head_of_government = old_air_marshal
+		start_date = 1936.1.1
+	}
+	39140 = {
+		name = "Manuel Odria Amoretti"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = L260017
+		head_of_state = resigned_generalissimo
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1948.1.1
+	}
+	39142 = {
+		name = "Armando Reveredo Iglesias"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M39142
+		head_of_government = old_air_marshal
+		armament_minister = military_entrepreneur
+		start_date = 1948.1.1
+	}
+	39143 = {
+		name = "Alberto Zenon Agüero"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = L260016
+		head_of_government = old_general
+		chief_of_staff = school_of_psychology
+		start_date = 1948.1.1
+	}
+	39147 = {
+		name = "Riccardo Perez Godoy"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = L260020
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1950.1.1
+	}
+	39149 = {
+		name = "Rocas Sanchez Mapás"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M39149
+		minister_of_security = efficient_sociopath
+		start_date = 1951.1.1
+	}
+}

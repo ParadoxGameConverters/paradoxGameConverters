@@ -1,0 +1,9 @@
+owner = NEP
+controller = NEP
+
+add_core = NEP
+points = 1
+infra = 2
+energy = 6
+manpower = 5.00
+leadership = 0.50

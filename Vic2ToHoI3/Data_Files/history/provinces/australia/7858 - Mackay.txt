@@ -1,0 +1,6 @@
+owner = AST
+controller = AST
+add_core = AST
+
+naval_base = 1
+infra = 6

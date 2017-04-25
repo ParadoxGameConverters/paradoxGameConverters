@@ -1,0 +1,20 @@
+owner = POL
+controller = POL
+add_core = POL
+
+points = 2
+metal = 2.00
+energy = 4.00
+crude_oil = 2.00
+rare_materials = 1.00
+industry = 2
+infra = 8
+manpower = 2.00
+leadership = 0.20
+1940.5.10 = {
+	owner = SOV
+	controller = SOV
+}
+1941.12.7 = {
+	controller = GER
+}

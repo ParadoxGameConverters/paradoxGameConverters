@@ -1,5 +1,5 @@
 /*Copyright (c) 2013 The CK2 to EU3 Converter Project
- 
+
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
  "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
  distribute, sublicense, and/or sell copies of the Software, and to
  permit persons to whom the Software is furnished to do so, subject to
  the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -26,8 +26,10 @@
 
 
 #include "..\Mappers.h"
+#include "Parsers\IObject.h"
 #include <vector>
 #include <map>
+#include <memory>
 using namespace std;
 
 
@@ -43,7 +45,7 @@ class CK2Version;
 class CK2Province
 {
 	public:
-		CK2Province(Object*, map<string, CK2Title*>& titles, map<int, CK2Character*>& characters, const CK2BuildingFactory* buildingFactory, CK2Version& version);
+		CK2Province(IObject*, map<string, CK2Title*>& titles, map<int, std::shared_ptr<CK2Character>>& characters, const CK2BuildingFactory* buildingFactory, CK2Version& version);
 
 		int						getNumber()				const { return number; };
 		vector<CK2Barony*>	getBaronies()			const { return baronies; };

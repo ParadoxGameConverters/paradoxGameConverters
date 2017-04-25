@@ -1,0 +1,19 @@
+#Falkland Islands (360)
+#Ruled by Britain 1836
+#Falkland Islands (300/75 POPS)
+2131 = {
+	farmers = {
+		culture = patagonian
+		religion = animist
+		size = 75
+	}
+}
+#South Georgia (60/15 POPS)
+2133 = {
+	farmers = {
+		culture = patagonian
+		religion = animist
+		size = 15
+	}
+
+}

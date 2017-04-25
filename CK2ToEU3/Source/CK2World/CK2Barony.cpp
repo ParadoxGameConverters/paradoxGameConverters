@@ -1,5 +1,5 @@
 /*Copyright (c) 2013 The CK2 to EU3 Converter Project
- 
+
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
  "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
  distribute, sublicense, and/or sell copies of the Software, and to
  permit persons to whom the Software is furnished to do so, subject to
  the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -24,24 +24,24 @@
 #include "CK2Building.h"
 #include "CK2Barony.h"
 #include "CK2Title.h"
-#include "CK2Character.h"
+#include "CK2World\Character\CK2Character.h"
 #include "..\Parsers\Object.h"
 #include "..\Log.h"
 #include "..\Configuration.h"
 
 
 
-CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince, const CK2BuildingFactory* buildingFactory)
+CK2Barony::CK2Barony(IObject* obj, CK2Title* newTitle, CK2Province* newProvince, const CK2BuildingFactory* buildingFactory)
 {
 	title		= newTitle;
 	province	= newProvince;
 
 	type = obj->getLeaf("type");
-	
+
 	qualityBuildings = 0;
 	buildings.clear();
-	vector<Object*> leaves = obj->getLeaves();
-	for (vector<Object*>::iterator i = leaves.begin(); i < leaves.end(); i++)
+	vector<IObject*> leaves = obj->getLeaves();
+	for (vector<IObject*>::iterator i = leaves.begin(); i < leaves.end(); i++)
 	{
 		string key = (*i)->getKey();
 		if ( (key.substr(0, 3) == "ca_") || (key.substr(0, 3) == "ct_") || (key.substr(0, 3) == "tp_") )
@@ -123,7 +123,7 @@ CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince, 
 	maxShips			= 0;
 	freeTroops		= 0.0F;
 	serfTroops		= 0.0F;
-	vector<Object*> levyObjs = obj->getValue("levy")[0]->getLeaves();
+	vector<IObject*> levyObjs = obj->getValue("levy")[0]->getLeaves();
 	for (unsigned int i = 0; i < levyObjs.size(); i++)
 	{
 		if (levyObjs[i]->getKey() == "light_infantry")
@@ -278,7 +278,7 @@ void CK2Barony::determineManpowerProxy()
 		levyMultiplier	+= (*buildingItr)->getLevyMultiplier();
 	}
 	manpowerProxy *= levyMultiplier;
-	
+
 	manpowerProxy *= proxyMultiplier;
 }
 

@@ -1,0 +1,39 @@
+﻿###########################
+# turkey Events
+###########################
+
+add_namespace = generic
+
+# President dies
+country_event = {
+	id = generic.1
+	title = generic.1.t
+	desc = { 
+		text = generic.1.d_neutral_good
+		trigger = {
+			has_government = FROM
+		}
+	}
+	desc = {
+		text = generic.1.d_bad
+		trigger = {
+			NOT = { has_government = FROM }
+		}
+	}
+	picture = GFX_report_event_generic_read_write
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic.1.a
+		trigger = {
+			has_government = FROM
+		}
+	}
+	option = {
+		name = generic.1.b
+		trigger = {
+			NOT = { has_government = FROM }
+		}
+	}
+}

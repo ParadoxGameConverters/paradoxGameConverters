@@ -1,0 +1,24 @@
+Q: I used a mod, will the converter work with it?
+A: It depends on what the mod changed. Your best bet is to simply try (and let us know how it went). As far as we can tell, it does work well with
+	NNM, PDM, HPM, and games converted from EU4.
+
+Q: What should I put it the Victoria 2 mod directory option?
+A: It should be the directory where Victoria 2 stores mods.
+	If Victoria 2 was installed at D:\Paradox Interactive\Victoria 2 then this option should be D:\Paradox Interactive\Victoria 2\mod.
+
+Q: What should I put in the Vic2 Mods option?
+A: The name of the folder for any mods you used. For PoD, put PDM. For HPM, put HPM. For Divergences, put "Divergences of Darkness" (and include the quotes).
+	You can check log.txt after trying to convert to see if this setting was correct.
+	Early on it will say "Double-check Vic2 mods", and follow that with a list of mods it expected and a list of mods it found.
+	The ones it expects are the ones listed in the option. The ones it found are the ones it could see in your mod folder.
+	The names of the ones it expects should exactly match the names of the ones it found.
+
+Q: I'm trying to convert a EU4 To Vic2 game and keep getting an error. What do I do?
+A: You need to include the Vic2 mod from the EU4 to Vic2 converter to properly convert these games.
+	You should put the name of the mod's folder in the Vic2 Mods option, as with other mods.
+
+Q: The converter crashes after no time with no errors and no log.txt (when running through the frontend). What went wrong?
+A: You may need to install this if you are not on Windows 10: https://support.microsoft.com/en-us/kb/2999226
+
+Q: The flags on my units keep changing. What can I do about this?
+A: This is an HoI4 bug, with a temporary solution here: https://forum.paradoxplaza.com/forum/index.php?threads/hoi4-dev-diary-squanching-them-bugs.995110/page-4#post-22333853

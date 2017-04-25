@@ -1,0 +1,18 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+infra = 2
+1940.7.1 = {
+	controller = ITA
+
+}
+1940.11.6 = {
+	controller = ENG
+
+}
+1941.6.22 = {
+	controller = ITA
+}
+1941.12.11 = {
+	controller = ENG
+}

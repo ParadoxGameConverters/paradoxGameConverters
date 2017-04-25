@@ -1,35 +1,98 @@
+/*Copyright (c) 2014 The Paradox Game Converters Project
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
+
+
 #include "Mapper.h"
 #include "Log.h"
+#include "Configuration.h"
 #include "Parsers\Object.h"
-#include "EU3World.h"
-#include "EU3Country.h"
-#include "EU3Province.h"
-#include "V2World.h"
-#include "V2Country.h"
+#include "EU3World/EU3World.h"
+#include "EU3World/EU3Country.h"
+#include "EU3World/EU3Province.h"
+#include "V2World/V2World.h"
+#include "V2World/V2Country.h"
 #include <algorithm>
+#include <sys/stat.h>
 
 
 
-provinceMapping initProvinceMap(Object* obj)
+void initProvinceMap(Object* obj, WorldType worldType, provinceMapping& provinceMap, inverseProvinceMapping& inverseProvinceMap, resettableMap& resettableProvinces)
 {
-	provinceMapping mapping;
 	provinceMapping::iterator mapIter;
 
-	vector<Object*> leaves = obj->getLeaves();
+	vector<Object*> worldTypeLeaves = obj->getLeaves();
 
-	if (leaves.size() < 1)
+	if (worldTypeLeaves.size() < 1)
 	{
-		log ("\tError: No province mapping definitions loaded.\n");
-		printf("\tError: No province mapping definitions loaded.\n");
-		return mapping;
+		LOG(LogLevel::Error) << "No province mapping definitions loaded";
+		return;
 	}
 
-	vector<Object*> data = leaves[0]->getLeaves();
+	unsigned int mappingIdx = -1;
+	for (unsigned int i = 0; i < worldTypeLeaves.size(); i++)
+	{
+		switch(worldType)
+		{
+			case InNomine:
+			{
+				if (worldTypeLeaves[i]->getKey() == "in")
+				{
+					mappingIdx = i;
+				}
+				break;
+			}
+			case HeirToTheThrone:
+			{
+				if (worldTypeLeaves[i]->getKey() == "httt")
+				{
+					mappingIdx = i;
+				}
+				break;
+			}
+			case DivineWind:
+			{
+				if (worldTypeLeaves[i]->getKey() == "dw")
+				{
+					mappingIdx = i;
+				}
+				break;
+			}
+			case unknown:
+			case VeryOld:
+			default:
+			{
+				Log(LogLevel::Error) << "Unsupported world type. Cannot map provinces!";
+				exit(-1);
+			}
+		}
+	}
+
+	LOG(LogLevel::Debug) << "Using world type " << worldTypeLeaves[mappingIdx]->getKey() << " mappings";
+	vector<Object*> data = worldTypeLeaves[mappingIdx]->getLeaves();
 
 	for (vector<Object*>::iterator i = data.begin(); i != data.end(); i++)
 	{
 		vector<int> EU3nums;
 		vector<int> V2nums;
+		bool			resettable = false;
 
 		vector<Object*> euMaps = (*i)->getLeaves();
 
@@ -43,9 +106,13 @@ provinceMapping initProvinceMap(Object* obj)
 			{
 				V2nums.push_back(  atoi( (*j)->getLeaf().c_str() )  );
 			}
+			else if ((*j)->getKey() == "resettable")
+			{
+				resettable = true;
+			}
 			else
 			{
-				log("\tWarning: unknown data while mapping provinces.\n");
+				LOG(LogLevel::Warning) << "Unknown data while mapping provinces";
 			}
 		}
 
@@ -53,29 +120,30 @@ provinceMapping initProvinceMap(Object* obj)
 		{
 			EU3nums.push_back(0);
 		}
+		if (V2nums.size() == 0)
+		{
+			V2nums.push_back(0);
+		}
 
 		for (vector<int>::iterator j = V2nums.begin(); j != V2nums.end(); j++)
 		{
-			mapping.insert(make_pair(*j, EU3nums));
+			if (*j != 0)
+			{
+				provinceMap.insert(make_pair(*j, EU3nums));
+			}
+			if (resettable)
+			{
+				resettableProvinces.insert(*j);
+			}
 		}
-	}
-
-	return mapping;
-}
-
-
-// invert the sense of a province map.  makes army conversion tolerable.
-inverseProvinceMapping invertProvinceMap(const provinceMapping& provinceMap)
-{
-	inverseProvinceMapping retval;
-	for (provinceMapping::const_iterator j = provinceMap.begin(); j != provinceMap.end(); j++)
-	{
-		for (unsigned int k = 0; k < j->second.size(); k++)
+		for (vector<int>::iterator j = EU3nums.begin(); j != EU3nums.end(); j++)
 		{
-			retval[j->second[k]].push_back(j->first);
+			if (*j != 0)
+			{
+				inverseProvinceMap.insert(make_pair(*j, V2nums));
+			}
 		}
 	}
-	return retval;
 }
 
 
@@ -94,150 +162,115 @@ const vector<int>& getV2ProvinceNums(const inverseProvinceMapping& invProvMap, i
 }
 
 
-vector<string> processBlockedNations(Object* obj)
+typedef struct {
+	int type;			// the type of adjacency 0 = normal, 1 = ford, 2 = river crossing
+	int to;				// the province this one is adjacent to (expect one pointing back to this province)
+	int via;				// the straight (if any) this crosses
+	int unknown1;		// still unknown
+	int unknown2;		// still unknown
+	int pathX;			// the midpoint on the path drawn between provinces
+	int pathY;			// the midpoint on the path drawn between provinces
+	int unknown3;		// still unknown
+	int unknown4;		// still unknown
+} HODAdjacency;		// an entry in the HOD adjacencies.bin format
+typedef struct {
+	int type;			// the type of adjacency 0 = normal, 1 = ford, 2 = river crossing
+	int to;				// the province this one is adjacent to (expect one pointing back to this province)
+	int via;				// the straight (if any) this crosses
+	int unknown1;		// still unknown
+	int unknown2;		// still unknown
+	int pathX;			// the midpoint on the path drawn between provinces
+	int pathY;			// the midpoint on the path drawn between provinces
+} AHDAdjacency;		// an entry in the AHD adjacencies.bin format
+typedef struct {
+	int type;			// the type of adjacency 0 = normal, 1 = ford, 2 = river crossing
+	int to;				// the province this one is adjacent to (expect one pointing back to this province)
+	int via;				// the straight (if any) this crosses
+	int unknown1;		// still unknown
+	int unknown2;		// still unknown
+} VanillaAdjacency;	// an entry in the vanilla adjacencies.bin format
+adjacencyMapping initAdjacencyMap()
 {
-	vector<string> blockedNations;
-
-	vector<Object*> leaves = obj->getLeaves();
-	if (leaves.size() < 1)
+	FILE* adjacenciesBin = NULL;
+	string filename = Configuration::getV2DocumentsPath() + "\\map\\cache\\adjacencies.bin";
+	struct _stat st;
+	if ((_stat(filename.c_str(), &st) != 0))
 	{
-		return blockedNations;
+		LOG(LogLevel::Warning) << "Could not find " << filename << " - looking in install folder";
+		filename = Configuration::getV2Path() + "\\map\\cache\\adjacencies.bin";
+	}
+	fopen_s(&adjacenciesBin, filename.c_str(), "rb");
+	if (adjacenciesBin == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not open " << filename;
+		exit(1);
 	}
 
-	vector<Object*> nations = leaves[0]->getLeaves();
-	for (unsigned int i = 0; i < nations.size(); i++)
+	adjacencyMapping adjacencyMap;
+	while (!feof(adjacenciesBin))
 	{
-		blockedNations.push_back(nations[i]->getLeaf());
+		int numAdjacencies;
+		if (fread(&numAdjacencies, sizeof(numAdjacencies), 1, adjacenciesBin) != 1)
+		{
+			break;
+		}
+		vector<int> adjacencies;	// the adjacencies for the current province
+		for (int i = 0; i < numAdjacencies; i++)
+		{
+			if (Configuration::getV2Gametype() == "vanilla")
+			{
+				VanillaAdjacency readAdjacency;
+				fread(&readAdjacency, sizeof(readAdjacency), 1, adjacenciesBin);
+				adjacencies.push_back(readAdjacency.to);
+			}
+			else if (Configuration::getV2Gametype() == "AHD")
+			{
+				AHDAdjacency readAdjacency;
+				fread(&readAdjacency, sizeof(readAdjacency), 1, adjacenciesBin);
+				adjacencies.push_back(readAdjacency.to);
+			}
+			if ((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM"))
+			{
+				HODAdjacency readAdjacency;
+				fread(&readAdjacency, sizeof(readAdjacency), 1, adjacenciesBin);
+				adjacencies.push_back(readAdjacency.to);
+			}
+		}
+		adjacencyMap.push_back(adjacencies);
 	}
+	fclose(adjacenciesBin);
 
-	return blockedNations;
+	/*FILE* adjacenciesData;
+	fopen_s(&adjacenciesData, "adjacenciesData.csv", "w");
+	fprintf(adjacenciesData, "From,To\n");
+	for (unsigned int from = 0; from < adjacencyMap.size(); from++)
+	{
+		vector<int> adjacencies = adjacencyMap[from];
+		for (unsigned int i = 0; i < adjacencies.size(); i++)
+		{
+			fprintf(adjacenciesData, "%d,%d\n", from, adjacencies[i]);
+		}
+	}
+	fclose(adjacenciesData);*/
+	
+	return adjacencyMap;
 }
 
 
-int initCountryMap(countryMapping& mapping, const EU3World& srcWorld, const V2World& destWorld, const vector<string>& blockedNations, Object* rulesObj)
+void initContinentMap(Object* obj, continentMapping& continentMap)
 {
-	mapping.clear();
-	countryMapping::iterator mapIter;
-
-	// get rules
-	vector<Object*> leaves = rulesObj->getLeaves();
-	if (leaves.size() < 1)
+	continentMap.clear();
+	vector<Object*> continentObjs = obj->getLeaves();
+	for (unsigned int i = 0; i < continentObjs.size(); i++)
 	{
-		log ("\tError: No country mapping definitions loaded.\n");
-		printf("\tError: No country mapping definitions loaded.\n");
-		return -1;
-	}
-	vector<Object*> rules = leaves[0]->getLeaves();
-
-	map<string, EU3Country*>	EU3Countries		= srcWorld.getCountries();
-	map<string, V2Country*>		V2Countries			= destWorld.getPotentialCountries();
-	map<string, V2Country*>		dynamicCountries	= destWorld.getDynamicCountries();
-	for (vector<Object*>::iterator i = rules.begin(); i != rules.end(); ++i)
-	{
-		vector<Object*> rule = (*i)->getLeaves();
-		string			rEU3Tag;
-		vector<string>	rV2Tags;
-		for (vector<Object*>::iterator j = rule.begin(); j != rule.end(); j++)
+		string continent = continentObjs[i]->getKey();
+		vector<string> provinceNums = continentObjs[i]->getTokens();
+		for (unsigned int j = 0; j < provinceNums.size(); j++)
 		{
-			if ( (*j)->getKey() == "eu3" )
-			{		 
-				rEU3Tag = (*j)->getLeaf();
-			}
-			else if ( (*j)->getKey() == "vic" )
-			{
-				rV2Tags.push_back( (*j)->getLeaf() );
-			}
-			else
-			{
-				log("\tWarning: unknown data while mapping countries.\n");
-			}
-		}
-
-		// find the EU3 country from the rule
-		map<string, EU3Country*>::const_iterator EU3Country = EU3Countries.find(rEU3Tag);
-		if (EU3Country == EU3Countries.end())
-		{
-			continue;
-		}
-
-		// find the first available V2 tag from the rule
-		unsigned int distance = 0;
-		map<string, V2Country*>::const_iterator V2Country;// = V2Countries.end();
-		for (vector<string>::reverse_iterator j = rV2Tags.rbegin(); j != rV2Tags.rend(); ++j)
-		{
-			++distance;
-			V2Country = V2Countries.find(*j);
-			if (V2Country != V2Countries.end())
-			{
-				//add the mapping
-				mapping.insert(make_pair(EU3Country->first, V2Country->first));
-				log("\tAdded map %s -> %s (#%d)\n", EU3Country->first.c_str(),V2Country->first.c_str(), distance);
-
-				//remove tags from the lists
-				EU3Countries.erase(EU3Country);
-				V2Countries.erase(V2Country);
-				break;
-			}
+			int province = atoi(provinceNums[j].c_str());
+			continentMap.insert(make_pair(province, continent));
 		}
 	}
-
-	map<string, EU3Country*>::iterator itr = EU3Countries.find("REB");
-	if ( itr != EU3Countries.end() )
-	{
-		mapping.insert(make_pair(itr->first, "REB"));
-		EU3Countries.erase(itr);
-	}
-	itr = EU3Countries.find("PIR");
-	if ( itr != EU3Countries.end() )
-	{
-		mapping.insert(make_pair(itr->first, "REB"));
-		EU3Countries.erase(itr);
-	}
-	itr = EU3Countries.find("NAT");
-	if ( itr != EU3Countries.end() )
-	{
-		mapping.insert(make_pair(itr->first, "REB"));
-		EU3Countries.erase(itr);
-	}
-
-	for (vector<string>::const_iterator i = blockedNations.begin(); i != blockedNations.end(); ++i)
-	{
-		map<string, V2Country*>::iterator j = V2Countries.find(*i);
-		if (j != V2Countries.end())
-		{
-			V2Countries.erase(j);
-		}
-	}
-
-	while ( (EU3Countries.size() > 0) && (dynamicCountries.size() > 0) )
-	{
-		map<string, EU3Country*>::iterator	EU3Country		= EU3Countries.begin();
-		map<string, V2Country*>::iterator	dynamicCountry	= dynamicCountries.begin();
-		map<string, V2Country*>::iterator	V2Country		= V2Countries.find(dynamicCountry->first);
-		if (V2Country == V2Countries.end())
-		{
-			log("Error: dynamic country was not also a V2 country. I will likely crash now\n");
-		}
-		mapping.insert(make_pair(EU3Country->first, V2Country->first));
-		log("\tAdded map %s -> %s (dynamic fallback)\n", EU3Country->first.c_str(), V2Country->first.c_str());
-
-		EU3Countries.erase(EU3Country);
-		dynamicCountries.erase(dynamicCountry);
-		V2Countries.erase(V2Country);
-	}
-
-	while ( (EU3Countries.size() > 0) && (V2Countries.size() > 0) )
-	{
-		map<string, EU3Country*>::iterator EU3Country = EU3Countries.begin();
-		map<string, V2Country*>::iterator V2Country = V2Countries.begin();
-		mapping.insert(make_pair(EU3Country->first, V2Country->first));
-		log("\tAdded map %s -> %s (fallback)\n", EU3Country->first.c_str(), V2Country->first.c_str());
-
-		EU3Countries.erase(EU3Country);
-		V2Countries.erase(V2Country);
-	}
-
-	return EU3Countries.size();
 }
 
 
@@ -246,7 +279,7 @@ void mergeNations(EU3World& world, Object* mergeObj)
 	vector<Object*> rules = mergeObj->getValue("merge_nations");
 	if (rules.size() < 0)
 	{
-		log("\tNo nations have merging requested (skipping).\n");
+		LOG(LogLevel::Debug) << "No nations have merging requested (skipping)";
 		return;
 	}
 
@@ -326,6 +359,7 @@ void removeEmptyNations(EU3World& world)
 		if ( (provinces.size()) == 0 && (cores.size() == 0) )
 		{
 			world.removeCountry(i->first);
+			LOG(LogLevel::Debug) << "Removing empty nation " << i->first;
 		}
 	}
 }
@@ -335,20 +369,20 @@ void removeDeadLandlessNations(EU3World& world)
 {
 	map<string, EU3Country*> allCountries = world.getCountries();
 
-	vector<EU3Country*> landlessCountries;
+	map<string, EU3Country*> landlessCountries;
 	for (map<string, EU3Country*>::iterator i = allCountries.begin(); i != allCountries.end(); i++)
 	{
 		vector<EU3Province*> provinces = i->second->getProvinces();
 		if (provinces.size() == 0)
 		{
-			landlessCountries.push_back(i->second);
+			landlessCountries.insert(*i);
 		}
 	}
 
-	for (vector<EU3Country*>::iterator countryItr = landlessCountries.begin(); countryItr != landlessCountries.end(); countryItr++)
+	for (map<string, EU3Country*>::iterator countryItr = landlessCountries.begin(); countryItr != landlessCountries.end(); countryItr++)
 	{
-		string primaryCulture		= (*countryItr)->getPrimaryCulture();
-		vector<EU3Province*> cores	= (*countryItr)->getCores();
+		string primaryCulture		= countryItr->second->getPrimaryCulture();
+		vector<EU3Province*> cores	= countryItr->second->getCores();
 		bool cultureSurvives			= false;
 		for (vector<EU3Province*>::iterator coreItr = cores.begin(); coreItr != cores.end(); coreItr++)
 		{
@@ -379,63 +413,9 @@ void removeDeadLandlessNations(EU3World& world)
 
 		if (cultureSurvives == false)
 		{
-			world.removeCountry( (*countryItr)->getTag() );
+			world.removeCountry( countryItr->first );
+			LOG(LogLevel::Debug) << "Removing dead landless nation " << countryItr->first;
 		}
-	}
-}
-
-
-static bool compareLandlessNationsAges(EU3Country* A, EU3Country* B)
-{
-	vector<EU3Province*> ACores = A->getCores();
-	string ATag = A->getTag();
-	date ADate;
-	for (vector<EU3Province*>::iterator i = ACores.begin(); i != ACores.end(); i++)
-	{
-		date newADate = (*i)->getLastPossessedDate(ATag);
-		if (newADate > ADate)
-		{
-			ADate = newADate;
-		}
-	}
-
-	vector<EU3Province*> BCores = B->getCores();
-	string BTag = B->getTag();
-	date BDate;
-	for (vector<EU3Province*>::iterator i = BCores.begin(); i != BCores.end(); i++)
-	{
-		date newBDate = (*i)->getLastPossessedDate(BTag);
-		if (newBDate > BDate)
-		{
-			BDate = newBDate;
-		}
-	}
-
-	return (ADate < BDate);
-}
-
-
-void removeOlderLandlessNations(EU3World& world, int excess)
-{
-	map<string, EU3Country*> allCountries = world.getCountries();
-
-	vector<EU3Country*> landlessCountries;
-	for (map<string, EU3Country*>::iterator i = allCountries.begin(); i != allCountries.end(); i++)
-	{
-		vector<EU3Province*> provinces = i->second->getProvinces();
-		if (provinces.size() == 0)
-		{
-			landlessCountries.push_back(i->second);
-		}
-	}
-
-	sort(landlessCountries.begin(), landlessCountries.end(), compareLandlessNationsAges);
-
-	while ( (excess > 0) && (landlessCountries.size() > 0) )
-	{
-		world.removeCountry(landlessCountries.back()->getTag());
-		landlessCountries.pop_back();
-		excess--;
 	}
 }
 
@@ -450,6 +430,7 @@ void removeLandlessNations(EU3World& world)
 		if (provinces.size() == 0)
 		{
 			world.removeCountry(i->first);
+			LOG(LogLevel::Debug) << "Removing landless nation " << i->first;
 		}
 	}
 }
@@ -510,6 +491,13 @@ cultureMapping initCultureMap(Object* obj) // TODO: consider cleaning up the dis
 			{
 				distinguisher newD;
 				newD.first	= DTReligion;
+				newD.second	= (*j)->getLeaf();
+				distinguishers.push_back(newD);
+			}
+			if ( (*j)->getKey() == "region" )
+			{
+				distinguisher newD;	// a new distinguiser
+				newD.first	= DTRegion;
 				newD.second	= (*j)->getLeaf();
 				distinguishers.push_back(newD);
 			}
@@ -625,14 +613,13 @@ governmentMapping initGovernmentMap(Object* obj)
 }
 
 
-unionCulturesMap initUnionCultures(Object* obj)
+void initUnionCultures(Object* obj, unionCulturesMap& unionCultures, inverseUnionCulturesMap& inverseUnionCultures)
 {
-	unionCulturesMap unionCultures;
-	vector<Object*> cultureGroups = obj->getLeaves();
-
+	vector<Object*> cultureGroups = obj->getLeaves();	// the cultural group rules
 	for (vector<Object*>::iterator i = cultureGroups.begin(); i != cultureGroups.end(); i++)
 	{
-		vector<Object*>		culturesObj		= (*i)->getLeaves();
+		vector<Object*>		culturesObj		= (*i)->getLeaves();	// the items in this rule
+		string					group				= (*i)->getKey();		// the cultural group
 		bool						hasUnion			= false;
 		string					tag;
 		vector<string>			cultures;
@@ -651,6 +638,7 @@ unionCulturesMap initUnionCultures(Object* obj)
 			else
 			{
 				cultures.push_back( (*j)->getKey() );
+				inverseUnionCultures.insert(make_pair((*j)->getKey(), group));
 			}
 		}
 
@@ -659,6 +647,54 @@ unionCulturesMap initUnionCultures(Object* obj)
 			unionCultures[tag] = cultures;
 		}
 	}
+}
 
-	return unionCultures;
+
+void initEU3RegionMap(Object *obj, EU3RegionsMapping& regions)
+{
+	regions.clear();
+	vector<Object*> regionsObj = obj->getLeaves();	// the regions themselves
+	for (vector<Object*>::iterator regionsItr = regionsObj.begin(); regionsItr != regionsObj.end(); regionsItr++)
+	{
+		string regionName = (*regionsItr)->getKey();
+		vector<string> provinceStrings = (*regionsItr)->getTokens();				// the province numbers
+		for (vector<string>::iterator provinceItr = provinceStrings.begin(); provinceItr != provinceStrings.end(); provinceItr++)
+		{
+			int provinceNum = atoi(provinceItr->c_str());
+			auto mapping = regions.find(provinceNum);
+			if (mapping == regions.end())
+			{
+				set<string> newRegions;
+				newRegions.insert(regionName);
+				regions.insert(make_pair(provinceNum, newRegions));
+			}
+			else
+			{
+				mapping->second.insert(regionName);
+			}
+		}
+	}
+}
+
+
+string CardinalToOrdinal(int cardinal)
+{
+	int hundredRem = cardinal % 100;
+	int tenRem = cardinal % 10;
+	if (hundredRem - tenRem == 10)
+	{
+		return "th";
+	}
+
+	switch (tenRem)
+	{
+	case 1:
+		return "st";
+	case 2:
+		return "nd";
+	case 3:
+		return "rd";
+	default:
+		return "th";
+	}
 }

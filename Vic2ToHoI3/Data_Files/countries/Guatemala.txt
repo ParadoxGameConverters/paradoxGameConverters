@@ -1,0 +1,373 @@
+color = { 174  206  203 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1a Div. de Infant. 'Adolfo V. Hall'" "2a División de Infantería" "3a División de Infantería" "4a División de Infantería" "5a División de Infantería" "6a División de Infantería" "7a División de Infantería" "8a División de Infantería" "9a División de Infantería" "10a División de Infantería" 
+	}
+	cavalry_brigade = {
+		"1a Div. de Cab. 'Guacos'" "2a División de Caballería" "3a División de Caballería" "4a División de Caballería" "5a División de Caballería" 
+	}
+	motorized_brigade = {
+		"1a División Móvil" "2a División Móvil" "3a División Móvil" "4a División Móvil" "5a División Móvil" 
+	}
+	mechanized_brigade = {
+		"1a División Mecanizada" "2a División Mecanizada" "3a División Mecanizada" "4a División Mecanizada" "5a División Mecanizada" 
+	}
+	light_armor_brigade = {
+		"1a División Blindada de Guatemala" "2a División Blindada de Guatemala" "3a División Blindada de Guatemala" "4a División Blindada de Guatemala" "5a División Blindada de Guatemala" 
+	}
+	armor_brigade = {
+		"1a División Blindada de Guatemala" "2a División Blindada de Guatemala" "3a División Blindada de Guatemala" "4a División Blindada de Guatemala" "5a División Blindada de Guatemala" 
+	}
+	paratrooper_brigade = {
+		"1. Tropas Paracaidistas" "2. Tropas Paracaidistas" "3. Tropas Paracaidistas" "4. Tropas Paracaidistas" "5. Tropas Paracaidistas" 
+	}
+	marine_brigade = {
+		"1. Comandos de Infantería de Marina" "2. Comandos de Infantería de Marina" "3. Comandos de Infantería de Marina" "4. Comandos de Infantería de Marina" "5. Comandos de Infantería de Marina" 
+	}
+	bergsjaeger_brigade = {
+		"1a Comm. de Fuerzas Esp. 'Kaibal'" "2a Commando de Fuerzas Especiales" "3a Commando de Fuerzas Especiales" "4a Commando de Fuerzas Especiales" "5a Commando de Fuerzas Especiales" 
+	}
+	garrison_brigade = {
+		"11a División de Infantería" "12a División de Infantería" "13a División de Infantería" "14a División de Infantería" "15a División de Infantería" "16a División de Infantería" "17a División de Infantería" "18a División de Infantería" "19a División de Infantería" "20a División de Infantería" 
+	}
+	hq_brigade = {
+		"Cuartel General 1er Ejército" "Cuartel General 2o Ejército" "Cuartel General 3er Ejército" "Cuartel General 4o Ejército" "Cuartel General 5o Ejército" "Cuartel General 6o Ejército" "Cuartel General 7o Ejército" "Cuartel General 8o Ejército" "Cuartel General 9o Ejército" "Cuartel General 10o Ejército" 
+	}
+	militia_brigade = {
+		"1a División de Policia Militar" "2a División de Policia Militar" "3a División de Policia Militar" "4a División de Policia Militar" "5a División de Policia Militar" "6a División de Policia Militar" "7a División de Policia Militar" "8a División de Policia Militar" "9a División de Policia Militar" "10a División de Policia Militar" 
+	}
+	multi_role = {
+		"1. Grupo Aéreo de Caza" "2. Grupo Aéreo de Caza" "3. Grupo Aéreo de Caza" "4. Grupo Aéreo de Caza" "5. Grupo Aéreo de Caza" 
+	}
+	interceptor = {
+		"1. Grupo Aéreo de Caza" "2. Grupo Aéreo de Caza" "3. Grupo Aéreo de Caza" "4. Grupo Aéreo de Caza" "5. Grupo Aéreo de Caza" 
+	}
+	strategic_bomber = {
+		"1. Grupo Aéreo Estratégico" "2. Grupo Aéreo Estratégico" "3. Grupo Aéreo Estratégico" "4. Grupo Aéreo Estratégico" "5. Grupo Aéreo Estratégico" 
+	}
+	tactical_bomber = {
+		"1. Grupo Aéreo Táctico" "2. Grupo Aéreo Táctico" "3. Grupo Aéreo Táctico" "4. Grupo Aéreo Táctico" "5. Grupo Aéreo Táctico" 
+	}
+	naval_bomber = {
+		"1. Grupo Aéreo de la Marina" "2. Grupo Aéreo de la Marina" "3. Grupo Aéreo de la Marina" "4. Grupo Aéreo de la Marina" "5. Grupo Aéreo de la Marina" "1. Grupo Aéreo Torpedero" "2. Grupo Aéreo Torpedero" "3. Grupo Aéreo Torpedero" "4. Grupo Aéreo Torpedero" "5. Grupo Aéreo Torpedero" "6. Grupo Aéreo Torpedero" 
+		"7. Grupo Aéreo Torpedero" "8. Grupo Aéreo Torpedero" "9. Grupo Aéreo Torpedero" "10. Grupo Aéreo Torpedero" 
+	}
+	cas = {
+		"1. Grupo Aéreo de Asalto" "2. Grupo Aéreo de Asalto" "3. Grupo Aéreo de Asalto" "4. Grupo Aéreo de Asalto" "5. Grupo Aéreo de Asalto" 
+	}
+	transport_plane = {
+		"1a Linea de Transporte Aéreo" "2a Linea de Transporte Aéreo" "3a Linea de Transporte Aéreo" "4a Linea de Transporte Aéreo" "5a Linea de Transporte Aéreo" 
+	}
+	battleship = {
+		"ARG Ciudad de Guatemala" "ARG Quezaltenango" 
+	}
+	light_cruiser = {
+		"ARG Tapachula" "ARG Puerto Barrios" "ARG Jacaltenango" "ARG El Estor" "ARG El Progreso" 
+	}
+	heavy_cruiser = {
+		"ARG Tapachula" "ARG Puerto Barrios" "ARG Jacaltenango" "ARG El Estor" "ARG El Progreso" 
+	}
+	battlecruiser = {
+		"ARG Ciudad de Guatemala" "ARG Quezaltenango" 
+	}
+	destroyer = {
+		"Flotilla de Destructores nro. 1" "Flotilla de Destructores nro. 2" "Flotilla de Destructores nro. 3" "Flotilla de Destructores nro. 4" "Flotilla de Destructores nro. 5" "Flotilla de Destructores nro. 6" 
+	}
+	carrier = {
+		"ARG República de Guatemala" "ARG Escuintia" 
+	}
+	submarine = {
+		"1a Flotilla de Submarinos" "2a Flotilla de Submarinos" "3a Flotilla de Submarinos" "4a Flotilla de Submarinos" "5a Flotilla de Submarinos" 
+	}
+	transport_ship = {
+		"Flotilla 'Morales'" "Flotilla 'Coban'" "Flotilla 'Huehuetenango'" "Flotilla 'Totomicapan'" "Flotilla 'Chajul" 
+	}
+
+}
+
+ministers = {
+	46001 = {
+		name = "Jorge Ubico Castaneda"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M46001
+		head_of_state = pig_headed_isolationist
+		head_of_government = silent_workhorse
+		chief_of_army = static_defence_doctrine
+		chief_of_staff = school_of_mass_combat
+		start_date = 1936.1.1
+	}
+	46003 = {
+		name = "Alfredo Skinner Klee"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M46003
+		foreign_minister = the_cloak_n_dagger_schemer
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	46004 = {
+		name = "Guillermo Flores Arendano"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M46004
+		armament_minister = infantry_proponent
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	46005 = {
+		name = "T. Castro Dominguez"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M46005
+		minister_of_security = crooked_kleptocrat
+		armament_minister = corrupt_kleptocrat
+		start_date = 1936.1.1
+	}
+	46006 = {
+		name = "Eduardo Villagran Ariza"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M46006
+		minister_of_intelligence = research_specialist
+		head_of_government = political_protege
+		head_of_government = happy_amateur
+		start_date = 1936.1.1
+	}
+	46007 = {
+		name = "Federico Ponce Vaides"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M46007
+		chief_of_staff = school_of_manoeuvre
+		head_of_state = barking_buffoon
+		armament_minister = tank_proponent
+		minister_of_security = efficient_sociopath
+		chief_of_army = decisive_battle_doctrine
+		head_of_government = old_general
+		start_date = 1936.1.1
+	}
+	46009 = {
+		name = "Tomas Mendoza Urribe"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M46009
+		chief_of_navy = indirect_approach_doctrine
+		minister_of_security = silent_lawyer
+		minister_of_intelligence = naval_intelligence_specialist
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1936.1.1
+	}
+	46010 = {
+		name = "R. Buenaventure Pineda"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M46010
+		chief_of_air = army_aviation_doctrine
+		head_of_state = resigned_generalissimo
+		head_of_government = old_air_marshal
+		minister_of_security = prince_of_terror
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	46021 = {
+		name = "Jacopo Arbenz Guzman"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M46021
+		head_of_state = popular_figurehead
+		armament_minister = infantry_proponent
+		minister_of_intelligence = political_specialist
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1944.1.1
+	}
+	46022 = {
+		name = "Juan Arevalo Bermejo"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M46022
+		head_of_state = die_hard_reformer
+		head_of_government = backroom_backstabber
+		armament_minister = resource_industrialist
+		start_date = 1945.1.1
+	}
+	46023 = {
+		name = "Jorge Torriello Garrido"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M46011
+		head_of_state = resigned_generalissimo
+		foreign_minister = general_staffer
+		chief_of_navy = power_projection_doctrine
+		start_date = 1945.1.1
+	}
+	46027 = {
+		name = "Francisco Javier Arana"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M46027
+		head_of_government = naive_optimist
+		foreign_minister = iron_fisted_brute
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1944.1.1
+	}
+	46029 = {
+		name = "Manuel Orellana"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M46012
+		head_of_government = smiling_oilman
+		minister_of_security = crime_fighter
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		start_date = 1945.1.1
+	}
+	46031 = {
+		name = "Manuel Arroyo"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M46031
+		head_of_government = old_admiral
+		armament_minister = theoretical_scientist
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1937.1.1
+	}
+	46035 = {
+		name = "Carlos Argumedo Salazar"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M46035
+		foreign_minister = the_cloak_n_dagger_schemer
+		foreign_minister = great_compromiser
+		start_date = 1944.1.1
+	}
+	46037 = {
+		name = "Enrique Muñoz Meany"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M46037
+		foreign_minister = biased_intellectual
+		start_date = 1946.1.1
+	}
+	46044 = {
+		name = "Diego A. Castro Arigon"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M46044
+		armament_minister = administrative_genius
+		start_date = 1946.1.1
+	}
+	46045 = {
+		name = "Julio Herrera"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M46045
+		armament_minister = resource_industrialist
+		start_date = 1945.1.1
+	}
+	46046 = {
+		name = "José Matos"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M46014
+		armament_minister = laissez_faires_capitalist
+		start_date = 1945.1.1
+	}
+	46051 = {
+		name = "Manuel Valladares"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M46015
+		minister_of_security = silent_lawyer
+		start_date = 1945.1.1
+	}
+	46053 = {
+		name = "Carlos Castillo Armas"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M46053
+		minister_of_security = silent_lawyer
+		start_date = 1945.1.1
+	}
+	46057 = {
+		name = "Adrian Recinos"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M46016
+		minister_of_intelligence = technical_specialist
+		start_date = 1944.1.1
+	}
+	46060 = {
+		name = "Felipé Uriarte Tómas"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M46060
+		minister_of_intelligence = research_specialist
+		start_date = 1945.1.1
+	}
+	46063 = {
+		name = "Carlos Diaz de Leon"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M46063
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1945.1.1
+	}
+	46074 = {
+		name = "José Ezuira Abel"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M46019
+		chief_of_navy = open_seas_doctrine
+		start_date = 1945.1.1
+	}
+	46077 = {
+		name = "W. Tesch Orlando"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M46077
+		chief_of_air = air_superiority_doctrine
+		start_date = 1945.1.1
+	}
+	46079 = {
+		name = "Miguel Garcia Granados"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M46079
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1945.1.1
+	}
+	46081 = {
+		name = "M. Ydigaras Fuentes"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M46018
+		chief_of_staff = school_of_psychology
+		start_date = 1944.1.1
+	}
+}

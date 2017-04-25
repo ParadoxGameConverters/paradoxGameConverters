@@ -1,5 +1,5 @@
 /*Copyright (c) 2013 The CK2 to EU3 Converter Project
- 
+
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
  "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
  distribute, sublicense, and/or sell copies of the Software, and to
  permit persons to whom the Software is furnished to do so, subject to
  the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -22,7 +22,7 @@
 
 
 #include "CK2Building.h"
-#include "CK2Character.h"
+#include "CK2World\Character\CK2Character.h"
 #include "CK2Religion.h"
 #include "..\Parsers\Object.h"
 #include "..\Log.h"
@@ -31,7 +31,7 @@
 
 CK2Building::CK2Building(Object* obj)
 {
-	vector<Object*> fortObj = obj->getValue("fort_level");
+	vector<IObject*> fortObj = obj->getValue("fort_level");
 	if (fortObj.size() > 0)
 	{
 		fortLevel = atof( fortObj[0]->getLeaf().c_str() );
@@ -41,7 +41,7 @@ CK2Building::CK2Building(Object* obj)
 		fortLevel = 0.0f;
 	}
 
-	vector<Object*> levyMultObj = obj->getValue("levy_size");
+	vector<IObject*> levyMultObj = obj->getValue("levy_size");
 	if (levyMultObj.size() > 0)
 	{
 		levyMultiplier = atof( levyMultObj[0]->getLeaf().c_str() );
@@ -52,7 +52,7 @@ CK2Building::CK2Building(Object* obj)
 	}
 
 	numSoldiers = 0.0f;
-	vector<Object*> soldiersObj = obj->getValue("light_infantry");
+	vector<IObject*> soldiersObj = obj->getValue("light_infantry");
 	if (soldiersObj.size() > 0)
 	{
 		numSoldiers += atof( soldiersObj[0]->getLeaf().c_str() );
@@ -88,7 +88,7 @@ CK2Building::CK2Building(Object* obj)
 		numSoldiers += atof( soldiersObj[0]->getLeaf().c_str() );
 	}
 
-	vector<Object*> taxObj = obj->getValue("tax_income");
+	vector<IObject*> taxObj = obj->getValue("tax_income");
 	if (taxObj.size() > 0)
 	{
 		taxIncome = atof( taxObj[0]->getLeaf().c_str() );
@@ -98,7 +98,7 @@ CK2Building::CK2Building(Object* obj)
 		taxIncome = 0.0f;
 	}
 
-	vector<Object*> techObj = obj->getValue("tech_growth_modifier");
+	vector<IObject*> techObj = obj->getValue("tech_growth_modifier");
 	if (techObj.size() > 0)
 	{
 		techBonus = atof( techObj[0]->getLeaf().c_str() );
@@ -112,13 +112,13 @@ CK2Building::CK2Building(Object* obj)
 	requiredReligion			= "";
 	acceptableCultures.clear();
 	acceptableCultureGroups.clear();
-	vector<Object*> potentialObj = obj->getValue("potential");
-	vector<Object*> potentialObjs;
+	vector<IObject*> potentialObj = obj->getValue("potential");
+	vector<IObject*> potentialObjs;
 	if (potentialObj.size() > 0)
 	{
 		potentialObjs = potentialObj[0]->getLeaves();
 	}
-	for (vector<Object*>::iterator potentialItr = potentialObjs.begin(); potentialItr != potentialObjs.end(); potentialItr++)
+	for (vector<IObject*>::iterator potentialItr = potentialObjs.begin(); potentialItr != potentialObjs.end(); potentialItr++)
 	{
 		if ( (*potentialItr)->getKey() == "religion_group")
 		{
@@ -126,13 +126,13 @@ CK2Building::CK2Building(Object* obj)
 		}
 		if ( (*potentialItr)->getKey() == "FROM")
 		{
-			vector<Object*> fromObjs = (*potentialItr)->getLeaves();
-			for (vector<Object*>::iterator fromItr = fromObjs.begin(); fromItr != fromObjs.end(); fromItr++)
+			vector<IObject*> fromObjs = (*potentialItr)->getLeaves();
+			for (vector<IObject*>::iterator fromItr = fromObjs.begin(); fromItr != fromObjs.end(); fromItr++)
 			{
 				if ( (*fromItr)->getKey() == "OR")
 				{
-					vector<Object*> orObjs = (*fromItr)->getLeaves();
-					for (vector<Object*>::iterator orItr = orObjs.begin(); orItr != orObjs.end(); orItr++)
+					vector<IObject*> orObjs = (*fromItr)->getLeaves();
+					for (vector<IObject*>::iterator orItr = orObjs.begin(); orItr != orObjs.end(); orItr++)
 					{
 						if ( (*orItr)->getKey() == "culture")
 						{
@@ -161,10 +161,10 @@ CK2Building::CK2Building(Object* obj)
 
 		if ((*potentialItr)->getKey() == "NOT")
 		{
-			vector<Object*> fromObj = (*potentialItr)->getValue("FROM");
+			vector<IObject*> fromObj = (*potentialItr)->getValue("FROM");
 			if (fromObj.size() > 0)
 			{
-				vector<Object*> groupObj = fromObj[0]->getValue("religion_group");
+				vector<IObject*> groupObj = fromObj[0]->getValue("religion_group");
 				if (groupObj.size() > 0)
 				{
 					forbiddenReligion = groupObj[0]->getLeaf();
@@ -178,22 +178,21 @@ CK2Building::CK2Building(Object* obj)
 map<string, const CK2Building*> CK2BuildingFactory::buildings;
 
 
-CK2BuildingFactory::CK2BuildingFactory(const cultureGroupMapping* _cultureGroupMap)
+CK2BuildingFactory::CK2BuildingFactory(std::shared_ptr<cultureGroupMapping> _cultureGroupMap)
 {
 	cultureGroupMap = _cultureGroupMap;
 }
 
-
 void CK2BuildingFactory::addBuildingTypes(Object* obj)
 {
-	vector<Object*> holdingObjs = obj->getLeaves();
-	for (vector<Object*>::iterator holdingItr = holdingObjs.begin(); holdingItr != holdingObjs.end(); holdingItr++)
+	vector<IObject*> holdingObjs = obj->getLeaves();
+	for (vector<IObject*>::iterator holdingItr = holdingObjs.begin(); holdingItr != holdingObjs.end(); holdingItr++)
 	{
-		vector<Object*> buildingObjs = (*holdingItr)->getLeaves();
-		for (vector<Object*>::iterator buildingsItr = buildingObjs.begin(); buildingsItr != buildingObjs.end(); buildingsItr++)
+		vector<IObject*> buildingObjs = (*holdingItr)->getLeaves();
+		for (vector<IObject*>::iterator buildingsItr = buildingObjs.begin(); buildingsItr != buildingObjs.end(); buildingsItr++)
 		{
 			string			newBuildingtype	= (*buildingsItr)->getKey();
-			CK2Building*	newBulding			= new CK2Building( *buildingsItr );
+			CK2Building*	newBulding			= new CK2Building( static_cast<Object *>(*buildingsItr) );
 			buildings.insert( make_pair(newBuildingtype, newBulding) );
 		}
 	}

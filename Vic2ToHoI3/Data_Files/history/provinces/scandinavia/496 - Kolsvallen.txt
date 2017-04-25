@@ -1,0 +1,31 @@
+owner = SWE
+controller = SWE
+add_core = SWE
+
+terrain = woods
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4

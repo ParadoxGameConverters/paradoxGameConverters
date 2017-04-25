@@ -1,0 +1,243 @@
+color = { 183  148  145 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"Yemeni al-Mushati al-1i" "Yemeni al-Mushati al-2i" "Yemeni al-Mushati al-3i" "Yemeni al-Mushati al-4i" "Yemeni al-Mushati al-5i" "Yemeni al-Mushati al-6i" "Yemeni al-Mushati al-7i" "Yemeni al-Mushati al-8i" "Yemeni al-Mushati al-9i" "Yemeni al-Mushati al-10i" "Yemeni al-Mushati al-12r" 
+		"Yemeni al-Mushati al-13r" "Yemeni al-Mushati al-14r" "Yemeni al-Mushati al-15r" "Yemeni al-Mushati al-16r" "Yemeni al-Mushati al-17r" "Yemeni al-Mushati al-18r" "Yemeni al-Mushati al-19r" "Yemeni al-Mushati al-20r" 
+	}
+	cavalry_brigade = {
+		"Yemeni Sipahis al-1i" "Yemeni Sipahis al-2i" "Yemeni Sipahis al-3i" "Yemeni Sipahis al-4i" "Yemeni Sipahis al-5i" "Yemeni Sipahis al-6i" "Yemeni Sipahis al-7i" "Yemeni Sipahis al-8i" "Yemeni Sipahis al-9i" "Yemeni Sipahis al-10i" "Yemeni Sipahis al-11r" 
+		"Yemeni Sipahis al-12r" "Yemeni Sipahis al-13r" "Yemeni Sipahis al-14r" "Yemeni Sipahis al-15r" 
+	}
+	motorized_brigade = {
+		"Yemeni al-Mushati al-1i" "Yemeni al-Mushati al-2i" "Yemeni al-Mushati al-3i" "Yemeni al-Mushati al-4i" "Yemeni al-Mushati al-5i" "Yemeni al-Mushati al-6i" "Yemeni al-Mushati al-7i" "Yemeni al-Mushati al-8i" "Yemeni al-Mushati al-9i" "Yemeni al-Mushati al-10i" "Yemeni al-Mushati al-12r" 
+		"Yemeni al-Mushati al-13r" "Yemeni al-Mushati al-14r" "Yemeni al-Mushati al-15r" "Yemeni al-Mushati al-16r" "Yemeni al-Mushati al-17r" "Yemeni al-Mushati al-18r" "Yemeni al-Mushati al-19r" "Yemeni al-Mushati al-20r" 
+	}
+	mechanized_brigade = {
+		"Yemeni al-Mushati al-1i" "Yemeni al-Mushati al-2i" "Yemeni al-Mushati al-3i" "Yemeni al-Mushati al-4i" "Yemeni al-Mushati al-5i" "Yemeni al-Mushati al-6i" "Yemeni al-Mushati al-7i" "Yemeni al-Mushati al-8i" "Yemeni al-Mushati al-9i" "Yemeni al-Mushati al-10i" "Yemeni al-Mushati al-12r" 
+		"Yemeni al-Mushati al-13r" "Yemeni al-Mushati al-14r" "Yemeni al-Mushati al-15r" "Yemeni al-Mushati al-16r" "Yemeni al-Mushati al-17r" "Yemeni al-Mushati al-18r" "Yemeni al-Mushati al-19r" "Yemeni al-Mushati al-20r" 
+	}
+	light_armor_brigade = {
+		"Yemeni Sipahis al-1i" "Yemeni Sipahis al-2i" "Yemeni Sipahis al-3i" "Yemeni Sipahis al-4i" "Yemeni Sipahis al-5i" "Yemeni Sipahis al-6i" "Yemeni Sipahis al-7i" "Yemeni Sipahis al-8i" "Yemeni Sipahis al-9i" "Yemeni Sipahis al-10i" 
+	}
+	armor_brigade = {
+		"Yemeni Sipahis al-1i" "Yemeni Sipahis al-2i" "Yemeni Sipahis al-3i" "Yemeni Sipahis al-4i" "Yemeni Sipahis al-5i" "Yemeni Sipahis al-6i" "Yemeni Sipahis al-7i" "Yemeni Sipahis al-8i" "Yemeni Sipahis al-9i" "Yemeni Sipahis al-10i" 
+	}
+	paratrooper_brigade = {
+		"Yemeni al-Mushati al-20r" "Yemeni al-Mushati al-21r" "Yemeni al-Mushati al-22r" "Yemeni al-Mushati al-23r" "Yemeni al-Mushati al-24r" "Yemeni al-Mushati al-25r" "Yemeni al-Mushati al-26r" "Yemeni al-Mushati al-27r" "Yemeni al-Mushati al-28r" "Yemeni al-Mushati al-29r" "Yemeni al-Mushati al-30r" 
+			}
+	marine_brigade = {
+		"Yemeni al-Mushati al-20r" "Yemeni al-Mushati al-21r" "Yemeni al-Mushati al-22r" "Yemeni al-Mushati al-23r" "Yemeni al-Mushati al-24r" "Yemeni al-Mushati al-25r" "Yemeni al-Mushati al-26r" "Yemeni al-Mushati al-27r" "Yemeni al-Mushati al-28r" "Yemeni al-Mushati al-29r" "Yemeni al-Mushati al-30r" 
+			}
+	bergsjaeger_brigade = {
+		"Yemeni al-Mushati al-20r" "Yemeni al-Mushati al-21r" "Yemeni al-Mushati al-22r" "Yemeni al-Mushati al-23r" "Yemeni al-Mushati al-24r" "Yemeni al-Mushati al-25r" "Yemeni al-Mushati al-26r" "Yemeni al-Mushati al-27r" "Yemeni al-Mushati al-28r" "Yemeni al-Mushati al-29r" "Yemeni al-Mushati al-30r" 
+			}
+	garrison_brigade = {
+		"Yemeni al-Mushati al-1i" "Yemeni al-Mushati al-2i" "Yemeni al-Mushati al-3i" "Yemeni al-Mushati al-4i" "Yemeni al-Mushati al-5i" "Yemeni al-Mushati al-6i" "Yemeni al-Mushati al-7i" "Yemeni al-Mushati al-8i" "Yemeni al-Mushati al-9i" "Yemeni al-Mushati al-10i" "Yemeni al-Mushati al-12r" 
+		"Yemeni al-Mushati al-13r" "Yemeni al-Mushati al-14r" "Yemeni al-Mushati al-15r" "Yemeni al-Mushati al-16r" "Yemeni al-Mushati al-17r" "Yemeni al-Mushati al-18r" "Yemeni al-Mushati al-19r" "Yemeni al-Mushati al-20r" 
+	}
+	hq_brigade = {
+		"1st Yemeni Army" "2nd Yemeni Army" "3rd Yemeni Army" "4th Yemeni Army" "5th Yemeni Army" 
+	}
+	militia_brigade = {
+		"Yemeni al-Milishiya al-1i" "Yemeni al-Milishiya al-2i" "Yemeni al-Milishiya al-3i" "Yemeni al-Milishiya al-4i" "Yemeni al-Milishiya al-5i" "Yemeni al-Milishiya al-6i" "Yemeni al-Milishiya al-7i" "Yemeni al-Milishiya al-8i" "Yemeni al-Milishiya al-9i" "Yemeni al-Milishiya al-10i" "Yemeni al-Milishiya al-11r" 
+		"Yemeni al-Milishiya al-12r" "Yemeni al-Milishiya al-13r" "Yemeni al-Milishiya al-14r" "Yemeni al-Milishiya al-15r" "Yemeni al-Milishiya al-16r" "Yemeni al-Milishiya al-17r" "Yemeni al-Milishiya al-18r" "Yemeni al-Milishiya al-19r" "Yemeni al-Milishiya al-20r" "Yemeni al-Milishiya al-21r" "Yemeni al-Milishiya al-22r" 
+		"Yemeni al-Milishiya al-23r" "Yemeni al-Milishiya al-24r" "Yemeni al-Milishiya al-25r" 
+	}
+	multi_role = {
+		"1. RYAF Fighter Group" "2. RYAF Fighter Group" "3. RYAF Fighter Group" "4. RYAF Fighter Group" "5. RYAF Fighter Group" "6. RYAF Fighter Group" "7. RYAF Fighter Group" "8. RYAF Fighter Group" "9. RYAF Fighter Group" "10. RYAF Fighter Group" 
+	}
+	interceptor = {
+		"1. RYAF Fighter Group" "2. RYAF Fighter Group" "3. RYAF Fighter Group" "4. RYAF Fighter Group" "5. RYAF Fighter Group" "6. RYAF Fighter Group" "7. RYAF Fighter Group" "8. RYAF Fighter Group" "9. RYAF Fighter Group" "10. RYAF Fighter Group" "1. RYAF Fighter Group" 
+		"2. RYAF Fighter Group" "3. RYAF Fighter Group" "4. RYAF Fighter Group" "5. RYAF Fighter Group" "6. RYAF Fighter Group" "7. RYAF Fighter Group" "8. RYAF Fighter Group" "9. RYAF Fighter Group" "10. RYAF Fighter Group" 
+	}
+	strategic_bomber = {
+		"11. RYAF Strategic Bomb Group" "12. RYAF Strategic Bomb Group" "13. RYAF Strategic Bomb Group" "14. RYAF Strategic Bomb Group" "15. RYAF Strategic Bomb Group" "16. RYAF Strategic Bomb Group" 
+	}
+	tactical_bomber = {
+		"21. RYAF Tactical Bomb Group" "22. RYAF Tactical Bomb Group" "23. RYAF Tactical Bomb Group" "24. RYAF Tactical Bomb Group" "25. RYAF Tactical Bomb Group" "26. RYAF Tactical Bomb Group" 
+	}
+	naval_bomber = {
+		"41. RYAF Marine Bomb Group" "42. RYAF Marine Bomb Group" "43. RYAF Marine Bomb Group" "44. RYAF Marine Bomb Group" "45. RYAF Marine Bomb Group" "51. RYAF Torpedo Group" "52. RYAF Torpedo Group" "53. RYAF Torpedo Group" "54. RYAF Torpedo Group" "55. RYAF Torpedo Group" "56. RYAF Torpedo Group" 
+			}
+	cas = {
+		"31. RYAF Dive Bomb Group" "32. RYAF Dive Bomb Group" "33. RYAF Dive Bomb Group" "34. RYAF Dive Bomb Group" "35. RYAF Dive Bomb Group" 
+	}
+	transport_plane = {
+		"61. RYAF Airtransport" "62. RYAF Airtransport" "63. RYAF Airtransport" "64. RYAF Airtransport" 
+	}
+	battleship = {
+		"RYNS San'a" "RYNS Al Hudaydah" 
+	}
+	light_cruiser = {
+		"RYNS Salalah" "RYNS Raysut" "RYNS Mirbah" "RYNS Sawqirah" 
+	}
+	heavy_cruiser = {
+		"RYNS Al Mukha" "RYNS Zabid" "RYNS Huth" "RYNS Sa'dah" "RYNS Ma'rib" 
+	}
+	battlecruiser = {
+		"RYNS al-Qahira" "RYNS Salah al-Din" "RYNS Mehemet Ali" 
+	}
+	destroyer = {
+		"RYN Torpedo Flotilla no. 1" "RYN Torpedo Flotilla no. 2" "RYN Torpedo Flotilla no. 3" "RYN Torpedo Flotilla no. 4" "RYN Torpedo Flotilla no. 5" "RYN Torpedo Flotilla no. 6" "RYN Torpedo Flotilla no. 7" "RYN Torpedo Flotilla no. 8" "RYN Torpedo Flotilla no. 9" "RYN Torpedo Flotilla no. 10" 
+	}
+	carrier = {
+		"RYNS Al Yaman" "RYNS Ta'izz" 
+	}
+	submarine = {
+		"RYN Ustul al-Ghawwasati al-1i" "RYN Ustul al-Ghawwasati al-2i" "RYN Ustul al-Ghawwasati al-3i" "RYN Ustul al-Ghawwasati al-4i" "RYN Ustul al-Ghawwasati al-5i" "RYN Ustul al-Ghawwasati al-6i" "RYN Ustul al-Ghawwasati al-7i" "RYN Ustul al-Ghawwasati al-8i" "RYN Ustul al-Ghawwasati al-9i" "RYN Ustul al-Ghawwasati al-10i" 
+	}
+	transport_ship = {
+		"RYN Ustul al-Hamli al-1i" "RYN Ustul al-Hamli al-2i" "RYN Ustul al-Hamli al-3i" "RYN Ustul al-Hamli al-4i" "RYN Ustul al-Hamli al-5i" "RYN Ustul al-Hamli al-6i" "RYN Ustul al-Hamli al-7i" "RYN Ustul al-Hamli al-8i" "RYN Ustul al-Hamli al-9i" "RYN Ustul al-Hamli al-10i" 
+	}
+
+}
+
+ministers = {
+	93001 = {
+		name = "Yahya al Hamid"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M93001
+		head_of_state = stern_imperialist
+		head_of_government = smiling_oilman
+		foreign_minister = general_staffer
+		minister_of_security = prince_of_terror
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	93004 = {
+		name = "Ahmad al Hamid"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M93004
+		armament_minister = corrupt_kleptocrat
+		minister_of_intelligence = dismal_enigma
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1936.1.1
+	}
+	93009 = {
+		name = "Mansur al Badr"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M93009
+		chief_of_navy = power_projection_doctrine
+		chief_of_air = army_aviation_doctrine
+		minister_of_security = crooked_kleptocrat
+		start_date = 1936.1.1
+	}
+	93011 = {
+		name = "R.J. McNeill Cushendun"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M93011
+		foreign_minister = great_compromiser
+		start_date = 1939.1.1
+	}
+	93013 = {
+		name = "Alexandre Loveday"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M93013
+		armament_minister = infantry_proponent
+		start_date = 1940.1.1
+	}
+	93014 = {
+		name = "Henry R. Dobbs"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M93014
+		armament_minister = resource_industrialist
+		start_date = 1941.1.1
+	}
+	93015 = {
+		name = "A.H.C. Rivers"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M93015
+		armament_minister = administrative_genius
+		start_date = 1942.1.1
+	}
+	93017 = {
+		name = "Leonard A. Lyall"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M93017
+		minister_of_security = silent_lawyer
+		start_date = 1938.1.1
+	}
+	93019 = {
+		name = "Cecil Barrington Hurst"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M93019
+		minister_of_intelligence = technical_specialist
+		start_date = 1940.1.1
+	}
+	93020 = {
+		name = "R. Montgomerie-Clives"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M93020
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1939.1.1
+	}
+	93021 = {
+		name = "Abd al Husseini"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M93021
+		chief_of_staff = school_of_fire_support
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1945.1.1
+	}
+	93023 = {
+		name = "Ted Pointer"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M93023
+		chief_of_army = decisive_battle_doctrine
+		chief_of_air = air_superiority_doctrine
+		start_date = 1942.1.1
+	}
+	93025 = {
+		name = "Ian Trelawny"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M93025
+		chief_of_navy = open_seas_doctrine
+		start_date = 1940.1.1
+	}
+	93027 = {
+		name = "Ali Halukeh"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M93027
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1945.1.1
+	}
+}

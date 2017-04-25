@@ -1,0 +1,15 @@
+owner = ROM
+controller = ROM
+add_core = ROM
+
+points = 4
+metal = 6.00
+energy = 4.00
+crude_oil = 4.00
+rare_materials = 5.00
+industry = 7
+anti_air = 2
+infra = 8
+air_base = 5
+manpower = 6.50
+leadership = 0.60

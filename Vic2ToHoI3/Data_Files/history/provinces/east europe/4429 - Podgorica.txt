@@ -1,0 +1,16 @@
+owner = YUG
+controller = YUG
+add_core = YUG
+
+metal = 7.00
+energy = 5.00
+industry = 1
+infra = 6
+manpower = 1.00
+leadership = 0.10
+1941.6.22 = {
+	controller = ITA
+}
+1943.9.8 = {
+	controller = GER
+}

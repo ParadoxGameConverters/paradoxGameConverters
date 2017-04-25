@@ -7,44 +7,36 @@ namespace Frontend.Core.Model
     {
         private IConverterSettings currentConverter;
 
-        public ConverterOptions()
-        {
-        }
-
         /// <summary>
-        /// Gets or sets a value indicating whether conversion was successful.
+        ///     Gets or sets a value indicating whether conversion was successful.
         /// </summary>
         /// <value>
-        /// <c>true</c> if conversion was successful; otherwise, <c>false</c>.
+        ///     <c>true</c> if conversion was successful; otherwise, <c>false</c>.
         /// </value>
         public bool WasConversionSuccessful { get; set; }
 
         /// <summary>
-        /// Gets or sets the current converter settings
+        ///     Gets or sets the current converter settings
         /// </summary>
         public IConverterSettings CurrentConverter
         {
-            get
-            {
-                return this.currentConverter;
-            }
+            get { return currentConverter; }
 
             set
             {
-                if (this.currentConverter == value)
+                if (currentConverter == value)
                 {
                     return;
                 }
 
-                this.Reset(value);
-                this.currentConverter = value;
-                this.NotifyOfPropertyChange(() => this.CurrentConverter);
+                Reset(value);
+                currentConverter = value;
+                NotifyOfPropertyChange(() => CurrentConverter);
             }
         }
 
         public void Reset(IConverterSettings newSettings)
         {
-
         }
     }
 }

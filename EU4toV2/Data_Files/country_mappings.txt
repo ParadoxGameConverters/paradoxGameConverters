@@ -35,13 +35,17 @@ link = { eu4 = ENG v2 = ENL } 	# England
 link = { eu4 = GBR v2 = ENG } 	# Great Britain => United Kingdom
 link = { eu4 = IRE v2 = IRE } 	# Ireland
 link = { eu4 = LEI v2 = LEI } 	# Leinster
-link = { eu4 = LAN v2 = LAN } 	# Lancaster
 link = { eu4 = MNS v2 = MNS } 	# Irish Munster
 link = { eu4 = SCO v2 = SCO } 	# Scotland
 link = { eu4 = TYR v2 = TYR } 	# Ulster
 link = { eu4 = WLS v2 = WLS } 	# Wales
 link = { eu4 = YOR v2 = YOR } 	# York
 link = { eu4 = NOL v2 = NOL } 	# Northumberland
+link = { eu4 = HSC v2 = HSC }   # Highlands/Gaeldom
+link = { eu4 = DMS v2 = DMS }   # Desmond
+link = { eu4 = SLN v2 = SLN }   # Sligo
+link = { eu4 = KID v2 = KID }   # Kildare
+
 
 # France
 
@@ -65,7 +69,6 @@ link = { eu4 = PRO v2 = PRO } 	# Provence
 link = { eu4 = TOU v2 = TOU } 	# Toulouse
 link = { eu4 = BER v2 = BRY } 	# Berry
 link = { eu4 = FRA v2 = FRA } 	# France => France
-link = { eu4 = RFR v2 = RFR } 	# Revolutionary France
 link = { eu4 = BUR v2 = BRG }   # Burgundy
 
 # Spain
@@ -86,6 +89,7 @@ link = { eu4 = ETR v2 = ETR }  # Etruria
 link = { eu4 = FER v2 = FER }  # Ferrara
 link = { eu4 = GEN v2 = GNA }  # Genoa
 link = { eu4 = ITA v2 = ITA }  # Italy
+link = { eu4 = LAN v2 = FLO }  # Florence
 link = { eu4 = MAN v2 = MTA }  # Mantua
 link = { eu4 = MLO v2 = LOM }  # Milan
 link = { eu4 = MOD v2 = MOD }  # Modena
@@ -101,6 +105,7 @@ link = { eu4 = SIE v2 = SNA }  # Sienna
 link = { eu4 = URB v2 = URB }  # Urbino
 link = { eu4 = VEN v2 = VEN }  # Venice
 link = { eu4 = SPI v2 = SAR }  # Sardinia-Piedmont
+link = { eu4 = MFA v2 = MFA }  # Montferrat
 
 # The Low Countries
 
@@ -210,13 +215,18 @@ link = { eu4 = WBG v2 = WBG }  # Wurzburg
 link = { eu4 = WES v2 = WES }  # Westfalia
 link = { eu4 = WUR v2 = WUR }  # Wurtemburg
 link = { eu4 = HLR v2 = HRE }  # Holy Roman Empire *
+link = { eu4 = MEM v2 = MEM }  # Memmingen
+link = { eu4 = NUM v2 = NUM }  # Nürnberg
+link = { eu4 = RVA v2 = RVA }  # Ravensburg
+link = { eu4 = DTT v2 = DTT }  # Dithmarschen (1.19)
 
 # Russia
 link = { eu4 = ARM v2 = ARM }  # Armenia
 link = { eu4 = AST v2 = AKH }  # Astarakhan
 link = { eu4 = CRI v2 = CRI }  # Crimea
 link = { eu4 = GEO v2 = GEO }  # Georgia
-link = { eu4 = GOL v2 = GOL }  # Golden Horde
+link = { eu4 = GLH v2 = GOL }  # Golden Horde
+link = { eu4 = GOL v2 = GRH }  # Great Horde
 link = { eu4 = KAZ v2 = KAZ }  # Kazan
 link = { eu4 = MOS v2 = MOS }  # Muscowy
 link = { eu4 = NOV v2 = NOV }  # Novgorod
@@ -234,6 +244,7 @@ link = { eu4 = SMO v2 = SMO }  # Smolensk
 link = { eu4 = PLT v2 = PLT }  # Polotsk
 link = { eu4 = NZH v2 = NZH }  # Nizhny Novgorod
 link = { eu4 = PRM v2 = PRM }  # Perm (NEW) *
+link = { eu4 = OKA v2 = OKA }  # Odoyev
 
 # North & South America
 link = { eu4 = BRZ v2 = BRZ }  # Brazil
@@ -328,7 +339,7 @@ link = { eu4 = KOJ v2 = KOJ }  # Jerusalem
 link = { eu4 = KZH v2 = KZH }  # Kazakh
 link = { eu4 = KHI v2 = KHI }  # Khiva  
 link = { eu4 = KOK v2 = KOK }  # Kokand
-link = { eu4 = SHY v2 = BUK }  # Uzbek => Bukkhara
+link = { eu4 = SHY v2 = SHY }  # Uzbek
 
 #Persia
 link = { eu4 = KHO v2 = KHO }  # Khorasan
@@ -361,6 +372,37 @@ link = { eu4 = MBA v2 = MBA }  # Mombasa (NEW)
 link = { eu4 = MDI v2 = MDI }  # Mogadishu (NEW)
 link = { eu4 = MLI v2 = MLI }  # Malindi (NEW)
 link = { eu4 = SOF v2 = SGU }  # Segu (NEW)
+link = { eu4 = ANT v2 = ANT }  # Antemoro
+link = { eu4 = BNY v2 = BNY }  # Bunyoro
+link = { eu4 = BSG v2 = BSG }  # Basoga
+link = { eu4 = BTS v2 = BTS }  # Betsimisaraka
+link = { eu4 = BUG v2 = BUG }  # Buganda
+link = { eu4 = BUU v2 = BUU }  # Burundi
+link = { eu4 = CKW v2 = CKW }  # Chokwe
+link = { eu4 = KIK v2 = KIK }  # Kikondja
+link = { eu4 = KRW v2 = KRW }  # Karagwe
+link = { eu4 = KSJ v2 = KSJ }  # Kasanje
+link = { eu4 = KUB v2 = KUB }  # Kuba
+link = { eu4 = KZB v2 = KZB }  # Kazembe
+link = { eu4 = LDU v2 = LDU }  # Lundu
+link = { eu4 = LND v2 = LND }  # Lunda
+link = { eu4 = LUB v2 = LUB }  # Luba
+link = { eu4 = MFY v2 = MFY }  # Mahafaly
+link = { eu4 = MIR v2 = MIR }  # Merina
+link = { eu4 = MKU v2 = MKU }  # Makua
+link = { eu4 = MRA v2 = MRA }  # Maravi
+link = { eu4 = NKO v2 = NKO }  # Nkore
+link = { eu4 = RWA v2 = RWA }  # Rwanda
+link = { eu4 = RZW v2 = RZW }  # Butua
+link = { eu4 = SKA v2 = SKA }  # Sakalava
+link = { eu4 = SYO v2 = SYO }  # Soyo
+link = { eu4 = TBK v2 = TBK }  # Tumbuka
+link = { eu4 = UBH v2 = UBH }  # Buha
+link = { eu4 = YAK v2 = YAK }  # Yaka
+link = { eu4 = ABB v2 = ABB }  # Dongola (1.19)
+link = { eu4 = HDY v2 = HDY }  # Hadiya (1.19)
+link = { eu4 = JJI v2 = JJI }  # Janjiro (1.19)
+link = { eu4 = WLY v2 = WLY }  # Welayta (1.19)
 
 # East and Southeast Asia, and Oceania
 link = { eu4 = ANN v2 = ANN }  # Annam
@@ -399,7 +441,7 @@ link = { eu4 = TIB v2 = TIB }  # Tibet
 link = { eu4 = TOK v2 = TOK }  # Tonkin
 link = { eu4 = VIE v2 = WIA }  # Vientiane => Wiang Chhan
 link = { eu4 = CSH v2 = CSH }  # Shun (NEW) *
-link = { eu4 = CXI v2 = XIA }  # Xi
+link = { eu4 = CXI v2 = CXI }  # Xi (NEW)
 link = { eu4 = CZH v2 = WUU }  # Zhou
 link = { eu4 = WUU v2 = CWU }  # Wu
 link = { eu4 = QNG v2 = CHI }  # Qing/China
@@ -420,6 +462,7 @@ link = { eu4 = IMG v2 = IMG }  # Imagawa
 link = { eu4 = JAP v2 = JAP }  # Japan
 link = { eu4 = MAE v2 = MAE }  # Maeda
 link = { eu4 = MRI v2 = MRI }  # Mori
+link = { eu4 = RFR v2 = RFR }  # Nanbu
 link = { eu4 = ODA v2 = ODA }  # Oda
 link = { eu4 = OTM v2 = OTM }  # Otomo
 link = { eu4 = OUC v2 = OUC }  # Ouchi
@@ -668,6 +711,9 @@ link = { eu4 = ZAF V2 = ZAF }
 link = { eu4 = ZUN V2 = ZUN } 
 link = { eu4 = ZZZ V2 = ZZZ } 
 
+# Secret Denmark
+link = { eu4 = SDM v2 = SDM }
+
 # Third Odyssey
 link = { eu4 = AEG V2 = AEG }
 link = { eu4 = CTM V2 = CTM }
@@ -789,5 +835,5 @@ link = { eu4 = d_venice v2 = VEN }
 link = { eu4 = d_wallachia v2 = WAL }
 link = { eu4 = c_wurttemberg v2 = WUR }
 link = { eu4 = secretdenmark v2 = SDM }
-
+link = { eu4 = TRL v2 = TRL } #Trapalandia
 }

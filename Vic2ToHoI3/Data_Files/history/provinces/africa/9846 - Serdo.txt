@@ -1,0 +1,17 @@
+owner = ETH
+controller = ETH
+add_core = ETH
+
+infra = 2
+
+infra = 2
+
+infra = 2
+1936.5.9 = {
+	owner = ITA
+	controller = ITA
+}
+1941.4.27 = {
+	owner = ETH
+	controller = ETH
+}

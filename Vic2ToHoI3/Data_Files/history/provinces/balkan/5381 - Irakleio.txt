@@ -1,0 +1,21 @@
+owner = GRE
+controller = GRE
+add_core = GRE
+energy = 1.00
+industry = 1
+anti_air = 1
+infra = 6
+air_base = 2
+naval_base = 2
+points = 1
+1941.6.1 = {
+	controller = ITA
+}
+1943.9.3 = {
+	controller = GER
+}
+
+#Fortress Crete surrender
+1945.5.12 = {
+	controller = GRE
+}

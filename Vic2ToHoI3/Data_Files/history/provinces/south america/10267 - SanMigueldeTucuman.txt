@@ -1,0 +1,10 @@
+owner = ARG
+controller = ARG
+add_core = ARG
+points = 1
+metal = 2.00
+energy = 1.00
+industry = 1
+infra = 4
+manpower = 1.00
+leadership = 0.10

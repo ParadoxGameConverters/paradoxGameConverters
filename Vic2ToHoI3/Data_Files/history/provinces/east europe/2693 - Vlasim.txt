@@ -1,0 +1,18 @@
+owner = CZE
+controller = CZE
+add_core = CZE
+
+energy = 1.00
+industry = 1
+land_fort = 2
+infra = 9
+manpower = 1.00
+leadership = 0.10
+1939.3.15 = {
+	owner = GER
+
+	controller = GER
+
+	add_core = GER
+
+}

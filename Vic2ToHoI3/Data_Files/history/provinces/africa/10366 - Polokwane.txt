@@ -1,0 +1,12 @@
+owner = SAF
+controller = SAF
+add_core = SAF
+metal = 10.00
+energy = 48.00
+rare_materials = 3.00
+industry = 6
+infra = 6
+manpower = 7.00
+leadership = 0.70
+
+infra = 4

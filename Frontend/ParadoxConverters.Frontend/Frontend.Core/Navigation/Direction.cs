@@ -1,8 +1,7 @@
-﻿
-namespace Frontend.Core.Navigation
+﻿namespace Frontend.Core.Navigation
 {
     /// <summary>
-    /// Enum simplifying direction movement when moving between steps
+    ///     Enum simplifying direction movement when moving between steps
     /// </summary>
     public enum Direction
     {

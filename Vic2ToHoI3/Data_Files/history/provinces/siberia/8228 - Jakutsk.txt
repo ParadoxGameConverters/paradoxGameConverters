@@ -1,0 +1,6 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+points = 1
+infra = 3
+air_base = 1

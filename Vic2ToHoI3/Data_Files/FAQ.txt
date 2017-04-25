@@ -1,0 +1,21 @@
+Q: I got an error that mentions MSVCP140.dll. What do I do?
+A : Go to the Visual Studio Redistributable page: https://www.microsoft.com/en-us/download/details.aspx?id=51682
+	then click Download and select vcredist_x86.exe.
+	Once it has downloaded, install it and run the converter again.
+
+Q: I loaded the mod in HoI3, but the map is the same as default HoI3. How do I really load the mod?
+A: Be careful where you're putting the mods. They seem to work best when put in the mod directory in the HoI3 install location,
+	and not the one in My Documents nor the one in the tfh directory in the install location.
+
+Q: I'm trying to convert a EU4 To Vic2 game and keep getting an error. What do I do?
+A: You need to include the Vic2 mod from the EU4 to Vic2 converter to properly convert these games.
+
+Q: Countries have the wrong flags in the conversion. How do I fix this?
+A: Go to 'My Documents\Paradox Interactive\Hearts of Iron III\gfx' and delete the 'flags' folder.
+
+Q: The converter keeps saying my paths are invalid, but I'm absolutely sure they are correct. How do I fix this?
+A: In some cases, the converter can't properly handle the paths. This is especially true when there are non-ASCII characters in the path.
+	To fix this, you can create a soft link from an easy to reach location (such as C:\Vic2Docs) to the actual folder, and then tell
+	the converter about the easy to reach location.
+	This page contains a guide on creating soft links: http://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/
+

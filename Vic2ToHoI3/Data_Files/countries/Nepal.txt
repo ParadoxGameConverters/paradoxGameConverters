@@ -1,0 +1,320 @@
+color = { 187  178  196 }
+graphical_culture = Japanese
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"Royal Nepalese Lifeguard Div." "1st Nepalese Infantry Div." "2nd Nepalese Infantry Div." "3rd Nepalese Infantry Div." "4th Nepalese Infantry Div." "5th Nepalese Infantry Div." "6th Nepalese Infantry Div." "7th Nepalese Infantry Div." "8th Nepalese Infantry Div." "9th Nepalese Infantry Div." "10th Nepalese Infantry Div." 
+		"11th Nepalese Infantry Div." "12th Nepalese Infantry Div." "13th Nepalese Infantry Div." "14th Nepalese Infantry Div." "15th Nepalese Infantry Div." "16th Nepalese Infantry Div." "17th Nepalese Infantry Div." "18th Nepalese Infantry Div." "19th Nepalese Infantry Div." "20th Nepalese Infantry Div." 
+	}
+	cavalry_brigade = {
+		"1st Royal Nepalese Cavalry Div." "2nd Royal Nepalese Cavalry Div." "3rd Royal Nepalese Cavalry Div." "4th Royal Nepalese Cavalry Div." "5th Royal Nepalese Cavalry Div." "6th Royal Nepalese Cavalry Div." "7th Royal Nepalese Cavalry Div." "8th Royal Nepalese Cavalry Div." "9th Royal Nepalese Cavalry Div." "10th Royal Nepalese Cavalry Div." 
+	}
+	motorized_brigade = {
+		"1st Nepalese Motor Div." "2nd Nepalese Motor Div." "3rd Nepalese Motor Div." "4th Nepalese Motor Div." "5th Nepalese Motor Div." "6th Nepalese Motor Div." "7th Nepalese Motor Div." "8th Nepalese Motor Div." "9th Nepalese Motor Div." "10th Nepalese Motor Div." 
+	}
+	mechanized_brigade = {
+		"1st Nepalese Mechanized Div." "2nd Nepalese Mechanized Div." "3rd Nepalese Mechanized Div." "4th Nepalese Mechanized Div." "5th Nepalese Mechanized Div." "6th Nepalese Mechanized Div." "7th Nepalese Mechanized Div." "8th Nepalese Mechanized Div." "9th Nepalese Mechanized Div." "10th Nepalese Mechanized Div." 
+	}
+	light_armor_brigade = {
+		"1st Nepalese Armoured Div." "2nd Nepalese Armoured Div." "3rd Nepalese Armoured Div." "4th Nepalese Armoured Div." "5th Nepalese Armoured Div." "6th Nepalese Armoured Div." "7th Nepalese Armoured Div." "8th Nepalese Armoured Div." "9th Nepalese Armoured Div." "10th Nepalese Armoured Div." 
+	}
+	armor_brigade = {
+		"1st Nepalese Armoured Div." "2nd Nepalese Armoured Div." "3rd Nepalese Armoured Div." "4th Nepalese Armoured Div." "5th Nepalese Armoured Div." "6th Nepalese Armoured Div." "7th Nepalese Armoured Div." "8th Nepalese Armoured Div." "9th Nepalese Armoured Div." "10th Nepalese Armoured Div." 
+	}
+	paratrooper_brigade = {
+		"1st Nepalese Para Division" "2nd Nepalese Para Division" "3rd Nepalese Para Division" "4th Nepalese Para Division" "5th Nepalese Para Division" "6th Nepalese Para Division" "7th Nepalese Para Division" "8th Nepalese Para Division" "9th Nepalese Para Division" "10th Nepalese Para Division" 
+	}
+	marine_brigade = {
+		"1st Royal Nepalese Marines Div." "2nd Royal Nepalese Marines Div." "3rd Royal Nepalese Marines Div." "4th Royal Nepalese Marines Div." "5th Royal Nepalese Marines Div." "6th Royal Nepalese Marines Div." "7th Royal Nepalese Marines Div." "8th Royal Nepalese Marines Div." "9th Royal Nepalese Marines Div." "10th Royal Nepalese Marines Div." 
+	}
+	bergsjaeger_brigade = {
+		"1st Nepalese Mountain Div." "2nd Nepalese Mountain Div." "3rd Nepalese Mountain Div." "4th Nepalese Mountain Div." "5th Nepalese Mountain Div." "8th Nepalese Mountain Div." "10th Nepalese Mountain Div." "11th Nepalese Mountain Div." "12th Nepalese Mountain Div." "22th Nepalese Mountain Div." 
+	}
+	garrison_brigade = {
+		"1st Nepalese Infantry Div." "2nd Nepalese Infantry Div." "3rd Nepalese Infantry Div." "4th Nepalese Infantry Div." "5th Nepalese Infantry Div." "6th Nepalese Infantry Div." "7th Nepalese Infantry Div." "8th Nepalese Infantry Div." "9th Nepalese Infantry Div." "10th Nepalese Infantry Div." "11th Nepalese Infantry Div." 
+		"12th Nepalese Infantry Div." "13th Nepalese Infantry Div." "14th Nepalese Infantry Div." "15th Nepalese Infantry Div." "16th Nepalese Infantry Div." "17th Nepalese Infantry Div." "18th Nepalese Infantry Div." "19th Nepalese Infantry Div." "20th Nepalese Infantry Div." 
+	}
+	hq_brigade = {
+		"1st Nepalese Army" "2nd Nepalese Army" "3rd Nepalese Army" "4th Nepalese Army" "5th Nepalese Army" 
+	}
+	militia_brigade = {
+		"Royal Household Division" "1st Nepalese Citizen Div." "2nd Nepalese Citizen Div." "3rd Nepalese Citizen Div." "4th Nepalese Citizen Div." "5th Nepalese Citizen Div." "6th Nepalese Citizen Div." "7th Nepalese Citizen Div." "8th Nepalese Citizen Div." "9th Nepalese Citizen Div." "10th Nepalese Citizen Div." 
+		"11th Nepalese Citizen Div." "12th Nepalese Citizen Div." "13th Nepalese Citizen Div." "14th Nepalese Citizen Div." "15th Nepalese Citizen Div." "16th Nepalese Citizen Div." "17th Nepalese Citizen Div." "18th Nepalese Citizen Div." "19th Nepalese Citizen Div." "20th Nepalese Citizen Div." 
+	}
+	multi_role = {
+		"No.1 RNAF Fighter Group" "No.2 RNAF Fighter Group" "No.3 RNAF Fighter Group" "No.4 RNAF Fighter Group" "No.5 RNAF Fighter Group" "No.6 RNAF Fighter Group" "No.7 RNAF Fighter Group" "No.8 RNAF Fighter Group" "No.9 RNAF Fighter Group" "No.10 RNAF Fighter Group" 
+	}
+	interceptor = {
+		"No.1 RNAF Fighter Group" "No.2 RNAF Fighter Group" "No.3 RNAF Fighter Group" "No.4 RNAF Fighter Group" "No.5 RNAF Fighter Group" "No.6 RNAF Fighter Group" "No.7 RNAF Fighter Group" "No.8 RNAF Fighter Group" "No.9 RNAF Fighter Group" "No.10 RNAF Fighter Group" 
+	}
+	strategic_bomber = {
+		"No.1 RNAF Strategic Bomb Group" "No.2 RNAF Strategic Bomb Group" "No.6 RNAF Strategic Bomb Group" "No.3 RNAF Strategic Bomb Group" "No.4 RNAF Strategic Bomb Group" "No.7 RNAF Strategic Bomb Group" "No.8 RNAF Strategic Bomb Group" "No.9 RNAF Strategic Bomb Group" "No.10 RNAF Strategic Bomb Group" "No.11 RNAF Strategic Bomb Group" 
+	}
+	tactical_bomber = {
+		"No.1 RNAF Tactical Bomb Group" "No.2 RNAF Tactical Bomb Group" "No.6 RNAF Tactical Bomb Group" "No.3 RNAF Tactical Bomb Group" "No.4 RNAF Tactical Bomb Group" "No.7 RNAF Tactical Bomb Group" "No.8 RNAF Tactical Bomb Group" "No.9 RNAF Tactical Bomb Group" "No.10 RNAF Tactical Bomb Group" "No.11 RNAF Tactical Bomb Group" 
+	}
+	naval_bomber = {
+		"No.1 RNAF Marine Bomb Group" "No.2 RNAF Marine Bomb Group" "No.3 RNAF Marine Bomb Group" "No.4 RNAF Marine Bomb Group" "No.5 RNAF Marine Bomb Group" "No.7 RNAF Marine Bomb Group" "No.8 RNAF Marine Bomb Group" "No.9 RNAF Marine Bomb Group" "No.10 RNAF Marine Bomb Group" "No.11 RNAF Marine Bomb Group" "No.1 RNAF Torpedo Bomb Group" 
+		"No.2 RNAF Torpedo Bomb Group" "No.3 RNAF Torpedo Bomb Group" "No.4 RNAF Torpedo Bomb Group" "No.5 RNAF Torpedo Bomb Group" "No.7 RNAF Torpedo Bomb Group" "No.8 RNAF Torpedo Bomb Group" "No.9 RNAF Torpedo Bomb Group" "No.10 RNAF Torpedo Bomb Group" "No.11 RNAF Torpedo Bomb Group" 
+	}
+	cas = {
+		"No.1 RNAF Dive Bomb Group" "No.2 RNAF Dive Bomb Group" "No.6 RNAF Dive Bomb Group" "No.3 RNAF Dive Bomb Group" "No.4 RNAF Dive Bomb Group" "No.7 RNAF Dive Bomb Group" "No.8 RNAF Dive Bomb Group" "No.9 RNAF Dive Bomb Group" "No.10 RNAF Dive Bomb Group" "No.11 RNAF Dive Bomb Group" 
+	}
+	transport_plane = {
+		"No.1 RNAF Air Transport Group" "No.2 RNAF Air Transport Group" "No.3 RNAF Air Transport Group" "No.4 RNAF Air Transport Group" "No.5 RNAF Air Transport Group" 
+	}
+	battleship = {
+		"HNMS Kathmandu" "HNMS Dandelhura" 
+	}
+	light_cruiser = {
+		"HNMS Nyaien" "HNMS Nuwakot" "HNMS Pokhara" 
+	}
+	heavy_cruiser = {
+		"HNMS Dailek" "HNMS Patan" "HNMS Birgani" 
+	}
+	battlecruiser = {
+		"HNMS Kathmandu" "HNMS Dandelhura" 
+	}
+	destroyer = {
+		"1st Nepalese Destroyer Flotilla" "2nd Nepalese Destroyer Flotilla" "3rd Nepalese Destroyer Flotilla" 
+	}
+	carrier = {
+		"HNMS Dankhar" "HNMS Nepalgani" 
+	}
+	submarine = {
+		"1st Nepalese Submarine Flotilla" "2nd Nepalese Submarine Flotilla" "3rd Nepalese Submarine Flotilla" 
+	}
+	transport_ship = {
+		"1st Nepalese Transport Flotilla" "2nd Nepalese Transport Flotilla" "3rd Nepalese Transport Flotilla" 
+	}
+
+}
+
+
+ministers = {
+	75001 = {
+		name = "Tribhuvana"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M75001
+		head_of_state = pig_headed_isolationist
+		start_date = 1936.1.1
+	}
+	75002 = {
+		name = "Juddha Rana"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M75002
+		head_of_government = backroom_backstabber
+		minister_of_security = silent_lawyer
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	75003 = {
+		name = "Keshar Rana"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M75003
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	75004 = {
+		name = "Mohan Rana"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M75004
+		armament_minister = administrative_genius
+		head_of_government = naive_optimist
+		foreign_minister = general_staffer
+		minister_of_security = silent_lawyer
+		minister_of_intelligence = dismal_enigma
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	75006 = {
+		name = "Baber Rana"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M75006
+		minister_of_intelligence = industrial_specialist
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	75008 = {
+		name = "Padma Rana"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M75008
+		chief_of_army = guns_and_butter_doctrine
+		head_of_government = political_protege
+		armament_minister = military_entrepreneur
+		minister_of_security = compassionate_gentleman
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	75009 = {
+		name = "Rudra Rana"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M75009
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	75010 = {
+		name = "Kiran Rana"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M75010
+		chief_of_air = army_aviation_doctrine
+		foreign_minister = great_compromiser
+		armament_minister = air_to_ground_proponent
+		start_date = 1936.1.1
+	}
+	75011 = {
+		name = "Gyanendra Deva"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M75011
+		head_of_government = corporate_suit
+		start_date = 1944.1.1
+	}
+	75014 = {
+		name = "Dhir Rana"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M75014
+		foreign_minister = biased_intellectual
+		armament_minister = theoretical_scientist
+		minister_of_intelligence = technical_specialist
+		start_date = 1937.1.1
+	}
+	75015 = {
+		name = "W.R. Parker-Gill"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M75015
+		foreign_minister = iron_fisted_brute
+		armament_minister = laissez_faires_capitalist
+		minister_of_security = back_stabber
+		start_date = 1938.1.1
+	}
+	75016 = {
+		name = "Krishna Rana"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M75016
+		foreign_minister = apologetic_clerk
+		start_date = 1940.1.1
+	}
+	75018 = {
+		name = "William Stevenson Meyer"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M75018
+		foreign_minister = ideological_crusader
+		armament_minister = administrative_genius
+		minister_of_security = crime_fighter
+		start_date = 1943.1.1
+	}
+	75019 = {
+		name = "Edward Cook"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M75019
+		foreign_minister = the_cloak_n_dagger_schemer
+		minister_of_security = efficient_sociopath
+		minister_of_intelligence = political_specialist
+		start_date = 1944.1.1
+	}
+	75022 = {
+		name = "Gehendra Rana"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M75022
+		armament_minister = air_superiority_proponent
+		chief_of_air = air_superiority_doctrine
+		start_date = 1938.1.1
+	}
+	75023 = {
+		name = "H.T.S Collins"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M75023
+		armament_minister = submarine_proponent
+		minister_of_security = prince_of_terror
+		minister_of_intelligence = naval_intelligence_specialist
+		chief_of_staff = school_of_fire_support
+		chief_of_navy = indirect_approach_doctrine
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1938.1.1
+	}
+	75028 = {
+		name = "Sidney R. Planter"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M75028
+		armament_minister = resource_industrialist
+		minister_of_security = man_of_the_people
+		minister_of_intelligence = industrial_specialist
+		start_date = 1942.1.1
+	}
+	75029 = {
+		name = "Robert Mainwaring"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M75029
+		armament_minister = tank_proponent
+		minister_of_intelligence = research_specialist
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1943.1.1
+	}
+	75047 = {
+		name = "L.M. Potter"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M75047
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1944.1.1
+	}
+	75057 = {
+		name = "Pyar Jung Thapa"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M75057
+		chief_of_staff = school_of_mass_combat
+		start_date = 1946.1.1
+	}
+	75058 = {
+		name = "Matrika Koirala"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M75058
+		head_of_government = ambitious_union_boss
+		start_date = 1951.1.1
+	}
+}

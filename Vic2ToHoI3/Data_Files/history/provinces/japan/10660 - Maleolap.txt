@@ -1,0 +1,7 @@
+owner = JAP
+controller = JAP
+add_core = JAP
+infra = 3
+naval_base = 1
+
+1944.2.18 = {	owner = USA	controller = USA	add_core = USA}

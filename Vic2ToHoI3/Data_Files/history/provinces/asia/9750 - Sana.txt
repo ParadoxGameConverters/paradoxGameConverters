@@ -1,0 +1,7 @@
+owner = YEM
+controller = YEM
+add_core = YEM
+infra = 4
+manpower = 2.00
+leadership = 0.20
+points = 1

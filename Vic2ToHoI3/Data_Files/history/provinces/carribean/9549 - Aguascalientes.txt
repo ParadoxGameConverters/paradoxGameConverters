@@ -1,0 +1,13 @@
+owner = MEX
+controller = MEX
+add_core = MEX
+
+manpower = 1.00
+leadership = 0.10
+points = 1
+energy = 1.00
+industry = 1
+infra = 7
+air_base = 2
+
+terrain = urban

@@ -1,0 +1,29 @@
+owner = FRA
+controller = FRA
+add_core = FRA
+
+energy = 1.00
+industry = 1
+infra = 6
+
+infra = 9
+naval_base = 2
+air_base = 1
+
+1940.6.22 = {
+	owner = VIC
+	controller = VIC
+	add_core = VIC
+}
+1942.11.10 = {
+	owner = ITA
+	controller = ITA
+}
+1943.10.4 = {
+	owner = FRA
+	controller = FRA
+	add_core = FRA
+}
+1944.12.01 = {
+	controller = USA
+}

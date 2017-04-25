@@ -1,0 +1,8 @@
+owner = SWE
+controller = SWE
+add_core = SWE
+
+anti_air = 2
+infra = 7
+air_base = 4
+naval_base = 3

@@ -1,0 +1,18 @@
+owner = BEL
+controller = BEL
+add_core = BEL
+
+manpower = 0.4
+infra = 7
+naval_base = 3
+
+1940.5.28 = {
+	controller = GER
+
+}
+1943.2.1 = { anti_air = 1 coastal_fort = 2 }
+
+1944.6.20 = { anti_air = 2 coastal_fort = 3 }
+1944.12.01 = {
+	controller = USA
+}

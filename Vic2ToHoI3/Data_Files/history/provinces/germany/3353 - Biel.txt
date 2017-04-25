@@ -1,0 +1,7 @@
+owner = SCH
+controller = SCH
+add_core = SCH
+
+infra = 8
+
+infra = 8

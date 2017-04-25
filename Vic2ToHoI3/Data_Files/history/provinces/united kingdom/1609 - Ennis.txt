@@ -1,0 +1,7 @@
+owner = IRE
+controller = IRE
+add_core = IRE
+
+infra = 6
+
+infra = 6

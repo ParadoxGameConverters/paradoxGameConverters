@@ -31,34 +31,34 @@ namespace Frontend.Core.Model.Interfaces
         //ImageSource Icon { get; set; }
 
         /// <summary>
-        /// Gets or sets the save game path.
+        ///     Gets or sets the save game path.
         /// </summary>
         /// <value>
-        /// The save game path.
+        ///     The save game path.
         /// </value>
         string AbsoluteSaveGamePath { get; set; }
 
         /// <summary>
-        /// Gets or sets the name.
+        ///     Gets or sets the name.
         /// </summary>
         /// <value>
-        /// The name.
+        ///     The name.
         /// </value>
         string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the friendly.
+        ///     Gets or sets the name of the friendly.
         /// </summary>
         /// <value>
-        /// The name of the friendly.
+        ///     The name of the friendly.
         /// </value>
         string FriendlyName { get; set; }
 
         /// <summary>
-        /// Gets or sets the save game extension.
+        ///     Gets or sets the save game extension.
         /// </summary>
         /// <value>
-        /// The save game extension.
+        ///     The save game extension.
         /// </value>
         string SaveGameExtension { get; set; }
 
@@ -71,18 +71,18 @@ namespace Frontend.Core.Model.Interfaces
         //string SteamId { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether [is installed].
+        ///     Gets or sets a value indicating whether [is installed].
         /// </summary>
         /// <value>
-        ///   <c>true</c> if [is installed]; otherwise, <c>false</c>.
+        ///     <c>true</c> if [is installed]; otherwise, <c>false</c>.
         /// </value>
         bool IsInstalled { get; set; }
 
         /// <summary>
-        /// Gets or sets the version.
+        ///     Gets or sets the version.
         /// </summary>
         /// <value>
-        /// The version.
+        ///     The version.
         /// </value>
         string Version { get; set; }
 
@@ -95,50 +95,41 @@ namespace Frontend.Core.Model.Interfaces
         //string InstallationDirectoryTagName { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the configuration file mod directory tag.
+        ///     Gets or sets the name of the configuration file mod directory tag.
         /// </summary>
         /// <value>
-        /// The name of the configuration file mod directory tag.
+        ///     The name of the configuration file mod directory tag.
         /// </value>
         string ModDirectoryTagName { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the current mod tag.
+        ///     Gets or sets the name of the current mod tag.
         /// </summary>
         /// <value>
-        /// The name of the current mod tag.
+        ///     The name of the current mod tag.
         /// </value>
         string CurrentModTagName { get; set; }
 
         /// <summary>
-        /// Gets a list of supported mods, as read from Configuration.xml
+        ///     Gets a list of supported mods, as read from Configuration.xml
         /// </summary>
         /// <value>
-        /// The supported mods.
+        ///     The supported mods.
         /// </value>
         IList<IMod> SupportedMods { get; }
 
         /// <summary>
-        /// Gets a value indicating whether this game is configured use mods. This depends on the information available in Configuration.xml
+        ///     Gets a value indicating whether this game is configured use mods. This depends on the information available in
+        ///     Configuration.xml
         /// </summary>
         bool IsConfiguredToUseMods { get; }
 
         /// <summary>
-        /// Gets or sets the selected mod.
+        ///     Gets or sets the selected mod.
         /// </summary>
         /// <value>
-        /// The selected mod.
+        ///     The selected mod.
         /// </value>
         IMod CurrentMod { get; set; }
-
-        ///// <summary>
-        ///// The directory where the game stores temporary files
-        ///// </summary>
-        //string AbsoluteTempDirectoryPath { get; set; }
-
-        ///// <summary>
-        ///// The tag name used in the configuration file to specify the temp file directory
-        ///// </summary>
-        //string TempDirectoryTagName { get; set; }
     }
 }

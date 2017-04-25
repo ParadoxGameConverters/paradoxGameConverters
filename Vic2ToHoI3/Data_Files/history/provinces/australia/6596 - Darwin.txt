@@ -1,0 +1,13 @@
+owner = AST
+controller = AST
+add_core = AST
+points = 2
+anti_air = 1
+infra = 6
+air_base = 4
+naval_base = 3
+1941.1.1 = {
+	radar_station = 2
+	air_base = 6
+	naval_base = 5
+}

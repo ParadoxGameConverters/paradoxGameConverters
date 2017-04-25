@@ -1,0 +1,9 @@
+owner = USA
+controller = USA
+add_core = USA
+
+points = 1
+anti_air = 1
+infra = 8
+air_base = 4
+industry = 2

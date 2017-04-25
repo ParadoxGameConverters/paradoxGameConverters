@@ -1,0 +1,5 @@
+owner = MEX
+controller = MEX
+add_core = MEX
+metal = 6.00
+infra = 5

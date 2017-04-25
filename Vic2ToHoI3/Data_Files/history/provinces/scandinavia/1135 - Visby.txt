@@ -1,0 +1,6 @@
+owner = SWE
+controller = SWE
+add_core = SWE
+
+infra = 8
+naval_base = 2

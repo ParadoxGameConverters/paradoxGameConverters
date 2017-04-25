@@ -1,0 +1,25 @@
+owner = FIN
+controller = FIN
+add_core = FIN
+infra = 6
+
+land_fort = 2
+
+1939.8.23 = {
+	add_core = SOV
+}
+1940.3.12 = {
+	owner = SOV
+	controller = SOV
+	land_fort = 0
+}
+
+
+1941.12.7 = {
+	controller = FIN
+	owner = FIN
+}
+
+1944.6.20 = {
+	land_fort = 2
+}

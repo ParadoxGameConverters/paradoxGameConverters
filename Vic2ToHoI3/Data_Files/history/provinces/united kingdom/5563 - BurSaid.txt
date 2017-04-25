@@ -1,0 +1,10 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+add_core = EGY
+points = 5
+crude_oil = 6.00
+anti_air = 2
+naval_base = 1
+
+infra = 6

@@ -1,0 +1,13 @@
+owner = POR
+controller = POR
+add_core = POR
+
+points = 3
+energy = 8.00
+industry = 9
+anti_air = 4
+infra = 10
+air_base = 10
+naval_base = 10
+manpower = 7.00
+leadership = 0.70

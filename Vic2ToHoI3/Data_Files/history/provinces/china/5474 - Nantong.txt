@@ -1,0 +1,16 @@
+owner = CHI
+
+controller = CHI
+
+add_core = CHI
+add_core = CHC
+
+infra = 4
+
+naval_base = 2
+1937.11.26 = {
+
+	controller = JAP
+
+}
+

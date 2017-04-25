@@ -22,10 +22,53 @@
 
 
 #include "EU4Religion.h"
-#include "../Parsers/Object.h"
+#include "Log.h"
+#include "Object.h"
+#include "OSCompatibilityLayer.h"
+#include "ParadoxParserUTF8.h"
+#include "../Configuration.h"
+#include <set>
+using namespace std;
 
 
 map<string, EU4Religion*> EU4Religion::all_religions;	// the set of all religions
+
+
+void EU4Religion::createSelf()
+{
+	LOG(LogLevel::Info) << "Parsing EU4 religions";
+	Object* religionsObj = parser_UTF8::doParseFile((Configuration::getEU4Path() + "/common/religions/00_religion.txt").c_str());
+	if (religionsObj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getEU4Path() << "/common/religions/00_religion.txt";
+		exit(-1);
+	}
+	if (religionsObj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse 00_religion.txt";
+		exit(-1);
+	}
+	EU4Religion::parseReligions(religionsObj);
+	for (auto itr: Configuration::getEU4Mods())
+	{
+		set<string> filenames;
+		Utils::GetAllFilesInFolder(itr + "/common/religions/", filenames);
+		for (auto filename: filenames)
+		{
+			string modReligionFile(itr + "/common/religions/" + filename);	// the path and name of the religions file in this mod
+			if (Utils::DoesFileExist(modReligionFile))
+			{
+				religionsObj = parser_UTF8::doParseFile(modReligionFile.c_str());
+				if (religionsObj == NULL)
+				{
+					LOG(LogLevel::Error) << "Could not parse file " << modReligionFile;
+					exit(-1);
+				}
+				EU4Religion::parseReligions(religionsObj);
+			}
+		}
+	}
+}
 
 
 void EU4Religion::parseReligions(Object* obj)

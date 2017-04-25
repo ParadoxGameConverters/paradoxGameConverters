@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -24,26 +24,299 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "EU4World.h"
 #include <algorithm>
 #include <fstream>
-#include "../Log.h"
+#include "Log.h"
+#include "OSCompatibilityLayer.h"
 #include "../Configuration.h"
-#include "../Mapper.h"
-#include "../Parsers/Object.h"
-#include "../Parsers/Parser.h"
+#include "../Mappers/CultureMapper.h"
+#include "../Mappers/EU4CultureGroupMapper.h"
+#include "../Mappers/ProvinceMapper.h"
+#include "../Mappers/ReligionMapper.h"
+#include "Object.h"
+#include "ParadoxParserUTF8.h"
 #include "EU4Province.h"
 #include "EU4Country.h"
 #include "EU4Diplomacy.h"
 #include "EU4Version.h"
 #include "EU4Localisation.h"
 #include "EU4Religion.h"
+#include <set>
+using namespace std;
 
 
 
-EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas, inverseUnionCulturesMap& inverseUnionCultures)
+EU4World::EU4World(const string& EU4SaveFileName)
 {
-	vector<Object*> versionObj = obj->getValue("savegame_version");	// the version of the save
-	(versionObj.size() > 0) ? version = new EU4Version(versionObj[0]) : version = new EU4Version();
+	LOG(LogLevel::Info) << "* Importing EU4 save *";
+	verifySave(EU4SaveFileName);
+	Object* EU4SaveObject = parseSave(EU4SaveFileName);
 
-	vector<Object*> enabledDLCsObj = obj->getValue("dlc_enabled");
+	LOG(LogLevel::Info) << "Building world";
+	loadUsedMods(EU4SaveObject);
+	loadEU4Version(EU4SaveObject);
+	loadActiveDLC(EU4SaveObject);
+	loadEndDate(EU4SaveObject);
+	loadHolyRomanEmperor(EU4SaveObject);
+	loadProvinces(EU4SaveObject);
+	loadCountries(EU4SaveObject);
+	loadRevolutionTarget(EU4SaveObject);
+	addProvinceInfoToCountries();
+	loadDiplomacy(EU4SaveObject);
+	determineProvinceWeights();
+
+	checkAllEU4CulturesMapped();
+	readCommonCountries();
+	setLocalisations();
+	resolveRegimentTypes();
+	mergeNations();
+	checkAllProvincesMapped();
+	setNumbersOfDestinationProvinces();
+
+	EU4Religion::createSelf();
+	checkAllEU4ReligionsMapped();
+
+	removeEmptyNations();
+	if (Configuration::getRemovetype() == "dead")
+	{
+		removeDeadLandlessNations();
+	}
+	else if (Configuration::getRemovetype() == "all")
+	{
+		removeLandlessNations();
+	}
+}
+
+
+void EU4World::verifySave(const string& EU4SaveFileName)
+{
+	FILE* saveFile = fopen(EU4SaveFileName.c_str(), "r");
+	if (saveFile == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not open save! Exiting!";
+		exit(-1);
+	}
+	else
+	{
+		char buffer[7];
+		fread(buffer, 1, 7, saveFile);
+		if ((buffer[0] == 'P') && (buffer[1] == 'K'))
+		{
+			LOG(LogLevel::Error) << "Saves must be uncompressed to be converted.";
+			exit(-1);
+		}
+		else if ((buffer[0] = 'E') && (buffer[1] == 'U') && (buffer[2] == '4') && (buffer[3] = 'b') && (buffer[4] == 'i') && (buffer[5] == 'n') && (buffer[6] == 'M'))
+		{
+			LOG(LogLevel::Error) << "Ironman saves cannot be converted.";
+			exit(-1);
+		}
+	}
+}
+
+
+Object* EU4World::parseSave(const string& EU4SaveFileName)
+{
+	LOG(LogLevel::Info) << "Parsing save";
+	Object* obj = parser_UTF8::doParseFile(EU4SaveFileName.c_str());
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file " << EU4SaveFileName;
+		exit(-1);
+	}
+
+	return obj;
+}
+
+
+void EU4World::loadUsedMods(const Object* EU4SaveObj)
+{
+	LOG(LogLevel::Debug) << "Get EU4 Mods";
+	map<string, string> possibleMods = loadPossibleMods();
+
+	vector<Object*> modObj = EU4SaveObj->getValue("mod_enabled");	// the used mods
+	if (modObj.size() > 0)
+	{
+		string modString = modObj[0]->getLeaf();	// the names of all the mods
+		while (modString != "")
+		{
+			string newMod;	// the corrected name of the mod
+			const int firstQuote = modString.find("\"");	// the location of the first quote, defining the start of a mod name
+			if (firstQuote == std::string::npos)
+			{
+				newMod.clear();
+				modString.clear();
+			}
+			else
+			{
+				const int secondQuote = modString.find("\"", firstQuote + 1);	// the location of the second quote, defining the end of a mod name
+				if (secondQuote == std::string::npos)
+				{
+					newMod.clear();
+					modString.clear();
+				}
+				else
+				{
+					newMod = modString.substr(firstQuote + 1, secondQuote - firstQuote - 1);
+					modString = modString.substr(secondQuote + 1, modString.size());
+				}
+			}
+
+			if (newMod != "")
+			{
+				map<string, string>::iterator modItr = possibleMods.find(newMod);
+				if (modItr != possibleMods.end())
+				{
+					string newModPath = modItr->second;	// the path for this mod
+					if (!Utils::doesFolderExist(newModPath) && !Utils::DoesFileExist(newModPath))
+					{
+						LOG(LogLevel::Error) << newMod << " could not be found in the specified mod directory - a valid mod directory must be specified. Tried " << newModPath;
+						exit(-1);
+					}
+					else
+					{
+						LOG(LogLevel::Debug) << "EU4 Mod is at " << newModPath;
+						Configuration::addEU4Mod(newModPath);
+					}
+				}
+				else
+				{
+					LOG(LogLevel::Error) << "No path could be found for " << newMod;
+					exit(-1);
+				}
+			}
+		}
+	}
+}
+
+
+map<string, string> EU4World::loadPossibleMods()
+{
+	map<string, string> possibleMods;
+	loadEU4ModDirectory(possibleMods);
+	loadCK2ExportDirectory(possibleMods);
+
+	return possibleMods;
+}
+
+
+void EU4World::loadEU4ModDirectory(map<string, string>& possibleMods)
+{
+	LOG(LogLevel::Debug) << "Get EU4 Mod Directory";
+	string EU4DocumentsLoc = Configuration::getEU4DocumentsPath();	// the EU4 My Documents location as stated in the configuration file
+	if (Utils::DoesFileExist(EU4DocumentsLoc))
+	{
+		LOG(LogLevel::Error) << "No Europa Universalis 4 documents directory was specified in configuration.txt, or the path was invalid";
+		exit(-1);
+	}
+	else
+	{
+		LOG(LogLevel::Debug) << "EU4 Documents directory is " << EU4DocumentsLoc;
+		set<string> fileNames;
+		Utils::GetAllFilesInFolder(EU4DocumentsLoc + "/mod", fileNames);
+		for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
+		{
+			const int pos = itr->find_last_of('.');	// the position of the last period in the filename
+			if (itr->substr(pos, itr->length()) == ".mod")
+			{
+				Object* modObj = parser_UTF8::doParseFile((EU4DocumentsLoc + "/mod/" + *itr).c_str());	// the parsed mod file
+
+				string name;	// the name of the mod
+				vector<Object*> nameObj = modObj->getValue("name");
+				if (nameObj.size() > 0)
+				{
+					name = nameObj[0]->getLeaf();
+				}
+				else
+				{
+					name = "";
+				}
+
+				string path;	// the path of the mod
+				vector<Object*> dirObjs = modObj->getValue("path");	// the possible paths of the mod
+				if (dirObjs.size() > 0)
+				{
+					path = dirObjs[0]->getLeaf();
+				}
+				else
+				{
+					vector<Object*> dirObjs = modObj->getValue("archive");	// the other possible paths of the mod (if its zipped)
+					if (dirObjs.size() > 0)
+					{
+						path = dirObjs[0]->getLeaf();
+					}
+				}
+
+				if ((name != "") && (path != ""))
+				{
+					possibleMods.insert(make_pair(name, EU4DocumentsLoc + "/" + path));
+					Log(LogLevel::Debug) << "\t\tFound a mod named " << name << " claiming to be at " << EU4DocumentsLoc << "/" << path;
+				}
+			}
+		}
+	}
+}
+
+
+void EU4World::loadCK2ExportDirectory(map<string, string>& possibleMods)
+{
+	LOG(LogLevel::Debug) << "Get CK2 Export Directory";
+	string CK2ExportLoc = Configuration::getCK2ExportPath();		// the CK2 converted mods location as stated in the configuration file
+	if (Utils::DoesFileExist(CK2ExportLoc))
+	{
+		LOG(LogLevel::Warning) << "No Crusader Kings 2 mod directory was specified in configuration.txt, or the path was invalid - this will cause problems with CK2 converted saves";
+	}
+	else
+	{
+		LOG(LogLevel::Debug) << "CK2 export directory is " << CK2ExportLoc;
+		set<string> fileNames;
+		Utils::GetAllFilesInFolder(CK2ExportLoc, fileNames);
+		for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
+		{
+			const int pos = itr->find_last_of('.');	// the last period in the filename
+			if ((pos != string::npos) && (itr->substr(pos, itr->length()) == ".mod"))
+			{
+				Object* modObj = parser_UTF8::doParseFile((CK2ExportLoc + "/" + *itr).c_str());	// the parsed mod file
+				vector<Object*> nameObj = modObj->getValue("name");
+				string name;
+				if (nameObj.size() > 0)
+				{
+					name = nameObj[0]->getLeaf();
+				}
+
+				string path;	// the path of the mod
+				vector<Object*> dirObjs = modObj->getValue("user_dir");	// the possible paths for the mod
+				if (dirObjs.size() > 0)
+				{
+					path = dirObjs[0]->getLeaf();
+				}
+				else
+				{
+					vector<Object*> dirObjs = modObj->getValue("archive");	// the other possible paths for the mod (if it's zipped)
+					if (dirObjs.size() > 0)
+					{
+						path = dirObjs[0]->getLeaf();
+					}
+				}
+
+				if (path != "")
+				{
+					possibleMods.insert(make_pair(name, CK2ExportLoc + "/" + path));
+				}
+			}
+		}
+	}
+}
+
+
+void EU4World::loadEU4Version(const Object* EU4SaveObj)
+{
+	vector<Object*> versionObj = EU4SaveObj->getValue("savegame_version");
+	(versionObj.size() > 0) ? version = new EU4Version(versionObj[0]) : version = new EU4Version();
+	Configuration::setEU4Version(*version);
+}
+
+
+void EU4World::loadActiveDLC(const Object* EU4SaveObj)
+{
+	vector<Object*> enabledDLCsObj = EU4SaveObj->getValue("dlc_enabled");
 	if (enabledDLCsObj.size() > 0)
 	{
 		vector<string>	activeDLCs;
@@ -55,23 +328,36 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 
 		Configuration::setActiveDLCs(activeDLCs);
 	}
+}
 
-	vector<Object*> dateObj = obj->getValue("date");
+
+void EU4World::loadEndDate(const Object* EU4SaveObj)
+{
+	vector<Object*> dateObj = EU4SaveObj->getValue("date");
 	if (dateObj.size() > 0)
 	{
 		date endDate(dateObj[0]->getLeaf());
+		Configuration::setLastEU4Date(endDate);
 	}
+}
 
-	string emperor;
-	vector<Object*> emperorObj = obj->getValue("emperor");
+
+void EU4World::loadHolyRomanEmperor(const Object* EU4SaveObj)
+{
+	vector<Object*> emperorObj = EU4SaveObj->getValue("emperor");
 	if (emperorObj.size() > 0)
 	{
-		emperor = emperorObj[0]->getLeaf();
+		holyRomanEmperor = emperorObj[0]->getLeaf();
 	}
+}
 
-	// Get Provinces and then get Countries
+
+void EU4World::loadProvinces(const Object* EU4SaveObj)
+{
+	auto validProvinces = determineValidProvinces();
+
 	provinces.clear();
-	vector<Object*> provincesObj = obj->getValue("provinces");					// the object holding the provinces
+	vector<Object*> provincesObj = EU4SaveObj->getValue("provinces");					// the object holding the provinces
 	if (provincesObj.size() > 0)
 	{
 		vector<Object*> provincesLeaves = provincesObj[0]->getLeaves();		// the objects holding the individual provinces
@@ -79,16 +365,56 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 		{
 			string keyProv = (provincesLeaves[j])->getKey();						// the key for the province
 
-			if (atoi(keyProv.c_str()) < 0)												// Check if key is a negative value (EU4 style)
+			if (
+				(atoi(keyProv.c_str()) < 0) &&													// Check if key is a negative value (EU4 style)
+				(validProvinces.find(-1 * atoi(keyProv.c_str())) != validProvinces.end())	// check it's a valid province for this version of EU4
+				)
 			{
 				EU4Province* province = new EU4Province((provincesLeaves[j]));	// the province in our format
 				provinces.insert(make_pair(province->getNum(), province));
 			}
 		}
 	}
+}
 
+
+map<int, int> EU4World::determineValidProvinces()
+{
+	// Use map/definition.csv to determine valid provinces
+	map<int, int> validProvinces;
+	ifstream definitionFile((Configuration::getEU4Path() + "/map/definition.csv").c_str());
+	if (!definitionFile.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not open map/definition.csv";
+		exit(-1);
+	}
+	char input[256];
+	while (!definitionFile.eof())
+	{
+		definitionFile.getline(input, 255);
+		string inputStr(input);
+		int dbgprovNum = atoi(inputStr.substr(0, inputStr.find_first_of(';')).c_str());
+		if (
+			(inputStr.substr(0, 8) == "province") ||
+			(inputStr.substr(inputStr.find_last_of(';') + 1, 6) == "Unused") ||
+			(inputStr.substr(inputStr.find_last_of(';') + 1, 3) == "RNW")
+			)
+		{
+			continue;
+		}
+		int provNum = atoi(inputStr.substr(0, inputStr.find_first_of(';')).c_str());
+		validProvinces.insert(make_pair(provNum, provNum));
+	}
+
+	return validProvinces;
+}
+
+
+void EU4World::loadCountries(const Object* EU4SaveObj)
+{
+	// Get Countries
 	countries.clear();
-	vector<Object*> countriesObj = obj->getValue("countries");				// the object holding the countries
+	vector<Object*> countriesObj = EU4SaveObj->getValue("countries");				// the object holding the countries
 	if (countriesObj.size() > 0)
 	{
 		vector<Object*> countriesLeaves = countriesObj[0]->getLeaves();	// the objects holding the countries themselves
@@ -102,7 +428,7 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 			}
 			else
 			{
-				EU4Country* country = new EU4Country(countriesLeaves[j], armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas, version, inverseUnionCultures);	// the country in our format
+				EU4Country* country = new EU4Country(countriesLeaves[j], version);	// the country in our format
 				countries.insert(make_pair(country->getTag(), country));
 
 				// set HRE stuff
@@ -111,16 +437,19 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 				{
 					country->setInHRE(true);
 				}
-				if (country->getTag() == emperor)
+				if (country->getTag() == holyRomanEmperor)
 				{
 					country->setEmperor(true);
 				}
 			}
 		}
 	}
+}
 
 
-	vector<Object*> revolutionTargetObj = obj->getValue("revolution_target");
+void EU4World::loadRevolutionTarget(const Object* EU4SaveObj)
+{
+	vector<Object*> revolutionTargetObj = EU4SaveObj->getValue("revolution_target");
 	if (revolutionTargetObj.size() > 0)
 	{
 		string revolutionTarget = revolutionTargetObj[0]->getLeaf();
@@ -130,7 +459,11 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 			country->second->viveLaRevolution(true);
 		}
 	}
+}
 
+
+void EU4World::addProvinceInfoToCountries()
+{
 	// add province owner info to countries
 	for (map<int, EU4Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
@@ -151,8 +484,12 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 			(*j)->addCore(i->second);
 		}
 	}
+}
 
-	vector<Object*> diploObj = obj->getValue("diplomacy");	// the object holding the world's diplomacy
+
+void EU4World::loadDiplomacy(const Object* EU4SaveObj)
+{
+	vector<Object*> diploObj = EU4SaveObj->getValue("diplomacy");	// the object holding the world's diplomacy
 	if (diploObj.size() > 0)
 	{
 		diplomacy = new EU4Diplomacy(diploObj[0]);
@@ -161,7 +498,11 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 	{
 		diplomacy = new EU4Diplomacy;
 	}
+}
 
+
+void EU4World::determineProvinceWeights()
+{
 	// calculate total province weights
 	worldWeightSum = 0;
 
@@ -239,7 +580,7 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 		map_values.push_back(i->second->getProvTotalBuildingWeight());
 		map_values.push_back(i->second->getProvMPWeight());
 		map_values.push_back(i->second->getTotalWeight());
-		
+
 		if (world_tag_weights.count(i->second->getOwnerString())) {
 			vector<double> new_map_values;
 			new_map_values = world_tag_weights[i->second->getOwnerString()];
@@ -251,7 +592,7 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 			new_map_values[5] += map_values[5];
 
 			world_tag_weights[i->second->getOwnerString()] = new_map_values;
-			
+
 		}
 		else {
 			world_tag_weights.insert(std::pair<string, vector<double> >(i->second->getOwnerString(), map_values));
@@ -265,14 +606,14 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 
 	/*for (map<string, vector<double> >::iterator i = world_tag_weights.begin(); i != world_tag_weights.end(); i++)
 	{
-		EU4_World << i->first << ",";
-		EU4_World << i->second[0] << ",";
-		EU4_World << i->second[1] << ",";
-		EU4_World << i->second[2] << ",";
-		EU4_World << i->second[3] << ",";
-		EU4_World << i->second[4] << ",";
-		EU4_World << (i->second[5] - i->second[3]) << ",";
-		EU4_World << i->second[5] << endl;
+	EU4_World << i->first << ",";
+	EU4_World << i->second[0] << ",";
+	EU4_World << i->second[1] << ",";
+	EU4_World << i->second[2] << ",";
+	EU4_World << i->second[3] << ",";
+	EU4_World << i->second[4] << ",";
+	EU4_World << (i->second[5] - i->second[3]) << ",";
+	EU4_World << i->second[5] << endl;
 	}
 
 	EU4_Production.close();
@@ -281,16 +622,41 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 }
 
 
-void EU4World::setEU4WorldProvinceMappings(const inverseProvinceMapping& inverseProvinceMap)
+void EU4World::checkAllEU4CulturesMapped() const
 {
-	for (map<int, EU4Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
+	for (auto cultureItr: EU4CultureGroupMapper::getCultureToGroupMap())
 	{
-		i->second->setNumDestV2Provs(inverseProvinceMap.find(i->first)->second.size());
+		string Vi2Culture;
+
+		string	EU4Culture	= cultureItr.first;
+		bool		matched		= cultureMapper::cultureMatch(EU4Culture, Vi2Culture);
+		if (!matched)
+		{
+			LOG(LogLevel::Warning) << "No culture mapping for EU4 culture " << EU4Culture;
+		}
 	}
 }
 
 
-void EU4World::readCommonCountries(istream& in, const std::string& rootPath)
+void EU4World::readCommonCountries()
+{
+	LOG(LogLevel::Info) << "Reading EU4 common/countries";
+	ifstream commonCountries(Configuration::getEU4Path() + "/common/country_tags/00_countries.txt");	// the data in the countries file
+	readCommonCountriesFile(commonCountries, Configuration::getEU4Path());
+	for (auto itr: Configuration::getEU4Mods())
+	{
+		set<string> fileNames;
+		Utils::GetAllFilesInFolder(itr + "/common/country_tags/", fileNames);
+		for (set<string>::iterator fileItr = fileNames.begin(); fileItr != fileNames.end(); fileItr++)
+		{
+			ifstream convertedCommonCountries(itr + "/common/country_tags/" + *fileItr);	// a stream of the data in the converted countries file
+			readCommonCountriesFile(convertedCommonCountries, itr);
+		}
+	}
+}
+
+
+void EU4World::readCommonCountriesFile(istream& in, const std::string& rootPath)
 {
 	// Add any info from common\countries
 	const int maxLineLength = 10000;	// the maximum line length
@@ -312,107 +678,45 @@ void EU4World::readCommonCountries(istream& in, const std::string& rootPath)
 			if (findIter != countries.end())
 			{
 				EU4Country* country = findIter->second;
+
 				// The country file name is all the text after the equals sign (possibly in quotes).
-				size_t equalPos = countryLine.find('=', 3);
-				size_t beginPos = countryLine.find_first_not_of(' ', equalPos + 1);
-				size_t endPos = countryLine.find_last_not_of(' ') + 1;
+				size_t commentPos	= countryLine.find('#', 3);
+				if (commentPos != string::npos)
+				{
+					countryLine = countryLine.substr(0, commentPos);
+				}
+				size_t equalPos	= countryLine.find('=', 3);
+				size_t beginPos	= countryLine.find_first_not_of(' ', equalPos + 1);
+				size_t endPos		= countryLine.find_last_of('\"') + 1;
 				std::string fileName = countryLine.substr(beginPos, endPos - beginPos);
 				if (fileName.front() == '"' && fileName.back() == '"')
 				{
 					fileName = fileName.substr(1, fileName.size() - 2);
 				}
-				std::replace(fileName.begin(), fileName.end(), '/', '\\');
+				std::replace(fileName.begin(), fileName.end(), '/', '/');
+
 				// Parse the country file.
-				std::string path = rootPath + "\\common\\" + fileName;
-				size_t lastPathSeparatorPos = path.find_last_of('\\');
+				std::string path = rootPath + "/common/" + fileName;
+				size_t lastPathSeparatorPos = path.find_last_of('/');
 				std::string localFileName = path.substr(lastPathSeparatorPos + 1, string::npos);
-				country->readFromCommonCountry(localFileName, doParseFile(path.c_str()));
+				country->readFromCommonCountry(localFileName, parser_UTF8::doParseFile(path.c_str()));
 			}
 		}
 	}
 }
 
 
-EU4Country* EU4World::getCountry(string tag) const
+void EU4World::setLocalisations()
 {
-	map<string, EU4Country*>::const_iterator i = countries.find(tag);
-	return (i != countries.end()) ? i->second : NULL;
-}
-
-
-EU4Province* EU4World::getProvince(const int provNum) const
-{
-	map<int, EU4Province*>::const_iterator i = provinces.find(provNum);
-	return (i != provinces.end()) ? i->second : NULL;
-}
-
-
-void EU4World::removeCountry(string tag)
-{
-	countries.erase(tag);
-}
-
-
-void EU4World::resolveRegimentTypes(const RegimentTypeMap& rtMap)
-{
-	for (map<string, EU4Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	LOG(LogLevel::Info) << "Reading localisation";
+	EU4Localisation localisation;
+	localisation.ReadFromAllFilesInFolder(Configuration::getEU4Path() + "/localisation");
+	for (auto itr: Configuration::getEU4Mods())
 	{
-		itr->second->resolveRegimentTypes(rtMap);
+		LOG(LogLevel::Debug) << "Reading mod localisation";
+		localisation.ReadFromAllFilesInFolder(itr + "/localisation");
 	}
-}
 
-
-void EU4World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProvinceMap) const
-{
-	for (map<int, EU4Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
-	{
-		inverseProvinceMapping::const_iterator j = inverseProvinceMap.find(i->first);
-		if (j == inverseProvinceMap.end())
-		{
-			LOG(LogLevel::Warning) << "No mapping for province " << i->first;
-		}
-	}
-}
-
-
-void EU4World::checkAllEU4CulturesMapped(const cultureMapping& cultureMap, const inverseUnionCulturesMap& inverseUnionCultures) const
-{
-	for (auto cultureItr = inverseUnionCultures.begin(); cultureItr != inverseUnionCultures.end(); cultureItr++)
-	{
-		string	EU4Culture	= cultureItr->first;
-		bool		matched		= false;
-		for (auto mapItr = cultureMap.begin(); mapItr != cultureMap.end(); mapItr++)
-		{
-			if (mapItr->srcCulture == EU4Culture)
-			{
-				matched = true;
-				break;
-			}
-		}
-		if (!matched)
-		{
-			LOG(LogLevel::Warning) << "No culture mapping for EU4 culture " << EU4Culture;
-		}
-	}
-}
-
-
-void EU4World::checkAllEU4ReligionsMapped(const religionMapping& religionMap) const
-{
-	map<string, EU4Religion*> allReligions = EU4Religion::getAllReligions();
-	for (auto religionItr = allReligions.begin(); religionItr != allReligions.end(); ++religionItr)
-	{
-		auto mapItr = religionMap.find(religionItr->first);
-		if (mapItr == religionMap.end())
-		{
-			Log(LogLevel::Warning) << "No religion mapping for EU4 religion " << religionItr->first;
-		}
-	}
-}
-
-
-void EU4World::setLocalisations(EU4Localisation& localisation)
-{
 	for (map<string, EU4Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
 	{
 		const auto& nameLocalisations = localisation.GetTextInEachLanguage(countryItr->second->getTag());	// the names in all languages
@@ -430,4 +734,266 @@ void EU4World::setLocalisations(EU4Localisation& localisation)
 			countryItr->second->setLocalisationAdjective(language, adjective);
 		}
 	}
+}
+
+
+void EU4World::resolveRegimentTypes()
+{
+	LOG(LogLevel::Info) << "Resolving unit types.";
+	RegimentTypeMap rtm;
+	fstream read;
+	read.open("unit_strength.txt");
+	if (read.is_open())
+	{
+		read.close();
+		read.clear();
+		LOG(LogLevel::Info) << "\tReading unit strengths from unit_strength.txt";
+		Object* unitsObj = parser_UTF8::doParseFile("unit_strength.txt");
+		if (unitsObj == NULL)
+		{
+			LOG(LogLevel::Error) << "Could not parse file unit_strength.txt";
+			exit(-1);
+		}
+		for (int i = 0; i < num_reg_categories; ++i)
+		{
+			AddCategoryToRegimentTypeMap(unitsObj, (RegimentCategory)i, RegimentCategoryNames[i], rtm);
+		}
+	}
+	else
+	{
+		LOG(LogLevel::Info) << "\tReading unit strengths from EU4 installation folder";
+
+		set<string> filenames;
+		Utils::GetAllFilesInFolder(Configuration::getEU4Path() + "/common/units/", filenames);
+		for (auto filename: filenames)
+		{
+			AddUnitFileToRegimentTypeMap((Configuration::getEU4Path() + "/common/units"), filename, rtm);
+		}
+	}
+	read.close();
+	read.clear();
+
+	for (map<string, EU4Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	{
+		itr->second->resolveRegimentTypes(rtm);
+	}
+}
+
+
+// todo: move the getting of rules into its own mapper, with a merge rule structure type
+//		then break out things into subfunctions with a give rule as a parameter
+void EU4World::mergeNations()
+{
+	LOG(LogLevel::Info) << "Merging nations";
+	Object* mergeObj = parser_UTF8::doParseFile("merge_nations.txt");
+	if (mergeObj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file merge_nations.txt";
+		exit(-1);
+	}
+
+	vector<Object*> rules = mergeObj->getValue("merge_nations");
+	if (rules.size() < 0)
+	{
+		LOG(LogLevel::Debug) << "No nations have merging requested (skipping)";
+		return;
+	}
+
+	rules = rules[0]->getLeaves();
+	for (auto rule: rules)
+	{
+		if ((rule->getKey() == "merge_daimyos") && (rule->getLeaf() == "yes"))
+		{
+			uniteJapan();
+			continue;
+		}
+
+		vector<Object*> ruleItems = rule->getLeaves();
+
+		string masterTag;
+		vector<string> slaveTags;
+		bool enabled = false;
+		for (auto item: ruleItems)
+		{
+			if ((item->getKey() == "merge") && (item->getLeaf() == "yes"))
+			{
+				enabled = true;
+			}
+			else if (item->getKey() == "master")
+			{
+				masterTag = item->getLeaf();
+			}
+			else if (item->getKey() == "slave")
+			{
+				slaveTags.push_back(item->getLeaf());
+			}
+		}
+
+		EU4Country* master = getCountry(masterTag);
+		if (enabled && (master != NULL))
+		{
+			for (auto slaveTag: slaveTags)
+			{
+				auto slave = getCountry(slaveTag);
+				if (slave != NULL)
+				{
+					master->eatCountry(slave);
+				}
+			}
+		}
+	}
+}
+
+
+void EU4World::uniteJapan()
+{
+	EU4Country* japan = getCountry("JAP");
+	if (japan == NULL)
+	{
+		return;
+	}
+	if (japan->hasFlag("united_daimyos_of_japan"))
+	{
+		return;
+	}
+
+	for (auto country: countries)
+	{
+		if (country.second->getPossibleDaimyo())
+		{
+			japan->eatCountry(country.second);
+		}
+	}
+}
+
+
+void EU4World::checkAllProvincesMapped() const
+{
+	for (auto province: provinces)
+	{
+		auto Vic2Provinces = provinceMapper::getVic2ProvinceNumbers(province.first);
+		if (Vic2Provinces.size() == 0)
+		{
+			LOG(LogLevel::Warning) << "No mapping for province " << province.first;
+		}
+	}
+}
+
+
+void EU4World::setNumbersOfDestinationProvinces()
+{
+	for (auto province: provinces)
+	{
+		auto Vic2Provinces = provinceMapper::getVic2ProvinceNumbers(province.first);
+		province.second->setNumDestV2Provs(Vic2Provinces.size());
+	}
+}
+
+
+void EU4World::checkAllEU4ReligionsMapped() const
+{
+	for (auto EU4Religion: EU4Religion::getAllReligions())
+	{
+		auto Vic2Religion = religionMapper::getVic2Religion(EU4Religion.first);
+		if (Vic2Religion == "")
+		{
+			Log(LogLevel::Warning) << "No religion mapping for EU4 religion " << EU4Religion.first;
+		}
+	}
+}
+
+
+void EU4World::removeEmptyNations()
+{
+	map<string, EU4Country*> survivingCountries;
+
+	for (auto country: countries)
+	{
+		vector<EU4Province*> provinces = country.second->getProvinces();
+		vector<EU4Province*> cores = country.second->getCores();
+		if ((provinces.size() == 0) && (cores.size() == 0))
+		{
+			LOG(LogLevel::Debug) << "Removing empty nation " << country.first;
+		}
+		else
+		{
+			survivingCountries.insert(country);
+		}
+	}
+
+	countries.swap(survivingCountries);
+}
+
+
+void EU4World::removeDeadLandlessNations()
+{
+	map<string, EU4Country*> landlessCountries;
+	for (auto country: countries)
+	{
+		vector<EU4Province*> provinces = country.second->getProvinces();
+		if (provinces.size() == 0)
+		{
+			landlessCountries.insert(country);
+		}
+	}
+
+	for (auto country: landlessCountries)
+	{
+		if (!country.second->cultureSurvivesInCores())
+		{
+			countries.erase(country.first);
+			LOG(LogLevel::Debug) << "Removing dead landless nation " << country.first;
+		}
+	}
+}
+
+
+void EU4World::removeLandlessNations()
+{
+	map<string, EU4Country*> survivingCountries;
+
+	for (auto country: countries)
+	{
+		auto provinces = country.second->getProvinces();
+		if (provinces.size() == 0)
+		{
+			LOG(LogLevel::Debug) << "Removing landless nation " << country.first;
+		}
+		else
+		{
+			survivingCountries.insert(country);
+		}
+	}
+
+	countries.swap(survivingCountries);
+}
+
+
+EU4Country* EU4World::getCountry(string tag) const
+{
+	map<string, EU4Country*>::const_iterator i = countries.find(tag);
+	return (i != countries.end()) ? i->second : NULL;
+}
+
+
+EU4Province* EU4World::getProvince(const int provNum) const
+{
+	map<int, EU4Province*>::const_iterator i = provinces.find(provNum);
+	return (i != provinces.end()) ? i->second : NULL;
+}
+
+
+bool EU4World::isRandomWorld() const
+{
+	bool isRandomWorld = true;
+
+	for (auto sourceCountry: countries)
+	{
+		if (sourceCountry.first[0] != 'D' && sourceCountry.second->getRandomName().empty())
+		{
+			isRandomWorld = false;
+		}
+	}
+
+	return isRandomWorld;
 }

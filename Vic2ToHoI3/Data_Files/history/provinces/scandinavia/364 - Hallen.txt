@@ -1,0 +1,8 @@
+owner = SWE
+controller = SWE
+add_core = SWE
+
+infra = 6
+1943.2.1 = {
+	land_fort = 1
+}

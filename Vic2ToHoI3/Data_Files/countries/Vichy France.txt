@@ -1,0 +1,405 @@
+color = { 177  191  211 }
+graphical_culture = French
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"2ème Division d'Infanterie" "4ème Division d'Infanterie" "6ème Division d'Infanterie" "7ème Division d'Infanterie" "8ème Division d'Infanterie" "14ème Division d'Infanterie" "10ème Division d'Infanterie" "11ème Division d'Infanterie" "13ème Division d'Infanterie" "16ème Division d'Infanterie" "18ème Division d'Infanterie" 
+		"19ème Division d'Infanterie" "20ème Division d'Infanterie" "21ème Division d'Infanterie" "22ème Division d'Infanterie" "23ème Division d'Infanterie" "24ème Division d'Infanterie" "26ème Division d'Infanterie" "28ème Division d'Infanterie" "29ème Division d'Infanterie" "32ème Division d'Infanterie" "35ème Division d'Infanterie" 
+		"36ème Division d'Infanterie" "41ème Division d'Infanterie" "42ème Division d'Infanterie" "43ème Division d'Infanterie" "44ème Division d'Infanterie" "45ème Division d'Infanterie" "47ème Division d'Infanterie" "51ème Division d'Infanterie" "52ème Division d'Infanterie" "53ème Division d'Infanterie" "54ème Division d'Infanterie" 
+		"55ème Division d'Infanterie" "56ème Division d'Infanterie" "57ème Division d'Infanterie" "58ème Division d'Infanterie" "60ème Division d'Infanterie" "61ème Division d'Infanterie" "62ème Division d'Infanterie" "63ème Division d'Infanterie" "67ème Division d'Infanterie" "68ème Division d'Infanterie" "70ème Division d'Infanterie" 
+		"71ème Division d'Infanterie" "14ème Division d'Infanterie" "17ème Division d'Infanterie" "33ème Division d'Infanterie" "34ème Division d'Infanterie" "37ème Division d'Infanterie" "38ème Division d'Infanterie" "39ème Division d'Infanterie" "40ème Division d'Infanterie" "46ème Division d'Infanterie" "48ème Division d'Infanterie" 
+		"49ème Division d'Infanterie" "50ème Division d'Infanterie" "59ème Division d'Infanterie" "72ème Division d'Infanterie" "73ème Division d'Infanterie" "74ème Division d'Infanterie" "75ème Division d'Infanterie" 
+	}
+	cavalry_brigade = {
+		"1ère Division Légère de Cavalerie" "2ème Division Légère de Cavalerie" "3ème Division Légère de Cavalerie" "4ème Division Légère de Cavalerie" "5ème Division Légère de Cavalerie" "6ème Division Légère de Cavalerie" "7ème Division Légère de Cavalerie" "8ème Division Légère de Cavalerie" "9ème Division Légère de Cavalerie" "10ème Division Légère de Cavalerie" "11ème Division Légère de Cavalerie" 
+		"12ème Division Légère de Cavalerie" "13ème Division Légère de Cavalerie" "14ème Division Légère de Cavalerie" "15ème Division Légère de Cavalerie" "16ème Division Légère de Cavalerie" "17ème Division Légère de Cavalerie" "18ème Division Légère de Cavalerie" "19ème Division Légère de Cavalerie" "20ème Division Légère de Cavalerie" 
+	}
+	motorized_brigade = {
+		"1ère Division d'Infanterie Motorisée" "3ème Division d'Infanterie Motorisée" "5ème Division d'Infanterie Motorisée" "9ème Division d'Infanterie Motorisée" "12ème Division d'Infanterie Motorisée" "15ème Division d'Infanterie Motorisée" "25ème Division d'Infanterie Motorisée" "90ème Division d'Infanterie Motorisée" "91ème Division d'Infanterie Motorisée" "92ème Division d'Infanterie Motorisée" "93ème Division d'Infanterie Motorisée" 
+		"94ème Division d'Infanterie Motorisée" "95ème Division d'Infanterie Motorisée" "96ème Division d'Infanterie Motorisée" "97ème Division d'Infanterie Motorisée" "98ème Division d'Infanterie Motorisée" "100ème Division d'Infanterie Motorisée" "101ème Division d'Infanterie Motorisée" "102ème Division d'Infanterie Motorisée" "103ème Division d'Infanterie Motorisée" "104ème Division d'Infanterie Motorisée" "105ème Division d'Infanterie Motorisée" 
+		"106ème Division d'Infanterie Motorisée" "107ème Division d'Infanterie Motorisée" "108ème Division d'Infanterie Motorisée" 
+	}
+	mechanized_brigade = {
+		"1ère Division Légère Mécanisée" "2ème Division Légère Mécanisée" "3ème Division Légère Mécanisée" "4ème Division Légère Mécanisée" "5ème Division Légère Mécanisée" "6ème Division Légère Mécanisée" "7ème Division Légère Mécanisée" "8ème Division Légère Mécanisée" "9ème Division Légère Mécanisée" "10ème Division Légère Mécanisée" "11ème Division Légère Mécanisée" 
+		"12ème Division Légère Mécanisée" "13ème Division Légère Mécanisée" "14ème Division Légère Mécanisée" "15ème Division Légère Mécanisée" "16ème Division Légère Mécanisée" "17ème Division Légère Mécanisée" "18ème Division Légère Mécanisée" "19ème Division Légère Mécanisée" "20ème Division Légère Mécanisée" "21ème Division Légère Mécanisée" "22ème Division Légère Mécanisée" 
+		"23ème Division Légère Mécanisée" "24ème Division Légère Mécanisée" "25ème Division Légère Mécanisée" 
+	}
+	light_armor_brigade = {
+		"1ère Division Cuirassée de Réserve" "2ème Division Cuirassée de Réserve" "3ème Division Cuirassée de Réserve" "4ème Division Cuirassée de Réserve" "4ème Division Cuirassée de Réserve" "6ème Division Cuirassée de Réserve" "7ème Division Cuirassée de Réserve" "8ème Division Cuirassée de Réserve" "9ème Division Cuirassée de Réserve" "10ème Division Cuirassée de Réserve" "11ème Division Cuirassée de Réserve" 
+		"12ème Division Cuirassée de Réserve" "13ème Division Cuirassée de Réserve" "14ème Division Cuirassée de Réserve" "14ème Division Cuirassée de Réserve" "16ème Division Cuirassée de Réserve" "17ème Division Cuirassée de Réserve" "18ème Division Cuirassée de Réserve" "19ème Division Cuirassée de Réserve" "20ème Division Cuirassée de Réserve" "21ème Division Cuirassée de Réserve" "22ème Division Cuirassée de Réserve" 
+		"23ème Division Cuirassée de Réserve" "24ème Division Cuirassée de Réserve" "24ème Division Cuirassée de Réserve" "26ème Division Cuirassée de Réserve" "27ème Division Cuirassée de Réserve" "28ème Division Cuirassée de Réserve" "29ème Division Cuirassée de Réserve" "30ème Division Cuirassée de Réserve" 
+	}
+	armor_brigade = {
+		"1ère Division Cuirassée de Réserve" "2ème Division Cuirassée de Réserve" "3ème Division Cuirassée de Réserve" "1ère Division Légère Mécanisée" "2ème Division Légère Mécanisée" "3ème Division Légère Mécanisée" "4ème Division Cuirassée de Réserve" "5ème Division Cuirassée de Réserve" "6ème Division Cuirassée de Réserve" "7ème Division Cuirassée" "8ème Division Cuirassée" 
+		"9ème Division Cuirassée" "10ème Division Cuirassée" "11ème Division Cuirassée" "12ème Division Cuirassée" "13ème Division Cuirassée" "14ème Division Cuirassée" "15ème Division Cuirassée" "16ème Division Cuirassée" "17ème Division Cuirassée" "18ème Division Cuirassée" "19ème Division Cuirassée" 
+		"20ème Division Cuirassée" "21ème Division Cuirassée" "22ème Division Cuirassée" "23ème Division Cuirassée" "24ème Division Cuirassée" "25ème Division Cuirassée" "26ème Division Cuirassée" "27ème Division Cuirassée" "28ème Division Cuirassée" "29ème Division Cuirassée" "30ème Division Cuirassée" 
+		"31ème Division Cuirassée" "32ème Division Cuirassée" "33ème Division Cuirassée" "34ème Division Cuirassée" "35ème Division Cuirassée" "36ème Division Cuirassée" "37ème Division Cuirassée" "38ème Division Cuirassée" "39ème Division Cuirassée" "40ème Division Cuirassée" 
+	}
+	paratrooper_brigade = {
+		"1re Divsion Aéroportée" "2ème Divsion Aéroportée" "3ème Divsion Aéroportée" "4ème Divsion Aéroportée" "5ème Divsion Aéroportée" "6ème Divsion Aéroportée" "7ème Divsion Aéroportée" "8ème Divsion Aéroportée" "9ème Divsion Aéroportée" "10ème Divsion Aéroportée" 
+	}
+	marine_brigade = {
+		"1ère Division d'Infanterie de Marine" "2ème Division d'Infanterie de Marine" "3ème Division d'Infanterie de Marine" "4ème Division d'Infanterie de Marine" "5ème Division d'Infanterie de Marine" "6ème Division d'Infanterie de Marine" "7ème Division d'Infanterie de Marine" "8ème Division d'Infanterie de Marine" "9ème Division d'Infanterie de Marine" "10ème Division d'Infanterie de Marine" 
+	}
+	bergsjaeger_brigade = {
+		"27ème Division d'Infanterie" "30ème Division d'Infanterie" "31ème Division d'Infanterie" "64ème Division d'Infanterie" "66ème Division d'Infanterie" "65ème Division d'Infanterie" "200ème Division d'Infanterie" "201ème Division d'Infanterie" "202ème Division d'Infanterie" "203ème Division d'Infanterie" "204ème Division d'Infanterie" 
+		"205ème Division d'Infanterie" "150ème Division d'Infanterie" "151ème Division d'Infanterie" "152ème Division d'Infanterie" "153ème Division d'Infanterie" "154ème Division d'Infanterie" "155ème Division d'Infanterie" "156ème Division d'Infanterie" "157ème Division d'Infanterie" "158ème Division d'Infanterie" "159ème Division d'Infanterie" 
+		"160ème Division d'Infanterie" "161ème Division d'Infanterie" "162ème Division d'Infanterie" "163ème Division d'Infanterie" "164ème Division d'Infanterie" "165ème Division d'Infanterie" 
+	}
+	garrison_brigade = {
+		"2ème Division d'Garnison" "4ème Division d'Garnison" "6ème Division d'Garnison" "7ème Division d'Garnison" "8ème Division d'Garnison" "14ème Division d'Garnison" "10ème Division d'Garnison" "11ème Division d'Garnison" "13ème Division d'Garnison" "16ème Division d'Garnison" "18ème Division d'Garnison" 
+		"19ème Division d'Garnison" "20ème Division d'Garnison" "21ème Division d'Garnison" "22ème Division d'Garnison" "23ème Division d'Garnison" "24ème Division d'Garnison" "26ème Division d'Garnison" "28ème Division d'Garnison" "29ème Division d'Garnison" "32ème Division d'Garnison" "35ème Division d'Garnison" 
+		"36ème Division d'Garnison" "41ème Division d'Garnison" "42ème Division d'Garnison" "43ème Division d'Garnison" 
+	}
+	hq_brigade = {
+		"1ère Armée" "2ème Armée" "3ème Armée" "4ème Armée" "4ème Armée" "6ème Armée" "7ème Armée" "8ème Armée" "9ème Armée" "10ème Armée" 
+	}
+	militia_brigade = {
+		"1ère Division d'Infanterie de Réserve" "2ème Division d'Infanterie de Réserve" "3ème Division d'Infanterie de Réserve" "4ème Division d'Infanterie de Réserve" "5ème Division d'Infanterie de Réserve" "6ème Division d'Infanterie de Réserve" "7ème Division d'Infanterie de Réserve" "8ème Division d'Infanterie de Réserve" "9ème Division d'Infanterie de Réserve" "10ème Division d'Infanterie de Réserve" "11ème Division d'Infanterie de Réserve" 
+		"12ème Division d'Infanterie de Réserve" "13ème Division d'Infanterie de Réserve" "14ème Division d'Infanterie de Réserve" "15ème Division d'Infanterie de Réserve" "16ème Division d'Infanterie de Réserve" "17ème Division d'Infanterie de Réserve" "18ème Division d'Infanterie de Réserve" "19ème Division d'Infanterie de Réserve" "20ème Division d'Infanterie de Réserve" "21ème Division d'Infanterie de Réserve" "22ème Division d'Infanterie de Réserve" 
+		"23ème Division d'Infanterie de Réserve" "24ème Division d'Infanterie de Réserve" "25ème Division d'Infanterie de Réserve" 
+	}
+	multi_role = {
+		"Groupe de Chasse 21" "Groupe de Chasse 22" "Groupe de Chasse 23" "Groupe de Chasse 24" "Groupe de Chasse 25" "Groupe de Chasse de Nuit" "Groupe de Chasse 1" "Groupe de Chasse 2" "Groupe de Chasse 3" "Groupe de Chasse 4" "Groupe de Chasse 5" 
+		"Groupe de Chasse 6" "Groupe de Chasse 7" "Groupe de Chasse 8" "Groupe de Chasse 9" "Groupe de Chasse 10" "Groupe de Chasse 11" "Groupe de Chasse 12" "Groupe de Chasse 13" "Groupe de Chasse 14" "Groupe de Chasse 15" "Groupe de Chasse 16" 
+		"Groupe de Chasse 17" "Groupe de Chasse 18" "Groupe de Chasse 19" "Groupe de Chasse 20" "Groupe de Chasse 21" "Groupe de Chasse 22" "Groupe de Chasse 23" "Groupe de Chasse 24" "Groupe de Chasse 25" 
+	}
+	interceptor = {
+		"Groupe de Chasse 22" "Groupe de Chasse 23" "Groupe de Chasse 24" "Groupe de Chasse 25" "Groupe de Chasse de Nuit" "Groupe de Chasse 1" "Groupe de Chasse 2" "Groupe de Chasse 3" "Groupe de Chasse 4" "Groupe de Chasse 5" "Groupe de Chasse 6" 
+		"Groupe de Chasse 7" "Groupe de Chasse 8" "Groupe de Chasse 9" "Groupe de Chasse 10" "Groupe de Chasse 11" "Groupe de Chasse 12" "Groupe de Chasse 13" "Groupe de Chasse 14" "Groupe de Chasse 15" "Groupe de Chasse 16" "Groupe de Chasse 17" 
+		"Groupe de Chasse 18" "Groupe de Chasse 19" "Groupe de Chasse 20" "Groupe de Chasse 21" "Groupe de Chasse 22" "Groupe de Chasse 23" "Groupe de Chasse 24" "Groupe de Chasse 25" 
+	}
+	strategic_bomber = {
+		"Groupe de Bombardement 1" "Groupe de Bombardement 2" "Groupe de Bombardement 3" "Groupe de Bombardement 6" "Groupe de Bombardement 7" "Groupe de Bombardement 8" "Groupe de Bombardement 9" "Groupe de Bombardement 10" "Groupe de Bombardement 11" "Groupe de Bombardement 12" "Groupe de Bombardement 13" 
+		"Groupe de Bombardement 14" "Groupe de Bombardement 15" "Groupe de Bombardement 16" "Groupe de Bombardement 17" "Groupe de Bombardement 20" "Groupe de Bombardement 40" "Groupe de Bombardement 41" "Groupe de Bombardement 42" "Groupe de Bombardement 43" "Groupe de Bombardement 44" "Groupe de Bombardement 45" 
+		"Groupe de Bombardement 46" "Groupe de Bombardement 47" "Groupe de Bombardement 48" "Groupe de Bombardement 49" "Groupe de Bombardement 50" "Groupe de Bombardement 51" "Groupe de Bombardement 52" "Groupe de Bombardement 53" "Groupe de Bombardement 54" "Groupe de Bombardement 55" 
+	}
+	tactical_bomber = {
+		"Groupe de Bombardement 1" "Groupe de Bombardement 2" "Groupe de Bombardement 3" "Groupe de Bombardement 6" "Groupe de Bombardement 7" "Groupe de Bombardement 8" "Groupe de Bombardement 9" "Groupe de Bombardement 10" "Groupe de Bombardement 11" "Groupe de Bombardement 12" "Groupe de Bombardement 13" 
+		"Groupe de Bombardement 14" "Groupe de Bombardement 15" "Groupe de Bombardement 16" "Groupe de Bombardement 17" "Groupe de Bombardement 20" "Groupe de Bombardement 40" "Groupe de Bombardement 41" "Groupe de Bombardement 42" "Groupe de Bombardement 43" "Groupe de Bombardement 44" "Groupe de Bombardement 45" 
+		"Groupe de Bombardement 46" "Groupe de Bombardement 47" "Groupe de Bombardement 48" "Groupe de Bombardement 49" "Groupe de Bombardement 50" "Groupe de Bombardement 51" "Groupe de Bombardement 52" "Groupe de Bombardement 53" "Groupe de Bombardement 54" "Groupe de Bombardement 55" 
+	}
+	naval_bomber = {
+		"Groupe de Bombardement Naval 1" "Groupe de Bombardement Naval 2" "Groupe de Bombardement Naval 3" "Groupe de Bombardement Naval 4" "Groupe de Bombardement Naval 5" "Groupe de Bombardement Naval 6" "Groupe de Bombardement Naval 7" "Groupe de Bombardement Naval 8" "Groupe de Bombardement Naval 9" "Groupe de Bombardement Naval 10" "Groupe de Torpilleur 1" 
+		"Groupe de Torpilleur 2" "Groupe de Torpilleur 3" "Groupe de Torpilleur 4" "Groupe de Torpilleur 5" "Groupe de Torpilleur 6" "Groupe de Torpilleur 7" "Groupe de Torpilleur 8" "Groupe de Torpilleur 9" "Groupe de Torpilleur 10" 
+	}
+	cas = {
+		"Groupe de Bombardement d'Assaut 18" "Groupe de Bombardement d'Assaut 19" "Groupe de Bombardement d'Assaut 21" "Groupe de Bombardement d'Assaut 22" "Groupe de Bombardement d'Assaut 23" "Groupe de Bombardement d'Assaut 24" "Groupe de Bombardement d'Assaut 25" "Groupe de Bombardement d'Assaut 26" "Groupe de Bombardement d'Assaut 27" "Groupe de Bombardement d'Assaut 28" "Groupe de Bombardement d'Assaut 29" 
+		"Groupe de Bombardement d'Assaut 30" 
+	}
+	transport_plane = {
+		"1er Groupe de Transport Aérien" "2ème Groupe de Transport Aérien" "3ème Groupe de Transport Aérien" "4ème Groupe de Transport Aérien" "5ème Groupe de Transport Aérien" "6ème Groupe de Transport Aérien" "7ème Groupe de Transport Aérien" "8ème Groupe de Transport Aérien" "9ème Groupe de Transport Aérien" "10ème Groupe de Transport Aérien" 
+	}
+	battleship = {
+		"Courbet" "Paris" "Bretagne" "Provence" "Lorraine" "Dunkerque" "Strasbourg" "Richelieu" "Jean Bart" "Clémenceau" "Gascogne" 
+		"Languedoc" "Champagne" "Alsace" "Normandie" "Flandre" "Bourgogne" "Picardie" "Berry" "Roussillon" "Auvergne" "Dauphiné" 
+		"Franche-Comté" 
+	}
+	light_cruiser = {
+		"Duguay-Trouin" "Lamotte-Piquet" "Primauget" "Tourville" "Duquesne" "Suffren" "Colbert" "Foch" "Dupleix" "Algérie" "Pluton" 
+		"Jeanne d´Arc" "Emile Bertin" "La Galissonnière" "Jean de Vienne" "Georges Leygues" "Marseillaise" "Gloire" "Montcalm" "De Grasse" "Guichen" "Chateaurenault" 
+		"Surcouf" "Ducasse" "Choiseul" "D'Entrecasteaux" "D'Orvilliers" "D'Estaing" 
+	}
+	heavy_cruiser = {
+		"Duguay-Trouin" "Lamotte-Piquet" "Primauget" "Tourville" "Duquesne" "Suffren" "Colbert" "Foch" "Dupleix" "Algérie" "Pluton" 
+		"Jeanne d´Arc" "Emile Bertin" "La Galissonnière" "Jean de Vienne" "Georges Leygues" "Marseillaise" "Gloire" "Montcalm" "De Grasse" "Guichen" "Chateaurenault" 
+		"Surcouf" "Ducasse" "Choiseul" "D'Entrecasteaux" "D'Orvilliers" "D'Estaing" 
+	}
+	battlecruiser = {
+		"Auvergne" "Dauphiné" "Franche-Comté" "Languedoc" "Champagne" "Alsace" "Normandie" "Flandre" "Bourgogne" "Picardie" "Berry" 
+		"Roussillon" "Courbet" "Paris" "Bretagne" "Provence" "Lorraine" 
+	}
+	destroyer = {
+		"1ère Divisionde Torpilleurs" "2ème Divisionde Torpilleurs" "3ème Divisionde Torpilleurs" "4ème Divisionde Torpilleurs" "5ème Divisionde Torpilleurs" "6ème Divisionde Torpilleurs" "7ème Divisionde Torpilleurs" "8ème Divisionde Torpilleurs" "9ème Divisionde Torpilleurs" "10ème Divisionde Torpilleurs" "11ème Divisionde Torpilleurs" 
+		"12ème Divisionde Torpilleurs" "13ème Divisionde Torpilleurs" "14ème Divisionde Torpilleurs" "15ème Divisionde Torpilleurs" "16ème Divisionde Torpilleurs" "17ème Divisionde Torpilleurs" "18ème Divisionde Torpilleurs" "19ème Divisionde Torpilleurs" "20ème Divisionde Torpilleurs" 
+	}
+	carrier = {
+		"Béarn" "Joffre" "Painlevé" "Dixmude" "Arromanches" "La Fayette" "Bois Bellau" "Verdun" 
+	}
+	submarine = {
+		"1ère Flottille sous-marine" "2ème Flottille sous-Marine" "3ème Flottille sous-Marine" "4ème Flottille sous-Marine" "5ème Flottille sous-Marine" "6ème Flottille sous-Marine" "7ème Flottille sous-Marine" "8ème Flottille sous-Marine" "9ème Flottille sous-Marine" "10ème Flottille sous-Marine" "11ème Flottille sous-Marine" 
+		"12ème Flottille sous-Marine" "13ème Flottille sous-Marine" "14ème Flottille sous-Marine" "15ème Flottille sous-Marine" "16ème Flottille sous-Marine" "17ème Flottille sous-Marine" "18ème Flottille sous-Marine" "19ème Flottille sous-Marine" "20ème Flottille sous-Marine" 
+	}
+	transport_ship = {
+		"1ère Flottille de Transport" "2ème Flottille de Transport" "3ème Flottille de Transport" "4ème Flottille de Transport" "5ème Flottille de Transport" "6ème Flottille de Transport" "7ème Flottille de Transport" "8ème Flottille de Transport" "9ème Flottille de Transport" "10ème Flottille de Transport" "11ème Flottille de Transport" 
+		"12ème Flottille de Transport" "13ème Flottille de Transport" "14ème Flottille de Transport" "15ème Flottille de Transport" "16ème Flottille de Transport" "17ème Flottille de Transport" "18ème Flottille de Transport" "19ème Flottille de Transport" "20ème Flottille de Transport" "21ème Flottille de Transport" "22ème Flottille de Transport" 
+		"23ème Flottille de Transport" "24ème Flottille de Transport" "25ème Flottille de Transport" "26ème Flottille de Transport" "27ème Flottille de Transport" "28ème Flottille de Transport" "29ème Flottille de Transport" "30ème Flottille de Transport" "31ème Flottille de Transport" "32ème Flottille de Transport" "33ème Flottille de Transport" 
+		"34ème Flottille de Transport" "35ème Flottille de Transport" "36ème Flottille de Transport" "37ème Flottille de Transport" "38ème Flottille de Transport" "39ème Flottille de Transport" "40ème Flottille de Transport" 
+	}
+
+}
+
+ministers = {
+	57001 = {
+		name = "Phillipe Petain"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M57001
+		head_of_state = resigned_generalissimo
+		start_date = 1936.1.1
+	}
+	57002 = {
+		name = "Jean-Francois Darlan"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M57002
+		head_of_government = old_admiral
+		chief_of_navy = decisive_naval_battle_doctrine
+		foreign_minister = general_staffer
+		minister_of_security = back_stabber
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	57003 = {
+		name = "Paul Baudouin"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57003
+		foreign_minister = iron_fisted_brute
+		start_date = 1936.1.1
+	}
+	57004 = {
+		name = "Marius Berliet"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57004
+		armament_minister = laissez_faires_capitalist
+		start_date = 1936.1.1
+	}
+	57005 = {
+		name = "Joseph Barthélemy"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57005
+		minister_of_security = silent_lawyer
+		start_date = 1936.1.1
+	}
+	57006 = {
+		name = "Rene Bousquet"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57006
+		minister_of_intelligence = technical_specialist
+		start_date = 1936.1.1
+	}
+	57007 = {
+		name = "Charles Huntziger"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57007
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	57008 = {
+		name = "Maxime Weygand"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57008
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	57010 = {
+		name = "Jean Marie Bergeret"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57010
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	57011 = {
+		name = "Pierre Laval"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M57011
+		head_of_government = flamboyant_tough_guy
+		foreign_minister = apologetic_clerk
+		minister_of_security = prince_of_terror
+		minister_of_intelligence = political_specialist
+		start_date = 1942.1.1
+	}
+	57013 = {
+		name = "Charles André Weiss"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M57013
+		foreign_minister = iron_fisted_brute
+		start_date = 1941.1.1
+	}
+	57014 = {
+		name = "Albert Thomas"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M57014
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1941.1.1
+	}
+	57016 = {
+		name = "Gabriel Hanoteaux"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57016
+		foreign_minister = ideological_crusader
+		start_date = 1942.1.1
+	}
+	57017 = {
+		name = "Henri de Jouvenel"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57017
+		foreign_minister = biased_intellectual
+		head_of_government = insignificant_layman
+		start_date = 1943.1.1
+	}
+	57018 = {
+		name = "Arne Leroy"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57018
+		foreign_minister = great_compromiser
+		start_date = 1943.1.1
+	}
+	57019 = {
+		name = "Tulio Franco Franco"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57019
+		armament_minister = resource_industrialist
+		start_date = 1941.1.1
+	}
+	57020 = {
+		name = "Lucien Lacaze"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57020
+		armament_minister = military_entrepreneur
+		start_date = 1941.1.1
+	}
+	57021 = {
+		name = "Robert Haas"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57021
+		armament_minister = laissez_faires_capitalist
+		start_date = 1942.1.1
+	}
+	57022 = {
+		name = "Stephane Auphan"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57022
+		armament_minister = air_to_sea_proponent
+		start_date = 1942.1.1
+	}
+	57023 = {
+		name = "Paul Painleve"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57023
+		armament_minister = administrative_genius
+		start_date = 1943.1.1
+	}
+	57024 = {
+		name = "Paul Mantoux"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57024
+		armament_minister = theoretical_scientist
+		start_date = 1943.1.1
+	}
+	57026 = {
+		name = "Eduard Herriot"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M57026
+		minister_of_security = silent_lawyer
+		start_date = 1941.1.1
+	}
+	57028 = {
+		name = "Marius Viple"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57028
+		minister_of_security = man_of_the_people
+		start_date = 1942.1.1
+	}
+	57029 = {
+		name = "René Bousquet"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57006
+		minister_of_security = compassionate_gentleman
+		start_date = 1942.1.1
+	}
+	57030 = {
+		name = "Raphael Alibert"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57030
+		minister_of_security = crime_fighter
+		start_date = 1943.1.1
+	}
+	57031 = {
+		name = "Gouffre de Lapradelle"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57031
+		minister_of_security = efficient_sociopath
+		minister_of_intelligence = industrial_specialist
+		start_date = 1943.1.1
+	}
+	57034 = {
+		name = "Eugene Bridoux"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57034
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1942.1.1
+	}
+	57036 = {
+		name = "Jean Esteva"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57036
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1942.1.1
+	}
+	57037 = {
+		name = "Jean Marie Abrial"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57037
+		chief_of_navy = open_seas_doctrine
+		start_date = 1943.1.1
+	}
+	57038 = {
+		name = "Maurice Jannekeyn"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M57038
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1942.1.1
+	}
+}

@@ -1,0 +1,17 @@
+owner = CGX
+controller = CGX
+add_core = CGX
+add_core = CHIadd_core = CHC
+points = 1
+infra = 3
+metal = 4.00
+energy = 21.00
+rare_materials = 2.00
+industry = 3
+manpower = 10.00
+leadership = 0.50
+
+1944.6.20 = {
+	owner = JAP
+	controller = JAP
+}

@@ -1,0 +1,14 @@
+owner = USA
+controller = USA
+add_core = USA
+
+points = 1
+energy = 8.00
+strategic_resource = automotive_industry
+rare_materials = 8.00
+industry = 8
+anti_air = 1
+infra = 8
+air_base = 4
+manpower = 4.00
+leadership = 0.60

@@ -1,0 +1,5 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+metal = 2.00
+infra = 4

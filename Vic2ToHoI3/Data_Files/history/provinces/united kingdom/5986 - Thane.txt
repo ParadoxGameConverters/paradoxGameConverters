@@ -1,0 +1,13 @@
+owner = ENG
+
+controller = ENG
+
+add_core = ENG
+
+add_core = IND
+
+infra = 5
+
+infra = 5
+
+infra = 5

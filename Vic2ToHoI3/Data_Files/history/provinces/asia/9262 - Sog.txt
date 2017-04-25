@@ -1,0 +1,14 @@
+owner = CXB
+controller = CXB
+add_core = CXB
+add_core = CHI
+add_core = CHC
+
+points = 1
+metal = 5.00
+energy = 10.00
+rare_materials = 3.00
+industry = 5
+infra = 3
+manpower = 5.00
+leadership = 0.50

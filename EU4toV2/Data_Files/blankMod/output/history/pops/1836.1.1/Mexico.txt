@@ -1,0 +1,2347 @@
+#Sonora Region (140000)
+#ruled by Mexico 1836
+#Hermosillo (76000/19000 POPS)
+2137 = {
+	aristocrats = {
+		culture = sonoran
+		religion = animist
+		size=365
+	}
+	clergymen = {
+		culture = sonoran
+		religion = animist
+		size=100
+	}
+
+	artisans = {
+		culture = sonoran
+		religion = animist
+		size=950
+	}
+
+	soldiers = {
+		culture = sonoran
+		religion = animist
+		size=200
+	}
+
+	farmers = {
+		culture = sonoran
+		religion = animist
+		size=17310
+	}
+}
+#Nogales (12000/3000 POPS)
+2140 = {
+	aristocrats = {
+		culture = sonoran
+		religion = animist
+		size=50
+	}
+
+	clergymen = {
+		culture = sonoran
+		religion = animist
+		size=70
+	}
+
+	artisans = {
+		culture = sonoran
+		religion = animist
+		size=150
+	}
+
+	soldiers = {
+		culture = sonoran
+		religion = animist
+		size=35
+	}
+
+	farmers = {
+		culture = sonoran
+		religion = animist
+		size=2695
+	}
+}
+#Guaymas (52000/13000 POPS)
+2141 = {
+	aristocrats = {
+		culture = sonoran
+		religion = animist
+		size=300
+	}
+
+	clergymen = {
+		culture = sonoran
+		religion = animist
+		size=175
+	}
+
+	artisans = {
+		culture = sonoran
+		religion = animist
+		size=650
+	}
+
+	soldiers = {
+		culture = sonoran
+		religion = animist
+		size=125
+	}
+
+	farmers = {
+		culture = sonoran
+		religion = animist
+		size=11750
+	}
+}
+#Baja California Region (20000)
+#ruled by Mexico 1836
+#Loreto (4000/1000 POPS)
+2138 = {
+	aristocrats = {
+		culture = sonoran
+		religion = animist
+		size=25
+	}
+
+	clergymen = {
+		culture = sonoran
+		religion = animist
+		size=20
+	}
+
+	artisans = {
+		culture = sonoran
+		religion = animist
+		size=50
+	}
+
+	soldiers = {
+		culture = sonoran
+		religion = animist
+		size=10
+	}
+
+	farmers = {
+		culture = sonoran
+		religion = animist
+		size=895
+	}
+}
+#Rosarito (16000/4000 POPS)
+2139 = {
+	aristocrats = {
+		culture = sonoran
+		religion = animist
+		size=95
+	}
+
+	clergymen = {
+		culture = sonoran
+		religion = animist
+		size=100
+	}
+
+	artisans = {
+		culture = sonoran
+		religion = animist
+		size=200
+	}
+
+	soldiers = {
+		culture = sonoran
+		religion = animist
+		size=50
+	}
+
+	farmers = {
+		culture = sonoran
+		religion = animist
+		size=3555
+	}
+}
+#Chihuahua Region (136000)
+#ruled by Mexico 1836
+#Chihuahua (100000/25000 POPS)
+2142 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size=490
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size=300
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size=1250
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size=250
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size=22710
+	}
+
+
+}
+
+#Paso del Norte (12000/3000 POPS)
+2143 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size=75
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size=50
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size=150
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size=25
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size=2700
+	}
+}
+#Delicias (8000/2000 POPS)
+2144 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size=75
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size=50
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size=100
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size=25
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size=1750
+	}
+}
+#Parral (16000/4000 POPS)
+2145 = {
+	aristocrats = {
+		culture = sonoran
+		religion = animist
+		size=75
+	}
+
+	clergymen = {
+		culture = sonoran
+		religion = animist
+		size=95
+	}
+
+	artisans = {
+		culture = sonoran
+		religion = animist
+		size=200
+	}
+
+	soldiers = {
+		culture = sonoran
+		religion = animist
+		size=35
+	}
+
+	farmers = {
+		culture = sonoran
+		religion = animist
+		size=3595
+	}
+
+}
+
+#Coahuila Region (160000)
+#ruled by Mexico 1836
+#Morelos (12000/3000 POPS)
+2147 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size=75
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size=50
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size=150
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size=25
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size=2700
+	}
+
+}
+
+#Saltillo (44000/11000 POPS)
+2151 = {
+	aristocrats = {
+		culture = native_american_minor
+		religion = animist
+		size=250
+	}
+
+	clergymen = {
+		culture = native_american_minor
+		religion = animist
+		size=150
+	}
+
+	artisans = {
+		culture = native_american_minor
+		religion = animist
+		size=550
+	}
+
+	soldiers = {
+		culture = native_american_minor
+		religion = animist
+		size=100
+	}
+
+	farmers = {
+		culture = native_american_minor
+		religion = animist
+		size=9950
+	}
+
+}
+
+#Monclova (48000/12000 POPS)
+2152 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size=275
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size=125
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size=600
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size=125
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size=10875
+	}
+
+}
+#Torreon (56000/14000 POPS)
+2155 = {
+	aristocrats = {
+		culture = native_american_minor
+		religion = animist
+		size=300
+	}
+
+	clergymen = {
+		culture = native_american_minor
+		religion = animist
+		size=175
+	}
+
+	artisans = {
+		culture = native_american_minor
+		religion = animist
+		size=700
+	}
+
+	soldiers = {
+		culture = native_american_minor
+		religion = animist
+		size=150
+	}
+
+	farmers = {
+		culture = native_american_minor
+		religion = animist
+		size=12675
+	}
+
+}
+
+#Nuevo Leon-Tamaulipas Region (172000)
+#ruled by Mexico 1836
+#Monterrey (104000/26000 POPS)
+2146 = {
+	aristocrats = {
+		culture = native_american_minor
+		religion = animist
+		size=550
+	}
+
+	clergymen = {
+		culture = native_american_minor
+		religion = animist
+		size=275
+	}
+
+	artisans = {
+		culture = native_american_minor
+		religion = animist
+		size=1300
+	}
+
+	soldiers = {
+		culture = native_american_minor
+		religion = animist
+		size=275
+	}
+
+	farmers = {
+		culture = native_american_minor
+		religion = animist
+		size=23600
+	}
+
+}
+
+#Reynosa (16000/4000 POPS)
+2148 = {
+	aristocrats = {
+		culture = native_american_minor
+		religion = animist
+		size=100
+	}
+
+	clergymen = {
+		culture = native_american_minor
+		religion = animist
+		size=75
+	}
+
+	artisans = {
+		culture = native_american_minor
+		religion = animist
+		size=200
+	}
+
+	soldiers = {
+		culture = native_american_minor
+		religion = animist
+		size=50
+	}
+
+	farmers = {
+		culture = native_american_minor
+		religion = animist
+		size=3575
+	}
+
+}
+
+#Matamoros (28000/7000 POPS)
+2149 = {
+	aristocrats = {
+		culture = native_american_minor
+		religion = animist
+		size=175
+	}
+
+	clergymen = {
+		culture = native_american_minor
+		religion = animist
+		size=75
+	}
+
+	artisans = {
+		culture = native_american_minor
+		religion = animist
+		size=350
+	}
+
+	soldiers = {
+		culture = native_american_minor
+		religion = animist
+		size=75
+	}
+
+	farmers = {
+		culture = native_american_minor
+		religion = animist
+		size=6325
+	}
+}
+#Ciudad Victoria (24000/6000 POPS)
+2150 = {
+	soldiers = {
+		culture = native_american_minor
+		religion = nahuatl
+		size=30
+	}
+
+	artisans = {
+		culture = native_american_minor
+		religion = nahuatl
+		size=120
+	}
+
+	clergymen = {
+		culture = native_american_minor
+		religion = nahuatl
+		size=20
+	}
+
+	bureaucrats = {
+		culture = native_american_minor
+		religion = nahuatl
+		size=2
+	}
+
+	officers = {
+		culture = native_american_minor
+		religion = nahuatl
+		size=2
+	}
+
+	aristocrats = {
+		culture = native_american_minor
+		religion = nahuatl
+		size=25
+	}
+
+	farmers = {
+		culture = native_american_minor
+		religion = nahuatl
+		size=2801
+	}
+
+	soldiers = {
+		culture = nahua
+		religion = nahuatl
+		size=30
+	}
+
+	artisans = {
+		culture = nahua
+		religion = nahuatl
+		size=120
+	}
+
+	clergymen = {
+		culture = nahua
+		religion = nahuatl
+		size=20
+	}
+
+	bureaucrats = {
+		culture = nahua
+		religion = nahuatl
+		size=2
+	}
+
+	officers = {
+		culture = nahua
+		religion = nahuatl
+		size=2
+	}
+
+	aristocrats = {
+		culture = nahua
+		religion = nahuatl
+		size=25
+	}
+
+	farmers = {
+		culture = nahua
+		religion = nahuatl
+		size=2801
+	}
+
+}
+
+#Durango-Sinaloa Region (252000)
+#ruled by Mexico 1836
+#Durango (64000/16000 POPS)
+2153 = {
+	aristocrats = {
+		culture = native_american_minor
+		religion = animist
+		size=375
+	}
+
+	clergymen = {
+		culture = native_american_minor
+		religion = animist
+		size=200
+	}
+
+	artisans = {
+		culture = native_american_minor
+		religion = animist
+		size=800
+	}
+
+	soldiers = {
+		culture = native_american_minor
+		religion = animist
+		size=175
+	}
+
+	farmers = {
+		culture = native_american_minor
+		religion = animist
+		size=14450
+	}
+
+}
+#Santa Maria del Oro (44000/11000 POPS)
+2154 = {
+	aristocrats = {
+		culture = na_dene
+		religion = totemism
+		size=250
+	}
+
+	clergymen = {
+		culture = na_dene
+		religion = totemism
+		size=125
+	}
+
+	artisans = {
+		culture = na_dene
+		religion = totemism
+		size=550
+	}
+
+	soldiers = {
+		culture = na_dene
+		religion = totemism
+		size=125
+	}
+
+	farmers = {
+		culture = na_dene
+		religion = totemism
+		size=10050
+	}
+
+}
+
+#Mazatlan (116000/29000 POPS)
+2156 = {
+	aristocrats = {
+		culture = native_american_minor
+		religion = animist
+		size=650
+	}
+
+	clergymen = {
+		culture = native_american_minor
+		religion = animist
+		size=275
+	}
+
+	artisans = {
+		culture = native_american_minor
+		religion = animist
+		size=1450
+	}
+
+	soldiers = {
+		culture = native_american_minor
+		religion = animist
+		size=300
+	}
+
+	farmers = {
+		culture = native_american_minor
+		religion = animist
+		size=26325
+	}
+
+}
+#Culiacan (28000/7000 POPS)
+2157 = {
+	aristocrats = {
+		culture = sonoran
+		religion = animist
+		size=175
+	}
+
+	clergymen = {
+		culture = sonoran
+		religion = animist
+		size=75
+	}
+
+	artisans = {
+		culture = sonoran
+		religion = animist
+		size=350
+	}
+
+	soldiers = {
+		culture = sonoran
+		religion = animist
+		size=75
+	}
+
+	farmers = {
+		culture = sonoran
+		religion = animist
+		size=6325
+	}
+}
+#Zacatecas-Aguascalientes Region (568000)
+#ruled by Mexico 1836
+#Zacatecas (340000/85000 POPS)
+2158 = {
+	aristocrats = {
+		culture = native_american_minor
+		religion = animist
+		size=1725
+	}
+
+	aristocrats = {
+		culture = nahua
+		religion = nahuatl
+		size=400
+	}
+
+	clergymen = {
+		culture = native_american_minor
+		religion = animist
+		size=425
+	}
+
+	artisans = {
+		culture = native_american_minor
+		religion = animist
+		size=3850
+	}
+
+	soldiers = {
+		culture = native_american_minor
+		religion = animist
+		size=425
+	}
+
+	farmers = {
+		culture = native_american_minor
+		religion = animist
+		size=35175
+	}
+
+	clergymen = {
+		culture = nahua
+		religion = nahuatl
+		size=200
+	}
+
+	artisans = {
+		culture = nahua
+		religion = nahuatl
+		size=2150
+	}
+
+	soldiers = {
+		culture = nahua
+		religion = nahuatl
+		size=450
+	}
+
+	farmers = {
+		culture = nahua
+		religion = nahuatl
+		size=40200
+	}
+
+}
+#Aguascalientes (152000/38000 POPS)
+2160 = {
+	aristocrats = {
+		culture = nahua
+		religion = nahuatl
+		size=425
+	}
+	
+	aristocrats = {
+		culture = tarascan
+		religion = nahuatl
+		size=425
+	}
+
+	clergymen = {
+		culture = nahua
+		religion = nahuatl
+		size=200
+	}
+
+	clergymen = {
+		culture = tarascan
+		religion = nahuatl
+		size=175
+	}
+
+	artisans = {
+		culture = nahua
+		religion = nahuatl
+		size=800
+	}
+
+	artisans = {
+		culture = tarascan
+		religion = nahuatl
+		size=725
+	}
+
+	soldiers = {
+		culture = nahua
+		religion = nahuatl
+		size=200
+	}
+
+	soldiers = {
+		culture = tarascan
+		religion = nahuatl
+		size=200
+	}
+
+	farmers = {
+		culture = nahua
+		religion = nahuatl
+		size=17850
+	}
+
+	farmers = {
+		culture = tarascan
+		religion = nahuatl
+		size=17000
+	}
+}
+#Tepic (76000/19000 POPS)
+2161 = {
+	aristocrats = {
+		culture = tarascan
+		religion = nahuatl
+		size=425
+	}
+
+	clergymen = {
+		culture = tarascan
+		religion = nahuatl
+		size=200
+	}
+
+	artisans = {
+		culture = tarascan
+		religion = nahuatl
+		size=950
+	}
+
+	soldiers = {
+		culture = tarascan
+		religion = nahuatl
+		size=200
+	}
+
+	farmers = {
+		culture = tarascan
+		religion = nahuatl
+		size=18875
+	}
+
+}
+
+#Potosi-Guanajuato Region (1356000)
+#ruled by Mexico 1836
+#San Luis Potosi (324000/81000 POPS)
+2159 = {
+	aristocrats = {
+		culture = native_american_minor
+		religion = animist
+		size=1000
+	}
+
+	aristocrats = {
+		culture = nahua
+		religion = nahuatl
+		size=625
+	}
+
+	clergymen = {
+		culture = native_american_minor
+		religion = animist
+		size=475
+	}
+
+	artisans = {
+		culture = native_american_minor
+		religion = animist
+		size=2400
+	}
+
+	soldiers = {
+		culture = native_american_minor
+		religion = animist
+		size=500
+	}
+
+	farmers = {
+		culture = native_american_minor
+		religion = animist
+		size=48500
+	}
+
+	clergymen = {
+		culture = nahua
+		religion = nahuatl
+		size=175
+	}
+
+	artisans = {
+		culture = nahua
+		religion = nahuatl
+		size=1650
+	}
+
+	soldiers = {
+		culture = nahua
+		religion = nahuatl
+		size=350
+	}
+
+	farmers = {
+		culture = nahua
+		religion = nahuatl
+		size=30525
+	}
+
+}
+
+#Guanajuato (672000/168000 POPS)
+2167 = {
+	soldiers = {
+		culture = sonoran
+		religion = nahuatl
+		size=214
+	}
+
+	artisans = {
+		culture = sonoran
+		religion = nahuatl
+		size=857
+	}
+
+	clergymen = {
+		culture = sonoran
+		religion = nahuatl
+		size=139
+	}
+
+	bureaucrats = {
+		culture = sonoran
+		religion = nahuatl
+		size=11
+	}
+
+	officers = {
+		culture = sonoran
+		religion = nahuatl
+		size=17
+	}
+
+	aristocrats = {
+		culture = sonoran
+		religion = nahuatl
+		size=180
+	}
+
+	farmers = {
+		culture = sonoran
+		religion = nahuatl
+		size=20016
+	}
+
+	soldiers = {
+		culture = nahua
+		religion = nahuatl
+		size=857
+	}
+
+	artisans = {
+		culture = nahua
+		religion = nahuatl
+		size=3430
+	}
+
+	clergymen = {
+		culture = nahua
+		religion = nahuatl
+		size=557
+	}
+
+	bureaucrats = {
+		culture = nahua
+		religion = nahuatl
+		size=43
+	}
+
+	officers = {
+		culture = nahua
+		religion = nahuatl
+		size=69
+	}
+
+	aristocrats = {
+		culture = nahua
+		religion = nahuatl
+		size=720
+	}
+
+	farmers = {
+		culture = nahua
+		religion = nahuatl
+		size=80062
+	}
+
+	soldiers = {
+		culture = tarascan
+		religion = nahuatl
+		size=643
+	}
+
+	artisans = {
+		culture = tarascan
+		religion = nahuatl
+		size=2572
+	}
+
+	clergymen = {
+		culture = tarascan
+		religion = nahuatl
+		size=418
+	}
+
+	bureaucrats = {
+		culture = tarascan
+		religion = nahuatl
+		size=32
+	}
+
+	officers = {
+		culture = tarascan
+		religion = nahuatl
+		size=51
+	}
+
+	aristocrats = {
+		culture = tarascan
+		religion = nahuatl
+		size=540
+	}
+
+	farmers = {
+		culture = tarascan
+		religion = nahuatl
+		size=60047
+	}
+
+}
+#Queretaro (360000/90000 POPS)
+2173 = {
+	soldiers = {
+		culture = sonoran
+		religion = nahuatl
+		size=113
+	}
+
+	artisans = {
+		culture = sonoran
+		religion = nahuatl
+		size=450
+	}
+
+	clergymen = {
+		culture = sonoran
+		religion = nahuatl
+		size=73
+	}
+
+	bureaucrats = {
+		culture = sonoran
+		religion = nahuatl
+		size=6
+	}
+
+	officers = {
+		culture = sonoran
+		religion = nahuatl
+		size=9
+	}
+
+	aristocrats = {
+		culture = sonoran
+		religion = nahuatl
+		size=95
+	}
+
+	farmers = {
+		culture = sonoran
+		religion = nahuatl
+		size=10504
+	}
+
+	soldiers = {
+		culture = nahua
+		religion = nahuatl
+		size=450
+	}
+
+	artisans = {
+		culture = nahua
+		religion = nahuatl
+		size=1800
+	}
+
+	clergymen = {
+		culture = nahua
+		religion = nahuatl
+		size=293
+	}
+
+	bureaucrats = {
+		culture = nahua
+		religion = nahuatl
+		size=23
+	}
+
+	officers = {
+		culture = nahua
+		religion = nahuatl
+		size=36
+	}
+
+	aristocrats = {
+		culture = nahua
+		religion = nahuatl
+		size=378
+	}
+
+	farmers = {
+		culture = nahua
+		religion = nahuatl
+		size=42020
+	}
+
+	soldiers = {
+		culture = tarascan
+		religion = nahuatl
+		size=338
+	}
+
+	artisans = {
+		culture = tarascan
+		religion = nahuatl
+		size=1350
+	}
+
+	clergymen = {
+		culture = tarascan
+		religion = nahuatl
+		size=219
+	}
+
+	bureaucrats = {
+		culture = tarascan
+		religion = nahuatl
+		size=17
+	}
+
+	officers = {
+		culture = tarascan
+		religion = nahuatl
+		size=27
+	}
+
+	aristocrats = {
+		culture = tarascan
+		religion = nahuatl
+		size=284
+	}
+
+	farmers = {
+		culture = tarascan
+		religion = nahuatl
+		size=31515
+	}
+
+}
+
+#Veracruz-Tabasco Region (328000)
+#ruled by Mexico 1836
+#Veracruz (140000/70000 POPS)
+2162 = {
+	soldiers = {
+		culture = nahua
+		religion = nahuatl
+		size=354
+	}
+
+	artisans = {
+		culture = nahua
+		religion = nahuatl
+		size=1416
+	}
+
+	clergymen = {
+		culture = nahua
+		religion = nahuatl
+		size=230
+	}
+
+	bureaucrats = {
+		culture = nahua
+		religion = nahuatl
+		size=18
+	}
+
+	officers = {
+		culture = nahua
+		religion = nahuatl
+		size=28
+	}
+
+	aristocrats = {
+		culture = nahua
+		religion = nahuatl
+		size=297
+	}
+
+	farmers = {
+		culture = nahua
+		religion = nahuatl
+		size=33057
+	}
+}
+#Tampico (80000/20000 POPS)
+2163 = {
+	soldiers = {
+		culture = native_american_minor
+		religion = nahuatl
+		size=100
+	}
+
+	artisans = {
+		culture = native_american_minor
+		religion = nahuatl
+		size=400
+	}
+
+	clergymen = {
+		culture = native_american_minor
+		religion = nahuatl
+		size=65
+	}
+
+	bureaucrats = {
+		culture = native_american_minor
+		religion = nahuatl
+		size=5
+	}
+
+	officers = {
+		culture = native_american_minor
+		religion = nahuatl
+		size=8
+	}
+
+	aristocrats = {
+		culture = native_american_minor
+		religion = nahuatl
+		size=84
+	}
+
+	farmers = {
+		culture = native_american_minor
+		religion = nahuatl
+		size=9338
+	}
+
+	soldiers = {
+		culture = nahua
+		religion = nahuatl
+		size=100
+	}
+
+	artisans = {
+		culture = nahua
+		religion = nahuatl
+		size=400
+	}
+
+	clergymen = {
+		culture = nahua
+		religion = nahuatl
+		size=65
+	}
+
+	bureaucrats = {
+		culture = nahua
+		religion = nahuatl
+		size=5
+	}
+
+	officers = {
+		culture = nahua
+		religion = nahuatl
+		size=8
+	}
+
+	aristocrats = {
+		culture = nahua
+		religion = nahuatl
+		size=84
+	}
+
+	farmers = {
+		culture = nahua
+		religion = nahuatl
+		size=9338
+	}
+}
+#Minatitlan (48000/12000 POPS)
+2164 = {
+	soldiers = {
+		culture = zapotec
+		religion = nahuatl
+		size=1033
+	}
+
+	artisans = {
+		culture = zapotec
+		religion = nahuatl
+		size=480
+	}
+
+	clergymen = {
+		culture = zapotec
+		religion = nahuatl
+		size=78
+	}
+
+	bureaucrats = {
+		culture = zapotec
+		religion = nahuatl
+		size=6
+	}
+
+	officers = {
+		culture = zapotec
+		religion = nahuatl
+		size=10
+	}
+
+	aristocrats = {
+		culture = zapotec
+		religion = nahuatl
+		size=101
+	}
+
+	farmers = {
+		culture = zapotec
+		religion = nahuatl
+		size=10292
+	}
+}
+#Villahermosa (60000/15000 POPS)
+2165 = {
+	soldiers = {
+		culture = mayan
+		religion = mayan
+		size=150
+	}
+
+	artisans = {
+		culture = mayan
+		religion = mayan
+		size=600
+	}
+
+	clergymen = {
+		culture = mayan
+		religion = mayan
+		size=98
+	}
+
+	bureaucrats = {
+		culture = mayan
+		religion = mayan
+		size=8
+	}
+
+	officers = {
+		culture = mayan
+		religion = mayan
+		size=12
+	}
+
+	aristocrats = {
+		culture = mayan
+		religion = mayan
+		size=126
+	}
+
+	farmers = {
+		culture = mayan
+		religion = mayan
+		size=14006
+	}
+}
+#Jalisco Region (448000)
+#ruled by Mexico 1836
+#Guadalajara (300000/75000 POPS)
+2166 = {
+	aristocrats = {
+		culture = tarascan
+		religion = nahuatl
+		size=1550
+	}
+
+	clergymen = {
+		culture = tarascan
+		religion = nahuatl
+		size=700
+	}
+
+	artisans = {
+		culture = tarascan
+		religion = nahuatl
+		size=12500
+	}
+
+	soldiers = {
+		culture = tarascan
+		religion = nahuatl
+		size=775
+	}
+
+	farmers = {
+		culture = tarascan
+		religion = nahuatl
+		size=59475
+	}
+}
+#Puerto Vallarta (148000/37000 POPS)
+2168 = {
+	soldiers = {
+		culture = tarascan
+		religion = nahuatl
+		size=1033
+	}
+
+	artisans = {
+		culture = tarascan
+		religion = nahuatl
+		size=1479
+	}
+
+	clergymen = {
+		culture = tarascan
+		religion = nahuatl
+		size=240
+	}
+
+	bureaucrats = {
+		culture = tarascan
+		religion = nahuatl
+		size=18
+	}
+
+	officers = {
+		culture = tarascan
+		religion = nahuatl
+		size=30
+	}
+
+	aristocrats = {
+		culture = tarascan
+		religion = nahuatl
+		size=311
+	}
+
+	farmers = {
+		culture = tarascan
+		religion = nahuatl
+		size=33864
+	}
+}
+#Michoacan Region (568000)
+#ruled by Mexico 1836
+#Colima (108000/27000 POPS)
+2169 = {
+	soldiers = {
+		culture = tarascan
+		religion = nahuatl
+		size=270
+	}
+
+	artisans = {
+		culture = tarascan
+		religion = nahuatl
+		size=1080
+	}
+
+	clergymen = {
+		culture = tarascan
+		religion = nahuatl
+		size=176
+	}
+
+	bureaucrats = {
+		culture = tarascan
+		religion = nahuatl
+		size=14
+	}
+
+	officers = {
+		culture = tarascan
+		religion = nahuatl
+		size=22
+	}
+
+	aristocrats = {
+		culture = tarascan
+		religion = nahuatl
+		size=227
+	}
+
+	farmers = {
+		culture = tarascan
+		religion = nahuatl
+		size=25211
+	}
+}
+#Morelia (348000/87000 POPS)
+2170 = {
+	soldiers = {
+		culture = tarascan
+		religion = nahuatl
+		size=1033
+	}
+
+	artisans = {
+		culture = tarascan
+		religion = nahuatl
+		size=3480
+	}
+
+	clergymen = {
+		culture = tarascan
+		religion = nahuatl
+		size=566
+	}
+
+	bureaucrats = {
+		culture = tarascan
+		religion = nahuatl
+		size=44
+	}
+
+	officers = {
+		culture = tarascan
+		religion = nahuatl
+		size=70
+	}
+
+	aristocrats = {
+		culture = tarascan
+		religion = nahuatl
+		size=731
+	}
+
+	farmers = {
+		culture = tarascan
+		religion = nahuatl
+		size=81076
+	}
+}
+#Los Alaniles (112000/28000 POPS)
+2171 = {
+	soldiers = {
+		culture = tarascan
+		religion = nahuatl
+		size=281
+	}
+
+	artisans = {
+		culture = tarascan
+		religion = nahuatl
+		size=1124
+	}
+
+	clergymen = {
+		culture = tarascan
+		religion = nahuatl
+		size=183
+	}
+
+	bureaucrats = {
+		culture = tarascan
+		religion = nahuatl
+		size=14
+	}
+
+	officers = {
+		culture = tarascan
+		religion = nahuatl
+		size=22
+	}
+
+	aristocrats = {
+		culture = tarascan
+		religion = nahuatl
+		size=236
+	}
+
+	farmers = {
+		culture = tarascan
+		religion = nahuatl
+		size=26240
+	}
+}
+#Mexico Region (720000)
+#ruled by Mexico 1836
+#Mexico City (508000/127000 POPS)
+2172 = {
+	soldiers = {
+		culture = nahua
+		religion = nahuatl
+		size=1271
+	}
+
+	artisans = {
+		culture = nahua
+		religion = nahuatl
+		size=5082
+	}
+
+	clergymen = {
+		culture = nahua
+		religion = nahuatl
+		size=826
+	}
+
+	bureaucrats = {
+		culture = nahua
+		religion = nahuatl
+		size=64
+	}
+
+	officers = {
+		culture = nahua
+		religion = nahuatl
+		size=102
+	}
+
+	aristocrats = {
+		culture = nahua
+		religion = nahuatl
+		size=1067
+	}
+
+	farmers = {
+		culture = nahua
+		religion = nahuatl
+		size=118638
+	}
+}
+#Toluca (212000/53000 POPS)
+2174 = {
+	soldiers = {
+		culture = nahua
+		religion = nahuatl
+		size=530
+	}
+
+	artisans = {
+		culture = nahua
+		religion = nahuatl
+		size=2120
+	}
+
+	clergymen = {
+		culture = nahua
+		religion = nahuatl
+		size=345
+	}
+
+	bureaucrats = {
+		culture = nahua
+		religion = nahuatl
+		size=27
+	}
+
+	officers = {
+		culture = nahua
+		religion = nahuatl
+		size=42
+	}
+
+	aristocrats = {
+		culture = nahua
+		religion = nahuatl
+		size=445
+	}
+
+	farmers = {
+		culture = nahua
+		religion = nahuatl
+		size=49491
+	}
+}
+#Puebla-Hidalgo Region (692000)
+#ruled by Mexico 1836
+#Tulancingo (188000/47000 POPS)
+2175 = {
+	soldiers = {
+		culture = nahua
+		religion = nahuatl
+		size=1033
+	}
+
+	artisans = {
+		culture = nahua
+		religion = nahuatl
+		size=1880
+	}
+
+	clergymen = {
+		culture = nahua
+		religion = nahuatl
+		size=306
+	}
+
+	bureaucrats = {
+		culture = nahua
+		religion = nahuatl
+		size=24
+	}
+
+	officers = {
+		culture = nahua
+		religion = nahuatl
+		size=38
+	}
+
+	aristocrats = {
+		culture = nahua
+		religion = nahuatl
+		size=395
+	}
+
+	farmers = {
+		culture = nahua
+		religion = nahuatl
+		size=43324
+	}
+}
+#Puebla (504000/126000 POPS)
+2176 = {
+	soldiers = {
+		culture = nahua
+		religion = nahuatl
+		size=1260
+	}
+
+	artisans = {
+		culture = nahua
+		religion = nahuatl
+		size=5040
+	}
+
+	clergymen = {
+		culture = nahua
+		religion = nahuatl
+		size=819
+	}
+
+	bureaucrats = {
+		culture = nahua
+		religion = nahuatl
+		size=63
+	}
+
+	officers = {
+		culture = nahua
+		religion = nahuatl
+		size=101
+	}
+
+	aristocrats = {
+		culture = nahua
+		religion = nahuatl
+		size=1058
+	}
+
+	farmers = {
+		culture = nahua
+		religion = nahuatl
+		size=117659
+	}
+}
+#Oaxaca Region (452000)
+#ruled by Mexico 1836
+#Oaxaca (352000 88000 POPS)
+2177 = {
+	soldiers = {
+		culture = zapotec
+		religion = nahuatl
+		size=1033
+	}
+
+	artisans = {
+		culture = zapotec
+		religion = nahuatl
+		size=3920
+	}
+
+	clergymen = {
+		culture = zapotec
+		religion = nahuatl
+		size=637
+	}
+
+	bureaucrats = {
+		culture = zapotec
+		religion = nahuatl
+		size=49
+	}
+
+	officers = {
+		culture = zapotec
+		religion = nahuatl
+		size=78
+	}
+
+	aristocrats = {
+		culture = zapotec
+		religion = nahuatl
+		size=823
+	}
+
+	farmers = {
+		culture = zapotec
+		religion = nahuatl
+		size=91460
+	}
+}
+#Collataro (100000/25000 POPS)
+2178 = {
+	soldiers = {
+		culture = zapotec
+		religion = nahuatl
+		size=251
+	}
+
+	artisans = {
+		culture = zapotec
+		religion = nahuatl
+		size=1005
+	}
+
+	clergymen = {
+		culture = zapotec
+		religion = nahuatl
+		size=163
+	}
+
+	bureaucrats = {
+		culture = zapotec
+		religion = nahuatl
+		size=13
+	}
+
+	officers = {
+		culture = zapotec
+		religion = nahuatl
+		size=20
+	}
+
+	aristocrats = {
+		culture = zapotec
+		religion = nahuatl
+		size=211
+	}
+
+	farmers = {
+		culture = zapotec
+		religion = nahuatl
+		size=23467
+	}
+}
+#Guerrero Region (246000)
+#ruled by Mexico 1836
+#Acapulco (156000/44000 POPS)
+2179 = {
+	soldiers = {
+		culture = zapotec
+		religion = nahuatl
+		size=1033
+	}
+
+	artisans = {
+		culture = zapotec
+		religion = nahuatl
+		size=1881
+	}
+
+	clergymen = {
+		culture = zapotec
+		religion = nahuatl
+		size=306
+	}
+
+	bureaucrats = {
+		culture = zapotec
+		religion = nahuatl
+		size=24
+	}
+
+	officers = {
+		culture = zapotec
+		religion = nahuatl
+		size=38
+	}
+
+	aristocrats = {
+		culture = zapotec
+		religion = nahuatl
+		size=395
+	}
+
+	farmers = {
+		culture = zapotec
+		religion = nahuatl
+		size=43348
+	}
+
+}
+#Chilpancingo (80000/20000 POPS)
+2180 = {
+	soldiers = {
+		culture = tarascan
+		religion = nahuatl
+		size=120
+	}
+
+	artisans = {
+		culture = tarascan
+		religion = nahuatl
+		size=480
+	}
+
+	clergymen = {
+		culture = tarascan
+		religion = nahuatl
+		size=78
+	}
+
+	bureaucrats = {
+		culture = tarascan
+		religion = nahuatl
+		size=6
+	}
+
+	officers = {
+		culture = tarascan
+		religion = nahuatl
+		size=10
+	}
+
+	aristocrats = {
+		culture = tarascan
+		religion = nahuatl
+		size=101
+	}
+
+	farmers = {
+		culture = tarascan
+		religion = nahuatl
+		size=11205
+	}
+
+	soldiers = {
+		culture = zapotec
+		religion = nahuatl
+		size=80
+	}
+
+	artisans = {
+		culture = zapotec
+		religion = nahuatl
+		size=320
+	}
+
+	clergymen = {
+		culture = zapotec
+		religion = nahuatl
+		size=52
+	}
+
+	bureaucrats = {
+		culture = zapotec
+		religion = nahuatl
+		size=4
+	}
+
+	officers = {
+		culture = zapotec
+		religion = nahuatl
+		size=6
+	}
+
+	aristocrats = {
+		culture = zapotec
+		religion = nahuatl
+		size=67
+	}
+
+	farmers = {
+		culture = zapotec
+		religion = nahuatl
+		size=7471
+	}
+}
+#Chiapas Region (124000)
+#ruled by Mexico 1836
+#Tuxtla (84000/21000 POPS)
+2181 = {
+	soldiers = {
+		culture = mayan
+		religion = mayan
+		size=210
+	}
+
+	artisans = {
+		culture = mayan
+		religion = mayan
+		size=840
+	}
+
+	clergymen = {
+		culture = mayan
+		religion = mayan
+		size=137
+	}
+
+	bureaucrats = {
+		culture = mayan
+		religion = mayan
+		size=11
+	}
+
+	officers = {
+		culture = mayan
+		religion = mayan
+		size=17
+	}
+
+	aristocrats = {
+		culture = mayan
+		religion = mayan
+		size=176
+	}
+
+	farmers = {
+		culture = mayan
+		religion = mayan
+		size=19609
+	}
+}
+#Tapachula (40000/10000 POPS)
+2182 = {
+	soldiers = {
+		culture = mayan
+		religion = mayan
+		size=60
+	}
+
+	artisans = {
+		culture = mayan
+		religion = mayan
+		size=240
+	}
+
+	clergymen = {
+		culture = mayan
+		religion = mayan
+		size=39
+	}
+
+	bureaucrats = {
+		culture = mayan
+		religion = mayan
+		size=3
+	}
+
+	officers = {
+		culture = mayan
+		religion = mayan
+		size=5
+	}
+
+	aristocrats = {
+		culture = mayan
+		religion = mayan
+		size=50
+	}
+
+	farmers = {
+		culture = mayan
+		religion = mayan
+		size=5603
+	}
+
+	soldiers = {
+		culture = zapotec
+		religion = nahuatl
+		size=40
+	}
+
+	artisans = {
+		culture = zapotec
+		religion = nahuatl
+		size=160
+	}
+
+	clergymen = {
+		culture = zapotec
+		religion = nahuatl
+		size=26
+	}
+
+	bureaucrats = {
+		culture = zapotec
+		religion = nahuatl
+		size=2
+	}
+
+	officers = {
+		culture = zapotec
+		religion = nahuatl
+		size=3
+	}
+
+	aristocrats = {
+		culture = zapotec
+		religion = nahuatl
+		size=34
+	}
+
+	farmers = {
+		culture = zapotec
+		religion = nahuatl
+		size=3735
+	}
+}
+#Yucatan Region (440000)
+#ruled by Mexico 1836
+#Merida (240000/60000 POPS)
+2183 = {
+	soldiers = {
+		culture = mayan
+		religion = mayan
+		size=1033
+	}
+
+	artisans = {
+		culture = mayan
+		religion = mayan
+		size=2400
+	}
+
+	clergymen = {
+		culture = mayan
+		religion = mayan
+		size=390
+	}
+
+	bureaucrats = {
+		culture = mayan
+		religion = mayan
+		size=30
+	}
+
+	officers = {
+		culture = mayan
+		religion = mayan
+		size=48
+	}
+
+	aristocrats = {
+		culture = mayan
+		religion = mayan
+		size=504
+	}
+
+	farmers = {
+		culture = mayan
+		religion = mayan
+		size=55595
+	}
+}
+#Camnpeche (108000/27000 POPS)
+2184 = {
+	soldiers = {
+		culture = mayan
+		religion = mayan
+		size=270
+	}
+
+	artisans = {
+		culture = mayan
+		religion = mayan
+		size=1080
+	}
+
+	clergymen = {
+		culture = mayan
+		religion = mayan
+		size=176
+	}
+
+	bureaucrats = {
+		culture = mayan
+		religion = mayan
+		size=14
+	}
+
+	officers = {
+		culture = mayan
+		religion = mayan
+		size=22
+	}
+
+	aristocrats = {
+		culture = mayan
+		religion = mayan
+		size=227
+	}
+
+	farmers = {
+		culture = mayan
+		religion = mayan
+		size=25211
+	}
+}
+#Bacalar (92000/23000 POPS)
+2185 = {
+	soldiers = {
+		culture = mayan
+		religion = mayan
+		size=1033
+	}
+
+	artisans = {
+		culture = mayan
+		religion = mayan
+		size=954
+	}
+
+	clergymen = {
+		culture = mayan
+		religion = mayan
+		size=155
+	}
+
+	bureaucrats = {
+		culture = mayan
+		religion = mayan
+		size=12
+	}
+
+	officers = {
+		culture = mayan
+		religion = mayan
+		size=19
+	}
+
+	aristocrats = {
+		culture = mayan
+		religion = mayan
+		size=200
+	}
+
+	farmers = {
+		culture = mayan
+		religion = mayan
+		size=21487
+	}
+
+}

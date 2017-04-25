@@ -1,0 +1,12 @@
+owner = ROM
+controller = ROM
+add_core = ROM
+
+points = 2
+crude_oil = 36.00
+strategic_resource = oil_refinery
+industry = 3
+anti_air = 3
+infra = 8
+manpower = 1.00
+leadership = 0.10

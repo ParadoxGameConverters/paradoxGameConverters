@@ -1,0 +1,27 @@
+owner = CAN
+controller = CAN
+add_core = CAN
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8
+
+infra = 8

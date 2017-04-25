@@ -1,0 +1,9 @@
+owner = JAP
+controller = JAP
+add_core = JAP
+add_core = PRK
+energy = 1.00
+industry = 1
+infra = 6
+manpower = 1.00
+leadership = 0.20

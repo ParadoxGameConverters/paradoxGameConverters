@@ -22,7 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Pop.h"
-#include "../Log.h"
+#include "Log.h"
 
 
 
@@ -32,6 +32,16 @@ V2Pop::V2Pop(string _type, int _size, string _culture, string _religion)
 	size						= _size;
 	culture					= _culture;
 	religion					= _religion;
+	supportedRegiments	= 0;
+}
+
+
+V2Pop::V2Pop(Object* popObj)
+{
+	type = popObj->getKey();
+	size = stoi(popObj->getLeaf("size"));
+	culture = popObj->getLeaf("culture");
+	religion = popObj->getLeaf("religion");
 	supportedRegiments	= 0;
 }
 

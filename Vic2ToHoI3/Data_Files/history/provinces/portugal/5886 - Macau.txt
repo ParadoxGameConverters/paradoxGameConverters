@@ -1,0 +1,10 @@
+owner = POR controller = POR
+
+add_core = POR 
+add_core = CHI
+add_core = CHC
+add_core = CGX
+points = 1
+infra = 5
+air_base = 1
+naval_base = 3

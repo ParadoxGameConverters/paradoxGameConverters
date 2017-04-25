@@ -1,0 +1,6 @@
+owner = CAN
+controller = CAN
+add_core = CAN
+energy = 1.00
+industry = 1
+infra = 6

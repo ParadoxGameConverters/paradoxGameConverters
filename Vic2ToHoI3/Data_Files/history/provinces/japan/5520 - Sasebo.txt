@@ -1,0 +1,12 @@
+owner = JAP
+controller = JAP
+add_core = JAP
+
+energy = 58.00
+rare_materials = 9.00
+metal = 1.00
+industry = 3
+anti_air = 2
+naval_base = 10
+
+infra = 8

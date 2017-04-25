@@ -1,0 +1,34 @@
+owner = FRA
+controller = FRA
+add_core = FRA
+add_core = IDC
+add_core = SIA
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+
+infra = 4
+1940.6.22 = {
+	owner = VIC
+	controller = VIC
+	add_core = VIC
+}
+1941.6.22 = {
+	owner = JAP
+	controller = JAP
+}
+1941.7.1 = {
+	owner = JAP
+	controller = JAP
+}
+1944.12.01 = {
+	controller = USA
+}

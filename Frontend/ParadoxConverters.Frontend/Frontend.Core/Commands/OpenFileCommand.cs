@@ -1,17 +1,16 @@
-﻿using Caliburn.Micro;
+﻿using System.IO;
+using Caliburn.Micro;
 using Frontend.Core.Logging;
 using Frontend.Core.Model.Interfaces;
 using Frontend.Core.Model.Paths.Interfaces;
 using Microsoft.Win32;
-using System;
-using System.IO;
 
 namespace Frontend.Core.Commands
 {
     public class OpenFileCommand : CommandBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="OpenFileCommand"/> class.
+        ///     Initializes a new instance of the <see cref="OpenFileCommand" /> class.
         /// </summary>
         /// <param name="eventAggregator"></param>
         /// <param name="options">The options.</param>
@@ -21,7 +20,7 @@ namespace Frontend.Core.Commands
         }
 
         /// <summary>
-        /// Called when [execute].
+        ///     Called when [execute].
         /// </summary>
         /// <param name="parameter">The parameter.</param>
         protected override void OnExecute(object parameter)
@@ -33,10 +32,11 @@ namespace Frontend.Core.Commands
                 return;
             }
 
-            OpenFileDialog dialog = new OpenFileDialog();
+            var dialog = new OpenFileDialog();
 
-            dialog.Filter = String.Format("{0} (*{1}) | *{1}", requiredFile.FriendlyName, requiredFile.Extension); ;
-            
+            dialog.Filter = string.Format("{0} (*{1}) | *{1}", requiredFile.FriendlyName, requiredFile.Extension);
+            ;
+
             //NOTE: The dialog doesn't handle InitialDirectories that contains file names. So, if a predefined filename is specified (and included in the DefaultValue property)
             // we need to strip it away for the purpose of setting the dialog.InitialDirectory property. 
             string pathMinusFileName;
@@ -44,7 +44,7 @@ namespace Frontend.Core.Commands
             if (!string.IsNullOrEmpty(requiredFile.PredefinedFileName))
             {
                 dialog.Filter = requiredFile.PredefinedFileName + " | " + requiredFile.PredefinedFileName;
-                
+
                 pathMinusFileName = Path.GetDirectoryName(requiredFile.DefaultValue);
             }
             else
@@ -53,13 +53,14 @@ namespace Frontend.Core.Commands
             }
 
             dialog.InitialDirectory = pathMinusFileName;
-            Nullable<bool> result = dialog.ShowDialog();
+            var result = dialog.ShowDialog();
 
             if (result == true)
             {
                 requiredFile.SelectedValue = dialog.FileName;
-                this.EventAggregator.PublishOnUIThread(
-                    new LogEntry("Found " + requiredFile.FriendlyName + " at ", LogEntrySeverity.Info, LogEntrySource.UI, requiredFile.SelectedValue));
+                EventAggregator.PublishOnUIThread(
+                    new LogEntry("Found " + requiredFile.FriendlyName + " at ", LogEntrySeverity.Info, LogEntrySource.UI,
+                        requiredFile.SelectedValue));
             }
         }
     }
