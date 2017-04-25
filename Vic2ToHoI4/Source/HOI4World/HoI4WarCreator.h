@@ -44,10 +44,9 @@ class HoI4WarCreator
 		void addTargetsToWorldTargetMap(HoI4Country* country);
 		map<double, HoI4Country*> getDistancesToGreatPowers(HoI4Country* country);
 		double calculateWorldStrength(ofstream& AILog);
-		void generateTotalitarianWars(ofstream& AILog, vector<HoI4Country*>& leaderCountries, set<HoI4Faction*>& factionsAtWar);
+		void generateMajorWars(ofstream& AILog, set<HoI4Faction*>& factionsAtWar);
 		double calculatePercentOfWorldAtWar(ofstream& AILog, const set<HoI4Faction*>& factionsAtWar, double worldStrength);
-		void generateDemocracyWars(ofstream& AILog, set<HoI4Faction*>& factionsAtWar);
-		void generateAdditionalWars(ofstream& AILog, vector<HoI4Country*>& leaderCountries, set<HoI4Faction*>& factionsAtWar, double worldStrength);
+		void generateAdditionalWars(ofstream& AILog, set<HoI4Faction*>& factionsAtWar, double worldStrength);
 
 		vector<HoI4Faction*> fascistWarMaker(HoI4Country* country, ofstream& AILog);
 		vector<HoI4Faction*> communistWarCreator(HoI4Country* country, ofstream& AILog);
@@ -56,7 +55,7 @@ class HoI4WarCreator
 		vector<HoI4Faction*> neighborWarCreator(HoI4Country* country, ofstream& AILog);
 
 		vector<HoI4Faction*> radicalWarCreator(HoI4Country* country);
-		vector<HoI4Country*> calculateEvilness(vector<HoI4Country*> LeaderCountries);
+		vector<HoI4Country*> findEvilCountries();
 
 		vector<HoI4Country*> findWeakNeighbors(const HoI4Country* country);
 		map<string, HoI4Country*> findCloseNeighbors(const HoI4Country* country);
