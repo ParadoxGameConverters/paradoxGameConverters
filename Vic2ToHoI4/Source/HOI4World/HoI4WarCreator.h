@@ -47,6 +47,7 @@ class HoI4WarCreator
 		void generateMajorWars(ofstream& AILog, set<HoI4Faction*>& factionsAtWar);
 		double calculatePercentOfWorldAtWar(ofstream& AILog, const set<HoI4Faction*>& factionsAtWar, double worldStrength);
 		void generateAdditionalWars(ofstream& AILog, set<HoI4Faction*>& factionsAtWar, double worldStrength);
+		bool isImportantCountry(HoI4Country* country);
 
 		vector<HoI4Faction*> fascistWarMaker(HoI4Country* country, ofstream& AILog);
 		vector<HoI4Faction*> communistWarCreator(HoI4Country* country, ofstream& AILog);

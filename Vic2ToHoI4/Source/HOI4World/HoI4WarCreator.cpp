@@ -142,38 +142,11 @@ double HoI4WarCreator::calculateWorldStrength(ofstream& AILog)
 
 void HoI4WarCreator::generateMajorWars(ofstream& AILog, set<HoI4Faction*>& factionsAtWar)
 {
-	AILog << "Creating Fascist/Communist/Absolutist/Radical wars\n";
-	for (auto greatPower: theWorld->getGreatPowers())
-	{
-		vector<HoI4Faction*> newFactionsAtWar;
-
-		if (greatPower->getGovernmentIdeology() == "fascism")
-		{
-			newFactionsAtWar = fascistWarMaker(greatPower, AILog);
-		}
-		else if (greatPower->getGovernmentIdeology() == "communism")
-		{
-			newFactionsAtWar = communistWarCreator(greatPower, AILog);
-		}
-		else if (greatPower->getGovernmentIdeology() == "absolutist")
-		{
-			newFactionsAtWar = absolutistWarCreator(greatPower);
-		}
-		else if (greatPower->getGovernmentIdeology() == "radical")
-		{
-			newFactionsAtWar = radicalWarCreator(greatPower);
-		}
-		else if (greatPower->getGovernmentIdeology() == "democratic")
-		{
-			newFactionsAtWar = democracyWarCreator(greatPower);
-		}
-
-		factionsAtWar.insert(newFactionsAtWar.begin(), newFactionsAtWar.end());
-	}
+	AILog << "Creating major wars\n";
 
 	for (auto country: theWorld->getCountries())
 	{
-		if (country.second->isHuman() && !country.second->isGreatPower())
+		if (isImportantCountry(country.second))
 		{
 			vector<HoI4Faction*> newFactionsAtWar;
 
@@ -225,7 +198,7 @@ void HoI4WarCreator::generateAdditionalWars(ofstream& AILog, set<HoI4Faction*>& 
 
 	for (int i = countriesEvilnessSorted.size() - 1; i >= 0; i--)
 	{
-		if (!countriesEvilnessSorted[i]->isGreatPower() && !countriesEvilnessSorted[i]->isHuman())
+		if (!isImportantCountry(countriesEvilnessSorted[i]))
 		{
 			AILog << "Checking for war in " + countriesEvilnessSorted[i]->getSourceCountry()->getName("english") << "\n";
 			vector <HoI4Faction*> newCountriesatWar;
@@ -240,6 +213,15 @@ void HoI4WarCreator::generateAdditionalWars(ofstream& AILog, set<HoI4Faction*>& 
 			}
 		}
 	}
+}
+
+bool HoI4WarCreator::isImportantCountry(HoI4Country * country)
+{
+	if (country->isGreatPower() || country->isHuman())
+	{
+		return true;
+	}
+	return false;
 }
 
 
