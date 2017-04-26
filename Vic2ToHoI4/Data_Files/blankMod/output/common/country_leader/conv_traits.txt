@@ -12,12 +12,12 @@ leader_traits = {
 	neutrality_minister = {
 		random = no
 		# Un-boosts other ideologies
-		democracy_drift = -0.1
-		democratic_drift = -0.1
-		communism_drift = -0.1
-		fascism_drift = -0.1
-		radical_drift = -0.1
-		absolutist_drift = -0.1
+		democracy_drift = -0.02
+		democratic_drift = -0.02
+		communism_drift = -0.02
+		fascism_drift = -0.02
+		radical_drift = -0.02
+		absolutist_drift = -0.02
 		
 		ai_will_do = {
 			factor = 1
