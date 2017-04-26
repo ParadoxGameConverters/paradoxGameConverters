@@ -132,6 +132,53 @@ void HoI4Localisation::CreateCountryLocalisations(const string& sourceTag, const
 			}
 		}
 	}
+
+	auto plainLocalisation = V2Localisations::GetTextInEachLanguage(sourceTag);
+	for (auto nameInLanguage: plainLocalisation)
+	{
+		auto existingLanguage = countryLocalisations.find(nameInLanguage.first);
+		if (existingLanguage == countryLocalisations.end())
+		{
+			keyToLocalisationMap newLocalisations;
+			countryLocalisations[nameInLanguage.first] = newLocalisations;
+			existingLanguage = countryLocalisations.find(nameInLanguage.first);
+		}
+
+		string newKey = destTag + "_neutrality";
+		auto existingLocalisation = existingLanguage->second.find(newKey);
+		if (existingLocalisation == existingLanguage->second.end())
+		{
+			existingLanguage->second.insert(make_pair(newKey, nameInLanguage.second));
+			existingLanguage->second.insert(make_pair(newKey + "_DEF", nameInLanguage.second));
+		}
+	}
+	if (plainLocalisation.size() == 0)
+	{
+		LOG(LogLevel::Warning) << "Could not find plain localisation for " << sourceTag;
+	}
+
+	auto plainAdjectiveLocalisation = V2Localisations::GetTextInEachLanguage(sourceTag + "_ADJ");
+	for (auto nameInLanguage: plainAdjectiveLocalisation)
+	{
+		auto existingLanguage = countryLocalisations.find(nameInLanguage.first);
+		if (existingLanguage == countryLocalisations.end())
+		{
+			keyToLocalisationMap newLocalisations;
+			countryLocalisations[nameInLanguage.first] = newLocalisations;
+			existingLanguage = countryLocalisations.find(nameInLanguage.first);
+		}
+
+		string newKey = destTag +  + "_neutrality_ADJ";
+		auto existingLocalisation = existingLanguage->second.find(newKey);
+		if (existingLocalisation == existingLanguage->second.end())
+		{
+			existingLanguage->second.insert(make_pair(newKey, nameInLanguage.second));
+		}
+	}
+	if (plainAdjectiveLocalisation.size() == 0)
+	{
+		LOG(LogLevel::Warning) << "Could not find plain adjective localisation for " << sourceTag;
+	}
 }
 
 
