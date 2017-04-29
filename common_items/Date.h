@@ -50,6 +50,7 @@ struct date
 	friend ostream& operator<<(ostream&, const date&);
 	
 	float diffInYears(const date& _rhs) const;
+	void delayedByMonths(const int _months);
 
 	bool isSet() const;
 	string toString() const;
