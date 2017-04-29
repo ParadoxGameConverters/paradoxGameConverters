@@ -24,7 +24,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include <map>
 #include <string>
-#include <boost/date_time/gregorian/gregorian.hpp>
 #include "HoI4Country.h"
 using namespace std;
 
@@ -49,7 +48,6 @@ class HoI4WarCreator
 		double calculatePercentOfWorldAtWar(ofstream& AILog, const set<HoI4Faction*>& factionsAtWar, double worldStrength);
 		void generateAdditionalWars(ofstream& AILog, set<HoI4Faction*>& factionsAtWar, double worldStrength);
 		bool isImportantCountry(HoI4Country* country);
-		string delayedDate(string startDate, int delayDays);
 
 		vector<HoI4Faction*> fascistWarMaker(HoI4Country* country, ofstream& AILog);
 		vector<HoI4Faction*> communistWarCreator(HoI4Country* country, ofstream& AILog);

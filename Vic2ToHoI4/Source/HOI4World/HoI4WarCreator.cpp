@@ -36,7 +36,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 void HoI4WarCreator::generateWars(HoI4World* world)
 {
-	string testDate = delayedDate("1935.03.16", 1000);
 	theWorld = world;
 
 	ofstream AILog("AI-log.txt");
@@ -223,19 +222,6 @@ bool HoI4WarCreator::isImportantCountry(HoI4Country * country)
 		return true;
 	}
 	return false;
-}
-
-string HoI4WarCreator::delayedDate(string startDate, int delayDays)
-{
-	using namespace boost::gregorian;
-	boost::gregorian::date codedDate;
-	codedDate = from_string(startDate);
-	date_duration delayDuration(delayDays);
-	boost::gregorian::date resultDate = codedDate + delayDuration;
-	string resultString = to_iso_extended_string(resultDate);
-	resultString[4] = '.';
-	resultString[7] = '.';
-	return resultString;
 }
 
 vector<HoI4Country*> HoI4WarCreator::findEvilCountries()
@@ -1920,6 +1906,8 @@ vector<HoI4Faction*> HoI4WarCreator::neighborWarCreator(HoI4Country * country, o
 		}
 
 		set<string> Allies = country->getAllies();
+		date startDate = date("1937.01.01");
+		startDate.delayedByMonths(-0.25 * relations);
 		if (Allies.find(target->getTag()) == Allies.end())
 		{
 			countriesAtWar.push_back(findFaction(country));
@@ -1931,7 +1919,7 @@ vector<HoI4Faction*> HoI4WarCreator::neighborWarCreator(HoI4Country * country, o
 			newFocus->text = "War with " + target->getSourceCountry()->getName("english");//change to faction name later
 			newFocus->prerequisites.push_back("focus =  MilitaryBuildup" + country->getTag());
 			newFocus->available = "			has_war = no\n";
-			newFocus->available += "			date > " + delayedDate("1937.1.1", 1600 + 8 * relations);
+			newFocus->available += "			date > " + startDate.toString();
 			newFocus->xPos = 24;
 			newFocus->yPos = 0;
 			newFocus->cost = 10;
