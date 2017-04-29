@@ -225,6 +225,18 @@ float date::diffInYears(const date& _rhs) const
 	return years;
 }
 
+void date::delayedByMonths(const int _months)
+{
+	year += _months / 12;
+	month += _months % 12;
+	if (month > 12)
+	{
+		year++;
+		month -= 12;
+	}
+	return;
+}
+
 bool date::isSet() const
 {
 	const date default_date;	// an instance with the default date
