@@ -1917,7 +1917,6 @@ vector<HoI4Faction*> HoI4WarCreator::neighborWarCreator(HoI4Country * country, o
 			newFocus->id = "War" + target->getTag() + country->getTag();
 			newFocus->icon = "GFX_goal_generic_major_war";
 			newFocus->text = "War with " + target->getSourceCountry()->getName("english");//change to faction name later
-			newFocus->prerequisites.push_back("focus =  MilitaryBuildup" + country->getTag());
 			newFocus->available = "			has_war = no\n";
 			newFocus->available += "			date > " + startDate.toString();
 			newFocus->xPos = 24;
@@ -2152,7 +2151,6 @@ vector<HoI4Faction*> HoI4WarCreator::addGreatPowerWars(HoI4Country* country, HoI
 			newFocus->id       = "War" + target->getTag() + country->getTag();
 			newFocus->icon     = "GFX_goal_generic_major_war";
 			newFocus->text     = "War with " + target->getSourceCountry()->getName("english");//change to faction name later
-			newFocus->prerequisites.push_back("focus =  MilitaryBuildup" + country->getTag());
 			newFocus->available = "			has_war = no\n";
 			newFocus->available += "			date > 1939.1.1";
 			newFocus->xPos     = 31 + numWarsWithGreatPowers * 2;
