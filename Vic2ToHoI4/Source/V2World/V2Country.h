@@ -73,6 +73,7 @@ public:
 	vector<V2Leader*> getLeaders() const { return leaders; }
 	double getRevanchism() const { return revanchism; }
 	double getWarExhaustion() const { return warExhaustion; }
+	double getBadBoy() const { return badboy; }
 	map<string, string> getAllReforms() const { return reformsArray; }
 	bool isGreatNation() const { return greatNation; }
 	map<int, V2Province*> getProvinces() const { return provinces; }
@@ -102,6 +103,7 @@ private:
 	void readInSpending(const Object* countryObj);
 	void readInRevanchism(const Object* countryObj);
 	void readInWarExhaustion(const Object* countryObj);
+	void readInBadBoy(const Object* countryObj);
 	void readInReforms(Object* countryObj);
 	void readInGovernment(const Object* countryObj);
 	void readInUpperHouse(const Object* countryObj);
@@ -143,6 +145,7 @@ private:
 
 	double revanchism;
 	double warExhaustion;
+	double badboy;
 
 	string government;
 	map<string, string> reformsArray;

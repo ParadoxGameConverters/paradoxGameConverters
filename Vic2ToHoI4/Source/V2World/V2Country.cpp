@@ -52,6 +52,7 @@ V2Country::V2Country(Object* countryObj)
 	readInSpending(countryObj);
 	readInRevanchism(countryObj);
 	readInWarExhaustion(countryObj);
+	readInBadBoy(countryObj);
 	readInReforms(countryObj);
 	readInGovernment(countryObj);
 	readInUpperHouse(countryObj);
@@ -250,6 +251,19 @@ void V2Country::readInWarExhaustion(const Object* countryObj)
 	else
 	{
 		warExhaustion = 0.0;
+	}
+}
+
+void V2Country::readInBadBoy(const Object* countryObj)
+{
+	vector<Object*> badBoyObjs = countryObj->getValue("badboy");
+	if (badBoyObjs.size() > 0)
+	{
+		badboy = stof(badBoyObjs[0]->getLeaf());
+	}
+	else
+	{
+		badboy = 0.0;
 	}
 }
 

@@ -60,7 +60,7 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	factionLeader = false;
 
 	nationalUnity = 70;
-
+	
 	training_laws = "minimal_training";
 	press_laws = "censored_press";
 	industrial_policy_laws = "consumer_product_orientation";
@@ -108,6 +108,9 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	//Civilized
 	civilized = srcCountry->isCivilized();
 
+	//threat
+	threat = _srcCountry->getBadBoy() / 10.0;
+	
 	// graphical culture type
 	auto cultureItr = cultureMap.find(srcCountry->getPrimaryCulture());
 	if (cultureItr != cultureMap.end())
@@ -1376,7 +1379,11 @@ void HoI4Country::outputHistory(const map<int, HoI4State*>& states, const vector
 	{
 		output << "set_research_slots = 4\n";
 	}
-
+	
+	if(threat!=0)
+	{
+		output<<"add_named_threat = { threat = "<<threat<<" name = badboy }\n";
+	}
 	output << "\n";
 	output << "oob = \"" << tag << "_OOB\"\n";
 	output << "\n";

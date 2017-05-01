@@ -1,0 +1,333 @@
+﻿###########################
+# New political Events
+###########################
+
+add_namespace = conv.political
+
+# Radicalism on the Rise
+country_event = {
+	id = conv.political.1
+	title = conv.political.1.t
+	desc = conv.political.1.d
+	picture = GFX_report_event_gathering_protests
+	
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_government = radical }
+	}
+	
+	# Seek government support
+	option = {
+		name = conv.political.1.a
+		custom_effect_tooltip = conv.political.1.a.tt
+		clr_country_flag = radical_popular_movement
+		set_country_flag = radical_political_movement
+	}
+
+	# Seek popular support
+	option = {
+		name = conv.political.1.b
+		custom_effect_tooltip = conv.political.1.b.tt
+		clr_country_flag = radical_political_movement
+		clr_country_flag = radical_government_support
+		set_country_flag = radical_popular_movement
+	}
+}
+
+# Radical Sympathies in Government
+country_event = {
+	id = conv.political.2
+	title = conv.political.2.t
+	desc = conv.political.2.d
+	picture = GFX_report_event_gathering_protests
+
+	trigger = {
+		has_idea_with_trait = radical_minister
+		NOT = { has_government = radical }
+		NOT = { has_country_flag = radical_government_support }
+	}
+	
+	mean_time_to_happen = {
+		days = 500
+		modifier = {
+			factor = 0.5
+			has_country_flag = radical_political_movement
+		}
+	}
+	
+	option = {
+		name = conv.political.2.a
+		custom_effect_tooltip = conv.political.2.a.tt
+		clr_country_flag = radical_political_movement
+		set_country_flag = radical_government_support
+	}
+}
+
+# Radicals Execute Coup
+country_event = {
+	id = conv.political.3
+	title = conv.political.3.t
+	desc = conv.political.3.d
+	picture = GFX_report_event_gathering_protest
+	
+	trigger = {
+		has_idea_with_trait = radical_minister
+		NOT = { has_government = radical }
+		has_country_flag = radical_government_support
+		radical > 0.4
+		is_major = no
+		is_puppet = no
+	}
+
+	mean_time_to_happen = {
+		days = 100
+		modifier = {
+			factor = 0.5
+			radical > 0.5
+		}
+	}
+	
+	option = {
+		name = conv.political.3.a
+		set_politics = {
+			ruling_party = radical
+			elections_allowed = no
+		}
+		add_timed_idea = { idea = reign_of_terror days = 730 }
+	}
+}
+
+# The Radical Revolution
+country_event = {
+	id = conv.political.4
+	title = conv.political.4.t
+	desc = conv.political.4.d
+	picture = GFX_report_event_gathering_protest
+	
+	trigger = {
+		has_idea_with_trait = radical_minister
+		NOT = { has_government = radical }
+		radical > 0.4
+	}
+
+	mean_time_to_happen = {
+		days = 365
+		modifier = {
+			factor = 0.75
+			has_country_flag = radical_popular_movement
+		}
+	}
+	
+	option = {
+		name = conv.political.4.a
+		if = {
+			limit = {
+				has_government = democratic
+			}
+			start_civil_war = {
+				ruling_party = radical
+				ideology = democratic
+				size = 0.6
+			}
+		}
+		if = {
+			limit = {
+				has_government = fascism
+			}
+			start_civil_war = {
+				ruling_party = radical
+				ideology = fascism
+				size = 0.6
+			}
+		}
+		if = {
+			limit = {
+				has_government = neutrality
+			}
+			start_civil_war = {
+				ruling_party = radical
+				ideology = neutrality
+				size = 0.6
+			}
+		}
+		if = {
+			limit = {
+				has_government = absolutist
+			}
+			start_civil_war = {
+				ruling_party = radical
+				ideology = absolutist
+				size = 0.6
+			}
+		}
+		add_timed_idea = { idea = reign_of_terror days = 730 }
+	}
+	option = {
+		name = conv.political.4.b
+	}
+}
+
+# Absolutism on the Rise
+country_event = {
+	id = conv.political.11
+	title = conv.political.11.t
+	desc = conv.political.11.d
+	picture = GFX_report_event_generic_factory
+	
+	is_triggered_only = yes
+
+	trigger = {
+		NOT = { has_government = absolutist }
+	}
+	
+	# Seek government support
+	option = {
+		name = conv.political.11.a
+		custom_effect_tooltip = conv.political.11.a.tt
+		clr_country_flag = absolutist_popular_movement
+		set_country_flag = absolutist_political_movement
+	}
+
+	# Seek popular support
+	option = {
+		name = conv.political.11.b
+		custom_effect_tooltip = conv.political.11.b.tt
+		clr_country_flag = absolutist_political_movement
+		clr_country_flag = absolutist_government_support
+		set_country_flag = absolutist_popular_movement
+	}
+}
+
+# Absolutistist Sympathies in Government
+country_event = {
+	id = conv.political.12
+	title = conv.political.12.t
+	desc = conv.political.12.d
+	picture = GFX_report_event_gathering_protests
+
+	trigger = {
+		has_idea_with_trait = absolutist_minister
+		NOT = { has_government = absolutist }
+		NOT = { has_country_flag = absolutist_government_support }
+	}
+	
+	mean_time_to_happen = {
+		days = 500
+		modifier = {
+			factor = 0.5
+			has_country_flag = absolutist_political_movement
+		}
+	}
+	
+	option = {
+		name = conv.political.12.a
+		custom_effect_tooltip = conv.political.12.a.tt
+		clr_country_flag = absolutist_political_movement
+		set_country_flag = absolutist_government_support
+	}
+}
+
+# Absolutistists Execute Coup
+country_event = {
+	id = conv.political.13
+	title = conv.political.13.t
+	desc = conv.political.13.d
+	picture = GFX_report_event_generic_factory
+	
+	trigger = {
+		has_idea_with_trait = absolutist_minister
+		NOT = { has_government = absolutist }
+		has_country_flag = absolutist_government_support
+		absolutist > 0.4
+		is_major = no
+		is_puppet = no
+	}
+
+	mean_time_to_happen = {
+		days = 100
+		modifier = {
+			factor = 0.5
+			absolutist > 0.5
+		}
+	}
+	
+	option = {
+		name = conv.political.3.a
+		set_politics = {
+			ruling_party = absolutist
+			elections_allowed = no
+		}
+		add_timed_idea = { idea = reign_of_terror days = 730 }
+	}
+}
+
+# The Monarchist Revolution
+country_event = {
+	id = conv.political.14
+	title = conv.political.14.t
+	desc = conv.political.14.d
+	picture = GFX_report_event_generic_factory
+	
+	trigger = {
+		has_idea_with_trait = absolutist_minister
+		NOT = { has_government = absolutist }
+		absolutist > 0.4
+	}
+
+	mean_time_to_happen = {
+		days = 365
+		modifier = {
+			factor = 0.75
+			has_country_flag = absolutist_popular_movement
+		}
+	}
+	
+	option = {
+		name = conv.political.14.a
+		if = {
+			limit = {
+				has_government = democratic
+			}
+			start_civil_war = {
+				ruling_party = absolutist
+				ideology = democratic
+				size = 0.6
+			}
+		}
+		if = {
+			limit = {
+				has_government = fascism
+			}
+			start_civil_war = {
+				ruling_party = absolutist
+				ideology = fascism
+				size = 0.6
+			}
+		}
+		if = {
+			limit = {
+				has_government = neutrality
+			}
+			start_civil_war = {
+				ruling_party = absolutist
+				ideology = neutrality
+				size = 0.6
+			}
+		}
+		if = {
+			limit = {
+				has_government = radical
+			}
+			start_civil_war = {
+				ruling_party = absolutist
+				ideology = radical
+				size = 0.6
+			}
+		}
+		add_timed_idea = { idea = reign_of_terror days = 730 }
+	}
+	option = {
+		name = conv.political.14.b
+	}
+}

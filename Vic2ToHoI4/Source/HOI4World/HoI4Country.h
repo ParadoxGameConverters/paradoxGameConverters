@@ -173,6 +173,7 @@ class HoI4Country
 		double militaryFactories;
 		double civilianFactories;
 		double dockyards;
+		double threat;
 
 		// laws
 		string				civil_law;

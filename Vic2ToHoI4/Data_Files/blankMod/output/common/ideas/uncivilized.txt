@@ -11,6 +11,8 @@ ideas = {
 			
 			removal_cost = -1
 			
+			picture = idea_generic_agrarian_society
+			
 			research_bonus = {
 				armor = -4.00
 				air_equipment = -4.00
