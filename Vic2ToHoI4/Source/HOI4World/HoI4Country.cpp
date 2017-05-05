@@ -634,26 +634,28 @@ void HoI4Country::convertAirforce()
 		}
 	}
 
-	if (airplanes > 0)
+	auto techItr = technologies.find("early_fighter");
+	if (techItr != technologies.end())
 	{
-		auto techItr = technologies.find("early_fighter");
-		if (techItr != technologies.end())
+		int amount = Configuration::getForceMultiplier() * airplanes;
+		if (amount == 0)
 		{
-			HoI4Airplane newPlane(string("fighter_equipment_0"), tag, Configuration::getForceMultiplier() * airplanes);
-			planes.push_back(newPlane);
+			amount = 1;
 		}
-		techItr = technologies.find("early_bomber");
-		if (techItr != technologies.end())
-		{
-			HoI4Airplane newPlane(string("tac_bomber_equipment_0"), tag, Configuration::getForceMultiplier() * airplanes);
-			planes.push_back(newPlane);
-		}
-		techItr = technologies.find("CAS1");
-		if (techItr != technologies.end())
-		{
-			HoI4Airplane newPlane(string("CAS_equipment_1"), tag, Configuration::getForceMultiplier() * airplanes);
-			planes.push_back(newPlane);
-		}
+		HoI4Airplane newPlane(string("fighter_equipment_0"), tag, amount);
+		planes.push_back(newPlane);
+	}
+	techItr = technologies.find("early_bomber");
+	if (techItr != technologies.end())
+	{
+		HoI4Airplane newPlane(string("tac_bomber_equipment_0"), tag, Configuration::getForceMultiplier() * airplanes);
+		planes.push_back(newPlane);
+	}
+	techItr = technologies.find("CAS1");
+	if (techItr != technologies.end())
+	{
+		HoI4Airplane newPlane(string("CAS_equipment_1"), tag, Configuration::getForceMultiplier() * airplanes);
+		planes.push_back(newPlane);
 	}
 }
 
