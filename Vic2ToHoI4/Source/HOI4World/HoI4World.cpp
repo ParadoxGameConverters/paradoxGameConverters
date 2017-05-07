@@ -84,6 +84,17 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 }
 
 
+HoI4Country * HoI4World::tagToCountry(string countryTag)
+{
+	auto country = countries.find(countryTag);
+	if (country == countries.end())
+	{
+		return nullptr;
+	}
+
+	return country->second;
+}
+
 void HoI4World::convertNavalBases()
 {
 	for (auto state: states->getStates())
@@ -1016,13 +1027,11 @@ void HoI4World::createFactions()
 
 		for (auto allyTag: alliesAndPuppets)
 		{
-			auto ally = countries.find(allyTag);
-			if (ally == countries.end())
+			HoI4Country* allycountry = tagToCountry(allyTag);
+			if (!allycountry)
 			{
 				continue;
 			}
-
-			HoI4Country* allycountry = ally->second;
 			string allygovernment = allycountry->getGovernmentIdeology();
 			string sphereLeader = returnSphereLeader(allycountry);
 
@@ -1032,6 +1041,19 @@ void HoI4World::createFactions()
 				factionMembers.push_back(allycountry);
 
 				factionMilStrength += allycountry->getStrengthOverTime(1.0);
+				//also add the allies' puppets to the faction
+				for (auto puppetTag : allycountry->getPuppets())
+				{
+					HoI4Country* puppetcountry = tagToCountry(puppetTag);
+					if (!puppetcountry)
+					{
+						continue;
+					}
+					logFactionMember(factionsLog, puppetcountry);
+					factionMembers.push_back(puppetcountry);
+
+					factionMilStrength += puppetcountry->getStrengthOverTime(1.0);
+				}
 			}
 		}
 
