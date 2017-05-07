@@ -693,6 +693,12 @@ void HoI4World::convertAgreements()
 			HoI4Country1->second->editAllies().insert(HoI4Tag2);
 			HoI4Country2->second->editAllies().insert(HoI4Tag1);
 		}
+
+		if (agreement->type == "vassal")
+		{
+			HoI4Country1->second->editPuppets().insert(HoI4Tag2);
+			HoI4Country2->second->setPuppetmaster(HoI4Tag1);
+		}
 	}
 }
 
@@ -1002,7 +1008,13 @@ void HoI4World::createFactions()
 		logFactionMember(factionsLog, leader);
 		double factionMilStrength = leader->getStrengthOverTime(3.0);
 
-		for (auto allyTag: leader->getAllies())
+		std::set<std::string> alliesAndPuppets = leader->getAllies();
+		for (auto puppetTag : leader->getPuppets())
+		{
+			alliesAndPuppets.insert(puppetTag);
+		}
+
+		for (auto allyTag: alliesAndPuppets)
 		{
 			auto ally = countries.find(allyTag);
 			if (ally == countries.end())

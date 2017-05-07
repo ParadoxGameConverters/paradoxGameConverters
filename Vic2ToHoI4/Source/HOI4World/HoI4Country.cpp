@@ -71,6 +71,8 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 
 	relations.clear();
 	allies.clear();
+	puppets.clear();
+	puppetMaster = "",
 	practicals.clear();
 	ministers.clear();
 	rulingMinisters.clear();
@@ -1399,6 +1401,47 @@ void HoI4Country::outputHistory(const map<int, HoI4State*>& states, const vector
 	output << "}\n";
 
 	output << "set_convoys = " << convoys << '\n';
+	output << "\n";
+
+	if (puppets.size() > 0)
+	{
+		output << "# DIPLOMACY\n";
+		output << "if = {\n";
+		output << "    limit = {\n";
+		output << "        has_dlc = \"Together for Victory\"\n";
+		output << "    }\n";
+		for (auto puppet : puppets)
+		{
+			output << "    set_autonomy = {\n";
+			output << "        target = " << puppet << "\n";
+			output << "        autonomous_state = autonomy_dominion\n";
+			output << "        freedom_level = 0.4\n";
+			output << "    }\n";
+		}
+		output << "    else = {\n";
+		for (auto puppet : puppets)
+		{
+			output << "        puppet = " << puppet << "\n";
+		}
+		output << "    }\n";
+		output << "}\n";
+		output << "\n";
+
+		output << "if = {\n";
+		output << "    limit = {has_dlc = \"Together for Victory\" }\n";
+		output << "\n";
+		output << "    add_to_tech_sharing_group = " << tag <<"_research\n";
+		output << "}\n\n";
+	}
+
+	if (puppetMaster != "")
+	{
+		output << "if = {\n";
+		output << "    limit = {has_dlc = \"Together for Victory\" }\n";
+		output << "\n";
+		output << "    add_to_tech_sharing_group = " << puppetMaster << "_research\n";
+		output << "}\n\n";
+	}
 
 	output << "set_politics = {\n";
 	output << "\n";
