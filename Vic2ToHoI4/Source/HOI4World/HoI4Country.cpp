@@ -446,7 +446,10 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, portraitMapping&
 	}
 	for (unsigned int i = 0; i <= totalLand; i++)
 	{
-		HoI4Leader newLeader(namesMapper::getMaleNames(srcCountry->getPrimaryCulture()), namesMapper::getSurnames(srcCountry->getPrimaryCulture()), tag, "land", leaderTraits, portraitMap[graphicalCulture]);
+		auto portraits = portraitMap[graphicalCulture];
+		auto maleNames = namesMapper::getMaleNames(srcCountry->getPrimaryCulture());
+		auto surnames = namesMapper::getSurnames(srcCountry->getPrimaryCulture());
+		HoI4Leader newLeader(maleNames, surnames, tag, "land", leaderTraits, portraits);
 		leaders.push_back(newLeader);
 	}
 
@@ -473,7 +476,10 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, portraitMapping&
 	}
 	for (unsigned int i = 0; i <= totalSea; i++)
 	{
-		HoI4Leader newLeader(namesMapper::getMaleNames(srcCountry->getPrimaryCulture()), namesMapper::getSurnames(srcCountry->getPrimaryCulture()), tag, "sea", leaderTraits, portraitMap[graphicalCulture]);
+		auto portraits = portraitMap[graphicalCulture];
+		auto maleNames = namesMapper::getMaleNames(srcCountry->getPrimaryCulture());
+		auto surnames = namesMapper::getSurnames(srcCountry->getPrimaryCulture());
+		HoI4Leader newLeader(maleNames, surnames, tag, "sea", leaderTraits, portraits);
 		leaders.push_back(newLeader);
 	}
 
@@ -500,7 +506,10 @@ void HoI4Country::generateLeaders(leaderTraitsMap leaderTraits, portraitMapping&
 	}
 	for (unsigned int i = 0; i <= totalAir; i++)
 	{
-		HoI4Leader newLeader(namesMapper::getMaleNames(srcCountry->getPrimaryCulture()), namesMapper::getSurnames(srcCountry->getPrimaryCulture()), tag, "air", leaderTraits, portraitMap[graphicalCulture]);
+		auto portraits = portraitMap[graphicalCulture];
+		auto maleNames = namesMapper::getMaleNames(srcCountry->getPrimaryCulture());
+		auto surnames = namesMapper::getSurnames(srcCountry->getPrimaryCulture());
+		HoI4Leader newLeader(maleNames, surnames, tag, "air", leaderTraits, portraits);
 		leaders.push_back(newLeader);
 	}
 }

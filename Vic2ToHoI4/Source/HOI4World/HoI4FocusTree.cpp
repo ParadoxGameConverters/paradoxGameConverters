@@ -58,7 +58,8 @@ void HoI4FocusTree::addGenericFocusTree()
 		focuses.push_back(newFocus);
 	}*/
 
-	if (Configuration::getHOI4Version() >= HOI4Version("1.3.0"))
+	HOI4Version version1_3("1.3.0");
+	if (Configuration::getHOI4Version() >= version1_3)
 	{
 		addVersion1_3GenericFocusTree();
 	}

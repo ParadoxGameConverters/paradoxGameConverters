@@ -704,7 +704,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 	map<string, HoI4Country*> AllNeighbors = getNeighbors(Leader);
 	map<string, HoI4Country*> CloseNeighbors;
 	//gets neighbors that are actually close to you
-	for each (auto neigh in AllNeighbors)
+	for (auto neigh: AllNeighbors)
 	{
 		if (neigh.second->getCapitalProv() != 0)
 		{
@@ -1124,7 +1124,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 	int maxGCAlliance = 0;
 	if (WorldTargetMap.find(Leader) != WorldTargetMap.end())
 	{
-		for each (HoI4Country* country in WorldTargetMap.find(Leader)->second)
+		for (HoI4Country* country: WorldTargetMap.find(Leader)->second)
 		{
 			HoI4Faction* attackingFaction = findFaction(country);
 			if (find(FactionsAttackingMe.begin(), FactionsAttackingMe.end(), attackingFaction) == FactionsAttackingMe.end())
@@ -1133,7 +1133,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 			}
 		}
 		double FactionsAttackingMeStrength = 0;
-		for each (HoI4Faction* attackingFaction in FactionsAttackingMe)
+		for (HoI4Faction* attackingFaction: FactionsAttackingMe)
 		{
 			FactionsAttackingMeStrength += GetFactionStrengthWithDistance(Leader, attackingFaction->getMembers(), 3);
 		}
@@ -1198,7 +1198,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 	}
 
 	vector<HoI4Country*> GCTargets;
-	for each (auto GC in GCDistanceSorted)
+	for (auto GC: GCDistanceSorted)
 	{
 		string thetag = GC->getTag();
 		string HowToTakeGC = HowToTakeLand(GC, Leader, 3);
@@ -1214,7 +1214,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 	{
 		start = -1;
 	}
-	for each (auto GC in GCTargets)
+	for (auto GC: GCTargets)
 	{
 		int relations = Leader->getRelations(GC->getTag())->getRelations();
 		if (relations < 0)
@@ -1309,7 +1309,7 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 	LOG(LogLevel::Info) << "Calculating Neighbors for " + Leader->getSourceCountry()->getName("english");
 	map<string, HoI4Country*> AllNeighbors = getNeighbors(Leader);
 	map<string, HoI4Country*> Neighbors;
-	for each (auto neigh in AllNeighbors)
+	for (auto neigh: AllNeighbors)
 	{
 		if (neigh.second->getCapitalProv() != 0)
 		{
@@ -1645,7 +1645,7 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 	int maxGCAlliance = 0;
 	if (WorldTargetMap.find(Leader) != WorldTargetMap.end())
 	{
-		for each (HoI4Country* country in WorldTargetMap.find(Leader)->second)
+		for (HoI4Country* country: WorldTargetMap.find(Leader)->second)
 		{
 			HoI4Faction* attackingFaction = findFaction(country);
 			if (find(FactionsAttackingMe.begin(), FactionsAttackingMe.end(), attackingFaction) == FactionsAttackingMe.end())
@@ -1654,7 +1654,7 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 			}
 		}
 		double FactionsAttackingMeStrength = 0;
-		for each (HoI4Faction* attackingFaction in FactionsAttackingMe)
+		for (HoI4Faction* attackingFaction: FactionsAttackingMe)
 		{
 			FactionsAttackingMeStrength += GetFactionStrengthWithDistance(Leader, attackingFaction->getMembers(), 3);
 		}
@@ -1721,7 +1721,7 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 	}
 	sort(GCDistanceSorted.begin(), GCDistanceSorted.end());
 	vector<HoI4Country*> GCTargets;
-	for each (auto GC in GCDistanceSorted)
+	for (auto GC: GCDistanceSorted)
 	{
 		string thetag = GC->getTag();
 		string HowToTakeGC = HowToTakeLand(GC, Leader, 3);
@@ -1742,7 +1742,7 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 	{
 		start = -1;
 	}
-	for each (auto GC in GCTargets)
+	for (auto GC: GCTargets)
 	{
 		int relations = Leader->getRelations(GC->getTag())->getRelations();
 		if (relations < 0)

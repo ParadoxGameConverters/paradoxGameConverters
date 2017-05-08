@@ -22,8 +22,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "StateMapper.h"
-#include "log.h"
-#include "..\Configuration.h"
+#include "Log.h"
+#include "../Configuration.h"
 #include "Object.h"
 #include "OSCompatibilityLayer.h"
 #include "ParadoxParser8859_15.h"

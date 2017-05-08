@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -23,8 +23,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "ProvinceMapper.h"
 #include <fstream>
-#include "log.h"
-#include "..\Configuration.h"
+#include "Log.h"
+#include "../Configuration.h"
 #include "Object.h"
 #include "ParadoxParser8859_15.h"
 
@@ -184,7 +184,8 @@ vector<Object*> provinceMapper::getCorrectMappingVersion(const vector<Object*>& 
 {
 	for (auto version: versions)
 	{
-		if (Configuration::getHOI4Version() >= HOI4Version(version->getKey()))
+		HOI4Version currentVersion(version->getKey());
+		if (Configuration::getHOI4Version() >= currentVersion)
 		{
 			LOG(LogLevel::Debug) << "Using version " << version->getKey() << " mappings";
 			return version->getLeaves();
