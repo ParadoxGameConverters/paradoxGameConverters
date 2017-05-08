@@ -94,7 +94,7 @@ class HoI4Country
 		const set<string>&						getAllies() const { return allies; }
 		set<string>&								editAllies() { return allies; }
 		const set<string>&							getPuppets() const { return puppets; }
-		set<string>&								editPuppets() { return puppets; }
+		void										addPuppet(string countryTag);
 		const string&								getPuppetmaster() { return puppetMaster; }
 		void										setPuppetmaster(string _master) { puppetMaster = _master; }
 		map<string, double>&						getPracticals() { return practicals; }

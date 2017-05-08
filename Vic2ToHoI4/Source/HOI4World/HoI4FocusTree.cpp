@@ -3483,7 +3483,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 	newFocus->icon = "GFX_goal_generic_occupy_states_ongoing_war";
 	newFocus->text += "War Propaganda";
 	newFocus->prerequisites.push_back("focus = WarProp" + Home->getTag());
-	newFocus->available += "			threat > " + to_string(0.4 * WTModifier);
+	newFocus->available += "			threat > " + to_string(0.3 * WTModifier);
 	newFocus->xPos = XStart;
 	newFocus->yPos = 1;
 	newFocus->cost = 10;
@@ -3503,7 +3503,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 	newFocus->icon = "GFX_goal_generic_more_territorial_claims";
 	newFocus->text += "Limited Intervention";
 	newFocus->prerequisites.push_back("focus = PrepInter" + Home->getTag());
-	newFocus->available += "			threat > " + to_string(0.8 * WTModifier);
+	newFocus->available += "			threat > " + to_string(0.5 * WTModifier);
 	newFocus->xPos = XStart + offBalance;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;

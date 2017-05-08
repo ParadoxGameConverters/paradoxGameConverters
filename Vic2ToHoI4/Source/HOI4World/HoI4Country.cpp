@@ -72,7 +72,7 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	relations.clear();
 	allies.clear();
 	puppets.clear();
-	puppetMaster = "",
+	puppetMaster = "";
 	practicals.clear();
 	ministers.clear();
 	rulingMinisters.clear();
@@ -1265,6 +1265,12 @@ double HoI4Country::getEconomicStrength(double years) const
 	double civilianSectorStrength = civilianFactories * 0.469 * 0.5 * 3 * 365 * 0.5* years * years; /*.469 is milfac per year, .5 since half are used by consumer goods*/
 
 	return militarySectorStrength + civilianSectorStrength;
+}
+
+void HoI4Country::addPuppet(string countryTag)
+{
+	puppets.insert(countryTag);
+	return;
 }
 
 

@@ -84,7 +84,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 }
 
 
-HoI4Country * HoI4World::tagToCountry(string countryTag)
+HoI4Country * HoI4World::findCountry(string countryTag)
 {
 	auto country = countries.find(countryTag);
 	if (country == countries.end())
@@ -707,7 +707,7 @@ void HoI4World::convertAgreements()
 
 		if (agreement->type == "vassal")
 		{
-			HoI4Country1->second->editPuppets().insert(HoI4Tag2);
+			HoI4Country1->second->addPuppet(HoI4Tag2);
 			HoI4Country2->second->setPuppetmaster(HoI4Tag1);
 		}
 	}
@@ -1027,7 +1027,7 @@ void HoI4World::createFactions()
 
 		for (auto allyTag: alliesAndPuppets)
 		{
-			HoI4Country* allycountry = tagToCountry(allyTag);
+			HoI4Country* allycountry = findCountry(allyTag);
 			if (!allycountry)
 			{
 				continue;
@@ -1044,7 +1044,7 @@ void HoI4World::createFactions()
 				//also add the allies' puppets to the faction
 				for (auto puppetTag : allycountry->getPuppets())
 				{
-					HoI4Country* puppetcountry = tagToCountry(puppetTag);
+					HoI4Country* puppetcountry = findCountry(puppetTag);
 					if (!puppetcountry)
 					{
 						continue;

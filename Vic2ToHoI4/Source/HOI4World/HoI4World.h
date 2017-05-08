@@ -64,7 +64,7 @@ class HoI4World
 		vector<HoI4Faction*> getFactions() const { return factions; }
 		HoI4Events* getEvents() const { return events; }
 
-		HoI4Country* tagToCountry(string countryTag);
+		HoI4Country* findCountry(string countryTag);
 
 	private:
 		void convertNavalBases();
