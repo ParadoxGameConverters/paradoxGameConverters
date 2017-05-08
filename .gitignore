@@ -1,6 +1,7 @@
 CK2ToEU3/build/
 Release/
 ReleaseIntermediate/
+Release-Linux/
 Debug/
 DebugIntermediate/
 testResults
