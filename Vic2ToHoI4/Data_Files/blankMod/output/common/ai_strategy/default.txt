@@ -1,6 +1,5 @@
-# unit_base is the base value used for evaluating how important it is to deploy the various categories
 # Written by Henrik "Groogy" Hansson
-# Changed by Daniel "Da9L" Sjöberg
+# Modified by Daniel "Da9L" Sjöberg
 
 # befriend
 # conquer
@@ -20,79 +19,110 @@ default_unit_production = {
 	enable = {
 		always = yes
 	}
-
+	
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = paratroopers
 		value = 0
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = mountaineers
 		value = 0
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = marines
 		value = 0
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = cavalry
 		value = 0
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = motorized
 		value = 5
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = mechanized
 		value = 0
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = armor
+		value = 10
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = infantry
+		value = 85
+	}
+	
+	#Air unit factors
+	ai_strategy = {
+		type = unit_ratio
+		id = fighter
+		value = 70
+	}
+	
+	ai_strategy = {
+		type = unit_ratio
+		id = cas
+		value = 10
+	}
+	
+	ai_strategy = {
+		type = unit_ratio
+		id = tactical_bomber
+		value = 10
+	}
+	
+	ai_strategy = {
+		type = unit_ratio
+		id = strategic_bomber
+		value = 5
+	}
+	
+	ai_strategy = {
+		type = unit_ratio
+		id = naval_bomber
+		value = 5
+	}
+	
+	
+	# Naval unit factors
+	ai_strategy = {
+		type = unit_ratio
+		id = capital_ship
+		value = 15
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = submarine
 		value = 20
 	}
 
 	ai_strategy = {
-		type = unit_base
-		id = infantry
-		value = 75 # Since all other values are 0 this means 100%
-	}
-
-
-	# These values are used only by when evaluating for producing factories
-	ai_strategy = {
-		type = unit_base
-		id = capital_ship
-		value = 3
-	}
-
-	ai_strategy = {
-		type = unit_base
-		id = submarine
-		value = 3
-	}
-
-	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = screen_ship
-		value = 3
+		value = 50
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = convoy
-		value = 3
+		value = 20
 	}
 	
 	ai_strategy = {
@@ -104,6 +134,12 @@ default_unit_production = {
 	ai_strategy = {
 		type = equipment_production_factor
 		id = infantry
+		value = 20
+	}
+	
+	ai_strategy = {
+		type = equipment_production_factor
+		id = artillery
 		value = 20
 	}
 }
@@ -118,24 +154,24 @@ default_paratroopers_production = {
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = paratroopers
-		value = 2
+		value = 0
 	}
 }
 
 default_mountaineers_production = {
 	enable = {
-		ai_wants_divisions > 24 #Decreasing the amount of mountaineers the AI wants
+		ai_wants_divisions > 11 #Decreasing the amount of mountaineers the AI wants
 	}
 	abort = {
-		ai_wants_divisions < 25 #Decreasing the amount of mountaineers the AI wants
+		ai_wants_divisions < 12 #Decreasing the amount of mountaineers the AI wants
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = mountaineers
-		value = 1
+		value = 3
 	}
 }
 
@@ -148,15 +184,15 @@ default_marines_production = {
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = marines
-		value = 2
+		value = 0
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = infantry
-		value = -2
+		value = 0
 	}
 }
 
@@ -169,52 +205,52 @@ default_cavalry_production = {
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = cavalry
-		value = 3
+		value = 0
 	}
 }
 
 default_motorized_production = {
 	enable = {
-		ai_wants_divisions > 79
+		ai_wants_divisions > 11
 	}
 	abort = {
-		ai_wants_divisions < 80
+		ai_wants_divisions < 12
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = motorized
-		value = 4
+		value = 2
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = infantry
-		value = -4
+		value = 0
 	}
 
 }
 
 default_mechanized_production = {
 	enable = {
-		ai_wants_divisions > 69
+		ai_wants_divisions > 0
 	}
 	abort = {
-		ai_wants_divisions < 70
+		ai_wants_divisions < 1
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = mechanized
-		value = 5
+		value = 0
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = infantry
-		value = -5
+		value = 0
 	}
 }
 
@@ -227,15 +263,15 @@ default_armored_production = {
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = armor
-		value = 3
+		value = 2
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = infantry
-		value = -3
+		value = 0
 	}
 }
 
@@ -248,7 +284,7 @@ highered_armored_production = {
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = armor
 		value = 5
 	}
@@ -260,25 +296,25 @@ slightly_naval_focused_nation = {
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = capital_ship
 		value = 1
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = submarine
 		value = 1
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = screen_ship
 		value = 1
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = convoy
 		value = 1
 	}
@@ -290,25 +326,25 @@ more_naval_focused_nation = {
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = capital_ship
 		value = 2		 #1 to 2
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = submarine
 		value = 1
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = screen_ship
 		value = 1
 	}
 
 	ai_strategy = {
-		type = unit_base
+		type = unit_ratio
 		id = convoy
 		value = 1
 	}
@@ -369,3 +405,123 @@ default_area_priority = {
 
 }
 
+default_stockpile_management = {
+	enable = {
+		num_divisions > 200
+	}
+
+	abort = {
+		num_divisions < 150
+	}
+
+	ai_strategy = {
+		type = equipment_stockpile
+		value = 25 # double base stockpile
+	}
+}
+
+
+DEFAULT_template_design = {
+	enable = {
+		date < 1940.1.1				
+	}
+	abort = { 
+		date > 1940.1.1
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = motorized
+		value = 10
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = cavalry
+		value = -100
+	}
+	
+	ai_strategy = {
+		type = template_prio
+		id = light_armor
+		value = 50
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = medium_armor
+		value = -10
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = heavy_armor
+		value = -50
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = paratroopers
+		value = -50
+	}
+	
+	ai_strategy = {
+		type = template_prio
+		id = infantry
+		value = 60
+	}
+}
+
+DEFAULT_template_design = {
+	enable = {
+		date > 1940.1.1				
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = mechanized
+		value = 10
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = cavalry
+		value = -100
+	}
+	
+	ai_strategy = {
+		type = template_prio
+		id = light_armor
+		value = 10
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = medium_armor
+		value = 20
+	}
+	
+	ai_strategy = {
+		type = template_prio
+		id = modern_armor
+		value = 50
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = heavy_armor
+		value = 10
+	}
+
+	ai_strategy = {
+		type = template_prio
+		id = paratroopers
+		value = -50
+	}
+	
+	ai_strategy = {
+		type = template_prio
+		id = infantry
+		value = 10
+	}
+}

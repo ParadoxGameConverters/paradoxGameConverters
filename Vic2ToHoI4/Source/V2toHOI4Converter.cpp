@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Configuration.h"
 #include "Flags.h"
 #include "Log.h"
-#include "HoI4World/HoI4World.h"
+#include "HOI4World/HoI4World.h"
 #include "V2World/V2World.h"
 #include "OSCompatibilityLayer.h"
 
@@ -89,11 +89,6 @@ void checkMods()
 {
 	LOG(LogLevel::Info) << "Double-checking Vic2 mods";
 
-	for (auto expectedMod: Configuration::getVic2Mods())
-	{
-		LOG(LogLevel::Debug) << "Expecting a mod with name " << expectedMod;
-	}
-
 	set<string> fileNames;
 	Utils::GetAllFilesInFolder(Configuration::getV2Path() + "/mod", fileNames);
 	for (auto fileName: fileNames)
@@ -106,6 +101,16 @@ void checkMods()
 			{
 				LOG(LogLevel::Debug) << "Found mod with name " << folderName;
 			}
+		}
+	}
+
+	for (auto expectedMod: Configuration::getVic2Mods())
+	{
+		LOG(LogLevel::Debug) << "Expecting a mod with name " << expectedMod;
+		if (!Utils::doesFolderExist(Configuration::getV2Path() + "/mod/" + expectedMod))
+		{
+			LOG(LogLevel::Error) << "Could not find expected mod";
+			exit(-1);
 		}
 	}
 }
@@ -172,7 +177,9 @@ void createModFile()
 		exit(-1);
 	}
 
-	if (Configuration::getHOI4Version() >= HOI4Version("1.3.3"))
+	HOI4Version versionThatWantsBOM("1.3.3");
+	HOI4Version thisVersion = Configuration::getHOI4Version();
+	if (thisVersion >= versionThatWantsBOM)
 	{
 		modFile << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
 	}
@@ -181,7 +188,7 @@ void createModFile()
 	modFile << "user_dir = \"" << Configuration::getOutputName() << "_user_dir\"\n";
 	modFile << "replace_path=\"history/countries\"\n";
 	modFile << "replace_path=\"history/states\"\n";
-	modFile << "supported_version=\"" << Configuration::getHOI4Version() << "\"";
+	modFile << "supported_version=\"" << thisVersion << "\"";
 	modFile.close();
 }
 

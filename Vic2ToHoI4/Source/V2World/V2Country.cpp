@@ -52,6 +52,7 @@ V2Country::V2Country(Object* countryObj)
 	readInSpending(countryObj);
 	readInRevanchism(countryObj);
 	readInWarExhaustion(countryObj);
+	readInBadBoy(countryObj);
 	readInReforms(countryObj);
 	readInGovernment(countryObj);
 	readInUpperHouse(countryObj);
@@ -139,7 +140,10 @@ void V2Country::readInTechnology(const Object* countryObj)
 	vector<Object*> techsObjs = countryObj->getValue("technology");	// the object holding the technology levels
 	if (techsObjs.size() > 0)
 	{
-		techs = techsObjs[0]->getKeys();
+		for (auto tech: techsObjs[0]->getKeys())
+		{
+			techs.insert(tech);
+		}
 	}
 }
 
@@ -250,6 +254,19 @@ void V2Country::readInWarExhaustion(const Object* countryObj)
 	else
 	{
 		warExhaustion = 0.0;
+	}
+}
+
+void V2Country::readInBadBoy(const Object* countryObj)
+{
+	vector<Object*> badBoyObjs = countryObj->getValue("badboy");
+	if (badBoyObjs.size() > 0)
+	{
+		badboy = stof(badBoyObjs[0]->getLeaf());
+	}
+	else
+	{
+		badboy = 0.0;
 	}
 }
 
@@ -427,13 +444,9 @@ void V2Country::eatCountry(V2Country* target)
 		provinceItr.second->setOwner(this);
 	}
 
-	for (auto tech : target->techs)
+	for (auto tech: target->techs)
 	{
-		auto techItr = std::find(techs.begin(), techs.end(), tech);
-		if (techItr == techs.end())
-		{
-			techs.push_back(tech);
-		}
+		techs.insert(tech);
 	}
 
 	for (auto itr : target->inventions)

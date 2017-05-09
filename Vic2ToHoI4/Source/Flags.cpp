@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -59,7 +59,7 @@ enum flagIdeologies
 	FLAG_END				= 9
 };
 
-char* vic2Suffixes[FLAG_END] = {
+const char* vic2Suffixes[FLAG_END] = {
 	".tga",
 	"_communist.tga",
 	".tga",
@@ -71,7 +71,7 @@ char* vic2Suffixes[FLAG_END] = {
 	"_republic.tga",
 };
 
-char* hoi4Suffixes[FLAG_END] = {
+const char* hoi4Suffixes[FLAG_END] = {
 	".tga",
 	"_communism.tga",
 	"_democratic.tga",

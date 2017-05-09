@@ -57,4 +57,4 @@ class HoI4Agreement
 
 
 
-#endif HOI4_AGREEMENT_H_
+#endif // HOI4_AGREEMENT_H_
