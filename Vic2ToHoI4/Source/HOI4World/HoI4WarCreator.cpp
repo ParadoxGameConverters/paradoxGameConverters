@@ -767,7 +767,6 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 	vector<HoI4Country*> fn;
 	vector<HoI4Country*> man;
 	vector<HoI4Country*> coup;
-	int EventNumber = 0;
 	//x is used for the x position of our last NF, so we can place them correctly
 	vector<int> takenSpots;
 	vector<int> takenSpotsy;
@@ -880,7 +879,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 				newFocus->completionReward += "					country_exists = " + nan[i]->getTag() + "\n";
 				newFocus->completionReward += "				}\n";
 				newFocus->completionReward += "				" + nan[i]->getTag() + " = {\n";
-				newFocus->completionReward += "					country_event = NFEvents." + to_string(EventNumber) + "\n";
+				newFocus->completionReward += "					country_event = NFEvents." + to_string(theWorld->getEvents()->getCurrentNationFocusEventNum()) + "\n";
 				newFocus->completionReward += "				}\n";
 				newFocus->completionReward += "			}";
 				FocusTree->addFocus(newFocus);

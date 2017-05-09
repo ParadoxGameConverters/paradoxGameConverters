@@ -71,6 +71,8 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 
 	relations.clear();
 	allies.clear();
+	puppets.clear();
+	puppetMaster = "";
 	practicals.clear();
 	ministers.clear();
 	rulingMinisters.clear();
@@ -643,26 +645,28 @@ void HoI4Country::convertAirforce()
 		}
 	}
 
-	if (airplanes > 0)
+	auto techItr = technologies.find("early_fighter");
+	if (techItr != technologies.end())
 	{
-		auto techItr = technologies.find("early_fighter");
-		if (techItr != technologies.end())
+		int amount = Configuration::getForceMultiplier() * airplanes;
+		if (amount == 0)
 		{
-			HoI4Airplane newPlane(string("fighter_equipment_0"), tag, Configuration::getForceMultiplier() * airplanes);
-			planes.push_back(newPlane);
+			amount = 1;
 		}
-		techItr = technologies.find("early_bomber");
-		if (techItr != technologies.end())
-		{
-			HoI4Airplane newPlane(string("tac_bomber_equipment_0"), tag, Configuration::getForceMultiplier() * airplanes);
-			planes.push_back(newPlane);
-		}
-		techItr = technologies.find("CAS1");
-		if (techItr != technologies.end())
-		{
-			HoI4Airplane newPlane(string("CAS_equipment_1"), tag, Configuration::getForceMultiplier() * airplanes);
-			planes.push_back(newPlane);
-		}
+		HoI4Airplane newPlane(string("fighter_equipment_0"), tag, amount);
+		planes.push_back(newPlane);
+	}
+	techItr = technologies.find("early_bomber");
+	if (techItr != technologies.end())
+	{
+		HoI4Airplane newPlane(string("tac_bomber_equipment_0"), tag, Configuration::getForceMultiplier() * airplanes);
+		planes.push_back(newPlane);
+	}
+	techItr = technologies.find("CAS1");
+	if (techItr != technologies.end())
+	{
+		HoI4Airplane newPlane(string("CAS_equipment_1"), tag, Configuration::getForceMultiplier() * airplanes);
+		planes.push_back(newPlane);
 	}
 }
 
@@ -1272,6 +1276,12 @@ double HoI4Country::getEconomicStrength(double years) const
 	return militarySectorStrength + civilianSectorStrength;
 }
 
+void HoI4Country::addPuppet(string countryTag)
+{
+	puppets.insert(countryTag);
+	return;
+}
+
 
 void HoI4Country::outputToCommonCountriesFile(ofstream& countriesFile) const
 {
@@ -1406,6 +1416,47 @@ void HoI4Country::outputHistory(const map<int, HoI4State*>& states, const vector
 	output << "}\n";
 
 	output << "set_convoys = " << convoys << '\n';
+	output << "\n";
+
+	if (puppets.size() > 0)
+	{
+		output << "# DIPLOMACY\n";
+		output << "if = {\n";
+		output << "    limit = {\n";
+		output << "        has_dlc = \"Together for Victory\"\n";
+		output << "    }\n";
+		for (auto puppet : puppets)
+		{
+			output << "    set_autonomy = {\n";
+			output << "        target = " << puppet << "\n";
+			output << "        autonomous_state = autonomy_dominion\n";
+			output << "        freedom_level = 0.4\n";
+			output << "    }\n";
+		}
+		output << "    else = {\n";
+		for (auto puppet : puppets)
+		{
+			output << "        puppet = " << puppet << "\n";
+		}
+		output << "    }\n";
+		output << "}\n";
+		output << "\n";
+
+		output << "if = {\n";
+		output << "    limit = {has_dlc = \"Together for Victory\" }\n";
+		output << "\n";
+		output << "    add_to_tech_sharing_group = " << tag <<"_research\n";
+		output << "}\n\n";
+	}
+
+	if (puppetMaster != "")
+	{
+		output << "if = {\n";
+		output << "    limit = {has_dlc = \"Together for Victory\" }\n";
+		output << "\n";
+		output << "    add_to_tech_sharing_group = " << puppetMaster << "_research\n";
+		output << "}\n\n";
+	}
 
 	output << "set_politics = {\n";
 	output << "\n";
