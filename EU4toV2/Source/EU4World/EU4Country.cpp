@@ -1,4 +1,4 @@
-/*Copyright(c) 2016 The Paradox Game Converters Project
+/*Copyright(c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -121,7 +121,7 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 		}
 		else
 		{
-			vector <Object*> developmentObj = obj->getValue("development");
+			vector <Object*> developmentObj = obj->getValue("realm_development");
 			if (atof(developmentObj[0]->getLeaf().c_str()) >= 1000)
 			{
 				wasUnion = true;
