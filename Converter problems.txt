@@ -1,0 +1,53 @@
+New to 1.21:
+
+Unions and vassals lost - due to how these are saved changing.  
+Before the subject type was a single line(vassal={ or union={), now it is in two separate lines {dependency={ and then subject_type="vassal").
+Solution - though a wee bit brute force - is to do an if statement after the current type getting (if type = dependency, then if type = union then union else vassal.  Also affects Japan.
+
+No HREmperor - similar issue to above.
+
+province mapping
+
+Crash after CK2 directory issue.
+Caused by save game no longer having a "development" field if the country is dead.
+Proposed Solution: Replace "development" by "realm_development" which always exists and has the same value as "development" when both exist.
+
+Pre-existing:
+
+North German culture disappearing
+Slave State issue
+HRE prestige tanking upon formation
+Afro-Brazilians along east coast of Brazil - should be natives.
+Two ulsters.
+
+Mysterious Italy's updates -
+
+Country mappings - mostly good, need to update Ulster and not sure about Nitra=Slovakia.
+Culture mappings - less good as he's mostly deleted.  Agree with not creating albanian though.
+Culture file - fixes the North German issue.  Not sure about adding of primary tags for cultures and REALLY not sure about when these clash.
+Also China = union of group including Japanese??
+Gov mapping - don't agree with interpretation of Absolutism mechanic.  Not sure I agree with some of the existing mappings tbh.
+Province mappings - new ones look good, check myself before committing.  Older formatting issues fixed but not sure about sea renaming.
+Unions - make names consistant, don't need a "union" for every single culture, a couple of oddities but otherwise pretty good actually.
+Consider adding more unions in the future?  Consider adding Finnish and Sami to Scandinavia?
+
+output/common/countries:AAA - very good (and good idea!) but needs expanding a bit.
+output/common:countries - again good.
+output/common:cultures - maybe add in a dummy culture rather than moving up german - sometimes german will exist.
+
+Side note - not all countries have colours currently.
+
+decisions/converterDecision: - China change is good, most other ones good.  Do NOT agree with their approach to post-colonial.
+decisions/NationalUnification:- mostly agreed, good idea on the limit to europe as stopgap.  Will actually change to allow Austria to form Germany.
+If can sort HRE then will also block HRE.
+decisions/PostColonial: - Change the name to postColonial I think.  
+Like the greek/Turkish things, not how I would do the post-colonial new world stuff at all.
+
+events/converterEvents: - Mandate of Heaven stuff.  Like.
+
+gfx/pictures/news: Roman news headings.  Like.  Make sure about copyright.
+
+localisation/: I'm just going to trust him on this.
+
+news/news_layout:  Adds potential layout for Rome.
+

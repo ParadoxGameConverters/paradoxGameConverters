@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -18,27 +18,27 @@
     <ProjectGuid>{84ABCE0D-17FE-44A5-8684-5A8AA04E80B9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>EU4ToV2</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>NotSet</CharacterSet>
-    <PlatformToolset>v140_xp</PlatformToolset>
+    <PlatformToolset>v141_xp</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v140_xp</PlatformToolset>
+    <PlatformToolset>v141_xp</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-NoCopies|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v140_xp</PlatformToolset>
+    <PlatformToolset>v141_xp</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -65,8 +65,14 @@
     <BOOST_INCLUDE Condition=" '$(BOOST_INCLUDE)' == '' ">
 		H:\Projects\Development\Boost\boost_1_57_0
 	</BOOST_INCLUDE>
-    <IncludePath>$(UniversalCRT_IncludePath);$(BOOST_INCLUDE);$(VCInstallDir)include;$(WindowsSdkDir)include;../common_items</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
     <TargetName>EU4toV2Converter</TargetName>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <ReferencePath>$(ReferencePath)</ReferencePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <LibraryWPath>$(LibraryWPath)</LibraryWPath>
+    <SourcePath>$(SourcePath)</SourcePath>
+    <ExcludePath>$(ExcludePath)</ExcludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-NoCopies|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -108,16 +114,17 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Libraries\boost_1_55_0_lib;$(BOOST_INCLUDE);$(WindowsSDK_IncludePath)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;BOOST_ALL_DYN_LINK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Phillip\Documents\GitHub\paradoxGameConverters\EU4toV2\Data_Files;C:\Users\Phillip\Documents\GitHub\paradoxGameConverters\common_items;C:\Users\Phillip\Documents\GitHub\boost_1_64_0;D:\Libraries\boost_1_55_0_lib;$(BOOST_INCLUDE);$(WindowsSDK_IncludePath);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\Libraries\boost_1_55_0_lib\lib32-msvc-12.0;$(BOOST_LIB);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\Users\Phillip\Documents\GitHub\boost_1_64_0\stage\lib\libboost_filesystem-vc141-mt-1_64.lib;C:\Users\Phillip\Documents\GitHub\boost_1_64_0\stage\lib\libboost_system-vc141-mt-1_64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Phillip\Documents\GitHub\boost_1_64_0\stage\lib;D:\Libraries\boost_1_55_0_lib\lib32-msvc-12.0;$(BOOST_LIB);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>Copy_Files.bat</Command>
@@ -156,7 +163,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\common_items\CardinalToOrdinal.cpp" />
-    <ClCompile Include="..\common_items\CommonUtils.cpp" />
+    <ClCompile Include="..\common_items\CommonUtils.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Phillip\Documents\GitHub\boost_1_64_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\common_items\Date.cpp" />
     <ClCompile Include="..\common_items\Log.cpp" />
     <ClCompile Include="..\common_items\Object.cpp" />
@@ -196,7 +205,9 @@
     <ClCompile Include="Source\Mappers\Vic2CultureUnionMapper.cpp" />
     <ClCompile Include="Source\targa.cpp" />
     <ClCompile Include="Source\V2World\V2Army.cpp" />
-    <ClCompile Include="Source\V2World\V2Country.cpp" />
+    <ClCompile Include="Source\V2World\V2Country.cpp">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Phillip\Documents\GitHub\boost_1_64_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="Source\V2World\V2Creditor.cpp" />
     <ClCompile Include="Source\V2World\V2Diplomacy.cpp" />
     <ClCompile Include="Source\V2World\V2Factory.cpp" />
