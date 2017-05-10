@@ -3536,6 +3536,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		newFocus->xPos = XStart + offBalance + warPlannumber * 2;
 		newFocus->yPos = 2;
 		newFocus->cost = 10;
+		newFocus->bypass += "					has_war_with = " + Country->getTag() + "\n";
 		newFocus->aiWillDo += "			factor = 10";
 		newFocus->completionReward += "			army_experience = 20\n";
 		newFocus->completionReward += "			add_tech_bonus = {\n";
@@ -3565,6 +3566,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		newFocus->xPos = XStart + offBalance + warPlannumber * 2;
 		newFocus->yPos = 3;
 		newFocus->cost = 10;
+		newFocus->bypass += "					has_war_with = " + Country->getTag() + "\n";
 		newFocus->aiWillDo += "			factor = 10";
 		newFocus->completionReward += "			" + Country->getTag() + " = {\n";
 		newFocus->completionReward += "				add_opinion_modifier = { target = " + Home->getTag() + " modifier = embargo }\n";
@@ -3576,6 +3578,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		newFocus->id = "WAR" + Home->getTag() + Country->getTag();
 		newFocus->icon = "GFX_goal_support_democracy";
 		newFocus->text += "Enact War Plan " + Country->getSourceCountry()->getName("english");
+		newFocus->available += "						has_war = no\n";
 		newFocus->available += "			any_other_country = {";
 		newFocus->available += "						original_tag = " + Country->getTag();
 		newFocus->available += "						exists = yes";
@@ -3591,8 +3594,9 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		newFocus->xPos = XStart + offBalance + warPlannumber++ * 2;
 		newFocus->yPos = 4;
 		newFocus->cost = 10;
+		newFocus->bypass += "					has_war_with = " + Country->getTag() + "\n";
 		newFocus->aiWillDo += "			factor = 10";
-		newFocus->completionReward += "			create_wargoal = {\n";
+		newFocus->completionReward += "			declare_war_on = {\n";
 		newFocus->completionReward += "				type = puppet_wargoal_focus\n";
 		newFocus->completionReward += "				target = " + Country->getTag() + "\n";
 		newFocus->completionReward += "			}";
