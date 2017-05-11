@@ -26,6 +26,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <cstdarg>
 #include <cstring>
 #include <iostream>
+#include <algorithm>
+
+#include <unistd.h>
+#include <errno.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <limits.h>
+
 using namespace std;
 
 
@@ -69,19 +77,94 @@ HANDLE GetStdHandle(int nothing)
 
 namespace Utils
 {
+	
+	bool TryCreateFolderNonRecursive(const char *path)
+	{
+        	const mode_t mode = S_IRWXU | S_IRWXG | S_IROTH;
+        	struct stat status;
+        	if(stat(path, &status) != 0)
+			{
+                	if(mkdir(path, mode) != 0 && errno != EEXIST)
+			{
+                        	LOG(LogLevel::Error) << "unable to create folder: " << path << "\n";
+                       		return false;
+                	}
+        	}else{
+                	if(!S_ISDIR(status.st_mode))
+			{
+                        	LOG(LogLevel::Error) << "node already exists but is not a folder: " << path << "\n";
+                        	return false;
+                	}
+        	}
+        	return true;
+	}
+
+
+	char *CopyFolderPathElement(const char * &input_begin, const char *input_end, char *output)
+	{
+        	while(input_begin != input_end)
+		{
+                	const char c = *input_begin;
+                	++input_begin;
+                	if(c == '/')
+			{
+                        	return output;
+                	}else{
+                        	*output = c;
+                        	++output;
+                	}
+        	}
+        	return output;
+	};
+
 	bool TryCreateFolder(const std::string& path)
 	{
-		LOG(LogLevel::Error) << "TryCreateFolder() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
-		return false;
+		using namespace std;
+        	const char *input_begin = path.c_str();
+        	const char *input_end = input_begin+path.size();
+        	char *buffer = new char[path.size()+1];
+        	char *pos = buffer;
+        	while(input_begin !=input_end)
+		{
+                	char *next_pos = CopyFolderPathElement(input_begin, input_end, pos);
+                	if(next_pos != pos){
+                        	*next_pos = '\0';
+                        	if(!TryCreateFolderNonRecursive(buffer)){
+                                	LOG(LogLevel::Error) << "unable to create folder for path " << buffer;
+                                	delete[] buffer;
+                                	return false;
+                        	}
+                	}
+                	*next_pos = '/';
+                	++next_pos;
+                	pos = next_pos;
+        	}
+        	delete[] buffer;
+        	return true;
 	}
 
 	std::string getCurrentDirectory()
 	{
-		char directory[MAX_PATH];
-		LOG(LogLevel::Error) << "getCurrentDirectory() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
-		return std::string(directory);
+	        using namespace std;
+       		char executable[PATH_MAX];
+        	ssize_t length = readlink("/proc/self/exe", executable, PATH_MAX);
+        	if(length == -1)
+		{
+                	LOG(LogLevel::Error) << "unable to fetch current directory";
+                	return string("/");
+        	}
+       		char *begin = executable;
+        	char *end = begin + length - 1;
+        	while(end != begin && *end != '/')
+		{
+                	--end;
+        	}
+        	if(begin == end)
+		{
+                	return string(begin, begin + length);
+        	}else{
+                	return string(begin, end);
+        	}
 	}
 
 	void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames)
