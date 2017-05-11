@@ -981,6 +981,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 					newFocus->yPos     = 1;
 				}
 				newFocus->cost     = 10;
+				newFocus->bypass += "  has_war_with = " + nan[i]->getTag() + "\n";
 				newFocus->aiWillDo = "	factor = 10\n";
 				newFocus->aiWillDo += "	modifier = {\n";
 				newFocus->aiWillDo += "		factor = 0\n";
@@ -1022,6 +1023,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 				newFocus->aiWillDo += "		factor = 0\n";
 				newFocus->aiWillDo += "		date < 1937.6.6\n";
 				newFocus->aiWillDo += "	}";
+				newFocus->bypass += "		has_war_with = " + nan[i]->getTag() + "\n";
 				newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
 				newFocus->completionReward += "			create_wargoal = {\n";
 				newFocus->completionReward += "				type = annex_everything\n";
@@ -1277,6 +1279,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 					newFocus->aiWillDo += "				}\n";
 					newFocus->aiWillDo += "			}";
 				}
+				newFocus->bypass += "		has_war_with = " + GC->getTag() + "\n";
 				newFocus->completionReward += "			add_named_threat = { threat = 5 name = " + newFocus->id + " }\n";
 				newFocus->completionReward += "			declare_war_on = {\n";
 				newFocus->completionReward += "				type = annex_everything\n";
@@ -1555,6 +1558,7 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 				newFocus->xPos     = takenSpots.back() + 3 + i * 2;
 				newFocus->yPos     = 2;
 				newFocus->cost     = 10;
+				newFocus->bypass += "					has_war_with = " + TargetsbyIC[i]->getTag() + "\n";
 				newFocus->aiWillDo = "			factor = 5\n";
 				newFocus->aiWillDo += "			modifier = {\n";
 				newFocus->aiWillDo += "				factor = 0\n";
@@ -1775,6 +1779,7 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 				newFocus->yPos     = y2 + maxGCAlliance;
 				//newFocus->yPos     = takenSpotsy.back() + 1;
 				newFocus->cost     = 10;
+				newFocus->bypass += "		   has_war_with = " + GC->getTag() + "\n";
 				newFocus->aiWillDo = "			factor = " + to_string(10 - maxGCWars * 5) + "\n";
 				newFocus->aiWillDo += "			modifier = {\n";
 				newFocus->aiWillDo += "					factor = 0\n";
@@ -1921,6 +1926,7 @@ vector<HoI4Faction*> HoI4WarCreator::neighborWarCreator(HoI4Country * country, o
 			newFocus->xPos = 24;
 			newFocus->yPos = 0;
 			newFocus->cost = 10;
+			newFocus->bypass += "          has_war_with = " + target->getTag() + "\n";
 			newFocus->aiWillDo = "			factor = " + to_string(10 - numWarsWithNeighbors * 5) + "\n";
 			newFocus->aiWillDo += "			modifier = {\n";
 			newFocus->aiWillDo += "				factor = 0\n";
