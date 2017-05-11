@@ -26,7 +26,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <cstdarg>
 #include <cstring>
 #include <iostream>
-#include <algorithm>
 
 #include <unistd.h>
 #include <errno.h>
