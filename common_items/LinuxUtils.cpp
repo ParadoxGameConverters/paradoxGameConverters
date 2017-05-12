@@ -272,9 +272,38 @@ namespace Utils
 
 	bool TryCopyFile(const std::string& sourcePath, const std::string& destPath)
 	{
-		LOG(LogLevel::Error) << "TryCopyFile() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
-		return false;
+		int input_handle = open(sourcePath.c_str(), O_RDONLY);
+		if(input_handle == 0){
+			LOG(LogLevel::Error) << "unable to open copy source file " << sourcePath;
+			return false;
+		}
+		struct stat input_stat;
+		if(fstat(input_handle, &input_stat) != 0){
+			close(input_handle);
+			LOG(LogLevel::Error) << "unable to determine copy source file size " << sourcePath;
+			return false;
+		}
+		int output_handle = open(destPath.c_str(), O_WRONLY | O_CREAT, input_stat.st_mode);
+		if(output_handle == 0){
+			LOG(LogLevel::Error) << "unable to open copy destination file " << destPath;
+			close(input_handle);
+			return false;
+		}
+		ssize remaining = input_stat.st_size;
+		while(remaining > 0)
+		{
+			ssize copied = sendfile(output_handle, input_handle, remaining);
+			if(copied == -1){
+				close(input_handle);
+				close(output_handle);
+				return false;
+			}else{
+				remaining-=copied;	
+			}
+		}
+		close(input_handle);
+		close(output_handle);
+		return true;
 	}
 
 	bool copyFolder(const std::string& sourceFolder, const std::string& destFolder)
