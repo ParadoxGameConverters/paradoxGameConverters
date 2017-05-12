@@ -144,7 +144,6 @@ class V2Country
 		bool								isReleasableVassal;
 		bool								holyRomanEmperor;
 		bool								inHRE;
-		bool								celestialEmperor;
 		string							primaryCulture;
 		set<string>						acceptedCultures;
 		string							religion;
