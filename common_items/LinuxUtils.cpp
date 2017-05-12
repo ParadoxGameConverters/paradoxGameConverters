@@ -322,7 +322,7 @@ namespace Utils
         {
                 using namespace std;
                 int inputHandle = open(sourcePath.c_str(), O_RDONLY);
-                if(inputHandle == 0)
+                if(inputHandle == -1)
                 {
                         LOG(LogLevel::Error) << "unable to open copy source path: " << sourcePath;
                         return false;
@@ -339,7 +339,7 @@ namespace Utils
                         return false;
                 }
                 int outputHandle = open(destPath.c_str(), O_WRONLY | O_CREAT | O_TRUNC, inputStat.st_mode);
-                if(outputHandle == 0)
+                if(outputHandle == -1)
                 {
                         LOG(LogLevel::Error) << "unable to open copy destination file: " << destPath;
                         close(inputHandle);
@@ -381,14 +381,14 @@ namespace Utils
 
 	bool DoesFileExist(const std::string& path)
 	{
-		LOG(LogLevel::Error) << "DoesFileExist() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
+		mode_t mode;
+		return GetFileMode(path, mode) && S_ISREG(mode);
 	}
 
 	bool doesFolderExist(const std::string& path)
 	{
-		LOG(LogLevel::Error) << "doesFolderExist() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
+		mode_t mode;
+		return GetFileMode(path, mode) && S_ISDIR(mode);
 	}
 
 	void WriteToConsole(LogLevel level, const std::string& logMessage)
