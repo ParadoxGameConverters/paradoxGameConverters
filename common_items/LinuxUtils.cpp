@@ -32,6 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <limits.h>
+#include <dirent.h>
 
 using namespace std;
 
@@ -166,23 +167,50 @@ namespace Utils
         	}
 	}
 
+	bool IsRegularFile(const std::string &path)
+	{
+		struct stat status;
+        	if(stat(path.c_str(), &status) != 0))
+		{
+			retrun S_ISREG(status.st_mode);
+		}else{
+			LOG(LogLevel::Error) << "unable to check for regular file: " << path;
+			return false;
+		}
+	}
+	
 	void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames)
 	{
-		char directory[MAX_PATH];
-		LOG(LogLevel::Error) << "GetAllFilesInFolder() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
-		/*DIR *dp;
-		if ((dp	 = opendir(path.c_str())) == NULL)
+		using namespace std;
+		DIR *dir = opendir(path.c_str());
+		if(dir == NULL)
 		{
-			return;
+			if(errno == EACCES)
+			{
+				LOG(LogLevel::Error) << "no permission to read directory: " << path;
+			}else if(errno == ENOENT)
+			{
+				LOG(LogLevel::Error) << "directory does not exist: " << path;
+			}else if(errno == ENOTDIR)
+			{
+				LOG(LogLevel::Error) << "path is not a directory: " << path;
+			}else{
+				LOG(LogLevel::Error) << "unable to open directory: " << path;
+			}
+		}else{
+			struct dirent *dirent_ptr;
+			while((dirent_ptr = read_dir(dir)) != NULL){
+				string fileName{dirent_ptr->name};
+				if(IsRegularFile(path+fileName)){
+					fileNames.insert(fileName);
+				}
+			}
+			if(errno != 0){
+				fileNames.clear();
+				LOG(LogLevel::Error) << "an error occurred hile trying to list files in path: " << path;
+			}
+			closedir(dir);
 		}
-
-		struct dirent *dirp;
-		while ((dirp = readdir(dp)) != NULL)
-		{
-			fileNames.insert(std::string(dirp->d_name));
-		}
-		closedir(dp);*/
 	}
 
 	void GetAllFilesInFolderRecursive(const std::string& path, std::set<std::string>& filenames)
