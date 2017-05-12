@@ -348,7 +348,10 @@ namespace Utils
                 ssize_t remaining = inputStat.st_size;
                 while(remaining > 0)
                 {
-                        ssize_t copied = sendfile(outputHandle, inputHandle, NULL, remaining);
+        		// Copy file using sendfile because this is more efficient since copy is done in kernelspace
+			// Won't work in kernels older than 2.6.33 (glibc 2.1)
+			// If such systems must be supported, this method should be reimplemented using POSIX read/write methods or iostreams
+	               ssize_t copied = sendfile(outputHandle, inputHandle, NULL, remaining);
                         if(copied == -1){
                                 close(inputHandle);
                                 close(outputHandle);
