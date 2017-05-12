@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <cstdarg>
 #include <cstring>
 #include <iostream>
+#include <algorithm>
 
 #include <unistd.h>
 #include <errno.h>
@@ -305,12 +306,42 @@ namespace Utils
 		close(output_handle);
 		return true;
 	}
+	
+	bool IsLinuxPathElementSeparator(char c){
+		return c == '/';
+	}
+	
+	bool isLinuxPathCharacter(char c){
+		return c != '/';
+	}
+	
+	std::string GetLastPathElement(const std::string &path){
+		using namespace std;
+		string::reverse_iterator end = find(path.rbegin(), path.rend(), isLinuxPathCharacter);
+		if(end == path.rend()){
+			return string('/');
+		}else{
+			string::reverse_iterator beg = find(end, path.rend(), IsLinuxPathElementSeparator);
+			--end;
+			if(beg == path.rend()){
+				return string(path.begin(), end.base());
+			}else{
+				--beg;
+				return string(beg.base(), end.base());
+			}
+		}
+	};
 
+	bool copyFolderNonRecursive(const std::string &sourceFolder, const std::string &destFolder, const std::string &folderName){
+		
+	}
+	
 	bool copyFolder(const std::string& sourceFolder, const std::string& destFolder)
 	{
-		LOG(LogLevel::Error) << "copyFolder() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
-		return false;
+		if(!TryCreateFolder(destFolder)){
+			return false;
+		}
+		copyFolderNonRecursive(
 	}
 
 	bool renameFolder(const std::string& sourceFolder, const std::string& destFolder)
