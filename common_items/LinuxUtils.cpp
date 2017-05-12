@@ -166,7 +166,19 @@ namespace Utils
                 	return string(begin, end);
         	}
 	}
-
+	
+	mode_t GetFileMode(const std::string &path)
+	{
+		struct stat status;
+        	if(stat(path.c_str(), &status) != 0))
+		{
+			retrun status.st_mode;
+		}else{
+			LOG(LogLevel::Error) << "unable to check for file mode: " << path;
+			return false;
+		}
+	}
+	
 	bool IsRegularFile(const std::string &path)
 	{
 		struct stat status;
@@ -212,11 +224,50 @@ namespace Utils
 			closedir(dir);
 		}
 	}
-
-	void GetAllFilesInFolderRecursive(const std::string& path, std::set<std::string>& filenames)
+	
+	void GetAllFilesInFolderRecursive(const std::string& path, const std::string relativePath, std::set<std::string>& filenames)
 	{
-		LOG(LogLevel::Error) << "GetAllFilesInFolderRecursive() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
+		using namespace std;
+		DIR *dir = opendir(path.c_str());
+		if(dir == NULL)
+		{
+			if(errno == EACCES)
+			{
+				LOG(LogLevel::Error) << "no permission to read directory: " << path;
+			}else if(errno == ENOENT)
+			{
+				LOG(LogLevel::Error) << "directory does not exist: " << path;
+			}else if(errno == ENOTDIR)
+			{
+				LOG(LogLevel::Error) << "path is not a directory: " << path;
+			}else{
+				LOG(LogLevel::Error) << "unable to open directory: " << path;
+			}
+		}else{
+			struct dirent *dirent_ptr;
+			while((dirent_ptr = read_dir(dir)) != NULL){
+				string filename(dirent_ptr->name);
+				string absolutePath(path+"/"+filename);
+				mode_t mode = getFileMode(absolutePath);
+				if(S_ISREG(mode))
+				{
+					filenames.insert(relativePath+"/"+filename);
+				}else if(S_ISDIR(mode))
+				 {
+				 	GetAllFilesInFolderRecursive(absolutePath, relativePath+"/"+filename, filenames);
+				 }
+			}
+			if(errno != 0){
+				fileNames.clear();
+				LOG(LogLevel::Error) << "an error occurred hile trying to list files in path: " << path;
+			}
+			closedir(dir);
+		}
+	}
+	
+	void GetAllFilesInFolderRecursive(const std::string& path,  std::set<std::string>& filenames)
+	{
+		GetAllFilesInFolderRecursive(path, "", filenames);
 	}
 
 	bool TryCopyFile(const std::string& sourcePath, const std::string& destPath)
