@@ -1,4 +1,4 @@
-/*Copyright(c) 2016 The Paradox Game Converters Project
+/*Copyright(c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -54,6 +54,7 @@ class EU4Country
 		void						addCore(EU4Province*);
 		void						setInHRE(bool _inHRE)								{ inHRE = _inHRE; }
 		void						setEmperor(bool _emperor)							{ holyRomanEmperor = _emperor; }
+		void						setCelestialEmperor(bool _celestialEmperor)			{ celestialEmperor = _celestialEmperor; }
 		bool						hasModifier(string) const;
 		int						hasNationalIdea(string) const;
 		bool						hasFlag(string) const ;
@@ -72,8 +73,9 @@ class EU4Country
 		vector<EU4Province*>			getProvinces()								const { return provinces; }
 		vector<EU4Province*>			getCores()									const { return cores; }
 		int								getCapital()								const { return capital; }
-		bool								getInHRE()									const { return inHRE; }
-		bool								getHolyRomanEmperor()					const { return holyRomanEmperor; }
+		bool							getInHRE()									const { return inHRE; }
+		bool							getHolyRomanEmperor()					const { return holyRomanEmperor; }
+		bool							getCelestialEmperor()					const { return celestialEmperor; }
 		int								getNationalFocus()						const { return nationalFocus; }
 		string							getTechGroup()								const { return techGroup; }
 		vector<bool>					getEmbracedInstitutions()				const { return embracedInstitutions; }
@@ -92,6 +94,7 @@ class EU4Country
 		double							getIndustryInvestment()					const { return industryInvestment; }
 		double							getCultureInvestment()					const { return cultureInvestment; }
 		bool								getPossibleDaimyo()						const { return possibleDaimyo; }
+		bool							getPossibleShogun()						const { return possibleShogun; }
 		string							getGovernment()							const { return government; }
 		map<string, EU4Relations*>	getRelations()								const { return relations; }
 		vector<EU4Army*>				getArmies()									const { return armies; }
@@ -120,8 +123,9 @@ class EU4Country
 		string							tag;						// the tag for the EU4 nation
 		vector<EU4Province*>			provinces;				// the EU4 provinces this nations holds
 		vector<EU4Province*>			cores;					// the EU4 provinces this nation has cores on
-		bool								inHRE;					// if this country is an HRE member
-		bool								holyRomanEmperor;		// if this country is the emperor of the HRE
+		bool							inHRE;					// if this country is an HRE member
+		bool							holyRomanEmperor;		// if this country is the emperor of the HRE
+		bool							celestialEmperor;		// if this country is the celestial emperor
 		int								capital;					// the EU4 province that is this nation's capital
 		int								nationalFocus;			// the location of this country's national focus
 		string							techGroup;				// the tech group for this nation
@@ -143,6 +147,7 @@ class EU4Country
 		map<string, bool>				flags;					// any flags set for this country
 		map<string, bool>				modifiers;				// any modifiers set for this country
 		bool								possibleDaimyo;		// if this country is possibly a daimyo
+		bool							possibleShogun;			// if this country is the shogun
 		vector<EU4Leader*>			leaders;					// the military leaders in this country
 		string							government;				// the government type
 		map<string, EU4Relations*>	relations;				// the relations with other nations

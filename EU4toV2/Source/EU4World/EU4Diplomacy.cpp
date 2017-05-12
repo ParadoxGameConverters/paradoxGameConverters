@@ -1,4 +1,4 @@
-/*Copyright(c) 2014 The Paradox Game Converters Project
+/*Copyright(c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -28,6 +28,21 @@ THE SOFTWARE. */
 EU4Agreement::EU4Agreement(Object *obj)
 {
 	type = obj->getKey();
+
+	std::vector<Object*> objType = obj->getValue("subject_type");
+	if (objType.size() > 0)
+	{
+		type = objType[0]->getLeaf();
+
+		if (type == "personal_union")
+		{
+			type = "union";
+		}
+	}
+	else if (type == "dependency")
+	{
+		LOG(LogLevel::Warning) << "Dependency has no subject type";
+	}
 
 	std::vector<Object*> objFirst = obj->getValue("first");
 	if (objFirst.size() > 0)
@@ -127,4 +142,13 @@ EU4Diplomacy::EU4Diplomacy(Object* obj)
 		EU4Agreement agr(*itr);		// the new agreement
 		agreements.push_back(agr);
 	}
+
+	std::vector<Object*> objDependencies = obj->getValue("dependency");
+	for (std::vector<Object*>::iterator itr = objDependencies.begin(); itr != objDependencies.end(); ++itr)
+	{
+		EU4Agreement agr(*itr);		// the new agreement
+		agreements.push_back(agr);
+	}
 }
+
+
