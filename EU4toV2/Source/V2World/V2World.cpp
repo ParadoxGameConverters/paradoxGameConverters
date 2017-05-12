@@ -879,7 +879,7 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld)
 			}
 		}
 
-		if (itr->type == "is_march")
+		if ((itr->type == "is_march") || (itr->type == "march"))
 		{
 			country1->second->absorbVassal(country2->second);
 			for (vector<EU4Agreement>::iterator itr2 = agreements.begin(); itr2 != agreements.end(); ++itr2)
@@ -907,7 +907,7 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld)
 				r2->setLevel(r2->getLevel() + 1);
 			}
 		}
-		if ((itr->type == "vassal") || (itr->type == "union") || (itr->type == "protectorate"))
+		if ((itr->type == "vassal") || (itr->type == "union") || (itr->type == "personal_union") || (itr->type == "protectorate") || (itr->type == "tributary_state"))
 		{
 			// influence level = 5
 			r1->setLevel(5);
@@ -920,7 +920,7 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld)
 			r2->setRelations(1);
 			*/
 		}
-		if ((itr->type == "alliance") || (itr->type == "vassal") || (itr->type == "union") || (itr->type == "guarantee"))
+		if ((itr->type == "alliance") || (itr->type == "vassal") || (itr->type == "union") || (itr->type == "personal_union") || (itr->type == "guarantee"))
 		{
 			// copy agreement
 			V2Agreement v2a;
