@@ -1075,8 +1075,8 @@ political_decisions = {
 		news_desc_medium = "mandate_of_heaven_NEWS_MEDIUM"
 		news_desc_short = "mandate_of_heaven_NEWS_SHORT"
 		potential = {
-			NOT = { has_global_flag = liberal_revolutions_should_now_fire }
-			has_country_flag = emperor_heaven
+			#NOT = { has_global_flag = liberal_revolutions_should_now_fire }
+			has_country_flag = celestial_emperor
 			NOT = { exists = CHI }
 			NOT = { year = 1880 }
 		}
@@ -1095,17 +1095,29 @@ political_decisions = {
 		}
 		effect = {
 			change_tag = CHI
-			clr_country_flag = emperor_heaven
+			clr_country_flag = celestial_emperor
 			any_country = {
 				limit = {
-					has_country_flag = member_heaven
 					in_sphere = THIS
+					NOT = {
+						tag = THIS
+					}
+					capital_scope = { continent = asia }
+					OR = {
+						primary_culture = manchu
+						primary_culture = nanfaren
+						primary_culture = beifaren
+						primary_culture = min
+						primary_culture = hakka
+						primary_culture = zhuang
+						primary_culture = miao
+						primary_culture = yi
+					}
 				}
 				THIS = {
 					prestige = 10
 				}
 				country_event = 350001
-				clr_country_flag = member_heaven
 			}
 			any_country = {
 				limit = {
@@ -1116,7 +1128,10 @@ political_decisions = {
 				}
 				country_event = 350003
 				clr_country_flag = member_heaven
-			}
+			}#NB in the present build of the converter this will be no country as no country has the flag "member_heaven"
+			any_owned = {
+				add_core = CHI
+				}
 		}
 				ai_will_do = {
 			factor = 1

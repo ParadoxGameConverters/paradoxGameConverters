@@ -126,46 +126,20 @@ country_event = {
 		}
     }
 }
-country_event = { 
-	id = 350001 
-	title = EVTNAME350001
-	desc = EVTDESC350001
-	is_triggered_only = yes 
-
-	option = { 
-		name = EVTOPTA350001
-		FROM = { inherit = THIS }
-    }
-}
-
-country_event = { 
-	id = 350002
-	title = EVTNAME350002
-	desc = EVTDESC350002
-
-	trigger = { 
-		has_country_flag = emperor_heaven
-		NOT = { is_year = 1880 }
-	}
-
-	mean_time_to_happen = { months = 1 }
-
-	option = { 
-		name = EVTOPTA350002
-		clr_country_flag = emperor_heaven
-	}
-}
 
 country_event = {
-    id = 350003
-    title = EVTNAME350003
-    desc = EVTDESC350003
+    id = 350001
+    title = EVTNAME350001
+    desc = EVTDESC350001
 
     is_triggered_only = yes
 
     option = {
-		name = EVTOPTA350003
+		name = EVTOPTA350001
         FROM = { inherit = THIS }
+		any_owned = {
+			add_core = FROM
+			}
    
         ai_chance = {
             factor = 50
@@ -215,12 +189,34 @@ country_event = {
         }
     }
     option = {
-		name = EVTOPTB350003
+		name = EVTOPTB350001
         THIS = { prestige = 25 }
         FROM = { prestige = -25 }
+		any_owned = {
+				add_core = FROM
+				}
            
         ai_chance = {
             factor = 50
         }
     }
 }
+
+country_event = { 
+	id = 350002
+	title = EVTNAME350002
+	desc = EVTDESC350002
+
+	trigger = { 
+		has_country_flag = emperor_heaven
+		NOT = { is_year = 1880 }
+	}
+
+	mean_time_to_happen = { months = 1 }
+
+	option = { 
+		name = EVTOPTA350002
+		clr_country_flag = emperor_heaven
+	}
+}
+
