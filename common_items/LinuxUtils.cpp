@@ -181,23 +181,100 @@ namespace Utils
 	        return !name.empty() && *name.begin() != '.';
 	}
 
-	/*
-		path should be a vaid path ending on a '/'
-		name can be a directory name or a file name
-		multiple leading '/' in name are not corrected since they are properly understood by the posix fs functions
-	*/
-	std::string ConcatenateNodeName(const std::string &path, const std::string &name){
-		if(name.empty())
+
+	const char * StripTrailingSeparators(const char *path, std::size_t length){
+        	switch(length)
 		{
-                	return path;
-        	}else if(*name.begin() == '/')
-		{
-                	return path + name;
-        	}else{
-                	return path + "/" + name;
+                	case 0:
+                        	return path;
+                	case 1:
+                        	if(*path != '/')
+				{
+                                	++path;
+                        	}
+                        	return path;
+               		default:
+                        	const char *i = path+length-1;
+                        	while(i != path && *i == '/')
+				{
+                                	--i;
+                        	}
+                        	++i;
+                        	return i;
         	}
 	}
-		
+
+	const char *StripLeadingSeparators(const char *path)
+	{
+        	while(true)
+		{
+                	char c = *path;
+                	if(c != '/')
+			{
+                        	return path;
+                	}
+                	++path;
+        	}
+	}
+
+
+	/*
+		Concatenates two paths and strips out leading and trailing '/'
+	*/
+	std::string ConcatenatePaths(const std::string &first, const std::string &second)
+	{
+        	using namespace std;
+        	const char *first_begin = first.c_str();
+       		const char *first_end = StripTrailingSeparators(first_begin, first.length());
+        	const char *second_begin = StripLeadingSeparators(second.c_str());
+        	return string(first_begin, first_end) + "/" + string(second_begin);
+	}
+
+	/*
+		Contatenates a path and a valid node name
+		A valid node name is a non empty string that does not contain '/'
+		use ConcatenatePaths for other concatenations
+	*/
+	std::string ConcatenateNodeName(const std::string &path, const std::string &name){
+        	using namespace std;
+        	const char *path_begin = path.c_str();
+        	const char *path_end = StripTrailingSeparators(path_begin, path.length());
+        	return string(path_begin, path_end) + "/" + name;
+	}
+	
+	/*
+		Splits the node name from the rest of the path and returns both values as a pair (path, nodename)
+	*/
+	std::pair<std::string, std::string> SplitNodeNameFromPath(const std::string &path){
+        	using namespace std;
+        	if(path.empty())
+		{
+                	return make_pair(string(), string());
+        	}
+        	const char *buffer = path.c_str();
+        	const char *end = buffer+path.length()-1;
+        	while(end != buffer && *end == '/')
+		{
+                	--end;
+        	}
+        	if(end == buffer)
+		{
+                	return make_pair(string(buffer, buffer+1), string());
+        	}
+        	const char *begin = end;
+        	++end;
+        	while(begin != buffer && *begin != '/')
+		{
+                	--begin;
+        	}
+        	if(*begin == '/')
+		{
+                	++begin;
+       		}
+
+        	return make_pair(string(buffer,begin),string(begin, end));
+	}
+
 	bool IsLinuxPathElementSeparator(char c){
 		return c == '/';
 	}
@@ -302,10 +379,6 @@ namespace Utils
                                         }
                                 }
                         }
-                        if(errno != 0){
-                                filenames.clear();
-                                LOG(LogLevel::Error) << "an error occurred hile trying to list files in path: " << path;
-                        }
                         closedir(dir);
                 }
 	}
@@ -365,12 +438,80 @@ namespace Utils
                 return true;
 	}
 
-	bool copyFolder(const std::string& sourceFolder, const std::string& destFolder)
+	bool CopyFolderAndFiles(const std::string& sourceFolder, const std::string& destParentFolder, const std::string &folderName)
 	{
-		LOG(LogLevel::Error) << "copyFolder() has been stubbed out in LinuxUtils.cpp.";
-                exit(-1);
-                return false;
+                using namespace std;
+                DIR *dir = opendir(sourceFolder.c_str());
+                if(dir == NULL)
+                {
+                        if(errno == EACCES)
+                        {
+                                LOG(LogLevel::Error) << "no permission to read directory: " << sourceFolder;
+                        }else if(errno == ENOENT)
+                        {
+                                LOG(LogLevel::Error) << "directory does not exist: " << sourceFolder;
+                        }else if(errno == ENOTDIR)
+                        {
+                                LOG(LogLevel::Error) << "path is not a directory: " << sourceFolder;
+                        }else{
+                                LOG(LogLevel::Error) << "unable to open directory: " << sourceFolder;
+                        }
+                        return false;
+                }else{
+                        string destFolder(ConcatenateNodeName(destParentFolder, folderName));
+                        if(!TryCreateFolder(destFolder))
+			{
+                                closedir(dir);
+                                return false;
+                        }
+                        struct dirent *dirent_ptr;
+                        while((dirent_ptr = readdir(dir)) != NULL)
+			{
+                                string filename(dirent_ptr->d_name);
+                                if(IsRegularNodeName(filename))
+                                        {
+                                        string childSourcePath(ConcatenateNodeName(sourceFolder,filename));
+                                        mode_t mode;
+                                        if(!GetFileMode(childSourcePath, mode))
+                                        {
+                                                closedir(dir);
+                                                LOG(LogLevel::Error) << "unable to check mode for path " << childSourcePath;
+                                                return false;
+                                        }
+                                        if(S_ISREG(mode))
+                                        {
+                                                if(!TryCopyFile(childSourcePath, ConcatenateNodeName(destFolder, filename)))
+                                                {
+                                                        closedir(dir);
+                                                        return false;
+                                                }
+                                        }else if(S_ISDIR(mode))
+					{
+                                                if(!CopyFolderAndFiles(childSourcePath, destFolder, filename))
+						{
+                                                        closedir(dir);
+                                                        return false;
+                                                }
+                                        }
+                                }
+                        }
+                        closedir(dir);
+                        return true;
+                }
 	}
+
+	/*
+        Warning: This method does not do recursive checking
+        copying a folder inside it's own decendant tree may result in a infinite loop until max path length is reached
+	*/
+	bool copyFolder(const std::string& sourceFolder, const std::string& destFolder)
+        {
+                using namespace std;
+                pair<string, string> pathAndName = SplitNodeNameFromPath(destFolder);
+                return CopyFolderAndFiles(sourceFolder, pathAndName.first, pathAndName.second);
+        }
+
+
 
 	bool renameFolder(const std::string& sourceFolder, const std::string& destFolder)
 	{
