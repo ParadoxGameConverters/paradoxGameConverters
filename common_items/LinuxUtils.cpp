@@ -703,11 +703,27 @@ namespace Utils
                }
 	}
 
+	/*
+		Converts an UTF sequence to an ASCII string
+		Any code points outside the 7 bit ASCII range are replaced by '?'
+		This function does not differentiate between leading and trailing octets so codepoints outside ASCII range might result in multiple '?
+		As a result, the return value contains the same number of octets as the input.
+	*/
 	std::string convertUTF8ToASCII(std::string UTF8)
-	{
-		LOG(LogLevel::Error) << "convertUTF8ToASCII() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
+	{                
+	        using namespace std;
+        	string result(UTF8); 
+       		for(string::iterator i = result.begin(); i != result.end(); ++i)
+		{
+                	if((*i & 0x80) != 0)
+			{
+                        	*i = '?';
+                	}
+        	}
+        	return result;
 	}
+
+
 
 	std::string convertUTF8To8859_15(std::string UTF8)
 	{
