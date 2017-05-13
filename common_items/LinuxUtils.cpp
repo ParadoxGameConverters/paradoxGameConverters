@@ -177,8 +177,27 @@ namespace Utils
 		- a parent directory ('.')
 		- the current directory ('..')
 	*/	
-	bool IsRegularNodeName(const std::string &name){
+	bool IsRegularNodeName(const std::string &name)
+	{
 	        return !name.empty() && *name.begin() != '.';
+	}
+
+
+	/*
+        	returns false if a node name is empty or a placeholder for the current or parent directory, true otherwise
+	*/
+	bool IsActualNodeName(const std::string &name)
+	{
+        	using namespace std;
+		using namespace std;
+	        for(string::const_iterator i = name.begin(); i != name.end(); ++i)
+		{
+        	        if(*i != '.')
+			{
+                	        return true;
+			}
+                }
+        	return false;
 	}
 
 
@@ -572,11 +591,116 @@ namespace Utils
 		return "";
 	}
 
+	bool deleteFile(const std::string &file)
+	{
+		if(unlink(file.c_str()) != 0)
+		{
+			LOG(LogLevel::Error) << "unable to delete file " << file;
+			switch(errno)
+			{
+				case ENOENT:
+				case ENOTDIR:
+					LOG(LogLevel::Error) << "path does not point to a valid file";
+					break;
+				case EPERM:
+				case EACCES:
+					LOG(LogLevel::Error) << "you do not have permission to delete the file";
+					break;
+				case EBUSY:
+					LOG(LogLevel::Error) << "another process has opened the file";
+					break;
+				case EROFS:
+					LOG(LogLevel::Error) << "the filesystem is mounted with the read only flag";
+					break;
+			}
+			return false;
+		}else{
+			return true;
+		}
+	}
+
+	bool deleteEmptyFolder(const std::string &folder){
+		if(rmdir(folder.c_str()) != 0)
+		{
+			LOG(LogLevel::Error) << "unable to delete folder " << folder;
+			switch(errno)
+			{
+				case ENOTEMPTY:
+				case EEXIST:
+					LOG(LogLevel::Error) << "folder is not empty";
+					break;
+				case ENOENT:
+				case ENOTDIR:
+					LOG(LogLevel::Error) << "path does not point to a valid folder";
+					break;
+				case EPERM:
+				case EACCES:
+					LOG(LogLevel::Error) << "you do not have permission to delete the file";
+					break;
+				case EBUSY:
+					LOG(LogLevel::Error) << "another process has opened this folder ";
+					break;
+				case EROFS:
+					LOG(LogLevel::Error) << "the filesystem is mounted with the read only flag";
+					break;
+			}
+			return false;
+		}else{
+			return true;
+		}
+
+	}
+
 	bool deleteFolder(const std::string& folder)
 	{
-		LOG(LogLevel::Error) << "deleteFolder() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
-		return false;
+		using namespace std;
+                DIR *dir = opendir(folder.c_str());
+                if(dir == NULL)
+                {
+                        LOG(LogLevel::Error) << "unable to read folder prior to delete " << folder;
+                        if(errno == EACCES)
+                        {
+                                LOG(LogLevel::Error) << "no permission to read directory";
+                        }else if(errno == ENOENT)
+                        {
+                                LOG(LogLevel::Error) << "directory does not exist";
+                        }else if(errno == ENOTDIR)
+                        {
+                                LOG(LogLevel::Error) << "path is not a directory";
+                        }else{
+                                LOG(LogLevel::Error) << "unable to open directory";
+                        }
+                        return false;
+                }else{
+                        struct dirent *dirent_ptr;
+                        while((dirent_ptr = readdir(dir)) != NULL){
+                                string filename(dirent_ptr->d_name);
+                                if(IsActualNodeName(filename))
+                                {
+                                        std::string childPath = ConcatenateNodeName(folder, filename);
+                                        mode_t mode;
+                                        if(!GetFileMode(childPath, mode))
+                                        {
+                                                closedir(dir);
+                                                LOG(LogLevel::Error) << "unable to check mode for path " << childPath;
+                                                return false;
+                                        }
+                                        if(S_ISDIR(mode)){
+                                                if(!deleteFolder(childPath)){
+                                                        closedir(dir);
+                                                        return false;
+                                                }
+                                        }else{
+                                                if(!deleteFile(childPath)){
+                                                        closedir(dir);
+                                                        return false;
+                                                }
+                                        }
+                                }
+                        }
+                        closedir(dir);
+                        return deleteEmptyFolder(folder);
+               }
 	}
 
 	std::string convertUTF8ToASCII(std::string UTF8)
