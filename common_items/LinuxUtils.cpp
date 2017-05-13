@@ -26,12 +26,16 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <cstdarg>
 #include <cstring>
 #include <iostream>
+#include <algorithm>
+#include <set>
 
 #include <unistd.h>
 #include <errno.h>
+#include <dirent.h>
+#include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <limits.h>
+#include <sys/sendfile.h>
 
 using namespace std;
 
@@ -85,13 +89,13 @@ namespace Utils
 			{
                 	if(mkdir(path, mode) != 0 && errno != EEXIST)
 			{
-                        	LOG(LogLevel::Error) << "unable to create folder: " << path << "\n";
+                        	LOG(LogLevel::Error) << "unable to create folder: " << path;
                        		return false;
                 	}
         	}else{
                 	if(!S_ISDIR(status.st_mode))
 			{
-                        	LOG(LogLevel::Error) << "node already exists but is not a folder: " << path << "\n";
+                        	LOG(LogLevel::Error) << "node already exists but is not a folder: " << path;
                         	return false;
                 	}
         	}
@@ -166,43 +170,206 @@ namespace Utils
         	}
 	}
 
-	void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames)
-	{
-		char directory[MAX_PATH];
-		LOG(LogLevel::Error) << "GetAllFilesInFolder() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
-		/*DIR *dp;
-		if ((dp	 = opendir(path.c_str())) == NULL)
-		{
-			return;
-		}
-
-		struct dirent *dirp;
-		while ((dirp = readdir(dp)) != NULL)
-		{
-			fileNames.insert(std::string(dirp->d_name));
-		}
-		closedir(dp);*/
+	/*
+		Helper function to determine that returns false if the filename is a:
+		- a hidden folder or folder (starting with '.')
+		- empty
+		- a parent directory ('.')
+		- the current directory ('..')
+	*/	
+	bool IsRegularNodeName(const std::string &name){
+	        return !name.empty() && *name.begin() != '.';
 	}
 
+	/*
+		path should be a vaid path ending on a '/'
+		name can be a directory name or a file name
+		multiple leading '/' in name are not corrected since they are properly understood by the posix fs functions
+	*/
+	std::string ConcatenateNodeName(const std::string &path, const std::string &name){
+		if(name.empty())
+		{
+                	return path;
+        	}else if(*name.begin() == '/')
+		{
+                	return path + name;
+        	}else{
+                	return path + "/" + name;
+        	}
+	}
+		
+	bool IsLinuxPathElementSeparator(char c){
+		return c == '/';
+	}
+	
+	bool isLinuxPathCharacter(char c){
+		return c != '/';
+	}
+
+	bool GetFileMode(const std::string &path, mode_t &result)
+	{
+                struct stat status;
+                if(stat(path.c_str(), &status) != 0)
+                {
+                        return false;
+                }else{
+                        result = status.st_mode;
+                        return true;
+                }
+	}
+
+	bool IsRegularFile(const std::string &path)
+	{
+                mode_t mode;
+                return GetFileMode(path, mode) && S_ISREG(mode);
+	}	
+	
+	/*
+		Note: since the function signature did not allow for a return value, it clears the fileNames set when an error occurs to make sure no operations are done on an incomplete list of files
+	*/
+	void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames)
+	{
+                using namespace std;
+                DIR *dir = opendir(path.c_str());
+                if(dir == NULL)
+                {
+                        if(errno == EACCES)
+                        {
+                                LOG(LogLevel::Error) << "no permission to read directory: " << path;
+                        }else if(errno == ENOENT)
+                        {
+                                LOG(LogLevel::Error) << "directory does not exist: " << path;
+                        }else if(errno == ENOTDIR)
+                        {
+                                LOG(LogLevel::Error) << "path is not a directory: " << path;
+                        }else{
+                                LOG(LogLevel::Error) << "unable to open directory: " << path;
+                        }
+                }else{
+                        struct dirent *dirent_ptr;
+                        while((dirent_ptr = readdir(dir)) != NULL){
+                                string filename{dirent_ptr->d_name};
+                                if(IsRegularNodeName(filename) && IsRegularFile(path+filename)){
+                                        if(errno != 0){
+                                                fileNames.clear();
+                                                closedir(dir);
+                                                LOG(LogLevel::Error) << "an error occurred hile trying to list files in path: " << path;
+                                                return;
+                                        }
+                                        fileNames.insert(filename);
+                                }
+                        }
+                        closedir(dir);
+                }
+        }
+
+	void GetAllFilesInFolderRecursiveWithRelativePath(const std::string& path, const std::string &relative_path, std::set<std::string>& filenames)
+        {
+                using namespace std;
+                DIR *dir = opendir(path.c_str());
+                if(dir == NULL)
+                {
+                        if(errno == EACCES)
+                        {
+                                LOG(LogLevel::Error) << "no permission to read directory: " << path;
+                        }else if(errno == ENOENT)
+                        {
+                                LOG(LogLevel::Error) << "directory does not exist: " << path;
+                        }else if(errno == ENOTDIR)
+                        {
+                                LOG(LogLevel::Error) << "path is not a directory: " << path;
+                        }else{
+                                LOG(LogLevel::Error) << "unable to open directory: " << path;
+                        }
+                }else{
+                        struct dirent *dirent_ptr;
+                        while((dirent_ptr = readdir(dir)) != NULL){
+                                string filename(dirent_ptr->d_name);
+                                if(IsRegularNodeName(filename)){
+                                        string absolute_path(ConcatenateNodeName(path,filename));
+                                        mode_t mode;
+                                        if(!GetFileMode(absolute_path, mode)){
+                                                filenames.clear();
+                                                closedir(dir);
+                                                LOG(LogLevel::Error) << "unable to check mode for path " << absolute_path;
+                                                return;
+                                        }
+                                        if(S_ISREG(mode))
+                                        {
+                                                filenames.insert(ConcatenateNodeName(relative_path,filename));
+                                        }else if(S_ISDIR(mode)){
+                                                GetAllFilesInFolderRecursiveWithRelativePath(absolute_path, ConcatenateNodeName(relative_path,filename), filenames);
+                                        }
+                                }
+                        }
+                        if(errno != 0){
+                                filenames.clear();
+                                LOG(LogLevel::Error) << "an error occurred hile trying to list files in path: " << path;
+                        }
+                        closedir(dir);
+                }
+	}
+
+	/*
+                Note: since the function signature did not allow for a return value, it clears the fileNames set when an error occurs to make sure no operations are done on an incomplete list of files
+        */
 	void GetAllFilesInFolderRecursive(const std::string& path, std::set<std::string>& filenames)
 	{
-		LOG(LogLevel::Error) << "GetAllFilesInFolderRecursive() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
+                GetAllFilesInFolderRecursiveWithRelativePath(path, "", filenames);
 	}
 
 	bool TryCopyFile(const std::string& sourcePath, const std::string& destPath)
-	{
-		LOG(LogLevel::Error) << "TryCopyFile() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
-		return false;
+        {
+                using namespace std;
+                int inputHandle = open(sourcePath.c_str(), O_RDONLY);
+                if(inputHandle == -1)
+                {
+                        LOG(LogLevel::Error) << "unable to open copy source path: " << sourcePath;
+                        return false;
+                }
+                struct stat inputStat;
+                if(fstat(inputHandle, &inputStat) != 0){
+                        close(inputHandle);
+                        LOG(LogLevel::Error) << "unable to determine copy source file size: " << sourcePath;
+                        return false;
+                }
+                if(!S_ISREG(inputStat.st_mode)){
+                        close(inputHandle);
+                        LOG(LogLevel::Error) << "copy source path is a directory: " << sourcePath;
+                        return false;
+                }
+                int outputHandle = open(destPath.c_str(), O_WRONLY | O_CREAT | O_TRUNC, inputStat.st_mode);
+                if(outputHandle == -1)
+                {
+                        LOG(LogLevel::Error) << "unable to open copy destination file: " << destPath;
+                        close(inputHandle);
+                        return false;
+                }
+                ssize_t remaining = inputStat.st_size;
+                while(remaining > 0)
+                {
+        		// Copy file using sendfile because this is more efficient since copy is done in kernelspace
+			// Won't work in kernels older than 2.6.33 (glibc 2.1)
+			// If such systems must be supported, this method should be reimplemented using POSIX read/write methods or iostreams
+	               ssize_t copied = sendfile(outputHandle, inputHandle, NULL, remaining);
+                        if(copied == -1){
+                                close(inputHandle);
+                                close(outputHandle);
+                                return false;
+                        }else{
+                                remaining-=copied;
+                        }
+                }
+                close(inputHandle);
+                close(outputHandle);
+                return true;
 	}
 
 	bool copyFolder(const std::string& sourceFolder, const std::string& destFolder)
 	{
 		LOG(LogLevel::Error) << "copyFolder() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
-		return false;
+                exit(-1);
+                return false;
 	}
 
 	bool renameFolder(const std::string& sourceFolder, const std::string& destFolder)
@@ -214,14 +381,14 @@ namespace Utils
 
 	bool DoesFileExist(const std::string& path)
 	{
-		LOG(LogLevel::Error) << "DoesFileExist() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
+		mode_t mode;
+		return GetFileMode(path, mode) && S_ISREG(mode);
 	}
 
 	bool doesFolderExist(const std::string& path)
 	{
-		LOG(LogLevel::Error) << "doesFolderExist() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
+		mode_t mode;
+		return GetFileMode(path, mode) && S_ISDIR(mode);
 	}
 
 	void WriteToConsole(LogLevel level, const std::string& logMessage)
