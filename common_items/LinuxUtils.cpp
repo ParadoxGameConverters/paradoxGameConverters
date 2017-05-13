@@ -511,13 +511,38 @@ namespace Utils
                 return CopyFolderAndFiles(sourceFolder, pathAndName.first, pathAndName.second);
         }
 
-
-
 	bool renameFolder(const std::string& sourceFolder, const std::string& destFolder)
 	{
-		LOG(LogLevel::Error) << "renameFolder() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
-		return false;
+        	if(rename(sourceFolder.c_str(), destFolder.c_str()) != 0)
+		{
+                	LOG(LogLevel::Error) << "unable to rename folder " << sourceFolder << " to " << destFolder;
+                	switch(errno)
+			{
+                	        case EACCES:
+                        	case EPERM:
+                        	        LOG(LogLevel::Error) << "no permission to move folder";
+                        	        break;
+                       		case ENOENT:
+                                	LOG(LogLevel::Error) << "source folder does not exist";
+                                	break;
+                        	case EBUSY:
+                                	LOG(LogLevel::Error) << "source or destination folder is locked by another process";
+                                	break;
+                        	case EEXIST:
+                        	case ENOTEMPTY:
+                                	LOG(LogLevel::Error) << "destination folder already exists and is not empty";
+                                	break;
+                        	case EINVAL:
+                                	LOG(LogLevel::Error) << "destination folder contains source folder";
+                                	break;
+                        	case EISDIR:
+                                	LOG(LogLevel::Error) << "destination folder is not a directory";
+                                	break;
+                	}
+        	        return false;
+        	}else{
+        	        return true;
+	        }
 	}
 
 	bool DoesFileExist(const std::string& path)
