@@ -591,7 +591,7 @@ namespace Utils
 		return "";
 	}
 
-	bool deleteFile(const std::string &file)
+	bool DeleteFile(const std::string &file)
 	{
 		if(unlink(file.c_str()) != 0)
 		{
@@ -619,7 +619,7 @@ namespace Utils
 		}
 	}
 
-	bool deleteEmptyFolder(const std::string &folder){
+	bool DeleteEmptyFolder(const std::string &folder){
 		if(rmdir(folder.c_str()) != 0)
 		{
 			LOG(LogLevel::Error) << "unable to delete folder " << folder;
@@ -691,7 +691,7 @@ namespace Utils
                                                         return false;
                                                 }
                                         }else{
-                                                if(!deleteFile(childPath)){
+                                                if(!DeleteFile(childPath)){
                                                         closedir(dir);
                                                         return false;
                                                 }
@@ -699,7 +699,7 @@ namespace Utils
                                 }
                         }
                         closedir(dir);
-                        return deleteEmptyFolder(folder);
+                        return DeleteEmptyFolder(folder);
                }
 	}
 
