@@ -36,6 +36,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/sendfile.h>
+#include <iconv.h>
 
 using namespace std;
 
@@ -704,31 +705,156 @@ namespace Utils
 	}
 
 	/*
-		Converts an UTF sequence to an ASCII string
-		Any code points outside the 7 bit ASCII range are replaced by '?'
-		This function does not differentiate between leading and trailing octets so codepoints outside ASCII range might result in multiple '?
-		As a result, the return value contains the same number of octets as the input.
+	* Forward declarations for conversion helper function and types
 	*/
-	std::string convertUTF8ToASCII(std::string UTF8)
-	{                
-	        using namespace std;
-        	string result(UTF8); 
-       		for(string::iterator i = result.begin(); i != result.end(); ++i)
-		{
-                	if((*i & 0x80) != 0)
-			{
-                        	*i = '?';
-                	}
-        	}
-        	return result;
+	class ConversionInputBuffer;
+
+	class ConversionOutputBuffer;
+
+	bool ConvertString(const char *toCode, const char *fromCode, ConversionInputBuffer &in, ConversionOutputBuffer &out);
+
+	/*	
+	* helper class to copy buffer from string and keep track of remainder and current position
+	*/
+	class ConversionInputBuffer{
+        	char *data;
+		char *in_buffer;
+		std::size_t remainder;
+	public:
+		explicit ConversionInputBuffer(const std::string &input) : data(new char[input.length()]), in_buffer(data), remainder(input.length()){
+			//POSIX iconv expects a pointer to char *, not to const char * and consequently does not guarantee that the input sequence is not modified so we copy it into the buffer before attempting conversion
+			copy(input.begin(), input.end(), data);
+		};
+
+		~ConversionInputBuffer(){
+			delete[] data;
+		};
+
+		bool has_remaining_bytes() const{
+			return remainder != 0;
+		};
+
+		friend bool ConvertString(const char *, const char *, ConversionInputBuffer &, ConversionOutputBuffer &); 
+	private:
+		//declared private to avoid copy of buffer
+		//unsure if versions pre c++11  should be supported, if not, copy constructors can be explicitly deleted
+		ConversionInputBuffer(const ConversionInputBuffer &); 
+		ConversionInputBuffer &operator=(const ConversionInputBuffer &); 
+
+	};
+
+	/*
+	* helper class to manage buffer pointers and sizes while providing access to internal buffers for use in iconv functions
+	*/
+	class ConversionOutputBuffer{   
+		std::size_t size;
+		std::size_t block_size;
+		std::size_t remainder;
+		char *data = nullptr;
+		char *out_buffer = nullptr;
+
+	public:
+		explicit ConversionOutputBuffer(std::size_t initial_size = 0, std::size_t increment_block_size = 1024) : size(initial_size), remainder(initial_size), block_size(increment_block_size){
+			if(size != 0){ 
+				data = new char[size];
+				out_buffer = data;
+			}
+		};
+
+		~ConversionOutputBuffer(){
+			delete[] data;
+		};
+
+		bool full() const{
+			return remainder != 0;
+		};
+
+		size_t length() const{
+			return size-remainder;
+		};
+
+		std::string str() const{
+			using namespace std;
+			return string(data, data+length());
+		};
+
+		bool ensure_capacity(std::size_t capacity){
+			using namespace std;
+			if(size < capacity){
+				size_t len = length();
+				char *ndata = new char[capacity];
+				copy(data, data+len, ndata);
+				delete[] data;
+				data = ndata;
+				out_buffer = data+len;
+				remainder+=(capacity-size);
+				size = capacity;
+				return true;
+			}else{
+				return false;
+			}
+		};
+
+		bool grow(){
+			return ensure_capacity(size+block_size);
+		};
+
+		friend bool ConvertString(const char *, const char *, ConversionInputBuffer &, ConversionOutputBuffer &);
+	private:
+		//declared private to avoid copy of buffer
+		//unsure if versions pre c++11  should be supported, if not, copy constructors can be explicitly deleted
+		ConversionOutputBuffer(const ConversionOutputBuffer &);
+		ConversionOutputBuffer &operator=(const ConversionOutputBuffer &);
+	};
+
+	bool ConvertString(const char *toCode, const char *fromCode, ConversionInputBuffer &from, ConversionOutputBuffer &to){
+		using namespace std;
+		iconv_t descriptor = iconv_open(toCode, fromCode);
+		if(descriptor == ((iconv_t)(-1))){
+			LOG(LogLevel::Error) << "unable to recode string from '" << fromCode << "' to '" << toCode << ": not supported on this system";
+			return false;
+		}
+		while(from.has_remaining_bytes()){
+			if(iconv(descriptor, &from.in_buffer, &from.remainder, &to.out_buffer, &to.remainder) == ((size_t)(-1))){
+				switch(errno){
+					case E2BIG:
+						to.grow();
+						break;
+					case EILSEQ:
+						LOG(LogLevel::Error) << "invalid input sequence encountered during conversion from " << fromCode << " to " << toCode;
+						return false;
+					case EINVAL:
+						LOG(LogLevel::Error) << "incomplete input sequence encountered during conversion from " << fromCode << " to " << toCode;
+						return false;
+				}
+			}
+		}
+		iconv_close(descriptor);
+		return true;
 	}
 
+	std::string ConvertString(const char *toCode, const char *fromCode, const std::string &from, std::size_t to_buffer_size = 0){
+		using namespace std;
+		if(to_buffer_size == 0){
+			to_buffer_size = from.length();
+		}
+		ConversionInputBuffer from_buffer(from);
+		ConversionOutputBuffer to_buffer(to_buffer_size);
+		if(ConvertString(toCode, fromCode, from_buffer, to_buffer)){
+			return to_buffer.str();
+		}else{
+			return string();
+		}
+	}
 
+	std::string convertUTF8ToASCII(std::string UTF8)
+	{
+	        return ConvertString("ASCII","UTF-8", UTF8);
+	}
 
 	std::string convertUTF8To8859_15(std::string UTF8)
 	{
-		LOG(LogLevel::Error) << "convertUTF8To8859_15() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
+		return ConvertString("ISO−8859−15","UTF−8", UTF8);
 	}
 	
 	std::string convertUTF16ToUTF8(std::wstring UTF16)
@@ -739,8 +865,7 @@ namespace Utils
 
 	std::string convert8859_15ToUTF8(std::string input)
 	{
-		LOG(LogLevel::Error) << "convert8859_15ToUTF8() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
+		return ConvertString("UTF-8","ISO−8859−15", input);
 	}
 
 	std::wstring convert8859_15ToUTF16(std::string UTF8)
