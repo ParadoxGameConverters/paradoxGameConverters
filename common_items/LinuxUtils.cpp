@@ -585,11 +585,40 @@ namespace Utils
 		}
 	}
 
+	/*
+		Implemented all messages for error codes used in LinuxUtils.cpp.
+	*/
 	std::string GetLastErrorString()
 	{
-		LOG(LogLevel::Error) << "GetLastErrorString() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
-		return "";
+		switch(errno)
+		{
+			case EEXIST:
+				return string("Error code: EEXIST");
+			case EACCES:
+				return string("Error code: EACCES");
+			case ENOENT:
+				return string("Error code: ENOENT");
+			case ENOTDIR:
+				return string("Error code: ENOTDIR");
+			case EPERM:
+				return string("Error code: EPERM");
+			case EBUSY:
+				return string("Error code: EBUSY");
+			case ENOTEMPTY:
+				return string("Error code: ENOTEMPTY");
+			case EINVAL:
+				return string("Error code: EINVAL");
+			case EISDIR:
+				return string("Error code: EISDIR");
+			case EROFS:
+				return string("Error code: EROFS");	
+			case E2BIG:
+				return string("Error code: E2BIG");
+			case EILSEQ:
+				return string("Error code: EILSEQ");
+			default:
+				return string("Error code: unknown");
+		}
 	}
 
 	bool DeleteFile(const std::string &file)
