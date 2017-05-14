@@ -32,7 +32,7 @@ link = { v2 = democracy eu4 = merchant_republic eu4 = noble_republic eu4 = admin
 link = { v2 = presidential_dictatorship eu4 = republican_dictatorship eu4 = bureaucratic_despotism }
 link = { v2 = hms_government eu4 = english_monarchy eu4 = constitutional_monarchy eu4 = administrative_monarchy eu4 = elective_monarchy }
 link = { v2 = prussian_constitutionalism eu4 = prussian_monarchy }
-link = { v2 = proletariat_dictatorship eu4 = peasants_republic } #Dithmarschen special
+link = { v2 = proletarian_dictatorship eu4 = peasants_republic } #Dithmarschen special
 
 #Monarchies with absolutist mechanics
 #link = { v2 = hms_government absolutism_level < 20 eu4 = english_monarchy eu4 = constitutional_monarchy eu4 = administrative_monarchy eu4 = elective_monarchy }

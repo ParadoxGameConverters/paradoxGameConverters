@@ -17,6 +17,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
+
 1.21.0.0 = {
 	# ## WATER BODIES
 	# North America
@@ -78,6 +79,7 @@
 	link = { eu4 = 1926 eu4 = 1255 eu4 = 1256 v2 = 2708 v2 = 2709 }	# MANY-TO-MANY: Northern baltic sea, Western Baltic Sea, Gulf of Riga -> Western Baltic Sea, Gulf of Riga
 	link = { eu4 = 1927 eu4 = 1257 v2 = 2710 }	# Eastern baltic sea, Southern Baltic Sea -> Southern Baltic Sea
 	link = { eu4 = 1259 eu4 = 1258 v2 = 2711 }	# Kattegat, Öresund -> Öresund
+	link = { eu4 = 4235 } #Vistula Lagoon -> DROPPED 
 	# Mediterranean
 	link = { eu4 = 1293 v2 = 2746 }	# Straits of Gibraltar -> Straits of Gibraltar
 	link = { eu4 = 1294 v2 = 2747 }	# Gulf of Almeira -> Gulf of Almeira
@@ -1006,10 +1008,9 @@
 	link = { eu4 = 370 eu4 = 371 v2 = 252 v2 = 3246 }	# MANY-TO-MANY: Reykjavik, Akureyri -> Iceland, Jan Mayen
 	# British Isles
 	link = { eu4 = 1979 v2 = 253 }	# Färöarnax -> Faroe Islands
-	link = { eu4 = 4110 eu4 = 1978 eu4 = 253 v2 = 267 }	# Sutherland, Shetlands, Western Isles -> Inverness
-	link = { eu4 = 252 v2 = 270 }	# Highlands -> Stirling
+	link = { eu4 = 252 eu4 = 4110 eu4 = 1978 eu4 = 253 eu4 = 369 v2 = 267 }	# Highlands, Sutherland, Orkney, Shetlands, Western Isles -> Inverness
 	link = { eu4 = 251 v2 = 266 }	# Aberdeen -> Aberdeen
-	link = { eu4 = 250 v2 = 268 }	# Fife -> Dundee
+	link = { eu4 = 250 v2 = 268 v2 =270 }	# Fife -> Dundee, Stirling
 	link = { eu4 = 249 v2 = 271 }	# Ayrshire -> Glasgow
 	link = { eu4 = 248 v2 = 269 v2 = 272 }	# Lothian -> Edinburgh, Dumfries
 	link = { eu4 = 247 v2 = 279 v2 = 304 }	# Cumbria -> Carlisle, Isle of Man
@@ -1340,7 +1341,8 @@
 	link = { eu4 = 1831 v2 = 788 }	# Travunia -> Mostar
 	link = { eu4 = 3002 v2 = 783 v2 = 787 }	# Sarajevo -> Sarajevo, Foca
 	link = { eu4 = 4173 v2 = 2538 v2 = 791 v2 = 792 }	# Syrmia -> Novi Sad, Mitrovica, Pancevo
-	link = { eu4 = 4239 eu4 = 141 v2 = 794 v2 = 796 v2 = 797 }	# MANY-TO-MANY: Belgrade, Serbia -> Belgrade, Kragujevac, Uzice
+	link = { eu4 = 4239 v2 = 794 }	# Belgrade -> Belgrade
+	link = { eu4 = 141 v2 = 796 v2 = 797 } # Serbia  -> Kragujevac, Uzice
 	link = { eu4 = 1827 v2 = 804 }	# Raska -> Novi Pazar
 	link = { eu4 = 4176 v2 = 795 }	# Branicevo -> Bor
 	link = { eu4 = 3000 v2 = 798 v2 = 799 }	# Nis -> Nis, Leskovac
@@ -2353,7 +2355,7 @@
 	# Anhui, Jianxi
 	link = { eu4 = 2143 v2 = 1476 v2 = 1472 }	# Fengyang -> Sizhou, Fengyang
 	link = { eu4 = 2144 v2 = 1478 }	# Fuyang -> Yingzhou
-	link = { eu4 = 1838 v2 = 1474 }	# Hefei -> Luzhou
+	link = { eu4 = 1838 eu4 = 4213 v2 = 1474 }	# Hefei, Luzhou -> Luzhou
 	link = { eu4 = 2146 v2 = 1475 }	# Ningguo -> Ningguo
 	link = { eu4 = 686 v2 = 1471 v2 = 1470 }	# Anqing -> Chizhou, Anqing
 	link = { eu4 = 2147 v2 = 1473 }	# Huizhou -> Huizhou
@@ -2653,6 +2655,7 @@
 	link = { eu4 = 1926 eu4 = 1255 eu4 = 1256 v2 = 2708 v2 = 2709 }	# MANY-TO-MANY: Northern baltic sea, Western Baltic Sea, Gulf of Riga -> Western Baltic Sea, Gulf of Riga
 	link = { eu4 = 1927 eu4 = 1257 v2 = 2710 }	# Eastern baltic sea, Southern Baltic Sea -> Southern Baltic Sea
 	link = { eu4 = 1259 eu4 = 1258 v2 = 2711 }	# Kattegat, Öresund -> Öresund
+	link = { eu4 = 4235 } # Vistula Lagoon -> DROPPED
 	# Mediterranean
 	link = { eu4 = 1293 v2 = 2746 }	# Straits of Gibraltar -> Straits of Gibraltar
 	link = { eu4 = 1294 v2 = 2747 }	# Gulf of Almeira -> Gulf of Almeira
@@ -3581,7 +3584,7 @@
 	link = { eu4 = 370 eu4 = 371 v2 = 252 v2 = 3246 }	# MANY-TO-MANY: Reykjavik, Akureyri -> Iceland, Jan Mayen
 	# British Isles
 	link = { eu4 = 1979 v2 = 253 }	# Färöarnax -> Faroe Islands
-	link = { eu4 = 4110 eu4 = 1978 eu4 = 253 v2 = 267 }	# Sutherland, Shetlands, Western Isles -> Inverness
+	link = { eu4 = 4110 eu4 = 1978 eu4 = 369 eu4 = 253 v2 = 267 }	# Sutherland, Orkney, Shetland, Western Isles -> Inverness
 	link = { eu4 = 252 v2 = 270 }	# Highlands -> Stirling
 	link = { eu4 = 251 v2 = 266 }	# Aberdeen -> Aberdeen
 	link = { eu4 = 250 v2 = 268 }	# Fife -> Dundee
@@ -4928,7 +4931,7 @@
 	# Anhui, Jianxi
 	link = { eu4 = 2143 v2 = 1476 v2 = 1472 }	# Fengyang -> Sizhou, Fengyang
 	link = { eu4 = 2144 v2 = 1478 }	# Fuyang -> Yingzhou
-	link = { eu4 = 1838 v2 = 1474 }	# Hefei -> Luzhou
+	link = { eu4 = 1838 eu4 = 4213 v2 = 1474 }	# Hefei, Luzhou -> Luzhou
 	link = { eu4 = 2146 v2 = 1475 }	# Ningguo -> Ningguo
 	link = { eu4 = 686 v2 = 1471 v2 = 1470 }	# Anqing -> Chizhou, Anqing
 	link = { eu4 = 2147 v2 = 1473 }	# Huizhou -> Huizhou

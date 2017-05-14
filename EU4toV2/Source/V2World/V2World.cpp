@@ -852,7 +852,7 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld)
 			country2->second->addRelation(r2);
 		}
 
-		if (itr->type == "is_colonial")
+		if (itr->type == "is_colonial"|| itr->type == "colony")
 		{
 			country2->second->setColonyOverlord(country1->second);
 

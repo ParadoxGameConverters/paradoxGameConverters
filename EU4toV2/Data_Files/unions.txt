@@ -40,7 +40,7 @@ link = { tag = SCA culture = danish } #Denmark
 link = { tag = SCA culture = norwegian } #Norway
 link = { tag = SCA culture = icelandic } #Iceland
 link = { tag = SCA culture = finnish } #Finland
-link = { tag = SMI culture = sami } #Sami
+link = { tag = SCA culture = sami } #Sami
 
 #British
 link = { tag = ENG culture = british }

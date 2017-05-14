@@ -153,6 +153,7 @@ YEM		="countries/Yemen.txt"
 
 # India
 HND	 	="countries/India.txt"
+AND		="countries/Andhra.txt"
 AWA		="countries/Awadh.txt"
 BAS		="countries/Bastar.txt"
 BER		="countries/Beroda.txt"

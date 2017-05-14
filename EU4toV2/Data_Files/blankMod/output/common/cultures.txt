@@ -5,12 +5,15 @@ germanic = {
 	leader = european
 	unit = EuropeanGC
 	
-	dummy = {#to deal with germna eating problem
+	dummy = {#to deal with german eating problem
 		color = {0 0 0}
 		
 		first_names = { John }
 	
 		last_names = { Smith }
+	
+	}
+	
 	north_german = { 
 		color = { 90 60 60 }
 
@@ -381,6 +384,7 @@ british = {
 		last_names = { Argall Baines Bevan Cecil Crewe Floyd Hier Howell Jernigan Kendrick Lloyd Llywelyn Maddox Marvin Merricks Morris Owen Owens Parry Perkins Perry Powell Price Prichard Probert Reece Sayer Tittensor Trevor Vaughan }
 	}
 	
+	union = ENG
 }
 
 italian = {
@@ -525,6 +529,8 @@ iberian = {
 	
 		last_names = { Aniano Ariari Arius Ataulph Atharid Baduila Cyrila Farnobio Feva Fretela Friderico Gaiseri Gundeharo Heldefred Hermangild Hernegliscu Hildebado Huml Hunimund Leuvibild Nidada Retemeri Rhima Saphrax Sueridu Sunnia Theoderi Tribigild Videric Vidimiro }
 	}
+	
+	union = SPA
 }
 
 french = {
@@ -842,6 +848,8 @@ east_slavic = {
 
                   last_names = { Kokko Likhachev Mamin Minin Sibiriak  Tikhanov Zubov }
 	}
+	
+	union = RUS
 }
 
 baltic = {
@@ -1824,7 +1832,6 @@ east_asian = {
 		}
 	}
 	
-	union = CHI
 }
 
 oceanic = {

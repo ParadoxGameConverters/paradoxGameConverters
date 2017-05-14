@@ -40,7 +40,6 @@ link = { eu4 = SCO v2 = SCO } 	# Scotland
 link = { eu4 = TYR v2 = TYR } 	# Tyrone
 link = { eu4 = ULS v2 = ULS }   # Ulster
 link = { eu4 = WLS v2 = WLS } 	# Wales
-link = { eu4 = YOR v2 = YOR } 	# York
 link = { eu4 = NOL v2 = NOL } 	# Northumberland
 link = { eu4 = HSC v2 = HSC }   # Highlands/Gaeldom
 link = { eu4 = DMS v2 = DMS }   # Desmond
@@ -494,6 +493,7 @@ link = { eu4 = ASK v2 = ASK }  #Ashikaga
 
 # Central Asia and India
 link = { eu4 = ASS v2 = ASS }  # Assam
+link = { eu4 = YOR v2 = AND }  # Andhra
 link = { eu4 = BAH v2 = BAH }  # Bahamis
 link = { eu4 = BAL v2 = BCS }  # Baluchistan
 link = { eu4 = BNG v2 = BNG }  # Bengal
