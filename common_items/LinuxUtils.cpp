@@ -590,6 +590,7 @@ namespace Utils
 	*/
 	std::string GetLastErrorString()
 	{
+		using namespace std;
 		switch(errno)
 		{
 			case EEXIST:
