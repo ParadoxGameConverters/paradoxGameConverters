@@ -177,27 +177,123 @@ namespace Utils
 		- a parent directory ('.')
 		- the current directory ('..')
 	*/	
-	bool IsRegularNodeName(const std::string &name){
+	bool IsRegularNodeName(const std::string &name)
+	{
 	        return !name.empty() && *name.begin() != '.';
 	}
 
+
 	/*
-		path should be a vaid path ending on a '/'
-		name can be a directory name or a file name
-		multiple leading '/' in name are not corrected since they are properly understood by the posix fs functions
+        	returns false if a node name is empty or a placeholder for the current or parent directory, true otherwise
 	*/
-	std::string ConcatenateNodeName(const std::string &path, const std::string &name){
-		if(name.empty())
+	bool IsActualNodeName(const std::string &name)
+	{
+        	using namespace std;
+		using namespace std;
+	        for(string::const_iterator i = name.begin(); i != name.end(); ++i)
 		{
-                	return path;
-        	}else if(*name.begin() == '/')
+        	        if(*i != '.')
+			{
+                	        return true;
+			}
+                }
+        	return false;
+	}
+
+
+	const char * StripTrailingSeparators(const char *path, std::size_t length){
+        	switch(length)
 		{
-                	return path + name;
-        	}else{
-                	return path + "/" + name;
+                	case 0:
+                        	return path;
+                	case 1:
+                        	if(*path != '/')
+				{
+                                	++path;
+                        	}
+                        	return path;
+               		default:
+                        	const char *i = path+length-1;
+                        	while(i != path && *i == '/')
+				{
+                                	--i;
+                        	}
+                        	++i;
+                        	return i;
         	}
 	}
-		
+
+	const char *StripLeadingSeparators(const char *path)
+	{
+        	while(true)
+		{
+                	char c = *path;
+                	if(c != '/')
+			{
+                        	return path;
+                	}
+                	++path;
+        	}
+	}
+
+
+	/*
+		Concatenates two paths and strips out leading and trailing '/'
+	*/
+	std::string ConcatenatePaths(const std::string &first, const std::string &second)
+	{
+        	using namespace std;
+        	const char *first_begin = first.c_str();
+       		const char *first_end = StripTrailingSeparators(first_begin, first.length());
+        	const char *second_begin = StripLeadingSeparators(second.c_str());
+        	return string(first_begin, first_end) + "/" + string(second_begin);
+	}
+
+	/*
+		Contatenates a path and a valid node name
+		A valid node name is a non empty string that does not contain '/'
+		use ConcatenatePaths for other concatenations
+	*/
+	std::string ConcatenateNodeName(const std::string &path, const std::string &name){
+        	using namespace std;
+        	const char *path_begin = path.c_str();
+        	const char *path_end = StripTrailingSeparators(path_begin, path.length());
+        	return string(path_begin, path_end) + "/" + name;
+	}
+	
+	/*
+		Splits the node name from the rest of the path and returns both values as a pair (path, nodename)
+	*/
+	std::pair<std::string, std::string> SplitNodeNameFromPath(const std::string &path){
+        	using namespace std;
+        	if(path.empty())
+		{
+                	return make_pair(string(), string());
+        	}
+        	const char *buffer = path.c_str();
+        	const char *end = buffer+path.length()-1;
+        	while(end != buffer && *end == '/')
+		{
+                	--end;
+        	}
+        	if(end == buffer)
+		{
+                	return make_pair(string(buffer, buffer+1), string());
+        	}
+        	const char *begin = end;
+        	++end;
+        	while(begin != buffer && *begin != '/')
+		{
+                	--begin;
+        	}
+        	if(*begin == '/')
+		{
+                	++begin;
+       		}
+
+        	return make_pair(string(buffer,begin),string(begin, end));
+	}
+
 	bool IsLinuxPathElementSeparator(char c){
 		return c == '/';
 	}
@@ -302,10 +398,6 @@ namespace Utils
                                         }
                                 }
                         }
-                        if(errno != 0){
-                                filenames.clear();
-                                LOG(LogLevel::Error) << "an error occurred hile trying to list files in path: " << path;
-                        }
                         closedir(dir);
                 }
 	}
@@ -365,18 +457,111 @@ namespace Utils
                 return true;
 	}
 
-	bool copyFolder(const std::string& sourceFolder, const std::string& destFolder)
+	bool CopyFolderAndFiles(const std::string& sourceFolder, const std::string& destParentFolder, const std::string &folderName)
 	{
-		LOG(LogLevel::Error) << "copyFolder() has been stubbed out in LinuxUtils.cpp.";
-                exit(-1);
-                return false;
+                using namespace std;
+                DIR *dir = opendir(sourceFolder.c_str());
+                if(dir == NULL)
+                {
+                        if(errno == EACCES)
+                        {
+                                LOG(LogLevel::Error) << "no permission to read directory: " << sourceFolder;
+                        }else if(errno == ENOENT)
+                        {
+                                LOG(LogLevel::Error) << "directory does not exist: " << sourceFolder;
+                        }else if(errno == ENOTDIR)
+                        {
+                                LOG(LogLevel::Error) << "path is not a directory: " << sourceFolder;
+                        }else{
+                                LOG(LogLevel::Error) << "unable to open directory: " << sourceFolder;
+                        }
+                        return false;
+                }else{
+                        string destFolder(ConcatenateNodeName(destParentFolder, folderName));
+                        if(!TryCreateFolder(destFolder))
+			{
+                                closedir(dir);
+                                return false;
+                        }
+                        struct dirent *dirent_ptr;
+                        while((dirent_ptr = readdir(dir)) != NULL)
+			{
+                                string filename(dirent_ptr->d_name);
+                                if(IsRegularNodeName(filename))
+                                        {
+                                        string childSourcePath(ConcatenateNodeName(sourceFolder,filename));
+                                        mode_t mode;
+                                        if(!GetFileMode(childSourcePath, mode))
+                                        {
+                                                closedir(dir);
+                                                LOG(LogLevel::Error) << "unable to check mode for path " << childSourcePath;
+                                                return false;
+                                        }
+                                        if(S_ISREG(mode))
+                                        {
+                                                if(!TryCopyFile(childSourcePath, ConcatenateNodeName(destFolder, filename)))
+                                                {
+                                                        closedir(dir);
+                                                        return false;
+                                                }
+                                        }else if(S_ISDIR(mode))
+					{
+                                                if(!CopyFolderAndFiles(childSourcePath, destFolder, filename))
+						{
+                                                        closedir(dir);
+                                                        return false;
+                                                }
+                                        }
+                                }
+                        }
+                        closedir(dir);
+                        return true;
+                }
 	}
+
+	/*
+        Warning: This method does not do recursive checking
+        copying a folder inside it's own decendant tree may result in a infinite loop until max path length is reached
+	*/
+	bool copyFolder(const std::string& sourceFolder, const std::string& destFolder)
+        {
+                using namespace std;
+                pair<string, string> pathAndName = SplitNodeNameFromPath(destFolder);
+                return CopyFolderAndFiles(sourceFolder, pathAndName.first, pathAndName.second);
+        }
 
 	bool renameFolder(const std::string& sourceFolder, const std::string& destFolder)
 	{
-		LOG(LogLevel::Error) << "renameFolder() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
-		return false;
+        	if(rename(sourceFolder.c_str(), destFolder.c_str()) != 0)
+		{
+                	LOG(LogLevel::Error) << "unable to rename folder " << sourceFolder << " to " << destFolder;
+                	switch(errno)
+			{
+                	        case EACCES:
+                        	case EPERM:
+                        	        LOG(LogLevel::Error) << "no permission to move folder";
+                        	        break;
+                       		case ENOENT:
+                                	LOG(LogLevel::Error) << "source folder does not exist";
+                                	break;
+                        	case EBUSY:
+                                	LOG(LogLevel::Error) << "source or destination folder is locked by another process";
+                                	break;
+                        	case EEXIST:
+                        	case ENOTEMPTY:
+                                	LOG(LogLevel::Error) << "destination folder already exists and is not empty";
+                                	break;
+                        	case EINVAL:
+                                	LOG(LogLevel::Error) << "destination folder contains source folder";
+                                	break;
+                        	case EISDIR:
+                                	LOG(LogLevel::Error) << "destination folder is not a directory";
+                                	break;
+                	}
+        	        return false;
+        	}else{
+        	        return true;
+	        }
 	}
 
 	bool DoesFileExist(const std::string& path)
@@ -406,18 +591,139 @@ namespace Utils
 		return "";
 	}
 
-	bool deleteFolder(const std::string& folder)
+	bool DeleteFile(const std::string &file)
 	{
-		LOG(LogLevel::Error) << "deleteFolder() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
-		return false;
+		if(unlink(file.c_str()) != 0)
+		{
+			LOG(LogLevel::Error) << "unable to delete file " << file;
+			switch(errno)
+			{
+				case ENOENT:
+				case ENOTDIR:
+					LOG(LogLevel::Error) << "path does not point to a valid file";
+					break;
+				case EPERM:
+				case EACCES:
+					LOG(LogLevel::Error) << "you do not have permission to delete the file";
+					break;
+				case EBUSY:
+					LOG(LogLevel::Error) << "another process has opened the file";
+					break;
+				case EROFS:
+					LOG(LogLevel::Error) << "the filesystem is mounted with the read only flag";
+					break;
+			}
+			return false;
+		}else{
+			return true;
+		}
 	}
 
-	std::string convertUTF8ToASCII(std::string UTF8)
-	{
-		LOG(LogLevel::Error) << "convertUTF8ToASCII() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
+	bool DeleteEmptyFolder(const std::string &folder){
+		if(rmdir(folder.c_str()) != 0)
+		{
+			LOG(LogLevel::Error) << "unable to delete folder " << folder;
+			switch(errno)
+			{
+				case ENOTEMPTY:
+				case EEXIST:
+					LOG(LogLevel::Error) << "folder is not empty";
+					break;
+				case ENOENT:
+				case ENOTDIR:
+					LOG(LogLevel::Error) << "path does not point to a valid folder";
+					break;
+				case EPERM:
+				case EACCES:
+					LOG(LogLevel::Error) << "you do not have permission to delete the file";
+					break;
+				case EBUSY:
+					LOG(LogLevel::Error) << "another process has opened this folder ";
+					break;
+				case EROFS:
+					LOG(LogLevel::Error) << "the filesystem is mounted with the read only flag";
+					break;
+			}
+			return false;
+		}else{
+			return true;
+		}
+
 	}
+
+	bool deleteFolder(const std::string& folder)
+	{
+		using namespace std;
+                DIR *dir = opendir(folder.c_str());
+                if(dir == NULL)
+                {
+                        LOG(LogLevel::Error) << "unable to read folder prior to delete " << folder;
+                        if(errno == EACCES)
+                        {
+                                LOG(LogLevel::Error) << "no permission to read directory";
+                        }else if(errno == ENOENT)
+                        {
+                                LOG(LogLevel::Error) << "directory does not exist";
+                        }else if(errno == ENOTDIR)
+                        {
+                                LOG(LogLevel::Error) << "path is not a directory";
+                        }else{
+                                LOG(LogLevel::Error) << "unable to open directory";
+                        }
+                        return false;
+                }else{
+                        struct dirent *dirent_ptr;
+                        while((dirent_ptr = readdir(dir)) != NULL){
+                                string filename(dirent_ptr->d_name);
+                                if(IsActualNodeName(filename))
+                                {
+                                        std::string childPath = ConcatenateNodeName(folder, filename);
+                                        mode_t mode;
+                                        if(!GetFileMode(childPath, mode))
+                                        {
+                                                closedir(dir);
+                                                LOG(LogLevel::Error) << "unable to check mode for path " << childPath;
+                                                return false;
+                                        }
+                                        if(S_ISDIR(mode)){
+                                                if(!deleteFolder(childPath)){
+                                                        closedir(dir);
+                                                        return false;
+                                                }
+                                        }else{
+                                                if(!DeleteFile(childPath)){
+                                                        closedir(dir);
+                                                        return false;
+                                                }
+                                        }
+                                }
+                        }
+                        closedir(dir);
+                        return DeleteEmptyFolder(folder);
+               }
+	}
+
+	/*
+		Converts an UTF sequence to an ASCII string
+		Any code points outside the 7 bit ASCII range are replaced by '?'
+		This function does not differentiate between leading and trailing octets so codepoints outside ASCII range might result in multiple '?
+		As a result, the return value contains the same number of octets as the input.
+	*/
+	std::string convertUTF8ToASCII(std::string UTF8)
+	{                
+	        using namespace std;
+        	string result(UTF8); 
+       		for(string::iterator i = result.begin(); i != result.end(); ++i)
+		{
+                	if((*i & 0x80) != 0)
+			{
+                        	*i = '?';
+                	}
+        	}
+        	return result;
+	}
+
+
 
 	std::string convertUTF8To8859_15(std::string UTF8)
 	{
