@@ -746,21 +746,25 @@ namespace Utils
 	/*	
 	* helper class to copy buffer from string and keep track of remainder and current position
 	*/
-	class ConversionInputBuffer{
+	class ConversionInputBuffer
+	{
         	char *data;
 		char *in_buffer;
 		std::size_t remainder;
 	public:
-		explicit ConversionInputBuffer(const std::string &input) : data(new char[input.length()]), in_buffer(data), remainder(input.length()){
+		explicit ConversionInputBuffer(const std::string &input) : data(new char[input.length()]), in_buffer(data), remainder(input.length())
+		{
 			//POSIX iconv expects a pointer to char *, not to const char * and consequently does not guarantee that the input sequence is not modified so we copy it into the buffer before attempting conversion
 			copy(input.begin(), input.end(), data);
 		};
 
-		~ConversionInputBuffer(){
+		~ConversionInputBuffer()
+		{
 			delete[] data;
 		};
 
-		bool has_remaining_bytes() const{
+		bool has_remaining_bytes() const
+		{
 			return remainder != 0;
 		};
 
@@ -776,7 +780,8 @@ namespace Utils
 	/*
 	* helper class to manage buffer pointers and sizes while providing access to internal buffers for use in iconv functions
 	*/
-	class ConversionOutputBuffer{   
+	class ConversionOutputBuffer
+	{   
 		std::size_t size;
 		std::size_t block_size;
 		std::size_t remainder;
@@ -784,33 +789,41 @@ namespace Utils
 		char *out_buffer = nullptr;
 
 	public:
-		explicit ConversionOutputBuffer(std::size_t initial_size = 0, std::size_t increment_block_size = 1024) : size(initial_size), remainder(initial_size), block_size(increment_block_size){
-			if(size != 0){ 
+		explicit ConversionOutputBuffer(std::size_t initial_size = 0, std::size_t increment_block_size = 1024) : size(initial_size), remainder(initial_size), block_size(increment_block_size)
+		{
+			if(size != 0)
+			{ 
 				data = new char[size];
 				out_buffer = data;
 			}
 		};
 
-		~ConversionOutputBuffer(){
+		~ConversionOutputBuffer()
+		{
 			delete[] data;
 		};
 
-		bool full() const{
+		bool full() const
+		{
 			return remainder != 0;
 		};
 
-		size_t length() const{
+		size_t length() const
+		{
 			return size-remainder;
 		};
 
-		std::string str() const{
+		std::string str() const
+		{
 			using namespace std;
 			return string(data, data+length());
 		};
 
-		bool ensure_capacity(std::size_t capacity){
+		bool ensure_capacity(std::size_t capacity)
+		{
 			using namespace std;
-			if(size < capacity){
+			if(size < capacity)
+			{
 				size_t len = length();
 				char *ndata = new char[capacity];
 				copy(data, data+len, ndata);
@@ -825,7 +838,8 @@ namespace Utils
 			}
 		};
 
-		bool grow(){
+		bool grow()
+		{
 			return ensure_capacity(size+block_size);
 		};
 
@@ -837,16 +851,21 @@ namespace Utils
 		ConversionOutputBuffer &operator=(const ConversionOutputBuffer &);
 	};
 
-	bool ConvertString(const char *toCode, const char *fromCode, ConversionInputBuffer &from, ConversionOutputBuffer &to){
+	bool ConvertString(const char *toCode, const char *fromCode, ConversionInputBuffer &from, ConversionOutputBuffer &to)
+	{
 		using namespace std;
 		iconv_t descriptor = iconv_open(toCode, fromCode);
-		if(descriptor == ((iconv_t)(-1))){
+		if(descriptor == ((iconv_t)(-1)))
+		{
 			LOG(LogLevel::Error) << "unable to recode string from '" << fromCode << "' to '" << toCode << ": not supported on this system";
 			return false;
 		}
-		while(from.has_remaining_bytes()){
-			if(iconv(descriptor, &from.in_buffer, &from.remainder, &to.out_buffer, &to.remainder) == ((size_t)(-1))){
-				switch(errno){
+		while(from.has_remaining_bytes())
+		{
+			if(iconv(descriptor, &from.in_buffer, &from.remainder, &to.out_buffer, &to.remainder) == ((size_t)(-1)))
+			{
+				switch(errno)
+				{
 					case E2BIG:
 						to.grow();
 						break;
@@ -863,14 +882,17 @@ namespace Utils
 		return true;
 	}
 
-	std::string ConvertString(const char *toCode, const char *fromCode, const std::string &from, std::size_t to_buffer_size = 0){
+	std::string ConvertString(const char *toCode, const char *fromCode, const std::string &from, std::size_t to_buffer_size = 0)
+	{
 		using namespace std;
-		if(to_buffer_size == 0){
+		if(to_buffer_size == 0)
+		{
 			to_buffer_size = from.length();
 		}
 		ConversionInputBuffer from_buffer(from);
 		ConversionOutputBuffer to_buffer(to_buffer_size);
-		if(ConvertString(toCode, fromCode, from_buffer, to_buffer)){
+		if(ConvertString(toCode, fromCode, from_buffer, to_buffer))
+		{
 			return to_buffer.str();
 		}else{
 			return string();
