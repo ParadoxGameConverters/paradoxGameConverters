@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Configuration.h"
 #include "Flags.h"
 #include "Log.h"
-#include "HoI4World/HoI4World.h"
+#include "HOI4World/HoI4World.h"
 #include "V2World/V2World.h"
 #include "OSCompatibilityLayer.h"
 
@@ -37,7 +37,7 @@ int main(const int argc, const char* argv[])
 {
 	try
 	{
-		LOG(LogLevel::Info) << "Converter version 0.1B";
+		LOG(LogLevel::Info) << "Converter version 0.2A";
 		LOG(LogLevel::Info) << "Built on " << __DATE__ << " at " << __TIME__;
 		LOG(LogLevel::Info) << "Current directory is " << Utils::getCurrentDirectory();
 
@@ -89,11 +89,6 @@ void checkMods()
 {
 	LOG(LogLevel::Info) << "Double-checking Vic2 mods";
 
-	for (auto expectedMod: Configuration::getVic2Mods())
-	{
-		LOG(LogLevel::Debug) << "Expecting a mod with name " << expectedMod;
-	}
-
 	set<string> fileNames;
 	Utils::GetAllFilesInFolder(Configuration::getV2Path() + "/mod", fileNames);
 	for (auto fileName: fileNames)
@@ -106,6 +101,16 @@ void checkMods()
 			{
 				LOG(LogLevel::Debug) << "Found mod with name " << folderName;
 			}
+		}
+	}
+
+	for (auto expectedMod: Configuration::getVic2Mods())
+	{
+		LOG(LogLevel::Debug) << "Expecting a mod with name " << expectedMod;
+		if (!Utils::doesFolderExist(Configuration::getV2Path() + "/mod/" + expectedMod))
+		{
+			LOG(LogLevel::Error) << "Could not find expected mod";
+			exit(-1);
 		}
 	}
 }
@@ -171,13 +176,19 @@ void createModFile()
 		LOG(LogLevel::Error) << "Could not create .mod file";
 		exit(-1);
 	}
+
+	HOI4Version versionThatWantsBOM("1.3.3");
+	HOI4Version thisVersion = Configuration::getHOI4Version();
+	if (thisVersion >= versionThatWantsBOM)
+	{
+		modFile << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
+	}
 	modFile << "name = \"Converted - " << Configuration::getOutputName() << "\"\n";
 	modFile << "path = \"mod/" << Configuration::getOutputName() << "/\"\n";
 	modFile << "user_dir = \"" << Configuration::getOutputName() << "_user_dir\"\n";
-	modFile << "replace = \"history/countries\"\n";
-	//modFile << "replace = \"history/diplomacy\"\n";
-	modFile << "replace = \"history/states\"\n";
-	modFile << "supported_version=\"" << Configuration::getHOI4Version() << "\"";
+	modFile << "replace_path=\"history/countries\"\n";
+	modFile << "replace_path=\"history/states\"\n";
+	modFile << "supported_version=\"" << thisVersion << "\"";
 	modFile.close();
 }
 

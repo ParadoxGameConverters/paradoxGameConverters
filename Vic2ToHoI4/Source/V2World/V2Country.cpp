@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -24,6 +24,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Country.h"
 #include "Log.h"
 #include "Object.h"
+#include "../Mappers/CultureGroupMapper.h"
+#include "../Mappers/ReformMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "V2Army.h"
 #include "V2Leader.h"
@@ -42,13 +44,15 @@ V2Country::V2Country(Object* countryObj)
 
 	readInDomainNameAndAdjective(countryObj);
 	readInCapital(countryObj);
-	readInCulture(countryObj);
+	readInCultures(countryObj);
+	readInCivilized(countryObj);
 	readInTechnology(countryObj);
 	readInInventions(countryObj);
 	readInPoliticalParties(countryObj);
 	readInSpending(countryObj);
 	readInRevanchism(countryObj);
 	readInWarExhaustion(countryObj);
+	readInBadBoy(countryObj);
 	readInReforms(countryObj);
 	readInGovernment(countryObj);
 	readInUpperHouse(countryObj);
@@ -56,6 +60,7 @@ V2Country::V2Country(Object* countryObj)
 	readInMilitary(countryObj);
 	readInLeaders(countryObj);
 	readInStates(countryObj);
+	detectIfHuman(countryObj);
 }
 
 
@@ -89,17 +94,44 @@ void V2Country::readInCapital(const Object* countryObj)
 }
 
 
-void V2Country::readInCulture(const Object* countryObj)
+void V2Country::readInCultures(const Object* countryObj)
 {
 	vector<Object*> primaryCultureObjs = countryObj->getValue("primary_culture");
-	 if (primaryCultureObjs.size() > 0)
-	 {
-		 primaryCulture = primaryCultureObjs[0]->getLeaf();
-	 }
-	 else
-	 {
-		 primaryCulture = "";
-	 }
+	if (primaryCultureObjs.size() > 0)
+	{
+		primaryCulture = primaryCultureObjs[0]->getLeaf();
+		acceptedCultures.insert(primaryCulture);
+	}
+	else
+	{
+		primaryCulture = "";
+	}
+
+	primaryCultureGroup = cultureGroupMapper::getCultureGroup(primaryCulture);
+
+	vector<Object*> cultureSectionObjs = countryObj->getValue("culture");
+	if (cultureSectionObjs.size() > 0)
+	{
+		auto cultures = cultureSectionObjs[0]->getTokens();
+		for (auto culture: cultures)
+		{
+			acceptedCultures.insert(culture);
+		}
+	}
+}
+
+
+void V2Country::readInCivilized(const Object* countryObj)
+{
+	vector<Object*> civilizedObjs = countryObj->getValue("civilized");
+	if (civilizedObjs.size() > 0)
+	{
+		civilized = (civilizedObjs[0]->getLeaf() == "yes");
+	}
+	else
+	{
+		civilized = false;
+	}
 }
 
 
@@ -108,7 +140,10 @@ void V2Country::readInTechnology(const Object* countryObj)
 	vector<Object*> techsObjs = countryObj->getValue("technology");	// the object holding the technology levels
 	if (techsObjs.size() > 0)
 	{
-		techs = techsObjs[0]->getKeys();
+		for (auto tech: techsObjs[0]->getKeys())
+		{
+			techs.insert(tech);
+		}
 	}
 }
 
@@ -122,7 +157,7 @@ void V2Country::readInInventions(const Object* countryObj)
 	if (inventionsObjs.size() > 0)
 	{
 		vector<string> activeInventionsNumbers = inventionsObjs[0]->getTokens();
-		for (auto activeInventionNumber: activeInventionsNumbers)
+		for (auto activeInventionNumber : activeInventionsNumbers)
 		{
 			auto inventionName = inventionNumsToNames.find(stoi(activeInventionNumber));
 			if (inventionName == inventionNumsToNames.end())
@@ -142,7 +177,7 @@ void V2Country::readInPoliticalParties(const Object* countryObj)
 {
 	activePartyIDs.clear();
 	vector<Object*> partyObjs = countryObj->getValue("active_party");
-	for (auto partyObj: partyObjs)
+	for (auto partyObj : partyObjs)
 	{
 		activePartyIDs.push_back(stoi(partyObj->getLeaf()));
 	}
@@ -222,12 +257,25 @@ void V2Country::readInWarExhaustion(const Object* countryObj)
 	}
 }
 
+void V2Country::readInBadBoy(const Object* countryObj)
+{
+	vector<Object*> badBoyObjs = countryObj->getValue("badboy");
+	if (badBoyObjs.size() > 0)
+	{
+		badboy = stof(badBoyObjs[0]->getLeaf());
+	}
+	else
+	{
+		badboy = 0.0;
+	}
+}
+
 
 void V2Country::readInReforms(Object* countryObj)
 {
-	map<string, string> reformTypes = governmentMapper::getInstance()->getReformTypes();
+	map<string, string> reformTypes = reformMapper::getReformTypes();
 
-	for (auto leaf: countryObj->getLeaves())
+	for (auto leaf : countryObj->getLeaves())
 	{
 		string key = leaf->getKey();
 		if (reformTypes.find(key) != reformTypes.end())
@@ -256,7 +304,7 @@ void V2Country::readInUpperHouse(const Object* countryObj)
 {
 	auto upperHouseObjs = countryObj->getValue("upper_house");
 	auto ideologyObjs = upperHouseObjs[0]->getLeaves();
-	for (auto ideologyObj: ideologyObjs)
+	for (auto ideologyObj : ideologyObjs)
 	{
 		upperHouseComposition.insert(make_pair(ideologyObj[0].getKey(), stof(ideologyObj[0].getLeaf())));
 	}
@@ -265,7 +313,7 @@ void V2Country::readInUpperHouse(const Object* countryObj)
 
 void V2Country::readInRelations(Object* countryObj)
 {
-	for (auto leaf: countryObj->getLeaves())
+	for (auto leaf : countryObj->getLeaves())
 	{
 		string key = leaf->getKey();
 
@@ -311,21 +359,21 @@ void V2Country::readInMilitary(const Object* countryObj)
 {
 	armies.clear();
 	vector<Object*> armyObjs = countryObj->getValue("army");
-	for (auto armyObj: armyObjs)
+	for (auto armyObj : armyObjs)
 	{
 		V2Army* army = new V2Army(armyObj);
 		armies.push_back(army);
 	}
 
 	vector<Object*> navyObjs = countryObj->getValue("navy");
-	for (auto navyObj: navyObjs)
+	for (auto navyObj : navyObjs)
 	{
 		V2Army* navy = new V2Army(navyObj);
 		armies.push_back(navy);
 
 		// get transported armies
 		vector<Object*> armyObjs = navyObj->getValue("army");
-		for (auto armyObj: armyObjs)
+		for (auto armyObj : armyObjs)
 		{
 			V2Army* army = new V2Army(armyObj);
 			armies.push_back(army);
@@ -338,7 +386,7 @@ void V2Country::readInLeaders(const Object* countryObj)
 {
 	leaders.clear();
 	vector<Object*> leaderObjs = countryObj->getValue("leader");
-	for (auto leaderObj: leaderObjs)
+	for (auto leaderObj : leaderObjs)
 	{
 		V2Leader* leader = new V2Leader(leaderObj);
 		leaders.push_back(leader);
@@ -349,7 +397,7 @@ void V2Country::readInLeaders(const Object* countryObj)
 void V2Country::readInStates(const Object* countryObj)
 {
 	vector<Object*> stateObjs = countryObj->getValue("state");
-	for (auto stateObj: stateObjs)
+	for (auto stateObj : stateObjs)
 	{
 		createNewState(stateObj);
 	}
@@ -363,6 +411,19 @@ void V2Country::createNewState(const Object* stateObj)
 }
 
 
+void V2Country::detectIfHuman(const Object* countryObj)
+{
+	if (countryObj->getValue("human").size() > 0)
+	{
+		human = true;
+	}
+	else
+	{
+		human = false;
+	}
+}
+
+
 void V2Country::eatCountry(V2Country* target)
 {
 	if (target->tag == tag)
@@ -370,14 +431,14 @@ void V2Country::eatCountry(V2Country* target)
 		return;
 	}
 
-	for (auto core: target->cores)
+	for (auto core : target->cores)
 	{
 		addCore(core);
 		core->addCoreString(tag);
 		core->removeCoreString(target->tag);
 	}
 
-	for (auto provinceItr: target->provinces)
+	for (auto provinceItr : target->provinces)
 	{
 		addProvince(provinceItr);
 		provinceItr.second->setOwner(this);
@@ -385,14 +446,10 @@ void V2Country::eatCountry(V2Country* target)
 
 	for (auto tech: target->techs)
 	{
-		auto techItr = std::find(techs.begin(), techs.end(), tech);
-		if (techItr == techs.end())
-		{
-			techs.push_back(tech);
-		}
+		techs.insert(tech);
 	}
 
-	for (auto itr: target->inventions)
+	for (auto itr : target->inventions)
 	{
 		inventions.insert(itr);
 	}
@@ -409,9 +466,9 @@ void V2Country::eatCountry(V2Country* target)
 
 void V2Country::putProvincesInStates()
 {
-	for (auto state: states)
+	for (auto state : states)
 	{
-		for (auto provinceNum: state->getProvinceNums())
+		for (auto provinceNum : state->getProvinceNums())
 		{
 			auto province = provinces.find(provinceNum);
 			if (province == provinces.end())
@@ -428,7 +485,7 @@ void V2Country::putProvincesInStates()
 
 void V2Country::determineEmployedWorkers()
 {
-	for (auto state: states)
+	for (auto state : states)
 	{
 		state->determineEmployedWorkers();
 	}
@@ -438,7 +495,7 @@ void V2Country::determineEmployedWorkers()
 void V2Country::setLocalisationNames()
 {
 	auto nameInAllLanguages = V2Localisations::GetTextInEachLanguage(tag);
-	for (auto nameInLanguage: nameInAllLanguages)
+	for (auto nameInLanguage : nameInAllLanguages)
 	{
 		setLocalisationName(nameInLanguage.first, nameInLanguage.second);
 	}
@@ -461,7 +518,7 @@ void V2Country::setLocalisationName(const string& language, const string& name)
 void V2Country::setLocalisationAdjectives()
 {
 	auto adjectiveInAllLanguages = V2Localisations::GetTextInEachLanguage(tag + "_ADJ");
-	for (auto adjectiveinLanguage: adjectiveInAllLanguages)
+	for (auto adjectiveinLanguage : adjectiveInAllLanguages)
 	{
 		setLocalisationAdjective(adjectiveinLanguage.first, adjectiveinLanguage.second);
 	}
@@ -534,7 +591,7 @@ double V2Country::getUpperHousePercentage(const string& ideology) const
 long V2Country::getEmployedWorkers() const
 {
 	long employedWorkers = 0;
-	for (auto state: states)
+	for (auto state : states)
 	{
 		employedWorkers += state->getEmployedWorkers();
 	}
@@ -551,20 +608,20 @@ V2Party* V2Country::getRulingParty(const vector<V2Party*>& allParties) const
 	}
 	else
 	{
-		return NULL;
+		return nullptr;
 	}
 }
 
 
-vector<V2Party*> V2Country::getActiveParties(const vector<V2Party*>& allParties) const
+set<V2Party*> V2Country::getActiveParties(const vector<V2Party*>& allParties) const
 {
-	vector<V2Party*> activeParties;
+	set<V2Party*> activeParties;
 
-	for (auto ID: activePartyIDs)
+	for (auto ID : activePartyIDs)
 	{
 		if (ID < allParties.size())
 		{
-			activeParties.push_back(allParties[ID - 1]);  // Subtract 1, because party ID starts from index of 1
+			activeParties.insert(allParties[ID - 1]);  // Subtract 1, because party ID starts from index of 1
 		}
 		else
 		{
@@ -573,4 +630,18 @@ vector<V2Party*> V2Country::getActiveParties(const vector<V2Party*>& allParties)
 	}
 
 	return activeParties;
+}
+
+
+bool V2Country::hasCoreOnCapital() const
+{
+	for (auto core: cores)
+	{
+		if (core->getNumber() == capital)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }

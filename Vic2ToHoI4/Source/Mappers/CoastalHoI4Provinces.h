@@ -66,7 +66,6 @@ class coastalHoI4ProvincesMapper
 
 		coastalHoI4ProvincesMapper();
 		map<int, province> getProvinces();
-		map<int, vector<int>> getAdjacencies();
 
 		bool IsProvinceCoastal(int provinceNum);
 

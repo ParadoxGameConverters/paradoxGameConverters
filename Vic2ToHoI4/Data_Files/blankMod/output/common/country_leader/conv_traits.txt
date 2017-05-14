@@ -1,0 +1,35 @@
+leader_traits = {
+	radical_minister = {
+		random = no
+		# Boosts Radicalism
+		radical_drift = 0.1
+		
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	neutrality_minister = {
+		random = no
+		# Un-boosts other ideologies
+		democratic_drift = -0.02
+		communism_drift = -0.02
+		fascism_drift = -0.02
+		radical_drift = -0.02
+		absolutist_drift = -0.02
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	absolutist_minister = {
+		random = no
+		# Boosts Absolutism
+		absolutist_drift = 0.1
+		
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}

@@ -1,4 +1,4 @@
-# Copyright (c) 2016 The Paradox Game Converters Project
+# Copyright (c) 2017 The Paradox Game Converters Project
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -21,42 +21,46 @@
 
 configuration =
 {
-	# Europa Universalis 4 directory: a path on your computer where Europa Universalis 4 is installed
-	EU4directory = "C:\Program Files (x86)\Steam\SteamApps\common\Europa Universalis IV"
+	# Europa Universalis 4 directory: A path on your computer where Europa Universalis 4 is installed
+	EU4directory = "C:\Program Files (x86)\Steam\steamapps\common\Europa Universalis IV"
 
-	# Europa Universalis 4 documents directory: a path on your computer where Europa Universalis 4 keeps temporary files
-	EU4DocumentsDirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Europa Universalis IV"
+	# EU4 Documents Directory: A path on your computer where Europa Universalis 4 keeps temporary files
+	EU4DocumentsDirectory = "C:\Users\Phillip\Documents\Paradox Interactive\Europa Universalis IV"
 
-	# Crusader Kings 2 export directory: a path on your computer where Crusader Kings 2 keeps exported games
-	CK2ExportDirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Crusader Kings II\eu4_export\mod"
+	# CK2 Export Directory: A path on your computer where Crusader Kings 2 keeps exported games
+	CK2ExportDirectory = "C:\Users\Phillip\Documents\Paradox Interactive\Crusader Kings II\eu4_export\mod"
 
-	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
-	V2directory = "D:\Paradox Interactive\Victoria 2"
+	# Victoria 2 directory: A path on your computer where Victoria 2 is installed
+	V2directory = "C:\Program Files (x86)\Steam\steamapps\common\Victoria 2"
 
-	# Victoria 2 Documents directory: a path on your computer where Victoria 2 keeps temporary files
-	V2Documentsdirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Victoria II"
+	# Victoria 2 Documents directory: A path on your computer where Victoria 2 keeps temporary files
+	V2Documentsdirectory = "C:\Users\Phillip\Documents\Paradox Interactive\Victoria II"
 
-	# V2 Game Type: what version of V2 to convert to.  Possible values:
-	#	HOD		Heart of Darkness (3.x)
+	# V2 Game Version: V2 Game Version: what version of V2 to convert to
+	#	Heart of Darkness (3.x)	 - Heart of Darkness (3.x)
 	#	HoD-NNM		HoD with the New Nations Mod
 	V2gametype = "HOD"
 
-	# Reset Provinces: Whether or not to reset resettable V2 provinces. Disabled for now
-	#resetProvinces = "no"
+	# Reset Provinces?: Whether or not to reset resettable V2 provinces
+	#	Yes	 - Reset provinces
+	#	No	 - Don't reset provinces
+	resetProvinces = "no"
 
-	# The maximum literacy a nation will start with. Default 100%
-	max_literacy = 1.0
+	# Max Literacy: The maximum literacy a nation will start with. Default 100%
+	max_literacy = "1"
 
-	# Remove type: Which landless nations to remove. Possible values:
-	#	none	remove none of them
-	#	dead	remove ones without cultural backing
-	#	all	remove all of them
-	# Note: if there are not enough V2 tags, some or all of these will be done anyway
+	# Types of Landless nations to remove: Which landless nations to remove
+	#	None	 - Remove none of them
+	#	Dead	 - Remove ones without cultural backing
+	#	All	 - Remove all of them
 	Removetype = "none"
 
-	# Liberty Desire Threshold: The threshold value for when colonies are not absorbed. Default 100% (colonies always absorbed)
-	libertyThreshold = 100
+	# Liberty threshold: The threshold value for when colonies are not absorbed. Default 100% (colonies always absorbed)
+	libertyThreshold = "100"
 
-	# Convert pop totals: whether or not the total population in a province should be determined from the EU4 game
+	# Convert pop totals?: Whether or not the population totals should be converted.
+	#	Yes	 - The population totals should be converted
+	#	No	 - The population totals should NOT be converted
 	convertPopTotals = "no"
+
 }

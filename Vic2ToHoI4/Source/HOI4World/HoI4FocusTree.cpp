@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -25,8 +25,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Country.h"
 #include "HoI4Focus.h"
 #include "../Configuration.h"
+#include "../V2World/V2Party.h"
 #include "Log.h"
 #include "Object.h"
+#include "OSCompatibilityLayer.h"
 #include "ParadoxParserUTF8.h"
 #include <fstream>
 using namespace std;
@@ -56,7 +58,8 @@ void HoI4FocusTree::addGenericFocusTree()
 		focuses.push_back(newFocus);
 	}*/
 
-	if (Configuration::getHOI4Version() >= HOI4Version("1.3.0"))
+	HOI4Version version1_3("1.3.0");
+	if (Configuration::getHOI4Version() >= version1_3)
 	{
 		addVersion1_3GenericFocusTree();
 	}
@@ -1656,8 +1659,7 @@ void HoI4FocusTree::addVersion1_0GenericFocusTree()
 	newFocus = new HoI4Focus;
 	newFocus->id = "ideological_fanaticism";
 	newFocus->icon = "GFX_goal_generic_demand_territory";
-	newFocus->prerequisites.push_back("focus = paramilitarism");
-	newFocus->prerequisites.push_back("focus = political_commissars");
+	newFocus->prerequisites.push_back("focus = paramilitarism focus = political_commissars");
 	newFocus->xPos = 17;
 	newFocus->yPos = 6;
 	newFocus->cost = 10;
@@ -1674,8 +1676,7 @@ void HoI4FocusTree::addVersion1_0GenericFocusTree()
 	newFocus = new HoI4Focus;
 	newFocus->id = "technology_sharing";
 	newFocus->icon = "GFX_goal_generic_scientific_exchange";
-	newFocus->prerequisites.push_back("focus = ideological_fanaticism");
-	newFocus->prerequisites.push_back("focus = why_we_fight");
+	newFocus->prerequisites.push_back("focus = ideological_fanaticism focus = why_we_fight");
 	newFocus->available += "			has_war = yes\n";
 	newFocus->available += "			is_in_faction = yes\n";
 	newFocus->available += "			OR = {\n";
@@ -2050,7 +2051,7 @@ void HoI4FocusTree::addVersion1_3GenericFocusTree()
 	newFocus->completionReward += "						}\n";
 	newFocus->completionReward += "					}\n";
 	newFocus->completionReward += "				}\n";
-	newFocus->completionReward += "				random_owned_controlooed_state = {\n";
+	newFocus->completionReward += "				random_owned_controlled_state = {\n";
 	newFocus->completionReward += "					limit = {\n";
 	newFocus->completionReward += "						free_building_slots = {\n";
 	newFocus->completionReward += "							building = air_base\n";
@@ -2469,18 +2470,9 @@ void HoI4FocusTree::addVersion1_3GenericFocusTree()
 	newFocus->aiWillDo += "				factor = 0\n";
 	newFocus->aiWillDo += "				date < 1939.1.1\n";
 	newFocus->aiWillDo += "				OR = {\n";
-	newFocus->aiWillDo += "					# we dont want chinese minors to go crazy on slots early since they get eaten\n";
-	newFocus->aiWillDo += "					tag = GXC\n";
-	newFocus->aiWillDo += "					tag = YUN\n";
-	newFocus->aiWillDo += "					tag = SHX\n";
-	newFocus->aiWillDo += "					tag = XSM\n";
-	newFocus->aiWillDo += "					tag = BEL\n";
-	newFocus->aiWillDo += "					tag = LUX\n";
-	newFocus->aiWillDo += "					tag = HOL\n";
-	newFocus->aiWillDo += "					tag = DEN\n";
 	newFocus->aiWillDo += "					# we also dont want tiny nations to go crazy with slots right away\n";
 	newFocus->aiWillDo += "					num_of_controlled_states < 2\n";
-	newFocus->aiWillDo += "				}				\n";
+	newFocus->aiWillDo += "				}\n";
 	newFocus->aiWillDo += "			}";
 	focuses.push_back(newFocus);
 
@@ -3378,8 +3370,7 @@ void HoI4FocusTree::addVersion1_3GenericFocusTree()
 	newFocus = new HoI4Focus;
 	newFocus->id = "ideological_fanaticism";
 	newFocus->icon = "GFX_goal_generic_demand_territory";
-	newFocus->prerequisites.push_back("focus = paramilitarism");
-	newFocus->prerequisites.push_back("focus = political_commissars");
+	newFocus->prerequisites.push_back("focus = paramilitarism focus = political_commissars");
 	newFocus->xPos = 17;
 	newFocus->yPos = 6;
 	newFocus->cost = 10;
@@ -3397,8 +3388,7 @@ void HoI4FocusTree::addVersion1_3GenericFocusTree()
 	newFocus = new HoI4Focus;
 	newFocus->id = "technology_sharing";
 	newFocus->icon = "GFX_goal_generic_scientific_exchange";
-	newFocus->prerequisites.push_back("focus = ideological_fanaticism");
-	newFocus->prerequisites.push_back("focus = why_we_fight");
+	newFocus->prerequisites.push_back("focus = ideological_fanaticism focus = why_we_fight");
 	newFocus->available += "			has_war = yes\n";
 	newFocus->available += "			is_in_faction = yes\n";
 	newFocus->available += "			OR = {\n";
@@ -3462,34 +3452,24 @@ HoI4FocusTree* HoI4FocusTree::makeCustomizedCopy(const HoI4Country* country) con
 void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Country*> CountriesToContain, int XStart)
 {
 	double WTModifier = 1;
-	if (Home->getGovernment() == "democratic")
+	if (Home->getGovernmentIdeology() == "democratic")
 	{
-		string warPol = Home->getRulingParty().war_pol;
+		string warPol = Home->getRulingParty()->war_policy;
 		if (warPol == "jingoism")
 			WTModifier = 0;
 		if (warPol == "pro_military")
 			WTModifier = 0.25;
 		if (warPol == "anti_military")
 			WTModifier = 0.5;
-	}
-	if (Home->getGovernment() == "hms_government")
-	{
-		string warPol = Home->getRulingParty().war_pol;
-		if (warPol == "jingoism")
-			WTModifier = 0;
-		if (warPol == "pro_military")
-			WTModifier = 0;
-		if (warPol == "anti_military")
-			WTModifier = 0.25;
 		if (warPol == "pacifism" || warPol == "pacifist")
 			WTModifier = 0.5;
 	}
 
-	//War Propoganda
+	//War Propaganda
 	HoI4Focus* newFocus = new HoI4Focus;
 	newFocus->id = "WarProp" + Home->getTag();
 	newFocus->icon = "GFX_goal_generic_propaganda";
-	newFocus->text += "War Propoganda";
+	newFocus->text += "War Propaganda";
 	newFocus->available += "			threat > " + to_string(0.2*WTModifier);
 	newFocus->xPos = XStart;
 	newFocus->yPos = 0;
@@ -3502,9 +3482,9 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 	newFocus = new HoI4Focus;
 	newFocus->id = "PrepInter" + Home->getTag();
 	newFocus->icon = "GFX_goal_generic_occupy_states_ongoing_war";
-	newFocus->text += "War Propoganda";
+	newFocus->text += "War Propaganda";
 	newFocus->prerequisites.push_back("focus = WarProp" + Home->getTag());
-	newFocus->available += "			threat > " + to_string(0.4 * WTModifier);
+	newFocus->available += "			threat > " + to_string(0.3 * WTModifier);
 	newFocus->xPos = XStart;
 	newFocus->yPos = 1;
 	newFocus->cost = 10;
@@ -3524,7 +3504,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 	newFocus->icon = "GFX_goal_generic_more_territorial_claims";
 	newFocus->text += "Limited Intervention";
 	newFocus->prerequisites.push_back("focus = PrepInter" + Home->getTag());
-	newFocus->available += "			threat > " + to_string(0.8 * WTModifier);
+	newFocus->available += "			threat > " + to_string(0.5 * WTModifier);
 	newFocus->xPos = XStart + offBalance;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -3545,8 +3525,15 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		newFocus->icon = "GFX_goal_generic_position_armies";
 		newFocus->text += "War Plan " + Country->getSourceCountry()->getName("english");
 		newFocus->prerequisites.push_back("focus = PrepInter" + Home->getTag());
-		newFocus->available += "			" + Country->getTag() + " = { is_in_faction_with = " + Home->getTag() + " }\n";
-		newFocus->available += "			" + Country->getTag() + " = { has_added_tension_amount > 30 }";
+		newFocus->available += "			any_other_country = {";
+		newFocus->available += "						original_tag = " + Country->getTag();
+		newFocus->available += "						exists = yes";
+		newFocus->available += "						NOT = { is_in_faction_with = " + Home->getTag() + " }\n";
+		newFocus->available += "						OR = {";
+		newFocus->available += "							has_offensive_war = yes";
+		newFocus->available += "							has_added_tension_amount > 30";
+		newFocus->available += "							}";
+		newFocus->available += "			}";
 		newFocus->xPos = XStart + offBalance + warPlannumber * 2;
 		newFocus->yPos = 2;
 		newFocus->cost = 10;
@@ -3566,8 +3553,16 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		newFocus->icon = "GFX_goal_generic_trade";
 		newFocus->text += "Embargo " + Country->getSourceCountry()->getName("english");
 		newFocus->prerequisites.push_back("focus =  WarPlan" + Home->getTag() + Country->getTag());
-		newFocus->available += "			" + Country->getTag() + " = { is_in_faction_with = " + Home->getTag() + " }\n";
-		newFocus->available += "			" + Country->getTag() + " = { has_added_tension_amount > 30 }";
+		newFocus->available += "			any_other_country = {";
+		newFocus->available += "						original_tag = " + Country->getTag();
+		newFocus->available += "						exists = yes";
+		newFocus->available += "						NOT = { is_in_faction_with = " + Home->getTag() + " }\n";
+		newFocus->available += "						OR = {";
+		newFocus->available += "							has_offensive_war = yes";
+		newFocus->available += "							has_added_tension_amount > 30";
+		newFocus->available += "							threat > 0.6";
+		newFocus->available += "							}";
+		newFocus->available += "			}";
 		newFocus->xPos = XStart + offBalance + warPlannumber * 2;
 		newFocus->yPos = 3;
 		newFocus->cost = 10;
@@ -3582,7 +3577,16 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		newFocus->id = "WAR" + Home->getTag() + Country->getTag();
 		newFocus->icon = "GFX_goal_support_democracy";
 		newFocus->text += "Enact War Plan " + Country->getSourceCountry()->getName("english");
-		newFocus->available += "			" + Country->getTag() + " = { is_in_faction_with = " + Home->getTag() + " }";
+		newFocus->available += "			any_other_country = {";
+		newFocus->available += "						original_tag = " + Country->getTag();
+		newFocus->available += "						exists = yes";
+		newFocus->available += "						NOT = { is_in_faction_with = " + Home->getTag() + " }\n";
+		newFocus->available += "						OR = {";
+		newFocus->available += "							has_offensive_war = yes";
+		newFocus->available += "							has_added_tension_amount > 30";
+		newFocus->available += "							threat > 0.6";
+		newFocus->available += "							}";
+		newFocus->available += "			}";
 		newFocus->prerequisites.push_back("focus =  Embargo" + Home->getTag() + Country->getTag());
 		newFocus->prerequisites.push_back("focus =  Lim" + Home->getTag());
 		newFocus->xPos = XStart + offBalance + warPlannumber++ * 2;
@@ -3598,7 +3602,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 }
 
 
-void HoI4FocusTree::addMonarchyEmpireNationalFocuses(HoI4Country* Home, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets)
+void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(HoI4Country* Home, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets)
 {
 	//Glory to Empire!
 	HoI4Focus* newFocus = new HoI4Focus;
@@ -3759,6 +3763,7 @@ void HoI4FocusTree::addMonarchyEmpireNationalFocuses(HoI4Country* Home, const ve
 	newFocus->icon = "GFX_goal_generic_construct_infrastructure";
 	newFocus->text += "Colonial Highway";
 	newFocus->prerequisites.push_back("focus = ColonialInd" + Home->getTag());
+	newFocus->mutuallyExclusive = "focus = ResourceFac" + Home->getTag();
 	newFocus->xPos =  24;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -3863,7 +3868,7 @@ void HoI4FocusTree::addMonarchyEmpireNationalFocuses(HoI4Country* Home, const ve
 	newFocus->icon = "GFX_goal_generic_oil_refinery";
 	newFocus->text += "Improve Resource Factories";
 	newFocus->prerequisites.push_back("focus = ColonialInd" + Home->getTag());
-	newFocus->mutuallyExclusive = "focus = StrengthenColonies" + Home->getTag();
+	newFocus->mutuallyExclusive = "focus = ColonialHwy" + Home->getTag();
 	newFocus->xPos =  26;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
@@ -4331,6 +4336,12 @@ void HoI4FocusTree::addMonarchyEmpireNationalFocuses(HoI4Country* Home, const ve
 
 void HoI4FocusTree::output()
 {
+	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/common/national_focus"))
+	{
+		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/national_focus\"";
+		exit(-1);
+	}
+
 	string filename("Output/" + Configuration::getOutputName() + "/common/national_focus/" + srcCountryTag + "_NF.txt");
 	ofstream out(filename);
 	if (!out.is_open())
@@ -4340,7 +4351,7 @@ void HoI4FocusTree::output()
 	}
 
 	out << "focus_tree = {\n";
-	out << "	id = german_focus\n";
+	out << "	id = " << dstCountryTag + "_focus\n";
 	out << "	\n";
 	out << "	country = {\n";
 	out << "		factor = 0\n";

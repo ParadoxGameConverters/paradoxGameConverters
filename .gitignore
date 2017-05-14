@@ -1,6 +1,7 @@
 CK2ToEU3/build/
 Release/
 ReleaseIntermediate/
+Release-Linux/
 Debug/
 DebugIntermediate/
 testResults
@@ -11,6 +12,17 @@ V2ToHoI3.zip
 *.sdf
 *.VC.db
 /EU4toV2/.vs/EU4ToV2/v14/.suo
+/Vic2ToHoI4/.vs/Supercharger/Vic2ToHoI4/codemap.dat
+/Vic2ToHoI4/.vs/Supercharger/Vic2ToHoI4/global_history.dat
+/Vic2ToHoI4/.vs/Supercharger/Vic2ToHoI4/workbench.dat
+/Vic2ToHoI4/.vs/Vic2ToHoI4/v14/.suo
+/Vic2ToHoI4/.vs/
 /EU4toV2/.vs/Supercharger/EU4ToV2/codemap.dat
 /EU4toV2/.vs/Supercharger/EU4ToV2/global_history.dat
 /EU4toV2/.vs/Supercharger/EU4ToV2/workbench.dat
+/EU4toV2/.vs/
+/Vic2ToHoI4/build
+/EU4toV2/EU4toV2Converter.pdb
+/EU4toV2/log.txt
+/EU4toV2/Woxolo.eu4
+/EU4toV2/EU4toV2Converter.iobj

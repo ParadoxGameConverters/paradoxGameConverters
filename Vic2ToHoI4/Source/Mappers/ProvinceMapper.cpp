@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -23,8 +23,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "ProvinceMapper.h"
 #include <fstream>
-#include "log.h"
-#include "..\Configuration.h"
+#include "Log.h"
+#include "../Configuration.h"
 #include "Object.h"
 #include "ParadoxParser8859_15.h"
 
@@ -61,6 +61,7 @@ void provinceMapper::initProvinceMap(Object* parsedMappingsFile)
 
 	vector<Object*> mappings = getCorrectMappingVersion(versions);
 	processMappings(mappings);
+	checkAllHoI4ProvinesMapped();
 }
 
 
@@ -126,11 +127,65 @@ void provinceMapper::insertIntoVic2ToHoI4ProvinceMap(const vector<int>& Vic2Nums
 }
 
 
+void provinceMapper::checkAllHoI4ProvinesMapped()
+{
+	ifstream definitions(Configuration::getHoI4Path() + "/map/definition.csv");
+	if (!definitions.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not open " << Configuration::getHoI4Path() << "/map/definition.csv";
+		exit(-1);
+	}
+
+	while (true)
+	{
+		int provNum = getNextProvinceNumFromFile(definitions);
+		if (provNum == -1)
+		{
+			break;
+		}
+
+		verifyProvinceIsMapped(provNum);
+	}
+
+	definitions.close();
+}
+
+
+int provinceMapper::getNextProvinceNumFromFile(ifstream& definitions)
+{
+	string line;
+	getline(definitions, line);
+	int pos = line.find_first_of(';');
+	if (pos != string::npos)
+	{
+		return stoi(line.substr(0, pos));
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+
+void provinceMapper::verifyProvinceIsMapped(int provNum)
+{
+	if (provNum != 0)
+	{
+		auto num = HoI4ToVic2ProvinceMap.find(provNum);
+		if (num == HoI4ToVic2ProvinceMap.end())
+		{
+			LOG(LogLevel::Warning) << "No mapping for HoI4 province " << provNum;
+		}
+	}
+}
+
+
 vector<Object*> provinceMapper::getCorrectMappingVersion(const vector<Object*>& versions)
 {
 	for (auto version: versions)
 	{
-		if (Configuration::getHOI4Version() >= HOI4Version(version->getKey()))
+		HOI4Version currentVersion(version->getKey());
+		if (Configuration::getHOI4Version() >= currentVersion)
 		{
 			LOG(LogLevel::Debug) << "Using version " << version->getKey() << " mappings";
 			return version->getLeaves();

@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,58 +26,81 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "Object.h"
-#include <map>
+#include <set>
 #include <string>
+#include <vector>
 using namespace std;
 
 
 
+class Object;
 class V2Country;
 
 
-struct govMapping
+
+typedef struct governmentMapping
 {
-	string vic_gov;
-	string HoI4_gov;
-	string ruling_party_required;
-	double require_political_reforms;
-	double require_social_reforms_above;
-	double require_social_reforms_below;
-};
+	string vic2Government;
+	string HoI4GovernmentIdeology;
+	string HoI4LeaderIdeology;
+	string rulingPartyRequired;
+} governmentMapping;
+
+
+
+typedef struct partyMapping
+{
+	string rulingIdeology;
+	string vic2Ideology;
+	string supportedIdeology;
+} partyMapping;
 
 
 class governmentMapper
 {
 	public:
-		governmentMapper();
-		void initGovernmentMap(Object* obj);
-		void initReforms(Object* obj);
+		static string getIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology)
+		{
+			return getInstance()->GetIdeologyForCountry(country, Vic2RulingIdeology);
+		}
 
-		string	getGovernmentForCountry(const V2Country* country, const string _ideology);
+		static string getLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology)
+		{
+			return getInstance()->GetLeaderIdeologyForCountry(country, Vic2RulingIdeology);
+		}
 
-		bool							areReformsInitialized() const	{ return reformsInitialized; }
-		map<string, string>	getReformTypes() const			{ return reformTypes; }
+		static string getSupportedIdeology(const string& rulingIdeology, const string& Vic2Ideology)
+		{
+			return getInstance()->GetSupportedIdeology(rulingIdeology, Vic2Ideology);
+		}
 
+		static vector<governmentMapping> getGovernmentMappings()
+		{
+			return getInstance()->governmentMap;
+		}
+
+	private:
+		static governmentMapper* instance;
 		static governmentMapper* getInstance()
 		{
-			if (instance == NULL)
+			if (instance == nullptr)
 			{
 				instance = new governmentMapper();
 			}
 			return instance;
 		}
+		governmentMapper();
+		void importGovernmentMappings(Object* obj);
+		void importPartyMappings(Object* obj);
 
-	private:
-		static governmentMapper* instance;
+		string GetIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology);
+		string GetLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology);
+		string GetSupportedIdeology(const string& rulingIdeology, const string& Vic2Ideology);
+		bool governmentMatches(const governmentMapping& mapping, const string& government);
+		bool rulingIdeologyMatches(const governmentMapping& mapping, const string& rulingIdeology);
 
-		vector<govMapping>		governmentMap;
-		map<string, string>	reformTypes;
-		map<string, int>			politicalReformScores;
-		map<string, int>			socialReformScores;
-		int							totalPoliticalReforms;
-		int							totalSocialReforms;
-		bool							reformsInitialized;
+		vector<governmentMapping> governmentMap;
+		vector<partyMapping> partyMap;
 };
 
 

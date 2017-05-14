@@ -29,7 +29,7 @@ tech_map =
 # Army -> Infantry, Aircraft, Armour, Artillery, Land Doctrine, AND most Air Doctrine
 	#FORTESTING
 	link = {
-		v2_tech = post_napoleonic_thought 
+		vic2 = post_napoleonic_thought 
 		gw_artillery = 1
 		tech_recon = 1
 		tech_support = 1		
@@ -37,411 +37,415 @@ tech_map =
 
 	}
 	link = {
-		v2_tech = infiltration			# Army Doctrine 1900
+		vic2 = infiltration			# Army Doctrine 1900
 		
 	}
 	link = {
-		v2_inv = low_echelon_fire_support
+		vic2 = low_echelon_fire_support
 		
 	}
 	link = {
-		v2_inv = stormtrooper_training
+		vic2 = stormtrooper_training
 	}
 	link = {
-		v2_inv = tank_experiments
+		vic2 = tank_experiments
 		gwtank = 1
 	}
 	link = {
-		v2_inv = tank_exploits
+		vic2 = tank_exploits
 		basic_heavy_tank = 1
 	}
 	link = {
-		v2_tech = modern_army_doctrine		# Army Doctrine 1919
+		vic2 = modern_army_doctrine		# Army Doctrine 1919
 		infantry_weapons1 = 1
 	}
 	link = {
-		v2_inv = firepower_vs_mobility
+		vic2 = firepower_vs_mobility
 		
 	}
 	link = {
-		v2_inv = grand_battle_plan_vs_superior_firepower
+		vic2 = grand_battle_plan_vs_superior_firepower
 		
 	}
 	link = {
-		v2_inv = human_wave_vs_spearhead 
+		vic2 = human_wave_vs_spearhead 
 		
 	}
 	link = {
-		v2_tech = bolt_action_rifles		# Army Light Arms 1900
+		vic2 = bolt_action_rifles		# Army Light Arms 1900
 		infantry_weapons = 1
 	}
 	link = {
-		v2_tech = modern_divisional_structure	# Army Light Arms 1919
+		vic2 = modern_divisional_structure	# Army Light Arms 1919
 			infantry_weapons1 = 1
 	}
 	link = {
-		v2_inv = interwar_infantry
+		vic2 = interwar_infantry
 		#support_weapons = 1
 	}
 	link = {
-		v2_inv = interwar_cavalry
+		vic2 = interwar_cavalry
 		
 	}
 	link = {
-		v2_inv = rear_area_dumps
+		vic2 = rear_area_dumps
 		
 	}
 	link = {
-		v2_tech = indirect_artillery_fire	# Army Artillery 1900
+		vic2 = indirect_artillery_fire	# Army Artillery 1900
 		
 	}
 	link = {
-		v2_tech = heavy_armament_dunno		# Army Artillery 1919
-					#gw_artillery = 1
+		vic2 = heavy_armament_dunno		# Army Artillery 1919
+		gw_artillery = 1
 	}
 	link = {
-		v2_inv = tankette
+		vic2 = tankette
 		
 	}
 	link = {
-		v2_inv = light_tank
-			basic_light_tank = 1
+		vic2 = light_tank
+		basic_light_tank = 1
 	}
 	link = {
-		v2_inv = armoured_cars
+		vic2 = armoured_cars
 		
 	}
 	link = {
-		v2_inv = anti_aircraft_artillery 
+		vic2 = anti_aircraft_artillery 
 	
 	}
 	link = {
-		v2_inv = improved_anti_aircraft_artillery 
+		vic2 = improved_anti_aircraft_artillery 
 		
 	}
 	link = {
-		v2_inv = light_artillery
+		vic2 = light_artillery
 		
 	}
 	link = {
-		v2_inv = medium_artillery 
+		vic2 = medium_artillery 
 		
 	}
 	link = {
-		v2_inv = daimlers_automobile 
+		vic2 = daimlers_automobile 
 		motorised_infantry = 1
 	}
 	link = {
-		v2_inv = heavy_artillery 
+		vic2 = heavy_artillery 
 		interwar_artillery = 1
 	}
 	link = {
-		v2_tech = military_directionism		# Army Science 1900
+		vic2 = military_directionism		# Army Science 1900
 	}
 	link = {
-		v2_inv = army_political_lobbying
+		vic2 = army_political_lobbying
 	}
 	link = {
-		v2_inv = army_military_political_decision_making 
+		vic2 = army_military_political_decision_making 
 	}
 	link = {
-		v2_inv = army_local_military_government 
+		vic2 = army_local_military_government 
 	}
 	link = {
-		v2_tech = aeronautics			# Army Science 1914
+		vic2 = aeronautics			# Army Science 1914
 		early_fighter = 1
 	}
 	link = {
-		v2_inv = early_interwar_bombers 
+		vic2 = early_interwar_bombers 
 		early_bomber = 1
 	}
 	link = {
-		v2_inv = late_interwar_bombers
+		vic2 = late_interwar_bombers
 		tactical_bomber1 = 1
 		strategic_bomber1 = 1
 	}
 	link = {
-		v2_inv = early_interwar_fighters
+		vic2 = early_interwar_fighters
 		CAS1 = 1
 	}
 	link = {
-		v2_inv = late_interwar_fighters 
+		vic2 = late_interwar_fighters 
 		fighter1 = 1
 		naval_bomber1 = 1
 	}
 	link = {
-		v2_inv = t_air_superiority
+		vic2 = t_air_superiority
 		
 	}
 	link = {
-		v2_inv = flying_circus_doctrine 
+		vic2 = flying_circus_doctrine 
 		
 	}
 	link = {
-		v2_inv = force_substitution_doctrine 
+		vic2 = force_substitution_doctrine 
 		
 	}
 	link = {
-		v2_inv = battlefield_destruction_doctrine 
+		vic2 = battlefield_destruction_doctrine 
 		
 	}
 	link = {
-		v2_inv = operational_destruction_doctrine 
+		vic2 = operational_destruction_doctrine 
 		
 	}
 	link = {
-		v2_inv = strategic_destruction_doctrine 
+		vic2 = strategic_destruction_doctrine 
 		
 	}
 	link = {
-		v2_tech = army_nco_training		# Army Leadership 1900
+		vic2 = army_nco_training		# Army Leadership 1900
 	}
 	link = {
-		v2_tech = great_war_experience		# Army Leadership 1919
-				tech_support = 1
+		vic2 = great_war_experience		# Army Leadership 1919
+		tech_support = 1
+		tech_military_police = 1
+		tech_mountaineers = 1
+		paratroopers = 1
 	}
 
 # Navy -> Naval Tech and Naval Doctrine, plus Naval Air Doctrines and Radio tech
 
 	link = {
-		v2_tech = high_sea_battle_fleet		# Navy Doctrine 1900
+		vic2 = high_sea_battle_fleet		# Navy Doctrine 1900
 		
 	}	
 	link = {
-		v2_inv = offensive_attitude
+		vic2 = offensive_attitude
 	}
 	link = {
-		v2_inv = defensive_attitude
+		vic2 = defensive_attitude
 	}
 	link = {
-		v2_tech = modern_naval_doctrine		# Navy Doctrine 1919
+		vic2 = modern_naval_doctrine		# Navy Doctrine 1919
 		
 	}
 	link = {
-		v2_inv = decisive_firepower_doctrine
+		vic2 = decisive_firepower_doctrine
 	}
 	link = {
-		v2_inv = naval_firepower_doctrine 
+		vic2 = naval_firepower_doctrine 
 	}
 	link = {
-		v2_tech = steam_turbine_ships		# Ship Construction 1900
+		vic2 = steam_turbine_ships		# Ship Construction 1900
 		
 	}	
 	# Originally "Steam Turbine Ships" also had: light crusiers, battlecruisers, oceangoing submarines
 	link = {
-		v2_inv = dreadnoughts
+		vic2 = dreadnoughts
+		early_submarine = 1
 		
 	}
 	link = {
-		v2_tech = oil_driven_ships		# Ship Construction 1919
+		vic2 = oil_driven_ships		# Ship Construction 1919
 		early_destroyer = 1
-		early_submarine = 1
+		basic_submarine = 1
 		transport = 1
 	}	
 	# Originally "Oil Driven Ships" also had: adv./mod. destroyers, adv./mod. battlecruisers, 3 carrier invs, adv. subs.
 	link = {
-		v2_inv = advanced_cruisers 
+		vic2 = advanced_cruisers 
 			early_light_cruiser = 1
 	}
 	link = {
-		v2_inv = modern_cruisers 
+		vic2 = modern_cruisers 
 		early_heavy_cruiser = 1
 	}
 	link = {
-		v2_inv = advanced_battleships 
+		vic2 = advanced_battleships 
 		early_battlecruiser = 1
 	}
 	link = {
-		v2_inv = modern_battleships 
+		vic2 = modern_battleships 
 		early_battleship = 1
 	}
 	link = {
-		v2_tech = advanced_naval_design		# Navy Engineering 1900
+		vic2 = advanced_naval_design		# Navy Engineering 1900
 	}	
 	link = {
-		v2_inv = on_board_recon_aircraft
+		vic2 = on_board_recon_aircraft
 	}
 	link = {
-		v2_inv = gun_hydraulics 
+		vic2 = gun_hydraulics 
 	}
 	link = {
-		v2_inv = heavy_armour_plates
+		vic2 = heavy_armour_plates
 		
 	}
 	link = {
-		v2_inv = large_hull_form 
+		vic2 = large_hull_form 
 	}
 	link = {
-		v2_tech = modern_naval_design		# Navy Engineering 1919
+		vic2 = modern_naval_design		# Navy Engineering 1919
 	}	
 	link = {
-		v2_inv = wireless
+		vic2 = wireless
 		
 	}
 	link = {
-		v2_inv = advanced_fire_control 
+		vic2 = advanced_fire_control 
 		
 	}
 	link = {
-		v2_inv = 15_inch_main_armament 
+		vic2 = 15_inch_main_armament 
 		
 	}
 	link = {
-		v2_tech = naval_directionism		# Navy Science 1900
+		vic2 = naval_directionism		# Navy Science 1900
 	}	
 	link = {
-		v2_inv = political_lobbying 
+		vic2 = political_lobbying 
 	}
 	link = {
-		v2_inv = military_political_decision_making 
+		vic2 = military_political_decision_making 
 	}
 	link = {
-		v2_inv = local_military_government 
+		vic2 = local_military_government 
 	}
 	link = {
-		v2_tech = naval_integration		# Navy Science 1919
+		vic2 = naval_integration		# Navy Science 1919
 	}	
 	link = {
-		v2_inv = war_gamming 
+		vic2 = war_gamming 
 	}
 	link = {
-		v2_inv = combined_arms_planning 
+		vic2 = combined_arms_planning 
 	}
 	link = {
-		v2_tech = naval_nco_training		# Navy Leadership 1900
+		vic2 = naval_nco_training		# Navy Leadership 1900
 	}	
 	link = {
-		v2_inv = literate_ncos 
+		vic2 = literate_ncos 
 	}
 	link = {
-		v2_inv = nco_combat_station_training 
+		vic2 = nco_combat_station_training 
 	}
 	link = {
-		v2_inv = nco_tactical_training 
+		vic2 = nco_tactical_training 
 	}
 	link = {
-		v2_tech = modern_naval_training		# Navy Leadership 1919
+		vic2 = modern_naval_training		# Navy Leadership 1919
 	}
 	link = {
-		v2_inv = amphibious_warfare_training 
+		vic2 = amphibious_warfare_training 
 	}
 	link = {
-		v2_inv = naval_exercises
+		vic2 = naval_exercises
 	}
 
 # Industry -> Industry
 
 	link = {
-		v2_tech = electrical_power_generation	# Industry Power 1900
+		vic2 = electrical_power_generation	# Industry Power 1900
 	
 	}
 	link = {
-		v2_inv = direct_current
+		vic2 = direct_current
 	}
 	link = {
-		v2_inv = alternating_current
+		vic2 = alternating_current
 	
 	}
 	link = {
-		v2_inv = polyphase_system
+		vic2 = polyphase_system
 		
 	}
 	link = {
-		v2_tech = shift_work			# Industry Mechanization 1900
+		vic2 = shift_work			# Industry Mechanization 1900
 	
 	}
 	link = {
-		v2_tech = electric_furnace 		# Industry Metallurgy 1900
+		vic2 = electric_furnace 		# Industry Metallurgy 1900
 		
 	}
 	link = {
-		v2_inv = stainless_steel
+		vic2 = stainless_steel
 		
 	}
 	link = {
-		v2_tech = integral_rail_system 		# Industry Infrastructure 1898
+		vic2 = integral_rail_system 		# Industry Infrastructure 1898
 		
 	}
 	link = {
-		v2_tech = limited_access_roads 		# Industry Infrastructure 1919
+		vic2 = limited_access_roads 		# Industry Infrastructure 1919
 		
 	}
 	link = {
-		v2_tech = synthetic_polymers 		# Industry Chemistry 1919
+		vic2 = synthetic_polymers 		# Industry Chemistry 1919
 		synth_oil_experiments = 1
 	}
 	link = {
-		v2_inv = rayon
+		vic2 = rayon
 		
 	}
 	link = {
-		v2_inv = bakelite
+		vic2 = bakelite
 		
 	}
 
 # Commerce (Organization) -> Industry Efficiency
 	
 	link = {
-		v2_tech = organizational_development	# Commerce Organization 1900
+		vic2 = organizational_development	# Commerce Organization 1900
 		
 	}
 	link = {
-		v2_inv = i_scientific_management
+		vic2 = i_scientific_management
 		
 	}
 	link = {
-		v2_inv = human_resource_development
+		vic2 = human_resource_development
 		
 	}
 	
 # Culture (Social Thought) -> Education
 
 	link = {
-		v2_tech = social_alienation		# Culture (Social Thought) 1900
+		vic2 = social_alienation		# Culture (Social Thought) 1900
 	
 	}
 	link = {
-		v2_inv = the_revolt_of_the_masses
+		vic2 = the_revolt_of_the_masses
 		
 	}
 	link = {
-		v2_inv = the_decline_of_the_west_and_the_lost_generation
+		vic2 = the_decline_of_the_west_and_the_lost_generation
 		
 	}
 
 # Culture (Political Thought) -> Civil Defence, and alternate path for Militia tech
 	
 	link = {
-		v2_tech = mass_politics			# Culture (Political Thought) 1900
+		vic2 = mass_politics			# Culture (Political Thought) 1900
 	}
 	link = {
-		v2_inv = the_doctrine_of_fascism
+		vic2 = the_doctrine_of_fascism
 	
 	}
 	link = {
-		v2_inv = paramilitary_groups
+		vic2 = paramilitary_groups
 		
 	}
 	link = {
-		v2_inv = the_police_state
+		vic2 = the_police_state
 		
 	}
 
 # Culture (Psychology) -> alternate path to Radio
 
 	link = {
-		v2_tech = behaviorism			# Culture (Psychology) 1900
+		vic2 = behaviorism			# Culture (Psychology) 1900
 	}
 	link = {
-		v2_inv = mass_advertising
+		vic2 = mass_advertising
 		
 	}
 	link = {
-		v2_inv = national_radio_networks
+		vic2 = national_radio_networks
 		
 	}
 	link = {
-		v2_inv = the_talkies
+		vic2 = the_talkies
 	}
 
 }

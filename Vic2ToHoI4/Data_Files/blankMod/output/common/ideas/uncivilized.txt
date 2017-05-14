@@ -1,0 +1,40 @@
+ideas = {
+	country = {
+		uncivilized = {
+			allowed = {
+				always = no
+			}
+			
+			allowed_civil_war = {
+				always = yes
+			}
+			
+			removal_cost = -1
+			
+			picture = idea_generic_agrarian_society
+			
+			research_bonus = {
+				armor = -4.00
+				air_equipment = -4.00
+				naval_equipment = -4.00
+				artillery = -4.00
+			}
+			
+			modifier = {
+				production_factory_max_efficiency_factor = -0.2		
+				research_time_factor = 1.00
+				political_power_factor = -0.50
+				unity_factor = -0.25
+				conscription = -0.01
+				industrial_capacity_factory = -0.30
+				production_speed_buildings_factor = -0.30
+				production_speed_bunker_factor = -0.30
+				army_org_factor	= -0.50
+				army_defence_factor = -0.50
+				max_planning = -0.50
+				army_speed_factor = -0.40
+				army_infantry_attack_factor = -0.50
+			}
+		}
+	}
+}

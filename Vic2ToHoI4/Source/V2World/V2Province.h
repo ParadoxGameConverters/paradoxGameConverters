@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -45,10 +45,12 @@ class V2Province
 		int getTotalPopulation() const;
 		int getPopulation(string type = "") const;
 		int getLiteracyWeightedPopulation(string type = "") const;
+		double getPercentageWithCultures(const set<string>& cultures) const;
 
 		void setOwner(const V2Country* _owner) { owner = _owner; }
 		void addCoreString(string coreString) { coreStrings.insert(coreString); }
 		void removeCoreString(string coreString) { coreStrings.erase(coreString); }
+		void removeCore(V2Country* core) { cores.erase(core); }
 
 		int getNumber() const { return number; }
 		string getOwnerString() const { return ownerString; }

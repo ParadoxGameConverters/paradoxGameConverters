@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -22,91 +22,82 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4Diplomacy.h"
+#include "HoI4Agreement.h"
 #include "Log.h"
 #include "../Configuration.h"
 #include "OSCompatibilityLayer.h"
+#include <fstream>
 
 
 
 void HoI4Diplomacy::output() const
 {
-	FILE* alliances;
-	if (fopen_s(&alliances, ("Output/" + Configuration::getOutputName() + "/history/diplomacy/Alliances.txt").c_str(), "w") != 0)
+	/*LOG(LogLevel::Debug) << "Writing diplomacy";
+	fstream alliances("Output/" + Configuration::getOutputName() + "/history/diplomacy/Alliances.txt");
+	if (alliances.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create alliances history file";
 		exit(-1);
 	}
 
-	FILE* guarantees;
-	if (fopen_s(&guarantees, ("Output/" + Configuration::getOutputName() + "/history/diplomacy/Guarantees.txt").c_str(), "w") != 0)
+	fstream guarantees("Output/" + Configuration::getOutputName() + "/history/diplomacy/Guarantees.txt");
+	if (guarantees.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create guarantees history file";
 		exit(-1);
 	}
 
-	FILE* puppetStates;
-	if (fopen_s(&puppetStates, ("Output/" + Configuration::getOutputName() + "/history/diplomacy/PuppetStates.txt").c_str(), "w") != 0)
+	fstream puppetStates("Output/" + Configuration::getOutputName() + "/history/diplomacy/PuppetStates.txt");
+	if (puppetStates.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create puppet states history file";
 		exit(-1);
 	}
 
-	FILE* relations;
-	if (fopen_s(&relations, ("Output/" + Configuration::getOutputName() + "/history/diplomacy/relations.txt").c_str(), "w") != 0)
+	fstream relations("Output/" + Configuration::getOutputName() + "/history/diplomacy/relations.txt");
+	if (relations.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create relations history file";
 		exit(-1);
 	}
 	
-	FILE* out;
 	for (auto itr: agreements)
 	{
-		if (itr->type == "guarantee")
+		if (itr->getType() == "guarantee")
 		{
-			out = guarantees;
+			guarantees << itr;
 		}
-		else if (itr->type == "vassal")
+		else if (itr->getType() == "vassal")
 		{
-			out = puppetStates;
+			puppetStates << itr;
 		}
-		else if (itr->type == "alliance")
+		else if (itr->getType() == "alliance")
 		{
-			out = alliances;
+			alliances << itr;
 		}
-		else if (itr->type == "relation")
+		else if (itr->getType() == "relation")
 		{
-			out = relations;
+			relations << itr;
 		}
 		else
 		{
-			LOG(LogLevel::Warning) << "Cannot ouput diplomatic agreement type " << itr->type;
+			LOG(LogLevel::Warning) << "Cannot ouput diplomatic agreement type " << itr->getType();
 			continue;
 		}
-		fprintf(out, "%s=\n", itr->type.c_str());
-		fprintf(out, "{\n");
-		fprintf(out, "\tfirst=\"%s\"\n", itr->country1.c_str());
-		fprintf(out, "\tsecond=\"%s\"\n", itr->country2.c_str());
-		if (itr->type == "relation")
-		{
-			fprintf(out, "\tvalue=\"%i\"\n", itr->value);
-		}
-		fprintf(out, "\tstart_date=\"%s\"\n", itr->start_date.toString().c_str());
-		fprintf(out, "\tend_date=\"1949.1.1\"\n");
-		fprintf(out, "}\n");
-		fprintf(out, "\n");
 	}
 	
-	fclose(alliances);
-	fclose(guarantees);
-	fclose(puppetStates);
-	fclose(relations);
+	alliances.close();
+	guarantees.close();
+	puppetStates.close();
+	relations.close();*/
 }
+
 
 void HoI4Diplomacy::addAgreement(const HoI4Agreement* agr)
 {
 	bool alreadyExists = false;
 
-	if (agr->type == "relation")
+	if (agr->getType() == "relation")
 	{
 		for (auto itr: agreements)
 		{

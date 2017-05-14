@@ -5,7 +5,35 @@
 add_namespace = political
 
 # Communism on the Rise
+country_event = {
+	id = political.1
+	title = political.1.t
+	desc = political.1.d
+	picture = GFX_report_event_worker_protests
+	
+	is_triggered_only = yes
 
+	trigger = {
+		NOT = { has_government = communism }
+	}
+	
+	# Seek government support
+	option = {
+		name = political.1.a
+		custom_effect_tooltip = political.1.a.tt
+		clr_country_flag = communism_popular_movement
+		set_country_flag = communism_political_movement
+	}
+
+	# Seek popular support
+	option = {
+		name = political.1.b
+		custom_effect_tooltip = political.1.b.tt
+		clr_country_flag = communism_political_movement
+		clr_country_flag = communism_government_support
+		set_country_flag = communism_popular_movement
+	}
+}
 
 # Marxist Sympathies in Government
 country_event = {
@@ -50,7 +78,6 @@ country_event = {
 		communism > 0.4
 		is_major = no
 		is_puppet = no
-		
 	}
 
 	mean_time_to_happen = {
@@ -149,7 +176,6 @@ country_event = {
 		has_idea_with_trait = communist_revolutionary
 		NOT = { has_government = communism }
 		communism > 0.4
-		
 	}
 
 	mean_time_to_happen = {
@@ -533,6 +559,7 @@ country_event = {
 		has_idea_with_trait = democratic_reformer
 		NOT = { has_government = democratic }
 		NOT = { has_country_flag = democracy_opposition_formed }
+		is_puppet = no
 	}
 	
 	mean_time_to_happen = {
@@ -719,7 +746,6 @@ country_event = {
 	option = {
 		name = political.19.c
 		trigger = {
-			
 		}
 		set_politics = {
 			ruling_party = communism
@@ -863,7 +889,6 @@ country_event = {
 		communism > 0.7
 		has_idea = communist_revolutionaries
 		#Special case CHI PRC
-		
 	}
 
 	mean_time_to_happen = {
@@ -927,7 +952,6 @@ country_event = {
 		democratic > 0.7
 		has_idea = democratic_revolutionaries
 		#Special case CHI PRC
-		
 	}
 
 	mean_time_to_happen = {
@@ -1089,7 +1113,7 @@ country_event = {
 	picture = GFX_report_event_journalists_speech
 
 	trigger = {
-		any_country = {
+		any_other_country = {
 			NOT = { tag = ROOT }
 			original_tag = ROOT
 			has_government = ROOT
@@ -1102,7 +1126,7 @@ country_event = {
 
 	option = {
 		name = political.28.a
-		random_country = {
+		random_other_country = {
 			limit = {
 				original_tag = ROOT
 				NOT = { tag = ROOT }

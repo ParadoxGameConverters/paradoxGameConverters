@@ -170,6 +170,33 @@
     <ClCompile Include="Source\HOI4World\HoI4WarCreator.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
+    <ClCompile Include="..\common_items\CardinalToOrdinal.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\ProvinceDefinitions.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\ProvinceNeighborMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\HoI4SupplyZones.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\HoI4Agreement.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\NamesMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\CultureGroupMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\ReformMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\GraphicsMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -326,6 +353,34 @@
     </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4WarCreator.h">
       <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\CardinalToOrdinal.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\ProvinceDefinitions.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\bitmap_image.hpp" />
+    <ClInclude Include="Source\Mappers\ProvinceNeighborMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\HoI4SupplyZones.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\HoI4Agreement.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\NamesMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\CultureGroupMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\ReformMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\GraphicsMapper.h">
+      <Filter>Mappers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

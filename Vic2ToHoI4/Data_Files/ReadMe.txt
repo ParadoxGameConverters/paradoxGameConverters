@@ -45,6 +45,7 @@ An (incomplete) list of those who contributed effort to this mammoth undertaking
 Idhrendur		- Project Lead, Programming, Analysis
 thatsgerman		- Programming, Analysis
 jepaan			- Programming
+Hamiller78		- Programming
 Italianajt		- Analysis, Data Files, QA
 Ordinary_Kraut	- Analysis, Data Files
 DasGuntLord01	- Analysis
@@ -58,6 +59,7 @@ simsulla			- Data Files
 Mattymooz		- Data Files
 Yellowone1		- Art
 KaeI				- Art
+Ostheim			- Art
 
 Special thanks to LukyLucaz, who allowed us to incoroporate Increased Resources into the converter.
 

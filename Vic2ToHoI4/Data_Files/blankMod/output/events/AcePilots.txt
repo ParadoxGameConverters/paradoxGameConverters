@@ -15,15 +15,11 @@ country_event = {
 	desc = {
 		text = ace_promoted.1.d
 		trigger = {
-			
 		}
 	}
 	desc = {
 		text = ace_promoted.1.d_major
 		trigger = {
-			OR = {
-				
-			}
 		}
 	}
 	picture = GFX_report_event_ace_promoted
@@ -42,15 +38,11 @@ country_event = {
 	desc = {
 		text = ace_promoted.1.d
 		trigger = {
-			
 		}
 	}
 	desc = {
 		text = ace_promoted.1.d_major
 		trigger = {
-			OR = {
-				
-			}
 		}
 	}
 	picture = GFX_report_event_ace_promoted
@@ -70,15 +62,11 @@ country_event = {
 	desc = {
 		text = ace_died.1.d
 		trigger = {
-			
 		}
 	}
 	desc = {
 		text = ace_died.1.d_major
 		trigger = {
-			OR = {
-				
-			} 
 		}
 	}
 	picture = GFX_report_event_ace_died
@@ -103,18 +91,12 @@ country_event = {
 				NOT = {
 					PREV = { 
 						OWNER = {
-							OR = {
-								
-							} 
 						} 
 					}
 				}
 				NOT = {
 					FROM = { 
 						OWNER = {
-							OR = {
-								
-							} 
 						}
 					}
 				}
@@ -127,15 +109,10 @@ country_event = {
 		trigger = {
 			PREV = { 
 				OWNER = {
-					OR = {
-						
-					} 
 				}
 			}
 			FROM = { 
 				OWNER = {
-					OR = {
-					} 
 				}
 			}
 		}
@@ -162,18 +139,12 @@ country_event = {
 				NOT = {
 					PREV = { 
 						OWNER = {
-							OR = {
-								
-							} 
 						} 
 					}
 				}
 				NOT = {
 					FROM = { 
 						OWNER = {
-							OR = {
-								
-							} 
 						}
 					}
 				}
@@ -186,16 +157,10 @@ country_event = {
 		trigger = {
 			PREV = { 
 				OWNER = {
-					OR = {
-						
-					} 
 				}
 			}
 			FROM = { 
 				OWNER = {
-					OR = {
-						
-					} 
 				}
 			}
 		}
@@ -222,18 +187,12 @@ country_event = {
 				NOT = {
 					PREV = { 
 						OWNER = {
-							OR = {
-								
-							} 
 						} 
 					}
 				}
 				NOT = {
 					FROM = { 
 						OWNER = {
-							OR = {
-								
-							} 
 						}
 					} 
 				}
@@ -246,16 +205,10 @@ country_event = {
 		trigger = {
 			PREV = { 
 				OWNER = {
-					OR = {
-						
-					} 
 				}
 			}
 			FROM = { 
 				OWNER = {
-					OR = {
-						
-					} 
 				}
 			}
 		}

@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -31,17 +31,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-struct HoI4Agreement
-{
-	string	type;
-	string	country1;
-	string	country2;
-	int value; // For relation value
-	date		start_date;
+class HoI4Agreement;
 
-	// Ignore value and start_date, because value might not be set, and start_date is irrelevant
-	bool operator==(const HoI4Agreement &rhs) const { return this->type == rhs.type && this->country1 == rhs.country1 && this->country2 == rhs.country2; };
-};
 
 
 class HoI4Diplomacy

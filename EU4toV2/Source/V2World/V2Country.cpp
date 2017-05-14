@@ -120,6 +120,7 @@ V2Country::V2Country(const string& countriesFileLine, const V2World* _theWorld, 
 	isReleasableVassal	= true;
 	inHRE						= false;
 	holyRomanEmperor		= false;
+	celestialEmperor		= false;
 	primaryCulture			= "british";
 	religion					= "protestant";
 	government				= "hms_government";
@@ -256,6 +257,7 @@ V2Country::V2Country(const string& _tag, const string& _commonCountryFile, const
 	isReleasableVassal	= true;
 	inHRE						= false;
 	holyRomanEmperor		= false;
+	celestialEmperor		= false;
 	primaryCulture			= "british";
 	religion					= "protestant";
 	government				= "hms_government";
@@ -432,6 +434,11 @@ void V2Country::output() const
 			fprintf(output, "set_country_flag = member_hre\n");
 		}
 
+		if (celestialEmperor)
+		{
+			fprintf(output, "set_country_flag = celestial_emperor\n");
+		}
+
 		fclose(output);
 
 		outputOOB();
@@ -585,6 +592,9 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const vector<V2TechS
 	// in HRE
 	inHRE					= srcCountry->getInHRE();
 	holyRomanEmperor	= srcCountry->getHolyRomanEmperor();
+
+	// celestial emperor
+	celestialEmperor = srcCountry->getCelestialEmperor();
 
 	// tech group
 	if ((srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "high_american") || (srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman") || (srcCountry->numEmbracedInstitutions() >= 7))

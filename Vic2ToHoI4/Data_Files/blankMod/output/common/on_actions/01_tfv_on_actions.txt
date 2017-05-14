@@ -1,0 +1,34 @@
+on_actions = {
+	on_capitulation = {
+	}
+
+	#ROOT is subject FROM is previous overlord
+	on_subject_free = {
+	}
+
+	#ROOT is subject FROM is overlord
+	on_subject_autonomy_level_change = {
+	}
+
+	#ROOT is subject FROM is overlord
+	on_subject_annexed = {
+
+	}
+
+	#used when puppeting in a peace conference
+	#ROOT = nation being puppeted, FROM = overlord
+	on_puppet = {
+	}
+
+	#used when puppeting through the occupied territories menu during peace time (or when releasing from non-core but owned territory, f.e. Britain releasing Egypt)
+	#ROOT = nation being released, FROM = overlord
+	on_release_as_puppet = {
+	}
+
+	#ROOT is free nation FROM is releaser
+	on_release_as_free = {
+		effect = {
+		}
+	}
+
+}

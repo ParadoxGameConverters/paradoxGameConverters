@@ -51,6 +51,10 @@ public:
 	// Passes back the RGB color triplet as individual components.
 	void GetRGB(int& r, int& g, int& b) const;
 
+	bool operator == (const Color& right) const;
+	bool operator != (const Color& right) const;
+	bool operator < (const Color& right) const;
+
 	// Returns true if the color has been initialized with an RGB triplet.
 	operator bool() const;
 

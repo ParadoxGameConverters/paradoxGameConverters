@@ -1,0 +1,179 @@
+﻿# Names are based on equipment types (picking equipment with highest amount from the pool)
+# Generic are used for countries that are not scripted in.
+generic = {
+	# Ships
+	submarine = {
+		prefix = ""
+		generic = { "Submarine" }
+		unique = {}
+	}
+	destroyer = {
+		prefix = ""
+		generic = { "Destroyer" }
+		unique = {}
+	}
+	light_cruiser = {
+		prefix = ""
+		generic = { "Light Cruiser" }
+		unique = {}
+	}
+	heavy_cruiser = {
+		prefix = ""
+		generic = { "Heavy Cruiser" }
+		unique = {}
+	}
+	battle_cruiser = {
+		prefix = ""
+		generic = { "Battlecruiser" }
+		unique = {}
+	}
+	battleship = {
+		prefix = ""
+		generic = { "Battleship" }
+		unique = {}
+	}
+	SH_battleship = {
+		prefix = ""
+		generic = { "Super Heavy Battleship" }
+		unique = {}
+	}
+	carrier = {
+		prefix = ""
+		generic = { "Carrier" }
+		unique = {}
+	}
+	
+	# Land units
+	infantry = {
+		prefix = ""
+		generic = { "Infantry Division" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+	marine = {
+		prefix = ""
+		generic = { "Marine Division" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+	mountaineers = {
+		prefix = ""
+		generic = { "Mountain Division" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+	paratrooper = {
+		prefix = ""
+		generic = { "Airborne Division" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+	motorized = {
+		prefix = ""
+		generic = { "Motorized Division" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+	mechanized = {
+		prefix = ""
+		generic = { "Mechanized Division" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+	artillery_brigade = {
+		prefix = ""
+		generic = { "Artillery Brigade" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+	anti_tank_brigade = {
+		prefix = ""
+		generic = { "Anti-Tank Brigade" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+	anti_air_brigade = {
+		prefix = ""
+		generic = { "Anti-Air Brigade" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+	engineer = {
+		prefix = ""
+		generic = { "Engineer Company" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+	recon = {
+		prefix = ""
+		generic = { "Recon Company" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+	field_hospital = {
+		prefix = ""
+		generic = { "Field Hospital" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+	logistics_company = {
+		prefix = ""
+		generic = { "Logistics Company" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+	military_police = {
+		prefix = ""
+		generic = { "Police Company" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}	
+	signal_company = {
+		prefix = ""
+		generic = { "Signal Company" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}	
+	maintenance_company = {
+		prefix = ""
+		generic = { "Maintenance Company" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}	
+	cavalry = {
+		prefix = ""
+		generic = { "Cavalry Division" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+	light_armor = {
+		prefix = ""
+		generic = { "Light Tank Brigade" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+	medium_armor = {
+		prefix = ""
+		generic = { "Medium Tank Brigade" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+	heavy_armor = {
+		prefix = ""
+		generic = { "Heavy Tank Brigade" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+	modern_armor = {
+		prefix = ""
+		generic = { "Modern Tank Brigade" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+	super_heavy_armor = {
+		prefix = ""
+		generic = { "Super Heavy Tank Brigade" }
+		generic_pattern = "UNIT_GENERIC_NAME_GENERIC_INFANTRY"
+		unique = {}
+	}
+}

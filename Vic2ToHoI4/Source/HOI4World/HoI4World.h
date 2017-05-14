@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -24,24 +24,30 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #ifndef HoI4WORLD_H_
 #define HoI4WORLD_H_
 
-#include <string>
-#include "HoI4Buildings.h"
-#include "HoI4Country.h"
-#include "HoI4Province.h"
-#include "HoI4Diplomacy.h"
-#include "HoI4Events.h"
-#include "HoI4Localisation.h"
+
+
 #include "HoI4States.h"
-#include "HoI4StrategicRegion.h"
-#include "HoI4SupplyZone.h"
+#include "../Mappers/Mapper.h"
+#include <map>
+#include <set>
+#include <string>
+#include <vector>
+using namespace std;
 
 
 
-typedef const map<string, multimap<HoI4RegimentType, unsigned> > unitTypeMapping;
-
-
-
+class HoI4Buildings;
+class HoI4Country;
+class HoI4Diplomacy;
+class HoI4Events;
 class HoI4Faction;
+class HoI4Province;
+class HoI4State;
+class HoI4States;
+class HoI4StrategicRegion;
+class HoI4SupplyZones;
+class V2Country;
+class V2World;
 
 
 
@@ -50,28 +56,7 @@ class HoI4World
 	public:
 		HoI4World(const V2World* sourceWorld);
 
-		void	output() const;
-
-		void importSuppplyZones(const map<int, vector<int>>& defaultStateToProvinceMap);
-		void importStrategicRegions();
-		void convertCountries();
-		void convertNavalBases();
-		void convertIndustry();
-		void convertResources();
-		void convertSupplyZones();
-		void convertStrategicRegions();
-		void convertTechs();
-		void convertDiplomacy();
-		void convertArmies(const HoI4AdjacencyMapping& HoI4AdjacencyMap);
-		void generateLeaders();
-		void convertArmies();
-		void convertNavies();
-		void convertAirforces();
-		void convertCapitalVPs();
-		void convertAirBases();
-
-		void outputRelations() const;
-		void checkAllProvincesMapped();
+		void output() const;
 
 		map<string, HoI4Country*> getCountries()	const { return countries; }
 		vector<HoI4Country*> getGreatPowers() const { return greatPowers; }
@@ -79,17 +64,18 @@ class HoI4World
 		vector<HoI4Faction*> getFactions() const { return factions; }
 		HoI4Events* getEvents() const { return events; }
 
+		HoI4Country* findCountry(string countryTag);
+
 	private:
-		void	getProvinceLocalizations(const string& file);
+		void convertNavalBases();
 
-		void determineGreatPowers();
+		void convertCountries();
+		void convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, governmentJobsMap governmentJobs, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+		void identifyMajorIdeologies();
+		void addNeutrality();
+		void convertIdeologySupport();
 
-		void addBasicCapitalVPs();
-		void addGreatPowerVPs();
-		void addStrengthVPs();
-		double getStrongestCountryStrength();
-		int calculateStrengthVPs(HoI4Country* country, double greatestStrength);
-
+		void convertIndustry();
 		void addStatesToCountries();
 		map<string, double> calculateFactoryWorkerRatios();
 		map<string, double> getIndustrialWorkersPerCountry();
@@ -102,11 +88,45 @@ class HoI4World
 		void reportCountryIndustry();
 		void reportDefaultIndustry();
 		pair<string, array<int, 3>> getDefaultStateIndustry(string stateFilename);
-		void outputDefaultIndustry(const map<string, array<int, 3>>& countryIndustry);
+		void reportDefaultIndustry(const map<string, array<int, 3>>& countryIndustry);
 
-		vector<int>					getPortProvinces(const vector<int>& locationCandidates);
-		vector<int>					getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
-		int							getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string owner);
+		void convertResources();
+		map<int, map<string, double>> importResourceMap() const;
+
+		void convertStrategicRegions();
+		map<int, int> importStrategicRegions();
+		map<int, int> determineUsedRegions(const HoI4State* state, map<int, int>& provinceToStrategicRegionMap);
+		int determineMostUsedRegion(const map<int, int>& usedRegions) const;
+		void addProvincesToRegion(const HoI4State* state, int regionNum);
+		void addLeftoverProvincesToRegions(const map<int, int>& provinceToStrategicRegionMap);
+
+		void convertDiplomacy();
+		void convertAgreements();
+		void convertRelations();
+
+		void convertTechs();
+		map<string, vector<pair<string, int>>> importTechMap() const;
+		void addTechs(HoI4Country* countryaddTechs, const string& oldTech, const map<string, vector<pair<string, int>>>& techMap);
+
+		void generateLeaders();
+
+		void convertArmies();
+		void convertNavies();
+		void convertAirforces();
+
+		void determineGreatPowers();
+
+		void convertCapitalVPs();
+		void addBasicCapitalVPs();
+		void addGreatPowerVPs();
+		void addStrengthVPs();
+		double getStrongestCountryStrength();
+		int calculateStrengthVPs(HoI4Country* country, double greatestStrength);
+
+		void convertAirBases();
+		void addBasicAirBases();
+		void addCapitalAirBases();
+		void addGreatPowerAirBases();
 
 		void createFactions();
 		void logFactionMember(ofstream& factionsLog, const HoI4Country* member);
@@ -115,45 +135,37 @@ class HoI4World
 
 		void outputCommonCountries() const;
 		void outputColorsfile() const;
-		void outputAutoexecLua() const;
-		void outputLocalisations() const;
+		void outputNames() const;
 		void outputMap() const;
-		void outputHistory() const;
-		void outputSupply() const;
 		void outputCountries() const;
+		void outputRelations() const;
+
+		/*vector<int> getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
+		vector<int> getPortProvinces(const vector<int>& locationCandidates);
+		int getAirLocation(HoI4Province* locationProvince, const HoI4AdjacencyMapping& HoI4AdjacencyMap, string owner);*/
 
 
 		const V2World* sourceWorld;
 
+		HoI4States* states;
+		//map<int, HoI4Province*> provinces;
+
+		HoI4SupplyZones* supplyZones;
+		map<int, HoI4StrategicRegion*> strategicRegions;
+		HoI4Buildings* buildings;
+
+		map<string, HoI4Country*> countries;
+		map<string, HoI4Country*> landedCountries;
 		vector<HoI4Country*> greatPowers;
 
-		HoI4States* states;
+		set<string> majorIdeologies;
 		
-		map<int, HoI4Province*>		provinces;
-		map<string, HoI4Country*>	countries;
-		map<string, HoI4Country*> landedCountries;
-		HoI4Diplomacy					diplomacy;
-		map<int, int>					stateMap;
-
-		// map items
-		map<int, string>						continents;  // < province, continent >
-		map<int, HoI4SupplyZone*>			supplyZones;
-		map<int, string>						supplyZonesFilenames;
-		map<int, HoI4StrategicRegion*>	strategicRegions;
-		map<int, int>							provinceToStratRegionMap;
-
-		HoI4Localisation				localisation;
-
+		vector<HoI4Faction*> factions;
+		HoI4Diplomacy* diplomacy;
 		HoI4Events* events;
 
 		leaderTraitsMap leaderTraits;
-		namesMapping namesMap;
 		portraitMapping portraitMap;
-
-		map<int, int> provinceToSupplyZoneMap;
-		vector<HoI4Faction*> factions;
-
-		HoI4Buildings* buildings;
 };
 
 

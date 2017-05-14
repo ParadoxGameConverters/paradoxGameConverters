@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -22,6 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4Focus.h"
+#include "HoI4Localisation.h"
 
 
 
@@ -160,8 +161,27 @@ HoI4Focus* HoI4Focus::makeCustomizedCopy(const string& country) const
 	newFocus->prerequisites.clear();
 	for (auto prerequisite: prerequisites)
 	{
+		//have to account for several foci in one prerequisite, so need to look for occurences of " focus" and insert country before that
+		int stringPosition = 0;
+		do
+		{
+			int focusPosition = prerequisite.find(" focus", stringPosition);
+			if (focusPosition != string::npos)
+			{
+				prerequisite.insert(focusPosition, country);
+				stringPosition = focusPosition + country.size() + 6;
+			}
+			else
+			{
+				stringPosition = prerequisite.size();
+			}
+		}
+		while(stringPosition < prerequisite.size());
 		newFocus->prerequisites.push_back(prerequisite + country);
 	}
+
+
+	HoI4Localisation::copyFocusLocalisations(id, newFocus->id);
 
 	return newFocus;
 }

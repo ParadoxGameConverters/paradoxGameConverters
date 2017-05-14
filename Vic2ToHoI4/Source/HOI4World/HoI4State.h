@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -29,8 +29,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <vector>
 #include <string>
 #include <map>
-#include "..\V2World\Vic2State.h"
+#include <set>
 using namespace std;
+
+
+
+class V2Province;
+class Vic2State;
 
 
 
@@ -44,7 +49,6 @@ class HoI4State
 		void addProvince(int province) { provinces.insert(province); }
 		void setAsCapitalState() { capitalState = true; civFactories++; }
 		void addResource(string resource, double amount)	{ resources[resource] += amount; }
-		void addManpower(int newManpower) { manpower += newManpower; }
 		void addAirBase(int newAirBase) { airbaseLevel += newAirBase; if (airbaseLevel > 10) airbaseLevel = 10; }
 		void addVictoryPointValue(int additionalValue) { victoryPointValue += additionalValue; }
 		void setVPLocation(int province) { victoryPointPosition = province; }
@@ -67,12 +71,10 @@ class HoI4State
 
 		int getMainNavalLocation() const;
 
-		bool tryToCreateVP();
+		void tryToCreateVP();
+		void addManpower();
 
 		void convertIndustry(double workerFactoryRatio);
-
-		pair<string, string> makeLocalisation(const pair<const string, string>& Vic2NameInLanguage) const;
-		pair<string, string> makeVPLocalisation(const pair<const string, string>& Vic2NameInLanguage) const;
 
 	private:
 		int determineFactoryNumbers(double workerFactoryRatio);
@@ -85,11 +87,9 @@ class HoI4State
 		int determineNavalBaseLevel(const V2Province* sourceProvince);
 		int determineNavalBaseLocation(const V2Province* sourceProvince);
 
+		bool assignVPFromVic2Province(int Vic2ProvinceNumber);
 		void assignVP(int location);
 		bool isProvinceInState(int provinceNum);
-
-		string makeLocalisationKey() const;
-		string makeLocalisationValue(const pair<const string, string>& Vic2NameInLanguage) const;
 
 		const Vic2State* sourceState;
 

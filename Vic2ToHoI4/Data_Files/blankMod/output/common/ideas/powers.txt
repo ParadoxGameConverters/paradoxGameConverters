@@ -9,6 +9,8 @@ ideas = {
 				always = yes
 			}
 			
+			picture = generic_production_bonus
+			
 			removal_cost = -1
 			
 			modifier = {

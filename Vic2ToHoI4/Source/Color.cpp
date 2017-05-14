@@ -87,6 +87,58 @@ void Color::GetRGB(int& r, int& g, int& b) const
 	b = c[2];
 }
 
+
+bool Color::operator == (const Color& right) const
+{
+	if (
+			(c[0] == right.c[0]) &&
+			(c[1] == right.c[1]) &&
+			(c[2] == right.c[2])
+		)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+
+bool Color::operator != (const Color& right) const
+{
+	if (
+			(c[0] != right.c[0]) ||
+			(c[1] != right.c[1]) ||
+			(c[2] != right.c[2])
+		)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+
+bool Color::operator < (const Color& right) const
+{
+	if (
+			(c[0] < right.c[0]) ||
+			(c[1] < right.c[1]) ||
+			(c[2] < right.c[2])
+		)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+
 Color::operator bool() const
 {
 	return initialized;

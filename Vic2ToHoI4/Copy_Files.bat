@@ -20,9 +20,13 @@ copy "Data_Files\FAQ.txt" "release\FAQ.txt"
 copy "Data_Files\resources.txt" "release\resources.txt"
 copy "Data_Files\navalprovinces.txt" "release\navalprovinces.txt"
 copy "Data_Files\positions.txt" "release\positions.txt"
-copy "Data_Files\adj.txt" "release\adj.txt"
+copy "Data_Files\femaleNames.txt" "release\femaleNames.txt"
+copy "Data_Files\callsigns.txt" "release\callsigns.txt"
+copy "Data_Files\cultureGroupToGraphics.txt" "release\cultureGroupToGraphics.txt"
 
 rem **Copy flags**
+del "Release\flags" /Q /S /F
+rmdir "Release\flags" /Q /S
 xcopy "Data_Files\flags" "release\flags" /Y /E /I
 
 rem **Create changelog**

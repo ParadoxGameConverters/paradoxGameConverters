@@ -14,6 +14,9 @@ focus_tree = {
 		x = 1
 		y = 0
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			army_experience = 5
 			add_tech_bonus = {
@@ -32,6 +35,9 @@ focus_tree = {
 		x = 0
 		y = 1
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_tech_bonus = {
 				name = infantry_weapons_bonus
@@ -51,6 +57,9 @@ focus_tree = {
 		x = 2
 		y = 1
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_tech_bonus = {
 				name = motorized_bonus
@@ -67,6 +76,9 @@ focus_tree = {
 		x = 1
 		y = 2
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			army_experience = 5
 			add_tech_bonus = {
@@ -85,6 +97,9 @@ focus_tree = {
 		x = 0
 		y = 3
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_tech_bonus = {
 				name = infantry_artillery_bonus
@@ -103,6 +118,9 @@ focus_tree = {
 		x = 2
 		y = 3
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_tech_bonus = {
 				name = motorized_bonus
@@ -120,6 +138,9 @@ focus_tree = {
 		x = 1
 		y = 4
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			army_experience = 5
 			add_tech_bonus = {
@@ -138,6 +159,9 @@ focus_tree = {
 		x = 0
 		y = 5
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_tech_bonus = {
 				name = infantry_artillery_bonus
@@ -156,6 +180,9 @@ focus_tree = {
 		x = 2
 		y = 5
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_tech_bonus = {
 				name = armor_bonus
@@ -175,6 +202,9 @@ focus_tree = {
 		x = 1
 		y = 6
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_tech_bonus = {
 				name = special_forces_bonus
@@ -196,6 +226,9 @@ focus_tree = {
 		x = 5
 		y = 0
 		cost = 10
+
+		available_if_capitulated = yes
+
 
 		complete_tooltip = {
 			air_experience = 25
@@ -228,7 +261,7 @@ focus_tree = {
 						}
 					}
 				}
-				random_owned_state = {
+				random_owned_controlled_state = {
 					limit = {
 						free_building_slots = {
 							building = air_base
@@ -278,6 +311,9 @@ focus_tree = {
 		x = 4
 		y = 1
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_tech_bonus = {
 				name = fighter_bonus
@@ -302,6 +338,9 @@ focus_tree = {
 		x = 6
 		y = 1
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_tech_bonus = {
 				name = bomber_bonus
@@ -322,6 +361,9 @@ focus_tree = {
 		x = 5
 		y = 2
 		cost = 10
+
+		available_if_capitulated = yes
+
 
 		complete_tooltip = {
 			air_experience = 25
@@ -344,15 +386,18 @@ focus_tree = {
 			if = {
 				limit = {
 					capital_scope = {
-						NOT = {
-							free_building_slots = {
-								building = air_base
-								size > 1
+						OR = {
+							NOT = { is_controlled_by = ROOT }
+							NOT = {
+								free_building_slots = {
+									building = air_base
+									size > 1
+								}
 							}
 						}
 					}
 				}
-				random_owned_state = {
+				random_owned_controlled_state = {
 					limit = {
 						free_building_slots = {
 							building = air_base
@@ -370,6 +415,7 @@ focus_tree = {
 			if = {
 				limit = {
 					capital_scope = {
+						is_controlled_by = ROOT
 						free_building_slots = {
 							building = air_base
 							size > 1
@@ -402,6 +448,9 @@ focus_tree = {
 		x = 4
 		y = 3
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_tech_bonus = {
 				name = CAS_bonus
@@ -421,6 +470,9 @@ focus_tree = {
 		x = 5
 		y = 4
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_tech_bonus = {
 				name = jet_rocket_bonus
@@ -448,6 +500,9 @@ focus_tree = {
 		x = 6
 		y = 3
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_tech_bonus = {
 				name = nav_bomber_bonus
@@ -465,6 +520,9 @@ focus_tree = {
 		x = 9
 		y = 0
 		cost = 10
+
+		available_if_capitulated = yes
+
 
 		available = {
 			any_state = {
@@ -501,7 +559,7 @@ focus_tree = {
 						is_coastal = yes
 					}
 				}
-				random_owned_state = {
+				random_owned_controlled_state = {
 					limit = {
 						is_coastal = yes
 						free_building_slots = {
@@ -531,7 +589,7 @@ focus_tree = {
 						}
 					}
 				}
-				random_owned_state = {
+				random_owned_controlled_state = {
 					limit = {
 						dockyard > 0
 						free_building_slots = {
@@ -591,6 +649,9 @@ focus_tree = {
 		y = 1
 		cost = 10
 
+		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 1
 			modifier = {
@@ -627,6 +688,9 @@ focus_tree = {
 		y = 1
 		cost = 10
 
+		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 1
 			modifier = {
@@ -657,6 +721,9 @@ focus_tree = {
 		x = 8
 		y = 2
 		cost = 10
+
+		available_if_capitulated = yes
+
 
 		ai_will_do = {
 			factor = 1
@@ -693,6 +760,9 @@ focus_tree = {
 		y = 2
 		cost = 10
 
+		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 1
 			modifier = {
@@ -728,6 +798,9 @@ focus_tree = {
 		y = 3
 		cost = 10
 
+		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 1
 			modifier = {
@@ -762,6 +835,9 @@ focus_tree = {
 		x = 10
 		y = 3
 		cost = 10
+
+		available_if_capitulated = yes
+
 
 		ai_will_do = {
 			factor = 1
@@ -803,6 +879,9 @@ focus_tree = {
 		x = 13
 		y = 0
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_tech_bonus = {
 				name = industrial_bonus
@@ -834,6 +913,9 @@ focus_tree = {
 		y = 1
 		cost = 10
 
+		available_if_capitulated = yes
+
+
 		
 		ai_will_do = {
 			factor = 2
@@ -862,7 +944,7 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			random_owned_state = {
+			random_owned_controlled_state = {
 				limit = {
 					free_building_slots = {
 						building = industrial_complex
@@ -903,6 +985,9 @@ focus_tree = {
 		y = 1
 		cost = 10
 
+		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 2			
 		}
@@ -930,7 +1015,7 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			random_owned_state = {
+			random_owned_controlled_state = {
 				limit = {
 					free_building_slots = {
 						building = arms_factory
@@ -971,6 +1056,9 @@ focus_tree = {
 		y = 2
 		cost = 10
 
+		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 2
 		}
@@ -998,7 +1086,7 @@ focus_tree = {
 		}		
 
 		completion_reward = {
-			random_owned_state = {
+			random_owned_controlled_state = {
 				limit = {
 					free_building_slots = {
 						building = industrial_complex
@@ -1039,6 +1127,9 @@ focus_tree = {
 		y = 2
 		cost = 10
 
+		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 2
 		}
@@ -1066,7 +1157,7 @@ focus_tree = {
 		}		
 
 		completion_reward = {
-			random_owned_state = {
+			random_owned_controlled_state = {
 				limit = {
 					free_building_slots = {
 						building = arms_factory
@@ -1106,6 +1197,9 @@ focus_tree = {
 		x = 12
 		y = 3
 		cost = 10
+
+		available_if_capitulated = yes
+
 		bypass = {
 			custom_trigger_tooltip = {
 				tooltip = infrastructure_effort_tt
@@ -1132,7 +1226,7 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			random_owned_state = {
+			random_owned_controlled_state = {
 				limit = {
 					free_building_slots = {
 						building = infrastructure
@@ -1159,7 +1253,7 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
-			random_owned_state = {
+			random_owned_controlled_state = {
 				limit = {
 					free_building_slots = {
 						building = infrastructure
@@ -1197,6 +1291,9 @@ focus_tree = {
 		y = 3
 		cost = 10
 
+		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 2
 		}
@@ -1224,7 +1321,7 @@ focus_tree = {
 		}		
 
 		completion_reward = {
-			random_owned_state = {
+			random_owned_controlled_state = {
 				limit = {
 					free_building_slots = {
 						building = arms_factory
@@ -1264,6 +1361,9 @@ focus_tree = {
 		x = 12
 		y = 4
 		cost = 10
+
+		available_if_capitulated = yes
+
 		bypass = {
 			custom_trigger_tooltip = {
 				tooltip = infrastructure_effort_tt
@@ -1290,7 +1390,7 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			random_owned_state = {
+			random_owned_controlled_state = {
 				limit = {
 					free_building_slots = {
 						building = infrastructure
@@ -1317,7 +1417,7 @@ focus_tree = {
 					instant_build = yes
 				}
 			}
-			random_owned_state = {
+			random_owned_controlled_state = {
 				limit = {
 					free_building_slots = {
 						building = infrastructure
@@ -1355,6 +1455,9 @@ focus_tree = {
 		y = 4
 		cost = 10
 
+		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 2
 		}
@@ -1382,7 +1485,7 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			random_owned_state = {
+			random_owned_controlled_state = {
 				limit = {
 					free_building_slots = {
 						building = industrial_complex
@@ -1422,6 +1525,9 @@ focus_tree = {
 		x = 10
 		y = 5
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_tech_bonus = {
 				name = nuclear_bonus
@@ -1446,6 +1552,9 @@ focus_tree = {
 		x = 12
 		y = 5
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_research_slot = 1
 		}
@@ -1463,6 +1572,9 @@ focus_tree = {
 		x = 12
 		y = 6
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_research_slot = 1
 		}
@@ -1475,6 +1587,9 @@ focus_tree = {
 		x = 14
 		y = 5
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_tech_bonus = {
 				name = secret_bonus
@@ -1501,6 +1616,9 @@ focus_tree = {
 		x = 19
 		y = 0
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_political_power = 120
 		}
@@ -1521,6 +1639,9 @@ focus_tree = {
 		x = 18
 		y = 1
 		cost = 10
+
+		available_if_capitulated = yes
+
 
 		ai_will_do = {
 			factor = 5
@@ -1553,6 +1674,9 @@ focus_tree = {
 		y = 2
 		cost = 10
 
+		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 5
 			modifier = {
@@ -1584,6 +1708,9 @@ focus_tree = {
 		y = 2
 		cost = 10
 
+		available_if_capitulated = yes
+
+
 		ai_will_do = {
 			factor = 5
 			modifier = {
@@ -1614,6 +1741,9 @@ focus_tree = {
 		x = 20
 		y = 1
 		cost = 10
+
+		available_if_capitulated = yes
+
 
 		ai_will_do = {
 			factor = 95
@@ -1647,6 +1777,9 @@ focus_tree = {
 		x = 16
 		y = 3
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			if = {
 				limit = { has_idea = neutrality_idea }
@@ -1665,6 +1798,9 @@ focus_tree = {
 		x = 18
 		y = 3
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			if = {
 				limit = { has_idea = neutrality_idea }
@@ -1683,6 +1819,9 @@ focus_tree = {
 		x = 20
 		y = 2
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			if = {
 				limit = { NOT = { has_idea = neutrality_idea } }
@@ -1700,6 +1839,9 @@ focus_tree = {
 		x = 22
 		y = 2
 		cost = 10
+
+		available_if_capitulated = yes
+
 
 		ai_will_do = {
 			factor = 1
@@ -1726,6 +1868,9 @@ focus_tree = {
 		x = 16
 		y = 4
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_ideas = military_youth_focus
 			if = {
@@ -1752,6 +1897,9 @@ focus_tree = {
 		x = 20
 		y = 3
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_ideas = deterrence
 		}
@@ -1764,6 +1912,9 @@ focus_tree = {
 		x = 22
 		y = 3
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_ideas = volunteer_corps_focus
 		}
@@ -1776,6 +1927,9 @@ focus_tree = {
 		x = 16
 		y = 5
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_ideas = paramilitarism_focus
 		}
@@ -1788,6 +1942,9 @@ focus_tree = {
 		x = 18
 		y = 4
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_ideas = indoctrination_focus
 			add_political_power = 150
@@ -1801,6 +1958,9 @@ focus_tree = {
 		x = 22
 		y = 4
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_ideas = foreign_expeditions_focus
 		}
@@ -1822,6 +1982,9 @@ focus_tree = {
 		x = 20
 		y = 5
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			if = {
 				limit = { NOT = { has_idea = neutrality_idea } }
@@ -1840,6 +2003,9 @@ focus_tree = {
 		x = 18
 		y = 5
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_ideas = political_commissars_focus
 			if = {
@@ -1867,6 +2033,9 @@ focus_tree = {
 		x = 17
 		y = 6
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			add_ideas = ideological_fanaticism_focus
 			set_rule = {
@@ -1888,7 +2057,7 @@ focus_tree = {
 			is_in_faction = yes
 			OR = {
 				num_of_factories > 50
-				any_country = {
+				any_other_country = {
 					is_in_faction_with = ROOT
 					num_of_factories > 50
 				}
@@ -1897,6 +2066,9 @@ focus_tree = {
 		x = 19
 		y = 7
 		cost = 10
+
+		available_if_capitulated = yes
+
 		completion_reward = {
 			if = {
 				limit = {

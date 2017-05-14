@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -71,7 +71,7 @@ void initUnionCultures(Object* obj, unionCulturesMap& unionCultures);
 
 // Culture Mappings
 typedef map<string, string> cultureMapping; // <srcCulture, dstCulture>
-cultureMapping initCultureMap(Object* obj);
+cultureMapping initCultureMap();
 
 // idea effects
 void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, int>& commerceInvIdeas, map<string, int>& cultureInvIdeas, map<string, int>& industryInvIdeas, map<string, int>& navyInvIdeas, map<string, double>& UHLiberalIdeas, map<string, double>& UHReactionaryIdeas, vector< pair<string, int> >& literacyIdeas, map<string, int>& orderIdeas, map<string, int>& libertyIdeas, map<string, int>& equalityIdeas);
@@ -80,25 +80,21 @@ void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, in
 // government jobs
 typedef pair<string, vector<string>> governmentJob; // <job name, possible traits>
 typedef map<string, vector<string>> governmentJobsMap;
-void initGovernmentJobTypes(Object* obj, governmentJobsMap& governmentJobs);
+void initGovernmentJobTypes(governmentJobsMap& governmentJobs);
 
 
 // leaderTraits
 typedef map<string, vector<string>> leaderTraitsMap; // <leader type, possible traits>
-void initLeaderTraitsMap(Object* obj, leaderTraitsMap& leaderTraits);
+void initLeaderTraitsMap(leaderTraitsMap& leaderTraits);
 typedef map<string, vector<string>> personalityMap;	// <V2 personality, possible HoI4 traits>
-void initLeaderPersonalityMap(Object* obj, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap);
+void initLeaderPersonalityMap(personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap);
 typedef map<string, vector<string>> backgroundMap;		// <V2 background, possible HoI4 traits>
-void initLeaderBackgroundMap(Object* obj, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+void initLeaderBackgroundMap(backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
 
-
-// names
-typedef map<string, pair<vector<string>, vector<string>>> namesMapping;
-void initNamesMapping(Object* obj, namesMapping& namesMap);
 
 // portraits
 typedef map<string, vector<string>> portraitMapping; // <graphical culture, valid portraits>
-void initPortraitMapping(Object* obj, portraitMapping& portraitMap);
+void initPortraitMapping(portraitMapping& portraitMap);
 
 
 

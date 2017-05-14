@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -44,12 +44,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "ParadoxParserUTF8.h"
 #include <fstream>
 #include <locale>
-#include <codecvt>
 #include <boost/spirit/include/support_istream_iterator.hpp>
 #include <boost/spirit/include/qi.hpp>
 #include "Log.h"
 
+
+
 using namespace boost::spirit;
+
+
 
 namespace parser_UTF8
 {
@@ -439,7 +442,7 @@ namespace parser_UTF8
 		{
 			return nullptr;
 		}
-		read.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t, 0x10ffff, std::consume_header>));
+		//read.imbue(std::locale(std::locale(), new std::codecvt_utf8<wchar_t, 0x10ffff, std::consume_header>));
 		readFile(read);
 		read.close();
 		read.clear();
