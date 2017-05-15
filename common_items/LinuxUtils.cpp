@@ -759,7 +759,8 @@ namespace Utils
 			copy(input.begin(), input.end(), data);
 		};
 		
-		template<typename Char, typename Traits, typename Alloc> explicit ConversionInputBuffer(const std::basic_string<Char,Traits,Alloc> &input){
+		template<typename String> explicit ConversionInputBuffer(const String &input){
+			typedef typename String::value_type Char;
 			using namespace std;
 			remainder = sizeof(Char) * input.length();
 			data = new char[remainder];
@@ -964,6 +965,10 @@ namespace Utils
 		return ConvertString<string, string>("UTF−8", "ISO−8859−15", UTF8)
 	}
 	
+	/*
+		Warning: The input string should not be encoded in UTF-16 but in the system dependent wchar_t encoding
+		see convertUTF8ToUTF16 for full explanation
+	*/
 	std::string convertUTF16ToUTF8(std::wstring UTF16)
 	{
 		using namespace std;
@@ -976,12 +981,22 @@ namespace Utils
 		return ConvertString<string, string>("ISO−8859−15", "UTF-8", input);
 	}
 
+	/*
+		Warning: Does not actually return an UTF-16 sequence.
+		This is an implementation of the original Windows-based API which uses UTF-16 LE as the system dependent wchar_t encoding
+		This behaviour is replicated on Linux but it uses the (system dependent) wchar_t encoding.
+	*/
 	std::wstring convert8859_15ToUTF16(std::string UTF8)
 	{
 		using namespace std;
 		return ConvertString<string, wstring>("wchar_t", "ISO−8859−15", UTF8);
 	}
 
+	/*
+		Warning: Does not actually return an UTF-16 sequence.
+		This is an implementation of the original Windows-based API which uses UTF-16 LE as the system dependent wchar_t encoding
+		This behaviour is replicated on Linux but it uses the (system dependent) wchar_t encoding.
+	*/
 	std::wstring convertUTF8ToUTF16(std::string UTF8)
 	{
 		using namespace std;
