@@ -798,6 +798,27 @@ namespace Utils
 		char *data = nullptr;
 		char *out_buffer = nullptr;
 
+		template<typename String> struct OutputStrHelper{
+			
+			typedef typename String::value_type Char;
+			
+			static void str(String &output, char *buffer, std::size_t length){
+				using namespace std;
+				const Char *output_buffer = reinterpret_cast<const Char *>(buffer);
+				size_t output_length = length / sizeof(Char);
+				output.assign(output_buffer,output_length);
+			};
+		
+		};
+		
+		template<typename Traits, typename Alloc> struct OutputStrHelper<std::basic_string<char, Traits, Alloc> >{
+			
+			static void str(std::basic_string<char, Traits, Alloc> &output, char *buffer, std::size_t length){
+				using namespace std;
+				output.assign(buffer, length);
+			};
+		};
+		
 	public:
 		explicit ConversionOutputBuffer(std::size_t initial_size = 0, std::size_t increment_block_size = 1024) : size(initial_size), remainder(initial_size), block_size(increment_block_size)
 		{
@@ -827,6 +848,10 @@ namespace Utils
 		{
 			using namespace std;
 			return string(data, data+length());
+		};
+
+		template<typename String> void str(String &output) const{
+			OutputStrHelper<String>::str(output, buffer, length());
 		};
 
 		bool ensure_capacity(std::size_t capacity)
@@ -861,7 +886,7 @@ namespace Utils
 		ConversionOutputBuffer &operator=(const ConversionOutputBuffer &);
 	};
 
-	bool ConvertString(const char *toCode, const char *fromCode, ConversionInputBuffer &from, ConversionOutputBuffer &to)
+	bool ConvertBuffer(const char *toCode, const char *fromCode, ConversionInputBuffer &from, ConversionOutputBuffer &to)
 	{
 		using namespace std;
 		iconv_t descriptor = iconv_open(toCode, fromCode);
@@ -892,7 +917,16 @@ namespace Utils
 		return true;
 	}
 
-	std::string ConvertString(const char *toCode, const char *fromCode, const std::string &from, std::size_t to_buffer_size = 0)
+	/*
+	* InputString and OutputString should be instantiations of basic_string, or have a similar API
+	* InputString should implement:
+	* member type value_type
+	* member function value_type begin() const
+	* member function value_type end() const
+	* member function size_t length() const
+	*
+	*/
+	template<typename InputString, typename OutputString> bool ConvertString(const char *toCode, const char *fromCode, const InputString &from, OutputString &to, std::size_t to_buffer_size = 0)
 	{
 		using namespace std;
 		if(to_buffer_size == 0)
@@ -901,11 +935,12 @@ namespace Utils
 		}
 		ConversionInputBuffer from_buffer(from);
 		ConversionOutputBuffer to_buffer(to_buffer_size);
-		if(ConvertString(toCode, fromCode, from_buffer, to_buffer))
+		if(ConvertBuffer(toCode, fromCode, from_buffer, to_buffer))
 		{
-			return to_buffer.str();
+			to_buffer.str(to);
+			return true;
 		}else{
-			return string();
+			return false;
 		}
 	}
 
