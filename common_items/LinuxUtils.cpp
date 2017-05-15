@@ -821,7 +821,7 @@ namespace Utils
 		};
 		
 	public:
-		explicit ConversionOutputBuffer(std::size_t initial_size = 0, std::size_t increment_block_size = 1024) : size(initial_size), remainder(initial_size), block_size(increment_block_size)
+		explicit ConversionOutputBuffer(std::size_t initial_size = 0, std::size_t increment_block_size = 1024*1024) : size(initial_size), remainder(initial_size), block_size(increment_block_size)
 		{
 			if(size != 0)
 			{ 
@@ -972,7 +972,7 @@ namespace Utils
 	std::string convertUTF16ToUTF8(std::wstring UTF16)
 	{
 		using namespace std;
-		return ConvertString<wstring, string>("UTF−8", "wchar_t", UTF16);
+		return ConvertString<wstring, string>("wchar_t", "UTF-8", UTF16);
 	}
 
 	std::string convert8859_15ToUTF8(std::string input)
@@ -989,7 +989,7 @@ namespace Utils
 	std::wstring convert8859_15ToUTF16(std::string UTF8)
 	{
 		using namespace std;
-		return ConvertString<string, wstring>("wchar_t", "ISO−8859−15", UTF8);
+		return ConvertString<string, wstring>("ISO−8859−15", "wchar_t", UTF8);
 	}
 
 	/*
@@ -1000,7 +1000,7 @@ namespace Utils
 	std::wstring convertUTF8ToUTF16(std::string UTF8)
 	{
 		using namespace std;
-		return ConvertString<string, wstring>("wchar_t", "UTF-8",UTF8);
+		return ConvertString<string, wstring>("UTF-8", "wchar_t",UTF8);
 	}
 
 	int FromMultiByte(const char* in, size_t inSize, wchar_t* out, size_t outSize)
