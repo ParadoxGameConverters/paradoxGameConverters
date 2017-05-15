@@ -778,7 +778,7 @@ namespace Utils
 			return remainder != 0;
 		};
 
-		friend bool ConvertString(const char *, const char *, ConversionInputBuffer &, ConversionOutputBuffer &); 
+		friend bool ConvertBuffer(const char *, const char *, ConversionInputBuffer &, ConversionOutputBuffer &); 
 	private:
 		//declared private to avoid copy of buffer
 		//unsure if versions pre c++11  should be supported, if not, copy constructors can be explicitly deleted
@@ -878,7 +878,7 @@ namespace Utils
 			return ensure_capacity(size+block_size);
 		};
 
-		friend bool ConvertString(const char *, const char *, ConversionInputBuffer &, ConversionOutputBuffer &);
+		friend bool ConvertBuffer(const char *, const char *, ConversionInputBuffer &, ConversionOutputBuffer &);
 	private:
 		//declared private to avoid copy of buffer
 		//unsure if versions pre c++11  should be supported, if not, copy constructors can be explicitly deleted
@@ -886,7 +886,7 @@ namespace Utils
 		ConversionOutputBuffer &operator=(const ConversionOutputBuffer &);
 	};
 
-	bool ConvertBuffer(const char *toCode, const char *fromCode, ConversionInputBuffer &from, ConversionOutputBuffer &to)
+	bool ConvertBuffer(const char *fromCode, const char *toCode, ConversionInputBuffer &from, ConversionOutputBuffer &to)
 	{
 		using namespace std;
 		iconv_t descriptor = iconv_open(toCode, fromCode);
@@ -926,7 +926,7 @@ namespace Utils
 	* member function size_t length() const
 	*
 	*/
-	template<typename InputString, typename OutputString> bool ConvertString(const char *toCode, const char *fromCode, const InputString &from, OutputString &to, std::size_t to_buffer_size = 0)
+	template<typename InputString, typename OutputString> bool ConvertString(const char *fromCode, const char *toCode, const InputString &from, OutputString &to, std::size_t to_buffer_size = 0)
 	{
 		using namespace std;
 		if(to_buffer_size == 0)
@@ -935,7 +935,7 @@ namespace Utils
 		}
 		ConversionInputBuffer from_buffer(from);
 		ConversionOutputBuffer to_buffer(to_buffer_size);
-		if(ConvertBuffer(toCode, fromCode, from_buffer, to_buffer))
+		if(ConvertBuffer(fromCode, toCode, from_buffer, to_buffer))
 		{
 			to_buffer.str(to);
 			return true;
@@ -943,53 +943,49 @@ namespace Utils
 			return false;
 		}
 	}
+	
+	template<typename InputString, typename OutputString> OutputString ConvertString(const char *fromCode, const char *toCode, const InputString &from, std::size_t to_buffer_size = 0)
+	{
+		using namespace std;
+		OutputString output;
+		ConvertString(fromCode, toCode, from output, to_buffer_size);
+		return output;
+	}
 
 	std::string convertUTF8ToASCII(std::string UTF8)
 	{
 	        using namespace std;
-		string result;
-		ConvertString("ASCII","UTF-8", UTF8, result);
-		return result;
+		return ConvertString<string, string>("UTF-8", "ASCII", UTF8);
 	}
 
 	std::string convertUTF8To8859_15(std::string UTF8)
 	{
 		using namespace std;
-		string result;
-		ConvertString("ISO−8859−15","UTF−8", UTF8, result);
-		return result;
+		return ConvertString<string, string>("UTF−8", "ISO−8859−15", UTF8)
 	}
 	
 	std::string convertUTF16ToUTF8(std::wstring UTF16)
 	{
 		using namespace std;
-		string result;
-		ConvertString("wchar_t","UTF−8", UTF8, result);
-		return result;
+		return ConvertString<wstring, string>("UTF−8", "wchar_t", UTF8);
 	}
 
 	std::string convert8859_15ToUTF8(std::string input)
 	{
 		using namespace std;
-		string result;
-		ConvertString("UTF-8","ISO−8859−15", input, result);
-		return result;
+		return ConvertString<string, string>("ISO−8859−15", "UTF-8", input);
 	}
 
 	std::wstring convert8859_15ToUTF16(std::string UTF8)
 	{
 		using namespace std;
-		wstring result;
-		ConvertString("ISO−8859−15","wchar_t", input, result);
-		return result;
+		return ConvertString<string, wstring>("wchar_t", "ISO−8859−15", UTF8);
 	}
 
 	std::wstring convertUTF8ToUTF16(std::string UTF8)
 	{
 		using namespace std;
-		wstring result;
-		ConvertString("UTF-8","wchar_t", input, result);
-		return result;
+		return ConvertString<string, wstring>("wchar_t", "UTF-8",UTF8);
 	}
 
 	int FromMultiByte(const char* in, size_t inSize, wchar_t* out, size_t outSize)
