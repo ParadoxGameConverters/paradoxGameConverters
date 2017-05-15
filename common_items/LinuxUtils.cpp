@@ -852,7 +852,7 @@ namespace Utils
 		};
 
 		template<typename String> void str(String &output) const{
-			OutputStrHelper<String>::str(output, buffer, length());
+			OutputStrHelper<String>::str(output, data, length());
 		};
 
 		bool ensure_capacity(std::size_t capacity)
@@ -948,9 +948,9 @@ namespace Utils
 	template<typename InputString, typename OutputString> OutputString ConvertString(const char *fromCode, const char *toCode, const InputString &from, std::size_t to_buffer_size = 0)
 	{
 		using namespace std;
-		OutputString output;
-		ConvertString(fromCode, toCode, from output, to_buffer_size);
-		return output;
+		OutputString to;
+		ConvertString(fromCode, toCode, from, to, to_buffer_size);
+		return to;
 	}
 
 	std::string convertUTF8ToASCII(std::string UTF8)
@@ -962,7 +962,7 @@ namespace Utils
 	std::string convertUTF8To8859_15(std::string UTF8)
 	{
 		using namespace std;
-		return ConvertString<string, string>("UTF−8", "ISO−8859−15", UTF8)
+		return ConvertString<string, string>("UTF−8", "ISO−8859−15", UTF8);
 	}
 	
 	/*
@@ -972,7 +972,7 @@ namespace Utils
 	std::string convertUTF16ToUTF8(std::wstring UTF16)
 	{
 		using namespace std;
-		return ConvertString<wstring, string>("UTF−8", "wchar_t", UTF8);
+		return ConvertString<wstring, string>("UTF−8", "wchar_t", UTF16);
 	}
 
 	std::string convert8859_15ToUTF8(std::string input)
