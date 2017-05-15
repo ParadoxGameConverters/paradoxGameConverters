@@ -754,8 +754,18 @@ namespace Utils
 	public:
 		explicit ConversionInputBuffer(const std::string &input) : data(new char[input.length()]), in_buffer(data), remainder(input.length())
 		{
+			using namespace std;
 			//POSIX iconv expects a pointer to char *, not to const char * and consequently does not guarantee that the input sequence is not modified so we copy it into the buffer before attempting conversion
 			copy(input.begin(), input.end(), data);
+		};
+		
+		template<typename Char, typename Traits, typename Alloc> explicit ConversionInputBuffer(const std::basic_string<Char,Traits,Alloc> &input){
+			using namespace std;
+			remainder = sizeof(Char) * input.length();
+			data = new char[remainder];
+			in_buffer = data;
+			const char *input_str = reinterpret_cast<const char *>(input.c_str());
+			copy(input_str, input_str + remainder, data);
 		};
 
 		~ConversionInputBuffer()
