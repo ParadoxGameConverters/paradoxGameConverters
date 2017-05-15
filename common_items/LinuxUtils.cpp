@@ -962,8 +962,10 @@ namespace Utils
 	
 	std::string convertUTF16ToUTF8(std::wstring UTF16)
 	{
-		LOG(LogLevel::Error) << "convertUTF16ToUTF8() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
+		using namespace std;
+		string result;
+		ConvertString("wchar_t","UTF−8", UTF8, result);
+		return result;
 	}
 
 	std::string convert8859_15ToUTF8(std::string input)
@@ -976,14 +978,18 @@ namespace Utils
 
 	std::wstring convert8859_15ToUTF16(std::string UTF8)
 	{
-		LOG(LogLevel::Error) << "convert8859_15ToUTF16() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
+		using namespace std;
+		wstring result;
+		ConvertString("ISO−8859−15","wchar_t", input, result);
+		return result;
 	}
 
 	std::wstring convertUTF8ToUTF16(std::string UTF8)
 	{
-		LOG(LogLevel::Error) << "convertUTF8ToUTF16() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
+		using namespace std;
+		wstring result;
+		ConvertString("UTF-8","wchar_t", input, result);
+		return result;
 	}
 
 	int FromMultiByte(const char* in, size_t inSize, wchar_t* out, size_t outSize)
