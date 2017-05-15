@@ -946,12 +946,18 @@ namespace Utils
 
 	std::string convertUTF8ToASCII(std::string UTF8)
 	{
-	        return ConvertString("ASCII","UTF-8", UTF8);
+	        using namespace std;
+		string result;
+		ConvertString("ASCII","UTF-8", UTF8, result);
+		return result;
 	}
 
 	std::string convertUTF8To8859_15(std::string UTF8)
 	{
-		return ConvertString("ISO−8859−15","UTF−8", UTF8);
+		using namespace std;
+		string result;
+		ConvertString("ISO−8859−15","UTF−8", UTF8, result);
+		return result;
 	}
 	
 	std::string convertUTF16ToUTF8(std::wstring UTF16)
@@ -962,7 +968,10 @@ namespace Utils
 
 	std::string convert8859_15ToUTF8(std::string input)
 	{
-		return ConvertString("UTF-8","ISO−8859−15", input);
+		using namespace std;
+		string result;
+		ConvertString("UTF-8","ISO−8859−15", input, result);
+		return result;
 	}
 
 	std::wstring convert8859_15ToUTF16(std::string UTF8)
