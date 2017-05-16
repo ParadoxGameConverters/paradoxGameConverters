@@ -375,7 +375,7 @@ namespace Utils
                         struct dirent *dirent_ptr;
                         while((dirent_ptr = readdir(dir)) != NULL){
                                 string filename{dirent_ptr->d_name};
-                                if(IsRegularNodeName(filename) && IsRegularFile(path+filename)){
+                                if(IsRegularNodeName(filename) && IsRegularFile(ConcatenateNodeName(path,filename))){
                                         if(errno != 0){
                                                 fileNames.clear();
                                                 closedir(dir);
