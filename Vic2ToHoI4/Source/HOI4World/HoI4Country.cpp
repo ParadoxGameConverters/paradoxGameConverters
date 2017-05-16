@@ -95,7 +95,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
 	if (filename == "")
 	{
-		filename = Utils::GetFileFromTag(Configuration::getHoI4Path() + "/tfh/history/countries/", tag);
+		filename = Utils::GetFileFromTag(Configuration::getHoI4Path() + "/history/countries/", tag);
 	}
 	if (filename == "")
 	{

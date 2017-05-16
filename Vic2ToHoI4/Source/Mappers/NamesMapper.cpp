@@ -94,6 +94,15 @@ void namesMapper::processFemaleNamesFile()
 		string culture = cultureObj->getKey();
 		femaleNamesMap.insert(make_pair(culture, cultureObj->getLeaves()[0]->getTokens()));
 	}
+
+	for (auto maleNamesMapping: maleNamesMap)
+	{
+		auto culture = maleNamesMapping.first;
+		if (femaleNamesMap.find(culture) == femaleNamesMap.end())
+		{
+			LOG(LogLevel::Warning) << "No female names for " << culture;
+		}
+	}
 }
 
 
@@ -104,6 +113,15 @@ void namesMapper::processCallsignsFile()
 	{
 		string culture = cultureObj->getKey();
 		callsignsMap.insert(make_pair(culture, cultureObj->getLeaves()[0]->getTokens()));
+	}
+
+	for (auto maleNamesMapping: maleNamesMap)
+	{
+		auto culture = maleNamesMapping.first;
+		if (callsignsMap.find(culture) == callsignsMap.end())
+		{
+			LOG(LogLevel::Warning) << "No callsigns for " << culture;
+		}
 	}
 }
 
