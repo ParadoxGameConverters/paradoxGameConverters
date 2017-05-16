@@ -37,6 +37,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <sys/types.h>
 #include <sys/sendfile.h>
 #include <iconv.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -82,6 +83,15 @@ HANDLE GetStdHandle(int nothing)
 namespace Utils
 {
 	
+	std::string resolvePath(const std::string &path){
+		char buffer[PATH_MAX];
+		if(realpath(path.c_str(), buffer) == NULL){
+			LOG(LogLevel::Error) << "unable to resolve path: " << path;
+			return path;
+		}
+		return string(buffer);
+	};
+
 	bool TryCreateFolderNonRecursive(const char *path)
 	{
         	const mode_t mode = S_IRWXU | S_IRWXG | S_IROTH;
@@ -121,10 +131,11 @@ namespace Utils
         	return output;
 	};
 
-	bool TryCreateFolder(const std::string& path)
+	bool TryCreateFolder(const std::string& unresolvedPath)
 	{
 		using namespace std;
-        	const char *input_begin = path.c_str();
+        	const string path = resolvePath(unresolvedPath);
+		const char *input_begin = path.c_str();
         	const char *input_end = input_begin+path.size();
         	char *buffer = new char[path.size()+1];
         	char *pos = buffer;
@@ -305,6 +316,7 @@ namespace Utils
 
 	bool GetFileMode(const std::string &path, mode_t &result)
 	{
+		using namespace std;
                 struct stat status;
                 if(stat(path.c_str(), &status) != 0)
                 {
@@ -324,9 +336,10 @@ namespace Utils
 	/*
 		Note: since the function signature did not allow for a return value, it clears the fileNames set when an error occurs to make sure no operations are done on an incomplete list of files
 	*/
-	void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames)
+	void GetAllFilesInFolder(const std::string& unresolvedPath, std::set<std::string>& fileNames)
 	{
                 using namespace std;
+		const string path = resolvePath(unresolvedPath);
                 DIR *dir = opendir(path.c_str());
                 if(dir == NULL)
                 {
@@ -406,14 +419,18 @@ namespace Utils
 	/*
                 Note: since the function signature did not allow for a return value, it clears the fileNames set when an error occurs to make sure no operations are done on an incomplete list of files
         */
-	void GetAllFilesInFolderRecursive(const std::string& path, std::set<std::string>& filenames)
+	void GetAllFilesInFolderRecursive(const std::string& unresolvedPath, std::set<std::string>& filenames)
 	{
+		using namespace std;
+		const string path = resolvePath(unresolvedPath);
                 GetAllFilesInFolderRecursiveWithRelativePath(path, "", filenames);
 	}
 
-	bool TryCopyFile(const std::string& sourcePath, const std::string& destPath)
+	bool TryCopyFile(const std::string& unresolvedSourcePath, const std::string& unresolvedDestPath)
         {
                 using namespace std;
+		const string sourcePath = resolvePath(unresolvedSourcePath);
+		const string destPath = resolvePath(unresolvedDestPath);
                 int inputHandle = open(sourcePath.c_str(), O_RDONLY);
                 if(inputHandle == -1)
                 {
@@ -524,15 +541,20 @@ namespace Utils
         Warning: This method does not do recursive checking
         copying a folder inside it's own decendant tree may result in a infinite loop until max path length is reached
 	*/
-	bool copyFolder(const std::string& sourceFolder, const std::string& destFolder)
+	bool copyFolder(const std::string& unresolvedSourceFolder, const std::string& unresolvedDestFolder)
         {
                 using namespace std;
+		const string sourceFolder = resolvePath(unresolvedSourceFolder);
+		const string destFolder = resolvePath(unresolvedDestFolder);
                 pair<string, string> pathAndName = SplitNodeNameFromPath(destFolder);
                 return CopyFolderAndFiles(sourceFolder, pathAndName.first, pathAndName.second);
         }
 
-	bool renameFolder(const std::string& sourceFolder, const std::string& destFolder)
+	bool renameFolder(const std::string& unresolvedSourceFolder, const std::string& unresolvedDestFolder)
 	{
+		using namespace std;
+		const string sourceFolder = resolvePath(unresolvedSourceFolder);
+		const string destFolder = resolvePath(unresolvedDestFolder);
         	if(rename(sourceFolder.c_str(), destFolder.c_str()) != 0)
 		{
                 	LOG(LogLevel::Error) << "unable to rename folder " << sourceFolder << " to " << destFolder;
@@ -565,14 +587,18 @@ namespace Utils
 	        }
 	}
 
-	bool DoesFileExist(const std::string& path)
+	bool DoesFileExist(const std::string& unresolvedPath)
 	{
+		using namespace std;
+		const string path = resolvePath(unresolvedPath);
 		mode_t mode;
 		return GetFileMode(path, mode) && S_ISREG(mode);
 	}
 
-	bool doesFolderExist(const std::string& path)
+	bool doesFolderExist(const std::string& unresolvedPath)
 	{
+		using namespace std;
+		const string path = resolvePath(unresolvedPath);
 		mode_t mode;
 		return GetFileMode(path, mode) && S_ISDIR(mode);
 	}
@@ -622,8 +648,10 @@ namespace Utils
 		}
 	}
 
-	bool DeleteFile(const std::string &file)
+	bool DeleteFile(const std::string &unresolvedFile)
 	{
+		using namespace std;
+		const string file = resolvePath(unresolvedFile);
 		if(unlink(file.c_str()) != 0)
 		{
 			LOG(LogLevel::Error) << "unable to delete file " << file;
@@ -650,7 +678,9 @@ namespace Utils
 		}
 	}
 
-	bool DeleteEmptyFolder(const std::string &folder){
+	bool DeleteEmptyFolder(const std::string &unresolvedFolder){
+		using namespace std;
+		const string folder = resolvePath(unresolvedFolder);
 		if(rmdir(folder.c_str()) != 0)
 		{
 			LOG(LogLevel::Error) << "unable to delete folder " << folder;
@@ -682,10 +712,11 @@ namespace Utils
 
 	}
 
-	bool deleteFolder(const std::string& folder)
+	bool deleteFolder(const std::string& unresolvedFolder)
 	{
 		using namespace std;
-                DIR *dir = opendir(folder.c_str());
+         	const string folder = resolvePath(unresolvedFolder);
+	        DIR *dir = opendir(folder.c_str());
                 if(dir == NULL)
                 {
                         LOG(LogLevel::Error) << "unable to read folder prior to delete " << folder;
