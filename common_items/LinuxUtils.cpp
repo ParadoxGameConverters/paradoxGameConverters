@@ -754,8 +754,19 @@ namespace Utils
 	public:
 		explicit ConversionInputBuffer(const std::string &input) : data(new char[input.length()]), in_buffer(data), remainder(input.length())
 		{
+			using namespace std;
 			//POSIX iconv expects a pointer to char *, not to const char * and consequently does not guarantee that the input sequence is not modified so we copy it into the buffer before attempting conversion
 			copy(input.begin(), input.end(), data);
+		};
+		
+		template<typename String> explicit ConversionInputBuffer(const String &input){
+			typedef typename String::value_type Char;
+			using namespace std;
+			remainder = sizeof(Char) * input.length();
+			data = new char[remainder];
+			in_buffer = data;
+			const char *input_str = reinterpret_cast<const char *>(input.c_str());
+			copy(input_str, input_str + remainder, data);
 		};
 
 		~ConversionInputBuffer()
@@ -768,7 +779,7 @@ namespace Utils
 			return remainder != 0;
 		};
 
-		friend bool ConvertString(const char *, const char *, ConversionInputBuffer &, ConversionOutputBuffer &); 
+		friend bool ConvertBuffer(const char *, const char *, ConversionInputBuffer &, ConversionOutputBuffer &); 
 	private:
 		//declared private to avoid copy of buffer
 		//unsure if versions pre c++11  should be supported, if not, copy constructors can be explicitly deleted
@@ -788,8 +799,29 @@ namespace Utils
 		char *data = nullptr;
 		char *out_buffer = nullptr;
 
+		template<typename String> struct OutputStrHelper{
+			
+			typedef typename String::value_type Char;
+			
+			static void str(String &output, char *buffer, std::size_t length){
+				using namespace std;
+				const Char *output_buffer = reinterpret_cast<const Char *>(buffer);
+				size_t output_length = length / sizeof(Char);
+				output.assign(output_buffer,output_length);
+			};
+		
+		};
+		
+		template<typename Traits, typename Alloc> struct OutputStrHelper<std::basic_string<char, Traits, Alloc> >{
+			
+			static void str(std::basic_string<char, Traits, Alloc> &output, char *buffer, std::size_t length){
+				using namespace std;
+				output.assign(buffer, length);
+			};
+		};
+		
 	public:
-		explicit ConversionOutputBuffer(std::size_t initial_size = 0, std::size_t increment_block_size = 1024) : size(initial_size), remainder(initial_size), block_size(increment_block_size)
+		explicit ConversionOutputBuffer(std::size_t initial_size = 0, std::size_t increment_block_size = 1024*1024) : size(initial_size), remainder(initial_size), block_size(increment_block_size)
 		{
 			if(size != 0)
 			{ 
@@ -819,6 +851,10 @@ namespace Utils
 			return string(data, data+length());
 		};
 
+		template<typename String> void str(String &output) const{
+			OutputStrHelper<String>::str(output, data, length());
+		};
+
 		bool ensure_capacity(std::size_t capacity)
 		{
 			using namespace std;
@@ -843,7 +879,7 @@ namespace Utils
 			return ensure_capacity(size+block_size);
 		};
 
-		friend bool ConvertString(const char *, const char *, ConversionInputBuffer &, ConversionOutputBuffer &);
+		friend bool ConvertBuffer(const char *, const char *, ConversionInputBuffer &, ConversionOutputBuffer &);
 	private:
 		//declared private to avoid copy of buffer
 		//unsure if versions pre c++11  should be supported, if not, copy constructors can be explicitly deleted
@@ -851,7 +887,7 @@ namespace Utils
 		ConversionOutputBuffer &operator=(const ConversionOutputBuffer &);
 	};
 
-	bool ConvertString(const char *toCode, const char *fromCode, ConversionInputBuffer &from, ConversionOutputBuffer &to)
+	bool ConvertBuffer(const char *fromCode, const char *toCode, ConversionInputBuffer &from, ConversionOutputBuffer &to)
 	{
 		using namespace std;
 		iconv_t descriptor = iconv_open(toCode, fromCode);
@@ -882,7 +918,16 @@ namespace Utils
 		return true;
 	}
 
-	std::string ConvertString(const char *toCode, const char *fromCode, const std::string &from, std::size_t to_buffer_size = 0)
+	/*
+	* InputString and OutputString should be instantiations of basic_string, or have a similar API
+	* InputString should implement:
+	* member type value_type
+	* member function value_type begin() const
+	* member function value_type end() const
+	* member function size_t length() const
+	*
+	*/
+	template<typename InputString, typename OutputString> bool ConvertString(const char *fromCode, const char *toCode, const InputString &from, OutputString &to, std::size_t to_buffer_size = 0)
 	{
 		using namespace std;
 		if(to_buffer_size == 0)
@@ -891,45 +936,71 @@ namespace Utils
 		}
 		ConversionInputBuffer from_buffer(from);
 		ConversionOutputBuffer to_buffer(to_buffer_size);
-		if(ConvertString(toCode, fromCode, from_buffer, to_buffer))
+		if(ConvertBuffer(fromCode, toCode, from_buffer, to_buffer))
 		{
-			return to_buffer.str();
+			to_buffer.str(to);
+			return true;
 		}else{
-			return string();
+			return false;
 		}
+	}
+	
+	template<typename InputString, typename OutputString> OutputString ConvertString(const char *fromCode, const char *toCode, const InputString &from, std::size_t to_buffer_size = 0)
+	{
+		using namespace std;
+		OutputString to;
+		ConvertString(fromCode, toCode, from, to, to_buffer_size);
+		return to;
 	}
 
 	std::string convertUTF8ToASCII(std::string UTF8)
 	{
-	        return ConvertString("ASCII","UTF-8", UTF8);
+	        using namespace std;
+		return ConvertString<string, string>("UTF-8", "ASCII", UTF8);
 	}
 
 	std::string convertUTF8To8859_15(std::string UTF8)
 	{
-		return ConvertString("ISO−8859−15","UTF−8", UTF8);
+		using namespace std;
+		return ConvertString<string, string>("UTF−8", "ISO−8859−15", UTF8);
 	}
 	
+	/*
+		Warning: The input string should not be encoded in UTF-16 but in the system dependent wchar_t encoding
+		see convertUTF8ToUTF16 for full explanation
+	*/
 	std::string convertUTF16ToUTF8(std::wstring UTF16)
 	{
-		LOG(LogLevel::Error) << "convertUTF16ToUTF8() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
+		using namespace std;
+		return ConvertString<wstring, string>("wchar_t", "UTF-8", UTF16);
 	}
 
 	std::string convert8859_15ToUTF8(std::string input)
 	{
-		return ConvertString("UTF-8","ISO−8859−15", input);
+		using namespace std;
+		return ConvertString<string, string>("ISO−8859−15", "UTF-8", input);
 	}
 
+	/*
+		Warning: Does not actually return an UTF-16 sequence.
+		This is an implementation of the original Windows-based API which uses UTF-16 LE as the system dependent wchar_t encoding
+		This behaviour is replicated on Linux but it uses the (system dependent) wchar_t encoding.
+	*/
 	std::wstring convert8859_15ToUTF16(std::string UTF8)
 	{
-		LOG(LogLevel::Error) << "convert8859_15ToUTF16() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
+		using namespace std;
+		return ConvertString<string, wstring>("ISO−8859−15", "wchar_t", UTF8);
 	}
 
+	/*
+		Warning: Does not actually return an UTF-16 sequence.
+		This is an implementation of the original Windows-based API which uses UTF-16 LE as the system dependent wchar_t encoding
+		This behaviour is replicated on Linux but it uses the (system dependent) wchar_t encoding.
+	*/
 	std::wstring convertUTF8ToUTF16(std::string UTF8)
 	{
-		LOG(LogLevel::Error) << "convertUTF8ToUTF16() has been stubbed out in LinuxUtils.cpp.";
-		exit(-1);
+		using namespace std;
+		return ConvertString<string, wstring>("UTF-8", "wchar_t",UTF8);
 	}
 
 	int FromMultiByte(const char* in, size_t inSize, wchar_t* out, size_t outSize)
