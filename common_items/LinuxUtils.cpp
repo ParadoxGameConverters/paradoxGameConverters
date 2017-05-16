@@ -82,105 +82,6 @@ HANDLE GetStdHandle(int nothing)
 
 namespace Utils
 {
-	
-	std::string resolvePath(const std::string &path){
-		char buffer[PATH_MAX];
-		if(realpath(path.c_str(), buffer) == NULL){
-			LOG(LogLevel::Error) << "unable to resolve path: " << path;
-			return path;
-		}
-		return string(buffer);
-	};
-
-	bool TryCreateFolderNonRecursive(const char *path)
-	{
-        	const mode_t mode = S_IRWXU | S_IRWXG | S_IROTH;
-        	struct stat status;
-        	if(stat(path, &status) != 0)
-			{
-                	if(mkdir(path, mode) != 0 && errno != EEXIST)
-			{
-                        	LOG(LogLevel::Error) << "unable to create folder: " << path;
-                       		return false;
-                	}
-        	}else{
-                	if(!S_ISDIR(status.st_mode))
-			{
-                        	LOG(LogLevel::Error) << "node already exists but is not a folder: " << path;
-                        	return false;
-                	}
-        	}
-        	return true;
-	}
-
-
-	char *CopyFolderPathElement(const char * &input_begin, const char *input_end, char *output)
-	{
-        	while(input_begin != input_end)
-		{
-                	const char c = *input_begin;
-                	++input_begin;
-                	if(c == '/')
-			{
-                        	return output;
-                	}else{
-                        	*output = c;
-                        	++output;
-                	}
-        	}
-        	return output;
-	};
-
-	bool TryCreateFolder(const std::string& unresolvedPath)
-	{
-		using namespace std;
-        	const string path = resolvePath(unresolvedPath);
-		const char *input_begin = path.c_str();
-        	const char *input_end = input_begin+path.size();
-        	char *buffer = new char[path.size()+1];
-        	char *pos = buffer;
-        	while(input_begin !=input_end)
-		{
-                	char *next_pos = CopyFolderPathElement(input_begin, input_end, pos);
-                	if(next_pos != pos){
-                        	*next_pos = '\0';
-                        	if(!TryCreateFolderNonRecursive(buffer)){
-                                	LOG(LogLevel::Error) << "unable to create folder for path " << buffer;
-                                	delete[] buffer;
-                                	return false;
-                        	}
-                	}
-                	*next_pos = '/';
-                	++next_pos;
-                	pos = next_pos;
-        	}
-        	delete[] buffer;
-        	return true;
-	}
-
-	std::string getCurrentDirectory()
-	{
-	        using namespace std;
-       		char executable[PATH_MAX];
-        	ssize_t length = readlink("/proc/self/exe", executable, PATH_MAX);
-        	if(length == -1)
-		{
-                	LOG(LogLevel::Error) << "unable to fetch current directory";
-                	return string("/");
-        	}
-       		char *begin = executable;
-        	char *end = begin + length - 1;
-        	while(end != begin && *end != '/')
-		{
-                	--end;
-        	}
-        	if(begin == end)
-		{
-                	return string(begin, begin + length);
-        	}else{
-                	return string(begin, end);
-        	}
-	}
 
 	/*
 		Helper function to determine that returns false if the filename is a:
@@ -314,6 +215,120 @@ namespace Utils
 		return c != '/';
 	}
 
+
+	std::string resolvePath(const std::string &path){
+		using namespace std;
+		if(path.empty() || path.length() > PATH_MAX){
+			return path;
+		}
+		char buffer[PATH_MAX];
+		if(realpath(path.c_str(), buffer) == NULL){
+			return path;
+		}
+		return string(buffer);
+	};
+
+	std::string resolveParentPath(const std::string &path){
+		using namespace std;
+		pair<string, string> split = SplitNodeNameFromPath(path);
+		if(split.first.empty()){
+			return path;
+		}else{
+			return ConcatenatePaths(resolvePath(split.first), split.second);
+		}
+	};
+
+	bool TryCreateFolderNonRecursive(const char *unresolvedPath)
+	{
+        	using namespace std;
+		const string path = resolveParentPath(string(unresolvedPath));
+		const mode_t mode = S_IRWXU | S_IRWXG | S_IROTH;
+        	struct stat status;
+        	if(stat(path.c_str(), &status) != 0)
+			{
+                	if(mkdir(path.c_str(), mode) != 0 && errno != EEXIST)
+			{
+                        	LOG(LogLevel::Error) << "unable to create folder: " << path;
+                       		return false;
+                	}
+        	}else{
+                	if(!S_ISDIR(status.st_mode))
+			{
+                        	LOG(LogLevel::Error) << "node already exists but is not a folder: " << path;
+                        	return false;
+                	}
+        	}
+        	return true;
+	}
+
+
+	char *CopyFolderPathElement(const char * &input_begin, const char *input_end, char *output)
+	{
+        	while(input_begin != input_end)
+		{
+                	const char c = *input_begin;
+                	++input_begin;
+                	if(c == '/')
+			{
+                        	return output;
+                	}else{
+                        	*output = c;
+                        	++output;
+                	}
+        	}
+        	return output;
+	};
+
+	bool TryCreateFolder(const std::string& path)
+	{
+		using namespace std;
+		const char *input_begin = path.c_str();
+        	const char *input_end = input_begin+path.size();
+        	char *buffer = new char[path.size()+1];
+        	char *pos = buffer;
+        	while(input_begin !=input_end)
+		{
+                	char *next_pos = CopyFolderPathElement(input_begin, input_end, pos);
+                	if(next_pos != pos){
+                        	*next_pos = '\0';
+                        	if(!TryCreateFolderNonRecursive(buffer)){
+                                	LOG(LogLevel::Error) << "unable to create folder for path " << buffer;
+                                	delete[] buffer;
+                                	return false;
+                        	}
+                	}
+                	*next_pos = '/';
+                	++next_pos;
+                	pos = next_pos;
+        	}
+        	delete[] buffer;
+        	return true;
+	}
+
+	std::string getCurrentDirectory()
+	{
+	        using namespace std;
+       		char executable[PATH_MAX];
+        	ssize_t length = readlink("/proc/self/exe", executable, PATH_MAX);
+        	if(length == -1)
+		{
+                	LOG(LogLevel::Error) << "unable to fetch current directory";
+                	return string("/");
+        	}
+       		char *begin = executable;
+        	char *end = begin + length - 1;
+        	while(end != begin && *end != '/')
+		{
+                	--end;
+        	}
+        	if(begin == end)
+		{
+                	return string(begin, begin + length);
+        	}else{
+                	return string(begin, end);
+        	}
+	}
+	
 	bool GetFileMode(const std::string &path, mode_t &result)
 	{
 		using namespace std;
@@ -343,17 +358,18 @@ namespace Utils
                 DIR *dir = opendir(path.c_str());
                 if(dir == NULL)
                 {
+			LOG(LogLevel::Error) << "unable to get all files in folder: " << path;
                         if(errno == EACCES)
                         {
-                                LOG(LogLevel::Error) << "no permission to read directory: " << path;
+                                LOG(LogLevel::Error) << "no permission to read directory ";
                         }else if(errno == ENOENT)
                         {
-                                LOG(LogLevel::Error) << "directory does not exist: " << path;
+                                LOG(LogLevel::Error) << "directory does not exist";
                         }else if(errno == ENOTDIR)
                         {
-                                LOG(LogLevel::Error) << "path is not a directory: " << path;
+                                LOG(LogLevel::Error) << "path is not a directory";
                         }else{
-                                LOG(LogLevel::Error) << "unable to open directory: " << path;
+                                LOG(LogLevel::Error) << "unable to open directory";
                         }
                 }else{
                         struct dirent *dirent_ptr;
@@ -379,6 +395,7 @@ namespace Utils
                 DIR *dir = opendir(path.c_str());
                 if(dir == NULL)
                 {
+			LOG(LogLevel::Error) << "unable to get all files in folder (recursive)";
                         if(errno == EACCES)
                         {
                                 LOG(LogLevel::Error) << "no permission to read directory: " << path;
@@ -430,7 +447,7 @@ namespace Utils
         {
                 using namespace std;
 		const string sourcePath = resolvePath(unresolvedSourcePath);
-		const string destPath = resolvePath(unresolvedDestPath);
+		const string destPath = resolveParentPath(unresolvedDestPath);
                 int inputHandle = open(sourcePath.c_str(), O_RDONLY);
                 if(inputHandle == -1)
                 {
@@ -475,23 +492,26 @@ namespace Utils
                 return true;
 	}
 
-	bool CopyFolderAndFiles(const std::string& sourceFolder, const std::string& destParentFolder, const std::string &folderName)
+	bool CopyFolderAndFiles(const std::string& unresolvedSourceFolder, const std::string& unresolvedDestParentFolder, const std::string &folderName)
 	{
                 using namespace std;
+		const string sourceFolder = resolvePath(unresolvedSourceFolder);
+		const string destParentFolder = resolvePath(unresolvedDestParentFolder);
                 DIR *dir = opendir(sourceFolder.c_str());
                 if(dir == NULL)
                 {
+			LOG(LogLevel::Error) << "unable to copy folder and files from source folder: " << sourceFolder;
                         if(errno == EACCES)
                         {
-                                LOG(LogLevel::Error) << "no permission to read directory: " << sourceFolder;
+                                LOG(LogLevel::Error) << "no permission to read directory";
                         }else if(errno == ENOENT)
                         {
-                                LOG(LogLevel::Error) << "directory does not exist: " << sourceFolder;
+                                LOG(LogLevel::Error) << "directory does not exist";
                         }else if(errno == ENOTDIR)
                         {
-                                LOG(LogLevel::Error) << "path is not a directory: " << sourceFolder;
+                                LOG(LogLevel::Error) << "path is not a directory";
                         }else{
-                                LOG(LogLevel::Error) << "unable to open directory: " << sourceFolder;
+                                LOG(LogLevel::Error) << "unable to open directory";
                         }
                         return false;
                 }else{
@@ -541,11 +561,9 @@ namespace Utils
         Warning: This method does not do recursive checking
         copying a folder inside it's own decendant tree may result in a infinite loop until max path length is reached
 	*/
-	bool copyFolder(const std::string& unresolvedSourceFolder, const std::string& unresolvedDestFolder)
+	bool copyFolder(const std::string& sourceFolder, const std::string& destFolder)
         {
                 using namespace std;
-		const string sourceFolder = resolvePath(unresolvedSourceFolder);
-		const string destFolder = resolvePath(unresolvedDestFolder);
                 pair<string, string> pathAndName = SplitNodeNameFromPath(destFolder);
                 return CopyFolderAndFiles(sourceFolder, pathAndName.first, pathAndName.second);
         }
