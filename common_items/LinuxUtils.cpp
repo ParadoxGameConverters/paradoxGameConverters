@@ -361,15 +361,15 @@ namespace Utils
 			LOG(LogLevel::Error) << "unable to get all files in folder: " << path;
                         if(errno == EACCES)
                         {
-                                LOG(LogLevel::Error) << "no permission to read directory ";
+                                LOG(LogLevel::Error) << "\tno permission to read directory ";
                         }else if(errno == ENOENT)
                         {
-                                LOG(LogLevel::Error) << "directory does not exist";
+                                LOG(LogLevel::Error) << "\tdirectory does not exist";
                         }else if(errno == ENOTDIR)
                         {
-                                LOG(LogLevel::Error) << "path is not a directory";
+                                LOG(LogLevel::Error) << "\tpath is not a directory";
                         }else{
-                                LOG(LogLevel::Error) << "unable to open directory";
+                                LOG(LogLevel::Error) << "\tunable to open directory";
                         }
                 }else{
                         struct dirent *dirent_ptr;
@@ -395,18 +395,18 @@ namespace Utils
                 DIR *dir = opendir(path.c_str());
                 if(dir == NULL)
                 {
-			LOG(LogLevel::Error) << "unable to get all files in folder (recursive)";
+			LOG(LogLevel::Error) << "unable to get all files in folder (recursive): " << path;
                         if(errno == EACCES)
                         {
-                                LOG(LogLevel::Error) << "no permission to read directory: " << path;
+                                LOG(LogLevel::Error) << "\tno permission to read directory";
                         }else if(errno == ENOENT)
                         {
-                                LOG(LogLevel::Error) << "directory does not exist: " << path;
+                                LOG(LogLevel::Error) << "\tdirectory does not exist";
                         }else if(errno == ENOTDIR)
                         {
-                                LOG(LogLevel::Error) << "path is not a directory: " << path;
+                                LOG(LogLevel::Error) << "\tpath is not a directory";
                         }else{
-                                LOG(LogLevel::Error) << "unable to open directory: " << path;
+                                LOG(LogLevel::Error) << "\tunable to open directory";
                         }
                 }else{
                         struct dirent *dirent_ptr;
@@ -503,15 +503,15 @@ namespace Utils
 			LOG(LogLevel::Error) << "unable to copy folder and files from source folder: " << sourceFolder;
                         if(errno == EACCES)
                         {
-                                LOG(LogLevel::Error) << "no permission to read directory";
+                                LOG(LogLevel::Error) << "\tno permission to read directory";
                         }else if(errno == ENOENT)
                         {
-                                LOG(LogLevel::Error) << "directory does not exist";
+                                LOG(LogLevel::Error) << "\tdirectory does not exist";
                         }else if(errno == ENOTDIR)
                         {
-                                LOG(LogLevel::Error) << "path is not a directory";
+                                LOG(LogLevel::Error) << "\tpath is not a directory";
                         }else{
-                                LOG(LogLevel::Error) << "unable to open directory";
+                                LOG(LogLevel::Error) << "\tunable to open directory";
                         }
                         return false;
                 }else{
@@ -580,23 +580,23 @@ namespace Utils
 			{
                 	        case EACCES:
                         	case EPERM:
-                        	        LOG(LogLevel::Error) << "no permission to move folder";
+                        	        LOG(LogLevel::Error) << "\tno permission to move folder";
                         	        break;
                        		case ENOENT:
-                                	LOG(LogLevel::Error) << "source folder does not exist";
+                                	LOG(LogLevel::Error) << "\tsource folder does not exist";
                                 	break;
                         	case EBUSY:
-                                	LOG(LogLevel::Error) << "source or destination folder is locked by another process";
+                                	LOG(LogLevel::Error) << "\tsource or destination folder is locked by another process";
                                 	break;
                         	case EEXIST:
                         	case ENOTEMPTY:
-                                	LOG(LogLevel::Error) << "destination folder already exists and is not empty";
+                                	LOG(LogLevel::Error) << "\tdestination folder already exists and is not empty";
                                 	break;
                         	case EINVAL:
-                                	LOG(LogLevel::Error) << "destination folder contains source folder";
+                                	LOG(LogLevel::Error) << "\tdestination folder contains source folder";
                                 	break;
                         	case EISDIR:
-                                	LOG(LogLevel::Error) << "destination folder is not a directory";
+                                	LOG(LogLevel::Error) << "\tdestination folder is not a directory";
                                 	break;
                 	}
         	        return false;
@@ -677,17 +677,17 @@ namespace Utils
 			{
 				case ENOENT:
 				case ENOTDIR:
-					LOG(LogLevel::Error) << "path does not point to a valid file";
+					LOG(LogLevel::Error) << "\tpath does not point to a valid file";
 					break;
 				case EPERM:
 				case EACCES:
-					LOG(LogLevel::Error) << "you do not have permission to delete the file";
+					LOG(LogLevel::Error) << "\tyou do not have permission to delete the file";
 					break;
 				case EBUSY:
-					LOG(LogLevel::Error) << "another process has opened the file";
+					LOG(LogLevel::Error) << "\tanother process has opened the file";
 					break;
 				case EROFS:
-					LOG(LogLevel::Error) << "the filesystem is mounted with the read only flag";
+					LOG(LogLevel::Error) << "\tthe filesystem is mounted with the read only flag";
 					break;
 			}
 			return false;
@@ -706,21 +706,21 @@ namespace Utils
 			{
 				case ENOTEMPTY:
 				case EEXIST:
-					LOG(LogLevel::Error) << "folder is not empty";
+					LOG(LogLevel::Error) << "\tfolder is not empty";
 					break;
 				case ENOENT:
 				case ENOTDIR:
-					LOG(LogLevel::Error) << "path does not point to a valid folder";
+					LOG(LogLevel::Error) << "\tpath does not point to a valid folder";
 					break;
 				case EPERM:
 				case EACCES:
-					LOG(LogLevel::Error) << "you do not have permission to delete the file";
+					LOG(LogLevel::Error) << "\tyou do not have permission to delete the file";
 					break;
 				case EBUSY:
-					LOG(LogLevel::Error) << "another process has opened this folder ";
+					LOG(LogLevel::Error) << "\tanother process has opened this folder ";
 					break;
 				case EROFS:
-					LOG(LogLevel::Error) << "the filesystem is mounted with the read only flag";
+					LOG(LogLevel::Error) << "\tthe filesystem is mounted with the read only flag";
 					break;
 			}
 			return false;
@@ -740,15 +740,15 @@ namespace Utils
                         LOG(LogLevel::Error) << "unable to read folder prior to delete " << folder;
                         if(errno == EACCES)
                         {
-                                LOG(LogLevel::Error) << "no permission to read directory";
+                                LOG(LogLevel::Error) << "\tno permission to read directory";
                         }else if(errno == ENOENT)
                         {
-                                LOG(LogLevel::Error) << "directory does not exist";
+                                LOG(LogLevel::Error) << "\tdirectory does not exist";
                         }else if(errno == ENOTDIR)
                         {
-                                LOG(LogLevel::Error) << "path is not a directory";
+                                LOG(LogLevel::Error) << "\tpath is not a directory";
                         }else{
-                                LOG(LogLevel::Error) << "unable to open directory";
+                                LOG(LogLevel::Error) << "\tunable to open directory";
                         }
                         return false;
                 }else{
