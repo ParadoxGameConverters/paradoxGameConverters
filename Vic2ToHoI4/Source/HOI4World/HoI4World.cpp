@@ -1134,9 +1134,9 @@ void HoI4World::output() const
 {
 	LOG(LogLevel::Info) << "Outputting world";
 
-	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/history"))
+	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/history"))
 	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history";
+		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/history";
 		exit(-1);
 	}
 
@@ -1157,14 +1157,14 @@ void HoI4World::output() const
 
 void HoI4World::outputCommonCountries() const
 {
-	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/common/country_tags"))
+	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/common/country_tags"))
 	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/country_tags\"";
+		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/common/country_tags\"";
 		exit(-1);
 	}
 
 	LOG(LogLevel::Debug) << "Writing countries file";
-	ofstream allCountriesFile("Output/" + Configuration::getOutputName() + "/common/country_tags/00_countries.txt");
+	ofstream allCountriesFile("output/" + Configuration::getOutputName() + "/common/country_tags/00_countries.txt");
 	if (!allCountriesFile.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create countries file";
@@ -1186,16 +1186,16 @@ void HoI4World::outputCommonCountries() const
 
 void HoI4World::outputColorsfile() const
 {
-	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/common/countries"))
+	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/common/countries"))
 	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/countries\"";
+		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/common/countries\"";
 		exit(-1);
 	}
 
-	ofstream output("Output/" + Configuration::getOutputName() + "/common/countries/colors.txt");
+	ofstream output("output/" + Configuration::getOutputName() + "/common/countries/colors.txt");
 	if (!output.is_open())
 	{
-		Log(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/common/countries/colors.txt";
+		Log(LogLevel::Error) << "Could not open output/" << Configuration::getOutputName() << "/common/countries/colors.txt";
 		exit(-1);
 	}
 
@@ -1214,12 +1214,12 @@ void HoI4World::outputColorsfile() const
 
 void HoI4World::outputNames() const
 {
-	ofstream namesFile("Output/" + Configuration::getOutputName() + "/common/names/01_names.txt");
+	ofstream namesFile("output/" + Configuration::getOutputName() + "/common/names/01_names.txt");
 	namesFile << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
 
 	if (!namesFile.is_open())
 	{
-		Log(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/common/names/01_names.txt";
+		Log(LogLevel::Error) << "Could not open output/" << Configuration::getOutputName() << "/common/names/01_names.txt";
 		exit(-1);
 	}
 
@@ -1234,16 +1234,16 @@ void HoI4World::outputMap() const
 {
 	LOG(LogLevel::Debug) << "Writing Map Info";
 
-	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/map"))
+	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/map"))
 	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/map";
+		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/map";
 		exit(-1);
 	}
 
-	ofstream rocketSitesFile("Output/" + Configuration::getOutputName() + "/map/rocketsites.txt");
+	ofstream rocketSitesFile("output/" + Configuration::getOutputName() + "/map/rocketsites.txt");
 	if (!rocketSitesFile.is_open())
 	{
-		LOG(LogLevel::Error) << "Could not create Output/" << Configuration::getOutputName() << "/map/rocketsites.txt";
+		LOG(LogLevel::Error) << "Could not create output/" << Configuration::getOutputName() << "/map/rocketsites.txt";
 		exit(-1);
 	}
 	for (auto state: states->getStates())
@@ -1253,10 +1253,10 @@ void HoI4World::outputMap() const
 	}
 	rocketSitesFile.close();
 
-	ofstream airportsFile("Output/" + Configuration::getOutputName() + "/map/airports.txt");
+	ofstream airportsFile("output/" + Configuration::getOutputName() + "/map/airports.txt");
 	if (!airportsFile.is_open())
 	{
-		LOG(LogLevel::Error) << "Could not create Output/" << Configuration::getOutputName() << "/map/airports.txt";
+		LOG(LogLevel::Error) << "Could not create output/" << Configuration::getOutputName() << "/map/airports.txt";
 		exit(-1);
 	}
 	for (auto state: states->getStates())
@@ -1266,14 +1266,14 @@ void HoI4World::outputMap() const
 	}
 	airportsFile.close();
 
-	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/map/strategicregions"))
+	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/map/strategicregions"))
 	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/map/strategicregions";
+		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/map/strategicregions";
 		exit(-1);
 	}
 	for (auto strategicRegion: strategicRegions)
 	{
-		strategicRegion.second->output("Output/" + Configuration::getOutputName() + "/map/strategicregions/");
+		strategicRegion.second->output("output/" + Configuration::getOutputName() + "/map/strategicregions/");
 	}
 }
 
@@ -1281,24 +1281,24 @@ void HoI4World::outputMap() const
 void HoI4World::outputCountries() const
 {
 	LOG(LogLevel::Debug) << "Writing countries";
-	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/history"))
+	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/history"))
 	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history";
+		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/history";
 		exit(-1);
 	}
-	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/history/countries"))
+	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/history/countries"))
 	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history";
+		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/history";
 		exit(-1);
 	}
-	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/history/states"))
+	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/history/states"))
 	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history/states";
+		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/history/states";
 		exit(-1);
 	}
-	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/history/units"))
+	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/history/units"))
 	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/history/units";
+		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/history/units";
 		exit(-1);
 	}
 
@@ -1307,10 +1307,10 @@ void HoI4World::outputCountries() const
 		country.second->output(states->getStates(), factions);
 	}
 
-	ofstream ideasFile("Output/" + Configuration::getOutputName() + "/interface/converter_ideas.gfx");
+	ofstream ideasFile("output/" + Configuration::getOutputName() + "/interface/converter_ideas.gfx");
 	if (!ideasFile.is_open())
 	{
-		LOG(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/interface/ideas.gfx";
+		LOG(LogLevel::Error) << "Could not open output/" << Configuration::getOutputName() << "/interface/ideas.gfx";
 		exit(-1);
 	}
 
@@ -1326,13 +1326,13 @@ void HoI4World::outputCountries() const
 
 void HoI4World::outputRelations() const
 {
-	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/common/opinion_modifiers"))
+	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/common/opinion_modifiers"))
 	{
-		Log(LogLevel::Error) << "Could not create Output/" + Configuration::getOutputName() + "/common/opinion_modifiers/";
+		Log(LogLevel::Error) << "Could not create output/" + Configuration::getOutputName() + "/common/opinion_modifiers/";
 		exit(-1);
 	}
 
-	ofstream out("Output/" + Configuration::getOutputName() + "/common/opinion_modifiers/01_opinion_modifiers.txt");
+	ofstream out("output/" + Configuration::getOutputName() + "/common/opinion_modifiers/01_opinion_modifiers.txt");
 	if (!out.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create 01_opinion_modifiers.txt.";

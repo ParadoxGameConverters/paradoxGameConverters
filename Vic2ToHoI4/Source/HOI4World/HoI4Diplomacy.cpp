@@ -33,28 +33,28 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 void HoI4Diplomacy::output() const
 {
 	/*LOG(LogLevel::Debug) << "Writing diplomacy";
-	fstream alliances("Output/" + Configuration::getOutputName() + "/history/diplomacy/Alliances.txt");
+	fstream alliances("output/" + Configuration::getOutputName() + "/history/diplomacy/Alliances.txt");
 	if (alliances.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create alliances history file";
 		exit(-1);
 	}
 
-	fstream guarantees("Output/" + Configuration::getOutputName() + "/history/diplomacy/Guarantees.txt");
+	fstream guarantees("output/" + Configuration::getOutputName() + "/history/diplomacy/Guarantees.txt");
 	if (guarantees.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create guarantees history file";
 		exit(-1);
 	}
 
-	fstream puppetStates("Output/" + Configuration::getOutputName() + "/history/diplomacy/PuppetStates.txt");
+	fstream puppetStates("output/" + Configuration::getOutputName() + "/history/diplomacy/PuppetStates.txt");
 	if (puppetStates.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create puppet states history file";
 		exit(-1);
 	}
 
-	fstream relations("Output/" + Configuration::getOutputName() + "/history/diplomacy/relations.txt");
+	fstream relations("output/" + Configuration::getOutputName() + "/history/diplomacy/relations.txt");
 	if (relations.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create relations history file";

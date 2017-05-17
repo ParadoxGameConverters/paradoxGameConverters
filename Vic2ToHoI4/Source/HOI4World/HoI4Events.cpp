@@ -39,10 +39,10 @@ HoI4Events::HoI4Events()
 
 void HoI4Events::output() const
 {
-	string eventpath = "Output/" + Configuration::getOutputName() + "/events";
+	string eventpath = "output/" + Configuration::getOutputName() + "/events";
 	if (!Utils::TryCreateFolder(eventpath))
 	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/events\"";
+		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/events\"";
 		exit(-1);
 	}
 
@@ -53,7 +53,7 @@ void HoI4Events::output() const
 
 void HoI4Events::outputNationalFocusEvents() const
 {
-	ofstream outEvents("Output/" + Configuration::getOutputName() + "/events/NF_events.txt");
+	ofstream outEvents("output/" + Configuration::getOutputName() + "/events/NF_events.txt");
 	if (!outEvents.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create NF_events.txt";
@@ -74,7 +74,7 @@ void HoI4Events::outputNationalFocusEvents() const
 
 void HoI4Events::outputNewsEvents() const
 {
-	ofstream outNewsEvents("Output/" + Configuration::getOutputName() + "/events/newsEvents.txt");
+	ofstream outNewsEvents("output/" + Configuration::getOutputName() + "/events/newsEvents.txt");
 	if (!outNewsEvents.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create newsEvents.txt";

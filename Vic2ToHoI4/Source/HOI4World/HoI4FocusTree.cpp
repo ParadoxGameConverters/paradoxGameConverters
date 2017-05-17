@@ -4340,13 +4340,13 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(HoI4Country* Home, const 
 
 void HoI4FocusTree::output()
 {
-	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/common/national_focus"))
+	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/common/national_focus"))
 	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/national_focus\"";
+		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/common/national_focus\"";
 		exit(-1);
 	}
 
-	string filename("Output/" + Configuration::getOutputName() + "/common/national_focus/" + srcCountryTag + "_NF.txt");
+	string filename("output/" + Configuration::getOutputName() + "/common/national_focus/" + srcCountryTag + "_NF.txt");
 	ofstream out(filename);
 	if (!out.is_open())
 	{

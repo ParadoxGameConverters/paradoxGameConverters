@@ -369,7 +369,7 @@ void HoI4Localisation::addNonenglishVPLocalisations()
 void HoI4Localisation::Output() const
 {
 	LOG(LogLevel::Debug) << "Writing localisations";
-	string localisationPath = "Output/" + Configuration::getOutputName() + "/localisation";
+	string localisationPath = "output/" + Configuration::getOutputName() + "/localisation";
 	if (!Utils::TryCreateFolder(localisationPath))
 	{
 		LOG(LogLevel::Error) << "Could not create localisation folder";

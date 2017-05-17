@@ -1373,10 +1373,10 @@ void HoI4Country::output(const map<int, HoI4State*>& states, const vector<HoI4Fa
 
 void HoI4Country::outputHistory(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const
 {
-	ofstream output("Output/" + Configuration::getOutputName() + "/history/countries/" + Utils::convertUTF8ToASCII(filename));
+	ofstream output("output/" + Configuration::getOutputName() + "/history/countries/" + Utils::convertUTF8ToASCII(filename));
 	if (!output.is_open())
 	{
-		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/history/countries" << Utils::convertUTF8ToASCII(filename);
+		Log(LogLevel::Error) << "Could not open " << "output/" << Configuration::getOutputName() << "/history/countries" << Utils::convertUTF8ToASCII(filename);
 		exit(-1);
 	}
 	output << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
@@ -1561,10 +1561,10 @@ void HoI4Country::outputCountryLeader(ofstream& output) const
 
 void HoI4Country::outputOOB() const
 {
-	ofstream output("Output/" + Configuration::getOutputName() + "/history/units/" + tag + "_OOB.txt");
+	ofstream output("output/" + Configuration::getOutputName() + "/history/units/" + tag + "_OOB.txt");
 	if (!output.is_open())
 	{
-		Log(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/history/units/" << tag << "_OOB.txt";
+		Log(LogLevel::Error) << "Could not open output/" << Configuration::getOutputName() << "/history/units/" << tag << "_OOB.txt";
 		exit(-1);
 	}
 	output << "\xEF\xBB\xBF";	// add the BOM to make HoI4 happy
@@ -1632,10 +1632,10 @@ void HoI4Country::outputOOB() const
 
 void HoI4Country::outputCommonCountryFile() const
 {
-	ofstream output("Output/" + Configuration::getOutputName() + "/common/countries/" + Utils::convertUTF8ToASCII(commonCountryFile));
+	ofstream output("output/" + Configuration::getOutputName() + "/common/countries/" + Utils::convertUTF8ToASCII(commonCountryFile));
 	if (!output.is_open())
 	{
-		Log(LogLevel::Error) << "Could not open " << "Output/" << Configuration::getOutputName() << "/common/countries/" << Utils::convertUTF8ToASCII(commonCountryFile);
+		Log(LogLevel::Error) << "Could not open " << "output/" << Configuration::getOutputName() << "/common/countries/" << Utils::convertUTF8ToASCII(commonCountryFile);
 		exit(-1);
 	}
 
@@ -1647,10 +1647,10 @@ void HoI4Country::outputCommonCountryFile() const
 
 void HoI4Country::outputIdeas() const
 {
-	ofstream ideasFile("Output/" + Configuration::getOutputName() + "/common/ideas/" + tag + ".txt");
+	ofstream ideasFile("output/" + Configuration::getOutputName() + "/common/ideas/" + tag + ".txt");
 	if (!ideasFile.is_open())
 	{
-		LOG(LogLevel::Error) << "Could not open Output/" << Configuration::getOutputName() << "/common/ideas/" << tag << ".txt";
+		LOG(LogLevel::Error) << "Could not open output/" << Configuration::getOutputName() << "/common/ideas/" << tag << ".txt";
 		exit(-1);
 	}
 

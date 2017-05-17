@@ -170,7 +170,7 @@ void createModFile()
 		exit(-1);
 	}
 
-	ofstream modFile("Output/" + Configuration::getOutputName() + ".mod");
+	ofstream modFile("output/" + Configuration::getOutputName() + ".mod");
 	if (!modFile.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create .mod file";
