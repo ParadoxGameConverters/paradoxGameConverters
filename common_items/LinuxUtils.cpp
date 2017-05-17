@@ -37,6 +37,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <sys/types.h>
 #include <sys/sendfile.h>
 #include <iconv.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -81,95 +82,6 @@ HANDLE GetStdHandle(int nothing)
 
 namespace Utils
 {
-	
-	bool TryCreateFolderNonRecursive(const char *path)
-	{
-        	const mode_t mode = S_IRWXU | S_IRWXG | S_IROTH;
-        	struct stat status;
-        	if(stat(path, &status) != 0)
-			{
-                	if(mkdir(path, mode) != 0 && errno != EEXIST)
-			{
-                        	LOG(LogLevel::Error) << "unable to create folder: " << path;
-                       		return false;
-                	}
-        	}else{
-                	if(!S_ISDIR(status.st_mode))
-			{
-                        	LOG(LogLevel::Error) << "node already exists but is not a folder: " << path;
-                        	return false;
-                	}
-        	}
-        	return true;
-	}
-
-
-	char *CopyFolderPathElement(const char * &input_begin, const char *input_end, char *output)
-	{
-        	while(input_begin != input_end)
-		{
-                	const char c = *input_begin;
-                	++input_begin;
-                	if(c == '/')
-			{
-                        	return output;
-                	}else{
-                        	*output = c;
-                        	++output;
-                	}
-        	}
-        	return output;
-	};
-
-	bool TryCreateFolder(const std::string& path)
-	{
-		using namespace std;
-        	const char *input_begin = path.c_str();
-        	const char *input_end = input_begin+path.size();
-        	char *buffer = new char[path.size()+1];
-        	char *pos = buffer;
-        	while(input_begin !=input_end)
-		{
-                	char *next_pos = CopyFolderPathElement(input_begin, input_end, pos);
-                	if(next_pos != pos){
-                        	*next_pos = '\0';
-                        	if(!TryCreateFolderNonRecursive(buffer)){
-                                	LOG(LogLevel::Error) << "unable to create folder for path " << buffer;
-                                	delete[] buffer;
-                                	return false;
-                        	}
-                	}
-                	*next_pos = '/';
-                	++next_pos;
-                	pos = next_pos;
-        	}
-        	delete[] buffer;
-        	return true;
-	}
-
-	std::string getCurrentDirectory()
-	{
-	        using namespace std;
-       		char executable[PATH_MAX];
-        	ssize_t length = readlink("/proc/self/exe", executable, PATH_MAX);
-        	if(length == -1)
-		{
-                	LOG(LogLevel::Error) << "unable to fetch current directory";
-                	return string("/");
-        	}
-       		char *begin = executable;
-        	char *end = begin + length - 1;
-        	while(end != begin && *end != '/')
-		{
-                	--end;
-        	}
-        	if(begin == end)
-		{
-                	return string(begin, begin + length);
-        	}else{
-                	return string(begin, end);
-        	}
-	}
 
 	/*
 		Helper function to determine that returns false if the filename is a:
@@ -303,8 +215,123 @@ namespace Utils
 		return c != '/';
 	}
 
+
+	std::string resolvePath(const std::string &path){
+		using namespace std;
+		if(path.empty() || path.length() > PATH_MAX){
+			return path;
+		}
+		char buffer[PATH_MAX];
+		if(realpath(path.c_str(), buffer) == NULL){
+			return path;
+		}
+		return string(buffer);
+	};
+
+	std::string resolveParentPath(const std::string &path){
+		using namespace std;
+		pair<string, string> split = SplitNodeNameFromPath(path);
+		if(split.first.empty()){
+			return path;
+		}else{
+			return ConcatenatePaths(resolvePath(split.first), split.second);
+		}
+	};
+
+	bool TryCreateFolderNonRecursive(const char *unresolvedPath)
+	{
+        	using namespace std;
+		const string path = resolveParentPath(string(unresolvedPath));
+		const mode_t mode = S_IRWXU | S_IRWXG | S_IROTH;
+        	struct stat status;
+        	if(stat(path.c_str(), &status) != 0)
+			{
+                	if(mkdir(path.c_str(), mode) != 0 && errno != EEXIST)
+			{
+                        	LOG(LogLevel::Error) << "unable to create folder: " << path;
+                       		return false;
+                	}
+        	}else{
+                	if(!S_ISDIR(status.st_mode))
+			{
+                        	LOG(LogLevel::Error) << "node already exists but is not a folder: " << path;
+                        	return false;
+                	}
+        	}
+        	return true;
+	}
+
+
+	char *CopyFolderPathElement(const char * &input_begin, const char *input_end, char *output)
+	{
+        	while(input_begin != input_end)
+		{
+                	const char c = *input_begin;
+                	++input_begin;
+                	if(c == '/')
+			{
+                        	return output;
+                	}else{
+                        	*output = c;
+                        	++output;
+                	}
+        	}
+        	return output;
+	};
+
+	bool TryCreateFolder(const std::string& path)
+	{
+		using namespace std;
+		const char *input_begin = path.c_str();
+        	const char *input_end = input_begin+path.size();
+        	char *buffer = new char[path.size()+1];
+        	char *pos = buffer;
+        	while(input_begin !=input_end)
+		{
+                	char *next_pos = CopyFolderPathElement(input_begin, input_end, pos);
+                	if(next_pos != pos){
+                        	*next_pos = '\0';
+                        	if(!TryCreateFolderNonRecursive(buffer)){
+                                	LOG(LogLevel::Error) << "unable to create folder for path " << buffer;
+                                	delete[] buffer;
+                                	return false;
+                        	}
+                	}
+                	*next_pos = '/';
+                	++next_pos;
+                	pos = next_pos;
+        	}
+        	delete[] buffer;
+        	return true;
+	}
+
+	std::string getCurrentDirectory()
+	{
+	        using namespace std;
+       		char executable[PATH_MAX];
+        	ssize_t length = readlink("/proc/self/exe", executable, PATH_MAX);
+        	if(length == -1)
+		{
+                	LOG(LogLevel::Error) << "unable to fetch current directory";
+                	return string("/");
+        	}
+       		char *begin = executable;
+        	char *end = begin + length - 1;
+        	while(end != begin && *end != '/')
+		{
+                	--end;
+        	}
+        	if(begin == end)
+		{
+                	return string(begin, begin + length);
+        	}else{
+                	return string(begin, end);
+        	}
+	}
+	
 	bool GetFileMode(const std::string &path, mode_t &result)
 	{
+		using namespace std;
                 struct stat status;
                 if(stat(path.c_str(), &status) != 0)
                 {
@@ -324,29 +351,31 @@ namespace Utils
 	/*
 		Note: since the function signature did not allow for a return value, it clears the fileNames set when an error occurs to make sure no operations are done on an incomplete list of files
 	*/
-	void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames)
+	void GetAllFilesInFolder(const std::string& unresolvedPath, std::set<std::string>& fileNames)
 	{
                 using namespace std;
+		const string path = resolvePath(unresolvedPath);
                 DIR *dir = opendir(path.c_str());
                 if(dir == NULL)
                 {
+			LOG(LogLevel::Error) << "unable to get all files in folder: " << path;
                         if(errno == EACCES)
                         {
-                                LOG(LogLevel::Error) << "no permission to read directory: " << path;
+                                LOG(LogLevel::Error) << "\tno permission to read directory ";
                         }else if(errno == ENOENT)
                         {
-                                LOG(LogLevel::Error) << "directory does not exist: " << path;
+                                LOG(LogLevel::Error) << "\tdirectory does not exist";
                         }else if(errno == ENOTDIR)
                         {
-                                LOG(LogLevel::Error) << "path is not a directory: " << path;
+                                LOG(LogLevel::Error) << "\tpath is not a directory";
                         }else{
-                                LOG(LogLevel::Error) << "unable to open directory: " << path;
+                                LOG(LogLevel::Error) << "\tunable to open directory";
                         }
                 }else{
                         struct dirent *dirent_ptr;
                         while((dirent_ptr = readdir(dir)) != NULL){
                                 string filename{dirent_ptr->d_name};
-                                if(IsRegularNodeName(filename) && IsRegularFile(path+filename)){
+                                if(IsRegularNodeName(filename) && IsRegularFile(ConcatenateNodeName(path,filename))){
                                         if(errno != 0){
                                                 fileNames.clear();
                                                 closedir(dir);
@@ -366,17 +395,18 @@ namespace Utils
                 DIR *dir = opendir(path.c_str());
                 if(dir == NULL)
                 {
+			LOG(LogLevel::Error) << "unable to get all files in folder (recursive): " << path;
                         if(errno == EACCES)
                         {
-                                LOG(LogLevel::Error) << "no permission to read directory: " << path;
+                                LOG(LogLevel::Error) << "\tno permission to read directory";
                         }else if(errno == ENOENT)
                         {
-                                LOG(LogLevel::Error) << "directory does not exist: " << path;
+                                LOG(LogLevel::Error) << "\tdirectory does not exist";
                         }else if(errno == ENOTDIR)
                         {
-                                LOG(LogLevel::Error) << "path is not a directory: " << path;
+                                LOG(LogLevel::Error) << "\tpath is not a directory";
                         }else{
-                                LOG(LogLevel::Error) << "unable to open directory: " << path;
+                                LOG(LogLevel::Error) << "\tunable to open directory";
                         }
                 }else{
                         struct dirent *dirent_ptr;
@@ -406,14 +436,18 @@ namespace Utils
 	/*
                 Note: since the function signature did not allow for a return value, it clears the fileNames set when an error occurs to make sure no operations are done on an incomplete list of files
         */
-	void GetAllFilesInFolderRecursive(const std::string& path, std::set<std::string>& filenames)
+	void GetAllFilesInFolderRecursive(const std::string& unresolvedPath, std::set<std::string>& filenames)
 	{
+		using namespace std;
+		const string path = resolvePath(unresolvedPath);
                 GetAllFilesInFolderRecursiveWithRelativePath(path, "", filenames);
 	}
 
-	bool TryCopyFile(const std::string& sourcePath, const std::string& destPath)
+	bool TryCopyFile(const std::string& unresolvedSourcePath, const std::string& unresolvedDestPath)
         {
                 using namespace std;
+		const string sourcePath = resolvePath(unresolvedSourcePath);
+		const string destPath = resolveParentPath(unresolvedDestPath);
                 int inputHandle = open(sourcePath.c_str(), O_RDONLY);
                 if(inputHandle == -1)
                 {
@@ -458,23 +492,26 @@ namespace Utils
                 return true;
 	}
 
-	bool CopyFolderAndFiles(const std::string& sourceFolder, const std::string& destParentFolder, const std::string &folderName)
+	bool CopyFolderAndFiles(const std::string& unresolvedSourceFolder, const std::string& unresolvedDestParentFolder, const std::string &folderName)
 	{
                 using namespace std;
+		const string sourceFolder = resolvePath(unresolvedSourceFolder);
+		const string destParentFolder = resolvePath(unresolvedDestParentFolder);
                 DIR *dir = opendir(sourceFolder.c_str());
                 if(dir == NULL)
                 {
+			LOG(LogLevel::Error) << "unable to copy folder and files from source folder: " << sourceFolder;
                         if(errno == EACCES)
                         {
-                                LOG(LogLevel::Error) << "no permission to read directory: " << sourceFolder;
+                                LOG(LogLevel::Error) << "\tno permission to read directory";
                         }else if(errno == ENOENT)
                         {
-                                LOG(LogLevel::Error) << "directory does not exist: " << sourceFolder;
+                                LOG(LogLevel::Error) << "\tdirectory does not exist";
                         }else if(errno == ENOTDIR)
                         {
-                                LOG(LogLevel::Error) << "path is not a directory: " << sourceFolder;
+                                LOG(LogLevel::Error) << "\tpath is not a directory";
                         }else{
-                                LOG(LogLevel::Error) << "unable to open directory: " << sourceFolder;
+                                LOG(LogLevel::Error) << "\tunable to open directory";
                         }
                         return false;
                 }else{
@@ -531,8 +568,11 @@ namespace Utils
                 return CopyFolderAndFiles(sourceFolder, pathAndName.first, pathAndName.second);
         }
 
-	bool renameFolder(const std::string& sourceFolder, const std::string& destFolder)
+	bool renameFolder(const std::string& unresolvedSourceFolder, const std::string& unresolvedDestFolder)
 	{
+		using namespace std;
+		const string sourceFolder = resolvePath(unresolvedSourceFolder);
+		const string destFolder = resolvePath(unresolvedDestFolder);
         	if(rename(sourceFolder.c_str(), destFolder.c_str()) != 0)
 		{
                 	LOG(LogLevel::Error) << "unable to rename folder " << sourceFolder << " to " << destFolder;
@@ -540,23 +580,23 @@ namespace Utils
 			{
                 	        case EACCES:
                         	case EPERM:
-                        	        LOG(LogLevel::Error) << "no permission to move folder";
+                        	        LOG(LogLevel::Error) << "\tno permission to move folder";
                         	        break;
                        		case ENOENT:
-                                	LOG(LogLevel::Error) << "source folder does not exist";
+                                	LOG(LogLevel::Error) << "\tsource folder does not exist";
                                 	break;
                         	case EBUSY:
-                                	LOG(LogLevel::Error) << "source or destination folder is locked by another process";
+                                	LOG(LogLevel::Error) << "\tsource or destination folder is locked by another process";
                                 	break;
                         	case EEXIST:
                         	case ENOTEMPTY:
-                                	LOG(LogLevel::Error) << "destination folder already exists and is not empty";
+                                	LOG(LogLevel::Error) << "\tdestination folder already exists and is not empty";
                                 	break;
                         	case EINVAL:
-                                	LOG(LogLevel::Error) << "destination folder contains source folder";
+                                	LOG(LogLevel::Error) << "\tdestination folder contains source folder";
                                 	break;
                         	case EISDIR:
-                                	LOG(LogLevel::Error) << "destination folder is not a directory";
+                                	LOG(LogLevel::Error) << "\tdestination folder is not a directory";
                                 	break;
                 	}
         	        return false;
@@ -565,14 +605,18 @@ namespace Utils
 	        }
 	}
 
-	bool DoesFileExist(const std::string& path)
+	bool DoesFileExist(const std::string& unresolvedPath)
 	{
+		using namespace std;
+		const string path = resolvePath(unresolvedPath);
 		mode_t mode;
 		return GetFileMode(path, mode) && S_ISREG(mode);
 	}
 
-	bool doesFolderExist(const std::string& path)
+	bool doesFolderExist(const std::string& unresolvedPath)
 	{
+		using namespace std;
+		const string path = resolvePath(unresolvedPath);
 		mode_t mode;
 		return GetFileMode(path, mode) && S_ISDIR(mode);
 	}
@@ -622,8 +666,10 @@ namespace Utils
 		}
 	}
 
-	bool DeleteFile(const std::string &file)
+	bool DeleteFile(const std::string &unresolvedFile)
 	{
+		using namespace std;
+		const string file = resolvePath(unresolvedFile);
 		if(unlink(file.c_str()) != 0)
 		{
 			LOG(LogLevel::Error) << "unable to delete file " << file;
@@ -631,17 +677,17 @@ namespace Utils
 			{
 				case ENOENT:
 				case ENOTDIR:
-					LOG(LogLevel::Error) << "path does not point to a valid file";
+					LOG(LogLevel::Error) << "\tpath does not point to a valid file";
 					break;
 				case EPERM:
 				case EACCES:
-					LOG(LogLevel::Error) << "you do not have permission to delete the file";
+					LOG(LogLevel::Error) << "\tyou do not have permission to delete the file";
 					break;
 				case EBUSY:
-					LOG(LogLevel::Error) << "another process has opened the file";
+					LOG(LogLevel::Error) << "\tanother process has opened the file";
 					break;
 				case EROFS:
-					LOG(LogLevel::Error) << "the filesystem is mounted with the read only flag";
+					LOG(LogLevel::Error) << "\tthe filesystem is mounted with the read only flag";
 					break;
 			}
 			return false;
@@ -650,7 +696,9 @@ namespace Utils
 		}
 	}
 
-	bool DeleteEmptyFolder(const std::string &folder){
+	bool DeleteEmptyFolder(const std::string &unresolvedFolder){
+		using namespace std;
+		const string folder = resolvePath(unresolvedFolder);
 		if(rmdir(folder.c_str()) != 0)
 		{
 			LOG(LogLevel::Error) << "unable to delete folder " << folder;
@@ -658,21 +706,21 @@ namespace Utils
 			{
 				case ENOTEMPTY:
 				case EEXIST:
-					LOG(LogLevel::Error) << "folder is not empty";
+					LOG(LogLevel::Error) << "\tfolder is not empty";
 					break;
 				case ENOENT:
 				case ENOTDIR:
-					LOG(LogLevel::Error) << "path does not point to a valid folder";
+					LOG(LogLevel::Error) << "\tpath does not point to a valid folder";
 					break;
 				case EPERM:
 				case EACCES:
-					LOG(LogLevel::Error) << "you do not have permission to delete the file";
+					LOG(LogLevel::Error) << "\tyou do not have permission to delete the file";
 					break;
 				case EBUSY:
-					LOG(LogLevel::Error) << "another process has opened this folder ";
+					LOG(LogLevel::Error) << "\tanother process has opened this folder ";
 					break;
 				case EROFS:
-					LOG(LogLevel::Error) << "the filesystem is mounted with the read only flag";
+					LOG(LogLevel::Error) << "\tthe filesystem is mounted with the read only flag";
 					break;
 			}
 			return false;
@@ -682,24 +730,25 @@ namespace Utils
 
 	}
 
-	bool deleteFolder(const std::string& folder)
+	bool deleteFolder(const std::string& unresolvedFolder)
 	{
 		using namespace std;
-                DIR *dir = opendir(folder.c_str());
+         	const string folder = resolvePath(unresolvedFolder);
+	        DIR *dir = opendir(folder.c_str());
                 if(dir == NULL)
                 {
                         LOG(LogLevel::Error) << "unable to read folder prior to delete " << folder;
                         if(errno == EACCES)
                         {
-                                LOG(LogLevel::Error) << "no permission to read directory";
+                                LOG(LogLevel::Error) << "\tno permission to read directory";
                         }else if(errno == ENOENT)
                         {
-                                LOG(LogLevel::Error) << "directory does not exist";
+                                LOG(LogLevel::Error) << "\tdirectory does not exist";
                         }else if(errno == ENOTDIR)
                         {
-                                LOG(LogLevel::Error) << "path is not a directory";
+                                LOG(LogLevel::Error) << "\tpath is not a directory";
                         }else{
-                                LOG(LogLevel::Error) << "unable to open directory";
+                                LOG(LogLevel::Error) << "\tunable to open directory";
                         }
                         return false;
                 }else{
