@@ -118,7 +118,11 @@ void checkMods()
 
 void getOutputName(const string& V2SaveFileName)
 {
-	const int slash = V2SaveFileName.find_last_of("\\");
+	int slash = V2SaveFileName.find_last_of("\\");
+	if (slash == string::npos)
+	{
+		slash = V2SaveFileName.find_last_of("/");
+	}
 	string outputName = V2SaveFileName.substr(slash + 1, V2SaveFileName.length());
 	const int length = outputName.find_first_of(".");
 	outputName = outputName.substr(0, length);
