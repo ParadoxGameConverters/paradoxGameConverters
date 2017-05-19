@@ -116,21 +116,21 @@ bool CreateCustomFlag(FlagColour c1, FlagColour c2, FlagColour c3, std::string e
 			tg /= 255;
 			tb /= 255;
 
-			uint8_t or = 0, og = 0, ob = 0, oa = 0;
+			uint8_t oRed = 0, oGreen = 0, oBlue = 0, oAlpha = 0;
 
 			uint8_t *targetOverlayAddress = tga_find_pixel(&emblem, x, y);
 			if (targetOverlayAddress)
 			{
-				res = tga_unpack_pixel(targetOverlayAddress, emblem.pixel_depth, &ob, &og, &or, &oa);
+				res = tga_unpack_pixel(targetOverlayAddress, emblem.pixel_depth, &oBlue, &oGreen, &oRed, &oAlpha);
 				if (0 != res)
 				{
 					LOG(LogLevel::Error) << "Failed to create custom flag: could not read pixel data";
 					return false;
 				}
 				
-				tr = (or*oa / 255) + ((tr *(255 - oa)) / 255);
-				tg = (og*oa / 255) + ((tg *(255 - oa)) / 255);
-				tb = (ob*oa / 255) + ((tb *(255 - oa)) / 255);
+				tr = (oRed * oAlpha / 255) + ((tr *(255 - oAlpha)) / 255);
+				tg = (oGreen * oAlpha / 255) + ((tg *(255 - oAlpha)) / 255);
+				tb = (oBlue * oAlpha / 255) + ((tb *(255 - oAlpha)) / 255);
 			}
 			else
 			{

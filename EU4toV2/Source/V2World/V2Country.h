@@ -28,7 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "../Color.h"
 #include "Date.h"
-#include "../Eu4World/EU4Army.h"
+#include "../EU4World/EU4Army.h"
 #include "V2Inventions.h"
 #include "V2Localisation.h"
 #include "V2TechSchools.h"
