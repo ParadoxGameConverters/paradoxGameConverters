@@ -79,6 +79,7 @@ class EU4Country
 		int								getNationalFocus()						const { return nationalFocus; }
 		string							getTechGroup()								const { return techGroup; }
 		vector<bool>					getEmbracedInstitutions()				const { return embracedInstitutions; }
+		int								getIsolationism()						const { return isolationism; }
 		string							getPrimaryCulture()						const { return primaryCulture; }
 		vector<string>					getAcceptedCultures()					const { return acceptedCultures; }
 		string							getCulturalUnion()						const { return culturalUnion; }
@@ -130,6 +131,7 @@ class EU4Country
 		int								nationalFocus;			// the location of this country's national focus
 		string							techGroup;				// the tech group for this nation
 		vector<bool>					embracedInstitutions; // the institutions this nation has embraced
+		int								isolationism;			// the isolationism of the country (for Shinto nations with Mandate of Heaven)
 		string							primaryCulture;		// the primary EU4 culture of this nation
 		vector<string>					acceptedCultures;		// the accepted EU4 cultures for this nation
 		string							culturalUnion;			// the culture group this nation is a union for

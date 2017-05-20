@@ -99,6 +99,13 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 		}
 	}
 
+	auto version20 = EU4Version("1.20.0.0");
+	if (*version >= version20)
+	{
+		vector<Object*> isolationismObj = obj->getValue("isolationism"); // the object holding the isolationism
+		(isolationismObj.size() > 0) ? isolationism = atof(isolationismObj[0]->getLeaf().c_str()) : isolationism = 1.0;
+	}
+
 	vector<Object*> primaryCultureObj = obj->getValue("primary_culture");	// the object holding the primary culture
 	(primaryCultureObj.size() > 0) ? primaryCulture = primaryCultureObj[0]->getLeaf().c_str() : primaryCulture = "";
 
