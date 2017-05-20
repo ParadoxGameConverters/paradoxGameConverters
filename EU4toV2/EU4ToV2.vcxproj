@@ -115,7 +115,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Phillip\Documents\GitHub\paradoxGameConverters\common_items;C:\Users\Phillip\Documents\GitHub\boost_1_64_0;D:\Libraries\boost_1_55_0_lib;$(BOOST_INCLUDE);$(WindowsSDK_IncludePath)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\common_items;C:\Users\Phillip\Documents\GitHub\boost_1_64_0;D:\Libraries\boost_1_55_0_lib;$(BOOST_INCLUDE);$(WindowsSDK_IncludePath)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -265,7 +265,6 @@
     <ClInclude Include="Source\V2World\V2Diplomacy.h" />
     <ClInclude Include="Source\V2World\V2Factory.h" />
     <ClInclude Include="Source\V2World\V2Flags.h" />
-    <ClInclude Include="Source\V2World\V2Inventions.h" />
     <ClInclude Include="Source\V2World\V2Leader.h" />
     <ClInclude Include="Source\V2World\V2LeaderTraits.h" />
     <ClInclude Include="Source\V2World\V2Localisation.h" />
