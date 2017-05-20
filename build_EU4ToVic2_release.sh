@@ -1,15 +1,15 @@
 #!/bin/bash
 echo "Version Number?"
 read version
-rm -rf "Vic2ToHoI4-$version"
-rm -rf "Vic2ToHoI4-$version.tar.bz2"
+rm -rf "EU4toV2-$version"
+rm -rf "EU4toV2-$version.tar.bz2"
 
-cd Vic2ToHoI4
+cd EU4toV2
 rm -rf build
 rm -rf Release-Linux
 cmake -H. -Bbuild
 cmake --build build -- -j3
-cp -rf "Release-Linux" "../Vic2ToHoI4-$version"
+cp -rf "Release-Linux" "../EU4toV2-$version"
 cd ..
 
-tar -cjf "Vic2ToHoI4-$version.tar.bz2" "Vic2ToHoI4-$version"
+tar -cjf "EU4toV2-$version.tar.bz2" "EU4toV2-$version"
