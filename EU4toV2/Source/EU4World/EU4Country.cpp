@@ -109,7 +109,8 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 		acceptedCultures.push_back(acceptedCultureObj[i]->getLeaf().c_str());
 	}
 
-	if (*version >= EU4Version("1.14.0.0"))
+	auto version14 = EU4Version("1.14.0.0");
+	if (*version >= version14)
 	{
 		bool wasUnion = false;
 		if (Configuration::wasDLCActive("The Cossacks"))

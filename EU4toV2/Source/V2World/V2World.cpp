@@ -747,7 +747,9 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 
 					// determine demographics
 					double provPopRatio = (*vitr)->getBaseTax() / newProvinceTotalBaseTax;
-					vector<V2Demographic> demographics = determineDemographics((*vitr)->getPopRatios(), *vitr, Vic2Province.second, oldOwner, Vic2Province.first, provPopRatio);
+
+					auto popRatios = (*vitr)->getPopRatios();
+					vector<V2Demographic> demographics = determineDemographics(popRatios, *vitr, Vic2Province.second, oldOwner, Vic2Province.first, provPopRatio);
 					for (auto demographic : demographics)
 					{
 						Vic2Province.second->addPopDemographic(demographic);
@@ -1337,7 +1339,8 @@ void V2World::setupPops(const EU4World& sourceWorld)
 	//ofstream output_file("Data.csv");
 
 	int popAlgorithm = 0;
-	if (*(sourceWorld.getVersion()) >= EU4Version("1.12.0"))
+	auto version12 = EU4Version("1.12.0");
+	if (*(sourceWorld.getVersion()) >= version12)
 	{
 		LOG(LogLevel::Info) << "Using pop conversion algorithm for EU4 versions after 1.12.";
 		popAlgorithm = 2;

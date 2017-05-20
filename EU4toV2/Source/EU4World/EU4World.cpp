@@ -882,7 +882,8 @@ void EU4World::uniteJapan()
 {
 	EU4Country* japan;
 
-	if (*version >= EU4Version("1.20.0.0"))
+	auto version12 = EU4Version("1.20.0.0");
+	if (*version >= version12)
 	{
 		for (auto country : countries)
 		{

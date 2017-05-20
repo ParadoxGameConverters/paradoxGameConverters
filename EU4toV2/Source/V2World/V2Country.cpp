@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -33,7 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "../Mappers/ReligionMapper.h"
 #include "CardinalToOrdinal.h"
-#include "paradoxParser8859_15.h"
+#include "ParadoxParser8859_15.h"
 #include "OSCompatibilityLayer.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Country.h"
@@ -470,7 +470,7 @@ void V2Country::outputTech(FILE* output) const
 	fprintf(output, "# Technologies\n");
 	for (vector<string>::const_iterator itr = techs.begin(); itr != techs.end(); ++itr)
 	{
-		fprintf(output, itr->c_str()); fprintf(output, " = 1\n");
+		fprintf(output, "%s", itr->c_str()); fprintf(output, " = 1\n");
 	}
 }
 
