@@ -62,7 +62,10 @@ class EU4World
 		void loadEU4Version(const Object* EU4SaveObj);
 		void loadActiveDLC(const Object* EU4SaveObj);
 		void loadEndDate(const Object* EU4SaveObj);
-		void loadHolyRomanEmperor(const Object* EU4SaveObj);
+		void loadEmpires(const Object* EU4SaveObj);
+		void loadHolyRomanEmperor(vector<Object*> empireObj);
+		void loadCelestialEmperor(vector<Object*> celestialEmpireObj);
+
 
 		void loadProvinces(const Object* EU4SaveObj);
 		map<int, int> determineValidProvinces();
@@ -95,6 +98,7 @@ class EU4World
 		EU4Country* getCountry(string tag) const;
 
 		string holyRomanEmperor;
+		string celestialEmperor;
 		map<int, EU4Province*> provinces;
 		map<string, EU4Country*> countries;
 		EU4Diplomacy* diplomacy;

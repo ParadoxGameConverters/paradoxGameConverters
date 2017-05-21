@@ -93,6 +93,10 @@ class HoI4Country
 		map<string, int> getIdeologySupport() const { return ideologySupport; }
 		const set<string>&						getAllies() const { return allies; }
 		set<string>&								editAllies() { return allies; }
+		const set<string>&							getPuppets() const { return puppets; }
+		void										addPuppet(string countryTag);
+		const string&								getPuppetmaster() { return puppetMaster; }
+		void										setPuppetmaster(string _master) { puppetMaster = _master; }
 		map<string, double>&						getPracticals() { return practicals; }
 		int											getCapitalNum() { return capital; }
 		vector<int>									getBrigs() const { return brigs; }
@@ -156,6 +160,8 @@ class HoI4Country
 		HoI4Faction*						faction;
 		bool									factionLeader;
 		set<string>							allies;
+		set<string>							puppets;
+		string								puppetMaster;
 		map<string, double>				practicals;
 		vector<HoI4Minister>				ministers;
 		vector<HoI4Minister>				rulingMinisters;
@@ -173,6 +179,7 @@ class HoI4Country
 		double militaryFactories;
 		double civilianFactories;
 		double dockyards;
+		double threat;
 
 		// laws
 		string				civil_law;

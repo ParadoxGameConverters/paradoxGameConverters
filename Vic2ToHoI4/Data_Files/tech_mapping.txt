@@ -97,7 +97,7 @@ tech_map =
 	}
 	link = {
 		vic2 = heavy_armament_dunno		# Army Artillery 1919
-					#gw_artillery = 1
+		gw_artillery = 1
 	}
 	link = {
 		vic2 = tankette
@@ -105,7 +105,7 @@ tech_map =
 	}
 	link = {
 		vic2 = light_tank
-			basic_light_tank = 1
+		basic_light_tank = 1
 	}
 	link = {
 		vic2 = armoured_cars
@@ -198,7 +198,10 @@ tech_map =
 	}
 	link = {
 		vic2 = great_war_experience		# Army Leadership 1919
-				tech_support = 1
+		tech_support = 1
+		tech_military_police = 1
+		tech_mountaineers = 1
+		paratroopers = 1
 	}
 
 # Navy -> Naval Tech and Naval Doctrine, plus Naval Air Doctrines and Radio tech
@@ -230,12 +233,13 @@ tech_map =
 	# Originally "Steam Turbine Ships" also had: light crusiers, battlecruisers, oceangoing submarines
 	link = {
 		vic2 = dreadnoughts
+		early_submarine = 1
 		
 	}
 	link = {
 		vic2 = oil_driven_ships		# Ship Construction 1919
 		early_destroyer = 1
-		early_submarine = 1
+		basic_submarine = 1
 		transport = 1
 	}	
 	# Originally "Oil Driven Ships" also had: adv./mod. destroyers, adv./mod. battlecruisers, 3 carrier invs, adv. subs.

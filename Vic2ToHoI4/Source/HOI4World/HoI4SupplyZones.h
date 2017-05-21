@@ -59,4 +59,4 @@ class HoI4SupplyZones
 
 
 
-#endif HOI4_SUPPLY_ZONES_H
+#endif // HOI4_SUPPLY_ZONES_H

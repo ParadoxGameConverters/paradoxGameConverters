@@ -30,12 +30,12 @@ germanic = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+		absolutist = { "gfx/interface/ideas/idea_george_vi.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
 }
 beneluxian = {
@@ -49,12 +49,12 @@ beneluxian = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+		absolutist = { "gfx/interface/ideas/idea_george_vi.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
 }
 pan_swiss = {
@@ -68,12 +68,12 @@ pan_swiss = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+		absolutist = { "gfx/interface/ideas/idea_george_vi.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
 }
 scandinavian = {
@@ -87,12 +87,12 @@ scandinavian = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+		absolutist = { "gfx/interface/ideas/idea_george_vi.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
 }
 british = {
@@ -106,12 +106,12 @@ british = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+		absolutist = { "gfx/interface/ideas/idea_george_vi.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
 }
 celtic = {
@@ -125,12 +125,12 @@ celtic = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+		absolutist = { "gfx/interface/ideas/idea_george_vi.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
 }
 italian = {
@@ -144,12 +144,12 @@ italian = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+		absolutist = { "gfx/interface/ideas/idea_victor_emmanuel.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
 }
 iberian = {
@@ -163,12 +163,12 @@ iberian = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_south_america.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_south_america.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
+		absolutist = { "gfx/interface/ideas/idea_francisco_franco.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
 	}
 }
 french = {
@@ -182,12 +182,12 @@ french = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+		absolutist = { "gfx/interface/ideas/idea_george_vi.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
 }
 south_slavic = {
@@ -201,12 +201,12 @@ south_slavic = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+		absolutist = { "gfx/interface/ideas/idea_george_vi.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
 }
 pan_romanian = {
@@ -220,12 +220,12 @@ pan_romanian = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+		absolutist = { "gfx/interface/ideas/idea_george_vi.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
 }
 hungarian_culture_group = {
@@ -239,12 +239,12 @@ hungarian_culture_group = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+		absolutist = { "gfx/interface/ideas/idea_george_vi.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
 }
 polish_culture_group = {
@@ -258,12 +258,12 @@ polish_culture_group = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+		absolutist = { "gfx/interface/ideas/idea_george_vi.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
 }
 czecho_slovak_culture_group = {
@@ -277,12 +277,12 @@ czecho_slovak_culture_group = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+		absolutist = { "gfx/interface/ideas/idea_george_vi.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
 }
 east_slavic = {
@@ -296,12 +296,12 @@ east_slavic = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+		absolutist = { "gfx/interface/ideas/idea_george_vi.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
 }
 baltic = {
@@ -315,12 +315,12 @@ baltic = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+		absolutist = { "gfx/interface/ideas/idea_george_vi.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
 }
 levantine = {
@@ -334,12 +334,12 @@ levantine = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+		absolutist = { "gfx/interface/ideas/idea_victor_emmanuel.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
 }
 turko_semitic = {
@@ -353,12 +353,12 @@ turko_semitic = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_arab.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_arab.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_arab.dds" }
+		absolutist = { "gfx/interface/ideas/idea_generic_army_arab_1.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_arab.dds" }
 	}
 }
 arab = {
@@ -372,12 +372,12 @@ arab = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_arab.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_arab.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_arab.dds" }
+		absolutist = { "gfx/interface/ideas/idea_generic_army_arab_1.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_arab.dds" }
 	}
 }
 iranian_turanian = {
@@ -391,12 +391,12 @@ iranian_turanian = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_arab.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_arab.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_arab.dds" }
+		absolutist = { "gfx/interface/ideas/idea_generic_army_arab_1.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_arab.dds" }
 	}
 }
 central_asian = {
@@ -410,12 +410,12 @@ central_asian = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_arab.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_arab.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_arab.dds" }
+		absolutist = { "gfx/interface/ideas/idea_generic_army_arab_1.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_arab.dds" }
 	}
 }
 south_asian = {
@@ -429,12 +429,12 @@ south_asian = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_arab.dds" }
+		democratic = { "gfx/interface/ideas/idea_raj_quit_india_movement.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_arab.dds" }
+		absolutist = { "gfx/interface/ideas/idea_raj_quit_india_movement.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_arab.dds" }
 	}
 }
 southeast_asian = {
@@ -448,12 +448,12 @@ southeast_asian = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_asia.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_asia.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_asia.dds" }
+		absolutist = { "gfx/interface/ideas/idea_generic_army_asia_1.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_asia.dds" }
 	}
 }
 east_asian = {
@@ -467,12 +467,12 @@ east_asian = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_asia.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_asia.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_asia.dds" }
+		absolutist = { "gfx/interface/ideas/idea_generic_army_asia_1.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_asia.dds" }
 	}
 }
 oceanic = {
@@ -486,12 +486,12 @@ oceanic = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_south_america.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_south_america.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
+		absolutist = { "gfx/interface/ideas/idea_francisco_franco.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
 	}
 }
 native_american = {
@@ -505,12 +505,12 @@ native_american = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_south_america.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_south_america.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
+		absolutist = { "gfx/interface/ideas/idea_francisco_franco.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
 	}
 }
 native_central_american = {
@@ -524,12 +524,12 @@ native_central_american = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_south_america.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_south_america.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
+		absolutist = { "gfx/interface/ideas/idea_francisco_franco.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
 	}
 }
 native_south_american = {
@@ -543,12 +543,12 @@ native_south_american = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_south_america.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_south_america.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
+		absolutist = { "gfx/interface/ideas/idea_francisco_franco.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
 	}
 }
 native_north_american = {
@@ -562,12 +562,12 @@ native_north_american = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_south_america.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_south_america.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
+		absolutist = { "gfx/interface/ideas/idea_francisco_franco.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
 	}
 }
 native_carribean = {
@@ -581,12 +581,12 @@ native_carribean = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_south_america.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_south_america.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
+		absolutist = { "gfx/interface/ideas/idea_francisco_franco.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
 	}
 }
 american_cultures = {
@@ -600,12 +600,12 @@ american_cultures = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_political_advisor_europe_1.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_political_advisor_europe_2.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_political_advisor_europe_3.dds" }
+		absolutist = { "gfx/interface/ideas/idea_generic_political_advisor_europe_4.dds" }
+		neutrality = { "gfx/interface/ideas/idea_generic_political_advisor_europe_5.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_political_advisor_europe_6.dds" }
 	}
 }
 neo_european_cultures = {
@@ -619,12 +619,12 @@ neo_european_cultures = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+		absolutist = { "gfx/interface/ideas/idea_george_vi.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
 }
 latin_american_cultures = {
@@ -638,12 +638,12 @@ latin_american_cultures = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_south_america.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_south_america.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
+		absolutist = { "gfx/interface/ideas/idea_francisco_franco.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
 	}
 }
 african_diaspora_cultures = {
@@ -657,12 +657,12 @@ african_diaspora_cultures = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_africa.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_africa.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_africa.dds" }
+		absolutist = { "gfx/interface/ideas/idea_generic_army_africa_3.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_africa.dds" }
 	}
 }
 west_african = {
@@ -676,12 +676,12 @@ west_african = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_africa.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_africa.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_africa.dds" }
+		absolutist = { "gfx/interface/ideas/idea_generic_army_africa_3.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_africa.dds" }
 	}
 }
 central_african = {
@@ -695,12 +695,12 @@ central_african = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_africa.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_africa.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_africa.dds" }
+		absolutist = { "gfx/interface/ideas/idea_generic_army_africa_3.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_africa.dds" }
 	}
 }
 east_african = {
@@ -714,12 +714,12 @@ east_african = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_africa.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_africa.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_africa.dds" }
+		absolutist = { "gfx/interface/ideas/idea_generic_army_africa_3.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_africa.dds" }
 	}
 }
 southern_african = {
@@ -733,12 +733,12 @@ southern_african = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_africa.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_africa.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_africa.dds" }
+		absolutist = { "gfx/interface/ideas/idea_generic_army_africa_3.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_africa.dds" }
 	}
 }
 bears = {
@@ -752,12 +752,12 @@ bears = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
+		democratic = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
+		fascism = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
+		absolutist = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
 	}
 }
 equine = {
@@ -771,11 +771,11 @@ equine = {
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_unknown.dds" }
-		democratic = { "gfx/interface/ideas/idea_unknown.dds" }
-		fascism = { "gfx/interface/ideas/idea_unknown.dds" }
-		absolutist = { "gfx/interface/ideas/idea_unknown.dds" }
-		neutrality = { "gfx/interface/ideas/idea_unknown.dds" }
-		radical = { "gfx/interface/ideas/idea_unknown.dds" }
+		communism = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
+		democratic = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
+		fascism = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
+		absolutist = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
 	}
 }

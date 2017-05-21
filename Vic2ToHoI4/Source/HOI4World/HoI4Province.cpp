@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -24,6 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Province.h"
 #include "Log.h"
 #include "Object.h"
+#include "OSCompatibilityLayer.h"
 #include "ParadoxParserUTF8.h"
 #include <sstream>
 #include <algorithm>
@@ -107,11 +108,7 @@ void HoI4Province::output() const
 		FILE* output;
 		if (fopen_s(&output, ("Output/" + Configuration::getOutputName() + "/history/provinces/" + filename.first).c_str(), "w") != 0)
 		{
-			int errNum;
-			_get_errno(&errNum);
-			char errStr[256];
-			strerror_s(errStr, sizeof(errStr), errNum);
-			LOG(LogLevel::Error) << "Could not create province history file Output/" << Configuration::getOutputName() << "/history/provinces/" << filename.first << " - " << errStr;
+			LOG(LogLevel::Error) << "Could not create province history file Output/" << Configuration::getOutputName() << "/history/provinces/" << filename.first << " - " << Utils::GetLastErrorString();
 			exit(-1);
 		}
 		if (owner != "")

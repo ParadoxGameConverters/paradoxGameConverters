@@ -1,6 +1,7 @@
 #Please keep tags sorted alphabetically when you add/remove country tags
 
 # Special countries...
+AAA     =   "countries/AAA.txt"  ##Added here only to make the converted mod use rebel flag is no country
 REB 	= 	"countries/rebels.txt"
 
 # Common Great Powers
@@ -20,6 +21,7 @@ KUK		= "countries/Austria-Hungary.txt"
 DEN		= "countries/Denmark.txt"
 FIN		= "countries/Finland.txt"
 NOR		= "countries/Norway.txt"
+SMI		= "countries/Sami.txt"
 SCA		= "countries/Scandinavia.txt"
 SWE		= "countries/Sweden.txt"
 
@@ -151,6 +153,7 @@ YEM		="countries/Yemen.txt"
 
 # India
 HND	 	="countries/India.txt"
+AND		="countries/Andhra.txt"
 AWA		="countries/Awadh.txt"
 BAS		="countries/Bastar.txt"
 BER		="countries/Beroda.txt"
@@ -321,18 +324,19 @@ TEU		="countries/Teutonic Order.txt"##
 # British Isles
 CNN		="countries/Connacht.txt"##
 CRN		="countries/Cornwall.txt"##
+DMS		="countries/Desmond.txt"
 ENL		="countries/England.txt"#
+KID		="countries/Kildare.txt"
+HSC		="countries/Highlands.txt"
 LAN		="countries/Lancaster.txt"##
-MNS		="countries/IRE_Munster.txt"##
 LEI		="countries/Leinster.txt"##
-TYR		="countries/Ulster.txt"##
+MNS		="countries/IRE_Munster.txt"##
+NOL		="countries/Northumberland.txt"
+SLN		="countries/Sligo.txt"
+TYR		="countries/Tyrone.txt"##
+ULS		="countries/Ulster.txt"
 WLS		="countries/Wales.txt"##
 YOR		="countries/York.txt"##
-NOL		="countries/Northumberland.txt"
-HSC		="countries/Highlands.txt"
-DMS		="countries/Desmond.txt"
-SLN		="countries/Sligo.txt"
-KID		="countries/Kildare.txt"
 
 # Balkans
 ACH		="countries/Achaea.txt"##
@@ -380,7 +384,7 @@ KUB 		="countries/Kuba.txt"
 KZB 		="countries/Kazembe.txt"
 LDU 		="countries/Lundu.txt"
 LND 		="countries/Lunda.txt"
-LUB 		="countries/Luba.txt"
+LBX 		="countries/Luba.txt"
 MFY 		="countries/Mahafaly.txt"
 MIR 		="countries/Merina.txt"
 MKU 		="countries/Makua.txt"

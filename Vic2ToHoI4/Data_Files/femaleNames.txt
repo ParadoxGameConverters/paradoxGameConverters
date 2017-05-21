@@ -18,15 +18,219 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+#The ones listed below are taken from HoI4 Vanilla \common\names\00_names.txt
 
+##Majors
+#Taken from GER
 north_german = {
 	names = { Jessica Emma Hanna Sofia Marie }
 }
-
+#Taken from GER, AUS
 south_german = {
-	names = { Jessica Emma Hanna Sofia Marie }
+	names = { Jessica Emma Hanna Sofia Marie Sandra }
 }
 
 german = {
 	names = { Jessica Emma Hanna Sofia Marie }
+}
+#Taken from ENG
+british = {
+	names = { Elizabeth Anne }
+}
+
+english = {
+	names = { Elizabeth Anne }
+}
+
+anglo_saxon = {
+	names = { Elizabeth Anne }
+}
+#Taken from SOV
+russian = {
+	names = { Jelena Ludmila }
+}
+byelorussian = {
+	names = { Jelena Ludmila }
+}
+ukrainian = {
+	names = { Jelena Ludmila }
+}
+#Taken from FRA
+french = {
+	names = { Anne Marie }
+}
+occitain = {
+	names = { Anne Marie }
+}
+breton = {
+	names = { Anne Marie }
+}
+#Taken from ITA
+north_italian = {
+	names = { Maria Anna }
+}
+south_italian = {
+	names = { Maria Anna }
+}
+maltese = {
+	names = { Maria Anna }
+}
+lombard = {
+	names = { Maria Anna }
+}
+all_italian = {
+	names = { Maria Anna }
+}
+#Taken from USA
+yankee = {
+	names = { Mary Jane }
+}
+dixie = {
+	names = { Mary Jane }
+}
+texan = {
+	names = { Mary Jane }
+}
+#Taken from JAP
+japanese = {
+	names = { Aimi Asami Asuka }
+}
+ainu = {
+	names = { Aimi Asami Asuka }
+}
+## Minors
+#Taken from SWE
+swedish = {
+	names = { Anna Linda Sara Caroline Eira }
+}
+#Taken from NOR
+norwegian = {
+	names = { Trine Kajsa }
+}
+#Taken from FIN
+finnish = {
+	names = { Anna }
+}
+sami = {
+	names = { Anna }
+}
+#Taken from DEN
+danish = {
+	names = { Karen Alma Elsa Else Monica }
+}
+#Taken from ICE
+icelandic = {
+	names = { Árný Arnfrithur Bjarnhildur Boghildur Dómhildur Drótt Freydís Gunnrún Rafney }
+}
+#Taken from LIT
+lithuanian = {
+	names = { Birute Morta }
+}
+#Taken from EST
+estonian = {
+	names = { Anna }
+}
+#Taken from LAT
+latvian = {
+	names = { Anna }
+}
+#Taken from ROM
+romanian = {
+	names = { Andrea }
+}
+#Taken from SLO
+slovak = {
+	names = { "Maria" "Anna" "Hana" "Božena" "Alžbeta" "Marta" }
+}
+#Taken from POL
+polish = {
+	names = { "Zofia" "Wiktoria" "Natalia" "Renata" "Elżbieta" }
+}
+#Taken from BEL (and LUX)
+flemish = {
+	names = { Marie }
+}
+wallonian = {
+	names = { Marie }
+}
+#Taken from HOL
+dutch = {
+	names = { Coba Corrie Frieda Hannie Helena Ina Jet Joke Miep Reina Truus }
+}
+boer = {
+	names = { Coba Corrie Frieda Hannie Helena Ina Jet Joke Miep Reina Truus }
+}
+#Taken from CZE
+czech = {
+	names = { "Marie" "Anna" "Hana" "Božena" "Alžběta" "Marta" }
+}
+#Taken from PER
+persian = {
+	names = { Mehrnaz Farnaz }
+}
+#Taken from INS
+javan = {
+	names = { Diah Siti }
+}
+#Taken from RAJ
+assamese = {
+	names = { Indira }
+}
+bengali = {
+	names = { Indira }
+}
+bihari = {
+	names = { Indira }
+}
+manipuri = {
+	names = { Indira }
+}
+nepali = {
+	names = { Indira }
+}
+oriya = {
+	names = { Indira }
+}
+sinhala = {
+	names = { Indira }
+}
+avadhi = {
+	names = { Indira }
+}
+kanauji = {
+	names = { Indira }
+}
+panjabi = {
+	names = { Indira }
+}
+kashmiri = {
+	names = { Indira }
+}
+gujarati = {
+	names = { Indira }
+}
+marathi = {
+	names = { Indira }
+}
+sindi = {
+	names = { Indira }
+}
+rajput = {
+	names = { Indira }
+}
+kannada = {
+	names = { Indira }
+}
+malayalam = {
+	names = { Indira }
+}
+tamil = {
+	names = { Indira }
+}
+telegu = {
+	names = { Indira }
+}
+#Taken from COL
+north_andean = {
+	names = { Amaranta Úrsula Rebeca Remedios Sofía }
 }

@@ -1,4 +1,4 @@
-# Copyright (c) 2016 The Paradox Game Converters Project
+# Copyright (c) 2017 The Paradox Game Converters Project
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -32,6 +32,11 @@ link = { v2 = democracy eu4 = merchant_republic eu4 = noble_republic eu4 = admin
 link = { v2 = presidential_dictatorship eu4 = republican_dictatorship eu4 = bureaucratic_despotism }
 link = { v2 = hms_government eu4 = english_monarchy eu4 = constitutional_monarchy eu4 = administrative_monarchy eu4 = elective_monarchy }
 link = { v2 = prussian_constitutionalism eu4 = prussian_monarchy }
-link = { v2 = proletarian_dictatorship eu4 = peasants_republic }
+link = { v2 = proletarian_dictatorship eu4 = peasants_republic } #Dithmarschen special
+
+#Monarchies with absolutist mechanics
+#link = { v2 = hms_government absolutism_level < 20 eu4 = english_monarchy eu4 = constitutional_monarchy eu4 = administrative_monarchy eu4 = elective_monarchy }
+#link = { v2 = prussian_constitutionalism absolutism_level < 60 eu4 = english_monarchy eu4 = constitutional_monarchy eu4 = administrative_monarchy eu4 = elective_monarchy eu4 = prussian_monarchy }
+#link = { v2 = absolute_monarchy absolutism_level > 60 eu4 = english_monarchy eu4 = constitutional_monarchy eu4 = administrative_monarchy eu4 = elective_monarchy eu4 = prussian_monarchy eu4 = despotic_monarchy eu4 = feudal_monarchy eu4 = absolute_monarchy eu4 = enlightened_despotism eu4 = revolutionary_empire eu4 = theocratic_government eu4 = papal_government eu4 = monastic_order_government eu4 = steppe_horde eu4 = tribal_despotism eu4 = tribal_federation eu4 = archduchy eu4 = celestial_empire eu4 = iqta eu4 = daimyo eu4 = shogunate eu4 = imperial_government eu4 = oligarchic_republic eu4 = tribal_kingdom eu4 = ottoman_government }
 
 }

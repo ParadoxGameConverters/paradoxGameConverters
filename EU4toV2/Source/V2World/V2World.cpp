@@ -747,7 +747,9 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 
 					// determine demographics
 					double provPopRatio = (*vitr)->getBaseTax() / newProvinceTotalBaseTax;
-					vector<V2Demographic> demographics = determineDemographics((*vitr)->getPopRatios(), *vitr, Vic2Province.second, oldOwner, Vic2Province.first, provPopRatio);
+
+					auto popRatios = (*vitr)->getPopRatios();
+					vector<V2Demographic> demographics = determineDemographics(popRatios, *vitr, Vic2Province.second, oldOwner, Vic2Province.first, provPopRatio);
 					for (auto demographic : demographics)
 					{
 						Vic2Province.second->addPopDemographic(demographic);
@@ -852,7 +854,7 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld)
 			country2->second->addRelation(r2);
 		}
 
-		if (itr->type == "is_colonial")
+		if (itr->type == "is_colonial"|| itr->type == "colony")
 		{
 			country2->second->setColonyOverlord(country1->second);
 
@@ -879,7 +881,7 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld)
 			}
 		}
 
-		if (itr->type == "is_march")
+		if ((itr->type == "is_march") || (itr->type == "march"))
 		{
 			country1->second->absorbVassal(country2->second);
 			for (vector<EU4Agreement>::iterator itr2 = agreements.begin(); itr2 != agreements.end(); ++itr2)
@@ -907,7 +909,7 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld)
 				r2->setLevel(r2->getLevel() + 1);
 			}
 		}
-		if ((itr->type == "vassal") || (itr->type == "union") || (itr->type == "protectorate"))
+		if ((itr->type == "vassal") || (itr->type == "union") || (itr->type == "personal_union") || (itr->type == "protectorate") || (itr->type == "tributary_state"))
 		{
 			// influence level = 5
 			r1->setLevel(5);
@@ -920,7 +922,7 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld)
 			r2->setRelations(1);
 			*/
 		}
-		if ((itr->type == "alliance") || (itr->type == "vassal") || (itr->type == "union") || (itr->type == "guarantee"))
+		if ((itr->type == "alliance") || (itr->type == "vassal") || (itr->type == "union") || (itr->type == "personal_union") || (itr->type == "guarantee"))
 		{
 			// copy agreement
 			V2Agreement v2a;
@@ -1337,7 +1339,8 @@ void V2World::setupPops(const EU4World& sourceWorld)
 	//ofstream output_file("Data.csv");
 
 	int popAlgorithm = 0;
-	if (*(sourceWorld.getVersion()) >= EU4Version("1.12.0"))
+	auto version12 = EU4Version("1.12.0");
+	if (*(sourceWorld.getVersion()) >= version12)
 	{
 		LOG(LogLevel::Info) << "Using pop conversion algorithm for EU4 versions after 1.12.";
 		popAlgorithm = 2;

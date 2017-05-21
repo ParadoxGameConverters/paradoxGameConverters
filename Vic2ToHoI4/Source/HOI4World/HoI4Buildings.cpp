@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "../Mappers/CoastalHoI4Provinces.h"
 #include "../Mappers/ProvinceNeighborMapper.h"
-#include "log.h"
+#include "Log.h"
 #include "HoI4Province.h"
 #include <string>
 using namespace std;

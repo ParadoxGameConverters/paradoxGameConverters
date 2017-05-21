@@ -42,10 +42,8 @@ V2FactoryType::V2FactoryType(Object* factory)
 		requireCoastal = false;
 	}
 
-	requireTech						= "";
-	vanillaRequiredInvention	= (vanillaInventionType)-1;
-	HODRequiredInvention			= (HODInventionType)-1;
-	HODNNMRequiredInvention		= (HODNNMInventionType)-1;
+	requireTech = "";
+	requiredInvention = "";
 
 	vector<Object*> local_supply = factory->getValue("limit_by_local_supply");
 	if ((local_supply.size() > 0) && (local_supply[0]->getLeaf() == "yes"))
@@ -145,24 +143,7 @@ V2FactoryFactory::V2FactoryFactory()
 		reqitr = factoryInventionReqs.find(ft->name);
 		if (reqitr != factoryInventionReqs.end())
 		{
-			for (int i = 0; i <= VANILLA_naval_exercises; ++i)
-			{
-				if (((Configuration::getV2Gametype() == "vanilla") || (Configuration::getV2Gametype() == "AHD")) && (reqitr->second == vanillaInventionNames[i]))
-				{
-					ft->vanillaRequiredInvention = (vanillaInventionType)i;
-					break;
-				}
-				else if ((Configuration::getV2Gametype() == "HOD") && (reqitr->second == HODInventionNames[i]))
-				{
-					ft->HODRequiredInvention = (HODInventionType)i;
-					break;
-				}
-				else if ((Configuration::getV2Gametype() == "HoD-NNM") && (reqitr->second == HODNNMInventionNames[i]))
-				{
-					ft->HODNNMRequiredInvention = (HODNNMInventionType)i;
-					break;
-				}
-			}
+			ft->requiredInvention = reqitr->second;
 		}
 		factoryTypes[ft->name] = ft;
 	}

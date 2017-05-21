@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -24,6 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Date.h"
 #include <vector>
 #include "Object.h"
+#include "OSCompatibilityLayer.h"
 using namespace std;
 
 
@@ -223,6 +224,18 @@ float date::diffInYears(const date& _rhs) const
 	years += (lhsDays - rhsDays) / 365;
 
 	return years;
+}
+
+void date::delayedByMonths(const int _months)
+{
+	year += _months / 12;
+	month += _months % 12;
+	if (month > 12)
+	{
+		year++;
+		month -= 12;
+	}
+	return;
 }
 
 bool date::isSet() const

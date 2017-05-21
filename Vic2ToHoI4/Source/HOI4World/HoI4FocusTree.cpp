@@ -58,7 +58,8 @@ void HoI4FocusTree::addGenericFocusTree()
 		focuses.push_back(newFocus);
 	}*/
 
-	if (Configuration::getHOI4Version() >= HOI4Version("1.3.0"))
+	HOI4Version version1_3("1.3.0");
+	if (Configuration::getHOI4Version() >= version1_3)
 	{
 		addVersion1_3GenericFocusTree();
 	}
@@ -3464,11 +3465,11 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 			WTModifier = 0.5;
 	}
 
-	//War Propoganda
+	//War Propaganda
 	HoI4Focus* newFocus = new HoI4Focus;
 	newFocus->id = "WarProp" + Home->getTag();
 	newFocus->icon = "GFX_goal_generic_propaganda";
-	newFocus->text += "War Propoganda";
+	newFocus->text += "War Propaganda";
 	newFocus->available += "			threat > " + to_string(0.2*WTModifier);
 	newFocus->xPos = XStart;
 	newFocus->yPos = 0;
@@ -3481,9 +3482,9 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 	newFocus = new HoI4Focus;
 	newFocus->id = "PrepInter" + Home->getTag();
 	newFocus->icon = "GFX_goal_generic_occupy_states_ongoing_war";
-	newFocus->text += "War Propoganda";
+	newFocus->text += "War Propaganda";
 	newFocus->prerequisites.push_back("focus = WarProp" + Home->getTag());
-	newFocus->available += "			threat > " + to_string(0.4 * WTModifier);
+	newFocus->available += "			threat > " + to_string(0.3 * WTModifier);
 	newFocus->xPos = XStart;
 	newFocus->yPos = 1;
 	newFocus->cost = 10;
@@ -3503,7 +3504,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 	newFocus->icon = "GFX_goal_generic_more_territorial_claims";
 	newFocus->text += "Limited Intervention";
 	newFocus->prerequisites.push_back("focus = PrepInter" + Home->getTag());
-	newFocus->available += "			threat > " + to_string(0.8 * WTModifier);
+	newFocus->available += "			threat > " + to_string(0.5 * WTModifier);
 	newFocus->xPos = XStart + offBalance;
 	newFocus->yPos = 3;
 	newFocus->cost = 10;

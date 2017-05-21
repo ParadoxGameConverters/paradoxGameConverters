@@ -30,9 +30,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <sstream>
 #include <utility>
 #include <boost/algorithm/string.hpp>
-#include "paradoxParserUTF8.h"
+#include "ParadoxParserUTF8.h"
 #include "../V2World/V2World.h"
-#include "../HoI4World/HoI4World.h"
+#include "../HOI4World/HoI4World.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 
