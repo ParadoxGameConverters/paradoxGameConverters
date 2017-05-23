@@ -5,7 +5,6 @@
 #include <iostream>
 
 #include "Encoding.h"
-#include "ConversionFacet.h"
 #include "Object.h"
 
 namespace parser_generic{
