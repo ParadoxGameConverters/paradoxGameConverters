@@ -1,5 +1,7 @@
 #include "ParadoxParserGeneric.h"
 
+#include "ConversionFacet.h"
+
 #include <fstream>
 #include <locale>
 
