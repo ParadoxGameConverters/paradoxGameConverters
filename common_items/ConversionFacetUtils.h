@@ -22,7 +22,7 @@
 
 #endif
 
-#ifdef __WIN32__
+#ifdef _WIN32
 
 //TODO windows includes
 
@@ -84,7 +84,7 @@ namespace parser_generic{
                 };              
 #endif
 
-#ifdef __WIN32__
+#ifdef _WIN32
 
                 //TODO provide a Conversion object for windows
                 //This is the only OS specific part of the code
