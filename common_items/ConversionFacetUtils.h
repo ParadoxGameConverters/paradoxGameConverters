@@ -209,7 +209,7 @@ namespace parser_generic{
                         };
 
                         StateManager(const StateManager<State> &) = delete;
-                        StateManager &operator=(const StateManager<State> &) = delete;
+                        StateManager<State> &operator=(const StateManager<State> &) = delete;
                 };
 
 		
