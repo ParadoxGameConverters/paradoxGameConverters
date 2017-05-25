@@ -2,6 +2,8 @@
 #include "OSCompatibilityLayer.h"
 #include "Log.h"
 
+#include "ConversionFacet.h"
+
 #include <fstream>
 #include <locale>
 #include <stack>

@@ -22,7 +22,7 @@
 
 #endif
 
-#ifdef __WIN32__
+#ifdef _WIN32
 
 //TODO windows includes
 
@@ -36,12 +36,14 @@ namespace parser_generic{
 
 #ifdef __linux__
         
-                // The Linux specific conversion code 
+                // The Linux specific conversion code
+		// This also contains the actual state of the conversion, as codecvt should be stateless
                 class Conversion{
                 private:
                         iconv_t descriptor_;
                 public:
-
+			
+			//Does the actual conversion
                         template<typename From, typename To> std::codecvt_base::result convert(const From *from, const From *from_end, const From * &from_next, To *to, To *to_end, To * &to_next) const{
                                 using namespace std;
                                 size_t from_remainder = static_cast<size_t>(from_end - from) * sizeof(From);
@@ -82,7 +84,7 @@ namespace parser_generic{
                 };              
 #endif
 
-#ifdef __WIN32__
+#ifdef _WIN32
 
                 //TODO provide a Conversion object for windows
                 //This is the only OS specific part of the code
@@ -136,12 +138,14 @@ namespace parser_generic{
                                 state = *reinterpret_cast<State *>(&in_state);
                         };
 
+			//apparently the 'recommended' way of resetting mbstate_t
                         static InternalState create_initial_state(){
                                 std::mbstate_t state;
                                 memset(&state, 0, sizeof(std::mbstate_t));
                                 return to_internal_state(state);
                         };
 
+			//gets an existing conversion state pair from the map
                         Conversions *get(InternalState state){
                                 using namespace std;
                                 lock_guard<mutex> lock{mutex_};
@@ -149,12 +153,15 @@ namespace parser_generic{
                                 return found == data_.end() ? nullptr : found->second;
                         };
 
+			//couples a conversion state pair to the internal state provided
                         void put(InternalState state, Conversions *conversions){
                                 using namespace std;
                                 lock_guard<mutex> lock{mutex_};
                                 data_.insert(make_pair(state, conversions));
                         };
 
+			//removes the conversion state pair associated with the internal state flag from the map
+			//does NOT delete it
                         void remove(InternalState state){
                                 using namespace std;
                                 lock_guard<mutex> lock{mutex_};
@@ -164,6 +171,7 @@ namespace parser_generic{
                                 }
                         };
 
+			//generates the next useable state
                         InternalState next_state(){
                                 using namespace std;
                                 lock_guard<mutex> lock{mutex_};
@@ -174,6 +182,7 @@ namespace parser_generic{
 		public:
                         StateManager(Encoding internal_encoding, Encoding external_encoding) : internal_encoding_{internal_encoding}, external_encoding_{external_encoding}, data_{}, mutex_{}, empty_state_{create_initial_state()}, next_state_{empty_state_}{};
 
+			//Acquires a new or existing conversion state pair for the current conversion
                         Conversions *acquire(State &state){
                                 InternalState in_state = to_internal_state(state);
                                 Conversions *conversions;
@@ -185,12 +194,14 @@ namespace parser_generic{
                                 return conversions;
                         };
 
+			//Releases the conversion state, deleting all state resources and resetting the facet's state flag
                         void release(Conversions *conversions, State &state){
                                 remove(to_internal_state(state));
                                 set_external_state(empty_state_, state);
                                 delete conversions;
                         };
 
+			//Delete all remaining state data
                         ~StateManager(){
                                 for(auto pair : data_){
                                         delete pair.second;
