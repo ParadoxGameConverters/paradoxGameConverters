@@ -109,6 +109,10 @@ namespace Utils
 	std::string convert8859_15ToUTF8(std::string input);
 	std::wstring convert8859_15ToUTF16(std::string UTF8);
 	std::wstring convertUTF8ToUTF16(std::string UTF8);
+
+	// converts a string in the system dependent wchar_t encoding to UTF-8
+	std::string convertToUTF8(const std::wstring &input);
+
 } // namespace Utils
 
 

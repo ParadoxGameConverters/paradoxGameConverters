@@ -1,7 +1,12 @@
 #include "ParadoxParserGeneric.h"
+#include "OSCompatibilityLayer.h"
+#include "Log.h"
 
 #include <fstream>
 #include <locale>
+#include <stack>
+#include <string>
+#include <boost/bind.hpp>
 
 #include <boost/bind.hpp>
 #include <boost/spirit/include/qi.hpp>
@@ -10,18 +15,23 @@
 using namespace parser_generic;
 
 Object *parser_generic::parseUTF_8(const std::string &file_path){
-	return parse(file_path, UTF_8);
+	return parser_generic::parse(file_path, UTF_8);
 }
 
-Object *parser_generic_parseISO_8859_15(const std::string &file_path){
-	return parse(file_path, ISO_8859_15);
+Object *parser_generic::parseISO_8859_15(const std::string &file_path){
+	return parser_generic::parse(file_path, ISO_8859_15);
 }
 
 Object *parser_generic::parse(const std::string &file_path, Encoding file_encoding){
 	using namespace std;
-	
+		
+	LOG(LogLevel::Info) << "parsing file " << file_path;	
+
 	//open the file as a wide character stream
 	basic_ifstream<wchar_t> input{file_path};
+
+	//unset skipping of whitespace
+	input.unsetf(std::ios::skipws);
 
 	//create a new local based on the old one, but using the codecvt facet to decode the file encoding to the system dependant WCHAR encoding
 	locale loc{input.getloc(), new ConversionFacet<wchar_t,char>{file_encoding, WCHAR}};
@@ -34,7 +44,7 @@ Object *parser_generic::parse(const std::string &file_path, Encoding file_encodi
 	input.imbue(loc);
 
 	//delegate to parse, which won't need to care about the encoding anymore 
-	return parse(input);	
+	return parser_generic::parse(input);	
 }
 
 // forward declaration of the parse function to keep things clean
@@ -50,13 +60,132 @@ Object *parser_generic::parse(std::basic_istream<wchar_t> &input){
 	boost::spirit::basic_istream_iterator<wchar_t> begin(input);
         boost::spirit::basic_istream_iterator<wchar_t> end;		
 	
-	do_parse(begin, end);
+	return do_parse(begin, end);
 }
 
 /*
-	TODO: implement the parser properly by porting the grammar from ISO8859_15 parser
-	The current parser is a dummy that doesn't really do anything yet but demonstrate the eventual code
-	Note that the parser uses the system dependent wchar_t encoding but is still portable because the actual decoding of the files is done elsewhere
+	Helper functions to pretty print logs
+	TODO: remove these
+*/
+struct print_str{
+        
+        std::wstring value_;
+
+        explicit print_str(const std::wstring &value) : value_(value){};
+
+};
+
+std::ostream &operator<<(std::ostream &output, const print_str &str){
+        for(wchar_t c : str.value_){
+                if(c < 128){
+                        output.put(c);
+                }else{
+                        output << '<' << static_cast<int>(c) << '>';
+                }
+        }
+        return output;
+};
+
+/*
+	An exception type for use in the parser to simplify control flow on errors
+*/
+class ParseError : public std::runtime_error{
+public:
+        ParseError() : std::runtime_error{"unspecified parse error"}{};
+
+        ParseError(const std::string &msg) : std::runtime_error{msg}{};
+
+};
+
+/*
+	Parser state contains all state information for the parser's functions
+	This allows for a compatibility layer to easily bind to Object's data members without having to change the Object interface and also to make the parser thread safe
+*/
+class ParserState{
+private:
+        Object *root_;
+        std::stack<Object *> stack_;
+        std::wstring identifier_;
+
+        Object &current_scope(){
+                if(stack_.empty()){
+                        throw ParseError{"no current scope defined: stack is empty"};
+                }
+                return *stack_.top();
+        };
+
+	std::string encode(const std::wstring &str){
+		return Utils::convertToUTF8(str);
+	};
+
+        std::string read_and_discard_identifier(){
+                if(identifier_.empty()){
+                        throw ParseError{"no identifier specified"};
+                }
+		//TODO: to much copying, do this better with move operations
+                std::wstring result;
+                std::swap(result, identifier_);
+                return encode(result);
+        };
+public:
+
+        ParserState() : root_(new Object{"topLevel"}), stack_{}{
+                stack_.push(root_);
+        };
+
+        void set_identifier(const std::wstring &identifier){
+                identifier_ = identifier;
+        };
+
+        void set_string_value(const std::wstring &literal){
+                current_scope().setValue(encode(literal));
+        };
+
+        void add_to_map(const std::wstring &value){
+		Object* object = new Object{read_and_discard_identifier()};
+		object->setValue(encode(value));
+                current_scope().setValue(object);
+        };
+        void add_to_list(const std::wstring &value){
+                current_scope().addToList(encode(value));
+        };
+
+        void enter_scope(wchar_t){
+                Object *object;
+                if(identifier_.empty()){
+                        object = new Object{"listItem"}; //TODO: maybe add an identifier here
+                        current_scope().setObjList(true);
+			current_scope().addObject(object);
+                }else{
+                        object = new Object{read_and_discard_identifier()};
+                        current_scope().setValue(object);
+                }
+                stack_.push(object);
+        };
+
+        void leave_scope(wchar_t){
+		if(stack_.empty()){
+                        throw ParseError{"no parent scope found: stack is empty"};
+                }
+                stack_.pop();
+        };
+
+        void comment(const std::wstring &str){
+        };
+
+        Object *consume_result(){
+                Object *result = nullptr;
+                std::swap(result, root_);
+                return result;
+        };
+
+        ~ParserState(){
+                delete root_;
+        };
+};
+
+/*
+	First implementation of the parser
 */
 
 namespace qi = boost::spirit::qi;
@@ -65,64 +194,94 @@ namespace parsers = qi::standard_wide;
 
 const wchar_t QUOTE = L'"';
 
-const wchar_t ASSIGNMENT = L'=';
+const wchar_t ASSIGN = L'=';
 
-const wchar_t OBJECT_START = L'{';
+const wchar_t SCOPE_START = L'{';
 
-const wchar_t OBJECT_END = L'}';
+const wchar_t SCOPE_END = L'}';
 
 const wchar_t COMMENT = L'#';
 
-//DUMMY
-void print(const std::wstring &str){
-        using namespace std;
-        cout << "quoted string: \"";
-        for(wchar_t c : str){
-                cout << static_cast<int>(c) << " ";
-        }
-        cout << '\"'<< endl;
-};
+const std::wstring IDENTIFIER_NOT_ALLOWED{L"{=#}\""};
 
-//DUMMY
-template<typename Iterator> class Grammar : public qi::grammar<Iterator, std::wstring()>{
+template<typename Iterator> class Grammar : public qi::grammar<Iterator>{
 private:
+
+        ParserState *state_;
+
+        qi::rule<Iterator, std::wstring()> comment_;
+
+        qi::rule<Iterator> white_space_;
 
         qi::rule<Iterator, std::wstring()> quoted_string_;
 
+        qi::rule<Iterator, wchar_t()> identifier_character_;
+
+        qi::rule<Iterator, std::wstring()> unquoted_string_;
+
+        qi::rule<Iterator> object_;
+
+        qi::rule<Iterator> key_;
+
+        qi::rule<Iterator> value_;
+
+        qi::rule<Iterator> key_value_sequence_;
+
+        qi::rule<Iterator> string_list_;
+
+        qi::rule<Iterator> object_list_;
+
+        qi::rule<Iterator> statement_sequence_;
+
 public:
-        Grammar() : Grammar::base_type(quoted_string_){
+        Grammar(ParserState *state) : Grammar::base_type(statement_sequence_), state_(state){
                 using parsers::char_;
                 using parsers::space;
-                using parsers::graph;
+                using boost::spirit::eol;
 
-                quoted_string_ = (QUOTE >> *(char_ - QUOTE) >> QUOTE);
+                //WARNING: all character literals must be expressed as wide literals L"x" or explicitly cast to wchar_t
+                //Any literals using the char format 'x' will not be portable
 
+                comment_ = char_(COMMENT) >> *(char_ - eol);
+
+                white_space_ = *(space | comment_[bind(&ParserState::comment, state_, _1)]);
+
+                quoted_string_ = QUOTE >> *(char_ - QUOTE) >> QUOTE;
+
+                identifier_character_ = char_ - (char_(IDENTIFIER_NOT_ALLOWED) | space);
+
+                unquoted_string_ = (+identifier_character_);
+
+                key_ = (quoted_string_ | unquoted_string_)[bind(&ParserState::set_identifier, state_, _1)];
+
+                value_ = (((quoted_string_ | unquoted_string_)[bind(&ParserState::add_to_map, state_,_1)]) | object_);
+
+                key_value_sequence_ = +(key_ >> white_space_ >> ASSIGN >> white_space_ >> value_ >> white_space_);
+
+                string_list_ = +((quoted_string_ | unquoted_string_ )[bind(&ParserState::add_to_list,state_, _1)] >> white_space_);
+
+                object_list_ = +(object_ >> white_space_);
+
+                object_ = char_(SCOPE_START)[bind(&ParserState::enter_scope, state_, _1)] >> white_space_ >> statement_sequence_  >> char_(SCOPE_END)[bind(&ParserState::leave_scope, state_, _1)];
+
+                statement_sequence_ = white_space_ >> (key_value_sequence_ | object_list_ | string_list_ | white_space_) >> white_space_;
         };
-
 };
 
-//DUMMY
 template<typename Iterator> Object *do_parse(Iterator begin, Iterator end){
-        using namespace std;
-
-        using qi::rule;
-        using qi::parse;
-
-        using parsers::char_;
-        using parsers::space;
-        using parsers::graph;
-
-        Grammar<Iterator> grammar;
-
-        wstring str;
-
-        bool result = true;
-        while(result){
-                result = parse(begin, end, grammar, str);
-                cout << "result: " << result << endl;
-                if(result){
-                        print(str);
-                }
-        }
-	return nullptr;
+	using boost::spirit::qi::parse;
+	using namespace std;
+	ParserState state;
+	Grammar<Iterator> grammar{&state};
+	try{
+		bool result = parse(begin, end, grammar);
+		if(result){
+			return state.consume_result();
+		}else{
+			LOG(LogLevel::Error) << "parsing errors during parsing of stream";
+		}
+	}catch(ParseError &e){
+		LOG(LogLevel::Error) << "parsing errors during parsing of stream: " << e.what();
+	}
+	return nullptr;;
 };

@@ -368,6 +368,10 @@ std::wstring convertUTF8ToUTF16(std::string UTF8)
 	return returnable;
 }
 
+std::string convertToUTF8(const std::wstring &input){
+	return convertUTF16ToUTF8(input);
+}
+
 
 void WriteToConsole(LogLevel level, const std::string& logMessage)
 {
