@@ -1,4 +1,4 @@
-# Copyright (c) 2014 The Paradox Game Converters Project
+# Copyright (c) 2017 The Paradox Game Converters Project
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,30 +20,59 @@
 
 
 unions = {
+#Germanics
+link = { tag = NGF tag = GER culture = north_german } # North Germany
+link = { tag = SGF tag = GER culture = south_german } #South Germany
+link = { tag = GER culture = german } #CK2 converted - generic Germany
+#link = { tag = FRA culture = frankish } #CK2 converted - Francia=>France?
+#no cultural union for Suebi, Ostrogothic
 
-# Italy
+#Beneluxian
+link = { tag = NET culture = dutch } #Netherlands
+link = { tag = BEL culture = flemish } #Flanders and Belgium
+link = { tag = BEL culture = wallonian } #Wallonia and Belgium
+
+#Swiss - dropped
+
+#Scandinavian
+link = { tag = SCA culture = swedish } #Sweden
+link = { tag = SCA culture = danish } #Denmark
+link = { tag = SCA culture = norwegian } #Norway
+link = { tag = SCA culture = icelandic } #Iceland
+link = { tag = SCA culture = finnish } #Finland
+link = { tag = SCA culture = sami } #Sami
+
+#British
+link = { tag = ENG culture = british }
+link = { tag = ENG culture = english }
+link = { tag = ENG tag = IRE culture = irish } #Ireland
+link = { tag = ENG culture = anglo_saxon } #UK for Anglo-Saxons
+link = { tag = ENG culture = scottish } #Scotland
+link = { tag = ENG culture = pictish } 
+link = { tag = ENG culture = welsh }
+
+#Italian => Italy
 link = { tag = ITA culture = north_italian }
 link = { tag = ITA culture = south_italian }
 link = { tag = ITA culture = maltese }
+link = { tag = ITA culture = italian }
+#link = { tag = ITA culture = lombard }
+#no cultural union for Lombard
 
-# Germany, NGF, SGF
-link = { tag = NGF tag = GER culture = north_german }
-link = { tag = SGF tag = GER culture = south_german }
+#Iberian => Spain
+link = { tag = SPA tag = NAV culture = basque } #Navarre as Basque
+link = { tag = SPA culture = spanish }
+link = { tag = SPA tag = CAT culture = catalan } #and Catalonia
+link = { tag = SPA culture = galician }
+#no cultural union for Visigothic
+#add Portuguese to spain? What about Andalucian?
 
-#Scandinavia
-link = { tag = SCA culture = swedish }
-link = { tag = SCA culture = danish }
-link = { tag = SCA culture = norwegian }
-link = { tag = SCA culture = icelandic }
-
-#Great Britain
-link = { tag = ENG culture = british }
-link = { tag = ENG culture = irish }
-
-#France
+#French => France
 link = { tag = FRA culture = french }
+link = { tag = FRA culture = occitain }
+link = { tag = FRA culture = breton }
 
-#Yugoslavia
+#South Slavic
 link = { tag = YUG culture = croat }
 link = { tag = YUG culture = serb }
 link = { tag = YUG culture = bulgarian }
@@ -51,21 +80,66 @@ link = { tag = YUG culture = albanian }
 link = { tag = YUG tag = SLO culture = slovene }
 link = { tag = YUG culture = bosniak }
 
-#Romania
-link = { tag = ROM culture = romanian }
+#Romanian and Hungarian
+link = { tag = ROM culture = romanian } #Romania
+link = { tag = HUN culture = hungarian } #Hungary
 
-#Hungary
-link = { tag = HUN culture = hungarian }
+#Polish-Lithuanian => PLC
+link = { tag = POL tag = PLC culture = polish } #and Poland
+link = { tag = LIT tag = PLC culture = lithuanian } #and Lithuania
 
-#Czechoslovakia
-link = { tag = CZH culture = czech }
-link = { tag = CZH tag = SLV tag = RUT culture = slovak }
+#Czechoslovakian => Czechoslovakia
+link = { tag = CZH culture = czech } 
+link = { tag = SLV tag = CZH tag = RUT culture = slovak } #and Slovakia and Ruthenia
 
-#Russia
-link = { tag = RUS culture = russian }
-link = { tag = RUS tag = BYE culture = byelorussian }
-link = { tag = RUS tag = UKR tag = RUT culture = ukrainian }
-link = { tag = RUS culture = ugrian }
+#East Slavic
+link = { tag = RUS culture = russian } #Russia
+link = { tag = BYE tag = RUS culture = byelorussian } #Russia and Belarus
+link = { tag = RUT tag = UKR culture = ukrainian } #Ruthenia/Ukraine
+#no cultural union for Ugrian
+
+#Baltic => United Baltic
+link = { tag = UBD tag = LAT culture = latvian } #and Latvia
+link = { tag = UBD tag = EST culture = estonian } #and Estonia
+
+#Levantine
+link = { tag = GRE culture = greek } #Greece
+link = { tag = GEO culture = georgian } #Georgia
+link = { tag = ARM culture = armenian } #Armenia
+#no cultural union for Alan, Maghreb_arabic and Syriac
+
+#Turkic
+link = { tag = TUR culture = turkish } #the Ottomans
+link = { tag = AZB culture = azerbaijani } #Azerbaijan
+#no cultural union for North_caucasian
+
+#Arab => Arabia
+link = { tag = ARA culture = maghrebi }
+link = { tag = EGY tag = ARA culture = misri } #and Egypt
+link = { tag = IRQ tag = BAB tag = ARA culture = mashriqi } #and Iraq/Babylon
+link = { tag = ARA culture = bedouin }
+link = { tag = ARA culture = berber }
+#no cultural union for Andalucian at present
+
+#Persian
+#link = { tag = PER culture = persian } #Persia
+#link = { tag = BUK culture = uzbek } #Bukkhara
+#link = { tag = KZH culture = kazak } #(Converted) Kazakh
+#link = { tag = KOK culture = kirgiz } #Kokand
+#link = { tag = KOK culture = tajik } #Kokand
+#link = { tag = XIN culture = uighur } #Xinjiang
+#link = { tag = AFG culture = pashtun } #Afghanistan
+#link = { tag = AFG culture = hazara } #Afghanistan
+#link = { tag = KAL culture = baluchi } #Kalat
+#link = { tag = KHI culture = turkmen } #Khiva
+#link = { tag = ARD culture = kurdish } #Ardalan
+#link = { tag = CRI tag = RUS culture = tatar } #Crimea and Russia
+
+#Central Asian
+#link = { tag = KHA tag = MGL culture = mongol } #Mongolia
+#link = { tag = SIB culture = siberian } #Sibir
+#link = { tag = TIB culture = tibetan } #Tibet
+#no cultural union for Yakut
 
 #India
 link = { tag = HND culture = assamese }
@@ -88,43 +162,66 @@ link = { tag = HND culture = malayalam }
 link = { tag = HND culture = tamil }
 link = { tag = HND culture = telegu }
 
-#USA
-link = { tag = USA culture = yankee }
-link = { tag = USA culture = dixie }
-link = { tag = USA culture = texan }
+#Indochina
+#link = { tag = DAI culture = vietnamese } #Dai Nam
+#link = { tag = CAM culture = khmer } #Cambodia
+#link = { tag = MSA culture = malay } #(Converted) Malaya
+#link = { tag = BRU culture = bornean } #Brunei
+#link = { tag = PHI culture = filipino } #Philippines
+#link = { tag = JAV culture = javan } #Java
+#link = { tag = SIA culture = thai } #Siam
+#link = { tag = LUA culture = lao } #Luang Phrabang
+#link = { tag = SST tag = BUR culture = shan } #(Converted) Shan States
+link = { tag = BUR culture = burmese } #Burma
+#no cultural union for Moluccan, Asian_minor, Kachin or Karen
 
-#Arabia
-link = { tag = ARA culture = mashriqi }
-link = { tag = ARA culture = bedouin }
-link = { tag = ARA culture = misri }
-link = { tag = ARA culture = maghrebi }
-
-#United Baltic Provinces
-link = { tag = UBD tag = LAT culture = latvian }
-link = { tag = UBD culture = estonian }
-
-
-#Polish-Lithuanian Commonwealth
-link = { tag = PLC tag = POL culture = polish }
-link = { tag = PLC culture = lithuanian }
-
-#China
-link = { tag = CHI culture = manchu }
-link = { tag = CHI culture = nanfaren }
+#East Asian
+link = { tag = JAP culture = japanese } #Japan
+link = { tag = CHI tag = MCK culture = manchu } #China and Manchuria
+link = { tag = CHI culture = nanfaren } #From here below, China
 link = { tag = CHI culture = beifaren }
 link = { tag = CHI culture = min }
 link = { tag = CHI culture = hakka }
 link = { tag = CHI culture = zhuang }
 link = { tag = CHI culture = miao }
 link = { tag = CHI culture = yi }
+#no cultural union for Ainu, Bai
 
-#others
-link = { tag = AZB culture = azerbaijani } #Azerbaijan
-link = { tag = BEL culture = flemish } #Belgium - Flanders
-link = { tag = BEL tag = WLL culture = wallonian } #Belgium - Wallonia
-link = { tag = JAV culture = javan } #Java
-link = { tag = KAL culture = baluchi } #Kalat
-link = { tag = XIN culture = uighur } #Xinjiang
+#Oceanic
+link = { tag = HAW culture = hawaiian } #Hawaii
+#no cultural union for Polynesian, Maori, Aborigine, Mela- and Micronesian
+
+#Native Americans - expand and think about logically - what kinds of worlds will create native unions?
+#link = { tag = ZAP culture = zapotec } #Zapotec
+#link = { tag = MAY culture = mayan } #Maya
+#link = { tag = AZT culture = nahua } #Aztec
+#link = { tag = TAR culture = tarascan } #Tarascan
+#link = { tag = MTC culture = metis } #Metis Confederacy
+#link = { tag = SIO culture = siouan } #Sioux
+#link = { tag = IRO culture = iroquoian } #Iroquois
+
+#USA
+link = { tag = USA culture = yankee } #USA
+link = { tag = USA tag = CSA culture = dixie } #and CSA
+link = { tag = USA tag = TEX culture = texan } #and Texas
+
+#post-colonial cultures - will be redone with post-colonial culture changes.
+#link = { tag = ORA tag = TRN tag = SAF culture = boer } #Orange/Transvaal/South Africa
+#link = { tag = AST culture = australian } #Australia
+#link = { tag = CAN culture = anglo_canadian } #Canada
+#link = { tag = QUE tag = CAN culture = french_canadian } #Quebec and Canada
+#link = { tag = MEX culture = mexican } #Mexico
+#link = { tag = UCA culture = central_american } #Central America
+#link = { tag = GCO culture = north_andean } #Gran Colombia
+#link = { tag = PEU culture = south_andean } #Peru
+#link = { tag = ARG culture = platinean } #Argentina
+#link = { tag = BRZ culture = brazilian } #Brazil
+
+#African cultures - dropped
+link = { tag = MAD culture = malagasy } #Madagascar
 link = { tag = ZUL culture = zulu } #Zulu
-link = { tag = TRL culture = equine } #Trapalandia (horses)
+
+#Easter Eggs
+link = { tag = JAN link = polar_bears } #Jan Mayen
+link = { tag = TRL link = horse } #(CK2) Trapalandia
 }

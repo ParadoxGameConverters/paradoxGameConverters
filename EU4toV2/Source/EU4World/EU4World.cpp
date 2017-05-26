@@ -55,7 +55,7 @@ EU4World::EU4World(const string& EU4SaveFileName)
 	loadEU4Version(EU4SaveObject);
 	loadActiveDLC(EU4SaveObject);
 	loadEndDate(EU4SaveObject);
-	loadHolyRomanEmperor(EU4SaveObject);
+	loadEmpires(EU4SaveObject);
 	loadProvinces(EU4SaveObject);
 	loadCountries(EU4SaveObject);
 	loadRevolutionTarget(EU4SaveObject);
@@ -342,15 +342,44 @@ void EU4World::loadEndDate(const Object* EU4SaveObj)
 }
 
 
-void EU4World::loadHolyRomanEmperor(const Object* EU4SaveObj)
+void EU4World::loadEmpires(const Object* EU4SaveObj)
 {
 	vector<Object*> emperorObj = EU4SaveObj->getValue("emperor");
 	if (emperorObj.size() > 0)
 	{
 		holyRomanEmperor = emperorObj[0]->getLeaf();
 	}
+
+	vector<Object*> empireObj = EU4SaveObj->getValue("empire");
+	if (empireObj.size() > 0)
+	{
+		loadHolyRomanEmperor(empireObj);
+	}
+	vector<Object*> celestialEmpireObj = EU4SaveObj->getValue("celestial_empire");
+	if (celestialEmpireObj.size() > 0)
+	{
+		loadCelestialEmperor(celestialEmpireObj);
+	}
 }
 
+void EU4World::loadHolyRomanEmperor(vector<Object*> empireObj)
+{
+	vector<Object*> emperorObj = empireObj[0]->getValue("emperor");
+	if (emperorObj.size() > 0)
+	{
+		holyRomanEmperor = emperorObj[0]->getLeaf();
+	}
+}
+
+
+void EU4World::loadCelestialEmperor(vector<Object*> celestialEmpireObj)
+{
+	vector<Object*> emperorObj = celestialEmpireObj[0]->getValue("emperor");
+	if (emperorObj.size() > 0)
+	{
+		celestialEmperor = emperorObj[0]->getLeaf();
+	}
+}
 
 void EU4World::loadProvinces(const Object* EU4SaveObj)
 {
@@ -440,6 +469,10 @@ void EU4World::loadCountries(const Object* EU4SaveObj)
 				if (country->getTag() == holyRomanEmperor)
 				{
 					country->setEmperor(true);
+				}
+				if (country->getTag() == celestialEmperor)
+				{
+					country->setCelestialEmperor(true);
 				}
 			}
 		}
@@ -847,7 +880,25 @@ void EU4World::mergeNations()
 
 void EU4World::uniteJapan()
 {
-	EU4Country* japan = getCountry("JAP");
+	EU4Country* japan;
+
+	auto version12 = EU4Version("1.20.0.0");
+	if (*version >= version12)
+	{
+		for (auto country : countries)
+		{
+			if (country.second->getPossibleShogun())
+			{
+				string tag = country.first;
+				japan=getCountry(tag);
+			}
+		}
+	}
+
+	else 
+	{
+		japan = getCountry("JAP");
+	}
 	if (japan == NULL)
 	{
 		return;
