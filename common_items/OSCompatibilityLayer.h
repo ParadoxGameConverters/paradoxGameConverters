@@ -113,6 +113,9 @@ namespace Utils
 	// converts a string in the system dependent wchar_t encoding to UTF-8
 	std::string convertToUTF8(const std::wstring &input);
 
+	//converts an UTF8 path to the system dependent filesystem path encoding
+	std::string normalizeUTF8Path(const std::string &utf_8_path);
+
 } // namespace Utils
 
 

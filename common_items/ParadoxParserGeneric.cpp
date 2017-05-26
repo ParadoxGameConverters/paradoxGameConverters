@@ -27,7 +27,7 @@ Object *parser_generic::parseISO_8859_15(const std::string &file_path){
 Object *parser_generic::parse(const std::string &file_path, Encoding file_encoding){
 	using namespace std;
 		
-	LOG(LogLevel::Info) << "parsing file " << file_path;	
+	LOG(LogLevel::Debug) << "parsing file " << file_path;	
 
 	//open the file as a wide character stream
 	basic_ifstream<wchar_t> input{file_path};
@@ -45,6 +45,11 @@ Object *parser_generic::parse(const std::string &file_path, Encoding file_encodi
 	*/
 	input.imbue(loc);
 
+	if(!input){
+		LOG(LogLevel::Error) << "unable to open input stream to path " << file_path;
+		return nullptr;
+	}
+	
 	//delegate to parse, which won't need to care about the encoding anymore 
 	return parser_generic::parse(input);	
 }
@@ -53,7 +58,6 @@ Object *parser_generic::parse(const std::string &file_path, Encoding file_encodi
 template<typename Iterator> Object *do_parse(Iterator begin, Iterator end);
 
 Object *parser_generic::parse(std::basic_istream<wchar_t> &input){
-	
 	/*
 	use boost's istream_iterator to directly couple the istream to the parser
 	this makes sure we can parse the entire file without preparsing it into objects and buffering each one (bufferNextObject will no longer be needed)
