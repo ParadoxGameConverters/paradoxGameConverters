@@ -1058,4 +1058,8 @@ namespace Utils
 		using namespace std;
 		return ConvertString<wstring, string>("wchar_t", "UTF-8",input);
 	}
+
+	std::string normalizeUTF8Path(const std::string &utf_8_path){
+		return utf_8_path;
+	};
 }

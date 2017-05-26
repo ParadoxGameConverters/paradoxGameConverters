@@ -372,6 +372,9 @@ std::string convertToUTF8(const std::wstring &input){
 	return convertUTF16ToUTF8(input);
 }
 
+std::string normalizeUTF8Path(const std::string &utf_8_path){
+	return convertUTF8ToASCII(utf_8_path);
+};
 
 void WriteToConsole(LogLevel level, const std::string& logMessage)
 {
