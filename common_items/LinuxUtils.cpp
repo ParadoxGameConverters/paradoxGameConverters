@@ -1052,28 +1052,10 @@ namespace Utils
 		return ConvertString<string, wstring>("UTF-8", "wchar_t",UTF8);
 	}
 
-	int FromMultiByte(const char* in, size_t inSize, wchar_t* out, size_t outSize)
+	
+	std::string convertToUTF8(const std::wstring &input)
 	{
-		/*if(outSize == 0)
-			return inSize;
-
-		if(inSize <= outSize)
-			memcpy(out, in, inSize);
-
-		/*iconv_t conv = iconv_open("CP1252", "UTF-16");
-		iconv(conv, &in, &inSize, (char*)&out, &outSize);
-		iconv_close(conv);*/
-	}
-
-	int ToMultiByte(const wchar_t* in, size_t inSize, char* out, size_t outSize)
-	{
-		/*if(outSize == 0)
-			return inSize;
-
-		if(inSize <= outSize)
-			memcpy(out, in, inSize);
-		/*iconv_t conv = iconv_open("UTF-16", "CP1252");
-		iconv(conv, (char*)&in, &inSize, &out, &outSize);
-		iconv_close(conv);*/
+		using namespace std;
+		return ConvertString<wstring, string>("wchar_t", "UTF-8",input);
 	}
 }
