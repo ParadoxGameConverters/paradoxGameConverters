@@ -1,0 +1,70 @@
+#!/bin/bash
+
+# Copy converter data files
+cp "Data_Files/configuration.txt" "Release-Linux/configuration.txt"
+cp "Data_Files/ReadMe.txt" "Release-Linux/ReadMe.txt"
+cp "Data_Files/merge_nations.txt" "Release-Linux/merge_nations.txt"
+cp "Data_Files/starting_factories.txt" "Release-Linux/starting_factories.txt"
+cp "Data_Files/province_mappings.txt" "Release-Linux/province_mappings.txt"
+cp "Data_Files/country_mappings.txt" "Release-Linux/country_mappings.txt"
+cp "Data_Files/cultureMap.txt" "Release-Linux/cultureMap.txt"
+cp "Data_Files/slaveCultureMap.txt" "Release-Linux/slaveCultureMap.txt"
+cp "Data_Files/religionMap.txt" "Release-Linux/religionMap.txt"
+cp "Data_Files/unions.txt" "Release-Linux/unions.txt"
+cp "Data_Files/governmentMapping.txt" "Release-Linux/governmentMapping.txt"
+cp "Data_Files/blocked_tech_schools.txt" "Release-Linux/blocked_tech_schools.txt"
+cp "Data_Files/leader_traits.txt" "Release-Linux/leader_traits.txt"
+cp "Data_Files/regiment_costs.txt" "Release-Linux/regiment_costs.txt"
+cp "Data_Files/license.txt" "Release-Linux/license.txt"
+cp "Data_Files/idea_effects.txt" "Release-Linux/idea_effects.txt"
+cp "Data_Files/colonial_flags.txt" "Release-Linux/colonial_flags.txt"
+cp "Data_Files/colonial_tags.txt" "Release-Linux/colonial_tags.txt"
+cp "Data_Files/ck2titleMap.txt" "Release-Linux/ck2titleMap.txt"
+cp "Data_Files/port_blacklist.txt" "Release-Linux/port_blacklist.txt"
+cp "Data_Files/port_whitelist.txt" "Release-Linux/port_whitelist.txt"
+cp "Data_Files/minorityPops.txt" "Release-Linux/minorityPops.txt"
+cp "Data_Files/FAQ.txt" "Release-Linux/FAQ.txt"
+cp "Data_Files/after_converting.txt" "Release-Linux/after_converting.txt"
+
+# Create Blank Mod
+rm -rf "Release-Linux/blankMod"
+cp -r "Data_Files/blankMod" "Release-Linux/blankMod"
+mkdir "Release-Linux/blankMod/output/history/provinces"
+mkdir "Release-Linux/blankMod/output/history/provinces/africa"
+mkdir "Release-Linux/blankMod/output/history/provinces/asia"
+mkdir "Release-Linux/blankMod/output/history/provinces/australia"
+mkdir "Release-Linux/blankMod/output/history/provinces/austria"
+mkdir "Release-Linux/blankMod/output/history/provinces/balkan"
+mkdir "Release-Linux/blankMod/output/history/provinces/canada"
+mkdir "Release-Linux/blankMod/output/history/provinces/carribean"
+mkdir "Release-Linux/blankMod/output/history/provinces/central asia"
+mkdir "Release-Linux/blankMod/output/history/provinces/china"
+mkdir "Release-Linux/blankMod/output/history/provinces/france"
+mkdir "Release-Linux/blankMod/output/history/provinces/germany"
+mkdir "Release-Linux/blankMod/output/history/provinces/india"
+mkdir "Release-Linux/blankMod/output/history/provinces/indonesia"
+mkdir "Release-Linux/blankMod/output/history/provinces/italy"
+mkdir "Release-Linux/blankMod/output/history/provinces/japan"
+mkdir "Release-Linux/blankMod/output/history/provinces/low countries"
+mkdir "Release-Linux/blankMod/output/history/provinces/mexico"
+mkdir "Release-Linux/blankMod/output/history/provinces/pacific island"
+mkdir "Release-Linux/blankMod/output/history/provinces/portugal"
+mkdir "Release-Linux/blankMod/output/history/provinces/scandinavia"
+mkdir "Release-Linux/blankMod/output/history/provinces/south america"
+mkdir "Release-Linux/blankMod/output/history/provinces/soviet"
+mkdir "Release-Linux/blankMod/output/history/provinces/spain"
+mkdir "Release-Linux/blankMod/output/history/provinces/united kingdom"
+mkdir "Release-Linux/blankMod/output/history/provinces/usa"
+mkdir "Release-Linux/blankMod/output/history/countries"
+mkdir "Release-Linux/blankMod/output/history/diplomacy"
+mkdir "Release-Linux/blankMod/output/history/units"
+
+# Copy Flags
+rm -rf "Release-Linux/flags"
+cp -r "Data_Files/flags" "Release-Linux/flags"
+
+# Create changelog
+#del Release-Linux/changelog.txt
+#git log --oneline --decorate >> Release-Linux/log.txt
+#(for /f "delims=" %%i in (Release-Linux/log.txt) do @echo %%i)>Release-Linux/changelog.txt
+#del Release-Linux/log.txt

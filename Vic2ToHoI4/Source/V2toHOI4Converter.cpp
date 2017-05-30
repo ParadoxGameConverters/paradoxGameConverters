@@ -37,7 +37,7 @@ int main(const int argc, const char* argv[])
 {
 	try
 	{
-		LOG(LogLevel::Info) << "Converter version 0.2";
+		LOG(LogLevel::Info) << "Converter version 0.2A";
 		LOG(LogLevel::Info) << "Built on " << __DATE__ << " at " << __TIME__;
 		LOG(LogLevel::Info) << "Current directory is " << Utils::getCurrentDirectory();
 

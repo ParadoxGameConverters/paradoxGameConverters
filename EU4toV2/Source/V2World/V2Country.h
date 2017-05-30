@@ -28,8 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "../Color.h"
 #include "Date.h"
-#include "../Eu4World/EU4Army.h"
-#include "V2Inventions.h"
+#include "../EU4World/EU4Army.h"
 #include "V2Localisation.h"
 #include "V2TechSchools.h"
 #include <vector>
@@ -99,9 +98,6 @@ class V2Country
 		string							getPrimaryCulture() const { return primaryCulture; }
 		set<string>						getAcceptedCultures() const { return acceptedCultures; }
 		EU4Country*						getSourceCountry() const { return srcCountry; }
-		inventionStatus				getInventionState(vanillaInventionType invention) const { return vanillaInventions[invention]; }
-		inventionStatus				getInventionState(HODInventionType invention) const { return HODInventions[invention]; }
-		inventionStatus				getInventionState(HODNNMInventionType invention) const { return HODNNMInventions[invention]; }
 		double							getReactionary() const { return upperHouseReactionary; }
 		double							getConservative() const { return upperHouseConservative; }
 		double							getLiberal() const { return upperHouseLiberal; }
@@ -144,6 +140,7 @@ class V2Country
 		bool								isReleasableVassal;
 		bool								holyRomanEmperor;
 		bool								inHRE;
+		bool								celestialEmperor;
 		string							primaryCulture;
 		set<string>						acceptedCultures;
 		string							religion;
@@ -154,9 +151,7 @@ class V2Country
 		double							leadership;
 		double							plurality;
 		vector<string>					techs;
-		inventionStatus				vanillaInventions[VANILLA_naval_exercises];
-		inventionStatus				HODInventions[HOD_naval_exercises];
-		inventionStatus				HODNNMInventions[HOD_NNM_naval_exercises];
+		set<string>						inventions;
 		V2UncivReforms*				uncivReforms;
 		double							researchPoints;
 		string							techSchool;

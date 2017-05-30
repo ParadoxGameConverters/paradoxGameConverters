@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -24,7 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "ProvinceMapper.h"
 #include "Log.h"
 #include "Object.h"
-#include "paradoxParserUTF8.h"
+#include "ParadoxParserUTF8.h"
 #include "../Configuration.h"
 #include "../EU4World/EU4Version.h"
 
@@ -69,9 +69,12 @@ void provinceMapper::initProvinceMap(Object* obj)
 int provinceMapper::getMappingsIndex(vector<Object*> versions)
 {
 	unsigned int mappingsIdx;
+
+	auto saveVersion = Configuration::getEU4Version();
 	for (mappingsIdx = 0; mappingsIdx < versions.size(); mappingsIdx++)
 	{
-		if (Configuration::getEU4Version() >= EU4Version(versions[mappingsIdx]->getKey()))
+		auto mappingVersion = EU4Version(versions[mappingsIdx]->getKey());
+		if (saveVersion >= mappingVersion)
 		{
 			break;
 		}

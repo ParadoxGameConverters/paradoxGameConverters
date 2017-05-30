@@ -1,5 +1,6 @@
 set i=%~n1
 
+SET SEVENZIP_LOC=""C:\Program Files (x86)\7-Zip""
 echo Testing %i%
 del "configuration.txt"
 copy "..\EU4_Saves\%i%.zip" ".\%i%.zip"

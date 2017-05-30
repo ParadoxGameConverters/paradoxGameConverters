@@ -216,9 +216,6 @@
     <ClInclude Include="Source\V2World\V2Flags.h">
       <Filter>Vic2 World</Filter>
     </ClInclude>
-    <ClInclude Include="Source\V2World\V2Inventions.h">
-      <Filter>Vic2 World</Filter>
-    </ClInclude>
     <ClInclude Include="Source\V2World\V2Leader.h">
       <Filter>Vic2 World</Filter>
     </ClInclude>

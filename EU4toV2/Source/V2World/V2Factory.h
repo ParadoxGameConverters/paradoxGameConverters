@@ -26,7 +26,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "V2Inventions.h"
 #include <deque>
 #include <vector>
 #include <map>
@@ -43,9 +42,7 @@ struct V2FactoryType
 	string						name;
 	bool							requireCoastal;
 	string						requireTech;
-	vanillaInventionType		vanillaRequiredInvention;
-	HODInventionType			HODRequiredInvention;
-	HODNNMInventionType		HODNNMRequiredInvention;
+	string						requiredInvention;
 	bool							requireLocalInput;
 	map<string,float>			inputs;
 	string						outputGoods;
@@ -62,9 +59,7 @@ class V2Factory
 
 		bool						requiresCoastal()					const { return type->requireCoastal; }
 		string					getRequiredTech()					const { return type->requireTech; }
-		vanillaInventionType	getVanillaRequiredInvention()	const { return type->vanillaRequiredInvention; }
-		HODInventionType		getHODRequiredInvention()		const { return type->HODRequiredInvention; }
-		HODNNMInventionType	getHODNNMRequiredInvention()	const { return type->HODNNMRequiredInvention; }
+		string					getRequiredInvention()			const { return type->requiredInvention; }
 		string					getTypeName()						const { return type->name; }
 		map<string,float>		getInputs()							const { return type->inputs; };
 		string					getOutputGoods()					const { return type->outputGoods; };

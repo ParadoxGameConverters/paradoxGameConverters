@@ -1,4 +1,4 @@
-# Copyright (c) 2014 The Paradox Game Converters Project
+# Copyright (c) 2017 The Paradox Game Converters Project
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -37,9 +37,9 @@ link = { eu4 = IRE v2 = IRE } 	# Ireland
 link = { eu4 = LEI v2 = LEI } 	# Leinster
 link = { eu4 = MNS v2 = MNS } 	# Irish Munster
 link = { eu4 = SCO v2 = SCO } 	# Scotland
-link = { eu4 = TYR v2 = TYR } 	# Ulster
+link = { eu4 = TYR v2 = TYR } 	# Tyrone
+link = { eu4 = ULS v2 = ULS }   # Ulster
 link = { eu4 = WLS v2 = WLS } 	# Wales
-link = { eu4 = YOR v2 = YOR } 	# York
 link = { eu4 = NOL v2 = NOL } 	# Northumberland
 link = { eu4 = HSC v2 = HSC }   # Highlands/Gaeldom
 link = { eu4 = DMS v2 = DMS }   # Desmond
@@ -130,6 +130,7 @@ link = { eu4 = FIN v2 = FIN }  # Finland
 link = { eu4 = GOT v2 = GOT }  # Gotland
 link = { eu4 = SHL v2 = HOL }  # Holstein
 link = { eu4 = NOR v2 = NOR }  # Norway
+link = { eu4 = SMI v2 = SMI }  # Sami
 link = { eu4 = SCA v2 = SCA }  # Scandinavia
 
 # Balkans
@@ -219,6 +220,8 @@ link = { eu4 = MEM v2 = MEM }  # Memmingen
 link = { eu4 = NUM v2 = NUM }  # Nürnberg
 link = { eu4 = RVA v2 = RVA }  # Ravensburg
 link = { eu4 = DTT v2 = DTT }  # Dithmarschen (1.19)
+link = { eu4 = SLO v2 = SLV }  # Nitra => Slovakia
+link = { eu4 = MVA v2 = MRV }  # Moravia (1.21)
 
 # Russia
 link = { eu4 = ARM v2 = ARM }  # Armenia
@@ -250,7 +253,7 @@ link = { eu4 = OKA v2 = OKA }  # Odoyev
 link = { eu4 = BRZ v2 = BRZ }  # Brazil
 link = { eu4 = CAN v2 = CAN }  # Canada
 link = { eu4 = CHL v2 = CHL }  # Chile
-link = { eu4 = COL v2 = CLM }  # Columbia
+link = { eu4 = COL v2 = CLM }  # Colombia
 link = { eu4 = HAT v2 = HAI }  # Haiti
 link = { eu4 = LAP v2 = ARG }  # La Plata => Argentina
 link = { eu4 = MEX v2 = MEX }  # Mexico
@@ -386,7 +389,7 @@ link = { eu4 = KUB v2 = KUB }  # Kuba
 link = { eu4 = KZB v2 = KZB }  # Kazembe
 link = { eu4 = LDU v2 = LDU }  # Lundu
 link = { eu4 = LND v2 = LND }  # Lunda
-link = { eu4 = LUB v2 = LUB }  # Luba
+link = { eu4 = LUB v2 = LBX }  # Luba
 link = { eu4 = MFY v2 = MFY }  # Mahafaly
 link = { eu4 = MIR v2 = MIR }  # Merina
 link = { eu4 = MKU v2 = MKU }  # Makua
@@ -448,6 +451,8 @@ link = { eu4 = QNG v2 = CHI }  # Qing/China
 link = { eu4 = QIN v2 = QIN }  # Qin
 link = { eu4 = KAS v2 = YRK }  # Yarkand
 link = { eu4 = TER v2 = TNT }  # Ternate
+link = { eu4 = AUS v2 = AST }  # Australia
+link = { eu4 = YUA v2 = YUA }  # Yuan
 
 # Japan
 link = { eu4 = AMA v2 = AMA }  # Amago
@@ -472,9 +477,23 @@ link = { eu4 = TKD v2 = TKD }  # Takeda
 link = { eu4 = TKG v2 = TKG }  # Tokugawa
 link = { eu4 = UES v2 = UES }  # Uesugi
 link = { eu4 = YMN v2 = YMN }  # Yamana
+link = { eu4 = AKM v2 = AKM }  #Akamatsu (1.20)
+link = { eu4 = CBA v2 = CHB }  #Chibu
+link = { eu4 = ISK v2 = ISS }  #Isshiki
+link = { eu4 = ITO v2 = ITO }  #Ito
+link = { eu4 = KKC v2 = KKU }  #Kikuchi
+link = { eu4 = KNO v2 = KNO }  #Kono
+link = { eu4 = OGS v2 = OGA }  #Ogasawara
+link = { eu4 = SHN v2 = SHN }  #Shoni
+link = { eu4 = STK v2 = STK }  #Satake
+link = { eu4 = TKI v2 = TKI }  #Toki
+link = { eu4 = UTN v2 = UTU }  #Utsunomiya
+link = { eu4 = TTI v2 = TSU }  #Tsutsui
+link = { eu4 = ASK v2 = ASK }  #Ashikaga
 
 # Central Asia and India
 link = { eu4 = ASS v2 = ASS }  # Assam
+link = { eu4 = YOR v2 = AND }  # Andhra
 link = { eu4 = BAH v2 = BAH }  # Bahamis
 link = { eu4 = BAL v2 = BCS }  # Baluchistan
 link = { eu4 = BNG v2 = BNG }  # Bengal
