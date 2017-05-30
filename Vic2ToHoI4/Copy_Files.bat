@@ -19,8 +19,7 @@ copy "Data_Files\culture_map.txt" "release\culture_map.txt"
 copy "Data_Files\FAQ.txt" "release\FAQ.txt"
 copy "Data_Files\resources.txt" "release\resources.txt"
 copy "Data_Files\positions.txt" "release\positions.txt"
-copy "Data_Files\femaleNames.txt" "release\femaleNames.txt"
-copy "Data_Files\callsigns.txt" "release\callsigns.txt"
+copy "Data_Files\names.txt" "release\names.txt"
 copy "Data_Files\cultureGroupToGraphics.txt" "release\cultureGroupToGraphics.txt"
 
 rem **Copy flags**

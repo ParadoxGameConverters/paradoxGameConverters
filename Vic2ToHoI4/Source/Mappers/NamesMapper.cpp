@@ -45,8 +45,8 @@ namesMapper::namesMapper()
 
 	processVic2CulturesFile((Configuration::getV2Path() + "/common/cultures.txt"));
 
-	processFemaleNamesFile();
-	processCallsignsFile();
+	processNamesFile();
+	checkForNames();
 }
 
 
@@ -86,38 +86,40 @@ void namesMapper::processVic2CulturesFile(string filename)
 }
 
 
-void namesMapper::processFemaleNamesFile()
+void namesMapper::processNamesFile()
 {
-	Object* obj = parser_UTF8::doParseFile("femaleNames.txt");
+	Object* obj = parser_UTF8::doParseFile("names.txt");
 	for (auto cultureObj: obj->getLeaves())
 	{
 		string culture = cultureObj->getKey();
-		femaleNamesMap.insert(make_pair(culture, cultureObj->getLeaves()[0]->getTokens()));
+
+		auto femaleNamesObj = cultureObj->getValue("female_names");
+		if (femaleNamesObj.size() > 0)
+		{
+			femaleNamesMap.insert(make_pair(culture, femaleNamesObj[0]->getTokens()));
+		}
+
+		auto callsignsObj = cultureObj->getValue("callsigns");
+		if (callsignsObj.size() > 0)
+		{
+			callsignsMap.insert(make_pair(culture, callsignsObj[0]->getTokens()));
+		}
 	}
 
+
+}
+
+
+void namesMapper::checkForNames()
+{
 	for (auto maleNamesMapping: maleNamesMap)
 	{
 		auto culture = maleNamesMapping.first;
+
 		if (femaleNamesMap.find(culture) == femaleNamesMap.end())
 		{
 			LOG(LogLevel::Warning) << "No female names for " << culture;
 		}
-	}
-}
-
-
-void namesMapper::processCallsignsFile()
-{
-	Object* obj = parser_UTF8::doParseFile("callsigns.txt");
-	for (auto cultureObj: obj->getLeaves())
-	{
-		string culture = cultureObj->getKey();
-		callsignsMap.insert(make_pair(culture, cultureObj->getLeaves()[0]->getTokens()));
-	}
-
-	for (auto maleNamesMapping: maleNamesMap)
-	{
-		auto culture = maleNamesMapping.first;
 		if (callsignsMap.find(culture) == callsignsMap.end())
 		{
 			LOG(LogLevel::Warning) << "No callsigns for " << culture;

@@ -83,8 +83,8 @@ class namesMapper
 		namesMapper();
 
 		void processVic2CulturesFile(string filename);
-		void processFemaleNamesFile();
-		void processCallsignsFile();
+		void processNamesFile();
+		void checkForNames();
 
 		vector<string> GetMaleNames(string culture) const;
 		vector<string> GetFemaleNames(string culture) const;

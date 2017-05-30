@@ -20,8 +20,7 @@ cp "Data_Files/culture_map.txt" "Release-Linux/culture_map.txt"
 cp "Data_Files/FAQ.txt" "Release-Linux/FAQ.txt"
 cp "Data_Files/Resources.txt" "Release-Linux/resources.txt"
 cp "Data_Files/positions.txt" "Release-Linux/positions.txt"
-cp "Data_Files/femaleNames.txt" "Release-Linux/femaleNames.txt"
-cp "Data_Files/callsigns.txt" "Release-Linux/callsigns.txt"
+cp "Data_Files/names.txt" "Release-Linux/names.txt"
 cp "Data_Files/cultureGroupToGraphics.txt" "Release-Linux/cultureGroupToGraphics.txt"
 
 # **Copy flags**
