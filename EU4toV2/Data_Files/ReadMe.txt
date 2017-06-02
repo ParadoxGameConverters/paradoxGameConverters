@@ -44,6 +44,7 @@ theosZA			- Programming
 PTSnoop			- Programming, Graphics, Analysis
 RonWeber		- Programming
 wzh190015		- Programming
+kratostatic		- Programming, Data Files
 Clonefusion		- Analysis
 kwsdev			- Front End
 TheSpartanD		- Data Files
@@ -62,7 +63,6 @@ LowTartare		- Data Files
 Kasemacher		- Data Files
 larjak			- Data Files
 Tehfailure		- Data Files
-kratostatic		- Data Files
 Kansai-kun		- Data Files
 SaintPetersbour		- Data Files
 Teutonizer		- Data Files
