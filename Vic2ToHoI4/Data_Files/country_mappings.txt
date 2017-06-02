@@ -28,6 +28,7 @@ mappings={
 #The links that come first in the list are executed before the links after it.
 
 #link = { vic = ENG hoi = ENG }	# Great Britain	=> United Kingdom
+link = { vic = RME hoi = RME }
 
 link = { vic = REB hoi = REB } # Rebels
 link = { vic = GER hoi = GER } # Germany
@@ -119,8 +120,8 @@ link = { vic = LEB hoi = LEB } # Lebanon
 link = { vic = SYR hoi = SYR } # Syria
 link = { vic = EGY hoi = EGY } # Egypt
 link = { vic = TRI hoi = LBA } # Tripoli => Libya
-link = { vic = NGF hoi = WGR } # North => West Germany
-link = { vic = SGF hoi = DDR } # South => East Germany
+link = { vic = SGF hoi = WGR } # South => West Germany
+link = { vic = NGF hoi = DDR } # North => East Germany
 #link = { vic = ? hoi = PAL } # Palestine
 link = { vic = ISR hoi = ISR } # Israel
 link = { vic = DAI hoi = VIN } # Dai Viet => Vietnam
@@ -151,7 +152,6 @@ link = { vic = MCK hoi = MAN } # Manchukuo
 #link = { vic = SXI hoi = CSX } # (Second) Shanxi Clique
 #link = { vic = XBI hoi = CXB } # (Second) Xibei San Ma
 #link = { vic = YNN hoi = CYN } # (Second) Yunnan Clique
-#link = { vic = NGF hoi = DFR } # (Second) North => West Germany
 #link = { vic = ? hoi = GUY } # => Guyana
 #link = { vic = ICL hoi = ICL } # (Second) Iceland
 #link = { vic = DAI hoi = IDC } # (Second) Dai Viet => Indochina
