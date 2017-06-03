@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "ParadoxParserUTF8.h"
 #include "HoI4Faction.h"
 #include "HoI4Leader.h"
+#include "HoI4Localisation.h"
 #include "HoI4Minister.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/GovernmentMapper.h"
@@ -132,20 +133,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	rulingParty = _srcCountry->getRulingParty(_srcWorld.getParties());
 	parties = _srcCountry->getActiveParties(_srcWorld.getParties());
 
-	// Ministers
-	/*for (unsigned int ideologyIdx = 0; ideologyIdx <= stalinist; ideologyIdx++)
-	{
-		for (auto job : governmentJobs)
-		{
-			HoI4Minister newMinister(namesMapper::getMaleNames(srcCountry->getPrimaryCulture()), namesMapper::getSurnames(srcCountry->getPrimaryCulture()), ideologyNames[ideologyIdx], job, governmentJobs, portraitMap[graphicalCulture]);
-			ministers.push_back(newMinister);
-
-			if (ideologyNames[ideologyIdx] == ideology)
-			{
-				rulingMinisters.push_back(newMinister);
-			}
-		}
-	}*/
+	initIdeas();
 
 	// Faction is handled in HoI4World::configureFactions
 
@@ -274,6 +262,22 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	// major nation
 	majorNation = srcCountry->isGreatNation();
+}
+
+
+void HoI4Country::initIdeas()
+{
+	HoI4Localisation::addIdeaLocalisation(tag + "_tank_manufacturer", namesMapper::getCarCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_motorized_equipment_manufacturer", namesMapper::getCarCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_infantry_equipment_manufacturer", namesMapper::getWeaponCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_artillery_manufacturer", namesMapper::getWeaponCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_light_aircraft_manufacturer", namesMapper::getAircraftCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_medium_aircraft_manufacturer", namesMapper::getAircraftCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_heavy_aircraft_manufacturer", namesMapper::getAircraftCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_naval_aircraft_manufacturer", namesMapper::getAircraftCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_naval_manufacturer", namesMapper::getNavalCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_industrial_concern", namesMapper::getIndustryCompanyName(srcCountry->getPrimaryCulture()));
+	HoI4Localisation::addIdeaLocalisation(tag + "_electronics_concern", namesMapper::getElectronicCompanyName(srcCountry->getPrimaryCulture()));
 }
 
 
@@ -1656,93 +1660,274 @@ void HoI4Country::outputIdeas() const
 
 	ideasFile << "ideas = {\n";
 	ideasFile << "\tpolitical_advisor = {\n";
-
 	ideasFile << "\t\t" << tag << "_communist_advisor = {\n";
 	ideasFile << "\t\t\tallowed = {\n";
 	ideasFile << "\t\t\t\toriginal_tag = \"" << tag << "\"\n";
 	ideasFile << "\t\t\t}\n";
-	ideasFile << "\n";
 	ideasFile << "\t\t\ttraits = { communist_revolutionary }\n";
-	ideasFile << "\n";
 	ideasFile << "\t\t\ton_add = {\n";
 	ideasFile << "\t\t\t\tcountry_event = political.1\n";
 	ideasFile << "\t\t\t}\n";
-	ideasFile << "\n";
 	ideasFile << "\t\t\tdo_effect = {\n";
 	ideasFile << "\t\t\t\tNOT = {\n";
 	ideasFile << "\t\t\t\t\thas_government = communism\n";
 	ideasFile << "\t\t\t\t}\n";
 	ideasFile << "\t\t\t}\n";
-	ideasFile << "\n";
 	ideasFile << "\t\t\tai_will_do = {\n";
 	ideasFile << "\t\t\t\tfactor = 0\n";
 	ideasFile << "\t\t\t}\n";
 	ideasFile << "\t\t}\n";
-
 	ideasFile << "\t\t" << tag << "_democratic_advisor = {\n";
 	ideasFile << "\t\t\tallowed = {\n";
 	ideasFile << "\t\t\t\toriginal_tag = \"" << tag << "\"\n";
 	ideasFile << "\t\t\t}\n";
-	ideasFile << "\n";
 	ideasFile << "\t\t\ttraits = { democratic_reformer }\n";
-	ideasFile << "\n";
 	ideasFile << "\t\t\ton_add = {\n";
 	ideasFile << "\t\t\t\tcountry_event = political.13\n";
 	ideasFile << "\t\t\t}\n";
-	ideasFile << "\n";
 	ideasFile << "\t\t\tdo_effect = {\n";
 	ideasFile << "\t\t\t\tNOT = {\n";
 	ideasFile << "\t\t\t\t\thas_government = democratic\n";
 	ideasFile << "\t\t\t\t}\n";
 	ideasFile << "\t\t\t}\n";
-	ideasFile << "\n";
 	ideasFile << "\t\t\tai_will_do = {\n";
 	ideasFile << "\t\t\t\tfactor = 0\n";
 	ideasFile << "\t\t\t}\n";
 	ideasFile << "\t\t}\n";
-
 	ideasFile << "\t\t" << tag << "_fascist_advisor = {\n";
 	ideasFile << "\t\t\tallowed = {\n";
 	ideasFile << "\t\t\t\toriginal_tag = \"" << tag << "\"\n";
 	ideasFile << "\t\t\t}\n";
-	ideasFile << "\n";
 	ideasFile << "\t\t\ttraits = { fascist_demagogue }\n";
-	ideasFile << "\n";
 	ideasFile << "\t\t\ton_add = {\n";
 	ideasFile << "\t\t\t\tcountry_event = political.7\n";
 	ideasFile << "\t\t\t}\n";
-	ideasFile << "\n";
 	ideasFile << "\t\t\tdo_effect = {\n";
 	ideasFile << "\t\t\t\tNOT = {\n";
 	ideasFile << "\t\t\t\t\thas_government = fascism\n";
 	ideasFile << "\t\t\t\t}\n";
 	ideasFile << "\t\t\t}\n";
-	ideasFile << "\n";
 	ideasFile << "\t\t\tai_will_do = {\n";
 	ideasFile << "\t\t\t\tfactor = 0\n";
 	ideasFile << "\t\t\t}\n";
 	ideasFile << "\t\t}\n";
-
 	ideasFile << "\t}\n";
+	ideasFile << "\ttank_manufacturer = { \n";
+	ideasFile << "\t\tdesigner = yes\n";
+	ideasFile << "\t\t\n";
+	ideasFile << "\t\t" << tag << "_tank_manufacturer = {\n";
+	ideasFile << "\t\t\tpicture = generic_tank_manufacturer_1\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tallowed = {\n";
+	ideasFile << "\t\t\t\toriginal_tag = " << tag << "\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tcost = 150\n";
+	ideasFile << "\t\t\tremoval_cost = 10\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tresearch_bonus = {\n";
+	ideasFile << "\t\t\t\tarmor = 0.10\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\ttraits = { tank_manufacturer }\n";
+	ideasFile << "\t\t}\n";
+	ideasFile << "\t}\n";
+	ideasFile << "\tnaval_manufacturer = { \n";
+	ideasFile << "\t\tdesigner = yes\n";
+	ideasFile << "\t\t" << tag << "_naval_manufacturer = {\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tpicture = generic_naval_manufacturer_1\n";
+	ideasFile << "\t\t\tallowed = {\n";
+	ideasFile << "\t\t\t\toriginal_tag = " << tag << "\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tcost = 150\n";
+	ideasFile << "\t\t\tremoval_cost = 10\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tresearch_bonus = {\n";
+	ideasFile << "\t\t\t\tnaval_equipment = 0.10\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\ttraits = { naval_manufacturer }\n";
+	ideasFile << "\t\t}\n";
+	ideasFile << "\t}\n";
+	ideasFile << "\taircraft_manufacturer = { \n";
+	ideasFile << "\t\tdesigner = yes\n";
+	ideasFile << "\t\t" << tag << "_light_aircraft_manufacturer = {\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tpicture = generic_air_manufacturer_1\n";
+	ideasFile << "\t\t\tallowed = {\n";
+	ideasFile << "\t\t\t\toriginal_tag = " << tag << "\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tcost = 150\n";
+	ideasFile << "\t\t\tremoval_cost = 10\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tresearch_bonus = {\n";
+	ideasFile << "\t\t\t\tair_equipment = 0.10\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\ttraits = { light_aircraft_manufacturer }\n";
+	ideasFile << "\t\t}\n";
+	ideasFile << "\t\t\n";
+	ideasFile << "\t\t" << tag << "_medium_aircraft_manufacturer = {\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tpicture = generic_air_manufacturer_3\n";
+	ideasFile << "\t\t\tallowed = {\n";
+	ideasFile << "\t\t\t\toriginal_tag = " << tag << "\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tcost = 150\n";
+	ideasFile << "\t\t\tremoval_cost = 10\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tresearch_bonus = {\n";
+	ideasFile << "\t\t\t\tair_equipment = 0.10\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\ttraits = { medium_aircraft_manufacturer }\n";
+	ideasFile << "\t\t}\n";
+	ideasFile << "\t\t\n";
+	ideasFile << "\t\t" << tag << "_heavy_aircraft_manufacturer = {\n";
+	ideasFile << "\t\t\tpicture = generic_air_manufacturer_2\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tallowed = {\n";
+	ideasFile << "\t\t\t\toriginal_tag = " << tag << "\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tcost = 150\n";
+	ideasFile << "\t\t\tremoval_cost = 10\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tresearch_bonus = {\n";
+	ideasFile << "\t\t\t\tair_equipment = 0.10\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\ttraits = { heavy_aircraft_manufacturer }\n";
+	ideasFile << "\t\t}\n";
+	ideasFile << "\t\t\n";
+	ideasFile << "\t\t" << tag << "_naval_aircraft_manufacturer = {\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tpicture = generic_naval_manufacturer_2\n";
+	ideasFile << "\t\t\tallowed = {\n";
+	ideasFile << "\t\t\t\toriginal_tag = " << tag << "\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tcost = 150\n";
+	ideasFile << "\t\t\tremoval_cost = 10\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tresearch_bonus = {\n";
+	ideasFile << "\t\t\t\tair_equipment = 0.10\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\ttraits = { naval_aircraft_manufacturer }\n";
+	ideasFile << "\t\t}\n";
+	ideasFile << "\t}\n";
+	ideasFile << "\tindustrial_concern = {\n";
+	ideasFile << "\t\t" << tag << "_industrial_concern = {\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tpicture = generic_industrial_concern_1\n";
+	ideasFile << "\t\t\tallowed = {\n";
+	ideasFile << "\t\t\t\toriginal_tag = " << tag << "\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tcost = 150\n";
+	ideasFile << "\t\t\tremoval_cost = 10\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tresearch_bonus = {\n";
+	ideasFile << "\t\t\t\tindustry = 0.10\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\ttraits = { industrial_concern }\n";
+	ideasFile << "\t\t}\n";
+	ideasFile << "\t\t" << tag << "_electronics_concern = {\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tpicture = generic_electronics_concern_1\n";
+	ideasFile << "\t\t\tallowed = {\n";
+	ideasFile << "\t\t\t\toriginal_tag = " << tag << "\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tcost = 150\n";
+	ideasFile << "\t\t\tremoval_cost = 10\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tresearch_bonus = {\n";
+	ideasFile << "\t\t\t\telectronics = 0.10\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\ttraits = { electronics_concern }\n";
+	ideasFile << "\t\t}\n";
+	ideasFile << "\t}\n";
+	ideasFile << "\tmateriel_manufacturer = {\n";
+	ideasFile << "\t\tdesigner = yes\n";
+	ideasFile << "\t\t" << tag << "_motorized_equipment_manufacturer = {\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tpicture = generic_motorized_equipment_manufacturer_3\n";
+	ideasFile << "\t\t\tallowed = {\n";
+	ideasFile << "\t\t\t\toriginal_tag = " << tag << "\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tcost = 150\n";
+	ideasFile << "\t\t\tremoval_cost = 10\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tresearch_bonus = {\n";
+	ideasFile << "\t\t\t\tmotorized_equipment = 0.10\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\ttraits = { motorized_equipment_manufacturer }\n";
+	ideasFile << "\t\t}\n";
+	ideasFile << "\t\t\n";
+	ideasFile << "\t\t" << tag << "_infantry_equipment_manufacturer = {\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tpicture = generic_infantry_equipment_manufacturer_2\n";
+	ideasFile << "\t\t\tallowed = {\n";
+	ideasFile << "\t\t\t\toriginal_tag = " << tag << "\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tcost = 150\n";
+	ideasFile << "\t\t\tremoval_cost = 10\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tresearch_bonus = {\n";
+	ideasFile << "\t\t\t\tinfantry_weapons = 0.10\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\ttraits = { infantry_equipment_manufacturer }\n";
+	ideasFile << "\t\t}\n";
+	ideasFile << "\t\t\n";
+	ideasFile << "\t\t" << tag << "_artillery_manufacturer = {\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tpicture = generic_artillery_manufacturer_2\n";
+	ideasFile << "\t\t\tallowed = {\n";
+	ideasFile << "\t\t\t\toriginal_tag = " << tag << "\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tcost = 150\n";
+	ideasFile << "\t\t\tremoval_cost = 10\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\tresearch_bonus = {\n";
+	ideasFile << "\t\t\t\tartillery = 0.10\n";
+	ideasFile << "\t\t\t}\n";
+	ideasFile << "\t\t\t\n";
+	ideasFile << "\t\t\ttraits = { artillery_manufacturer }\n";
+	ideasFile << "\t\t}\n";
+	ideasFile << "\t}\n";
+
 	ideasFile << "}\n";
 }
 
 
 void HoI4Country::outputIdeaGraphics(ofstream& ideasFile) const
 {
-	ideasFile << "\n";
+
 	ideasFile << "\tspriteType = {\n";
 	ideasFile << "\t\tname = \"GFX_idea_" << tag << "_communist_advisor\"\n";
 	ideasFile << "\t\ttexturefile = \"" << graphicsMapper::getIdeologyMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "communism") << "\"\n";
 	ideasFile << "\t}\n";
 
-	ideasFile << "\n";
+
 	ideasFile << "\tspriteType = {\n";
 	ideasFile << "\t\tname = \"GFX_idea_" << tag << "_democratic_advisor\"\n";
 	ideasFile << "\t\ttexturefile = \"" << graphicsMapper::getIdeologyMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "democratic") << "\"\n";
 	ideasFile << "\t}\n";
 
-	ideasFile << "\n";
+
 	ideasFile << "\tspriteType = {\n";
 	ideasFile << "\t\tname = \"GFX_idea_" << tag << "_fascist_advisor\"\n";
 	ideasFile << "\t\ttexturefile = \"" << graphicsMapper::getIdeologyMinisterPortrait(srcCountry->getPrimaryCultureGroup(), "fascism") << "\"\n";

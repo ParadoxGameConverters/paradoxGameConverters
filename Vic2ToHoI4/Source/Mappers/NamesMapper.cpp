@@ -104,6 +104,42 @@ void namesMapper::processNamesFile()
 		{
 			callsignsMap.insert(make_pair(culture, callsignsObj[0]->getTokens()));
 		}
+
+		auto carCompaniesObj = cultureObj->getValue("car_companies");
+		if (carCompaniesObj.size() > 0)
+		{
+			carCompanyNames.insert(make_pair(culture, carCompaniesObj[0]->getTokens()));
+		}
+
+		auto weaponCompanyObj = cultureObj->getValue("weapon_companies");
+		if (weaponCompanyObj.size() > 0)
+		{
+			weaponCompanyNames.insert(make_pair(culture, weaponCompanyObj[0]->getTokens()));
+		}
+
+		auto aircraftCompanyNamesObj = cultureObj->getValue("aircraft_companies");
+		if (aircraftCompanyNamesObj.size() > 0)
+		{
+			aircraftCompanyNames.insert(make_pair(culture, aircraftCompanyNamesObj[0]->getTokens()));
+		}
+
+		auto navalCompanyNamesObj = cultureObj->getValue("naval_companies");
+		if (navalCompanyNamesObj.size() > 0)
+		{
+			navalCompanyNames.insert(make_pair(culture, navalCompanyNamesObj[0]->getTokens()));
+		}
+
+		auto industryCompanyNamesObj = cultureObj->getValue("industry_companies");
+		if (industryCompanyNamesObj.size() > 0)
+		{
+			industryCompanyNames.insert(make_pair(culture, industryCompanyNamesObj[0]->getTokens()));
+		}
+
+		auto electronicCompanyNamesObj = cultureObj->getValue("electronic_companies");
+		if (electronicCompanyNamesObj.size() > 0)
+		{
+			electronicCompanyNames.insert(make_pair(culture, electronicCompanyNamesObj[0]->getTokens()));
+		}
 	}
 
 
@@ -123,6 +159,30 @@ void namesMapper::checkForNames()
 		if (callsignsMap.find(culture) == callsignsMap.end())
 		{
 			LOG(LogLevel::Warning) << "No callsigns for " << culture;
+		}
+		if (carCompanyNames.find(culture) == carCompanyNames.end())
+		{
+			LOG(LogLevel::Warning) << "No car companies for " << culture;
+		}
+		if (weaponCompanyNames.find(culture) == weaponCompanyNames.end())
+		{
+			LOG(LogLevel::Warning) << "No weapon companies for " << culture;
+		}
+		if (aircraftCompanyNames.find(culture) == aircraftCompanyNames.end())
+		{
+			LOG(LogLevel::Warning) << "No aircraft companies for " << culture;
+		}
+		if (navalCompanyNames.find(culture) == navalCompanyNames.end())
+		{
+			LOG(LogLevel::Warning) << "No naval companies for " << culture;
+		}
+		if (industryCompanyNames.find(culture) == industryCompanyNames.end())
+		{
+			LOG(LogLevel::Warning) << "No industry companies for " << culture;
+		}
+		if (electronicCompanyNames.find(culture) == electronicCompanyNames.end())
+		{
+			LOG(LogLevel::Warning) << "No electronic companies for " << culture;
 		}
 	}
 }
@@ -233,4 +293,67 @@ string namesMapper::GetCallsign(string culture)
 
 	std::uniform_int_distribution<int> surnameGen(0, callsigns.size() - 1);
 	return callsigns[surnameGen(rng)];
+}
+
+
+string namesMapper::GetCarCompanyName(string culture)
+{
+	return getCompanyName(carCompanyNames, culture);
+}
+
+
+string namesMapper::GetWeaponCompanyName(string culture)
+{
+	return getCompanyName(weaponCompanyNames, culture);
+}
+
+
+string namesMapper::GetAircraftCompanyName(string culture)
+{
+	return getCompanyName(aircraftCompanyNames,culture);
+}
+
+
+string namesMapper::GetNavalCompanyName(string culture)
+{
+	return getCompanyName(navalCompanyNames, culture);
+}
+
+
+string namesMapper::GetIndustryCompanyName(string culture)
+{
+	return getCompanyName(industryCompanyNames, culture);
+}
+
+
+string namesMapper::GetElectronicCompanyName(string culture)
+{
+	return getCompanyName(electronicCompanyNames, culture);
+}
+
+
+string namesMapper::getCompanyName(map<string, vector<string>>& companyNames, string culture)
+{
+	string company = "";
+
+	auto namesItr = companyNames.find(culture);
+	if (namesItr != companyNames.end())
+	{
+		vector<string> companies = namesItr->second;
+		if (companies.size() > 0)
+		{
+			std::uniform_int_distribution<int> surnameGen(0, companies.size() - 1);
+			company = companies[surnameGen(rng)];
+			for (vector<string>::iterator itr = companyNames[culture].begin(); itr != companyNames[culture].end(); itr++)
+			{
+				if (*itr == company)
+				{
+					companyNames[culture].erase(itr);
+					break;
+				}
+			}
+		}
+	}
+
+	return company;
 }

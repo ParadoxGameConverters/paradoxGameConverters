@@ -115,6 +115,7 @@ class HoI4Country
 		bool isGreatPower() const { return greatPower; }
 
 	private:
+		void initIdeas();
 		void determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states);
 		bool isStateValidForCapital(map<int, int>::const_iterator capitalState, const map<int, HoI4State*>& states);
 		bool isThisStateOwnedByUs(const HoI4State* state) const;

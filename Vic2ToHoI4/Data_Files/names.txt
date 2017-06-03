@@ -288,3 +288,12 @@ telegu = {
 north_andean = {
 	female_names = { Amaranta Úrsula Rebeca Remedios Sofía }
 }
+
+greek = {
+	car_companies = { }
+	weapon_companies = { }
+	aircraft_companies = { GNAF }
+	naval_companies = { "Royal Hellenic Naval Shipyard" }
+	industry_companies = { }
+	electronic_companies = { }
+}

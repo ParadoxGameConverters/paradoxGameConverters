@@ -40,7 +40,88 @@ HoI4Localisation* HoI4Localisation::instance = nullptr;
 
 HoI4Localisation::HoI4Localisation()
 {
-	importFocusLocalisations();
+	importLocalisations();
+	prepareIdeaLocalisations();
+}
+
+
+void HoI4Localisation::importLocalisations()
+{
+	set<string> filenames;
+	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/localisation", filenames);
+	for (auto filename: filenames)
+	{
+		if (filename.substr(0, 5) == "focus")
+		{
+			importFocusLocalisations(filename);
+		}
+		else if (filename.substr(0, 5) == "ideas")
+		{
+			importGenericIdeaLocalisations(filename);
+		}
+	}
+}
+
+
+void HoI4Localisation::importFocusLocalisations(const string& filename)
+{
+	importLocalisationFile(filename, originalFocuses);
+}
+
+
+void HoI4Localisation::importGenericIdeaLocalisations(const string& filename)
+{
+	importLocalisationFile(filename, genericIdeaLocalisations);
+}
+
+
+void HoI4Localisation::importLocalisationFile(const string& filename, languageToLocalisationsMap& localisations)
+{
+	keyToLocalisationMap newLocalisations;
+
+	int period = filename.find('.');
+	string language = filename.substr(8, period - 8);
+
+	ifstream file(Configuration::getHoI4Path() + "/localisation/" + filename);
+	char bitBucket[3];
+	file.read(bitBucket, 3);
+
+	while (!file.eof())
+	{
+		char buffer[1024];
+		file.getline(buffer, sizeof(buffer));
+		string line(buffer);
+		if (line.substr(0,2) == "l_")
+		{
+			continue;
+		}
+
+		int colon = line.find(':');
+		if (colon == string::npos)
+		{
+			continue;
+		}
+		string key = line.substr(1, colon - 1);
+
+		line = line.substr(colon, line.length());
+		int quote = line.find('\"');
+		string value = line.substr(quote + 1, (line.length() - quote - 2));
+
+		newLocalisations[key] = value;
+	}
+
+	localisations[language] = newLocalisations;
+	file.close();
+}
+
+
+void HoI4Localisation::prepareIdeaLocalisations()
+{
+	for (auto genericLocalisationsInLanguage: genericIdeaLocalisations)
+	{
+		keyToLocalisationMap newLocalisationsMap;
+		ideaLocalisations.insert(make_pair(genericLocalisationsInLanguage.first, newLocalisationsMap));
+	}
 }
 
 
@@ -191,54 +272,6 @@ void HoI4Localisation::AddNonenglishCountryLocalisations()
 }
 
 
-void HoI4Localisation::importFocusLocalisations()
-{
-	set<string> filenames;
-	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/localisation", filenames);
-	for (auto filename: filenames)
-	{
-		if (filename.substr(0, 5) == "focus")
-		{
-			keyToLocalisationMap localisations;
-
-			int period = filename.find('.');
-			string language = filename.substr(8, period - 8);
-
-			ifstream file(Configuration::getHoI4Path() + "/localisation/" + filename);
-			char bitBucket[3];
-			file.read(bitBucket, 3);
-
-			while (!file.eof())
-			{
-				char buffer[1024];
-				file.getline(buffer, sizeof(buffer));
-				string line(buffer);
-				if (line.substr(0,2) == "l_")
-				{
-					continue;
-				}
-
-				int colon = line.find(':');
-				if (colon == string::npos)
-				{
-					continue;
-				}
-				string key = line.substr(1, colon - 1);
-
-				line = line.substr(colon, line.length());
-				int quote = line.find('\"');
-				string value = line.substr(quote + 1, (line.length() - quote - 2));
-
-				localisations[key] = value;
-			}
-
-			originalFocuses[language] = localisations;
-			file.close();
-		}
-	}
-}
-
-
 void HoI4Localisation::CopyFocusLocalisations(string oldKey, string newKey)
 {
 	for (auto languageLocalisations: originalFocuses)
@@ -365,6 +398,38 @@ void HoI4Localisation::addNonenglishVPLocalisations()
 }
 
 
+void HoI4Localisation::AddIdeaLocalisation(const string& idea, const string& localisation)
+{
+	for (auto localisationInLanguage: ideaLocalisations)
+	{
+		if (localisation != "")
+		{
+			ideaLocalisations[localisationInLanguage.first][idea] = localisation;
+		}
+		else
+		{
+			auto genericLocalisationsInLanguage = genericIdeaLocalisations.find(localisationInLanguage.first);
+			if (genericLocalisationsInLanguage != genericIdeaLocalisations.end())
+			{
+				string genericIdeaStr = "generic" + idea.substr(3, idea.size());
+				auto genericIdea = genericLocalisationsInLanguage->second.find(genericIdeaStr);
+				if (genericIdea != genericLocalisationsInLanguage->second.end())
+				{
+					ideaLocalisations[localisationInLanguage.first][idea] = genericIdea->second;
+				}
+				else
+				{
+					LOG(LogLevel::Warning) << "Could not find localisation for " << genericIdeaStr << " in " << localisationInLanguage.first;
+				}
+			}
+			else
+			{
+				LOG(LogLevel::Warning) << "No generic idea localisations found for " << localisationInLanguage.first;
+			}
+		}
+	}
+}
+
 
 void HoI4Localisation::Output() const
 {
@@ -380,95 +445,49 @@ void HoI4Localisation::Output() const
 	outputFocuses(localisationPath);
 	outputStateLocalisations(localisationPath);
 	outputVPLocalisations(localisationPath);
+	outputIdeaLocalisations(localisationPath);
 }
 
 
 void HoI4Localisation::outputCountries(string localisationPath) const
 {
-	for (auto languageToLocalisations: countryLocalisations)
-	{
-		if (languageToLocalisations.first == "")
-		{
-			continue;
-		}
-
-		ofstream localisationFile(localisationPath + "/countries_mod_l_" + languageToLocalisations.first + ".yml");
-		if (!localisationFile.is_open())
-		{
-			LOG(LogLevel::Error) << "Could not update localisation text file";
-			exit(-1);
-		}
-		localisationFile << "\xEF\xBB\xBF"; // output a BOM to make HoI4 happy
-		localisationFile << "l_" << languageToLocalisations.first << ":\n";
-
-		for (auto mapping: languageToLocalisations.second)
-		{
-			localisationFile << " " << mapping.first << ":0 \"" << mapping.second << "\"" << endl;
-		}
-	}
+	outputLocalisations(localisationPath + "/countries_mod_l_", countryLocalisations);
 }
 
 
 void HoI4Localisation::outputFocuses(string localisationPath) const
 {
-	for (auto languageToLocalisations: newFocuses)
-	{
-		if (languageToLocalisations.first == "")
-		{
-			continue;
-		}
-
-		ofstream localisationFile(localisationPath + "/focus_mod_l_" + languageToLocalisations.first + ".yml");
-		if (!localisationFile.is_open())
-		{
-			LOG(LogLevel::Error) << "Could not update localisation text file";
-			exit(-1);
-		}
-		localisationFile << "\xEF\xBB\xBF"; // output a BOM to make HoI4 happy
-		localisationFile << "l_" << languageToLocalisations.first << ":\n";
-
-		for (auto mapping: languageToLocalisations.second)
-		{
-			localisationFile << " " << mapping.first << ":0 \"" << mapping.second << "\"" << endl;
-		}
-	}
+	outputLocalisations(localisationPath + "/focus_mod_l_", newFocuses);
 }
 
 
 void HoI4Localisation::outputStateLocalisations(string localisationPath) const
 {
-	for (auto languageToLocalisations: stateLocalisations)
-	{
-		if (languageToLocalisations.first == "")
-		{
-			continue;
-		}
-		ofstream localisationFile(localisationPath + "/state_names_l_" + languageToLocalisations.first + ".yml");
-		if (!localisationFile.is_open())
-		{
-			LOG(LogLevel::Error) << "Could not update localisation text file";
-			exit(-1);
-		}
-		localisationFile << "\xEF\xBB\xBF"; // output a BOM to make HoI4 happy
-		localisationFile << "l_" << languageToLocalisations.first << ":\n";
-
-		for (auto mapping: languageToLocalisations.second)
-		{
-			localisationFile << " " << mapping.first << ":10 \"" << mapping.second << "\"" << endl;
-		}
-	}
+	outputLocalisations(localisationPath + "/state_names_l_", stateLocalisations);
 }
 
 
 void HoI4Localisation::outputVPLocalisations(string localisationPath) const
 {
-	for (auto languageToLocalisations: VPLocalisations)
+	outputLocalisations(localisationPath + "/victory_points_l_", VPLocalisations);
+}
+
+
+void HoI4Localisation::outputIdeaLocalisations(string localisationPath) const
+{
+	outputLocalisations(localisationPath + "/converted_ideas_l_", ideaLocalisations);
+}
+
+
+void HoI4Localisation::outputLocalisations(const string& filenameStart, const languageToLocalisationsMap& localisations) const
+{
+	for (auto languageToLocalisations: localisations)
 	{
 		if (languageToLocalisations.first == "")
 		{
 			continue;
 		}
-		ofstream localisationFile(localisationPath + "/victory_points_l_" + languageToLocalisations.first + ".yml");
+		ofstream localisationFile(filenameStart + languageToLocalisations.first + ".yml");
 		if (!localisationFile.is_open())
 		{
 			LOG(LogLevel::Error) << "Could not update localisation text file";
