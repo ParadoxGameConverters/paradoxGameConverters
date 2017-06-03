@@ -1911,7 +1911,7 @@ vector<HoI4Faction*> HoI4WarCreator::neighborWarCreator(HoI4Country * country, o
 
 		set<string> Allies = country->getAllies();
 		date startDate = date("1937.01.01");
-		startDate.delayedByMonths(-0.25 * relations);
+		startDate.delayedByMonths(relations / -4);
 		if (Allies.find(target->getTag()) == Allies.end())
 		{
 			countriesAtWar.push_back(findFaction(country));

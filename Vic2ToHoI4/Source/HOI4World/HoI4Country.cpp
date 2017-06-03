@@ -652,7 +652,7 @@ void HoI4Country::convertAirforce()
 	auto techItr = technologies.find("early_fighter");
 	if (techItr != technologies.end())
 	{
-		int amount = Configuration::getForceMultiplier() * airplanes;
+		int amount = static_cast<int>(Configuration::getForceMultiplier() * airplanes);
 		if (amount == 0)
 		{
 			amount = 1;
@@ -663,13 +663,13 @@ void HoI4Country::convertAirforce()
 	techItr = technologies.find("early_bomber");
 	if (techItr != technologies.end())
 	{
-		HoI4Airplane newPlane(string("tac_bomber_equipment_0"), tag, Configuration::getForceMultiplier() * airplanes);
+		HoI4Airplane newPlane(string("tac_bomber_equipment_0"), tag, static_cast<int>(Configuration::getForceMultiplier() * airplanes));
 		planes.push_back(newPlane);
 	}
 	techItr = technologies.find("CAS1");
 	if (techItr != technologies.end())
 	{
-		HoI4Airplane newPlane(string("CAS_equipment_1"), tag, Configuration::getForceMultiplier() * airplanes);
+		HoI4Airplane newPlane(string("CAS_equipment_1"), tag, static_cast<int>(Configuration::getForceMultiplier() * airplanes));
 		planes.push_back(newPlane);
 	}
 }

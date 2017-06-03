@@ -162,7 +162,7 @@ HoI4Focus* HoI4Focus::makeCustomizedCopy(const string& country) const
 	for (auto prerequisite: prerequisites)
 	{
 		//have to account for several foci in one prerequisite, so need to look for occurences of " focus" and insert country before that
-		int stringPosition = 0;
+		unsigned int stringPosition = 0;
 		do
 		{
 			int focusPosition = prerequisite.find(" focus", stringPosition);
