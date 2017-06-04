@@ -111,7 +111,6 @@ void HoI4World::convertCountries()
 	//initLeaderTraitsMap(leaderTraits);
 	governmentJobsMap governmentJobs;
 	//initGovernmentJobTypes(governmentJobs);
-	cultureMapping cultureMap = initCultureMap();
 
 	personalityMap landPersonalityMap;
 	personalityMap seaPersonalityMap;
@@ -127,14 +126,14 @@ void HoI4World::convertCountries()
 
 	for (auto sourceItr : sourceWorld->getCountries())
 	{
-		convertCountry(sourceItr, leaderMap, governmentJobs, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
+		convertCountry(sourceItr, leaderMap, governmentJobs, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
 	}
 
 	HoI4Localisation::addNonenglishCountryLocalisations();
 }
 
 
-void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, governmentJobsMap governmentJobs, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, governmentJobsMap governmentJobs, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
 {
 	// don't convert rebels
 	if (country.first == "REB")
@@ -155,7 +154,7 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 			LOG(LogLevel::Error) << "Double-check your settings, and remember to included EU4 to Vic2 mods. See the FAQ for more information.";
 			exit(-1);
 		}
-		destCountry->initFromV2Country(*sourceWorld, country.second, rulingParty->ideology, leaderMap, governmentJobs, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, states->getProvinceToStateIDMap(), states->getStates());
+		destCountry->initFromV2Country(*sourceWorld, country.second, rulingParty->ideology, leaderMap, governmentJobs, portraitMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, states->getProvinceToStateIDMap(), states->getStates());
 		countries.insert(make_pair(HoI4Tag, destCountry));
 	}
 	else

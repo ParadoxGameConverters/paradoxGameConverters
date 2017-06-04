@@ -90,7 +90,7 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 }
 
 
-void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, map<int, int>& leaderMap, governmentJobsMap governmentJobs, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states)
+void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, map<int, int>& leaderMap, governmentJobsMap governmentJobs, portraitMapping& portraitMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states)
 {
 	srcCountry = _srcCountry;
 	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
@@ -115,15 +115,8 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	threat = _srcCountry->getBadBoy() / 10.0;
 	
 	// graphical culture type
-	auto cultureItr = cultureMap.find(srcCountry->getPrimaryCulture());
-	if (cultureItr != cultureMap.end())
-	{
-		graphicalCulture = cultureItr->second;
-	}
-	else
-	{
-		graphicalCulture = "Generic";
-	}
+	graphicalCulture = graphicsMapper::getGraphicalCulture(srcCountry->getPrimaryCultureGroup());
+	graphicalCulture2d = graphicsMapper::get2dGraphicalCulture(srcCountry->getPrimaryCultureGroup());
 
 	// Government
 	governmentIdeology = governmentMapper::getIdeologyForCountry(srcCountry, _vic2ideology);
@@ -1366,8 +1359,6 @@ void HoI4Country::output(const map<int, HoI4State*>& allStates, const vector<HoI
 	outputCommonCountryFile();
 	outputIdeas();
 
-	//fprintf(output, "graphical_culture = %s\n", graphicalCulture.c_str());
-
 	if (nationalFocus != nullptr)
 	{
 		nationalFocus->output();
@@ -1720,7 +1711,12 @@ void HoI4Country::outputCommonCountryFile() const
 		exit(-1);
 	}
 
-	output << "color = { " << color << " }" << endl;
+	if ((graphicalCulture != "") && (graphicalCulture2d != ""))
+	{
+		output << "graphical_culture = " << graphicalCulture << "\n";
+		output << "graphical_culture_2d = " << graphicalCulture2d << "\n";
+	}
+	output << "color = { " << color << " }\n";
 
 	output.close();
 }

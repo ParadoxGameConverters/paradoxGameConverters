@@ -37,6 +37,8 @@ germanic = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
+	graphical_culture = { western_european_gfx }
+	graphical_culture_2d = { western_european_2d }
 }
 beneluxian = {
 	leader_portraits = {
@@ -56,6 +58,8 @@ beneluxian = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
+	graphical_culture = { western_european_gfx }
+	graphical_culture_2d = { western_european_2d }
 }
 pan_swiss = {
 	leader_portraits = {
@@ -75,6 +79,8 @@ pan_swiss = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
+	graphical_culture = { western_european_gfx }
+	graphical_culture_2d = { western_european_2d }
 }
 scandinavian = {
 	leader_portraits = {
@@ -94,6 +100,8 @@ scandinavian = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
+	graphical_culture = { western_european_gfx }
+	graphical_culture_2d = { western_european_2d }
 }
 british = {
 	leader_portraits = {
@@ -113,6 +121,8 @@ british = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
+	graphical_culture = { commonwealth_gfx }
+	graphical_culture_2d = { commonwealth_2d }
 }
 celtic = {
 	leader_portraits = {
@@ -132,6 +142,8 @@ celtic = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
+	graphical_culture = { commonwealth_gfx }
+	graphical_culture_2d = { commonwealth_2d }
 }
 italian = {
 	leader_portraits = {
@@ -151,6 +163,8 @@ italian = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
+	graphical_culture = { western_european_gfx }
+	graphical_culture_2d = { western_european_2d }
 }
 iberian = {
 	leader_portraits = {
@@ -170,6 +184,8 @@ iberian = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
 	}
+	graphical_culture = { western_european_gfx }
+	graphical_culture_2d = { western_european_2d }
 }
 french = {
 	leader_portraits = {
@@ -189,6 +205,8 @@ french = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
+	graphical_culture = { western_european_gfx }
+	graphical_culture_2d = { western_european_2d }
 }
 south_slavic = {
 	leader_portraits = {
@@ -208,6 +226,8 @@ south_slavic = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
+	graphical_culture = { eastern_european_gfx }
+	graphical_culture_2d = { eastern_european_2d }
 }
 pan_romanian = {
 	leader_portraits = {
@@ -227,6 +247,8 @@ pan_romanian = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
+	graphical_culture = { eastern_european_gfx }
+	graphical_culture_2d = { eastern_european_2d }
 }
 hungarian_culture_group = {
 	leader_portraits = {
@@ -246,6 +268,8 @@ hungarian_culture_group = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
+	graphical_culture = { eastern_european_gfx }
+	graphical_culture_2d = { eastern_european_2d }
 }
 polish_culture_group = {
 	leader_portraits = {
@@ -265,6 +289,8 @@ polish_culture_group = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
+	graphical_culture = { eastern_european_gfx }
+	graphical_culture_2d = { eastern_european_2d }
 }
 czecho_slovak_culture_group = {
 	leader_portraits = {
@@ -284,6 +310,8 @@ czecho_slovak_culture_group = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
+	graphical_culture = { eastern_european_gfx }
+	graphical_culture_2d = { eastern_european_2d }
 }
 east_slavic = {
 	leader_portraits = {
@@ -303,6 +331,8 @@ east_slavic = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
+	graphical_culture = { eastern_european_gfx }
+	graphical_culture_2d = { eastern_european_2d }
 }
 baltic = {
 	leader_portraits = {
@@ -322,6 +352,8 @@ baltic = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
+	graphical_culture = { eastern_european_gfx }
+	graphical_culture_2d = { eastern_european_2d }
 }
 levantine = {
 	leader_portraits = {
@@ -341,6 +373,8 @@ levantine = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
+	graphical_culture = { middle_eastern_gfx }
+	graphical_culture_2d = { middle_eastern_2d }
 }
 turko_semitic = {
 	leader_portraits = {
@@ -360,6 +394,8 @@ turko_semitic = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_arab.dds" }
 	}
+	graphical_culture = { middle_eastern_gfx }
+	graphical_culture_2d = { middle_eastern_2d }
 }
 arab = {
 	leader_portraits = {
@@ -379,6 +415,8 @@ arab = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_arab.dds" }
 	}
+	graphical_culture = { middle_eastern_gfx }
+	graphical_culture_2d = { middle_eastern_2d }
 }
 iranian_turanian = {
 	leader_portraits = {
@@ -398,6 +436,8 @@ iranian_turanian = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_arab.dds" }
 	}
+	graphical_culture = { middle_eastern_gfx }
+	graphical_culture_2d = { middle_eastern_2d }
 }
 central_asian = {
 	leader_portraits = {
@@ -417,6 +457,8 @@ central_asian = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_arab.dds" }
 	}
+	graphical_culture = { middle_eastern_gfx }
+	graphical_culture_2d = { middle_eastern_2d }
 }
 south_asian = {
 	leader_portraits = {
@@ -436,6 +478,8 @@ south_asian = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_arab.dds" }
 	}
+	graphical_culture = { asian_gfx }
+	graphical_culture_2d = { asian_2d }
 }
 southeast_asian = {
 	leader_portraits = {
@@ -455,6 +499,8 @@ southeast_asian = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_asia.dds" }
 	}
+	graphical_culture = { asian_gfx }
+	graphical_culture_2d = { asian_2d }
 }
 east_asian = {
 	leader_portraits = {
@@ -474,6 +520,8 @@ east_asian = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_asia.dds" }
 	}
+	graphical_culture = { asian_gfx }
+	graphical_culture_2d = { asian_2d }
 }
 oceanic = {
 	leader_portraits = {
@@ -493,6 +541,8 @@ oceanic = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
 	}
+	graphical_culture = { asian_gfx }
+	graphical_culture_2d = { asian_2d }
 }
 native_american = {
 	leader_portraits = {
@@ -512,6 +562,8 @@ native_american = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
 	}
+	graphical_culture = { southamerican_gfx }
+	graphical_culture_2d = { southamerican_2d }
 }
 native_central_american = {
 	leader_portraits = {
@@ -531,6 +583,8 @@ native_central_american = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
 	}
+	graphical_culture = { southamerican_gfx }
+	graphical_culture_2d = { southamerican_2d }
 }
 native_south_american = {
 	leader_portraits = {
@@ -550,6 +604,8 @@ native_south_american = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
 	}
+	graphical_culture = { southamerican_gfx }
+	graphical_culture_2d = { southamerican_2d }
 }
 native_north_american = {
 	leader_portraits = {
@@ -569,6 +625,8 @@ native_north_american = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
 	}
+	graphical_culture = { southamerican_gfx }
+	graphical_culture_2d = { southamerican_2d }
 }
 native_carribean = {
 	leader_portraits = {
@@ -588,6 +646,8 @@ native_carribean = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
 	}
+	graphical_culture = { southamerican_gfx }
+	graphical_culture_2d = { southamerican_2d }
 }
 american_cultures = {
 	leader_portraits = {
@@ -607,6 +667,8 @@ american_cultures = {
 		neutrality = { "gfx/interface/ideas/idea_generic_political_advisor_europe_5.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_political_advisor_europe_6.dds" }
 	}
+	graphical_culture = { commonwealth_gfx }
+	graphical_culture_2d = { commonwealth_2d }
 }
 neo_european_cultures = {
 	leader_portraits = {
@@ -626,6 +688,8 @@ neo_european_cultures = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
+	graphical_culture = { western_european_gfx }
+	graphical_culture_2d = { western_european_2d }
 }
 latin_american_cultures = {
 	leader_portraits = {
@@ -645,6 +709,8 @@ latin_american_cultures = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_south_america.dds" }
 	}
+	graphical_culture = { southamerican_gfx }
+	graphical_culture_2d = { southamerican_2d }
 }
 african_diaspora_cultures = {
 	leader_portraits = {
@@ -664,6 +730,8 @@ african_diaspora_cultures = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_africa.dds" }
 	}
+	graphical_culture = { african_gfx }
+	graphical_culture_2d = { african_2d }
 }
 west_african = {
 	leader_portraits = {
@@ -683,6 +751,8 @@ west_african = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_africa.dds" }
 	}
+	graphical_culture = { african_gfx }
+	graphical_culture_2d = { african_2d }
 }
 central_african = {
 	leader_portraits = {
@@ -702,6 +772,8 @@ central_african = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_africa.dds" }
 	}
+	graphical_culture = { african_gfx }
+	graphical_culture_2d = { african_2d }
 }
 east_african = {
 	leader_portraits = {
@@ -721,6 +793,8 @@ east_african = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_africa.dds" }
 	}
+	graphical_culture = { african_gfx }
+	graphical_culture_2d = { african_2d }
 }
 southern_african = {
 	leader_portraits = {
@@ -740,6 +814,8 @@ southern_african = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_africa.dds" }
 	}
+	graphical_culture = { african_gfx }
+	graphical_culture_2d = { african_2d }
 }
 bears = {
 	leader_portraits = {
@@ -759,6 +835,8 @@ bears = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
 	}
+	graphical_culture = { western_european_gfx }
+	graphical_culture_2d = { western_european_2d }
 }
 equine = {
 	leader_portraits = {
@@ -778,4 +856,6 @@ equine = {
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
 	}
+	graphical_culture = { western_european_gfx }
+	graphical_culture_2d = { western_european_2d }
 }
