@@ -1359,9 +1359,9 @@ void HoI4Country::outputNamesSet(ofstream& namesFile, const vector<string>& name
 }
 
 
-void HoI4Country::output(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const
+void HoI4Country::output(const map<int, HoI4State*>& allStates, const vector<HoI4Faction*>& factions) const
 {
-	outputHistory(states, Factions);
+	outputHistory(allStates, factions);
 	outputOOB();
 	outputCommonCountryFile();
 	outputIdeas();
@@ -1375,7 +1375,7 @@ void HoI4Country::output(const map<int, HoI4State*>& states, const vector<HoI4Fa
 }
 
 
-void HoI4Country::outputHistory(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const
+void HoI4Country::outputHistory(const map<int, HoI4State*>& allStates, const vector<HoI4Faction*>& factions) const
 {
 	ofstream output("output/" + Configuration::getOutputName() + "/history/countries/" + Utils::normalizeUTF8Path(filename));
 	if (!output.is_open())
@@ -1385,7 +1385,26 @@ void HoI4Country::outputHistory(const map<int, HoI4State*>& states, const vector
 	}
 	output << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
 
-	if (((capital > 0) && (capital <= static_cast<int>(states.size()))))
+	outputCapital(output, allStates);
+	outputResearchSlots(output);
+	outputThreat(output);
+	outputOOB(output);
+	outputTechnology(output);
+	outputConvoys(output);
+	outputPuppets(output);
+	outputPolitics(output);
+	outputRelations(output);
+	outputFactions(output, factions);
+	outputIdeas(output);
+	outputCountryLeader(output);
+
+	output.close();
+}
+
+
+void HoI4Country::outputCapital(ofstream& output, const map<int, HoI4State*>& allStates) const
+{
+	if (((capital > 0) && (capital <= static_cast<int>(allStates.size()))))
 	{
 		output << "capital = " << capital << '\n';
 	}
@@ -1397,20 +1416,37 @@ void HoI4Country::outputHistory(const map<int, HoI4State*>& states, const vector
 	{
 		output << "capital = 1\n";
 	}
+}
 
+
+void HoI4Country::outputResearchSlots(ofstream& output) const
+{
 	if (majorNation)
 	{
 		output << "set_research_slots = 4\n";
 	}
-	
-	if(threat!=0)
+}
+
+
+void HoI4Country::outputThreat(ofstream& output) const
+{
+	if (threat != 0.0)
 	{
-		output<<"add_named_threat = { threat = "<<threat<<" name = badboy }\n";
+		output << "add_named_threat = { threat = "<< threat << " name = infamy }\n";
 	}
 	output << "\n";
+}
+
+
+void HoI4Country::outputOOB(ofstream& output) const
+{
 	output << "oob = \"" << tag << "_OOB\"\n";
 	output << "\n";
+}
 
+
+void HoI4Country::outputTechnology(ofstream& output) const
+{
 	output << "# Starting tech\n";
 	output << "set_technology = {\n";
 	for (auto tech : technologies)
@@ -1418,10 +1454,18 @@ void HoI4Country::outputHistory(const map<int, HoI4State*>& states, const vector
 		output << tech.first << " = 1\n";
 	}
 	output << "}\n";
+}
 
+
+void HoI4Country::outputConvoys(ofstream& output) const
+{
 	output << "set_convoys = " << convoys << '\n';
 	output << "\n";
+}
 
+
+void HoI4Country::outputPuppets(ofstream& output) const
+{
 	if (puppets.size() > 0)
 	{
 		output << "# DIPLOMACY\n";
@@ -1461,7 +1505,11 @@ void HoI4Country::outputHistory(const map<int, HoI4State*>& states, const vector
 		output << "    add_to_tech_sharing_group = " << puppetMaster << "_research\n";
 		output << "}\n\n";
 	}
+}
 
+
+void HoI4Country::outputPolitics(ofstream& output) const
+{
 	output << "set_politics = {\n";
 	output << "\n";
 	output << "    parties = {\n";
@@ -1486,70 +1534,6 @@ void HoI4Country::outputHistory(const map<int, HoI4State*>& states, const vector
 		output << "    elections_allowed = no\n";
 	}
 	output << "}\n";
-
-	outputRelations(output);
-	output << "\n";
-
-	for (auto Faction : Factions)
-	{
-		if (Faction->getLeader()->getTag() == tag)
-		{
-			output << "create_faction = \"Alliance of " + getSourceCountry()->getName("english") + "\"\n";
-			for (auto factionmem : Faction->getMembers())
-			{
-				output << "add_to_faction = " + factionmem->getTag() + "\n";
-			}
-		}
-	}
-	output << '\n';
-
-	output << "add_ideas = {\n";
-	if (majorNation)
-	{
-		output << "\tgreat_power\n";
-	}
-	if (!civilized)
-	{
-		output << "\tuncivilized\n";
-	}
-	if (rulingParty->war_policy == "jingoism")
-	{
-		output << "\tpartial_economic_mobilisation\n";
-	}
-	if (rulingParty->war_policy == "pro_military")
-	{
-		output << "\tlow_economic_mobilisation\n";
-	}
-	output << "}\n";
-
-	outputCountryLeader(output);
-
-	output << "\n";
-	output << "1939.1.1 = {\n";
-	output << "}\n" << endl;
-	output.close();
-}
-
-
-bool HoI4Country::areElectionsAllowed(void) const
-{
-	if (
-			(governmentIdeology == "democratic") ||
-			(
-				(governmentIdeology == "neutrality") &&
-				(
-					(leaderIdeology == "conservatism_neutral") ||
-					(leaderIdeology == "liberalism_neutral")
-				)
-			)
-		)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
 }
 
 
@@ -1571,6 +1555,69 @@ void HoI4Country::outputRelations(ofstream& output) const
 			output << abs(relation.second->getRelations()) << " }\n";
 		}
 	}
+	output << "\n";
+}
+
+
+bool HoI4Country::areElectionsAllowed(void) const
+{
+	if (
+		(governmentIdeology == "democratic") ||
+		(
+		(governmentIdeology == "neutrality") &&
+			(
+			(leaderIdeology == "conservatism_neutral") ||
+				(leaderIdeology == "liberalism_neutral")
+				)
+			)
+		)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+
+void HoI4Country::outputFactions(ofstream& output, const vector<HoI4Faction*>& factions) const
+{
+	for (auto faction: factions)
+	{
+		if (faction->getLeader()->getTag() == tag)
+		{
+			output << "create_faction = \"Alliance of " + getSourceCountry()->getName("english") + "\"\n";
+			for (auto factionmem : faction->getMembers())
+			{
+				output << "add_to_faction = " + factionmem->getTag() + "\n";
+			}
+		}
+	}
+	output << '\n';
+}
+
+
+void HoI4Country::outputIdeas(ofstream& output) const
+{
+	output << "add_ideas = {\n";
+	if (majorNation)
+	{
+		output << "\tgreat_power\n";
+	}
+	if (!civilized)
+	{
+		output << "\tuncivilized\n";
+	}
+	if (rulingParty->war_policy == "jingoism")
+	{
+		output << "\tpartial_economic_mobilisation\n";
+	}
+	if (rulingParty->war_policy == "pro_military")
+	{
+		output << "\tlow_economic_mobilisation\n";
+	}
+	output << "}\n";
 }
 
 

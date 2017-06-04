@@ -67,7 +67,7 @@ class HoI4Country
 		void outputToCommonCountriesFile(ofstream& countriesFile) const;
 		void outputColors(ofstream& out) const;
 		void outputToNamesFiles(ofstream& namesFile) const;
-		void output(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const;
+		void output(const map<int, HoI4State*>& allStates, const vector<HoI4Faction*>& factions) const;
 		void outputIdeaGraphics(ofstream& ideasFile) const;
 
 		void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
@@ -126,9 +126,19 @@ class HoI4Country
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, HoI4Province*> allProvinces);
 
 		void outputNamesSet(ofstream& namesFile, const vector<string>& names, const string& tabs) const;
-		void outputHistory(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const;
-		bool areElectionsAllowed(void) const;
+		void outputHistory(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& factions) const;
+		void outputCapital(ofstream& output, const map<int, HoI4State*>& allStates) const;
+		void outputResearchSlots(ofstream& output) const;
+		void outputThreat(ofstream& output) const;
+		void outputOOB(ofstream& output) const;
+		void outputTechnology(ofstream& output) const;
+		void outputConvoys(ofstream& output) const;
+		void outputPuppets(ofstream& output) const;
+		void outputPolitics(ofstream& output) const;
 		void outputRelations(ofstream& output) const;
+		bool areElectionsAllowed(void) const;
+		void outputFactions(ofstream& output, const vector<HoI4Faction*>& factions) const;
+		void outputIdeas(ofstream& output) const;
 		void outputCountryLeader(ofstream& output) const;
 		void outputOOB() const;
 		void outputCommonCountryFile() const;
