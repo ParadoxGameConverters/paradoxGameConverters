@@ -108,8 +108,6 @@ class HoI4World
 		map<string, vector<pair<string, int>>> importTechMap() const;
 		void addTechs(HoI4Country* countryaddTechs, const string& oldTech, const map<string, vector<pair<string, int>>>& techMap);
 
-		void generateLeaders();
-
 		void convertArmies();
 		void convertNavies();
 		void convertAirforces();

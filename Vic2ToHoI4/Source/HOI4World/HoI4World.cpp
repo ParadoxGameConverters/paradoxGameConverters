@@ -67,7 +67,6 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	convertStrategicRegions();
 	convertDiplomacy();
 	convertTechs();
-	generateLeaders();
 	convertArmies();
 	convertNavies();
 	convertAirforces();
@@ -822,17 +821,6 @@ void HoI4World::addTechs(HoI4Country* country, const string& oldTech, const map<
 		{
 			country->setTechnology(HoI4TechItr.first, HoI4TechItr.second);
 		}
-	}
-}
-
-
-void HoI4World::generateLeaders()
-{
-	LOG(LogLevel::Info) << "Generating Leaders";
-
-	for (auto country: countries)
-	{
-		country.second->generateLeaders(leaderTraits, portraitMap);
 	}
 }
 
