@@ -1562,12 +1562,13 @@ void HoI4Country::outputRelations(ofstream& output) const
 bool HoI4Country::areElectionsAllowed(void) const
 {
 	if (
-		(governmentIdeology == "democratic") ||
-		(
-		(governmentIdeology == "neutrality") &&
+			(governmentIdeology == "democratic") ||
 			(
-			(leaderIdeology == "conservatism_neutral") ||
-				(leaderIdeology == "liberalism_neutral")
+				(governmentIdeology == "neutrality") &&
+				(
+					(leaderIdeology == "conservatism_neutral") ||
+					(leaderIdeology == "liberalism_neutral") ||
+					(leaderIdeology == "socialism_neutral")
 				)
 			)
 		)
