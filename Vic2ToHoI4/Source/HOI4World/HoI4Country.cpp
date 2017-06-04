@@ -388,7 +388,7 @@ void HoI4Country::convertIdeologySupport(const set<string>& majorIdeologies)
 	for (auto upperHouseIdeology: srcCountry->getUpperHouseComposition())
 	{
 		string ideology = governmentMapper::getSupportedIdeology(governmentIdeology, upperHouseIdeology.first);
-		if (majorIdeologies.count(ideology) == 0)
+		if (majorIdeologies.count(ideology) == 0 && Configuration::getDropMinorIdeologies())
 		{
 			ideology = "neutrality";
 		}

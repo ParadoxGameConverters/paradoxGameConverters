@@ -123,6 +123,9 @@ Configuration::Configuration()
 	{
 		version = HOI4Version("1.3.3");
 	}
+
+	string dropMinorIdeologiesOption = obj[0]->getLeaf("drop_minor_ideologies");
+	dropMinorIdeologies = dropMinorIdeologiesOption == "true";
 }
 
 
