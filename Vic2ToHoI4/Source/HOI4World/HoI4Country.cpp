@@ -1477,7 +1477,14 @@ void HoI4Country::outputHistory(const map<int, HoI4State*>& states, const vector
 	output << "    ruling_party = " << governmentIdeology << "\n";
 	output << "    last_election = \"1936.1.1\"\n";
 	output << "    election_frequency = 48\n";
-	output << "    elections_allowed = no\n";
+	if (areElectionsAllowed())
+	{
+		output << "    elections_allowed = yes\n";
+	}
+	else
+	{
+		output << "    elections_allowed = no\n";
+	}
 	output << "}\n";
 
 	outputRelations(output);
@@ -1521,6 +1528,28 @@ void HoI4Country::outputHistory(const map<int, HoI4State*>& states, const vector
 	output << "1939.1.1 = {\n";
 	output << "}\n" << endl;
 	output.close();
+}
+
+
+bool HoI4Country::areElectionsAllowed(void) const
+{
+	if (
+			(governmentIdeology == "democratic") ||
+			(
+				(governmentIdeology == "neutrality") &&
+				(
+					(leaderIdeology == "conservatism_neutral") ||
+					(leaderIdeology == "liberalism_neutral")
+				)
+			)
+		)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 

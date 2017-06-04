@@ -127,6 +127,7 @@ class HoI4Country
 
 		void outputNamesSet(ofstream& namesFile, const vector<string>& names, const string& tabs) const;
 		void outputHistory(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& Factions) const;
+		bool areElectionsAllowed(void) const;
 		void outputRelations(ofstream& output) const;
 		void outputCountryLeader(ofstream& output) const;
 		void outputOOB() const;
