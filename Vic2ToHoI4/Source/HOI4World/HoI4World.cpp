@@ -186,7 +186,8 @@ void HoI4World::addNeutrality()
 {
 	for (auto country: countries)
 	{
-		if (majorIdeologies.count(country.second->getGovernmentIdeology()) == 0)
+		if ((majorIdeologies.count(country.second->getGovernmentIdeology()) == 0) &&
+			Configuration::getDropMinorIdeologies())
 		{
 			country.second->setGovernmentToNeutral();
 		}
