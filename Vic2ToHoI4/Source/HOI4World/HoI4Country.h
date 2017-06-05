@@ -65,7 +65,7 @@ class HoI4Country
 		void outputToCommonCountriesFile(ofstream& countriesFile) const;
 		void outputColors(ofstream& out) const;
 		void outputToNamesFiles(ofstream& namesFile) const;
-		void output(const map<int, HoI4State*>& allStates, const vector<HoI4Faction*>& factions) const;
+		void output() const;
 		void outputIdeaGraphics(ofstream& ideasFile) const;
 
 		void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
@@ -129,8 +129,8 @@ class HoI4Country
 		void addProvince(int _province);
 
 		void outputNamesSet(ofstream& namesFile, const vector<string>& names, const string& tabs) const;
-		void outputHistory(const map<int, HoI4State*>& states, const vector<HoI4Faction*>& factions) const;
-		void outputCapital(ofstream& output, const map<int, HoI4State*>& allStates) const;
+		void outputHistory() const;
+		void outputCapital(ofstream& output) const;
 		void outputResearchSlots(ofstream& output) const;
 		void outputThreat(ofstream& output) const;
 		void outputOOB(ofstream& output) const;
@@ -140,7 +140,7 @@ class HoI4Country
 		void outputPolitics(ofstream& output) const;
 		void outputRelations(ofstream& output) const;
 		bool areElectionsAllowed(void) const;
-		void outputFactions(ofstream& output, const vector<HoI4Faction*>& factions) const;
+		void outputFactions(ofstream& output) const;
 		void outputIdeas(ofstream& output) const;
 		void outputCountryLeader(ofstream& output) const;
 		void outputOOB() const;

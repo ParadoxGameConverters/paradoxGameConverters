@@ -1019,6 +1019,10 @@ void HoI4World::createFactions()
 			{
 				continue;
 			}
+			if (allycountry->isGreatPower())
+			{
+				continue;
+			}
 			string allygovernment = allycountry->getGovernmentIdeology();
 			string sphereLeader = returnSphereLeader(allycountry);
 
@@ -1291,7 +1295,7 @@ void HoI4World::outputCountries() const
 
 	for (auto country: countries)
 	{
-		country.second->output(states->getStates(), factions);
+		country.second->output();
 	}
 
 	ofstream ideasFile("output/" + Configuration::getOutputName() + "/interface/converter_ideas.gfx");

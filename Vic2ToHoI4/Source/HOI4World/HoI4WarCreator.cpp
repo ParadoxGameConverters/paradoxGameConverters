@@ -580,6 +580,8 @@ double HoI4WarCreator::GetFactionStrengthWithDistance(HoI4Country* HomeCountry, 
 	}
 	return strength;
 }
+
+
 HoI4Faction* HoI4WarCreator::findFaction(HoI4Country* CheckingCountry)
 {
 	for (auto faction : theWorld->getFactions())
@@ -591,11 +593,11 @@ HoI4Faction* HoI4WarCreator::findFaction(HoI4Country* CheckingCountry)
 			return faction;
 		}
 	}
+
 	vector<HoI4Country*> myself;
 	myself.push_back(CheckingCountry);
-	HoI4Faction* newFaction = new HoI4Faction(CheckingCountry, myself);
-	CheckingCountry->setFaction(newFaction);
-	return newFaction;
+	HoI4Faction* tempFaction = new HoI4Faction(CheckingCountry, myself);
+	return tempFaction;
 }
 
 

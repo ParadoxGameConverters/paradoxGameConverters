@@ -1221,9 +1221,9 @@ void HoI4Country::outputNamesSet(ofstream& namesFile, const vector<string>& name
 }
 
 
-void HoI4Country::output(const map<int, HoI4State*>& allStates, const vector<HoI4Faction*>& factions) const
+void HoI4Country::output() const
 {
-	outputHistory(allStates, factions);
+	outputHistory();
 	outputOOB();
 	outputCommonCountryFile();
 	outputIdeas();
@@ -1235,7 +1235,7 @@ void HoI4Country::output(const map<int, HoI4State*>& allStates, const vector<HoI
 }
 
 
-void HoI4Country::outputHistory(const map<int, HoI4State*>& allStates, const vector<HoI4Faction*>& factions) const
+void HoI4Country::outputHistory() const
 {
 	ofstream output("output/" + Configuration::getOutputName() + "/history/countries/" + Utils::normalizeUTF8Path(filename));
 	if (!output.is_open())
@@ -1245,7 +1245,7 @@ void HoI4Country::outputHistory(const map<int, HoI4State*>& allStates, const vec
 	}
 	output << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
 
-	outputCapital(output, allStates);
+	outputCapital(output);
 	outputResearchSlots(output);
 	outputThreat(output);
 	outputOOB(output);
@@ -1254,7 +1254,7 @@ void HoI4Country::outputHistory(const map<int, HoI4State*>& allStates, const vec
 	outputPuppets(output);
 	outputPolitics(output);
 	outputRelations(output);
-	outputFactions(output, factions);
+	outputFactions(output);
 	outputIdeas(output);
 	outputCountryLeader(output);
 
@@ -1262,9 +1262,9 @@ void HoI4Country::outputHistory(const map<int, HoI4State*>& allStates, const vec
 }
 
 
-void HoI4Country::outputCapital(ofstream& output, const map<int, HoI4State*>& allStates) const
+void HoI4Country::outputCapital(ofstream& output) const
 {
-	if (((capital > 0) && (capital <= static_cast<int>(allStates.size()))))
+	if (capital > 0)
 	{
 		output << "capital = " << capital << '\n';
 	}
@@ -1443,19 +1443,17 @@ bool HoI4Country::areElectionsAllowed(void) const
 }
 
 
-void HoI4Country::outputFactions(ofstream& output, const vector<HoI4Faction*>& factions) const
+void HoI4Country::outputFactions(ofstream& output) const
 {
-	for (auto faction: factions)
+	if ((faction != nullptr) && (faction->getLeader() == this))
 	{
-		if (faction->getLeader()->getTag() == tag)
+		output << "create_faction = \"Alliance of " + getSourceCountry()->getName("english") + "\"\n";
+		for (auto factionMember : faction->getMembers())
 		{
-			output << "create_faction = \"Alliance of " + getSourceCountry()->getName("english") + "\"\n";
-			for (auto factionmem : faction->getMembers())
-			{
-				output << "add_to_faction = " + factionmem->getTag() + "\n";
-			}
+			output << "add_to_faction = " + factionMember->getTag() + "\n";
 		}
 	}
+
 	output << '\n';
 }
 
