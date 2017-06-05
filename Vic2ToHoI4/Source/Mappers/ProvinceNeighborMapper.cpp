@@ -22,10 +22,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "ProvinceNeighborMapper.h"
-#include "provinceDefinitions.h"
+#include "ProvinceDefinitions.h"
 #include "../Color.h"
 #include "../Configuration.h"
-#include "log.h"
+#include "Log.h"
 
 
 

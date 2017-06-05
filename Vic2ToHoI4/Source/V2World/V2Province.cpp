@@ -227,8 +227,8 @@ int V2Province::getLiteracyWeightedPopulation(string type) const
 
 double V2Province::getPercentageWithCultures(const set<string>& cultures) const
 {
-	int totalPopulation = 0.0;
-	int populationOfCultures = 0.0;
+	int totalPopulation = 0;
+	int populationOfCultures = 0;
 
 	for (auto pop: pops)
 	{

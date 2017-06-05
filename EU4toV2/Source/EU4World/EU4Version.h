@@ -47,4 +47,4 @@ class EU4Version
 
 
 
-#endif EU4VERSION_H_
+#endif // EU4VERSION_H_

@@ -25,6 +25,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../EU4World/EU4Country.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
+#include <algorithm>
+
+
 
 const std::array<std::string, V2Localisation::numLanguages> V2Localisation::languages = 
 	{ "english", "french", "german", "polish", "spanish", "italian", "hungarian", "czech" };

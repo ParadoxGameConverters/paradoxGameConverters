@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
 "Software"), to deal in the Software without restriction, including
@@ -52,7 +52,7 @@ void strcpy_s_Linux(char *__restrict __dest, const char *__restrict __src);
 
 //Very basic implementation, simply returns 0 if FILE* is not NULL
 #define fopen_s fopen_s_Linux
-int fopen_s_Linux(FILE* file, const char* filename, const char* mode);
+int fopen_s_Linux(FILE** file, const char* filename, const char* mode);
 
 #define fprintf_s fprintf_s_Linux
 void fprintf_s_Linux(FILE* file, const char* format, ...);
@@ -109,6 +109,13 @@ namespace Utils
 	std::string convert8859_15ToUTF8(std::string input);
 	std::wstring convert8859_15ToUTF16(std::string UTF8);
 	std::wstring convertUTF8ToUTF16(std::string UTF8);
+
+	// converts a string in the system dependent wchar_t encoding to UTF-8
+	std::string convertToUTF8(const std::wstring &input);
+
+	//converts an UTF8 path to the system dependent filesystem path encoding
+	std::string normalizeUTF8Path(const std::string &utf_8_path);
+
 } // namespace Utils
 
 

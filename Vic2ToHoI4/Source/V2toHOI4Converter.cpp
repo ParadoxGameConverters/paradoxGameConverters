@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Configuration.h"
 #include "Flags.h"
 #include "Log.h"
-#include "HoI4World/HoI4World.h"
+#include "HOI4World/HoI4World.h"
 #include "V2World/V2World.h"
 #include "OSCompatibilityLayer.h"
 
@@ -37,7 +37,7 @@ int main(const int argc, const char* argv[])
 {
 	try
 	{
-		LOG(LogLevel::Info) << "Converter version 0.2";
+		LOG(LogLevel::Info) << "Converter version 0.2A";
 		LOG(LogLevel::Info) << "Built on " << __DATE__ << " at " << __TIME__;
 		LOG(LogLevel::Info) << "Current directory is " << Utils::getCurrentDirectory();
 
@@ -118,7 +118,11 @@ void checkMods()
 
 void getOutputName(const string& V2SaveFileName)
 {
-	const int slash = V2SaveFileName.find_last_of("\\");
+	int slash = V2SaveFileName.find_last_of("\\");
+	if (slash == string::npos)
+	{
+		slash = V2SaveFileName.find_last_of("/");
+	}
 	string outputName = V2SaveFileName.substr(slash + 1, V2SaveFileName.length());
 	const int length = outputName.find_first_of(".");
 	outputName = outputName.substr(0, length);
@@ -170,14 +174,16 @@ void createModFile()
 		exit(-1);
 	}
 
-	ofstream modFile("Output/" + Configuration::getOutputName() + ".mod");
+	ofstream modFile("output/" + Configuration::getOutputName() + ".mod");
 	if (!modFile.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create .mod file";
 		exit(-1);
 	}
 
-	if (Configuration::getHOI4Version() >= HOI4Version("1.3.3"))
+	HOI4Version versionThatWantsBOM("1.3.3");
+	HOI4Version thisVersion = Configuration::getHOI4Version();
+	if (thisVersion >= versionThatWantsBOM)
 	{
 		modFile << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
 	}
@@ -186,7 +192,7 @@ void createModFile()
 	modFile << "user_dir = \"" << Configuration::getOutputName() << "_user_dir\"\n";
 	modFile << "replace_path=\"history/countries\"\n";
 	modFile << "replace_path=\"history/states\"\n";
-	modFile << "supported_version=\"" << Configuration::getHOI4Version() << "\"";
+	modFile << "supported_version=\"" << thisVersion << "\"";
 	modFile.close();
 }
 

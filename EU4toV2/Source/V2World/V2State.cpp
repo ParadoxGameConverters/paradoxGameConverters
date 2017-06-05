@@ -24,7 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Pop.h"
 #include "V2Province.h"
 #include "V2Factory.h"
-#include "log.h"
+#include "Log.h"
 
 V2State::V2State(int newId, V2Province* firstProvince)
 {

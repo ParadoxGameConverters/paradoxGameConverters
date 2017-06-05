@@ -15,13 +15,10 @@ copy "Data_Files\governmentMapping.txt" "release\governmentMapping.txt
 copy "Data_Files\license.txt" "release\license.txt"
 copy "Data_Files\tech_mapping.txt" "release\tech_mapping.txt"
 copy "Data_Files\unit_mapping.txt" "release\unit_mapping.txt"
-copy "Data_Files\culture_map.txt" "release\culture_map.txt"
 copy "Data_Files\FAQ.txt" "release\FAQ.txt"
 copy "Data_Files\resources.txt" "release\resources.txt"
-copy "Data_Files\navalprovinces.txt" "release\navalprovinces.txt"
 copy "Data_Files\positions.txt" "release\positions.txt"
-copy "Data_Files\femaleNames.txt" "release\femaleNames.txt"
-copy "Data_Files\callsigns.txt" "release\callsigns.txt"
+copy "Data_Files\names.txt" "release\names.txt"
 copy "Data_Files\cultureGroupToGraphics.txt" "release\cultureGroupToGraphics.txt"
 
 rem **Copy flags**

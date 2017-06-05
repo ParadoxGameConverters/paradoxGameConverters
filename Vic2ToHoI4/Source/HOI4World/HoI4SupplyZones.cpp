@@ -115,9 +115,9 @@ void HoI4SupplyZones::mapProvincesToSupplyZone(int ID, Object* supplyAreaObj)
 
 void HoI4SupplyZones::output()
 {
-	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/map/supplyareas"))
+	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/map/supplyareas"))
 	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/map/supplyareas";
+		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/map/supplyareas";
 		exit(-1);
 	}
 

@@ -70,6 +70,11 @@ class HoI4Localisation
 			getInstance()->CopyFocusLocalisations(oldKey, newKey);
 		}
 
+		static void addIdeaLocalisation(const string& idea, const string& localisation)
+		{
+			getInstance()->AddIdeaLocalisation(idea, localisation);
+		}
+
 		static void output()
 		{
 			getInstance()->Output();
@@ -86,7 +91,11 @@ class HoI4Localisation
 			return instance;
 		}
 		HoI4Localisation();
-		void importFocusLocalisations();
+		void importLocalisations();
+		void importFocusLocalisations(const string& filename);
+		void importGenericIdeaLocalisations(const string& filename);
+		void importLocalisationFile(const string& filename, languageToLocalisationsMap& localisations);
+		void prepareIdeaLocalisations();
 
 		void AddNonenglishCountryLocalisations();
 
@@ -103,17 +112,23 @@ class HoI4Localisation
 		void addNonenglishStateLocalisations();
 		void addNonenglishVPLocalisations();
 
+		void AddIdeaLocalisation(const string& idea, const string& localisation);
+
 		void Output() const;
 		void outputCountries(string localisationPath) const;
 		void outputFocuses(string localisationPath) const;
 		void outputStateLocalisations(string localisationPath) const;
 		void outputVPLocalisations(string localisationPath) const;
+		void outputIdeaLocalisations(string localisationPath) const;
+		void outputLocalisations(const string& filenameStart, const languageToLocalisationsMap& localisations) const;
 
 		languageToLocalisationsMap stateLocalisations;
 		languageToLocalisationsMap VPLocalisations;
 		languageToLocalisationsMap countryLocalisations;
 		languageToLocalisationsMap originalFocuses;
 		languageToLocalisationsMap newFocuses;
+		languageToLocalisationsMap ideaLocalisations;
+		languageToLocalisationsMap genericIdeaLocalisations;
 };
 
 

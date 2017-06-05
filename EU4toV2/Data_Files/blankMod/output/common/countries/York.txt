@@ -1,4 +1,4 @@
-color = { 209  66  58 }
+color = { 193  26  14 }
 graphical_culture = BritishGC
 
 party = {

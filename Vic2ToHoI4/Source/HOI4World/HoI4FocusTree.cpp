@@ -58,7 +58,8 @@ void HoI4FocusTree::addGenericFocusTree()
 		focuses.push_back(newFocus);
 	}*/
 
-	if (Configuration::getHOI4Version() >= HOI4Version("1.3.0"))
+	HOI4Version version1_3("1.3.0");
+	if (Configuration::getHOI4Version() >= version1_3)
 	{
 		addVersion1_3GenericFocusTree();
 	}
@@ -4339,13 +4340,13 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(HoI4Country* Home, const 
 
 void HoI4FocusTree::output()
 {
-	if (!Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/common/national_focus"))
+	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/common/national_focus"))
 	{
-		LOG(LogLevel::Error) << "Could not create \"Output/" + Configuration::getOutputName() + "/common/national_focus\"";
+		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/common/national_focus\"";
 		exit(-1);
 	}
 
-	string filename("Output/" + Configuration::getOutputName() + "/common/national_focus/" + srcCountryTag + "_NF.txt");
+	string filename("output/" + Configuration::getOutputName() + "/common/national_focus/" + srcCountryTag + "_NF.txt");
 	ofstream out(filename);
 	if (!out.is_open())
 	{

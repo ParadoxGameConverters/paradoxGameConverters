@@ -113,6 +113,11 @@ class Configuration // Singleton
 			return getInstance()->version;
 		}
 
+		static bool getDropMinorIdeologies()
+		{
+			return getInstance()->dropMinorIdeologies;
+		}
+
 		static Configuration* getInstance()
 		{
 			if (instance == NULL)
@@ -138,6 +143,11 @@ class Configuration // Singleton
 		double industrialShapeFactor;
 		double			icFactor;
 		bool ICStats;
+
+		// If true, only major idologies are kept. All minor ideologies are
+		// converted to neutrality. "Major ideologies" are defined by
+		// HoI4World::identifyMajorIdeologies.
+		bool dropMinorIdeologies;
 
 		unsigned int	leaderID;
 		unsigned int	leaderIDCountryIdx;

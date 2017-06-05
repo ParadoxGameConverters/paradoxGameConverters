@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -24,6 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Date.h"
 #include <vector>
 #include "Object.h"
+#include "OSCompatibilityLayer.h"
 using namespace std;
 
 
@@ -50,6 +51,7 @@ date::date(string _init)
 	}
 	catch (const std::exception& e)
 	{
+		LOG(LogLevel::Warning) << "Problem inputting date: " << e.what();
 		year = 0;
 		month = 0;
 		day = 0;

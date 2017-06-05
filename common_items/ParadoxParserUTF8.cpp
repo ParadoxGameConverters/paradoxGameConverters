@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -44,12 +44,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "ParadoxParserUTF8.h"
 #include <fstream>
 #include <locale>
-#include <codecvt>
 #include <boost/spirit/include/support_istream_iterator.hpp>
 #include <boost/spirit/include/qi.hpp>
 #include "Log.h"
 
+#include "ParadoxParserGenericSupport.h"
+
 using namespace boost::spirit;
+
+
 
 namespace parser_UTF8
 {
@@ -426,6 +429,12 @@ namespace parser_UTF8
 
 	Object* doParseFile(string filename)
 	{
+// This switch is made to ensure no problems arise with the other projects
+// While the Generic parser is still being tested it will only be used on Linux (where USE_GENERIC_PARADOX_PARSER is set to 1 by default)
+// On Windows, it can be enabled from CMake / VC++ compiler args to test it
+#ifdef USE_GENERIC_PARADOX_PARSER
+		return parser_generic::parseUTF_8(filename);
+#else
 		/* - when using parser debugging, also ensure that the parser object is non-static!
 		debugme = false;
 		if (string(filename) == "D:/Victoria 2/technologies/commerce_tech.txt")
@@ -439,11 +448,12 @@ namespace parser_UTF8
 		{
 			return nullptr;
 		}
-		read.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t, 0x10ffff, std::consume_header>));
+		//read.imbue(std::locale(std::locale(), new std::codecvt_utf8<wchar_t, 0x10ffff, std::consume_header>));
 		readFile(read);
 		read.close();
 		read.clear();
 
 		return obj;
+#endif
 	}
 } // namespace parser_UTF8

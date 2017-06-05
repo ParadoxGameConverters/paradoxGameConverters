@@ -65,7 +65,7 @@ public:
 	set<string> getInventions() const { return inventions; }
 	string getGovernment() const { return government; }
 	int getCapital() const { return capital; }
-	vector<string> getTechs() const { return techs; }
+	set<string> getTechs() const { return techs; }
 	Color getColor() const { return color; }
 	double getEducationSpending() const { return educationSpending; }
 	double getMilitarySpending() const { return militarySpending; }
@@ -130,7 +130,7 @@ private:
 	string primaryCultureGroup;
 	set<string> acceptedCultures;
 
-	vector<string> techs;
+	set<string> techs;
 	set<string> inventions;
 
 	map<string, V2Relations*> relations;

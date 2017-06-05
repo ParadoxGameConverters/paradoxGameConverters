@@ -1,4 +1,4 @@
-/*Copyright(c) 2016 The Paradox Game Converters Project
+/*Copyright(c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -43,6 +43,7 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 	cores.clear();
 	inHRE					= false;
 	holyRomanEmperor	= false;
+	celestialEmperor	= false;
 
 	vector<Object*> nameObj = obj->getValue("name");	// the object holding the name
 	(!nameObj.empty()) ? name = nameObj[0]->getLeaf() : name = "";
@@ -98,6 +99,13 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 		}
 	}
 
+	auto version20 = EU4Version("1.20.0.0");
+	if (*version >= version20)
+	{
+		vector<Object*> isolationismObj = obj->getValue("isolationism"); // the object holding the isolationism
+		(isolationismObj.size() > 0) ? isolationism = atof(isolationismObj[0]->getLeaf().c_str()) : isolationism = 1.0;
+	}
+
 	vector<Object*> primaryCultureObj = obj->getValue("primary_culture");	// the object holding the primary culture
 	(primaryCultureObj.size() > 0) ? primaryCulture = primaryCultureObj[0]->getLeaf().c_str() : primaryCulture = "";
 
@@ -108,7 +116,8 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 		acceptedCultures.push_back(acceptedCultureObj[i]->getLeaf().c_str());
 	}
 
-	if (*version >= EU4Version("1.14.0.0"))
+	auto version14 = EU4Version("1.14.0.0");
+	if (*version >= version14)
 	{
 		bool wasUnion = false;
 		if (Configuration::wasDLCActive("The Cossacks"))
@@ -121,7 +130,7 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 		}
 		else
 		{
-			vector <Object*> developmentObj = obj->getValue("development");
+			vector <Object*> developmentObj = obj->getValue("realm_development");
 			if (atof(developmentObj[0]->getLeaf().c_str()) >= 1000)
 			{
 				wasUnion = true;
@@ -171,15 +180,16 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 	determineFlagsAndModifiers(obj);
 
 	possibleDaimyo = false;
+	possibleShogun = false;
 	leaders.clear();
 	vector<Object*> historyObj = obj->getValue("history");	// the object holding the history for this country
 	if (historyObj.size() > 0)
 	{
-		vector<Object*> daimyoObj = historyObj[0]->getValue("daimyo");	// the object holding the daimyo information for this country
+		/*vector<Object*> daimyoObj = historyObj[0]->getValue("daimyo");	// the object holding the daimyo information for this country
 		if (daimyoObj.size() > 0)
 		{
 			possibleDaimyo = true;
-		}
+		}*/
 
 		vector<Object*> historyLeaves = historyObj[0]->getLeaves();	// the object holding the individual histories for this country
 		date hundredYearsOld = date("1740.1.1");							// one hundred years before conversion
@@ -217,7 +227,15 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 
 	vector<Object*> governmentObj = obj->getValue("government");	// the object holding the government
 	(governmentObj.size() > 0) ? government = governmentObj[0]->getLeaf() : government = "";
+	if (government == "daimyo") 
+	{
+		possibleDaimyo = true;
+	}
 
+	if (government == "shogunate")
+	{
+		possibleShogun = true;
+	}
 	// Read international relations leaves
 	vector<Object*> relationLeaves = obj->getValue("active_relations");	// the object holding the active relationships
 	vector<Object*> relationsLeaves = relationLeaves[0]->getLeaves();		// the objects holding the relationships themselves

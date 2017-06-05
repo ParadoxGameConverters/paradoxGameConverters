@@ -1,4 +1,4 @@
-# Copyright (c) 2016 The Paradox Game Converters Project
+# Copyright (c) 2017 The Paradox Game Converters Project
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -33,6 +33,9 @@ link = { v2 = ashkenazi eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 =
 link = { v2 = north_german eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 = saxon eu4 = hessian eu4 = old_saxon }
 link = { v2 = swiss eu4 = swiss }
 link = { v2 = south_german eu4 = franconian eu4 = swabian eu4 = rheinlaender eu4 = bavarian eu4 = austrian }
+# generic CK2 german split
+link = { v2 = north_german eu4 = german region = north_german_region }
+link = { v2 = south_german eu4 = german region = south_german_region }
 link = { v2 = german eu4 = german }
 
 # Benelux - Dutch, Flemish, Wallonian
@@ -148,7 +151,7 @@ link = { v2 = bosniak eu4 = croatian eu4 = serbian religion = shiite }
 link = { v2 = croat eu4 = croatian }
 link = { v2 = serb eu4 = serbian }
 link = { v2 = bulgarian eu4 = bulgarian }
-link = { v2 = albanian eu4 = albanian }
+link = { v2 = albanian eu4 = albanian }								   
 
 # West Slav - polish, schlesian, czech, slovak
 link = { v2 = polish eu4 = polish eu4 = schlesian }
@@ -156,9 +159,13 @@ link = { v2 = slovak eu4 = slovak }
 link = { v2 = czech eu4 = czech }
 
 # East Slav - russian, byelorussian, ruthenian
-link = { v2 = russian eu4 = russian eu4 = russian_culture eu4 = ilmenian eu4 = severian eu4 = volhynian eu4 = novgorodian eu4 = ryazanian }
+link = { v2 = russian eu4 = russian eu4 = ilmenian eu4 = severian eu4 = volhynian eu4 = novgorodian eu4 = ryazanian }
 link = { v2 = ukrainian eu4 = ruthenian }
 link = { v2 = byelorussian eu4 = byelorussian }
+#Generic Russian (split) from CK2 converted
+link = { v2 = byelorussian eu4 = russian_culture region = white_ruthenia_area region = smolensk_area }
+link = { v2 = ukrainian eu4 = russian_culture region = ruthenia_region }
+link = { v2 = russian eu4 = russian_culture }
 
 # Carpathian - hungarian, romanian, transylvanian
 link = { v2 = hungarian eu4 = hungarian }
