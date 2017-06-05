@@ -90,19 +90,11 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 }
 
 
-void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, map<int, int>& leaderMap, governmentJobsMap governmentJobs, portraitMapping& portraitMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states)
+void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const map<int, int>& stateMap, map<int, HoI4State*> states)
 {
 	srcCountry = _srcCountry;
 
-	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
-	if (filename == "")
-	{
-		filename = Utils::GetFileFromTag(Configuration::getHoI4Path() + "/history/countries/", tag);
-	}
-	if (filename == "")
-	{
-		filename = tag + " - " + commonCountryFile;
-	}
+	determineFilename();
 
 	human = srcCountry->isHuman();
 	color = srcCountry->getColor();
@@ -111,13 +103,13 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	graphicalCulture = graphicsMapper::getGraphicalCulture(srcCountry->getPrimaryCultureGroup());
 	graphicalCulture2d = graphicsMapper::get2dGraphicalCulture(srcCountry->getPrimaryCultureGroup());
 
-	convertGovernment(_srcWorld, _vic2ideology);
+	convertGovernment(_srcWorld);
 	initIdeas();
 
-	nationalUnity = 70.0 + (_srcCountry->getRevanchism() / 0.05) - (_srcCountry->getWarExhaustion() / 2.5);
+	nationalUnity = 70.0 + (srcCountry->getRevanchism() / 0.05) - (srcCountry->getWarExhaustion() / 2.5);
 
-	convertLaws();
-	convertLeaders(portraitMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
+	//convertLaws();
+	//convertLeaders(portraitMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
 	convertRelations();
 
 	determineCapitalFromVic2(stateMap, states);
@@ -131,12 +123,33 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 }
 
 
-void HoI4Country::convertGovernment(const V2World& _srcWorld, const string _vic2ideology)
+void HoI4Country::determineFilename()
 {
-	governmentIdeology = governmentMapper::getIdeologyForCountry(srcCountry, _vic2ideology);
-	leaderIdeology = governmentMapper::getLeaderIdeologyForCountry(srcCountry, _vic2ideology);
-	rulingParty = srcCountry->getRulingParty(_srcWorld.getParties());
-	parties = srcCountry->getActiveParties(_srcWorld.getParties());
+	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
+	if (filename == "")
+	{
+		filename = Utils::GetFileFromTag(Configuration::getHoI4Path() + "/history/countries/", tag);
+	}
+	if (filename == "")
+	{
+		filename = tag + " - " + commonCountryFile;
+	}
+}
+
+
+void HoI4Country::convertGovernment(const V2World& sourceWorld)
+{
+	rulingParty = srcCountry->getRulingParty(sourceWorld.getParties());
+	if (rulingParty == nullptr)
+	{
+		LOG(LogLevel::Error) << "Could not find the ruling party for " << srcCountry->getTag() << ". Most likely a mod was not included.";
+		LOG(LogLevel::Error) << "Double-check your settings, and remember to included EU4 to Vic2 mods. See the FAQ for more information.";
+		exit(-1);
+	}
+
+	governmentIdeology = governmentMapper::getIdeologyForCountry(srcCountry, rulingParty->ideology);
+	leaderIdeology = governmentMapper::getLeaderIdeologyForCountry(srcCountry, rulingParty->ideology);
+	parties = srcCountry->getActiveParties(sourceWorld.getParties());
 }
 
 
@@ -156,7 +169,7 @@ void HoI4Country::initIdeas()
 }
 
 
-void HoI4Country::convertLaws()
+/*void HoI4Country::convertLaws()
 {
 	// civil law - democracies get open society, communist dicatorships get totalitarian, everyone else gets limited restrictions
 	string srcGovernment = srcCountry->getGovernment();
@@ -246,10 +259,10 @@ void HoI4Country::convertLaws()
 	{
 		training_laws = "minimal_training";
 	}
-}
+}*/
 
 
-void HoI4Country::convertLeaders(portraitMapping& portraitMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+/*void HoI4Country::convertLeaders(portraitMapping& portraitMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
 {
 	vector<V2Leader*> srcLeaders = srcCountry->getLeaders();
 	for (auto srcLeader : srcLeaders)
@@ -259,7 +272,7 @@ void HoI4Country::convertLeaders(portraitMapping& portraitMap, personalityMap& l
 	}
 
 	Configuration::setLeaderIDForNextCountry();
-}
+}*/
 
 
 void HoI4Country::convertRelations()
@@ -324,10 +337,10 @@ bool HoI4Country::isThisStateACoreWhileWeOwnNoStates(const HoI4State* state) con
 }
 
 
-void HoI4Country::setCapitalInCapitalState(int capitalProvince, const map<int, HoI4State*>& states)
+void HoI4Country::setCapitalInCapitalState(int capitalProvince, const map<int, HoI4State*>& _states)
 {
-	auto capitalState = states.find(capital);
-	if (capitalState != states.end())
+	auto capitalState = _states.find(capital);
+	if (capitalState != _states.end())
 	{
 		capitalState->second->setVPLocation(capitalProvince);
 	}

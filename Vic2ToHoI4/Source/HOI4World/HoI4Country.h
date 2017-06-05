@@ -50,7 +50,7 @@ class HoI4Country
 	public:
 		HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld);
 
-		void initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, map<int, int>& leaderMap, governmentJobsMap governmentJobs, portraitMapping& portraitMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, const map<int, int>& stateMap, map<int, HoI4State*> states);
+		void initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const map<int, int>& stateMap, map<int, HoI4State*> states);
 		void initFromHistory();
 		void setGovernmentToNeutral();
 		void convertIdeologySupport(const set<string>& majorIdeologies);
@@ -114,10 +114,11 @@ class HoI4Country
 		void addPuppet(const string& countryTag) { puppets.insert(countryTag); }
 
 	private:
-		void convertGovernment(const V2World& _srcWorld, const string _vic2ideology);
+		void determineFilename();
+		void convertGovernment(const V2World& _srcWorld);
 		void initIdeas();
-		void convertLaws();
-		void convertLeaders(portraitMapping& portraitMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+		//void convertLaws();
+		//void convertLeaders(portraitMapping& portraitMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
 		void convertRelations();
 		void determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states);
 		bool isStateValidForCapital(map<int, int>::const_iterator capitalState, const map<int, HoI4State*>& states);

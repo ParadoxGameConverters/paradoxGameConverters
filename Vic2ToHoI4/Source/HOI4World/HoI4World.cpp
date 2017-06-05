@@ -146,14 +146,8 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 	{
 		std::string countryFileName = country.second->getName("english") + ".txt";
 		destCountry = new HoI4Country(HoI4Tag, countryFileName, this);
-		V2Party* rulingParty = country.second->getRulingParty(sourceWorld->getParties());
-		if (rulingParty == nullptr)
-		{
-			LOG(LogLevel::Error) << "Could not find the ruling party for " << country.first << ". Most likely a mod was not included.";
-			LOG(LogLevel::Error) << "Double-check your settings, and remember to included EU4 to Vic2 mods. See the FAQ for more information.";
-			exit(-1);
-		}
-		destCountry->initFromV2Country(*sourceWorld, country.second, rulingParty->ideology, leaderMap, governmentJobs, portraitMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap, states->getProvinceToStateIDMap(), states->getStates());
+
+		destCountry->initFromV2Country(*sourceWorld, country.second, states->getProvinceToStateIDMap(), states->getStates());
 		countries.insert(make_pair(HoI4Tag, destCountry));
 	}
 	else
@@ -186,8 +180,7 @@ void HoI4World::addNeutrality()
 {
 	for (auto country: countries)
 	{
-		if ((majorIdeologies.count(country.second->getGovernmentIdeology()) == 0) &&
-			Configuration::getDropMinorIdeologies())
+		if (majorIdeologies.count(country.second->getGovernmentIdeology()) == 0)
 		{
 			country.second->setGovernmentToNeutral();
 		}
