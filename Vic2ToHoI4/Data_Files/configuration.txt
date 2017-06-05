@@ -36,4 +36,8 @@ configuration =
 
 	# IC stats: If this is turned on, the converter will output files with detailed stats about industry conversion. Just remove the # on the next line if you'd like them.
 	# ICStats = yes
+
+	# Drop Minor Ideologies: Convert only major ideologies
+	drop_minor_ideologies = true
+
 }
