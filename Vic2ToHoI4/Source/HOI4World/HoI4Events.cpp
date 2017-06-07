@@ -107,7 +107,7 @@ void HoI4Events::createFactionEvents(const HoI4Country* Leader, HoI4Country* new
 	nfEvent.major = false;
 
 	string yesOption = "		name = \"Yes\"\n";
-	if (newAlly->getFaction() != nullptr)
+	/* if (newAlly->getFaction() != nullptr)
 	{
 		for (auto member: newAlly->getFaction()->getMembers())
 		{
@@ -122,6 +122,19 @@ void HoI4Events::createFactionEvents(const HoI4Country* Leader, HoI4Country* new
 			yesOption += "			add_to_faction = " + member->getTag() + "\n";
 			yesOption += "		}\n";
 		}
+	} */
+	if (Leader->getFaction() != nullptr)
+	{
+		yesOption += "		" + newAlly->getTag() + " = {\n";
+		yesOption += "			add_ai_strategy = {\n";
+		yesOption += "				type = alliance\n";
+		yesOption += "				id = \"" + Leader->getTag() + "\"\n";
+		yesOption += "				value = 200\n";
+		yesOption += "			}\n";
+		yesOption += "		}\n";
+		yesOption += "		" + Leader->getTag() + " = {\n";
+		yesOption += "			add_to_faction = " + newAlly->getTag() + "\n";
+		yesOption += "		}\n";
 	}
 	yesOption += "		hidden_effect = {\n";
 	yesOption += "			news_event = { id = news." + to_string(newsEventNumber) + " }\n";
