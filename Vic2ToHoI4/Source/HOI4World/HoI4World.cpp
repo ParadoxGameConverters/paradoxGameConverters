@@ -985,7 +985,7 @@ void HoI4World::createFactions()
 	ofstream factionsLog("factions-logs.csv");
 	factionsLog << "name,government,initial strength,factory strength per year,factory strength by 1939\n";
 
-	for (auto leader: greatPowers)
+	for (auto leader : greatPowers)
 	{
 		if (leader->isInFaction())
 		{
@@ -1006,14 +1006,10 @@ void HoI4World::createFactions()
 			alliesAndPuppets.insert(puppetTag);
 		}
 
-		for (auto allyTag: alliesAndPuppets)
+		for (auto allyTag : alliesAndPuppets)
 		{
 			HoI4Country* allycountry = findCountry(allyTag);
 			if (!allycountry)
-			{
-				continue;
-			}
-			if (allycountry->isGreatPower())
 			{
 				continue;
 			}
@@ -1042,14 +1038,17 @@ void HoI4World::createFactions()
 			}
 		}
 
-		HoI4Faction* newFaction = new HoI4Faction(leader, factionMembers);
-		for (auto member: factionMembers)
+		if (factionMembers.size() > 1)
 		{
-			member->setFaction(newFaction);
-		}
-		factions.push_back(newFaction);
+			HoI4Faction* newFaction = new HoI4Faction(leader, factionMembers);
+			for (auto member : factionMembers)
+			{
+				member->setFaction(newFaction);
+			}
+			factions.push_back(newFaction);
 
-		factionsLog << "Faction Strength in 1939," << factionMilStrength << "\n";
+			factionsLog << "Faction Strength in 1939," << factionMilStrength << "\n";
+		}
 	}
 
 	factionsLog.close();
