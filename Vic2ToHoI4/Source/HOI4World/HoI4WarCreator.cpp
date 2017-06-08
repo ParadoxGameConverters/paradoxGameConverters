@@ -1113,13 +1113,6 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 		newFocus->completionReward += "			}";
 		FocusTree->addFocus(newFocus);
 
-/*		if (newAllies[i]->getFaction() == nullptr)
-		{
-			vector<HoI4Country*> self;
-			self.push_back(newAllies[i]);
-			HoI4Faction* newFaction = new HoI4Faction(newAllies[i], self);
-			newAllies[i]->setFaction(newFaction);
-		} */
 		if (Leader->getFaction() == nullptr)
 		{
 			vector<HoI4Country*> self;
