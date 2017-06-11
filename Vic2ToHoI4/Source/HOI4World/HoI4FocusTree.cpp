@@ -4337,6 +4337,313 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(HoI4Country* Home, const 
 	}
 }
 
+void HoI4FocusTree::addCommunistNationalFocuses(HoI4Country* Home, vector<HoI4Country*> coupTargets, vector<HoI4Country*> TargetsbyIC,
+												  vector<HoI4Country*> newAllies, vector<HoI4Country*> GCAllies, vector<HoI4Country*> GCTargets, HoI4Events* events)
+{
+	//tracking of event numbers
+	vector<int> takenSpots;
+	takenSpots.push_back(22);
+
+	if (coupTargets.size() > 0)
+	{
+		if (coupTargets.size() == 1)
+		{
+			takenSpots.push_back(24);
+		}
+		if (coupTargets.size() >= 2)
+		{
+			takenSpots.push_back(25);
+		}
+		//Focus to increase Comm support and prereq for coupTargets
+		HoI4Focus* newFocus = new HoI4Focus;
+		newFocus->id = "Home_of_Revolution" + Home->getTag();
+		newFocus->icon = "GFX_goal_support_communism";
+		newFocus->text = "Home of the Revolution";
+		newFocus->xPos = takenSpots.back();
+		newFocus->yPos = 0;
+		newFocus->cost = 10;
+		newFocus->aiWillDo = "			factor = 5";
+		//FIXME 
+		//Need to get Drift Defense to work
+		//newFocus->completionReward += "			drift_defence_factor = 0.5\n";
+		newFocus->completionReward += "			add_ideas = communist_influence";
+		focuses.push_back(newFocus);
+
+		for (unsigned int i = 0; i < 2; i++)
+		{
+			if (i < coupTargets.size())
+			{
+				newFocus = new HoI4Focus;
+				newFocus->id = "Influence_" + coupTargets[i]->getTag() + "_" + Home->getTag();
+				newFocus->icon = "GFX_goal_generic_propaganda";
+				newFocus->text = "Influence " + coupTargets[i]->getSourceCountry()->getName("english");
+				newFocus->prerequisites.push_back("focus = Home_of_Revolution" + Home->getTag());
+				newFocus->xPos = 24 + i * 2;
+				newFocus->yPos = 1;
+				newFocus->cost = 10;
+				newFocus->aiWillDo = "			factor = 5";
+				newFocus->completionReward += "			" + coupTargets[i]->getTag() + " = {\n";
+				newFocus->completionReward += "				if = {\n";
+				newFocus->completionReward += "					limit = {\n";
+				newFocus->completionReward += "						" + Home->getTag() + " = {\n";
+				newFocus->completionReward += "							has_government = fascism\n";
+				newFocus->completionReward += "						}\n";
+				newFocus->completionReward += "					}\n";
+				newFocus->completionReward += "					add_ideas = fascist_influence\n";
+				newFocus->completionReward += "				}\n";
+				newFocus->completionReward += "				if = {\n";
+				newFocus->completionReward += "					limit = {\n";
+				newFocus->completionReward += "						" + Home->getTag() + " = {\n";
+				newFocus->completionReward += "							has_government = communism\n";
+				newFocus->completionReward += "						}\n";
+				newFocus->completionReward += "					}\n";
+				newFocus->completionReward += "					add_ideas = communist_influence\n";
+				newFocus->completionReward += "				}\n";
+				newFocus->completionReward += "				if = {\n";
+				newFocus->completionReward += "					limit = {\n";
+				newFocus->completionReward += "						" + Home->getTag() + " = {\n";
+				newFocus->completionReward += "							has_government = democratic\n";
+				newFocus->completionReward += "						}\n";
+				newFocus->completionReward += "					}\n";
+				newFocus->completionReward += "					add_ideas = democratic_influence\n";
+				newFocus->completionReward += "				}\n";
+				newFocus->completionReward += "				country_event = { id = generic.1 }\n";
+				newFocus->completionReward += "			}";
+				focuses.push_back(newFocus);
+
+				//Civil War
+				newFocus = new HoI4Focus;
+				newFocus->id = "Coup_" + coupTargets[i]->getTag() + "_" + Home->getTag();
+				newFocus->icon = "GFX_goal_generic_demand_territory";
+				newFocus->text = "Civil War in " + coupTargets[i]->getSourceCountry()->getName("english");
+				newFocus->prerequisites.push_back("focus = Influence_" + coupTargets[i]->getTag() + "_" + Home->getTag());
+				newFocus->available = "			" + coupTargets[i]->getTag() + " = { communism > 0.5 }";
+				newFocus->xPos = 24 + i * 2;
+				newFocus->yPos = 2;
+				newFocus->cost = 10;
+				newFocus->aiWillDo = "			factor = 5";
+				newFocus->completionReward += "			" + coupTargets[i]->getTag() + " = {\n";
+				newFocus->completionReward += "				start_civil_war = {\n";
+				newFocus->completionReward += "					ideology = communism\n";
+				newFocus->completionReward += "					size = 0.5\n";
+				newFocus->completionReward += "				}\n";
+				newFocus->completionReward += "			}";
+				focuses.push_back(newFocus);
+			}
+		}
+	}
+	if (TargetsbyIC.size() > 0)
+	{
+
+		//Strengthen Commitern
+		HoI4Focus* newFocus = new HoI4Focus;
+		newFocus->id = "StrengthCom" + Home->getTag();
+		newFocus->icon = "GFX_goal_support_communism";
+		newFocus->text = "Strengthen The Comintern";//change to faction name later
+		newFocus->xPos = takenSpots.back() + 5;//fixme
+		newFocus->yPos = 0;
+		newFocus->cost = 10;
+		newFocus->aiWillDo = "			factor = 5";
+		newFocus->completionReward += "			army_experience = 20\n";
+		newFocus->completionReward += "			add_tech_bonus = {\n";
+		newFocus->completionReward += "				bonus = 0.5\n";
+		newFocus->completionReward += "				uses = 2\n";
+		newFocus->completionReward += "				category = land_doctrine\n";
+		newFocus->completionReward += "			}";
+		focuses.push_back(newFocus);
+
+		newFocus = new HoI4Focus;
+		newFocus->id = "Inter_Com_Pres" + Home->getTag();
+		newFocus->icon = "GFX_goal_generic_dangerous_deal";
+		newFocus->text = "International Communist Pressure";//change to faction name later
+		newFocus->prerequisites.push_back("focus = StrengthCom" + Home->getTag());
+		newFocus->available = "			date > 1937.1.1";
+		newFocus->xPos = takenSpots.back() + 5;
+		newFocus->yPos = 1;
+		newFocus->cost = 10;
+		newFocus->aiWillDo = "			factor = 5";
+		newFocus->completionReward += "			add_named_threat = { threat = 2 name = " + newFocus->id + " }";
+		//FIXME
+		//maybe add some claims?
+		focuses.push_back(newFocus);
+
+
+		for (unsigned int i = 0; i < 3; i++)
+		{
+			if (i < TargetsbyIC.size())
+			{
+				int v1 = rand() % 12 + 1;
+				int v2 = rand() % 12 + 1;
+				newFocus = new HoI4Focus;
+				newFocus->id = "War" + TargetsbyIC[i]->getTag() + Home->getTag();
+				newFocus->icon = "GFX_goal_generic_major_war";
+				newFocus->text = "War with " + TargetsbyIC[i]->getSourceCountry()->getName("english");//change to faction name later
+				newFocus->prerequisites.push_back("focus = Inter_Com_Pres" + Home->getTag());
+				newFocus->available = "			date > 1938." + to_string(v1) + "." + to_string(v2);
+				newFocus->xPos = takenSpots.back() + 3 + i * 2;
+				newFocus->yPos = 2;
+				newFocus->cost = 10;
+				newFocus->bypass += "					has_war_with = " + TargetsbyIC[i]->getTag() + "\n";
+				newFocus->aiWillDo = "			factor = 5\n";
+				newFocus->aiWillDo += "			modifier = {\n";
+				newFocus->aiWillDo += "				factor = 0\n";
+				newFocus->aiWillDo += "				strength_ratio = { tag = " + TargetsbyIC[i]->getTag() + " ratio < 1 }\n";
+				newFocus->aiWillDo += "			}";
+				if (TargetsbyIC.size() > 1)
+				{
+					newFocus->aiWillDo += "\n";
+					newFocus->aiWillDo += "			modifier = {\n";
+					newFocus->aiWillDo += "				factor = 0\n";
+					newFocus->aiWillDo += "				OR = {\n";
+					for (int i2 = 0; i2 < 3; i2++)
+					{
+						if (i != i2)
+							newFocus->aiWillDo += "					has_war_with = " + TargetsbyIC[i]->getTag() + "\n";
+					}
+					newFocus->aiWillDo += "				}\n";
+					newFocus->aiWillDo += "			}";
+				}
+
+				newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
+				newFocus->completionReward += "			create_wargoal = {\n";
+				newFocus->completionReward += "				type = puppet_wargoal_focus\n";
+				newFocus->completionReward += "				target = " + TargetsbyIC[i]->getTag() + "\n";
+				newFocus->completionReward += "			}";
+				focuses.push_back(newFocus);
+			}
+		}
+		takenSpots.push_back(takenSpots.back() + 6);
+	}
+	//events for allies
+	if (newAllies.size() > 0)
+	{
+		//Focus to call summit, maybe have events from summit
+		HoI4Focus* newFocus = new HoI4Focus;
+		newFocus->id = "Com_Summit" + Home->getTag();
+		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
+		newFocus->text = "Call for the Communist Summit";
+		newFocus->xPos = takenSpots.back() + 3;
+		newFocus->yPos = 0;
+		newFocus->cost = 10;
+		newFocus->aiWillDo = "			factor = 2\n";
+		newFocus->aiWillDo = "			modifier = {\n";
+		newFocus->aiWillDo = "			factor = 10\n";
+		newFocus->aiWillDo = "			date > 1938.1.1\n";
+		newFocus->aiWillDo = "			}";
+		focuses.push_back(newFocus);
+	}
+
+	int i = 0;
+	for (auto newAlly : newAllies)
+	{
+		HoI4Focus* newFocus = new HoI4Focus;
+		newFocus->id = "Alliance_" + newAlly->getTag() + Home->getTag();
+		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
+		newFocus->text = "Alliance with " + newAlly->getSourceCountry()->getName("english");
+		newFocus->prerequisites.push_back("focus = Com_Summit" + Home->getTag());
+		newFocus->xPos = takenSpots.back() + 3 + i;
+		newFocus->yPos = 1;
+		newFocus->cost = 10;
+		newFocus->aiWillDo = "			factor = 10";
+		newFocus->bypass = "			OR = {\n";
+		newFocus->bypass += "				" + Home->getTag() + " = { is_in_faction_with = " + newAlly->getTag() + "}\n";
+		newFocus->bypass += "				has_war_with = " + newAlly->getTag() + "\n";
+		newFocus->bypass += "				NOT = { country_exists = " + newAlly->getTag() + " }\n";
+		newFocus->bypass += "			}\n";
+		newFocus->completionReward += "			" + newAlly->getTag() + " = {\n";
+		newFocus->completionReward += "				country_event = { hours = 6 id = NFEvents." + to_string(events->getCurrentNationFocusEventNum()) + " }\n";
+		newFocus->completionReward += "				add_opinion_modifier = { target = " + Home->getTag() + " modifier = positive_50 }\n";
+		newFocus->completionReward += "			}";
+		focuses.push_back(newFocus);
+
+		events->createFactionEvents(Home, newAlly);
+		i++;
+	}
+
+	// focus for alliance with Great Power
+	for (auto GC: GCAllies)
+	{
+		HoI4Focus* newFocus = new HoI4Focus;
+		newFocus->id = "Alliance_" + GC->getTag() + Home->getTag();
+		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
+		newFocus->text = "Alliance with " + GC->getSourceCountry()->getName("english");
+		newFocus->prerequisites.push_back("focus = Com_Summit" + Home->getTag());
+		newFocus->xPos = takenSpots.back() + 4;
+		newFocus->yPos = 2;
+		newFocus->cost = 15;
+		newFocus->aiWillDo = "			factor = 10";
+		newFocus->bypass = "			OR = {\n";
+		newFocus->bypass += "				" + Home->getTag() + " = { is_in_faction_with = " + GC->getTag() + "}\n";
+		newFocus->bypass += "				has_war_with = " + GC->getTag() + "\n";
+		newFocus->bypass += "				NOT = { country_exists = " + GC->getTag() + " }\n";
+		newFocus->bypass += "			}\n";
+		newFocus->completionReward += "			" + GC->getTag() + " = {\n";
+		newFocus->completionReward += "				country_event = { hours = 6 id = NFEvents." + to_string(events->getCurrentNationFocusEventNum()) + " }\n";
+		newFocus->completionReward += "				add_opinion_modifier = { target = " + Home->getTag() + " modifier = positive_50 }\n";
+		newFocus->completionReward += "			}";
+		focuses.push_back(newFocus);
+		events->createFactionEvents(Home, GC);
+	}
+
+	//Declaring war with Great Country
+	for (auto GC : GCTargets)
+	{
+		string prereq = "";
+		int y2 = 0;
+		//figuring out location of WG
+		if (newAllies.size() > 0)
+		{
+			y2 = 2;
+			for (unsigned int i = 0; (i < 2) && (i < newAllies.size()); i++)
+				prereq += " focus = Alliance_" + newAllies[i]->getTag() + Home->getTag();
+		}
+		int v1 = rand() % 12 + 1;
+		int v2 = rand() % 12 + 1;
+		HoI4Focus* newFocus = new HoI4Focus;
+		newFocus->id = "War" + GC->getTag() + Home->getTag();
+		newFocus->icon = "GFX_goal_generic_major_war";
+		newFocus->text = "War with " + GC->getSourceCountry()->getName("english");//change to faction name later
+		newFocus->prerequisites.push_back(prereq);
+		newFocus->available = "			has_war = no\n";
+		newFocus->available += "			date > 1939." + to_string(v1) + "." + to_string(v2);
+		newFocus->xPos = takenSpots.back() + 3 + GCTargets.size() * 2;
+		newFocus->yPos = y2 + GCAllies.size();
+		//newFocus->yPos     = takenSpotsy.back() + 1;
+		newFocus->cost = 10;
+		newFocus->bypass += "		   has_war_with = " + GC->getTag() + "\n";
+		newFocus->aiWillDo = "			factor = " + to_string(10 - GCTargets.size() * 5) + "\n";
+		newFocus->aiWillDo += "			modifier = {\n";
+		newFocus->aiWillDo += "					factor = 0\n";
+		newFocus->aiWillDo += "					strength_ratio = { tag = " + GC->getTag() + " ratio < 1 }\n";
+		newFocus->aiWillDo += "			}";
+		if (GCTargets.size() > 1)
+		{
+			newFocus->aiWillDo = "\n";
+
+			//make ai have this as a 0 modifier if they are at war
+			newFocus->aiWillDo += "			modifier = {\n";
+			newFocus->aiWillDo += "				factor = 0\n";
+			newFocus->aiWillDo += "				OR = {\n";
+			for (int i2 = 0; i2 < 3; i2++)
+			{
+				if (GC != GCTargets[i2])
+				{
+					newFocus->aiWillDo += "					has_war_with = " + GC->getTag() + "\n";
+				}
+
+			}
+			newFocus->aiWillDo += "				}\n";
+			newFocus->aiWillDo += "			}\n";
+		}
+		newFocus->completionReward += "			add_named_threat = { threat = 5 name = " + newFocus->id + " }\n";
+		newFocus->completionReward += "			declare_war_on = {\n";
+		newFocus->completionReward += "				type = puppet_wargoal_focus\n";
+		newFocus->completionReward += "				target = " + GC->getTag() + "\n";
+		newFocus->completionReward += "			}";
+		focuses.push_back(newFocus);
+	}
+}
+
 
 void HoI4FocusTree::output()
 {
