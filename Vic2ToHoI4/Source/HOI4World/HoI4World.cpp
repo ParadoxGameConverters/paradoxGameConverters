@@ -144,7 +144,25 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 	const std::string& HoI4Tag = CountryMapper::getHoI4Tag(country.first);
 	if (!HoI4Tag.empty())
 	{
-		std::string countryFileName = country.second->getName("english") + ".txt";
+		std::string countryFileName = Utils::convert8859_15ToUTF8(country.second->getName("english")) + ".txt";
+		int pipe = countryFileName.find_first_of('|');
+		while (pipe != string::npos)
+		{
+			countryFileName.replace(pipe, 1, "");
+			pipe = countryFileName.find_first_of('|');
+		}
+		int greater = countryFileName.find_first_of('>');
+		while (greater != string::npos)
+		{
+			countryFileName.replace(greater, 1, "");
+			greater = countryFileName.find_first_of('>');
+		}
+		int lesser = countryFileName.find_first_of('<');
+		while (lesser != string::npos)
+		{
+			countryFileName.replace(lesser, 1, "");
+			lesser = countryFileName.find_first_of('>');
+		}
 		destCountry = new HoI4Country(HoI4Tag, countryFileName, this);
 
 		destCountry->initFromV2Country(*sourceWorld, country.second, states->getProvinceToStateIDMap(), states->getStates());
