@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #define HOI4_FOCUS_TREE
 
 
-
+#include "HoI4Events.h"
 #include <string>
 #include <vector>
 using namespace std;
@@ -34,6 +34,7 @@ using namespace std;
 
 class HoI4Country;
 class HoI4Focus;
+class HoI4Events;
 
 
 
@@ -48,6 +49,8 @@ class HoI4FocusTree
 		void addGenericFocusTree();
 		void addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Country*> CountriesToContain, int XStart);
 		void addAbsolutistEmpireNationalFocuses(HoI4Country* country, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets);
+		void addCommunistNationalFocuses(HoI4Country* Home, vector<HoI4Country*> coupTargets, vector<HoI4Country*> TargetsbyIC,
+			                              vector<HoI4Country*> newAllies, vector<HoI4Country*> GCAllies, vector<HoI4Country*> GCTargets, HoI4Events* events);
 
 		void output();
 

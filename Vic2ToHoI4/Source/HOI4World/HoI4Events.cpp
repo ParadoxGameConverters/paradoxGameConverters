@@ -115,6 +115,7 @@ void HoI4Events::createFactionEvents(const HoI4Country* Leader, HoI4Country* new
 		yesOption += "				id = \"" + Leader->getTag() + "\"\n";
 		yesOption += "				value = 200\n";
 		yesOption += "			}\n";
+		yesOption += "			dismantle_faction = yes";
 		yesOption += "		}\n";
 		yesOption += "		" + Leader->getTag() + " = {\n";
 		yesOption += "			add_to_faction = " + newAlly->getTag() + "\n";
