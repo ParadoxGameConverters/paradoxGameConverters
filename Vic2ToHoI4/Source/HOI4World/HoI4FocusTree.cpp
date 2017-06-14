@@ -37,6 +37,7 @@ using namespace std;
 
 HoI4FocusTree::HoI4FocusTree()
 {
+	nextFreeColumn = 0;
 }
 
 
@@ -44,20 +45,13 @@ HoI4FocusTree::HoI4FocusTree(const HoI4Country* country)
 {
 	srcCountryTag = country->getSourceCountry()->getTag();
 	dstCountryTag = country->getTag();
+	nextFreeColumn = 0;
+
 }
 
 
 void HoI4FocusTree::addGenericFocusTree()
 {
-/*	Object2* genericObj = processFile(Configuration::getHoI4Path() + "/common/national_focus/generic.txt");
-	vector<Object2*> focusTreeLeaves = genericObj->getLeaves();
-	vector<Object2*> focusObjects = focusTreeLeaves[0]->getValue("focus");
-	for (auto focusObject: focusObjects)
-	{
-		HoI4Focus* newFocus = new HoI4Focus(focusObject);
-		focuses.push_back(newFocus);
-	}*/
-
 	HOI4Version version1_3("1.3.0");
 	if (Configuration::getHOI4Version() >= version1_3)
 	{
@@ -67,6 +61,7 @@ void HoI4FocusTree::addGenericFocusTree()
 	{
 		addVersion1_0GenericFocusTree();
 	}
+	nextFreeColumn += 24;
 }
 
 
@@ -3444,6 +3439,7 @@ HoI4FocusTree* HoI4FocusTree::makeCustomizedCopy(const HoI4Country* country) con
 		HoI4Focus* newFocus = focus->makeCustomizedCopy(newFocusTree->dstCountryTag);
 		newFocusTree->addFocus(newFocus);
 	}
+	newFocusTree->setNextFreeColumn(nextFreeColumn);
 
 	return newFocusTree;
 }
@@ -4337,29 +4333,16 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(HoI4Country* Home, const 
 	}
 }
 
-void HoI4FocusTree::addCommunistNationalFocuses(HoI4Country* Home, vector<HoI4Country*> coupTargets, vector<HoI4Country*> TargetsbyIC,
-												  vector<HoI4Country*> newAllies, vector<HoI4Country*> GCAllies, vector<HoI4Country*> GCTargets, HoI4Events* events)
+void HoI4FocusTree::addCommunistCoupBranch(HoI4Country * Home, vector<HoI4Country*> coupTargets)
 {
-	//tracking of event numbers
-	vector<int> takenSpots;
-	takenSpots.push_back(22);
-
 	if (coupTargets.size() > 0)
 	{
-		if (coupTargets.size() == 1)
-		{
-			takenSpots.push_back(24);
-		}
-		if (coupTargets.size() >= 2)
-		{
-			takenSpots.push_back(25);
-		}
 		//Focus to increase Comm support and prereq for coupTargets
 		HoI4Focus* newFocus = new HoI4Focus;
 		newFocus->id = "Home_of_Revolution" + Home->getTag();
 		newFocus->icon = "GFX_goal_support_communism";
 		newFocus->text = "Home of the Revolution";
-		newFocus->xPos = takenSpots.back();
+		newFocus->xPos = nextFreeColumn + coupTargets.size() - 1;
 		newFocus->yPos = 0;
 		newFocus->cost = 10;
 		newFocus->aiWillDo = "			factor = 5";
@@ -4378,7 +4361,7 @@ void HoI4FocusTree::addCommunistNationalFocuses(HoI4Country* Home, vector<HoI4Co
 				newFocus->icon = "GFX_goal_generic_propaganda";
 				newFocus->text = "Influence " + coupTargets[i]->getSourceCountry()->getName("english");
 				newFocus->prerequisites.push_back("focus = Home_of_Revolution" + Home->getTag());
-				newFocus->xPos = 24 + i * 2;
+				newFocus->xPos = nextFreeColumn + i * 2;
 				newFocus->yPos = 1;
 				newFocus->cost = 10;
 				newFocus->aiWillDo = "			factor = 5";
@@ -4418,7 +4401,7 @@ void HoI4FocusTree::addCommunistNationalFocuses(HoI4Country* Home, vector<HoI4Co
 				newFocus->text = "Civil War in " + coupTargets[i]->getSourceCountry()->getName("english");
 				newFocus->prerequisites.push_back("focus = Influence_" + coupTargets[i]->getTag() + "_" + Home->getTag());
 				newFocus->available = "			" + coupTargets[i]->getTag() + " = { communism > 0.5 }";
-				newFocus->xPos = 24 + i * 2;
+				newFocus->xPos = nextFreeColumn + i * 2;
 				newFocus->yPos = 2;
 				newFocus->cost = 10;
 				newFocus->aiWillDo = "			factor = 5";
@@ -4431,16 +4414,22 @@ void HoI4FocusTree::addCommunistNationalFocuses(HoI4Country* Home, vector<HoI4Co
 				focuses.push_back(newFocus);
 			}
 		}
+		nextFreeColumn += 2 * coupTargets.size();
 	}
-	if (TargetsbyIC.size() > 0)
+	return;
+}
+
+void HoI4FocusTree::addCommunistWarBranch(HoI4Country * Home, vector<HoI4Country*> warTargets, HoI4Events * events)
+{
+	if (warTargets.size() > 0)
 	{
 
-		//Strengthen Commitern
+		//Strengthen Commintern
 		HoI4Focus* newFocus = new HoI4Focus;
 		newFocus->id = "StrengthCom" + Home->getTag();
 		newFocus->icon = "GFX_goal_support_communism";
 		newFocus->text = "Strengthen The Comintern";//change to faction name later
-		newFocus->xPos = takenSpots.back() + 5;//fixme
+		newFocus->xPos = nextFreeColumn + warTargets.size() - 1;
 		newFocus->yPos = 0;
 		newFocus->cost = 10;
 		newFocus->aiWillDo = "			factor = 5";
@@ -4458,7 +4447,7 @@ void HoI4FocusTree::addCommunistNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		newFocus->text = "International Communist Pressure";//change to faction name later
 		newFocus->prerequisites.push_back("focus = StrengthCom" + Home->getTag());
 		newFocus->available = "			date > 1937.1.1";
-		newFocus->xPos = takenSpots.back() + 5;
+		newFocus->xPos = nextFreeColumn + warTargets.size() - 1;
 		newFocus->yPos = 1;
 		newFocus->cost = 10;
 		newFocus->aiWillDo = "			factor = 5";
@@ -4467,38 +4456,37 @@ void HoI4FocusTree::addCommunistNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		//maybe add some claims?
 		focuses.push_back(newFocus);
 
-
 		for (unsigned int i = 0; i < 3; i++)
 		{
-			if (i < TargetsbyIC.size())
+			if (i < warTargets.size())
 			{
 				int v1 = rand() % 12 + 1;
 				int v2 = rand() % 12 + 1;
 				newFocus = new HoI4Focus;
-				newFocus->id = "War" + TargetsbyIC[i]->getTag() + Home->getTag();
+				newFocus->id = "War" + warTargets[i]->getTag() + Home->getTag();
 				newFocus->icon = "GFX_goal_generic_major_war";
-				newFocus->text = "War with " + TargetsbyIC[i]->getSourceCountry()->getName("english");//change to faction name later
+				newFocus->text = "War with " + warTargets[i]->getSourceCountry()->getName("english");//change to faction name later
 				newFocus->prerequisites.push_back("focus = Inter_Com_Pres" + Home->getTag());
 				newFocus->available = "			date > 1938." + to_string(v1) + "." + to_string(v2);
-				newFocus->xPos = takenSpots.back() + 3 + i * 2;
+				newFocus->xPos = nextFreeColumn + i * 2;
 				newFocus->yPos = 2;
 				newFocus->cost = 10;
-				newFocus->bypass += "					has_war_with = " + TargetsbyIC[i]->getTag() + "\n";
+				newFocus->bypass += "					has_war_with = " + warTargets[i]->getTag() + "\n";
 				newFocus->aiWillDo = "			factor = 5\n";
 				newFocus->aiWillDo += "			modifier = {\n";
 				newFocus->aiWillDo += "				factor = 0\n";
-				newFocus->aiWillDo += "				strength_ratio = { tag = " + TargetsbyIC[i]->getTag() + " ratio < 1 }\n";
+				newFocus->aiWillDo += "				strength_ratio = { tag = " + warTargets[i]->getTag() + " ratio < 1 }\n";
 				newFocus->aiWillDo += "			}";
-				if (TargetsbyIC.size() > 1)
+				if (warTargets.size() > 1)
 				{
 					newFocus->aiWillDo += "\n";
 					newFocus->aiWillDo += "			modifier = {\n";
 					newFocus->aiWillDo += "				factor = 0\n";
 					newFocus->aiWillDo += "				OR = {\n";
-					for (int i2 = 0; i2 < 3; i2++)
+					for (int i2 = 0; i2 < warTargets.size(); i2++)
 					{
 						if (i != i2)
-							newFocus->aiWillDo += "					has_war_with = " + TargetsbyIC[i]->getTag() + "\n";
+							newFocus->aiWillDo += "					has_war_with = " + warTargets[i]->getTag() + "\n";
 					}
 					newFocus->aiWillDo += "				}\n";
 					newFocus->aiWillDo += "			}";
@@ -4507,14 +4495,17 @@ void HoI4FocusTree::addCommunistNationalFocuses(HoI4Country* Home, vector<HoI4Co
 				newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
 				newFocus->completionReward += "			create_wargoal = {\n";
 				newFocus->completionReward += "				type = puppet_wargoal_focus\n";
-				newFocus->completionReward += "				target = " + TargetsbyIC[i]->getTag() + "\n";
+				newFocus->completionReward += "				target = " + warTargets[i]->getTag() + "\n";
 				newFocus->completionReward += "			}";
 				focuses.push_back(newFocus);
 			}
 		}
-		takenSpots.push_back(takenSpots.back() + 6);
+		nextFreeColumn += warTargets.size() * 2;
 	}
-	//events for allies
+}
+
+void HoI4FocusTree::addCommunistGPWarBranch(HoI4Country * Home, vector<HoI4Country*> newAllies, vector<HoI4Country*> GCTargets, HoI4Events * events)
+{
 	if (newAllies.size() > 0)
 	{
 		//Focus to call summit, maybe have events from summit
@@ -4522,7 +4513,7 @@ void HoI4FocusTree::addCommunistNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		newFocus->id = "Com_Summit" + Home->getTag();
 		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
 		newFocus->text = "Call for the Communist Summit";
-		newFocus->xPos = takenSpots.back() + 3;
+		newFocus->xPos = nextFreeColumn;
 		newFocus->yPos = 0;
 		newFocus->cost = 10;
 		newFocus->aiWillDo = "			factor = 2\n";
@@ -4541,7 +4532,7 @@ void HoI4FocusTree::addCommunistNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
 		newFocus->text = "Alliance with " + newAlly->getSourceCountry()->getName("english");
 		newFocus->prerequisites.push_back("focus = Com_Summit" + Home->getTag());
-		newFocus->xPos = takenSpots.back() + 3 + i;
+		newFocus->xPos = nextFreeColumn + i * 2;
 		newFocus->yPos = 1;
 		newFocus->cost = 10;
 		newFocus->aiWillDo = "			factor = 10";
@@ -4559,33 +4550,9 @@ void HoI4FocusTree::addCommunistNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		events->createFactionEvents(Home, newAlly);
 		i++;
 	}
+	nextFreeColumn += 2 * newAllies.size();
 
-	// focus for alliance with Great Power
-	for (auto GC: GCAllies)
-	{
-		HoI4Focus* newFocus = new HoI4Focus;
-		newFocus->id = "Alliance_" + GC->getTag() + Home->getTag();
-		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
-		newFocus->text = "Alliance with " + GC->getSourceCountry()->getName("english");
-		newFocus->prerequisites.push_back("focus = Com_Summit" + Home->getTag());
-		newFocus->xPos = takenSpots.back() + 4;
-		newFocus->yPos = 2;
-		newFocus->cost = 15;
-		newFocus->aiWillDo = "			factor = 10";
-		newFocus->bypass = "			OR = {\n";
-		newFocus->bypass += "				" + Home->getTag() + " = { is_in_faction_with = " + GC->getTag() + "}\n";
-		newFocus->bypass += "				has_war_with = " + GC->getTag() + "\n";
-		newFocus->bypass += "				NOT = { country_exists = " + GC->getTag() + " }\n";
-		newFocus->bypass += "			}\n";
-		newFocus->completionReward += "			" + GC->getTag() + " = {\n";
-		newFocus->completionReward += "				country_event = { hours = 6 id = NFEvents." + to_string(events->getCurrentNationFocusEventNum()) + " }\n";
-		newFocus->completionReward += "				add_opinion_modifier = { target = " + Home->getTag() + " modifier = positive_50 }\n";
-		newFocus->completionReward += "			}";
-		focuses.push_back(newFocus);
-		events->createFactionEvents(Home, GC);
-	}
-
-	//Declaring war with Great Country
+	i = 0;
 	for (auto GC : GCTargets)
 	{
 		string prereq = "";
@@ -4594,7 +4561,7 @@ void HoI4FocusTree::addCommunistNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		if (newAllies.size() > 0)
 		{
 			y2 = 2;
-			for (unsigned int i = 0; (i < 2) && (i < newAllies.size()); i++)
+			for (unsigned int i2 = 0; (i < 2) && (i < newAllies.size()); i++)
 				prereq += " focus = Alliance_" + newAllies[i]->getTag() + Home->getTag();
 		}
 		int v1 = rand() % 12 + 1;
@@ -4606,9 +4573,8 @@ void HoI4FocusTree::addCommunistNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		newFocus->prerequisites.push_back(prereq);
 		newFocus->available = "			has_war = no\n";
 		newFocus->available += "			date > 1939." + to_string(v1) + "." + to_string(v2);
-		newFocus->xPos = takenSpots.back() + 3 + GCTargets.size() * 2;
-		newFocus->yPos = y2 + GCAllies.size();
-		//newFocus->yPos     = takenSpotsy.back() + 1;
+		newFocus->xPos = nextFreeColumn + i * 2;
+		newFocus->yPos = y2;
 		newFocus->cost = 10;
 		newFocus->bypass += "		   has_war_with = " + GC->getTag() + "\n";
 		newFocus->aiWillDo = "			factor = " + to_string(10 - GCTargets.size() * 5) + "\n";
@@ -4630,7 +4596,6 @@ void HoI4FocusTree::addCommunistNationalFocuses(HoI4Country* Home, vector<HoI4Co
 				{
 					newFocus->aiWillDo += "					has_war_with = " + GC->getTag() + "\n";
 				}
-
 			}
 			newFocus->aiWillDo += "				}\n";
 			newFocus->aiWillDo += "			}\n";
@@ -4641,7 +4606,9 @@ void HoI4FocusTree::addCommunistNationalFocuses(HoI4Country* Home, vector<HoI4Co
 		newFocus->completionReward += "				target = " + GC->getTag() + "\n";
 		newFocus->completionReward += "			}";
 		focuses.push_back(newFocus);
+		i++;
 	}
+	nextFreeColumn += 2 * max(newAllies.size(), GCTargets.size());
 }
 
 
