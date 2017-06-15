@@ -1395,7 +1395,7 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 	TargetMap.insert(make_pair("morealliesneeded", man));
 	TargetMap.insert(make_pair("coup", coup));
 
-	vector<HoI4Country*> TargetsbyIC; //its actually by tech lol
+	vector<HoI4Country*> TargetsByTech;
 	bool first = true;
 	//FIXME 
 	//Right now just uses everyone in forcedtakover, doesnt use nan, fn, ect...
@@ -1403,7 +1403,7 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 	{
 		if (first)
 		{
-			TargetsbyIC.push_back(country);
+			TargetsByTech.push_back(country);
 			first = false;
 		}
 		else
@@ -1411,53 +1411,18 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 			//makes sure not a coup target
 			if (find(coups.begin(), coups.end(), country) == coups.end())
 			{
-				if (TargetsbyIC.front()->getTechnologyCount() < country->getTechnologyCount())
+				if (TargetsByTech.front()->getTechnologyCount() < country->getTechnologyCount())
 				{
-					TargetsbyIC.insert(TargetsbyIC.begin(), country);
+					TargetsByTech.insert(TargetsByTech.begin(), country);
 				}
 				else
-					TargetsbyIC.push_back(country);
+					TargetsByTech.push_back(country);
 			}
 		}
 	}
 
 	// Candidates for Get Allies foci
 	vector<HoI4Country*> newAllies = GetMorePossibleAllies(Leader);
-
-	// Look for Great Power to ally
-	vector<HoI4Country*> GCAllies;
-	vector<HoI4Faction*> FactionsAttackingMe;
-	int maxGCAlliance = 0;
-	if (WorldTargetMap.find(Leader) != WorldTargetMap.end())
-	{
-		for (HoI4Country* country : WorldTargetMap.find(Leader)->second)
-		{
-			HoI4Faction* attackingFaction = findFaction(country);
-			if (find(FactionsAttackingMe.begin(), FactionsAttackingMe.end(), attackingFaction) == FactionsAttackingMe.end())
-			{
-				FactionsAttackingMe.push_back(attackingFaction);
-			}
-		}
-		double FactionsAttackingMeStrength = 0;
-		for (HoI4Faction* attackingFaction : FactionsAttackingMe)
-		{
-			FactionsAttackingMeStrength += GetFactionStrengthWithDistance(Leader, attackingFaction->getMembers(), 3);
-		}
-		AILog << "\t" << Leader->getSourceCountry()->getName("english") << " is under threat, there are " << FactionsAttackingMe.size() << " faction(s) attacking them, I have a strength of " << GetFactionStrength(findFaction(Leader), 3) << " and they have a strength of " << FactionsAttackingMeStrength << "\n";
-		if (FactionsAttackingMeStrength > GetFactionStrength(findFaction(Leader), 3))
-		{
-			for (HoI4Country* GC : theWorld->getGreatPowers())
-			{
-				int relations = Leader->getRelations(GC->getTag())->getRelations();
-				if (relations > 0 && maxGCAlliance < 1)
-				{
-					AILog << "\t" << Leader->getSourceCountry()->getName("english") << " can attempt to ally " << GC->getSourceCountry()->getName("english") << "\n";
-					GCAllies.push_back(GC);
-					maxGCAlliance++;
-				}
-			}
-		}
-	}
 
 	//Declaring war with Great Country
 	map<double, HoI4Country*> GCDistance;
@@ -1491,10 +1456,6 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 	}
 	int maxGCWars = 0;
 	int start = 0;
-	if (GCTargets.size() == 2)
-	{
-		start = -1;
-	}
 	for (auto GC : GCTargets)
 	{
 		int relations = Leader->getRelations(GC->getTag())->getRelations();
@@ -1503,10 +1464,13 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 			GCTargets.push_back(GC);
 			maxGCWars++;
 		}
+		if (maxGCWars >= 2) break;
 	}
 
 	HoI4FocusTree* FocusTree = genericFocusTree->makeCustomizedCopy(Leader);
-	FocusTree->addCommunistNationalFocuses(Leader, TargetsbyIC, forcedtakeover, newAllies, GCAllies, GCTargets, theWorld->getEvents());
+	FocusTree->addCommunistCoupBranch(Leader, forcedtakeover);
+	FocusTree->addCommunistWarBranch(Leader, TargetsByTech, theWorld->getEvents());
+	FocusTree->addCommunistGPWarBranch(Leader, newAllies, GCTargets, theWorld->getEvents());
 	Leader->addNationalFocus(FocusTree);
 
 	return CountriesAtWar;
