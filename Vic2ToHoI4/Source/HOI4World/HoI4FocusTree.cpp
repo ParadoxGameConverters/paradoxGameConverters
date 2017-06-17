@@ -3505,7 +3505,6 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
 	newFocus->aiWillDo += "			factor = 10";
-	newFocus->completionReward += "			add_ideas = limited_interventionism\n";
 	newFocus->completionReward += "			set_rule = { can_send_volunteers = yes }";
 	focuses.push_back(newFocus);
 
@@ -4483,7 +4482,7 @@ void HoI4FocusTree::addCommunistWarBranch(HoI4Country * Home, vector<HoI4Country
 					newFocus->aiWillDo += "			modifier = {\n";
 					newFocus->aiWillDo += "				factor = 0\n";
 					newFocus->aiWillDo += "				OR = {\n";
-					for (int i2 = 0; i2 < warTargets.size(); i2++)
+					for (unsigned int i2 = 0; i2 < warTargets.size(); i2++)
 					{
 						if (i != i2)
 							newFocus->aiWillDo += "					has_war_with = " + warTargets[i]->getTag() + "\n";
@@ -4524,7 +4523,7 @@ void HoI4FocusTree::addCommunistGPWarBranch(HoI4Country * Home, vector<HoI4Count
 		focuses.push_back(newFocus);
 	}
 
-	int i = 0;
+	unsigned int i = 0;
 	for (auto newAlly : newAllies)
 	{
 		HoI4Focus* newFocus = new HoI4Focus;

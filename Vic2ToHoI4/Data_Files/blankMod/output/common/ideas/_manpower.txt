@@ -92,19 +92,14 @@ ideas = {
 					}					
 				}
 
+			}
+
 			ai_will_do = {
    				factor = 1
 				modifier = {
 					#Prio if low on manpower
 					factor = 20
 					manpower_per_military_factory <  800
-				}
-
-				modifier = { # china relies a lot on throwing bodies at the enemy
-					factor = 3
-
-					tag = CHI
-					has_manpower < 200000
 				}
 			}
 			
@@ -142,6 +137,8 @@ ideas = {
 					}
 				}
 
+			}
+
 			ai_will_do = {
    				factor = 1
 				modifier = {
@@ -153,12 +150,6 @@ ideas = {
 					#Lower chance if has decent amount
 					factor = 0.5
 					manpower_per_military_factory >  1000
-				}
-				modifier = {
-					#Block has plenty manpower
-					factor = 0
-					NOT = { tag = CHI }
-					manpower_per_military_factory >  3000
 				}
 			}
 			
@@ -191,6 +182,8 @@ ideas = {
 				#	}
 				#}
 
+			}
+
 			ai_will_do = {
    				factor = 1
 				modifier = {
@@ -202,12 +195,6 @@ ideas = {
 					#Lower chance if has decent amount
 					factor = 0.5
 					manpower_per_military_factory >  1000
-				}
-				modifier = {
-					#Block has plenty manpower
-					factor = 0
-					NOT = { tag = CHI }
-					manpower_per_military_factory >  5000
 				}
 			}
 		
