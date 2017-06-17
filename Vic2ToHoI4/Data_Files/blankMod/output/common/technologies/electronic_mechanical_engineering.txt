@@ -21,12 +21,8 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 10
+			factor = 30
 			
-			modifier = {
-				factor = 3
-				date > "1936.1.6"
-			}
 			
 			modifier = {
 				factor = 3
@@ -276,7 +272,7 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 6
+			factor = 7
 		}
 		
 		categories = {
