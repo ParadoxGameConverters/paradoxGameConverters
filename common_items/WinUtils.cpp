@@ -325,6 +325,12 @@ std::string convertUTF16ToUTF8(std::wstring UTF16)
 }
 
 
+std::string convert8859_15ToASCII(std::string input)
+{
+	return Utils::convertUTF8ToASCII(Utils::convert8859_15ToUTF8(input));
+}
+
+
 std::string convert8859_15ToUTF8(std::string input)
 {
 	return convertUTF16ToUTF8(convert8859_15ToUTF16(input));

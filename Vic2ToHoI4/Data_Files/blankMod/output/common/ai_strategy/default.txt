@@ -21,70 +21,52 @@ default_unit_production = {
 	}
 	
 	ai_strategy = {
-		type = unit_ratio
+		type = role_ratio
 		id = paratroopers
 		value = 0
 	}
 
 	ai_strategy = {
-		type = unit_ratio
+		type = role_ratio
 		id = mountaineers
-		value = 0
+		value = 4
 	}
 
 	ai_strategy = {
-		type = unit_ratio
+		type = role_ratio
 		id = marines
 		value = 0
 	}
 
 	ai_strategy = {
-		type = unit_ratio
-		id = cavalry
-		value = 0
-	}
-
-	ai_strategy = {
-		type = unit_ratio
-		id = motorized
-		value = 5
-	}
-
-	ai_strategy = {
-		type = unit_ratio
-		id = mechanized
-		value = 0
-	}
-
-	ai_strategy = {
-		type = unit_ratio
+		type = role_ratio
 		id = armor
-		value = 10
+		value = 2
 	}
 
 	ai_strategy = {
-		type = unit_ratio
+		type = role_ratio
 		id = infantry
-		value = 85
+		value = 80
 	}
 	
 	#Air unit factors
 	ai_strategy = {
 		type = unit_ratio
 		id = fighter
-		value = 70
+		value = 80
 	}
 	
 	ai_strategy = {
 		type = unit_ratio
 		id = cas
-		value = 10
+		value = 5
 	}
 	
 	ai_strategy = {
 		type = unit_ratio
 		id = tactical_bomber
-		value = 10
+		value = 5
 	}
 	
 	ai_strategy = {
@@ -104,43 +86,43 @@ default_unit_production = {
 	ai_strategy = {
 		type = unit_ratio
 		id = capital_ship
-		value = 15
+		value = 20
 	}
 
 	ai_strategy = {
 		type = unit_ratio
 		id = submarine
-		value = 20
+		value = 10
 	}
 
 	ai_strategy = {
 		type = unit_ratio
 		id = screen_ship
-		value = 50
+		value = 30
 	}
 
 	ai_strategy = {
 		type = unit_ratio
 		id = convoy
-		value = 20
+		value = 15
 	}
 	
 	ai_strategy = {
 		type = equipment_production_factor
 		id = fighter
-		value = 25
+		value = 35
 	}
 	
 	ai_strategy = {
 		type = equipment_production_factor
 		id = infantry
-		value = 20
+		value = 40
 	}
 	
 	ai_strategy = {
 		type = equipment_production_factor
 		id = artillery
-		value = 20
+		value = 25
 	}
 }
 
@@ -154,9 +136,26 @@ default_paratroopers_production = {
 	}
 
 	ai_strategy = {
-		type = unit_ratio
+		type = role_ratio
 		id = paratroopers
 		value = 0
+	}
+}
+
+default_garrison_production = {
+	enable = {
+		ai_wants_divisions >  12 #Massively decreasing the amount of paratroopers the AI wants
+		is_major = yes
+	}
+	abort = {
+		ai_wants_divisions < 13 #Massively decreasing the amount of paratroopers the AI wants
+		is_major = no
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = garrison
+		value = 7
 	}
 }
 
@@ -169,7 +168,7 @@ default_mountaineers_production = {
 	}
 
 	ai_strategy = {
-		type = unit_ratio
+		type = role_ratio
 		id = mountaineers
 		value = 3
 	}
@@ -184,73 +183,31 @@ default_marines_production = {
 	}
 
 	ai_strategy = {
-		type = unit_ratio
+		type = role_ratio
 		id = marines
 		value = 0
 	}
 
 	ai_strategy = {
-		type = unit_ratio
+		type = role_ratio
 		id = infantry
 		value = 0
 	}
 }
 
-default_cavalry_production = {
-	enable = {
-		ai_wants_divisions > 0 #Removing the amount of cavalry the AI wants
-	}
-	abort = {
-		ai_wants_divisions < 1 #Removing the amount of cavalry the AI wants
-	}
-
-	ai_strategy = {
-		type = unit_ratio
-		id = cavalry
-		value = 0
-	}
-}
-
-default_motorized_production = {
+default_mobile_production = {
 	enable = {
 		ai_wants_divisions > 11
+		has_tech = motorised_infantry
 	}
 	abort = {
 		ai_wants_divisions < 12
 	}
 
 	ai_strategy = {
-		type = unit_ratio
-		id = motorized
+		type = role_ratio
+		id = mobile
 		value = 2
-	}
-
-	ai_strategy = {
-		type = unit_ratio
-		id = infantry
-		value = 0
-	}
-
-}
-
-default_mechanized_production = {
-	enable = {
-		ai_wants_divisions > 0
-	}
-	abort = {
-		ai_wants_divisions < 1
-	}
-
-	ai_strategy = {
-		type = unit_ratio
-		id = mechanized
-		value = 0
-	}
-
-	ai_strategy = {
-		type = unit_ratio
-		id = infantry
-		value = 0
 	}
 }
 
@@ -263,13 +220,13 @@ default_armored_production = {
 	}
 
 	ai_strategy = {
-		type = unit_ratio
+		type = role_ratio
 		id = armor
 		value = 2
 	}
 
 	ai_strategy = {
-		type = unit_ratio
+		type = role_ratio
 		id = infantry
 		value = 0
 	}
@@ -284,7 +241,7 @@ highered_armored_production = {
 	}
 
 	ai_strategy = {
-		type = unit_ratio
+		type = role_ratio
 		id = armor
 		value = 5
 	}
@@ -292,7 +249,6 @@ highered_armored_production = {
 
 slightly_naval_focused_nation = {
 	enable = {
-		
 	}
 
 	ai_strategy = {
@@ -388,7 +344,7 @@ default_area_priority = {
 	ai_strategy = {
 		type = area_priority
 		id = africa
-		value = -25
+		value = -90
 	}
 	
 	ai_strategy = {
@@ -407,16 +363,16 @@ default_area_priority = {
 
 default_stockpile_management = {
 	enable = {
-		num_divisions > 200
+		num_divisions > 150
 	}
 
 	abort = {
-		num_divisions < 150
+		num_divisions < 130
 	}
 
 	ai_strategy = {
 		type = equipment_stockpile
-		value = 25 # double base stockpile
+		value = 35 # double base stockpile #from 25 to 35
 	}
 }
 
@@ -523,5 +479,26 @@ DEFAULT_template_design = {
 		type = template_prio
 		id = infantry
 		value = 10
+	}
+}
+
+save_admiral_pp_for_later = {
+	enable = {
+		has_war = no
+		threat < 0.3
+		has_political_power < 200		
+	}
+	abort = {
+		OR = {
+			has_war = yes	
+			threat > 0.3
+			has_political_power > 200
+		}
+	}
+
+	ai_strategy = { # dont burn PP on admirals (can still get free ones)
+		type = pp_spend_priority
+		id = admiral
+		value = -100
 	}
 }

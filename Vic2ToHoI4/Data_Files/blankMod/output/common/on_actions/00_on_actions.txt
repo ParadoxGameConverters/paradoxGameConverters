@@ -1,5 +1,4 @@
 on_actions = {
-	# country 
 
 	# Ace pilots
 	# country, FROM = ace
@@ -76,8 +75,33 @@ on_actions = {
 		}
 	}
 
-	#FROM is state #ROOT is broken as hell
 	on_nuke_drop = {
+
+		effect = {
+			if = {
+				limit = { NOT = { has_country_flag = achievement_has_dropped_nuke } }
+				goto_state = FROM
+				set_country_flag = achievement_has_dropped_nuke
+			}
+			if = {
+				limit = {
+					FROM = { state = 378 }					
+				}
+				set_country_flag = achievement_has_nuked_california
+			}
+			news_event = { id = nuke_dropped.2 days = 1}
+			news_event = { id = nuke_dropped.3 days = 1}
+			news_event = { id = nuke_dropped.4 days = 1}
+			news_event = { id = nuke_dropped.5 days = 1}
+			news_event = { id = nuke_dropped.6 days = 1}
+			news_event = { id = nuke_dropped.7 days = 1}
+			news_event = { id = nuke_dropped.8 days = 1}
+			news_event = { id = nuke_dropped.9 days = 1}
+			news_event = { id = nuke_dropped.10 days = 1}
+			news_event = { id = nuke_dropped.11 days = 1}
+			news_event = { id = nuke_dropped.12 days = 1}
+			news_event = { id = nuke_dropped.13 days = 1}
+		}
 		random_events = {
 			100 = nuke_dropped.0
 		}
@@ -103,7 +127,7 @@ on_actions = {
 	
 	on_leave_faction = {
 		effect = {
-			PREV = {
+			FROM = {
 				add_opinion_modifier = {
 					modifier = faction_traitor
 					target = ROOT
@@ -119,16 +143,16 @@ on_actions = {
 		}
 	}
 
-	#PREV is the one that joins the faction
+	#FROM is the one that joins the faction
 	on_create_faction = {
 		effect = {
 			# Sunset invasion check
 			if = {
 				limit = {
-					PREV = { is_puppet = no }
+					FROM = { is_puppet = no }
 					OR = {
 						AND = {
-							PREV = {
+							FROM = {
 								capital_scope = {
 									NOT = { is_on_continent = south_america }
 								}
@@ -146,7 +170,7 @@ on_actions = {
 		}
 	}
 
-	#PREV is country getting invited. #FROM in the add_to_faction effect because that's the scope you should use...
+	#FROM is country getting invited.
 	on_offer_join_faction = {
 		effect = {
 			#Give achievement to nation joining a faction, but not in one from game start

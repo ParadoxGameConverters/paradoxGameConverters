@@ -1253,7 +1253,7 @@ void HoI4Country::outputHistory() const
 	ofstream output("output/" + Configuration::getOutputName() + "/history/countries/" + Utils::normalizeUTF8Path(filename));
 	if (!output.is_open())
 	{
-		Log(LogLevel::Error) << "Could not open " << "output/" << Configuration::getOutputName() << "/history/countries" << Utils::normalizeUTF8Path(filename);
+		Log(LogLevel::Error) << "Could not open " << "output/" << Configuration::getOutputName() << "/history/countries/" << Utils::normalizeUTF8Path(filename);
 		exit(-1);
 	}
 	output << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
@@ -1269,6 +1269,7 @@ void HoI4Country::outputHistory() const
 	outputRelations(output);
 	outputFactions(output);
 	outputIdeas(output);
+	outputNationalUnity(output);
 	outputCountryLeader(output);
 
 	output.close();
@@ -1511,6 +1512,12 @@ void HoI4Country::outputIdeas(ofstream& output) const
 		output << "\tlow_economic_mobilisation\n";
 	}
 	output << "}\n";
+}
+
+
+void HoI4Country::outputNationalUnity(ofstream& output) const
+{
+	output << "set_national_unity = " << nationalUnity << "\n";
 }
 
 
