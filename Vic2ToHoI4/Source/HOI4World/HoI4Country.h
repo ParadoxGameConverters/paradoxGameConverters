@@ -143,6 +143,7 @@ class HoI4Country
 		bool areElectionsAllowed(void) const;
 		void outputFactions(ofstream& output) const;
 		void outputIdeas(ofstream& output) const;
+		void outputNationalUnity(ofstream& output) const;
 		void outputCountryLeader(ofstream& output) const;
 		void outputOOB() const;
 		void outputCommonCountryFile() const;
