@@ -336,7 +336,12 @@ double HoI4World::getWorldwideWorkerFactoryRatio(map<string, double> workersInCo
 		baseIndustry += countryWorkers.second * 0.000019;
 	}
 
-	double deltaIndustry = baseIndustry - (1189 - landedCountries.size());
+	int defaultFactories = 1189;
+	if (Configuration::getHOI4Version() >= HOI4Version("1.4.0"))
+	{
+		defaultFactories = 1201;
+	}
+	double deltaIndustry = baseIndustry - (defaultFactories - landedCountries.size());
 	double newIndustry = baseIndustry - Configuration::getIcFactor() * deltaIndustry;
 	double acutalWorkerFactoryRatio = newIndustry / totalWorldWorkers;
 
