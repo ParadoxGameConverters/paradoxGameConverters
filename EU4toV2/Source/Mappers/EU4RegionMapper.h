@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -50,7 +50,7 @@ class EU4RegionMapper
 		static EU4RegionMapper* instance;
 		static EU4RegionMapper* getInstance()
 		{
-			if (instance == NULL)
+			if (instance == nullptr)
 			{
 				instance = new EU4RegionMapper;
 			}
@@ -58,9 +58,13 @@ class EU4RegionMapper
 		}
 
 		EU4RegionMapper();
+
+		void attemptOldVersion();
 		void initEU4RegionMapOldVersion(Object *obj);
 		void insertMapping(int provinceNumber, string regionName);
-		void makeWorkingAreaTxt();
+
+		void doNewVersion();
+		void makeWorkingAreaTxt(const string& path);
 		void initEU4RegionMap(Object* areasObj, Object* regionsObj);
 		map<string, vector<int>> getAreaToProvincesMapping(Object* areasObj);
 
