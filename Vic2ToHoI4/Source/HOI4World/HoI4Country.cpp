@@ -60,7 +60,7 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	faction = nullptr;
 	factionLeader = false;
 
-	nationalUnity = 70;
+	nationalUnity = 0.70;
 	
 	training_laws = "minimal_training";
 	press_laws = "censored_press";
@@ -106,7 +106,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	convertGovernment(_srcWorld);
 	initIdeas();
 
-	nationalUnity = 70.0 + (srcCountry->getRevanchism() / 0.05) - (srcCountry->getWarExhaustion() / 2.5);
+	nationalUnity = 0.70 + (srcCountry->getRevanchism() / 5.0) - (srcCountry->getWarExhaustion() / 100.0 / 2.5);
 
 	//convertLaws();
 	//convertLeaders(portraitMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
@@ -1517,7 +1517,10 @@ void HoI4Country::outputIdeas(ofstream& output) const
 
 void HoI4Country::outputNationalUnity(ofstream& output) const
 {
-	output << "set_national_unity = " << nationalUnity << "\n";
+	if (states.size() > 0)
+	{
+		output << "set_national_unity = " << nationalUnity << "\n";
+	}
 }
 
 
