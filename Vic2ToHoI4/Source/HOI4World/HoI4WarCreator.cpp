@@ -657,7 +657,7 @@ map<string, HoI4Country*> HoI4WarCreator::getNearbyCountries(const HoI4Country* 
 			//IMPROVE
 			//need to get further neighbors, as well as countries without capital in an area
 			double distance = getDistanceBetweenCountries(checkingCountry, country);
-			if (distance <= 500)
+			if (distance <= 500 && country->getProvinceCount() > 0)
 			{
 				neighbors.insert(countryItr);
 			}
