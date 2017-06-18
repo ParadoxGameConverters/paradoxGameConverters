@@ -83,7 +83,7 @@ V2World::V2World(const EU4World& sourceWorld)
 	convertDiplomacy(sourceWorld);
 	setupColonies();
 	setupStates();
-	convertUncivReforms();
+	convertUncivReforms(sourceWorld);
 	convertTechs(sourceWorld);
 	allocateFactories(sourceWorld);
 	setupPops(sourceWorld);
@@ -1083,13 +1083,75 @@ void V2World::setupStates()
 	}
 }
 
-void V2World::convertUncivReforms()
+void V2World::convertUncivReforms(const EU4World& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Setting unciv reforms";
 
+	// tech group
+
+	int techGroupAlgorithm = 0;
+	double topTech = 96;
+	auto version18 = EU4Version("1.18.0");
+	if (*(sourceWorld.getVersion()) >= version18)
+	{
+		LOG(LogLevel::Info) << "New tech group conversion method";
+		techGroupAlgorithm = 2;
+
+		// Find global max tech
+
+		map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
+
+
+		map<string, EU4Country*>::iterator i = sourceCountries.begin();
+		while (i->second->getProvinces().size() == 0)
+			i++;
+
+		// Take mean and max from the first country
+		EU4Country* currCountry = i->second;
+
+		double totalTechs = currCountry->getMilTech() + currCountry->getAdmTech() + currCountry->getDipTech();
+		topTech = totalTechs;
+		int num = 2;
+
+		// Calculate max
+		for (i++; i != sourceCountries.end(); i++)
+		{
+			currCountry = i->second;
+			if (currCountry->getProvinces().size() == 0)
+				continue;
+			totalTechs = currCountry->getMilTech() + currCountry->getAdmTech() + currCountry->getDipTech();
+			if (totalTechs > topTech)
+				topTech = totalTechs;
+			num++;
+		}
+	}
+	else
+	{
+		LOG(LogLevel::Info) << "Old tech group conversion method";
+		techGroupAlgorithm = 1;
+	}
+
 	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
-		itr->second->convertUncivReforms();
+		itr->second->convertUncivReforms(techGroupAlgorithm, topTech);
+	}
+
+	// inherit civilisation level for landless countries from their capital's owner
+	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	{
+		if (itr->second->getProvinces().size() == 0)
+		{
+			int capitalNum = itr->second->getCapital();
+			if (capitalNum == 0)
+				continue;
+			V2Province* capital = getProvince(capitalNum);
+			string capOwnerTag = capital->getOwner();
+			V2Country* capOwner = getCountry(capOwnerTag);
+			if (capOwner == NULL)
+				continue;
+			itr->second->convertLandlessReforms(capOwner);
+		}
+
 	}
 }
 
@@ -1213,10 +1275,10 @@ void V2World::allocateFactories(const EU4World& sourceWorld)
 		{
 			continue;
 		}
-		if ((itr)->second->getTechGroup() != "western")
+		/*if ((itr)->second->getTechGroup() != "western")
 		{
 			continue;
-		}
+		}*/
 
 		double admTech = (itr)->second->getAdmTech();
 		admMean += ((admTech - admMean) / num);
@@ -1802,4 +1864,16 @@ void V2World::outputPops() const
 			}
 		}
 	}
+}
+
+V2Province* V2World::getProvince(const int provNum) const
+{
+	map<int, V2Province*>::const_iterator i = provinces.find(provNum);
+	return (i != provinces.end()) ? i->second : NULL;
+}
+
+V2Country* V2World::getCountry(string tag) const
+{
+	map<string, V2Country*>::const_iterator i = countries.find(tag);
+	return (i != countries.end()) ? i->second : NULL;
 }
