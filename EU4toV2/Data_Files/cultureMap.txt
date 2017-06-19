@@ -466,6 +466,8 @@ link = { v2 = south_italian eu4 = corsican eu4 = c_latin eu4 = outremer }
 link = { v2 = north_italian eu4 = dalmatian }
 link = { v2 = south_german eu4 = thuringian eu4 = eu4 = colognian region = south_german_region }
 link = { v2 = south_german eu4 = thuringian eu4 = eu4 = colognian region = north_german_region }
+link = { v2 = north_german eu4 = colognian }
+link = { v2 = south_german eu4 = thuringian }
 link = { v2 = german eu4 = old_gothic }
 link = { v2 = sephardic eu4 = mizrahim }
 
