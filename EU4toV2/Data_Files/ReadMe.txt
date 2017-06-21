@@ -62,7 +62,7 @@ LowTartare		- Data Files
 Kasemacher		- Data Files
 larjak			- Data Files
 Tehfailure		- Data Files
-kratostatic		- Data Files 
+kratostatic		- Data Files
 Kansai-kun		- Data Files
 SaintPetersbour		- Data Files
 Teutonizer		- Data Files
@@ -76,4 +76,4 @@ Yellowone1		- Graphics
 KaeI			- Graphics
 
 
- - AND ALL THE OTHERS WHO GAVE THEIR INPUT ON THE FORUM -
+ - AND ALL THE OTHERS WHO GAVE THEIR INPUT ON THE FORUM - 
