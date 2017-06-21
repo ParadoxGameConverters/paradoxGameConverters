@@ -1,4 +1,3 @@
-
 This program will convert a Europa Universalis 4 save game to a Victoria 2 save game.
 
 ----
