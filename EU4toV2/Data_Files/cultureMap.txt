@@ -462,11 +462,12 @@ link = { v2 = icelandic eu4 = icelandic }
 link = { v2 = hungarian eu4 = magyar }
 link = { v2 = greek eu4 = sicilian_greek }
 link = { v2 = irish eu4 = gallawa }
-link = { v2 = south_italian eu4 = corsican eu4 = c_latin eu4 = outremer }
+link = { v2 = south_italian eu4 = corsican eu4 = c_latin }
 link = { v2 = north_italian eu4 = dalmatian }
 link = { v2 = south_german eu4 = thuringian eu4 = colognian region = south_german_region }
 link = { v2 = north_german eu4 = thuringian eu4 = colognian region = north_german_region }
 link = { v2 = north_german eu4 = colognian eu4 = old_gothic }
 link = { v2 = south_german eu4 = thuringian }
 link = { v2 = sephardic eu4 = mizrahim }
+link = { v2 = french eu4 = outremer }
 }
