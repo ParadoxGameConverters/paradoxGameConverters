@@ -47,6 +47,8 @@ class V2World
 {
 	public:
 		V2World(const EU4World& sourceWorld);
+		V2Province* getProvince(int provNum) const;
+		V2Country* getCountry(string tag) const;
 
 	private:
 		void importProvinces();
@@ -87,7 +89,7 @@ class V2World
 		void convertDiplomacy(const EU4World& sourceWorld);
 		void setupColonies();
 		void setupStates();
-		void convertUncivReforms();
+		void convertUncivReforms(const EU4World& sourceWorld);
 		void convertTechs(const EU4World& sourceWorld);
 		void allocateFactories(const EU4World& sourceWorld);
 		void setupPops(const EU4World& sourceWorld);
@@ -109,6 +111,8 @@ class V2World
 		map<int, int> leaderIDMap; // <EU4, V2>
 		long totalWorldPopulation;
 		bool isRandomWorld;
+		int	techGroupAlgorithm;
+
 };
 
 
