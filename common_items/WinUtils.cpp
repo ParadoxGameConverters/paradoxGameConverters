@@ -325,6 +325,12 @@ std::string convertUTF16ToUTF8(std::wstring UTF16)
 }
 
 
+std::string convert8859_15ToASCII(std::string input)
+{
+	return Utils::convertUTF8ToASCII(Utils::convert8859_15ToUTF8(input));
+}
+
+
 std::string convert8859_15ToUTF8(std::string input)
 {
 	return convertUTF16ToUTF8(convert8859_15ToUTF16(input));
@@ -368,6 +374,13 @@ std::wstring convertUTF8ToUTF16(std::string UTF8)
 	return returnable;
 }
 
+std::string convertToUTF8(const std::wstring &input){
+	return convertUTF16ToUTF8(input);
+}
+
+std::string normalizeUTF8Path(const std::string &utf_8_path){
+	return convertUTF8ToASCII(utf_8_path);
+};
 
 void WriteToConsole(LogLevel level, const std::string& logMessage)
 {

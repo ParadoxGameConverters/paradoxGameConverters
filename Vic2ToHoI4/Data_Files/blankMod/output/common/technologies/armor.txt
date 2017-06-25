@@ -169,8 +169,8 @@ technologies = {
 		start_year = 1934
 		
 		ai_will_do = {
-			factor = 0
-
+			factor = 1
+			
 			modifier = {
 				factor = 0
 				can_research = improved_light_td
@@ -313,7 +313,7 @@ technologies = {
 		start_year = 1936
 		
 		ai_will_do = {
-			factor = 0
+			factor = 1
 
 			modifier = {
 				factor = 0
@@ -442,7 +442,7 @@ technologies = {
 		start_year = 1941
 		
 		ai_will_do = {
-			factor = 0
+			factor = 1
 		}
 		
 		categories = {
@@ -859,21 +859,22 @@ technologies = {
 			advanced_medium_spaa
 		}
 		
+
 		ai_will_do = {
 			factor = 1
 			
 			modifier = {
-				factor = 1.1
+				factor = 1.2
 				date > "1944.1.1"
 			}
 			
 			modifier = {
-				factor = 1.1
+				factor = 1.2
 				date > "1945.1.1"
 			}
 			
 			modifier = {
-				factor = 1.1
+				factor = 1.2
 				date > "1946.1.1"
 			}
 		}
@@ -1179,7 +1180,7 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 1
+			factor = 0.8
 			
 			modifier = {
 				factor = 1.2
@@ -1323,7 +1324,7 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 1
+			factor = 0.8
 			
 			modifier = {
 				factor = 1.2
@@ -1462,7 +1463,7 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 1
+			factor = 0.8
 			
 			modifier = {
 				factor = 1.2
@@ -1590,7 +1591,7 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 0
+			factor = 0 # Hitler cries on the inside
 		}
 		
 		categories = {

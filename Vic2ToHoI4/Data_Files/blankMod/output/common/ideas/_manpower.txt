@@ -32,6 +32,10 @@ ideas = {
 				NOT = { has_idea = isolation }
 			}
 
+			ai_will_do = {
+   				factor = 1
+			}
+
 			modifier = {
 				conscription = 0.015
 			}
@@ -56,6 +60,15 @@ ideas = {
 			modifier = {
 				conscription = 0.025
 			}
+
+			ai_will_do = {
+   				factor = 1
+				modifier = {
+					#Prio if low on manpower
+					factor = 20
+					manpower_per_military_factory <  1000
+				}
+			}
 			
 			cancel_if_invalid = no
 		}
@@ -77,6 +90,16 @@ ideas = {
 						#	}
 						#}
 					}					
+				}
+
+			}
+
+			ai_will_do = {
+   				factor = 1
+				modifier = {
+					#Prio if low on manpower
+					factor = 20
+					manpower_per_military_factory <  800
 				}
 			}
 			
@@ -113,6 +136,21 @@ ideas = {
 						#}
 					}
 				}
+
+			}
+
+			ai_will_do = {
+   				factor = 1
+				modifier = {
+					#Prio if low on manpower
+					factor = 20
+					manpower_per_military_factory <  700
+				}
+				modifier = {
+					#Lower chance if has decent amount
+					factor = 0.5
+					manpower_per_military_factory >  1000
+				}
 			}
 			
 			cost = 150
@@ -122,6 +160,7 @@ ideas = {
 			modifier = {
 				conscription = 0.1
 				industrial_capacity_factory = -0.1
+				industrial_capacity_dockyard = -0.1
 				production_speed_buildings_factor = -0.1
 				training_time_factor = 0.2
 			}
@@ -142,6 +181,21 @@ ideas = {
 				#		ratio > 0.75
 				#	}
 				#}
+
+			}
+
+			ai_will_do = {
+   				factor = 1
+				modifier = {
+					#Prio if low on manpower
+					factor = 20
+					manpower_per_military_factory <  600
+				}
+				modifier = {
+					#Lower chance if has decent amount
+					factor = 0.5
+					manpower_per_military_factory >  1000
+				}
 			}
 		
 			cost = 150
@@ -151,6 +205,7 @@ ideas = {
 			modifier = {
 				conscription = 0.2
 				industrial_capacity_factory = -0.3
+				industrial_capacity_dockyard = -0.3
 				production_speed_buildings_factor = -0.3
 				#XP from reinforcement penalty (small)
 				training_time_factor = 0.3
@@ -174,7 +229,26 @@ ideas = {
 				#	}
 				#}
 			}
-			
+
+			ai_will_do = {
+   				factor = 1
+				modifier = {
+					#Prio if low on manpower
+					factor = 20
+					manpower_per_military_factory <  500
+				}				
+				modifier = {
+					#Lower chance if has decent amount
+					factor = 0.5
+					manpower_per_military_factory >  1000
+				}
+				modifier = {
+					#Block has plenty manpower
+					factor = 0
+					manpower_per_military_factory >  5000
+				}
+			}
+
 			cost = 150
 			removal_cost = -1
 			level = 1
@@ -182,6 +256,7 @@ ideas = {
 			modifier = {
 				conscription = 0.25
 				industrial_capacity_factory = -0.4
+				industrial_capacity_dockyard = -0.4
 				production_speed_buildings_factor = -0.4
 				training_time_factor = 0.5
 			}

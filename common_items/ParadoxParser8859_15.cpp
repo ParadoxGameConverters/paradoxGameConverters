@@ -48,6 +48,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 
+#include "ParadoxParserGenericSupport.h"
+
 using namespace boost::spirit;
 
 namespace parser_8859_15
@@ -445,6 +447,12 @@ namespace parser_8859_15
 
 	Object* doParseFile(string filename)
 	{
+// This switch is made to ensure no problems arise with the other projects
+// While the Generic parser is still being tested it will only be used on Linux (where USE_GENERIC_PARADOX_PARSER is set to 1 by default)
+// On Windows, it can be enabled from CMake / VC++ compiler args to test it
+#ifdef USE_GENERIC_PARADOX_PARSER
+		return parser_generic::parseISO_8859_15(filename);
+#else
 		/* - when using parser debugging, also ensure that the parser object is non-static!
 		debugme = false;
 		if (string(filename) == "D:/Victoria 2/technologies/commerce_tech.txt")
@@ -463,5 +471,6 @@ namespace parser_8859_15
 		read.clear();
 
 		return obj;
+#endif
 	}
 } // namespace parser_8859_15

@@ -1,0 +1,299 @@
+# Copyright (c) 2017 The Paradox Game Converters Project
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+#The ones listed below are taken from HoI4 Vanilla \common\names\00_names.txt
+
+##Majors
+
+north_german = {
+	female_names = { Jessica Emma Hanna Sofia Marie }
+	callsigns = { "Bubi" "Assi" "The Black Devil" "The Blond Knight Of Germany" "Dolfo" "Fighter of Libau" "Petit Rouge" "Pritzl" "The Red Baron" "The Red Battle-flyer" "The Red knight" "Reeste" }
+}
+
+south_german = {
+	female_names = { Jessica Emma Hanna Sofia Marie Sandra }
+	callsigns = { "Bubi" "Assi" "The Black Devil" "The Blond Knight Of Germany" "Dolfo" "Fighter of Libau" "Petit Rouge" "Pritzl" "The Red Baron" "The Red Battle-flyer" "The Red knight" "Reeste" }
+}
+
+german = {
+	female_names = { Jessica Emma Hanna Sofia Marie }
+	callsigns = { "Bubi" "Assi" "The Black Devil" "The Blond Knight Of Germany" "Dolfo" "Fighter of Libau" "Petit Rouge" "Pritzl" "The Red Baron" "The Red Battle-flyer" "The Red knight" "Reeste" }
+}
+
+british = {
+	female_names = { Elizabeth Anne }
+	callsigns = { Stubborn Arrow "The King" Eagle Hangover Striker Chase "One Wing" Pickle Thief Thunder Lightning Storm Target Hawk Fox Dog Sparrow Sunrise "Night Owl" Butcher Cocky Hawkeye Killer Mick Brandy "The Baron" }
+}
+
+english = {
+	female_names = { Elizabeth Anne }
+	callsigns = { Stubborn Arrow "The King" Eagle Hangover Striker Chase "One Wing" Pickle Thief Thunder Lightning Storm Target Hawk Fox Dog Sparrow Sunrise "Night Owl" Butcher Cocky Hawkeye Killer Mick Brandy "The Baron" }
+}
+
+anglo_saxon = {
+	female_names = { Elizabeth Anne }
+	callsigns = { Stubborn Arrow "The King" Eagle Hangover Striker Chase "One Wing" Pickle Thief Thunder Lightning Storm Target Hawk Fox Dog Sparrow Sunrise "Night Owl" Butcher Cocky Hawkeye Killer Mick Brandy "The Baron" }
+}
+
+russian = {
+	female_names = { Jelena Ludmila }
+	callsigns = { Anvil Hammer Fury Arrow Storm Bear "White Lily" Devil Eagle Falcon Fox Snowflake Greasy Guardian Gunman Hawk Hardball Howl Blizzard Husky Ice Killer Steel Iron Skull Striker Thunder Warrior Wardog Vodka }
+}
+
+byelorussian = {
+	female_names = { Jelena Ludmila }
+	callsigns = { Anvil Hammer Fury Arrow Storm Bear "White Lily" Devil Eagle Falcon Fox Snowflake Greasy Guardian Gunman Hawk Hardball Howl Blizzard Husky Ice Killer Steel Iron Skull Striker Thunder Warrior Wardog Vodka }
+}
+
+ukrainian = {
+	female_names = { Jelena Ludmila }
+	callsigns = { Anvil Hammer Fury Arrow Storm Bear "White Lily" Devil Eagle Falcon Fox Snowflake Greasy Guardian Gunman Hawk Hardball Howl Blizzard Husky Ice Killer Steel Iron Skull Striker Thunder Warrior Wardog Vodka }
+}
+
+
+french = {
+	female_names = { Anne Marie }
+	callsigns = { "Draco" "Fast" "Tiger" "Sparrow" "Ripper" "Sundance" "Toad" "Twitch" "Farmer" "Weasel" "Target Practice" "Invisible" "Beach Boy" "Princess" "The Mute" "Carpenter" }
+}
+
+occitain = {
+	female_names = { Anne Marie }
+	callsigns = { "Draco" "Fast" "Tiger" "Sparrow" "Ripper" "Sundance" "Toad" "Twitch" "Farmer" "Weasel" "Target Practice" "Invisible" "Beach Boy" "Princess" "The Mute" "Carpenter" }
+}
+
+breton = {
+	female_names = { Anne Marie }
+	callsigns = { "Draco" "Fast" "Tiger" "Sparrow" "Ripper" "Sundance" "Toad" "Twitch" "Farmer" "Weasel" "Target Practice" "Invisible" "Beach Boy" "Princess" "The Mute" "Carpenter" }
+}
+
+
+north_italian = {
+	female_names = { Maria Anna }
+	callsigns = { Buzzard Dusty Falcon Hawk Hammer Viper Banshee "The Baron" Lightning Duce Raven "Two Shot" Rosso }
+}
+
+south_italian = {
+	female_names = { Maria Anna }
+	callsigns = { Buzzard Dusty Falcon Hawk Hammer Viper Banshee "The Baron" Lightning Duce Raven "Two Shot" Rosso }
+}
+
+maltese = {
+	female_names = { Maria Anna }
+	callsigns = { Buzzard Dusty Falcon Hawk Hammer Viper Banshee "The Baron" Lightning Duce Raven "Two Shot" Rosso }
+}
+
+lombard = {
+	female_names = { Maria Anna }
+	callsigns = { Buzzard Dusty Falcon Hawk Hammer Viper Banshee "The Baron" Lightning Duce Raven "Two Shot" Rosso }
+}
+
+all_italian = {
+	female_names = { Maria Anna }
+	callsigns = { Buzzard Dusty Falcon Hawk Hammer Viper Banshee "The Baron" Lightning Duce Raven "Two Shot" Rosso }
+}
+
+yankee = {
+	female_names = { Mary Jane }
+	callsigns = { "Goose" "Iceman" "Maverick" "Apollo" "Animal" "Boom-Boom" "Badger" "Brick" "Cajun" "Challenger" "Chip" "Eagle" "Ghost" "Hawk" "Jaws" "Moses" "Mad Dog" }
+}
+
+dixie = {
+	female_names = { Mary Jane }
+	callsigns = { "Goose" "Iceman" "Maverick" "Apollo" "Animal" "Boom-Boom" "Badger" "Brick" "Cajun" "Challenger" "Chip" "Eagle" "Ghost" "Hawk" "Jaws" "Moses" "Mad Dog" }
+}
+
+texan = {
+	female_names = { Mary Jane }
+	callsigns = { "Goose" "Iceman" "Maverick" "Apollo" "Animal" "Boom-Boom" "Badger" "Brick" "Cajun" "Challenger" "Chip" "Eagle" "Ghost" "Hawk" "Jaws" "Moses" "Mad Dog" }
+}
+
+japanese = {
+	female_names = { Aimi Asami Asuka }
+	callsigns = { Viper Lightning Devil Dragon Fury Bat Beer Sake Demon Dirty Lance Panther Shogun Vampire "War Lord" }
+}
+
+ainu = {
+	female_names = { Aimi Asami Asuka }
+	callsigns = { Viper Lightning Devil Dragon Fury Bat Beer Sake Demon Dirty Lance Panther Shogun Vampire "War Lord" }
+}
+
+swedish = {
+	female_names = { Anna Linda Sara Caroline Eira }
+}
+
+norwegian = {
+	female_names = { Trine Kajsa }
+}
+
+finnish = {
+	female_names = { Anna }
+}
+sami = {
+	female_names = { Anna }
+}
+
+danish = {
+	female_names = { Karen Alma Elsa Else Monica }
+}
+
+icelandic = {
+	female_names = { Árný Arnfrithur Bjarnhildur Boghildur Dómhildur Drótt Freydís Gunnrún Rafney }
+}
+
+lithuanian = {
+	female_names = { Birute Morta }
+}
+
+estonian = {
+	female_names = { Anna }
+}
+
+latvian = {
+	female_names = { Anna }
+}
+
+romanian = {
+	female_names = { Andrea }
+}
+
+slovak = {
+	female_names = { "Maria" "Anna" "Hana" "Božena" "Alžbeta" "Marta" }
+}
+
+polish = {
+	female_names = { "Zofia" "Wiktoria" "Natalia" "Renata" "Elżbieta" }
+}
+
+flemish = {
+	female_names = { Marie }
+}
+
+wallonian = {
+	female_names = { Marie }
+}
+
+dutch = {
+	female_names = { Coba Corrie Frieda Hannie Helena Ina Jet Joke Miep Reina Truus }
+}
+
+boer = {
+	female_names = { Coba Corrie Frieda Hannie Helena Ina Jet Joke Miep Reina Truus }
+}
+
+czech = {
+	female_names = { "Marie" "Anna" "Hana" "Božena" "Alžběta" "Marta" }
+}
+
+persian = {
+	female_names = { Mehrnaz Farnaz }
+}
+
+javan = {
+	female_names = { Diah Siti }
+}
+
+assamese = {
+	female_names = { Indira }
+}
+
+bengali = {
+	female_names = { Indira }
+}
+
+bihari = {
+	female_names = { Indira }
+}
+
+manipuri = {
+	female_names = { Indira }
+}
+
+nepali = {
+	female_names = { Indira }
+}
+
+oriya = {
+	female_names = { Indira }
+}
+
+sinhala = {
+	female_names = { Indira }
+}
+
+avadhi = {
+	female_names = { Indira }
+}
+
+kanauji = {
+	female_names = { Indira }
+}
+
+panjabi = {
+	female_names = { Indira }
+}
+
+kashmiri = {
+	female_names = { Indira }
+}
+
+gujarati = {
+	female_names = { Indira }
+}
+
+marathi = {
+	female_names = { Indira }
+}
+
+sindi = {
+	female_names = { Indira }
+}
+
+rajput = {
+	female_names = { Indira }
+}
+
+kannada = {
+	female_names = { Indira }
+}
+
+malayalam = {
+	female_names = { Indira }
+}
+
+tamil = {
+	female_names = { Indira }
+}
+
+telegu = {
+	female_names = { Indira }
+}
+
+north_andean = {
+	female_names = { Amaranta Úrsula Rebeca Remedios Sofía }
+}
+
+greek = {
+	car_companies = { }
+	weapon_companies = { }
+	aircraft_companies = { GNAF }
+	naval_companies = { "Royal Hellenic Naval Shipyard" }
+	industry_companies = { }
+	electronic_companies = { }
+}

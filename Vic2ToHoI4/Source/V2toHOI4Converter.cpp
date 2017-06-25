@@ -37,7 +37,7 @@ int main(const int argc, const char* argv[])
 {
 	try
 	{
-		LOG(LogLevel::Info) << "Converter version 0.2A";
+		LOG(LogLevel::Info) << "Converter version 0.2B";
 		LOG(LogLevel::Info) << "Built on " << __DATE__ << " at " << __TIME__;
 		LOG(LogLevel::Info) << "Current directory is " << Utils::getCurrentDirectory();
 
@@ -118,7 +118,11 @@ void checkMods()
 
 void getOutputName(const string& V2SaveFileName)
 {
-	const int slash = V2SaveFileName.find_last_of("\\");
+	int slash = V2SaveFileName.find_last_of("\\");
+	if (slash == string::npos)
+	{
+		slash = V2SaveFileName.find_last_of("/");
+	}
 	string outputName = V2SaveFileName.substr(slash + 1, V2SaveFileName.length());
 	const int length = outputName.find_first_of(".");
 	outputName = outputName.substr(0, length);
@@ -170,7 +174,7 @@ void createModFile()
 		exit(-1);
 	}
 
-	ofstream modFile("Output/" + Configuration::getOutputName() + ".mod");
+	ofstream modFile("output/" + Configuration::getOutputName() + ".mod");
 	if (!modFile.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not create .mod file";

@@ -34,10 +34,10 @@ void copyFlags(const map<string, HoI4Country*>& countries)
 {
 	LOG(LogLevel::Info) << "Copying flags";
 
-	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx");
-	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx/flags");
-	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx/flags/medium");
-	Utils::TryCreateFolder("Output/" + Configuration::getOutputName() + "/gfx/flags/small");
+	Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/gfx");
+	Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/gfx/flags");
+	Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/gfx/flags/medium");
+	Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/gfx/flags/small");
 	for (auto country: countries)
 	{
 		processFlagsForCountry(country);
@@ -277,9 +277,9 @@ void createBigFlag(tga_image* sourceFlag, string filename)
 {
 	tga_image* destFlag = createNewFlag(sourceFlag, 82, 52);
 	FILE* outputFile;
-	if (fopen_s(&outputFile, ("Output/" + Configuration::getOutputName() + "/gfx/flags/" + filename).c_str(), "w+b") != 0)
+	if (fopen_s(&outputFile, ("output/" + Configuration::getOutputName() + "/gfx/flags/" + filename).c_str(), "w+b") != 0)
 	{
-		LOG(LogLevel::Warning) << "Could not create Output/" << Configuration::getOutputName() << "/gfx/flags/" << filename;
+		LOG(LogLevel::Warning) << "Could not create output/" << Configuration::getOutputName() << "/gfx/flags/" << filename;
 		return;
 	}
 	tga_write_to_FILE(outputFile, destFlag);
@@ -293,9 +293,9 @@ void createMediumFlag(tga_image* sourceFlag, string filename)
 {
 	tga_image* destFlag = createNewFlag(sourceFlag, 41, 26);
 	FILE* outputFile;
-	if (fopen_s(&outputFile, ("Output/" + Configuration::getOutputName() + "/gfx/flags/medium/" + filename).c_str(), "w+b") != 0)
+	if (fopen_s(&outputFile, ("output/" + Configuration::getOutputName() + "/gfx/flags/medium/" + filename).c_str(), "w+b") != 0)
 	{
-		LOG(LogLevel::Warning) << "Could not create Output/" << Configuration::getOutputName() << "/gfx/flags/medium/" << filename;
+		LOG(LogLevel::Warning) << "Could not create output/" << Configuration::getOutputName() << "/gfx/flags/medium/" << filename;
 		return;
 	}
 	tga_write_to_FILE(outputFile, destFlag);
@@ -309,9 +309,9 @@ void createSmallFlag(tga_image* sourceFlag, string filename)
 {
 	tga_image* destFlag = createNewFlag(sourceFlag, 10, 7);
 	FILE* outputFile;
-	if (fopen_s(&outputFile, ("Output/" + Configuration::getOutputName() + "/gfx/flags/small/" + filename).c_str(), "w+b") != 0)
+	if (fopen_s(&outputFile, ("output/" + Configuration::getOutputName() + "/gfx/flags/small/" + filename).c_str(), "w+b") != 0)
 	{
-		LOG(LogLevel::Warning) << "Could not create Output/" << Configuration::getOutputName() << "/gfx/flags/small/" << filename;
+		LOG(LogLevel::Warning) << "Could not create output/" << Configuration::getOutputName() << "/gfx/flags/small/" << filename;
 		return;
 	}
 	tga_write_to_FILE(outputFile, destFlag);

@@ -70,6 +70,30 @@ class namesMapper
 		{
 			return getInstance()->GetCallsign(culture);
 		}
+		static string getCarCompanyName(string culture)
+		{
+			return getInstance()->GetCarCompanyName(culture);
+		}
+		static string getWeaponCompanyName(string culture)
+		{
+			return getInstance()->GetWeaponCompanyName(culture);
+		}
+		static string getAircraftCompanyName(string culture)
+		{
+			return getInstance()->GetAircraftCompanyName(culture);
+		}
+		static string getNavalCompanyName(string culture)
+		{
+			return getInstance()->GetNavalCompanyName(culture);
+		}
+		static string getIndustryCompanyName(string culture)
+		{
+			return getInstance()->GetIndustryCompanyName(culture);
+		}
+		static string getElectronicCompanyName(string culture)
+		{
+			return getInstance()->GetElectronicCompanyName(culture);
+		}
 	private:
 		static namesMapper* instance;
 		static namesMapper* getInstance()
@@ -83,8 +107,8 @@ class namesMapper
 		namesMapper();
 
 		void processVic2CulturesFile(string filename);
-		void processFemaleNamesFile();
-		void processCallsignsFile();
+		void processNamesFile();
+		void checkForNames();
 
 		vector<string> GetMaleNames(string culture) const;
 		vector<string> GetFemaleNames(string culture) const;
@@ -94,12 +118,24 @@ class namesMapper
 		string GetFemaleName(string culture);
 		string GetSurname(string culture);
 		string GetCallsign(string culture);
-
+		string GetCarCompanyName(string culture);
+		string GetWeaponCompanyName(string culture);
+		string GetAircraftCompanyName(string culture);
+		string GetNavalCompanyName(string culture);
+		string GetIndustryCompanyName(string culture);
+		string GetElectronicCompanyName(string culture);
+		string getCompanyName(map<string, vector<string>>& companyNames, string culture);
 
 		map<string, vector<string>> maleNamesMap;
 		map<string, vector<string>> femaleNamesMap;
 		map<string, vector<string>> surnamesMap;
 		map<string, vector<string>> callsignsMap;
+		map<string, vector<string>> carCompanyNames;
+		map<string, vector<string>> weaponCompanyNames;
+		map<string, vector<string>> aircraftCompanyNames;
+		map<string, vector<string>> navalCompanyNames;
+		map<string, vector<string>> industryCompanyNames;
+		map<string, vector<string>> electronicCompanyNames;
 
 		std::mt19937 rng;
 };

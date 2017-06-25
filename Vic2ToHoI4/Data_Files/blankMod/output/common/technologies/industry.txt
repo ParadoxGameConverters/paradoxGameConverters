@@ -2,7 +2,7 @@ technologies = {
 
 	basic_machine_tools = {
 	
-		production_factory_max_efficiency_factor = 0.05
+		production_factory_max_efficiency_factor = 0.1
 
 		
 		path = {
@@ -28,35 +28,26 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 9
-
-			modifier = {
-				factor = 5
-				date > "1936.1.3"
-			}
-			
-			modifier = {
-				factor = 5
-				date > "1936.1.6"
-			}
-			
-			modifier = {
-				factor = 5
-				date > "1937.1.1"
-			}
+			factor = 50
 		}
 		
 		categories = {
 			industry
 		}
 	}
-	
+
+	#Machine tools branch	
 	improved_machine_tools = {
 	
 		production_factory_max_efficiency_factor = 0.1
 
 		path = {
 			leads_to_tech = advanced_machine_tools 
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = improved_equipment_conversion
 			research_cost_coeff = 1
 		}
 		
@@ -69,21 +60,11 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 6
-			
+			factor = 40
+						
 			modifier = {
-				factor = 5
-				date > "1936.1.9"
-			}
-			
-			modifier = {
-				factor = 5
+				factor = 10
 				date > "1937.1.1"
-			}
-			
-			modifier = {
-				factor = 5
-				date > "1937.1.6"
 			}
 		}
 		
@@ -94,8 +75,7 @@ technologies = {
 	
 	advanced_machine_tools = {
 	
-		production_factory_max_efficiency_factor = 0.15
-
+		production_factory_max_efficiency_factor = 0.1
 		
 		path = {
 			leads_to_tech = assembly_line_production 
@@ -111,21 +91,11 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 6
-			
+			factor = 30
+						
 			modifier = {
-				factor = 5
-				date > "1938.1.9"
-			}
-			
-			modifier = {
-				factor = 5
+				factor = 10
 				date > "1939.1.1"
-			}
-			
-			modifier = {
-				factor = 5
-				date > "1939.1.6"
 			}
 		}
 		
@@ -136,7 +106,7 @@ technologies = {
 	
 	assembly_line_production = {
 	
-		production_factory_max_efficiency_factor = 0.20
+		production_factory_max_efficiency_factor = 0.1
 		
 		#path = {
 		#	leads_to_tech = improved_machine_tools 
@@ -163,22 +133,12 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 4
+			factor = 20
 			
 			modifier = {
-				factor = 5
-				date > "1940.1.9"
-			}
-			
-			modifier = {
-				factor = 5
+				factor = 10
 				date > "1941.1.1"
-			}
-			
-			modifier = {
-				factor = 5
-				date > "1941.1.6"
-			}
+			}			
 		}
 		
 		categories = {
@@ -188,7 +148,8 @@ technologies = {
 	
 	flexible_line = {
 
-		line_change_production_efficiency_factor = 0.5
+		production_factory_max_efficiency_factor = 0.1
+		line_change_production_efficiency_factor = 0.2
 		
 		research_cost = 2.5
 		start_year = 1943
@@ -203,21 +164,11 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 4
-			
+			factor = 20
+						
 			modifier = {
-				factor = 5
-				date > "1942.1.9"
-			}
-			
-			modifier = {
-				factor = 5
+				factor = 10
 				date > "1943.1.1"
-			}
-			
-			modifier = {
-				factor = 5
-				date > "1943.1.6"
 			}
 		}
 		
@@ -228,7 +179,8 @@ technologies = {
 	
 	streamlined_line = {
 
-		production_factory_efficiency_gain_factor = 0.25
+		production_factory_max_efficiency_factor = 0.1
+		production_factory_efficiency_gain_factor = 0.1
 			
 		research_cost = 2.5
 		start_year = 1943
@@ -243,21 +195,53 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 4
+			factor = 20
 			
 			modifier = {
-				factor = 5
-				date > "1942.1.9"
-			}
-			
-			modifier = {
-				factor = 5
+				factor = 10
 				date > "1943.1.1"
 			}
 			
+		}
+		
+		categories = {
+			industry
+		}
+	}
+
+	#Conversion branch - Enabled in DoD
+	improved_equipment_conversion = {
+	
+		equipment_conversion_speed = 0.40
+
+		allow_branch = {
+			has_dlc = "Death or Dishonor"
+		}
+
+		path = {
+			leads_to_tech = advanced_equipment_conversion
+			research_cost_coeff = 1
+		}
+		
+		research_cost = 1.5
+		start_year = 1937
+		
+		folder = {
+			name = industry_folder
+			position = { x = 2 y = 4 }
+		}
+
+		ai_will_do = {
+			factor = 1
+
 			modifier = {
-				factor = 5
-				date > "1943.1.6"
+				factor = 2
+				date > "1937.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				NOT = { has_government = fascism }
 			}
 		}
 		
@@ -266,9 +250,42 @@ technologies = {
 		}
 	}
 	
+	advanced_equipment_conversion = {
+		
+		equipment_conversion_speed = 0.40
+
+		research_cost = 1.5
+		start_year = 1939
+		
+		folder = {
+			name = industry_folder
+			position = { x = 2 y = 6 }
+		}
+		
+		ai_will_do = {
+			factor = 1
+
+			modifier = {
+				factor = 2
+				date > "1937.1.1"
+			}
+
+			modifier = {
+				factor = 0
+				NOT = { has_government = fascism }
+			}
+		}
+		
+		categories = {
+			industry
+		}
+	}
+
+	###############
 	concentrated_industry = {
 
-		industrial_capacity_factory = 0.2
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.1
 		global_building_slots_factor = 0.20
 		
 		path = {
@@ -288,7 +305,7 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 8
+			factor = 25
 
 			modifier = {
 				factor = 0
@@ -299,17 +316,7 @@ technologies = {
 				factor = 0
 				is_researching_technology = dispersed_industry
 			}
-			
-			modifier = {
-				factor = 5
-				date > "1936.1.3"
-			}
-			
-			modifier = {
-				factor = 5
-				date > "1936.1.6"
-			}
-			
+						
 			modifier = {
 				factor = 5
 				date > "1937.1.1"
@@ -327,7 +334,8 @@ technologies = {
 	
 	concentrated_industry2 = {
 
-		industrial_capacity_factory = 0.2
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.1
 		global_building_slots_factor = 0.20
 		
 		path = {
@@ -344,22 +352,13 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 4
-			
+			factor = 20
+						
 			modifier = {
-				factor = 5
-				date > "1936.1.9"
-			}
-			
-			modifier = {
-				factor = 5
+				factor = 10
 				date > "1937.1.1"
 			}
 			
-			modifier = {
-				factor = 5
-				date > "1937.1.6"
-			}
 		}
 		
 		categories = {
@@ -373,7 +372,8 @@ technologies = {
 	
 	concentrated_industry3 = {
 
-		industrial_capacity_factory = 0.2
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.1
 		global_building_slots_factor = 0.20
 		
 		path = {
@@ -390,22 +390,12 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 4
+			factor = 20
 			
 			modifier = {
-				factor = 5
-				date > "1938.1.9"
-			}
-			
-			modifier = {
-				factor = 5
+				factor = 10
 				date > "1939.1.1"
-			}
-			
-			modifier = {
-				factor = 5
-				date > "1939.1.6"
-			}
+			}			
 		}
 		
 		categories = {
@@ -419,7 +409,8 @@ technologies = {
 	
 	concentrated_industry4 = {
 
-		industrial_capacity_factory = 0.2
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.1
 		global_building_slots_factor = 0.20
 		
 		path = {
@@ -436,21 +427,11 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 4
-			
+			factor = 20
+						
 			modifier = {
-				factor = 5
-				date > "1940.1.9"
-			}
-			
-			modifier = {
-				factor = 5
+				factor = 10
 				date > "1941.1.1"
-			}
-			
-			modifier = {
-				factor = 5
-				date > "1941.1.6"
 			}
 		}
 		
@@ -465,7 +446,8 @@ technologies = {
 	
 	concentrated_industry5 = {
 
-		industrial_capacity_factory = 0.2
+		industrial_capacity_factory = 0.15
+		industrial_capacity_dockyard = 0.1
 		global_building_slots_factor = 0.20
 		
 		research_cost = 2
@@ -485,14 +467,9 @@ technologies = {
 			}
 			
 			modifier = {
-				factor = 5
+				factor = 20
 				date > "1943.1.1"
-			}
-			
-			modifier = {
-				factor = 5
-				date > "1943.1.6"
-			}
+			}			
 		}
 		
 		categories = {
@@ -507,8 +484,10 @@ technologies = {
 	dispersed_industry = {
 
 		industrial_capacity_factory = 0.1
+		industrial_capacity_dockyard = 0.1
 		line_change_production_efficiency_factor = 0.1
 		production_factory_start_efficiency_factor = 0.05
+		equipment_conversion_speed = 0.20
 		industry_air_damage_factor = -0.1
 		global_building_slots_factor = 0.2
 		
@@ -529,7 +508,7 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 2
+			factor = 25
 
 			modifier = {
 				factor = 0
@@ -541,16 +520,6 @@ technologies = {
 				is_researching_technology = concentrated_industry
 			}
 
-			modifier = {
-				factor = 5
-				date > "1936.1.3"
-			}
-			
-			modifier = {
-				factor = 5
-				date > "1936.1.6"
-			}
-			
 			modifier = {
 				factor = 5
 				date > "1937.1.1"
@@ -569,6 +538,7 @@ technologies = {
 	dispersed_industry2 = {
 
 		industrial_capacity_factory = 0.1
+		industrial_capacity_dockyard = 0.1
 		line_change_production_efficiency_factor = 0.1
 		production_factory_start_efficiency_factor = 0.05
 		industry_air_damage_factor = -0.1
@@ -588,21 +558,11 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 4
-			
+			factor = 20
+						
 			modifier = {
-				factor = 5
-				date > "1936.1.9"
-			}
-			
-			modifier = {
-				factor = 5
+				factor = 10
 				date > "1937.1.1"
-			}
-			
-			modifier = {
-				factor = 5
-				date > "1937.1.6"
 			}
 		}
 		
@@ -618,6 +578,7 @@ technologies = {
 	dispersed_industry3 = {
 
 		industrial_capacity_factory = 0.1
+		industrial_capacity_dockyard = 0.1
 		line_change_production_efficiency_factor = 0.1
 		production_factory_start_efficiency_factor = 0.05
 		industry_air_damage_factor = -0.1
@@ -637,22 +598,12 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 4
-			
+			factor = 20
+						
 			modifier = {
-				factor = 5
-				date > "1938.1.9"
-			}
-			
-			modifier = {
-				factor = 5
+				factor = 10
 				date > "1939.1.1"
-			}
-			
-			modifier = {
-				factor = 5
-				date > "1939.1.6"
-			}
+			}			
 		}
 		
 		categories = {
@@ -667,6 +618,7 @@ technologies = {
 	dispersed_industry4 = {
 
 		industrial_capacity_factory = 0.1
+		industrial_capacity_dockyard = 0.1
 		line_change_production_efficiency_factor = 0.1
 		production_factory_start_efficiency_factor = 0.05
 		industry_air_damage_factor = -0.1
@@ -686,21 +638,11 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 4
-			
+			factor = 20
+						
 			modifier = {
-				factor = 5
-				date > "1940.1.9"
-			}
-			
-			modifier = {
-				factor = 5
+				factor = 10
 				date > "1941.1.1"
-			}
-			
-			modifier = {
-				factor = 5
-				date > "1941.1.6"
 			}
 		}
 		
@@ -716,6 +658,7 @@ technologies = {
 	dispersed_industry5 = {
 
 		industrial_capacity_factory = 0.1
+		industrial_capacity_dockyard = 0.1
 		line_change_production_efficiency_factor = 0.1
 		production_factory_start_efficiency_factor = 0.05
 		industry_air_damage_factor = -0.1
@@ -731,21 +674,12 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 4
+			factor = 20
+			
 			
 			modifier = {
-				factor = 5
-				date > "1942.1.9"
-			}
-			
-			modifier = {
-				factor = 5
+				factor = 10
 				date > "1943.1.1"
-			}
-			
-			modifier = {
-				factor = 5
-				date > "1943.1.6"
 			}
 		}
 		
@@ -945,7 +879,8 @@ technologies = {
 	construction1 = {
 		
 		production_speed_buildings_factor = 0.10
-		
+		industry_repair_factor = 0.10
+
 		path = {
 			leads_to_tech = construction2
 			research_cost_coeff = 1
@@ -968,12 +903,7 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 10
-			
-			modifier = {
-				factor = 5
-				date > "1936.1.6"
-			}
+			factor = 50
 			
 			modifier = {
 				factor = 5
@@ -984,7 +914,7 @@ technologies = {
 
 	excavation1 = {
 		
-		 local_resources_factor = 0.10
+		local_resources_factor = 0.10
 		
 		path = {
 			research_cost_coeff = 1
@@ -1005,10 +935,9 @@ technologies = {
 		ai_will_do = {
 			factor = 1
 			
-			
 			modifier = {
-				factor = 0.5
-				AND = {
+				factor = 5.0
+				OR = {
 					oil > 0
 					aluminium > 0
 					rubber > 0
@@ -1019,8 +948,8 @@ technologies = {
 			}
 			
 			modifier = {
-				factor = 0.1
-				AND = {
+				factor = 1.5
+				OR = {
 					oil > 8
 					aluminium > 8
 					rubber > 8
@@ -1035,6 +964,7 @@ technologies = {
 	construction2 = {
 
 		production_speed_buildings_factor = 0.10
+		industry_repair_factor = 0.10
 		
 		path = {
 			leads_to_tech = construction3 
@@ -1062,14 +992,9 @@ technologies = {
 			factor = 4
 			
 			modifier = {
-				factor = 3
+				factor = 10
 				date > "1937.1.1"
-			}
-			
-			modifier = {
-				factor = 3
-				date > "1937.1.6"
-			}
+			}			
 		}
 	}
 
@@ -1098,8 +1023,8 @@ technologies = {
 			factor = 1
 			
 			modifier = {
-				factor = 0.5
-				AND = {
+				factor = 5.0
+				OR = {
 					oil > 0
 					aluminium > 0
 					rubber > 0
@@ -1110,8 +1035,8 @@ technologies = {
 			}
 			
 			modifier = {
-				factor = 0.1
-				AND = {
+				factor = 1.5
+				OR = {
 					oil > 8
 					aluminium > 8
 					rubber > 8
@@ -1125,7 +1050,8 @@ technologies = {
 	
 	construction3 = {
 
-		industry_repair_factor = 0.5
+		production_speed_buildings_factor = 0.10
+		industry_repair_factor = 0.10
 		
 		path = {
 			leads_to_tech = construction4 
@@ -1151,7 +1077,7 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 4
+			factor = 10
 			
 			modifier = {
 				factor = 1.5
@@ -1161,11 +1087,6 @@ technologies = {
 			modifier = {
 				factor = 0.5
 				NOT = { has_war = yes }
-			}
-			
-			modifier = {
-				factor = 3
-				date > "1939.1.6"
 			}
 			
 			modifier = {
@@ -1201,8 +1122,8 @@ technologies = {
 			factor = 1
 			
 			modifier = {
-				factor = 0.5
-				AND = {
+				factor = 5.0
+				OR = {
 					oil > 0
 					aluminium > 0
 					rubber > 0
@@ -1213,8 +1134,8 @@ technologies = {
 			}
 			
 			modifier = {
-				factor = 0.1
-				AND = {
+				factor = 1.5
+				OR = {
 					oil > 8
 					aluminium > 8
 					rubber > 8
@@ -1229,6 +1150,7 @@ technologies = {
 	construction4 = {
 
 		production_speed_buildings_factor = 0.10
+		industry_repair_factor = 0.10
 		
 		path = {
 			leads_to_tech = construction5 
@@ -1256,13 +1178,8 @@ technologies = {
 			factor = 4
 			
 			modifier = {
-				factor = 3
+				factor = 10
 				date > "1941.1.1"
-			}
-			
-			modifier = {
-				factor = 3
-				date > "1941.1.6"
 			}
 		}
 	}
@@ -1292,8 +1209,8 @@ technologies = {
 			factor = 1
 			
 			modifier = {
-				factor = 0.5
-				AND = {
+				factor = 5.0
+				OR = {
 					oil > 0
 					aluminium > 0
 					rubber > 0
@@ -1304,8 +1221,8 @@ technologies = {
 			}
 			
 			modifier = {
-				factor = 0.1
-				AND = {
+				factor = 1.5
+				OR = {
 					oil > 8
 					aluminium > 8
 					rubber > 8
@@ -1320,6 +1237,7 @@ technologies = {
 	construction5 = {
 
 		production_speed_buildings_factor = 0.10
+		industry_repair_factor = 0.10
 		
 		path = {
 			leads_to_tech = excavation5
@@ -1344,13 +1262,8 @@ technologies = {
 			factor = 4
 			
 			modifier = {
-				factor = 3
+				factor = 10
 				date > "1943.1.1"
-			}
-			
-			modifier = {
-				factor = 3
-				date > "1943.1.6"
 			}
 		}
 	}
@@ -1381,8 +1294,8 @@ technologies = {
 			factor = 2
 			
 			modifier = {
-				factor = 0.5
-				AND = {
+				factor = 5.0
+				OR = {
 					oil > 0
 					aluminium > 0
 					rubber > 0
@@ -1393,8 +1306,8 @@ technologies = {
 			}
 			
 			modifier = {
-				factor = 0.1
-				AND = {
+				factor = 1.5
+				OR = {
 					oil > 8
 					aluminium > 8
 					rubber > 8

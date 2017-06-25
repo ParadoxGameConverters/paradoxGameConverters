@@ -70,7 +70,7 @@ class HoI4World
 		void convertNavalBases();
 
 		void convertCountries();
-		void convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, governmentJobsMap governmentJobs, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+		void convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, governmentJobsMap governmentJobs, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
 		void identifyMajorIdeologies();
 		void addNeutrality();
 		void convertIdeologySupport();
@@ -107,8 +107,6 @@ class HoI4World
 		void convertTechs();
 		map<string, vector<pair<string, int>>> importTechMap() const;
 		void addTechs(HoI4Country* countryaddTechs, const string& oldTech, const map<string, vector<pair<string, int>>>& techMap);
-
-		void generateLeaders();
 
 		void convertArmies();
 		void convertNavies();

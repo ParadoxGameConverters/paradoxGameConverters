@@ -167,52 +167,6 @@ void initUnionCultures(Object* obj, unionCulturesMap& unionCultures)
 }
 
 
-cultureMapping initCultureMap()
-{
-	LOG(LogLevel::Info) << "Parsing culture mappings";
-	Object* obj = parser_UTF8::doParseFile("culture_map.txt");
-	if (obj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file culture_map.txt";
-		exit(-1);
-	}
-	if (obj->getLeaves().size() < 1)
-	{
-		LOG(LogLevel::Error) << "Failed to parse culture_map.txt";
-		exit(-1);
-	}
-
-	cultureMapping cultureMap;						// the culture mapping
-	vector<Object*> rules = obj->getLeaves();	// the culture mapping rules
-
-	for (auto rule: rules)
-	{
-		vector<Object*>	cultures	= rule->getLeaves();	// the items in this rule
-		string				dstCulture;							// the HoI4 culture
-		vector<string>	srcCultures;						// the Vic2 cultures
-
-		for (auto item: cultures)
-		{
-			if (item->getKey() == "HoI4")
-			{
-				dstCulture = item->getLeaf();
-			}
-			if (item->getKey() == "v2")
-			{
-				srcCultures.push_back(item->getLeaf());
-			}
-		}
-
-		for (auto srcCulture: srcCultures)
-		{
-			cultureMap.insert(make_pair(srcCulture, dstCulture));
-		}
-	}
-
-	return cultureMap;
-}
-
-
 void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, int>& commerceInvIdeas, map<string, int>& cultureInvIdeas, map<string, int>& industryInvIdeas, map<string, int>& navyInvIdeas, map<string, double>& UHLiberalIdeas, map<string, double>& UHReactionaryIdeas, vector< pair<string, int> >& literacyIdeas, map<string, int>& orderIdeas, map<string, int>& libertyIdeas, map<string, int>& equalityIdeas)
 {
 	vector<Object*> ideasObj = obj->getLeaves();

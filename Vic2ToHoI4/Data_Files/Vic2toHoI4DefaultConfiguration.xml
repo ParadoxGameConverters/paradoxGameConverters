@@ -23,8 +23,8 @@
 						<entryOptions>
 							<entryOption>
 								<name>hardcoded</name>
-								<friendlyName>Hard Coded (1.3.3)</friendlyName>
-								<description>Use the HoI4 version hard coded into the converter (1.3.3)</description>
+								<friendlyName>Hard Coded (1.4.0)</friendlyName>
+								<description>Use the HoI4 version hard coded into the converter (1.4.0)</description>
 								<isDefault>true</isDefault>
 							</entryOption>
 							<entryOption>
@@ -83,6 +83,25 @@
 						<value>1.0</value>
 						<minValue>0.01</minValue>
 						<maxValue>100.0</maxValue>
+					</preference>
+					<preference>
+						<name>drop_minor_ideologies</name>
+						<friendlyName>Drop Minor Ideologies</friendlyName>
+						<description>Convert only major ideologies.</description>
+						<entryOptions>
+							<entryOption>
+								<name>true</name>
+								<friendlyName>Yes</friendlyName>
+								<description>Keep only major ideologies.</description>
+								<isDefault>true</isDefault>
+							</entryOption>
+							<entryOption>
+							<name>false</name>
+								<friendlyName>No</friendlyName>
+								<description>Keep all ideologies.</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+						</entryOptions>
 					</preference>
 				</preferences>
 			</category>

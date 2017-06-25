@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #define HOI4_FOCUS_TREE
 
 
-
+#include "HoI4Events.h"
 #include <string>
 #include <vector>
 using namespace std;
@@ -34,6 +34,7 @@ using namespace std;
 
 class HoI4Country;
 class HoI4Focus;
+class HoI4Events;
 
 
 
@@ -44,10 +45,14 @@ class HoI4FocusTree
 		HoI4FocusTree(const HoI4Country* country);
 
 		HoI4FocusTree* makeCustomizedCopy(const HoI4Country* country) const;
+		void setNextFreeColumn(int newFreeColumn) { nextFreeColumn = newFreeColumn; };
 
 		void addGenericFocusTree();
 		void addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Country*> CountriesToContain, int XStart);
 		void addAbsolutistEmpireNationalFocuses(HoI4Country* country, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets);
+		void addCommunistCoupBranch(HoI4Country* Home, vector<HoI4Country*> coupTargets);
+		void addCommunistWarBranch(HoI4Country* Home, vector<HoI4Country*> warTargets, HoI4Events* events);
+		void addCommunistGPWarBranch(HoI4Country* Home, vector<HoI4Country*> newAllies, vector<HoI4Country*> GCTargets, HoI4Events* events);
 
 		void output();
 
@@ -60,6 +65,7 @@ class HoI4FocusTree
 		string srcCountryTag;
 		string dstCountryTag;
 		vector<HoI4Focus*> focuses;
+		int nextFreeColumn;
 };
 
 
