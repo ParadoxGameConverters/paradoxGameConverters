@@ -62,7 +62,7 @@ LowTartare		- Data Files
 Kasemacher		- Data Files
 larjak			- Data Files
 Tehfailure		- Data Files
-kratostatic		- Data Files
+kratostatic		- Programming, Data Files
 Kansai-kun		- Data Files
 SaintPetersbour		- Data Files
 Teutonizer		- Data Files

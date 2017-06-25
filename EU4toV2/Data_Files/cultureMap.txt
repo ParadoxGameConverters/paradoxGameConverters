@@ -456,5 +456,22 @@ link = { v2 = ostrogothic eu4 = ostrogothic }
 link = { v2 = maghrebi eu4 = maghreb_latin religion = sunni religion = zikri religion = yazidi religion = sunni_heresy religion = shiite religion = hurufi religion = druze religion = shiite_heresy religion = ibadi religion = kharijite }
 link = { v2 = maghreb_arabic eu4 = maghreb_latin }
 link = { v2 = mashriqi eu4 = syriac religion = sunni religion = zikri religion = yazidi religion = sunni_heresy religion = shiite religion = hurufi religion = druze religion = shiite_heresy religion = ibadi religion = kharijite }
+
+#CK2Plus mod cultures
+link = { v2 = norwegian eu4 = anglo_norse }
+link = { v2 = berber eu4 = atlasian eu4 = garamante eu4 = numidian eu4 = zenati eu4 = guanche }
+link = { v2 = icelandic eu4 = icelandic }
+link = { v2 = hungarian eu4 = magyar }
+link = { v2 = greek eu4 = sicilian_greek }
+link = { v2 = irish eu4 = gallawa }
+link = { v2 = south_italian eu4 = corsican eu4 = c_latin }
+link = { v2 = north_italian eu4 = dalmatian }
+link = { v2 = south_german eu4 = thuringian eu4 = colognian region = south_german_region }
+link = { v2 = north_german eu4 = thuringian eu4 = colognian region = north_german_region }
+link = { v2 = north_german eu4 = colognian eu4 = old_gothic }
+link = { v2 = south_german eu4 = thuringian }
+link = { v2 = sephardic eu4 = mizrahim }
+link = { v2 = french eu4 = outremer }
 link = { v2 = syriac eu4 = babylonian eu4 = syriac }
+
 }

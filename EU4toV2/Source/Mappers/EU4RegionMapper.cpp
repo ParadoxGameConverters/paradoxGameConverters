@@ -146,6 +146,11 @@ void EU4RegionMapper::doNewVersion()
 
 	for (auto itr: Configuration::getEU4Mods())
 	{
+		if (!Utils::DoesFileExist(itr + "/map/area.txt") && !Utils::DoesFileExist(itr + "/map/region.txt"))
+		{
+			continue;
+		}
+
 		makeWorkingAreaTxt(itr);
 		Object* areaObj = parser_UTF8::doParseFile("area.txt");
 		if (areaObj == nullptr)
@@ -159,17 +164,13 @@ void EU4RegionMapper::doNewVersion()
 			exit (-1);
 		}
 
-		string modRegionFile(itr + "/map/region.txt");
-		if (Utils::DoesFileExist(modRegionFile))
+		regionsObj = parser_UTF8::doParseFile(itr + "/map/region.txt");
+		if (regionsObj == nullptr)
 		{
-			regionsObj = parser_UTF8::doParseFile(modRegionFile.c_str());
-			if (regionsObj == nullptr)
-			{
-				LOG(LogLevel::Error) << "Could not parse file " << modRegionFile;
-				exit(-1);
-			}
-			initEU4RegionMap(regionsObj, areaObj);
+			LOG(LogLevel::Error) << "Could not parse file " << itr << "/map/region.txt";
+			exit(-1);
 		}
+		initEU4RegionMap(regionsObj, areaObj);
 	}
 }
 
@@ -180,7 +181,7 @@ void EU4RegionMapper::makeWorkingAreaTxt(const string& path)
 	ofstream copy("area.txt");
 
 	char buffer[256];
-	while(!original.eof())
+	while (!original.eof())
 	{
 		original.getline(buffer, sizeof(buffer));
 		string line(buffer);
