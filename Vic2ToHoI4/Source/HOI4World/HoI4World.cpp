@@ -337,7 +337,8 @@ double HoI4World::getWorldwideWorkerFactoryRatio(map<string, double> workersInCo
 	}
 
 	int defaultFactories = 1189;
-	if (Configuration::getHOI4Version() >= HOI4Version("1.4.0"))
+	HOI4Version onePointFour("1.4.0");
+	if (Configuration::getHOI4Version() >= onePointFour)
 	{
 		defaultFactories = 1201;
 	}
