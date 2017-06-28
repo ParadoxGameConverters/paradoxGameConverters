@@ -1,0 +1,98 @@
+# Copyright (c) 2017 The Paradox Game Converters Project
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+# Format as "link = { tag = (Hoi tag) v2 = (v2 state) } "
+# It means that, if the country doesn't exist at conversion, it'll be given cores...
+# ...all over the Hoi4 states generated from the Vic2 states said after
+# This function allows some countries to keep existing (e.g. Canada)...
+# ...or as well to get totally generated (e.g. Angola)
+
+mappings={
+
+link = { tag = ALG v2 = ALD_1704 v2 = FRA_1700 v2 = ALD_1708 v2 = ALD_1714 v2 = ALD_1718 } #Algeria
+link = { tag = ANG v2 = POR_2006 v2 = POR_1999 v2 = POR_2003 } #Angola
+link = { tag = ARM v2 = RUS_1098 } #Armenia
+link = { tag = AST v2 = AST_2528 v2 = AST_2527 v2 = AST_2454 v2 = AST_2244 } #Australia
+link = { tag = AZR v2 = RUS_1102 } #Azerbaijan
+link = { tag = BEN v2 = FRA_1919 } #Benin
+link = { tag = BIH v2 = TUR_788 } #Bosnia
+link = { tag = BLR v2 = RUS_707 v2 = RUS_718 v2 = RUS_947 } #Belarus
+link = { tag = BOT v2 = ENG_2074 } #Botswana
+link = { tag = BUR v2 = ENG_1343 v2 = BUR_1330 v2 = BUR_1334 v2 = BUR_1339 } #Burma
+link = { tag = CAM v2 = SIA_1366 } #Cambodia
+link = { tag = CAN v2 = ENG_13 v2 = ENG_22 v2 = ENG_30 v2 = ENG_36 v2 = ENG_43 v2 = ENG_58 v2 = ENG_6 v2 = ENG_68 v2 = ENG_74 v2 = ENG_9 } #Canada
+link = { tag = COG v2 = BEL_1977 v2 = BEL_1984 v2 = BEL_1987 v2 = BEL_1990 v2 = BEL_1992 } #Congo-Zaire
+link = { tag = CRO v2 = AUS_771 v2 = AUS_780 } #Croatia
+link = { tag = CUB v2 = SPA_2208 } #Cuba
+link = { tag = CYP v2 = TUR_855 } #Cyprus
+link = { tag = EGY v2 = EGY_1746 v2 = EGY_1750 v2 = EGY_1753 v2 = EGY_1762 v2 = EGY_1758 v2 = EGY_1771 v2 = EGY_1834 v2 = EGY_1827 v2 = ENG_1843 v2 = EGY_1838 v2 = EGY_1842 } #Egypt
+link = { tag = EST v2 = RUS_349 } #Estonia
+link = { tag = GEO v2 = RUS_1090 } #Georgia
+link = { tag = GUY v2 = ENG_1979 } #Guyana
+link = { tag = ICE v2 = DEN_251 } #Iceland
+link = { tag = INS v2 = ATJ_1405 v2 = NET_1398 v2 = NET_1413 v2 = NET_1423 v2 = BAL_1438 v2 = NET_1449 v2 = NET_1451 } #Indonesia
+link = { tag = ISR v2 = EGY_921 } #Israël
+link = { tag = JOR v2 = EGY_910 } #Jordan
+link = { tag = KAZ v2 = RUS_1182 v2 = RUS_1184 v2 = RUS_1185 } #Kazakhstan
+link = { tag = KEN v2 = ENG_2039 v2 = ENG_2034 v2 = ENG_2029 v2 = ENG_2024 v2 = ENG_2026 v2 = ENG_2019 } #Eastafrica
+link = { tag = KGZ v2 = KOK_1190 } #Kyrgyzstan
+link = { tag = LAO v2 = LUA_1356 } #Laos
+link = { tag = LAT v2 = RUS_354 } #Latvia
+link = { tag = LBA v2 = TRI_1743 v2 = TRI_1739 v2 = EGY_1754 } #Libya
+link = { tag = LIB v2 = ENG_1887 } #Liberia
+link = { tag = LIT v2 = RUS_360 } #Lithuania
+link = { tag = LKA v2 = ENG_1321 } #Ceylon
+link = { tag = MAD v2 = MAD_2121 v2 = MAD_2117 } #Madagascar
+link = { tag = MAL v2 = ENG_1384 v2 = BRU_1394 } #Malaysia
+link = { tag = MAR v2 = MOR_1696 v2 = MOR_1683 v2 = MOR_1693 v2 = MOR_1686 v2 = MOR_1688 } #Morocco
+link = { tag = MDA v2 = RUS_676 } #Moldova
+link = { tag = MKD v2 = TUR_806 } #Macedonia TFYR
+link = { tag = MLI v2 = FRA_1801 v2 = FRA_1798 v2 = FRA_1803 } #Mali
+link = { tag = MNT v2 = MON_2582 } #Montenegro
+link = { tag = MON v2 = CHI_2608 } #Mongolia
+link = { tag = MZB v2 = POR_2049 v2 = POR_2053 v2 = POR_2060 } #Mozambique
+link = { tag = NIG v2 = FRA_1931 v2 = FRA_1930 v2 = FRA_1923 v2 = FRA_1927 v2 = FRA_1939 v2 = FRA_1937 v2 = FRA_1816 } #Nigeria
+link = { tag = NZL v2 = ENG_2509 } #New Zealand
+link = { tag = PAK v2 = KAL_1221 v2 = PAN_1224 v2 = SIN_1288 } #Pakistan
+link = { tag = PAL v2 = EGY_921 } #Palestine
+link = { tag = PAN v2 = CLM_1723 } #Panama
+link = { tag = PHI v2 = SPA_1459 v2 = SPA_1455 v2 = SPA_1463 } #Philippines
+link = { tag = PNG v2 = AST_2528 v2 = GER_2530 } #Papua New Guinea
+link = { tag = QUE v2 = ENG_58 } #Quebec
+link = { tag = RAJ v2 = ENG_1343 v2 = BUR_1330 v2 = BUR_1334 v2 = BUR_1339 v2 = KAL_1221 v2 = PAN_1224 v2 = SIN_1288 v2 = ENG_1321 v2 = PAN_1227 v2 = ENG_1264 v2 = ENG_1236 v2 = ENG_1291 v2 = ENG_1275 v2 = ENG_1247 v2 = ENG_1252 v2 = ENG_1251 v2 = ENG_1258 v2 = ENG_1261 v2 = NAG_1277 v2 = ENG_1297 v2 = HYD_1283 v2 = ENG_1305 v2 = MYS_1314 v2 = ENG_1304 v2 = ENG_1317 } #The Raj
+link = { tag = SAF v2 = ENG_2087 v2 = ENG_2092 v2 = ENG_2096 v2 = ORA_2103 v2 = ZUL_2113 v2 = TRN_2108 v2 = ENG_2078 v2 = ENG_2083 } #South Africa
+link = { tag = SER v2 = TUR_803 v2 = SER_794 v2 = AUS_777 } #Serbia
+link = { tag = SIE v2 = FRA_1884 } #Sierra Leone
+link = { tag = SLO v2 = AUS_633 } #Slovakia
+link = { tag = SOM v2 = ENG_1868 } #Somalia
+link = { tag = SVN v2 = AUS_768 v2 = AUS_736 } #Slovenia
+link = { tag = TAN v2 = RUS_1469 } #Tannu Tuva (a bit too big...)
+link = { tag = TJK v2 = BUK_1207 } #Tajikistan
+link = { tag = TKM v2 = RUS_1196 } #Turkmenistan
+link = { tag = TUN v2 = TUN_1726 } #Tunisia
+link = { tag = U70 v2 = ENG_2019 } #Uganda
+link = { tag = U94 v2 = FRA_1808 v2 = FRA_1813 } #Niger
+link = { tag = URG v2 = URU_2344 } #Uruguay
+link = { tag = USA v2 = USA_118 v2 = USA_121 v2 = USA_124 v2 = USA_126 v2 = USA_129 v2 = USA_139 v2 = USA_144 v2 = USA_148 v2 = USA_151 v2 = USA_158 v2 = USA_162 v2 = USA_168 v2 = USA_170 v2 = USA_176 v2 = USA_178 v2 = USA_185 v2 = USA_188 v2 = USA_194 v2 = USA_196 v2 = USA_200 v2 = USA_201 v2 = USA_211 v2 = USA_218 v2 = USA_219 v2 = USA_220 v2 = USA_223 v2 = USA_231 v2 = USA_232 v2 = USA_243 v2 = USA_247 v2 = USA_2556 } #USA
+link = { tag = UZB v2 = KHI_1191 } #Uzbekistan
+link = { tag = VIE v2 = ANN_1371 v2 = ANN_1374 v2 = ANN_1383 } #Vietnam
+link = { tag = ZIM v2 = ENG_2068 v2 = ENG_2014 v2 = ENG_2016 } #Rhodesia-Zimbabwe
+
+}
