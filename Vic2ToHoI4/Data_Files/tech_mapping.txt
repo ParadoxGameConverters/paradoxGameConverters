@@ -29,14 +29,6 @@ tech_map =
 # Army -> Infantry, Aircraft, Armour, Artillery, Land Doctrine, AND most Air Doctrine
 	#FORTESTING
 	link = {
-		vic2 = post_napoleonic_thought 
-		gw_artillery = 1
-		tech_recon = 1
-		tech_support = 1		
-		tech_engineers = 1
-
-	}
-	link = {
 		vic2 = infiltration			# Army Doctrine 1900
 		
 	}
@@ -49,15 +41,13 @@ tech_map =
 	}
 	link = {
 		vic2 = tank_experiments
-		gwtank = 1
+		gwtank = 1 #Great War Tank
 	}
 	link = {
 		vic2 = tank_exploits
-		basic_heavy_tank = 1
 	}
 	link = {
 		vic2 = modern_army_doctrine		# Army Doctrine 1919
-		infantry_weapons1 = 1
 	}
 	link = {
 		vic2 = firepower_vs_mobility
@@ -73,15 +63,13 @@ tech_map =
 	}
 	link = {
 		vic2 = bolt_action_rifles		# Army Light Arms 1900
-		infantry_weapons = 1
 	}
 	link = {
 		vic2 = modern_divisional_structure	# Army Light Arms 1919
-			infantry_weapons1 = 1
+		infantry_weapons = 1 #Basic Infantry
 	}
 	link = {
 		vic2 = interwar_infantry
-		#support_weapons = 1
 	}
 	link = {
 		vic2 = interwar_cavalry
@@ -89,6 +77,7 @@ tech_map =
 	}
 	link = {
 		vic2 = rear_area_dumps
+		tech_mountaineers = 1 #Mountaineers
 		
 	}
 	link = {
@@ -97,77 +86,88 @@ tech_map =
 	}
 	link = {
 		vic2 = heavy_armament_dunno		# Army Artillery 1919
-		gw_artillery = 1
+		basic_medium_tank = 1 #Medium Tank
+		infantry_weapons1 = 1 #Better Infantry Weapons
 	}
 	link = {
 		vic2 = tankette
+		basic_heavy_tank = 1 #Heavy Tank
 		
 	}
 	link = {
 		vic2 = light_tank
-		basic_light_tank = 1
+		basic_light_tank = 1 #Light Tank
 	}
 	link = {
 		vic2 = armoured_cars
+		motorised_infantry = 1 #Motorized
 		
 	}
 	link = {
 		vic2 = anti_aircraft_artillery 
+		gw_artillery = 1 #Great War Artillery
 	
 	}
 	link = {
 		vic2 = improved_anti_aircraft_artillery 
+		interwar_antiair = 1 #Anti-Air Artillery
 		
 	}
 	link = {
 		vic2 = light_artillery
+		interwar_artillery = 1 #Interwar Artillery
 		
 	}
 	link = {
 		vic2 = medium_artillery 
+		interwar_artillery = 1 #Interwar Artillery
 		
 	}
 	link = {
-		vic2 = daimlers_automobile 
-		motorised_infantry = 1
+		vic2 = daimlers_automobile
 	}
 	link = {
-		vic2 = heavy_artillery 
-		interwar_artillery = 1
+		vic2 = heavy_artillery
+		interwar_artillery = 1 #Interwar Artillery
+		interwar_antitank = 1 #Anti-Tank Artillery
 	}
 	link = {
 		vic2 = military_directionism		# Army Science 1900
+		tech_support = 1 #Support Equipment
 	}
 	link = {
 		vic2 = army_political_lobbying
 	}
 	link = {
 		vic2 = army_military_political_decision_making 
+		tech_signal_company = 1 #Signal Company
 	}
 	link = {
 		vic2 = army_local_military_government 
+		tech_military_police = 1 #Military Police
+		tech_field_hospital = 1 #Hospitals
 	}
 	link = {
 		vic2 = aeronautics			# Army Science 1914
-		early_fighter = 1
+		early_fighter = 1 #Interwar Fighter
+		support_weapons = 1 #First Support Weapons
 	}
 	link = {
-		vic2 = early_interwar_bombers 
-		early_bomber = 1
+		vic2 = early_interwar_bombers
+		early_bomber = 1 #Interwar Bomber
 	}
 	link = {
 		vic2 = late_interwar_bombers
-		tactical_bomber1 = 1
-		strategic_bomber1 = 1
+		strategic_bomber = 1 #Strategic Bomber
+		
 	}
 	link = {
 		vic2 = early_interwar_fighters
-		CAS1 = 1
+		cv_early_fighter = 1 #Interwar Carrier Fighter
 	}
 	link = {
-		vic2 = late_interwar_fighters 
-		fighter1 = 1
-		naval_bomber1 = 1
+		vic2 = late_interwar_fighters
+		fighter1 = 1 #Fighter I
 	}
 	link = {
 		vic2 = t_air_superiority
@@ -178,7 +178,9 @@ tech_map =
 		
 	}
 	link = {
-		vic2 = force_substitution_doctrine 
+		vic2 = force_substitution_doctrine
+		CAS1 = 1 #Close Air Support
+		paratroopers = 1 #Paratroopers
 		
 	}
 	link = {
@@ -187,34 +189,37 @@ tech_map =
 	}
 	link = {
 		vic2 = operational_destruction_doctrine 
+		tactical_bomber1 = 1 #Tactical Bomber
 		
 	}
 	link = {
-		vic2 = strategic_destruction_doctrine 
+		vic2 = strategic_destruction_doctrine
+		naval_bomber1 = 1 #Naval Bombers
+		cv_naval_bomber1 = 1 #Naval Bombers Carrier Fighter
 		
 	}
 	link = {
 		vic2 = army_nco_training		# Army Leadership 1900
+		mechanical_computing = 1 #Mechanical Computing
 	}
 	link = {
 		vic2 = great_war_experience		# Army Leadership 1919
-		tech_support = 1
-		tech_military_police = 1
-		tech_mountaineers = 1
-		paratroopers = 1
+		support_weapons2 = 1 #Better Support Weapons
+		tech_logistics_company = 1 #Logistics
 	}
 
 # Navy -> Naval Tech and Naval Doctrine, plus Naval Air Doctrines and Radio tech
 
 	link = {
 		vic2 = high_sea_battle_fleet		# Navy Doctrine 1900
-		
+		early_destroyer = 1 #Monitor => Destroyer
 	}	
 	link = {
 		vic2 = offensive_attitude
 	}
 	link = {
 		vic2 = defensive_attitude
+		early_carrier = 1 #Carrier
 	}
 	link = {
 		vic2 = modern_naval_doctrine		# Navy Doctrine 1919
@@ -233,31 +238,27 @@ tech_map =
 	# Originally "Steam Turbine Ships" also had: light crusiers, battlecruisers, oceangoing submarines
 	link = {
 		vic2 = dreadnoughts
-		early_submarine = 1
 		
 	}
 	link = {
 		vic2 = oil_driven_ships		# Ship Construction 1919
-		early_destroyer = 1
-		basic_submarine = 1
-		transport = 1
 	}	
 	# Originally "Oil Driven Ships" also had: adv./mod. destroyers, adv./mod. battlecruisers, 3 carrier invs, adv. subs.
 	link = {
-		vic2 = advanced_cruisers 
-			early_light_cruiser = 1
+		vic2 = advanced_cruisers
+		early_light_cruiser = 1 #Cruiser => Light Cruiser
 	}
 	link = {
-		vic2 = modern_cruisers 
-		early_heavy_cruiser = 1
+		vic2 = modern_cruisers
+		early_heavy_cruiser = 1 #Ironclad => Heavy Cruiser
 	}
 	link = {
-		vic2 = advanced_battleships 
-		early_battlecruiser = 1
+		vic2 = advanced_battleships
+		early_battlecruiser = 1 #Battlecruiser
 	}
 	link = {
-		vic2 = modern_battleships 
-		early_battleship = 1
+		vic2 = modern_battleships
+		early_battleship = 1 #Battleship
 	}
 	link = {
 		vic2 = advanced_naval_design		# Navy Engineering 1900
@@ -277,13 +278,16 @@ tech_map =
 	}
 	link = {
 		vic2 = modern_naval_design		# Navy Engineering 1919
+		carrier_1 = 1 #Carrier update
 	}	
 	link = {
 		vic2 = wireless
+		radio = 1 #Radio
 		
 	}
 	link = {
 		vic2 = advanced_fire_control 
+		basic_destroyer = 1 #Better Destroyers
 		
 	}
 	link = {
@@ -313,6 +317,7 @@ tech_map =
 	}
 	link = {
 		vic2 = naval_nco_training		# Navy Leadership 1900
+		basic_light_cruiser = 1 #Better Light Cruisers
 	}	
 	link = {
 		vic2 = literate_ncos 
@@ -325,18 +330,22 @@ tech_map =
 	}
 	link = {
 		vic2 = modern_naval_training		# Navy Leadership 1919
+		early_submarine = 1 #Submarines
 	}
 	link = {
 		vic2 = amphibious_warfare_training 
+		transport = 1 #Transport
 	}
 	link = {
 		vic2 = naval_exercises
+		basic_submarine = 1 #Basic Submarine
 	}
 
 # Industry -> Industry
 
 	link = {
 		vic2 = electrical_power_generation	# Industry Power 1900
+		electronic_mechanical_engineering = 1 #Electricity
 	
 	}
 	link = {
@@ -356,6 +365,7 @@ tech_map =
 	}
 	link = {
 		vic2 = electric_furnace 		# Industry Metallurgy 1900
+		electronic_mechanical_engineering = 1 #Electricity
 		
 	}
 	link = {
@@ -364,22 +374,28 @@ tech_map =
 	}
 	link = {
 		vic2 = integral_rail_system 		# Industry Infrastructure 1898
+		construction1 = 1 #Construction
 		
 	}
 	link = {
 		vic2 = limited_access_roads 		# Industry Infrastructure 1919
+		construction2 = 1 #Construction
 		
 	}
 	link = {
 		vic2 = synthetic_polymers 		# Industry Chemistry 1919
-		synth_oil_experiments = 1
+		basic_machine_tools = 1 #Basic Machine Tools
+		synth_oil_experiments = 1 #Synthetic Oil Experiments
 	}
 	link = {
 		vic2 = rayon
+		improved_machine_tools = 1 #Improved Machine Tools
 		
 	}
 	link = {
 		vic2 = bakelite
+		improved_machine_tools = 1 #Improved Machine Tools
+		oil_plant = 1 #Oil Plant
 		
 	}
 
@@ -428,6 +444,7 @@ tech_map =
 	}
 	link = {
 		vic2 = the_police_state
+		tech_military_police = 1 #Military Police
 		
 	}
 
@@ -442,10 +459,13 @@ tech_map =
 	}
 	link = {
 		vic2 = national_radio_networks
+		radio = 1 #Radio
+		radio_detection = 1 #Radar
 		
 	}
 	link = {
 		vic2 = the_talkies
+		tech_recon = 1 #Reconnaissance Company
 	}
 
 }

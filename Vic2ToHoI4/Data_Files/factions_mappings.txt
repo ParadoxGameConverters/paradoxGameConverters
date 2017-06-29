@@ -1,0 +1,113 @@
+# Copyright (c) 2017 The Paradox Game Converters Project
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+# Format as "link = { culture = french ideology = democratic faction = french_entente_alliance } "
+# It means that if a French-cultured faction converting to a democracy leads a faction, ...
+# ...said faction will be coded as french_entente_alliance, whose localisation is already in vanilla
+# The order of the factions decides, as if there are two French democracies leading factions, ...
+# ...the first would get the french_entente_alliance, the second the more fallbackish "allies"
+# "any" can be used as key for culture (meaning open to anyone)
+# "any" can be used as key for ideology (meaning it can be of any ideology)
+# The "culture" refers to a culture group.
+# The "ideology" refers to HoI4 ruling party
+# The fallback at last is used if no appropriate is found
+
+mappings={
+
+#Berlin-Moscow Axis
+link = { culture = germanic ideology = communism faction = the_berlin_moscow_axis }
+link = { culture = east_slavic ideology = fascism faction = the_berlin_moscow_axis }
+
+#Domination Française
+link = { culture = french ideology = fascism faction = domination_francaise }
+
+#French Entente
+link = { culture = french ideology = democratic faction = french_entente_alliance }
+link = { culture = french ideology = neutrality faction = french_entente_alliance }
+link = { culture = french ideology = radical faction = french_entente_alliance }
+
+#The French Alliance
+link = { culture = french ideology = any faction = french_alliance }
+
+#Daitoa Kyoeiken
+#link = { culture = east_asian ideology = any faction = daitoa_kyoeiken }
+#Japanese is in the Chinese culture group. Letting China have this faction sounds bad.
+
+#Novus Imperium Romanum
+link = { culture = italian ideology = absolutist faction = italy_empire_faction }
+link = { culture = italian ideology = fascist faction = italy_empire_faction }
+
+#Chinese United Front
+link = { culture = east_asian ideology = any faction = chinese_united_front }
+
+#Międzymorze
+link = { culture = polish_culture_group ideology = any faction = miedzymorze_faction }
+
+#Northern Sovereignity Coalition
+link = { culture = american_cultures ideology = fascism faction = northern_sovereignty_coalition }
+
+#North American Alliance
+link = { culture = american_cultures ideology = any faction = north_american_alliance }
+
+#African People's Union
+link = { culture = african_diaspora_cultures ideology = any faction = SAF_faction_uotap }
+link = { culture = west_african ideology = any faction = SAF_faction_uotap }
+link = { culture = central_african ideology = any faction = SAF_faction_uotap }
+link = { culture = east_african ideology = any faction = SAF_faction_uotap }
+link = { culture = southern_african ideology = any faction = SAF_faction_uotap }
+
+#Pact of Rome
+link = { culture = hungarian_culture_group ideology = fascism faction = HUN_PACT_OF_ROME_FACTION }
+
+#Cordon Sanitaire
+link = { culture = pan_romanian ideology = democratic faction = ROM_CORDON_SANITAIRE_FACTION }
+
+#Bucharest Accords
+link = { culture = pan_romanian ideology = any faction = ROM_BALKAN_FACTION }
+
+#Balkan Pact
+link = { culture = hungarian_culture_group ideology = any faction = HUN_BALKAN_FACTION }
+
+#Balkan Entente
+link = { culture = south_slavic ideology = any faction = BALKAN_ENTENTE_FACTION }
+
+#Czech Entente
+link = { culture = czecho_slovak_culture_group ideology = any faction = CZE_little_entente }
+
+#Left out: western_pacific_sphere, south_west_pacific_initiative
+
+##FALLBACKS
+
+#Allies
+link = { culture = any ideology = democratic faction = allies }
+link = { culture = any ideology = neutrality faction = allies }
+
+#Axis
+link = { culture = any ideology = fascism faction = axis }
+link = { culture = any ideology = absolutist faction = axis }
+
+#Comintern
+link = { culture = any ideology = communism faction = comintern }
+
+#Default Fallback - DO NOT CHANGE THIS, DO NOT ADD ANYTHING AFTER THIS
+
+link = { culture = any ideology = any faction = FACTION_NAME_IDEOLOGY_DEFAULT }
+
+}
