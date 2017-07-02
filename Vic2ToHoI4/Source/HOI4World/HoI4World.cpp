@@ -34,6 +34,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Diplomacy.h"
 #include "HoI4Events.h"
 #include "HoI4Faction.h"
+#include "HOI4Ideology.h"
 #include "HoI4Localisation.h"
 #include "HoI4Province.h"
 #include "HoI4State.h"
@@ -71,6 +72,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	convertNavies();
 	convertAirforces();
 	determineGreatPowers();
+	importIdeologies();
 	identifyMajorIdeologies();
 	addNeutrality();
 	convertIdeologySupport();
@@ -177,6 +179,29 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 }
 
 
+void HoI4World::importIdeologies()
+{
+	importIdeologyFile("converterIdeologies.txt");
+	importIdeologyFile(Configuration::getHoI4Path() + "/common/ideologies/00_ideologies.txt");
+}
+
+
+void HoI4World::importIdeologyFile(const string& filename)
+{
+	Object* fileObject = parser_UTF8::doParseFile(filename);
+	auto ideologiesObjects = fileObject->getLeaves();
+	if (ideologiesObjects.size() > 0)
+	{
+		for (auto ideologyObject: ideologiesObjects[0]->getLeaves())
+		{
+			string ideologyName = ideologyObject->getKey();
+			HoI4Ideology* newIdeology = new HoI4Ideology(ideologyObject);
+			ideologies.insert(make_pair(ideologyName, newIdeology));
+		}
+	}
+}
+
+
 void HoI4World::identifyMajorIdeologies()
 {
 	for (auto greatPower: greatPowers)
@@ -191,6 +216,8 @@ void HoI4World::identifyMajorIdeologies()
 			majorIdeologies.insert(country.second->getGovernmentIdeology());
 		}
 	}
+
+	majorIdeologies.insert("neutrality");
 }
 
 
@@ -1160,6 +1187,7 @@ void HoI4World::output() const
 	outputCountries();
 	buildings->output();
 	events->output();
+	outputIdeologies();
 }
 
 
@@ -1365,6 +1393,38 @@ void HoI4World::outputRelations() const
 	out << "}\n";
 
 	out.close();
+}
+
+
+void HoI4World::outputIdeologies() const
+{
+	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/common/ideologies/"))
+	{
+		Log(LogLevel::Error) << "Could not create output/" + Configuration::getOutputName() + "/common/ideologies/";
+	}
+	ofstream ideologyFile("output/" + Configuration::getOutputName() + "/common/ideologies/00_ideologies.txt");
+	ideologyFile << "ideologies = {\n";
+	ideologyFile << "\t\n";
+	if (Configuration::getDropMinorIdeologies())
+	{
+		for (auto ideologyName: majorIdeologies)
+		{
+			auto ideology = ideologies.find(ideologyName);
+			if (ideology != ideologies.end())
+			{
+				ideology->second->output(ideologyFile);
+			}
+		}
+	}
+	else
+	{
+		for (auto ideology: ideologies)
+		{
+			ideology.second->output(ideologyFile);
+		}
+	}
+	ideologyFile << "}";
+	ideologyFile.close();
 }
 
 
