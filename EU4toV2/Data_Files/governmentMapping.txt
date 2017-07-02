@@ -27,10 +27,10 @@
 
 mapping = {
 
-link = { v2 = absolute_monarchy eu4 = despotic_monarchy eu4 = feudal_monarchy eu4 = absolute_monarchy eu4 = enlightened_despotism eu4 = revolutionary_empire eu4 = theocratic_government eu4 = papal_government eu4 = monastic_order_government eu4 = steppe_horde eu4 = tribal_despotism eu4 = tribal_federation eu4 = archduchy eu4 = celestial_empire eu4 = iqta eu4 = daimyo eu4 = shogunate eu4 = imperial_government eu4 = oligarchic_republic eu4 = tribal_kingdom eu4 = ottoman_government }
-link = { v2 = democracy eu4 = merchant_republic eu4 = noble_republic eu4 = administrative_republic eu4 = constitutional_republic eu4 = revolutionary_republic eu4 = tribal_democracy eu4 = ambrosian_republic eu4 = dutch_republic eu4 = american_republic eu4 = federal_republic eu4 = colonial_government eu4 = american_republic eu4 = federal_republic eu4 = tribal_council eu4 = native_council eu4 = siberian_native_council eu4 = imperial_city eu4 = trading_city }
+link = { v2 = absolute_monarchy eu4 = despotic_monarchy eu4 = feudal_monarchy eu4 = absolute_monarchy eu4 = enlightened_despotism eu4 = revolutionary_empire eu4 = theocratic_government eu4 = papal_government eu4 = monastic_order_government eu4 = steppe_horde eu4 = tribal_despotism eu4 = tribal_federation eu4 = archduchy eu4 = celestial_empire eu4 = iqta eu4 = daimyo eu4 = shogunate eu4 = imperial_government eu4 = oligarchic_republic eu4 = tribal_kingdom eu4 = ottoman_government eu4 = tsardom }
+link = { v2 = democracy eu4 = merchant_republic eu4 = noble_republic eu4 = administrative_republic eu4 = constitutional_republic eu4 = revolutionary_republic eu4 = tribal_democracy eu4 = ambrosian_republic eu4 = dutch_republic eu4 = american_republic eu4 = federal_republic eu4 = colonial_government eu4 = american_republic eu4 = federal_republic eu4 = tribal_council eu4 = native_council eu4 = siberian_native_council eu4 = imperial_city eu4 = trading_city eu4 = veche_republic }
 link = { v2 = presidential_dictatorship eu4 = republican_dictatorship eu4 = bureaucratic_despotism }
-link = { v2 = hms_government eu4 = english_monarchy eu4 = constitutional_monarchy eu4 = administrative_monarchy eu4 = elective_monarchy }
+link = { v2 = hms_government eu4 = english_monarchy eu4 = constitutional_monarchy eu4 = administrative_monarchy eu4 = elective_monarchy eu4 = principality }
 link = { v2 = prussian_constitutionalism eu4 = prussian_monarchy }
 link = { v2 = proletarian_dictatorship eu4 = peasants_republic } #Dithmarschen special
 

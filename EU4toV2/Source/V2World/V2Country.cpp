@@ -571,16 +571,6 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const vector<V2TechS
 	// celestial emperor
 	celestialEmperor = srcCountry->getCelestialEmperor();
 
-	// tech group
-	if ((srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "high_american") || (srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman") || (srcCountry->numEmbracedInstitutions() >= 7))//maybe change to allow for unciv Europe?
-	{
-		civilized = true;
-	}
-	else
-	{
-		civilized = false;
-	}
-
 	// religion
 	string srcReligion = srcCountry->getReligion();
 	if (srcReligion.size() > 0)
@@ -1447,90 +1437,164 @@ void V2Country::addRailroadtoCapitalState()
 }
 
 
-void V2Country::convertUncivReforms()
+void V2Country::convertUncivReforms(int techGroupAlgorithm, double topTech)
+// to do: clean this up.  See code review for commit 4fb8a7e
 {
-	if ((srcCountry != NULL) && ((Configuration::getV2Gametype() == "AHD") || (Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM")))
+	switch (techGroupAlgorithm)
 	{
-		if (	(srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "high_american") ||
+	case(1):
+	{
+		if ((srcCountry != NULL) && ((Configuration::getV2Gametype() == "AHD") || (Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM")))
+		{
+			if ((srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "high_american") || (srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman") || (srcCountry->numEmbracedInstitutions() >= 7))//civilised, do nothing
+			{
+				civilized = true;
+			}
+			else
+			{
+				civilized = false;
+			}
+
+			if ((srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "high_american") ||
 				(srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman") || (srcCountry->numEmbracedInstitutions() >= 7))
-		{
-			// civilized, do nothing
+			{
+				// civilized, do nothing
+			}
+			else if (((srcCountry->getTechGroup() == "north_american") || (srcCountry->getTechGroup() == "mesoamerican") ||
+				(srcCountry->getTechGroup() == "south_american") || (srcCountry->getTechGroup() == "new_world") ||
+				(srcCountry->getTechGroup() == "andean")) && (srcCountry->numEmbracedInstitutions() <= 3)
+				)
+			{
+				double totalTechs = srcCountry->getMilTech() + srcCountry->getAdmTech();
+				double militaryDev = srcCountry->getMilTech() / totalTechs;
+				double socioEconDev = srcCountry->getAdmTech() / totalTechs;
+				LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << " and " << srcCountry->numEmbracedInstitutions() << " institutions. westernization at 0%";
+				uncivReforms = new V2UncivReforms(0, militaryDev, socioEconDev, this);
+				government = "absolute_monarchy";
+			}
+			else if ((srcCountry->getIsolationism() == 0) && (srcCountry->numEmbracedInstitutions() >= 6))
+			{
+				double totalTechs = srcCountry->getMilTech() + srcCountry->getAdmTech();
+				double militaryDev = srcCountry->getMilTech() / totalTechs;
+				double socioEconDev = srcCountry->getAdmTech() / totalTechs;
+				LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << ", " << srcCountry->numEmbracedInstitutions() << " institutions and an isolationism of " << srcCountry->numEmbracedInstitutions() << ". westernization at 50%";
+				uncivReforms = new V2UncivReforms(50, militaryDev, socioEconDev, this);
+				government = "absolute_monarchy";
+			}
+			else if ((srcCountry->getTechGroup() == "muslim") || (srcCountry->numEmbracedInstitutions() >= 6))
+			{
+				double totalTechs = srcCountry->getMilTech() + srcCountry->getAdmTech();
+				double militaryDev = srcCountry->getMilTech() / totalTechs;
+				double socioEconDev = srcCountry->getAdmTech() / totalTechs;
+				LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << " and " << srcCountry->numEmbracedInstitutions() << " institutions. westernization at 44%";
+				uncivReforms = new V2UncivReforms(44, militaryDev, socioEconDev, this);
+				government = "absolute_monarchy";
+			}
+			else if ((srcCountry->getTechGroup() == "indian") || (srcCountry->getIsolationism() == 0))
+			{
+				double totalTechs = srcCountry->getMilTech() + srcCountry->getAdmTech();
+				double militaryDev = srcCountry->getMilTech() / totalTechs;
+				double socioEconDev = srcCountry->getAdmTech() / totalTechs;
+				LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << ", " << srcCountry->numEmbracedInstitutions() << " institutions and an isolationism of " << srcCountry->numEmbracedInstitutions() << ".  Westernization at 40%";
+				uncivReforms = new V2UncivReforms(40, militaryDev, socioEconDev, this);
+				government = "absolute_monarchy";
+			}
+			else if ((srcCountry->getTechGroup() == "chinese") || (srcCountry->numEmbracedInstitutions() == 5))
+			{
+				double totalTechs = srcCountry->getMilTech() + srcCountry->getAdmTech();
+				double militaryDev = srcCountry->getMilTech() / totalTechs;
+				double socioEconDev = srcCountry->getAdmTech() / totalTechs;
+				LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << " and " << srcCountry->numEmbracedInstitutions() << " institutions. westernization at 36%";
+				uncivReforms = new V2UncivReforms(36, militaryDev, socioEconDev, this);
+				government = "absolute_monarchy";
+			}
+			else if (srcCountry->getTechGroup() == "nomad_group")
+			{
+				double totalTechs = srcCountry->getMilTech() + srcCountry->getAdmTech();
+				double militaryDev = srcCountry->getMilTech() / totalTechs;
+				double socioEconDev = srcCountry->getAdmTech() / totalTechs;
+				LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << " and " << srcCountry->numEmbracedInstitutions() << " institutions. westernization at 30%";
+				uncivReforms = new V2UncivReforms(30, militaryDev, socioEconDev, this);
+				government = "absolute_monarchy";
+			}
+			else if ((srcCountry->getTechGroup() == "sub_saharan") || (srcCountry->getTechGroup() == "central_african") || (srcCountry->getTechGroup() == "east_african") || (srcCountry->numEmbracedInstitutions() == 4))
+			{
+				double totalTechs = srcCountry->getMilTech() + srcCountry->getAdmTech();
+				double militaryDev = srcCountry->getMilTech() / totalTechs;
+				double socioEconDev = srcCountry->getAdmTech() / totalTechs;
+				LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << " and " << srcCountry->numEmbracedInstitutions() << " institutions. westernization at 20%";
+				uncivReforms = new V2UncivReforms(20, militaryDev, socioEconDev, this);
+				government = "absolute_monarchy";
+			}
+			else
+			{
+				LOG(LogLevel::Warning) << "Unhandled tech group (" << srcCountry->getTechGroup() << " with " << srcCountry->numEmbracedInstitutions() << " institutions) for " << tag << " - giving no reforms";
+				double totalTechs = srcCountry->getMilTech() + srcCountry->getAdmTech();
+				double militaryDev = srcCountry->getMilTech() / totalTechs;
+				double socioEconDev = srcCountry->getAdmTech() / totalTechs;
+				uncivReforms = new V2UncivReforms(0, militaryDev, socioEconDev, this);
+				government = "absolute_monarchy";
+			}
 		}
-		else if	(	((srcCountry->getTechGroup() == "north_american") || (srcCountry->getTechGroup() == "mesoamerican") ||
-						(srcCountry->getTechGroup() == "south_american") || (srcCountry->getTechGroup() == "new_world") ||
-						(srcCountry->getTechGroup() == "andean")) && (srcCountry->numEmbracedInstitutions() <= 3)
-					)
-		{
-			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
-			double militaryDev	= srcCountry->getMilTech() / totalTechs;
-			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
-			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << " and " << srcCountry->numEmbracedInstitutions() << " institutions. westernization at 0%";
-			uncivReforms	= new V2UncivReforms(0, militaryDev, socioEconDev, this);
-			government		= "absolute_monarchy";
+	}
+	break;
+
+	case(2):
+	{
+		if (srcCountry != NULL) {
+
+			double totalTechs = srcCountry->getMilTech() + srcCountry->getAdmTech() + srcCountry->getDipTech();
+
+			// set civilisation cut off for 6 techs behind the the tech leader (30 years behind tech)
+			// set number for civilisation level based on techs and institutions
+			// at 31 techs behind completely unciv
+			// each institution behind is equivalent to 2 techs behind
+
+			double civLevel = ((totalTechs - 65 - (topTech - 96)) * 4);
+			civLevel = civLevel + (srcCountry->numEmbracedInstitutions() - 7) * 8;
+			if (civLevel > 100) civLevel = 100;
+
+			if (civLevel < 0) civLevel = 0;
+
+			if (civLevel == 100)
+			{
+				civilized = true;
+			}
+			else
+			{
+				civilized = false;
+			}
+
+
+			if (((Configuration::getV2Gametype() == "AHD") || (Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM"))&&(civilized==false))
+			{
+				totalTechs = totalTechs - srcCountry->getDipTech();
+				double militaryDev = srcCountry->getMilTech() / totalTechs;
+				double socioEconDev = srcCountry->getAdmTech() / totalTechs;
+				LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has " << totalTechs + srcCountry->getDipTech() << " technologies and " << srcCountry->numEmbracedInstitutions() << " institutions. westernization at " << civLevel << "%.";
+				uncivReforms = new V2UncivReforms(civLevel, militaryDev, socioEconDev, this);
+				government = "absolute_monarchy";
+			}
 		}
-		else if ((srcCountry->getIsolationism() == 0) && (srcCountry->numEmbracedInstitutions() >= 6))
-		{
-			double totalTechs = srcCountry->getMilTech() + srcCountry->getAdmTech();
-			double militaryDev = srcCountry->getMilTech() / totalTechs;
-			double socioEconDev = srcCountry->getAdmTech() / totalTechs;
-			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << ", " << srcCountry->numEmbracedInstitutions() << " institutions and an isolationism of " << srcCountry->numEmbracedInstitutions() << ". westernization at 50%";
-			uncivReforms = new V2UncivReforms(50, militaryDev, socioEconDev, this);
-			government = "absolute_monarchy";
-		}
-		else if ((srcCountry->getTechGroup() == "muslim") || (srcCountry->numEmbracedInstitutions() >= 6))
-		{
-			double totalTechs = srcCountry->getMilTech() + srcCountry->getAdmTech();
-			double militaryDev = srcCountry->getMilTech() / totalTechs;
-			double socioEconDev = srcCountry->getAdmTech() / totalTechs;
-			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << " and " << srcCountry->numEmbracedInstitutions() << " institutions. westernization at 44%";
-			uncivReforms = new V2UncivReforms(44, militaryDev, socioEconDev, this);
-			government = "absolute_monarchy";
-		}
-		else if ((srcCountry->getTechGroup() == "indian") || (srcCountry->getIsolationism() == 0))
-		{
-			double totalTechs = srcCountry->getMilTech() + srcCountry->getAdmTech();
-			double militaryDev = srcCountry->getMilTech() / totalTechs;
-			double socioEconDev = srcCountry->getAdmTech() / totalTechs;
-			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << ", " << srcCountry->numEmbracedInstitutions() << " institutions and an isolationism of " << srcCountry->numEmbracedInstitutions() << ".  Westernization at 40%";
-			uncivReforms = new V2UncivReforms(40, militaryDev, socioEconDev, this);
-			government = "absolute_monarchy";
-		}
-		else if ((srcCountry->getTechGroup() == "chinese") || (srcCountry->numEmbracedInstitutions() == 5))
-		{
-			double totalTechs = srcCountry->getMilTech() + srcCountry->getAdmTech();
-			double militaryDev = srcCountry->getMilTech() / totalTechs;
-			double socioEconDev = srcCountry->getAdmTech() / totalTechs;
-			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << " and " << srcCountry->numEmbracedInstitutions() << " institutions. westernization at 36%";
-			uncivReforms = new V2UncivReforms(36, militaryDev, socioEconDev, this);
-			government = "absolute_monarchy";
-		}
-		else if (srcCountry->getTechGroup() == "nomad_group")
-		{
-			double totalTechs = srcCountry->getMilTech() + srcCountry->getAdmTech();
-			double militaryDev = srcCountry->getMilTech() / totalTechs;
-			double socioEconDev = srcCountry->getAdmTech() / totalTechs;
-			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << " and " << srcCountry->numEmbracedInstitutions() << " institutions. westernization at 30%";
-			uncivReforms = new V2UncivReforms(30, militaryDev, socioEconDev, this);
-			government = "absolute_monarchy";
-		}
-		else if ((srcCountry->getTechGroup() == "sub_saharan") || (srcCountry->getTechGroup() == "central_african") || (srcCountry->getTechGroup() == "east_african") || (srcCountry->numEmbracedInstitutions() == 4))
-		{
-			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
-			double militaryDev	= srcCountry->getMilTech() / totalTechs;
-			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
-			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " who has tech group " << srcCountry->getTechGroup() << " and " << srcCountry->numEmbracedInstitutions() << " institutions. westernization at 20%";
-			uncivReforms	= new V2UncivReforms(20, militaryDev, socioEconDev, this);
-			government		= "absolute_monarchy";
-		}
-		else
-		{
-			LOG(LogLevel::Warning) << "Unhandled tech group (" << srcCountry->getTechGroup() << " with " << srcCountry->numEmbracedInstitutions() << " institutions) for " << tag << " - giving no reforms";
-			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
-			double militaryDev	= srcCountry->getMilTech() / totalTechs;
-			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
-			uncivReforms	= new V2UncivReforms(0, militaryDev, socioEconDev, this);
-			government		= "absolute_monarchy";
-		}
+	}
+			
+	break;
+	}
+
+	
+}
+
+void V2Country::convertLandlessReforms(V2Country* capOwner)
+{
+	LOG(LogLevel::Debug) << "Resetting civ level or unciv reforms for landless country: " << tag << " from the country which owns its capital, which is " << capOwner->getTag() << "." ;
+	if (capOwner->isCivilized())
+	{
+		civilized = true;
+	}
+	else
+	{
+		civilized = false;
+		V2UncivReforms* uncivReforms = capOwner->getUncivReforms();
 	}
 }
 
