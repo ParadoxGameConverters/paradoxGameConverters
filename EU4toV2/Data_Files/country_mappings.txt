@@ -24,835 +24,1070 @@ mappings={
 #Direct Mappings
 #This is essentially one-to-one country mappings to ensure that countries are available in BOTH EU4 and V2 get the correct tag.
 #For example, if Spain is in EU4 it will become Spain in V2 after conversion.
+#EXAMPLE
+# link = { eu4 = SWE v2 = SWE } #Sweden
+#This above means that the EU4 tag "SWE" (Sweden) will be converted as the Vic2 tag "SWE" (Sweden)
+# Order is that of the EU4 country tags file
+# CK2 titles are put right under the EU4 tag
+# (country) => (ck2title) means that the CK2 mapping already gives correct flag, no need of further mapping work
 
-# Western and Central Europe
+# Special countries..
+link = { eu4 = REB v2 = REB } # Rebels
+link = { eu4 = e_rebels v2 = REB } # Rebels
+link = { eu4 = PIR v2 = PIR } # Pirates
+link = { eu4 = e_pirates v2 = PIR } # Pirates
+link = { eu4 = NAT v2 = NAT } # Natives
 
-# British Isles
+#Scandinavia
+link = { eu4 = SWE v2 = SWE } # Sweden
+link = { eu4 = k_sweden v2 = SWE } # Sweden
+link = { eu4 = DAN v2 = DEN } # Denmark
+link = { eu4 = k_denmark v2 = DEN } # Denmark
+link = { eu4 = FIN v2 = FIN } # Finland
+link = { eu4 = k_finland v2 = FIN } # Finland
+link = { eu4 = GOT v2 = GOT } # Gotland
+link = { eu4 = d_gotland v2 = GOT } # Gotland
+link = { eu4 = NOR v2 = NOR } # Norway
+link = { eu4 = k_norway v2 = NOR } # Norway
+link = { eu4 = SHL v2 = HOL } # Holstein
+link = { eu4 = d_holstein v2 = HOL } # Holstein
+link = { eu4 = SCA v2 = SCA } # Scandinavia
+link = { eu4 = e_scandinavia v2 = SCA } # Scandinavia
+link = { eu4 = EST v2 = EST } # Estonia
+link = { eu4 = d_estonia v2 = EST } # Estonia
+#link = { eu4 = LVA v2 = XXX } # Livonia => d_livonia
+link = { eu4 = SMI v2 = SMI } # Sami
+link = { eu4 = d_sami v2 = SMI } #Sami
+#link = { eu4 = KRL v2 = XXX } # Karelia => d_karelia
+link = { eu4 = ICE v2 = ICL } # Iceland
+link = { eu4 = d_iceland v2 = ICL } # Iceland
 
-link = { eu4 = CNN v2 = CNN } 	# Connacht
-link = { eu4 = CRN v2 = CRN } 	# Cornwall
-link = { eu4 = ENG v2 = ENL } 	# England
-link = { eu4 = GBR v2 = ENG } 	# Great Britain => United Kingdom
-link = { eu4 = IRE v2 = IRE } 	# Ireland
-link = { eu4 = LEI v2 = LEI } 	# Leinster
-link = { eu4 = MNS v2 = MNS } 	# Irish Munster
-link = { eu4 = SCO v2 = SCO } 	# Scotland
-link = { eu4 = TYR v2 = TYR } 	# Tyrone
-link = { eu4 = ULS v2 = ULS }   # Ulster
-link = { eu4 = WLS v2 = WLS } 	# Wales
-link = { eu4 = NOL v2 = NOL } 	# Northumberland
-link = { eu4 = HSC v2 = HSC }   # Highlands/Gaeldom
-link = { eu4 = DMS v2 = DMS }   # Desmond
-link = { eu4 = SLN v2 = SLN }   # Sligo
-link = { eu4 = KID v2 = KID }   # Kildare
+#Balkans
+link = { eu4 = ACH v2 = ACH } # Achaia
+link = { eu4 = d_achaia v2 = ACH } # Achaia
+link = { eu4 = ALB v2 = ALB } # Albania
+link = { eu4 = ATH v2 = ATH } # Athens
+link = { eu4 = d_athens v2 = ATH } # Athens
+link = { eu4 = d_hellas v2 = ATH } # Athens
+link = { eu4 = BOS v2 = BOS } # Bosnia
+link = { eu4 = k_bosnia v2 = BOS } # Bosnia
+link = { eu4 = BUL v2 = BUL } # Bulgaria
+link = { eu4 = k_bulgaria v2 = BUL } # Bulgaria
+link = { eu4 = BYZ v2 = BYZ } # Byzantium
+link = { eu4 = e_byzantium v2 = BYZ } # Byzantium
+link = { eu4 = CEP v2 = ION } # Corfu => Ionian Islands
+link = { eu4 = c_cephalonia v2 = ION } # Cephalonia => Ionian Islands
+link = { eu4 = CRO v2 = CRO } # Croatia
+link = { eu4 = k_croatia v2 = CRO } # Croatia
+link = { eu4 = CRT v2 = CRE } # Crete
+link = { eu4 = d_krete v2 = CRE } # Crete
+link = { eu4 = CYP v2 = CYP } # Cyprus
+link = { eu4 = k_cyprus v2 = CYP } # Cyprus
+link = { eu4 = EPI v2 = EPI } # Epirus
+link = { eu4 = d_epirus v2 = EPI } # Epirus
+link = { eu4 = GRE v2 = GRE } # Greece
+link = { eu4 = k_byzantium v2 = GRE } # Greece
+link = { eu4 = KNI v2 = KNI } # Knights
+link = { eu4 = d_knights_hospitaller v2 = KNI } # Knights
+link = { eu4 = MOE v2 = MOE } # Morea
+link = { eu4 = c_monemvasia v2 = MOE } # Monemvasia => Morea
+link = { eu4 = MOL v2 = MOL } # Moldavia
+link = { eu4 = d_moldau v2 = MOL } # Moldavia
+link = { eu4 = MON v2 = MON } # Montenegro
+link = { eu4 = d_dioclea v2 = MON } # Dioclea => Montenegro
+link = { eu4 = c_zeta v2 = MON } # Zeta => Montenegro
+link = { eu4 = NAX v2 = NAX } # Naxos
+link = { eu4 = c_naxos v2 = NAX } # Naxos
+link = { eu4 = RAG v2 = RAG } # Ragusa
+link = { eu4 = c_ragusa v2 = RAG } # Ragusa
+link = { eu4 = RMN v2 = ROM } # Romania
+link = { eu4 = SER v2 = SER } # Serbia
+link = { eu4 = k_serbia v2 = SER } # Serbia
+link = { eu4 = TRA v2 = SIE } # Transylvania => Siebenburgen
+link = { eu4 = d_transylvania v2 = SIE } # Transylvania => Siebenburgen
+link = { eu4 = WAL v2 = WAL } # Wallachia
+link = { eu4 = k_dacia v2 = WAL } # Wallachia
+link = { eu4 = d_vlachs v2 = WAL } # Wallachia
+link = { eu4 = HUN v2 = HUN } # Hungary
+link = { eu4 = k_hungary v2 = HUN } # Hungary
+link = { eu4 = SLO v2 = SLV } # Nitra => Slovakia
+link = { eu4 = d_slovakia v2 = SLV } #Slovakia
+link = { eu4 = TUR v2 = TUR } # Ottomans
+link = { eu4 = k_ottoman v2 = TUR } # Ottomans
+link = { eu4 = k_anatolia v2 = TUR } # Anatolia => Turkey
 
+#British Isles 
+link = { eu4 = CNN v2 = CNN } # Connacht
+link = { eu4 = c_connacht v2 = CNN } # Connacht
+link = { eu4 = d_connacht v2 = CNN } # Connacht
+link = { eu4 = CRN v2 = CRN } # Cornwall
+link = { eu4 = d_cornwall v2 = CRN } # Cornwall
+link = { eu4 = ENG v2 = ENL } # England
+link = { eu4 = k_england v2 = ENL } # England
+link = { eu4 = LEI v2 = LEI } # Leinster
+link = { eu4 = c_leinster v2 = LEI } # Leinster
+link = { eu4 = IRE v2 = IRE } # Ireland
+link = { eu4 = k_ireland v2 = IRE } # Ireland
+link = { eu4 = MNS v2 = MNS } # Munster (Ireland)
+link = { eu4 = d_munster v2 = MUN } # Munster (Ireland)
+link = { eu4 = SCO v2 = SCO } # Scotland
+link = { eu4 = k_scotland v2 = SCO } # Scotland
+link = { eu4 = TYR v2 = TYR } # Tyrone
+link = { eu4 = d_tyrone v2 = TYR } # Tyrone
+link = { eu4 = WLS v2 = WLS } # Wales
+link = { eu4 = k_wales v2 = WLS } # Wales
+link = { eu4 = NOL v2 = NOL } # Northumberland
+link = { eu4 = d_northumberland v2 = NOL } # Northumberland
+link = { eu4 = GBR v2 = ENG } # Great Britain => United Kingdom
+link = { eu4 = e_britannia v2 = ENG } # Britannia => United Kingdom
+#link = { eu4 = MTH v2 = XXX } # Meath => d_meath
+link = { eu4 = ULS v2 = TYR } # Ulster => Tyrone
+link = { eu4 = c_ulster v2 = TYR } # Ulster => Tyrone
+link = { eu4 = DMS v2 = DMS } # Desmond
+link = { eu4 = c_desmond v2 = DMS } # Desmond
+link = { eu4 = SLN v2 = SLN } # Sligo
+link = { eu4 = KID v2 = KID } # Kildare
+link = { eu4 = c_kildare v2 = KID } # Kildare
+link = { eu4 = HSC v2 = HSC } # Highlands/Gaeldom
+link = { eu4 = c_moray v2 = HSC } # Moray => Highlands/Gaeldom
 
-# France
+#Colonies
+link = { eu4 = BRZ v2 = BRZ } # Brazil
+link = { eu4 = CAN v2 = CAN } # Canada
+link = { eu4 = CHL v2 = CHL } # Chile
+link = { eu4 = COL v2 = CLM } # Colombia
+link = { eu4 = HAT v2 = HAI } # Haiti
+link = { eu4 = LAP v2 = ARG } # La Plata => Argentina
+link = { eu4 = LOU v2 = LOU } # Louisiana
+link = { eu4 = MEX v2 = MEX } # Mexico
+link = { eu4 = PEU v2 = PEU } # Peru
+link = { eu4 = PRG v2 = PRG } # Paraguay
+link = { eu4 = QUE v2 = QUE } # Quebec
+link = { eu4 = CAM v2 = UCA } # UPCA
+link = { eu4 = USA v2 = USA } # USA
+link = { eu4 = VNZ v2 = VNZ } # Venezuela
+link = { eu4 = AUS v2 = AST } # Australia
 
-link = { eu4 = ALE v2 = ALE } 	# Alencon
-link = { eu4 = ALS v2 = ALS } 	# Alsace
-link = { eu4 = AMG v2 = AMG } 	# Armagnac
-link = { eu4 = AUV v2 = AUV } 	# Auvergne
-link = { eu4 = AVI v2 = AVI } 	# Avignon
-link = { eu4 = BAR v2 = BAR } 	# Bar
-link = { eu4 = BOU v2 = BOU } 	# Bourbonnais
-link = { eu4 = BRI v2 = BRI } 	# Brittany
-link = { eu4 = CHP v2 = CHP } 	# Champagne
-link = { eu4 = COR v2 = COR } 	# Corsica
-link = { eu4 = DAU v2 = DAU } 	# Dauphine
-link = { eu4 = FOI v2 = FOI } 	# Foix
-link = { eu4 = GUY v2 = GUY } 	# Guyenne
-link = { eu4 = NEV v2 = NEV } 	# Nevers
-link = { eu4 = NRM v2 = NRM } 	# Normandy
-link = { eu4 = ORL v2 = ORL } 	# Orleans
-link = { eu4 = PRO v2 = PRO } 	# Provence
-link = { eu4 = TOU v2 = TOU } 	# Toulouse
-link = { eu4 = BER v2 = BRY } 	# Berry
-link = { eu4 = FRA v2 = FRA } 	# France => France
-link = { eu4 = BUR v2 = BRG }   # Burgundy
+#Eastern Europe
+link = { eu4 = DNZ v2 = DZG } # Danzig
+link = { eu4 = c_danzig v2 = DZG } # Danzig
+link = { eu4 = KRA v2 = KRA } # Krakow
+link = { eu4 = c_krakowskie v2 = KRA } # Krakow
+link = { eu4 = LIT v2 = LIT } # Lithuania
+link = { eu4 = k_lithuania v2 = LIT } # Lithuania
+link = { eu4 = LIV v2 = LIV } # Livonian Order
+link = { eu4 = MAZ v2 = MAZ } # Mazovia
+link = { eu4 = d_mazovia v2 = MAZ } # Mazovia
+link = { eu4 = POL v2 = POL } # Poland
+link = { eu4 = k_poland v2 = POL } # Poland
+link = { eu4 = PRU v2 = PRU } # Prussia
+link = { eu4 = d_prussia v2 = PRU } # Prussia
+link = { eu4 = KUR v2 = KUR } # Kurland
+link = { eu4 = c_kurs v2 = KUR } # Kurland
+link = { eu4 = RIG v2 = RIG } # Riga
+link = { eu4 = c_zemigallians v2 = RIG } # Riga
+link = { eu4 = TEU v2 = TEU } # Teutonic Order
+link = { eu4 = d_teutonic_order v2 = TEU } # Teutonic Order
+link = { eu4 = PLC v2 = PLC } # The Commonwealth
+link = { eu4 = VOL v2 = VOL } # Volyn
+link = { eu4 = d_volhynia v2 = VOL } # Volhynia
+link = { eu4 = KIE v2 = KIE } # Kiev
+link = { eu4 = d_kiev v2 = KIE } # Kiev
+link = { eu4 = CHR v2 = CHR } # Chernigov
+link = { eu4 = d_chernigov v2 = CHR } # Chernigov
+link = { eu4 = OKA v2 = OKA } # Odoyev
 
-# Spain
+#France 
+link = { eu4 = ALE v2 = ALE } # Alencon
+link = { eu4 = ALS v2 = ALS } # Alsace
+link = { eu4 = d_alsace v2 = ALS } # Alsace
+link = { eu4 = AMG v2 = AMG } # Armagnac
+link = { eu4 = c_armagnac v2 = AMG } # Armagnac
+link = { eu4 = AUV v2 = AUV } # Auvergne
+link = { eu4 = d_auvergne v2 = AUV } # Auvergne
+link = { eu4 = AVI v2 = AVI } # Avignon
+link = { eu4 = c_venaissin v2 = AVI } # Venaissin => Avignon
+link = { eu4 = BOU v2 = BOU } # Bourbonnais
+link = { eu4 = d_bourbon v2 = BOU } # Bourbon
+link = { eu4 = BRI v2 = BRI } # Brittany
+link = { eu4 = k_brittany v2 = BRI } # Brittany
+link = { eu4 = BUR v2 = BRG } # Burgundy
+link = { eu4 = k_burgundy v2 = BRG } # Burgundy
+link = { eu4 = CHP v2 = CHP } # Champagne
+link = { eu4 = d_champagne v2 = CHP } # Champagne
+link = { eu4 = COR v2 = COR } # Corsica
+link = { eu4 = c_corsica v2 = COR } # Corsica
+link = { eu4 = DAU v2 = DAU } # Dauphine
+link = { eu4 = d_dauphine v2 = DAU } # Dauphine
+link = { eu4 = FOI v2 = FOI } # Foix
+link = { eu4 = c_foix v2 = FOI } # Foix
+link = { eu4 = FRA v2 = FRA } # France
+link = { eu4 = k_france v2 = FRA } # France
+link = { eu4 = e_france v2 = FRA } # France
+link = { eu4 = GUY v2 = GUY } # Gascony
+link = { eu4 = d_gascogne v2 = GUY } # Gascony
+link = { eu4 = NEV v2 = NEV } # Nevers
+link = { eu4 = c_nevers v2 = NEV } # Nevers
+link = { eu4 = NRM v2 = NRM } # Normandy
+link = { eu4 = d_normandy v2 = NRM } # Normandy
+link = { eu4 = ORL v2 = ORL } # Orleans
+link = { eu4 = d_orleans v2 = ORL } # Orleans
+link = { eu4 = PIC v2 = PIC } # Picardy
+link = { eu4 = PRO v2 = PRO } # Provence
+link = { eu4 = d_provence v2 = PRO } # Provence
+link = { eu4 = SPI v2 = SAR } # Sardinia-Piedmont
+link = { eu4 = TOU v2 = TOU } # Toulouse
+link = { eu4 = d_toulouse v2 = TOU } # Toulouse
+link = { eu4 = BER v2 = BRY } # Berry
+link = { eu4 = d_berry v2 = BRY } # Berry
 
-link = { eu4 = ARA v2 = ARO }  # Aragon
-link = { eu4 = CAS v2 = CAS }  # Castille
-link = { eu4 = CAT v2 = CAT }  # Catalunya
-link = { eu4 = GAL v2 = GAL }  # Galicia
-link = { eu4 = GRA v2 = GRA }  # Granada
-link = { eu4 = NAV v2 = NAV }  # Navarra
-link = { eu4 = POR v2 = POR }  # Portugal
-link = { eu4 = SPA v2 = SPA }  # Spain
+#HRE
+link = { eu4 = AAC v2 = AAC } # Aachen 
+link = { eu4 = c_julich v2 = AAC } # Julich => Aachen
+link = { eu4 = ANH v2 = ANH } # Anhalt
+link = { eu4 = c_anhalt v2 = ANH } # Anhalt
+link = { eu4 = ANS v2 = ANS } # Ansbach
+link = { eu4 = AUG v2 = AUG } # Augsburg
+link = { eu4 = BAD v2 = BAD } # Baden
+link = { eu4 = c_baden v2 = BAD } # Baden
+link = { eu4 = d_baden v2 = BAD } # Baden
+link = { eu4 = BAV v2 = BAV } # Bavaria
+link = { eu4 = d_bavaria v2 = BAV } # Bavaria
+link = { eu4 = k_bavaria v2 = BAV } # Bavaria
+link = { eu4 = BOH v2 = BOH } # Bohemia
+link = { eu4 = k_bohemia v2 = BOH } # Bohemia
+link = { eu4 = BRA v2 = BRD } # Brandenburg
+link = { eu4 = d_brandenburg v2 = BRD } # Brandenburg
+link = { eu4 = BRE v2 = BRE } # Bremen
+link = { eu4 = c_bremen v2 = BRE } # Bremen
+link = { eu4 = BRU v2 = BRA } # Brunswick => Braunschweig
+link = { eu4 = d_brunswick v2 = BRA } # Brunswick => Braunschweig
+link = { eu4 = EFR v2 = EFR } # East Frisia
+link = { eu4 = c_ostfriesland v2 = EFR } # East Frisia
+link = { eu4 = FRN v2 = FRM } # Frankfurt (am Main)
+link = { eu4 = GER v2 = GER } # Germany
+link = { eu4 = k_germany v2 = GER } # Germany
+link = { eu4 = e_germany v2 = GER } # Germany
+link = { eu4 = HAB v2 = AUS } # Austria
+link = { eu4 = c_osterreich v2 = AUS } # Austria
+link = { eu4 = HAM v2 = HAM } # Hamburg
+link = { eu4 = c_hamburg v2 = HAM } # Hamburg
+link = { eu4 = HAN v2 = HAN } # Hannover
+link = { eu4 = HES v2 = HES } # Hesse(-Darmstadt)
+link = { eu4 = HLR v2 = HRE } # Holy Roman Empire
+link = { eu4 = e_hre v2 = HRE } # Holy Roman Empire
+link = { eu4 = KLE v2 = KLE } # Kleves
+link = { eu4 = c_kleve v2 = KLE } # Kleves
+link = { eu4 = KOL v2 = KOL } # Cologne
+link = { eu4 = d_koln v2 = KOL } # Cologne
+link = { eu4 = LAU v2 = LAU } # Lauenburg
+link = { eu4 = LOR v2 = LOR } # Lorraine
+link = { eu4 = d_upper_lorraine v2 = LOR } # Lorraine
+link = { eu4 = LUN v2 = LUN } # Luneburg
+link = { eu4 = c_luneburg v2 = LUN } # Lunebrg
+link = { eu4 = MAG v2 = MAG } # Magdeburg
+link = { eu4 = MAI v2 = MAI } # Mainz
+link = { eu4 = c_mainz v2 = MAI } # Mainz
+link = { eu4 = MEI v2 = MEI } # Meissen
+link = { eu4 = d_meissen v2 = MEI } # Meissen
+link = { eu4 = MKL v2 = MEC } # Mecklenburg
+link = { eu4 = d_mecklenburg v2 = MEC } # Mecklenburg
+link = { eu4 = MUN v2 = MUN } # Munster (Germany)
+link = { eu4 = c_munster v2 = MUN } # Munster (Germany)
+link = { eu4 = MVA v2 = MRV } # Moravia
+link = { eu4 = k_moravia v2 = MRV } # Moravia
+link = { eu4 = OLD v2 = OLD } # Oldenburg
+link = { eu4 = c_oldenburg v2 = OLD } # Oldenburg
+link = { eu4 = PAL v2 = PAL } # Palatinate
+link = { eu4 = c_pfalz v2 = PAL } # Palatinate
+link = { eu4 = d_lower_lorraine v2 = PAL } # Palatinate
+link = { eu4 = POM v2 = POM } # Pommerania
+link = { eu4 = k_pomerania v2 = POM } # Pommerania
+link = { eu4 = SAX v2 = SAX } # Saxony
+link = { eu4 = k_saxony v2 = SAX } # Saxony
+link = { eu4 = SIL v2 = SIL } # Silesia
+link = { eu4 = c_silesia v2 = SIL } # Silesia
+link = { eu4 = SLZ v2 = SLZ } # Salzburg
+link = { eu4 = c_salzburg v2 = SLZ } # Salzburg
+link = { eu4 = STY v2 = STY } # Styria
+link = { eu4 = c_steiermark v2 = STY } #Styria
+link = { eu4 = SWI v2 = SWI } # Switzerland
+link = { eu4 = d_swiss v2 = SWI } # Switzerland
+link = { eu4 = THU v2 = THU } # Thuringia
+link = { eu4 = d_thuringia v2 = THU } # Thuringia
+link = { eu4 = TIR v2 = TIR } # Tirol
+link = { eu4 = d_tyrol v2 = TIR } # Tirol
+link = { eu4 = TRI v2 = TER } # Trier
+link = { eu4 = c_trier v2 = TER } #Trier
+link = { eu4 = ULM v2 = ULM } # Ulm
+link = { eu4 = c_ulm v2 = ULM } # Ulm
+link = { eu4 = WBG v2 = WBG } # Wurzburg
+link = { eu4 = c_wurzburg v2 = WBG } #Wurzburg
+link = { eu4 = WES v2 = WES } # Westfalia
+link = { eu4 = WUR v2 = WUR } # Wurttemberg
+link = { eu4 = c_wurttemberg v2 = WUR } #Wurttemberg
+link = { eu4 = NUM v2 = NUM } # Nuremberg
+link = { eu4 = c_nurnberg v2 = NUM } #Nuremberg
+link = { eu4 = MEM v2 = MEM } # Memmingen
+link = { eu4 = VER v2 = VER } # Verden
+link = { eu4 = NSA v2 = NAS } # Nassau
+link = { eu4 = c_nassau v2 = NAS } #Nassau
+link = { eu4 = RVA v2 = RVA } # Ravensburg
+link = { eu4 = DTT v2 = DTT } # Dithmarschen
 
-# Italy
+#Spain
+link = { eu4 = ARA v2 = ARO } # Aragon
+link = { eu4 = k_aragon v2 = ARO } # Aragon
+link = { eu4 = CAS v2 = CAS } # Castille
+link = { eu4 = k_castile v2 = CAS } # Castille
+link = { eu4 = CAT v2 = CAT } # Catalonia
+link = { eu4 = d_catalonia v2 = CAT } # Catalonia
+link = { eu4 = GRA v2 = GRA } # Granada
+link = { eu4 = d_granada v2 = GRA } # Granada
+link = { eu4 = NAV v2 = NAV } # Navarra
+link = { eu4 = k_navarra v2 = NAV } # Navarra
+link = { eu4 = POR v2 = POR } # Portugal
+link = { eu4 = k_portugal v2 = POR } # Portugal
+link = { eu4 = SPA v2 = SPA } # Spain
+link = { eu4 = e_spain v2 = SPA } # Spain
+link = { eu4 = GAL v2 = GAL } # Galicia
+link = { eu4 = k_spanish_galicia v2 = GAL } # Galicia
+#link = { eu4 = LON v2 = XXX } # Leon => k_leon
+#link = { eu4 = ADU v2 = XXX } # Andalusia => k_andalusia
 
-link = { eu4 = AQU v2 = AQU }  # Aquileia
-link = { eu4 = ETR v2 = ETR }  # Etruria
-link = { eu4 = FER v2 = FER }  # Ferrara
-link = { eu4 = GEN v2 = GNA }  # Genoa
-link = { eu4 = ITA v2 = ITA }  # Italy
-link = { eu4 = LAN v2 = FLO }  # Florence
-link = { eu4 = MAN v2 = MTA }  # Mantua
-link = { eu4 = MLO v2 = LOM }  # Milan
-link = { eu4 = MOD v2 = MOD }  # Modena
-link = { eu4 = NAP v2 = NAP }  # Naples
-link = { eu4 = PAP v2 = PAP }  # Papal State
-link = { eu4 = PAR v2 = PAR }  # Parma
-link = { eu4 = PIS v2 = PIS }  # Pisa
-link = { eu4 = SAR v2 = SRD }  # Sardinia
-link = { eu4 = SAV v2 = SAV }  # Savoy
-link = { eu4 = SIC v2 = SII }  # Sicily
-link = { eu4 = TUS v2 = TUS }  # Tuscany
-link = { eu4 = SIE v2 = SNA }  # Sienna
-link = { eu4 = URB v2 = URB }  # Urbino
-link = { eu4 = VEN v2 = VEN }  # Venice
-link = { eu4 = SPI v2 = SAR }  # Sardinia-Piedmont
-link = { eu4 = MFA v2 = MFA }  # Montferrat
+#Italy
+link = { eu4 = AQU v2 = AQU } # Aquileia
+link = { eu4 = c_aquileia v2 = AQU } # Aquileia
+link = { eu4 = ETR v2 = ETR } # Etruria
+link = { eu4 = FER v2 = FER } # Ferrara
+link = { eu4 = d_ferrara v2 = FER } # Ferrara
+link = { eu4 = GEN v2 = GNA } # Genoa
+link = { eu4 = k_genoa v2 = GNA } # Genoa
+link = { eu4 = ITA v2 = ITA } # Italy
+link = { eu4 = k_italy v2 = ITA } # Italy
+link = { eu4 = MAN v2 = MTA } # Mantua
+link = { eu4 = c_mantua v2 = MTA } # Mantua
+link = { eu4 = MLO v2 = LOM } # Milan => Lombardy
+link = { eu4 = k_lombardia v2 = LOM } # Lombardy
+link = { eu4 = d_milano v2 = LOM } # Milan => Lombardy
+link = { eu4 = MOD v2 = MOD } # Modena
+link = { eu4 = d_modena v2 = MOD } # Modena
+link = { eu4 = NAP v2 = NAP } # Naples
+link = { eu4 = k_naples v2 = NAP } # Naples
+link = { eu4 = PAP v2 = PAP } # Papal States
+link = { eu4 = k_papal_state v2 = PAP } # Papal States
+link = { eu4 = PAR v2 = PAR } # Parma
+link = { eu4 = c_parma v2 = PAR } # Parma
+link = { eu4 = PIS v2 = PIS } # Pisa
+link = { eu4 = k_pisa v2 = PIS } # Pisa
+link = { eu4 = SAR v2 = SRD } # Sardinia
+link = { eu4 = d_sardinia v2 = SRD } # Sardinia
+link = { eu4 = SAV v2 = SAV } # Savoy
+link = { eu4 = d_savoie v2 = SAV } # Savoy
+link = { eu4 = SIC v2 = SII } # Sicily
+link = { eu4 = d_sicily v2 = SII } # Sicily
+link = { eu4 = k_trinacria v2 = SII } # Sicily
+link = { eu4 = k_sicily v2 = SII } # Sicily
+link = { eu4 = SIE v2 = SNA } # Siena
+link = { eu4 = c_siena v2 = SNA } # Siena
+link = { eu4 = TUS v2 = TUS } # Tuscany
+link = { eu4 = d_toscana v2 = TUS } # Tuscany
+link = { eu4 = URB v2 = URB } # Urbino
+link = { eu4 = c_urbino v2 = URB } # Urbino
+link = { eu4 = VEN v2 = VEN } # Venice
+link = { eu4 = k_venice v2 = VEN } # Venice
+link = { eu4 = MFA v2 = MFA } # Montferrat
+link = { eu4 = c_monferrato v2 = MFA } # Montferrat
+link = { eu4 = LUC v2 = LUC } # Lucca
+link = { eu4 = c_lucca v2 = LUC } # Lucca
+link = { eu4 = LAN v2 = FLO } # Florence
+link = { eu4 = c_firenze v2 = FLO } # Florence
+link = { eu4 = JAI v2 = MLT } # Malta
+link = { eu4 = c_malta v2 = MLT } # Malta
 
-# The Low Countries
+#Low Countries
+link = { eu4 = BRB v2 = BRB } # Brabant
+link = { eu4 = d_brabant v2 = BRB } # Brabant
+link = { eu4 = FLA v2 = FLA } # Flanders
+link = { eu4 = d_flanders v2 = FLA } # Flanders
+link = { eu4 = FRI v2 = FRI } # Friesland
+link = { eu4 = k_frisia v2 = FRI } # Frisia
+link = { eu4 = GEL v2 = GEL } # Gelre
+link = { eu4 = d_gelre v2 = GEL } # Gelre
+link = { eu4 = HAI v2 = HAT } # Hainaut
+link = { eu4 = c_hainaut v2 = HAT } # Hainaut
+link = { eu4 = HOL v2 = HLL } # Holland
+link = { eu4 = d_holland v2 = HLL } # Holland
+link = { eu4 = LIE v2 = LIE } # Liege
+link = { eu4 = c_liege v2 = LIE } # Liege
+link = { eu4 = LUX v2 = LUX } # Luxembourg
+link = { eu4 = d_luxembourg v2 = LUX } # Luxembourg
+link = { eu4 = NED v2 = NET } # Netherlands
+link = { eu4 = UTR v2 = UTR } # Utrecht
 
-link = { eu4 = BRB v2 = BRB }  # Brabant
-link = { eu4 = FLA v2 = FLA }  # Flanders
-link = { eu4 = FRI v2 = FRI }  # Friesland
-link = { eu4 = GEL v2 = GEL }  # Gelre
-link = { eu4 = HAI v2 = HAT }  # Flanders
-link = { eu4 = HOL v2 = HLL }  # Holland
-link = { eu4 = LIE v2 = LIE }  # Liege
-link = { eu4 = LUX v2 = LUX }  # Luxemburg
-link = { eu4 = NED v2 = NET }  # Netherlands
-link = { eu4 = SWI v2 = SWI }  # Switzerland
-link = { eu4 = UTR v2 = UTR }  # Utrecht
-link = { eu4 = EFR v2 = EFR }  # East Frisia
+#Russia 
+link = { eu4 = ARM v2 = ARM } # Armenia
+link = { eu4 = k_armenia v2 = ARM } # Armenia
+link = { eu4 = AST v2 = AKH } # Astrakhan
+link = { eu4 = CRI v2 = CRI } # Crimea
+link = { eu4 = k_taurica v2 = CRI } # Taurica => Crimea
+link = { eu4 = GEO v2 = GEO } # Georgia
+link = { eu4 = k_georgia v2 = GEO } # Georgia
+link = { eu4 = d_georgia v2 = GEO } # Georgia
+link = { eu4 = KAZ v2 = KAZ } # Kazan
+link = { eu4 = MOS v2 = MOS } # Muscowy
+link = { eu4 = c_moskva v2 = MOS } # Muscowy
+link = { eu4 = NOV v2 = NOV } # Novgorod
+link = { eu4 = d_novgorod v2 = NOV } # Novgorod
+link = { eu4 = PSK v2 = PSK } # Pskov
+link = { eu4 = d_pskov v2 = PSK } # Pskov
+link = { eu4 = QAS v2 = QAS } # Qasim Khanate
+link = { eu4 = RUS v2 = RUS } # Russia
+link = { eu4 = k_rus v2 = RUS } # Russia
+link = { eu4 = e_russia v2 = RUS } # Russia
+link = { eu4 = RYA v2 = RYA } # Ryazan
+link = { eu4 = d_ryazan v2 = RYA } # Ryazan
+link = { eu4 = TVE v2 = TVE } # Tver
+link = { eu4 = d_tver v2 = TVE } # Tver
+link = { eu4 = UKR v2 = UKR } # Ruthenia => Ukraine
+link = { eu4 = k_ruthenia v2 = UKR } # Ruthenia => Ukraine
+link = { eu4 = YAR v2 = YAR } # Yaroslavl
+link = { eu4 = d_yaroslavl v2 = YAR } # Yaroslavl
+link = { eu4 = ZAZ v2 = ZAZ } # Zaporozhie
+link = { eu4 = NOG v2 = NOG } # Nogai
+link = { eu4 = SIB v2 = SIB } # Sibir
+link = { eu4 = d_sibir v2 = SIB } # Sibir
+link = { eu4 = PLT v2 = PLT } # Polotsk
+link = { eu4 = d_polotsk v2 = PLT } # Polotsk
+link = { eu4 = PRM v2 = PRM } # Perm
+link = { eu4 = k_perm v2 = PRM } # Perm
+link = { eu4 = FEO v2 = FEO } # Theodoro
+link = { eu4 = BSH v2 = BSH } # Bashkiria
+link = { eu4 = c_bashkirs v2 = BSH } # Bashkiria
+#link = { eu4 = BLO v2 = XXX } #Beloozero => d_beloozero
+#link = { eu4 = RSO v2 = XXX } #Rostov => d_rostov
 
-# Scandinavia
+link = { eu4 = GOL v2 = GRH } # Great Horde
+link = { eu4 = GLH v2 = GOL } # Golden Horde
+link = { eu4 = e_golden_horde v2 = GOL } # Golden Horde
 
-link = { eu4 = SWE v2 = SWE }  # Sweden
-link = { eu4 = DAN v2 = DEN }  # Denmark
-link = { eu4 = FIN v2 = FIN }  # Finland
-link = { eu4 = GOT v2 = GOT }  # Gotland
-link = { eu4 = SHL v2 = HOL }  # Holstein
-link = { eu4 = NOR v2 = NOR }  # Norway
-link = { eu4 = SMI v2 = SMI }  # Sami
-link = { eu4 = SCA v2 = SCA }  # Scandinavia
+#Arabia 
+link = { eu4 = ADE v2 = YEM } # Yemen
+link = { eu4 = d_sanaa v2 = YEM } # Sanaa => Yemen
+link = { eu4 = ALH v2 = ALH } # Haasa
+link = { eu4 = c_al_hasa v2 = ALH } # Haasa
+link = { eu4 = OMA v2 = OMA } # Oman
+link = { eu4 = d_oman v2 = OMA } # Oman
+link = { eu4 = NAJ v2 = NEJ } # Najd => Nejd
+link = { eu4 = HED v2 = HDJ } # Hedjaz
+link = { eu4 = d_medina v2 = HDJ } # Medina => Hedjaz
+link = { eu4 = SHR v2 = ABU } # Sharjah => Abu Dhabi
+link = { eu4 = c_dhu_zabi v2 = ABU } # Dhu Zhabi => Abu Dhabi
 
-# Balkans
-
-link = { eu4 = ACH v2 = ACH }  # Achaea
-link = { eu4 = ALB v2 = ALB }  # Albania
-link = { eu4 = ATH v2 = ATH }  # Athens
-link = { eu4 = BOS v2 = BOS }  # Bosnia => Bosnia-Herzegovina(?)
-link = { eu4 = BUL v2 = BUL }  # Bulgaria
-link = { eu4 = BYZ v2 = BYZ }  # Byzantine Empire => Byzantium
-link = { eu4 = CEP v2 = ION }  # Corfu => Ionian Islands
-link = { eu4 = CRO v2 = CRO }  # Croatia
-link = { eu4 = CRT v2 = CRE }  # Crete
-link = { eu4 = CYP v2 = CYP }  # Cyprus
-link = { eu4 = EPI v2 = EPI }  # Epirus
-link = { eu4 = GRE v2 = GRE }  # Greece
-link = { eu4 = KNI v2 = KNI }  # Knights
-link = { eu4 = MOE v2 = MOE }  # Morea
-link = { eu4 = MOL v2 = MOL }  # Moldavia
-link = { eu4 = MON v2 = MON }  # Montenegro
-link = { eu4 = NAX v2 = NAX }  # Naxos
-link = { eu4 = RAG v2 = RAG }  # Ragusa
-link = { eu4 = RMN v2 = ROM }  # Romania
-link = { eu4 = SER v2 = SER }  # Serbia
-link = { eu4 = TRA v2 = SIE }  # Transylvania => Siebenburgen
-link = { eu4 = WAL v2 = WAL }  # Walachia
-link = { eu4 = HUN v2 = HUN }  # Hungary
-link = { eu4 = TUR v2 = TUR }  # Ottomans => Ottoman Empire
-
-# Eastern Europe
-link = { eu4 = DNZ v2 = DZG }  # Danzig
-link = { eu4 = KRA v2 = KRA }  # Krakow
-link = { eu4 = LIT v2 = LIT }  # Lithuania
-link = { eu4 = LIV v2 = LIV }  # Livonian Order
-link = { eu4 = MAZ v2 = MAZ }  # Mazovia
-link = { eu4 = POL v2 = POL }  # Poland
-link = { eu4 = PRU v2 = PRU }  # Prussia
-link = { eu4 = KUR v2 = KUR }  # Kurland
-link = { eu4 = RIG v2 = RIG }  # Riga
-link = { eu4 = TEU v2 = TEU }  # Teutonic Order
-link = { eu4 = PLC v2 = PLC }  # The Commonwealth *
-
-# Germany
-link = { eu4 = AAC v2 = AAC }  # Aachen
-link = { eu4 = ANH v2 = ANH }  # Anhalt
-link = { eu4 = ANS v2 = ANS }  # Ansbach
-link = { eu4 = AUG v2 = AUG }  # Augsburg
-link = { eu4 = BAD v2 = BAD }  # Baden
-link = { eu4 = BAV v2 = BAV }  # Bavaria
-link = { eu4 = BOH v2 = BOH }  # Bohemia => Bohemia Moravia
-link = { eu4 = BRA v2 = BRD }  # Brandenburg
-link = { eu4 = BRE v2 = BRE }  # Bremen
-link = { eu4 = BRU v2 = BRA }  # Brunswick => Braunschweig
-link = { eu4 = FRN v2 = FRM }  # Frankfurt => Frankfurt am Main
-link = { eu4 = GER v2 = GER }  # Germany
-link = { eu4 = HAB v2 = AUS }  # Austria
-link = { eu4 = HAM v2 = HAM }  # Hamburg
-link = { eu4 = HAN v2 = HAN }  # Hannover
-link = { eu4 = HSA v2 = LUB }  # Hansa => Lubeck
-link = { eu4 = HES v2 = HES }  # Hessen
-link = { eu4 = KLE v2 = KLE }  # Cleves
-link = { eu4 = KOL v2 = KOL }  # Cologne
-link = { eu4 = LAU v2 = LAU }  # Lauenburg
-link = { eu4 = LOR v2 = LOR }  # Lorraine
-link = { eu4 = LUN v2 = LUN }  # Luneburg
-link = { eu4 = MAG v2 = MAG }  # Magdeburg
-link = { eu4 = MAI v2 = MAI }  # Mainz
-link = { eu4 = MEI v2 = MEI }  # Meissen
-link = { eu4 = MKL v2 = MEC }  # Mecklenburg
-link = { eu4 = MUN v2 = MUN }  # Munster
-link = { eu4 = OLD v2 = OLD }  # Oldenburg
-link = { eu4 = PAL v2 = PAL }  # Palatinate
-link = { eu4 = POM v2 = POM }  # Pommerania
-link = { eu4 = SAX v2 = SAX }  # Saxony
-link = { eu4 = SIL v2 = SIL }  # Silesia
-link = { eu4 = SLZ v2 = SLZ }  # Salzburg
-link = { eu4 = STY v2 = STY }  # Styria
-link = { eu4 = THU v2 = THU }  # Thuringia
-link = { eu4 = TIR v2 = TIR }  # Tirol
-link = { eu4 = TRI v2 = TER }  # Trier
-link = { eu4 = ULM v2 = ULM }  # Ulm
-link = { eu4 = WBG v2 = WBG }  # Wurzburg
-link = { eu4 = WES v2 = WES }  # Westfalia
-link = { eu4 = WUR v2 = WUR }  # Wurtemburg
-link = { eu4 = HLR v2 = HRE }  # Holy Roman Empire *
-link = { eu4 = MEM v2 = MEM }  # Memmingen
-link = { eu4 = NUM v2 = NUM }  # Nürnberg
-link = { eu4 = RVA v2 = RVA }  # Ravensburg
-link = { eu4 = DTT v2 = DTT }  # Dithmarschen (1.19)
-link = { eu4 = SLO v2 = SLV }  # Nitra => Slovakia
-link = { eu4 = MVA v2 = MRV }  # Moravia (1.21)
-
-# Russia
-link = { eu4 = ARM v2 = ARM }  # Armenia
-link = { eu4 = AST v2 = AKH }  # Astarakhan
-link = { eu4 = CRI v2 = CRI }  # Crimea
-link = { eu4 = GEO v2 = GEO }  # Georgia
-link = { eu4 = GLH v2 = GOL }  # Golden Horde
-link = { eu4 = GOL v2 = GRH }  # Great Horde
-link = { eu4 = KAZ v2 = KAZ }  # Kazan
-link = { eu4 = MOS v2 = MOS }  # Muscowy
-link = { eu4 = NOV v2 = NOV }  # Novgorod
-link = { eu4 = PSK v2 = PSK }  # Pskov
-link = { eu4 = QAS v2 = QAS }  # Georgia
-link = { eu4 = RUS v2 = RUS }  # Russia
-link = { eu4 = RYA v2 = RYA }  # Ryazan
-link = { eu4 = TVE v2 = TVE }  # Tver
-link = { eu4 = UKR v2 = UKR }  # Ukraine
-link = { eu4 = YAR v2 = YAR }  # Yaroslavl
-link = { eu4 = ZAZ v2 = ZAZ }  # Zaporozhie
-link = { eu4 = NOG v2 = NOG }  # Nogai
-link = { eu4 = SIB v2 = SIB }  # Sibir
-link = { eu4 = SMO v2 = SMO }  # Smolensk
-link = { eu4 = PLT v2 = PLT }  # Polotsk
-link = { eu4 = NZH v2 = NZH }  # Nizhny Novgorod
-link = { eu4 = PRM v2 = PRM }  # Perm (NEW) *
-link = { eu4 = OKA v2 = OKA }  # Odoyev
-
-# North & South America
-link = { eu4 = BRZ v2 = BRZ }  # Brazil
-link = { eu4 = CAN v2 = CAN }  # Canada
-link = { eu4 = CHL v2 = CHL }  # Chile
-link = { eu4 = COL v2 = CLM }  # Colombia
-link = { eu4 = HAT v2 = HAI }  # Haiti
-link = { eu4 = LAP v2 = ARG }  # La Plata => Argentina
-link = { eu4 = MEX v2 = MEX }  # Mexico
-link = { eu4 = PEU v2 = PEU }  # Peru
-link = { eu4 = PRG v2 = PRG }  # Paraguay
-link = { eu4 = QUE v2 = QUE }  # Quebec
-link = { eu4 = CAM v2 = UCA }  # UPCA => United States of Central America
-link = { eu4 = USA v2 = USA }  # USA
-link = { eu4 = VNZ v2 = VNZ }  # Venezuela
-link = { eu4 = LOU v2 = LOU }  # Louisiana
-
-#Native Americans
-link = { eu4 = AZT v2 = AZT }  # Aztec
-link = { eu4 = CHE v2 = CHE }  # Cherokee
-link = { eu4 = CHM v2 = CHM }  # Chimu
-link = { eu4 = CRE v2 = CRK }  # Creek
-link = { eu4 = HUR v2 = HUR }  # Huron
-link = { eu4 = INC v2 = INC }  # Inca
-link = { eu4 = IRO v2 = IRO }  # Iroquois
-link = { eu4 = MAY v2 = MAY }  # Maya
-link = { eu4 = SHA v2 = SHA }  # Shawnee
-link = { eu4 = ZAP v2 = ZAP }  # Zapotec
-link = { eu4 = ABE v2 = ABE }  # Abenaki (NEW) *
-link = { eu4 = APA v2 = APA }  # Apache (NEW)
-link = { eu4 = ASI v2 = ASI }  # Assiniboine (NEW)
-link = { eu4 = BLA v2 = BLA }  # Blackfoot (NEW)
-link = { eu4 = CAD v2 = CAD }  # Caddo (NEW)
-link = { eu4 = CHI v2 = CHN }  # Chickasaw (NEW)
-link = { eu4 = CHO v2 = CHO }  # Choctaw (NEW)
-link = { eu4 = CHY v2 = CHY }  # Cheyenne (NEW)
-link = { eu4 = COM v2 = COM }  # Comanche (NEW)
-link = { eu4 = FOX v2 = FOX }  # Fox (NEW)
-link = { eu4 = ILL v2 = ILL }  # Illinewek (NEW)
-link = { eu4 = LEN v2 = LEN }  # Lenape (NEW)
-link = { eu4 = MAH v2 = MAH }  # Mahican (NEW)
-link = { eu4 = MIK v2 = MIK }  # Mikmaq (NEW)
-link = { eu4 = MMI v2 = MMI }  # Miami (NEW)
-link = { eu4 = NAH v2 = NAH }  # Navajo (NEW)
-link = { eu4 = OJI v2 = OJI }  # Ojibwa (NEW)
-link = { eu4 = OSA v2 = OSA }  # Osage (NEW)
-link = { eu4 = OTT v2 = OTT }  # Ottawa (NEW)
-link = { eu4 = PAW v2 = PAW }  # Pawnee (NEW)
-link = { eu4 = PEQ v2 = PEQ }  # Pequot (NEW)
-link = { eu4 = PIM v2 = PIM }  # Pima (NEW)
-link = { eu4 = POT v2 = POT }  # Potawatomi (NEW)
-link = { eu4 = POW v2 = POW }  # Powhatan (NEW)
-link = { eu4 = PUE v2 = PUE }  # Pueblo (NEW)
-link = { eu4 = SHO v2 = SHO }  # Shoshone (NEW)
-link = { eu4 = SIO v2 = SIO }  # Sioux (NEW)
-link = { eu4 = SUS v2 = SUS }  # Susquehannock (NEW)
-link = { eu4 = WCR v2 = WCR }  # Cree (NEW)
-
-#Arabia	
-link = { eu4 = ADE v2 = YEM }  # Yemen
-link = { eu4 = ALH v2 = ALH }  # Haasa
-link = { eu4 = OMA v2 = OMA }  # Oman
-link = { eu4 = NAJ v2 = NEJ }  # Najd => Nejd  
-link = { eu4 = HED v2 = HDJ }  # Hedjaz
-link = { eu4 = SHR v2 = ABU }  # Sharjah => Abu Dhabi
-
-#Asia Minor	
-link = { eu4 = AKK v2 = AKK }  # Ak Koyunlu
-link = { eu4 = AYD v2 = AYD }  # Aydin
-link = { eu4 = CND v2 = CND }  # Candar
-link = { eu4 = DUL v2 = DUL }  # Dulkadir
-link = { eu4 = IRQ v2 = IRQ }  # Iraq
-link = { eu4 = KAR v2 = KAR }  # Karaman
-link = { eu4 = SYR v2 = SYR }  # Syria
-link = { eu4 = ISR v2 = ISR }  # Israel
-link = { eu4 = TRE v2 = TBZ }  # Trebizond
-link = { eu4 = SRU v2 = SRU }  # Saruhan
-link = { eu4 = MEN v2 = MEN }  # Mentese
-link = { eu4 = RAM v2 = RAM }  # Ramazan
+#Asia Minor  
+link = { eu4 = AKK v2 = AKK } # Ak Koyunlu
+link = { eu4 = AYD v2 = AYD } # Aydin
+link = { eu4 = k_aydin v2 = AYD } # Aydin
+link = { eu4 = CND v2 = CND } # Candar
+link = { eu4 = k_candar v2 = CND } # Candar
+link = { eu4 = DUL v2 = DUL } # Dulkadir
+link = { eu4 = IRQ v2 = IRQ } # Iraq
+link = { eu4 = k_mesopotamia v2 = IRQ } # Mesopotamia => Iraq
+link = { eu4 = KAR v2 = KAR } # Karaman
+link = { eu4 = k_karaman v2 = KAR } # Karaman
+link = { eu4 = SYR v2 = SYR } # Syria
+link = { eu4 = k_syria v2 = SYR } # Syria
+link = { eu4 = TRE v2 = TBZ } # Trebizond
+link = { eu4 = k_trebizond v2 = TBZ } # Trebizond
+link = { eu4 = d_trebizond v2 = TBZ } # Trebizond
+link = { eu4 = SRU v2 = SRU } # Saruhan
+link = { eu4 = k_saruhan v2 = SRU } # Saruhan
+link = { eu4 = MEN v2 = MEN } # Mentese
+link = { eu4 = k_mentese v2 = MEN } # Mentese
+link = { eu4 = RAM v2 = RAM } # Ramazan
 
 #Maghreb
-
-link = { eu4 = MOR v2 = MOR }  # Morocco
-link = { eu4 = FEZ v2 = FEZ }  # Fez
-link = { eu4 = TRP v2 = TRI }  # Tripoli
-link = { eu4 = TUN v2 = TUN }  # Tunisia
-link = { eu4 = ALG v2 = ALD }  # Algiers
-link = { eu4 = MAM v2 = EGY }  # Mameluks => Egypt
-link = { eu4 = KOJ v2 = KOJ }  # Jerusalem
+link = { eu4 = ALG v2 = ALD } # Algiers
+link = { eu4 = d_alger v2 = ALD } # Alger
+link = { eu4 = FEZ v2 = FEZ } # Fez
+link = { eu4 = d_fes v2 = FEZ } # Fez
+link = { eu4 = MAM v2 = EGY } # Mamluks => Egypt
+link = { eu4 = d_mamluks v2 = EGY } # Mamluks => Egypt
+link = { eu4 = MOR v2 = MOR } # Morocco
+link = { eu4 = TRP v2 = TRI } # Tripoli
+link = { eu4 = d_tripolitania v2 = TRI } # Tripoli(tania)
+link = { eu4 = TUN v2 = TUN } # Tunisia
+link = { eu4 = d_tunis v2 = TUN } # Tunisia
+link = { eu4 = EGY v2 = EGY } # Egypt
+link = { eu4 = k_egypt v2 = EGY } # Egypt
+link = { eu4 = KBA v2 = KBA } # Kabylia
+link = { eu4 = d_kabylia v2 = KBA } # Kabylia
+link = { eu4 = TFL v2 = TFL } # Tafilalt
+link = { eu4 = SOS v2 = SOS } # Sus
+link = { eu4 = TLC v2 = TLC } # Tlemcen
+link = { eu4 = TGT v2 = TGT } # Touggourt
+link = { eu4 = GHD v2 = GHD } # Ghadames
+link = { eu4 = FZA v2 = FZA } # Fezzan
+link = { eu4 = MZB v2 = MZB } # Mzab
 
 #Central Asia
-link = { eu4 = KZH v2 = KZH }  # Kazakh
-link = { eu4 = KHI v2 = KHI }  # Khiva  
-link = { eu4 = KOK v2 = KOK }  # Kokand
-link = { eu4 = SHY v2 = SHY }  # Uzbek
+link = { eu4 = KZH v2 = KZH } # Kazakh
+link = { eu4 = k_kazakh v2 = KZH } # Kazakh
+link = { eu4 = KHI v2 = KHI } # Khiva
+link = { eu4 = k_khiva v2 = KHI } # Khiva
+link = { eu4 = SHY v2 = SHY } # Uzbek
+link = { eu4 = KOK v2 = KOK } # Kokkand
+link = { eu4 = BUK v2 = BUK } # Bukhara
+link = { eu4 = c_bukhara v2 = BUK } # Bukhara
 
-#Persia
-link = { eu4 = KHO v2 = KHO }  # Khorasan
-link = { eu4 = JAI v2 = JAL }  # Jalayirids
-link = { eu4 = PER v2 = PER }  # Persia
-link = { eu4 = QAR v2 = QAR }  # Qara Koyunlu
-link = { eu4 = TIM v2 = TIM }  # Timurid
-link = { eu4 = AFG v2 = AFG }  # Afghanistan *
+#Persia 
+link = { eu4 = AFG v2 = AFG } # Afghanistan
+link = { eu4 = k_afghanistan v2 = AFG } # Afghanistan
+link = { eu4 = KHO v2 = KHO } # Khorasan
+link = { eu4 = d_khorasan v2 = KHO } # Khorasan
+link = { eu4 = PER v2 = PER } # Persia
+link = { eu4 = k_persia v2 = PER } # Persia
+link = { eu4 = e_persia v2 = PER } # Persia
+link = { eu4 = QAR v2 = QAR } # Qara Koyunlu
+link = { eu4 = TIM v2 = TIM } # Timurid
+link = { eu4 = e_timurids v2 = TIM } # Timurid
+
+#Americas
+link = { eu4 = AZT v2 = AZT } # Aztec
+link = { eu4 = CHE v2 = CHE } # Cherokee
+link = { eu4 = CHM v2 = CHM } # Chimu
+link = { eu4 = CRE v2 = CRK } # Creek
+link = { eu4 = HUR v2 = HUR } # Huron
+link = { eu4 = INC v2 = INC } # Inca
+link = { eu4 = IRO v2 = IRO } # Iroquois
+link = { eu4 = MAY v2 = MAY } # Maya
+link = { eu4 = SHA v2 = SHA } # Shawnee
+link = { eu4 = ZAP v2 = ZAP } # Zapotec
 
 #Africa
-link = { eu4 = ASH v2 = ASH }  # Ashanti
-link = { eu4 = BEN v2 = BEN }  # Benin  
-link = { eu4 = ETH v2 = ETH }  # Ethiopia
-link = { eu4 = KON v2 = KON }  # Kongo
-link = { eu4 = MAL v2 = MAL }  # Mali
-link = { eu4 = NUB v2 = NUB }  # Funj  
-link = { eu4 = SON v2 = SON }  # Songhai
-link = { eu4 = ZAN v2 = SWA }  # Swahili   
-link = { eu4 = ZIM v2 = ZIM }  # Mutapa 
-link = { eu4 = ADA v2 = ADA }  # Adal
-link = { eu4 = HAU v2 = HAU }  # Hausa
-link = { eu4 = KBO v2 = KBO }  # Kanem Bornu
-link = { eu4 = LOA v2 = LOA }  # Loango
-link = { eu4 = OYO v2 = OYO }  # Oyo
-link = { eu4 = SFA v2 = SOF }  # Sofala
-link = { eu4 = SOK v2 = SOK }  # Sokoto
-link = { eu4 = AJU v2 = AJU }  # Ajuuraan (NEW) *
-link = { eu4 = JOL v2 = JOL }  # Jolof (NEW)
-link = { eu4 = MBA v2 = MBA }  # Mombasa (NEW)
-link = { eu4 = MDI v2 = MDI }  # Mogadishu (NEW)
-link = { eu4 = MLI v2 = MLI }  # Malindi (NEW)
-link = { eu4 = SOF v2 = SGU }  # Segu (NEW)
-link = { eu4 = ANT v2 = ANT }  # Antemoro
-link = { eu4 = BNY v2 = BNY }  # Bunyoro
-link = { eu4 = BSG v2 = BSG }  # Basoga
-link = { eu4 = BTS v2 = BTS }  # Betsimisaraka
-link = { eu4 = BUG v2 = BUG }  # Buganda
-link = { eu4 = BUU v2 = BUU }  # Burundi
-link = { eu4 = CKW v2 = CKW }  # Chokwe
-link = { eu4 = KIK v2 = KIK }  # Kikondja
-link = { eu4 = KRW v2 = KRW }  # Karagwe
-link = { eu4 = KSJ v2 = KSJ }  # Kasanje
-link = { eu4 = KUB v2 = KUB }  # Kuba
-link = { eu4 = KZB v2 = KZB }  # Kazembe
-link = { eu4 = LDU v2 = LDU }  # Lundu
-link = { eu4 = LND v2 = LND }  # Lunda
-link = { eu4 = LUB v2 = LBX }  # Luba
-link = { eu4 = MFY v2 = MFY }  # Mahafaly
-link = { eu4 = MIR v2 = MIR }  # Merina
-link = { eu4 = MKU v2 = MKU }  # Makua
-link = { eu4 = MRA v2 = MRA }  # Maravi
-link = { eu4 = NKO v2 = NKO }  # Nkore
-link = { eu4 = RWA v2 = RWA }  # Rwanda
-link = { eu4 = RZW v2 = RZW }  # Butua
-link = { eu4 = SKA v2 = SKA }  # Sakalava
-link = { eu4 = SYO v2 = SYO }  # Soyo
-link = { eu4 = TBK v2 = TBK }  # Tumbuka
-link = { eu4 = UBH v2 = UBH }  # Buha
-link = { eu4 = YAK v2 = YAK }  # Yaka
-link = { eu4 = ABB v2 = ABB }  # Dongola (1.19)
-link = { eu4 = HDY v2 = HDY }  # Hadiya (1.19)
-link = { eu4 = JJI v2 = JJI }  # Janjiro (1.19)
-link = { eu4 = WLY v2 = WLY }  # Welayta (1.19)
+link = { eu4 = ASH v2 = ASH } # Ashanti
+link = { eu4 = BEN v2 = BEN } # Benin
+link = { eu4 = ETH v2 = ETH } # Ethiopia
+link = { eu4 = k_abyssinia v2 = ETH } # Abyssinia => Ethiopia
+link = { eu4 = KON v2 = KON } # Kongo
+link = { eu4 = MAL v2 = MAL } # Mali
+link = { eu4 = k_mali v2 = MAL } # Mali
+link = { eu4 = e_mali v2 = MAL } # Mali
+link = { eu4 = NUB v2 = NUB } # Funj
+link = { eu4 = d_nubia v2 = NUB } # Nubia => Funj
+link = { eu4 = k_nubia v2 = NUB } # Nubia => Funj
+link = { eu4 = SON v2 = SON } # Songhai
+link = { eu4 = d_songhay v2 = SON } # Songhai
+link = { eu4 = ZAN v2 = SWA } # Swahili
+link = { eu4 = ZIM v2 = ZIM } # Mutapa
+link = { eu4 = ADA v2 = ADA } # Adal
+link = { eu4 = HAU v2 = HAU } # Hausa
+link = { eu4 = KBO v2 = KBO } # Kanem Bornu
+link = { eu4 = LOA v2 = LOA } # Loango
+link = { eu4 = OYO v2 = OYO } # Oyo
+link = { eu4 = SOF v2 = SGU } # Segu
+link = { eu4 = SOK v2 = SOK } # Sokoto
+link = { eu4 = JOL v2 = JOL } # Jolof
+link = { eu4 = SFA v2 = SOF } # Sofala
+link = { eu4 = MBA v2 = MBA } # Mombasa
+link = { eu4 = MLI v2 = MLI } # Malindi
+link = { eu4 = AJU v2 = AJU } # Ajuuraan
+link = { eu4 = MDI v2 = MDI } # Mogadishu
+link = { eu4 = ENA v2 = ENA } # Ennarea
 
-# East and Southeast Asia, and Oceania
-link = { eu4 = ANN v2 = ANN }  # Annam
-link = { eu4 = ARK v2 = ARK }  # Arakan
-link = { eu4 = ATJ v2 = ATJ }  # Atjeh
-link = { eu4 = AYU v2 = SIA }  # Ayutthaya => Siam
-link = { eu4 = BLI v2 = BAL }  # Bali
-link = { eu4 = BAN v2 = BAN }  # Banten
-link = { eu4 = BEI v2 = BRU }  # Brunei
-link = { eu4 = CHA v2 = CHA }  # Champa
-link = { eu4 = CHG v2 = CHG }  # Chagati Khanate
-link = { eu4 = CHK v2 = CHK }  # Champassak
-link = { eu4 = DAI v2 = DAI }  # Dai Viet
-link = { eu4 = KHA v2 = KHA }  # Mongol Khanate
-link = { eu4 = KHM v2 = CAM }  # Khmer => Cambodia
-link = { eu4 = KOR v2 = KOR }  # Korea
-link = { eu4 = LNA v2 = LNA }  # Lan Na
-link = { eu4 = LUA v2 = LUA }  # Luang Prabang
-link = { eu4 = LXA v2 = LXA }  # Lan Xang
-link = { eu4 = MAJ v2 = MAJ }  # Majapahit
-link = { eu4 = MCH v2 = MCK }  # Manchu => Manchukuo
-link = { eu4 = MKS v2 = MKS }  # Makassar
-link = { eu4 = MNG v2 = MNG }  # Ming
-link = { eu4 = MLC v2 = MLC }  # Malacca
-link = { eu4 = MSA v2 = MSA }  # Malaya
-link = { eu4 = MTR v2 = MTR }  # Mataram
-link = { eu4 = OIR v2 = OIR }  # Oirat Horde
-link = { eu4 = PAT v2 = PAT }  # Pattani
-link = { eu4 = PEG v2 = PEG }  # Pegu
-link = { eu4 = RYU v2 = RYU }  # Ryukyu
-link = { eu4 = SST v2 = SST }  # Shan
-link = { eu4 = SUK v2 = SUK }  # Sukhothai
-link = { eu4 = SUL v2 = SUL }  # Sulu
-link = { eu4 = TAU v2 = BUR }  # Taungu	=> Burma
-link = { eu4 = TIB v2 = TIB }  # Tibet
-link = { eu4 = TOK v2 = TOK }  # Tonkin
-link = { eu4 = VIE v2 = WIA }  # Vientiane => Wiang Chhan
-link = { eu4 = CSH v2 = CSH }  # Shun (NEW) *
-link = { eu4 = CXI v2 = CXI }  # Xi (NEW)
-link = { eu4 = CZH v2 = WUU }  # Zhou
-link = { eu4 = WUU v2 = CWU }  # Wu
-link = { eu4 = QNG v2 = CHI }  # Qing/China
-link = { eu4 = QIN v2 = QIN }  # Qin
-link = { eu4 = KAS v2 = YRK }  # Yarkand
-link = { eu4 = TER v2 = TNT }  # Ternate
-link = { eu4 = AUS v2 = AST }  # Australia
-link = { eu4 = YUA v2 = YUA }  # Yuan
+#East African Additions
 
-# Japan
-link = { eu4 = AMA v2 = AMA }  # Amago
-link = { eu4 = ASA v2 = ASA }  # Asakura
-link = { eu4 = CSK v2 = CSK }  # Chosokabe
-link = { eu4 = DTE v2 = DTE }  # Date (NEW)
-link = { eu4 = HJO v2 = HJO }  # Hojo
-link = { eu4 = HSK v2 = HSK }  # Hosokawa
-link = { eu4 = HTK v2 = HTK }  # Hatakeyama
-link = { eu4 = IKE v2 = IKE }  # Ikeda
-link = { eu4 = IMG v2 = IMG }  # Imagawa
-link = { eu4 = JAP v2 = JAP }  # Japan
-link = { eu4 = MAE v2 = MAE }  # Maeda
-link = { eu4 = MRI v2 = MRI }  # Mori
-link = { eu4 = RFR v2 = RFR }  # Nanbu
-link = { eu4 = ODA v2 = ODA }  # Oda
-link = { eu4 = OTM v2 = OTM }  # Otomo
-link = { eu4 = OUC v2 = OUC }  # Ouchi
-link = { eu4 = SBA v2 = SBA }  # Shiba
-link = { eu4 = SMZ v2 = SMZ }  # Shimazu
-link = { eu4 = TKD v2 = TKD }  # Takeda
-link = { eu4 = TKG v2 = TKG }  # Tokugawa
-link = { eu4 = UES v2 = UES }  # Uesugi
-link = { eu4 = YMN v2 = YMN }  # Yamana
-link = { eu4 = AKM v2 = AKM }  #Akamatsu (1.20)
-link = { eu4 = CBA v2 = CHB }  #Chibu
-link = { eu4 = ISK v2 = ISS }  #Isshiki
-link = { eu4 = ITO v2 = ITO }  #Ito
-link = { eu4 = KKC v2 = KKU }  #Kikuchi
-link = { eu4 = KNO v2 = KNO }  #Kono
-link = { eu4 = OGS v2 = OGA }  #Ogasawara
-link = { eu4 = SHN v2 = SHN }  #Shoni
-link = { eu4 = STK v2 = STK }  #Satake
-link = { eu4 = TKI v2 = TKI }  #Toki
-link = { eu4 = UTN v2 = UTU }  #Utsunomiya
-link = { eu4 = TTI v2 = TSU }  #Tsutsui
-link = { eu4 = ASK v2 = ASK }  #Ashikaga
+link = { eu4 = AFA v2 = AFA } # Afar
+link = { eu4 = d_afar v2 = AFA } # Afar
+link = { eu4 = ALO v2 = ALO } # Alodia
+link = { eu4 = d_alodia v2 = ALO } # Alodia
+link = { eu4 = DAR v2 = DAR } # Darfur
+link = { eu4 = GLE v2 = GLE } # Geledi
+link = { eu4 = HAR v2 = HAR } # Harar
+link = { eu4 = HOB v2 = HOB } # Hobyo
+link = { eu4 = KAF v2 = KAF } # Kaffa
+link = { eu4 = MED v2 = MED } # Medri Bahri
+link = { eu4 = MJE v2 = MJE } # Majeerteen
+link = { eu4 = MRE v2 = MRE } # Marehan
+link = { eu4 = PTE v2 = PTE } # Pate
+link = { eu4 = WAR v2 = WAR } # Warsangali
+#link = { eu4 = BTI v2 = XXX } # Semien => d_semien
+#link = { eu4 = BEJ v2 = XXX } # Beja => d_beja
+link = { eu4 = JIM v2 = JIM } # Jima
+link = { eu4 = WLY v2 = WLY } # Welayta
+#link = { eu4 = DAM v2 = XXX } # Damot => d_damot
+link = { eu4 = HDY v2 = HDY } # Hadiya
+#link = { eu4 = SOA v2 = XXX } # Shewa => d_shewa
+link = { eu4 = JJI v2 = JJI } # Janjiro
+link = { eu4 = ABB v2 = ABB } # Dongola
 
-# Central Asia and India
-link = { eu4 = ASS v2 = ASS }  # Assam
-link = { eu4 = YOR v2 = AND }  # Andhra
-link = { eu4 = BAH v2 = BAH }  # Bahamis
-link = { eu4 = BAL v2 = BCS }  # Baluchistan
-link = { eu4 = BNG v2 = BNG }  # Bengal
-link = { eu4 = BRR v2 = BRR }  # Berar
-link = { eu4 = BHU v2 = BHU }  # Bhutan
-link = { eu4 = BIJ v2 = BIJ }  # Bijapur
-link = { eu4 = BND v2 = BUN }  # Bundelkhand
-link = { eu4 = DLH v2 = DLH }  # Delhi
-link = { eu4 = GOC v2 = GOC }  # Golcanda
-link = { eu4 = GDW v2 = GDW }  # Gondwana
-link = { eu4 = GUJ v2 = GUJ }  # Gujarat
-link = { eu4 = KSH v2 = KAS }  # Kashmir
-link = { eu4 = KHD v2 = KHD }  # Khandesh
-link = { eu4 = MAD v2 = MDR }  # Madurai (NEW)
-link = { eu4 = MAR v2 = MAR }  # Mahrathas
-link = { eu4 = MLW v2 = MLW }  # Malwa
-link = { eu4 = MUG v2 = MUG }  # Mughal Empire => Mughalistan
-link = { eu4 = MYS v2 = MYS }  # Mysore
-link = { eu4 = NPL v2 = NEP }  # Nepal
-link = { eu4 = ORI v2 = ORI }  # Orissa
-link = { eu4 = ODH v2 = AWA }  # Oudh => Awadh
-link = { eu4 = PUN v2 = PAN }  # Punjab => Panjab
-link = { eu4 = SND v2 = SIN }  # Sind
-link = { eu4 = VIJ v2 = VIJ }  # Vijaynagara
-link = { eu4 = HIN v2 = HND }  # Hindustan => India
-link = { eu4 = BHA v2 = HND }  # Bharat => India
-link = { eu4 = AHM v2 = AMD }  # Ahmadnagar *
-link = { eu4 = BDA v2 = BER }  # Baroda => Beroda
-link = { eu4 = BST v2 = BAS }  # Bastar
-link = { eu4 = CEY v2 = KTH }  # Ceylon
-link = { eu4 = DEC v2 = DEC }  # Deccan (NEW)
-link = { eu4 = DHU v2 = RAJ }  # Dhundar => Rajputana
-link = { eu4 = GRJ v2 = GRJ }  # Garjat (NEW)
-link = { eu4 = GWA v2 = GWA }  # Gwalior
-link = { eu4 = JAN v2 = JAN }  # Jangladesh (NEW)
-link = { eu4 = JNP v2 = JNP }  # Jaunpur (NEW)
-link = { eu4 = JSL v2 = JAS }  # Jaisalmer
-link = { eu4 = KAC v2 = KAC }  # Kachar (NEW)
-link = { eu4 = KAT v2 = KAT }  # Kathiawar (NEW)
-link = { eu4 = KGR v2 = KGR }  # Kangra (NEW)
-link = { eu4 = KLN v2 = KLN }  # Keladi (NEW)
-link = { eu4 = KMT v2 = KMT }  # Koch (NEW)
-link = { eu4 = KOC v2 = VND }  # Kochin => Venad
-link = { eu4 = MAB v2 = MAB }  # Malabar (NEW)
-link = { eu4 = MAW v2 = JOD }  # Marwar => Jodhpur
-link = { eu4 = MER v2 = MEW }  # Mewar
-link = { eu4 = MEW v2 = MWT }  # Mewat (NEW)
-link = { eu4 = MUL v2 = MUL }  # Multan (NEW)
-link = { eu4 = NAG v2 = NAG }  # Nagpur
-link = { eu4 = VND v2 = VND }  # Venad (NEW)
-link = { eu4 = KRK v2 = KRK }  # Carnatic (Karnataka) (NEW)
+#Kongo, Great Lakes & Central Africa
+link = { eu4 = TYO v2 = TYO } # Tyo
+link = { eu4 = SYO v2 = SYO } # Soyo
+link = { eu4 = KSJ v2 = KSJ } # Kasanje
+link = { eu4 = LUB v2 = LBX } # Luba
+link = { eu4 = LND v2 = LND } # Lunda
+link = { eu4 = CKW v2 = CKW } # Chokwe
+link = { eu4 = KIK v2 = KIK } # Kikondja
+link = { eu4 = KZB v2 = KZB } # Kazembe
+link = { eu4 = YAK v2 = YAK } # Yaka
+link = { eu4 = KLD v2 = KLD } # Kalundwe
+link = { eu4 = KUB v2 = KUB } # Kuba
+link = { eu4 = RWA v2 = RWA } # Rwanda
+link = { eu4 = BUU v2 = BUU } # Burundi
+link = { eu4 = BUG v2 = BUG } # Buganda
+link = { eu4 = NKO v2 = NKO } # Nkore
+link = { eu4 = KRW v2 = KRW } # Karagwe
+link = { eu4 = BNY v2 = BNY } # Bunyoro
+link = { eu4 = BSG v2 = BSG } # Basoga
+link = { eu4 = UBH v2 = UBH } # Buha
 
-# Crusader Kings 2 Titles
+link = { eu4 = MRA v2 = MRA } # Maravi
+link = { eu4 = LDU v2 = LDU } # Lundu
+link = { eu4 = TBK v2 = TBK } # Tumbuka
+link = { eu4 = MKU v2 = MKU } # Makua
+link = { eu4 = RZW v2 = RZW } # Butua
 
-link = { eu4 = JOM v2 = JOM } # Jomsvikings
-link = { eu4 = HAH v2 = HAH } # Hashshahin
+#Madagascar
+link = { eu4 = MIR v2 = MIR } # Merina
+link = { eu4 = SKA v2 = SKA } # Sakalava
+link = { eu4 = BTS v2 = BTS } # Betsimisaraka
+link = { eu4 = MFY v2 = MFY } # Mahafaly
+link = { eu4 = ANT v2 = ANT } # Antemoro
+
+#Far East
+link = { eu4 = ANN v2 = ANN } # Annam
+link = { eu4 = ARK v2 = ARK } # Arakan
+link = { eu4 = ATJ v2 = ATJ } # Atjeh
+link = { eu4 = AYU v2 = SIA } # Ayutthaya => Siam
+link = { eu4 = BLI v2 = BAL } # Bali
+link = { eu4 = BAN v2 = BAN } # Banten
+link = { eu4 = BEI v2 = BRU } # Brunei
+link = { eu4 = CHA v2 = CHA } # Champa
+link = { eu4 = CHG v2 = CHG } # Chagatai Khanate
+link = { eu4 = CHK v2 = CHK } # Champassak
+link = { eu4 = DAI v2 = DAI } # Dai Viet
+link = { eu4 = JAP v2 = JAP } # Japan
+
+#Daimyos
+link = { eu4 = AMA v2 = AMA } # Amago
+link = { eu4 = ASA v2 = ASA } # Asakura
+link = { eu4 = CSK v2 = CSK } # Chosokabe
+link = { eu4 = DTE v2 = DTE } # Date
+link = { eu4 = HJO v2 = HJO } # Hojo
+link = { eu4 = HSK v2 = HSK } # Hosokawa
+link = { eu4 = HTK v2 = HTK } # Hatakeyama
+link = { eu4 = IKE v2 = IKE } # Ikeda
+link = { eu4 = IMG v2 = IMG } # Imagawa
+link = { eu4 = MAE v2 = MAE } # Maeda
+link = { eu4 = MRI v2 = MRI } # Mori
+link = { eu4 = ODA v2 = ODA } # Oda
+link = { eu4 = OTM v2 = OTM } # Otomo
+link = { eu4 = OUC v2 = OUC } # Ouchi
+link = { eu4 = SBA v2 = SBA } # Shiba
+link = { eu4 = SMZ v2 = SMZ } # Shimazu
+link = { eu4 = TKD v2 = TKD } # Takeda
+link = { eu4 = TKG v2 = TKG } # Tokugawa
+link = { eu4 = UES v2 = UES } # Uesugi
+link = { eu4 = YMN v2 = YMN } # Yamana
+link = { eu4 = RFR v2 = RFR } # Nanbu
+link = { eu4 = ASK v2 = ASK } # Ashikaga
+
+link = { eu4 = ANU v2 = ANU } # Ainu
+
+#New Daimyos 1.20
+link = { eu4 = AKM v2 = AKM } # Akamatsu
+link = { eu4 = AKT v2 = AKT } # Ando
+link = { eu4 = CBA v2 = CHB } # Chiba
+link = { eu4 = ISK v2 = ISS } # Isshiki
+link = { eu4 = ITO v2 = ITO } # Ito
+link = { eu4 = KKC v2 = KKU } # Kikuchi
+link = { eu4 = KNO v2 = KNO } # Kono
+link = { eu4 = OGS v2 = OGA } # Ogasawara
+link = { eu4 = SHN v2 = SHN } # Shoni
+link = { eu4 = STK v2 = STK } # Satake
+link = { eu4 = TKI v2 = TKI } # Toki
+link = { eu4 = UTN v2 = UTU } # Utsunomiya
+link = { eu4 = TTI v2 = TSU } # Tsutsui
+
+link = { eu4 = KHA v2 = KHA } # Mongol Khanate
+link = { eu4 = KHM v2 = CAM } # Khmer => Cambodia
+link = { eu4 = KOR v2 = KOR } # Korea
+link = { eu4 = LNA v2 = LNA } # Lan Na
+link = { eu4 = LUA v2 = LUA } # Luang Prabang
+link = { eu4 = LXA v2 = LXA } # Lan Xang
+link = { eu4 = MAJ v2 = MAJ } # Majapahit
+link = { eu4 = MCH v2 = MCK } # Manchu => Manchukuo
+link = { eu4 = MKS v2 = MKS } # Makassar
+link = { eu4 = MLC v2 = MLC } # Malacca
+link = { eu4 = MNG v2 = MNG } # Ming
+link = { eu4 = MTR v2 = MTR } # Mataram
+link = { eu4 = OIR v2 = OIR } # Oirat Horde
+link = { eu4 = PAT v2 = PAT } # Pattani
+link = { eu4 = PEG v2 = PEG } # Pegu
+link = { eu4 = QNG v2 = CHI } # Qing => China
+link = { eu4 = RYU v2 = RYU } # Ryukyu
+link = { eu4 = SST v2 = SST } # Shan
+link = { eu4 = SUK v2 = SUK } # Sukhothai
+link = { eu4 = SUL v2 = SUL } # Sulu
+link = { eu4 = TAU v2 = BUR } # Taungu => Burma
+link = { eu4 = TIB v2 = TIB } # Tibet
+link = { eu4 = TOK v2 = TOK } # Tonkin
+link = { eu4 = VIE v2 = WIA } # Vientiane => Wiang Chhan
+link = { eu4 = CZH v2 = ZHO } # Zhou
+link = { eu4 = CSH v2 = CSH } # Shun
+link = { eu4 = CXI v2 = CXI } # Xi
+link = { eu4 = YUA v2 = YUA } # Yuan
+
+#Manchuria tags
+link = { eu4 = MYR v2 = MYR } # Yeren
+link = { eu4 = MHX v2 = MHX } # Haixi
+link = { eu4 = MJZ v2 = MJZ } # Jianzhou
+
+#Mongol tags
+link = { eu4 = KRC v2 = KRC } # Khorchin
+link = { eu4 = KLK v2 = KLK } # Khalkha
+link = { eu4 = HMI v2 = HMI } # Karadel
+link = { eu4 = ZUN v2 = ZUN } # Zunghar
+link = { eu4 = KAS v2 = YRK } # Yarkand
+link = { eu4 = CHH v2 = CHH } # Chahar
+
+#Great Tibet tags
+link = { eu4 = KSD v2 = KSD } # Khoshuud
+link = { eu4 = SYG v2 = SYG } # Sarig Yogir
+link = { eu4 = UTS v2 = UTS } # Utsang
+link = { eu4 = KAM v2 = KAM } # Mdokhams
+link = { eu4 = GUG v2 = GUG } # Guge
+
+#Non-Han China proper tags
+link = { eu4 = CDL v2 = CDL } # Dali
+link = { eu4 = CYI v2 = CYI } # Yi
+link = { eu4 = CMI v2 = CMI } # Miao
+
+#Chinese Revolters
+link = { eu4 = MIN v2 = MIN } # Min
+link = { eu4 = YUE v2 = YUE } # Yue
+link = { eu4 = SHU v2 = SHU } # Shu
+link = { eu4 = NNG v2 = NNG } # Ning
+link = { eu4 = CHC v2 = CHC } # Chu
+link = { eu4 = TNG v2 = TNG } # Tang
+link = { eu4 = WUU v2 = CWU } # Wu
+link = { eu4 = QIC v2 = QIC } # Qi
+link = { eu4 = YAN v2 = YAN } # Yan
+link = { eu4 = JIN v2 = JIN } # Jin
+link = { eu4 = LNG v2 = LNG } # Liang
+link = { eu4 = QIN v2 = QIN } # Qin
+link = { eu4 = HUA v2 = HUA } # Huai
+link = { eu4 = CGS v2 = CGS } # Changsheng
+
+#India
+link = { eu4 = BAL v2 = BCS } # Baluchistan
+link = { eu4 = k_baluchistan v2 = BCS } # Baluchistan
+link = { eu4 = BNG v2 = BNG } # Bengal
+link = { eu4 = k_bengal v2 = BNG } # Bengal
+link = { eu4 = e_bengal v2 = BNG } # Bengal
+link = { eu4 = BIJ v2 = BIJ } # Bijapur
+link = { eu4 = BAH v2 = BAH } # Bahmanis
+link = { eu4 = DLH v2 = DLH } # Delhi
+link = { eu4 = k_delhi v2 = DLH } # Delhi
+link = { eu4 = GOC v2 = GOC } # Golconda
+link = { eu4 = DEC v2 = DEC } # Deccan
+link = { eu4 = e_deccan v2 = DEC } # Deccan
+link = { eu4 = MAR v2 = MAR } # Marathas
+link = { eu4 = MUG v2 = MUG } # Mughal(istan)
+link = { eu4 = MYS v2 = MYS } # Mysore
+link = { eu4 = VIJ v2 = VIJ } # Vijaynagara
+link = { eu4 = AHM v2 = AMD } # Ahmadnagar
+link = { eu4 = ASS v2 = ASS } # Assam
+link = { eu4 = GUJ v2 = GUJ } # Gujarat
+link = { eu4 = k_gujarat v2 = GUJ } # Gujarat
+link = { eu4 = JNP v2 = JNP } # Jaunpur
+link = { eu4 = c_jaunpur v2 = JNP } # Jaunpur
+link = { eu4 = MAD v2 = MDR } # Madurai
+link = { eu4 = MLW v2 = MLW } # Malwa
+link = { eu4 = k_malwa v2 = MLW } # Malwa
+link = { eu4 = MAW v2 = JOD } # Marwar => Jodhpur
+link = { eu4 = MER v2 = MEW } # Mewar
+link = { eu4 = MUL v2 = MUL } # Multan
+link = { eu4 = d_multan v2 = MUL } # Multan
+link = { eu4 = NAG v2 = NAG } # Nagpur
+link = { eu4 = NPL v2 = NEP } # Nepal
+link = { eu4 = ORI v2 = ORI } # Orissa
+link = { eu4 = k_orissa v2 = ORI } # Orissa
+link = { eu4 = PUN v2 = PAN } # Punjab => Panjab
+link = { eu4 = k_punjab v2 = PAN } # Punjab => Panjab
+link = { eu4 = SND v2 = SIN } # Sind
+link = { eu4 = k_sindh v2 = SIN } # Sind
+link = { eu4 = BRR v2 = BRR } # Berar
+link = { eu4 = JAN v2 = BIK } # Jangladesh => Bikaner
+link = { eu4 = d_jangladesh v2 = BIK } #Jangladesh => Bikaner
+link = { eu4 = KRK v2 = KRK } # Carnatic => Karnataka
+link = { eu4 = k_karnata v2 = KRK } # Karnata(ka)
+link = { eu4 = GDW v2 = GDW } # Gondwana
+link = { eu4 = k_gondwana v2 = GDW } # Gondwana
+link = { eu4 = GRJ v2 = GRJ } # Garjat
+link = { eu4 = GWA v2 = GWA } # Gwalior
+link = { eu4 = DHU v2 = RAJ } # Dhundhar => Rajputana
+link = { eu4 = k_rajputana v2 = RAJ } # Rajputana
+link = { eu4 = KSH v2 = KAS } # Kashmir
+link = { eu4 = KLN v2 = KLN } # Keladi
+link = { eu4 = KHD v2 = KHD } # Khandesh
+link = { eu4 = ODH v2 = AWA } # Oudh => Awadh
+link = { eu4 = VND v2 = TRA } # Venad => Travancore
+link = { eu4 = c_venadu v2 = TRA } # Venad => Travancore
+link = { eu4 = MAB v2 = MAB } # Malabar
+link = { eu4 = MEW v2 = MWT } # Mewat
+link = { eu4 = BDA v2 = BER } # Baroda => Beroda
+link = { eu4 = BST v2 = BAS } # Bastar
+link = { eu4 = BHU v2 = BHU } # Bhutan
+link = { eu4 = BND v2 = BUN } # Bundelkhand
+link = { eu4 = CEY v2 = KTH } # Ceylon
+link = { eu4 = JSL v2 = JAS } # Jaisalmer
+link = { eu4 = KAC v2 = KAC } # Kachar
+link = { eu4 = KMT v2 = KMT } # Koch
+link = { eu4 = KGR v2 = KGR } # Kangra
+link = { eu4 = KAT v2 = KAT } # Kathiawar
+link = { eu4 = KOC v2 = KOC } # Kochin
+link = { eu4 = MLB v2 = MLB } # Manipur
+link = { eu4 = HAD v2 = HAD } # Hadoti
+link = { eu4 = NGA v2 = NGA } # Nagaur
+link = { eu4 = RMP v2 = RMP } # Rohilkandh
+link = { eu4 = LDK v2 = LDK } # Ladakh
+link = { eu4 = BGL v2 = BGL } # Bagelkhand
+link = { eu4 = JFN v2 = JFN } # Jaffna
+link = { eu4 = PTA v2 = PTA } # Patiala
+link = { eu4 = GHR v2 = GHR } # Garhwal
+link = { eu4 = CHD v2 = CHD } # Chanda
+link = { eu4 = NGP v2 = NGP } # Jharkhand
+link = { eu4 = JAJ v2 = JAJ } # Habsan
+link = { eu4 = TRT v2 = TRT } # Tirhut
+link = { eu4 = CMP v2 = CMP } # Rewa Kantha
+link = { eu4 = BGA v2 = BGA } # Baglana
+link = { eu4 = TPR v2 = TPR } # Tripura
+link = { eu4 = SDY v2 = SDY } # Sadiya
+link = { eu4 = BHA v2 = HND } # Bharat => India
+link = { eu4 = e_india v2 = HND } # India
+link = { eu4 = YOR v2 = AND } # Andhra
+link = { eu4 = k_andhra v2 = AND } #Andhra
+link = { eu4 = DGL v2 = DGL } # Maldives
+link = { eu4 = c_maldives v2 = DGL } # Maldives
+
+link = { eu4 = BAR v2 = BAR } # Bar
+link = { eu4 = HSA v2 = LUB } # Lubeck
+link = { eu4 = c_lubeck v2 = LUB } # Lubeck
+link = { eu4 = k_hansa v2 = LUB } # Hansa => Lubeck
+link = { eu4 = SMO v2 = SMO } # Smolensk
+link = { eu4 = d_smolensk v2 = SMO } # Smolensk
+link = { eu4 = NZH v2 = NZH } # Nizhny Novgorod
+link = { eu4 = c_nizhny_novgorod v2 = NZH } # Nizhny Novgorod
+link = { eu4 = KOJ v2 = KOJ } # Jerusalem
+link = { eu4 = k_jerusalem v2 = KOJ } # Jerusalem
+link = { eu4 = MSA v2 = MSA } # Malaya
+link = { eu4 = HIN v2 = HND } # Hindustan => India
+
+link = { eu4 = ABE v2 = ABE } # Abenaki
+link = { eu4 = APA v2 = APA } # Apache
+link = { eu4 = ASI v2 = ASI } # Assiniboine
+link = { eu4 = BLA v2 = BLA } # Blackfoot
+link = { eu4 = CAD v2 = CAD } # Caddo
+link = { eu4 = CHI v2 = CHN } # Chickasaw
+link = { eu4 = CHO v2 = CHO } # Choctaw
+link = { eu4 = CHY v2 = CHY } # Cheyenne
+link = { eu4 = COM v2 = COM } # Comanche
+link = { eu4 = FOX v2 = FOX } # Fox
+link = { eu4 = ILL v2 = ILL } # Illinewek
+link = { eu4 = LEN v2 = LEN } # Lenape
+link = { eu4 = MAH v2 = MAH } # Mahican
+link = { eu4 = MIK v2 = MIK } # Mikmaq
+link = { eu4 = MMI v2 = MMI } # Miami
+link = { eu4 = NAH v2 = NAH } # Navajo
+link = { eu4 = OJI v2 = OJI } # Ojibwa
+link = { eu4 = OSA v2 = OSA } # Osage
+link = { eu4 = OTT v2 = OTT } # Ottawa
+link = { eu4 = PAW v2 = PAW } # Pawnee
+link = { eu4 = PEQ v2 = PEQ } # Pequot
+link = { eu4 = PIM v2 = PIM } # Pima
+link = { eu4 = POT v2 = POT } # Potawatomi
+link = { eu4 = POW v2 = POW } # Powhatan
+link = { eu4 = PUE v2 = PUE } # Pueblo
+link = { eu4 = SHO v2 = SHO } # Shoshone
+link = { eu4 = SIO v2 = SIO } # Sioux
+link = { eu4 = SUS v2 = SUS } # Susquehannock
+link = { eu4 = WCR v2 = WCR } # Cree
+
+#Persian Additions
+link = { eu4 = CIR v2 = CIR } # Circassia
+link = { eu4 = GAZ v2 = GAZ } # Gazikumukh
+link = { eu4 = IME v2 = IME } # Imereti
+link = { eu4 = c_imeretia v2 = IME } # Imereti
+link = { eu4 = TAB v2 = TAB } # Tabarestan
+link = { eu4 = d_mazandaran v2 = TAB } # Tabarestan
+link = { eu4 = ORM v2 = ORM } # Hormuz
+
+#African Additions
+link = { eu4 = AIR v2 = AYR } # Air
+link = { eu4 = BON v2 = BON } # Bonoman
+link = { eu4 = DAH v2 = DAH } # Dahomey
+link = { eu4 = DGB v2 = DGB } # Dagbon
+link = { eu4 = FUL v2 = FUL } # Fulo
+link = { eu4 = JNN v2 = JNN } # Jenne
+link = { eu4 = c_djenne v2 = JNN } # Jenne
+link = { eu4 = KAN v2 = KAN } # Kano
+link = { eu4 = KBU v2 = KBU } # Kaabu
+link = { eu4 = KNG v2 = KNG } # Kong
+link = { eu4 = KTS v2 = KTS } # Katsina
+link = { eu4 = MSI v2 = MSI } # Mossi
+link = { eu4 = NUP v2 = NUP } # Nupe
+link = { eu4 = TMB v2 = TMB } # Timbuktu
+link = { eu4 = d_timbuktu v2 = TMB } # Timbuktu
+link = { eu4 = YAO v2 = YAO } # Yao
+link = { eu4 = YAT v2 = YAT } # Yatenga
+link = { eu4 = ZAF v2 = ZAF } # Zafunu
+link = { eu4 = ZZZ v2 = ZZZ } # Zazzau
+link = { eu4 = NDO v2 = NDO } # Ndongo
+
+#Middle East Additions
+link = { eu4 = ARD v2 = ARD } # Ardalan
+link = { eu4 = BHT v2 = BHT } # Bohtan
+link = { eu4 = ERE v2 = ERE } # Eretna
+link = { eu4 = k_eretnid v2 = ERE } # Eretna
+link = { eu4 = GRM v2 = GRM } # Germiyan
+link = { eu4 = k_germiyan v2 = GRM } # Germiyan
+link = { eu4 = LEB v2 = LEB } # Lebanon
+link = { eu4 = d_tripoli v2 = LEB } # Tripoli of Lebanon => Lebanon
+link = { eu4 = MAK v2 = MKA } # Makuria
+link = { eu4 = c_makuria v2 = MKA } # Makuria
+link = { eu4 = SHM v2 = SHM } # Shammar
+link = { eu4 = ARB v2 = ARA } # Arabia
+link = { eu4 = e_arabs v2 = ARA } # Arabia
+link = { eu4 = k_arabia v2 = ARA } # Arabia
+link = { eu4 = e_arabia v2 = ARA } # Arabia
+link = { eu4 = SRV v2 = SRV } # Shirvanshah
+
+#Indochina Additions
+link = { eu4 = AVA v2 = AVA } # Ava
+link = { eu4 = HSE v2 = HSE } # Hsenwi
+link = { eu4 = JOH v2 = JOH } # Johor
+link = { eu4 = KED v2 = KED } # Kedah
+link = { eu4 = LIG v2 = LIG } # Ligor
+link = { eu4 = MPH v2 = MPH } # Muan Phuang
+link = { eu4 = MYA v2 = MYA } # Mong Yang
+link = { eu4 = PRK v2 = PRK } # Perak
+
+#Siberian Tribes
+link = { eu4 = CHU v2 = CHU } # Chukchi
+link = { eu4 = HOD v2 = HOD } # Hodyntsy
+link = { eu4 = CHV v2 = CHV } # Chavchuveny
+link = { eu4 = KMC v2 = KMC } # Kamchadals
+link = { eu4 = BRT v2 = BRT } # Buryats
+
+#North American Additions
+link = { eu4 = ARP v2 = ARP } # Arapaho
+link = { eu4 = CLM v2 = CMA } # Colima
+link = { eu4 = CNK v2 = CNK } # Chinook
+link = { eu4 = COC v2 = COC } # Cocomes
+link = { eu4 = HDA v2 = HDA } # Haida
+link = { eu4 = ITZ v2 = ITZ } # Itza
+link = { eu4 = KIC v2 = KIC } # Kiche
+link = { eu4 = KIO v2 = KIO } # Kiowa
+link = { eu4 = MIX v2 = MIX } # Mixtec
+link = { eu4 = SAL v2 = SAL } # Salish
+link = { eu4 = TAR v2 = TAR } # Tarascan
+link = { eu4 = TLA v2 = TLA } # Tlapanec
+link = { eu4 = TLX v2 = TLX } # Tlaxcala
+link = { eu4 = TOT v2 = TOT } # Totonac
+link = { eu4 = WIC v2 = WIC } # Wichita
+link = { eu4 = XIU v2 = XIU } # Xiu
+
+#Indonesia Additions
+link = { eu4 = BLM v2 = BLM } # Blambangan
+link = { eu4 = BTN v2 = BTN } # Buton
+link = { eu4 = CRB v2 = CRB } # Cirebon
+link = { eu4 = DMK v2 = DMK } # Demak
+link = { eu4 = PGR v2 = PGR } # Pagarruyung
+link = { eu4 = PLB v2 = PLB } # Palembang
+link = { eu4 = PSA v2 = PSA } # Pasai
+link = { eu4 = SAK v2 = SAK } # Siak
+link = { eu4 = SUN v2 = SUN } # Sunda
+link = { eu4 = KUT v2 = KTI } # Kutai
+link = { eu4 = BNJ v2 = BNJ } # Banjar
+link = { eu4 = LFA v2 = LFA } # Lanfang
+link = { eu4 = LNO v2 = LNO } # Lanao
+link = { eu4 = LUW v2 = LUW } # Luwu
+link = { eu4 = MGD v2 = MGD } # Maguindanao
+link = { eu4 = TER v2 = TNT } # Ternate
+link = { eu4 = TID v2 = TID } # Tidore
+
+#South American Additions
+link = { eu4 = CSU v2 = CSU } # Cusco
+link = { eu4 = CCQ v2 = CCQ } # Calchaqui
+link = { eu4 = MPC v2 = MPC } # Mapuche
+link = { eu4 = MCA v2 = MCA } # Muisca
+link = { eu4 = QTO v2 = QTO } # Quito
+link = { eu4 = CJA v2 = CJA } # Cajamarca
+link = { eu4 = HJA v2 = HJA } # Huyla
+link = { eu4 = PTG v2 = PTG } # Potiguara
+link = { eu4 = TPQ v2 = TPQ } # Tupiniquim
+link = { eu4 = TPA v2 = TPA } # Tupinamba
+link = { eu4 = TUA v2 = TUA } # Tapuia
+link = { eu4 = GUA v2 = GRI } # Guarani
+link = { eu4 = CUA v2 = CUA } # Charrua
+link = { eu4 = WKA v2 = WKA } # Wanka
+link = { eu4 = CYA v2 = CYA } # Chachapoya
+link = { eu4 = CLA v2 = CLA } # Colla
+link = { eu4 = CRA v2 = CRA } # Charca
+link = { eu4 = PCJ v2 = PCJ } # Pacajes
+link = { eu4 = ARW v2 = ARW } # Arawak
+link = { eu4 = CAB v2 = CAB } # Carib
+link = { eu4 = ICM v2 = ICM } # Ichma
+
+#???
+link = { eu4 = JMN v2 = JAN } # Jan Mayen
 link = { eu4 = ROM v2 = RME } # Roman Empire
+link = { eu4 = e_roman_empire v2 = RME } # Roman Empire
 
-# All these EU4 titles just have the same V2 tag as EU4 tag.
-link = { eu4 = AFA V2 = AFA } 
-link = { eu4 = AIR V2 = AYR } 
-link = { eu4 = ALO V2 = ALO } 
-link = { eu4 = ANU V2 = ANU } 
-link = { eu4 = ARB V2 = ARB } 
-link = { eu4 = ARD V2 = ARD } 
-link = { eu4 = ARP V2 = ARP } 
-link = { eu4 = ARW V2 = ARW } 
-#
-link = { eu4 = AVA V2 = AVA } 
-link = { eu4 = BGA V2 = BGA } 
-link = { eu4 = BGL V2 = BGL } 
-link = { eu4 = BHT V2 = BHT } 
-link = { eu4 = BLM V2 = BLM } 
-link = { eu4 = BNJ V2 = BNJ } 
-link = { eu4 = BON V2 = BON } 
-link = { eu4 = BRT V2 = BRT } 
-link = { eu4 = BSH V2 = BSH } 
-link = { eu4 = BTN V2 = BTN } 
-link = { eu4 = BUK V2 = BUK } 
-link = { eu4 = CCQ V2 = CCQ } 
-link = { eu4 = CDL V2 = CDL } 
-link = { eu4 = CGS V2 = CGS } 
-link = { eu4 = CHC V2 = CHC } 
-link = { eu4 = CHD V2 = CHD } 
-link = { eu4 = CHH V2 = CHH } 
-link = { eu4 = CHR V2 = CHR } 
-link = { eu4 = CHU V2 = CHU } 
-link = { eu4 = CHV V2 = CHV } 
-link = { eu4 = CIR V2 = CIR } 
-link = { eu4 = CJA V2 = CJA } 
-link = { eu4 = CLA V2 = CLA } 
-link = { eu4 = CLM V2 = CMA } 
-link = { eu4 = CMI V2 = CMI } 
-link = { eu4 = CMP V2 = CMP } 
-link = { eu4 = CNK V2 = CNK } 
-link = { eu4 = COC V2 = COC } 
-link = { eu4 = CRA V2 = CRA } 
-link = { eu4 = CRB V2 = CRB } 
-link = { eu4 = CSU V2 = CSU } 
-link = { eu4 = CUA V2 = CUA } 
-link = { eu4 = CYA V2 = CYA } 
-link = { eu4 = CYI V2 = CYI } 
-link = { eu4 = DAH V2 = DAH } 
-link = { eu4 = DAR V2 = DAR } 
-link = { eu4 = DGB V2 = DGB } 
-link = { eu4 = DGL V2 = DGL } 
-link = { eu4 = DMK V2 = DMK } 
-link = { eu4 = EGY V2 = EGY } 
-link = { eu4 = ERE V2 = ERE } 
-link = { eu4 = FEO V2 = FEO } 
-link = { eu4 = FUL V2 = FUL } 
-link = { eu4 = FZA V2 = FZA } 
-link = { eu4 = GAZ V2 = GAZ } 
-link = { eu4 = GHD V2 = GHD } 
-link = { eu4 = GHR V2 = GHR } 
-link = { eu4 = GLE V2 = GLE } 
-link = { eu4 = GRM V2 = GRM } 
-link = { eu4 = GUA V2 = GRI } 
-link = { eu4 = GUG V2 = GUG } 
-link = { eu4 = HAD V2 = HAD } 
-link = { eu4 = HAR V2 = HAR } 
-link = { eu4 = HDA V2 = HDA } 
-link = { eu4 = HJA V2 = HJA } 
-link = { eu4 = HMI V2 = HMI } 
-link = { eu4 = HOB V2 = HOB } 
-link = { eu4 = HOD V2 = HOD } 
-link = { eu4 = HSE V2 = HSE } 
-link = { eu4 = HUA V2 = HUA } 
-link = { eu4 = IME V2 = IME } 
-link = { eu4 = ITZ V2 = ITZ } 
-link = { eu4 = JAJ V2 = JAJ } 
-link = { eu4 = JFN V2 = JFN } 
-link = { eu4 = JIN V2 = JIN } 
-link = { eu4 = JNN V2 = JNN } 
-link = { eu4 = JOH V2 = JOH } 
-link = { eu4 = KAF V2 = KAF } 
-link = { eu4 = KAM V2 = KAM } 
-link = { eu4 = KAN V2 = KAN } 
-link = { eu4 = KBA V2 = KBA } 
-link = { eu4 = KBU V2 = KBU } 
-link = { eu4 = KED V2 = KED } 
-link = { eu4 = KIC V2 = KIC } 
-link = { eu4 = KIE V2 = KIE } 
-link = { eu4 = KIO V2 = KIO } 
-link = { eu4 = KLK V2 = KLK } 
-link = { eu4 = KMC V2 = KMC } 
-link = { eu4 = KNG V2 = KNG } 
-link = { eu4 = KRC V2 = KRC } 
-link = { eu4 = KSD V2 = KSD } 
-link = { eu4 = KTS V2 = KTS } 
-link = { eu4 = KUT V2 = KTI } 
-link = { eu4 = LDK V2 = LDK } 
-link = { eu4 = LEB V2 = LEB } 
-link = { eu4 = LFA V2 = LFA } 
-link = { eu4 = LIG V2 = LIG } 
-link = { eu4 = LNG V2 = LNG } 
-link = { eu4 = LNO V2 = LNO } 
-link = { eu4 = LUW V2 = LUW } 
-link = { eu4 = MAK V2 = MKA } 
-link = { eu4 = MCA V2 = MCA } 
-link = { eu4 = MED V2 = MED } 
-link = { eu4 = MGD V2 = MGD } 
-link = { eu4 = MHX V2 = MHX } 
-link = { eu4 = MIN V2 = MIN } # Min (new)
-link = { eu4 = MIX V2 = MIX } 
-link = { eu4 = MJE V2 = MJE } 
-link = { eu4 = MJZ V2 = MJZ } 
-link = { eu4 = MLB V2 = MLB } 
-link = { eu4 = MLD V2 = MLD } 
-link = { eu4 = MPC V2 = MPC } 
-link = { eu4 = MPH V2 = MPH } 
-link = { eu4 = MRE V2 = MRE } 
-link = { eu4 = MSI V2 = MSI } 
-link = { eu4 = MYA V2 = MYA } 
-link = { eu4 = MYR V2 = MYR } 
-link = { eu4 = MZB V2 = MZB } 
-link = { eu4 = NAT V2 = NAT } 
-link = { eu4 = NDO V2 = NDO } 
-link = { eu4 = NGA V2 = NGA } 
-link = { eu4 = NGP V2 = NGP } 
-link = { eu4 = NNG V2 = NNG } 
-link = { eu4 = NUP V2 = NUP } 
-link = { eu4 = PCJ V2 = PCJ } 
-link = { eu4 = PGR V2 = PGR } 
-link = { eu4 = PIR V2 = PIR } 
-link = { eu4 = PLB V2 = PLB } 
-link = { eu4 = PRK V2 = PRK } 
-link = { eu4 = PSA V2 = PSA } 
-link = { eu4 = PTA V2 = PTA } 
-link = { eu4 = PTE V2 = PTE } 
-link = { eu4 = PTG V2 = PTG } 
-link = { eu4 = QIC V2 = QIC } 
-link = { eu4 = QTO V2 = QTO } 
-link = { eu4 = REB V2 = REB } 
-link = { eu4 = RMP V2 = RMP } 
-link = { eu4 = SAK V2 = SAK } 
-link = { eu4 = SAL V2 = SAL } 
-link = { eu4 = SDY V2 = SDY } 
-link = { eu4 = SHM V2 = SHM } 
-link = { eu4 = SHU V2 = SHU } 
-link = { eu4 = SOS V2 = SOS } 
-link = { eu4 = SRV V2 = SRV } 
-link = { eu4 = SUN V2 = SUN } 
-link = { eu4 = SYG V2 = SYG } 
-link = { eu4 = TAB V2 = TAB } 
-link = { eu4 = TAR V2 = TAR } 
-link = { eu4 = TFL V2 = TFL } 
-link = { eu4 = TGT V2 = TGT } 
-link = { eu4 = TID V2 = TID } 
-link = { eu4 = TLA V2 = TLA } 
-link = { eu4 = TLC V2 = TLC } 
-link = { eu4 = TLX V2 = TLX } 
-link = { eu4 = TMB V2 = TMB } 
-link = { eu4 = TNG V2 = TNG } 
-link = { eu4 = TOT V2 = TOT } 
-link = { eu4 = TPA V2 = TPA } 
-link = { eu4 = TPQ V2 = TPQ } 
-link = { eu4 = TPR V2 = TPR } 
-link = { eu4 = TRT V2 = TRT } 
-link = { eu4 = TUA V2 = TUA } 
-link = { eu4 = UTS V2 = UTS } 
-link = { eu4 = VAL V2 = VAL } 
-link = { eu4 = VOL V2 = VOL } 
-link = { eu4 = WAR V2 = WAR } 
-link = { eu4 = WEZ V2 = WEZ } 
-link = { eu4 = WIC V2 = WIC } 
-link = { eu4 = WKA V2 = WKA } 
-link = { eu4 = XIU V2 = XIU } 
-link = { eu4 = YAN V2 = YAN } 
-link = { eu4 = YAO V2 = YAO } 
-link = { eu4 = YAT V2 = YAT } 
-link = { eu4 = YUE V2 = YUE } 
-link = { eu4 = ZAF V2 = ZAF } 
-link = { eu4 = ZUN V2 = ZUN } 
-link = { eu4 = ZZZ V2 = ZZZ } 
+#Converter tags:
+link = { eu4 = JOM v2 = JOM } # Jomsvikings
+link = { eu4 = d_jomsvikings v2 = JOM } # Jomsvikings
+link = { eu4 = HAH v2 = HAH } # Hashshashin
+link = { eu4 = ISR v2 = ISR } # Israel
+link = { eu4 = k_israel v2 = ISR } # Israel
+#link = { eu4 = TEM v2 = XXX } # Templars => d_knights_templar
+link = { eu4 = TRL v2 = TRL } # Trapalanda
 
+## POPULAR MODS
 # Secret Denmark
-link = { eu4 = SDM v2 = SDM }
+link = { eu4 = SDM v2 = SDM } #Secret Denmark
 
 # Third Odyssey
-link = { eu4 = AEG V2 = AEG }
-link = { eu4 = CTM V2 = CTM }
-link = { eu4 = ELY V2 = ELY }
-link = { eu4 = HBN V2 = HBN }
-link = { eu4 = NHS V2 = NHS }
+link = { eu4 = AEG V2 = AEG } #Aegean
+link = { eu4 = CTM V2 = CTM } #Creta Minoris
+link = { eu4 = ELY V2 = ELY } #Elysian Empire
+link = { eu4 = HBN V2 = HBN } #Hybernica
+link = { eu4 = NHS V2 = NHS } #Elysia
 
 # Extended Vanilla
-link = { eu4 = ANV V2 = ANV }
-link = { eu4 = CRL V2 = CRL }
-link = { eu4 = ILY V2 = ILY }
-link = { eu4 = MGU V2 = MGU }
-link = { eu4 = NSE V2 = NSE }
+link = { eu4 = ANV V2 = ANV } #Angevin Empire
+link = { eu4 = CRL V2 = CRL } #Carniola
+link = { eu4 = ILY V2 = ILY } #Illyria
+link = { eu4 = MGU V2 = MGU } #Maghreb
+link = { eu4 = NSE V2 = NSE } #North Sea Empire
 
-link = { eu4 = k_afghanistan v2 = AFG }
-link = { eu4 = c_albania v2 = ALB }
-link = { eu4 = c_al_djazair v2 = ALD }
-link = { eu4 = c_anhalt v2 = ANH }
-link = { eu4 = k_armenia v2 = ARM }
-link = { eu4 = d_osterreich v2 = AUS }
-link = { eu4 = d_azerbaijan v2 = AZB }
-link = { eu4 = d_baden v2 = AZB }
-link = { eu4 = c_baden v2 = AZB }
-link = { eu4 = k_bavaria v2 = BAV }
-link = { eu4 = k_bohemia v2 = BOH }
-link = { eu4 = d_bohemia v2 = BOH }
-link = { eu4 = k_bosnia v2 = BOS }
-link = { eu4 = c_braunschweig v2 = BRA }
-link = { eu4 = c_bremen v2 = BRE }
-link = { eu4 = c_bukhara v2 = BUK }
-link = { eu4 = k_bulgaria v2 = BUL }
-link = { eu4 = d_bulgar v2 = BUL }
-link = { eu4 = e_byzantium v2 = BYZ }
-link = { eu4 = d_catalonia v2 = CAT }
-link = { eu4 = d_crimea v2 = CRI }
-link = { eu4 = k_croatia v2 = CRO }
-link = { eu4 = d_croatia v2 = CRO }
-link = { eu4 = k_cyprus v2 = CYP }
-link = { eu4 = k_denmark v2 = DEN }
-link = { eu4 = c_danzig v2 = DZG }
-link = { eu4 = k_egypt v2 = EGY }
-link = { eu4 = e_britannia v2 = ENG }
-link = { eu4 = d_estonia v2 = EST }
-link = { eu4 = e_abyssinia v2 = ETH }
-link = { eu4 = k_abyssinia v2 = ETH }
-link = { eu4 = k_finland v2 = FIN }
-link = { eu4 = d_flanders v2 = FLA }
-link = { eu4 = e_france v2 = FRA }
-link = { eu4 = k_france v2 = FRA }
-link = { eu4 = k_georgia v2 = GEO }
-link = { eu4 = e_germany v2 = GER }
-link = { eu4 = k_germany v2 = GER }
-link = { eu4 = k_byzantium v2 = GRE }
-link = { eu4 = c_gwalior v2 = GWA }
-link = { eu4 = c_hamburg v2 = HAM }
-link = { eu4 = e_india v2 = HND }
-link = { eu4 = d_holstein v2 = HOL }
-link = { eu4 = k_hungary v2 = HUN }
-link = { eu4 = k_ireland v2 = IRE }
-link = { eu4 = e_italy v2 = ITA }
-link = { eu4 = k_italy v2 = ITA }
-link = { eu4 = c_kalat v2 = KAL }
-link = { eu4 = k_khiva v2 = KHI }
-link = { eu4 = d_khiva v2 = KHI }
-link = { eu4 = c_khiva v2 = KHI }
-link = { eu4 = d_krakow v2 = KRA }
-link = { eu4 = c_kutch v2 = KUT }
-link = { eu4 = k_lithuania v2 = LIT }
-link = { eu4 = d_lombardia v2 = LOM }
-link = { eu4 = c_lubeck v2 = LUB }
-link = { eu4 = c_lucca v2 = LUC }
-link = { eu4 = d_luxembourg v2 = LUX }
-link = { eu4 = c_luxembourg v2 = LUX }
-link = { eu4 = c_makran v2 = MAK }
-link = { eu4 = d_mecklemburg v2 = MEC }
-link = { eu4 = e_mongol_empire v2 = MGL }
-link = { eu4 = d_modena v2 = MOD }
-link = { eu4 = c_modena v2 = MOD }
-link = { eu4 = c_nassau v2 = NAS }
-link = { eu4 = k_norway v2 = NOR }
-link = { eu4 = c_oldenburg v2 = OLD }
-link = { eu4 = d_oman v2 = OMA }
-link = { eu4 = k_orissa v2 = ORI }
-link = { eu4 = k_punjab v2 = PAN }
-link = { eu4 = k_papal_state v2 = PAP }
-link = { eu4 = c_parma v2 = PAR }
-link = { eu4 = e_persia v2 = PER }
-link = { eu4 = k_persia v2 = PER }
-link = { eu4 = k_poland v2 = POL }
-link = { eu4 = k_portugal v2 = POR }
-link = { eu4 = d_prussia v2 = PRU }
-link = { eu4 = romania v2 = ROM }
-link = { eu4 = e_russia v2 = RUS }
-link = { eu4 = k_rus v2 = RUS }
-link = { eu4 = k_ruthenia v2 = RUT }
-link = { eu4 = d_sardinia v2 = SAR }
-link = { eu4 = k_saxony v2 = SAX }
-link = { eu4 = d_saxony v2 = SAX }
-link = { eu4 = e_scandinavia v2 = SCA }
-link = { eu4 = k_scotland v2 = SCO }
-link = { eu4 = k_serbia v2 = SER }
-link = { eu4 = shimla v2 = SHI }
-link = { eu4 = siam v2 = SIA }
-link = { eu4 = k_sicily v2 = SIC }
-link = { eu4 = siebenburgen v2 = SIE }
-link = { eu4 = sikkim v2 = SIK }
-link = { eu4 = k_sindh v2 = SIN }
-link = { eu4 = d_slovakia v2 = SLV }
-link = { eu4 = e_spain v2 = SPA }
-link = { eu4 = k_sweden v2 = SWE }
-link = { eu4 = d_sweden v2 = SWE }
-link = { eu4 = d_tripoli v2 = TRI }
-link = { eu4 = c_tripoli v2 = TRI }
-link = { eu4 = d_tunis v2 = TUN }
-link = { eu4 = c_tunis v2 = TUN }
-link = { eu4 = k_ottoman v2 = TUR }
-link = { eu4 = k_venice v2 = VEN }
-link = { eu4 = d_venice v2 = VEN }
-link = { eu4 = d_wallachia v2 = WAL }
-link = { eu4 = c_wurttemberg v2 = WUR }
-link = { eu4 = secretdenmark v2 = SDM }
-link = { eu4 = TRL v2 = TRL } #Trapalandia
+##VICTORIA2 MAIN NEW COUNTRIES (added mostly through mods)
+link = { eu4 = TEX v2 = TEX } #Texas
+link = { eu4 = BEL v2 = BEL } #Belgium
+link = { eu4 = URU v2 = URU } #Uruguay
+link = { eu4 = BOL v2 = BOL } #Bolivia
+link = { eu4 = ECU v2 = ECU } #Ecuador
+link = { eu4 = SAF v2 = SAF } #South Africa
+link = { eu4 = PHI v2 = PHI } #Philippines
+link = { eu4 = NZL v2 = NZL } #New Zealand
+link = { eu4 = YUG v2 = YUG } #Yugoslavia
+link = { eu4 = BYE v2 = BYE } #Belarus
+link = { eu4 = SI2 v2 = SIC } #Two Sicilies
+link = { eu4 = d_azerbaijan v2 = AZB } #Azerbaijan
+link = { eu4 = KUK v2 = KUK } #Austria-Hungary
+link = { eu4 = CZH v2 = CZH } #Czechoslovakia
+link = { eu4 = c_schlesvig v2 = SCH } #Schleswig
+link = { eu4 = e_mongol_empire v2 = MGL } #Mongolia
 }
