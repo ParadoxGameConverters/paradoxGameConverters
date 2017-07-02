@@ -126,6 +126,206 @@ political_decisions = {
 			factor = 1
 		}
 	}
+	the_post_colonialism = { #This decision adds cores to those post-colonial countries
+		potential = {
+			ai = no #Better let the player decide if they are willing to, as it may be not related to their campaign
+			NOT = {
+				has_global_flag = der_postcolonialism #To avoid having it spammed
+			}
+			NOT = { year = 1862 } #To avoid having that decision check forever
+		}
+		allow = {
+			ai = no
+		}
+
+		effect = {
+			ENG_58 = {	#Quebec
+				limit = { is_culture = french }
+				add_core = QUE
+			}
+			ENG_13 = {	#Columbia
+				limit = { is_culture_group = british }
+				add_core = COL
+			}
+			ENG_74 = { add_core = NEW } #Newfoundland
+			ENG_13 = { add_core = CAN } #Canada
+			ENG_22 = { add_core = CAN }
+			ENG_30 = { add_core = CAN }
+			ENG_36 = { add_core = CAN }
+			ENG_43 = { add_core = CAN }
+			ENG_58 = { add_core = CAN }
+			ENG_6 = { add_core = CAN }
+			ENG_68 = { add_core = CAN }
+			ENG_74 = { add_core = CAN }
+			ENG_9 = { add_core = CAN }
+			USA_1 = { add_core = CAN }
+			USA_247 = {	#New England
+				limit = { is_culture_group = british }
+				add_core = NEN
+			}
+			ENG_30 = { add_core = MAN } #Manhattan
+			TEX_132 = { add_core = TEX } #Texas
+			USA_118 = { add_core = USA } #USA
+			USA_121 = { add_core = USA }
+			USA_124 = { add_core = USA }
+			USA_126 = { add_core = USA }
+			USA_129 = { add_core = USA }
+			USA_139 = { add_core = USA }
+			USA_144 = { add_core = USA }
+			USA_148 = { add_core = USA }
+			USA_151 = { add_core = USA }
+			USA_158 = { add_core = USA }
+			USA_162 = { add_core = USA }
+			USA_168 = { add_core = USA }
+			USA_170 = { add_core = USA }
+			USA_176 = { add_core = USA }
+			USA_178 = { add_core = USA }
+			USA_185 = { add_core = USA }
+			USA_188 = { add_core = USA }
+			USA_194 = { add_core = USA }
+			USA_196 = { add_core = USA }
+			USA_200 = { add_core = USA }
+			USA_201 = { add_core = USA }
+			USA_211 = { add_core = USA }
+			USA_218 = { add_core = USA }
+			USA_219 = { add_core = USA }
+			USA_220 = { add_core = USA }
+			USA_223 = { add_core = USA }
+			USA_231 = { add_core = USA }
+			USA_232 = { add_core = USA }
+			USA_243 = { add_core = USA }
+			USA_247 = { add_core = USA }
+			USA_2556 = { add_core = USA }
+			USA_129 = { add_core = CSA } #Dixieland for the ACW
+			TEX_132 = { add_core = CSA }
+			USA_139 = { add_core = CSA }
+			USA_144 = { add_core = CSA }
+			USA_148 = { add_core = CSA }
+			USA_185 = { add_core = CSA }
+			USA_211 = { add_core = CSA }
+			USA_188 = { add_core = CSA }
+			USA_2566 = { add_core = CSA }
+			USA_201 = { add_core = CSA }
+			USA_196 = { add_core = CSA }
+			USA_194 = { add_core = CSA }
+			USA_200 = { add_core = CSA }
+			MEX_85 = { add_core = CAL } #California
+			SPA_2209 = { add_core = CUB } #Cuba
+			HAI_2213 = { #Haiti
+				limit = { NOT = { is_culture_group = spanish } }
+				add_core = HAI
+			}
+			HAI_2213 = { #Santo Domingo
+				limit = { is_culture_group = spanish }
+				add_core = DOM
+			}
+			UCA_2201 = { #Costa Rica
+				add_core = COS
+				add_core = UCA
+			}
+			UCA_2191 = { #Honduras & El Salvador
+				add_core = HON
+				add_core = ELS
+				add_core = UCA
+			}
+			CLM_1723 = { #Panama
+				add_core = PNM
+				add_core = UCA
+			}
+			ECU_2279 = { add_core = ECU } #Ecuador
+			UCA_2186 = { #Guatemala
+				add_core = GUA
+				add_core = UCA
+			}
+			UCA_2197 = { #Nicaragua
+				add_core = NIC
+				add_core = UCA
+			}
+			MEX_2138 = { add_core = MEX } #Mexico
+			MEX_2142 = { add_core = MEX }
+			MEX_2146 = { add_core = MEX }
+			MEX_2151 = { add_core = MEX }
+			MEX_2161 = { add_core = MEX }
+			MEX_2162 = { add_core = MEX }
+			MEX_2170 = { add_core = MEX }
+			MEX_2173 = { add_core = MEX }
+			MEX_2183 = { add_core = MEX }
+			BRZ_2306 = { add_core = BRZ } #Brazil
+			BRZ_2401 = { add_core = BRZ }
+			BRZ_2408 = { add_core = BRZ }
+			BRZ_2410 = { add_core = BRZ }
+			BRZ_2416 = { add_core = BRZ }
+			BRZ_2427 = { add_core = BRZ }
+			BRZ_2428 = { add_core = BRZ }
+			BRZ_2439 = { add_core = BRZ }
+			BRZ_2446 = { add_core = BRZ }
+			BRZ_2447 = { add_core = BRZ }
+			BRZ_2462 = { add_core = BRZ }
+			BRZ_2467 = { add_core = BRZ }
+			PEU_2289 = { add_core = PEU } #Peru
+			PEU_2291 = { add_core = PEU }
+			PEU_2300 = { add_core = PEU }
+			PEU_2303 = { add_core = PEU }
+			PEU_2289 = { add_core = PEU }
+			ARG_2355 = { add_core = ARG } #Argentina
+			ARG_2357 = { add_core = ARG }
+			ARG_2363 = { add_core = ARG }
+			ARG_2368 = { add_core = ARG }
+			ARG_2377 = { add_core = ARG }
+			ARG_2384 = { add_core = ARG }
+			ARG_2387 = { add_core = ARG }
+			ARG_2391 = { add_core = ARG }
+			ARG_2393 = { add_core = ARG }
+			ARG_2398 = { add_core = ARG }
+			PRG_2338 = { add_core = PRG } #Paraguay
+			PRG_2343 = { add_core = PRG }
+			URU_2344 = { add_core = URU } #Uruguay
+			BOL_2317 = { add_core = BOL } #Bolivia
+			BOL_2321 = { add_core = BOL }
+			BOL_2314 = { add_core = BOL }
+			BOL_2305 = { add_core = BOL }
+			CLM_2247 = { add_core = CLM } #Colombia
+			CLM_2251 = { add_core = CLM }
+			CLM_2259 = { add_core = CLM }
+			CLM_2262 = { add_core = CLM }
+			VNZ_2234 = { add_core = VNZ } #Venezuela
+			VNZ_2265 = { add_core = VNZ }
+			VNZ_2278 = { add_core = VNZ }
+			AST_2528 = { add_core = AST } #Australia
+			AST_2527 = { add_core = AST }
+			AST_2454 = { add_core = AST }
+			AST_2244 = { add_core = AST }
+			SPA_1459 = { add_core = PHI } #Philippines
+			SPA_1455 = { add_core = PHI }
+			SPA_1463 = { add_core = PHI }
+			ENG_2509 = { add_core = NZL } #New Zealand
+			HAW_658 = { add_core = HAW } #Hawaii
+			MAD_2121 = { add_core = MAD } #Madagascar
+			MAD_2117 = { add_core = MAD }
+			ENG_2087 = { add_core = SAF } #South Africa
+			ENG_2092 = { add_core = SAF }
+			ENG_2096 = { add_core = SAF }
+			ORA_2103 = { add_core = SAF }
+			ZUL_2113 = { add_core = SAF }
+			TRN_2108 = { add_core = SAF }
+			ENG_2068 = { add_core = RHO } #Rhodesia
+			ENG_1887 = { add_core = LIB } #Liberia
+			BEL_1977 = { add_core = CNG } #Congo
+			BEL_1984 = { add_core = CNG }
+			BEL_1987 = { add_core = CNG }
+			BEL_1990 = { add_core = CNG }
+			BEL_1992 = { add_core = CNG }
+			3246 = { add_core = JMN } #Jan Mayen
+			EGY_921 = { add_core = ISR } #Israel
+			CHI_1476 = { add_core = TPG } #Taiping Heavenly Kingdom (for event)
+			
+			set_global_flag = der_postcolonialism
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
 	form_china = {
 		news = yes
 		news_desc_long = "form_china_NEWS_LONG"
@@ -879,192 +1079,6 @@ political_decisions = {
 			
 			change_tag = MAD
 		}
-		ai_will_do = {
-			factor = 1
-		}
-	}
-	the_post_colonialism = {
-		potential = {
-			is_greater_power = yes
-			ai = no
-			NOT = {
-				has_global_flag = der_postcolonialism #This is just to add post-colonial in-game
-			}
-		}
-		allow = {
-			ai = no		
-		}
-
-		effect = {
-			ENG_58 = {	#Quebec
-				limit = { is_culture = french }
-				add_core = QUE
-			}
-			ENG_13 = {	#Columbia
-				limit = { is_culture_group = british }
-				add_core = COL
-			}
-			ENG_74 = { add_core = NEW } #Newfoundland
-			ENG_13 = { add_core = CAN } #Canada
-			ENG_22 = { add_core = CAN }
-			ENG_30 = { add_core = CAN }
-			ENG_36 = { add_core = CAN }
-			ENG_43 = { add_core = CAN }
-			ENG_58 = { add_core = CAN }
-			ENG_6 = { add_core = CAN }
-			ENG_68 = { add_core = CAN }
-			ENG_74 = { add_core = CAN }
-			ENG_9 = { add_core = CAN }
-			USA_1 = { add_core = CAN }
-			USA_247 = {	#New England
-				limit = { is_culture_group = british }
-				add_core = NEN
-			}
-			ENG_30 = { add_core = MAN } #Manhattan
-			TEX_132 = { add_core = TEX } #Texas
-			USA_118 = { add_core = USA } #USA
-			USA_121 = { add_core = USA }
-			USA_124 = { add_core = USA }
-			USA_126 = { add_core = USA }
-			USA_129 = { add_core = USA }
-			USA_139 = { add_core = USA }
-			USA_144 = { add_core = USA }
-			USA_148 = { add_core = USA }
-			USA_151 = { add_core = USA }
-			USA_158 = { add_core = USA }
-			USA_162 = { add_core = USA }
-			USA_168 = { add_core = USA }
-			USA_170 = { add_core = USA }
-			USA_176 = { add_core = USA }
-			USA_178 = { add_core = USA }
-			USA_185 = { add_core = USA }
-			USA_188 = { add_core = USA }
-			USA_194 = { add_core = USA }
-			USA_196 = { add_core = USA }
-			USA_200 = { add_core = USA }
-			USA_201 = { add_core = USA }
-			USA_211 = { add_core = USA }
-			USA_218 = { add_core = USA }
-			USA_219 = { add_core = USA }
-			USA_220 = { add_core = USA }
-			USA_223 = { add_core = USA }
-			USA_231 = { add_core = USA }
-			USA_232 = { add_core = USA }
-			USA_243 = { add_core = USA }
-			USA_247 = { add_core = USA }
-			USA_2556 = { add_core = USA }
-			MEX_85 = { add_core = CAL } #California
-			SPA_2209 = { add_core = CUB } #Cuba
-			HAI_2213 = { #Haiti
-				limit = { NOT = { is_culture_group = spanish } }
-				add_core = HAI
-			}
-			HAI_2213 = { #Santo Domingo
-				limit = { is_culture_group = spanish }
-				add_core = DOM
-			}
-			UCA_2201 = { #Costa Rica
-				add_core = COS
-				add_core = UCA
-			}
-			UCA_2191 = { #Honduras & El Salvador
-				add_core = HON
-				add_core = ELS
-				add_core = UCA
-			}
-			CLM_1723 = { #Panama
-				add_core = PNM
-				add_core = UCA
-			}
-			ECU_2279 = { add_core = ECU } #Ecuador
-			UCA_2186 = { #Guatemala
-				add_core = GUA
-				add_core = UCA
-			}
-			UCA_2197 = { #Nicaragua
-				add_core = NIC
-				add_core = UCA
-			}
-			MEX_2138 = { add_core = MEX } #Mexico
-			MEX_2142 = { add_core = MEX }
-			MEX_2146 = { add_core = MEX }
-			MEX_2151 = { add_core = MEX }
-			MEX_2161 = { add_core = MEX }
-			MEX_2162 = { add_core = MEX }
-			MEX_2170 = { add_core = MEX }
-			MEX_2173 = { add_core = MEX }
-			MEX_2183 = { add_core = MEX }
-			BRZ_2306 = { add_core = BRZ } #Brazil
-			BRZ_2401 = { add_core = BRZ }
-			BRZ_2408 = { add_core = BRZ }
-			BRZ_2410 = { add_core = BRZ }
-			BRZ_2416 = { add_core = BRZ }
-			BRZ_2427 = { add_core = BRZ }
-			BRZ_2428 = { add_core = BRZ }
-			BRZ_2439 = { add_core = BRZ }
-			BRZ_2446 = { add_core = BRZ }
-			BRZ_2447 = { add_core = BRZ }
-			BRZ_2462 = { add_core = BRZ }
-			BRZ_2467 = { add_core = BRZ }
-			PEU_2289 = { add_core = PEU } #Peru
-			PEU_2291 = { add_core = PEU }
-			PEU_2300 = { add_core = PEU }
-			PEU_2303 = { add_core = PEU }
-			PEU_2289 = { add_core = PEU }
-			ARG_2355 = { add_core = ARG } #Argentina
-			ARG_2357 = { add_core = ARG }
-			ARG_2363 = { add_core = ARG }
-			ARG_2368 = { add_core = ARG }
-			ARG_2377 = { add_core = ARG }
-			ARG_2384 = { add_core = ARG }
-			ARG_2387 = { add_core = ARG }
-			ARG_2391 = { add_core = ARG }
-			ARG_2393 = { add_core = ARG }
-			ARG_2398 = { add_core = ARG }
-			PRG_2338 = { add_core = PRG } #Paraguay
-			PRG_2343 = { add_core = PRG }
-			URU_2344 = { add_core = URU } #Uruguay
-			BOL_2317 = { add_core = BOL } #Bolivia
-			BOL_2321 = { add_core = BOL }
-			BOL_2314 = { add_core = BOL }
-			BOL_2305 = { add_core = BOL }
-			CLM_2247 = { add_core = CLM } #Colombia
-			CLM_2251 = { add_core = CLM }
-			CLM_2259 = { add_core = CLM }
-			CLM_2262 = { add_core = CLM }
-			VNZ_2234 = { add_core = VNZ } #Venezuela
-			VNZ_2265 = { add_core = VNZ }
-			VNZ_2278 = { add_core = VNZ }
-			AST_2528 = { add_core = AST } #Australia
-			AST_2527 = { add_core = AST }
-			AST_2454 = { add_core = AST }
-			AST_2244 = { add_core = AST }
-			SPA_1459 = { add_core = PHI } #Philippines
-			SPA_1455 = { add_core = PHI }
-			SPA_1463 = { add_core = PHI }
-			ENG_2509 = { add_core = NZL } #New Zealand
-			HAW_658 = { add_core = HAW } #Hawaii
-			MAD_2121 = { add_core = MAD } #Madagascar
-			MAD_2117 = { add_core = MAD }
-			ENG_2087 = { add_core = SAF } #South Africa
-			ENG_2092 = { add_core = SAF }
-			ENG_2096 = { add_core = SAF }
-			ORA_2103 = { add_core = SAF }
-			ZUL_2113 = { add_core = SAF }
-			TRN_2108 = { add_core = SAF }
-			ENG_2068 = { add_core = RHO } #Rhodesia
-			ENG_1887 = { add_core = LIB } #Liberia
-			BEL_1977 = { add_core = CNG } #Congo
-			BEL_1984 = { add_core = CNG }
-			BEL_1987 = { add_core = CNG }
-			BEL_1990 = { add_core = CNG }
-			BEL_1992 = { add_core = CNG }
-			3246 = { add_core = JMN } #Jan Mayen
-			EGY_921 = { add_core = ISR } #Israel
-			
-			set_global_flag = der_postcolonialism
-		}
-		
 		ai_will_do = {
 			factor = 1
 		}
