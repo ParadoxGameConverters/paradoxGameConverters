@@ -89,6 +89,7 @@ V2World::V2World(const EU4World& sourceWorld)
 	setupPops(sourceWorld);
 	addUnions();
 	convertArmies(sourceWorld);
+	checkForCivilizedNations();
 
 	output();
 }
@@ -428,7 +429,6 @@ void V2World::convertCountries(const EU4World& sourceWorld)
 	convertNationalValues();
 	convertPrestige();
 	addAllPotentialCountries();
-	checkForCivilizedNations();
 }
 
 
@@ -589,20 +589,59 @@ void V2World::addAllPotentialCountries()
 
 void V2World::checkForCivilizedNations()
 {
-	unsigned int numCivilizedNations = 0;
+	unsigned int numPotentialGPs = 0;
 	for (auto country : countries)
 	{
-		if (country.second->isCivilized())
+		auto states = country.second->getStates();
+		if ((country.second->isCivilized())&&(states.size() > 1))
 		{
-			numCivilizedNations++;
+			numPotentialGPs++;
 		}
 	}
 
-	if (numCivilizedNations < 8)
+	if (numPotentialGPs < 8)
 	{
-		LOG(LogLevel::Warning) << "There were only " << numCivilizedNations << " civilized nations. You should mod the number of Great Powers to avoid crashes.";
+		LOG(LogLevel::Info) << "There were only " << numPotentialGPs << " civilized nations with more than 1 state. Attempting to editing defines.lua to reduce the number of great powers.";
+		editDefines(numPotentialGPs);
 	}
 }
+
+void V2World::editDefines(int numCivilisedNations)
+{
+	string greatNationsCount = "8";
+	LOG(LogLevel::Info) << "Parsing defines.lua";
+	Object* definesObj = parser_UTF8::doParseFile("blankmod/output/common/defines.lua");
+	if (definesObj == nullptr)
+	{
+		LOG(LogLevel::Error) << "Could not parse file defines.lua";
+		exit(-1);
+	}
+	vector<Object*> newDefinesObj = definesObj->getValue("defines");
+	vector<Object*> countryObj = newDefinesObj[0]->getValue("country");
+	if (countryObj.size() > 0)
+	{
+		vector<Object*> countryLeaves = countryObj[0]->getLeaves();
+		for (unsigned int j = 0; j < countryLeaves.size(); j++)
+		{
+			string keyCoun = countryLeaves[j]->getKey();						// the key
+
+			if (keyCoun == "GREAT_NATIONS_COUNT")
+			{
+				greatNationsCount = numCivilisedNations;
+				countryLeaves[j]->setValue(greatNationsCount);					// sets the number of GPs = number of civilised nations
+			}
+			else
+			{
+				continue;
+			}
+		}
+	}
+	else
+	{
+		LOG(LogLevel::Warning) << "Invalid file structure for defines.lua.  You should edit this file yourself in [yourmod]/common";
+	}
+}
+
 
 struct MTo1ProvinceComp
 {
@@ -1277,7 +1316,7 @@ void V2World::allocateFactories(const EU4World& sourceWorld)
 		}
 		/*if ((itr)->second->getTechGroup() != "western")
 		{
-			continue;
+			continue;  to do: please replace this check.  The way tech conversion works now it's unlikely to come up but still.
 		}*/
 
 		double admTech = (itr)->second->getAdmTech();
@@ -1754,7 +1793,7 @@ void V2World::output() const
 	for (map<int, V2Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
 		i->second->output();
-		LOG(LogLevel::Debug) << "province " << i->second->getName() << " have " << i->second->getNavalBaseLevel() << " naval base";	//test
+		LOG(LogLevel::Debug) << "province " << i->second->getName() << " has " << i->second->getNavalBaseLevel() << " naval base";	//test
 	}
 	LOG(LogLevel::Debug) << "Writing countries";
 	for (map<string, V2Country*>::const_iterator itr = countries.begin(); itr != countries.end(); itr++)

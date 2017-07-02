@@ -93,7 +93,8 @@ class V2Country
 		void								setNationalValue(string NV)				{ nationalValue = NV; }
 		void								isANewCountry(void)							{ newCountry = true; }
 
-		map<int, V2Province*>		getProvinces() const { return provinces; }
+		map<int, V2Province*>			getProvinces() const { return provinces; }
+		vector<V2State*>				getStates() const { return states; }
 		string							getTag() const { return tag; }
 		bool								isCivilized() const { return civilized; }
 		string							getPrimaryCulture() const { return primaryCulture; }

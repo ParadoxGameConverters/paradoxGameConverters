@@ -82,6 +82,7 @@ class V2World
 		void convertPrestige();
 		void addAllPotentialCountries();
 		void checkForCivilizedNations();
+		void editDefines(int numCivilisedNations);
 
 		void convertProvinces(const EU4World& sourceWorld);
 		vector<V2Demographic> determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, EU4Country* oldOwner, int destNum, double provPopRatio);

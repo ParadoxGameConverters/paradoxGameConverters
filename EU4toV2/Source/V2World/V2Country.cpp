@@ -1438,6 +1438,7 @@ void V2Country::addRailroadtoCapitalState()
 
 
 void V2Country::convertUncivReforms(int techGroupAlgorithm, double topTech)
+// to do: clean this up.  See code review for commit 4fb8a7e
 {
 	switch (techGroupAlgorithm)
 	{
