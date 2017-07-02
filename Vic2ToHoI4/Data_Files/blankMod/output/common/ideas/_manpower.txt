@@ -34,6 +34,11 @@ ideas = {
 
 			ai_will_do = {
    				factor = 1
+
+   				modifier = {
+					factor = 60 # being disarmed is bad in a wargame yo
+					has_idea = disarmed_nation 
+				}
 			}
 
 			modifier = {
