@@ -326,6 +326,33 @@ political_decisions = {
 			factor = 1
 		}
 	}
+	
+	taiping_and_csa = { #creates Taiping and the CSA to prevent bugs in converted games
+		potential = {
+			is_greater_power = yes
+			ai = yes
+			NOT = {
+				has_global_flag = taiping_and_csa
+			}
+		}
+		allow = {
+			ai = yes		
+		}
+
+		effect = {
+			USA_129 = { add_core = CSA } #Dixieland for the ACW
+			
+			CHI_1476 = { add_core = TPG } #Taiping Heavenly Kingdom (for event)
+			
+			set_global_flag = taiping_and_csa
+		}
+		ai_will_do = {
+			factor = 1
+		}
+			
+	}
+
+	
 	form_china = {
 		news = yes
 		news_desc_long = "form_china_NEWS_LONG"
