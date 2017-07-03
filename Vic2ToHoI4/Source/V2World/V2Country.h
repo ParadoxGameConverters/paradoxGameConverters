@@ -153,8 +153,8 @@ private:
 	unsigned	int rulingPartyID;
 	vector<unsigned int> activePartyIDs;
 
-	string dominionName;
-	string dominionAdjective;
+	string domainName;
+	string domainAdjective;
 	map<string, string> namesByLanguage;
 	map<string, string> adjectivesByLanguage;
 

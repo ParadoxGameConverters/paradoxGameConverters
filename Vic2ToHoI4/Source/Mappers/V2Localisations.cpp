@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -122,6 +122,27 @@ string V2Localisations::replaceBadCharacters(string localisation)
 	return localisation;
 }
 
+void V2Localisations::ActuallyUpdateDomainCountry(const string & tag, const string & domainName)
+{
+	const auto KeyToLocalisationsMappings = localisations.find(tag);
+	if (KeyToLocalisationsMappings == localisations.end())
+	{
+		return;
+	}
+	auto nameInAllLanguages = KeyToLocalisationsMappings->second;
+
+	for (auto nameInLanguage : nameInAllLanguages)
+	{
+		string updatedName = nameInLanguage.second;
+		size_t regionPos = updatedName.find("$REGION$");
+		if (regionPos != string::npos)
+		{
+			updatedName.replace(regionPos, 8, domainName);
+			KeyToLocalisationsMappings->second[nameInLanguage.first] = updatedName;
+		}
+	}
+	return;
+}
 
 const string V2Localisations::ActuallyGetTextInLanguage(const string& key, const string& language) const
 {

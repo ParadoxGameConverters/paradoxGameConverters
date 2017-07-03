@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -44,6 +44,10 @@ class V2Localisations
 		{
 			return getInstance()->ActuallyGetTextInEachLanguage(key);
 		}
+		static void UpdateDomainCountry(const string& tag, const string& dominionName)
+		{
+			return getInstance()->ActuallyUpdateDomainCountry(tag, dominionName);
+		}
 
 	private:
 		static V2Localisations* instance;
@@ -65,6 +69,7 @@ class V2Localisations
 
 		const string ActuallyGetTextInLanguage(const string& key, const string& language) const;
 		const map<string, string>& ActuallyGetTextInEachLanguage(const string& key) const;
+		void ActuallyUpdateDomainCountry(const string & tag, const string & dominionName);
 
 		typedef map<string, string> LanguageToLocalisationMap;
 		typedef unordered_map<string, LanguageToLocalisationMap> KeyToLocalisationsMap;
