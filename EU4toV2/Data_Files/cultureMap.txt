@@ -67,6 +67,7 @@ link = { v2 = australian eu4 = english region = australia_region }
 link = { v2 = texan eu4 = english eu4 = american region = central_america_region }
 link = { v2 = texan eu4 = english eu4 = american region = mexico_region }
 link = { v2 = texan eu4 = english eu4 = american region = california_region }
+link = { v2 = yankee eu4 = american }
 link = { v2 = english eu4 = english }
 link = { v2 = scottish eu4 = scottish eu4 = highland_scottish }
 link = { v2 = anglo_saxon eu4 = anglo_saxon }
