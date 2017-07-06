@@ -27,7 +27,7 @@ THE SOFTWARE. */
 EU4Relations::EU4Relations(Object* obj) {
 	tag = obj->getKey();
 
-	vector<Object*> valueObj = obj->getValue("value");	// the object holding the relationship value
+	vector<Object*> valueObj = obj->getValue("value");	// the object holding the relationship value in old saves
 	(valueObj.size() > 0) ? value = atoi( valueObj[0]->getLeaf().c_str() ) : value = 0;
 
 	vector<Object*> maObj = obj->getValue("military_access");	// the object holding the military access status
@@ -41,4 +41,8 @@ EU4Relations::EU4Relations(Object* obj) {
 
 	vector<Object*> attitudeObj = obj->getValue("attitude");	//the object holding the diplomatic attitude
 	(attitudeObj.size() > 0) ? attitude = attitudeObj[0]->getLeaf() : attitude = "attitude_neutral";
+
+	vector<Object*> sumObj = obj->getValue("cached_sum");	// the object holding the relationship value in newer saves
+	(sumObj.size() > 0) ? value = atoi(sumObj[0]->getLeaf().c_str()) : value = 0;
+
 }
