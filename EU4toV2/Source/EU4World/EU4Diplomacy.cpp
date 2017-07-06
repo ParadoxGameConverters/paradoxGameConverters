@@ -38,7 +38,7 @@ EU4Agreement::EU4Agreement(Object *obj)
 		{
 			type = "union";
 		}
-		if (type == "client_vassal")
+		if ((type == "client_vassal") || (type == "daimyo_vassal"))
 		{
 			type = "vassal";
 		}
