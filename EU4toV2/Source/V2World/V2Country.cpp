@@ -331,6 +331,32 @@ void V2Country::output() const
 			fprintf(output, "is_releasable_vassal=no\n");
 		}
 		fprintf(output, "\n");
+		fprintf(output, "# Social Reforms\n");
+		fprintf(output, "wage_reform = no_minimum_wage\n");
+		fprintf(output, "work_hours = no_work_hour_limit\n");
+		fprintf(output, "safety_regulations = no_safety\n");
+		fprintf(output, "health_care = no_health_care\n");
+		fprintf(output, "unemployment_subsidies = no_subsidies\n");
+		fprintf(output, "pensions = no_pensions\n");
+		fprintf(output, "school_reforms = no_schools\n");
+
+		if (reforms != NULL)
+		{
+			reforms->output(output);
+		}
+		else
+		{
+			fprintf(output, "# Political Reforms\n");
+			fprintf(output, "slavery=yes_slavery\n");
+			fprintf(output, "vote_franschise=none_voting\n");
+			fprintf(output, "upper_house_composition=appointed\n");
+			fprintf(output, "voting_system=jefferson_method\n");
+			fprintf(output, "public_meetings=yes_meeting\n");
+			fprintf(output, "press_rights=censored_press\n");
+			fprintf(output, "trade_unions=no_trade_unions\n");
+			fprintf(output, "political_parties=underground_parties\n");
+		}
+		fprintf(output, "\n");
 		fprintf(output, "ruling_party=%s\n", rulingParty.c_str());
 		fprintf(output, "upper_house=\n");
 		fprintf(output, "{\n");
@@ -369,32 +395,7 @@ void V2Country::output() const
 			fprintf(output, "}\n");
 		}
 
-		fprintf(output, "\n");
-		fprintf(output, "# Social Reforms\n");
-		fprintf(output, "wage_reform = no_minimum_wage\n");
-		fprintf(output, "work_hours = no_work_hour_limit\n");
-		fprintf(output, "safety_regulations = no_safety\n");
-		fprintf(output, "health_care = no_health_care\n");
-		fprintf(output, "unemployment_subsidies = no_subsidies\n");
-		fprintf(output, "pensions = no_pensions\n");
-		fprintf(output, "school_reforms = no_schools\n");
-
-		if (reforms != NULL)
-		{
-			reforms->output(output);
-		}
-		else
-		{
-			fprintf(output, "# Political Reforms\n");
-			fprintf(output, "slavery=yes_slavery\n");
-			fprintf(output, "vote_franschise=none_voting\n");
-			fprintf(output, "upper_house_composition=appointed\n");
-			fprintf(output, "voting_system=jefferson_method\n");
-			fprintf(output, "public_meetings=yes_meeting\n");
-			fprintf(output, "press_rights=censored_press\n");
-			fprintf(output, "trade_unions=no_trade_unions\n");
-			fprintf(output, "political_parties=underground_parties\n");
-		}
+		
 	
 		//fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());
 
