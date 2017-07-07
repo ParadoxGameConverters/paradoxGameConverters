@@ -1009,6 +1009,7 @@
 	link = { eu4 = 1979 v2 = 253 }	# Färöarnax -> Faroe Islands
 	link = { eu4 = 252 eu4 = 4110 eu4 = 1978 eu4 = 253 eu4 = 369 v2 = 267 }	# Highlands, Sutherland, Shetlands, Western Isles, Orkney -> Inverness
 	link = { eu4 = 251 v2 = 266 }	# Aberdeen -> Aberdeen
+	link = { eu4 = 250 v2 = 268 }	# Fife -> Dundee
 	link = { eu4 = 249 v2 = 271 }	# Ayrshire -> Glasgow
 	link = { eu4 = 248 v2 = 269 v2 = 272 }	# Lothian -> Edinburgh, Dumfries
 	link = { eu4 = 247 v2 = 279 v2 = 304 }	# Cumbria -> Carlisle, Isle of Man
@@ -1851,6 +1852,7 @@
 	link = { eu4 = 1166 eu4 = 4078 v2 = 1974 v2 = 2624 v2 = 2000 v2 = 1983 resettable = southwest_africa_coast }	# MANY-TO-MANY: Loango, Mayumba -> Mayumbe, Loango, Cabinda, Boma
 	link = { eu4 = 1169 v2 = 1978 v2 = 1977 resettable = southwest_africa_coast }	# Mayombe -> Madingou, Nkuna
 	link = { eu4 = 2949 eu4 = 1901 eu4 = 4081 eu4 = 4085 v2 = 1985 resettable = southwest_africa_coast }	# Mbata, Mpangu, Tyo, Yaka -> Kumbana
+	link = { eu4 = 1168 eu4 = 1170 eu4 = 4079 eu4 = 4080 v2 = 2001 v2 = 1983 v2 = 1982 resettable = southwest_africa_coast }	# MANY-TO-MANY: Nsoyo, Kongo, Ngoyo, Soyo -> Mbanza, Boma, Kinshasa
 	link = { eu4 = 1171 eu4 = 798 eu4 = 2948 v2 = 2002 v2 = 2009 resettable = southwest_africa_coast }	# MANY-TO-MANY: Ndongo, Mbwila, Matamba -> Quibala, Malanje
 	link = { eu4 = 4083 eu4 = 4091 eu4 = 4087 v2 = 2010 resettable = southwest_africa_coast }	# Shinje, Mpasu, Kumbana -> Saurimo
 	link = { eu4 = 1167 v2 = 1999 resettable = southwest_africa_coast }	# Luanda -> Luanda
@@ -3586,6 +3588,7 @@
 	link = { eu4 = 1979 v2 = 253 }	# Färöarnax -> Faroe Islands
 	link = { eu4 = 252 eu4 = 4110 eu4 = 1978 eu4 = 253 eu4 = 369 v2 = 267 }	# Highlands, Sutherland, Shetlands, Western Isles, Orkney -> Inverness
 	link = { eu4 = 251 v2 = 266 }	# Aberdeen -> Aberdeen
+	link = { eu4 = 250 v2 = 268 }	# Fife -> Dundee
 	link = { eu4 = 249 v2 = 271 }	# Ayrshire -> Glasgow
 	link = { eu4 = 248 v2 = 269 v2 = 272 }	# Lothian -> Edinburgh, Dumfries
 	link = { eu4 = 247 v2 = 279 v2 = 304 }	# Cumbria -> Carlisle, Isle of Man
@@ -4425,6 +4428,7 @@
 	link = { eu4 = 1166 eu4 = 4078 v2 = 1974 v2 = 2624 v2 = 2000 v2 = 1983 resettable = southwest_africa_coast }	# MANY-TO-MANY: Loango, Mayumba -> Mayumbe, Loango, Cabinda, Boma
 	link = { eu4 = 1169 v2 = 1978 v2 = 1977 resettable = southwest_africa_coast }	# Mayombe -> Madingou, Nkuna
 	link = { eu4 = 2949 eu4 = 1901 eu4 = 4081 eu4 = 4085 v2 = 1985 resettable = southwest_africa_coast }	# Mbata, Mpangu, Tyo, Yaka -> Kumbana
+	link = { eu4 = 1168 eu4 = 1170 eu4 = 4079 eu4 = 4080 v2 = 2001 v2 = 1983 v2 = 1982 resettable = southwest_africa_coast }	# MANY-TO-MANY: Nsoyo, Kongo, Ngoyo, Soyo -> Mbanza, Boma, Kinshasa
 	link = { eu4 = 1171 eu4 = 798 eu4 = 2948 v2 = 2002 v2 = 2009 resettable = southwest_africa_coast }	# MANY-TO-MANY: Ndongo, Mbwila, Matamba -> Quibala, Malanje
 	link = { eu4 = 4083 eu4 = 4091 eu4 = 4087 v2 = 2010 resettable = southwest_africa_coast }	# Shinje, Mpasu, Kumbana -> Saurimo
 	link = { eu4 = 1167 v2 = 1999 resettable = southwest_africa_coast }	# Luanda -> Luanda
