@@ -69,13 +69,13 @@ void V2Country::readInDomainNameAndAdjective(const Object* countryObj)
 	vector<Object*> nameObj = countryObj->getValue("domain_region");	// the region name for dynamically generated dominions
 	if (!nameObj.empty())
 	{
-		dominionName = nameObj[0]->getLeaf();
-		dominionAdjective = dominionName;
+		domainName = nameObj[0]->getLeaf();
+		domainAdjective = domainName;
 	}
 	else
 	{
-		dominionName = "";
-		dominionAdjective = "";
+		domainName = "";
+		domainAdjective = "";
 	}
 }
 
@@ -494,6 +494,10 @@ void V2Country::determineEmployedWorkers()
 
 void V2Country::setLocalisationNames()
 {
+	if (domainName != "")
+	{
+		V2Localisations::UpdateDomainCountry(tag, domainName);
+	}
 	auto nameInAllLanguages = V2Localisations::GetTextInEachLanguage(tag);
 	for (auto nameInLanguage : nameInAllLanguages)
 	{
@@ -504,9 +508,9 @@ void V2Country::setLocalisationNames()
 
 void V2Country::setLocalisationName(const string& language, const string& name)
 {
-	if (dominionName != "")
+	if (domainName != "")
 	{
-		namesByLanguage[language] = dominionName;
+		namesByLanguage[language] = domainName;
 	}
 	else if (name != "")
 	{
@@ -527,9 +531,9 @@ void V2Country::setLocalisationAdjectives()
 
 void V2Country::setLocalisationAdjective(const string& language, const string& adjective)
 {
-	if (dominionAdjective != "") // Domains have their adjective set from domain_region
+	if (domainAdjective != "") // Domains have their adjective set from domain_region
 	{
-		adjectivesByLanguage[language] = dominionAdjective;
+		adjectivesByLanguage[language] = domainAdjective;
 	}
 	else if (adjective != "")
 	{
