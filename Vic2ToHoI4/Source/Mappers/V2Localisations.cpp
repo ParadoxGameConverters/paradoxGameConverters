@@ -141,7 +141,6 @@ void V2Localisations::ActuallyUpdateDomainCountry(const string & tag, const stri
 			KeyToLocalisationsMappings->second[nameInLanguage.first] = updatedName;
 		}
 	}
-	return;
 }
 
 const string V2Localisations::ActuallyGetTextInLanguage(const string& key, const string& language) const
