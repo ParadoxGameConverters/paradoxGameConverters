@@ -76,6 +76,8 @@ class HoI4World
 		void importIdeologies();
 		void importIdeologyFile(const string& filename);
 
+		void importLeaderTraits();
+
 		void identifyMajorIdeologies();
 		void addNeutrality();
 		void convertIdeologySupport();
@@ -143,6 +145,7 @@ class HoI4World
 		void outputCountries() const;
 		void outputRelations() const;
 		void outputIdeologies() const;
+		void outputLeaderTraits() const;
 
 		/*vector<int> getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		vector<int> getPortProvinces(const vector<int>& locationCandidates);
@@ -164,6 +167,7 @@ class HoI4World
 
 		map<string, HoI4Ideology*> ideologies;
 		set<string> majorIdeologies;
+		map<string, vector<Object*>> ideologicalLeaderTraits;
 		
 		vector<HoI4Faction*> factions;
 		HoI4Diplomacy* diplomacy;

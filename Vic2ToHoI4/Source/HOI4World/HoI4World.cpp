@@ -73,6 +73,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	convertAirforces();
 	determineGreatPowers();
 	importIdeologies();
+	importLeaderTraits();
 	identifyMajorIdeologies();
 	addNeutrality();
 	convertIdeologySupport();
@@ -198,6 +199,18 @@ void HoI4World::importIdeologyFile(const string& filename)
 			HoI4Ideology* newIdeology = new HoI4Ideology(ideologyObject);
 			ideologies.insert(make_pair(ideologyName, newIdeology));
 		}
+	}
+}
+
+
+void HoI4World::importLeaderTraits()
+{
+	Object* fileObject = parser_UTF8::doParseFile("converterLeaderTraits.txt");
+	auto ideologyObjects = fileObject->getLeaves();
+	for (auto ideologyObject: ideologyObjects)
+	{
+		string ideaName = ideologyObject->getKey();
+		ideologicalLeaderTraits.insert(make_pair(ideaName, ideologyObject->getLeaves()));
 	}
 }
 
@@ -1188,6 +1201,7 @@ void HoI4World::output() const
 	buildings->output();
 	events->output();
 	outputIdeologies();
+	outputLeaderTraits();
 }
 
 
@@ -1425,6 +1439,27 @@ void HoI4World::outputIdeologies() const
 	}
 	ideologyFile << "}";
 	ideologyFile.close();
+}
+
+
+void HoI4World::outputLeaderTraits() const
+{
+	ofstream traitsFile("output/" + Configuration::getOutputName() + "/common/country_leader/converterTraits.txt");
+	traitsFile << "leader_traits = {\n";
+	for (auto majorIdeology: majorIdeologies)
+	{
+		auto ideologyTraits = ideologicalLeaderTraits.find(majorIdeology);
+		if (ideologyTraits != ideologicalLeaderTraits.end())
+		{
+			for (auto trait: ideologyTraits->second)
+			{
+				traitsFile << "\n";
+				traitsFile << trait;
+			}
+		}
+	}
+	traitsFile << "}";
+	traitsFile.close();
 }
 
 

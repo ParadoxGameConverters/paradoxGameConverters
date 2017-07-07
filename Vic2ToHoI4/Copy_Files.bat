@@ -21,6 +21,7 @@ copy "Data_Files\positions.txt" "release\positions.txt"
 copy "Data_Files\names.txt" "release\names.txt"
 copy "Data_Files\cultureGroupToGraphics.txt" "release\cultureGroupToGraphics.txt"
 copy "Data_Files\converterIdeologies.txt" "release\converterIdeologies.txt"
+copy "Data_Files\converterLeaderTraits.txt" "release\converterLeaderTraits.txt"
 
 rem **Copy flags**
 del "Release\flags" /Q /S /F
