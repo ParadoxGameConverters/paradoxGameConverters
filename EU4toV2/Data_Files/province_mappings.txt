@@ -1007,7 +1007,7 @@
 	link = { eu4 = 370 eu4 = 371 v2 = 252 v2 = 3246 }	# MANY-TO-MANY: Reykjavik, Akureyri -> Iceland, Jan Mayen
 	# British Isles
 	link = { eu4 = 1979 v2 = 253 }	# Färöarnax -> Faroe Islands
-	link = { eu4 = 252 eu4 = 4110 eu4 = 1978 eu4 = 253 eu4 = 369 v2 = 267 }	# Highlands, Sutherland, Shetlands, Western Isles, Orkney -> Inverness
+	link = { eu4 = 1978 eu4 = 369 eu4 = 253 eu4 = 252 eu4 = 4110 v2 = 267 v2 = 270 }	# MANY-TO-MANY: Shetlands, Orkney, Western Isles, Highlands, Sutherland -> Inverness, Stirling
 	link = { eu4 = 251 v2 = 266 }	# Aberdeen -> Aberdeen
 	link = { eu4 = 250 v2 = 268 }	# Fife -> Dundee
 	link = { eu4 = 249 v2 = 271 }	# Ayrshire -> Glasgow
@@ -3586,7 +3586,7 @@
 	link = { eu4 = 370 eu4 = 371 v2 = 252 v2 = 3246 }	# MANY-TO-MANY: Reykjavik, Akureyri -> Iceland, Jan Mayen
 	# British Isles
 	link = { eu4 = 1979 v2 = 253 }	# Färöarnax -> Faroe Islands
-	link = { eu4 = 252 eu4 = 4110 eu4 = 1978 eu4 = 253 eu4 = 369 v2 = 267 }	# Highlands, Sutherland, Shetlands, Western Isles, Orkney -> Inverness
+	link = { eu4 = 1978 eu4 = 369 eu4 = 253 eu4 = 252 eu4 = 4110 v2 = 267 v2 = 270 }	# MANY-TO-MANY: Shetlands, Orkney, Western Isles, Highlands, Sutherland -> Inverness, Stirling
 	link = { eu4 = 251 v2 = 266 }	# Aberdeen -> Aberdeen
 	link = { eu4 = 250 v2 = 268 }	# Fife -> Dundee
 	link = { eu4 = 249 v2 = 271 }	# Ayrshire -> Glasgow
@@ -6162,8 +6162,7 @@
 	link = { eu4 = 370 eu4 = 371 v2 = 252 v2 = 3246 }	# MANY-TO-MANY: Reykjavik, Akureyri -> Iceland, Jan Mayen
 	# British Isles
 	link = { eu4 = 1979 v2 = 253 }	# Färöarnax -> Faroe Islands
-	link = { eu4 = 4110 eu4 = 1978 eu4 = 369 eu4 = 253 v2 = 267 }	# Sutherland, Shetlands, Orkney, Western Isles -> Inverness
-	link = { eu4 = 252 v2 = 270 }	# Highlands -> Stirling
+	link = { eu4 = 1978 eu4 = 369 eu4 = 253 eu4 = 252 eu4 = 4110 v2 = 267 v2 = 270 }	# MANY-TO-MANY: Shetlands, Orkney, Western Isles, Highlands, Sutherland -> Inverness, Stirling
 	link = { eu4 = 251 v2 = 266 }	# Aberdeen -> Aberdeen
 	link = { eu4 = 250 v2 = 268 }	# Fife -> Dundee
 	link = { eu4 = 249 v2 = 271 }	# Ayrshire -> Glasgow
