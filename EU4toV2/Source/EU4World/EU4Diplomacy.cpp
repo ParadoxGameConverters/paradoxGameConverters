@@ -38,11 +38,16 @@ EU4Agreement::EU4Agreement(Object *obj)
 		{
 			type = "union";
 		}
+		if ((type == "client_vassal") || (type == "daimyo_vassal"))
+		{
+			type = "vassal";
+		}
+		if (type == "dependency")
+		{
+			LOG(LogLevel::Warning) << "Dependency has no subject type";
+		}
 	}
-	else if (type == "dependency")
-	{
-		LOG(LogLevel::Warning) << "Dependency has no subject type";
-	}
+
 
 	std::vector<Object*> objFirst = obj->getValue("first");
 	if (objFirst.size() > 0)

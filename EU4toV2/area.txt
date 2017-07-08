@@ -1,0 +1,3167 @@
+# A province can only belong to one area!
+
+#Sea Areas:
+#No restriction on size.
+
+western_mediterrenean_area = {
+	1293 1294 1295 1296 1297 1298 1300 1301 1302 1303 1304 1305 1307
+}
+
+eastern_mediterrenean_area = {
+	1308 1309 1310 1311 1312 1313 1314 1315 1316 1317 1319 1320 1932
+}
+
+black_sea_area = {
+	1321 1322 1323 1324
+}
+
+baltic_area = {
+	1252 1253 1254 1255 1256 1257 1926 1927 1928
+}
+
+kattegat_area = { #Kattegat, Skagerrak, Sound and Belts
+	1258 1259 1267
+}
+
+north_sea_area = {
+	1266 1268 1269 1270 1279 1280 1281 1282 1975
+}
+
+norwegian_sea_area = { #Norwegian Sea
+	1265 1299 1473 1474 1475 1476 1929
+}
+
+white_sea_area = {
+	1263 1264 1652
+}
+
+red_sea_area = {
+	1328 1329 1330
+}
+
+persian_gulf_area = { #(+Makran)
+	1334 1335 1336
+}
+
+arabian_sea_area = {
+	1331 1332 1333 1337 1338 1339 1340 1446 1451 1452 1615
+}
+
+andaman_sea_area = {
+	1345 1347 1348 1349
+}
+
+bay_of_bengal_area = {
+	1341 1342 1343 1344 1346 1611 1612 1613 1614
+}
+
+eastern_indian_ocean_area = {
+	1350 1351 1352 1353 1354 1420 1622 1623 1624 1641 1642 1644
+}
+
+western_indian_ocean_area = {
+ 	1450 1453 1454 1455 1616 1617 1618 1619 1620 1621 1625 1626 1627 1628 1629 1630
+}
+
+south_indian_ocean_area = {
+	1417 1418 1419 1632 1631 1633 1634 1636 1637 1638 1639 1640 1643 1645 1646 1647
+}
+
+great_australian_bight_area = {
+	1413 1415 1414 1416 1422 1635
+}
+
+swahili_coast_sea_area = {
+	1447 1448 1449 1456 1457 1458
+}
+
+south_china_sea_area = {
+	1361 1362 1363 1364 1365 1366 1367 1368 1369 1370 1371 1393 1394 1395
+}
+
+celebes_sea_area = { #4
+	1359 1398 1399 1400
+}
+
+java_sea_area = { #3
+	1355 1358 1360
+}
+
+east_china_sea_area = { #8
+	1372 1373 1374 1375 1389 1392 4233 4234
+}
+
+sea_of_japan_area = { #10
+	1376 1377 1378 1379 1386 1387 1388 1980 4225 4226
+}
+
+sea_of_okhotsk_area = {
+	1380 1381 1382 1383 1384 1385 1441
+}
+
+berring_sea_area = {
+	1445 1562 1677 1678 1680
+}
+
+tasman_sea_area = {
+	1421 1423 1424 1425 1426 1427 1428 1429
+}
+
+coral_sea_area = {
+	1405 1406 1407 1411 1412
+}
+
+philipine_sea_area = {
+	1396 1397 1439 1402 1403 1435 1436 1437 1438 1390 1391 1404 1440 4224
+}
+
+banda_arafura_seas_area = {
+	1356 1357 1401 1408 1409 1410
+}
+
+gulf_of_alaska_area = {
+	1558 1559 1560 1561 1681 1682
+}
+
+sea_of_grau_area = {
+	1544 1545 1546 
+}
+
+chilean_sea_area = {
+	1539 1540 1541 1542 1543
+}
+
+gulf_of_panama_area = {
+	1547 1548 1549 1550
+}
+
+bay_of_biscay_area = {
+	1274 1275 1276 1277 1278
+}
+
+english_channel_area = {
+	1271 1272
+}
+
+caribbean_sea_area = {
+	1512 1513 1514 1515 1516 1517 1518 1519 1520 1521 1522 1523
+}
+
+gulf_of_mexico_area = {
+	1506 1507 1508 1509 1510 1511
+}
+
+sea_of_labrador_area = {
+	1483 1484 1493 1494 1495 1496 
+}
+
+hudson_bay_sea_area = {
+	1485 1486 1487 1488 1489
+}
+
+denmark_strait_area = {
+	1477 1480 1481 1482 1610 1924
+}
+
+gulf_of_guinea_sea_area = {
+	1464 1465 1466
+}
+
+cape_of_storms_area = {
+	1459 1460
+}
+
+skeleton_coast_area = {
+	1461 1462 1463
+}
+
+east_pacific_ocean_area = {
+	1430 1431 1432 1433 1434 1442 1443 1444 1666 1667 1668 1669 1670 1671 1672 1673 1674 1675 1676 1679 1691 1698 1734
+}
+
+polynesian_triangle_area = {
+	1692 1697 1713 1720 1721 1722 1723 1724 1725 1726 1727 1728 1729 1731 1732 1733 1735 1738 1739 
+}
+
+south_pacific_area = {
+	1700 1701 1702 1703 1704 1705 1706 1707 1708 1709 1710 1711 1712 1716 1717 1718 1719 1730 1736 1737 1740 1741
+}
+
+north_pacific_area = {
+	1683 1684 1685 1686 1687 1688 1689 1690 1693 1694 1695 1696 1699 1714 1715 
+}
+
+north_pacific_coast_area = {
+	1551 1552 1553 1554 1555 1556 1557
+}
+
+coast_of_brazil_sea_area = {
+	1530 1531 1532 1533 1534 1584 1590 1591 1592 1596
+}
+
+coast_of_guyana_area = {
+	1527 1528 1529 1576 1577
+}
+
+celtic_sea_area = {
+	1284 1285 1288 1289 
+}
+
+west_african_coast_sea_area = {
+	1467 1468 1469 1470 1471 1472 1578 1579
+}
+
+south_atlantic_area = {
+	1585 1586 1597 1598 1599 1600 1601 1602 1603 1604 1605 1606 1608 1609
+}
+
+argentine_sea_area = {
+	1535 1536 1537 1538 1587 1588 1589 1593 1594 1595 1607
+}
+
+gulf_of_st_lawrence_area = {
+	1490 1491
+}
+
+gulf_stream_area = {
+	1492 1499 1500 1501 1502 1504 1570 1571
+}
+
+sargasso_sea_area = {
+	1526 1568 1569 1572 1573 1574 1575 1581 1582 1583
+}
+
+north_atlantic_area = {
+	1283 1286 1287 1290 1291 1292 1478 1479 1497 1498 1563 1565 1564 1566 1567 1580
+}
+
+bahama_channel_area = {
+	1503 1505 1524 1525
+}
+
+#Lakes:
+#Listed by themselves in order to be easier to remove if needed.
+
+#central_asian_lakes_area = {
+#	1326 1327 1653 1654 1888
+#}
+
+#chinese_lakes_area = {
+#	1655 1895 1896 1897 1898 2000 2001
+#}
+
+#baltic_lakes_area = {
+#	1260 1261 1262 1250 1251 1883 1884 1885 1886 1887 1977 2953
+#}
+
+#african_lakes_area = {
+#	1648 1649 1650 1651 1899 1900 1976 2471
+#}
+
+#north_american_lake_area = {
+#	1658 1659 1660 1661 1662 1663 1664 1665 1903 1904 1905 1906 1907 1908 1909 1910 1911 1912 1913 1914 1915 1916 1917 1923 1918 1919 1920 1921 1922
+#}
+
+#central_european_lakes_area = {
+#	1325 1889 1890
+#}
+
+#caucasian_lakes_area = {
+#	1891 1892 1893 1894
+#}
+
+#south_american_lakes_area = {
+#	1656 1657 1902
+#}
+
+#Land Areas:
+# A land area is 3 - 10 provinces
+
+########################################
+# France					 		   #
+########################################
+
+brittany_area = { #4
+
+
+	169 170 171 172
+}
+
+normandy_area = { #3
+	167 168 1879
+}
+
+provence_area = { #3
+	201 202 2991
+}
+
+guyenne_area = { #4
+	180 194 4111 4112
+}
+
+pyrenees_area = { #3
+	174 175 176
+}
+
+languedoc_area = { #3
+	196 200 2753
+}
+
+bourgogne_area = { #4
+	191 192 193 1877
+}
+
+massif_central_area = { #4
+	190 195 198 199
+}
+
+savoy_dauphine_area = { #3 Savoy and Dauphiné, Upper Burgundy 
+	203 204 205
+}
+
+lorraine_area = { #3
+	187 188 189
+}
+
+picardy_area = { #4
+	88 89 182 1743
+}
+
+seine_area = { #3 (Champagne and Ile de France)
+	183 185 186
+}
+
+loire_area = { #4
+	177 178 179 184
+}
+
+########################################
+# Low Countries				 		   #
+########################################
+
+wallonia_area = { #3
+	91 181 1866
+}
+
+flanders_area = { #3
+	87 90 1865
+}
+
+brabant_area = { #3
+	92 95 1744
+}
+
+netherlands_area = { #4
+	96 97 98
+}
+
+frisia_area = { #3
+	99 100 1931
+}
+
+########################################
+# Iberia					 		   #
+########################################
+
+aragon_area = { #3
+	211 214 2990
+}
+
+catalonia_area = { #4
+	197 212 213 2987
+}
+
+valencia_area = { #4
+	220 333 1750 2988 
+}
+
+lower_andalucia_area = { #4
+	224 225 1748 1749
+}
+
+upper_andalucia_area = { #3
+	222 223 226
+}
+
+castille_area = { #3
+	215 217 1746 2755 2989
+}
+
+toledo_area = { #4
+	219 221 2751 2754
+}
+
+asturias_area = { #3
+	206 207 1745
+}
+
+basque_country = { #3
+	173 209 210
+}
+
+leon_area = { #4
+	208 216 218 1747
+}
+
+beieras_area = { #4
+	231 232 228 1851
+}
+
+alentejo_area = { #4
+	227 229 230 4150
+}
+
+macaronesia_area = { #3
+	366 367 368
+}
+
+########################################
+# Italy					 			   #
+########################################
+
+venetia_area = { #4
+	108 111 112 1774
+}
+
+lombardy_area = { #4
+	104 107 109 1862
+}
+
+piedmont_area = { #4
+	103 1875 2979 2981
+}
+
+tuscany_area = { #5
+	115 116 117 2978 2980
+}
+
+liguria_area = { #3
+	101 102 2992
+}
+
+corsica_sardinia_area = { #3
+	127 1247 2986
+}
+
+sicily_area = { #4
+	124 125 126 2982
+}
+
+naples_area = { #3  #Lazio-Campania
+	118 121 2983
+}
+
+calabria_area = { #3 (+Lucania)
+	123 1934 2984
+}
+
+apulia_area = { #3
+	122 1933 2985
+}
+
+emilia_romagna_area = { #4
+	105 106 113 114
+}
+
+central_italy_area = { #4
+	119 120 2976 2977
+}
+
+########################################
+# British Isles			 			   #
+########################################
+
+eastern_ireland_area = { #5
+	372 373 374 4120 4121
+}
+
+western_ireland_area = { #4
+	375 376 4118 4119
+}
+
+highlands_area = { #4
+	252 253 369 4110 251
+}
+
+lowlands_area = { #4
+	248 249 250
+}
+
+wales_area = { #3
+	240 241 242
+}
+
+northern_england_area = { #4
+	244 245 246 247
+}
+
+mercia_area = { #4
+	237 239 243 1861 
+}
+
+wessex_area = { #4
+	233 234 235 4130
+}
+
+east_anglia_area = { #3
+	236 238 1860
+}
+
+########################################
+# Scandinavia			 			   #
+########################################
+
+jutland_area = { #4
+	15 1984 4142 4149
+}
+
+denmark_area = { #4 +Bornholm
+	12 14 1981 1983
+}
+
+skaneland_area = { #4
+	6  26 1982 4165
+}
+
+gotaland_area = { #3 Östra Götaland
+	2 3 25 4166
+}
+
+vastra_gotaland_area = { #Västra Götaland #4
+	7 16 4163 4164
+}
+
+svealand_area = { #3
+	5 8 1985 
+}
+
+ostra_svealand_area = { #4
+	1 4 1930
+}
+
+norrland_area = { #4
+	9 11 18 4114
+}
+
+finland_area = { #5
+	27 28 29 31 4123
+}
+
+bothnia_area = { #3
+	19 4113 4152
+}
+
+laponia_area = { #3
+	315 1777 4151
+}
+
+karelia_area = { #4
+	30 33 34 1961
+}
+
+north_karelia = { #3
+	32 309 4124
+}
+
+northern_norway = { #3
+	10 20 21
+}
+
+eastern_norway = { #4
+	17 22 4143 4144
+}
+
+western_norway = { #4
+	23 24 2752 4145
+}
+
+subarctic_islands_area = { #2
+	1978 1979
+}
+
+iceland_area = { #2
+	370 371
+}
+
+greenland_area = { #2
+	1104 1105
+}
+
+########################################
+# Eastern Europe    			 	   #
+########################################
+
+estonia_ingria_area = { #3
+	36 1834 1842
+}
+
+livonia_area = { #3
+	37 38 273 
+}
+
+curonia_area = { #3
+	35 39 1935
+}
+
+east_prussia_area = { #4
+	40 41 767 2958
+}
+
+pomerelia_area = { #3 (North West Prussia)
+	42 43 1841
+}
+
+west_prussia_area = { #3 (South West Prussia)
+	1859 2963 2997
+}
+
+wielkopolska_area = { #4
+   254 255 258 1939
+}
+
+malopolska_area = { #5
+	259 260 262 2959 2960
+}
+
+red_ruthenia_area = { #4
+	261 1940 2424 2961
+}
+
+podolia_volhynia_area = { #4
+	279 281 1943 2962
+}
+
+pripyat_area = { #3
+	277 278 1941
+}
+
+mazovia_area = { #4
+	256 257 269 1938
+}
+
+samogitia_area = { #3
+	270 271 1936
+}
+
+lithuania_area = { #3
+	272 770 1937
+}
+
+west_dniepr_area = { #3 Right Bank Ukraine
+	280 1942 1944
+}
+
+east_dniepr_area = { #4 Left bank Ukraine
+	289 290 1945 2407
+}
+
+sloboda_ukraine_area = {	 #3
+	291 298 299
+}
+
+yedisan_area = { #3
+	282 1974 2406
+}
+
+zaporizhia_area = { #3
+	283 2411 2412
+}
+
+azov_area = { #4
+	286 287 2413 2414
+}
+
+crimea_area = { #4
+	284 285 2410 2447
+}
+
+white_ruthenia_area = { #5
+	275 276 292 771 4115
+}
+
+#Opolye
+
+ryazan_area = { #3
+	300 301 1778
+}
+
+moscow_area = { #5
+	294 295 307 308 4147
+}
+
+suzdal_area = { #3
+	1753 1754 1956
+}
+
+smolensk_area = { #4
+	293 296 297 4116
+}
+
+novgorod_area = { #5
+	310 1752 1959
+}
+
+pskov_area = { #4
+	274 311 1960 4148
+}
+
+beloozero_area = { #4
+	312 314 2749 4117
+}
+
+astrakhan_area = { #5
+	464 466 468 2416 2417
+}
+
+lower_don_area = { #4
+	288 467 1971 2409
+}
+
+kazan_area = { #3
+	1082 2421 2422
+}
+
+samara_area = { #3
+	473 1081 2423
+}
+
+lower_yik_area = { #4
+	469 474 2365 2367
+}
+
+nogai_area = { #5
+	465 470 471 472 2366
+}
+
+ural_area = { #5
+	1080 1078 1780 2427 2441 
+}
+
+pomor_area = { #5
+	313 1776 1955 1958 4122
+}
+
+bashkiria_area = { #5
+	475 1965 1966 2420 2444
+}
+
+galich_area = { #3
+	306 1079 1083 1957
+}
+
+kama_area = { #3
+	305 1962 1972
+}
+
+tambov_area = { #4
+	302 304 2408 2415 
+}
+
+saratov_area = { #3
+	303 2418 2419
+}
+
+########################################
+# Germany			 				   #
+########################################
+
+silesia_area = { #4
+	263 264 2966 4238
+}
+
+bohemia_area = { #5
+	265 266 2968 2970 4237
+}
+
+erzgebirge_area = { #3
+	267 1771 2967
+}
+
+south_saxony_area = { #3
+	59 60 61
+}
+
+lower_bavaria_area = { #4
+	64 1757 2956 2957
+}
+
+upper_bavaria_area = {
+	65 76 2955
+}
+
+franconia_area = { #3
+	66 67 79
+}
+
+lower_swabia_area = { #3 (incl Ansbach/Schwabishe Hall)
+	70 71 1872
+}
+
+upper_swabia_area = { #3
+	68 69 1868
+}
+
+northern_saxony_area = { #3 (Saxe-Altmark)
+	52 58 2964
+}
+
+thuringia_area = { #3
+	62 63 2965
+}
+
+neumark_area = { #3
+	49 1763 2969
+}
+
+mittelmark_area = { # 3
+	50 51 1759
+}
+
+vorpommern_area = { #3
+	47 2993 2994
+}
+
+hinter_pommern_area = { #3
+	48 1858 2995
+}
+
+tirol_area = { #3
+	73 110 1768
+}
+
+austria_proper_area = { #3
+	133 134 1770
+}
+
+inner_austria_area = { #3
+	128 132 1863
+}
+
+carinthia_area = { #3
+	129 130 1769
+}
+
+switzerland_area = { #4
+	166 1869 1870 1873
+}
+
+romandie_area = { #3
+	165 1867 1871
+}
+
+upper_rhineland_area = { #4
+	72 74 75 1880
+}
+
+palatinate_area = { #3
+	77 78 1761
+}
+
+north_rhine_area = { #3
+	84 85 2975 
+}
+
+lower_rhineland_area = { #3
+	80 1760 1878
+}
+
+luxemburg_liege_area = { #4
+	93 94 1742 2974
+}
+
+westphalia_area = { #5
+	56 82 86 2972 2973 
+}
+
+hesse_area = { #4
+	81 83 1762 1876
+}
+
+braunschweig_area = { #3
+	57 1758 2971
+}
+
+weser_area = { #3
+	54 55 1874
+}
+
+holstein_area = { #3
+	13 1775 4141 
+}
+
+lower_saxony_area = { #3
+	44 53 1857
+}
+
+mecklenburg_area = { #3
+	45 46 2996
+}
+
+########################################
+# South Eastern Europe 				   #
+########################################
+
+macedonia_area = { #4 (Macedonia)
+	148 1853 3001
+}
+
+morea_area = { #3 Central Greece
+	145 146 1773
+}
+
+northern_greece_area = { #3 #Northern Greece
+	142 144 147
+}
+
+thrace_area = { #3
+	149 151 1764
+}
+
+bulgaria_area = { #5
+	150 159 1765 2746 2750
+}
+
+wallachia_area = { #3
+	160 161 2998
+}
+
+moldavia_area = { #3
+	268 1756 2405
+}
+
+transylvania_area = { #4 #Northern Transylvania
+	157 158 1952 4127
+}
+
+southern_transylvania_area = { #3
+	156 1951 4128
+}
+
+slovakia_area = { #5
+	154 162 1318 1772 4236
+}
+
+serbia_area = { #4
+	141 3000 4176 4239
+}
+
+rascia_area = { #3
+	138 1766 1827
+}
+
+albania_area = {
+	143 4174 4175
+}
+
+bosnia_area = { #4
+	139 140 1831 3002
+}
+
+croatia_area = { #5 
+	131 152 1767 1828 4173
+}
+
+east_adriatic_coast_area = { #3
+	136 137 1826
+}
+
+alfold_area = { #4
+	155 1953 1954 4125
+}
+
+transdanubia_area = { #5
+	135 153 1864 4126 4240
+}
+
+########################################
+# Caucasia 							   #
+########################################
+
+odishi_area = { #4
+	462 1856 2196
+}
+
+georgia_area = { #3
+	420 422 423 2203
+}
+
+armenia_area = { #4
+	419 2202 2204 2205
+}
+
+north_kurdistan_area = { #3
+	418 2306 2307
+}
+
+shirvan_area = { #3 #Northern Azerbaijan
+	421 424 425
+}
+
+circassia_area = { #4
+	463 2201 2195 2197
+}
+
+dagestan_area = { #3
+	2198 2199 2208 
+}
+
+
+########################################
+# Anatolia, The Levant & Mesopotamia   #
+########################################
+
+rum_area = { #4
+	329 1846 2300 2304
+}
+
+erzurum_area = { #3	Erzurum and Trebizond
+	330 331 2305
+}
+
+hudavendigar_area = { #5 (Anatolia Eyalet except for Kastamonu and the future Aydin eyalet)
+	316 317 322 326 2296
+}
+
+aydin_area = { #5
+	318 319 2297 2298 2348
+}
+
+kastamonu_area = { #3
+	325 328 2299
+}
+
+karaman_area = { #3 
+	323 324 1848
+}
+
+aleppo_area = { #4
+	327 377 2302 2313
+}
+
+syria_area = { #3
+	378 382 1855
+}
+
+palestine_area = { #4
+	364 379 380 381 1854
+}
+
+dulkadir_area = { # 3 +Kayseri
+	332 2301 2303
+}
+
+eastern_mediterrenean_islands_area = { #3
+	163 320 321 
+}
+
+western_aegean_area = { #2 - Western part of the Archipelago Eyalet (except the Greek Mainland)
+	164 3003
+}
+
+rakka_area = { #4
+	405 407 1849 2314
+}
+
+al_jazira_area = { #4
+	406 2308 2310 2309
+}
+
+iraq_arabi_area = { #4 Lower Mesopotamia
+	409 410 2311 2312
+}
+
+basra_area = { #3
+	408 412 2340
+}
+
+south_kurdistan_area = { #3
+	411 415 2211
+}
+
+########################################
+# Arabia				               #
+########################################
+
+bahrain_area = { #4
+	394 395 396 2347 
+}
+
+pirate_coast_area = { #4
+	397 398 404 2333
+}
+
+najd_area = { #5
+	393 2332 2335 2336 2337 
+}
+
+ad_dahna_area = { #3
+	392 2338 2339
+}
+
+dhofar_area = { #3 (Dhofar + Masirah)
+	401 2341 2342
+}
+
+tabuk_area = { #3
+	383 2327 2328
+}
+
+hejaz_area = { #5
+	384 385 2330 2331 2329
+}
+
+yemen_area = { #4
+	387 388 390 2344
+}
+
+sarat_area = { # 5 Sarat Asir+North Yemen Highlands
+	386 391 2345 2346
+}
+
+hadramut_area = { #4
+	389 402 1099 2343
+}
+
+oman_area = { #3
+	399 400 403
+}
+
+########################################
+# North Africa					       #
+########################################
+
+#lower_egypt:
+
+gharbia_area = { #3
+	358 362 2316
+}
+
+sharqiya_area = { #3
+	363 365 2315
+}
+
+central_egypt_area = { #5
+	359 361 2317 2319 2320
+}
+
+upper_egypt_area = { #3
+	360 1231 2321
+}
+
+tripolitania_area = { #3
+	354 2451 2452
+}
+
+cyrenaica_area = { #3
+	355 356 357
+}
+
+fezzan_area = { #3
+	2448 2449 2474
+}
+
+tunisia_area = { #4
+	341 2454 2455 2473
+}
+
+djerba_area = { #3
+	353 2453 2954
+}
+
+libyan_desert_area = { #4
+	1233 2318 2325 2326
+}
+
+algiers_area = { #5
+	336 337 338 2461 2465
+}
+
+kabylia_area = { #3
+	339 340 1882 
+}
+
+hautes_plaines_area = { #3
+	2459 2462 2463 
+}
+
+ouled_nail_area = { #3
+	350 351 2458
+}
+
+north_saharan_area = { #5
+	352 2450 2456 2457 2472
+}
+
+tafilalt_area = { #3
+	346 349 2460
+}
+
+sus_area = { #3
+	348 2464 2466
+}
+
+southern_morocco_area = { #3
+	347 1110 2470 
+}
+
+western_morocco_area = { #3
+	342 345 2469
+}
+
+marrekesh_area = { #3
+	343 344 2467 2468
+}
+
+northern_morocco_area = { #3
+	334 335 1751
+}
+
+########################################
+# East Africa					       #
+########################################
+
+madagascar_highlands_area = { #3
+	1792 4023 4027
+}
+
+betsimasaraka_area = { #3
+	4021 4024 4025
+}
+
+sakalava_area = { #5
+	1193 1194 4022 4031 4032
+}
+
+southern_madagascar = { #4
+	4026 4028 4029 4030
+}
+
+lower_zambezi_area = { #3
+	1187 1190 1191
+}
+
+upper_zambezi_area = { #3
+	4046 4047 4050
+}
+
+shire_area = { #3
+	4038 4039 4040
+}
+
+butua_area = { #3
+	1185 1188 1189
+}
+
+zimbabwe_area = { #4
+	1184 2950 2951 2952
+}
+
+ruvuma_area = { #4
+	4036 4037 4043 4042
+}
+
+ngonde_area = { #3
+	4041 4044 4045
+}
+
+mozambique_area = { #4
+	788 1195 4049 4020
+}
+
+uticulo_makuana_area = { #3
+	4034 4035 4048
+}
+
+quelimane_area = { #3
+	1183 1186 1192
+}
+
+limpopo_area = { #4
+	789 1181 1182 1800
+}
+
+central_swahili_coast_area = { #5
+	1196 1197 1198 1199 1201
+}
+
+northern_swahili_coast_area = { #3
+	1204 2774 2796
+}
+
+mombasa_area = { #3
+	1200 1202 1203
+}
+
+kenya_area = {	#5
+	1273 1925 4053 4054 4060
+}
+
+jubba_area = { #3
+	2777 4051 4052
+}
+
+tanzania_area = { #5
+	4055 4056 4057 4058 4073
+}
+
+buha_area = { #5
+	4070 4071 4072 4076 4077
+}
+
+buzinza_area = { #3
+	4059 4061 4063
+}
+
+luba_area = { #4
+	4097 4099 4105 4109
+}
+
+katanga_area = { #5
+	4098 4100 4101 4102 4103
+}
+
+zambia_area = { #3
+	4104 4106 4108
+}
+
+chokwe_area = { #3
+	4094 4095 4107
+}
+
+rwanda_area = { #3
+	4067 4068 4069
+}
+
+uganda_area = { #3
+	4062 4064 4066
+}
+
+bunyoro_area = { #3
+	4065 4074 4075
+}
+
+kasai_area = { #5
+	4083 4087 4091 4092 4093
+}
+
+sankuru_area = { #3
+	4089 4090 4096
+}
+
+lower_kasai = { #4
+	4081 4085 4086 4088
+}
+
+ogaden_area = { #5
+	1207 1208 1210 2778 2779
+}
+
+darfur_central_sahara_area = { #5
+	774 1219 2801 2802 2932
+}
+
+kurdufan_area = { #3
+	1216 1221 2800
+}
+
+lower_nubia_area = { #3
+	1234 2322 2323
+}
+
+dongola_area = { #3
+	1220 1228 1229
+}
+
+upper_nubia_area = { #5
+	1222 1226 1225 2797 2798
+}
+
+sennar_area = { #3
+	1217 2799 4033
+}
+
+red_sea_coast_area = { #4
+	1230 1232 2324 2787
+}
+
+tigray_area = { #4
+	1227 2766 2767 2771
+}
+
+ifat_area = { #4
+	1211 1212 2773 2793 
+}
+
+somaliland_area = { #5
+	1209 2786 2789 2792 2790 
+}
+
+southern_ethiopia_area = { #4
+	2757 2758 2759 4158
+}
+
+hadiya_area = { #3
+	1218 2756 2760
+}
+
+central_ethiopia_area = { #5
+	1214 1223 1224 2769 2772
+}
+
+damot_area = { #3
+	2762 2763 2770 
+}
+
+aussa_area = { #4
+	1215 2764 2765 2768
+}
+
+shewa_area = { #3
+	1213 2761 2791
+}
+
+mogadishu_area = { #5
+	1205 2775 2782 2794 2795
+}
+
+ajuuran_area = { #4
+	2776 2780 2781 2785
+}
+
+majarteen_area = { #5
+	1206 2024 2783 2784 2788 
+}
+
+########################################
+# South-Eastern Islands				   #
+########################################
+
+mascarenes_area = { #3
+	1100 1102 1103
+}
+
+indian_ocean_islands_area = { #4
+	574 1101 1998 1999
+}
+
+papua_area = { #5 (Papuan Peninsula)
+	1237 2719 2720 2721 2722
+}
+
+vogelkop_area = { #4
+	1245 2718 2723 2724
+}
+
+melanesia_area = { #5
+	1236 1238 1239 1242 1986
+}
+
+micronesia_area = { #4
+	1241 1991 1993 1994
+}
+
+west_micronesia_area = { #3
+	1235 1995 1996
+}
+
+western_australia_area = { #3
+	1084 2726 2727
+}
+
+top_end_area = { #2
+	2728 2729 
+}
+
+northern_australia_area = { #3
+	2730 2731 2732
+}
+
+eastern_australia_area = { #5
+	1091 1092 1093 1094 2733
+}
+
+southern_australia_area = { #4
+	1085 1089 1090 2734
+}
+
+murray_river_area = { #5
+	1086 1087 1088 2735 2736
+}
+
+northern_polynesia_area = { #3
+	979 1240 1997
+}
+
+eastern_polynesia_area = { #3
+	1244 1987 1988
+}
+
+polynesia_area = { #5
+	1243 1989 1990 1992
+}
+
+te_ika_a_maui_area = { #5
+	1106 1107 1108 2737 2739
+}
+
+te_waipounamu_area = { #3
+	1109 1246 2738
+}
+
+########################################
+# West Africa					       #
+########################################
+
+western_sahara_area = { #5
+    1127 1128 1129 1130 2271
+}
+
+cap_verde_area = { #2 
+    1096 1111 
+}
+
+jolof_area = { #4
+	1112 1113 1116 2239
+}
+
+tekrur_area = { #4
+    1115 2237 2240 2244
+}
+
+baghena_area = { #4
+    2243 2245 2246 2247
+}
+
+manding_area = { #4
+    1120 1121 1124 2248
+}
+
+futa_jallon_area = { #3
+    1114 1117 2238
+}
+
+massina_area = { #4
+    1123 1131 2249 2250
+}
+
+jenne_area = { #4
+	1134 2259 2261 2263
+}
+
+niger_bend_area ={ #5
+    1132 1133 2260 2262 2264
+}
+
+upper_volta_area = { #5
+    1135 1136 1137 2265 2266
+}
+
+kong_area = { #4
+    1122 1125 2252 2253
+}
+
+lower_volta_area = { #5
+    1138 2254 2255 2256 2267
+}
+
+lower_niger_area = { #5
+    1144 1145 1146 1152 1153
+}
+
+hausa_area = { #3
+    1155 2280 2281
+}
+
+katsina_area = { #3
+	1148 1149 2279
+}
+
+zazzau_area = { #4
+	1150 1154 2278 2293
+}
+
+bornu_area = { #5
+    1157 1160 2282 2283 2284
+}
+
+kanem_area = { #5
+    1158 1159 2286 2287 2288
+}
+
+adamawa_plateau_area = { #4
+    1161 1162 1249 2285
+}
+
+dendi_area = { #4
+    1142 2268 2269 2270
+}
+
+azbin_area = { #5
+    1156 2272 2273 2274 2276
+}
+
+east_azbin_area = { #3
+	2275 2277 2475
+}
+
+atacora_oueme_area = { #5
+    1140 1143 2291 2292 2295
+}
+
+gulf_of_guinea_area = { #4
+    1151 1163 1164 1165
+}
+
+benin_area = { #4
+	1147 2289 2290 2294 
+}
+
+sao_tome_area = { #2
+	1097 1306
+}
+
+west_africa_coast_area = { #5
+    1126 1139 1141 2257 2258 
+}
+
+guinea_coast_area = { #4
+    1118 1119 2241 2242
+}
+
+south_atlantic_islands_area = { #3
+	1095 1098 2025
+}
+
+matamba_area = { #3
+	2948 4082 4084
+}
+
+coastal_kongo = { #5
+	1166 1168 4078 4079 4080
+}
+
+kongo_area = { #5
+	798 1169 1170 1901 2949
+}
+
+angola_namibia_area = { #4
+	1167 1171 1172 1174
+}
+
+cape_of_good_hope_area = { #5
+	833 1175 1177 1179 1180
+}
+
+south_african_plateau_area = { #5
+	1176 1178 2856 2880 2864
+}
+
+
+########################################
+# Greater Persia		               #
+########################################
+
+makran_area = { #5
+	434 575 2231 2232 2233
+}
+
+sistan_area = { #4
+	435 2224 2229 2230
+}
+
+kalat_area = { #3
+	576 577 2068
+}
+
+ferghana_area = { #3
+	458 460 1967
+}
+
+arys_area = { #3
+	457 2364 2356
+}
+
+kyzylkum_area = { #3
+	455 1970 2363
+}
+
+transoxiana_area = { #4
+	442 453 454 1968
+}
+
+khiva_area = { #5
+	440 441 1973 2362 2370
+}
+
+kabulistan_area = { #5
+	448 451 452 578 2226
+}
+
+transcaspia_area = {
+	437 438 439 443 2349
+}
+
+khorasan_area = { #5
+	436 446 2221 2235 2236
+}
+
+ghor_area = { #3
+	447 449 2225
+}
+
+merv_area = { #3
+	444 445 2350
+}
+
+luristan_area = { #4
+	413 2209 2210 2217
+}
+
+balkh_area = { #3
+	450 2227 2228
+}
+
+kerman_area = { #3
+	432 2220 2234
+}
+
+persian_gulf_coast = { #4
+	430 431 2219 2999
+}
+
+farsistan_area = { #5
+	2218 2223 4171
+}
+
+iraq_e_ajam_area = { #4
+	427 428 2213 2216
+}
+
+azerbaijan_area = { #3 #Southern Azerbaijan
+	414 2212 2215
+}
+
+isfahan_area = { #3
+	429 433 2222 
+}
+
+tabriz_area = { #3 Central Azerbaijan
+	416 2206 2207
+}
+
+tabarestan_area = { #3
+	417 426 2214
+}
+
+########################################
+# India  		                       #
+########################################
+
+upper_doab_area = { #3 (Delhi+Agra Subahs)
+	522 2060 2062
+}
+
+sirhind_area = {	#3
+	510 2065 2075
+}
+
+central_doab_area = {	#3 Approximate Agra Subah
+	524 525 2063
+}
+
+oudh_area = { #3
+	523 2061 2094
+}
+
+purvanchal_area = { #3
+	555 2055 2095
+}
+
+lower_doab_area = { #4 (lower doab and Bundelkhand)
+	556 559 2059 2097
+}
+
+lahore_area = { #3 (approximate Lahore Subah)
+	507 2076 2077
+}
+
+multan_area = { #4 (approximate Multan Subah)
+	506 2078 2079 2086
+}
+
+west_bengal_area = { #4
+	561 563 2039 2081
+}
+
+naga_hills_area = { #3
+	570 573 2041
+}
+
+east_bengal_area = { #3
+	564 567 2091
+}
+
+north_bengal_area = { #3
+	562 2045 2046
+}
+
+bihar_area = { #3
+	558 2044 2047
+}
+
+jharkhand_area = { #3
+	560 2096 2098
+}
+
+gondwana_area = { #4
+	550 551 2082 2092
+}
+
+orissa_area = { #3
+	552 2038 2043 
+}
+
+garjat_area = { #4
+	547 553 2048 2049
+}
+
+telingana_area = { #3
+	542 2028 2037
+}
+
+andhra_area = { #4
+	543 549 2080 2084
+}
+
+rayalaseema_area = {
+	541 1949 2090
+}
+
+kerala_area = { #4
+	534 535 537 1248
+}
+
+malwa_area = { #5
+	526 527 740 2057 2093
+}
+
+mewar_area = { #4
+	518 528 2058 2087 
+}
+
+marwar_area = { #5
+	512 513 514 2066 2067
+}
+
+jaipur_area = { #3
+	519 520 2064
+}
+
+sindh_area = { #5
+	504 505 2072 2088
+}
+
+carnatic_area = { #4 (Only the Golcondan Karnatak)
+	538 1947 2027 2085
+}
+
+coromandel_area = { #3
+	539 540 2083
+}
+
+madura_area = { #3
+	536 2026 2101
+}
+
+konkan_area = { #3
+	529 530 2089 
+}
+
+kanara_area = { #3
+	531 2029 2030
+}
+
+maidan_area = { #5 (northern Bayuluseeme)
+	532 569 1948 2033 2035 
+}
+
+mysore_area = { #3
+	533 2031 2032
+}
+
+maharashtra_area = { #4
+	545 546 548 2050
+}
+
+desh_area = { #3
+	544 1946 2034
+}
+
+assam_area = { #4
+	566 571 2040 2042
+}
+
+himalayan_hills_area = { #3
+	509 511 2069  
+}
+
+nepalese_area = { #5
+	554 557 2070 2071
+}
+
+kashmir_area = { #3
+	508 2073 2074
+}
+
+lanka_area = { #3
+	572 2099 2100
+}
+
+gujarat_area = { #3
+	2053 2054 2056
+}
+
+tapti_area = { #3
+	516 517 2036
+}
+
+saurashtra_area = { #5
+	503 515 521 2051 2052
+}
+
+########################################
+# Indo-China  	                       #
+########################################
+
+upper_burma_area = { #5
+	580 581 584 2398 2399
+}
+
+kachin_area = { #4
+	582 2395 2396 2397
+}
+
+shan_hill_area = { #3
+	583 588 2400
+}
+
+karenni_area = { #3 #Southern Shan States
+	587 589 2401
+}
+
+
+malaya_area = { #5
+	597 598 599 2393 2686
+}
+
+malacca_area = { #3
+	595 596 2392
+}
+
+khorat_area = { #5
+	612 2383 2384 2385 2386 
+}
+
+champa_area = { #5
+	606 607 1022 2374 2375
+}
+
+cambodia_area = { #5
+	604 609 1823 2378 2379
+}
+
+lower_burma_area = { #5
+	585 586 590 1815 2403
+}
+
+arakan_area = { #3
+	568 579 2402
+}
+
+mekong_area = { #4
+	605 2376 2377 2380
+}
+
+tenasserim_area = { #5
+	593 594 2390 2391 2394
+}
+
+north_tenasserim_area = { #4
+	591 592 2404 2387
+}
+
+vietnam_area = { #3
+	610 1016 2373
+}
+
+red_river_delta_area = { #3
+	613 616 2372
+}
+
+south_laos_area = { #4
+	608 611 614 2382
+}
+
+north_laos_area = { #4
+	615 1844 2371 2381
+}
+
+central_thai_area = { #4
+	600 603 2388 2389
+}
+
+northern_thai_area = { #3
+	601 602 1817
+}
+
+########################################
+# Indonesia  	                       #
+########################################
+
+great_moluccas_area = { #5 
+	654 655 656 2699 2700 
+}
+
+mindanao_area = { #4 
+	652 653 2701 2702
+}
+
+luzon_area = { #4
+	657 658 2697 2698
+}
+
+north_sumatra_area = { #3
+	617 2673 2685
+}
+
+batak_area = { #3
+	618 619 2674
+}
+
+central_sumatra_area = { #5
+	620 659 2675 2676 2677
+}
+ 
+minangkabau_area = { #3
+	2680 2681 2682
+}
+
+south_sumatra_area = { #5
+	621 622 623 2678
+}
+
+indonesian_islands_area = { #4
+	634 2679 2683 2684
+}
+
+east_java_area = { #4
+	627 628 2691 2692
+}
+
+central_java_area = { #4
+	626 629 2689 2690
+}
+
+west_java_area = { #5
+	624 630 2687 2688 625
+}
+
+kutai_area = { #5
+	638 2709 2710 2711 2712
+}
+
+brunei_area = { #5
+	636 637 2703 2704 2705
+}
+
+kalimantan_area = { #5
+	639 640 2706 2707 2708
+}
+
+molluca_area = { #5
+	645 651 2696 2717 2725
+}
+
+spice_islands_area = { #3
+	648 649 650
+}
+
+ceram_area = { #2
+	646 647
+}
+
+lesser_sunda_islands_area = { #3
+	631 632 2693
+}
+
+timor_area = { #3
+	633 635 2695
+}
+
+sulawesi_area = { #4
+	643 644 2713 2714
+}
+
+south_sulawesi_area = { #4
+	641 642 2715 2716
+}
+
+########################################
+# Korea & Japan                        #
+########################################
+
+pyongan_area = { #3
+	1845 2744 4232
+}
+
+hamgyeong_area = { #3
+	732 2742 2743
+}
+
+western_korea_area = { #4 (Hwanghae + Gyeonggi)
+	733 735 4230 4231
+}
+
+eastern_korea_area = { #5 (Gangwon +  Gyeongsang)
+	734 736 2694 2745 4227
+}
+
+south_korea_area = { #4 (Jeolla, Chungcheong) +Jeju
+	 737 1013 2741 4228 4229
+}
+
+hokkaido_area = { #5
+	1031 1032 1847 1852 4193
+}
+
+hokuriku_area = { #3
+	1023 1024 1837
+}
+
+kanto_area = { #3 #Western Kanto
+	1028 1843 4189
+}
+
+eastern_kanto_area = { #3
+	1027 4190 4191
+}
+
+kyushu_area = { #4 #Southern Kyushu
+	1012 1015 4180 4181
+}
+
+northern_kyushu = {
+	1014 1818 4182
+}
+
+shikoku_area = { #3
+	1819 1820 4186
+}
+
+chubu_area = { #5
+	1029 1030 1835 1839 4188
+}
+
+kinai_area = { #4
+	1020 1021 1832 4187
+}
+
+thohoku_area = { #4
+	1025 1026 4131 4192
+}
+
+sanindo_area = { #4
+	1018 1830 4183 4185 
+}
+
+saigoku_area = { #4 #Sanyodo
+	1017 1019 1825 4184
+}
+
+########################################
+# North Asia     	                   #
+########################################
+
+kamchatka_area = { #4
+	1034 1035 1038 2440
+}
+
+magadan_area = { #3
+	1040 1041 1044
+}
+
+kolyma_area = { #4
+	1036 1037 1039 2439
+}
+
+okhotsk_area = { #4
+	1043 1047 1052 2103
+}
+
+yakutia_area = { #5
+	1045 1051 1054 2435 2437
+}
+
+sakha_area = { #3
+	1042 1046 2438
+}
+
+buryatia_area = { #5
+	1055 1056 1057 1058 2446
+}
+
+tunguska_area = { #5
+	1059 1061 2431 2432 2436  
+}
+
+central_siberia_area = { #4
+	1064 1067 1069 1070
+}
+
+kara_area = { #4
+	1072 1073 2430 2445
+}
+
+ob_area = { #5
+	480 1068 2428 2429 2433 
+}
+
+irkutsk_area = { #5
+	1060 1062 1063 2442 2443
+}
+
+perm_area = { #5
+	1077 1755 1963 1964 4129
+}
+
+balchasj_area = { #4
+	477 478 2355 2360
+}
+
+kazakhstan_area = { #5
+	476 2351 2353 2358 2359
+}
+
+syr_darya_area = { #4
+	456 1969 2352 2361
+}
+
+yrtesh_area = { #5
+	479 1071 2354 2357 2434 
+}
+
+ishim_area = { #4
+	1074 1075 1076 2369
+}
+
+########################################
+# China      	                       #
+########################################
+
+heilongjiang_area = { #3 (West Heilongjiang)
+	724 725 4218
+}
+
+east_heilongjiang_area = { #4
+	1049 1053 2102 2104
+}
+
+central_heilongjiang_area = {#4
+	727 728 2185 4200
+}
+
+ilan_hala_area = { #5 (North Jilin Area)
+	1033 1048 1050 4214 4216
+}
+
+central_jilin_area = { #5
+	729 731 2105 4215 4217
+}
+
+ningguta_area = { #5
+	1850 2106 2107 2108 2186
+}
+
+jilin_area = { #4 (South Jilin Area)
+	730 2110 2188 4201
+}
+ 
+liaoning_area = { #5
+	704 726 2111 2112 2113
+}
+
+ordos_area = { #4 (Western Inner Mongolia)
+	701 709 2191 4223
+}
+
+eastern_mongolia = { #5
+	722 2109 2187 4202 4203
+}
+
+inner_mongolia_area = { #5
+	702 723 2114 2115 2747
+}
+
+outer_mongolia_area = { #5
+	717 721 2116 4219 4220
+}
+
+altai_sayan_area = { #3
+	718 2117 4222
+}
+
+tannu_uriankhai_area = {#3
+	716 1065 1066  
+}
+
+central_mongolia_area = { #3
+	720 2193 4221
+}
+
+uliastai_area = {#3
+	719 2189 2190 
+}
+
+jetysuu_area = { #5
+	459 461 2125 2126 2368
+}
+
+kashgaria_area = { #5 #Just Kashgar & Yarkand
+	739 2124 2127 4209 4210
+}
+
+tarim_basin_area = { #3 #The rest of the Seven Cities
+	712 2121 2192
+}
+
+shanshan_area = { #3 
+	710 711 2123 
+}
+
+turpan_kumul_area = { #4
+	2122 4206 4207
+}
+
+zungaria_area = { #4
+	713 715 2120 4208
+}
+
+amdo_area = { #4
+	705 706 2134 4204 
+}
+
+tsang_area = { #4
+	565 677 2130 4205
+}
+
+north_zungaria = { #3
+	714 2118 2119
+}
+
+kham_area = { #5
+	678 2131 2132 2133 2135 
+}
+
+utsang_area = { #3
+	676 2128 2129 
+}
+
+hebei_area = { #4 (North Hebei)
+	703 1816 2136 4194
+}
+
+south_hebei_area = { #4
+	695 696 2137 4195
+}
+
+shandong_area = { #5
+	690 691 2138 2139 2140
+}
+
+jiangsu_area = { #3
+	2141 2142 4196
+}
+
+south_jiangsu_area = { #4
+	685 1821 1822 2145
+}
+
+anhui_area = { #3 (North Anhui)
+	1838 2143 2144
+}
+
+south_anhui_area = { #3
+	686 2146 2147
+}
+
+zhejiang_area = { #5
+	684 1824 2148 2149 2150
+}
+
+jiangxi_area = { #4
+	 670 683 1833 2151
+}
+
+fujian_area = { #4
+	669 1829 2152 2153
+}
+
+taiwan_area = { #3
+	738 2154 2155
+}
+
+guangdong_area = { #5
+	667 668 2156 2157 2158
+}
+
+west_guangdong_area = { #5
+	665 666 2159 2160 2161 
+}
+
+guangxi_area = { #5
+	664 1840 2162 2163 2164
+}
+
+yun_gui_area = { #5 (Yun-Gui Hinterland)
+	662 663 673 674 4199
+}
+
+yun_gui_borderland_area = { #5
+	660 661 2165 2166 2167
+}
+
+sichuan_area = { #3
+	679 680 4212
+}
+
+chuannan_area = { #4
+	675 2168 2748 4213
+}
+
+chuanbei_area = { #3
+	2169 2170 4211
+}
+
+huguang_area = { #5 (Hubei)
+	681 682 2171 2172 4197
+}
+
+hunan_area = { #4
+	671 672 2173 2174
+}
+
+henan_area = { #3 (South Henan)
+	687 2175 2176
+}
+
+north_henan_area = { #3
+	688 692 1836
+}
+
+shanxi_area = { #5
+	693 694 697 2177 2178
+}
+
+shaanxi_area = { #4
+	689 700 2179 4198
+}
+
+gansu_area = { #5 (East Gansu)
+	698 699 2180 2181 2183
+}
+
+west_gansu_area = { #4 
+	707 708 2182 2184
+}
+
+########################################
+# South America    	                   #
+########################################
+
+rio_grande_do_sol_area = { #4
+	2857 2879 2884 2887
+}
+
+minas_gerais_area = { #4
+	765 2892 2894 2899
+}
+
+diamantina_area = { #3
+	759 2898 2891
+}
+
+goias_area = { #5
+	758 2906 2907 2908 2919
+}
+
+pontal_area = { #3
+	2909 2910 2911
+}
+
+mato_grosso_area = { #4
+	2888 2903 2904 2905
+}
+
+ofaie_area = { #3
+	2881 2893 2920
+}
+
+guapore_area = { #3
+	2900 2901 2902
+}
+
+sao_paolo_area = { #3
+	766 769 2896
+}
+
+west_sao_paolo_area = { #3
+	768 2895 2897
+}
+
+rio_de_janeiro_area = { #4
+	761 762 763 764
+}
+
+bahia_area = { #5
+	756 757 760 2914 2916
+}
+
+pernambuco_area = { #5
+	754 755 2912 2921 2922
+}
+
+ceara_area = { #3
+	750 751 753
+}
+
+sao_francisco_area = { #5
+	2885 2913 2915 2917 2918
+}
+
+maranhao_area = { #5
+	749 2923 2924 2926 2927
+}
+
+piaui_area = { #3
+	752 2886 2925
+}
+
+grao_para_area = { #4
+	748 2890 2928 2929 
+}
+
+amapa_area = { #3
+	747 2935 2938
+}
+
+amazon_area = { #4
+	2889 2930 2933 2934
+}
+
+paraguay_area = { #5
+	775 776 799 2882 2883
+}
+
+patagonia_area  = { #3
+	781 782 2869
+}
+
+bahia_blanca_area = { #3
+	780 786 2868
+}
+
+patagonian_andes = { #4
+	2863 2870 2875 2876
+}
+
+cuyo_area  = { #5
+	2843 2844 2845 2847 2877
+}
+
+nehuenken_area = { #4
+	785 2867 2871 2872
+}
+
+southern_pampas_area  = { #5
+	779 2860 2861 2865 2866 
+}
+
+buenos_aires_area = { #4
+	778 2846 2848 2849
+}
+
+misiones_area = { #5
+	777 2853 2855 2858 2859
+}
+
+tucuman_area  = { #3
+	791 2836 2842
+}
+
+jujuy_area = { #3
+	794 2837 2839
+}
+
+chaco_area  = { #4
+	790 2854 2878
+}
+
+banda_oriental_area = { #5
+	772 773 2850 2851 2852
+}
+
+guyana_area = { #4
+	502 743 744 2803 
+}
+
+suriname_area = { #3
+	745 746 2937
+}
+
+upper_guyana_area = { #4
+	742 2804 2811 2931
+}
+
+quito_area = { #5
+	816 817 819 820 2820
+}
+
+iquitos_area = { #3
+	815 818 821
+}
+
+venezuela_area = { #3
+	741 831 2808
+}
+
+maracaibo_area = { #3
+	830 2807 2813
+}
+
+eastern_llanos = { #5
+	834 2805 2809 2810 2939 
+}
+
+western_llanos = { #3
+	2812 2814 2815
+}
+
+bogota_area = { #5
+	824 825 827 832 2817
+}
+
+popayan_area = { #4	
+	822 823 2816 2818
+}
+
+coquivacoa_area = { #3
+	828 829 2806
+}
+
+northern_chile_area = { #5
+	792 793 796 2840 2841
+}
+
+central_chile_area = { #3
+	784 787 2862
+}
+
+southern_chile_area = { #3
+	783 2873 2874
+}
+
+antisuyu_area = { #4
+	802 804 2831 2947
+}
+
+kuntisuyu_area = { #4
+	807 808 2829 2830
+}
+
+peruan_coast = { #3
+	805 806 2828
+}
+
+chimor_area = { #5
+	812 2002 2821 2822 2826
+}
+
+ucayali_area = { #3
+	2823 2944 2945
+}
+
+cajamarca_area = { #4
+	813 2824 2825 2943
+}
+
+huanuco_area = { #5
+	809 810 811 814 2827
+}
+
+beni_area = { #3 - Beni Savannah
+	800 801 2834
+}
+
+moxos_area = { #3
+	803 2832 2833
+}
+
+upper_peru = { #4
+	2835 2838 2941 2942
+}
+
+potosi_area = { #4
+	795 797 2940 2946
+}
+
+########################################
+# North America    	                   #
+########################################
+
+great_woods_area = { #3
+    970 2562 2564
+}
+
+maine_area = { #5
+	971 2013 2565 2566 2567
+}
+
+massachusetts_bay_area = { #3
+   966 968 2561
+}
+
+connecticut_valley_area = { #3
+     967 2010 2560
+}
+
+hudson_valley_area = { #4
+    963 965 2558 2639
+}
+
+delaware_valley_area = { #5
+    955 956 957 962 2023
+}
+
+iroquoisia_area = { #5
+    958 959 960 961 964
+}
+
+south_iroquoisia_area = { #3
+	969 2559 2563
+}
+
+susquehanna_area = { #4
+    954 2555 2556 2557
+}
+
+maryland_area = { #3
+    953 2553 2554
+}
+
+chesapeake_area = { #4
+    950 952 2549 2550
+}
+
+great_valley_area = { #3
+    949 2011 2552
+}
+
+piedmont_north_america_area = { #3
+    937 2544 2545
+}
+
+carolinas_area = { #3
+    938 2546 2547
+}
+
+south_carolina_area = { #5
+	932 933 2541 2542 2543
+}
+
+american_georgia_area = { #3
+    929 2539 2540
+}
+
+upper_american_georgia_area = { #3
+	930 931 2537 2538
+}
+
+florida_area = { #3
+    926 2535 2536
+}
+
+north_florida_area = { #3
+	927 928 2534
+}
+
+appalachia_area = { #3
+    951 2526 2551
+}
+
+south_appalachia_area = { #3
+	935 936 2548
+}
+
+west_florida_area = { #5
+    921 922 923 2530 2533
+}
+
+mississippi_area = { #4
+    919 920 2528 2529
+}
+
+choctaw_area = { #3
+    918 934 2527
+
+}
+
+alabama_area = { #4
+    924 925 2531 2532
+}
+
+kentucky_area = { #3
+    939 940 941
+}
+
+ohio_country_area = { #4
+    946 947 948 2525
+}
+
+miami_river_area = { #4
+	942 943 2523 2524
+}
+
+illinois_country_area = { #4
+    915 916 917 2519 2520
+}
+
+mississippi_plain_area = { #3
+	894 895 897
+}
+
+michigan_area = { #4
+    944 945 2521 2522
+}
+
+lake_superior_area = { #4
+    910 911 2517 2518
+}
+
+wisconsin_area = { #3
+	912 913 914
+}
+
+lower_louisiana_area = { # 3
+    893 2014 2516
+}
+
+upper_louisiana_area = { #4
+    900 902 2513 2514
+}
+
+ozarks_area = { #3
+    899 2509 2515
+}
+
+lower_plains_area = { #3
+	891 892 896
+}
+
+central_plains_area = { #5
+    898 901 903 2508 2672 
+}
+
+high_plains_area = { #5
+    889 890 2506 2507 2625
+}
+
+dakota_area = { #5
+    905 906 907 909 2007
+}
+
+south_dakota_area = { #3
+	904 908 2512
+}
+
+upper_missouri_area = { #5
+    2006 2501 2502 2503 2510
+}
+
+badlands_area = { #5
+    1809 2008 2009 2504 2505
+}
+
+llano_estacado_area = { #4
+	882 885 2496 2497
+}
+
+texas_area = { #4
+    884 887 888 2665 2669
+}
+
+coastal_prarie_area = { #3
+	883 886 2500
+}
+
+oregon_area = { #4
+    872 2481 2482 2483
+}
+
+columbia_river_area = { #4
+    873 2486 2487 2488
+}
+
+snake_river_area = { #4
+    2019 2020 2489 2490
+}
+
+salish_sea_area = { #3
+   874 2484 2485
+}
+
+interior_plateau_area = { #4
+    2003 2604 2605 2606 2607
+}
+
+hecate_strait_area = { #3
+    975 2022 2609
+}
+
+alaska_area = {  #4
+    978 979 2611 2612
+}
+
+east_alaska_area = { #3
+    976 977 2613
+}
+
+lower_acadia_area = { #5
+    982 983 984 2568 2569
+}
+
+straits_of_georgia_area = { #4
+   972 973 974 2610
+}
+upper_acadia_area = { #4
+   985 2570 2571 2572
+}
+
+newfoundland_area = { #3
+    980 981 2573
+}
+
+labrador_area = { #3
+    997 2574 2575
+}
+
+cote_nord_area = { #4
+    996 2576 2577 2578
+}
+
+notre_dame_mountains_area = { #5
+    986 994 995 2582 2583
+}
+
+lower_canada_area = { #4
+    990 993 2584 2012
+}
+
+upper_canada_area = { #4
+    987 989 2585 2670
+}
+
+laurentian_area = { #4
+    992 2579 2580 2581
+}
+
+upper_ontario_area = { #4
+    991 1001 1007 2015
+}
+
+huronia_area = { #4
+    988 2586 2587 2671
+}
+
+james_bay_area = { #5
+    998 999 1000 1003 1004
+}
+
+inner_ontario_area = { #5
+	1002 2588 2589 2590 2591
+}
+
+hudson_bay_area = { #5
+    1005 1006 1009 2592 2594
+}
+
+red_river_area = { #5
+    1008 1010 2016 2511 2593
+}
+
+assiniboia_area = { #3
+    2005 2596 2598
+}
+saskatchewan_area = { #3
+    1011 1813 2597
+}
+
+prairies_area = { #5
+    2004 2017 2018 2602
+}
+
+athabasca_area = { #5
+    2595 2599 2600 2601 2603
+}
+
+northeast_mexico_area = { #5
+    861 2614 2619 2666 2667
+}
+
+durango_area = { #4
+    860 863 864 2498 2618
+}
+
+rio_grande_area = { # 3
+    858 2499 2668
+}
+sonora_y_sinaloa_area = { #5
+    855 859 862 877 2616
+}
+
+new_mexico_area = { #5
+    880 881 2492 2495 
+}
+
+colorado_plateau_area = { #4
+    875 878 2493 2494
+}
+
+arizona_area = { #4
+    867 876 879 2491
+}
+
+california_area = { #5
+    868 871 869 2021 2476
+}
+ 
+central_valley_area = { #5
+    870 2477 2478 2479 2480
+}
+
+baja_california_area = { #4
+    865 866 2620 
+}
+
+jalisco_area = { #4
+    854 2617 2621 2657
+}
+
+michoacan_area = { #5
+    851 2622 2623 2624 2643
+}
+
+gran_chichimeca_area = { #5
+    853 856 857 2615 2642
+}
+
+mexico_area = { #5
+    850 852 2626 2628 2644
+}
+
+guerrero_area = { #4
+    849 2627 2645 2648
+}
+
+oaxaca_area = { #4
+    844 847 2629 2646
+}
+
+eastern_mexico_area = { #5
+    848 2630 2631 2641 2647
+}
+
+chiapas_area = { #4
+    2632 2635 2638 2649
+}
+
+yucatan_area = { #4
+    845 2633 2650 2651
+}
+
+east_yucatan_area = { #3
+	846 2634 2652
+}
+
+guatemala_area = { #5
+    841 842 843 2636 2653
+}
+
+honduras_area = { #5
+    839 840 2637 2640 2662
+}
+
+nicaragua_area = { #5
+    837 838 2660 2661 2663
+}
+
+panama_area = { #5
+    826 835 836 2664 2819
+}
+
+cuba_area = { #3
+    484 485 2656
+}
+
+east_cuba_area = { #3
+	486 2654 2655
+}
+
+hispaniola_area = { #5
+    488 489 490 2658 2659
+}
+
+greater_antilles_area = { #4
+    487 481 491 492
+}
+
+lucayan_area = { #2
+	482 483
+}
+
+leeward_islands_area = { #5
+    493 494 495 496 1881
+}
+
+windward_islands_area = { #5
+    497 498 499 500 501
+}
+
+#Deprecated:
+
+east_china_sea_islands_area = {
+
+}
+
+east_african_islands_area = {
+	 
+}
+
+arabian_sea_islands_area = {
+	 
+}
+
+baltic_islands_area = {
+	 
+}
+
+east_altishahr_area = {
+
+}
+
+amnok_area = {
+
+}
+
+north_korea_area = {
+
+}

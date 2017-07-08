@@ -880,10 +880,10 @@ void EU4World::mergeNations()
 
 void EU4World::uniteJapan()
 {
-	EU4Country* japan;
+	EU4Country* japan = nullptr;
 
-	auto version12 = EU4Version("1.20.0.0");
-	if (*version >= version12)
+	auto version20 = EU4Version("1.20.0.0");
+	if (*version >= version20)
 	{
 		for (auto country : countries)
 		{
@@ -899,7 +899,7 @@ void EU4World::uniteJapan()
 	{
 		japan = getCountry("JAP");
 	}
-	if (japan == NULL)
+	if (japan == nullptr)
 	{
 		return;
 	}

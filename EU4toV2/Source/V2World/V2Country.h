@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -69,7 +69,8 @@ class V2Country
 		void								convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], map<int, V2Province*> allProvinces, vector<int> port_whitelist);
 		bool								addFactory(V2Factory* factory);
 		void								addRailroadtoCapitalState();
-		void								convertUncivReforms();
+		void								convertUncivReforms(int techGroupAlgorithm, double topTech);
+		void								convertLandlessReforms(V2Country* capOwner);
 		void								setupPops(double popWeightRatio, int popConversionAlgorithm);
 		void								setArmyTech(double normalizedScore);
 		void								setNavyTech(double normalizedScore);
@@ -92,7 +93,8 @@ class V2Country
 		void								setNationalValue(string NV)				{ nationalValue = NV; }
 		void								isANewCountry(void)							{ newCountry = true; }
 
-		map<int, V2Province*>		getProvinces() const { return provinces; }
+		map<int, V2Province*>			getProvinces() const { return provinces; }
+		vector<V2State*>				getStates() const { return states; }
 		string							getTag() const { return tag; }
 		bool								isCivilized() const { return civilized; }
 		string							getPrimaryCulture() const { return primaryCulture; }
@@ -106,6 +108,7 @@ class V2Country
 		vector< pair<int, int> >	getConservativeIssues() const { return conservativeIssues; }
 		vector< pair<int, int> >	getLiberalIssues() const { return liberalIssues; }
 		double							getLiteracy() const { return literacy; }
+		V2UncivReforms*					getUncivReforms() const { return uncivReforms; }
 		int								getCapital() const { return capital; }
 		bool								isNewCountry() const { return newCountry; }
 		int								getNumFactories() const { return numFactories; }
