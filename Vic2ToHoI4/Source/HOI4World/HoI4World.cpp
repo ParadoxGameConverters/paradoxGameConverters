@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "../V2World/V2Diplomacy.h"
 #include "../V2World/V2Party.h"
+#include "HoI4Advisor.h"
 #include "HoI4Agreement.h"
 #include "HoI4Buildings.h"
 #include "HoI4Country.h"
@@ -74,6 +75,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	determineGreatPowers();
 	importIdeologies();
 	importLeaderTraits();
+	importIdeologicalMinisters();
 	identifyMajorIdeologies();
 	addNeutrality();
 	convertIdeologySupport();
@@ -211,6 +213,19 @@ void HoI4World::importLeaderTraits()
 	{
 		string ideaName = ideologyObject->getKey();
 		ideologicalLeaderTraits.insert(make_pair(ideaName, ideologyObject->getLeaves()));
+	}
+}
+
+
+void HoI4World::importIdeologicalMinisters()
+{
+	Object* fileObject = parser_UTF8::doParseFile("ideologicalMinisters.txt");
+	auto ideologyObjects = fileObject->getLeaves();
+	for (auto ideologyObject: ideologyObjects)
+	{
+		string ideaName = ideologyObject->getKey();
+		HoI4Advisor* newAdvisor = new HoI4Advisor(ideologyObject->getLeaves()[0]);
+		ideologicalMinisters.insert(make_pair(ideaName, newAdvisor));
 	}
 }
 
@@ -1354,7 +1369,7 @@ void HoI4World::outputCountries() const
 
 	for (auto country: countries)
 	{
-		country.second->output();
+		country.second->output(majorIdeologies, ideologicalMinisters);
 	}
 
 	ofstream ideasFile("output/" + Configuration::getOutputName() + "/interface/converter_ideas.gfx");
@@ -1454,7 +1469,7 @@ void HoI4World::outputLeaderTraits() const
 			for (auto trait: ideologyTraits->second)
 			{
 				traitsFile << "\n";
-				traitsFile << trait;
+				traitsFile << *trait;
 			}
 		}
 	}

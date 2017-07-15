@@ -36,6 +36,7 @@ using namespace std;
 
 
 
+class HoI4Advisor;
 class HoI4Buildings;
 class HoI4Country;
 class HoI4Diplomacy;
@@ -77,6 +78,8 @@ class HoI4World
 		void importIdeologyFile(const string& filename);
 
 		void importLeaderTraits();
+
+		void importIdeologicalMinisters();
 
 		void identifyMajorIdeologies();
 		void addNeutrality();
@@ -168,6 +171,7 @@ class HoI4World
 		map<string, HoI4Ideology*> ideologies;
 		set<string> majorIdeologies;
 		map<string, vector<Object*>> ideologicalLeaderTraits;
+		map<string, HoI4Advisor*> ideologicalMinisters;
 		
 		vector<HoI4Faction*> factions;
 		HoI4Diplomacy* diplomacy;

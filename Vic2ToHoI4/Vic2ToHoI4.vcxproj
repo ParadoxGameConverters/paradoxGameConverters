@@ -72,6 +72,7 @@
     <ClCompile Include="Source\Color.cpp" />
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\Flags.cpp" />
+    <ClCompile Include="Source\HOI4World\HoI4Advisor.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Agreement.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Airforce.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Alignment.cpp" />
@@ -139,6 +140,7 @@
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\Flags.h" />
+    <ClInclude Include="Source\HOI4World\HoI4Advisor.h" />
     <ClInclude Include="Source\HOI4World\HoI4Agreement.h" />
     <ClInclude Include="Source\HOI4World\HoI4Airforce.h" />
     <ClInclude Include="Source\HOI4World\HoI4Alignment.h" />

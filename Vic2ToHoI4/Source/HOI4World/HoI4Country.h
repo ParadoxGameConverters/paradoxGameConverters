@@ -19,8 +19,12 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
+
+
 #ifndef HoI4COUNTRY_H_
 #define HoI4COUNTRY_H_
+
+
 
 #include "HoI4Airforce.h"
 #include "HoI4Alignment.h"
@@ -37,12 +41,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <set>
 using namespace std;
 
-class HoI4World;
+
+
 class V2Country;
 struct V2Party;
-class HoI4Minister;
-class HoI4Leader;
+class HoI4Advisor;
 class HoI4Faction;
+class HoI4Leader;
+class HoI4Minister;
+class HoI4World;
 
 
 class HoI4Country
@@ -65,7 +72,7 @@ class HoI4Country
 		void outputToCommonCountriesFile(ofstream& countriesFile) const;
 		void outputColors(ofstream& out) const;
 		void outputToNamesFiles(ofstream& namesFile) const;
-		void output() const;
+		void output(const set<string>& majorIdeologies, map<string, HoI4Advisor*> ideologicalMinisters) const;
 		void outputIdeaGraphics(ofstream& ideasFile) const;
 
 		void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
@@ -147,7 +154,7 @@ class HoI4Country
 		void outputCountryLeader(ofstream& output) const;
 		void outputOOB() const;
 		void outputCommonCountryFile() const;
-		void outputIdeas() const;
+		void outputIdeas(const set<string>& majorIdeologies, map<string, HoI4Advisor*> ideologicalMinisters) const;
 
 
 		HoI4World* theWorld;

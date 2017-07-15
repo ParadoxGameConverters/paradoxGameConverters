@@ -1,0 +1,164 @@
+radical = {
+	# POLITICAL	
+	radical = {
+		
+		allowed = {
+			
+			NOT = {
+				has_available_idea_with_traits = { idea = radical_minister limit = 1 }
+			}
+		}
+		
+		picture = generic_goods_red_bonus
+		
+		traits = { radical_minister }
+
+		on_add = {
+			country_event = conv.political.1
+		}
+
+		do_effect = {
+			NOT = {
+				has_government = radical
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+neutrality = {
+	neutrality = {
+		
+		allowed = {
+			
+			NOT = {
+				has_available_idea_with_traits = { idea = neutrality_minister limit = 1 }
+			}
+		}
+		
+		picture = neutral_foreign_policy
+		
+		traits = { neutrality_minister }
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}
+
+absolutist = {
+	absolutist = {
+		
+		allowed = {
+			
+			NOT = {
+				has_available_idea_with_traits = { idea = absolutist_minister limit = 1 }
+			}
+		}
+		
+		traits = { absolutist_minister }
+		
+		picture = triumphant_will
+
+		on_add = {
+			country_event = conv.political.11
+		}
+
+		do_effect = {
+			NOT = {
+				has_government = absolutist
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+	
+communist = {
+	communist = {
+		
+		allowed = {
+			NOT = {
+				has_available_idea_with_traits = { idea = communist_revolutionary limit = 1 }
+			}
+		}
+		
+		traits = { communist_revolutionary }
+
+		on_add = {
+			country_event = political.1
+		}
+
+		do_effect = {
+			NOT = {
+				has_government = communism
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+democratic = {		
+	democratic = {
+		
+		allowed = {
+			NOT = {
+				has_available_idea_with_traits = { idea = democratic_reformer limit = 1 }
+			}
+		}
+		
+
+		
+		traits = { democratic_reformer }
+
+		on_add = {
+			country_event = political.13
+		}
+
+		do_effect = {
+			NOT = {
+				has_government = democratic
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+fascist = {	
+	fascist = {
+		
+		allowed = {
+			NOT = {
+				has_available_idea_with_traits = { idea = fascist_demagogue limit = 1 }
+			}
+		}
+		
+		
+		traits = { fascist_demagogue }
+
+		on_add = {
+			country_event = political.7
+		}
+
+		do_effect = {
+			NOT = {
+				has_government = fascism
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}

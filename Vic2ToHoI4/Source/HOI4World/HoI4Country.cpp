@@ -22,6 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4Country.h"
+#include "HoI4Advisor.h"
 #include "HoI4World.h"
 #include "Log.h"
 #include "ParadoxParserUTF8.h"
@@ -1234,12 +1235,12 @@ void HoI4Country::outputNamesSet(ofstream& namesFile, const vector<string>& name
 }
 
 
-void HoI4Country::output() const
+void HoI4Country::output(const set<string>& majorIdeologies, map<string, HoI4Advisor*> ideologicalMinisters) const
 {
 	outputHistory();
 	outputOOB();
 	outputCommonCountryFile();
-	outputIdeas();
+	outputIdeas(majorIdeologies, ideologicalMinisters);
 
 	if (nationalFocus != nullptr)
 	{
@@ -1633,7 +1634,7 @@ void HoI4Country::outputCommonCountryFile() const
 }
 
 
-void HoI4Country::outputIdeas() const
+void HoI4Country::outputIdeas(const set<string>& majorIdeologies, map<string, HoI4Advisor*> ideologicalMinisters) const
 {
 	ofstream ideasFile("output/" + Configuration::getOutputName() + "/common/ideas/" + tag + ".txt");
 	if (!ideasFile.is_open())
@@ -1644,58 +1645,16 @@ void HoI4Country::outputIdeas() const
 
 	ideasFile << "ideas = {\n";
 	ideasFile << "\tpolitical_advisor = {\n";
-	ideasFile << "\t\t" << tag << "_communist_advisor = {\n";
-	ideasFile << "\t\t\tallowed = {\n";
-	ideasFile << "\t\t\t\toriginal_tag = \"" << tag << "\"\n";
-	ideasFile << "\t\t\t}\n";
-	ideasFile << "\t\t\ttraits = { communist_revolutionary }\n";
-	ideasFile << "\t\t\ton_add = {\n";
-	ideasFile << "\t\t\t\tcountry_event = political.1\n";
-	ideasFile << "\t\t\t}\n";
-	ideasFile << "\t\t\tdo_effect = {\n";
-	ideasFile << "\t\t\t\tNOT = {\n";
-	ideasFile << "\t\t\t\t\thas_government = communism\n";
-	ideasFile << "\t\t\t\t}\n";
-	ideasFile << "\t\t\t}\n";
-	ideasFile << "\t\t\tai_will_do = {\n";
-	ideasFile << "\t\t\t\tfactor = 0\n";
-	ideasFile << "\t\t\t}\n";
-	ideasFile << "\t\t}\n";
-	ideasFile << "\t\t" << tag << "_democratic_advisor = {\n";
-	ideasFile << "\t\t\tallowed = {\n";
-	ideasFile << "\t\t\t\toriginal_tag = \"" << tag << "\"\n";
-	ideasFile << "\t\t\t}\n";
-	ideasFile << "\t\t\ttraits = { democratic_reformer }\n";
-	ideasFile << "\t\t\ton_add = {\n";
-	ideasFile << "\t\t\t\tcountry_event = political.13\n";
-	ideasFile << "\t\t\t}\n";
-	ideasFile << "\t\t\tdo_effect = {\n";
-	ideasFile << "\t\t\t\tNOT = {\n";
-	ideasFile << "\t\t\t\t\thas_government = democratic\n";
-	ideasFile << "\t\t\t\t}\n";
-	ideasFile << "\t\t\t}\n";
-	ideasFile << "\t\t\tai_will_do = {\n";
-	ideasFile << "\t\t\t\tfactor = 0\n";
-	ideasFile << "\t\t\t}\n";
-	ideasFile << "\t\t}\n";
-	ideasFile << "\t\t" << tag << "_fascist_advisor = {\n";
-	ideasFile << "\t\t\tallowed = {\n";
-	ideasFile << "\t\t\t\toriginal_tag = \"" << tag << "\"\n";
-	ideasFile << "\t\t\t}\n";
-	ideasFile << "\t\t\ttraits = { fascist_demagogue }\n";
-	ideasFile << "\t\t\ton_add = {\n";
-	ideasFile << "\t\t\t\tcountry_event = political.7\n";
-	ideasFile << "\t\t\t}\n";
-	ideasFile << "\t\t\tdo_effect = {\n";
-	ideasFile << "\t\t\t\tNOT = {\n";
-	ideasFile << "\t\t\t\t\thas_government = fascism\n";
-	ideasFile << "\t\t\t\t}\n";
-	ideasFile << "\t\t\t}\n";
-	ideasFile << "\t\t\tai_will_do = {\n";
-	ideasFile << "\t\t\t\tfactor = 0\n";
-	ideasFile << "\t\t\t}\n";
-	ideasFile << "\t\t}\n";
+	for (auto majorIdeology: majorIdeologies)
+	{
+		auto minister = ideologicalMinisters.find(majorIdeology);
+		if (minister != ideologicalMinisters.end())
+		{
+				minister->second->output(ideasFile, tag);
+		}
+	}
 	ideasFile << "\t}\n";
+
 	ideasFile << "\ttank_manufacturer = { \n";
 	ideasFile << "\t\tdesigner = yes\n";
 	ideasFile << "\t\t\n";

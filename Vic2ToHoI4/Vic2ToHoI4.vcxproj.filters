@@ -200,6 +200,9 @@
     <ClCompile Include="Source\HOI4World\HOI4Ideology.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\HOI4World\HoI4Advisor.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -386,6 +389,9 @@
       <Filter>Mappers</Filter>
     </ClInclude>
     <ClInclude Include="Source\HOI4World\HOI4Ideology.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\HoI4Advisor.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
   </ItemGroup>
