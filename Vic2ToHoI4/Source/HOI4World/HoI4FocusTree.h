@@ -59,9 +59,6 @@ class HoI4FocusTree
 		void addFocus(HoI4Focus* newFocus) { focuses.push_back(newFocus); }
 
 	private:
-		void addVersion1_0GenericFocusTree();
-		void addVersion1_3GenericFocusTree();
-
 		string srcCountryTag;
 		string dstCountryTag;
 		vector<HoI4Focus*> focuses;
