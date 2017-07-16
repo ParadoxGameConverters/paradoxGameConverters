@@ -1235,12 +1235,12 @@ void HoI4Country::outputNamesSet(ofstream& namesFile, const vector<string>& name
 }
 
 
-void HoI4Country::output(const set<string>& majorIdeologies, map<string, HoI4Advisor*> ideologicalMinisters) const
+void HoI4Country::output(const set<const HoI4Advisor*>& ideologicalMinisters) const
 {
 	outputHistory();
 	outputOOB();
 	outputCommonCountryFile();
-	outputIdeas(majorIdeologies, ideologicalMinisters);
+	outputIdeas(ideologicalMinisters);
 
 	if (nationalFocus != nullptr)
 	{
@@ -1634,7 +1634,7 @@ void HoI4Country::outputCommonCountryFile() const
 }
 
 
-void HoI4Country::outputIdeas(const set<string>& majorIdeologies, map<string, HoI4Advisor*> ideologicalMinisters) const
+void HoI4Country::outputIdeas(const set<const HoI4Advisor*>& ideologicalAdvisors) const
 {
 	ofstream ideasFile("output/" + Configuration::getOutputName() + "/common/ideas/" + tag + ".txt");
 	if (!ideasFile.is_open())
@@ -1645,13 +1645,9 @@ void HoI4Country::outputIdeas(const set<string>& majorIdeologies, map<string, Ho
 
 	ideasFile << "ideas = {\n";
 	ideasFile << "\tpolitical_advisor = {\n";
-	for (auto majorIdeology: majorIdeologies)
+	for (auto ideologicalAdvisor: ideologicalAdvisors)
 	{
-		auto minister = ideologicalMinisters.find(majorIdeology);
-		if (minister != ideologicalMinisters.end())
-		{
-				minister->second->output(ideasFile, tag);
-		}
+		ideologicalAdvisor->output(ideasFile, tag);
 	}
 	ideasFile << "\t}\n";
 

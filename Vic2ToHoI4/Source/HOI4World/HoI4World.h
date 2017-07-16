@@ -146,6 +146,7 @@ class HoI4World
 		void outputNames() const;
 		void outputMap() const;
 		void outputCountries() const;
+		set<const HoI4Advisor*> getActiveIdeologicalAdvisors() const;
 		void outputRelations() const;
 		void outputIdeologies() const;
 		void outputLeaderTraits() const;
@@ -171,7 +172,7 @@ class HoI4World
 		map<string, HoI4Ideology*> ideologies;
 		set<string> majorIdeologies;
 		map<string, vector<Object*>> ideologicalLeaderTraits;
-		map<string, HoI4Advisor*> ideologicalMinisters;
+		map<string, HoI4Advisor*> ideologicalAdvisors;
 		
 		vector<HoI4Faction*> factions;
 		HoI4Diplomacy* diplomacy;

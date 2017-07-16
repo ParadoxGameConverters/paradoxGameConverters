@@ -219,13 +219,13 @@ void HoI4World::importLeaderTraits()
 
 void HoI4World::importIdeologicalMinisters()
 {
-	Object* fileObject = parser_UTF8::doParseFile("ideologicalMinisters.txt");
+	Object* fileObject = parser_UTF8::doParseFile("ideologicalAdvisors.txt");
 	auto ideologyObjects = fileObject->getLeaves();
 	for (auto ideologyObject: ideologyObjects)
 	{
 		string ideaName = ideologyObject->getKey();
 		HoI4Advisor* newAdvisor = new HoI4Advisor(ideologyObject->getLeaves()[0]);
-		ideologicalMinisters.insert(make_pair(ideaName, newAdvisor));
+		ideologicalAdvisors.insert(make_pair(ideaName, newAdvisor));
 	}
 }
 
@@ -1369,7 +1369,7 @@ void HoI4World::outputCountries() const
 
 	for (auto country: countries)
 	{
-		country.second->output(majorIdeologies, ideologicalMinisters);
+		country.second->output(getActiveIdeologicalAdvisors());
 	}
 
 	ofstream ideasFile("output/" + Configuration::getOutputName() + "/interface/converter_ideas.gfx");
@@ -1386,6 +1386,22 @@ void HoI4World::outputCountries() const
 	}
 	ideasFile << "\n";
 	ideasFile << "}\n";
+}
+
+
+set<const HoI4Advisor*> HoI4World::getActiveIdeologicalAdvisors() const
+{
+	set<const HoI4Advisor*> theAdvisors;
+	for (auto ideology: majorIdeologies)
+	{
+		auto ideologicalAdvisor = ideologicalAdvisors.find(ideology);
+		if (ideologicalAdvisor != ideologicalAdvisors.end())
+		{
+			theAdvisors.insert(ideologicalAdvisor->second);
+		}
+	}
+
+	return theAdvisors;
 }
 
 
