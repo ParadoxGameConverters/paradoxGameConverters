@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -34,9 +34,9 @@ HOI4Version::HOI4Version()
 }
 
 
-HOI4Version::HOI4Version(Object* obj)
+HOI4Version::HOI4Version(shared_ptr<Object> obj)
 {
-	vector<Object*> numberObj;
+	vector<shared_ptr<Object>> numberObj;
 	numberObj = obj->getValue("first");
 	if (numberObj.size() > 0)
 	{

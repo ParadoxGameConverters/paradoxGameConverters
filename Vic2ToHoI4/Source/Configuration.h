@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -23,6 +23,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #ifndef CONFIGURATION_H_
 #define CONFIGURATION_H_
+
 
 
 #include <string>
@@ -120,7 +121,7 @@ class Configuration // Singleton
 
 		static Configuration* getInstance()
 		{
-			if (instance == NULL)
+			if (instance == nullptr)
 			{
 				instance = new Configuration();
 			}
@@ -154,5 +155,7 @@ class Configuration // Singleton
 
 		HOI4Version version;
 };
+
+
 
 #endif // CONFIGURATION_H_

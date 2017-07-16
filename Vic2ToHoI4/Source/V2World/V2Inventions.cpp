@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -72,8 +72,8 @@ inventionNumToName generateNums(string path)
 
 void processTechFile(string filename, inventionNumToName& numToName)
 {
-	Object* obj = parser_8859_15::doParseFile(filename);
-	vector<Object*> techObjs = obj->getLeaves();
+	shared_ptr<Object> obj = parser_8859_15::doParseFile(filename);
+	vector<shared_ptr<Object>> techObjs = obj->getLeaves();
 
 	for (auto techObj: techObjs)
 	{

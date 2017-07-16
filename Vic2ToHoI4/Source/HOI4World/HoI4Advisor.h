@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <fstream>
+#include <memory>
 #include <set>
 #include <string>
 using namespace std;
@@ -40,7 +41,7 @@ class Object;
 class HoI4Advisor
 {
 	public:
-		HoI4Advisor(Object* object);
+		HoI4Advisor(shared_ptr<Object> object);
 		void output(ofstream& output, const string& tag) const;
 
 	private:

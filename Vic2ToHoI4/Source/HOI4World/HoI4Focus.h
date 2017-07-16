@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -37,7 +37,7 @@ class HoI4Focus
 {
 	public:
 		HoI4Focus();
-		HoI4Focus(Object* obj);
+		HoI4Focus(shared_ptr<Object> obj);
 
 		friend ostream& operator << (ostream& output, HoI4Focus& focus);
 

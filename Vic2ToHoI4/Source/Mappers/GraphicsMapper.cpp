@@ -74,7 +74,7 @@ graphicsMapper::graphicsMapper()
 }
 
 
-void graphicsMapper::loadLeaderPortraitMappings(const string& cultureGroup, Object* portraitMappings)
+void graphicsMapper::loadLeaderPortraitMappings(const string& cultureGroup, shared_ptr<Object> portraitMappings)
 {
 	auto cultureGroupMappings = leaderPortraitMappings.element.find(cultureGroup);
 	if (cultureGroupMappings == leaderPortraitMappings.element.end())
@@ -104,7 +104,7 @@ void graphicsMapper::loadLeaderPortraitMappings(const string& cultureGroup, Obje
 }
 
 
-void graphicsMapper::loadIdeologyMinisterPortraitMappings(const string& cultureGroup, Object* portraitMappings)
+void graphicsMapper::loadIdeologyMinisterPortraitMappings(const string& cultureGroup, shared_ptr<Object> portraitMappings)
 {
 	auto cultureGroupMappings = ideologyMinisterMappings.element.find(cultureGroup);
 	if (cultureGroupMappings == ideologyMinisterMappings.element.end())
@@ -134,13 +134,13 @@ void graphicsMapper::loadIdeologyMinisterPortraitMappings(const string& cultureG
 }
 
 
-void graphicsMapper::loadGraphicalCultureMappings(const string& cultureGroup, Object* graphicalCultureMappings)
+void graphicsMapper::loadGraphicalCultureMappings(const string& cultureGroup, shared_ptr<Object> graphicalCultureMappings)
 {
 	graphicalCultureMap[cultureGroup] = graphicalCultureMappings->getLeaf();
 }
 
 
-void graphicsMapper::loadGraphicalCulture2dMappings(const string& cultureGroup, Object* graphicalCulture2dMappings)
+void graphicsMapper::loadGraphicalCulture2dMappings(const string& cultureGroup, shared_ptr<Object> graphicalCulture2dMappings)
 {
 	graphicalCulture2dMap[cultureGroup] = graphicalCulture2dMappings->getLeaf();
 }

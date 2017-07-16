@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Date.h"
 #include "Object.h"
+#include <memory>
 #include <string>
 using namespace std;
 
@@ -36,7 +37,7 @@ using namespace std;
 class V2Agreement
 {
 	public:
-		V2Agreement(Object* obj);
+		V2Agreement(shared_ptr<Object> obj);
 
 		string type;
 		string country1;

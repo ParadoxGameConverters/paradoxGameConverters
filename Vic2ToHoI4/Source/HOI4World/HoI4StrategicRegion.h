@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -45,11 +45,11 @@ class HoI4StrategicRegion
 		void	addNewProvince(int province)	{ newProvinces.push_back(province); }
 
 	private:
-		string		filename;
-		int			ID;
+		string filename;
+		int ID;
 		vector<int>	oldProvinces;
 		vector<int>	newProvinces;
-		Object*		weatherObj;
+		shared_ptr<Object> weatherObj;
 };
 
 

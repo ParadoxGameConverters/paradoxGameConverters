@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Date.h"
 #include "Object.h"
+#include <memory>
 #include <vector>
 
 
@@ -40,12 +41,12 @@ class V2Diplomacy
 {
 	public:
 		V2Diplomacy()	{ agreements.clear(); };
-		V2Diplomacy(Object *obj);
+		V2Diplomacy(shared_ptr<Object> obj);
 
 		const vector<V2Agreement*>& getAgreements() const	{ return agreements; }
 
 	private:
-		bool isARelevantDiplomaticObject(Object* obj) const;
+		bool isARelevantDiplomaticObject(shared_ptr<Object> obj) const;
 
 		vector<V2Agreement*>	agreements;
 };

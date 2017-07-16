@@ -49,15 +49,15 @@ HoI4Province::HoI4Province(string Owner, int State)
 	string temp		= _filename.substr(slash + 1, numDigits);
 	num				= stoi(temp);*/
 
-	Object* obj;
+	shared_ptr<Object> obj;
 	//obj = parser_UTF8::doParseFile((string("./blankMod/output/history/provinces") + _filename));
-	/*if (obj == NULL)
+	/*if (obj == nullptr)
 	{
 		LOG(LogLevel::Error) << "Could not parse ./blankMod/output/history/provinces" << _filename;
 		exit(-1);
 	}*/
 
-	vector<Object*> leaves = obj->getLeaves();
+	vector<shared_ptr<Object>> leaves = obj->getLeaves();
 	for (auto itr: leaves)
 	{
 		if (itr->getKey() == "owner")

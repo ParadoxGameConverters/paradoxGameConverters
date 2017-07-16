@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <fstream>
 #include <map>
+#include <memory>
 #include <vector>
 using namespace std;
 
@@ -41,7 +42,7 @@ class Object;
 class HoI4Ideology
 {
 	public:
-		HoI4Ideology(Object* obj);
+		HoI4Ideology(shared_ptr<Object> obj);
 		void output(ofstream& file) const;
 	private:
 		void outputTypes(ofstream& file) const;

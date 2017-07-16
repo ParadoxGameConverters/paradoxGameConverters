@@ -32,7 +32,7 @@ HoI4Focus::HoI4Focus()
 }
 
 
-HoI4Focus::HoI4Focus(Object* obj)
+HoI4Focus::HoI4Focus(shared_ptr<Object> obj)
 {
 	id = obj->getLeaf("id");
 

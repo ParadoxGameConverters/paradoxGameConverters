@@ -369,7 +369,7 @@ void HoI4Country::initFromHistory()
 	}
 
 	LOG(LogLevel::Debug) << "Parsing " << fullFilename;
-	Object* obj = parser_UTF8::doParseFile(fullFilename);
+	shared_ptr<Object> obj = parser_UTF8::doParseFile(fullFilename);
 	if (obj == nullptr)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << fullFilename;
@@ -1117,7 +1117,7 @@ void HoI4Country::reportIndustry(ofstream& out)
 void HoI4Country::addVPsToCapital(int VPs)
 {
 	auto capital = getCapital();
-	if (capital != NULL)
+	if (capital != nullptr)
 	{
 		capital->addVictoryPointValue(VPs);
 	}

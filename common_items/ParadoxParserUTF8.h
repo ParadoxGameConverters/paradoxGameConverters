@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -57,10 +57,10 @@ using namespace std;
 
 namespace parser_UTF8
 {
-	Object*	getTopLevel();
-	void		clearStack(); 
-	void		initParser();
-	Object*	doParseFile(string filename);
+	shared_ptr<Object> getTopLevel();
+	void	clearStack(); 
+	void	initParser();
+	shared_ptr<Object> doParseFile(string filename);
 }
 
 

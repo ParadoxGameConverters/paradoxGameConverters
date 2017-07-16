@@ -52,16 +52,16 @@ namesMapper::namesMapper()
 
 void namesMapper::processVic2CulturesFile(string filename)
 {
-	Object* obj = parser_8859_15::doParseFile(filename);
+	shared_ptr<Object> obj = parser_8859_15::doParseFile(filename);
 	if (obj == nullptr)
 	{
 		return;
 	}
 
-	vector<Object*> groupsObj = obj->getLeaves();
+	vector<shared_ptr<Object>> groupsObj = obj->getLeaves();
 	for (auto groupsItr: groupsObj)
 	{
-		vector<Object*> culturesObj = groupsItr->getLeaves();
+		vector<shared_ptr<Object>> culturesObj = groupsItr->getLeaves();
 		for (auto culturesItr: culturesObj)
 		{
 			string key = culturesItr->getKey();
@@ -70,8 +70,8 @@ void namesMapper::processVic2CulturesFile(string filename)
 				continue;
 			}
 
-			vector<Object*> firstNamesObj = culturesItr->getValue("first_names");
-			vector<Object*> lastNamesObj = culturesItr->getValue("last_names");
+			vector<shared_ptr<Object>> firstNamesObj = culturesItr->getValue("first_names");
+			vector<shared_ptr<Object>> lastNamesObj = culturesItr->getValue("last_names");
 			if ((firstNamesObj.size() > 0) && (lastNamesObj.size() > 0))
 			{
 				maleNamesMap.insert(make_pair(key, firstNamesObj[0]->getTokens()));
@@ -88,7 +88,7 @@ void namesMapper::processVic2CulturesFile(string filename)
 
 void namesMapper::processNamesFile()
 {
-	Object* obj = parser_UTF8::doParseFile("names.txt");
+	shared_ptr<Object> obj = parser_UTF8::doParseFile("names.txt");
 	for (auto cultureObj: obj->getLeaves())
 	{
 		string culture = cultureObj->getKey();

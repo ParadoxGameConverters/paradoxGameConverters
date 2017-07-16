@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -33,7 +33,7 @@ using namespace std;
 class V2Leader
 {
 	public:
-		V2Leader(Object* obk);
+		V2Leader(shared_ptr<Object> obk);
 
 		string getName() const { return name; }
 		string getType() const { return type; }

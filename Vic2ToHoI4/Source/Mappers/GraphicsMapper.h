@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <map>
+#include <memory>
 #include <random>
 #include <string>
 #include <vector>
@@ -88,10 +89,10 @@ class graphicsMapper
 			return instance;
 		}
 		graphicsMapper();
-		void loadLeaderPortraitMappings(const string& cultureGroup, Object* portraitMappings);
-		void loadIdeologyMinisterPortraitMappings(const string& cultureGroup, Object* portraitMappings);
-		void loadGraphicalCultureMappings(const string& cultureGroup, Object* graphicalCultureMappings);
-		void loadGraphicalCulture2dMappings(const string& cultureGroup, Object* graphicalCulture2dMappings);
+		void loadLeaderPortraitMappings(const string& cultureGroup, shared_ptr<Object> portraitMappings);
+		void loadIdeologyMinisterPortraitMappings(const string& cultureGroup, shared_ptr<Object> portraitMappings);
+		void loadGraphicalCultureMappings(const string& cultureGroup, shared_ptr<Object> graphicalCultureMappings);
+		void loadGraphicalCulture2dMappings(const string& cultureGroup, shared_ptr<Object> graphicalCulture2dMappings);
 
 		string GetLeaderPortrait(string cultureGroup, string ideology);
 		vector<string> GetLeaderPortraits(string cultureGroup, string ideology);

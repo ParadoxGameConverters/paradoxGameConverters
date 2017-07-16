@@ -191,7 +191,7 @@ void HoI4World::importIdeologies()
 
 void HoI4World::importIdeologyFile(const string& filename)
 {
-	Object* fileObject = parser_UTF8::doParseFile(filename);
+	shared_ptr<Object> fileObject = parser_UTF8::doParseFile(filename);
 	auto ideologiesObjects = fileObject->getLeaves();
 	if (ideologiesObjects.size() > 0)
 	{
@@ -207,7 +207,7 @@ void HoI4World::importIdeologyFile(const string& filename)
 
 void HoI4World::importLeaderTraits()
 {
-	Object* fileObject = parser_UTF8::doParseFile("converterLeaderTraits.txt");
+	shared_ptr<Object> fileObject = parser_UTF8::doParseFile("converterLeaderTraits.txt");
 	auto ideologyObjects = fileObject->getLeaves();
 	for (auto ideologyObject: ideologyObjects)
 	{
@@ -219,7 +219,7 @@ void HoI4World::importLeaderTraits()
 
 void HoI4World::importIdeologicalMinisters()
 {
-	Object* fileObject = parser_UTF8::doParseFile("ideologicalAdvisors.txt");
+	shared_ptr<Object> fileObject = parser_UTF8::doParseFile("ideologicalAdvisors.txt");
 	auto ideologyObjects = fileObject->getLeaves();
 	for (auto ideologyObject: ideologyObjects)
 	{
@@ -498,7 +498,7 @@ void HoI4World::reportDefaultIndustry()
 
 pair<string, array<int, 3>> HoI4World::getDefaultStateIndustry(string stateFilename)
 {
-	Object* fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/history/states/" + stateFilename);
+	shared_ptr<Object> fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/history/states/" + stateFilename);
 	if (fileObj == nullptr)
 	{
 		LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/history/states/" << stateFilename;
@@ -581,7 +581,7 @@ map<int, map<string, double>> HoI4World::importResourceMap() const
 {
 	map<int, map<string, double>> resourceMap;
 
-	Object* fileObj = parser_UTF8::doParseFile("resources.txt");
+	shared_ptr<Object> fileObj = parser_UTF8::doParseFile("resources.txt");
 	if (fileObj == nullptr)
 	{
 		LOG(LogLevel::Error) << "Could not read resources.txt";
@@ -847,9 +847,9 @@ map<string, vector<pair<string, int>>> HoI4World::importTechMap() const
 {
 	map<string, vector<pair<string, int>>> techMap;
 
-	Object* fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
+	shared_ptr<Object> fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
 
-	vector<Object*> mapObj = fileObj->getValue("tech_map");
+	vector<shared_ptr<Object>> mapObj = fileObj->getValue("tech_map");
 	if (mapObj.size() < 1)
 	{
 		LOG(LogLevel::Error) << "Could not read tech map";

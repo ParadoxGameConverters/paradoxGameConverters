@@ -55,7 +55,7 @@ class V2World
 	private:
 		void setLocalisations();
 
-		map<int, int> extractGreatNationIndices(const Object* obj);
+		map<int, int> extractGreatNationIndices(const shared_ptr<Object> obj);
 
 		bool isProvinceKey(string key) const;
 		bool isCountryKey(string key) const;
@@ -72,7 +72,7 @@ class V2World
 		void determineEmployedWorkers();
 		void removeEmptyNations();
 		void determinePartialStates();
-		void inputDiplomacy(const vector<Object*> diplomacyObj);
+		void inputDiplomacy(const vector<shared_ptr<Object>> diplomacyObj);
 
 		void overallMergeNations();
 		void mergeNations(string masterTag, const vector<string>& slaveTags);
@@ -83,9 +83,9 @@ class V2World
 		bool processCountriesDotTxt(string countryListFile, string mod);
 		bool shouldLineBeSkipped(string line) const;
 		string extractCountryFileName(string countryFileLine) const;
-		Object* readCountryFile(string countryFileName, string mod) const;
-		void readCountryColor(const Object* countryData, string line);
-		void inputPartyInformation(const vector<Object*>& leaves);
+		shared_ptr<Object> readCountryFile(string countryFileName, string mod) const;
+		void readCountryColor(const shared_ptr<Object> countryData, string line);
+		void inputPartyInformation(const vector<shared_ptr<Object>>& leaves);
 
 		V2Country* getCountry(string tag) const;
 

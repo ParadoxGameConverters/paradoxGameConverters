@@ -171,7 +171,7 @@ class HoI4World
 
 		map<string, HoI4Ideology*> ideologies;
 		set<string> majorIdeologies;
-		map<string, vector<Object*>> ideologicalLeaderTraits;
+		map<string, vector<shared_ptr<Object>>> ideologicalLeaderTraits;
 		map<string, HoI4Advisor*> ideologicalAdvisors;
 		
 		vector<HoI4Faction*> factions;

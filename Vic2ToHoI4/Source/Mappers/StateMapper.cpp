@@ -43,7 +43,7 @@ stateMapper::stateMapper()
 	{
 		if (Utils::DoesFileExist(Configuration::getV2Path() + "/mod/" + itr + "/map/region.txt"))
 		{
-			Object* parsedMappingsFile = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/map/region.txt"));
+			shared_ptr<Object> parsedMappingsFile = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/map/region.txt"));
 			if (parsedMappingsFile != NULL)
 			{
 				initStateMap(parsedMappingsFile);
@@ -54,7 +54,7 @@ stateMapper::stateMapper()
 	}
 	if (!stateMapInitialized)
 	{
-		Object* parsedMappingsFile = parser_8859_15::doParseFile((Configuration::getV2Path() + "/map/region.txt"));
+		shared_ptr<Object> parsedMappingsFile = parser_8859_15::doParseFile((Configuration::getV2Path() + "/map/region.txt"));
 		if (parsedMappingsFile != NULL)
 		{
 			initStateMap(parsedMappingsFile);
@@ -68,9 +68,9 @@ stateMapper::stateMapper()
 
 
 
-void stateMapper::initStateMap(Object* parsedMappingsFile)
+void stateMapper::initStateMap(shared_ptr<Object> parsedMappingsFile)
 {
-	vector<Object*> leafObjs = parsedMappingsFile->getLeaves();
+	vector<shared_ptr<Object>> leafObjs = parsedMappingsFile->getLeaves();
 
 	for (auto leafObj: leafObjs)
 	{
