@@ -285,8 +285,14 @@ void HoI4Localisation::CopyFocusLocalisations(string oldKey, string newKey)
 		}
 
 		auto oldLocalisation = languageLocalisations.second.find(oldKey);
-		newLanguage->second[newKey] = oldLocalisation->second;
-
+		if (oldLocalisation != languageLocalisations.second.end())
+		{
+			newLanguage->second[newKey] = oldLocalisation->second;
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Could not find original localisation for " << oldKey;
+		}
 	}
 }
 

@@ -180,7 +180,6 @@ HoI4Focus* HoI4Focus::makeCustomizedCopy(const string& country) const
 		newFocus->prerequisites.push_back(prerequisite + country);
 	}
 
-
 	HoI4Localisation::copyFocusLocalisations(id, newFocus->id);
 
 	return newFocus;

@@ -65,6 +65,7 @@ class HoI4World
 		map<int, HoI4State*> getStates() const { return states->getStates(); }
 		vector<HoI4Faction*> getFactions() const { return factions; }
 		HoI4Events* getEvents() const { return events; }
+		set<string> getMajorIdeologies() const { return majorIdeologies; }
 
 		HoI4Country* findCountry(string countryTag);
 
