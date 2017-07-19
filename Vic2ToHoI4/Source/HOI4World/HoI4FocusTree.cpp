@@ -1426,8 +1426,9 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 		newFocus->completionReward += "			add_ideas = collectivist_ethos_focus";
 		focuses.push_back(newFocus);
 
-		string ideolgicalFanaticsmPrereqs;
+		determineMutualExclusions(majorIdeologies);
 
+		string ideolgicalFanaticsmPrereqs;
 		if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("fascist") > 0))
 		{
 			addFascistGenericFocuses();
@@ -1717,13 +1718,78 @@ int HoI4FocusTree::calculateNumCollectovistIdeologies(const set<string>& majorId
 }
 
 
+void HoI4FocusTree::determineMutualExclusions(const set<string>& majorIdeologies)
+{
+	if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("fascist") > 0))
+	{
+		communistMutualExclusions += "focus = nationalism_focus";
+		absolutistMutualExlusions += "focus = nationalism_focus";
+		radicalMutualExclusions += "focus = nationalism_focus";
+	}
+	if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("communist") > 0))
+	{
+		if (fascistMutualExlusions.size() > 0)
+		{
+			fascistMutualExlusions += " ";
+		}
+		if (absolutistMutualExlusions.size() > 0)
+		{
+			absolutistMutualExlusions += " ";
+		}
+		if (radicalMutualExclusions.size() > 0)
+		{
+			radicalMutualExclusions += " ";
+		}
+		fascistMutualExlusions += "focus = internationalism_focus";
+		absolutistMutualExlusions += "focus = internationalism_focus";
+		radicalMutualExclusions += "focus = internationalism_focus";
+	}
+	if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("absolutist") > 0))
+	{
+		if (fascistMutualExlusions.size() > 0)
+		{
+			fascistMutualExlusions += " ";
+		}
+		if (communistMutualExclusions.size() > 0)
+		{
+			communistMutualExclusions += " ";
+		}
+		if (radicalMutualExclusions.size() > 0)
+		{
+			radicalMutualExclusions += " ";
+		}
+		fascistMutualExlusions += "focus = absolutism_focus";
+		communistMutualExclusions += "focus = absolutism_focus";
+		radicalMutualExclusions += "focus = absolutism_focus";
+	}
+	if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("radical") > 0))
+	{
+		if (fascistMutualExlusions.size() > 0)
+		{
+			fascistMutualExlusions += " ";
+		}
+		if (communistMutualExclusions.size() > 0)
+		{
+			communistMutualExclusions += " ";
+		}
+		if (absolutistMutualExlusions.size() > 0)
+		{
+			absolutistMutualExlusions += " ";
+		}
+		fascistMutualExlusions += "focus = radical_focus";
+		communistMutualExclusions += "focus = radical_focus";
+		absolutistMutualExlusions += "focus = radical_focus";
+	}
+}
+
+
 void HoI4FocusTree::addFascistGenericFocuses()
 {
 	HoI4Focus* newFocus = new HoI4Focus;
 	newFocus->id = "nationalism_focus";
 	newFocus->icon = "GFX_goal_support_fascism #icon = GFX_goal_tripartite_pact";
 	newFocus->prerequisites.push_back("focus = collectivist_ethos");
-	newFocus->mutuallyExclusive = "focus = internationalism_focus";
+	newFocus->mutuallyExclusive = fascistMutualExlusions;
 	newFocus->available += "			OR = {\n";
 	newFocus->available += "				has_government = fascism\n";
 	newFocus->available += "				has_government = neutrality\n";
@@ -1804,7 +1870,7 @@ void HoI4FocusTree::addCommunistGenericFocuses()
 	newFocus->id = "internationalism_focus";
 	newFocus->icon = "GFX_goal_support_communism #icon = GFX_goal_tripartite_pact";
 	newFocus->prerequisites.push_back("focus = collectivist_ethos");
-	//newFocus->mutuallyExclusive = "focus = nationalism_focus";
+	newFocus->mutuallyExclusive = communistMutualExclusions;
 	newFocus->available += "			OR = {\n";
 	newFocus->available += "				has_government = communism\n";
 	newFocus->available += "				has_government = neutrality\n";
@@ -1888,7 +1954,7 @@ void HoI4FocusTree::addAbsolutistGenericFocuses()
 	newFocus->icon = "GFX_goal_support_communism #icon = GFX_goal_tripartite_pact";
 	newFocus->text = "Absolutism Focus";
 	newFocus->prerequisites.push_back("focus = collectivist_ethos");
-	//newFocus->mutuallyExclusive = "focus = nationalism_focus";
+	newFocus->mutuallyExclusive = absolutistMutualExlusions;
 	newFocus->available += "			OR = {\n";
 	newFocus->available += "				has_government = absolutism\n";
 	newFocus->available += "				has_government = neutrality\n";
@@ -1917,7 +1983,7 @@ void HoI4FocusTree::addRadicalGenericFocuses()
 	newFocus->icon = "GFX_goal_support_communism #icon = GFX_goal_tripartite_pact";
 	newFocus->text = "Radicalism Focus";
 	newFocus->prerequisites.push_back("focus = collectivist_ethos");
-	//newFocus->mutuallyExclusive = "focus = nationalism_focus";
+	newFocus->mutuallyExclusive = radicalMutualExclusions;
 	newFocus->available += "			OR = {\n";
 	newFocus->available += "				has_government = radical\n";
 	newFocus->available += "				has_government = neutrality\n";

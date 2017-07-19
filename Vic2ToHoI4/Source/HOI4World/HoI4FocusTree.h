@@ -61,6 +61,7 @@ class HoI4FocusTree
 
 	private:
 		int calculateNumCollectovistIdeologies(const set<string>& majorIdeologies);
+		void determineMutualExclusions(const set<string>& majorIdeologies);
 		void addFascistGenericFocuses();
 		void addCommunistGenericFocuses();
 		void addAbsolutistGenericFocuses();
@@ -70,6 +71,11 @@ class HoI4FocusTree
 		string dstCountryTag;
 		vector<HoI4Focus*> focuses;
 		int nextFreeColumn;
+
+		string fascistMutualExlusions;
+		string communistMutualExclusions;
+		string absolutistMutualExlusions;
+		string radicalMutualExclusions;
 };
 
 
