@@ -95,7 +95,7 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 2
+			factor = 4
 			
 			modifier = {
 				factor = 2
@@ -177,10 +177,10 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 3
+			factor = 4
 			
 			modifier = {
-				factor = 2
+				factor = 4
 				is_major = yes
 			}
 			
@@ -255,10 +255,10 @@ technologies = {
 		}
 		
 		ai_will_do = {
-			factor = 2
+			factor = 4
 			
 			modifier = {
-				factor = 2
+				factor = 4
 				is_major = yes
 			}
 			

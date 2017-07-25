@@ -29,9 +29,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Object.h"
 #include "GovernmentMapper.h"
 #include <map>
-#include <vector>
-#include <unordered_set>
+#include <memory>
 #include <set>
+#include <unordered_set>
+#include <vector>
+using namespace std;
+
+
+
 class V2World;
 class HoI4World;
 
@@ -49,28 +54,28 @@ HoI4AdjacencyMapping initHoI4AdjacencyMap();
 
 
 typedef map<int, string> continentMapping;	// <province, continent>
-void initContinentMap(Object* obj, continentMapping& continentMap);
+void initContinentMap(shared_ptr<Object> obj, continentMapping& continentMap);
 
 
 void removeOlderLandlessNations(V2World&, int excess);
 void removeLandlessNations(V2World&);
 
-void mergeNations(HoI4World&, Object* mergeObj);
+void mergeNations(HoI4World&, shared_ptr<Object> mergeObj);
 void removeDeadLandlessNations(HoI4World&);
 void removeOlderLandlessNations(HoI4World&, int excess);
 void removeLandlessNations(HoI4World&);
 
 // Union Mappings
 typedef vector< pair<string, string> > unionMapping;	// <cultures, tag>
-unionMapping initUnionMap(Object* obj);
+unionMapping initUnionMap(shared_ptr<Object> obj);
 
 
 // Cultural Union Nation mappings
 typedef map< string, vector<string> > unionCulturesMap; // <culture group, cultures>
-void initUnionCultures(Object* obj, unionCulturesMap& unionCultures);
+void initUnionCultures(shared_ptr<Object> obj, unionCulturesMap& unionCultures);
 
 // idea effects
-void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, int>& commerceInvIdeas, map<string, int>& cultureInvIdeas, map<string, int>& industryInvIdeas, map<string, int>& navyInvIdeas, map<string, double>& UHLiberalIdeas, map<string, double>& UHReactionaryIdeas, vector< pair<string, int> >& literacyIdeas, map<string, int>& orderIdeas, map<string, int>& libertyIdeas, map<string, int>& equalityIdeas);
+void initIdeaEffects(shared_ptr<Object> obj, map<string, int>& armyInvIdeas, map<string, int>& commerceInvIdeas, map<string, int>& cultureInvIdeas, map<string, int>& industryInvIdeas, map<string, int>& navyInvIdeas, map<string, double>& UHLiberalIdeas, map<string, double>& UHReactionaryIdeas, vector< pair<string, int> >& literacyIdeas, map<string, int>& orderIdeas, map<string, int>& libertyIdeas, map<string, int>& equalityIdeas);
 
 
 // government jobs

@@ -67,7 +67,7 @@ governmentMapper::governmentMapper()
 }
 
 
-void governmentMapper::importGovernmentMappings(Object* obj)
+void governmentMapper::importGovernmentMappings(shared_ptr<Object> obj)
 {
 	for (auto mapping: obj->getValue("mapping"))
 	{
@@ -98,7 +98,7 @@ void governmentMapper::importGovernmentMappings(Object* obj)
 }
 
 
-void governmentMapper::importPartyMappings(Object* obj)
+void governmentMapper::importPartyMappings(shared_ptr<Object> obj)
 {
 	for (auto mapping: obj->getValue("mapping"))
 	{

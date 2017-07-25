@@ -26,11 +26,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Agreement::V2Agreement(Object *obj)
+V2Agreement::V2Agreement(shared_ptr<Object> obj)
 {
 	type = obj->getKey();
 
-	vector<Object*> objFirst = obj->getValue("first");
+	vector<shared_ptr<Object>> objFirst = obj->getValue("first");
 	if (objFirst.size() > 0)
 	{
 		country1 = objFirst[0]->getLeaf();
@@ -40,7 +40,7 @@ V2Agreement::V2Agreement(Object *obj)
 		LOG(LogLevel::Warning) << "Diplomatic agreement (" << type << ") has no first party";
 	}
 
-	vector<Object*> objSecond = obj->getValue("second");
+	vector<shared_ptr<Object>> objSecond = obj->getValue("second");
 	if (objSecond.size() > 0)
 	{
 		country2 = objSecond[0]->getLeaf();
@@ -50,7 +50,7 @@ V2Agreement::V2Agreement(Object *obj)
 		LOG(LogLevel::Warning) << "Diplomatic agreement (" << type << ") has no second party";
 	}
 
-	vector<Object*> objDate = obj->getValue("start_date");
+	vector<shared_ptr<Object>> objDate = obj->getValue("start_date");
 	if (objDate.size() > 0)
 	{
 		start_date = date(objDate[0]->getLeaf());

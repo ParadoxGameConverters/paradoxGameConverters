@@ -21,37 +21,53 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef _HOI4_STRATEGIC_REGION
-#define _HOI4_STRATEGIC_REGION
+#ifndef HOI4_IDEOLOGY
+#define HOI4_IDEOLOGY
 
 
 
-#include "Object.h"
-#include <string>
+#include <fstream>
+#include <map>
+#include <memory>
 #include <vector>
 using namespace std;
 
 
 
-class HoI4StrategicRegion
+class Color;
+class Object;
+
+
+
+class HoI4Ideology
 {
 	public:
-		HoI4StrategicRegion(string _filename);
-		void output(string path);
-
-		int			getID() const				{ return ID; }
-		vector<int>	getOldProvinces() const	{ return oldProvinces; }
-
-		void	addNewProvince(int province)	{ newProvinces.push_back(province); }
-
+		HoI4Ideology(shared_ptr<Object> obj);
+		void output(ofstream& file) const;
 	private:
-		string filename;
-		int ID;
-		vector<int>	oldProvinces;
-		vector<int>	newProvinces;
-		shared_ptr<Object> weatherObj;
+		void outputTypes(ofstream& file) const;
+		void outputDynamicFactionNames(ofstream& file) const;
+		void outputTheColor(ofstream& file) const;
+		void outputRules(ofstream& file) const;
+		void outputOnWorldTension(ofstream& file) const;
+		void outputModifiers(ofstream& file) const;
+		void outputFactionModifiers(ofstream& file) const;
+		void outputCans(ofstream& file) const;
+		void outputAI(ofstream& file) const;
+
+		string ideologyName;
+		vector<string> types;
+		vector<string> dynamicFactionNames;
+		Color* theColor;
+		map<string, string> rules;
+		float warImpactOnWorldTension;
+		float factionImpactOnWorldTension;
+		map<string, float> modifiers;
+		map<string, float> factionModifiers;
+		map<string, string> cans;
+		string AI;
 };
 
 
 
-#endif // _HOI4_STRATEGIC_REGION
+#endif // HOI4_IDEOLOGY

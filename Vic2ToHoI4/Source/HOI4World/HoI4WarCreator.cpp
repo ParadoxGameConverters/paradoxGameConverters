@@ -41,7 +41,7 @@ void HoI4WarCreator::generateWars(HoI4World* world)
 	ofstream AILog("AI-log.txt");
 
 	genericFocusTree = new HoI4FocusTree;
-	genericFocusTree->addGenericFocusTree();
+	genericFocusTree->addGenericFocusTree(world->getMajorIdeologies());
 
 	determineProvinceOwners();
 	fillCountryProvinces();
@@ -1505,7 +1505,7 @@ vector<HoI4Faction*> HoI4WarCreator::democracyWarCreator(HoI4Country* Leader)
 	}
 	if (vCountriesToContain.size() > 0)
 	{
-		FocusTree->addDemocracyNationalFocuses(Leader, vCountriesToContain, 27);
+		FocusTree->addDemocracyNationalFocuses(Leader, vCountriesToContain);
 	}
 
 	Leader->addNationalFocus(FocusTree);
@@ -1532,6 +1532,7 @@ vector<HoI4Faction*> HoI4WarCreator::absolutistWarCreator(HoI4Country* country)
 
 	return CountriesAtWar;
 }
+
 
 vector<HoI4Faction*> HoI4WarCreator::neighborWarCreator(HoI4Country * country, ofstream & AILog)
 {

@@ -30,6 +30,11 @@ namespace Frontend.Core.Converting.Operations.ExtractSave
 
             if (zipFileEntry == null)
             {
+                zipFileEntry = zip.Entries.FirstOrDefault(entry => entry.FullName.Equals("game.eu4"));
+            }
+
+            if (zipFileEntry == null)
+            {
                 throw new FileNotFoundInArchiveException();
             }
 

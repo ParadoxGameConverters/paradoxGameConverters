@@ -61,7 +61,7 @@ class CountryMapper
 		static CountryMapper* instance;
 		static CountryMapper* getInstance()
 		{
-			if (instance == NULL)
+			if (instance == nullptr)
 			{
 				instance = new CountryMapper();
 			}
@@ -71,8 +71,8 @@ class CountryMapper
 		CountryMapper();
 
 		void readRules();
-		vector<Object*> getRules();
-		void importRule(Object* rule);
+		vector<shared_ptr<Object>> getRules();
+		void importRule(shared_ptr<Object> rule);
 
 		void CreateMappings(const V2World* srcWorld);
 		void resetMappingData();

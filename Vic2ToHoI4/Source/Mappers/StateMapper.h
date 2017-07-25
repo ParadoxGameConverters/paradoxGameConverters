@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <map>
+#include <memory>
 #include <unordered_set>
 using namespace std;
 
@@ -72,7 +73,7 @@ class stateMapper
 		}
 		stateMapper();
 
-		void initStateMap(Object* parsedMappingsFile);
+		void initStateMap(shared_ptr<Object> parsedMappingsFile);
 
 		int GetCapitalProvince(const string& stateID) const;
 

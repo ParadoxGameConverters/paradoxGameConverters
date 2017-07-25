@@ -48,18 +48,18 @@ cultureGroupMapper::cultureGroupMapper()
 
 void cultureGroupMapper::processVic2CulturesFile(string culturesFile)
 {
-	Object* obj = parser_8859_15::doParseFile(culturesFile);
+	shared_ptr<Object> obj = parser_8859_15::doParseFile(culturesFile);
 	if (obj == nullptr)
 	{
 		return;
 	}
 
-	vector<Object*> groupsObj = obj->getLeaves();
+	vector<shared_ptr<Object>> groupsObj = obj->getLeaves();
 	for (auto groupsItr: groupsObj)
 	{
 		string group = groupsItr->getKey();
 
-		vector<Object*> culturesObj = groupsItr->getLeaves();
+		vector<shared_ptr<Object>> culturesObj = groupsItr->getLeaves();
 		for (auto culturesItr: culturesObj)
 		{
 			string key = culturesItr->getKey();

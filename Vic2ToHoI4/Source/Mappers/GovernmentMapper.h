@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include <memory>
 #include <set>
 #include <string>
 #include <vector>
@@ -90,8 +91,8 @@ class governmentMapper
 			return instance;
 		}
 		governmentMapper();
-		void importGovernmentMappings(Object* obj);
-		void importPartyMappings(Object* obj);
+		void importGovernmentMappings(shared_ptr<Object> obj);
+		void importPartyMappings(shared_ptr<Object> obj);
 
 		string GetIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology);
 		string GetLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology);

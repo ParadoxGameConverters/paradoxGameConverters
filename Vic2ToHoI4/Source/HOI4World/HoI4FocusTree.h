@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -47,8 +47,9 @@ class HoI4FocusTree
 		HoI4FocusTree* makeCustomizedCopy(const HoI4Country* country) const;
 		void setNextFreeColumn(int newFreeColumn) { nextFreeColumn = newFreeColumn; };
 
-		void addGenericFocusTree();
-		void addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Country*> CountriesToContain, int XStart);
+		void addGenericFocusTree(const set<string>& majorIdeologies);
+
+		void addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Country*> CountriesToContain);
 		void addAbsolutistEmpireNationalFocuses(HoI4Country* country, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets);
 		void addCommunistCoupBranch(HoI4Country* Home, vector<HoI4Country*> coupTargets);
 		void addCommunistWarBranch(HoI4Country* Home, vector<HoI4Country*> warTargets, HoI4Events* events);
@@ -59,13 +60,22 @@ class HoI4FocusTree
 		void addFocus(HoI4Focus* newFocus) { focuses.push_back(newFocus); }
 
 	private:
-		void addVersion1_0GenericFocusTree();
-		void addVersion1_3GenericFocusTree();
+		int calculateNumCollectovistIdeologies(const set<string>& majorIdeologies);
+		void determineMutualExclusions(const set<string>& majorIdeologies);
+		void addFascistGenericFocuses();
+		void addCommunistGenericFocuses();
+		void addAbsolutistGenericFocuses();
+		void addRadicalGenericFocuses();
 
 		string srcCountryTag;
 		string dstCountryTag;
 		vector<HoI4Focus*> focuses;
 		int nextFreeColumn;
+
+		string fascistMutualExlusions;
+		string communistMutualExclusions;
+		string absolutistMutualExlusions;
+		string radicalMutualExclusions;
 };
 
 

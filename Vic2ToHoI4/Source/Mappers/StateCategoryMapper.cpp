@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -52,9 +52,9 @@ void stateCategoryMapper::readCategoriesFromDirectory(string directory)
 
 void stateCategoryMapper::readCategoriesFromFile(string file)
 {
-	Object* parsedFile = parser_UTF8::doParseFile(file);
-	vector<Object*> StateCategoryObjs = parsedFile->getLeaves();
-	vector<Object*> categoryObjs = StateCategoryObjs[0]->getLeaves();
+	shared_ptr<Object> parsedFile = parser_UTF8::doParseFile(file);
+	vector<shared_ptr<Object>> StateCategoryObjs = parsedFile->getLeaves();
+	vector<shared_ptr<Object>> categoryObjs = StateCategoryObjs[0]->getLeaves();
 
 	for (auto categoryObj: categoryObjs)
 	{

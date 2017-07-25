@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -27,13 +27,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Object.h"
-#include "Date.h"
+#include <memory>
+using namespace std;
 
 
 
 struct V2Party
 {
-	V2Party(Object* party_obj);
+	V2Party(shared_ptr<Object> party_obj);
 
 	string name;
 	string ideology;

@@ -57,7 +57,7 @@ void HoI4SupplyZones::importStates()
 	{
 		int num = stoi(stateFile.substr(0, stateFile.find_first_of('-')));
 
-		Object* fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/history/states/" + stateFile);
+		shared_ptr<Object> fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/history/states/" + stateFile);
 		if (fileObj == nullptr)
 		{
 			LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/history/states/" << stateFile;
@@ -82,7 +82,7 @@ void HoI4SupplyZones::importSupplyZone(const string& supplyZonesFile)
 	int num = stoi(supplyZonesFile.substr(0, supplyZonesFile.find_first_of('-')));
 	supplyZonesFilenames.insert(make_pair(num, supplyZonesFile));
 
-	Object* fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/map/supplyareas/" + supplyZonesFile);
+	shared_ptr<Object> fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/map/supplyareas/" + supplyZonesFile);
 	if (fileObj == nullptr)
 	{
 		LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/map/supplyareas/" << supplyZonesFile;
@@ -99,7 +99,7 @@ void HoI4SupplyZones::importSupplyZone(const string& supplyZonesFile)
 }
 
 
-void HoI4SupplyZones::mapProvincesToSupplyZone(int ID, Object* supplyAreaObj)
+void HoI4SupplyZones::mapProvincesToSupplyZone(int ID, shared_ptr<Object> supplyAreaObj)
 {
 	auto statesObj = supplyAreaObj->getValue("states");
 	for (auto idString: statesObj[0]->getTokens())

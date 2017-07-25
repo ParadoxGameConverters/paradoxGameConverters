@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -50,7 +50,7 @@ typedef struct
 class Vic2State
 {
 	public:
-		Vic2State(const Object* stateObj, string ownerTag);
+		Vic2State(const shared_ptr<Object> stateObj, string ownerTag);
 
 		void determineEmployedWorkers();
 		void determineIfPartialState();
@@ -68,12 +68,12 @@ class Vic2State
 		int getEmployedWorkers() const { return employedWorkers; }
 
 	private:
-		void addProvinceNums(const Object* stateObj);
+		void addProvinceNums(const shared_ptr<Object> stateObj);
 		void setID();
-		vector<string> getProvinceIDs(const Object* stateObj);
+		vector<string> getProvinceIDs(const shared_ptr<Object> stateObj);
 
-		void setFactoryLevel(const Object* stateObj);
-		void addBuildingLevel(const Object* buildingObj);
+		void setFactoryLevel(const shared_ptr<Object> stateObj);
+		void addBuildingLevel(const shared_ptr<Object> buildingObj);
 
 		workerStruct countEmployedWorkers();
 		workerStruct limitWorkersByFactoryLevels(workerStruct workers);

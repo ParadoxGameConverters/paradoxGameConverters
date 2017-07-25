@@ -19,17 +19,24 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
+
+
 #ifndef V2COUNTRY_H_
 #define V2COUNTRY_H_
+
+
 
 #include "../Mappers/Mapper.h"
 #include "../Color.h"
 #include "V2Inventions.h"
 #include <vector>
 #include <map>
+#include <memory>
 #include <set>
 #include <string>
 using namespace std;
+
+
 
 class		V2Army;
 class		V2Leader;
@@ -38,10 +45,12 @@ class		V2Province;
 class		V2Relations;
 class		Vic2State;
 
+
+
 class V2Country
 {
 public:
-	V2Country(Object* obj);
+	V2Country(shared_ptr<Object> obj);
 
 	void addProvince(const pair<const int, V2Province*>& province) { provinces.insert(province); }
 	void setColor(const Color& newColor) { color = newColor; }
@@ -93,27 +102,27 @@ public:
 	bool hasCoreOnCapital() const;
 
 private:
-	void readInDomainNameAndAdjective(const Object* countryObj);
-	void readInCapital(const Object* countryObj);
-	void readInCultures(const Object* countryObj);
-	void readInCivilized(const Object* countryObj);
-	void readInTechnology(const Object* countryObj);
-	void readInInventions(const Object* countryObj);
-	void readInPoliticalParties(const Object* countryObj);
-	void readInSpending(const Object* countryObj);
-	void readInRevanchism(const Object* countryObj);
-	void readInWarExhaustion(const Object* countryObj);
-	void readInBadBoy(const Object* countryObj);
-	void readInReforms(Object* countryObj);
-	void readInGovernment(const Object* countryObj);
-	void readInUpperHouse(const Object* countryObj);
-	void readInRelations(Object* countryObj);
+	void readInDomainNameAndAdjective(const shared_ptr<Object> countryObj);
+	void readInCapital(const shared_ptr<Object> countryObj);
+	void readInCultures(const shared_ptr<Object> countryObj);
+	void readInCivilized(const shared_ptr<Object> countryObj);
+	void readInTechnology(const shared_ptr<Object> countryObj);
+	void readInInventions(const shared_ptr<Object> countryObj);
+	void readInPoliticalParties(const shared_ptr<Object> countryObj);
+	void readInSpending(const shared_ptr<Object> countryObj);
+	void readInRevanchism(const shared_ptr<Object> countryObj);
+	void readInWarExhaustion(const shared_ptr<Object> countryObj);
+	void readInBadBoy(const shared_ptr<Object> countryObj);
+	void readInReforms(shared_ptr<Object> countryObj);
+	void readInGovernment(const shared_ptr<Object> countryObj);
+	void readInUpperHouse(const shared_ptr<Object> countryObj);
+	void readInRelations(shared_ptr<Object> countryObj);
 	bool isCountryTag(string potentialTag);
-	void readInMilitary(const Object* countryObj);
-	void readInLeaders(const Object* countryObj);
-	void readInStates(const Object* countryObj);
-	void createNewState(const Object* stateObj);
-	void detectIfHuman(const Object* stateObj);
+	void readInMilitary(const shared_ptr<Object> countryObj);
+	void readInLeaders(const shared_ptr<Object> countryObj);
+	void readInStates(const shared_ptr<Object> countryObj);
+	void createNewState(const shared_ptr<Object> stateObj);
+	void detectIfHuman(const shared_ptr<Object> stateObj);
 
 	void setLocalisationName(const string& language, const string& name);
 	void setLocalisationAdjective(const string& language, const string& adjective);

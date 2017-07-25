@@ -22,7 +22,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "CountryMapping.h"
-
 #include <algorithm>
 #include <iomanip>
 #include <iostream>
@@ -38,7 +37,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-CountryMapper* CountryMapper::instance = NULL;
+CountryMapper* CountryMapper::instance = nullptr;
+
 
 
 CountryMapper::CountryMapper()
@@ -51,7 +51,7 @@ CountryMapper::CountryMapper()
 void CountryMapper::readRules()
 {
 	LOG(LogLevel::Info) << "Reading country mapping rules";
-	vector<Object*> ruleNodes = getRules();
+	vector<shared_ptr<Object>> ruleNodes = getRules();
 	for (auto rule: ruleNodes)
 	{
 		importRule(rule);
@@ -59,15 +59,15 @@ void CountryMapper::readRules()
 }
 
 
-vector<Object*> CountryMapper::getRules()
+vector<shared_ptr<Object>> CountryMapper::getRules()
 {
-	Object* countryMappingsFile = parser_UTF8::doParseFile("country_mappings.txt");
+	shared_ptr<Object> countryMappingsFile = parser_UTF8::doParseFile("country_mappings.txt");
 	if (!countryMappingsFile)
 	{
 		LOG(LogLevel::Error) << "Failed to parse country_mappings.txt";
 		exit(-1);
 	}
-	vector<Object*> nodes = countryMappingsFile->getLeaves();
+	vector<shared_ptr<Object>> nodes = countryMappingsFile->getLeaves();
 	if (nodes.empty())
 	{
 		LOG(LogLevel::Error) << "country_mappings.txt does not contain a mapping";
@@ -78,9 +78,9 @@ vector<Object*> CountryMapper::getRules()
 }
 
 
-void CountryMapper::importRule(Object* rule)
+void CountryMapper::importRule(shared_ptr<Object> rule)
 {
-	vector<Object*> ruleItems = rule->getLeaves();
+	vector<shared_ptr<Object>> ruleItems = rule->getLeaves();
 
 	string newVic2Tag;
 	vector<string>	HoI4Tags;

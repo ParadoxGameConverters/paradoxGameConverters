@@ -42,7 +42,7 @@ V2World::V2World(const string& filename)
 	LOG(LogLevel::Info) << "* Importing V2 save *";
 
 	LOG(LogLevel::Info) << "Parsing save";
-	Object* obj = parser_8859_15::doParseFile(filename);
+	shared_ptr<Object> obj = parser_8859_15::doParseFile(filename);
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << filename << ". File is likely missing.";
@@ -59,7 +59,7 @@ V2World::V2World(const string& filename)
 	map<int, int> countryIndexToGPRank = extractGreatNationIndices(obj);
 	unsigned int countryIndex = 1; // Starts from 1 at REB
 
-	vector<Object*> leaves = obj->getLeaves();
+	vector<shared_ptr<Object>> leaves = obj->getLeaves();
 	for (auto leaf: leaves)
 	{
 		string key = leaf->getKey();
@@ -93,11 +93,11 @@ V2World::V2World(const string& filename)
 }
 
 
-map<int, int> V2World::extractGreatNationIndices(const Object* obj)
+map<int, int> V2World::extractGreatNationIndices(const shared_ptr<Object> obj)
 {
 	map<int, int> countryIndexToGPRank;
 
-	vector<Object*> greatNationsObj = obj->getValue("great_nations");
+	vector<shared_ptr<Object>> greatNationsObj = obj->getValue("great_nations");
 	if (greatNationsObj.size() > 0)
 	{
 		vector<string> greatNations = greatNationsObj[0]->getTokens();
@@ -285,7 +285,7 @@ void V2World::determinePartialStates()
 }
 
 
-void V2World::inputDiplomacy(const vector<Object*> diplomacyObj)
+void V2World::inputDiplomacy(const vector<shared_ptr<Object>> diplomacyObj)
 {
 	if (diplomacyObj.size() > 0)
 	{
@@ -338,7 +338,7 @@ bool V2World::processCountriesDotTxt(string countryListFile, string mod)
 		}
 
 		string countryFileName = extractCountryFileName(line);
-		Object* countryData = readCountryFile(countryFileName, mod);
+		shared_ptr<Object> countryData = readCountryFile(countryFileName, mod);
 		if (countryData == NULL)
 		{
 			continue;
@@ -369,9 +369,9 @@ string V2World::extractCountryFileName(string countryFileLine) const
 }
 
 
-Object* V2World::readCountryFile(string countryFileName, string mod) const
+shared_ptr<Object> V2World::readCountryFile(string countryFileName, string mod) const
 {
-	Object* countryData = NULL;
+	shared_ptr<Object> countryData = NULL;
 	if (mod != "")
 	{
 		string file = Configuration::getV2Path() + "/mod/" + mod + "/common/countries/" + countryFileName;
@@ -405,10 +405,10 @@ Object* V2World::readCountryFile(string countryFileName, string mod) const
 }
 
 
-void V2World::readCountryColor(const Object* countryData, string line)
+void V2World::readCountryColor(const shared_ptr<Object> countryData, string line)
 {
 	string tag = line.substr(0, 3);
-	vector<Object*> colorObj = countryData->getValue("color");
+	vector<shared_ptr<Object>> colorObj = countryData->getValue("color");
 	if (colorObj.size() > 0)
 	{
 		vector<string> rgb = colorObj[0]->getTokens();
@@ -423,7 +423,7 @@ void V2World::readCountryColor(const Object* countryData, string line)
 }
 
 
-void V2World::inputPartyInformation(const vector<Object*>& leaves)
+void V2World::inputPartyInformation(const vector<shared_ptr<Object>>& leaves)
 {
 	for (auto leaf: leaves)
 	{
@@ -439,14 +439,14 @@ void V2World::inputPartyInformation(const vector<Object*>& leaves)
 void V2World::overallMergeNations()
 {
 	LOG(LogLevel::Info) << "Merging nations";
-	Object* mergeObj = parser_UTF8::doParseFile("merge_nations.txt");
+	shared_ptr<Object> mergeObj = parser_UTF8::doParseFile("merge_nations.txt");
 	if (mergeObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file merge_nations.txt";
 		exit(-1);
 	}
 
-	vector<Object*> rules = mergeObj->getValue("merge_nations");	// all merging rules
+	vector<shared_ptr<Object>> rules = mergeObj->getValue("merge_nations");	// all merging rules
 	if (rules.size() < 0)
 	{
 		LOG(LogLevel::Debug) << "No nations have merging requested (skipping)";
@@ -456,7 +456,7 @@ void V2World::overallMergeNations()
 	rules = rules[0]->getLeaves();	// the rules themselves
 	for (auto rule: rules)
 	{
-		vector<Object*> thisMerge = rule->getLeaves();	// the current merge rule
+		vector<shared_ptr<Object>> thisMerge = rule->getLeaves();	// the current merge rule
 		string masterTag;										// the nation to merge into
 		vector<string> slaveTags;								// the nations that will be merged into the master
 		bool enabled = false;									// whether or not this rule is enabled

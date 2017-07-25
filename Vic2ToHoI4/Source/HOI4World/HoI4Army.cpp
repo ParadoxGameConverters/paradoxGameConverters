@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -32,11 +32,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 //HoI4RegimentType::HoI4RegimentType(string type)
 //{
 //	/*string	filename	= Configuration::getHoI4Path() + "/tfh/units/" + type + ".txt";
-//	Object*	obj		= parser_UTF8::doParseFile(filename);
+//	shared_ptr<Object>	obj		= parser_UTF8::doParseFile(filename);
 //	obj					= obj->getLeaves()[0];
 //	name					= obj->getKey();
 //
-//	vector<Object*> usableByObject = obj->getValue("usable_by");
+//	vector<shared_ptr<Object>> usableByObject = obj->getValue("usable_by");
 //	if (usableByObject.size() > 0)
 //	{
 //		vector<string> tokens = usableByObject[0]->getTokens();

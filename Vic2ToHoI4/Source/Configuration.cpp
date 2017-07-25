@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -32,20 +32,22 @@ using namespace std;
 
 
 
-Configuration* Configuration::instance = NULL;
+Configuration* Configuration::instance = nullptr;
+
+
 
 Configuration::Configuration()
 {
 	LOG(LogLevel::Info) << "Reading configuration file";
 
-	Object* oneObj = parser_UTF8::doParseFile("configuration.txt");	// the parsed configuration file
-	if (oneObj == NULL)
+	shared_ptr<Object> oneObj = parser_UTF8::doParseFile("configuration.txt");	// the parsed configuration file
+	if (oneObj == nullptr)
 	{
 		LOG(LogLevel::Error) << "Could not open configuration.txt";
 		exit(-1);
 	}
 
-	vector<Object*> obj = oneObj->getValue("configuration");	// the configuration section
+	vector<shared_ptr<Object>> obj = oneObj->getValue("configuration");	// the configuration section
 	if (obj.size() != 1)
 	{
 		LOG(LogLevel::Error) << "Configuration file must contain exactly one configuration section";
@@ -85,10 +87,9 @@ Configuration::Configuration()
 		LOG(LogLevel::Debug) << "HoI4 documents directory is " << HoI4DocumentsPath;
 	}
 
-
 	outputName = "";
 
-	vector<Object*> modsObj = obj[0]->getValue("Vic2Mods");
+	vector<shared_ptr<Object>> modsObj = obj[0]->getValue("Vic2Mods");
 	if (modsObj.size() > 0)
 	{
 		Vic2Mods = modsObj[0]->getTokens();

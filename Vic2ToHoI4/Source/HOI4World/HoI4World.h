@@ -36,11 +36,13 @@ using namespace std;
 
 
 
+class HoI4Advisor;
 class HoI4Buildings;
 class HoI4Country;
 class HoI4Diplomacy;
 class HoI4Events;
 class HoI4Faction;
+class HoI4Ideology;
 class HoI4Province;
 class HoI4State;
 class HoI4States;
@@ -63,6 +65,7 @@ class HoI4World
 		map<int, HoI4State*> getStates() const { return states->getStates(); }
 		vector<HoI4Faction*> getFactions() const { return factions; }
 		HoI4Events* getEvents() const { return events; }
+		set<string> getMajorIdeologies() const { return majorIdeologies; }
 
 		HoI4Country* findCountry(string countryTag);
 
@@ -71,6 +74,14 @@ class HoI4World
 
 		void convertCountries();
 		void convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, governmentJobsMap governmentJobs, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+
+		void importIdeologies();
+		void importIdeologyFile(const string& filename);
+
+		void importLeaderTraits();
+
+		void importIdeologicalMinisters();
+
 		void identifyMajorIdeologies();
 		void addNeutrality();
 		void convertIdeologySupport();
@@ -136,7 +147,10 @@ class HoI4World
 		void outputNames() const;
 		void outputMap() const;
 		void outputCountries() const;
+		set<const HoI4Advisor*> getActiveIdeologicalAdvisors() const;
 		void outputRelations() const;
+		void outputIdeologies() const;
+		void outputLeaderTraits() const;
 
 		/*vector<int> getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		vector<int> getPortProvinces(const vector<int>& locationCandidates);
@@ -156,7 +170,10 @@ class HoI4World
 		map<string, HoI4Country*> landedCountries;
 		vector<HoI4Country*> greatPowers;
 
+		map<string, HoI4Ideology*> ideologies;
 		set<string> majorIdeologies;
+		map<string, vector<shared_ptr<Object>>> ideologicalLeaderTraits;
+		map<string, HoI4Advisor*> ideologicalAdvisors;
 		
 		vector<HoI4Faction*> factions;
 		HoI4Diplomacy* diplomacy;

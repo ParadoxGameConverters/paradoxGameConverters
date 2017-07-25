@@ -37,7 +37,7 @@ int main(const int argc, const char* argv[])
 {
 	try
 	{
-		LOG(LogLevel::Info) << "Converter version 0.2A";
+		LOG(LogLevel::Info) << "Converter version 0.2B";
 		LOG(LogLevel::Info) << "Built on " << __DATE__ << " at " << __TIME__;
 		LOG(LogLevel::Info) << "Current directory is " << Utils::getCurrentDirectory();
 
@@ -190,6 +190,7 @@ void createModFile()
 	modFile << "name = \"Converted - " << Configuration::getOutputName() << "\"\n";
 	modFile << "path = \"mod/" << Configuration::getOutputName() << "/\"\n";
 	modFile << "user_dir = \"" << Configuration::getOutputName() << "_user_dir\"\n";
+	modFile << "replace_path=\"common/ideologies\"\n";
 	modFile << "replace_path=\"history/countries\"\n";
 	modFile << "replace_path=\"history/states\"\n";
 	modFile << "supported_version=\"" << thisVersion << "\"";

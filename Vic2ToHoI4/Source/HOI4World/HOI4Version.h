@@ -36,7 +36,7 @@ class HOI4Version
 {
 public:
 	HOI4Version();
-	HOI4Version(Object* obj);
+	HOI4Version(shared_ptr<Object> obj);
 	HOI4Version(string version);
 	bool operator >= (HOI4Version& rhs) const;
 

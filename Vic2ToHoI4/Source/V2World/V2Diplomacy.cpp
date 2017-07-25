@@ -27,7 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Diplomacy::V2Diplomacy(Object *obj)
+V2Diplomacy::V2Diplomacy(shared_ptr<Object> obj)
 {
 	for (auto agreementObj: obj->getLeaves())
 	{
@@ -40,7 +40,7 @@ V2Diplomacy::V2Diplomacy(Object *obj)
 }
 
 
-bool V2Diplomacy::isARelevantDiplomaticObject(Object* obj) const
+bool V2Diplomacy::isARelevantDiplomaticObject(shared_ptr<Object> obj) const
 {
 	string key = obj->getKey();
 	if ((key == "vassal") || (key == "alliance") || (key == "casus_belli") || (key == "warsubsidy"))

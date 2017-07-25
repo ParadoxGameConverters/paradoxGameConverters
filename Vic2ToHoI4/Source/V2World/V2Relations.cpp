@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Relations::V2Relations(Object* relationsObj)
+V2Relations::V2Relations(shared_ptr<Object> relationsObj)
 {
 	tag = relationsObj->getKey();
 
@@ -39,9 +39,9 @@ V2Relations::V2Relations(Object* relationsObj)
 }
 
 
-void V2Relations::setValue(Object* relationsObj)
+void V2Relations::setValue(shared_ptr<Object> relationsObj)
 {
-	vector<Object*> valueObjs = relationsObj->getValue("value");
+	vector<shared_ptr<Object>> valueObjs = relationsObj->getValue("value");
 	if (valueObjs.size() > 0)
 	{
 		value = stoi(valueObjs[0]->getLeaf());
@@ -53,9 +53,9 @@ void V2Relations::setValue(Object* relationsObj)
 }
 
 
-void V2Relations::setMilitaryAccess(Object* relationsObj)
+void V2Relations::setMilitaryAccess(shared_ptr<Object> relationsObj)
 {
-	vector<Object*> maObjs = relationsObj->getValue("military_access");
+	vector<shared_ptr<Object>> maObjs = relationsObj->getValue("military_access");
 	if (maObjs.size() > 0)
 	{
 		militaryAccess = (maObjs[0]->getLeaf() == "yes");
@@ -67,9 +67,9 @@ void V2Relations::setMilitaryAccess(Object* relationsObj)
 }
 
 
-void V2Relations::setLastDiplomat(Object* relationsObj)
+void V2Relations::setLastDiplomat(shared_ptr<Object> relationsObj)
 {
-	vector<Object*> lastSendObjs = relationsObj->getValue("last_send_diplomat");
+	vector<shared_ptr<Object>> lastSendObjs = relationsObj->getValue("last_send_diplomat");
 	if (lastSendObjs.size() > 0)
 	{
 		lastSentDiplomat = date(lastSendObjs[0]->getLeaf());
@@ -77,9 +77,9 @@ void V2Relations::setLastDiplomat(Object* relationsObj)
 }
 
 
-void V2Relations::setLastWar(Object* relationsObj)
+void V2Relations::setLastWar(shared_ptr<Object> relationsObj)
 {
-	vector<Object*> lastWarObjs = relationsObj->getValue("last_war");
+	vector<shared_ptr<Object>> lastWarObjs = relationsObj->getValue("last_war");
 	if (lastWarObjs.size() > 0)
 	{
 		lastWar = date(lastWarObjs[0]->getLeaf());
@@ -87,9 +87,9 @@ void V2Relations::setLastWar(Object* relationsObj)
 }
 
 
-void V2Relations::setTruce(Object* relationsObj)
+void V2Relations::setTruce(shared_ptr<Object> relationsObj)
 {
-	vector<Object*> truceUntilObjs = relationsObj->getValue("truce_until");
+	vector<shared_ptr<Object>> truceUntilObjs = relationsObj->getValue("truce_until");
 	if (truceUntilObjs.size() > 0)
 	{
 		truceUntil = date(truceUntilObjs[0]->getLeaf());
@@ -97,9 +97,9 @@ void V2Relations::setTruce(Object* relationsObj)
 }
 
 
-void V2Relations::setLevel(Object* relationsObj)
+void V2Relations::setLevel(shared_ptr<Object> relationsObj)
 {
-	vector<Object*> levelObjs = relationsObj->getValue("level");
+	vector<shared_ptr<Object>> levelObjs = relationsObj->getValue("level");
 	if (levelObjs.size() > 0)
 	{
 		level = stoi(levelObjs[0]->getLeaf());

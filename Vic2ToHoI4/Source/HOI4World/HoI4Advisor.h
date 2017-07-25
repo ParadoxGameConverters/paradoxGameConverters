@@ -21,37 +21,36 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef _HOI4_STRATEGIC_REGION
-#define _HOI4_STRATEGIC_REGION
+#ifndef HOI4_ADVISOR
+#define HOI4_ADVISOR
 
 
 
-#include "Object.h"
+#include <fstream>
+#include <memory>
+#include <set>
 #include <string>
-#include <vector>
 using namespace std;
 
 
 
-class HoI4StrategicRegion
+class Object;
+
+
+
+class HoI4Advisor
 {
 	public:
-		HoI4StrategicRegion(string _filename);
-		void output(string path);
-
-		int			getID() const				{ return ID; }
-		vector<int>	getOldProvinces() const	{ return oldProvinces; }
-
-		void	addNewProvince(int province)	{ newProvinces.push_back(province); }
+		HoI4Advisor(shared_ptr<Object> object);
+		void output(ofstream& output, const string& tag) const;
 
 	private:
-		string filename;
-		int ID;
-		vector<int>	oldProvinces;
-		vector<int>	newProvinces;
-		shared_ptr<Object> weatherObj;
+		string trait;
+		string picture;
+		string event;
+		string ideology;
 };
 
 
 
-#endif // _HOI4_STRATEGIC_REGION
+#endif // HOI4_ADVISOR

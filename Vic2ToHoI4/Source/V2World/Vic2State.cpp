@@ -30,7 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-Vic2State::Vic2State(const Object* stateObj, string ownerTag)
+Vic2State::Vic2State(const shared_ptr<Object> stateObj, string ownerTag)
 {
 	owner = ownerTag;
 	partialState = false;
@@ -41,7 +41,7 @@ Vic2State::Vic2State(const Object* stateObj, string ownerTag)
 }
 
 
-void Vic2State::addProvinceNums(const Object* stateObj)
+void Vic2State::addProvinceNums(const shared_ptr<Object> stateObj)
 {
 	vector<string> provinceIDs = getProvinceIDs(stateObj);
 	for (auto provinceItr: provinceIDs)
@@ -65,10 +65,10 @@ void Vic2State::setID()
 }
 
 
-vector<string> Vic2State::getProvinceIDs(const Object* stateObj)
+vector<string> Vic2State::getProvinceIDs(const shared_ptr<Object> stateObj)
 {
 	vector<string> provinceIDs;
-	vector<Object*> provinceObjs = stateObj->getValue("provinces");
+	vector<shared_ptr<Object>> provinceObjs = stateObj->getValue("provinces");
 	if (provinceObjs.size() > 0)
 	{
 		provinceIDs = provinceObjs[0]->getTokens();
@@ -78,11 +78,11 @@ vector<string> Vic2State::getProvinceIDs(const Object* stateObj)
 }
 
 
-void Vic2State::setFactoryLevel(const Object* stateObj)
+void Vic2State::setFactoryLevel(const shared_ptr<Object> stateObj)
 {
 	factoryLevel = 0;
 
-	vector<Object*> buildingsObjs = stateObj->getValue("state_buildings");
+	vector<shared_ptr<Object>> buildingsObjs = stateObj->getValue("state_buildings");
 	for (auto buildingObj: buildingsObjs)
 	{
 		addBuildingLevel(buildingObj);
@@ -90,9 +90,9 @@ void Vic2State::setFactoryLevel(const Object* stateObj)
 }
 
 
-void Vic2State::addBuildingLevel(const Object* buildingObj)
+void Vic2State::addBuildingLevel(const shared_ptr<Object> buildingObj)
 {
-	vector<Object*> levelObjs = buildingObj->getValue("level");
+	vector<shared_ptr<Object>> levelObjs = buildingObj->getValue("level");
 	if (levelObjs.size() > 0)
 	{
 		factoryLevel += stoi(levelObjs[0]->getLeaf());

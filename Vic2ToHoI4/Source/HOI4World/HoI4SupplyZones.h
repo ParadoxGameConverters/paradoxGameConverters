@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 using namespace std;
@@ -49,7 +50,7 @@ class HoI4SupplyZones
 	private:
 		void importStates();
 		void importSupplyZone(const string& supplyZonesFile);
-		void mapProvincesToSupplyZone(int ID, Object* supplyAreaObj);
+		void mapProvincesToSupplyZone(int ID, shared_ptr<Object> supplyAreaObj);
 
 		map<int, vector<int>> defaultStateToProvinceMap;
 		map<int, string> supplyZonesFilenames;

@@ -28,12 +28,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "../V2World/V2Diplomacy.h"
 #include "../V2World/V2Party.h"
+#include "HoI4Advisor.h"
 #include "HoI4Agreement.h"
 #include "HoI4Buildings.h"
 #include "HoI4Country.h"
 #include "HoI4Diplomacy.h"
 #include "HoI4Events.h"
 #include "HoI4Faction.h"
+#include "HOI4Ideology.h"
 #include "HoI4Localisation.h"
 #include "HoI4Province.h"
 #include "HoI4State.h"
@@ -71,6 +73,9 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	convertNavies();
 	convertAirforces();
 	determineGreatPowers();
+	importIdeologies();
+	importLeaderTraits();
+	importIdeologicalMinisters();
 	identifyMajorIdeologies();
 	addNeutrality();
 	convertIdeologySupport();
@@ -177,6 +182,54 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 }
 
 
+void HoI4World::importIdeologies()
+{
+	importIdeologyFile("converterIdeologies.txt");
+	importIdeologyFile(Configuration::getHoI4Path() + "/common/ideologies/00_ideologies.txt");
+}
+
+
+void HoI4World::importIdeologyFile(const string& filename)
+{
+	shared_ptr<Object> fileObject = parser_UTF8::doParseFile(filename);
+	auto ideologiesObjects = fileObject->getLeaves();
+	if (ideologiesObjects.size() > 0)
+	{
+		for (auto ideologyObject: ideologiesObjects[0]->getLeaves())
+		{
+			string ideologyName = ideologyObject->getKey();
+			HoI4Ideology* newIdeology = new HoI4Ideology(ideologyObject);
+			ideologies.insert(make_pair(ideologyName, newIdeology));
+		}
+	}
+}
+
+
+void HoI4World::importLeaderTraits()
+{
+	shared_ptr<Object> fileObject = parser_UTF8::doParseFile("converterLeaderTraits.txt");
+	auto ideologyObjects = fileObject->getLeaves();
+	for (auto ideologyObject: ideologyObjects)
+	{
+		string ideaName = ideologyObject->getKey();
+		ideologicalLeaderTraits.insert(make_pair(ideaName, ideologyObject->getLeaves()));
+	}
+}
+
+
+void HoI4World::importIdeologicalMinisters()
+{
+	shared_ptr<Object> fileObject = parser_UTF8::doParseFile("ideologicalAdvisors.txt");
+	auto ideologyObjects = fileObject->getLeaves();
+	for (auto ideologyObject: ideologyObjects)
+	{
+		string ideaName = ideologyObject->getKey();
+		HoI4Advisor* newAdvisor = new HoI4Advisor(ideologyObject->getLeaves()[0]);
+		ideologicalAdvisors.insert(make_pair(ideaName, newAdvisor));
+	}
+}
+
+
 void HoI4World::identifyMajorIdeologies()
 {
 	for (auto greatPower: greatPowers)
@@ -191,6 +244,8 @@ void HoI4World::identifyMajorIdeologies()
 			majorIdeologies.insert(country.second->getGovernmentIdeology());
 		}
 	}
+
+	majorIdeologies.insert("neutrality");
 }
 
 
@@ -337,7 +392,8 @@ double HoI4World::getWorldwideWorkerFactoryRatio(map<string, double> workersInCo
 	}
 
 	int defaultFactories = 1189;
-	if (Configuration::getHOI4Version() >= HOI4Version("1.4.0"))
+	HOI4Version onePointFour("1.4.0");
+	if (Configuration::getHOI4Version() >= onePointFour)
 	{
 		defaultFactories = 1201;
 	}
@@ -442,7 +498,7 @@ void HoI4World::reportDefaultIndustry()
 
 pair<string, array<int, 3>> HoI4World::getDefaultStateIndustry(string stateFilename)
 {
-	Object* fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/history/states/" + stateFilename);
+	shared_ptr<Object> fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/history/states/" + stateFilename);
 	if (fileObj == nullptr)
 	{
 		LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/history/states/" << stateFilename;
@@ -525,7 +581,7 @@ map<int, map<string, double>> HoI4World::importResourceMap() const
 {
 	map<int, map<string, double>> resourceMap;
 
-	Object* fileObj = parser_UTF8::doParseFile("resources.txt");
+	shared_ptr<Object> fileObj = parser_UTF8::doParseFile("resources.txt");
 	if (fileObj == nullptr)
 	{
 		LOG(LogLevel::Error) << "Could not read resources.txt";
@@ -791,9 +847,9 @@ map<string, vector<pair<string, int>>> HoI4World::importTechMap() const
 {
 	map<string, vector<pair<string, int>>> techMap;
 
-	Object* fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
+	shared_ptr<Object> fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
 
-	vector<Object*> mapObj = fileObj->getValue("tech_map");
+	vector<shared_ptr<Object>> mapObj = fileObj->getValue("tech_map");
 	if (mapObj.size() < 1)
 	{
 		LOG(LogLevel::Error) << "Could not read tech map";
@@ -1159,6 +1215,8 @@ void HoI4World::output() const
 	outputCountries();
 	buildings->output();
 	events->output();
+	outputIdeologies();
+	outputLeaderTraits();
 }
 
 
@@ -1311,7 +1369,7 @@ void HoI4World::outputCountries() const
 
 	for (auto country: countries)
 	{
-		country.second->output();
+		country.second->output(getActiveIdeologicalAdvisors());
 	}
 
 	ofstream ideasFile("output/" + Configuration::getOutputName() + "/interface/converter_ideas.gfx");
@@ -1328,6 +1386,22 @@ void HoI4World::outputCountries() const
 	}
 	ideasFile << "\n";
 	ideasFile << "}\n";
+}
+
+
+set<const HoI4Advisor*> HoI4World::getActiveIdeologicalAdvisors() const
+{
+	set<const HoI4Advisor*> theAdvisors;
+	for (auto ideology: majorIdeologies)
+	{
+		auto ideologicalAdvisor = ideologicalAdvisors.find(ideology);
+		if (ideologicalAdvisor != ideologicalAdvisors.end())
+		{
+			theAdvisors.insert(ideologicalAdvisor->second);
+		}
+	}
+
+	return theAdvisors;
 }
 
 
@@ -1364,6 +1438,59 @@ void HoI4World::outputRelations() const
 	out << "}\n";
 
 	out.close();
+}
+
+
+void HoI4World::outputIdeologies() const
+{
+	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/common/ideologies/"))
+	{
+		Log(LogLevel::Error) << "Could not create output/" + Configuration::getOutputName() + "/common/ideologies/";
+	}
+	ofstream ideologyFile("output/" + Configuration::getOutputName() + "/common/ideologies/00_ideologies.txt");
+	ideologyFile << "ideologies = {\n";
+	ideologyFile << "\t\n";
+	if (Configuration::getDropMinorIdeologies())
+	{
+		for (auto ideologyName: majorIdeologies)
+		{
+			auto ideology = ideologies.find(ideologyName);
+			if (ideology != ideologies.end())
+			{
+				ideology->second->output(ideologyFile);
+			}
+		}
+	}
+	else
+	{
+		for (auto ideology: ideologies)
+		{
+			ideology.second->output(ideologyFile);
+		}
+	}
+	ideologyFile << "}";
+	ideologyFile.close();
+}
+
+
+void HoI4World::outputLeaderTraits() const
+{
+	ofstream traitsFile("output/" + Configuration::getOutputName() + "/common/country_leader/converterTraits.txt");
+	traitsFile << "leader_traits = {\n";
+	for (auto majorIdeology: majorIdeologies)
+	{
+		auto ideologyTraits = ideologicalLeaderTraits.find(majorIdeology);
+		if (ideologyTraits != ideologicalLeaderTraits.end())
+		{
+			for (auto trait: ideologyTraits->second)
+			{
+				traitsFile << "\n";
+				traitsFile << *trait;
+			}
+		}
+	}
+	traitsFile << "}";
+	traitsFile.close();
 }
 
 

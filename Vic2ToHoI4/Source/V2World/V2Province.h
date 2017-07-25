@@ -39,7 +39,7 @@ class V2Pop;
 class V2Province
 {
 	public:
-		V2Province(Object* obj);
+		V2Province(shared_ptr<Object> obj);
 		void setCores(const map<string, V2Country*>& countries);
 
 		int getTotalPopulation() const;
@@ -62,14 +62,14 @@ class V2Province
 		const V2Rgo& getRgo() { return rgo; }
 
 	private:
-		void readOwner(Object* obj);
-		void readCores(Object* obj);
-		void readForts(Object* obj);
-		void readNavalBases(Object* obj);
-		void readRails(Object* obj);
-		void readRgo(Object* obj);
-		void readPops(Object* obj);
-		bool isPopObject(Object* obj);
+		void readOwner(shared_ptr<Object> obj);
+		void readCores(shared_ptr<Object> obj);
+		void readForts(shared_ptr<Object> obj);
+		void readNavalBases(shared_ptr<Object> obj);
+		void readRails(shared_ptr<Object> obj);
+		void readRgo(shared_ptr<Object> obj);
+		void readPops(shared_ptr<Object> obj);
+		bool isPopObject(shared_ptr<Object> obj);
 		int calculateLiteracyWeightedPop(const V2Pop* thePop) const;
 
 		int number;

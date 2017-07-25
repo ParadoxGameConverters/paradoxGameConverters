@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include <memory>
 #include <string>
 using namespace std;
 
@@ -37,7 +38,7 @@ class Object;
 class V2Pop
 {
 	public:
-		V2Pop(Object* obj);
+		V2Pop(shared_ptr<Object> obj);
 
 		int getSize() const { return size; }
 		string getType() const { return type; }

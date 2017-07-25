@@ -32,7 +32,7 @@ HoI4Focus::HoI4Focus()
 }
 
 
-HoI4Focus::HoI4Focus(Object* obj)
+HoI4Focus::HoI4Focus(shared_ptr<Object> obj)
 {
 	id = obj->getLeaf("id");
 
@@ -154,10 +154,28 @@ HoI4Focus* HoI4Focus::makeCustomizedCopy(const string& country) const
 	HoI4Focus* newFocus = new HoI4Focus(*this);
 
 	newFocus->id += country;
+
 	if (newFocus->mutuallyExclusive != "")
 	{
+		//have to account for several foci in one mututal exclusion, so need to look for occurences of " focus" and insert country before that
+		unsigned int stringPosition = 0;
+		do
+		{
+			int focusPosition = newFocus->mutuallyExclusive.find(" focus", stringPosition);
+			if (focusPosition != string::npos)
+			{
+				newFocus->mutuallyExclusive.insert(focusPosition, country);
+				stringPosition = focusPosition + country.size() + 6;
+			}
+			else
+			{
+				stringPosition = newFocus->mutuallyExclusive.size();
+			}
+		}
+		while(stringPosition < newFocus->mutuallyExclusive.size());
 		newFocus->mutuallyExclusive += country;
 	}
+
 	newFocus->prerequisites.clear();
 	for (auto prerequisite: prerequisites)
 	{
@@ -179,7 +197,6 @@ HoI4Focus* HoI4Focus::makeCustomizedCopy(const string& country) const
 		while(stringPosition < prerequisite.size());
 		newFocus->prerequisites.push_back(prerequisite + country);
 	}
-
 
 	HoI4Localisation::copyFocusLocalisations(id, newFocus->id);
 
