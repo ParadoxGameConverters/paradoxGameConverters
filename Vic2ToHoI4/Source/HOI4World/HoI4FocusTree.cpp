@@ -1423,7 +1423,14 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 		newFocus->aiWillDo += "					has_idea = neutrality_idea\n";
 		newFocus->aiWillDo += "				}\n";
 		newFocus->aiWillDo += "			}";
-		newFocus->completionReward += "			add_ideas = collectivist_ethos_focus";
+		if (majorIdeologies.count("democratic") > 0)
+		{
+			newFocus->completionReward += "			add_ideas = collectivist_ethos_focus_democratic";
+		}
+		else
+		{
+			newFocus->completionReward += "			add_ideas = collectivist_ethos_focus_neutral";
+		}
 		focuses.push_back(newFocus);
 
 		determineMutualExclusions(majorIdeologies);
@@ -1971,7 +1978,7 @@ void HoI4FocusTree::addAbsolutistGenericFocuses()
 	newFocus->aiWillDo += "					has_government = absolutism\n";
 	newFocus->aiWillDo += "				}\n";
 	newFocus->aiWillDo += "			}";
-	//newFocus->completionReward += "			add_ideas = absolutism";
+	newFocus->completionReward += "			add_ideas = absolutism";
 	focuses.push_back(newFocus);
 }
 
@@ -2000,7 +2007,7 @@ void HoI4FocusTree::addRadicalGenericFocuses()
 	newFocus->aiWillDo += "					has_government = radical\n";
 	newFocus->aiWillDo += "				}\n";
 	newFocus->aiWillDo += "			}";
-	//newFocus->completionReward += "			add_ideas = radical";
+	newFocus->completionReward += "			add_ideas = radicalism";
 	focuses.push_back(newFocus);
 }
 
