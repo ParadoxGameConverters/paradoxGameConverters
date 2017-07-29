@@ -1,4 +1,4 @@
-# Copyright (c) 2017 The Paradox Game Converters Project
+﻿# Copyright (c) 2017 The Paradox Game Converters Project
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -296,4 +296,20 @@ greek = {
 	naval_companies = { "Royal Hellenic Naval Shipyard" }
 	industry_companies = { }
 	electronic_companies = { }
+}
+
+
+## Others (generated through general research)
+aborigine = {
+	female_names = { Alinta Bindi Jedda Kirra Marlee Merindah Lowanna Rianna
+		Talia Allira Tarni Mia Merri Maya Kalina Kalinda Allora Koori Cardinia
+		Darana Anmanari Brindabella Angoona Alkawari Myaree Karri Maroochy Lenah
+		Ellin Elanora Inala Jannali Kareela
+	}
+	callsigns = { "Black Magic" }
+	car_companies = { Monaro Torana Camira Maloo }
+	weapon_companies = { Woomera Miru Boomerang }
+	aircraft_companies = { "Ngaanyatjarra Air" "Ngurrajuta Air" "Janami Air" "PY Air" }
+	naval_companies = { "Bungaree Shipyards" }
+	industry_companies = { Barpa ICRG Intract }
 }
