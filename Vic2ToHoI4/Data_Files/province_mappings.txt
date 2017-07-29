@@ -23,6 +23,15 @@
 	# ##########
 	# 
 	# ## USA
+	# # Alaska
+	link = { vic2 = 1 hoi4 = 13203 hoi4 = 13202 }	# Sitka -> land, land
+	link = { vic2 = 2 hoi4 = 10707 }	# Yakutat -> land
+	link = { vic2 = 3 hoi4 = 4833 hoi4 = 13091 hoi4 = 10679 hoi4 = 7884 }	# Kenai -> land, land, land, land
+	link = { vic2 = 4 hoi4 = 13090 hoi4 = 12661 hoi4 = 10694 hoi4 = 1135 }	# Dutch Harbor -> land, land, land, land
+	link = { vic2 = 5 hoi4 = 1830 }	# Bethel -> land
+	link = { vic2 = 2599 hoi4 = 13069 }	# Fairbanks -> land
+	link = { vic2 = 2630 hoi4 = 4848 }	# Cordova -> land
+	link = { vic2 = 2631 hoi4 = 7855 }	# Unalakeet -> land
 	link = { vic2 = 218 hoi4 = 10441 hoi4 = 4627 hoi4 = 6971 hoi4 = 7588 hoi4 = 7466 hoi4 = 7646 }	# Huntington -> land, land, land, land, land, land
 	link = { vic2 = 215 hoi4 = 11873 hoi4 = 3823 hoi4 = 10343 }	# Staunton -> land, land, land
 	link = { vic2 = 221 hoi4 = 6823 hoi4 = 6929 }	# Hagerstown -> land, land
@@ -199,14 +208,6 @@
 	link = { vic2 = 79 hoi4 = 1690 hoi4 = 10693 hoi4 = 10198 hoi4 = 1320 hoi4 = 7414 hoi4 = 12214 hoi4 = 10327 }	# Spokane -> land, land, land, land, land, land, land
 	link = { vic2 = 80 hoi4 = 7255 hoi4 = 12155 hoi4 = 10690 hoi4 = 10687 hoi4 = 12673 hoi4 = 4747 hoi4 = 10155 }	# Walla Walla -> land, land, land, land, land, land, land
 	link = { vic2 = 78 hoi4 = 10157 hoi4 = 7315 hoi4 = 7386 hoi4 = 4398 hoi4 = 4296 hoi4 = 10242 hoi4 = 10271 hoi4 = 7442 }	# Seattle -> land, land, land, land, land, land, land, land
-	link = { vic2 = 2631 hoi4 = 7855 }	# Unalakeet -> land
-	link = { vic2 = 5 hoi4 = 1830 }	# Bethel -> land
-	link = { vic2 = 4 hoi4 = 12661 hoi4 = 10694 hoi4 = 13090 hoi4 = 1135 }	# Dutch Harbor -> land, land, land, land
-	link = { vic2 = 3 hoi4 = 4833 hoi4 = 13091 hoi4 = 10679 hoi4 = 7884 }	# Kenai -> land, land, land, land
-	link = { vic2 = 2599 hoi4 = 13069 }	# Fairbanks -> land
-	link = { vic2 = 2630 hoi4 = 4848 }	# Cordova -> land
-	link = { vic2 = 1 hoi4 = 13202 }	# Sitka -> land
-	link = { vic2 = 2 hoi4 = 13203 hoi4 = 10707 }	# Yakutat -> land, land
 	# 
 	# ## Canada
 	link = { vic2 = 8 hoi4 = 7891 }	# Ross River -> land
@@ -1814,7 +1815,7 @@
 	link = { vic2 = 980 hoi4 = 547 hoi4 = 9476 hoi4 = 6505 hoi4 = 9461 hoi4 = 9446 hoi4 = 6519 hoi4 = 523 hoi4 = 11487 hoi4 = 570 hoi4 = 11513 }	# Luhansk -> land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1015 hoi4 = 6365 hoi4 = 9261 hoi4 = 9301 hoi4 = 11284 hoi4 = 6252 hoi4 = 3345 hoi4 = 352 }	# Peremyshl -> land, land, land, land, land, land, land
 	link = { vic2 = 1010 hoi4 = 274 hoi4 = 3263 hoi4 = 3377 hoi4 = 3308 hoi4 = 382 hoi4 = 246 hoi4 = 11235 hoi4 = 11369 hoi4 = 11300 }	# Kaluga -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1001 hoi4 = 97 hoi4 = 3190 hoi4 = 3116 hoi4 = 3220 hoi4 = 252 hoi4 = 6356 hoi4 = 9345 hoi4 = 231 hoi4 = 11205 hoi4 = 121 hoi4 = 11099 hoi4 = 164 hoi4 = 62 hoi4 = 1 hoi4 = 2 hoi4 = 9122 hoi4 = 11166 hoi4 = 9188 hoi4 = 6143 hoi4 = 6167 hoi4 = 6101 hoi4 = 6056 hoi4 = 3077 hoi4 = 11039 hoi4 = 13128 }	# Yaroslavl -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 1001 hoi4 = 97 hoi4 = 3190 hoi4 = 3116 hoi4 = 3220 hoi4 = 252 hoi4 = 6356 hoi4 = 9345 hoi4 = 231 hoi4 = 11205 hoi4 = 121 hoi4 = 11099 hoi4 = 164 hoi4 = 62 hoi4 = 1 hoi4 = 2 hoi4 = 9122 hoi4 = 11166 hoi4 = 9188 hoi4 = 6143 hoi4 = 6167 hoi4 = 6101 hoi4 = 6056 hoi4 = 3077 hoi4 = 11039 hoi4 = 13128 }	# Yaroslavl -> land, land, land, land, land, land, land, land, land, land, land, land, land, lake, land, land, land, land, land, land, land, land, land, land, lake
 	link = { vic2 = 991 hoi4 = 11095 hoi4 = 11107 hoi4 = 9168 hoi4 = 196 hoi4 = 9133 hoi4 = 9210 hoi4 = 3079 hoi4 = 9113 hoi4 = 6091 hoi4 = 9202 hoi4 = 9110 hoi4 = 11086 hoi4 = 3164 hoi4 = 84 hoi4 = 6190 hoi4 = 11143 hoi4 = 174 hoi4 = 106 hoi4 = 3099 hoi4 = 2996 hoi4 = 9222 hoi4 = 3087 hoi4 = 6112 }	# Uglich -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 989 hoi4 = 129 hoi4 = 3124 hoi4 = 11213 hoi4 = 9199 hoi4 = 9131 hoi4 = 3175 hoi4 = 11177 hoi4 = 75 hoi4 = 3157 hoi4 = 6182 hoi4 = 163 hoi4 = 11168 hoi4 = 3154 hoi4 = 9102 hoi4 = 6097 hoi4 = 11189 hoi4 = 9207 hoi4 = 6189 hoi4 = 81 hoi4 = 160 }	# Vologda -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1018 hoi4 = 534 hoi4 = 9424 hoi4 = 6432 hoi4 = 473 hoi4 = 9489 hoi4 = 11439 hoi4 = 11500 hoi4 = 6577 hoi4 = 9518 hoi4 = 6517 hoi4 = 9449 hoi4 = 3492 hoi4 = 6481 }	# Belgorod -> land, land, land, land, land, land, land, land, land, land, land, land, land
@@ -5233,7 +5234,7 @@
 	link = { vic2 = 980 hoi4 = 547 hoi4 = 9476 hoi4 = 6505 hoi4 = 9461 hoi4 = 9446 hoi4 = 6519 hoi4 = 523 hoi4 = 11487 hoi4 = 570 hoi4 = 11513 }	# Luhansk -> land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1015 hoi4 = 6365 hoi4 = 9261 hoi4 = 9301 hoi4 = 11284 hoi4 = 6252 hoi4 = 3345 hoi4 = 352 }	# Peremyshl -> land, land, land, land, land, land, land
 	link = { vic2 = 1010 hoi4 = 274 hoi4 = 3263 hoi4 = 3377 hoi4 = 3308 hoi4 = 382 hoi4 = 246 hoi4 = 11235 hoi4 = 11369 hoi4 = 11300 }	# Kaluga -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1001 hoi4 = 97 hoi4 = 3190 hoi4 = 3116 hoi4 = 3220 hoi4 = 252 hoi4 = 6356 hoi4 = 9345 hoi4 = 231 hoi4 = 11205 hoi4 = 121 hoi4 = 11099 hoi4 = 164 hoi4 = 62 hoi4 = 1 hoi4 = 2 hoi4 = 9122 hoi4 = 11166 hoi4 = 9188 hoi4 = 6143 hoi4 = 6167 hoi4 = 6101 hoi4 = 6056 hoi4 = 3077 hoi4 = 11039 hoi4 = 13128 }	# Yaroslavl -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 1001 hoi4 = 97 hoi4 = 3190 hoi4 = 3116 hoi4 = 3220 hoi4 = 252 hoi4 = 6356 hoi4 = 9345 hoi4 = 231 hoi4 = 11205 hoi4 = 121 hoi4 = 11099 hoi4 = 164 hoi4 = 62 hoi4 = 1 hoi4 = 2 hoi4 = 9122 hoi4 = 11166 hoi4 = 9188 hoi4 = 6143 hoi4 = 6167 hoi4 = 6101 hoi4 = 6056 hoi4 = 3077 hoi4 = 11039 hoi4 = 13128 }	# Yaroslavl -> land, land, land, land, land, land, land, land, land, land, land, land, land, lake, land, land, land, land, land, land, land, land, land, land, lake
 	link = { vic2 = 991 hoi4 = 11095 hoi4 = 11107 hoi4 = 9168 hoi4 = 196 hoi4 = 9133 hoi4 = 9210 hoi4 = 3079 hoi4 = 9113 hoi4 = 6091 hoi4 = 9202 hoi4 = 9110 hoi4 = 11086 hoi4 = 3164 hoi4 = 84 hoi4 = 6190 hoi4 = 11143 hoi4 = 174 hoi4 = 106 hoi4 = 3099 hoi4 = 2996 hoi4 = 9222 hoi4 = 3087 hoi4 = 6112 }	# Uglich -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 989 hoi4 = 129 hoi4 = 3124 hoi4 = 11213 hoi4 = 9199 hoi4 = 9131 hoi4 = 3175 hoi4 = 11177 hoi4 = 75 hoi4 = 3157 hoi4 = 6182 hoi4 = 163 hoi4 = 11168 hoi4 = 3154 hoi4 = 9102 hoi4 = 6097 hoi4 = 11189 hoi4 = 9207 hoi4 = 6189 hoi4 = 81 hoi4 = 160 }	# Vologda -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1018 hoi4 = 534 hoi4 = 9424 hoi4 = 6432 hoi4 = 473 hoi4 = 9489 hoi4 = 11439 hoi4 = 11500 hoi4 = 6577 hoi4 = 9518 hoi4 = 6517 hoi4 = 9449 hoi4 = 3492 hoi4 = 6481 }	# Belgorod -> land, land, land, land, land, land, land, land, land, land, land, land, land
