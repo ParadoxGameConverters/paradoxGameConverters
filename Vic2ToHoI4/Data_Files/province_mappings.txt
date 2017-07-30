@@ -32,10 +32,12 @@
 	link = { vic2 = 2599 hoi4 = 13069 }	# Fairbanks -> land
 	link = { vic2 = 2630 hoi4 = 4848 }	# Cordova -> land
 	link = { vic2 = 2631 hoi4 = 7855 }	# Unalakeet -> land
-	link = { vic2 = 218 hoi4 = 10441 hoi4 = 4627 hoi4 = 6971 hoi4 = 7588 hoi4 = 7466 hoi4 = 7646 }	# Huntington -> land, land, land, land, land, land
+	# # West Virginia
+	link = { vic2 = 218 hoi4 = 6971 hoi4 = 10441 hoi4 = 7588 hoi4 = 7646 hoi4 = 7466 hoi4 = 4627 }	# Huntington -> land, land, land, land, land, land
+	link = { vic2 = 217 hoi4 = 6850 hoi4 = 801 hoi4 = 9923 hoi4 = 11888 hoi4 = 6958 hoi4 = 3941 hoi4 = 3975 }	# Wheeling -> land, land, land, land, land, land, land
+	# # Virginia
 	link = { vic2 = 215 hoi4 = 11873 hoi4 = 3823 hoi4 = 10343 }	# Staunton -> land, land, land
 	link = { vic2 = 221 hoi4 = 6823 hoi4 = 6929 }	# Hagerstown -> land, land
-	link = { vic2 = 217 hoi4 = 6850 hoi4 = 801 hoi4 = 9923 hoi4 = 6958 hoi4 = 3941 hoi4 = 11888 hoi4 = 3975 }	# Wheeling -> land, land, land, land, land, land, land
 	link = { vic2 = 183 hoi4 = 9775 hoi4 = 971 hoi4 = 9760 hoi4 = 7528 hoi4 = 3829 }	# Marietta -> land, land, land, land, land
 	link = { vic2 = 227 hoi4 = 3802 hoi4 = 11800 hoi4 = 11789 hoi4 = 9789 hoi4 = 880 hoi4 = 11769 hoi4 = 3850 }	# Pittsburgh -> land, land, land, land, land, land, land
 	link = { vic2 = 226 hoi4 = 822 hoi4 = 11785 hoi4 = 9804 hoi4 = 847 hoi4 = 11758 hoi4 = 3847 }	# Harrisburg -> land, land, land, land, land, land
