@@ -660,3 +660,13 @@ aborigine = {
 	naval_companies = { "Bungaree Shipyards" }
 	industry_companies = { Barpa ICRG Intract }
 }
+
+afro_american = {
+	female_names = { Mary Jane Katherine Dorothy }
+	callsigns = { Chief Chappie Tuskegee "Red Tail" "Goose" "Iceman" "Maverick" "Apollo" "Animal" "Boom-Boom" "Badger" "Brick" "Cajun" "Challenger" "Chip" "Eagle" "Ghost" "Hawk" "Jaws" "Moses" "Mad Dog" }
+	car_companies = { "Patterson & Sons Company" "Bridgewater Interiors LLC" "MV Transportation Inc" }
+	weapon_companies = { "Civilian Force Arms" }
+	aircraft_companies = { "Bessie Coleman Aero" }
+	naval_companies = { "Chesapeake Marine Railway and Dry Dock Co" }
+	industry_companies = { "SLR Contracting & Service Company" "Coleman Construction" "ENVIRO AgScience, Inc." "H.J. Russel & Company" "Thor Construction" "Powers & Sons Construction Company" }
+}
