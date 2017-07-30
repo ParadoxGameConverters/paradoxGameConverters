@@ -670,3 +670,13 @@ afro_american = {
 	naval_companies = { "Chesapeake Marine Railway and Dry Dock Co" }
 	industry_companies = { "SLR Contracting & Service Company" "Coleman Construction" "ENVIRO AgScience, Inc." "H.J. Russel & Company" "Thor Construction" "Powers & Sons Construction Company" }
 }
+
+afro_antillean = {
+	female_names = { Stéphanie Fabiola Esther Tamara Roseline Cassandra Farah Lovelie Darline Samentha Vanessa Nadège Rachelle Judith Manoucheca Mardochée Beatrice Fabienne Mirlande Natacha Wideline Johanne Madeleine }
+	callsigns = { Ludovic Phillipe Raymond Eberle Nicolas Alix Tuskegee }
+	weapon_companies = { "Armería San Cristóbal Weapon Factory" }
+	aircraft_companies = { Aerodomca "Aerolíneas Mas" "Servicios Aéreos Profesionales" "Air Haïti" }
+	naval_companies = { "Ciramar Shipyards" }
+	industry_companies = { "Grupo Estrella" }
+	electronic_companies = { Handxom Sûrtab }
+}
