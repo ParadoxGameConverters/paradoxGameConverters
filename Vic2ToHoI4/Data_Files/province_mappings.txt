@@ -36,7 +36,13 @@
 	link = { vic2 = 218 hoi4 = 6971 hoi4 = 10441 hoi4 = 7588 hoi4 = 7646 hoi4 = 7466 hoi4 = 4627 }	# Huntington -> land, land, land, land, land, land
 	link = { vic2 = 217 hoi4 = 6850 hoi4 = 801 hoi4 = 9923 hoi4 = 11888 hoi4 = 6958 hoi4 = 3941 hoi4 = 3975 }	# Wheeling -> land, land, land, land, land, land, land
 	# # Virginia
-	link = { vic2 = 215 hoi4 = 11873 hoi4 = 3823 hoi4 = 10343 }	# Staunton -> land, land, land
+	link = { vic2 = 211 hoi4 = 11841 hoi4 = 3925 hoi4 = 3823 }	# Richmond -> land, land, land
+	link = { vic2 = 212 hoi4 = 951 hoi4 = 873 }	# Manassas -> land, land
+	link = { vic2 = 213 hoi4 = 6846 }	# Fredericksburg -> land
+	link = { vic2 = 214 hoi4 = 788 hoi4 = 11738 hoi4 = 865 }	# Norfolk -> land, land, land
+	link = { vic2 = 215 hoi4 = 10343 hoi4 = 11873 }	# Staunton -> land, land
+	link = { vic2 = 216 hoi4 = 10412 hoi4 = 10439 hoi4 = 1506 hoi4 = 9931 hoi4 = 7558 hoi4 = 9779 }	# Roanoke -> land, land, land, land, land, land
+	
 	link = { vic2 = 221 hoi4 = 6823 hoi4 = 6929 }	# Hagerstown -> land, land
 	link = { vic2 = 183 hoi4 = 9775 hoi4 = 971 hoi4 = 9760 hoi4 = 7528 hoi4 = 3829 }	# Marietta -> land, land, land, land, land
 	link = { vic2 = 227 hoi4 = 3802 hoi4 = 11800 hoi4 = 11789 hoi4 = 9789 hoi4 = 880 hoi4 = 11769 hoi4 = 3850 }	# Pittsburgh -> land, land, land, land, land, land, land
@@ -53,11 +59,6 @@
 	link = { vic2 = 229 hoi4 = 3693 hoi4 = 6882 hoi4 = 3863 }	# Newark -> land, land, land
 	link = { vic2 = 230 hoi4 = 9801 hoi4 = 9864 hoi4 = 11782 }	# Trenton -> land, land, land
 	link = { vic2 = 231 hoi4 = 11740 hoi4 = 11900 }	# Atlantic City -> land, land
-	link = { vic2 = 216 hoi4 = 9931 hoi4 = 10439 hoi4 = 1506 hoi4 = 10412 hoi4 = 7558 hoi4 = 9779 }	# Roanoke -> land, land, land, land, land, land
-	link = { vic2 = 211 hoi4 = 11738 hoi4 = 3925 hoi4 = 11841 }	# Richmond -> land, land, land
-	link = { vic2 = 214 hoi4 = 865 hoi4 = 788 }	# Norfolk -> land, land
-	link = { vic2 = 213 hoi4 = 6846 }	# Fredericksburg -> land
-	link = { vic2 = 212 hoi4 = 11892 hoi4 = 873 hoi4 = 951 }	# Manassas -> land, land, land
 	link = { vic2 = 220 hoi4 = 3957 }	# Washington -> land
 	link = { vic2 = 219 hoi4 = 6984 hoi4 = 6892 hoi4 = 3917 hoi4 = 9758 }	# Baltimore -> land, land, land, land
 	link = { vic2 = 222 hoi4 = 9786 }	# Dover -> land
