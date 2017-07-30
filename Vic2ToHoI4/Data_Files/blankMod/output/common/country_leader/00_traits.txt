@@ -203,15 +203,6 @@ leader_traits = {
 		}
 	}
 
-	fascist_sympathies = {
-		random = no		
-		fascism_acceptance = 70
-
-		ai_will_do = {
-			factor = 1
-		}
-	}
-
 	camarilla_leader = {
 		random = no
 		political_advisor_cost_factor = -0.25
