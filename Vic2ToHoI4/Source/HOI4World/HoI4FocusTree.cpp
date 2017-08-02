@@ -3197,15 +3197,8 @@ void HoI4FocusTree::addCommunistGPWarBranch(HoI4Country * Home, vector<HoI4Count
 }
 
 
-void HoI4FocusTree::output()
+void HoI4FocusTree::output(const string& filename)
 {
-	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/common/national_focus"))
-	{
-		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/common/national_focus\"";
-		exit(-1);
-	}
-
-	string filename("output/" + Configuration::getOutputName() + "/common/national_focus/" + srcCountryTag + "_NF.txt");
 	ofstream out(filename);
 	if (!out.is_open())
 	{
@@ -3214,19 +3207,34 @@ void HoI4FocusTree::output()
 	}
 
 	out << "focus_tree = {\n";
-	out << "	id = " << dstCountryTag + "_focus\n";
-	out << "	\n";
-	out << "	country = {\n";
-	out << "		factor = 0\n";
-	out << "		\n";
-	out << "		modifier = {\n";
-	out << "			add = 10\n";
-	out << "			tag = " << dstCountryTag << "\n";
-	out << "		}\n";
-	out << "	}\n";
-	out << "	\n";
-	out << "	default = no\n";
-	out << "\n";
+	if (dstCountryTag != "")
+	{
+		out << "	id = " << dstCountryTag + "_focus\n";
+		out << "	\n";
+		out << "	country = {\n";
+		out << "		factor = 0\n";
+		out << "		\n";
+		out << "		modifier = {\n";
+		out << "			add = 10\n";
+		out << "			tag = " << dstCountryTag << "\n";
+		out << "		}\n";
+		out << "	}\n";
+		out << "	\n";
+		out << "	default = no\n";
+		out << "\n";
+	}
+	else
+	{
+		out << "	id = generic_focus\n";
+		out << "	\n";
+		out << "	country = {\n";
+		out << "		factor = 1\n";
+		out << "	}\n";
+		out << "	\n";
+		out << "	default = yes\n";
+		out << "	reset_on_civilwar = no\n";
+		out << "\n";
+	}
 
 	for (auto focus: focuses)
 	{

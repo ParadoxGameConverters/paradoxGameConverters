@@ -35,6 +35,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Diplomacy.h"
 #include "HoI4Events.h"
 #include "HoI4Faction.h"
+#include "HoI4FocusTree.h"
 #include "HOI4Ideology.h"
 #include "HoI4Localisation.h"
 #include "HoI4Province.h"
@@ -1225,6 +1226,7 @@ void HoI4World::output() const
 	outputMap();
 	supplyZones->output();
 	outputRelations();
+	outputGenericFocusTree();
 	outputCountries();
 	buildings->output();
 	events->output();
@@ -1354,6 +1356,20 @@ void HoI4World::outputMap() const
 	{
 		strategicRegion.second->output("output/" + Configuration::getOutputName() + "/map/strategicregions/");
 	}
+}
+
+
+void HoI4World::outputGenericFocusTree() const
+{
+	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/common/national_focus"))
+	{
+		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/common/national_focus\"";
+		exit(-1);
+	}
+
+	HoI4FocusTree genericFocusTree;
+	genericFocusTree.addGenericFocusTree(majorIdeologies);
+	genericFocusTree.output("output/" + Configuration::getOutputName() + "/common/national_focus/generic.txt");
 }
 
 

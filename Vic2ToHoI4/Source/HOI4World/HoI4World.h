@@ -148,6 +148,7 @@ class HoI4World
 		void outputColorsfile() const;
 		void outputNames() const;
 		void outputMap() const;
+		void outputGenericFocusTree() const;
 		void outputCountries() const;
 		set<const HoI4Advisor*> getActiveIdeologicalAdvisors() const;
 		void outputRelations() const;

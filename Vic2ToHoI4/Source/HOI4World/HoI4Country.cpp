@@ -1244,7 +1244,7 @@ void HoI4Country::output(const set<const HoI4Advisor*>& ideologicalMinisters) co
 
 	if (nationalFocus != nullptr)
 	{
-		nationalFocus->output();
+		nationalFocus->output("output/" + Configuration::getOutputName() + "/common/national_focus/" + srcCountry->getTag() + "_NF.txt");
 	}
 }
 
