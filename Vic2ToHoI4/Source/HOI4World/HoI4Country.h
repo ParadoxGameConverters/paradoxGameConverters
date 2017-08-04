@@ -65,6 +65,7 @@ class HoI4Country
 		void		convertAirforce();
 		void		convertArmyDivisions();
 		void		setTechnology(string tech, int level);
+		void		setResearchBonus(string tech, int bonus);
 		void addState(HoI4State* _state);
 		void calculateIndustry();
 		void reportIndustry(ofstream& out);
@@ -113,6 +114,7 @@ class HoI4Country
 
 		int getTotalFactories() const { return totalfactories; }
 		int getTechnologyCount() const { return technologies.size(); }
+		int getResearchBonusesCount() const { return researchBonuses.size(); }
 		int getProvinceCount() const { return provinceCount; }
 		bool isGreatPower() const { return greatPower; }
 
@@ -143,6 +145,7 @@ class HoI4Country
 		void outputThreat(ofstream& output) const;
 		void outputOOB(ofstream& output) const;
 		void outputTechnology(ofstream& output) const;
+		void outputResearchBonuses(ofstream& output) const;
 		void outputConvoys(ofstream& output) const;
 		void outputPuppets(ofstream& output) const;
 		void outputPolitics(ofstream& output) const;
@@ -176,6 +179,7 @@ class HoI4Country
 		int									capital;
 		string								commonCountryFile;
 		map<string, int>					technologies;
+		map<string, int>					researchBonuses;
 		HoI4Alignment						alignment;
 		int									totalfactories;
 		map<string, HoI4Relations*>	relations;

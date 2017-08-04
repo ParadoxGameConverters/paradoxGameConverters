@@ -119,7 +119,9 @@ class HoI4World
 
 		void convertTechs();
 		map<string, vector<pair<string, int>>> importTechMap() const;
+		map<string, vector<pair<string, int>>> importResearchBonusMap() const;
 		void addTechs(HoI4Country* countryaddTechs, const string& oldTech, const map<string, vector<pair<string, int>>>& techMap);
+		void addResearchBonuses(HoI4Country* countryaddBonuses, const string& oldTech, const map<string, vector<pair<string, int>>>& researchBonusMap);
 
 		void convertArmies();
 		void convertNavies();
