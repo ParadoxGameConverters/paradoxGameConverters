@@ -52,6 +52,7 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 	commonCountryFile = _commonCountryFile;
 	provinces.clear();
 	technologies.clear();
+	researchBonuses.clear();
 
 	capital = 0;
 	governmentIdeology = "neutrality";
@@ -1088,6 +1089,15 @@ void HoI4Country::setTechnology(string tech, int level)
 	}
 }
 
+void HoI4Country::setResearchBonus(string tech, int bonus)
+{
+	map<string, int>::iterator researchBonusEntry = researchBonuses.find(tech);
+	if ((researchBonusEntry == researchBonuses.end()) || (researchBonusEntry->second < bonus))
+	{
+		researchBonuses[tech] = bonus;
+	}
+}
+
 
 void HoI4Country::calculateIndustry()
 {
@@ -1264,6 +1274,7 @@ void HoI4Country::outputHistory() const
 	outputThreat(output);
 	outputOOB(output);
 	outputTechnology(output);
+	outputResearchBonuses(output);
 	outputConvoys(output);
 	outputPuppets(output);
 	outputPolitics(output);
@@ -1329,6 +1340,15 @@ void HoI4Country::outputTechnology(ofstream& output) const
 		output << tech.first << " = 1\n";
 	}
 	output << "}\n";
+}
+
+void HoI4Country::outputResearchBonuses(ofstream& output) const
+{
+	output << "# Research Bonuses\n";
+	for (auto researchBonus : researchBonuses)
+	{
+		output << "add_tech_bonus = { bonus = " << float(researchBonus.second / 100) << " uses = 1 category = " << researchBonus.first << "}\n";
+	}
 }
 
 
