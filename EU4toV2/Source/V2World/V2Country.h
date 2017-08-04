@@ -69,7 +69,9 @@ class V2Country
 		void								convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], map<int, V2Province*> allProvinces, vector<int> port_whitelist);
 		bool								addFactory(V2Factory* factory);
 		void								addRailroadtoCapitalState();
-		void								convertUncivReforms(int techGroupAlgorithm, double topTech);
+		void								convertUncivReforms(int techGroupAlgorithm, double topTech, int topInstitutions);
+		void								oldCivConversionMethod();
+		void								newCivConversionMethod(double topTech, int topInstitutions);
 		void								convertLandlessReforms(V2Country* capOwner);
 		void								setupPops(double popWeightRatio, int popConversionAlgorithm);
 		void								setArmyTech(double normalizedScore);

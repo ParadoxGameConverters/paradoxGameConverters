@@ -548,7 +548,7 @@ void V2World::convertPrestige()
 	{
 		double score = 0.0;
 		const EU4Country* srcCountry = countryItr->second->getSourceCountry();
-		if (srcCountry != NULL)
+		if (srcCountry != nullptr)
 		{
 			score = srcCountry->getScore();
 		}
@@ -561,7 +561,7 @@ void V2World::convertPrestige()
 	{
 		double score = 0.0;
 		const EU4Country* srcCountry = countryItr->second->getSourceCountry();
-		if (srcCountry != NULL)
+		if (srcCountry != nullptr)
 		{
 			score = srcCountry->getScore();
 		}
@@ -672,8 +672,8 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 
 		Vic2Province.second->clearCores();
 
-		EU4Province*	oldProvince = NULL;
-		EU4Country*		oldOwner = NULL;
+		EU4Province*	oldProvince = nullptr;
+		EU4Country*		oldOwner = nullptr;
 		// determine ownership by province count, or total population (if province count is tied)
 		map<string, MTo1ProvinceComp> provinceBins;
 		double newProvinceTotalBaseTax = 0;
@@ -687,7 +687,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 			}
 			EU4Country* owner = province->getOwner();
 			string tag;
-			if (owner != NULL)
+			if (owner != nullptr)
 			{
 				tag = owner->getTag();
 			}
@@ -699,7 +699,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 			{
 				provinceBins[tag] = MTo1ProvinceComp();
 			}
-			if (((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM")) && false && (owner != NULL))
+			if (((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM")) && false && (owner != nullptr))
 			{
 				auto stateIndex = stateMapper::getStateIndex(Vic2Province.first);
 				if (stateIndex == -1)
@@ -729,7 +729,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 				// I am the new owner if there is no current owner, or I have more provinces than the current owner,
 				// or I have the same number of provinces, but more population, than the current owner
 				if (
-					(oldOwner == NULL) ||
+					(oldOwner == nullptr) ||
 					(provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size()) ||
 					(provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size())
 					)
@@ -739,7 +739,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 				}
 			}
 		}
-		if (oldOwner == NULL)
+		if (oldOwner == nullptr)
 		{
 			Vic2Province.second->setOwner("");
 			continue;
@@ -1128,15 +1128,17 @@ void V2World::convertUncivReforms(const EU4World& sourceWorld)
 
 	// tech group
 
-	int techGroupAlgorithm = 0;
+	enum civConversion { older, newer };
+	civConversion techGroupAlgoritm = newer;
 	double topTech = 96;
+	int topInstitutions = 7;
 	auto version18 = EU4Version("1.18.0");
 	if (*(sourceWorld.getVersion()) >= version18)
 	{
 		LOG(LogLevel::Info) << "New tech group conversion method";
-		techGroupAlgorithm = 2;
+		techGroupAlgorithm  = newer;
 
-		// Find global max tech
+		// Find global max tech and institutions embraced
 
 		map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
 
@@ -1145,11 +1147,14 @@ void V2World::convertUncivReforms(const EU4World& sourceWorld)
 		while (i->second->getProvinces().size() == 0)
 			i++;
 
-		// Take mean and max from the first country
+		// Take max from the first country
 		EU4Country* currCountry = i->second;
 
 		double totalTechs = currCountry->getMilTech() + currCountry->getAdmTech() + currCountry->getDipTech();
 		topTech = totalTechs;
+		int currInstitutions = currCountry->numEmbracedInstitutions();
+		topInstitutions = currInstitutions;
+		
 		int num = 2;
 
 		// Calculate max
@@ -1158,21 +1163,27 @@ void V2World::convertUncivReforms(const EU4World& sourceWorld)
 			currCountry = i->second;
 			if (currCountry->getProvinces().size() == 0)
 				continue;
+			
 			totalTechs = currCountry->getMilTech() + currCountry->getAdmTech() + currCountry->getDipTech();
 			if (totalTechs > topTech)
 				topTech = totalTechs;
+
+			currInstitutions = currCountry->numEmbracedInstitutions();
+			if (currInstitutions > topInstitutions)
+				topInstitutions = currInstitutions;
+
 			num++;
 		}
 	}
 	else
 	{
 		LOG(LogLevel::Info) << "Old tech group conversion method";
-		techGroupAlgorithm = 1;
+		techGroupAlgorithm = older;
 	}
 
 	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
-		itr->second->convertUncivReforms(techGroupAlgorithm, topTech);
+		itr->second->convertUncivReforms(techGroupAlgorithm, topTech, topInstitutions);
 	}
 
 	// inherit civilisation level for landless countries from their capital's owner
@@ -1186,7 +1197,7 @@ void V2World::convertUncivReforms(const EU4World& sourceWorld)
 			V2Province* capital = getProvince(capitalNum);
 			string capOwnerTag = capital->getOwner();
 			V2Country* capOwner = getCountry(capOwnerTag);
-			if (capOwner == NULL)
+			if (capOwner == nullptr)
 				continue;
 			itr->second->convertLandlessReforms(capOwner);
 		}
@@ -1314,10 +1325,6 @@ void V2World::allocateFactories(const EU4World& sourceWorld)
 		{
 			continue;
 		}
-		/*if ((itr)->second->getTechGroup() != "western")
-		{
-			continue;  to do: please replace this check.  The way tech conversion works now it's unlikely to come up but still.
-		}*/
 
 		double admTech = (itr)->second->getAdmTech();
 		admMean += ((admTech - admMean) / num);
@@ -1334,7 +1341,7 @@ void V2World::allocateFactories(const EU4World& sourceWorld)
 		}
 
 		const EU4Country* sourceCountry = itr->second->getSourceCountry();
-		if (sourceCountry == NULL)
+		if (sourceCountry == nullptr)
 		{
 			continue;
 		}
@@ -1492,7 +1499,7 @@ void V2World::setupPops(const EU4World& sourceWorld)
 		newTotalPopulation += itr->second->getTotalPopulation();
 
 		//	EU4 Province ID
-		//if (itr->second->getSrcProvince() != NULL)
+		//if (itr->second->getSrcProvince() != nullptr)
 		//{
 		//	output_file << itr->second->getSrcProvince()->getNum() << ",";
 		//}
@@ -1501,7 +1508,7 @@ void V2World::setupPops(const EU4World& sourceWorld)
 		//	continue;
 		//}
 		////	EU4 Province Name
-		//if (itr->second->getSrcProvince() != NULL)
+		//if (itr->second->getSrcProvince() != nullptr)
 		//{
 		//	output_file << itr->second->getSrcProvince()->getProvName() << ",";
 		//}
@@ -1510,16 +1517,16 @@ void V2World::setupPops(const EU4World& sourceWorld)
 		//	output_file << "SEA" << ",";
 		//}
 		////	EU4 Province Owner
-		//if (itr->second->getSrcProvince() != NULL)
+		//if (itr->second->getSrcProvince() != nullptr)
 		//{
 		//	output_file << itr->second->getSrcProvince()->getOwnerString() << ",";
 		//}
 		//else
 		//{
-		//	output_file << "NULL" << ",";
+		//	output_file << "nullptr" << ",";
 		//}
 		////	EU4 Base Tax
-		//if (itr->second->getSrcProvince() != NULL)
+		//if (itr->second->getSrcProvince() != nullptr)
 		//{
 		//	output_file << (2 * itr->second->getSrcProvince()->getBaseTax()) << ",";
 		//}
@@ -1528,7 +1535,7 @@ void V2World::setupPops(const EU4World& sourceWorld)
 		//	output_file << -1 << ",";
 		//}
 		////	EU4 Total Tax Income
-		//if (itr->second->getSrcProvince() != NULL)
+		//if (itr->second->getSrcProvince() != nullptr)
 		//{
 		//	output_file << 2*(itr->second->getSrcProvince()->getProvTaxIncome()) << ",";
 		//}
@@ -1537,7 +1544,7 @@ void V2World::setupPops(const EU4World& sourceWorld)
 		//	output_file << -1 << ",";
 		//}
 		////	EU4 Total Prod Income
-		//if (itr->second->getSrcProvince() != NULL)
+		//if (itr->second->getSrcProvince() != nullptr)
 		//{
 		//	output_file << itr->second->getSrcProvince()->getProvProdIncome() << ",";
 		//}
@@ -1546,7 +1553,7 @@ void V2World::setupPops(const EU4World& sourceWorld)
 		//	output_file << -1 << ",";
 		//}
 		////	EU4 Total Manpower weight
-		//if (itr->second->getSrcProvince() != NULL)
+		//if (itr->second->getSrcProvince() != nullptr)
 		//{
 		//	output_file << itr->second->getSrcProvince()->getProvMPWeight() << ",";
 		//}
@@ -1555,7 +1562,7 @@ void V2World::setupPops(const EU4World& sourceWorld)
 		//	output_file << -1 << ",";
 		//}
 		////	EU4 Total Building weight
-		//if (itr->second->getSrcProvince() != NULL)
+		//if (itr->second->getSrcProvince() != nullptr)
 		//{
 		//	output_file << itr->second->getSrcProvince()->getProvTotalBuildingWeight() << ",";
 		//}
@@ -1564,7 +1571,7 @@ void V2World::setupPops(const EU4World& sourceWorld)
 		//	output_file << -1 << ",";
 		//}
 		////	EU4 Total Tradegoods weight
-		//if (itr->second->getSrcProvince() != NULL)
+		//if (itr->second->getSrcProvince() != nullptr)
 		//{
 		//	output_file << itr->second->getSrcProvince()->getCurrTradeGoodWeight() << ",";
 		//}
@@ -1573,7 +1580,7 @@ void V2World::setupPops(const EU4World& sourceWorld)
 		//	output_file << -1 << ",";
 		//}
 		////	EU4 Province Weight
-		//if (itr->second->getSrcProvince() != NULL)
+		//if (itr->second->getSrcProvince() != nullptr)
 		//{
 		//	output_file << itr->second->getSrcProvince()->getTotalWeight() << ",";
 		//}
@@ -1582,7 +1589,7 @@ void V2World::setupPops(const EU4World& sourceWorld)
 		//	output_file << -1 << ",";
 		//}
 		////	Number of DestV2Provs
-		//if (itr->second->getSrcProvince() != NULL)
+		//if (itr->second->getSrcProvince() != nullptr)
 		//{
 		//	output_file << itr->second->getSrcProvince()->getNumDestV2Provs() << ",";
 		//}
@@ -1656,7 +1663,7 @@ void V2World::convertArmies(const EU4World& sourceWorld)
 	// get cost per regiment values
 	double cost_per_regiment[num_reg_categories] = { 0.0 };
 	Object*	obj2 = parser_8859_15::doParseFile("regiment_costs.txt");
-	if (obj2 == NULL)
+	if (obj2 == nullptr)
 	{
 		LOG(LogLevel::Error) << "Could not parse file regiment_costs.txt";
 		exit(-1);
@@ -1908,11 +1915,11 @@ void V2World::outputPops() const
 V2Province* V2World::getProvince(const int provNum) const
 {
 	map<int, V2Province*>::const_iterator i = provinces.find(provNum);
-	return (i != provinces.end()) ? i->second : NULL;
+	return (i != provinces.end()) ? i->second : nullptr;
 }
 
 V2Country* V2World::getCountry(string tag) const
 {
 	map<string, V2Country*>::const_iterator i = countries.find(tag);
-	return (i != countries.end()) ? i->second : NULL;
+	return (i != countries.end()) ? i->second : nullptr;
 }
