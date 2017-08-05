@@ -1110,9 +1110,9 @@
 	link = { vic2 = 1710 hoi4 = 10059 hoi4 = 12034 hoi4 = 1141 }	# Biskra -> land, land, land
 	link = { vic2 = 1713 hoi4 = 4018 hoi4 = 9960 hoi4 = 7149 hoi4 = 7033 hoi4 = 1128 hoi4 = 5053 hoi4 = 1967 hoi4 = 1126 }	# Laghwat -> land, land, land, land, land, land, land, land
 	link = { vic2 = 1715 hoi4 = 13074 hoi4 = 12018 }	# Naama -> land, land
-	link = { vic2 = 1705 hoi4 = 4150 hoi4 = 3991 hoi4 = 7008 }	# Tlemcen -> land, land, land
+	link = { vic2 = 1705 hoi4 = 4150 hoi4 = 3991 hoi4 = 4116 hoi4 = 7008}	# Tlemcen -> land, land, land
 	link = { vic2 = 1707 hoi4 = 10045 hoi4 = 12020 hoi4 = 7040 }	# Mascara -> land, land, land
-	link = { vic2 = 1704 hoi4 = 7132 hoi4 = 11923 hoi4 = 4116 }	# Oran -> land, land, land
+	link = { vic2 = 1704 hoi4 = 7132 hoi4 = 11923 }	# Oran -> land, land, land
 	link = { vic2 = 1706 hoi4 = 9964 hoi4 = 1013 hoi4 = 12760 }	# Mustaghanim -> land, land, land
 	link = { vic2 = 1703 hoi4 = 4131 hoi4 = 4146 }	# Medea -> land, land
 	link = { vic2 = 1700 hoi4 = 11939 hoi4 = 1145 }	# Algiers -> land, land
@@ -4529,9 +4529,9 @@
 	link = { vic2 = 1710 hoi4 = 10059 hoi4 = 12034 hoi4 = 1141 }	# Biskra -> land, land, land
 	link = { vic2 = 1713 hoi4 = 4018 hoi4 = 9960 hoi4 = 7149 hoi4 = 7033 hoi4 = 1128 hoi4 = 5053 hoi4 = 1967 hoi4 = 1126 }	# Laghwat -> land, land, land, land, land, land, land, land
 	link = { vic2 = 1715 hoi4 = 13074 hoi4 = 12018 }	# Naama -> land, land
-	link = { vic2 = 1705 hoi4 = 4150 hoi4 = 3991 hoi4 = 7008 }	# Tlemcen -> land, land, land
+	link = { vic2 = 1705 hoi4 = 4150 hoi4 = 3991 hoi4 = 7008 hoi4 = 4116 }	# Tlemcen -> land, land, land
 	link = { vic2 = 1707 hoi4 = 10045 hoi4 = 12020 hoi4 = 7040 }	# Mascara -> land, land, land
-	link = { vic2 = 1704 hoi4 = 7132 hoi4 = 11923 hoi4 = 4116 }	# Oran -> land, land, land
+	link = { vic2 = 1704 hoi4 = 7132 hoi4 = 11923 }	# Oran -> land, land, land
 	link = { vic2 = 1706 hoi4 = 9964 hoi4 = 1013 hoi4 = 12760 }	# Mustaghanim -> land, land, land
 	link = { vic2 = 1703 hoi4 = 4131 hoi4 = 4146 }	# Medea -> land, land
 	link = { vic2 = 1700 hoi4 = 11939 hoi4 = 1145 }	# Algiers -> land, land
