@@ -246,20 +246,29 @@ void HoI4World::importIdeologicalIdeas()
 
 void HoI4World::identifyMajorIdeologies()
 {
-	for (auto greatPower: greatPowers)
+	if (Configuration::getDropMinorIdeologies())
 	{
-		majorIdeologies.insert(greatPower->getGovernmentIdeology());
-	}
-
-	for (auto country: countries)
-	{
-		if (country.second->isHuman())
+		for (auto greatPower: greatPowers)
 		{
-			majorIdeologies.insert(country.second->getGovernmentIdeology());
+			majorIdeologies.insert(greatPower->getGovernmentIdeology());
+		}
+
+		for (auto country: countries)
+		{
+			if (country.second->isHuman())
+			{
+				majorIdeologies.insert(country.second->getGovernmentIdeology());
+			}
+		}
+		majorIdeologies.insert("neutrality");
+	}
+	else
+	{
+		for (auto ideology: ideologies)
+		{
+			majorIdeologies.insert(ideology.first);
 		}
 	}
-
-	majorIdeologies.insert("neutrality");
 }
 
 
@@ -267,7 +276,7 @@ void HoI4World::addNeutrality()
 {
 	for (auto country: countries)
 	{
-		if ((majorIdeologies.count(country.second->getGovernmentIdeology()) == 0) && Configuration::getDropMinorIdeologies())
+		if (majorIdeologies.count(country.second->getGovernmentIdeology()) == 0)
 		{
 			country.second->setGovernmentToNeutral();
 		}
@@ -1534,22 +1543,12 @@ void HoI4World::outputIdeologies() const
 	ofstream ideologyFile("output/" + Configuration::getOutputName() + "/common/ideologies/00_ideologies.txt");
 	ideologyFile << "ideologies = {\n";
 	ideologyFile << "\t\n";
-	if (Configuration::getDropMinorIdeologies())
+	for (auto ideologyName: majorIdeologies)
 	{
-		for (auto ideologyName: majorIdeologies)
+		auto ideology = ideologies.find(ideologyName);
+		if (ideology != ideologies.end())
 		{
-			auto ideology = ideologies.find(ideologyName);
-			if (ideology != ideologies.end())
-			{
-				ideology->second->output(ideologyFile);
-			}
-		}
-	}
-	else
-	{
-		for (auto ideology: ideologies)
-		{
-			ideology.second->output(ideologyFile);
+			ideology->second->output(ideologyFile);
 		}
 	}
 	ideologyFile << "}";
