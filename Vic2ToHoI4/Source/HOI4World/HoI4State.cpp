@@ -262,7 +262,11 @@ void HoI4State::tryToCreateVP()
 		}
 		for (auto province: sourceState->getProvinces())
 		{
-			if (province->getPopulation("aristocrats") > 0)
+			if (
+				 (province->getPopulation("aristocrats") > 0) ||
+				 (province->getPopulation("bureaucrats") > 0) ||
+				 (province->getPopulation("capitalists") > 0)
+				)
 			{
 				VPCreated = assignVPFromVic2Province(province->getNumber());
 				if (VPCreated)

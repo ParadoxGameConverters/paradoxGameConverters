@@ -260,7 +260,7 @@
 	link = { vic2 = 2623 hoi4 = 13052 }	# Midway Island -> land
 	link = { vic2 = 2524 hoi4 = 13047 }	# Wake -> land
 	link = { vic2 = 2526 hoi4 = 13048 }	# Palmyra -> land
-	#
+	# 
 	# ## Canada
 	link = { vic2 = 8 hoi4 = 7891 }	# Ross River -> land
 	link = { vic2 = 16 hoi4 = 12508 }	# Glenora -> land
@@ -840,10 +840,10 @@
 	link = { vic2 = 1961 hoi4 = 7978 }	# Bamenda -> land
 	link = { vic2 = 1937 hoi4 = 4889 }	# Tukari -> land
 	link = { vic2 = 1950 vic2 = 1944 hoi4 = 8109 }	# Yola, Gombe -> land
-	link = { vic2 = 1943 hoi4 = 10820 }	# Jos -> land
+	link = { vic2 = 1943 vic2 = 1942 hoi4 = 10820 }	# Jos, Bauchi -> land
 	link = { vic2 = 1951 vic2 = 1953 hoi4 = 4997 }	# Kuka, Dikoa -> land
 	link = { vic2 = 1952 hoi4 = 5028 }	# Nguru -> land
-	link = { vic2 = 1945 vic2 = 1947 vic2 = 1942 vic2 = 1949 hoi4 = 4972 }	# Kano, Katsina, Bauchi, Hadejia -> land
+	link = { vic2 = 1945 vic2 = 1947 vic2 = 1949 hoi4 = 4972 }	# Kano, Katsina, Hadejia -> land
 	link = { vic2 = 1819 hoi4 = 1993 }	# Moundou -> land
 	link = { vic2 = 1818 vic2 = 1820 hoi4 = 9152 hoi4 = 2081 }	# MANY-TO-MANY: Massenya, Bongor -> land, land
 	link = { vic2 = 1964 hoi4 = 7963 }	# Maroua -> land
@@ -1121,9 +1121,9 @@
 	link = { vic2 = 1710 hoi4 = 10059 hoi4 = 12034 hoi4 = 1141 }	# Biskra -> land, land, land
 	link = { vic2 = 1713 hoi4 = 4018 hoi4 = 9960 hoi4 = 7149 hoi4 = 7033 hoi4 = 1128 hoi4 = 5053 hoi4 = 1967 hoi4 = 1126 }	# Laghwat -> land, land, land, land, land, land, land, land
 	link = { vic2 = 1715 hoi4 = 13074 hoi4 = 12018 }	# Naama -> land, land
-	link = { vic2 = 1705 hoi4 = 4150 hoi4 = 3991 hoi4 = 4116 hoi4 = 7008}	# Tlemcen -> land, land, land
+	link = { vic2 = 1705 hoi4 = 4150 hoi4 = 3991 hoi4 = 4116 hoi4 = 7008 }	# Tlemcen -> land, land, land, land
 	link = { vic2 = 1707 hoi4 = 10045 hoi4 = 12020 hoi4 = 7040 }	# Mascara -> land, land, land
-	link = { vic2 = 1704 hoi4 = 7132 hoi4 = 11923 }	# Oran -> land, land, land
+	link = { vic2 = 1704 hoi4 = 7132 hoi4 = 11923 }	# Oran -> land, land
 	link = { vic2 = 1706 hoi4 = 9964 hoi4 = 1013 hoi4 = 12760 }	# Mustaghanim -> land, land, land
 	link = { vic2 = 1703 hoi4 = 4131 hoi4 = 4146 }	# Medea -> land, land
 	link = { vic2 = 1700 hoi4 = 11939 hoi4 = 1145 }	# Algiers -> land, land
@@ -4256,10 +4256,10 @@
 	link = { vic2 = 1961 hoi4 = 7978 }	# Bamenda -> land
 	link = { vic2 = 1937 hoi4 = 4889 }	# Tukari -> land
 	link = { vic2 = 1950 vic2 = 1944 hoi4 = 8109 }	# Yola, Gombe -> land
-	link = { vic2 = 1943 hoi4 = 10820 }	# Jos -> land
+	link = { vic2 = 1943 vic2 = 1942 hoi4 = 10820 }	# Jos, Bauchi -> land
 	link = { vic2 = 1951 vic2 = 1953 hoi4 = 4997 }	# Kuka, Dikoa -> land
 	link = { vic2 = 1952 hoi4 = 5028 }	# Nguru -> land
-	link = { vic2 = 1945 vic2 = 1947 vic2 = 1942 vic2 = 1949 hoi4 = 4972 }	# Kano, Katsina, Bauchi, Hadejia -> land
+	link = { vic2 = 1945 vic2 = 1947 vic2 = 1949 hoi4 = 4972 }	# Kano, Katsina, Hadejia -> land
 	link = { vic2 = 1819 hoi4 = 1993 }	# Moundou -> land
 	link = { vic2 = 1818 vic2 = 1820 hoi4 = 9152 hoi4 = 2081 }	# MANY-TO-MANY: Massenya, Bongor -> land, land
 	link = { vic2 = 1964 hoi4 = 7963 }	# Maroua -> land
@@ -4537,9 +4537,9 @@
 	link = { vic2 = 1710 hoi4 = 10059 hoi4 = 12034 hoi4 = 1141 }	# Biskra -> land, land, land
 	link = { vic2 = 1713 hoi4 = 4018 hoi4 = 9960 hoi4 = 7149 hoi4 = 7033 hoi4 = 1128 hoi4 = 5053 hoi4 = 1967 hoi4 = 1126 }	# Laghwat -> land, land, land, land, land, land, land, land
 	link = { vic2 = 1715 hoi4 = 13074 hoi4 = 12018 }	# Naama -> land, land
-	link = { vic2 = 1705 hoi4 = 4150 hoi4 = 3991 hoi4 = 7008 hoi4 = 4116 }	# Tlemcen -> land, land, land
+	link = { vic2 = 1705 hoi4 = 4150 hoi4 = 3991 hoi4 = 7008 hoi4 = 4116 }	# Tlemcen -> land, land, land, land
 	link = { vic2 = 1707 hoi4 = 10045 hoi4 = 12020 hoi4 = 7040 }	# Mascara -> land, land, land
-	link = { vic2 = 1704 hoi4 = 7132 hoi4 = 11923 }	# Oran -> land, land, land
+	link = { vic2 = 1704 hoi4 = 7132 hoi4 = 11923 }	# Oran -> land, land
 	link = { vic2 = 1706 hoi4 = 9964 hoi4 = 1013 hoi4 = 12760 }	# Mustaghanim -> land, land, land
 	link = { vic2 = 1703 hoi4 = 4131 hoi4 = 4146 }	# Medea -> land, land
 	link = { vic2 = 1700 hoi4 = 11939 hoi4 = 1145 }	# Algiers -> land, land
