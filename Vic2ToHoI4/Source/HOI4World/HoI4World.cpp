@@ -1296,6 +1296,7 @@ void HoI4World::output() const
 	outputIdeologies();
 	outputLeaderTraits();
 	outputIdeologicalIdeas();
+	outputScriptedTriggers();
 }
 
 
@@ -1595,6 +1596,26 @@ void HoI4World::outputIdeologicalIdeas() const
 	ideasFile << "\t}\n";
 	ideasFile << "}";
 	ideasFile.close();
+}
+
+
+void HoI4World::outputScriptedTriggers() const
+{
+	ofstream triggersFile("output/" + Configuration::getOutputName() + "/common/scripted_triggers/convertedTriggers.txt");
+	triggersFile << "can_lose_democracy_support = {\n";
+	for (auto ideology: majorIdeologies)
+	{
+		if (ideology == "democratic")
+		{
+			triggersFile << "\tdemocratic > 0.65\n";
+		}
+		else
+		{
+			triggersFile << "\t" << ideology << " < 0.18\n";
+		}
+	}
+	triggersFile << "}\n";
+	triggersFile.close();
 }
 
 
