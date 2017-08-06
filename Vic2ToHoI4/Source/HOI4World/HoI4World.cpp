@@ -901,9 +901,9 @@ map<string, vector<pair<string, int>>> HoI4World::importResearchBonusMap() const
 {
 	map<string, vector<pair<string, int>>> researchBonusMap;
 
-	Object* fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
+	shared_ptr<Object> fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
 
-	vector<Object*> mapObj = fileObj->getValue("bonus_map");
+	vector<shared_ptr<Object>> mapObj = fileObj->getValue("bonus_map");
 	if (mapObj.size() < 1)
 	{
 		LOG(LogLevel::Error) << "Could not read bonus map";
