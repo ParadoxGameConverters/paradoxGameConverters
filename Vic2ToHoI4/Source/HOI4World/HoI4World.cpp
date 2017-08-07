@@ -35,6 +35,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Diplomacy.h"
 #include "HoI4Events.h"
 #include "HoI4Faction.h"
+#include "HoI4FocusTree.h"
 #include "HOI4Ideology.h"
 #include "HoI4Localisation.h"
 #include "HoI4Province.h"
@@ -76,6 +77,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	importIdeologies();
 	importLeaderTraits();
 	importIdeologicalMinisters();
+	importIdeologicalIdeas();
 	identifyMajorIdeologies();
 	addNeutrality();
 	convertIdeologySupport();
@@ -230,22 +232,43 @@ void HoI4World::importIdeologicalMinisters()
 }
 
 
+void HoI4World::importIdeologicalIdeas()
+{
+	shared_ptr<Object> fileObject = parser_UTF8::doParseFile("ideologicalIdeas.txt");
+	auto ideologyObjects = fileObject->getLeaves();
+	for (auto ideologyObject: ideologyObjects)
+	{
+		string ideaName = ideologyObject->getKey();
+		ideologicalIdeas.insert(make_pair(ideaName, ideologyObject->getLeaves()));
+	}
+}
+
+
 void HoI4World::identifyMajorIdeologies()
 {
-	for (auto greatPower: greatPowers)
+	if (Configuration::getDropMinorIdeologies())
 	{
-		majorIdeologies.insert(greatPower->getGovernmentIdeology());
-	}
-
-	for (auto country: countries)
-	{
-		if (country.second->isHuman())
+		for (auto greatPower: greatPowers)
 		{
-			majorIdeologies.insert(country.second->getGovernmentIdeology());
+			majorIdeologies.insert(greatPower->getGovernmentIdeology());
+		}
+
+		for (auto country: countries)
+		{
+			if (country.second->isHuman())
+			{
+				majorIdeologies.insert(country.second->getGovernmentIdeology());
+			}
+		}
+		majorIdeologies.insert("neutrality");
+	}
+	else
+	{
+		for (auto ideology: ideologies)
+		{
+			majorIdeologies.insert(ideology.first);
 		}
 	}
-
-	majorIdeologies.insert("neutrality");
 }
 
 
@@ -823,21 +846,24 @@ void HoI4World::convertRelations()
 
 void HoI4World::convertTechs()
 {
-	LOG(LogLevel::Info) << "Converting techs";
+	LOG(LogLevel::Info) << "Converting techs and research bonuses";
 
 	map<string, vector<pair<string, int>>> techMap = importTechMap();
+	map<string, vector<pair<string, int>>> researchBonusMap = importResearchBonusMap();
 
-	for (auto dstCountry: countries)
+	for (auto dstCountry : countries)
 	{
 		const V2Country* sourceCountry = dstCountry.second->getSourceCountry();
 
-		for (auto technology: sourceCountry->getTechs())
+		for (auto technology : sourceCountry->getTechs())
 		{
 			addTechs(dstCountry.second, technology, techMap);
+			addResearchBonuses(dstCountry.second, technology, researchBonusMap);
 		}
-		for (auto invention: sourceCountry->getInventions())
+		for (auto invention : sourceCountry->getInventions())
 		{
 			addTechs(dstCountry.second, invention, techMap);
+			addResearchBonuses(dstCountry.second, invention, researchBonusMap);
 		}
 	}
 }
@@ -880,6 +906,42 @@ map<string, vector<pair<string, int>>> HoI4World::importTechMap() const
 	return techMap;
 }
 
+map<string, vector<pair<string, int>>> HoI4World::importResearchBonusMap() const
+{
+	map<string, vector<pair<string, int>>> researchBonusMap;
+
+	shared_ptr<Object> fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
+
+	vector<shared_ptr<Object>> mapObj = fileObj->getValue("bonus_map");
+	if (mapObj.size() < 1)
+	{
+		LOG(LogLevel::Error) << "Could not read bonus map";
+		exit(-1);
+	}
+
+	for (auto link : mapObj[0]->getValue("link"))
+	{
+		vector<pair<string, int> > targetTechs;
+		string tech = "";
+
+		for (auto key : link->getKeys())
+		{
+			if (key == "vic2")
+			{
+				tech = link->getLeaf("vic2");
+			}
+			else
+			{
+				int value = stoi(link->getLeaf(key));
+				targetTechs.push_back(pair<string, int>(key, value));
+			}
+		}
+
+		researchBonusMap[tech] = targetTechs;
+	}
+
+	return researchBonusMap;
+}
 
 void HoI4World::addTechs(HoI4Country* country, const string& oldTech, const map<string, vector<pair<string, int>>>& techMap)
 {
@@ -897,6 +959,21 @@ void HoI4World::addTechs(HoI4Country* country, const string& oldTech, const map<
 	}
 }
 
+void HoI4World::addResearchBonuses(HoI4Country* country, const string& oldTech, const map<string, vector<pair<string, int>>>& researchBonusMap)
+{
+	auto mapItr = researchBonusMap.find(oldTech);
+	if (mapItr == researchBonusMap.end())
+	{
+		return;
+	}
+	if (mapItr != researchBonusMap.end())
+	{
+		for (auto HoI4TechItr : mapItr->second)
+		{
+			country->setResearchBonus(HoI4TechItr.first, HoI4TechItr.second);
+		}
+	}
+}
 
 void HoI4World::convertArmies()
 {
@@ -1212,11 +1289,14 @@ void HoI4World::output() const
 	outputMap();
 	supplyZones->output();
 	outputRelations();
+	outputGenericFocusTree();
 	outputCountries();
 	buildings->output();
 	events->output();
 	outputIdeologies();
 	outputLeaderTraits();
+	outputIdeologicalIdeas();
+	outputScriptedTriggers();
 }
 
 
@@ -1343,6 +1423,20 @@ void HoI4World::outputMap() const
 }
 
 
+void HoI4World::outputGenericFocusTree() const
+{
+	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/common/national_focus"))
+	{
+		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/common/national_focus\"";
+		exit(-1);
+	}
+
+	HoI4FocusTree genericFocusTree;
+	genericFocusTree.addGenericFocusTree(majorIdeologies);
+	genericFocusTree.output("output/" + Configuration::getOutputName() + "/common/national_focus/generic.txt");
+}
+
+
 void HoI4World::outputCountries() const
 {
 	LOG(LogLevel::Debug) << "Writing countries";
@@ -1450,22 +1544,12 @@ void HoI4World::outputIdeologies() const
 	ofstream ideologyFile("output/" + Configuration::getOutputName() + "/common/ideologies/00_ideologies.txt");
 	ideologyFile << "ideologies = {\n";
 	ideologyFile << "\t\n";
-	if (Configuration::getDropMinorIdeologies())
+	for (auto ideologyName: majorIdeologies)
 	{
-		for (auto ideologyName: majorIdeologies)
+		auto ideology = ideologies.find(ideologyName);
+		if (ideology != ideologies.end())
 		{
-			auto ideology = ideologies.find(ideologyName);
-			if (ideology != ideologies.end())
-			{
-				ideology->second->output(ideologyFile);
-			}
-		}
-	}
-	else
-	{
-		for (auto ideology: ideologies)
-		{
-			ideology.second->output(ideologyFile);
+			ideology->second->output(ideologyFile);
 		}
 	}
 	ideologyFile << "}";
@@ -1491,6 +1575,47 @@ void HoI4World::outputLeaderTraits() const
 	}
 	traitsFile << "}";
 	traitsFile.close();
+}
+
+
+void HoI4World::outputIdeologicalIdeas() const
+{
+	ofstream ideasFile("output/" + Configuration::getOutputName() + "/common/ideas/convertedIdeas.txt");
+	ideasFile << "ideas = {\n";
+	ideasFile << "\tcountry = {\n";
+	for (auto majorIdeology: majorIdeologies)
+	{
+		auto ideologicalIdea = ideologicalIdeas.find(majorIdeology);
+		if (ideologicalIdea != ideologicalIdeas.end())
+		{
+			for (auto idea: ideologicalIdea->second)
+			ideasFile << *idea;
+			ideasFile << "\n";
+		}
+	}
+	ideasFile << "\t}\n";
+	ideasFile << "}";
+	ideasFile.close();
+}
+
+
+void HoI4World::outputScriptedTriggers() const
+{
+	ofstream triggersFile("output/" + Configuration::getOutputName() + "/common/scripted_triggers/convertedTriggers.txt");
+	triggersFile << "can_lose_democracy_support = {\n";
+	for (auto ideology: majorIdeologies)
+	{
+		if (ideology == "democratic")
+		{
+			triggersFile << "\tdemocratic > 0.65\n";
+		}
+		else
+		{
+			triggersFile << "\t" << ideology << " < 0.18\n";
+		}
+	}
+	triggersFile << "}\n";
+	triggersFile.close();
 }
 
 

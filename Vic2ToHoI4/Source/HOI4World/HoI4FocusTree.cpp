@@ -1089,7 +1089,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 	newFocus->completionReward += "				limit = {\n";
 	newFocus->completionReward += "					free_building_slots = {\n";
 	newFocus->completionReward += "						building = infrastructure\n";
-	newFocus->completionReward += "						size > 0\n";
+	newFocus->completionReward += "						size > 1\n";
 	newFocus->completionReward += "					}\n";
 	newFocus->completionReward += "					OR = {\n";
 	newFocus->completionReward += "						is_in_home_area = yes\n";
@@ -1098,7 +1098,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 	newFocus->completionReward += "								any_owned_state = {\n";
 	newFocus->completionReward += "									free_building_slots = {\n";
 	newFocus->completionReward += "										building = infrastructure\n";
-	newFocus->completionReward += "										size > 0\n";
+	newFocus->completionReward += "										size > 1\n";
 	newFocus->completionReward += "									}\n";
 	newFocus->completionReward += "									is_in_home_area = yes\n";
 	newFocus->completionReward += "								}\n";
@@ -1108,7 +1108,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 	newFocus->completionReward += "				}\n";
 	newFocus->completionReward += "				add_building_construction = {\n";
 	newFocus->completionReward += "					type = infrastructure\n";
-	newFocus->completionReward += "					level = 1\n";
+	newFocus->completionReward += "					level = 2\n";
 	newFocus->completionReward += "					instant_build = yes\n";
 	newFocus->completionReward += "				}\n";
 	newFocus->completionReward += "			}";
@@ -1229,7 +1229,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 	newFocus->completionReward += "				limit = {\n";
 	newFocus->completionReward += "					free_building_slots = {\n";
 	newFocus->completionReward += "						building = infrastructure\n";
-	newFocus->completionReward += "						size > 0\n";
+	newFocus->completionReward += "						size > 1\n";
 	newFocus->completionReward += "					}\n";
 	newFocus->completionReward += "					OR = {\n";
 	newFocus->completionReward += "						is_in_home_area = yes\n";
@@ -1238,7 +1238,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 	newFocus->completionReward += "								any_owned_state = {\n";
 	newFocus->completionReward += "									free_building_slots = {\n";
 	newFocus->completionReward += "										building = infrastructure\n";
-	newFocus->completionReward += "										size > 0\n";
+	newFocus->completionReward += "										size > 1\n";
 	newFocus->completionReward += "									}\n";
 	newFocus->completionReward += "									is_in_home_area = yes\n";
 	newFocus->completionReward += "								}\n";
@@ -1248,7 +1248,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 	newFocus->completionReward += "				}\n";
 	newFocus->completionReward += "				add_building_construction = {\n";
 	newFocus->completionReward += "					type = infrastructure\n";
-	newFocus->completionReward += "					level = 1\n";
+	newFocus->completionReward += "					level = 2\n";
 	newFocus->completionReward += "					instant_build = yes\n";
 	newFocus->completionReward += "				}\n";
 	newFocus->completionReward += "			}";
@@ -1419,11 +1419,21 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 		newFocus->aiWillDo += "			modifier = {\n";
 		newFocus->aiWillDo += "				factor = 0\n";
 		newFocus->aiWillDo += "				OR = {\n";
-		newFocus->aiWillDo += "					is_historical_focus_on = yes\n";
+		newFocus->aiWillDo += "					AND = {\n";
+		newFocus->aiWillDo += "						is_historical_focus_on = yes\n";
+		newFocus->aiWillDo += "						has_government = neutrality\n";
+		newFocus->aiWillDo += "					}\n";
 		newFocus->aiWillDo += "					has_idea = neutrality_idea\n";
 		newFocus->aiWillDo += "				}\n";
 		newFocus->aiWillDo += "			}";
-		newFocus->completionReward += "			add_ideas = collectivist_ethos_focus";
+		if (majorIdeologies.count("democratic") > 0)
+		{
+			newFocus->completionReward += "			add_ideas = collectivist_ethos_focus_democratic";
+		}
+		else
+		{
+			newFocus->completionReward += "			add_ideas = collectivist_ethos_focus_neutral";
+		}
 		focuses.push_back(newFocus);
 
 		determineMutualExclusions(majorIdeologies);
@@ -1629,15 +1639,18 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 	newFocus->available += "				has_defensive_war = yes\n";
 	newFocus->available += "			}";
 	newFocus->continueIfInvalid += "yes";
-	newFocus->xPos = nextFreeColumn - 2;
+	newFocus->xPos = nextFreeColumn - 4;
 	newFocus->yPos = 5;
 	newFocus->cost = 10;
 	newFocus->availableIfCapitulated = true;
-	newFocus->completionReward += "			if = {\n";
-	newFocus->completionReward += "				limit = { NOT = { has_idea = neutrality_idea } }\n";
-	newFocus->completionReward += "				set_rule = { can_create_factions = yes }\n";
-	newFocus->completionReward += "			}\n";
-	newFocus->completionReward += "			add_ideas = why_we_fight_focus";
+	newFocus->completionReward += "			add_ideas = why_we_fight_focus\n";
+	newFocus->completionReward += "			custom_effect_tooltip = why_we_fight_effect\n";
+	newFocus->completionReward += "			hidden_effect = {\n";
+	newFocus->completionReward += "				if = {\n";
+	newFocus->completionReward += "					limit = { NOT = { has_idea = neutrality_idea } }\n";
+	newFocus->completionReward += "					set_rule = { can_create_factions = yes }\n";
+	newFocus->completionReward += "				}\n";
+	newFocus->completionReward += "			}";
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
@@ -1660,7 +1673,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 	newFocus->available += "					num_of_factories > 50\n";
 	newFocus->available += "				}\n";
 	newFocus->available += "			}";
-	newFocus->xPos = nextFreeColumn - majorIdeologies.size() + 1;
+	newFocus->xPos = nextFreeColumn - 4;
 	newFocus->yPos = 7;
 	newFocus->cost = 10;
 	newFocus->availableIfCapitulated = true;
@@ -1805,6 +1818,13 @@ void HoI4FocusTree::addFascistGenericFocuses()
 	newFocus->aiWillDo += "					is_major = yes\n";
 	newFocus->aiWillDo += "					has_government = fascism\n";
 	newFocus->aiWillDo += "				}\n";
+	newFocus->aiWillDo += "			}\n";
+	newFocus->aiWillDo += "			modifier = {\n";
+	newFocus->aiWillDo += "				factor = 0\n";
+	newFocus->aiWillDo += "				AND = {\n";
+	newFocus->aiWillDo += "					is_historical_focus_on = yes\n";
+	newFocus->aiWillDo += "					NOT = { has_government = fascism }\n";
+	newFocus->aiWillDo += "				}\n";
 	newFocus->aiWillDo += "			}";
 	newFocus->completionReward += "			add_ideas = nationalism";
 	focuses.push_back(newFocus);
@@ -1885,6 +1905,13 @@ void HoI4FocusTree::addCommunistGenericFocuses()
 	newFocus->aiWillDo += "				any_neighbor_country = {\n";
 	newFocus->aiWillDo += "					is_major = yes\n";
 	newFocus->aiWillDo += "					has_government = communism\n";
+	newFocus->aiWillDo += "				}\n";
+	newFocus->aiWillDo += "			}";
+	newFocus->aiWillDo += "			modifier = {\n";
+	newFocus->aiWillDo += "				factor = 0\n";
+	newFocus->aiWillDo += "				AND = {\n";
+	newFocus->aiWillDo += "					is_historical_focus_on = yes\n";
+	newFocus->aiWillDo += "					NOT = { has_government = communism }\n";
 	newFocus->aiWillDo += "				}\n";
 	newFocus->aiWillDo += "			}";
 	newFocus->completionReward += "			add_ideas = internationalism";
@@ -1970,8 +1997,15 @@ void HoI4FocusTree::addAbsolutistGenericFocuses()
 	newFocus->aiWillDo += "					is_major = yes\n";
 	newFocus->aiWillDo += "					has_government = absolutism\n";
 	newFocus->aiWillDo += "				}\n";
+	newFocus->aiWillDo += "			}\n";
+	newFocus->aiWillDo += "			modifier = {\n";
+	newFocus->aiWillDo += "				factor = 0\n";
+	newFocus->aiWillDo += "				AND = {\n";
+	newFocus->aiWillDo += "					is_historical_focus_on = yes\n";
+	newFocus->aiWillDo += "					NOT = { has_government = absolutism }\n";
+	newFocus->aiWillDo += "				}\n";
 	newFocus->aiWillDo += "			}";
-	//newFocus->completionReward += "			add_ideas = absolutism";
+	newFocus->completionReward += "			add_ideas = absolutism";
 	focuses.push_back(newFocus);
 }
 
@@ -1999,8 +2033,15 @@ void HoI4FocusTree::addRadicalGenericFocuses()
 	newFocus->aiWillDo += "					is_major = yes\n";
 	newFocus->aiWillDo += "					has_government = radical\n";
 	newFocus->aiWillDo += "				}\n";
+	newFocus->aiWillDo += "			}\n";
+	newFocus->aiWillDo += "			modifier = {\n";
+	newFocus->aiWillDo += "				factor = 0\n";
+	newFocus->aiWillDo += "				AND = {\n";
+	newFocus->aiWillDo += "					is_historical_focus_on = yes\n";
+	newFocus->aiWillDo += "					NOT = { has_government = radical }\n";
+	newFocus->aiWillDo += "				}\n";
 	newFocus->aiWillDo += "			}";
-	//newFocus->completionReward += "			add_ideas = radical";
+	newFocus->completionReward += "			add_ideas = radicalism";
 	focuses.push_back(newFocus);
 }
 
@@ -3190,15 +3231,8 @@ void HoI4FocusTree::addCommunistGPWarBranch(HoI4Country * Home, vector<HoI4Count
 }
 
 
-void HoI4FocusTree::output()
+void HoI4FocusTree::output(const string& filename)
 {
-	if (!Utils::TryCreateFolder("output/" + Configuration::getOutputName() + "/common/national_focus"))
-	{
-		LOG(LogLevel::Error) << "Could not create \"output/" + Configuration::getOutputName() + "/common/national_focus\"";
-		exit(-1);
-	}
-
-	string filename("output/" + Configuration::getOutputName() + "/common/national_focus/" + srcCountryTag + "_NF.txt");
 	ofstream out(filename);
 	if (!out.is_open())
 	{
@@ -3207,19 +3241,34 @@ void HoI4FocusTree::output()
 	}
 
 	out << "focus_tree = {\n";
-	out << "	id = " << dstCountryTag + "_focus\n";
-	out << "	\n";
-	out << "	country = {\n";
-	out << "		factor = 0\n";
-	out << "		\n";
-	out << "		modifier = {\n";
-	out << "			add = 10\n";
-	out << "			tag = " << dstCountryTag << "\n";
-	out << "		}\n";
-	out << "	}\n";
-	out << "	\n";
-	out << "	default = no\n";
-	out << "\n";
+	if (dstCountryTag != "")
+	{
+		out << "	id = " << dstCountryTag + "_focus\n";
+		out << "	\n";
+		out << "	country = {\n";
+		out << "		factor = 0\n";
+		out << "		\n";
+		out << "		modifier = {\n";
+		out << "			add = 10\n";
+		out << "			tag = " << dstCountryTag << "\n";
+		out << "		}\n";
+		out << "	}\n";
+		out << "	\n";
+		out << "	default = no\n";
+		out << "\n";
+	}
+	else
+	{
+		out << "	id = generic_focus\n";
+		out << "	\n";
+		out << "	country = {\n";
+		out << "		factor = 1\n";
+		out << "	}\n";
+		out << "	\n";
+		out << "	default = yes\n";
+		out << "	reset_on_civilwar = no\n";
+		out << "\n";
+	}
 
 	for (auto focus: focuses)
 	{

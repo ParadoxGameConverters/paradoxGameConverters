@@ -82,6 +82,8 @@ class HoI4World
 
 		void importIdeologicalMinisters();
 
+		void importIdeologicalIdeas();
+
 		void identifyMajorIdeologies();
 		void addNeutrality();
 		void convertIdeologySupport();
@@ -117,7 +119,9 @@ class HoI4World
 
 		void convertTechs();
 		map<string, vector<pair<string, int>>> importTechMap() const;
+		map<string, vector<pair<string, int>>> importResearchBonusMap() const;
 		void addTechs(HoI4Country* countryaddTechs, const string& oldTech, const map<string, vector<pair<string, int>>>& techMap);
+		void addResearchBonuses(HoI4Country* countryaddBonuses, const string& oldTech, const map<string, vector<pair<string, int>>>& researchBonusMap);
 
 		void convertArmies();
 		void convertNavies();
@@ -146,11 +150,14 @@ class HoI4World
 		void outputColorsfile() const;
 		void outputNames() const;
 		void outputMap() const;
+		void outputGenericFocusTree() const;
 		void outputCountries() const;
 		set<const HoI4Advisor*> getActiveIdeologicalAdvisors() const;
 		void outputRelations() const;
 		void outputIdeologies() const;
 		void outputLeaderTraits() const;
+		void outputIdeologicalIdeas() const;
+		void outputScriptedTriggers() const;
 
 		/*vector<int> getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		vector<int> getPortProvinces(const vector<int>& locationCandidates);
@@ -174,6 +181,7 @@ class HoI4World
 		set<string> majorIdeologies;
 		map<string, vector<shared_ptr<Object>>> ideologicalLeaderTraits;
 		map<string, HoI4Advisor*> ideologicalAdvisors;
+		map<string, vector<shared_ptr<Object>>> ideologicalIdeas;
 		
 		vector<HoI4Faction*> factions;
 		HoI4Diplomacy* diplomacy;

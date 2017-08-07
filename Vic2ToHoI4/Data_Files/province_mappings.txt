@@ -23,190 +23,243 @@
 	# ##########
 	# 
 	# ## USA
-	link = { vic2 = 218 hoi4 = 10441 hoi4 = 4627 hoi4 = 6971 hoi4 = 7588 hoi4 = 7466 hoi4 = 7646 }	# Huntington -> land, land, land, land, land, land
-	link = { vic2 = 215 hoi4 = 11873 hoi4 = 3823 hoi4 = 10343 }	# Staunton -> land, land, land
-	link = { vic2 = 221 hoi4 = 6823 hoi4 = 6929 }	# Hagerstown -> land, land
-	link = { vic2 = 217 hoi4 = 6850 hoi4 = 801 hoi4 = 9923 hoi4 = 6958 hoi4 = 3941 hoi4 = 11888 hoi4 = 3975 }	# Wheeling -> land, land, land, land, land, land, land
-	link = { vic2 = 183 hoi4 = 9775 hoi4 = 971 hoi4 = 9760 hoi4 = 7528 hoi4 = 3829 }	# Marietta -> land, land, land, land, land
-	link = { vic2 = 227 hoi4 = 3802 hoi4 = 11800 hoi4 = 11789 hoi4 = 9789 hoi4 = 880 hoi4 = 11769 hoi4 = 3850 }	# Pittsburgh -> land, land, land, land, land, land, land
-	link = { vic2 = 226 hoi4 = 822 hoi4 = 11785 hoi4 = 9804 hoi4 = 847 hoi4 = 11758 hoi4 = 3847 }	# Harrisburg -> land, land, land, land, land, land
-	link = { vic2 = 225 hoi4 = 11648 hoi4 = 9836 hoi4 = 3697 hoi4 = 862 hoi4 = 11817 hoi4 = 6885 hoi4 = 6872 hoi4 = 12405 hoi4 = 702 hoi4 = 3880 }	# Williamsport -> land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 228 hoi4 = 3687 hoi4 = 6705 hoi4 = 9662 hoi4 = 6899 }	# Erie -> land, land, land, land
-	link = { vic2 = 178 hoi4 = 6874 hoi4 = 6890 hoi4 = 9825 hoi4 = 882 hoi4 = 4442 hoi4 = 9808 }	# Cleveland -> land, land, land, land, land, land
-	link = { vic2 = 179 hoi4 = 659 hoi4 = 3853 hoi4 = 6855 hoi4 = 827 }	# Columbus -> land, land, land, land
-	link = { vic2 = 182 hoi4 = 11890 hoi4 = 4601 }	# Cincinnati -> land, land
-	link = { vic2 = 181 hoi4 = 11791 hoi4 = 831 hoi4 = 11776 hoi4 = 11760 }	# Dayton -> land, land, land, land
-	link = { vic2 = 180 hoi4 = 689 hoi4 = 3872 hoi4 = 3685 }	# Sandusky -> land, land, land
-	link = { vic2 = 224 hoi4 = 11799 hoi4 = 9820 hoi4 = 3897 hoi4 = 891 hoi4 = 894 }	# Scranton -> land, land, land, land, land
-	link = { vic2 = 223 hoi4 = 3824 hoi4 = 6869 hoi4 = 6845 }	# Philadelphia -> land, land, land
-	link = { vic2 = 229 hoi4 = 3693 hoi4 = 6882 hoi4 = 3863 }	# Newark -> land, land, land
-	link = { vic2 = 230 hoi4 = 9801 hoi4 = 9864 hoi4 = 11782 }	# Trenton -> land, land, land
-	link = { vic2 = 231 hoi4 = 11740 hoi4 = 11900 }	# Atlantic City -> land, land
-	link = { vic2 = 216 hoi4 = 9931 hoi4 = 10439 hoi4 = 1506 hoi4 = 10412 hoi4 = 7558 hoi4 = 9779 }	# Roanoke -> land, land, land, land, land, land
-	link = { vic2 = 211 hoi4 = 11738 hoi4 = 3925 hoi4 = 11841 }	# Richmond -> land, land, land
-	link = { vic2 = 214 hoi4 = 865 hoi4 = 788 }	# Norfolk -> land, land
-	link = { vic2 = 213 hoi4 = 6846 }	# Fredericksburg -> land
-	link = { vic2 = 212 hoi4 = 11892 hoi4 = 873 hoi4 = 951 }	# Manassas -> land, land, land
-	link = { vic2 = 220 hoi4 = 3957 }	# Washington -> land
-	link = { vic2 = 219 hoi4 = 6984 hoi4 = 6892 hoi4 = 3917 hoi4 = 9758 }	# Baltimore -> land, land, land, land
-	link = { vic2 = 222 hoi4 = 9786 }	# Dover -> land
-	link = { vic2 = 238 hoi4 = 9708 hoi4 = 9721 hoi4 = 6916 hoi4 = 6795 }	# Syracuse -> land, land, land, land
-	link = { vic2 = 237 hoi4 = 3733 hoi4 = 3747 hoi4 = 3702 }	# Rochester -> land, land, land
-	link = { vic2 = 236 hoi4 = 11654 hoi4 = 734 hoi4 = 9664 hoi4 = 6707 }	# Buffalo -> land, land, land, land
-	link = { vic2 = 235 hoi4 = 9774 hoi4 = 706 hoi4 = 11660 hoi4 = 9673 hoi4 = 9693 hoi4 = 1436 hoi4 = 6717 hoi4 = 11650 hoi4 = 11680 }	# Binghamton -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 234 hoi4 = 3806 hoi4 = 11665 hoi4 = 11722 hoi4 = 6911 }	# Albany -> land, land, land, land
-	link = { vic2 = 232 hoi4 = 3894 hoi4 = 3878 }	# New York -> land, land
-	link = { vic2 = 245 hoi4 = 715 hoi4 = 3710 hoi4 = 908 hoi4 = 718 }	# Pittsfield -> land, land, land, land
-	link = { vic2 = 233 hoi4 = 859 }	# Long Island -> land
-	link = { vic2 = 241 hoi4 = 9832 hoi4 = 6909 hoi4 = 9850 hoi4 = 9847 }	# Hartford -> land, land, land, land
-	link = { vic2 = 242 hoi4 = 11830 }	# Providence -> land
-	link = { vic2 = 243 hoi4 = 6732 }	# Boston -> land
-	link = { vic2 = 244 hoi4 = 905 hoi4 = 3906 }	# New Bedford -> land, land
-	link = { vic2 = 240 hoi4 = 11662 hoi4 = 10381 hoi4 = 9754 }	# Plattsburgh -> land, land, land
-	link = { vic2 = 239 hoi4 = 6778 hoi4 = 3602 hoi4 = 598 }	# Watertown -> land, land, land
-	link = { vic2 = 3239 hoi4 = 13158 }	# Lake Champlain -> lake
-	link = { vic2 = 246 hoi4 = 9675 hoi4 = 4445 hoi4 = 7629 }	# Burlington -> land, land, land
-	link = { vic2 = 247 hoi4 = 10481 hoi4 = 733 hoi4 = 3712 hoi4 = 3715 }	# Concord -> land, land, land, land
-	link = { vic2 = 248 hoi4 = 12202 hoi4 = 7462 hoi4 = 3732 hoi4 = 6719 }	# Lewiston -> land, land, land, land
-	link = { vic2 = 249 hoi4 = 12221 hoi4 = 1282 hoi4 = 1619 hoi4 = 1338 hoi4 = 10318 hoi4 = 12459 }	# Bangor -> land, land, land, land, land, land
-	link = { vic2 = 250 hoi4 = 10247 hoi4 = 4287 }	# Caribou -> land, land
-	link = { vic2 = 208 hoi4 = 7045 hoi4 = 12054 }	# Raleigh -> land, land
-	link = { vic2 = 209 hoi4 = 10081 hoi4 = 7083 hoi4 = 7138 }	# Charlotte -> land, land, land
-	link = { vic2 = 2556 hoi4 = 10468 hoi4 = 12445 hoi4 = 10096 hoi4 = 10495 hoi4 = 7643 hoi4 = 9967 }	# Asheville -> land, land, land, land, land, land
-	link = { vic2 = 210 hoi4 = 1163 hoi4 = 1132 hoi4 = 1019 hoi4 = 10051 }	# Wilmington -> land, land, land, land
-	link = { vic2 = 207 hoi4 = 9876 hoi4 = 6943 hoi4 = 11783 hoi4 = 4168 hoi4 = 1077 }	# Greenville -> land, land, land, land, land
-	link = { vic2 = 2555 hoi4 = 10394 hoi4 = 638 hoi4 = 7118 hoi4 = 10437 hoi4 = 10465 hoi4 = 7612 }	# Augusta -> land, land, land, land, land, land
-	link = { vic2 = 206 hoi4 = 1485 hoi4 = 4653 hoi4 = 7527 hoi4 = 4491 hoi4 = 7012 hoi4 = 10029 hoi4 = 3994 hoi4 = 7134 }	# Columbia -> land, land, land, land, land, land, land, land
-	link = { vic2 = 205 hoi4 = 1547 hoi4 = 7202 hoi4 = 10047 hoi4 = 11927 }	# Charleston -> land, land, land, land
-	link = { vic2 = 204 hoi4 = 1433 hoi4 = 1480 hoi4 = 11975 }	# Savannah -> land, land, land
-	link = { vic2 = 202 hoi4 = 7583 hoi4 = 10492 hoi4 = 12470 hoi4 = 12325 hoi4 = 12498 }	# Valdosta -> land, land, land, land, land
-	link = { vic2 = 201 hoi4 = 968 hoi4 = 5090 hoi4 = 9996 hoi4 = 12384 hoi4 = 9949 }	# Atlanta -> land, land, land, land, land
-	link = { vic2 = 190 hoi4 = 10657 hoi4 = 913 hoi4 = 8014 hoi4 = 7791 }	# Knoxville -> land, land, land, land
-	link = { vic2 = 191 hoi4 = 1758 hoi4 = 10909 }	# Chattanooga -> land, land
-	link = { vic2 = 188 hoi4 = 8083 hoi4 = 10281 hoi4 = 10824 hoi4 = 12501 hoi4 = 12670 }	# Nashville -> land, land, land, land, land
-	link = { vic2 = 189 hoi4 = 1987 hoi4 = 10615 hoi4 = 7797 hoi4 = 7615 }	# Memphis -> land, land, land, land
-	link = { vic2 = 187 hoi4 = 10586 }	# Paducah -> land
-	link = { vic2 = 185 hoi4 = 12637 hoi4 = 7547 hoi4 = 4452 hoi4 = 1445 hoi4 = 12568 hoi4 = 9727 hoi4 = 1582 }	# Lexington -> land, land, land, land, land, land, land
-	link = { vic2 = 186 hoi4 = 4402 hoi4 = 6974 hoi4 = 4988 }	# Bowling Green -> land, land, land
-	link = { vic2 = 184 hoi4 = 6696 hoi4 = 10727 hoi4 = 12709 }	# Louisville -> land, land, land
-	link = { vic2 = 170 hoi4 = 4527 hoi4 = 11635 hoi4 = 11621 hoi4 = 1881 }	# Evansville -> land, land, land, land
-	link = { vic2 = 169 hoi4 = 9796 hoi4 = 1595 hoi4 = 10448 hoi4 = 12437 }	# Indianapolis -> land, land, land, land
-	link = { vic2 = 172 hoi4 = 11637 hoi4 = 870 hoi4 = 9810 }	# Fort Wayne -> land, land, land
-	link = { vic2 = 171 hoi4 = 6713 hoi4 = 4437 hoi4 = 9653 hoi4 = 9654 hoi4 = 4531 hoi4 = 7551 }	# South Bend -> land, land, land, land, land, land
-	link = { vic2 = 174 hoi4 = 6769 hoi4 = 691 hoi4 = 695 hoi4 = 11641 hoi4 = 11685 hoi4 = 9684 hoi4 = 6782 hoi4 = 11714 }	# Grand Rapids -> land, land, land, land, land, land, land, land
-	link = { vic2 = 173 hoi4 = 9724 hoi4 = 6710 hoi4 = 11656 hoi4 = 13156 }	# Detroit -> land, land, land, lake
-	link = { vic2 = 175 hoi4 = 3766 hoi4 = 11669 hoi4 = 9746 }	# Saginaw -> land, land, land
-	link = { vic2 = 176 hoi4 = 10303 hoi4 = 11731 hoi4 = 7420 hoi4 = 9747 hoi4 = 10233 }	# Traverse City -> land, land, land, land, land
-	link = { vic2 = 148 hoi4 = 12346 hoi4 = 4449 hoi4 = 4540 }	# Malden -> land, land, land
-	link = { vic2 = 147 hoi4 = 1534 hoi4 = 10370 hoi4 = 12463 }	# Joplin -> land, land, land
-	link = { vic2 = 149 hoi4 = 12361 hoi4 = 1441 hoi4 = 1564 }	# Jefferson City -> land, land, land
-	link = { vic2 = 146 hoi4 = 7449 hoi4 = 7607 hoi4 = 1523 hoi4 = 4569 hoi4 = 1621 }	# St Louis -> land, land, land, land, land
-	link = { vic2 = 150 hoi4 = 10333 hoi4 = 10516 hoi4 = 10391 hoi4 = 10717 }	# Kansas City -> land, land, land, land
-	link = { vic2 = 151 hoi4 = 1678 hoi4 = 1770 hoi4 = 9892 }	# Des Moines -> land, land, land
-	link = { vic2 = 152 hoi4 = 12418 hoi4 = 7539 hoi4 = 1586 hoi4 = 7458 }	# Oskaloosa -> land, land, land, land
-	link = { vic2 = 153 hoi4 = 11971 hoi4 = 9910 hoi4 = 1831 hoi4 = 7306 hoi4 = 10478 }	# Cedar Rapids -> land, land, land, land, land
-	link = { vic2 = 154 hoi4 = 12646 hoi4 = 10666 hoi4 = 11788 hoi4 = 4691 }	# Sioux City -> land, land, land, land
-	link = { vic2 = 168 hoi4 = 1604 hoi4 = 7831 hoi4 = 954 }	# Carbondale -> land, land, land
-	link = { vic2 = 167 hoi4 = 12497 hoi4 = 12697 hoi4 = 10457 hoi4 = 7626 hoi4 = 12305 }	# Springfield -> land, land, land, land, land
-	link = { vic2 = 166 hoi4 = 10339 hoi4 = 10393 hoi4 = 4590 hoi4 = 1527 hoi4 = 12365 }	# Peoria -> land, land, land, land, land
-	link = { vic2 = 165 hoi4 = 12368 hoi4 = 7611 hoi4 = 9682 hoi4 = 10461 hoi4 = 1655 hoi4 = 4508 hoi4 = 720 }	# Champaign -> land, land, land, land, land, land, land
-	link = { vic2 = 164 hoi4 = 12312 hoi4 = 11589 hoi4 = 6737 }	# Rockford -> land, land, land
-	link = { vic2 = 163 hoi4 = 9450 }	# Chicago -> land
-	link = { vic2 = 162 hoi4 = 12456 hoi4 = 1560 hoi4 = 10341 hoi4 = 1760 hoi4 = 7829 hoi4 = 926 }	# Madison -> land, land, land, land, land, land
-	link = { vic2 = 159 hoi4 = 9657 hoi4 = 12357 }	# Milwaukee -> land, land
-	link = { vic2 = 161 hoi4 = 703 hoi4 = 4738 hoi4 = 4834 hoi4 = 4166 }	# Green Bay -> land, land, land, land
-	link = { vic2 = 160 hoi4 = 1849 hoi4 = 7776 hoi4 = 3699 hoi4 = 10526 hoi4 = 4029 hoi4 = 9678 }	# Eau Claire -> land, land, land, land, land, land
-	link = { vic2 = 177 hoi4 = 5205 hoi4 = 751 hoi4 = 4854 hoi4 = 709 hoi4 = 10599 }	# Marquette -> land, land, land, land, land
-	link = { vic2 = 156 hoi4 = 6752 hoi4 = 10719 hoi4 = 12577 hoi4 = 7536 hoi4 = 1867 hoi4 = 10618 }	# Granite Falls -> land, land, land, land, land, land
-	link = { vic2 = 155 hoi4 = 1719 hoi4 = 4664 hoi4 = 4807 hoi4 = 6827 hoi4 = 1866 hoi4 = 9880 }	# Minneapolis -> land, land, land, land, land, land
-	link = { vic2 = 157 hoi4 = 12588 hoi4 = 12693 hoi4 = 12597 hoi4 = 11667 }	# Moorhead -> land, land, land, land
-	link = { vic2 = 158 hoi4 = 6767 hoi4 = 1734 hoi4 = 7896 hoi4 = 12550 }	# Duluth -> land, land, land, land
-	link = { vic2 = 126 hoi4 = 4757 hoi4 = 7834 hoi4 = 9802 hoi4 = 4811 hoi4 = 1352 hoi4 = 7892 }	# Topeka -> land, land, land, land, land, land
-	link = { vic2 = 119 hoi4 = 12566 hoi4 = 6722 hoi4 = 7877 }	# Dickinson -> land, land, land
-	link = { vic2 = 117 hoi4 = 10685 hoi4 = 4772 hoi4 = 1836 hoi4 = 1752 }	# Bismarck -> land, land, land, land
-	link = { vic2 = 118 hoi4 = 4759 hoi4 = 10709 hoi4 = 12685 hoi4 = 1870 hoi4 = 3719 }	# Minot -> land, land, land, land, land
-	link = { vic2 = 121 hoi4 = 3750 hoi4 = 4839 }	# Dupree -> land, land
-	link = { vic2 = 120 hoi4 = 10595 hoi4 = 10569 hoi4 = 12620 hoi4 = 12667 hoi4 = 4880 hoi4 = 7862 }	# Sioux Falls -> land, land, land, land, land, land
-	link = { vic2 = 122 hoi4 = 7745 hoi4 = 1747 hoi4 = 1875 hoi4 = 7771 }	# Rapid City -> land, land, land, land
-	link = { vic2 = 123 hoi4 = 3855 hoi4 = 12516 hoi4 = 1683 hoi4 = 7852 hoi4 = 12586 }	# Omaha -> land, land, land, land, land
-	link = { vic2 = 125 hoi4 = 4830 hoi4 = 10606 hoi4 = 3708 hoi4 = 10676 }	# North Platte -> land, land, land, land
-	link = { vic2 = 124 hoi4 = 4760 hoi4 = 3613 hoi4 = 7840 hoi4 = 4749 }	# Alliance -> land, land, land, land
-	link = { vic2 = 127 hoi4 = 4871 hoi4 = 10532 hoi4 = 1753 hoi4 = 12513 }	# Goodland -> land, land, land, land
-	link = { vic2 = 128 hoi4 = 4586 hoi4 = 4814 hoi4 = 12024 hoi4 = 10340 hoi4 = 4740 }	# Wichita -> land, land, land, land, land
-	link = { vic2 = 196 hoi4 = 10192 hoi4 = 5059 hoi4 = 12803 hoi4 = 1587 hoi4 = 12735 hoi4 = 4622 }	# Tuscaloosa -> land, land, land, land, land, land
-	link = { vic2 = 195 hoi4 = 4756 hoi4 = 492 hoi4 = 860 hoi4 = 7640 hoi4 = 11509 hoi4 = 7422 hoi4 = 4594 }	# Montgomery -> land, land, land, land, land, land, land
-	link = { vic2 = 197 hoi4 = 7480 hoi4 = 10520 hoi4 = 11942 }	# Mobile -> land, land, land
-	link = { vic2 = 198 hoi4 = 10380 hoi4 = 10407 hoi4 = 10352 }	# Tallahassee -> land, land, land
-	link = { vic2 = 199 hoi4 = 1556 hoi4 = 12353 hoi4 = 12381 hoi4 = 1572 hoi4 = 12439 hoi4 = 1584 }	# St Augustine -> land, land, land, land, land, land
-	link = { vic2 = 200 hoi4 = 1843 hoi4 = 1913 hoi4 = 9834 hoi4 = 10489 hoi4 = 12752 hoi4 = 866 hoi4 = 7388 }	# Tampa -> land, land, land, land, land, land, land
-	link = { vic2 = 129 hoi4 = 12624 hoi4 = 7762 hoi4 = 11802 hoi4 = 10798 hoi4 = 11743 hoi4 = 9822 hoi4 = 4919 hoi4 = 10702 hoi4 = 7904 }	# Oklahoma City -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 130 hoi4 = 1806 hoi4 = 2043 }	# Tahlequah -> land, land
-	link = { vic2 = 131 hoi4 = 1618 hoi4 = 8025 hoi4 = 5103 hoi4 = 6803 hoi4 = 7945 }	# Okmulgee -> land, land, land, land, land
-	link = { vic2 = 144 hoi4 = 1503 hoi4 = 12458 hoi4 = 12489 hoi4 = 12778 hoi4 = 7485 hoi4 = 7543 }	# Hot Springs -> land, land, land, land, land, land
-	link = { vic2 = 143 hoi4 = 4625 hoi4 = 1646 hoi4 = 10355 hoi4 = 4444 hoi4 = 10477 }	# Little Rock -> land, land, land, land, land
-	link = { vic2 = 145 hoi4 = 4567 hoi4 = 4597 hoi4 = 7586 }	# Fayetteville -> land, land, land
-	link = { vic2 = 193 hoi4 = 10410 hoi4 = 4510 hoi4 = 12328 hoi4 = 11717 hoi4 = 10753 hoi4 = 7464 }	# Vicksburg -> land, land, land, land, land, land
-	link = { vic2 = 192 hoi4 = 10449 hoi4 = 4650 hoi4 = 12429 hoi4 = 8110 hoi4 = 1615 hoi4 = 4565 }	# Jackson -> land, land, land, land, land, land
-	link = { vic2 = 194 hoi4 = 4464 hoi4 = 7668 }	# Biloxi -> land, land
-	link = { vic2 = 140 hoi4 = 1453 hoi4 = 7524 }	# Baton Rouge -> land, land
-	link = { vic2 = 142 hoi4 = 4522 hoi4 = 1559 hoi4 = 7555 hoi4 = 7599 }	# Shreveport -> land, land, land, land
-	link = { vic2 = 141 hoi4 = 1643 hoi4 = 4507 hoi4 = 12313 hoi4 = 1528 hoi4 = 12401 }	# Lake Charles -> land, land, land, land, land
-	link = { vic2 = 139 hoi4 = 12398 hoi4 = 4535 hoi4 = 7552 }	# New Orleans -> land, land, land
-	link = { vic2 = 132 hoi4 = 9829 hoi4 = 5001 hoi4 = 6968 hoi4 = 4577 hoi4 = 12486 hoi4 = 1500 hoi4 = 7628 hoi4 = 10778 hoi4 = 805 hoi4 = 10504 hoi4 = 10337 hoi4 = 10861 }	# Houston -> land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 134 hoi4 = 3875 hoi4 = 5085 hoi4 = 2082 hoi4 = 9920 hoi4 = 1915 hoi4 = 12875 hoi4 = 7981 hoi4 = 3960 }	# Dallas -> land, land, land, land, land, land, land, land
-	link = { vic2 = 135 hoi4 = 2055 hoi4 = 3972 hoi4 = 12848 hoi4 = 12301 hoi4 = 9773 hoi4 = 12893 hoi4 = 9908 }	# Lubbock -> land, land, land, land, land, land, land
-	link = { vic2 = 133 hoi4 = 4884 hoi4 = 1927 hoi4 = 6798 hoi4 = 8064 hoi4 = 12410 hoi4 = 12341 hoi4 = 5022 hoi4 = 7836 }	# Austin -> land, land, land, land, land, land, land, land
-	link = { vic2 = 137 hoi4 = 12782 hoi4 = 6987 hoi4 = 2042 }	# San Antonio -> land, land, land
-	link = { vic2 = 138 hoi4 = 12728 hoi4 = 2019 hoi4 = 5061 hoi4 = 12369 hoi4 = 6785 }	# Laredo -> land, land, land, land, land
-	link = { vic2 = 136 hoi4 = 10740 hoi4 = 10894 hoi4 = 1954 hoi4 = 5038 hoi4 = 4955 hoi4 = 1998 }	# El Paso -> land, land, land, land, land, land
-	link = { vic2 = 109 hoi4 = 1809 hoi4 = 12627 hoi4 = 1738 }	# Pueblo -> land, land, land
-	link = { vic2 = 106 hoi4 = 1827 hoi4 = 10588 hoi4 = 12642 hoi4 = 11772 hoi4 = 7780 hoi4 = 12570 }	# Denver -> land, land, land, land, land, land
-	link = { vic2 = 107 hoi4 = 6887 hoi4 = 10535 hoi4 = 3869 }	# Grand Junction -> land, land, land
-	link = { vic2 = 108 hoi4 = 7684 hoi4 = 7999 hoi4 = 9792 hoi4 = 868 hoi4 = 1658 }	# Alamosa -> land, land, land, land, land
-	link = { vic2 = 103 hoi4 = 4975 hoi4 = 12684 hoi4 = 2102 hoi4 = 10642 }	# Santa Fe -> land, land, land, land
-	link = { vic2 = 105 hoi4 = 3867 hoi4 = 12720 hoi4 = 10867 hoi4 = 8070 hoi4 = 3883 hoi4 = 12791 }	# Las Cruces -> land, land, land, land, land, land
-	link = { vic2 = 104 hoi4 = 10645 hoi4 = 12552 hoi4 = 1972 hoi4 = 10914 hoi4 = 5044 }	# Albuquerque -> land, land, land, land, land
-	link = { vic2 = 112 hoi4 = 10711 hoi4 = 4610 hoi4 = 4820 hoi4 = 4794 hoi4 = 7814 }	# Casper -> land, land, land, land, land
-	link = { vic2 = 110 hoi4 = 4723 hoi4 = 10640 hoi4 = 12561 }	# Cheyenne -> land, land, land
-	link = { vic2 = 111 hoi4 = 1815 hoi4 = 12651 hoi4 = 7688 hoi4 = 7888 hoi4 = 12633 }	# Cody -> land, land, land, land, land
-	link = { vic2 = 113 hoi4 = 4741 hoi4 = 1736 hoi4 = 7779 hoi4 = 6742 hoi4 = 4860 }	# Bozeman -> land, land, land, land, land
-	link = { vic2 = 114 hoi4 = 1854 hoi4 = 12676 hoi4 = 4838 }	# Missoula -> land, land, land
-	link = { vic2 = 115 hoi4 = 7883 hoi4 = 4863 hoi4 = 10624 hoi4 = 10593 hoi4 = 1857 hoi4 = 11712 }	# Great Falls -> land, land, land, land, land, land
-	link = { vic2 = 116 hoi4 = 7760 hoi4 = 10587 hoi4 = 1851 hoi4 = 12585 hoi4 = 4857 hoi4 = 7880 hoi4 = 10706 hoi4 = 1767 hoi4 = 12572 }	# Billings -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 93 hoi4 = 9695 hoi4 = 12535 hoi4 = 1789 hoi4 = 10602 hoi4 = 10672 }	# Pocatello -> land, land, land, land, land
-	link = { vic2 = 91 hoi4 = 7845 hoi4 = 10556 hoi4 = 12607 }	# Boise -> land, land, land
-	link = { vic2 = 92 hoi4 = 1832 hoi4 = 12124 hoi4 = 3781 hoi4 = 4778 hoi4 = 9616 }	# Coeur D'Alene -> land, land, land, land, land
-	link = { vic2 = 3225 hoi4 = 13153 }	# Great Salt Lake -> lake
-	link = { vic2 = 97 hoi4 = 4865 hoi4 = 10651 hoi4 = 1663 hoi4 = 10582 hoi4 = 4668 hoi4 = 1756 hoi4 = 4742 }	# Salt Lake City -> land, land, land, land, land, land, land
-	link = { vic2 = 98 hoi4 = 12699 hoi4 = 12573 hoi4 = 10662 }	# Loa -> land, land, land
-	link = { vic2 = 99 hoi4 = 7818 hoi4 = 7764 hoi4 = 1740 }	# Moab -> land, land, land
-	link = { vic2 = 102 hoi4 = 10783 hoi4 = 3834 hoi4 = 7920 }	# Tucson -> land, land, land
-	link = { vic2 = 100 hoi4 = 8115 hoi4 = 1793 hoi4 = 853 hoi4 = 7747 hoi4 = 4796 }	# Phoenix -> land, land, land, land, land
-	link = { vic2 = 101 hoi4 = 10573 hoi4 = 7821 hoi4 = 850 hoi4 = 12765 hoi4 = 6897 hoi4 = 11814 }	# Flagstaff -> land, land, land, land, land, land
-	link = { vic2 = 96 hoi4 = 10591 hoi4 = 7879 hoi4 = 4799 }	# Las Vegas -> land, land, land
-	link = { vic2 = 95 hoi4 = 4607 hoi4 = 4521 hoi4 = 12399 hoi4 = 7827 hoi4 = 4736 hoi4 = 12425 hoi4 = 4816 }	# Elko -> land, land, land, land, land, land, land
-	link = { vic2 = 94 hoi4 = 10422 hoi4 = 12134 hoi4 = 1862 hoi4 = 7756 }	# Carson City -> land, land, land, land
-	link = { vic2 = 88 hoi4 = 11763 hoi4 = 4518 hoi4 = 6876 hoi4 = 6694 hoi4 = 6699 hoi4 = 1601 hoi4 = 1432 hoi4 = 7667 hoi4 = 1651 hoi4 = 4657 hoi4 = 12303 hoi4 = 10387 hoi4 = 941 hoi4 = 9911 hoi4 = 4727 }	# Mariposa -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 90 hoi4 = 1562 hoi4 = 12374 hoi4 = 7986 hoi4 = 823 hoi4 = 7517 }	# San Diego -> land, land, land, land, land
-	link = { vic2 = 89 hoi4 = 9814 hoi4 = 11757 hoi4 = 11795 hoi4 = 10483 hoi4 = 9855 hoi4 = 11859 }	# Los Angeles -> land, land, land, land, land, land
-	link = { vic2 = 87 hoi4 = 9637 hoi4 = 3840 hoi4 = 986 hoi4 = 6881 hoi4 = 11876 hoi4 = 3784 hoi4 = 6861 }	# Monterey -> land, land, land, land, land, land, land
-	link = { vic2 = 84 hoi4 = 9671 hoi4 = 11658 hoi4 = 677 hoi4 = 6681 hoi4 = 3677 hoi4 = 3678 hoi4 = 6745 hoi4 = 6757 }	# San Francisco -> land, land, land, land, land, land, land, land
-	link = { vic2 = 85 hoi4 = 610 hoi4 = 9730 hoi4 = 6772 hoi4 = 768 hoi4 = 781 hoi4 = 6482 hoi4 = 3644 }	# Eureka -> land, land, land, land, land, land, land
-	link = { vic2 = 86 hoi4 = 9713 hoi4 = 710 hoi4 = 9697 hoi4 = 766 hoi4 = 11698 hoi4 = 10159 hoi4 = 3588 hoi4 = 6665 hoi4 = 4331 }	# Sacramento -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 83 hoi4 = 7721 hoi4 = 10625 hoi4 = 10305 hoi4 = 4347 }	# Klamath Falls -> land, land, land, land
-	link = { vic2 = 82 hoi4 = 1414 hoi4 = 7865 hoi4 = 12183 hoi4 = 4826 hoi4 = 12553 }	# Baker City -> land, land, land, land, land
-	link = { vic2 = 81 hoi4 = 10183 hoi4 = 12211 hoi4 = 4380 hoi4 = 12281 hoi4 = 11495 hoi4 = 505 hoi4 = 11733 hoi4 = 3471 hoi4 = 10151 hoi4 = 4274 hoi4 = 7398 hoi4 = 3513 hoi4 = 4328 hoi4 = 528 }	# Portland -> land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 79 hoi4 = 1690 hoi4 = 10693 hoi4 = 10198 hoi4 = 1320 hoi4 = 7414 hoi4 = 12214 hoi4 = 10327 }	# Spokane -> land, land, land, land, land, land, land
-	link = { vic2 = 80 hoi4 = 7255 hoi4 = 12155 hoi4 = 10690 hoi4 = 10687 hoi4 = 12673 hoi4 = 4747 hoi4 = 10155 }	# Walla Walla -> land, land, land, land, land, land, land
-	link = { vic2 = 78 hoi4 = 10157 hoi4 = 7315 hoi4 = 7386 hoi4 = 4398 hoi4 = 4296 hoi4 = 10242 hoi4 = 10271 hoi4 = 7442 }	# Seattle -> land, land, land, land, land, land, land, land
-	link = { vic2 = 2631 hoi4 = 7855 }	# Unalakeet -> land
-	link = { vic2 = 5 hoi4 = 1830 }	# Bethel -> land
-	link = { vic2 = 4 hoi4 = 12661 hoi4 = 10694 hoi4 = 13090 hoi4 = 1135 }	# Dutch Harbor -> land, land, land, land
+	# # Alaska
+	link = { vic2 = 1 hoi4 = 13203 hoi4 = 13202 }	# Sitka -> land, land
+	link = { vic2 = 2 hoi4 = 10707 }	# Yakutat -> land
 	link = { vic2 = 3 hoi4 = 4833 hoi4 = 13091 hoi4 = 10679 hoi4 = 7884 }	# Kenai -> land, land, land, land
+	link = { vic2 = 4 hoi4 = 13090 hoi4 = 12661 hoi4 = 10694 hoi4 = 1135 }	# Dutch Harbor -> land, land, land, land
+	link = { vic2 = 5 hoi4 = 1830 }	# Bethel -> land
 	link = { vic2 = 2599 hoi4 = 13069 }	# Fairbanks -> land
 	link = { vic2 = 2630 hoi4 = 4848 }	# Cordova -> land
-	link = { vic2 = 1 hoi4 = 13202 }	# Sitka -> land
-	link = { vic2 = 2 hoi4 = 13203 hoi4 = 10707 }	# Yakutat -> land, land
+	link = { vic2 = 2631 hoi4 = 7855 }	# Unalakeet -> land
+	# # West Virginia
+	link = { vic2 = 218 hoi4 = 6971 hoi4 = 10441 hoi4 = 7588 hoi4 = 7646 hoi4 = 7466 hoi4 = 4627 }	# Huntington -> land, land, land, land, land, land
+	link = { vic2 = 217 hoi4 = 6850 hoi4 = 801 hoi4 = 9923 hoi4 = 11888 hoi4 = 6958 hoi4 = 3941 hoi4 = 3975 }	# Wheeling -> land, land, land, land, land, land, land
+	# # Virginia
+	link = { vic2 = 211 hoi4 = 11841 hoi4 = 3925 hoi4 = 3823 }	# Richmond -> land, land, land
+	link = { vic2 = 212 hoi4 = 951 hoi4 = 873 }	# Manassas -> land, land
+	link = { vic2 = 213 hoi4 = 6846 }	# Fredericksburg -> land
+	link = { vic2 = 214 hoi4 = 788 hoi4 = 11738 hoi4 = 865 }	# Norfolk -> land, land, land
+	link = { vic2 = 215 hoi4 = 10343 hoi4 = 11873 }	# Staunton -> land, land
+	link = { vic2 = 216 hoi4 = 10412 hoi4 = 10439 hoi4 = 1506 hoi4 = 9931 hoi4 = 7558 hoi4 = 9779 }	# Roanoke -> land, land, land, land, land, land
+	# # Maryland
+	link = { vic2 = 219 hoi4 = 6984 hoi4 = 9758 hoi4 = 6892 hoi4 = 3917 }	# Baltimore -> land, land, land, land
+	link = { vic2 = 220 hoi4 = 3957 hoi4 = 11892 }	# Washington -> land, land
+	link = { vic2 = 221 hoi4 = 6929 hoi4 = 6823 }	# Hagerstown -> land, land
+	# # Delaware
+	link = { vic2 = 222 hoi4 = 9786 }	# Dover -> land
+	# # Pennsylvania
+	link = { vic2 = 223 hoi4 = 6845 hoi4 = 3824 hoi4 = 6869 }	# Philadelphia -> land, land, land
+	link = { vic2 = 224 hoi4 = 3897 hoi4 = 891 hoi4 = 11799 hoi4 = 9820 hoi4 = 894 }	# Scranton -> land, land, land, land, land
+	link = { vic2 = 225 hoi4 = 11817 hoi4 = 862 hoi4 = 6885 hoi4 = 6872 hoi4 = 12405 hoi4 = 702 hoi4 = 3880 hoi4 = 11648 hoi4 = 9836 hoi4 = 3697 }	# Williamsport -> land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 226 hoi4 = 3847 hoi4 = 11758 hoi4 = 11769 hoi4 = 847 hoi4 = 9804 hoi4 = 11785 hoi4 = 822 }	# Harrisburg -> land, land, land, land, land, land, land
+	link = { vic2 = 227 hoi4 = 3802 hoi4 = 11800 hoi4 = 11789 hoi4 = 9789 hoi4 = 880 hoi4 = 3850 }	# Pittsburgh -> land, land, land, land, land, land
+	link = { vic2 = 228 hoi4 = 3687 hoi4 = 9662 hoi4 = 6899 hoi4 = 6705 }	# Erie -> land, land, land, land
+	# # New Jersey
+	link = { vic2 = 229 hoi4 = 6882 hoi4 = 3863 hoi4 = 3693 }	# Newark -> land, land, land
+	link = { vic2 = 230 hoi4 = 11782 hoi4 = 9801 hoi4 = 9864 }	# Trenton -> land, land, land
+	link = { vic2 = 231 hoi4 = 11740 hoi4 = 11900 }	# Atlantic City -> land, land
+	# # New York
+	link = { vic2 = 232 hoi4 = 3878 hoi4 = 3894 }	# New York -> land, land
+	link = { vic2 = 233 hoi4 = 859 }	# Long Island -> land
+	link = { vic2 = 234 hoi4 = 3806 hoi4 = 6911 hoi4 = 11665 hoi4 = 9693 }	# Albany -> land, land, land, land
+	link = { vic2 = 235 hoi4 = 6717 hoi4 = 11650 hoi4 = 11680 hoi4 = 11660 hoi4 = 706 hoi4 = 9673 hoi4 = 9774 }	# Binghamton -> land, land, land, land, land, land, land
+	link = { vic2 = 236 hoi4 = 11654 hoi4 = 734 hoi4 = 9664 hoi4 = 6707 }	# Buffalo -> land, land, land, land
+	link = { vic2 = 237 hoi4 = 3733 hoi4 = 3747 hoi4 = 3702 }	# Rochester -> land, land, land
+	link = { vic2 = 238 hoi4 = 9708 hoi4 = 9721 hoi4 = 6916 hoi4 = 6795 hoi4 = 1436 }	# Syracuse -> land, land, land, land, land
+	link = { vic2 = 239 hoi4 = 6778 hoi4 = 3602 hoi4 = 598 }	# Watertown -> land, land, land
+	link = { vic2 = 240 hoi4 = 11662 hoi4 = 10381 hoi4 = 9754 hoi4 = 11722 }	# Plattsburgh -> land, land, land, land
+	# # Connecticut
+	link = { vic2 = 241 hoi4 = 9850 hoi4 = 9832 hoi4 = 6909 hoi4 = 9847 }	# Hartford -> land, land, land, land
+	# # Rhode Island
+	link = { vic2 = 242 hoi4 = 11830 }	# Providence -> land
+	# # Massachusetts
+	link = { vic2 = 243 hoi4 = 6732 }	# Boston -> land
+	link = { vic2 = 244 hoi4 = 905 hoi4 = 3906 }	# New Bedford -> land, land
+	link = { vic2 = 245 hoi4 = 718 hoi4 = 908 hoi4 = 3710 hoi4 = 715 }	# Pittsfield -> land, land, land, land
+	# # Vermont
+	link = { vic2 = 246 hoi4 = 7629 hoi4 = 4445 hoi4 = 9675 }	# Burlington -> land, land, land
+	# # New Hampshire
+	link = { vic2 = 247 hoi4 = 3712 hoi4 = 10481 hoi4 = 733 hoi4 = 3715 }	# Concord -> land, land, land, land
+	# # Maine
+	link = { vic2 = 248 hoi4 = 3732 hoi4 = 6719 hoi4 = 12202 }	# Lewiston -> land, land, land
+	link = { vic2 = 249 hoi4 = 12459 hoi4 = 1338 hoi4 = 1619 hoi4 = 1282 hoi4 = 10318 hoi4 = 12221 hoi4 = 7462 }	# Bangor -> land, land, land, land, land, land, land
+	link = { vic2 = 250 hoi4 = 4287 hoi4 = 10247 }	# Caribou -> land, land
+	# # Ohio
+	link = { vic2 = 178 hoi4 = 6890 hoi4 = 882 hoi4 = 4442 hoi4 = 9808 hoi4 = 6874 hoi4 = 9825 }	# Cleveland -> land, land, land, land, land, land
+	link = { vic2 = 179 hoi4 = 6855 hoi4 = 11760 hoi4 = 3853 hoi4 = 827 }	# Columbus -> land, land, land, land
+	link = { vic2 = 180 hoi4 = 3685 hoi4 = 689 hoi4 = 659 hoi4 = 3872 }	# Sandusky -> land, land, land, land
+	link = { vic2 = 181 hoi4 = 831 hoi4 = 11791 hoi4 = 11776 }	# Dayton -> land, land, land
+	link = { vic2 = 182 hoi4 = 4601 }	# Cincinnati -> land
+	link = { vic2 = 183 hoi4 = 3829 hoi4 = 971 hoi4 = 11890 hoi4 = 7528 hoi4 = 9760 hoi4 = 9775 }	# Marietta -> land, land, land, land, land, land
+	# # North Carolina
+	link = { vic2 = 207 hoi4 = 4168 hoi4 = 9876 hoi4 = 6943 hoi4 = 11783 hoi4 = 1077 }	# Greenville -> land, land, land, land, land
+	link = { vic2 = 208 hoi4 = 7045 hoi4 = 12445 }	# Raleigh -> land, land
+	link = { vic2 = 209 hoi4 = 7138 hoi4 = 10081 hoi4 = 7083 hoi4 = 10096 }	# Charlotte -> land, land, land, land
+	link = { vic2 = 210 hoi4 = 1132 hoi4 = 1163 hoi4 = 12054 hoi4 = 1019 hoi4 = 10051 }	# Wilmington -> land, land, land, land, land
+	link = { vic2 = 2556 hoi4 = 7643 hoi4 = 10495 hoi4 = 10468 hoi4 = 9967 }	# Asheville -> land, land, land, land
+	# # South Carolina
+	link = { vic2 = 205 hoi4 = 7202 hoi4 = 1547 hoi4 = 10047 hoi4 = 11927 }	# Charleston -> land, land, land, land
+	link = { vic2 = 206 hoi4 = 7012 hoi4 = 1485 hoi4 = 4653 hoi4 = 7527 hoi4 = 4491 hoi4 = 7134 hoi4 = 3994 hoi4 = 10029 }	# Columbia -> land, land, land, land, land, land, land, land
+	# # Georgia
+	link = { vic2 = 201 hoi4 = 12384 hoi4 = 968 hoi4 = 5090 hoi4 = 9949 hoi4 = 9996 }	# Atlanta -> land, land, land, land, land
+	link = { vic2 = 202 hoi4 = 12325 hoi4 = 12498 hoi4 = 10492 hoi4 = 7612 hoi4 = 12470 hoi4 = 7583 }	# Valdosta -> land, land, land, land, land, land
+	link = { vic2 = 204 hoi4 = 11975 hoi4 = 1480 hoi4 = 1433 }	# Savannah -> land, land, land
+	link = { vic2 = 2555 hoi4 = 7118 hoi4 = 10394 hoi4 = 638 hoi4 = 10437 hoi4 = 10465 }	# Augusta -> land, land, land, land, land
+	# # Tennessee
+	link = { vic2 = 188 hoi4 = 12501 hoi4 = 8083 hoi4 = 10281 hoi4 = 10824 hoi4 = 12670 }	# Nashville -> land, land, land, land, land
+	link = { vic2 = 189 hoi4 = 7797 hoi4 = 10615 hoi4 = 1987 hoi4 = 7615 }	# Memphis -> land, land, land, land
+	link = { vic2 = 190 hoi4 = 913 hoi4 = 10657 hoi4 = 8014 hoi4 = 7791 }	# Knoxville -> land, land, land, land
+	link = { vic2 = 191 hoi4 = 10909 hoi4 = 1758 }	# Chattanooga -> land, land
+	# # Kentucky
+	link = { vic2 = 184 hoi4 = 6696 hoi4 = 10727 hoi4 = 12709 }	# Louisville -> land, land, land
+	link = { vic2 = 185 hoi4 = 1445 hoi4 = 9727 hoi4 = 12637 hoi4 = 7547 hoi4 = 4452 }	# Lexington -> land, land, land, land, land
+	link = { vic2 = 186 hoi4 = 6974 hoi4 = 4402 hoi4 = 4988 hoi4 = 12568 hoi4 = 1582 }	# Bowling Green -> land, land, land, land, land
+	link = { vic2 = 187 hoi4 = 10586 }	# Paducah -> land
+	# # Indiana
+	link = { vic2 = 169 hoi4 = 1595 hoi4 = 10448 hoi4 = 9796 hoi4 = 12437 }	# Indianapolis -> land, land, land, land
+	link = { vic2 = 170 hoi4 = 11635 hoi4 = 11621 hoi4 = 1881 hoi4 = 4527 }	# Evansville -> land, land, land, land
+	link = { vic2 = 171 hoi4 = 9654 hoi4 = 6713 hoi4 = 9653 hoi4 = 4437 hoi4 = 7551 hoi4 = 4531 }	# South Bend -> land, land, land, land, land, land
+	link = { vic2 = 172 hoi4 = 11637 hoi4 = 870 hoi4 = 9810 }	# Fort Wayne -> land, land, land
+	# # Michigan
+	link = { vic2 = 173 hoi4 = 6710 hoi4 = 11656 hoi4 = 691 hoi4 = 9724 }	# Detroit -> land, land, land, land
+	link = { vic2 = 174 hoi4 = 11714 hoi4 = 11685 hoi4 = 9684 hoi4 = 11641 hoi4 = 695 hoi4 = 6782 hoi4 = 6769 }	# Grand Rapids -> land, land, land, land, land, land, land
+	link = { vic2 = 175 hoi4 = 11669 hoi4 = 3766 hoi4 = 9746 }	# Saginaw -> land, land, land
+	link = { vic2 = 176 hoi4 = 7420 hoi4 = 11731 hoi4 = 9747 hoi4 = 10233 hoi4 = 10303 }	# Traverse City -> land, land, land, land, land
+	link = { vic2 = 177 hoi4 = 4854 hoi4 = 10599 hoi4 = 709 hoi4 = 751 hoi4 = 5205 }	# Marquette -> land, land, land, land, land
+	# # Missouri
+	link = { vic2 = 146 hoi4 = 1523 hoi4 = 4569 hoi4 = 1621 hoi4 = 7449 hoi4 = 7607 }	# St Louis -> land, land, land, land, land
+	link = { vic2 = 147 hoi4 = 1534 hoi4 = 10370 hoi4 = 12463 hoi4 = 12346 }	# Joplin -> land, land, land, land
+	link = { vic2 = 148 hoi4 = 4540 hoi4 = 4449 }	# Malden -> land, land
+	link = { vic2 = 149 hoi4 = 12361 hoi4 = 1564 hoi4 = 1441 }	# Jefferson City -> land, land, land
+	link = { vic2 = 150 hoi4 = 10391 hoi4 = 10333 hoi4 = 10516 hoi4 = 10717 }	# Kansas City -> land, land, land, land
+	# # Iowa
+	link = { vic2 = 151 hoi4 = 1678 hoi4 = 1770 hoi4 = 9892 }	# Des Moines -> land, land, land
+	link = { vic2 = 152 hoi4 = 7458 hoi4 = 7539 hoi4 = 1586 hoi4 = 12418 }	# Oskaloosa -> land, land, land, land
+	link = { vic2 = 153 hoi4 = 9910 hoi4 = 1831 hoi4 = 11971 hoi4 = 7306 hoi4 = 10478 hoi4 = 4691 }	# Cedar Rapids -> land, land, land, land, land, land
+	link = { vic2 = 154 hoi4 = 12646 hoi4 = 10666 hoi4 = 11788 }	# Sioux City -> land, land, land
+	# # Illinois
+	link = { vic2 = 163 hoi4 = 9450 }	# Chicago -> land
+	link = { vic2 = 164 hoi4 = 12312 hoi4 = 12368 hoi4 = 6737 hoi4 = 11589 }	# Rockford -> land, land, land, land
+	link = { vic2 = 165 hoi4 = 1655 hoi4 = 10461 hoi4 = 9682 hoi4 = 7611 hoi4 = 720 hoi4 = 4508 hoi4 = 12497 }	# Champaign -> land, land, land, land, land, land, land
+	link = { vic2 = 166 hoi4 = 1527 hoi4 = 4590 hoi4 = 10339 hoi4 = 10393 hoi4 = 12365 }	# Peoria -> land, land, land, land, land
+	link = { vic2 = 167 hoi4 = 10457 hoi4 = 12305 hoi4 = 12697 hoi4 = 7626 }	# Springfield -> land, land, land, land
+	link = { vic2 = 168 hoi4 = 7831 hoi4 = 1604 hoi4 = 954 }	# Carbondale -> land, land, land
+	# # Wisconsin
+	link = { vic2 = 159 hoi4 = 12357 hoi4 = 9657 }	# Milwaukee -> land, land
+	link = { vic2 = 160 hoi4 = 4029 hoi4 = 9678 hoi4 = 1849 hoi4 = 7776 hoi4 = 3699 hoi4 = 10526 }	# Eau Claire -> land, land, land, land, land, land
+	link = { vic2 = 161 hoi4 = 4166 hoi4 = 4834 hoi4 = 4738 hoi4 = 703 }	# Green Bay -> land, land, land, land
+	link = { vic2 = 162 hoi4 = 12456 hoi4 = 1560 hoi4 = 10341 hoi4 = 1760 hoi4 = 926 hoi4 = 7829 }	# Madison -> land, land, land, land, land, land
+	# # Minnesota
+	link = { vic2 = 155 hoi4 = 1866 hoi4 = 4807 hoi4 = 4664 hoi4 = 9880 hoi4 = 6752 }	# Minneapolis -> land, land, land, land, land
+	link = { vic2 = 156 hoi4 = 1867 hoi4 = 12577 hoi4 = 7536 hoi4 = 10719 }	# Granite Falls -> land, land, land, land
+	link = { vic2 = 157 hoi4 = 10618 hoi4 = 12597 hoi4 = 11667 }	# Moorhead -> land, land, land
+	link = { vic2 = 158 hoi4 = 1734 hoi4 = 6767 hoi4 = 7896 hoi4 = 12588 hoi4 = 12550 hoi4 = 6827 hoi4 = 1719 hoi4 = 12693 }	# Duluth -> land, land, land, land, land, land, land, land
+	# # Kansas
+	link = { vic2 = 126 hoi4 = 1352 hoi4 = 7834 hoi4 = 4757 hoi4 = 9802 }	# Topeka -> land, land, land, land
+	link = { vic2 = 127 hoi4 = 4871 hoi4 = 10532 hoi4 = 1753 hoi4 = 12513 }	# Goodland -> land, land, land, land
+	link = { vic2 = 128 hoi4 = 4740 hoi4 = 10340 hoi4 = 12024 hoi4 = 4814 hoi4 = 4586 hoi4 = 4811 hoi4 = 7892 }	# Wichita -> land, land, land, land, land, land, land
+	# # North Dakota
+	link = { vic2 = 117 hoi4 = 1836 hoi4 = 4772 hoi4 = 1752 hoi4 = 10685 }	# Bismarck -> land, land, land, land
+	link = { vic2 = 118 hoi4 = 10709 hoi4 = 12685 hoi4 = 4759 hoi4 = 1870 hoi4 = 3719 }	# Minot -> land, land, land, land, land
+	link = { vic2 = 119 hoi4 = 6722 hoi4 = 12566 hoi4 = 7877 }	# Dickinson -> land, land, land
+	# # South Dakota
+	link = { vic2 = 120 hoi4 = 10595 hoi4 = 10569 hoi4 = 12620 hoi4 = 12667 hoi4 = 4880 hoi4 = 7862 }	# Sioux Falls -> land, land, land, land, land, land
+	link = { vic2 = 121 hoi4 = 3750 hoi4 = 4839 }	# Dupree -> land, land
+	link = { vic2 = 122 hoi4 = 1747 hoi4 = 7745 hoi4 = 1875 hoi4 = 7771 }	# Rapid City -> land, land, land, land
+	# # Nebraska
+	link = { vic2 = 123 hoi4 = 12586 hoi4 = 1683 hoi4 = 7852 hoi4 = 3855 hoi4 = 12516 }	# Omaha -> land, land, land, land, land
+	link = { vic2 = 124 hoi4 = 4749 hoi4 = 3613 hoi4 = 4760 hoi4 = 7840 }	# Alliance -> land, land, land, land
+	link = { vic2 = 125 hoi4 = 4830 hoi4 = 10606 hoi4 = 3708 hoi4 = 10676 }	# North Platte -> land, land, land, land
+	# # Alabama
+	link = { vic2 = 195 hoi4 = 7422 hoi4 = 860 hoi4 = 7640 hoi4 = 492 hoi4 = 4756 hoi4 = 11509 hoi4 = 4594 }	# Montgomery -> land, land, land, land, land, land, land
+	link = { vic2 = 196 hoi4 = 4622 hoi4 = 10192 hoi4 = 5059 hoi4 = 12803 hoi4 = 1587 hoi4 = 12735 }	# Tuscaloosa -> land, land, land, land, land, land
+	link = { vic2 = 197 hoi4 = 7480 hoi4 = 10520 hoi4 = 11942 }	# Mobile -> land, land, land
+	# # Florida
+	link = { vic2 = 198 hoi4 = 10407 hoi4 = 10380 hoi4 = 10352 }	# Tallahassee -> land, land, land
+	link = { vic2 = 199 hoi4 = 12381 hoi4 = 1556 hoi4 = 12353 hoi4 = 1572 hoi4 = 12439 hoi4 = 1584 }	# St Augustine -> land, land, land, land, land, land
+	link = { vic2 = 200 hoi4 = 7388 hoi4 = 1843 hoi4 = 1913 hoi4 = 9834 hoi4 = 10489 hoi4 = 12752 hoi4 = 866 }	# Tampa -> land, land, land, land, land, land, land
+	# # Oklahoma
+	link = { vic2 = 129 hoi4 = 10798 hoi4 = 12624 hoi4 = 7762 hoi4 = 11802 hoi4 = 10702 hoi4 = 4919 hoi4 = 7904 hoi4 = 5103 hoi4 = 11743 hoi4 = 9822 }	# Oklahoma City -> land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 130 hoi4 = 2043 hoi4 = 1806 }	# Tahlequah -> land, land
+	link = { vic2 = 131 hoi4 = 1618 hoi4 = 6803 hoi4 = 7945 hoi4 = 8025 }	# Okmulgee -> land, land, land, land
+	# # Arkansas
+	link = { vic2 = 143 hoi4 = 4444 hoi4 = 1646 hoi4 = 10477 hoi4 = 4625 hoi4 = 10355 }	# Little Rock -> land, land, land, land, land
+	link = { vic2 = 144 hoi4 = 12489 hoi4 = 7485 hoi4 = 1503 hoi4 = 7543 hoi4 = 12458 hoi4 = 12778 }	# Hot Springs -> land, land, land, land, land, land
+	link = { vic2 = 145 hoi4 = 4567 hoi4 = 4597 hoi4 = 7586 }	# Fayetteville -> land, land, land
+	# # Mississippi
+	link = { vic2 = 192 hoi4 = 4565 hoi4 = 4650 hoi4 = 10449 hoi4 = 1615 hoi4 = 12429 hoi4 = 8110 }	# Jackson -> land, land, land, land, land, land
+	link = { vic2 = 193 hoi4 = 10410 hoi4 = 4510 hoi4 = 12328 hoi4 = 11717 hoi4 = 10753 hoi4 = 7464 }	# Vicksburg -> land, land, land, land, land, land
+	link = { vic2 = 194 hoi4 = 7668 hoi4 = 4464 }	# Biloxi -> land, land
+	# # Louisiana
+	link = { vic2 = 139 hoi4 = 7552 hoi4 = 12398 hoi4 = 4535 }	# New Orleans -> land, land, land
+	link = { vic2 = 140 hoi4 = 1453 hoi4 = 7524 }	# Baton Rouge -> land, land
+	link = { vic2 = 141 hoi4 = 12313 hoi4 = 4507 hoi4 = 1643 hoi4 = 1528 }	# Lake Charles -> land, land, land, land
+	link = { vic2 = 142 hoi4 = 12401 hoi4 = 7555 hoi4 = 1559 hoi4 = 7599 hoi4 = 4522 }	# Shreveport -> land, land, land, land, land
+	# # Texas
+	link = { vic2 = 132 hoi4 = 10337 hoi4 = 1500 hoi4 = 7628 hoi4 = 12486 hoi4 = 4577 hoi4 = 805 hoi4 = 10504 hoi4 = 10778 hoi4 = 6968 hoi4 = 5001 hoi4 = 9829 }	# Houston -> land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 133 hoi4 = 12341 hoi4 = 12410 hoi4 = 5022 hoi4 = 6798 hoi4 = 7836 }	# Austin -> land, land, land, land, land
+	link = { vic2 = 134 hoi4 = 3960 hoi4 = 9920 hoi4 = 7981 hoi4 = 10861 hoi4 = 2082 hoi4 = 5085 }	# Dallas -> land, land, land, land, land, land
+	link = { vic2 = 135 hoi4 = 9773 hoi4 = 12893 hoi4 = 3972 hoi4 = 2055 hoi4 = 9908 hoi4 = 12848 hoi4 = 3875 hoi4 = 1915 hoi4 = 12875 hoi4 = 12301 }	# Lubbock -> land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 136 hoi4 = 10740 hoi4 = 10894 hoi4 = 1954 hoi4 = 5038 hoi4 = 8064 hoi4 = 4955 hoi4 = 1998 hoi4 = 12728 }	# El Paso -> land, land, land, land, land, land, land, land
+	link = { vic2 = 137 hoi4 = 12782 hoi4 = 2042 hoi4 = 1927 hoi4 = 4884 hoi4 = 6987 }	# San Antonio -> land, land, land, land, land
+	link = { vic2 = 138 hoi4 = 5061 hoi4 = 2019 hoi4 = 12369 hoi4 = 6785 }	# Laredo -> land, land, land, land
+	# # Colorado
+	link = { vic2 = 106 hoi4 = 1827 hoi4 = 11772 hoi4 = 12570 hoi4 = 12642 hoi4 = 7780 }	# Denver -> land, land, land, land, land
+	link = { vic2 = 107 hoi4 = 6887 hoi4 = 10535 hoi4 = 3869 }	# Grand Junction -> land, land, land
+	link = { vic2 = 108 hoi4 = 9792 hoi4 = 868 hoi4 = 1658 hoi4 = 7684 hoi4 = 7999 }	# Alamosa -> land, land, land, land, land
+	link = { vic2 = 109 hoi4 = 1809 hoi4 = 12627 hoi4 = 1738 hoi4 = 10588 }	# Pueblo -> land, land, land, land
+	# # New Mexico
+	link = { vic2 = 103 hoi4 = 4975 hoi4 = 12684 hoi4 = 2102 hoi4 = 10642 }	# Santa Fe -> land, land, land, land
+	link = { vic2 = 104 hoi4 = 1972 hoi4 = 12552 hoi4 = 10645 hoi4 = 10914 hoi4 = 5044 }	# Albuquerque -> land, land, land, land, land
+	link = { vic2 = 105 hoi4 = 12791 hoi4 = 8070 hoi4 = 3867 hoi4 = 12720 hoi4 = 10867 hoi4 = 3883 }	# Las Cruces -> land, land, land, land, land, land
+	# # Wyoming
+	link = { vic2 = 110 hoi4 = 4723 hoi4 = 10640 hoi4 = 12561 }	# Cheyenne -> land, land, land
+	link = { vic2 = 111 hoi4 = 1815 hoi4 = 12651 hoi4 = 7688 hoi4 = 7888 hoi4 = 12633 }	# Cody -> land, land, land, land, land
+	link = { vic2 = 112 hoi4 = 10711 hoi4 = 4610 hoi4 = 4820 hoi4 = 4794 hoi4 = 7814 }	# Casper -> land, land, land, land, land
+	# # Montana
+	link = { vic2 = 113 hoi4 = 4741 hoi4 = 1736 hoi4 = 7779 }	# Bozeman -> land, land, land
+	link = { vic2 = 114 hoi4 = 6742 hoi4 = 12676 hoi4 = 4838 hoi4 = 1854 }	# Missoula -> land, land, land, land
+	link = { vic2 = 115 hoi4 = 4860 hoi4 = 10624 hoi4 = 10593 hoi4 = 11712 hoi4 = 1857 hoi4 = 4863 hoi4 = 7883 }	# Great Falls -> land, land, land, land, land, land, land
+	link = { vic2 = 116 hoi4 = 12585 hoi4 = 7880 hoi4 = 7760 hoi4 = 4857 hoi4 = 12572 hoi4 = 1851 hoi4 = 10587 hoi4 = 1767 hoi4 = 10706 }	# Billings -> land, land, land, land, land, land, land, land, land
+	# # Idaho
+	link = { vic2 = 91 hoi4 = 10556 hoi4 = 12607 hoi4 = 7845 }	# Boise -> land, land, land
+	link = { vic2 = 92 hoi4 = 12124 hoi4 = 4778 hoi4 = 1832 hoi4 = 3781 hoi4 = 9616 }	# Coeur D'Alene -> land, land, land, land, land
+	link = { vic2 = 93 hoi4 = 12535 hoi4 = 1789 hoi4 = 9695 hoi4 = 10672 hoi4 = 10602 }	# Pocatello -> land, land, land, land, land
+	# # Utah
+	link = { vic2 = 97 hoi4 = 4865 hoi4 = 10651 hoi4 = 4668 hoi4 = 1756 hoi4 = 1663 hoi4 = 10582 }	# Salt Lake City -> land, land, land, land, land, land
+	link = { vic2 = 98 hoi4 = 10662 hoi4 = 12573 hoi4 = 12699 }	# Loa -> land, land, land
+	link = { vic2 = 99 hoi4 = 7764 hoi4 = 7818 hoi4 = 1740 hoi4 = 4742 }	# Moab -> land, land, land, land
+	# # Arizona
+	link = { vic2 = 100 hoi4 = 853 hoi4 = 8115 hoi4 = 1793 hoi4 = 7747 hoi4 = 4796 }	# Phoenix -> land, land, land, land, land
+	link = { vic2 = 101 hoi4 = 12765 hoi4 = 850 hoi4 = 7821 hoi4 = 6897 hoi4 = 10573 hoi4 = 11814 }	# Flagstaff -> land, land, land, land, land, land
+	link = { vic2 = 102 hoi4 = 3834 hoi4 = 10783 hoi4 = 7920 }	# Tucson -> land, land, land
+	# # Nevada
+	link = { vic2 = 94 hoi4 = 4607 hoi4 = 10422 hoi4 = 12134 hoi4 = 1862 hoi4 = 7756 }	# Carson City -> land, land, land, land, land
+	link = { vic2 = 95 hoi4 = 7827 hoi4 = 4521 hoi4 = 12399 hoi4 = 12425 hoi4 = 4816 hoi4 = 4736 }	# Elko -> land, land, land, land, land, land
+	link = { vic2 = 96 hoi4 = 4799 hoi4 = 10591 hoi4 = 7879 }	# Las Vegas -> land, land, land
+	# # California
+	link = { vic2 = 84 hoi4 = 9671 hoi4 = 3678 hoi4 = 11658 hoi4 = 677 hoi4 = 6745 hoi4 = 6681 hoi4 = 6757 hoi4 = 3677 }	# San Francisco -> land, land, land, land, land, land, land, land
+	link = { vic2 = 85 hoi4 = 610 hoi4 = 9730 hoi4 = 6772 hoi4 = 781 hoi4 = 6482 hoi4 = 3644 }	# Eureka -> land, land, land, land, land, land
+	link = { vic2 = 86 hoi4 = 9713 hoi4 = 10159 hoi4 = 4331 hoi4 = 6665 hoi4 = 3588 hoi4 = 9697 hoi4 = 768 hoi4 = 710 hoi4 = 11698 hoi4 = 766 }	# Sacramento -> land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 87 hoi4 = 9637 hoi4 = 3840 hoi4 = 986 hoi4 = 6881 hoi4 = 11876 hoi4 = 3784 hoi4 = 6861 }	# Monterey -> land, land, land, land, land, land, land
+	link = { vic2 = 88 hoi4 = 6876 hoi4 = 11763 hoi4 = 4518 hoi4 = 6694 hoi4 = 6699 hoi4 = 1601 hoi4 = 1432 hoi4 = 7667 hoi4 = 1651 hoi4 = 4657 hoi4 = 12303 hoi4 = 10387 hoi4 = 941 hoi4 = 9911 hoi4 = 4727 }	# Mariposa -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 89 hoi4 = 9814 hoi4 = 11757 hoi4 = 11795 hoi4 = 10483 hoi4 = 9855 hoi4 = 11859 }	# Los Angeles -> land, land, land, land, land, land
+	link = { vic2 = 90 hoi4 = 1562 hoi4 = 12374 hoi4 = 7986 hoi4 = 823 hoi4 = 7517 }	# San Diego -> land, land, land, land, land
+	# # Oregon
+	link = { vic2 = 81 hoi4 = 3513 hoi4 = 12281 hoi4 = 11495 hoi4 = 505 hoi4 = 11733 hoi4 = 3471 hoi4 = 528 hoi4 = 10151 hoi4 = 4274 hoi4 = 7398 hoi4 = 4328 hoi4 = 12211 hoi4 = 4380 hoi4 = 10183 }	# Portland -> land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 82 hoi4 = 12553 hoi4 = 7865 hoi4 = 12183 hoi4 = 1414 hoi4 = 4826 }	# Baker City -> land, land, land, land, land
+	link = { vic2 = 83 hoi4 = 4347 hoi4 = 7721 hoi4 = 10625 hoi4 = 10305 }	# Klamath Falls -> land, land, land, land
+	# # Washington
+	link = { vic2 = 78 hoi4 = 7315 hoi4 = 4296 hoi4 = 10242 hoi4 = 4398 hoi4 = 7386 hoi4 = 10271 hoi4 = 7442 hoi4 = 10157 hoi4 = 12214 hoi4 = 7414 }	# Seattle -> land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 79 hoi4 = 1690 hoi4 = 10693 hoi4 = 10198 hoi4 = 1320 }	# Spokane -> land, land, land, land
+	link = { vic2 = 80 hoi4 = 10687 hoi4 = 7255 hoi4 = 12155 hoi4 = 10690 hoi4 = 12673 hoi4 = 4747 hoi4 = 10155 hoi4 = 10327 }	# Walla Walla -> land, land, land, land, land, land, land, land
+	# # Hawaii
+	link = { vic2 = 658 hoi4 = 4180 hoi4 = 12021 hoi4 = 10048 hoi4 = 7195 hoi4 = 13051 hoi4 = 7112 }	# Hawaii -> land, land, land, land, land, land
+	link = { vic2 = 686 hoi4 = 13053 hoi4 = 13049 hoi4 = 13050 }	# Line Islands -> land, land, land
+	link = { vic2 = 2623 hoi4 = 13052 }	# Midway Island -> land
+	link = { vic2 = 2524 hoi4 = 13047 }	# Wake -> land
+	link = { vic2 = 2526 hoi4 = 13048 }	# Palmyra -> land
 	# 
 	# ## Canada
 	link = { vic2 = 8 hoi4 = 7891 }	# Ross River -> land
@@ -270,7 +323,7 @@
 	link = { vic2 = 46 hoi4 = 6607 hoi4 = 3775 hoi4 = 6797 hoi4 = 9580 hoi4 = 11567 }	# Toronto -> land, land, land, land, land
 	link = { vic2 = 53 hoi4 = 9743 hoi4 = 6610 hoi4 = 779 }	# Barrie -> land, land, land
 	link = { vic2 = 3112 hoi4 = 13157 }	# Lake Ontario -> lake
-	link = { vic2 = 3113 hoi4 = 13154 }	# Lake Erie -> lake
+	link = { vic2 = 3113 hoi4 = 13154 hoi4 = 13156 }	# Lake Erie -> lake, lake
 	link = { vic2 = 3114 hoi4 = 13200 hoi4 = 13199 hoi4 = 13201 }	# Lake Huron -> lake, lake, lake
 	link = { vic2 = 3115 hoi4 = 13155 }	# Lake Michigan -> lake
 	link = { vic2 = 55 hoi4 = 11695 hoi4 = 3763 hoi4 = 749 }	# Hamilton -> land, land, land
@@ -787,10 +840,10 @@
 	link = { vic2 = 1961 hoi4 = 7978 }	# Bamenda -> land
 	link = { vic2 = 1937 hoi4 = 4889 }	# Tukari -> land
 	link = { vic2 = 1950 vic2 = 1944 hoi4 = 8109 }	# Yola, Gombe -> land
-	link = { vic2 = 1943 hoi4 = 10820 }	# Jos -> land
+	link = { vic2 = 1943 vic2 = 1942 hoi4 = 10820 }	# Jos, Bauchi -> land
 	link = { vic2 = 1951 vic2 = 1953 hoi4 = 4997 }	# Kuka, Dikoa -> land
 	link = { vic2 = 1952 hoi4 = 5028 }	# Nguru -> land
-	link = { vic2 = 1945 vic2 = 1947 vic2 = 1942 vic2 = 1949 hoi4 = 4972 }	# Kano, Katsina, Bauchi, Hadejia -> land
+	link = { vic2 = 1945 vic2 = 1947 vic2 = 1949 hoi4 = 4972 }	# Kano, Katsina, Hadejia -> land
 	link = { vic2 = 1819 hoi4 = 1993 }	# Moundou -> land
 	link = { vic2 = 1818 vic2 = 1820 hoi4 = 9152 hoi4 = 2081 }	# MANY-TO-MANY: Massenya, Bongor -> land, land
 	link = { vic2 = 1964 hoi4 = 7963 }	# Maroua -> land
@@ -1068,9 +1121,9 @@
 	link = { vic2 = 1710 hoi4 = 10059 hoi4 = 12034 hoi4 = 1141 }	# Biskra -> land, land, land
 	link = { vic2 = 1713 hoi4 = 4018 hoi4 = 9960 hoi4 = 7149 hoi4 = 7033 hoi4 = 1128 hoi4 = 5053 hoi4 = 1967 hoi4 = 1126 }	# Laghwat -> land, land, land, land, land, land, land, land
 	link = { vic2 = 1715 hoi4 = 13074 hoi4 = 12018 }	# Naama -> land, land
-	link = { vic2 = 1705 hoi4 = 4150 hoi4 = 3991 hoi4 = 7008 }	# Tlemcen -> land, land, land
+	link = { vic2 = 1705 hoi4 = 4150 hoi4 = 3991 hoi4 = 4116 hoi4 = 7008 }	# Tlemcen -> land, land, land, land
 	link = { vic2 = 1707 hoi4 = 10045 hoi4 = 12020 hoi4 = 7040 }	# Mascara -> land, land, land
-	link = { vic2 = 1704 hoi4 = 7132 hoi4 = 11923 hoi4 = 4116 }	# Oran -> land, land, land
+	link = { vic2 = 1704 hoi4 = 7132 hoi4 = 11923 }	# Oran -> land, land
 	link = { vic2 = 1706 hoi4 = 9964 hoi4 = 1013 hoi4 = 12760 }	# Mustaghanim -> land, land, land
 	link = { vic2 = 1703 hoi4 = 4131 hoi4 = 4146 }	# Medea -> land, land
 	link = { vic2 = 1700 hoi4 = 11939 hoi4 = 1145 }	# Algiers -> land, land
@@ -1814,7 +1867,7 @@
 	link = { vic2 = 980 hoi4 = 547 hoi4 = 9476 hoi4 = 6505 hoi4 = 9461 hoi4 = 9446 hoi4 = 6519 hoi4 = 523 hoi4 = 11487 hoi4 = 570 hoi4 = 11513 }	# Luhansk -> land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1015 hoi4 = 6365 hoi4 = 9261 hoi4 = 9301 hoi4 = 11284 hoi4 = 6252 hoi4 = 3345 hoi4 = 352 }	# Peremyshl -> land, land, land, land, land, land, land
 	link = { vic2 = 1010 hoi4 = 274 hoi4 = 3263 hoi4 = 3377 hoi4 = 3308 hoi4 = 382 hoi4 = 246 hoi4 = 11235 hoi4 = 11369 hoi4 = 11300 }	# Kaluga -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1001 hoi4 = 97 hoi4 = 3190 hoi4 = 3116 hoi4 = 3220 hoi4 = 252 hoi4 = 6356 hoi4 = 9345 hoi4 = 231 hoi4 = 11205 hoi4 = 121 hoi4 = 11099 hoi4 = 164 hoi4 = 62 hoi4 = 1 hoi4 = 2 hoi4 = 9122 hoi4 = 11166 hoi4 = 9188 hoi4 = 6143 hoi4 = 6167 hoi4 = 6101 hoi4 = 6056 hoi4 = 3077 hoi4 = 11039 hoi4 = 13128 }	# Yaroslavl -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 1001 hoi4 = 97 hoi4 = 3190 hoi4 = 3116 hoi4 = 3220 hoi4 = 252 hoi4 = 6356 hoi4 = 9345 hoi4 = 231 hoi4 = 11205 hoi4 = 121 hoi4 = 11099 hoi4 = 164 hoi4 = 62 hoi4 = 1 hoi4 = 2 hoi4 = 9122 hoi4 = 11166 hoi4 = 9188 hoi4 = 6143 hoi4 = 6167 hoi4 = 6101 hoi4 = 6056 hoi4 = 3077 hoi4 = 11039 hoi4 = 13128 }	# Yaroslavl -> land, land, land, land, land, land, land, land, land, land, land, land, land, lake, land, land, land, land, land, land, land, land, land, land, lake
 	link = { vic2 = 991 hoi4 = 11095 hoi4 = 11107 hoi4 = 9168 hoi4 = 196 hoi4 = 9133 hoi4 = 9210 hoi4 = 3079 hoi4 = 9113 hoi4 = 6091 hoi4 = 9202 hoi4 = 9110 hoi4 = 11086 hoi4 = 3164 hoi4 = 84 hoi4 = 6190 hoi4 = 11143 hoi4 = 174 hoi4 = 106 hoi4 = 3099 hoi4 = 2996 hoi4 = 9222 hoi4 = 3087 hoi4 = 6112 }	# Uglich -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 989 hoi4 = 129 hoi4 = 3124 hoi4 = 11213 hoi4 = 9199 hoi4 = 9131 hoi4 = 3175 hoi4 = 11177 hoi4 = 75 hoi4 = 3157 hoi4 = 6182 hoi4 = 163 hoi4 = 11168 hoi4 = 3154 hoi4 = 9102 hoi4 = 6097 hoi4 = 11189 hoi4 = 9207 hoi4 = 6189 hoi4 = 81 hoi4 = 160 }	# Vologda -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1018 hoi4 = 534 hoi4 = 9424 hoi4 = 6432 hoi4 = 473 hoi4 = 9489 hoi4 = 11439 hoi4 = 11500 hoi4 = 6577 hoi4 = 9518 hoi4 = 6517 hoi4 = 9449 hoi4 = 3492 hoi4 = 6481 }	# Belgorod -> land, land, land, land, land, land, land, land, land, land, land, land, land
@@ -2817,15 +2870,10 @@
 	# 
 	# Pacific Islands
 	link = { vic2 = 2285 hoi4 = 5023 }	# Galápagos -> land
-	link = { vic2 = 2623 hoi4 = 13052 }	# Midway Island -> land
 	link = { vic2 = 2336 hoi4 = 1280 }	# Easter Island -> land
 	link = { vic2 = 801 vic2 = 2551 vic2 = 2552 vic2 = 2553 hoi4 = 12148 hoi4 = 10188 }	# MANY-TO-MANY: Tahiti, Marquesas, Pitcairn, Tuamotus -> land, land
 	link = { vic2 = 2544 hoi4 = 13080 }	# Pago Pago -> land
 	link = { vic2 = 2547 vic2 = 2543 hoi4 = 7290 }	# Tokelau, Apia -> land
-	link = { vic2 = 686 hoi4 = 13053 hoi4 = 13049 hoi4 = 13050 }	# Line Islands -> land, land, land
-	link = { vic2 = 2526 hoi4 = 13048 }	# Palmyra -> land
-	link = { vic2 = 658 hoi4 = 12021 hoi4 = 10048 hoi4 = 7195 hoi4 = 4180 hoi4 = 7112 hoi4 = 13051 }	# Hawaii -> land, land, land, land, land, land
-	link = { vic2 = 2524 hoi4 = 13047 }	# Wake -> land
 	link = { vic2 = 2525 hoi4 = 13026 }	# Marcus -> land
 	link = { vic2 = 1654 hoi4 = 13025 }	# Bonin -> land
 	link = { vic2 = 2521 hoi4 = 13023 hoi4 = 13024 hoi4 = 3995 }	# Saipan -> land, land, land
@@ -3426,6 +3474,8 @@
 	link = { vic2 = 3106 hoi4 = 13148 hoi4 = 13149 hoi4 = 13151 }	# Lake Balchasj -> lake, lake, lake
 	link = { vic2 = 3107 hoi4 = 13152 }	# Lake Bajkal -> lake
 	link = { vic2 = 3230 hoi4 = 2703 hoi4 = 9125 hoi4 = 5918 hoi4 = 11827 }	# Gulf of Ob -> lake, lake, lake, lake
+	link = { vic2 = 3225 hoi4 = 13153 }	# Great Salt Lake -> lake
+	link = { vic2 = 3239 hoi4 = 13158 }	# Lake Champlain -> lake
 	# 
 	# 
 	# ## Dropped Vic2 provinces
@@ -4206,10 +4256,10 @@
 	link = { vic2 = 1961 hoi4 = 7978 }	# Bamenda -> land
 	link = { vic2 = 1937 hoi4 = 4889 }	# Tukari -> land
 	link = { vic2 = 1950 vic2 = 1944 hoi4 = 8109 }	# Yola, Gombe -> land
-	link = { vic2 = 1943 hoi4 = 10820 }	# Jos -> land
+	link = { vic2 = 1943 vic2 = 1942 hoi4 = 10820 }	# Jos, Bauchi -> land
 	link = { vic2 = 1951 vic2 = 1953 hoi4 = 4997 }	# Kuka, Dikoa -> land
 	link = { vic2 = 1952 hoi4 = 5028 }	# Nguru -> land
-	link = { vic2 = 1945 vic2 = 1947 vic2 = 1942 vic2 = 1949 hoi4 = 4972 }	# Kano, Katsina, Bauchi, Hadejia -> land
+	link = { vic2 = 1945 vic2 = 1947 vic2 = 1949 hoi4 = 4972 }	# Kano, Katsina, Hadejia -> land
 	link = { vic2 = 1819 hoi4 = 1993 }	# Moundou -> land
 	link = { vic2 = 1818 vic2 = 1820 hoi4 = 9152 hoi4 = 2081 }	# MANY-TO-MANY: Massenya, Bongor -> land, land
 	link = { vic2 = 1964 hoi4 = 7963 }	# Maroua -> land
@@ -4487,9 +4537,9 @@
 	link = { vic2 = 1710 hoi4 = 10059 hoi4 = 12034 hoi4 = 1141 }	# Biskra -> land, land, land
 	link = { vic2 = 1713 hoi4 = 4018 hoi4 = 9960 hoi4 = 7149 hoi4 = 7033 hoi4 = 1128 hoi4 = 5053 hoi4 = 1967 hoi4 = 1126 }	# Laghwat -> land, land, land, land, land, land, land, land
 	link = { vic2 = 1715 hoi4 = 13074 hoi4 = 12018 }	# Naama -> land, land
-	link = { vic2 = 1705 hoi4 = 4150 hoi4 = 3991 hoi4 = 7008 }	# Tlemcen -> land, land, land
+	link = { vic2 = 1705 hoi4 = 4150 hoi4 = 3991 hoi4 = 7008 hoi4 = 4116 }	# Tlemcen -> land, land, land, land
 	link = { vic2 = 1707 hoi4 = 10045 hoi4 = 12020 hoi4 = 7040 }	# Mascara -> land, land, land
-	link = { vic2 = 1704 hoi4 = 7132 hoi4 = 11923 hoi4 = 4116 }	# Oran -> land, land, land
+	link = { vic2 = 1704 hoi4 = 7132 hoi4 = 11923 }	# Oran -> land, land
 	link = { vic2 = 1706 hoi4 = 9964 hoi4 = 1013 hoi4 = 12760 }	# Mustaghanim -> land, land, land
 	link = { vic2 = 1703 hoi4 = 4131 hoi4 = 4146 }	# Medea -> land, land
 	link = { vic2 = 1700 hoi4 = 11939 hoi4 = 1145 }	# Algiers -> land, land
@@ -5233,7 +5283,7 @@
 	link = { vic2 = 980 hoi4 = 547 hoi4 = 9476 hoi4 = 6505 hoi4 = 9461 hoi4 = 9446 hoi4 = 6519 hoi4 = 523 hoi4 = 11487 hoi4 = 570 hoi4 = 11513 }	# Luhansk -> land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1015 hoi4 = 6365 hoi4 = 9261 hoi4 = 9301 hoi4 = 11284 hoi4 = 6252 hoi4 = 3345 hoi4 = 352 }	# Peremyshl -> land, land, land, land, land, land, land
 	link = { vic2 = 1010 hoi4 = 274 hoi4 = 3263 hoi4 = 3377 hoi4 = 3308 hoi4 = 382 hoi4 = 246 hoi4 = 11235 hoi4 = 11369 hoi4 = 11300 }	# Kaluga -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1001 hoi4 = 97 hoi4 = 3190 hoi4 = 3116 hoi4 = 3220 hoi4 = 252 hoi4 = 6356 hoi4 = 9345 hoi4 = 231 hoi4 = 11205 hoi4 = 121 hoi4 = 11099 hoi4 = 164 hoi4 = 62 hoi4 = 1 hoi4 = 2 hoi4 = 9122 hoi4 = 11166 hoi4 = 9188 hoi4 = 6143 hoi4 = 6167 hoi4 = 6101 hoi4 = 6056 hoi4 = 3077 hoi4 = 11039 hoi4 = 13128 }	# Yaroslavl -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 1001 hoi4 = 97 hoi4 = 3190 hoi4 = 3116 hoi4 = 3220 hoi4 = 252 hoi4 = 6356 hoi4 = 9345 hoi4 = 231 hoi4 = 11205 hoi4 = 121 hoi4 = 11099 hoi4 = 164 hoi4 = 62 hoi4 = 1 hoi4 = 2 hoi4 = 9122 hoi4 = 11166 hoi4 = 9188 hoi4 = 6143 hoi4 = 6167 hoi4 = 6101 hoi4 = 6056 hoi4 = 3077 hoi4 = 11039 hoi4 = 13128 }	# Yaroslavl -> land, land, land, land, land, land, land, land, land, land, land, land, land, lake, land, land, land, land, land, land, land, land, land, land, lake
 	link = { vic2 = 991 hoi4 = 11095 hoi4 = 11107 hoi4 = 9168 hoi4 = 196 hoi4 = 9133 hoi4 = 9210 hoi4 = 3079 hoi4 = 9113 hoi4 = 6091 hoi4 = 9202 hoi4 = 9110 hoi4 = 11086 hoi4 = 3164 hoi4 = 84 hoi4 = 6190 hoi4 = 11143 hoi4 = 174 hoi4 = 106 hoi4 = 3099 hoi4 = 2996 hoi4 = 9222 hoi4 = 3087 hoi4 = 6112 }	# Uglich -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 989 hoi4 = 129 hoi4 = 3124 hoi4 = 11213 hoi4 = 9199 hoi4 = 9131 hoi4 = 3175 hoi4 = 11177 hoi4 = 75 hoi4 = 3157 hoi4 = 6182 hoi4 = 163 hoi4 = 11168 hoi4 = 3154 hoi4 = 9102 hoi4 = 6097 hoi4 = 11189 hoi4 = 9207 hoi4 = 6189 hoi4 = 81 hoi4 = 160 }	# Vologda -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1018 hoi4 = 534 hoi4 = 9424 hoi4 = 6432 hoi4 = 473 hoi4 = 9489 hoi4 = 11439 hoi4 = 11500 hoi4 = 6577 hoi4 = 9518 hoi4 = 6517 hoi4 = 9449 hoi4 = 3492 hoi4 = 6481 }	# Belgorod -> land, land, land, land, land, land, land, land, land, land, land, land, land

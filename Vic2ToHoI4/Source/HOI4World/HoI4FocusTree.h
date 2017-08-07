@@ -55,7 +55,7 @@ class HoI4FocusTree
 		void addCommunistWarBranch(HoI4Country* Home, vector<HoI4Country*> warTargets, HoI4Events* events);
 		void addCommunistGPWarBranch(HoI4Country* Home, vector<HoI4Country*> newAllies, vector<HoI4Country*> GCTargets, HoI4Events* events);
 
-		void output();
+		void output(const string& filename);
 
 		void addFocus(HoI4Focus* newFocus) { focuses.push_back(newFocus); }
 
