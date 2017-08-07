@@ -1741,8 +1741,8 @@
 	link = { eu4 = 2319 v2 = 1762 v2 = 2559 }	# Asyut -> Asyut, Suhaj
 	link = { eu4 = 360 v2 = 1769 v2 = 1767 }	# Qena -> Qina, Luxor
 	link = { eu4 = 1234 eu4 = 1231 v2 = 1766 v2 = 1761 }	# MANY-TO-MANY: Qasr Ibrim, Aswan -> Aswan, Baris
-	link = { eu4 = 2321 v2 = 1770 }	# Queseer -> Qusayr
-	link = { eu4 = 2324 v2 = 1834 v2 = 1771 v2 = 1768 }	# Halaib -> Halaib, Marsa Alam, Idfu
+	link = { eu4 = 2321 v2 = 1770 v2 = 1771 v2 = 1768 }	# Queseer -> Qusayr, Marsa Alam, Idfu
+	link = { eu4 = 2324 v2 = 1834}	# Halaib -> Halaib
 	# # Africa
 	# Resettable Region west_africa_interior
 	# Nigeria
