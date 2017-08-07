@@ -246,20 +246,29 @@ void HoI4World::importIdeologicalIdeas()
 
 void HoI4World::identifyMajorIdeologies()
 {
-	for (auto greatPower: greatPowers)
+	if (Configuration::getDropMinorIdeologies())
 	{
-		majorIdeologies.insert(greatPower->getGovernmentIdeology());
-	}
-
-	for (auto country: countries)
-	{
-		if (country.second->isHuman())
+		for (auto greatPower: greatPowers)
 		{
-			majorIdeologies.insert(country.second->getGovernmentIdeology());
+			majorIdeologies.insert(greatPower->getGovernmentIdeology());
+		}
+
+		for (auto country: countries)
+		{
+			if (country.second->isHuman())
+			{
+				majorIdeologies.insert(country.second->getGovernmentIdeology());
+			}
+		}
+		majorIdeologies.insert("neutrality");
+	}
+	else
+	{
+		for (auto ideology: ideologies)
+		{
+			majorIdeologies.insert(ideology.first);
 		}
 	}
-
-	majorIdeologies.insert("neutrality");
 }
 
 
@@ -901,9 +910,9 @@ map<string, vector<pair<string, int>>> HoI4World::importResearchBonusMap() const
 {
 	map<string, vector<pair<string, int>>> researchBonusMap;
 
-	Object* fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
+	shared_ptr<Object> fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
 
-	vector<Object*> mapObj = fileObj->getValue("bonus_map");
+	vector<shared_ptr<Object>> mapObj = fileObj->getValue("bonus_map");
 	if (mapObj.size() < 1)
 	{
 		LOG(LogLevel::Error) << "Could not read bonus map";
@@ -1287,6 +1296,7 @@ void HoI4World::output() const
 	outputIdeologies();
 	outputLeaderTraits();
 	outputIdeologicalIdeas();
+	outputScriptedTriggers();
 }
 
 
@@ -1534,22 +1544,12 @@ void HoI4World::outputIdeologies() const
 	ofstream ideologyFile("output/" + Configuration::getOutputName() + "/common/ideologies/00_ideologies.txt");
 	ideologyFile << "ideologies = {\n";
 	ideologyFile << "\t\n";
-	if (Configuration::getDropMinorIdeologies())
+	for (auto ideologyName: majorIdeologies)
 	{
-		for (auto ideologyName: majorIdeologies)
+		auto ideology = ideologies.find(ideologyName);
+		if (ideology != ideologies.end())
 		{
-			auto ideology = ideologies.find(ideologyName);
-			if (ideology != ideologies.end())
-			{
-				ideology->second->output(ideologyFile);
-			}
-		}
-	}
-	else
-	{
-		for (auto ideology: ideologies)
-		{
-			ideology.second->output(ideologyFile);
+			ideology->second->output(ideologyFile);
 		}
 	}
 	ideologyFile << "}";
@@ -1596,6 +1596,26 @@ void HoI4World::outputIdeologicalIdeas() const
 	ideasFile << "\t}\n";
 	ideasFile << "}";
 	ideasFile.close();
+}
+
+
+void HoI4World::outputScriptedTriggers() const
+{
+	ofstream triggersFile("output/" + Configuration::getOutputName() + "/common/scripted_triggers/convertedTriggers.txt");
+	triggersFile << "can_lose_democracy_support = {\n";
+	for (auto ideology: majorIdeologies)
+	{
+		if (ideology == "democratic")
+		{
+			triggersFile << "\tdemocratic > 0.65\n";
+		}
+		else
+		{
+			triggersFile << "\t" << ideology << " < 0.18\n";
+		}
+	}
+	triggersFile << "}\n";
+	triggersFile.close();
 }
 
 
