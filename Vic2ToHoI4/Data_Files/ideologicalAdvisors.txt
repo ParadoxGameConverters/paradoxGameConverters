@@ -79,7 +79,7 @@ absolutist = {
 	}
 }
 	
-communist = {
+communism = {
 	communist = {
 		
 		allowed = {
@@ -135,7 +135,7 @@ democratic = {
 	}
 }
 
-fascist = {	
+fascism = {
 	fascist = {
 		
 		allowed = {

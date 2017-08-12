@@ -1590,8 +1590,10 @@ void HoI4World::outputIdeologicalIdeas() const
 		if (ideologicalIdea != ideologicalIdeas.end())
 		{
 			for (auto idea: ideologicalIdea->second)
-			ideasFile << *idea;
-			ideasFile << "\n";
+			{
+				ideasFile << *idea;
+				ideasFile << "\n";
+			}
 		}
 	}
 	ideasFile << "\t}\n";
