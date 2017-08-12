@@ -30,7 +30,7 @@ using namespace std;
 
 class HoI4World;
 
-
+const int maxGCWars = 1;
 
 class HoI4WarCreator
 {

@@ -45,7 +45,7 @@ class HoI4Events
 		void output() const;
 		void createFactionEvents(const HoI4Country* Leader, HoI4Country* newAlly);
 		void createAnnexEvent(const HoI4Country* Annexer, const HoI4Country* Annexed);
-		void createSudatenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const set<string>& claimedStates);
+		void createSudetenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const set<string>& claimedStates);
 		void createTradeEvent(const HoI4Country* leader, const HoI4Country* GC);
 
 		int getCurrentNationFocusEventNum() const { return nationalFocusEventNumber; }

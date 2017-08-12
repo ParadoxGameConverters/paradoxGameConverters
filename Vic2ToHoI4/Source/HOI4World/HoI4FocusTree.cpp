@@ -3136,10 +3136,11 @@ void HoI4FocusTree::addCommunistGPWarBranch(HoI4Country * Home, vector<HoI4Count
 		newFocus->yPos = 0;
 		newFocus->cost = 10;
 		newFocus->aiWillDo = "			factor = 2\n";
-		newFocus->aiWillDo = "			modifier = {\n";
-		newFocus->aiWillDo = "			factor = 10\n";
-		newFocus->aiWillDo = "			date > 1938.1.1\n";
-		newFocus->aiWillDo = "			}";
+		newFocus->aiWillDo += "			modifier = {\n";
+		newFocus->aiWillDo += "			factor = 10\n";
+		newFocus->aiWillDo += "			date > 1938.1.1\n";
+		newFocus->aiWillDo += "			}";
+		newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
 		focuses.push_back(newFocus);
 	}
 
@@ -3230,6 +3231,300 @@ void HoI4FocusTree::addCommunistGPWarBranch(HoI4Country * Home, vector<HoI4Count
 	nextFreeColumn += 2 * max(newAllies.size(), GCTargets.size());
 }
 
+void HoI4FocusTree::addFascistAnnexationBranch(HoI4Country * Home, vector<HoI4Country*> annexationTargets, HoI4Events * events)
+{
+	if (annexationTargets.size() >= 1)
+	{
+		//Focus to increase fascist support and prereq for anschluss
+		HoI4Focus* newFocus = new HoI4Focus;
+		newFocus->id = "The_third_way" + Home->getTag();
+		newFocus->icon = "GFX_goal_support_fascism";
+		newFocus->text = "The Third Way!";
+		newFocus->xPos = nextFreeColumn + annexationTargets.size() - 1;
+		newFocus->yPos = 0;
+		newFocus->cost = 10;
+		newFocus->aiWillDo = "			factor = 5";
+		//FIXME
+		//Need to get Drift Defense to work
+		//in modified generic focus? (tk)
+		//newFocus->completionReward += "			drift_defence_factor = 0.5\n";
+		newFocus->completionReward += "			add_named_threat = { threat = 2 name = " + newFocus->id + " }\n";
+		newFocus->completionReward += "			add_ideas = fascist_influence";
+		focuses.push_back(newFocus);
+
+		//Focus to increase army support
+		newFocus = new HoI4Focus;
+		newFocus->id = "mil_march" + Home->getTag();
+		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
+		newFocus->text = "Establish Military March Day";
+		newFocus->prerequisites.push_back("focus = The_third_way" + Home->getTag());
+		newFocus->xPos = nextFreeColumn + annexationTargets.size() - 1;
+		newFocus->yPos = 1;
+		newFocus->cost = 10;
+		newFocus->aiWillDo = "			factor = 5";
+		newFocus->completionReward += "			army_experience = 20\n";
+		newFocus->completionReward += "			add_tech_bonus = {\n";
+		newFocus->completionReward += "				bonus = 0.5\n";
+		newFocus->completionReward += "				uses = 2\n";
+		newFocus->completionReward += "				category = land_doctrine\n";
+		newFocus->completionReward += "			}";
+		focuses.push_back(newFocus);
+
+		for (unsigned int i = 0; i < annexationTargets.size(); i++)
+		{
+			if (i < annexationTargets.size())
+			{
+				//int x = i * 3;
+				string annexername = Home->getSourceCountry()->getName("english");
+				string annexedname = annexationTargets[i]->getSourceCountry()->getName("english");
+				//for random date
+				int v1 = rand() % 5 + 1;
+				int v2 = rand() % 5 + 1;
+				//focus for anschluss
+				newFocus = new HoI4Focus;
+				newFocus->id = Home->getTag() + "_anschluss_" + annexationTargets[i]->getTag();
+				newFocus->icon = "GFX_goal_anschluss";
+				newFocus->text = "Union with " + annexedname;
+				newFocus->available = "			" + annexationTargets[i]->getTag() + " = {\n";
+				newFocus->available += "				is_in_faction = no\n";
+				newFocus->available += "			}\n";
+				newFocus->available += "			is_puppet = no\n";
+				newFocus->available += "			date > 1937." + to_string(v1 + 5) + "." + to_string(v2 + 5);
+				newFocus->prerequisites.push_back("focus = mil_march" + Home->getTag());
+				newFocus->xPos = nextFreeColumn + i * 2;
+				newFocus->yPos = 2;
+				newFocus->cost = 10;
+				newFocus->aiWillDo = "			factor = 10\n";
+				newFocus->aiWillDo += "			modifier = {\n";
+				newFocus->aiWillDo += "				factor = 0\n";
+				newFocus->aiWillDo += "				date < 1937.6.6\n";
+				newFocus->aiWillDo += "			}";
+				newFocus->completionReward += "			add_named_threat = { threat = 2 name = " + newFocus->id + " }\n";
+				newFocus->completionReward += "			army_experience = 10\n";
+				newFocus->completionReward += "			if = {\n";
+				newFocus->completionReward += "				limit = {\n";
+				newFocus->completionReward += "					country_exists = " + annexationTargets[i]->getTag() + "\n";
+				newFocus->completionReward += "				}\n";
+				newFocus->completionReward += "				" + annexationTargets[i]->getTag() + " = {\n";
+				newFocus->completionReward += "					country_event = NFEvents." + to_string(events->getCurrentNationFocusEventNum()) + "\n";
+				newFocus->completionReward += "				}\n";
+				newFocus->completionReward += "			}";
+				focuses.push_back(newFocus);
+
+				events->createAnnexEvent(Home, annexationTargets[i]);
+			}
+		}
+		nextFreeColumn += annexationTargets.size() * 2;
+	}
+}
+
+void HoI4FocusTree::addFascistSudetenBranch(HoI4Country * Home, vector<HoI4Country*> sudetenTargets, vector<set<string>> demandedStates, HoI4Events * events)
+{
+	if (sudetenTargets.size() >= 1)
+	{
+		//if it can easily take these targets as they are not in an alliance, you can get annexation event
+
+		//Focus to increase empire size more
+		HoI4Focus* newFocus = new HoI4Focus;
+		newFocus->id = "expand_the_reich" + Home->getTag();
+		newFocus->icon = "GFX_goal_generic_political_pressure";//something about claiming land
+		newFocus->text = "Expand the Reich";
+		if (sudetenTargets.size() == 1 || sudetenTargets.size() >= 2)
+		{
+			//if there are anschlusses, make this event require at least 1 anschluss, else, its the start of a tree
+			for (unsigned int i = 0; i < 2; i++)
+			{
+				if (i < sudetenTargets.size())
+				{
+					newFocus->prerequisites.push_back("focus = " + Home->getTag() + "_anschluss_" + sudetenTargets[i]->getTag());
+				}
+			}
+			newFocus->xPos = nextFreeColumn + sudetenTargets.size();
+			newFocus->yPos = 0;
+		}
+		newFocus->cost = 10;
+		newFocus->aiWillDo = "	factor = 5";
+		newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }";//give some claims or cores
+		addFocus(newFocus);
+
+		for (unsigned int i = 0; i < sudetenTargets.size(); i++)
+		{
+			if (i < sudetenTargets.size())
+			{
+				string annexername = Home->getSourceCountry()->getName("english");
+				string annexedname = sudetenTargets[i]->getSourceCountry()->getName("english");
+				int v1 = rand() % 8 + 1;
+				int v2 = rand() % 8 + 1;
+				//focus for sudaten
+				newFocus = new HoI4Focus;
+				newFocus->id = Home->getTag() + "_sudeten_" + sudetenTargets[i]->getTag();
+				newFocus->icon = "GFX_goal_anschluss";
+				newFocus->text = "Demand Territory from " + annexedname;
+				newFocus->available = "		available = { " + sudetenTargets[i]->getTag() + " = { is_in_faction = no }";
+				newFocus->prerequisites.push_back("focus = expand_the_reich" + Home->getTag());
+				newFocus->available = "			is_puppet = no\n";
+				newFocus->available += "			date > 1938." + to_string(v1) + "." + to_string(v2);
+				newFocus->xPos = nextFreeColumn + 2 * i;
+				newFocus->yPos = 1;
+				newFocus->cost = 10;
+				newFocus->bypass += "  has_war_with = " + sudetenTargets[i]->getTag() + "\n";
+				newFocus->aiWillDo = "	factor = 10\n";
+				newFocus->aiWillDo += "	modifier = {\n";
+				newFocus->aiWillDo += "		factor = 0\n";
+				newFocus->aiWillDo += "		date < 1937.6.6\n";
+				newFocus->aiWillDo += "	}";
+				newFocus->completionReward += "			add_named_threat = { threat = 2 name = " + newFocus->id + " }\n";
+				newFocus->completionReward += "			army_experience = 10\n";
+				newFocus->completionReward += "			if = {\n";
+				newFocus->completionReward += "				limit = {\n";
+				newFocus->completionReward += "					country_exists = " + sudetenTargets[i]->getTag() + "\n";
+				newFocus->completionReward += "				}\n";
+				newFocus->completionReward += "				" + sudetenTargets[i]->getTag() + " = {\n";
+				newFocus->completionReward += "					country_event = NFEvents." + to_string(events->getCurrentNationFocusEventNum()) + "\n";
+				newFocus->completionReward += "				}\n";
+				newFocus->completionReward += "			}";
+				addFocus(newFocus);
+
+				//FINISH HIM
+				newFocus = new HoI4Focus;
+				newFocus->id = Home->getTag() + "_finish_" + sudetenTargets[i]->getTag();
+				newFocus->icon = "GFX_goal_generic_territory_or_war";
+				newFocus->text = "Fate of " + annexedname;
+				newFocus->available = sudetenTargets[i]->getTag() + " = { is_in_faction = no }";
+				newFocus->prerequisites.push_back("focus =  " + Home->getTag() + "_sudeten_" + sudetenTargets[i]->getTag());
+				newFocus->available = "			is_puppet = no";
+				newFocus->xPos = nextFreeColumn + 2 * i;
+				newFocus->yPos = 2;
+				newFocus->cost = 10;
+				newFocus->aiWillDo = "	factor = 10\n";
+				newFocus->aiWillDo += "	modifier = {\n";
+				newFocus->aiWillDo += "		factor = 0\n";
+				newFocus->aiWillDo += "		date < 1937.6.6\n";
+				newFocus->aiWillDo += "	}";
+				newFocus->bypass += "		has_war_with = " + sudetenTargets[i]->getTag() + "\n";
+				newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
+				newFocus->completionReward += "			create_wargoal = {\n";
+				newFocus->completionReward += "				type = annex_everything\n";
+				newFocus->completionReward += "				target = " + sudetenTargets[i]->getTag() + "\n";
+				newFocus->completionReward += "			}";
+				addFocus(newFocus);
+
+				//events
+				events->createSudetenEvent(Home, sudetenTargets[0], demandedStates[i]);
+			}
+		}
+		nextFreeColumn += 2 * sudetenTargets.size();
+	}
+}
+
+void HoI4FocusTree::addFascistGPWarBranch(HoI4Country * Home, vector<HoI4Country*> newAllies, vector<HoI4Country*> GCTargets, HoI4Events * events)
+{
+	if (newAllies.size() > 0)
+	{
+		//Focus to call summit, maybe have events from summit
+		HoI4Focus* newFocus = new HoI4Focus;
+		newFocus->id = "Fas_Summit" + Home->getTag();
+		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
+		newFocus->text = "Call for the Fascist Summit";
+		newFocus->xPos = nextFreeColumn + newAllies.size() - 1;
+		newFocus->yPos = 0;
+		newFocus->cost = 10;
+		newFocus->aiWillDo = "			factor = 2\n";
+		newFocus->aiWillDo += "			modifier = {\n";
+		newFocus->aiWillDo += "			factor = 10\n";
+		newFocus->aiWillDo += "			date > 1938.1.1\n";
+		newFocus->aiWillDo += "			}";
+		newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
+		focuses.push_back(newFocus);
+	}
+
+	unsigned int i = 0;
+	for (auto newAlly : newAllies)
+	{
+		HoI4Focus* newFocus = new HoI4Focus;
+		newFocus->id = "Alliance_" + newAlly->getTag() + Home->getTag();
+		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
+		newFocus->text = "Alliance with " + newAlly->getSourceCountry()->getName("english");
+		newFocus->prerequisites.push_back("focus = Fas_Summit" + Home->getTag());
+		newFocus->xPos = nextFreeColumn + i * 2;
+		newFocus->yPos = 1;
+		newFocus->cost = 10;
+		newFocus->aiWillDo = "			factor = 10";
+		newFocus->bypass = "			OR = {\n";
+		newFocus->bypass += "				" + Home->getTag() + " = { is_in_faction_with = " + newAlly->getTag() + "}\n";
+		newFocus->bypass += "				has_war_with = " + newAlly->getTag() + "\n";
+		newFocus->bypass += "				NOT = { country_exists = " + newAlly->getTag() + " }\n";
+		newFocus->bypass += "			}\n";
+		newFocus->completionReward += "			" + newAlly->getTag() + " = {\n";
+		newFocus->completionReward += "				country_event = { hours = 6 id = NFEvents." + to_string(events->getCurrentNationFocusEventNum()) + " }\n";
+		newFocus->completionReward += "				add_opinion_modifier = { target = " + Home->getTag() + " modifier = positive_50 }\n";
+		newFocus->completionReward += "			}";
+		focuses.push_back(newFocus);
+
+		events->createFactionEvents(Home, newAlly);
+		i++;
+	}
+
+	i = 0;
+	for (auto GC : GCTargets)
+	{
+		string prereq = "";
+		int y2 = 1;
+		//figuring out location of WG
+		if (newAllies.size() > 0)
+		{
+			y2 = 2;
+			for (unsigned int i2 = 0; i2 < newAllies.size(); i2++)
+			{
+				prereq += " focus = Alliance_" + newAllies[i2]->getTag() + Home->getTag();
+			}
+		}
+		int v1 = rand() % 12 + 1;
+		int v2 = rand() % 12 + 1;
+		HoI4Focus* newFocus = new HoI4Focus;
+		newFocus->id = "War" + GC->getTag() + Home->getTag();
+		newFocus->icon = "GFX_goal_generic_major_war";
+		newFocus->text = "War with " + GC->getSourceCountry()->getName("english");//change to faction name later
+		newFocus->prerequisites.push_back(prereq);
+		newFocus->available = "			has_war = no\n";
+		newFocus->available += "			date > 1939." + to_string(v1) + "." + to_string(v2);
+		newFocus->xPos = nextFreeColumn + i * 2;
+		newFocus->yPos = y2;
+		newFocus->cost = 10;
+		newFocus->bypass += "		   has_war_with = " + GC->getTag() + "\n";
+		newFocus->aiWillDo = "			factor = " + to_string(10 - GCTargets.size() * 5) + "\n";
+		newFocus->aiWillDo += "			modifier = {\n";
+		newFocus->aiWillDo += "					factor = 0\n";
+		newFocus->aiWillDo += "					strength_ratio = { tag = " + GC->getTag() + " ratio < 1 }\n";
+		newFocus->aiWillDo += "			}";
+		if (GCTargets.size() > 1)
+		{
+			newFocus->aiWillDo = "\n";
+
+			//make ai have this as a 0 modifier if they are at war
+			newFocus->aiWillDo += "			modifier = {\n";
+			newFocus->aiWillDo += "				factor = 0\n";
+			newFocus->aiWillDo += "				OR = {\n";
+			for (int i2 = 0; i2 < GCTargets.size(); i2++)
+			{
+				if (GC != GCTargets[i2])
+				{
+					newFocus->aiWillDo += "					has_war_with = " + GCTargets[i2]->getTag() + "\n";
+				}
+			}
+			newFocus->aiWillDo += "				}\n";
+			newFocus->aiWillDo += "			}\n";
+		}
+		newFocus->completionReward += "			add_named_threat = { threat = 5 name = " + newFocus->id + " }\n";
+		newFocus->completionReward += "			declare_war_on = {\n";
+		newFocus->completionReward += "				type = puppet_wargoal_focus\n";
+		newFocus->completionReward += "				target = " + GC->getTag() + "\n";
+		newFocus->completionReward += "			}";
+		focuses.push_back(newFocus);
+		i++;
+	}
+	nextFreeColumn += 2 * max(newAllies.size(), GCTargets.size());
+}
 
 void HoI4FocusTree::output(const string& filename)
 {

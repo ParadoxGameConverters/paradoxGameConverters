@@ -269,22 +269,22 @@ void HoI4Events::createAnnexEvent(const HoI4Country* Annexer, const HoI4Country*
 }
 
 
-void HoI4Events::createSudatenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const set<string>& claimedStates)
+void HoI4Events::createSudetenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const set<string>& claimedStates)
 {
 	//flesh out this event more, possibly make it so allies have a chance to help?
 	string annexername = Annexer->getSourceCountry()->getName("english");
 	string annexedname = Annexed->getSourceCountry()->getName("english");
 
-	HoI4Event sudatenEvent;
-	sudatenEvent.type = "country_event";
-	sudatenEvent.id = "NFEvents." + to_string(nationalFocusEventNumber);
-	sudatenEvent.title = annexername + " Demands " + annexedname + "!";
-	sudatenEvent.description = annexername + " has recently been making claims to our bordering states, saying that these states are full of " + Annexer->getSourceCountry()->getAdjective("english") + " people and that the territory should be given to them. Although it ";
-	sudatenEvent.description = "is true that recently our neighboring states have had an influx of " + Annexer->getSourceCountry()->getAdjective("english") + " people in the recent years, we cannot give up our lands because a few " + Annexer->getSourceCountry()->getAdjective("english") + " settled down in our land. ";
-	sudatenEvent.description += "In response " + annexername + " has called for a conference, demanding their territory in exchange for peace. How do we resond? ";
-	sudatenEvent.description += " Our people would be safe with the mighty army of " + annexername + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!";
-	sudatenEvent.picture = "GFX_report_event_hitler_parade";
-	sudatenEvent.major = false;
+	HoI4Event sudetenEvent;
+	sudetenEvent.type = "country_event";
+	sudetenEvent.id = "NFEvents." + to_string(nationalFocusEventNumber);
+	sudetenEvent.title = annexername + " Demands " + annexedname + "!";
+	sudetenEvent.description = annexername + " has recently been making claims to our bordering states, saying that these states are full of " + Annexer->getSourceCountry()->getAdjective("english") + " people and that the territory should be given to them. Although it ";
+	sudetenEvent.description = "is true that recently our neighboring states have had an influx of " + Annexer->getSourceCountry()->getAdjective("english") + " people in the recent years, we cannot give up our lands because a few " + Annexer->getSourceCountry()->getAdjective("english") + " settled down in our land. ";
+	sudetenEvent.description += "In response " + annexername + " has called for a conference, demanding their territory in exchange for peace. How do we resond? ";
+	sudetenEvent.description += " Our people would be safe with the mighty army of " + annexername + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!";
+	sudetenEvent.picture = "GFX_report_event_hitler_parade";
+	sudetenEvent.major = false;
 
 	string acceptOption = "		name = \"We Accept\"\n";
 	acceptOption += "		ai_chance = {\n";
@@ -301,7 +301,7 @@ void HoI4Events::createSudatenEvent(const HoI4Country* Annexer, const HoI4Countr
 	acceptOption += "		" + Annexer->getTag() + " = {\n";
 	acceptOption += "			country_event = { hours = 2 id = NFEvents." + to_string(nationalFocusEventNumber + 1) + " }\n";
 	acceptOption += "		}\n";
-	sudatenEvent.options.push_back(acceptOption);
+	sudetenEvent.options.push_back(acceptOption);
 
 	string refuseOption = "		name = \"We Refuse!\"\n";
 	refuseOption += "		ai_chance = {\n";
@@ -324,9 +324,9 @@ void HoI4Events::createSudatenEvent(const HoI4Country* Annexer, const HoI4Countr
 	refuseOption += "				remove_from_faction = " + Annexed->getTag() + "\n";
 	refuseOption += "			}\n";
 	refuseOption += "		}\n";
-	sudatenEvent.options.push_back(refuseOption);
+	sudetenEvent.options.push_back(refuseOption);
 
-	nationalFocusEvents.push_back(sudatenEvent);
+	nationalFocusEvents.push_back(sudetenEvent);
 
 
 	HoI4Event refusedEvent;
