@@ -57,6 +57,8 @@ class HoI4Events
 		void outputNewsEvents() const;
 		void outputPoliticalEvents() const;
 
+		void addMinisterRevolutionEvents(const set<string>& majorIdeologies);
+		void addDemocraticMinisterRevolutionEvents(const set<string>& majorIdeologies);
 		string getIdeologicalPicture(const string& ideology);
 
 		vector<HoI4Event> newsEvents;

@@ -1,4 +1,18 @@
-fascist = {
+fascism = {
+		fascism_defeated = {
+			removal_cost = -1
+
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_democratic_drift_bonus
+
+			modifier = {
+				unity_factor = 0.1
+			}
+		}
+
 		fascism_banned = {
 
 			picture = generic_fascism_banned
@@ -78,7 +92,21 @@ fascist = {
 		}
 }
 
-communist = {
+communism = {
+		communism_defeated = {
+			removal_cost = -1
+
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_democratic_drift_bonus
+
+			modifier = {
+				unity_factor = 0.1
+			}
+		}
+
 		communism_banned = {
 			picture = anti_soviet_pact
 			allowed = {
@@ -231,6 +259,20 @@ democratic = {
 }
 
 absolutist = {
+		absolutist_defeated = {
+			removal_cost = -1
+
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_democratic_drift_bonus
+
+			modifier = {
+				unity_factor = 0.1
+			}
+		}
+
 		absolutist_influence = {
 			allowed = {
 				always = no
@@ -271,6 +313,20 @@ absolutist = {
 }
 
 radical = {
+		radical_defeated = {
+			removal_cost = -1
+
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_democratic_drift_bonus
+
+			modifier = {
+				unity_factor = 0.1
+			}
+		}
+
 		radical_influence = {
 			allowed = {
 				always = no
