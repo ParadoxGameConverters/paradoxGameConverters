@@ -79,6 +79,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	importIdeologicalMinisters();
 	importIdeologicalIdeas();
 	identifyMajorIdeologies();
+	events->createPoliticalEvents(majorIdeologies);
 	addNeutrality();
 	convertIdeologySupport();
 	convertCapitalVPs();
