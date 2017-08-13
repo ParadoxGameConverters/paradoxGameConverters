@@ -451,20 +451,20 @@ void HoI4Events::addMinisterRevolutionEvents(const set<string>& majorIdeologies)
 
 		HoI4Event onTheRise;
 		onTheRise.type = "country_event";
-		onTheRise.id = "conv.political." + ideology + ".1";
-		onTheRise.title = "conv.political." + ideology + ".1.t";
-		onTheRise.description = "conv.political." + ideology + ".1.d";
+		onTheRise.id = "conv.political." + to_string(politicalEventNumber);
+		onTheRise.title = "conv.political." + to_string(politicalEventNumber) + ".t";
+		onTheRise.description = "conv.political." + to_string(politicalEventNumber) + ".d";
 		onTheRise.picture = getIdeologicalPicture(ideology);
 		onTheRise.major = false;
 		onTheRise.triggeredOnly = true;
 		onTheRise.trigger = "NOT = { has_government = " + ideology + " }";
-		string optionA = "name = conv.political." + ideology + "." + to_string(politicalEventNumber) + ".a\n";
-		optionA += "		custom_effect_tooltip = conv.political." + ideology + "." + to_string(politicalEventNumber) + ".a.tt\n";
+		string optionA = "name = conv.political." + to_string(politicalEventNumber) + ".a\n";
+		optionA += "		custom_effect_tooltip = conv.political." + to_string(politicalEventNumber) + ".a.tt\n";
 		optionA += "		clr_country_flag = " + ideology + "_popular_movement\n";
 		optionA += "		set_country_flag = " + ideology + "_political_movement";
 		onTheRise.options.push_back(optionA);
-		string optionB = "name = conv.political." + ideology + "." + to_string(politicalEventNumber) + ".b\n";
-		optionB += "		custom_effect_tooltip = conv.political." + ideology + "." + to_string(politicalEventNumber) + ".b.tt\n";
+		string optionB = "name = conv.political." + to_string(politicalEventNumber) + ".b\n";
+		optionB += "		custom_effect_tooltip = conv.political." + to_string(politicalEventNumber) + ".b.tt\n";
 		optionB += "		clr_country_flag = " + ideology + "_political_movement\n";
 		optionB += "		clr_country_flag = " + ideology + "_government_support\n";
 		optionB += "		set_country_flag = " + ideology + "_popular_movement";
@@ -632,21 +632,21 @@ void HoI4Events::addDemocraticMinisterRevolutionEvents(const set<string>& majorI
 {
 	HoI4Event onTheRise;
 	onTheRise.type = "country_event";
-	onTheRise.id = "conv.political.democratic.1";
-	onTheRise.title = "conv.political.democratic.1.t";
-	onTheRise.description = "conv.political.democratic.1.d";
+	onTheRise.id = "conv.political." + to_string(politicalEventNumber);
+	onTheRise.title = "conv.political." + to_string(politicalEventNumber) + ".t";
+	onTheRise.description = "conv.political." + to_string(politicalEventNumber) + ".d";
 	onTheRise.picture = getIdeologicalPicture("democratic");
 	onTheRise.major = false;
 	onTheRise.triggeredOnly = true;
 	onTheRise.trigger = "NOT = { has_government = democratic }";
-	string optionA = "name = conv.political.democratic.1.a\n";
-	optionA += "		custom_effect_tooltip = conv.political.democratic.1.a.tt\n";
+	string optionA = "name = conv.political." + to_string(politicalEventNumber) + ".a\n";
+	optionA += "		custom_effect_tooltip = conv.political." + to_string(politicalEventNumber) + ".a.tt\n";
 	optionA += "		clr_country_flag = democracy_popular_movement\n";
 	optionA += "		clr_country_flag = democracy_opposition_formed\n";
 	optionA += "		set_country_flag = democracy_political_movement";
 	onTheRise.options.push_back(optionA);
-	string optionB = "name = conv.political.democratic.1.b\n";
-	optionB += "		custom_effect_tooltip = conv.political.democratic.1.b.tt\n";
+	string optionB = "name = conv.political." + to_string(politicalEventNumber) + ".b\n";
+	optionB += "		custom_effect_tooltip = conv.political." + to_string(politicalEventNumber) + ".b.tt\n";
 	optionB += "		clr_country_flag = democracy_political_movement\n";
 	optionB += "		clr_country_flag = democracy_government_support\n";
 	optionB += "		set_country_flag = democracy_popular_movement";
@@ -787,6 +787,8 @@ void HoI4Events::addFiftyPercentEvents(const set<string>& majorIdeologies)
 		fiftyPercentEvent.title = "conv.political." + to_string(politicalEventNumber) + ".t";
 		fiftyPercentEvent.description = "conv.political." + to_string(politicalEventNumber) + ".d";
 		fiftyPercentEvent.picture = getIdeologicalPicture(ideology);
+		fiftyPercentEvent.major = false;
+		fiftyPercentEvent.triggeredOnly = false;
 		fiftyPercentEvent.trigger = ideology + " > 0.5\n";
 		fiftyPercentEvent.trigger += "		NOT = { has_government = " + ideology + " }\n";
 		fiftyPercentEvent.trigger += "		NOT = { has_idea = " + ideology + "_revolutionaries }\n";
@@ -853,6 +855,8 @@ void HoI4Events::addRevolutionEvents(const set<string>& majorIdeologies)
 		revolutionEvent.title = "conv.political." + to_string(politicalEventNumber) + ".t";
 		revolutionEvent.description = "conv.political." + to_string(politicalEventNumber) + ".d";
 		revolutionEvent.picture = getIdeologicalPicture(ideology);
+		revolutionEvent.major = false;
+		revolutionEvent.triggeredOnly = false;
 		revolutionEvent.trigger = ideology + " > 0.7\n";
 		revolutionEvent.trigger += "		has_idea = " + ideology + "_revolutionaries";
 		revolutionEvent.meanTimeToHappen = "days = 2";
@@ -906,6 +910,8 @@ void HoI4Events::addSuppressedEvents(const set<string>& majorIdeologies)
 		suppressedEvent.title = "conv.political." + to_string(politicalEventNumber) + ".t";
 		suppressedEvent.description = "conv.political." + to_string(politicalEventNumber) + ".d";
 		suppressedEvent.picture = getIdeologicalPicture(ideology);
+		suppressedEvent.major = false;
+		suppressedEvent.triggeredOnly = false;
 		suppressedEvent.trigger = ideology + " < 0.3\n";
 		suppressedEvent.trigger += "		has_idea = " + ideology + "_revolutionaries";
 		suppressedEvent.meanTimeToHappen = "days = 2";
@@ -933,6 +939,8 @@ void HoI4Events::addSuppressedEvents(const set<string>& majorIdeologies)
 	}
 	removeNeutral.description = removeNeutral.description.substr(8, removeNeutral.description.size() - 9);
 	removeNeutral.picture = "GFX_report_event_journalists_speech";
+	removeNeutral.major = false;
+	removeNeutral.triggeredOnly = false;
 	removeNeutral.trigger = "OR = {\n";
 	for (auto ideology: majorIdeologies)
 	{

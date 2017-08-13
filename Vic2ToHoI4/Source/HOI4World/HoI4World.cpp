@@ -76,9 +76,9 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	determineGreatPowers();
 	importIdeologies();
 	importLeaderTraits();
-	importIdeologicalMinisters();
 	importIdeologicalIdeas();
 	identifyMajorIdeologies();
+	importIdeologicalMinisters();
 	events->createPoliticalEvents(majorIdeologies);
 	addNeutrality();
 	convertIdeologySupport();
@@ -229,6 +229,21 @@ void HoI4World::importIdeologicalMinisters()
 		string ideaName = ideologyObject->getKey();
 		HoI4Advisor* newAdvisor = new HoI4Advisor(ideologyObject->getLeaves()[0]);
 		ideologicalAdvisors.insert(make_pair(ideaName, newAdvisor));
+	}
+
+	int ministerEventNum = 1;
+	for (auto ideology: majorIdeologies)
+	{
+		if (ideology == "neutrality")
+		{
+			continue;
+		}
+		auto advisor = ideologicalAdvisors.find(ideology);
+		if (advisor != ideologicalAdvisors.end())
+		{
+			advisor->second->addEventNum(ministerEventNum);
+		}
+		ministerEventNum += 6;
 	}
 }
 
