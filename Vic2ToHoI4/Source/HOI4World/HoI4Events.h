@@ -48,6 +48,7 @@ class HoI4Events
 		void createSudatenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const set<string>& claimedStates);
 		void createTradeEvent(const HoI4Country* leader, const HoI4Country* GC);
 		void createPoliticalEvents(const set<string>& majorIdeologies);
+		void createWarJustificationEvents(const set<string>& majorIdeologies);
 
 		int getCurrentNationFocusEventNum() const { return nationalFocusEventNumber; }
 
@@ -56,6 +57,7 @@ class HoI4Events
 		void outputNationalFocusEvents() const;
 		void outputNewsEvents() const;
 		void outputPoliticalEvents() const;
+		void outputWarJustificationEvents() const;
 
 		void addMinisterRevolutionEvents(const set<string>& majorIdeologies);
 		void addDemocraticMinisterRevolutionEvents(const set<string>& majorIdeologies);
@@ -70,6 +72,7 @@ class HoI4Events
 		int nationalFocusEventNumber;
 		vector<HoI4Event> politicalEvents;
 		int politicalEventNumber;
+		vector<HoI4Event> warJustificationEvents;
 };
 
 

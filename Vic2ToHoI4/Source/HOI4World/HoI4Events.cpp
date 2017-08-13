@@ -49,6 +49,7 @@ void HoI4Events::output() const
 	outputNationalFocusEvents();
 	outputNewsEvents();
 	outputPoliticalEvents();
+	outputWarJustificationEvents();
 }
 
 
@@ -112,6 +113,25 @@ void HoI4Events::outputPoliticalEvents() const
 	}
 
 	outPoliticalEvents.close();
+}
+
+
+void HoI4Events::outputWarJustificationEvents() const
+{
+	ofstream outWarJustificationEvents("output/" + Configuration::getOutputName() + "/events/WarJustification.txt", ios_base::app);
+	if (!outWarJustificationEvents.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not open WarJustification.txt";
+		exit(-1);
+	}
+
+	for (auto theEvent: warJustificationEvents)
+	{
+		outWarJustificationEvents << "\n";
+		outWarJustificationEvents << theEvent;
+	}
+
+	outWarJustificationEvents.close();
 }
 
 
@@ -981,4 +1001,37 @@ string HoI4Events::getIdeologicalPicture(const string& ideology)
 	{
 		return "GFX_report_event_gathering_protests";
 	}
+}
+
+
+void HoI4Events::createWarJustificationEvents(const set<string>& majorIdeologies)
+{
+	HoI4Event wargoalExpired;
+	wargoalExpired.type = "country_event";
+	wargoalExpired.id = "war_justification.301";
+	wargoalExpired.title = "war_justification.301.t";
+	wargoalExpired.description = "war_justification.301.d";
+	wargoalExpired.picture = "GFX_report_event_iww_demonstration";
+	wargoalExpired.major = false;
+	wargoalExpired.triggeredOnly = true;
+	wargoalExpired.trigger = "has_war = no";
+
+	char letter = 'a';
+	for (auto ideology: majorIdeologies)
+	{
+		string option = "name = war_justification.301." + string(1, letter) + "\n";
+		option += "		trigger = { has_government = " + ideology + " }\n";
+		option += "		add_political_power = -30\n";
+		option += "		add_national_unity = -0.03\n";
+		if (ideology != "neutrality")
+		{
+			option += "		add_popularity = {\n";
+			option += "			ideology = " + ideology + "\n";
+			option += "			popularity = -0.05\n";
+			option += "		}";
+		}
+		wargoalExpired.options.push_back(option);
+		letter++;
+	}
+	warJustificationEvents.push_back(wargoalExpired);
 }
