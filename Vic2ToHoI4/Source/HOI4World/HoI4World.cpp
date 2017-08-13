@@ -1314,6 +1314,7 @@ void HoI4World::output() const
 	outputLeaderTraits();
 	outputIdeologicalIdeas();
 	outputScriptedTriggers();
+	outputOnActions();
 }
 
 
@@ -1635,6 +1636,60 @@ void HoI4World::outputScriptedTriggers() const
 	}
 	triggersFile << "}\n";
 	triggersFile.close();
+}
+
+
+void HoI4World::outputOnActions() const
+{
+	ofstream onActionsFile("output/" + Configuration::getOutputName() + "/common/on_actions/01_on_actions.txt");
+	onActionsFile << "on_actions = {\n";
+	onActionsFile << "	on_government_change = {\n";
+	onActionsFile << "		effect = {\n";
+	for (auto ideology: majorIdeologies)
+	{
+		if ((ideology == "democratic") || (ideology == "neutrality"))
+		{
+			continue;
+		}
+
+		onActionsFile << "			if = {\n";
+		onActionsFile << "				limit = { has_government = " + ideology + " }\n";
+		onActionsFile << "				if = {\n";
+		onActionsFile << "					limit = { has_idea = " + ideology + "_partisans_recruiting }\n";
+		onActionsFile << "					remove_ideas = " + ideology + "_partisans_recruiting\n";
+		onActionsFile << "				}\n";
+		onActionsFile << "				if = {\n";
+		onActionsFile << "					limit = { has_idea = " + ideology + "_revolutionaries }\n";
+		onActionsFile << "					remove_ideas = " + ideology + "_revolutionaries\n";
+		onActionsFile << "				}\n";
+		onActionsFile << "				if = {\n";
+		onActionsFile << "					limit = { has_idea = " + ideology + "_defeated }\n";
+		onActionsFile << "					remove_ideas = " + ideology + "_defeated\n";
+		onActionsFile << "				}\n";
+		onActionsFile << "			}\n";
+	}
+	if (majorIdeologies.count("democratic") > 0)
+	{
+		onActionsFile << "			if = {\n";
+		onActionsFile << "				limit = { has_government = democratic }\n";
+		onActionsFile << "				if = {\n";
+		onActionsFile << "					limit = { has_idea = democratic_opposition_voicing_protests }\n";
+		onActionsFile << "					remove_ideas = democratic_opposition_voicing_protests\n";
+		onActionsFile << "				}\n";
+		onActionsFile << "				if = {\n";
+		onActionsFile << "					limit = { has_idea = democratic_revolutionaries }\n";
+		onActionsFile << "					remove_ideas = democratic_revolutionaries\n";
+		onActionsFile << "				}\n";
+		onActionsFile << "				if = {\n";
+		onActionsFile << "					limit = { has_idea = reign_of_terror }\n";
+		onActionsFile << "					remove_ideas = reign_of_terror\n";
+		onActionsFile << "				}\n";
+		onActionsFile << "			}\n";
+	}
+	onActionsFile << "		}\n";
+	onActionsFile << "	}\n";
+	onActionsFile << "}\n";
+	onActionsFile.close();
 }
 
 

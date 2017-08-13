@@ -158,6 +158,7 @@ class HoI4World
 		void outputLeaderTraits() const;
 		void outputIdeologicalIdeas() const;
 		void outputScriptedTriggers() const;
+		void outputOnActions() const;
 
 		/*vector<int> getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		vector<int> getPortProvinces(const vector<int>& locationCandidates);
