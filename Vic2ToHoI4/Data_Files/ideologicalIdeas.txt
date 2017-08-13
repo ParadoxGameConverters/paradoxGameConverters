@@ -102,7 +102,7 @@ fascism = {
 
 			modifier = {
 				conscription = -0.002
-				communism_drift = 0.05
+				fascism_drift = 0.05
 			}
 
 			ai_will_do = {
@@ -356,7 +356,7 @@ absolutist = {
 
 			modifier = {
 				conscription = -0.002
-				communism_drift = 0.05
+				absolutist_drift = 0.05
 			}
 
 			ai_will_do = {
@@ -442,7 +442,7 @@ radical = {
 
 			modifier = {
 				conscription = -0.002
-				communism_drift = 0.05
+				radical_drift = 0.05
 			}
 
 			ai_will_do = {
@@ -466,7 +466,7 @@ neutrality = {
 			picture = generic_pp_unity_bonus
 
 			modifier = {
-				democratic_drift = -0.02
+				neutrality_drift = -0.02
 			}
 		}	
 }
