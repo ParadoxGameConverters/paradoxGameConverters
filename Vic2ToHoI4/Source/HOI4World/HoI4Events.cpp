@@ -123,8 +123,8 @@ void HoI4Events::createFactionEvents(const HoI4Country* Leader, HoI4Country* new
 	HoI4Event nfEvent;
 	nfEvent.type = "country_event";
 	nfEvent.id = "NFEvents." + to_string(nationalFocusEventNumber++);
-	nfEvent.title = "Alliance?";
-	nfEvent.description = "Alliance with " + leaderName + "?";
+	nfEvent.title = "\"Alliance?\"";
+	nfEvent.description = "\"Alliance with " + leaderName + "?\"";
 	nfEvent.picture = "news_event_generic_sign_treaty1";
 	nfEvent.major = false;
 	nfEvent.triggeredOnly = true;
@@ -158,8 +158,8 @@ void HoI4Events::createFactionEvents(const HoI4Country* Leader, HoI4Country* new
 	HoI4Event newsEventYes;
 	newsEventYes.type = "news_event";
 	newsEventYes.id = "news." + to_string(newsEventNumber);
-	newsEventYes.title = newAllyname + " Now an Ally with " + leaderName + "!";
-	newsEventYes.description = "They are now allies";
+	newsEventYes.title = "\"" + newAllyname + " Now an Ally with " + leaderName + "!\"";
+	newsEventYes.description = "\"They are now allies\"";
 	newsEventYes.picture = "news_event_generic_sign_treaty1";
 	newsEventYes.major = true;
 	nfEvent.triggeredOnly = true;
@@ -170,8 +170,8 @@ void HoI4Events::createFactionEvents(const HoI4Country* Leader, HoI4Country* new
 	HoI4Event newsEventNo;
 	newsEventNo.type = "news_event";
 	newsEventNo.id = "news." + to_string(newsEventNumber + 1);
-	newsEventNo.title = newAllyname + " Refused the Alliance offer of " + leaderName + "!";
-	newsEventNo.description = "They are not allies";
+	newsEventNo.title = "\"" + newAllyname + " Refused the Alliance offer of " + leaderName + "!\"";
+	newsEventNo.description = "\"They are not allies\"";
 	newsEventNo.picture = "news_event_generic_sign_treaty1";
 	newsEventNo.major = true;
 	nfEvent.triggeredOnly = true;
@@ -191,9 +191,9 @@ void HoI4Events::createAnnexEvent(const HoI4Country* Annexer, const HoI4Country*
 	HoI4Event annexEvent;
 	annexEvent.type = "country_event";
 	annexEvent.id = "NFEvents." + to_string(nationalFocusEventNumber);
-	annexEvent.title = annexername + " Demands " + annexedname + "!";
-	annexEvent.description = "Today " + annexername + " sent an envoy to us with a proposition of an union. We are alone and in this world, and a union with " + annexername + " might prove to be fruiteful.";
-	annexEvent.description += " Our people would be safe with the mighty army of " + annexername + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!";
+	annexEvent.title = "\"" + annexername + " Demands " + annexedname + "!\"";
+	annexEvent.description = "\"Today " + annexername + " sent an envoy to us with a proposition of an union. We are alone and in this world, and a union with " + annexername + " might prove to be fruiteful.";
+	annexEvent.description += " Our people would be safe with the mighty army of " + annexername + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!\"";
 	annexEvent.picture = "GFX_report_event_hitler_parade";
 	annexEvent.major = false;
 	annexEvent.triggeredOnly = true;
@@ -245,8 +245,8 @@ void HoI4Events::createAnnexEvent(const HoI4Country* Annexer, const HoI4Country*
 	HoI4Event refusedEvent;
 	refusedEvent.type = "country_event";
 	refusedEvent.id = "NFEvents." + to_string(nationalFocusEventNumber + 2);
-	refusedEvent.title = annexedname + " Refuses!";
-	refusedEvent.description = annexedname + " Refused our proposed union! This is an insult to us that cannot go unanswered!";
+	refusedEvent.title = "\"" + annexedname + " Refuses!\"";
+	refusedEvent.description = "\"" + annexedname + " Refused our proposed union! This is an insult to us that cannot go unanswered!\"";
 	refusedEvent.picture = "GFX_report_event_german_troops";
 	refusedEvent.major = false;
 	refusedEvent.triggeredOnly = true;
@@ -264,8 +264,8 @@ void HoI4Events::createAnnexEvent(const HoI4Country* Annexer, const HoI4Country*
 	HoI4Event acceptedEvent;
 	acceptedEvent.type = "country_event";
 	acceptedEvent.id = "NFEvents." + to_string(nationalFocusEventNumber + 1);
-	acceptedEvent.title = annexedname + " accepts!";
-	acceptedEvent.description = annexedname + " accepted our proposed union, their added strength will push us to greatness!";
+	acceptedEvent.title = "\"" + annexedname + " accepts!\"";
+	acceptedEvent.description = "\"" + annexedname + " accepted our proposed union, their added strength will push us to greatness!\"";
 	acceptedEvent.picture = "GFX_report_event_german_speech";
 	acceptedEvent.major = false;
 	acceptedEvent.triggeredOnly = true;
@@ -304,11 +304,11 @@ void HoI4Events::createSudatenEvent(const HoI4Country* Annexer, const HoI4Countr
 	HoI4Event sudatenEvent;
 	sudatenEvent.type = "country_event";
 	sudatenEvent.id = "NFEvents." + to_string(nationalFocusEventNumber);
-	sudatenEvent.title = annexername + " Demands " + annexedname + "!";
-	sudatenEvent.description = annexername + " has recently been making claims to our bordering states, saying that these states are full of " + Annexer->getSourceCountry()->getAdjective("english") + " people and that the territory should be given to them. Although it ";
+	sudatenEvent.title = "\"" + annexername + " Demands " + annexedname + "!\"";
+	sudatenEvent.description = "\"" + annexername + " has recently been making claims to our bordering states, saying that these states are full of " + Annexer->getSourceCountry()->getAdjective("english") + " people and that the territory should be given to them. Although it ";
 	sudatenEvent.description = "is true that recently our neighboring states have had an influx of " + Annexer->getSourceCountry()->getAdjective("english") + " people in the recent years, we cannot give up our lands because a few " + Annexer->getSourceCountry()->getAdjective("english") + " settled down in our land. ";
 	sudatenEvent.description += "In response " + annexername + " has called for a conference, demanding their territory in exchange for peace. How do we resond? ";
-	sudatenEvent.description += " Our people would be safe with the mighty army of " + annexername + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!";
+	sudatenEvent.description += " Our people would be safe with the mighty army of " + annexername + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!\"";
 	sudatenEvent.picture = "GFX_report_event_hitler_parade";
 	sudatenEvent.major = false;
 	sudatenEvent.triggeredOnly = true;
@@ -359,8 +359,8 @@ void HoI4Events::createSudatenEvent(const HoI4Country* Annexer, const HoI4Countr
 	HoI4Event refusedEvent;
 	refusedEvent.type = "country_event";
 	refusedEvent.id = "NFEvents." + to_string(nationalFocusEventNumber + 2);
-	refusedEvent.title = annexedname + " Refuses!";
-	refusedEvent.description = annexedname + " Refused our proposed proposition! This is an insult to us that cannot go unanswered!";
+	refusedEvent.title = "\"" + annexedname + " Refuses!\"";
+	refusedEvent.description = "\"" + annexedname + " Refused our proposed proposition! This is an insult to us that cannot go unanswered!\"";
 	refusedEvent.picture = "GFX_report_event_german_troops";
 	refusedEvent.major = false;
 	refusedEvent.triggeredOnly = true;
@@ -378,8 +378,8 @@ void HoI4Events::createSudatenEvent(const HoI4Country* Annexer, const HoI4Countr
 	HoI4Event acceptedEvent;
 	acceptedEvent.type = "country_event";
 	acceptedEvent.id = "NFEvents." + to_string(nationalFocusEventNumber + 1);
-	acceptedEvent.title = annexedname + " accepts!";
-	acceptedEvent.description = annexedname + " accepted our proposed demands, the added lands will push us to greatness!";
+	acceptedEvent.title = "\"" + annexedname + " accepts!\"";
+	acceptedEvent.description = "\"" + annexedname + " accepted our proposed demands, the added lands will push us to greatness!\"";
 	acceptedEvent.picture = "GFX_report_event_german_speech";
 	acceptedEvent.major = false;
 	acceptedEvent.triggeredOnly = true;
@@ -405,8 +405,8 @@ void HoI4Events::createTradeEvent(const HoI4Country* leader, const HoI4Country* 
 	HoI4Event tradeIncidentEvent;
 	tradeIncidentEvent.type = "country_event";
 	tradeIncidentEvent.id = "NFEvents." + to_string(nationalFocusEventNumber++);
-	tradeIncidentEvent.title = "Trade Incident";
-	tradeIncidentEvent.description = "One of our convoys was sunk by " + GC->getSourceCountry()->getName("english");
+	tradeIncidentEvent.title = "\"Trade Incident\"";
+	tradeIncidentEvent.description = "\"One of our convoys was sunk by " + GC->getSourceCountry()->getName("english") + "\"";
 	tradeIncidentEvent.picture = "GFX_report_event_chinese_soldiers_fighting";
 	tradeIncidentEvent.major = false;
 	tradeIncidentEvent.triggeredOnly = true;
@@ -434,143 +434,9 @@ void HoI4Events::createPoliticalEvents(const set<string>& majorIdeologies)
 {
 	politicalEventNumber = 1;
 	addMinisterRevolutionEvents(majorIdeologies);
-
-	// 50% support
-	for (auto ideology: majorIdeologies)
-	{
-		if (ideology == "neutrality")
-		{
-			continue;
-		}
-
-		HoI4Event fiftyPercentEvent;
-		fiftyPercentEvent.id = "conv.political." + to_string(politicalEventNumber);
-		fiftyPercentEvent.title = "conv.political." + to_string(politicalEventNumber) + ".t";
-		fiftyPercentEvent.description = "conv.political." + to_string(politicalEventNumber) + ".d";
-		fiftyPercentEvent.picture = "GFX_report_event_journalists_speech";
-		fiftyPercentEvent.trigger = ideology + " > 0.5\n";
-		fiftyPercentEvent.trigger += "		NOT = { has_government = " + ideology + " }\n";
-		fiftyPercentEvent.trigger += "		NOT = { has_idea = " + ideology + "_revolutionaries }\n";
-		fiftyPercentEvent.trigger += "		NOT = { has_idea = reign_of_terror }\n";
-		fiftyPercentEvent.trigger += "		is_puppet = no\n";
-		fiftyPercentEvent.meanTimeToHappen = "days = 30";
-		string optionA = "name = conv.political." + to_string(politicalEventNumber) + ".a\n";
-		optionA += "		add_political_power = -100\n";
-		optionA += "		add_popularity = {\n";
-		optionA += "			ideology = " + ideology + "\n";
-		optionA += "			popularity = -0.10\n";
-		optionA += "		}\n";
-		optionA += "		add_timed_idea = {\n";
-		optionA += "			idea = " + ideology + "_revolutionaries\n";
-		optionA += "			days = 365\n";
-		optionA += "		}";
-		fiftyPercentEvent.options.push_back(optionA);
-		string optionB = "name = political." + to_string(politicalEventNumber) + ".b\n";
-		optionB += "		add_timed_idea = {\n";
-		optionB += "			idea = " + ideology + "_revolutionaries\n";
-		optionB += "			days = 365\n";
-		optionB += "		}";
-		fiftyPercentEvent.options.push_back(optionB);
-		string optionC = "name = political." + to_string(politicalEventNumber) + ".c\n";
-		for (auto ideology2: majorIdeologies)
-		{
-			if ((ideology2 == "neutrality") || (ideology2 == ideology))
-			{
-				continue;
-			}
-			optionC += "		if = {\n";
-			optionC += "			limit = { has_government = " + ideology2 + " }\n";
-			optionC += "			add_timed_idea = { idea = " + ideology2 + "_defeated days = 730 }\n";
-			optionC += "		}\n";
-		}
-		optionC += "		set_politics = {\n";
-		optionC += "			ruling_party = " + ideology + "\n";
-		optionC += "			elections_allowed = " + (ideology == "democratic") ? "yes\n" : "no\n";
-		optionC += "		}\n";
-		optionC += "		add_national_unity = -0.05\n";
-		fiftyPercentEvent.options.push_back(optionC);
-		politicalEvents.push_back(fiftyPercentEvent);
-		politicalEventNumber++;
-	}
-
-	// revolution
-	for (auto ideology: majorIdeologies)
-	{
-		if (ideology == "neutrality")
-		{
-			continue;
-		}
-
-		HoI4Event revolutionEvent;
-		revolutionEvent.id = "conv.political." + to_string(politicalEventNumber);
-		revolutionEvent.title = "conv.political." + to_string(politicalEventNumber) + ".t";
-		revolutionEvent.description = "conv.political." + to_string(politicalEventNumber) + ".d";
-		revolutionEvent.picture = "GFX_report_event_gathering_protest";
-		revolutionEvent.trigger = ideology + " > 0.7\n";
-		revolutionEvent.trigger += "		has_idea = " + ideology + "_revolutionaries";
-		revolutionEvent.meanTimeToHappen = "days = 2";
-		revolutionEvent.immediate = "hidden_effect = { remove_ideas = " + ideology + "_revolutionaries }";
-		string optionA = "name = conv.political." + to_string(politicalEventNumber) + ".a\n";
-		optionA += "		start_civil_war = {\n";
-		optionA += "			ideology = " + ideology + "\n";
-		optionA += "			size = 0.5\n";
-		optionA += "		}";
-		revolutionEvent.options.push_back(optionA);
-		string optionB = "name = conv.political." + to_string(politicalEventNumber) + ".b\n";
-		optionB += "		if = {\n";
-		optionB += "			limit = {\n";
-		optionB += "				has_government = neutrality\n";
-		optionB += "			}\n";
-		optionB += "			start_civil_war = {\n";
-		optionB += "				ruling_party = " + ideology + "\n";
-		optionB += "				ideology = neutrality\n";
-		optionB += "				size = 0.5\n";
-		optionB += "			}\n";
-		optionB += "		}\n";
-		for (auto ideology2: majorIdeologies)
-		{
-			if ((ideology2 == "neutrality") || (ideology2 == ideology))
-			{
-				continue;
-			}
-			optionB += "		if = {\n";
-			optionB += "			limit = {\n";
-			optionB += "				has_government = " + ideology2 + "\n";
-			optionB += "			}\n";
-			optionB += "			add_timed_idea = { idea = " + ideology2 + "_defeated days = 730 }\n";
-			optionB += "			start_civil_war = {\n";
-			optionB += "				ruling_party = " + ideology + "\n";
-			optionB += "				ideology = " + ideology2 + "\n";
-			optionB += "				size = 0.5\n";
-			optionB += "			}\n";
-			optionB += "		}\n";
-		}
-		revolutionEvent.options.push_back(optionB);
-		politicalEvents.push_back(revolutionEvent);
-		politicalEventNumber++;
-	}
-
-	// suppressed
-	for (auto ideology: majorIdeologies)
-	{
-		if (ideology == "neutrality")
-		{
-			continue;
-		}
-		HoI4Event suppressedEvent;
-		suppressedEvent.id = "conv.political." + to_string(politicalEventNumber);
-		suppressedEvent.title = "conv.political." + to_string(politicalEventNumber) + ".t";
-		suppressedEvent.description = "conv.political." + to_string(politicalEventNumber) + ".d";
-		suppressedEvent.picture = "GFX_report_event_europe_funeral";
-		suppressedEvent.trigger = ideology + " < 0.3\n";
-		suppressedEvent.trigger += "		has_idea = " + ideology + "_revolutionaries";
-		suppressedEvent.meanTimeToHappen = "days = 2";
-		string option = "name = conv.political." + to_string(politicalEventNumber) + ".a\n";
-		option += "remove_ideas = " + ideology + "_revolutionaries\n";
-		suppressedEvent.options.push_back(option);
-		politicalEvents.push_back(suppressedEvent);
-		politicalEventNumber++;
-	}
+	addFiftyPercentEvents(majorIdeologies);
+	addRevolutionEvents(majorIdeologies);
+	addSuppressedEvents(majorIdeologies);
 }
 
 
@@ -903,6 +769,181 @@ void HoI4Events::addDemocraticMinisterRevolutionEvents(const set<string>& majorI
 	election.options.push_back(optionB);
 	politicalEvents.push_back(election);
 	politicalEventNumber++;
+}
+
+
+void HoI4Events::addFiftyPercentEvents(const set<string>& majorIdeologies)
+{
+	for (auto ideology: majorIdeologies)
+	{
+		if (ideology == "neutrality")
+		{
+			continue;
+		}
+
+		HoI4Event fiftyPercentEvent;
+		fiftyPercentEvent.type = "country_event";
+		fiftyPercentEvent.id = "conv.political." + to_string(politicalEventNumber);
+		fiftyPercentEvent.title = "conv.political." + to_string(politicalEventNumber) + ".t";
+		fiftyPercentEvent.description = "conv.political." + to_string(politicalEventNumber) + ".d";
+		fiftyPercentEvent.picture = getIdeologicalPicture(ideology);
+		fiftyPercentEvent.trigger = ideology + " > 0.5\n";
+		fiftyPercentEvent.trigger += "		NOT = { has_government = " + ideology + " }\n";
+		fiftyPercentEvent.trigger += "		NOT = { has_idea = " + ideology + "_revolutionaries }\n";
+		fiftyPercentEvent.trigger += "		NOT = { has_idea = reign_of_terror }\n";
+		fiftyPercentEvent.trigger += "		is_puppet = no\n";
+		fiftyPercentEvent.meanTimeToHappen = "days = 30";
+		string optionA = "name = conv.political." + to_string(politicalEventNumber) + ".a\n";
+		optionA += "		add_political_power = -100\n";
+		optionA += "		add_popularity = {\n";
+		optionA += "			ideology = " + ideology + "\n";
+		optionA += "			popularity = -0.10\n";
+		optionA += "		}\n";
+		optionA += "		add_timed_idea = {\n";
+		optionA += "			idea = " + ideology + "_revolutionaries\n";
+		optionA += "			days = 365\n";
+		optionA += "		}";
+		fiftyPercentEvent.options.push_back(optionA);
+		string optionB = "name = political." + to_string(politicalEventNumber) + ".b\n";
+		optionB += "		add_timed_idea = {\n";
+		optionB += "			idea = " + ideology + "_revolutionaries\n";
+		optionB += "			days = 365\n";
+		optionB += "		}";
+		fiftyPercentEvent.options.push_back(optionB);
+		string optionC = "name = political." + to_string(politicalEventNumber) + ".c\n";
+		if (ideology == "democratic")
+		{
+			for (auto ideology2: majorIdeologies)
+			{
+				if ((ideology2 == "neutrality") || (ideology2 == ideology))
+				{
+					continue;
+				}
+				optionC += "		if = {\n";
+				optionC += "			limit = { has_government = " + ideology2 + " }\n";
+				optionC += "			add_timed_idea = { idea = " + ideology2 + "_defeated days = 730 }\n";
+				optionC += "		}\n";
+			}
+		}
+		optionC += "		set_politics = {\n";
+		optionC += "			ruling_party = " + ideology + "\n";
+		optionC += "			elections_allowed = ";
+		(ideology == "democratic") ? optionC += "yes\n" : optionC += "no\n";
+		optionC += "		}\n";
+		optionC += "		add_national_unity = -0.05\n";
+		fiftyPercentEvent.options.push_back(optionC);
+		politicalEvents.push_back(fiftyPercentEvent);
+		politicalEventNumber++;
+	}
+}
+
+
+void HoI4Events::addRevolutionEvents(const set<string>& majorIdeologies)
+{
+	for (auto ideology: majorIdeologies)
+	{
+		if (ideology == "neutrality")
+		{
+			continue;
+		}
+
+		HoI4Event revolutionEvent;
+		revolutionEvent.type = "country_event";
+		revolutionEvent.id = "conv.political." + to_string(politicalEventNumber);
+		revolutionEvent.title = "conv.political." + to_string(politicalEventNumber) + ".t";
+		revolutionEvent.description = "conv.political." + to_string(politicalEventNumber) + ".d";
+		revolutionEvent.picture = getIdeologicalPicture(ideology);
+		revolutionEvent.trigger = ideology + " > 0.7\n";
+		revolutionEvent.trigger += "		has_idea = " + ideology + "_revolutionaries";
+		revolutionEvent.meanTimeToHappen = "days = 2";
+		revolutionEvent.immediate = "hidden_effect = { remove_ideas = " + ideology + "_revolutionaries }";
+		string optionA = "name = conv.political." + to_string(politicalEventNumber) + ".a\n";
+		optionA += "		start_civil_war = {\n";
+		optionA += "			ideology = " + ideology + "\n";
+		optionA += "			size = 0.5\n";
+		optionA += "		}";
+		revolutionEvent.options.push_back(optionA);
+		string optionB = "name = conv.political." + to_string(politicalEventNumber) + ".b\n";
+		for (auto ideology2: majorIdeologies)
+		{
+			if (ideology2 == ideology)
+			{
+				continue;
+			}
+			optionB += "		if = {\n";
+			optionB += "			limit = {\n";
+			optionB += "				has_government = " + ideology2 + "\n";
+			optionB += "			}\n";
+			if ((ideology == "democratic") && (ideology2 != "neutrality"))
+			{
+				optionB += "			add_timed_idea = { idea = " + ideology2 + "_defeated days = 730 }\n";
+			}
+			optionB += "			start_civil_war = {\n";
+			optionB += "				ruling_party = " + ideology + "\n";
+			optionB += "				ideology = " + ideology2 + "\n";
+			optionB += "				size = 0.5\n";
+			optionB += "			}\n";
+			optionB += "		}\n";
+		}
+		revolutionEvent.options.push_back(optionB);
+		politicalEvents.push_back(revolutionEvent);
+		politicalEventNumber++;
+	}
+}
+
+
+void HoI4Events::addSuppressedEvents(const set<string>& majorIdeologies)
+{
+	for (auto ideology: majorIdeologies)
+	{
+		if (ideology == "neutrality")
+		{
+			continue;
+		}
+		HoI4Event suppressedEvent;
+		suppressedEvent.type = "country_event";
+		suppressedEvent.id = "conv.political." + to_string(politicalEventNumber);
+		suppressedEvent.title = "conv.political." + to_string(politicalEventNumber) + ".t";
+		suppressedEvent.description = "conv.political." + to_string(politicalEventNumber) + ".d";
+		suppressedEvent.picture = getIdeologicalPicture(ideology);
+		suppressedEvent.trigger = ideology + " < 0.3\n";
+		suppressedEvent.trigger += "		has_idea = " + ideology + "_revolutionaries";
+		suppressedEvent.meanTimeToHappen = "days = 2";
+		string option = "name = conv.political." + to_string(politicalEventNumber) + ".a\n";
+		option += "		remove_ideas = " + ideology + "_revolutionaries\n";
+		suppressedEvent.options.push_back(option);
+		politicalEvents.push_back(suppressedEvent);
+		politicalEventNumber++;
+	}
+
+	HoI4Event removeNeutral;
+	removeNeutral.type = "country_event";
+	removeNeutral.id = "conv.political." + to_string(politicalEventNumber);
+	removeNeutral.title = "conv.political." + to_string(politicalEventNumber) + ".t";
+	for (auto ideology: majorIdeologies)
+	{
+		if ((ideology == "democratic") || (ideology == "neutrality"))
+		{
+			continue;
+		}
+		removeNeutral.description += "	desc = {\n";
+		removeNeutral.description += "		text = political.27.d_" + ideology + "\n";
+		removeNeutral.description += "		trigger = { has_government = " + ideology + " }\n";
+		removeNeutral.description += "	}\n";
+	}
+	removeNeutral.description = removeNeutral.description.substr(8, removeNeutral.description.size() - 9);
+	removeNeutral.picture = "GFX_report_event_journalists_speech";
+	removeNeutral.trigger = "OR = {\n";
+	for (auto ideology: majorIdeologies)
+	{
+		removeNeutral.trigger += "		has_government = " + ideology + "\n";
+	}
+	removeNeutral.trigger += "		}";
+	removeNeutral.meanTimeToHappen = "days = 2";
+	string optionA = "name = political.27.a\n";
+	optionA += "		remove_ideas = neutrality_idea";
+	removeNeutral.options.push_back(optionA);
+	politicalEvents.push_back(removeNeutral);
 }
 
 

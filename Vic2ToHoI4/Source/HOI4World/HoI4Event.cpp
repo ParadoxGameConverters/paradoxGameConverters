@@ -29,8 +29,8 @@ ofstream& operator << (ofstream& out, HoI4Event theEvent)
 {
 	out << theEvent.type << " = {\n";
 	out << "	id = " << theEvent.id << "\n";
-	out << "	title = \"" << theEvent.title << "\"\n";
-	out << "	desc = \"" << theEvent.description << "\"\n";
+	out << "	title = " << theEvent.title << "\n";
+	out << "	desc = " << theEvent.description << "\n";
 	out << "	picture = " << theEvent.picture << "\n";
 	if (theEvent.major)
 	{
