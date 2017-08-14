@@ -3123,114 +3123,6 @@ void HoI4FocusTree::addCommunistWarBranch(HoI4Country * Home, vector<HoI4Country
 	}
 }
 
-void HoI4FocusTree::addCommunistGPWarBranch(HoI4Country * Home, vector<HoI4Country*> newAllies, vector<HoI4Country*> GCTargets, HoI4Events * events)
-{
-	if (newAllies.size() > 0)
-	{
-		//Focus to call summit, maybe have events from summit
-		HoI4Focus* newFocus = new HoI4Focus;
-		newFocus->id = "Com_Summit" + Home->getTag();
-		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
-		newFocus->text = "Call for the Communist Summit";
-		newFocus->xPos = nextFreeColumn;
-		newFocus->yPos = 0;
-		newFocus->cost = 10;
-		newFocus->aiWillDo = "			factor = 2\n";
-		newFocus->aiWillDo += "			modifier = {\n";
-		newFocus->aiWillDo += "			factor = 10\n";
-		newFocus->aiWillDo += "			date > 1938.1.1\n";
-		newFocus->aiWillDo += "			}";
-		newFocus->completionReward += "			add_named_threat = { threat = 3 name = " + newFocus->id + " }\n";
-		focuses.push_back(newFocus);
-	}
-
-	unsigned int i = 0;
-	for (auto newAlly : newAllies)
-	{
-		HoI4Focus* newFocus = new HoI4Focus;
-		newFocus->id = "Alliance_" + newAlly->getTag() + Home->getTag();
-		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
-		newFocus->text = "Alliance with " + newAlly->getSourceCountry()->getName("english");
-		newFocus->prerequisites.push_back("focus = Com_Summit" + Home->getTag());
-		newFocus->xPos = nextFreeColumn + i * 2;
-		newFocus->yPos = 1;
-		newFocus->cost = 10;
-		newFocus->aiWillDo = "			factor = 10";
-		newFocus->bypass = "			OR = {\n";
-		newFocus->bypass += "				" + Home->getTag() + " = { is_in_faction_with = " + newAlly->getTag() + "}\n";
-		newFocus->bypass += "				has_war_with = " + newAlly->getTag() + "\n";
-		newFocus->bypass += "				NOT = { country_exists = " + newAlly->getTag() + " }\n";
-		newFocus->bypass += "			}\n";
-		newFocus->completionReward += "			" + newAlly->getTag() + " = {\n";
-		newFocus->completionReward += "				country_event = { hours = 6 id = NFEvents." + to_string(events->getCurrentNationFocusEventNum()) + " }\n";
-		newFocus->completionReward += "				add_opinion_modifier = { target = " + Home->getTag() + " modifier = positive_50 }\n";
-		newFocus->completionReward += "			}";
-		focuses.push_back(newFocus);
-
-		events->createFactionEvents(Home, newAlly);
-		i++;
-	}
-	nextFreeColumn += 2 * newAllies.size();
-
-	i = 0;
-	for (auto GC : GCTargets)
-	{
-		string prereq = "";
-		int y2 = 0;
-		//figuring out location of WG
-		if (newAllies.size() > 0)
-		{
-			y2 = 2;
-			for (unsigned int i2 = 0; (i < 2) && (i < newAllies.size()); i++)
-				prereq += " focus = Alliance_" + newAllies[i]->getTag() + Home->getTag();
-		}
-		int v1 = rand() % 12 + 1;
-		int v2 = rand() % 12 + 1;
-		HoI4Focus* newFocus = new HoI4Focus;
-		newFocus->id = "War" + GC->getTag() + Home->getTag();
-		newFocus->icon = "GFX_goal_generic_major_war";
-		newFocus->text = "War with " + GC->getSourceCountry()->getName("english");//change to faction name later
-		newFocus->prerequisites.push_back(prereq);
-		newFocus->available = "			has_war = no\n";
-		newFocus->available += "			date > 1939." + to_string(v1) + "." + to_string(v2);
-		newFocus->xPos = nextFreeColumn + i * 2;
-		newFocus->yPos = y2;
-		newFocus->cost = 10;
-		newFocus->bypass += "		   has_war_with = " + GC->getTag() + "\n";
-		newFocus->aiWillDo = "			factor = " + to_string(10 - GCTargets.size() * 5) + "\n";
-		newFocus->aiWillDo += "			modifier = {\n";
-		newFocus->aiWillDo += "					factor = 0\n";
-		newFocus->aiWillDo += "					strength_ratio = { tag = " + GC->getTag() + " ratio < 1 }\n";
-		newFocus->aiWillDo += "			}";
-		if (GCTargets.size() > 1)
-		{
-			newFocus->aiWillDo = "\n";
-
-			//make ai have this as a 0 modifier if they are at war
-			newFocus->aiWillDo += "			modifier = {\n";
-			newFocus->aiWillDo += "				factor = 0\n";
-			newFocus->aiWillDo += "				OR = {\n";
-			for (int i2 = 0; i2 < 3; i2++)
-			{
-				if (GC != GCTargets[i2])
-				{
-					newFocus->aiWillDo += "					has_war_with = " + GC->getTag() + "\n";
-				}
-			}
-			newFocus->aiWillDo += "				}\n";
-			newFocus->aiWillDo += "			}\n";
-		}
-		newFocus->completionReward += "			add_named_threat = { threat = 5 name = " + newFocus->id + " }\n";
-		newFocus->completionReward += "			declare_war_on = {\n";
-		newFocus->completionReward += "				type = puppet_wargoal_focus\n";
-		newFocus->completionReward += "				target = " + GC->getTag() + "\n";
-		newFocus->completionReward += "			}";
-		focuses.push_back(newFocus);
-		i++;
-	}
-	nextFreeColumn += 2 * max(newAllies.size(), GCTargets.size());
-}
-
 void HoI4FocusTree::addFascistAnnexationBranch(HoI4Country * Home, vector<HoI4Country*> annexationTargets, HoI4Events * events)
 {
 	if (annexationTargets.size() >= 1)
@@ -3417,15 +3309,16 @@ void HoI4FocusTree::addFascistSudetenBranch(HoI4Country * Home, vector<HoI4Count
 	}
 }
 
-void HoI4FocusTree::addFascistGPWarBranch(HoI4Country * Home, vector<HoI4Country*> newAllies, vector<HoI4Country*> GCTargets, HoI4Events * events)
+void HoI4FocusTree::addGPWarBranch(HoI4Country * Home, vector<HoI4Country*> newAllies, vector<HoI4Country*> GCTargets, string ideology, HoI4Events * events)
 {
+	string ideologyShort = ideology.substr(0, 3);
 	if (newAllies.size() > 0)
 	{
 		//Focus to call summit, maybe have events from summit
 		HoI4Focus* newFocus = new HoI4Focus;
-		newFocus->id = "Fas_Summit" + Home->getTag();
+		newFocus->id = ideologyShort + "_Summit" + Home->getTag();
 		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
-		newFocus->text = "Call for the Fascist Summit";
+		newFocus->text = "Call for the " + ideology + " Summit";
 		newFocus->xPos = nextFreeColumn + newAllies.size() - 1;
 		newFocus->yPos = 0;
 		newFocus->cost = 10;
@@ -3445,7 +3338,7 @@ void HoI4FocusTree::addFascistGPWarBranch(HoI4Country * Home, vector<HoI4Country
 		newFocus->id = "Alliance_" + newAlly->getTag() + Home->getTag();
 		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
 		newFocus->text = "Alliance with " + newAlly->getSourceCountry()->getName("english");
-		newFocus->prerequisites.push_back("focus = Fas_Summit" + Home->getTag());
+		newFocus->prerequisites.push_back("focus = " + ideologyShort + "_Summit" + Home->getTag());
 		newFocus->xPos = nextFreeColumn + i * 2;
 		newFocus->yPos = 1;
 		newFocus->cost = 10;

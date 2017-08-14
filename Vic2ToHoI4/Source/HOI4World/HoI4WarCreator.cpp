@@ -698,7 +698,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 	LOG(LogLevel::Info) << "Calculating AI for " + Leader->getSourceCountry()->getName("english");
 	//too many lists, need to clean up
 	vector<HoI4Country*> Targets;
-	vector<HoI4Country*> Anchluss;
+	vector<HoI4Country*> Anschluss;
 	vector<HoI4Country*> Sudeten;
 	vector<HoI4Country*> EqualTargets;
 	vector<HoI4Country*> DifficultTargets;
@@ -735,22 +735,22 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 			if (neigh.second->getStrengthOverTime(1.5) < Leader->getStrengthOverTime(1.5)*0.2 && findFaction(neigh.second)->getMembers().size() == 1)
 			{
 				//they are very weak
-				Anchluss.push_back(neigh.second);
+				Anschluss.push_back(neigh.second);
 			}
 			//if not, lets see their strength is at least < 60%
-			else if (neigh.second->getStrengthOverTime(1.5) < Leader->getStrengthOverTime(1.0)*0.6 && neigh.second->getStrengthOverTime(1.0) > Leader->getStrengthOverTime(1.0)*0.2 && findFaction(neigh.second)->getMembers().size() == 1)
+			else if (neigh.second->getStrengthOverTime(1.5) < Leader->getStrengthOverTime(1.5)*0.6 && neigh.second->getStrengthOverTime(1.5) > Leader->getStrengthOverTime(1.5)*0.2 && findFaction(neigh.second)->getMembers().size() == 1)
 			{
-				//they are weak and we can get 1 of these countries in sudaten deal
+				//they are weak and we can get 1 of these countries in sudeten deal
 				Sudeten.push_back(neigh.second);
 			}
 			//if not, lets see their strength is at least = to ours%
-			else if (neigh.second->getStrengthOverTime(1.0) < Leader->getStrengthOverTime(1.0))
+			else if (neigh.second->getStrengthOverTime(1.5) < Leader->getStrengthOverTime(1.5))
 			{
 				//EqualTargets.push_back(neigh);
 				EqualTargets.push_back(neigh.second);
 			}
 			//if not, lets see their strength is at least < 120%
-			else if (neigh.second->getStrengthOverTime(1.0) < Leader->getStrengthOverTime(1.0)*1.2)
+			else if (neigh.second->getStrengthOverTime(1.5) < Leader->getStrengthOverTime(1.5)*1.2)
 			{
 				//StrongerTargets.push_back(neigh);
 				DifficultTargets.push_back(neigh.second);
@@ -771,7 +771,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 	vector<HoI4Country*> coup;
 
 	//look through every anchluss and see its difficulty
-	for (auto target : Anchluss)
+	for (auto target : Anschluss)
 	{
 		string type;
 		//outputs are for HowToTakeLand()
@@ -784,7 +784,6 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 		{
 			//too many vectors, need to clean up
 			nan.push_back(target);
-			anchlussnan.push_back(target);
 		}
 	}
 	//gives us generic focus tree start
@@ -802,6 +801,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 		//morealliesneeded - can take target with more allies, comes with "newallies" in map
 		//coup - cant take over, need to coup
 		type = HowToTakeLand(target, Leader, 2.5);
+
 		if (type == "noactionneeded")
 		{
 			nan.push_back(target);
@@ -922,7 +922,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 		}
 	}
 
-	FocusTree->addFascistGPWarBranch(Leader, newAllies, GCTargets, theWorld->getEvents());
+	FocusTree->addGPWarBranch(Leader, newAllies, GCTargets, "Fascist", theWorld->getEvents());
 
 	Leader->addNationalFocus(FocusTree);
 	return CountriesAtWar;
@@ -1091,7 +1091,7 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 	HoI4FocusTree* FocusTree = genericFocusTree->makeCustomizedCopy(Leader);
 	FocusTree->addCommunistCoupBranch(Leader, forcedtakeover);
 	FocusTree->addCommunistWarBranch(Leader, TargetsByTech, theWorld->getEvents());
-	FocusTree->addCommunistGPWarBranch(Leader, newAllies, GCTargets, theWorld->getEvents());
+	FocusTree->addGPWarBranch(Leader, newAllies, GCTargets, "Communist", theWorld->getEvents());
 	Leader->addNationalFocus(FocusTree);
 
 	return CountriesAtWar;

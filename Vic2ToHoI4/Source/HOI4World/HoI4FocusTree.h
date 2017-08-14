@@ -53,10 +53,9 @@ class HoI4FocusTree
 		void addAbsolutistEmpireNationalFocuses(HoI4Country* country, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets);
 		void addCommunistCoupBranch(HoI4Country* Home, vector<HoI4Country*> coupTargets);
 		void addCommunistWarBranch(HoI4Country* Home, vector<HoI4Country*> warTargets, HoI4Events* events);
-		void addCommunistGPWarBranch(HoI4Country* Home, vector<HoI4Country*> newAllies, vector<HoI4Country*> GCTargets, HoI4Events* events);
 		void addFascistAnnexationBranch(HoI4Country* Home, vector<HoI4Country*> annexationTargets, HoI4Events* events);
 		void addFascistSudetenBranch(HoI4Country* Home, vector<HoI4Country*> sudetenTargets, vector<set<string>> demandedStates, HoI4Events* events);
-		void addFascistGPWarBranch(HoI4Country* Home, vector<HoI4Country*> newAllies, vector<HoI4Country*> GCTargets, HoI4Events* events);
+		void addGPWarBranch(HoI4Country* Home, vector<HoI4Country*> newAllies, vector<HoI4Country*> GCTargets, string ideology, HoI4Events* events);
 
 		void output(const string& filename);
 
