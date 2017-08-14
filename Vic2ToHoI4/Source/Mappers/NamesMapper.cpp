@@ -46,7 +46,7 @@ namesMapper::namesMapper()
 	processVic2CulturesFile((Configuration::getV2Path() + "/common/cultures.txt"));
 
 	processNamesFile();
-	checkForNames();
+	//checkForNames();
 }
 
 
