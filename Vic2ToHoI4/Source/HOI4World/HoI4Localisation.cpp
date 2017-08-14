@@ -53,11 +53,25 @@ void HoI4Localisation::importLocalisations()
 	{
 		if (filename.substr(0, 5) == "focus")
 		{
-			importFocusLocalisations(filename);
+			importFocusLocalisations(Configuration::getHoI4Path() + "/localisation/" + filename);
 		}
 		else if (filename.substr(0, 5) == "ideas")
 		{
-			importGenericIdeaLocalisations(filename);
+			importGenericIdeaLocalisations(Configuration::getHoI4Path() + "/localisation/" + filename);
+		}
+	}
+
+	filenames.clear();
+	Utils::GetAllFilesInFolder("blankmod/output/localisation", filenames);
+	for (auto filename: filenames)
+	{
+		if (filename.substr(0, 5) == "focus")
+		{
+			importFocusLocalisations("blankmod/output/localisation/" + filename);
+		}
+		else if (filename.substr(0, 5) == "ideas")
+		{
+			importGenericIdeaLocalisations("blankmod/output/localisation/" + filename);
 		}
 	}
 }
@@ -79,13 +93,16 @@ void HoI4Localisation::importLocalisationFile(const string& filename, languageTo
 {
 	keyToLocalisationMap newLocalisations;
 
-	int period = filename.find('.');
-	string language = filename.substr(8, period - 8);
-
-	ifstream file(Configuration::getHoI4Path() + "/localisation/" + filename);
+	ifstream file(filename);
+	if (!file.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not open " << filename;
+		exit(-1);
+	}
 	char bitBucket[3];
 	file.read(bitBucket, 3);
 
+	string language;
 	while (!file.eof())
 	{
 		char buffer[1024];
@@ -93,6 +110,7 @@ void HoI4Localisation::importLocalisationFile(const string& filename, languageTo
 		string line(buffer);
 		if (line.substr(0,2) == "l_")
 		{
+			language = line.substr(2, line.length() - 3);
 			continue;
 		}
 
@@ -110,7 +128,19 @@ void HoI4Localisation::importLocalisationFile(const string& filename, languageTo
 		newLocalisations[key] = value;
 	}
 
-	localisations[language] = newLocalisations;
+	auto localisationsInLanguage = localisations.find(language);
+	if (localisationsInLanguage == localisations.end())
+	{
+		localisations[language] = newLocalisations;
+	}
+	else
+	{
+		for (auto localisation: newLocalisations)
+		{
+			localisationsInLanguage->second.insert(localisation);
+		}
+	}
+
 	file.close();
 }
 
