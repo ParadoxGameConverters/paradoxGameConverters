@@ -1245,7 +1245,7 @@ void HoI4Country::outputNamesSet(ofstream& namesFile, const vector<string>& name
 }
 
 
-void HoI4Country::output(const set<const HoI4Advisor*>& ideologicalMinisters) const
+void HoI4Country::output(const set<const HoI4Advisor*, advisorCompare>& ideologicalMinisters) const
 {
 	outputHistory();
 	outputOOB();
@@ -1654,7 +1654,7 @@ void HoI4Country::outputCommonCountryFile() const
 }
 
 
-void HoI4Country::outputIdeas(const set<const HoI4Advisor*>& ideologicalAdvisors) const
+void HoI4Country::outputIdeas(const set<const HoI4Advisor*, advisorCompare>& ideologicalAdvisors) const
 {
 	ofstream ideasFile("output/" + Configuration::getOutputName() + "/common/ideas/" + tag + ".txt");
 	if (!ideasFile.is_open())

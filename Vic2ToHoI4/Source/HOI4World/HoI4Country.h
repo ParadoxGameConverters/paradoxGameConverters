@@ -50,6 +50,7 @@ class HoI4Faction;
 class HoI4Leader;
 class HoI4Minister;
 class HoI4World;
+struct advisorCompare;
 
 
 class HoI4Country
@@ -73,7 +74,7 @@ class HoI4Country
 		void outputToCommonCountriesFile(ofstream& countriesFile) const;
 		void outputColors(ofstream& out) const;
 		void outputToNamesFiles(ofstream& namesFile) const;
-		void output(const set<const HoI4Advisor*>& ideologicalMinisters) const;
+		void output(const set<const HoI4Advisor*, advisorCompare>& ideologicalMinisters) const;
 		void outputIdeaGraphics(ofstream& ideasFile) const;
 
 		void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
@@ -157,7 +158,7 @@ class HoI4Country
 		void outputCountryLeader(ofstream& output) const;
 		void outputOOB() const;
 		void outputCommonCountryFile() const;
-		void outputIdeas(const set<const HoI4Advisor*>& ideologicalAdvisors) const;
+		void outputIdeas(const set<const HoI4Advisor*, advisorCompare>& ideologicalAdvisors) const;
 
 
 		HoI4World* theWorld;

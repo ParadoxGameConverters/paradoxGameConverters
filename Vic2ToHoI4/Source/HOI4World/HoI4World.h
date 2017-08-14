@@ -52,6 +52,9 @@ class V2Country;
 class V2World;
 
 
+struct advisorCompare;
+
+
 
 class HoI4World
 {
@@ -152,7 +155,7 @@ class HoI4World
 		void outputMap() const;
 		void outputGenericFocusTree() const;
 		void outputCountries() const;
-		set<const HoI4Advisor*> getActiveIdeologicalAdvisors() const;
+		set<const HoI4Advisor*, advisorCompare> getActiveIdeologicalAdvisors() const;
 		void outputRelations() const;
 		void outputIdeologies() const;
 		void outputLeaderTraits() const;
