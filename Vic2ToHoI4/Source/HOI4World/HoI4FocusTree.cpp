@@ -1409,6 +1409,8 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 		newFocus->available += "			OR = {\n";
 		newFocus->available += "				has_government = fascism\n";
 		newFocus->available += "				has_government = communism\n";
+		newFocus->available += "				has_government = absolutist\n";
+		newFocus->available += "				has_government = radical\n";
 		newFocus->available += "				has_government = neutrality\n";
 		newFocus->available += "			}";
 		newFocus->xPos = nextFreeColumn + numCollectovistIdeologies - 1;
@@ -1466,7 +1468,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 			{
 				ideolgicalFanaticsmPrereqs += " ";
 			}
-			ideolgicalFanaticsmPrereqs += "focus = absolutism_focus";
+			ideolgicalFanaticsmPrereqs += "focus = historical_claims_focus";
 			nextFreeColumn += 2;
 		}
 		if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("radical") > 0))
@@ -1476,7 +1478,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 			{
 				ideolgicalFanaticsmPrereqs += " ";
 			}
-			ideolgicalFanaticsmPrereqs += "focus = radical_focus";
+			ideolgicalFanaticsmPrereqs += "focus = army_provides_focus";
 			nextFreeColumn += 2;
 		}
 
@@ -1978,7 +1980,7 @@ void HoI4FocusTree::addAbsolutistGenericFocuses()
 {
 	HoI4Focus* newFocus = new HoI4Focus;
 	newFocus->id = "absolutism_focus";
-	newFocus->icon = "GFX_goal_support_communism #icon = GFX_goal_tripartite_pact";
+	newFocus->icon = "GFX_focus_hun_elect_a_king";
 	newFocus->text = "Absolutism Focus";
 	newFocus->prerequisites.push_back("focus = collectivist_ethos");
 	newFocus->mutuallyExclusive = absolutistMutualExlusions;
@@ -2007,6 +2009,49 @@ void HoI4FocusTree::addAbsolutistGenericFocuses()
 	newFocus->aiWillDo += "			}";
 	newFocus->completionReward += "			add_ideas = absolutism";
 	focuses.push_back(newFocus);
+
+	newFocus = new HoI4Focus;
+	newFocus->id = "royal_dictatorship_focus";
+	newFocus->icon = "GFX_focus_rom_royal_dictatorship";
+	newFocus->text = "Royal Dictatorship";
+	newFocus->prerequisites.push_back("focus = absolutism_focus");
+	newFocus->xPos = nextFreeColumn;
+	newFocus->yPos = 3;
+	newFocus->cost = 10;
+	newFocus->availableIfCapitulated = true;
+	newFocus->completionReward += "			add_political_power = 200\n";
+	newFocus->completionReward += "				add_popularity = {\n";
+	newFocus->completionReward += "					ideology = absolutist\n";
+	newFocus->completionReward += "					popularity = 0.2\n";
+	newFocus->completionReward += "				}\n";
+	newFocus->completionReward += "				# political drift defence?";
+	focuses.push_back(newFocus);
+
+	newFocus = new HoI4Focus;
+	newFocus->id = "royal_army_tradition_focus";
+	newFocus->icon = "GFX_goal_generic_special_forces";
+	newFocus->text = "Royal Army Tradition";
+	newFocus->prerequisites.push_back("focus = royal_dictatorship_focus");
+	newFocus->xPos = nextFreeColumn;
+	newFocus->yPos = 4;
+	newFocus->cost = 10;
+	newFocus->availableIfCapitulated = true;
+	newFocus->completionReward += "			army_experience = 40\n";
+	newFocus->completionReward += "			# add a elite division template?";
+	focuses.push_back(newFocus);
+
+	newFocus = new HoI4Focus;
+	newFocus->id = "historical_claims_focus";
+	newFocus->icon = "GFX_goal_generic_occupy_states_ongoing_war";
+	newFocus->text = "Historical claims";
+	newFocus->prerequisites.push_back("focus = royal_army_tradition_focus");
+	newFocus->xPos = nextFreeColumn;
+	newFocus->yPos = 5;
+	newFocus->cost = 10;
+	newFocus->availableIfCapitulated = true;
+	newFocus->completionReward += "			#cheaper war goal fabrication?";
+	newFocus->completionReward += "			#less world tension when declaring war?";
+	focuses.push_back(newFocus);
 }
 
 
@@ -2014,7 +2059,7 @@ void HoI4FocusTree::addRadicalGenericFocuses()
 {
 	HoI4Focus* newFocus = new HoI4Focus;
 	newFocus->id = "radical_focus";
-	newFocus->icon = "GFX_goal_support_communism #icon = GFX_goal_tripartite_pact";
+	newFocus->icon = "GFX_goal_generic_consumer_goods";
 	newFocus->text = "Radicalism Focus";
 	newFocus->prerequisites.push_back("focus = collectivist_ethos");
 	newFocus->mutuallyExclusive = radicalMutualExclusions;
@@ -2042,6 +2087,42 @@ void HoI4FocusTree::addRadicalGenericFocuses()
 	newFocus->aiWillDo += "				}\n";
 	newFocus->aiWillDo += "			}";
 	newFocus->completionReward += "			add_ideas = radicalism";
+	focuses.push_back(newFocus);
+
+	newFocus = new HoI4Focus;
+	newFocus->id = "private_channels_focus";
+	newFocus->icon = "GFX_goal_generic_intelligence_exchange";
+	newFocus->text = "Private Channels";
+	newFocus->prerequisites.push_back("focus = radical_focus");
+	newFocus->xPos = nextFreeColumn;
+	newFocus->yPos = 3;
+	newFocus->cost = 10;
+	newFocus->availableIfCapitulated = true;
+	newFocus->completionReward += "			# something to ease trade";
+	focuses.push_back(newFocus);
+
+	newFocus = new HoI4Focus;
+	newFocus->id = "hardfought_market_focus";
+	newFocus->icon = "GFX_focus_generic_license_production";
+	newFocus->text = "Hard-fought market";
+	newFocus->prerequisites.push_back("focus = private_channels_focus");
+	newFocus->xPos = nextFreeColumn;
+	newFocus->yPos = 4;
+	newFocus->cost = 10;
+	newFocus->availableIfCapitulated = true;
+	newFocus->completionReward += "			#something with production efficiency";
+	focuses.push_back(newFocus);
+
+	newFocus = new HoI4Focus;
+	newFocus->id = "army_provides_focus";
+	newFocus->icon = "GFX_focus_generic_concessions";
+	newFocus->text = "The Army Provides";
+	newFocus->prerequisites.push_back("focus = hardfought_market_focus");
+	newFocus->xPos = nextFreeColumn;
+	newFocus->yPos = 5;
+	newFocus->cost = 10;
+	newFocus->availableIfCapitulated = true;
+	newFocus->completionReward += "			#something to give more recruitable population";
 	focuses.push_back(newFocus);
 }
 
@@ -3398,7 +3479,7 @@ void HoI4FocusTree::addGPWarBranch(HoI4Country * Home, vector<HoI4Country*> newA
 			newFocus->aiWillDo += "			modifier = {\n";
 			newFocus->aiWillDo += "				factor = 0\n";
 			newFocus->aiWillDo += "				OR = {\n";
-			for (int i2 = 0; i2 < GCTargets.size(); i2++)
+			for (unsigned int i2 = 0; i2 < GCTargets.size(); i2++)
 			{
 				if (GC != GCTargets[i2])
 				{
