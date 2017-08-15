@@ -182,7 +182,7 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 		LOG(LogLevel::Warning) << "Could not convert V2 tag " << country.first << " to HoI4";
 	}
 
-	HoI4Localisation::createCountryLocalisations(country.first, HoI4Tag);
+	HoI4Localisation::createCountryLocalisations(make_pair(country.first, HoI4Tag));
 }
 
 
