@@ -45,6 +45,16 @@ V2FactoryType::V2FactoryType(Object* factory)
 	requireTech = "";
 	requiredInvention = "";
 
+	vector<Object*> local_supply = factory->getValue("limit_by_local_supply");
+	if ((local_supply.size() > 0) && (local_supply[0]->getLeaf() == "yes"))
+	{
+		requireLocalInput = true;
+	}
+	else
+	{
+		requireLocalInput = false;
+	}
+
 	inputs.clear();
 	vector<Object*> inputGoods = factory->getValue("input_goods");
 	if (inputGoods.size() > 0)
@@ -73,6 +83,21 @@ void V2Factory::output(FILE* output) const
 	fprintf(output, "\tbuilding = %s\n", type->name.c_str());
 	fprintf(output, "\tupgrade = yes\n");
 	fprintf(output, "}\n");
+}
+
+
+map<string,float> V2Factory::getRequiredRGO() const
+{
+	if (type->requireLocalInput)
+	{
+		return type->inputs;
+	}
+	else
+	{
+		map<string,float> emptyMap;
+		emptyMap.clear();
+		return emptyMap;
+	}
 }
 
 

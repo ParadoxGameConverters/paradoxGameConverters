@@ -43,6 +43,7 @@ struct V2FactoryType
 	bool							requireCoastal;
 	string						requireTech;
 	string						requiredInvention;
+	bool							requireLocalInput;
 	map<string,float>			inputs;
 	string						outputGoods;
 };
@@ -53,6 +54,7 @@ class V2Factory
 	public:
 		V2Factory(const V2FactoryType* _type) : type(_type) { level = 1; };
 		void					output(FILE* output) const;
+		map<string,float>	getRequiredRGO() const;
 		void					increaseLevel();
 
 		bool						requiresCoastal()					const { return type->requireCoastal; }
