@@ -38,7 +38,7 @@ class adjacencyMapper
 	public:
 		static vector<int> getVic2Adjacencies(int Vic2Province)
 		{
-			return getInstance()->GetVic2Adjacencies(Vic2Province);
+			return getInstance()->GetVic2Adjacencies();
 		}
 
 	private:
@@ -60,7 +60,7 @@ class adjacencyMapper
 
 		void outputAdjacenciesMapData();
 
-		vector<int> GetVic2Adjacencies(int Vic2Province);
+		vector<int> GetVic2Adjacencies();
 
 
 		map<int, vector<int>> adjacencyMap;
