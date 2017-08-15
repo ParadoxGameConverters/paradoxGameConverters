@@ -70,9 +70,10 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	convertStrategicRegions();
 	convertDiplomacy();
 	convertTechs();
-	convertArmies();
-	convertNavies();
-	convertAirforces();
+	convertMilitaries();
+	//convertArmies();
+	//convertNavies();
+	//convertAirforces();
 	determineGreatPowers();
 	importIdeologies();
 	importLeaderTraits();
@@ -975,35 +976,257 @@ void HoI4World::addResearchBonuses(HoI4Country* country, const string& oldTech, 
 	}
 }
 
-void HoI4World::convertArmies()
+map<string, HoI4UnitMap> HoI4World::importUnitMap() const
+{
+	/* HARDCODED! TO DO : IMPLEMENT PARSING of unit_mapping.txt */
+
+	map<string, HoI4UnitMap> unitMap;
+
+	unitMap["irregular"] = HoI4UnitMap();
+
+	unitMap["infantry"] = HoI4UnitMap("land","infantry","infantry_equipment_0",3);
+	unitMap["engineer"] = HoI4UnitMap("land", "infantry", "infantry_equipment_0", 3);
+	unitMap["guard"] = HoI4UnitMap("land", "infantry", "infantry_equipment_0", 3);
+
+	unitMap["artillery"] = HoI4UnitMap("land", "artillery_brigade", "artillery_equipment_1", 3);
+
+	unitMap["cavalry"] = HoI4UnitMap();
+
+	unitMap["hussar"] = HoI4UnitMap("land", "cavalry", "infantry_equipment_0", 3);
+	unitMap["cuirassier"] = HoI4UnitMap("land", "cavalry", "infantry_equipment_0", 3);
+	unitMap["dragoon"] = HoI4UnitMap("land", "cavalry", "infantry_equipment_0", 3);
+
+	unitMap["tank"] = HoI4UnitMap("land", "light_armor", "gw_tank_equipment", 1);
+
+	unitMap["plane"] = HoI4UnitMap("air", "fighter", "fighter_equipment_0", 20);
+
+	unitMap["manowar"] = HoI4UnitMap();
+	unitMap["frigate"] = HoI4UnitMap();
+	unitMap["commerce_raider"] = HoI4UnitMap("naval", "destroyer", "destroyer_1", 1);
+	unitMap["ironclad"] = HoI4UnitMap();
+	unitMap["monitor"] = HoI4UnitMap();
+	unitMap["cruiser"] = HoI4UnitMap("naval", "light_cruiser", "light_cruiser_1", 1);
+	unitMap["battleship"] = HoI4UnitMap("naval", "heavy_cruiser", "heavy_cruiser_1", 1);
+	unitMap["dreadnought"] = HoI4UnitMap("naval", "battleship", "battleship_1", 1);
+	unitMap["clipper_transport"] = HoI4UnitMap();
+	unitMap["steam_transport"] = HoI4UnitMap("convoy", "convoy", "convoy_1", 1);
+	
+	return unitMap;
+}
+
+vector<HoI4DivisionTemplateType> HoI4World::importDivisionTemplates() const
+{
+	/* HARDCODED! TO DO : IMPLEMENT PARSING of unit_mapping.txt */
+
+	vector<HoI4DivisionTemplateType> templateList;
+	HoI4DivisionTemplateType currentTemplate("Armored Division");
+
+	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 0, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 0, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 0, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 1, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 1, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 1, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("motorized", 2, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("motorized", 2, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("motorized", 2, 2));
+
+	currentTemplate.addSupportRegiment(HoI4RegimentType("artillery",0,0));
+
+	templateList.push_back(currentTemplate);
+
+	HoI4DivisionTemplateType currentTemplate("Mechanized Division");
+
+	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 0, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 0, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 0, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("motorized", 1, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("motorized", 1, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("motorized", 1, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("motorized", 2, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("motorized", 2, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("motorized", 2, 2));
+
+	currentTemplate.addSupportRegiment(HoI4RegimentType("artillery", 0, 0));
+
+	templateList.push_back(currentTemplate);
+
+	HoI4DivisionTemplateType currentTemplate("Motorized Division");
+
+	currentTemplate.addRegiment(HoI4RegimentType("motorized", 0, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("motorized", 0, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("motorized", 0, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("motorized", 1, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("motorized", 1, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("motorized", 1, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("motorized", 2, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("motorized", 2, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("motorized", 2, 2));
+
+	currentTemplate.addSupportRegiment(HoI4RegimentType("artillery", 0, 0));
+
+	templateList.push_back(currentTemplate);
+
+	HoI4DivisionTemplateType currentTemplate("Assault Division");
+
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 1, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 1, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 1, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 2, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 2, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 2, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 3, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 3, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 3, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 4, 0));
+
+	templateList.push_back(currentTemplate);
+
+	HoI4DivisionTemplateType currentTemplate("Assault Brigade");
+
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 1, 0));
+	
+	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 2, 0));
+
+	templateList.push_back(currentTemplate);
+
+	HoI4DivisionTemplateType currentTemplate("Infantry Division");
+
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 1, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 1, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 1, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 2, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 2, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 2, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 3, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 3, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 3, 2));
+
+	templateList.push_back(currentTemplate);
+
+	HoI4DivisionTemplateType currentTemplate("Infantry Brigade");
+
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 1, 0));	
+
+	templateList.push_back(currentTemplate);
+
+	HoI4DivisionTemplateType currentTemplate("Light Infantry Division");
+
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 1, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 1, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 1, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 2, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 2, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 2, 2));
+
+	templateList.push_back(currentTemplate);
+
+	HoI4DivisionTemplateType currentTemplate("Light Infantry Brigade");
+
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 2));
+
+	templateList.push_back(currentTemplate);
+
+	HoI4DivisionTemplateType currentTemplate("Cavalry Division");
+
+	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 0, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 0, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 0, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 1, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 1, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 1, 2));
+
+	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 2, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 2, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 2, 2));
+
+	templateList.push_back(currentTemplate);
+
+	HoI4DivisionTemplateType currentTemplate("Cavalry Brigade");
+
+	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 0, 0));
+	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 0, 1));
+	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 0, 2));
+
+	templateList.push_back(currentTemplate);
+
+	return templateList;
+}
+
+void HoI4World::convertMilitaries()
+{
+	map<string, HoI4UnitMap> unitMap = importUnitMap();
+	vector<HoI4DivisionTemplateType> divisionTemplates = importDivisionTemplates();
+
+	convertArmies(unitMap, divisionTemplates);
+	convertNavies(unitMap);
+	convertAirforces(unitMap);
+}
+
+void HoI4World::convertArmies(map<string, HoI4UnitMap> unitMap, vector<HoI4DivisionTemplateType> divisionTemplates)
 {
 	LOG(LogLevel::Info) << "Converting armies";
 
 	for (auto country: countries)
 	{
-		country.second->convertArmyDivisions();
+		country.second->convertArmyDivisions(unitMap, divisionTemplates);
 	}
 }
 
-
-void HoI4World::convertNavies()
+void HoI4World::convertNavies(map<string, HoI4UnitMap> unitMap)
 {
 	LOG(LogLevel::Info) << "Converting navies";
 
 	for (auto country : countries)
 	{
-		country.second->convertNavy(states->getStates());
+		country.second->convertNavy(unitMap);
+		country.second->convertConvoys(unitMap);
 	}
 }
 
 
-void HoI4World::convertAirforces()
+void HoI4World::convertAirforces(map<string, HoI4UnitMap> unitMap)
 {
 	LOG(LogLevel::Info) << "Converting air forces";
 
 	for (auto country : countries)
 	{
-		country.second->convertAirforce();
+		country.second->convertAirforce(unitMap);
 	}
 }
 

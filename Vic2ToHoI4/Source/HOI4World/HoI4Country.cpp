@@ -432,164 +432,139 @@ void HoI4Country::convertIdeologySupport(const set<string>& majorIdeologies)
 }
 
 
-void HoI4Country::convertNavy(map<int, HoI4State*> states)
+void HoI4Country::convertNavy(map<string, HoI4UnitMap> unitMap)
 {
 	int navalport = 0;
-
-	// count the heavy and light Vic2 ships
-	double heavyShip = 0;
-	double lightShip = 0;
+	
 	for (auto army : srcCountry->getArmies())
 	{
 		for (auto regiment : army->getRegiments())
 		{
 			string type = regiment->getType();
-			if (type == "battleship")
-			{
-				heavyShip += 0.08;
-			}
-			if (type == "dreadnought")
-			{
-				heavyShip += 0.1;
-			}
-			if (type == "cruiser")
-			{
-				lightShip += 0.1;
-			}
-		}
-	}
+			
+			HoI4UnitMap unitInfo = unitMap[type];
 
-	// determine the HoI4 ships
-	double BB = 0;
-	double BC = 0;
-	double HC = 0;
-	double LC = 0;
-	double DD = 0;
-	double CV = 0;
-	double SB = 0;
-	convoys = static_cast<int>(Configuration::getForceMultiplier() * ((heavyShip * 0.21945 * 40) + (lightShip * 1.88 * 4)));
-
-	for (auto tech : technologies)
-	{
-		if ((tech.first == "early_light_cruiser") && (tech.second == 1))
-		{
-			LC = Configuration::getForceMultiplier() * lightShip * .47;
+			if (unitInfo.getCategory == "naval") {
+				// Ships get mapped
+				HoI4Ship newShip(regiment->getName(),unitInfo.getType(),unitInfo.getEquipment, tag);
+				ships.push_back(newShip);
+			};			
 		}
-		if ((tech.first == "early_destroyer") && (tech.second == 1))
-		{
-			DD = Configuration::getForceMultiplier() * lightShip * 1.88;
-		}
-		if ((tech.first == "early_submarine") && (tech.second == 1))
-		{
-			SB = Configuration::getForceMultiplier() * lightShip * .705;
-		}
-		if ((tech.first == "early_heavy_cruiser") && (tech.second == 1))
-		{
-			HC = Configuration::getForceMultiplier() * heavyShip * 0.2926;
-		}
-		if ((tech.first == "early_battlecruiser") && (tech.second == 1))
-		{
-			BC = Configuration::getForceMultiplier() * heavyShip * 0.073;
-		}
-		if ((tech.first == "early_battleship") && (tech.second == 1))
-		{
-			CV = Configuration::getForceMultiplier() * heavyShip * 0.073;
-			BB = Configuration::getForceMultiplier() * heavyShip * 0.21945;
-		}
-	}
-
-	for (int i = 0; i < CV; i++)
-	{
-		if (technologies.find("CAS1") != technologies.end() && technologies.find("naval_bomber1") != technologies.end() && technologies.find("early_carrier") != technologies.end())
-		{
-			HoI4Ship newShip("Carrier", "carrier", tag);
-			ships.push_back(newShip);
-		}
-	}
-	for (int i = 0; i < BB; i++)
-	{
-		HoI4Ship newShip("Battleship", "battleship", tag);
-		ships.push_back(newShip);
-	}
-	for (int i = 0; i < BC; i++)
-	{
-		HoI4Ship newShip("Battle Cruiser", "battle_cruiser", tag);
-		ships.push_back(newShip);
-	}
-	for (int i = 0; i < HC; i++)
-	{
-		HoI4Ship newShip("Heavy Cruiser", "heavy_cruiser", tag);
-		ships.push_back(newShip);
-	}
-	for (int i = 0; i < LC; i++)
-	{
-		HoI4Ship newShip("Light Cruiser", "light_cruiser", tag);
-		ships.push_back(newShip);
-	}
-	for (int i = 0; i < DD; i++)
-	{
-		HoI4Ship newShip("Destroyer", "destroyer", tag);
-		ships.push_back(newShip);
-	}
-	for (int i = 0; i < SB; i++)
-	{
-		HoI4Ship newShip("Submarine", "submarine", tag);
-		ships.push_back(newShip);
 	}
 
 	for (auto state : states)
 	{
 		if ((state.second->getOwner() == tag) && (state.second->getMainNavalLocation() != 0))
 		{
+			// Mapped ships will be placed in a single large fleet
 			navalLocation = state.second->getMainNavalLocation();
 		}
 	}
 }
 
-void HoI4Country::convertAirforce()
+void HoI4Country::convertConvoys(map<string, HoI4UnitMap> unitMap)
 {
-	int airplanes = 0;
 	for (auto army : srcCountry->getArmies())
 	{
 		for (auto regiment : army->getRegiments())
 		{
 			string type = regiment->getType();
-			if (type == "plane")
-			{
-				airplanes += 1;
-			}
+
+			HoI4UnitMap unitInfo = unitMap[type];
+
+			if (unitInfo.getCategory == "convoy") {
+				// Convoys get placed in national stockpile
+				convoys = convoys + 1;
+			};
 		}
-	}
-
-	auto techItr = technologies.find("early_fighter");
-	if (techItr != technologies.end())
-	{
-		int amount = static_cast<int>(Configuration::getForceMultiplier() * airplanes);
-		if (amount == 0)
-		{
-			amount = 1;
-		}
-		HoI4Airplane newPlane(string("fighter_equipment_0"), tag, amount);
-		planes.push_back(newPlane);
-	}
-
-	techItr = technologies.find("early_bomber");
-	if (techItr != technologies.end())
-	{
-		HoI4Airplane newPlane(string("tac_bomber_equipment_0"), tag, static_cast<int>(Configuration::getForceMultiplier() * airplanes));
-		planes.push_back(newPlane);
-	}
-
-	techItr = technologies.find("CAS1");
-	if (techItr != technologies.end())
-	{
-		HoI4Airplane newPlane(string("CAS_equipment_1"), tag, static_cast<int>(Configuration::getForceMultiplier() * airplanes));
-		planes.push_back(newPlane);
 	}
 }
 
-void HoI4Country::convertArmyDivisions()
+void HoI4Country::convertAirforce(map<string, HoI4UnitMap> unitMap)
 {
+	for (auto army : srcCountry->getArmies())
+	{
+		for (auto regiment : army->getRegiments())
+		{
+			string type = regiment->getType();
+			
+			HoI4UnitMap unitInfo = unitMap[type];
+
+			if (unitInfo.getCategory == "air") {
+				// Air units get placed in national stockpile
+				equipmentStockpile[unitInfo.getEquipment] = equipmentStockpile[unitInfo.getEquipment] + unitInfo.getSize;
+			}
+		}
+	}	
+}
+
+void HoI4Country::convertArmyDivisions(map<string, HoI4UnitMap> unitMap, vector<HoI4DivisionTemplateType> divisionTemplates)
+{
+	map<string, int> BattalionsAndCompanies;
+
+	for (auto army : srcCountry->getArmies())
+	{
+		for (auto regiment : army->getRegiments())
+		{
+			string type = regiment->getType();
+
+			HoI4UnitMap unitInfo = unitMap[type];
+
+			if (unitInfo.getCategory == "land") {
+				// Calculate how many Battalions and Companies are available after mapping Vic2 armies
+				BattalionsAndCompanies[unitInfo.getType] = BattalionsAndCompanies[unitInfo.getType] + unitInfo.getSize;
+			}
+		}
+	}
+		
+	for (auto divTemplate : divisionTemplates)
+	{
+		// for each template determine the Battalion and Company requirements
+		int divisionCounter = 1;
+
+		map<string, int> templateRequirements;
+		for (auto regiment : divTemplate.getRegiments)
+		{
+			templateRequirements[regiment] = templateRequirements[regiment] + 1;
+		}
+		for (auto regiment : divTemplate.getSupportRegiments)
+		{
+			templateRequirements[regiment] = templateRequirements[regiment] + 1;
+		}
+
+		bool sufficientUnits = true;
+		for (auto unit : templateRequirements)
+		{
+			if (BattalionsAndCompanies[unit.first] < unit.second)
+			{
+				sufficientUnits = false;
+			}
+		}
+
+		// Create new divisions as long as sufficient units exist, otherwise move on to next template
+		while (sufficientUnits == true) 
+		{
+			HoI4DivisionType newDivision(to_string(divisionCounter) + ". " + divTemplate.getName(), divTemplate.getName(), capital);
+			divisionCounter = divisionCounter + 1;
+			divisions.push_back(newDivision);
+
+			for (auto unit : templateRequirements)
+			{
+				BattalionsAndCompanies[unit.first] = BattalionsAndCompanies[unit.first] - unit.second;
+			}
+
+			sufficientUnits = true;
+			for (auto unit : templateRequirements)
+			{
+				if (BattalionsAndCompanies[unit.first] < unit.second)
+				{
+					sufficientUnits = false;
+				}
+			}
+		}	
+	}	
+
+	/*
 	// get the total number of source brigades and the number of source brigades per location
 	int infantryBrigades = 0;
 	int artilleryBrigades = 0;
@@ -1039,7 +1014,7 @@ void HoI4Country::convertArmyDivisions()
 		HoI4RegimentType artilleryRegiment("artillery", 0, 0);
 		divisionTemplates[tankIndex].addSupportRegiment(artilleryRegiment);
 		artilleryBrigades -= numTank;
-	}
+	}*/
 }
 
 
@@ -1276,6 +1251,7 @@ void HoI4Country::outputHistory() const
 	outputTechnology(output);
 	outputResearchBonuses(output);
 	outputConvoys(output);
+	outputEquipmentStockpile(output);
 	outputPuppets(output);
 	outputPolitics(output);
 	outputRelations(output);
@@ -1355,6 +1331,15 @@ void HoI4Country::outputResearchBonuses(ofstream& output) const
 void HoI4Country::outputConvoys(ofstream& output) const
 {
 	output << "set_convoys = " << convoys << '\n';
+	output << "\n";
+}
+
+void HoI4Country::outputEquipmentStockpile(ofstream& output) const
+{
+	for (auto eqp : equipmentStockpile) 
+	{
+		output << "add_equipment_to_stockpile = { type = " << eqp.first << " amount = " << eqp.second << " producer = " << tag << "\n";
+	}	
 	output << "\n";
 }
 

@@ -170,6 +170,9 @@ class HoI4DivisionTemplateType
 
 		void addRegiment(HoI4RegimentType newRegiment)			{ regiments.push_back(newRegiment); }
 		void addSupportRegiment(HoI4RegimentType newRegiment)	{ supportRegiments.push_back(newRegiment); }
+		string getName();
+		vector<HoI4RegimentType> getRegiments();
+		vector<HoI4RegimentType> getSupportRegiments();
 
 	private:
 		string							name;
@@ -189,6 +192,27 @@ class HoI4DivisionType
 		string	name;
 		string	type;
 		int		location;
+};
+
+class HoI4UnitMap
+{
+	public: 
+
+		HoI4UnitMap(string category,string type,string equipment,int size);
+		HoI4UnitMap();
+
+		string getCategory();
+		string getType();
+		string getEquipment();
+		int getSize();
+
+	private:
+		string category;
+		string type;
+		string equipment;
+		int size;
+
+
 };
 
 

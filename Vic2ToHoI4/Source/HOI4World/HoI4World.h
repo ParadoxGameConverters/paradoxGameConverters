@@ -123,9 +123,12 @@ class HoI4World
 		void addTechs(HoI4Country* countryaddTechs, const string& oldTech, const map<string, vector<pair<string, int>>>& techMap);
 		void addResearchBonuses(HoI4Country* countryaddBonuses, const string& oldTech, const map<string, vector<pair<string, int>>>& researchBonusMap);
 
-		void convertArmies();
-		void convertNavies();
-		void convertAirforces();
+		map<string, HoI4UnitMap> importUnitMap() const;
+		vector<HoI4DivisionTemplateType> importDivisionTemplates() const;
+		void convertMilitaries();
+		void convertArmies(map<string, HoI4UnitMap> unitMap, vector<HoI4DivisionTemplateType> divisionTemplates);
+		void convertNavies(map<string, HoI4UnitMap> unitMap);
+		void convertAirforces(map<string, HoI4UnitMap> unitMap);
 
 		void determineGreatPowers();
 
