@@ -195,14 +195,17 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 		date hundredYearsOld = date("1740.1.1");							// one hundred years before conversion
 		for (vector<Object*>::iterator itr = historyLeaves.begin(); itr != historyLeaves.end(); ++itr)
 		{
-			// grab leaders from history, ignoring those that are more than 100 years old...
-			if (date((*itr)->getKey()) > hundredYearsOld)
+			if(((*itr)->getKey()).find(".") != -1)	//historyObj contains some non-date leaves for initial config. Avoid trying to parse them as dates.
 			{
-				vector<Object*> leaderObjs = (*itr)->getValue("leader");	// the leaders in this history
-				for (vector<Object*>::iterator litr = leaderObjs.begin(); litr != leaderObjs.end(); ++litr)
+				// grab leaders from history, ignoring those that are more than 100 years old...
+				if (date((*itr)->getKey()) > hundredYearsOld)
 				{
-					EU4Leader* leader = new EU4Leader(*litr);	// a new leader
-					leaders.push_back(leader);
+					vector<Object*> leaderObjs = (*itr)->getValue("leader");	// the leaders in this history
+					for (vector<Object*>::iterator litr = leaderObjs.begin(); litr != leaderObjs.end(); ++litr)
+					{
+						EU4Leader* leader = new EU4Leader(*litr);	// a new leader
+						leaders.push_back(leader);
+					}
 				}
 			}
 		}
