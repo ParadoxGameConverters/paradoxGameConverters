@@ -25,10 +25,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Ship::HoI4Ship(string _name, string _type, string _owner)
+HoI4Ship::HoI4Ship(string _name, string _type, string _equipment, string _owner)
 {
 	name	= _name;
 	type	= _type;
+	equipment = _equipment;
 	owner	= _owner;
 }
 
@@ -39,7 +40,7 @@ ofstream& operator << (ofstream& output, HoI4Ship& instance)
 	output << "\t\t\tname = \"" << instance.name << "\"" << endl;
 	output << "\t\t\tdefinition = " << instance.type << endl;
 	output << "\t\t\tequipment = {" << endl;
-	output << "\t\t\t\t" << instance.type << "_1 = {" << endl;
+	output << "\t\t\t\t" << instance.equipment << " = {" << endl;
 	output << "\t\t\t\t\tamount = 1" << endl;
 	output << "\t\t\t\t\towner = " << instance.owner << endl;
 	output << "\t\t\t\t}" << endl;

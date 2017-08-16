@@ -35,13 +35,14 @@ using namespace std;
 class HoI4Ship
 {
 	public:
-		HoI4Ship(string _name, string _type, string _owner);
+		HoI4Ship(string _name, string _type, string _equipment, string _owner);
 
 		friend ofstream& operator << (ofstream& output, HoI4Ship& instance);
 
 	private:
 		string	name;
 		string	type;
+		string  equipment;
 		string	owner;
 };
 
