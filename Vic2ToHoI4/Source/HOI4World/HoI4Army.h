@@ -151,6 +151,7 @@ class HoI4RegimentType
 {
 	public:
 		HoI4RegimentType(string type, int x, int y);
+		const string getType() const { return type; }
 
 		friend ostream& operator << (ostream& out, HoI4RegimentType regiment);
 

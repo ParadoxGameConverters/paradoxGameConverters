@@ -40,6 +40,7 @@ class HoI4Advisor;
 class HoI4Buildings;
 class HoI4Country;
 class HoI4Diplomacy;
+class HoI4DivisionTemplateType;
 class HoI4Events;
 class HoI4Faction;
 class HoI4Ideology;
@@ -48,6 +49,7 @@ class HoI4State;
 class HoI4States;
 class HoI4StrategicRegion;
 class HoI4SupplyZones;
+class HoI4UnitMap;
 class V2Country;
 class V2World;
 

@@ -444,9 +444,9 @@ void HoI4Country::convertNavy(map<string, HoI4UnitMap> unitMap)
 			
 			HoI4UnitMap unitInfo = unitMap[type];
 
-			if (unitInfo.getCategory == "naval") {
+			if (unitInfo.getCategory() == "naval") {
 				// Ships get mapped
-				HoI4Ship newShip(regiment->getName(),unitInfo.getType(),unitInfo.getEquipment, tag);
+				HoI4Ship newShip(regiment->getName(),unitInfo.getType(),unitInfo.getEquipment(), tag);
 				ships.push_back(newShip);
 			};			
 		}
@@ -472,7 +472,7 @@ void HoI4Country::convertConvoys(map<string, HoI4UnitMap> unitMap)
 
 			HoI4UnitMap unitInfo = unitMap[type];
 
-			if (unitInfo.getCategory == "convoy") {
+			if (unitInfo.getCategory() == "convoy") {
 				// Convoys get placed in national stockpile
 				convoys = convoys + 1;
 			};
@@ -490,9 +490,9 @@ void HoI4Country::convertAirforce(map<string, HoI4UnitMap> unitMap)
 			
 			HoI4UnitMap unitInfo = unitMap[type];
 
-			if (unitInfo.getCategory == "air") {
+			if (unitInfo.getCategory() == "air") {
 				// Air units get placed in national stockpile
-				equipmentStockpile[unitInfo.getEquipment] = equipmentStockpile[unitInfo.getEquipment] + unitInfo.getSize;
+				equipmentStockpile[unitInfo.getEquipment()] = equipmentStockpile[unitInfo.getEquipment()] + unitInfo.getSize();
 			}
 		}
 	}	
@@ -510,9 +510,9 @@ void HoI4Country::convertArmyDivisions(map<string, HoI4UnitMap> unitMap, vector<
 
 			HoI4UnitMap unitInfo = unitMap[type];
 
-			if (unitInfo.getCategory == "land") {
+			if (unitInfo.getCategory() == "land") {
 				// Calculate how many Battalions and Companies are available after mapping Vic2 armies
-				BattalionsAndCompanies[unitInfo.getType] = BattalionsAndCompanies[unitInfo.getType] + unitInfo.getSize;
+				BattalionsAndCompanies[unitInfo.getType()] = BattalionsAndCompanies[unitInfo.getType()] + unitInfo.getSize();
 			}
 		}
 	}
@@ -523,13 +523,13 @@ void HoI4Country::convertArmyDivisions(map<string, HoI4UnitMap> unitMap, vector<
 		int divisionCounter = 1;
 
 		map<string, int> templateRequirements;
-		for (auto regiment : divTemplate.getRegiments)
+		for (auto regiment : divTemplate.getRegiments())
 		{
-			templateRequirements[regiment] = templateRequirements[regiment] + 1;
+			templateRequirements[regiment.getType()] = templateRequirements[regiment.getType()] + 1;
 		}
-		for (auto regiment : divTemplate.getSupportRegiments)
+		for (auto regiment : divTemplate.getSupportRegiments())
 		{
-			templateRequirements[regiment] = templateRequirements[regiment] + 1;
+			templateRequirements[regiment.getType()] = templateRequirements[regiment.getType()] + 1;
 		}
 
 		bool sufficientUnits = true;

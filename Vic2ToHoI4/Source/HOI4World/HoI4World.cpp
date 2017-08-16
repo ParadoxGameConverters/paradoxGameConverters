@@ -1036,171 +1036,171 @@ vector<HoI4DivisionTemplateType> HoI4World::importDivisionTemplates() const
 	/* HARDCODED! TO DO : IMPLEMENT PARSING of unit_mapping.txt */
 
 	vector<HoI4DivisionTemplateType> templateList;
-	HoI4DivisionTemplateType currentTemplate("Armored Division");
+	HoI4DivisionTemplateType armoredTemplate("Armored Division");
 
-	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 0, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 0, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 0, 2));
+	armoredTemplate.addRegiment(HoI4RegimentType("light_armor", 0, 0));
+	armoredTemplate.addRegiment(HoI4RegimentType("light_armor", 0, 1));
+	armoredTemplate.addRegiment(HoI4RegimentType("light_armor", 0, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 1, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 1, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 1, 2));
+	armoredTemplate.addRegiment(HoI4RegimentType("light_armor", 1, 0));
+	armoredTemplate.addRegiment(HoI4RegimentType("light_armor", 1, 1));
+	armoredTemplate.addRegiment(HoI4RegimentType("light_armor", 1, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("motorized", 2, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("motorized", 2, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("motorized", 2, 2));
+	armoredTemplate.addRegiment(HoI4RegimentType("motorized", 2, 0));
+	armoredTemplate.addRegiment(HoI4RegimentType("motorized", 2, 1));
+	armoredTemplate.addRegiment(HoI4RegimentType("motorized", 2, 2));
 
-	currentTemplate.addSupportRegiment(HoI4RegimentType("artillery",0,0));
+	armoredTemplate.addSupportRegiment(HoI4RegimentType("artillery",0,0));
 
-	templateList.push_back(currentTemplate);
+	templateList.push_back(armoredTemplate);
 
-	HoI4DivisionTemplateType currentTemplate("Mechanized Division");
+	HoI4DivisionTemplateType mechanizedTemplate("Mechanized Division");
 
-	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 0, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 0, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 0, 2));
+	mechanizedTemplate.addRegiment(HoI4RegimentType("light_armor", 0, 0));
+	mechanizedTemplate.addRegiment(HoI4RegimentType("light_armor", 0, 1));
+	mechanizedTemplate.addRegiment(HoI4RegimentType("light_armor", 0, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("motorized", 1, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("motorized", 1, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("motorized", 1, 2));
+	mechanizedTemplate.addRegiment(HoI4RegimentType("motorized", 1, 0));
+	mechanizedTemplate.addRegiment(HoI4RegimentType("motorized", 1, 1));
+	mechanizedTemplate.addRegiment(HoI4RegimentType("motorized", 1, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("motorized", 2, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("motorized", 2, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("motorized", 2, 2));
+	mechanizedTemplate.addRegiment(HoI4RegimentType("motorized", 2, 0));
+	mechanizedTemplate.addRegiment(HoI4RegimentType("motorized", 2, 1));
+	mechanizedTemplate.addRegiment(HoI4RegimentType("motorized", 2, 2));
 
-	currentTemplate.addSupportRegiment(HoI4RegimentType("artillery", 0, 0));
+	mechanizedTemplate.addSupportRegiment(HoI4RegimentType("artillery", 0, 0));
 
-	templateList.push_back(currentTemplate);
+	templateList.push_back(mechanizedTemplate);
 
-	HoI4DivisionTemplateType currentTemplate("Motorized Division");
+	HoI4DivisionTemplateType motorizedTemplate("Motorized Division");
 
-	currentTemplate.addRegiment(HoI4RegimentType("motorized", 0, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("motorized", 0, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("motorized", 0, 2));
+	motorizedTemplate.addRegiment(HoI4RegimentType("motorized", 0, 0));
+	motorizedTemplate.addRegiment(HoI4RegimentType("motorized", 0, 1));
+	motorizedTemplate.addRegiment(HoI4RegimentType("motorized", 0, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("motorized", 1, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("motorized", 1, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("motorized", 1, 2));
+	motorizedTemplate.addRegiment(HoI4RegimentType("motorized", 1, 0));
+	motorizedTemplate.addRegiment(HoI4RegimentType("motorized", 1, 1));
+	motorizedTemplate.addRegiment(HoI4RegimentType("motorized", 1, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("motorized", 2, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("motorized", 2, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("motorized", 2, 2));
+	motorizedTemplate.addRegiment(HoI4RegimentType("motorized", 2, 0));
+	motorizedTemplate.addRegiment(HoI4RegimentType("motorized", 2, 1));
+	motorizedTemplate.addRegiment(HoI4RegimentType("motorized", 2, 2));
 
-	currentTemplate.addSupportRegiment(HoI4RegimentType("artillery", 0, 0));
+	motorizedTemplate.addSupportRegiment(HoI4RegimentType("artillery", 0, 0));
 
-	templateList.push_back(currentTemplate);
+	templateList.push_back(motorizedTemplate);
 
-	HoI4DivisionTemplateType currentTemplate("Assault Division");
+	HoI4DivisionTemplateType assaultDivTemplate("Assault Division");
 
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 2));
+	assaultDivTemplate.addRegiment(HoI4RegimentType("infantry", 0, 0));
+	assaultDivTemplate.addRegiment(HoI4RegimentType("infantry", 0, 1));
+	assaultDivTemplate.addRegiment(HoI4RegimentType("infantry", 0, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 1, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 1, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 1, 2));
+	assaultDivTemplate.addRegiment(HoI4RegimentType("infantry", 1, 0));
+	assaultDivTemplate.addRegiment(HoI4RegimentType("infantry", 1, 1));
+	assaultDivTemplate.addRegiment(HoI4RegimentType("infantry", 1, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 2, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 2, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 2, 2));
+	assaultDivTemplate.addRegiment(HoI4RegimentType("infantry", 2, 0));
+	assaultDivTemplate.addRegiment(HoI4RegimentType("infantry", 2, 1));
+	assaultDivTemplate.addRegiment(HoI4RegimentType("infantry", 2, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 3, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 3, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 3, 2));
+	assaultDivTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 3, 0));
+	assaultDivTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 3, 1));
+	assaultDivTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 3, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 4, 0));
+	assaultDivTemplate.addRegiment(HoI4RegimentType("light_armor", 4, 0));
 
-	templateList.push_back(currentTemplate);
+	templateList.push_back(assaultDivTemplate);
 
-	HoI4DivisionTemplateType currentTemplate("Assault Brigade");
+	HoI4DivisionTemplateType assaultBrigadeTemplate("Assault Brigade");
 
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 2));
+	assaultBrigadeTemplate.addRegiment(HoI4RegimentType("infantry", 0, 0));
+	assaultBrigadeTemplate.addRegiment(HoI4RegimentType("infantry", 0, 1));
+	assaultBrigadeTemplate.addRegiment(HoI4RegimentType("infantry", 0, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 1, 0));
+	assaultBrigadeTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 1, 0));
 	
-	currentTemplate.addRegiment(HoI4RegimentType("light_armor", 2, 0));
+	assaultBrigadeTemplate.addRegiment(HoI4RegimentType("light_armor", 2, 0));
 
-	templateList.push_back(currentTemplate);
+	templateList.push_back(assaultBrigadeTemplate);
 
-	HoI4DivisionTemplateType currentTemplate("Infantry Division");
+	HoI4DivisionTemplateType infantryDivisionTemplate("Infantry Division");
 
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 2));
+	infantryDivisionTemplate.addRegiment(HoI4RegimentType("infantry", 0, 0));
+	infantryDivisionTemplate.addRegiment(HoI4RegimentType("infantry", 0, 1));
+	infantryDivisionTemplate.addRegiment(HoI4RegimentType("infantry", 0, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 1, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 1, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 1, 2));
+	infantryDivisionTemplate.addRegiment(HoI4RegimentType("infantry", 1, 0));
+	infantryDivisionTemplate.addRegiment(HoI4RegimentType("infantry", 1, 1));
+	infantryDivisionTemplate.addRegiment(HoI4RegimentType("infantry", 1, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 2, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 2, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 2, 2));
+	infantryDivisionTemplate.addRegiment(HoI4RegimentType("infantry", 2, 0));
+	infantryDivisionTemplate.addRegiment(HoI4RegimentType("infantry", 2, 1));
+	infantryDivisionTemplate.addRegiment(HoI4RegimentType("infantry", 2, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 3, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 3, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 3, 2));
+	infantryDivisionTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 3, 0));
+	infantryDivisionTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 3, 1));
+	infantryDivisionTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 3, 2));
 
-	templateList.push_back(currentTemplate);
+	templateList.push_back(infantryDivisionTemplate);
 
-	HoI4DivisionTemplateType currentTemplate("Infantry Brigade");
+	HoI4DivisionTemplateType infantryBrigadeTemplate("Infantry Brigade");
 
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 2));
+	infantryBrigadeTemplate.addRegiment(HoI4RegimentType("infantry", 0, 0));
+	infantryBrigadeTemplate.addRegiment(HoI4RegimentType("infantry", 0, 1));
+	infantryBrigadeTemplate.addRegiment(HoI4RegimentType("infantry", 0, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 1, 0));	
+	infantryBrigadeTemplate.addRegiment(HoI4RegimentType("artillery_brigade", 1, 0));
 
-	templateList.push_back(currentTemplate);
+	templateList.push_back(infantryBrigadeTemplate);
 
-	HoI4DivisionTemplateType currentTemplate("Light Infantry Division");
+	HoI4DivisionTemplateType lightInfantryDivisionTemplate("Light Infantry Division");
 
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 2));
+	lightInfantryDivisionTemplate.addRegiment(HoI4RegimentType("infantry", 0, 0));
+	lightInfantryDivisionTemplate.addRegiment(HoI4RegimentType("infantry", 0, 1));
+	lightInfantryDivisionTemplate.addRegiment(HoI4RegimentType("infantry", 0, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 1, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 1, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 1, 2));
+	lightInfantryDivisionTemplate.addRegiment(HoI4RegimentType("infantry", 1, 0));
+	lightInfantryDivisionTemplate.addRegiment(HoI4RegimentType("infantry", 1, 1));
+	lightInfantryDivisionTemplate.addRegiment(HoI4RegimentType("infantry", 1, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 2, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 2, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 2, 2));
+	lightInfantryDivisionTemplate.addRegiment(HoI4RegimentType("infantry", 2, 0));
+	lightInfantryDivisionTemplate.addRegiment(HoI4RegimentType("infantry", 2, 1));
+	lightInfantryDivisionTemplate.addRegiment(HoI4RegimentType("infantry", 2, 2));
 
-	templateList.push_back(currentTemplate);
+	templateList.push_back(lightInfantryDivisionTemplate);
 
-	HoI4DivisionTemplateType currentTemplate("Light Infantry Brigade");
+	HoI4DivisionTemplateType lightInfantryBrigadeTemplate("Light Infantry Brigade");
 
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("infantry", 0, 2));
+	lightInfantryBrigadeTemplate.addRegiment(HoI4RegimentType("infantry", 0, 0));
+	lightInfantryBrigadeTemplate.addRegiment(HoI4RegimentType("infantry", 0, 1));
+	lightInfantryBrigadeTemplate.addRegiment(HoI4RegimentType("infantry", 0, 2));
 
-	templateList.push_back(currentTemplate);
+	templateList.push_back(lightInfantryBrigadeTemplate);
 
-	HoI4DivisionTemplateType currentTemplate("Cavalry Division");
+	HoI4DivisionTemplateType cavalryDivisionTemplate("Cavalry Division");
 
-	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 0, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 0, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 0, 2));
+	cavalryDivisionTemplate.addRegiment(HoI4RegimentType("cavalry", 0, 0));
+	cavalryDivisionTemplate.addRegiment(HoI4RegimentType("cavalry", 0, 1));
+	cavalryDivisionTemplate.addRegiment(HoI4RegimentType("cavalry", 0, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 1, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 1, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 1, 2));
+	cavalryDivisionTemplate.addRegiment(HoI4RegimentType("cavalry", 1, 0));
+	cavalryDivisionTemplate.addRegiment(HoI4RegimentType("cavalry", 1, 1));
+	cavalryDivisionTemplate.addRegiment(HoI4RegimentType("cavalry", 1, 2));
 
-	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 2, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 2, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 2, 2));
+	cavalryDivisionTemplate.addRegiment(HoI4RegimentType("cavalry", 2, 0));
+	cavalryDivisionTemplate.addRegiment(HoI4RegimentType("cavalry", 2, 1));
+	cavalryDivisionTemplate.addRegiment(HoI4RegimentType("cavalry", 2, 2));
 
-	templateList.push_back(currentTemplate);
+	templateList.push_back(cavalryDivisionTemplate);
 
-	HoI4DivisionTemplateType currentTemplate("Cavalry Brigade");
+	HoI4DivisionTemplateType cavalryBrigadeTemplate("Cavalry Brigade");
 
-	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 0, 0));
-	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 0, 1));
-	currentTemplate.addRegiment(HoI4RegimentType("cavalry", 0, 2));
+	cavalryBrigadeTemplate.addRegiment(HoI4RegimentType("cavalry", 0, 0));
+	cavalryBrigadeTemplate.addRegiment(HoI4RegimentType("cavalry", 0, 1));
+	cavalryBrigadeTemplate.addRegiment(HoI4RegimentType("cavalry", 0, 2));
 
-	templateList.push_back(currentTemplate);
+	templateList.push_back(cavalryBrigadeTemplate);
 
 	return templateList;
 }
