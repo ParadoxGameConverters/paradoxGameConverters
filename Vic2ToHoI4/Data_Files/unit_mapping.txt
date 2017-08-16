@@ -51,10 +51,9 @@
 #		hoi = {
 #			type = <land/air/naval/convoy>
 #			unit = <HoI4 unit type> (Valid Battalion/Support Company, Aircraft type or Naval Vessel type)
-#			equipment = { <equipment1> ... <equipmentN> }
+#			equipment = <equipment_type>
 #			size = <integer number>	
-#		}
-#		... (can have multiple "hoi" entries )
+#		}		
 # 	}
 #	...
 #	link = {
@@ -73,34 +72,22 @@
 # 		hoi = {
 # 			type = land
 # 			unit = infantry
-# 			equipment = { infantry_equipment_0 }
+# 			equipment = infantry_equipment_0
 # 			size = 3
 # 		}
 # 	}
-# 	# For every 3 x Vic2 Plane units, map 2 x Vic2 Plane to 10 x HoI4 Early Interwar Fighter each, and 1 x Vic2 Plan to 10 x HoI4 Early Interwar Tactical Bomber
+# 	# Map every Vic2 Plane units to 10 x Interwar Fighter
 # 	link = {
 # 		vic = plane
 # 		
 # 		hoi = {
 # 			type = air
 # 			unit = fighter
-# 			equipment = { fighter_equipment_0 }
+# 			equipment = fighter_equipment_0
 # 			size = 10
 # 		}
 # 		
-# 		hoi = {
-# 			type = air
-# 			unit = fighter
-# 			equipment = { fighter_equipment_0 }
-# 			size = 10
-# 		}
-# 		
-# 		hoi = {
-# 			type = air
-# 			unit = tac_bomber
-# 			equipment = { tac_bomber_equipment_0 }
-# 			size = 10
-# 		}
+#
 # 	}
 # 	# Map every Vic2 Commerce Raider to a HoI4 Destroyer of the most basic model
 # 	link = {
@@ -109,7 +96,7 @@
 # 		hoi = {
 # 			type = naval
 # 			unit = destroyer
-# 			equipment = { destroyer_1 }
+# 			equipment = destroyer_1
 # 			size = 1
 # 		}		
 # 	}	
@@ -191,7 +178,7 @@ default = {
 			hoi = {
 				type = land
 				unit = infantry
-				equipment = { infantry_equipment_0 }
+				equipment = infantry_equipment_0
 				size = 3
 			}
 		}
@@ -202,7 +189,7 @@ default = {
 			hoi = {
 				type = land
 				unit = infantry
-				equipment = { infantry_equipment_0 }
+				equipment = infantry_equipment_0
 				size = 3
 			}
 		}
@@ -213,7 +200,7 @@ default = {
 			hoi = {
 				type = land
 				unit = infantry
-				equipment = { infantry_equipment_0 }
+				equipment = infantry_equipment_0
 				size = 3
 			}
 		}
@@ -224,7 +211,7 @@ default = {
 			hoi = {
 				type = land
 				unit = artillery_brigade
-				equipment = { artillery_equipment_1 }
+				equipment = artillery_equipment_1
 				size = 3
 			}
 		}
@@ -239,7 +226,7 @@ default = {
 			hoi = {
 				type = land
 				unit = cavalry
-				equipment = { infantry_equipment_0 }
+				equipment = infantry_equipment_0
 				size = 3
 			}
 		}
@@ -250,7 +237,7 @@ default = {
 			hoi = {
 				type = land
 				unit = cavalry
-				equipment = { infantry_equipment_0 }
+				equipment = infantry_equipment_0
 				size = 3
 			}
 		}
@@ -261,7 +248,7 @@ default = {
 			hoi = {
 				type = land
 				unit = cavalry
-				equipment = { infantry_equipment_0 }
+				equipment = infantry_equipment_0
 				size = 3
 			}
 		}
@@ -272,7 +259,7 @@ default = {
 			hoi = {
 				type = land
 				unit = light_armor
-				equipment = { gw_tank_equipment }
+				equipment = gw_tank_equipment
 				size = 1
 			}
 		}
@@ -283,16 +270,9 @@ default = {
 			hoi = {
 				type = air
 				unit = fighter
-				equipment = { fighter_equipment_0 }
+				equipment = fighter_equipment_0
 				size = 10
-			}
-			
-			hoi = {
-				type = air
-				unit = tac_bomber
-				equipment = { tac_bomber_equipment_0 }
-				size = 10
-			}
+			}			
 		}
 		
 		link = {
@@ -309,7 +289,7 @@ default = {
 			hoi = {
 				type = naval
 				unit = destroyer
-				equipment = { destroyer_1 }
+				equipment = destroyer_1
 				size = 1
 			}
 		}
@@ -328,7 +308,7 @@ default = {
 			hoi = {
 				type = naval
 				unit = light_cruiser
-				equipment = { light_cruiser_1 }
+				equipment = light_cruiser_1
 				size = 1
 			}
 		}
@@ -339,7 +319,7 @@ default = {
 			hoi = {
 				type = naval
 				unit = heavy_cruiser
-				equipment = { heavy_cruiser_1 }
+				equipment = heavy_cruiser_1
 				size = 1
 			}
 		}
@@ -350,7 +330,7 @@ default = {
 			hoi = {
 				type = naval
 				unit = battleship
-				equipment = { battleship_1 }
+				equipment = battleship_1
 				size = 1
 			}
 		}
@@ -365,13 +345,79 @@ default = {
 			hoi = {
 				type = convoy
 				unit = convoy
-				equipment = { convoy_1 }
+				equipment = convoy_1
 				size = 1
 			}
 		}
 	}
 	
 	division_templates = {
+	
+		division_template = {
+			name = "Armored Division"
+		
+			regiments = {
+				light_armor = { x = 0 y = 0 }
+				light_armor = { x = 0 y = 1 }
+				light_armor = { x = 0 y = 2 }			
+							
+				light_armor = { x = 1 y = 0 }
+				light_armor = { x = 1 y = 1 }
+				light_armor = { x = 1 y = 2 }
+				
+				motorized = { x = 2 y = 0 }
+				motorized = { x = 2 y = 1 }
+				motorized = { x = 2 y = 2 }				
+				
+				support = { artillery = { x = 0 y = 0} }
+			}		
+			
+			priority = 2
+		}
+		
+		division_template = {
+			name = "Mechanized Division"
+		
+			regiments = {
+				light_armor = { x = 0 y = 0 }
+				light_armor = { x = 0 y = 1 }
+				light_armor = { x = 0 y = 2 }			
+							
+				motorized = { x = 1 y = 0 }
+				motorized = { x = 1 y = 1 }
+				motorized = { x = 1 y = 2 }
+				
+				motorized = { x = 2 y = 0 }
+				motorized = { x = 2 y = 1 }
+				motorized = { x = 2 y = 2 }				
+				
+				support = { artillery = { x = 0 y = 0} }
+			}		
+			
+			priority = 1
+		}
+		
+		division_template = {
+			name = "Motorized Division"
+		
+			regiments = {
+				motorized = { x = 0 y = 0 }
+				motorized = { x = 0 y = 1 }
+				motorized = { x = 0 y = 2 }			
+							
+				motorized = { x = 1 y = 0 }
+				motorized = { x = 1 y = 1 }
+				motorized = { x = 1 y = 2 }
+				
+				motorized = { x = 2 y = 0 }
+				motorized = { x = 2 y = 1 }
+				motorized = { x = 2 y = 2 }				
+				
+				support = { artillery = { x = 0 y = 0} }
+			}		
+			
+			priority = 0
+		}
 	
 		division_template = {
 			name = "Assault Division"

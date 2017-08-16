@@ -634,6 +634,21 @@ HoI4DivisionTemplateType::HoI4DivisionTemplateType(string _name)
 	name = _name;
 }
 
+string HoI4DivisionTemplateType::getName()
+{
+	return name;
+}
+
+vector<HoI4RegimentType> HoI4DivisionTemplateType::getRegiments()
+{
+	return regiments;
+}
+
+vector<HoI4RegimentType> HoI4DivisionTemplateType::getSupportRegiments()
+{
+	return supportRegiments;
+}
+
 
 ostream& operator << (ostream& out, HoI4DivisionTemplateType divisionTemplateType)
 {
@@ -676,4 +691,40 @@ ostream& operator << (ostream& out, HoI4DivisionType division)
 	out << "\t}\n";
 
 	return out;
+}
+
+HoI4UnitMap::HoI4UnitMap(string _category, string _type, string _equipment, int _size)
+{
+	category = _category;
+	type = _type;
+	equipment = _equipment;
+	size = _size;
+}
+
+HoI4UnitMap::HoI4UnitMap()
+{
+	category = "";
+	type = "";
+	equipment ="";
+	size = 0;
+}
+
+string HoI4UnitMap::getCategory()
+{
+	return category;
+}
+
+string HoI4UnitMap::getType()
+{
+	return type;
+}
+
+string HoI4UnitMap::getEquipment()
+{
+	return equipment;
+}
+
+int HoI4UnitMap::getSize()
+{
+	return size;
 }

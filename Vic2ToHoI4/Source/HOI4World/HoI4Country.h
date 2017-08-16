@@ -53,6 +53,7 @@ class HoI4World;
 struct advisorCompare;
 
 
+
 class HoI4Country
 {
 	public:
@@ -62,9 +63,10 @@ class HoI4Country
 		void initFromHistory();
 		void setGovernmentToNeutral();
 		void convertIdeologySupport(const set<string>& majorIdeologies);
-		void		convertNavy(map<int, HoI4State*> states);
-		void		convertAirforce();
-		void		convertArmyDivisions();
+		void		convertNavy(map<string, HoI4UnitMap> unitMap);
+		void		convertConvoys(map<string, HoI4UnitMap> unitMap);
+		void		convertAirforce(map<string, HoI4UnitMap> unitMap);
+		void		convertArmyDivisions(map<string, HoI4UnitMap> unitMap, vector<HoI4DivisionTemplateType> divisionTemplates);		
 		void		setTechnology(string tech, int level);
 		void		setResearchBonus(string tech, int bonus);
 		void addState(HoI4State* _state);
@@ -148,6 +150,7 @@ class HoI4Country
 		void outputTechnology(ofstream& output) const;
 		void outputResearchBonuses(ofstream& output) const;
 		void outputConvoys(ofstream& output) const;
+		void outputEquipmentStockpile(ofstream& output) const;
 		void outputPuppets(ofstream& output) const;
 		void outputPolitics(ofstream& output) const;
 		void outputRelations(ofstream& output) const;
@@ -228,8 +231,10 @@ class HoI4Country
 		vector<HoI4Ship>							ships;
 		vector<HoI4Airplane>						planes;
 		int											navalLocation;
+		map<string, int>							equipmentStockpile;
 
 		HoI4FocusTree* nationalFocus;
 };
 
 #endif	// HoI4COUNTRY_H_
+
