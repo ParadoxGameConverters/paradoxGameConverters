@@ -27,7 +27,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4Airforce.h"
-#include "HoI4Alignment.h"
 #include "HoI4Army.h"
 #include "HoI4FocusTree.h"
 #include "HoI4Navy.h"
@@ -97,7 +96,6 @@ class HoI4Country
 		string										getTag() const { return tag; }
 		const V2Country*							getSourceCountry() const { return srcCountry; }
 		HoI4Faction*								getFaction() const { return faction; }
-		HoI4Alignment*								getAlignment() { return &alignment; }
 		string getGovernmentIdeology() const { return governmentIdeology; }
 		map<string, int> getIdeologySupport() const { return ideologySupport; }
 		const set<string>&						getAllies() const { return allies; }
@@ -184,7 +182,6 @@ class HoI4Country
 		string								commonCountryFile;
 		map<string, int>					technologies;
 		map<string, int>					researchBonuses;
-		HoI4Alignment						alignment;
 		int									totalfactories;
 		map<string, HoI4Relations*>	relations;
 		Color									color;
