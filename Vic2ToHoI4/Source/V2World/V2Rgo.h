@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -29,7 +29,7 @@ class V2Rgo
 {
 	public:
 		V2Rgo() : resource(""), numWorkers(0) {}
-		V2Rgo(string type, int workers) : resource(type), numWorkers(workers) {}
+		V2Rgo(const string& type, int workers) : resource(type), numWorkers(workers) {}
 		string getResource() const { return resource; }
 		int getWorkers() const { return numWorkers; }
 	private:

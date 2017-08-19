@@ -353,7 +353,6 @@
     <ClInclude Include="Source\HOI4World\HoI4Focus.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
-    <ClInclude Include="Source\V2World\V2Rgo.h" />
     <ClInclude Include="Source\Mappers\StateCategoryMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
@@ -393,6 +392,9 @@
     </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4Advisor.h">
       <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2Rgo.h">
+      <Filter>Vic2World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
