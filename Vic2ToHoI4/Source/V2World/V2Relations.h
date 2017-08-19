@@ -44,9 +44,9 @@ class V2Relations
 		int getLevel() const { return level; }
 
 		bool hasMilitaryAccess() const { return militaryAccess; }
-		date getDiplomatLastSent() const { return lastSentDiplomat; }
-		date getLastWar() const { return lastWar; }
-		date getTruceUntil() const { return truceUntil; }
+		const date getDiplomatLastSent() const { return lastSentDiplomat; }
+		const date getLastWar() const { return lastWar; }
+		const date getTruceUntil() const { return truceUntil; }
 
 	private:
 		void setValue(shared_ptr<Object> relationsObj);

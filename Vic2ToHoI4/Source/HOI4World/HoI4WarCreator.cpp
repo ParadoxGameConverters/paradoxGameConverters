@@ -243,7 +243,7 @@ vector<HoI4Country*> HoI4WarCreator::findEvilCountries()
 			evilness += 3;
 		if (country.second->getGovernmentIdeology() == "anarcho_liberal")
 			evilness += 3;
-		V2Party* countryrulingparty = country.second->getRulingParty();
+		const V2Party* countryrulingparty = country.second->getRulingParty();
 	
 		if (countryrulingparty->war_policy == "jingoism")
 			evilness += 3;

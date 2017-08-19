@@ -64,7 +64,7 @@ public:
 	void setLocalisationNames();
 	void setLocalisationAdjectives();
 
-	map<string, V2Relations*> getRelations() const { return relations; }
+	map<string, const V2Relations*> getRelations() const { return relations; }
 	vector<Vic2State*> getStates() const { return states; }
 	string getTag() const { return tag; }
 	string getPrimaryCulture() const { return primaryCulture; }
@@ -78,8 +78,8 @@ public:
 	Color getColor() const { return color; }
 	double getEducationSpending() const { return educationSpending; }
 	double getMilitarySpending() const { return militarySpending; }
-	vector<V2Army*> getArmies() const { return armies; }
-	vector<V2Leader*> getLeaders() const { return leaders; }
+	vector<const V2Army*> getArmies() const { return armies; }
+	vector<const V2Leader*> getLeaders() const { return leaders; }
 	double getRevanchism() const { return revanchism; }
 	double getWarExhaustion() const { return warExhaustion; }
 	double getBadBoy() const { return badboy; }
@@ -97,32 +97,32 @@ public:
 	string getAdjective(const string& language) const;
 	double getUpperHousePercentage(const string& ideology) const;
 	long getEmployedWorkers() const;
-	V2Party* getRulingParty(const vector<V2Party*>& allParties) const;
-	set<V2Party*> getActiveParties(const vector<V2Party*>& allParties) const;
+	const V2Party* getRulingParty(const vector<const V2Party*>& allParties) const;
+	set<const V2Party*> getActiveParties(const vector<const V2Party*>& allParties) const;
 	bool hasCoreOnCapital() const;
 
 private:
-	void readInDomainNameAndAdjective(const shared_ptr<Object> countryObj);
-	void readInCapital(const shared_ptr<Object> countryObj);
-	void readInCultures(const shared_ptr<Object> countryObj);
-	void readInCivilized(const shared_ptr<Object> countryObj);
-	void readInTechnology(const shared_ptr<Object> countryObj);
-	void readInInventions(const shared_ptr<Object> countryObj);
-	void readInPoliticalParties(const shared_ptr<Object> countryObj);
-	void readInSpending(const shared_ptr<Object> countryObj);
-	void readInRevanchism(const shared_ptr<Object> countryObj);
-	void readInWarExhaustion(const shared_ptr<Object> countryObj);
-	void readInBadBoy(const shared_ptr<Object> countryObj);
+	void readInDomainNameAndAdjective(shared_ptr<Object> countryObj);
+	void readInCapital(shared_ptr<Object> countryObj);
+	void readInCultures(shared_ptr<Object> countryObj);
+	void readInCivilized(shared_ptr<Object> countryObj);
+	void readInTechnology(shared_ptr<Object> countryObj);
+	void readInInventions(shared_ptr<Object> countryObj);
+	void readInPoliticalParties(shared_ptr<Object> countryObj);
+	void readInSpending(shared_ptr<Object> countryObj);
+	void readInRevanchism(shared_ptr<Object> countryObj);
+	void readInWarExhaustion(shared_ptr<Object> countryObj);
+	void readInBadBoy(shared_ptr<Object> countryObj);
 	void readInReforms(shared_ptr<Object> countryObj);
-	void readInGovernment(const shared_ptr<Object> countryObj);
-	void readInUpperHouse(const shared_ptr<Object> countryObj);
+	void readInGovernment(shared_ptr<Object> countryObj);
+	void readInUpperHouse(shared_ptr<Object> countryObj);
 	void readInRelations(shared_ptr<Object> countryObj);
-	bool isCountryTag(string potentialTag);
-	void readInMilitary(const shared_ptr<Object> countryObj);
-	void readInLeaders(const shared_ptr<Object> countryObj);
-	void readInStates(const shared_ptr<Object> countryObj);
-	void createNewState(const shared_ptr<Object> stateObj);
-	void detectIfHuman(const shared_ptr<Object> stateObj);
+	bool isCountryTag(const string& potentialTag);
+	void readInMilitary(shared_ptr<Object> countryObj);
+	void readInLeaders(shared_ptr<Object> countryObj);
+	void readInStates(shared_ptr<Object> countryObj);
+	void createNewState(shared_ptr<Object> stateObj);
+	void detectIfHuman(shared_ptr<Object> stateObj);
 
 	void setLocalisationName(const string& language, const string& name);
 	void setLocalisationAdjective(const string& language, const string& adjective);
@@ -142,12 +142,12 @@ private:
 	set<string> techs;
 	set<string> inventions;
 
-	map<string, V2Relations*> relations;
+	map<string, const V2Relations*> relations;
 	bool greatNation;
 	bool civilized;
 
-	vector<V2Army*> armies;
-	vector<V2Leader*> leaders;
+	vector<const V2Army*> armies;
+	vector<const V2Leader*> leaders;
 
 	double educationSpending;
 	double militarySpending;

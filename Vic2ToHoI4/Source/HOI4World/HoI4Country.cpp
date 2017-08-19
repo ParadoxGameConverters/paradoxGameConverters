@@ -279,7 +279,7 @@ void HoI4Country::initIdeas()
 
 void HoI4Country::convertRelations()
 {
-	map<string, V2Relations*> srcRelations = srcCountry->getRelations();
+	auto srcRelations = srcCountry->getRelations();
 	for (auto srcRelation: srcRelations)
 	{
 		const string& HoI4Tag = CountryMapper::getHoI4Tag(srcRelation.second->getTag());

@@ -39,7 +39,7 @@ HoI4Relations::HoI4Relations(string newTag)
 }
 
 
-HoI4Relations::HoI4Relations(string newTag, V2Relations* oldRelations)
+HoI4Relations::HoI4Relations(string newTag, const V2Relations* oldRelations)
 {
 	tag					= newTag;
 	value					= oldRelations->getRelations();

@@ -43,12 +43,12 @@ class V2Diplomacy
 		V2Diplomacy()	{ agreements.clear(); };
 		V2Diplomacy(shared_ptr<Object> obj);
 
-		const vector<V2Agreement*>& getAgreements() const	{ return agreements; }
+		const vector<const V2Agreement*>& getAgreements() const	{ return agreements; }
 
 	private:
 		bool isARelevantDiplomaticObject(shared_ptr<Object> obj) const;
 
-		vector<V2Agreement*>	agreements;
+		vector<const V2Agreement*>	agreements;
 };
 
 

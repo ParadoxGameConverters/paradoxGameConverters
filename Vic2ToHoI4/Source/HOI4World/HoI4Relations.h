@@ -36,7 +36,7 @@ class HoI4Relations
 {
 	public:
 		HoI4Relations(string newTag);
-		HoI4Relations(string newTag, V2Relations* oldRelations);
+		HoI4Relations(string newTag, const V2Relations* oldRelations);
 
 		string	getTag()				const { return tag; };
 		int		getRelations()		const { return value; };
