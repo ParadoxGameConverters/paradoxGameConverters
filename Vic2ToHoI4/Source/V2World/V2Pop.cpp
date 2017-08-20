@@ -27,12 +27,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Pop::V2Pop(shared_ptr<Object> obj)
+V2Pop::V2Pop(shared_ptr<Object> obj):
+	size(0),
+	type(obj->getKey()),
+	culture(obj->getLeaves()[2]->getKey()),
+	literacy(0.0)
 {
-	type = obj->getKey();
-
-	culture = obj->getLeaves()[2]->getKey();
-
 	vector<shared_ptr<Object>> childObj = obj->getValue("size");
 	if (childObj.size() > 0)
 	{

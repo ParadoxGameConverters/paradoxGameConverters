@@ -27,13 +27,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 V2Agreement::V2Agreement(shared_ptr<Object> obj):
-	type(""),
+	type(obj->getKey()),
 	country1(""),
 	country2(""),
 	start_date()
 {
-	type = obj->getKey();
-
 	vector<shared_ptr<Object>> objFirst = obj->getValue("first");
 	if (objFirst.size() > 0)
 	{

@@ -35,13 +35,39 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Country::V2Country(shared_ptr<Object> countryObj)
+V2Country::V2Country(shared_ptr<Object> countryObj):
+	tag(countryObj->getKey()),
+	color(),
+	states(),
+	provinces(),
+	cores(),
+	capital(0),
+	primaryCulture(""),
+	primaryCultureGroup(""),
+	acceptedCultures(),
+	techs(),
+	inventions(),
+	relations(),
+	greatNation(false),
+	civilized(false),
+	armies(),
+	leaders(),
+	educationSpending(0.0),
+	militarySpending(0.0),
+	revanchism(0.0),
+	warExhaustion(0.0),
+	badboy(0.0),
+	government(""),
+	reformsArray(),
+	upperHouseComposition(),
+	rulingPartyID(0),	// Bad value, but normal for Rebel faction.
+	activePartyIDs(),
+	domainName(""),
+	domainAdjective(""),
+	namesByLanguage(),
+	adjectivesByLanguage(),
+	human(false)
 {
-	tag = countryObj->getKey();
-	provinces.clear();
-	cores.clear();
-	greatNation = false;
-
 	readInDomainNameAndAdjective(countryObj);
 	readInCapital(countryObj);
 	readInCultures(countryObj);
@@ -72,11 +98,6 @@ void V2Country::readInDomainNameAndAdjective(shared_ptr<Object> countryObj)
 		domainName = nameObj[0]->getLeaf();
 		domainAdjective = domainName;
 	}
-	else
-	{
-		domainName = "";
-		domainAdjective = "";
-	}
 }
 
 
@@ -86,10 +107,6 @@ void V2Country::readInCapital(shared_ptr<Object> countryObj)
 	if (capitalObjs.size() > 0)
 	{
 		capital = stoi(capitalObjs[0]->getLeaf());
-	}
-	else
-	{
-		capital = 0;
 	}
 }
 
@@ -101,10 +118,6 @@ void V2Country::readInCultures(shared_ptr<Object> countryObj)
 	{
 		primaryCulture = primaryCultureObjs[0]->getLeaf();
 		acceptedCultures.insert(primaryCulture);
-	}
-	else
-	{
-		primaryCulture = "";
 	}
 
 	primaryCultureGroup = cultureGroupMapper::getCultureGroup(primaryCulture);
@@ -128,10 +141,6 @@ void V2Country::readInCivilized(shared_ptr<Object> countryObj)
 	{
 		civilized = (civilizedObjs[0]->getLeaf() == "yes");
 	}
-	else
-	{
-		civilized = false;
-	}
 }
 
 
@@ -152,7 +161,6 @@ void V2Country::readInInventions(shared_ptr<Object> countryObj)
 {
 	inventionNumToName inventionNumsToNames = getInventionNums();
 
-	inventions.clear();
 	vector<shared_ptr<Object>> inventionsObjs = countryObj->getValue("active_inventions");
 	if (inventionsObjs.size() > 0)
 	{
@@ -175,7 +183,6 @@ void V2Country::readInInventions(shared_ptr<Object> countryObj)
 
 void V2Country::readInPoliticalParties(shared_ptr<Object> countryObj)
 {
-	activePartyIDs.clear();
 	vector<shared_ptr<Object>> partyObjs = countryObj->getValue("active_party");
 	for (auto partyObj : partyObjs)
 	{
@@ -191,10 +198,6 @@ void V2Country::readInPoliticalParties(shared_ptr<Object> countryObj)
 	{
 		rulingPartyID = activePartyIDs[0];
 	}
-	else
-	{
-		rulingPartyID = 0; // Bad value, but normal for Rebel faction.
-	}
 }
 
 
@@ -208,10 +211,6 @@ void V2Country::readInSpending(shared_ptr<Object> countryObj)
 		{
 			educationSpending = stof(settingsObjs[0]->getLeaf());
 		}
-		else
-		{
-			educationSpending = 0.0;
-		}
 	}
 
 	spendingObjs = countryObj->getValue("military_spending");
@@ -221,10 +220,6 @@ void V2Country::readInSpending(shared_ptr<Object> countryObj)
 		if (settingsObjs.size() > 0)
 		{
 			militarySpending = stof(settingsObjs[0]->getLeaf());
-		}
-		else
-		{
-			militarySpending = 0.0;
 		}
 	}
 }
@@ -237,10 +232,6 @@ void V2Country::readInRevanchism(shared_ptr<Object> countryObj)
 	{
 		revanchism = stof(revanchismObjs[0]->getLeaf());
 	}
-	else
-	{
-		revanchism = 0.0;
-	}
 }
 
 
@@ -251,10 +242,6 @@ void V2Country::readInWarExhaustion(shared_ptr<Object> countryObj)
 	{
 		warExhaustion = stof(warExhaustionObjs[0]->getLeaf());
 	}
-	else
-	{
-		warExhaustion = 0.0;
-	}
 }
 
 void V2Country::readInBadBoy(shared_ptr<Object> countryObj)
@@ -263,10 +250,6 @@ void V2Country::readInBadBoy(shared_ptr<Object> countryObj)
 	if (badBoyObjs.size() > 0)
 	{
 		badboy = stof(badBoyObjs[0]->getLeaf());
-	}
-	else
-	{
-		badboy = 0.0;
 	}
 }
 
@@ -292,10 +275,6 @@ void V2Country::readInGovernment(shared_ptr<Object> countryObj)
 	if (governmentObjs.size() > 0)
 	{
 		government = governmentObjs[0]->getLeaf();
-	}
-	else
-	{
-		government = "";
 	}
 }
 
@@ -357,7 +336,6 @@ bool V2Country::isCountryTag(const string& potentialTag)
 
 void V2Country::readInMilitary(shared_ptr<Object> countryObj)
 {
-	armies.clear();
 	vector<shared_ptr<Object>> armyObjs = countryObj->getValue("army");
 	for (auto armyObj : armyObjs)
 	{
@@ -384,7 +362,6 @@ void V2Country::readInMilitary(shared_ptr<Object> countryObj)
 
 void V2Country::readInLeaders(shared_ptr<Object> countryObj)
 {
-	leaders.clear();
 	vector<shared_ptr<Object>> leaderObjs = countryObj->getValue("leader");
 	for (auto leaderObj : leaderObjs)
 	{
@@ -416,10 +393,6 @@ void V2Country::detectIfHuman(shared_ptr<Object> countryObj)
 	if (countryObj->getValue("human").size() > 0)
 	{
 		human = true;
-	}
-	else
-	{
-		human = false;
 	}
 }
 

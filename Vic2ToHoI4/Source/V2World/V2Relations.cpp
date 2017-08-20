@@ -26,10 +26,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Relations::V2Relations(shared_ptr<Object> relationsObj)
+V2Relations::V2Relations(shared_ptr<Object> relationsObj):
+	tag(relationsObj->getKey()),
+	value(0),
+	level(2),
+	militaryAccess(false),
+	lastSentDiplomat(),
+	lastWar(),
+	truceUntil()
 {
-	tag = relationsObj->getKey();
-
 	setValue(relationsObj);
 	setMilitaryAccess(relationsObj);
 	setLastDiplomat(relationsObj);
@@ -46,10 +51,6 @@ void V2Relations::setValue(shared_ptr<Object> relationsObj)
 	{
 		value = stoi(valueObjs[0]->getLeaf());
 	}
-	else
-	{
-		value = 0;
-	}
 }
 
 
@@ -59,10 +60,6 @@ void V2Relations::setMilitaryAccess(shared_ptr<Object> relationsObj)
 	if (maObjs.size() > 0)
 	{
 		militaryAccess = (maObjs[0]->getLeaf() == "yes");
-	}
-	else
-	{
-		militaryAccess = false;
 	}
 }
 

@@ -27,7 +27,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Diplomacy::V2Diplomacy(shared_ptr<Object> obj)
+V2Diplomacy::V2Diplomacy(shared_ptr<Object> obj):
+	agreements()
 {
 	for (auto agreementObj: obj->getLeaves())
 	{
