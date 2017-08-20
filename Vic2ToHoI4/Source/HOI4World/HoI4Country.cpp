@@ -1338,7 +1338,7 @@ void HoI4Country::outputEquipmentStockpile(ofstream& output) const
 {
 	for (auto eqp : equipmentStockpile) 
 	{
-		output << "add_equipment_to_stockpile = { type = " << eqp.first << " amount = " << eqp.second << " producer = " << tag << "\n";
+		output << "add_equipment_to_stockpile = { type = " << eqp.first << " amount = " << eqp.second << " producer = " << tag << " }\n";
 	}	
 	output << "\n";
 }
