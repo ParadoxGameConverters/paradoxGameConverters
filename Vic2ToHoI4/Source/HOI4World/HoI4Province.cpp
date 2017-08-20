@@ -33,7 +33,7 @@ using namespace std;
 
 
 
-HoI4Province::HoI4Province(string Owner, int State)
+HoI4Province::HoI4Province(const string& Owner, int State)
 {
 	//filenames.insert(/*make_pair(_filename, _filename)*/);
 	coastal				= false;
@@ -174,7 +174,7 @@ void HoI4Province::convertFromOldProvince(const V2Province* oldProvince)
 }
 
 
-void HoI4Province::addCore(string newCore)
+void HoI4Province::addCore(const string& newCore)
 {
 	// only add if unique
 	if ( find(cores.begin(), cores.end(), newCore) == cores.end() )
@@ -184,7 +184,7 @@ void HoI4Province::addCore(string newCore)
 }
 
 
-void HoI4Province::addFilename(string _filename)
+void HoI4Province::addFilename(const string& _filename)
 {
 	// only add if unique
 	if (filenames.find(_filename) == filenames.end())

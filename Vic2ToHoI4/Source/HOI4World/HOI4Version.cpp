@@ -72,7 +72,7 @@ HOI4Version::HOI4Version(string version)
 }
 
 
-bool HOI4Version::operator >= (HOI4Version& rhs) const
+bool HOI4Version::operator >= (const HOI4Version& rhs) const
 {
 	if (first > rhs.first)
 	{
@@ -97,7 +97,7 @@ bool HOI4Version::operator >= (HOI4Version& rhs) const
 }
 
 
-ostream& operator << (ostream& out, HOI4Version& version)
+ostream& operator << (ostream& out, const HOI4Version& version)
 {
 	out << version.first << '.' << version.second << '.' << version.third;
 

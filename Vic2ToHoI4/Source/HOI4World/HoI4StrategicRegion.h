@@ -36,8 +36,8 @@ using namespace std;
 class HoI4StrategicRegion
 {
 	public:
-		HoI4StrategicRegion(string _filename);
-		void output(string path);
+		HoI4StrategicRegion(const string& _filename);
+		void output(const string& path) const;
 
 		int			getID() const				{ return ID; }
 		vector<int>	getOldProvinces() const	{ return oldProvinces; }

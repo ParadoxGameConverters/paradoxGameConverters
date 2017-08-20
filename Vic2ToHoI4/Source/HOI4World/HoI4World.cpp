@@ -93,7 +93,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 }
 
 
-HoI4Country * HoI4World::findCountry(string countryTag)
+HoI4Country* HoI4World::findCountry(const string& countryTag)
 {
 	auto country = countries.find(countryTag);
 	if (country == countries.end())
@@ -389,7 +389,7 @@ map<string, double> HoI4World::getIndustrialWorkersPerCountry()
 }
 
 
-double HoI4World::getTotalWorldWorkers(map<string, double> industrialWorkersPerCountry)
+double HoI4World::getTotalWorldWorkers(const map<string, double>& industrialWorkersPerCountry)
 {
 	double totalWorldWorkers = 0.0;
 	for (auto countryWorkers: industrialWorkersPerCountry)
@@ -401,7 +401,7 @@ double HoI4World::getTotalWorldWorkers(map<string, double> industrialWorkersPerC
 }
 
 
-map<string, double> HoI4World::adjustWorkers(map<string, double> industrialWorkersPerCountry, double totalWorldWorkers)
+map<string, double> HoI4World::adjustWorkers(const map<string, double>& industrialWorkersPerCountry, double totalWorldWorkers)
 {
 	double meanWorkersPerCountry = totalWorldWorkers / industrialWorkersPerCountry.size();
 
@@ -424,7 +424,7 @@ map<string, double> HoI4World::adjustWorkers(map<string, double> industrialWorke
 }
 
 
-double HoI4World::getWorldwideWorkerFactoryRatio(map<string, double> workersInCountries, double totalWorldWorkers)
+double HoI4World::getWorldwideWorkerFactoryRatio(const map<string, double>& workersInCountries, double totalWorldWorkers)
 {
 	double baseIndustry = 0.0;
 	for (auto countryWorkers: workersInCountries)
@@ -446,7 +446,7 @@ double HoI4World::getWorldwideWorkerFactoryRatio(map<string, double> workersInCo
 }
 
 
-void HoI4World::putIndustryInStates(map<string, double> factoryWorkerRatios)
+void HoI4World::putIndustryInStates(const map<string, double>& factoryWorkerRatios)
 {
 	for (auto HoI4State : states->getStates())
 	{
@@ -537,7 +537,7 @@ void HoI4World::reportDefaultIndustry()
 }
 
 
-pair<string, array<int, 3>> HoI4World::getDefaultStateIndustry(string stateFilename)
+pair<string, array<int, 3>> HoI4World::getDefaultStateIndustry(const string& stateFilename)
 {
 	shared_ptr<Object> fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/history/states/" + stateFilename);
 	if (fileObj == nullptr)
@@ -1215,7 +1215,7 @@ void HoI4World::convertMilitaries()
 	convertAirforces(unitMap);
 }
 
-void HoI4World::convertArmies(map<string, HoI4UnitMap> unitMap, vector<HoI4DivisionTemplateType> divisionTemplates)
+void HoI4World::convertArmies(const map<string, HoI4UnitMap>& unitMap, const vector<HoI4DivisionTemplateType>& divisionTemplates)
 {
 	LOG(LogLevel::Info) << "Converting armies";
 
@@ -1225,7 +1225,7 @@ void HoI4World::convertArmies(map<string, HoI4UnitMap> unitMap, vector<HoI4Divis
 	}
 }
 
-void HoI4World::convertNavies(map<string, HoI4UnitMap> unitMap)
+void HoI4World::convertNavies(const map<string, HoI4UnitMap>& unitMap)
 {
 	LOG(LogLevel::Info) << "Converting navies";
 
@@ -1237,7 +1237,7 @@ void HoI4World::convertNavies(map<string, HoI4UnitMap> unitMap)
 }
 
 
-void HoI4World::convertAirforces(map<string, HoI4UnitMap> unitMap)
+void HoI4World::convertAirforces(const map<string, HoI4UnitMap>& unitMap)
 {
 	LOG(LogLevel::Info) << "Converting air forces";
 
@@ -1302,7 +1302,7 @@ void HoI4World::addStrengthVPs()
 }
 
 
-double HoI4World::getStrongestCountryStrength()
+double HoI4World::getStrongestCountryStrength() const
 {
 	double greatestStrength = 0.0;
 	for (auto country: countries)
@@ -1318,7 +1318,7 @@ double HoI4World::getStrongestCountryStrength()
 }
 
 
-int HoI4World::calculateStrengthVPs(HoI4Country* country, double greatestStrength)
+int HoI4World::calculateStrengthVPs(const HoI4Country* country, double greatestStrength) const
 {
 	double relativeStrength = country->getStrengthOverTime(1.0) / greatestStrength;
 	return static_cast<int>(relativeStrength * 30.0);
@@ -1451,7 +1451,7 @@ void HoI4World::createFactions()
 }
 
 
-void HoI4World::logFactionMember(ofstream& factionsLog, const HoI4Country* member)
+void HoI4World::logFactionMember(ofstream& factionsLog, const HoI4Country* member) const
 {
 	factionsLog << member->getSourceCountry()->getName("english") << ",";
 	factionsLog << member->getGovernmentIdeology() << ",";
@@ -1461,7 +1461,7 @@ void HoI4World::logFactionMember(ofstream& factionsLog, const HoI4Country* membe
 }
 
 
-string HoI4World::returnSphereLeader(HoI4Country* possibleSphereling)
+string HoI4World::returnSphereLeader(const HoI4Country* possibleSphereling) const
 {
 	for (auto greatPower: greatPowers)
 	{
@@ -1480,7 +1480,7 @@ string HoI4World::returnSphereLeader(HoI4Country* possibleSphereling)
 }
 
 
-bool HoI4World::governmentsAllowFaction(string leaderIdeology, string allyGovernment)
+bool HoI4World::governmentsAllowFaction(const string& leaderIdeology, const string& allyGovernment) const
 {
 	if (leaderIdeology == allyGovernment)
 	{

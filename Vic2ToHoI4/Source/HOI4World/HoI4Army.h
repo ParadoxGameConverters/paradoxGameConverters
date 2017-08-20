@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -150,10 +150,10 @@ using namespace std;
 class HoI4RegimentType
 {
 	public:
-		HoI4RegimentType(string type, int x, int y);
+		HoI4RegimentType(const string& type, int x, int y);
 		const string getType() const { return type; }
 
-		friend ostream& operator << (ostream& out, HoI4RegimentType regiment);
+		friend ostream& operator << (ostream& out, const HoI4RegimentType& regiment);
 
 	private:
 		string	type;
@@ -165,12 +165,12 @@ class HoI4RegimentType
 class HoI4DivisionTemplateType
 {
 	public:
-		HoI4DivisionTemplateType(string name);
+		HoI4DivisionTemplateType(const string& name);
 
 		friend ostream& operator << (ostream& out, HoI4DivisionTemplateType);
 
-		void addRegiment(HoI4RegimentType newRegiment)			{ regiments.push_back(newRegiment); }
-		void addSupportRegiment(HoI4RegimentType newRegiment)	{ supportRegiments.push_back(newRegiment); }
+		void addRegiment(const HoI4RegimentType& newRegiment)			{ regiments.push_back(newRegiment); }
+		void addSupportRegiment(const HoI4RegimentType& newRegiment)	{ supportRegiments.push_back(newRegiment); }
 		string getName();
 		vector<HoI4RegimentType> getRegiments();
 		vector<HoI4RegimentType> getSupportRegiments();
@@ -185,9 +185,9 @@ class HoI4DivisionTemplateType
 class HoI4DivisionType
 {
 	public:
-		HoI4DivisionType(string name, string type, int location);
+		HoI4DivisionType(const string& name, const string& type, int location);
 
-		friend ostream& operator << (ostream& out, HoI4DivisionType);
+		friend ostream& operator << (ostream& out, const HoI4DivisionType&);
 
 	private:
 		string	name;
@@ -199,7 +199,7 @@ class HoI4UnitMap
 {
 	public: 
 
-		HoI4UnitMap(string category,string type,string equipment,int size);
+		HoI4UnitMap(const string& category, const string& type, const string& equipment, int size);
 		HoI4UnitMap();
 
 		string getCategory();

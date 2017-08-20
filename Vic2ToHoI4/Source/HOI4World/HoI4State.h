@@ -42,13 +42,13 @@ class Vic2State;
 class HoI4State
 {
 	public:
-		HoI4State(const Vic2State* sourceState, int _ID, string _ownerTag);
+		HoI4State(const Vic2State* sourceState, int _ID, const string& _ownerTag);
 
-		void output(string filename);
+		void output(const string& filename) const;
 
 		void addProvince(int province) { provinces.insert(province); }
 		void setAsCapitalState() { capitalState = true; civFactories++; }
-		void addResource(string resource, double amount)	{ resources[resource] += amount; }
+		void addResource(const string& resource, double amount)	{ resources[resource] += amount; }
 		void addAirBase(int newAirBase) { airbaseLevel += newAirBase; if (airbaseLevel > 10) airbaseLevel = 10; }
 		void addVictoryPointValue(int additionalValue) { victoryPointValue += additionalValue; }
 		void setVPLocation(int province) { victoryPointPosition = province; }

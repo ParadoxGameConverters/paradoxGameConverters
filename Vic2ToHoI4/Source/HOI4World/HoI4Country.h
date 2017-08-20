@@ -56,18 +56,18 @@ struct advisorCompare;
 class HoI4Country
 {
 	public:
-		HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld);
+		HoI4Country(const string& _tag, const string& _commonCountryFile, const HoI4World* _theWorld);
 
-		void initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const map<int, int>& stateMap, map<int, HoI4State*> states);
+		void initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states);
 		void initFromHistory();
 		void setGovernmentToNeutral();
 		void convertIdeologySupport(const set<string>& majorIdeologies);
-		void		convertNavy(map<string, HoI4UnitMap> unitMap);
-		void		convertConvoys(map<string, HoI4UnitMap> unitMap);
-		void		convertAirforce(map<string, HoI4UnitMap> unitMap);
-		void		convertArmyDivisions(map<string, HoI4UnitMap> unitMap, vector<HoI4DivisionTemplateType> divisionTemplates);		
-		void		setTechnology(string tech, int level);
-		void		setResearchBonus(string tech, int bonus);
+		void		convertNavy(const map<string, HoI4UnitMap>& unitMap);
+		void		convertConvoys(const map<string, HoI4UnitMap>& unitMap);
+		void		convertAirforce(const map<string, HoI4UnitMap>& unitMap);
+		void		convertArmyDivisions(const map<string, HoI4UnitMap>& unitMap, const vector<HoI4DivisionTemplateType>& divisionTemplates);		
+		void		setTechnology(const string& tech, int level);
+		void		setResearchBonus(const string& tech, int bonus);
 		void addState(HoI4State* _state);
 		void calculateIndustry();
 		void reportIndustry(ofstream& out);
@@ -78,13 +78,13 @@ class HoI4Country
 		void output(const set<const HoI4Advisor*, advisorCompare>& ideologicalMinisters) const;
 		void outputIdeaGraphics(ofstream& ideasFile) const;
 
-		void		setSphereLeader(string SphereLeader) { sphereLeader == SphereLeader; }
-		void		setFaction(HoI4Faction* newFaction) { faction = newFaction; }
+		void		setSphereLeader(const string& SphereLeader) { sphereLeader == SphereLeader; }
+		void		setFaction(const HoI4Faction* newFaction) { faction = newFaction; }
 		void		setFactionLeader() { factionLeader = true; }
-		void addNationalFocus(HoI4FocusTree* NF) { nationalFocus = NF; }
+		void addNationalFocus(const HoI4FocusTree* NF) { nationalFocus = NF; }
 		void setGreatPower() { greatPower = true; }
 
-		HoI4Relations*								getRelations(string withWhom) const;
+		const HoI4Relations*								getRelations(string withWhom) const;
 		HoI4State* getCapital();
 		double getStrengthOverTime(double years) const;
 		double getMilitaryStrength() const;
@@ -95,11 +95,10 @@ class HoI4Country
 		set<int>									getProvinces() const { return provinces; }
 		string										getTag() const { return tag; }
 		const V2Country*							getSourceCountry() const { return srcCountry; }
-		HoI4Faction*								getFaction() const { return faction; }
+		const HoI4Faction*								getFaction() const { return faction; }
 		string getGovernmentIdeology() const { return governmentIdeology; }
 		map<string, int> getIdeologySupport() const { return ideologySupport; }
 		const set<string>&						getAllies() const { return allies; }
-		set<string>&								editAllies() { return allies; }
 		const set<string>&							getPuppets() const { return puppets; }
 		const string&								getPuppetmaster() const { return puppetMaster; }
 		const map<string, double>&						getPracticals() const { return practicals; }
@@ -120,8 +119,10 @@ class HoI4Country
 		bool isGreatPower() const { return greatPower; }
 
 		void setProvinceCount(int count) { provinceCount = count; }
-		void setPuppetmaster(string _master) { puppetMaster = _master; }
+		void setPuppetmaster(const string& _master) { puppetMaster = _master; }
 		void addPuppet(const string& countryTag) { puppets.insert(countryTag); }
+
+		set<string>&								editAllies() { return allies; }
 
 	private:
 		void determineFilename();
@@ -162,7 +163,7 @@ class HoI4Country
 		void outputIdeas(const set<const HoI4Advisor*, advisorCompare>& ideologicalAdvisors) const;
 
 
-		HoI4World* theWorld;
+		const HoI4World* theWorld;
 		const V2Country* srcCountry;
 		string filename;
 
@@ -186,7 +187,7 @@ class HoI4Country
 		map<string, HoI4Relations*>	relations;
 		Color									color;
 		double								nationalUnity;
-		HoI4Faction*						faction;
+		const HoI4Faction*						faction;
 		bool									factionLeader;
 		set<string>							allies;
 		set<string> puppets;
@@ -230,7 +231,7 @@ class HoI4Country
 		int											navalLocation;
 		map<string, int>							equipmentStockpile;
 
-		HoI4FocusTree* nationalFocus;
+		const HoI4FocusTree* nationalFocus;
 };
 
 #endif	// HoI4COUNTRY_H_

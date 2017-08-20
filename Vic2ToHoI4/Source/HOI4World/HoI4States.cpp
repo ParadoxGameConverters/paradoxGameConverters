@@ -258,7 +258,7 @@ bool HoI4States::isProvinceValid(int provNum) const
 }
 
 
-bool HoI4States::isProvinceOwnedByCountry(int provNum, string stateOwner) const
+bool HoI4States::isProvinceOwnedByCountry(int provNum, const string& stateOwner) const
 {
 	auto provinceOwnerItr = ownersMap.find(provNum);
 	if ((provinceOwnerItr == ownersMap.end()) || (provinceOwnerItr->second != stateOwner))

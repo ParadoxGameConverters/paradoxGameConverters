@@ -39,7 +39,7 @@ class HoI4Building
 	public:
 		HoI4Building(int _stateID, double _xCoordinate, double _zCoordinate);
 
-		friend ostream& operator << (ostream& out, HoI4Building& building);
+		friend ostream& operator << (ostream& out, const HoI4Building& building);
 
 		virtual ostream& print(ostream& out) const;
 

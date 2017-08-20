@@ -135,7 +135,7 @@ void HoI4Events::outputWarJustificationEvents() const
 }
 
 
-void HoI4Events::createFactionEvents(const HoI4Country* Leader, HoI4Country* newAlly)
+void HoI4Events::createFactionEvents(const HoI4Country* Leader, const HoI4Country* newAlly)
 {
 	string leaderName = Leader->getSourceCountry()->getName("english");
 	string newAllyname = newAlly->getSourceCountry()->getName("english");
@@ -975,7 +975,7 @@ void HoI4Events::addSuppressedEvents(const set<string>& majorIdeologies)
 }
 
 
-string HoI4Events::getIdeologicalPicture(const string& ideology)
+string HoI4Events::getIdeologicalPicture(const string& ideology) const
 {
 	if (ideology == "communism")
 	{

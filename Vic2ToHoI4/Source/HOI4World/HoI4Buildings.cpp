@@ -42,7 +42,7 @@ HoI4Building::HoI4Building(int _stateID, double _xCoordinate, double _zCoordinat
 }
 
 
-ostream& operator << (ostream& out, HoI4Building& building)
+ostream& operator << (ostream& out, const HoI4Building& building)
 {
 	return building.print(out);
 }

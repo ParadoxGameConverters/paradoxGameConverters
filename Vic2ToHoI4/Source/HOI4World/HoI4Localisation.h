@@ -122,11 +122,11 @@ class HoI4Localisation
 		void AddIdeaLocalisation(const string& idea, const string& localisation);
 
 		void Output() const;
-		void outputCountries(string localisationPath) const;
-		void outputFocuses(string localisationPath) const;
-		void outputStateLocalisations(string localisationPath) const;
-		void outputVPLocalisations(string localisationPath) const;
-		void outputIdeaLocalisations(string localisationPath) const;
+		void outputCountries(const string& localisationPath) const;
+		void outputFocuses(const string& localisationPath) const;
+		void outputStateLocalisations(const string& localisationPath) const;
+		void outputVPLocalisations(const string& localisationPath) const;
+		void outputIdeaLocalisations(const string& localisationPath) const;
 		void outputLocalisations(const string& filenameStart, const languageToLocalisationsMap& localisations) const;
 
 		languageToLocalisationsMap stateLocalisations;

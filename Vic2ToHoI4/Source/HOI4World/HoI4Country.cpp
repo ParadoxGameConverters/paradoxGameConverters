@@ -44,7 +44,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _theWorld)
+HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, const HoI4World* _theWorld)
 {
 	theWorld = _theWorld;
 
@@ -89,10 +89,12 @@ HoI4Country::HoI4Country(string _tag, string _commonCountryFile, HoI4World* _the
 
 	srcCountry = nullptr;
 	human = false;
+
+	convoys = 0;
 }
 
 
-void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const map<int, int>& stateMap, map<int, HoI4State*> states)
+void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states)
 {
 	srcCountry = _srcCountry;
 
@@ -432,7 +434,7 @@ void HoI4Country::convertIdeologySupport(const set<string>& majorIdeologies)
 }
 
 
-void HoI4Country::convertNavy(map<string, HoI4UnitMap> unitMap)
+void HoI4Country::convertNavy(const map<string, HoI4UnitMap>& unitMap)
 {
 	int navalport = 0;
 	
@@ -442,7 +444,7 @@ void HoI4Country::convertNavy(map<string, HoI4UnitMap> unitMap)
 		{
 			string type = regiment->getType();
 			
-			HoI4UnitMap unitInfo = unitMap[type];
+			HoI4UnitMap unitInfo = unitMap.at(type);
 
 			if (unitInfo.getCategory() == "naval") {
 				// Ships get mapped
@@ -462,7 +464,7 @@ void HoI4Country::convertNavy(map<string, HoI4UnitMap> unitMap)
 	}
 }
 
-void HoI4Country::convertConvoys(map<string, HoI4UnitMap> unitMap)
+void HoI4Country::convertConvoys(const map<string, HoI4UnitMap>& unitMap)
 {
 	for (auto army : srcCountry->getArmies())
 	{
@@ -470,7 +472,7 @@ void HoI4Country::convertConvoys(map<string, HoI4UnitMap> unitMap)
 		{
 			string type = regiment->getType();
 
-			HoI4UnitMap unitInfo = unitMap[type];
+			HoI4UnitMap unitInfo = unitMap.at(type);
 
 			if (unitInfo.getCategory() == "convoy") {
 				// Convoys get placed in national stockpile
@@ -480,7 +482,7 @@ void HoI4Country::convertConvoys(map<string, HoI4UnitMap> unitMap)
 	}
 }
 
-void HoI4Country::convertAirforce(map<string, HoI4UnitMap> unitMap)
+void HoI4Country::convertAirforce(const map<string, HoI4UnitMap>& unitMap)
 {
 	for (auto army : srcCountry->getArmies())
 	{
@@ -488,7 +490,7 @@ void HoI4Country::convertAirforce(map<string, HoI4UnitMap> unitMap)
 		{
 			string type = regiment->getType();
 			
-			HoI4UnitMap unitInfo = unitMap[type];
+			HoI4UnitMap unitInfo = unitMap.at(type);
 
 			if (unitInfo.getCategory() == "air") {
 				// Air units get placed in national stockpile
@@ -498,7 +500,7 @@ void HoI4Country::convertAirforce(map<string, HoI4UnitMap> unitMap)
 	}	
 }
 
-void HoI4Country::convertArmyDivisions(map<string, HoI4UnitMap> unitMap, vector<HoI4DivisionTemplateType> divisionTemplates)
+void HoI4Country::convertArmyDivisions(const map<string, HoI4UnitMap>& unitMap, const vector<HoI4DivisionTemplateType>& divisionTemplates)
 {
 	map<string, int> BattalionsAndCompanies;
 
@@ -508,7 +510,7 @@ void HoI4Country::convertArmyDivisions(map<string, HoI4UnitMap> unitMap, vector<
 		{
 			string type = regiment->getType();
 
-			HoI4UnitMap unitInfo = unitMap[type];
+			HoI4UnitMap unitInfo = unitMap.at(type);
 
 			if (unitInfo.getCategory() == "land") {
 				// Calculate how many Battalions and Companies are available after mapping Vic2 armies
@@ -1041,7 +1043,7 @@ void HoI4Country::addProvince(int _province)
 }
 
 
-HoI4Relations* HoI4Country::getRelations(string withWhom) const
+const HoI4Relations* HoI4Country::getRelations(string withWhom) const
 {
 	map<string, HoI4Relations*>::const_iterator i = relations.find(withWhom);
 	if (i != relations.end())
@@ -1055,7 +1057,7 @@ HoI4Relations* HoI4Country::getRelations(string withWhom) const
 }
 
 
-void HoI4Country::setTechnology(string tech, int level)
+void HoI4Country::setTechnology(const string& tech, int level)
 {
 	map<string, int>::iterator techEntry = technologies.find(tech);
 	if ((techEntry == technologies.end()) || (techEntry->second < level))
@@ -1064,7 +1066,7 @@ void HoI4Country::setTechnology(string tech, int level)
 	}
 }
 
-void HoI4Country::setResearchBonus(string tech, int bonus)
+void HoI4Country::setResearchBonus(const string& tech, int bonus)
 {
 	map<string, int>::iterator researchBonusEntry = researchBonuses.find(tech);
 	if ((researchBonusEntry == researchBonuses.end()) || (researchBonusEntry->second < bonus))

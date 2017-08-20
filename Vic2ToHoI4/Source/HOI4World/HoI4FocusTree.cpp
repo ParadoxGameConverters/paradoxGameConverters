@@ -2061,7 +2061,7 @@ HoI4FocusTree* HoI4FocusTree::makeCustomizedCopy(const HoI4Country* country) con
 }
 
 
-void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Country*> CountriesToContain)
+void HoI4FocusTree::addDemocracyNationalFocuses(const HoI4Country* Home, const vector<const HoI4Country*>& CountriesToContain)
 {
 	nextFreeColumn += 3;
 
@@ -2133,7 +2133,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 
 	for (int i = CountriesToContain.size() - 1; i >= 0; i--)
 	{
-		HoI4Country* Country = CountriesToContain[i];
+		const HoI4Country* Country = CountriesToContain[i];
 		//War Plan
 		newFocus = new HoI4Focus;
 		newFocus->id = "WarPlan" + Home->getTag() + Country->getTag();
@@ -2221,7 +2221,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Co
 }
 
 
-void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(HoI4Country* Home, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets)
+void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(const HoI4Country* Home, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets)
 {
 	//Glory to Empire!
 	HoI4Focus* newFocus = new HoI4Focus;
@@ -2952,7 +2952,7 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(HoI4Country* Home, const 
 	}
 }
 
-void HoI4FocusTree::addCommunistCoupBranch(HoI4Country * Home, vector<HoI4Country*> coupTargets)
+void HoI4FocusTree::addCommunistCoupBranch(const HoI4Country * Home, const vector<HoI4Country*>& coupTargets)
 {
 	if (coupTargets.size() > 0)
 	{
@@ -3038,7 +3038,7 @@ void HoI4FocusTree::addCommunistCoupBranch(HoI4Country * Home, vector<HoI4Countr
 	return;
 }
 
-void HoI4FocusTree::addCommunistWarBranch(HoI4Country * Home, vector<HoI4Country*> warTargets, HoI4Events * events)
+void HoI4FocusTree::addCommunistWarBranch(const HoI4Country * Home, const vector<HoI4Country*>& warTargets, const HoI4Events* events)
 {
 	if (warTargets.size() > 0)
 	{
@@ -3123,7 +3123,7 @@ void HoI4FocusTree::addCommunistWarBranch(HoI4Country * Home, vector<HoI4Country
 	}
 }
 
-void HoI4FocusTree::addCommunistGPWarBranch(HoI4Country * Home, vector<HoI4Country*> newAllies, vector<HoI4Country*> GCTargets, HoI4Events * events)
+void HoI4FocusTree::addCommunistGPWarBranch(const HoI4Country * Home, const vector<HoI4Country*>& newAllies, const vector<HoI4Country*>& GCTargets, HoI4Events* events)
 {
 	if (newAllies.size() > 0)
 	{
@@ -3231,7 +3231,7 @@ void HoI4FocusTree::addCommunistGPWarBranch(HoI4Country * Home, vector<HoI4Count
 }
 
 
-void HoI4FocusTree::output(const string& filename)
+void HoI4FocusTree::output(const string& filename) const
 {
 	ofstream out(filename);
 	if (!out.is_open())

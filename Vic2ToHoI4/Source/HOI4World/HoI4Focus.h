@@ -39,7 +39,7 @@ class HoI4Focus
 		HoI4Focus();
 		HoI4Focus(shared_ptr<Object> obj);
 
-		friend ostream& operator << (ostream& output, HoI4Focus& focus);
+		friend ostream& operator << (ostream& output, const HoI4Focus& focus);
 
 		HoI4Focus* makeCustomizedCopy(const string& country) const;
 

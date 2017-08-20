@@ -37,7 +37,7 @@ class HoI4SupplyZone
 	public:
 		HoI4SupplyZone(int _ID, int _value);
 
-		void output(string filename);
+		void output(const string& filename) const;
 
 		void addState(int state)	{ states.push_back(state); }
 

@@ -63,7 +63,7 @@ class HoI4States
 		bool createMatchingHoI4State(const Vic2State* vic2State, int stateID, const string& stateOwner);
 		void addProvincesAndCoresToNewState(HoI4State* newState);
 		bool isProvinceValid(int provNum) const;
-		bool isProvinceOwnedByCountry(int provNum, string stateOwner) const;
+		bool isProvinceOwnedByCountry(int provNum, const string& stateOwner) const;
 		bool isProvinceNotAlreadyAssigned(int provNum) const;
 		unsigned int getTotalManpower() const;
 

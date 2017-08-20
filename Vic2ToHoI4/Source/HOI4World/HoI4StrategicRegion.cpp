@@ -30,7 +30,7 @@ using namespace std;
 
 
 
-HoI4StrategicRegion::HoI4StrategicRegion(string _filename)
+HoI4StrategicRegion::HoI4StrategicRegion(const string& _filename)
 {
 	filename = _filename;
 
@@ -51,7 +51,7 @@ HoI4StrategicRegion::HoI4StrategicRegion(string _filename)
 }
 
 
-void HoI4StrategicRegion::output(string path)
+void HoI4StrategicRegion::output(const string& path) const
 {
 	ofstream out(path + filename);
 	if (!out.is_open())

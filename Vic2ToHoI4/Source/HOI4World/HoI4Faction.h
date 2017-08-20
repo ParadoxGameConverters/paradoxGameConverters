@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,14 +39,14 @@ class HoI4Faction
 {
 
 	public:
-		HoI4Faction(HoI4Country* leader, vector<HoI4Country*> members) { Factionleader = leader; Factionmembers = members; }
+		HoI4Faction(const HoI4Country* leader, vector<HoI4Country*> members) { Factionleader = leader; Factionmembers = members; }
 
-		HoI4Country* getLeader() { return Factionleader; }
-		vector<HoI4Country*> getMembers() { return Factionmembers; }
+		const HoI4Country* getLeader() const { return Factionleader; }
+		vector<HoI4Country*> getMembers() const { return Factionmembers; }
 		void addMember(HoI4Country* addedCon) { Factionmembers.push_back(addedCon); }
 
 	private:
-		HoI4Country* Factionleader;
+		const HoI4Country* Factionleader;
 		vector<HoI4Country*> Factionmembers;
 
 };

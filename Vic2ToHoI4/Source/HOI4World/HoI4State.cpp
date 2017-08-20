@@ -36,7 +36,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, string _ownerTag)
+HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, const string& _ownerTag)
 {
 	sourceState = _sourceState;
 
@@ -64,7 +64,7 @@ HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, string _ownerTag)
 }
 
 
-void HoI4State::output(string _filename)
+void HoI4State::output(const string& _filename) const
 {
 	string filename("output/" + Configuration::getOutputName() + "/history/states/" + _filename);
 	ofstream out(filename);

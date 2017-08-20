@@ -433,31 +433,31 @@ void HoI4Localisation::Output() const
 }
 
 
-void HoI4Localisation::outputCountries(string localisationPath) const
+void HoI4Localisation::outputCountries(const string& localisationPath) const
 {
 	outputLocalisations(localisationPath + "/countries_mod_l_", countryLocalisations);
 }
 
 
-void HoI4Localisation::outputFocuses(string localisationPath) const
+void HoI4Localisation::outputFocuses(const string& localisationPath) const
 {
 	outputLocalisations(localisationPath + "/focus_mod_l_", newFocuses);
 }
 
 
-void HoI4Localisation::outputStateLocalisations(string localisationPath) const
+void HoI4Localisation::outputStateLocalisations(const string& localisationPath) const
 {
 	outputLocalisations(localisationPath + "/state_names_l_", stateLocalisations);
 }
 
 
-void HoI4Localisation::outputVPLocalisations(string localisationPath) const
+void HoI4Localisation::outputVPLocalisations(const string& localisationPath) const
 {
 	outputLocalisations(localisationPath + "/victory_points_l_", VPLocalisations);
 }
 
 
-void HoI4Localisation::outputIdeaLocalisations(string localisationPath) const
+void HoI4Localisation::outputIdeaLocalisations(const string& localisationPath) const
 {
 	outputLocalisations(localisationPath + "/converted_ideas_l_", ideaLocalisations);
 }

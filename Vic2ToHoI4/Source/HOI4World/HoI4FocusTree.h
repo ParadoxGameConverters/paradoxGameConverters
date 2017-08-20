@@ -49,13 +49,13 @@ class HoI4FocusTree
 
 		void addGenericFocusTree(const set<string>& majorIdeologies);
 
-		void addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Country*> CountriesToContain);
-		void addAbsolutistEmpireNationalFocuses(HoI4Country* country, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets);
-		void addCommunistCoupBranch(HoI4Country* Home, vector<HoI4Country*> coupTargets);
-		void addCommunistWarBranch(HoI4Country* Home, vector<HoI4Country*> warTargets, HoI4Events* events);
-		void addCommunistGPWarBranch(HoI4Country* Home, vector<HoI4Country*> newAllies, vector<HoI4Country*> GCTargets, HoI4Events* events);
+		void addDemocracyNationalFocuses(const HoI4Country* Home, const vector<const HoI4Country*>& CountriesToContain);
+		void addAbsolutistEmpireNationalFocuses(const HoI4Country* country, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets);
+		void addCommunistCoupBranch(const HoI4Country* Home, const vector<HoI4Country*>& coupTargets);
+		void addCommunistWarBranch(const HoI4Country* Home, const vector<HoI4Country*>& warTargets, const HoI4Events* events);
+		void addCommunistGPWarBranch(const HoI4Country* Home, const vector<HoI4Country*>& newAllies, const vector<HoI4Country*>& GCTargets, HoI4Events* events);
 
-		void output(const string& filename);
+		void output(const string& filename) const;
 
 		void addFocus(HoI4Focus* newFocus) { focuses.push_back(newFocus); }
 

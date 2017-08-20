@@ -204,7 +204,7 @@ HoI4Focus* HoI4Focus::makeCustomizedCopy(const string& country) const
 }
 
 
-ostream& operator << (ostream& output, HoI4Focus& focus)
+ostream& operator << (ostream& output, const HoI4Focus& focus)
 {
 	output << "	focus = {\n";
 	output << "		id = " << focus.id << "\n";
