@@ -78,7 +78,7 @@ provinceNeighborMapper::provinceNeighborMapper()
 }
 
 
-Color provinceNeighborMapper::getCenterColor(bitmap_image& provinces, point position)
+Color provinceNeighborMapper::getCenterColor(bitmap_image& provinces, point position) const
 {
 	rgb_t color;
 	provinces.get_pixel(position.first, position.second, color);
@@ -88,7 +88,7 @@ Color provinceNeighborMapper::getCenterColor(bitmap_image& provinces, point posi
 }
 
 
-Color provinceNeighborMapper::getAboveColor(bitmap_image& provinces, point position, int height)
+Color provinceNeighborMapper::getAboveColor(bitmap_image& provinces, point position, int height) const
 {
 	if (position.second > 0)
 	{
@@ -103,7 +103,7 @@ Color provinceNeighborMapper::getAboveColor(bitmap_image& provinces, point posit
 }
 
 
-Color provinceNeighborMapper::getBelowColor(bitmap_image& provinces, point position, int height)
+Color provinceNeighborMapper::getBelowColor(bitmap_image& provinces, point position, int height) const
 {
 	if (position.second < height - 1)
 	{
@@ -118,7 +118,7 @@ Color provinceNeighborMapper::getBelowColor(bitmap_image& provinces, point posit
 }
 
 
-Color provinceNeighborMapper::getLeftColor(bitmap_image& provinces, point position, int width)
+Color provinceNeighborMapper::getLeftColor(bitmap_image& provinces, point position, int width) const
 {
 	if (position.first > 0)
 	{
@@ -137,7 +137,7 @@ Color provinceNeighborMapper::getLeftColor(bitmap_image& provinces, point positi
 }
 
 
-Color provinceNeighborMapper::getRightColor(bitmap_image& provinces, point position, int width)
+Color provinceNeighborMapper::getRightColor(bitmap_image& provinces, point position, int width) const
 {
 	if (position.first < width - 1)
 	{
@@ -214,7 +214,7 @@ void provinceNeighborMapper::addPointToBorder(int mainProvince, int neighborProv
 }
 
 
-const set<int> provinceNeighborMapper::GetNeighbors(int province)
+const set<int> provinceNeighborMapper::GetNeighbors(int province) const
 {
 	auto neighbors = provinceNeighbors.find(province);
 	if (neighbors != provinceNeighbors.end())
@@ -229,7 +229,7 @@ const set<int> provinceNeighborMapper::GetNeighbors(int province)
 }
 
 
-const point provinceNeighborMapper::GetBorderCenter(int mainProvince, int neighbor)
+const point provinceNeighborMapper::GetBorderCenter(int mainProvince, int neighbor) const
 {
 	auto bordersWithNeighbors = borders.find(mainProvince);
 	if (bordersWithNeighbors == borders.end())

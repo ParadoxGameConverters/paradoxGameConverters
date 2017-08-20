@@ -65,9 +65,9 @@ class coastalHoI4ProvincesMapper
 		}
 
 		coastalHoI4ProvincesMapper();
-		map<int, province> getProvinces();
+		map<int, province> getProvinces() const;
 
-		bool IsProvinceCoastal(int provinceNum);
+		bool IsProvinceCoastal(int provinceNum) const;
 
 		map<int, int> coastalProvinces;	// province, connecting sea province
 };

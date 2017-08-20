@@ -50,7 +50,7 @@ namesMapper::namesMapper()
 }
 
 
-void namesMapper::processVic2CulturesFile(string filename)
+void namesMapper::processVic2CulturesFile(const string& filename)
 {
 	shared_ptr<Object> obj = parser_8859_15::doParseFile(filename);
 	if (obj == nullptr)
@@ -188,7 +188,7 @@ void namesMapper::checkForNames()
 }
 
 
-vector<string> namesMapper::GetMaleNames(string culture) const
+vector<string> namesMapper::GetMaleNames(const string& culture) const
 {
 	vector<string> maleNames;
 
@@ -206,7 +206,7 @@ vector<string> namesMapper::GetMaleNames(string culture) const
 }
 
 
-vector<string> namesMapper::GetFemaleNames(string culture) const
+vector<string> namesMapper::GetFemaleNames(const string& culture) const
 {
 	vector<string> femaleNames;
 
@@ -224,7 +224,7 @@ vector<string> namesMapper::GetFemaleNames(string culture) const
 }
 
 
-vector<string> namesMapper::GetSurnames(string culture) const
+vector<string> namesMapper::GetSurnames(const string& culture) const
 {
 	vector<string> surnames;
 
@@ -242,7 +242,7 @@ vector<string> namesMapper::GetSurnames(string culture) const
 }
 
 
-vector<string> namesMapper::GetCallsigns(string culture) const
+vector<string> namesMapper::GetCallsigns(const string& culture) const
 {
 	vector<string> callsigns;
 
@@ -260,7 +260,7 @@ vector<string> namesMapper::GetCallsigns(string culture) const
 }
 
 
-string namesMapper::GetMaleName(string culture)
+string namesMapper::GetMaleName(const string& culture)
 {
 	vector<string> firstNames = GetMaleNames(culture);
 
@@ -269,7 +269,7 @@ string namesMapper::GetMaleName(string culture)
 }
 
 
-string namesMapper::GetFemaleName(string culture)
+string namesMapper::GetFemaleName(const string& culture)
 {
 	vector<string> firstNames = GetFemaleNames(culture);
 
@@ -278,7 +278,7 @@ string namesMapper::GetFemaleName(string culture)
 }
 
 
-string namesMapper::GetSurname(string culture)
+string namesMapper::GetSurname(const string& culture)
 {
 	vector<string> surnames = GetSurnames(culture);
 
@@ -287,7 +287,7 @@ string namesMapper::GetSurname(string culture)
 }
 
 
-string namesMapper::GetCallsign(string culture)
+string namesMapper::GetCallsign(const string& culture)
 {
 	vector<string> callsigns = GetCallsigns(culture);
 
@@ -296,43 +296,43 @@ string namesMapper::GetCallsign(string culture)
 }
 
 
-string namesMapper::GetCarCompanyName(string culture)
+string namesMapper::GetCarCompanyName(const string& culture)
 {
 	return getCompanyName(carCompanyNames, culture);
 }
 
 
-string namesMapper::GetWeaponCompanyName(string culture)
+string namesMapper::GetWeaponCompanyName(const string& culture)
 {
 	return getCompanyName(weaponCompanyNames, culture);
 }
 
 
-string namesMapper::GetAircraftCompanyName(string culture)
+string namesMapper::GetAircraftCompanyName(const string& culture)
 {
 	return getCompanyName(aircraftCompanyNames,culture);
 }
 
 
-string namesMapper::GetNavalCompanyName(string culture)
+string namesMapper::GetNavalCompanyName(const string& culture)
 {
 	return getCompanyName(navalCompanyNames, culture);
 }
 
 
-string namesMapper::GetIndustryCompanyName(string culture)
+string namesMapper::GetIndustryCompanyName(const string& culture)
 {
 	return getCompanyName(industryCompanyNames, culture);
 }
 
 
-string namesMapper::GetElectronicCompanyName(string culture)
+string namesMapper::GetElectronicCompanyName(const string& culture)
 {
 	return getCompanyName(electronicCompanyNames, culture);
 }
 
 
-string namesMapper::getCompanyName(map<string, vector<string>>& companyNames, string culture)
+string namesMapper::getCompanyName(map<string, vector<string>>& companyNames, const string& culture)
 {
 	string company = "";
 

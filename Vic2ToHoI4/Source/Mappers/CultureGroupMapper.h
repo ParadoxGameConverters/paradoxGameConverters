@@ -37,7 +37,7 @@ using namespace std;
 class cultureGroupMapper
 {
 	public:
-		static string getCultureGroup(string culture)
+		static string getCultureGroup(const string& culture)
 		{
 			return getInstance()->GetCultureGroup(culture);
 		}
@@ -54,7 +54,7 @@ class cultureGroupMapper
 		cultureGroupMapper();
 		void processVic2CulturesFile(string culturesFile);
 
-		string GetCultureGroup(string culture);
+		string GetCultureGroup(const string& culture) const;
 
 		map<string, string> mappings;
 };

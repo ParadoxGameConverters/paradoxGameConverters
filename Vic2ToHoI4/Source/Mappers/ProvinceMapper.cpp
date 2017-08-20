@@ -127,7 +127,7 @@ void provinceMapper::insertIntoVic2ToHoI4ProvinceMap(const vector<int>& Vic2Nums
 }
 
 
-void provinceMapper::checkAllHoI4ProvinesMapped()
+void provinceMapper::checkAllHoI4ProvinesMapped() const
 {
 	ifstream definitions(Configuration::getHoI4Path() + "/map/definition.csv");
 	if (!definitions.is_open())
@@ -151,7 +151,7 @@ void provinceMapper::checkAllHoI4ProvinesMapped()
 }
 
 
-int provinceMapper::getNextProvinceNumFromFile(ifstream& definitions)
+int provinceMapper::getNextProvinceNumFromFile(ifstream& definitions) const
 {
 	string line;
 	getline(definitions, line);
@@ -167,7 +167,7 @@ int provinceMapper::getNextProvinceNumFromFile(ifstream& definitions)
 }
 
 
-void provinceMapper::verifyProvinceIsMapped(int provNum)
+void provinceMapper::verifyProvinceIsMapped(int provNum) const
 {
 	if (provNum != 0)
 	{
@@ -197,7 +197,7 @@ vector<shared_ptr<Object>> provinceMapper::getCorrectMappingVersion(const vector
 }
 
 
-vector<int> provinceMapper::getHoI4ProvinceNums(const int v2ProvinceNum)
+vector<int> provinceMapper::getHoI4ProvinceNums(const int v2ProvinceNum) const
 {
 	static const vector<int> empty_vec;	// an empty vector in case there are no equivalent V2 province numbers
 

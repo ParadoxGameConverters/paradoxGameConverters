@@ -58,7 +58,7 @@ coastalHoI4ProvincesMapper::coastalHoI4ProvincesMapper()
 }
 
 
-map<int, province> coastalHoI4ProvincesMapper::getProvinces()
+map<int, province> coastalHoI4ProvincesMapper::getProvinces() const
 {
 	ifstream provinceDefinitions(Configuration::getHoI4Path() + "/map/definition.csv");
 	if (!provinceDefinitions.is_open())
@@ -115,7 +115,7 @@ map<int, province> coastalHoI4ProvincesMapper::getProvinces()
 }
 
 
-bool coastalHoI4ProvincesMapper::IsProvinceCoastal(int provinceNum)
+bool coastalHoI4ProvincesMapper::IsProvinceCoastal(int provinceNum) const
 {
 	auto province = coastalProvinces.find(provinceNum);
 	return (province != coastalProvinces.end());

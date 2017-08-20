@@ -39,7 +39,7 @@ stateCategoryMapper::stateCategoryMapper()
 }
 
 
-void stateCategoryMapper::readCategoriesFromDirectory(string directory)
+void stateCategoryMapper::readCategoriesFromDirectory(const string& directory)
 {
 	set<string> categoryFiles;
 	Utils::GetAllFilesInFolder(directory, categoryFiles);
@@ -50,7 +50,7 @@ void stateCategoryMapper::readCategoriesFromDirectory(string directory)
 }
 
 
-void stateCategoryMapper::readCategoriesFromFile(string file)
+void stateCategoryMapper::readCategoriesFromFile(const string& file)
 {
 	shared_ptr<Object> parsedFile = parser_UTF8::doParseFile(file);
 	vector<shared_ptr<Object>> StateCategoryObjs = parsedFile->getLeaves();
