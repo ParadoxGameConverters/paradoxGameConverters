@@ -34,7 +34,7 @@ absolutist = {
 }
 
 communism = {
-	communist_revolutionary = {
+	communism_minister = {
 		random = no
 		# Boosts Communism
 		sprite = 13
@@ -47,7 +47,7 @@ communism = {
 }
 
 democratic = {	
-	democratic_reformer = {
+	democratic_minister = {
 		random = no
 		# Boosts Democracy
 		sprite = 13
@@ -60,7 +60,7 @@ democratic = {
 }
 
 fascism = {
-	fascist_demagogue = {
+	fascism_minister = {
 		random = no
 		# Boosts Fascism
 		sprite = 13

@@ -151,6 +151,7 @@ class HoI4RegimentType
 {
 	public:
 		HoI4RegimentType(string type, int x, int y);
+		const string getType() const { return type; }
 
 		friend ostream& operator << (ostream& out, HoI4RegimentType regiment);
 
@@ -170,6 +171,9 @@ class HoI4DivisionTemplateType
 
 		void addRegiment(HoI4RegimentType newRegiment)			{ regiments.push_back(newRegiment); }
 		void addSupportRegiment(HoI4RegimentType newRegiment)	{ supportRegiments.push_back(newRegiment); }
+		string getName();
+		vector<HoI4RegimentType> getRegiments();
+		vector<HoI4RegimentType> getSupportRegiments();
 
 	private:
 		string							name;
@@ -189,6 +193,27 @@ class HoI4DivisionType
 		string	name;
 		string	type;
 		int		location;
+};
+
+class HoI4UnitMap
+{
+	public: 
+
+		HoI4UnitMap(string category,string type,string equipment,int size);
+		HoI4UnitMap();
+
+		string getCategory();
+		string getType();
+		string getEquipment();
+		int getSize();
+
+	private:
+		string category;
+		string type;
+		string equipment;
+		int size;
+
+
 };
 
 

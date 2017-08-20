@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -47,6 +47,8 @@ class HoI4Events
 		void createAnnexEvent(const HoI4Country* Annexer, const HoI4Country* Annexed);
 		void createSudetenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const set<string>& claimedStates);
 		void createTradeEvent(const HoI4Country* leader, const HoI4Country* GC);
+		void createPoliticalEvents(const set<string>& majorIdeologies);
+		void createWarJustificationEvents(const set<string>& majorIdeologies);
 
 		int getCurrentNationFocusEventNum() const { return nationalFocusEventNumber; }
 
@@ -54,14 +56,23 @@ class HoI4Events
 	private:
 		void outputNationalFocusEvents() const;
 		void outputNewsEvents() const;
+		void outputPoliticalEvents() const;
+		void outputWarJustificationEvents() const;
+
+		void addMinisterRevolutionEvents(const set<string>& majorIdeologies);
+		void addDemocraticMinisterRevolutionEvents(const set<string>& majorIdeologies);
+		void addFiftyPercentEvents(const set<string>& majorIdeologies);
+		void addRevolutionEvents(const set<string>& majorIdeologies);
+		void addSuppressedEvents(const set<string>& majorIdeologies);
+		string getIdeologicalPicture(const string& ideology);
 
 		vector<HoI4Event> newsEvents;
 		int newsEventNumber;
 		vector<HoI4Event> nationalFocusEvents;
 		int nationalFocusEventNumber;
+		vector<HoI4Event> politicalEvents;
+		int politicalEventNumber;
+		vector<HoI4Event> warJustificationEvents;
 };
-
-
-
 
 #endif // HOI4_EVENTS_H

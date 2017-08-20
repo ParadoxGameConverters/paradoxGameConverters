@@ -38,6 +38,7 @@ using namespace std;
 class V2Country;
 class HoI4States;
 class HoI4State;
+struct governmentMapping;
 
 
 
@@ -55,9 +56,9 @@ class HoI4Localisation
 			getInstance()->AddStateLocalisations(states);
 		}
 
-		static void createCountryLocalisations(const string& sourceTag, const string& destTag)
+		static void createCountryLocalisations(const pair<const string&, const string&>& tags)
 		{
-			getInstance()->CreateCountryLocalisations(sourceTag, destTag);
+			getInstance()->CreateCountryLocalisations(tags);
 		}
 
 		static void addNonenglishCountryLocalisations()
@@ -99,7 +100,13 @@ class HoI4Localisation
 
 		void AddNonenglishCountryLocalisations();
 
-		void CreateCountryLocalisations(const string& sourceTag, const string& destTag);
+		void CreateCountryLocalisations(const pair<const string&, const string&>& tags);
+		void addLocalisationsForAllGovernments(const pair<const string&, const string&>& tags, const pair<const string&, const string&>& suffixes);
+		void addLocalisationsInAllLanguages(const string& destTag, const pair<const string&, const string&>& suffixes, const string& HoI4GovernmentIdeology, const keyToLocalisationMap& namesInLanguage);
+		languageToLocalisationsMap::iterator getExistingLocalisationsInLanguage(const string& language);
+		void addLocalisation(const string& newKey, languageToLocalisationsMap::iterator& existingLanguage, const string& localisation, const string& HoI4Suffix);
+		int addNeutralLocalisation(const pair<const string&, const string&>& tags, const pair<const string&, const string&>& suffixes);
+
 		void CopyFocusLocalisations(string oldKey, string newKey);
 
 		void AddStateLocalisations(const HoI4States* states);

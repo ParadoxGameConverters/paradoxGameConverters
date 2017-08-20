@@ -47,6 +47,7 @@ thatsgerman		- Programming, Analysis
 jepaan			- Programming
 Hamiller78		- Programming
 barryvm			- Programming
+RaduM84			- Programming, Data Files
 Italianajt		- Analysis, Data Files, QA
 Ordinary_Kraut		- Analysis, Data Files
 DasGuntLord01		- Analysis

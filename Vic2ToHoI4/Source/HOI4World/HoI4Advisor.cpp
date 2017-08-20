@@ -82,3 +82,9 @@ void HoI4Advisor::output(ofstream& output, const string& tag) const
 	output << "\t\t\t}\n";
 	output << "\t\t}\n";
 }
+
+
+void HoI4Advisor::addEventNum(const int num)
+{
+	event += to_string(num);
+}

@@ -40,6 +40,7 @@ class HoI4Advisor;
 class HoI4Buildings;
 class HoI4Country;
 class HoI4Diplomacy;
+class HoI4DivisionTemplateType;
 class HoI4Events;
 class HoI4Faction;
 class HoI4Ideology;
@@ -48,8 +49,12 @@ class HoI4State;
 class HoI4States;
 class HoI4StrategicRegion;
 class HoI4SupplyZones;
+class HoI4UnitMap;
 class V2Country;
 class V2World;
+
+
+struct advisorCompare;
 
 
 
@@ -123,9 +128,12 @@ class HoI4World
 		void addTechs(HoI4Country* countryaddTechs, const string& oldTech, const map<string, vector<pair<string, int>>>& techMap);
 		void addResearchBonuses(HoI4Country* countryaddBonuses, const string& oldTech, const map<string, vector<pair<string, int>>>& researchBonusMap);
 
-		void convertArmies();
-		void convertNavies();
-		void convertAirforces();
+		map<string, HoI4UnitMap> importUnitMap() const;
+		vector<HoI4DivisionTemplateType> importDivisionTemplates() const;
+		void convertMilitaries();
+		void convertArmies(map<string, HoI4UnitMap> unitMap, vector<HoI4DivisionTemplateType> divisionTemplates);
+		void convertNavies(map<string, HoI4UnitMap> unitMap);
+		void convertAirforces(map<string, HoI4UnitMap> unitMap);
 
 		void determineGreatPowers();
 
@@ -152,12 +160,13 @@ class HoI4World
 		void outputMap() const;
 		void outputGenericFocusTree() const;
 		void outputCountries() const;
-		set<const HoI4Advisor*> getActiveIdeologicalAdvisors() const;
+		set<const HoI4Advisor*, advisorCompare> getActiveIdeologicalAdvisors() const;
 		void outputRelations() const;
 		void outputIdeologies() const;
 		void outputLeaderTraits() const;
 		void outputIdeologicalIdeas() const;
 		void outputScriptedTriggers() const;
+		void outputOnActions() const;
 
 		/*vector<int> getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		vector<int> getPortProvinces(const vector<int>& locationCandidates);

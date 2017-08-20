@@ -37,18 +37,27 @@ using namespace std;
 class Object;
 
 
-
 class HoI4Advisor
 {
 	public:
 		HoI4Advisor(shared_ptr<Object> object);
 		void output(ofstream& output, const string& tag) const;
+		void addEventNum(const int num);
+
+		string getIdeology() const { return ideology; }
 
 	private:
 		string trait;
 		string picture;
 		string event;
 		string ideology;
+};
+
+
+struct advisorCompare {
+	bool operator() (const HoI4Advisor* lhs, const HoI4Advisor* rhs) const {
+		return lhs->getIdeology() < rhs->getIdeology();
+	}
 };
 
 

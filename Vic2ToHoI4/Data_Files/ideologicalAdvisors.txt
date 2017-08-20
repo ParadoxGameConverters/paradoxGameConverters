@@ -14,7 +14,7 @@ radical = {
 		traits = { radical_minister }
 
 		on_add = {
-			country_event = conv.political.1
+			country_event = conv.political.radical.
 		}
 
 		do_effect = {
@@ -64,7 +64,7 @@ absolutist = {
 		picture = triumphant_will
 
 		on_add = {
-			country_event = conv.political.11
+			country_event = conv.political.absolutist.
 		}
 
 		do_effect = {
@@ -79,19 +79,19 @@ absolutist = {
 	}
 }
 	
-communist = {
+communism = {
 	communist = {
 		
 		allowed = {
 			NOT = {
-				has_available_idea_with_traits = { idea = communist_revolutionary limit = 1 }
+				has_available_idea_with_traits = { idea = communism_minister limit = 1 }
 			}
 		}
 		
-		traits = { communist_revolutionary }
+		traits = { communism_minister }
 
 		on_add = {
-			country_event = political.1
+			country_event = conv.political.communist.
 		}
 
 		do_effect = {
@@ -111,16 +111,16 @@ democratic = {
 		
 		allowed = {
 			NOT = {
-				has_available_idea_with_traits = { idea = democratic_reformer limit = 1 }
+				has_available_idea_with_traits = { idea = democratic_minister limit = 1 }
 			}
 		}
 		
 
 		
-		traits = { democratic_reformer }
+		traits = { democratic_minister }
 
 		on_add = {
-			country_event = political.13
+			country_event = conv.political.democratic.
 		}
 
 		do_effect = {
@@ -135,20 +135,20 @@ democratic = {
 	}
 }
 
-fascist = {	
+fascism = {
 	fascist = {
 		
 		allowed = {
 			NOT = {
-				has_available_idea_with_traits = { idea = fascist_demagogue limit = 1 }
+				has_available_idea_with_traits = { idea = fascism_minister limit = 1 }
 			}
 		}
 		
 		
-		traits = { fascist_demagogue }
+		traits = { fascism_minister }
 
 		on_add = {
-			country_event = political.7
+			country_event = conv.political.fascist.
 		}
 
 		do_effect = {
