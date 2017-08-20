@@ -1770,6 +1770,11 @@ void HoI4World::outputRelations() const
 		out << "\tvalue = " << i << "\n";
 		out << "}\n";
 	}
+ 	out << "private_channels_trade = {\n";
+	out << "\ttrade = yes\n";
+	out << "\tvalue = 15\n";
+	out << "}\n";
+
 	out << "}\n";
 
 	out.close();
@@ -1990,4 +1995,5 @@ closedProvinces.insert(make_pair(thisAdjacency.to, thisAdjacency.to));
 }
 
 return -1;
+
 }*/
