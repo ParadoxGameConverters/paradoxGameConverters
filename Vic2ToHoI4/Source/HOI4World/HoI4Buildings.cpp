@@ -32,13 +32,13 @@ using namespace std;
 
 
 
-HoI4Building::HoI4Building(int _stateID, double _xCoordinate, double _zCoordinate)
+HoI4Building::HoI4Building(int _stateID, double _xCoordinate, double _zCoordinate):
+	stateID(_stateID),
+	xCoordinate(_xCoordinate),
+	yCoordinate(10.0),
+	zCoordinate(_zCoordinate),
+	rotation(0.0)
 {
-	stateID = _stateID;
-	xCoordinate = _xCoordinate;
-	yCoordinate = 10.0;
-	zCoordinate = _zCoordinate;
-	rotation = 0.0;
 }
 
 
@@ -54,9 +54,10 @@ ostream& HoI4Building::print(ostream& out) const
 }
 
 
-HoI4NavalBase::HoI4NavalBase(int _stateID, double _xCoordinate, double _zCoordinate, int _connectingSeaProvince): HoI4Building(_stateID, _xCoordinate, _zCoordinate)
+HoI4NavalBase::HoI4NavalBase(int _stateID, double _xCoordinate, double _zCoordinate, int _connectingSeaProvince):
+	HoI4Building(_stateID, _xCoordinate, _zCoordinate),
+	connectingSeaProvince(_connectingSeaProvince)
 {
-	connectingSeaProvince = _connectingSeaProvince;
 }
 
 
@@ -69,7 +70,8 @@ ostream& HoI4NavalBase::print(ostream& out) const
 }
 
 
-HoI4Buildings::HoI4Buildings(const map<int, int>& provinceToStateIDMap)
+HoI4Buildings::HoI4Buildings(const map<int, int>& provinceToStateIDMap):
+	buildings()
 {
 	LOG(LogLevel::Info) << "Creating buildings";
 	placeNavalBases(provinceToStateIDMap);

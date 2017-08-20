@@ -35,18 +35,29 @@ using namespace std;
 
 
 
-HoI4FocusTree::HoI4FocusTree()
+HoI4FocusTree::HoI4FocusTree():
+	srcCountryTag(""),
+	dstCountryTag(""),
+	focuses(),
+	nextFreeColumn(0),
+	fascistMutualExlusions(""),
+	communistMutualExclusions(""),
+	absolutistMutualExlusions(""),
+	radicalMutualExclusions("")
 {
-	nextFreeColumn = 0;
 }
 
 
-HoI4FocusTree::HoI4FocusTree(const HoI4Country* country)
+HoI4FocusTree::HoI4FocusTree(const HoI4Country* country):
+	srcCountryTag(country->getSourceCountry()->getTag()),
+	dstCountryTag(country->getTag()),
+	focuses(),
+	nextFreeColumn(0),
+	fascistMutualExlusions(""),
+	communistMutualExclusions(""),
+	absolutistMutualExlusions(""),
+	radicalMutualExclusions("")
 {
-	srcCountryTag = country->getSourceCountry()->getTag();
-	dstCountryTag = country->getTag();
-	nextFreeColumn = 0;
-
 }
 
 

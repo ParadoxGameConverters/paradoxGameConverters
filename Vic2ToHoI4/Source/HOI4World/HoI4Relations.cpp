@@ -26,28 +26,27 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Relations::HoI4Relations(const string& newTag)
+HoI4Relations::HoI4Relations(const string& newTag):
+	tag(newTag),
+	value(0),
+	militaryAccess(false),
+	lastSendDiplomat(date()),
+	lastWar(date()),
+	truceUntil(date()),
+	guarantee(false),
+	sphereLeader(false)
 {
-	tag					= newTag;
-	value					= 0;
-	militaryAccess		= false;
-	lastSendDiplomat	= date();
-	lastWar				= date();
-	truceUntil = date();
-	guarantee = false;
-	sphereLeader = false;
 }
 
 
-HoI4Relations::HoI4Relations(const string& newTag, const V2Relations* oldRelations)
-{
-	tag					= newTag;
-	value					= oldRelations->getRelations();
-	militaryAccess		= oldRelations->hasMilitaryAccess();
-	lastSendDiplomat	= oldRelations->getDiplomatLastSent();
-	lastWar				= oldRelations->getLastWar();
-	truceUntil			= oldRelations->getTruceUntil();
-	guarantee			= (oldRelations->getLevel() >= 4);
-	sphereLeader		= (oldRelations->getLevel() >= 5);
-}
+HoI4Relations::HoI4Relations(const string& newTag, const V2Relations* oldRelations):
+	tag(newTag),
+	value(oldRelations->getRelations()),
+	militaryAccess(oldRelations->hasMilitaryAccess()),
+	lastSendDiplomat(oldRelations->getDiplomatLastSent()),
+	lastWar(oldRelations->getLastWar()),
+	truceUntil(oldRelations->getTruceUntil()),
+	guarantee(oldRelations->getLevel() >= 4),
+	sphereLeader(oldRelations->getLevel() >= 5)
+{}
 

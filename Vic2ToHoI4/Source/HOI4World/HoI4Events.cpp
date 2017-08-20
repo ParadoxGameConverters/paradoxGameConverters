@@ -30,10 +30,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Events::HoI4Events()
+HoI4Events::HoI4Events():
+	newsEvents(),
+	newsEventNumber(237),
+	nationalFocusEvents(),
+	nationalFocusEventNumber(0),
+	politicalEvents(),
+	politicalEventNumber(1),
+	warJustificationEvents()
 {
-	newsEventNumber = 237;
-	nationalFocusEventNumber = 0;
 }
 
 
@@ -452,7 +457,6 @@ void HoI4Events::createTradeEvent(const HoI4Country* leader, const HoI4Country* 
 
 void HoI4Events::createPoliticalEvents(const set<string>& majorIdeologies)
 {
-	politicalEventNumber = 1;
 	addMinisterRevolutionEvents(majorIdeologies);
 	addFiftyPercentEvents(majorIdeologies);
 	addRevolutionEvents(majorIdeologies);

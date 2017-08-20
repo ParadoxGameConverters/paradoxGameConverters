@@ -171,9 +171,11 @@ class HoI4DivisionTemplateType
 
 		void addRegiment(const HoI4RegimentType& newRegiment)			{ regiments.push_back(newRegiment); }
 		void addSupportRegiment(const HoI4RegimentType& newRegiment)	{ supportRegiments.push_back(newRegiment); }
-		string getName();
-		vector<HoI4RegimentType> getRegiments();
-		vector<HoI4RegimentType> getSupportRegiments();
+
+		string getName() const { return name; }
+
+		vector<HoI4RegimentType> getRegiments() const { return regiments; }
+		vector<HoI4RegimentType> getSupportRegiments() const { return supportRegiments; }
 
 	private:
 		string							name;
@@ -212,8 +214,6 @@ class HoI4UnitMap
 		string type;
 		string equipment;
 		int size;
-
-
 };
 
 

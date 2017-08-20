@@ -112,7 +112,6 @@ class HoI4Country
 		bool isInFaction() const { return faction != nullptr; }
 		bool isCivilized() const { return civilized; }
 
-		int getTotalFactories() const { return totalfactories; }
 		int getTechnologyCount() const { return technologies.size(); }
 		int getResearchBonusesCount() const { return researchBonuses.size(); }
 		int getProvinceCount() const { return provinceCount; }
@@ -183,7 +182,6 @@ class HoI4Country
 		string								commonCountryFile;
 		map<string, int>					technologies;
 		map<string, int>					researchBonuses;
-		int									totalfactories;
 		map<string, HoI4Relations*>	relations;
 		Color									color;
 		double								nationalUnity;
@@ -203,8 +201,6 @@ class HoI4Country
 		vector<int>							brigs;
 		int									convoys;
 		
-		map<std::pair<int, int>, string>	NFT;
-		map<string, vector<HoI4Country*>>	CountryTargets;
 		int provinceCount;
 		long armyStrength;
 		double militaryFactories;

@@ -30,18 +30,21 @@ using namespace std;
 
 
 
-HoI4StrategicRegion::HoI4StrategicRegion(const string& _filename)
+HoI4StrategicRegion::HoI4StrategicRegion(const string& _filename):
+	filename(_filename),
+	ID(0),
+	oldProvinces(),
+	newProvinces(),
+	weatherObj()
 {
-	filename = _filename;
-
-	shared_ptr<Object> fileObj				= parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/map/strategicregions/" + filename);
-	vector<shared_ptr<Object>> regionObjs	= fileObj->getValue("strategic_region");
+	shared_ptr<Object> fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/map/strategicregions/" + filename);
+	vector<shared_ptr<Object>> regionObjs = fileObj->getValue("strategic_region");
 
 	vector<shared_ptr<Object>> IDObjs = regionObjs[0]->getValue("id");
 	ID = stoi(IDObjs[0]->getLeaf());
 
-	vector<shared_ptr<Object>>	provincesObjs		= regionObjs[0]->getValue("provinces");
-	vector<string>		provinceStrings	= provincesObjs[0]->getTokens();
+	vector<shared_ptr<Object>>	provincesObjs = regionObjs[0]->getValue("provinces");
+	vector<string> provinceStrings = provincesObjs[0]->getTokens();
 	for (auto provinceString: provinceStrings)
 	{
 		oldProvinces.push_back(stoi(provinceString));

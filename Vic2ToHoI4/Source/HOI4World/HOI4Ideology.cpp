@@ -28,10 +28,19 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Ideology::HoI4Ideology(shared_ptr<Object> obj)
+HoI4Ideology::HoI4Ideology(shared_ptr<Object> obj):
+	ideologyName(obj->getKey()),
+	types(),
+	dynamicFactionNames(),
+	theColor(nullptr),
+	rules(),
+	warImpactOnWorldTension(0.0f),
+	factionImpactOnWorldTension(0.0f),
+	modifiers(),
+	factionModifiers(),
+	cans(),
+	AI("")
 {
-	ideologyName = obj->getKey();
-
 	auto typesObj = obj->getValue("types");
 	if (typesObj.size() > 0)
 	{
@@ -72,19 +81,11 @@ HoI4Ideology::HoI4Ideology(shared_ptr<Object> obj)
 	{
 		warImpactOnWorldTension = stof(warTensionObj[0]->getLeaf());
 	}
-	else
-	{
-		warImpactOnWorldTension = 0.0f;
-	}
 
 	auto factionTensionObj = obj->getValue("faction_impact_on_world_tension");
 	if (factionTensionObj.size() > 0)
 	{
 		factionImpactOnWorldTension = stof(factionTensionObj[0]->getLeaf());
-	}
-	else
-	{
-		factionImpactOnWorldTension = 0.0f;
 	}
 
 	auto modifiersObj = obj->getValue("modifiers");

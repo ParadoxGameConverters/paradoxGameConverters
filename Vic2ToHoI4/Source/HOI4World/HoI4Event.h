@@ -36,6 +36,7 @@ using namespace std;
 class HoI4Event
 {
 	public:
+		HoI4Event();
 		friend ofstream& operator << (ofstream& out, HoI4Event theEvent);
 
 		string type;

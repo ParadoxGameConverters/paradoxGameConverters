@@ -25,13 +25,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Ship::HoI4Ship(const string& _name, const string& _type, const string& _equipment, const string& _owner)
-{
-	name	= _name;
-	type	= _type;
-	equipment = _equipment;
-	owner	= _owner;
-}
+HoI4Ship::HoI4Ship(const string& _name, const string& _type, const string& _equipment, const string& _owner):
+	name(_name),
+	type(_type),
+	equipment(_equipment),
+	owner(_owner)
+{}
 
 
 ofstream& operator << (ofstream& output, const HoI4Ship& instance)

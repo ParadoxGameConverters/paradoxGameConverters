@@ -35,7 +35,7 @@ class HoI4World;
 class HoI4WarCreator
 {
 	public:
-		void generateWars(const HoI4World* world);
+		HoI4WarCreator(const HoI4World* world);
 
 	private:
 		void determineProvinceOwners();
@@ -95,8 +95,5 @@ class HoI4WarCreator
 		map<HoI4Country*, vector<HoI4Country*>> WorldTargetMap;
 		map<int, pair<int, int>> provincePositions;
 
-		string axisLeader;
-		string alliesLeader;
-		string cominternLeader;
 		map<int, string> provinceToOwnerMap;
 };

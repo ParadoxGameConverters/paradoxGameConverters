@@ -83,8 +83,6 @@ class HoI4Province
 		vector<string>			cores;
 		bool						is_land;
 
-		int				ncrafts;
-
 		int				points;
 		double			metal;
 		double			energy;

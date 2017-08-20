@@ -34,17 +34,17 @@ using namespace std;
 
 class HOI4Version
 {
-public:
-	HOI4Version();
-	HOI4Version(shared_ptr<Object> obj);
-	HOI4Version(string version);
-	bool operator >= (const HOI4Version& rhs) const;
+	public:
+		HOI4Version();
+		HOI4Version(shared_ptr<Object> obj);
+		HOI4Version(string version);
+		bool operator >= (const HOI4Version& rhs) const;
 
-	friend ostream& operator << (ostream& out, const HOI4Version& version);
-private:
-	int first;
-	int second;
-	int third;
+		friend ostream& operator << (ostream& out, const HOI4Version& version);
+	private:
+		int first;
+		int second;
+		int third;
 };
 
 

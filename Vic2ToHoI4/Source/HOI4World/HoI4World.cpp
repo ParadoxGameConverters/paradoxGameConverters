@@ -50,16 +50,27 @@ using namespace std;
 
 
 
-HoI4World::HoI4World(const V2World* _sourceWorld)
+HoI4World::HoI4World(const V2World* _sourceWorld):
+	sourceWorld(_sourceWorld),
+	states(new HoI4States(sourceWorld)),
+	supplyZones(new HoI4SupplyZones),
+	strategicRegions(),
+	buildings(new HoI4Buildings(states->getProvinceToStateIDMap())),
+	countries(),
+	landedCountries(),
+	greatPowers(),
+	ideologies(),
+	majorIdeologies(),
+	ideologicalLeaderTraits(),
+	ideologicalAdvisors(),
+	ideologicalIdeas(),
+	factions(),
+	diplomacy(new HoI4Diplomacy),
+	events(new HoI4Events),
+	leaderTraits(),
+	portraitMap()
 {
 	LOG(LogLevel::Info) << "Parsing HoI4 data";
-	sourceWorld = _sourceWorld;
-
-	states = new HoI4States(sourceWorld);
-	buildings = new HoI4Buildings(states->getProvinceToStateIDMap());
-	supplyZones = new HoI4SupplyZones;
-	events = new HoI4Events;
-	diplomacy = new HoI4Diplomacy;
 
 	convertNavalBases();
 	convertCountries();
@@ -88,8 +99,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld)
 	convertAirBases();
 	createFactions();
 
-	HoI4WarCreator warCreator;
-	warCreator.generateWars(this);
+	HoI4WarCreator warCreator(this);
 }
 
 

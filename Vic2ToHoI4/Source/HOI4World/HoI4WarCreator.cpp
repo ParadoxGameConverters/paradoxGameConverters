@@ -34,13 +34,16 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-void HoI4WarCreator::generateWars(const HoI4World* world)
+HoI4WarCreator::HoI4WarCreator(const HoI4World* world):
+	genericFocusTree(new HoI4FocusTree),
+	theWorld(world),
+	AggressorFactions(),
+	WorldTargetMap(),
+	provincePositions(),
+	provinceToOwnerMap()
 {
-	theWorld = world;
-
 	ofstream AILog("AI-log.txt");
 
-	genericFocusTree = new HoI4FocusTree;
 	genericFocusTree->addGenericFocusTree(world->getMajorIdeologies());
 
 	determineProvinceOwners();

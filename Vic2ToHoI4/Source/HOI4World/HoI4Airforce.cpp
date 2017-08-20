@@ -25,11 +25,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Airplane::HoI4Airplane(const string& _type, const string& _owner, int _amount)
+HoI4Airplane::HoI4Airplane(const string& _type, const string& _owner, int _amount):
+	type(_type),
+	owner(_owner),
+	amount(_amount)
 {
-	type = _type;
-	owner = _owner;
-	amount = _amount;
 }
 
 

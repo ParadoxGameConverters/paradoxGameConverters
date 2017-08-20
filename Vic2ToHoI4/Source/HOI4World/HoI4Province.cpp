@@ -33,16 +33,29 @@ using namespace std;
 
 
 
-HoI4Province::HoI4Province(const string& Owner, int State)
+HoI4Province::HoI4Province(const string& Owner, int State):
+	filenames(),
+	coastal(false),
+	num(0),
+	name(""),
+	owner(Owner),
+	cores(),
+	is_land(false),
+	points(0),
+	metal(0.0),
+	energy(0.0),
+	oil(0.0),
+	rare_materials(0.0),
+	manpower(0.0),
+	leadership(0.0),
+	rawIndustry(0.0),
+	state(State),
+	naval_base(0),
+	air_base(0),
+	industry(0),
+	infrastructure(0)
 {
 	//filenames.insert(/*make_pair(_filename, _filename)*/);
-	coastal				= false;
-	num					= 0;
-	name					= "";
-	owner					= Owner;
-	state = State;
-	
-	cores.clear();
 
 	/*int slash		= _filename.find_last_of("\\");
 	int numDigits	= _filename.find_first_of("-") - slash - 2;

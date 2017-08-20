@@ -37,11 +37,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4States::HoI4States(const V2World* _sourceWorld)
+HoI4States::HoI4States(const V2World* _sourceWorld):
+	sourceWorld(_sourceWorld),
+	ownersMap(),
+	coresMap(),
+	assignedProvinces(),
+	states(),
+	provinceToStateIDMap()
 {
 	LOG(LogLevel::Info) << "Converting states";
-
-	sourceWorld = _sourceWorld;
 	determineOwnersAndCores();
 	createStates();
 }
@@ -182,7 +186,6 @@ vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, co
 void HoI4States::createStates()
 {
 	int stateID = 1;
-	set<int> assignedProvinces;
 	for (auto country: sourceWorld->getCountries())
 	{
 		for (auto vic2State: country.second->getStates())

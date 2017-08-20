@@ -25,6 +25,23 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+HoI4Event::HoI4Event():
+	type(""),
+	id(""),
+	title(""),
+	description(""),
+	picture(""),
+	major(false),
+	triggeredOnly(false),
+	trigger(""),
+	meanTimeToHappen(""),
+	immediate(""),
+	options()
+{
+}
+	
+	
+	
 ofstream& operator << (ofstream& out, HoI4Event theEvent)
 {
 	out << theEvent.type << " = {\n";

@@ -26,15 +26,18 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HOI4Version::HOI4Version()
+HOI4Version::HOI4Version():
+	first(0),
+	second(0),
+	third(0)
 {
-	first		= 0;
-	second	= 0;
-	third		= 0;
 }
 
 
-HOI4Version::HOI4Version(shared_ptr<Object> obj)
+HOI4Version::HOI4Version(shared_ptr<Object> obj):
+	first(0),
+	second(0),
+	third(0)
 {
 	vector<shared_ptr<Object>> numberObj;
 	numberObj = obj->getValue("first");
@@ -57,7 +60,10 @@ HOI4Version::HOI4Version(shared_ptr<Object> obj)
 }
 
 
-HOI4Version::HOI4Version(string version)
+HOI4Version::HOI4Version(string version):
+	first(0),
+	second(0),
+	third(0)
 {
 	int dot = version.find_first_of('.');
 	first = stoi(version.substr(0, dot));

@@ -44,53 +44,64 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, const HoI4World* _theWorld)
+HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, const HoI4World* _theWorld):
+	theWorld(_theWorld),
+	srcCountry(nullptr),
+	filename(""),
+	human(false),
+	governmentIdeology("neutrality"),
+	leaderIdeology("neutrality"),
+	rulingParty(nullptr),
+	parties(),
+	ideologySupport(),
+	sphereLeader(""),
+	tag(_tag),
+	provinces(),
+	states(),
+	capital(0),
+	commonCountryFile(_commonCountryFile),
+	technologies(),
+	researchBonuses(),
+	relations(),
+	color(),
+	nationalUnity(0.70),
+	faction(nullptr),
+	factionLeader(false),
+	allies(),
+	puppets(),
+	puppetMaster(""),
+	practicals(),
+	ministers(),
+	rulingMinisters(),
+	leaders(),
+	graphicalCulture("Generic"),
+	graphicalCulture2d(""),
+	majorNation(false),
+	civilized(false),
+	brigs(),
+	convoys(0),
+	provinceCount(0),
+	armyStrength(0),
+	militaryFactories(0.0),
+	civilianFactories(0.0),
+	dockyards(0.0),
+	threat(0.0),
+	civil_law("limited_restrictions"),
+	conscription_law("volunteer_army"),
+	economic_law("full_civilian_economy"),
+	educational_investment_law("minimal_education_investment"),
+	industrial_policy_laws("consumer_product_orientation"),
+	press_laws("censored_press"),
+	training_laws("minimal_training"),
+	greatPower(false),
+	divisionTemplates(),
+	divisions(),
+	ships(),
+	planes(),
+	navalLocation(0),
+	equipmentStockpile(),
+	nationalFocus(nullptr)
 {
-	theWorld = _theWorld;
-
-	tag = _tag;
-	commonCountryFile = _commonCountryFile;
-	provinces.clear();
-	technologies.clear();
-	researchBonuses.clear();
-
-	capital = 0;
-	governmentIdeology = "neutrality";
-	leaderIdeology = "neutrality";
-	rulingParty = nullptr;
-
-	faction = nullptr;
-	factionLeader = false;
-
-	nationalUnity = 0.70;
-	
-	training_laws = "minimal_training";
-	press_laws = "censored_press";
-	industrial_policy_laws = "consumer_product_orientation";
-	educational_investment_law = "minimal_education_investment";
-	economic_law = "full_civilian_economy";
-	conscription_law = "volunteer_army";
-	civil_law = "limited_restrictions";
-
-	relations.clear();
-	allies.clear();
-	puppets.clear();
-	puppetMaster = "";
-	practicals.clear();
-	ministers.clear();
-	rulingMinisters.clear();
-
-	graphicalCulture = "Generic";
-	majorNation = false;
-
-	greatPower = false;
-
-	nationalFocus = nullptr;
-
-	srcCountry = nullptr;
-	human = false;
-
-	convoys = 0;
 }
 
 
@@ -436,8 +447,6 @@ void HoI4Country::convertIdeologySupport(const set<string>& majorIdeologies)
 
 void HoI4Country::convertNavy(const map<string, HoI4UnitMap>& unitMap)
 {
-	int navalport = 0;
-	
 	for (auto army : srcCountry->getArmies())
 	{
 		for (auto regiment : army->getRegiments())
@@ -1078,9 +1087,6 @@ void HoI4Country::setResearchBonus(const string& tech, int bonus)
 
 void HoI4Country::calculateIndustry()
 {
-	militaryFactories = 0.0;
-	civilianFactories = 0.0;
-	dockyards = 0.0;
 	for (auto state : states)
 	{
 		civilianFactories += state.second->getCivFactories();

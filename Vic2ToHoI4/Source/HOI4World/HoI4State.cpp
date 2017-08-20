@@ -36,32 +36,25 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, const string& _ownerTag)
-{
-	sourceState = _sourceState;
-
-	ID = _ID;
-	provinces.clear();
-	ownerTag = _ownerTag;
-	capitalState = false;
-
-	manpower = 0;
-
-	civFactories = 0;
-	milFactories = 0;
-	dockyards = 0;
-	category = "pastoral";
-	infrastructure = 0;
-
-	navalBases.clear();
-
-	airbaseLevel = 0;
-
-	resources.clear();
-
-	victoryPointPosition = 0;
-	victoryPointValue = 0;
-}
+HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, const string& _ownerTag):
+	sourceState(_sourceState),
+	ID(_ID),
+	provinces(),
+	ownerTag(_ownerTag),
+	cores(),
+	capitalState(false),
+	manpower(0),
+	civFactories(0),
+	milFactories(0),
+	dockyards(0),
+	category("pastoral"),
+	infrastructure(0),
+	navalBases(),
+	airbaseLevel(0),
+	resources(),
+	victoryPointPosition(0),
+	victoryPointValue(0)
+{}
 
 
 void HoI4State::output(const string& _filename) const

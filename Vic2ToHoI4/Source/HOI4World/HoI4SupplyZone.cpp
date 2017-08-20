@@ -28,10 +28,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4SupplyZone::HoI4SupplyZone(int _ID, int _value)
+HoI4SupplyZone::HoI4SupplyZone(int _ID, int _value):
+	ID(_ID),
+	states(),
+	value(_value)
 {
-	ID		= _ID;
-	value	= _value;
 }
 
 
