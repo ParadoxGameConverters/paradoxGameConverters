@@ -2024,7 +2024,7 @@ void HoI4FocusTree::addAbsolutistGenericFocuses()
 	newFocus->completionReward += "					ideology = absolutist\n";
 	newFocus->completionReward += "					popularity = 0.2\n";
 	newFocus->completionReward += "				}\n";
-	newFocus->completionReward += "				# political drift defence?";
+	newFocus->completionReward += "				add_ideas = royal_dictatorship_focus";
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
@@ -2049,8 +2049,7 @@ void HoI4FocusTree::addAbsolutistGenericFocuses()
 	newFocus->yPos = 5;
 	newFocus->cost = 10;
 	newFocus->availableIfCapitulated = true;
-	newFocus->completionReward += "			#cheaper war goal fabrication?";
-	newFocus->completionReward += "			#less world tension when declaring war?";
+	newFocus->completionReward += "			add_ideas = historical_claims_focus";
 	focuses.push_back(newFocus);
 }
 
@@ -2098,7 +2097,7 @@ void HoI4FocusTree::addRadicalGenericFocuses()
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
 	newFocus->availableIfCapitulated = true;
-	newFocus->completionReward += "			# something to ease trade";
+	newFocus->completionReward += "			every_country = { add_opinion_modifier = { target = ROOT modifier = private_channels_trade }}";
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
@@ -2110,7 +2109,7 @@ void HoI4FocusTree::addRadicalGenericFocuses()
 	newFocus->yPos = 4;
 	newFocus->cost = 10;
 	newFocus->availableIfCapitulated = true;
-	newFocus->completionReward += "			#something with production efficiency";
+	newFocus->completionReward += "			add_ideas = hardfought_market_focus";
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
@@ -2122,7 +2121,7 @@ void HoI4FocusTree::addRadicalGenericFocuses()
 	newFocus->yPos = 5;
 	newFocus->cost = 10;
 	newFocus->availableIfCapitulated = true;
-	newFocus->completionReward += "			#something to give more recruitable population";
+	newFocus->completionReward += "			add_ideas = army_provides_focus";
 	focuses.push_back(newFocus);
 }
 
