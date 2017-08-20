@@ -33,7 +33,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 coastalHoI4ProvincesMapper* coastalHoI4ProvincesMapper::instance = nullptr;
 
 
-coastalHoI4ProvincesMapper::coastalHoI4ProvincesMapper()
+coastalHoI4ProvincesMapper::coastalHoI4ProvincesMapper():
+	coastalProvinces()
 {
 	map<int, province> provinces = getProvinces();
 

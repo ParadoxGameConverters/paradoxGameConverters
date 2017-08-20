@@ -35,7 +35,9 @@ provinceMapper* provinceMapper::instance = NULL;
 
 
 
-provinceMapper::provinceMapper()
+provinceMapper::provinceMapper():
+	HoI4ToVic2ProvinceMap(),
+	Vic2ToHoI4ProvinceMap()
 {
 	LOG(LogLevel::Info) << "Parsing province mappings";
 	shared_ptr<Object> parsedMappingsFile = parser_8859_15::doParseFile("province_mappings.txt");

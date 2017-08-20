@@ -33,7 +33,9 @@ governmentMapper* governmentMapper::instance = nullptr;
 
 
 
-governmentMapper::governmentMapper()
+governmentMapper::governmentMapper():
+	governmentMap(),
+	partyMap()
 {
 	LOG(LogLevel::Info) << "Parsing governments mappings";
 	auto obj = parser_UTF8::doParseFile("governmentMapping.txt");

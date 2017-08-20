@@ -34,7 +34,8 @@ V2Localisations* V2Localisations::instance = NULL;
 
 
 
-V2Localisations::V2Localisations()
+V2Localisations::V2Localisations():
+	localisations()
 {
 	LOG(LogLevel::Info) << "Reading localisation";
 

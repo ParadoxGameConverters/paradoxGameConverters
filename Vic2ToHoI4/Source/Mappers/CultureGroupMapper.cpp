@@ -32,7 +32,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 cultureGroupMapper* cultureGroupMapper::instance = nullptr;
 
 
-cultureGroupMapper::cultureGroupMapper()
+cultureGroupMapper::cultureGroupMapper():
+	mappings()
 {
 	LOG(LogLevel::Info) << "Determining culture groups";
 

@@ -33,7 +33,9 @@ provinceNeighborMapper* provinceNeighborMapper::instance = nullptr;
 
 
 
-provinceNeighborMapper::provinceNeighborMapper()
+provinceNeighborMapper::provinceNeighborMapper():
+	provinceNeighbors(),
+	borders()
 {
 	bitmap_image provinces(Configuration::getHoI4Path() + "/map/provinces.bmp");
 	if (!provinces)

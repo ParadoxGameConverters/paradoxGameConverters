@@ -41,7 +41,11 @@ CountryMapper* CountryMapper::instance = nullptr;
 
 
 
-CountryMapper::CountryMapper()
+CountryMapper::CountryMapper():
+	Vic2TagToHoI4TagsRules(),
+	V2TagToHoI4TagMap(),
+	generatedHoI4TagPrefix('X'),
+	generatedHoI4TagSuffix(0)
 {
 	LOG(LogLevel::Info) << "Getting country mappings";
 	readRules();
@@ -118,8 +122,6 @@ void CountryMapper::CreateMappings(const V2World* srcWorld)
 
 void CountryMapper::resetMappingData()
 {
-	V2TagToHoI4TagMap.clear();
-
 	generatedHoI4TagPrefix = 'X';
 	generatedHoI4TagSuffix = 0;
 }

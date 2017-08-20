@@ -33,7 +33,8 @@ using namespace std;
 stateCategoryMapper* stateCategoryMapper::instance;
 
 
-stateCategoryMapper::stateCategoryMapper()
+stateCategoryMapper::stateCategoryMapper():
+	stateCategories()
 {
 	readCategoriesFromDirectory(Configuration::getHoI4Path() + "/common/state_category");
 }

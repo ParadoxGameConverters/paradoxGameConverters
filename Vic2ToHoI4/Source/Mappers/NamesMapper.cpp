@@ -33,7 +33,18 @@ namesMapper* namesMapper::instance = nullptr;
 
 
 
-namesMapper::namesMapper()
+namesMapper::namesMapper():
+	maleNamesMap(),
+	femaleNamesMap(),
+	surnamesMap(),
+	callsignsMap(),
+	carCompanyNames(),
+	weaponCompanyNames(),
+	aircraftCompanyNames(),
+	navalCompanyNames(),
+	industryCompanyNames(),
+	electronicCompanyNames(),
+	rng()
 {
 	LOG(LogLevel::Info) << "Parsing names";
 

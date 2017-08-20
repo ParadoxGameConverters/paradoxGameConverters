@@ -32,7 +32,12 @@ graphicsMapper* graphicsMapper::instance = nullptr;
 
 
 
-graphicsMapper::graphicsMapper()
+graphicsMapper::graphicsMapper():
+	leaderPortraitMappings(),
+	ideologyMinisterMappings(),
+	graphicalCultureMap(),
+	graphicalCulture2dMap(),
+	rng()
 {
 	LOG(LogLevel::Info) << "Reading graphics mappings";
 

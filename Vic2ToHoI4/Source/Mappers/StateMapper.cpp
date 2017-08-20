@@ -34,7 +34,10 @@ stateMapper* stateMapper::instance = NULL;
 
 
 
-stateMapper::stateMapper()
+stateMapper::stateMapper():
+	stateMap(),
+	stateIdMap(),
+	stateToCapitalMap()
 {
 	LOG(LogLevel::Info) << "Importing Vic2 states";
 	bool stateMapInitialized = false;
