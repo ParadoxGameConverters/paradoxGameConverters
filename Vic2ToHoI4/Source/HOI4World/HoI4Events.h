@@ -45,7 +45,7 @@ class HoI4Events
 		void output() const;
 		void createFactionEvents(const HoI4Country* Leader, const HoI4Country* newAlly);
 		void createAnnexEvent(const HoI4Country* Annexer, const HoI4Country* Annexed);
-		void createSudatenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const set<string>& claimedStates);
+		void createSudetenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const set<string>& claimedStates);
 		void createTradeEvent(const HoI4Country* leader, const HoI4Country* GC);
 		void createPoliticalEvents(const set<string>& majorIdeologies);
 		void createWarJustificationEvents(const set<string>& majorIdeologies);
@@ -74,8 +74,5 @@ class HoI4Events
 		int politicalEventNumber;
 		vector<HoI4Event> warJustificationEvents;
 };
-
-
-
 
 #endif // HOI4_EVENTS_H

@@ -53,7 +53,9 @@ class HoI4FocusTree
 		void addAbsolutistEmpireNationalFocuses(const HoI4Country* country, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets);
 		void addCommunistCoupBranch(const HoI4Country* Home, const vector<HoI4Country*>& coupTargets);
 		void addCommunistWarBranch(const HoI4Country* Home, const vector<HoI4Country*>& warTargets, const HoI4Events* events);
-		void addCommunistGPWarBranch(const HoI4Country* Home, const vector<HoI4Country*>& newAllies, const vector<HoI4Country*>& GCTargets, HoI4Events* events);
+		void addFascistAnnexationBranch(const HoI4Country* Home, const vector<const HoI4Country*>& annexationTargets, const HoI4Events* events);
+		void addFascistSudetenBranch(const HoI4Country* Home, const vector<const HoI4Country*>& sudetenTargets, const vector<set<string>>& demandedStates, const HoI4Events* events);
+		void addGPWarBranch(const HoI4Country* Home, const vector<HoI4Country*>& newAllies, const vector<HoI4Country*>& GCTargets, const string& ideology, HoI4Events* events);
 
 		void output(const string& filename) const;
 
@@ -77,8 +79,6 @@ class HoI4FocusTree
 		string absolutistMutualExlusions;
 		string radicalMutualExclusions;
 };
-
-
 
 
 
