@@ -768,7 +768,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 	map<string, vector<HoI4Country*>> TargetMap;
 	vector<HoI4Country*> anchlussnan;
 	vector<HoI4Country*> sudatennan;
-	vector<HoI4Country*> nan;
+	vector<const HoI4Country*> nan;
 	vector<HoI4Country*> fn;
 	vector<HoI4Country*> man;
 	vector<HoI4Country*> coup;
@@ -908,7 +908,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 		GCDistanceSorted.push_back(iterator->second);
 	}
 
-	vector<HoI4Country*> GCTargets;
+	vector<const HoI4Country*> GCTargets;
 	for (auto GC: GCDistanceSorted)
 	{
 		string thetag = GC->getTag();
@@ -1065,7 +1065,7 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 		GCDistanceSorted.push_back(iterator->second);
 	}
 	sort(GCDistanceSorted.begin(), GCDistanceSorted.end());
-	vector<HoI4Country*> GCTargets;
+	vector<const HoI4Country*> GCTargets;
 	for (auto GC : GCDistanceSorted)
 	{
 		string thetag = GC->getTag();

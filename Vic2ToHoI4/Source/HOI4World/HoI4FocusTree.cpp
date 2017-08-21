@@ -3129,7 +3129,7 @@ void HoI4FocusTree::addCommunistCoupBranch(const HoI4Country * Home, const vecto
 	return;
 }
 
-void HoI4FocusTree::addCommunistWarBranch(const HoI4Country * Home, const vector<HoI4Country*>& warTargets, const HoI4Events* events)
+void HoI4FocusTree::addCommunistWarBranch(const HoI4Country * Home, const vector<HoI4Country*>& warTargets, HoI4Events* events)
 {
 	if (warTargets.size() > 0)
 	{
@@ -3214,7 +3214,7 @@ void HoI4FocusTree::addCommunistWarBranch(const HoI4Country * Home, const vector
 	}
 }
 
-void HoI4FocusTree::addFascistAnnexationBranch(HoI4Country * Home, vector<HoI4Country*> annexationTargets, HoI4Events * events)
+void HoI4FocusTree::addFascistAnnexationBranch(const HoI4Country* Home, const vector<const HoI4Country*>& annexationTargets, HoI4Events* events)
 {
 	if (annexationTargets.size() >= 1)
 	{
@@ -3301,7 +3301,7 @@ void HoI4FocusTree::addFascistAnnexationBranch(HoI4Country * Home, vector<HoI4Co
 	}
 }
 
-void HoI4FocusTree::addFascistSudetenBranch(HoI4Country * Home, vector<HoI4Country*> sudetenTargets, vector<set<string>> demandedStates, HoI4Events * events)
+void HoI4FocusTree::addFascistSudetenBranch(const HoI4Country* Home, const vector<const HoI4Country*>& sudetenTargets, const vector<set<string>>& demandedStates, HoI4Events* events)
 {
 	if (sudetenTargets.size() >= 1)
 	{
@@ -3401,7 +3401,7 @@ void HoI4FocusTree::addFascistSudetenBranch(HoI4Country * Home, vector<HoI4Count
 }
 
 
-void HoI4FocusTree::addGPWarBranch(HoI4Country * Home, vector<HoI4Country*> newAllies, vector<HoI4Country*> GCTargets, string ideology, HoI4Events * events)
+void HoI4FocusTree::addGPWarBranch(const HoI4Country* Home, const vector<HoI4Country*>& newAllies, const vector<const HoI4Country*>& GCTargets, const string& ideology, HoI4Events* events)
 {
 	string ideologyShort = ideology.substr(0, 3);
 	if (newAllies.size() > 0)

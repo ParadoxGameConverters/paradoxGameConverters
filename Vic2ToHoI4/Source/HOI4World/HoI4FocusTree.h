@@ -52,10 +52,10 @@ class HoI4FocusTree
 		void addDemocracyNationalFocuses(const HoI4Country* Home, const vector<const HoI4Country*>& CountriesToContain);
 		void addAbsolutistEmpireNationalFocuses(const HoI4Country* country, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets);
 		void addCommunistCoupBranch(const HoI4Country* Home, const vector<HoI4Country*>& coupTargets);
-		void addCommunistWarBranch(const HoI4Country* Home, const vector<HoI4Country*>& warTargets, const HoI4Events* events);
-		void addFascistAnnexationBranch(const HoI4Country* Home, const vector<const HoI4Country*>& annexationTargets, const HoI4Events* events);
-		void addFascistSudetenBranch(const HoI4Country* Home, const vector<const HoI4Country*>& sudetenTargets, const vector<set<string>>& demandedStates, const HoI4Events* events);
-		void addGPWarBranch(const HoI4Country* Home, const vector<HoI4Country*>& newAllies, const vector<HoI4Country*>& GCTargets, const string& ideology, HoI4Events* events);
+		void addCommunistWarBranch(const HoI4Country* Home, const vector<HoI4Country*>& warTargets, HoI4Events* events);
+		void addFascistAnnexationBranch(const HoI4Country* Home, const vector<const HoI4Country*>& annexationTargets, HoI4Events* events);
+		void addFascistSudetenBranch(const HoI4Country* Home, const vector<const HoI4Country*>& sudetenTargets, const vector<set<string>>& demandedStates, HoI4Events* events);
+		void addGPWarBranch(const HoI4Country* Home, const vector<HoI4Country*>& newAllies, const vector<const HoI4Country*>& GCTargets, const string& ideology, HoI4Events* events);
 
 		void output(const string& filename) const;
 
