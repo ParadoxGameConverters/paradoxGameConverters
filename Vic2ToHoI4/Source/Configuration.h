@@ -130,6 +130,8 @@ class Configuration // Singleton
 
 	private:
 		static Configuration* instance;
+		Configuration(const Configuration&) = delete;
+		Configuration& operator=(const Configuration&) = delete;
 
 		HOI4Version getAutomaticHoI4Version();
 

@@ -75,7 +75,7 @@ public:
 	string getGovernment() const { return government; }
 	int getCapital() const { return capital; }
 	set<string> getTechs() const { return techs; }
-	Color getColor() const { return color; }
+	const Color& getColor() const { return color; }
 	double getEducationSpending() const { return educationSpending; }
 	double getMilitarySpending() const { return militarySpending; }
 	vector<const V2Army*> getArmies() const { return armies; }
