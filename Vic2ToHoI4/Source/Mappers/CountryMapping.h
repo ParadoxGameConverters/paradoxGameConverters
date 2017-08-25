@@ -70,6 +70,9 @@ class CountryMapper
 		}
 		CountryMapper();
 
+		CountryMapper(const CountryMapper&) = delete;
+		const CountryMapper& operator=(const CountryMapper&) = delete;
+
 		void readRules();
 		vector<shared_ptr<Object>> getRules() const;
 		void importRule(shared_ptr<Object> rule);

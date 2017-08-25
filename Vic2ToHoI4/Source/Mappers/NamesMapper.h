@@ -106,6 +106,9 @@ class namesMapper
 		}
 		namesMapper();
 
+		namesMapper(const namesMapper&) = delete;
+		const namesMapper& operator=(const namesMapper&) = delete;
+
 		void processVic2CulturesFile(const string& filename);
 		void processNamesFile();
 		void checkForNames();

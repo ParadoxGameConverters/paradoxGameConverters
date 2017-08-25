@@ -63,6 +63,9 @@ class provinceDefinitions
 		}
 		provinceDefinitions();
 
+		provinceDefinitions(const provinceDefinitions&) = delete;
+		const provinceDefinitions& operator=(const provinceDefinitions&) = delete;
+
 		int GetProvinceFromColor(const Color& color) const;
 
 		int getIntFromColor(const Color& color) const;

@@ -69,6 +69,8 @@ class provinceMapper
 		}
 		provinceMapper();
 
+		provinceMapper(const provinceMapper&) = delete;
+		const provinceMapper& operator=(const provinceMapper&) = delete;
 
 		void initProvinceMap(shared_ptr<Object> parsedMappingsFile);
 		vector<shared_ptr<Object>> getCorrectMappingVersion(const vector<shared_ptr<Object>>& versions);

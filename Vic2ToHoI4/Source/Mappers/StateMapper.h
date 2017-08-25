@@ -73,6 +73,9 @@ class stateMapper
 		}
 		stateMapper();
 
+		stateMapper(const stateMapper&) = delete;
+		const stateMapper& operator=(const stateMapper&) = delete;
+
 		void initStateMap(shared_ptr<Object> parsedMappingsFile);
 
 		int GetCapitalProvince(const string& stateID) const;

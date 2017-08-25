@@ -94,6 +94,9 @@ class governmentMapper
 		void importGovernmentMappings(shared_ptr<Object> obj);
 		void importPartyMappings(shared_ptr<Object> obj);
 
+		governmentMapper(const governmentMapper&) = delete;
+		const governmentMapper& operator=(const governmentMapper&) = delete;
+
 		string GetIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology) const;
 		string GetLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology) const;
 		string GetSupportedIdeology(const string& rulingIdeology, const string& Vic2Ideology) const;

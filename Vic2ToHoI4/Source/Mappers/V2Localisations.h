@@ -67,6 +67,9 @@ class V2Localisations
 		string getNextLocalisation(string line, int& division);
 		string replaceBadCharacters(string localisation);
 
+		V2Localisations(const V2Localisations&) = delete;
+		const V2Localisations& operator=(const V2Localisations&) = delete;
+
 		const string ActuallyGetTextInLanguage(const string& key, const string& language) const;
 		const map<string, string>& ActuallyGetTextInEachLanguage(const string& key) const;
 		void ActuallyUpdateDomainCountry(const string & tag, const string & dominionName);

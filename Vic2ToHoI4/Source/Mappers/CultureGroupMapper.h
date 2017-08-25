@@ -54,6 +54,9 @@ class cultureGroupMapper
 		cultureGroupMapper();
 		void processVic2CulturesFile(string culturesFile);
 
+		cultureGroupMapper(const cultureGroupMapper&) = delete;
+		const cultureGroupMapper& operator=(const cultureGroupMapper&) = delete;
+
 		string GetCultureGroup(const string& culture) const;
 
 		map<string, string> mappings;
