@@ -68,6 +68,9 @@ class Vic2State
 		int getEmployedWorkers() const { return employedWorkers; }
 
 	private:
+		Vic2State(const Vic2State&) = delete;
+		Vic2State& operator=(const Vic2State&) = delete;
+
 		void addProvinceNums(shared_ptr<Object> stateObj);
 		void setID();
 		vector<string> getProvinceIDs(shared_ptr<Object> stateObj) const;

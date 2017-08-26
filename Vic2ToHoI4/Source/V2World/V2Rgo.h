@@ -36,9 +36,14 @@ class V2Rgo
 	public:
 		V2Rgo() : resource(""), numWorkers(0) {}
 		V2Rgo(const string& type, int workers) : resource(type), numWorkers(workers) {}
+		V2Rgo& operator=(const V2Rgo&) = default;
+
 		string getResource() const { return resource; }
 		int getWorkers() const { return numWorkers; }
+
 	private:
+		V2Rgo(const V2Rgo&) = delete;
+
 		string resource;
 		int numWorkers;
 };

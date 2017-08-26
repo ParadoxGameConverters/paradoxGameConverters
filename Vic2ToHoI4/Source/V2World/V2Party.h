@@ -32,17 +32,22 @@ using namespace std;
 
 
 
-struct V2Party
+class V2Party
 {
-	V2Party(shared_ptr<Object> party_obj);
+	public:
+		V2Party(shared_ptr<Object> party_obj);
 
-	string name;
-	string ideology;
-	string economic_policy;
-	string trade_policy;
-	string religious_policy;
-	string citizenship_policy;
-	string war_policy;
+		string name;
+		string ideology;
+		string economic_policy;
+		string trade_policy;
+		string religious_policy;
+		string citizenship_policy;
+		string war_policy;
+
+	private:
+		V2Party(const V2Party&) = delete;
+		V2Party& operator=(const V2Party&) = delete;
 };
 
 

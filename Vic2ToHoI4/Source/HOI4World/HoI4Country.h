@@ -43,7 +43,7 @@ using namespace std;
 
 
 class V2Country;
-struct V2Party;
+class V2Party;
 class HoI4Advisor;
 class HoI4Faction;
 class HoI4Leader;

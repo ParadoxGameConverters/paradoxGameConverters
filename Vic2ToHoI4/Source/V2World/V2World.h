@@ -37,7 +37,7 @@ using namespace std;
 class V2Country;
 class V2Diplomacy;
 class V2Province;
-struct V2Party;
+class V2Party;
 
 
 class V2World
@@ -53,6 +53,9 @@ class V2World
 		vector<const V2Party*> getParties() const { return parties; }
 
 	private:
+		V2World(const V2World&) = delete;
+		V2World& operator=(const V2World&) = delete;
+
 		void setLocalisations();
 
 		map<int, int> extractGreatNationIndices(const shared_ptr<Object> obj) const;

@@ -65,9 +65,11 @@ class V2Province
 		int getRailLevel() const { return railLevel; }
 		int getFortLevel() const { return fortLevel; }
 		int getNavalBaseLevel() const { return navalBaseLevel; }
-		const V2Rgo getRgo() const { return rgo; }
 
 	private:
+		V2Province(const V2Province&) = delete;
+		V2Province& operator=(const V2Province&) = delete;
+
 		void readOwner(shared_ptr<Object> obj);
 		void readCores(shared_ptr<Object> obj);
 		void readForts(shared_ptr<Object> obj);

@@ -43,6 +43,10 @@ class V2Agreement
 		string country1;
 		string country2;
 		date start_date;
+
+	private:
+		V2Agreement(const V2Agreement&) = delete;
+		V2Agreement& operator=(const V2Agreement&) = delete;
 };
 
 

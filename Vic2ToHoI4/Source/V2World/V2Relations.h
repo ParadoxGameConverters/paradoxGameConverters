@@ -49,6 +49,9 @@ class V2Relations
 		const date getTruceUntil() const { return truceUntil; }
 
 	private:
+		V2Relations(const V2Relations&) = delete;
+		V2Relations& operator=(const V2Relations&) = delete;
+
 		void setValue(shared_ptr<Object> relationsObj);
 		void setMilitaryAccess(shared_ptr<Object> relationsObj);
 		void setLastDiplomat(shared_ptr<Object> relationsObj);

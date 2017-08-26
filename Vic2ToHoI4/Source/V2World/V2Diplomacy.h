@@ -46,6 +46,9 @@ class V2Diplomacy
 		const vector<const V2Agreement*>& getAgreements() const	{ return agreements; }
 
 	private:
+		V2Diplomacy(const V2Diplomacy&) = delete;
+		V2Diplomacy& operator=(const V2Diplomacy&) = delete;
+
 		bool isARelevantDiplomaticObject(shared_ptr<Object> obj) const;
 
 		vector<const V2Agreement*>	agreements;

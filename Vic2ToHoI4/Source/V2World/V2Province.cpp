@@ -115,16 +115,21 @@ void V2Province::readRgo(shared_ptr<Object> obj)
 {
 	shared_ptr<Object> rgoObj = obj->safeGetObject("rgo");
 	if (!rgoObj) return;
+
 	string goods = rgoObj->safeGetString("goods_type");
+
 	shared_ptr<Object> employment = rgoObj->safeGetObject("employment");
 	if (!employment) return;
+
 	shared_ptr<Object> employees = employment->safeGetObject("employees");
 	if (!employees) return;
+
 	vector<shared_ptr<Object>> pops = employees->getLeaves();
 	int workers = 0;
 	for (const auto& pop : pops) {
 		workers += pop->safeGetInt("count");
 	}
+
 	rgo = V2Rgo(goods, workers);
 }
 

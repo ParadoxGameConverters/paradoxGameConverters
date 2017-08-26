@@ -42,6 +42,9 @@ class V2Leader
 		string getBackground() const { return background; }
 
 	private:
+		V2Leader(const V2Leader&) = delete;
+		V2Leader& operator=(const V2Leader&) = delete;
+
 		string name;
 		string type;
 		string personality;

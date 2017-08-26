@@ -46,6 +46,9 @@ class V2Pop
 		double getLiteracy() const { return literacy; }
 
 	private:
+		V2Pop(const V2Pop&) = delete;
+		V2Pop& operator=(const V2Pop&) = delete;
+
 		int size;
 		string type;
 		string culture;
