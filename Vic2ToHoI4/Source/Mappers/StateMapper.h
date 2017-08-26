@@ -74,7 +74,7 @@ class stateMapper
 		stateMapper();
 
 		stateMapper(const stateMapper&) = delete;
-		const stateMapper& operator=(const stateMapper&) = delete;
+		stateMapper& operator=(const stateMapper&) = delete;
 
 		void initStateMap(shared_ptr<Object> parsedMappingsFile);
 

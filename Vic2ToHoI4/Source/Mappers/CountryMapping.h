@@ -71,7 +71,7 @@ class CountryMapper
 		CountryMapper();
 
 		CountryMapper(const CountryMapper&) = delete;
-		const CountryMapper& operator=(const CountryMapper&) = delete;
+		CountryMapper& operator=(const CountryMapper&) = delete;
 
 		void readRules();
 		vector<shared_ptr<Object>> getRules() const;

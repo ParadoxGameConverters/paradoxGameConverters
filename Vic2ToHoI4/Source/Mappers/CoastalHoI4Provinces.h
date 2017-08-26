@@ -69,7 +69,7 @@ class coastalHoI4ProvincesMapper
 		map<int, province> getProvinces() const;
 
 		coastalHoI4ProvincesMapper(const coastalHoI4ProvincesMapper&) = delete;
-		const coastalHoI4ProvincesMapper& operator=(const coastalHoI4ProvincesMapper&) = delete;
+		coastalHoI4ProvincesMapper& operator=(const coastalHoI4ProvincesMapper&) = delete;
 
 		bool IsProvinceCoastal(int provinceNum) const;
 

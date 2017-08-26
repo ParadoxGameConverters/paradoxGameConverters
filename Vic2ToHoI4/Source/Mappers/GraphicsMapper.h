@@ -95,7 +95,7 @@ class graphicsMapper
 		void loadGraphicalCulture2dMappings(const string& cultureGroup, shared_ptr<Object> graphicalCulture2dMappings);
 
 		graphicsMapper(const graphicsMapper&) = delete;
-		const graphicsMapper& operator=(const graphicsMapper&) = delete;
+		graphicsMapper& operator=(const graphicsMapper&) = delete;
 
 		string GetLeaderPortrait(const string& cultureGroup, const string& ideology);
 		vector<string> GetLeaderPortraits(const string& cultureGroup, const string& ideology) const;

@@ -67,7 +67,7 @@ class provinceNeighborMapper
 		provinceNeighborMapper();
 
 		provinceNeighborMapper(const provinceNeighborMapper&) = delete;
-		const provinceNeighborMapper& operator=(const provinceNeighborMapper&) = delete;
+		provinceNeighborMapper& operator=(const provinceNeighborMapper&) = delete;
 
 		Color getCenterColor(bitmap_image& provinces, point position) const;
 		Color getAboveColor(bitmap_image& provinces, point position, int height) const;

@@ -55,7 +55,7 @@ class stateCategoryMapper
 		void readCategoriesFromFile(const string& file);
 
 		stateCategoryMapper(const stateCategoryMapper&) = delete;
-		const stateCategoryMapper& operator=(const stateCategoryMapper&) = delete;
+		stateCategoryMapper& operator=(const stateCategoryMapper&) = delete;
 
 		map<int, string> GetStateCategories() const
 		{
