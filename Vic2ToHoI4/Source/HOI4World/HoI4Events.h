@@ -54,6 +54,9 @@ class HoI4Events
 
 
 	private:
+		HoI4Events(const HoI4Events&) = delete;
+		HoI4Events& operator=(const HoI4Events&) = delete;
+
 		void outputNationalFocusEvents() const;
 		void outputNewsEvents() const;
 		void outputPoliticalEvents() const;
@@ -74,5 +77,7 @@ class HoI4Events
 		int politicalEventNumber;
 		vector<HoI4Event> warJustificationEvents;
 };
+
+
 
 #endif // HOI4_EVENTS_H

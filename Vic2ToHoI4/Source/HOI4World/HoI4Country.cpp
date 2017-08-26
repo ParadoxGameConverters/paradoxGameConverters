@@ -528,7 +528,7 @@ void HoI4Country::convertArmyDivisions(const map<string, HoI4UnitMap>& unitMap, 
 		}
 	}
 		
-	for (auto divTemplate : divisionTemplates)
+	for (auto& divTemplate : divisionTemplates)
 	{
 		// for each template determine the Battalion and Company requirements
 		int divisionCounter = 1;
@@ -1578,7 +1578,7 @@ void HoI4Country::outputOOB() const
 										}
 										}*/
 	output << "start_equipment_factor = 0\n";
-	for (auto divisionTemplate : divisionTemplates)
+	for (auto& divisionTemplate : divisionTemplates)
 	{
 		output << divisionTemplate;
 		output << endl;
@@ -1596,7 +1596,7 @@ void HoI4Country::outputOOB() const
 	output << "\t}\n";
 	output << "}\n";
 	output << "units = {\n";
-	for (auto division : divisions)
+	for (auto& division : divisions)
 	{
 		output << division;
 	}
@@ -1605,7 +1605,7 @@ void HoI4Country::outputOOB() const
 		output << "\tnavy = {" << endl;
 		output << "\t\tname = \"Grand Fleet\"" << endl;
 		output << "\t\tlocation = " << navalLocation << endl;
-		for (auto ship : ships)
+		for (auto& ship : ships)
 		{
 			output << ship;
 		}
@@ -1616,7 +1616,7 @@ void HoI4Country::outputOOB() const
 	{
 		output << "air_wings = {\n";
 		output << "\t" << capital << " = {\n";
-		for (auto plane : planes)
+		for (auto& plane: planes)
 		{
 			output << plane;
 		}

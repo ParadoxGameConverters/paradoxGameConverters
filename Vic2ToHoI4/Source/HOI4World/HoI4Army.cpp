@@ -637,19 +637,19 @@ HoI4DivisionTemplateType::HoI4DivisionTemplateType(const string& _name):
 }
 
 
-ostream& operator << (ostream& out, HoI4DivisionTemplateType divisionTemplateType)
+ostream& operator << (ostream& out, const HoI4DivisionTemplateType& rhs)
 {
 	out << "division_template = {\n";
-	out << "\tname = \"" << divisionTemplateType.name << "\"\n";
+	out << "\tname = \"" << rhs.name << "\"\n";
 	out << endl;
 	out << "\tregiments = {\n";
-	for (auto regiment: divisionTemplateType.regiments)
+	for (auto regiment: rhs.regiments)
 	{
 		out << regiment;
 	}
 	out << "\t}\n";
 	out << "\tsupport = {\n";
-	for (auto regiment: divisionTemplateType.supportRegiments)
+	for (auto regiment: rhs.supportRegiments)
 	{
 		out << regiment;
 	}

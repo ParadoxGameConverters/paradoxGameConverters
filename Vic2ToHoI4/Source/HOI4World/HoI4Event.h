@@ -37,7 +37,8 @@ class HoI4Event
 {
 	public:
 		HoI4Event();
-		friend ofstream& operator << (ofstream& out, HoI4Event theEvent);
+		friend ofstream& operator << (ofstream& out, const HoI4Event& theEvent);
+		HoI4Event(const HoI4Event&) = default;
 
 		string type;
 		string id;
@@ -50,6 +51,9 @@ class HoI4Event
 		string meanTimeToHappen;
 		string immediate;
 		vector<string> options;
+
+	private:
+		HoI4Event& operator=(const HoI4Event&) = delete;
 };
 
 

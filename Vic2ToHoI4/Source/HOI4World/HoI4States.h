@@ -53,6 +53,9 @@ class HoI4States
 		void output() const;
 
 	private:
+		HoI4States(const HoI4States&) = delete;
+		HoI4States& operator=(const HoI4States&) = delete;
+
 		void determineOwnersAndCores();
 		vector<int> retrieveSourceProvinceNums(int provNum) const;
 		map<const V2Country*, pair<int, int>> determinePotentialOwners(const vector<int>& sourceProvinceNums) const;

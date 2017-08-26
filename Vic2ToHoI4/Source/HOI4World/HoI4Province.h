@@ -75,6 +75,9 @@ class HoI4Province
 		void		requireInfrastructure(int min);
 
 	private:
+		HoI4Province(const HoI4Province&) = delete;
+		HoI4Province& operator=(const HoI4Province&) = delete;
+
 		map<string, string>	filenames;
 		bool						coastal;
 		int						num;

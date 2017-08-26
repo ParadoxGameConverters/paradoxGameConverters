@@ -46,11 +46,13 @@ class HoI4Faction
 		void addMember(HoI4Country* addedCon) { Factionmembers.push_back(addedCon); }
 
 	private:
+		HoI4Faction(const HoI4Faction&) = delete;
+		HoI4Faction& operator=(const HoI4Faction&) = delete;
+
 		const HoI4Country* Factionleader;
 		vector<HoI4Country*> Factionmembers;
 
 };
-
 
 
 

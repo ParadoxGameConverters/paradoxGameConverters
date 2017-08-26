@@ -75,6 +75,9 @@ class HoI4World
 		HoI4Country* findCountry(const string& countryTag);
 
 	private:
+		HoI4World(const HoI4World&) = delete;
+		HoI4World& operator=(const HoI4World&) = delete;
+
 		void convertNavalBases();
 
 		void convertCountries();

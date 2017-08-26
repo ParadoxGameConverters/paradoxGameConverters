@@ -38,9 +38,12 @@ class HOI4Version
 		HOI4Version();
 		HOI4Version(shared_ptr<Object> obj);
 		HOI4Version(string version);
+		HOI4Version(const HOI4Version&) = default;
+		HOI4Version& operator=(const HOI4Version&) = default;
 		bool operator >= (const HOI4Version& rhs) const;
 
 		friend ostream& operator << (ostream& out, const HOI4Version& version);
+
 	private:
 		int first;
 		int second;

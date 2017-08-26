@@ -69,7 +69,7 @@ void HoI4Events::outputNationalFocusEvents() const
 
 	outEvents << "\xEF\xBB\xBF";
 	outEvents << "add_namespace = NFEvents\n";
-	for (auto theEvent: nationalFocusEvents)
+	for (auto& theEvent: nationalFocusEvents)
 	{
 		outEvents << "\n";
 		outEvents << theEvent;
@@ -90,7 +90,7 @@ void HoI4Events::outputNewsEvents() const
 
 	outNewsEvents << "\xEF\xBB\xBF";
 	outNewsEvents << "add_namespace = news\n" << flush;
-	for (auto theEvent: newsEvents)
+	for (auto& theEvent: newsEvents)
 	{
 		outNewsEvents << "\n" << flush;
 		outNewsEvents << theEvent << flush;
@@ -111,7 +111,7 @@ void HoI4Events::outputPoliticalEvents() const
 
 	outPoliticalEvents << "\xEF\xBB\xBF";
 	outPoliticalEvents << "add_namespace = conv.political\n" << flush;
-	for (auto theEvent: politicalEvents)
+	for (auto& theEvent: politicalEvents)
 	{
 		outPoliticalEvents << "\n";
 		outPoliticalEvents << theEvent;
@@ -130,7 +130,7 @@ void HoI4Events::outputWarJustificationEvents() const
 		exit(-1);
 	}
 
-	for (auto theEvent: warJustificationEvents)
+	for (auto& theEvent: warJustificationEvents)
 	{
 		outWarJustificationEvents << "\n";
 		outWarJustificationEvents << theEvent;

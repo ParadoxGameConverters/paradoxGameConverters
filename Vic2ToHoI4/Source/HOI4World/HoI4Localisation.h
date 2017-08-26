@@ -98,6 +98,9 @@ class HoI4Localisation
 		void importLocalisationFile(const string& filename, languageToLocalisationsMap& localisations);
 		void prepareIdeaLocalisations();
 
+		HoI4Localisation(const HoI4Localisation&) = delete;
+		HoI4Localisation& operator=(const HoI4Localisation&) = delete;
+
 		void AddNonenglishCountryLocalisations();
 
 		void CreateCountryLocalisations(const pair<const string&, const string&>& tags);

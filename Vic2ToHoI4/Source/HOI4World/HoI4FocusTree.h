@@ -62,6 +62,9 @@ class HoI4FocusTree
 		void addFocus(HoI4Focus* newFocus) { focuses.push_back(newFocus); }
 
 	private:
+		HoI4FocusTree(const HoI4FocusTree&) = delete;
+		HoI4FocusTree& operator=(const HoI4FocusTree&) = delete;
+
 		int calculateNumCollectovistIdeologies(const set<string>& majorIdeologies);
 		void determineMutualExclusions(const set<string>& majorIdeologies);
 		void addFascistGenericFocuses();

@@ -45,6 +45,9 @@ class HoI4StrategicRegion
 		void	addNewProvince(int province)	{ newProvinces.push_back(province); }
 
 	private:
+		HoI4StrategicRegion(const HoI4StrategicRegion&) = delete;
+		HoI4StrategicRegion& operator=(const HoI4StrategicRegion&) = delete;
+
 		string filename;
 		int ID;
 		vector<int>	oldProvinces;

@@ -28,9 +28,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 using namespace std;
 
 
+
 class HoI4World;
 
+
+
 const int maxGCWars = 1;
+
+
 
 class HoI4WarCreator
 {
@@ -38,6 +43,9 @@ class HoI4WarCreator
 		HoI4WarCreator(const HoI4World* world);
 
 	private:
+		HoI4WarCreator(const HoI4WarCreator&) = delete;
+		HoI4WarCreator& operator=(const HoI4WarCreator&) = delete;
+
 		void determineProvinceOwners();
 		void fillCountryProvinces();
 		void addAllTargetsToWorldTargetMap();

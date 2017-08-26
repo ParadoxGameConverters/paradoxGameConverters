@@ -48,6 +48,9 @@ class HoI4Agreement
 		string getType() const { return type; }
 
 	private:
+		HoI4Agreement(const HoI4Agreement&) = delete;
+		HoI4Agreement& operator=(const HoI4Agreement&) = delete;
+
 		string type;
 		string country1;
 		string country2;

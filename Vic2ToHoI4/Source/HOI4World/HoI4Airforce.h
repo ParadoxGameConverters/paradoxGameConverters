@@ -40,6 +40,9 @@ class HoI4Airplane
 		friend ofstream& operator << (ofstream& output, const HoI4Airplane& instance);
 
 	private:
+		HoI4Airplane(const HoI4Airplane&) = delete;
+		HoI4Airplane& operator=(const HoI4Airplane&) = delete;
+
 		string type;
 		string owner;
 		int amount;

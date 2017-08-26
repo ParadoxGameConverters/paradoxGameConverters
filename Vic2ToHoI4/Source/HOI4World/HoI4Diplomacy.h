@@ -45,6 +45,8 @@ class HoI4Diplomacy
 		const vector<const HoI4Agreement*>& getAgreements() const { return agreements; };
 
 	private:
+		HoI4Diplomacy(const HoI4Diplomacy&) = delete;
+
 		vector<const HoI4Agreement*> agreements;
 };
 

@@ -109,7 +109,7 @@ class Configuration // Singleton
 			getInstance()->leaderID = 1000 * getInstance()->leaderIDCountryIdx;	
 		}
 
-		static HOI4Version getHOI4Version()
+		static HOI4Version& getHOI4Version()
 		{
 			return getInstance()->version;
 		}

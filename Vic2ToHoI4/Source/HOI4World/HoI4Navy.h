@@ -36,10 +36,13 @@ class HoI4Ship
 {
 	public:
 		HoI4Ship(const string& _name, const string& _type, const string& _equipment, const string& _owner);
+		HoI4Ship(const HoI4Ship&) = default;
 
 		friend ofstream& operator << (ofstream& output, const HoI4Ship& instance);
 
 	private:
+		HoI4Ship& operator=(const HoI4Ship&) = delete;
+
 		string	name;
 		string	type;
 		string  equipment;

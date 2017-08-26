@@ -124,6 +124,9 @@ class HoI4Country
 		set<string>&								editAllies() { return allies; }
 
 	private:
+		HoI4Country(const HoI4Country&) = delete;
+		HoI4Country& operator=(const HoI4Country&) = delete;
+
 		void determineFilename();
 		void convertGovernment(const V2World& _srcWorld);
 		void initIdeas();

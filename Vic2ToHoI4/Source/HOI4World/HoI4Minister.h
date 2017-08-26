@@ -42,6 +42,9 @@ class HoI4Minister
 		unsigned int	getID()			const { return ID; }
 
 	private:
+		HoI4Minister(const HoI4Minister&) = delete;
+		HoI4Minister& operator=(const HoI4Minister&) = delete;
+
 		unsigned int	ID;
 		string			name;
 		string			ideology;

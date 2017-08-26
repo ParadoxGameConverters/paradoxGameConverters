@@ -77,6 +77,9 @@ class HoI4State
 		void convertIndustry(double workerFactoryRatio);
 
 	private:
+		HoI4State(const HoI4State&) = delete;
+		HoI4State& operator=(const HoI4State&) = delete;
+
 		int determineFactoryNumbers(double workerFactoryRatio);
 		int constrainFactoryNumbers(double rawFactories);
 		void determineCategory(int factories);

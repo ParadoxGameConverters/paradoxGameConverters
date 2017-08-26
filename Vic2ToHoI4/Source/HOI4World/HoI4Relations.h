@@ -45,7 +45,11 @@ class HoI4Relations
 		date		getLastWar()		const { return lastWar; };
 		date		getTruceUntil()	const { return truceUntil; };
 		bool		atWar()				const { return lastWar > truceUntil; };
+
 	private:
+		HoI4Relations(const HoI4Relations&) = delete;
+		HoI4Relations& operator=(const HoI4Relations&) = delete;
+
 		string	tag;
 		int		value;
 		bool		militaryAccess;

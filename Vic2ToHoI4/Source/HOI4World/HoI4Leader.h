@@ -43,6 +43,9 @@ class HoI4Leader
 		string getType()	const { return type; }
 
 	private:
+		HoI4Leader(const HoI4Leader&) = delete;
+		HoI4Leader& operator=(const HoI4Leader&) = delete;
+
 		unsigned int		ID;
 		string				name;
 		string				country;
