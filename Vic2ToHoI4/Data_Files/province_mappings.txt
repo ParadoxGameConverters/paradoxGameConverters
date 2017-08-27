@@ -262,100 +262,112 @@
 	link = { vic2 = 2526 hoi4 = 13048 }	# Palmyra -> land
 	# 
 	# ## Canada
-	link = { vic2 = 8 hoi4 = 7891 }	# Ross River -> land
-	link = { vic2 = 16 hoi4 = 12508 }	# Glenora -> land
-	link = { vic2 = 7 hoi4 = 3606 }	# Dawson -> land
+	# # Yukon Territory
 	link = { vic2 = 6 hoi4 = 7869 }	# Whitehorse -> land
+	link = { vic2 = 7 hoi4 = 3606 }	# Dawson -> land
+	link = { vic2 = 8 hoi4 = 7891 }	# Ross River -> land
+	# # Northwest Territories
+	link = { vic2 = 9 hoi4 = 7696 }	# Fort Simpson -> land
+	link = { vic2 = 10 hoi4 = 10703 }	# Inuvik -> land
+	link = { vic2 = 11 hoi4 = 2407 hoi4 = 10527 }	# Echo Bay -> land, land
+	link = { vic2 = 12 hoi4 = 7901 }	# Reliance -> land
+	link = { vic2 = 43 hoi4 = 2947 }	# Arviat -> land
+	link = { vic2 = 44 hoi4 = 1712 }	# Coral Harbour -> land
+	link = { vic2 = 45 hoi4 = 3691 hoi4 = 7813 }	# Baffin Island -> land, land
+	link = { vic2 = 2595 hoi4 = 10721 }	# Nunavut -> land
+	link = { vic2 = 2596 hoi4 = 13075 }	# Fort Resolution -> land
+	link = { vic2 = 2598 hoi4 = 7830 }	# Fort Liard -> land
+	# # Prince George Region
+	link = { vic2 = 16 hoi4 = 12508 hoi4 = 12571 }	# Glenora -> land, land
 	link = { vic2 = 17 hoi4 = 1872 }	# Atlin -> land
+	link = { vic2 = 18 hoi4 = 917 hoi4 = 1411 }	# Fort Saint John -> land, land
+	link = { vic2 = 19 hoi4 = 10644 hoi4 = 1737 hoi4 = 1323 hoi4 = 4870 }	# Prince George -> land, land, land, land
 	link = { vic2 = 2629 hoi4 = 4678 }	# Beatton River -> land
-	link = { vic2 = 18 hoi4 = 917 }	# Fort Saint John -> land
-	link = { vic2 = 19 hoi4 = 12571 hoi4 = 10644 hoi4 = 1323 hoi4 = 1411 }	# Prince George -> land, land, land, land
-	link = { vic2 = 15 hoi4 = 1869 hoi4 = 1799 hoi4 = 10548 }	# Prince Rupert -> land, land, land
+	# # Vancouver Region
+	link = { vic2 = 13 hoi4 = 1408 hoi4 = 12231 hoi4 = 10258 hoi4 = 10228 hoi4 = 1393 hoi4 = 10273 hoi4 = 4385 hoi4 = 1858 hoi4 = 4413 hoi4 = 4428 }	# Vancouver -> land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 14 hoi4 = 7259 hoi4 = 1214 hoi4 = 1420 hoi4 = 12272 hoi4 = 12259 }	# Vancouver Island -> land, land, land, land, land
+	link = { vic2 = 15 hoi4 = 1799 hoi4 = 10548 hoi4 = 1869 }	# Prince Rupert -> land, land, land
+	link = { vic2 = 20 hoi4 = 7853 hoi4 = 4343 hoi4 = 7761 hoi4 = 7753 hoi4 = 7677 }	# Kelowna -> land, land, land, land, land
+	link = { vic2 = 21 hoi4 = 12578 hoi4 = 4877 hoi4 = 7820 }	# Vernon -> land, land, land
+	# # Alberta
 	link = { vic2 = 22 hoi4 = 7787 hoi4 = 6754 hoi4 = 3010 }	# Edmonton -> land, land, land
-	link = { vic2 = 21 hoi4 = 7820 hoi4 = 12578 hoi4 = 4877 }	# Vernon -> land, land, land
-	link = { vic2 = 20 hoi4 = 7753 hoi4 = 7677 hoi4 = 4343 hoi4 = 7853 hoi4 = 1737 hoi4 = 7761 }	# Kelowna -> land, land, land, land, land, land
-	link = { vic2 = 13 hoi4 = 1408 hoi4 = 1393 hoi4 = 4428 hoi4 = 4385 hoi4 = 12231 hoi4 = 10228 hoi4 = 10258 hoi4 = 10273 hoi4 = 1858 hoi4 = 4413 hoi4 = 4870 }	# Vancouver -> land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 26 hoi4 = 3706 }	# Calgary -> land
+	link = { vic2 = 23 hoi4 = 12166 hoi4 = 13192 hoi4 = 7348 hoi4 = 12534 }	# Athabaska Landing -> land, lake, land, land
 	link = { vic2 = 24 hoi4 = 1347 }	# Jasper -> land
 	link = { vic2 = 25 hoi4 = 4765 }	# Banff -> land
+	link = { vic2 = 26 hoi4 = 3706 }	# Calgary -> land
+	link = { vic2 = 27 hoi4 = 6726 hoi4 = 515 hoi4 = 1804 hoi4 = 10684 }	# Denwood -> land, land, land, land
 	link = { vic2 = 28 hoi4 = 1262 }	# Fort MacLeod -> land
 	link = { vic2 = 29 hoi4 = 7718 }	# Medicine Hat -> land
-	link = { vic2 = 27 hoi4 = 1804 hoi4 = 515 hoi4 = 6726 hoi4 = 10684 }	# Denwood -> land, land, land, land
-	link = { vic2 = 2597 hoi4 = 1763 }	# Fort Vermilion -> land
+	link = { vic2 = 2597 hoi4 = 7766 hoi4 = 7858 hoi4 = 1763 }	# Fort Vermilion -> land, land, land
+	# # Saskatchewan
+	link = { vic2 = 30 hoi4 = 12603 hoi4 = 12593 hoi4 = 1788 hoi4 = 12663 hoi4 = 10611 }	# Regina -> land, land, land, land, land
+	link = { vic2 = 31 hoi4 = 4695 hoi4 = 6779 hoi4 = 3800 hoi4 = 13185 hoi4 = 13183 }	# Stanley -> land, land, land, lake, lake
+	link = { vic2 = 32 hoi4 = 736 hoi4 = 12682 hoi4 = 10656 }	# Prince Albert -> land, land, land
+	link = { vic2 = 33 hoi4 = 3498 hoi4 = 9669 hoi4 = 11440 hoi4 = 1671 }	# Asquith -> land, land, land, land
+	link = { vic2 = 34 hoi4 = 4739 hoi4 = 3481 }	# Saskatoon -> land, land
 	link = { vic2 = 35 hoi4 = 10552 hoi4 = 3769 }	# Maple Creek -> land, land
-	link = { vic2 = 30 hoi4 = 1788 hoi4 = 12603 hoi4 = 10611 }	# Regina -> land, land, land
-	link = { vic2 = 34 hoi4 = 736 hoi4 = 4739 hoi4 = 3481 }	# Saskatoon -> land, land, land
-	link = { vic2 = 32 hoi4 = 10656 hoi4 = 12593 hoi4 = 12663 }	# Prince Albert -> land, land, land
-	link = { vic2 = 33 hoi4 = 3498 hoi4 = 9669 hoi4 = 11440 }	# Asquith -> land, land, land
-	link = { vic2 = 23 hoi4 = 12166 hoi4 = 13192 hoi4 = 12534 hoi4 = 7348 hoi4 = 7766 }	# Athabaska Landing -> land, lake, land, land, land
-	link = { vic2 = 10 hoi4 = 10703 }	# Inuvik -> land
-	link = { vic2 = 2598 hoi4 = 7830 }	# Fort Liard -> land
-	link = { vic2 = 9 hoi4 = 7858 }	# Fort Simpson -> land
-	link = { vic2 = 3227 hoi4 = 8653 }	# Great Slave Lake -> lake
-	link = { vic2 = 11 hoi4 = 10527 hoi4 = 7696 hoi4 = 2407 hoi4 = 4272 }	# Echo Bay -> land, land, land, lake
-	link = { vic2 = 12 hoi4 = 7901 }	# Reliance -> land
-	link = { vic2 = 2596 hoi4 = 13075 }	# Fort Resolution -> land
+	# # Manitoba
+	link = { vic2 = 36 hoi4 = 4872 hoi4 = 4426 }	# Winnipeg -> land, land
+	link = { vic2 = 37 hoi4 = 7185 hoi4 = 5239 hoi4 = 10605 }	# Churchill -> land, land, land
+	link = { vic2 = 38 hoi4 = 10585 }	# Indian Lakes -> land
+	link = { vic2 = 39 hoi4 = 7782 hoi4 = 6728 hoi4 = 9615 }	# Norway House -> land, land, land
+	link = { vic2 = 40 hoi4 = 4218 hoi4 = 12636 hoi4 = 5119 }	# Dauphin -> land, land, land
+	link = { vic2 = 41 hoi4 = 1848 hoi4 = 12145 hoi4 = 12688 hoi4 = 3721 }	# Brandon -> land, land, land, land
+	link = { vic2 = 42 hoi4 = 1873 hoi4 = 4790 }	# Pembina -> land, land
+	# # Thunder Bay
+	link = { vic2 = 47 hoi4 = 4753 }	# Fort Severn -> land
+	link = { vic2 = 48 hoi4 = 9740 hoi4 = 12701 hoi4 = 10621 hoi4 = 4784 hoi4 = 1782 }	# Fort Albany -> land, land, land, land, land
+	link = { vic2 = 49 hoi4 = 11571 hoi4 = 4875 hoi4 = 1769 hoi4 = 13094 }	# Dryden -> land, land, land, land
+	link = { vic2 = 50 hoi4 = 7899 hoi4 = 4775 hoi4 = 10718 hoi4 = 777 hoi4 = 602 }	# Thunder Bay -> land, land, land, land, land
+	link = { vic2 = 51 hoi4 = 12582 hoi4 = 4869 hoi4 = 9480 hoi4 = 7366 hoi4 = 12278 hoi4 = 1299 }	# Sault Ste Marie -> land, land, land, land, land, land
+	link = { vic2 = 2594 hoi4 = 3736 hoi4 = 763 }	# Pickle -> land, land
+	link = { vic2 = 2628 hoi4 = 761 hoi4 = 7794 }	# Attawapiskat -> land, land
+	# # Toronto Region
+	link = { vic2 = 46 hoi4 = 3775 hoi4 = 6797 hoi4 = 9580 hoi4 = 11567 }	# Toronto -> land, land, land, land
+	link = { vic2 = 52 hoi4 = 9467 hoi4 = 605 hoi4 = 3640 hoi4 = 11602 hoi4 = 6676 hoi4 = 9634 hoi4 = 3661 hoi4 = 11585 hoi4 = 6662 hoi4 = 11569 hoi4 = 9583 hoi4 = 11728 hoi4 = 6510 hoi4 = 3608 }	# Sudbury -> land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 53 hoi4 = 9585 hoi4 = 6607 hoi4 = 779 hoi4 = 9743 hoi4 = 6610 }	# Barrie -> land, land, land, land, land
+	link = { vic2 = 54 hoi4 = 9667 hoi4 = 722 hoi4 = 9711 hoi4 = 11725 }	# Windsor -> land, land, land, land
+	link = { vic2 = 55 hoi4 = 11695 hoi4 = 3763 hoi4 = 749 hoi4 = 774 }	# Hamilton -> land, land, land, land
+	link = { vic2 = 56 hoi4 = 3605 hoi4 = 6625 hoi4 = 4270 hoi4 = 6630 }	# Kingston -> land, land, land, land
+	link = { vic2 = 57 hoi4 = 3778 hoi4 = 3635 }	# Ottawa -> land, land
+	# # Fort Rupert
+	link = { vic2 = 59 hoi4 = 1657 hoi4 = 4666 hoi4 = 12600 hoi4 = 13164 }	# Nitchequon -> land, land, land, lake
+	link = { vic2 = 60 hoi4 = 490 hoi4 = 11682 hoi4 = 6740 hoi4 = 3911 hoi4 = 983 hoi4 = 13162 }	# Fort Rupert -> land, land, land, land, land, lake
+	link = { vic2 = 2592 vic2 = 2593 vic2 = 2626 hoi4 = 12147 hoi4 = 13196 hoi4 = 13184 hoi4 = 13166 hoi4 = 13186 hoi4 = 10176 hoi4 = 13181 }	# MANY-TO-MANY: Ungava, Fort George, Port Harrison -> land, land, lake, lake, lake, land, lake
+	link = { vic2 = 2627 hoi4 = 3208 hoi4 = 7364 }	# Fort Chimo -> land, land
+	# # Montreal Region
+	link = { vic2 = 58 hoi4 = 4345 hoi4 = 7345 }	# Montreal -> land, land
+	link = { vic2 = 61 hoi4 = 1356 hoi4 = 7807 hoi4 = 7893 hoi4 = 4769 hoi4 = 10715 }	# Chicoutimi -> land, land, land, land, land
+	link = { vic2 = 62 hoi4 = 7683 hoi4 = 10534 hoi4 = 7810 }	# Sept-Îles -> land, land, land
+	link = { vic2 = 63 hoi4 = 10249 hoi4 = 11902 hoi4 = 7875 hoi4 = 12205 hoi4 = 1764 hoi4 = 10700 hoi4 = 4419 hoi4 = 12276 hoi4 = 1341 hoi4 = 7435 hoi4 = 12223 }	# Temiscaming -> land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 64 hoi4 = 9601 hoi4 = 7291 }	# Trois-Rivières -> land, land
+	link = { vic2 = 65 hoi4 = 12149 }	# Quebec City -> land
+	link = { vic2 = 66 hoi4 = 10230 hoi4 = 7289 hoi4 = 10320 hoi4 = 4417 }	# Sherbrooke -> land, land, land, land
+	link = { vic2 = 67 hoi4 = 12291 hoi4 = 4422 hoi4 = 4305 hoi4 = 1284 hoi4 = 7433 hoi4 = 10174 }	# Rimouski -> land, land, land, land, land, land
+	# # Newfoundland
+	link = { vic2 = 74 hoi4 = 12505 hoi4 = 12680 hoi4 = 7758 }	# Saint Johns -> land, land, land
+	link = { vic2 = 75 hoi4 = 12698 hoi4 = 7788 }	# Millertown -> land, land
+	link = { vic2 = 76 hoi4 = 1426 hoi4 = 1785 }	# Hopedale -> land, land
+	link = { vic2 = 77 hoi4 = 373 }	# St Pierre & Miquelon -> land
+	link = { vic2 = 2625 hoi4 = 4720 hoi4 = 12503 hoi4 = 4787 }	# Port Hope Simpson -> land, land, land
+	# # Maritimes
+	link = { vic2 = 68 hoi4 = 1424 hoi4 = 12289 hoi4 = 634 hoi4 = 4342 hoi4 = 4285 }	# Fredericton -> land, land, land, land, land
+	link = { vic2 = 69 hoi4 = 4432 hoi4 = 7379 hoi4 = 4362 }	# Bathurst -> land, land, land
+	link = { vic2 = 70 hoi4 = 4360 }	# Prince Edward Island -> land
+	link = { vic2 = 71 hoi4 = 7361 hoi4 = 4623 hoi4 = 1354 }	# Halifax -> land, land, land
+	link = { vic2 = 72 hoi4 = 7644 hoi4 = 10244 hoi4 = 7304 }	# Truro -> land, land, land
+	link = { vic2 = 73 hoi4 = 4430 }	# Cape Breton Island -> land
+	# # Northern Lakes
+	link = { vic2 = 3227 hoi4 = 8653 hoi4 = 4272 }	# Great Slave Lake -> lake, lake
 	link = { vic2 = 3228 hoi4 = 13167 }	# Lake Athabasca -> lake
-	link = { vic2 = 31 hoi4 = 1671 hoi4 = 3800 hoi4 = 4695 hoi4 = 12682 hoi4 = 13185 hoi4 = 6779 hoi4 = 13183 }	# Stanley -> land, land, land, land, lake, land, lake
 	link = { vic2 = 3229 hoi4 = 13168 hoi4 = 13187 }	# Reindeer Lake -> lake, lake
 	link = { vic2 = 3116 hoi4 = 13159 }	# Lake Superior -> lake
 	link = { vic2 = 3117 hoi4 = 13161 }	# Lake Nipigon -> lake
-	link = { vic2 = 50 hoi4 = 4775 hoi4 = 10718 hoi4 = 1782 hoi4 = 777 hoi4 = 602 hoi4 = 7899 }	# Thunder Bay -> land, land, land, land, land, land
-	link = { vic2 = 51 hoi4 = 12582 hoi4 = 12278 hoi4 = 9467 hoi4 = 6510 hoi4 = 9480 hoi4 = 1299 hoi4 = 4784 hoi4 = 4869 hoi4 = 7366 }	# Sault Ste Marie -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 2595 hoi4 = 10721 }	# Nunavut -> land
-	link = { vic2 = 43 hoi4 = 2947 }	# Arviat -> land
-	link = { vic2 = 49 hoi4 = 11571 hoi4 = 13094 hoi4 = 7794 hoi4 = 1769 hoi4 = 4875 }	# Dryden -> land, land, land, land, land
-	link = { vic2 = 42 hoi4 = 4790 hoi4 = 1873 }	# Pembina -> land, land
-	link = { vic2 = 41 hoi4 = 3721 hoi4 = 1848 hoi4 = 12145 hoi4 = 12688 }	# Brandon -> land, land, land, land
-	link = { vic2 = 36 hoi4 = 4426 hoi4 = 4872 }	# Winnipeg -> land, land
-	link = { vic2 = 40 hoi4 = 12636 hoi4 = 4218 hoi4 = 5119 }	# Dauphin -> land, land, land
-	link = { vic2 = 39 hoi4 = 7782 hoi4 = 6728 hoi4 = 9615 }	# Norway House -> land, land, land
-	link = { vic2 = 38 hoi4 = 10585 }	# Indian Lakes -> land
-	link = { vic2 = 37 hoi4 = 10605 hoi4 = 7185 hoi4 = 5239 }	# Churchill -> land, land, land
-	link = { vic2 = 2594 hoi4 = 3736 hoi4 = 763 }	# Pickle -> land, land
-	link = { vic2 = 47 hoi4 = 4753 }	# Fort Severn -> land
-	link = { vic2 = 2628 hoi4 = 761 }	# Attawapiskat -> land
-	link = { vic2 = 48 hoi4 = 10621 hoi4 = 9740 hoi4 = 12701 }	# Fort Albany -> land, land, land
-	link = { vic2 = 52 hoi4 = 605 hoi4 = 3640 hoi4 = 11602 hoi4 = 6676 hoi4 = 9634 hoi4 = 3661 hoi4 = 11585 hoi4 = 6662 hoi4 = 11569 hoi4 = 9583 hoi4 = 11728 hoi4 = 9585 }	# Sudbury -> land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 57 hoi4 = 3778 hoi4 = 6630 hoi4 = 3635 hoi4 = 3608 }	# Ottawa -> land, land, land, land
-	link = { vic2 = 56 hoi4 = 3605 hoi4 = 6625 hoi4 = 4270 }	# Kingston -> land, land, land
-	link = { vic2 = 46 hoi4 = 6607 hoi4 = 3775 hoi4 = 6797 hoi4 = 9580 hoi4 = 11567 }	# Toronto -> land, land, land, land, land
-	link = { vic2 = 53 hoi4 = 9743 hoi4 = 6610 hoi4 = 779 }	# Barrie -> land, land, land
 	link = { vic2 = 3112 hoi4 = 13157 }	# Lake Ontario -> lake
 	link = { vic2 = 3113 hoi4 = 13154 hoi4 = 13156 }	# Lake Erie -> lake, lake
 	link = { vic2 = 3114 hoi4 = 13200 hoi4 = 13199 hoi4 = 13201 }	# Lake Huron -> lake, lake, lake
 	link = { vic2 = 3115 hoi4 = 13155 }	# Lake Michigan -> lake
-	link = { vic2 = 55 hoi4 = 11695 hoi4 = 3763 hoi4 = 749 }	# Hamilton -> land, land, land
-	link = { vic2 = 54 hoi4 = 9667 hoi4 = 722 hoi4 = 9711 hoi4 = 11725 hoi4 = 774 }	# Windsor -> land, land, land, land, land
-	link = { vic2 = 66 hoi4 = 4417 hoi4 = 7289 hoi4 = 10230 hoi4 = 10174 hoi4 = 10320 hoi4 = 7433 }	# Sherbrooke -> land, land, land, land, land, land
-	link = { vic2 = 65 hoi4 = 12149 }	# Quebec City -> land
-	link = { vic2 = 64 hoi4 = 9601 hoi4 = 7291 }	# Trois-Rivières -> land, land
-	link = { vic2 = 58 hoi4 = 4345 hoi4 = 7345 }	# Montreal -> land, land
-	link = { vic2 = 63 hoi4 = 12205 hoi4 = 12276 hoi4 = 1341 hoi4 = 7435 hoi4 = 10700 hoi4 = 1764 hoi4 = 4419 hoi4 = 12223 }	# Temiscaming -> land, land, land, land, land, land, land, land
-	link = { vic2 = 60 hoi4 = 6740 hoi4 = 490 hoi4 = 11682 hoi4 = 3911 hoi4 = 11902 hoi4 = 10249 hoi4 = 7875 hoi4 = 983 hoi4 = 13162 }	# Fort Rupert -> land, land, land, land, land, land, land, land, lake
 	link = { vic2 = 3118 hoi4 = 13163 }	# Lake Winnipeg -> lake
-	link = { vic2 = 2593 hoi4 = 10176 hoi4 = 13181 }	# Fort George -> land, lake
-	link = { vic2 = 2626 hoi4 = 13196 hoi4 = 13184 hoi4 = 13166 }	# Port Harrison -> land, lake, lake
-	link = { vic2 = 59 hoi4 = 1657 hoi4 = 4666 hoi4 = 12600 hoi4 = 13164 }	# Nitchequon -> land, land, land, lake
-	link = { vic2 = 61 hoi4 = 10715 hoi4 = 7807 hoi4 = 7893 hoi4 = 4769 hoi4 = 1356 }	# Chicoutimi -> land, land, land, land, land
-	link = { vic2 = 69 hoi4 = 4432 hoi4 = 7379 hoi4 = 4362 }	# Bathurst -> land, land, land
-	link = { vic2 = 68 hoi4 = 1424 hoi4 = 4285 hoi4 = 4342 hoi4 = 634 hoi4 = 12289 }	# Fredericton -> land, land, land, land, land
-	link = { vic2 = 70 hoi4 = 4360 }	# Prince Edward Island -> land
-	link = { vic2 = 71 hoi4 = 4623 hoi4 = 1354 hoi4 = 7361 }	# Halifax -> land, land, land
-	link = { vic2 = 72 hoi4 = 10244 hoi4 = 7304 hoi4 = 7644 }	# Truro -> land, land, land
-	link = { vic2 = 73 hoi4 = 4430 }	# Cape Breton Island -> land
-	link = { vic2 = 67 hoi4 = 4422 hoi4 = 4305 hoi4 = 12291 hoi4 = 1284 }	# Rimouski -> land, land, land, land
-	link = { vic2 = 77 hoi4 = 373 }	# St Pierre & Miquelon -> land
-	link = { vic2 = 74 hoi4 = 12680 hoi4 = 7758 hoi4 = 12505 }	# Saint Johns -> land, land, land
-	link = { vic2 = 75 hoi4 = 7788 hoi4 = 12698 }	# Millertown -> land, land
-	link = { vic2 = 62 hoi4 = 7810 hoi4 = 10534 hoi4 = 7683 hoi4 = 1785 }	# Sept-Îles -> land, land, land, land
-	link = { vic2 = 2625 hoi4 = 4720 hoi4 = 4787 hoi4 = 12503 }	# Port Hope Simpson -> land, land, land
-	link = { vic2 = 76 hoi4 = 1426 }	# Hopedale -> land
-	link = { vic2 = 2627 hoi4 = 7364 hoi4 = 3208 }	# Fort Chimo -> land, land
-	link = { vic2 = 2592 hoi4 = 12147 hoi4 = 13186 }	# Ungava -> land, lake
-	link = { vic2 = 45 hoi4 = 3691 hoi4 = 7813 }	# Baffin Island -> land, land
-	link = { vic2 = 44 hoi4 = 1712 }	# Coral Harbour -> land
 	# 
 	# ## Mexico
 	link = { vic2 = 2172 hoi4 = 1965 }	# Mexico City -> land
