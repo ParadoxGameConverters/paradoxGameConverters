@@ -370,87 +370,122 @@
 	link = { vic2 = 3118 hoi4 = 13163 }	# Lake Winnipeg -> lake
 	# 
 	# ## Mexico
-	link = { vic2 = 2172 hoi4 = 1965 }	# Mexico City -> land
-	link = { vic2 = 2174 hoi4 = 12755 }	# Toluca -> land
-	link = { vic2 = 2180 hoi4 = 10832 }	# Chilpancingo -> land
-	link = { vic2 = 2170 hoi4 = 4887 }	# Morelia -> land
-	link = { vic2 = 2167 hoi4 = 2008 }	# Guanajuato -> land
-	link = { vic2 = 2173 hoi4 = 2011 }	# Querétaro -> land
-	link = { vic2 = 2175 hoi4 = 7913 }	# Tulancingo -> land
-	link = { vic2 = 2176 hoi4 = 8089 }	# Puebla -> land
-	link = { vic2 = 2166 hoi4 = 5052 hoi4 = 13089 }	# Guadalajara -> land, land
-	link = { vic2 = 2160 hoi4 = 10172 }	# Aguascalientes -> land
-	link = { vic2 = 2159 hoi4 = 2083 hoi4 = 4956 }	# San Luis Potosí -> land, land
-	link = { vic2 = 2158 hoi4 = 10853 hoi4 = 12804 }	# Zacatecas -> land, land
-	link = { vic2 = 2155 hoi4 = 10738 hoi4 = 1952 }	# Torreón -> land, land
-	link = { vic2 = 2151 hoi4 = 12721 hoi4 = 7973 }	# Saltillo -> land, land
-	link = { vic2 = 2146 hoi4 = 12835 }	# Monterrey -> land
-	link = { vic2 = 2153 hoi4 = 10871 hoi4 = 8003 hoi4 = 7921 hoi4 = 4946 }	# Durango -> land, land, land, land
-	link = { vic2 = 2157 hoi4 = 8057 hoi4 = 1945 }	# Culiacán -> land, land
+	# # Chihuahua
+	link = { vic2 = 2142 hoi4 = 12745 hoi4 = 12827 hoi4 = 5071 hoi4 = 10830 }	# Chihuahua -> land, land, land, land
+	link = { vic2 = 2143 hoi4 = 8097 hoi4 = 2037 hoi4 = 10809 }	# Paso del Norte -> land, land, land
+	link = { vic2 = 2144 hoi4 = 12897 }	# Delicias -> land
+	link = { vic2 = 2145 hoi4 = 4898 hoi4 = 7935 hoi4 = 10916 hoi4 = 12850 }	# Parral -> land, land, land, land
+	link = { vic2 = 2147 hoi4 = 12811 hoi4 = 2060 hoi4 = 2104 }	# Morelos -> land, land, land
+	link = { vic2 = 2152 hoi4 = 10746 hoi4 = 10800 }	# Monclova -> land, land
+	# # Sonora
+	link = { vic2 = 2137 hoi4 = 10848 hoi4 = 10765 }	# Hermosillo -> land, land
+	link = { vic2 = 2138 hoi4 = 8119 hoi4 = 12736 }	# Loreto -> land, land
+	link = { vic2 = 2139 hoi4 = 12461 hoi4 = 12859 hoi4 = 7964 hoi4 = 1904 hoi4 = 1892 }	# Rosarito -> land, land, land, land, land
+	link = { vic2 = 2140 hoi4 = 8012 hoi4 = 12833 hoi4 = 2069 }	# Nogales -> land, land, land
+	link = { vic2 = 2141 hoi4 = 4908 hoi4 = 8033 hoi4 = 4977 }	# Guaymas -> land, land, land
+	# # Durango
+	link = { vic2 = 2151 hoi4 = 12721 }	# Saltillo -> land
+	link = { vic2 = 2153 hoi4 = 7921 hoi4 = 4946 }	# Durango -> land, land
+	link = { vic2 = 2154 hoi4 = 8003 hoi4 = 10853 hoi4 = 10871 }	# Santa María del Oro -> land, land, land
+	link = { vic2 = 2155 hoi4 = 10738 hoi4 = 7973 hoi4 = 1952 }	# Torreón -> land, land, land
 	link = { vic2 = 2156 hoi4 = 10895 }	# Mazatlán -> land
-	link = { vic2 = 2161 hoi4 = 12873 }	# Tepic -> land
-	link = { vic2 = 2168 hoi4 = 12746 }	# Puerto Vallarta -> land
-	link = { vic2 = 2169 hoi4 = 2051 }	# Colima -> land
-	link = { vic2 = 2171 hoi4 = 5066 hoi4 = 8032 }	# Los Albañiles -> land, land
-	link = { vic2 = 2179 hoi4 = 10730 }	# Acapulco -> land
-	link = { vic2 = 2163 hoi4 = 5021 }	# Tampico -> land
-	link = { vic2 = 2162 hoi4 = 12810 hoi4 = 10732 hoi4 = 8079 }	# Veracruz -> land, land, land
-	link = { vic2 = 2150 hoi4 = 13088 }	# Ciudad Victoria -> land
+	link = { vic2 = 2157 hoi4 = 8057 hoi4 = 1945 }	# Culiacán -> land, land
+	# # Nuevo Leon
+	link = { vic2 = 2146 hoi4 = 12835 }	# Monterrey -> land
 	link = { vic2 = 2148 hoi4 = 10769 }	# Reynosa -> land
 	link = { vic2 = 2149 hoi4 = 5015 }	# Matamoros -> land
+	link = { vic2 = 2150 hoi4 = 13088 }	# Ciudad Victoria -> land
+	link = { vic2 = 2163 hoi4 = 8079 hoi4 = 5021 }	# Tampico -> land, land
+	# # Jalisco
+	link = { vic2 = 2160 hoi4 = 5052 }	# Aguascalientes -> land
+	link = { vic2 = 2161 hoi4 = 12873 }	# Tepic -> land
+	link = { vic2 = 2166 hoi4 = 13089 }	# Guadalajara -> land
+	link = { vic2 = 2168 hoi4 = 12746 }	# Puerto Vallarta -> land
+	link = { vic2 = 2169 hoi4 = 2051 }	# Colima -> land
+	# # Zacatecas
+	link = { vic2 = 2158 hoi4 = 12804 hoi4 = 10172 }	# Zacatecas -> land, land
+	link = { vic2 = 2159 hoi4 = 4956 hoi4 = 2083 }	# San Luis Potosí -> land, land
+	link = { vic2 = 2167 hoi4 = 2008 }	# Guanajuato -> land
+	link = { vic2 = 2173 hoi4 = 2011 }	# Querétaro -> land
+	# # Morelia
+	link = { vic2 = 2170 hoi4 = 4887 }	# Morelia -> land
+	link = { vic2 = 2171 hoi4 = 5066 hoi4 = 8032 }	# Los Albañiles -> land, land
+	link = { vic2 = 2174 hoi4 = 12755 }	# Toluca -> land
+	link = { vic2 = 2178 hoi4 = 12712 hoi4 = 8236 }	# Collataro -> land, land
+	link = { vic2 = 2179 hoi4 = 10730 }	# Acapulco -> land
+	link = { vic2 = 2180 hoi4 = 10832 }	# Chilpancingo -> land
+	# # Mexico
+	link = { vic2 = 2162 hoi4 = 12810 hoi4 = 10732 }	# Veracruz -> land, land
+	link = { vic2 = 2164 hoi4 = 10889 }	# Minatitlán -> land
+	link = { vic2 = 2172 hoi4 = 1965 }	# Mexico City -> land
+	link = { vic2 = 2175 hoi4 = 7913 }	# Tulancingo -> land
+	link = { vic2 = 2176 hoi4 = 8089 }	# Puebla -> land
 	link = { vic2 = 2177 hoi4 = 10773 }	# Oaxaca -> land
-	link = { vic2 = 2178 hoi4 = 8236 hoi4 = 12712 }	# Collataro -> land, land
-	link = { vic2 = 2182 hoi4 = 12753 }	# Tapachula -> land
-	link = { vic2 = 2181 hoi4 = 1900 }	# Tuxtla -> land
-	link = { vic2 = 2164 hoi4 = 10889 hoi4 = 2021 }	# Minatitlán -> land, land
-	link = { vic2 = 2165 hoi4 = 12867 }	# Villahermosa -> land
-	link = { vic2 = 2184 hoi4 = 4904 }	# Campeche -> land
+	# # Yucatan
+	link = { vic2 = 2165 hoi4 = 2021 hoi4 = 12867 }	# Villahermosa -> land, land
 	link = { vic2 = 2183 hoi4 = 12715 }	# Mérida -> land
+	link = { vic2 = 2184 hoi4 = 4904 }	# Campeche -> land
 	link = { vic2 = 2185 hoi4 = 4965 }	# Bacalar -> land
-	link = { vic2 = 2152 hoi4 = 10800 hoi4 = 10746 }	# Monclova -> land, land
-	link = { vic2 = 2147 hoi4 = 2104 hoi4 = 12811 hoi4 = 2060 }	# Morelos -> land, land, land
-	link = { vic2 = 2154 hoi4 = 4898 hoi4 = 10916 hoi4 = 12850 }	# Santa María del Oro -> land, land, land
-	link = { vic2 = 2144 hoi4 = 12897 }	# Delicias -> land
-	link = { vic2 = 2145 hoi4 = 7935 hoi4 = 10830 }	# Parral -> land, land
-	link = { vic2 = 2142 hoi4 = 12827 hoi4 = 12745 hoi4 = 5071 }	# Chihuahua -> land, land, land
-	link = { vic2 = 2143 hoi4 = 10809 hoi4 = 8097 hoi4 = 2037 }	# Paso del Norte -> land, land, land
-	link = { vic2 = 2141 hoi4 = 4908 hoi4 = 8033 hoi4 = 4977 }	# Guaymas -> land, land, land
-	link = { vic2 = 2137 hoi4 = 10765 hoi4 = 10848 }	# Hermosillo -> land, land
-	link = { vic2 = 2140 hoi4 = 12833 hoi4 = 2069 hoi4 = 8012 }	# Nogales -> land, land, land
-	link = { vic2 = 2138 hoi4 = 8119 hoi4 = 12736 }	# Loreto -> land, land
-	link = { vic2 = 2139 hoi4 = 12461 hoi4 = 1892 hoi4 = 12859 hoi4 = 7964 hoi4 = 1904 }	# Rosarito -> land, land, land, land, land
+	# # Tuxtla Region
+	link = { vic2 = 2181 hoi4 = 1900 }	# Tuxtla -> land
+	link = { vic2 = 2182 hoi4 = 12753 }	# Tapachula -> land
 	# 
 	# ## Central America
-	link = { vic2 = 2199 hoi4 = 10728 }	# León -> land
-	link = { vic2 = 3110 hoi4 = 13178 hoi4 = 13139 }	# Lake Nicaragua -> lake, lake
-	link = { vic2 = 2197 hoi4 = 12738 }	# Managua -> land
-	link = { vic2 = 2198 hoi4 = 1988 }	# Rivas -> land
-	link = { vic2 = 2202 hoi4 = 13092 }	# Liberia -> land
-	link = { vic2 = 2203 hoi4 = 12878 }	# Limón -> land
-	link = { vic2 = 2201 hoi4 = 13087 }	# San José -> land
-	link = { vic2 = 2200 hoi4 = 2075 }	# Bluefields -> land
-	link = { vic2 = 2196 vic2 = 2195 hoi4 = 2031 }	# Puerto Lempira, La Ceiba -> land
-	link = { vic2 = 2193 hoi4 = 12865 }	# Comayagua -> land
-	link = { vic2 = 2194 hoi4 = 8017 }	# San Pedro Sula -> land
-	link = { vic2 = 2192 hoi4 = 13093 }	# San Miguel -> land
-	link = { vic2 = 2191 hoi4 = 12823 }	# San Salvador -> land
+	# # Guatemala
 	link = { vic2 = 2186 hoi4 = 10886 }	# Guatemala -> land
 	link = { vic2 = 2187 hoi4 = 10842 }	# Quetzaltenango -> land
 	link = { vic2 = 2188 hoi4 = 13085 }	# Puerto Barrios -> land
+	link = { vic2 = 2189 hoi4 = 4991 }	# Sayaxché -> land
+	link = { vic2 = 2190 hoi4 = 2077 }	# Belize -> land
+	# # El Salvador
+	link = { vic2 = 2191 hoi4 = 12823 }	# San Salvador -> land
+	link = { vic2 = 2192 hoi4 = 13093 }	# San Miguel -> land
+	# # Comayagua
+	link = { vic2 = 2193 hoi4 = 12865 }	# Comayagua -> land
+	link = { vic2 = 2194 hoi4 = 8017 }	# San Pedro Sula -> land
+	link = { vic2 = 2195 vic2 = 2196 hoi4 = 2031 }	# La Ceiba, Puerto Lempira -> land
+	# # Nicaragua
+	link = { vic2 = 2197 hoi4 = 12738 }	# Managua -> land
+	link = { vic2 = 2198 hoi4 = 1988 }	# Rivas -> land
+	link = { vic2 = 2199 hoi4 = 10728 }	# León -> land
+	link = { vic2 = 2200 hoi4 = 2075 }	# Bluefields -> land
+	# # Costa Rica
+	link = { vic2 = 2201 hoi4 = 13087 }	# San José -> land
+	link = { vic2 = 2202 hoi4 = 13092 }	# Liberia -> land
+	link = { vic2 = 2203 hoi4 = 12878 }	# Limón -> land
+	# # Panama
+	link = { vic2 = 1723 hoi4 = 7617 }	# Balboa -> land
+	link = { vic2 = 2204 hoi4 = 7630 }	# Panama City -> land
 	link = { vic2 = 2205 hoi4 = 4611 }	# David -> land
 	link = { vic2 = 2206 hoi4 = 4624 hoi4 = 1633 }	# Penonomé -> land, land
 	link = { vic2 = 2208 hoi4 = 10482 }	# Yaviza -> land
-	link = { vic2 = 2204 hoi4 = 7630 }	# Panama City -> land
-	link = { vic2 = 1723 hoi4 = 7617 }	# Balboa -> land
-	link = { vic2 = 2189 hoi4 = 4991 }	# Sayaxché -> land
-	link = { vic2 = 2190 hoi4 = 2077 }	# Belize -> land
+	# # Lakes
+	link = { vic2 = 3110 hoi4 = 13178 hoi4 = 13139 }	# Lake Nicaragua -> lake, lake
 	# 
-	# ## Carribean
+	# ## Caribbean
+	# # Caribbean Islands
 	link = { vic2 = 203 hoi4 = 13010 }	# Bermuda -> land
+	link = { vic2 = 2217 hoi4 = 12304 }	# Jamaica -> land
+	link = { vic2 = 2218 hoi4 = 12477 }	# Cayman Islands -> land
+	link = { vic2 = 2219 hoi4 = 10254 hoi4 = 1513 hoi4 = 7245 hoi4 = 4647 }	# Bahamas -> land, land, land, land
+	link = { vic2 = 2220 hoi4 = 10440 }	# Turks And Caicos -> land
+	# # Cuba
+	link = { vic2 = 2209 hoi4 = 7622 hoi4 = 4600 }	# Havana -> land, land
+	link = { vic2 = 2210 hoi4 = 7451 hoi4 = 10498 hoi4 = 10374 }	# Jagua -> land, land, land
+	link = { vic2 = 2211 hoi4 = 7546 hoi4 = 4476 }	# Camagüey -> land, land
+	link = { vic2 = 2212 hoi4 = 7590 hoi4 = 12347 hoi4 = 1550 }	# Santiago de Cuba -> land, land, land
+	# # Haiti
+	link = { vic2 = 2213 hoi4 = 4641 hoi4 = 1635 }	# Port Au Prince -> land, land
+	link = { vic2 = 2214 hoi4 = 7660 hoi4 = 10484 }	# Santo Domingo -> land, land
+	link = { vic2 = 2215 hoi4 = 1594 }	# Cap Haitien -> land
+	link = { vic2 = 2216 hoi4 = 4598 hoi4 = 7632 }	# La Vega -> land, land
+	# # West Indies
+	link = { vic2 = 2222 hoi4 = 1440 }	# Puerto Rico -> land
 	link = { vic2 = 2223 vic2 = 2226 hoi4 = 4155 }	# Saint Thomas, Tortola -> land
-	link = { vic2 = 2236 hoi4 = 13084 }	# Saint Martin -> land
-	link = { vic2 = 2225 vic2 = 2227 vic2 = 2224 hoi4 = 4450 }	# Montserrat, Saint Kitts, Antigua -> land
+	link = { vic2 = 2224 vic2 = 2225 vic2 = 2227 hoi4 = 4450 }	# Antigua, Montserrat, Saint Kitts -> land
 	link = { vic2 = 2230 hoi4 = 9377 }	# Guadeloupe -> land
+	link = { vic2 = 2236 hoi4 = 13084 }	# Saint Martin -> land
+	# # Lesser Antilles
 	link = { vic2 = 2232 hoi4 = 7123 }	# Dominica -> land
 	link = { vic2 = 2228 hoi4 = 177 }	# Martinique -> land
 	link = { vic2 = 2231 hoi4 = 13009 }	# Saint Lucia -> land
@@ -459,24 +494,8 @@
 	link = { vic2 = 2229 hoi4 = 11350 }	# Barbados -> land
 	link = { vic2 = 2238 hoi4 = 13012 }	# Tobago -> land
 	link = { vic2 = 2237 hoi4 = 3284 }	# Trinidad -> land
-	link = { vic2 = 2222 hoi4 = 1440 }	# Puerto Rico -> land
-	link = { vic2 = 2214 hoi4 = 10484 hoi4 = 7660 }	# Santo Domingo -> land, land
-	link = { vic2 = 2216 hoi4 = 4598 hoi4 = 7632 }	# La Vega -> land, land
-	link = { vic2 = 2213 hoi4 = 4641 hoi4 = 1635 }	# Port Au Prince -> land, land
-	link = { vic2 = 2215 hoi4 = 1594 }	# Cap Haitien -> land
-	link = { vic2 = 2217 vic2 = 2218 hoi4 = 12304 hoi4 = 12477 }	# MANY-TO-MANY: Jamaica, Cayman Islands -> land, land
-	link = { vic2 = 2212 hoi4 = 1550 hoi4 = 12347 hoi4 = 7590 }	# Santiago de Cuba -> land, land, land
-	link = { vic2 = 2211 hoi4 = 10374 hoi4 = 4476 hoi4 = 7546 }	# Camagüey -> land, land, land
-	link = { vic2 = 2210 hoi4 = 10498 hoi4 = 7451 }	# Jagua -> land, land
-	link = { vic2 = 2209 hoi4 = 4600 hoi4 = 7622 }	# Havana -> land, land
-	link = { vic2 = 2220 hoi4 = 10440 }	# Turks And Caicos -> land
-	link = { vic2 = 2219 hoi4 = 10254 hoi4 = 4647 hoi4 = 7245 hoi4 = 1513 }	# Bahamas -> land, land, land, land
+	# # Aruba Region
 	link = { vic2 = 2235 vic2 = 2234 hoi4 = 153 }	# Aruba, Curacao -> land
-	# 
-	# ## Greenland
-	link = { vic2 = 2591 vic2 = 2636 hoi4 = 10245 hoi4 = 13058 }	# MANY-TO-MANY: Holsteinsborg, Egedesminde -> land, land
-	link = { vic2 = 2632 hoi4 = 10636 hoi4 = 13066 }	# Ammassalik -> land, land
-	link = { vic2 = 251 hoi4 = 12512 }	# Godthab -> land
 	# 
 	# 
 	# ###########
@@ -1174,6 +1193,11 @@
 	# Europe
 	# ##########
 	# 
+	# 
+	# ## Greenland
+	link = { vic2 = 2591 vic2 = 2636 hoi4 = 10245 hoi4 = 13058 }	# MANY-TO-MANY: Holsteinsborg, Egedesminde -> land, land
+	link = { vic2 = 2632 hoi4 = 10636 hoi4 = 13066 }	# Ammassalik -> land, land
+	link = { vic2 = 251 hoi4 = 12512 }	# Godthab -> land
 	# Austria
 	link = { vic2 = 616 hoi4 = 9679 hoi4 = 9646 hoi4 = 9648 hoi4 = 653 }	# Graz -> land, land, land, land
 	link = { vic2 = 624 hoi4 = 9661 hoi4 = 11630 hoi4 = 6690 }	# Eisenstadt -> land, land, land
