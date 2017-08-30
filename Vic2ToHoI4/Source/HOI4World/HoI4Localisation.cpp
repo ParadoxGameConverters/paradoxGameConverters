@@ -37,7 +37,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 HoI4Localisation* HoI4Localisation::instance = nullptr;
 
 
-
 HoI4Localisation::HoI4Localisation()
 {
 	importLocalisations();
@@ -239,8 +238,6 @@ void HoI4Localisation::addLocalisation(const string& newKey, languageToLocalisat
 	}
 }
 
-
-
 void HoI4Localisation::AddNonenglishCountryLocalisations()
 {
 	auto englishLocalisations = countryLocalisations.find("english");
@@ -249,9 +246,10 @@ void HoI4Localisation::AddNonenglishCountryLocalisations()
 	countryLocalisations.insert(make_pair("russian", englishLocalisations->second));
 }
 
-
 void HoI4Localisation::CopyFocusLocalisations(string oldKey, string newKey)
 {
+	string oldDescription(oldKey + "_desc");
+	string newDescription(newKey + "_desc");
 	for (auto languageLocalisations: originalFocuses)
 	{
 		auto newLanguage = newFocuses.find(languageLocalisations.first);
@@ -271,9 +269,17 @@ void HoI4Localisation::CopyFocusLocalisations(string oldKey, string newKey)
 		{
 			LOG(LogLevel::Warning) << "Could not find original localisation for " << oldKey;
 		}
+		oldLocalisation = languageLocalisations.second.find(oldDescription);
+		if (oldLocalisation != languageLocalisations.second.end())
+		{
+			newLanguage->second[newDescription] = oldLocalisation->second;
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Could not find original localisation for " << oldDescription;
+		}
 	}
 }
-
 
 void HoI4Localisation::AddStateLocalisations(const HoI4States* states)
 {
