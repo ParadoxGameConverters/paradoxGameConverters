@@ -502,178 +502,210 @@
 	# South America
 	# ###########
 	# 
-	# ## Peru
-	link = { vic2 = 2302 hoi4 = 5166 }	# Cusco -> land
-	link = { vic2 = 2301 hoi4 = 8191 }	# Puerto Maldonado -> land
-	link = { vic2 = 2303 hoi4 = 2182 hoi4 = 10940 }	# Puno -> land, land
-	link = { vic2 = 2300 hoi4 = 2226 }	# Pucallpa -> land
-	link = { vic2 = 2293 hoi4 = 2212 }	# Huánuco -> land
-	link = { vic2 = 2296 hoi4 = 2162 }	# Huancavelica -> land
-	link = { vic2 = 2299 hoi4 = 12953 }	# Ayacucho -> land
-	link = { vic2 = 2298 hoi4 = 12983 hoi4 = 5190 }	# Huaraz -> land, land
-	link = { vic2 = 2295 hoi4 = 12997 }	# Lima -> land
-	link = { vic2 = 2297 hoi4 = 2225 }	# Ica -> land
-	link = { vic2 = 2304 hoi4 = 2210 hoi4 = 5202 }	# Arequipa -> land, land
-	link = { vic2 = 2578 hoi4 = 13086 }	# Tacna -> land
-	link = { vic2 = 2290 hoi4 = 12969 }	# Cajamarca -> land
-	link = { vic2 = 2294 hoi4 = 10970 }	# Moyobamba -> land
-	link = { vic2 = 2292 hoi4 = 8199 }	# Trujillo -> land
-	link = { vic2 = 2287 hoi4 = 5162 }	# Yurimaguas -> land
-	link = { vic2 = 2286 hoi4 = 8213 }	# Iquitos -> land
-	link = { vic2 = 2288 hoi4 = 8149 }	# Yuncos -> land
-	link = { vic2 = 2291 hoi4 = 2156 }	# Piura -> land
-	link = { vic2 = 2289 hoi4 = 12869 }	# Puca Urco -> land
-	# 
-	# ## Ecuador
-	link = { vic2 = 2284 hoi4 = 8075 hoi4 = 10888 }	# Tena -> land, land
-	link = { vic2 = 2283 hoi4 = 10942 }	# Zamora -> land
-	link = { vic2 = 2282 hoi4 = 5120 hoi4 = 11020 }	# Loja -> land, land
-	link = { vic2 = 2280 hoi4 = 8252 }	# Guayaquil -> land
-	link = { vic2 = 2279 hoi4 = 12798 hoi4 = 5051 }	# Quito -> land, land
-	link = { vic2 = 2281 hoi4 = 8047 }	# Esmereldas -> land
-	# 
 	# ## Colombia
-	link = { vic2 = 2257 vic2 = 2259 hoi4 = 10846 }	# Popayán, Pasto -> land
-	link = { vic2 = 2258 hoi4 = 7936 hoi4 = 7991 }	# Buenaventura -> land, land
-	link = { vic2 = 2263 hoi4 = 12825 }	# El Encanto -> land
-	link = { vic2 = 2261 hoi4 = 12729 hoi4 = 10792 }	# Obando -> land, land
-	link = { vic2 = 2260 hoi4 = 12770 hoi4 = 2007 }	# San José del Guaviare -> land, land
-	link = { vic2 = 2262 hoi4 = 5026 hoi4 = 1887 }	# Casanare -> land, land
-	link = { vic2 = 2249 hoi4 = 7993 }	# Tunja -> land
-	link = { vic2 = 2251 hoi4 = 12845 }	# Cúcuta -> land
-	link = { vic2 = 2255 hoi4 = 1937 hoi4 = 8056 hoi4 = 2085 }	# Barranquilla -> land, land, land
+	# # Cauca
+	link = { vic2 = 2256 hoi4 = 12872 }	# Cali -> land
+	link = { vic2 = 2257 hoi4 = 7936 }	# Popayán -> land
+	link = { vic2 = 2258 hoi4 = 7991 }	# Buenaventura -> land
+	link = { vic2 = 2259 hoi4 = 10846 }	# Pasto -> land
+	# # Cundinamarca
 	link = { vic2 = 2247 hoi4 = 10747 }	# Bogotá -> land
 	link = { vic2 = 2248 hoi4 = 2079 }	# Ibagué -> land
-	link = { vic2 = 2256 hoi4 = 12872 }	# Cali -> land
-	link = { vic2 = 2253 hoi4 = 4969 hoi4 = 10494 }	# Quibdó -> land, land
+	link = { vic2 = 2249 hoi4 = 7993 }	# Tunja -> land
 	link = { vic2 = 2250 hoi4 = 10790 }	# Manizales -> land
+	# # Antioquia
+	link = { vic2 = 2251 hoi4 = 12845 }	# Cúcuta -> land
 	link = { vic2 = 2252 hoi4 = 2023 hoi4 = 12703 }	# Medellín -> land, land
+	link = { vic2 = 2253 hoi4 = 10494 hoi4 = 4969 }	# Quibdó -> land, land
 	link = { vic2 = 2254 hoi4 = 12790 hoi4 = 10864 }	# Cartagena de Indias -> land, land
+	link = { vic2 = 2255 hoi4 = 1937 hoi4 = 8056 hoi4 = 2085 }	# Barranquilla -> land, land, land
+	# # Guaviare
+	link = { vic2 = 2260 hoi4 = 2007 hoi4 = 12770 }	# San José del Guaviare -> land, land
+	link = { vic2 = 2261 hoi4 = 10792 hoi4 = 12729 }	# Obando -> land, land
+	link = { vic2 = 2262 hoi4 = 5026 hoi4 = 1887 }	# Casanare -> land, land
+	link = { vic2 = 2263 hoi4 = 12825 }	# El Encanto -> land
 	# 
 	# ## Venezuela
-	link = { vic2 = 2270 hoi4 = 12772 hoi4 = 1944 }	# Maracaibo -> land, land
+	# # Zulia
+	link = { vic2 = 2268 vic2 = 2273 hoi4 = 10855 }	# San Felipe, Barquisimeto -> land
+	link = { vic2 = 2270 hoi4 = 1944 hoi4 = 12772 }	# Maracaibo -> land, land
 	link = { vic2 = 2271 hoi4 = 2052 hoi4 = 1997 }	# Valera -> land, land
-	link = { vic2 = 2274 hoi4 = 5056 hoi4 = 4892 hoi4 = 5000 }	# Barinas -> land, land, land
-	link = { vic2 = 2265 hoi4 = 4942 }	# Guanare -> land
-	link = { vic2 = 2273 hoi4 = 5088 }	# Barquisimeto -> land
-	link = { vic2 = 2272 hoi4 = 4526 }	# Coro -> land
-	link = { vic2 = 2268 hoi4 = 10855 }	# San Felipe -> land
-	link = { vic2 = 2266 hoi4 = 8080 hoi4 = 8024 }	# Calabozo -> land, land
+	link = { vic2 = 2272 hoi4 = 4526 hoi4 = 5088 }	# Coro -> land, land
+	# # Miranda
 	link = { vic2 = 2264 hoi4 = 8113 }	# Caracas -> land
+	link = { vic2 = 2265 hoi4 = 4942 }	# Guanare -> land
+	link = { vic2 = 2266 hoi4 = 8024 hoi4 = 8080 }	# Calabozo -> land, land
+	link = { vic2 = 2267 hoi4 = 7968 }	# Cumaná -> land
+	link = { vic2 = 2274 hoi4 = 5000 hoi4 = 5056 hoi4 = 4892 }	# Barinas -> land, land, land
+	# # Bolivar
+	link = { vic2 = 2269 hoi4 = 10912 }	# Güiria -> land
+	link = { vic2 = 2275 hoi4 = 10879 hoi4 = 10849 hoi4 = 10736 }	# Angostura -> land, land, land
+	link = { vic2 = 2276 hoi4 = 1981 hoi4 = 10767 hoi4 = 10823 }	# Curiapo -> land, land, land
 	link = { vic2 = 2277 hoi4 = 7915 hoi4 = 5317 }	# El Jobal -> land, land
 	link = { vic2 = 2278 hoi4 = 8050 }	# San Fernando de Atabapo -> land
-	link = { vic2 = 2275 hoi4 = 10879 hoi4 = 10736 hoi4 = 10849 }	# Angostura -> land, land, land
-	link = { vic2 = 2276 hoi4 = 1981 hoi4 = 10767 hoi4 = 10823 }	# Curiapo -> land, land, land
-	link = { vic2 = 2269 hoi4 = 10912 }	# Güiria -> land
-	link = { vic2 = 2267 hoi4 = 7968 }	# Cumaná -> land
 	# 
-	# ## Guyana
-	link = { vic2 = 2243 hoi4 = 12716 }	# Essequibo -> land
-	link = { vic2 = 2242 hoi4 = 5214 }	# Mahdia -> land
+	# ## Guyanas
 	link = { vic2 = 2239 hoi4 = 4982 }	# Georgetown -> land
-	link = { vic2 = 1979 hoi4 = 8107 }	# Biloka -> land
-	link = { vic2 = 2245 hoi4 = 1928 }	# Apetina -> land
 	link = { vic2 = 2240 hoi4 = 10906 hoi4 = 12828 }	# Paramaribo -> land, land
-	link = { vic2 = 2246 hoi4 = 4934 }	# Maripasoula -> land
 	link = { vic2 = 2241 hoi4 = 12885 }	# Cayenne -> land
+	link = { vic2 = 2242 vic2 = 1979 hoi4 = 8107 }	# Mahdia, Biloka -> land
+	link = { vic2 = 2243 hoi4 = 12716 }	# Essequibo -> land
+	link = { vic2 = 2245 hoi4 = 1928 }	# Apetina -> land
+	link = { vic2 = 2246 hoi4 = 4934 }	# Maripasoula -> land
 	# 
 	# ## Brazil
-	link = { vic2 = 2549 hoi4 = 8160 }	# Tarauacá -> land
-	link = { vic2 = 2407 hoi4 = 2198 }	# Tabatinga -> land
-	link = { vic2 = 2404 hoi4 = 10960 hoi4 = 5216 }	# Tefe -> land, land
-	link = { vic2 = 2401 hoi4 = 13083 hoi4 = 8185 }	# Marabitanas -> land, land
-	link = { vic2 = 2403 hoi4 = 12919 hoi4 = 8254 }	# Cachoeira -> land, land
-	link = { vic2 = 2532 hoi4 = 5083 }	# Forte São Joaquim -> land
-	link = { vic2 = 2402 hoi4 = 10934 }	# Manaus -> land
-	link = { vic2 = 2412 vic2 = 2408 hoi4 = 5008 }	# Óbidos, Oriximina -> land
-	link = { vic2 = 2415 vic2 = 2414 hoi4 = 4980 }	# Macapá, Amapá -> land
-	link = { vic2 = 2411 hoi4 = 1979 }	# Santarém -> land
-	link = { vic2 = 2405 hoi4 = 5232 hoi4 = 12965 }	# Borba -> land, land
-	link = { vic2 = 2550 hoi4 = 11010 hoi4 = 12939 }	# Forte do Príncipe -> land, land
-	link = { vic2 = 2417 hoi4 = 8175 hoi4 = 2142 hoi4 = 2147 }	# Vila Bela -> land, land, land
-	link = { vic2 = 2418 hoi4 = 2204 }	# Cuiabá -> land
-	link = { vic2 = 2421 hoi4 = 12987 hoi4 = 5115 hoi4 = 8140 hoi4 = 5148 }	# Vila Boa -> land, land, land, land
-	link = { vic2 = 2422 hoi4 = 12959 hoi4 = 5208 }	# Aganja -> land, land
-	link = { vic2 = 2444 hoi4 = 2190 hoi4 = 12923 hoi4 = 2218 }	# Paracatu -> land, land, land
-	link = { vic2 = 2438 hoi4 = 8129 hoi4 = 5174 }	# Vila do Barra -> land, land
-	link = { vic2 = 2600 hoi4 = 2035 hoi4 = 8172 }	# Altamira -> land, land
-	link = { vic2 = 2413 hoi4 = 10956 }	# Marabá -> land
-	link = { vic2 = 2423 hoi4 = 2168 hoi4 = 5151 }	# Palmas -> land, land
-	link = { vic2 = 2410 hoi4 = 10874 hoi4 = 12999 hoi4 = 12853 hoi4 = 2214 }	# Belém -> land, land, land, land
-	link = { vic2 = 2424 hoi4 = 5220 hoi4 = 12933 }	# São Luís -> land, land
-	link = { vic2 = 2425 hoi4 = 12913 hoi4 = 12947 hoi4 = 2150 }	# Chapada -> land, land, land
-	link = { vic2 = 2427 hoi4 = 5153 hoi4 = 10984 hoi4 = 5204 hoi4 = 5218 }	# Oeiras -> land, land, land, land
-	link = { vic2 = 2426 hoi4 = 2228 }	# Teresina -> land
-	link = { vic2 = 2429 hoi4 = 8179 hoi4 = 2178 hoi4 = 5107 hoi4 = 2132 }	# Fortaleza -> land, land, land, land
-	link = { vic2 = 2430 hoi4 = 2164 }	# Crato -> land
-	link = { vic2 = 2433 hoi4 = 8227 hoi4 = 10345 }	# Cabrobo -> land, land
-	link = { vic2 = 2437 hoi4 = 10392 hoi4 = 5194 hoi4 = 8177 hoi4 = 10926 hoi4 = 8242 hoi4 = 4617 }	# Juazeiro -> land, land, land, land, land, land
-	link = { vic2 = 2440 hoi4 = 8233 hoi4 = 12903 hoi4 = 12422 hoi4 = 5223 }	# Vitória da Conquista -> land, land, land, land
-	link = { vic2 = 2443 hoi4 = 7589 hoi4 = 4570 hoi4 = 12938 hoi4 = 12909 hoi4 = 10931 }	# Januária -> land, land, land, land, land
-	link = { vic2 = 2445 hoi4 = 2167 hoi4 = 12977 hoi4 = 7636 hoi4 = 10945 hoi4 = 12937 }	# Uberaba -> land, land, land, land, land
-	link = { vic2 = 2442 hoi4 = 8148 hoi4 = 8210 hoi4 = 7476 }	# Sabará -> land, land, land
-	link = { vic2 = 2441 hoi4 = 8226 hoi4 = 12334 }	# Ouro Preto -> land, land
-	link = { vic2 = 2446 hoi4 = 12438 hoi4 = 10360 hoi4 = 12479 hoi4 = 2185 }	# São João del Rey -> land, land, land, land
-	link = { vic2 = 2452 hoi4 = 5186 hoi4 = 12972 }	# Campinas -> land, land
-	link = { vic2 = 2456 hoi4 = 10994 hoi4 = 11003 }	# Araraquara -> land, land
-	link = { vic2 = 2453 hoi4 = 1583 }	# Assis -> land
-	link = { vic2 = 2419 hoi4 = 8189 hoi4 = 10959 hoi4 = 2181 hoi4 = 2111 }	# Corumbá -> land, land, land, land
-	link = { vic2 = 2416 hoi4 = 5200 hoi4 = 12951 }	# Dourados -> land, land
-	link = { vic2 = 2460 hoi4 = 8239 hoi4 = 2109 }	# Castro -> land, land
-	link = { vic2 = 2458 hoi4 = 5178 hoi4 = 4587 }	# Guarapuava -> land, land
-	link = { vic2 = 2462 hoi4 = 12466 }	# São Miguel -> land
+	# # Rio Grande do Sol
+	link = { vic2 = 2463 hoi4 = 10447 hoi4 = 12396 }	# Porto Alegre -> land, land
+	link = { vic2 = 2464 hoi4 = 7638 hoi4 = 4436 }	# Pelotas -> land, land
+	link = { vic2 = 2465 hoi4 = 1542 hoi4 = 7581 hoi4 = 5110 hoi4 = 7594 }	# Passo Fundo -> land, land, land, land
+	link = { vic2 = 2466 hoi4 = 1598 hoi4 = 1585 hoi4 = 4589 }	# Santa Maria -> land, land, land
+	link = { vic2 = 2467 hoi4 = 4575 hoi4 = 4604 }	# Alegrete -> land, land
+	# # Desterro Region
 	link = { vic2 = 2459 hoi4 = 1529 hoi4 = 5156 }	# Lajes -> land, land
-	link = { vic2 = 2465 hoi4 = 1542 hoi4 = 5110 }	# Passo Fundo -> land, land
-	link = { vic2 = 2463 hoi4 = 12396 hoi4 = 10447 }	# Porto Alegre -> land, land
-	link = { vic2 = 2461 hoi4 = 4533 hoi4 = 10405 hoi4 = 4548 }	# Desterro -> land, land, land
+	link = { vic2 = 2461 hoi4 = 10405 hoi4 = 4533 hoi4 = 4548 }	# Desterro -> land, land, land
+	link = { vic2 = 2462 hoi4 = 12466 }	# São Miguel -> land
+	# # Parana
 	link = { vic2 = 2457 hoi4 = 8181 }	# Curitiba -> land
-	link = { vic2 = 2455 hoi4 = 5167 hoi4 = 7553 }	# Iguape -> land, land
-	link = { vic2 = 2306 hoi4 = 11008 }	# Sorocaba -> land
+	link = { vic2 = 2458 hoi4 = 5178 }	# Guarapuava -> land
+	link = { vic2 = 2460 hoi4 = 2109 hoi4 = 4587 hoi4 = 8239 }	# Castro -> land, land, land
+	# # Sao Paulo
+	link = { vic2 = 2306 hoi4 = 10947 hoi4 = 11008 }	# Sorocaba -> land, land
+	link = { vic2 = 2450 hoi4 = 10513 }	# São Paulo -> land
 	link = { vic2 = 2451 hoi4 = 10432 hoi4 = 5112 }	# Santos -> land, land
-	link = { vic2 = 2450 hoi4 = 10513 hoi4 = 10947 }	# São Paulo -> land, land
+	link = { vic2 = 2452 hoi4 = 10360 hoi4 = 12438 hoi4 = 12972 }	# Campinas -> land, land, land
+	link = { vic2 = 2453 hoi4 = 1583 hoi4 = 11003 hoi4 = 10994 }	# Assis -> land, land, land
+	link = { vic2 = 2455 hoi4 = 5167 hoi4 = 7553 }	# Iguape -> land, land
+	link = { vic2 = 2456 hoi4 = 5186 hoi4 = 12937 hoi4 = 7636 }	# Araraquara -> land, land, land
+	# # Rio de Janiero
 	link = { vic2 = 2447 hoi4 = 10980 hoi4 = 5172 }	# Rio de Janeiro -> land, land
 	link = { vic2 = 2448 hoi4 = 12996 hoi4 = 8190 }	# Campos -> land, land
 	link = { vic2 = 2449 hoi4 = 8196 hoi4 = 10999 hoi4 = 2153 }	# Vitória -> land, land, land
+	# # Minas Gerais
+	link = { vic2 = 2441 hoi4 = 7589 hoi4 = 4570 hoi4 = 8226 hoi4 = 12334 }	# Ouro Preto -> land, land, land, land
+	link = { vic2 = 2442 hoi4 = 7476 hoi4 = 8148 hoi4 = 8210 }	# Sabará -> land, land, land
+	link = { vic2 = 2443 hoi4 = 5223 hoi4 = 10931 hoi4 = 12909 hoi4 = 12903 hoi4 = 8233 hoi4 = 12938 }	# Januária -> land, land, land, land, land, land
+	link = { vic2 = 2444 hoi4 = 2218 hoi4 = 12923 hoi4 = 2190 }	# Paracatu -> land, land, land
+	link = { vic2 = 2445 hoi4 = 12977 hoi4 = 2167 hoi4 = 10945 }	# Uberaba -> land, land, land
+	link = { vic2 = 2446 hoi4 = 12479 hoi4 = 2185 }	# São João del Rey -> land, land
+	# # Bahia
+	link = { vic2 = 2436 hoi4 = 10946 hoi4 = 8197 }	# Salvador de Bahia -> land, land
+	link = { vic2 = 2437 hoi4 = 8242 hoi4 = 4617 hoi4 = 10926 hoi4 = 5218 hoi4 = 8177 }	# Juazeiro -> land, land, land, land, land
+	link = { vic2 = 2438 hoi4 = 8129 hoi4 = 5174 }	# Vila do Barra -> land, land
 	link = { vic2 = 2439 hoi4 = 10419 hoi4 = 11002 }	# Porto Seguro -> land, land
-	link = { vic2 = 2436 hoi4 = 10946 hoi4 = 8197 hoi4 = 8184 }	# Salvador de Bahia -> land, land, land
-	link = { vic2 = 2435 hoi4 = 8143 }	# Aracaju -> land
-	link = { vic2 = 2434 hoi4 = 10939 hoi4 = 10998 hoi4 = 1524 hoi4 = 5182 }	# Maceió -> land, land, land, land
-	link = { vic2 = 2432 hoi4 = 5168 hoi4 = 1446 hoi4 = 12961 hoi4 = 10967 }	# Recife -> land, land, land, land
-	link = { vic2 = 2428 hoi4 = 10989 hoi4 = 2227 hoi4 = 7561 }	# Paraíba -> land, land, land
+	link = { vic2 = 2440 hoi4 = 10392 hoi4 = 12422 hoi4 = 5194 hoi4 = 8184 }	# Vitória da Conquista -> land, land, land, land
+	# # Pernambuco
+	link = { vic2 = 2428 hoi4 = 2227 hoi4 = 10989 hoi4 = 1446 hoi4 = 7561 }	# Paraíba -> land, land, land, land
 	link = { vic2 = 2431 hoi4 = 10933 hoi4 = 2175 }	# Natal -> land, land
-	# 
-	# ## Uruguay
-	link = { vic2 = 2344 hoi4 = 10362 hoi4 = 12336 hoi4 = 4457 }	# Montevideo -> land, land, land
-	link = { vic2 = 2347 hoi4 = 12496 hoi4 = 1654 hoi4 = 12481 hoi4 = 1641 hoi4 = 10347 }	# Melo -> land, land, land, land, land
-	link = { vic2 = 2346 hoi4 = 4575 hoi4 = 4604 }	# Tacuarembó -> land, land
-	link = { vic2 = 2464 hoi4 = 7638 hoi4 = 4436 }	# Pelotas -> land, land
-	link = { vic2 = 2467 hoi4 = 4589 hoi4 = 1598 hoi4 = 1585 }	# Alegrete -> land, land, land
-	link = { vic2 = 2466 hoi4 = 7581 hoi4 = 7594 }	# Santa Maria -> land, land
-	link = { vic2 = 2345 hoi4 = 12468 hoi4 = 10502 hoi4 = 1613 hoi4 = 12440 hoi4 = 1626 }	# Paysandú -> land, land, land, land, land
-	# 
-	# ## Paraguay
-	link = { vic2 = 2340 hoi4 = 2173 }	# Pilar -> land
-	link = { vic2 = 2341 hoi4 = 2194 }	# Encarnación -> land
-	link = { vic2 = 2339 hoi4 = 2152 }	# Asuncion -> land
-	link = { vic2 = 2342 hoi4 = 12901 }	# San Pedro -> land
-	link = { vic2 = 2343 hoi4 = 11023 }	# Concepción -> land
+	link = { vic2 = 2432 hoi4 = 5168 hoi4 = 10967 hoi4 = 5182 }	# Recife -> land, land, land
+	link = { vic2 = 2433 hoi4 = 8227 hoi4 = 10345 hoi4 = 12961 }	# Cabrobo -> land, land, land
+	link = { vic2 = 2434 hoi4 = 10998 hoi4 = 10939 hoi4 = 1524 }	# Maceió -> land, land, land
+	link = { vic2 = 2435 hoi4 = 8143 }	# Aracaju -> land
+	# # Maranhao
+	link = { vic2 = 2424 hoi4 = 5220 hoi4 = 12933 }	# São Luís -> land, land
+	link = { vic2 = 2425 hoi4 = 12913 hoi4 = 2150 hoi4 = 12947 }	# Chapada -> land, land, land
+	link = { vic2 = 2426 hoi4 = 2228 }	# Teresina -> land
+	link = { vic2 = 2427 hoi4 = 5153 hoi4 = 10984 hoi4 = 5204 }	# Oeiras -> land, land, land
+	link = { vic2 = 2429 hoi4 = 5107 hoi4 = 8179 hoi4 = 2132 hoi4 = 2178 }	# Fortaleza -> land, land, land, land
+	link = { vic2 = 2430 hoi4 = 2164 }	# Crato -> land
+	# # Vila Boa Region
+	link = { vic2 = 2421 hoi4 = 8140 hoi4 = 12987 hoi4 = 5115 }	# Vila Boa -> land, land, land
+	link = { vic2 = 2422 hoi4 = 5208 hoi4 = 12959 }	# Aganja -> land, land
+	link = { vic2 = 2423 hoi4 = 5151 hoi4 = 2168 }	# Palmas -> land, land
+	# # Mato Grosso
+	link = { vic2 = 2416 hoi4 = 5200 hoi4 = 12951 }	# Dourados -> land, land
+	link = { vic2 = 2417 hoi4 = 8175 hoi4 = 2142 hoi4 = 2147 }	# Vila Bela -> land, land, land
+	link = { vic2 = 2418 hoi4 = 2204 hoi4 = 5148 hoi4 = 2111 }	# Cuiabá -> land, land, land
+	link = { vic2 = 2419 hoi4 = 8189 hoi4 = 10959 hoi4 = 2181 }	# Corumbá -> land, land, land
 	link = { vic2 = 2420 hoi4 = 8224 }	# Iguatemi -> land
-	link = { vic2 = 2338 hoi4 = 5165 hoi4 = 8203 }	# Puerto Guaraní -> land, land
-	link = { vic2 = 2337 hoi4 = 10973 }	# Fortin Falcon -> land
+	link = { vic2 = 2550 hoi4 = 12939 hoi4 = 11010 }	# Forte do Príncipe -> land, land
+	# # Amazonas
+	link = { vic2 = 2401 hoi4 = 13083 }	# Marabitanas -> land
+	link = { vic2 = 2403 hoi4 = 5083 hoi4 = 12919 }	# Cachoeira -> land, land
+	link = { vic2 = 2404 hoi4 = 8254 hoi4 = 12965 }	# Tefe -> land, land
+	link = { vic2 = 2405 hoi4 = 5232 hoi4 = 1979 }	# Borba -> land, land
+	link = { vic2 = 2407 hoi4 = 8185 hoi4 = 2198 }	# Tabatinga -> land, land
+	link = { vic2 = 2532 hoi4 = 5214 }	# Forte São Joaquim -> land
+	link = { vic2 = 2549 hoi4 = 5216 hoi4 = 10960 }	# Tarauacá -> land, land
+	# # Para
+	link = { vic2 = 2402 hoi4 = 10934 }	# Manaus -> land
+	link = { vic2 = 2408 vic2 = 2412 hoi4 = 5008 }	# Oriximina, Óbidos -> land
+	link = { vic2 = 2410 hoi4 = 12853 hoi4 = 10874 hoi4 = 12999 }	# Belém -> land, land, land
+	link = { vic2 = 2411 hoi4 = 2035 }	# Santarém -> land
+	link = { vic2 = 2413 hoi4 = 10956 hoi4 = 2214 }	# Marabá -> land, land
+	link = { vic2 = 2414 vic2 = 2415 hoi4 = 4980 }	# Amapá, Macapá -> land
+	link = { vic2 = 2600 hoi4 = 8172 }	# Altamira -> land
+	# 
+	# ## Ecuador
+	link = { vic2 = 2279 hoi4 = 12798 hoi4 = 5051 }	# Quito -> land, land
+	link = { vic2 = 2280 hoi4 = 8252 }	# Guayaquil -> land
+	link = { vic2 = 2281 hoi4 = 8047 }	# Esmereldas -> land
+	link = { vic2 = 2282 hoi4 = 5120 }	# Loja -> land
+	link = { vic2 = 2283 hoi4 = 11020 }	# Zamora -> land
+	link = { vic2 = 2284 hoi4 = 10888 hoi4 = 8075 }	# Tena -> land, land
+	link = { vic2 = 2285 hoi4 = 5023 }	# Galápagos -> land
+	# 
+	# ## Peru
+	# # Pastaza
+	link = { vic2 = 2286 hoi4 = 8213 hoi4 = 10970 }	# Iquitos -> land, land
+	link = { vic2 = 2287 hoi4 = 10942 }	# Yurimaguas -> land
+	link = { vic2 = 2288 hoi4 = 8149 }	# Yuncos -> land
+	link = { vic2 = 2289 hoi4 = 12869 }	# Puca Urco -> land
+	# # Cajamarca
+	link = { vic2 = 2290 hoi4 = 12969 }	# Cajamarca -> land
+	link = { vic2 = 2291 hoi4 = 2156 }	# Piura -> land
+	link = { vic2 = 2292 hoi4 = 8199 }	# Trujillo -> land
+	link = { vic2 = 2294 hoi4 = 5162 }	# Moyobamba -> land
+	# # Lima
+	link = { vic2 = 2293 hoi4 = 2212 }	# Huánuco -> land
+	link = { vic2 = 2295 hoi4 = 12997 }	# Lima -> land
+	link = { vic2 = 2296 hoi4 = 2162 }	# Huancavelica -> land
+	link = { vic2 = 2298 hoi4 = 12983 hoi4 = 5190 }	# Huaraz -> land, land
+	link = { vic2 = 2300 hoi4 = 2226 }	# Pucallpa -> land
+	# # Ica
+	link = { vic2 = 2297 hoi4 = 2225 }	# Ica -> land
+	link = { vic2 = 2299 hoi4 = 12953 }	# Ayacucho -> land
+	link = { vic2 = 2301 hoi4 = 8191 hoi4 = 8160 }	# Puerto Maldonado -> land, land
+	link = { vic2 = 2302 hoi4 = 5166 }	# Cusco -> land
+	# # Arequipa
+	link = { vic2 = 2303 hoi4 = 2182 hoi4 = 10940 }	# Puno -> land, land
+	link = { vic2 = 2304 hoi4 = 2210 hoi4 = 5202 }	# Arequipa -> land, land
+	link = { vic2 = 2578 hoi4 = 13086 }	# Tacna -> land
 	# 
 	# ## Bolivia
-	link = { vic2 = 2315 hoi4 = 5229 }	# Tarija -> land
-	link = { vic2 = 2314 hoi4 = 2174 }	# Potosí -> land
-	link = { vic2 = 2313 hoi4 = 12930 hoi4 = 10987 }	# Chuquisaca -> land, land
-	link = { vic2 = 2318 hoi4 = 5179 hoi4 = 2160 hoi4 = 12902 hoi4 = 12916 hoi4 = 12979 }	# Roboré -> land, land, land, land, land
-	link = { vic2 = 2317 hoi4 = 12973 }	# San Ignacio -> land
-	link = { vic2 = 2316 hoi4 = 10924 }	# Santa Cruz -> land
-	link = { vic2 = 2311 hoi4 = 10938 }	# Cochabamba -> land
-	link = { vic2 = 2310 hoi4 = 5188 hoi4 = 8225 hoi4 = 8157 hoi4 = 13195 hoi4 = 5230 hoi4 = 13174 }	# La Paz -> land, land, land, land, land, lake
-	link = { vic2 = 2312 hoi4 = 10952 }	# Oruro -> land
-	link = { vic2 = 2319 hoi4 = 8240 hoi4 = 10996 }	# Santa Ana -> land, land
+	# # La Paz
+	link = { vic2 = 2310 hoi4 = 5230 hoi4 = 8225 hoi4 = 5188 hoi4 = 13195 hoi4 = 13174 }	# La Paz -> land, land, land, land, lake
+	link = { vic2 = 2311 hoi4 = 8157 hoi4 = 8240 }	# Cochabamba -> land, land
+	link = { vic2 = 2319 hoi4 = 10996 }	# Santa Ana -> land
 	link = { vic2 = 2320 hoi4 = 10982 hoi4 = 8211 }	# Riberalta -> land, land
 	link = { vic2 = 2321 hoi4 = 12917 }	# Cobija -> land
+	# # Santa Cruz
+	link = { vic2 = 2316 hoi4 = 10924 }	# Santa Cruz -> land
+	link = { vic2 = 2317 hoi4 = 12973 }	# San Ignacio -> land
+	link = { vic2 = 2318 hoi4 = 12916 hoi4 = 12902 hoi4 = 2160 }	# Roboré -> land, land, land
+	# # Atacama
+	link = { vic2 = 2312 hoi4 = 10952 }	# Oruro -> land
+	link = { vic2 = 2313 hoi4 = 5179 hoi4 = 12930 hoi4 = 10938 hoi4 = 10987 }	# Chuquisaca -> land, land, land, land
+	link = { vic2 = 2314 hoi4 = 2174 }	# Potosí -> land
+	# 
+	# ## Paraguay
+	# # Alto Paraguay
+	link = { vic2 = 2337 hoi4 = 2209 hoi4 = 2195 }	# Fortin Falcon -> land, land
+	link = { vic2 = 2338 hoi4 = 10973 hoi4 = 5165 hoi4 = 8203 }	# Puerto Guaraní -> land, land, land
+	# # Baja Paraguay
+	link = { vic2 = 2339 hoi4 = 2152 }	# Asuncion -> land
+	link = { vic2 = 2340 hoi4 = 2173 }	# Pilar -> land
+	link = { vic2 = 2341 hoi4 = 2194 }	# Encarnación -> land
+	link = { vic2 = 2342 hoi4 = 12901 }	# San Pedro -> land
+	link = { vic2 = 2343 hoi4 = 11023 }	# Concepción -> land
+	link = { vic2 = 2554 hoi4 = 11007 }	# Posadas -> land
+	# 
+	# ## Uruguay
+	link = { vic2 = 2344 hoi4 = 10362 hoi4 = 12336 }	# Montevideo -> land, land
+	link = { vic2 = 2345 hoi4 = 12468 hoi4 = 10502 hoi4 = 12496 hoi4 = 1613 hoi4 = 4457 }	# Paysandú -> land, land, land, land, land
+	link = { vic2 = 2346 hoi4 = 1626 hoi4 = 12440 }	# Tacuarembó -> land, land
+	link = { vic2 = 2347 hoi4 = 1641 hoi4 = 12481 hoi4 = 10347 hoi4 = 1654 }	# Melo -> land, land, land, land
+	link = { vic2 = 2315 hoi4 = 5229 hoi4 = 12979 }	# Tarija -> land, land
+	# 
 	# 
 	# ## Chile
 	link = { vic2 = 2307 vic2 = 2308 hoi4 = 5131 }	# Iquique, Arica -> land
@@ -694,8 +726,8 @@
 	link = { vic2 = 2335 hoi4 = 5209 }	# Porvenir -> land
 	# 
 	# ## Argentina
-	link = { vic2 = 2366 hoi4 = 2209 }	# Formosa -> land
-	link = { vic2 = 2367 hoi4 = 2195 }	# Xolotas -> land
+	link = { vic2 = 2366 }	# Formosa -> DROPPED
+	link = { vic2 = 2367 }	# Xolotas -> DROPPED
 	link = { vic2 = 2365 hoi4 = 12943 }	# Villa Ángela -> land
 	link = { vic2 = 2364 hoi4 = 2106 hoi4 = 12922 }	# Resistencia -> land, land
 	link = { vic2 = 2377 hoi4 = 10986 }	# Añatuya -> land
@@ -704,7 +736,6 @@
 	link = { vic2 = 2356 hoi4 = 12964 }	# Corrientes -> land
 	link = { vic2 = 2357 hoi4 = 8187 }	# Curuzú Cuatiá -> land
 	link = { vic2 = 2358 hoi4 = 8238 }	# Santo Tomás -> land
-	link = { vic2 = 2554 hoi4 = 11007 }	# Posadas -> land
 	link = { vic2 = 2381 hoi4 = 10985 }	# Río Cuarto -> land
 	link = { vic2 = 2371 vic2 = 2372 vic2 = 2370 vic2 = 2369 vic2 = 2368 hoi4 = 2224 hoi4 = 10944 }	# MANY-TO-MANY: Equia, Rivadavia, Cochinoca, Jujuy, Salta -> land, land
 	link = { vic2 = 2373 hoi4 = 10965 }	# Tucumán -> land
@@ -2905,7 +2936,6 @@
 	link = { vic2 = 2127 hoi4 = 2188 }	# Seychelles -> land
 	# 
 	# Pacific Islands
-	link = { vic2 = 2285 hoi4 = 5023 }	# Galápagos -> land
 	link = { vic2 = 2336 hoi4 = 1280 }	# Easter Island -> land
 	link = { vic2 = 801 vic2 = 2551 vic2 = 2552 vic2 = 2553 hoi4 = 12148 hoi4 = 10188 }	# MANY-TO-MANY: Tahiti, Marquesas, Pitcairn, Tuamotus -> land, land
 	link = { vic2 = 2544 hoi4 = 13080 }	# Pago Pago -> land
