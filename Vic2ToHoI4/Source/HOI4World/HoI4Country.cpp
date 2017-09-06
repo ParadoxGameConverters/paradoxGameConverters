@@ -94,7 +94,6 @@ HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, c
 	press_laws("censored_press"),
 	training_laws("minimal_training"),
 	greatPower(false),
-	divisionTemplates(),
 	divisions(),
 	ships(),
 	planes(),
@@ -528,7 +527,7 @@ void HoI4Country::convertArmyDivisions(const map<string, HoI4UnitMap>& unitMap, 
 		}
 	}
 		
-	for (auto& divTemplate : divisionTemplates)
+	for (auto& divTemplate: divisionTemplates)
 	{
 		// for each template determine the Battalion and Company requirements
 		int divisionCounter = 1;
@@ -1228,10 +1227,10 @@ void HoI4Country::outputNamesSet(ofstream& namesFile, const vector<string>& name
 }
 
 
-void HoI4Country::output(const set<const HoI4Advisor*, advisorCompare>& ideologicalMinisters) const
+void HoI4Country::output(const set<const HoI4Advisor*, advisorCompare>& ideologicalMinisters, const vector<HoI4DivisionTemplateType>& divisionTemplates) const
 {
 	outputHistory();
-	outputOOB();
+	outputOOB(divisionTemplates);
 	outputCommonCountryFile();
 	outputIdeas(ideologicalMinisters);
 
@@ -1255,7 +1254,7 @@ void HoI4Country::outputHistory() const
 	outputCapital(output);
 	outputResearchSlots(output);
 	outputThreat(output);
-	outputOOB(output);
+	outputOOBLine(output);
 	outputTechnology(output);
 	outputResearchBonuses(output);
 	outputConvoys(output);
@@ -1308,7 +1307,7 @@ void HoI4Country::outputThreat(ofstream& output) const
 }
 
 
-void HoI4Country::outputOOB(ofstream& output) const
+void HoI4Country::outputOOBLine(ofstream& output) const
 {
 	output << "oob = \"" << tag << "_OOB\"\n";
 	output << "\n";
@@ -1324,6 +1323,7 @@ void HoI4Country::outputTechnology(ofstream& output) const
 		output << tech.first << " = 1\n";
 	}
 	output << "}\n";
+	output << "\n";
 }
 
 void HoI4Country::outputResearchBonuses(ofstream& output) const
@@ -1331,7 +1331,7 @@ void HoI4Country::outputResearchBonuses(ofstream& output) const
 	output << "# Research Bonuses\n";
 	for (auto researchBonus : researchBonuses)
 	{
-		output << "add_tech_bonus = { bonus = " << float(researchBonus.second / 100) << " uses = 1 category = " << researchBonus.first << "}\n";
+		output << "add_tech_bonus = { bonus = " << float(researchBonus.second / 100) << " uses = 1 category = " << researchBonus.first << " }\n";
 	}
 }
 
@@ -1342,9 +1342,10 @@ void HoI4Country::outputConvoys(ofstream& output) const
 	output << "\n";
 }
 
+
 void HoI4Country::outputEquipmentStockpile(ofstream& output) const
 {
-	for (auto eqp : equipmentStockpile) 
+	for (auto eqp: equipmentStockpile)
 	{
 		output << "add_equipment_to_stockpile = { type = " << eqp.first << " amount = " << eqp.second << " producer = " << tag << " }\n";
 	}	
@@ -1556,7 +1557,7 @@ void HoI4Country::outputCountryLeader(ofstream& output) const
 }
 
 
-void HoI4Country::outputOOB() const
+void HoI4Country::outputOOB(const vector<HoI4DivisionTemplateType>& divisionTemplates) const
 {
 	ofstream output("output/" + Configuration::getOutputName() + "/history/units/" + tag + "_OOB.txt");
 	if (!output.is_open())
@@ -1581,7 +1582,7 @@ void HoI4Country::outputOOB() const
 	for (auto& divisionTemplate : divisionTemplates)
 	{
 		output << divisionTemplate;
-		output << endl;
+		output << "\n";
 	}
 	output << "### No BHU air forces ###\n";
 	output << "instant_effect = {\n";

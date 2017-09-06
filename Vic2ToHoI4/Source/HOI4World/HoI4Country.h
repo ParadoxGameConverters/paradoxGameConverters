@@ -75,7 +75,7 @@ class HoI4Country
 		void outputToCommonCountriesFile(ofstream& countriesFile) const;
 		void outputColors(ofstream& out) const;
 		void outputToNamesFiles(ofstream& namesFile) const;
-		void output(const set<const HoI4Advisor*, advisorCompare>& ideologicalMinisters) const;
+		void output(const set<const HoI4Advisor*, advisorCompare>& ideologicalMinisters, const vector<HoI4DivisionTemplateType>& divisionTemplates) const;
 		void outputIdeaGraphics(ofstream& ideasFile) const;
 
 		void		setSphereLeader(const string& SphereLeader) { sphereLeader == SphereLeader; }
@@ -147,7 +147,7 @@ class HoI4Country
 		void outputCapital(ofstream& output) const;
 		void outputResearchSlots(ofstream& output) const;
 		void outputThreat(ofstream& output) const;
-		void outputOOB(ofstream& output) const;
+		void outputOOB(const vector<HoI4DivisionTemplateType>& divisionTemplates) const;
 		void outputTechnology(ofstream& output) const;
 		void outputResearchBonuses(ofstream& output) const;
 		void outputConvoys(ofstream& output) const;
@@ -160,7 +160,7 @@ class HoI4Country
 		void outputIdeas(ofstream& output) const;
 		void outputNationalUnity(ofstream& output) const;
 		void outputCountryLeader(ofstream& output) const;
-		void outputOOB() const;
+		void outputOOBLine(ofstream& output) const;
 		void outputCommonCountryFile() const;
 		void outputIdeas(const set<const HoI4Advisor*, advisorCompare>& ideologicalAdvisors) const;
 
@@ -223,7 +223,6 @@ class HoI4Country
 		bool greatPower;
 
 		// military stuff
-		vector<HoI4DivisionTemplateType>		divisionTemplates;
 		vector<HoI4DivisionType>				divisions;
 		vector<HoI4Ship>							ships;
 		vector<HoI4Airplane>						planes;

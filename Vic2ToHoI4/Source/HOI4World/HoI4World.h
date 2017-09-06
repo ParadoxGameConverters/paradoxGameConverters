@@ -199,6 +199,8 @@ class HoI4World
 		HoI4Diplomacy* diplomacy;
 		HoI4Events* events;
 
+		vector<HoI4DivisionTemplateType> divisionTemplates;
+
 		leaderTraitsMap leaderTraits;
 		portraitMapping portraitMap;
 };

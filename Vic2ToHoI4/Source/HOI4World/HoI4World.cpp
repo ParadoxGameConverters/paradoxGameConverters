@@ -67,6 +67,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld):
 	factions(),
 	diplomacy(new HoI4Diplomacy),
 	events(new HoI4Events),
+	divisionTemplates(),
 	leaderTraits(),
 	portraitMap()
 {
@@ -1218,7 +1219,7 @@ vector<HoI4DivisionTemplateType> HoI4World::importDivisionTemplates() const
 void HoI4World::convertMilitaries()
 {
 	map<string, HoI4UnitMap> unitMap = importUnitMap();
-	vector<HoI4DivisionTemplateType> divisionTemplates = importDivisionTemplates();
+	divisionTemplates = importDivisionTemplates();
 
 	convertArmies(unitMap, divisionTemplates);
 	convertNavies(unitMap);
@@ -1714,7 +1715,7 @@ void HoI4World::outputCountries() const
 
 	for (auto country: countries)
 	{
-		country.second->output(getActiveIdeologicalAdvisors());
+		country.second->output(getActiveIdeologicalAdvisors(), divisionTemplates);
 	}
 
 	ofstream ideasFile("output/" + Configuration::getOutputName() + "/interface/converter_ideas.gfx");
