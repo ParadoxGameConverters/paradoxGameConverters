@@ -704,78 +704,93 @@
 	link = { vic2 = 2345 hoi4 = 12468 hoi4 = 10502 hoi4 = 12496 hoi4 = 1613 hoi4 = 4457 }	# Paysandú -> land, land, land, land, land
 	link = { vic2 = 2346 hoi4 = 1626 hoi4 = 12440 }	# Tacuarembó -> land, land
 	link = { vic2 = 2347 hoi4 = 1641 hoi4 = 12481 hoi4 = 10347 hoi4 = 1654 }	# Melo -> land, land, land, land
-	link = { vic2 = 2315 hoi4 = 5229 hoi4 = 12979 }	# Tarija -> land, land
-	# 
 	# 
 	# ## Chile
+	# # Antofagasta
+	link = { vic2 = 2305 hoi4 = 12994 hoi4 = 5171 hoi4 = 5146 }	# Antofagasta -> land, land, land
 	link = { vic2 = 2307 vic2 = 2308 hoi4 = 5131 }	# Iquique, Arica -> land
 	link = { vic2 = 2309 hoi4 = 8231 hoi4 = 8217 }	# Calama -> land, land
-	link = { vic2 = 2305 hoi4 = 5171 hoi4 = 12994 hoi4 = 5146 }	# Antofagasta -> land, land, land
-	link = { vic2 = 2322 hoi4 = 12914 hoi4 = 5228 hoi4 = 11000 hoi4 = 5192 }	# Copiapó -> land, land, land, land
+	# # Santiago
+	link = { vic2 = 2322 hoi4 = 11000 hoi4 = 12914 hoi4 = 5228 hoi4 = 5192 }	# Copiapó -> land, land, land, land
 	link = { vic2 = 2323 hoi4 = 8194 }	# La Serena -> land
-	link = { vic2 = 2326 hoi4 = 5191 }	# Viña del Mar -> land
 	link = { vic2 = 2324 hoi4 = 650 }	# Santiago -> land
 	link = { vic2 = 2325 hoi4 = 8222 }	# Valparaíso -> land
+	link = { vic2 = 2326 hoi4 = 5191 }	# Viña del Mar -> land
+	# # Los Rios
 	link = { vic2 = 2327 hoi4 = 8229 }	# Talca -> land
-	link = { vic2 = 2331 hoi4 = 8251 }	# Chillán -> land
-	link = { vic2 = 2330 hoi4 = 12984 }	# Cauquenes -> land
 	link = { vic2 = 2328 vic2 = 2329 hoi4 = 5121 hoi4 = 12920 }	# MANY-TO-MANY: Valdivia, Temuco -> land, land
-	link = { vic2 = 2332 hoi4 = 5169 hoi4 = 12954 hoi4 = 5118 }	# Osorno -> land, land, land
-	link = { vic2 = 2333 hoi4 = 8218 hoi4 = 8198 hoi4 = 10961 hoi4 = 2161 hoi4 = 5159 }	# Puerto Aisén -> land, land, land, land, land
+	link = { vic2 = 2330 hoi4 = 12984 }	# Cauquenes -> land
+	link = { vic2 = 2331 hoi4 = 8251 }	# Chillán -> land
+	# # Araucania
+	link = { vic2 = 2332 hoi4 = 12954 hoi4 = 5169 hoi4 = 5118 }	# Osorno -> land, land, land
+	link = { vic2 = 2333 hoi4 = 2161 hoi4 = 10961 hoi4 = 8198 hoi4 = 5159 hoi4 = 8218 }	# Puerto Aisén -> land, land, land, land, land
 	link = { vic2 = 2334 hoi4 = 5201 hoi4 = 5215 }	# Punta Arenas -> land, land
 	link = { vic2 = 2335 hoi4 = 5209 }	# Porvenir -> land
 	# 
 	# ## Argentina
-	link = { vic2 = 2366 }	# Formosa -> DROPPED
-	link = { vic2 = 2367 }	# Xolotas -> DROPPED
-	link = { vic2 = 2365 hoi4 = 12943 }	# Villa Ángela -> land
-	link = { vic2 = 2364 hoi4 = 2106 hoi4 = 12922 }	# Resistencia -> land, land
-	link = { vic2 = 2377 hoi4 = 10986 }	# Añatuya -> land
-	link = { vic2 = 2376 hoi4 = 2208 }	# Santiago del Estero -> land
+	# # Jujuy
+	link = { vic2 = 2315 hoi4 = 5229 hoi4 = 12979 }	# Tarija -> land, land
+	link = { vic2 = 2368 hoi4 = 11001 }	# Salta -> land
+	link = { vic2 = 2369 vic2 = 2370 vic2 = 2371 hoi4 = 2224 }	# Jujuy, Cochinoca, Equia -> land
+	link = { vic2 = 2372 hoi4 = 10965 hoi4 = 10944 }	# Rivadavia -> land, land
+	# # Chaco
+	link = { vic2 = 2364 hoi4 = 2106 }	# Resistencia -> land
+	link = { vic2 = 2365 hoi4 = 10986 }	# Villa Ángela -> land
+	link = { vic2 = 2366 hoi4 = 12922 }	# Formosa -> land
+	link = { vic2 = 2367 hoi4 = 12943 }	# Xolotas -> land
+	# # Catamarca Region
+	link = { vic2 = 2374 hoi4 = 12978 }	# Catamarca -> land
+	link = { vic2 = 2375 hoi4 = 8195 hoi4 = 8253 }	# Vinchina -> land, land
+	link = { vic2 = 2385 hoi4 = 2136 hoi4 = 12928 }	# La Rioja -> land, land
+	link = { vic2 = 2386 hoi4 = 2158 hoi4 = 11022 }	# Santa Rita -> land, land
+	link = { vic2 = 2387 hoi4 = 10964 }	# San Juan -> land
+	link = { vic2 = 2388 hoi4 = 2179 }	# Calingasta -> land
+	# # Tucuman
+	link = { vic2 = 2373 hoi4 = 8216 }	# Tucumán -> land
+	link = { vic2 = 2376 hoi4 = 5143 }	# Santiago del Estero -> land
+	link = { vic2 = 2377 hoi4 = 2208 }	# Añatuya -> land
+	link = { vic2 = 2378 hoi4 = 8255 }	# Mailín -> land
+	# # La Pampa
+	link = { vic2 = 2379 hoi4 = 12942 }	# Córdoba de Argentina -> land
+	link = { vic2 = 2380 hoi4 = 10975 }	# Villa Nueva -> land
+	link = { vic2 = 2381 hoi4 = 10985 }	# Río Cuarto -> land
+	link = { vic2 = 2382 hoi4 = 8208 }	# Renancó -> land
+	link = { vic2 = 2383 hoi4 = 5152 hoi4 = 12970 }	# San Luis -> land, land
+	link = { vic2 = 2384 hoi4 = 5184 hoi4 = 7550 hoi4 = 5219 }	# Mercedes -> land, land, land
+	# # Santa Fe
+	link = { vic2 = 2363 vic2 = 2361 hoi4 = 7500 hoi4 = 5163 hoi4 = 2172 hoi4 = 13000 }	# MANY-TO-MANY: Rosario, Sancti Spiritu -> land, land, land, land
 	link = { vic2 = 2362 hoi4 = 5213 hoi4 = 8169 }	# Reconquista -> land, land
+	# # Corrientes
 	link = { vic2 = 2356 hoi4 = 12964 }	# Corrientes -> land
 	link = { vic2 = 2357 hoi4 = 8187 }	# Curuzú Cuatiá -> land
 	link = { vic2 = 2358 hoi4 = 8238 }	# Santo Tomás -> land
-	link = { vic2 = 2381 hoi4 = 10985 }	# Río Cuarto -> land
-	link = { vic2 = 2371 vic2 = 2372 vic2 = 2370 vic2 = 2369 vic2 = 2368 hoi4 = 2224 hoi4 = 10944 }	# MANY-TO-MANY: Equia, Rivadavia, Cochinoca, Jujuy, Salta -> land, land
-	link = { vic2 = 2373 hoi4 = 10965 }	# Tucumán -> land
-	link = { vic2 = 2375 hoi4 = 8195 hoi4 = 11001 }	# Vinchina -> land, land
-	link = { vic2 = 2374 hoi4 = 5143 hoi4 = 8216 }	# Catamarca -> land, land
-	link = { vic2 = 2385 hoi4 = 12978 hoi4 = 8253 }	# La Rioja -> land, land
-	link = { vic2 = 2378 hoi4 = 8255 }	# Mailín -> land
-	link = { vic2 = 2380 hoi4 = 10975 }	# Villa Nueva -> land
-	link = { vic2 = 2379 hoi4 = 12942 }	# Córdoba de Argentina -> land
-	link = { vic2 = 2386 hoi4 = 11022 }	# Santa Rita -> land
-	link = { vic2 = 2383 hoi4 = 5152 hoi4 = 2158 }	# San Luis -> land, land
-	link = { vic2 = 2384 hoi4 = 7550 hoi4 = 5184 }	# Mercedes -> land, land
-	link = { vic2 = 2387 hoi4 = 2136 }	# San Juan -> land
-	link = { vic2 = 2388 hoi4 = 12928 }	# Calingasta -> land
-	link = { vic2 = 2389 hoi4 = 2179 hoi4 = 10964 }	# Mendoza -> land, land
-	link = { vic2 = 2382 hoi4 = 8208 }	# Renancó -> land
-	link = { vic2 = 2361 hoi4 = 7500 hoi4 = 5163 hoi4 = 2172 hoi4 = 13000 }	# Sancti Spiritu -> land, land, land, land
-	link = { vic2 = 2363 }	# Rosario -> DROPPED
-	link = { vic2 = 2360 hoi4 = 10515 hoi4 = 1449 }	# Paraná -> land, land
-	link = { vic2 = 2359 hoi4 = 10943 hoi4 = 12453 }	# Colón -> land, land
-	link = { vic2 = 2393 hoi4 = 10935 }	# Telén -> land
-	link = { vic2 = 2353 hoi4 = 12998 hoi4 = 10418 hoi4 = 1596 hoi4 = 10375 }	# Trenque Lauquen -> land, land, land, land
-	link = { vic2 = 2350 hoi4 = 10402 hoi4 = 12394 hoi4 = 4602 hoi4 = 1568 hoi4 = 1555 hoi4 = 12409 }	# Azul -> land, land, land, land, land, land
-	link = { vic2 = 2352 hoi4 = 1624 hoi4 = 7621 }	# Mar del Plata -> land, land
-	link = { vic2 = 2354 hoi4 = 1639 hoi4 = 4643 }	# Bahía Blanca -> land, land
-	link = { vic2 = 2351 hoi4 = 12379 hoi4 = 4573 }	# La Plata -> land, land
-	link = { vic2 = 2349 hoi4 = 12351 hoi4 = 10390 }	# Junín -> land, land
-	link = { vic2 = 2348 hoi4 = 12364 }	# Buenos Aires -> land
-	link = { vic2 = 2390 hoi4 = 2215 hoi4 = 11021 hoi4 = 5219 hoi4 = 12970 hoi4 = 8215 hoi4 = 10992 }	# San Rafael -> land, land, land, land, land, land
+	link = { vic2 = 2359 hoi4 = 12453 hoi4 = 10943 }	# Colón -> land, land
+	link = { vic2 = 2360 hoi4 = 1449 hoi4 = 10515 }	# Paraná -> land, land
+	# # Rio Negro
+	link = { vic2 = 2389 hoi4 = 8215 hoi4 = 10992 }	# Mendoza -> land, land
+	link = { vic2 = 2390 hoi4 = 11021 hoi4 = 2215 }	# San Rafael -> land, land
+	link = { vic2 = 2393 hoi4 = 10935 hoi4 = 12998 }	# Telén -> land, land
 	link = { vic2 = 2395 hoi4 = 2149 }	# Curacó -> land
-	link = { vic2 = 2391 hoi4 = 8192 }	# Neuquén -> land
-	link = { vic2 = 2394 hoi4 = 12982 hoi4 = 2199 hoi4 = 12306 }	# Bariloche -> land, land, land
+	# # Buenos Aires
+	link = { vic2 = 2348 hoi4 = 12364 }	# Buenos Aires -> land
+	link = { vic2 = 2349 hoi4 = 12351 hoi4 = 10390 }	# Junín -> land, land
+	link = { vic2 = 2350 hoi4 = 1568 hoi4 = 4602 hoi4 = 1555 hoi4 = 10402 hoi4 = 12394 }	# Azul -> land, land, land, land, land
+	link = { vic2 = 2351 hoi4 = 12379 hoi4 = 4573 }	# La Plata -> land, land
+	link = { vic2 = 2352 hoi4 = 7621 hoi4 = 1624 }	# Mar del Plata -> land, land
+	link = { vic2 = 2353 hoi4 = 10418 hoi4 = 10375 hoi4 = 1596 hoi4 = 12409 }	# Trenque Lauquen -> land, land, land, land
+	link = { vic2 = 2354 hoi4 = 1639 hoi4 = 4643 }	# Bahía Blanca -> land, land
 	link = { vic2 = 2355 hoi4 = 12321 hoi4 = 12494 }	# Carmen -> land, land
+	# # Patagonia Septentrional
+	link = { vic2 = 2391 hoi4 = 12306 hoi4 = 8192 hoi4 = 2199 }	# Neuquén -> land, land, land
 	link = { vic2 = 2392 hoi4 = 10981 }	# Viedma -> land
-	link = { vic2 = 2397 hoi4 = 8176 hoi4 = 8161 }	# Esquel -> land, land
+	link = { vic2 = 2394 hoi4 = 12982 }	# Bariloche -> land
 	link = { vic2 = 2396 hoi4 = 10953 hoi4 = 12349 hoi4 = 11005 }	# Rawson -> land, land, land
-	link = { vic2 = 2398 hoi4 = 8913 hoi4 = 12952 hoi4 = 2169 }	# Puerto Deseado -> land, land, land
+	link = { vic2 = 2397 hoi4 = 8161 hoi4 = 8176 }	# Esquel -> land, land
+	# # Patagonia Meridional
+	link = { vic2 = 2131 hoi4 = 12960 }	# Falkland Islands -> land
+	link = { vic2 = 2398 hoi4 = 12952 hoi4 = 2169 hoi4 = 8913 }	# Puerto Deseado -> land, land, land
 	link = { vic2 = 2399 hoi4 = 5173 hoi4 = 12946 }	# Río Gallegos -> land, land
 	link = { vic2 = 2400 hoi4 = 11009 }	# Río Grande -> land
-	link = { vic2 = 2131 hoi4 = 12960 }	# Falkland Islands -> land
 	# 
 	# 
 	# ##########
