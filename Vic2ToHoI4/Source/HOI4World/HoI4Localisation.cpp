@@ -45,7 +45,9 @@ HoI4Localisation::HoI4Localisation():
 	originalFocuses(),
 	newFocuses(),
 	ideaLocalisations(),
-	genericIdeaLocalisations()
+	genericIdeaLocalisations(),
+	originalEventLocalisations(),
+	newEventLocalisations()
 {
 	importLocalisations();
 	prepareIdeaLocalisations();
@@ -66,6 +68,10 @@ void HoI4Localisation::importLocalisations()
 		{
 			importGenericIdeaLocalisations(Configuration::getHoI4Path() + "/localisation/" + filename);
 		}
+		else if (filename.substr(0, 6) == "events")
+		{
+			importEventLocalisations(Configuration::getHoI4Path() + "/localisation/" + filename);
+		}
 	}
 
 	filenames.clear();
@@ -80,6 +86,10 @@ void HoI4Localisation::importLocalisations()
 		{
 			importGenericIdeaLocalisations("blankmod/output/localisation/" + filename);
 		}
+		else if (filename.substr(0, 6) == "events")
+		{
+			importEventLocalisations("blankmod/output/localisation/" + filename);
+		}
 	}
 }
 
@@ -93,6 +103,12 @@ void HoI4Localisation::importFocusLocalisations(const string& filename)
 void HoI4Localisation::importGenericIdeaLocalisations(const string& filename)
 {
 	importLocalisationFile(filename, genericIdeaLocalisations);
+}
+
+
+void HoI4Localisation::importEventLocalisations(const string& filename)
+{
+	importLocalisationFile(filename, originalEventLocalisations);
 }
 
 
@@ -112,7 +128,7 @@ void HoI4Localisation::importLocalisationFile(const string& filename, languageTo
 	string language;
 	while (!file.eof())
 	{
-		char buffer[1024];
+		char buffer[2048];
 		file.getline(buffer, sizeof(buffer));
 		string line(buffer);
 		if (line.substr(0,2) == "l_")
@@ -257,7 +273,7 @@ void HoI4Localisation::AddNonenglishCountryLocalisations()
 }
 
 
-void HoI4Localisation::CopyFocusLocalisations(string oldKey, string newKey)
+void HoI4Localisation::CopyFocusLocalisations(const string& oldKey, const string& newKey)
 {
 	for (auto languageLocalisations: originalFocuses)
 	{
@@ -276,7 +292,32 @@ void HoI4Localisation::CopyFocusLocalisations(string oldKey, string newKey)
 		}
 		else
 		{
-			LOG(LogLevel::Warning) << "Could not find original localisation for " << oldKey;
+			LOG(LogLevel::Warning) << "Could not find original localisation for " << oldKey << " in " << languageLocalisations.first;
+		}
+	}
+}
+
+
+void HoI4Localisation::CopyEventLocalisations(const string& oldKey, const string& newKey)
+{
+	for (auto languageLocalisations: originalEventLocalisations)
+	{
+		auto newLanguage = newEventLocalisations.find(languageLocalisations.first);
+		if (newLanguage == newEventLocalisations.end())
+		{
+			keyToLocalisationMap newLocalisations;
+			newEventLocalisations.insert(make_pair(languageLocalisations.first, newLocalisations));
+			newLanguage = newEventLocalisations.find(languageLocalisations.first);
+		}
+
+		auto oldLocalisation = languageLocalisations.second.find(oldKey);
+		if (oldLocalisation != languageLocalisations.second.end())
+		{
+			newLanguage->second[newKey] = oldLocalisation->second;
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Could not find original localisation for " << oldKey << " in " << languageLocalisations.first;
 		}
 	}
 }
@@ -437,6 +478,7 @@ void HoI4Localisation::Output() const
 	outputStateLocalisations(localisationPath);
 	outputVPLocalisations(localisationPath);
 	outputIdeaLocalisations(localisationPath);
+	outputEventLocalisations(localisationPath);
 }
 
 
@@ -467,6 +509,12 @@ void HoI4Localisation::outputVPLocalisations(const string& localisationPath) con
 void HoI4Localisation::outputIdeaLocalisations(const string& localisationPath) const
 {
 	outputLocalisations(localisationPath + "/converted_ideas_l_", ideaLocalisations);
+}
+
+
+void HoI4Localisation::outputEventLocalisations(const string& localisationPath) const
+{
+	outputLocalisations(localisationPath + "/converted_events_l_", newEventLocalisations);
 }
 
 
