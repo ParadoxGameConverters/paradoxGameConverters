@@ -555,7 +555,7 @@ void HoI4Country::convertArmyDivisions(const map<string, HoI4UnitMap>& unitMap, 
 		// Create new divisions as long as sufficient units exist, otherwise move on to next template
 		while (sufficientUnits == true) 
 		{
-			HoI4DivisionType newDivision(to_string(divisionCounter) + ". " + divTemplate.getName(), divTemplate.getName(), capitalStateNum);
+			HoI4DivisionType newDivision(to_string(divisionCounter) + ". " + divTemplate.getName(), divTemplate.getName(), capitalState->getVPLocation());
 			divisionCounter = divisionCounter + 1;
 			divisions.push_back(newDivision);
 
