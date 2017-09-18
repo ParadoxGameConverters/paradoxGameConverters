@@ -85,7 +85,6 @@ class HoI4Country
 		void setGreatPower() { greatPower = true; }
 
 		const HoI4Relations*								getRelations(string withWhom) const;
-		HoI4State* getCapital();
 		double getStrengthOverTime(double years) const;
 		double getMilitaryStrength() const;
 		double getEconomicStrength(double years) const;
@@ -102,9 +101,9 @@ class HoI4Country
 		const set<string>&							getPuppets() const { return puppets; }
 		const string&								getPuppetmaster() const { return puppetMaster; }
 		const map<string, double>&						getPracticals() const { return practicals; }
-		int											getCapitalNum() const { return capital; }
 		vector<int>									getBrigs() const { return brigs; }
-		int											getCapitalProv() const { return capital; }
+		HoI4State* getCapitalState() const { return capitalState; }
+		int											getCapitalStateNum() const { return capitalStateNum; }
 		const string									getSphereLeader() const { return sphereLeader; }
 		const V2Party* getRulingParty() const { return rulingParty; }
 		set<const V2Party*> getParties() const { return parties; }
@@ -134,10 +133,10 @@ class HoI4Country
 		//void convertLeaders(portraitMapping& portraitMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
 		void convertRelations();
 		void determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states);
-		bool isStateValidForCapital(map<int, int>::const_iterator capitalState, const map<int, HoI4State*>& states);
+		bool isStateValidForCapital(int capitalState, const map<int, HoI4State*>& states);
 		bool isThisStateOwnedByUs(const HoI4State* state) const;
 		bool isThisStateACoreWhileWeOwnNoStates(const HoI4State* state) const;
-		void setCapitalInCapitalState(int capitalProvince, const map<int, HoI4State*>& states);
+		void setCapitalInCapitalState(int capitalProvince);
 		void findBestCapital();
 
 		void addProvince(int _province);
@@ -181,7 +180,8 @@ class HoI4Country
 		string								tag;
 		set<int>							provinces;
 		map<int, HoI4State*> states;
-		int									capital;
+		int									capitalStateNum;
+		HoI4State*							capitalState;
 		string								commonCountryFile;
 		map<string, int>					technologies;
 		map<string, int>					researchBonuses;

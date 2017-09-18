@@ -1363,7 +1363,7 @@ void HoI4World::addCapitalAirBases()
 {
 	for (auto country: countries)
 	{
-		auto capitalState = country.second->getCapital();
+		auto capitalState = country.second->getCapitalState();
 		if (capitalState != nullptr)
 		{
 			capitalState->addAirBase(5);
@@ -1376,7 +1376,7 @@ void HoI4World::addGreatPowerAirBases()
 {
 	for (auto greatPower: greatPowers)
 	{
-		auto capitalState = greatPower->getCapital();
+		auto capitalState = greatPower->getCapitalState();
 		if (capitalState != nullptr)
 		{
 			capitalState->addAirBase(5);
@@ -1570,7 +1570,7 @@ void HoI4World::outputCommonCountries() const
 
 	for (auto countryItr: countries)
 	{
-		if (countryItr.second->getCapitalNum() != 0)
+		if (countryItr.second->getCapitalStateNum() != 0)
 		{
 			countryItr.second->outputToCommonCountriesFile(allCountriesFile);
 		}
@@ -1599,7 +1599,7 @@ void HoI4World::outputColorsfile() const
 	output << "#reload countrycolors\n";
 	for (auto countryItr: countries)
 	{
-		if (countryItr.second->getCapitalNum() != 0)
+		if (countryItr.second->getCapitalStateNum() != 0)
 		{
 			countryItr.second->outputColors(output);
 		}

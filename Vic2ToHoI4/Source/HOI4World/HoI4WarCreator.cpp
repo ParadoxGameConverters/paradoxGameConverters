@@ -463,14 +463,14 @@ double HoI4WarCreator::getDistanceBetweenCountries(const HoI4Country* country1, 
 
 bool HoI4WarCreator::bothCountriesHaveCapitals(const HoI4Country* Country1, const HoI4Country* Country2) const
 {
-	return (Country1->getCapitalProv() != 0) && (Country2->getCapitalProv() != 0);
+	return (Country1->getCapitalStateNum() != 0) && (Country2->getCapitalStateNum() != 0);
 }
 
 
 pair<int, int> HoI4WarCreator::getCapitalPosition(const HoI4Country* country)
 {
-	auto capitalState = theWorld->getStates().find(country->getCapitalProv());
-	int capitalProvince = *(capitalState->second->getProvinces().begin());
+	auto capitalState = country->getCapitalState();
+	int capitalProvince = capitalState->getVPLocation();
 	return getProvincePosition(capitalProvince);
 }
 
@@ -655,7 +655,7 @@ map<string, HoI4Country*> HoI4WarCreator::getNearbyCountries(const HoI4Country* 
 	for (auto countryItr: theWorld->getCountries())
 	{
 		HoI4Country* country = countryItr.second;
-		if (country->getCapitalProv() != 0)
+		if (country->getCapitalStateNum() != 0)
 		{
 			//IMPROVE
 			//need to get further neighbors, as well as countries without capital in an area
@@ -711,7 +711,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 	//gets neighbors that are actually close to you
 	for (auto neigh: AllNeighbors)
 	{
-		if (neigh.second->getCapitalProv() != 0)
+		if (neigh.second->getCapitalStateNum() != 0)
 		{
 			//IMPROVE
 			//need to get further neighbors, as well as countries without capital in an area
@@ -942,7 +942,7 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 	map<string, HoI4Country*> Neighbors;
 	for (auto neigh: AllNeighbors)
 	{
-		if (neigh.second->getCapitalProv() != 0)
+		if (neigh.second->getCapitalStateNum() != 0)
 		{
 			//IMPROVE
 			//need to get further neighbors, as well as countries without capital in an area
@@ -1288,7 +1288,7 @@ map<string, HoI4Country*> HoI4WarCreator::findCloseNeighbors(const HoI4Country* 
 
 	for (auto neighbor: getNeighbors(country))
 	{
-		if (neighbor.second->getCapitalProv() != 0)
+		if (neighbor.second->getCapitalStateNum() != 0)
 		{
 			double distance = getDistanceBetweenCountries(country, neighbor.second);
 			if (distance <= 500)
@@ -1339,7 +1339,7 @@ map<string, HoI4Country*> HoI4WarCreator::findFarNeighbors(const HoI4Country* co
 
 	for (auto neighbor: getNeighbors(country))
 	{
-		if (neighbor.second->getCapitalProv() != 0)
+		if (neighbor.second->getCapitalStateNum() != 0)
 		{
 			double distance = getDistanceBetweenCountries(country, neighbor.second);
 			if (distance > 500)
@@ -1353,7 +1353,7 @@ map<string, HoI4Country*> HoI4WarCreator::findFarNeighbors(const HoI4Country* co
 	{
 		for (auto otherCountry: theWorld->getCountries())
 		{
-			if (otherCountry.second->getCapitalProv() != 0)
+			if (otherCountry.second->getCapitalStateNum() != 0)
 			{
 				double distance = getDistanceBetweenCountries(country, otherCountry.second);
 				if ((distance <= 1000) && (otherCountry.second->getProvinceCount() > 0))

@@ -58,7 +58,8 @@ HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, c
 	tag(_tag),
 	provinces(),
 	states(),
-	capital(0),
+	capitalStateNum(0),
+	capitalState(nullptr),
 	commonCountryFile(_commonCountryFile),
 	technologies(),
 	researchBonuses(),
@@ -127,10 +128,9 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	convertRelations();
 
 	determineCapitalFromVic2(stateMap, states);
-	auto state = states.find(capital)->second;
-	if (isThisStateOwnedByUs(state))
+	if (isThisStateOwnedByUs(capitalState))
 	{
-		state->setAsCapitalState();
+		capitalState->setAsCapitalState();
 	}
 
 	majorNation = srcCountry->isGreatNation();
@@ -310,11 +310,12 @@ void HoI4Country::determineCapitalFromVic2(const map<int, int>& provinceToStateI
 	auto itr = provinceMapper::getVic2ToHoI4ProvinceMapping().find(oldCapital);
 	if (itr != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
 	{
-		auto capitalState = provinceToStateIDMap.find(itr->second[0]);
-		if (capitalState != provinceToStateIDMap.end() && isStateValidForCapital(capitalState, states))
+		auto capitalStateMapping = provinceToStateIDMap.find(itr->second[0]);
+		if (capitalStateMapping != provinceToStateIDMap.end() && isStateValidForCapital(capitalStateMapping->second, states))
 		{
-			capital = capitalState->second;
-			setCapitalInCapitalState(itr->second[0], states);
+			capitalStateNum = capitalStateMapping->second;
+			capitalState = states.find(capitalStateNum)->second;
+			setCapitalInCapitalState(itr->second[0]);
 		}
 		else
 		{
@@ -324,9 +325,9 @@ void HoI4Country::determineCapitalFromVic2(const map<int, int>& provinceToStateI
 }
 
 
-bool HoI4Country::isStateValidForCapital(map<int, int>::const_iterator capitalState, const map<int, HoI4State*>& states)
+bool HoI4Country::isStateValidForCapital(int stateNum, const map<int, HoI4State*>& states)
 {
-	auto state = states.find(capitalState->second)->second;
+	auto state = states.find(stateNum)->second;
 	return (isThisStateOwnedByUs(state) || isThisStateACoreWhileWeOwnNoStates(state));
 }
 
@@ -351,18 +352,18 @@ bool HoI4Country::isThisStateACoreWhileWeOwnNoStates(const HoI4State* state) con
 }
 
 
-void HoI4Country::setCapitalInCapitalState(int capitalProvince, const map<int, HoI4State*>& _states)
+void HoI4Country::setCapitalInCapitalState(int capitalProvince)
 {
-	auto capitalState = _states.find(capital);
-	if (capitalState != _states.end())
+	if (capitalState != nullptr)
 	{
-		capitalState->second->setVPLocation(capitalProvince);
+		capitalState->setVPLocation(capitalProvince);
 	}
 }
 
+
 void HoI4Country::findBestCapital()
 {
-	capital = 0;
+	capitalStateNum = 0;
 	LOG(LogLevel::Warning) << "Could not properly set capital for " << tag;
 }
 
@@ -398,7 +399,7 @@ void HoI4Country::initFromHistory()
 	results = obj->getValue("capital");
 	if (results.size() > 0)
 	{
-		capital = stoi(results[0]->getLeaf());
+		capitalStateNum = stoi(results[0]->getLeaf());
 	}
 }
 
@@ -554,7 +555,7 @@ void HoI4Country::convertArmyDivisions(const map<string, HoI4UnitMap>& unitMap, 
 		// Create new divisions as long as sufficient units exist, otherwise move on to next template
 		while (sufficientUnits == true) 
 		{
-			HoI4DivisionType newDivision(to_string(divisionCounter) + ". " + divTemplate.getName(), divTemplate.getName(), capital);
+			HoI4DivisionType newDivision(to_string(divisionCounter) + ". " + divTemplate.getName(), divTemplate.getName(), capitalStateNum);
 			divisionCounter = divisionCounter + 1;
 			divisions.push_back(newDivision);
 
@@ -1032,9 +1033,10 @@ void HoI4Country::addState(HoI4State* _state)
 {
 	states.insert(make_pair(_state->getID(), _state));
 
-	if (capital == 0)
+	if (capitalStateNum == 0)
 	{
-		capital = _state->getID();
+		capitalState = _state;
+		capitalStateNum = _state->getID();
 		_state->setAsCapitalState();
 	}
 
@@ -1074,6 +1076,7 @@ void HoI4Country::setTechnology(const string& tech, int level)
 	}
 }
 
+
 void HoI4Country::setResearchBonus(const string& tech, int bonus)
 {
 	map<string, int>::iterator researchBonusEntry = researchBonuses.find(tech);
@@ -1094,6 +1097,7 @@ void HoI4Country::calculateIndustry()
 	}
 }
 
+
 void HoI4Country::reportIndustry(ofstream& out)
 {
 	if (states.size() > 0)
@@ -1106,31 +1110,13 @@ void HoI4Country::reportIndustry(ofstream& out)
 	}
 }
 
+
 void HoI4Country::addVPsToCapital(int VPs)
 {
-	auto capital = getCapital();
-	if (capital != nullptr)
+	if (capitalState != nullptr)
 	{
-		capital->addVictoryPointValue(VPs);
+		capitalState->addVictoryPointValue(VPs);
 	}
-}
-
-HoI4State* HoI4Country::getCapital(void)
-{
-	auto capitalItr = states.find(capital);
-	if (capitalItr == states.end())
-	{
-		if (states.size() > 0)
-		{
-			capitalItr = states.begin();
-		}
-		else
-		{
-			return nullptr;
-		}
-	}
-
-	return capitalItr->second;
 }
 
 
@@ -1273,9 +1259,9 @@ void HoI4Country::outputHistory() const
 
 void HoI4Country::outputCapital(ofstream& output) const
 {
-	if (capital > 0)
+	if (capitalStateNum > 0)
 	{
-		output << "capital = " << capital << '\n';
+		output << "capital = " << capitalStateNum << '\n';
 	}
 	else if (states.size() > 0)
 	{
@@ -1616,7 +1602,7 @@ void HoI4Country::outputOOB(const vector<HoI4DivisionTemplateType>& divisionTemp
 	if (planes.size() > 0)
 	{
 		output << "air_wings = {\n";
-		output << "\t" << capital << " = {\n";
+		output << "\t" << capitalStateNum << " = {\n";
 		for (auto& plane: planes)
 		{
 			output << plane;
