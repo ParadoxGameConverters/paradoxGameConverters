@@ -262,8 +262,6 @@ void HoI4Localisation::addLocalisation(const string& newKey, languageToLocalisat
 	}
 }
 
-
-
 void HoI4Localisation::AddNonenglishCountryLocalisations()
 {
 	auto englishLocalisations = countryLocalisations.find("english");
@@ -272,9 +270,15 @@ void HoI4Localisation::AddNonenglishCountryLocalisations()
 	countryLocalisations.insert(make_pair("russian", englishLocalisations->second));
 }
 
+<<<<<<< HEAD
 
 void HoI4Localisation::CopyFocusLocalisations(const string& oldKey, const string& newKey)
+=======
+void HoI4Localisation::CopyFocusLocalisations(string oldKey, string newKey)
+>>>>>>> 59fc56fc583347ca916bc3785d19efc4d6901725
 {
+	string oldDescription(oldKey + "_desc");
+	string newDescription(newKey + "_desc");
 	for (auto languageLocalisations: originalFocuses)
 	{
 		auto newLanguage = newFocuses.find(languageLocalisations.first);
@@ -319,9 +323,17 @@ void HoI4Localisation::CopyEventLocalisations(const string& oldKey, const string
 		{
 			LOG(LogLevel::Warning) << "Could not find original localisation for " << oldKey << " in " << languageLocalisations.first;
 		}
+		oldLocalisation = languageLocalisations.second.find(oldDescription);
+		if (oldLocalisation != languageLocalisations.second.end())
+		{
+			newLanguage->second[newDescription] = oldLocalisation->second;
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Could not find original localisation for " << oldDescription;
+		}
 	}
 }
-
 
 void HoI4Localisation::AddStateLocalisations(const HoI4States* states)
 {

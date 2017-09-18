@@ -1992,7 +1992,6 @@ void HoI4FocusTree::addAbsolutistGenericFocuses()
 	HoI4Focus* newFocus = new HoI4Focus;
 	newFocus->id = "absolutism_focus";
 	newFocus->icon = "GFX_focus_hun_elect_a_king";
-	newFocus->text = "Absolutism Focus";
 	newFocus->prerequisites.push_back("focus = collectivist_ethos");
 	newFocus->mutuallyExclusive = absolutistMutualExlusions;
 	newFocus->available += "			OR = {\n";
@@ -2024,7 +2023,7 @@ void HoI4FocusTree::addAbsolutistGenericFocuses()
 	newFocus = new HoI4Focus;
 	newFocus->id = "royal_dictatorship_focus";
 	newFocus->icon = "GFX_focus_rom_royal_dictatorship";
-	newFocus->text = "Royal Dictatorship";
+	newFocus->text = "Absolutism Focus";
 	newFocus->prerequisites.push_back("focus = absolutism_focus");
 	newFocus->xPos = nextFreeColumn;
 	newFocus->yPos = 3;
@@ -2041,7 +2040,6 @@ void HoI4FocusTree::addAbsolutistGenericFocuses()
 	newFocus = new HoI4Focus;
 	newFocus->id = "royal_army_tradition_focus";
 	newFocus->icon = "GFX_goal_generic_special_forces";
-	newFocus->text = "Royal Army Tradition";
 	newFocus->prerequisites.push_back("focus = royal_dictatorship_focus");
 	newFocus->xPos = nextFreeColumn;
 	newFocus->yPos = 4;
@@ -2054,7 +2052,6 @@ void HoI4FocusTree::addAbsolutistGenericFocuses()
 	newFocus = new HoI4Focus;
 	newFocus->id = "historical_claims_focus";
 	newFocus->icon = "GFX_goal_generic_occupy_states_ongoing_war";
-	newFocus->text = "Historical claims";
 	newFocus->prerequisites.push_back("focus = royal_army_tradition_focus");
 	newFocus->xPos = nextFreeColumn;
 	newFocus->yPos = 5;
@@ -2070,7 +2067,6 @@ void HoI4FocusTree::addRadicalGenericFocuses()
 	HoI4Focus* newFocus = new HoI4Focus;
 	newFocus->id = "radical_focus";
 	newFocus->icon = "GFX_goal_generic_consumer_goods";
-	newFocus->text = "Radicalism Focus";
 	newFocus->prerequisites.push_back("focus = collectivist_ethos");
 	newFocus->mutuallyExclusive = radicalMutualExclusions;
 	newFocus->available += "			OR = {\n";
@@ -2102,7 +2098,6 @@ void HoI4FocusTree::addRadicalGenericFocuses()
 	newFocus = new HoI4Focus;
 	newFocus->id = "private_channels_focus";
 	newFocus->icon = "GFX_goal_generic_intelligence_exchange";
-	newFocus->text = "Private Channels";
 	newFocus->prerequisites.push_back("focus = radical_focus");
 	newFocus->xPos = nextFreeColumn;
 	newFocus->yPos = 3;
@@ -2114,7 +2109,6 @@ void HoI4FocusTree::addRadicalGenericFocuses()
 	newFocus = new HoI4Focus;
 	newFocus->id = "hardfought_market_focus";
 	newFocus->icon = "GFX_focus_generic_license_production";
-	newFocus->text = "Hard-fought market";
 	newFocus->prerequisites.push_back("focus = private_channels_focus");
 	newFocus->xPos = nextFreeColumn;
 	newFocus->yPos = 4;
@@ -2126,7 +2120,6 @@ void HoI4FocusTree::addRadicalGenericFocuses()
 	newFocus = new HoI4Focus;
 	newFocus->id = "army_provides_focus";
 	newFocus->icon = "GFX_focus_generic_concessions";
-	newFocus->text = "The Army Provides";
 	newFocus->prerequisites.push_back("focus = hardfought_market_focus");
 	newFocus->xPos = nextFreeColumn;
 	newFocus->yPos = 5;
