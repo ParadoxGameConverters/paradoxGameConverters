@@ -319,15 +319,6 @@ void HoI4Localisation::CopyEventLocalisations(const string& oldKey, const string
 		{
 			LOG(LogLevel::Warning) << "Could not find original localisation for " << oldKey << " in " << languageLocalisations.first;
 		}
-		oldLocalisation = languageLocalisations.second.find(oldKey);
-		if (oldLocalisation != languageLocalisations.second.end())
-		{
-			newLanguage->second[newKey] = oldLocalisation->second;
-		}
-		else
-		{
-			LOG(LogLevel::Warning) << "Could not find original localisation for " << oldKey;
-		}
 	}
 }
 
