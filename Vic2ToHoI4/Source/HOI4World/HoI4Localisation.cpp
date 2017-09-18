@@ -270,12 +270,8 @@ void HoI4Localisation::AddNonenglishCountryLocalisations()
 	countryLocalisations.insert(make_pair("russian", englishLocalisations->second));
 }
 
-<<<<<<< HEAD
 
 void HoI4Localisation::CopyFocusLocalisations(const string& oldKey, const string& newKey)
-=======
-void HoI4Localisation::CopyFocusLocalisations(string oldKey, string newKey)
->>>>>>> 59fc56fc583347ca916bc3785d19efc4d6901725
 {
 	string oldDescription(oldKey + "_desc");
 	string newDescription(newKey + "_desc");
@@ -323,14 +319,14 @@ void HoI4Localisation::CopyEventLocalisations(const string& oldKey, const string
 		{
 			LOG(LogLevel::Warning) << "Could not find original localisation for " << oldKey << " in " << languageLocalisations.first;
 		}
-		oldLocalisation = languageLocalisations.second.find(oldDescription);
+		oldLocalisation = languageLocalisations.second.find(oldKey);
 		if (oldLocalisation != languageLocalisations.second.end())
 		{
-			newLanguage->second[newDescription] = oldLocalisation->second;
+			newLanguage->second[newKey] = oldLocalisation->second;
 		}
 		else
 		{
-			LOG(LogLevel::Warning) << "Could not find original localisation for " << oldDescription;
+			LOG(LogLevel::Warning) << "Could not find original localisation for " << oldKey;
 		}
 	}
 }
