@@ -795,50 +795,50 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 	FocusTree->addFascistAnnexationBranch(Leader, nan, theWorld->getEvents());
 	nan.clear();
 
-	for (auto target : Sudeten)
-	{
-		string type;
-		//outputs are
-		//noactionneeded -  Can take target without any help
-		//factionneeded - can take target and faction with attackers faction helping
-		//morealliesneeded - can take target with more allies, comes with "newallies" in map
-		//coup - cant take over, need to coup
-		type = HowToTakeLand(target, Leader, 2.5);
+	//for (auto target : Sudeten)
+	//{
+	//	string type;
+	//	//outputs are
+	//	//noactionneeded -  Can take target without any help
+	//	//factionneeded - can take target and faction with attackers faction helping
+	//	//morealliesneeded - can take target with more allies, comes with "newallies" in map
+	//	//coup - cant take over, need to coup
+	//	type = HowToTakeLand(target, Leader, 2.5);
 
-		if (type == "noactionneeded")
-		{
-			nan.push_back(target);
-		}
-	}
-	//find neighboring states to take in sudaten deal
-	vector<set<string>> demandedStates;
-	for (unsigned int i = 0; i < nan.size(); i++)
-	{
-		for (auto leaderprov : Leader->getProvinces())
-		{
-			for (int prov : provinceNeighborMapper::getNeighbors(leaderprov))
-			{
-				if (!provinceDefinitions::isLandProvince(prov))
-				{
-					continue;
-				}
+	//	if (type == "noactionneeded")
+	//	{
+	//		nan.push_back(target);
+	//	}
+	//}
+	////find neighboring states to take in sudaten deal
+	//vector<set<string>> demandedStates;
+	//for (unsigned int i = 0; i < nan.size(); i++)
+	//{
+	//	for (auto leaderprov : Leader->getProvinces())
+	//	{
+	//		for (int prov : provinceNeighborMapper::getNeighbors(leaderprov))
+	//		{
+	//			if (!provinceDefinitions::isLandProvince(prov))
+	//			{
+	//				continue;
+	//			}
 
-				if (provinceToOwnerMap.find(prov) != provinceToOwnerMap.end())
-				{
-					string owner = provinceToOwnerMap.find(prov)->second;
-					if (owner == nan[i]->getTag())
-					{
-						auto provinceToStateIdMapping = stateMapper::getStateIdMapping().find(prov);
-						/* v does not contain x */
-						demandedStates[i].insert(provinceToStateIdMapping->second);
+	//			if (provinceToOwnerMap.find(prov) != provinceToOwnerMap.end())
+	//			{
+	//				string owner = provinceToOwnerMap.find(prov)->second;
+	//				if (owner == nan[i]->getTag())
+	//				{
+	//					auto provinceToStateIdMapping = stateMapper::getStateIdMapping().find(prov);
+	//					/* v does not contain x */
+	//					demandedStates[i].insert(provinceToStateIdMapping->second);
 
-					}
-				}
-			}
-		}
-	}
-	FocusTree->addFascistSudetenBranch(Leader, nan, demandedStates, theWorld->getEvents());
-	nan.clear();
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
+	//FocusTree->addFascistSudetenBranch(Leader, nan, demandedStates, theWorld->getEvents());
+	//nan.clear();
 
 	//events for allies
 	vector<HoI4Country*> newAllies = GetMorePossibleAllies(Leader);
