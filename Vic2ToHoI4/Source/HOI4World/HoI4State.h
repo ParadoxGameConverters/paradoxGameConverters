@@ -68,6 +68,7 @@ class HoI4State
 		int getInfrastructure() const { return infrastructure; }
 		int getManpower() const { return manpower; }
 		int getVPLocation() const { return victoryPointPosition; }
+		set<int> getDebugVPs() const { return debugVictoryPoints; }
 
 		int getMainNavalLocation() const;
 
@@ -93,6 +94,7 @@ class HoI4State
 		bool assignVPFromVic2Province(int Vic2ProvinceNumber);
 		void assignVP(int location);
 		bool isProvinceInState(int provinceNum);
+		void addDebugVPs();
 
 		const Vic2State* sourceState;
 
@@ -118,6 +120,7 @@ class HoI4State
 
 		int victoryPointPosition;
 		int victoryPointValue;
+		set<int> debugVictoryPoints;
 };
 
 

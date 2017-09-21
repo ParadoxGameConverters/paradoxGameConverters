@@ -322,6 +322,7 @@ void HoI4Localisation::CopyEventLocalisations(const string& oldKey, const string
 	}
 }
 
+
 void HoI4Localisation::AddStateLocalisations(const HoI4States* states)
 {
 	for (auto state: states->getStates())
@@ -343,10 +344,34 @@ void HoI4Localisation::AddStateLocalisations(const HoI4States* states)
 				addVPLocalisationForLanguage(state.second, Vic2NameInLanguage);
 			}
 		}
+
+		if (Configuration::getDebug())
+		{
+			addDebugLocalisations(state);
+		}
 	}
 
 	addNonenglishStateLocalisations();
 	addNonenglishVPLocalisations();
+}
+
+
+void HoI4Localisation::addDebugLocalisations(const pair<const int, HoI4State*>& state)
+{
+	for (auto VPPositionInHoI4: state.second->getDebugVPs())
+	{
+		auto VPProvinceMapping = provinceMapper::getHoI4ToVic2ProvinceMapping().find(VPPositionInHoI4);
+		if (
+			(VPProvinceMapping != provinceMapper::getHoI4ToVic2ProvinceMapping().end()) &&
+			(VPProvinceMapping->second.size() > 0)
+			)
+		{
+			for (auto Vic2NameInLanguage: V2Localisations::GetTextInEachLanguage("PROV" + to_string(VPProvinceMapping->second[0])))
+			{
+				getExistingVPLocalisation(Vic2NameInLanguage.first).insert(make_pair("VICTORY_POINTS_" + to_string(VPPositionInHoI4),	Vic2NameInLanguage.second));
+			}
+		}
+	}
 }
 
 

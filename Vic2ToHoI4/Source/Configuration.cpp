@@ -48,6 +48,7 @@ Configuration::Configuration():
 	icFactor(0.0),
 	ICStats(false),
 	dropMinorIdeologies(false),
+	debug(false),
 	leaderID(1000),
 	leaderIDCountryIdx(1),
 	version()
@@ -134,6 +135,12 @@ Configuration::Configuration():
 	if (dropMinorIdeologiesOption == "true")
 	{
 		dropMinorIdeologies = true;
+	}
+
+	auto debugObjs = obj[0]->getValue("debug");
+	if (debugObjs.size() > 0)
+	{
+		debug = true;
 	}
 }
 

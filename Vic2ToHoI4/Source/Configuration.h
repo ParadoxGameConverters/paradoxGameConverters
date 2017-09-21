@@ -119,6 +119,11 @@ class Configuration // Singleton
 			return getInstance()->dropMinorIdeologies;
 		}
 
+		static bool getDebug()
+		{
+			return getInstance()->debug;
+		}
+
 		static Configuration* getInstance()
 		{
 			if (instance == nullptr)
@@ -151,6 +156,8 @@ class Configuration // Singleton
 		// converted to neutrality. "Major ideologies" are defined by
 		// HoI4World::identifyMajorIdeologies.
 		bool dropMinorIdeologies;
+
+		bool debug;
 
 		unsigned int	leaderID;
 		unsigned int	leaderIDCountryIdx;

@@ -129,6 +129,7 @@ class HoI4Localisation
 		void addLanguageToVPLocalisations(const string& language);
 		void addNonenglishStateLocalisations();
 		void addNonenglishVPLocalisations();
+		void addDebugLocalisations(const pair<const int, HoI4State*>& state);
 
 		void AddIdeaLocalisation(const string& idea, const string& localisation);
 
