@@ -45,7 +45,7 @@ class HoI4Event
 		string title;
 		string description;
 		string picture;
-		bool major;
+		bool majorEvent;
 		bool triggeredOnly;
 		string trigger;
 		string meanTimeToHappen;

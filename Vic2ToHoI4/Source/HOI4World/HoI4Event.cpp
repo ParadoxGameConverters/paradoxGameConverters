@@ -31,7 +31,7 @@ HoI4Event::HoI4Event():
 	title(""),
 	description(""),
 	picture(""),
-	major(false),
+	majorEvent(false),
 	triggeredOnly(false),
 	trigger(""),
 	meanTimeToHappen(""),
@@ -49,7 +49,7 @@ ofstream& operator << (ofstream& out, const HoI4Event& theEvent)
 	out << "	title = " << theEvent.title << "\n";
 	out << "	desc = " << theEvent.description << "\n";
 	out << "	picture = " << theEvent.picture << "\n";
-	if (theEvent.major)
+	if (theEvent.majorEvent)
 	{
 		out << "	\n";
 		out << "	major = yes\n";
