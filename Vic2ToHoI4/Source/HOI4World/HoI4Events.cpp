@@ -188,7 +188,7 @@ void HoI4Events::createFactionEvents(const HoI4Country* Leader, const HoI4Countr
 	newsEventYes.description = "\"They are now allies\"";
 	newsEventYes.picture = "news_event_generic_sign_treaty1";
 	newsEventYes.majorEvent = true;
-	nfEvent.triggeredOnly = true;
+	newsEventYes.triggeredOnly = true;
 	string interestingOption = "name = \"Interesting\"\n";
 	newsEventYes.options.push_back(interestingOption);
 	newsEvents.push_back(newsEventYes);
@@ -200,7 +200,7 @@ void HoI4Events::createFactionEvents(const HoI4Country* Leader, const HoI4Countr
 	newsEventNo.description = "\"They are not allies\"";
 	newsEventNo.picture = "news_event_generic_sign_treaty1";
 	newsEventNo.majorEvent = true;
-	nfEvent.triggeredOnly = true;
+	newsEventNo.triggeredOnly = true;
 	interestingOption = "name = \"Interesting\"\n";
 	newsEventNo.options.push_back(interestingOption);
 	newsEvents.push_back(newsEventNo);
