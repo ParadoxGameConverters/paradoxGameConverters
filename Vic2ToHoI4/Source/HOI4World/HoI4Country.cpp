@@ -453,13 +453,20 @@ void HoI4Country::convertNavy(const map<string, HoI4UnitMap>& unitMap)
 		{
 			string type = regiment->getType();
 			
-			HoI4UnitMap unitInfo = unitMap.at(type);
+			if (unitMap.count(type) > 0)
+			{
+				HoI4UnitMap unitInfo = unitMap.at(type);
 
-			if (unitInfo.getCategory() == "naval") {
-				// Ships get mapped
-				HoI4Ship newShip(regiment->getName(),unitInfo.getType(),unitInfo.getEquipment(), tag);
-				ships.push_back(newShip);
-			};			
+				if (unitInfo.getCategory() == "naval") {
+					// Ships get mapped
+					HoI4Ship newShip(regiment->getName(),unitInfo.getType(),unitInfo.getEquipment(), tag);
+					ships.push_back(newShip);
+				}
+			}
+			else
+			{
+				LOG(LogLevel::Warning) << "Unknown unit type: " << type;
+			}
 		}
 	}
 
@@ -481,12 +488,19 @@ void HoI4Country::convertConvoys(const map<string, HoI4UnitMap>& unitMap)
 		{
 			string type = regiment->getType();
 
-			HoI4UnitMap unitInfo = unitMap.at(type);
+			if (unitMap.count(type) > 0)
+			{
+				HoI4UnitMap unitInfo = unitMap.at(type);
 
-			if (unitInfo.getCategory() == "convoy") {
-				// Convoys get placed in national stockpile
-				convoys = convoys + 1;
-			};
+				if (unitInfo.getCategory() == "convoy") {
+					// Convoys get placed in national stockpile
+					convoys = convoys + 1;
+				}
+			}
+			else
+			{
+				LOG(LogLevel::Warning) << "Unknown unit type: " << type;
+			}
 		}
 	}
 }
@@ -498,12 +512,19 @@ void HoI4Country::convertAirforce(const map<string, HoI4UnitMap>& unitMap)
 		for (auto regiment : army->getRegiments())
 		{
 			string type = regiment->getType();
-			
-			HoI4UnitMap unitInfo = unitMap.at(type);
 
-			if (unitInfo.getCategory() == "air") {
-				// Air units get placed in national stockpile
-				equipmentStockpile[unitInfo.getEquipment()] = equipmentStockpile[unitInfo.getEquipment()] + unitInfo.getSize();
+			if (unitMap.count(type) > 0)
+			{
+				HoI4UnitMap unitInfo = unitMap.at(type);
+
+				if (unitInfo.getCategory() == "air") {
+					// Air units get placed in national stockpile
+					equipmentStockpile[unitInfo.getEquipment()] = equipmentStockpile[unitInfo.getEquipment()] + unitInfo.getSize();
+				}
+			}
+			else
+			{
+				LOG(LogLevel::Warning) << "Unknown unit type: " << type;
 			}
 		}
 	}	
@@ -519,11 +540,18 @@ void HoI4Country::convertArmyDivisions(const map<string, HoI4UnitMap>& unitMap, 
 		{
 			string type = regiment->getType();
 
-			HoI4UnitMap unitInfo = unitMap.at(type);
+			if (unitMap.count(type) > 0)
+			{
+				HoI4UnitMap unitInfo = unitMap.at(type);
 
-			if (unitInfo.getCategory() == "land") {
-				// Calculate how many Battalions and Companies are available after mapping Vic2 armies
-				BattalionsAndCompanies[unitInfo.getType()] = BattalionsAndCompanies[unitInfo.getType()] + unitInfo.getSize();
+				if (unitInfo.getCategory() == "land") {
+					// Calculate how many Battalions and Companies are available after mapping Vic2 armies
+					BattalionsAndCompanies[unitInfo.getType()] = BattalionsAndCompanies[unitInfo.getType()] + unitInfo.getSize();
+				}
+			}
+			else
+			{
+				LOG(LogLevel::Warning) << "Unknown unit type: " << type;
 			}
 		}
 	}
