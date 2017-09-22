@@ -1401,7 +1401,7 @@ void HoI4Country::outputPuppets(ofstream& output) const
 			{
 				output << "        set_autonomy = {\n";
 				output << "            target = " << puppet << "\n";
-				output << "            autonomous_state = autonomy_puppet << \n";
+				output << "            autonomous_state = autonomy_puppet\n";
 				output << "        }\n";
 			}
 			else
