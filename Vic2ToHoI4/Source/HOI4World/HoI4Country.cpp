@@ -334,7 +334,7 @@ bool HoI4Country::isStateValidForCapital(int stateNum, const map<int, HoI4State*
 
 bool HoI4Country::isThisStateOwnedByUs(const HoI4State* state) const
 {
-	return (state->getOwner() == tag);
+	return ((state != nullptr) && (state->getOwner() == tag));
 }
 
 
