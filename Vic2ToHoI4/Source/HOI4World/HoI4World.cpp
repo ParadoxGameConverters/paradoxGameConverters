@@ -1013,10 +1013,12 @@ map<string, HoI4UnitMap> HoI4World::importUnitMap() const
 	unitMap["irregular"] = HoI4UnitMap();
 
 	unitMap["infantry"] = HoI4UnitMap("land","infantry","infantry_equipment_0",3);
+	unitMap["regular"] = HoI4UnitMap("land","infantry","infantry_equipment_0",3);
 	unitMap["engineer"] = HoI4UnitMap("land", "infantry", "infantry_equipment_0", 3);
 	unitMap["guard"] = HoI4UnitMap("land", "infantry", "infantry_equipment_0", 3);
 
 	unitMap["artillery"] = HoI4UnitMap("land", "artillery_brigade", "artillery_equipment_1", 3);
+	unitMap["horse_artillery"] = HoI4UnitMap("land", "artillery_brigade", "artillery_equipment_1", 3);
 
 	unitMap["cavalry"] = HoI4UnitMap();
 
@@ -1036,6 +1038,7 @@ map<string, HoI4UnitMap> HoI4World::importUnitMap() const
 	unitMap["cruiser"] = HoI4UnitMap("naval", "light_cruiser", "light_cruiser_1", 1);
 	unitMap["battleship"] = HoI4UnitMap("naval", "heavy_cruiser", "heavy_cruiser_1", 1);
 	unitMap["dreadnought"] = HoI4UnitMap("naval", "battleship", "battleship_1", 1);
+	unitMap["submarine"] = HoI4UnitMap("naval", "submarine", "submarine", 1);
 	unitMap["clipper_transport"] = HoI4UnitMap();
 	unitMap["steam_transport"] = HoI4UnitMap("convoy", "convoy", "convoy_1", 1);
 	
@@ -1226,6 +1229,7 @@ void HoI4World::convertMilitaries()
 	convertAirforces(unitMap);
 }
 
+
 void HoI4World::convertArmies(const map<string, HoI4UnitMap>& unitMap, const vector<HoI4DivisionTemplateType>& divisionTemplates)
 {
 	LOG(LogLevel::Info) << "Converting armies";
@@ -1235,6 +1239,7 @@ void HoI4World::convertArmies(const map<string, HoI4UnitMap>& unitMap, const vec
 		country.second->convertArmyDivisions(unitMap, divisionTemplates);
 	}
 }
+
 
 void HoI4World::convertNavies(const map<string, HoI4UnitMap>& unitMap)
 {
