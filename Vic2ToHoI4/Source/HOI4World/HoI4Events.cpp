@@ -1064,7 +1064,10 @@ void HoI4Events::addSuppressedEvents(const set<string>& majorIdeologies)
 		removeNeutral.description += "	}\n";
 		HoI4Localisation::copyEventLocalisations("abandon_neutral.d_" + ideology, "conv.political." + to_string(politicalEventNumber) + "_" + ideology);
 	}
-	removeNeutral.description = removeNeutral.description.substr(8, removeNeutral.description.size() - 9);
+	if (removeNeutral.description.size() > 0)
+	{
+		removeNeutral.description = removeNeutral.description.substr(8, removeNeutral.description.size() - 9);
+	}
 	removeNeutral.picture = "GFX_report_event_journalists_speech";
 	removeNeutral.majorEvent = false;
 	removeNeutral.triggeredOnly = false;
