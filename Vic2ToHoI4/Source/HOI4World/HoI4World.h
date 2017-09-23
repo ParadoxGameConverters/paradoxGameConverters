@@ -72,9 +72,12 @@ class HoI4World
 		HoI4Events* getEvents() const { return events; }
 		set<string> getMajorIdeologies() const { return majorIdeologies; }
 
-		HoI4Country* findCountry(string countryTag);
+		HoI4Country* findCountry(const string& countryTag);
 
 	private:
+		HoI4World(const HoI4World&) = delete;
+		HoI4World& operator=(const HoI4World&) = delete;
+
 		void convertNavalBases();
 
 		void convertCountries();
@@ -97,15 +100,15 @@ class HoI4World
 		void addStatesToCountries();
 		map<string, double> calculateFactoryWorkerRatios();
 		map<string, double> getIndustrialWorkersPerCountry();
-		double getTotalWorldWorkers(map<string, double> industrialWorkersPerCountry);
-		map<string, double> adjustWorkers(map<string, double> industrialWorkersPerCountry, double totalWorldWorkers);
-		double getWorldwideWorkerFactoryRatio(map<string, double> workersInCountries, double totalWorldWorkers);
-		void putIndustryInStates(map<string, double> factoryWorkerRatios);
+		double getTotalWorldWorkers(const map<string, double>& industrialWorkersPerCountry);
+		map<string, double> adjustWorkers(const map<string, double>& industrialWorkersPerCountry, double totalWorldWorkers);
+		double getWorldwideWorkerFactoryRatio(const map<string, double>& workersInCountries, double totalWorldWorkers);
+		void putIndustryInStates(const map<string, double>& factoryWorkerRatios);
 		void calculateIndustryInCountries();
 		void reportIndustryLevels();
 		void reportCountryIndustry();
 		void reportDefaultIndustry();
-		pair<string, array<int, 3>> getDefaultStateIndustry(string stateFilename);
+		pair<string, array<int, 3>> getDefaultStateIndustry(const string& stateFilename);
 		void reportDefaultIndustry(const map<string, array<int, 3>>& countryIndustry);
 
 		void convertResources();
@@ -131,9 +134,9 @@ class HoI4World
 		map<string, HoI4UnitMap> importUnitMap() const;
 		vector<HoI4DivisionTemplateType> importDivisionTemplates() const;
 		void convertMilitaries();
-		void convertArmies(map<string, HoI4UnitMap> unitMap, vector<HoI4DivisionTemplateType> divisionTemplates);
-		void convertNavies(map<string, HoI4UnitMap> unitMap);
-		void convertAirforces(map<string, HoI4UnitMap> unitMap);
+		void convertArmies(const map<string, HoI4UnitMap>& unitMap, const vector<HoI4DivisionTemplateType>& divisionTemplates);
+		void convertNavies(const map<string, HoI4UnitMap>& unitMap);
+		void convertAirforces(const map<string, HoI4UnitMap>& unitMap);
 
 		void determineGreatPowers();
 
@@ -141,8 +144,8 @@ class HoI4World
 		void addBasicCapitalVPs();
 		void addGreatPowerVPs();
 		void addStrengthVPs();
-		double getStrongestCountryStrength();
-		int calculateStrengthVPs(HoI4Country* country, double greatestStrength);
+		double getStrongestCountryStrength() const;
+		int calculateStrengthVPs(const HoI4Country* country, double greatestStrength) const;
 
 		void convertAirBases();
 		void addBasicAirBases();
@@ -150,9 +153,9 @@ class HoI4World
 		void addGreatPowerAirBases();
 
 		void createFactions();
-		void logFactionMember(ofstream& factionsLog, const HoI4Country* member);
-		string returnSphereLeader(HoI4Country* possibleSphereling);
-		bool governmentsAllowFaction(string leaderGovernment, string allyGovernment);
+		void logFactionMember(ofstream& factionsLog, const HoI4Country* member) const;
+		string returnSphereLeader(const HoI4Country* possibleSphereling) const;
+		bool governmentsAllowFaction(const string& leaderGovernment, const string& allyGovernment) const;
 
 		void outputCommonCountries() const;
 		void outputColorsfile() const;
@@ -195,6 +198,8 @@ class HoI4World
 		vector<HoI4Faction*> factions;
 		HoI4Diplomacy* diplomacy;
 		HoI4Events* events;
+
+		vector<HoI4DivisionTemplateType> divisionTemplates;
 
 		leaderTraitsMap leaderTraits;
 		portraitMapping portraitMap;

@@ -32,7 +32,12 @@ graphicsMapper* graphicsMapper::instance = nullptr;
 
 
 
-graphicsMapper::graphicsMapper()
+graphicsMapper::graphicsMapper():
+	leaderPortraitMappings(),
+	ideologyMinisterMappings(),
+	graphicalCultureMap(),
+	graphicalCulture2dMap(),
+	rng()
 {
 	LOG(LogLevel::Info) << "Reading graphics mappings";
 
@@ -146,7 +151,7 @@ void graphicsMapper::loadGraphicalCulture2dMappings(const string& cultureGroup, 
 }
 
 
-string graphicsMapper::GetLeaderPortrait(string cultureGroup, string ideology)
+string graphicsMapper::GetLeaderPortrait(const string& cultureGroup, const string& ideology)
 {
 	vector<string> portraits = GetLeaderPortraits(cultureGroup, ideology);
 
@@ -155,7 +160,7 @@ string graphicsMapper::GetLeaderPortrait(string cultureGroup, string ideology)
 }
 
 
-vector<string> graphicsMapper::GetLeaderPortraits(string cultureGroup, string ideology)
+vector<string> graphicsMapper::GetLeaderPortraits(const string& cultureGroup, const string& ideology) const
 {
 	auto mapping = leaderPortraitMappings.element.find(cultureGroup);
 	if (mapping != leaderPortraitMappings.element.end())
@@ -173,7 +178,7 @@ vector<string> graphicsMapper::GetLeaderPortraits(string cultureGroup, string id
 }
 
 
-string graphicsMapper::GetIdeologyMinisterPortrait(string cultureGroup, string ideology)
+string graphicsMapper::GetIdeologyMinisterPortrait(const string& cultureGroup, const string& ideology)
 {
 	vector<string> portraits = GetIdeologyMinisterPortraits(cultureGroup, ideology);
 
@@ -182,7 +187,7 @@ string graphicsMapper::GetIdeologyMinisterPortrait(string cultureGroup, string i
 }
 
 
-vector<string> graphicsMapper::GetIdeologyMinisterPortraits(string cultureGroup, string ideology)
+vector<string> graphicsMapper::GetIdeologyMinisterPortraits(const string& cultureGroup, const string& ideology) const
 {
 	auto mapping = ideologyMinisterMappings.element.find(cultureGroup);
 	if (mapping != ideologyMinisterMappings.element.end())
@@ -200,7 +205,7 @@ vector<string> graphicsMapper::GetIdeologyMinisterPortraits(string cultureGroup,
 }
 
 
-string graphicsMapper::GetGraphicalCulture(const string& cultureGroup)
+string graphicsMapper::GetGraphicalCulture(const string& cultureGroup) const
 {
 	auto itr = graphicalCultureMap.find(cultureGroup);
 	if (itr != graphicalCultureMap.end())
@@ -214,7 +219,7 @@ string graphicsMapper::GetGraphicalCulture(const string& cultureGroup)
 }
 
 
-string graphicsMapper::Get2dGraphicalCulture(const string& cultureGroup)
+string graphicsMapper::Get2dGraphicalCulture(const string& cultureGroup) const
 {
 	auto itr = graphicalCulture2dMap.find(cultureGroup);
 	if (itr != graphicalCulture2dMap.end())

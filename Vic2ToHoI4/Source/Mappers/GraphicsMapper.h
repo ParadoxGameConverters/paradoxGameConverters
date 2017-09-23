@@ -58,12 +58,12 @@ typedef map<string, string> cultureGroupToGraphicalCultureMap;
 class graphicsMapper
 {
 	public:
-		static string getLeaderPortrait(string cultureGroup, string ideology)
+		static string getLeaderPortrait(const string& cultureGroup, const string& ideology)
 		{
 			return getInstance()->GetLeaderPortrait(cultureGroup, ideology);
 		}
 
-		static string getIdeologyMinisterPortrait(string cultureGroup, string ideology)
+		static string getIdeologyMinisterPortrait(const string& cultureGroup, const string& ideology)
 		{
 			return getInstance()->GetIdeologyMinisterPortrait(cultureGroup, ideology);
 		}
@@ -94,12 +94,15 @@ class graphicsMapper
 		void loadGraphicalCultureMappings(const string& cultureGroup, shared_ptr<Object> graphicalCultureMappings);
 		void loadGraphicalCulture2dMappings(const string& cultureGroup, shared_ptr<Object> graphicalCulture2dMappings);
 
-		string GetLeaderPortrait(string cultureGroup, string ideology);
-		vector<string> GetLeaderPortraits(string cultureGroup, string ideology);
-		string GetIdeologyMinisterPortrait(string cultureGroup, string ideology);
-		vector<string> GetIdeologyMinisterPortraits(string cultureGroup, string ideology);
-		string GetGraphicalCulture(const string& cultureGroup);
-		string Get2dGraphicalCulture(const string& cultureGroup);
+		graphicsMapper(const graphicsMapper&) = delete;
+		graphicsMapper& operator=(const graphicsMapper&) = delete;
+
+		string GetLeaderPortrait(const string& cultureGroup, const string& ideology);
+		vector<string> GetLeaderPortraits(const string& cultureGroup, const string& ideology) const;
+		string GetIdeologyMinisterPortrait(const string& cultureGroup, const string& ideology);
+		vector<string> GetIdeologyMinisterPortraits(const string& cultureGroup, const string& ideology) const;
+		string GetGraphicalCulture(const string& cultureGroup) const;
+		string Get2dGraphicalCulture(const string& cultureGroup) const;
 
 		ideologyToPortraitsMap leaderPortraitMappings;
 		ideologyToPortraitsMap ideologyMinisterMappings;

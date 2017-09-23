@@ -44,7 +44,11 @@ class HoI4Ideology
 	public:
 		HoI4Ideology(shared_ptr<Object> obj);
 		void output(ofstream& file) const;
+
 	private:
+		HoI4Ideology(const HoI4Ideology&) = delete;
+		HoI4Ideology& operator=(const HoI4Ideology&) = delete;
+
 		void outputTypes(ofstream& file) const;
 		void outputDynamicFactionNames(ofstream& file) const;
 		void outputTheColor(ofstream& file) const;

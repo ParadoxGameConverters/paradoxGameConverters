@@ -69,7 +69,7 @@ int main(const int argc, const char* argv[])
 
 void checkMods();
 void getOutputName(const string& V2SaveFileName);
-void output(HoI4World& destWorld);
+void output(const HoI4World& destWorld);
 void ConvertV2ToHoI4(const string& V2SaveFileName)
 {
 	Configuration::getInstance();
@@ -157,7 +157,7 @@ void getOutputName(const string& V2SaveFileName)
 
 void createModFile();
 void renameOutputFolder();
-void output(HoI4World& destWorld)
+void output(const HoI4World& destWorld)
 {
 	createModFile();
 	renameOutputFolder();

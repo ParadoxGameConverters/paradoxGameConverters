@@ -48,6 +48,9 @@ class HoI4SupplyZones
 		void convertSupplyZones(const HoI4States* states);
 
 	private:
+		HoI4SupplyZones(const HoI4SupplyZones&) = delete;
+		HoI4SupplyZones& operator=(const HoI4SupplyZones&) = delete;
+
 		void importStates();
 		void importSupplyZone(const string& supplyZonesFile);
 		void mapProvincesToSupplyZone(int ID, shared_ptr<Object> supplyAreaObj);

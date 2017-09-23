@@ -57,9 +57,6 @@
     <ClCompile Include="Source\V2World\V2World.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\HOI4World\HoI4Alignment.cpp">
-      <Filter>HoI4World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\HOI4World\HoI4Army.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
@@ -247,9 +244,6 @@
     <ClInclude Include="Source\V2World\V2World.h">
       <Filter>Vic2World</Filter>
     </ClInclude>
-    <ClInclude Include="Source\HOI4World\HoI4Alignment.h">
-      <Filter>HoI4World</Filter>
-    </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4Army.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
@@ -353,7 +347,6 @@
     <ClInclude Include="Source\HOI4World\HoI4Focus.h">
       <Filter>HoI4World</Filter>
     </ClInclude>
-    <ClInclude Include="Source\V2World\V2Rgo.h" />
     <ClInclude Include="Source\Mappers\StateCategoryMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
@@ -393,6 +386,9 @@
     </ClInclude>
     <ClInclude Include="Source\HOI4World\HoI4Advisor.h">
       <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\V2Rgo.h">
+      <Filter>Vic2World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

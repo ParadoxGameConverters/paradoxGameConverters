@@ -36,7 +36,22 @@ Configuration* Configuration::instance = nullptr;
 
 
 
-Configuration::Configuration()
+Configuration::Configuration():
+	HoI4Path(""),
+	HoI4DocumentsPath(""),
+	V2Path(""),
+	Vic2Mods(),
+	outputName(""),
+	forceMultiplier(0.0),
+	manpowerFactor(0.0),
+	industrialShapeFactor(0.0),
+	icFactor(0.0),
+	ICStats(false),
+	dropMinorIdeologies(false),
+	debug(false),
+	leaderID(1000),
+	leaderIDCountryIdx(1),
+	version()
 {
 	LOG(LogLevel::Info) << "Reading configuration file";
 
@@ -87,8 +102,6 @@ Configuration::Configuration()
 		LOG(LogLevel::Debug) << "HoI4 documents directory is " << HoI4DocumentsPath;
 	}
 
-	outputName = "";
-
 	vector<shared_ptr<Object>> modsObj = obj[0]->getValue("Vic2Mods");
 	if (modsObj.size() > 0)
 	{
@@ -103,13 +116,6 @@ Configuration::Configuration()
 	{
 		ICStats = true;
 	}
-	else
-	{
-		ICStats = false;
-	}
-
-	leaderID					= 1000;
-	leaderIDCountryIdx	= 1;
 
 	string versionMethod = obj[0]->getLeaf("HoI4VersionMethod");
 	if (versionMethod == "automatic")
@@ -122,11 +128,20 @@ Configuration::Configuration()
 	}
 	else // (versionMethod == "hardcoded")
 	{
-		version = HOI4Version("1.3.3");
+		version = HOI4Version("1.4.2");
 	}
 
 	string dropMinorIdeologiesOption = obj[0]->getLeaf("drop_minor_ideologies");
-	dropMinorIdeologies = dropMinorIdeologiesOption == "true";
+	if (dropMinorIdeologiesOption == "true")
+	{
+		dropMinorIdeologies = true;
+	}
+
+	auto debugObjs = obj[0]->getValue("debug");
+	if (debugObjs.size() > 0)
+	{
+		debug = true;
+	}
 }
 
 

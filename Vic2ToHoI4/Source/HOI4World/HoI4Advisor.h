@@ -47,6 +47,9 @@ class HoI4Advisor
 		string getIdeology() const { return ideology; }
 
 	private:
+		HoI4Advisor(const HoI4Advisor&) = delete;
+		HoI4Advisor& operator=(const HoI4Advisor&) = delete;
+
 		string trait;
 		string picture;
 		string event;

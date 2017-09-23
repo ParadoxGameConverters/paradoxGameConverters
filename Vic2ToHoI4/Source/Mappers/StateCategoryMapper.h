@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -51,11 +51,13 @@ class stateCategoryMapper
 			return instance;
 		}
 		stateCategoryMapper();
-		void readCategoriesFromDirectory(string directory);
-		void readCategoriesFromFile(string file);
+		void readCategoriesFromDirectory(const string& directory);
+		void readCategoriesFromFile(const string& file);
 
+		stateCategoryMapper(const stateCategoryMapper&) = delete;
+		stateCategoryMapper& operator=(const stateCategoryMapper&) = delete;
 
-		map<int, string> GetStateCategories()
+		map<int, string> GetStateCategories() const
 		{
 			return stateCategories;
 		}

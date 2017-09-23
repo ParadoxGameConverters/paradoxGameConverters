@@ -25,14 +25,31 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-ofstream& operator << (ofstream& out, HoI4Event theEvent)
+HoI4Event::HoI4Event():
+	type(""),
+	id(""),
+	title(""),
+	description(""),
+	picture(""),
+	majorEvent(false),
+	triggeredOnly(false),
+	trigger(""),
+	meanTimeToHappen(""),
+	immediate(""),
+	options()
+{
+}
+	
+	
+	
+ofstream& operator << (ofstream& out, const HoI4Event& theEvent)
 {
 	out << theEvent.type << " = {\n";
 	out << "	id = " << theEvent.id << "\n";
 	out << "	title = " << theEvent.title << "\n";
 	out << "	desc = " << theEvent.description << "\n";
 	out << "	picture = " << theEvent.picture << "\n";
-	if (theEvent.major)
+	if (theEvent.majorEvent)
 	{
 		out << "	\n";
 		out << "	major = yes\n";

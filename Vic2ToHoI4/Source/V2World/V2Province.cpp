@@ -29,7 +29,17 @@ using namespace std;
 
 
 
-V2Province::V2Province(shared_ptr<Object> obj)
+V2Province::V2Province(shared_ptr<Object> obj):
+	number(stoi(obj->getKey())),
+	ownerString(""),
+	owner(nullptr),
+	coreStrings(),
+	cores(),
+	pops(),
+	rgo(),
+	fortLevel(0),
+	navalBaseLevel(0),
+	railLevel(0)
 {
 	readOwner(obj);
 	readCores(obj);
@@ -38,21 +48,13 @@ V2Province::V2Province(shared_ptr<Object> obj)
 	readRails(obj);
 	readPops(obj);
 	readRgo(obj);
-	
-	number = stoi(obj->getKey());
 }
 
 
 void V2Province::readOwner(shared_ptr<Object> obj)
 {
-	owner = NULL;
-
 	vector<shared_ptr<Object>> ownerObjs = obj->getValue("owner");
-	if (ownerObjs.size() == 0)
-	{
-		ownerString = "";
-	}
-	else
+	if (ownerObjs.size() != 0)
 	{
 		ownerString = ownerObjs[0]->getLeaf();
 	}
@@ -61,8 +63,6 @@ void V2Province::readOwner(shared_ptr<Object> obj)
 
 void V2Province::readCores(shared_ptr<Object> obj)
 {
-	cores.clear();
-
 	for (auto coreObj: obj->getValue("core"))
 	{
 		coreStrings.insert(coreObj->getLeaf());
@@ -72,8 +72,6 @@ void V2Province::readCores(shared_ptr<Object> obj)
 
 void V2Province::readForts(shared_ptr<Object> obj)
 {
-	fortLevel = 0;
-
 	vector<shared_ptr<Object>> buildingObjs = obj->getValue("fort");
 	if (buildingObjs.size() > 0)
 	{
@@ -88,8 +86,6 @@ void V2Province::readForts(shared_ptr<Object> obj)
 
 void V2Province::readNavalBases(shared_ptr<Object> obj)
 {
-	navalBaseLevel = 0;
-
 	vector<shared_ptr<Object>> buildingObjs = obj->getValue("naval_base");
 	if (buildingObjs.size() > 0)
 	{
@@ -104,8 +100,6 @@ void V2Province::readNavalBases(shared_ptr<Object> obj)
 
 void V2Province::readRails(shared_ptr<Object> obj)
 {
-	railLevel = 0;
-
 	vector<shared_ptr<Object>> buildingObjs = obj->getValue("railroad");
 	if (buildingObjs.size() > 0)
 	{
@@ -121,16 +115,21 @@ void V2Province::readRgo(shared_ptr<Object> obj)
 {
 	shared_ptr<Object> rgoObj = obj->safeGetObject("rgo");
 	if (!rgoObj) return;
+
 	string goods = rgoObj->safeGetString("goods_type");
+
 	shared_ptr<Object> employment = rgoObj->safeGetObject("employment");
 	if (!employment) return;
+
 	shared_ptr<Object> employees = employment->safeGetObject("employees");
 	if (!employees) return;
+
 	vector<shared_ptr<Object>> pops = employees->getLeaves();
 	int workers = 0;
 	for (const auto& pop : pops) {
 		workers += pop->safeGetInt("count");
 	}
+
 	rgo = V2Rgo(goods, workers);
 }
 

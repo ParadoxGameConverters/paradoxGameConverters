@@ -24,6 +24,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #ifndef V2PROVINCE_H_
 #define V2PROVINCE_H_
 
+
+
 #include "../Configuration.h"
 #include "V2Rgo.h"
 #include <map>
@@ -32,9 +34,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <vector>
 using namespace std;
 
+
+
 class Object;
 class V2Country;
 class V2Pop;
+
+
 
 class V2Province
 {
@@ -48,8 +54,8 @@ class V2Province
 		double getPercentageWithCultures(const set<string>& cultures) const;
 
 		void setOwner(const V2Country* _owner) { owner = _owner; }
-		void addCoreString(string coreString) { coreStrings.insert(coreString); }
-		void removeCoreString(string coreString) { coreStrings.erase(coreString); }
+		void addCoreString(const string& coreString) { coreStrings.insert(coreString); }
+		void removeCoreString(const string& coreString) { coreStrings.erase(coreString); }
 		void removeCore(V2Country* core) { cores.erase(core); }
 
 		int getNumber() const { return number; }
@@ -59,9 +65,11 @@ class V2Province
 		int getRailLevel() const { return railLevel; }
 		int getFortLevel() const { return fortLevel; }
 		int getNavalBaseLevel() const { return navalBaseLevel; }
-		const V2Rgo& getRgo() { return rgo; }
 
 	private:
+		V2Province(const V2Province&) = delete;
+		V2Province& operator=(const V2Province&) = delete;
+
 		void readOwner(shared_ptr<Object> obj);
 		void readCores(shared_ptr<Object> obj);
 		void readForts(shared_ptr<Object> obj);
@@ -80,7 +88,7 @@ class V2Province
 		set<string> coreStrings;
 		set<V2Country*> cores;
 
-		vector<V2Pop*> pops;
+		vector<const V2Pop*> pops;
 		V2Rgo rgo;
 
 		int fortLevel;

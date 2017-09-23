@@ -57,6 +57,9 @@ class reformMapper
 		reformMapper();
 		void initReforms(shared_ptr<Object> obj);
 
+		reformMapper(const reformMapper&) = delete;
+		reformMapper& operator=(const reformMapper&) = delete;
+
 		map<string, string> reformTypes;
 
 		map<string, int>			politicalReformScores;

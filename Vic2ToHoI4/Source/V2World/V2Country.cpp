@@ -35,13 +35,39 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Country::V2Country(shared_ptr<Object> countryObj)
+V2Country::V2Country(shared_ptr<Object> countryObj):
+	tag(countryObj->getKey()),
+	color(),
+	states(),
+	provinces(),
+	cores(),
+	capital(0),
+	primaryCulture(""),
+	primaryCultureGroup(""),
+	acceptedCultures(),
+	techs(),
+	inventions(),
+	relations(),
+	greatNation(false),
+	civilized(false),
+	armies(),
+	leaders(),
+	educationSpending(0.0),
+	militarySpending(0.0),
+	revanchism(0.0),
+	warExhaustion(0.0),
+	badboy(0.0),
+	government(""),
+	reformsArray(),
+	upperHouseComposition(),
+	rulingPartyID(0),	// Bad value, but normal for Rebel faction.
+	activePartyIDs(),
+	domainName(""),
+	domainAdjective(""),
+	namesByLanguage(),
+	adjectivesByLanguage(),
+	human(false)
 {
-	tag = countryObj->getKey();
-	provinces.clear();
-	cores.clear();
-	greatNation = false;
-
 	readInDomainNameAndAdjective(countryObj);
 	readInCapital(countryObj);
 	readInCultures(countryObj);
@@ -64,7 +90,7 @@ V2Country::V2Country(shared_ptr<Object> countryObj)
 }
 
 
-void V2Country::readInDomainNameAndAdjective(const shared_ptr<Object> countryObj)
+void V2Country::readInDomainNameAndAdjective(shared_ptr<Object> countryObj)
 {
 	vector<shared_ptr<Object>> nameObj = countryObj->getValue("domain_region");	// the region name for dynamically generated dominions
 	if (!nameObj.empty())
@@ -72,39 +98,26 @@ void V2Country::readInDomainNameAndAdjective(const shared_ptr<Object> countryObj
 		domainName = nameObj[0]->getLeaf();
 		domainAdjective = domainName;
 	}
-	else
-	{
-		domainName = "";
-		domainAdjective = "";
-	}
 }
 
 
-void V2Country::readInCapital(const shared_ptr<Object> countryObj)
+void V2Country::readInCapital(shared_ptr<Object> countryObj)
 {
 	vector<shared_ptr<Object>> capitalObjs = countryObj->getValue("capital");
 	if (capitalObjs.size() > 0)
 	{
 		capital = stoi(capitalObjs[0]->getLeaf());
 	}
-	else
-	{
-		capital = 0;
-	}
 }
 
 
-void V2Country::readInCultures(const shared_ptr<Object> countryObj)
+void V2Country::readInCultures(shared_ptr<Object> countryObj)
 {
 	vector<shared_ptr<Object>> primaryCultureObjs = countryObj->getValue("primary_culture");
 	if (primaryCultureObjs.size() > 0)
 	{
 		primaryCulture = primaryCultureObjs[0]->getLeaf();
 		acceptedCultures.insert(primaryCulture);
-	}
-	else
-	{
-		primaryCulture = "";
 	}
 
 	primaryCultureGroup = cultureGroupMapper::getCultureGroup(primaryCulture);
@@ -121,21 +134,17 @@ void V2Country::readInCultures(const shared_ptr<Object> countryObj)
 }
 
 
-void V2Country::readInCivilized(const shared_ptr<Object> countryObj)
+void V2Country::readInCivilized(shared_ptr<Object> countryObj)
 {
 	vector<shared_ptr<Object>> civilizedObjs = countryObj->getValue("civilized");
 	if (civilizedObjs.size() > 0)
 	{
 		civilized = (civilizedObjs[0]->getLeaf() == "yes");
 	}
-	else
-	{
-		civilized = false;
-	}
 }
 
 
-void V2Country::readInTechnology(const shared_ptr<Object> countryObj)
+void V2Country::readInTechnology(shared_ptr<Object> countryObj)
 {
 	vector<shared_ptr<Object>> techsObjs = countryObj->getValue("technology");	// the object holding the technology levels
 	if (techsObjs.size() > 0)
@@ -148,11 +157,10 @@ void V2Country::readInTechnology(const shared_ptr<Object> countryObj)
 }
 
 
-void V2Country::readInInventions(const shared_ptr<Object> countryObj)
+void V2Country::readInInventions(shared_ptr<Object> countryObj)
 {
 	inventionNumToName inventionNumsToNames = getInventionNums();
 
-	inventions.clear();
 	vector<shared_ptr<Object>> inventionsObjs = countryObj->getValue("active_inventions");
 	if (inventionsObjs.size() > 0)
 	{
@@ -173,9 +181,8 @@ void V2Country::readInInventions(const shared_ptr<Object> countryObj)
 }
 
 
-void V2Country::readInPoliticalParties(const shared_ptr<Object> countryObj)
+void V2Country::readInPoliticalParties(shared_ptr<Object> countryObj)
 {
-	activePartyIDs.clear();
 	vector<shared_ptr<Object>> partyObjs = countryObj->getValue("active_party");
 	for (auto partyObj : partyObjs)
 	{
@@ -191,14 +198,10 @@ void V2Country::readInPoliticalParties(const shared_ptr<Object> countryObj)
 	{
 		rulingPartyID = activePartyIDs[0];
 	}
-	else
-	{
-		rulingPartyID = 0; // Bad value, but normal for Rebel faction.
-	}
 }
 
 
-void V2Country::readInSpending(const shared_ptr<Object> countryObj)
+void V2Country::readInSpending(shared_ptr<Object> countryObj)
 {
 	vector<shared_ptr<Object>> spendingObjs = countryObj->getValue("education_spending");
 	if (spendingObjs.size() > 0)
@@ -207,10 +210,6 @@ void V2Country::readInSpending(const shared_ptr<Object> countryObj)
 		if (settingsObjs.size() > 0)
 		{
 			educationSpending = stof(settingsObjs[0]->getLeaf());
-		}
-		else
-		{
-			educationSpending = 0.0;
 		}
 	}
 
@@ -222,51 +221,35 @@ void V2Country::readInSpending(const shared_ptr<Object> countryObj)
 		{
 			militarySpending = stof(settingsObjs[0]->getLeaf());
 		}
-		else
-		{
-			militarySpending = 0.0;
-		}
 	}
 }
 
 
-void V2Country::readInRevanchism(const shared_ptr<Object> countryObj)
+void V2Country::readInRevanchism(shared_ptr<Object> countryObj)
 {
 	vector<shared_ptr<Object>> revanchismObjs = countryObj->getValue("revanchism");
 	if (revanchismObjs.size() > 0)
 	{
 		revanchism = stof(revanchismObjs[0]->getLeaf());
 	}
-	else
-	{
-		revanchism = 0.0;
-	}
 }
 
 
-void V2Country::readInWarExhaustion(const shared_ptr<Object> countryObj)
+void V2Country::readInWarExhaustion(shared_ptr<Object> countryObj)
 {
 	vector<shared_ptr<Object>> warExhaustionObjs = countryObj->getValue("war_exhaustion");
 	if (warExhaustionObjs.size() > 0)
 	{
 		warExhaustion = stof(warExhaustionObjs[0]->getLeaf());
 	}
-	else
-	{
-		warExhaustion = 0.0;
-	}
 }
 
-void V2Country::readInBadBoy(const shared_ptr<Object> countryObj)
+void V2Country::readInBadBoy(shared_ptr<Object> countryObj)
 {
 	vector<shared_ptr<Object>> badBoyObjs = countryObj->getValue("badboy");
 	if (badBoyObjs.size() > 0)
 	{
 		badboy = stof(badBoyObjs[0]->getLeaf());
-	}
-	else
-	{
-		badboy = 0.0;
 	}
 }
 
@@ -286,21 +269,17 @@ void V2Country::readInReforms(shared_ptr<Object> countryObj)
 }
 
 
-void V2Country::readInGovernment(const shared_ptr<Object> countryObj)
+void V2Country::readInGovernment(shared_ptr<Object> countryObj)
 {
 	vector<shared_ptr<Object>> governmentObjs = countryObj->getValue("government");
 	if (governmentObjs.size() > 0)
 	{
 		government = governmentObjs[0]->getLeaf();
 	}
-	else
-	{
-		government = "";
-	}
 }
 
 
-void V2Country::readInUpperHouse(const shared_ptr<Object> countryObj)
+void V2Country::readInUpperHouse(shared_ptr<Object> countryObj)
 {
 	auto upperHouseObjs = countryObj->getValue("upper_house");
 	auto ideologyObjs = upperHouseObjs[0]->getLeaves();
@@ -326,7 +305,7 @@ void V2Country::readInRelations(shared_ptr<Object> countryObj)
 }
 
 
-bool V2Country::isCountryTag(string potentialTag)
+bool V2Country::isCountryTag(const string& potentialTag)
 {
 	if (potentialTag.size() != 3)
 	{
@@ -355,9 +334,8 @@ bool V2Country::isCountryTag(string potentialTag)
 }
 
 
-void V2Country::readInMilitary(const shared_ptr<Object> countryObj)
+void V2Country::readInMilitary(shared_ptr<Object> countryObj)
 {
-	armies.clear();
 	vector<shared_ptr<Object>> armyObjs = countryObj->getValue("army");
 	for (auto armyObj : armyObjs)
 	{
@@ -382,9 +360,8 @@ void V2Country::readInMilitary(const shared_ptr<Object> countryObj)
 }
 
 
-void V2Country::readInLeaders(const shared_ptr<Object> countryObj)
+void V2Country::readInLeaders(shared_ptr<Object> countryObj)
 {
-	leaders.clear();
 	vector<shared_ptr<Object>> leaderObjs = countryObj->getValue("leader");
 	for (auto leaderObj : leaderObjs)
 	{
@@ -394,7 +371,7 @@ void V2Country::readInLeaders(const shared_ptr<Object> countryObj)
 }
 
 
-void V2Country::readInStates(const shared_ptr<Object> countryObj)
+void V2Country::readInStates(shared_ptr<Object> countryObj)
 {
 	vector<shared_ptr<Object>> stateObjs = countryObj->getValue("state");
 	for (auto stateObj : stateObjs)
@@ -404,22 +381,18 @@ void V2Country::readInStates(const shared_ptr<Object> countryObj)
 }
 
 
-void V2Country::createNewState(const shared_ptr<Object> stateObj)
+void V2Country::createNewState(shared_ptr<Object> stateObj)
 {
 	Vic2State* newState = new Vic2State(stateObj, tag);
 	states.push_back(newState);
 }
 
 
-void V2Country::detectIfHuman(const shared_ptr<Object> countryObj)
+void V2Country::detectIfHuman(shared_ptr<Object> countryObj)
 {
 	if (countryObj->getValue("human").size() > 0)
 	{
 		human = true;
-	}
-	else
-	{
-		human = false;
 	}
 }
 
@@ -604,11 +577,11 @@ long V2Country::getEmployedWorkers() const
 }
 
 
-V2Party* V2Country::getRulingParty(const vector<V2Party*>& allParties) const
+const V2Party* V2Country::getRulingParty(const vector<const V2Party*>& allParties) const
 {
 	if ((rulingPartyID <= allParties.size()) && (rulingPartyID > 0))
 	{
-		return allParties[rulingPartyID - 1]; // Subtract 1, because party ID starts from index of 1
+		return allParties.at(rulingPartyID - 1); // Subtract 1, because party ID starts from index of 1
 	}
 	else
 	{
@@ -617,9 +590,9 @@ V2Party* V2Country::getRulingParty(const vector<V2Party*>& allParties) const
 }
 
 
-set<V2Party*> V2Country::getActiveParties(const vector<V2Party*>& allParties) const
+set<const V2Party*> V2Country::getActiveParties(const vector<const V2Party*>& allParties) const
 {
-	set<V2Party*> activeParties;
+	set<const V2Party*> activeParties;
 
 	for (auto ID : activePartyIDs)
 	{

@@ -613,15 +613,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 //}
 
 
-HoI4RegimentType::HoI4RegimentType(string _type, int _x, int _y)
+HoI4RegimentType::HoI4RegimentType(const string& _type, int _x, int _y):
+	type(_type),
+	x(_x),
+	y(_y)
 {
-	type	= _type;
-	x		= _x;
-	y		= _y;
 }
 
 
-ostream& operator << (ostream& out, HoI4RegimentType regiment)
+ostream& operator << (ostream& out, const HoI4RegimentType& regiment)
 {
 	out << "\t\t" << regiment.type << " = { x = " << regiment.x << " y = " << regiment.y << " }\n";
 
@@ -629,40 +629,27 @@ ostream& operator << (ostream& out, HoI4RegimentType regiment)
 }
 
 
-HoI4DivisionTemplateType::HoI4DivisionTemplateType(string _name)
+HoI4DivisionTemplateType::HoI4DivisionTemplateType(const string& _name):
+	name(_name),
+	regiments(),
+	supportRegiments()
 {
-	name = _name;
-}
-
-string HoI4DivisionTemplateType::getName()
-{
-	return name;
-}
-
-vector<HoI4RegimentType> HoI4DivisionTemplateType::getRegiments()
-{
-	return regiments;
-}
-
-vector<HoI4RegimentType> HoI4DivisionTemplateType::getSupportRegiments()
-{
-	return supportRegiments;
 }
 
 
-ostream& operator << (ostream& out, HoI4DivisionTemplateType divisionTemplateType)
+ostream& operator << (ostream& out, const HoI4DivisionTemplateType& rhs)
 {
 	out << "division_template = {\n";
-	out << "\tname = \"" << divisionTemplateType.name << "\"\n";
+	out << "\tname = \"" << rhs.name << "\"\n";
 	out << endl;
 	out << "\tregiments = {\n";
-	for (auto regiment: divisionTemplateType.regiments)
+	for (auto regiment: rhs.regiments)
 	{
 		out << regiment;
 	}
 	out << "\t}\n";
 	out << "\tsupport = {\n";
-	for (auto regiment: divisionTemplateType.supportRegiments)
+	for (auto regiment: rhs.supportRegiments)
 	{
 		out << regiment;
 	}
@@ -673,15 +660,15 @@ ostream& operator << (ostream& out, HoI4DivisionTemplateType divisionTemplateTyp
 }
 
 
-HoI4DivisionType::HoI4DivisionType(string _name, string _type, int _location)
+HoI4DivisionType::HoI4DivisionType(const string& _name, const string& _type, int _location):
+	name(_name),
+	type(_type),
+	location(_location)
 {
-	name		= _name;
-	type		= _type;
-	location	= _location;
 }
 
 
-ostream& operator << (ostream& out, HoI4DivisionType division)
+ostream& operator << (ostream& out, const HoI4DivisionType& division)
 {
 	out << "\tdivision = {\n";
 	out << "\t\tname = \"" << division.name << "\"\n";
@@ -693,20 +680,20 @@ ostream& operator << (ostream& out, HoI4DivisionType division)
 	return out;
 }
 
-HoI4UnitMap::HoI4UnitMap(string _category, string _type, string _equipment, int _size)
+HoI4UnitMap::HoI4UnitMap(const string& _category, const string& _type, const string& _equipment, int _size):
+	category(_category),
+	type(_type),
+	equipment(_equipment),
+	size(_size)
 {
-	category = _category;
-	type = _type;
-	equipment = _equipment;
-	size = _size;
 }
 
-HoI4UnitMap::HoI4UnitMap()
+HoI4UnitMap::HoI4UnitMap():
+	category(""),
+	type(""),
+	equipment(""),
+	size(0)
 {
-	category = "";
-	type = "";
-	equipment ="";
-	size = 0;
 }
 
 string HoI4UnitMap::getCategory()

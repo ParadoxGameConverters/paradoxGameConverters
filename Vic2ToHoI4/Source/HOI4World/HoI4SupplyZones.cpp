@@ -35,7 +35,11 @@ using namespace std;
 
 
 
-HoI4SupplyZones::HoI4SupplyZones()
+HoI4SupplyZones::HoI4SupplyZones():
+	defaultStateToProvinceMap(),
+	supplyZonesFilenames(),
+	supplyZones(),
+	provinceToSupplyZoneMap()
 {
 	LOG(LogLevel::Info) << "Importing supply zones";
 	importStates();

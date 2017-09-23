@@ -32,7 +32,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 cultureGroupMapper* cultureGroupMapper::instance = nullptr;
 
 
-cultureGroupMapper::cultureGroupMapper()
+cultureGroupMapper::cultureGroupMapper():
+	mappings()
 {
 	LOG(LogLevel::Info) << "Determining culture groups";
 
@@ -72,7 +73,7 @@ void cultureGroupMapper::processVic2CulturesFile(string culturesFile)
 }
 
 
-string cultureGroupMapper::GetCultureGroup(string culture)
+string cultureGroupMapper::GetCultureGroup(const string& culture) const
 {
 	auto mapping = mappings.find(culture);
 	if (mapping != mappings.end())

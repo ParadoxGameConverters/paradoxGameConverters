@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -25,16 +25,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Ship::HoI4Ship(string _name, string _type, string _equipment, string _owner)
-{
-	name	= _name;
-	type	= _type;
-	equipment = _equipment;
-	owner	= _owner;
-}
+HoI4Ship::HoI4Ship(const string& _name, const string& _type, const string& _equipment, const string& _owner):
+	name(_name),
+	type(_type),
+	equipment(_equipment),
+	owner(_owner)
+{}
 
 
-ofstream& operator << (ofstream& output, HoI4Ship& instance)
+ofstream& operator << (ofstream& output, const HoI4Ship& instance)
 {
 	output << "\t\tship = {" << endl;
 	output << "\t\t\tname = \"" << instance.name << "\"" << endl;

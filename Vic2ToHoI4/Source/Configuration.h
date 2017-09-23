@@ -109,7 +109,7 @@ class Configuration // Singleton
 			getInstance()->leaderID = 1000 * getInstance()->leaderIDCountryIdx;	
 		}
 
-		static HOI4Version getHOI4Version()
+		static HOI4Version& getHOI4Version()
 		{
 			return getInstance()->version;
 		}
@@ -117,6 +117,11 @@ class Configuration // Singleton
 		static bool getDropMinorIdeologies()
 		{
 			return getInstance()->dropMinorIdeologies;
+		}
+
+		static bool getDebug()
+		{
+			return getInstance()->debug;
 		}
 
 		static Configuration* getInstance()
@@ -130,6 +135,8 @@ class Configuration // Singleton
 
 	private:
 		static Configuration* instance;
+		Configuration(const Configuration&) = delete;
+		Configuration& operator=(const Configuration&) = delete;
 
 		HOI4Version getAutomaticHoI4Version();
 
@@ -149,6 +156,8 @@ class Configuration // Singleton
 		// converted to neutrality. "Major ideologies" are defined by
 		// HoI4World::identifyMajorIdeologies.
 		bool dropMinorIdeologies;
+
+		bool debug;
 
 		unsigned int	leaderID;
 		unsigned int	leaderIDCountryIdx;
