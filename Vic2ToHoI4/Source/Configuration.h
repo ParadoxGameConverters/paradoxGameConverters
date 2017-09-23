@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -23,6 +23,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #ifndef CONFIGURATION_H_
 #define CONFIGURATION_H_
+
 
 
 #include <string>
@@ -108,7 +109,7 @@ class Configuration // Singleton
 			getInstance()->leaderID = 1000 * getInstance()->leaderIDCountryIdx;	
 		}
 
-		static HOI4Version getHOI4Version()
+		static HOI4Version& getHOI4Version()
 		{
 			return getInstance()->version;
 		}
@@ -118,9 +119,14 @@ class Configuration // Singleton
 			return getInstance()->dropMinorIdeologies;
 		}
 
+		static bool getDebug()
+		{
+			return getInstance()->debug;
+		}
+
 		static Configuration* getInstance()
 		{
-			if (instance == NULL)
+			if (instance == nullptr)
 			{
 				instance = new Configuration();
 			}
@@ -129,6 +135,8 @@ class Configuration // Singleton
 
 	private:
 		static Configuration* instance;
+		Configuration(const Configuration&) = delete;
+		Configuration& operator=(const Configuration&) = delete;
 
 		HOI4Version getAutomaticHoI4Version();
 
@@ -149,10 +157,14 @@ class Configuration // Singleton
 		// HoI4World::identifyMajorIdeologies.
 		bool dropMinorIdeologies;
 
+		bool debug;
+
 		unsigned int	leaderID;
 		unsigned int	leaderIDCountryIdx;
 
 		HOI4Version version;
 };
+
+
 
 #endif // CONFIGURATION_H_

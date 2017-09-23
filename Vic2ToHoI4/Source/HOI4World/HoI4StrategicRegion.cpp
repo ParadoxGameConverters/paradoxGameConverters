@@ -30,18 +30,21 @@ using namespace std;
 
 
 
-HoI4StrategicRegion::HoI4StrategicRegion(string _filename)
+HoI4StrategicRegion::HoI4StrategicRegion(const string& _filename):
+	filename(_filename),
+	ID(0),
+	oldProvinces(),
+	newProvinces(),
+	weatherObj()
 {
-	filename = _filename;
+	shared_ptr<Object> fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/map/strategicregions/" + filename);
+	vector<shared_ptr<Object>> regionObjs = fileObj->getValue("strategic_region");
 
-	Object* fileObj				= parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/map/strategicregions/" + filename);
-	vector<Object*> regionObjs	= fileObj->getValue("strategic_region");
-
-	vector<Object*> IDObjs = regionObjs[0]->getValue("id");
+	vector<shared_ptr<Object>> IDObjs = regionObjs[0]->getValue("id");
 	ID = stoi(IDObjs[0]->getLeaf());
 
-	vector<Object*>	provincesObjs		= regionObjs[0]->getValue("provinces");
-	vector<string>		provinceStrings	= provincesObjs[0]->getTokens();
+	vector<shared_ptr<Object>>	provincesObjs = regionObjs[0]->getValue("provinces");
+	vector<string> provinceStrings = provincesObjs[0]->getTokens();
 	for (auto provinceString: provinceStrings)
 	{
 		oldProvinces.push_back(stoi(provinceString));
@@ -51,7 +54,7 @@ HoI4StrategicRegion::HoI4StrategicRegion(string _filename)
 }
 
 
-void HoI4StrategicRegion::output(string path)
+void HoI4StrategicRegion::output(const string& path) const
 {
 	ofstream out(path + filename);
 	if (!out.is_open())

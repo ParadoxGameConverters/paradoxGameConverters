@@ -37,11 +37,14 @@ class HoI4SupplyZone
 	public:
 		HoI4SupplyZone(int _ID, int _value);
 
-		void output(string filename);
+		void output(const string& filename) const;
 
 		void addState(int state)	{ states.push_back(state); }
 
 	private:
+		HoI4SupplyZone(const HoI4SupplyZone&) = delete;
+		HoI4SupplyZone& operator=(const HoI4SupplyZone&) = delete;
+
 		int			ID;
 		vector<int>	states;
 		int			value;

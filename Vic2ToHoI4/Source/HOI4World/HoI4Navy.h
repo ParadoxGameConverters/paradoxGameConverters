@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -35,13 +35,17 @@ using namespace std;
 class HoI4Ship
 {
 	public:
-		HoI4Ship(string _name, string _type, string _owner);
+		HoI4Ship(const string& _name, const string& _type, const string& _equipment, const string& _owner);
+		HoI4Ship(const HoI4Ship&) = default;
 
-		friend ofstream& operator << (ofstream& output, HoI4Ship& instance);
+		friend ofstream& operator << (ofstream& output, const HoI4Ship& instance);
 
 	private:
+		HoI4Ship& operator=(const HoI4Ship&) = delete;
+
 		string	name;
 		string	type;
+		string  equipment;
 		string	owner;
 };
 

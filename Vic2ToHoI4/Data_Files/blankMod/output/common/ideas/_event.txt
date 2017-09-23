@@ -1,0 +1,119 @@
+ideas = {
+
+	country = {
+		fascist_revolutionaries = {
+			
+			removal_cost = -1
+			
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_fascism_drift_bonus
+			
+			modifier = {
+				unity_factor = -0.1
+			}
+		}
+
+		communist_revolutionaries = {
+			
+			removal_cost = -1
+			
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_communism_drift_bonus
+			
+			modifier = {
+				unity_factor = -0.1
+			}
+		}
+
+		democratic_revolutionaries = {
+			
+			removal_cost = -1
+			
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_democratic_drift_bonus
+			
+			modifier = {
+				unity_factor = -0.1
+			}
+		}
+
+
+		fascism_defeated = {
+			removal_cost = -1
+			
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_democratic_drift_bonus
+			
+			modifier = {
+				unity_factor = 0.1
+			}
+		}
+
+		communism_defeated = {
+			removal_cost = -1
+			
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_democratic_drift_bonus
+			
+			modifier = {
+				unity_factor = 0.1
+			}
+		}
+		
+		reign_of_terror = {
+			removal_cost = -1
+			
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_intel_bonus
+			
+			modifier = {
+				political_power_factor = 0.1
+			}
+		}
+
+		anti_soviet_pact = {
+			
+			removal_cost = -1 # Or make removable, with high cost?
+			
+			allowed = {
+				always = no # Triggered via event
+			}
+	
+			ai_will_do = {
+				factor = 0
+			}
+		}
+		
+		shattered_government = {
+			
+			allowed = {
+				always = no
+			}
+			removal_cost = -1
+			
+			picture = generic_democratic_drift_bonus
+			
+			modifier = {
+				unity_factor = -0.1
+			}
+		}
+	}
+}

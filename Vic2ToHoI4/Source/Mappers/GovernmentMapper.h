@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include <memory>
 #include <set>
 #include <string>
 #include <vector>
@@ -90,14 +91,17 @@ class governmentMapper
 			return instance;
 		}
 		governmentMapper();
-		void importGovernmentMappings(Object* obj);
-		void importPartyMappings(Object* obj);
+		void importGovernmentMappings(shared_ptr<Object> obj);
+		void importPartyMappings(shared_ptr<Object> obj);
 
-		string GetIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology);
-		string GetLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology);
-		string GetSupportedIdeology(const string& rulingIdeology, const string& Vic2Ideology);
-		bool governmentMatches(const governmentMapping& mapping, const string& government);
-		bool rulingIdeologyMatches(const governmentMapping& mapping, const string& rulingIdeology);
+		governmentMapper(const governmentMapper&) = delete;
+		governmentMapper& operator=(const governmentMapper&) = delete;
+
+		string GetIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology) const;
+		string GetLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology) const;
+		string GetSupportedIdeology(const string& rulingIdeology, const string& Vic2Ideology) const;
+		bool governmentMatches(const governmentMapping& mapping, const string& government) const;
+		bool rulingIdeologyMatches(const governmentMapping& mapping, const string& rulingIdeology) const;
 
 		vector<governmentMapping> governmentMap;
 		vector<partyMapping> partyMap;

@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -36,8 +36,8 @@ using namespace std;
 class HoI4StrategicRegion
 {
 	public:
-		HoI4StrategicRegion(string _filename);
-		void output(string path);
+		HoI4StrategicRegion(const string& _filename);
+		void output(const string& path) const;
 
 		int			getID() const				{ return ID; }
 		vector<int>	getOldProvinces() const	{ return oldProvinces; }
@@ -45,11 +45,14 @@ class HoI4StrategicRegion
 		void	addNewProvince(int province)	{ newProvinces.push_back(province); }
 
 	private:
-		string		filename;
-		int			ID;
+		HoI4StrategicRegion(const HoI4StrategicRegion&) = delete;
+		HoI4StrategicRegion& operator=(const HoI4StrategicRegion&) = delete;
+
+		string filename;
+		int ID;
 		vector<int>	oldProvinces;
 		vector<int>	newProvinces;
-		Object*		weatherObj;
+		shared_ptr<Object> weatherObj;
 };
 
 

@@ -36,18 +36,25 @@ using namespace std;
 
 
 
+class HoI4Advisor;
 class HoI4Buildings;
 class HoI4Country;
 class HoI4Diplomacy;
+class HoI4DivisionTemplateType;
 class HoI4Events;
 class HoI4Faction;
+class HoI4Ideology;
 class HoI4Province;
 class HoI4State;
 class HoI4States;
 class HoI4StrategicRegion;
 class HoI4SupplyZones;
+class HoI4UnitMap;
 class V2Country;
 class V2World;
+
+
+struct advisorCompare;
 
 
 
@@ -63,14 +70,28 @@ class HoI4World
 		map<int, HoI4State*> getStates() const { return states->getStates(); }
 		vector<HoI4Faction*> getFactions() const { return factions; }
 		HoI4Events* getEvents() const { return events; }
+		set<string> getMajorIdeologies() const { return majorIdeologies; }
 
-		HoI4Country* findCountry(string countryTag);
+		HoI4Country* findCountry(const string& countryTag);
 
 	private:
+		HoI4World(const HoI4World&) = delete;
+		HoI4World& operator=(const HoI4World&) = delete;
+
 		void convertNavalBases();
 
 		void convertCountries();
 		void convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, governmentJobsMap governmentJobs, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+
+		void importIdeologies();
+		void importIdeologyFile(const string& filename);
+
+		void importLeaderTraits();
+
+		void importIdeologicalMinisters();
+
+		void importIdeologicalIdeas();
+
 		void identifyMajorIdeologies();
 		void addNeutrality();
 		void convertIdeologySupport();
@@ -79,15 +100,15 @@ class HoI4World
 		void addStatesToCountries();
 		map<string, double> calculateFactoryWorkerRatios();
 		map<string, double> getIndustrialWorkersPerCountry();
-		double getTotalWorldWorkers(map<string, double> industrialWorkersPerCountry);
-		map<string, double> adjustWorkers(map<string, double> industrialWorkersPerCountry, double totalWorldWorkers);
-		double getWorldwideWorkerFactoryRatio(map<string, double> workersInCountries, double totalWorldWorkers);
-		void putIndustryInStates(map<string, double> factoryWorkerRatios);
+		double getTotalWorldWorkers(const map<string, double>& industrialWorkersPerCountry);
+		map<string, double> adjustWorkers(const map<string, double>& industrialWorkersPerCountry, double totalWorldWorkers);
+		double getWorldwideWorkerFactoryRatio(const map<string, double>& workersInCountries, double totalWorldWorkers);
+		void putIndustryInStates(const map<string, double>& factoryWorkerRatios);
 		void calculateIndustryInCountries();
 		void reportIndustryLevels();
 		void reportCountryIndustry();
 		void reportDefaultIndustry();
-		pair<string, array<int, 3>> getDefaultStateIndustry(string stateFilename);
+		pair<string, array<int, 3>> getDefaultStateIndustry(const string& stateFilename);
 		void reportDefaultIndustry(const map<string, array<int, 3>>& countryIndustry);
 
 		void convertResources();
@@ -106,11 +127,16 @@ class HoI4World
 
 		void convertTechs();
 		map<string, vector<pair<string, int>>> importTechMap() const;
+		map<string, vector<pair<string, int>>> importResearchBonusMap() const;
 		void addTechs(HoI4Country* countryaddTechs, const string& oldTech, const map<string, vector<pair<string, int>>>& techMap);
+		void addResearchBonuses(HoI4Country* countryaddBonuses, const string& oldTech, const map<string, vector<pair<string, int>>>& researchBonusMap);
 
-		void convertArmies();
-		void convertNavies();
-		void convertAirforces();
+		map<string, HoI4UnitMap> importUnitMap() const;
+		vector<HoI4DivisionTemplateType> importDivisionTemplates() const;
+		void convertMilitaries();
+		void convertArmies(const map<string, HoI4UnitMap>& unitMap, const vector<HoI4DivisionTemplateType>& divisionTemplates);
+		void convertNavies(const map<string, HoI4UnitMap>& unitMap);
+		void convertAirforces(const map<string, HoI4UnitMap>& unitMap);
 
 		void determineGreatPowers();
 
@@ -118,8 +144,8 @@ class HoI4World
 		void addBasicCapitalVPs();
 		void addGreatPowerVPs();
 		void addStrengthVPs();
-		double getStrongestCountryStrength();
-		int calculateStrengthVPs(HoI4Country* country, double greatestStrength);
+		double getStrongestCountryStrength() const;
+		int calculateStrengthVPs(const HoI4Country* country, double greatestStrength) const;
 
 		void convertAirBases();
 		void addBasicAirBases();
@@ -127,16 +153,23 @@ class HoI4World
 		void addGreatPowerAirBases();
 
 		void createFactions();
-		void logFactionMember(ofstream& factionsLog, const HoI4Country* member);
-		string returnSphereLeader(HoI4Country* possibleSphereling);
-		bool governmentsAllowFaction(string leaderGovernment, string allyGovernment);
+		void logFactionMember(ofstream& factionsLog, const HoI4Country* member) const;
+		string returnSphereLeader(const HoI4Country* possibleSphereling) const;
+		bool governmentsAllowFaction(const string& leaderGovernment, const string& allyGovernment) const;
 
 		void outputCommonCountries() const;
 		void outputColorsfile() const;
 		void outputNames() const;
 		void outputMap() const;
+		void outputGenericFocusTree() const;
 		void outputCountries() const;
+		set<const HoI4Advisor*, advisorCompare> getActiveIdeologicalAdvisors() const;
 		void outputRelations() const;
+		void outputIdeologies() const;
+		void outputLeaderTraits() const;
+		void outputIdeologicalIdeas() const;
+		void outputScriptedTriggers() const;
+		void outputOnActions() const;
 
 		/*vector<int> getPortLocationCandidates(const vector<int>& locationCandidates, const HoI4AdjacencyMapping& HoI4AdjacencyMap);
 		vector<int> getPortProvinces(const vector<int>& locationCandidates);
@@ -156,11 +189,17 @@ class HoI4World
 		map<string, HoI4Country*> landedCountries;
 		vector<HoI4Country*> greatPowers;
 
+		map<string, HoI4Ideology*> ideologies;
 		set<string> majorIdeologies;
+		map<string, vector<shared_ptr<Object>>> ideologicalLeaderTraits;
+		map<string, HoI4Advisor*> ideologicalAdvisors;
+		map<string, vector<shared_ptr<Object>>> ideologicalIdeas;
 		
 		vector<HoI4Faction*> factions;
 		HoI4Diplomacy* diplomacy;
 		HoI4Events* events;
+
+		vector<HoI4DivisionTemplateType> divisionTemplates;
 
 		leaderTraitsMap leaderTraits;
 		portraitMapping portraitMap;

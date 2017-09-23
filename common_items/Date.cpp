@@ -66,6 +66,7 @@ date::date(const date& _init)
 	day = _init.day;
 }
 
+
 date& date::operator=(const date& _rhs)
 {
 	year = _rhs.year;
@@ -74,9 +75,10 @@ date& date::operator=(const date& _rhs)
 	return *this;
 }
 
-date::date(const Object* _init)
+
+date::date(const shared_ptr<Object> _init)
 {
-	vector<Object*> dateSubObj = _init->getValue("year");	// the date within the larger object
+	vector<shared_ptr<Object>> dateSubObj = _init->getValue("year");	// the date within the larger object
 	if (dateSubObj.size() > 0)
 	{
 		// date specified by year=, month=, day=
@@ -92,6 +94,7 @@ date::date(const Object* _init)
 	}
 }
 
+
 bool date::operator==(const date& _rhs) const
 {
 	return ((year == _rhs.year)
@@ -99,10 +102,12 @@ bool date::operator==(const date& _rhs) const
 		 && (day == _rhs.day));
 }
 
+
 bool date::operator!=(const date& _rhs) const
 {
 	return !(*this == _rhs);
 }
+
 
 bool date::operator<(const date& _rhs) const
 {
@@ -111,6 +116,7 @@ bool date::operator<(const date& _rhs) const
 		|| ((year == _rhs.year) && (month == _rhs.month) && (day < _rhs.day)));
 }
 
+
 bool date::operator>(const date& _rhs) const
 {
 	return ((year > _rhs.year)
@@ -118,21 +124,25 @@ bool date::operator>(const date& _rhs) const
 		|| ((year == _rhs.year) && (month == _rhs.month) && (day > _rhs.day)));
 }
 
+
 bool date::operator<=(const date& _rhs) const
 {
 	return ((*this == _rhs) || (*this < _rhs));
 }
+
 
 bool date::operator>=(const date& _rhs) const
 { 
 	return ((*this == _rhs) || (*this > _rhs));
 }
 
+
 ostream& operator<<(ostream& out, const date& d)
 {
 	out << d.year << '.' << d.month << '.' << d.day;
 	return out;
 }
+
 
 float date::diffInYears(const date& _rhs) const
 {
@@ -227,6 +237,7 @@ float date::diffInYears(const date& _rhs) const
 	return years;
 }
 
+
 void date::delayedByMonths(const int _months)
 {
 	year += _months / 12;
@@ -239,11 +250,13 @@ void date::delayedByMonths(const int _months)
 	return;
 }
 
+
 bool date::isSet() const
 {
 	const date default_date;	// an instance with the default date
 	return (*this != default_date);
 }
+
 
 string date::toString() const
 {

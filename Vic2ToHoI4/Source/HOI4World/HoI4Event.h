@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -36,16 +36,24 @@ using namespace std;
 class HoI4Event
 {
 	public:
-		friend ofstream& operator << (ofstream& out, HoI4Event theEvent);
+		HoI4Event();
+		friend ofstream& operator << (ofstream& out, const HoI4Event& theEvent);
+		HoI4Event(const HoI4Event&) = default;
 
 		string type;
 		string id;
 		string title;
 		string description;
 		string picture;
-		bool major;
+		bool majorEvent;
+		bool triggeredOnly;
 		string trigger;
+		string meanTimeToHappen;
+		string immediate;
 		vector<string> options;
+
+	private:
+		HoI4Event& operator=(const HoI4Event&) = delete;
 };
 
 

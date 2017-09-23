@@ -32,7 +32,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 cultureGroupMapper* cultureGroupMapper::instance = nullptr;
 
 
-cultureGroupMapper::cultureGroupMapper()
+cultureGroupMapper::cultureGroupMapper():
+	mappings()
 {
 	LOG(LogLevel::Info) << "Determining culture groups";
 
@@ -48,18 +49,18 @@ cultureGroupMapper::cultureGroupMapper()
 
 void cultureGroupMapper::processVic2CulturesFile(string culturesFile)
 {
-	Object* obj = parser_8859_15::doParseFile(culturesFile);
+	shared_ptr<Object> obj = parser_8859_15::doParseFile(culturesFile);
 	if (obj == nullptr)
 	{
 		return;
 	}
 
-	vector<Object*> groupsObj = obj->getLeaves();
+	vector<shared_ptr<Object>> groupsObj = obj->getLeaves();
 	for (auto groupsItr: groupsObj)
 	{
 		string group = groupsItr->getKey();
 
-		vector<Object*> culturesObj = groupsItr->getLeaves();
+		vector<shared_ptr<Object>> culturesObj = groupsItr->getLeaves();
 		for (auto culturesItr: culturesObj)
 		{
 			string key = culturesItr->getKey();
@@ -72,7 +73,7 @@ void cultureGroupMapper::processVic2CulturesFile(string culturesFile)
 }
 
 
-string cultureGroupMapper::GetCultureGroup(string culture)
+string cultureGroupMapper::GetCultureGroup(const string& culture) const
 {
 	auto mapping = mappings.find(culture);
 	if (mapping != mappings.end())

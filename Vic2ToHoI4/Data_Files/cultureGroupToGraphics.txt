@@ -150,7 +150,7 @@ italian = {
 		communism = { "gfx/leaders/ITA/Portrait_Italy_Generic_1.dds" }
 		democratic = { "gfx/leaders/ITA/Portrait_Italy_Generic_2.dds" }
 		fascism = { "gfx/leaders/ITA/Portrait_Italy_Generic_3.dds" }
-		absolutist = { "gfx/leaders/ITA/Victor_Emmanuel_III.dds" }
+		absolutist = { "gfx/leaders/ITA/Portrait_Italy_Victor_Emmanuel_III.dds" }
 		neutrality = { "gfx/leaders/ITA/Portrait_Italy_Generic_2.dds" }
 		radical = { "gfx/leaders/ITA/Portrait_Italy_Generic_3.dds" }
 	}

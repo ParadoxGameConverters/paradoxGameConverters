@@ -22,430 +22,232 @@
 # - Each V2 tech and invention is linked to zero or more HoI tech levels.
 # - More than one V2 tech or invention may grant a given HoI tech level.
 # - If a higher level is earned, it will be granted even if the lower level was not earned.
+# - The "bonus_map" section grants HoI research speed bonuses instead of HoI tech levels.
 
 tech_map =
 {
+	# ============================
+	# === HOI4 INFANTRY FOLDER ===
+	# ============================
 
-# Army -> Infantry, Aircraft, Armour, Artillery, Land Doctrine, AND most Air Doctrine
-	#FORTESTING
+	# HoI4 Basic Infantry Equipment <- Vic2 Flintlock Rifles
 	link = {
-		vic2 = post_napoleonic_thought 
-		gw_artillery = 1
-		tech_recon = 1
-		tech_support = 1		
-		tech_engineers = 1
+		vic2 = flintlock_rifles
+		infantry_weapons = 1		
+	}
 
-	}
+	# HoI4 Support Weapons I <- Vic2 Machine Gun Armament Invention
 	link = {
-		vic2 = infiltration			# Army Doctrine 1900
-		
+		vic2 = machine_gun_armament
+		support_weapons = 1
 	}
+
+	# HoI4 Motorized <- Daimler's Automobile Invention
 	link = {
-		vic2 = low_echelon_fire_support
-		
+		vic2 = daimlers_automobile
+		motorised_infantry = 1
 	}
+
+	# HoI4 Marines I <- Vic2 Amphibious Warfare Training Invention
 	link = {
-		vic2 = stormtrooper_training
+		vic2 = amphibious_warfare_training
+		marines = 1
+	}	
+
+	# HoI4 Mountain Infantry I <- Vic2 Flintlock Rifles
+	link = {
+		vic2 = flintlock_rifles		
+		tech_mountaineers = 1
 	}
+
+	# =========================
+	# === HOI4 ARMOR FOLDER ===
+	# =========================
+
+	# HoI4 Great War Tank <- Vic2 Tank Experiments Invention
 	link = {
 		vic2 = tank_experiments
 		gwtank = 1
 	}
-	link = {
-		vic2 = tank_exploits
-		basic_heavy_tank = 1
-	}
-	link = {
-		vic2 = modern_army_doctrine		# Army Doctrine 1919
-		infantry_weapons1 = 1
-	}
-	link = {
-		vic2 = firepower_vs_mobility
-		
-	}
-	link = {
-		vic2 = grand_battle_plan_vs_superior_firepower
-		
-	}
-	link = {
-		vic2 = human_wave_vs_spearhead 
-		
-	}
-	link = {
-		vic2 = bolt_action_rifles		# Army Light Arms 1900
-		infantry_weapons = 1
-	}
-	link = {
-		vic2 = modern_divisional_structure	# Army Light Arms 1919
-			infantry_weapons1 = 1
-	}
-	link = {
-		vic2 = interwar_infantry
-		#support_weapons = 1
-	}
-	link = {
-		vic2 = interwar_cavalry
-		
-	}
-	link = {
-		vic2 = rear_area_dumps
-		
-	}
-	link = {
-		vic2 = indirect_artillery_fire	# Army Artillery 1900
-		
-	}
-	link = {
-		vic2 = heavy_armament_dunno		# Army Artillery 1919
-		gw_artillery = 1
-	}
+
+	# HoI4 Light Tank I <- Vic2 Tankette Invention
 	link = {
 		vic2 = tankette
-		
-	}
-	link = {
-		vic2 = light_tank
 		basic_light_tank = 1
 	}
+
+	# HoI4 Light Tank II <- Vic2 Light Tank Invention
 	link = {
-		vic2 = armoured_cars
-		
+		vic2 = light_tank
+		improved_light_tank = 1
 	}
+
+	# =============================
+	# === HOI4 ARTILLERY FOLDER ===
+	# =============================
+
+	# HoI4 Towed Artillery <- Vic2 Bronze Muzzle-loaded Artillery
 	link = {
-		vic2 = anti_aircraft_artillery 
-	
+		vic2 = bronze_muzzle_loaded_artillery
+		gw_artillery = 1
 	}
+
+	# HoI4 Interwar Artillery <- Vic2 Heavy Artillery Invention
 	link = {
-		vic2 = improved_anti_aircraft_artillery 
-		
-	}
-	link = {
-		vic2 = light_artillery
-		
-	}
-	link = {
-		vic2 = medium_artillery 
-		
-	}
-	link = {
-		vic2 = daimlers_automobile 
-		motorised_infantry = 1
-	}
-	link = {
-		vic2 = heavy_artillery 
+		vic2 = heavy_artillery
 		interwar_artillery = 1
 	}
+
+	# HoI4 Towed Anti-Air <- Vic2 Improved Anti-Aircraft Artillery Invention
 	link = {
-		vic2 = military_directionism		# Army Science 1900
+		vic2 = improved_anti_aircraft_artillery
+		interwar_antiair = 1
 	}
+
+	# HoI4 Towed Anti-Tank <- Vic2 Light Tank Invention
 	link = {
-		vic2 = army_political_lobbying
+		vic2 = light_tank
+		interwar_antitank = 1
 	}
+
+	# ========================
+	# === HOI4 NAVY FOLDER ===
+	# ========================
+
+	# HoI4 Destroyer I <- Vic2 Commerce Raiders Invention
 	link = {
-		vic2 = army_military_political_decision_making 
+		vic2 = commerce_raiders
+		early_destroyer = 1
 	}
+
+	# HoI4 Light Cruiser I <- Vic2 Protected Cruisers Invention
 	link = {
-		vic2 = army_local_military_government 
+		vic2 = protected_cruisers
+		early_light_cruiser = 1
 	}
+
+	# HoI4 Light Cruiser II <- Vic2 Modern Cruisers Invention
 	link = {
-		vic2 = aeronautics			# Army Science 1914
+		vic2 = modern_cruisers
+		basic_light_cruiser = 1
+	}
+
+	# HoI4 Heavy Cruiser I <- Vic2 Pre-Dreadnought Invention
+	link = {
+		vic2 = pre_dreadnought
+		early_heavy_cruiser = 1
+	}
+
+	# HoI4 Heavy Cruiser II <- Vic2 Modern Battleships Invention
+	link = {
+		vic2 = modern_battleships
+		basic_heavy_cruiser = 1
+	}
+
+	# HoI4 Battleship I <- Vic2 Dreadnought Invention
+	link = {
+		vic2 = dreadnoughts
+		early_battleship = 1
+	}
+
+	# HoI4 Battleship II <- Vic2 Modern Battleships Invention
+	link = {
+		vic2 = modern_battleships
+		basic_battleship = 1
+	}
+
+	# ============================
+	# === HOI4 AIRCRAFT FOLDER ===
+	# ============================
+
+	# HoI4 Interwar Fighter <- Vic2 Early Interwar Fighters Invention
+	link = {
+		vic2 = early_interwar_fighters
 		early_fighter = 1
 	}
+
+	# HoI4 Fighter I <- Vic2 Late Interwar Fighters Invention
 	link = {
-		vic2 = early_interwar_bombers 
+		vic2 = late_interwar_fighters
+		fighter1 = 1
+	}
+
+	# HoI4 Interwar Bomber <- Vic2 Early Interwar Bomber Invention
+	link = {
+		vic2 = early_interwar_bombers
 		early_bomber = 1
 	}
+
+	# HoI4 Tactical Bomber I <- Vic2 Late Interwar Bomber Invention
 	link = {
 		vic2 = late_interwar_bombers
 		tactical_bomber1 = 1
-		strategic_bomber1 = 1
-	}
-	link = {
-		vic2 = early_interwar_fighters
-		CAS1 = 1
-	}
-	link = {
-		vic2 = late_interwar_fighters 
-		fighter1 = 1
-		naval_bomber1 = 1
-	}
-	link = {
-		vic2 = t_air_superiority
-		
-	}
-	link = {
-		vic2 = flying_circus_doctrine 
-		
-	}
-	link = {
-		vic2 = force_substitution_doctrine 
-		
-	}
-	link = {
-		vic2 = battlefield_destruction_doctrine 
-		
-	}
-	link = {
-		vic2 = operational_destruction_doctrine 
-		
-	}
-	link = {
-		vic2 = strategic_destruction_doctrine 
-		
-	}
-	link = {
-		vic2 = army_nco_training		# Army Leadership 1900
-	}
-	link = {
-		vic2 = great_war_experience		# Army Leadership 1919
-		tech_support = 1
-		tech_military_police = 1
-		tech_mountaineers = 1
-		paratroopers = 1
 	}
 
-# Navy -> Naval Tech and Naval Doctrine, plus Naval Air Doctrines and Radio tech
+	# ===============================
+	# === HOI4 ENGINEERING FOLDER ===
+	# ===============================
 
+	# HoI4 Electronic Mechanical Engineering <- Vic2 Vacuum Tube Invention
 	link = {
-		vic2 = high_sea_battle_fleet		# Navy Doctrine 1900
-		
-	}	
-	link = {
-		vic2 = offensive_attitude
-	}
-	link = {
-		vic2 = defensive_attitude
-	}
-	link = {
-		vic2 = modern_naval_doctrine		# Navy Doctrine 1919
-		
-	}
-	link = {
-		vic2 = decisive_firepower_doctrine
-	}
-	link = {
-		vic2 = naval_firepower_doctrine 
-	}
-	link = {
-		vic2 = steam_turbine_ships		# Ship Construction 1900
-		
-	}	
-	# Originally "Steam Turbine Ships" also had: light crusiers, battlecruisers, oceangoing submarines
-	link = {
-		vic2 = dreadnoughts
-		early_submarine = 1
-		
-	}
-	link = {
-		vic2 = oil_driven_ships		# Ship Construction 1919
-		early_destroyer = 1
-		basic_submarine = 1
-		transport = 1
-	}	
-	# Originally "Oil Driven Ships" also had: adv./mod. destroyers, adv./mod. battlecruisers, 3 carrier invs, adv. subs.
-	link = {
-		vic2 = advanced_cruisers 
-			early_light_cruiser = 1
-	}
-	link = {
-		vic2 = modern_cruisers 
-		early_heavy_cruiser = 1
-	}
-	link = {
-		vic2 = advanced_battleships 
-		early_battlecruiser = 1
-	}
-	link = {
-		vic2 = modern_battleships 
-		early_battleship = 1
-	}
-	link = {
-		vic2 = advanced_naval_design		# Navy Engineering 1900
-	}	
-	link = {
-		vic2 = on_board_recon_aircraft
-	}
-	link = {
-		vic2 = gun_hydraulics 
-	}
-	link = {
-		vic2 = heavy_armour_plates
-		
-	}
-	link = {
-		vic2 = large_hull_form 
-	}
-	link = {
-		vic2 = modern_naval_design		# Navy Engineering 1919
-	}	
-	link = {
-		vic2 = wireless
-		
-	}
-	link = {
-		vic2 = advanced_fire_control 
-		
-	}
-	link = {
-		vic2 = 15_inch_main_armament 
-		
-	}
-	link = {
-		vic2 = naval_directionism		# Navy Science 1900
-	}	
-	link = {
-		vic2 = political_lobbying 
-	}
-	link = {
-		vic2 = military_political_decision_making 
-	}
-	link = {
-		vic2 = local_military_government 
-	}
-	link = {
-		vic2 = naval_integration		# Navy Science 1919
-	}	
-	link = {
-		vic2 = war_gamming 
-	}
-	link = {
-		vic2 = combined_arms_planning 
-	}
-	link = {
-		vic2 = naval_nco_training		# Navy Leadership 1900
-	}	
-	link = {
-		vic2 = literate_ncos 
-	}
-	link = {
-		vic2 = nco_combat_station_training 
-	}
-	link = {
-		vic2 = nco_tactical_training 
-	}
-	link = {
-		vic2 = modern_naval_training		# Navy Leadership 1919
-	}
-	link = {
-		vic2 = amphibious_warfare_training 
-	}
-	link = {
-		vic2 = naval_exercises
+		vic2 = vacuum_tube
+		electronic_mechanical_engineering = 1
 	}
 
-# Industry -> Industry
+	# ============================
+	# === HOI4 INDUSTRY FOLDER ===
+	# ============================
 
+	# HoI4 Synthetic Oil Experiments <- Vic2 Synthetic Polymers
 	link = {
-		vic2 = electrical_power_generation	# Industry Power 1900
-	
-	}
-	link = {
-		vic2 = direct_current
-	}
-	link = {
-		vic2 = alternating_current
-	
-	}
-	link = {
-		vic2 = polyphase_system
-		
-	}
-	link = {
-		vic2 = shift_work			# Industry Mechanization 1900
-	
-	}
-	link = {
-		vic2 = electric_furnace 		# Industry Metallurgy 1900
-		
-	}
-	link = {
-		vic2 = stainless_steel
-		
-	}
-	link = {
-		vic2 = integral_rail_system 		# Industry Infrastructure 1898
-		
-	}
-	link = {
-		vic2 = limited_access_roads 		# Industry Infrastructure 1919
-		
-	}
-	link = {
-		vic2 = synthetic_polymers 		# Industry Chemistry 1919
+		vic2 = synthetic_polymers
 		synth_oil_experiments = 1
 	}
-	link = {
-		vic2 = rayon
-		
-	}
-	link = {
-		vic2 = bakelite
-		
-	}
+}
 
-# Commerce (Organization) -> Industry Efficiency
+bonus_map = {
+
+	# =================================
+	# === HOI4 LAND DOCTRINE FOLDER ===
+	# =================================
+		
+	link = {
+		vic2 = human_wave_vs_spearhead
+		cat_mobile_warfare = 90
+		cat_mass_assault = 90
+	}
 	
 	link = {
-		vic2 = organizational_development	# Commerce Organization 1900
-		
-	}
-	link = {
-		vic2 = i_scientific_management
-		
-	}
-	link = {
-		vic2 = human_resource_development
-		
+		vic2 = grand_battle_plan_vs_superior_firepower
+		cat_superior_firepower = 90
+		cat_grand_battle_plan = 90
 	}
 	
-# Culture (Social Thought) -> Education
-
-	link = {
-		vic2 = social_alienation		# Culture (Social Thought) 1900
-	
-	}
-	link = {
-		vic2 = the_revolt_of_the_masses
-		
-	}
-	link = {
-		vic2 = the_decline_of_the_west_and_the_lost_generation
-		
-	}
-
-# Culture (Political Thought) -> Civil Defence, and alternate path for Militia tech
+	# ================================
+	# === HOI4 AIR DOCTRINE FOLDER ===
+	# ================================
 	
 	link = {
-		vic2 = mass_politics			# Culture (Political Thought) 1900
+		vic2 = battlefield_destruction_doctrine
+		cat_battlefield_support = 90		
 	}
-	link = {
-		vic2 = the_doctrine_of_fascism
 	
-	}
 	link = {
-		vic2 = paramilitary_groups
-		
+		vic2 = operational_destruction_doctrine
+		cat_operational_integrity = 90		
 	}
+	
 	link = {
-		vic2 = the_police_state
-		
+		vic2 = strategic_destruction_doctrine
+		cat_strategic_destruction = 90		
 	}
-
-# Culture (Psychology) -> alternate path to Radio
-
+	
+	# ==================================
+	# === HOI4 NAVAL DOCTRINE FOLDER ===
+	# ==================================
+	
 	link = {
-		vic2 = behaviorism			# Culture (Psychology) 1900
+		vic2 = naval_firepower_doctrine
+		naval_doctrine = 90		
 	}
-	link = {
-		vic2 = mass_advertising
-		
-	}
-	link = {
-		vic2 = national_radio_networks
-		
-	}
-	link = {
-		vic2 = the_talkies
-	}
-
 }
