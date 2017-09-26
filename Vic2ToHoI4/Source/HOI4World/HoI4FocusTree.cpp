@@ -1995,7 +1995,7 @@ void HoI4FocusTree::addAbsolutistGenericFocuses()
 	newFocus->prerequisites.push_back("focus = collectivist_ethos");
 	newFocus->mutuallyExclusive = absolutistMutualExlusions;
 	newFocus->available += "			OR = {\n";
-	newFocus->available += "				has_government = absolutism\n";
+	newFocus->available += "				has_government = absolutist\n";
 	newFocus->available += "				has_government = neutrality\n";
 	newFocus->available += "			}";
 	newFocus->xPos = nextFreeColumn;
@@ -2007,17 +2007,17 @@ void HoI4FocusTree::addAbsolutistGenericFocuses()
 	newFocus->aiWillDo += "				factor = 2\n";
 	newFocus->aiWillDo += "				any_neighbor_country = {\n";
 	newFocus->aiWillDo += "					is_major = yes\n";
-	newFocus->aiWillDo += "					has_government = absolutism\n";
+	newFocus->aiWillDo += "					has_government = absolutist\n";
 	newFocus->aiWillDo += "				}\n";
 	newFocus->aiWillDo += "			}\n";
 	newFocus->aiWillDo += "			modifier = {\n";
 	newFocus->aiWillDo += "				factor = 0\n";
 	newFocus->aiWillDo += "				AND = {\n";
 	newFocus->aiWillDo += "					is_historical_focus_on = yes\n";
-	newFocus->aiWillDo += "					NOT = { has_government = absolutism }\n";
+	newFocus->aiWillDo += "					NOT = { has_government = absolutist }\n";
 	newFocus->aiWillDo += "				}\n";
 	newFocus->aiWillDo += "			}";
-	newFocus->completionReward += "			add_ideas = absolutism";
+	newFocus->completionReward += "			add_ideas = absolutist";
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
