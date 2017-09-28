@@ -2173,7 +2173,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(const HoI4Country* Home, const v
 	newFocus->yPos = 0;
 	newFocus->cost = 10;
 	newFocus->aiWillDo += "			factor = 10";
-	newFocus->completionReward += "			add_ideas = militarism_focus";
+	newFocus->completionReward += "			add_national_unity = 0.02";
 	focuses.push_back(newFocus);
 
 	//Prepare Intervention
@@ -2210,7 +2210,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(const HoI4Country* Home, const v
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
 	newFocus->aiWillDo += "			factor = 10";
-	newFocus->completionReward += "			set_rule = { can_send_volunteers = yes }";
+	newFocus->completionReward += "			add_political_power = 120";
 	focuses.push_back(newFocus);
 
 	nextFreeColumn += 2;
@@ -2321,7 +2321,7 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(const HoI4Country* Home, 
 	newFocus->aiWillDo += "				factor = 0\n";
 	newFocus->aiWillDo += "				date < 1937.6.6\n";
 	newFocus->aiWillDo += "			}";
-	newFocus->completionReward += "			add_national_unity = 0.1";
+	newFocus->completionReward += "			add_national_unity = 0.02";
 	focuses.push_back(newFocus);
 
 	//Colonies Focus

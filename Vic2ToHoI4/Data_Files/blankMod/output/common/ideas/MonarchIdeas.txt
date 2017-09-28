@@ -22,14 +22,14 @@ ideas = {
 			allowed = {}
 			removal_cost = -1
 			modifier = {
-				local_resources_factor = 0.15
+				local_resources_factor = 0.05
 			}
 		}
 		national_college = {
 			allowed = {}
 			removal_cost = -1
 			modifier = {
-				research_time_factor = -0.1
+				research_time_factor = -0.03
 			}
 		}
 	}
