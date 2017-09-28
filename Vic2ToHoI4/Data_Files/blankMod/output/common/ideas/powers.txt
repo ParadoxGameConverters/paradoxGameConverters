@@ -9,7 +9,7 @@ ideas = {
 				always = yes
 			}
 			
-			picture = generic_production_bonus
+			picture = generic_morale_bonus
 			
 			removal_cost = -1
 			
@@ -17,7 +17,6 @@ ideas = {
 				# minor bonuses for being GP
 				army_core_attack_factor = 0.05
 				army_core_defence_factor = 0.05
-				research_time_factor = -0.02
 			}
 		}
 	}
