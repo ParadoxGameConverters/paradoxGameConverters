@@ -33,7 +33,9 @@ provinceDefinitions* provinceDefinitions::instance = nullptr;
 
 
 
-provinceDefinitions::provinceDefinitions()
+provinceDefinitions::provinceDefinitions():
+	landProvinces(),
+	colorToProvinceMap()
 {
 	ifstream definitions(Configuration::getHoI4Path() + "/map/definition.csv");
 	if (!definitions.is_open())

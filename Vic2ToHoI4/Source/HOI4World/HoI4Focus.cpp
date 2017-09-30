@@ -26,27 +26,49 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Focus::HoI4Focus()
+HoI4Focus::HoI4Focus():
+	id(""),
+	icon(""),
+	text(""),
+	prerequisites(),
+	mutuallyExclusive(""),
+	bypass(""),
+	xPos(0),
+	yPos(0),
+	cost(0),
+	availableIfCapitulated(false),
+	available(""),
+	cancelIfInvalid(""),
+	continueIfInvalid(""),
+	completeTooltip(""),
+	completionReward(""),
+	aiWillDo("")
 {
-	availableIfCapitulated = false;
 }
 
 
-HoI4Focus::HoI4Focus(Object* obj)
+HoI4Focus::HoI4Focus(shared_ptr<Object> obj):
+	id(obj->getLeaf("id")),
+	icon(obj->getLeaf("icon")),
+	text(""),
+	prerequisites(),
+	mutuallyExclusive(""),
+	bypass(""),
+	xPos(stoi(obj->getLeaf("x"))),
+	yPos(stoi(obj->getLeaf("y"))),
+	cost(stoi(obj->getLeaf("cost"))),
+	availableIfCapitulated(false),
+	available(""),
+	cancelIfInvalid(""),
+	continueIfInvalid(""),
+	completeTooltip(""),
+	completionReward(""),
+	aiWillDo("")
 {
-	id = obj->getLeaf("id");
-
-	icon = obj->getLeaf("icon");
-
 	auto textObjs = obj->getValue("text");
-
 	if (textObjs.size() > 0)
 	{
 		text = textObjs[0]->getLeaf();
-	}
-	else
-	{
-		text = "";
 	}
 
 	auto mutuallyExclusiveObjs = obj->getValue("mutuallyExclusive");
@@ -54,24 +76,12 @@ HoI4Focus::HoI4Focus(Object* obj)
 	{
 		mutuallyExclusive = mutuallyExclusiveObjs[0]->getLeaf();
 	}
-	else
-	{
-		mutuallyExclusive = "";
-	}
 
 	auto bypassObjs = obj->getValue("bypass");
 	if (bypassObjs.size() > 0)
 	{
 		bypass = bypassObjs[0]->getLeaf();
 	}
-	else
-	{
-		bypass = "";
-	}
-
-	xPos = stoi(obj->getLeaf("x"));
-	yPos = stoi(obj->getLeaf("y"));
-	cost = stoi(obj->getLeaf("cost"));
 
 	auto availableIfcapitulatedObjs = obj->getValue("available_if_capitulated");
 	if (
@@ -87,19 +97,11 @@ HoI4Focus::HoI4Focus(Object* obj)
 	{
 		available = availableObjs[0]->getLeaf();
 	}
-	else
-	{
-		available = "";
-	}
 
 	auto cancelIfInvalidObjs = obj->getValue("cancelIfInvalid");
 	if (cancelIfInvalidObjs.size() > 0)
 	{
 		cancelIfInvalid = cancelIfInvalidObjs[0]->getLeaf();
-	}
-	else
-	{
-		cancelIfInvalid = "";
 	}
 
 	auto continueIfInvalidObjs = obj->getValue("continueIfInvalid");
@@ -107,19 +109,11 @@ HoI4Focus::HoI4Focus(Object* obj)
 	{
 		continueIfInvalid = continueIfInvalidObjs[0]->getLeaf();
 	}
-	else
-	{
-		continueIfInvalid = "";
-	}
 
 	auto completeTooltipObjs = obj->getValue("completeTooltip");
 	if (completeTooltipObjs.size() > 0)
 	{
 		completeTooltip = completeTooltipObjs[0]->getLeaf();
-	}
-	else
-	{
-		completeTooltip = "";
 	}
 
 	auto completionRewardObjs = obj->getValue("completion_reward");
@@ -127,19 +121,11 @@ HoI4Focus::HoI4Focus(Object* obj)
 	{
 		completionReward = completionRewardObjs[0]->getLeaf();
 	}
-	else
-	{
-		completionReward = "";
-	}
 
 	auto aiWillDoObjs = obj->getValue("aiWillDo");
 	if (aiWillDoObjs.size() > 0)
 	{
 		aiWillDo = aiWillDoObjs[0]->getLeaf();
-	}
-	else
-	{
-		aiWillDo = "";
 	}
 
 	for (auto prereqObj: obj->getValue("prerequisite"))
@@ -154,10 +140,28 @@ HoI4Focus* HoI4Focus::makeCustomizedCopy(const string& country) const
 	HoI4Focus* newFocus = new HoI4Focus(*this);
 
 	newFocus->id += country;
+
 	if (newFocus->mutuallyExclusive != "")
 	{
+		//have to account for several foci in one mututal exclusion, so need to look for occurences of " focus" and insert country before that
+		unsigned int stringPosition = 0;
+		do
+		{
+			int focusPosition = newFocus->mutuallyExclusive.find(" focus", stringPosition);
+			if (focusPosition != string::npos)
+			{
+				newFocus->mutuallyExclusive.insert(focusPosition, country);
+				stringPosition = focusPosition + country.size() + 6;
+			}
+			else
+			{
+				stringPosition = newFocus->mutuallyExclusive.size();
+			}
+		}
+		while(stringPosition < newFocus->mutuallyExclusive.size());
 		newFocus->mutuallyExclusive += country;
 	}
+
 	newFocus->prerequisites.clear();
 	for (auto prerequisite: prerequisites)
 	{
@@ -180,14 +184,13 @@ HoI4Focus* HoI4Focus::makeCustomizedCopy(const string& country) const
 		newFocus->prerequisites.push_back(prerequisite + country);
 	}
 
-
 	HoI4Localisation::copyFocusLocalisations(id, newFocus->id);
 
 	return newFocus;
 }
 
 
-ostream& operator << (ostream& output, HoI4Focus& focus)
+ostream& operator << (ostream& output, const HoI4Focus& focus)
 {
 	output << "	focus = {\n";
 	output << "		id = " << focus.id << "\n";

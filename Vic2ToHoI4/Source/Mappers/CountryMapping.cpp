@@ -22,7 +22,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "CountryMapping.h"
-
 #include <algorithm>
 #include <iomanip>
 #include <iostream>
@@ -38,10 +37,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-CountryMapper* CountryMapper::instance = NULL;
+CountryMapper* CountryMapper::instance = nullptr;
 
 
-CountryMapper::CountryMapper()
+
+CountryMapper::CountryMapper():
+	Vic2TagToHoI4TagsRules(),
+	V2TagToHoI4TagMap(),
+	generatedHoI4TagPrefix('X'),
+	generatedHoI4TagSuffix(0)
 {
 	LOG(LogLevel::Info) << "Getting country mappings";
 	readRules();
@@ -51,7 +55,7 @@ CountryMapper::CountryMapper()
 void CountryMapper::readRules()
 {
 	LOG(LogLevel::Info) << "Reading country mapping rules";
-	vector<Object*> ruleNodes = getRules();
+	vector<shared_ptr<Object>> ruleNodes = getRules();
 	for (auto rule: ruleNodes)
 	{
 		importRule(rule);
@@ -59,15 +63,15 @@ void CountryMapper::readRules()
 }
 
 
-vector<Object*> CountryMapper::getRules()
+vector<shared_ptr<Object>> CountryMapper::getRules() const
 {
-	Object* countryMappingsFile = parser_UTF8::doParseFile("country_mappings.txt");
+	shared_ptr<Object> countryMappingsFile = parser_UTF8::doParseFile("country_mappings.txt");
 	if (!countryMappingsFile)
 	{
 		LOG(LogLevel::Error) << "Failed to parse country_mappings.txt";
 		exit(-1);
 	}
-	vector<Object*> nodes = countryMappingsFile->getLeaves();
+	vector<shared_ptr<Object>> nodes = countryMappingsFile->getLeaves();
 	if (nodes.empty())
 	{
 		LOG(LogLevel::Error) << "country_mappings.txt does not contain a mapping";
@@ -78,9 +82,9 @@ vector<Object*> CountryMapper::getRules()
 }
 
 
-void CountryMapper::importRule(Object* rule)
+void CountryMapper::importRule(shared_ptr<Object> rule)
 {
-	vector<Object*> ruleItems = rule->getLeaves();
+	vector<shared_ptr<Object>> ruleItems = rule->getLeaves();
 
 	string newVic2Tag;
 	vector<string>	HoI4Tags;
@@ -118,8 +122,6 @@ void CountryMapper::CreateMappings(const V2World* srcWorld)
 
 void CountryMapper::resetMappingData()
 {
-	V2TagToHoI4TagMap.clear();
-
 	generatedHoI4TagPrefix = 'X';
 	generatedHoI4TagSuffix = 0;
 }
@@ -185,13 +187,13 @@ void CountryMapper::mapToNewTag(const string& Vic2Tag, const string& HoI4Tag)
 }
 
 
-void CountryMapper::LogMapping(const string& sourceTag, const string& targetTag, const string& reason)
+void CountryMapper::LogMapping(const string& sourceTag, const string& targetTag, const string& reason) const
 {
 	LOG(LogLevel::Debug) << "Mapping " << sourceTag << " -> " << targetTag << " (" << reason << ')';
 }
 
 
-bool CountryMapper::tagIsAlreadyAssigned(const string& HoI4Tag)
+bool CountryMapper::tagIsAlreadyAssigned(const string& HoI4Tag) const
 {
 	return (V2TagToHoI4TagMap.right.find(HoI4Tag) != V2TagToHoI4TagMap.right.end());
 }

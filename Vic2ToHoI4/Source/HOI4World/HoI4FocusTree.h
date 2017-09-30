@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -47,28 +47,41 @@ class HoI4FocusTree
 		HoI4FocusTree* makeCustomizedCopy(const HoI4Country* country) const;
 		void setNextFreeColumn(int newFreeColumn) { nextFreeColumn = newFreeColumn; };
 
-		void addGenericFocusTree();
-		void addDemocracyNationalFocuses(HoI4Country* Home, vector<HoI4Country*> CountriesToContain, int XStart);
-		void addAbsolutistEmpireNationalFocuses(HoI4Country* country, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets);
-		void addCommunistCoupBranch(HoI4Country* Home, vector<HoI4Country*> coupTargets);
-		void addCommunistWarBranch(HoI4Country* Home, vector<HoI4Country*> warTargets, HoI4Events* events);
-		void addCommunistGPWarBranch(HoI4Country* Home, vector<HoI4Country*> newAllies, vector<HoI4Country*> GCTargets, HoI4Events* events);
+		void addGenericFocusTree(const set<string>& majorIdeologies);
 
-		void output();
+		void addDemocracyNationalFocuses(const HoI4Country* Home, const vector<const HoI4Country*>& CountriesToContain);
+		void addAbsolutistEmpireNationalFocuses(const HoI4Country* country, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets);
+		void addCommunistCoupBranch(const HoI4Country* Home, const vector<HoI4Country*>& coupTargets);
+		void addCommunistWarBranch(const HoI4Country* Home, const vector<HoI4Country*>& warTargets, HoI4Events* events);
+		void addFascistAnnexationBranch(const HoI4Country* Home, const vector<const HoI4Country*>& annexationTargets, HoI4Events* events);
+		void addFascistSudetenBranch(const HoI4Country* Home, const vector<const HoI4Country*>& sudetenTargets, const vector<set<string>>& demandedStates, HoI4Events* events);
+		void addGPWarBranch(const HoI4Country* Home, const vector<HoI4Country*>& newAllies, const vector<const HoI4Country*>& GCTargets, const string& ideology, HoI4Events* events);
+
+		void output(const string& filename) const;
 
 		void addFocus(HoI4Focus* newFocus) { focuses.push_back(newFocus); }
 
 	private:
-		void addVersion1_0GenericFocusTree();
-		void addVersion1_3GenericFocusTree();
+		HoI4FocusTree(const HoI4FocusTree&) = delete;
+		HoI4FocusTree& operator=(const HoI4FocusTree&) = delete;
+
+		int calculateNumCollectovistIdeologies(const set<string>& majorIdeologies);
+		void determineMutualExclusions(const set<string>& majorIdeologies);
+		void addFascistGenericFocuses();
+		void addCommunistGenericFocuses();
+		void addAbsolutistGenericFocuses();
+		void addRadicalGenericFocuses();
 
 		string srcCountryTag;
 		string dstCountryTag;
 		vector<HoI4Focus*> focuses;
 		int nextFreeColumn;
+
+		string fascistMutualExlusions;
+		string communistMutualExclusions;
+		string absolutistMutualExlusions;
+		string radicalMutualExclusions;
 };
-
-
 
 
 

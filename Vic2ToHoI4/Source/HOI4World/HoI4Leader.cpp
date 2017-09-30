@@ -25,14 +25,16 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Leader::HoI4Leader(vector<string>& firstNames, vector<string>& lastNames, string _country, string _type, leaderTraitsMap& _traitsMap, vector<string>& portraits)
+HoI4Leader::HoI4Leader(vector<string>& firstNames, vector<string>& lastNames, string _country, string _type, leaderTraitsMap& _traitsMap, vector<string>& portraits):
+	ID(Configuration::getNextLeaderID()),
+	name(firstNames[rand() % firstNames.size()] + " " + lastNames[rand() % lastNames.size()]),
+	country(_country),
+	type(_type),
+	skill(0),
+	rank(1),
+	picture(""),
+	traits()
 {
-	ID			= Configuration::getNextLeaderID();
-	name		= firstNames[rand() % firstNames.size()] + " " + lastNames[rand() % lastNames.size()];
-	country	= _country;
-	type		= _type;
-	skill		= 0;
-	rank		= 1;
 	//picture	= portraits[rand() % portraits.size()];
 
 	//if (rand() % 4 > 0)
@@ -53,11 +55,16 @@ HoI4Leader::HoI4Leader(vector<string>& firstNames, vector<string>& lastNames, st
 }
 
 
-HoI4Leader::HoI4Leader(V2Leader* srcLeader, string _country, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, vector<string>& portraits)
+HoI4Leader::HoI4Leader(V2Leader* srcLeader, string _country, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, vector<string>& portraits):
+	ID(Configuration::getNextLeaderID()),
+	name(srcLeader->getName()),
+	country(_country),
+	type(""),
+	skill(static_cast<int>(srcLeader->getPrestige() * 22.5f)),
+	rank(4),
+	picture(""),
+	traits()
 {
-	ID			= Configuration::getNextLeaderID();
-	name		= srcLeader->getName();
-	country	= _country;
 	if (srcLeader->getType() == "land")
 	{
 		type = "land";
@@ -66,12 +73,12 @@ HoI4Leader::HoI4Leader(V2Leader* srcLeader, string _country, personalityMap& lan
 	{
 		type = "sea";
 	}
-	skill		= static_cast<int>(srcLeader->getPrestige() * 22.5f);
+
 	if (skill > 9)
 	{
 		skill = 9;
 	}
-	rank		= 4;
+
 	//picture	= portraits[rand() % portraits.size()];
 
 	if (type == "land")

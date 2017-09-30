@@ -30,20 +30,24 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-Vic2State::Vic2State(const Object* stateObj, string ownerTag)
+Vic2State::Vic2State(shared_ptr<Object> stateObj, const string& ownerTag):
+	owner(ownerTag),
+	stateID(""),
+	partialState(false),
+	provinceNums(),
+	provinces(),
+	factoryLevel(0),
+	employedWorkers(0)
 {
-	owner = ownerTag;
-	partialState = false;
-
 	addProvinceNums(stateObj);
 	setID();
 	setFactoryLevel(stateObj);
 }
 
 
-void Vic2State::addProvinceNums(const Object* stateObj)
+void Vic2State::addProvinceNums(shared_ptr<Object> stateObj)
 {
-	vector<string> provinceIDs = getProvinceIDs(stateObj);
+	const vector<string> provinceIDs = getProvinceIDs(stateObj);
 	for (auto provinceItr: provinceIDs)
 	{
 		provinceNums.insert(stoi(provinceItr));
@@ -65,10 +69,11 @@ void Vic2State::setID()
 }
 
 
-vector<string> Vic2State::getProvinceIDs(const Object* stateObj)
+vector<string> Vic2State::getProvinceIDs(shared_ptr<Object> stateObj) const
 {
 	vector<string> provinceIDs;
-	vector<Object*> provinceObjs = stateObj->getValue("provinces");
+
+	const vector<shared_ptr<Object>> provinceObjs = stateObj->getValue("provinces");
 	if (provinceObjs.size() > 0)
 	{
 		provinceIDs = provinceObjs[0]->getTokens();
@@ -78,21 +83,18 @@ vector<string> Vic2State::getProvinceIDs(const Object* stateObj)
 }
 
 
-void Vic2State::setFactoryLevel(const Object* stateObj)
+void Vic2State::setFactoryLevel(shared_ptr<Object> stateObj)
 {
-	factoryLevel = 0;
-
-	vector<Object*> buildingsObjs = stateObj->getValue("state_buildings");
-	for (auto buildingObj: buildingsObjs)
+	for (auto buildingObj: stateObj->getValue("state_buildings"))
 	{
 		addBuildingLevel(buildingObj);
 	}
 }
 
 
-void Vic2State::addBuildingLevel(const Object* buildingObj)
+void Vic2State::addBuildingLevel(shared_ptr<Object> buildingObj)
 {
-	vector<Object*> levelObjs = buildingObj->getValue("level");
+	const vector<shared_ptr<Object>> levelObjs = buildingObj->getValue("level");
 	if (levelObjs.size() > 0)
 	{
 		factoryLevel += stoi(levelObjs[0]->getLeaf());
@@ -108,7 +110,7 @@ void Vic2State::determineEmployedWorkers()
 }
 
 
-workerStruct Vic2State::countEmployedWorkers()
+workerStruct Vic2State::countEmployedWorkers() const
 {
 	workerStruct workers;
 
@@ -124,22 +126,25 @@ workerStruct Vic2State::countEmployedWorkers()
 }
 
 
-workerStruct Vic2State::limitWorkersByFactoryLevels(workerStruct workers)
+workerStruct Vic2State::limitWorkersByFactoryLevels(const workerStruct& workers) const
 {
+	workerStruct newWorkers;
 	if ((workers.craftsmen + workers.clerks) > (factoryLevel * 10000))
 	{
-		float newCraftsmen = (factoryLevel * 10000.0f) / (workers.craftsmen + workers.clerks) * workers.craftsmen;
-		float newClerks = (factoryLevel * 10000.0f) / (workers.craftsmen + workers.clerks) * workers.clerks;
-
-		workers.craftsmen	= static_cast<int>(newCraftsmen);
-		workers.clerks = static_cast<int>(newClerks);
+		newWorkers.craftsmen = static_cast<int>((factoryLevel * 10000.0f) / (workers.craftsmen + workers.clerks) * workers.craftsmen);
+		newWorkers.clerks = static_cast<int>((factoryLevel * 10000.0f) / (workers.craftsmen + workers.clerks) * workers.clerks);
+		newWorkers.artisans = workers.artisans;
+	}
+	else
+	{
+		newWorkers = workers;
 	}
 
-	return workers;
+	return newWorkers;
 }
 
 
-int Vic2State::determineEmployedWorkersScore(workerStruct workers)
+int Vic2State::determineEmployedWorkersScore(const workerStruct& workers) const
 {
 	int employedWorkerScore = workers.craftsmen + (workers.clerks * 2) + static_cast<int>(workers.artisans * 0.5) + (workers.capitalists * 2);
 	if (ownerHasNoCores())
@@ -151,7 +156,7 @@ int Vic2State::determineEmployedWorkersScore(workerStruct workers)
 }
 
 
-bool Vic2State::ownerHasNoCores()
+bool Vic2State::ownerHasNoCores() const
 {
 	for (auto province: provinces)
 	{
@@ -170,7 +175,6 @@ bool Vic2State::ownerHasNoCores()
 
 void Vic2State::determineIfPartialState()
 {
-	partialState = false;
 	if (provinces.size() > 0)
 	{
 		auto fullState = stateMapper::getStateMapping().find(*provinceNums.begin());
