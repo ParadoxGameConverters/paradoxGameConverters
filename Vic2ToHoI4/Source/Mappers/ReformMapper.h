@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <map>
+#include <memory>
 #include <string>
 using namespace std;
 
@@ -54,7 +55,10 @@ class reformMapper
 			return instance;
 		}
 		reformMapper();
-		void initReforms(Object* obj);
+		void initReforms(shared_ptr<Object> obj);
+
+		reformMapper(const reformMapper&) = delete;
+		reformMapper& operator=(const reformMapper&) = delete;
 
 		map<string, string> reformTypes;
 

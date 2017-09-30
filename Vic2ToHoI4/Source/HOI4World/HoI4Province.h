@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -35,16 +35,16 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class HoI4Province
 {
 	public:
-		HoI4Province(string Owner, int State);
+		HoI4Province(const string& Owner, int State);
 		void output() const;
 		void convertFromOldProvince(const V2Province* oldProvince);
-		void addCore(string);
-		void addFilename(string _filename);
+		void addCore(const string& core);
+		void addFilename(const string& _filename);
 
 		void clearCores()										{ cores.clear(); }
 		void setCoastal(bool _coastal)					{ coastal = _coastal; }
-		void setName(string _name)							{ name = _name; }
-		void setOwner(string _owner)						{ owner = _owner; }
+		void setName(const string& _name)							{ name = _name; }
+		void setOwner(const string& _owner)						{ owner = _owner; }
 		void addManpower(double newManpower)			{ manpower += newManpower; }
 		void setManpower(double newManpower)			{ manpower = newManpower; }
 		void addLeadership(double newLeadership)		{ leadership += newLeadership; }
@@ -75,6 +75,9 @@ class HoI4Province
 		void		requireInfrastructure(int min);
 
 	private:
+		HoI4Province(const HoI4Province&) = delete;
+		HoI4Province& operator=(const HoI4Province&) = delete;
+
 		map<string, string>	filenames;
 		bool						coastal;
 		int						num;
@@ -82,8 +85,6 @@ class HoI4Province
 		string					owner;
 		vector<string>			cores;
 		bool						is_land;
-
-		int				ncrafts;
 
 		int				points;
 		double			metal;

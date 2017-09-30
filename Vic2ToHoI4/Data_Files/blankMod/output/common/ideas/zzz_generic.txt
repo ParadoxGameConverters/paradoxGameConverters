@@ -94,160 +94,12 @@ ideas = {
 			}		
 		}
 	}
-
+	
 	# Special ones that can be applied on other countries through focus system.
 	country = {
-	
-		nationalism = {
-			
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				has_government = fascism
-			}
-
-			removal_cost = -1
-
-			picture = generic_infantry_bonus
-
-			
-			modifier = {
-				fascism_drift = 0.1
-			}
-		}
-
-		internationalism = {
-			
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				has_government = communism
-			}
-
-			removal_cost = -1
-
-			picture = generic_intel_bonus
-			
-			modifier = {
-				#justify_war_goal_time = -0.25
-				communism_drift = 0.1
-			}
-		}
-
-		fascist_influence = {
-			
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				has_government = fascism
-			}
-
-			removal_cost = -1
-
-			picture = generic_fascism_drift_bonus
-			
-			modifier = {
-				fascism_drift = 0.1
-				fascism_acceptance = 85
-			}
-		}
-		
-		communist_influence = {
-			
-			
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				has_government = communism
-			}
-
-			removal_cost = -1
-
-			picture = generic_communism_drift_bonus
-			
-			modifier = {
-				communism_drift = 0.1
-				communism_acceptance = 85
-			}
-		}
-		democratic_influence = {
-			
-			
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				has_government = democratic
-			}
-
-			removal_cost = -1
-
-			picture = generic_democratic_drift_bonus
-			
-			modifier = {
-				democratic_drift = 0.1
-				democratic_acceptance = 85
-			}
-		}
-		
-		
-		communist_pressure = {
-			
-			
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				has_government = communism
-			}
-
-			removal_cost = -1
-
-			picture = generic_communism_drift_bonus
-			
-			modifier = {
-				communism_drift = 0.1
-			}
-		}
-		
-		
 		# Generic Focus Ideas
-
-		
-		
-		collectivist_ethos_focus = {
-			
-		
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				has_government = communism
-			}
-		
-			removal_cost = -1
-
-			picture = generic_pp_unity_bonus
-
-			modifier = {
-				democratic_drift = -0.02
-			}
-		}
-	
 		liberty_ethos_focus = {
-			
-			
+						
 			allowed = {
 				always = no
 			}
@@ -380,7 +232,7 @@ ideas = {
 				army_core_defence_factor = 0.1
 			}
 		}
-	
+
 		political_commissars_focus = {
 			
 			
@@ -400,7 +252,108 @@ ideas = {
 				army_morale_factor = 0.1
 			}
 		}
+		
+		royal_dictatorship_focus = {
+			
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				has_government = absolutist
+			}
+			
+			removal_cost = -1
+
+			picture = Hun_hungarian_monarchy_habsburg
 	
+			modifier = {
+				drift_defence_factor = 0.2
+			}
+		}
+
+		historical_claims_focus = {
+			
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				has_government = absolutist
+			}
+			
+			removal_cost = -1
+
+			picture = Generic_constitutional_guarantee
+	
+			modifier = {
+				justify_war_goal_time = -0.5
+				take_states_cost_factor = 0.5
+			}
+		}
+		
+		private_channels_focus = {
+			
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				has_government = radical
+			}
+			
+			removal_cost = -1
+
+			picture = can_wartime_prices_and_trade_board
+	
+			modifier = {
+				trade_opinion_factor = 0.2
+			}
+		}
+
+		hardfought_market_focus = {
+			
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				has_government = radical
+			}
+			
+			removal_cost = -1
+
+			picture = generic_license_production
+	
+			modifier = {
+				production_factory_max_efficiency_factor = 0.05
+			}
+		}
+		
+		army_provides_focus = {
+			
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				has_government = radical
+			}
+			
+			removal_cost = -1
+
+			picture = generic_manpower_bonus
+	
+			modifier = {
+				conscription = 0.025
+			}
+		}
+		
 		neutrality_idea = {
 			
 			
@@ -522,123 +475,6 @@ ideas = {
 			modifier = {
 				foreign_subversive_activites = -0.75
 			}			
-		}
-
-		communism_banned = {
-			picture = anti_soviet_pact
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				NOT = {
-					has_government = communism
-				}
-			}
-
-			modifier = {
-				communism_drift = -0.05
-			}
-		}
-
-		fascism_banned = {
-
-			picture = generic_fascism_banned
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				NOT = {
-					has_government = fascism
-				}
-			}
-
-			modifier = {
-				fascism_drift = -0.05
-			}
-		}
-	}
-	
-	political_advisor = {
-		# POLITICAL	
-		generic_communist_revolutionary = {
-			
-			allowed = {
-				NOT = {
-					has_available_idea_with_traits = { idea = communist_revolutionary limit = 1 }
-				}
-			}
-			
-			traits = { communist_revolutionary }
-	
-			on_add = {
-				country_event = political.1
-			}
-	
-			do_effect = {
-				NOT = {
-					has_government = communism
-				}
-			}
-	
-			ai_will_do = {
-				factor = 0
-			}
-		}
-			
-		generic_democratic_reformer = {
-			
-			allowed = {
-				NOT = {
-					has_available_idea_with_traits = { idea = democratic_reformer limit = 1 }
-				}
-			}
-			
-
-			
-			traits = { democratic_reformer }
-	
-			on_add = {
-				country_event = political.13
-			}
-	
-			do_effect = {
-				NOT = {
-					has_government = democratic
-				}
-			}
-	
-			ai_will_do = {
-				factor = 0
-			}
-		}
-		
-		generic_fascist_demagogue = {
-			
-			allowed = {
-				NOT = {
-					has_available_idea_with_traits = { idea = fascist_demagogue limit = 1 }
-				}
-			}
-			
-			
-			traits = { fascist_demagogue }
-	
-			on_add = {
-				country_event = political.7
-			}
-	
-			do_effect = {
-				NOT = {
-					has_government = fascism
-				}
-			}
-	
-			ai_will_do = {
-				factor = 0
-			}
 		}
 	}
 		

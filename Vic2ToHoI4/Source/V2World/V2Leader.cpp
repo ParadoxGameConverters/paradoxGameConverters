@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -25,27 +25,25 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Leader::V2Leader(Object* obj)
+V2Leader::V2Leader(shared_ptr<Object> obj):
+	name(obj->getLeaf("name")),
+	type(obj->getLeaf("type")),
+	personality(obj->getLeaf("personality")),
+	background(obj->getLeaf("background")),
+	prestige(stof(obj->getLeaf("prestige")))
 {
-	name = obj->getLeaf("name");
 	if (name[0] == '\"')
 	{
 		name	= name.substr(1, name.length() - 2);
 	}
 
-	type = obj->getLeaf("type");
-
-	personality	= obj->getLeaf("personality");
 	if (personality[0] == '\"')
 	{
 		personality	= personality.substr(1, personality.length() - 2);
 	}
 
-	background	= obj->getLeaf("background");
 	if (background[0] == '\"')
 	{
 		background	= background.substr(1, background.length() - 2);
 	}
-
-	prestige = stof(obj->getLeaf("prestige"));
 }

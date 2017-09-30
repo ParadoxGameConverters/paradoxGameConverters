@@ -53,6 +53,7 @@ class coastalHoI4ProvincesMapper
 		}
 
 	private:
+
 		static coastalHoI4ProvincesMapper* instance;
 		static coastalHoI4ProvincesMapper* getInstance()
 		{
@@ -65,9 +66,12 @@ class coastalHoI4ProvincesMapper
 		}
 
 		coastalHoI4ProvincesMapper();
-		map<int, province> getProvinces();
+		map<int, province> getProvinces() const;
 
-		bool IsProvinceCoastal(int provinceNum);
+		coastalHoI4ProvincesMapper(const coastalHoI4ProvincesMapper&) = delete;
+		coastalHoI4ProvincesMapper& operator=(const coastalHoI4ProvincesMapper&) = delete;
+
+		bool IsProvinceCoastal(int provinceNum) const;
 
 		map<int, int> coastalProvinces;	// province, connecting sea province
 };

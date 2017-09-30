@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -22,11 +22,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Color.h"
-
 #include <chrono>
 #include <random>
 #include <boost/lexical_cast.hpp>
-
 #include "Object.h"
 
 
@@ -35,11 +33,13 @@ Color::Color()
 : initialized(false), c({ 0, 0, 0 })
 {}
 
+
 Color::Color(const int r, const int g, const int b)
 : initialized(true), c({ r, g, b })
 {}
 
-Color::Color(Object* colorObject)
+
+Color::Color(shared_ptr<Object> colorObject)
 : initialized(false), c({ 0, 0, 0 })
 {
 	auto colorTokens = colorObject->getTokens();	// the colors held by the object
@@ -53,13 +53,14 @@ Color::Color(Object* colorObject)
 	}
 }
 
+
 void Color::RandomlyFlunctuate(const int stdDev)
 {
 	// All three color components will go up or down by the some amount (according to stdDev), 
 	// and then each is tweaked a bit more (with a much smaller standard deviation).
-	static std::mt19937 generator(static_cast<unsigned int>(std::chrono::system_clock::now().time_since_epoch().count()));
-	const double allChange = std::normal_distribution<double>(0.0, stdDev)(generator);	// the amount the colors all change by
-	std::normal_distribution<double> distribution(0.0, stdDev / 4.0);
+	static mt19937 generator(static_cast<unsigned int>(chrono::system_clock::now().time_since_epoch().count()));
+	const double allChange = normal_distribution<double>(0.0, stdDev)(generator);	// the amount the colors all change by
+	normal_distribution<double> distribution(0.0, stdDev / 4.0);
 	for (auto& component : c)	// the component under consideration
 	{
 		component += static_cast<int>(allChange + distribution(generator) + 0.5);
@@ -74,11 +75,13 @@ void Color::RandomlyFlunctuate(const int stdDev)
 	}
 }
 
-std::ostream& operator<<(std::ostream& out, const Color& color)
+
+ostream& operator<<(ostream& out, const Color& color)
 {
 	out << color.c[0] << ' ' << color.c[1] << ' ' << color.c[2];
 	return out;
 }
+
 
 void Color::GetRGB(int& r, int& g, int& b) const
 {

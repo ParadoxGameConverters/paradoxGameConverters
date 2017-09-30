@@ -26,22 +26,23 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Agreement::HoI4Agreement(const string& _country1, const string& _country2, const V2Agreement* oldAgreement)
+HoI4Agreement::HoI4Agreement(const string& _country1, const string& _country2, const V2Agreement* oldAgreement):
+	type(oldAgreement->type),
+	country1(_country1),
+	country2(_country2),
+	relationshipValue(0),
+	startDate(oldAgreement->start_date)
 {
-	country1 = _country1;
-	country2 = _country2;
-	startDate = oldAgreement->start_date;
-	type = oldAgreement->type;
 }
 
 
-HoI4Agreement::HoI4Agreement(const string& _country1, const string& _country2, const string& _type, int _relationshipValue, const date& _startDate)
+HoI4Agreement::HoI4Agreement(const string& _country1, const string& _country2, const string& _type, int _relationshipValue, const date& _startDate):
+	type(_type),
+	country1(_country1),
+	country2(_country2),
+	relationshipValue(_relationshipValue),
+	startDate(_startDate)
 {
-	country1 = _country1;
-	country2 = _country2;
-	startDate = _startDate;
-	type = _type;
-	relationshipValue = _relationshipValue;
 }
 
 

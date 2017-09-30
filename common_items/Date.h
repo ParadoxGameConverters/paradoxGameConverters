@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -24,7 +24,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #ifndef DATE_H_
 #define DATE_H_
 
+
+
 #include <iostream>
+#include <memory>
 #include <string>
 using namespace std;
 
@@ -32,12 +35,14 @@ using namespace std;
 
 class Object;
 
+
+
 struct date
 {
 	date() : year(1), month(1), day(1) {};
 	date(string _init);
 	date(const date& _init);
-	date(const Object* _init);
+	date(const shared_ptr<Object> _init);
 
 	date& operator=(const date& _rhs);
 	bool operator==(const date& _rhs) const;
@@ -59,5 +64,7 @@ struct date
 	int month;		// the month
 	int day;			// the day
 };
+
+
 
 #endif // _DATE_H

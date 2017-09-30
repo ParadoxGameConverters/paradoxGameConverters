@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -25,16 +25,16 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Airplane::HoI4Airplane(string _type, string _owner, int _amount)
+HoI4Airplane::HoI4Airplane(const string& _type, const string& _owner, int _amount):
+	type(_type),
+	owner(_owner),
+	amount(_amount)
 {
-	type = _type;
-	owner = _owner;
-	amount = _amount;
 }
 
 
 
-ofstream& operator << (ofstream& output, HoI4Airplane& instance)
+ofstream& operator << (ofstream& output, const HoI4Airplane& instance)
 {
 	output << "\t\t" << instance.type << " = {\n";
 	output << "\t\t\towner = \"" << instance.owner << "\"\n";

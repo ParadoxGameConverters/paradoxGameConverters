@@ -25,15 +25,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Minister::HoI4Minister(vector<string>& firstNames, vector<string>& lastNames, string _ideology, governmentJob job, governmentJobsMap& jobMap, vector<string>& portraits)
+HoI4Minister::HoI4Minister(vector<string>& firstNames, vector<string>& lastNames, string _ideology, governmentJob job, governmentJobsMap& jobMap, vector<string>& portraits):
+	ID(Configuration::getNextLeaderID()),
+	name(firstNames[rand() % firstNames.size()] + " " + lastNames[rand() % lastNames.size()]),
+	ideology(_ideology),
+	loyalty(1.0f),
+	picture(portraits[rand() % portraits.size()]),
+	roles()
 {
-	ID			= Configuration::getNextLeaderID();
-	name		= firstNames[rand() % firstNames.size()] + " " + lastNames[rand() % lastNames.size()];
-	ideology	= _ideology;
-	loyalty	= 1.0f;
-
-	picture	= portraits[rand() % portraits.size()];
-
 	vector<string> traits = jobMap.find(job.first)->second;
 	roles.push_back(make_pair(job.first, traits[rand() % traits.size()]));
 
