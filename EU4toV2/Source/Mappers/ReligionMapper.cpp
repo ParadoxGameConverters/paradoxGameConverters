@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -37,7 +37,7 @@ religionMapper::religionMapper()
 {
 	LOG(LogLevel::Info) << "Parsing religion mappings";
 
-	Object* religionMapObj = parser_UTF8::doParseFile("religionMap.txt");
+	shared_ptr<Object> religionMapObj = parser_UTF8::doParseFile("religionMap.txt");
 	if (religionMapObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file religionMap.txt";
@@ -53,9 +53,9 @@ religionMapper::religionMapper()
 }
 
 
-void religionMapper::initReligionMap(Object* obj)
+void religionMapper::initReligionMap(shared_ptr<Object> obj)
 {
-	vector<Object*> rules = obj->getLeaves();
+	vector<shared_ptr<Object>> rules = obj->getLeaves();
 
 	for (auto rule: rules)
 	{

@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -57,7 +57,7 @@ CountryMapping::CountryMapping()
 void CountryMapping::readRules()
 {
 	LOG(LogLevel::Info) << "Reading country mapping rules";
-	vector<Object*> ruleNodes = getRules();
+	vector<shared_ptr<Object>> ruleNodes = getRules();
 	for (auto rule: ruleNodes)
 	{
 		importRule(rule);
@@ -65,15 +65,15 @@ void CountryMapping::readRules()
 }
 
 
-vector<Object*> CountryMapping::getRules()
+vector<shared_ptr<Object>> CountryMapping::getRules()
 {
-	Object* countryMappingsFile = parser_UTF8::doParseFile("country_mappings.txt");
+	shared_ptr<Object> countryMappingsFile = parser_UTF8::doParseFile("country_mappings.txt");
 	if (!countryMappingsFile)
 	{
 		LOG(LogLevel::Error) << "Failed to parse country_mappings.txt";
 		exit(-1);
 	}
-	vector<Object*> nodes = countryMappingsFile->getLeaves();
+	vector<shared_ptr<Object>> nodes = countryMappingsFile->getLeaves();
 	if (nodes.empty())
 	{
 		LOG(LogLevel::Error) << "country_mappings.txt does not contain a mapping";
@@ -84,9 +84,9 @@ vector<Object*> CountryMapping::getRules()
 }
 
 
-void CountryMapping::importRule(Object* rule)
+void CountryMapping::importRule(shared_ptr<Object> rule)
 {
-	vector<Object*> ruleItems = rule->getLeaves();
+	vector<shared_ptr<Object>> ruleItems = rule->getLeaves();
 
 	string newEU4Tag;
 	vector<string>	V2Tags;
@@ -135,11 +135,11 @@ void CountryMapping::readEU4Regions()
 }
 
 
-vector<Object*> CountryMapping::parseEU4RegionsFiles()
+vector<shared_ptr<Object>> CountryMapping::parseEU4RegionsFiles()
 {
-	vector<Object*> colonialRegionsObjs;
+	vector<shared_ptr<Object>> colonialRegionsObjs;
 
-	Object* colonialRegionsObj = parser_UTF8::doParseFile((Configuration::getEU4Path() + "/common/colonial_regions/00_colonial_regions.txt").c_str());
+	shared_ptr<Object> colonialRegionsObj = parser_UTF8::doParseFile((Configuration::getEU4Path() + "/common/colonial_regions/00_colonial_regions.txt").c_str());
 	if (colonialRegionsObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getEU4Path() << "/common/colonial_regions/00_colonial_regions.txt";
@@ -194,9 +194,9 @@ void CountryMapping::readVic2Regions()
 }
 
 
-Object* CountryMapping::parseVic2RegionsFile()
+shared_ptr<Object> CountryMapping::parseVic2RegionsFile()
 {
-	Object* Vic2RegionsObj;
+	shared_ptr<Object> Vic2RegionsObj;
 	if (Utils::DoesFileExist("./blankMod/output/map/region.txt"))
 	{
 		Vic2RegionsObj = parser_8859_15::doParseFile("./blankMod/output/map/region.txt");

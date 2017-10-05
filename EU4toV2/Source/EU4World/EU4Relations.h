@@ -1,4 +1,4 @@
-/*Copyright(c) 2014 The Paradox Game Converters Project
+/*Copyright(c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -19,13 +19,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
 
+
 #ifndef EU4RELATIONS_H_
 #define EU4RELATIONS_H_
 
 
+
 #include "Date.h"
 #include <string>
+#include <memory>
 using namespace std;
+
 
 class Object;
 
@@ -34,7 +38,7 @@ class Object;
 class EU4Relations
 {
 	public:
-		EU4Relations(Object* obj);
+		EU4Relations(shared_ptr<Object> obj);
 		string	getCountry()				const { return tag; }
 		int		getRelations()				const { return value; }
 		bool		hasMilitaryAccess()		const { return military_access; }
@@ -49,5 +53,7 @@ class EU4Relations
 		date		last_war;				// the last war between the countries
 		string	attitude;				// the attitude, if there is one
 };
+
+
 
 #endif

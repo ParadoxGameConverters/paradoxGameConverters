@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "../FlagUtils.h"
+#include <memory>
 #include <vector>
 using namespace std;
 
@@ -61,7 +62,7 @@ class FlagColorMapper
 		}
 
 		FlagColorMapper();
-		void initFlagColours(Object* obj);
+		void initFlagColours(shared_ptr<Object> obj);
 
 		FlagColour GetFlagColor(int index);
 

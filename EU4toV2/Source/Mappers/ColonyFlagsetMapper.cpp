@@ -38,7 +38,7 @@ colonyFlagsetMapper::colonyFlagsetMapper()
 {
 	LOG(LogLevel::Info) << "Parsing colony naming rules.";
 
-	Object* colonialObj = parser_UTF8::doParseFile("colonial_flags.txt");
+	shared_ptr<Object> colonialObj = parser_UTF8::doParseFile("colonial_flags.txt");
 	if (colonialObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse colonial_flags.txt";
@@ -50,15 +50,15 @@ colonyFlagsetMapper::colonyFlagsetMapper()
 }
 
 
-void colonyFlagsetMapper::initColonyFlagset(Object* obj)
+void colonyFlagsetMapper::initColonyFlagset(shared_ptr<Object> obj)
 {
-	vector<Object*> colonialFlagRules = obj->getLeaves();
-	vector<Object*> regionObjs = colonialFlagRules[0]->getLeaves();
+	vector<shared_ptr<Object>> colonialFlagRules = obj->getLeaves();
+	vector<shared_ptr<Object>> regionObjs = colonialFlagRules[0]->getLeaves();
 
 	for (auto regionObj: regionObjs)
 	{
 		string region = regionObj->getKey();
-		vector<Object*> flagObjs = regionObj->getLeaves();
+		vector<shared_ptr<Object>> flagObjs = regionObj->getLeaves();
 		for (auto flagObj: flagObjs)
 		{
 			shared_ptr<colonyFlag> flag(new colonyFlag());

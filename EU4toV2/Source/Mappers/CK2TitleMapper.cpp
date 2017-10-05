@@ -35,16 +35,16 @@ CK2TitleMapper* CK2TitleMapper::instance = NULL;
 CK2TitleMapper::CK2TitleMapper()
 {
 	LOG(LogLevel::Info) << "Getting CK2 titles";
-	Object* CK2TitleObj = parser_UTF8::doParseFile("ck2titlemap.txt");
+	shared_ptr<Object> CK2TitleObj = parser_UTF8::doParseFile("ck2titlemap.txt");
 	initCK2TitleMap(CK2TitleObj);
 }
 
 
-void CK2TitleMapper::initCK2TitleMap(Object* obj)
+void CK2TitleMapper::initCK2TitleMap(shared_ptr<Object> obj)
 {
 	generator();
 
-	vector<Object*> titles = obj->getLeaves();
+	vector<shared_ptr<Object>> titles = obj->getLeaves();
 	if (titles.size() == 0)
 	{
 		LOG(LogLevel::Error) << "Could not process ck2titlemap.txt";
@@ -53,7 +53,7 @@ void CK2TitleMapper::initCK2TitleMap(Object* obj)
 
 	for (auto link: titles[0]->getLeaves())
 	{
-		vector<Object*> titles = link->getLeaves();
+		vector<shared_ptr<Object>> titles = link->getLeaves();
 		string name;
 		string titleID;
 		string region = "";

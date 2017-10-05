@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -37,14 +37,14 @@ Configuration::Configuration()
 {
 	LOG(LogLevel::Info) << "Reading configuration file";
 
-	Object* configObj = parser_UTF8::doParseFile("configuration.txt");
+	shared_ptr<Object> configObj = parser_UTF8::doParseFile("configuration.txt");
 	if (configObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not open configuration.txt";
 		exit(-1);
 	}
 
-	vector<Object*> obj = configObj->getValue("configuration");
+	vector<shared_ptr<Object>> obj = configObj->getValue("configuration");
 	if (obj.size() != 1)
 	{
 		LOG(LogLevel::Error) << "Configuration file must contain exactly one configuration section";

@@ -24,6 +24,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #ifndef EU4WORLD_H_
 #define EU4WORLD_H_
 
+
+
 #include <istream>
 #include "EU4Army.h"
 #include "EU4Diplomacy.h"
@@ -52,28 +54,28 @@ class EU4World
 
 	private:
 		void verifySave(const string& EU4SaveFileName);
-		Object* parseSave(const string& EU4SaveFileName);
+		shared_ptr<Object> parseSave(const string& EU4SaveFileName);
 
-		void loadUsedMods(const Object* EU4SaveObj);
+		void loadUsedMods(const shared_ptr<Object> EU4SaveObj);
 		map<string, string> loadPossibleMods();
 		void loadEU4ModDirectory(map<string, string>& possibleMods);
 		void loadCK2ExportDirectory(map<string, string>& possibleMods);
 
-		void loadEU4Version(const Object* EU4SaveObj);
-		void loadActiveDLC(const Object* EU4SaveObj);
-		void loadEndDate(const Object* EU4SaveObj);
-		void loadEmpires(const Object* EU4SaveObj);
-		void loadHolyRomanEmperor(vector<Object*> empireObj);
-		void loadCelestialEmperor(vector<Object*> celestialEmpireObj);
+		void loadEU4Version(const shared_ptr<Object> EU4SaveObj);
+		void loadActiveDLC(const shared_ptr<Object> EU4SaveObj);
+		void loadEndDate(const shared_ptr<Object> EU4SaveObj);
+		void loadEmpires(const shared_ptr<Object> EU4SaveObj);
+		void loadHolyRomanEmperor(vector<shared_ptr<Object>> empireObj);
+		void loadCelestialEmperor(vector<shared_ptr<Object>> celestialEmpireObj);
 
 
-		void loadProvinces(const Object* EU4SaveObj);
+		void loadProvinces(const shared_ptr<Object> EU4SaveObj);
 		map<int, int> determineValidProvinces();
 
-		void loadCountries(const Object* EU4SaveObj);
-		void loadRevolutionTarget(const Object* EU4SaveObj);
+		void loadCountries(const shared_ptr<Object> EU4SaveObj);
+		void loadRevolutionTarget(const shared_ptr<Object> EU4SaveObj);
 		void addProvinceInfoToCountries();
-		void loadDiplomacy(const Object* EU4SaveObj);
+		void loadDiplomacy(const shared_ptr<Object> EU4SaveObj);
 		void determineProvinceWeights();
 
 		void checkAllEU4CulturesMapped() const;
