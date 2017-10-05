@@ -193,7 +193,7 @@ int V2Province::getTotalPopulation() const
 }
 
 
-int V2Province::getPopulation(string type) const
+int V2Province::getPopulation(const string& type) const
 {
 	int totalPopulation = 0;
 	for (auto pop: pops)
@@ -208,7 +208,7 @@ int V2Province::getPopulation(string type) const
 }
 
 
-int V2Province::getLiteracyWeightedPopulation(string type) const
+int V2Province::getLiteracyWeightedPopulation(const string& type) const
 {
 	int totalPopulation = 0;
 	for (auto pop: pops)

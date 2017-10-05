@@ -40,7 +40,7 @@ class Object;
 class HoI4Advisor
 {
 	public:
-		HoI4Advisor(shared_ptr<Object> object);
+		explicit HoI4Advisor(shared_ptr<Object> object);
 		void output(ofstream& output, const string& tag) const;
 		void addEventNum(const int num);
 

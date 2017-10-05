@@ -50,7 +50,7 @@ class Vic2State;
 class V2Country
 {
 	public:
-		V2Country(shared_ptr<Object> obj);
+		explicit V2Country(shared_ptr<Object> obj);
 
 		void addProvince(const pair<const int, V2Province*>& province) { provinces.insert(province); }
 		void setColor(const Color& newColor) { color = newColor; }

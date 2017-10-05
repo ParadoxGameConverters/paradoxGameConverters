@@ -45,12 +45,12 @@ class V2Pop;
 class V2Province
 {
 	public:
-		V2Province(shared_ptr<Object> obj);
+		explicit V2Province(shared_ptr<Object> obj);
 		void setCores(const map<string, V2Country*>& countries);
 
 		int getTotalPopulation() const;
-		int getPopulation(string type = "") const;
-		int getLiteracyWeightedPopulation(string type = "") const;
+		int getPopulation(const string& type = "") const;
+		int getLiteracyWeightedPopulation(const string& type = "") const;
 		double getPercentageWithCultures(const set<string>& cultures) const;
 
 		void setOwner(const V2Country* _owner) { owner = _owner; }

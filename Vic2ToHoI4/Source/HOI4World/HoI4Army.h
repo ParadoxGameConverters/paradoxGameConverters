@@ -150,7 +150,7 @@ using namespace std;
 class HoI4RegimentType
 {
 	public:
-		HoI4RegimentType(const string& type, int x, int y);
+		explicit HoI4RegimentType(const string& type, int x, int y);
 		HoI4RegimentType(const HoI4RegimentType&) = default;
 
 		const string getType() const { return type; }
@@ -169,7 +169,7 @@ class HoI4RegimentType
 class HoI4DivisionTemplateType
 {
 	public:
-		HoI4DivisionTemplateType(const string& name);
+		explicit HoI4DivisionTemplateType(const string& name);
 		HoI4DivisionTemplateType(const HoI4DivisionTemplateType&) = default;
 		HoI4DivisionTemplateType& operator=(const HoI4DivisionTemplateType&) = default;
 

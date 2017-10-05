@@ -273,8 +273,6 @@ void HoI4Localisation::AddNonenglishCountryLocalisations()
 
 void HoI4Localisation::CopyFocusLocalisations(const string& oldKey, const string& newKey)
 {
-	string oldDescription(oldKey + "_desc");
-	string newDescription(newKey + "_desc");
 	for (auto languageLocalisations: originalFocuses)
 	{
 		auto newLanguage = newFocuses.find(languageLocalisations.first);

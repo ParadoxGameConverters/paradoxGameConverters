@@ -40,7 +40,7 @@ const int maxGCWars = 1;
 class HoI4WarCreator
 {
 	public:
-		HoI4WarCreator(const HoI4World* world);
+		explicit HoI4WarCreator(const HoI4World* world);
 
 	private:
 		HoI4WarCreator(const HoI4WarCreator&) = delete;

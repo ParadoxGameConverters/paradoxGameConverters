@@ -36,8 +36,8 @@ class HOI4Version
 {
 	public:
 		HOI4Version();
-		HOI4Version(shared_ptr<Object> obj);
-		HOI4Version(string version);
+		explicit HOI4Version(shared_ptr<Object> obj);
+		explicit HOI4Version(string version);
 		HOI4Version(const HOI4Version&) = default;
 		HOI4Version& operator=(const HOI4Version&) = default;
 		bool operator >= (const HOI4Version& rhs) const;

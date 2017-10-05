@@ -41,7 +41,7 @@ class V2Diplomacy
 {
 	public:
 		V2Diplomacy(): agreements() {}
-		V2Diplomacy(shared_ptr<Object> obj);
+		explicit V2Diplomacy(shared_ptr<Object> obj);
 
 		const vector<const V2Agreement*>& getAgreements() const	{ return agreements; }
 

@@ -3251,7 +3251,6 @@ void HoI4FocusTree::addFascistAnnexationBranch(const HoI4Country* Home, const ve
 			if (i < annexationTargets.size())
 			{
 				//int x = i * 3;
-				string annexername = Home->getSourceCountry()->getName("english");
 				string annexedname = annexationTargets[i]->getSourceCountry()->getName("english");
 				//for random date
 				int v1 = rand() % 5 + 1;
@@ -3327,7 +3326,6 @@ void HoI4FocusTree::addFascistSudetenBranch(const HoI4Country* Home, const vecto
 		{
 			if (i < sudetenTargets.size())
 			{
-				string annexername = Home->getSourceCountry()->getName("english");
 				string annexedname = sudetenTargets[i]->getSourceCountry()->getName("english");
 				int v1 = rand() % 8 + 1;
 				int v2 = rand() % 8 + 1;

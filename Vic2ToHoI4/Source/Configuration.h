@@ -63,7 +63,7 @@ class Configuration // Singleton
 			getInstance()->forceMultiplier = mult;
 		}
 
-		static void setOutputName(string name)
+		static void setOutputName(const string& name)
 		{
 			getInstance()->outputName = name;
 		}

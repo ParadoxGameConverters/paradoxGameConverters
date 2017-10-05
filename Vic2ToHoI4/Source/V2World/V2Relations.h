@@ -37,7 +37,7 @@ class Object;
 class V2Relations
 {
 	public:
-		V2Relations(shared_ptr<Object> relationsObj);
+		explicit V2Relations(shared_ptr<Object> relationsObj);
 
 		string getTag() const { return tag; }
 		int getRelations() const { return value; }

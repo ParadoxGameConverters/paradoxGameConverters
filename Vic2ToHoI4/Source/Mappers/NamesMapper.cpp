@@ -57,7 +57,10 @@ namesMapper::namesMapper():
 	processVic2CulturesFile((Configuration::getV2Path() + "/common/cultures.txt"));
 
 	processNamesFile();
-	//checkForNames();
+	if (Configuration::getDebug())
+	{
+		checkForNames();
+	}
 }
 
 
@@ -355,7 +358,7 @@ string namesMapper::getCompanyName(map<string, vector<string>>& companyNames, co
 		{
 			std::uniform_int_distribution<int> surnameGen(0, companies.size() - 1);
 			company = companies[surnameGen(rng)];
-			for (vector<string>::iterator itr = companyNames[culture].begin(); itr != companyNames[culture].end(); itr++)
+			for (vector<string>::iterator itr = companyNames[culture].begin(); itr != companyNames[culture].end(); ++itr)
 			{
 				if (*itr == company)
 				{

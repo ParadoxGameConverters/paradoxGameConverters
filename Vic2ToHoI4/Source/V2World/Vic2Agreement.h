@@ -37,7 +37,7 @@ using namespace std;
 class V2Agreement
 {
 	public:
-		V2Agreement(shared_ptr<Object> obj);
+		explicit V2Agreement(shared_ptr<Object> obj);
 
 		string type;
 		string country1;

@@ -41,6 +41,7 @@ Log::Log(LogLevel level)
 	{
 		std::ofstream logFile("log.txt", std::ofstream::trunc);
 		logFileCreated = true;
+		logFile.close();
 	}
 }
 

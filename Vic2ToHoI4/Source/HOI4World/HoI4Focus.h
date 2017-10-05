@@ -37,7 +37,7 @@ class HoI4Focus
 {
 	public:
 		HoI4Focus();
-		HoI4Focus(shared_ptr<Object> obj);
+		explicit HoI4Focus(shared_ptr<Object> obj);
 		HoI4Focus(const HoI4Focus&) = default;
 
 		friend ostream& operator << (ostream& output, const HoI4Focus& focus);

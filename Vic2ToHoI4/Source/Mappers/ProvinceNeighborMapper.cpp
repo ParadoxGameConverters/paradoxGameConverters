@@ -158,7 +158,7 @@ Color provinceNeighborMapper::getRightColor(bitmap_image& provinces, point posit
 }
 
 
-void provinceNeighborMapper::handleNeighbor(Color centerColor, Color otherColor, point position)
+void provinceNeighborMapper::handleNeighbor(Color centerColor, Color otherColor, const point& position)
 {
 	int centerProvince = provinceDefinitions::getProvinceFromColor(centerColor);
 	int otherProvince = provinceDefinitions::getProvinceFromColor(otherColor);

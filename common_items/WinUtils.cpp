@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -89,7 +89,6 @@ void GetAllFilesInFolderRecursive(const std::string& path, std::set<std::string>
 	std::list<std::string> directories;
 	directories.push_back("");
 
-	bool provincesImported = false;
 	while (directories.size() > 0)
 	{
 		if ((fileListing = _findfirst((path + directories.front() + "/*").c_str(), &provinceFileData)) == -1L)
@@ -274,7 +273,7 @@ bool deleteFolder(const std::string& folder)
 }
 
 
-std::string convertUTF8ToASCII(std::string UTF8)
+std::string convertUTF8ToASCII(const std::string& UTF8)
 {
 	int requiredSize = WideCharToMultiByte(20127 /*US-ASCII (7-bit)*/, 0, convertUTF8ToUTF16(UTF8).c_str(), -1, NULL, 0, "0", NULL);
 	char* asciiArray = new char[requiredSize];
@@ -291,7 +290,7 @@ std::string convertUTF8ToASCII(std::string UTF8)
 }
 
 
-std::string convertUTF8To8859_15(std::string UTF8)
+std::string convertUTF8To8859_15(const std::string& UTF8)
 {
 	int requiredSize = WideCharToMultiByte(28605 /*8859-15*/, 0, convertUTF8ToUTF16(UTF8).c_str(), -1, NULL, 0, "0", NULL);
 	char* asciiArray = new char[requiredSize];
@@ -331,7 +330,7 @@ std::string convert8859_15ToASCII(std::string input)
 }
 
 
-std::string convert8859_15ToUTF8(std::string input)
+std::string convert8859_15ToUTF8(const std::string& input)
 {
 	return convertUTF16ToUTF8(convert8859_15ToUTF16(input));
 }

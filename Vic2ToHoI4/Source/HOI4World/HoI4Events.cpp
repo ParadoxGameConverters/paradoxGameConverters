@@ -332,12 +332,12 @@ void HoI4Events::createSudetenEvent(const HoI4Country* Annexer, const HoI4Countr
 	sudetenEvent.id = "NFEvents." + to_string(nationalFocusEventNumber);
 	sudetenEvent.title = annexername + " Demands " + annexedname + "!";
 	sudetenEvent.description = annexername + " has recently been making claims to our bordering states, saying that these states are full of " + Annexer->getSourceCountry()->getAdjective("english") + " people and that the territory should be given to them. Although it ";
-	sudetenEvent.description = "is true that recently our neighboring states have had an influx of " + Annexer->getSourceCountry()->getAdjective("english") + " people in the recent years, we cannot give up our lands because a few " + Annexer->getSourceCountry()->getAdjective("english") + " settled down in our land. ";
+	sudetenEvent.description += "is true that recently our neighboring states have had an influx of " + Annexer->getSourceCountry()->getAdjective("english") + " people in the recent years, we cannot give up our lands because a few " + Annexer->getSourceCountry()->getAdjective("english") + " settled down in our land. ";
 	sudetenEvent.description += "In response " + annexername + " has called for a conference, demanding their territory in exchange for peace. How do we resond? ";
 	sudetenEvent.description += " Our people would be safe with the mighty army of " + annexername + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!";
 	sudetenEvent.picture = "GFX_report_event_hitler_parade";
 	sudetenEvent.majorEvent = false;
-  sudetenEvent.triggeredOnly = true;
+	sudetenEvent.triggeredOnly = true;
 
 	string acceptOption = "name = \"We Accept\"\n";
 	acceptOption += "		ai_chance = {\n";

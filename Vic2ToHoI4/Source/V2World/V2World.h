@@ -43,7 +43,7 @@ class V2Party;
 class V2World
 {
 	public:
-		V2World(const string& filename);
+		explicit V2World(const string& filename);
 
 		const V2Province* getProvince(int provNum) const;
 		

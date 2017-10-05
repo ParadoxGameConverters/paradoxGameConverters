@@ -43,7 +43,7 @@ class Color
 	public:
 		Color();
 		Color(int r, int g, int b);
-		Color(shared_ptr<Object> colorObject);
+		explicit Color(shared_ptr<Object> colorObject);
 		Color(const Color&) = default;
 		Color& operator=(const Color&) = default;
 

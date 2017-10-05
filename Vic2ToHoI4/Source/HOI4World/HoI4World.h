@@ -61,7 +61,7 @@ struct advisorCompare;
 class HoI4World
 {
 	public:
-		HoI4World(const V2World* sourceWorld);
+		explicit HoI4World(const V2World* sourceWorld);
 
 		void output() const;
 

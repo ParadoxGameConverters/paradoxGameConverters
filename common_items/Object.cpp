@@ -56,28 +56,19 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-Object::Object(string k) :
-objects(),
-strVal(),
-leaf(false),
-isObjList(false)
-{
-	key = k;
-}
-
-
 Object::~Object()
 {
 }
 
 
-Object::Object(shared_ptr<Object> other) :
-objects(),
-strVal(other->strVal),
-leaf(other->leaf),
-isObjList(other->isObjList)
+Object::Object(shared_ptr<Object> other):
+	key(other->key),
+	strVal(other->strVal),
+	objects(),
+	leaf(other->leaf),
+	isObjList(other->isObjList),
+	tokens()
 {
-	key = other->key;
 	for (auto i: other->objects)
 	{
 		objects.push_back(i);
@@ -85,7 +76,7 @@ isObjList(other->isObjList)
 }
 
 
-void Object::setValue(string val)
+void Object::setValue(const string& val)
 {
 	strVal = val;
 	leaf = true;
@@ -99,7 +90,7 @@ void Object::setValue(shared_ptr<Object> val)
 }
 
 
-void Object::unsetValue(string val)
+void Object::unsetValue(const string& val)
 {
 	for (auto i: objects)
 	{
@@ -121,7 +112,7 @@ void Object::setLeaf(string key, string val)
 }
 
 
-void Object::setValue(vector<shared_ptr<Object>> val)
+void Object::setValue(const vector<shared_ptr<Object>>& val)
 {
 	objects = val;
 }
@@ -164,7 +155,7 @@ void Object::addToList(vector<string>::iterator begin, vector<string>::iterator 
 }
 
 
-vector<shared_ptr<Object>> Object::getValue(string key) const
+vector<shared_ptr<Object>> Object::getValue(const string& key) const
 {
 	vector<shared_ptr<Object>> ret;
 
@@ -224,7 +215,7 @@ vector<string> Object::getKeys()
 }
 
 
-string Object::getLeaf(string leaf) const
+string Object::getLeaf(const string& leaf) const
 {
 	vector<shared_ptr<Object>> leaves = getValue(leaf); // the objects to return
 	if (0 == leaves.size())
@@ -362,7 +353,7 @@ void Object::addObject(shared_ptr<Object> target)
 }
 
 
-void Object::addObjectAfter(shared_ptr<Object> target, string key)
+void Object::addObjectAfter(shared_ptr<Object> target, const string& key)
 {
 	vector<shared_ptr<Object>>::iterator i;
 
@@ -384,7 +375,7 @@ void Object::addObjectAfter(shared_ptr<Object> target, string key)
 
 
 shared_ptr<Object> br = nullptr;	// the branch being set
-void setVal(string name, const string val, shared_ptr<Object> branch)
+void setVal(string name, const string& val, shared_ptr<Object> branch)
 {
 	if ((branch) && (br != branch))
 	{
@@ -423,14 +414,14 @@ void setFlt(string name, const double val, shared_ptr<Object> branch)
 	br->setValue(b);
 }
 
-double Object::safeGetFloat(string k, const double def)
+double Object::safeGetFloat(const string& k, const double def)
 {
 	objvec vec = getValue(k);	// the objects with the keys to be returned
 	if (0 == vec.size()) return def;
 	return stof(vec[0]->getLeaf());
 }
 
-string Object::safeGetString(string k, string def)
+string Object::safeGetString(const string& k, string def)
 {
 	objvec vec = getValue(k);	// the objects with the strings to be returned
 	if (0 == vec.size())
@@ -440,7 +431,7 @@ string Object::safeGetString(string k, string def)
 	return vec[0]->getLeaf();
 }
 
-int Object::safeGetInt(string k, const int def)
+int Object::safeGetInt(const string& k, const int def)
 {
 	objvec vec = getValue(k);	// the objects with the ints to be returned
 	if (0 == vec.size())
@@ -450,7 +441,7 @@ int Object::safeGetInt(string k, const int def)
 	return stoi(vec[0]->getLeaf());
 }
 
-shared_ptr<Object> Object::safeGetObject(string k, shared_ptr<Object> def)
+shared_ptr<Object> Object::safeGetObject(const string& k, shared_ptr<Object> def)
 {
 	objvec vec = getValue(k);	// the objects with the objects to be returned 
 	if (0 == vec.size())

@@ -35,7 +35,7 @@ class V2Relations;
 class HoI4Relations
 {
 	public:
-		HoI4Relations(const string& newTag);
+		explicit HoI4Relations(const string& newTag);
 		HoI4Relations(const string& newTag, const V2Relations* oldRelations);
 
 		string	getTag()				const { return tag; };

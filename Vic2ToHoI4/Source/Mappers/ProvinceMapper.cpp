@@ -197,19 +197,3 @@ vector<shared_ptr<Object>> provinceMapper::getCorrectMappingVersion(const vector
 	LOG(LogLevel::Debug) << "Using version " << versions[versions.size() - 1]->getKey() << " mappings";
 	return versions[versions.size() - 1]->getLeaves();
 }
-
-
-vector<int> provinceMapper::getHoI4ProvinceNums(const int v2ProvinceNum) const
-{
-	static const vector<int> empty_vec;	// an empty vector in case there are no equivalent V2 province numbers
-
-	auto itr = Vic2ToHoI4ProvinceMap.find(v2ProvinceNum);
-	if (itr == Vic2ToHoI4ProvinceMap.end())
-	{
-		return empty_vec;
-	}
-	else
-	{
-		return itr->second;
-	}
-}
