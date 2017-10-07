@@ -27,8 +27,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 HoI4Advisor::HoI4Advisor(shared_ptr<Object> object):
-	trait(object->getLeaf("traits")),
-	picture(""),
+	trait(object->safeGetString("traits")),
+	picture(object->safeGetString("picture")),
 	event(""),
 	ideology(object->getKey())
 {
@@ -37,12 +37,6 @@ HoI4Advisor::HoI4Advisor(shared_ptr<Object> object):
 	{
 		auto eventObjs = onAddObjs[0]->getLeaves();
 		event = eventObjs[0]->getLeaf();
-	}
-
-	auto pictureObjs = object->getValue("picture");
-	if (pictureObjs.size() > 0)
-	{
-		picture = pictureObjs[0]->getLeaf();
 	}
 }
 

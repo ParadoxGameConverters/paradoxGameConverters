@@ -87,17 +87,7 @@ void Vic2State::setFactoryLevel(shared_ptr<Object> stateObj)
 {
 	for (auto buildingObj: stateObj->getValue("state_buildings"))
 	{
-		addBuildingLevel(buildingObj);
-	}
-}
-
-
-void Vic2State::addBuildingLevel(shared_ptr<Object> buildingObj)
-{
-	const vector<shared_ptr<Object>> levelObjs = buildingObj->getValue("level");
-	if (levelObjs.size() > 0)
-	{
-		factoryLevel += stoi(levelObjs[0]->getLeaf());
+		factoryLevel += buildingObj->safeGetInt("level");
 	}
 }
 

@@ -28,39 +28,16 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 V2Relations::V2Relations(shared_ptr<Object> relationsObj):
 	tag(relationsObj->getKey()),
-	value(0),
-	level(2),
-	militaryAccess(false),
+	value(relationsObj->safeGetInt("value")),
+	level(relationsObj->safeGetInt("level", 2)),
+	militaryAccess(relationsObj->safeGetString("military_access", "no") == "yes"),
 	lastSentDiplomat(),
 	lastWar(),
 	truceUntil()
 {
-	setValue(relationsObj);
-	setMilitaryAccess(relationsObj);
 	setLastDiplomat(relationsObj);
 	setLastWar(relationsObj);
 	setTruce(relationsObj);
-	setLevel(relationsObj);
-}
-
-
-void V2Relations::setValue(shared_ptr<Object> relationsObj)
-{
-	vector<shared_ptr<Object>> valueObjs = relationsObj->getValue("value");
-	if (valueObjs.size() > 0)
-	{
-		value = stoi(valueObjs[0]->getLeaf());
-	}
-}
-
-
-void V2Relations::setMilitaryAccess(shared_ptr<Object> relationsObj)
-{
-	vector<shared_ptr<Object>> maObjs = relationsObj->getValue("military_access");
-	if (maObjs.size() > 0)
-	{
-		militaryAccess = (maObjs[0]->getLeaf() == "yes");
-	}
 }
 
 
@@ -90,19 +67,5 @@ void V2Relations::setTruce(shared_ptr<Object> relationsObj)
 	if (truceUntilObjs.size() > 0)
 	{
 		truceUntil = date(truceUntilObjs[0]->getLeaf());
-	}
-}
-
-
-void V2Relations::setLevel(shared_ptr<Object> relationsObj)
-{
-	vector<shared_ptr<Object>> levelObjs = relationsObj->getValue("level");
-	if (levelObjs.size() > 0)
-	{
-		level = stoi(levelObjs[0]->getLeaf());
-	}
-	else
-	{
-		level = 2;
 	}
 }

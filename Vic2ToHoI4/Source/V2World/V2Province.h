@@ -70,7 +70,6 @@ class V2Province
 		V2Province(const V2Province&) = delete;
 		V2Province& operator=(const V2Province&) = delete;
 
-		void readOwner(shared_ptr<Object> obj);
 		void readCores(shared_ptr<Object> obj);
 		void readForts(shared_ptr<Object> obj);
 		void readNavalBases(shared_ptr<Object> obj);

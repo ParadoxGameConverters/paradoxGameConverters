@@ -46,7 +46,6 @@ Configuration::Configuration():
 	manpowerFactor(0.0),
 	industrialShapeFactor(0.0),
 	icFactor(0.0),
-	ICStats(false),
 	dropMinorIdeologies(false),
 	debug(false),
 	leaderID(1000),
@@ -69,7 +68,7 @@ Configuration::Configuration():
 		exit (-1);
 	}
 
-	V2Path = obj[0]->getLeaf("V2directory");
+	V2Path = obj[0]->safeGetString("V2directory", V2Path);
 	if (V2Path.empty() || !Utils::doesFolderExist(V2Path))
 	{
 		LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
@@ -80,7 +79,7 @@ Configuration::Configuration():
 		LOG(LogLevel::Debug) << "Victoria 2 install path is " << V2Path;
 	}
 
-	HoI4Path = obj[0]->getLeaf("HoI4directory");
+	HoI4Path = obj[0]->safeGetString("HoI4directory", HoI4Path);
 	if (HoI4Path.empty() || !Utils::doesFolderExist(HoI4Path))
 	{
 		LOG(LogLevel::Error) << "No HoI4 path was specified in configuration.txt, or the path was invalid";
@@ -91,7 +90,7 @@ Configuration::Configuration():
 		LOG(LogLevel::Debug) << "HoI4 path install path is " << HoI4Path;
 	}
 
-	HoI4DocumentsPath = obj[0]->getLeaf("HoI4Documentsdirectory");
+	HoI4DocumentsPath = obj[0]->safeGetString("HoI4Documentsdirectory", HoI4DocumentsPath);
 	if (HoI4DocumentsPath.empty() || !Utils::doesFolderExist(HoI4DocumentsPath))
 	{
 		LOG(LogLevel::Error) << "No HoI4 documents directory was specified in configuration.txt, or the path was invalid";
@@ -108,16 +107,12 @@ Configuration::Configuration():
 		Vic2Mods = modsObj[0]->getTokens();
 	}
 
-	manpowerFactor			= stof(obj[0]->getLeaf("manpower_factor"));
-	forceMultiplier			= stof(obj[0]->getLeaf("force_multiplier"));
-	industrialShapeFactor= stof(obj[0]->getLeaf("industrial_shape_factor"));
-	icFactor					= stof(obj[0]->getLeaf("ic_factor"));
-	if (obj[0]->getValue("ICStats").size() > 0)
-	{
-		ICStats = true;
-	}
+	manpowerFactor = obj[0]->safeGetFloat("manpower_factor");
+	forceMultiplier = obj[0]->safeGetFloat("force_multiplier");
+	industrialShapeFactor = obj[0]->safeGetFloat("industrial_shape_factor");
+	icFactor = obj[0]->safeGetFloat("ic_factor");
 
-	string versionMethod = obj[0]->getLeaf("HoI4VersionMethod");
+	string versionMethod = obj[0]->safeGetString("HoI4VersionMethod", versionMethod);
 	if (versionMethod == "automatic")
 	{
 		version = getAutomaticHoI4Version();
@@ -131,7 +126,7 @@ Configuration::Configuration():
 		version = HOI4Version("1.4.2");
 	}
 
-	string dropMinorIdeologiesOption = obj[0]->getLeaf("drop_minor_ideologies");
+	string dropMinorIdeologiesOption = obj[0]->safeGetString("drop_minor_ideologies", "true");
 	if (dropMinorIdeologiesOption == "true")
 	{
 		dropMinorIdeologies = true;

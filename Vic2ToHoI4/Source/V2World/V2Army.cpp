@@ -28,18 +28,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 V2Regiment::V2Regiment(shared_ptr<Object> obj):
-	name(""),
+	name(obj->safeGetString("name")),
 	type(""),
-	strength(0.0),
-	organization(0.0),
-	experience(0.0)
+	strength(obj->safeGetFloat("strength")),
+	organization(obj->safeGetFloat("organisation")),
+	experience(obj->safeGetFloat("experience"))
 {
-	std::vector<shared_ptr<Object>> objName = obj->getValue("name");
-	if (objName.size() > 0)
-	{
-		name = objName[0]->getLeaf();
-	}
-
 	std::vector<shared_ptr<Object>> objType = obj->getValue("type");
 	if (objType.size() > 0)
 	{
@@ -49,44 +43,20 @@ V2Regiment::V2Regiment(shared_ptr<Object> obj):
 	{
 		LOG(LogLevel::Warning) << "Regiment or Ship " << name << " has no type";
 	}
-
-	std::vector<shared_ptr<Object>> objStr = obj->getValue("strength");
-	if (objStr.size() > 0)
-	{
-		strength = stof(objStr[0]->getLeaf());
-	}
-
-	objStr = obj->getValue("organisation");
-	if (objStr.size() > 0)
-	{
-		organization = stof(objStr[0]->getLeaf());
-	}
-
-	objStr = obj->getValue("experience");
-	if (objStr.size() > 0)
-	{
-		experience = stof(objStr[0]->getLeaf());
-	}
 }
 
 
 V2Army::V2Army(shared_ptr<Object> obj):
-	name(""),
+	name(obj->safeGetString("name")),
 	location(-1),
 	regiments(),
-	supplies(0.0),
-	at_sea(0),
+	supplies(obj->safeGetFloat("supplies")),
+	at_sea(obj->safeGetInt("at_sea")),
 	navy(false)
 {
 	if (obj->getKey() == "navy")
 	{
 		navy = true;
-	}
-
-	std::vector<shared_ptr<Object>> objName = obj->getValue("name");
-	if (objName.size() > 0)
-	{
-		name = objName[0]->getLeaf();
 	}
 
 	std::vector<shared_ptr<Object>> objLoc = obj->getValue("location");
@@ -99,12 +69,6 @@ V2Army::V2Army(shared_ptr<Object> obj):
 		LOG(LogLevel::Warning) << "Army or Navy " << name << " has no location";
 	}
 
-	std::vector<shared_ptr<Object>> objAtSea = obj->getValue("at_sea");
-	if (objAtSea.size() > 0)
-	{
-		at_sea = stoi(objAtSea[0]->getLeaf());
-	}
-
 	regiments.clear();
 	std::vector<shared_ptr<Object>> objRegs = obj->getValue("regiment");
 	for (auto itr: objRegs)
@@ -112,16 +76,11 @@ V2Army::V2Army(shared_ptr<Object> obj):
 		V2Regiment* newRegiment = new V2Regiment(itr);
 		regiments.push_back(newRegiment);
 	}
+
 	std::vector<shared_ptr<Object>> objShips = obj->getValue("ship");
 	for (auto itr: objShips)
 	{
 		V2Regiment* newShip = new V2Regiment(itr);
 		regiments.push_back(newShip);
-	}
-
-	std::vector<shared_ptr<Object>> objSupp = obj->getValue("supplies");
-	if (objSupp.size() > 0)
-	{
-		supplies = stof(objSupp[0]->getLeaf());
 	}
 }

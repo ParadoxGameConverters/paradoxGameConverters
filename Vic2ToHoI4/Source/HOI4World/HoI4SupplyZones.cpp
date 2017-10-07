@@ -92,9 +92,10 @@ void HoI4SupplyZones::importSupplyZone(const string& supplyZonesFile)
 		LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/map/supplyareas/" << supplyZonesFile;
 		exit(-1);
 	}
+
 	auto supplyAreaObj = fileObj->getValue("supply_area");
-	int ID = stoi(supplyAreaObj[0]->getLeaf("id"));
-	int value = stoi(supplyAreaObj[0]->getLeaf("value"));
+	int ID = supplyAreaObj[0]->safeGetInt("id");
+	int value = supplyAreaObj[0]->safeGetInt("value");
 
 	HoI4SupplyZone* newSupplyZone = new HoI4SupplyZone(ID, value);
 	supplyZones.insert(make_pair(ID, newSupplyZone));

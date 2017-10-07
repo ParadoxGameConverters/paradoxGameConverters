@@ -105,19 +105,12 @@ class V2Country
 		V2Country(const V2Country&) = delete;
 		V2Country& operator=(const V2Country&) = delete;
 
-		void readInDomainNameAndAdjective(shared_ptr<Object> countryObj);
-		void readInCapital(shared_ptr<Object> countryObj);
 		void readInCultures(shared_ptr<Object> countryObj);
-		void readInCivilized(shared_ptr<Object> countryObj);
 		void readInTechnology(shared_ptr<Object> countryObj);
 		void readInInventions(shared_ptr<Object> countryObj);
 		void readInPoliticalParties(shared_ptr<Object> countryObj);
 		void readInSpending(shared_ptr<Object> countryObj);
-		void readInRevanchism(shared_ptr<Object> countryObj);
-		void readInWarExhaustion(shared_ptr<Object> countryObj);
-		void readInBadBoy(shared_ptr<Object> countryObj);
 		void readInReforms(shared_ptr<Object> countryObj);
-		void readInGovernment(shared_ptr<Object> countryObj);
 		void readInUpperHouse(shared_ptr<Object> countryObj);
 		void readInRelations(shared_ptr<Object> countryObj);
 		bool isCountryTag(const string& potentialTag);

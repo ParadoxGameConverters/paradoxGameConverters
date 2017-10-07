@@ -499,7 +499,7 @@ void HoI4World::reportIndustryLevels()
 	LOG(LogLevel::Debug) << "\t" << civilialFactories << " civilian factories";
 	LOG(LogLevel::Debug) << "\t" << dockyards << " dockyards";
 
-	if (Configuration::getICStats())
+	if (Configuration::getDebug())
 	{
 		reportCountryIndustry();
 		reportDefaultIndustry();
@@ -560,29 +560,17 @@ pair<string, array<int, 3>> HoI4World::getDefaultStateIndustry(const string& sta
 	auto historyObj = stateObj[0]->getValue("history");
 	auto buildingsObj = historyObj[0]->getValue("buildings");
 
-	auto civilianFactoriesObj = buildingsObj[0]->getValue("industrial_complex");
 	int civilianFactories = 0;
-	if (civilianFactoriesObj.size() > 0)
-	{
-		civilianFactories = stoi(civilianFactoriesObj[0]->getLeaf());
-	}
-
-	auto militaryFactoriesObj = buildingsObj[0]->getValue("arms_factory");
 	int militaryFactories = 0;
-	if (militaryFactoriesObj.size() > 0)
-	{
-		militaryFactories = stoi(militaryFactoriesObj[0]->getLeaf());
-	}
-
-	auto dockyardsObj = buildingsObj[0]->getValue("dockyard");
 	int dockyards = 0;
-	if (dockyardsObj.size() > 0)
+	if (buildingsObj.size() > 0)
 	{
-		dockyards = stoi(dockyardsObj[0]->getLeaf());
+		civilianFactories = buildingsObj[0]->safeGetInt("industrial_complex");
+		militaryFactories = buildingsObj[0]->safeGetInt("arms_factory");
+		dockyards = buildingsObj[0]->safeGetInt("dockyard");
 	}
 
-	auto ownerObj = historyObj[0]->getValue("owner");
-	string owner = ownerObj[0]->getLeaf();
+	string owner = historyObj[0]->safeGetString("owner");
 
 	array<int, 3> industry = { militaryFactories, civilianFactories, dockyards };
 	pair<string, array<int, 3>> stateData = make_pair(owner, industry);
@@ -644,7 +632,7 @@ map<int, map<string, double>> HoI4World::importResourceMap() const
 	auto linksObj = resourcesObj[0]->getValue("link");
 	for (auto linkObj: linksObj)
 	{
-		int provinceNumber = stoi(linkObj->getLeaf("province"));
+		int provinceNumber = linkObj->safeGetInt("province");
 		auto mapping = resourceMap.find(provinceNumber);
 		if (mapping == resourceMap.end())
 		{
@@ -924,7 +912,7 @@ map<string, vector<pair<string, int>>> HoI4World::importTechMap() const
 			}
 			else
 			{
-				int value = stoi(link->getLeaf(key));
+				int value = link->safeGetInt(key);
 				targetTechs.push_back(pair<string, int>(key, value));
 			}
 		}
@@ -961,7 +949,7 @@ map<string, vector<pair<string, int>>> HoI4World::importResearchBonusMap() const
 			}
 			else
 			{
-				int value = stoi(link->getLeaf(key));
+				int value = link->safeGetInt(key);
 				targetTechs.push_back(pair<string, int>(key, value));
 			}
 		}

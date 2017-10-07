@@ -34,8 +34,8 @@ HoI4Ideology::HoI4Ideology(shared_ptr<Object> obj):
 	dynamicFactionNames(),
 	theColor(nullptr),
 	rules(),
-	warImpactOnWorldTension(0.0f),
-	factionImpactOnWorldTension(0.0f),
+	warImpactOnWorldTension(obj->safeGetFloat("war_impact_on_world_tension")),
+	factionImpactOnWorldTension(obj->safeGetFloat("faction_impact_on_world_tension")),
 	modifiers(),
 	factionModifiers(),
 	cans(),
@@ -74,18 +74,6 @@ HoI4Ideology::HoI4Ideology(shared_ptr<Object> obj):
 			auto onOff = ruleObj->getLeaf();
 			rules.insert(make_pair(rule, onOff));
 		}
-	}
-
-	auto warTensionObj = obj->getValue("war_impact_on_world_tension");
-	if (warTensionObj.size() > 0)
-	{
-		warImpactOnWorldTension = stof(warTensionObj[0]->getLeaf());
-	}
-
-	auto factionTensionObj = obj->getValue("faction_impact_on_world_tension");
-	if (factionTensionObj.size() > 0)
-	{
-		factionImpactOnWorldTension = stof(factionTensionObj[0]->getLeaf());
 	}
 
 	auto modifiersObj = obj->getValue("modifiers");

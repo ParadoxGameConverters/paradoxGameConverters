@@ -46,7 +46,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 //		}
 //	}
 //
-//	string unit_type = obj->getLeaf("type");
+//	string unit_type = obj->safeGetString("type");
 //	if (unit_type == "air")
 //	{
 //		force_type = air;
@@ -55,7 +55,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 //	{
 //		force_type = land;
 //	}
-//	else if (unit_type == "nava")
+//	else if (unit_type == "naval")
 //	{
 //		force_type = navy;
 //	}
@@ -64,9 +64,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 //		LOG(LogLevel::Error) << "Possible bad unit type in " << filename << "!";
 //	}
 //
-//	max_strength			= stoi(obj->getLeaf("max_strength"));
-//	practicalBonus			= obj->getLeaf("on_completion");
-//	practicalBonusFactor	= stof(obj->getLeaf("completion_size"));*/
+//	max_strength			= obj->safeGetInt("max_strength");
+//	practicalBonus			= obj->safeGetString("on_completion");
+//	practicalBonusFactor	= obj->safeGetFloat("completion_size");*/
 //}
 //
 //

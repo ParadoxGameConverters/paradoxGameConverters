@@ -93,11 +93,6 @@ class Configuration // Singleton
 			return getInstance()->icFactor;
 		}
 
-		static bool getICStats()
-		{
-			return getInstance()->ICStats;
-		}
-
 		static int getNextLeaderID()
 		{
 			return getInstance()->leaderID++;
@@ -150,7 +145,6 @@ class Configuration // Singleton
 		double			manpowerFactor;
 		double industrialShapeFactor;
 		double			icFactor;
-		bool ICStats;
 
 		// If true, only major idologies are kept. All minor ideologies are
 		// converted to neutrality. "Major ideologies" are defined by

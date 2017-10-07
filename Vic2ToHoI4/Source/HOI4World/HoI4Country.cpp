@@ -390,17 +390,8 @@ void HoI4Country::initFromHistory()
 		exit(-1);
 	}
 
-	auto results = obj->getValue("ideology");
-	if (results.size() > 0)
-	{
-		governmentIdeology = results[0]->getLeaf();
-	}
-
-	results = obj->getValue("capital");
-	if (results.size() > 0)
-	{
-		capitalStateNum = stoi(results[0]->getLeaf());
-	}
+	governmentIdeology = obj->safeGetString("ideology", governmentIdeology);
+	capitalStateNum = obj->safeGetInt("capital", capitalStateNum);
 }
 
 
