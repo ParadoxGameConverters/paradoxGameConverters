@@ -38,18 +38,18 @@ HoI4StrategicRegion::HoI4StrategicRegion(const string& _filename):
 	weatherObj()
 {
 	shared_ptr<Object> fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/map/strategicregions/" + filename);
-	vector<shared_ptr<Object>> regionObjs = fileObj->getValue("strategic_region");
+	auto regionObjs = fileObj->safeGetObject("strategic_region");
 
-	ID = regionObjs[0]->safeGetInt("id");
+	ID = regionObjs->safeGetInt("id");
 
-	vector<shared_ptr<Object>>	provincesObjs = regionObjs[0]->getValue("provinces");
-	vector<string> provinceStrings = provincesObjs[0]->getTokens();
+	auto	provincesObjs = regionObjs->safeGetObject("provinces");
+	vector<string> provinceStrings = provincesObjs->getTokens();
 	for (auto provinceString: provinceStrings)
 	{
 		oldProvinces.push_back(stoi(provinceString));
 	}
 
-	weatherObj = regionObjs[0]->getValue("weather")[0];
+	weatherObj = regionObjs->safeGetObject("weather");
 }
 
 

@@ -66,7 +66,7 @@ V2Country::V2Country(shared_ptr<Object> countryObj):
 	domainAdjective(countryObj->safeGetString("domain_region")),
 	namesByLanguage(),
 	adjectivesByLanguage(),
-	human(false)
+	human(countryObj->safeGetObject("human") != nullptr)
 {
 	readInCultures(countryObj);
 	readInTechnology(countryObj);
@@ -79,25 +79,24 @@ V2Country::V2Country(shared_ptr<Object> countryObj):
 	readInMilitary(countryObj);
 	readInLeaders(countryObj);
 	readInStates(countryObj);
-	detectIfHuman(countryObj);
 }
 
 
 void V2Country::readInCultures(shared_ptr<Object> countryObj)
 {
-	vector<shared_ptr<Object>> primaryCultureObjs = countryObj->getValue("primary_culture");
-	if (primaryCultureObjs.size() > 0)
+	auto primaryCultureObjs = countryObj->safeGetObject("primary_culture");
+	if (primaryCultureObjs != nullptr)
 	{
-		primaryCulture = primaryCultureObjs[0]->getLeaf();
+		primaryCulture = primaryCultureObjs->getLeaf();
 		acceptedCultures.insert(primaryCulture);
 	}
 
 	primaryCultureGroup = cultureGroupMapper::getCultureGroup(primaryCulture);
 
-	vector<shared_ptr<Object>> cultureSectionObjs = countryObj->getValue("culture");
-	if (cultureSectionObjs.size() > 0)
+	auto cultureSectionObjs = countryObj->safeGetObject("culture");
+	if (cultureSectionObjs != nullptr)
 	{
-		auto cultures = cultureSectionObjs[0]->getTokens();
+		auto cultures = cultureSectionObjs->getTokens();
 		for (auto culture: cultures)
 		{
 			acceptedCultures.insert(culture);
@@ -108,10 +107,10 @@ void V2Country::readInCultures(shared_ptr<Object> countryObj)
 
 void V2Country::readInTechnology(shared_ptr<Object> countryObj)
 {
-	vector<shared_ptr<Object>> techsObjs = countryObj->getValue("technology");	// the object holding the technology levels
-	if (techsObjs.size() > 0)
+	auto techsObjs = countryObj->safeGetObject("technology");	// the object holding the technology levels
+	if (techsObjs != nullptr)
 	{
-		for (auto tech: techsObjs[0]->getKeys())
+		for (auto tech: techsObjs->getKeys())
 		{
 			techs.insert(tech);
 		}
@@ -123,10 +122,10 @@ void V2Country::readInInventions(shared_ptr<Object> countryObj)
 {
 	inventionNumToName inventionNumsToNames = getInventionNums();
 
-	vector<shared_ptr<Object>> inventionsObjs = countryObj->getValue("active_inventions");
-	if (inventionsObjs.size() > 0)
+	auto inventionsObjs = countryObj->safeGetObject("active_inventions");
+	if (inventionsObjs != nullptr)
 	{
-		vector<string> activeInventionsNumbers = inventionsObjs[0]->getTokens();
+		vector<string> activeInventionsNumbers = inventionsObjs->getTokens();
 		for (auto activeInventionNumber : activeInventionsNumbers)
 		{
 			auto inventionName = inventionNumsToNames.find(stoi(activeInventionNumber));
@@ -159,23 +158,23 @@ void V2Country::readInPoliticalParties(shared_ptr<Object> countryObj)
 
 void V2Country::readInSpending(shared_ptr<Object> countryObj)
 {
-	vector<shared_ptr<Object>> spendingObjs = countryObj->getValue("education_spending");
-	if (spendingObjs.size() > 0)
+	auto spendingObjs = countryObj->safeGetObject("education_spending");
+	if (spendingObjs != nullptr)
 	{
-		vector<shared_ptr<Object>> settingsObjs = spendingObjs[0]->getValue("settings");
-		if (settingsObjs.size() > 0)
+		auto settingsObjs = spendingObjs->safeGetObject("settings");
+		if (settingsObjs != nullptr)
 		{
-			educationSpending = stof(settingsObjs[0]->getLeaf());
+			educationSpending = stof(settingsObjs->getLeaf());
 		}
 	}
 
-	spendingObjs = countryObj->getValue("military_spending");
-	if (spendingObjs.size() > 0)
+	spendingObjs = countryObj->safeGetObject("military_spending");
+	if (spendingObjs != nullptr)
 	{
-		vector<shared_ptr<Object>> settingsObjs = spendingObjs[0]->getValue("settings");
-		if (settingsObjs.size() > 0)
+		auto settingsObjs = spendingObjs->safeGetObject("settings");
+		if (settingsObjs != nullptr)
 		{
-			militarySpending = stof(settingsObjs[0]->getLeaf());
+			militarySpending = stof(settingsObjs->getLeaf());
 		}
 	}
 }
@@ -198,11 +197,13 @@ void V2Country::readInReforms(shared_ptr<Object> countryObj)
 
 void V2Country::readInUpperHouse(shared_ptr<Object> countryObj)
 {
-	auto upperHouseObjs = countryObj->getValue("upper_house");
-	auto ideologyObjs = upperHouseObjs[0]->getLeaves();
-	for (auto ideologyObj : ideologyObjs)
+	auto upperHouseObjs = countryObj->safeGetObject("upper_house");
+	if (upperHouseObjs != nullptr)
 	{
-		upperHouseComposition.insert(make_pair(ideologyObj->getKey(), stof(ideologyObj->getLeaf())));
+		for (auto ideologyObj: upperHouseObjs->getLeaves())
+		{
+			upperHouseComposition.insert(make_pair(ideologyObj->getKey(), stof(ideologyObj->getLeaf())));
+		}
 	}
 }
 
@@ -297,15 +298,6 @@ void V2Country::createNewState(shared_ptr<Object> stateObj)
 {
 	Vic2State* newState = new Vic2State(stateObj, tag);
 	states.push_back(newState);
-}
-
-
-void V2Country::detectIfHuman(shared_ptr<Object> countryObj)
-{
-	if (countryObj->getValue("human").size() > 0)
-	{
-		human = true;
-	}
 }
 
 

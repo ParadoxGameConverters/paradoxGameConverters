@@ -556,21 +556,21 @@ pair<string, array<int, 3>> HoI4World::getDefaultStateIndustry(const string& sta
 		LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/history/states/" << stateFilename;
 		exit(-1);
 	}
-	auto stateObj = fileObj->getValue("state");
-	auto historyObj = stateObj[0]->getValue("history");
-	auto buildingsObj = historyObj[0]->getValue("buildings");
+	auto stateObj = fileObj->safeGetObject("state");
+	auto historyObj = stateObj->safeGetObject("history");
+	auto buildingsObj = historyObj->safeGetObject("buildings");
 
 	int civilianFactories = 0;
 	int militaryFactories = 0;
 	int dockyards = 0;
-	if (buildingsObj.size() > 0)
+	if (buildingsObj != nullptr)
 	{
-		civilianFactories = buildingsObj[0]->safeGetInt("industrial_complex");
-		militaryFactories = buildingsObj[0]->safeGetInt("arms_factory");
-		dockyards = buildingsObj[0]->safeGetInt("dockyard");
+		civilianFactories = buildingsObj->safeGetInt("industrial_complex");
+		militaryFactories = buildingsObj->safeGetInt("arms_factory");
+		dockyards = buildingsObj->safeGetInt("dockyard");
 	}
 
-	string owner = historyObj[0]->safeGetString("owner");
+	string owner = historyObj->safeGetString("owner");
 
 	array<int, 3> industry = { militaryFactories, civilianFactories, dockyards };
 	pair<string, array<int, 3>> stateData = make_pair(owner, industry);
@@ -628,9 +628,8 @@ map<int, map<string, double>> HoI4World::importResourceMap() const
 		exit(-1);
 	}
 
-	auto resourcesObj = fileObj->getValue("resources");
-	auto linksObj = resourcesObj[0]->getValue("link");
-	for (auto linkObj: linksObj)
+	auto resourcesObj = fileObj->safeGetObject("resources");
+	for (auto linkObj: resourcesObj->getValue("link"))
 	{
 		int provinceNumber = linkObj->safeGetInt("province");
 		auto mapping = resourceMap.find(provinceNumber);
@@ -641,9 +640,8 @@ map<int, map<string, double>> HoI4World::importResourceMap() const
 			mapping = resourceMap.find(provinceNumber);
 		}
 
-		auto resourcesObj = linkObj->getValue("resources");
-		auto actualResources = resourcesObj[0]->getLeaves();
-		for (auto resource : actualResources)
+		auto resourcesObj = linkObj->safeGetObject("resources");
+		for (auto resource: resourcesObj->getLeaves())
 		{
 			string	resourceName = resource->getKey();
 			double	amount = stof(resource->getLeaf());
@@ -892,14 +890,14 @@ map<string, vector<pair<string, int>>> HoI4World::importTechMap() const
 
 	shared_ptr<Object> fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
 
-	vector<shared_ptr<Object>> mapObj = fileObj->getValue("tech_map");
-	if (mapObj.size() < 1)
+	auto mapObj = fileObj->safeGetObject("tech_map");
+	if (mapObj == nullptr)
 	{
 		LOG(LogLevel::Error) << "Could not read tech map";
 		exit(-1);
 	}
 
-	for (auto link: mapObj[0]->getValue("link"))
+	for (auto link: mapObj->getValue("link"))
 	{
 		vector<pair<string, int> > targetTechs;
 		string tech = "";
@@ -929,14 +927,14 @@ map<string, vector<pair<string, int>>> HoI4World::importResearchBonusMap() const
 
 	shared_ptr<Object> fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
 
-	vector<shared_ptr<Object>> mapObj = fileObj->getValue("bonus_map");
-	if (mapObj.size() < 1)
+	auto mapObj = fileObj->safeGetObject("bonus_map");
+	if (mapObj == nullptr)
 	{
 		LOG(LogLevel::Error) << "Could not read bonus map";
 		exit(-1);
 	}
 
-	for (auto link : mapObj[0]->getValue("link"))
+	for (auto link : mapObj->getValue("link"))
 	{
 		vector<pair<string, int> > targetTechs;
 		string tech = "";

@@ -75,7 +75,7 @@ class V2World
 		void determineEmployedWorkers();
 		void removeEmptyNations();
 		void determinePartialStates();
-		void inputDiplomacy(const vector<shared_ptr<Object>>& diplomacyObj);
+		void inputDiplomacy(const shared_ptr<Object>& diplomacyObj);
 
 		void overallMergeNations();
 		void mergeNations(const string& masterTag, const vector<string>& slaveTags);

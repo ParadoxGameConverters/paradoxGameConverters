@@ -43,29 +43,29 @@ V2Relations::V2Relations(shared_ptr<Object> relationsObj):
 
 void V2Relations::setLastDiplomat(shared_ptr<Object> relationsObj)
 {
-	vector<shared_ptr<Object>> lastSendObjs = relationsObj->getValue("last_send_diplomat");
-	if (lastSendObjs.size() > 0)
+	auto lastSendObjs = relationsObj->safeGetObject("last_send_diplomat");
+	if (lastSendObjs != nullptr)
 	{
-		lastSentDiplomat = date(lastSendObjs[0]->getLeaf());
+		lastSentDiplomat = date(lastSendObjs->getLeaf());
 	}
 }
 
 
 void V2Relations::setLastWar(shared_ptr<Object> relationsObj)
 {
-	vector<shared_ptr<Object>> lastWarObjs = relationsObj->getValue("last_war");
-	if (lastWarObjs.size() > 0)
+	auto lastWarObjs = relationsObj->safeGetObject("last_war");
+	if (lastWarObjs != nullptr)
 	{
-		lastWar = date(lastWarObjs[0]->getLeaf());
+		lastWar = date(lastWarObjs->getLeaf());
 	}
 }
 
 
 void V2Relations::setTruce(shared_ptr<Object> relationsObj)
 {
-	vector<shared_ptr<Object>> truceUntilObjs = relationsObj->getValue("truce_until");
-	if (truceUntilObjs.size() > 0)
+	auto truceUntilObjs = relationsObj->safeGetObject("truce_until");
+	if (truceUntilObjs != nullptr)
 	{
-		truceUntil = date(truceUntilObjs[0]->getLeaf());
+		truceUntil = date(truceUntilObjs->getLeaf());
 	}
 }

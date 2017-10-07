@@ -73,10 +73,10 @@ vector<string> Vic2State::getProvinceIDs(shared_ptr<Object> stateObj) const
 {
 	vector<string> provinceIDs;
 
-	const vector<shared_ptr<Object>> provinceObjs = stateObj->getValue("provinces");
-	if (provinceObjs.size() > 0)
+	auto provinceObjs = stateObj->safeGetObject("provinces");
+	if (provinceObjs != nullptr)
 	{
-		provinceIDs = provinceObjs[0]->getTokens();
+		provinceIDs = provinceObjs->getTokens();
 	}
 
 	return provinceIDs;

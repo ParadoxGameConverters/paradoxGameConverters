@@ -61,14 +61,14 @@ Configuration::Configuration():
 		exit(-1);
 	}
 
-	vector<shared_ptr<Object>> obj = oneObj->getValue("configuration");	// the configuration section
-	if (obj.size() != 1)
+	auto obj = oneObj->safeGetObject("configuration");	// the configuration section
+	if (obj == nullptr)
 	{
-		LOG(LogLevel::Error) << "Configuration file must contain exactly one configuration section";
+		LOG(LogLevel::Error) << "Configuration missing configuration section";
 		exit (-1);
 	}
 
-	V2Path = obj[0]->safeGetString("V2directory", V2Path);
+	V2Path = obj->safeGetString("V2directory", V2Path);
 	if (V2Path.empty() || !Utils::doesFolderExist(V2Path))
 	{
 		LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
@@ -79,7 +79,7 @@ Configuration::Configuration():
 		LOG(LogLevel::Debug) << "Victoria 2 install path is " << V2Path;
 	}
 
-	HoI4Path = obj[0]->safeGetString("HoI4directory", HoI4Path);
+	HoI4Path = obj->safeGetString("HoI4directory", HoI4Path);
 	if (HoI4Path.empty() || !Utils::doesFolderExist(HoI4Path))
 	{
 		LOG(LogLevel::Error) << "No HoI4 path was specified in configuration.txt, or the path was invalid";
@@ -90,7 +90,7 @@ Configuration::Configuration():
 		LOG(LogLevel::Debug) << "HoI4 path install path is " << HoI4Path;
 	}
 
-	HoI4DocumentsPath = obj[0]->safeGetString("HoI4Documentsdirectory", HoI4DocumentsPath);
+	HoI4DocumentsPath = obj->safeGetString("HoI4Documentsdirectory", HoI4DocumentsPath);
 	if (HoI4DocumentsPath.empty() || !Utils::doesFolderExist(HoI4DocumentsPath))
 	{
 		LOG(LogLevel::Error) << "No HoI4 documents directory was specified in configuration.txt, or the path was invalid";
@@ -101,39 +101,39 @@ Configuration::Configuration():
 		LOG(LogLevel::Debug) << "HoI4 documents directory is " << HoI4DocumentsPath;
 	}
 
-	vector<shared_ptr<Object>> modsObj = obj[0]->getValue("Vic2Mods");
-	if (modsObj.size() > 0)
+	auto modsObj = obj->safeGetObject("Vic2Mods");
+	if (modsObj != nullptr)
 	{
-		Vic2Mods = modsObj[0]->getTokens();
+		Vic2Mods = modsObj->getTokens();
 	}
 
-	manpowerFactor = obj[0]->safeGetFloat("manpower_factor");
-	forceMultiplier = obj[0]->safeGetFloat("force_multiplier");
-	industrialShapeFactor = obj[0]->safeGetFloat("industrial_shape_factor");
-	icFactor = obj[0]->safeGetFloat("ic_factor");
+	manpowerFactor = obj->safeGetFloat("manpower_factor");
+	forceMultiplier = obj->safeGetFloat("force_multiplier");
+	industrialShapeFactor = obj->safeGetFloat("industrial_shape_factor");
+	icFactor = obj->safeGetFloat("ic_factor");
 
-	string versionMethod = obj[0]->safeGetString("HoI4VersionMethod", versionMethod);
+	string versionMethod = obj->safeGetString("HoI4VersionMethod", versionMethod);
 	if (versionMethod == "automatic")
 	{
 		version = getAutomaticHoI4Version();
 	}
 	else if (versionMethod == "manualEntry")
 	{
-		version = HOI4Version(obj[0]->getLeaf("HoI4Version"));
+		version = HOI4Version(obj->getLeaf("HoI4Version"));
 	}
 	else // (versionMethod == "hardcoded")
 	{
 		version = HOI4Version("1.4.2");
 	}
 
-	string dropMinorIdeologiesOption = obj[0]->safeGetString("drop_minor_ideologies", "true");
+	string dropMinorIdeologiesOption = obj->safeGetString("drop_minor_ideologies", "true");
 	if (dropMinorIdeologiesOption == "true")
 	{
 		dropMinorIdeologies = true;
 	}
 
-	auto debugObjs = obj[0]->getValue("debug");
-	if (debugObjs.size() > 0)
+	auto debugObjs = obj->safeGetObject("debug");
+	if (debugObjs != nullptr)
 	{
 		debug = true;
 	}

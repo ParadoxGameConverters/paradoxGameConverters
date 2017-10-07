@@ -36,10 +36,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 //	obj					= obj->getLeaves()[0];
 //	name					= obj->getKey();
 //
-//	vector<shared_ptr<Object>> usableByObject = obj->getValue("usable_by");
-//	if (usableByObject.size() > 0)
+//	auto usableByObject = obj->safeGetObject("usable_by");
+//	if (usableByObject != nullptr)
 //	{
-//		vector<string> tokens = usableByObject[0]->getTokens();
+//		vector<string> tokens = usableByObject->getTokens();
 //		for (auto tokensItr: tokens)
 //		{
 //			usableBy.insert(tokensItr);

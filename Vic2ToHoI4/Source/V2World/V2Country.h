@@ -118,7 +118,6 @@ class V2Country
 		void readInLeaders(shared_ptr<Object> countryObj);
 		void readInStates(shared_ptr<Object> countryObj);
 		void createNewState(shared_ptr<Object> stateObj);
-		void detectIfHuman(shared_ptr<Object> stateObj);
 
 		void setLocalisationName(const string& language, const string& name);
 		void setLocalisationAdjective(const string& language, const string& adjective);

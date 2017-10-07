@@ -45,10 +45,10 @@ governmentMapper::governmentMapper():
 		exit(-1);
 	}
 
-	auto governmentObjects = obj->getValue("government_mappings");
-	if (governmentObjects.size() > 0)
+	auto governmentObjects = obj->safeGetObject("government_mappings");
+	if (governmentObjects != nullptr)
 	{
-		importGovernmentMappings(governmentObjects[0]);
+		importGovernmentMappings(governmentObjects);
 	}
 	else
 	{
@@ -56,10 +56,10 @@ governmentMapper::governmentMapper():
 		exit(-1);
 	}
 
-	auto partyObjects = obj->getValue("party_mappings");
-	if (partyObjects.size() > 0)
+	auto partyObjects = obj->safeGetObject("party_mappings");
+	if (partyObjects != nullptr)
 	{
-		importPartyMappings(partyObjects[0]);
+		importPartyMappings(partyObjects);
 	}
 	else
 	{

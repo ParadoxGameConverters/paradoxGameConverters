@@ -34,10 +34,10 @@ V2Regiment::V2Regiment(shared_ptr<Object> obj):
 	organization(obj->safeGetFloat("organisation")),
 	experience(obj->safeGetFloat("experience"))
 {
-	std::vector<shared_ptr<Object>> objType = obj->getValue("type");
-	if (objType.size() > 0)
+	auto objType = obj->safeGetObject("type");
+	if (objType != nullptr)
 	{
-		type = objType[0]->getLeaf();
+		type = objType->getLeaf();
 	}
 	else
 	{
@@ -59,10 +59,10 @@ V2Army::V2Army(shared_ptr<Object> obj):
 		navy = true;
 	}
 
-	std::vector<shared_ptr<Object>> objLoc = obj->getValue("location");
-	if (objLoc.size() > 0)
+	auto objLoc = obj->safeGetObject("location");
+	if (objLoc != nullptr)
 	{
-		location = stoi(objLoc[0]->getLeaf());
+		location = stoi(objLoc->getLeaf());
 	}
 	else
 	{
@@ -70,17 +70,15 @@ V2Army::V2Army(shared_ptr<Object> obj):
 	}
 
 	regiments.clear();
-	std::vector<shared_ptr<Object>> objRegs = obj->getValue("regiment");
-	for (auto itr: objRegs)
+	for (auto regimentObj: obj->getValue("regiment"))
 	{
-		V2Regiment* newRegiment = new V2Regiment(itr);
+		V2Regiment* newRegiment = new V2Regiment(regimentObj);
 		regiments.push_back(newRegiment);
 	}
 
-	std::vector<shared_ptr<Object>> objShips = obj->getValue("ship");
-	for (auto itr: objShips)
+	for (auto shipObj: obj->getValue("ship"))
 	{
-		V2Regiment* newShip = new V2Regiment(itr);
+		V2Regiment* newShip = new V2Regiment(shipObj);
 		regiments.push_back(newShip);
 	}
 }

@@ -88,8 +88,8 @@ void initContinentMap(shared_ptr<Object> obj, continentMapping& continentMap)
 	for (auto continentObj: continentObjs)
 	{
 		string continent = continentObj->getKey();	// the current continent
-		vector<shared_ptr<Object>> provinceObjs = continentObj->getValue("provinces");	// the province numbers in this continent
-		for (auto provinceStr: provinceObjs[0]->getTokens())
+		auto provinceObjs = continentObj->safeGetObject("provinces");	// the province numbers in this continent
+		for (auto provinceStr: provinceObjs->getTokens())
 		{
 			const int province = stoi(provinceStr);	// the current province num
 			continentMap.insert( make_pair(province, continent) );

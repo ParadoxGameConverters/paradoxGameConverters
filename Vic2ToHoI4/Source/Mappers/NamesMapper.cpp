@@ -84,12 +84,12 @@ void namesMapper::processVic2CulturesFile(const string& filename)
 				continue;
 			}
 
-			vector<shared_ptr<Object>> firstNamesObj = culturesItr->getValue("first_names");
-			vector<shared_ptr<Object>> lastNamesObj = culturesItr->getValue("last_names");
-			if ((firstNamesObj.size() > 0) && (lastNamesObj.size() > 0))
+			auto firstNamesObj = culturesItr->safeGetObject("first_names");
+			auto lastNamesObj = culturesItr->safeGetObject("last_names");
+			if ((firstNamesObj != nullptr) && (lastNamesObj != nullptr))
 			{
-				maleNamesMap.insert(make_pair(key, firstNamesObj[0]->getTokens()));
-				surnamesMap.insert(make_pair(key, lastNamesObj[0]->getTokens()));
+				maleNamesMap.insert(make_pair(key, firstNamesObj->getTokens()));
+				surnamesMap.insert(make_pair(key, lastNamesObj->getTokens()));
 			}
 			else
 			{
@@ -107,52 +107,52 @@ void namesMapper::processNamesFile()
 	{
 		string culture = cultureObj->getKey();
 
-		auto femaleNamesObj = cultureObj->getValue("female_names");
-		if (femaleNamesObj.size() > 0)
+		auto femaleNamesObj = cultureObj->safeGetObject("female_names");
+		if (femaleNamesObj != nullptr)
 		{
-			femaleNamesMap.insert(make_pair(culture, femaleNamesObj[0]->getTokens()));
+			femaleNamesMap.insert(make_pair(culture, femaleNamesObj->getTokens()));
 		}
 
-		auto callsignsObj = cultureObj->getValue("callsigns");
-		if (callsignsObj.size() > 0)
+		auto callsignsObj = cultureObj->safeGetObject("callsigns");
+		if (callsignsObj != nullptr)
 		{
-			callsignsMap.insert(make_pair(culture, callsignsObj[0]->getTokens()));
+			callsignsMap.insert(make_pair(culture, callsignsObj->getTokens()));
 		}
 
-		auto carCompaniesObj = cultureObj->getValue("car_companies");
-		if (carCompaniesObj.size() > 0)
+		auto carCompaniesObj = cultureObj->safeGetObject("car_companies");
+		if (carCompaniesObj != nullptr)
 		{
-			carCompanyNames.insert(make_pair(culture, carCompaniesObj[0]->getTokens()));
+			carCompanyNames.insert(make_pair(culture, carCompaniesObj->getTokens()));
 		}
 
-		auto weaponCompanyObj = cultureObj->getValue("weapon_companies");
-		if (weaponCompanyObj.size() > 0)
+		auto weaponCompanyObj = cultureObj->safeGetObject("weapon_companies");
+		if (weaponCompanyObj != nullptr)
 		{
-			weaponCompanyNames.insert(make_pair(culture, weaponCompanyObj[0]->getTokens()));
+			weaponCompanyNames.insert(make_pair(culture, weaponCompanyObj->getTokens()));
 		}
 
-		auto aircraftCompanyNamesObj = cultureObj->getValue("aircraft_companies");
-		if (aircraftCompanyNamesObj.size() > 0)
+		auto aircraftCompanyNamesObj = cultureObj->safeGetObject("aircraft_companies");
+		if (aircraftCompanyNamesObj != nullptr)
 		{
-			aircraftCompanyNames.insert(make_pair(culture, aircraftCompanyNamesObj[0]->getTokens()));
+			aircraftCompanyNames.insert(make_pair(culture, aircraftCompanyNamesObj->getTokens()));
 		}
 
-		auto navalCompanyNamesObj = cultureObj->getValue("naval_companies");
-		if (navalCompanyNamesObj.size() > 0)
+		auto navalCompanyNamesObj = cultureObj->safeGetObject("naval_companies");
+		if (navalCompanyNamesObj != nullptr)
 		{
-			navalCompanyNames.insert(make_pair(culture, navalCompanyNamesObj[0]->getTokens()));
+			navalCompanyNames.insert(make_pair(culture, navalCompanyNamesObj->getTokens()));
 		}
 
-		auto industryCompanyNamesObj = cultureObj->getValue("industry_companies");
-		if (industryCompanyNamesObj.size() > 0)
+		auto industryCompanyNamesObj = cultureObj->safeGetObject("industry_companies");
+		if (industryCompanyNamesObj != nullptr)
 		{
-			industryCompanyNames.insert(make_pair(culture, industryCompanyNamesObj[0]->getTokens()));
+			industryCompanyNames.insert(make_pair(culture, industryCompanyNamesObj->getTokens()));
 		}
 
-		auto electronicCompanyNamesObj = cultureObj->getValue("electronic_companies");
-		if (electronicCompanyNamesObj.size() > 0)
+		auto electronicCompanyNamesObj = cultureObj->safeGetObject("electronic_companies");
+		if (electronicCompanyNamesObj != nullptr)
 		{
-			electronicCompanyNames.insert(make_pair(culture, electronicCompanyNamesObj[0]->getTokens()));
+			electronicCompanyNames.insert(make_pair(culture, electronicCompanyNamesObj->getTokens()));
 		}
 	}
 
