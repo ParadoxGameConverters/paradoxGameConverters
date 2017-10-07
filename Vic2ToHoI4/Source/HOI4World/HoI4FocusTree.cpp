@@ -2017,7 +2017,7 @@ void HoI4FocusTree::addAbsolutistGenericFocuses()
 	newFocus->aiWillDo += "					NOT = { has_government = absolutist }\n";
 	newFocus->aiWillDo += "				}\n";
 	newFocus->aiWillDo += "			}";
-	newFocus->completionReward += "			add_ideas = absolutist";
+	newFocus->completionReward += "			add_ideas = absolutism";
 	focuses.push_back(newFocus);
 
 	newFocus = new HoI4Focus;
