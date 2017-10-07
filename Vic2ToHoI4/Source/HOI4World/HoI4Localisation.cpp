@@ -180,14 +180,14 @@ void HoI4Localisation::prepareIdeaLocalisations()
 
 void HoI4Localisation::CreateCountryLocalisations(const pair<const string&, const string&>& tags)
 {
-	addLocalisationsForAllGovernments(tags, make_pair(string(""), "_DEF"));
-	addLocalisationsForAllGovernments(tags, make_pair("_ADJ", string("")));
+	addLocalisationsForAllGovernments(tags, make_pair(string(""), string("_DEF")));
+	addLocalisationsForAllGovernments(tags, make_pair(string("_ADJ"), string("")));
 
-	if (addNeutralLocalisation(tags, make_pair(string(""), "_DEF")) == 0)
+	if (addNeutralLocalisation(tags, make_pair(string(""), string("_DEF"))) == 0)
 	{
 		LOG(LogLevel::Warning) << "Could not find plain localisation for " << tags.first;
 	}
-	if (addNeutralLocalisation(tags, make_pair("_ADJ", string(""))) == 0)
+	if (addNeutralLocalisation(tags, make_pair(string("_ADJ"), string(""))) == 0)
 	{
 		LOG(LogLevel::Warning) << "Could not find plain adjective localisation for " << tags.first;
 	}
@@ -261,6 +261,7 @@ void HoI4Localisation::addLocalisation(const string& newKey, languageToLocalisat
 		}
 	}
 }
+
 
 void HoI4Localisation::AddNonenglishCountryLocalisations()
 {
