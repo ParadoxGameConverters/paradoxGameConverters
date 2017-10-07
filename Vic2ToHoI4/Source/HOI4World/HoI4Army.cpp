@@ -36,14 +36,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 //	obj					= obj->getLeaves()[0];
 //	name					= obj->getKey();
 //
-//	auto usableByObject = obj->safeGetObject("usable_by");
-//	if (usableByObject != nullptr)
+//	for (auto tokensItr: obj->safeGetTokens("usable_by"))
 //	{
-//		vector<string> tokens = usableByObject->getTokens();
-//		for (auto tokensItr: tokens)
-//		{
-//			usableBy.insert(tokensItr);
-//		}
+//		usableBy.insert(tokensItr);
 //	}
 //
 //	string unit_type = obj->safeGetString("type");

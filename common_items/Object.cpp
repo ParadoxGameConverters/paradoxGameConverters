@@ -452,6 +452,21 @@ shared_ptr<Object> Object::safeGetObject(const string& k, shared_ptr<Object> def
 }
 
 
+vector<string> Object::safeGetTokens(const string& k)
+{
+	auto obj = safeGetObject(k);
+	if (obj != nullptr)
+	{
+		return obj->getTokens();
+	}
+	else
+	{
+		vector<string> noTokens;
+		return noTokens;
+	}
+}
+
+
 string Object::toString() const
 {
 	ostringstream blah;	// the output string

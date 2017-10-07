@@ -73,7 +73,6 @@ class Vic2State
 
 		void addProvinceNums(shared_ptr<Object> stateObj);
 		void setID();
-		vector<string> getProvinceIDs(shared_ptr<Object> stateObj) const;
 
 		void setFactoryLevel(shared_ptr<Object> stateObj);
 

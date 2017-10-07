@@ -61,42 +61,30 @@ void V2Province::readCores(shared_ptr<Object> obj)
 
 void V2Province::readForts(shared_ptr<Object> obj)
 {
-	auto buildingObjs = obj->safeGetObject("fort");
-	if (buildingObjs != nullptr)
+	auto tokens = obj->safeGetTokens("fort");
+	if (tokens.size() > 0)
 	{
-		vector<string> tokens = buildingObjs->getTokens();
-		if (tokens.size() > 0)
-		{
-			fortLevel = stoi(tokens[0]);
-		}
+		fortLevel = stoi(tokens[0]);
 	}
 }
 
 
 void V2Province::readNavalBases(shared_ptr<Object> obj)
 {
-	auto buildingObjs = obj->safeGetObject("naval_base");
-	if (buildingObjs != nullptr)
+	auto tokens = obj->safeGetTokens("naval_base");
+	if (tokens.size() > 0)
 	{
-		vector<string> tokens = buildingObjs->getTokens();
-		if (tokens.size() > 0)
-		{
-			navalBaseLevel = stoi(tokens[0]);
-		}
+		navalBaseLevel = stoi(tokens[0]);
 	}
 }
 
 
 void V2Province::readRails(shared_ptr<Object> obj)
 {
-	auto buildingObjs = obj->safeGetObject("railroad");
-	if (buildingObjs != nullptr)
+	auto tokens = obj->safeGetTokens("railroad");
+	if (tokens.size() > 0)
 	{
-		vector<string> tokens = buildingObjs->getTokens();
-		if (tokens.size() > 0)
-		{
-			railLevel = stoi(tokens[0]);
-		}
+		railLevel = stoi(tokens[0]);
 	}
 }
 

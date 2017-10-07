@@ -96,14 +96,10 @@ map<int, int> V2World::extractGreatNationIndices(const shared_ptr<Object> obj) c
 {
 	map<int, int> countryIndexToGPRank;
 
-	auto greatNationsObj = obj->safeGetObject("great_nations");
-	if (greatNationsObj != nullptr)
+	auto greatNations = obj->safeGetTokens("great_nations");
+	for (unsigned int i = 0; i < greatNations.size(); i++)
 	{
-		vector<string> greatNations = greatNationsObj->getTokens();
-		for (unsigned int i = 0; i < greatNations.size(); i++)
-		{
-			countryIndexToGPRank.insert(make_pair(stoi(greatNations[i]), i));
-		}
+		countryIndexToGPRank.insert(make_pair(stoi(greatNations[i]), i));
 	}
 
 	return countryIndexToGPRank;
@@ -405,16 +401,12 @@ shared_ptr<Object> V2World::readCountryFile(const string& countryFileName, const
 void V2World::readCountryColor(shared_ptr<Object> countryData, const string& line)
 {
 	string tag = line.substr(0, 3);
-	auto colorObj = countryData->safeGetObject("color");
-	if (colorObj != nullptr)
+	auto rgb = countryData->safeGetTokens("color");
+	if (rgb.size() == 3)
 	{
-		vector<string> rgb = colorObj->getTokens();
-		if (rgb.size() == 3)
+		if (countries.find(tag) != countries.end())
 		{
-			if (countries.find(tag) != countries.end())
-			{
-				countries[tag]->setColor(Color(stoi(rgb[0]), stoi(rgb[1]), stoi(rgb[2])));
-			}
+			countries[tag]->setColor(Color(stoi(rgb[0]), stoi(rgb[1]), stoi(rgb[2])));
 		}
 	}
 }

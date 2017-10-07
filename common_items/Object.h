@@ -92,6 +92,7 @@ class Object
 	  string safeGetString(const string& k, string def = ""); 
 	  int safeGetInt(const string& k, int def = 0);
 	  shared_ptr<Object> safeGetObject(const string& k, shared_ptr<Object> def = nullptr);
+	  vector<string> safeGetTokens(const string& k);
 	  string toString() const; 
   
 	private:

@@ -106,8 +106,7 @@ void HoI4SupplyZones::importSupplyZone(const string& supplyZonesFile)
 
 void HoI4SupplyZones::mapProvincesToSupplyZone(int ID, shared_ptr<Object> supplyAreaObj)
 {
-	auto statesObj = supplyAreaObj->safeGetObject("states");
-	for (auto idString: statesObj->getTokens())
+	for (auto idString: supplyAreaObj->safeGetTokens("states"))
 	{
 		auto mapping = defaultStateToProvinceMap.find(stoi(idString));
 		for (auto province : mapping->second)

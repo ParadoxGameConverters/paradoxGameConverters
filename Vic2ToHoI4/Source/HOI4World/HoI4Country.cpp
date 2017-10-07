@@ -1205,7 +1205,7 @@ void HoI4Country::outputToNamesFiles(ofstream& namesFile) const
 
 void HoI4Country::outputNamesSet(ofstream& namesFile, const vector<string>& names, const string& tabs) const
 {
-	if (names[0] != "null")
+	if (names.size() > 0)
 	{
 		namesFile << tabs;
 

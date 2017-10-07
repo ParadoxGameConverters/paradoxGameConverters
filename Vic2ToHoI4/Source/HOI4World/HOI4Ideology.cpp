@@ -50,13 +50,9 @@ HoI4Ideology::HoI4Ideology(shared_ptr<Object> obj):
 		}
 	}
 
-	auto dynamicFactionNamesObj = obj->safeGetObject("dynamic_faction_names");
-	if (dynamicFactionNamesObj != nullptr)
+	for (auto dynamicFactionNameObj: obj->safeGetTokens("dynamic_faction_names"))
 	{
-		for (auto dynamicFactionNameObj: dynamicFactionNamesObj->getTokens())
-		{
-			dynamicFactionNames.push_back(dynamicFactionNameObj);
-		}
+		dynamicFactionNames.push_back(dynamicFactionNameObj);
 	}
 
 	auto colorsObj = obj->safeGetObject("color");

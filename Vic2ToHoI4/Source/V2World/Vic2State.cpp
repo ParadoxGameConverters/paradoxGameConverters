@@ -47,8 +47,7 @@ Vic2State::Vic2State(shared_ptr<Object> stateObj, const string& ownerTag):
 
 void Vic2State::addProvinceNums(shared_ptr<Object> stateObj)
 {
-	const vector<string> provinceIDs = getProvinceIDs(stateObj);
-	for (auto provinceItr: provinceIDs)
+	for (auto provinceItr: stateObj->safeGetTokens("provinces"))
 	{
 		provinceNums.insert(stoi(provinceItr));
 	}
@@ -66,20 +65,6 @@ void Vic2State::setID()
 	{
 		LOG(LogLevel::Warning) << "Could not find the state for Vic2 province " << *provinceNums.begin() << ".";
 	}
-}
-
-
-vector<string> Vic2State::getProvinceIDs(shared_ptr<Object> stateObj) const
-{
-	vector<string> provinceIDs;
-
-	auto provinceObjs = stateObj->safeGetObject("provinces");
-	if (provinceObjs != nullptr)
-	{
-		provinceIDs = provinceObjs->getTokens();
-	}
-
-	return provinceIDs;
 }
 
 

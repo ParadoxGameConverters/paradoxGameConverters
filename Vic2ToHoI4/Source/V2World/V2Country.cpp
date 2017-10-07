@@ -93,14 +93,10 @@ void V2Country::readInCultures(shared_ptr<Object> countryObj)
 
 	primaryCultureGroup = cultureGroupMapper::getCultureGroup(primaryCulture);
 
-	auto cultureSectionObjs = countryObj->safeGetObject("culture");
-	if (cultureSectionObjs != nullptr)
+	auto cultures = countryObj->safeGetTokens("culture");
+	for (auto culture: cultures)
 	{
-		auto cultures = cultureSectionObjs->getTokens();
-		for (auto culture: cultures)
-		{
-			acceptedCultures.insert(culture);
-		}
+		acceptedCultures.insert(culture);
 	}
 }
 
@@ -122,21 +118,17 @@ void V2Country::readInInventions(shared_ptr<Object> countryObj)
 {
 	inventionNumToName inventionNumsToNames = getInventionNums();
 
-	auto inventionsObjs = countryObj->safeGetObject("active_inventions");
-	if (inventionsObjs != nullptr)
+	auto activeInventionsNumbers = countryObj->safeGetTokens("active_inventions");
+	for (auto activeInventionNumber: activeInventionsNumbers)
 	{
-		vector<string> activeInventionsNumbers = inventionsObjs->getTokens();
-		for (auto activeInventionNumber : activeInventionsNumbers)
+		auto inventionName = inventionNumsToNames.find(stoi(activeInventionNumber));
+		if (inventionName == inventionNumsToNames.end())
 		{
-			auto inventionName = inventionNumsToNames.find(stoi(activeInventionNumber));
-			if (inventionName == inventionNumsToNames.end())
-			{
-				LOG(LogLevel::Warning) << tag << " has an invalid invention. Is this using a mod that changed inventions?";
-			}
-			else
-			{
-				inventions.insert(inventionName->second);
-			}
+			LOG(LogLevel::Warning) << tag << " has an invalid invention. Is this using a mod that changed inventions?";
+		}
+		else
+		{
+			inventions.insert(inventionName->second);
 		}
 	}
 }

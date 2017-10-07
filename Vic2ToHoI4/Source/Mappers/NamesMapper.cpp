@@ -107,53 +107,14 @@ void namesMapper::processNamesFile()
 	{
 		string culture = cultureObj->getKey();
 
-		auto femaleNamesObj = cultureObj->safeGetObject("female_names");
-		if (femaleNamesObj != nullptr)
-		{
-			femaleNamesMap.insert(make_pair(culture, femaleNamesObj->getTokens()));
-		}
-
-		auto callsignsObj = cultureObj->safeGetObject("callsigns");
-		if (callsignsObj != nullptr)
-		{
-			callsignsMap.insert(make_pair(culture, callsignsObj->getTokens()));
-		}
-
-		auto carCompaniesObj = cultureObj->safeGetObject("car_companies");
-		if (carCompaniesObj != nullptr)
-		{
-			carCompanyNames.insert(make_pair(culture, carCompaniesObj->getTokens()));
-		}
-
-		auto weaponCompanyObj = cultureObj->safeGetObject("weapon_companies");
-		if (weaponCompanyObj != nullptr)
-		{
-			weaponCompanyNames.insert(make_pair(culture, weaponCompanyObj->getTokens()));
-		}
-
-		auto aircraftCompanyNamesObj = cultureObj->safeGetObject("aircraft_companies");
-		if (aircraftCompanyNamesObj != nullptr)
-		{
-			aircraftCompanyNames.insert(make_pair(culture, aircraftCompanyNamesObj->getTokens()));
-		}
-
-		auto navalCompanyNamesObj = cultureObj->safeGetObject("naval_companies");
-		if (navalCompanyNamesObj != nullptr)
-		{
-			navalCompanyNames.insert(make_pair(culture, navalCompanyNamesObj->getTokens()));
-		}
-
-		auto industryCompanyNamesObj = cultureObj->safeGetObject("industry_companies");
-		if (industryCompanyNamesObj != nullptr)
-		{
-			industryCompanyNames.insert(make_pair(culture, industryCompanyNamesObj->getTokens()));
-		}
-
-		auto electronicCompanyNamesObj = cultureObj->safeGetObject("electronic_companies");
-		if (electronicCompanyNamesObj != nullptr)
-		{
-			electronicCompanyNames.insert(make_pair(culture, electronicCompanyNamesObj->getTokens()));
-		}
+		femaleNamesMap.insert(make_pair(culture, cultureObj->safeGetTokens("female_names")));
+		callsignsMap.insert(make_pair(culture, cultureObj->safeGetTokens("callsigns")));
+		carCompanyNames.insert(make_pair(culture, cultureObj->safeGetTokens("car_companies")));
+		weaponCompanyNames.insert(make_pair(culture, cultureObj->safeGetTokens("weapon_companies")));
+		aircraftCompanyNames.insert(make_pair(culture, cultureObj->safeGetTokens("aircraft_companies")));
+		navalCompanyNames.insert(make_pair(culture, cultureObj->safeGetTokens("naval_companies")));
+		industryCompanyNames.insert(make_pair(culture, cultureObj->safeGetTokens("industry_companies")));
+		electronicCompanyNames.insert(make_pair(culture, cultureObj->safeGetTokens("electronic_companies")));
 	}
 
 
@@ -211,10 +172,6 @@ vector<string> namesMapper::GetMaleNames(const string& culture) const
 	{
 		maleNames = namesItr->second;
 	}
-	else
-	{
-		maleNames.push_back("null");
-	}
 
 	return maleNames;
 }
@@ -228,10 +185,6 @@ vector<string> namesMapper::GetFemaleNames(const string& culture) const
 	if (namesItr != femaleNamesMap.end())
 	{
 		femaleNames = namesItr->second;
-	}
-	else
-	{
-		femaleNames.push_back("null");
 	}
 
 	return femaleNames;
@@ -247,10 +200,6 @@ vector<string> namesMapper::GetSurnames(const string& culture) const
 	{
 		surnames = namesItr->second;
 	}
-	else
-	{
-		surnames.push_back("null");
-	}
 
 	return surnames;
 }
@@ -265,10 +214,6 @@ vector<string> namesMapper::GetCallsigns(const string& culture) const
 	{
 		callsigns = namesItr->second;
 	}
-	else
-	{
-		callsigns.push_back("null");
-	}
 
 	return callsigns;
 }
@@ -278,8 +223,15 @@ string namesMapper::GetMaleName(const string& culture)
 {
 	vector<string> firstNames = GetMaleNames(culture);
 
-	std::uniform_int_distribution<int> firstNameGen(0, firstNames.size() - 1);
-	return firstNames[firstNameGen(rng)];
+	if (firstNames.size() > 0)
+	{
+		std::uniform_int_distribution<int> firstNameGen(0, firstNames.size() - 1);
+		return firstNames[firstNameGen(rng)];
+	}
+	else
+	{
+		return "";
+	}
 }
 
 
@@ -287,8 +239,15 @@ string namesMapper::GetFemaleName(const string& culture)
 {
 	vector<string> firstNames = GetFemaleNames(culture);
 
-	std::uniform_int_distribution<int> firstNameGen(0, firstNames.size() - 1);
-	return firstNames[firstNameGen(rng)];
+	if (firstNames.size() > 0)
+	{
+		std::uniform_int_distribution<int> firstNameGen(0, firstNames.size() - 1);
+		return firstNames[firstNameGen(rng)];
+	}
+	else
+	{
+		return "";
+	}
 }
 
 
@@ -296,8 +255,15 @@ string namesMapper::GetSurname(const string& culture)
 {
 	vector<string> surnames = GetSurnames(culture);
 
-	std::uniform_int_distribution<int> surnameGen(0, surnames.size() - 1);
-	return surnames[surnameGen(rng)];
+	if (surnames.size() > 0)
+	{
+		std::uniform_int_distribution<int> surnameGen(0, surnames.size() - 1);
+		return surnames[surnameGen(rng)];
+	}
+	else
+	{
+		return "";
+	}
 }
 
 
@@ -305,8 +271,15 @@ string namesMapper::GetCallsign(const string& culture)
 {
 	vector<string> callsigns = GetCallsigns(culture);
 
-	std::uniform_int_distribution<int> surnameGen(0, callsigns.size() - 1);
-	return callsigns[surnameGen(rng)];
+	if (callsigns.size() > 0)
+	{
+		std::uniform_int_distribution<int> surnameGen(0, callsigns.size() - 1);
+		return callsigns[surnameGen(rng)];
+	}
+	else
+	{
+		return "";
+	}
 }
 
 

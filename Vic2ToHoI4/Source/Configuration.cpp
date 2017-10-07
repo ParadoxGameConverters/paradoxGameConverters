@@ -101,12 +101,7 @@ Configuration::Configuration():
 		LOG(LogLevel::Debug) << "HoI4 documents directory is " << HoI4DocumentsPath;
 	}
 
-	auto modsObj = obj->safeGetObject("Vic2Mods");
-	if (modsObj != nullptr)
-	{
-		Vic2Mods = modsObj->getTokens();
-	}
-
+	Vic2Mods = obj->safeGetTokens("Vic2Mods");
 	manpowerFactor = obj->safeGetFloat("manpower_factor");
 	forceMultiplier = obj->safeGetFloat("force_multiplier");
 	industrialShapeFactor = obj->safeGetFloat("industrial_shape_factor");
