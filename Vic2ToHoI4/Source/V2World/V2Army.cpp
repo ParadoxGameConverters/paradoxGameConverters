@@ -34,7 +34,7 @@ V2Regiment::V2Regiment(shared_ptr<Object> obj):
 	organization(obj->safeGetFloat("organisation")),
 	experience(obj->safeGetFloat("experience"))
 {
-	if (type != "")
+	if (type == "")
 	{
 		LOG(LogLevel::Warning) << "Regiment or Ship " << name << " has no type";
 	}
@@ -49,7 +49,7 @@ V2Army::V2Army(shared_ptr<Object> obj):
 	at_sea(obj->safeGetInt("at_sea")),
 	navy(obj->getKey() == "navy")
 {
-	if (location != -1)
+	if (location == -1)
 	{
 		LOG(LogLevel::Warning) << "Army or Navy " << name << " has no location";
 	}
