@@ -48,7 +48,7 @@ EU4World::EU4World(const string& EU4SaveFileName)
 {
 	LOG(LogLevel::Info) << "* Importing EU4 save *";
 	verifySave(EU4SaveFileName);
-	Object* EU4SaveObject = parseSave(EU4SaveFileName);
+	shared_ptr<Object> EU4SaveObject = parseSave(EU4SaveFileName);
 
 	LOG(LogLevel::Info) << "Building world";
 	loadUsedMods(EU4SaveObject);
@@ -112,10 +112,10 @@ void EU4World::verifySave(const string& EU4SaveFileName)
 }
 
 
-Object* EU4World::parseSave(const string& EU4SaveFileName)
+shared_ptr<Object> EU4World::parseSave(const string& EU4SaveFileName)
 {
 	LOG(LogLevel::Info) << "Parsing save";
-	Object* obj = parser_UTF8::doParseFile(EU4SaveFileName.c_str());
+	shared_ptr<Object> obj = parser_UTF8::doParseFile(EU4SaveFileName.c_str());
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << EU4SaveFileName;
@@ -126,12 +126,12 @@ Object* EU4World::parseSave(const string& EU4SaveFileName)
 }
 
 
-void EU4World::loadUsedMods(const Object* EU4SaveObj)
+void EU4World::loadUsedMods(const shared_ptr<Object> EU4SaveObj)
 {
 	LOG(LogLevel::Debug) << "Get EU4 Mods";
 	map<string, string> possibleMods = loadPossibleMods();
 
-	vector<Object*> modObj = EU4SaveObj->getValue("mod_enabled");	// the used mods
+	vector<shared_ptr<Object>> modObj = EU4SaveObj->getValue("mod_enabled");	// the used mods
 	if (modObj.size() > 0)
 	{
 		string modString = modObj[0]->getLeaf();	// the names of all the mods
@@ -216,10 +216,10 @@ void EU4World::loadEU4ModDirectory(map<string, string>& possibleMods)
 			const int pos = itr->find_last_of('.');	// the position of the last period in the filename
 			if (itr->substr(pos, itr->length()) == ".mod")
 			{
-				Object* modObj = parser_UTF8::doParseFile((EU4DocumentsLoc + "/mod/" + *itr).c_str());	// the parsed mod file
+				shared_ptr<Object> modObj = parser_UTF8::doParseFile((EU4DocumentsLoc + "/mod/" + *itr).c_str());	// the parsed mod file
 
 				string name;	// the name of the mod
-				vector<Object*> nameObj = modObj->getValue("name");
+				vector<shared_ptr<Object>> nameObj = modObj->getValue("name");
 				if (nameObj.size() > 0)
 				{
 					name = nameObj[0]->getLeaf();
@@ -230,14 +230,14 @@ void EU4World::loadEU4ModDirectory(map<string, string>& possibleMods)
 				}
 
 				string path;	// the path of the mod
-				vector<Object*> dirObjs = modObj->getValue("path");	// the possible paths of the mod
+				vector<shared_ptr<Object>> dirObjs = modObj->getValue("path");	// the possible paths of the mod
 				if (dirObjs.size() > 0)
 				{
 					path = dirObjs[0]->getLeaf();
 				}
 				else
 				{
-					vector<Object*> dirObjs = modObj->getValue("archive");	// the other possible paths of the mod (if its zipped)
+					vector<shared_ptr<Object>> dirObjs = modObj->getValue("archive");	// the other possible paths of the mod (if its zipped)
 					if (dirObjs.size() > 0)
 					{
 						path = dirObjs[0]->getLeaf();
@@ -273,8 +273,8 @@ void EU4World::loadCK2ExportDirectory(map<string, string>& possibleMods)
 			const int pos = itr->find_last_of('.');	// the last period in the filename
 			if ((pos != string::npos) && (itr->substr(pos, itr->length()) == ".mod"))
 			{
-				Object* modObj = parser_UTF8::doParseFile((CK2ExportLoc + "/" + *itr).c_str());	// the parsed mod file
-				vector<Object*> nameObj = modObj->getValue("name");
+				shared_ptr<Object> modObj = parser_UTF8::doParseFile((CK2ExportLoc + "/" + *itr).c_str());	// the parsed mod file
+				vector<shared_ptr<Object>> nameObj = modObj->getValue("name");
 				string name;
 				if (nameObj.size() > 0)
 				{
@@ -282,14 +282,14 @@ void EU4World::loadCK2ExportDirectory(map<string, string>& possibleMods)
 				}
 
 				string path;	// the path of the mod
-				vector<Object*> dirObjs = modObj->getValue("user_dir");	// the possible paths for the mod
+				vector<shared_ptr<Object>> dirObjs = modObj->getValue("user_dir");	// the possible paths for the mod
 				if (dirObjs.size() > 0)
 				{
 					path = dirObjs[0]->getLeaf();
 				}
 				else
 				{
-					vector<Object*> dirObjs = modObj->getValue("archive");	// the other possible paths for the mod (if it's zipped)
+					vector<shared_ptr<Object>> dirObjs = modObj->getValue("archive");	// the other possible paths for the mod (if it's zipped)
 					if (dirObjs.size() > 0)
 					{
 						path = dirObjs[0]->getLeaf();
@@ -306,17 +306,17 @@ void EU4World::loadCK2ExportDirectory(map<string, string>& possibleMods)
 }
 
 
-void EU4World::loadEU4Version(const Object* EU4SaveObj)
+void EU4World::loadEU4Version(const shared_ptr<Object> EU4SaveObj)
 {
-	vector<Object*> versionObj = EU4SaveObj->getValue("savegame_version");
+	vector<shared_ptr<Object>> versionObj = EU4SaveObj->getValue("savegame_version");
 	(versionObj.size() > 0) ? version = new EU4Version(versionObj[0]) : version = new EU4Version();
 	Configuration::setEU4Version(*version);
 }
 
 
-void EU4World::loadActiveDLC(const Object* EU4SaveObj)
+void EU4World::loadActiveDLC(const shared_ptr<Object> EU4SaveObj)
 {
-	vector<Object*> enabledDLCsObj = EU4SaveObj->getValue("dlc_enabled");
+	vector<shared_ptr<Object>> enabledDLCsObj = EU4SaveObj->getValue("dlc_enabled");
 	if (enabledDLCsObj.size() > 0)
 	{
 		vector<string>	activeDLCs;
@@ -331,9 +331,9 @@ void EU4World::loadActiveDLC(const Object* EU4SaveObj)
 }
 
 
-void EU4World::loadEndDate(const Object* EU4SaveObj)
+void EU4World::loadEndDate(const shared_ptr<Object> EU4SaveObj)
 {
-	vector<Object*> dateObj = EU4SaveObj->getValue("date");
+	vector<shared_ptr<Object>> dateObj = EU4SaveObj->getValue("date");
 	if (dateObj.size() > 0)
 	{
 		date endDate(dateObj[0]->getLeaf());
@@ -342,29 +342,29 @@ void EU4World::loadEndDate(const Object* EU4SaveObj)
 }
 
 
-void EU4World::loadEmpires(const Object* EU4SaveObj)
+void EU4World::loadEmpires(const shared_ptr<Object> EU4SaveObj)
 {
-	vector<Object*> emperorObj = EU4SaveObj->getValue("emperor");
+	vector<shared_ptr<Object>> emperorObj = EU4SaveObj->getValue("emperor");
 	if (emperorObj.size() > 0)
 	{
 		holyRomanEmperor = emperorObj[0]->getLeaf();
 	}
 
-	vector<Object*> empireObj = EU4SaveObj->getValue("empire");
+	vector<shared_ptr<Object>> empireObj = EU4SaveObj->getValue("empire");
 	if (empireObj.size() > 0)
 	{
 		loadHolyRomanEmperor(empireObj);
 	}
-	vector<Object*> celestialEmpireObj = EU4SaveObj->getValue("celestial_empire");
+	vector<shared_ptr<Object>> celestialEmpireObj = EU4SaveObj->getValue("celestial_empire");
 	if (celestialEmpireObj.size() > 0)
 	{
 		loadCelestialEmperor(celestialEmpireObj);
 	}
 }
 
-void EU4World::loadHolyRomanEmperor(vector<Object*> empireObj)
+void EU4World::loadHolyRomanEmperor(vector<shared_ptr<Object>> empireObj)
 {
-	vector<Object*> emperorObj = empireObj[0]->getValue("emperor");
+	vector<shared_ptr<Object>> emperorObj = empireObj[0]->getValue("emperor");
 	if (emperorObj.size() > 0)
 	{
 		holyRomanEmperor = emperorObj[0]->getLeaf();
@@ -372,24 +372,24 @@ void EU4World::loadHolyRomanEmperor(vector<Object*> empireObj)
 }
 
 
-void EU4World::loadCelestialEmperor(vector<Object*> celestialEmpireObj)
+void EU4World::loadCelestialEmperor(vector<shared_ptr<Object>> celestialEmpireObj)
 {
-	vector<Object*> emperorObj = celestialEmpireObj[0]->getValue("emperor");
+	vector<shared_ptr<Object>> emperorObj = celestialEmpireObj[0]->getValue("emperor");
 	if (emperorObj.size() > 0)
 	{
 		celestialEmperor = emperorObj[0]->getLeaf();
 	}
 }
 
-void EU4World::loadProvinces(const Object* EU4SaveObj)
+void EU4World::loadProvinces(const shared_ptr<Object> EU4SaveObj)
 {
 	auto validProvinces = determineValidProvinces();
 
 	provinces.clear();
-	vector<Object*> provincesObj = EU4SaveObj->getValue("provinces");					// the object holding the provinces
+	vector<shared_ptr<Object>> provincesObj = EU4SaveObj->getValue("provinces");					// the object holding the provinces
 	if (provincesObj.size() > 0)
 	{
-		vector<Object*> provincesLeaves = provincesObj[0]->getLeaves();		// the objects holding the individual provinces
+		vector<shared_ptr<Object>> provincesLeaves = provincesObj[0]->getLeaves();		// the objects holding the individual provinces
 		for (unsigned int j = 0; j < provincesLeaves.size(); j++)
 		{
 			string keyProv = (provincesLeaves[j])->getKey();						// the key for the province
@@ -439,14 +439,14 @@ map<int, int> EU4World::determineValidProvinces()
 }
 
 
-void EU4World::loadCountries(const Object* EU4SaveObj)
+void EU4World::loadCountries(const shared_ptr<Object> EU4SaveObj)
 {
 	// Get Countries
 	countries.clear();
-	vector<Object*> countriesObj = EU4SaveObj->getValue("countries");				// the object holding the countries
+	vector<shared_ptr<Object>> countriesObj = EU4SaveObj->getValue("countries");				// the object holding the countries
 	if (countriesObj.size() > 0)
 	{
-		vector<Object*> countriesLeaves = countriesObj[0]->getLeaves();	// the objects holding the countries themselves
+		vector<shared_ptr<Object>> countriesLeaves = countriesObj[0]->getLeaves();	// the objects holding the countries themselves
 		for (unsigned int j = 0; j < countriesLeaves.size(); j++)
 		{
 			string keyCoun = countriesLeaves[j]->getKey();						// the key for this country
@@ -480,9 +480,9 @@ void EU4World::loadCountries(const Object* EU4SaveObj)
 }
 
 
-void EU4World::loadRevolutionTarget(const Object* EU4SaveObj)
+void EU4World::loadRevolutionTarget(const shared_ptr<Object> EU4SaveObj)
 {
-	vector<Object*> revolutionTargetObj = EU4SaveObj->getValue("revolution_target");
+	vector<shared_ptr<Object>> revolutionTargetObj = EU4SaveObj->getValue("revolution_target");
 	if (revolutionTargetObj.size() > 0)
 	{
 		string revolutionTarget = revolutionTargetObj[0]->getLeaf();
@@ -520,9 +520,9 @@ void EU4World::addProvinceInfoToCountries()
 }
 
 
-void EU4World::loadDiplomacy(const Object* EU4SaveObj)
+void EU4World::loadDiplomacy(const shared_ptr<Object> EU4SaveObj)
 {
-	vector<Object*> diploObj = EU4SaveObj->getValue("diplomacy");	// the object holding the world's diplomacy
+	vector<shared_ptr<Object>> diploObj = EU4SaveObj->getValue("diplomacy");	// the object holding the world's diplomacy
 	if (diploObj.size() > 0)
 	{
 		diplomacy = new EU4Diplomacy(diploObj[0]);
@@ -781,7 +781,7 @@ void EU4World::resolveRegimentTypes()
 		read.close();
 		read.clear();
 		LOG(LogLevel::Info) << "\tReading unit strengths from unit_strength.txt";
-		Object* unitsObj = parser_UTF8::doParseFile("unit_strength.txt");
+		shared_ptr<Object> unitsObj = parser_UTF8::doParseFile("unit_strength.txt");
 		if (unitsObj == NULL)
 		{
 			LOG(LogLevel::Error) << "Could not parse file unit_strength.txt";
@@ -818,14 +818,14 @@ void EU4World::resolveRegimentTypes()
 void EU4World::mergeNations()
 {
 	LOG(LogLevel::Info) << "Merging nations";
-	Object* mergeObj = parser_UTF8::doParseFile("merge_nations.txt");
+	shared_ptr<Object> mergeObj = parser_UTF8::doParseFile("merge_nations.txt");
 	if (mergeObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file merge_nations.txt";
 		exit(-1);
 	}
 
-	vector<Object*> rules = mergeObj->getValue("merge_nations");
+	vector<shared_ptr<Object>> rules = mergeObj->getValue("merge_nations");
 	if (rules.size() < 0)
 	{
 		LOG(LogLevel::Debug) << "No nations have merging requested (skipping)";
@@ -841,7 +841,7 @@ void EU4World::mergeNations()
 			continue;
 		}
 
-		vector<Object*> ruleItems = rule->getLeaves();
+		vector<shared_ptr<Object>> ruleItems = rule->getLeaves();
 
 		string masterTag;
 		vector<string> slaveTags;

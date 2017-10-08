@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -19,6 +19,8 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
+
+
 #include "StateMapper.h"
 #include "../Configuration.h"
 #include "Log.h"
@@ -26,7 +28,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "OSCompatibilityLayer.h"
 #include "ParadoxParser8859_15.h"
 
+
+
 stateMapper* stateMapper::instance = NULL;
+
+
 
 stateMapper::stateMapper()
 {
@@ -42,7 +48,7 @@ stateMapper::stateMapper()
 		filename = Configuration::getV2Path() + "/map/region.txt";
 	}
 
-	Object* Vic2RegionsObj = parser_8859_15::doParseFile(filename);
+	shared_ptr<Object> Vic2RegionsObj = parser_8859_15::doParseFile(filename);
 	if (Vic2RegionsObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << filename;
@@ -56,9 +62,9 @@ stateMapper::stateMapper()
 	initStateMap(Vic2RegionsObj);
 }
 
-void stateMapper::initStateMap(Object* obj)
+void stateMapper::initStateMap(shared_ptr<Object> obj)
 {
-	vector<Object*> states = obj->getLeaves();
+	vector<shared_ptr<Object>> states = obj->getLeaves();
 
 	for (unsigned int stateIndex = 0; stateIndex < states.size(); stateIndex++)
 	{

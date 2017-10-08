@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -35,7 +35,7 @@ cultureMapper* cultureMapper::instance = nullptr;
 cultureMapper::cultureMapper()
 {
 	LOG(LogLevel::Info) << "Parsing culture mappings";
-	Object* cultureObj = parser_UTF8::doParseFile("cultureMap.txt");
+	shared_ptr<Object> cultureObj = parser_UTF8::doParseFile("cultureMap.txt");
 	if (cultureObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file cultureMap.txt";
@@ -47,7 +47,7 @@ cultureMapper::cultureMapper()
 		exit(-1);
 	}
 
-	Object* slaveCultureObj = parser_UTF8::doParseFile("slaveCultureMap.txt");
+	shared_ptr<Object> slaveCultureObj = parser_UTF8::doParseFile("slaveCultureMap.txt");
 	if (slaveCultureObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file slaveCultureMap.txt";
@@ -63,7 +63,7 @@ cultureMapper::cultureMapper()
 }
 
 
-void cultureMapper::initCultureMap(Object* cultureMapObj, Object* slaveCultureMapObj)
+void cultureMapper::initCultureMap(shared_ptr<Object> cultureMapObj, shared_ptr<Object> slaveCultureMapObj)
 {
 	for (auto rule: cultureMapObj->getLeaves())
 	{
@@ -85,7 +85,7 @@ void cultureMapper::initCultureMap(Object* cultureMapObj, Object* slaveCultureMa
 }
 
 
-vector<cultureStruct> cultureMapper::createNewRules(Object* ruleObj)
+vector<cultureStruct> cultureMapper::createNewRules(shared_ptr<Object> ruleObj)
 {
 	vector<cultureStruct> newRules;
 

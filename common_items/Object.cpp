@@ -56,6 +56,16 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+Object::Object(string k) :
+objects(),
+strVal(),
+leaf(false),
+isObjList(false)
+{
+	key = k;
+}
+
+
 Object::~Object()
 {
 }
@@ -414,12 +424,14 @@ void setFlt(string name, const double val, shared_ptr<Object> branch)
 	br->setValue(b);
 }
 
+
 double Object::safeGetFloat(const string& k, const double def)
 {
 	objvec vec = getValue(k);	// the objects with the keys to be returned
 	if (0 == vec.size()) return def;
 	return stof(vec[0]->getLeaf());
 }
+
 
 string Object::safeGetString(const string& k, string def)
 {
@@ -431,6 +443,7 @@ string Object::safeGetString(const string& k, string def)
 	return vec[0]->getLeaf();
 }
 
+
 int Object::safeGetInt(const string& k, const int def)
 {
 	objvec vec = getValue(k);	// the objects with the ints to be returned
@@ -440,6 +453,7 @@ int Object::safeGetInt(const string& k, const int def)
 	}
 	return stoi(vec[0]->getLeaf());
 }
+
 
 shared_ptr<Object> Object::safeGetObject(const string& k, shared_ptr<Object> def)
 {

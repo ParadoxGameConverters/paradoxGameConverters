@@ -31,9 +31,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../EU4World/EU4Army.h"
 #include "V2Localisation.h"
 #include "V2TechSchools.h"
-#include <vector>
+#include <memory>
 #include <set>
+#include <vector>
 using namespace std;
+
+
 
 class EU4World;
 class EU4Country;
@@ -118,7 +121,7 @@ class V2Country
 		string							getReligion() const { return religion; }
 
 	private:
-		Object* parseCountryFile(const string& filename);
+		shared_ptr<Object> parseCountryFile(const string& filename);
 
 		void			outputTech(FILE*) const ;
 		void			outputElection(FILE*) const;

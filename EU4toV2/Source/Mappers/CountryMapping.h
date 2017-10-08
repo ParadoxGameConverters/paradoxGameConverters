@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <map>
+#include <memory>
 #include <set>
 #include <string>
 #include <vector>
@@ -76,12 +77,12 @@ class CountryMapping
 
 		CountryMapping();
 		void readRules();
-		vector<Object*> getRules();
-		void importRule(Object* rule);
+		vector<shared_ptr<Object>> getRules();
+		void importRule(shared_ptr<Object> rule);
 		void readEU4Regions();
-		vector<Object*> parseEU4RegionsFiles();
+		vector<shared_ptr<Object>> parseEU4RegionsFiles();
 		void readVic2Regions();
-		Object* parseVic2RegionsFile();
+		shared_ptr<Object> parseVic2RegionsFile();
 		void getAvailableFlags();
 
 		void CreateMappings(const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries);

@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <map>
+#include <memory>
 #include <set>
 #include <string>
 #include <vector>
@@ -60,13 +61,13 @@ class EU4RegionMapper
 		EU4RegionMapper();
 
 		void attemptOldVersion();
-		void initEU4RegionMapOldVersion(Object *obj);
+		void initEU4RegionMapOldVersion(shared_ptr<Object> obj);
 		void insertMapping(int provinceNumber, string regionName);
 
 		void doNewVersion();
 		void makeWorkingAreaTxt(const string& path);
-		void initEU4RegionMap(Object* areasObj, Object* regionsObj);
-		map<string, vector<int>> getAreaToProvincesMapping(Object* areasObj);
+		void initEU4RegionMap(shared_ptr<Object> areasObj, shared_ptr<Object> regionsObj);
+		map<string, vector<int>> getAreaToProvincesMapping(shared_ptr<Object> areasObj);
 
 		bool ProvinceInRegion(int province, const string& region);
 		set<string> getRegions(int province);
