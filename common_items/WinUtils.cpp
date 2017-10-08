@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <io.h>
 #include <Shellapi.h>
 #include <list>
+#include <algorithm>
 #include "Log.h"
 
 
@@ -377,8 +378,20 @@ std::string convertToUTF8(const std::wstring &input){
 	return convertUTF16ToUTF8(input);
 }
 
-std::string normalizeUTF8Path(const std::string &utf_8_path){
-	return convertUTF8ToASCII(utf_8_path);
+std::string normalizeUTF8Path(const std::string &utf_8_path)
+{
+	std::string asciiPath = convertUTF8ToASCII(utf_8_path);
+	std::replace(asciiPath.begin(), asciiPath.end(), '/', '_');
+	std::replace(asciiPath.begin(), asciiPath.end(), '\\', '_');
+	std::replace(asciiPath.begin(), asciiPath.end(), ':', '_');
+	std::replace(asciiPath.begin(), asciiPath.end(), '*', '_');
+	std::replace(asciiPath.begin(), asciiPath.end(), '?', '_');
+	std::replace(asciiPath.begin(), asciiPath.end(), '\"', '_');
+	std::replace(asciiPath.begin(), asciiPath.end(), '<', '_');
+	std::replace(asciiPath.begin(), asciiPath.end(), '>', '_');
+	std::replace(asciiPath.begin(), asciiPath.end(), '|', '_');
+
+	return asciiPath;
 };
 
 void WriteToConsole(LogLevel level, const std::string& logMessage)
