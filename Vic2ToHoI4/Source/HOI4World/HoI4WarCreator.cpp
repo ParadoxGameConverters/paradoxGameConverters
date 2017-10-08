@@ -82,8 +82,8 @@ void HoI4WarCreator::addTargetsToWorldTargetMap(HoI4Country* country)
 				{
 					if (GC.second != country)
 					{
-						int relations = country->getRelations(GC.second->getTag())->getRelations();
-						if (relations < 0)
+						auto relations = country->getRelations(GC.second->getTag());
+						if ((relations != nullptr) && (relations->getRelations() < 0))
 						{
 							vector<HoI4Country*> tempvector;
 							if (WorldTargetMap.find(GC.second) == WorldTargetMap.end())
@@ -392,7 +392,7 @@ vector<HoI4Country*> HoI4WarCreator::GetMorePossibleAllies(const HoI4Country* Co
 				//check if we are friendly at all?
 				const HoI4Relations* relationswithposally = CountryThatWantsAllies->getRelations(CountriesWithin1000Miles[i]->getTag());
 				//for now can only ally with people not in a faction, and must be worth adding
-				if (relationswithposally->getRelations() >= -50 && findFaction(CountriesWithin1000Miles[i])->getMembers().size() <= 1)
+				if ((relationswithposally != nullptr) && (relationswithposally->getRelations() >= -50) && (findFaction(CountriesWithin1000Miles[i])->getMembers().size() <= 1))
 				{
 					//ok we dont hate each other, lets check how badly we need each other, well I do, the only reason I am here is im trying to conquer a neighbor and am not strong enough!
 					//if (GetFactionStrength(findFaction(country)) < 20000) //maybe also check if he has any fascist/comm neighbors he doesnt like later?
@@ -854,8 +854,8 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 
 			for (HoI4Country* GC: theWorld->getGreatPowers())
 			{
-				int relations = Leader->getRelations(GC->getTag())->getRelations();
-				if (relations > 0 && maxGCAlliance < 1)
+				auto relations = Leader->getRelations(GC->getTag());
+				if ((relations != nullptr) && (relations->getRelations() > 0) && (maxGCAlliance < 1))
 				{
 					AILog << "\t" << Leader->getSourceCountry()->getName("english") << " can attempt to ally " << GC->getSourceCountry()->getName("english") << "\n";
 					if (GC->getFaction() == nullptr)
@@ -894,7 +894,8 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 		string HowToTakeGC = HowToTakeLand(GC, Leader, 3);
 		if (HowToTakeGC == "noactionneeded" || HowToTakeGC == "factionneeded" || HowToTakeGC == "morealliesneeded")
 		{
-			if (GC != Leader && Leader->getRelations(GC->getTag())->getRelations() < 0)
+			auto relations = Leader->getRelations(GC->getTag());
+			if ((GC != Leader) && (relations != nullptr) && (relations->getRelations() < 0))
 			{
 				if (GCTargets.size() < maxGCWars)
 				{
@@ -1062,8 +1063,8 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 	int start = 0;
 	for (auto GC : GCTargets)
 	{
-		int relations = Leader->getRelations(GC->getTag())->getRelations();
-		if (relations < 0)
+		auto relations = Leader->getRelations(GC->getTag());
+		if ((relations != nullptr) && (relations->getRelations() < 0))
 		{
 			GCTargets.push_back(GC);
 		}
@@ -1091,11 +1092,15 @@ vector<HoI4Faction*> HoI4WarCreator::democracyWarCreator(HoI4Country* Leader)
 	HoI4FocusTree* FocusTree = genericFocusTree->makeCustomizedCopy(Leader);
 	for (auto GC: theWorld->getGreatPowers())
 	{
-		double relation = Leader->getRelations(GC->getTag())->getRelations();
-		if (relation < 100 && GC->getGovernmentIdeology() != "democratic" && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
+		auto relations = Leader->getRelations(GC->getTag());
+		if (relations != nullptr)
 		{
-			CountriesAtWar.push_back(findFaction(Leader));
-			CountriesToContain.insert(make_pair(static_cast<int>(relation + v1), GC));
+			double relationVal = relations->getRelations();
+			if (relationVal < 100 && GC->getGovernmentIdeology() != "democratic" && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
+			{
+				CountriesAtWar.push_back(findFaction(Leader));
+				CountriesToContain.insert(make_pair(static_cast<int>(relationVal + v1), GC));
+			}
 		}
 	}
 	for (auto country : CountriesToContain)
@@ -1152,7 +1157,7 @@ vector<HoI4Faction*> HoI4WarCreator::neighborWarCreator(HoI4Country * country, o
 
 		int relations = 0;
 		const HoI4Relations* relationsObj = country->getRelations(target->getTag());
-		if (relationsObj)
+		if (relationsObj != nullptr)
 		{
 			relations = relationsObj->getRelations();
 		}
@@ -1394,8 +1399,8 @@ vector<HoI4Faction*> HoI4WarCreator::addGreatPowerWars(HoI4Country* country, HoI
 			break;
 		}
 
-		int relations = country->getRelations(target->getTag())->getRelations();
-		if (relations >= 0)
+		auto relations = country->getRelations(target->getTag());
+		if ((relations == nullptr) || (relations->getRelations() >= 0))
 		{
 			continue;
 		}
@@ -1455,8 +1460,8 @@ void HoI4WarCreator::addTradeEvents(const HoI4Country* country, const vector<con
 {
 	for (auto greatPowerTarget: greatPowerTargets)
 	{
-		int relations = country->getRelations(greatPowerTarget->getTag())->getRelations();
-		if (relations >= 0)
+		auto relations = country->getRelations(greatPowerTarget->getTag());
+		if ((relations == nullptr) || (relations->getRelations() >= 0))
 		{
 			continue;
 		}
