@@ -84,12 +84,8 @@ V2Country::V2Country(shared_ptr<Object> countryObj):
 
 void V2Country::readInCultures(shared_ptr<Object> countryObj)
 {
-	auto primaryCultureObjs = countryObj->safeGetObject("primary_culture");
-	if (primaryCultureObjs != nullptr)
-	{
-		primaryCulture = primaryCultureObjs->getLeaf();
-		acceptedCultures.insert(primaryCulture);
-	}
+	primaryCulture = countryObj->safeGetString("primary_culture");
+	acceptedCultures.insert(primaryCulture);
 
 	primaryCultureGroup = cultureGroupMapper::getCultureGroup(primaryCulture);
 
@@ -153,21 +149,13 @@ void V2Country::readInSpending(shared_ptr<Object> countryObj)
 	auto spendingObjs = countryObj->safeGetObject("education_spending");
 	if (spendingObjs != nullptr)
 	{
-		auto settingsObjs = spendingObjs->safeGetObject("settings");
-		if (settingsObjs != nullptr)
-		{
-			educationSpending = stof(settingsObjs->getLeaf());
-		}
+		educationSpending = spendingObjs->safeGetFloat("settings", educationSpending);
 	}
 
 	spendingObjs = countryObj->safeGetObject("military_spending");
 	if (spendingObjs != nullptr)
 	{
-		auto settingsObjs = spendingObjs->safeGetObject("settings");
-		if (settingsObjs != nullptr)
-		{
-			militarySpending = stof(settingsObjs->getLeaf());
-		}
+		militarySpending = spendingObjs->safeGetFloat("settings", militarySpending);
 	}
 }
 

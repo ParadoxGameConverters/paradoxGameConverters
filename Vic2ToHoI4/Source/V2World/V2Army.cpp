@@ -29,17 +29,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 V2Regiment::V2Regiment(shared_ptr<Object> obj):
 	name(obj->safeGetString("name")),
-	type(""),
+	type(obj->safeGetString("type")),
 	strength(obj->safeGetFloat("strength")),
 	organization(obj->safeGetFloat("organisation")),
 	experience(obj->safeGetFloat("experience"))
 {
-	auto objType = obj->safeGetObject("type");
-	if (objType != nullptr)
-	{
-		type = objType->getLeaf();
-	}
-	else
+	if (type != "")
 	{
 		LOG(LogLevel::Warning) << "Regiment or Ship " << name << " has no type";
 	}
@@ -48,23 +43,13 @@ V2Regiment::V2Regiment(shared_ptr<Object> obj):
 
 V2Army::V2Army(shared_ptr<Object> obj):
 	name(obj->safeGetString("name")),
-	location(-1),
+	location(obj->safeGetInt("location", location)),
 	regiments(),
 	supplies(obj->safeGetFloat("supplies")),
 	at_sea(obj->safeGetInt("at_sea")),
-	navy(false)
+	navy(obj->getKey() == "navy")
 {
-	if (obj->getKey() == "navy")
-	{
-		navy = true;
-	}
-
-	auto objLoc = obj->safeGetObject("location");
-	if (objLoc != nullptr)
-	{
-		location = stoi(objLoc->getLeaf());
-	}
-	else
+	if (location != -1)
 	{
 		LOG(LogLevel::Warning) << "Army or Navy " << name << " has no location";
 	}

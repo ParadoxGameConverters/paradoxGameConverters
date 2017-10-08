@@ -230,6 +230,7 @@ string namesMapper::GetMaleName(const string& culture)
 	}
 	else
 	{
+		LOG(LogLevel::Warning) << "No male name could be found for " << culture;
 		return "";
 	}
 }
@@ -246,6 +247,7 @@ string namesMapper::GetFemaleName(const string& culture)
 	}
 	else
 	{
+		LOG(LogLevel::Warning) << "No female name could be found for " << culture;
 		return "";
 	}
 }
@@ -262,6 +264,7 @@ string namesMapper::GetSurname(const string& culture)
 	}
 	else
 	{
+		LOG(LogLevel::Warning) << "No surname name could be found for " << culture;
 		return "";
 	}
 }
@@ -278,6 +281,7 @@ string namesMapper::GetCallsign(const string& culture)
 	}
 	else
 	{
+		LOG(LogLevel::Warning) << "No callsign could be found for " << culture;
 		return "";
 	}
 }

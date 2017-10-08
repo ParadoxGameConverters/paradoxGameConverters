@@ -64,17 +64,8 @@ graphicsMapper::graphicsMapper():
 			loadIdeologyMinisterPortraitMappings(cultureGroup, ideologyMinisterPortraitObjs);
 		}
 
-		auto graphicalCultureObjs = cultureGroupObj->safeGetObject("graphical_culture");
-		if (graphicalCultureObjs != nullptr)
-		{
-			loadGraphicalCultureMappings(cultureGroup, graphicalCultureObjs);
-		}
-
-		auto graphicalCulture2dObjs = cultureGroupObj->safeGetObject("graphical_culture_2d");
-		if (graphicalCulture2dObjs != nullptr)
-		{
-			loadGraphicalCulture2dMappings(cultureGroup, graphicalCulture2dObjs);
-		}
+		graphicalCultureMap[cultureGroup] = cultureGroupObj->safeGetString("graphical_culture");
+		graphicalCulture2dMap[cultureGroup] = cultureGroupObj->safeGetString("graphical_culture_2d");
 	}
 }
 
@@ -136,18 +127,6 @@ void graphicsMapper::loadIdeologyMinisterPortraitMappings(const string& cultureG
 			ideologyMapping->second.push_back(portraitStr);
 		}
 	}
-}
-
-
-void graphicsMapper::loadGraphicalCultureMappings(const string& cultureGroup, shared_ptr<Object> graphicalCultureMappings)
-{
-	graphicalCultureMap[cultureGroup] = graphicalCultureMappings->getLeaf();
-}
-
-
-void graphicsMapper::loadGraphicalCulture2dMappings(const string& cultureGroup, shared_ptr<Object> graphicalCulture2dMappings)
-{
-	graphicalCulture2dMap[cultureGroup] = graphicalCulture2dMappings->getLeaf();
 }
 
 

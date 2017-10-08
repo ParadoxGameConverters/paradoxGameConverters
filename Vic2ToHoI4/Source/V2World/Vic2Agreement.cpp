@@ -22,35 +22,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Vic2Agreement.h"
-#include "Log.h"
 
 
 
 V2Agreement::V2Agreement(shared_ptr<Object> obj):
 	type(obj->getKey()),
-	country1(""),
-	country2(""),
-	start_date()
+	country1(obj->safeGetString("first")),
+	country2(obj->safeGetString("second")),
+	start_date(obj->safeGetString("start_date"))
 {
-	auto objFirst = obj->safeGetObject("first");
-	if (objFirst != nullptr)
-	{
-		country1 = objFirst->getLeaf();
-	}
-	else
-	{
-		LOG(LogLevel::Warning) << "Diplomatic agreement (" << type << ") has no first party";
-	}
-
-	auto objSecond = obj->safeGetObject("second");
-	if (objSecond != nullptr)
-	{
-		country2 = objSecond->getLeaf();
-	}
-	else
-	{
-		LOG(LogLevel::Warning) << "Diplomatic agreement (" << type << ") has no second party";
-	}
-
-	start_date = date(obj->safeGetString("start_date"));
 }

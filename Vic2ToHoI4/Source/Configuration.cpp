@@ -114,15 +114,14 @@ Configuration::Configuration():
 	}
 	else if (versionMethod == "manualEntry")
 	{
-		version = HOI4Version(obj->getLeaf("HoI4Version"));
+		version = HOI4Version(obj->safeGetString("HoI4Version"));
 	}
 	else // (versionMethod == "hardcoded")
 	{
 		version = HOI4Version("1.4.2");
 	}
 
-	string dropMinorIdeologiesOption = obj->safeGetString("drop_minor_ideologies", "true");
-	if (dropMinorIdeologiesOption == "true")
+	if (obj->safeGetString("drop_minor_ideologies", "true") == "true")
 	{
 		dropMinorIdeologies = true;
 	}

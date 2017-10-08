@@ -643,9 +643,8 @@ map<int, map<string, double>> HoI4World::importResourceMap() const
 		auto resourcesObj = linkObj->safeGetObject("resources");
 		for (auto resource: resourcesObj->getLeaves())
 		{
-			string	resourceName = resource->getKey();
-			double	amount = stof(resource->getLeaf());
-			mapping->second[resourceName] += amount;
+			string resourceName = resource->getKey();
+			mapping->second[resourceName] += stof(resource->getLeaf());
 		}
 	}
 

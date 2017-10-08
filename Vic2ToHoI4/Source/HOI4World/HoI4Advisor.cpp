@@ -32,10 +32,10 @@ HoI4Advisor::HoI4Advisor(shared_ptr<Object> object):
 	event(""),
 	ideology(object->getKey())
 {
-	auto onAddObjs = object->safeGetObject("on_add");
-	if (onAddObjs != nullptr)
+	auto onAddObj = object->safeGetObject("on_add");
+	if (onAddObj != nullptr)
 	{
-		auto eventObjs = onAddObjs->getLeaves();
+		auto eventObjs = onAddObj->getLeaves();
 		event = eventObjs[0]->getLeaf();
 	}
 }

@@ -31,41 +31,8 @@ V2Relations::V2Relations(shared_ptr<Object> relationsObj):
 	value(relationsObj->safeGetInt("value")),
 	level(relationsObj->safeGetInt("level", 2)),
 	militaryAccess(relationsObj->safeGetString("military_access", "no") == "yes"),
-	lastSentDiplomat(),
-	lastWar(),
-	truceUntil()
+	lastSentDiplomat(relationsObj->safeGetObject("last_send_diplomat")),
+	lastWar(relationsObj->safeGetObject("last_war")),
+	truceUntil(relationsObj->safeGetObject("truce_until"))
 {
-	setLastDiplomat(relationsObj);
-	setLastWar(relationsObj);
-	setTruce(relationsObj);
-}
-
-
-void V2Relations::setLastDiplomat(shared_ptr<Object> relationsObj)
-{
-	auto lastSendObjs = relationsObj->safeGetObject("last_send_diplomat");
-	if (lastSendObjs != nullptr)
-	{
-		lastSentDiplomat = date(lastSendObjs->getLeaf());
-	}
-}
-
-
-void V2Relations::setLastWar(shared_ptr<Object> relationsObj)
-{
-	auto lastWarObjs = relationsObj->safeGetObject("last_war");
-	if (lastWarObjs != nullptr)
-	{
-		lastWar = date(lastWarObjs->getLeaf());
-	}
-}
-
-
-void V2Relations::setTruce(shared_ptr<Object> relationsObj)
-{
-	auto truceUntilObjs = relationsObj->safeGetObject("truce_until");
-	if (truceUntilObjs != nullptr)
-	{
-		truceUntil = date(truceUntilObjs->getLeaf());
-	}
 }

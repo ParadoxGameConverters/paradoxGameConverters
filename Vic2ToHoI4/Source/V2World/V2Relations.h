@@ -52,10 +52,6 @@ class V2Relations
 		V2Relations(const V2Relations&) = delete;
 		V2Relations& operator=(const V2Relations&) = delete;
 
-		void setLastDiplomat(shared_ptr<Object> relationsObj);
-		void setLastWar(shared_ptr<Object> relationsObj);
-		void setTruce(shared_ptr<Object> relationsObj);
-
 		string tag;
 		int value;
 		int level;
