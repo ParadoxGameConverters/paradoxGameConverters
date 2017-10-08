@@ -1452,7 +1452,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 		determineMutualExclusions(majorIdeologies);
 
 		string ideolgicalFanaticsmPrereqs;
-		if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("fascist") > 0))
+		if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("fascism") > 0))
 		{
 			addFascistGenericFocuses();
 			if (ideolgicalFanaticsmPrereqs.size() > 0)
@@ -1462,7 +1462,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 			ideolgicalFanaticsmPrereqs += "focus = paramilitarism";
 			nextFreeColumn += 2;
 		}
-		if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("communist") > 0))
+		if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("communism") > 0))
 		{
 			addCommunistGenericFocuses();
 			if (ideolgicalFanaticsmPrereqs.size() > 0)
@@ -1733,8 +1733,8 @@ int HoI4FocusTree::calculateNumCollectovistIdeologies(const set<string>& majorId
 	{
 		numCollectovistIdeologies += majorIdeologies.count("radical");
 		numCollectovistIdeologies += majorIdeologies.count("absolutist");
-		numCollectovistIdeologies += majorIdeologies.count("communist");
-		numCollectovistIdeologies += majorIdeologies.count("fascist");
+		numCollectovistIdeologies += majorIdeologies.count("communism");
+		numCollectovistIdeologies += majorIdeologies.count("fascism");
 	}
 	else
 	{
@@ -1746,13 +1746,13 @@ int HoI4FocusTree::calculateNumCollectovistIdeologies(const set<string>& majorId
 
 void HoI4FocusTree::determineMutualExclusions(const set<string>& majorIdeologies)
 {
-	if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("fascist") > 0))
+	if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("fascism") > 0))
 	{
 		communistMutualExclusions += "focus = nationalism_focus";
 		absolutistMutualExlusions += "focus = nationalism_focus";
 		radicalMutualExclusions += "focus = nationalism_focus";
 	}
-	if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("communist") > 0))
+	if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("communism") > 0))
 	{
 		if (fascistMutualExlusions.size() > 0)
 		{
