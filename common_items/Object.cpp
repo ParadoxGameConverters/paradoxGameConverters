@@ -56,15 +56,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-Object::Object(string k) :
-objects(),
-strVal(),
-leaf(false),
-isObjList(false)
-{
-	key = k;
-}
-
 
 Object::~Object()
 {
