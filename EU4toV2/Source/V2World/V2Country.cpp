@@ -1388,22 +1388,6 @@ bool V2Country::addFactory(V2Factory* factory)
 			continue;
 		}
 
-		map<string,float> requiredProducts = factory->getRequiredRGO();
-		if (requiredProducts.size() > 0)
-		{
-			bool hasInput = false;
-			for (map<string,float>::iterator prod = requiredProducts.begin(); prod != requiredProducts.end(); ++prod)
-			{
-				if ( (*itr)->hasLocalSupply(prod->first) )
-				{
-					hasInput = true;
-					break;
-				}
-			}
-			if (!hasInput)
-				continue;
-		}
-
 		double candidateScore	 = (*itr)->getSuppliedInputs(factory) * 100;
 		candidateScore				-= (*itr)->getFactoryCount() * 10;
 		candidateScore				+= (*itr)->getManuRatio();
