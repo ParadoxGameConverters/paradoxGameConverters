@@ -1379,8 +1379,12 @@ void HoI4World::createFactions()
 {
 	LOG(LogLevel::Info) << "Creating Factions";
 
-	ofstream factionsLog("factions-logs.csv");
-	factionsLog << "name,government,initial strength,factory strength per year,factory strength by 1939\n";
+	ofstream factionsLog;
+	if (Configuration::getDebug())
+	{
+		factionsLog.open("factions-logs.csv");
+		factionsLog << "name,government,initial strength,factory strength per year,factory strength by 1939\n";
+	}
 
 	for (auto leader : greatPowers)
 	{
@@ -1388,13 +1392,19 @@ void HoI4World::createFactions()
 		{
 			continue;
 		}
-		factionsLog << "\n";
+		if (Configuration::getDebug())
+		{
+			factionsLog << "\n";
+		}
 
 		vector<HoI4Country*> factionMembers;
 		factionMembers.push_back(leader);
 
 		string leaderIdeology = leader->getGovernmentIdeology();
-		logFactionMember(factionsLog, leader);
+		if (Configuration::getDebug())
+		{
+			logFactionMember(factionsLog, leader);
+		}
 		double factionMilStrength = leader->getStrengthOverTime(3.0);
 
 		std::set<std::string> alliesAndPuppets = leader->getAllies();
@@ -1415,7 +1425,10 @@ void HoI4World::createFactions()
 
 			if ((sphereLeader == leader->getTag()) || ((sphereLeader == "") && governmentsAllowFaction(leaderIdeology, allygovernment)))
 			{
-				logFactionMember(factionsLog, allycountry);
+				if (Configuration::getDebug())
+				{
+					logFactionMember(factionsLog, allycountry);
+				}
 				factionMembers.push_back(allycountry);
 
 				factionMilStrength += allycountry->getStrengthOverTime(1.0);
@@ -1444,11 +1457,17 @@ void HoI4World::createFactions()
 			}
 			factions.push_back(newFaction);
 
-			factionsLog << "Faction Strength in 1939," << factionMilStrength << "\n";
+			if (Configuration::getDebug())
+			{
+				factionsLog << "Faction Strength in 1939," << factionMilStrength << "\n";
+			}
 		}
 	}
 
-	factionsLog.close();
+	if (Configuration::getDebug())
+	{
+		factionsLog.close();
+	}
 }
 
 

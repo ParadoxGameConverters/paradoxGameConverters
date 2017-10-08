@@ -42,7 +42,11 @@ HoI4WarCreator::HoI4WarCreator(const HoI4World* world):
 	provincePositions(),
 	provinceToOwnerMap()
 {
-	ofstream AILog("AI-log.txt");
+	ofstream AILog;
+	if (Configuration::getDebug())
+	{
+		AILog.open("AI-log.txt");
+	}
 
 	genericFocusTree->addGenericFocusTree(world->getMajorIdeologies());
 
@@ -55,7 +59,10 @@ HoI4WarCreator::HoI4WarCreator(const HoI4World* world):
 	generateMajorWars(AILog, factionsAtWar);
 	generateAdditionalWars(AILog, factionsAtWar, worldStrength);
 
-	AILog.close();
+	if (Configuration::getDebug())
+	{
+		AILog.close();
+	}
 }
 
 
@@ -135,14 +142,20 @@ double HoI4WarCreator::calculateWorldStrength(ofstream& AILog) const
 		worldStrength += GetFactionStrength(Faction, 3);
 	}
 
-	AILog << "Total world strength: " << worldStrength << "\n\n";
+	if (Configuration::getDebug())
+	{
+		AILog << "Total world strength: " << worldStrength << "\n\n";
+	}
 	return worldStrength;
 }
 
 
 void HoI4WarCreator::generateMajorWars(ofstream& AILog, set<const HoI4Faction*>& factionsAtWar)
 {
-	AILog << "Creating major wars\n";
+	if (Configuration::getDebug())
+	{
+		AILog << "Creating major wars\n";
+	}
 
 	for (auto country: theWorld->getCountries())
 	{
@@ -187,7 +200,10 @@ double HoI4WarCreator::calculatePercentOfWorldAtWar(ofstream& AILog, const set<H
 	}
 
 	double percentOfWorldAtWar = countriesAtWarStrength / worldStrength;
-	AILog << "Fraction of world at war " << percentOfWorldAtWar << "\n";
+	if (Configuration::getDebug())
+	{
+		AILog << "Fraction of world at war " << percentOfWorldAtWar << "\n";
+	}
 
 	return percentOfWorldAtWar;
 }
@@ -200,7 +216,10 @@ void HoI4WarCreator::generateAdditionalWars(ofstream& AILog, set<const HoI4Facti
 	{
 		if (!isImportantCountry(countriesEvilnessSorted[i]))
 		{
-			AILog << "Checking for war in " + countriesEvilnessSorted[i]->getSourceCountry()->getName("english") << "\n";
+			if (Configuration::getDebug())
+			{
+				AILog << "Checking for war in " + countriesEvilnessSorted[i]->getSourceCountry()->getName("english") << "\n";
+			}
 			vector <HoI4Faction*> newCountriesatWar;
 			newCountriesatWar = neighborWarCreator(countriesEvilnessSorted[i], AILog);
 
@@ -846,7 +865,10 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 		{
 			FactionsAttackingMeStrength += GetFactionStrengthWithDistance(Leader, attackingFaction->getMembers(), 3);
 		}
-		AILog << "\t" << Leader->getSourceCountry()->getName("english") << " is under threat, there are " << FactionsAttackingMe.size() << " faction(s) attacking them, I have a strength of " << GetFactionStrength(findFaction(Leader), 3) << " and they have a strength of " << FactionsAttackingMeStrength << "\n";
+		if (Configuration::getDebug())
+		{
+			AILog << "\t" << Leader->getSourceCountry()->getName("english") << " is under threat, there are " << FactionsAttackingMe.size() << " faction(s) attacking them, I have a strength of " << GetFactionStrength(findFaction(Leader), 3) << " and they have a strength of " << FactionsAttackingMeStrength << "\n";
+		}
 		if (FactionsAttackingMeStrength > GetFactionStrength(findFaction(Leader), 3))
 		{
 			vector<HoI4Country*> GCAllies;
@@ -857,7 +879,10 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 				auto relations = Leader->getRelations(GC->getTag());
 				if ((relations != nullptr) && (relations->getRelations() > 0) && (maxGCAlliance < 1))
 				{
-					AILog << "\t" << Leader->getSourceCountry()->getName("english") << " can attempt to ally " << GC->getSourceCountry()->getName("english") << "\n";
+					if (Configuration::getDebug())
+					{
+						AILog << "\t" << Leader->getSourceCountry()->getName("english") << " can attempt to ally " << GC->getSourceCountry()->getName("english") << "\n";
+					}
 					if (GC->getFaction() == nullptr)
 					{
 						vector<HoI4Country*> self;
@@ -1146,7 +1171,10 @@ vector<HoI4Faction*> HoI4WarCreator::neighborWarCreator(HoI4Country * country, o
 	int numWarsWithNeighbors = 0;
 	HoI4FocusTree* focusTree = genericFocusTree->makeCustomizedCopy(country);
 
-	AILog << "Look for neighbors to attack for " + country->getSourceCountry()->getName("english") << "\n";
+	if (Configuration::getDebug())
+	{
+		AILog << "Look for neighbors to attack for " + country->getSourceCountry()->getName("english") << "\n";
+	}
 
 	for (auto target : weakNeighbors)
 	{
@@ -1173,7 +1201,10 @@ vector<HoI4Faction*> HoI4WarCreator::neighborWarCreator(HoI4Country * country, o
 		if (Allies.find(target->getTag()) == Allies.end())
 		{
 			countriesAtWar.push_back(findFaction(country));
-			AILog << "Creating focus to attack " + target->getSourceCountry()->getName("english") << "\n";
+			if (Configuration::getDebug())
+			{
+				AILog << "Creating focus to attack " + target->getSourceCountry()->getName("english") << "\n";
+			}
 
 			HoI4Focus* newFocus = new HoI4Focus;
 			newFocus->id = "War" + target->getTag() + country->getTag();
