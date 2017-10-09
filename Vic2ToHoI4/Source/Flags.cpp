@@ -51,12 +51,9 @@ enum flagIdeologies
 	COMMUNISM_FLAG		= 1,
 	DEMOCRATIC_FLAG	= 2,
 	FACISM_FLAG			= 3,
-	SYNDICALISM_FLAG = 4,
-	SOCIALIST_FLAG = 5,
-	LIBERAL_FLAG = 6,
-	AUTOCRATIC_FLAG = 7,
-	ANCAP_FLAG = 8,
-	FLAG_END				= 9
+	ABSOLUTIST_FLAG   = 4,
+	RADICAL_FLAG      = 5,
+	FLAG_END				= 6
 };
 
 const char* vic2Suffixes[FLAG_END] = {
@@ -64,9 +61,6 @@ const char* vic2Suffixes[FLAG_END] = {
 	"_communist.tga",
 	".tga",
 	"_fascist.tga",
-	"_communist.tga",
-	"_republic.tga",
-	"_republic.tga",
 	"_monarchy.tga",
 	"_republic.tga",
 };
@@ -76,12 +70,8 @@ const char* hoi4Suffixes[FLAG_END] = {
 	"_communism.tga",
 	"_democratic.tga",
 	"_fascism.tga",
-	"_syndicalism.tga",
-	"_socialist.tga",
-	"_liberal.tga",
-	"_autocratic.tga",
-	"_ancap.tga",
-
+	"_absolutist.tga",
+	"_radical.tga",
 };
 
 
