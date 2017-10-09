@@ -1001,6 +1001,7 @@ map<string, HoI4UnitMap> HoI4World::importUnitMap() const
 	unitMap["regular"] = HoI4UnitMap("land","infantry","infantry_equipment_0",3);
 	unitMap["engineer"] = HoI4UnitMap("land", "infantry", "infantry_equipment_0", 3);
 	unitMap["guard"] = HoI4UnitMap("land", "infantry", "infantry_equipment_0", 3);
+	unitMap["specops"] = HoI4UnitMap("land", "infantry", "infantry_equipment_0", 3);
 
 	unitMap["artillery"] = HoI4UnitMap("land", "artillery_brigade", "artillery_equipment_1", 3);
 	unitMap["horse_artillery"] = HoI4UnitMap("land", "artillery_brigade", "artillery_equipment_1", 3);
@@ -1014,6 +1015,8 @@ map<string, HoI4UnitMap> HoI4World::importUnitMap() const
 	unitMap["tank"] = HoI4UnitMap("land", "light_armor", "gw_tank_equipment", 1);
 
 	unitMap["plane"] = HoI4UnitMap("air", "fighter", "fighter_equipment_0", 20);
+	unitMap["bomber"] = HoI4UnitMap("air", "tac_bomber", "tac_bomber_equipment_0", 20);
+	unitMap["transport_plane"] = HoI4UnitMap("air", "transport_plane", "transport_plane_equipment_0", 20);
 
 	unitMap["manowar"] = HoI4UnitMap();
 	unitMap["frigate"] = HoI4UnitMap();
@@ -1024,6 +1027,7 @@ map<string, HoI4UnitMap> HoI4World::importUnitMap() const
 	unitMap["battleship"] = HoI4UnitMap("naval", "heavy_cruiser", "heavy_cruiser_1", 1);
 	unitMap["dreadnought"] = HoI4UnitMap("naval", "battleship", "battleship_1", 1);
 	unitMap["submarine"] = HoI4UnitMap("naval", "submarine", "submarine", 1);
+	unitMap["carrier"] = HoI4UnitMap("naval", "carrier", "carrier", 1);
 	unitMap["clipper_transport"] = HoI4UnitMap();
 	unitMap["steam_transport"] = HoI4UnitMap("convoy", "convoy", "convoy_1", 1);
 	
