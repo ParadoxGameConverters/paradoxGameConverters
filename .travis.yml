@@ -22,7 +22,7 @@ script:
   # Check versions of gcc, g++ and cmake
   - gcc -v && g++ -v && cmake --version
   # Run your build commands next
-  Vic2ToHoI4/cmake -H. -Bbuild
-  Vic2ToHoI4/cmake --build build -- -j3
-  EU4toV2/cmake -H. -Bbuild
-  EU4toV2/cmake --build build -- -j3
+  - Vic2ToHoI4/cmake -H. -Bbuild
+  - Vic2ToHoI4/cmake --build build -- -j3
+  - EU4toV2/cmake -H. -Bbuild
+  - EU4toV2/cmake --build build -- -j3
