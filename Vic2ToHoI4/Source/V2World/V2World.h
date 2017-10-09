@@ -57,6 +57,7 @@ class V2World
 		V2World& operator=(const V2World&) = delete;
 
 		void setLocalisations();
+		void handleMissingCountryCultures();
 
 		map<int, int> extractGreatNationIndices(const shared_ptr<Object> obj) const;
 

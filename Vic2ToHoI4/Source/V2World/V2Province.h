@@ -65,6 +65,7 @@ class V2Province
 		int getRailLevel() const { return railLevel; }
 		int getFortLevel() const { return fortLevel; }
 		int getNavalBaseLevel() const { return navalBaseLevel; }
+		vector<const V2Pop*> getPops() const { return pops; }
 
 	private:
 		V2Province(const V2Province&) = delete;

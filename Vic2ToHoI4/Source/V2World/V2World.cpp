@@ -84,6 +84,7 @@ V2World::V2World(const string& filename):
 	inputDiplomacy(obj->safeGetObject("diplomacy"));
 	readCountryFiles();
 	setLocalisations();
+	handleMissingCountryCultures();
 
 	CountryMapper::createMappings(this);
 
@@ -501,6 +502,15 @@ void V2World::setLocalisations()
 	{
 		country.second->setLocalisationNames();
 		country.second->setLocalisationAdjectives();
+	}
+}
+
+
+void V2World::handleMissingCountryCultures()
+{
+	for (auto country: countries)
+	{
+		country.second->handleMissingCulture();
 	}
 }
 

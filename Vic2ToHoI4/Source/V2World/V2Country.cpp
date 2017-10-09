@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/V2Localisations.h"
 #include "V2Army.h"
 #include "V2Leader.h"
+#include "V2Pop.h"
 #include "V2Province.h"
 #include "V2Relations.h"
 #include "Vic2State.h"
@@ -383,6 +384,57 @@ void V2Country::setLocalisationAdjectives()
 	{
 		setLocalisationAdjective(adjectiveinLanguage.first, adjectiveinLanguage.second);
 	}
+}
+
+
+void V2Country::handleMissingCulture()
+{
+	if (primaryCulture == "")
+	{
+		auto cultureSizes = determineCultureSizes();
+		primaryCulture = selectLargestCulture(cultureSizes);
+		primaryCultureGroup = cultureGroupMapper::getCultureGroup(primaryCulture);
+	}
+}
+
+
+map<string, int> V2Country::determineCultureSizes()
+{
+	map<string, int> cultureSizes;
+
+	for (auto province: provinces)
+	{
+		for (auto pop: province.second->getPops())
+		{
+			string popCulture = pop->getCulture();
+			auto cultureSize = cultureSizes.find(popCulture);
+			if (cultureSize == cultureSizes.end())
+			{
+				cultureSizes.insert(make_pair(popCulture, 0));
+				cultureSize = cultureSizes.find(popCulture);
+			}
+			cultureSize->second += pop->getSize();
+		}
+	}
+
+	return cultureSizes;
+}
+
+
+string V2Country::selectLargestCulture(const map<string, int>& cultureSizes)
+{
+	string largestCulture;
+	int largestCultureSize = 0;
+	for (auto cultureSize: cultureSizes)
+	{
+		if (cultureSize.second > largestCultureSize)
+		{
+			largestCulture = cultureSize.first;
+			largestCultureSize = cultureSize.second;
+		}
+	}
+
+	return largestCulture;
 }
 
 

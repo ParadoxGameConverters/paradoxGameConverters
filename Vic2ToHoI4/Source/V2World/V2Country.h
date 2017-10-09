@@ -63,6 +63,7 @@ class V2Country
 		void determineEmployedWorkers();
 		void setLocalisationNames();
 		void setLocalisationAdjectives();
+		void handleMissingCulture();
 
 		map<string, const V2Relations*> getRelations() const { return relations; }
 		vector<Vic2State*> getStates() const { return states; }
@@ -121,6 +122,9 @@ class V2Country
 
 		void setLocalisationName(const string& language, const string& name);
 		void setLocalisationAdjective(const string& language, const string& adjective);
+
+		map<string, int> determineCultureSizes();
+		string selectLargestCulture(const map<string, int>& cultureSizes);
 
 		string tag;
 		Color color;
