@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,8 +21,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef V2INVENTIONS_H_
-#define V2INVENTIONS_H_
+#ifndef INVENTIONS_MAPPER_H
+#define INVENTIONS_MAPPER_H
 
 
 
@@ -32,11 +32,38 @@ using namespace std;
 
 
 
-typedef map<int, string> inventionNumToName;
+class inventionsMapper
+{
+	public:
+		static string getInventionName(int inventionNum)
+		{
+			return getInstance()->GetInventionName(inventionNum);
+		}
+	private:
+		static inventionsMapper* instance;
+		static inventionsMapper* getInstance()
+		{
+			if (instance == nullptr)
+			{
+				instance = new inventionsMapper();
+			}
+			return instance;
+		}
+		inventionsMapper();
+
+		inventionsMapper(const inventionsMapper&) = delete;
+		inventionsMapper& operator=(const inventionsMapper&) = delete;
+
+		string getInventionPath();
+		void generateNums(string path);
+		void processTechFile(string filename);
+
+		string GetInventionName(int inventionNum);
+
+		map<int, string> inventionNumsToNames;
+};
 
 
-inventionNumToName getInventionNums();
 
 
-
-#endif	// V2INVENTIONS_H_
+#endif // INVENTIONS_MAPPER_H

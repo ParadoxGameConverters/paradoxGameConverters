@@ -28,7 +28,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "../Mappers/Mapper.h"
 #include "../Color.h"
-#include "V2Inventions.h"
 #include <vector>
 #include <map>
 #include <memory>

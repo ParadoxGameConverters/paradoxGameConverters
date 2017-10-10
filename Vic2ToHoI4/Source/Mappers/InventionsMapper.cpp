@@ -21,25 +21,26 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-
-#include "V2Inventions.h"
+#include "InventionsMapper.h"
+#include "Log.h"
 #include "../Configuration.h"
-#include "OSCompatibilityLayer.h"
-#include "Object.h"
+#include "OSCompatibilitylayer.h"
 #include "ParadoxParser8859_15.h"
 
 
 
-string getInventionPath();
-inventionNumToName generateNums(string path);
-inventionNumToName getInventionNums()
+inventionsMapper* inventionsMapper::instance = nullptr;
+
+
+
+inventionsMapper::inventionsMapper()
 {
 	string path = getInventionPath();
-	return generateNums(path);
+	generateNums(path);
 }
 
 
-string getInventionPath()
+string inventionsMapper::getInventionPath()
 {
 	for (auto mod: Configuration::getVic2Mods())
 	{
@@ -54,23 +55,18 @@ string getInventionPath()
 }
 
 
-void processTechFile(string filename, inventionNumToName& numToName);
-inventionNumToName generateNums(string path)
+void inventionsMapper::generateNums(string path)
 {
-	inventionNumToName numToName;
-
 	set<string> techFiles;
 	Utils::GetAllFilesInFolder(path, techFiles);
 	for (auto fileItr: techFiles)
 	{
-		processTechFile(path + "/" + fileItr, numToName);
+		processTechFile(path + "/" + fileItr);
 	}
-
-	return numToName;
 }
 
 
-void processTechFile(string filename, inventionNumToName& numToName)
+void inventionsMapper::processTechFile(string filename)
 {
 	shared_ptr<Object> obj = parser_8859_15::doParseFile(filename);
 	vector<shared_ptr<Object>> techObjs = obj->getLeaves();
@@ -78,6 +74,21 @@ void processTechFile(string filename, inventionNumToName& numToName)
 	for (auto techObj: techObjs)
 	{
 		string name = techObj->getKey();
-		numToName.insert(make_pair(numToName.size() + 1, name));
+		inventionNumsToNames.insert(make_pair(inventionNumsToNames.size() + 1, name));
+	}
+}
+
+
+string inventionsMapper::GetInventionName(int inventionNum)
+{
+	auto inventionName = inventionNumsToNames.find(inventionNum);
+	if (inventionName == inventionNumsToNames.end())
+	{
+		LOG(LogLevel::Warning) << "Invalid invention. Is this using a mod that changed inventions?";
+		return "";
+	}
+	else
+	{
+		return inventionName->second;
 	}
 }

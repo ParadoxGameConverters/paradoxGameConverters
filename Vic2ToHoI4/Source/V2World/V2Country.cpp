@@ -25,6 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "Object.h"
 #include "../Mappers/CultureGroupMapper.h"
+#include "../Mappers/InventionsMapper.h"
 #include "../Mappers/ReformMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "V2Army.h"
@@ -113,20 +114,11 @@ void V2Country::readInTechnology(shared_ptr<Object> countryObj)
 
 void V2Country::readInInventions(shared_ptr<Object> countryObj)
 {
-	inventionNumToName inventionNumsToNames = getInventionNums();
-
 	auto activeInventionsNumbers = countryObj->safeGetTokens("active_inventions");
 	for (auto activeInventionNumber: activeInventionsNumbers)
 	{
-		auto inventionName = inventionNumsToNames.find(stoi(activeInventionNumber));
-		if (inventionName == inventionNumsToNames.end())
-		{
-			LOG(LogLevel::Warning) << tag << " has an invalid invention. Is this using a mod that changed inventions?";
-		}
-		else
-		{
-			inventions.insert(inventionName->second);
-		}
+		auto inventionName = inventionsMapper::getInventionName(stoi(activeInventionNumber));
+		inventions.insert(inventionName);
 	}
 }
 
