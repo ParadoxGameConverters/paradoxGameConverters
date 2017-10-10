@@ -63,6 +63,9 @@ class HoI4Focus
 
 	private:
 		HoI4Focus& operator=(const HoI4Focus&) = delete;
+
+		void customizeMutualExclusion(HoI4Focus* newFocus, const string& country) const;
+		void customizePrerequisite(HoI4Focus* newFocus, string& prerequisite, const string& country) const;
 };
 
 

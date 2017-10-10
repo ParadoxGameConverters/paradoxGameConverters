@@ -80,50 +80,62 @@ HoI4Focus* HoI4Focus::makeCustomizedCopy(const string& country) const
 
 	if (newFocus->mutuallyExclusive != "")
 	{
-		//have to account for several foci in one mututal exclusion, so need to look for occurences of " focus" and insert country before that
-		unsigned int stringPosition = 0;
-		do
-		{
-			int focusPosition = newFocus->mutuallyExclusive.find(" focus", stringPosition);
-			if (focusPosition != string::npos)
-			{
-				newFocus->mutuallyExclusive.insert(focusPosition, country);
-				stringPosition = focusPosition + country.size() + 6;
-			}
-			else
-			{
-				stringPosition = newFocus->mutuallyExclusive.size();
-			}
-		}
-		while(stringPosition < newFocus->mutuallyExclusive.size());
-		newFocus->mutuallyExclusive += country;
+		customizeMutualExclusion(newFocus, country);
 	}
 
 	newFocus->prerequisites.clear();
 	for (auto prerequisite: prerequisites)
 	{
-		//have to account for several foci in one prerequisite, so need to look for occurences of " focus" and insert country before that
-		unsigned int stringPosition = 0;
-		do
-		{
-			int focusPosition = prerequisite.find(" focus", stringPosition);
-			if (focusPosition != string::npos)
-			{
-				prerequisite.insert(focusPosition, country);
-				stringPosition = focusPosition + country.size() + 6;
-			}
-			else
-			{
-				stringPosition = prerequisite.size();
-			}
-		}
-		while(stringPosition < prerequisite.size());
-		newFocus->prerequisites.push_back(prerequisite + country);
+		customizePrerequisite(newFocus, prerequisite, country);
 	}
 
 	HoI4Localisation::copyFocusLocalisations(id, newFocus->id);
 
 	return newFocus;
+}
+
+
+void HoI4Focus::customizeMutualExclusion(HoI4Focus* newFocus, const string& country) const
+{
+	//have to account for several foci in one mututal exclusion, so need to look for occurences of " focus" and insert country before that
+	unsigned int stringPosition = 0;
+	do
+	{
+		int focusPosition = newFocus->mutuallyExclusive.find(" focus", stringPosition);
+		if (focusPosition != string::npos)
+		{
+			newFocus->mutuallyExclusive.insert(focusPosition, country);
+			stringPosition = focusPosition + country.size() + 6;
+		}
+		else
+		{
+			stringPosition = newFocus->mutuallyExclusive.size();
+		}
+	}
+	while(stringPosition < newFocus->mutuallyExclusive.size());
+	newFocus->mutuallyExclusive += country;
+}
+
+
+void HoI4Focus::customizePrerequisite(HoI4Focus* newFocus, string& prerequisite, const string& country) const
+{
+	//have to account for several foci in one prerequisite, so need to look for occurences of " focus" and insert country before that
+	unsigned int stringPosition = 0;
+	do
+	{
+		int focusPosition = prerequisite.find(" focus", stringPosition);
+		if (focusPosition != string::npos)
+		{
+			prerequisite.insert(focusPosition, country);
+			stringPosition = focusPosition + country.size() + 6;
+		}
+		else
+		{
+			stringPosition = prerequisite.size();
+		}
+	}
+	while(stringPosition < prerequisite.size());
+	newFocus->prerequisites.push_back(prerequisite + country);
 }
 
 
