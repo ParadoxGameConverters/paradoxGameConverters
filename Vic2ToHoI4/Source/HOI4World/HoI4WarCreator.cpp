@@ -56,7 +56,9 @@ HoI4WarCreator::HoI4WarCreator(const HoI4World* world):
 	double worldStrength = calculateWorldStrength(AILog);
 
 	set<const HoI4Faction*> factionsAtWar;
+	LOG(LogLevel::Info) << "Generating major wars";
 	generateMajorWars(AILog, factionsAtWar);
+	LOG(LogLevel::Info) << "Generating additional wars";
 	generateAdditionalWars(AILog, factionsAtWar, worldStrength);
 
 	if (Configuration::getDebug())
@@ -1168,8 +1170,9 @@ vector<HoI4Faction*> HoI4WarCreator::neighborWarCreator(HoI4Country * country, o
 	// add small wars against neigbors for non-great powers
 	vector<HoI4Faction*> countriesAtWar;
 	vector<HoI4Country*> weakNeighbors = findWeakNeighbors(country);
+
 	int numWarsWithNeighbors = 0;
-	HoI4FocusTree* focusTree = genericFocusTree->makeCustomizedCopy(country);
+	vector<HoI4Focus*> newFocuses;
 
 	if (Configuration::getDebug())
 	{
@@ -1242,7 +1245,7 @@ vector<HoI4Faction*> HoI4WarCreator::neighborWarCreator(HoI4Country * country, o
 			newFocus->completionReward += "				type = annex_everything\n";
 			newFocus->completionReward += "				target = " + target->getTag() + "\n";
 			newFocus->completionReward += "			}";
-			focusTree->addFocus(newFocus);
+			newFocuses.push_back(newFocus);
 
 			numWarsWithNeighbors++;
 		}
@@ -1250,6 +1253,11 @@ vector<HoI4Faction*> HoI4WarCreator::neighborWarCreator(HoI4Country * country, o
 
 	if (numWarsWithNeighbors > 0)
 	{
+		HoI4FocusTree* focusTree = genericFocusTree->makeCustomizedCopy(country);
+		for (auto newFocus: newFocuses)
+		{
+			focusTree->addFocus(newFocus);
+		}
 		country->addNationalFocus(focusTree);
 	}
 
