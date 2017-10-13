@@ -260,6 +260,14 @@ void HoI4Localisation::addLocalisation(const string& newKey, languageToLocalisat
 			existingLanguage->second.insert(make_pair(newKey + HoI4Suffix, localisation));
 		}
 	}
+	else
+	{
+		existingLanguage->second[newKey] = localisation;
+		if (HoI4Suffix != "")
+		{
+			existingLanguage->second[newKey + HoI4Suffix] = localisation;
+		}
+	}
 }
 
 
