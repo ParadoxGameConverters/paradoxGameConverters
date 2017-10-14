@@ -1392,24 +1392,18 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 
 	nextFreeColumn += 16;
 
+	int numCollectovistIdeologies = calculateNumCollectovistIdeologies(majorIdeologies);
+
 	newFocus = new HoI4Focus;
 	newFocus->id = "political_effort";
 	newFocus->icon = "GFX_goal_generic_demand_territory";
-	if (Configuration::getDropMinorIdeologies())
-	{
-		newFocus->xPos = nextFreeColumn + majorIdeologies.size() - 1;
-	}
-	else
-	{
-		newFocus->xPos = nextFreeColumn + 6;
-	}
+	newFocus->xPos = nextFreeColumn + numCollectovistIdeologies + 1;
 	newFocus->yPos = 0;
 	newFocus->cost = 10;
 	newFocus->availableIfCapitulated = true;
 	newFocus->completionReward += "			add_political_power = 120";
 	focuses.push_back(newFocus);
 
-	int numCollectovistIdeologies = calculateNumCollectovistIdeologies(majorIdeologies);
 	if (numCollectovistIdeologies > 0)
 	{
 		newFocus = new HoI4Focus;
@@ -1452,7 +1446,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 		determineMutualExclusions(majorIdeologies);
 
 		string ideolgicalFanaticsmPrereqs;
-		if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("fascism") > 0))
+		if (majorIdeologies.count("fascism") > 0)
 		{
 			addFascistGenericFocuses();
 			if (ideolgicalFanaticsmPrereqs.size() > 0)
@@ -1462,7 +1456,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 			ideolgicalFanaticsmPrereqs += "focus = paramilitarism";
 			nextFreeColumn += 2;
 		}
-		if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("communism") > 0))
+		if (majorIdeologies.count("communism") > 0)
 		{
 			addCommunistGenericFocuses();
 			if (ideolgicalFanaticsmPrereqs.size() > 0)
@@ -1472,7 +1466,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 			ideolgicalFanaticsmPrereqs += "focus = political_commissars";
 			nextFreeColumn += 2;
 		}
-		if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("absolutist") > 0))
+		if (majorIdeologies.count("absolutist") > 0)
 		{
 			addAbsolutistGenericFocuses();
 			if (ideolgicalFanaticsmPrereqs.size() > 0)
@@ -1482,7 +1476,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 			ideolgicalFanaticsmPrereqs += "focus = historical_claims_focus";
 			nextFreeColumn += 2;
 		}
-		if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("radical") > 0))
+		if (majorIdeologies.count("radical") > 0)
 		{
 			addRadicalGenericFocuses();
 			if (ideolgicalFanaticsmPrereqs.size() > 0)
@@ -1587,7 +1581,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 
 	nextFreeColumn += 2;
 
-	if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("democratic") != 0))
+	if (majorIdeologies.count("democratic") != 0)
 	{
 		newFocus = new HoI4Focus;
 		newFocus->id = "interventionism_focus";
@@ -1721,38 +1715,29 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 	newFocus->completionReward += "				}\n";
 	newFocus->completionReward += "			}";
 	focuses.push_back(newFocus);
-
-	nextFreeColumn += 2;
 }
 
 
 int HoI4FocusTree::calculateNumCollectovistIdeologies(const set<string>& majorIdeologies)
 {
 	int numCollectovistIdeologies = 0;
-	if (Configuration::getDropMinorIdeologies())
-	{
-		numCollectovistIdeologies += majorIdeologies.count("radical");
-		numCollectovistIdeologies += majorIdeologies.count("absolutist");
-		numCollectovistIdeologies += majorIdeologies.count("communism");
-		numCollectovistIdeologies += majorIdeologies.count("fascism");
-	}
-	else
-	{
-		numCollectovistIdeologies = 4;
-	}
+	numCollectovistIdeologies += majorIdeologies.count("radical");
+	numCollectovistIdeologies += majorIdeologies.count("absolutist");
+	numCollectovistIdeologies += majorIdeologies.count("communism");
+	numCollectovistIdeologies += majorIdeologies.count("fascism");
 	return numCollectovistIdeologies;
 }
 
 
 void HoI4FocusTree::determineMutualExclusions(const set<string>& majorIdeologies)
 {
-	if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("fascism") > 0))
+	if (majorIdeologies.count("fascism") > 0)
 	{
 		communistMutualExclusions += "focus = nationalism_focus";
 		absolutistMutualExlusions += "focus = nationalism_focus";
 		radicalMutualExclusions += "focus = nationalism_focus";
 	}
-	if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("communism") > 0))
+	if (majorIdeologies.count("communism") > 0)
 	{
 		if (fascistMutualExlusions.size() > 0)
 		{
@@ -1770,7 +1755,7 @@ void HoI4FocusTree::determineMutualExclusions(const set<string>& majorIdeologies
 		absolutistMutualExlusions += "focus = internationalism_focus";
 		radicalMutualExclusions += "focus = internationalism_focus";
 	}
-	if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("absolutist") > 0))
+	if (majorIdeologies.count("absolutist") > 0)
 	{
 		if (fascistMutualExlusions.size() > 0)
 		{
@@ -1788,7 +1773,7 @@ void HoI4FocusTree::determineMutualExclusions(const set<string>& majorIdeologies
 		communistMutualExclusions += "focus = absolutism_focus";
 		radicalMutualExclusions += "focus = absolutism_focus";
 	}
-	if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("radical") > 0))
+	if (majorIdeologies.count("radical") > 0)
 	{
 		if (fascistMutualExlusions.size() > 0)
 		{

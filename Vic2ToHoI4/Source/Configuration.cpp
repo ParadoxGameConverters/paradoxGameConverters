@@ -46,7 +46,7 @@ Configuration::Configuration():
 	manpowerFactor(0.0),
 	industrialShapeFactor(0.0),
 	icFactor(0.0),
-	dropMinorIdeologies(false),
+	ideologiesOptions("keep_major"),
 	debug(false),
 	leaderID(1000),
 	leaderIDCountryIdx(1),
@@ -121,10 +121,7 @@ Configuration::Configuration():
 		version = HOI4Version("1.4.2");
 	}
 
-	if (obj->safeGetString("drop_minor_ideologies", "true") == "true")
-	{
-		dropMinorIdeologies = true;
-	}
+	ideologiesOptions = obj->safeGetString("ideologies", "keep_major");
 
 	auto debugObjs = obj->safeGetObject("debug");
 	if (debugObjs != nullptr)

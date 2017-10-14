@@ -85,20 +85,26 @@
 						<maxValue>100.0</maxValue>
 					</preference>
 					<preference>
-						<name>drop_minor_ideologies</name>
-						<friendlyName>Drop Minor Ideologies</friendlyName>
-						<description>Convert only major ideologies.</description>
+						<name>ideologies</name>
+						<friendlyName>Ideologies Options</friendlyName>
+						<description>Which ideologies end up in the conversion</description>
 						<entryOptions>
 							<entryOption>
-								<name>true</name>
-								<friendlyName>Yes</friendlyName>
+								<name>keep_major</name>
+								<friendlyName>Keep major</friendlyName>
 								<description>Keep only major ideologies.</description>
 								<isDefault>true</isDefault>
 							</entryOption>
 							<entryOption>
-							<name>false</name>
-								<friendlyName>No</friendlyName>
-								<description>Keep all ideologies.</description>
+								<name>keep_all</name>
+								<friendlyName>Keep all ideologies</friendlyName>
+								<description>Keep all ideologies (democratic, fascist, communist, absolutist, radical).</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>keep_default</name>
+								<friendlyName>Keep default ideologies</friendlyName>
+								<description>Keep default ideologies (democratic, fascist, communist).</description>
 								<isDefault>false</isDefault>
 							</entryOption>
 						</entryOptions>
