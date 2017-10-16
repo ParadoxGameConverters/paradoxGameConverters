@@ -45,6 +45,8 @@ class HoI4Ideology
 		explicit HoI4Ideology(shared_ptr<Object> obj);
 		void output(ofstream& file) const;
 
+		vector<string> getTypes() const { return types; }
+
 	private:
 		HoI4Ideology(const HoI4Ideology&) = delete;
 		HoI4Ideology& operator=(const HoI4Ideology&) = delete;

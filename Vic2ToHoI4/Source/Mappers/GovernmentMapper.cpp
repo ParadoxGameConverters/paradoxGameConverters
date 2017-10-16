@@ -161,6 +161,40 @@ string governmentMapper::GetLeaderIdeologyForCountry(const V2Country* country, c
 }
 
 
+string governmentMapper::GetExistingIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies) const
+{
+	string ideology = "neutrality";
+	for (auto mapping: governmentMap)
+	{
+		if (governmentMatches(mapping, country->getGovernment()) &&	rulingIdeologyMatches(mapping, Vic2RulingIdeology) && ideologyIsValid(mapping, majorIdeologies, ideologies))
+		{
+			ideology = mapping.HoI4GovernmentIdeology;
+			break;
+		}
+	}
+
+	LOG(LogLevel::Debug) << "Mapped " << country->getTag() << " government " << country->getGovernment() << " to " << ideology;
+	return ideology;
+}
+
+
+string governmentMapper::GetExistingLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies) const
+{
+	string ideology = "neutrality";
+	for (auto mapping: governmentMap)
+	{
+		if (governmentMatches(mapping, country->getGovernment()) &&	rulingIdeologyMatches(mapping, Vic2RulingIdeology) && ideologyIsValid(mapping, majorIdeologies, ideologies))
+		{
+			ideology = mapping.HoI4LeaderIdeology;
+			break;
+		}
+	}
+
+	LOG(LogLevel::Debug) << "Mapped " << country->getTag() << " leader " << country->getGovernment() << " to " << ideology;
+	return ideology;
+}
+
+
 bool governmentMapper::governmentMatches(const governmentMapping& mapping, const string& government) const
 {
 	return ((mapping.vic2Government == "") || (mapping.vic2Government == government));
@@ -170,6 +204,27 @@ bool governmentMapper::governmentMatches(const governmentMapping& mapping, const
 bool governmentMapper::rulingIdeologyMatches(const governmentMapping& mapping, const string& rulingIdeology) const
 {
 	return ((mapping.rulingPartyRequired == "") || (mapping.rulingPartyRequired == rulingIdeology));
+}
+
+
+bool governmentMapper::ideologyIsValid(const governmentMapping& mapping, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies) const
+{
+	if (majorIdeologies.count(mapping.HoI4GovernmentIdeology) > 0)
+	{
+		auto ideology = ideologies.find(mapping.HoI4GovernmentIdeology);
+		if (ideology != ideologies.end())
+		{
+			for (auto type: ideology->second->getTypes())
+			{
+				if (mapping.HoI4LeaderIdeology == type)
+				{
+					return true;
+				}
+			}
+		}
+	}
+
+	return false;
 }
 
 

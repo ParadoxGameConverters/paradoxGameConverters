@@ -395,10 +395,10 @@ void HoI4Country::initFromHistory()
 }
 
 
-void HoI4Country::setGovernmentToNeutral()
+void HoI4Country::setGovernmentToExistingIdeology(const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies)
 {
-	governmentIdeology = "neutrality";
-	leaderIdeology += "_neutral";
+	governmentIdeology = governmentMapper::getExistingIdeologyForCountry(srcCountry, rulingParty->ideology, majorIdeologies, ideologies);
+	leaderIdeology = governmentMapper::getExistingLeaderIdeologyForCountry(srcCountry, rulingParty->ideology, majorIdeologies, ideologies);
 }
 
 

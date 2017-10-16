@@ -310,7 +310,7 @@ void HoI4World::addNeutrality()
 	{
 		if (majorIdeologies.count(country.second->getGovernmentIdeology()) == 0)
 		{
-			country.second->setGovernmentToNeutral();
+			country.second->setGovernmentToExistingIdeology(majorIdeologies, ideologies);
 		}
 	}
 }
