@@ -1250,73 +1250,7 @@
 	# 
 	# ## Atlantic Islands
 	# 
-	# ## Austria
-	# # Osterreich
-	link = { vic2 = 619 hoi4 = 11666 hoi4 = 6739 hoi4 = 3718 hoi4 = 9527 }	# Vienna -> land, land, land, land
-	link = { vic2 = 620 hoi4 = 704 hoi4 = 6690 hoi4 = 11651 }	# Sankt Pölten -> land, land, land
-	link = { vic2 = 621 hoi4 = 6552 hoi4 = 6723 }	# Krems -> land, land
-	link = { vic2 = 622 hoi4 = 3703 hoi4 = 9665 hoi4 = 732 hoi4 = 3684 hoi4 = 6708 }	# Linz -> land, land, land, land, land
-	link = { vic2 = 624 hoi4 = 9661 hoi4 = 3700 hoi4 = 11630 }	# Eisenstadt -> land, land, land
-	# # Karnten-Steiermark
-	link = { vic2 = 616 hoi4 = 9648 hoi4 = 653 hoi4 = 9646 }	# Graz -> land, land, land
-	link = { vic2 = 617 hoi4 = 6687 hoi4 = 6691 hoi4 = 9650 hoi4 = 9679 }	# Judenburg -> land, land, land, land
-	link = { vic2 = 618 hoi4 = 3673 hoi4 = 11612 hoi4 = 3674 hoi4 = 6673 hoi4 = 668 }	# Klagenfurt -> land, land, land, land, land
-	# # Tirol
-	link = { vic2 = 612 hoi4 = 673 hoi4 = 9633 hoi4 = 9636 hoi4 = 11618 hoi4 = 11634 }	# Innsbruck -> land, land, land, land, land
-	link = { vic2 = 613 hoi4 = 688 hoi4 = 3675 }	# Salzburg -> land, land
-	link = { vic2 = 614 hoi4 = 6680 hoi4 = 6678 }	# Bregenz -> land, land
-	link = { vic2 = 615 hoi4 = 671 }	# Lienz -> land
-	# 
-	# ## Great Britain
-	# # South East England
-	link = { vic2 = 294 hoi4 = 6221 hoi4 = 11471 }	# Oxford -> land, land
-	link = { vic2 = 300 hoi4 = 6103 hoi4 = 11333 }	# London -> land, land
-	link = { vic2 = 301 hoi4 = 3501 hoi4 = 13070 }	# Canterbury -> land, land
-	link = { vic2 = 302 hoi4 = 11446 hoi4 = 507 }	# Brighton -> land, land
-	link = { vic2 = 303 hoi4 = 9458 hoi4 = 6489 }	# Southampton -> land, land
-	# # South West England
-	link = { vic2 = 296 hoi4 = 3369 hoi4 = 6378 }	# Bristol -> land, land
-	link = { vic2 = 297 hoi4 = 6351 hoi4 = 3422 }	# Salisbury -> land, land
-	link = { vic2 = 298 hoi4 = 9484 }	# Bath -> land
-	link = { vic2 = 299 vic2 = 419 hoi4 = 540 hoi4 = 6526 hoi4 = 11406 hoi4 = 9562 hoi4 = 3463 }	# MANY-TO-MANY: Plymouth, Channel Islands -> land, land, land, land, land
-	# # Eastern Country
-	link = { vic2 = 291 hoi4 = 296 }	# Cambridge -> land
-	link = { vic2 = 292 hoi4 = 221 hoi4 = 11253 hoi4 = 271 hoi4 = 322 hoi4 = 3287 }	# Ipswich -> land, land, land, land, land
-	link = { vic2 = 293 hoi4 = 11374 }	# Chelmsford -> land
-	link = { vic2 = 295 hoi4 = 11221 hoi4 = 9239 }	# St Albans -> land, land
-	# # Midlands
-	link = { vic2 = 284 hoi4 = 9297 hoi4 = 11345 }	# Birmingham -> land, land
-	link = { vic2 = 286 hoi4 = 3301 hoi4 = 6301 hoi4 = 3241 }	# Shrewsbury -> land, land, land
-	link = { vic2 = 287 hoi4 = 6270 hoi4 = 7239 }	# Coventry -> land, land
-	link = { vic2 = 288 hoi4 = 6237 }	# Nottingham -> land
-	link = { vic2 = 289 hoi4 = 11279 hoi4 = 364 hoi4 = 9268 }	# Leicester -> land, land, land
-	link = { vic2 = 290 hoi4 = 3353 hoi4 = 9322 hoi4 = 9250 }	# Lincoln -> land, land, land
-	# # Wales
-	link = { vic2 = 273 hoi4 = 377 hoi4 = 407 }	# Cardiff -> land, land
-	link = { vic2 = 274 hoi4 = 3274 hoi4 = 11361 }	# Cardigan -> land, land
-	link = { vic2 = 275 hoi4 = 253 hoi4 = 311 }	# Llandrindod -> land, land
-	link = { vic2 = 276 hoi4 = 6363 hoi4 = 9364 }	# Holyhead -> land, land
-	# # North West England
-	link = { vic2 = 277 hoi4 = 6384 hoi4 = 6399 hoi4 = 6335 }	# Liverpool -> land, land, land
-	link = { vic2 = 278 hoi4 = 6318 }	# Manchester -> land
-	link = { vic2 = 279 hoi4 = 219 hoi4 = 9285 hoi4 = 11332 }	# Carlisle -> land, land, land
-	link = { vic2 = 285 hoi4 = 3205 }	# Chester -> land
-	link = { vic2 = 304 hoi4 = 3311 }	# Isle of Man -> land
-	# # North East England
-	link = { vic2 = 280 hoi4 = 351 hoi4 = 11299 hoi4 = 11270 }	# Newcastle-upon-Tyne -> land, land, land
-	link = { vic2 = 281 hoi4 = 11297 hoi4 = 11317 hoi4 = 9269 hoi4 = 9332 }	# Hull -> land, land, land, land
-	link = { vic2 = 282 hoi4 = 9379 hoi4 = 9397 hoi4 = 6268 }	# Leeds -> land, land, land
-	link = { vic2 = 283 hoi4 = 9315 hoi4 = 11382 }	# Sheffield -> land, land
-	# # Lowlands
-	link = { vic2 = 269 hoi4 = 9392 }	# Edinburgh -> land
-	link = { vic2 = 270 hoi4 = 9383 hoi4 = 6385 hoi4 = 284 hoi4 = 3373 hoi4 = 159 }	# Stirling -> land, land, land, land, land
-	link = { vic2 = 271 hoi4 = 3273 hoi4 = 6395 hoi4 = 6320 hoi4 = 9237 hoi4 = 6350 }	# Glasgow -> land, land, land, land, land
-	link = { vic2 = 272 hoi4 = 11218 hoi4 = 9350 hoi4 = 9314 hoi4 = 11378 }	# Dumfries -> land, land, land, land
-	# # Highland
-	link = { vic2 = 266 hoi4 = 11136 hoi4 = 200 hoi4 = 11207 hoi4 = 9161 hoi4 = 11055 }	# Aberdeen -> land, land, land, land, land
-	link = { vic2 = 267 hoi4 = 6046 hoi4 = 6104 hoi4 = 3159 hoi4 = 11064 hoi4 = 131 hoi4 = 9090 hoi4 = 6196 hoi4 = 9075 hoi4 = 11161 hoi4 = 11266 hoi4 = 6205 hoi4 = 3178 hoi4 = 6062 }	# Inverness -> land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 268 hoi4 = 6300 hoi4 = 3150 hoi4 = 11306 }	# Dundee -> land, land, land
-	# #
+	#
 	# ## Ireland
 	# # Galway Region
 	link = { vic2 = 257 hoi4 = 337 }	# Donegal -> land
@@ -1403,6 +1337,73 @@
 	link = { vic2 = 500 hoi4 = 872 hoi4 = 897 hoi4 = 3898 hoi4 = 3899 hoi4 = 6836 }	# Lérida -> land, land, land, land, land
 	link = { vic2 = 501 hoi4 = 6812 hoi4 = 6966 }	# Tarragona -> land, land
 	link = { vic2 = 502 hoi4 = 9793 hoi4 = 7114 hoi4 = 9845 }	# Balearic Islands -> land, land, land
+	#
+	# ## Austria
+	# # Osterreich
+	link = { vic2 = 619 hoi4 = 11666 hoi4 = 6739 hoi4 = 3718 hoi4 = 9527 }	# Vienna -> land, land, land, land
+	link = { vic2 = 620 hoi4 = 704 hoi4 = 6690 hoi4 = 11651 }	# Sankt Pölten -> land, land, land
+	link = { vic2 = 621 hoi4 = 6552 hoi4 = 6723 }	# Krems -> land, land
+	link = { vic2 = 622 hoi4 = 3703 hoi4 = 9665 hoi4 = 732 hoi4 = 3684 hoi4 = 6708 }	# Linz -> land, land, land, land, land
+	link = { vic2 = 624 hoi4 = 9661 hoi4 = 3700 hoi4 = 11630 }	# Eisenstadt -> land, land, land
+	# # Karnten-Steiermark
+	link = { vic2 = 616 hoi4 = 9648 hoi4 = 653 hoi4 = 9646 }	# Graz -> land, land, land
+	link = { vic2 = 617 hoi4 = 6687 hoi4 = 6691 hoi4 = 9650 hoi4 = 9679 }	# Judenburg -> land, land, land, land
+	link = { vic2 = 618 hoi4 = 3673 hoi4 = 11612 hoi4 = 3674 hoi4 = 6673 hoi4 = 668 }	# Klagenfurt -> land, land, land, land, land
+	# # Tirol
+	link = { vic2 = 612 hoi4 = 673 hoi4 = 9633 hoi4 = 9636 hoi4 = 11618 hoi4 = 11634 }	# Innsbruck -> land, land, land, land, land
+	link = { vic2 = 613 hoi4 = 688 hoi4 = 3675 }	# Salzburg -> land, land
+	link = { vic2 = 614 hoi4 = 6680 hoi4 = 6678 }	# Bregenz -> land, land
+	link = { vic2 = 615 hoi4 = 671 }	# Lienz -> land
+	# 
+	# ## Great Britain
+	# # South East England
+	link = { vic2 = 294 hoi4 = 6221 hoi4 = 11471 }	# Oxford -> land, land
+	link = { vic2 = 300 hoi4 = 6103 hoi4 = 11333 }	# London -> land, land
+	link = { vic2 = 301 hoi4 = 3501 hoi4 = 13070 }	# Canterbury -> land, land
+	link = { vic2 = 302 hoi4 = 11446 hoi4 = 507 }	# Brighton -> land, land
+	link = { vic2 = 303 hoi4 = 9458 hoi4 = 6489 }	# Southampton -> land, land
+	# # South West England
+	link = { vic2 = 296 hoi4 = 3369 hoi4 = 6378 }	# Bristol -> land, land
+	link = { vic2 = 297 hoi4 = 6351 hoi4 = 3422 }	# Salisbury -> land, land
+	link = { vic2 = 298 hoi4 = 9484 }	# Bath -> land
+	link = { vic2 = 299 vic2 = 419 hoi4 = 540 hoi4 = 6526 hoi4 = 11406 hoi4 = 9562 hoi4 = 3463 }	# MANY-TO-MANY: Plymouth, Channel Islands -> land, land, land, land, land
+	# # Eastern Country
+	link = { vic2 = 291 hoi4 = 296 }	# Cambridge -> land
+	link = { vic2 = 292 hoi4 = 221 hoi4 = 11253 hoi4 = 271 hoi4 = 322 hoi4 = 3287 }	# Ipswich -> land, land, land, land, land
+	link = { vic2 = 293 hoi4 = 11374 }	# Chelmsford -> land
+	link = { vic2 = 295 hoi4 = 11221 hoi4 = 9239 }	# St Albans -> land, land
+	# # Midlands
+	link = { vic2 = 284 hoi4 = 9297 hoi4 = 11345 }	# Birmingham -> land, land
+	link = { vic2 = 286 hoi4 = 3301 hoi4 = 6301 hoi4 = 3241 }	# Shrewsbury -> land, land, land
+	link = { vic2 = 287 hoi4 = 6270 hoi4 = 7239 }	# Coventry -> land, land
+	link = { vic2 = 288 hoi4 = 6237 }	# Nottingham -> land
+	link = { vic2 = 289 hoi4 = 11279 hoi4 = 364 hoi4 = 9268 }	# Leicester -> land, land, land
+	link = { vic2 = 290 hoi4 = 3353 hoi4 = 9322 hoi4 = 9250 }	# Lincoln -> land, land, land
+	# # Wales
+	link = { vic2 = 273 hoi4 = 377 hoi4 = 407 }	# Cardiff -> land, land
+	link = { vic2 = 274 hoi4 = 3274 hoi4 = 11361 }	# Cardigan -> land, land
+	link = { vic2 = 275 hoi4 = 253 hoi4 = 311 }	# Llandrindod -> land, land
+	link = { vic2 = 276 hoi4 = 6363 hoi4 = 9364 }	# Holyhead -> land, land
+	# # North West England
+	link = { vic2 = 277 hoi4 = 6384 hoi4 = 6399 hoi4 = 6335 }	# Liverpool -> land, land, land
+	link = { vic2 = 278 hoi4 = 6318 }	# Manchester -> land
+	link = { vic2 = 279 hoi4 = 219 hoi4 = 9285 hoi4 = 11332 }	# Carlisle -> land, land, land
+	link = { vic2 = 285 hoi4 = 3205 }	# Chester -> land
+	link = { vic2 = 304 hoi4 = 3311 }	# Isle of Man -> land
+	# # North East England
+	link = { vic2 = 280 hoi4 = 351 hoi4 = 11299 hoi4 = 11270 }	# Newcastle-upon-Tyne -> land, land, land
+	link = { vic2 = 281 hoi4 = 11297 hoi4 = 11317 hoi4 = 9269 hoi4 = 9332 }	# Hull -> land, land, land, land
+	link = { vic2 = 282 hoi4 = 9379 hoi4 = 9397 hoi4 = 6268 }	# Leeds -> land, land, land
+	link = { vic2 = 283 hoi4 = 9315 hoi4 = 11382 }	# Sheffield -> land, land
+	# # Lowlands
+	link = { vic2 = 269 hoi4 = 9392 }	# Edinburgh -> land
+	link = { vic2 = 270 hoi4 = 9383 hoi4 = 6385 hoi4 = 284 hoi4 = 3373 hoi4 = 159 }	# Stirling -> land, land, land, land, land
+	link = { vic2 = 271 hoi4 = 3273 hoi4 = 6395 hoi4 = 6320 hoi4 = 9237 hoi4 = 6350 }	# Glasgow -> land, land, land, land, land
+	link = { vic2 = 272 hoi4 = 11218 hoi4 = 9350 hoi4 = 9314 hoi4 = 11378 }	# Dumfries -> land, land, land, land
+	# # Highland
+	link = { vic2 = 266 hoi4 = 11136 hoi4 = 200 hoi4 = 11207 hoi4 = 9161 hoi4 = 11055 }	# Aberdeen -> land, land, land, land, land
+	link = { vic2 = 267 hoi4 = 6046 hoi4 = 6104 hoi4 = 3159 hoi4 = 11064 hoi4 = 131 hoi4 = 9090 hoi4 = 6196 hoi4 = 9075 hoi4 = 11161 hoi4 = 11266 hoi4 = 6205 hoi4 = 3178 hoi4 = 6062 }	# Inverness -> land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 268 hoi4 = 6300 hoi4 = 3150 hoi4 = 11306 }	# Dundee -> land, land, land
 	# 
 	# ## France
 	# # Bretagne
@@ -1499,6 +1500,43 @@
 	link = { vic2 = 472 hoi4 = 9909 hoi4 = 3959 }	# Nice -> land, land
 	# # Corsica
 	link = { vic2 = 473 hoi4 = 3838 hoi4 = 9851 hoi4 = 11804 }	# Corsica -> land, land, land
+	# 
+	# ## Belgium
+	# # Flanders
+	link = { vic2 = 387 hoi4 = 516 }	# Brussels -> land
+	link = { vic2 = 388 hoi4 = 6446 }	# Bruges -> land
+	link = { vic2 = 389 hoi4 = 6560 hoi4 = 480 }	# Ghent -> land, land
+	link = { vic2 = 390 hoi4 = 6598 hoi4 = 11419 hoi4 = 13068 }	# Antwerp -> land, land, land
+	link = { vic2 = 391 hoi4 = 9574 }	# Hasselt -> land
+	# # Wallonia
+	link = { vic2 = 392 hoi4 = 3516 hoi4 = 9444 hoi4 = 13081 }	# Namur -> land, land, land
+	link = { vic2 = 393 hoi4 = 3576 }	# Tournai -> land
+	link = { vic2 = 394 hoi4 = 9536 }	# Charleroi -> land
+	link = { vic2 = 395 hoi4 = 11519 hoi4 = 6537 }	# Liège -> land, land
+	link = { vic2 = 396 hoi4 = 3488 }	# Spa -> land
+	link = { vic2 = 398 hoi4 = 9418 hoi4 = 11407 }	# Arlon -> land, land
+	#
+	# ## Netherlands
+	# # Eindhoven Region
+	link = { vic2 = 378 hoi4 = 9431 }	# Middelburg -> land
+	link = { vic2 = 379 hoi4 = 6496 hoi4 = 6500 hoi4 = 11456 }	# Eindhoven -> land, land, land
+	link = { vic2 = 380 hoi4 = 3262 hoi4 = 9498 }	# Breda -> land, land
+	link = { vic2 = 381 hoi4 = 11562 }	# Maastricht -> land
+	# # Holland
+	link = { vic2 = 375 hoi4 = 391 hoi4 = 68 hoi4 = 8622 hoi4 = 3314 }	# Amsterdam -> land, land, lake, land
+	link = { vic2 = 376 hoi4 = 3211 }	# Rotterdam -> land
+	link = { vic2 = 377 hoi4 = 6241 }	# Utrecht -> land
+	link = { vic2 = 382 hoi4 = 9363 }	# Arnhem -> land
+	# # Friesland
+	link = { vic2 = 383 hoi4 = 11318 }	# Groningen -> land
+	link = { vic2 = 384 hoi4 = 6286 hoi4 = 9403 }	# Zwolle -> land, land
+	link = { vic2 = 385 hoi4 = 6336 hoi4 = 9335 }	# Leeuwarden -> land, land
+	link = { vic2 = 386 hoi4 = 9309 }	# Assen -> land
+	#
+	# ## Luxembourg
+	link = { vic2 = 397 hoi4 = 6583 }	# Luxembourg -> land
+	
+	
 	# 
 	# ## Poland
 	link = { vic2 = 939 hoi4 = 9304 hoi4 = 11341 hoi4 = 6280 hoi4 = 6306 hoi4 = 3309 }	# Baranovichi -> land, land, land, land, land
@@ -1858,7 +1896,6 @@
 	link = { vic2 = 572 hoi4 = 11435 hoi4 = 11470 hoi4 = 3547 }	# Trier -> land, land, land
 	link = { vic2 = 576 hoi4 = 9522 }	# Aachen -> land
 	link = { vic2 = 577 hoi4 = 3444 }	# Cleves -> land
-	link = { vic2 = 381 hoi4 = 11562 }	# Maastricht -> land
 	link = { vic2 = 543 hoi4 = 11360 }	# Emden -> land
 	link = { vic2 = 540 vic2 = 533 hoi4 = 241 hoi4 = 336 }	# MANY-TO-MANY: Oldenburg, Heligoland -> land, land
 	link = { vic2 = 531 hoi4 = 374 hoi4 = 6349 hoi4 = 3271 }	# Stade -> land, land, land
@@ -1874,31 +1911,6 @@
 	link = { vic2 = 530 hoi4 = 11331 }	# Lübeck -> land
 	link = { vic2 = 529 hoi4 = 9320 hoi4 = 6257 }	# Lauenburg -> land, land
 	link = { vic2 = 528 hoi4 = 9347 hoi4 = 3368 }	# Hamburg -> land, land
-	# 
-	# ## Benelux
-	link = { vic2 = 398 hoi4 = 11407 hoi4 = 9418 }	# Arlon -> land, land
-	link = { vic2 = 396 hoi4 = 3488 }	# Spa -> land
-	link = { vic2 = 395 hoi4 = 11519 hoi4 = 6537 hoi4 = 9444 }	# Liège -> land, land, land
-	link = { vic2 = 383 hoi4 = 11318 }	# Groningen -> land
-	link = { vic2 = 384 hoi4 = 6286 hoi4 = 9403 }	# Zwolle -> land, land
-	link = { vic2 = 386 hoi4 = 9309 }	# Assen -> land
-	link = { vic2 = 385 hoi4 = 6336 hoi4 = 9335 }	# Leeuwarden -> land, land
-	link = { vic2 = 377 hoi4 = 6241 }	# Utrecht -> land
-	link = { vic2 = 382 hoi4 = 9363 }	# Arnhem -> land
-	link = { vic2 = 391 hoi4 = 9574 }	# Hasselt -> land
-	link = { vic2 = 379 hoi4 = 6496 hoi4 = 6500 hoi4 = 11456 }	# Eindhoven -> land, land, land
-	link = { vic2 = 375 hoi4 = 391 hoi4 = 68 hoi4 = 8622 hoi4 = 3314 }	# Amsterdam -> land, land, lake, land
-	link = { vic2 = 380 hoi4 = 3262 hoi4 = 9498 }	# Breda -> land, land
-	link = { vic2 = 376 hoi4 = 3211 }	# Rotterdam -> land
-	link = { vic2 = 397 hoi4 = 6583 }	# Luxembourg -> land
-	link = { vic2 = 392 hoi4 = 3516 hoi4 = 13081 }	# Namur -> land, land
-	link = { vic2 = 394 hoi4 = 9536 }	# Charleroi -> land
-	link = { vic2 = 393 hoi4 = 3576 }	# Tournai -> land
-	link = { vic2 = 378 hoi4 = 9431 }	# Middelburg -> land
-	link = { vic2 = 387 hoi4 = 516 hoi4 = 13068 }	# Brussels -> land, land
-	link = { vic2 = 390 hoi4 = 6598 hoi4 = 11419 }	# Antwerp -> land, land
-	link = { vic2 = 388 hoi4 = 6446 }	# Bruges -> land
-	link = { vic2 = 389 hoi4 = 6560 hoi4 = 480 }	# Ghent -> land, land
 	# 
 	# ## Swiss
 	link = { vic2 = 603 hoi4 = 663 hoi4 = 11623 hoi4 = 11601 }	# Zurich -> land, land, land
