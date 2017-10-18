@@ -1250,7 +1250,7 @@
 	# 
 	# ## Atlantic Islands
 	# 
-	#
+	# 
 	# ## Ireland
 	# # Galway Region
 	link = { vic2 = 257 hoi4 = 337 }	# Donegal -> land
@@ -1337,7 +1337,7 @@
 	link = { vic2 = 500 hoi4 = 872 hoi4 = 897 hoi4 = 3898 hoi4 = 3899 hoi4 = 6836 }	# Lérida -> land, land, land, land, land
 	link = { vic2 = 501 hoi4 = 6812 hoi4 = 6966 }	# Tarragona -> land, land
 	link = { vic2 = 502 hoi4 = 9793 hoi4 = 7114 hoi4 = 9845 }	# Balearic Islands -> land, land, land
-	#
+	# 
 	# ## Austria
 	# # Osterreich
 	link = { vic2 = 619 hoi4 = 11666 hoi4 = 6739 hoi4 = 3718 hoi4 = 9527 }	# Vienna -> land, land, land, land
@@ -1515,7 +1515,7 @@
 	link = { vic2 = 395 hoi4 = 11519 hoi4 = 6537 }	# Liège -> land, land
 	link = { vic2 = 396 hoi4 = 3488 }	# Spa -> land
 	link = { vic2 = 398 hoi4 = 9418 hoi4 = 11407 }	# Arlon -> land, land
-	#
+	# 
 	# ## Netherlands
 	# # Eindhoven Region
 	link = { vic2 = 378 hoi4 = 9431 }	# Middelburg -> land
@@ -1532,9 +1532,26 @@
 	link = { vic2 = 384 hoi4 = 6286 hoi4 = 9403 }	# Zwolle -> land, land
 	link = { vic2 = 385 hoi4 = 6336 hoi4 = 9335 }	# Leeuwarden -> land, land
 	link = { vic2 = 386 hoi4 = 9309 }	# Assen -> land
-	#
+	# 
 	# ## Luxembourg
 	link = { vic2 = 397 hoi4 = 6583 }	# Luxembourg -> land
+	# 
+	# ## Norway
+	# # Vestlandet
+	link = { vic2 = 309 hoi4 = 122 hoi4 = 3114 hoi4 = 6145 hoi4 = 9170 hoi4 = 65 hoi4 = 11198 hoi4 = 9047 hoi4 = 6216 hoi4 = 3188 hoi4 = 199 hoi4 = 3090 }	# Bergen -> land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 310 hoi4 = 9296 hoi4 = 6176 hoi4 = 3049 hoi4 = 137 hoi4 = 53 hoi4 = 3192 hoi4 = 11101 hoi4 = 3129 hoi4 = 9196 hoi4 = 11176 hoi4 = 11367 }	# Christianssand -> land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 311 hoi4 = 6151 hoi4 = 9096 hoi4 = 9174 hoi4 = 11029 hoi4 = 3094 hoi4 = 6184 hoi4 = 100 hoi4 = 9036 hoi4 = 6072 }	# Skien -> land, land, land, land, land, land, land, land, land
+	link = { vic2 = 312 hoi4 = 14 hoi4 = 9204 hoi4 = 6080 hoi4 = 3059 }	# Drammen -> land, land, land, land
+	# # Ostlandet
+	link = { vic2 = 313 hoi4 = 6115 hoi4 = 9103 hoi4 = 11078 }	# Christiania -> land, land, land
+	link = { vic2 = 314 hoi4 = 3021 hoi4 = 133 hoi4 = 6042 hoi4 = 6160 hoi4 = 3136 hoi4 = 10 hoi4 = 3105 hoi4 = 3183 hoi4 = 111 hoi4 = 11206 hoi4 = 11113 hoi4 = 9227 hoi4 = 179 }	# Hamar -> land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 315 hoi4 = 11028 hoi4 = 11135 hoi4 = 9157 hoi4 = 27 hoi4 = 9135 hoi4 = 6114 hoi4 = 3093 hoi4 = 6204 hoi4 = 6136 hoi4 = 9032 hoi4 = 11037 hoi4 = 102 hoi4 = 144 }	# Lillehammer -> land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 316 hoi4 = 3171 hoi4 = 11151 hoi4 = 3007 hoi4 = 11184 }	# Frederiksstad -> land, land, land, land
+	# # Nordnorge
+	link = { vic2 = 305 hoi4 = 3022 hoi4 = 3018 hoi4 = 6116 hoi4 = 21 hoi4 = 6118 hoi4 = 11118 hoi4 = 9139 hoi4 = 6038 hoi4 = 9132 hoi4 = 115 hoi4 = 11173 hoi4 = 3098 hoi4 = 9069 hoi4 = 6173 hoi4 = 6041 hoi4 = 107 }	# Trondheim -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 306 hoi4 = 9126 hoi4 = 11157 hoi4 = 192 hoi4 = 3034 hoi4 = 3132 hoi4 = 38 hoi4 = 6214 hoi4 = 6071 hoi4 = 173 hoi4 = 3048 hoi4 = 6111 hoi4 = 3088 hoi4 = 3126 hoi4 = 9208 hoi4 = 6187 }	# Bodo -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 307 hoi4 = 22 hoi4 = 3145 hoi4 = 91 hoi4 = 11090 hoi4 = 11050 hoi4 = 6130 hoi4 = 44 hoi4 = 3082 hoi4 = 3058 hoi4 = 6079 hoi4 = 6107 hoi4 = 3040 hoi4 = 11077 hoi4 = 3016 hoi4 = 76 hoi4 = 128 hoi4 = 9191 hoi4 = 11169 hoi4 = 9128 hoi4 = 9089 hoi4 = 11104 hoi4 = 6015 hoi4 = 9042 hoi4 = 9064 hoi4 = 6092 hoi4 = 11034 hoi4 = 64 hoi4 = 11063 hoi4 = 9116 hoi4 = 2995 }	# Hammerfest -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 308 hoi4 = 9127 hoi4 = 11100 hoi4 = 188 hoi4 = 9216 hoi4 = 3096 hoi4 = 3180 }	# Alesund -> land, land, land, land, land, land
 	
 	
 	# 
@@ -1774,20 +1791,6 @@
 	link = { vic2 = 346 hoi4 = 6141 hoi4 = 11033 hoi4 = 3119 hoi4 = 6138 hoi4 = 9038 hoi4 = 6013 hoi4 = 11126 hoi4 = 3122 hoi4 = 11065 hoi4 = 63 hoi4 = 3172 hoi4 = 66 hoi4 = 9156 hoi4 = 11144 hoi4 = 6198 hoi4 = 9166 hoi4 = 13113 }	# Vaasa -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
 	link = { vic2 = 336 hoi4 = 82 hoi4 = 6212 hoi4 = 132 hoi4 = 9219 hoi4 = 11132 hoi4 = 195 hoi4 = 6081 hoi4 = 11121 hoi4 = 120 hoi4 = 158 hoi4 = 11081 hoi4 = 11041 }	# Oulu -> land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 338 hoi4 = 11130 hoi4 = 203 hoi4 = 11115 hoi4 = 3193 hoi4 = 3055 hoi4 = 11125 hoi4 = 3069 hoi4 = 167 hoi4 = 6061 hoi4 = 3097 hoi4 = 3158 hoi4 = 6128 hoi4 = 11164 hoi4 = 30 hoi4 = 3026 hoi4 = 3153 hoi4 = 6045 hoi4 = 9158 hoi4 = 197 hoi4 = 11085 hoi4 = 11030 hoi4 = 3156 hoi4 = 6179 hoi4 = 6137 hoi4 = 9223 hoi4 = 162 hoi4 = 124 hoi4 = 6087 hoi4 = 9189 hoi4 = 11204 hoi4 = 9112 hoi4 = 3107 hoi4 = 11167 hoi4 = 6076 hoi4 = 2992 hoi4 = 6142 hoi4 = 103 }	# Tornio -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	# 
-	# ## Norway
-	link = { vic2 = 307 hoi4 = 3058 hoi4 = 11050 hoi4 = 91 hoi4 = 6130 hoi4 = 11090 hoi4 = 44 hoi4 = 3082 hoi4 = 6107 hoi4 = 9191 hoi4 = 11169 hoi4 = 9128 hoi4 = 9089 hoi4 = 11104 hoi4 = 76 hoi4 = 128 hoi4 = 3040 hoi4 = 6079 hoi4 = 22 hoi4 = 11077 hoi4 = 3016 hoi4 = 2995 hoi4 = 9064 hoi4 = 6092 hoi4 = 9116 hoi4 = 11034 hoi4 = 11063 hoi4 = 64 hoi4 = 9042 hoi4 = 6015 }	# Hammerfest -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 306 hoi4 = 11157 hoi4 = 3145 hoi4 = 192 hoi4 = 3034 hoi4 = 3132 hoi4 = 38 hoi4 = 9126 hoi4 = 6214 hoi4 = 6071 hoi4 = 173 hoi4 = 3048 hoi4 = 6111 hoi4 = 3088 hoi4 = 3126 hoi4 = 9208 hoi4 = 6187 }	# Bodo -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 305 hoi4 = 6041 hoi4 = 9069 hoi4 = 6173 hoi4 = 3098 hoi4 = 11173 hoi4 = 115 hoi4 = 6038 hoi4 = 11118 hoi4 = 3183 hoi4 = 9139 hoi4 = 6118 hoi4 = 21 hoi4 = 3022 hoi4 = 6116 hoi4 = 3018 hoi4 = 107 hoi4 = 9132 }	# Trondheim -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 308 hoi4 = 3096 hoi4 = 3093 hoi4 = 9216 hoi4 = 11100 hoi4 = 102 hoi4 = 9127 hoi4 = 6204 hoi4 = 3180 hoi4 = 188 }	# Alesund -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 309 hoi4 = 3090 hoi4 = 3188 hoi4 = 6216 hoi4 = 9047 hoi4 = 3114 hoi4 = 199 hoi4 = 122 hoi4 = 6145 hoi4 = 9170 }	# Bergen -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 310 hoi4 = 53 hoi4 = 65 hoi4 = 11198 hoi4 = 3129 hoi4 = 137 hoi4 = 3192 hoi4 = 11101 hoi4 = 3049 hoi4 = 6176 hoi4 = 11367 hoi4 = 9296 hoi4 = 9196 hoi4 = 11176 hoi4 = 9096 }	# Christianssand -> land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 314 hoi4 = 6114 hoi4 = 11206 hoi4 = 111 hoi4 = 3105 hoi4 = 133 hoi4 = 10 hoi4 = 3136 hoi4 = 6160 hoi4 = 3021 hoi4 = 9135 hoi4 = 11113 hoi4 = 9227 hoi4 = 11028 hoi4 = 6042 }	# Hamar -> land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 315 hoi4 = 144 hoi4 = 27 hoi4 = 11037 hoi4 = 6136 hoi4 = 9032 hoi4 = 11135 hoi4 = 9157 }	# Lillehammer -> land, land, land, land, land, land, land
-	link = { vic2 = 312 hoi4 = 14 hoi4 = 9204 hoi4 = 6080 hoi4 = 3059 hoi4 = 3094 hoi4 = 6184 }	# Drammen -> land, land, land, land, land, land
-	link = { vic2 = 311 hoi4 = 6151 hoi4 = 6072 hoi4 = 100 hoi4 = 11029 hoi4 = 9174 hoi4 = 9036 }	# Skien -> land, land, land, land, land, land
-	link = { vic2 = 313 hoi4 = 6115 hoi4 = 9103 hoi4 = 11078 }	# Christiania -> land, land, land
-	link = { vic2 = 316 hoi4 = 11151 hoi4 = 3171 hoi4 = 11184 hoi4 = 3007 hoi4 = 179 }	# Frederiksstad -> land, land, land, land, land
 	# 
 	# ## Sweden
 	link = { vic2 = 348 hoi4 = 9228 }	# Åland Islands -> land
