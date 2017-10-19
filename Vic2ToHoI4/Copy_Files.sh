@@ -21,6 +21,10 @@ cp "Data_Files/Resources.txt" "Release-Linux/resources.txt"
 cp "Data_Files/positions.txt" "Release-Linux/positions.txt"
 cp "Data_Files/names.txt" "Release-Linux/names.txt"
 cp "Data_Files/cultureGroupToGraphics.txt" "Release-Linux/cultureGroupToGraphics.txt"
+cp "Data_Files/converterIdeologies.txt" "Release-Linux/converterIdeologies.txt"
+cp "Data_Files/converterLeaderTraits.txt" "Release-Linux/converterLeaderTraits.txt"
+cp "Data_Files/ideologicalAdvisors.txt" "Release-Linux/ideologicalAdvisors.txt"
+cp "Data_Files/ideologicalIdeas.txt" "Release-Linux/ideologicalIdeas.txt"
 
 # **Copy flags**
 rm -r "Release-Linux/flags"

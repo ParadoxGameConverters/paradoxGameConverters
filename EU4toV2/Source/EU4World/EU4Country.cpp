@@ -35,7 +35,7 @@ THE SOFTWARE. */
 
 
 
-EU4Country::EU4Country(Object* obj, EU4Version* version)
+EU4Country::EU4Country(shared_ptr<Object> obj, EU4Version* version)
 {
 	tag = obj->getKey();
 
@@ -45,16 +45,16 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 	holyRomanEmperor	= false;
 	celestialEmperor	= false;
 
-	vector<Object*> nameObj = obj->getValue("name");	// the object holding the name
+	vector<shared_ptr<Object>> nameObj = obj->getValue("name");	// the object holding the name
 	(!nameObj.empty()) ? name = nameObj[0]->getLeaf() : name = "";
 
-	vector<Object*> customNameObj = obj->getValue("custom_name");	// the object holding the name
+	vector<shared_ptr<Object>> customNameObj = obj->getValue("custom_name");	// the object holding the name
 	(!customNameObj.empty()) ? randomName = V2Localisation::Convert(customNameObj[0]->getLeaf()) : randomName = "";
 
-	vector<Object*> adjectiveObj = obj->getValue("adjective");	// the object holding the adjective
+	vector<shared_ptr<Object>> adjectiveObj = obj->getValue("adjective");	// the object holding the adjective
 	(!adjectiveObj.empty()) ? adjective = adjectiveObj[0]->getLeaf() : adjective = "";
 
-	vector<Object*> colorObjs = obj->getValue("map_color");
+	vector<shared_ptr<Object>> colorObjs = obj->getValue("map_color");
 	if (!colorObjs.empty())
 	{
 		color = Color(colorObjs[0]);
@@ -65,10 +65,10 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 	}
 	else
 	{
-		vector<Object*> colorObjs = obj->getValue("colors");
+		vector<shared_ptr<Object>> colorObjs = obj->getValue("colors");
 		if (colorObjs.size() > 0)
 		{
-			vector<Object*> countryColorObjs = colorObjs[0]->getValue("country_color");
+			vector<shared_ptr<Object>> countryColorObjs = colorObjs[0]->getValue("country_color");
 			if (countryColorObjs.size() > 0)
 			{
 				color = Color(countryColorObjs[0]);
@@ -80,17 +80,17 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 		}
 	}
 
-	vector<Object*> capitalObj = obj->getValue("capital");	// the object holding the capital
+	vector<shared_ptr<Object>> capitalObj = obj->getValue("capital");	// the object holding the capital
 	(capitalObj.size() > 0) ? capital = atoi( capitalObj[0]->getLeaf().c_str() ) : capital = 0;
 
-	vector<Object*> nfObj = obj->getValue("national_focus");	// the object holding the national focus
+	vector<shared_ptr<Object>> nfObj = obj->getValue("national_focus");	// the object holding the national focus
 	(nfObj.size() > 0) ? nationalFocus = atoi( nfObj[0]->getLeaf().c_str() ) : nationalFocus = 0;
 
-	vector<Object*> techGroupObj = obj->getValue("technology_group");	// the object holding the technology group
+	vector<shared_ptr<Object>> techGroupObj = obj->getValue("technology_group");	// the object holding the technology group
 	(techGroupObj.size() > 0) ? techGroup = techGroupObj[0]->getLeaf().c_str() : techGroup = "";
 
 	embracedInstitutions.clear();
-	vector<Object*> institutionsObj = obj->getValue("institutions"); // the object holding the institutions
+	vector<shared_ptr<Object>> institutionsObj = obj->getValue("institutions"); // the object holding the institutions
 	if (institutionsObj.size() > 0)
 	{
 		vector<string> institutionTokens = institutionsObj[0]->getTokens();
@@ -102,15 +102,15 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 	auto version20 = EU4Version("1.20.0.0");
 	if (*version >= version20)
 	{
-		vector<Object*> isolationismObj = obj->getValue("isolationism"); // the object holding the isolationism
-		(isolationismObj.size() > 0) ? isolationism = atof(isolationismObj[0]->getLeaf().c_str()) : isolationism = 1.0;
+		vector<shared_ptr<Object>> isolationismObj = obj->getValue("isolationism"); // the object holding the isolationism
+		(isolationismObj.size() > 0) ? isolationism = stoi(isolationismObj[0]->getLeaf()) : isolationism = 1;
 	}
 
-	vector<Object*> primaryCultureObj = obj->getValue("primary_culture");	// the object holding the primary culture
+	vector<shared_ptr<Object>> primaryCultureObj = obj->getValue("primary_culture");	// the object holding the primary culture
 	(primaryCultureObj.size() > 0) ? primaryCulture = primaryCultureObj[0]->getLeaf().c_str() : primaryCulture = "";
 
 	acceptedCultures.clear();
-	vector<Object*> acceptedCultureObj = obj->getValue("accepted_culture");	// the object holding the accepted cultures
+	vector<shared_ptr<Object>> acceptedCultureObj = obj->getValue("accepted_culture");	// the object holding the accepted cultures
 	for (unsigned int i = 0; i < acceptedCultureObj.size(); i++)
 	{
 		acceptedCultures.push_back(acceptedCultureObj[i]->getLeaf().c_str());
@@ -122,7 +122,7 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 		bool wasUnion = false;
 		if (Configuration::wasDLCActive("The Cossacks"))
 		{
-			vector <Object*> govRankObjs = obj->getValue("government_rank");
+			vector <shared_ptr<Object>> govRankObjs = obj->getValue("government_rank");
 			if (atoi(govRankObjs[0]->getLeaf().c_str()) > 2)
 			{
 				wasUnion = true;
@@ -130,7 +130,7 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 		}
 		else
 		{
-			vector <Object*> developmentObj = obj->getValue("realm_development");
+			vector <shared_ptr<Object>> developmentObj = obj->getValue("realm_development");
 			if (atof(developmentObj[0]->getLeaf().c_str()) >= 1000)
 			{
 				wasUnion = true;
@@ -143,23 +143,23 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 	}
 	else
 	{
-		vector<Object*> unionCultureObj = obj->getValue("culture_group_union");	// the object holding the cultural union group
+		vector<shared_ptr<Object>> unionCultureObj = obj->getValue("culture_group_union");	// the object holding the cultural union group
 		(unionCultureObj.size() > 0) ? culturalUnion = unionCultureObj[0]->getLeaf() : culturalUnion = "";
 	}
 
-	vector<Object*> religionObj = obj->getValue("religion");	// the object holding the religion
+	vector<shared_ptr<Object>> religionObj = obj->getValue("religion");	// the object holding the religion
 	(religionObj.size() > 0) ? religion = religionObj[0]->getLeaf().c_str() : religion = "";
 
-	vector<Object*> scoreObj = obj->getValue("score");	// the object holding the score
+	vector<shared_ptr<Object>> scoreObj = obj->getValue("score");	// the object holding the score
 	(scoreObj.size() > 0) ? score = 100 * atof(scoreObj[0]->getLeaf().c_str()) : score = 0.0;
 
-	vector<Object*> stabilityObj = obj->getValue("stability");	// the object holding the stability
+	vector<shared_ptr<Object>> stabilityObj = obj->getValue("stability");	// the object holding the stability
 	(stabilityObj.size() > 0) ? stability = atof( stabilityObj[0]->getLeaf().c_str() ) : stability = -3.0;
 
-	vector<Object*> techsObj = obj->getValue("technology");	// the object holding the technology levels
+	vector<shared_ptr<Object>> techsObj = obj->getValue("technology");	// the object holding the technology levels
 	if (techsObj.size() > 0)
 	{
-		vector<Object*> techObj = techsObj[0]->getValue("adm_tech");	// the object holding the technology under consideration
+		vector<shared_ptr<Object>> techObj = techsObj[0]->getValue("adm_tech");	// the object holding the technology under consideration
 		admTech = atof( techObj[0]->getLeaf().c_str() );
 
 		techsObj = obj->getValue("technology");
@@ -182,26 +182,26 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 	possibleDaimyo = false;
 	possibleShogun = false;
 	leaders.clear();
-	vector<Object*> historyObj = obj->getValue("history");	// the object holding the history for this country
+	vector<shared_ptr<Object>> historyObj = obj->getValue("history");	// the object holding the history for this country
 	if (historyObj.size() > 0)
 	{
-		/*vector<Object*> daimyoObj = historyObj[0]->getValue("daimyo");	// the object holding the daimyo information for this country
+		/*vector<shared_ptr<Object>> daimyoObj = historyObj[0]->getValue("daimyo");	// the object holding the daimyo information for this country
 		if (daimyoObj.size() > 0)
 		{
 			possibleDaimyo = true;
 		}*/
 
-		vector<Object*> historyLeaves = historyObj[0]->getLeaves();	// the object holding the individual histories for this country
+		vector<shared_ptr<Object>> historyLeaves = historyObj[0]->getLeaves();	// the object holding the individual histories for this country
 		date hundredYearsOld = date("1740.1.1");							// one hundred years before conversion
-		for (vector<Object*>::iterator itr = historyLeaves.begin(); itr != historyLeaves.end(); ++itr)
+		for (vector<shared_ptr<Object>>::iterator itr = historyLeaves.begin(); itr != historyLeaves.end(); ++itr)
 		{
 			if(((*itr)->getKey()).find(".") != -1)	//historyObj contains some non-date leaves for initial config. Avoid trying to parse them as dates.
 			{
 				// grab leaders from history, ignoring those that are more than 100 years old...
 				if (date((*itr)->getKey()) > hundredYearsOld)
 				{
-					vector<Object*> leaderObjs = (*itr)->getValue("leader");	// the leaders in this history
-					for (vector<Object*>::iterator litr = leaderObjs.begin(); litr != leaderObjs.end(); ++litr)
+					vector<shared_ptr<Object>> leaderObjs = (*itr)->getValue("leader");	// the leaders in this history
+					for (vector<shared_ptr<Object>>::iterator litr = leaderObjs.begin(); litr != leaderObjs.end(); ++litr)
 					{
 						EU4Leader* leader = new EU4Leader(*litr);	// a new leader
 						leaders.push_back(leader);
@@ -212,10 +212,10 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 	}
 
 	// figure out which leaders are active, and ditch the rest
-	vector<Object*> activeLeaderObj = obj->getValue("leader");	// the object holding the active leaders
+	vector<shared_ptr<Object>> activeLeaderObj = obj->getValue("leader");	// the object holding the active leaders
 	vector<int> activeIds;													// the ids for the active leaders
 	vector<EU4Leader*> activeLeaders;									// the active leaders themselves
-	for (vector<Object*>::iterator itr = activeLeaderObj.begin(); itr != activeLeaderObj.end(); ++itr)
+	for (vector<shared_ptr<Object>>::iterator itr = activeLeaderObj.begin(); itr != activeLeaderObj.end(); ++itr)
 	{
 		activeIds.push_back(atoi((*itr)->getLeaf("id").c_str()));
 	}
@@ -228,7 +228,7 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 	}
 	leaders.swap(activeLeaders);
 
-	vector<Object*> governmentObj = obj->getValue("government");	// the object holding the government
+	vector<shared_ptr<Object>> governmentObj = obj->getValue("government");	// the object holding the government
 	(governmentObj.size() > 0) ? government = governmentObj[0]->getLeaf() : government = "";
 	if (government == "daimyo") 
 	{
@@ -240,8 +240,8 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 		possibleShogun = true;
 	}
 	// Read international relations leaves
-	vector<Object*> relationLeaves = obj->getValue("active_relations");	// the object holding the active relationships
-	vector<Object*> relationsLeaves = relationLeaves[0]->getLeaves();		// the objects holding the relationships themselves
+	vector<shared_ptr<Object>> relationLeaves = obj->getValue("active_relations");	// the object holding the active relationships
+	vector<shared_ptr<Object>> relationsLeaves = relationLeaves[0]->getLeaves();		// the objects holding the relationships themselves
 	for (unsigned int i = 0; i < relationsLeaves.size(); ++i)
 	{
 		string key = relationsLeaves[i]->getKey();
@@ -250,14 +250,14 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 	}
 
 	armies.clear();
-	vector<Object*> armyObj = obj->getValue("army");	// the object sholding the armies
-	for (std::vector<Object*>::iterator itr = armyObj.begin(); itr != armyObj.end(); ++itr)
+	vector<shared_ptr<Object>> armyObj = obj->getValue("army");	// the object sholding the armies
+	for (std::vector<shared_ptr<Object>>::iterator itr = armyObj.begin(); itr != armyObj.end(); ++itr)
 	{
 		EU4Army* army = new EU4Army(*itr);
 		armies.push_back(army);
 	}
-	vector<Object*> navyObj = obj->getValue("navy");	// the objects holding the navies
-	for (std::vector<Object*>::iterator itr = navyObj.begin(); itr != navyObj.end(); ++itr)
+	vector<shared_ptr<Object>> navyObj = obj->getValue("navy");	// the objects holding the navies
+	for (std::vector<shared_ptr<Object>>::iterator itr = navyObj.begin(); itr != navyObj.end(); ++itr)
 	{
 		EU4Army* navy = new EU4Army(*itr);
 		armies.push_back(navy);
@@ -266,39 +266,39 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 	determineInvestments();
 
 	nationalIdeas.clear();
-	vector<Object*> activeIdeasObj = obj->getValue("active_idea_groups");	// the objects holding the national ideas
+	vector<shared_ptr<Object>> activeIdeasObj = obj->getValue("active_idea_groups");	// the objects holding the national ideas
 	if (activeIdeasObj.size() > 0)
 	{
-		vector<Object*> ideasObj = activeIdeasObj[0]->getLeaves();		// the individual idea objects
-		for (vector<Object*>::iterator ideaItr = ideasObj.begin(); ideaItr != ideasObj.end(); ideaItr++)
+		vector<shared_ptr<Object>> ideasObj = activeIdeasObj[0]->getLeaves();		// the individual idea objects
+		for (vector<shared_ptr<Object>>::iterator ideaItr = ideasObj.begin(); ideaItr != ideasObj.end(); ideaItr++)
 		{
 			nationalIdeas.insert(make_pair((*ideaItr)->getKey(), atoi((*ideaItr)->getLeaf().c_str())));
 		}
 	}
 
-	vector<Object*> legitObj = obj->getValue("legitimacy");	// the object holding the legitimacy
+	vector<shared_ptr<Object>> legitObj = obj->getValue("legitimacy");	// the object holding the legitimacy
 	(legitObj.size() > 0) ?	legitimacy = atof(legitObj[0]->getLeaf().c_str()) : legitimacy = 1.0;
 
 	colony = false;
-	vector<Object*> colonyObj = obj->getValue("parent");	// the object handling the colony flag
+	vector<shared_ptr<Object>> colonyObj = obj->getValue("parent");	// the object handling the colony flag
 	if (colonyObj.size() > 0)
 	{
 		colony = true;
 	}
 
 	customNation = false;
-	vector<Object*> customNationObj = obj->getValue("custom_name");	// the object handling the custom name (if there is one)
+	vector<shared_ptr<Object>> customNationObj = obj->getValue("custom_name");	// the object handling the custom name (if there is one)
 	if (customNationObj.size() > 0)
 	{
 		customNation = true;
 	}
 
 	libertyDesire = 0.0;
-	vector<Object*> colonialSubjectObj = obj->getValue("is_colonial_subject");
+	vector<shared_ptr<Object>> colonialSubjectObj = obj->getValue("is_colonial_subject");
 	if (colonialSubjectObj.size() > 0)
 	{
 		string overlord;
-		vector<Object*> overlordObj = obj->getValue("overlord");
+		vector<shared_ptr<Object>> overlordObj = obj->getValue("overlord");
 		if (overlordObj.size() > 0)
 		{
 			overlord = overlordObj[0]->getLeaf();
@@ -381,12 +381,12 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 	}
 
 	customFlag.flag = "-1";
-	vector<Object*> customFlagObj = obj->getValue("country_colors");
+	vector<shared_ptr<Object>> customFlagObj = obj->getValue("country_colors");
 	if (customFlagObj.size() > 0)
 	{
-		vector<Object*> flag = customFlagObj[0]->getValue("flag");
-		vector<Object*> emblem = customFlagObj[0]->getValue("subject_symbol_index");
-		vector<Object*> colours = customFlagObj[0]->getValue("flag_colors");
+		vector<shared_ptr<Object>> flag = customFlagObj[0]->getValue("flag");
+		vector<shared_ptr<Object>> emblem = customFlagObj[0]->getValue("subject_symbol_index");
+		vector<shared_ptr<Object>> colours = customFlagObj[0]->getValue("flag_colors");
 
 		if (flag.size() > 0 && emblem.size() > 0 && colours.size() > 0)
 		{
@@ -398,7 +398,7 @@ EU4Country::EU4Country(Object* obj, EU4Version* version)
 		}
 	}
 
-	vector<Object*> revolutionaryFlagObj = obj->getValue("revolutionary_colors");
+	vector<shared_ptr<Object>> revolutionaryFlagObj = obj->getValue("revolutionary_colors");
 	if (revolutionaryFlagObj.size() > 0)
 	{
 		vector<string> colourtokens = revolutionaryFlagObj[0]->getTokens();
@@ -427,13 +427,13 @@ void EU4Country::determineInvestments()
 }
 
 
-void EU4Country::determineFlagsAndModifiers(Object* obj)
+void EU4Country::determineFlagsAndModifiers(shared_ptr<Object> obj)
 {
 	flags.clear();
-	vector<Object*> flagObject = obj->getValue("flags");	// the object holding the flags set for this country
+	vector<shared_ptr<Object>> flagObject = obj->getValue("flags");	// the object holding the flags set for this country
 	if (flagObject.size() > 0)
 	{
-		vector<Object*> flagObjects = flagObject[0]->getLeaves();	// the individual flag objects
+		vector<shared_ptr<Object>> flagObjects = flagObject[0]->getLeaves();	// the individual flag objects
 		for (unsigned int i = 0; i < flagObjects.size(); i++)
 		{
 			flags[flagObjects[i]->getKey()] = true;
@@ -442,7 +442,7 @@ void EU4Country::determineFlagsAndModifiers(Object* obj)
 	flagObject = obj->getValue("hidden_flags");	// the object holding the hidden flags set for this country
 	if (flagObject.size() > 0)
 	{
-		vector<Object*> flagObjects = flagObject[0]->getLeaves();	// the individual hidden flag objects
+		vector<shared_ptr<Object>> flagObjects = flagObject[0]->getLeaves();	// the individual hidden flag objects
 		for (unsigned int i = 0; i < flagObjects.size(); i++)
 		{
 			flags[flagObjects[i]->getKey()] = true;
@@ -450,10 +450,10 @@ void EU4Country::determineFlagsAndModifiers(Object* obj)
 	}
 
 	modifiers.clear();
-	vector<Object*> modifierObject = obj->getValue("modifier");	// the object holding the modifiers for this country
+	vector<shared_ptr<Object>> modifierObject = obj->getValue("modifier");	// the object holding the modifiers for this country
 	for (unsigned int i = 0; i < modifierObject.size(); i++)
 	{
-		vector<Object*> nameObject = modifierObject[i]->getLeaves();	// the individual modifier objects
+		vector<shared_ptr<Object>> nameObject = modifierObject[i]->getLeaves();	// the individual modifier objects
 		if (nameObject.size() > 0)
 		{
 			modifiers[nameObject[0]->getLeaf()] = true;
@@ -462,7 +462,7 @@ void EU4Country::determineFlagsAndModifiers(Object* obj)
 }
 
 
-void EU4Country::readFromCommonCountry(const string& fileName, Object* obj)
+void EU4Country::readFromCommonCountry(const string& fileName, shared_ptr<Object> obj)
 {
 	if (name.empty())
 	{

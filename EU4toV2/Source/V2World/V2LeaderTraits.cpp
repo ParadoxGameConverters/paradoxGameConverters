@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -28,11 +28,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2TraitConversion::V2TraitConversion(Object* obj)
+V2TraitConversion::V2TraitConversion(shared_ptr<Object> obj)
 {
 	trait = obj->getKey();
 
-	vector<Object*> reqObj = obj->getValue("fire");
+	vector<shared_ptr<Object>> reqObj = obj->getValue("fire");
 	if (reqObj.size() > 0)
 	{
 		req_fire = atoi(reqObj[0]->getLeaf().c_str());
@@ -111,7 +111,7 @@ bool V2TraitConversion::matches(int fire, int shock, int manuever, int siege) co
 
 V2LeaderTraits::V2LeaderTraits()
 {
-	Object* obj = parser_UTF8::doParseFile("leader_traits.txt");
+	shared_ptr<Object> obj = parser_UTF8::doParseFile("leader_traits.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file leader_traits.txt";
@@ -119,11 +119,11 @@ V2LeaderTraits::V2LeaderTraits()
 	}
 
 	backgrounds.clear();
-	vector<Object*> traitObjs = obj->getValue("background");
+	vector<shared_ptr<Object>> traitObjs = obj->getValue("background");
 	if (traitObjs.size() > 0)
 	{
 		traitObjs = traitObjs[0]->getLeaves();
-		for (vector<Object*>::iterator itr = traitObjs.begin(); itr != traitObjs.end(); ++itr)
+		for (vector<shared_ptr<Object>>::iterator itr = traitObjs.begin(); itr != traitObjs.end(); ++itr)
 		{
 			V2TraitConversion tc(*itr);
 			backgrounds.push_back(tc);
@@ -135,7 +135,7 @@ V2LeaderTraits::V2LeaderTraits()
 	if (traitObjs.size() > 0)
 	{
 		traitObjs = traitObjs[0]->getLeaves();
-		for (vector<Object*>::iterator itr = traitObjs.begin(); itr != traitObjs.end(); ++itr)
+		for (vector<shared_ptr<Object>>::iterator itr = traitObjs.begin(); itr != traitObjs.end(); ++itr)
 		{
 			V2TraitConversion tc(*itr);
 			personalities.push_back(tc);

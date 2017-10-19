@@ -1,4 +1,4 @@
-/*Copyright(c) 2014 The Paradox Game Converters Project
+/*Copyright(c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -25,9 +25,9 @@ THE SOFTWARE. */
 
 
 
-EU4Leader::EU4Leader(Object *obj)
+EU4Leader::EU4Leader(shared_ptr<Object> obj)
 {
-	vector<Object*> subObj = obj->getValue("name");	// the field under consideration
+	vector<shared_ptr<Object>> subObj = obj->getValue("name");	// the field under consideration
 	(subObj.size() > 0) ? name = subObj[0]->getLeaf() : name = "";
 
 	subObj = obj->getValue("manuever");

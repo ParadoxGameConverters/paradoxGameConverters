@@ -72,9 +72,9 @@
     <ClCompile Include="Source\Color.cpp" />
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\Flags.cpp" />
+    <ClCompile Include="Source\HOI4World\HoI4Advisor.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Agreement.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Airforce.cpp" />
-    <ClCompile Include="Source\HOI4World\HoI4Alignment.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Army.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Buildings.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Country.cpp" />
@@ -83,6 +83,7 @@
     <ClCompile Include="Source\HOI4World\HoI4Events.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Focus.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4FocusTree.cpp" />
+    <ClCompile Include="Source\HOI4World\HOI4Ideology.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Leader.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Localisation.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Minister.cpp" />
@@ -138,9 +139,9 @@
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\Flags.h" />
+    <ClInclude Include="Source\HOI4World\HoI4Advisor.h" />
     <ClInclude Include="Source\HOI4World\HoI4Agreement.h" />
     <ClInclude Include="Source\HOI4World\HoI4Airforce.h" />
-    <ClInclude Include="Source\HOI4World\HoI4Alignment.h" />
     <ClInclude Include="Source\HOI4World\HoI4Army.h" />
     <ClInclude Include="Source\HOI4World\HoI4Buildings.h" />
     <ClInclude Include="Source\HOI4World\HoI4Country.h" />
@@ -150,6 +151,7 @@
     <ClInclude Include="Source\HOI4World\HoI4Faction.h" />
     <ClInclude Include="Source\HOI4World\HoI4Focus.h" />
     <ClInclude Include="Source\HOI4World\HoI4FocusTree.h" />
+    <ClInclude Include="Source\HOI4World\HOI4Ideology.h" />
     <ClInclude Include="Source\HOI4World\HoI4Leader.h" />
     <ClInclude Include="Source\HOI4World\HoI4Localisation.h" />
     <ClInclude Include="Source\HOI4World\HoI4Minister.h" />

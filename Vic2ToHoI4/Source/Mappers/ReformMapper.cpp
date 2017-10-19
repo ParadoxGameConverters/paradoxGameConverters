@@ -22,8 +22,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "ReformMapper.h"
-#include <math.h>
 #include <float.h>
+#include <math.h>
 #include "../V2World/V2Country.h"
 #include "../Configuration.h"
 #include "Log.h"
@@ -38,12 +38,14 @@ reformMapper* reformMapper::instance = nullptr;
 
 
 
-reformMapper::reformMapper()
+reformMapper::reformMapper():
+	reformTypes(),
+	politicalReformScores(),
+	socialReformScores(),
+	totalPoliticalReforms(0),
+	totalSocialReforms(0),
+	reformsInitialized(false)
 {
-	reformsInitialized		= false;
-	totalPoliticalReforms	= 0;
-	totalSocialReforms		= 0;
-
 	LOG(LogLevel::Info) << "Parsing governments reforms";
 	for (auto itr : Configuration::getVic2Mods())
 	{
@@ -68,20 +70,20 @@ reformMapper::reformMapper()
 }
 
 
-void reformMapper::initReforms(Object* obj)
+void reformMapper::initReforms(shared_ptr<Object> obj)
 {
-	vector<Object*> topObjects = obj->getLeaves();
+	vector<shared_ptr<Object>> topObjects = obj->getLeaves();
 	for (auto topObject : topObjects)
 	{
 		if (topObject->getKey() == "political_reforms")
 		{
-			vector<Object*> reformObjs = topObject->getLeaves();
+			vector<shared_ptr<Object>> reformObjs = topObject->getLeaves();
 			for (auto reformObj : reformObjs)
 			{
 				reformTypes.insert(make_pair(reformObj->getKey(), ""));
 
 				int reformLevelNum = 0;
-				vector<Object*> reformLevelObjs = reformObj->getLeaves();
+				vector<shared_ptr<Object>> reformLevelObjs = reformObj->getLeaves();
 				for (auto reformLevel : reformLevelObjs)
 				{
 					if ((reformLevel->getKey() == "next_step_only") || (reformLevel->getKey() == "administrative"))
@@ -99,13 +101,13 @@ void reformMapper::initReforms(Object* obj)
 
 		if (topObject->getKey() == "social_reforms")
 		{
-			vector<Object*> reformObjs = topObject->getLeaves();
+			vector<shared_ptr<Object>> reformObjs = topObject->getLeaves();
 			for (auto reformObj : reformObjs)
 			{
 				reformTypes.insert(make_pair(reformObj->getKey(), ""));
 
 				int reformLevelNum = 0;
-				vector<Object*> reformLevelObjs = reformObj->getLeaves();
+				vector<shared_ptr<Object>> reformLevelObjs = reformObj->getLeaves();
 				for (auto reformLevel : reformLevelObjs)
 				{
 					if ((reformLevel->getKey() == "next_step_only") || (reformLevel->getKey() == "administrative"))

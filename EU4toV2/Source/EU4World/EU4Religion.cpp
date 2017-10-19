@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
  
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -31,13 +31,15 @@
 using namespace std;
 
 
+
 map<string, EU4Religion*> EU4Religion::all_religions;	// the set of all religions
+
 
 
 void EU4Religion::createSelf()
 {
 	LOG(LogLevel::Info) << "Parsing EU4 religions";
-	Object* religionsObj = parser_UTF8::doParseFile((Configuration::getEU4Path() + "/common/religions/00_religion.txt").c_str());
+	shared_ptr<Object> religionsObj = parser_UTF8::doParseFile((Configuration::getEU4Path() + "/common/religions/00_religion.txt").c_str());
 	if (religionsObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getEU4Path() << "/common/religions/00_religion.txt";
@@ -71,17 +73,17 @@ void EU4Religion::createSelf()
 }
 
 
-void EU4Religion::parseReligions(Object* obj)
+void EU4Religion::parseReligions(shared_ptr<Object> obj)
 {
-	vector<Object*> groups = obj->getLeaves();	// the objects holding the religion groups
-	for (vector<Object*>::iterator groupsItr = groups.begin(); groupsItr < groups.end(); groupsItr++)
+	vector<shared_ptr<Object>> groups = obj->getLeaves();	// the objects holding the religion groups
+	for (vector<shared_ptr<Object>>::iterator groupsItr = groups.begin(); groupsItr < groups.end(); groupsItr++)
 	{
-		vector<Object*> religions = (*groupsItr)->getLeaves();	// the objects holding the religions
+		vector<shared_ptr<Object>> religions = (*groupsItr)->getLeaves();	// the objects holding the religions
 		string group = (*groupsItr)->getKey();							// the name of the religion group
-		for (vector<Object*>::iterator religionsItr = religions.begin(); religionsItr < religions.end(); religionsItr++)
+		for (vector<shared_ptr<Object>>::iterator religionsItr = religions.begin(); religionsItr < religions.end(); religionsItr++)
 		{
 			string key = (*religionsItr)->getKey();
-			vector<Object*> colorObj = (*religionsItr)->getValue("color");
+			vector<shared_ptr<Object>> colorObj = (*religionsItr)->getValue("color");
 			if (colorObj.size() == 0)
 			{
 				continue;
@@ -99,7 +101,7 @@ void EU4Religion::parseReligions(Object* obj)
 }
 
 
-EU4Religion::EU4Religion(Object* obj, string _group)
+EU4Religion::EU4Religion(shared_ptr<Object> obj, string _group)
 {
 	group = _group;
 	name = obj->getKey();

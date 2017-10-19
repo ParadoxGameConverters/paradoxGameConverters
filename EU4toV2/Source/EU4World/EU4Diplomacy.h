@@ -1,4 +1,4 @@
-/*Copyright(c) 2014 The Paradox Game Converters Project
+/*Copyright(c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -19,13 +19,18 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
 
+
 #ifndef EU4DIPLOMACY_H_
 #define EU4DIPLOMACY_H_
 
 
+
 #include "Date.h"
+#include <memory>
 #include <vector>
 using namespace std;
+
+
 
 class Object;
 
@@ -33,7 +38,7 @@ class Object;
 
 struct EU4Agreement
 {
-	EU4Agreement(Object* obj);
+	EU4Agreement(shared_ptr<Object> obj);
 
 	string	type;			// the type of agreement
 	string	country1;	// the first country
@@ -46,10 +51,12 @@ class EU4Diplomacy
 {
 	public:
 		EU4Diplomacy();
-		EU4Diplomacy(Object* obj);
+		EU4Diplomacy(shared_ptr<Object> obj);
 		vector<EU4Agreement>	getAgreements() const { return agreements; };
 	private:
 		vector<EU4Agreement>	agreements;	// all the agreements
 };
+
+
 
 #endif

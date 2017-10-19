@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -24,39 +24,49 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #ifndef COLOR_H_
 #define COLOR_H_
 
+
+
 #include <array>
 #include <iostream>
+#include <memory>
+using namespace std;
+
+
 
 class Object;
+
+
 
 // An RGB color triplet.
 class Color
 {
-public:
-	// Default initializes the color values to 0.
-	Color();
-	// Initializes the color with a given RGB color triplet.
-	Color(int r, int g, int b);
-	// Initializes the color from an object node whose leaf value is
-	// an RGB color triplet (separated only by whitespace).
-	Color(Object* colorObject);
+	public:
+		// Default initializes the color values to 0.
+		Color();
+		// Initializes the color with a given RGB color triplet.
+		Color(int r, int g, int b);
+		// Initializes the color from an object node whose leaf value is
+		// an RGB color triplet (separated only by whitespace).
+		Color(shared_ptr<Object> colorObject);
 
-	// Randomly adjust the RGB values up or down (within the range 0-255)
-	// with a normal distribution of the given standard deviation.
-	void RandomlyFlunctuate(int stdDev);
+		// Randomly adjust the RGB values up or down (within the range 0-255)
+		// with a normal distribution of the given standard deviation.
+		void RandomlyFlunctuate(int stdDev);
 
-	// Writes the RGB triplet to the stream as "R G B".
-	friend std::ostream& operator<<(std::ostream&, const Color&);
+		// Writes the RGB triplet to the stream as "R G B".
+		friend std::ostream& operator<<(std::ostream&, const Color&);
 
-	// Passes back the RGB color triplet as individual components.
-	void GetRGB(int& r, int& g, int& b) const;
+		// Passes back the RGB color triplet as individual components.
+		void GetRGB(int& r, int& g, int& b) const;
 
-	// Returns true if the color has been initialized with an RGB triplet.
-	operator bool() const;
+		// Returns true if the color has been initialized with an RGB triplet.
+		operator bool() const;
 
-private:
-	bool initialized;			// whether or not this instance has been initialized (true) or is a default (false)
-	std::array<int, 3> c;	// the color values
+	private:
+		bool initialized;			// whether or not this instance has been initialized (true) or is a default (false)
+		std::array<int, 3> c;	// the color values
 };
+
+
 
 #endif

@@ -1,0 +1,82 @@
+radical = {
+	radical_minister = {
+		random = no
+		# Boosts Radicalism
+		radical_drift = 0.1
+		
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+neutrality = {	
+	neutrality_minister = {
+		random = no
+		neutrality_drift = 0.1
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}
+
+absolutist = {	
+	absolutist_minister = {
+		random = no
+		# Boosts Absolutism
+		absolutist_drift = 0.1
+		
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+communism = {
+	communism_minister = {
+		random = no
+		# Boosts Communism
+		sprite = 13
+		communism_drift = 0.1
+		
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+democratic = {	
+	democratic_minister = {
+		random = no
+		# Boosts Democracy
+		sprite = 13
+		democratic_drift = 0.1
+		
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+fascism = {
+	fascism_minister = {
+		random = no
+		# Boosts Fascism
+		sprite = 13
+		fascism_drift = 0.1
+		
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	fascist_sympathies = {
+		random = no		
+		fascism_acceptance = 70
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

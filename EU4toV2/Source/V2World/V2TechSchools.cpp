@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "ParadoxParserUTF8.h"
 #include "ParadoxParser8859_15.h"
 #include "../Configuration.h"
+#include <memory>
 
 
 
@@ -36,20 +37,20 @@ vector<techSchool> initTechSchools()
 
 	vector<string> blockedTechSchools = initBlockedTechSchools();
 
-	Object* technologyObj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/technology.txt").c_str());
+	shared_ptr<Object> technologyObj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/technology.txt").c_str());
 	if (technologyObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getV2Path() << "/common/technology.txt";
 		exit(-1);
 	}
 
-	vector<Object*> schoolObj = technologyObj->getValue("schools");
+	vector<shared_ptr<Object>> schoolObj = technologyObj->getValue("schools");
 	if (schoolObj.size() < 1)
 	{
 		LOG(LogLevel::Warning) << "Could not load tech schools";
 	}
 	
-	vector<Object*> schoolsObj = schoolObj[0]->getLeaves();
+	vector<shared_ptr<Object>> schoolsObj = schoolObj[0]->getLeaves();
 	for (unsigned int i = 0; i < schoolsObj.size(); i++)
 	{
 		bool isBlocked = false;
@@ -82,20 +83,20 @@ vector<string> initBlockedTechSchools()
 {
 	vector<string> blockedTechSchools;
 
-	Object* techSchoolObj = parser_UTF8::doParseFile("blocked_tech_schools.txt");
+	shared_ptr<Object> techSchoolObj = parser_UTF8::doParseFile("blocked_tech_schools.txt");
 	if (techSchoolObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file blocked_tech_schools.txt";
 		exit(-1);
 	}
 
-	vector<Object*> blockedObj = techSchoolObj->getLeaves();
+	vector<shared_ptr<Object>> blockedObj = techSchoolObj->getLeaves();
 	if (blockedObj.size() <= 0)
 	{
 		return blockedTechSchools;
 	}
 
-	vector<Object*> leaves = blockedObj[0]->getLeaves();
+	vector<shared_ptr<Object>> leaves = blockedObj[0]->getLeaves();
 	for (unsigned int i = 0; i < leaves.size(); i++)
 	{
 		blockedTechSchools.push_back(leaves[i]->getLeaf());

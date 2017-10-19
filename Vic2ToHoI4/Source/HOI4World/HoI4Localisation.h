@@ -38,6 +38,7 @@ using namespace std;
 class V2Country;
 class HoI4States;
 class HoI4State;
+struct governmentMapping;
 
 
 
@@ -55,9 +56,9 @@ class HoI4Localisation
 			getInstance()->AddStateLocalisations(states);
 		}
 
-		static void createCountryLocalisations(const string& sourceTag, const string& destTag)
+		static void createCountryLocalisations(const pair<const string&, const string&>& tags)
 		{
-			getInstance()->CreateCountryLocalisations(sourceTag, destTag);
+			getInstance()->CreateCountryLocalisations(tags);
 		}
 
 		static void addNonenglishCountryLocalisations()
@@ -65,9 +66,14 @@ class HoI4Localisation
 			getInstance()->AddNonenglishCountryLocalisations();
 		}
 
-		static void copyFocusLocalisations(string oldKey, string newKey)
+		static void copyFocusLocalisations(const string& oldKey, const string& newKey)
 		{
 			getInstance()->CopyFocusLocalisations(oldKey, newKey);
+		}
+
+		static void copyEventLocalisations(const string& oldKey, const string& newKey)
+		{
+			getInstance()->CopyEventLocalisations(oldKey, newKey);
 		}
 
 		static void addIdeaLocalisation(const string& idea, const string& localisation)
@@ -94,13 +100,25 @@ class HoI4Localisation
 		void importLocalisations();
 		void importFocusLocalisations(const string& filename);
 		void importGenericIdeaLocalisations(const string& filename);
+		void importEventLocalisations(const string& filename);
 		void importLocalisationFile(const string& filename, languageToLocalisationsMap& localisations);
 		void prepareIdeaLocalisations();
 
+		HoI4Localisation(const HoI4Localisation&) = delete;
+		HoI4Localisation& operator=(const HoI4Localisation&) = delete;
+
 		void AddNonenglishCountryLocalisations();
 
-		void CreateCountryLocalisations(const string& sourceTag, const string& destTag);
-		void CopyFocusLocalisations(string oldKey, string newKey);
+		void CreateCountryLocalisations(const pair<const string&, const string&>& tags);
+		void addLocalisationsForAllGovernments(const pair<const string&, const string&>& tags, const pair<const string&, const string&>& suffixes);
+		void addLocalisationsInAllLanguages(const string& destTag, const pair<const string&, const string&>& suffixes, const string& HoI4GovernmentIdeology, const keyToLocalisationMap& namesInLanguage);
+		languageToLocalisationsMap::iterator getExistingLocalisationsInLanguage(const string& language);
+		void addLocalisation(const string& newKey, languageToLocalisationsMap::iterator& existingLanguage, const string& localisation, const string& HoI4Suffix);
+		int addNeutralLocalisation(const pair<const string&, const string&>& tags, const pair<const string&, const string&>& suffixes);
+
+		void CopyFocusLocalisations(const string& oldKey, const string& newKey);
+
+		void CopyEventLocalisations(const string& oldKey, const string& newKey);
 
 		void AddStateLocalisations(const HoI4States* states);
 		void addStateLocalisationForLanguage(const HoI4State* state, const pair<const string, string>& Vic2NameInLanguage);
@@ -111,15 +129,17 @@ class HoI4Localisation
 		void addLanguageToVPLocalisations(const string& language);
 		void addNonenglishStateLocalisations();
 		void addNonenglishVPLocalisations();
+		void addDebugLocalisations(const pair<const int, HoI4State*>& state);
 
 		void AddIdeaLocalisation(const string& idea, const string& localisation);
 
 		void Output() const;
-		void outputCountries(string localisationPath) const;
-		void outputFocuses(string localisationPath) const;
-		void outputStateLocalisations(string localisationPath) const;
-		void outputVPLocalisations(string localisationPath) const;
-		void outputIdeaLocalisations(string localisationPath) const;
+		void outputCountries(const string& localisationPath) const;
+		void outputFocuses(const string& localisationPath) const;
+		void outputStateLocalisations(const string& localisationPath) const;
+		void outputVPLocalisations(const string& localisationPath) const;
+		void outputIdeaLocalisations(const string& localisationPath) const;
+		void outputEventLocalisations(const string& localisationPath) const;
 		void outputLocalisations(const string& filenameStart, const languageToLocalisationsMap& localisations) const;
 
 		languageToLocalisationsMap stateLocalisations;
@@ -129,6 +149,8 @@ class HoI4Localisation
 		languageToLocalisationsMap newFocuses;
 		languageToLocalisationsMap ideaLocalisations;
 		languageToLocalisationsMap genericIdeaLocalisations;
+		languageToLocalisationsMap originalEventLocalisations;
+		languageToLocalisationsMap newEventLocalisations;
 };
 
 

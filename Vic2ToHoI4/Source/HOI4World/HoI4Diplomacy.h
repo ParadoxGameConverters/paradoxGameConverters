@@ -38,13 +38,15 @@ class HoI4Agreement;
 class HoI4Diplomacy
 {
 	public:
-		HoI4Diplomacy() { agreements.clear(); };
+		HoI4Diplomacy(): agreements() {}
 		void output() const;
 
 		void addAgreement(const HoI4Agreement* agr);
 		const vector<const HoI4Agreement*>& getAgreements() const { return agreements; };
 
 	private:
+		HoI4Diplomacy(const HoI4Diplomacy&) = delete;
+
 		vector<const HoI4Agreement*> agreements;
 };
 
