@@ -74,6 +74,11 @@ Configuration::Configuration():
 		LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
 		exit(-1);
 	}
+	else if (!Utils::DoesFileExist(V2Path + "/v2game.exe"))
+	{
+		LOG(LogLevel::Error) << "The Victoria 2 path specified in configuration.txt does not contain Victoria 2";
+		exit(-1);
+	}
 	else
 	{
 		LOG(LogLevel::Debug) << "Victoria 2 install path is " << V2Path;
@@ -83,6 +88,11 @@ Configuration::Configuration():
 	if (HoI4Path.empty() || !Utils::doesFolderExist(HoI4Path))
 	{
 		LOG(LogLevel::Error) << "No HoI4 path was specified in configuration.txt, or the path was invalid";
+		exit(-1);
+	}
+	else if (!Utils::DoesFileExist(HoI4Path + "/hoi4.exe"))
+	{
+		LOG(LogLevel::Error) << "The HoI4 path specified in configuration.txt does not contain HoI4";
 		exit(-1);
 	}
 	else
