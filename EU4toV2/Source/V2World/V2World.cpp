@@ -828,7 +828,6 @@ vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRat
 		if (!matched)
 		{
 			string thisContinent = continentMapper::getEU4Continent(eProv->getNum());
-			//TODO - this is a very broad brush. More granularity about the extent of african_minor slaves would be nice, especially in the Near East area.
 			if (thisContinent == "asia" || thisContinent == "oceania")
 			{
 				//LOG(LogLevel::Warning) << "No mapping for slave culture in province " << destNum << " - using native culture (" << prItr.culture << ").";
