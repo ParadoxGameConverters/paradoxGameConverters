@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -35,9 +35,9 @@ EU4Version::EU4Version()
 }
 
 
-EU4Version::EU4Version(Object* obj)
+EU4Version::EU4Version(shared_ptr<Object> obj)
 {
-	vector<Object*> numObj;	// the number in this part of the version
+	vector<shared_ptr<Object>> numObj;	// the number in this part of the version
 	numObj = obj->getValue("first");
 	if (numObj.size() > 0)
 	{

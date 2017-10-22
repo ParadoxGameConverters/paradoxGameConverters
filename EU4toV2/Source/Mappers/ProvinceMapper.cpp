@@ -37,7 +37,7 @@ provinceMapper* provinceMapper::instance = NULL;
 provinceMapper::provinceMapper()
 {
 	LOG(LogLevel::Info) << "Parsing province mappings";
-	Object* provinceMappingObj = parser_UTF8::doParseFile("province_mappings.txt");
+	shared_ptr<Object> provinceMappingObj = parser_UTF8::doParseFile("province_mappings.txt");
 	if (provinceMappingObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file province_mappings.txt";
@@ -48,9 +48,9 @@ provinceMapper::provinceMapper()
 }
 
 
-void provinceMapper::initProvinceMap(Object* obj)
+void provinceMapper::initProvinceMap(shared_ptr<Object> obj)
 {
-	vector<Object*> versions = obj->getLeaves();
+	vector<shared_ptr<Object>> versions = obj->getLeaves();
 	if (versions.size() < 1)
 	{
 		LOG(LogLevel::Error) << "No province mapping definitions loaded";
@@ -66,7 +66,7 @@ void provinceMapper::initProvinceMap(Object* obj)
 }
 
 
-int provinceMapper::getMappingsIndex(vector<Object*> versions)
+int provinceMapper::getMappingsIndex(vector<shared_ptr<Object>> versions)
 {
 	unsigned int mappingsIdx;
 
@@ -85,7 +85,7 @@ int provinceMapper::getMappingsIndex(vector<Object*> versions)
 }
 
 
-void provinceMapper::createMappings(Object* mapping)
+void provinceMapper::createMappings(shared_ptr<Object> mapping)
 {
 	vector<int> EU4Numbers;
 	vector<int> Vic2Numbers;

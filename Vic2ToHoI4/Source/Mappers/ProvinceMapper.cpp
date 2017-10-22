@@ -35,10 +35,12 @@ provinceMapper* provinceMapper::instance = NULL;
 
 
 
-provinceMapper::provinceMapper()
+provinceMapper::provinceMapper():
+	HoI4ToVic2ProvinceMap(),
+	Vic2ToHoI4ProvinceMap()
 {
 	LOG(LogLevel::Info) << "Parsing province mappings";
-	Object* parsedMappingsFile = parser_8859_15::doParseFile("province_mappings.txt");
+	shared_ptr<Object> parsedMappingsFile = parser_8859_15::doParseFile("province_mappings.txt");
 	if (parsedMappingsFile == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file province_mappings.txt";
@@ -50,22 +52,22 @@ provinceMapper::provinceMapper()
 
 
 
-void provinceMapper::initProvinceMap(Object* parsedMappingsFile)
+void provinceMapper::initProvinceMap(shared_ptr<Object> parsedMappingsFile)
 {
-	vector<Object*> versions = parsedMappingsFile->getLeaves();
+	vector<shared_ptr<Object>> versions = parsedMappingsFile->getLeaves();
 	if (versions.size() < 1)
 	{
 		LOG(LogLevel::Error) << "No province mapping definitions loaded";
 		exit(-1);
 	}
 
-	vector<Object*> mappings = getCorrectMappingVersion(versions);
+	vector<shared_ptr<Object>> mappings = getCorrectMappingVersion(versions);
 	processMappings(mappings);
 	checkAllHoI4ProvinesMapped();
 }
 
 
-void provinceMapper::processMappings(const vector<Object*>& mappings)
+void provinceMapper::processMappings(const vector<shared_ptr<Object>>& mappings)
 {
 	for (auto mapping: mappings)
 	{
@@ -127,7 +129,7 @@ void provinceMapper::insertIntoVic2ToHoI4ProvinceMap(const vector<int>& Vic2Nums
 }
 
 
-void provinceMapper::checkAllHoI4ProvinesMapped()
+void provinceMapper::checkAllHoI4ProvinesMapped() const
 {
 	ifstream definitions(Configuration::getHoI4Path() + "/map/definition.csv");
 	if (!definitions.is_open())
@@ -151,7 +153,7 @@ void provinceMapper::checkAllHoI4ProvinesMapped()
 }
 
 
-int provinceMapper::getNextProvinceNumFromFile(ifstream& definitions)
+int provinceMapper::getNextProvinceNumFromFile(ifstream& definitions) const
 {
 	string line;
 	getline(definitions, line);
@@ -167,7 +169,7 @@ int provinceMapper::getNextProvinceNumFromFile(ifstream& definitions)
 }
 
 
-void provinceMapper::verifyProvinceIsMapped(int provNum)
+void provinceMapper::verifyProvinceIsMapped(int provNum) const
 {
 	if (provNum != 0)
 	{
@@ -180,7 +182,7 @@ void provinceMapper::verifyProvinceIsMapped(int provNum)
 }
 
 
-vector<Object*> provinceMapper::getCorrectMappingVersion(const vector<Object*>& versions)
+vector<shared_ptr<Object>> provinceMapper::getCorrectMappingVersion(const vector<shared_ptr<Object>>& versions)
 {
 	for (auto version: versions)
 	{
@@ -197,7 +199,7 @@ vector<Object*> provinceMapper::getCorrectMappingVersion(const vector<Object*>& 
 }
 
 
-vector<int> provinceMapper::getHoI4ProvinceNums(const int v2ProvinceNum)
+vector<int> provinceMapper::getHoI4ProvinceNums(const int v2ProvinceNum) const
 {
 	static const vector<int> empty_vec;	// an empty vector in case there are no equivalent V2 province numbers
 

@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -150,11 +150,16 @@ using namespace std;
 class HoI4RegimentType
 {
 	public:
-		HoI4RegimentType(string type, int x, int y);
+		HoI4RegimentType(const string& type, int x, int y);
+		HoI4RegimentType(const HoI4RegimentType&) = default;
 
-		friend ostream& operator << (ostream& out, HoI4RegimentType regiment);
+		const string getType() const { return type; }
+
+		friend ostream& operator << (ostream& out, const HoI4RegimentType& regiment);
 
 	private:
+		HoI4RegimentType& operator=(const HoI4RegimentType&) = delete;
+
 		string	type;
 		int		x;
 		int		y;
@@ -164,12 +169,19 @@ class HoI4RegimentType
 class HoI4DivisionTemplateType
 {
 	public:
-		HoI4DivisionTemplateType(string name);
+		HoI4DivisionTemplateType(const string& name);
+		HoI4DivisionTemplateType(const HoI4DivisionTemplateType&) = default;
+		HoI4DivisionTemplateType& operator=(const HoI4DivisionTemplateType&) = default;
 
-		friend ostream& operator << (ostream& out, HoI4DivisionTemplateType);
+		friend ostream& operator << (ostream& out, const HoI4DivisionTemplateType& rhs);
 
-		void addRegiment(HoI4RegimentType newRegiment)			{ regiments.push_back(newRegiment); }
-		void addSupportRegiment(HoI4RegimentType newRegiment)	{ supportRegiments.push_back(newRegiment); }
+		void addRegiment(const HoI4RegimentType& newRegiment)			{ regiments.push_back(newRegiment); }
+		void addSupportRegiment(const HoI4RegimentType& newRegiment)	{ supportRegiments.push_back(newRegiment); }
+
+		string getName() const { return name; }
+
+		vector<HoI4RegimentType> getRegiments() const { return regiments; }
+		vector<HoI4RegimentType> getSupportRegiments() const { return supportRegiments; }
 
 	private:
 		string							name;
@@ -181,14 +193,38 @@ class HoI4DivisionTemplateType
 class HoI4DivisionType
 {
 	public:
-		HoI4DivisionType(string name, string type, int location);
+		HoI4DivisionType(const string& name, const string& type, int location);
+		HoI4DivisionType(const HoI4DivisionType&) = default;
 
-		friend ostream& operator << (ostream& out, HoI4DivisionType);
+		friend ostream& operator << (ostream& out, const HoI4DivisionType&);
 
 	private:
+		HoI4DivisionType& operator=(const HoI4DivisionType&) = delete;
+
 		string	name;
 		string	type;
 		int		location;
+};
+
+
+class HoI4UnitMap
+{
+	public: 
+		HoI4UnitMap(const string& category, const string& type, const string& equipment, int size);
+		HoI4UnitMap();
+		HoI4UnitMap(const HoI4UnitMap&) = default;
+		HoI4UnitMap& operator=(const HoI4UnitMap&) = default;
+
+		string getCategory();
+		string getType();
+		string getEquipment();
+		int getSize();
+
+	private:
+		string category;
+		string type;
+		string equipment;
+		int size;
 };
 
 

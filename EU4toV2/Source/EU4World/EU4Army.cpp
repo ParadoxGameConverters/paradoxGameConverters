@@ -1,4 +1,4 @@
-/*Copyright(c) 2014 The Paradox Game Converters Project
+/*Copyright(c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -25,12 +25,12 @@ THE SOFTWARE. */
 
 
 
-EU4Regiment::EU4Regiment(Object *obj)
+EU4Regiment::EU4Regiment(shared_ptr<Object> obj)
 {
-	std::vector<Object*> objName = obj->getValue("name");
+	std::vector<shared_ptr<Object>> objName = obj->getValue("name");
 	(objName.size() > 0) ? name = objName[0]->getLeaf() : name = "";
 
-	std::vector<Object*> objType = obj->getValue("type");
+	std::vector<shared_ptr<Object>> objType = obj->getValue("type");
 	if (objType.size() > 0)
 	{
 		type = objType[0]->getLeaf();
@@ -41,7 +41,7 @@ EU4Regiment::EU4Regiment(Object *obj)
 		type = "";
 	}
 
-	std::vector<Object*> objHome = obj->getValue("home");
+	std::vector<shared_ptr<Object>> objHome = obj->getValue("home");
 	if (objHome.size() > 0)
 	{
 		home = atoi(objHome[0]->getLeaf().c_str());
@@ -52,7 +52,7 @@ EU4Regiment::EU4Regiment(Object *obj)
 		home = -1;
 	}
 
-	std::vector<Object*> objStr = obj->getValue("strength");
+	std::vector<shared_ptr<Object>> objStr = obj->getValue("strength");
 	(objStr.size() > 0) ? strength = atof(objStr[0]->getLeaf().c_str()) : strength = 0.0;
 
 	category			= num_reg_categories;
@@ -60,12 +60,12 @@ EU4Regiment::EU4Regiment(Object *obj)
 }
 
 
-EU4Army::EU4Army(Object *obj)
+EU4Army::EU4Army(shared_ptr<Object> obj)
 {
-	std::vector<Object*> objName = obj->getValue("name");
+	std::vector<shared_ptr<Object>> objName = obj->getValue("name");
 	(objName.size() > 0) ? name = objName[0]->getLeaf() : name = "";
 
-	std::vector<Object*> objLoc = obj->getValue("location");
+	std::vector<shared_ptr<Object>> objLoc = obj->getValue("location");
 	if (objLoc.size() > 0)
 	{
 		location = atoi(objLoc[0]->getLeaf().c_str());
@@ -76,18 +76,18 @@ EU4Army::EU4Army(Object *obj)
 		location = -1;
 	}
 
-	std::vector<Object*> objAtSea = obj->getValue("at_sea");
+	std::vector<shared_ptr<Object>> objAtSea = obj->getValue("at_sea");
 	(objAtSea.size() > 0) ? at_sea = atoi(objAtSea[0]->getLeaf().c_str()) : at_sea = 0;
 
 	regiments.clear();
-	std::vector<Object*> objRegs = obj->getValue("regiment");
-	for (vector<Object*>::iterator itr = objRegs.begin(); itr != objRegs.end(); ++itr)
+	std::vector<shared_ptr<Object>> objRegs = obj->getValue("regiment");
+	for (vector<shared_ptr<Object>>::iterator itr = objRegs.begin(); itr != objRegs.end(); ++itr)
 	{
 		EU4Regiment* reg = new EU4Regiment(*itr);
 		regiments.push_back(reg);
 	}
-	std::vector<Object*> objShips = obj->getValue("ship");
-	for (vector<Object*>::iterator itr = objShips.begin(); itr != objShips.end(); ++itr)
+	std::vector<shared_ptr<Object>> objShips = obj->getValue("ship");
+	for (vector<shared_ptr<Object>>::iterator itr = objShips.begin(); itr != objShips.end(); ++itr)
 	{
 		EU4Regiment* reg = new EU4Regiment(*itr);
 		regiments.push_back(reg);
@@ -95,7 +95,7 @@ EU4Army::EU4Army(Object *obj)
 
 	blocked_homes.clear();
 
-	std::vector<Object*> objLeader = obj->getValue("leader");
+	std::vector<shared_ptr<Object>> objLeader = obj->getValue("leader");
 	if (objLeader.size() > 0)
 	{
 		objLeader = objLeader[0]->getValue("id");
@@ -194,21 +194,21 @@ void EU4Army::blockHomeProvince(const int home)
 }
 
 
-void AddCategoryToRegimentTypeMap(Object* obj, RegimentCategory category, string categoryName, RegimentTypeMap& rtm)
+void AddCategoryToRegimentTypeMap(shared_ptr<Object> obj, RegimentCategory category, string categoryName, RegimentTypeMap& rtm)
 {
-	vector<Object*> top = obj->getValue(categoryName);	// the regiment type mapping category
+	vector<shared_ptr<Object>> top = obj->getValue(categoryName);	// the regiment type mapping category
 	if (top.size() != 1)
 	{
 		LOG(LogLevel::Error) << "Could not get regiment type map for " << categoryName;
 		exit(1);
 	}
-	vector<Object*> types = top[0]->getLeaves();	// the mappings themselves
+	vector<shared_ptr<Object>> types = top[0]->getLeaves();	// the mappings themselves
 	if (types.size() == 0)
 	{
 		LOG(LogLevel::Error) << "No regiment types to map for " << categoryName;
 		exit(1);
 	}
-	for (vector<Object*>::iterator itr = types.begin(); itr != types.end(); ++itr)
+	for (vector<shared_ptr<Object>>::iterator itr = types.begin(); itr != types.end(); ++itr)
 	{
 		string type = (*itr)->getKey();			// the regiment category
 		string strength = (*itr)->getLeaf();	// the regiment cost
@@ -219,7 +219,7 @@ void AddCategoryToRegimentTypeMap(Object* obj, RegimentCategory category, string
 
 void AddUnitFileToRegimentTypeMap(string directory, string filename, RegimentTypeMap& rtm)
 {
-	Object* obj = parser_UTF8::doParseFile((directory + "/" + filename).c_str());	// the parsed regiment costs file
+	shared_ptr<Object> obj = parser_UTF8::doParseFile((directory + "/" + filename).c_str());	// the parsed regiment costs file
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << directory << '/' << filename;
@@ -230,7 +230,7 @@ void AddUnitFileToRegimentTypeMap(string directory, string filename, RegimentTyp
 	string name = filename.substr(0, period);
 
 	int rc = -1;	// the regiment cost
-	vector<Object*> typeObj = obj->getValue("type");	// the unit type as an object
+	vector<shared_ptr<Object>> typeObj = obj->getValue("type");	// the unit type as an object
 	if (typeObj.size() < 1)
 	{
 		LOG(LogLevel::Warning) << "Unit file for " << name << " has no type";
@@ -249,7 +249,7 @@ void AddUnitFileToRegimentTypeMap(string directory, string filename, RegimentTyp
 	}
 
 	int unitStrength = 0;	// the unit strenth
-	vector<Object*> strObj;
+	vector<shared_ptr<Object>> strObj;
 	strObj = obj->getValue("maneuver");
 	if (strObj.size() > 0)	unitStrength += atoi(strObj[0]->getLeaf().c_str());
 	strObj = obj->getValue("offensive_morale");

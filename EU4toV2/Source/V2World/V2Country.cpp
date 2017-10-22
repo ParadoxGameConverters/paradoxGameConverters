@@ -70,10 +70,10 @@ V2Country::V2Country(const string& countriesFileLine, const V2World* _theWorld, 
 	int size = countriesFileLine.find_last_of('\"') - start;
 	filename = countriesFileLine.substr(start, size);
 
-	Object* countryData = parseCountryFile(filename);
+	shared_ptr<Object> countryData = parseCountryFile(filename);
 
-	vector<Object*> partyData = countryData->getValue("party");
-	for (vector<Object*>::iterator itr = partyData.begin(); itr != partyData.end(); ++itr)
+	vector<shared_ptr<Object>> partyData = countryData->getValue("party");
+	for (vector<shared_ptr<Object>>::iterator itr = partyData.begin(); itr != partyData.end(); ++itr)
 	{
 		V2Party* newParty = new V2Party(*itr);
 		parties.push_back(newParty);
@@ -173,7 +173,7 @@ V2Country::V2Country(const string& countriesFileLine, const V2World* _theWorld, 
 }
 
 
-Object* V2Country::parseCountryFile(const string& filename)
+shared_ptr<Object> V2Country::parseCountryFile(const string& filename)
 {
 	string fileToParse;
 	if (Utils::DoesFileExist("./blankMod/output/common/countries/" + filename))
@@ -190,7 +190,7 @@ Object* V2Country::parseCountryFile(const string& filename)
 		return nullptr;
 	}
 
-	Object* countryData = parser_8859_15::doParseFile(fileToParse);
+	shared_ptr<Object> countryData = parser_8859_15::doParseFile(fileToParse);
 	if (countryData == nullptr)
 	{
 		LOG(LogLevel::Warning) << "Could not parse file " << fileToParse;
@@ -897,21 +897,21 @@ void V2Country::initFromHistory()
 		return;
 	}
 
-	Object* obj = parser_8859_15::doParseFile(fullFilename.c_str());
+	shared_ptr<Object> obj = parser_8859_15::doParseFile(fullFilename.c_str());
 	if (obj == nullptr)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << fullFilename;
 		exit(-1);
 	}
 
-	vector<Object*> results = obj->getValue("primary_culture");
+	vector<shared_ptr<Object>> results = obj->getValue("primary_culture");
 	if (results.size() > 0)
 	{
 		primaryCulture = results[0]->getLeaf();
 	}
 
 	results = obj->getValue("culture");
-	for (vector<Object*>::iterator itr = results.begin(); itr != results.end(); ++itr)
+	for (vector<shared_ptr<Object>>::iterator itr = results.begin(); itr != results.end(); ++itr)
 	{
 		acceptedCultures.insert((*itr)->getLeaf());
 	}
@@ -1388,22 +1388,6 @@ bool V2Country::addFactory(V2Factory* factory)
 			continue;
 		}
 
-		map<string,float> requiredProducts = factory->getRequiredRGO();
-		if (requiredProducts.size() > 0)
-		{
-			bool hasInput = false;
-			for (map<string,float>::iterator prod = requiredProducts.begin(); prod != requiredProducts.end(); ++prod)
-			{
-				if ( (*itr)->hasLocalSupply(prod->first) )
-				{
-					hasInput = true;
-					break;
-				}
-			}
-			if (!hasInput)
-				continue;
-		}
-
 		double candidateScore	 = (*itr)->getSuppliedInputs(factory) * 100;
 		candidateScore				-= (*itr)->getFactoryCount() * 10;
 		candidateScore				+= (*itr)->getManuRatio();
@@ -1556,7 +1540,7 @@ void V2Country::newCivConversionMethod(double topTech, int topInsitutions) // ci
 			// at 31 techs behind completely unciv
 			// each institution behind is equivalent to 2 techs behind
 
-			double civLevel = ((totalTechs + 31 - topTech) * 4);
+			int civLevel = static_cast<int>((totalTechs + 31 - topTech) * 4);
 			civLevel = civLevel + (srcCountry->numEmbracedInstitutions() - topInsitutions) * 8;
 			if (civLevel > 100) civLevel = 100;
 

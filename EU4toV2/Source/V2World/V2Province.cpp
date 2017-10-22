@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -19,6 +19,8 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
+
+
 #include "V2Province.h"
 #include "CardinalToOrdinal.h"
 #include "Log.h"
@@ -30,10 +32,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Pop.h"
 #include "V2Country.h"
 #include "V2Factory.h"
-#include <sstream>
 #include <algorithm>
+#include <memory>
+#include <sstream>
 #include <stdio.h>
 using namespace std;
+
+
 
 V2Province::V2Province(string _filename)
 {
@@ -79,7 +84,7 @@ V2Province::V2Province(string _filename)
 	string temp = filename.substr(slash + 1, numDigits);
 	num = atoi(temp.c_str());
 
-	Object* obj;
+	shared_ptr<Object> obj;
 	if (Utils::DoesFileExist(string("./blankMod/output/history/provinces") + _filename))
 	{
 		obj = parser_8859_15::doParseFile((string("./blankMod/output/history/provinces") + _filename).c_str());
@@ -98,8 +103,8 @@ V2Province::V2Province(string _filename)
 			exit(-1);
 		}
 	}
-	vector<Object*> leaves = obj->getLeaves();
-	for (vector<Object*>::iterator itr = leaves.begin(); itr != leaves.end(); itr++)
+	vector<shared_ptr<Object>> leaves = obj->getLeaves();
+	for (vector<shared_ptr<Object>>::iterator itr = leaves.begin(); itr != leaves.end(); itr++)
 	{
 		if ((*itr)->getKey() == "owner")
 		{
@@ -165,6 +170,7 @@ V2Province::V2Province(string _filename)
 	}
 }
 
+
 void V2Province::output() const
 {
 	FILE* output;
@@ -228,6 +234,7 @@ void V2Province::output() const
 	fclose(output);
 }
 
+
 void V2Province::outputPops(FILE* output) const
 {
 	if (resettable && (Configuration::getResetProvinces() == "yes"))
@@ -268,6 +275,7 @@ void V2Province::outputPops(FILE* output) const
 	}
 }
 
+
 // determined experimentally
 static const int unitNameOffsets[num_reg_categories] =
 {
@@ -279,6 +287,7 @@ static const int unitNameOffsets[num_reg_categories] =
 	0,	// galley (unused)
 	6	// transport
 };
+
 
 void V2Province::outputUnits(FILE* output) const
 {
@@ -314,6 +323,7 @@ void V2Province::outputUnits(FILE* output) const
 	}
 }
 
+
 void V2Province::convertFromOldProvince(const EU4Province* oldProvince)
 {
 	srcProvince = oldProvince;
@@ -327,6 +337,7 @@ void V2Province::convertFromOldProvince(const EU4Province* oldProvince)
 	originallyInfidel = oldProvince->wasInfidelConquest();
 }
 
+
 void V2Province::determineColonial()
 {
 	if ((!landConnection) && (!sameContinent) && ((wasColonised) || (originallyInfidel)))
@@ -334,6 +345,7 @@ void V2Province::determineColonial()
 		colonial = 2;
 	}
 }
+
 
 void V2Province::addCore(string newCore)
 {
@@ -344,16 +356,19 @@ void V2Province::addCore(string newCore)
 	}
 }
 
+
 void V2Province::addOldPop(const V2Pop* oldPop)
 {
 	oldPops.push_back(oldPop);
 	oldPopulation += oldPop->getSize();
 }
 
+
 void V2Province::addMinorityPop(V2Pop* minorityPop)
 {
 	minorityPops.push_back(minorityPop);
 }
+
 
 void V2Province::doCreatePops(double popWeightRatio, V2Country* _owner, int popConversionAlgorithm)
 {
@@ -441,6 +456,7 @@ void V2Province::doCreatePops(double popWeightRatio, V2Country* _owner, int popC
 	combinePops();
 }
 
+
 // each "point" here represents 0.01% (1 / 10 000) population of this culture-religion pair
 struct V2Province::pop_points
 {
@@ -455,6 +471,7 @@ struct V2Province::pop_points
 	double capitalists = 0;
 	double aristocrats = 0;
 };
+
 
 V2Province::pop_points V2Province::getPopPoints_1(const V2Demographic& demographic, double newPopulation, const V2Country* _owner)
 {
@@ -632,6 +649,7 @@ V2Province::pop_points V2Province::getPopPoints_1(const V2Demographic& demograph
 	return pts;
 }
 
+
 V2Province::pop_points V2Province::getPopPoints_2(const V2Demographic& demographic, double newPopulation, const V2Country* _owner)
 {
 	const EU4Province*	oldProvince = demographic.oldProvince;
@@ -770,6 +788,7 @@ V2Province::pop_points V2Province::getPopPoints_2(const V2Demographic& demograph
 	return pts;
 }
 
+
 void V2Province::createPops(const V2Demographic& demographic, double popWeightRatio, const V2Country* _owner, int popConversionAlgorithm)
 {
 	const EU4Province*	oldProvince = demographic.oldProvince;
@@ -778,7 +797,7 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 	long newPopulation = 0;
 	if (Configuration::getConvertPopTotals())
 	{
-		newPopulation = ((double)this->lifeRating / 10)*static_cast<long>(popWeightRatio * oldProvince->getTotalWeight());
+		newPopulation = static_cast<long>((static_cast<double>(this->lifeRating) / 10) * popWeightRatio * oldProvince->getTotalWeight());
 
 		int numOfV2Provs = srcProvince->getNumDestV2Provs();
 		if (numOfV2Provs > 1)
@@ -903,6 +922,7 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 		<< " newPopulation: " << newPopulation << " farmer: " << farmers	<< " total: " << newPopulation;*/
 }
 
+
 void V2Province::combinePops()
 {
 	vector<V2Pop*> trashPops;
@@ -941,6 +961,7 @@ void V2Province::combinePops()
 	pops.swap(consolidatedPops);
 }
 
+
 void V2Province::addFactory(V2Factory* factory)
 {
 	map<string, V2Factory*>::iterator itr = factories.find(factory->getTypeName());
@@ -953,6 +974,7 @@ void V2Province::addFactory(V2Factory* factory)
 		itr->second->increaseLevel();
 	}
 }
+
 
 void V2Province::addPopDemographic(V2Demographic d)
 {
@@ -973,6 +995,7 @@ void V2Province::addPopDemographic(V2Demographic d)
 	}
 }
 
+
 int V2Province::getTotalPopulation() const
 {
 	int total = 0;
@@ -982,6 +1005,7 @@ int V2Province::getTotalPopulation() const
 	}
 	return total;
 }
+
 
 vector<V2Pop*> V2Province::getPops(string type) const
 {
@@ -994,10 +1018,12 @@ vector<V2Pop*> V2Province::getPops(string type) const
 	return retval;
 }
 
+
 static bool PopSortBySizePredicate(const V2Pop* pop1, const V2Pop* pop2)
 {
 	return (pop1->getSize() > pop2->getSize());
 }
+
 
 // V2 requires 1000 for the first regiment and 3000 thereafter
 // we require an extra 1/30 to stabilize the start of the game
@@ -1006,6 +1032,7 @@ static int getRequiredPopForRegimentCount(int count)
 	if (count == 0) return 0;
 	return (1033 + (count - 1) * 3100);
 }
+
 
 // pick a soldier pop to use for an army.  prefer larger pops to smaller ones, and grow only if necessary.
 V2Pop* V2Province::getSoldierPopForArmy(bool force)
@@ -1047,6 +1074,7 @@ V2Pop* V2Province::getSoldierPopForArmy(bool force)
 	}
 }
 
+
 bool V2Province::growSoldierPop(V2Pop* pop)
 {
 	int growBy = getRequiredPopForRegimentCount(pop->getSupportedRegimentCount() + 1) - pop->getSize();
@@ -1081,6 +1109,7 @@ bool V2Province::growSoldierPop(V2Pop* pop)
 	return true;
 }
 
+
 pair<int, int> V2Province::getAvailableSoldierCapacity() const
 {
 	int soldierCap = 0;
@@ -1101,6 +1130,7 @@ pair<int, int> V2Province::getAvailableSoldierCapacity() const
 	}
 	return pair<int, int>(soldierCap, draftCap);
 }
+
 
 string V2Province::getRegimentName(RegimentCategory rc)
 {
@@ -1135,6 +1165,7 @@ string V2Province::getRegimentName(RegimentCategory rc)
 	return str.str();
 }
 
+
 bool V2Province::hasCulture(string culture, float percentOfPopulation) const
 {
 	int culturePops = 0;
@@ -1148,6 +1179,7 @@ bool V2Province::hasCulture(string culture, float percentOfPopulation) const
 
 	return ((float)culturePops / getTotalPopulation()) >= percentOfPopulation;
 }
+
 
 vector<string> V2Province::getCulturesOverThreshold(float percentOfPopulation) const
 {

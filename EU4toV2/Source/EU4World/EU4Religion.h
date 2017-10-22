@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
  
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
@@ -24,16 +24,23 @@
 #ifndef EU4RELIGION_H_
 #define EU4RELIGION_H_
 
+
+
 #include <string>
 #include <map>
+#include <memory>
 using namespace std;
 
+
+
 class Object;
+
+
 
 class EU4Religion
 {
 	public:
-		EU4Religion(Object*, string group);
+		EU4Religion(shared_ptr<Object>, string group);
 
 		// exactly one of these four functions should return true for any given pairing
 		bool isSameReligion(const EU4Religion* other) const;	// e.g. catholic <-> catholic
@@ -41,7 +48,7 @@ class EU4Religion
 		bool isInfidelTo(const EU4Religion* other) const;		// e.g. sunni <-> catholic
 
 		static void createSelf();
-		static void parseReligions(Object* obj);
+		static void parseReligions(shared_ptr<Object> obj);
 		static EU4Religion* getReligion(string name);
 
 		static map<string, EU4Religion*> getAllReligions() { return all_religions; }

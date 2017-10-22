@@ -29,7 +29,17 @@ using namespace std;
 
 
 
-V2Province::V2Province(Object* obj)
+V2Province::V2Province(shared_ptr<Object> obj):
+	number(stoi(obj->getKey())),
+	ownerString(""),
+	owner(nullptr),
+	coreStrings(),
+	cores(),
+	pops(),
+	rgo(),
+	fortLevel(0),
+	navalBaseLevel(0),
+	railLevel(0)
 {
 	readOwner(obj);
 	readCores(obj);
@@ -38,31 +48,21 @@ V2Province::V2Province(Object* obj)
 	readRails(obj);
 	readPops(obj);
 	readRgo(obj);
-	
-	number = stoi(obj->getKey());
 }
 
 
-void V2Province::readOwner(Object* obj)
+void V2Province::readOwner(shared_ptr<Object> obj)
 {
-	owner = NULL;
-
-	vector<Object*> ownerObjs = obj->getValue("owner");
-	if (ownerObjs.size() == 0)
-	{
-		ownerString = "";
-	}
-	else
+	vector<shared_ptr<Object>> ownerObjs = obj->getValue("owner");
+	if (ownerObjs.size() != 0)
 	{
 		ownerString = ownerObjs[0]->getLeaf();
 	}
 }
 
 
-void V2Province::readCores(Object* obj)
+void V2Province::readCores(shared_ptr<Object> obj)
 {
-	cores.clear();
-
 	for (auto coreObj: obj->getValue("core"))
 	{
 		coreStrings.insert(coreObj->getLeaf());
@@ -70,11 +70,9 @@ void V2Province::readCores(Object* obj)
 }
 
 
-void V2Province::readForts(Object* obj)
+void V2Province::readForts(shared_ptr<Object> obj)
 {
-	fortLevel = 0;
-
-	vector<Object*> buildingObjs = obj->getValue("fort");
+	vector<shared_ptr<Object>> buildingObjs = obj->getValue("fort");
 	if (buildingObjs.size() > 0)
 	{
 		vector<string> tokens = buildingObjs[0]->getTokens();
@@ -86,11 +84,9 @@ void V2Province::readForts(Object* obj)
 }
 
 
-void V2Province::readNavalBases(Object* obj)
+void V2Province::readNavalBases(shared_ptr<Object> obj)
 {
-	navalBaseLevel = 0;
-
-	vector<Object*> buildingObjs = obj->getValue("naval_base");
+	vector<shared_ptr<Object>> buildingObjs = obj->getValue("naval_base");
 	if (buildingObjs.size() > 0)
 	{
 		vector<string> tokens = buildingObjs[0]->getTokens();
@@ -102,11 +98,9 @@ void V2Province::readNavalBases(Object* obj)
 }
 
 
-void V2Province::readRails(Object* obj)
+void V2Province::readRails(shared_ptr<Object> obj)
 {
-	railLevel = 0;
-
-	vector<Object*> buildingObjs = obj->getValue("railroad");
+	vector<shared_ptr<Object>> buildingObjs = obj->getValue("railroad");
 	if (buildingObjs.size() > 0)
 	{
 		vector<string> tokens = buildingObjs[0]->getTokens();
@@ -117,26 +111,31 @@ void V2Province::readRails(Object* obj)
 	}
 }
 
-void V2Province::readRgo(Object* obj)
+void V2Province::readRgo(shared_ptr<Object> obj)
 {
-	Object* rgoObj = obj->safeGetObject("rgo");
+	shared_ptr<Object> rgoObj = obj->safeGetObject("rgo");
 	if (!rgoObj) return;
+
 	string goods = rgoObj->safeGetString("goods_type");
-	Object* employment = rgoObj->safeGetObject("employment");
+
+	shared_ptr<Object> employment = rgoObj->safeGetObject("employment");
 	if (!employment) return;
-	Object* employees = employment->safeGetObject("employees");
+
+	shared_ptr<Object> employees = employment->safeGetObject("employees");
 	if (!employees) return;
-	vector<Object*> pops = employees->getLeaves();
+
+	vector<shared_ptr<Object>> pops = employees->getLeaves();
 	int workers = 0;
 	for (const auto& pop : pops) {
 		workers += pop->safeGetInt("count");
 	}
+
 	rgo = V2Rgo(goods, workers);
 }
 
-void V2Province::readPops(Object* obj)
+void V2Province::readPops(shared_ptr<Object> obj)
 {
-	vector<Object*> children = obj->getLeaves();
+	vector<shared_ptr<Object>> children = obj->getLeaves();
 	for (auto child: children)
 	{
 		if (isPopObject(child))
@@ -148,7 +147,7 @@ void V2Province::readPops(Object* obj)
 }
 
 
-bool V2Province::isPopObject(Object* obj)
+bool V2Province::isPopObject(shared_ptr<Object> obj)
 {
 	string key = obj->getKey();
 

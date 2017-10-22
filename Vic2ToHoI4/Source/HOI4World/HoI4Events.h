@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -43,24 +43,40 @@ class HoI4Events
 		HoI4Events();
 
 		void output() const;
-		void createFactionEvents(const HoI4Country* Leader, HoI4Country* newAlly);
+		void createFactionEvents(const HoI4Country* Leader, const HoI4Country* newAlly);
 		void createAnnexEvent(const HoI4Country* Annexer, const HoI4Country* Annexed);
-		void createSudatenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const set<string>& claimedStates);
+		void createSudetenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const set<string>& claimedStates);
 		void createTradeEvent(const HoI4Country* leader, const HoI4Country* GC);
+		void createPoliticalEvents(const set<string>& majorIdeologies);
+		void createWarJustificationEvents(const set<string>& majorIdeologies);
 
 		int getCurrentNationFocusEventNum() const { return nationalFocusEventNumber; }
 
 
 	private:
+		HoI4Events(const HoI4Events&) = delete;
+		HoI4Events& operator=(const HoI4Events&) = delete;
+
 		void outputNationalFocusEvents() const;
 		void outputNewsEvents() const;
+		void outputPoliticalEvents() const;
+		void outputWarJustificationEvents() const;
+
+		void addMinisterRevolutionEvents(const set<string>& majorIdeologies);
+		void addDemocraticMinisterRevolutionEvents(const set<string>& majorIdeologies);
+		void addFiftyPercentEvents(const set<string>& majorIdeologies);
+		void addRevolutionEvents(const set<string>& majorIdeologies);
+		void addSuppressedEvents(const set<string>& majorIdeologies);
+		string getIdeologicalPicture(const string& ideology) const;
 
 		vector<HoI4Event> newsEvents;
 		int newsEventNumber;
 		vector<HoI4Event> nationalFocusEvents;
 		int nationalFocusEventNumber;
+		vector<HoI4Event> politicalEvents;
+		int politicalEventNumber;
+		vector<HoI4Event> warJustificationEvents;
 };
-
 
 
 

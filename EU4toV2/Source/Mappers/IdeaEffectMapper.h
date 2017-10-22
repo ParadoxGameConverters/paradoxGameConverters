@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 using namespace std;
@@ -132,7 +133,7 @@ class ideaEffectMapper
 		}
 
 		ideaEffectMapper();
-		void initIdeaEffects(Object* obj);
+		void initIdeaEffects(shared_ptr<Object> obj);
 
 		int GetArmyInvestmentFromIdea(const string& ideaName, int ideaLevel);
 		int GetCommerceInvestmentFromIdea(const string& ideaName, int ideaLevel);

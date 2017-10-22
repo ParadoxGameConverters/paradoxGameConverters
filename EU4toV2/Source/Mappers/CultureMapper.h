@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <map>
+#include <memory>
 #include <string>
 #include <vector>
 using namespace std;
@@ -71,8 +72,8 @@ class cultureMapper
 		}
 
 		cultureMapper();
-		void initCultureMap(Object* cultureMapObj, Object* slaveCultureMapObj);
-		vector<cultureStruct> createNewRules(Object* ruleObj);
+		void initCultureMap(shared_ptr<Object> cultureMapObj, shared_ptr<Object> slaveCultureMapObj);
+		vector<cultureStruct> createNewRules(shared_ptr<Object> ruleObj);
 
 		bool CultureMatch(const string& srcCulture, string& dstCulture, const string& religion = "", int EU4Province = -1, const string& ownerTag = "");
 		bool SlaveCultureMatch(const string& srcCulture, string& dstCulture, const string& religion = "", int EU4Province = -1, const string& ownerTag = "");

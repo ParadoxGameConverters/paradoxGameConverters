@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -28,11 +28,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2FactoryType::V2FactoryType(Object* factory)
+V2FactoryType::V2FactoryType(shared_ptr<Object> factory)
 {
 	name = factory->getKey();
 
-	vector<Object*> is_coastal = factory->getValue("is_coastal");
+	vector<shared_ptr<Object>> is_coastal = factory->getValue("is_coastal");
 	if ((is_coastal.size() > 0) && (is_coastal[0]->getLeaf() == "yes"))
 	{
 		requireCoastal = true;
@@ -45,28 +45,18 @@ V2FactoryType::V2FactoryType(Object* factory)
 	requireTech = "";
 	requiredInvention = "";
 
-	vector<Object*> local_supply = factory->getValue("limit_by_local_supply");
-	if ((local_supply.size() > 0) && (local_supply[0]->getLeaf() == "yes"))
-	{
-		requireLocalInput = true;
-	}
-	else
-	{
-		requireLocalInput = false;
-	}
-
 	inputs.clear();
-	vector<Object*> inputGoods = factory->getValue("input_goods");
+	vector<shared_ptr<Object>> inputGoods = factory->getValue("input_goods");
 	if (inputGoods.size() > 0)
 	{
-		vector<Object*> inObjs = inputGoods[0]->getLeaves();
-		for (vector<Object*>::iterator itr = inObjs.begin(); itr != inObjs.end(); ++itr)
+		vector<shared_ptr<Object>> inObjs = inputGoods[0]->getLeaves();
+		for (vector<shared_ptr<Object>>::iterator itr = inObjs.begin(); itr != inObjs.end(); ++itr)
 		{
 			inputs.insert(make_pair((*itr)->getKey(), (float)atof((*itr)->getLeaf().c_str())));
 		}
 	}
 
-	vector<Object*> outputGoodsObj = factory->getValue("output_goods");
+	vector<shared_ptr<Object>> outputGoodsObj = factory->getValue("output_goods");
 	if (outputGoodsObj.size() > 0)
 	{
 		outputGoods = outputGoodsObj[0]->getLeaf();
@@ -83,21 +73,6 @@ void V2Factory::output(FILE* output) const
 	fprintf(output, "\tbuilding = %s\n", type->name.c_str());
 	fprintf(output, "\tupgrade = yes\n");
 	fprintf(output, "}\n");
-}
-
-
-map<string,float> V2Factory::getRequiredRGO() const
-{
-	if (type->requireLocalInput)
-	{
-		return type->inputs;
-	}
-	else
-	{
-		map<string,float> emptyMap;
-		emptyMap.clear();
-		return emptyMap;
-	}
 }
 
 
@@ -125,14 +100,14 @@ V2FactoryFactory::V2FactoryFactory()
 
 	// load factory types
 	factoryTypes.clear();
-	Object* obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/production_types.txt").c_str());
+	shared_ptr<Object> obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/production_types.txt").c_str());
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getV2Path() << "/common/production_types.txt";
 		exit(-1);
 	}
-	vector<Object*> factoryObjs = obj->getLeaves();
-	for (vector<Object*>::iterator itr = factoryObjs.begin(); itr != factoryObjs.end(); ++itr)
+	vector<shared_ptr<Object>> factoryObjs = obj->getLeaves();
+	for (vector<shared_ptr<Object>>::iterator itr = factoryObjs.begin(); itr != factoryObjs.end(); ++itr)
 	{
 		V2FactoryType* ft = new V2FactoryType(*itr);
 		map<string,string>::iterator reqitr = factoryTechReqs.find(ft->name);
@@ -155,15 +130,15 @@ V2FactoryFactory::V2FactoryFactory()
 		LOG(LogLevel::Error) << "Could not parse file starting_factories.txt";
 		exit(-1);
 	}
-	vector<Object*> top = obj->getValue("starting_factories");
+	vector<shared_ptr<Object>> top = obj->getValue("starting_factories");
 	if (top.size() != 1)
 	{
 		LOG(LogLevel::Error) << "Error: Could not load starting factory list!";
 		printf("Error: Could not load starting factory list!\n");
 		exit(-1);
 	}
-	vector<Object*> factories = top[0]->getLeaves();
-	for (vector<Object*>::iterator itr = factories.begin(); itr != factories.end(); ++itr)
+	vector<shared_ptr<Object>> factories = top[0]->getLeaves();
+	for (vector<shared_ptr<Object>>::iterator itr = factories.begin(); itr != factories.end(); ++itr)
 	{
 		string factoryType = (*itr)->getKey();
 		int count = atoi((*itr)->getLeaf().c_str());
@@ -196,17 +171,17 @@ deque<V2Factory*> V2FactoryFactory::buildFactories() const
 
 void V2FactoryFactory::loadRequiredTechs(string filename)
 {
-	Object* obj = parser_8859_15::doParseFile(filename.c_str());
+	shared_ptr<Object> obj = parser_8859_15::doParseFile(filename.c_str());
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << filename;
 		exit(-1);
 	}
-	vector<Object*> techObjs = obj->getLeaves();
-	for (vector<Object*>::iterator itr = techObjs.begin(); itr != techObjs.end(); ++itr)
+	vector<shared_ptr<Object>> techObjs = obj->getLeaves();
+	for (vector<shared_ptr<Object>>::iterator itr = techObjs.begin(); itr != techObjs.end(); ++itr)
 	{
-		vector<Object*> building = (*itr)->getValue("activate_building");
-		for (vector<Object*>::iterator bitr = building.begin(); bitr != building.end(); ++bitr)
+		vector<shared_ptr<Object>> building = (*itr)->getValue("activate_building");
+		for (vector<shared_ptr<Object>>::iterator bitr = building.begin(); bitr != building.end(); ++bitr)
 		{
 			factoryTechReqs.insert(make_pair((*bitr)->getLeaf(), (*itr)->getKey()));
 		}
@@ -216,22 +191,22 @@ void V2FactoryFactory::loadRequiredTechs(string filename)
 
 void V2FactoryFactory::loadRequiredInventions(string filename)
 {
-	Object* obj = parser_8859_15::doParseFile(filename.c_str());
+	shared_ptr<Object> obj = parser_8859_15::doParseFile(filename.c_str());
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << filename;
 		exit(-1);
 	}
-	vector<Object*> invObjs = obj->getLeaves();
-	for (vector<Object*>::iterator itr = invObjs.begin(); itr != invObjs.end(); ++itr)
+	vector<shared_ptr<Object>> invObjs = obj->getLeaves();
+	for (vector<shared_ptr<Object>>::iterator itr = invObjs.begin(); itr != invObjs.end(); ++itr)
 	{
-		vector<Object*> effect = (*itr)->getValue("effect");
+		vector<shared_ptr<Object>> effect = (*itr)->getValue("effect");
 		if (effect.size() == 0)
 		{
 			continue;
 		}
-		vector<Object*> building = effect[0]->getValue("activate_building");
-		for (vector<Object*>::iterator bitr = building.begin(); bitr != building.end(); ++bitr)
+		vector<shared_ptr<Object>> building = effect[0]->getValue("activate_building");
+		for (vector<shared_ptr<Object>>::iterator bitr = building.begin(); bitr != building.end(); ++bitr)
 		{
 			factoryInventionReqs.insert(make_pair((*bitr)->getLeaf(), (*itr)->getKey()));
 		}

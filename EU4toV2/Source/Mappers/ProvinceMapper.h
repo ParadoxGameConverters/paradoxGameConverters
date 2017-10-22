@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <map>
+#include <memory>
 #include <unordered_set>
 #include <vector>
 using namespace std;
@@ -68,9 +69,9 @@ class provinceMapper
 		}
 
 		provinceMapper();
-		void initProvinceMap(Object* obj);
-		int getMappingsIndex(vector<Object*> versions);
-		void createMappings(Object* mapping);
+		void initProvinceMap(shared_ptr<Object> obj);
+		int getMappingsIndex(vector<shared_ptr<Object>> versions);
+		void createMappings(shared_ptr<Object> mapping);
 
 		const vector<int> GetVic2ProvinceNumbers(int EU4ProvinceNumber);
 		const vector<int> GetEU4ProvinceNumbers(int Vic2ProvinceNumber);

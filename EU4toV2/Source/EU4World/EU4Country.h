@@ -28,6 +28,7 @@ THE SOFTWARE. */
 #include "../Color.h"
 #include "Date.h"
 #include "../Mappers/CustomFlagMapper.h"
+#include <memory>
 
 
 
@@ -42,10 +43,10 @@ class EU4Version;
 class EU4Country
 {
 	public:
-		EU4Country(Object* obj, EU4Version* version);
+		EU4Country(shared_ptr<Object> obj, EU4Version* version);
 
 		// Add any additional information available from the specified country file.
-		void readFromCommonCountry(const string& fileName, Object*);
+		void readFromCommonCountry(const string& fileName, shared_ptr<Object>);
 
 		void setLocalisationName(const string& language, const string& name);
 		void setLocalisationAdjective(const string& language, const string& adjective);
@@ -117,7 +118,7 @@ class EU4Country
 
 	private:
 		void							determineInvestments();
-		void							determineFlagsAndModifiers(Object* obj);
+		void							determineFlagsAndModifiers(shared_ptr<Object> obj);
 		void							clearProvinces();
 		void							clearCores();
 
