@@ -228,12 +228,12 @@ bool governmentMapper::ideologyIsValid(const governmentMapping& mapping, const s
 }
 
 
-string governmentMapper::GetSupportedIdeology(const string& rulingIdeology, const string& Vic2Ideology) const
+string governmentMapper::GetSupportedIdeology(const string& rulingIdeology, const string& Vic2Ideology, const set<string>& majorIdeologies) const
 {
 	string ideology = "neutrality";
 	for (auto mapping: partyMap)
 	{
-		if ((rulingIdeology == mapping.rulingIdeology) && (Vic2Ideology == mapping.vic2Ideology))
+		if ((rulingIdeology == mapping.rulingIdeology) && (Vic2Ideology == mapping.vic2Ideology) && (majorIdeologies.count(mapping.supportedIdeology) > 0))
 		{
 			ideology = mapping.supportedIdeology;
 			break;

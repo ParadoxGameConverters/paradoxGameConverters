@@ -142,4 +142,11 @@ party_mappings = {
 	mapping = { ruling_ideology = democratic vic2_ideology = communist supported_ideology = communism }
 	mapping = { ruling_ideology = democratic vic2_ideology = socialist supported_ideology = democratic }
 	mapping = { ruling_ideology = democratic vic2_ideology = fascist supported_ideology = fascism }
+	mapping = { ruling_ideology = neutrality vic2_ideology = reactionary supported_ideology = absolutist }
+	mapping = { ruling_ideology = neutrality vic2_ideology = conservative supported_ideology = democratic }
+	mapping = { ruling_ideology = neutrality vic2_ideology = anarcho_liberal supported_ideology = radical }
+	mapping = { ruling_ideology = neutrality vic2_ideology = liberal supported_ideology = democratic }
+	mapping = { ruling_ideology = neutrality vic2_ideology = communist supported_ideology = communism }
+	mapping = { ruling_ideology = neutrality vic2_ideology = socialist supported_ideology = democratic }
+	mapping = { ruling_ideology = neutrality vic2_ideology = fascist supported_ideology = fascism }
 }

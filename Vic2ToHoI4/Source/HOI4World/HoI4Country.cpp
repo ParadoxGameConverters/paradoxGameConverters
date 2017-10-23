@@ -406,12 +406,7 @@ void HoI4Country::convertIdeologySupport(const set<string>& majorIdeologies)
 {
 	for (auto upperHouseIdeology: srcCountry->getUpperHouseComposition())
 	{
-		string ideology = governmentMapper::getSupportedIdeology(governmentIdeology, upperHouseIdeology.first);
-		if (majorIdeologies.count(ideology) == 0)
-		{
-			ideology = "neutrality";
-		}
-
+		string ideology = governmentMapper::getSupportedIdeology(governmentIdeology, upperHouseIdeology.first, majorIdeologies);
 		auto supportItr = ideologySupport.find(ideology);
 		if (supportItr == ideologySupport.end())
 		{
