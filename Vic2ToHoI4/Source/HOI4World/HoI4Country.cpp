@@ -54,6 +54,7 @@ HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, c
 	rulingParty(nullptr),
 	parties(),
 	ideologySupport(),
+	lastElection(),
 	sphereLeader(""),
 	tag(_tag),
 	provinces(),
@@ -119,6 +120,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	graphicalCulture2d = graphicsMapper::get2dGraphicalCulture(srcCountry->getPrimaryCultureGroup());
 
 	convertGovernment(_srcWorld);
+	lastElection = srcCountry->getLastElection();
 	initIdeas();
 
 	nationalUnity = 0.70 + (srcCountry->getRevanchism() / 5.0) - (srcCountry->getWarExhaustion() / 100.0 / 2.5);
@@ -1432,7 +1434,7 @@ void HoI4Country::outputPolitics(ofstream& output) const
 	output << "    \n";
 
 	output << "    ruling_party = " << governmentIdeology << "\n";
-	output << "    last_election = \"1936.1.1\"\n";
+	output << "    last_election = \"" << lastElection << "\"\n";
 	output << "    election_frequency = 48\n";
 	if (areElectionsAllowed())
 	{

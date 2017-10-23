@@ -175,6 +175,7 @@ class HoI4Country
 		const V2Party* rulingParty;
 		set<const V2Party*> parties;
 		map<string, int> ideologySupport;
+		date lastElection;
 
 		const string						sphereLeader = "";
 		string								tag;

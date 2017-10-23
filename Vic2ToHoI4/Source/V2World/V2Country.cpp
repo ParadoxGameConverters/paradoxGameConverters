@@ -64,6 +64,7 @@ V2Country::V2Country(shared_ptr<Object> countryObj):
 	upperHouseComposition(),
 	rulingPartyID(0),	// Bad value, but normal for Rebel faction.
 	activePartyIDs(),
+	lastElection(countryObj->safeGetString("last_election")),
 	domainName(countryObj->safeGetString("domain_region")),
 	domainAdjective(countryObj->safeGetString("domain_region")),
 	namesByLanguage(),

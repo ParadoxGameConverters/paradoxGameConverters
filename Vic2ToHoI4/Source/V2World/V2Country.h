@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "../Mappers/Mapper.h"
 #include "../Color.h"
+#include "Date.h"
 #include <vector>
 #include <map>
 #include <memory>
@@ -73,6 +74,7 @@ class V2Country
 		bool isAnAcceptedCulture(const string& culture) const { return (acceptedCultures.count(culture) > 0); }
 		set<string> getInventions() const { return inventions; }
 		string getGovernment() const { return government; }
+		date getLastElection() const { return lastElection; }
 		int getCapital() const { return capital; }
 		set<string> getTechs() const { return techs; }
 		const Color& getColor() const { return color; }
@@ -159,6 +161,7 @@ class V2Country
 		map<string, double> upperHouseComposition;
 		unsigned	int rulingPartyID;
 		vector<unsigned int> activePartyIDs;
+		date lastElection;
 
 		string domainName;
 		string domainAdjective;
