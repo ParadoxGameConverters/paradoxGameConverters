@@ -38,6 +38,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4FocusTree.h"
 #include "HOI4Ideology.h"
 #include "HoI4Localisation.h"
+#include "HoI4OnActions.h"
 #include "HoI4Province.h"
 #include "HoI4State.h"
 #include "HoI4StrategicRegion.h"
@@ -67,6 +68,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld):
 	factions(),
 	diplomacy(new HoI4Diplomacy),
 	events(new HoI4Events),
+	onActions(new HoI4OnActions),
 	divisionTemplates(),
 	leaderTraits(),
 	portraitMap()
@@ -1560,6 +1562,7 @@ void HoI4World::output() const
 	outputCountries();
 	buildings->output();
 	events->output();
+	onActions->output();
 	outputIdeologies();
 	outputLeaderTraits();
 	outputIdeologicalIdeas();

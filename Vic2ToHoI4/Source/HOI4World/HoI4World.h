@@ -44,6 +44,7 @@ class HoI4DivisionTemplateType;
 class HoI4Events;
 class HoI4Faction;
 class HoI4Ideology;
+class HoI4OnActions;
 class HoI4Province;
 class HoI4State;
 class HoI4States;
@@ -198,6 +199,7 @@ class HoI4World
 		vector<HoI4Faction*> factions;
 		HoI4Diplomacy* diplomacy;
 		HoI4Events* events;
+		HoI4OnActions* onActions;
 
 		vector<HoI4DivisionTemplateType> divisionTemplates;
 

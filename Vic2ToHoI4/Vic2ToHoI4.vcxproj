@@ -88,6 +88,7 @@
     <ClCompile Include="Source\HOI4World\HoI4Localisation.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Minister.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Navy.cpp" />
+    <ClCompile Include="Source\HOI4World\HoI4OnActions.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Province.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Relations.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4State.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="Source\HOI4World\HoI4Localisation.h" />
     <ClInclude Include="Source\HOI4World\HoI4Minister.h" />
     <ClInclude Include="Source\HOI4World\HoI4Navy.h" />
+    <ClInclude Include="Source\HOI4World\HoI4OnActions.h" />
     <ClInclude Include="Source\HOI4World\HoI4Province.h" />
     <ClInclude Include="Source\HOI4World\HoI4Relations.h" />
     <ClInclude Include="Source\HOI4World\HoI4State.h" />
