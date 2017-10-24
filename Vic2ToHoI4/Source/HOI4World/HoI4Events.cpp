@@ -944,6 +944,10 @@ void HoI4Events::addFiftyPercentEvents(const set<string>& majorIdeologies)
 		optionC += "			elections_allowed = ";
 		(ideology == "democratic") ? optionC += "yes\n" : optionC += "no\n";
 		optionC += "		}\n";
+		if (ideology == "democratic")
+		{
+			optionC += "		hold_election = ROOT\n";
+		}
 		optionC += "		add_national_unity = -0.05\n";
 		fiftyPercentEvent.options.push_back(optionC);
 		politicalEvents.push_back(fiftyPercentEvent);
@@ -1007,6 +1011,10 @@ void HoI4Events::addRevolutionEvents(const set<string>& majorIdeologies)
 			optionB += "				ideology = " + ideology2 + "\n";
 			optionB += "				size = 0.5\n";
 			optionB += "			}\n";
+			if (ideology == "democratic")
+			{
+				optionB += "			hold_election = ROOT\n";
+			}
 			optionB += "		}\n";
 		}
 		revolutionEvent.options.push_back(optionB);
