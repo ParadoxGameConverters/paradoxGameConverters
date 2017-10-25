@@ -96,6 +96,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld):
 	importIdeologicalMinisters();
 	events->createPoliticalEvents(majorIdeologies);
 	events->createWarJustificationEvents(majorIdeologies);
+	events->createElectionEvents(majorIdeologies, onActions);
 	addNeutrality();
 	convertIdeologySupport();
 	convertCapitalVPs();
@@ -1803,6 +1804,12 @@ void HoI4World::outputRelations() const
  	out << "private_channels_trade = {\n";
 	out << "\ttrade = yes\n";
 	out << "\tvalue = 15\n";
+	out << "}\n";
+	out << "absolutist_in_government = {\n";
+	out << "\tvalue = 30\n";
+	out << "}\n";
+	out << "radical_in_government = {\n";
+	out << "\tvalue = 30\n";
 	out << "}\n";
 
 	out << "}\n";

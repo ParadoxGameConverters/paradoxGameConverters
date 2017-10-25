@@ -38,6 +38,9 @@ class HoI4OnActions
 		HoI4OnActions();
 
 		void output() const;
+
+		void addElectionEvent(string electionEvent) { electionEvents.push_back(electionEvent); }
+
 	private:
 		HoI4OnActions(const HoI4OnActions&) = delete;
 		HoI4OnActions& operator=(const HoI4OnActions&) = delete;

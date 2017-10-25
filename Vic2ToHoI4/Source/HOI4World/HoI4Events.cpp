@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Country.h"
 #include "HoI4Faction.h"
 #include "HoI4Localisation.h"
+#include "HoI4OnActions.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 
@@ -38,7 +39,9 @@ HoI4Events::HoI4Events():
 	nationalFocusEventNumber(0),
 	politicalEvents(),
 	politicalEventNumber(1),
-	warJustificationEvents()
+	warJustificationEvents(),
+	electionEvents(),
+	electionEventNumber(4)
 {
 }
 
@@ -56,6 +59,7 @@ void HoI4Events::output() const
 	outputNewsEvents();
 	outputPoliticalEvents();
 	outputWarJustificationEvents();
+	outputElectionEvents();
 }
 
 
@@ -138,6 +142,25 @@ void HoI4Events::outputWarJustificationEvents() const
 	}
 
 	outWarJustificationEvents.close();
+}
+
+
+void HoI4Events::outputElectionEvents() const
+{
+	ofstream outElectionEvents("output/" + Configuration::getOutputName() + "/events/ElectionEvents.txt", ios_base::app);
+	if (!outElectionEvents.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not open ElectionEvents.txt";
+		exit(-1);
+	}
+
+	for (auto& theEvent: electionEvents)
+	{
+		outElectionEvents << "\n";
+		outElectionEvents << theEvent;
+	}
+
+	outElectionEvents.close();
 }
 
 
@@ -1156,4 +1179,156 @@ void HoI4Events::createWarJustificationEvents(const set<string>& majorIdeologies
 		letter++;
 	}
 	warJustificationEvents.push_back(wargoalExpired);
+}
+
+
+void HoI4Events::createElectionEvents(const set<string>& majorIdeologies, HoI4OnActions* onActions)
+{
+	if (majorIdeologies.count("democratic") > 0)
+	{
+		addIdeologyInGovernmentEvents(majorIdeologies, onActions);
+		addIdeologyInfluenceForeignPolicyEvents(majorIdeologies);
+	}
+}
+
+
+void HoI4Events::addIdeologyInGovernmentEvents(const set<string>& majorIdeologies, HoI4OnActions* onActions)
+{
+	for (auto ideology: majorIdeologies)
+	{
+		if ((ideology == "democratic") || (ideology == "neutrality"))
+		{
+			continue;
+		}
+
+		HoI4Event ideologyInGovernment;
+		ideologyInGovernment.type = "country_event";
+		ideologyInGovernment.id = "election." + to_string(electionEventNumber);
+		ideologyInGovernment.title = "election." + to_string(electionEventNumber) + ".t";
+		HoI4Localisation::copyEventLocalisations(ideology + "_in_government.t", ideologyInGovernment.title);
+		ideologyInGovernment.description = "election." + to_string(electionEventNumber) + ".d";
+		HoI4Localisation::copyEventLocalisations(ideology + "_in_government.d", ideologyInGovernment.description);
+		ideologyInGovernment.picture = getIdeologicalPicture(ideology);
+		ideologyInGovernment.triggeredOnly = true;
+		ideologyInGovernment.trigger = "NOT = { has_government = " + ideology + " }\n";
+		ideologyInGovernment.trigger += "		NOT = { has_idea = " + ideology + "_defeated }\n";
+		ideologyInGovernment.trigger += "		" + ideology + " > 0.15";
+		string optionAName = "election." + to_string(electionEventNumber) + ".a";
+		string optionA = "name = " + optionAName + "\n";
+		optionA += "		ai_chance = {\n";
+		optionA += "			base = 0\n";
+		optionA += "			modifier = {\n";
+		optionA += "				add = 2\n";
+		optionA += "				can_lose_democracy_support = yes\n";
+		optionA += "			}\n";
+		optionA += "			modifier = {\n";
+		optionA += "				add = 1\n";
+		optionA += "				can_lose_unity = no\n";
+		optionA += "			}\n";
+		optionA += "		}\n";
+		optionA += "		add_popularity = {\n";
+		optionA += "			ideology = " + ideology + "\n";
+		optionA += "			popularity = 0.1\n";
+		optionA += "		}\n";
+		optionA += "		set_country_flag = coalition_with_" + ideology;
+		ideologyInGovernment.options.push_back(optionA);
+		HoI4Localisation::copyEventLocalisations(ideology + "_in_government.a", optionAName);
+		string optionBName = "election." + to_string(electionEventNumber) + ".b";
+		string optionB = "name = " + optionBName + "\n";
+		optionB += "		ai_chance = {\n";
+		optionB += "			base = 0\n";
+		optionB += "			modifier = {\n";
+		optionB += "				add = 10\n";
+		optionB += "				can_lose_unity = yes\n";
+		optionB += "			}\n";
+		optionB += "		}\n";
+		optionB += "		add_national_unity = -0.05\n";
+		optionB += "		add_popularity = {\n";
+		optionB += "			ideology = democratic\n";
+		optionB += "			popularity = 0.03\n";
+		optionB += "		}\n";
+		optionB += "		set_country_flag = government_declined_" + ideology;
+		ideologyInGovernment.options.push_back(optionB);
+		HoI4Localisation::copyEventLocalisations(ideology + "_in_government.b", optionBName);
+
+		electionEvents.push_back(ideologyInGovernment);
+		onActions->addElectionEvent(ideologyInGovernment.id);
+		electionEventNumber++;
+	}
+}
+
+
+void HoI4Events::addIdeologyInfluenceForeignPolicyEvents(const set<string>& majorIdeologies)
+{
+	for (auto ideology: majorIdeologies)
+	{
+		if ((ideology == "democratic") || (ideology == "neutrality"))
+		{
+			continue;
+		}
+
+		HoI4Event ideologyInfluenceForeignPolicy;
+		ideologyInfluenceForeignPolicy.type = "country_event";
+		ideologyInfluenceForeignPolicy.id = "election." + to_string(electionEventNumber);
+		ideologyInfluenceForeignPolicy.title = "election." + to_string(electionEventNumber) + ".t";
+		HoI4Localisation::copyEventLocalisations(ideology + "_influence_foreign_policy.t", ideologyInfluenceForeignPolicy.title);
+		ideologyInfluenceForeignPolicy.description = "election." + to_string(electionEventNumber) + ".d";
+		HoI4Localisation::copyEventLocalisations(ideology + "_influence_foreign_policy.d", ideologyInfluenceForeignPolicy.description);
+		ideologyInfluenceForeignPolicy.picture = getIdeologicalPicture(ideology);
+		ideologyInfluenceForeignPolicy.trigger = "NOT = { has_government = " + ideology + " }\n";
+		ideologyInfluenceForeignPolicy.trigger += "		has_country_flag = coalition_with_" + ideology + "\n";
+		ideologyInfluenceForeignPolicy.trigger += "		any_other_country = {\n";
+		ideologyInfluenceForeignPolicy.trigger += "			has_government = " + ideology + "\n";
+		ideologyInfluenceForeignPolicy.trigger += "			is_faction_leader = yes\n";
+		ideologyInfluenceForeignPolicy.trigger += "		}";
+		ideologyInfluenceForeignPolicy.meanTimeToHappen = "days = 730";
+		string optionAName = "election." + to_string(electionEventNumber) + ".a";
+		string optionA = "name = " + optionAName + "\n";
+		optionA += "		ai_chance = {\n";
+		optionA += "			base = 0\n";
+		optionA += "			modifier = {\n";
+		optionA += "				add = 2\n";
+		optionA += "				can_lose_democracy_support = yes\n";
+		optionA += "			}\n";
+		optionA += "			modifier = {\n";
+		optionA += "				add = 1\n";
+		optionA += "				can_lose_unity = no\n";
+		optionA += "			}\n";
+		optionA += "		}\n";
+		optionA += "		random_other_country = {\n";
+		optionA += "			limit = {\n";
+		optionA += "				has_government = " + ideology + "\n";
+		optionA += "				is_faction_leader = yes\n";
+		optionA += "			}\n";
+		optionA += "			add_opinion_modifier = {\n";
+		optionA += "				target = ROOT\n";
+		optionA += "				modifier = " + ideology + "_in_government\n";
+		optionA += "			}\n";
+		optionA += "		}\n";
+		optionA += "		add_popularity = {\n";
+		optionA += "			ideology = " + ideology + "\n";
+		optionA += "			popularity = 0.05\n";
+		optionA += "		}";
+		ideologyInfluenceForeignPolicy.options.push_back(optionA);
+		HoI4Localisation::copyEventLocalisations(ideology + "_influence_foreign_policy.a", optionAName);
+		string optionBName = "election." + to_string(electionEventNumber) + ".b";
+		string optionB = "name = " + optionBName + "\n";
+		optionB += "		ai_chance = {\n";
+		optionB += "			base = 10\n";
+		optionB += "			modifier = {\n";
+		optionB += "				factor = 0\n";
+		optionB += "				can_lose_unity = no\n";
+		optionB += "			}\n";
+		optionB += "		}\n";
+		optionB += "		add_national_unity = -0.05\n";
+		optionB += "		add_popularity = {\n";
+		optionB += "			ideology = democratic\n";
+		optionB += "			popularity = 0.03\n";
+		optionB += "		}";
+		ideologyInfluenceForeignPolicy.options.push_back(optionB);
+		HoI4Localisation::copyEventLocalisations(ideology + "_influence_foreign_policy.b", optionBName);
+
+		electionEvents.push_back(ideologyInfluenceForeignPolicy);
+		electionEventNumber++;
+	}
 }

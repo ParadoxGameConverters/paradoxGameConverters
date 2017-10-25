@@ -34,6 +34,7 @@ using namespace std;
 
 
 class HoI4Country;
+class HoI4OnActions;
 
 
 
@@ -49,6 +50,7 @@ class HoI4Events
 		void createTradeEvent(const HoI4Country* leader, const HoI4Country* GC);
 		void createPoliticalEvents(const set<string>& majorIdeologies);
 		void createWarJustificationEvents(const set<string>& majorIdeologies);
+		void createElectionEvents(const set<string>& majorIdeologies, HoI4OnActions* onActions);
 
 		int getCurrentNationFocusEventNum() const { return nationalFocusEventNumber; }
 
@@ -61,6 +63,7 @@ class HoI4Events
 		void outputNewsEvents() const;
 		void outputPoliticalEvents() const;
 		void outputWarJustificationEvents() const;
+		void outputElectionEvents() const;
 
 		void addMinisterRevolutionEvents(const set<string>& majorIdeologies);
 		void addDemocraticMinisterRevolutionEvents(const set<string>& majorIdeologies);
@@ -69,6 +72,9 @@ class HoI4Events
 		void addSuppressedEvents(const set<string>& majorIdeologies);
 		string getIdeologicalPicture(const string& ideology) const;
 
+		void addIdeologyInGovernmentEvents(const set<string>& majorIdeologies, HoI4OnActions* onActions);
+		void addIdeologyInfluenceForeignPolicyEvents(const set<string>& majorIdeologies);
+
 		vector<HoI4Event> newsEvents;
 		int newsEventNumber;
 		vector<HoI4Event> nationalFocusEvents;
@@ -76,6 +82,8 @@ class HoI4Events
 		vector<HoI4Event> politicalEvents;
 		int politicalEventNumber;
 		vector<HoI4Event> warJustificationEvents;
+		vector<HoI4Event> electionEvents;
+		int electionEventNumber;
 };
 
 
