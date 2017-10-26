@@ -321,7 +321,7 @@ void HoI4Events::createAnnexEvent(const HoI4Country* Annexer, const HoI4Country*
 }
 
 
-void HoI4Events::createSudetenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const set<string>& claimedStates)
+void HoI4Events::createSudetenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const vector<int>& claimedStates)
 {
 	//flesh out this event more, possibly make it so allies have a chance to help?
 	string annexername = Annexer->getSourceCountry()->getName("english");
@@ -411,10 +411,10 @@ void HoI4Events::createSudetenEvent(const HoI4Country* Annexer, const HoI4Countr
 	acceptedEvent.triggeredOnly = true;
 
 	string acceptedOption = "name = \"A stronger Union!\"\n";
-	for (auto state: claimedStates)
+	for (int i = 0; i <= 1 && i < claimedStates.size(); i++)
 	{
-		acceptedOption += "		" + state + " = { add_core_of = " + Annexer->getTag() + " }\n";
-		acceptedOption += "		" + Annexer->getTag() + " = { transfer_state =  " + state + " }\n";
+		acceptedOption += "		" + to_string(claimedStates[i]) + " = { add_core_of = " + Annexer->getTag() + " }\n";
+		acceptedOption += "		" + Annexer->getTag() + " = { transfer_state =  " + to_string(claimedStates[i]) + " }\n";
 	}
 	acceptedOption += "		set_country_flag = " + Annexed->getTag() + "_demanded\n";
 	acceptedEvent.options.push_back(acceptedOption);

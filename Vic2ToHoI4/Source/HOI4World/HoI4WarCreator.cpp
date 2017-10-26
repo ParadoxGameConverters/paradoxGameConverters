@@ -52,7 +52,7 @@ HoI4WarCreator::HoI4WarCreator(const HoI4World* world):
 	double worldStrength = calculateWorldStrength(AILog);
 
 	set<const HoI4Faction*> factionsAtWar;
-	generateMajorWars(AILog, factionsAtWar);
+	generateMajorWars(AILog, factionsAtWar, world);
 	generateAdditionalWars(AILog, factionsAtWar, worldStrength);
 
 	AILog.close();
@@ -143,7 +143,7 @@ double HoI4WarCreator::calculateWorldStrength(ofstream& AILog) const
 }
 
 
-void HoI4WarCreator::generateMajorWars(ofstream& AILog, set<const HoI4Faction*>& factionsAtWar)
+void HoI4WarCreator::generateMajorWars(ofstream& AILog, set<const HoI4Faction*>& factionsAtWar, const HoI4World* world)
 {
 	AILog << "Creating major wars\n";
 
@@ -155,7 +155,7 @@ void HoI4WarCreator::generateMajorWars(ofstream& AILog, set<const HoI4Faction*>&
 
 			if (country.second->getGovernmentIdeology() == "fascism")
 			{
-				newFactionsAtWar = fascistWarMaker(country.second, AILog);
+				newFactionsAtWar = fascistWarMaker(country.second, AILog, world);
 			}
 			else if (country.second->getGovernmentIdeology() == "communism")
 			{
@@ -695,7 +695,7 @@ double HoI4WarCreator::GetFactionStrength(const HoI4Faction* Faction, int years)
 }
 
 
-vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstream& AILog)
+vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstream& AILog, const HoI4World* world)
 {
 	vector<HoI4Faction*> CountriesAtWar;
 	LOG(LogLevel::Info) << "Calculating AI for " + Leader->getSourceCountry()->getName("english");
@@ -795,50 +795,30 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 	FocusTree->addFascistAnnexationBranch(Leader, nan, theWorld->getEvents());
 	nan.clear();
 
-	//for (auto target : Sudeten)
-	//{
-	//	string type;
-	//	//outputs are
-	//	//noactionneeded -  Can take target without any help
-	//	//factionneeded - can take target and faction with attackers faction helping
-	//	//morealliesneeded - can take target with more allies, comes with "newallies" in map
-	//	//coup - cant take over, need to coup
-	//	type = HowToTakeLand(target, Leader, 2.5);
+	for (auto target : Sudeten)
+	{
+		string type;
+		//outputs are
+		//noactionneeded -  Can take target without any help
+		//factionneeded - can take target and faction with attackers faction helping
+		//morealliesneeded - can take target with more allies, comes with "newallies" in map
+		//coup - cant take over, need to coup
+		type = HowToTakeLand(target, Leader, 2.5);
 
-	//	if (type == "noactionneeded")
-	//	{
-	//		nan.push_back(target);
-	//	}
-	//}
-	////find neighboring states to take in sudaten deal
-	//vector<set<string>> demandedStates;
-	//for (unsigned int i = 0; i < nan.size(); i++)
-	//{
-	//	for (auto leaderprov : Leader->getProvinces())
-	//	{
-	//		for (int prov : provinceNeighborMapper::getNeighbors(leaderprov))
-	//		{
-	//			if (!provinceDefinitions::isLandProvince(prov))
-	//			{
-	//				continue;
-	//			}
-
-	//			if (provinceToOwnerMap.find(prov) != provinceToOwnerMap.end())
-	//			{
-	//				string owner = provinceToOwnerMap.find(prov)->second;
-	//				if (owner == nan[i]->getTag())
-	//				{
-	//					auto provinceToStateIdMapping = stateMapper::getStateIdMapping().find(prov);
-	//					/* v does not contain x */
-	//					demandedStates[i].insert(provinceToStateIdMapping->second);
-
-	//				}
-	//			}
-	//		}
-	//	}
-	//}
-	//FocusTree->addFascistSudetenBranch(Leader, nan, demandedStates, theWorld->getEvents());
-	//nan.clear();
+		if (type == "noactionneeded")
+		{
+			nan.push_back(target);
+		}
+	}
+	//find neighboring states to take in sudeten deal
+	vector<vector<int>> demandedStates;
+	for (unsigned int i = 0; i < nan.size(); i++)
+	{
+		set<int> borderStates = findBorderState(Leader, nan[i], world);
+		demandedStates.push_back(sortStatesByCapitalDistance(borderStates, Leader, world));
+	}
+	FocusTree->addFascistSudetenBranch(Leader, nan, demandedStates, theWorld);
+	nan.clear();
 
 	//events for allies
 	vector<HoI4Country*> newAllies = GetMorePossibleAllies(Leader);
@@ -1249,6 +1229,56 @@ vector<HoI4Faction*> HoI4WarCreator::neighborWarCreator(HoI4Country * country, o
 vector<HoI4Faction*> HoI4WarCreator::radicalWarCreator(HoI4Country* country)
 {
 	return absolutistWarCreator(country);
+}
+
+set<int> HoI4WarCreator::findBorderState(const HoI4Country * country, const HoI4Country * neighbor, const HoI4World * world)
+{
+	set<int> demandedStates;
+	std::map<int,int> provinceToStateIdMapping = world->getProvinceToStateIDMap();
+	for (auto leaderprov : country->getProvinces())
+	{
+		for (int prov : provinceNeighborMapper::getNeighbors(leaderprov))
+		{
+			if (!provinceDefinitions::isLandProvince(prov))
+			{
+				continue;
+			}
+
+			if (provinceToOwnerMap.find(prov) != provinceToOwnerMap.end())
+			{
+				string owner = provinceToOwnerMap.find(prov)->second;
+				if (owner == neighbor->getTag())
+				{
+					demandedStates.insert(provinceToStateIdMapping[prov]);
+				}
+			}
+		}
+	}
+	return demandedStates;
+}
+
+vector<int> HoI4WarCreator::sortStatesByCapitalDistance(set<int> stateList, const HoI4Country* country, const HoI4World* world)
+{
+	multimap<double, int> statesWithDistance;
+	pair<int, int> capitalCoords = getCapitalPosition(country);
+	map<int, HoI4State*> statesMapping = world->getStates();
+
+	for (int stateID : stateList)
+	{
+		HoI4State* stateObj = statesMapping[stateID];
+		int provCapID = stateObj->getVPLocation();
+		pair<int, int> stateVPCoords = getProvincePosition(provCapID);
+		double distanceSquared = pow(capitalCoords.first - stateVPCoords.first, 2)
+			+ pow(capitalCoords.second - stateVPCoords.second, 2);
+		statesWithDistance.insert(pair<double, int>(distanceSquared, stateID));
+	}
+
+	vector<int> sortedStates;
+	for (pair<double, int> oneStateDistance : statesWithDistance)
+	{
+		sortedStates.push_back(oneStateDistance.second);
+	}
+	return sortedStates;
 }
 
 vector<HoI4Country*> HoI4WarCreator::findWeakNeighbors(const HoI4Country* country)
