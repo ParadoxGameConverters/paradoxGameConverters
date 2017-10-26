@@ -827,8 +827,17 @@ vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRat
 		matched = cultureMapper::slaveCultureMatch(prItr.culture, slaveCulture, prItr.religion, eProv->getNum(), oldOwner->getTag());;
 		if (!matched)
 		{
-			//LOG(LogLevel::Warning) << "Could not set slave culture for pops in Vic2 province " << destNum;
-			slaveCulture = "african_minor";
+			string thisContinent = continentMapper::getEU4Continent(eProv->getNum());
+			if (thisContinent == "asia" || thisContinent == "oceania")
+			{
+				//LOG(LogLevel::Warning) << "No mapping for slave culture in province " << destNum << " - using native culture (" << prItr.culture << ").";
+				slaveCulture = prItr.culture;
+			}
+			else
+			{
+				//LOG(LogLevel::Warning) << "No mapping for slave culture for pops in Vic2 province " << destNum << " - using african_minor.";
+				slaveCulture = "african_minor";
+			}
 		}
 
 		V2Demographic demographic;
