@@ -118,52 +118,6 @@ country_event = {
 	}
 }
 
-# Magnate Favors Fascism
-country_event = {
-	id = election.13
-	title = election.13.t
-	desc = election.13.d
-	picture = GFX_report_event_fascist_gathering
-	
-	is_triggered_only = yes
-
-	trigger = {
-		NOT = { has_government = fascism }
-		has_idea_with_trait = motorized_equipment_manufacturer
-	}
-	
-	option = {
-		name = election.13.a
-		ai_chance = {
-			base = 0
-			modifier = {
-				add = 1
-				can_lose_democracy_support = yes
-			}
-		}
-		add_popularity = {
-			ideology = fascism
-			popularity = 0.10
-		}
-	}
-
-	option = {
-		name = election.13.b
-		ai_chance = {
-			base = 0
-			modifier = {
-				add = 1
-				can_lose_democracy_support = no
-			}
-		}
-		add_popularity = {
-			ideology = democratic
-			popularity = 0.05
-		}
-		remove_ideas_with_trait = motorized_equipment_manufacturer
-	}
-}
-
 # Wartime Exception
 country_event = {
 	id = election.14
