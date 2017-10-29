@@ -1808,6 +1808,12 @@ void HoI4World::outputRelations() const
 	out << "absolutist_in_government = {\n";
 	out << "\tvalue = 30\n";
 	out << "}\n";
+	out << "communism_in_government = {\n";
+	out << "\tvalue = 30\n";
+	out << "}\n";
+	out << "fascism_in_government = {\n";
+	out << "\tvalue = 30\n";
+	out << "}\n";
 	out << "radical_in_government = {\n";
 	out << "\tvalue = 30\n";
 	out << "}\n";
