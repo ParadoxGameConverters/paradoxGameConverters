@@ -74,6 +74,7 @@ class HoI4Events
 
 		void addIdeologyInGovernmentEvents(const set<string>& majorIdeologies, HoI4OnActions* onActions);
 		void addIdeologyInfluenceForeignPolicyEvents(const set<string>& majorIdeologies);
+		void addDemocraticPartiesInMinorityEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions);
 
 		vector<HoI4Event> newsEvents;
 		int newsEventNumber;

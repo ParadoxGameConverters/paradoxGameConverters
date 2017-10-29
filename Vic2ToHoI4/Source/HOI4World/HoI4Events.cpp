@@ -1188,6 +1188,7 @@ void HoI4Events::createElectionEvents(const set<string>& majorIdeologies, HoI4On
 	{
 		addIdeologyInGovernmentEvents(majorIdeologies, onActions);
 		addIdeologyInfluenceForeignPolicyEvents(majorIdeologies);
+		addDemocraticPartiesInMinorityEvent(majorIdeologies, onActions);
 	}
 }
 
@@ -1331,4 +1332,70 @@ void HoI4Events::addIdeologyInfluenceForeignPolicyEvents(const set<string>& majo
 		electionEvents.push_back(ideologyInfluenceForeignPolicy);
 		electionEventNumber++;
 	}
+}
+
+
+void HoI4Events::addDemocraticPartiesInMinorityEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions)
+{
+	HoI4Event democraticPartiesInMinority;
+
+	democraticPartiesInMinority.type = "country_event";
+	democraticPartiesInMinority.id = "election." + to_string(electionEventNumber);
+	democraticPartiesInMinority.title = "election." + to_string(electionEventNumber) + ".t";
+	HoI4Localisation::copyEventLocalisations("democratic_parties_in_minority.t", democraticPartiesInMinority.title);
+	democraticPartiesInMinority.description = "election." + to_string(electionEventNumber) + ".d";
+	HoI4Localisation::copyEventLocalisations("democratic_parties_in_minority.d", democraticPartiesInMinority.description);
+	democraticPartiesInMinority.picture = "GFX_report_event_journalists_speech";
+	democraticPartiesInMinority.triggeredOnly = true;
+	democraticPartiesInMinority.trigger = "has_government = democratic";
+
+	char optionLetter = 'a';
+	for (auto ideology: majorIdeologies)
+	{
+		if ((ideology == "democratic") || (ideology == "neutrality"))
+		{
+			continue;
+		}
+
+		democraticPartiesInMinority.trigger += "\n		" + ideology + " < 0.5";
+
+		string optionName = "election." + to_string(electionEventNumber) + "." + optionLetter;
+		string option = "name = " + optionName + "\n";
+		option += "		ai_chance = {\n";
+		option += "			base = 0\n";
+		option += "			modifier = {\n";
+		option += "				add = 10\n";
+		option += "				can_lose_democracy_support = yes\n";
+		option += "			}\n";
+		option += "		}\n";
+		option += "		add_popularity = {\n";
+		option += "			ideology = " + ideology + "\n";
+		option += "			popularity = 0.1\n";
+		option += "		}\n";
+		option += "		set_country_flag = coalition_with_" + ideology;
+		democraticPartiesInMinority.options.push_back(option);
+		HoI4Localisation::copyEventLocalisations("democratic_parties_in_minority." + ideology, optionName);
+		optionLetter++;
+	}
+
+	string optionName = "election." + to_string(electionEventNumber) + "." + optionLetter;
+	string option = "name = " + optionName + "\n";
+	option += "		ai_chance = {\n";
+	option += "			base = 0\n";
+	option += "			modifier = {\n";
+	option += "				add = 1\n";
+	option += "				can_lose_democracy_support = no\n";
+	option += "			}\n";
+	option += "		}\n";
+	option += "		add_popularity = {\n";
+	option += "			ideology = democratic\n";
+	option += "			popularity = 0.05\n";
+	option += "		}\n";
+	option += "		add_political_power = -80";
+	democraticPartiesInMinority.options.push_back(option);
+	HoI4Localisation::copyEventLocalisations("democratic_parties_in_minority.democratic", optionName);
+
+	electionEvents.push_back(democraticPartiesInMinority);
+	onActions->addElectionEvent(democraticPartiesInMinority.id);
+	electionEventNumber++;
 }
