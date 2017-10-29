@@ -118,60 +118,6 @@ country_event = {
 	}
 }
 
-# Government Contested
-country_event = {
-	id = election.15
-	title = election.15.t
-	desc = election.15.d
-	picture = GFX_report_event_gathering_protest
-	
-	is_triggered_only = yes
-
-	trigger = {
-		has_government = democratic
-		has_war = yes
-		any_war_score < 20
-	}
-	
-	option = {
-		ai_chance = {
-			base = 0
-			modifier = {
-				add = 3
-				can_lose_democracy_support = no
-			}			
-		}
-		name = election.15.a
-		add_political_power = -50
-		add_national_unity = -0.05
-	}
-
-	option = {
-		name = election.15.b
-		ai_chance = {
-			base = 0
-			modifier = {
-				add = 10
-				can_lose_democracy_support = yes
-			}			
-			modifier = {
-				add = 1
-				can_lose_unity = no
-			}
-		}
-		add_political_power = 25
-		add_national_unity = 0.05
-		add_popularity = {
-			ideology = communism
-			popularity = 0.07
-		}
-		add_popularity = {
-			ideology = fascism
-			popularity = 0.07
-		}
-	}
-}
-
 # Election in Fascist Country (Supports Government)
 country_event = {
 	id = election.16

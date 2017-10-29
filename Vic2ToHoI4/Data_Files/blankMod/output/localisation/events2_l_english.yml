@@ -236,3 +236,7 @@
  wartime_exception.d:0 "[Root.GetName] is in a state of war. Normally, an election would be held at this time, but being in the midst of an important conflict many argue that cannot afford to spend time on political campaigning, or a change of leadership if that should come about. Meanwhile, others claim that declaring the ongoing war a valid reason for skipping elections is the first step towards eroding [Root.GetAdjective] democracy. After all, letting military matters take precedence over the people's influence could be a slippery slope."
  wartime_exception.a:0 "Elections will be held as usual."
  wartime_exception.b:0 "We can take care of such matters when this war is through."
+ government_contested.t:0 "Election: Government Contested"
+ government_contested.d:0 "With an upcoming election, people are beginning to question the capability of the current administration to pursue the ongoing war. [Root.GetName] has suffered greatly and popular opinion has turned against those who seem to be leading our nation to defeat. While our people are determined to see the war to the end, they would rather see another government ending it."
+ government_contested.a:0 "This crisis of trust is highly unfortunate."
+ government_contested.b:0 "Let the political landscape shift to keep the people united."
