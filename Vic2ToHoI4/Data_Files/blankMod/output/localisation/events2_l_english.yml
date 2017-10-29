@@ -232,3 +232,7 @@
  radical_ideological_majority.d:0 "The current election has resulted in victory for the radical parties, with mixed reactions from the former administration. While the new rulers claim to represent the people as a whole, they view many of the democratic institutions we cherish as attempts to manipulate and oppress the middle class, leading to discussion about what truly constitutes a 'rule of the people'. In some nations, the revolution began in rivers of blood. In [Root.GetName] it didn't, but it may yet end in them."
  radical_ideological_majority.a:0 "This is troubling, but they truly do represent the majority."
  radical_ideological_majority.b:0 "We must stop them before they abolish every sign of dissenting thought!"
+ wartime_exception.t:0 "Election: Wartime Exception"
+ wartime_exception.d:0 "[Root.GetName] is in a state of war. Normally, an election would be held at this time, but being in the midst of an important conflict many argue that cannot afford to spend time on political campaigning, or a change of leadership if that should come about. Meanwhile, others claim that declaring the ongoing war a valid reason for skipping elections is the first step towards eroding [Root.GetAdjective] democracy. After all, letting military matters take precedence over the people's influence could be a slippery slope."
+ wartime_exception.a:0 "Elections will be held as usual."
+ wartime_exception.b:0 "We can take care of such matters when this war is through."

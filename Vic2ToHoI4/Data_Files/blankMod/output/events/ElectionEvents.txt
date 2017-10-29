@@ -118,58 +118,6 @@ country_event = {
 	}
 }
 
-# Wartime Exception
-country_event = {
-	id = election.14
-	title = election.14.t
-	desc = election.14.d
-	picture = GFX_report_event_tank_factory
-	
-	is_triggered_only = yes
-
-	trigger = {
-		has_government = democratic
-		has_war = yes
-	}
-	
-	option = {
-		name = election.14.a
-		ai_chance = {
-			base = 0
-			modifier = {
-				add = 10
-				can_lose_unity = yes
-			}
-		}
-		add_national_unity = 0.05
-	}
-
-	option = {
-		ai_chance = {
-			base = 0
-			modifier = {
-				add = 3
-				can_lose_democracy_support = yes
-			}			
-			modifier = {
-				add = 1
-				can_lose_unity = no
-			}
-		}
-		name = election.14.b
-		add_political_power = 20
-		add_national_unity = -0.05
-		add_popularity = {
-			ideology = communism
-			popularity = 0.05
-		}
-		add_popularity = {
-			ideology = fascism
-			popularity = 0.05
-		}
-	}
-}
-
 # Government Contested
 country_event = {
 	id = election.15

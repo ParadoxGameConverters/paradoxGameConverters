@@ -76,6 +76,7 @@ class HoI4Events
 		void addIdeologyInfluenceForeignPolicyEvents(const set<string>& majorIdeologies);
 		void addDemocraticPartiesInMinorityEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions);
 		void addIdeologicalMajorityEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions);
+		void addWartimeExceptionEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions);
 
 		vector<HoI4Event> newsEvents;
 		int newsEventNumber;
