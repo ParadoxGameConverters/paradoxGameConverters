@@ -1613,7 +1613,6 @@ void HoI4Events::addPartyChoiceEvent(string countryTag, set<const V2Party*, func
 		{
 			string trimmedName = party->name.substr(4, party->name.size());
 
-			HoI4Localisation::addPoliticalPartyLocalisation(party->name, countryTag + "_" + trimmedName + "_party");
 			string optionName = "election." + to_string(electionEventNumber) + optionLetter;
 			string option = "name = " + optionName + "\n";
 			option += "		set_party_name = { ideology = democratic long_name = " + countryTag + "_" + trimmedName + "_party " + "name = " + countryTag + "_" + trimmedName + "_party }\n";

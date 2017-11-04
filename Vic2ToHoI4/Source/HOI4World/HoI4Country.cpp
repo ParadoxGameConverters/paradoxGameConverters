@@ -166,6 +166,11 @@ void HoI4Country::convertGovernment(const V2World& sourceWorld)
 	governmentIdeology = governmentMapper::getIdeologyForCountry(srcCountry, rulingParty->ideology);
 	leaderIdeology = governmentMapper::getLeaderIdeologyForCountry(srcCountry, rulingParty->ideology);
 	parties = srcCountry->getActiveParties(sourceWorld.getParties());
+	for (auto party: parties)
+	{
+		string trimmedName = party->name.substr(4, party->name.size());
+		HoI4Localisation::addPoliticalPartyLocalisation(party->name, tag + "_" + trimmedName + "_party");
+	}
 }
 
 
