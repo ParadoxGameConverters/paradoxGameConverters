@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4OnActions.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
+#include "../V2World/V2Party.h"
 
 
 
@@ -1460,7 +1461,6 @@ void HoI4Events::addIdeologicalMajorityEvent(const set<string>& majorIdeologies,
 
 void HoI4Events::addWartimeExceptionEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions)
 {
-
 	HoI4Event wartimeException;
 
 	wartimeException.type = "country_event";
@@ -1526,7 +1526,6 @@ void HoI4Events::addWartimeExceptionEvent(const set<string>& majorIdeologies, Ho
 
 void HoI4Events::addGovernmentContestedEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions)
 {
-
 	HoI4Event governmentContested;
 
 	governmentContested.type = "country_event";
@@ -1588,5 +1587,44 @@ void HoI4Events::addGovernmentContestedEvent(const set<string>& majorIdeologies,
 
 	electionEvents.push_back(governmentContested);
 	onActions->addElectionEvent(governmentContested.id);
+	electionEventNumber++;
+}
+
+
+void HoI4Events::addPartyChoiceEvent(string countryTag, set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> parties, HoI4OnActions* onActions)
+{
+	HoI4Event partyChoiceEvent;
+
+	partyChoiceEvent.type = "country_event";
+	partyChoiceEvent.id = "election." + to_string(electionEventNumber);
+	partyChoiceEvent.title = "election." + to_string(electionEventNumber) + ".t";
+	HoI4Localisation::copyEventLocalisations("party_choice.t", partyChoiceEvent.title);
+	partyChoiceEvent.description = "election." + to_string(electionEventNumber) + ".d";
+	HoI4Localisation::copyEventLocalisations("party_choice.d", partyChoiceEvent.description);
+	partyChoiceEvent.picture = "GFX_report_event_usa_election_generic";
+	partyChoiceEvent.triggeredOnly = true;
+	partyChoiceEvent.trigger = "tag = " + countryTag + "\n";
+	partyChoiceEvent.trigger += "		democratic > 0.5";
+
+	char optionLetter = 'a';
+	for (auto party: parties)
+	{
+		if ((party->ideology == "conservative") || (party->ideology == "liberal") || (party->ideology == "socialist"))
+		{
+			string trimmedName = party->name.substr(4, party->name.size());
+
+			HoI4Localisation::addPoliticalPartyLocalisation(party->name, countryTag + "_" + trimmedName + "_party");
+			string optionName = "election." + to_string(electionEventNumber) + optionLetter;
+			string option = "name = " + optionName + "\n";
+			option += "		set_party_name = { ideology = democratic long_name = " + countryTag + "_" + trimmedName + "_party " + "name = " + countryTag + "_" + trimmedName + "_party }\n";
+			option += "		retire_country_leader = yes";
+			partyChoiceEvent.options.push_back(option);
+			HoI4Localisation::addEventLocalisationFromVic2(party->name, optionName);
+			optionLetter++;
+		}
+	}
+
+	onActions->addElectionEvent(partyChoiceEvent.id);
+	electionEvents.push_back(partyChoiceEvent);
 	electionEventNumber++;
 }

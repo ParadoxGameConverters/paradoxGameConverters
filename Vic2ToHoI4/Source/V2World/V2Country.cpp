@@ -30,10 +30,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/V2Localisations.h"
 #include "V2Army.h"
 #include "V2Leader.h"
+#include "V2Party.h"
 #include "V2Pop.h"
 #include "V2Province.h"
 #include "V2Relations.h"
 #include "Vic2State.h"
+#include <functional>
+using namespace std;
 
 
 
@@ -519,9 +522,11 @@ const V2Party* V2Country::getRulingParty(const vector<const V2Party*>& allPartie
 }
 
 
-set<const V2Party*> V2Country::getActiveParties(const vector<const V2Party*>& allParties) const
+set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> V2Country::getActiveParties(const vector<const V2Party*>& allParties) const
 {
-	set<const V2Party*> activeParties;
+	set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> activeParties([](const V2Party* first, const V2Party* second)
+		{ return first->name < second->name; }
+	);
 
 	for (auto ID : activePartyIDs)
 	{

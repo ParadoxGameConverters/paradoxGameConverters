@@ -47,7 +47,8 @@ HoI4Localisation::HoI4Localisation():
 	ideaLocalisations(),
 	genericIdeaLocalisations(),
 	originalEventLocalisations(),
-	newEventLocalisations()
+	newEventLocalisations(),
+	politicalPartyLocalisations()
 {
 	importLocalisations();
 	prepareIdeaLocalisations();
@@ -461,6 +462,33 @@ void HoI4Localisation::addNonenglishVPLocalisations()
 }
 
 
+void HoI4Localisation::AddEventLocalisation(const string& event, const string& localisation)
+{
+	for (auto localisationInLanguage: newEventLocalisations)
+	{
+		newEventLocalisations[localisationInLanguage.first][event] = localisation;
+	}
+}
+
+
+void HoI4Localisation::AddEventLocalisationFromVic2(const string& Vic2Key, const string& HoI4Key)
+{
+	for (auto textInLanguage: V2Localisations::GetTextInEachLanguage(Vic2Key))
+	{
+		auto language = textInLanguage.first;
+		auto existingLanguage = newEventLocalisations.find(language);
+		if (existingLanguage == newEventLocalisations.end())
+		{
+			keyToLocalisationMap mappings;
+			newEventLocalisations.insert(make_pair(language, mappings));
+			existingLanguage = newEventLocalisations.find(language);
+		}
+
+		existingLanguage->second[HoI4Key] = textInLanguage.second;
+	}
+}
+
+
 void HoI4Localisation::AddIdeaLocalisation(const string& idea, const string& localisation)
 {
 	for (auto localisationInLanguage: ideaLocalisations)
@@ -494,6 +522,24 @@ void HoI4Localisation::AddIdeaLocalisation(const string& idea, const string& loc
 }
 
 
+void HoI4Localisation::AddPoliticalPartyLocalisation(const string& Vic2Key, const string& HoI4Key)
+{
+	for (auto textInLanguage: V2Localisations::GetTextInEachLanguage(Vic2Key))
+	{
+		auto language = textInLanguage.first;
+		auto existingLanguage = politicalPartyLocalisations.find(language);
+		if (existingLanguage == politicalPartyLocalisations.end())
+		{
+			keyToLocalisationMap mappings;
+			politicalPartyLocalisations.insert(make_pair(language, mappings));
+			existingLanguage = politicalPartyLocalisations.find(language);
+		}
+
+		existingLanguage->second[HoI4Key] = textInLanguage.second;
+	}
+}
+
+
 void HoI4Localisation::Output() const
 {
 	LOG(LogLevel::Debug) << "Writing localisations";
@@ -510,6 +556,7 @@ void HoI4Localisation::Output() const
 	outputVPLocalisations(localisationPath);
 	outputIdeaLocalisations(localisationPath);
 	outputEventLocalisations(localisationPath);
+	outputPoliticalPartyLocalisations(localisationPath);
 }
 
 
@@ -549,6 +596,12 @@ void HoI4Localisation::outputEventLocalisations(const string& localisationPath) 
 }
 
 
+void HoI4Localisation::outputPoliticalPartyLocalisations(const string& localisationPath) const
+{
+	outputLocalisations(localisationPath + "/parties3_l_", politicalPartyLocalisations);
+}
+
+
 void HoI4Localisation::outputLocalisations(const string& filenameStart, const languageToLocalisationsMap& localisations) const
 {
 	for (auto languageToLocalisations: localisations)
@@ -557,7 +610,7 @@ void HoI4Localisation::outputLocalisations(const string& filenameStart, const la
 		{
 			continue;
 		}
-		ofstream localisationFile(filenameStart + languageToLocalisations.first + ".yml");
+		ofstream localisationFile(filenameStart + languageToLocalisations.first + ".yml", ios_base::app);
 		if (!localisationFile.is_open())
 		{
 			LOG(LogLevel::Error) << "Could not update localisation text file";

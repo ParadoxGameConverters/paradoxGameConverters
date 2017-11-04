@@ -106,7 +106,7 @@ class HoI4Country
 		int											getCapitalStateNum() const { return capitalStateNum; }
 		const string									getSphereLeader() const { return sphereLeader; }
 		const V2Party* getRulingParty() const { return rulingParty; }
-		set<const V2Party*> getParties() const { return parties; }
+		set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> getParties() const { return parties; }
 		map<int, HoI4State*> getStates() const { return states; }
 		bool isInFaction() const { return faction != nullptr; }
 		bool isCivilized() const { return civilized; }
@@ -173,7 +173,7 @@ class HoI4Country
 		string governmentIdeology;
 		string leaderIdeology;
 		const V2Party* rulingParty;
-		set<const V2Party*> parties;
+		set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> parties;
 		map<string, int> ideologySupport;
 		date lastElection;
 

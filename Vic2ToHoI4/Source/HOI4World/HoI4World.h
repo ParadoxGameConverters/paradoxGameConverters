@@ -158,6 +158,8 @@ class HoI4World
 		string returnSphereLeader(const HoI4Country* possibleSphereling) const;
 		bool governmentsAllowFaction(const string& leaderGovernment, const string& allyGovernment) const;
 
+		void addCountryElectionEvents();
+
 		void outputCommonCountries() const;
 		void outputColorsfile() const;
 		void outputNames() const;

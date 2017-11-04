@@ -240,3 +240,5 @@
  government_contested.d:0 "With an upcoming election, people are beginning to question the capability of the current administration to pursue the ongoing war. [Root.GetName] has suffered greatly and popular opinion has turned against those who seem to be leading our nation to defeat. While our people are determined to see the war to the end, they would rather see another government ending it."
  government_contested.a:0 "This crisis of trust is highly unfortunate."
  government_contested.b:0 "Let the political landscape shift to keep the people united."
+ party_choice.t:0 "Election of [GetYear]"
+ party_choice.d:0 "The day of the election has arrived. Which party will control the government?"
