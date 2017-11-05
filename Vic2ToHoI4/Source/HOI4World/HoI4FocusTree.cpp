@@ -2666,6 +2666,7 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(const HoI4Country* Home, 
 	newFocus->completionReward += "						building = infrastructure\n";
 	newFocus->completionReward += "						size > 0\n";
 	newFocus->completionReward += "						include_locked = yes\n";
+	newFocus->completionReward += "						is_coastal = yes\n";
 	newFocus->completionReward += "					}\n";
 	newFocus->completionReward += "					OR = {\n";
 	newFocus->completionReward += "						is_in_home_area = no\n";
