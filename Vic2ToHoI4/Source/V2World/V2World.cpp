@@ -77,7 +77,10 @@ V2World::V2World(const string& filename):
 
 	setProvinceOwners();
 	addProvinceCoreInfoToCountries();
-	removeSimpleLandlessNations();
+	if (Configuration::getRemoveCores())
+	{
+		removeSimpleLandlessNations();
+	}
 	determineEmployedWorkers();
 	removeEmptyNations();
 	determinePartialStates();

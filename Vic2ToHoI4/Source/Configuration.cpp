@@ -48,6 +48,7 @@ Configuration::Configuration():
 	icFactor(0.0),
 	ideologiesOptions("keep_major"),
 	debug(false),
+	removeCores(true),
 	leaderID(1000),
 	leaderIDCountryIdx(1),
 	version()
@@ -137,6 +138,11 @@ Configuration::Configuration():
 	if (debugObjs != nullptr)
 	{
 		debug = true;
+	}
+
+	if (obj->safeGetString("remove_cores") == "false")
+	{
+		removeCores = false;
 	}
 }
 

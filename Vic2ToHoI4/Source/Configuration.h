@@ -119,6 +119,11 @@ class Configuration // Singleton
 			return getInstance()->debug;
 		}
 
+		static bool getRemoveCores()
+		{
+			return getInstance()->removeCores;
+		}
+
 		static Configuration* getInstance()
 		{
 			if (instance == nullptr)
@@ -149,6 +154,7 @@ class Configuration // Singleton
 		string ideologiesOptions;
 
 		bool debug;
+		bool removeCores;
 
 		unsigned int	leaderID;
 		unsigned int	leaderIDCountryIdx;

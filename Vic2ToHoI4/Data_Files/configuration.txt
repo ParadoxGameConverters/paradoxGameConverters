@@ -59,4 +59,7 @@ configuration =
 	#	Keep all ideologies	 - Keep all ideologies (democratic, fascist, communist, absolutist, radical).
 	#	Keep default ideologies	 - Keep default ideologies (democratic, fascist, communist).
 	ideologies = "keep_major"
+
+	# Remove Cores: Should some cores be removed during conversion
+	remove_cores = true
 }

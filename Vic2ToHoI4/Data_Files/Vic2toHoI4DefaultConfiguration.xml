@@ -109,6 +109,25 @@
 							</entryOption>
 						</entryOptions>
 					</preference>
+					<preference>
+						<name>remove_cores</name>
+						<friendlyName>Remove cores</friendlyName>
+						<description>Should some cores be removed during conversion</description>
+						<entryOptions>
+							<entryOption>
+								<name>true</name>
+								<friendlyName>True</friendlyName>
+								<description>Remove cores that should be removed.</description>
+								<isDefault>true</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>false</name>
+								<friendlyName>False</friendlyName>
+								<description>Don't remove cores that should be removed.</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+						</entryOptions>
+					</preference>
 				</preferences>
 			</category>
 		</categories>
