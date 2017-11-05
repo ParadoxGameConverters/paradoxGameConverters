@@ -2158,20 +2158,21 @@ void HoI4FocusTree::addDemocracyNationalFocuses(const HoI4Country* Home, const v
 	newFocus->yPos = 0;
 	newFocus->cost = 10;
 	newFocus->aiWillDo += "			factor = 10";
-	newFocus->completionReward += "			add_ideas = militarism_focus";
+	newFocus->completionReward += "			add_national_unity = 0.05";
 	focuses.push_back(newFocus);
 
 	//Prepare Intervention
 	newFocus = new HoI4Focus;
 	newFocus->id = "PrepInter" + Home->getTag();
 	newFocus->icon = "GFX_goal_generic_occupy_states_ongoing_war";
-	newFocus->text += "War Propaganda";
+	newFocus->text += "Prepare Intervention";
 	newFocus->prerequisites.push_back("focus = WarProp" + Home->getTag());
 	newFocus->available += "			threat > " + to_string(0.3 * WTModifier);
 	newFocus->xPos = nextFreeColumn;
 	newFocus->yPos = 1;
 	newFocus->cost = 10;
 	newFocus->aiWillDo += "			factor = 10";
+	newFocus->completionReward += "			add_political_power = 120";
 	newFocus->completionReward += "			set_rule = { can_send_volunteers = yes }";
 	focuses.push_back(newFocus);
 
@@ -2195,7 +2196,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(const HoI4Country* Home, const v
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
 	newFocus->aiWillDo += "			factor = 10";
-	newFocus->completionReward += "			set_rule = { can_send_volunteers = yes }";
+	newFocus->completionReward += "			add_ideas = limited_interventionism";
 	focuses.push_back(newFocus);
 
 	nextFreeColumn += 2;
@@ -2306,7 +2307,7 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(const HoI4Country* Home, 
 	newFocus->aiWillDo += "				factor = 0\n";
 	newFocus->aiWillDo += "				date < 1937.6.6\n";
 	newFocus->aiWillDo += "			}";
-	newFocus->completionReward += "			add_national_unity = 0.1";
+	newFocus->completionReward += "			add_national_unity = 0.05";
 	focuses.push_back(newFocus);
 
 	//Colonies Focus
@@ -2701,7 +2702,12 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(const HoI4Country* Home, 
 	newFocus->yPos = 2;
 	newFocus->cost = 10;
 	newFocus->aiWillDo += "			factor = 10";
-	//newFocus->completionReward += "			research_time_factor = -0.1;
+	newFocus->completionReward += "			add_tech_bonus = {\n";
+	newFocus->completionReward += "				name = industrial_bonus\n";
+	newFocus->completionReward += "				bonus = 0.5\n";
+	newFocus->completionReward += "				uses = 1\n";
+	newFocus->completionReward += "				category = industry\n";
+	newFocus->completionReward += "			}";
 	focuses.push_back(newFocus);
 
 	//National Highway
