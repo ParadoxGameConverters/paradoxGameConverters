@@ -118,8 +118,6 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	threat = srcCountry->getBadBoy() / 10.0;
 	graphicalCulture = graphicsMapper::getGraphicalCulture(srcCountry->getPrimaryCultureGroup());
 	graphicalCulture2d = graphicsMapper::get2dGraphicalCulture(srcCountry->getPrimaryCultureGroup());
-
-	convertGovernment(_srcWorld);
 	lastElection = srcCountry->getLastElection();
 	initIdeas();
 
@@ -153,13 +151,13 @@ void HoI4Country::determineFilename()
 }
 
 
-void HoI4Country::convertGovernment(const V2World& sourceWorld)
+void HoI4Country::convertGovernment(const V2World& sourceWorld, const set<string>& majorIdeologies)
 {
 	rulingParty = srcCountry->getRulingParty(sourceWorld.getParties());
 	if (rulingParty == nullptr)
 	{
 		LOG(LogLevel::Error) << "Could not find the ruling party for " << srcCountry->getTag() << ". Most likely a mod was not included.";
-		LOG(LogLevel::Error) << "Double-check your settings, and remember to included EU4 to Vic2 mods. See the FAQ for more information.";
+		LOG(LogLevel::Error) << "Double-check your settings, and remember to include EU4 to Vic2 mods. See the FAQ for more information.";
 		exit(-1);
 	}
 
@@ -171,6 +169,18 @@ void HoI4Country::convertGovernment(const V2World& sourceWorld)
 		string trimmedName = party->name.substr(4, party->name.size());
 		HoI4Localisation::addPoliticalPartyLocalisation(party->name, tag + "_" + trimmedName + "_party");
 	}
+
+	for (auto HoI4Ideology: majorIdeologies)
+	{
+		for (auto party: parties)
+		{
+			if (governmentMapper::getSupportedIdeology(governmentIdeology, party->ideology, majorIdeologies) == HoI4Ideology)
+			{
+				HoI4Localisation::addPoliticalPartyLocalisation(party->name, tag + "_" + HoI4Ideology + "_party");
+			}
+		}
+	}
+	HoI4Localisation::addPoliticalPartyLocalisation(rulingParty->name, tag + "_" + governmentIdeology + "_party");
 }
 
 

@@ -91,6 +91,8 @@ class HoI4World
 
 		void importIdeologicalMinisters();
 
+		void convertGovernments();
+
 		void importIdeologicalIdeas();
 
 		void identifyMajorIdeologies();

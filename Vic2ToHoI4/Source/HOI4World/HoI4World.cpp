@@ -94,6 +94,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld):
 	importIdeologicalIdeas();
 	identifyMajorIdeologies();
 	importIdeologicalMinisters();
+	convertGovernments();
 	events->createPoliticalEvents(majorIdeologies);
 	events->createWarJustificationEvents(majorIdeologies);
 	events->createElectionEvents(majorIdeologies, onActions);
@@ -264,6 +265,15 @@ void HoI4World::importIdeologicalMinisters()
 			advisor->second->addEventNum(ministerEventNum);
 		}
 		ministerEventNum += 6;
+	}
+}
+
+
+void HoI4World::convertGovernments()
+{
+	for (auto country: countries)
+	{
+		country.second->convertGovernment(*sourceWorld, majorIdeologies);
 	}
 }
 
