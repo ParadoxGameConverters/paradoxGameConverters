@@ -69,6 +69,7 @@ class HoI4State
 		int getManpower() const { return manpower; }
 		int getVPLocation() const { return victoryPointPosition; }
 		set<int> getDebugVPs() const { return debugVictoryPoints; }
+		set<int> getSecondaryDebugVPs() const { return secondaryDebugVictoryPoints; }
 
 		int getMainNavalLocation() const;
 
@@ -121,6 +122,7 @@ class HoI4State
 		int victoryPointPosition;
 		int victoryPointValue;
 		set<int> debugVictoryPoints;
+		set<int> secondaryDebugVictoryPoints;
 };
 
 

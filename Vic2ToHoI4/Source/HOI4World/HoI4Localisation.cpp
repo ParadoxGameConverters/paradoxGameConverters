@@ -370,13 +370,28 @@ void HoI4Localisation::addDebugLocalisations(const pair<const int, HoI4State*>& 
 	{
 		auto VPProvinceMapping = provinceMapper::getHoI4ToVic2ProvinceMapping().find(VPPositionInHoI4);
 		if (
+				(VPProvinceMapping != provinceMapper::getHoI4ToVic2ProvinceMapping().end()) &&
+				(VPProvinceMapping->second.size() > 0)
+			)
+		{
+			for (auto Vic2NameInLanguage: V2Localisations::GetTextInEachLanguage("PROV" + to_string(VPProvinceMapping->second[0])))
+			{
+				getExistingVPLocalisation(Vic2NameInLanguage.first).insert(make_pair("VICTORY_POINTS_" + to_string(VPPositionInHoI4), Vic2NameInLanguage.second));
+			}
+		}
+	}
+
+	for (auto VPPositionInHoI4: state.second->getSecondaryDebugVPs())
+	{
+		auto VPProvinceMapping = provinceMapper::getHoI4ToVic2ProvinceMapping().find(VPPositionInHoI4);
+		if (
 			(VPProvinceMapping != provinceMapper::getHoI4ToVic2ProvinceMapping().end()) &&
 			(VPProvinceMapping->second.size() > 0)
 			)
 		{
 			for (auto Vic2NameInLanguage: V2Localisations::GetTextInEachLanguage("PROV" + to_string(VPProvinceMapping->second[0])))
 			{
-				getExistingVPLocalisation(Vic2NameInLanguage.first).insert(make_pair("VICTORY_POINTS_" + to_string(VPPositionInHoI4),	Vic2NameInLanguage.second));
+				getExistingVPLocalisation(Vic2NameInLanguage.first).insert(make_pair("VICTORY_POINTS_" + to_string(VPPositionInHoI4), "_" + Vic2NameInLanguage.second));
 			}
 		}
 	}
