@@ -3285,8 +3285,10 @@ void HoI4FocusTree::addFascistAnnexationBranch(const HoI4Country* Home, const ve
 	}
 }
 
-void HoI4FocusTree::addFascistSudetenBranch(const HoI4Country* Home, const vector<const HoI4Country*>& sudetenTargets, const vector<set<string>>& demandedStates, HoI4Events* events)
+void HoI4FocusTree::addFascistSudetenBranch(const HoI4Country* Home, const vector<const HoI4Country*>& sudetenTargets, const vector<vector<int>>& demandedStates, const HoI4World* world)
 {
+	HoI4Events* events = world->getEvents();
+
 	if (sudetenTargets.size() >= 1)
 	{
 		//if it can easily take these targets as they are not in an alliance, you can get annexation event
@@ -3294,7 +3296,7 @@ void HoI4FocusTree::addFascistSudetenBranch(const HoI4Country* Home, const vecto
 		//Focus to increase empire size more
 		HoI4Focus* newFocus = new HoI4Focus;
 		newFocus->id = "expand_the_reich" + Home->getTag();
-		newFocus->icon = "GFX_goal_generic_political_pressure";//something about claiming land
+		newFocus->icon = "GFX_goal_generic_political_pressure";  //something about claiming land
 		newFocus->text = "Expand the Reich";
 		if (sudetenTargets.size() == 1 || sudetenTargets.size() >= 2)
 		{
@@ -3303,10 +3305,10 @@ void HoI4FocusTree::addFascistSudetenBranch(const HoI4Country* Home, const vecto
 			{
 				if (i < sudetenTargets.size())
 				{
-					newFocus->prerequisites.push_back("focus = " + Home->getTag() + "_anschluss_" + sudetenTargets[i]->getTag());
+//					newFocus->prerequisites.push_back("focus = " + Home->getTag() + "_anschluss_" + sudetenTargets[i]->getTag());
 				}
 			}
-			newFocus->xPos = nextFreeColumn + sudetenTargets.size();
+			newFocus->xPos = nextFreeColumn + sudetenTargets.size() - 1;
 			newFocus->yPos = 0;
 		}
 		newFocus->cost = 10;
@@ -3376,7 +3378,7 @@ void HoI4FocusTree::addFascistSudetenBranch(const HoI4Country* Home, const vecto
 				addFocus(newFocus);
 
 				//events
-				events->createSudetenEvent(Home, sudetenTargets[0], demandedStates[i]);
+				events->createSudetenEvent(Home, sudetenTargets[i], demandedStates[i]);
 			}
 		}
 		nextFreeColumn += 2 * sudetenTargets.size();
