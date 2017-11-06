@@ -63,7 +63,7 @@ class Configuration // Singleton
 			getInstance()->forceMultiplier = mult;
 		}
 
-		static void setOutputName(string name)
+		static void setOutputName(const string& name)
 		{
 			getInstance()->outputName = name;
 		}
@@ -93,11 +93,6 @@ class Configuration // Singleton
 			return getInstance()->icFactor;
 		}
 
-		static bool getICStats()
-		{
-			return getInstance()->ICStats;
-		}
-
 		static int getNextLeaderID()
 		{
 			return getInstance()->leaderID++;
@@ -114,14 +109,19 @@ class Configuration // Singleton
 			return getInstance()->version;
 		}
 
-		static bool getDropMinorIdeologies()
+		static string getIdeologiesOptions()
 		{
-			return getInstance()->dropMinorIdeologies;
+			return getInstance()->ideologiesOptions;
 		}
 
 		static bool getDebug()
 		{
 			return getInstance()->debug;
+		}
+
+		static bool getRemoveCores()
+		{
+			return getInstance()->removeCores;
 		}
 
 		static Configuration* getInstance()
@@ -150,14 +150,11 @@ class Configuration // Singleton
 		double			manpowerFactor;
 		double industrialShapeFactor;
 		double			icFactor;
-		bool ICStats;
 
-		// If true, only major idologies are kept. All minor ideologies are
-		// converted to neutrality. "Major ideologies" are defined by
-		// HoI4World::identifyMajorIdeologies.
-		bool dropMinorIdeologies;
+		string ideologiesOptions;
 
 		bool debug;
+		bool removeCores;
 
 		unsigned int	leaderID;
 		unsigned int	leaderIDCountryIdx;

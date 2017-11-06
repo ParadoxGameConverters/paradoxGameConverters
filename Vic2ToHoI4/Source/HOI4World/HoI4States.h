@@ -45,7 +45,7 @@ class V2World;
 class HoI4States
 {
 	public:
-		HoI4States(const V2World* _sourceWorld);
+		explicit HoI4States(const V2World* _sourceWorld);
 
 		const map<int, HoI4State*>& getStates() const { return states; }
 		const map<int, int>& getProvinceToStateIDMap() const { return provinceToStateIDMap; }

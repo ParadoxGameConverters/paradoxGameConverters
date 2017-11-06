@@ -44,6 +44,7 @@ class HoI4DivisionTemplateType;
 class HoI4Events;
 class HoI4Faction;
 class HoI4Ideology;
+class HoI4OnActions;
 class HoI4Province;
 class HoI4State;
 class HoI4States;
@@ -61,7 +62,7 @@ struct advisorCompare;
 class HoI4World
 {
 	public:
-		HoI4World(const V2World* sourceWorld);
+		explicit HoI4World(const V2World* sourceWorld);
 
 		void output() const;
 
@@ -90,6 +91,8 @@ class HoI4World
 		void importLeaderTraits();
 
 		void importIdeologicalMinisters();
+
+		void convertGovernments();
 
 		void importIdeologicalIdeas();
 
@@ -158,6 +161,8 @@ class HoI4World
 		string returnSphereLeader(const HoI4Country* possibleSphereling) const;
 		bool governmentsAllowFaction(const string& leaderGovernment, const string& allyGovernment) const;
 
+		void addCountryElectionEvents();
+
 		void outputCommonCountries() const;
 		void outputColorsfile() const;
 		void outputNames() const;
@@ -199,6 +204,7 @@ class HoI4World
 		vector<HoI4Faction*> factions;
 		HoI4Diplomacy* diplomacy;
 		HoI4Events* events;
+		HoI4OnActions* onActions;
 
 		vector<HoI4DivisionTemplateType> divisionTemplates;
 

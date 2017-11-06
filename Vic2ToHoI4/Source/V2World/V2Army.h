@@ -36,7 +36,7 @@ using namespace std;
 class V2Regiment // also Ship
 {
 	public:
-		V2Regiment(shared_ptr<Object> obj);
+		explicit V2Regiment(shared_ptr<Object> obj);
 
 		string getName() const { return name; }
 		string getType() const { return type; }
@@ -59,7 +59,7 @@ class V2Regiment // also Ship
 class V2Army // also Navy
 {
 	public:
-		V2Army(shared_ptr<Object> obj);
+		explicit V2Army(shared_ptr<Object> obj);
 
 		string getName() const { return name; }
 		bool isNavy() const { return navy; }

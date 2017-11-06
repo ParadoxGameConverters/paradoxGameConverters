@@ -36,9 +36,6 @@
     <ClCompile Include="Source\V2World\V2Diplomacy.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\V2World\V2Inventions.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\V2World\V2Leader.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
@@ -200,6 +197,12 @@
     <ClCompile Include="Source\HOI4World\HoI4Advisor.cpp">
       <Filter>HoI4World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Mappers\InventionsMapper.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\HoI4OnActions.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -221,9 +224,6 @@
       <Filter>Vic2World</Filter>
     </ClInclude>
     <ClInclude Include="Source\V2World\V2Diplomacy.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2Inventions.h">
       <Filter>Vic2World</Filter>
     </ClInclude>
     <ClInclude Include="Source\V2World\V2Leader.h">
@@ -389,6 +389,12 @@
     </ClInclude>
     <ClInclude Include="Source\V2World\V2Rgo.h">
       <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\InventionsMapper.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\HoI4OnActions.h">
+      <Filter>HoI4World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

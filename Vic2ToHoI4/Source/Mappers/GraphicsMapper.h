@@ -91,8 +91,6 @@ class graphicsMapper
 		graphicsMapper();
 		void loadLeaderPortraitMappings(const string& cultureGroup, shared_ptr<Object> portraitMappings);
 		void loadIdeologyMinisterPortraitMappings(const string& cultureGroup, shared_ptr<Object> portraitMappings);
-		void loadGraphicalCultureMappings(const string& cultureGroup, shared_ptr<Object> graphicalCultureMappings);
-		void loadGraphicalCulture2dMappings(const string& cultureGroup, shared_ptr<Object> graphicalCulture2dMappings);
 
 		graphicsMapper(const graphicsMapper&) = delete;
 		graphicsMapper& operator=(const graphicsMapper&) = delete;

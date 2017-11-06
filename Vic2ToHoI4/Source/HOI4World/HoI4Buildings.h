@@ -37,7 +37,7 @@ using namespace std;
 class HoI4Building
 {
 	public:
-		HoI4Building(int _stateID, double _xCoordinate, double _zCoordinate);
+		explicit HoI4Building(int _stateID, double _xCoordinate, double _zCoordinate);
 
 		friend ostream& operator << (ostream& out, const HoI4Building& building);
 
@@ -77,7 +77,7 @@ class HoI4NavalBase: public HoI4Building
 class HoI4Buildings
 {
 	public:
-		HoI4Buildings(const map<int, int>& provinceToStateIDMap);
+		explicit HoI4Buildings(const map<int, int>& provinceToStateIDMap);
 
 		void output() const;
 

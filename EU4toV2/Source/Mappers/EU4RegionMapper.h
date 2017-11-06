@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <map>
+#include <memory>
 #include <set>
 #include <string>
 #include <vector>
@@ -50,7 +51,7 @@ class EU4RegionMapper
 		static EU4RegionMapper* instance;
 		static EU4RegionMapper* getInstance()
 		{
-			if (instance == NULL)
+			if (instance == nullptr)
 			{
 				instance = new EU4RegionMapper;
 			}
@@ -58,11 +59,15 @@ class EU4RegionMapper
 		}
 
 		EU4RegionMapper();
-		void initEU4RegionMapOldVersion(Object *obj);
+
+		void attemptOldVersion();
+		void initEU4RegionMapOldVersion(shared_ptr<Object> obj);
 		void insertMapping(int provinceNumber, string regionName);
-		void makeWorkingAreaTxt();
-		void initEU4RegionMap(Object* areasObj, Object* regionsObj);
-		map<string, vector<int>> getAreaToProvincesMapping(Object* areasObj);
+
+		void doNewVersion();
+		void makeWorkingAreaTxt(const string& path);
+		void initEU4RegionMap(shared_ptr<Object> areasObj, shared_ptr<Object> regionsObj);
+		map<string, vector<int>> getAreaToProvincesMapping(shared_ptr<Object> areasObj);
 
 		bool ProvinceInRegion(int province, const string& region);
 		set<string> getRegions(int province);

@@ -76,9 +76,24 @@ class HoI4Localisation
 			getInstance()->CopyEventLocalisations(oldKey, newKey);
 		}
 
+		static void addEventLocalisation(const string& event, const string& localisation)
+		{
+			getInstance()->AddEventLocalisation(event, localisation);
+		}
+
+		static void addEventLocalisationFromVic2(const string& Vic2Key, const string& HoI4Key)
+		{
+			getInstance()->AddEventLocalisationFromVic2(Vic2Key, HoI4Key);
+		}
+
 		static void addIdeaLocalisation(const string& idea, const string& localisation)
 		{
 			getInstance()->AddIdeaLocalisation(idea, localisation);
+		}
+
+		static void addPoliticalPartyLocalisation(const string& Vic2Key, const string& HoI4Key)
+		{
+			getInstance()->AddPoliticalPartyLocalisation(Vic2Key, HoI4Key);
 		}
 
 		static void output()
@@ -131,7 +146,12 @@ class HoI4Localisation
 		void addNonenglishVPLocalisations();
 		void addDebugLocalisations(const pair<const int, HoI4State*>& state);
 
+		void AddEventLocalisation(const string& event, const string& localisation);
+		void AddEventLocalisationFromVic2(const string& Vic2Key, const string& HoI4Key);
+
 		void AddIdeaLocalisation(const string& idea, const string& localisation);
+
+		void AddPoliticalPartyLocalisation(const string& Vic2Key, const string& HoI4Key);
 
 		void Output() const;
 		void outputCountries(const string& localisationPath) const;
@@ -140,6 +160,7 @@ class HoI4Localisation
 		void outputVPLocalisations(const string& localisationPath) const;
 		void outputIdeaLocalisations(const string& localisationPath) const;
 		void outputEventLocalisations(const string& localisationPath) const;
+		void outputPoliticalPartyLocalisations(const string& localisationPath) const;
 		void outputLocalisations(const string& filenameStart, const languageToLocalisationsMap& localisations) const;
 
 		languageToLocalisationsMap stateLocalisations;
@@ -151,6 +172,7 @@ class HoI4Localisation
 		languageToLocalisationsMap genericIdeaLocalisations;
 		languageToLocalisationsMap originalEventLocalisations;
 		languageToLocalisationsMap newEventLocalisations;
+		languageToLocalisationsMap politicalPartyLocalisations;
 };
 
 

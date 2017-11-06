@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include "../HOI4World/HOI4Ideology.h"
 #include <memory>
 #include <set>
 #include <string>
@@ -70,9 +71,19 @@ class governmentMapper
 			return getInstance()->GetLeaderIdeologyForCountry(country, Vic2RulingIdeology);
 		}
 
-		static string getSupportedIdeology(const string& rulingIdeology, const string& Vic2Ideology)
+		static string getExistingIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies)
 		{
-			return getInstance()->GetSupportedIdeology(rulingIdeology, Vic2Ideology);
+			return getInstance()->GetExistingIdeologyForCountry(country, Vic2RulingIdeology, majorIdeologies, ideologies);
+		}
+
+		static string getExistingLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies)
+		{
+			return getInstance()->GetExistingLeaderIdeologyForCountry(country, Vic2RulingIdeology, majorIdeologies, ideologies);
+		}
+
+		static string getSupportedIdeology(const string& rulingIdeology, const string& Vic2Ideology, const set<string>& majorIdeologies)
+		{
+			return getInstance()->GetSupportedIdeology(rulingIdeology, Vic2Ideology, majorIdeologies);
 		}
 
 		static vector<governmentMapping> getGovernmentMappings()
@@ -99,9 +110,12 @@ class governmentMapper
 
 		string GetIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology) const;
 		string GetLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology) const;
-		string GetSupportedIdeology(const string& rulingIdeology, const string& Vic2Ideology) const;
+		string GetExistingIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies) const;
+		string GetExistingLeaderIdeologyForCountry(const V2Country* country, const string& Vic2RulingIdeology, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies) const;
+		string GetSupportedIdeology(const string& rulingIdeology, const string& Vic2Ideology, const set<string>& majorIdeologies) const;
 		bool governmentMatches(const governmentMapping& mapping, const string& government) const;
 		bool rulingIdeologyMatches(const governmentMapping& mapping, const string& rulingIdeology) const;
+		bool ideologyIsValid(const governmentMapping& mapping, const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies) const;
 
 		vector<governmentMapping> governmentMap;
 		vector<partyMapping> partyMap;

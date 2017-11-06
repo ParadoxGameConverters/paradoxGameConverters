@@ -98,6 +98,28 @@ ideas = {
 	# Special ones that can be applied on other countries through focus system.
 	country = {
 		# Generic Focus Ideas
+		limited_interventionism = {
+			
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+
+			picture = FRA_scw_intervention_nationalists_focus
+			
+			modifier = {
+				send_volunteers_tension = -0.20
+				lend_lease_tension = -0.20
+				
+			}
+		}
+		
 		liberty_ethos_focus = {
 						
 			allowed = {
@@ -266,7 +288,7 @@ ideas = {
 			
 			removal_cost = -1
 
-			picture = Hun_hungarian_monarchy_habsburg
+			picture = generic_intel_bonus
 	
 			modifier = {
 				drift_defence_factor = 0.2

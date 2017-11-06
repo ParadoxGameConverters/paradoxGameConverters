@@ -35,7 +35,7 @@ using namespace std;
 class V2Party
 {
 	public:
-		V2Party(shared_ptr<Object> party_obj);
+		explicit V2Party(shared_ptr<Object> party_obj);
 
 		string name;
 		string ideology;

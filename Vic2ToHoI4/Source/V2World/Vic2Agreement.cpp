@@ -22,39 +22,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Vic2Agreement.h"
-#include "Log.h"
 
 
 
 V2Agreement::V2Agreement(shared_ptr<Object> obj):
 	type(obj->getKey()),
-	country1(""),
-	country2(""),
-	start_date()
+	country1(obj->safeGetString("first")),
+	country2(obj->safeGetString("second")),
+	start_date(obj->safeGetString("start_date"))
 {
-	vector<shared_ptr<Object>> objFirst = obj->getValue("first");
-	if (objFirst.size() > 0)
-	{
-		country1 = objFirst[0]->getLeaf();
-	}
-	else
-	{
-		LOG(LogLevel::Warning) << "Diplomatic agreement (" << type << ") has no first party";
-	}
-
-	vector<shared_ptr<Object>> objSecond = obj->getValue("second");
-	if (objSecond.size() > 0)
-	{
-		country2 = objSecond[0]->getLeaf();
-	}
-	else
-	{
-		LOG(LogLevel::Warning) << "Diplomatic agreement (" << type << ") has no second party";
-	}
-
-	vector<shared_ptr<Object>> objDate = obj->getValue("start_date");
-	if (objDate.size() > 0)
-	{
-		start_date = date(objDate[0]->getLeaf());
-	}
 }

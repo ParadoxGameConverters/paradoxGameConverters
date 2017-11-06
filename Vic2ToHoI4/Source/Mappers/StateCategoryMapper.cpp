@@ -60,8 +60,7 @@ void stateCategoryMapper::readCategoriesFromFile(const string& file)
 	for (auto categoryObj: categoryObjs)
 	{
 		string category = categoryObj->getKey();
-		string slotsString = categoryObj->getLeaf("local_building_slots");
-		int slots = stoi(slotsString);
+		int slots = categoryObj->safeGetInt("local_building_slots");
 		stateCategories.insert(make_pair(slots, category));
 	}
 }

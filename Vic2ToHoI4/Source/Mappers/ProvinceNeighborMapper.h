@@ -74,7 +74,7 @@ class provinceNeighborMapper
 		Color getBelowColor(bitmap_image& provinces, point position, int height) const;
 		Color getLeftColor(bitmap_image& provinces, point position, int width) const;
 		Color getRightColor(bitmap_image& provinces, point position, int width) const;
-		void handleNeighbor(Color centerColor, Color otherColor, point position);
+		void handleNeighbor(Color centerColor, Color otherColor, const point& position);
 		void addNeighbor(int mainProvince, int neighborProvince);
 		void addPointToBorder(int mainProvince, int neighborProvince, point position);
 

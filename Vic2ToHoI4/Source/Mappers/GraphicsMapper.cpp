@@ -52,29 +52,20 @@ graphicsMapper::graphicsMapper():
 	{
 		string cultureGroup = cultureGroupObj->getKey();
 
-		auto leaderPortraitObjs = cultureGroupObj->getValue("leader_portraits");
-		if (leaderPortraitObjs.size() > 0)
+		auto leaderPortraitObjs = cultureGroupObj->safeGetObject("leader_portraits");
+		if (leaderPortraitObjs != nullptr)
 		{
-			loadLeaderPortraitMappings(cultureGroup, leaderPortraitObjs[0]);
+			loadLeaderPortraitMappings(cultureGroup, leaderPortraitObjs);
 		}
 
-		auto ideologyMinisterPortraitObjs = cultureGroupObj->getValue("ideology_minister_portraits");
-		if (leaderPortraitObjs.size() > 0)
+		auto ideologyMinisterPortraitObjs = cultureGroupObj->safeGetObject("ideology_minister_portraits");
+		if (ideologyMinisterPortraitObjs != nullptr)
 		{
-			loadIdeologyMinisterPortraitMappings(cultureGroup, ideologyMinisterPortraitObjs[0]);
+			loadIdeologyMinisterPortraitMappings(cultureGroup, ideologyMinisterPortraitObjs);
 		}
 
-		auto graphicalCultureObjs = cultureGroupObj->getValue("graphical_culture");
-		if (graphicalCultureObjs.size() > 0)
-		{
-			loadGraphicalCultureMappings(cultureGroup, graphicalCultureObjs[0]);
-		}
-
-		auto graphicalCulture2dObjs = cultureGroupObj->getValue("graphical_culture_2d");
-		if (graphicalCulture2dObjs.size() > 0)
-		{
-			loadGraphicalCulture2dMappings(cultureGroup, graphicalCulture2dObjs[0]);
-		}
+		graphicalCultureMap[cultureGroup] = cultureGroupObj->safeGetString("graphical_culture");
+		graphicalCulture2dMap[cultureGroup] = cultureGroupObj->safeGetString("graphical_culture_2d");
 	}
 }
 
@@ -136,18 +127,6 @@ void graphicsMapper::loadIdeologyMinisterPortraitMappings(const string& cultureG
 			ideologyMapping->second.push_back(portraitStr);
 		}
 	}
-}
-
-
-void graphicsMapper::loadGraphicalCultureMappings(const string& cultureGroup, shared_ptr<Object> graphicalCultureMappings)
-{
-	graphicalCultureMap[cultureGroup] = graphicalCultureMappings->getLeaf();
-}
-
-
-void graphicsMapper::loadGraphicalCulture2dMappings(const string& cultureGroup, shared_ptr<Object> graphicalCulture2dMappings)
-{
-	graphicalCulture2dMap[cultureGroup] = graphicalCulture2dMappings->getLeaf();
 }
 
 

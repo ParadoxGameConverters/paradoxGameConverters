@@ -38,6 +38,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4FocusTree.h"
 #include "HOI4Ideology.h"
 #include "HoI4Localisation.h"
+#include "HoI4OnActions.h"
 #include "HoI4Province.h"
 #include "HoI4State.h"
 #include "HoI4StrategicRegion.h"
@@ -67,6 +68,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld):
 	factions(),
 	diplomacy(new HoI4Diplomacy),
 	events(new HoI4Events),
+	onActions(new HoI4OnActions),
 	divisionTemplates(),
 	leaderTraits(),
 	portraitMap()
@@ -92,8 +94,11 @@ HoI4World::HoI4World(const V2World* _sourceWorld):
 	importIdeologicalIdeas();
 	identifyMajorIdeologies();
 	importIdeologicalMinisters();
+	convertGovernments();
 	events->createPoliticalEvents(majorIdeologies);
 	events->createWarJustificationEvents(majorIdeologies);
+	events->createElectionEvents(majorIdeologies, onActions);
+	addCountryElectionEvents();
 	addNeutrality();
 	convertIdeologySupport();
 	convertCapitalVPs();
@@ -200,7 +205,10 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 
 void HoI4World::importIdeologies()
 {
-	importIdeologyFile("converterIdeologies.txt");
+	if (Configuration::getIdeologiesOptions() != "keep_default")
+	{
+		importIdeologyFile("converterIdeologies.txt");
+	}
 	importIdeologyFile(Configuration::getHoI4Path() + "/common/ideologies/00_ideologies.txt");
 }
 
@@ -261,6 +269,15 @@ void HoI4World::importIdeologicalMinisters()
 }
 
 
+void HoI4World::convertGovernments()
+{
+	for (auto country: countries)
+	{
+		country.second->convertGovernment(*sourceWorld, majorIdeologies);
+	}
+}
+
+
 void HoI4World::importIdeologicalIdeas()
 {
 	shared_ptr<Object> fileObject = parser_UTF8::doParseFile("ideologicalIdeas.txt");
@@ -275,7 +292,7 @@ void HoI4World::importIdeologicalIdeas()
 
 void HoI4World::identifyMajorIdeologies()
 {
-	if (Configuration::getDropMinorIdeologies())
+	if (Configuration::getIdeologiesOptions() == "keep_major")
 	{
 		for (auto greatPower: greatPowers)
 		{
@@ -307,7 +324,7 @@ void HoI4World::addNeutrality()
 	{
 		if (majorIdeologies.count(country.second->getGovernmentIdeology()) == 0)
 		{
-			country.second->setGovernmentToNeutral();
+			country.second->setGovernmentToExistingIdeology(majorIdeologies, ideologies);
 		}
 	}
 }
@@ -499,7 +516,7 @@ void HoI4World::reportIndustryLevels()
 	LOG(LogLevel::Debug) << "\t" << civilialFactories << " civilian factories";
 	LOG(LogLevel::Debug) << "\t" << dockyards << " dockyards";
 
-	if (Configuration::getICStats())
+	if (Configuration::getDebug())
 	{
 		reportCountryIndustry();
 		reportDefaultIndustry();
@@ -556,33 +573,21 @@ pair<string, array<int, 3>> HoI4World::getDefaultStateIndustry(const string& sta
 		LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/history/states/" << stateFilename;
 		exit(-1);
 	}
-	auto stateObj = fileObj->getValue("state");
-	auto historyObj = stateObj[0]->getValue("history");
-	auto buildingsObj = historyObj[0]->getValue("buildings");
+	auto stateObj = fileObj->safeGetObject("state");
+	auto historyObj = stateObj->safeGetObject("history");
+	auto buildingsObj = historyObj->safeGetObject("buildings");
 
-	auto civilianFactoriesObj = buildingsObj[0]->getValue("industrial_complex");
 	int civilianFactories = 0;
-	if (civilianFactoriesObj.size() > 0)
-	{
-		civilianFactories = stoi(civilianFactoriesObj[0]->getLeaf());
-	}
-
-	auto militaryFactoriesObj = buildingsObj[0]->getValue("arms_factory");
 	int militaryFactories = 0;
-	if (militaryFactoriesObj.size() > 0)
-	{
-		militaryFactories = stoi(militaryFactoriesObj[0]->getLeaf());
-	}
-
-	auto dockyardsObj = buildingsObj[0]->getValue("dockyard");
 	int dockyards = 0;
-	if (dockyardsObj.size() > 0)
+	if (buildingsObj != nullptr)
 	{
-		dockyards = stoi(dockyardsObj[0]->getLeaf());
+		civilianFactories = buildingsObj->safeGetInt("industrial_complex");
+		militaryFactories = buildingsObj->safeGetInt("arms_factory");
+		dockyards = buildingsObj->safeGetInt("dockyard");
 	}
 
-	auto ownerObj = historyObj[0]->getValue("owner");
-	string owner = ownerObj[0]->getLeaf();
+	string owner = historyObj->safeGetString("owner");
 
 	array<int, 3> industry = { militaryFactories, civilianFactories, dockyards };
 	pair<string, array<int, 3>> stateData = make_pair(owner, industry);
@@ -640,11 +645,10 @@ map<int, map<string, double>> HoI4World::importResourceMap() const
 		exit(-1);
 	}
 
-	auto resourcesObj = fileObj->getValue("resources");
-	auto linksObj = resourcesObj[0]->getValue("link");
-	for (auto linkObj: linksObj)
+	auto resourcesObj = fileObj->safeGetObject("resources");
+	for (auto linkObj: resourcesObj->getValue("link"))
 	{
-		int provinceNumber = stoi(linkObj->getLeaf("province"));
+		int provinceNumber = linkObj->safeGetInt("province");
 		auto mapping = resourceMap.find(provinceNumber);
 		if (mapping == resourceMap.end())
 		{
@@ -653,13 +657,11 @@ map<int, map<string, double>> HoI4World::importResourceMap() const
 			mapping = resourceMap.find(provinceNumber);
 		}
 
-		auto resourcesObj = linkObj->getValue("resources");
-		auto actualResources = resourcesObj[0]->getLeaves();
-		for (auto resource : actualResources)
+		auto resourcesObj = linkObj->safeGetObject("resources");
+		for (auto resource: resourcesObj->getLeaves())
 		{
-			string	resourceName = resource->getKey();
-			double	amount = stof(resource->getLeaf());
-			mapping->second[resourceName] += amount;
+			string resourceName = resource->getKey();
+			mapping->second[resourceName] += stof(resource->getLeaf());
 		}
 	}
 
@@ -904,14 +906,14 @@ map<string, vector<pair<string, int>>> HoI4World::importTechMap() const
 
 	shared_ptr<Object> fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
 
-	vector<shared_ptr<Object>> mapObj = fileObj->getValue("tech_map");
-	if (mapObj.size() < 1)
+	auto mapObj = fileObj->safeGetObject("tech_map");
+	if (mapObj == nullptr)
 	{
 		LOG(LogLevel::Error) << "Could not read tech map";
 		exit(-1);
 	}
 
-	for (auto link: mapObj[0]->getValue("link"))
+	for (auto link: mapObj->getValue("link"))
 	{
 		vector<pair<string, int> > targetTechs;
 		string tech = "";
@@ -924,7 +926,7 @@ map<string, vector<pair<string, int>>> HoI4World::importTechMap() const
 			}
 			else
 			{
-				int value = stoi(link->getLeaf(key));
+				int value = link->safeGetInt(key);
 				targetTechs.push_back(pair<string, int>(key, value));
 			}
 		}
@@ -941,14 +943,14 @@ map<string, vector<pair<string, int>>> HoI4World::importResearchBonusMap() const
 
 	shared_ptr<Object> fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
 
-	vector<shared_ptr<Object>> mapObj = fileObj->getValue("bonus_map");
-	if (mapObj.size() < 1)
+	auto mapObj = fileObj->safeGetObject("bonus_map");
+	if (mapObj == nullptr)
 	{
 		LOG(LogLevel::Error) << "Could not read bonus map";
 		exit(-1);
 	}
 
-	for (auto link : mapObj[0]->getValue("link"))
+	for (auto link : mapObj->getValue("link"))
 	{
 		vector<pair<string, int> > targetTechs;
 		string tech = "";
@@ -961,7 +963,7 @@ map<string, vector<pair<string, int>>> HoI4World::importResearchBonusMap() const
 			}
 			else
 			{
-				int value = stoi(link->getLeaf(key));
+				int value = link->safeGetInt(key);
 				targetTechs.push_back(pair<string, int>(key, value));
 			}
 		}
@@ -1016,6 +1018,7 @@ map<string, HoI4UnitMap> HoI4World::importUnitMap() const
 	unitMap["regular"] = HoI4UnitMap("land","infantry","infantry_equipment_0",3);
 	unitMap["engineer"] = HoI4UnitMap("land", "infantry", "infantry_equipment_0", 3);
 	unitMap["guard"] = HoI4UnitMap("land", "infantry", "infantry_equipment_0", 3);
+	unitMap["specops"] = HoI4UnitMap("land", "infantry", "infantry_equipment_0", 3);
 
 	unitMap["artillery"] = HoI4UnitMap("land", "artillery_brigade", "artillery_equipment_1", 3);
 	unitMap["horse_artillery"] = HoI4UnitMap("land", "artillery_brigade", "artillery_equipment_1", 3);
@@ -1029,6 +1032,8 @@ map<string, HoI4UnitMap> HoI4World::importUnitMap() const
 	unitMap["tank"] = HoI4UnitMap("land", "light_armor", "gw_tank_equipment", 1);
 
 	unitMap["plane"] = HoI4UnitMap("air", "fighter", "fighter_equipment_0", 20);
+	unitMap["bomber"] = HoI4UnitMap("air", "tac_bomber", "tac_bomber_equipment_0", 20);
+	unitMap["transport_plane"] = HoI4UnitMap("air", "transport_plane", "transport_plane_equipment_0", 20);
 
 	unitMap["manowar"] = HoI4UnitMap();
 	unitMap["frigate"] = HoI4UnitMap();
@@ -1039,6 +1044,7 @@ map<string, HoI4UnitMap> HoI4World::importUnitMap() const
 	unitMap["battleship"] = HoI4UnitMap("naval", "heavy_cruiser", "heavy_cruiser_1", 1);
 	unitMap["dreadnought"] = HoI4UnitMap("naval", "battleship", "battleship_1", 1);
 	unitMap["submarine"] = HoI4UnitMap("naval", "submarine", "submarine", 1);
+	unitMap["carrier"] = HoI4UnitMap("naval", "carrier", "carrier", 1);
 	unitMap["clipper_transport"] = HoI4UnitMap();
 	unitMap["steam_transport"] = HoI4UnitMap("convoy", "convoy", "convoy_1", 1);
 	
@@ -1394,8 +1400,12 @@ void HoI4World::createFactions()
 {
 	LOG(LogLevel::Info) << "Creating Factions";
 
-	ofstream factionsLog("factions-logs.csv");
-	factionsLog << "name,government,initial strength,factory strength per year,factory strength by 1939\n";
+	ofstream factionsLog;
+	if (Configuration::getDebug())
+	{
+		factionsLog.open("factions-logs.csv");
+		factionsLog << "name,government,initial strength,factory strength per year,factory strength by 1939\n";
+	}
 
 	for (auto leader : greatPowers)
 	{
@@ -1403,13 +1413,19 @@ void HoI4World::createFactions()
 		{
 			continue;
 		}
-		factionsLog << "\n";
+		if (Configuration::getDebug())
+		{
+			factionsLog << "\n";
+		}
 
 		vector<HoI4Country*> factionMembers;
 		factionMembers.push_back(leader);
 
 		string leaderIdeology = leader->getGovernmentIdeology();
-		logFactionMember(factionsLog, leader);
+		if (Configuration::getDebug())
+		{
+			logFactionMember(factionsLog, leader);
+		}
 		double factionMilStrength = leader->getStrengthOverTime(3.0);
 
 		std::set<std::string> alliesAndPuppets = leader->getAllies();
@@ -1430,7 +1446,10 @@ void HoI4World::createFactions()
 
 			if ((sphereLeader == leader->getTag()) || ((sphereLeader == "") && governmentsAllowFaction(leaderIdeology, allygovernment)))
 			{
-				logFactionMember(factionsLog, allycountry);
+				if (Configuration::getDebug())
+				{
+					logFactionMember(factionsLog, allycountry);
+				}
 				factionMembers.push_back(allycountry);
 
 				factionMilStrength += allycountry->getStrengthOverTime(1.0);
@@ -1459,11 +1478,17 @@ void HoI4World::createFactions()
 			}
 			factions.push_back(newFaction);
 
-			factionsLog << "Faction Strength in 1939," << factionMilStrength << "\n";
+			if (Configuration::getDebug())
+			{
+				factionsLog << "Faction Strength in 1939," << factionMilStrength << "\n";
+			}
 		}
 	}
 
-	factionsLog.close();
+	if (Configuration::getDebug())
+	{
+		factionsLog.close();
+	}
 }
 
 
@@ -1525,6 +1550,14 @@ bool HoI4World::governmentsAllowFaction(const string& leaderIdeology, const stri
 }
 
 
+void HoI4World::addCountryElectionEvents()
+{
+	for (auto country: countries)
+	{
+		events->addPartyChoiceEvent(country.first, country.second->getParties(), onActions);
+	}
+}
+
 
 void HoI4World::output() const
 {
@@ -1549,6 +1582,7 @@ void HoI4World::output() const
 	outputCountries();
 	buildings->output();
 	events->output();
+	onActions->output();
 	outputIdeologies();
 	outputLeaderTraits();
 	outputIdeologicalIdeas();
@@ -1789,6 +1823,18 @@ void HoI4World::outputRelations() const
  	out << "private_channels_trade = {\n";
 	out << "\ttrade = yes\n";
 	out << "\tvalue = 15\n";
+	out << "}\n";
+	out << "absolutist_in_government = {\n";
+	out << "\tvalue = 30\n";
+	out << "}\n";
+	out << "communism_in_government = {\n";
+	out << "\tvalue = 30\n";
+	out << "}\n";
+	out << "fascism_in_government = {\n";
+	out << "\tvalue = 30\n";
+	out << "}\n";
+	out << "radical_in_government = {\n";
+	out << "\tvalue = 30\n";
 	out << "}\n";
 
 	out << "}\n";

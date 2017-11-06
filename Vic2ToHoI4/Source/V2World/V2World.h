@@ -26,7 +26,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "V2Inventions.h"
 #include "../Mappers/Mapper.h"
 #include "Object.h"
 #include <string>
@@ -43,7 +42,7 @@ class V2Party;
 class V2World
 {
 	public:
-		V2World(const string& filename);
+		explicit V2World(const string& filename);
 
 		const V2Province* getProvince(int provNum) const;
 		
@@ -57,6 +56,7 @@ class V2World
 		V2World& operator=(const V2World&) = delete;
 
 		void setLocalisations();
+		void handleMissingCountryCultures();
 
 		map<int, int> extractGreatNationIndices(const shared_ptr<Object> obj) const;
 
@@ -75,7 +75,7 @@ class V2World
 		void determineEmployedWorkers();
 		void removeEmptyNations();
 		void determinePartialStates();
-		void inputDiplomacy(const vector<shared_ptr<Object>>& diplomacyObj);
+		void inputDiplomacy(const shared_ptr<Object>& diplomacyObj);
 
 		void overallMergeNations();
 		void mergeNations(const string& masterTag, const vector<string>& slaveTags);

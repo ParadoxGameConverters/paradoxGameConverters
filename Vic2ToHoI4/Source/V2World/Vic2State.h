@@ -73,10 +73,8 @@ class Vic2State
 
 		void addProvinceNums(shared_ptr<Object> stateObj);
 		void setID();
-		vector<string> getProvinceIDs(shared_ptr<Object> stateObj) const;
 
 		void setFactoryLevel(shared_ptr<Object> stateObj);
-		void addBuildingLevel(shared_ptr<Object> buildingObj);
 
 		workerStruct countEmployedWorkers() const;
 		workerStruct limitWorkersByFactoryLevels(const workerStruct& workers) const;

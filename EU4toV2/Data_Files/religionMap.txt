@@ -106,4 +106,15 @@ link = { v2 = jewish_heresy eu4 = jewish_heresy }
 
 link = { v2 = noreligion eu4 = noreligion }
 
+#CK2Plus mod religions
+link = { v2 = orthodox eu4 = chalcedonian eu4 = apostolic eu4 = apostolic_heresy }
+link = { v2 = west_african_pagan_reformed eu4 = berber_pagan }
+link = { v2 = hellenic_pagan eu4 = jewish_pagan }
+link = { v2 = nestorian eu4 = nestorian_mod }
+link = { v2 = messalian eu4 = messalian_mod }
+link = { v2 = jewish_heresy eu4 = mandaean }
+link = { v2 = zoroastrian_heresy eu4 = zurvanist }
+link = { v2 = zun_pagan_reformed eu4 = egyptian_pagan eu4 = egyptian_pagan_heresy eu4 = arab_pagan }
+link = { v2 = norse_pagan_reformed eu4 = german_pagan_reformed eu4 = celtic_pagan_reformed }
+
 }

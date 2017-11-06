@@ -60,7 +60,8 @@ class HoI4Country
 
 		void initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states);
 		void initFromHistory();
-		void setGovernmentToNeutral();
+		void setGovernmentToExistingIdeology(const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies);
+		void convertGovernment(const V2World& _srcWorld, const set<string>& majorIdeologies);
 		void convertIdeologySupport(const set<string>& majorIdeologies);
 		void		convertNavy(const map<string, HoI4UnitMap>& unitMap);
 		void		convertConvoys(const map<string, HoI4UnitMap>& unitMap);
@@ -106,7 +107,7 @@ class HoI4Country
 		int											getCapitalStateNum() const { return capitalStateNum; }
 		const string									getSphereLeader() const { return sphereLeader; }
 		const V2Party* getRulingParty() const { return rulingParty; }
-		set<const V2Party*> getParties() const { return parties; }
+		set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> getParties() const { return parties; }
 		map<int, HoI4State*> getStates() const { return states; }
 		bool isInFaction() const { return faction != nullptr; }
 		bool isCivilized() const { return civilized; }
@@ -127,7 +128,6 @@ class HoI4Country
 		HoI4Country& operator=(const HoI4Country&) = delete;
 
 		void determineFilename();
-		void convertGovernment(const V2World& _srcWorld);
 		void initIdeas();
 		//void convertLaws();
 		//void convertLeaders(portraitMapping& portraitMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
@@ -173,8 +173,9 @@ class HoI4Country
 		string governmentIdeology;
 		string leaderIdeology;
 		const V2Party* rulingParty;
-		set<const V2Party*> parties;
+		set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> parties;
 		map<string, int> ideologySupport;
+		date lastElection;
 
 		const string						sphereLeader = "";
 		string								tag;

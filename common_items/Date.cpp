@@ -29,7 +29,10 @@ using namespace std;
 
 
 
-date::date(string _init)
+date::date(string _init):
+	year(1),
+	month(1),
+	day(1)
 {
 	if (_init.length() < 1)
 	{
@@ -78,13 +81,13 @@ date& date::operator=(const date& _rhs)
 
 date::date(const shared_ptr<Object> _init)
 {
-	vector<shared_ptr<Object>> dateSubObj = _init->getValue("year");	// the date within the larger object
-	if (dateSubObj.size() > 0)
+	auto dateSubObj = _init->safeGetObject("year");	// the date within the larger object
+	if (dateSubObj != nullptr)
 	{
 		// date specified by year=, month=, day=
-		year	= stoi(_init->getLeaf("year"));
-		month	= stoi(_init->getLeaf("month"));
-		day	= stoi(_init->getLeaf("day"));
+		year	= _init->safeGetInt("year");
+		month	= _init->safeGetInt("month");
+		day	= _init->safeGetInt("day");
 	}
 	else
 	{

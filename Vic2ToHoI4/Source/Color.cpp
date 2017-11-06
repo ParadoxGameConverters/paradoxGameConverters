@@ -42,13 +42,12 @@ Color::Color(const int r, const int g, const int b)
 Color::Color(shared_ptr<Object> colorObject)
 : initialized(false), c({ 0, 0, 0 })
 {
-	auto colorTokens = colorObject->getTokens();	// the colors held by the object
-	initialized = (colorTokens.size() >= 3);
+	initialized = (colorObject->numTokens() >= 3);
 	for (size_t i = 0; i < 3; ++i)
 	{
-		if (!colorTokens[i].empty())
+		if (!colorObject->getToken(i).empty())
 		{
-			c[i] = boost::lexical_cast<int>(colorTokens[i]);
+			c[i] = boost::lexical_cast<int>(colorObject->getToken(i));
 		}
 	}
 }

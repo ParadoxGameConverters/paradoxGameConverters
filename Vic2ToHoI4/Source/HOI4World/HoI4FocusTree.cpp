@@ -1392,24 +1392,18 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 
 	nextFreeColumn += 16;
 
+	int numCollectovistIdeologies = calculateNumCollectovistIdeologies(majorIdeologies);
+
 	newFocus = new HoI4Focus;
 	newFocus->id = "political_effort";
 	newFocus->icon = "GFX_goal_generic_demand_territory";
-	if (Configuration::getDropMinorIdeologies())
-	{
-		newFocus->xPos = nextFreeColumn + majorIdeologies.size() - 1;
-	}
-	else
-	{
-		newFocus->xPos = nextFreeColumn + 6;
-	}
+	newFocus->xPos = nextFreeColumn + numCollectovistIdeologies + 1;
 	newFocus->yPos = 0;
 	newFocus->cost = 10;
 	newFocus->availableIfCapitulated = true;
 	newFocus->completionReward += "			add_political_power = 120";
 	focuses.push_back(newFocus);
 
-	int numCollectovistIdeologies = calculateNumCollectovistIdeologies(majorIdeologies);
 	if (numCollectovistIdeologies > 0)
 	{
 		newFocus = new HoI4Focus;
@@ -1452,7 +1446,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 		determineMutualExclusions(majorIdeologies);
 
 		string ideolgicalFanaticsmPrereqs;
-		if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("fascist") > 0))
+		if (majorIdeologies.count("fascism") > 0)
 		{
 			addFascistGenericFocuses();
 			if (ideolgicalFanaticsmPrereqs.size() > 0)
@@ -1462,7 +1456,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 			ideolgicalFanaticsmPrereqs += "focus = paramilitarism";
 			nextFreeColumn += 2;
 		}
-		if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("communist") > 0))
+		if (majorIdeologies.count("communism") > 0)
 		{
 			addCommunistGenericFocuses();
 			if (ideolgicalFanaticsmPrereqs.size() > 0)
@@ -1472,7 +1466,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 			ideolgicalFanaticsmPrereqs += "focus = political_commissars";
 			nextFreeColumn += 2;
 		}
-		if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("absolutist") > 0))
+		if (majorIdeologies.count("absolutist") > 0)
 		{
 			addAbsolutistGenericFocuses();
 			if (ideolgicalFanaticsmPrereqs.size() > 0)
@@ -1482,7 +1476,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 			ideolgicalFanaticsmPrereqs += "focus = historical_claims_focus";
 			nextFreeColumn += 2;
 		}
-		if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("radical") > 0))
+		if (majorIdeologies.count("radical") > 0)
 		{
 			addRadicalGenericFocuses();
 			if (ideolgicalFanaticsmPrereqs.size() > 0)
@@ -1587,7 +1581,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 
 	nextFreeColumn += 2;
 
-	if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("democratic") != 0))
+	if (majorIdeologies.count("democratic") != 0)
 	{
 		newFocus = new HoI4Focus;
 		newFocus->id = "interventionism_focus";
@@ -1721,37 +1715,29 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 	newFocus->completionReward += "				}\n";
 	newFocus->completionReward += "			}";
 	focuses.push_back(newFocus);
-
 }
 
 
 int HoI4FocusTree::calculateNumCollectovistIdeologies(const set<string>& majorIdeologies)
 {
 	int numCollectovistIdeologies = 0;
-	if (Configuration::getDropMinorIdeologies())
-	{
-		numCollectovistIdeologies += majorIdeologies.count("radical");
-		numCollectovistIdeologies += majorIdeologies.count("absolutist");
-		numCollectovistIdeologies += majorIdeologies.count("communist");
-		numCollectovistIdeologies += majorIdeologies.count("fascist");
-	}
-	else
-	{
-		numCollectovistIdeologies = 4;
-	}
+	numCollectovistIdeologies += majorIdeologies.count("radical");
+	numCollectovistIdeologies += majorIdeologies.count("absolutist");
+	numCollectovistIdeologies += majorIdeologies.count("communism");
+	numCollectovistIdeologies += majorIdeologies.count("fascism");
 	return numCollectovistIdeologies;
 }
 
 
 void HoI4FocusTree::determineMutualExclusions(const set<string>& majorIdeologies)
 {
-	if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("fascist") > 0))
+	if (majorIdeologies.count("fascism") > 0)
 	{
 		communistMutualExclusions += "focus = nationalism_focus";
 		absolutistMutualExlusions += "focus = nationalism_focus";
 		radicalMutualExclusions += "focus = nationalism_focus";
 	}
-	if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("communist") > 0))
+	if (majorIdeologies.count("communism") > 0)
 	{
 		if (fascistMutualExlusions.size() > 0)
 		{
@@ -1769,7 +1755,7 @@ void HoI4FocusTree::determineMutualExclusions(const set<string>& majorIdeologies
 		absolutistMutualExlusions += "focus = internationalism_focus";
 		radicalMutualExclusions += "focus = internationalism_focus";
 	}
-	if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("absolutist") > 0))
+	if (majorIdeologies.count("absolutist") > 0)
 	{
 		if (fascistMutualExlusions.size() > 0)
 		{
@@ -1787,7 +1773,7 @@ void HoI4FocusTree::determineMutualExclusions(const set<string>& majorIdeologies
 		communistMutualExclusions += "focus = absolutism_focus";
 		radicalMutualExclusions += "focus = absolutism_focus";
 	}
-	if (!Configuration::getDropMinorIdeologies() || (majorIdeologies.count("radical") > 0))
+	if (majorIdeologies.count("radical") > 0)
 	{
 		if (fascistMutualExlusions.size() > 0)
 		{
@@ -1994,7 +1980,7 @@ void HoI4FocusTree::addAbsolutistGenericFocuses()
 	newFocus->prerequisites.push_back("focus = collectivist_ethos");
 	newFocus->mutuallyExclusive = absolutistMutualExlusions;
 	newFocus->available += "			OR = {\n";
-	newFocus->available += "				has_government = absolutism\n";
+	newFocus->available += "				has_government = absolutist\n";
 	newFocus->available += "				has_government = neutrality\n";
 	newFocus->available += "			}";
 	newFocus->xPos = nextFreeColumn;
@@ -2006,14 +1992,14 @@ void HoI4FocusTree::addAbsolutistGenericFocuses()
 	newFocus->aiWillDo += "				factor = 2\n";
 	newFocus->aiWillDo += "				any_neighbor_country = {\n";
 	newFocus->aiWillDo += "					is_major = yes\n";
-	newFocus->aiWillDo += "					has_government = absolutism\n";
+	newFocus->aiWillDo += "					has_government = absolutist\n";
 	newFocus->aiWillDo += "				}\n";
 	newFocus->aiWillDo += "			}\n";
 	newFocus->aiWillDo += "			modifier = {\n";
 	newFocus->aiWillDo += "				factor = 0\n";
 	newFocus->aiWillDo += "				AND = {\n";
 	newFocus->aiWillDo += "					is_historical_focus_on = yes\n";
-	newFocus->aiWillDo += "					NOT = { has_government = absolutism }\n";
+	newFocus->aiWillDo += "					NOT = { has_government = absolutist }\n";
 	newFocus->aiWillDo += "				}\n";
 	newFocus->aiWillDo += "			}";
 	newFocus->completionReward += "			add_ideas = absolutism";
@@ -2172,20 +2158,21 @@ void HoI4FocusTree::addDemocracyNationalFocuses(const HoI4Country* Home, const v
 	newFocus->yPos = 0;
 	newFocus->cost = 10;
 	newFocus->aiWillDo += "			factor = 10";
-	newFocus->completionReward += "			add_ideas = militarism_focus";
+	newFocus->completionReward += "			add_national_unity = 0.05";
 	focuses.push_back(newFocus);
 
 	//Prepare Intervention
 	newFocus = new HoI4Focus;
 	newFocus->id = "PrepInter" + Home->getTag();
 	newFocus->icon = "GFX_goal_generic_occupy_states_ongoing_war";
-	newFocus->text += "War Propaganda";
+	newFocus->text += "Prepare Intervention";
 	newFocus->prerequisites.push_back("focus = WarProp" + Home->getTag());
 	newFocus->available += "			threat > " + to_string(0.3 * WTModifier);
 	newFocus->xPos = nextFreeColumn;
 	newFocus->yPos = 1;
 	newFocus->cost = 10;
 	newFocus->aiWillDo += "			factor = 10";
+	newFocus->completionReward += "			add_political_power = 120";
 	newFocus->completionReward += "			set_rule = { can_send_volunteers = yes }";
 	focuses.push_back(newFocus);
 
@@ -2209,7 +2196,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(const HoI4Country* Home, const v
 	newFocus->yPos = 3;
 	newFocus->cost = 10;
 	newFocus->aiWillDo += "			factor = 10";
-	newFocus->completionReward += "			set_rule = { can_send_volunteers = yes }";
+	newFocus->completionReward += "			add_ideas = limited_interventionism";
 	focuses.push_back(newFocus);
 
 	nextFreeColumn += 2;
@@ -2320,7 +2307,7 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(const HoI4Country* Home, 
 	newFocus->aiWillDo += "				factor = 0\n";
 	newFocus->aiWillDo += "				date < 1937.6.6\n";
 	newFocus->aiWillDo += "			}";
-	newFocus->completionReward += "			add_national_unity = 0.1";
+	newFocus->completionReward += "			add_national_unity = 0.05";
 	focuses.push_back(newFocus);
 
 	//Colonies Focus
@@ -2679,6 +2666,7 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(const HoI4Country* Home, 
 	newFocus->completionReward += "						building = infrastructure\n";
 	newFocus->completionReward += "						size > 0\n";
 	newFocus->completionReward += "						include_locked = yes\n";
+	newFocus->completionReward += "						is_coastal = yes\n";
 	newFocus->completionReward += "					}\n";
 	newFocus->completionReward += "					OR = {\n";
 	newFocus->completionReward += "						is_in_home_area = no\n";
@@ -2715,7 +2703,12 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(const HoI4Country* Home, 
 	newFocus->yPos = 2;
 	newFocus->cost = 10;
 	newFocus->aiWillDo += "			factor = 10";
-	//newFocus->completionReward += "			research_time_factor = -0.1;
+	newFocus->completionReward += "			add_tech_bonus = {\n";
+	newFocus->completionReward += "				name = industrial_bonus\n";
+	newFocus->completionReward += "				bonus = 0.5\n";
+	newFocus->completionReward += "				uses = 1\n";
+	newFocus->completionReward += "				category = industry\n";
+	newFocus->completionReward += "			}";
 	focuses.push_back(newFocus);
 
 	//National Highway
@@ -3250,7 +3243,6 @@ void HoI4FocusTree::addFascistAnnexationBranch(const HoI4Country* Home, const ve
 			if (i < annexationTargets.size())
 			{
 				//int x = i * 3;
-				string annexername = Home->getSourceCountry()->getName("english");
 				string annexedname = annexationTargets[i]->getSourceCountry()->getName("english");
 				//for random date
 				int v1 = rand() % 5 + 1;
@@ -3328,7 +3320,6 @@ void HoI4FocusTree::addFascistSudetenBranch(const HoI4Country* Home, const vecto
 		{
 			if (i < sudetenTargets.size())
 			{
-				string annexername = Home->getSourceCountry()->getName("english");
 				string annexedname = sudetenTargets[i]->getSourceCountry()->getName("english");
 				int v1 = rand() % 8 + 1;
 				int v2 = rand() % 8 + 1;

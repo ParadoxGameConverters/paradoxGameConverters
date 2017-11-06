@@ -39,7 +39,7 @@ class HoI4Faction
 {
 
 	public:
-		HoI4Faction(const HoI4Country* leader, vector<HoI4Country*> members): Factionleader(leader), Factionmembers(members) {}
+		HoI4Faction(const HoI4Country* leader, const vector<HoI4Country*>& members): Factionleader(leader), Factionmembers(members) {}
 
 		const HoI4Country* getLeader() const { return Factionleader; }
 		vector<HoI4Country*> getMembers() const { return Factionmembers; }

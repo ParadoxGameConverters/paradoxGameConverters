@@ -48,7 +48,7 @@ enum class LogLevel
 class Log
 {
 	public:
-		Log(LogLevel);
+		explicit Log(LogLevel);
 		~Log();
 
 		template<class T>

@@ -1,4 +1,4 @@
-# Copyright (c) 2014 The Paradox Game Converters Project
+# Copyright (c) 2017 The Paradox Game Converters Project
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -3254,10 +3254,57 @@ link = { name = "fatimids" title = "d_fatimid" region = "e_arabia" }
 link = { name = "almohads" title = "d_almohad" region = "e_arabia" }
 link = { name = "almoravids" title = "d_almoravid" region = "e_arabia" }
 
+#Main countries that exist in Vic2 but not in vanilla EU4 or CK2
+link = { name = "texas" title = "TEX" region = "e_mexikha" }
+link = { name = "belgium" title = "BEL" region = "e_france" }
+link = { name = "belgique" title = "BEL" region = "e_france" }
+link = { name = "bélgica" title = "BEL" region = "e_france" }
+link = { name = "belgien" title = "BEL" region = "e_france" }
+link = { name = "uruguay" title = "URU" region = "e_mexikha" }
+link = { name = "bolivia" title = "BOL" region = "e_mexikha" }
+link = { name = "bolivie" title = "BOL" region = "e_mexikha" }
+link = { name = "bolivien" title = "BOL" region = "e_mexikha" }
+link = { name = "ecuador" title = "ECU" region = "e_mexikha" }
+link = { name = "Équateur" title = "ECU" region = "e_mexikha" }
+link = { name = "south africa" title = "SAF" region = "e_mexikha" }
+link = { name = "afrique du sud" title = "SAF" region = "e_mexikha" }
+link = { name = "sudáfrica" title = "SAF" region = "e_mexikha" }
+link = { name = "südafrica" title = "SAF" region = "e_mexikha" }
+link = { name = "philippines" title = "PHI" region = "e_mexikha" }
+link = { name = "filipinas" title = "PHI" region = "e_mexikha" }
+link = { name = "philippinen" title = "PHI" region = "e_mexikha" }
+link = { name = "new zealand" title = "NZL" region = "e_mexikha" }
+link = { name = "nouvelle-zélande" title = "NZL" region = "e_mexikha" }
+link = { name = "nueva zelanda" title = "NZL" region = "e_mexikha" }
+link = { name = "neuseeland" title = "NZL" region = "e_mexikha" }
+link = { name = "yugoslavia" title = "YUG" region = "e_byzantium" }
+link = { name = "yougoslavie" title = "YUG" region = "e_byzantium" }
+link = { name = "jugoslawien" title = "YUG" region = "e_byzantium" }
+link = { name = "belarus" title = "BYE" region = "e_russia" }
+link = { name = "byelorussia" title = "BYE" region = "e_russia" }
+link = { name = "biélorussie" title = "BYE" region = "e_russia" }
+link = { name = "bielorrusia" title = "BYE" region = "e_russia" }
+link = { name = "weißrussland" title = "BYE" region = "e_russia" }
+link = { name = "two sicilies" title = "SI2" region = "e_italy" }
+link = { name = "deux-siciles" title = "SI2" region = "e_italy" }
+link = { name = "dos sicilias" title = "SI2" region = "e_italy" }
+link = { name = "beider sizilien" title = "SI2" region = "e_italy" }
+link = { name = "austria-hungary" title = "KUK" region = "e_carpathia" }
+link = { name = "autriche-hongrie" title = "KUK" region = "e_carpathia" }
+link = { name = "austria-hungría" title = "KUK" region = "e_carpathia" }
+link = { name = "Österreich-ungarn" title = "KUK" region = "e_carpathia" }
+link = { name = "czechoslovakia" title = "CZH" region = "e_carpathia" }
+link = { name = "tchécoslovaquie" title = "CZH" region = "e_carpathia" }
+link = { name = "checoslovaquia" title = "CZH" region = "e_carpathia" }
+link = { name = "tschechoslowakei" title = "CZH" region = "e_carpathia" }
+
 #EU4 minors
 link = { name = "dithmarschen" title = "DTT" region = "e_mexikha" }
 link = { name = "dongola" title = "ABB" region = "e_arabia" }
 link = { name = "hadiya" title = "HDY" region = "e_mexikha" }
+															  
+															 
+															  
 link = { name = "janjiro" title = "JJI" region = "e_mexikha" }
 link = { name = "welayta" title = "WLY" region = "e_mexikha" }
 link = { name = "trapalandia" title = "TRL" region = "e_mexikha" }

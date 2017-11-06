@@ -38,7 +38,7 @@ class Object;
 class V2Pop
 {
 	public:
-		V2Pop(shared_ptr<Object> obj);
+		explicit V2Pop(shared_ptr<Object> obj);
 
 		int getSize() const { return size; }
 		string getType() const { return type; }

@@ -42,7 +42,7 @@ class HoI4FocusTree
 {
 	public:
 		HoI4FocusTree();
-		HoI4FocusTree(const HoI4Country* country);
+		explicit HoI4FocusTree(const HoI4Country* country);
 
 		HoI4FocusTree* makeCustomizedCopy(const HoI4Country* country) const;
 		void setNextFreeColumn(int newFreeColumn) { nextFreeColumn = newFreeColumn; };

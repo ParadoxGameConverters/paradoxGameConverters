@@ -67,9 +67,9 @@ void HoI4SupplyZones::importStates()
 			LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/history/states/" << stateFile;
 			exit(-1);
 		}
-		auto stateObj = fileObj->getValue("state");
-		auto provincesObj = stateObj[0]->getValue("provinces");
-		auto tokens = provincesObj[0]->getTokens();
+		auto stateObj = fileObj->safeGetObject("state");
+		auto provincesObj = stateObj->safeGetObject("provinces");
+		auto tokens = provincesObj->getTokens();
 		vector<int> provinces;
 		for (auto provinceNumString: tokens)
 		{
@@ -92,21 +92,21 @@ void HoI4SupplyZones::importSupplyZone(const string& supplyZonesFile)
 		LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/map/supplyareas/" << supplyZonesFile;
 		exit(-1);
 	}
-	auto supplyAreaObj = fileObj->getValue("supply_area");
-	int ID = stoi(supplyAreaObj[0]->getLeaf("id"));
-	int value = stoi(supplyAreaObj[0]->getLeaf("value"));
+
+	auto supplyAreaObj = fileObj->safeGetObject("supply_area");
+	int ID = supplyAreaObj->safeGetInt("id");
+	int value = supplyAreaObj->safeGetInt("value");
 
 	HoI4SupplyZone* newSupplyZone = new HoI4SupplyZone(ID, value);
 	supplyZones.insert(make_pair(ID, newSupplyZone));
 
-	mapProvincesToSupplyZone(ID, supplyAreaObj[0]);
+	mapProvincesToSupplyZone(ID, supplyAreaObj);
 }
 
 
 void HoI4SupplyZones::mapProvincesToSupplyZone(int ID, shared_ptr<Object> supplyAreaObj)
 {
-	auto statesObj = supplyAreaObj->getValue("states");
-	for (auto idString: statesObj[0]->getTokens())
+	for (auto idString: supplyAreaObj->safeGetTokens("states"))
 	{
 		auto mapping = defaultStateToProvinceMap.find(stoi(idString));
 		for (auto province : mapping->second)

@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -34,7 +34,7 @@ ideaEffectMapper* ideaEffectMapper::instance = nullptr;
 ideaEffectMapper::ideaEffectMapper()
 {
 	LOG(LogLevel::Info) << "Getting idea effects";
-	Object* ideaObj = parser_UTF8::doParseFile("idea_effects.txt");
+	shared_ptr<Object> ideaObj = parser_UTF8::doParseFile("idea_effects.txt");
 	if (ideaObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file idea_effects.txt";
@@ -45,9 +45,9 @@ ideaEffectMapper::ideaEffectMapper()
 }
 
 
-void ideaEffectMapper::initIdeaEffects(Object* obj)
+void ideaEffectMapper::initIdeaEffects(shared_ptr<Object> obj)
 {
-	vector<Object*> ideasObj = obj->getLeaves();
+	vector<shared_ptr<Object>> ideasObj = obj->getLeaves();
 	for (auto ideasItr: obj->getLeaves())
 	{
 		string idea = ideasItr->getKey();
@@ -58,67 +58,67 @@ void ideaEffectMapper::initIdeaEffects(Object* obj)
 
 			if (effectType == "army_investment")
 			{
-				armyInvestmentIdeas[idea] = stoi(effectsItr[0].getLeaf());
+				armyInvestmentIdeas[idea] = stoi(effectsItr->getLeaf());
 			}
 			else if (effectType == "commerce_investment")
 			{
-				commerceInvestmentIdeas[idea] = stoi(effectsItr[0].getLeaf());
+				commerceInvestmentIdeas[idea] = stoi(effectsItr->getLeaf());
 			}
 			else if (effectType == "culture_investment")
 			{
-				cultureInvestmentIdeas[idea] = stoi(effectsItr[0].getLeaf());
+				cultureInvestmentIdeas[idea] = stoi(effectsItr->getLeaf());
 			}
 			else if (effectType == "industry_investment")
 			{
-				industryInvestmentIdeas[idea] = stoi(effectsItr[0].getLeaf());
+				industryInvestmentIdeas[idea] = stoi(effectsItr->getLeaf());
 			}
 			else if (effectType == "navy_investment")
 			{
-				navyInvestmentIdeas[idea] = stoi(effectsItr[0].getLeaf());
+				navyInvestmentIdeas[idea] = stoi(effectsItr->getLeaf());
 			}
 			else if (effectType == "army_tech_score")
 			{
-				armyTechIdeas[idea] = stof(effectsItr[0].getLeaf());
+				armyTechIdeas[idea] = stof(effectsItr->getLeaf());
 			}
 			else if (effectType == "commerce_tech_score")
 			{
-				commerceTechIdeas[idea] = stof(effectsItr[0].getLeaf());
+				commerceTechIdeas[idea] = stof(effectsItr->getLeaf());
 			}
 			else if (effectType == "culture_tech_score")
 			{
-				cultureTechIdeas[idea] = stof(effectsItr[0].getLeaf());
+				cultureTechIdeas[idea] = stof(effectsItr->getLeaf());
 			}
 			else if (effectType == "industry_tech_score")
 			{
-				industryTechIdeas[idea] = stof(effectsItr[0].getLeaf());
+				industryTechIdeas[idea] = stof(effectsItr->getLeaf());
 			}
 			else if (effectType == "navy_tech_score")
 			{
-				navyTechIdeas[idea] = stof(effectsItr[0].getLeaf());
+				navyTechIdeas[idea] = stof(effectsItr->getLeaf());
 			}
 			else if (effectType == "upper_house_liberal")
 			{
-				UHLiberalIdeas[idea] = stof(effectsItr[0].getLeaf());
+				UHLiberalIdeas[idea] = stof(effectsItr->getLeaf());
 			}
 			else if (effectType == "upper_house_reactionary")
 			{
-				UHReactionaryIdeas[idea] = stof(effectsItr[0].getLeaf());
+				UHReactionaryIdeas[idea] = stof(effectsItr->getLeaf());
 			}
 			else if (effectType == "NV_order")
 			{
-				orderIdeas[idea] = stoi(effectsItr[0].getLeaf());
+				orderIdeas[idea] = stoi(effectsItr->getLeaf());
 			}
 			else if (effectType == "NV_liberty")
 			{
-				libertyIdeas[idea] = stoi(effectsItr[0].getLeaf());
+				libertyIdeas[idea] = stoi(effectsItr->getLeaf());
 			}
 			else if (effectType == "NV_equality")
 			{
-				equalityIdeas[idea] = stoi(effectsItr[0].getLeaf());
+				equalityIdeas[idea] = stoi(effectsItr->getLeaf());
 			}
 			else if (effectType == "literacy")
 			{
-				vector<string> literacyStrs = effectsItr[0].getTokens();
+				vector<string> literacyStrs = effectsItr->getTokens();
 				for (auto literacyStr: literacyStrs)
 				{
 					literacyIdeas[idea].push_back(stoi(literacyStr));

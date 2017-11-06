@@ -42,8 +42,10 @@ class Object;
 class HoI4Ideology
 {
 	public:
-		HoI4Ideology(shared_ptr<Object> obj);
+		explicit HoI4Ideology(shared_ptr<Object> obj);
 		void output(ofstream& file) const;
+
+		vector<string> getTypes() const { return types; }
 
 	private:
 		HoI4Ideology(const HoI4Ideology&) = delete;

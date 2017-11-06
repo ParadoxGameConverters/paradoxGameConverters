@@ -28,20 +28,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 V2Pop::V2Pop(shared_ptr<Object> obj):
-	size(0),
+	size(obj->safeGetInt("size")),
 	type(obj->getKey()),
 	culture(obj->getLeaves()[2]->getKey()),
-	literacy(0.0)
+	literacy(obj->safeGetFloat("literacy"))
 {
-	vector<shared_ptr<Object>> childObj = obj->getValue("size");
-	if (childObj.size() > 0)
-	{
-		size = stoi(childObj[0]->getLeaf());
-	}
-
-	childObj = obj->getValue("literacy");
-	if (childObj.size() > 0)
-	{
-		literacy = stoi(childObj[0]->getLeaf());
-	}
 }

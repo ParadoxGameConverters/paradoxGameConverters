@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4Event.h"
+#include <functional>
 #include <set>
 #include <string>
 using namespace std;
@@ -34,6 +35,8 @@ using namespace std;
 
 
 class HoI4Country;
+class HoI4OnActions;
+class V2Party;
 
 
 
@@ -49,6 +52,8 @@ class HoI4Events
 		void createTradeEvent(const HoI4Country* leader, const HoI4Country* GC);
 		void createPoliticalEvents(const set<string>& majorIdeologies);
 		void createWarJustificationEvents(const set<string>& majorIdeologies);
+		void createElectionEvents(const set<string>& majorIdeologies, HoI4OnActions* onActions);
+		void addPartyChoiceEvent(string countryTag, set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> parties, HoI4OnActions* onActions);
 
 		int getCurrentNationFocusEventNum() const { return nationalFocusEventNumber; }
 
@@ -61,6 +66,7 @@ class HoI4Events
 		void outputNewsEvents() const;
 		void outputPoliticalEvents() const;
 		void outputWarJustificationEvents() const;
+		void outputElectionEvents() const;
 
 		void addMinisterRevolutionEvents(const set<string>& majorIdeologies);
 		void addDemocraticMinisterRevolutionEvents(const set<string>& majorIdeologies);
@@ -69,6 +75,13 @@ class HoI4Events
 		void addSuppressedEvents(const set<string>& majorIdeologies);
 		string getIdeologicalPicture(const string& ideology) const;
 
+		void addIdeologyInGovernmentEvents(const set<string>& majorIdeologies, HoI4OnActions* onActions);
+		void addIdeologyInfluenceForeignPolicyEvents(const set<string>& majorIdeologies);
+		void addDemocraticPartiesInMinorityEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions);
+		void addIdeologicalMajorityEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions);
+		void addWartimeExceptionEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions);
+		void addGovernmentContestedEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions);
+
 		vector<HoI4Event> newsEvents;
 		int newsEventNumber;
 		vector<HoI4Event> nationalFocusEvents;
@@ -76,6 +89,8 @@ class HoI4Events
 		vector<HoI4Event> politicalEvents;
 		int politicalEventNumber;
 		vector<HoI4Event> warJustificationEvents;
+		vector<HoI4Event> electionEvents;
+		int electionEventNumber;
 };
 
 

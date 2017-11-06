@@ -54,7 +54,8 @@ HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, const string& _owne
 	resources(),
 	victoryPointPosition(0),
 	victoryPointValue(0),
-	debugVictoryPoints()
+	debugVictoryPoints(),
+	secondaryDebugVictoryPoints()
 {}
 
 
@@ -88,17 +89,20 @@ void HoI4State::output(const string& _filename) const
 	out << "\t\towner = " << ownerTag << "\n";
 	if ((victoryPointValue > 0) && (victoryPointPosition != 0))
 	{
-		out << "\t\tvictory_points = { " << victoryPointPosition << " " << victoryPointValue << " }\n";
 		if (Configuration::getDebug())
 		{
 			for (auto VP: debugVictoryPoints)
 			{
-				if (VP == victoryPointPosition)
-				{
-					continue;
-				}
+				out << "\t\tvictory_points = { " << VP << " 10 }\n";
+			}
+			for (auto VP: secondaryDebugVictoryPoints)
+			{
 				out << "\t\tvictory_points = { " << VP << " 1 }\n";
 			}
+		}
+		else
+		{
+			out << "\t\tvictory_points = { " << victoryPointPosition << " " << victoryPointValue << " }\n";
 		}
 	}
 	out << "\t\tbuildings = {\n";
@@ -307,11 +311,15 @@ void HoI4State::addDebugVPs()
 	{
 		auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(sourceProvinceNum);
 		if (
-			(provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end()) &&
-			(isProvinceInState(provMapping->second[0]))
+				(provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end()) &&
+				(isProvinceInState(provMapping->second[0]))
 			)
 		{
 			debugVictoryPoints.insert(provMapping->second[0]);
+		}
+		for (unsigned int i = 1; i < provMapping->second.size(); i++)
+		{
+			secondaryDebugVictoryPoints.insert(provMapping->second[i]);
 		}
 	}
 }

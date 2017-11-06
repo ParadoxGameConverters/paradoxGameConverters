@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -34,16 +34,26 @@ using namespace std;
 
 
 
-EU4RegionMapper* EU4RegionMapper::instance = NULL;
+EU4RegionMapper* EU4RegionMapper::instance = nullptr;
 
 
 
 EU4RegionMapper::EU4RegionMapper()
 {
 	LOG(LogLevel::Info) << "Parsing EU4 regions";
+	attemptOldVersion();
 
-	Object* regionsObj = parser_UTF8::doParseFile((Configuration::getEU4Path() + "/map/region.txt").c_str());
-	if (regionsObj == NULL)
+	if (EU4RegionsMap.empty()) // if it failed, we're using the new regions format
+	{
+		doNewVersion();
+	}
+}
+
+
+void EU4RegionMapper::attemptOldVersion()
+{
+	shared_ptr<Object> regionsObj = parser_UTF8::doParseFile((Configuration::getEU4Path() + "/map/region.txt").c_str());
+	if (regionsObj == nullptr)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getEU4Path() << "/map/region.txt";
 		exit(-1);
@@ -61,7 +71,7 @@ EU4RegionMapper::EU4RegionMapper()
 		if (Utils::DoesFileExist(modRegionFile))
 		{
 			regionsObj = parser_UTF8::doParseFile(modRegionFile.c_str());
-			if (regionsObj == NULL)
+			if (regionsObj == nullptr)
 			{
 				LOG(LogLevel::Error) << "Could not parse file " << modRegionFile;
 				exit(-1);
@@ -69,68 +79,14 @@ EU4RegionMapper::EU4RegionMapper()
 			initEU4RegionMapOldVersion(regionsObj);
 		}
 	}
-
-	if (EU4RegionsMap.empty()) // if it failed, we're using the new regions format
-	{
-		makeWorkingAreaTxt();
-		Object* areaObj = parser_UTF8::doParseFile("area.txt");
-
-		if (areaObj == NULL)
-		{
-			LOG(LogLevel::Error) << "Could not parse file " << Configuration::getEU4Path() << "/map/area.txt";
-			exit(-1);
-		}
-		if (areaObj->getLeaves().size() < 1)
-		{
-			LOG(LogLevel::Error) << "Failed to parse area.txt";
-			exit (-1);
-		}
-		initEU4RegionMap(regionsObj, areaObj);
-		for (auto itr: Configuration::getEU4Mods())
-		{
-			string modAreaFile(itr + "/map/area.txt");
-			if (Utils::DoesFileExist(modAreaFile))
-			{
-				areaObj = parser_UTF8::doParseFile(modAreaFile.c_str());
-				if (areaObj == NULL)
-				{
-					LOG(LogLevel::Error) << "Could not parse file " << modAreaFile;
-					exit(-1);
-				}
-				initEU4RegionMap(regionsObj, areaObj);
-			}
-		}
-	}
 }
 
 
-void EU4RegionMapper::makeWorkingAreaTxt()
-{
-	ifstream original(Configuration::getEU4Path() + "/map/area.txt");
-	ofstream copy("area.txt");
-
-	char buffer[256];
-	while(!original.eof())
-	{
-		original.getline(buffer, sizeof(buffer));
-		string line(buffer);
-
-		if (line.find("color =") == string::npos)
-		{
-			copy << line << "\n";
-		}
-	}
-
-	original.close();
-	copy.close();
-}
-
-
-void EU4RegionMapper::initEU4RegionMapOldVersion(Object *obj)
+void EU4RegionMapper::initEU4RegionMapOldVersion(shared_ptr<Object> obj)
 {
 	EU4RegionsMap.clear();
 
-	vector<Object*> regionsObjs = obj->getLeaves();
+	vector<shared_ptr<Object>> regionsObjs = obj->getLeaves();
 	for (auto regionObj: regionsObjs)
 	{
 		string regionName = regionObj->getKey();
@@ -160,16 +116,97 @@ void EU4RegionMapper::insertMapping(int provinceNumber, string regionName)
 }
 
 
-void EU4RegionMapper::initEU4RegionMap(Object* regionsObj, Object* areasObj)
+void EU4RegionMapper::doNewVersion()
+{
+	makeWorkingAreaTxt(Configuration::getEU4Path());
+	shared_ptr<Object> areaObj = parser_UTF8::doParseFile("area.txt");
+	if (areaObj == nullptr)
+	{
+		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getEU4Path() << "/map/area.txt";
+		exit(-1);
+	}
+	if (areaObj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse area.txt";
+		exit (-1);
+	}
+
+	shared_ptr<Object> regionsObj = parser_UTF8::doParseFile((Configuration::getEU4Path() + "/map/region.txt").c_str());
+	if (regionsObj == nullptr)
+	{
+		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getEU4Path() << "/map/region.txt";
+		exit(-1);
+	}
+	if (regionsObj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse region.txt";
+		exit (-1);
+	}
+	initEU4RegionMap(regionsObj, areaObj);
+
+	for (auto itr: Configuration::getEU4Mods())
+	{
+		if (!Utils::DoesFileExist(itr + "/map/area.txt") && !Utils::DoesFileExist(itr + "/map/region.txt"))
+		{
+			continue;
+		}
+
+		makeWorkingAreaTxt(itr);
+		shared_ptr<Object> areaObj = parser_UTF8::doParseFile("area.txt");
+		if (areaObj == nullptr)
+		{
+			LOG(LogLevel::Error) << "Could not parse file " << Configuration::getEU4Path() << "/map/area.txt";
+			exit(-1);
+		}
+		if (areaObj->getLeaves().size() < 1)
+		{
+			LOG(LogLevel::Error) << "Failed to parse area.txt";
+			exit (-1);
+		}
+
+		regionsObj = parser_UTF8::doParseFile(itr + "/map/region.txt");
+		if (regionsObj == nullptr)
+		{
+			LOG(LogLevel::Error) << "Could not parse file " << itr << "/map/region.txt";
+			exit(-1);
+		}
+		initEU4RegionMap(regionsObj, areaObj);
+	}
+}
+
+
+void EU4RegionMapper::makeWorkingAreaTxt(const string& path)
+{
+	ifstream original(path + "/map/area.txt");
+	ofstream copy("area.txt");
+
+	char buffer[256];
+	while (!original.eof())
+	{
+		original.getline(buffer, sizeof(buffer));
+		string line(buffer);
+
+		if (line.find("color =") == string::npos)
+		{
+			copy << line << "\n";
+		}
+	}
+
+	original.close();
+	copy.close();
+}
+
+
+void EU4RegionMapper::initEU4RegionMap(shared_ptr<Object> regionsObj, shared_ptr<Object> areasObj)
 {
 	auto areaToProvincesMapping = getAreaToProvincesMapping(areasObj);
 
 	EU4RegionsMap.clear();
-	vector<Object*> regionObjs = regionsObj->getLeaves();
+	vector<shared_ptr<Object>> regionObjs = regionsObj->getLeaves();
 	for (auto regionObj: regionObjs)
 	{
 		string regionName = regionObj->getKey();
-		vector<Object*> areasObj = regionObj->getValue("areas");
+		vector<shared_ptr<Object>> areasObj = regionObj->getValue("areas");
 		if (areasObj.size() > 0)
 		{
 			vector<string> areas = areasObj[0]->getTokens();
@@ -187,7 +224,7 @@ void EU4RegionMapper::initEU4RegionMap(Object* regionsObj, Object* areasObj)
 }
 
 
-map<string, vector<int>> EU4RegionMapper::getAreaToProvincesMapping(Object* areasObj)
+map<string, vector<int>> EU4RegionMapper::getAreaToProvincesMapping(shared_ptr<Object> areasObj)
 {
 	map<string, vector<int>> areaToProvincesMapping;
 

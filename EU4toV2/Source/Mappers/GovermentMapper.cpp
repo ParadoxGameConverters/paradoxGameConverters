@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -38,7 +38,7 @@ governmentMapper::governmentMapper()
 {
 	LOG(LogLevel::Info) << "Parsing governments mappings";
 
-	Object* governmentMapObj = parser_UTF8::doParseFile("governmentMapping.txt");
+	shared_ptr<Object> governmentMapObj = parser_UTF8::doParseFile("governmentMapping.txt");
 	if (governmentMapObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file governmentMapping.txt";
@@ -49,7 +49,7 @@ governmentMapper::governmentMapper()
 }
 
 
-void governmentMapper::initGovernmentMap(Object* obj)
+void governmentMapper::initGovernmentMap(shared_ptr<Object> obj)
 {
 	for (auto rule: obj->getLeaves())
 	{
@@ -58,7 +58,7 @@ void governmentMapper::initGovernmentMap(Object* obj)
 }
 
 
-void governmentMapper::processRule(Object* rule)
+void governmentMapper::processRule(shared_ptr<Object> rule)
 {
 	string dstGovernment;
 	vector<string> sourceGovernments;

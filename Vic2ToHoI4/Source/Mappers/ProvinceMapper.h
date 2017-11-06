@@ -75,7 +75,6 @@ class provinceMapper
 		void initProvinceMap(shared_ptr<Object> parsedMappingsFile);
 		vector<shared_ptr<Object>> getCorrectMappingVersion(const vector<shared_ptr<Object>>& versions);
 		void processMappings(const vector<shared_ptr<Object>>& mappings);
-		vector<int> getHoI4ProvinceNums(int v2ProvinceNum) const;
 		void insertIntoHoI4ToVic2ProvinceMap(const vector<int>& Vic2Nums, const vector<int>& HoI4nums);
 		void insertIntoVic2ToHoI4ProvinceMap(const vector<int>& Vic2Nums, const vector<int>& HoI4nums);
 
