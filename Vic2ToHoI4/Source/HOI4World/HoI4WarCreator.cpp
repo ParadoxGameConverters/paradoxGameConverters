@@ -57,7 +57,7 @@ HoI4WarCreator::HoI4WarCreator(const HoI4World* world):
 
 	set<const HoI4Faction*> factionsAtWar;
 	LOG(LogLevel::Info) << "Generating major wars";
-	generateMajorWars(AILog, factionsAtWar);
+	generateMajorWars(AILog, factionsAtWar, world);
 	LOG(LogLevel::Info) << "Generating additional wars";
 	generateAdditionalWars(AILog, factionsAtWar, worldStrength);
 

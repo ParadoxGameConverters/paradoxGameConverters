@@ -435,7 +435,7 @@ void HoI4Events::createSudetenEvent(const HoI4Country* Annexer, const HoI4Countr
 	acceptedEvent.triggeredOnly = true;
 
 	string acceptedOption = "name = \"A stronger Union!\"\n";
-	for (int i = 0; i <= 1 && i < claimedStates.size(); i++)
+	for (unsigned int i = 0; i <= 1 && i < claimedStates.size(); i++)
 	{
 		acceptedOption += "		" + to_string(claimedStates[i]) + " = { add_core_of = " + Annexer->getTag() + " }\n";
 		acceptedOption += "		" + Annexer->getTag() + " = { transfer_state =  " + to_string(claimedStates[i]) + " }\n";
