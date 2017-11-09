@@ -28,7 +28,7 @@ script:
   # Run your build commands next
   - cd Vic2ToHoI4
   - cmake -H. -Bbuild
-  - cmake --build ./build -- -j3
+  - cmake --build /home/travis/build/Idhrendur/paradoxGameConverters/Vic2ToHoI4/build -- -j3
   - cd ../EU4toV2
   - cmake -H. -Bbuild
   - cmake --build ./build -- -j3
