@@ -13,6 +13,7 @@ addons:
       - g++-6
       - cmake
       - cmake-data
+		- libboost1.55-all-dev
 before_install:
   - mkdir $HOME/usr
   - export PATH="$HOME/usr/bin:$PATH"
@@ -28,7 +29,9 @@ script:
   # Run your build commands next
   - cd Vic2ToHoI4
   - cmake -H. -Bbuild
-  - cmake --build ./build --clean-first
+  - ls
+  - ls build
+  - cmake --build ./build
   - cd ../EU4toV2
   - cmake -H. -Bbuild
   - cmake --build ./build -- -j3
