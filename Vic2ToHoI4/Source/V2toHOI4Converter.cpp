@@ -21,6 +21,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include <algorithm>
 #include <fstream>
 #include <stdexcept>
 #include "Configuration.h"

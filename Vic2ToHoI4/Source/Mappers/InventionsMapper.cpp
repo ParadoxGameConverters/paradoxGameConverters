@@ -24,7 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "InventionsMapper.h"
 #include "Log.h"
 #include "../Configuration.h"
-#include "OSCompatibilitylayer.h"
+#include "OSCompatibilityLayer.h"
 #include "ParadoxParser8859_15.h"
 
 
