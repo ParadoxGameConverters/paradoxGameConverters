@@ -134,8 +134,7 @@ Configuration::Configuration():
 
 	ideologiesOptions = obj->safeGetString("ideologies", "keep_major");
 
-	auto debugObjs = obj->safeGetObject("debug");
-	if (debugObjs != nullptr)
+	if (obj->safeGetString("debug") == "yes")
 	{
 		debug = true;
 	}

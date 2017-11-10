@@ -128,6 +128,25 @@
 							</entryOption>
 						</entryOptions>
 					</preference>
+					<preference>
+						<name>debug</name>
+						<friendlyName>Debug?</friendlyName>
+						<description>Whether or not to output a debug mod</description>
+						<entryOptions>
+							<entryOption>
+								<name>no</name>
+								<friendlyName>No</friendlyName>
+								<description>Output a normal mod</description>
+								<isDefault>true</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>yes</name>
+								<friendlyName>Yes</friendlyName>
+								<description>Output a debug mod</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+						</entryOptions>
+					</preference>
 				</preferences>
 			</category>
 		</categories>
