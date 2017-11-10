@@ -13,7 +13,7 @@ addons:
       - g++-6
       - cmake
       - cmake-data
-		- libboost1.55-all-dev
+      - libboost1.55-all-dev
 before_install:
   - mkdir $HOME/usr
   - export PATH="$HOME/usr/bin:$PATH"
