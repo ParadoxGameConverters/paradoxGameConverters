@@ -410,7 +410,7 @@ void V2World::readCountryColor(shared_ptr<Object> countryData, const string& lin
 	{
 		if (countries.find(tag) != countries.end())
 		{
-			countries[tag]->setColor(Color(stoi(rgb[0]), stoi(rgb[1]), stoi(rgb[2])));
+			countries[tag]->setColor(ConverterColor::Color(stoi(rgb[0]), stoi(rgb[1]), stoi(rgb[2])));
 		}
 	}
 }

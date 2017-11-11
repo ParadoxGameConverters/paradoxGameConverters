@@ -58,7 +58,7 @@ HoI4Ideology::HoI4Ideology(shared_ptr<Object> obj):
 	auto colorsObj = obj->safeGetObject("color");
 	if (colorsObj != nullptr)
 	{
-		theColor = new Color(colorsObj);
+		theColor = new ConverterColor::Color(colorsObj);
 	}
 
 	auto rulesObj = obj->safeGetObject("rules");

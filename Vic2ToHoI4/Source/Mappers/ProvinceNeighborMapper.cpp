@@ -52,11 +52,11 @@ provinceNeighborMapper::provinceNeighborMapper():
 		{
 			point position = { x, y };
 
-			Color centerColor = getCenterColor(provinces, position);
-			Color aboveColor = getAboveColor(provinces, position, height);
-			Color belowColor = getBelowColor(provinces, position, height);
-			Color leftColor = getLeftColor(provinces, position, width);
-			Color rightColor = getRightColor(provinces, position, width);
+			ConverterColor::Color centerColor = getCenterColor(provinces, position);
+			ConverterColor::Color aboveColor = getAboveColor(provinces, position, height);
+			ConverterColor::Color belowColor = getBelowColor(provinces, position, height);
+			ConverterColor::Color leftColor = getLeftColor(provinces, position, width);
+			ConverterColor::Color rightColor = getRightColor(provinces, position, width);
 
 			position.second = height - position.second - 1;
 			if (centerColor != aboveColor)
@@ -80,17 +80,17 @@ provinceNeighborMapper::provinceNeighborMapper():
 }
 
 
-Color provinceNeighborMapper::getCenterColor(bitmap_image& provinces, point position) const
+ConverterColor::Color provinceNeighborMapper::getCenterColor(bitmap_image& provinces, point position) const
 {
 	rgb_t color;
 	provinces.get_pixel(position.first, position.second, color);
 
-	Color theColor(color.red, color.green, color.blue);
+	ConverterColor::Color theColor(ConverterColor::red(color.red), ConverterColor::green(color.green), ConverterColor::blue(color.blue));
 	return theColor;
 }
 
 
-Color provinceNeighborMapper::getAboveColor(bitmap_image& provinces, point position, int height) const
+ConverterColor::Color provinceNeighborMapper::getAboveColor(bitmap_image& provinces, point position, int height) const
 {
 	if (position.second > 0)
 	{
@@ -100,12 +100,12 @@ Color provinceNeighborMapper::getAboveColor(bitmap_image& provinces, point posit
 	rgb_t color;
 	provinces.get_pixel(position.first, position.second, color);
 
-	Color theColor(color.red, color.green, color.blue);
+	ConverterColor::Color theColor(color.red, color.green, color.blue);
 	return theColor;
 }
 
 
-Color provinceNeighborMapper::getBelowColor(bitmap_image& provinces, point position, int height) const
+ConverterColor::Color provinceNeighborMapper::getBelowColor(bitmap_image& provinces, point position, int height) const
 {
 	if (position.second < height - 1)
 	{
@@ -115,12 +115,12 @@ Color provinceNeighborMapper::getBelowColor(bitmap_image& provinces, point posit
 	rgb_t color;
 	provinces.get_pixel(position.first, position.second, color);
 
-	Color theColor(color.red, color.green, color.blue);
+	ConverterColor::Color theColor(color.red, color.green, color.blue);
 	return theColor;
 }
 
 
-Color provinceNeighborMapper::getLeftColor(bitmap_image& provinces, point position, int width) const
+ConverterColor::Color provinceNeighborMapper::getLeftColor(bitmap_image& provinces, point position, int width) const
 {
 	if (position.first > 0)
 	{
@@ -134,12 +134,12 @@ Color provinceNeighborMapper::getLeftColor(bitmap_image& provinces, point positi
 	rgb_t color;
 	provinces.get_pixel(position.first, position.second, color);
 
-	Color theColor(color.red, color.green, color.blue);
+	ConverterColor::Color theColor(color.red, color.green, color.blue);
 	return theColor;
 }
 
 
-Color provinceNeighborMapper::getRightColor(bitmap_image& provinces, point position, int width) const
+ConverterColor::Color provinceNeighborMapper::getRightColor(bitmap_image& provinces, point position, int width) const
 {
 	if (position.first < width - 1)
 	{
@@ -153,12 +153,12 @@ Color provinceNeighborMapper::getRightColor(bitmap_image& provinces, point posit
 	rgb_t color;
 	provinces.get_pixel(position.first, position.second, color);
 
-	Color theColor(color.red, color.green, color.blue);
+	ConverterColor::Color theColor(color.red, color.green, color.blue);
 	return theColor;
 }
 
 
-void provinceNeighborMapper::handleNeighbor(Color centerColor, Color otherColor, const point& position)
+void provinceNeighborMapper::handleNeighbor(ConverterColor::Color centerColor, ConverterColor::Color otherColor, const point& position)
 {
 	int centerProvince = provinceDefinitions::getProvinceFromColor(centerColor);
 	int otherProvince = provinceDefinitions::getProvinceFromColor(otherColor);

@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <random>
 #include <boost/lexical_cast.hpp>
 #include "Object.h"
+using namespace ConverterColor;
 
 
 
@@ -34,8 +35,8 @@ Color::Color()
 {}
 
 
-Color::Color(const int r, const int g, const int b)
-: initialized(true), c({ r, g, b })
+Color::Color(const red r, const green g, const blue b)
+: initialized(true), c({ r.Red, g.Green, b.Blue })
 {}
 
 
@@ -75,18 +76,18 @@ void Color::RandomlyFlunctuate(const int stdDev)
 }
 
 
-ostream& operator<<(ostream& out, const Color& color)
+ostream& ConverterColor::operator<<(ostream& out, const Color& color)
 {
 	out << color.c[0] << ' ' << color.c[1] << ' ' << color.c[2];
 	return out;
 }
 
 
-void Color::GetRGB(int& r, int& g, int& b) const
+void Color::GetRGB(red& r, green& g, blue& b) const
 {
-	r = c[0];
-	g = c[1];
-	b = c[2];
+	r.Red = c[0];
+	g.Green = c[1];
+	b.Blue = c[2];
 }
 
 

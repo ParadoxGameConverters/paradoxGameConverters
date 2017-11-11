@@ -187,7 +187,7 @@ class HoI4Country
 		map<string, int>					technologies;
 		map<string, int>					researchBonuses;
 		map<string, HoI4Relations*>	relations;
-		Color									color;
+		ConverterColor::Color color;
 		double								nationalUnity;
 		const HoI4Faction*						faction;
 		bool									factionLeader;

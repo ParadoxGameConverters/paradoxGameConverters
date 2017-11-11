@@ -54,7 +54,7 @@ class V2Country
 		explicit V2Country(shared_ptr<Object> obj);
 
 		void addProvince(const pair<const int, V2Province*>& province) { provinces.insert(province); }
-		void setColor(const Color& newColor) { color = newColor; }
+		void setColor(const ConverterColor::Color& newColor) { color = newColor; }
 		void setAsGreatNation() { greatNation = true; }
 		void addCore(V2Province* core) { cores.push_back(core); }
 		void replaceCores(vector<V2Province*> newCores) { cores.swap(newCores); }
@@ -78,7 +78,7 @@ class V2Country
 		date getLastElection() const { return lastElection; }
 		int getCapital() const { return capital; }
 		set<string> getTechs() const { return techs; }
-		const Color& getColor() const { return color; }
+		const ConverterColor::Color& getColor() const { return color; }
 		double getEducationSpending() const { return educationSpending; }
 		double getMilitarySpending() const { return militarySpending; }
 		vector<const V2Army*> getArmies() const { return armies; }
@@ -129,7 +129,7 @@ class V2Country
 		string selectLargestCulture(const map<string, int>& cultureSizes);
 
 		string tag;
-		Color color;
+		ConverterColor::Color color;
 
 		vector<Vic2State*> states;
 		map<int, V2Province*> provinces;

@@ -69,12 +69,12 @@ class provinceNeighborMapper
 		provinceNeighborMapper(const provinceNeighborMapper&) = delete;
 		provinceNeighborMapper& operator=(const provinceNeighborMapper&) = delete;
 
-		Color getCenterColor(bitmap_image& provinces, point position) const;
-		Color getAboveColor(bitmap_image& provinces, point position, int height) const;
-		Color getBelowColor(bitmap_image& provinces, point position, int height) const;
-		Color getLeftColor(bitmap_image& provinces, point position, int width) const;
-		Color getRightColor(bitmap_image& provinces, point position, int width) const;
-		void handleNeighbor(Color centerColor, Color otherColor, const point& position);
+		ConverterColor::Color getCenterColor(bitmap_image& provinces, point position) const;
+		ConverterColor::Color getAboveColor(bitmap_image& provinces, point position, int height) const;
+		ConverterColor::Color getBelowColor(bitmap_image& provinces, point position, int height) const;
+		ConverterColor::Color getLeftColor(bitmap_image& provinces, point position, int width) const;
+		ConverterColor::Color getRightColor(bitmap_image& provinces, point position, int width) const;
+		void handleNeighbor(ConverterColor::Color centerColor, ConverterColor::Color otherColor, const point& position);
 		void addNeighbor(int mainProvince, int neighborProvince);
 		void addPointToBorder(int mainProvince, int neighborProvince, point position);
 
