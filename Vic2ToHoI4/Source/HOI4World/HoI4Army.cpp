@@ -256,32 +256,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 //}
 //
 //
-//static string CardinalToOrdinal(int cardinal)
-//{
-//	int hundredRem	= cardinal % 100;
-//	int tenRem		= cardinal % 10;
-//	if (hundredRem - tenRem == 10)
-//	{
-//		return "th";
-//	}
-//
-//	switch (tenRem)
-//	{
-//		case 1:
-//			return "st";
-//			break;
-//		case 2:
-//			return "nd";
-//			break;
-//		case 3:
-//			return "rd";
-//			break;
-//		default:
-//			return "th";
-//	}
-//}
-//
-//
 //void HoI4RegGroup::createHQs(HoI4RegimentType hqType)
 //{
 //	if (command_level > division)
