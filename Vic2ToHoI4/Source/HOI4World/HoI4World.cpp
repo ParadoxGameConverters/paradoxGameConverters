@@ -205,7 +205,7 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 
 void HoI4World::importIdeologies()
 {
-	if (Configuration::getIdeologiesOptions() != "keep_default")
+	if (Configuration::getIdeologiesOptions() != ideologyOptions::keep_default)
 	{
 		importIdeologyFile("converterIdeologies.txt");
 	}
@@ -292,7 +292,7 @@ void HoI4World::importIdeologicalIdeas()
 
 void HoI4World::identifyMajorIdeologies()
 {
-	if (Configuration::getIdeologiesOptions() == "keep_major")
+	if (Configuration::getIdeologiesOptions() == ideologyOptions::keep_major)
 	{
 		for (auto greatPower: greatPowers)
 		{

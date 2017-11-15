@@ -33,6 +33,15 @@ using namespace std;
 
 
 
+enum class ideologyOptions
+{
+	keep_major,
+	keep_all,
+	keep_default
+};
+
+
+
 class Configuration // Singleton
 {
 	public:
@@ -109,7 +118,7 @@ class Configuration // Singleton
 			return getInstance()->version;
 		}
 
-		static string getIdeologiesOptions()
+		static ideologyOptions getIdeologiesOptions()
 		{
 			return getInstance()->ideologiesOptions;
 		}
@@ -151,7 +160,7 @@ class Configuration // Singleton
 		double industrialShapeFactor;
 		double			icFactor;
 
-		string ideologiesOptions;
+		ideologyOptions ideologiesOptions;
 
 		bool debug;
 		bool removeCores;

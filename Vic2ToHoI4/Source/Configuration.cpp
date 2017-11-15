@@ -46,7 +46,7 @@ Configuration::Configuration():
 	manpowerFactor(0.0),
 	industrialShapeFactor(0.0),
 	icFactor(0.0),
-	ideologiesOptions("keep_major"),
+	ideologiesOptions(ideologyOptions::keep_major),
 	debug(false),
 	removeCores(true),
 	leaderID(1000),
@@ -132,7 +132,19 @@ Configuration::Configuration():
 		version = HOI4Version("1.4.2");
 	}
 
-	ideologiesOptions = obj->safeGetString("ideologies", "keep_major");
+	string ideologyOptiongsString = obj->safeGetString("ideologies", "keep_major");
+	if (ideologyOptiongsString == "keep_default")
+	{
+		ideologiesOptions = ideologyOptions::keep_default;
+	}
+	else if (ideologyOptiongsString == "keep_all")
+	{
+		ideologiesOptions = ideologyOptions::keep_all;
+	}
+	else // (ideologyOptiongsString == "keep_major")
+	{
+		ideologiesOptions = ideologyOptions::keep_major;
+	}
 
 	if (obj->safeGetString("debug") == "yes")
 	{
