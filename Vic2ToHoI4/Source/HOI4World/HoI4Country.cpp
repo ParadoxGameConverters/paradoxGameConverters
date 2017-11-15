@@ -151,7 +151,7 @@ void HoI4Country::determineFilename()
 }
 
 
-void HoI4Country::convertGovernment(const V2World& sourceWorld, const set<string>& majorIdeologies)
+void HoI4Country::convertGovernment(const V2World& sourceWorld)
 {
 	rulingParty = srcCountry->getRulingParty(sourceWorld.getParties());
 	if (rulingParty == nullptr)
@@ -169,7 +169,11 @@ void HoI4Country::convertGovernment(const V2World& sourceWorld, const set<string
 		string trimmedName = party->name.substr(4, party->name.size());
 		HoI4Localisation::addPoliticalPartyLocalisation(party->name, tag + "_" + trimmedName + "_party");
 	}
+}
 
+
+void HoI4Country::convertParties(const set<string>& majorIdeologies)
+{
 	for (auto HoI4Ideology: majorIdeologies)
 	{
 		for (auto party: parties)
