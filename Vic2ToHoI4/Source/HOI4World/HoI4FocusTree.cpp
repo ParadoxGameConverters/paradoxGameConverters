@@ -1856,13 +1856,6 @@ void HoI4FocusTree::addFascistGenericFocuses()
 	newFocus->completionReward += "					ideology = fascism\n";
 	newFocus->completionReward += "					popularity = 0.2\n";
 	newFocus->completionReward += "				}\n";
-	newFocus->completionReward += "			}\n";
-	newFocus->completionReward += "			if = {\n";
-	newFocus->completionReward += "				limit = { has_government = communism }\n";
-	newFocus->completionReward += "				add_popularity = {\n";
-	newFocus->completionReward += "					ideology = communism\n";
-	newFocus->completionReward += "					popularity = 0.2\n";
-	newFocus->completionReward += "				}\n";
 	newFocus->completionReward += "			}";
 	focuses.push_back(newFocus);
 
@@ -1950,13 +1943,6 @@ void HoI4FocusTree::addCommunistGenericFocuses()
 	newFocus->cost = 10;
 	newFocus->availableIfCapitulated = true;
 	newFocus->completionReward += "			add_ideas = political_commissars_focus\n";
-	newFocus->completionReward += "			if = {\n";
-	newFocus->completionReward += "				limit = { has_government = fascism }\n";
-	newFocus->completionReward += "				add_popularity = {\n";
-	newFocus->completionReward += "					ideology = fascism\n";
-	newFocus->completionReward += "					popularity = 0.2\n";
-	newFocus->completionReward += "				}\n";
-	newFocus->completionReward += "			}\n";
 	newFocus->completionReward += "			if = {\n";
 	newFocus->completionReward += "				limit = { has_government = communism }\n";
 	newFocus->completionReward += "				add_popularity = {\n";
