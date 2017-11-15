@@ -1636,7 +1636,7 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 	}
 	else
 	{
-		newFocus->prerequisites.push_back("focus = foreign_expeditions focus = deterrence");
+		newFocus->prerequisites.push_back("focus = deterrence");
 	}
 	newFocus->available += "			OR = {\n";
 	newFocus->available += "				threat > 0.75\n";

@@ -53,7 +53,7 @@ class HoI4Events
 		void createPoliticalEvents(const set<string>& majorIdeologies);
 		void createWarJustificationEvents(const set<string>& majorIdeologies);
 		void createElectionEvents(const set<string>& majorIdeologies, HoI4OnActions* onActions);
-		void addPartyChoiceEvent(const string& countryTag, set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> parties, HoI4OnActions* onActions);
+		void addPartyChoiceEvent(const string& countryTag, set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> parties, HoI4OnActions* onActions, const set<string>& majorIdeologies);
 
 		int getCurrentNationFocusEventNum() const { return nationalFocusEventNumber; }
 

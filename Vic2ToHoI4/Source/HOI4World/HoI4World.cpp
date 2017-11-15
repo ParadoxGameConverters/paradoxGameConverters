@@ -98,7 +98,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld):
 	events->createPoliticalEvents(majorIdeologies);
 	events->createWarJustificationEvents(majorIdeologies);
 	events->createElectionEvents(majorIdeologies, onActions);
-	addCountryElectionEvents();
+	addCountryElectionEvents(majorIdeologies);
 	addNeutrality();
 	convertIdeologySupport();
 	convertCapitalVPs();
@@ -1550,11 +1550,11 @@ bool HoI4World::governmentsAllowFaction(const string& leaderIdeology, const stri
 }
 
 
-void HoI4World::addCountryElectionEvents()
+void HoI4World::addCountryElectionEvents(const set<string>& majorIdeologies)
 {
 	for (auto country: countries)
 	{
-		events->addPartyChoiceEvent(country.first, country.second->getParties(), onActions);
+		events->addPartyChoiceEvent(country.first, country.second->getParties(), onActions, majorIdeologies);
 	}
 }
 

@@ -1591,7 +1591,7 @@ void HoI4Events::addGovernmentContestedEvent(const set<string>& majorIdeologies,
 }
 
 
-void HoI4Events::addPartyChoiceEvent(const string& countryTag, set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> parties, HoI4OnActions* onActions)
+void HoI4Events::addPartyChoiceEvent(const string& countryTag, set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> parties, HoI4OnActions* onActions, const set<string>& majorIdeologies)
 {
 	HoI4Event partyChoiceEvent;
 
@@ -1604,7 +1604,17 @@ void HoI4Events::addPartyChoiceEvent(const string& countryTag, set<const V2Party
 	partyChoiceEvent.picture = "GFX_report_event_usa_election_generic";
 	partyChoiceEvent.triggeredOnly = true;
 	partyChoiceEvent.trigger = "tag = " + countryTag + "\n";
-	partyChoiceEvent.trigger += "		democratic > 0.5";
+	if (majorIdeologies.count("democratic") > 0)
+	{
+		partyChoiceEvent.trigger += "		OR = {";
+		partyChoiceEvent.trigger += "			democratic > 0.5";
+		partyChoiceEvent.trigger += "			neutrality > 0.5";
+		partyChoiceEvent.trigger += "		}";
+	}
+	else
+	{
+		partyChoiceEvent.trigger += "		neutrality > 0.5";
+	}
 
 	char optionLetter = 'a';
 	for (auto party: parties)
@@ -1615,7 +1625,14 @@ void HoI4Events::addPartyChoiceEvent(const string& countryTag, set<const V2Party
 
 			string optionName = "election." + to_string(electionEventNumber) + optionLetter;
 			string option = "name = " + optionName + "\n";
-			option += "		set_party_name = { ideology = democratic long_name = " + countryTag + "_" + trimmedName + "_party " + "name = " + countryTag + "_" + trimmedName + "_party }\n";
+			if (majorIdeologies.count("democratic") > 0)
+			{
+				option += "		set_party_name = { ideology = democratic long_name = " + countryTag + "_" + trimmedName + "_party " + "name = " + countryTag + "_" + trimmedName + "_party }\n";
+			}
+			else
+			{
+				option += "		set_party_name = { ideology = neutrality long_name = " + countryTag + "_" + trimmedName + "_party " + "name = " + countryTag + "_" + trimmedName + "_party }\n";
+			}
 			option += "		retire_country_leader = yes";
 			partyChoiceEvent.options.push_back(option);
 			HoI4Localisation::addEventLocalisationFromVic2(party->name, optionName);
