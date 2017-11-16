@@ -104,6 +104,8 @@ government_mappings = {
 	mapping = { vic = bourgeois_dictatorship hoi_gov = neutrality hoi_leader = oligarchism }
 	mapping = { vic = fascist_dictatorship hoi_gov = fascism hoi_leader = fascism_ideology }
 	mapping = { vic = absolute_monarchy hoi_gov = neutrality hoi_leader = despotism }
+	## From HPM
+	mapping = { vic = theocracy hoi_gov = neutrality hoi_leader = despotism }
 }
 
 party_mappings = {
