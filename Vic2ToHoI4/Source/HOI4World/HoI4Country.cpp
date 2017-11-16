@@ -1250,14 +1250,17 @@ void HoI4Country::outputNamesSet(ofstream& namesFile, const vector<string>& name
 
 void HoI4Country::output(const set<const HoI4Advisor*, advisorCompare>& ideologicalMinisters, const vector<HoI4DivisionTemplateType>& divisionTemplates) const
 {
-	outputHistory();
-	outputOOB(divisionTemplates);
-	outputCommonCountryFile();
-	outputIdeas(ideologicalMinisters);
-
-	if (nationalFocus != nullptr)
+	if (capitalStateNum != 0)
 	{
-		nationalFocus->output("output/" + Configuration::getOutputName() + "/common/national_focus/" + srcCountry->getTag() + "_NF.txt");
+		outputHistory();
+		outputOOB(divisionTemplates);
+		outputCommonCountryFile();
+		outputIdeas(ideologicalMinisters);
+
+		if (nationalFocus != nullptr)
+		{
+			nationalFocus->output("output/" + Configuration::getOutputName() + "/common/national_focus/" + srcCountry->getTag() + "_NF.txt");
+		}
 	}
 }
 
