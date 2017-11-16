@@ -1079,45 +1079,61 @@ void HoI4Events::addSuppressedEvents(const set<string>& majorIdeologies)
 		politicalEventNumber++;
 	}
 
-	HoI4Event removeNeutral;
-	removeNeutral.type = "country_event";
-	removeNeutral.id = "conv.political." + to_string(politicalEventNumber);
-	removeNeutral.title = "conv.political." + to_string(politicalEventNumber) + ".t";
-	HoI4Localisation::copyEventLocalisations("abandon_neutral.t", removeNeutral.title);
+	int numRelevantIdeologies = 0;
 	for (auto ideology: majorIdeologies)
 	{
 		if ((ideology == "democratic") || (ideology == "neutrality"))
 		{
 			continue;
 		}
-		removeNeutral.description += "	desc = {\n";
-		removeNeutral.description += "		text = political." + to_string(politicalEventNumber) + ".d_" + ideology + "\n";
-		removeNeutral.description += "		trigger = { has_government = " + ideology + " }\n";
-		removeNeutral.description += "	}\n";
-		HoI4Localisation::copyEventLocalisations("abandon_neutral.d_" + ideology, "conv.political." + to_string(politicalEventNumber) + "_" + ideology);
+		numRelevantIdeologies++;
 	}
-	if (removeNeutral.description.size() > 0)
+	if (numRelevantIdeologies > 0)
 	{
-		removeNeutral.description = removeNeutral.description.substr(8, removeNeutral.description.size() - 9);
+		HoI4Event removeNeutral;
+		removeNeutral.type = "country_event";
+		removeNeutral.id = "conv.political." + to_string(politicalEventNumber);
+		removeNeutral.title = "conv.political." + to_string(politicalEventNumber) + ".t";
+		HoI4Localisation::copyEventLocalisations("abandon_neutral.t", removeNeutral.title);
+		for (auto ideology: majorIdeologies)
+		{
+			if ((ideology == "democratic") || (ideology == "neutrality"))
+			{
+				continue;
+			}
+			removeNeutral.description += "	desc = {\n";
+			removeNeutral.description += "		text = political." + to_string(politicalEventNumber) + ".d_" + ideology + "\n";
+			removeNeutral.description += "		trigger = { has_government = " + ideology + " }\n";
+			removeNeutral.description += "	}\n";
+			HoI4Localisation::copyEventLocalisations("abandon_neutral.d_" + ideology, "conv.political." + to_string(politicalEventNumber) + "_" + ideology);
+		}
+		if (removeNeutral.description.size() > 0)
+		{
+			removeNeutral.description = removeNeutral.description.substr(8, removeNeutral.description.size() - 9);
+		}
+		removeNeutral.picture = "GFX_report_event_journalists_speech";
+		removeNeutral.majorEvent = false;
+		removeNeutral.triggeredOnly = false;
+		removeNeutral.trigger = "OR = {\n";
+		for (auto ideology: majorIdeologies)
+		{
+			if ((ideology == "democratic") || (ideology == "neutrality"))
+			{
+				continue;
+			}
+			removeNeutral.trigger += "			has_government = " + ideology + "\n";
+		}
+		removeNeutral.trigger += "		}\n";
+		removeNeutral.trigger += "		has_idea = neutrality_idea";
+		removeNeutral.meanTimeToHappen = "days = 2";
+		string option = "name = ";
+		string optionName = "conv.political." + to_string(politicalEventNumber) + ".a";
+		option += optionName + "\n";
+		HoI4Localisation::copyEventLocalisations("abandon_neutral.a", optionName);
+		option += "		remove_ideas = neutrality_idea";
+		removeNeutral.options.push_back(option);
+		politicalEvents.push_back(removeNeutral);
 	}
-	removeNeutral.picture = "GFX_report_event_journalists_speech";
-	removeNeutral.majorEvent = false;
-	removeNeutral.triggeredOnly = false;
-	removeNeutral.trigger = "OR = {\n";
-	for (auto ideology: majorIdeologies)
-	{
-		removeNeutral.trigger += "			has_government = " + ideology + "\n";
-	}
-	removeNeutral.trigger += "		}\n";
-	removeNeutral.trigger += "		has_idea = neutrality_idea";
-	removeNeutral.meanTimeToHappen = "days = 2";
-	string option = "name = ";
-	string optionName = "conv.political." + to_string(politicalEventNumber) + ".a";
-	option += optionName + "\n";
-	HoI4Localisation::copyEventLocalisations("abandon_neutral.a", optionName);
-	option += "		remove_ideas = neutrality_idea";
-	removeNeutral.options.push_back(option);
-	politicalEvents.push_back(removeNeutral);
 }
 
 
