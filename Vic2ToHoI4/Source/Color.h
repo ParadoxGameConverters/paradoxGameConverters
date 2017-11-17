@@ -85,6 +85,8 @@ namespace ConverterColor
 			bool initialized;
 			array<int, 3> c;
 	};
+
+	ostream& operator<<(ostream& out, const Color& color);
 }
 
 
