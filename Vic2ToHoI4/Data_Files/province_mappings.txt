@@ -952,6 +952,146 @@
 	link = { vic2 = 1696 hoi4 = 4920 hoi4 = 8111 hoi4 = 8038 }	# Tarfaya -> land, land, land
 	link = { vic2 = 1773 hoi4 = 7979 }	# Aaiun -> land
 	link = { vic2 = 1774 hoi4 = 5012 hoi4 = 10875 }	# Dakhla -> land, land
+	# 
+	# ## Mauritania
+	# # Mauritania
+	link = { vic2 = 1775 hoi4 = 7992 }	# Nouakchott -> land
+	link = { vic2 = 1776 hoi4 = 5034 }	# Rosso -> land
+	link = { vic2 = 1777 hoi4 = 5077 }	# Aleg -> land
+	link = { vic2 = 1778 hoi4 = 8015 }	# Maghama -> land
+	link = { vic2 = 1779 hoi4 = 8058 hoi4 = 10814 }	# Shingit -> land, land
+	# # Inner Mauritania
+	link = { vic2 = 1780 hoi4 = 1962 hoi4 = 7943 }	# Tichit -> land, land
+	link = { vic2 = 1781 hoi4 = 1897 hoi4 = 10771 }	# Walata -> land, land
+	link = { vic2 = 1782 hoi4 = 10838 hoi4 = 10779 hoi4 = 8035 }	# Bir Murghayn -> land, land, land
+	# 
+	# ## Mali
+	# # Western Mali
+	link = { vic2 = 1794 hoi4 = 12751 }	# Bamako -> land
+	link = { vic2 = 1795 hoi4 = 2012 }	# Kayes -> land
+	link = { vic2 = 1796 hoi4 = 10915 }	# Nioro -> land
+	link = { vic2 = 1797 hoi4 = 10829 }	# Kita -> land
+	link = { vic2 = 1801 hoi4 = 10812 }	# Mourdiah -> land
+	# # Eastern Mali
+	link = { vic2 = 1798 hoi4 = 5045 }	# Bougouni -> land
+	link = { vic2 = 1799 hoi4 = 4927 }	# Sikasso -> land
+	link = { vic2 = 1800 vic2 = 1802 hoi4 = 12838 }	# Segu, Jenne -> land
+	link = { vic2 = 1804 hoi4 = 7930 hoi4 = 7954 }	# Bandiagara -> land, land
+	# # Timbuktu
+	link = { vic2 = 1803 hoi4 = 2044 }	# Timbuktu -> land
+	link = { vic2 = 1805 hoi4 = 10788 }	# Gao -> land
+	link = { vic2 = 1806 hoi4 = 1115 }	# Taoudenni -> land
+	link = { vic2 = 1807 hoi4 = 10868 }	# Tessalit -> land
+	link = { vic2 = 2609 hoi4 = 10725 }	# Araouane -> land
+	# 
+	# ## Burkina Faso
+	# # Volta
+	link = { vic2 = 1901 vic2 = 1903 hoi4 = 10836 hoi4 = 7950 }	# MANY-TO-MANY: Wagadugu, Dori -> land, land
+	link = { vic2 = 1902 hoi4 = 12851 hoi4 = 8116 hoi4 = 8071 }	# Wahiguya -> land, land, land
+	link = { vic2 = 1905 hoi4 = 7983 }	# Bobo Dioulasso -> land
+	link = { vic2 = 1906 hoi4 = 12794 }	# Orodaro -> land
+	# 
+	# # Niger
+	# # Outer Hausaland
+	link = { vic2 = 1808 hoi4 = 2068 hoi4 = 5101 hoi4 = 1975 hoi4 = 2056 }	# Niamey -> land, land, land, land
+	link = { vic2 = 1809 hoi4 = 12707 }	# Say -> land
+	link = { vic2 = 1810 hoi4 = 8028 }	# Dosso -> land
+	link = { vic2 = 1811 hoi4 = 10758 }	# Maradi -> land
+	link = { vic2 = 1815 hoi4 = 10805 }	# Zinder -> land
+	link = { vic2 = 1816 hoi4 = 10780 }	# Kufe -> land
+	# # Niger
+	link = { vic2 = 1812 hoi4 = 10917 }	# Agades -> land
+	link = { vic2 = 1813 hoi4 = 4913 hoi4 = 7939 }	# Arlit -> land, land
+	link = { vic2 = 1814 hoi4 = 8128 }	# Madama -> land
+	link = { vic2 = 1817 hoi4 = 1956 }	# Bilma -> land
+	# 
+	# ## Senegal
+	# # Senegal
+	link = { vic2 = 1783 vic2 = 2573 vic2 = 1784 hoi4 = 4948 }	# Dakar, Mboul, Saint-Louis -> land
+	link = { vic2 = 1790 vic2 = 1787 vic2 = 1786 vic2 = 1789 hoi4 = 12710 }	# Matam, Diourbel, Linguere, Podor -> land
+	# # Gambia
+	link = { vic2 = 1788 hoi4 = 7972 }	# Kaolack -> land
+	link = { vic2 = 1791 hoi4 = 2100 }	# Bakel -> land
+	link = { vic2 = 1792 vic2 = 1793 hoi4 = 12834 }	# Ziguinchor, Velingara -> land
+	# 
+	# ## The Gambia
+	link = { vic2 = 1785 hoi4 = 4989 }	# Banjul -> land
+	# 
+	# ## Guinea / Guinea-Bissau
+	# # Gabu Region
+	link = { vic2 = 1877 hoi4 = 12747 hoi4 = 12891 }	# Bissau -> land, land
+	link = { vic2 = 1878 hoi4 = 12858 }	# Gabu -> land
+	link = { vic2 = 1879 hoi4 = 1909 hoi4 = 2038 }	# Boffa -> land, land
+	link = { vic2 = 1880 hoi4 = 12802 }	# Timbo -> land
+	# # Beyla Region
+	link = { vic2 = 1881 hoi4 = 4957 }	# Dinguiraye -> land
+	link = { vic2 = 1882 hoi4 = 8008 }	# Kankan -> land
+	link = { vic2 = 1883 hoi4 = 5039 }	# Beyla -> land
+	# 
+	# ## Sierra Leone
+	# # Sierra Leone
+	link = { vic2 = 1884 vic2 = 1886 vic2 = 1885 hoi4 = 2094 }	# Freetown, Bo, Falaba -> land
+	# 
+	# ## Liberia
+	# # Liberia
+	link = { vic2 = 1887 vic2 = 1889 vic2 = 1890 hoi4 = 7959 }	# Monrovia, Bopolu, Gbarnga -> land
+	link = { vic2 = 1888 vic2 = 1891 hoi4 = 8006 }	# Harper, Zwedru -> land
+	# 
+	# ## Cote d'Ivoire
+	# # Winward Coast
+	link = { vic2 = 1893 vic2 = 1896 hoi4 = 10762 }	# Sassandra, Man -> land
+	link = { vic2 = 1895 hoi4 = 8122 }	# Bouake -> land
+	link = { vic2 = 1900 hoi4 = 5070 }	# Odienne -> land
+	# # Ivory Coast
+	link = { vic2 = 1892 vic2 = 1894 hoi4 = 10803 }	# Grand Lahou, Grand Bassam -> land
+	link = { vic2 = 1898 hoi4 = 8065 }	# Kong -> land
+	link = { vic2 = 1899 vic2 = 1897 hoi4 = 5013 }	# Bondouku, Akoupe -> land
+	# 
+	# ## Ghana
+	# # Accra Region
+	link = { vic2 = 1907 hoi4 = 10862 }	# Accra -> land
+	link = { vic2 = 1908 vic2 = 1909 vic2 = 1910 hoi4 = 12742 }	# Cape Coast, Sekondi, Kumasi -> land
+	# # Ghana Region
+	link = { vic2 = 1911 hoi4 = 12787 hoi4 = 13136 }	# Kintampo -> land, lake
+	link = { vic2 = 1912 hoi4 = 8096 }	# Wa -> land
+	link = { vic2 = 1913 vic2 = 1916 hoi4 = 8039 }	# Tamale, Yendi -> land
+	# 
+	# ## Togo
+	# # Togo
+	link = { vic2 = 1914 vic2 = 1917 hoi4 = 1951 }	# Lome, Atakpame -> land
+	link = { vic2 = 1915 hoi4 = 12785 }	# Ho -> land
+	link = { vic2 = 1918 hoi4 = 12843 }	# Sokode -> land
+	# 
+	# ## Benin
+	# # Dahomey
+	link = { vic2 = 1919 vic2 = 1920 hoi4 = 10919 }	# Cotonou, Abomey -> land
+	link = { vic2 = 1921 hoi4 = 12762 }	# Nikki -> land
+	link = { vic2 = 1922 vic2 = 1904 hoi4 = 2001 hoi4 = 12874 }	# MANY-TO-MANY: Jugu, Fada Ngourma -> land, land
+	# 
+	# ## Nigeria
+	# # Yoruba States
+	link = { vic2 = 1923 vic2 = 1924 vic2 = 1926 hoi4 = 2050 }	# Lagos, Abeokuta, Ife -> land
+	link = { vic2 = 1925 vic2 = 1927 hoi4 = 12731 }	# Ibadan, Ilorin -> land
+	# # Benin
+	link = { vic2 = 1931 vic2 = 1928 hoi4 = 4952 }	# Warri, Benin -> land
+	link = { vic2 = 1930 vic2 = 1929 hoi4 = 12900 }	# Lokoja, Akure -> land
+	link = { vic2 = 1932 hoi4 = 8034 }	# Bonny -> land
+	# # Awka Region
+	link = { vic2 = 1934 vic2 = 1935 vic2 = 1933 hoi4 = 10831 }	# Calabar, Aruchukwu, Awka -> land
+	link = { vic2 = 1936 hoi4 = 1992 }	# Makurdi -> land
+	# # Hausaland
+	link = { vic2 = 1938 hoi4 = 12817 }	# Bussa -> land
+	link = { vic2 = 1939 hoi4 = 4938 }	# Zaria -> land
+	link = { vic2 = 1940 hoi4 = 1932 hoi4 = 2025 }	# Bida -> land, land
+	link = { vic2 = 1941 hoi4 = 8021 }	# Abuja -> land
+	# # Tukari Region
+	link = { vic2 = 1937 hoi4 = 4889 }	# Tukari -> land
+	link = { vic2 = 1943 vic2 = 1942 hoi4 = 10820 }	# Jos, Bauchi -> land
+	link = { vic2 = 1950 vic2 = 1944 hoi4 = 8109 }	# Yola, Gombe -> land
+	# # Kano Region
+	link = { vic2 = 1945 vic2 = 1947 vic2 = 1949 hoi4 = 4972 }	# Kano, Katsina, Hadejia -> land
+	link = { vic2 = 1951 vic2 = 1953 hoi4 = 4997 }	# Kuka, Dikoa -> land
+	link = { vic2 = 1952 hoi4 = 5028 }	# Nguru -> land
 	link = { vic2 = 1850 hoi4 = 5017 hoi4 = 12723 }	# Akordat -> land, land
 	link = { vic2 = 1954 hoi4 = 13015 }	# São Tomé -> land
 	link = { vic2 = 1955 hoi4 = 1903 }	# Fernando Pó -> land
@@ -1068,104 +1208,20 @@
 	link = { vic2 = 1963 hoi4 = 11194 }	# Ngaoundere -> land
 	link = { vic2 = 1960 hoi4 = 9137 }	# Bafoussam -> land
 	link = { vic2 = 1961 hoi4 = 7978 }	# Bamenda -> land
-	link = { vic2 = 1937 hoi4 = 4889 }	# Tukari -> land
-	link = { vic2 = 1950 vic2 = 1944 hoi4 = 8109 }	# Yola, Gombe -> land
-	link = { vic2 = 1943 vic2 = 1942 hoi4 = 10820 }	# Jos, Bauchi -> land
-	link = { vic2 = 1951 vic2 = 1953 hoi4 = 4997 }	# Kuka, Dikoa -> land
-	link = { vic2 = 1952 hoi4 = 5028 }	# Nguru -> land
-	link = { vic2 = 1945 vic2 = 1947 vic2 = 1949 hoi4 = 4972 }	# Kano, Katsina, Hadejia -> land
 	link = { vic2 = 1819 hoi4 = 1993 }	# Moundou -> land
 	link = { vic2 = 1818 vic2 = 1820 hoi4 = 9152 hoi4 = 2081 }	# MANY-TO-MANY: Massenya, Bongor -> land, land
 	link = { vic2 = 1964 hoi4 = 7963 }	# Maroua -> land
-	link = { vic2 = 1941 hoi4 = 8021 }	# Abuja -> land
-	link = { vic2 = 1936 hoi4 = 1992 }	# Makurdi -> land
-	link = { vic2 = 1930 vic2 = 1929 hoi4 = 12900 }	# Lokoja, Akure -> land
-	link = { vic2 = 1939 hoi4 = 4938 }	# Zaria -> land
-	link = { vic2 = 1940 hoi4 = 1932 hoi4 = 2025 }	# Bida -> land, land
-	link = { vic2 = 1901 vic2 = 1903 hoi4 = 10836 hoi4 = 7950 }	# MANY-TO-MANY: Wagadugu, Dori -> land, land
 	link = { vic2 = 1948 hoi4 = 1969 }	# Sokoto -> land
 	link = { vic2 = 1946 hoi4 = 1891 }	# Kebbi -> land
-	link = { vic2 = 1902 hoi4 = 12851 hoi4 = 8116 hoi4 = 8071 }	# Wahiguya -> land, land, land
-	link = { vic2 = 1906 hoi4 = 12794 }	# Orodaro -> land
-	link = { vic2 = 1799 hoi4 = 4927 }	# Sikasso -> land
-	link = { vic2 = 1804 hoi4 = 7930 hoi4 = 7954 }	# Bandiagara -> land, land
-	link = { vic2 = 1802 hoi4 = 12838 }	# Jenne -> land
-	link = { vic2 = 1803 hoi4 = 2044 }	# Timbuktu -> land
-	link = { vic2 = 1805 hoi4 = 10788 }	# Gao -> land
-	link = { vic2 = 1808 hoi4 = 2068 hoi4 = 5101 hoi4 = 1975 hoi4 = 2056 }	# Niamey -> land, land, land, land
-	link = { vic2 = 1809 hoi4 = 12707 }	# Say -> land
-	link = { vic2 = 1905 hoi4 = 7983 }	# Bobo Dioulasso -> land
-	link = { vic2 = 1798 hoi4 = 5045 }	# Bougouni -> land
-	link = { vic2 = 1800 vic2 = 1794 hoi4 = 12751 }	# Segu, Bamako -> land
-	link = { vic2 = 1796 hoi4 = 10915 }	# Nioro -> land
-	link = { vic2 = 1882 hoi4 = 8008 }	# Kankan -> land
-	link = { vic2 = 1883 hoi4 = 5039 }	# Beyla -> land
-	link = { vic2 = 1900 hoi4 = 5070 }	# Odienne -> land
-	link = { vic2 = 1898 hoi4 = 8065 }	# Kong -> land
-	link = { vic2 = 1895 hoi4 = 8122 }	# Bouake -> land
-	link = { vic2 = 1899 vic2 = 1897 hoi4 = 5013 }	# Bondouku, Akoupe -> land
-	link = { vic2 = 1912 hoi4 = 8096 }	# Wa -> land
-	link = { vic2 = 1913 vic2 = 1916 hoi4 = 8039 }	# Tamale, Yendi -> land
-	link = { vic2 = 1911 hoi4 = 12787 hoi4 = 13136 }	# Kintampo -> land, lake
-	link = { vic2 = 1921 hoi4 = 12762 }	# Nikki -> land
-	link = { vic2 = 1938 hoi4 = 12817 }	# Bussa -> land
-	link = { vic2 = 1925 vic2 = 1927 hoi4 = 12731 }	# Ibadan, Ilorin -> land
-	link = { vic2 = 1922 vic2 = 1904 hoi4 = 2001 hoi4 = 12874 }	# MANY-TO-MANY: Jugu, Fada Ngourma -> land, land
-	link = { vic2 = 1918 hoi4 = 12843 }	# Sokode -> land
-	link = { vic2 = 1797 hoi4 = 10829 }	# Kita -> land
-	link = { vic2 = 1801 hoi4 = 10812 hoi4 = 10771 }	# Mourdiah -> land, land
-	link = { vic2 = 1881 hoi4 = 4957 }	# Dinguiraye -> land
-	link = { vic2 = 1795 hoi4 = 2012 }	# Kayes -> land
-	link = { vic2 = 1880 hoi4 = 12802 }	# Timbo -> land
-	link = { vic2 = 1791 hoi4 = 2100 }	# Bakel -> land
-	link = { vic2 = 1778 hoi4 = 8015 }	# Maghama -> land
-	link = { vic2 = 1884 vic2 = 1886 vic2 = 1885 hoi4 = 2094 }	# Freetown, Bo, Falaba -> land
-	link = { vic2 = 1879 hoi4 = 1909 hoi4 = 2038 }	# Boffa -> land, land
-	link = { vic2 = 1908 vic2 = 1909 vic2 = 1910 hoi4 = 12742 }	# Cape Coast, Sekondi, Kumasi -> land
-	link = { vic2 = 1887 vic2 = 1889 vic2 = 1890 hoi4 = 7959 }	# Monrovia, Bopolu, Gbarnga -> land
-	link = { vic2 = 1892 vic2 = 1894 hoi4 = 10803 }	# Grand Lahou, Grand Bassam -> land
-	link = { vic2 = 1888 vic2 = 1891 hoi4 = 8006 }	# Harper, Zwedru -> land
 	link = { vic2 = 1973 hoi4 = 8244 }	# Bata -> land
-	link = { vic2 = 1934 vic2 = 1935 vic2 = 1933 hoi4 = 10831 }	# Calabar, Aruchukwu, Awka -> land
-	link = { vic2 = 1932 hoi4 = 8034 }	# Bonny -> land
-	link = { vic2 = 1931 vic2 = 1928 hoi4 = 4952 }	# Warri, Benin -> land
-	link = { vic2 = 1923 vic2 = 1924 vic2 = 1926 hoi4 = 2050 }	# Lagos, Abeokuta, Ife -> land
-	link = { vic2 = 1919 vic2 = 1920 hoi4 = 10919 }	# Cotonou, Abomey -> land
-	link = { vic2 = 1914 vic2 = 1917 hoi4 = 1951 }	# Lome, Atakpame -> land
-	link = { vic2 = 1907 hoi4 = 10862 }	# Accra -> land
-	link = { vic2 = 1915 hoi4 = 12785 }	# Ho -> land
-	link = { vic2 = 1893 vic2 = 1896 hoi4 = 10762 }	# Sassandra, Man -> land
-	link = { vic2 = 1790 vic2 = 1787 vic2 = 1786 vic2 = 1789 vic2 = 1776 vic2 = 1777 hoi4 = 12710 }	# Matam, Diourbel, Linguere, Podor, Rosso, Aleg -> land
-	link = { vic2 = 1783 vic2 = 2573 vic2 = 1784 hoi4 = 4948 }	# Dakar, Mboul, Saint-Louis -> land
-	link = { vic2 = 1788 hoi4 = 7972 }	# Kaolack -> land
-	link = { vic2 = 1878 hoi4 = 12858 }	# Gabu -> land
-	link = { vic2 = 1877 hoi4 = 12747 hoi4 = 12891 }	# Bissau -> land, land
-	link = { vic2 = 1792 vic2 = 1793 hoi4 = 12834 }	# Ziguinchor, Velingara -> land
-	link = { vic2 = 1785 hoi4 = 4989 }	# Banjul -> land
 	# 
 	# ## Sahara
-	link = { vic2 = 1815 hoi4 = 10805 }	# Zinder -> land
-	link = { vic2 = 1816 hoi4 = 10780 }	# Kufe -> land
 	link = { vic2 = 3224 hoi4 = 13137 }	# Lake Tana -> lake
 	link = { vic2 = 3101 hoi4 = 13138 }	# Lake Tchad -> lake
 	link = { vic2 = 1824 hoi4 = 3123 }	# Mao -> land
 	link = { vic2 = 1821 hoi4 = 4897 }	# Abeche -> land
-	link = { vic2 = 1810 hoi4 = 8028 }	# Dosso -> land
-	link = { vic2 = 1811 hoi4 = 10758 }	# Maradi -> land
-	link = { vic2 = 1812 hoi4 = 10917 }	# Agades -> land
-	link = { vic2 = 1817 hoi4 = 1956 }	# Bilma -> land
 	link = { vic2 = 1825 hoi4 = 10893 hoi4 = 5136 }	# Zouar -> land, land
 	link = { vic2 = 1826 hoi4 = 4902 }	# Faya -> land
-	link = { vic2 = 1814 hoi4 = 8128 }	# Madama -> land
-	link = { vic2 = 1813 hoi4 = 4913 hoi4 = 7939 }	# Arlit -> land, land
-	link = { vic2 = 1807 hoi4 = 10868 }	# Tessalit -> land
-	link = { vic2 = 2609 hoi4 = 10725 }	# Araouane -> land
-	link = { vic2 = 1806 hoi4 = 1115 }	# Taoudenni -> land
-	link = { vic2 = 1781 hoi4 = 1897 }	# Walata -> land
-	link = { vic2 = 1780 hoi4 = 1962 hoi4 = 7943 }	# Tichit -> land, land
-	link = { vic2 = 1779 hoi4 = 8058 hoi4 = 5077 hoi4 = 10814 }	# Shingit -> land, land, land
-	link = { vic2 = 1775 hoi4 = 7992 hoi4 = 5034 }	# Nouakchott -> land, land
-	link = { vic2 = 1782 hoi4 = 10838 hoi4 = 10779 hoi4 = 8035 }	# Bir Murghayn -> land, land, land
 	# 
 	# ## South Africa
 	link = { vic2 = 2069 hoi4 = 7842 }	# Gweru -> land
