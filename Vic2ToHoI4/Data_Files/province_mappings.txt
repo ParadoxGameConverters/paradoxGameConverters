@@ -1093,33 +1093,102 @@
 	link = { vic2 = 1951 vic2 = 1953 hoi4 = 4997 }	# Kuka, Dikoa -> land
 	link = { vic2 = 1952 hoi4 = 5028 }	# Nguru -> land
 	link = { vic2 = 1850 hoi4 = 5017 hoi4 = 12723 }	# Akordat -> land, land
-	link = { vic2 = 1954 hoi4 = 13015 }	# São Tomé -> land
+	# 
+	# ## Chad
+	# # Chad
+	link = { vic2 = 1821 hoi4 = 4897 }	# Abeche -> land
+	link = { vic2 = 1824 hoi4 = 3123 }	# Mao -> land
+	link = { vic2 = 1825 hoi4 = 10893 hoi4 = 5136 }	# Zouar -> land, land
+	link = { vic2 = 1826 hoi4 = 4902 }	# Faya -> land
+	# # Waddai
+	link = { vic2 = 1818 vic2 = 1820 hoi4 = 9152 hoi4 = 2081 }	# MANY-TO-MANY: Massenya, Bongor -> land, land
+	link = { vic2 = 1819 hoi4 = 1993 }	# Moundou -> land
+	link = { vic2 = 1822 hoi4 = 1473 hoi4 = 3181 }	# Am Timan -> land, land
+	link = { vic2 = 1823 hoi4 = 4978 }	# Mongo -> land
+	# 
+	# ## Cameroon
+	# # Ngauondere Region
+	link = { vic2 = 1960 hoi4 = 9137 }	# Bafoussam -> land
+	link = { vic2 = 1961 hoi4 = 7978 }	# Bamenda -> land
+	link = { vic2 = 1963 hoi4 = 11194 }	# Ngaoundere -> land
+	link = { vic2 = 1964 hoi4 = 7963 }	# Maroua -> land
+	# # Cameroon
+	link = { vic2 = 1956 vic2 = 1957 hoi4 = 6039 }	# Douala, Buea -> land
+	link = { vic2 = 1958 hoi4 = 5036 }	# Kribi -> land
+	link = { vic2 = 1959 hoi4 = 2080 }	# Yaounde -> land
+	link = { vic2 = 1962 hoi4 = 5054 }	# Bertoua -> land
+	# 
+	# ## Central African Republic
+	# # Ubangui-Shari
+	link = { vic2 = 1965 hoi4 = 12830 }	# Bangui -> land
+	link = { vic2 = 1966 hoi4 = 11012 }	# Nola -> land
+	link = { vic2 = 1967 hoi4 = 8078 }	# Bouar -> land
+	link = { vic2 = 1968 hoi4 = 11108 }	# Bossangoa -> land
+	# # Bangassou
+	link = { vic2 = 1969 hoi4 = 10764 hoi4 = 12719 }	# Zemio -> land, land
+	link = { vic2 = 1970 hoi4 = 3165 }	# Bangassou -> land
+	link = { vic2 = 1971 hoi4 = 1883 hoi4 = 1974 hoi4 = 7919 hoi4 = 5084 }	# Ndele -> land, land, land, land
+	# 
+	# ## Equatorial Guinea
+	# # Fernando Po Region
 	link = { vic2 = 1955 hoi4 = 1903 }	# Fernando Pó -> land
+	link = { vic2 = 1973 hoi4 = 8244 }	# Bata -> land
+	# 
+	# ## Gabon
+	# # Gabon
+	link = { vic2 = 1972 hoi4 = 5139 }	# Libreville -> land
+	link = { vic2 = 1974 hoi4 = 8207 }	# Mayumbe -> land
+	link = { vic2 = 1976 vic2 = 1975 hoi4 = 10948 }	# Makokou, Moanda -> land
+	# 
+	# # Republic of the Congo
+	# # Congo
+	link = { vic2 = 1977 hoi4 = 8193 }	# Nkuna -> land
+	link = { vic2 = 1978 vic2 = 1980 hoi4 = 2192 }	# Madingou, Djambala -> land
+	link = { vic2 = 1981 hoi4 = 6008 hoi4 = 3109 }	# Impfondo -> land, land
+	link = { vic2 = 2624 hoi4 = 12975 }	# Loango -> land
+	# 
+	# ## Democratic Republicof the Congo
+	# # Equateur
+	link = { vic2 = 1992 hoi4 = 8048 hoi4 = 10951 }	# Basoko -> land, land
+	link = { vic2 = 1993 hoi4 = 7219 hoi4 = 10071 hoi4 = 988 }	# Irebu -> land, land, land
+	link = { vic2 = 1995 hoi4 = 7931 hoi4 = 12824 hoi4 = 10883 hoi4 = 12741 }	# Gemena -> land, land, land, land
+	# # Bas-Congo
+	link = { vic2 = 1982 hoi4 = 5117 hoi4 = 12925 }	# Kinshasa -> land, land
+	link = { vic2 = 1983 hoi4 = 10968 }	# Boma -> land
+	link = { vic2 = 1985 hoi4 = 10025 hoi4 = 12945 hoi4 = 12896 }	# Kumbana -> land, land, land
+	link = { vic2 = 2000 hoi4 = 2115 }	# Cabinda -> land
+	# # Kasai
+	link = { vic2 = 1984 hoi4 = 4128 hoi4 = 7716 hoi4 = 2024 hoi4 = 9986 }	# Kananga -> land, land, land, land
+	link = { vic2 = 1986 hoi4 = 1731 hoi4 = 10858 }	# Lusambo -> land, land
+	link = { vic2 = 1994 hoi4 = 12775 hoi4 = 8016 }	# Nsheng -> land, land
+	# 
+	# ## Angola
+	# # North Angola
+	link = { vic2 = 1999 vic2 = 2002 hoi4 = 8248 hoi4 = 5158 }	# MANY-TO-MANY: Luanda, Quibala -> land, land
+	link = { vic2 = 2001 hoi4 = 8219 }	# Mbanza -> land
+	link = { vic2 = 2009 hoi4 = 12981 }	# Malanje -> land
+	# # South Angola
+	link = { vic2 = 2003 hoi4 = 12958 }	# Benguela -> land
+	link = { vic2 = 2004 hoi4 = 12985 }	# Moçâmedes -> land
+	link = { vic2 = 2005 hoi4 = 8138 hoi4 = 8202 }	# Huambo -> land, land
+	link = { vic2 = 2008 hoi4 = 12391 }	# Ondjiva -> land
+	# # East Angola
+	link = { vic2 = 2006 hoi4 = 2126 hoi4 = 10966 }	# Kuito -> land, land
+	link = { vic2 = 2007 hoi4 = 4735 hoi4 = 1552 }	# Mavinga -> land, land
+	link = { vic2 = 2010 hoi4 = 7548 }	# Saurimo -> land
+	link = { vic2 = 2011 hoi4 = 8054 }	# Kubanda -> land
+	
+	
+	link = { vic2 = 1954 hoi4 = 13015 }	# São Tomé -> land
 	link = { vic2 = 1876 hoi4 = 13014 }	# Cape Verde -> land
 	# ## Congo
-	link = { vic2 = 1994 hoi4 = 12775 hoi4 = 8016 }	# Nsheng -> land, land
-	link = { vic2 = 1993 hoi4 = 7219 hoi4 = 10071 hoi4 = 988 }	# Irebu -> land, land, land
-	link = { vic2 = 1992 hoi4 = 8048 hoi4 = 10951 }	# Basoko -> land, land
-	link = { vic2 = 1986 hoi4 = 1731 hoi4 = 10858 }	# Lusambo -> land, land
-	link = { vic2 = 1995 hoi4 = 7931 hoi4 = 12824 hoi4 = 10883 hoi4 = 12741 }	# Gemena -> land, land, land, land
-	link = { vic2 = 1981 hoi4 = 6008 hoi4 = 3109 }	# Impfondo -> land, land
-	link = { vic2 = 1962 hoi4 = 5054 }	# Bertoua -> land
-	link = { vic2 = 1966 hoi4 = 11012 }	# Nola -> land
-	link = { vic2 = 1965 hoi4 = 12830 }	# Bangui -> land
-	link = { vic2 = 1968 hoi4 = 11108 }	# Bossangoa -> land
-	link = { vic2 = 1970 hoi4 = 3165 }	# Bangassou -> land
 	link = { vic2 = 1996 hoi4 = 12847 hoi4 = 1950 hoi4 = 12808 hoi4 = 2073 }	# Kisangani -> land, land, land, land
 	link = { vic2 = 1997 hoi4 = 12783 hoi4 = 2154 hoi4 = 6027 hoi4 = 1181 }	# Mungbane -> land, land, land, land
 	link = { vic2 = 1998 hoi4 = 2034 hoi4 = 11934 hoi4 = 7133 }	# Baramo -> land, land, land
-	link = { vic2 = 1969 hoi4 = 10764 hoi4 = 12719 }	# Zemio -> land, land
 	link = { vic2 = 1845 hoi4 = 7996 hoi4 = 1953 }	# Yambio -> land, land
 	link = { vic2 = 2022 hoi4 = 8223 }	# Kitgum -> land
 	link = { vic2 = 1846 hoi4 = 2096 }	# Lado -> land
-	link = { vic2 = 1967 hoi4 = 8078 }	# Bouar -> land
-	link = { vic2 = 1971 hoi4 = 1883 hoi4 = 1974 hoi4 = 7919 hoi4 = 5084 }	# Ndele -> land, land, land, land
 	link = { vic2 = 1844 hoi4 = 12744 hoi4 = 10877 hoi4 = 10908 }	# Bor -> land, land, land
-	link = { vic2 = 1822 hoi4 = 1473 hoi4 = 3181 }	# Am Timan -> land, land
-	link = { vic2 = 1823 hoi4 = 4978 }	# Mongo -> land
 	link = { vic2 = 1832 hoi4 = 12800 }	# Fashoda -> land
 	link = { vic2 = 1847 hoi4 = 10859 }	# Kapoeta -> land
 	link = { vic2 = 2021 hoi4 = 7088 }	# Masindi -> land
@@ -1177,51 +1246,16 @@
 	link = { vic2 = 2015 hoi4 = 7872 }	# Monzo -> land
 	link = { vic2 = 1987 hoi4 = 1817 hoi4 = 4515 hoi4 = 191 }	# Bunkeya -> land, land, land
 	link = { vic2 = 1988 hoi4 = 12795 hoi4 = 1968 hoi4 = 1516 }	# Mussumba -> land, land, land
-	link = { vic2 = 1984 hoi4 = 4128 hoi4 = 7716 hoi4 = 2024 hoi4 = 9986 }	# Kananga -> land, land, land, land
-	link = { vic2 = 1985 hoi4 = 10025 hoi4 = 12945 hoi4 = 12896 }	# Kumbana -> land, land, land
-	link = { vic2 = 2010 hoi4 = 7548 }	# Saurimo -> land
-	link = { vic2 = 2009 hoi4 = 12981 }	# Malanje -> land
-	link = { vic2 = 2006 hoi4 = 2126 hoi4 = 10966 }	# Kuito -> land, land
-	link = { vic2 = 2011 hoi4 = 8054 }	# Kubanda -> land
 	link = { vic2 = 2014 hoi4 = 12677 }	# Kasempa -> land
 	link = { vic2 = 2013 hoi4 = 10538 hoi4 = 697 }	# Mongu -> land, land
-	link = { vic2 = 2007 hoi4 = 4735 hoi4 = 1552 }	# Mavinga -> land, land
-	link = { vic2 = 2005 hoi4 = 8138 hoi4 = 8202 }	# Huambo -> land, land
-	link = { vic2 = 2008 hoi4 = 12391 }	# Ondjiva -> land
-	link = { vic2 = 2003 hoi4 = 12958 }	# Benguela -> land
-	link = { vic2 = 1999 vic2 = 2002 hoi4 = 8248 hoi4 = 5158 }	# MANY-TO-MANY: Luanda, Quibala -> land, land
-	link = { vic2 = 1978 vic2 = 1980 hoi4 = 2192 }	# Madingou, Djambala -> land
-	link = { vic2 = 1977 hoi4 = 8193 }	# Nkuna -> land
-	link = { vic2 = 1982 hoi4 = 5117 hoi4 = 12925 }	# Kinshasa -> land, land
-	link = { vic2 = 2624 hoi4 = 12975 }	# Loango -> land
-	link = { vic2 = 1983 hoi4 = 10968 }	# Boma -> land
-	link = { vic2 = 2000 hoi4 = 2115 }	# Cabinda -> land
-	link = { vic2 = 2001 hoi4 = 8219 }	# Mbanza -> land
-	link = { vic2 = 1976 vic2 = 1975 hoi4 = 10948 }	# Makokou, Moanda -> land
-	link = { vic2 = 1974 hoi4 = 8207 }	# Mayumbe -> land
-	link = { vic2 = 1972 hoi4 = 5139 }	# Libreville -> land
-	link = { vic2 = 1959 hoi4 = 2080 }	# Yaounde -> land
-	link = { vic2 = 1958 hoi4 = 5036 }	# Kribi -> land
 	# 
 	# ## French Africa
-	link = { vic2 = 1956 vic2 = 1957 hoi4 = 6039 }	# Douala, Buea -> land
-	link = { vic2 = 1963 hoi4 = 11194 }	# Ngaoundere -> land
-	link = { vic2 = 1960 hoi4 = 9137 }	# Bafoussam -> land
-	link = { vic2 = 1961 hoi4 = 7978 }	# Bamenda -> land
-	link = { vic2 = 1819 hoi4 = 1993 }	# Moundou -> land
-	link = { vic2 = 1818 vic2 = 1820 hoi4 = 9152 hoi4 = 2081 }	# MANY-TO-MANY: Massenya, Bongor -> land, land
-	link = { vic2 = 1964 hoi4 = 7963 }	# Maroua -> land
 	link = { vic2 = 1948 hoi4 = 1969 }	# Sokoto -> land
 	link = { vic2 = 1946 hoi4 = 1891 }	# Kebbi -> land
-	link = { vic2 = 1973 hoi4 = 8244 }	# Bata -> land
 	# 
 	# ## Sahara
 	link = { vic2 = 3224 hoi4 = 13137 }	# Lake Tana -> lake
 	link = { vic2 = 3101 hoi4 = 13138 }	# Lake Tchad -> lake
-	link = { vic2 = 1824 hoi4 = 3123 }	# Mao -> land
-	link = { vic2 = 1821 hoi4 = 4897 }	# Abeche -> land
-	link = { vic2 = 1825 hoi4 = 10893 hoi4 = 5136 }	# Zouar -> land, land
-	link = { vic2 = 1826 hoi4 = 4902 }	# Faya -> land
 	# 
 	# ## South Africa
 	link = { vic2 = 2069 hoi4 = 7842 }	# Gweru -> land
@@ -1240,7 +1274,6 @@
 	link = { vic2 = 2107 hoi4 = 2213 }	# Klerksdorp -> land
 	link = { vic2 = 2109 hoi4 = 2171 }	# Lydenburg -> land
 	link = { vic2 = 2105 vic2 = 2106 hoi4 = 10400 }	# Pretoria, Witwatersrand -> land
-	link = { vic2 = 2004 hoi4 = 12985 }	# Moçâmedes -> land
 	link = { vic2 = 2075 hoi4 = 12963 }	# Serowe -> land
 	link = { vic2 = 2113 hoi4 = 8178 }	# Ulundi -> land
 	link = { vic2 = 2114 hoi4 = 7900 }	# Mbabane -> land
