@@ -1088,6 +1088,8 @@
 	link = { vic2 = 1939 hoi4 = 4938 }	# Zaria -> land
 	link = { vic2 = 1940 hoi4 = 1932 hoi4 = 2025 }	# Bida -> land, land
 	link = { vic2 = 1941 hoi4 = 8021 }	# Abuja -> land
+	link = { vic2 = 1946 hoi4 = 1891 }	# Kebbi -> land
+	link = { vic2 = 1948 hoi4 = 1969 }	# Sokoto -> land
 	# # Tukari Region
 	link = { vic2 = 1937 hoi4 = 4889 }	# Tukari -> land
 	link = { vic2 = 1943 vic2 = 1942 hoi4 = 10820 }	# Jos, Bauchi -> land
@@ -1103,6 +1105,7 @@
 	link = { vic2 = 1824 hoi4 = 3123 }	# Mao -> land
 	link = { vic2 = 1825 hoi4 = 10893 hoi4 = 5136 }	# Zouar -> land, land
 	link = { vic2 = 1826 hoi4 = 4902 }	# Faya -> land
+	link = { vic2 = 3101 hoi4 = 13138 }	# Lake Tchad -> lake
 	# # Waddai
 	link = { vic2 = 1818 vic2 = 1820 hoi4 = 9152 hoi4 = 2081 }	# MANY-TO-MANY: Massenya, Bongor -> land, land
 	link = { vic2 = 1819 hoi4 = 1993 }	# Moundou -> land
@@ -1168,6 +1171,18 @@
 	link = { vic2 = 1984 hoi4 = 4128 hoi4 = 7716 hoi4 = 2024 hoi4 = 9986 }	# Kananga -> land, land, land, land
 	link = { vic2 = 1986 hoi4 = 1731 hoi4 = 10858 }	# Lusambo -> land, land
 	link = { vic2 = 1994 hoi4 = 12775 hoi4 = 8016 }	# Nsheng -> land, land
+	# # Kisangani
+	link = { vic2 = 1996 hoi4 = 12847 hoi4 = 1950 hoi4 = 12808 hoi4 = 2073 }	# Kisangani -> land, land, land, land
+	link = { vic2 = 1997 hoi4 = 12783 hoi4 = 2154 hoi4 = 6027 hoi4 = 1181 }	# Mungbane -> land, land, land, land
+	link = { vic2 = 1998 hoi4 = 2034 hoi4 = 11934 hoi4 = 7133 }	# Baramo -> land, land, land
+	# # Kivu
+	link = { vic2 = 1990 hoi4 = 7161 hoi4 = 10766 }	# Nyangwe -> land, land
+	link = { vic2 = 1991 hoi4 = 4941 }	# Uvira -> land
+	# # Katanga
+	link = { vic2 = 1987 hoi4 = 1817 hoi4 = 4515 hoi4 = 191 }	# Bunkeya -> land, land, land
+	link = { vic2 = 1988 hoi4 = 12795 hoi4 = 1968 hoi4 = 1516 }	# Mussumba -> land, land, land
+	link = { vic2 = 1989 hoi4 = 12907 hoi4 = 1929 }	# Munza -> land, land
+	link = { vic2 = 3238 hoi4 = 13173 }	# Lake Mweru -> lake
 	# 
 	# ## Angola
 	# # North Angola
@@ -1205,6 +1220,7 @@
 	link = { vic2 = 1852 hoi4 = 1984 }	# Gonder -> land
 	link = { vic2 = 1854 hoi4 = 2040 }	# Matamma -> land
 	link = { vic2 = 1855 hoi4 = 4954 }	# Debre Markos -> land
+	link = { vic2 = 3224 hoi4 = 13137 }	# Lake Tana -> lake
 	# # Debre Tabor Region
 	link = { vic2 = 1853 hoi4 = 5097 }	# Debre Tabor -> land
 	link = { vic2 = 1856 hoi4 = 2072 }	# Aksum -> land
@@ -1242,6 +1258,7 @@
 	link = { vic2 = 2021 hoi4 = 7088 }	# Masindi -> land
 	link = { vic2 = 2022 hoi4 = 8223 }	# Kitgum -> land
 	link = { vic2 = 2023 hoi4 = 12929 }	# Jinja -> land
+	link = { vic2 = 3102 hoi4 = 2308 }	# Lake Victoria -> lake
 	# 
 	# ## Kenya
 	# # Rift Valley
@@ -1249,6 +1266,7 @@
 	link = { vic2 = 2026 hoi4 = 11145 }	# Lodwar -> land
 	link = { vic2 = 2028 hoi4 = 5160 }	# Kisumu -> land
 	link = { vic2 = 2031 hoi4 = 8133 hoi4 = 12927 }	# Wajir -> land, land
+	link = { vic2 = 3236 hoi4 = 13135 }	# Lake Rudolf -> lake
 	# # Kenya
 	link = { vic2 = 2024 hoi4 = 5079 }	# Nairobi -> land
 	link = { vic2 = 2027 hoi4 = 1939 hoi4 = 10860 }	# Nakuru -> land, land
@@ -1268,6 +1286,7 @@
 	link = { vic2 = 2043 hoi4 = 5180 }	# Tabora -> land
 	link = { vic2 = 2044 hoi4 = 4171 hoi4 = 10932 }	# Mwanza -> land, land
 	link = { vic2 = 2046 hoi4 = 2176 hoi4 = 10988 hoi4 = 8144 }	# Ujiji -> land, land, land
+	link = { vic2 = 3103 hoi4 = 2281 hoi4 = 4201 hoi4 = 13176 hoi4 = 13177 }	# Lake Tanganyika -> lake, lake, lake, lake
 	# # Dar Es Salaam Region
 	link = { vic2 = 2036 vic2 = 2048 hoi4 = 2196 }	# Dar Es Salaam, Zanzibar -> land
 	link = { vic2 = 2037 hoi4 = 8183 }	# Tanga -> land
@@ -1295,6 +1314,7 @@
 	# # Lilongwe Region
 	link = { vic2 = 2066 hoi4 = 12908 }	# Zomba -> land
 	link = { vic2 = 2067 hoi4 = 12986 }	# Lilongwe -> land
+	link = { vic2 = 3104 hoi4 = 2255 }	# Lake Malawi -> lake
 	# 
 	# ## Zimbabwe
 	# # Bulawayo Region
@@ -1337,76 +1357,62 @@
 	link = { vic2 = 2118 hoi4 = 10993 }	# Tolanaro -> land
 	link = { vic2 = 2122 hoi4 = 5185 }	# Toliara -> land
 	link = { vic2 = 2123 vic2 = 2124 hoi4 = 13072 }	# Comoros, Mayotte -> land
-	
-	
-	# ## Congo
-	link = { vic2 = 1996 hoi4 = 12847 hoi4 = 1950 hoi4 = 12808 hoi4 = 2073 }	# Kisangani -> land, land, land, land
-	link = { vic2 = 1997 hoi4 = 12783 hoi4 = 2154 hoi4 = 6027 hoi4 = 1181 }	# Mungbane -> land, land, land, land
-	link = { vic2 = 1998 hoi4 = 2034 hoi4 = 11934 hoi4 = 7133 }	# Baramo -> land, land, land
-	link = { vic2 = 3236 hoi4 = 13135 }	# Lake Rudolf -> lake
-	link = { vic2 = 3103 hoi4 = 2281 hoi4 = 4201 hoi4 = 13176 hoi4 = 13177 }	# Lake Tanganyika -> lake, lake, lake, lake
-	link = { vic2 = 3104 hoi4 = 2255 }	# Lake Malawi -> lake
-	link = { vic2 = 1990 hoi4 = 7161 hoi4 = 10766 }	# Nyangwe -> land, land
-	link = { vic2 = 1991 hoi4 = 4941 }	# Uvira -> land
-	link = { vic2 = 1989 hoi4 = 12907 hoi4 = 1929 }	# Munza -> land, land
-	link = { vic2 = 3102 hoi4 = 2308 }	# Lake Victoria -> lake
-	link = { vic2 = 3238 hoi4 = 13173 }	# Lake Mweru -> lake
-	link = { vic2 = 1987 hoi4 = 1817 hoi4 = 4515 hoi4 = 191 }	# Bunkeya -> land, land, land
-	link = { vic2 = 1988 hoi4 = 12795 hoi4 = 1968 hoi4 = 1516 }	# Mussumba -> land, land, land
 	# 
-	# ## French Africa
-	link = { vic2 = 1948 hoi4 = 1969 }	# Sokoto -> land
-	link = { vic2 = 1946 hoi4 = 1891 }	# Kebbi -> land
-	# 
-	# ## Sahara
-	link = { vic2 = 3224 hoi4 = 13137 }	# Lake Tana -> lake
-	link = { vic2 = 3101 hoi4 = 13138 }	# Lake Tchad -> lake
-	# 
-	# ## South Africa
-	link = { vic2 = 2103 hoi4 = 5231 }	# Philippolis -> land
-	link = { vic2 = 2101 hoi4 = 12648 }	# Bloemfontein -> land
-	link = { vic2 = 2102 hoi4 = 12064 }	# Winburg -> land
-	link = { vic2 = 2112 hoi4 = 1494 }	# Ladysmith -> land
-	link = { vic2 = 2074 hoi4 = 8214 }	# Gaborone -> land
-	link = { vic2 = 2574 hoi4 = 10525 }	# Mochudi -> land
-	link = { vic2 = 2108 hoi4 = 5217 hoi4 = 5106 }	# Mosega -> land, land
-	link = { vic2 = 2107 hoi4 = 2213 }	# Klerksdorp -> land
-	link = { vic2 = 2109 hoi4 = 2171 }	# Lydenburg -> land
-	link = { vic2 = 2105 vic2 = 2106 hoi4 = 10400 }	# Pretoria, Witwatersrand -> land
-	link = { vic2 = 2075 hoi4 = 12963 }	# Serowe -> land
-	link = { vic2 = 2113 hoi4 = 8178 }	# Ulundi -> land
-	link = { vic2 = 2114 hoi4 = 7900 }	# Mbabane -> land
-	link = { vic2 = 2110 hoi4 = 10566 }	# Thohoyandu -> land
-	link = { vic2 = 2076 hoi4 = 1580 }	# Nokaneng -> land
-	link = { vic2 = 2077 hoi4 = 12940 }	# Tsabong -> land
-	link = { vic2 = 2095 vic2 = 2094 hoi4 = 5203 hoi4 = 1509 hoi4 = 10668 }	# MANY-TO-MANY: Dikathong, Kimberley -> land, land, land
-	link = { vic2 = 2079 hoi4 = 12921 hoi4 = 10978 }	# Swakopmund -> land, land
-	link = { vic2 = 2081 hoi4 = 12519 }	# Linyati -> land
-	link = { vic2 = 2080 hoi4 = 8136 hoi4 = 10957 }	# Tsumeb -> land, land
-	link = { vic2 = 2082 hoi4 = 7770 }	# Otjinene -> land
+	# ## Namibia
+	# # Hereroland
 	link = { vic2 = 2078 hoi4 = 4879 }	# Windhoek -> land
+	link = { vic2 = 2079 hoi4 = 12921 hoi4 = 10978 }	# Swakopmund -> land, land
+	link = { vic2 = 2080 hoi4 = 8136 hoi4 = 10957 }	# Tsumeb -> land, land
+	link = { vic2 = 2081 hoi4 = 12519 }	# Linyati -> land
+	link = { vic2 = 2082 hoi4 = 7770 }	# Otjinene -> land
+	# # Namaqualand
+	link = { vic2 = 2083 hoi4 = 2207 }	# Walvis Bay -> land
+	link = { vic2 = 2084 hoi4 = 2229 hoi4 = 5154 }	# Angra Pequena -> land, land
 	link = { vic2 = 2085 hoi4 = 10963 hoi4 = 7605 }	# Nu-gouses -> land, land
 	link = { vic2 = 2086 hoi4 = 5189 }	# Karasburg -> land
-	link = { vic2 = 2084 hoi4 = 2229 hoi4 = 5154 }	# Angra Pequena -> land, land
-	link = { vic2 = 2083 hoi4 = 2207 }	# Walvis Bay -> land
+	# 
+	# ## Botswana
+	# # Bechuanaland
+	link = { vic2 = 2074 hoi4 = 8214 }	# Gaborone -> land
+	link = { vic2 = 2075 hoi4 = 12963 }	# Serowe -> land
+	link = { vic2 = 2076 hoi4 = 1580 }	# Nokaneng -> land
+	link = { vic2 = 2077 hoi4 = 12940 }	# Tsabong -> land
+	link = { vic2 = 2574 hoi4 = 10525 }	# Mochudi -> land
+	# 
+	# ## South Africa
+	# # Kimberely Region
+	link = { vic2 = 2095 vic2 = 2094 hoi4 = 5203 hoi4 = 1509 hoi4 = 10668 }	# MANY-TO-MANY: Dikathong, Kimberley -> land, land, land
+	# # Northern Cape
+	link = { vic2 = 2088 hoi4 = 4528 hoi4 = 10442 }	# Springbok -> land, land
+	link = { vic2 = 2092 hoi4 = 4822 }	# Beaufort -> land
 	link = { vic2 = 2093 hoi4 = 12419 }	# Calvinia -> land
 	link = { vic2 = 2558 hoi4 = 10697 }	# De Aar -> land
-	link = { vic2 = 2088 hoi4 = 4528 hoi4 = 10442 }	# Springbok -> land, land
-	link = { vic2 = 2104 hoi4 = 4556 }	# Thaba Bosiu -> land
-	link = { vic2 = 2097 vic2 = 2099 hoi4 = 4584 }	# Graaf Reinet, Mathele -> land
-	link = { vic2 = 2092 hoi4 = 4822 }	# Beaufort -> land
-	link = { vic2 = 2111 hoi4 = 1468 }	# Durban -> land
-	link = { vic2 = 2100 hoi4 = 7576 }	# Umtata -> land
-	link = { vic2 = 2098 hoi4 = 1833 }	# Bisho -> land
-	link = { vic2 = 2096 hoi4 = 4696 }	# Port Elizabeth -> land
-	link = { vic2 = 2091 hoi4 = 12547 }	# Mossel Bay -> land
+	# # Cape Colony
+	link = { vic2 = 2087 hoi4 = 10415 }	# Cape Town -> land
 	link = { vic2 = 2089 hoi4 = 12692 }	# Worcester -> land
 	link = { vic2 = 2090 hoi4 = 12589 }	# Swettenham -> land
-	link = { vic2 = 2087 hoi4 = 10415 }	# Cape Town -> land
-	# 
-	# ## Somalia
-	# 
-	link = { vic2 = 1177 hoi4 = 8000 }	# Socotra -> land
+	link = { vic2 = 2091 hoi4 = 12547 }	# Mossel Bay -> land
+	# # Transvaal
+	link = { vic2 = 2105 vic2 = 2106 hoi4 = 10400 }	# Pretoria, Witwatersrand -> land
+	link = { vic2 = 2107 hoi4 = 2213 }	# Klerksdorp -> land
+	link = { vic2 = 2108 hoi4 = 5217 hoi4 = 5106 }	# Mosega -> land, land
+	link = { vic2 = 2109 hoi4 = 2171 }	# Lydenburg -> land
+	link = { vic2 = 2110 hoi4 = 10566 }	# Thohoyandu -> land
+	link = { vic2 = 2114 hoi4 = 7900 }	# Mbabane -> land
+	# # Vrystaat
+	link = { vic2 = 2101 hoi4 = 12648 }	# Bloemfontein -> land
+	link = { vic2 = 2102 hoi4 = 12064 }	# Winburg -> land
+	link = { vic2 = 2103 hoi4 = 5231 }	# Philippolis -> land
+	# # Natal-Zululand
+	link = { vic2 = 2104 hoi4 = 4556 }	# Thaba Bosiu -> land
+	link = { vic2 = 2111 hoi4 = 1468 }	# Durban -> land
+	link = { vic2 = 2112 hoi4 = 1494 }	# Ladysmith -> land
+	link = { vic2 = 2113 hoi4 = 8178 }	# Ulundi -> land
+	# # Eastern Cape
+	link = { vic2 = 2096 hoi4 = 4696 }	# Port Elizabeth -> land
+	link = { vic2 = 2097 vic2 = 2099 hoi4 = 4584 }	# Graaf Reinet, Mathele -> land
+	link = { vic2 = 2098 hoi4 = 1833 }	# Bisho -> land
+	link = { vic2 = 2100 hoi4 = 7576 }	# Umtata -> land
 	# 
 	# 
 	# ##########
@@ -2419,6 +2425,7 @@
 	# Asia
 	# ##########
 	# 
+	link = { vic2 = 1177 hoi4 = 8000 }	# Socotra -> land
 	link = { vic2 = 2610 hoi4 = 11480 hoi4 = 9528 hoi4 = 7438 hoi4 = 4351 hoi4 = 576 hoi4 = 1318 hoi4 = 3502 hoi4 = 11510 hoi4 = 508 hoi4 = 432 hoi4 = 9462 }	# Uralsk -> land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1183 hoi4 = 12227 hoi4 = 7313 hoi4 = 7341 hoi4 = 4294 hoi4 = 7370 hoi4 = 12254 hoi4 = 12235 hoi4 = 1247 hoi4 = 4254 hoi4 = 10253 hoi4 = 4394 }	# Aqtobe -> land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 2702 hoi4 = 7243 hoi4 = 7354 hoi4 = 7337 hoi4 = 10164 hoi4 = 7410 hoi4 = 1429 hoi4 = 12294 hoi4 = 12179 hoi4 = 10264 hoi4 = 12108 hoi4 = 1220 hoi4 = 1371 hoi4 = 1314 hoi4 = 4376 hoi4 = 4227 hoi4 = 4374 hoi4 = 4300 hoi4 = 4303 hoi4 = 10131 }	# Aralsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
