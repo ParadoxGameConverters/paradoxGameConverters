@@ -1896,23 +1896,23 @@
 	# ## Italy
 	# # Piemonte
 	link = { vic2 = 720 hoi4 = 6780 hoi4 = 770 hoi4 = 11721 hoi4 = 9738 }	# Turin -> land, land, land, land
-	link = { vic2 = 721 hoi4 = 611 }	# Aosta -> land
-	link = { vic2 = 722 hoi4 = 11570 hoi4 = 3782 hoi4 = 11730 }	# Novara -> land, land, land
-	link = { vic2 = 723 hoi4 = 9741 hoi4 = 11723 hoi4 = 771 }	# Alessandria -> land, land, land
+	link = { vic2 = 721 hoi4 = 611 hoi4 = 11570 }	# Aosta -> land, land
+	link = { vic2 = 722 hoi4 = 776 hoi4 = 6635 hoi4 = 3782 }	# Novara -> land, land, land
+	link = { vic2 = 723 hoi4 = 771 hoi4 = 9741 hoi4 = 11723 hoi4 = 11726 hoi4 = 11730 }	# Alessandria -> land, land, land, land, land
 	link = { vic2 = 724 hoi4 = 6788 }	# Genoa -> land
-	link = { vic2 = 725 hoi4 = 11891 hoi4 = 3772 }	# Savona -> land, land
+	link = { vic2 = 725 hoi4 = 3772 hoi4 = 11891 }	# Savona -> land, land
 	# # Lombardia
-	link = { vic2 = 726 hoi4 = 3780 hoi4 = 776 hoi4 = 607 hoi4 = 6635 }	# Milan -> land, land, land, land
-	link = { vic2 = 727 hoi4 = 11587 hoi4 = 6661 hoi4 = 9584 }	# Bergamo -> land, land, land
-	link = { vic2 = 728 hoi4 = 11568 hoi4 = 969 hoi4 = 773 hoi4 = 3776 }	# Brescia -> land, land, land, land
+	link = { vic2 = 726 hoi4 = 3780 hoi4 = 607 }	# Milan -> land, land
+	link = { vic2 = 727 hoi4 = 6661 hoi4 = 9584 hoi4 = 969 hoi4 = 11587 }	# Bergamo -> land, land, land, land
+	link = { vic2 = 728 hoi4 = 773 hoi4 = 3776 hoi4 = 11568 }	# Brescia -> land, land, land
 	# # South Tirol
-	link = { vic2 = 734 hoi4 = 6631 hoi4 = 9598 hoi4 = 11598 hoi4 = 6675 hoi4 = 656 }	# Trent -> land, land, land, land, land
-	link = { vic2 = 735 hoi4 = 11615 hoi4 = 9630 }	# Bozen -> land, land
+	link = { vic2 = 734 hoi4 = 6631 hoi4 = 9598 hoi4 = 11598 }	# Trent -> land, land, land
+	link = { vic2 = 735 hoi4 = 9630 hoi4 = 6675 hoi4 = 11615 }	# Bozen -> land, land, land
 	# # Venetia
 	link = { vic2 = 729 hoi4 = 11584 }	# Venice -> land
 	link = { vic2 = 730 hoi4 = 603 hoi4 = 3604 }	# Verona -> land, land
 	link = { vic2 = 731 hoi4 = 9582 }	# Padua -> land
-	link = { vic2 = 732 hoi4 = 3657 hoi4 = 6656 }	# Treviso -> land, land
+	link = { vic2 = 732 hoi4 = 6656 hoi4 = 3657 hoi4 = 656 }	# Treviso -> land, land, land
 	link = { vic2 = 733 hoi4 = 628 hoi4 = 9613 }	# Udine -> land, land
 	# # Istria
 	link = { vic2 = 736 hoi4 = 6626 }	# Trieste -> land
@@ -1921,7 +1921,7 @@
 	link = { vic2 = 770 hoi4 = 11735 }	# Pola -> land
 	link = { vic2 = 778 hoi4 = 11564 }	# Fiume -> land
 	# # Emelia
-	link = { vic2 = 738 hoi4 = 3773 hoi4 = 6790 hoi4 = 11726 }	# Parma -> land, land, land
+	link = { vic2 = 738 hoi4 = 3773 hoi4 = 6790 }	# Parma -> land, land
 	link = { vic2 = 739 hoi4 = 9752 hoi4 = 3976 }	# Modena -> land, land
 	link = { vic2 = 740 hoi4 = 6973 }	# Massa -> land
 	# # Romagna
@@ -1932,32 +1932,32 @@
 	link = { vic2 = 744 hoi4 = 9907 hoi4 = 1616 hoi4 = 11889 }	# Florence -> land, land, land
 	link = { vic2 = 745 hoi4 = 11833 }	# Leghorn -> land
 	link = { vic2 = 746 hoi4 = 6946 }	# Lucca -> land
-	link = { vic2 = 747 hoi4 = 910 hoi4 = 9879 hoi4 = 9750 }	# Siena -> land, land, land
-	link = { vic2 = 748 hoi4 = 6875 }	# Grosetto -> land
+	link = { vic2 = 747 hoi4 = 910 hoi4 = 9879 }	# Siena -> land, land
+	link = { vic2 = 748 hoi4 = 6875 hoi4 = 9750 }	# Grosetto -> land, land
 	# # Lazio
-	link = { vic2 = 749 hoi4 = 9904 hoi4 = 11751 }	# Rome -> land, land
+	link = { vic2 = 749 hoi4 = 9904 hoi4 = 11751 hoi4 = 11846 }	# Rome -> land, land, land
 	link = { vic2 = 750 hoi4 = 6862 }	# Viterbo -> land
-	link = { vic2 = 751 hoi4 = 6926 hoi4 = 9794 hoi4 = 11790 hoi4 = 3885 }	# Perugia -> land, land, land, land
+	link = { vic2 = 751 hoi4 = 9794 hoi4 = 6926 hoi4 = 3885 hoi4 = 11790 }	# Perugia -> land, land, land, land
 	link = { vic2 = 752 hoi4 = 925 hoi4 = 967 hoi4 = 11861 }	# Ancona -> land, land, land
 	# # Puglia
-	link = { vic2 = 753 hoi4 = 9838 hoi4 = 6831 hoi4 = 963 hoi4 = 3923 hoi4 = 11882 hoi4 = 3910 hoi4 = 3966 }	# Aquila -> land, land, land, land, land, land, land
+	link = { vic2 = 753 hoi4 = 6831 hoi4 = 9838 hoi4 = 3910 hoi4 = 11882 hoi4 = 963 hoi4 = 3923 hoi4 = 3966 }	# Aquila -> land, land, land, land, land, land, land
 	link = { vic2 = 756 hoi4 = 6843 hoi4 = 9784 }	# Bari -> land, land
-	link = { vic2 = 757 hoi4 = 6980 hoi4 = 6939 hoi4 = 883 hoi4 = 11803 }	# Foggia -> land, land, land, land
-	link = { vic2 = 758 hoi4 = 6979 hoi4 = 11998 hoi4 = 11837 }	# Brindisi -> land, land, land
+	link = { vic2 = 757 hoi4 = 883 hoi4 = 6980 hoi4 = 6939 hoi4 = 11803 }	# Foggia -> land, land, land, land
+	link = { vic2 = 758 hoi4 = 11998 hoi4 = 11837 hoi4 = 6979 }	# Brindisi -> land, land, land
 	# # Campania
 	link = { vic2 = 754 hoi4 = 819 hoi4 = 9826 }	# Naples -> land, land
-	link = { vic2 = 755 hoi4 = 955 hoi4 = 851 hoi4 = 3958 }	# Salerno -> land, land, land
+	link = { vic2 = 755 hoi4 = 955 hoi4 = 851 }	# Salerno -> land, land
 	link = { vic2 = 759 hoi4 = 9990 }	# Reggio di Calabria -> land
-	link = { vic2 = 760 hoi4 = 3901 hoi4 = 12098 hoi4 = 12066 }	# Catanzaro -> land, land, land
-	link = { vic2 = 761 hoi4 = 9856 hoi4 = 10027 hoi4 = 3968 hoi4 = 6972 }	# Potenza -> land, land, land, land
-	link = { vic2 = 2567 hoi4 = 11846 hoi4 = 923 }	# Gaeta -> land, land
+	link = { vic2 = 760 hoi4 = 3901 hoi4 = 12066 hoi4 = 12098 hoi4 = 10027 }	# Catanzaro -> land, land, land, land
+	link = { vic2 = 761 hoi4 = 6972 hoi4 = 3968 hoi4 = 9856 hoi4 = 3958 }	# Potenza -> land, land, land, land
+	link = { vic2 = 2567 hoi4 = 923 }	# Gaeta -> land
 	# # Sicily
-	link = { vic2 = 762 hoi4 = 10074 hoi4 = 7059 hoi4 = 7147 }	# Palermo -> land, land, land
-	link = { vic2 = 763 hoi4 = 4159 hoi4 = 1156 hoi4 = 3857 }	# Messina -> land, land, land
+	link = { vic2 = 762 hoi4 = 10074 hoi4 = 3857 hoi4 = 7147 hoi4 = 7059 }	# Palermo -> land, land, land, land
+	link = { vic2 = 763 hoi4 = 4159 hoi4 = 1156 }	# Messina -> land, land
 	link = { vic2 = 764 hoi4 = 4014 hoi4 = 1009 hoi4 = 12047 }	# Catania -> land, land, land
 	# # Sardinia
-	link = { vic2 = 765 hoi4 = 11773 hoi4 = 902 hoi4 = 11874 hoi4 = 11755 }	# Cagliari -> land, land, land, land
-	link = { vic2 = 766 hoi4 = 11824 hoi4 = 9772 hoi4 = 9863 hoi4 = 6891 }	# Sassari -> land, land, land, land
+	link = { vic2 = 765 hoi4 = 11773 hoi4 = 11874 hoi4 = 902 }	# Cagliari -> land, land, land
+	link = { vic2 = 766 hoi4 = 9772 hoi4 = 9863 hoi4 = 6891 hoi4 = 11824 hoi4 = 11755 }	# Sassari -> land, land, land, land, land
 	# 
 	# ## Malta
 	link = { vic2 = 854 hoi4 = 12003 }	# Malta -> land
