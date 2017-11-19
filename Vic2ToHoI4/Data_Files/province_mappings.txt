@@ -1722,30 +1722,30 @@
 	# 
 	# ## Sweden
 	# # Malmo Region
-	link = { vic2 = 331 hoi4 = 408 hoi4 = 6258 }	# Gotland -> land, land
-	link = { vic2 = 332 hoi4 = 211 hoi4 = 329 hoi4 = 299 hoi4 = 363 hoi4 = 6148 hoi4 = 3229 hoi4 = 11390 }	# Kalmar -> land, land, land, land, land, land, land
-	link = { vic2 = 333 hoi4 = 9406 hoi4 = 11311 hoi4 = 242 hoi4 = 9251 hoi4 = 9329 hoi4 = 11231 hoi4 = 9410 hoi4 = 11280 }	# Växjö -> land, land, land, land, land, land, land, land
-	link = { vic2 = 334 hoi4 = 11376 hoi4 = 9279 hoi4 = 6345 hoi4 = 9362 hoi4 = 6412 hoi4 = 3307 }	# Malmö -> land, land, land, land, land, land
-	link = { vic2 = 335 hoi4 = 6120 hoi4 = 9300 hoi4 = 11160 hoi4 = 11327 hoi4 = 11215 }	# Karlskrona -> land, land, land, land, land
+	link = { vic2 = 331 hoi4 = 6258 hoi4 = 408 }	# Gotland -> land, land
+	link = { vic2 = 332 hoi4 = 299 hoi4 = 329 hoi4 = 6148 hoi4 = 3229 hoi4 = 11390 hoi4 = 211 hoi4 = 363 }	# Kalmar -> land, land, land, land, land, land, land
+	link = { vic2 = 333 hoi4 = 242 hoi4 = 9329 hoi4 = 9406 hoi4 = 11311 hoi4 = 11280 hoi4 = 9410 hoi4 = 11231 hoi4 = 9251 }	# Växjö -> land, land, land, land, land, land, land, land
+	link = { vic2 = 334 hoi4 = 9279 hoi4 = 11376 hoi4 = 6345 hoi4 = 9362 hoi4 = 6412 hoi4 = 3307 }	# Malmö -> land, land, land, land, land, land
+	link = { vic2 = 335 hoi4 = 11215 hoi4 = 9300 hoi4 = 6120 hoi4 = 11160 hoi4 = 11327 }	# Karlskrona -> land, land, land, land, land
 	# # Stockholm
-	link = { vic2 = 322 hoi4 = 161 hoi4 = 6050 hoi4 = 6209 }	# Stockholm -> land, land, land
-	link = { vic2 = 324 hoi4 = 3182 hoi4 = 11163 hoi4 = 9149 hoi4 = 11278 }	# Uppsala -> land, land, land, land
-	link = { vic2 = 325 hoi4 = 6311 hoi4 = 6397 hoi4 = 9393 hoi4 = 11289 hoi4 = 11380 hoi4 = 9308 }	# Norrköping -> land, land, land, land, land, land
-	link = { vic2 = 326 hoi4 = 9109 hoi4 = 11082 hoi4 = 11188 hoi4 = 9185 hoi4 = 3106 hoi4 = 35 hoi4 = 6127 hoi4 = 13097 hoi4 = 13098 }	# Västerås -> land, land, land, land, land, land, land, lake, lake
+	link = { vic2 = 322 hoi4 = 6050 hoi4 = 6209 hoi4 = 161 }	# Stockholm -> land, land, land
+	link = { vic2 = 324 hoi4 = 9149 hoi4 = 11278 hoi4 = 3182 hoi4 = 11163 }	# Uppsala -> land, land, land, land
+	link = { vic2 = 325 hoi4 = 11380 hoi4 = 9393 hoi4 = 9308 hoi4 = 6311 hoi4 = 6397 hoi4 = 11289 }	# Norrköping -> land, land, land, land, land, land
+	link = { vic2 = 326 hoi4 = 35 hoi4 = 11082 hoi4 = 9109 hoi4 = 9185 hoi4 = 6127 hoi4 = 3106 hoi4 = 11188 hoi4 = 13098 hoi4 = 13097 }	# Västerås -> land, land, land, land, land, land, land, lake, lake
 	# # Goteborg
-	link = { vic2 = 323 hoi4 = 77 hoi4 = 9068 hoi4 = 6123 hoi4 = 9148 hoi4 = 11053 hoi4 = 9173 hoi4 = 3148 hoi4 = 9117 hoi4 = 9193 hoi4 = 156 hoi4 = 11197 hoi4 = 114 hoi4 = 6093 hoi4 = 9182 hoi4 = 3070 hoi4 = 3005 hoi4 = 6147 hoi4 = 13099 }	# Falun -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
-	link = { vic2 = 327 hoi4 = 9209 hoi4 = 6188 hoi4 = 6164 hoi4 = 6084 hoi4 = 11044 }	# Örebro -> land, land, land, land, land
-	link = { vic2 = 328 hoi4 = 11070 hoi4 = 69 hoi4 = 147 hoi4 = 9138 hoi4 = 6195 hoi4 = 3128 hoi4 = 11114 hoi4 = 6028 hoi4 = 9054 hoi4 = 3141 hoi4 = 9218 }	# Karlstad -> land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 323 hoi4 = 9193 hoi4 = 156 hoi4 = 6093 hoi4 = 9182 hoi4 = 3070 hoi4 = 77 hoi4 = 3128 hoi4 = 9068 hoi4 = 6123 hoi4 = 3005 hoi4 = 6147 hoi4 = 9173 hoi4 = 11053 hoi4 = 3148 hoi4 = 11197 hoi4 = 114 hoi4 = 9148 hoi4 = 13099 }	# Falun -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 327 hoi4 = 6164 hoi4 = 11044 hoi4 = 6084 hoi4 = 9209 hoi4 = 6188 }	# Örebro -> land, land, land, land, land
+	link = { vic2 = 328 hoi4 = 11114 hoi4 = 9138 hoi4 = 147 hoi4 = 69 hoi4 = 6028 hoi4 = 3141 hoi4 = 9054 hoi4 = 9218 hoi4 = 6195 hoi4 = 11070 }	# Karlstad -> land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 329 hoi4 = 383 hoi4 = 6310 hoi4 = 171 }	# Göteborg -> land, land, land
-	link = { vic2 = 330 hoi4 = 3375 hoi4 = 3286 hoi4 = 6406 hoi4 = 3386 hoi4 = 6331 hoi4 = 295 hoi4 = 3063 }	# Borås -> land, land, land, land, land, land, land
+	link = { vic2 = 330 hoi4 = 6331 hoi4 = 3286 hoi4 = 3375 hoi4 = 295 hoi4 = 3063 hoi4 = 6406 hoi4 = 3386 }	# Borås -> land, land, land, land, land, land, land
 	link = { vic2 = 2703 hoi4 = 13096 }	# Vänern -> lake
 	link = { vic2 = 2704 hoi4 = 13095 }	# Vättern -> lake
 	# # Norrland
-	link = { vic2 = 317 hoi4 = 6023 hoi4 = 11209 hoi4 = 125 hoi4 = 11040 hoi4 = 11147 hoi4 = 3045 hoi4 = 49 hoi4 = 9051 hoi4 = 11091 }	# Gävle -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 318 hoi4 = 9088 hoi4 = 11185 hoi4 = 6067 hoi4 = 11120 hoi4 = 184 hoi4 = 11148 hoi4 = 9141 hoi4 = 11129 hoi4 = 6063 hoi4 = 130 hoi4 = 205 hoi4 = 9151 hoi4 = 9035 hoi4 = 3108 hoi4 = 6126 }	# Sundsvall -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 319 hoi4 = 9171 hoi4 = 6185 hoi4 = 11187 hoi4 = 3039 hoi4 = 11052 hoi4 = 168 hoi4 = 9066 hoi4 = 3111 hoi4 = 6207 hoi4 = 202 hoi4 = 3191 hoi4 = 9229 hoi4 = 11116 hoi4 = 11049 hoi4 = 6129 hoi4 = 113 hoi4 = 6010 hoi4 = 11123 hoi4 = 9154 hoi4 = 46 hoi4 = 3162 hoi4 = 13117 }	# Östersund -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
-	link = { vic2 = 320 hoi4 = 3062 hoi4 = 6083 hoi4 = 6024 hoi4 = 11190 hoi4 = 9211 hoi4 = 11112 hoi4 = 11058 hoi4 = 9175 hoi4 = 6152 hoi4 = 9095 hoi4 = 9134 hoi4 = 11026 hoi4 = 11152 hoi4 = 11 hoi4 = 3003 hoi4 = 109 hoi4 = 3138 hoi4 = 11069 hoi4 = 3044 hoi4 = 145 hoi4 = 3173 hoi4 = 6200 hoi4 = 118 hoi4 = 182 hoi4 = 3113 hoi4 = 6132 hoi4 = 11067 hoi4 = 9093 hoi4 = 3100 hoi4 = 9220 hoi4 = 6161 hoi4 = 9143 hoi4 = 11201 }	# Umeå -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 321 hoi4 = 9108 hoi4 = 3104 hoi4 = 9147 hoi4 = 201 hoi4 = 6168 hoi4 = 61 hoi4 = 6170 hoi4 = 6208 hoi4 = 11060 hoi4 = 9083 hoi4 = 6055 hoi4 = 9178 hoi4 = 190 hoi4 = 6155 hoi4 = 58 hoi4 = 11102 hoi4 = 3179 hoi4 = 148 hoi4 = 6074 hoi4 = 3054 hoi4 = 9226 hoi4 = 9186 hoi4 = 6165 hoi4 = 6125 hoi4 = 11073 hoi4 = 11208 hoi4 = 11155 hoi4 = 6206 hoi4 = 101 hoi4 = 3095 hoi4 = 151 hoi4 = 13119 }	# Luleå -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 317 hoi4 = 11091 hoi4 = 11147 hoi4 = 11040 hoi4 = 125 hoi4 = 11209 hoi4 = 6023 hoi4 = 9051 hoi4 = 3045 hoi4 = 49 hoi4 = 9117 }	# Gävle -> land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 318 hoi4 = 9151 hoi4 = 9088 hoi4 = 11185 hoi4 = 6063 hoi4 = 9141 hoi4 = 11129 hoi4 = 205 hoi4 = 9035 hoi4 = 11123 hoi4 = 130 hoi4 = 182 hoi4 = 11120 hoi4 = 184 }	# Sundsvall -> land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 319 hoi4 = 11148 hoi4 = 11049 hoi4 = 9229 hoi4 = 113 hoi4 = 6010 hoi4 = 3191 hoi4 = 202 hoi4 = 6207 hoi4 = 11116 hoi4 = 3111 hoi4 = 9066 hoi4 = 168 hoi4 = 3162 hoi4 = 6129 hoi4 = 3108 hoi4 = 6126 hoi4 = 9154 hoi4 = 46 hoi4 = 3039 hoi4 = 6185 hoi4 = 11187 hoi4 = 9171 hoi4 = 11052 hoi4 = 13117 }	# Östersund -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 320 hoi4 = 6132 hoi4 = 3113 hoi4 = 11201 hoi4 = 9143 hoi4 = 9220 hoi4 = 6161 hoi4 = 11067 hoi4 = 118 hoi4 = 9093 hoi4 = 3100 hoi4 = 6200 hoi4 = 109 hoi4 = 3173 hoi4 = 6067 hoi4 = 145 hoi4 = 3138 hoi4 = 11 hoi4 = 11069 hoi4 = 3044 hoi4 = 9134 hoi4 = 9095 hoi4 = 6152 hoi4 = 11026 }	# Umeå -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 321 hoi4 = 9108 hoi4 = 6165 hoi4 = 6083 hoi4 = 9147 hoi4 = 6125 hoi4 = 201 hoi4 = 11073 hoi4 = 9186 hoi4 = 9226 hoi4 = 3104 hoi4 = 6024 hoi4 = 3062 hoi4 = 11190 hoi4 = 3003 hoi4 = 9211 hoi4 = 11152 hoi4 = 11112 hoi4 = 9175 hoi4 = 11058 hoi4 = 58 hoi4 = 190 hoi4 = 6155 hoi4 = 9178 hoi4 = 6055 hoi4 = 9083 hoi4 = 6208 hoi4 = 11060 hoi4 = 101 hoi4 = 3095 hoi4 = 6206 hoi4 = 3179 hoi4 = 11102 hoi4 = 148 hoi4 = 6074 hoi4 = 11155 hoi4 = 11208 hoi4 = 3054 hoi4 = 151 hoi4 = 6168 hoi4 = 61 hoi4 = 6170 hoi4 = 13119 }	# Luleå -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
 	# 
 	# ## Denmark
 	# # Flensburg
@@ -1871,9 +1871,9 @@
 	link = { vic2 = 608 hoi4 = 9622 }	# Neuchâtel -> land
 	link = { vic2 = 609 hoi4 = 9587 hoi4 = 3612 }	# Sitten -> land, land
 	# # East Switzerland
-	link = { vic2 = 603 hoi4 = 663 hoi4 = 11623 hoi4 = 11601 }	# Zurich -> land, land, land
-	link = { vic2 = 606 hoi4 = 11604 hoi4 = 636 }	# Lucerne -> land, land
-	link = { vic2 = 611 hoi4 = 3662 hoi4 = 3660 hoi4 = 658 hoi4 = 661 }	# Chur -> land, land, land, land
+	link = { vic2 = 603 hoi4 = 663 hoi4 = 11623 hoi4 = 661 }	# Zurich -> land, land, land
+	link = { vic2 = 606 hoi4 = 11604 hoi4 = 636 hoi4 = 11601 }	# Lucerne -> land, land, land
+	link = { vic2 = 611 hoi4 = 3660 hoi4 = 658 hoi4 = 3662 }	# Chur -> land, land, land
 	link = { vic2 = 2568 hoi4 = 3641 hoi4 = 9600 }	# Lugano -> land, land
 	# 
 	# ## Austria
