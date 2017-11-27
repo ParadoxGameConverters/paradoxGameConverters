@@ -1775,18 +1775,18 @@
 	link = { vic2 = 543 hoi4 = 11360 }	# Emden -> land
 	# # Lower Elba
 	link = { vic2 = 528 hoi4 = 9347 hoi4 = 3368 }	# Hamburg -> land, land
-	link = { vic2 = 531 hoi4 = 374 hoi4 = 6349 hoi4 = 3271 }	# Stade -> land, land, land
-	link = { vic2 = 532 hoi4 = 6325 hoi4 = 6263 hoi4 = 6298 hoi4 = 9264 hoi4 = 6218 hoi4 = 9238 }	# Lüneburg -> land, land, land, land, land, land
+	link = { vic2 = 531 hoi4 = 6349 hoi4 = 374 hoi4 = 3271 }	# Stade -> land, land, land
+	link = { vic2 = 532 hoi4 = 6218 hoi4 = 9264 hoi4 = 6298 hoi4 = 6325 hoi4 = 6263 }	# Lüneburg -> land, land, land, land, land
 	# # Schwerin
-	link = { vic2 = 544 hoi4 = 321 hoi4 = 11305 hoi4 = 11276 hoi4 = 9294 hoi4 = 293 }	# Schwerin -> land, land, land, land, land
-	link = { vic2 = 545 hoi4 = 268 hoi4 = 3258 }	# Neustrelitz -> land, land
+	link = { vic2 = 544 hoi4 = 321 hoi4 = 11305 hoi4 = 11276 hoi4 = 9294 hoi4 = 293 hoi4 = 268 }	# Schwerin -> land, land, land, land, land, land
+	link = { vic2 = 545 hoi4 = 3258 }	# Neustrelitz -> land
 	# # Pomerania
 	link = { vic2 = 546 hoi4 = 6282 hoi4 = 6390 hoi4 = 6334 hoi4 = 6309 hoi4 = 9334 }	# Stettin -> land, land, land, land, land
 	link = { vic2 = 547 hoi4 = 3340 hoi4 = 349 }	# Swinemünde -> land, land
 	link = { vic2 = 548 hoi4 = 9388 }	# Stralsund -> land
-	link = { vic2 = 679 hoi4 = 9361 hoi4 = 9277 hoi4 = 9306 hoi4 = 9252 }	# Kolberg -> land, land, land, land
-	link = { vic2 = 680 hoi4 = 11372 hoi4 = 11316 hoi4 = 11343 }	# Köslin -> land, land, land
-	link = { vic2 = 692 hoi4 = 11288 hoi4 = 11260 }	# Deutsch Krone -> land, land
+	link = { vic2 = 679 hoi4 = 9361 hoi4 = 9277 hoi4 = 9306 }	# Kolberg -> land, land, land
+	link = { vic2 = 680 hoi4 = 11372 hoi4 = 11343 hoi4 = 11316 }	# Köslin -> land, land, land
+	link = { vic2 = 692 hoi4 = 9252 hoi4 = 11288 hoi4 = 11260 }	# Deutsch Krone -> land, land, land
 	# # Rheinland
 	link = { vic2 = 572 hoi4 = 11435 hoi4 = 11470 hoi4 = 3547 }	# Trier -> land, land, land
 	link = { vic2 = 575 hoi4 = 587 }	# Cologne -> land
@@ -1798,27 +1798,27 @@
 	link = { vic2 = 2561 hoi4 = 6570 hoi4 = 9482 }	# Siegburg -> land, land
 	# # Westfalen
 	link = { vic2 = 580 hoi4 = 495 }	# Dortmund -> land
-	link = { vic2 = 581 hoi4 = 11346 hoi4 = 6622 hoi4 = 6535 hoi4 = 3512 }	# Münster -> land, land, land, land
-	link = { vic2 = 582 hoi4 = 405 hoi4 = 9509 }	# Minden -> land, land
-	link = { vic2 = 583 hoi4 = 3398 }	# Siegen -> land
-	link = { vic2 = 584 hoi4 = 9443 hoi4 = 11431 }	# Korbach -> land, land
+	link = { vic2 = 581 hoi4 = 6535 hoi4 = 11346 hoi4 = 6622 hoi4 = 3512 }	# Münster -> land, land, land, land
+	link = { vic2 = 582 hoi4 = 405 hoi4 = 11431 hoi4 = 9509 }	# Minden -> land, land, land
+	link = { vic2 = 583 hoi4 = 9547 hoi4 = 3398 }	# Siegen -> land, land
+	link = { vic2 = 584 hoi4 = 11533 hoi4 = 9443 }	# Korbach -> land, land
 	link = { vic2 = 585 hoi4 = 3355 }	# Detmold -> land
 	# # Hanover
 	link = { vic2 = 534 hoi4 = 6377 hoi4 = 3395 }	# Hanover -> land, land
 	link = { vic2 = 535 hoi4 = 3234 }	# Nienburg -> land
-	link = { vic2 = 536 hoi4 = 11493 hoi4 = 526 hoi4 = 9375 }	# Brunswick -> land, land, land
-	link = { vic2 = 537 hoi4 = 11468 hoi4 = 11402 hoi4 = 6513 }	# Göttingen -> land, land, land
+	link = { vic2 = 536 hoi4 = 526 hoi4 = 11493 hoi4 = 9375 }	# Brunswick -> land, land, land
+	link = { vic2 = 537 hoi4 = 6513 hoi4 = 11468 hoi4 = 11402 }	# Göttingen -> land, land, land
 	# # Anhalt
-	link = { vic2 = 553 hoi4 = 3522 hoi4 = 6487 }	# Magdeburg -> land, land
-	link = { vic2 = 555 hoi4 = 3499 hoi4 = 9560 }	# Dessau -> land, land
-	link = { vic2 = 556 hoi4 = 6441 hoi4 = 11545 }	# Halle -> land, land
-	link = { vic2 = 557 hoi4 = 11359 hoi4 = 9456 }	# Stendal -> land, land
-	# # Brandengurg
-	link = { vic2 = 549 hoi4 = 6521 hoi4 = 11444 hoi4 = 11505 hoi4 = 9428 }	# Berlin -> land, land, land, land
+	link = { vic2 = 553 hoi4 = 3522 hoi4 = 6487 hoi4 = 9456 }	# Magdeburg -> land, land, land
+	link = { vic2 = 555 hoi4 = 9560 }	# Dessau -> land
+	link = { vic2 = 556 hoi4 = 6582 hoi4 = 11545 hoi4 = 6441 }	# Halle -> land, land, land
+	link = { vic2 = 557 hoi4 = 11359 hoi4 = 9238 }	# Stendal -> land, land
+	# # Brandenburg
+	link = { vic2 = 549 hoi4 = 6521 hoi4 = 11444 hoi4 = 11505 hoi4 = 9428 hoi4 = 3499 }	# Berlin -> land, land, land, land, land
 	link = { vic2 = 550 hoi4 = 3312 hoi4 = 3207 }	# Prenzlau -> land, land
 	link = { vic2 = 551 hoi4 = 11219 hoi4 = 375 hoi4 = 3367 }	# Pritzwalk -> land, land, land
-	link = { vic2 = 552 hoi4 = 478 hoi4 = 11415 hoi4 = 9496 hoi4 = 3572 }	# Cottbus -> land, land, land, land
-	link = { vic2 = 681 hoi4 = 444 hoi4 = 11478 hoi4 = 6236 hoi4 = 9387 hoi4 = 537 hoi4 = 3473 }	# Küstrin -> land, land, land, land, land, land
+	link = { vic2 = 552 hoi4 = 11415 hoi4 = 478 hoi4 = 9496 }	# Cottbus -> land, land, land
+	link = { vic2 = 681 hoi4 = 537 hoi4 = 444 hoi4 = 11478 hoi4 = 6236 hoi4 = 9387 hoi4 = 3473 hoi4 = 3572 }	# Küstrin -> land, land, land, land, land, land, land
 	# # Palatinate
 	link = { vic2 = 570 hoi4 = 11560 }	# Mainz -> land
 	link = { vic2 = 571 hoi4 = 3558 hoi4 = 563 hoi4 = 11547 }	# Kaiserslautern -> land, land, land
@@ -1828,12 +1828,12 @@
 	link = { vic2 = 564 hoi4 = 6488 }	# Frankfurt -> land
 	link = { vic2 = 565 hoi4 = 6444 hoi4 = 9486 }	# Wiesbaden -> land, land
 	link = { vic2 = 566 hoi4 = 564 hoi4 = 9524 hoi4 = 6549 }	# Kassel -> land, land, land
-	link = { vic2 = 567 hoi4 = 3524 hoi4 = 9547 hoi4 = 11533 }	# Giessen -> land, land, land
-	link = { vic2 = 568 hoi4 = 11445 hoi4 = 3397 }	# Fulda -> land, land
-	link = { vic2 = 2560 hoi4 = 589 }	# Darmstadt -> land
+	link = { vic2 = 567 hoi4 = 3524 hoi4 = 3397 }	# Giessen -> land, land
+	link = { vic2 = 568 hoi4 = 11445 }	# Fulda -> land
+	link = { vic2 = 2560 hoi4 = 589 hoi4 = 3574 }	# Darmstadt -> land, land
 	# # Erfurt
-	link = { vic2 = 554 hoi4 = 6524 hoi4 = 3561 hoi4 = 425 }	# Erfurt -> land, land, land
-	link = { vic2 = 561 hoi4 = 6501 hoi4 = 538 hoi4 = 9497 hoi4 = 6582 }	# Weimar -> land, land, land, land
+	link = { vic2 = 554 hoi4 = 6524 hoi4 = 3561 hoi4 = 425 hoi4 = 538 hoi4 = 6501 }	# Erfurt -> land, land, land, land, land
+	link = { vic2 = 561 hoi4 = 9497 }	# Weimar -> land
 	link = { vic2 = 562 hoi4 = 3500 }	# Gotha -> land
 	link = { vic2 = 563 hoi4 = 482 }	# Meiningen -> land
 	# # Saxony
@@ -1843,25 +1843,25 @@
 	# # Franconia
 	link = { vic2 = 595 hoi4 = 11544 hoi4 = 561 hoi4 = 11529 }	# Nuremberg -> land, land, land
 	link = { vic2 = 596 hoi4 = 6594 }	# Aschaffenburg -> land
-	link = { vic2 = 597 hoi4 = 13116 hoi4 = 6421 hoi4 = 9572 hoi4 = 11417 hoi4 = 9557 }	# Würzburg -> land, land, land, land, land
-	link = { vic2 = 598 hoi4 = 3474 hoi4 = 11404 hoi4 = 9416 }	# Bayreuth -> land, land, land
+	link = { vic2 = 597 hoi4 = 11417 hoi4 = 13116 hoi4 = 6421 hoi4 = 9572 hoi4 = 9557 }	# Würzburg -> land, land, land, land, land
+	link = { vic2 = 598 hoi4 = 9416 hoi4 = 11404 hoi4 = 3474 hoi4 = 586 }	# Bayreuth -> land, land, land, land
 	# # Baden
-	link = { vic2 = 569 hoi4 = 3574 }	# Mannheim -> land
-	link = { vic2 = 586 hoi4 = 6542 hoi4 = 3530 hoi4 = 6568 }	# Karlsruhe -> land, land, land
-	link = { vic2 = 587 hoi4 = 11640 hoi4 = 6712 hoi4 = 3692 }	# Freiburg -> land, land, land
-	link = { vic2 = 588 hoi4 = 3679 hoi4 = 13126 }	# Konstanz -> land, lake
+	link = { vic2 = 569 hoi4 = 6568 hoi4 = 6581 }	# Mannheim -> land, land
+	link = { vic2 = 586 hoi4 = 6542 hoi4 = 3530 }	# Karlsruhe -> land, land
+	link = { vic2 = 587 hoi4 = 11640 hoi4 = 3692 hoi4 = 6712 }	# Freiburg -> land, land, land
+	link = { vic2 = 588 hoi4 = 3679 hoi4 = 6934 hoi4 = 13126 }	# Konstanz -> land, land, lake
 	# # Wurttemburg
-	link = { vic2 = 589 hoi4 = 9517 hoi4 = 11499 }	# Stuttgart -> land, land
-	link = { vic2 = 590 hoi4 = 9545 hoi4 = 6555 hoi4 = 6581 }	# Heilbronn -> land, land, land
+	link = { vic2 = 589 hoi4 = 9517 hoi4 = 11499 hoi4 = 9545 }	# Stuttgart -> land, land, land
+	link = { vic2 = 590 hoi4 = 6555 }	# Heilbronn -> land
 	link = { vic2 = 591 hoi4 = 11486 }	# Tübingen -> land
-	link = { vic2 = 593 hoi4 = 3690 hoi4 = 9655 hoi4 = 6934 }	# Ulm -> land, land, land
-	link = { vic2 = 594 hoi4 = 694 hoi4 = 519 }	# Sigmaringen -> land, land
+	link = { vic2 = 593 hoi4 = 3690 hoi4 = 9655 }	# Ulm -> land, land
+	link = { vic2 = 594 hoi4 = 519 hoi4 = 694 }	# Sigmaringen -> land, land
 	# # Upper Bavaria
-	link = { vic2 = 592 hoi4 = 11638 hoi4 = 9666 }	# Augsburg -> land, land
-	link = { vic2 = 599 hoi4 = 692 hoi4 = 6693 hoi4 = 11620 hoi4 = 9652 hoi4 = 3688 hoi4 = 707 }	# Munich -> land, land, land, land, land, land
-	link = { vic2 = 600 hoi4 = 6725 hoi4 = 9681 hoi4 = 532 hoi4 = 9515 hoi4 = 3541 hoi4 = 11497 }	# Landshut -> land, land, land, land, land, land
-	link = { vic2 = 601 hoi4 = 6540 hoi4 = 708 hoi4 = 3705 hoi4 = 11653 }	# Ingolstadt -> land, land, land, land
-	link = { vic2 = 602 hoi4 = 3299 hoi4 = 571 hoi4 = 3571 hoi4 = 586 }	# Regensburg -> land, land, land, land
+	link = { vic2 = 592 hoi4 = 9666 hoi4 = 11638 hoi4 = 708 }	# Augsburg -> land, land, land
+	link = { vic2 = 599 hoi4 = 692 hoi4 = 6693 hoi4 = 11620 hoi4 = 9652 hoi4 = 3688 hoi4 = 707 hoi4 = 3705 hoi4 = 11653 }	# Munich -> land, land, land, land, land, land, land, land
+	link = { vic2 = 600 hoi4 = 6725 hoi4 = 9681 hoi4 = 532 }	# Landshut -> land, land, land
+	link = { vic2 = 601 hoi4 = 6540 }	# Ingolstadt -> land
+	link = { vic2 = 602 hoi4 = 9515 hoi4 = 3541 hoi4 = 11497 hoi4 = 3299 hoi4 = 571 hoi4 = 3571 }	# Regensburg -> land, land, land, land, land, land
 	# 
 	# ## Switzerland
 	# # West Switzerland
