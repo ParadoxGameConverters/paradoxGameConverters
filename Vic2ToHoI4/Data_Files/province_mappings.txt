@@ -1965,42 +1965,42 @@
 	# ## Poland
 	# # Westpreussen
 	link = { vic2 = 690 hoi4 = 362 }	# Danzig -> land
-	link = { vic2 = 691 hoi4 = 9263 hoi4 = 334 hoi4 = 279 hoi4 = 389 }	# Tuchel -> land, land, land, land
-	link = { vic2 = 694 hoi4 = 3324 hoi4 = 3295 }	# Torun -> land, land
+	link = { vic2 = 691 hoi4 = 9263 hoi4 = 334 hoi4 = 3324 hoi4 = 389 }	# Tuchel -> land, land, land, land
+	link = { vic2 = 694 hoi4 = 3295 }	# Torun -> land
 	# # Ostpreussen
 	link = { vic2 = 693 hoi4 = 3380 hoi4 = 6402 }	# Elbing -> land, land
 	link = { vic2 = 695 hoi4 = 6332 hoi4 = 11265 hoi4 = 348 hoi4 = 395 }	# Königsberg -> land, land, land, land
-	link = { vic2 = 696 hoi4 = 9346 hoi4 = 3351 hoi4 = 11245 hoi4 = 6375 hoi4 = 9372 hoi4 = 9398 }	# Allenstein -> land, land, land, land, land, land
+	link = { vic2 = 696 hoi4 = 6375 hoi4 = 9346 hoi4 = 9398 hoi4 = 3351 hoi4 = 11245 hoi4 = 9372 }	# Allenstein -> land, land, land, land, land, land
 	link = { vic2 = 697 hoi4 = 281 hoi4 = 3384 }	# Gumbinnen -> land, land
 	link = { vic2 = 698 hoi4 = 3288 }	# Memel -> land
 	# # Posen
-	link = { vic2 = 699 hoi4 = 3532 hoi4 = 388 hoi4 = 6558 hoi4 = 3460 }	# Posen -> land, land, land, land
-	link = { vic2 = 700 hoi4 = 11232 hoi4 = 3381 hoi4 = 243 }	# Bromberg -> land, land, land
-	link = { vic2 = 701 hoi4 = 9532 hoi4 = 17 }	# Gniezno -> land, land
+	link = { vic2 = 699 hoi4 = 6558 hoi4 = 3532 hoi4 = 3460 hoi4 = 388 }	# Posen -> land, land, land, land
+	link = { vic2 = 700 hoi4 = 243 hoi4 = 11232 hoi4 = 3381 hoi4 = 279 }	# Bromberg -> land, land, land, land
+	link = { vic2 = 701 hoi4 = 9532 hoi4 = 17 hoi4 = 11558 }	# Gniezno -> land, land, land
 	# # Masovia
-	link = { vic2 = 706 hoi4 = 3544 hoi4 = 11492 hoi4 = 9400 hoi4 = 3482 hoi4 = 467 }	# Warsaw -> land, land, land, land, land
-	link = { vic2 = 708 hoi4 = 6401 hoi4 = 548 hoi4 = 3230 hoi4 = 6347 hoi4 = 6321 hoi4 = 6259 }	# Plock -> land, land, land, land, land, land
-	link = { vic2 = 709 hoi4 = 9316 hoi4 = 9290 hoi4 = 6567 hoi4 = 11385 }	# Lomza -> land, land, land, land
-	link = { vic2 = 710 hoi4 = 493 hoi4 = 9439 hoi4 = 11515 }	# Skierniewice -> land, land, land
-	link = { vic2 = 712 hoi4 = 9508 hoi4 = 11428 hoi4 = 584 }	# Lodz -> land, land, land
-	link = { vic2 = 717 hoi4 = 9546 hoi4 = 11558 }	# Kalisz -> land, land
+	link = { vic2 = 706 hoi4 = 3544 hoi4 = 9400 hoi4 = 11492 hoi4 = 467 }	# Warsaw -> land, land, land, land
+	link = { vic2 = 708 hoi4 = 6259 hoi4 = 6321 hoi4 = 6347 hoi4 = 3230 }	# Plock -> land, land, land, land
+	link = { vic2 = 709 hoi4 = 9316 hoi4 = 11385 hoi4 = 9290 hoi4 = 6567 }	# Lomza -> land, land, land, land
+	link = { vic2 = 710 hoi4 = 9508 hoi4 = 493 hoi4 = 548 hoi4 = 11515 hoi4 = 6401 hoi4 = 3482 }	# Skierniewice -> land, land, land, land, land, land
+	link = { vic2 = 712 hoi4 = 11428 }	# Lodz -> land
+	link = { vic2 = 717 hoi4 = 9546 hoi4 = 584 hoi4 = 9439 }	# Kalisz -> land, land, land
 	# # Lower Silesia
-	link = { vic2 = 682 hoi4 = 9570 hoi4 = 6462 hoi4 = 3283 hoi4 = 3510 hoi4 = 9470 hoi4 = 552 }	# Breslau -> land, land, land, land, land, land
-	link = { vic2 = 683 hoi4 = 6595 hoi4 = 11517 hoi4 = 3545 hoi4 = 6534 hoi4 = 3438 hoi4 = 3485 }	# Liegnitz -> land, land, land, land, land, land
+	link = { vic2 = 682 hoi4 = 9570 hoi4 = 6462 hoi4 = 3283 hoi4 = 3510 hoi4 = 9470 hoi4 = 3438 }	# Breslau -> land, land, land, land, land, land
+	link = { vic2 = 683 hoi4 = 552 hoi4 = 6534 hoi4 = 11517 hoi4 = 3545 hoi4 = 3485 hoi4 = 6595 }	# Liegnitz -> land, land, land, land, land, land
 	link = { vic2 = 687 hoi4 = 9535 hoi4 = 3514 }	# Görlitz -> land, land
 	# # Upper Silesia
-	link = { vic2 = 684 hoi4 = 9511 hoi4 = 479 hoi4 = 11467 hoi4 = 6512 hoi4 = 9457 }	# Oppeln -> land, land, land, land, land
+	link = { vic2 = 684 hoi4 = 11467 hoi4 = 9511 hoi4 = 6512 hoi4 = 9457 hoi4 = 479 }	# Oppeln -> land, land, land, land, land
 	link = { vic2 = 685 hoi4 = 6464 }	# Kattowitz -> land
 	link = { vic2 = 689 hoi4 = 9567 hoi4 = 9551 }	# Tesin -> land, land
 	link = { vic2 = 2584 hoi4 = 9412 }	# Bielsko -> land
-	# # Lublin
+	# # West Galicia
 	link = { vic2 = 703 hoi4 = 9427 }	# Krakow -> land
-	link = { vic2 = 711 hoi4 = 6511 hoi4 = 12562 hoi4 = 524 hoi4 = 402 }	# Siedlice -> land, land, land, land
-	link = { vic2 = 713 hoi4 = 3497 hoi4 = 6416 hoi4 = 562 hoi4 = 3458 }	# Radom -> land, land, land, land
-	link = { vic2 = 715 hoi4 = 3559 hoi4 = 6484 hoi4 = 11399 hoi4 = 9521 hoi4 = 3521 hoi4 = 9494 hoi4 = 6580 hoi4 = 9452 hoi4 = 11466 hoi4 = 9544 }	# Lublin -> land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 716 hoi4 = 11430 hoi4 = 3586 hoi4 = 506 hoi4 = 11532 }	# Kielce -> land, land, land, land
+	link = { vic2 = 711 hoi4 = 3521 hoi4 = 9544 hoi4 = 402 hoi4 = 11466 hoi4 = 524 hoi4 = 6511 hoi4 = 12562 }	# Siedlice -> land, land, land, land, land, land, land
+	link = { vic2 = 713 hoi4 = 3458 hoi4 = 6416 hoi4 = 562 hoi4 = 11532 }	# Radom -> land, land, land, land
+	link = { vic2 = 715 hoi4 = 3559 hoi4 = 6484 hoi4 = 11399 hoi4 = 9521 hoi4 = 9452 hoi4 = 6580 hoi4 = 9494 }	# Lublin -> land, land, land, land, land, land, land
+	link = { vic2 = 716 hoi4 = 11430 hoi4 = 3586 hoi4 = 506 hoi4 = 3497 }	# Kielce -> land, land, land, land
 	# 
-	# # Czechia
+	# ## Czechia
 	# # Bohemia
 	link = { vic2 = 625 hoi4 = 11542 hoi4 = 6440 }	# Prague -> land, land
 	link = { vic2 = 626 hoi4 = 9414 hoi4 = 9429 hoi4 = 3462 hoi4 = 583 hoi4 = 494 hoi4 = 445 }	# Hradec Králové -> land, land, land, land, land, land
