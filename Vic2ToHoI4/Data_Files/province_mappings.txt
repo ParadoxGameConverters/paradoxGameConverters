@@ -2002,25 +2002,26 @@
 	# 
 	# ## Czechia
 	# # Bohemia
-	link = { vic2 = 625 hoi4 = 11542 hoi4 = 6440 }	# Prague -> land, land
-	link = { vic2 = 626 hoi4 = 9414 hoi4 = 9429 hoi4 = 3462 hoi4 = 583 hoi4 = 494 hoi4 = 445 }	# Hradec Králové -> land, land, land, land, land, land
-	link = { vic2 = 627 hoi4 = 6470 hoi4 = 424 hoi4 = 9555 hoi4 = 3585 hoi4 = 3418 hoi4 = 11432 }	# Karlsbad -> land, land, land, land, land, land
-	link = { vic2 = 628 hoi4 = 469 hoi4 = 11414 hoi4 = 11401 }	# Aussig -> land, land, land
-	link = { vic2 = 629 hoi4 = 6418 hoi4 = 9421 hoi4 = 6592 hoi4 = 7857 }	# Plzen -> land, land, land, land
+	link = { vic2 = 625 hoi4 = 11542 hoi4 = 9421 }	# Prague -> land, land
+	link = { vic2 = 626 hoi4 = 494 hoi4 = 445 hoi4 = 9429 hoi4 = 583 hoi4 = 3462 }	# Hradec Králové -> land, land, land, land, land
+	link = { vic2 = 627 hoi4 = 6470 hoi4 = 424 hoi4 = 3585 hoi4 = 3418 }	# Karlsbad -> land, land, land, land
+	link = { vic2 = 628 hoi4 = 11432 hoi4 = 6440 hoi4 = 469 hoi4 = 11401 hoi4 = 9414 hoi4 = 11414 }	# Aussig -> land, land, land, land, land, land
+	link = { vic2 = 629 hoi4 = 6418 hoi4 = 7857 hoi4 = 6592 hoi4 = 9555 }	# Plzen -> land, land, land, land
 	link = { vic2 = 630 hoi4 = 9569 hoi4 = 11556 hoi4 = 9541 hoi4 = 5283 hoi4 = 543 hoi4 = 11525 }	# Budejovice -> land, land, land, land, land, land
 	# # Moravia
-	link = { vic2 = 631 hoi4 = 3553 hoi4 = 569 hoi4 = 3569 hoi4 = 557 }	# Brno -> land, land, land, land
-	link = { vic2 = 632 hoi4 = 6562 hoi4 = 11511 hoi4 = 6576 hoi4 = 6590 }	# Olomouc -> land, land, land, land
-	link = { vic2 = 688 hoi4 = 6485 hoi4 = 421 hoi4 = 3414 hoi4 = 3583 }	# Troppau -> land, land, land, land
+	link = { vic2 = 631 hoi4 = 3569 hoi4 = 557 hoi4 = 11511 hoi4 = 6576 hoi4 = 569 hoi4 = 3553 }	# Brno -> land, land, land, land, land, land
+	link = { vic2 = 632 hoi4 = 6562 hoi4 = 6590 hoi4 = 421 }	# Olomouc -> land, land, land
+	link = { vic2 = 688 hoi4 = 3583 hoi4 = 6485 hoi4 = 3414 }	# Troppau -> land, land, land
 	# 
 	# ## Slovakia
-	link = { vic2 = 633 hoi4 = 9539 hoi4 = 9692 }	# Bratislava -> land, land
+	# # Slovakia
+	link = { vic2 = 633 hoi4 = 9692 hoi4 = 9539 hoi4 = 3716 }	# Bratislava -> land, land, land
 	link = { vic2 = 634 hoi4 = 3484 hoi4 = 11539 }	# Trencín -> land, land
-	link = { vic2 = 635 hoi4 = 541 hoi4 = 11522 hoi4 = 3537 }	# Nitra -> land, land, land
+	link = { vic2 = 635 hoi4 = 11679 hoi4 = 11522 hoi4 = 3537 hoi4 = 6561 hoi4 = 541 }	# Nitra -> land, land, land, land, land
 	link = { vic2 = 636 hoi4 = 11554 hoi4 = 581 hoi4 = 3550 hoi4 = 555 }	# Banská Bystrica -> land, land, land, land
-	link = { vic2 = 637 hoi4 = 6586 hoi4 = 6604 hoi4 = 3581 }	# Košice -> land, land, land
-	link = { vic2 = 638 hoi4 = 3716 hoi4 = 11679 hoi4 = 6561 hoi4 = 9537 hoi4 = 6573 hoi4 = 3565 }	# Ronava -> land, land, land, land, land, land
-	link = { vic2 = 950 hoi4 = 11536 hoi4 = 11691 hoi4 = 3548 hoi4 = 6571 hoi4 = 9563 }	# Uzgorord -> land, land, land, land, land
+	link = { vic2 = 637 hoi4 = 6573 hoi4 = 6586 hoi4 = 3581 hoi4 = 6604 hoi4 = 3565 }	# Košice -> land, land, land, land, land
+	link = { vic2 = 638 hoi4 = 9537 }	# Ronava -> land
+	link = { vic2 = 950 hoi4 = 11691 hoi4 = 11536 hoi4 = 9563 hoi4 = 3548 hoi4 = 6571 }	# Uzgorord -> land, land, land, land, land
 	# 
 	# ## Hungary
 	# # Transdanubia
