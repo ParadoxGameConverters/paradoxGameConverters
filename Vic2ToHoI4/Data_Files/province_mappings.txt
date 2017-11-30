@@ -2025,18 +2025,18 @@
 	# 
 	# ## Hungary
 	# # Transdanubia
-	link = { vic2 = 623 hoi4 = 686 hoi4 = 11627 }	# Sopron -> land, land
-	link = { vic2 = 639 hoi4 = 3670 }	# Zalaegerszeg -> land
+	link = { vic2 = 623 hoi4 = 686 }	# Sopron -> land
+	link = { vic2 = 639 hoi4 = 11627 hoi4 = 3670 }	# Zalaegerszeg -> land, land
 	link = { vic2 = 640 hoi4 = 11610 hoi4 = 9643 }	# Pécs -> land, land
 	link = { vic2 = 642 hoi4 = 6720 hoi4 = 9676 hoi4 = 11663 }	# Gyor -> land, land, land
 	link = { vic2 = 643 hoi4 = 6703 hoi4 = 701 hoi4 = 3683 }	# Székesfehérvár -> land, land, land
-	link = { vic2 = 644 hoi4 = 9624 hoi4 = 6685 hoi4 = 3680 hoi4 = 682 }	# Kaposvár -> land, land, land, land
+	link = { vic2 = 644 hoi4 = 6685 hoi4 = 9624 hoi4 = 3680 hoi4 = 682 }	# Kaposvár -> land, land, land, land
 	link = { vic2 = 2778 hoi4 = 13125 }	# Lake Balaton -> lake
 	# # Central Hungary
-	link = { vic2 = 641 hoi4 = 9660 hoi4 = 9690 hoi4 = 716 hoi4 = 684 }	# Budapest -> land, land, land, land
+	link = { vic2 = 641 hoi4 = 9660 hoi4 = 716 hoi4 = 684 hoi4 = 6716 }	# Budapest -> land, land, land, land
 	link = { vic2 = 645 hoi4 = 11625 hoi4 = 6670 }	# Kecskemét -> land, land
-	link = { vic2 = 646 hoi4 = 3731 hoi4 = 6716 hoi4 = 3713 hoi4 = 6751 hoi4 = 11520 }	# Miskolc -> land, land, land, land, land
-	link = { vic2 = 648 hoi4 = 9706 hoi4 = 6735 hoi4 = 11659 hoi4 = 730 hoi4 = 3730 }	# Debrecen -> land, land, land, land, land
+	link = { vic2 = 646 hoi4 = 3731 hoi4 = 9690 hoi4 = 6751 hoi4 = 11520 hoi4 = 3713 }	# Miskolc -> land, land, land, land, land
+	link = { vic2 = 648 hoi4 = 11659 hoi4 = 6735 hoi4 = 3730 hoi4 = 730 hoi4 = 9706 }	# Debrecen -> land, land, land, land, land
 	link = { vic2 = 649 hoi4 = 6700 }	# Szeged -> land
 	link = { vic2 = 650 hoi4 = 11644 hoi4 = 9656 hoi4 = 679 hoi4 = 11646 hoi4 = 699 }	# Békéscsaba -> land, land, land, land, land
 	# 
