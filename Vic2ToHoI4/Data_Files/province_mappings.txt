@@ -2155,30 +2155,30 @@
 	# 
 	# ## Estonia
 	# # Estonia
-	link = { vic2 = 349 hoi4 = 83 hoi4 = 3074 hoi4 = 496 hoi4 = 567 hoi4 = 3152 hoi4 = 11426 hoi4 = 11127 hoi4 = 9079 }	# Reval -> land, land, land, land, land, land, land, land
-	link = { vic2 = 350 hoi4 = 4640 hoi4 = 11443 hoi4 = 11057 hoi4 = 6099 }	# Narva -> land, land, land, land
-	link = { vic2 = 351 hoi4 = 3174 hoi4 = 11291 hoi4 = 308 hoi4 = 6381 }	# Pärnu -> land, land, land, land
-	link = { vic2 = 352 hoi4 = 6178 hoi4 = 6408 hoi4 = 9221 hoi4 = 592 hoi4 = 9485 }	# Dorpat -> land, land, land, land, land
+	link = { vic2 = 349 hoi4 = 3152 hoi4 = 567 hoi4 = 83 hoi4 = 3074 hoi4 = 496 hoi4 = 9079 hoi4 = 11426 }	# Reval -> land, land, land, land, land, land, land
+	link = { vic2 = 350 hoi4 = 4640 hoi4 = 11443 hoi4 = 11057 hoi4 = 11127 hoi4 = 6099 }	# Narva -> land, land, land, land, land
+	link = { vic2 = 351 hoi4 = 3174 hoi4 = 11291 hoi4 = 308 hoi4 = 6381 hoi4 = 6178 }	# Pärnu -> land, land, land, land, land
+	link = { vic2 = 352 hoi4 = 9221 hoi4 = 9485 hoi4 = 6408 hoi4 = 592 }	# Dorpat -> land, land, land, land
 	link = { vic2 = 353 hoi4 = 185 hoi4 = 6201 }	# Ösel -> land, land
 	link = { vic2 = 2713 hoi4 = 13127 }	# Peipsi Järv -> lake
 	# 
 	# ## Latvia
 	# # Latvia
 	link = { vic2 = 354 hoi4 = 9340 }	# Riga -> land
-	link = { vic2 = 355 hoi4 = 9317 hoi4 = 9240 hoi4 = 10323 hoi4 = 3298 hoi4 = 319 hoi4 = 222 hoi4 = 341 hoi4 = 7482 hoi4 = 11222 hoi4 = 10493 hoi4 = 11302 hoi4 = 3388 hoi4 = 9501 }	# Valmiera -> land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 356 hoi4 = 9275 hoi4 = 6459 hoi4 = 310 hoi4 = 11358 hoi4 = 3255 }	# Daugavpils -> land, land, land, land, land
-	link = { vic2 = 357 hoi4 = 265 hoi4 = 6342 hoi4 = 6222 }	# Jelgava -> land, land, land
-	link = { vic2 = 358 hoi4 = 3194 hoi4 = 3296 hoi4 = 6322 hoi4 = 3525 }	# Ventspils -> land, land, land, land
-	link = { vic2 = 359 hoi4 = 3319 hoi4 = 9262 hoi4 = 11246 }	# Liepaja -> land, land, land
+	link = { vic2 = 355 hoi4 = 10493 hoi4 = 9240 hoi4 = 9317 hoi4 = 3388 hoi4 = 9501 hoi4 = 11302 hoi4 = 3298 hoi4 = 222 hoi4 = 341 hoi4 = 11222 hoi4 = 7482 hoi4 = 10323 hoi4 = 319 }	# Valmiera -> land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 356 hoi4 = 310 hoi4 = 6459 hoi4 = 9275 hoi4 = 11358 }	# Daugavpils -> land, land, land, land
+	link = { vic2 = 357 hoi4 = 265 hoi4 = 6222 hoi4 = 6342 hoi4 = 3255 }	# Jelgava -> land, land, land, land
+	link = { vic2 = 358 hoi4 = 3194 hoi4 = 3525 hoi4 = 6322 hoi4 = 3296 hoi4 = 11246 }	# Ventspils -> land, land, land, land, land
+	link = { vic2 = 359 hoi4 = 3319 hoi4 = 9262 }	# Liepaja -> land, land
 	# 
 	# ## Lithuania
 	# # Lithuania
-	link = { vic2 = 360 hoi4 = 9295 hoi4 = 3320 hoi4 = 11391 hoi4 = 6340 }	# Vilnius -> land, land, land, land
-	link = { vic2 = 361 hoi4 = 6296 hoi4 = 327 hoi4 = 9404 }	# Kaunas -> land, land, land
-	link = { vic2 = 362 hoi4 = 3272 hoi4 = 6281 hoi4 = 11312 hoi4 = 6407 }	# Marijampole -> land, land, land, land
-	link = { vic2 = 363 hoi4 = 9357 hoi4 = 9438 hoi4 = 9374 hoi4 = 9246 hoi4 = 11226 hoi4 = 11498 }	# Panevezys -> land, land, land, land, land, land
-	link = { vic2 = 364 hoi4 = 9483 hoi4 = 6376 hoi4 = 3337 hoi4 = 6360 hoi4 = 6229 hoi4 = 530 }	# Siauliai -> land, land, land, land, land, land
-	link = { vic2 = 365 hoi4 = 6314 hoi4 = 3354 hoi4 = 9731 hoi4 = 9499 }	# Palanga -> land, land, land, land
+	link = { vic2 = 360 hoi4 = 3320 hoi4 = 9295 hoi4 = 11342 hoi4 = 9274 }	# Vilnius -> land, land, land, land
+	link = { vic2 = 361 hoi4 = 6296 hoi4 = 327 }	# Kaunas -> land, land
+	link = { vic2 = 362 hoi4 = 3272 hoi4 = 11312 hoi4 = 6407 hoi4 = 6281 }	# Marijampole -> land, land, land, land
+	link = { vic2 = 363 hoi4 = 9438 hoi4 = 9357 hoi4 = 9404 hoi4 = 11498 hoi4 = 11226 hoi4 = 9246 hoi4 = 9374 hoi4 = 530 }	# Panevezys -> land, land, land, land, land, land, land, land
+	link = { vic2 = 364 hoi4 = 9483 hoi4 = 3337 hoi4 = 6360 hoi4 = 6229 hoi4 = 6376 }	# Siauliai -> land, land, land, land, land
+	link = { vic2 = 365 hoi4 = 6314 hoi4 = 9499 hoi4 = 9731 hoi4 = 3354 }	# Palanga -> land, land, land, land
 	# 
 	# ## Belarus
 	# # Brest
@@ -2187,10 +2187,10 @@
 	link = { vic2 = 936 hoi4 = 3254 hoi4 = 400 hoi4 = 347 hoi4 = 3281 hoi4 = 318 hoi4 = 3393 }	# Grodno -> land, land, land, land, land, land
 	link = { vic2 = 937 hoi4 = 3392 hoi4 = 3256 hoi4 = 11528 }	# Brest-Litovsk -> land, land, land
 	# # Pinsk
-	link = { vic2 = 938 hoi4 = 3366 hoi4 = 9274 hoi4 = 6413 hoi4 = 9359 hoi4 = 6359 hoi4 = 9236 }	# Lida -> land, land, land, land, land, land
+	link = { vic2 = 938 hoi4 = 3366 hoi4 = 6413 hoi4 = 9359 hoi4 = 6359 hoi4 = 9236 hoi4 = 11391 hoi4 = 6340 }	# Lida -> land, land, land, land, land, land, land
 	link = { vic2 = 939 hoi4 = 9304 hoi4 = 11341 hoi4 = 6280 hoi4 = 6306 hoi4 = 3309 }	# Baranovichi -> land, land, land, land, land
 	link = { vic2 = 940 hoi4 = 6415 hoi4 = 9520 hoi4 = 3496 hoi4 = 11503 hoi4 = 560 hoi4 = 3556 hoi4 = 11285 hoi4 = 6579 hoi4 = 535 hoi4 = 6520 }	# Pinsk -> land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 947 hoi4 = 233 hoi4 = 11342 hoi4 = 406 hoi4 = 9341 hoi4 = 358 hoi4 = 277 }	# Pastavy -> land, land, land, land, land, land
+	link = { vic2 = 947 hoi4 = 233 hoi4 = 406 hoi4 = 9341 hoi4 = 358 hoi4 = 277 }	# Pastavy -> land, land, land, land, land
 	# # Minsk
 	link = { vic2 = 718 hoi4 = 11216 hoi4 = 11370 hoi4 = 294 hoi4 = 216 hoi4 = 3267 }	# Minsk -> land, land, land, land, land
 	link = { vic2 = 941 hoi4 = 6373 hoi4 = 3350 hoi4 = 386 hoi4 = 360 hoi4 = 3759 hoi4 = 11313 hoi4 = 304 hoi4 = 331 }	# Slutsk -> land, land, land, land, land, land, land, land
