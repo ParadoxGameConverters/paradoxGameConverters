@@ -2138,22 +2138,23 @@
 	# 
 	# ## Finland
 	# # Northern Finland
-	link = { vic2 = 336 hoi4 = 82 hoi4 = 6212 hoi4 = 132 hoi4 = 9219 hoi4 = 11132 hoi4 = 195 hoi4 = 6081 hoi4 = 11121 hoi4 = 120 hoi4 = 158 hoi4 = 11081 hoi4 = 11041 }	# Oulu -> land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 337 hoi4 = 7 hoi4 = 6175 hoi4 = 3073 hoi4 = 3115 hoi4 = 9233 hoi4 = 9106 hoi4 = 11079 hoi4 = 6146 hoi4 = 11024 hoi4 = 6134 hoi4 = 3149 hoi4 = 13118 }	# Kajaani -> land, land, land, land, land, land, land, land, land, land, land, lake
-	link = { vic2 = 338 hoi4 = 11130 hoi4 = 203 hoi4 = 11115 hoi4 = 3193 hoi4 = 3055 hoi4 = 11125 hoi4 = 3069 hoi4 = 167 hoi4 = 6061 hoi4 = 3097 hoi4 = 3158 hoi4 = 6128 hoi4 = 11164 hoi4 = 30 hoi4 = 3026 hoi4 = 3153 hoi4 = 6045 hoi4 = 9158 hoi4 = 197 hoi4 = 11085 hoi4 = 11030 hoi4 = 3156 hoi4 = 6179 hoi4 = 6137 hoi4 = 9223 hoi4 = 162 hoi4 = 124 hoi4 = 6087 hoi4 = 9189 hoi4 = 11204 hoi4 = 9112 hoi4 = 3107 hoi4 = 11167 hoi4 = 6076 hoi4 = 2992 hoi4 = 6142 hoi4 = 103 }	# Tornio -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 342 hoi4 = 2998 hoi4 = 9061 hoi4 = 9181 hoi4 = 6210 hoi4 = 3185 hoi4 = 193 hoi4 = 3125 hoi4 = 11199 hoi4 = 6078 hoi4 = 9104 hoi4 = 11141 hoi4 = 141 hoi4 = 136 hoi4 = 6033 hoi4 = 6156 hoi4 = 11076 hoi4 = 9169 hoi4 = 3068 hoi4 = 13112 hoi4 = 13115 hoi4 = 13114 hoi4 = 13109 hoi4 = 11210 hoi4 = 13110 hoi4 = 13111 }	# Kuopio -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake, lake, lake, lake, land, lake, lake
+	link = { vic2 = 336 hoi4 = 158 hoi4 = 6212 hoi4 = 11121 hoi4 = 195 hoi4 = 11132 hoi4 = 132 hoi4 = 6081 hoi4 = 82 hoi4 = 120 hoi4 = 11081 hoi4 = 11041 hoi4 = 9106 hoi4 = 3115 hoi4 = 3153 hoi4 = 3026 hoi4 = 3149 }	# Oulu -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 337 hoi4 = 11079 hoi4 = 6134 hoi4 = 3073 hoi4 = 7 hoi4 = 11024 hoi4 = 9233 hoi4 = 6045 hoi4 = 6146 hoi4 = 13118 }	# Kajaani -> land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 338 hoi4 = 11125 hoi4 = 11164 hoi4 = 3193 hoi4 = 124 hoi4 = 3055 hoi4 = 11115 hoi4 = 11130 hoi4 = 203 hoi4 = 167 hoi4 = 3069 hoi4 = 6061 hoi4 = 3097 hoi4 = 103 hoi4 = 3158 hoi4 = 6142 hoi4 = 2992 hoi4 = 6076 hoi4 = 11167 hoi4 = 3107 hoi4 = 6128 hoi4 = 11030 hoi4 = 3156 hoi4 = 6137 hoi4 = 9112 hoi4 = 6179 hoi4 = 9223 hoi4 = 30 hoi4 = 162 hoi4 = 6087 hoi4 = 11204 hoi4 = 9189 hoi4 = 197 hoi4 = 11085 }	# Tornio -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 342 hoi4 = 11076 hoi4 = 9169 hoi4 = 9104 hoi4 = 11141 hoi4 = 141 hoi4 = 6078 hoi4 = 11199 hoi4 = 3125 hoi4 = 193 hoi4 = 3185 hoi4 = 9181 hoi4 = 3068 hoi4 = 9061 hoi4 = 6156 hoi4 = 3030 hoi4 = 6210 hoi4 = 13114 hoi4 = 6033 hoi4 = 13110 hoi4 = 13115 hoi4 = 13112 hoi4 = 11210 hoi4 = 13111 }	# Kuopio -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake, land, lake, lake, lake, land, lake
 	# # Turku
-	link = { vic2 = 345 hoi4 = 3009 hoi4 = 32 hoi4 = 9094 hoi4 = 3083 hoi4 = 6066 hoi4 = 169 hoi4 = 3117 hoi4 = 13101 }	# Turku -> land, land, land, land, land, land, land, lake
-	link = { vic2 = 346 hoi4 = 6141 hoi4 = 11033 hoi4 = 3119 hoi4 = 6138 hoi4 = 9038 hoi4 = 6013 hoi4 = 11126 hoi4 = 3122 hoi4 = 11065 hoi4 = 63 hoi4 = 3172 hoi4 = 66 hoi4 = 9156 hoi4 = 11144 hoi4 = 6198 hoi4 = 9166 hoi4 = 13113 }	# Vaasa -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
-	link = { vic2 = 347 hoi4 = 11172 hoi4 = 3025 hoi4 = 6047 hoi4 = 11066 hoi4 = 13107 hoi4 = 13106 hoi4 = 13100 hoi4 = 3137 hoi4 = 13102 }	# Tampere -> land, land, land, land, lake, lake, lake, land, lake
+	link = { vic2 = 345 hoi4 = 3083 hoi4 = 6066 hoi4 = 169 hoi4 = 3117 hoi4 = 3009 hoi4 = 32 hoi4 = 9094 hoi4 = 9194 hoi4 = 13101 }	# Turku -> land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 346 hoi4 = 3122 hoi4 = 11065 hoi4 = 11126 hoi4 = 6013 hoi4 = 9038 hoi4 = 63 hoi4 = 3172 hoi4 = 66 hoi4 = 9156 hoi4 = 6198 hoi4 = 11144 hoi4 = 9219 hoi4 = 6141 hoi4 = 11033 hoi4 = 3119 hoi4 = 6138 hoi4 = 9166 hoi4 = 13113 }	# Vaasa -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, lake
+	link = { vic2 = 347 hoi4 = 3137 hoi4 = 11172 hoi4 = 3025 hoi4 = 13100 hoi4 = 13102 hoi4 = 6047 hoi4 = 13106 hoi4 = 13107 }	# Tampere -> land, land, land, lake, lake, land, lake, lake
 	link = { vic2 = 348 hoi4 = 9228 }	# Åland Islands -> land
 	# # Helsinki
-	link = { vic2 = 340 hoi4 = 204 hoi4 = 9183 hoi4 = 3161 hoi4 = 3061 hoi4 = 11056 hoi4 = 6082 hoi4 = 52 hoi4 = 6186 hoi4 = 9073 hoi4 = 11138 }	# Kotka -> land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 341 hoi4 = 139 hoi4 = 3030 hoi4 = 37 hoi4 = 3131 hoi4 = 3013 hoi4 = 165 hoi4 = 11043 hoi4 = 9163 hoi4 = 9056 hoi4 = 13108 hoi4 = 13105 hoi4 = 13104 }	# Mikkeli -> land, land, land, land, land, land, land, land, land, lake, lake, lake
-	link = { vic2 = 343 hoi4 = 9194 hoi4 = 11211 hoi4 = 6108 hoi4 = 11105 hoi4 = 6144 hoi4 = 9129 hoi4 = 6009 }	# Helsinki -> land, land, land, land, land, land, land
-	link = { vic2 = 344 hoi4 = 67 hoi4 = 9167 hoi4 = 6163 hoi4 = 9160 hoi4 = 13103 }	# Hämeenlinna -> land, land, land, land, lake
+	link = { vic2 = 340 hoi4 = 3061 hoi4 = 3161 hoi4 = 9183 hoi4 = 6082 hoi4 = 204 hoi4 = 11056 hoi4 = 6186 }	# Kotka -> land, land, land, land, land, land, land
+	link = { vic2 = 341 hoi4 = 165 hoi4 = 11043 hoi4 = 3013 hoi4 = 37 hoi4 = 3131 hoi4 = 139 hoi4 = 52 hoi4 = 136 hoi4 = 9163 hoi4 = 11138 hoi4 = 13108 hoi4 = 9056 hoi4 = 9073 hoi4 = 13105 hoi4 = 13104 hoi4 = 13109 }	# Mikkeli -> land, land, land, land, land, land, land, land, land, land, lake, land, land, lake, lake, lake
+	link = { vic2 = 343 hoi4 = 11105 hoi4 = 6108 hoi4 = 11211 hoi4 = 9129 hoi4 = 6144 hoi4 = 6009 }	# Helsinki -> land, land, land, land, land, land
+	link = { vic2 = 344 hoi4 = 9167 hoi4 = 6163 hoi4 = 67 hoi4 = 11066 hoi4 = 9160 hoi4 = 13103 }	# Hämeenlinna -> land, land, land, land, land, lake
 	# 
 	# ## Estonia
+	# # Estonia
 	link = { vic2 = 349 hoi4 = 83 hoi4 = 3074 hoi4 = 496 hoi4 = 567 hoi4 = 3152 hoi4 = 11426 hoi4 = 11127 hoi4 = 9079 }	# Reval -> land, land, land, land, land, land, land, land
 	link = { vic2 = 350 hoi4 = 4640 hoi4 = 11443 hoi4 = 11057 hoi4 = 6099 }	# Narva -> land, land, land, land
 	link = { vic2 = 351 hoi4 = 3174 hoi4 = 11291 hoi4 = 308 hoi4 = 6381 }	# Pärnu -> land, land, land, land
@@ -2162,6 +2163,7 @@
 	link = { vic2 = 2713 hoi4 = 13127 }	# Peipsi Järv -> lake
 	# 
 	# ## Latvia
+	# # Latvia
 	link = { vic2 = 354 hoi4 = 9340 }	# Riga -> land
 	link = { vic2 = 355 hoi4 = 9317 hoi4 = 9240 hoi4 = 10323 hoi4 = 3298 hoi4 = 319 hoi4 = 222 hoi4 = 341 hoi4 = 7482 hoi4 = 11222 hoi4 = 10493 hoi4 = 11302 hoi4 = 3388 hoi4 = 9501 }	# Valmiera -> land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 356 hoi4 = 9275 hoi4 = 6459 hoi4 = 310 hoi4 = 11358 hoi4 = 3255 }	# Daugavpils -> land, land, land, land, land
@@ -2170,6 +2172,7 @@
 	link = { vic2 = 359 hoi4 = 3319 hoi4 = 9262 hoi4 = 11246 }	# Liepaja -> land, land, land
 	# 
 	# ## Lithuania
+	# # Lithuania
 	link = { vic2 = 360 hoi4 = 9295 hoi4 = 3320 hoi4 = 11391 hoi4 = 6340 }	# Vilnius -> land, land, land, land
 	link = { vic2 = 361 hoi4 = 6296 hoi4 = 327 hoi4 = 9404 }	# Kaunas -> land, land, land
 	link = { vic2 = 362 hoi4 = 3272 hoi4 = 6281 hoi4 = 11312 hoi4 = 6407 }	# Marijampole -> land, land, land, land
@@ -2303,7 +2306,7 @@
 	link = { vic2 = 2587 hoi4 = 6117 hoi4 = 142 hoi4 = 3134 hoi4 = 11183 hoi4 = 116 hoi4 = 3170 hoi4 = 9179 hoi4 = 11196 hoi4 = 11140 hoi4 = 9059 hoi4 = 6194 hoi4 = 6140 hoi4 = 3012 hoi4 = 11117 hoi4 = 6157 }	# Kola -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	# # Karelia
 	link = { vic2 = 339 hoi4 = 11156 hoi4 = 6153 hoi4 = 9176 hoi4 = 3060 hoi4 = 9150 hoi4 = 9105 hoi4 = 9100 hoi4 = 9206 hoi4 = 11162 hoi4 = 6150 hoi4 = 3187 hoi4 = 3133 hoi4 = 11046 hoi4 = 6052 hoi4 = 3050 }	# Viipuri -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 984 hoi4 = 9055 hoi4 = 9045 hoi4 = 80 hoi4 = 11146 hoi4 = 6021 hoi4 = 6096 hoi4 = 11054 hoi4 = 6098 hoi4 = 9119 hoi4 = 9074 hoi4 = 3067 hoi4 = 9198 hoi4 = 11181 hoi4 = 176 hoi4 = 3008 hoi4 = 6029 hoi4 = 86 hoi4 = 3189 hoi4 = 9195 hoi4 = 94 hoi4 = 170 hoi4 = 134 hoi4 = 11096 hoi4 = 36 hoi4 = 11045 }	# Kostomushka -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 984 hoi4 = 9055 hoi4 = 9045 hoi4 = 80 hoi4 = 11146 hoi4 = 6021 hoi4 = 6096 hoi4 = 11054 hoi4 = 6098 hoi4 = 9119 hoi4 = 9074 hoi4 = 3067 hoi4 = 9198 hoi4 = 11181 hoi4 = 176 hoi4 = 3008 hoi4 = 6029 hoi4 = 86 hoi4 = 3189 hoi4 = 9195 hoi4 = 94 hoi4 = 170 hoi4 = 134 hoi4 = 11096 hoi4 = 36 hoi4 = 11045 hoi4 = 6175 hoi4 = 9158 hoi4 = 2998 }	# Kostomushka -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 988 hoi4 = 6159 hoi4 = 11094 hoi4 = 155 hoi4 = 157 hoi4 = 3071 hoi4 = 11175 hoi4 = 11212 hoi4 = 3078 }	# Povyents -> land, land, land, land, land, land, land, land
 	link = { vic2 = 995 hoi4 = 11150 hoi4 = 6106 hoi4 = 3084 hoi4 = 6057 hoi4 = 6172 hoi4 = 11153 hoi4 = 90 hoi4 = 6070 hoi4 = 9078 hoi4 = 40 hoi4 = 9231 hoi4 = 11092 hoi4 = 92 hoi4 = 3144 hoi4 = 11159 hoi4 = 9118 hoi4 = 6094 hoi4 = 2994 hoi4 = 3033 }	# Petrozavorsk -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 2714 hoi4 = 2332 }	# Ladoga -> lake
