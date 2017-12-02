@@ -129,8 +129,9 @@ Configuration::Configuration():
 	}
 	else // (versionMethod == "hardcoded")
 	{
-		version = HOI4Version("1.4.2");
+		version = HOI4Version();
 	}
+	Log(LogLevel::Debug) << "HoI4 version is " << version;
 
 	string ideologyOptiongsString = obj->safeGetString("ideologies", "keep_major");
 	if (ideologyOptiongsString == "keep_default")
@@ -180,8 +181,6 @@ HOI4Version Configuration::getAutomaticHoI4Version()
 		}
 	}
 
-	LOG(LogLevel::Error) << "Could not automatically set HoI4 version. Run HoI4 and convert again, or use a different version setting.";
-	exit(-1);
-
+	LOG(LogLevel::Warning) << "Could not automatically set HoI4 version. Using the hardcoded version setting instead.";
 	return HOI4Version();
 }
