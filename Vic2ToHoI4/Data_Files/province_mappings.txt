@@ -80,6 +80,7 @@
 	link = { vic2 = 245 hoi4 = 718 hoi4 = 908 hoi4 = 3710 hoi4 = 715 }	# Pittsfield -> land, land, land, land
 	# # Vermont
 	link = { vic2 = 246 hoi4 = 7629 hoi4 = 4445 hoi4 = 9675 }	# Burlington -> land, land, land
+	link = { vic2 = 3239 hoi4 = 13158 }	# Lake Champlain -> lake
 	# # New Hampshire
 	link = { vic2 = 247 hoi4 = 3712 hoi4 = 10481 hoi4 = 733 hoi4 = 3715 }	# Concord -> land, land, land, land
 	# # Maine
@@ -2242,17 +2243,17 @@
 	link = { vic2 = 652 hoi4 = 646 hoi4 = 11608 hoi4 = 9606 }	# Temesvar -> land, land, land
 	link = { vic2 = 653 hoi4 = 3649 hoi4 = 11592 hoi4 = 662 }	# Resicabánya -> land, land, land
 	# # Western Transylvania
-	link = { vic2 = 647 hoi4 = 6682 hoi4 = 6697 hoi4 = 9640 hoi4 = 696 }	# Oradea -> land, land, land, land
-	link = { vic2 = 651 hoi4 = 3696 hoi4 = 9687 hoi4 = 713 hoi4 = 746 }	# Szatmár -> land, land, land, land
-	link = { vic2 = 654 hoi4 = 6714 hoi4 = 3709 hoi4 = 6711 }	# Cluj -> land, land, land
-	link = { vic2 = 655 hoi4 = 693 hoi4 = 3694 hoi4 = 11622 }	# Gyulafehervar -> land, land, land
-	link = { vic2 = 656 hoi4 = 9619 hoi4 = 3665 hoi4 = 6679 hoi4 = 676 }	# Deva -> land, land, land, land
-	link = { vic2 = 661 hoi4 = 9704 hoi4 = 11676 hoi4 = 727 }	# Beszterce -> land, land, land
+	link = { vic2 = 647 hoi4 = 3696 hoi4 = 6682 hoi4 = 696 hoi4 = 6697 hoi4 = 9640 }	# Oradea -> land, land, land, land, land
+	link = { vic2 = 651 hoi4 = 9687 hoi4 = 746 hoi4 = 713 }	# Szatmár -> land, land, land
+	link = { vic2 = 654 hoi4 = 6714 hoi4 = 3709 hoi4 = 6711 hoi4 = 9672 }	# Cluj -> land, land, land, land
+	link = { vic2 = 655 hoi4 = 693 hoi4 = 3694 hoi4 = 676 }	# Gyulafehervar -> land, land, land
+	link = { vic2 = 656 hoi4 = 9619 hoi4 = 3665 hoi4 = 11622 }	# Deva -> land, land, land
+	link = { vic2 = 661 hoi4 = 9704 hoi4 = 11676 hoi4 = 727 hoi4 = 6731 }	# Beszterce -> land, land, land, land
 	# # Eastern Transylvania
-	link = { vic2 = 657 hoi4 = 6709 hoi4 = 3676 hoi4 = 9668 hoi4 = 3689 }	# Nagyszeben -> land, land, land, land
+	link = { vic2 = 657 hoi4 = 6679 hoi4 = 6709 hoi4 = 3676 }	# Nagyszeben -> land, land, land
 	link = { vic2 = 659 hoi4 = 690 }	# Brasso -> land
-	link = { vic2 = 660 hoi4 = 9672 hoi4 = 9685 hoi4 = 6731 }	# Udvarhely -> land, land, land
-	link = { vic2 = 2533 hoi4 = 11639 hoi4 = 9670 hoi4 = 711 }	# Targu Mures -> land, land, land
+	link = { vic2 = 660 hoi4 = 9668 hoi4 = 3689 hoi4 = 9685 hoi4 = 711 }	# Udvarhely -> land, land, land, land
+	link = { vic2 = 2533 hoi4 = 11639 hoi4 = 9670 }	# Targu Mures -> land, land
 	# # Moldavia
 	link = { vic2 = 662 hoi4 = 9548 hoi4 = 577 }	# Cernauti -> land, land
 	link = { vic2 = 663 hoi4 = 6761 hoi4 = 11689 }	# Suceava -> land, land
@@ -4209,7 +4210,6 @@
 	link = { vic2 = 3107 hoi4 = 13152 }	# Lake Bajkal -> lake
 	link = { vic2 = 3230 hoi4 = 2703 hoi4 = 9125 hoi4 = 5918 hoi4 = 11827 }	# Gulf of Ob -> lake, lake, lake, lake
 	link = { vic2 = 3225 hoi4 = 13153 }	# Great Salt Lake -> lake
-	link = { vic2 = 3239 hoi4 = 13158 }	# Lake Champlain -> lake
 	# 
 	# 
 	# ## Dropped Vic2 provinces
