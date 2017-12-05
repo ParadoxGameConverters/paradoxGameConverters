@@ -32,7 +32,7 @@ political_decisions = {
 			ENG_68 = { add_core = CAN }
 			ENG_74 = { add_core = CAN }
 			ENG_9 = { add_core = CAN }
-			USA_1 = { add_core = CAN }
+			USA_1 = { add_core = LSK } #Alaska
 			USA_247 = {	#New England
 				limit = { is_culture_group = british }
 				add_core = NEN
@@ -202,6 +202,41 @@ political_decisions = {
 	}
 	
 	## Post-colonial country changes
+	postcol_LSK = {
+		potential = {
+			NOT = {
+				exists = LSK
+				tag = CAN
+				tag = COL
+				tag = USA
+			}
+			capital_scope = { is_core = LSK }
+		}	
+		allow = {
+			war = no
+			is_independant = yes
+			LSK = {
+				all_core = {
+					owned_by = THIS
+					owner = {
+						in_sphere = THIS
+					}
+				}
+			}
+		}
+		
+		effect = {
+			prestige = 10
+			any_owned = {
+				add_core = LSK
+			}
+			change_tag = LSK
+			capital = 3
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
 	postcol_QUE = {
 		potential = {
 			OR = {
