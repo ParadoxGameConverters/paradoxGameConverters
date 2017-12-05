@@ -96,8 +96,8 @@ BER;Beroda;Beroda;Beroda;Beroda;Beroda;Beroda;Beroda;Beroda;Beroda;Beroda;Beroda
 BER_ADJ;Berodan;Berodan;Berodan;Berodan;Berodan;Berodano;Berodan;Berodan;Berodan;Berodan;Berodan;???????;Berodan;x;;
 BGL;Bagelkhand;Bagelkhand;Bagelkhand;Bagelkhand;Bagelkhand;Bagelkhand;Bagelkhand;Bagelkhand;Bagelkhand;Bagelkhand;Bagelkhand;??????????;Bagelkhand;x;;
 BGL_ADJ;Bagelkhandi;Bagelkhandi;Bagelkhandi;Bagelkhandi;Bagelkhandi;Bagelkhandi;Bagelkhandi;Bagelkhandi;Bagelkhandi;Bagelkhandi;Bagelkhandi;???????????;Bagelkhandi;x;;
-BHT;Bohtan;Bohtan;Bohtan;Bohtan;Bohtan;Bohtan;Bohtan;Bohtan;Bohtan;Bohtan;Bohtan;??????;Bohtan;x;;
-BHT_ADJ;Bohtani;Bohtani;Bohtani;Bohtani;Bohtani;Bohtani;Bohtani;Bohtani;Bohtani;Bohtani;Bohtani;???????;Bohtani;x;;
+BHT;Kurdistan;Kurdistan;Kurdistan;Kurdistan;Kurdystan;Kurdistan;Kurdisztán;Kurdistan;Kurdisztán;Kurdistan;Curdistão;?????????;Kurdistan;x
+BHT_ADJ;Kurdish;Kurde;Kurdisch;Kurdish;Kurdyjski;Curdo;Kurd;Kurdština;Kurd;Kurdish;Curdo;????????;Kurdien;x
 BIJ;Bijapur;Bijapur;Bijapur;Bijapur;Bijapur;Bijapur;Bijapur;Bijapur;Bijapur;Bijapur;Bijapur;??????;Bijapur;x;;
 BIJ_ADJ;Bijapuri;Bijapuri;Bijapuri;Bijapuri;Bijapuri;Bijapuri;Bijapuri;Bijapuri;Bijapuri;Bijapuri;Bijapuri;???????;Bijapuri;x;;
 BLA;Blackfoot;Pieds-Noirs;Schwarzfuß;Blackfoot;Blackfoot;Piedi-Neri;Blackfoot;Blackfoot;Blackfoot;Blackfoot;Blackfoot;??????????;Blackfoot;x;;
@@ -132,6 +132,8 @@ BUU;Burundi;Burundi;Burundi;Burundi;Burundi;Burundi;Burundi;Burundi;Burundi;Boer
 BUU_ADJ;Burundi;Burundi;Burundi;Burundi;Burundi;Burundi;Burundi;Burundi;Burundi;Boeroendi;Burundi;???????;Burundi;x;;
 CAD;Caddo;Caddo;Caddo;Caddo;Caddo;Caddo;caddo;Caddo;caddo;Caddo;Caddo;?????;caddo;x;;
 CAD_ADJ;Caddo;Caddo;Caddo;Caddo;Caddo;Caddo;caddo;Caddo;caddo;Caddo;Caddo;?????;caddo;x;;
+CAR;Carinthia;Carinthie;Kärnten;Karyntia;Carintia;Carinzia;Karintia;Korutany;Karintia;Karinthië;Caríntia;????????;Kärnten;x;;
+CAR_ADJ;Carinthian;Carinthie;Kärntner;Karyntian;Carintio;Carinto;Karintiai;Korutan;Karintiai;Karinthische;Carintio;????????;Kärntenin;x;;
 CAS;Castille;Castille;Kastilien;Castilla;Castilla;Castiglia;Castilla;Castille;Castilla;Castille;Castille;????????;Castille;x;;
 CAS_ADJ;Castilian;Castillan;Kastilischen;Kastylijskim;Castellano;castigliano;kasztíliai;Castilian;kasztíliai;Castiliaans;Castelhano;???????????;kastilialainen;x;;
 CHA;Champa;Champa;Champa;Champa;Champa;Champa;Champa;Champa;Champa;Champa;Champa;?????;Champa;x;;
@@ -266,7 +268,7 @@ HRE_democracy;The Holy Roman Republic;La République sainte-romaine;Der Heiligen 
 HRE_fascist;NSHRAP;NSHRAP;NSHRAP;NSHRAP;NSHRAP;NSHRAP;NSHRAP;NSHRAP;NSHRAP;NSHRAP;NSHRAP;?????;NSHRAP;x;;
 HRE_proletarian_dictatorship;The Proletarian Roman Empire;L'Empire romain prolétarien;Das Proletarische Römische Reich;proletariackiej Cesarstwo Rzymskie;El Imperio Romano Proletario;il Sacro Proletario Romano;Proletár Római Birodalom;proletár ríše rímská;Proletár Római Birodalom;de Heilige Roomse proletarische;O Sacro Romano Proletário;???????????? ??????? ???????;proletariaatin Rooman valtakunta;x;;
 HRE_reactionary;Karling Faction;Karling Faction;Karling Faction;Karling Faction;Karling Faction;Karling Faction;Karling frakció;Karling Faction;Karling frakció;Karling Faction;Karling Faction;??????? ???????;Karling Faction;x;;
-HRE'socialist;Peasant Faction;Faction paysanne;Bauer Fraktion;Stronnictwo Faction;Facción campesina;Fazione Plebea;paraszt frakció;rolník Faction;paraszt frakció;peasant Faction;Facção camponesa;???????????? ???????;talonpoika Faction;x;;
+HRE_socialist;Peasant Faction;Faction paysanne;Bauer Fraktion;Stronnictwo Faction;Facción campesina;Fazione Plebea;paraszt frakció;rolník Faction;paraszt frakció;peasant Faction;Facção camponesa;???????????? ???????;talonpoika Faction;x;;
 HSC;Highlands;Hauts-Plateaux;Hochland;Góral;Tierras Altas;Highlands;Highlands;Vrchovina;Highlands;Hooglanden;Highlands;?????? ?????????;Highlands;x;;
 HSC_ADJ;Highlander;Highlander;Hochlander;Góral;montañés;Highlander;Felvidéki;Horal;Felvidéki;Hooglander;Escocês;?????;Highlander;x;;
 HSK;Hosokawa;Hosokawa;Hosokawa;Hosokawa;Hosokawa;Hosokawa;Hosokawa;Hosokawa;Hosokawa;Hosokawa;Hosokawa;????????;Hosokawa;x;;
@@ -353,14 +355,22 @@ KZH;Kazakh;Kazakh;Kasachstan;kazachski;Kazakh;Kazakh;kazah;kazašský;kazah;Kazach
 KZH_ADJ;Kazakh;Kazakh;Kasachstan;kazachski;Kazakh;kazako;kazah;kazašský;kazah;Kazachse;Cazaque;?????????;Kazakstanin;x;;
 LAN;Lancaster;Lancaster;Lancaster;Lancaster;Lancaster;Lancaster;Lancaster;Lancaster;Lancaster;Lancaster;Lancaster;?????????;Lancaster;x;;
 LAN_ADJ;Lancastrian;Lancastre;Lancastrian;Lancastrian;Lancastrian;di Lancaster;lancasteri;Lancastrian;lancasteri;Lancastriaaans;Lancaster;?????????????;Lancastrian;x;;
+LTN;The Latin Empire;L'Empire Latin;Das Lateinische Reich;Imperium Lacinskie;El Imperio Latino;L'Impero Latino;A Latin Birodalom;Latinská ríše;A Latin Birodalom;Het Latijnse Rijk;O Império Latino;????????? ???????;Latinalaisen Imperiumin;x;;
+LTN_ADJ;Latin;Latin;Lateinisch;Lacina;Latín;Latino;Latin;Latinský;Latin;Latijns;Latim;?????????;Latina;x;;
+LTN_democracy;The Latin Republic;La République Latine;Die Lateinische Republik;Republika Lacinska;La República Latina;La Repubblica Latina;A Latin Köztársaság;Latinská Republika;A Latin Köztársaság;De Latijnse Republiek;A República Latina;????????? ??????????;Latvian Tasavalta;x;;
+LTN_proletarian_dictatorship;The Union of Rhomania;L'Union de Rhomanie;Die Union von Rhomanien;Zwiazek Rhomania;La Unión de Rhomania;L'Unione della Rhomania;Az Rhomania Uniója;Unie Rhomania;Az Rhomania Uniója;De Unie van Rhomania;A União da Romania;???? ??????;Rhomanian Unioni;x;;
 LAU;Lauenburg;Lauenburg;Lauenburg;Lauenburg;Lauenburg;Lauenburg;Lauenburg;Lauenburg;Lauenburg;Lauenburg;Lauenburg;?????????????;Lauenburg;x;;
 LAU_ADJ;Lauenburger;Lauenburger;Lauenburger;Lauenburger;Lauenburger;Lauenburger;Lauenburger;Lauenburger;Lauenburger;Lauenburger;Lauenburger;???????????;Lauenburger;x;;
+LBX;Luba;Luba;Luba;Luba;Luba;Luba;Luba;Luba;Luba;Luba;Luba;????;Luba;x;;
+LBX_ADJ;Luban;Luban;Luban;Luban;Luban;Luban;Luban;Luban;Luban;Luban;Luban;??????;Luban;x;;
 LDU;Lundu;Lundu;Lundu;Lundu;Lundu;Lundu;Lundu;Lundu;Lundu;lundu;Lundu;?????;Lundu;x;;
 LDU_ADJ;Lunduan;Lunduan;Lunduan;Lunduan;Lunduan;Lunduan;Lunduan;Lunduan;Lunduan;Lunduan;Lunduan;???????;Lunduan;x;;
 LEI;Leinster;Leinster;Leinster;Leinster;Leinster;Leinster;Leinster;Leinster;Leinster;Leinster;Leinster;????????;Leinster;x;;
 LEI_ADJ;Leinster;Leinster;Leinster;Leinster;Leinster;Leinster;Leinster;Leinster;Leinster;Leinster;Leinster;????????;Leinster;x;;
 LEN;Lenape;Lenape;Lenape;Lenape;Lenape;Lenape;Lenape;Lenape;Lenape;Lenape;Lenape;??????;Lenape;x;;
 LEN_ADJ;Lenape;Lenape;Lenape;Lenape;Lenape;Lenape;Lenape;Lenape;Lenape;Lenape;Lenape;??????;Lenape;x;;
+LGB;Longobardia;Longobardie;Langobardenreich;Longobardowie;Langobardia;Longobardia;Longobardia;Longobardie;Longobardia;Longobardia;Longobardia;???????????;Longobardia;x
+LGB_ADJ;Longobard;Longobarde;Langobardisch;Longobardowie;Langobardo;Longobardo;Longobárd;Longobard;Longobárd;Longobard;Langobardo;????????????;Longobard;x
 LIE;Liège;Lige;Lüttich;Lenny;Lieja;Liegi;Liège;Liège;Liège;Liège;Liège;??????;Liège;x;;
 LIE_ADJ;Liegian;Liegian;Liegian;Liegian;Liejano;Liegian;Liegian;Liegian;Liegian;Liegian;Liegiano;???????;Liegian;x;;
 LIV;The Livonian Order;L'Ordre Livonien;Der Livländischen Orden;inflanckiemu;La Orden de Livonia;dell'Ordine di Livonia;livóniai rendelés;Livonského rádu;livóniai rendelés;het Lijflandse Orde;A Ordem Livoniana;????????? ?????;ritarikunnan;x;;
@@ -377,8 +387,15 @@ LOR;Lorraine;Lorraine;Lothringen;Lorraine;Lorena;Lorena;Lorraine;Lorraine;Lorrai
 LOR_ADJ;Lorrainian;Lorrainien;Lorrainianisch;Lorrainian;Lorrainian;lorenese;Lorrainian;Lorrainian;Lorrainian;Lorrainian;Lorrainiano;??????????;Lorrainian;x;;
 LOU;Louisiana;Louisiane;Louisiana;Louisiana;Luisiana;Louisiana;Louisiana;Louisiana;Louisiana;Louisiana;Louisiana;????????;Louisiana;x;;
 LOU_ADJ;Louisianan;Louisianan;Louisianan;Louisianan;Louisianan;Louisiano;Louisianan;Louisianan;Louisianan;Louisianan;Louisianan;??????????;Louisianan;x;;
-LBX;Luba;Luba;Luba;Luba;Luba;Luba;Luba;Luba;Luba;Luba;Luba;????;Luba;x;;
-LBX_ADJ;Luban;Luban;Luban;Luban;Luban;Luban;Luban;Luban;Luban;Luban;Luban;??????;Luban;x;;
+LSK;Alaska;Alaska;Alaska;Alaska;Alaska;Alaska;Alaszka;Aljaška;Alaszka;Alaska;Alasca;??????;Alaska;x
+LSK_ADJ;Alaskan;Alaskain;Alaskischen;Alaskanin;Alasqueño;Alascano;Alaszkai;Aljašky;Alaszkai;Alaskse;Alasquiano;???????????;Alaskan;x
+LSK_reactionary;Nationalist Party;Parti Nationaliste;Nationalistische Partei;Partia Nacjonalistyczna;Partido Nacionalista;Partito Nazionalista;Nemzeti Párt;Nacionalistická Strana;Nemzeti Párt;Nationalistische Partij;Partido Nacionalista;?????????????????? ??????;Kansallinen Puolue;x
+LSK_conservative;Democratic Party;Parti Démocratique;Demokratische Partei;Partia Demokratyczna;Partido Democrático;Partito Democratico;Demokratikus Párt;Demokratická Strana;Demokratikus Párt;Democratische Partij;Partido Democrata;??????????????? ??????;Demokraattinen Puolue;x
+LSK_liberal;Republican Party;Parti Républicain;Republikanische Partei;Partia Republikanska;Partido Republicano;Partito Repubblicano;Republikánus Párt;Republikánská Strana;Republikánus Párt;Republikeinse Partij;Partido Republicano;??????????????? ??????;Liberaaliset Taloustieteilijät;x
+LSK_anarcho_liberal;Liberal Economists;Économistes Libéraux;Liberale Wirtschaftswissenschaftler;Liberalni Ekonomisci;Economistas Liberales;Economisti Liberali;Liberális Közgazdászok;Liberální Ekonomové;Liberális Közgazdászok;Liberale Economen;Economistas Liberais;??????????? ??????????;Sosialistinen Puolue;x
+LSK_socialist;Socialist Party;Parti Socialiste;Sozialistische Partei;Partia Socjalistyczna;Partido Socialista;Partito Socialista;Szocialista Párt;Socialistická Strana;Szocialista Párt;Socialistische Partij;Partido Socialista;???????????????? ??????;Bolshevikit;x
+LSK_communist;Bolsheviks;Les Bolcheviks;Bolschewiki;Bolszewików;Bolcheviques;Bolscevichi;Bolsevikok;Bolševiku;Bolsevikok;Bolsjewieken;Bolcheviques;??????????;Pohjois-Futuristit;x
+LSK_fascist;Northern Futurists;Futuristes du Nord;Nördliche Futuristen;Futurystami Pólnocy;Futuristas del Norte;Futuristi del Nord;Északi Futuristák;Severní Futuristé;Északi Futuristák;Noordelijke Futuristen;Futuristas do Norte;???????? ?????????;;x
 LUN;Luneburg;Luneburg;Lüneburg;Lüneburg;Lüneburg;Lüneburg;Luneburg;Luneburg;Luneburg;Luneburg;Luneburg;????????;Luneburg;x;;
 LUN_ADJ;Luneburgian;Luneburgien;Lüneburgisch;Luneburgian;Luneburgian;Luneburgian;Luneburgian;Luneburgian;Luneburgian;Luneburgian;Luneburgian;???????????;Luneburgian;x;;
 LXA;Lan Xang;Lan Xang;Lan Xang;Lan Xang;Lan Xang;lan Xang;Lan Xang;Lan Xang;Lan Xang;Lan Xang;Lan Xang;???????;Lan Xang;x;;
@@ -423,6 +440,8 @@ MIK;Mikmaq;Mikmaq;Mikmaq;Mikmaq;Mikmaq;Mikmaq;Mikmaq;Mikmaq;Mikmaq;mikmaq;Mikmaq
 MIK_ADJ;Mikmaq;Mikmaq;Mikmaq;Mikmaq;Mikmaq;Mikmaq;Mikmaq;Mikmaq;Mikmaq;mikmaq;Mikmaq;??????;Mikmaq;x;;
 MIR;Merina;Merina;Merina;Merina;Merina;Merina;Merina;Merina;Merina;Merina;Merina;??????;Merina;x;;
 MIR_ADJ;Imerina;Imerina;Imerina;Imerina;Imerina;Imerina;Imerina;Imerina;Imerina;Imerina;Imerina;???????;Imerina;x;;
+MKD;Macedonia;Macédonie;Mazedonien;Macedonia;Macedonia;Macedonia;Macedónia;Makedonie;Macedónia;Macedonië;Macedônia;?????????;Makedonia;x
+MKD_ADJ;Macedonian;Macédonien;Mazedonisch;Macedonski;Macedónio;Macedone;Macedóniai;Makedonština;Macedóniai;Macedonisch;Macedônio;???????????;Makedonia;x
 MKS;Makassar;Makassar;Makassar;Makassar;Makassar;Makassar;Makassar;Makassar;Makassar;Makassar;Makassar;????????;Makassar;x;;
 MKS_ADJ;Makassari;Makassari;Makassari;Makassari;Makassari;Makassari;Makassari;Makassari;Makassari;Makassari;Makassari;?????????;Makassari;x;;
 MKU;Makua;Makua;Makua;Makua;Makua;Makua;Makua;Makua;Makua;Makua;Makua;?????;Makua;x;;
@@ -586,14 +605,14 @@ RME_communist;Koinotita;Koinotita;Koinotita;Koinotita;Koinotita;Koinotita;Koinot
 RME_conservative;Status Quo Faction;Statut Quo Faction;Status Quo Fraktion;Status quo Faction;Status Quo Faction;Fazione Status Quo;Status Quo Frakció;Status Quo Faction;Status Quo Frakció;Status Quo Faction;Status Quo Faction;?????? ??? ???????;Status Quo Faction;x;;
 RME_democracy;Senatorial Rome;Rome Sénatoriale;Senatorisches Rom;Senatorskich Rzym;Roma senatorial;Roma Senatoria;szenátusi Róma;Senátní Rím;szenátusi Róma;Senatorial Rome;Senatorial Roma;????????? ???;senaatin Rome;x;;
 RME_fascist;Caesar's Faction;Faction de César;Cäsars Fraktion;Frakcja Cezara;Facción de César;Fazione di Cesare;Caesar Frakció;Caesaruv Faction;Caesar Frakció;Caesar's Faction;Faction de César;??????? ??????;Caesarin Faction;x;;
+RME_foederati;Foederati;Foederati;Foederati;Foederati;;;;;;;;;;;;x
+RME_Kyriarchia;Kyriarchia;Kyriarchia;Kyriarchia;;;;;;;;;;;;x;
 RME_liberal;Res Liberalia;Res Liberalia;Res Liberalia;Res Liberalia;Res Liberalia;res Liberalia;res Liberalia;Res Liberalia;res Liberalia;Res Liberalia;Res Liberalia;??? ?????????;Res Liberalia;x;;
 RME_proletarian_dictatorship;The Union of Rome;L'Union de Rome;Die Union von Rom;Zwiazek Rzymie;La Unión de Roma;l'Unione di Roma;Az Unió a Római;Svaz Rím;Az Unió a Római;de Unie van Rome;A União de Roma;???? ???;Unionin Rooman;x;;
 RME_reactionary;Patrikioi;Patrikioi;Patrikioi;Patrikioi;Patrikioi;Patrikioi;Patrikioi;Patrikioi;Patrikioi;Patrikioi;Patrikioi;?????????;Patrikioi;x;;
 RME_socialist;Koinonikistai;Koinonikistai;Koinonikistai;Koinonikistai;Koinonikistai;Koinonikistai;Koinonikistai;Koinonikistai;Koinonikistai;Koinonikistai;Koinonikistai;?????????????;Koinonikistai;x;;
-RME_foederati;Foederati;Foederati;Foederati;Foederati;;;;;;;;;;;;x
-RME_XKM;XKM;XKM;XKM;;;;;;;;;;;;x;
-RME_Kyriarchia;Kyriarchia;Kyriarchia;Kyriarchia;;;;;;;;;;;;x;
 RME_varangian_guard;Varangian Guard;Varangian Guard;Varangian Guard;;;;;;;;;;;;x;
+RME_XKM;XKM;XKM;XKM;;;;;;;;;;;;x;
 RVA;Ravensburg;Ravensburg;Ravensburg;Ravensburg;Ravensburg;Ravensburg;Ravensburg;Ravensburg;Ravensburg;Ravensburg;Ravensburg;???????????;Ravensburg;x;;
 RVA_ADJ;Ravensburger;Ravensburger;Ravensburger;Ravensburger;Ravensburger;Ravensburger;Ravensburger;Ravensburger;Ravensburger;Ravensburger;Ravensburger;????????????;Ravensburger;x;;
 RWA;Rwanda;Rwanda;Ruanda;Rwandy;Ruanda;Ruanda;Ruanda;Rwanda;Ruanda;Rwanda;Ruanda;??????;Ruanda;x;;
