@@ -1,4 +1,4 @@
-# Copyright (c) 2014 The Paradox Game Converters Project
+# Copyright (c) 2017 The Paradox Game Converters Project
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -129,5 +129,38 @@ colonial_flags = {
 		flag = { name = "Isla Juana" name = "Île Juana" }
 		flag = { name = "West Indies" name = "Indes occidentales" name = "Indias Occidentales" name = "Westindien" }
 	}
-			
+	#M&T
+	colonial_c_america = {
+		flag = { name = "Guatemala" }
+		flag = { name = "Belize" }
+		flag = { name = "Nicaragua" }
+		flag = { name = "Honduras" }
+	}
+	colonial_hispaniola = {
+		flag = { name = "Saint-Domingue" }
+		flag = { name = "Haiti" name = "Haïti" }
+	}
+	colonial_bolivia = {
+		flag = { name = "Bolivia" name = "Bolivie" }
+	}
+	colonial_guyana = {
+		flag = { name = "Las Guayanas" }
+		flag = { name = "Guyane" }
+		flag = { name = "Suriname" name = "Surinam" }
+		flag = { name = "Guyana" }
+	}
+	colonial_south_africa = {
+		flag = { name = "Le Cap" }
+		flag = { name = "Cape" name = "Kapland" }
+		flag = { name = "Angola" }
+		flag = { name = "Transvaal" }
+		flag = { name = "Natalia" name = "Natal" }
+		flag = { name = "South Africa" name = "Afrique méridionale" name = "Südafrika" }
+	}
+	colonial_pacific = {
+		flag = { name = "New Zealand" name = "Nouvelle Zélande" name = "Nouvelle-Zelande" }
+	}
+	colonial_polynesia = {
+		flag = { name = "Polynesia" name = "Polynésie" name = "Polynesien" }
+	}
 }
