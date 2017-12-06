@@ -404,37 +404,48 @@ namespace ProvinceMapper
 
         private void cbZoom_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbZoom.SelectedItem != null)
-                scaleFactor = float.Parse(cbZoom.SelectedItem.ToString().TrimEnd('x'));
+				float oldScaleFactor = scaleFactor;
+				if (cbZoom.SelectedItem != null)
+				{
+					scaleFactor = float.Parse(cbZoom.SelectedItem.ToString().TrimEnd('x'));
+				}
 
             if (pbSource.BackgroundImage != null)
                 pbSource.BackgroundImage.Dispose();
             if (pbSource.Image != null)
                 pbSource.Image.Dispose();
 
-            pbSource.BackgroundImage = bmpSrc = Program.CleanResizeBitmap(Program.sourceMap.map,
+				Point sourceScroll = HorizontalSplit.Panel1.AutoScrollPosition;
+				pbSource.BackgroundImage = bmpSrc = Program.CleanResizeBitmap(Program.sourceMap.map,
                 (int)(Program.sourceMap.map.Width * scaleFactor), (int)(Program.sourceMap.map.Height * scaleFactor));
             pbSource.Size = bmpSrc.Size;
             pbSource.Image = new Bitmap(bmpSrc.Width, bmpSrc.Height);
             Graphics g = Graphics.FromImage(pbSource.Image);
             g.FillRectangle(Brushes.Transparent, new Rectangle(new Point(0, 0), bmpSrc.Size));
             g.Flush();
+				sourceScroll.X = (int)((-sourceScroll.X * scaleFactor / oldScaleFactor) + (HorizontalSplit.Panel1.Width * scaleFactor / (2 * oldScaleFactor)) - (HorizontalSplit.Panel1.Width / 2));
+				sourceScroll.Y = (int)((-sourceScroll.Y * scaleFactor / oldScaleFactor) + (HorizontalSplit.Panel1.Height * scaleFactor / (2 * oldScaleFactor)) - (HorizontalSplit.Panel1.Height / 2));
+				HorizontalSplit.Panel1.AutoScrollPosition = sourceScroll;
 
-            if (pbTarget.BackgroundImage != null)
+				if (pbTarget.BackgroundImage != null)
                 pbTarget.BackgroundImage.Dispose();
             if (pbTarget.Image != null)
                 pbTarget.Image.Dispose();
 
-            pbTarget.BackgroundImage = bmpDest = Program.CleanResizeBitmap(Program.targetMap.map,
+				Point destScroll = HorizontalSplit.Panel2.AutoScrollPosition;
+				pbTarget.BackgroundImage = bmpDest = Program.CleanResizeBitmap(Program.targetMap.map,
                 (int)(Program.targetMap.map.Width * scaleFactor), (int)(Program.targetMap.map.Height * scaleFactor));
             pbTarget.Size = bmpDest.Size;
             pbTarget.Image = new Bitmap(bmpDest.Width, bmpDest.Height);
             g = Graphics.FromImage(pbTarget.Image);
             g.FillRectangle(Brushes.Transparent, new Rectangle(new Point(0, 0), bmpDest.Size));
             g.Flush();
+				destScroll.X = (int)((-destScroll.X * scaleFactor / oldScaleFactor) + (HorizontalSplit.Panel2.Width * scaleFactor / (2 * oldScaleFactor)) - (HorizontalSplit.Panel2.Width / 2));
+				destScroll.Y = (int)((-destScroll.Y * scaleFactor / oldScaleFactor) + (HorizontalSplit.Panel2.Height * scaleFactor / (2 * oldScaleFactor)) - (HorizontalSplit.Panel2.Height / 2));
+				HorizontalSplit.Panel2.AutoScrollPosition = destScroll;
 
-            createSelPBs(true);
-        }
+				createSelPBs(true);
+			}
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
