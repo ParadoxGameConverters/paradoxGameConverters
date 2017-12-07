@@ -69,7 +69,7 @@ Configuration::Configuration():
 		exit (-1);
 	}
 
-	V2Path = obj->safeGetString("V2directory", V2Path);
+	V2Path = obj->safeGetString("V2directory");
 	if (V2Path.empty() || !Utils::doesFolderExist(V2Path))
 	{
 		LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
@@ -85,7 +85,7 @@ Configuration::Configuration():
 		LOG(LogLevel::Debug) << "Victoria 2 install path is " << V2Path;
 	}
 
-	HoI4Path = obj->safeGetString("HoI4directory", HoI4Path);
+	HoI4Path = obj->safeGetString("HoI4directory");
 	if (HoI4Path.empty() || !Utils::doesFolderExist(HoI4Path))
 	{
 		LOG(LogLevel::Error) << "No HoI4 path was specified in configuration.txt, or the path was invalid";
@@ -101,7 +101,7 @@ Configuration::Configuration():
 		LOG(LogLevel::Debug) << "HoI4 path install path is " << HoI4Path;
 	}
 
-	HoI4DocumentsPath = obj->safeGetString("HoI4Documentsdirectory", HoI4DocumentsPath);
+	HoI4DocumentsPath = obj->safeGetString("HoI4Documentsdirectory");
 	if (HoI4DocumentsPath.empty() || !Utils::doesFolderExist(HoI4DocumentsPath))
 	{
 		LOG(LogLevel::Error) << "No HoI4 documents directory was specified in configuration.txt, or the path was invalid";
@@ -118,7 +118,7 @@ Configuration::Configuration():
 	industrialShapeFactor = obj->safeGetFloat("industrial_shape_factor");
 	icFactor = obj->safeGetFloat("ic_factor");
 
-	string versionMethod = obj->safeGetString("HoI4VersionMethod", versionMethod);
+	string versionMethod = obj->safeGetString("HoI4VersionMethod");
 	if (versionMethod == "automatic")
 	{
 		version = getAutomaticHoI4Version();
