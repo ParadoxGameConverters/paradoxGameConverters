@@ -333,8 +333,6 @@ optional<string> namesMapper::getCompanyName(map<string, vector<string>>& compan
 			}
 		}
 	}
-	else
-	{
-		return {};
-	}
+
+	return {};
 }
