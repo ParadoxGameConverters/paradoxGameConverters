@@ -56,7 +56,6 @@ namespace Frontend.Core.Commands
             dialog.ShowNewFolderButton = false;
 
             var result = FolderBrowserLauncher.ShowFolderBrowser(dialog, null);
-
             if (result == DialogResult.OK)
             {
                 requiredItem.SelectedValue = dialog.SelectedPath;

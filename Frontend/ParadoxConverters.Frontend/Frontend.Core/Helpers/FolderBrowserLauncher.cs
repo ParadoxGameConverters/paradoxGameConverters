@@ -90,14 +90,9 @@ namespace Frontend.Core.Helpers
                     else
                     {
                         //
-                        //  We failed to find the Tree View control.
-                        //
-                        //  As a fall back (and this is an UberUgly hack), we will send
-                        //  some fake keystrokes to the application in an attempt to force
-                        //  the Tree View to scroll to the selected item.
+                        //  We failed to find the Tree View control. Just leave things be, because the previous hack raised errors for some users.
                         //
                         t.Stop();
-                        SendKeys.Send("{TAB}{TAB}{DOWN}{DOWN}{UP}{UP}");
                     }
                 };
 
