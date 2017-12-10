@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include <optional>
 #include <map>
 #include <set>
 #include "../Color.h"
@@ -45,7 +46,7 @@ class provinceDefinitions
 			return (getInstance()->landProvinces.count(province) > 0);
 		}
 
-		static int getProvinceFromColor(const ConverterColor::Color& color)
+		static optional<int> getProvinceFromColor(const ConverterColor::Color& color)
 		{
 			return getInstance()->GetProvinceFromColor(color);
 		}
@@ -66,7 +67,7 @@ class provinceDefinitions
 		provinceDefinitions(const provinceDefinitions&) = delete;
 		provinceDefinitions& operator=(const provinceDefinitions&) = delete;
 
-		int GetProvinceFromColor(const ConverterColor::Color& color) const;
+		optional<int> GetProvinceFromColor(const ConverterColor::Color& color) const;
 
 		int getIntFromColor(const ConverterColor::Color& color) const;
 

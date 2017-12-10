@@ -163,170 +163,158 @@ void namesMapper::checkForNames()
 }
 
 
-vector<string> namesMapper::GetMaleNames(const string& culture) const
+optional<vector<string>> namesMapper::GetMaleNames(const string& culture) const
 {
-	vector<string> maleNames;
-
 	auto namesItr = maleNamesMap.find(culture);
 	if (namesItr != maleNamesMap.end())
 	{
-		maleNames = namesItr->second;
+		return namesItr->second;
 	}
-
-	return maleNames;
+	else
+	{
+		return {};
+	}
 }
 
 
-vector<string> namesMapper::GetFemaleNames(const string& culture) const
+optional<vector<string>> namesMapper::GetFemaleNames(const string& culture) const
 {
-	vector<string> femaleNames;
-
 	auto namesItr = femaleNamesMap.find(culture);
 	if (namesItr != femaleNamesMap.end())
 	{
-		femaleNames = namesItr->second;
+		return namesItr->second;
 	}
 
-	return femaleNames;
+	return {};
 }
 
 
-vector<string> namesMapper::GetSurnames(const string& culture) const
+optional<vector<string>> namesMapper::GetSurnames(const string& culture) const
 {
-	vector<string> surnames;
-
 	auto namesItr = surnamesMap.find(culture);
 	if (namesItr != surnamesMap.end())
 	{
-		surnames = namesItr->second;
+		return namesItr->second;
 	}
 
-	return surnames;
+	return {};
 }
 
 
-vector<string> namesMapper::GetCallsigns(const string& culture) const
+optional<vector<string>> namesMapper::GetCallsigns(const string& culture) const
 {
-	vector<string> callsigns;
-
 	auto namesItr = callsignsMap.find(culture);
 	if (namesItr != callsignsMap.end())
 	{
-		callsigns = namesItr->second;
+		return namesItr->second;
 	}
 
-	return callsigns;
+	return {};
 }
 
 
-string namesMapper::GetMaleName(const string& culture)
+optional<string> namesMapper::GetMaleName(const string& culture)
 {
-	vector<string> firstNames = GetMaleNames(culture);
-
-	if (firstNames.size() > 0)
+	auto firstNames = GetMaleNames(culture);
+	if (firstNames)
 	{
-		std::uniform_int_distribution<int> firstNameGen(0, firstNames.size() - 1);
-		return firstNames[firstNameGen(rng)];
+		std::uniform_int_distribution<int> firstNameGen(0, firstNames->size() - 1);
+		return (*firstNames)[firstNameGen(rng)];
 	}
 	else
 	{
 		LOG(LogLevel::Warning) << "No male name could be found for " << culture;
-		return "";
+		return {};
 	}
 }
 
 
-string namesMapper::GetFemaleName(const string& culture)
+optional<string> namesMapper::GetFemaleName(const string& culture)
 {
-	vector<string> firstNames = GetFemaleNames(culture);
-
-	if (firstNames.size() > 0)
+	auto firstNames = GetFemaleNames(culture);
+	if (firstNames)
 	{
-		std::uniform_int_distribution<int> firstNameGen(0, firstNames.size() - 1);
-		return firstNames[firstNameGen(rng)];
+		std::uniform_int_distribution<int> firstNameGen(0, firstNames->size() - 1);
+		return (*firstNames)[firstNameGen(rng)];
 	}
 	else
 	{
 		LOG(LogLevel::Warning) << "No female name could be found for " << culture;
-		return "";
+		return {};
 	}
 }
 
 
-string namesMapper::GetSurname(const string& culture)
+optional<string> namesMapper::GetSurname(const string& culture)
 {
-	vector<string> surnames = GetSurnames(culture);
-
-	if (surnames.size() > 0)
+	auto surnames = GetSurnames(culture);
+	if (surnames)
 	{
-		std::uniform_int_distribution<int> surnameGen(0, surnames.size() - 1);
-		return surnames[surnameGen(rng)];
+		std::uniform_int_distribution<int> surnameGen(0, surnames->size() - 1);
+		return (*surnames)[surnameGen(rng)];
 	}
 	else
 	{
 		LOG(LogLevel::Warning) << "No surname name could be found for " << culture;
-		return "";
+		return {};
 	}
 }
 
 
-string namesMapper::GetCallsign(const string& culture)
+optional<string> namesMapper::GetCallsign(const string& culture)
 {
-	vector<string> callsigns = GetCallsigns(culture);
-
-	if (callsigns.size() > 0)
+	auto callsigns = GetCallsigns(culture);
+	if (callsigns)
 	{
-		std::uniform_int_distribution<int> surnameGen(0, callsigns.size() - 1);
-		return callsigns[surnameGen(rng)];
+		std::uniform_int_distribution<int> surnameGen(0, callsigns->size() - 1);
+		return (*callsigns)[surnameGen(rng)];
 	}
 	else
 	{
 		LOG(LogLevel::Warning) << "No callsign could be found for " << culture;
-		return "";
+		return {};
 	}
 }
 
 
-string namesMapper::GetCarCompanyName(const string& culture)
+optional<string> namesMapper::GetCarCompanyName(const string& culture)
 {
 	return getCompanyName(carCompanyNames, culture);
 }
 
 
-string namesMapper::GetWeaponCompanyName(const string& culture)
+optional<string> namesMapper::GetWeaponCompanyName(const string& culture)
 {
 	return getCompanyName(weaponCompanyNames, culture);
 }
 
 
-string namesMapper::GetAircraftCompanyName(const string& culture)
+optional<string> namesMapper::GetAircraftCompanyName(const string& culture)
 {
 	return getCompanyName(aircraftCompanyNames,culture);
 }
 
 
-string namesMapper::GetNavalCompanyName(const string& culture)
+optional<string> namesMapper::GetNavalCompanyName(const string& culture)
 {
 	return getCompanyName(navalCompanyNames, culture);
 }
 
 
-string namesMapper::GetIndustryCompanyName(const string& culture)
+optional<string> namesMapper::GetIndustryCompanyName(const string& culture)
 {
 	return getCompanyName(industryCompanyNames, culture);
 }
 
 
-string namesMapper::GetElectronicCompanyName(const string& culture)
+optional<string> namesMapper::GetElectronicCompanyName(const string& culture)
 {
 	return getCompanyName(electronicCompanyNames, culture);
 }
 
 
-string namesMapper::getCompanyName(map<string, vector<string>>& companyNames, const string& culture)
+optional<string> namesMapper::getCompanyName(map<string, vector<string>>& companyNames, const string& culture)
 {
-	string company = "";
-
 	auto namesItr = companyNames.find(culture);
 	if (namesItr != companyNames.end())
 	{
@@ -334,17 +322,17 @@ string namesMapper::getCompanyName(map<string, vector<string>>& companyNames, co
 		if (companies.size() > 0)
 		{
 			std::uniform_int_distribution<int> surnameGen(0, companies.size() - 1);
-			company = companies[surnameGen(rng)];
+			auto company = companies[surnameGen(rng)];
 			for (vector<string>::iterator itr = companyNames[culture].begin(); itr != companyNames[culture].end(); ++itr)
 			{
 				if (*itr == company)
 				{
 					companyNames[culture].erase(itr);
-					break;
+					return company;
 				}
 			}
 		}
 	}
 
-	return company;
+	return {};
 }

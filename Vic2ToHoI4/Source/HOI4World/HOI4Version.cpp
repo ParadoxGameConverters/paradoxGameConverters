@@ -27,9 +27,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 HOI4Version::HOI4Version():
-	first(0),
-	second(0),
-	third(0)
+	first(1),
+	second(4),
+	third(2)
 {
 }
 

@@ -160,11 +160,14 @@ ConverterColor::Color provinceNeighborMapper::getRightColor(bitmap_image& provin
 
 void provinceNeighborMapper::handleNeighbor(ConverterColor::Color centerColor, ConverterColor::Color otherColor, const point& position)
 {
-	int centerProvince = provinceDefinitions::getProvinceFromColor(centerColor);
-	int otherProvince = provinceDefinitions::getProvinceFromColor(otherColor);
+	auto centerProvince = provinceDefinitions::getProvinceFromColor(centerColor);
+	auto otherProvince = provinceDefinitions::getProvinceFromColor(otherColor);
 
-	addNeighbor(centerProvince, otherProvince);
-	addPointToBorder(centerProvince, otherProvince, position);
+	if (centerProvince && otherProvince)
+	{
+		addNeighbor(*centerProvince, *otherProvince);
+		addPointToBorder(*centerProvince, *otherProvince, position);
+	}
 }
 
 
@@ -231,7 +234,7 @@ const set<int> provinceNeighborMapper::GetNeighbors(int province) const
 }
 
 
-const point provinceNeighborMapper::GetBorderCenter(int mainProvince, int neighbor) const
+const optional<point> provinceNeighborMapper::GetBorderCenter(int mainProvince, int neighbor) const
 {
 	auto bordersWithNeighbors = borders.find(mainProvince);
 	if (bordersWithNeighbors == borders.end())

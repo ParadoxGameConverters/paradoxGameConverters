@@ -83,8 +83,8 @@ void HoI4Buildings::placeNavalBases(const map<int, int>& provinceToStateIDMap)
 	map<int, int> coastalProvinces = coastalHoI4ProvincesMapper::getCoastalProvinces();
 	for (auto province: coastalProvinces)
 	{
-		auto position = provinceNeighborMapper::getBorderCenter(province.first, province.second);
-		if (position.first == -1)
+		auto possiblePosition = provinceNeighborMapper::getBorderCenter(province.first, province.second);
+		if (!possiblePosition)
 		{
 			LOG(LogLevel::Warning) << "Could not find position for province " << province.first << ". Naval base not set.";
 			continue;
@@ -97,7 +97,7 @@ void HoI4Buildings::placeNavalBases(const map<int, int>& provinceToStateIDMap)
 			continue;
 		}
 
-		HoI4NavalBase* newNavalBase = new HoI4NavalBase(provinceToStateMapping->second, position.first, position.second, province.second);
+		HoI4NavalBase* newNavalBase = new HoI4NavalBase(provinceToStateMapping->second, possiblePosition->first, possiblePosition->second, province.second);
 		buildings.insert(make_pair(provinceToStateMapping->second, newNavalBase));
 	}
 }

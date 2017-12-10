@@ -24,7 +24,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Color.h"
 #include <chrono>
 #include <random>
-#include <boost/lexical_cast.hpp>
 #include "Object.h"
 using namespace ConverterColor;
 
@@ -48,7 +47,7 @@ Color::Color(shared_ptr<Object> colorObject)
 	{
 		if (!colorObject->getToken(i).empty())
 		{
-			c[i] = boost::lexical_cast<int>(colorObject->getToken(i));
+			c[i] = stoi(colorObject->getToken(i));
 		}
 	}
 }

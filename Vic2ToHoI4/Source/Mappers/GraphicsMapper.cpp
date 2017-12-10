@@ -132,14 +132,21 @@ void graphicsMapper::loadIdeologyMinisterPortraitMappings(const string& cultureG
 
 string graphicsMapper::GetLeaderPortrait(const string& cultureGroup, const string& ideology)
 {
-	vector<string> portraits = GetLeaderPortraits(cultureGroup, ideology);
+	auto portraits = GetLeaderPortraits(cultureGroup, ideology);
 
-	std::uniform_int_distribution<int> firstNameGen(0, portraits.size() - 1);
-	return portraits[firstNameGen(rng)];
+	if (portraits)
+	{
+		std::uniform_int_distribution<int> firstNameGen(0, portraits->size() - 1);
+		return (*portraits)[firstNameGen(rng)];
+	}
+	else
+	{
+		return "gfx/leaders/leader_unknown.dds";
+	}
 }
 
 
-vector<string> graphicsMapper::GetLeaderPortraits(const string& cultureGroup, const string& ideology) const
+optional<vector<string>> graphicsMapper::GetLeaderPortraits(const string& cultureGroup, const string& ideology) const
 {
 	auto mapping = leaderPortraitMappings.element.find(cultureGroup);
 	if (mapping != leaderPortraitMappings.element.end())
@@ -150,23 +157,30 @@ vector<string> graphicsMapper::GetLeaderPortraits(const string& cultureGroup, co
 			return portraits->second;
 		}
 	}
-
-	vector<string> genericPortait;
-	genericPortait.push_back("gfx/leaders/leader_unknown.dds");
-	return genericPortait;
+	else
+	{
+		return {};
+	}
 }
 
 
 string graphicsMapper::GetIdeologyMinisterPortrait(const string& cultureGroup, const string& ideology)
 {
-	vector<string> portraits = GetIdeologyMinisterPortraits(cultureGroup, ideology);
+	auto portraits = GetIdeologyMinisterPortraits(cultureGroup, ideology);
 
-	std::uniform_int_distribution<int> firstNameGen(0, portraits.size() - 1);
-	return portraits[firstNameGen(rng)];
+	if (portraits)
+	{
+		std::uniform_int_distribution<int> firstNameGen(0, portraits->size() - 1);
+		return (*portraits)[firstNameGen(rng)];
+	}
+	else
+	{
+		return "gfx/interface/ideas/idea_unknown.dds";
+	}
 }
 
 
-vector<string> graphicsMapper::GetIdeologyMinisterPortraits(const string& cultureGroup, const string& ideology) const
+optional<vector<string>> graphicsMapper::GetIdeologyMinisterPortraits(const string& cultureGroup, const string& ideology) const
 {
 	auto mapping = ideologyMinisterMappings.element.find(cultureGroup);
 	if (mapping != ideologyMinisterMappings.element.end())
@@ -177,14 +191,14 @@ vector<string> graphicsMapper::GetIdeologyMinisterPortraits(const string& cultur
 			return portraits->second;
 		}
 	}
-
-	vector<string> genericPortait;
-	genericPortait.push_back("gfx/interface/ideas/idea_unknown.dds");
-	return genericPortait;
+	else
+	{
+		return {};
+	}
 }
 
 
-string graphicsMapper::GetGraphicalCulture(const string& cultureGroup) const
+optional<string> graphicsMapper::GetGraphicalCulture(const string& cultureGroup) const
 {
 	auto itr = graphicalCultureMap.find(cultureGroup);
 	if (itr != graphicalCultureMap.end())
@@ -193,12 +207,12 @@ string graphicsMapper::GetGraphicalCulture(const string& cultureGroup) const
 	}
 	else
 	{
-		return "";
+		return {};
 	}
 }
 
 
-string graphicsMapper::Get2dGraphicalCulture(const string& cultureGroup) const
+optional<string> graphicsMapper::Get2dGraphicalCulture(const string& cultureGroup) const
 {
 	auto itr = graphicalCulture2dMap.find(cultureGroup);
 	if (itr != graphicalCulture2dMap.end())
@@ -207,6 +221,6 @@ string graphicsMapper::Get2dGraphicalCulture(const string& cultureGroup) const
 	}
 	else
 	{
-		return "";
+		return {};
 	}
 }

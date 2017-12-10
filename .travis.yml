@@ -9,8 +9,8 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - gcc-6
-      - g++-6
+      - gcc-7
+      - g++-7
       - cmake
       - cmake-data
       - libboost1.55-all-dev
@@ -22,8 +22,8 @@ before_install:
   - ./cmake-3.10.0-rc1-Linux-x86_64.sh --prefix=$HOME/usr --exclude-subdir --skip-license
 script:
   # Export CC and CXX to tell cmake which compiler to use
-  - export CC=/usr/bin/gcc-6
-  - export CXX=/usr/bin/g++-6
+  - export CC=/usr/bin/gcc-7
+  - export CXX=/usr/bin/g++-7
   # Check versions of gcc, g++ and cmake
   - gcc -v && g++ -v && cmake --version
   # Run your build commands next

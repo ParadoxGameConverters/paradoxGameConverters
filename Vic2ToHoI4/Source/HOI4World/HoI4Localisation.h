@@ -28,9 +28,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <array>
 #include <iostream>
+#include <map>
+#include <optional>
 #include <string>
 #include <vector>
-#include <map>
 using namespace std;
 
 
@@ -86,7 +87,7 @@ class HoI4Localisation
 			getInstance()->AddEventLocalisationFromVic2(Vic2Key, HoI4Key);
 		}
 
-		static void addIdeaLocalisation(const string& idea, const string& localisation)
+		static void addIdeaLocalisation(const string& idea, const optional<string>& localisation)
 		{
 			getInstance()->AddIdeaLocalisation(idea, localisation);
 		}
@@ -149,7 +150,7 @@ class HoI4Localisation
 		void AddEventLocalisation(const string& event, const string& localisation);
 		void AddEventLocalisationFromVic2(const string& Vic2Key, const string& HoI4Key);
 
-		void AddIdeaLocalisation(const string& idea, const string& localisation);
+		void AddIdeaLocalisation(const string& idea, const optional<string>& localisation);
 
 		void AddPoliticalPartyLocalisation(const string& Vic2Key, const string& HoI4Key);
 

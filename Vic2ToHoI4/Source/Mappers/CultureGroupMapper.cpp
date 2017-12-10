@@ -73,7 +73,7 @@ void cultureGroupMapper::processVic2CulturesFile(string culturesFile)
 }
 
 
-string cultureGroupMapper::GetCultureGroup(const string& culture) const
+optional<string> cultureGroupMapper::GetCultureGroup(const string& culture) const
 {
 	auto mapping = mappings.find(culture);
 	if (mapping != mappings.end())
@@ -82,6 +82,6 @@ string cultureGroupMapper::GetCultureGroup(const string& culture) const
 	}
 	else
 	{
-		return "";
+		return {};
 	}
 }

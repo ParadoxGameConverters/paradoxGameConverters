@@ -39,8 +39,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../V2World/V2Party.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "OSCompatibilityLayer.h"
+#include <algorithm>
 #include <fstream>
-#include <boost/algorithm/string.hpp>
 
 
 
@@ -116,8 +116,24 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	color = srcCountry->getColor();
 	civilized = srcCountry->isCivilized();
 	threat = srcCountry->getBadBoy() / 10.0;
-	graphicalCulture = graphicsMapper::getGraphicalCulture(srcCountry->getPrimaryCultureGroup());
-	graphicalCulture2d = graphicsMapper::get2dGraphicalCulture(srcCountry->getPrimaryCultureGroup());
+	auto possibleGraphicalCulture = graphicsMapper::getGraphicalCulture(srcCountry->getPrimaryCultureGroup());
+	if (possibleGraphicalCulture)
+	{
+		graphicalCulture = *possibleGraphicalCulture;
+	}
+	else
+	{
+		graphicalCulture = "";
+	}
+	auto possibleGraphicalCulture2d = graphicsMapper::get2dGraphicalCulture(srcCountry->getPrimaryCultureGroup());
+	if (possibleGraphicalCulture2d)
+	{
+		graphicalCulture2d = *possibleGraphicalCulture2d;
+	}
+	else
+	{
+		graphicalCulture2d = "";
+	}
 	lastElection = srcCountry->getLastElection();
 	initIdeas();
 
@@ -1219,16 +1235,16 @@ void HoI4Country::outputToNamesFiles(ofstream& namesFile) const
 }
 
 
-void HoI4Country::outputNamesSet(ofstream& namesFile, const vector<string>& names, const string& tabs) const
+void HoI4Country::outputNamesSet(ofstream& namesFile, const optional<vector<string>>& names, const string& tabs) const
 {
-	if (names.size() > 0)
+	if (names)
 	{
 		namesFile << tabs;
 
-		for (unsigned int i = 0; i < names.size(); i++)
+		for (unsigned int i = 0; i < names->size(); i++)
 		{
-			namesFile << '\"' << names[i] << '\"';
-			if (i == names.size())
+			namesFile << '\"' << (*names)[i] << '\"';
+			if (i == names->size())
 			{
 				continue;
 			}
@@ -1565,19 +1581,24 @@ void HoI4Country::outputNationalUnity(ofstream& output) const
 
 void HoI4Country::outputCountryLeader(ofstream& output) const
 {
-	string firstName = namesMapper::getMaleName(srcCountry->getPrimaryCulture());
-	string surname = namesMapper::getSurname(srcCountry->getPrimaryCulture());
+	optional<string> firstName = namesMapper::getMaleName(srcCountry->getPrimaryCulture());
+	optional<string> surname = namesMapper::getSurname(srcCountry->getPrimaryCulture());
 	string portrait = graphicsMapper::getLeaderPortrait(srcCountry->getPrimaryCultureGroup(), governmentIdeology);
 
-	output << "create_country_leader = {\n";
-	output << "    name = \"" << firstName << " " << surname << "\"\n";
-	output << "    desc = \"POLITICS_" << boost::to_upper_copy(firstName) << "_" << boost::to_upper_copy(surname) << "_DESC\"\n";
-	output << "    picture = \"" << portrait << "\"\n";
-	output << "    expire = \"1965.1.1\"\n";
-	output << "    ideology = " << leaderIdeology << "\n";
-	output << "    traits = {\n";
-	output << "    }\n";
-	output << "}\n";
+	if (firstName && surname)
+	{
+		std::transform(firstName->begin(), firstName->end(), firstName->begin(), ::toupper);
+		std::transform(surname->begin(), surname->end(), surname->begin(), ::toupper);
+		output << "create_country_leader = {\n";
+		output << "    name = \"" << *firstName << " " << *surname << "\"\n";
+		output << "    desc = \"POLITICS_" << *firstName << "_" << *surname << "_DESC\"\n";
+		output << "    picture = \"" << portrait << "\"\n";
+		output << "    expire = \"1965.1.1\"\n";
+		output << "    ideology = " << leaderIdeology << "\n";
+		output << "    traits = {\n";
+		output << "    }\n";
+		output << "}\n";
+	}
 }
 
 

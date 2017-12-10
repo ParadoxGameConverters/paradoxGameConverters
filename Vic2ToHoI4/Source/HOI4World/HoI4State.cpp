@@ -258,8 +258,13 @@ int HoI4State::getMainNavalLocation() const
 
 void HoI4State::tryToCreateVP()
 {
+	bool VPCreated = false;
+
 	auto vic2CapitalProvince = stateMapper::getCapitalProvince(sourceState->getStateID());
-	bool VPCreated = assignVPFromVic2Province(vic2CapitalProvince);
+	if (vic2CapitalProvince)
+	{
+		VPCreated = assignVPFromVic2Province(*vic2CapitalProvince);
+	}
 
 	if (!VPCreated)
 	{

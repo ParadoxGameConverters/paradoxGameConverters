@@ -1,7 +1,7 @@
 set /p version=Version Number?:
 
-call "%VS140COMNTOOLS%\vsvars32.bat"
-msbuild.exe "Frontend\ParadoxConverters.Frontend\ParadoxConverters.Frontend.sln" /p:Configuration=Release /m
+call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat"
+msbuild.exe "Frontend\ParadoxConverters.Frontend\ParadoxConverters.Frontend.sln" /p:Configuration=Release /p:Platform="Any CPU" /m
 xcopy "Frontend\ParadoxConverters.Frontend\ParadoxConverters.Frontend\bin\Release" "Vic2ToHoI4-%version%"  /Y /E /I
 copy "Vic2ToHoI4\Data_Files\Vic2toHoI4DefaultConfiguration.xml" "Vic2ToHoI4-%version%\Configuration\"
 copy "Vic2ToHoI4\Data_Files\SupportedConvertersDefault.xml" "Vic2ToHoI4-%version%\Configuration\"

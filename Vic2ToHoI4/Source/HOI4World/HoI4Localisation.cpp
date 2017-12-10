@@ -405,7 +405,11 @@ void HoI4Localisation::addStateLocalisationForLanguage(const HoI4State* state, c
 	string localisedName = "";
 	if (state->getSourceState()->isPartialState())
 	{
-		localisedName += V2Localisations::GetTextInLanguage(state->getSourceState()->getOwner() + "_ADJ", Vic2NameInLanguage.first) + " ";
+		auto possibleOwnerAdjective = V2Localisations::GetTextInLanguage(state->getSourceState()->getOwner() + "_ADJ", Vic2NameInLanguage.first);
+		if (possibleOwnerAdjective)
+		{
+			localisedName += *possibleOwnerAdjective + " ";
+		}
 	}
 	localisedName += Vic2NameInLanguage.second;
 
@@ -504,13 +508,13 @@ void HoI4Localisation::AddEventLocalisationFromVic2(const string& Vic2Key, const
 }
 
 
-void HoI4Localisation::AddIdeaLocalisation(const string& idea, const string& localisation)
+void HoI4Localisation::AddIdeaLocalisation(const string& idea, const optional<string>& localisation)
 {
 	for (auto localisationInLanguage: ideaLocalisations)
 	{
-		if (localisation != "")
+		if (localisation)
 		{
-			ideaLocalisations[localisationInLanguage.first][idea] = localisation;
+			ideaLocalisations[localisationInLanguage.first][idea] = *localisation;
 		}
 		else
 		{

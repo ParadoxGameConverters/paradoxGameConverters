@@ -36,8 +36,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Color.h"
 #include "Date.h"
 #include "../V2World/V2Army.h"
-#include <vector>
+#include <optional>
 #include <set>
+#include <vector>
 using namespace std;
 
 
@@ -142,7 +143,7 @@ class HoI4Country
 
 		void addProvince(int _province);
 
-		void outputNamesSet(ofstream& namesFile, const vector<string>& names, const string& tabs) const;
+		void outputNamesSet(ofstream& namesFile, const optional<vector<string>>& names, const string& tabs) const;
 		void outputHistory() const;
 		void outputCapital(ofstream& output) const;
 		void outputResearchSlots(ofstream& output) const;

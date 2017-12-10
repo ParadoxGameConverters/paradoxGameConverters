@@ -93,7 +93,15 @@ void V2Country::readInCultures(shared_ptr<Object> countryObj)
 	primaryCulture = countryObj->safeGetString("primary_culture");
 	acceptedCultures.insert(primaryCulture);
 
-	primaryCultureGroup = cultureGroupMapper::getCultureGroup(primaryCulture);
+	auto cultureGroupOption = cultureGroupMapper::getCultureGroup(primaryCulture);
+	if (cultureGroupOption)
+	{
+		primaryCultureGroup = *cultureGroupOption;
+	}
+	else
+	{
+		primaryCultureGroup = "";
+	}
 
 	auto cultures = countryObj->safeGetTokens("culture");
 	for (auto culture: cultures)
@@ -122,7 +130,10 @@ void V2Country::readInInventions(shared_ptr<Object> countryObj)
 	for (auto activeInventionNumber: activeInventionsNumbers)
 	{
 		auto inventionName = inventionsMapper::getInventionName(stoi(activeInventionNumber));
-		inventions.insert(inventionName);
+		if (inventionName)
+		{
+			inventions.insert(*inventionName);
+		}
 	}
 }
 
@@ -389,7 +400,15 @@ void V2Country::handleMissingCulture()
 	{
 		auto cultureSizes = determineCultureSizes();
 		primaryCulture = selectLargestCulture(cultureSizes);
-		primaryCultureGroup = cultureGroupMapper::getCultureGroup(primaryCulture);
+		auto cultureGroupOption = cultureGroupMapper::getCultureGroup(primaryCulture);
+		if (cultureGroupOption)
+		{
+			primaryCultureGroup = *cultureGroupOption;
+		}
+		else
+		{
+			primaryCultureGroup = "no_culture";
+		}
 	}
 }
 
