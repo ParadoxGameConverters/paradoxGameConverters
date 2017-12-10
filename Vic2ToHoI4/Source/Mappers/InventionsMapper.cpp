@@ -79,13 +79,13 @@ void inventionsMapper::processTechFile(string filename)
 }
 
 
-string inventionsMapper::GetInventionName(int inventionNum)
+optional<string> inventionsMapper::GetInventionName(int inventionNum)
 {
 	auto inventionName = inventionNumsToNames.find(inventionNum);
 	if (inventionName == inventionNumsToNames.end())
 	{
 		LOG(LogLevel::Warning) << "Invalid invention. Is this using a mod that changed inventions?";
-		return "";
+		return {};
 	}
 	else
 	{

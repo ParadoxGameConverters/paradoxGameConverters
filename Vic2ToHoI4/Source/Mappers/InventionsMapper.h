@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include <optional>
 #include <map>
 #include <string>
 using namespace std;
@@ -35,7 +36,7 @@ using namespace std;
 class inventionsMapper
 {
 	public:
-		static string getInventionName(int inventionNum)
+		static optional<string> getInventionName(int inventionNum)
 		{
 			return getInstance()->GetInventionName(inventionNum);
 		}
@@ -58,7 +59,7 @@ class inventionsMapper
 		void generateNums(string path);
 		void processTechFile(string filename);
 
-		string GetInventionName(int inventionNum);
+		optional<string> GetInventionName(int inventionNum);
 
 		map<int, string> inventionNumsToNames;
 };

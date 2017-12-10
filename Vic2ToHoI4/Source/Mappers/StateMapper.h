@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <map>
 #include <memory>
+#include <optional>
 #include <unordered_set>
 using namespace std;
 
@@ -55,7 +56,7 @@ class stateMapper
 			return getInstance()->stateIdMap;
 		}
 
-		static int getCapitalProvince(const string& stateID)
+		static optional<int> getCapitalProvince(const string& stateID)
 		{
 			return getInstance()->GetCapitalProvince(stateID);
 		}
@@ -78,7 +79,7 @@ class stateMapper
 
 		void initStateMap(shared_ptr<Object> parsedMappingsFile);
 
-		int GetCapitalProvince(const string& stateID) const;
+		optional<int> GetCapitalProvince(const string& stateID) const;
 
 		stateMapping stateMap;
 		stateIdMapping stateIdMap;

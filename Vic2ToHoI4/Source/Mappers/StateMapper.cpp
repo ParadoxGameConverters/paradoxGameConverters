@@ -100,7 +100,7 @@ void stateMapper::initStateMap(shared_ptr<Object> parsedMappingsFile)
 }
 
 
-int stateMapper::GetCapitalProvince(const string& stateID) const
+optional<int> stateMapper::GetCapitalProvince(const string& stateID) const
 {
 	auto mapping = stateToCapitalMap.find(stateID);
 	if (mapping != stateToCapitalMap.end())
@@ -109,6 +109,6 @@ int stateMapper::GetCapitalProvince(const string& stateID) const
 	}
 	else
 	{
-		return -1;
+		return {};
 	}
 }

@@ -86,7 +86,7 @@ provinceDefinitions::provinceDefinitions():
 }
 
 
-int provinceDefinitions::GetProvinceFromColor(const ConverterColor::Color& color) const
+optional<int> provinceDefinitions::GetProvinceFromColor(const ConverterColor::Color& color) const
 {
 	int colorInt = getIntFromColor(color);
 
@@ -97,7 +97,7 @@ int provinceDefinitions::GetProvinceFromColor(const ConverterColor::Color& color
 	}
 	else
 	{
-		return 0;
+		return {};
 	}
 }
 

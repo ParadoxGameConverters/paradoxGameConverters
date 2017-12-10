@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include <optional>
 #include <map>
 #include <string>
 #include <unordered_map>
@@ -36,7 +37,7 @@ using namespace std;
 class V2Localisations
 {
 	public:
-		static const string GetTextInLanguage(const string& key, const string& language)
+		static const optional<string> GetTextInLanguage(const string& key, const string& language)
 		{
 			return getInstance()->ActuallyGetTextInLanguage(key, language);
 		}
@@ -70,7 +71,7 @@ class V2Localisations
 		V2Localisations(const V2Localisations&) = delete;
 		V2Localisations& operator=(const V2Localisations&) = delete;
 
-		const string ActuallyGetTextInLanguage(const string& key, const string& language) const;
+		const optional<string> ActuallyGetTextInLanguage(const string& key, const string& language) const;
 		const map<string, string>& ActuallyGetTextInEachLanguage(const string& key) const;
 		void ActuallyUpdateDomainCountry(const string & tag, const string & dominionName);
 

@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include <optional>
 #include <map>
 #include <set>
 #include "../bitmap_image.hpp"
@@ -48,7 +49,7 @@ class provinceNeighborMapper
 			return getInstance()->GetNeighbors(province);
 		}
 
-		static const point getBorderCenter(int mainProvince, int neighbor)
+		static const optional<point> getBorderCenter(int mainProvince, int neighbor)
 		{
 			return getInstance()->GetBorderCenter(mainProvince, neighbor);
 		}
@@ -79,7 +80,7 @@ class provinceNeighborMapper
 		void addPointToBorder(int mainProvince, int neighborProvince, point position);
 
 		const set<int> GetNeighbors(int province) const;
-		const point GetBorderCenter(int mainProvince, int neighbor) const;
+		const optional<point> GetBorderCenter(int mainProvince, int neighbor) const;
 
 		map<int, set<int>> provinceNeighbors;
 		map<int, bordersWith> borders;
