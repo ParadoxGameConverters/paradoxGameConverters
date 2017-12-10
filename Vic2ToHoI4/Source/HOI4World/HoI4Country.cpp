@@ -39,8 +39,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../V2World/V2Party.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "OSCompatibilityLayer.h"
+#include <algorithm>
 #include <fstream>
-#include <boost/algorithm/string.hpp>
 
 
 
@@ -1566,12 +1566,14 @@ void HoI4Country::outputNationalUnity(ofstream& output) const
 void HoI4Country::outputCountryLeader(ofstream& output) const
 {
 	string firstName = namesMapper::getMaleName(srcCountry->getPrimaryCulture());
+	std::transform(firstName.begin(), firstName.end(), firstName.begin(), ::toupper);
 	string surname = namesMapper::getSurname(srcCountry->getPrimaryCulture());
+	std::transform(surname.begin(), surname.end(), surname.begin(), ::toupper);
 	string portrait = graphicsMapper::getLeaderPortrait(srcCountry->getPrimaryCultureGroup(), governmentIdeology);
 
 	output << "create_country_leader = {\n";
 	output << "    name = \"" << firstName << " " << surname << "\"\n";
-	output << "    desc = \"POLITICS_" << boost::to_upper_copy(firstName) << "_" << boost::to_upper_copy(surname) << "_DESC\"\n";
+	output << "    desc = \"POLITICS_" << firstName << "_" << surname << "_DESC\"\n";
 	output << "    picture = \"" << portrait << "\"\n";
 	output << "    expire = \"1965.1.1\"\n";
 	output << "    ideology = " << leaderIdeology << "\n";

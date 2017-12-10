@@ -29,7 +29,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Object.h"
 #include <map>
 #include <string>
-#include <boost/bimap.hpp>
 using namespace std;
 
 
@@ -90,7 +89,8 @@ class CountryMapper
 		const string GetVic2Tag(const string& HoI4Tag) const;
 
 		map<string, vector<string>> Vic2TagToHoI4TagsRules;
-		boost::bimap<string, string> V2TagToHoI4TagMap;
+		map<string, string> V2TagToHoI4TagMap;
+		map<string, string> HoI4TagToV2TagMap;
 
 		char generatedHoI4TagPrefix;
 		int generatedHoI4TagSuffix;
