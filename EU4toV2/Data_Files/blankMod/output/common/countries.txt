@@ -313,6 +313,7 @@ SII		="countries/Sicily.txt"##
 SNA		="countries/Siena.txt"##
 URB		="countries/Urbino.txt"##
 MFA 	="countries/Montferrat.txt"
+LGB		="countries/Longobardia.txt"
 
 # Eastern Europe
 LIV		="countries/Livonian Order.txt"##
@@ -346,6 +347,7 @@ KNI		="countries/Knights.txt"##
 MOE		="countries/Morea.txt"##
 NAX		="countries/Naxos.txt"##
 RAG		="countries/Ragusa.txt"##
+MKD		="countries/Macedonia.txt"##
 
 # Maghreb
 FEZ		="countries/Fez.txt"##
@@ -528,6 +530,7 @@ IRO		="countries/Iroquois.txt"##
 MAY		="countries/Maya.txt"##
 SHA		="countries/Shawnee.txt"##
 ZAP		="countries/Zapotec.txt"##
+LSK		= "countries/Alaska.txt"##
 
 #Arabia
 ALH		="countries/Haasa.txt"##
@@ -559,7 +562,7 @@ TAI 		="countries/Taira.txt"
 
 
 ##HoD Dominions
-dynamic_tags  = yes # any tags after this is considered dynamic dominions
+dynamic_tags  = yes # any tags after this are considered dynamic dominions
 D01		= "countries/D01.txt"
 D02		= "countries/D02.txt"
 D03		= "countries/D03.txt"
