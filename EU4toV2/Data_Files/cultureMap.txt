@@ -1,4 +1,4 @@
-# Copyright (c) 2017 The Paradox Game Converters Project
+﻿# Copyright (c) 2017 The Paradox Game Converters Project
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -153,7 +153,7 @@ link = { v2 = north_andean eu4 = visigothic eu4 = castillian eu4 = leonese eu4 =
 link = { v2 = south_andean eu4 = visigothic eu4 = castillian eu4 = leonese eu4 = catalan eu4 = aragonese eu4 = portuguese eu4 = galician eu4 = suebi eu4 = andalucian region = upper_peru_region }
 link = { v2 = south_andean eu4 = visigothic eu4 = castillian eu4 = leonese eu4 = catalan eu4 = aragonese eu4 = portuguese eu4 = galician eu4 = suebi eu4 = andalucian region = peru_region }
 link = { v2 = brazilian eu4 = visigothic eu4 = castillian eu4 = leonese eu4 = catalan eu4 = aragonese eu4 = portuguese eu4 = galician eu4 = suebi eu4 = andalucian region = brazil_region }
-link = { v2 = norte_americano eu4 = visigothic eu4 = castillian eu4 = leonese eu4 = catalan eu4 = aragonese eu4 = portuguese eu4 = galician eu4 = suebi eu4 = andalucian region = south_america_superregion region = north_america_superregion region = central_america_superregion }
+link = { v2 = americano eu4 = visigothic eu4 = castillian eu4 = leonese eu4 = catalan eu4 = aragonese eu4 = portuguese eu4 = galician eu4 = suebi eu4 = andalucian region = south_america_superregion region = north_america_superregion region = central_america_superregion }
 link = { v2 = sureno eu4 = visigothic eu4 = castillian eu4 = leonese eu4 = catalan eu4 = aragonese eu4 = portuguese eu4 = galician eu4 = suebi eu4 = andalucian region = oceania_superregion }
 link = { v2 = morado eu4 = visigothic eu4 = castillian eu4 = leonese eu4 = catalan eu4 = aragonese eu4 = portuguese eu4 = galician eu4 = suebi eu4 = andalucian region = niger_region region = guinea_region region = central_africa_region region = sahel_region region = horn_of_africa_region region = east_africa_region region = kongo_region region = south_africa_region }
 link = { v2 = visigothic eu4 = visigothic }
