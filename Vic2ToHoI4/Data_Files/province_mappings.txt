@@ -2363,10 +2363,10 @@
 	link = { vic2 = 1047 hoi4 = 11559 hoi4 = 585 hoi4 = 11403 hoi4 = 426 hoi4 = 6417 hoi4 = 3464 }	# Azov -> land, land, land, land, land, land
 	# # Ekaterinodar
 	link = { vic2 = 1048 hoi4 = 3734 hoi4 = 750 hoi4 = 6755 hoi4 = 3752 hoi4 = 765 hoi4 = 9744 hoi4 = 3765 hoi4 = 6783 hoi4 = 3587 hoi4 = 6781 hoi4 = 6768 }	# Ekaterinodar -> land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1049 hoi4 = 11668 hoi4 = 3760 hoi4 = 717 hoi4 = 719 hoi4 = 6741 hoi4 = 11729 }	# Novorossiysk -> land, land, land, land, land, land
+	link = { vic2 = 1049 hoi4 = 11668 hoi4 = 3760 hoi4 = 717 hoi4 = 719 hoi4 = 6741 hoi4 = 11729 hoi4 = 3698 hoi4 = 9663 }	# Novorossiysk -> land, land, land, land, land, land, land, land
 	link = { vic2 = 1050 hoi4 = 748 hoi4 = 3748 hoi4 = 9726 hoi4 = 6753 hoi4 = 11678 hoi4 = 9707 hoi4 = 9705 hoi4 = 6750 hoi4 = 11694 hoi4 = 9722 hoi4 = 11727 hoi4 = 9742 hoi4 = 9688 hoi4 = 11696 hoi4 = 6796 hoi4 = 775 hoi4 = 3779 hoi4 = 11693 hoi4 = 11690 }	# Stavropol -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1051 hoi4 = 3720 hoi4 = 6736 hoi4 = 3717 hoi4 = 11681 hoi4 = 735 hoi4 = 6738 hoi4 = 9694 hoi4 = 9691 hoi4 = 9696 hoi4 = 9709 hoi4 = 714 }	# Adygei -> land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1056 hoi4 = 731 hoi4 = 11661 hoi4 = 6718 hoi4 = 11633 hoi4 = 6733 }	# Pyatigorsk -> land, land, land, land, land
+	link = { vic2 = 1051 hoi4 = 3720 hoi4 = 6736 hoi4 = 3717 hoi4 = 11681 hoi4 = 735 hoi4 = 6738 hoi4 = 9694 hoi4 = 9691 hoi4 = 9696 hoi4 = 9709 hoi4 = 714 hoi4 = 6721 hoi4 = 9674 hoi4 = 6692 hoi4 = 11664 }	# Adygei -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 1056 hoi4 = 731 hoi4 = 11661 hoi4 = 6718 hoi4 = 11633 hoi4 = 6733 hoi4 = 9649 hoi4 = 685 }	# Pyatigorsk -> land, land, land, land, land, land, land
 	# # Arkhangelsk
 	link = { vic2 = 981 hoi4 = 3338 hoi4 = 9041 hoi4 = 3168 hoi4 = 3075 hoi4 = 180 hoi4 = 87 hoi4 = 11089 hoi4 = 11042 hoi4 = 9101 hoi4 = 3064 hoi4 = 183 hoi4 = 11171 hoi4 = 3065 hoi4 = 312 }	# Archangel -> land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 985 hoi4 = 6105 hoi4 = 3147 hoi4 = 6016 hoi4 = 9099 hoi4 = 154 }	# Mezen -> land, land, land, land, land
@@ -2479,29 +2479,29 @@
 	# 
 	# ## Georgia
 	# # Georgia
-	link = { vic2 = 1090 hoi4 = 1599 hoi4 = 9702 hoi4 = 6671 }	# Tblisi -> land, land, land
-	link = { vic2 = 1091 hoi4 = 9626 hoi4 = 1530 hoi4 = 6436 hoi4 = 4534 hoi4 = 9632 hoi4 = 1455 hoi4 = 11609 hoi4 = 3667 }	# Pasanauri -> land, land, land, land, land, land, land, land
-	link = { vic2 = 1092 hoi4 = 11664 hoi4 = 6674 hoi4 = 9649 hoi4 = 672 hoi4 = 654 hoi4 = 685 }	# Kutaisi -> land, land, land, land, land, land
-	link = { vic2 = 1093 hoi4 = 12441 hoi4 = 3656 hoi4 = 6669 hoi4 = 3658 }	# Akhaltsikhe -> land, land, land, land
-	link = { vic2 = 1094 hoi4 = 11599 hoi4 = 772 }	# Poti -> land, land
-	link = { vic2 = 1095 hoi4 = 3698 hoi4 = 11647 hoi4 = 6721 hoi4 = 9674 hoi4 = 6692 hoi4 = 11617 hoi4 = 9663 }	# Sukhumi -> land, land, land, land, land, land, land
+	link = { vic2 = 1090 hoi4 = 1599 hoi4 = 12309 hoi4 = 4605 hoi4 = 9702 }	# Tblisi -> land, land, land, land
+	link = { vic2 = 1091 hoi4 = 1530 hoi4 = 6436 hoi4 = 4534 hoi4 = 9632 hoi4 = 1455 hoi4 = 11609 hoi4 = 3667 hoi4 = 6671 }	# Pasanauri -> land, land, land, land, land, land, land, land
+	link = { vic2 = 1092 hoi4 = 654 hoi4 = 3658 hoi4 = 9626 hoi4 = 6674 }	# Kutaisi -> land, land, land, land
+	link = { vic2 = 1093 hoi4 = 3656 hoi4 = 6669 }	# Akhaltsikhe -> land, land
+	link = { vic2 = 1094 hoi4 = 772 }	# Poti -> land
+	link = { vic2 = 1095 hoi4 = 11617 hoi4 = 11647 hoi4 = 11599 hoi4 = 672 }	# Sukhumi -> land, land, land, land
 	# 
 	# ## Armenia
 	# # Armenia
-	link = { vic2 = 1098 hoi4 = 12320 hoi4 = 3564 }	# Erivan -> land, land
-	link = { vic2 = 1099 hoi4 = 11708 hoi4 = 12380 hoi4 = 13123 }	# Gyumri -> land, land, lake
-	link = { vic2 = 1100 hoi4 = 12450 hoi4 = 6642 }	# Kapan -> land, land
+	link = { vic2 = 1098 hoi4 = 12320 hoi4 = 3564 hoi4 = 12450 }	# Erivan -> land, land, land
+	link = { vic2 = 1099 hoi4 = 11708 hoi4 = 12380 hoi4 = 12441 hoi4 = 13123 }	# Gyumri -> land, land, land, lake
+	link = { vic2 = 1100 hoi4 = 6642 hoi4 = 4660 }	# Kapan -> land, land
 	# 
 	# ## Azerbaijan
 	# # Armenia
-	link = { vic2 = 1101 hoi4 = 6997 hoi4 = 4660 }	# Nakhichevan -> land, land
+	link = { vic2 = 1101 hoi4 = 6997 }	# Nakhichevan -> land
 	# # Azerbaijan
-	link = { vic2 = 1102 hoi4 = 7661 hoi4 = 7495 hoi4 = 4614 }	# Baku -> land, land, land
+	link = { vic2 = 1102 hoi4 = 7661 hoi4 = 7495 hoi4 = 4614 hoi4 = 1536 }	# Baku -> land, land, land, land
 	link = { vic2 = 1103 hoi4 = 4458 hoi4 = 4545 }	# Siyazen -> land, land
 	link = { vic2 = 1104 hoi4 = 11645 hoi4 = 6763 hoi4 = 4477 }	# Sheki -> land, land, land
-	link = { vic2 = 1105 hoi4 = 11674 hoi4 = 1539 hoi4 = 4605 hoi4 = 12309 }	# Ganja -> land, land, land, land
+	link = { vic2 = 1105 hoi4 = 11674 hoi4 = 1539 }	# Ganja -> land, land
 	link = { vic2 = 1106 hoi4 = 11704 hoi4 = 1610 hoi4 = 1467 hoi4 = 9715 }	# Agdam -> land, land, land, land
-	link = { vic2 = 1107 hoi4 = 12434 hoi4 = 4473 hoi4 = 1536 }	# Lankaran -> land, land, land
+	link = { vic2 = 1107 hoi4 = 12434 hoi4 = 4473 }	# Lankaran -> land, land
 	# 
 	# ## Cyprus
 	# # Cyprus
