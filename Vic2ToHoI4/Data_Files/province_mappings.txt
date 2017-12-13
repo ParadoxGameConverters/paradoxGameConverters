@@ -2510,40 +2510,40 @@
 	# 
 	# ## Lebanon
 	# # Lebanon
-	link = { vic2 = 912 hoi4 = 4550 }	# Baalbeck -> land
-	link = { vic2 = 913 hoi4 = 792 hoi4 = 11919 }	# Beirut -> land, land
+	link = { vic2 = 912 hoi4 = 11919 }	# Baalbeck -> land
+	link = { vic2 = 913 hoi4 = 792 }	# Beirut -> land
 	link = { vic2 = 914 hoi4 = 1108 }	# Askaleh -> land
 	link = { vic2 = 915 hoi4 = 1065 }	# Sidon -> land
 	# 
 	# ## Syria
 	# # Aleppo
-	link = { vic2 = 897 hoi4 = 7140 hoi4 = 7671 hoi4 = 12473 }	# Aleppo -> land, land, land
+	link = { vic2 = 897 hoi4 = 12473 hoi4 = 7671 hoi4 = 7140 }	# Aleppo -> land, land, land
 	link = { vic2 = 900 hoi4 = 12029 }	# Antioch -> land
-	link = { vic2 = 901 hoi4 = 1549 hoi4 = 1606 hoi4 = 6883 hoi4 = 1578 hoi4 = 10882 hoi4 = 901 hoi4 = 1634 }	# Dayr al-Zour -> land, land, land, land, land, land, land
-	link = { vic2 = 904 hoi4 = 3942 }	# Hama -> land
+	link = { vic2 = 901 hoi4 = 2013 hoi4 = 1549 hoi4 = 1606 hoi4 = 6883 hoi4 = 1578 hoi4 = 10882 hoi4 = 901 hoi4 = 1634 }	# Dayr al-Zour -> land, land, land, land, land, land, land, land
+	link = { vic2 = 904 hoi4 = 1072 hoi4 = 1056 hoi4 = 3942 }	# Hama -> land, land, land
 	link = { vic2 = 905 hoi4 = 1088 hoi4 = 10087 }	# Latakia -> land, land
 	# # Syria
 	link = { vic2 = 902 hoi4 = 4111 hoi4 = 1074 }	# Damascus -> land, land
-	link = { vic2 = 903 hoi4 = 1056 hoi4 = 12442 hoi4 = 1072 }	# Homs -> land, land, land
-	link = { vic2 = 906 hoi4 = 4486 hoi4 = 7184 hoi4 = 10383 }	# Suwayda -> land, land, land
-	link = { vic2 = 907 hoi4 = 2013 hoi4 = 12316 hoi4 = 7513 }	# Palmyra -> land, land, land
+	link = { vic2 = 903 hoi4 = 4550 hoi4 = 12442 }	# Homs -> land, land
+	link = { vic2 = 906 hoi4 = 4486 hoi4 = 7184 }	# Suwayda -> land, land
+	link = { vic2 = 907 hoi4 = 10383 hoi4 = 12316 hoi4 = 7513 }	# Palmyra -> land, land, land
 	# 
 	# ## Iraq
 	# # Mosul
-	link = { vic2 = 923 hoi4 = 10106 hoi4 = 1938 hoi4 = 10804 }	# Mosul -> land, land, land
-	link = { vic2 = 924 hoi4 = 10811 hoi4 = 5014 hoi4 = 3916 }	# Arbil -> land, land, land
-	link = { vic2 = 925 hoi4 = 6826 hoi4 = 8123 hoi4 = 10793 }	# Kirkuk -> land, land, land
-	link = { vic2 = 928 hoi4 = 12855 }	# Mendeli -> land
+	link = { vic2 = 923 hoi4 = 10106 hoi4 = 1938 hoi4 = 10804 hoi4 = 1600 }	# Mosul -> land, land, land, land
+	link = { vic2 = 924 hoi4 = 3916 hoi4 = 5014 hoi4 = 10811 }	# Arbil -> land, land, land
+	link = { vic2 = 925 hoi4 = 6826 hoi4 = 8123 }	# Kirkuk -> land, land
+	link = { vic2 = 928 hoi4 = 10793 }	# Mendeli -> land
 	# # Baghdad
-	link = { vic2 = 926 hoi4 = 2097 }	# Baghdad -> land
-	link = { vic2 = 927 hoi4 = 1600 hoi4 = 12372 }	# Samarra -> land, land
-	link = { vic2 = 929 hoi4 = 12046 hoi4 = 12839 hoi4 = 3795 }	# Karbala -> land, land, land
+	link = { vic2 = 926 hoi4 = 2097 hoi4 = 12046 }	# Baghdad -> land, land
+	link = { vic2 = 927 hoi4 = 3795 hoi4 = 12372 }	# Samarra -> land, land
+	link = { vic2 = 929 hoi4 = 12839 }	# Karbala -> land
 	link = { vic2 = 931 hoi4 = 4951 hoi4 = 1631 hoi4 = 12413 }	# Rutbah -> land, land, land
-	link = { vic2 = 934 hoi4 = 12879 hoi4 = 10744 }	# Najaf -> land, land
+	link = { vic2 = 934 hoi4 = 12879 hoi4 = 10744 hoi4 = 10876 hoi4 = 8001 hoi4 = 7994 }	# Najaf -> land, land, land, land, land
 	# # Basra
-	link = { vic2 = 930 hoi4 = 7977 hoi4 = 78 hoi4 = 12726 }	# Kut -> land, land, land
+	link = { vic2 = 930 hoi4 = 7977 hoi4 = 78 hoi4 = 12855 }	# Kut -> land, land, land
 	link = { vic2 = 932 hoi4 = 2089 }	# Basra -> land
-	link = { vic2 = 933 hoi4 = 8001 hoi4 = 2004 hoi4 = 7994 hoi4 = 10876 }	# Nasiriyya -> land, land, land, land
+	link = { vic2 = 933 hoi4 = 12726 hoi4 = 2004 }	# Nasiriyya -> land, land
 	# 
 	# ## Kuwait
 	# # Basra
@@ -2551,26 +2551,26 @@
 	# 
 	# ## Egypt
 	# # Sinai
-	link = { vic2 = 1755 hoi4 = 1155 hoi4 = 9947 }	# Suez -> land, land
-	link = { vic2 = 1756 hoi4 = 11922 hoi4 = 4161 hoi4 = 11979 }	# Al Arish -> land, land, land
-	link = { vic2 = 1757 hoi4 = 10002 hoi4 = 12073 hoi4 = 1112 hoi4 = 10099 }	# Sharm al-Shaykh -> land, land, land, land
+	link = { vic2 = 1755 hoi4 = 9947 hoi4 = 1155 }	# Suez -> land, land
+	link = { vic2 = 1756 hoi4 = 11979 hoi4 = 4161 hoi4 = 11922 }	# Al Arish -> land, land, land
+	link = { vic2 = 1757 hoi4 = 10099 hoi4 = 12073 hoi4 = 1112 hoi4 = 10002 }	# Sharm al-Shaykh -> land, land, land, land
 	# 
 	# ## Israel / Palestine
 	# # Palestine
-	link = { vic2 = 916 hoi4 = 1201 hoi4 = 7107 }	# Acre -> land, land
-	link = { vic2 = 918 hoi4 = 7170 }	# Nablus -> land
-	link = { vic2 = 917 hoi4 = 1086 hoi4 = 1 }	# Jerusalem -> land, lake
+	link = { vic2 = 916 hoi4 = 1201 }	# Acre -> land
+	link = { vic2 = 917 hoi4 = 1086 }	# Jerusalem -> land
+	link = { vic2 = 918 hoi4 = 7107 }	# Nablus -> land
 	link = { vic2 = 919 hoi4 = 4206 }	# Jaffa -> land
-	link = { vic2 = 920 hoi4 = 4088 hoi4 = 11970 }	# Gaza -> land, land
-	link = { vic2 = 921 hoi4 = 1015 hoi4 = 7176 }	# Beersheba -> land, land
+	link = { vic2 = 920 hoi4 = 4088 }	# Gaza -> land
+	link = { vic2 = 921 hoi4 = 7176 hoi4 = 11970 hoi4 = 1015 }	# Beersheba -> land, land, land
 	# 
 	# ## Jordan
 	# # Transjordan
-	link = { vic2 = 908 hoi4 = 7151 hoi4 = 4574 }	# Amman -> land, land
-	link = { vic2 = 909 hoi4 = 7001 }	# Jerash -> land
+	link = { vic2 = 908 hoi4 = 7151 hoi4 = 4574 hoi4 = 10089 hoi4 = 1 }	# Amman -> land, land, land, lake
+	link = { vic2 = 909 hoi4 = 7170 hoi4 = 7001 }	# Jerash -> land, land
 	link = { vic2 = 910 hoi4 = 4440 hoi4 = 1544 }	# Ruwayshid -> land, land
-	link = { vic2 = 911 hoi4 = 4562 hoi4 = 4591 hoi4 = 4603 hoi4 = 11976 }	# Maan -> land, land, land, land
-	link = { vic2 = 922 hoi4 = 4115 hoi4 = 4017 hoi4 = 10089 }	# Aqaba -> land, land, land
+	link = { vic2 = 911 hoi4 = 11976 hoi4 = 4591 hoi4 = 4603 hoi4 = 4562 }	# Maan -> land, land, land, land
+	link = { vic2 = 922 hoi4 = 4115 hoi4 = 4017 }	# Aqaba -> land, land
 	# 
 	# ## Saudia Arabia
 	# # Hail
