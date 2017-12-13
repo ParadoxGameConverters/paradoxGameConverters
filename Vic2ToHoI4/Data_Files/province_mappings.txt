@@ -2429,52 +2429,52 @@
 	# # Hudavendigar
 	link = { vic2 = 861 hoi4 = 11829 }	# Üsküdar -> land
 	link = { vic2 = 862 hoi4 = 11811 }	# Izmit -> land
-	link = { vic2 = 863 hoi4 = 3851 hoi4 = 11867 hoi4 = 3786 hoi4 = 947 }	# Bursa -> land, land, land, land
-	link = { vic2 = 864 hoi4 = 6912 hoi4 = 11778 hoi4 = 785 hoi4 = 9799 }	# Balikesir -> land, land, land, land
+	link = { vic2 = 863 hoi4 = 947 hoi4 = 11867 hoi4 = 3786 hoi4 = 3851 }	# Bursa -> land, land, land, land
+	link = { vic2 = 864 hoi4 = 11778 hoi4 = 785 hoi4 = 9799 hoi4 = 6912 }	# Balikesir -> land, land, land, land
 	link = { vic2 = 865 hoi4 = 6864 hoi4 = 9887 }	# Canakkale -> land, land
 	link = { vic2 = 867 hoi4 = 856 hoi4 = 981 hoi4 = 3856 hoi4 = 11831 }	# Kütahya -> land, land, land, land
 	# # Aydin
-	link = { vic2 = 869 hoi4 = 11848 hoi4 = 7130 hoi4 = 6992 hoi4 = 9929 hoi4 = 10038 hoi4 = 4112 }	# Izmir -> land, land, land, land, land, land
-	link = { vic2 = 870 hoi4 = 9921 hoi4 = 11898 hoi4 = 3927 hoi4 = 928 }	# Manisa -> land, land, land, land
-	link = { vic2 = 871 hoi4 = 6945 hoi4 = 11796 hoi4 = 11907 hoi4 = 10041 }	# Denizli -> land, land, land, land
-	link = { vic2 = 872 hoi4 = 9941 hoi4 = 11917 hoi4 = 12096 hoi4 = 10122 }	# Mugla -> land, land, land, land
+	link = { vic2 = 869 hoi4 = 4112 hoi4 = 7130 hoi4 = 6992 hoi4 = 9929 hoi4 = 10038 hoi4 = 11848 }	# Izmir -> land, land, land, land, land, land
+	link = { vic2 = 870 hoi4 = 928 hoi4 = 11898 hoi4 = 3927 hoi4 = 9921 }	# Manisa -> land, land, land, land
+	link = { vic2 = 871 hoi4 = 10041 hoi4 = 11796 hoi4 = 11907 hoi4 = 6945 }	# Denizli -> land, land, land, land
+	link = { vic2 = 872 hoi4 = 11917 hoi4 = 12096 hoi4 = 10122 hoi4 = 9941 }	# Mugla -> land, land, land, land
 	# # Kastamonu
-	link = { vic2 = 880 hoi4 = 979 hoi4 = 3982 hoi4 = 6938 hoi4 = 6920 hoi4 = 9844 hoi4 = 3967 hoi4 = 6978 hoi4 = 11897 hoi4 = 11839 hoi4 = 9871 }	# Kastamonu -> land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 881 hoi4 = 6871 hoi4 = 11866 hoi4 = 11883 hoi4 = 890 hoi4 = 3905 hoi4 = 904 hoi4 = 3919 }	# Bolu -> land, land, land, land, land, land, land
+	link = { vic2 = 880 hoi4 = 979 hoi4 = 3982 hoi4 = 6938 hoi4 = 6920 hoi4 = 9844 hoi4 = 3967 hoi4 = 3919 hoi4 = 9871 }	# Kastamonu -> land, land, land, land, land, land, land, land
+	link = { vic2 = 881 hoi4 = 3905 hoi4 = 11866 hoi4 = 11883 hoi4 = 890 hoi4 = 904 hoi4 = 6871 }	# Bolu -> land, land, land, land, land, land
 	link = { vic2 = 883 hoi4 = 6995 hoi4 = 11881 }	# Sinop -> land, land
 	# # Ankara
-	link = { vic2 = 868 hoi4 = 909 hoi4 = 6808 hoi4 = 3907 hoi4 = 3951 }	# Eskishehir -> land, land, land, land
-	link = { vic2 = 876 hoi4 = 804 hoi4 = 11784 hoi4 = 6908 hoi4 = 9806 hoi4 = 9901 hoi4 = 6925 hoi4 = 11747 }	# Ankara -> land, land, land, land, land, land, land
-	link = { vic2 = 877 hoi4 = 9900 hoi4 = 933 hoi4 = 9915 }	# Amasya -> land, land, land
-	link = { vic2 = 878 hoi4 = 9830 hoi4 = 921 hoi4 = 3870 hoi4 = 3807 hoi4 = 6977 hoi4 = 6888 hoi4 = 961 hoi4 = 869 hoi4 = 9861 hoi4 = 11844 hoi4 = 3862 hoi4 = 11826 hoi4 = 919 hoi4 = 3964 }	# Kayseri -> land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 868 hoi4 = 3951 hoi4 = 6808 hoi4 = 3907 hoi4 = 909 }	# Eskishehir -> land, land, land, land
+	link = { vic2 = 876 hoi4 = 11747 hoi4 = 11784 hoi4 = 6908 hoi4 = 9806 hoi4 = 9901 hoi4 = 6925 hoi4 = 11844 hoi4 = 804 hoi4 = 3862 hoi4 = 9861 }	# Ankara -> land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 877 hoi4 = 9900 hoi4 = 9915 hoi4 = 11897 hoi4 = 11826 hoi4 = 919 hoi4 = 3964 hoi4 = 11839 hoi4 = 6978 hoi4 = 933 }	# Amasya -> land, land, land, land, land, land, land, land, land
+	link = { vic2 = 878 hoi4 = 921 hoi4 = 3870 hoi4 = 3807 hoi4 = 6977 hoi4 = 6888 hoi4 = 9830 hoi4 = 961 }	# Kayseri -> land, land, land, land, land, land, land
 	# # Konya
 	link = { vic2 = 866 hoi4 = 3983 hoi4 = 9878 hoi4 = 6877 }	# Afyon -> land, land, land
-	link = { vic2 = 873 hoi4 = 3788 hoi4 = 9755 hoi4 = 11792 hoi4 = 11860 hoi4 = 9811 hoi4 = 6894 hoi4 = 6807 hoi4 = 9763 hoi4 = 13122 hoi4 = 940 }	# Konya -> land, land, land, land, land, land, land, land, lake, land
-	link = { vic2 = 874 hoi4 = 3876 hoi4 = 784 }	# Burdur -> land, land
-	link = { vic2 = 875 hoi4 = 12013 hoi4 = 1119 hoi4 = 12016 hoi4 = 1005 }	# Antalya -> land, land, land, land
+	link = { vic2 = 873 hoi4 = 940 hoi4 = 9755 hoi4 = 11792 hoi4 = 11860 hoi4 = 9811 hoi4 = 6894 hoi4 = 6807 hoi4 = 9763 hoi4 = 13122 hoi4 = 3788 hoi4 = 7143 hoi4 = 869 }	# Konya -> land, land, land, land, land, land, land, land, lake, land, land, land
+	link = { vic2 = 874 hoi4 = 12016 hoi4 = 784 hoi4 = 3876 hoi4 = 12013 }	# Burdur -> land, land, land, land
+	link = { vic2 = 875 hoi4 = 1005 hoi4 = 1119 hoi4 = 1122 hoi4 = 4127 hoi4 = 4008 }	# Antalya -> land, land, land, land, land
 	# # Adana
-	link = { vic2 = 894 hoi4 = 11810 hoi4 = 6956 hoi4 = 11746 }	# Adana -> land, land, land
-	link = { vic2 = 895 hoi4 = 1122 hoi4 = 7026 hoi4 = 10056 hoi4 = 4127 hoi4 = 4008 hoi4 = 7143 hoi4 = 4124 }	# Mersin -> land, land, land, land, land, land, land
-	link = { vic2 = 896 hoi4 = 886 hoi4 = 6813 hoi4 = 3921 }	# Marash -> land, land, land
-	link = { vic2 = 898 hoi4 = 9893 hoi4 = 3889 hoi4 = 806 }	# Antep -> land, land, land
+	link = { vic2 = 894 hoi4 = 11746 hoi4 = 6956 }	# Adana -> land, land
+	link = { vic2 = 895 hoi4 = 11810 hoi4 = 4124 hoi4 = 7026 hoi4 = 10056 }	# Mersin -> land, land, land, land
+	link = { vic2 = 896 hoi4 = 886 hoi4 = 806 hoi4 = 6813 hoi4 = 3921 }	# Marash -> land, land, land, land
+	link = { vic2 = 898 hoi4 = 9893 hoi4 = 3889 }	# Antep -> land, land
 	# # Trabizond
-	link = { vic2 = 879 hoi4 = 3935 hoi4 = 3950 hoi4 = 9777 hoi4 = 3903 hoi4 = 6950 hoi4 = 3890 hoi4 = 9761 hoi4 = 6965 hoi4 = 9860 hoi4 = 11797 hoi4 = 9868 hoi4 = 6919 }	# Sivas -> land, land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 882 hoi4 = 9932 hoi4 = 3714 hoi4 = 11753 hoi4 = 6976 hoi4 = 9886 hoi4 = 3979 }	# Trabzon -> land, land, land, land, land, land
-	link = { vic2 = 884 hoi4 = 11894 hoi4 = 960 hoi4 = 3965 hoi4 = 975 }	# Giresun -> land, land, land, land
-	link = { vic2 = 888 hoi4 = 9954 hoi4 = 876 hoi4 = 10399 hoi4 = 11853 hoi4 = 9858 }	# Erzincan -> land, land, land, land, land
+	link = { vic2 = 879 hoi4 = 6950 hoi4 = 3950 hoi4 = 9777 hoi4 = 3903 hoi4 = 3935 }	# Sivas -> land, land, land, land, land
+	link = { vic2 = 882 hoi4 = 9932 hoi4 = 3714 }	# Trabzon -> land, land
+	link = { vic2 = 884 hoi4 = 975 hoi4 = 960 hoi4 = 3965 hoi4 = 11894 }	# Giresun -> land, land, land, land
+	link = { vic2 = 888 hoi4 = 11797 hoi4 = 9954 hoi4 = 3979 hoi4 = 9868 hoi4 = 6919 }	# Erzincan -> land, land, land, land, land
 	# # Diyarbakir
-	link = { vic2 = 889 hoi4 = 7620 hoi4 = 9912 hoi4 = 11759 hoi4 = 11739 }	# Malatya -> land, land, land, land
-	link = { vic2 = 892 hoi4 = 1463 hoi4 = 12476 }	# Hakkari -> land, land
-	link = { vic2 = 893 hoi4 = 7530 hoi4 = 12387 }	# Diyarbakir -> land, land
-	link = { vic2 = 899 hoi4 = 9823 hoi4 = 11871 hoi4 = 12416 hoi4 = 4512 }	# Urfa -> land, land, land, land
+	link = { vic2 = 889 hoi4 = 9860 hoi4 = 6965 hoi4 = 9761 hoi4 = 3890 hoi4 = 876 }	# Malatya -> land, land, land, land, land
+	link = { vic2 = 892 hoi4 = 12476 hoi4 = 7530 hoi4 = 1463 }	# Hakkari -> land, land, land
+	link = { vic2 = 893 hoi4 = 12416 hoi4 = 12387 hoi4 = 10497 hoi4 = 11739 hoi4 = 4512 }	# Diyarbakir -> land, land, land, land, land
+	link = { vic2 = 899 hoi4 = 9823 hoi4 = 11871 hoi4 = 11759 hoi4 = 7620 hoi4 = 9912 }	# Urfa -> land, land, land, land, land
 	# # Kars
-	link = { vic2 = 885 hoi4 = 12376 hoi4 = 4583 }	# Kars -> land, land
-	link = { vic2 = 886 hoi4 = 7454 hoi4 = 10403 hoi4 = 789 hoi4 = 6991 hoi4 = 10472 }	# Ardahan -> land, land, land, land, land
+	link = { vic2 = 885 hoi4 = 10472 }	# Kars -> land
+	link = { vic2 = 886 hoi4 = 7454 hoi4 = 10403 hoi4 = 789 hoi4 = 11753 }	# Ardahan -> land, land, land, land
 	link = { vic2 = 1096 hoi4 = 3653 }	# Batum -> land
 	# # Van
-	link = { vic2 = 887 hoi4 = 11880 hoi4 = 652 hoi4 = 7470 }	# Erzurum -> land, land, land
-	link = { vic2 = 890 hoi4 = 6935 hoi4 = 864 }	# Van -> land, land
-	link = { vic2 = 891 hoi4 = 12318 hoi4 = 10497 }	# Bitlis -> land, land
+	link = { vic2 = 887 hoi4 = 11853 hoi4 = 652 hoi4 = 6991 hoi4 = 6976 hoi4 = 9886 }	# Erzurum -> land, land, land, land, land
+	link = { vic2 = 890 hoi4 = 6935 hoi4 = 864 hoi4 = 7470 hoi4 = 4583 hoi4 = 12376 }	# Van -> land, land, land, land, land
+	link = { vic2 = 891 hoi4 = 12318 hoi4 = 9858 hoi4 = 11880 hoi4 = 10399 }	# Bitlis -> land, land, land, land
 	link = { vic2 = 3231 hoi4 = 13121 }	# Lake Van -> lake
 	# 
 	# ## Georgia
