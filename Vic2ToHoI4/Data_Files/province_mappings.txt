@@ -2574,22 +2574,22 @@
 	# 
 	# ## Saudia Arabia
 	# # Hail
-	link = { vic2 = 1156 hoi4 = 5099 hoi4 = 7970 hoi4 = 8101 hoi4 = 10815 hoi4 = 12455 hoi4 = 10901 }	# Kaf -> land, land, land, land, land, land
-	link = { vic2 = 1158 hoi4 = 10850 hoi4 = 4974 hoi4 = 2057 hoi4 = 12749 hoi4 = 5058 }	# Rafha -> land, land, land, land, land
+	link = { vic2 = 1156 hoi4 = 8101 hoi4 = 10815 hoi4 = 5099 hoi4 = 7970 hoi4 = 10901 }	# Kaf -> land, land, land, land, land
+	link = { vic2 = 1158 hoi4 = 5058 hoi4 = 4974 hoi4 = 2057 hoi4 = 12749 hoi4 = 10850 }	# Rafha -> land, land, land, land, land
 	link = { vic2 = 1160 hoi4 = 5027 hoi4 = 10892 hoi4 = 4968 hoi4 = 10923 }	# Hail -> land, land, land, land
 	link = { vic2 = 1163 hoi4 = 12702 hoi4 = 1955 }	# Qatif -> land, land
 	# # Hedjaz
-	link = { vic2 = 1151 hoi4 = 4981 hoi4 = 2090 hoi4 = 10748 hoi4 = 5037 }	# Mecca -> land, land, land, land
+	link = { vic2 = 1151 hoi4 = 5037 hoi4 = 2090 hoi4 = 10748 hoi4 = 4981 }	# Mecca -> land, land, land, land
 	link = { vic2 = 1152 hoi4 = 12883 hoi4 = 2033 }	# Jidda -> land, land
-	link = { vic2 = 1153 hoi4 = 10835 hoi4 = 7934 hoi4 = 12758 }	# Medina -> land, land, land
-	link = { vic2 = 1154 hoi4 = 12101 hoi4 = 2027 hoi4 = 1033 hoi4 = 2095 hoi4 = 8092 }	# Tabuk -> land, land, land, land, land
-	link = { vic2 = 1155 hoi4 = 10786 hoi4 = 1923 hoi4 = 5006 hoi4 = 8073 }	# Abha -> land, land, land, land
+	link = { vic2 = 1153 hoi4 = 12758 hoi4 = 7934 hoi4 = 10835 }	# Medina -> land, land, land
+	link = { vic2 = 1154 hoi4 = 12101 hoi4 = 2027 hoi4 = 1033 hoi4 = 2095 hoi4 = 8092 hoi4 = 12455 }	# Tabuk -> land, land, land, land, land, land
+	link = { vic2 = 1155 hoi4 = 8073 hoi4 = 1923 hoi4 = 5006 hoi4 = 10786 }	# Abha -> land, land, land, land
 	# # Nejd
-	link = { vic2 = 1157 hoi4 = 12727 hoi4 = 7995 hoi4 = 12813 }	# Riyadh -> land, land, land
-	link = { vic2 = 1159 hoi4 = 5093 hoi4 = 8004 hoi4 = 12870 hoi4 = 8060 }	# Halaban -> land, land, land, land
-	link = { vic2 = 1161 hoi4 = 10870 hoi4 = 12768 hoi4 = 8030 }	# Sharurah -> land, land, land
-	link = { vic2 = 1164 hoi4 = 4932 hoi4 = 10791 hoi4 = 5024 }	# Hufuf -> land, land, land
-	link = { vic2 = 2586 hoi4 = 12740 hoi4 = 8118 hoi4 = 5081 }	# Al-Ahsa -> land, land, land
+	link = { vic2 = 1157 hoi4 = 12727 hoi4 = 7995 }	# Riyadh -> land, land
+	link = { vic2 = 1159 hoi4 = 8060 hoi4 = 8004 hoi4 = 12870 hoi4 = 5093 hoi4 = 10870 hoi4 = 12813 }	# Halaban -> land, land, land, land, land, land
+	link = { vic2 = 1161 hoi4 = 8030 hoi4 = 12768 hoi4 = 5081 }	# Sharurah -> land, land, land
+	link = { vic2 = 1164 hoi4 = 5024 hoi4 = 10791 }	# Hufuf -> land, land
+	link = { vic2 = 2586 hoi4 = 8118 hoi4 = 12740 hoi4 = 4932 }	# Al-Ahsa -> land, land, land
 	# 
 	# ## United Arab Emirates / Qatar / Bahrain
 	# # Abu Dhabi
@@ -2603,17 +2603,17 @@
 	link = { vic2 = 1169 hoi4 = 4993 }	# Sohar -> land
 	link = { vic2 = 1170 hoi4 = 5049 }	# Nizwa -> land
 	link = { vic2 = 1171 hoi4 = 8020 }	# Sur -> land
-	link = { vic2 = 1172 hoi4 = 1947 hoi4 = 2018 hoi4 = 8002 }	# Duqm -> land, land, land
-	link = { vic2 = 1174 hoi4 = 2059 hoi4 = 2103 }	# Salalah -> land, land
+	link = { vic2 = 1172 hoi4 = 8002 hoi4 = 2018 hoi4 = 1947 }	# Duqm -> land, land, land
+	link = { vic2 = 1174 hoi4 = 2103 hoi4 = 2059 }	# Salalah -> land, land
 	# 
 	# ## Yemen
 	# # Sana'a
 	link = { vic2 = 1178 hoi4 = 10840 hoi4 = 4924 }	# Sana -> land, land
 	link = { vic2 = 1179 hoi4 = 1920 }	# Hodeida -> land
-	link = { vic2 = 1180 hoi4 = 1973 hoi4 = 10752 }	# Taizz -> land, land
+	link = { vic2 = 1180 hoi4 = 10752 hoi4 = 1973 }	# Taizz -> land, land
 	# # Aden
-	link = { vic2 = 1173 hoi4 = 4976 hoi4 = 2029 }	# Mukalla -> land, land
-	link = { vic2 = 1175 hoi4 = 12894 hoi4 = 13079 }	# Ghayda -> land, land
+	link = { vic2 = 1173 hoi4 = 2029 hoi4 = 4976 }	# Mukalla -> land, land
+	link = { vic2 = 1175 hoi4 = 13079 hoi4 = 12894 }	# Ghayda -> land, land
 	link = { vic2 = 1176 hoi4 = 12821 }	# Bayda -> land
 	link = { vic2 = 1177 hoi4 = 8000 }	# Socotra -> land
 	link = { vic2 = 1412 hoi4 = 5074 }	# Aden -> land
