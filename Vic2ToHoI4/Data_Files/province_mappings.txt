@@ -2620,59 +2620,59 @@
 	# 
 	# ## Iran
 	# # Tabriz
-	link = { vic2 = 1108 hoi4 = 1896 hoi4 = 12793 hoi4 = 4825 }	# Tabriz -> land, land, land
+	link = { vic2 = 1108 hoi4 = 1896 hoi4 = 12793 }	# Tabriz -> land, land
 	link = { vic2 = 1109 hoi4 = 1636 hoi4 = 4755 }	# Khvoy -> land, land
 	link = { vic2 = 1110 hoi4 = 7604 }	# Urumia -> land
 	link = { vic2 = 1111 hoi4 = 1822 hoi4 = 2071 hoi4 = 12861 }	# Mahabad -> land, land, land
-	link = { vic2 = 1112 hoi4 = 10454 hoi4 = 4901 }	# Ardabil -> land, land
+	link = { vic2 = 1112 hoi4 = 4901 hoi4 = 10454 hoi4 = 4825 }	# Ardabil -> land, land, land
 	link = { vic2 = 3232 hoi4 = 13120 }	# Lake Urmia -> lake
 	# # Luristan
 	link = { vic2 = 1117 hoi4 = 5098 hoi4 = 12773 }	# Kermanshah -> land, land
-	link = { vic2 = 1118 hoi4 = 4943 hoi4 = 9816 }	# Sanandaj -> land, land
+	link = { vic2 = 1118 hoi4 = 9816 hoi4 = 4943 }	# Sanandaj -> land, land
 	link = { vic2 = 1119 hoi4 = 829 hoi4 = 10774 }	# Ilam -> land, land
 	# # Mazandaran
 	link = { vic2 = 1113 hoi4 = 4609 hoi4 = 4637 }	# Rasht -> land, land
 	link = { vic2 = 1114 hoi4 = 4580 }	# Noshehr -> land
-	link = { vic2 = 1115 hoi4 = 10768 hoi4 = 10385 }	# Sari -> land, land
+	link = { vic2 = 1115 hoi4 = 10385 hoi4 = 10768 }	# Sari -> land, land
 	link = { vic2 = 1116 hoi4 = 7602 }	# Gorgan -> land
 	# # Irakajemi
 	link = { vic2 = 1121 hoi4 = 10837 }	# Tehran -> land
-	link = { vic2 = 1123 hoi4 = 4553 hoi4 = 10523 }	# Zanjan -> land, land
+	link = { vic2 = 1123 hoi4 = 10523 hoi4 = 4553 }	# Zanjan -> land, land
 	link = { vic2 = 1124 hoi4 = 7969 }	# Qazvin -> land
 	link = { vic2 = 1125 hoi4 = 10922 }	# Qom -> land
 	link = { vic2 = 1126 hoi4 = 8093 hoi4 = 12818 hoi4 = 12704 }	# Semnan -> land, land, land
 	# # Lorestan
-	link = { vic2 = 1120 hoi4 = 5050 }	# Khoramabad -> land
-	link = { vic2 = 1122 hoi4 = 8125 hoi4 = 8040 }	# Hamadan -> land, land
-	link = { vic2 = 1128 hoi4 = 1982 hoi4 = 2065 }	# Arak -> land, land
+	link = { vic2 = 1120 hoi4 = 5050 hoi4 = 2065 }	# Khoramabad -> land, land
+	link = { vic2 = 1122 hoi4 = 8040 hoi4 = 8125 }	# Hamadan -> land, land
+	link = { vic2 = 1128 hoi4 = 1982 }	# Arak -> land
 	# # Khuzestan
 	link = { vic2 = 1131 hoi4 = 7953 }	# Ahvaz -> land
-	link = { vic2 = 1132 hoi4 = 5005 }	# Abadan -> land
+	link = { vic2 = 1132 hoi4 = 5005 hoi4 = 5089 }	# Abadan -> land, land
 	link = { vic2 = 1133 hoi4 = 1922 }	# Dezful -> land
 	link = { vic2 = 1136 hoi4 = 10797 }	# Bushire -> land
 	# # Isfahan
-	link = { vic2 = 1127 hoi4 = 12756 hoi4 = 2026 hoi4 = 4928 }	# Isfahan -> land, land, land
+	link = { vic2 = 1127 hoi4 = 2026 hoi4 = 12756 }	# Isfahan -> land, land
 	link = { vic2 = 1129 hoi4 = 5067 hoi4 = 4983 hoi4 = 8074 }	# Kashan -> land, land, land
-	link = { vic2 = 1130 hoi4 = 8031 hoi4 = 10828 hoi4 = 1963 }	# Yazd -> land, land, land
+	link = { vic2 = 1130 hoi4 = 1963 hoi4 = 10828 }	# Yazd -> land, land
 	# # Fars
-	link = { vic2 = 1134 hoi4 = 5089 }	# Dehkord -> land
-	link = { vic2 = 1135 hoi4 = 8117 }	# Shiraz -> land
-	link = { vic2 = 1137 hoi4 = 4966 hoi4 = 10881 }	# Yasuj -> land, land
+	link = { vic2 = 1134 hoi4 = 4928 }	# Dehkord -> land
+	link = { vic2 = 1135 hoi4 = 8117 hoi4 = 10881 }	# Shiraz -> land, land
+	link = { vic2 = 1137 hoi4 = 4966 hoi4 = 8031 }	# Yasuj -> land, land
 	link = { vic2 = 1138 hoi4 = 12832 }	# Kangan -> land
 	link = { vic2 = 1141 hoi4 = 4959 }	# Lengeh -> land
 	# # Khorasan
-	link = { vic2 = 1147 hoi4 = 5029 hoi4 = 2000 hoi4 = 1957 hoi4 = 10806 hoi4 = 1888 hoi4 = 5073 }	# Mashhad -> land, land, land, land, land, land
-	link = { vic2 = 1148 hoi4 = 12739 hoi4 = 7990 hoi4 = 10759 hoi4 = 12852 hoi4 = 10890 }	# Birjand -> land, land, land, land, land
-	link = { vic2 = 1149 hoi4 = 10873 hoi4 = 11671 hoi4 = 8009 hoi4 = 12748 }	# Sabzevar -> land, land, land, land
-	link = { vic2 = 1150 hoi4 = 7573 hoi4 = 10351 hoi4 = 1521 }	# Bojnurd -> land, land, land
+	link = { vic2 = 1147 hoi4 = 5029 hoi4 = 2000 hoi4 = 1957 hoi4 = 10806 hoi4 = 1888 }	# Mashhad -> land, land, land, land, land
+	link = { vic2 = 1148 hoi4 = 10890 hoi4 = 7990 hoi4 = 10759 hoi4 = 12852 hoi4 = 10873 hoi4 = 12739 }	# Birjand -> land, land, land, land, land, land
+	link = { vic2 = 1149 hoi4 = 12748 hoi4 = 11671 hoi4 = 7573 hoi4 = 8009 hoi4 = 5073 }	# Sabzevar -> land, land, land, land, land
+	link = { vic2 = 1150 hoi4 = 10351 hoi4 = 1521 }	# Bojnurd -> land, land
 	# # Kerman
 	link = { vic2 = 1139 hoi4 = 12863 hoi4 = 12780 }	# Sirjan -> land, land
-	link = { vic2 = 1140 hoi4 = 11249 hoi4 = 12809 hoi4 = 10913 hoi4 = 1986 hoi4 = 12895 }	# Kerman -> land, land, land, land, land
+	link = { vic2 = 1140 hoi4 = 10913 hoi4 = 12809 hoi4 = 11249 }	# Kerman -> land, land, land
 	link = { vic2 = 1142 hoi4 = 7982 }	# Bandar Abbas -> land
-	link = { vic2 = 1143 hoi4 = 2039 }	# Bam -> land
+	link = { vic2 = 1143 hoi4 = 1986 hoi4 = 2039 }	# Bam -> land, land
 	link = { vic2 = 1145 hoi4 = 1889 }	# Jask -> land
 	# # Baluchistan
-	link = { vic2 = 1144 hoi4 = 2070 hoi4 = 13082 hoi4 = 10782 }	# Zahedan -> land, land, land
+	link = { vic2 = 1144 hoi4 = 2070 hoi4 = 13082 hoi4 = 10782 hoi4 = 12895 }	# Zahedan -> land, land, land, land
 	link = { vic2 = 1146 hoi4 = 4891 }	# Chabahar -> land
 	# 
 	# ## Kazakhstan
