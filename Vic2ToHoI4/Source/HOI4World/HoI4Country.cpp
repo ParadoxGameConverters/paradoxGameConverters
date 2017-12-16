@@ -155,12 +155,17 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 void HoI4Country::determineFilename()
 {
-	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
-	if (filename == "")
+	auto possibleFilename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
+	if (!possibleFilename)
 	{
-		filename = Utils::GetFileFromTag(Configuration::getHoI4Path() + "/history/countries/", tag);
+		possibleFilename = Utils::GetFileFromTag(Configuration::getHoI4Path() + "/history/countries/", tag);
 	}
-	if (filename == "")
+
+	if (possibleFilename)
+	{
+		filename = *possibleFilename;
+	}
+	else
 	{
 		filename = tag + " - " + commonCountryFile;
 	}
@@ -331,11 +336,11 @@ void HoI4Country::convertRelations()
 	auto srcRelations = srcCountry->getRelations();
 	for (auto srcRelation: srcRelations)
 	{
-		const string& HoI4Tag = CountryMapper::getHoI4Tag(srcRelation.second->getTag());
-		if (HoI4Tag != "")
+		auto HoI4Tag = CountryMapper::getHoI4Tag(srcRelation.second->getTag());
+		if (HoI4Tag)
 		{
-			auto newRelation = new HoI4Relations(HoI4Tag, srcRelation.second);
-			relations.insert(make_pair(HoI4Tag, newRelation));
+			auto newRelation = new HoI4Relations(*HoI4Tag, srcRelation.second);
+			relations.insert(make_pair(*HoI4Tag, newRelation));
 		}
 	}
 }
@@ -408,15 +413,24 @@ void HoI4Country::findBestCapital()
 void HoI4Country::initFromHistory()
 {
 	string fullFilename;
-	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
-	if (filename == "")
+	auto possibleFilename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
+	if (possibleFilename)
 	{
-		filename = Utils::GetFileFromTag(Configuration::getHoI4Path() + "/history/countries/", tag);
-		fullFilename = Configuration::getHoI4Path() + "/history/countries/" + filename;
+		filename = *possibleFilename;
+		fullFilename = "./blankMod/output/history/countries/" + filename;
 	}
 	else
 	{
-		fullFilename = "./blankMod/output/history/countries/" + filename;
+		possibleFilename = Utils::GetFileFromTag(Configuration::getHoI4Path() + "/history/countries/", tag);
+		if (possibleFilename)
+		{
+			filename = *possibleFilename;
+			fullFilename = Configuration::getHoI4Path() + "/history/countries/" + filename;
+		}
+		else
+		{
+			LOG(LogLevel::Error) << "Could not find history file for " << tag;
+		}
 	}
 
 	LOG(LogLevel::Debug) << "Parsing " << fullFilename;
@@ -1536,7 +1550,18 @@ void HoI4Country::outputFactions(ofstream& output) const
 {
 	if ((faction != nullptr) && (faction->getLeader() == this))
 	{
-		output << "create_faction = \"Alliance of " + getSourceCountry()->getName("english") + "\"\n";
+		string allianceName;
+		auto possibleLeaderName = getSourceCountry()->getName("english");
+		if (possibleLeaderName)
+		{
+			allianceName = "Alliance of " + *possibleLeaderName;
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Could not name alliance";
+			allianceName = "faction";
+		}
+		output << "create_faction = \"" + allianceName + "\"\n";
 		for (auto factionMember : faction->getMembers())
 		{
 			output << "add_to_faction = " + factionMember->getTag() + "\n";

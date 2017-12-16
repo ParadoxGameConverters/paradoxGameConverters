@@ -466,19 +466,19 @@ void V2Country::setLocalisationAdjective(const string& language, const string& a
 }
 
 
-std::string V2Country::getReform(const string& reform) const
+optional<string> V2Country::getReform(const string& reform) const
 {
 	map<string, string>::const_iterator itr = reformsArray.find(reform);
 	if (itr == reformsArray.end())
 	{
-		return "";
+		return {};
 	}
 
 	return itr->second;
 }
 
 
-string V2Country::getName(const string& language) const
+optional<string> V2Country::getName(const string& language) const
 {
 	map<string, string>::const_iterator findIter = namesByLanguage.find(language);
 	if (findIter != namesByLanguage.end())
@@ -487,12 +487,12 @@ string V2Country::getName(const string& language) const
 	}
 	else
 	{
-		return "";
+		return {};
 	}
 }
 
 
-string V2Country::getAdjective(const string& language) const
+optional<string> V2Country::getAdjective(const string& language) const
 {
 	map<string, string>::const_iterator findIter = adjectivesByLanguage.find(language);
 	if (findIter != adjectivesByLanguage.end())
@@ -501,7 +501,7 @@ string V2Country::getAdjective(const string& language) const
 	}
 	else
 	{
-		return "";
+		return {};
 	}
 }
 

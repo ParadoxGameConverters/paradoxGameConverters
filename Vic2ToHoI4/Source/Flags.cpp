@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "Configuration.h"
 #include "OSCompatibilityLayer.h"
+#include <optional>
 
 
 
@@ -105,7 +106,7 @@ void processFlagsForCountry(const pair<string, HoI4Country*>& country)
 }
 
 
-string getSourceFlagPath(const string& Vic2Tag, const string& sourceSuffix);
+optional<string> getSourceFlagPath(const string& Vic2Tag, const string& sourceSuffix);
 vector<string> getSourceFlagPaths(const string& Vic2Tag)
 {
 	vector<string> paths;
@@ -114,15 +115,15 @@ vector<string> getSourceFlagPaths(const string& Vic2Tag)
 
 	for (unsigned int i = BASE_FLAG; i < FLAG_END; i++)
 	{
-		string path = getSourceFlagPath(Vic2Tag, vic2Suffixes[i]);
-		if (path == "")
+		auto path = getSourceFlagPath(Vic2Tag, vic2Suffixes[i]);
+		if (path)
 		{
-			LOG(LogLevel::Warning) << "Could not find source flag: " << Vic2Tag << vic2Suffixes[i];
-			paths[i] = paths[BASE_FLAG];
+			paths[i] = *path;
 		}
 		else
 		{
-			paths[i] = path;
+			LOG(LogLevel::Warning) << "Could not find source flag: " << Vic2Tag << vic2Suffixes[i];
+			paths[i] = paths[BASE_FLAG];
 		}
 	}
 
@@ -131,30 +132,41 @@ vector<string> getSourceFlagPaths(const string& Vic2Tag)
 
 
 bool isThisAConvertedTag(const string& Vic2Tag);
-string getConversionModFlag(const string& flagFilename);
-string getAllowModFlags(const string& flagFilename);
-string getSourceFlagPath(const string& Vic2Tag, const string& sourceSuffix)
+optional<string> getConversionModFlag(const string& flagFilename);
+optional<string> getAllowModFlags(const string& flagFilename);
+optional<string> getSourceFlagPath(const string& Vic2Tag, const string& sourceSuffix)
 {
 	string path = "flags/" + Vic2Tag + sourceSuffix;
+
 	if (!Utils::DoesFileExist(path))
 	{
-		
-		
-			if (isThisAConvertedTag(Vic2Tag))
+		if (isThisAConvertedTag(Vic2Tag))
+		{
+			auto possiblePath = getConversionModFlag(Vic2Tag + sourceSuffix);
+			if (possiblePath)
 			{
-				path = getConversionModFlag(Vic2Tag + sourceSuffix);
+				path = *possiblePath;
 			}
-			if (!Utils::DoesFileExist(path))
-			{
-				path = getAllowModFlags(Vic2Tag + sourceSuffix);
-			}
-			if (!Utils::DoesFileExist(path))
-			{
-				return "";
-			}
-		
+		}
 	}
-	return path;
+
+	if (!Utils::DoesFileExist(path))
+	{
+		auto possiblePath = getAllowModFlags(Vic2Tag + sourceSuffix);
+		if (possiblePath)
+		{
+			path = *possiblePath;
+		}
+	}
+		
+	if (Utils::DoesFileExist(path))
+	{
+		return path;
+	}
+	else
+	{
+		return {};
+	}
 }
 
 
@@ -164,7 +176,7 @@ bool isThisAConvertedTag(const string& Vic2Tag)
 }
 
 
-string getConversionModFlag(const string& flagFilename)
+optional<string> getConversionModFlag(const string& flagFilename)
 {
 	for (auto mod: Configuration::getVic2Mods())
 	{
@@ -175,12 +187,12 @@ string getConversionModFlag(const string& flagFilename)
 		}
 	}
 
-	return "";
+	return {};
 }
 
 
 static set<string> allowedMods = { "PDM", "NNM", "Divergences of Darkness" };
-string getAllowModFlags(const string& flagFilename)
+optional<string> getAllowModFlags(const string& flagFilename)
 {
 	for (auto mod: Configuration::getVic2Mods())
 	{
@@ -195,7 +207,7 @@ string getAllowModFlags(const string& flagFilename)
 		}
 	}
 
-	return "";
+	return {};
 }
 
 

@@ -2187,11 +2187,24 @@ void HoI4FocusTree::addDemocracyNationalFocuses(const HoI4Country* Home, const v
 	for (int i = CountriesToContain.size() - 1; i >= 0; i--)
 	{
 		const HoI4Country* Country = CountriesToContain[i];
+
+		auto possibleContainedCountryName = Country->getSourceCountry()->getName("english");
+		string containedCountryName;
+		if (possibleContainedCountryName)
+		{
+			containedCountryName = *possibleContainedCountryName;
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Could not determine contained country name for democratic focuses";
+			containedCountryName = "";
+		}
+
 		//War Plan
 		newFocus = new HoI4Focus;
 		newFocus->id = "WarPlan" + Home->getTag() + Country->getTag();
 		newFocus->icon = "GFX_goal_generic_position_armies";
-		newFocus->text += "War Plan " + Country->getSourceCountry()->getName("english");
+		newFocus->text += "War Plan " + containedCountryName;
 		newFocus->prerequisites.push_back("focus = PrepInter" + Home->getTag());
 		newFocus->available += "			any_other_country = {";
 		newFocus->available += "						original_tag = " + Country->getTag();
@@ -2220,7 +2233,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(const HoI4Country* Home, const v
 		newFocus = new HoI4Focus;
 		newFocus->id = "Embargo" + Home->getTag() + Country->getTag();
 		newFocus->icon = "GFX_goal_generic_trade";
-		newFocus->text += "Embargo " + Country->getSourceCountry()->getName("english");
+		newFocus->text += "Embargo " + containedCountryName;
 		newFocus->prerequisites.push_back("focus =  WarPlan" + Home->getTag() + Country->getTag());
 		newFocus->available += "			any_other_country = {";
 		newFocus->available += "						original_tag = " + Country->getTag();
@@ -2246,7 +2259,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(const HoI4Country* Home, const v
 		newFocus = new HoI4Focus;
 		newFocus->id = "WAR" + Home->getTag() + Country->getTag();
 		newFocus->icon = "GFX_goal_support_democracy";
-		newFocus->text += "Enact War Plan " + Country->getSourceCountry()->getName("english");
+		newFocus->text += "Enact War Plan " + containedCountryName;
 		newFocus->available += "						has_war = no\n";
 		newFocus->available += "			any_other_country = {";
 		newFocus->available += "						original_tag = " + Country->getTag();
@@ -2276,6 +2289,18 @@ void HoI4FocusTree::addDemocracyNationalFocuses(const HoI4Country* Home, const v
 
 void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(const HoI4Country* Home, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets)
 {
+	auto possibleHomeCountryAdjective = Home->getSourceCountry()->getAdjective("english");
+	string homeCountryAdjective;
+	if (possibleHomeCountryAdjective)
+	{
+		homeCountryAdjective = *possibleHomeCountryAdjective;
+	}
+	else
+	{
+		LOG(LogLevel::Warning) << "Could not determine home country adjective for absolutist focuses";
+		homeCountryAdjective = "";
+	}
+
 	//Glory to Empire!
 	HoI4Focus* newFocus = new HoI4Focus;
 	newFocus->id = "EmpireGlory" + Home->getTag();
@@ -2570,10 +2595,22 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(const HoI4Country* Home, 
 	{
 		auto target = targetColonies.front();
 
+		auto possibleProtectorateCountryName = target->getSourceCountry()->getName("english");
+		string protectorateCountryName;
+		if (possibleProtectorateCountryName)
+		{
+			protectorateCountryName = *possibleProtectorateCountryName;
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Could not determine protectorate country name for absolutist focuses";
+			protectorateCountryName = "";
+		}
+
 		newFocus = new HoI4Focus;
 		newFocus->id = "Protectorate" + Home->getTag() + target->getTag();
 		newFocus->icon = "GFX_goal_generic_major_war";
-		newFocus->text += "Establish Protectorate over " + target->getSourceCountry()->getName("english");
+		newFocus->text += "Establish Protectorate over " + protectorateCountryName;
 		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }";
 		newFocus->prerequisites.push_back("focus = ColonialArmy" + Home->getTag());
 		newFocus->xPos = nextFreeColumn + 4;
@@ -2601,10 +2638,22 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(const HoI4Country* Home, 
 	{
 		auto target = targetColonies.back();
 
+		auto possibleProtectorateCountryName = target->getSourceCountry()->getName("english");
+		string protectorateCountryName;
+		if (possibleProtectorateCountryName)
+		{
+			protectorateCountryName = *possibleProtectorateCountryName;
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Could not determine protectorate country name for absolutist focuses";
+			protectorateCountryName = "";
+		}
+
 		newFocus = new HoI4Focus;
 		newFocus->id = "Protectorate" + Home->getTag() + target->getTag();
 		newFocus->icon = "GFX_goal_generic_major_war";
-		newFocus->text += "Establish Protectorate over " + target->getSourceCountry()->getName("english");
+		newFocus->text += "Establish Protectorate over " + protectorateCountryName;
 		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }";
 		newFocus->prerequisites.push_back("focus = Protectorate" + Home->getTag() + targetColonies.front()->getTag());
 		newFocus->xPos = nextFreeColumn + 4;
@@ -2633,7 +2682,7 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(const HoI4Country* Home, 
 	newFocus = new HoI4Focus;
 	newFocus->id = "TradeEmpire" + Home->getTag();
 	newFocus->icon = "GFX_goal_anschluss";
-	newFocus->text += "Fund the " + Home->getSourceCountry()->getAdjective("english") + " Colonial Trade Corporation";
+	newFocus->text += "Fund the " + homeCountryAdjective + " Colonial Trade Corporation";
 	newFocus->prerequisites.push_back("focus = ColonialHwy" + Home->getTag() + " focus = ResourceFac" + Home->getTag());
 	newFocus->xPos = nextFreeColumn + 1;
 	newFocus->yPos = 4;
@@ -2951,10 +3000,22 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(const HoI4Country* Home, 
 	{
 		auto target = annexationTargets.front();
 
+		auto possibleTargetCountryName = target->getSourceCountry()->getName("english");
+		string targetCountryName;
+		if (possibleTargetCountryName)
+		{
+			targetCountryName = *possibleTargetCountryName;
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Could not determine target country name for absolutist focuses";
+			targetCountryName = "";
+		}
+
 		newFocus = new HoI4Focus;
 		newFocus->id = "Annex" + Home->getTag() + target->getTag();
 		newFocus->icon = "GFX_goal_generic_major_war";
-		newFocus->text += "Conquer " + target->getSourceCountry()->getName("english");
+		newFocus->text += "Conquer " + targetCountryName;
 		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }";
 		newFocus->prerequisites.push_back("focus = PrepTheBorder" + Home->getTag());
 		newFocus->xPos = nextFreeColumn + 12;
@@ -2982,10 +3043,22 @@ void HoI4FocusTree::addAbsolutistEmpireNationalFocuses(const HoI4Country* Home, 
 	{
 		auto target = annexationTargets.back();
 
+		auto possibleTargetCountryName = target->getSourceCountry()->getName("english");
+		string targetCountryName;
+		if (possibleTargetCountryName)
+		{
+			targetCountryName = *possibleTargetCountryName;
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Could not determine target country name for absolutist focuses";
+			targetCountryName = "";
+		}
+
 		newFocus = new HoI4Focus;
 		newFocus->id = "Annex" + Home->getTag() + target->getTag();
 		newFocus->icon = "GFX_goal_generic_major_war";
-		newFocus->text += "Conquer " + target->getSourceCountry()->getName("english");
+		newFocus->text += "Conquer " + targetCountryName;
 		newFocus->available += "			" + target->getTag() + " = { is_in_faction = no }";
 		newFocus->prerequisites.push_back("focus = NatSpirit" + Home->getTag());
 		newFocus->xPos = nextFreeColumn + 10;
@@ -3034,10 +3107,22 @@ void HoI4FocusTree::addCommunistCoupBranch(const HoI4Country * Home, const vecto
 		{
 			if (i < coupTargets.size())
 			{
+				auto possibleCoupCountryName = coupTargets[i]->getSourceCountry()->getName("english");
+				string coupCountryName;
+				if (possibleCoupCountryName)
+				{
+					coupCountryName = *possibleCoupCountryName;
+				}
+				else
+				{
+					LOG(LogLevel::Warning) << "Could not determine coup country name for communist coup focuses";
+					coupCountryName = "";
+				}
+
 				newFocus = new HoI4Focus;
 				newFocus->id = "Influence_" + coupTargets[i]->getTag() + "_" + Home->getTag();
 				newFocus->icon = "GFX_goal_generic_propaganda";
-				newFocus->text = "Influence " + coupTargets[i]->getSourceCountry()->getName("english");
+				newFocus->text = "Influence " + coupCountryName;
 				newFocus->prerequisites.push_back("focus = Home_of_Revolution" + Home->getTag());
 				newFocus->xPos = nextFreeColumn + i * 2;
 				newFocus->yPos = 1;
@@ -3076,7 +3161,7 @@ void HoI4FocusTree::addCommunistCoupBranch(const HoI4Country * Home, const vecto
 				newFocus = new HoI4Focus;
 				newFocus->id = "Coup_" + coupTargets[i]->getTag() + "_" + Home->getTag();
 				newFocus->icon = "GFX_goal_generic_demand_territory";
-				newFocus->text = "Civil War in " + coupTargets[i]->getSourceCountry()->getName("english");
+				newFocus->text = "Civil War in " + coupCountryName;
 				newFocus->prerequisites.push_back("focus = Influence_" + coupTargets[i]->getTag() + "_" + Home->getTag());
 				newFocus->available = "			" + coupTargets[i]->getTag() + " = { communism > 0.5 }";
 				newFocus->xPos = nextFreeColumn + i * 2;
@@ -3138,12 +3223,24 @@ void HoI4FocusTree::addCommunistWarBranch(const HoI4Country * Home, const vector
 		{
 			if (i < warTargets.size())
 			{
+				auto possibleWarTargetCountryName = warTargets[i]->getSourceCountry()->getName("english");
+				string warTargetCountryName;
+				if (possibleWarTargetCountryName)
+				{
+					warTargetCountryName = *possibleWarTargetCountryName;
+				}
+				else
+				{
+					LOG(LogLevel::Warning) << "Could not determine war target country name for communist war focuses";
+					warTargetCountryName = "";
+				}
+
 				int v1 = rand() % 12 + 1;
 				int v2 = rand() % 12 + 1;
 				newFocus = new HoI4Focus;
 				newFocus->id = "War" + warTargets[i]->getTag() + Home->getTag();
 				newFocus->icon = "GFX_goal_generic_major_war";
-				newFocus->text = "War with " + warTargets[i]->getSourceCountry()->getName("english");//change to faction name later
+				newFocus->text = "War with " + warTargetCountryName;//change to faction name later
 				newFocus->prerequisites.push_back("focus = Inter_Com_Pres" + Home->getTag());
 				newFocus->available = "			date > 1938." + to_string(v1) + "." + to_string(v2);
 				newFocus->xPos = nextFreeColumn + i * 2;
@@ -3225,8 +3322,19 @@ void HoI4FocusTree::addFascistAnnexationBranch(const HoI4Country* Home, const ve
 		{
 			if (i < annexationTargets.size())
 			{
+				auto possibleAnnexationTargetCountryName = annexationTargets[i]->getSourceCountry()->getName("english");
+				string annexationTargetCountryName;
+				if (possibleAnnexationTargetCountryName)
+				{
+					annexationTargetCountryName = *possibleAnnexationTargetCountryName;
+				}
+				else
+				{
+					LOG(LogLevel::Warning) << "Could not determine annexation target country name for fascist annexation focuses";
+					annexationTargetCountryName = "";
+				}
+
 				//int x = i * 3;
-				string annexedname = annexationTargets[i]->getSourceCountry()->getName("english");
 				//for random date
 				int v1 = rand() % 5 + 1;
 				int v2 = rand() % 5 + 1;
@@ -3234,7 +3342,7 @@ void HoI4FocusTree::addFascistAnnexationBranch(const HoI4Country* Home, const ve
 				newFocus = new HoI4Focus;
 				newFocus->id = Home->getTag() + "_anschluss_" + annexationTargets[i]->getTag();
 				newFocus->icon = "GFX_goal_anschluss";
-				newFocus->text = "Union with " + annexedname;
+				newFocus->text = "Union with " + annexationTargetCountryName;
 				newFocus->available = "			" + annexationTargets[i]->getTag() + " = {\n";
 				newFocus->available += "				is_in_faction = no\n";
 				newFocus->available += "			}\n";
@@ -3303,14 +3411,25 @@ void HoI4FocusTree::addFascistSudetenBranch(const HoI4Country* Home, const vecto
 		{
 			if (i < sudetenTargets.size())
 			{
-				string annexedname = sudetenTargets[i]->getSourceCountry()->getName("english");
+				auto possibleSudetenTargetCountryName = sudetenTargets[i]->getSourceCountry()->getName("english");
+				string sudetenTargetCountryName;
+				if (possibleSudetenTargetCountryName)
+				{
+					sudetenTargetCountryName = *possibleSudetenTargetCountryName;
+				}
+				else
+				{
+					LOG(LogLevel::Warning) << "Could not determine annexation target country name for fascist sudeten focuses";
+					sudetenTargetCountryName = "";
+				}
+
 				int v1 = rand() % 8 + 1;
 				int v2 = rand() % 8 + 1;
 				//focus for sudaten
 				newFocus = new HoI4Focus;
 				newFocus->id = Home->getTag() + "_sudeten_" + sudetenTargets[i]->getTag();
 				newFocus->icon = "GFX_goal_anschluss";
-				newFocus->text = "Demand Territory from " + annexedname;
+				newFocus->text = "Demand Territory from " + sudetenTargetCountryName;
 				newFocus->available = "		available = { " + sudetenTargets[i]->getTag() + " = { is_in_faction = no }";
 				newFocus->prerequisites.push_back("focus = expand_the_reich" + Home->getTag());
 				newFocus->available = "			is_puppet = no\n";
@@ -3340,7 +3459,7 @@ void HoI4FocusTree::addFascistSudetenBranch(const HoI4Country* Home, const vecto
 				newFocus = new HoI4Focus;
 				newFocus->id = Home->getTag() + "_finish_" + sudetenTargets[i]->getTag();
 				newFocus->icon = "GFX_goal_generic_territory_or_war";
-				newFocus->text = "Fate of " + annexedname;
+				newFocus->text = "Fate of " + sudetenTargetCountryName;
 				newFocus->available = sudetenTargets[i]->getTag() + " = { is_in_faction = no }";
 				newFocus->prerequisites.push_back("focus =  " + Home->getTag() + "_sudeten_" + sudetenTargets[i]->getTag());
 				newFocus->available = "			is_puppet = no";
@@ -3394,10 +3513,22 @@ void HoI4FocusTree::addGPWarBranch(const HoI4Country* Home, const vector<HoI4Cou
 	unsigned int i = 0;
 	for (auto newAlly : newAllies)
 	{
+		auto possibleAllyCountryName = newAlly->getSourceCountry()->getName("english");
+		string allyCountryName;
+		if (possibleAllyCountryName)
+		{
+			allyCountryName = *possibleAllyCountryName;
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Could not determine ally country name for GP alliance focuses";
+			allyCountryName = "";
+		}
+
 		HoI4Focus* newFocus = new HoI4Focus;
 		newFocus->id = "Alliance_" + newAlly->getTag() + Home->getTag();
 		newFocus->icon = "GFX_goal_generic_allies_build_infantry";
-		newFocus->text = "Alliance with " + newAlly->getSourceCountry()->getName("english");
+		newFocus->text = "Alliance with " + allyCountryName;
 		newFocus->prerequisites.push_back("focus = " + ideologyShort + "_Summit" + Home->getTag());
 		newFocus->xPos = nextFreeColumn + i * 2;
 		newFocus->yPos = 1;
@@ -3421,6 +3552,18 @@ void HoI4FocusTree::addGPWarBranch(const HoI4Country* Home, const vector<HoI4Cou
 	i = 0;
 	for (auto GC : GCTargets)
 	{
+		auto possibleWarTargetCountryName = GC->getSourceCountry()->getName("english");
+		string warTargetCountryName;
+		if (possibleWarTargetCountryName)
+		{
+			warTargetCountryName = *possibleWarTargetCountryName;
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Could not determine war target country name for GP war focuses";
+			warTargetCountryName = "";
+		}
+
 		string prereq = "";
 		int y2 = 1;
 		//figuring out location of WG
@@ -3437,7 +3580,7 @@ void HoI4FocusTree::addGPWarBranch(const HoI4Country* Home, const vector<HoI4Cou
 		HoI4Focus* newFocus = new HoI4Focus;
 		newFocus->id = "War" + GC->getTag() + Home->getTag();
 		newFocus->icon = "GFX_goal_generic_major_war";
-		newFocus->text = "War with " + GC->getSourceCountry()->getName("english");//change to faction name later
+		newFocus->text = "War with " + warTargetCountryName;//change to faction name later
 		newFocus->prerequisites.push_back(prereq);
 		newFocus->available = "			has_war = no\n";
 		newFocus->available += "			date > 1939." + to_string(v1) + "." + to_string(v2);

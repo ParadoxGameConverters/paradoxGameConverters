@@ -220,7 +220,11 @@ void HoI4WarCreator::generateAdditionalWars(ofstream& AILog, set<const HoI4Facti
 		{
 			if (Configuration::getDebug())
 			{
-				AILog << "Checking for war in " + countriesEvilnessSorted[i]->getSourceCountry()->getName("english") << "\n";
+				auto name = countriesEvilnessSorted[i]->getSourceCountry()->getName("english");
+				if (name)
+				{
+					AILog << "Checking for war in " + *name << "\n";
+				}
 			}
 			vector <HoI4Faction*> newCountriesatWar;
 			newCountriesatWar = neighborWarCreator(countriesEvilnessSorted[i], AILog);
@@ -699,7 +703,15 @@ double HoI4WarCreator::GetFactionStrength(const HoI4Faction* Faction, int years)
 vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstream& AILog, const HoI4World* world)
 {
 	vector<HoI4Faction*> CountriesAtWar;
-	LOG(LogLevel::Info) << "Calculating AI for " + Leader->getSourceCountry()->getName("english");
+	auto name = Leader->getSourceCountry()->getName("english");
+	if (name)
+	{
+		LOG(LogLevel::Info) << "Calculating AI for " + *name;
+	}
+	else
+	{
+		LOG(LogLevel::Info) << "Calculating AI";
+	}
 	//too many lists, need to clean up
 	vector<HoI4Country*> Targets;
 	vector<HoI4Country*> Anschluss;
@@ -727,7 +739,14 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 	//should add method to look for more allies
 
 	//lets look for weak neighbors
-	LOG(LogLevel::Info) << "Doing Neighbor calcs for " + Leader->getSourceCountry()->getName("english");
+	if (name)
+	{
+		LOG(LogLevel::Info) << "Doing Neighbor calcs for " + *name;
+	}
+	else
+	{
+		LOG(LogLevel::Info) << "Doing Neighbor calcs";
+	}
 	for (auto neigh : CloseNeighbors)
 	{
 		//lets check to see if they are not our ally and not a great country
@@ -849,7 +868,14 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 		}
 		if (Configuration::getDebug())
 		{
-			AILog << "\t" << Leader->getSourceCountry()->getName("english") << " is under threat, there are " << FactionsAttackingMe.size() << " faction(s) attacking them, I have a strength of " << GetFactionStrength(findFaction(Leader), 3) << " and they have a strength of " << FactionsAttackingMeStrength << "\n";
+			if (name)
+			{
+				AILog << "\t" << *name << " is under threat, there are " << FactionsAttackingMe.size() << " faction(s) attacking them, I have a strength of " << GetFactionStrength(findFaction(Leader), 3) << " and they have a strength of " << FactionsAttackingMeStrength << "\n";
+			}
+			else
+			{
+				AILog << "\t" << "A country is under threat, there are " << FactionsAttackingMe.size() << " faction(s) attacking them, I have a strength of " << GetFactionStrength(findFaction(Leader), 3) << " and they have a strength of " << FactionsAttackingMeStrength << "\n";
+			}
 		}
 		if (FactionsAttackingMeStrength > GetFactionStrength(findFaction(Leader), 3))
 		{
@@ -858,12 +884,35 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 
 			for (HoI4Country* GC: theWorld->getGreatPowers())
 			{
+				auto allyName = GC->getSourceCountry()->getName("english");
+
 				auto relations = Leader->getRelations(GC->getTag());
 				if ((relations != nullptr) && (relations->getRelations() > 0) && (maxGCAlliance < 1))
 				{
 					if (Configuration::getDebug())
 					{
-						AILog << "\t" << Leader->getSourceCountry()->getName("english") << " can attempt to ally " << GC->getSourceCountry()->getName("english") << "\n";
+						if (name)
+						{
+							if (allyName)
+							{
+								AILog << "\t" << *name << " can attempt to ally " << *allyName << "\n";
+							}
+							else
+							{
+								AILog << "\t" << *name << " can attempt to ally a country\n";
+							}
+						}
+						else
+						{
+							if (allyName)
+							{
+								AILog << "\t" << "A country can attempt to ally " << *allyName << "\n";
+							}
+							else
+							{
+								AILog << "\t" << "A country can attempt to ally a country\n";
+							}
+						}
 					}
 					if (GC->getFaction() == nullptr)
 					{
@@ -923,8 +972,17 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 {
 	vector<HoI4Faction*> CountriesAtWar;
 	//communism still needs great country war events
-	LOG(LogLevel::Info) << "Calculating AI for " + Leader->getSourceCountry()->getName("english");
-	LOG(LogLevel::Info) << "Calculating Neighbors for " + Leader->getSourceCountry()->getName("english");
+	auto name = Leader->getSourceCountry()->getName("english");
+	if (name)
+	{
+		LOG(LogLevel::Info) << "Calculating AI for " + *name;
+		LOG(LogLevel::Info) << "Calculating Neighbors for " + *name;
+	}
+	else
+	{
+		LOG(LogLevel::Info) << "Calculating AI for a country";
+		LOG(LogLevel::Info) << "Calculating Neighbors for a country";
+	}
 	map<string, HoI4Country*> AllNeighbors = getNeighbors(Leader);
 	map<string, HoI4Country*> Neighbors;
 	for (auto neigh: AllNeighbors)
@@ -947,7 +1005,14 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 	//if (Permanant Revolution)
 	//Decide between Anti - Democratic Focus, Anti - Monarch Focus, or Anti - Fascist Focus(Look at all great powers and get average relation between each ideology, the one with the lowest average relation leads to that focus).
 	//Attempt to ally with other Communist Countries(with Permanant Revolution)
-	LOG(LogLevel::Info) << "Doing Neighbor calcs for " + Leader->getSourceCountry()->getName("english");
+	if (name)
+	{
+		LOG(LogLevel::Info) << "Doing Neighbor calcs for " + *name;
+	}
+	else
+	{
+		LOG(LogLevel::Info) << "Doing Neighbor calcs for a country";
+	}
 	for (auto neigh : Neighbors)
 	{
 		//lets check to see if they are our ally and not a great country
@@ -1129,7 +1194,15 @@ vector<HoI4Faction*> HoI4WarCreator::absolutistWarCreator(HoI4Country* country)
 {
 	HoI4FocusTree* focusTree = genericFocusTree->makeCustomizedCopy(country);
 
-	LOG(LogLevel::Info) << "Doing neighbor calcs for " + country->getSourceCountry()->getName("english");
+	auto name = country->getSourceCountry()->getName("english");
+	if (name)
+	{
+		LOG(LogLevel::Info) << "Doing neighbor calcs for " + *name;
+	}
+	else
+	{
+		LOG(LogLevel::Info) << "Doing neighbor calcs for a country";
+	}
 
 	vector<HoI4Country*> weakNeighbors = findWeakNeighbors(country);
 	vector<HoI4Country*> weakColonies = findWeakColonies(country);
@@ -1156,7 +1229,15 @@ vector<HoI4Faction*> HoI4WarCreator::neighborWarCreator(HoI4Country * country, o
 
 	if (Configuration::getDebug())
 	{
-		AILog << "Look for neighbors to attack for " + country->getSourceCountry()->getName("english") << "\n";
+		auto name = country->getSourceCountry()->getName("english");
+		if (name)
+		{
+			AILog << "Look for neighbors to attack for " + *name << "\n";
+		}
+		else
+		{
+			AILog << "Look for neighbors to attack for a country\n";
+		}
 	}
 
 	for (auto target : weakNeighbors)
@@ -1183,16 +1264,28 @@ vector<HoI4Faction*> HoI4WarCreator::neighborWarCreator(HoI4Country * country, o
 		startDate.delayedByMonths(relations / -4);
 		if (Allies.find(target->getTag()) == Allies.end())
 		{
+			auto possibleTargetName = target->getSourceCountry()->getName("english");
+			string targetName;
+			if (possibleTargetName)
+			{
+				targetName = *possibleTargetName;
+			}
+			else
+			{
+				LOG(LogLevel::Warning) << "Could not set target name in neighbor war creator";
+				targetName = "";
+			}
+
 			countriesAtWar.push_back(findFaction(country));
 			if (Configuration::getDebug())
 			{
-				AILog << "Creating focus to attack " + target->getSourceCountry()->getName("english") << "\n";
+				AILog << "Creating focus to attack " + targetName << "\n";
 			}
 
 			HoI4Focus* newFocus = new HoI4Focus;
 			newFocus->id = "War" + target->getTag() + country->getTag();
 			newFocus->icon = "GFX_goal_generic_major_war";
-			newFocus->text = "War with " + target->getSourceCountry()->getName("english");//change to faction name later
+			newFocus->text = "War with " + targetName;//change to faction name later
 			newFocus->available = "			has_war = no\n";
 			newFocus->available += "			date > " + startDate.toString();
 			newFocus->xPos = 24;
@@ -1477,12 +1570,24 @@ vector<HoI4Faction*> HoI4WarCreator::addGreatPowerWars(HoI4Country* country, HoI
 		set<string> Allies = country->getAllies();
 		if (Allies.find(target->getTag()) == Allies.end())
 		{
+			auto possibleTargetName = target->getSourceCountry()->getName("english");
+			string targetName;
+			if (possibleTargetName)
+			{
+				targetName = *possibleTargetName;
+			}
+			else
+			{
+				LOG(LogLevel::Warning) << "Could not set target name in great power war creator";
+				targetName = "";
+			}
+
 			countriesAtWar.push_back(findFaction(country));
 
 			HoI4Focus* newFocus = new HoI4Focus;
 			newFocus->id       = "War" + target->getTag() + country->getTag();
 			newFocus->icon     = "GFX_goal_generic_major_war";
-			newFocus->text     = "War with " + target->getSourceCountry()->getName("english");//change to faction name later
+			newFocus->text     = "War with " + targetName;//change to faction name later
 			newFocus->available = "			has_war = no\n";
 			newFocus->available += "			date > 1939.1.1";
 			newFocus->xPos     = 31 + numWarsWithGreatPowers * 2;

@@ -32,6 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <functional>
 #include <map>
 #include <memory>
+#include <optional>
 #include <set>
 #include <string>
 #include <vector>
@@ -95,9 +96,9 @@ class V2Country
 		bool isHuman() const { return human; }
 		map<string, double> getUpperHouseComposition() const { return upperHouseComposition; }
 
-		string getReform(const string& reform) const;
-		string getName(const string& language) const;
-		string getAdjective(const string& language) const;
+		optional<string> getReform(const string& reform) const;
+		optional<string> getName(const string& language) const;
+		optional<string> getAdjective(const string& language) const;
 		double getUpperHousePercentage(const string& ideology) const;
 		long getEmployedWorkers() const;
 		const V2Party* getRulingParty(const vector<const V2Party*>& allParties) const;

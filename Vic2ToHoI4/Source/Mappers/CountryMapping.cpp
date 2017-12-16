@@ -205,7 +205,7 @@ bool CountryMapper::tagIsAlreadyAssigned(const string& HoI4Tag) const
 }
 
 
-const string CountryMapper::GetHoI4Tag(const string& V2Tag) const
+optional<string> CountryMapper::GetHoI4Tag(const string& V2Tag) const
 {
 	auto findIter = V2TagToHoI4TagMap.find(V2Tag);
 	if (findIter != V2TagToHoI4TagMap.end())
@@ -214,12 +214,12 @@ const string CountryMapper::GetHoI4Tag(const string& V2Tag) const
 	}
 	else
 	{
-		return "";
+		return {};
 	}
 }
 
 
-const string CountryMapper::GetVic2Tag(const string& HoI4Tag) const
+optional<string> CountryMapper::GetVic2Tag(const string& HoI4Tag) const
 {
 	auto findIter = HoI4TagToV2TagMap.find(HoI4Tag);
 	if (findIter != HoI4TagToV2TagMap.end())
@@ -228,6 +228,6 @@ const string CountryMapper::GetVic2Tag(const string& HoI4Tag) const
 	}
 	else
 	{
-		return "";
+		return {};
 	}
 }

@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4States.h"
 #include "../Mappers/Mapper.h"
 #include <map>
+#include <optional>
 #include <set>
 #include <string>
 #include <vector>
@@ -160,7 +161,7 @@ class HoI4World
 
 		void createFactions();
 		void logFactionMember(ofstream& factionsLog, const HoI4Country* member) const;
-		string returnSphereLeader(const HoI4Country* possibleSphereling) const;
+		optional<string> returnSphereLeader(const HoI4Country* possibleSphereling) const;
 		bool governmentsAllowFaction(const string& leaderGovernment, const string& allyGovernment) const;
 
 		void addCountryElectionEvents(const set<string>& majorIdeologies);

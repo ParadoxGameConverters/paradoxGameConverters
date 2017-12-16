@@ -168,10 +168,22 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 	}
 
 	HoI4Country* destCountry = nullptr;
-	const std::string& HoI4Tag = CountryMapper::getHoI4Tag(country.first);
-	if (!HoI4Tag.empty())
+	auto possibleHoI4Tag = CountryMapper::getHoI4Tag(country.first);
+	if (possibleHoI4Tag)
 	{
-		std::string countryFileName = Utils::convert8859_15ToUTF8(country.second->getName("english")) + ".txt";
+		auto possibleCountryName = country.second->getName("english");
+		string countryName;
+		if (possibleCountryName)
+		{
+			countryName = *possibleCountryName;
+		}
+		else
+		{
+			LOG(LogLevel::Error) << "Could not set country name when converting country";
+			exit(-1);
+		}
+
+		std::string countryFileName = Utils::convert8859_15ToUTF8(countryName) + ".txt";
 		int pipe = countryFileName.find_first_of('|');
 		while (pipe != string::npos)
 		{
@@ -190,17 +202,17 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 			countryFileName.replace(lesser, 1, "");
 			lesser = countryFileName.find_first_of('>');
 		}
-		destCountry = new HoI4Country(HoI4Tag, countryFileName, this);
+		destCountry = new HoI4Country(*possibleHoI4Tag, countryFileName, this);
 
 		destCountry->initFromV2Country(*sourceWorld, country.second, states->getProvinceToStateIDMap(), states->getStates());
-		countries.insert(make_pair(HoI4Tag, destCountry));
+		countries.insert(make_pair(*possibleHoI4Tag, destCountry));
 	}
 	else
 	{
 		LOG(LogLevel::Warning) << "Could not convert V2 tag " << country.first << " to HoI4";
 	}
 
-	HoI4Localisation::createCountryLocalisations(make_pair(country.first, HoI4Tag));
+	HoI4Localisation::createCountryLocalisations(make_pair(country.first, *possibleHoI4Tag));
 }
 
 
@@ -804,46 +816,46 @@ void HoI4World::convertAgreements()
 {
 	for (auto agreement : sourceWorld->getDiplomacy()->getAgreements())
 	{
-		string HoI4Tag1 = CountryMapper::getHoI4Tag(agreement->country1);
-		if (HoI4Tag1.empty())
+		auto possibleHoI4Tag1 = CountryMapper::getHoI4Tag(agreement->country1);
+		if (!possibleHoI4Tag1)
 		{
 			continue;
 		}
-		string HoI4Tag2 = CountryMapper::getHoI4Tag(agreement->country2);
-		if (HoI4Tag2.empty())
+		auto possibleHoI4Tag2 = CountryMapper::getHoI4Tag(agreement->country2);
+		if (!possibleHoI4Tag2)
 		{
 			continue;
 		}
 
-		map<string, HoI4Country*>::iterator HoI4Country1 = countries.find(HoI4Tag1);
-		map<string, HoI4Country*>::iterator HoI4Country2 = countries.find(HoI4Tag2);
+		map<string, HoI4Country*>::iterator HoI4Country1 = countries.find(*possibleHoI4Tag1);
+		map<string, HoI4Country*>::iterator HoI4Country2 = countries.find(*possibleHoI4Tag2);
 		if (HoI4Country1 == countries.end())
 		{
-			LOG(LogLevel::Warning) << "HoI4 country " << HoI4Tag1 << " used in diplomatic agreement doesn't exist";
+			LOG(LogLevel::Warning) << "HoI4 country " << *possibleHoI4Tag1 << " used in diplomatic agreement doesn't exist";
 			continue;
 		}
 		if (HoI4Country2 == countries.end())
 		{
-			LOG(LogLevel::Warning) << "HoI4 country " << HoI4Tag2 << " used in diplomatic agreement doesn't exist";
+			LOG(LogLevel::Warning) << "HoI4 country " << *possibleHoI4Tag2 << " used in diplomatic agreement doesn't exist";
 			continue;
 		}
 
 		if ((agreement->type == "alliance") || (agreement->type == "vassal"))
 		{
-			HoI4Agreement* HoI4a = new HoI4Agreement(HoI4Tag1, HoI4Tag2, agreement);
+			HoI4Agreement* HoI4a = new HoI4Agreement(*possibleHoI4Tag1, *possibleHoI4Tag2, agreement);
 			diplomacy->addAgreement(HoI4a);
 		}
 
 		if (agreement->type == "alliance")
 		{
-			HoI4Country1->second->editAllies().insert(HoI4Tag2);
-			HoI4Country2->second->editAllies().insert(HoI4Tag1);
+			HoI4Country1->second->editAllies().insert(*possibleHoI4Tag2);
+			HoI4Country2->second->editAllies().insert(*possibleHoI4Tag1);
 		}
 
 		if (agreement->type == "vassal")
 		{
-			HoI4Country1->second->addPuppet(HoI4Tag2);
-			HoI4Country2->second->setPuppetmaster(HoI4Tag1);
+			HoI4Country1->second->addPuppet(*possibleHoI4Tag2);
+			HoI4Country2->second->setPuppetmaster(*possibleHoI4Tag1);
 		}
 	}
 }
@@ -1284,12 +1296,15 @@ void HoI4World::determineGreatPowers()
 {
 	for (auto greatPowerVic2Tag: sourceWorld->getGreatPowers())
 	{
-		string greatPowerTag = CountryMapper::getHoI4Tag(greatPowerVic2Tag);
-		auto greatPower = countries.find(greatPowerTag);
-		if (greatPower != countries.end())
+		auto possibleGreatPowerTag = CountryMapper::getHoI4Tag(greatPowerVic2Tag);
+		if (possibleGreatPowerTag)
 		{
-			greatPowers.push_back(greatPower->second);
-			greatPower->second->setGreatPower();
+			auto greatPower = countries.find(*possibleGreatPowerTag);
+			if (greatPower != countries.end())
+			{
+				greatPowers.push_back(greatPower->second);
+				greatPower->second->setGreatPower();
+			}
 		}
 	}
 }
@@ -1452,9 +1467,12 @@ void HoI4World::createFactions()
 				continue;
 			}
 			string allygovernment = allycountry->getGovernmentIdeology();
-			string sphereLeader = returnSphereLeader(allycountry);
+			auto possibleSphereLeader = returnSphereLeader(allycountry);
 
-			if ((sphereLeader == leader->getTag()) || ((sphereLeader == "") && governmentsAllowFaction(leaderIdeology, allygovernment)))
+			if (
+					((possibleSphereLeader) && (*possibleSphereLeader == leader->getTag())) ||
+					((!possibleSphereLeader) && governmentsAllowFaction(leaderIdeology, allygovernment))
+				)
 			{
 				if (Configuration::getDebug())
 				{
@@ -1504,15 +1522,23 @@ void HoI4World::createFactions()
 
 void HoI4World::logFactionMember(ofstream& factionsLog, const HoI4Country* member) const
 {
-	factionsLog << member->getSourceCountry()->getName("english") << ",";
-	factionsLog << member->getGovernmentIdeology() << ",";
-	factionsLog << member->getMilitaryStrength() << ",";
-	factionsLog << member->getEconomicStrength(1.0) << ",";
-	factionsLog << member->getEconomicStrength(3.0) << "\n";
+	auto possibleName = member->getSourceCountry()->getName("english");
+	if (possibleName)
+	{
+		factionsLog << *possibleName << ",";
+		factionsLog << member->getGovernmentIdeology() << ",";
+		factionsLog << member->getMilitaryStrength() << ",";
+		factionsLog << member->getEconomicStrength(1.0) << ",";
+		factionsLog << member->getEconomicStrength(3.0) << "\n";
+	}
+	else
+	{
+		LOG(LogLevel::Warning) << "Could not get name when logging faction member";
+	}
 }
 
 
-string HoI4World::returnSphereLeader(const HoI4Country* possibleSphereling) const
+optional<string> HoI4World::returnSphereLeader(const HoI4Country* possibleSphereling) const
 {
 	for (auto greatPower: greatPowers)
 	{
@@ -1527,7 +1553,7 @@ string HoI4World::returnSphereLeader(const HoI4Country* possibleSphereling) cons
 		}
 	}
 
-	return "";
+	return {};
 }
 
 

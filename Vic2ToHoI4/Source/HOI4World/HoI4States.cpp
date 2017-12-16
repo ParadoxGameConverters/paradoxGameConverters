@@ -65,13 +65,13 @@ void HoI4States::determineOwnersAndCores()
 			continue;
 		}
 
-		const string HoI4Tag = CountryMapper::getHoI4Tag(oldOwner->getTag());
-		if (HoI4Tag.empty())
+		auto HoI4Tag = CountryMapper::getHoI4Tag(oldOwner->getTag());
+		if (!HoI4Tag)
 		{
-			LOG(LogLevel::Warning) << "Could not map states owned by " << oldOwner->getTag() << " in Vic2";
+			LOG(LogLevel::Warning) << "Could not map states owned by " << oldOwner->getTag() << " in Vic2, as there is no mathcing HoI4 country.";
 			continue;
 		}
-		ownersMap.insert(make_pair(provinceNumber, HoI4Tag));
+		ownersMap.insert(make_pair(provinceNumber, *HoI4Tag));
 
 		vector<string> cores = determineCores(sourceProvinceNums, oldOwner);
 		coresMap.insert(make_pair(provinceNumber, cores));
@@ -171,10 +171,10 @@ vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, co
 				continue;
 			}
 
-			const string HoI4CoreTag = CountryMapper::getHoI4Tag(Vic2Core->getTag());
-			if (HoI4CoreTag != "")
+			auto HoI4CoreTag = CountryMapper::getHoI4Tag(Vic2Core->getTag());
+			if (HoI4CoreTag)
 			{
-				cores.push_back(HoI4CoreTag);
+				cores.push_back(*HoI4CoreTag);
 			}
 		}
 	}
@@ -189,10 +189,14 @@ void HoI4States::createStates()
 	for (auto country: sourceWorld->getCountries())
 	{
 		for (auto vic2State: country.second->getStates())
-		{		
-			if (createMatchingHoI4State(vic2State, stateID, CountryMapper::getHoI4Tag(country.first)))
+		{
+			auto possibleHoI4Owner = CountryMapper::getHoI4Tag(country.first);
+			if (possibleHoI4Owner)
 			{
-				stateID++;
+				if (createMatchingHoI4State(vic2State, stateID, *possibleHoI4Owner))
+				{
+					stateID++;
+				}
 			}
 		}
 	}
