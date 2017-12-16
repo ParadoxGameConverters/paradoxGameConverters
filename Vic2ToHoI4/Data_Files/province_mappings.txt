@@ -801,36 +801,36 @@
 	# 
 	# ## Egypt
 	# # Alexandria
-	link = { vic2 = 1746 hoi4 = 11964 hoi4 = 7091 }	# Dumyat -> land, land
-	link = { vic2 = 1747 hoi4 = 7164 hoi4 = 10073 }	# Tanta -> land, land
-	link = { vic2 = 1751 hoi4 = 1071 hoi4 = 4145 hoi4 = 4076 }	# Alexandria -> land, land, land
+	link = { vic2 = 1746 hoi4 = 11964 hoi4 = 7091 hoi4 = 10005 }	# Dumyat -> land, land, land
+	link = { vic2 = 1747 hoi4 = 7164 }	# Tanta -> land
+	link = { vic2 = 1751 hoi4 = 4076 hoi4 = 4145 hoi4 = 1071 }	# Alexandria -> land, land, land
 	# # Cairo
-	link = { vic2 = 1745 hoi4 = 7011 }	# Cairo -> land
-	link = { vic2 = 1748 hoi4 = 10005 }	# Mansura -> land
-	link = { vic2 = 1749 hoi4 = 4073 hoi4 = 12049 }	# Ziqaziq -> land, land
-	link = { vic2 = 1750 hoi4 = 992 hoi4 = 3996 }	# Giza -> land, land
+	link = { vic2 = 1745 hoi4 = 7011 hoi4 = 12004 }	# Cairo -> land, land
+	link = { vic2 = 1748 hoi4 = 10073 }	# Mansura -> land
+	link = { vic2 = 1749 hoi4 = 12049 hoi4 = 4073 }	# Ziqaziq -> land, land
+	link = { vic2 = 1750 hoi4 = 3996 hoi4 = 4055 }	# Giza -> land, land
 	# # Middle Egypt
-	link = { vic2 = 1762 hoi4 = 7144 hoi4 = 11974 }	# Asyut -> land, land
-	link = { vic2 = 1763 hoi4 = 12004 hoi4 = 4143 }	# Bani Suwayf -> land, land
-	link = { vic2 = 1764 hoi4 = 7188 }	# Minya -> land
-	link = { vic2 = 1765 hoi4 = 4055 hoi4 = 10031 hoi4 = 1068 }	# Fayyum -> land, land, land
-	link = { vic2 = 1772 hoi4 = 1080 hoi4 = 9957 hoi4 = 10126 }	# Ras Gharib -> land, land, land
-	link = { vic2 = 2559 hoi4 = 7030 }	# Suhaj -> land
+	link = { vic2 = 1762 hoi4 = 11974 hoi4 = 7144 hoi4 = 12044 }	# Asyut -> land, land, land
+	link = { vic2 = 1763 hoi4 = 4143 hoi4 = 7188 }	# Bani Suwayf -> land, land
+	link = { vic2 = 1764 hoi4 = 7030 }	# Minya -> land
+	link = { vic2 = 1765 hoi4 = 1068 hoi4 = 10031 }	# Fayyum -> land, land
+	link = { vic2 = 1772 hoi4 = 9957 hoi4 = 1080 hoi4 = 10126 }	# Ras Gharib -> land, land, land
+	link = { vic2 = 2559 hoi4 = 10028 }	# Suhaj -> land
 	# # Upper Egypt
-	link = { vic2 = 1767 hoi4 = 1028 hoi4 = 7073 hoi4 = 12044 }	# Luxor -> land, land, land
-	link = { vic2 = 1768 hoi4 = 11999 hoi4 = 1064 hoi4 = 12071 }	# Idfu -> land, land, land
-	link = { vic2 = 1769 hoi4 = 10028 hoi4 = 1151 }	# Qina -> land, land
+	link = { vic2 = 1767 hoi4 = 1028 hoi4 = 7073 }	# Luxor -> land, land
+	link = { vic2 = 1768 hoi4 = 1064 hoi4 = 11999 hoi4 = 7156 }	# Idfu -> land, land, land
+	link = { vic2 = 1769 hoi4 = 1151 hoi4 = 12071 }	# Qina -> land, land
 	link = { vic2 = 1770 hoi4 = 12002 hoi4 = 12889 }	# Qusayr -> land, land
-	link = { vic2 = 1771 hoi4 = 4068 hoi4 = 4910 hoi4 = 7156 hoi4 = 5069 }	# Marsa Alam -> land, land, land, land
+	link = { vic2 = 1771 hoi4 = 5069 hoi4 = 4910 hoi4 = 4068 }	# Marsa Alam -> land, land, land
 	# # Qattara
 	link = { vic2 = 1752 hoi4 = 11967 hoi4 = 11910 hoi4 = 10061 }	# Matruh -> land, land, land
-	link = { vic2 = 1753 hoi4 = 7079 hoi4 = 9989 }	# Sidi Barrani -> land, land
-	link = { vic2 = 1754 hoi4 = 5078 hoi4 = 12091 hoi4 = 12033 hoi4 = 12764 }	# Siwa -> land, land, land, land
-	link = { vic2 = 1759 hoi4 = 1143 hoi4 = 7148 hoi4 = 7117 hoi4 = 7216 hoi4 = 10127 }	# Bawiti -> land, land, land, land, land
+	link = { vic2 = 1753 hoi4 = 9989 hoi4 = 7079 }	# Sidi Barrani -> land, land
+	link = { vic2 = 1754 hoi4 = 12764 hoi4 = 12091 hoi4 = 12033 hoi4 = 5078 }	# Siwa -> land, land, land, land
+	link = { vic2 = 1759 hoi4 = 7216 hoi4 = 7148 hoi4 = 7117 hoi4 = 10127 hoi4 = 1143 hoi4 = 992 }	# Bawiti -> land, land, land, land, land, land
 	# # Egyptian Desert
 	link = { vic2 = 1758 hoi4 = 10907 hoi4 = 12733 hoi4 = 10869 }	# Farafra -> land, land, land
 	link = { vic2 = 1760 hoi4 = 12099 hoi4 = 12816 }	# Mut -> land, land
-	link = { vic2 = 1761 hoi4 = 10097 hoi4 = 2064 }	# Baris -> land, land
+	link = { vic2 = 1761 hoi4 = 2064 hoi4 = 10097 }	# Baris -> land, land
 	link = { vic2 = 1766 hoi4 = 10844 hoi4 = 1206 hoi4 = 12771 }	# Aswan -> land, land, land
 	# 
 	# ## Sudan
