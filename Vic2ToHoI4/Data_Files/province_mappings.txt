@@ -887,35 +887,35 @@
 	# 
 	# ## Algeria
 	# # Algiers
-	link = { vic2 = 1700 hoi4 = 11939 hoi4 = 1145 }	# Algiers -> land, land
-	link = { vic2 = 1701 hoi4 = 12051 hoi4 = 7166 hoi4 = 10078 hoi4 = 4046 }	# Bougie -> land, land, land, land
+	link = { vic2 = 1700 hoi4 = 1145 hoi4 = 11939 }	# Algiers -> land, land
+	link = { vic2 = 1701 hoi4 = 4046 hoi4 = 7166 hoi4 = 10078 hoi4 = 12051 }	# Bougie -> land, land, land, land
 	link = { vic2 = 1709 hoi4 = 1160 hoi4 = 7081 }	# Bone -> land, land
 	# # Constantine
-	link = { vic2 = 1702 hoi4 = 7065 hoi4 = 13077 hoi4 = 9976 }	# Setif -> land, land, land
-	link = { vic2 = 1708 hoi4 = 1058 hoi4 = 11953 }	# Constantine -> land, land
+	link = { vic2 = 1702 hoi4 = 13077 hoi4 = 4131 hoi4 = 7065 }	# Setif -> land, land, land
+	link = { vic2 = 1708 hoi4 = 1058 hoi4 = 11953 hoi4 = 9976 }	# Constantine -> land, land, land
 	link = { vic2 = 1710 hoi4 = 10059 hoi4 = 12034 hoi4 = 1141 }	# Biskra -> land, land, land
 	# # Oran
-	link = { vic2 = 1703 hoi4 = 4131 hoi4 = 4146 }	# Medea -> land, land
+	link = { vic2 = 1703 hoi4 = 4146 hoi4 = 12760 hoi4 = 7040 hoi4 = 12020 }	# Medea -> land, land, land, land
 	link = { vic2 = 1704 hoi4 = 7132 hoi4 = 11923 }	# Oran -> land, land
-	link = { vic2 = 1705 hoi4 = 4150 hoi4 = 3991 hoi4 = 4116 hoi4 = 7008 }	# Tlemcen -> land, land, land, land
-	link = { vic2 = 1706 hoi4 = 9964 hoi4 = 1013 hoi4 = 12760 }	# Mustaghanim -> land, land, land
-	link = { vic2 = 1707 hoi4 = 10045 hoi4 = 12020 hoi4 = 7040 }	# Mascara -> land, land, land
+	link = { vic2 = 1705 hoi4 = 4116 }	# Tlemcen -> land
+	link = { vic2 = 1706 hoi4 = 1013 hoi4 = 9964 }	# Mustaghanim -> land, land
+	link = { vic2 = 1707 hoi4 = 10045 hoi4 = 4150 }	# Mascara -> land, land
 	# # Laghwat
-	link = { vic2 = 1711 hoi4 = 4903 hoi4 = 5035 }	# Ouargla -> land, land
-	link = { vic2 = 1712 hoi4 = 9943 hoi4 = 4970 hoi4 = 12888 }	# Tuggurt -> land, land, land
-	link = { vic2 = 1713 hoi4 = 4018 hoi4 = 7149 hoi4 = 7033 hoi4 = 1128 hoi4 = 9960 hoi4 = 5053 hoi4 = 1967 hoi4 = 1126 }	# Laghwat -> land, land, land, land, land, land, land, land
-	link = { vic2 = 1715 hoi4 = 13074 hoi4 = 12018 }	# Naama -> land, land
+	link = { vic2 = 1711 hoi4 = 5035 hoi4 = 5053 hoi4 = 1967 }	# Ouargla -> land, land, land
+	link = { vic2 = 1712 hoi4 = 9943 hoi4 = 4970 hoi4 = 12888 hoi4 = 8077 }	# Tuggurt -> land, land, land, land
+	link = { vic2 = 1713 hoi4 = 9960 hoi4 = 7149 hoi4 = 7033 hoi4 = 1128 hoi4 = 4018 }	# Laghwat -> land, land, land, land, land
+	link = { vic2 = 1715 hoi4 = 13074 hoi4 = 12018 hoi4 = 3991 hoi4 = 7008 }	# Naama -> land, land, land, land
 	# # Sahara
 	link = { vic2 = 1718 hoi4 = 1901 }	# In Salah -> land
-	link = { vic2 = 1719 hoi4 = 1043 hoi4 = 8061 hoi4 = 8077 }	# Ilizi -> land, land, land
+	link = { vic2 = 1719 hoi4 = 1043 hoi4 = 8061 hoi4 = 4903 }	# Ilizi -> land, land, land
 	link = { vic2 = 1721 hoi4 = 5095 }	# In Guezzam -> land
 	link = { vic2 = 1722 hoi4 = 12849 }	# Tin Zawatene -> land
 	link = { vic2 = 1724 hoi4 = 10749 }	# Tamanrasset -> land
 	# # West Sahara
-	link = { vic2 = 1714 hoi4 = 12842 hoi4 = 10731 hoi4 = 12711 }	# Bechar -> land, land, land
-	link = { vic2 = 1716 hoi4 = 8088 hoi4 = 1958 }	# Tindouf -> land, land
+	link = { vic2 = 1714 hoi4 = 10731 hoi4 = 12842 }	# Bechar -> land, land
+	link = { vic2 = 1716 hoi4 = 1958 hoi4 = 8088 }	# Tindouf -> land, land
 	link = { vic2 = 1717 hoi4 = 7041 hoi4 = 1095 }	# Chenachene -> land, land
-	link = { vic2 = 1720 hoi4 = 2049 }	# Timimoun -> land
+	link = { vic2 = 1720 hoi4 = 12711 hoi4 = 2049 hoi4 = 1126 }	# Timimoun -> land, land, land
 	# 
 	# ## Morocco
 	# # Al Rif
