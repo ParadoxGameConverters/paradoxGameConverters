@@ -50,6 +50,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <map>
 #include <memory>
+#include <optional>
 #include <vector>
 #include <string> 
 using namespace std;
@@ -82,7 +83,7 @@ class Object
 	  void keyCount();
 	  void keyCount(map<string, int>& counter);
 	  void setObjList(const bool l = true) {isObjList = l;}
-	  string getToken(int index); 
+	  optional<string> getToken(int index);
 	  vector<string> getTokens() { return tokens; }
 	  int numTokens(); 
 	  void addToList(string val); 

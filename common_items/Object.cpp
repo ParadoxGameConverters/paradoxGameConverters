@@ -172,19 +172,19 @@ vector<shared_ptr<Object>> Object::getValue(const string& key) const
 }
 
 
-string Object::getToken(const int index)
+optional<string> Object::getToken(const int index)
 {
 	if (!isObjList)
 	{
-		return "";
+		return {};
 	}
 	if (index >= (int)tokens.size())
 	{
-		return "";
+		return {};
 	}
 	if (index < 0)
 	{
-		return "";
+		return {};
 	}
 	return tokens[index];
 }

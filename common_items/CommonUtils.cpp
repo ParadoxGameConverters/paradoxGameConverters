@@ -19,16 +19,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "OSCompatibilityLayer.h"
+using namespace std;
 
 
 
 namespace Utils 
 {
-	std::string GetFileFromTag(const std::string& directoryPath, const std::string& tag)
+	optional<string> GetFileFromTag(const string& directoryPath, const string& tag)
 	{
-		std::set<std::string> foundFiles;
+		set<string> foundFiles;
 		GetAllFilesInFolder(directoryPath, foundFiles);
-		for (std::string file : foundFiles)
+		for (string file: foundFiles)
 		{
 			if (tag == file.substr(0, 3))
 			{
@@ -36,6 +37,6 @@ namespace Utils
 			}
 		}
 
-		return "";
+		return {};
 	}
 }
