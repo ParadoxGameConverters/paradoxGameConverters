@@ -879,11 +879,11 @@
 	# ## Tunisia
 	# # Tunisia
 	link = { vic2 = 1725 hoi4 = 11969 hoi4 = 10091 hoi4 = 7180 }	# Tunis -> land, land, land
-	link = { vic2 = 1726 hoi4 = 9994 hoi4 = 4163 hoi4 = 1046 }	# Bizerte -> land, land, land
-	link = { vic2 = 1727 hoi4 = 1037 hoi4 = 7077 hoi4 = 4061 }	# Gafsa -> land, land, land
-	link = { vic2 = 1728 hoi4 = 11921 hoi4 = 4129 hoi4 = 7162 }	# Kairouan -> land, land, land
-	link = { vic2 = 1729 hoi4 = 1105 hoi4 = 10082 hoi4 = 3987 hoi4 = 12000 hoi4 = 4992 hoi4 = 9983 hoi4 = 11935 hoi4 = 13145 hoi4 = 13179 }	# Tozeur -> land, land, land, land, land, land, land, lake, lake
-	link = { vic2 = 1730 hoi4 = 11957 hoi4 = 7005 hoi4 = 10026 }	# Gabes -> land, land, land
+	link = { vic2 = 1726 hoi4 = 9994 hoi4 = 4163 }	# Bizerte -> land, land
+	link = { vic2 = 1727 hoi4 = 11935 hoi4 = 4061 hoi4 = 7077 hoi4 = 1037 hoi4 = 1046 }	# Gafsa -> land, land, land, land, land
+	link = { vic2 = 1728 hoi4 = 4129 hoi4 = 11921 hoi4 = 7162 hoi4 = 10026 }	# Kairouan -> land, land, land, land
+	link = { vic2 = 1729 hoi4 = 3987 hoi4 = 9983 hoi4 = 10082 hoi4 = 12000 hoi4 = 4992 hoi4 = 1105 hoi4 = 13145 hoi4 = 13179 }	# Tozeur -> land, land, land, land, land, land, lake, lake
+	link = { vic2 = 1730 hoi4 = 7005 hoi4 = 11957 }	# Gabes -> land, land
 	# 
 	# ## Algeria
 	# # Algiers
