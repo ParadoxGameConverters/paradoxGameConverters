@@ -28,7 +28,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include <sstream>
 #include <queue>
-#include <boost/algorithm/string.hpp>
 #include "Log.h"
 #include "../Configuration.h"
 #include "../Mappers/ReligionMapper.h"
@@ -85,9 +84,9 @@ V2Country::V2Country(const string& countriesFileLine, const V2World* _theWorld, 
 
 	tag = countriesFileLine.substr(0, 3);
 	commonCountryFile	= localisation.convertCountryFileName(filename);
-	boost::replace_all(filename, ":", ";");
-	boost::replace_all(filename, "/", " ");
-	boost::replace_all(filename, "\\", " ");
+	std::replace(filename.begin(), filename.end(), ':', ';');
+	std::replace(filename.begin(), filename.end(), '/', ' ');
+	std::replace(filename.begin(), filename.end(), '\\', ' ');
 	commonCountryFile = commonCountryFile;
 	rulingParty			= "";
 
@@ -208,9 +207,9 @@ V2Country::V2Country(const string& _tag, const string& _commonCountryFile, const
 
 	tag					= _tag;
 	commonCountryFile	= localisation.convertCountryFileName(_commonCountryFile);
-	boost::replace_all(commonCountryFile, ":", ";");
-	boost::replace_all(commonCountryFile, "/", " ");
-	boost::replace_all(commonCountryFile, "\\", " ");
+	std::replace(commonCountryFile.begin(), commonCountryFile.end(), ':', ';');
+	std::replace(commonCountryFile.begin(), commonCountryFile.end(), '/', ' ');
+	std::replace(commonCountryFile.begin(), commonCountryFile.end(), '\\', ' ');
 	commonCountryFile = commonCountryFile;
 	parties.clear();
 	rulingParty			= "";
@@ -537,17 +536,22 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const vector<V2TechS
 		newCountry = true;
 	}
 
-	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
-	if (filename == "")
+	auto possibleFilename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
+	if (!possibleFilename)
 	{
-		filename = Utils::GetFileFromTag(Configuration::getV2Path() + "/history/countries/", tag);
+		possibleFilename = Utils::GetFileFromTag(Configuration::getV2Path() + "/history/countries/", tag);
 	}
-	if (filename == "")
+
+	if (!possibleFilename)
 	{
 		string countryName	= commonCountryFile;
 		int lastSlash			= countryName.find_last_of("/");
 		countryName				= countryName.substr(lastSlash + 1, countryName.size());
 		filename					= tag + " - " + countryName;
+	}
+	else
+	{
+		filename = *possibleFilename;
 	}
 
 	// Color
@@ -881,14 +885,22 @@ void V2Country::initFromHistory()
 {
 	string fullFilename;
 
-	filename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
-	fullFilename = "./blankMod/output/history/countries/" + filename;
-	if (filename == "")
+	auto possibleFilename = Utils::GetFileFromTag("./blankMod/output/history/countries/", tag);
+	if (possibleFilename)
 	{
-		filename = Utils::GetFileFromTag(Configuration::getV2Path() + "/history/countries/", tag);
-		fullFilename = Configuration::getV2Path() + "/history/countries/" + filename;
+		filename = *possibleFilename;
+		fullFilename = "./blankMod/output/history/countries/" + filename;
 	}
-	if (filename == "")
+	else
+	{
+		possibleFilename = Utils::GetFileFromTag(Configuration::getV2Path() + "/history/countries/", tag);
+		if (possibleFilename)
+		{
+			filename = *possibleFilename;
+			fullFilename = Configuration::getV2Path() + "/history/countries/" + filename;
+		}
+	}
+	if (!possibleFilename)
 	{
 		string countryName	= commonCountryFile;
 		int lastSlash			= countryName.find_last_of("/");

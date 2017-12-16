@@ -22,14 +22,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Flags.h"
-
+#include <algorithm>
 #include <chrono>
 #include <iostream>
 #include <iterator>
 #include <random>
-
-#include <boost/algorithm/string/predicate.hpp>
-
 #include "../EU4World/EU4Country.h"
 #include "V2Country.h"
 #include "../Configuration.h"
@@ -176,7 +173,9 @@ void V2Flags::SetV2Tags(const map<string, V2Country*>& V2Countries)
 		{
 			colonyFlagsKeys.push_back(flag.first);
 		}
-		random_shuffle(colonyFlagsKeys.begin(), colonyFlagsKeys.end());
+		std::random_device rd;
+		std::mt19937 g(rd());
+		std::shuffle(colonyFlagsKeys.begin(), colonyFlagsKeys.end(), g);
 
 		for (string key : colonyFlagsKeys)
 		{
@@ -233,6 +232,13 @@ void V2Flags::SetV2Tags(const map<string, V2Country*>& V2Countries)
 }
 
 
+inline bool ends_with(std::string const & value, std::string const & ending)
+{
+	if (ending.size() > value.size()) return false;
+	return std::equal(ending.rbegin(), ending.rend(), value.rbegin());
+}
+
+
 void V2Flags::determineUseableFlags()
 {
 	set<string> availableFlags = determineAvailableFlags();
@@ -243,9 +249,8 @@ void V2Flags::determineUseableFlags()
 		bool hasSuffix = false;
 		for (vector<string>::const_reverse_iterator i = flagFileSuffixes.rbegin(); i != flagFileSuffixes.rend() && !hasSuffix; ++i)
 		{
-			const string& suffix = *i;
-			hasSuffix = (boost::algorithm::iends_with(flag, suffix));
-			if (hasSuffix)
+			auto suffix = *i;
+			if (ends_with(flag, suffix))
 			{
 				string tag = flag.substr(0, flag.find(suffix));
 

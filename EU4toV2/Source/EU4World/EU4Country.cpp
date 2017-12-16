@@ -31,7 +31,6 @@ THE SOFTWARE. */
 #include "../Mappers/IdeaEffectMapper.h"
 #include "../V2World/V2Localisation.h"
 #include <algorithm>
-#include <boost/lexical_cast.hpp>
 
 
 
@@ -94,8 +93,16 @@ EU4Country::EU4Country(shared_ptr<Object> obj, EU4Version* version)
 	if (institutionsObj.size() > 0)
 	{
 		vector<string> institutionTokens = institutionsObj[0]->getTokens();
-		for (unsigned int i = 0; i < institutionTokens.size(); i++) {
-			embracedInstitutions.push_back(boost::lexical_cast<bool>(institutionTokens[i]));
+		for (unsigned int i = 0; i < institutionTokens.size(); i++)
+		{
+			if (institutionTokens[i] == "1")
+			{
+				embracedInstitutions.push_back(true);
+			}
+			else
+			{
+				embracedInstitutions.push_back(false);
+			}
 		}
 	}
 
