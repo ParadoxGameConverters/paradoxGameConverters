@@ -919,35 +919,35 @@
 	# 
 	# ## Morocco
 	# # Al Rif
-	link = { vic2 = 1686 hoi4 = 10113 hoi4 = 9945 }	# Tangier -> land, land
+	link = { vic2 = 1686 hoi4 = 9945 hoi4 = 10113 }	# Tangier -> land, land
 	link = { vic2 = 1687 hoi4 = 12087 }	# Tetouan -> land
 	link = { vic2 = 1688 hoi4 = 7215 hoi4 = 4199 }	# Ajdir -> land, land
 	link = { vic2 = 1689 hoi4 = 12100 }	# Melilla -> land
 	# # Taza
 	link = { vic2 = 1683 hoi4 = 4097 hoi4 = 7173 }	# Taza -> land, land
-	link = { vic2 = 1684 hoi4 = 7116 hoi4 = 1111 hoi4 = 989 }	# Wujda -> land, land, land
+	link = { vic2 = 1684 hoi4 = 989 hoi4 = 1111 hoi4 = 7116 }	# Wujda -> land, land, land
 	link = { vic2 = 1697 hoi4 = 7958 hoi4 = 4154 }	# Figuig -> land, land
 	# # Fez
-	link = { vic2 = 1680 hoi4 = 7100 hoi4 = 12042 }	# Fez -> land, land
-	link = { vic2 = 1681 hoi4 = 11987 hoi4 = 10013 }	# Wazzan -> land, land
-	link = { vic2 = 1682 hoi4 = 4084 hoi4 = 1079 }	# Meknes -> land, land
-	link = { vic2 = 1685 hoi4 = 10070 hoi4 = 1194 }	# Rabat -> land, land
+	link = { vic2 = 1680 hoi4 = 11987 hoi4 = 12042 }	# Fez -> land, land
+	link = { vic2 = 1681 hoi4 = 10013 }	# Wazzan -> land
+	link = { vic2 = 1682 hoi4 = 7100 hoi4 = 4084 }	# Meknes -> land, land
+	link = { vic2 = 1685 hoi4 = 10070 hoi4 = 1194 hoi4 = 1079 }	# Rabat -> land, land, land
 	# # Marrakesh
-	link = { vic2 = 1690 hoi4 = 4108 hoi4 = 10107 hoi4 = 1207 }	# Marrakesh -> land, land, land
+	link = { vic2 = 1690 hoi4 = 4108 hoi4 = 10107 hoi4 = 4139 }	# Marrakesh -> land, land, land
 	link = { vic2 = 1691 hoi4 = 7069 }	# Casablanca -> land
-	link = { vic2 = 1692 hoi4 = 10023 hoi4 = 4139 }	# Huribka -> land, land
+	link = { vic2 = 1692 hoi4 = 10023 hoi4 = 1207 }	# Huribka -> land, land
 	link = { vic2 = 1693 hoi4 = 1102 }	# Sawira -> land
 	link = { vic2 = 2563 hoi4 = 11943 }	# Safi -> land
 	# # Adagir
-	link = { vic2 = 1694 hoi4 = 7203 hoi4 = 5046 hoi4 = 4022 }	# Agadir -> land, land, land
+	link = { vic2 = 1694 hoi4 = 7203 hoi4 = 5046 }	# Agadir -> land, land
 	link = { vic2 = 1695 hoi4 = 12857 }	# Ifni -> land
-	link = { vic2 = 1698 hoi4 = 1152 hoi4 = 4933 hoi4 = 7908 }	# Rashidia -> land, land, land
-	link = { vic2 = 1699 hoi4 = 1989 hoi4 = 8046 }	# Warzazat -> land, land
+	link = { vic2 = 1698 hoi4 = 4933 hoi4 = 7908 hoi4 = 1152 }	# Rashidia -> land, land, land
+	link = { vic2 = 1699 hoi4 = 8046 hoi4 = 1989 hoi4 = 4022 }	# Warzazat -> land, land, land
 	# 
 	# # Western Sahara
 	# # West Morocco
-	link = { vic2 = 1696 hoi4 = 4920 hoi4 = 8111 hoi4 = 8038 }	# Tarfaya -> land, land, land
-	link = { vic2 = 1773 hoi4 = 7979 }	# Aaiun -> land
+	link = { vic2 = 1696 hoi4 = 4920 hoi4 = 8111 }	# Tarfaya -> land, land
+	link = { vic2 = 1773 hoi4 = 7979 hoi4 = 8038 }	# Aaiun -> land, land
 	link = { vic2 = 1774 hoi4 = 5012 hoi4 = 10875 }	# Dakhla -> land, land
 	# 
 	# ## Mauritania
