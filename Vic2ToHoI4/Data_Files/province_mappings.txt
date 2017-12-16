@@ -837,20 +837,20 @@
 	# # Dongola
 	link = { vic2 = 1833 hoi4 = 12725 hoi4 = 2003 }	# Suakin -> land, land
 	link = { vic2 = 1834 hoi4 = 1977 }	# Halaib -> land
-	link = { vic2 = 1835 hoi4 = 4961 hoi4 = 4138 hoi4 = 12836 }	# Dongola -> land, land, land
-	link = { vic2 = 1836 hoi4 = 10902 hoi4 = 7989 hoi4 = 2046 hoi4 = 10745 hoi4 = 8105 }	# Hayya -> land, land, land, land, land
+	link = { vic2 = 1835 hoi4 = 12836 hoi4 = 8105 hoi4 = 4138 }	# Dongola -> land, land, land
+	link = { vic2 = 1836 hoi4 = 2046 hoi4 = 7989 hoi4 = 10902 hoi4 = 10745 }	# Hayya -> land, land, land, land
 	link = { vic2 = 1837 hoi4 = 12881 hoi4 = 12826 hoi4 = 12796 hoi4 = 4963 }	# Atbara -> land, land, land, land
 	link = { vic2 = 2564 hoi4 = 7987 }	# Salima -> land
 	# # Sudan
 	link = { vic2 = 1827 hoi4 = 12806 hoi4 = 7925 }	# Khartoum -> land, land
 	link = { vic2 = 1828 hoi4 = 10743 }	# Wad Madani -> land
-	link = { vic2 = 1829 hoi4 = 10784 hoi4 = 12862 hoi4 = 2088 }	# Kassala -> land, land, land
-	link = { vic2 = 1830 hoi4 = 4918 hoi4 = 1914 hoi4 = 12887 }	# Sennar -> land, land, land
-	link = { vic2 = 1831 hoi4 = 10795 hoi4 = 10851 }	# Rabak -> land, land
+	link = { vic2 = 1829 hoi4 = 2088 hoi4 = 12862 hoi4 = 10784 }	# Kassala -> land, land, land
+	link = { vic2 = 1830 hoi4 = 1914 hoi4 = 12887 hoi4 = 4918 }	# Sennar -> land, land, land
+	link = { vic2 = 1831 hoi4 = 10795 }	# Rabak -> land
 	# # Kordofan
-	link = { vic2 = 1838 hoi4 = 10900 }	# Obeid -> land
-	link = { vic2 = 1839 hoi4 = 10739 hoi4 = 8052 }	# Nuhud -> land, land
-	link = { vic2 = 1840 hoi4 = 2016 hoi4 = 8084 hoi4 = 10827 }	# Kaduqli -> land, land, land
+	link = { vic2 = 1838 hoi4 = 10900 hoi4 = 4961 hoi4 = 8084 }	# Obeid -> land, land, land
+	link = { vic2 = 1839 hoi4 = 10827 hoi4 = 8052 hoi4 = 10739 }	# Nuhud -> land, land, land
+	link = { vic2 = 1840 hoi4 = 12744 hoi4 = 2016 hoi4 = 10851 }	# Kaduqli -> land, land, land
 	# # Darfur
 	link = { vic2 = 1841 hoi4 = 5060 hoi4 = 1960 }	# Fasher -> land, land
 	link = { vic2 = 1842 hoi4 = 8103 }	# Junaynah -> land
@@ -1207,7 +1207,7 @@
 	# ## South Sudan
 	# # Sudd
 	link = { vic2 = 1832 hoi4 = 12800 }	# Fashoda -> land
-	link = { vic2 = 1844 hoi4 = 12744 hoi4 = 10877 hoi4 = 10908 }	# Bor -> land, land, land
+	link = { vic2 = 1844 hoi4 = 10877 hoi4 = 10908 }	# Bor -> land, land
 	link = { vic2 = 1845 hoi4 = 7996 hoi4 = 1953 }	# Yambio -> land, land
 	link = { vic2 = 1846 hoi4 = 2096 }	# Lado -> land
 	link = { vic2 = 1847 hoi4 = 10859 }	# Kapoeta -> land
