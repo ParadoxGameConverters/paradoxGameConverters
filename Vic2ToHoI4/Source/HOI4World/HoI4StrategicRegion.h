@@ -36,8 +36,8 @@ using namespace std;
 class HoI4StrategicRegion
 {
 	public:
-		HoI4StrategicRegion(string _filename);
-		void output(string path);
+		explicit HoI4StrategicRegion(const string& _filename);
+		void output(const string& path) const;
 
 		int			getID() const				{ return ID; }
 		vector<int>	getOldProvinces() const	{ return oldProvinces; }
@@ -45,6 +45,9 @@ class HoI4StrategicRegion
 		void	addNewProvince(int province)	{ newProvinces.push_back(province); }
 
 	private:
+		HoI4StrategicRegion(const HoI4StrategicRegion&) = delete;
+		HoI4StrategicRegion& operator=(const HoI4StrategicRegion&) = delete;
+
 		string filename;
 		int ID;
 		vector<int>	oldProvinces;

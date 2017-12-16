@@ -40,9 +40,9 @@ class Object;
 struct date
 {
 	date() : year(1), month(1), day(1) {};
-	date(string _init);
+	explicit date(string _init);
 	date(const date& _init);
-	date(const shared_ptr<Object> _init);
+	explicit date(const shared_ptr<Object> _init);
 
 	date& operator=(const date& _rhs);
 	bool operator==(const date& _rhs) const;

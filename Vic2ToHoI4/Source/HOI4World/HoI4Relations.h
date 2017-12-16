@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -35,8 +35,8 @@ class V2Relations;
 class HoI4Relations
 {
 	public:
-		HoI4Relations(string newTag);
-		HoI4Relations(string newTag, V2Relations* oldRelations);
+		explicit HoI4Relations(const string& newTag);
+		HoI4Relations(const string& newTag, const V2Relations* oldRelations);
 
 		string	getTag()				const { return tag; };
 		int		getRelations()		const { return value; };
@@ -45,7 +45,11 @@ class HoI4Relations
 		date		getLastWar()		const { return lastWar; };
 		date		getTruceUntil()	const { return truceUntil; };
 		bool		atWar()				const { return lastWar > truceUntil; };
+
 	private:
+		HoI4Relations(const HoI4Relations&) = delete;
+		HoI4Relations& operator=(const HoI4Relations&) = delete;
+
 		string	tag;
 		int		value;
 		bool		militaryAccess;

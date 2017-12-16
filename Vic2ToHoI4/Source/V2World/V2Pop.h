@@ -38,7 +38,7 @@ class Object;
 class V2Pop
 {
 	public:
-		V2Pop(shared_ptr<Object> obj);
+		explicit V2Pop(shared_ptr<Object> obj);
 
 		int getSize() const { return size; }
 		string getType() const { return type; }
@@ -46,6 +46,9 @@ class V2Pop
 		double getLiteracy() const { return literacy; }
 
 	private:
+		V2Pop(const V2Pop&) = delete;
+		V2Pop& operator=(const V2Pop&) = delete;
+
 		int size;
 		string type;
 		string culture;

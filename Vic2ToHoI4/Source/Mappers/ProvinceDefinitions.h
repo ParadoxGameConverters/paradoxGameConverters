@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include <optional>
 #include <map>
 #include <set>
 #include "../Color.h"
@@ -45,7 +46,7 @@ class provinceDefinitions
 			return (getInstance()->landProvinces.count(province) > 0);
 		}
 
-		static int getProvinceFromColor(const Color& color)
+		static optional<int> getProvinceFromColor(const ConverterColor::Color& color)
 		{
 			return getInstance()->GetProvinceFromColor(color);
 		}
@@ -63,9 +64,12 @@ class provinceDefinitions
 		}
 		provinceDefinitions();
 
-		int GetProvinceFromColor(const Color& color) const;
+		provinceDefinitions(const provinceDefinitions&) = delete;
+		provinceDefinitions& operator=(const provinceDefinitions&) = delete;
 
-		int getIntFromColor(const Color& color) const;
+		optional<int> GetProvinceFromColor(const ConverterColor::Color& color) const;
+
+		int getIntFromColor(const ConverterColor::Color& color) const;
 
 		set<int> landProvinces;
 		map<int, int> colorToProvinceMap;	// colors are a packed integer to work around some issues. If you can get Colors to work directly, please replace this hack.

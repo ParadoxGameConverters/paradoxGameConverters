@@ -26,31 +26,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Advisor::HoI4Advisor(shared_ptr<Object> object)
+HoI4Advisor::HoI4Advisor(shared_ptr<Object> object):
+	trait(object->safeGetString("traits")),
+	picture(object->safeGetString("picture")),
+	event(""),
+	ideology(object->getKey())
 {
-	trait = object->getLeaf("traits");
-
-	auto onAddObjs = object->getValue("on_add");
-	if (onAddObjs.size() > 0)
+	auto onAddObj = object->safeGetObject("on_add");
+	if (onAddObj != nullptr)
 	{
-		auto eventObjs = onAddObjs[0]->getLeaves();
+		auto eventObjs = onAddObj->getLeaves();
 		event = eventObjs[0]->getLeaf();
-	}
-	else
-	{
-		event = "";
-	}
-
-	ideology = object->getKey();
-
-	auto pictureObjs = object->getValue("picture");
-	if (pictureObjs.size() > 0)
-	{
-		picture = pictureObjs[0]->getLeaf();
-	}
-	else
-	{
-		picture = "";
 	}
 }
 
@@ -81,4 +67,10 @@ void HoI4Advisor::output(ofstream& output, const string& tag) const
 	output << "\t\t\t\tfactor = 0\n";
 	output << "\t\t\t}\n";
 	output << "\t\t}\n";
+}
+
+
+void HoI4Advisor::addEventNum(const int num)
+{
+	event += to_string(num);
 }

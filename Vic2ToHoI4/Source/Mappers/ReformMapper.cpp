@@ -38,12 +38,14 @@ reformMapper* reformMapper::instance = nullptr;
 
 
 
-reformMapper::reformMapper()
+reformMapper::reformMapper():
+	reformTypes(),
+	politicalReformScores(),
+	socialReformScores(),
+	totalPoliticalReforms(0),
+	totalSocialReforms(0),
+	reformsInitialized(false)
 {
-	reformsInitialized		= false;
-	totalPoliticalReforms	= 0;
-	totalSocialReforms		= 0;
-
 	LOG(LogLevel::Info) << "Parsing governments reforms";
 	for (auto itr : Configuration::getVic2Mods())
 	{

@@ -36,35 +36,30 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, string _ownerTag)
-{
-	sourceState = _sourceState;
-
-	ID = _ID;
-	provinces.clear();
-	ownerTag = _ownerTag;
-	capitalState = false;
-
-	manpower = 0;
-
-	civFactories = 0;
-	milFactories = 0;
-	dockyards = 0;
-	category = "pastoral";
-	infrastructure = 0;
-
-	navalBases.clear();
-
-	airbaseLevel = 0;
-
-	resources.clear();
-
-	victoryPointPosition = 0;
-	victoryPointValue = 0;
-}
+HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, const string& _ownerTag):
+	sourceState(_sourceState),
+	ID(_ID),
+	provinces(),
+	ownerTag(_ownerTag),
+	cores(),
+	capitalState(false),
+	manpower(0),
+	civFactories(0),
+	milFactories(0),
+	dockyards(0),
+	category("pastoral"),
+	infrastructure(0),
+	navalBases(),
+	airbaseLevel(0),
+	resources(),
+	victoryPointPosition(0),
+	victoryPointValue(0),
+	debugVictoryPoints(),
+	secondaryDebugVictoryPoints()
+{}
 
 
-void HoI4State::output(string _filename)
+void HoI4State::output(const string& _filename) const
 {
 	string filename("output/" + Configuration::getOutputName() + "/history/states/" + _filename);
 	ofstream out(filename);
@@ -74,62 +69,74 @@ void HoI4State::output(string _filename)
 		exit(-1);
 	}
 
-	out << "state={" << endl;
-	out << "\tid=" << ID << endl;
-	out << "\tname= \"STATE_" << ID << "\"" << endl;
-	out << "\tmanpower = " << manpower << endl;
-	out << endl;
+	out << "state={" << "\n";
+	out << "\tid=" << ID << "\n";
+	out << "\tname= \"STATE_" << ID << "\"\n";
+	out << "\tmanpower = " << manpower << "\n";
+	out << "\n";
 	if (resources.size() > 0)
 	{
-		out << "\tresources={" << endl;
+		out << "\tresources={\n";
 		for (auto resource: resources)
 		{
-			out << "\t\t" << resource.first << " = " << resource.second << endl;
+			out << "\t\t" << resource.first << " = " << resource.second << "\n";
 		}
-		out << "\t}" << endl;
+		out << "\t}\n";
 	}
-	out << "\tstate_category = "<< category << endl;
-	out << "" << endl;
-	out << "\thistory={" << endl;
-	out << "\t\towner = " << ownerTag << endl;
+	out << "\tstate_category = "<< category << "\n";
+	out << "\n";
+	out << "\thistory={\n";
+	out << "\t\towner = " << ownerTag << "\n";
 	if ((victoryPointValue > 0) && (victoryPointPosition != 0))
 	{
-		out << "\t\tvictory_points = {" << endl;
-		out << "\t\t\t" << victoryPointPosition << " " << victoryPointValue << endl;
-		out << "\t\t}" << endl;
+		if (Configuration::getDebug())
+		{
+			for (auto VP: debugVictoryPoints)
+			{
+				out << "\t\tvictory_points = { " << VP << " 10 }\n";
+			}
+			for (auto VP: secondaryDebugVictoryPoints)
+			{
+				out << "\t\tvictory_points = { " << VP << " 1 }\n";
+			}
+		}
+		else
+		{
+			out << "\t\tvictory_points = { " << victoryPointPosition << " " << victoryPointValue << " }\n";
+		}
 	}
-	out << "\t\tbuildings = {" << endl;
-	out << "\t\t\tinfrastructure = "<< infrastructure << endl;
-	out << "\t\t\tindustrial_complex = " << civFactories << endl;
-	out << "\t\t\tarms_factory = " << milFactories << endl;
+	out << "\t\tbuildings = {\n";
+	out << "\t\t\tinfrastructure = "<< infrastructure << "\n";
+	out << "\t\t\tindustrial_complex = " << civFactories << "\n";
+	out << "\t\t\tarms_factory = " << milFactories << "\n";
 	if (dockyards > 0)
 	{
-		out << "\t\t\tdockyard = " << dockyards << endl;
+		out << "\t\t\tdockyard = " << dockyards << "\n";
 	}
 		
 	for (auto navalBase: navalBases)
 	{
-		out << "\t\t\t" << navalBase.first << " = {" << endl;
-		out << "\t\t\t\tnaval_base = " << navalBase.second << endl;
-		out << "\t\t\t}" << endl;
+		out << "\t\t\t" << navalBase.first << " = {\n";
+		out << "\t\t\t\tnaval_base = " << navalBase.second << "\n";
+		out << "\t\t\t}\n";
 	}
-	out << "\t\t\tair_base = "<< airbaseLevel << endl;
-	out << "\t\t}" << endl;
+	out << "\t\t\tair_base = "<< airbaseLevel << "\n";
+	out << "\t\t}\n";
 	for (auto core: cores)
 	{
-		out << "\t\tadd_core_of = " << core << endl;
+		out << "\t\tadd_core_of = " << core << "\n";
 	}
-	out << "\t}" << endl;
-	out << endl;
-	out << "\tprovinces={" << endl;
+	out << "\t}\n";
+	out << "\n";
+	out << "\tprovinces={\n";
 	out << "\t\t";
 	for (auto provnum : provinces)
 	{
 		out << provnum << " ";
 	}
-	out << endl;
-	out << "\t}" << endl;
-	out << "}" << endl;
+	out << "\n";
+	out << "\t}\n";
+	out << "}\n";
 
 	out.close();
 }
@@ -251,8 +258,13 @@ int HoI4State::getMainNavalLocation() const
 
 void HoI4State::tryToCreateVP()
 {
+	bool VPCreated = false;
+
 	auto vic2CapitalProvince = stateMapper::getCapitalProvince(sourceState->getStateID());
-	bool VPCreated = assignVPFromVic2Province(vic2CapitalProvince);
+	if (vic2CapitalProvince)
+	{
+		VPCreated = assignVPFromVic2Province(*vic2CapitalProvince);
+	}
 
 	if (!VPCreated)
 	{
@@ -292,6 +304,28 @@ void HoI4State::tryToCreateVP()
 	if (!VPCreated)
 	{
 		LOG(LogLevel::Warning) << "Could not create VP for state";
+	}
+
+	addDebugVPs();
+}
+
+
+void HoI4State::addDebugVPs()
+{
+	for (auto sourceProvinceNum: sourceState->getProvinceNums())
+	{
+		auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(sourceProvinceNum);
+		if (
+				(provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end()) &&
+				(isProvinceInState(provMapping->second[0]))
+			)
+		{
+			debugVictoryPoints.insert(provMapping->second[0]);
+		}
+		for (unsigned int i = 1; i < provMapping->second.size(); i++)
+		{
+			secondaryDebugVictoryPoints.insert(provMapping->second[i]);
+		}
 	}
 }
 

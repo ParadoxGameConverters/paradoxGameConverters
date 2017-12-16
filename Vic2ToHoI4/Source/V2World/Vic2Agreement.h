@@ -37,12 +37,16 @@ using namespace std;
 class V2Agreement
 {
 	public:
-		V2Agreement(shared_ptr<Object> obj);
+		explicit V2Agreement(shared_ptr<Object> obj);
 
 		string type;
 		string country1;
 		string country2;
 		date start_date;
+
+	private:
+		V2Agreement(const V2Agreement&) = delete;
+		V2Agreement& operator=(const V2Agreement&) = delete;
 };
 
 

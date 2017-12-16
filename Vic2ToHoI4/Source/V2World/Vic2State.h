@@ -50,7 +50,7 @@ typedef struct
 class Vic2State
 {
 	public:
-		Vic2State(const shared_ptr<Object> stateObj, string ownerTag);
+		Vic2State(shared_ptr<Object> stateObj, const string& ownerTag);
 
 		void determineEmployedWorkers();
 		void determineIfPartialState();
@@ -58,35 +58,36 @@ class Vic2State
 		int getPopulation() const;
 		int getAverageRailLevel() const;
 
-		void addProvince(V2Province* province) { provinces.insert(province); }
+		void addProvince(const V2Province* province) { provinces.insert(province); }
 
-		const set<V2Province*>& getProvinces() const { return provinces; }
-		const set<int>& getProvinceNums() const { return provinceNums; }
-		const string& getOwner() const { return owner; }
-		const string& getStateID() const { return stateID; }
+		set<const V2Province*> getProvinces() const { return provinces; }
+		set<int> getProvinceNums() const { return provinceNums; }
+		string getOwner() const { return owner; }
+		string getStateID() const { return stateID; }
 		bool isPartialState() const { return partialState; }
 		int getEmployedWorkers() const { return employedWorkers; }
 
 	private:
-		void addProvinceNums(const shared_ptr<Object> stateObj);
+		Vic2State(const Vic2State&) = delete;
+		Vic2State& operator=(const Vic2State&) = delete;
+
+		void addProvinceNums(shared_ptr<Object> stateObj);
 		void setID();
-		vector<string> getProvinceIDs(const shared_ptr<Object> stateObj);
 
-		void setFactoryLevel(const shared_ptr<Object> stateObj);
-		void addBuildingLevel(const shared_ptr<Object> buildingObj);
+		void setFactoryLevel(shared_ptr<Object> stateObj);
 
-		workerStruct countEmployedWorkers();
-		workerStruct limitWorkersByFactoryLevels(workerStruct workers);
-		int determineEmployedWorkersScore(workerStruct workers);
-		bool ownerHasNoCores();
+		workerStruct countEmployedWorkers() const;
+		workerStruct limitWorkersByFactoryLevels(const workerStruct& workers) const;
+		int determineEmployedWorkersScore(const workerStruct& workers) const;
+		bool ownerHasNoCores() const;
 
 
-		string owner;
+		const string owner;
 		string stateID;
 		bool partialState;
 
 		set<int> provinceNums;
-		set<V2Province*> provinces;
+		set<const V2Province*> provinces;
 
 		int factoryLevel;
 		int employedWorkers;

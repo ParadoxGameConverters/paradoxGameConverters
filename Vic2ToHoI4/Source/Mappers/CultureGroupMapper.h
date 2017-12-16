@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <map>
+#include <optional>
 #include <random>
 #include <string>
 #include <vector>
@@ -37,7 +38,7 @@ using namespace std;
 class cultureGroupMapper
 {
 	public:
-		static string getCultureGroup(string culture)
+		static optional<string> getCultureGroup(const string& culture)
 		{
 			return getInstance()->GetCultureGroup(culture);
 		}
@@ -54,7 +55,10 @@ class cultureGroupMapper
 		cultureGroupMapper();
 		void processVic2CulturesFile(string culturesFile);
 
-		string GetCultureGroup(string culture);
+		cultureGroupMapper(const cultureGroupMapper&) = delete;
+		cultureGroupMapper& operator=(const cultureGroupMapper&) = delete;
+
+		optional<string> GetCultureGroup(const string& culture) const;
 
 		map<string, string> mappings;
 };

@@ -1,4 +1,4 @@
-/*Copyright(c) 2014 The Paradox Game Converters Project
+/*Copyright(c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -23,7 +23,10 @@ THE SOFTWARE. */
 #define EU4LEADER_H_
 
 
+#include <memory>
 #include "Date.h"
+
+
 
 class Object;
 
@@ -32,7 +35,7 @@ class Object;
 class EU4Leader
 {
 	public:
-		EU4Leader(Object* obj);
+		EU4Leader(shared_ptr<Object> obj);
 		string	getName() const { return name; };
 		int		getFire() const { return fire; };
 		int		getShock() const { return shock; };

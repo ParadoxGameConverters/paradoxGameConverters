@@ -36,7 +36,7 @@ using namespace std;
 class V2Regiment // also Ship
 {
 	public:
-		V2Regiment(shared_ptr<Object> obj);
+		explicit V2Regiment(shared_ptr<Object> obj);
 
 		string getName() const { return name; }
 		string getType() const { return type; }
@@ -45,6 +45,9 @@ class V2Regiment // also Ship
 		double getExperience() const { return experience; }
 
 	private:
+		V2Regiment(const V2Regiment&) = delete;
+		V2Regiment& operator=(const V2Regiment&) = delete;
+
 		string name;
 		string type;
 		double strength;
@@ -56,7 +59,7 @@ class V2Regiment // also Ship
 class V2Army // also Navy
 {
 	public:
-		V2Army(shared_ptr<Object> obj);
+		explicit V2Army(shared_ptr<Object> obj);
 
 		string getName() const { return name; }
 		bool isNavy() const { return navy; }
@@ -66,6 +69,9 @@ class V2Army // also Navy
 		vector<V2Regiment*> getRegiments() const { return regiments; }
 
 	private:
+		V2Army(const V2Army&) = delete;
+		V2Army& operator=(const V2Army&) = delete;
+
 		string name;
 		int location;
 		vector<V2Regiment*> regiments;

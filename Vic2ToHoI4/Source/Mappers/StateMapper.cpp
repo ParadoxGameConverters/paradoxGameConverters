@@ -34,7 +34,10 @@ stateMapper* stateMapper::instance = NULL;
 
 
 
-stateMapper::stateMapper()
+stateMapper::stateMapper():
+	stateMap(),
+	stateIdMap(),
+	stateToCapitalMap()
 {
 	LOG(LogLevel::Info) << "Importing Vic2 states";
 	bool stateMapInitialized = false;
@@ -75,10 +78,10 @@ void stateMapper::initStateMap(shared_ptr<Object> parsedMappingsFile)
 	for (auto leafObj: leafObjs)
 	{
 		string ID = leafObj->getKey();
-		vector<string> provinces = leafObj->getTokens();
+		vector<string> provinceNums = leafObj->getTokens();
 		unordered_set<int> neighbors;
 
-		for (auto provNum: provinces)
+		for (auto provNum: provinceNums)
 		{
 			neighbors.insert(stoi(provNum));
 			stateIdMap.insert(make_pair(stoi(provNum), ID));
@@ -89,15 +92,15 @@ void stateMapper::initStateMap(shared_ptr<Object> parsedMappingsFile)
 			stateMap.insert(make_pair(neighbor, neighbors));
 		}
 
-		if (provinces.size() > 0)
+		if (provinceNums.size() > 0)
 		{
-			stateToCapitalMap.insert(make_pair(ID, stoi(provinces.front())));
+			stateToCapitalMap.insert(make_pair(ID, stoi(provinceNums.front())));
 		}
 	}
 }
 
 
-int stateMapper::GetCapitalProvince(const string& stateID) const
+optional<int> stateMapper::GetCapitalProvince(const string& stateID) const
 {
 	auto mapping = stateToCapitalMap.find(stateID);
 	if (mapping != stateToCapitalMap.end())
@@ -106,6 +109,6 @@ int stateMapper::GetCapitalProvince(const string& stateID) const
 	}
 	else
 	{
-		return -1;
+		return {};
 	}
 }

@@ -21,6 +21,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include <algorithm>
 #include <fstream>
 #include <stdexcept>
 #include "Configuration.h"
@@ -37,7 +38,7 @@ int main(const int argc, const char* argv[])
 {
 	try
 	{
-		LOG(LogLevel::Info) << "Converter version 0.2B";
+		LOG(LogLevel::Info) << "Converter version 0.2D";
 		LOG(LogLevel::Info) << "Built on " << __DATE__ << " at " << __TIME__;
 		LOG(LogLevel::Info) << "Current directory is " << Utils::getCurrentDirectory();
 
@@ -69,7 +70,7 @@ int main(const int argc, const char* argv[])
 
 void checkMods();
 void getOutputName(const string& V2SaveFileName);
-void output(HoI4World& destWorld);
+void output(const HoI4World& destWorld);
 void ConvertV2ToHoI4(const string& V2SaveFileName)
 {
 	Configuration::getInstance();
@@ -127,19 +128,8 @@ void getOutputName(const string& V2SaveFileName)
 	const int length = outputName.find_first_of(".");
 	outputName = outputName.substr(0, length);
 
-	int dash = outputName.find_first_of('-');
-	while (dash != string::npos)
-	{
-		outputName.replace(dash, 1, "_");
-		dash = outputName.find_first_of('-');
-	}
-
-	int space = outputName.find_first_of(' ');
-	while (space != string::npos)
-	{
-		outputName.replace(space, 1, "_");
-		space = outputName.find_first_of(' ');
-	}
+	std::replace(outputName.begin(), outputName.end(), '-', '_');
+	std::replace(outputName.begin(), outputName.end(), ' ', '_');
 
 	Configuration::setOutputName(outputName);
 	LOG(LogLevel::Info) << "Using output name " << outputName;
@@ -157,7 +147,7 @@ void getOutputName(const string& V2SaveFileName)
 
 void createModFile();
 void renameOutputFolder();
-void output(HoI4World& destWorld)
+void output(const HoI4World& destWorld)
 {
 	createModFile();
 	renameOutputFolder();

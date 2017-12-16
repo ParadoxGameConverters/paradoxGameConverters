@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -36,7 +36,7 @@ V2Pop::V2Pop(string _type, int _size, string _culture, string _religion)
 }
 
 
-V2Pop::V2Pop(Object* popObj)
+V2Pop::V2Pop(shared_ptr<Object> popObj)
 {
 	type = popObj->getKey();
 	size = stoi(popObj->getLeaf("size"));

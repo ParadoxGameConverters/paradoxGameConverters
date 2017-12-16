@@ -34,7 +34,8 @@ V2Localisations* V2Localisations::instance = NULL;
 
 
 
-V2Localisations::V2Localisations()
+V2Localisations::V2Localisations():
+	localisations()
 {
 	LOG(LogLevel::Info) << "Reading localisation";
 
@@ -143,18 +144,18 @@ void V2Localisations::ActuallyUpdateDomainCountry(const string & tag, const stri
 	}
 }
 
-const string V2Localisations::ActuallyGetTextInLanguage(const string& key, const string& language) const
+const optional<string> V2Localisations::ActuallyGetTextInLanguage(const string& key, const string& language) const
 {
 	const auto KeyToLocalisationsMapping = localisations.find(key);
 	if (KeyToLocalisationsMapping == localisations.end())
 	{
-		return "";
+		return {};
 	}
 
 	const auto LanguageToLocalisationMapping = KeyToLocalisationsMapping->second.find(language);
 	if (LanguageToLocalisationMapping == KeyToLocalisationsMapping->second.end())
 	{
-		return "";
+		return {};
 	}
 
 	return LanguageToLocalisationMapping->second;

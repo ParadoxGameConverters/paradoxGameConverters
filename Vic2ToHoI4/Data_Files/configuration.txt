@@ -1,43 +1,65 @@
+# Copyright (c) 2017 The Paradox Game Converters Project
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+
 configuration =
 {
-	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
+	# Victoria 2 directory: A path on your computer where Victoria 2 is installed
 	V2directory = "D:\Paradox Interactive\Victoria 2"
 
-	# HoI4 directory: a path on your computer where Hearts of Iron IV is installed
-	HoI4directory = "D:\SteamLibrary\SteamApps\common\Hearts of Iron IV"
+	# Hearts of Iron 4 directory: A path on your computer where Hearts of Iron 4 is installed
+	HoI4directory = "D:\SteamLibrary\steamapps\common\Hearts of Iron IV"
 
-	# HoI4 Documents directory: a path on your computer where Hearts of Iron IV keeps temporary files
+	# Hearts of Iron 4 Documents directory: A path on your computer where Hearts of Iron 4 keeps temporary files
 	HoI4Documentsdirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Hearts of Iron IV"
 
-	# Vic2Mods: Vic2 mods to use for conversion
-	# Example: Vic2Mods = { modname1 modname2 }
+	# Vic2 Mods: Vic2 mods to use for conversion (mods require manual conversion)
 	Vic2Mods = { }
 
-	# HoI4 version method: how to get the HoI4 version
-	# hardcoded: Use the one hardcoded into the latest converter version
-	# automatic: Attempt to automatically detect the installed HoI4 version
-	# manualEntry: Manually enter the HoI4 version
-	HoI4VersionMethod = "manualEntry"
+	# HoI4 Version Method: The method the converter uses to set the HoI4 version
+	#	Hard Coded (1.4.2)	 - Use the HoI4 version hard coded into the converter (1.4.2)
+	#	Automatic	 - Attempt to automatically detect the installed HoI4 version
+	#	Manual Entry	 - Manually enter the HoI4 version
+	HoI4VersionMethod = "hardcoded"
 
-	# HoI4Version: If manually entering the HoI4 version, set this to the desired version
-	HoI4Version = "1.4.1"
-	
-	# Manpower factor: a multiplier applied to manpower conversion
+	# HoI4 Version: If manually entering the HoI4 version, set this to the desired version
+	HoI4Version = "1.4.2"
+
+	# Industrial shape factor: How much to balance countries' industry to each other. 1.0 = fully balanced, 0.0 = no balancing
+	industrial_shape_factor = "0.0"
+
+	# IC Factor: How much to make the world's industry match default HoI4 industry. 1.0 = fully matched, 0.0 = no matching
+	ic_factor = "0.1"
+
+	# Manpower Factor: Used to increase or decrease the total amount of manpower in the world.
 	manpower_factor = "1.0"
 
-	# Industrial shape factor: how much to balance countries' industry to each other. 1.0 = fully balanced, 0.0 = no balancing
-	industrial_shape_factor = 0.0
+	# Force Multiplier: Controls how many HoI4 divisions are created.
+	force_multiplier = "1.0"
 
-	# IC factor: how much to make the world's industry match default HoI4 industry. 1.0 = fully matched, 0.0 = no matching
-	ic_factor = 0.1
+	# Ideologies Options: Convert only major ideologies.
+	#	Keep major	 - Keep only major ideologies.
+	#	Keep all ideologies	 - Keep all ideologies (democratic, fascist, communist, absolutist, radical).
+	#	Keep default ideologies	 - Keep default ideologies (democratic, fascist, communist).
+	ideologies = "keep_major"
 
-	# Force multiplier: Controls how many HoI4 divisions are created.
-	force_multiplier = 1.0
-
-	# IC stats: If this is turned on, the converter will output files with detailed stats about industry conversion. Just remove the # on the next line if you'd like them.
-	# ICStats = yes
-
-	# Drop Minor Ideologies: Convert only major ideologies
-	drop_minor_ideologies = true
-
+	# Remove Cores: Should some cores be removed during conversion
+	remove_cores = true
 }

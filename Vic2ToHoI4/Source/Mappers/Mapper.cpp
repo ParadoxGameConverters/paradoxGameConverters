@@ -84,14 +84,12 @@ HoI4AdjacencyMapping initHoI4AdjacencyMap()
 void initContinentMap(shared_ptr<Object> obj, continentMapping& continentMap)
 {
 	continentMap.clear();
-	vector<shared_ptr<Object>> continentObjs = obj->getLeaves();	// the continents
-	for (auto continentObj: continentObjs)
+	for (auto continentObj: obj->getLeaves())
 	{
-		string continent = continentObj->getKey();	// the current continent
-		vector<shared_ptr<Object>> provinceObjs = continentObj->getValue("provinces");	// the province numbers in this continent
-		for (auto provinceStr: provinceObjs[0]->getTokens())
+		string continent = continentObj->getKey();
+		for (auto provinceStr: continentObj->safeGetTokens("provinces"))
 		{
-			const int province = stoi(provinceStr);	// the current province num
+			const int province = stoi(provinceStr);
 			continentMap.insert( make_pair(province, continent) );
 		}
 	}
@@ -218,8 +216,7 @@ void initIdeaEffects(shared_ptr<Object> obj, map<string, int>& armyInvIdeas, map
 			}
 			else if (effectType == "literacy")
 			{
-				vector<string> literacyStrs = effectsItr->getTokens();
-				for (auto literacyString: literacyStrs)
+				for (auto literacyString: effectsItr->getTokens())
 				{
 					literacyIdeas.push_back(make_pair(idea, stoi(literacyString)));
 				}

@@ -40,15 +40,18 @@ class V2Agreement;
 class V2Diplomacy
 {
 	public:
-		V2Diplomacy()	{ agreements.clear(); };
-		V2Diplomacy(shared_ptr<Object> obj);
+		V2Diplomacy(): agreements() {}
+		explicit V2Diplomacy(shared_ptr<Object> obj);
 
-		const vector<V2Agreement*>& getAgreements() const	{ return agreements; }
+		const vector<const V2Agreement*>& getAgreements() const	{ return agreements; }
 
 	private:
+		V2Diplomacy(const V2Diplomacy&) = delete;
+		V2Diplomacy& operator=(const V2Diplomacy&) = delete;
+
 		bool isARelevantDiplomaticObject(shared_ptr<Object> obj) const;
 
-		vector<V2Agreement*>	agreements;
+		vector<const V2Agreement*>	agreements;
 };
 
 

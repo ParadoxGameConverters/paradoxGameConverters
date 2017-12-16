@@ -35,7 +35,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../EU4World/EU4Army.h"
 #include "../EU4World/EU4Province.h"
 #include <list>
+#include <memory>
 #include <set>
+
+
 
 class V2Country;
 class V2Army;
@@ -47,6 +50,8 @@ class V2World
 {
 	public:
 		V2World(const EU4World& sourceWorld);
+		V2Province* getProvince(int provNum) const;
+		V2Country* getCountry(string tag) const;
 
 	private:
 		void importProvinces();
@@ -56,17 +61,17 @@ class V2World
 
 		void importDefaultPops();
 		void importPopsFromFile(const string& filename);
-		void importPopsFromProvince(Object* provinceObj);
+		void importPopsFromProvince(shared_ptr<Object> provinceObj);
 
 		void logPopsByCountry() const;
 		void logPopsFromFile(string filename, map<string, map<string, long int>>& popsByCountry) const;
-		void logPopsInProvince(Object* provinceObj, map<string, map<string, long int>>& popsByCountry) const;
+		void logPopsInProvince(shared_ptr<Object> provinceObj, map<string, map<string, long int>>& popsByCountry) const;
 		map<string, map<string, long int>>::iterator getCountryForPopLogging(string country, map<string, map<string, long int>>& popsByCountry) const;
-		void logPop(Object* pop, map<string, map<string, long int>>::iterator countryPopItr) const;
+		void logPop(shared_ptr<Object> pop, map<string, map<string, long int>>::iterator countryPopItr) const;
 		void outputLog(const map<string, map<string, long int>>& popsByCountry) const;
 
 		void findCoastalProvinces();
-		void determineIfProvinceIsCoastal(Object* provinceObj);
+		void determineIfProvinceIsCoastal(shared_ptr<Object> provinceObj);
 
 		void importPotentialCountries();
 		void importPotentialCountry(const string& line, bool dynamicCountry);
@@ -80,6 +85,7 @@ class V2World
 		void convertPrestige();
 		void addAllPotentialCountries();
 		void checkForCivilizedNations();
+		void editDefines(int numCivilisedNations);
 
 		void convertProvinces(const EU4World& sourceWorld);
 		vector<V2Demographic> determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, EU4Country* oldOwner, int destNum, double provPopRatio);
@@ -87,7 +93,7 @@ class V2World
 		void convertDiplomacy(const EU4World& sourceWorld);
 		void setupColonies();
 		void setupStates();
-		void convertUncivReforms();
+		void convertUncivReforms(const EU4World& sourceWorld);
 		void convertTechs(const EU4World& sourceWorld);
 		void allocateFactories(const EU4World& sourceWorld);
 		void setupPops(const EU4World& sourceWorld);
@@ -109,6 +115,8 @@ class V2World
 		map<int, int> leaderIDMap; // <EU4, V2>
 		long totalWorldPopulation;
 		bool isRandomWorld;
+		int	techGroupAlgorithm;
+
 };
 
 

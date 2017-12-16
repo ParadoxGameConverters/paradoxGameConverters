@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -54,7 +54,7 @@ EU4CultureGroupMapper::EU4CultureGroupMapper()
 
 void EU4CultureGroupMapper::addCulturesFromFile(const string& filename)
 {
-	Object* culturesObj = parser_UTF8::doParseFile(filename);
+	shared_ptr<Object> culturesObj = parser_UTF8::doParseFile(filename);
 	if (culturesObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << filename;
@@ -64,7 +64,7 @@ void EU4CultureGroupMapper::addCulturesFromFile(const string& filename)
 }
 
 
-void EU4CultureGroupMapper::initCultureGroups(Object* obj)
+void EU4CultureGroupMapper::initCultureGroups(shared_ptr<Object> obj)
 {
 	for (auto cultureGroup: obj->getLeaves())
 	{

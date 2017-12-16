@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include <memory>
 #include <string>
 #include <vector>
 using namespace std;
@@ -57,7 +58,7 @@ class minorityPopMapper
 		}
 
 		minorityPopMapper();
-		void initMinorityPopMap(Object* obj);
+		void initMinorityPopMap(shared_ptr<Object> obj);
 
 		bool MatchMinorityPop(V2Pop* pop);
 

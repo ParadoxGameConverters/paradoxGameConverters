@@ -33,7 +33,7 @@ using namespace std;
 class V2Leader
 {
 	public:
-		V2Leader(shared_ptr<Object> obk);
+		explicit V2Leader(shared_ptr<Object> obj);
 
 		string getName() const { return name; }
 		string getType() const { return type; }
@@ -42,6 +42,9 @@ class V2Leader
 		string getBackground() const { return background; }
 
 	private:
+		V2Leader(const V2Leader&) = delete;
+		V2Leader& operator=(const V2Leader&) = delete;
+
 		string name;
 		string type;
 		string personality;

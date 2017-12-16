@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -22,23 +22,23 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Color.h"
-
 #include <chrono>
 #include <random>
-
-#include <boost/lexical_cast.hpp>
-
 #include "Object.h"
+
+
 
 Color::Color()
 : initialized(false), c({ 0, 0, 0 })
 {}
 
+
 Color::Color(const int r, const int g, const int b)
 : initialized(true), c({ r, g, b })
 {}
 
-Color::Color(Object* colorObject)
+
+Color::Color(shared_ptr<Object> colorObject)
 : initialized(false), c({ 0, 0, 0 })
 {
 	auto colorTokens = colorObject->getTokens();	// the colors held by the object
@@ -47,10 +47,11 @@ Color::Color(Object* colorObject)
 	{
 		if (!colorTokens[i].empty())
 		{
-			c[i] = boost::lexical_cast<int>(colorTokens[i]);
+			c[i] = stoi(colorTokens[i]);
 		}
 	}
 }
+
 
 void Color::RandomlyFlunctuate(const int stdDev)
 {
@@ -73,11 +74,13 @@ void Color::RandomlyFlunctuate(const int stdDev)
 	}
 }
 
+
 std::ostream& operator<<(std::ostream& out, const Color& color)
 {
 	out << color.c[0] << ' ' << color.c[1] << ' ' << color.c[2];
 	return out;
 }
+
 
 void Color::GetRGB(int& r, int& g, int& b) const
 {
@@ -85,6 +88,7 @@ void Color::GetRGB(int& r, int& g, int& b) const
 	g = c[1];
 	b = c[2];
 }
+
 
 Color::operator bool() const
 {

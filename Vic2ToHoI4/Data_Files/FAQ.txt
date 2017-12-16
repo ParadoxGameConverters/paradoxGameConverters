@@ -22,3 +22,9 @@ A: You may need to install this if you are not on Windows 10: https://support.mi
 
 Q: The flags on my units keep changing. What can I do about this?
 A: This is an HoI4 bug, with a temporary solution here: https://forum.paradoxplaza.com/forum/index.php?threads/hoi4-dev-diary-squanching-them-bugs.995110/page-4#post-22333853
+
+Q: My nations are mostly flagless. I only used the Vic2 random generator world
+A: Tags differ from Vanilla, that's why. The solution is to paste the flags of the generated mod in the converter's flag folder
+
+Q: Most of my map is blank? What's wrong and how do I fix it?
+A: HoI4 has an occassional problem with mods replacing default files. Paradox is aware and aiming to fix it, so this should go away. In the meanwhile, when playing your converted mod, go to your HoI4 installation folder and rename 'history' to '~history'. When done playing your converted mod, change it back.

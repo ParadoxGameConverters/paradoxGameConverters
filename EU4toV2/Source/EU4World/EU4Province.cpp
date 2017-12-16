@@ -1,4 +1,4 @@
-/*Copyright(c) 2014 The Paradox Game Converters Project
+/*Copyright(c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -19,6 +19,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
 
+
 #include "EU4Province.h"
 #include "EU4Country.h"
 #include "EU4Religion.h"
@@ -30,7 +31,7 @@ THE SOFTWARE. */
 
 
 
-EU4Province::EU4Province(Object* obj)
+EU4Province::EU4Province(shared_ptr<Object> obj)
 {
 	provTaxIncome = 0;
 	provProdIncome = 0;
@@ -44,15 +45,15 @@ EU4Province::EU4Province(Object* obj)
 
 	num = 0 - atoi(obj->getKey().c_str());
 
-	vector<Object*> baseTaxObjs;			// the object holding the base tax
+	vector<shared_ptr<Object>> baseTaxObjs;			// the object holding the base tax
 	baseTaxObjs = obj->getValue("base_tax");
 	baseTax = (baseTaxObjs.size() > 0) ? atof(baseTaxObjs[0]->getLeaf().c_str()) : 0.0f;
 
-	vector<Object*> baseProdObjs;			// the object holding the base production
+	vector<shared_ptr<Object>> baseProdObjs;			// the object holding the base production
 	baseProdObjs = obj->getValue("base_production");
 	baseProd = (baseProdObjs.size() > 0) ? atof(baseProdObjs[0]->getLeaf().c_str()) : 0.0f;
 
-	vector<Object*> baseManpowerObjs;		// the object holding the base manpower
+	vector<shared_ptr<Object>> baseManpowerObjs;		// the object holding the base manpower
 	baseManpowerObjs = obj->getValue("base_manpower");
 	manpower = (baseManpowerObjs.size() > 0) ? atof(baseManpowerObjs[0]->getLeaf().c_str()) : 0.0f;
 
@@ -62,20 +63,20 @@ EU4Province::EU4Province(Object* obj)
 		baseProd = baseTax;
 	}
 
-	vector<Object*> ownerObjs;				// the object holding the owner
+	vector<shared_ptr<Object>> ownerObjs;				// the object holding the owner
 	ownerObjs = obj->getValue("owner");
 	(ownerObjs.size() == 0) ? ownerString = "" : ownerString = ownerObjs[0]->getLeaf();
 	owner = NULL;
 
 	cores.clear();
-	vector<Object*> coreObjs;				// the object holding the cores
+	vector<shared_ptr<Object>> coreObjs;				// the object holding the cores
 	coreObjs = obj->getValue("core");
 	for (unsigned int i = 0; i < coreObjs.size(); i++)
 	{
 		cores.push_back(coreObjs[i]->getLeaf());
 	}
 
-	vector<Object*> hreObj = obj->getValue("hre");
+	vector<shared_ptr<Object>> hreObj = obj->getValue("hre");
 	if ((hreObj.size() > 0) && (hreObj[0]->getLeaf() == "yes"))
 	{
 		inHRE = true;
@@ -91,10 +92,10 @@ EU4Province::EU4Province(Object* obj)
 	lastPossessedDate.clear();
 	religionHistory.clear();
 	cultureHistory.clear();
-	vector<Object*> historyObj = obj->getValue("history");				// the objects holding the history of this province
+	vector<shared_ptr<Object>> historyObj = obj->getValue("history");				// the objects holding the history of this province
 	if (historyObj.size() > 0)
 	{
-		vector<Object*> historyObjs = historyObj[0]->getLeaves();		// the object holding the current history point
+		vector<shared_ptr<Object>> historyObjs = historyObj[0]->getLeaves();		// the object holding the current history point
 		string lastOwner;				// the last owner of the province
 		string thisCountry;			// the current owner of the province
 		for (unsigned int i = 0; i < historyObjs.size(); i++)
@@ -117,7 +118,7 @@ EU4Province::EU4Province(Object* obj)
 				continue;
 			}
 
-			vector<Object*> ownerObj = historyObjs[i]->getValue("owner");	// the object holding the current historical owner change
+			vector<shared_ptr<Object>> ownerObj = historyObjs[i]->getValue("owner");	// the object holding the current historical owner change
 			if (ownerObj.size() > 0)
 			{
 				const date newDate(historyObjs[i]->getKey());	// the date this happened
@@ -132,13 +133,13 @@ EU4Province::EU4Province(Object* obj)
 
 				ownershipHistory.push_back(make_pair(newDate, thisCountry));
 			}
-			vector<Object*> culObj = historyObjs[i]->getValue("culture");	// the object holding the current historical culture change
+			vector<shared_ptr<Object>> culObj = historyObjs[i]->getValue("culture");	// the object holding the current historical culture change
 			if (culObj.size() > 0)
 			{
 				const date newDate(historyObjs[i]->getKey());	// the date this happened
 				cultureHistory.push_back(make_pair(newDate, culObj[0]->getLeaf()));
 			}
-			vector<Object*> religObj = historyObjs[i]->getValue("religion");	// the object holding the current historical religion change
+			vector<shared_ptr<Object>> religObj = historyObjs[i]->getValue("religion");	// the object holding the current historical religion change
 			if (religObj.size() > 0)
 			{
 				const date newDate(historyObjs[i]->getKey());	// the date this happened
@@ -157,7 +158,7 @@ EU4Province::EU4Province(Object* obj)
 
 	if (cultureHistory.size() == 0)
 	{
-		vector<Object*> culObj = obj->getValue("culture");	// the object holding the current culture
+		vector<shared_ptr<Object>> culObj = obj->getValue("culture");	// the object holding the current culture
 		if (culObj.size() > 0)
 		{
 			const date newDate;	// the default date
@@ -166,7 +167,7 @@ EU4Province::EU4Province(Object* obj)
 	}
 	if (religionHistory.size() == 0)
 	{
-		vector<Object*> religObj = obj->getValue("religion");	// the object holding the current religion
+		vector<shared_ptr<Object>> religObj = obj->getValue("religion");	// the object holding the current religion
 		if (religObj.size() > 0)
 		{
 			const date newDate;	// the default date
@@ -177,7 +178,7 @@ EU4Province::EU4Province(Object* obj)
 	popRatios.clear();
 	buildings.clear();
 
-	vector<Object*> tradegoodsObj = obj->getValue("trade_goods");
+	vector<shared_ptr<Object>> tradegoodsObj = obj->getValue("trade_goods");
 	if (tradegoodsObj.size() > 0) 
 	{
 		tradeGoods = tradegoodsObj[0]->getLeaf();
@@ -187,7 +188,7 @@ EU4Province::EU4Province(Object* obj)
 		tradeGoods = "";
 	}
 
-	vector<Object*> provNameObj = obj->getValue("name");
+	vector<shared_ptr<Object>> provNameObj = obj->getValue("name");
 	if (provNameObj.size() > 0)
 	{
 		provName = provNameObj[0]->getLeaf();
@@ -200,7 +201,7 @@ EU4Province::EU4Province(Object* obj)
 	// if we didn't have base manpower (EU4 < 1.12), check for manpower instead
 	if (manpower == 0.0f)
 	{
-		vector<Object*> manpowerObj = obj->getValue("manpower");
+		vector<shared_ptr<Object>> manpowerObj = obj->getValue("manpower");
 		if (manpowerObj.size() > 0)
 		{
 			string manpowerStr = manpowerObj[0]->getLeaf();
@@ -209,7 +210,7 @@ EU4Province::EU4Province(Object* obj)
 	}
 
 	// great projects
-	vector<Object*> projectsObj = obj->getValue("great_projects");
+	vector<shared_ptr<Object>> projectsObj = obj->getValue("great_projects");
 	if (projectsObj.size() > 0)
 	{
 		for (const auto& proj : projectsObj[0]->getTokens())
@@ -400,9 +401,9 @@ double EU4Province::getCulturePercent(string culture)
 }
 
 
-void EU4Province::checkBuilding(const Object* provinceObj, string building)
+void EU4Province::checkBuilding(const shared_ptr<Object> provinceObj, string building)
 {
-	vector<Object*> buildingObj;	// the object holding the building
+	vector<shared_ptr<Object>> buildingObj;	// the object holding the building
 	buildingObj = provinceObj->getValue(building);
 	if ((buildingObj.size() > 0) && (buildingObj[0]->getLeaf() == "yes"))
 	{

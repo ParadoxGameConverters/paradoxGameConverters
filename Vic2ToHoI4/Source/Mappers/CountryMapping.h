@@ -29,7 +29,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Object.h"
 #include <map>
 #include <string>
-#include <boost/bimap.hpp>
 using namespace std;
 
 
@@ -70,8 +69,11 @@ class CountryMapper
 		}
 		CountryMapper();
 
+		CountryMapper(const CountryMapper&) = delete;
+		CountryMapper& operator=(const CountryMapper&) = delete;
+
 		void readRules();
-		vector<shared_ptr<Object>> getRules();
+		vector<shared_ptr<Object>> getRules() const;
 		void importRule(shared_ptr<Object> rule);
 
 		void CreateMappings(const V2World* srcWorld);
@@ -80,14 +82,15 @@ class CountryMapper
 		bool mapToFirstUnusedVic2Tag(const vector<string>& possibleVic2Tags, const string& EU4Tag);
 		string generateNewHoI4Tag(const string& Vic2Tag);
 		void mapToNewTag(const string& Vic2Tag, const string& HoI4Tag);
-		void LogMapping(const string& sourceTag, const string& targetTag, const string& reason);
-		bool tagIsAlreadyAssigned(const string& HoI4Tag);
+		void LogMapping(const string& sourceTag, const string& targetTag, const string& reason) const;
+		bool tagIsAlreadyAssigned(const string& HoI4Tag) const;
 
 		const string GetHoI4Tag(const string& V2Tag) const;
 		const string GetVic2Tag(const string& HoI4Tag) const;
 
 		map<string, vector<string>> Vic2TagToHoI4TagsRules;
-		boost::bimap<string, string> V2TagToHoI4TagMap;
+		map<string, string> V2TagToHoI4TagMap;
+		map<string, string> HoI4TagToV2TagMap;
 
 		char generatedHoI4TagPrefix;
 		int generatedHoI4TagSuffix;

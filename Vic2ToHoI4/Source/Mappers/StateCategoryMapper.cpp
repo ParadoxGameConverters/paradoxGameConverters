@@ -33,13 +33,14 @@ using namespace std;
 stateCategoryMapper* stateCategoryMapper::instance;
 
 
-stateCategoryMapper::stateCategoryMapper()
+stateCategoryMapper::stateCategoryMapper():
+	stateCategories()
 {
 	readCategoriesFromDirectory(Configuration::getHoI4Path() + "/common/state_category");
 }
 
 
-void stateCategoryMapper::readCategoriesFromDirectory(string directory)
+void stateCategoryMapper::readCategoriesFromDirectory(const string& directory)
 {
 	set<string> categoryFiles;
 	Utils::GetAllFilesInFolder(directory, categoryFiles);
@@ -50,7 +51,7 @@ void stateCategoryMapper::readCategoriesFromDirectory(string directory)
 }
 
 
-void stateCategoryMapper::readCategoriesFromFile(string file)
+void stateCategoryMapper::readCategoriesFromFile(const string& file)
 {
 	shared_ptr<Object> parsedFile = parser_UTF8::doParseFile(file);
 	vector<shared_ptr<Object>> StateCategoryObjs = parsedFile->getLeaves();
@@ -59,8 +60,7 @@ void stateCategoryMapper::readCategoriesFromFile(string file)
 	for (auto categoryObj: categoryObjs)
 	{
 		string category = categoryObj->getKey();
-		string slotsString = categoryObj->getLeaf("local_building_slots");
-		int slots = stoi(slotsString);
+		int slots = categoryObj->safeGetInt("local_building_slots");
 		stateCategories.insert(make_pair(slots, category));
 	}
 }

@@ -563,25 +563,6 @@ tag vs internalTag:
           </alternatives>
         </requiredFolder>
 
-        <requiredFolder>
-          <tag>V2Documentsdirectory</tag>
-          <friendlyName>Victoria 2 Documents directory</friendlyName>
-          <description>A path on your computer where Victoria 2 keeps temporary files</description>
-          <alternatives>
-            <alternative>
-              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
-              <subFolderLocation>Paradox Interactive\Victoria II</subFolderLocation>
-              <subFolderLocation>map\cache</subFolderLocation>
-            </alternative>
-            <alternative>
-              <defaultLocationType>SteamFolder</defaultLocationType>
-              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
-              <subFolderLocation>map\cache</subFolderLocation>
-            </alternative>
-          </alternatives>
-          <subFolderLocation>map\cache</subFolderLocation>
-        </requiredFolder>
-		
 		<requiredFolder>
           <tag>HoI4directory</tag>
           <friendlyName>Hearts of Iron 4 directory</friendlyName>

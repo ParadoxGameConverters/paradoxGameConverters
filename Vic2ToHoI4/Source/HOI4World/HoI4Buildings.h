@@ -37,9 +37,9 @@ using namespace std;
 class HoI4Building
 {
 	public:
-		HoI4Building(int _stateID, double _xCoordinate, double _zCoordinate);
+		explicit HoI4Building(int _stateID, double _xCoordinate, double _zCoordinate);
 
-		friend ostream& operator << (ostream& out, HoI4Building& building);
+		friend ostream& operator << (ostream& out, const HoI4Building& building);
 
 		virtual ostream& print(ostream& out) const;
 
@@ -49,6 +49,10 @@ class HoI4Building
 		double yCoordinate;
 		double zCoordinate;
 		double rotation;
+
+	private:
+		HoI4Building(const HoI4Building&) = delete;
+		HoI4Building& operator=(const HoI4Building&) = delete;
 };
 
 
@@ -60,6 +64,9 @@ class HoI4NavalBase: public HoI4Building
 		ostream& print(ostream& out) const;
 
 	private:
+		HoI4NavalBase(const HoI4NavalBase&) = delete;
+		HoI4NavalBase& operator=(const HoI4NavalBase&) = delete;
+
 		int connectingSeaProvince;
 };
 
@@ -70,11 +77,14 @@ class HoI4NavalBase: public HoI4Building
 class HoI4Buildings
 {
 	public:
-		HoI4Buildings(const map<int, int>& provinceToStateIDMap);
+		explicit HoI4Buildings(const map<int, int>& provinceToStateIDMap);
 
 		void output() const;
 
 	private:
+		HoI4Buildings(const HoI4Buildings&) = delete;
+		HoI4Buildings& operator=(const HoI4Buildings&) = delete;
+
 		void placeNavalBases(const map<int, int>& provinceToStateIDMap);
 
 		multimap<int, HoI4Building*> buildings;

@@ -32,17 +32,17 @@ using namespace std;
 
 
 
-HoI4Building::HoI4Building(int _stateID, double _xCoordinate, double _zCoordinate)
+HoI4Building::HoI4Building(int _stateID, double _xCoordinate, double _zCoordinate):
+	stateID(_stateID),
+	xCoordinate(_xCoordinate),
+	yCoordinate(10.0),
+	zCoordinate(_zCoordinate),
+	rotation(0.0)
 {
-	stateID = _stateID;
-	xCoordinate = _xCoordinate;
-	yCoordinate = 10.0;
-	zCoordinate = _zCoordinate;
-	rotation = 0.0;
 }
 
 
-ostream& operator << (ostream& out, HoI4Building& building)
+ostream& operator << (ostream& out, const HoI4Building& building)
 {
 	return building.print(out);
 }
@@ -54,9 +54,10 @@ ostream& HoI4Building::print(ostream& out) const
 }
 
 
-HoI4NavalBase::HoI4NavalBase(int _stateID, double _xCoordinate, double _zCoordinate, int _connectingSeaProvince): HoI4Building(_stateID, _xCoordinate, _zCoordinate)
+HoI4NavalBase::HoI4NavalBase(int _stateID, double _xCoordinate, double _zCoordinate, int _connectingSeaProvince):
+	HoI4Building(_stateID, _xCoordinate, _zCoordinate),
+	connectingSeaProvince(_connectingSeaProvince)
 {
-	connectingSeaProvince = _connectingSeaProvince;
 }
 
 
@@ -69,7 +70,8 @@ ostream& HoI4NavalBase::print(ostream& out) const
 }
 
 
-HoI4Buildings::HoI4Buildings(const map<int, int>& provinceToStateIDMap)
+HoI4Buildings::HoI4Buildings(const map<int, int>& provinceToStateIDMap):
+	buildings()
 {
 	LOG(LogLevel::Info) << "Creating buildings";
 	placeNavalBases(provinceToStateIDMap);
@@ -81,8 +83,8 @@ void HoI4Buildings::placeNavalBases(const map<int, int>& provinceToStateIDMap)
 	map<int, int> coastalProvinces = coastalHoI4ProvincesMapper::getCoastalProvinces();
 	for (auto province: coastalProvinces)
 	{
-		auto position = provinceNeighborMapper::getBorderCenter(province.first, province.second);
-		if (position.first == -1)
+		auto possiblePosition = provinceNeighborMapper::getBorderCenter(province.first, province.second);
+		if (!possiblePosition)
 		{
 			LOG(LogLevel::Warning) << "Could not find position for province " << province.first << ". Naval base not set.";
 			continue;
@@ -95,7 +97,7 @@ void HoI4Buildings::placeNavalBases(const map<int, int>& provinceToStateIDMap)
 			continue;
 		}
 
-		HoI4NavalBase* newNavalBase = new HoI4NavalBase(provinceToStateMapping->second, position.first, position.second, province.second);
+		HoI4NavalBase* newNavalBase = new HoI4NavalBase(provinceToStateMapping->second, possiblePosition->first, possiblePosition->second, province.second);
 		buildings.insert(make_pair(provinceToStateMapping->second, newNavalBase));
 	}
 }

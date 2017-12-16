@@ -35,13 +35,16 @@ using namespace std;
 class HoI4Minister
 {
 	public:
-		HoI4Minister(vector<string>& firstNames, vector<string>& lastNames, string _ideology, governmentJob job, governmentJobsMap& jobMap, vector<string>& portraits);
+		HoI4Minister(vector<string>& firstNames, vector<string>& lastNames, const string& _ideology, governmentJob job, governmentJobsMap& jobMap, vector<string>& portraits);
 		void output(FILE* output);
 
 		string			getFirstJob()	const { return roles[0].first; }
 		unsigned int	getID()			const { return ID; }
 
 	private:
+		HoI4Minister(const HoI4Minister&) = delete;
+		HoI4Minister& operator=(const HoI4Minister&) = delete;
+
 		unsigned int	ID;
 		string			name;
 		string			ideology;

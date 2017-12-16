@@ -1,4 +1,4 @@
-fascist = {
+fascism = {
 		fascism_banned = {
 
 			picture = generic_fascism_banned
@@ -76,9 +76,42 @@ fascist = {
 				factor = 0
 			}
 		}
+
+		fascism_revolutionaries = {
+
+			removal_cost = -1
+
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_fascism_drift_bonus
+
+			modifier = {
+				unity_factor = -0.1
+			}
+		}
+
+		fascism_partisans_recruiting = {
+
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_communism_drift_bonus
+
+			modifier = {
+				conscription = -0.002
+				fascism_drift = 0.05
+			}
+
+			ai_will_do = {
+				factor = 0
+			}
+		}
 }
 
-communist = {
+communism = {
 		communism_banned = {
 			picture = anti_soviet_pact
 			allowed = {
@@ -152,7 +185,7 @@ communist = {
 			}
 		}
 		
-		communist_partisans_recruiting = {
+		communism_partisans_recruiting = {
 			
 			allowed = {
 				always = no # Triggered via event
@@ -164,9 +197,24 @@ communist = {
 				conscription = -0.002
 				communism_drift = 0.05
 			}
-	
+
 			ai_will_do = {
 				factor = 0
+			}
+		}
+
+		communism_revolutionaries = {
+
+			removal_cost = -1
+
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_fascism_drift_bonus
+
+			modifier = {
+				unity_factor = -0.1
 			}
 		}
 }
@@ -231,6 +279,20 @@ democratic = {
 }
 
 absolutist = {
+		absolutist_defeated = {
+			removal_cost = -1
+
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_democratic_drift_bonus
+
+			modifier = {
+				unity_factor = 0.1
+			}
+		}
+
 		absolutist_influence = {
 			allowed = {
 				always = no
@@ -268,9 +330,56 @@ absolutist = {
 				absolutist_drift = 0.1
 			}
 		}
+
+		absolutist_revolutionaries = {
+
+			removal_cost = -1
+
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_fascism_drift_bonus
+
+			modifier = {
+				unity_factor = -0.1
+			}
+		}
+
+		absolutist_partisans_recruiting = {
+
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_communism_drift_bonus
+
+			modifier = {
+				conscription = -0.002
+				absolutist_drift = 0.05
+			}
+
+			ai_will_do = {
+				factor = 0
+			}
+		}
 }
 
 radical = {
+		radical_defeated = {
+			removal_cost = -1
+
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_democratic_drift_bonus
+
+			modifier = {
+				unity_factor = 0.1
+			}
+		}
+
 		radical_influence = {
 			allowed = {
 				always = no
@@ -307,6 +416,39 @@ radical = {
 				radical_drift = 0.1
 			}
 		}
+
+		radical_revolutionaries = {
+
+			removal_cost = -1
+
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_fascism_drift_bonus
+
+			modifier = {
+				unity_factor = -0.1
+			}
+		}
+
+		radical_partisans_recruiting = {
+
+			allowed = {
+				always = no # Triggered via event
+			}
+
+			picture = generic_communism_drift_bonus
+
+			modifier = {
+				conscription = -0.002
+				radical_drift = 0.05
+			}
+
+			ai_will_do = {
+				factor = 0
+			}
+		}
 }
 
 neutrality = {
@@ -324,7 +466,7 @@ neutrality = {
 			picture = generic_pp_unity_bonus
 
 			modifier = {
-				democratic_drift = -0.02
+				neutrality_drift = -0.02
 			}
 		}	
 }

@@ -36,40 +36,58 @@ using namespace::std;
 class Object;
 
 
-
-// An RGB color triplet.
-class Color
+namespace ConverterColor
 {
-	public:
-		// Default initializes the color values to 0.
-		Color();
-		// Initializes the color with a given RGB color triplet.
-		Color(int r, int g, int b);
-		// Initializes the color from an object node whose leaf value is
-		// an RGB color triplet (separated only by whitespace).
-		Color(shared_ptr<Object> colorObject);
+	struct red
+	{
+		red() { Red = 0; }
+		red(int r): Red(r) {}
+		int Red;
+	};
+	struct green
+	{
+		green() { Green = 0; }
+		green(int g): Green(g) {}
+		int Green;
+	};
+	struct blue
+	{
+		blue() { Blue = 0; }
+		blue(int b): Blue(b) {}
+		int Blue;
+	};
 
-		// Randomly adjust the RGB values up or down (within the range 0-255)
-		// with a normal distribution of the given standard deviation.
-		void RandomlyFlunctuate(int stdDev);
+	class Color
+	{
+		public:
+			Color();
+			explicit Color(red r, green g, blue b);
+			explicit Color(shared_ptr<Object> colorObject);
+			Color(const Color&) = default;
+			Color& operator=(const Color&) = default;
 
-		// Writes the RGB triplet to the stream as "R G B".
-		friend ostream& operator<<(ostream&, const Color&);
+			// Randomly adjust the RGB values up or down (within the range 0-255)
+			// with a normal distribution of the given standard deviation.
+			void RandomlyFlunctuate(int stdDev);
 
-		// Passes back the RGB color triplet as individual components.
-		void GetRGB(int& r, int& g, int& b) const;
+			friend ostream& operator<<(ostream&, const Color&);
 
-		bool operator == (const Color& right) const;
-		bool operator != (const Color& right) const;
-		bool operator < (const Color& right) const;
+			void GetRGB(red& r, green& g, blue& b) const;
 
-		// Returns true if the color has been initialized with an RGB triplet.
-		operator bool() const;
+			bool operator == (const Color& right) const;
+			bool operator != (const Color& right) const;
+			bool operator < (const Color& right) const;
 
-	private:
-		bool initialized;			// whether or not this instance has been initialized (true) or is a default (false)
-		array<int, 3> c;	// the color values
-};
+			// Returns true if the color has been initialized with an RGB triplet.
+			operator bool() const;
+
+		private:
+			bool initialized;
+			array<int, 3> c;
+	};
+
+	ostream& operator<<(ostream& out, const Color& color);
+}
 
 
 

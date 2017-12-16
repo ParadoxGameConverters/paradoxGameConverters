@@ -37,24 +37,24 @@ class Object;
 class V2Relations
 {
 	public:
-		V2Relations(shared_ptr<Object> relationsObj);
+		explicit V2Relations(shared_ptr<Object> relationsObj);
 
 		string getTag() const { return tag; }
 		int getRelations() const { return value; }
 		int getLevel() const { return level; }
 
 		bool hasMilitaryAccess() const { return militaryAccess; }
-		date getDiplomatLastSent() const { return lastSentDiplomat; }
-		date getLastWar() const { return lastWar; }
-		date getTruceUntil() const { return truceUntil; }
+		const date getDiplomatLastSent() const { return lastSentDiplomat; }
+		const date getLastWar() const { return lastWar; }
+		const date getTruceUntil() const { return truceUntil; }
 
 	private:
-		void setValue(shared_ptr<Object> relationsObj);
-		void setMilitaryAccess(shared_ptr<Object> relationsObj);
+		V2Relations(const V2Relations&) = delete;
+		V2Relations& operator=(const V2Relations&) = delete;
+
 		void setLastDiplomat(shared_ptr<Object> relationsObj);
 		void setLastWar(shared_ptr<Object> relationsObj);
 		void setTruce(shared_ptr<Object> relationsObj);
-		void setLevel(shared_ptr<Object> relationsObj);
 
 		string tag;
 		int value;

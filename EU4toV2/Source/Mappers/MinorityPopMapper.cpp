@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -37,7 +37,7 @@ minorityPopMapper::minorityPopMapper()
 {
 	LOG(LogLevel::Info) << "Parsing minority pops mappings";
 
-	Object* minoritiesObj = parser_UTF8::doParseFile("minorityPops.txt");
+	shared_ptr<Object> minoritiesObj = parser_UTF8::doParseFile("minorityPops.txt");
 	if (minoritiesObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file minorityPops.txt";
@@ -53,7 +53,7 @@ minorityPopMapper::minorityPopMapper()
 }
 
 
-void minorityPopMapper::initMinorityPopMap(Object* obj)
+void minorityPopMapper::initMinorityPopMap(shared_ptr<Object> obj)
 {
 	for (auto rule: obj->getLeaves())
 	{

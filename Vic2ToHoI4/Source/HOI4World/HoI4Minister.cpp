@@ -25,15 +25,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Minister::HoI4Minister(vector<string>& firstNames, vector<string>& lastNames, string _ideology, governmentJob job, governmentJobsMap& jobMap, vector<string>& portraits)
+HoI4Minister::HoI4Minister(vector<string>& firstNames, vector<string>& lastNames, const string& _ideology, governmentJob job, governmentJobsMap& jobMap, vector<string>& portraits):
+	ID(Configuration::getNextLeaderID()),
+	name(firstNames[rand() % firstNames.size()] + " " + lastNames[rand() % lastNames.size()]),
+	ideology(_ideology),
+	loyalty(1.0f),
+	picture(portraits[rand() % portraits.size()]),
+	roles()
 {
-	ID			= Configuration::getNextLeaderID();
-	name		= firstNames[rand() % firstNames.size()] + " " + lastNames[rand() % lastNames.size()];
-	ideology	= _ideology;
-	loyalty	= 1.0f;
-
-	picture	= portraits[rand() % portraits.size()];
-
 	vector<string> traits = jobMap.find(job.first)->second;
 	roles.push_back(make_pair(job.first, traits[rand() % traits.size()]));
 
@@ -51,7 +50,7 @@ HoI4Minister::HoI4Minister(vector<string>& firstNames, vector<string>& lastNames
 
 void HoI4Minister::output(FILE * output)
 {
-	fprintf(output, "\t%d = {\n", ID);
+	fprintf(output, "\t%u = {\n", ID);
 	fprintf(output, "\t\tname = \"%s\"\n", name.c_str());
 	fprintf(output, "\t\tideology = %s\n", ideology.c_str());
 	fprintf(output, "\t\tloyalty = %.2f\n", loyalty);

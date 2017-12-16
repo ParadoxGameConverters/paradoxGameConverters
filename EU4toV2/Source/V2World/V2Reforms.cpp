@@ -44,7 +44,7 @@ V2Reforms::V2Reforms(const V2Country* dstCountry, const EU4Country* srcCountry)
 	upperHouseEffects(dstCountry);
 	governmentEffects(dstCountry);
 
-	if (srcCountry->hasModifier("the_abolish_slavery_act"))
+	if ((srcCountry->hasModifier("the_abolish_slavery_act")) || (srcCountry->hasModifier("abolish_slavery_act")))
 	{
 		slavery += 1;
 	}

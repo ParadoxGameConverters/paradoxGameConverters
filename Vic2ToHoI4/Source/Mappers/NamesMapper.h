@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include <optional>
 #include <map>
 #include <random>
 #include <string>
@@ -37,60 +38,60 @@ using namespace std;
 class namesMapper
 {
 	public:
-		static vector<string> getMaleNames(string culture)
+		static optional<vector<string>> getMaleNames(const string& culture)
 		{
 			return getInstance()->GetMaleNames(culture);
 		}
-		static vector<string> getFemaleNames(string culture)
+		static optional<vector<string>> getFemaleNames(const string& culture)
 		{
 			return getInstance()->GetFemaleNames(culture);
 		}
-		static vector<string> getSurnames(string culture)
+		static optional<vector<string>> getSurnames(const string& culture)
 		{
 			return getInstance()->GetSurnames(culture);
 		}
-		static vector<string> getCallsigns(string culture)
+		static optional<vector<string>> getCallsigns(const string& culture)
 		{
 			return getInstance()->GetCallsigns(culture);
 		}
 
-		static string getMaleName(string culture)
+		static optional<string> getMaleName(const string& culture)
 		{
 			return getInstance()->GetMaleName(culture);
 		}
-		static string getFemaleName(string culture)
+		static optional<string> getFemaleName(const string& culture)
 		{
 			return getInstance()->GetFemaleName(culture);
 		}
-		static string getSurname(string culture)
+		static optional<string> getSurname(const string& culture)
 		{
 			return getInstance()->GetSurname(culture);
 		}
-		static string getCallsign(string culture)
+		static optional<string> getCallsign(const string& culture)
 		{
 			return getInstance()->GetCallsign(culture);
 		}
-		static string getCarCompanyName(string culture)
+		static optional<string> getCarCompanyName(const string& culture)
 		{
 			return getInstance()->GetCarCompanyName(culture);
 		}
-		static string getWeaponCompanyName(string culture)
+		static optional<string> getWeaponCompanyName(const string& culture)
 		{
 			return getInstance()->GetWeaponCompanyName(culture);
 		}
-		static string getAircraftCompanyName(string culture)
+		static optional<string> getAircraftCompanyName(const string& culture)
 		{
 			return getInstance()->GetAircraftCompanyName(culture);
 		}
-		static string getNavalCompanyName(string culture)
+		static optional<string> getNavalCompanyName(const string& culture)
 		{
 			return getInstance()->GetNavalCompanyName(culture);
 		}
-		static string getIndustryCompanyName(string culture)
+		static optional<string> getIndustryCompanyName(const string& culture)
 		{
 			return getInstance()->GetIndustryCompanyName(culture);
 		}
-		static string getElectronicCompanyName(string culture)
+		static optional<string> getElectronicCompanyName(const string& culture)
 		{
 			return getInstance()->GetElectronicCompanyName(culture);
 		}
@@ -106,25 +107,28 @@ class namesMapper
 		}
 		namesMapper();
 
-		void processVic2CulturesFile(string filename);
+		namesMapper(const namesMapper&) = delete;
+		namesMapper& operator=(const namesMapper&) = delete;
+
+		void processVic2CulturesFile(const string& filename);
 		void processNamesFile();
 		void checkForNames();
 
-		vector<string> GetMaleNames(string culture) const;
-		vector<string> GetFemaleNames(string culture) const;
-		vector<string> GetSurnames(string culture) const;
-		vector<string> GetCallsigns(string culture) const;
-		string GetMaleName(string culture);
-		string GetFemaleName(string culture);
-		string GetSurname(string culture);
-		string GetCallsign(string culture);
-		string GetCarCompanyName(string culture);
-		string GetWeaponCompanyName(string culture);
-		string GetAircraftCompanyName(string culture);
-		string GetNavalCompanyName(string culture);
-		string GetIndustryCompanyName(string culture);
-		string GetElectronicCompanyName(string culture);
-		string getCompanyName(map<string, vector<string>>& companyNames, string culture);
+		optional<vector<string>> GetMaleNames(const string& culture) const;
+		optional<vector<string>> GetFemaleNames(const string& culture) const;
+		optional<vector<string>> GetSurnames(const string& culture) const;
+		optional<vector<string>> GetCallsigns(const string& culture) const;
+		optional<string> GetMaleName(const string& culture);
+		optional<string> GetFemaleName(const string& culture);
+		optional<string> GetSurname(const string& culture);
+		optional<string> GetCallsign(const string& culture);
+		optional<string> GetCarCompanyName(const string& culture);
+		optional<string> GetWeaponCompanyName(const string& culture);
+		optional<string> GetAircraftCompanyName(const string& culture);
+		optional<string> GetNavalCompanyName(const string& culture);
+		optional<string> GetIndustryCompanyName(const string& culture);
+		optional<string> GetElectronicCompanyName(const string& culture);
+		optional<string> getCompanyName(map<string, vector<string>>& companyNames, const string& culture);
 
 		map<string, vector<string>> maleNamesMap;
 		map<string, vector<string>> femaleNamesMap;
