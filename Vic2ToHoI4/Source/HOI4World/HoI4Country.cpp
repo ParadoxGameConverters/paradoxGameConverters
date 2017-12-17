@@ -1612,17 +1612,23 @@ void HoI4Country::outputCountryLeader(ofstream& output) const
 
 	if (firstName && surname)
 	{
-		std::transform(firstName->begin(), firstName->end(), firstName->begin(), ::toupper);
-		std::transform(surname->begin(), surname->end(), surname->begin(), ::toupper);
+		string upperFirstName = *firstName;
+		std::transform(upperFirstName.begin(), upperFirstName.end(), upperFirstName.begin(), ::toupper);
+		string upperSurname = *surname;
+		std::transform(upperSurname.begin(), upperSurname.end(), upperSurname.begin(), ::toupper);
 		output << "create_country_leader = {\n";
 		output << "    name = \"" << *firstName << " " << *surname << "\"\n";
-		output << "    desc = \"POLITICS_" << *firstName << "_" << *surname << "_DESC\"\n";
+		output << "    desc = \"POLITICS_" << upperFirstName << "_" << upperSurname << "_DESC\"\n";
 		output << "    picture = \"" << portrait << "\"\n";
 		output << "    expire = \"1965.1.1\"\n";
 		output << "    ideology = " << leaderIdeology << "\n";
 		output << "    traits = {\n";
 		output << "    }\n";
 		output << "}\n";
+	}
+	else
+	{
+		LOG(LogLevel::Warning) << "Could not set leader for " + tag + ", as there were no names.";
 	}
 }
 
