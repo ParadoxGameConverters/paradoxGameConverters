@@ -357,7 +357,10 @@ void HoI4Country::determineCapitalFromVic2(const map<int, int>& provinceToStateI
 		{
 			capitalStateNum = capitalStateMapping->second;
 			capitalState = states.find(capitalStateNum)->second;
-			setCapitalInCapitalState(itr->second[0]);
+			if (isThisStateOwnedByUs(states.find(capitalStateNum)->second))
+			{
+				setCapitalInCapitalState(itr->second[0]);
+			}
 		}
 		else
 		{
