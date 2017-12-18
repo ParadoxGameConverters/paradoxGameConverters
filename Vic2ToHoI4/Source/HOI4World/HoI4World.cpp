@@ -1065,7 +1065,7 @@ map<string, HoI4UnitMap> HoI4World::importUnitMap() const
 	unitMap["cruiser"] = HoI4UnitMap("naval", "light_cruiser", "light_cruiser_1", 1);
 	unitMap["battleship"] = HoI4UnitMap("naval", "heavy_cruiser", "heavy_cruiser_1", 1);
 	unitMap["dreadnought"] = HoI4UnitMap("naval", "battleship", "battleship_1", 1);
-	unitMap["submarine"] = HoI4UnitMap("naval", "submarine", "submarine", 1);
+	unitMap["submarine"] = HoI4UnitMap("naval", "submarine", "submarine_1", 1);
 	unitMap["carrier"] = HoI4UnitMap("naval", "carrier", "carrier", 1);
 	unitMap["clipper_transport"] = HoI4UnitMap();
 	unitMap["steam_transport"] = HoI4UnitMap("convoy", "convoy", "convoy_1", 1);
