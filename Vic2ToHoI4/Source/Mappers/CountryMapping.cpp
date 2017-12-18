@@ -201,7 +201,7 @@ void CountryMapper::LogMapping(const string& sourceTag, const string& targetTag,
 
 bool CountryMapper::tagIsAlreadyAssigned(const string& HoI4Tag) const
 {
-	return (HoI4TagToV2TagMap.find(HoI4Tag) != V2TagToHoI4TagMap.end());
+	return (HoI4TagToV2TagMap.find(HoI4Tag) != HoI4TagToV2TagMap.end());
 }
 
 
