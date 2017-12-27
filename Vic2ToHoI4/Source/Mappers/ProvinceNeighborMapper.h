@@ -54,6 +54,11 @@ class provinceNeighborMapper
 			return getInstance()->GetBorderCenter(mainProvince, neighbor);
 		}
 
+		static optional<int> getProvinceNumber(double x, double y)
+		{
+			return getInstance()->GetProvinceNumber(x, y);
+		}
+
 	private:
 		static provinceNeighborMapper* instance;
 		static provinceNeighborMapper* getInstance()
@@ -70,20 +75,23 @@ class provinceNeighborMapper
 		provinceNeighborMapper(const provinceNeighborMapper&) = delete;
 		provinceNeighborMapper& operator=(const provinceNeighborMapper&) = delete;
 
-		ConverterColor::Color getCenterColor(bitmap_image& provinces, point position) const;
-		ConverterColor::Color getAboveColor(bitmap_image& provinces, point position, int height) const;
-		ConverterColor::Color getBelowColor(bitmap_image& provinces, point position, int height) const;
-		ConverterColor::Color getLeftColor(bitmap_image& provinces, point position, int width) const;
-		ConverterColor::Color getRightColor(bitmap_image& provinces, point position, int width) const;
+		ConverterColor::Color getCenterColor(point position);
+		ConverterColor::Color getAboveColor(point position, int height);
+		ConverterColor::Color getBelowColor(point position, int height);
+		ConverterColor::Color getLeftColor(point position, int width);
+		ConverterColor::Color getRightColor(point position, int width);
 		void handleNeighbor(ConverterColor::Color centerColor, ConverterColor::Color otherColor, const point& position);
 		void addNeighbor(int mainProvince, int neighborProvince);
 		void addPointToBorder(int mainProvince, int neighborProvince, point position);
 
 		const set<int> GetNeighbors(int province) const;
 		const optional<point> GetBorderCenter(int mainProvince, int neighbor) const;
+		optional<int> GetProvinceNumber(double x, double y);
 
 		map<int, set<int>> provinceNeighbors;
 		map<int, bordersWith> borders;
+
+		bitmap_image provinceMap;
 };
 
 

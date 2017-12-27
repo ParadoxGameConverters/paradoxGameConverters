@@ -476,7 +476,7 @@ void HoI4State::setIndustry(int factories)
 
 bool HoI4State::amICoastal()
 {
-	map<int, int> coastalProvinces = coastalHoI4ProvincesMapper::getCoastalProvinces();
+	auto coastalProvinces = coastalHoI4ProvincesMapper::getCoastalProvinces();
 	for (auto province: provinces)
 	{
 		auto itr = coastalProvinces.find(province);
