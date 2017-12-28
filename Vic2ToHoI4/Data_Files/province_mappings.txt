@@ -1100,7 +1100,7 @@
 	# 
 	# ## Chad
 	# # Chad
-	link = { vic2 = 1821 hoi4 = 4897 }	# Abeche -> land
+	link = { vic2 = 1821 hoi4 = 1473 hoi4 = 4978 hoi4 = 4897 }	# Abeche -> land, land, land
 	link = { vic2 = 1824 hoi4 = 3123 }	# Mao -> land
 	link = { vic2 = 1825 hoi4 = 10893 hoi4 = 5136 }	# Zouar -> land, land
 	link = { vic2 = 1826 hoi4 = 4902 }	# Faya -> land
@@ -1108,8 +1108,8 @@
 	# # Waddai
 	link = { vic2 = 1818 vic2 = 1820 hoi4 = 9152 hoi4 = 2081 }	# MANY-TO-MANY: Massenya, Bongor -> land, land
 	link = { vic2 = 1819 hoi4 = 1993 }	# Moundou -> land
-	link = { vic2 = 1822 hoi4 = 1473 hoi4 = 3181 }	# Am Timan -> land, land
-	link = { vic2 = 1823 hoi4 = 4978 }	# Mongo -> land
+	link = { vic2 = 1822 hoi4 = 1883 hoi4 = 7919 }	# Am Timan -> land, land
+	link = { vic2 = 1823 hoi4 = 3181 }	# Mongo -> land
 	# 
 	# ## Cameroon
 	# # Adamawa
@@ -1125,14 +1125,14 @@
 	# 
 	# ## Central African Republic
 	# # Ubangui-Shari
-	link = { vic2 = 1965 hoi4 = 12830 }	# Bangui -> land
+	link = { vic2 = 1965 hoi4 = 12830 hoi4 = 11108 }	# Bangui -> land, land
 	link = { vic2 = 1966 hoi4 = 11012 }	# Nola -> land
 	link = { vic2 = 1967 hoi4 = 8078 }	# Bouar -> land
-	link = { vic2 = 1968 hoi4 = 11108 }	# Bossangoa -> land
+	link = { vic2 = 1968 hoi4 = 1974 }	# Bossangoa -> land
 	# # Bangassou
-	link = { vic2 = 1969 hoi4 = 10764 hoi4 = 12719 }	# Zemio -> land, land
+	link = { vic2 = 1969 hoi4 = 12719 }	# Zemio -> land
 	link = { vic2 = 1970 hoi4 = 3165 }	# Bangassou -> land
-	link = { vic2 = 1971 hoi4 = 1883 hoi4 = 1974 hoi4 = 7919 hoi4 = 5084 }	# Ndele -> land, land, land, land
+	link = { vic2 = 1971 hoi4 = 5084 }	# Ndele -> land
 	# 
 	# ## Equatorial Guinea
 	# # Equatorial Guinea
@@ -1160,41 +1160,42 @@
 	# # Equateur
 	link = { vic2 = 1992 hoi4 = 8048 hoi4 = 10951 }	# Basoko -> land, land
 	link = { vic2 = 1993 hoi4 = 7219 hoi4 = 988 hoi4 = 10071 }	# Irebu -> land, land, land
-	link = { vic2 = 1995 hoi4 = 7931 hoi4 = 10883 hoi4 = 12741 hoi4 = 12824 }	# Gemena -> land, land, land, land
+	link = { vic2 = 1995 hoi4 = 12824 hoi4 = 10883 hoi4 = 12741 hoi4 = 7931 }	# Gemena -> land, land, land, land
 	# # Bas-Congo
 	link = { vic2 = 1982 hoi4 = 5117 hoi4 = 12925 }	# Kinshasa -> land, land
 	link = { vic2 = 1983 hoi4 = 10968 }	# Boma -> land
-	link = { vic2 = 1985 hoi4 = 10025 hoi4 = 12945 hoi4 = 12896 }	# Kumbana -> land, land, land
+	link = { vic2 = 1985 hoi4 = 12896 hoi4 = 12945 hoi4 = 10025 }	# Kumbana -> land, land, land
 	link = { vic2 = 2000 hoi4 = 2115 }	# Cabinda -> land
 	# # Kasai
-	link = { vic2 = 1984 hoi4 = 4128 hoi4 = 2024 hoi4 = 9986 hoi4 = 7716 }	# Kananga -> land, land, land, land
-	link = { vic2 = 1986 hoi4 = 1731 hoi4 = 10858 }	# Lusambo -> land, land
-	link = { vic2 = 1994 hoi4 = 12775 hoi4 = 8016 }	# Nsheng -> land, land
+	link = { vic2 = 1984 hoi4 = 7716 hoi4 = 2024 hoi4 = 9986 hoi4 = 4128 }	# Kananga -> land, land, land, land
+	link = { vic2 = 1986 hoi4 = 1731 }	# Lusambo -> land
+	link = { vic2 = 1994 hoi4 = 8016 hoi4 = 12775 }	# Nsheng -> land, land
 	# # Kisangani
-	link = { vic2 = 1996 hoi4 = 12847 hoi4 = 12808 hoi4 = 2073 hoi4 = 1950 }	# Kisangani -> land, land, land, land
-	link = { vic2 = 1997 hoi4 = 12783 hoi4 = 6027 hoi4 = 2154 hoi4 = 1181 }	# Mungbane -> land, land, land, land
-	link = { vic2 = 1998 hoi4 = 2034 hoi4 = 11934 hoi4 = 7133 }	# Baramo -> land, land, land
+	link = { vic2 = 1996 hoi4 = 1950 hoi4 = 12808 hoi4 = 2073 hoi4 = 12847 }	# Kisangani -> land, land, land, land
+	link = { vic2 = 1997 hoi4 = 2154 hoi4 = 6027 hoi4 = 12783 }	# Mungbane -> land, land, land
+	link = { vic2 = 1998 hoi4 = 11934 hoi4 = 2034 }	# Baramo -> land, land
 	# # Kivu
-	link = { vic2 = 1990 hoi4 = 7161 hoi4 = 10766 }	# Nyangwe -> land, land
-	link = { vic2 = 1991 hoi4 = 4941 }	# Uvira -> land
+	link = { vic2 = 1990 hoi4 = 7161 hoi4 = 10766 hoi4 = 10858 }	# Nyangwe -> land, land, land
+	link = { vic2 = 1991 hoi4 = 4941 hoi4 = 1181 }	# Uvira -> land, land
 	# # Katanga
-	link = { vic2 = 1987 hoi4 = 1817 hoi4 = 4515 hoi4 = 191 }	# Bunkeya -> land, land, land
+	link = { vic2 = 1987 hoi4 = 4515 hoi4 = 191 hoi4 = 1817 }	# Bunkeya -> land, land, land
 	link = { vic2 = 1988 hoi4 = 12795 hoi4 = 1968 hoi4 = 1516 }	# Mussumba -> land, land, land
 	link = { vic2 = 1989 hoi4 = 12907 hoi4 = 1929 }	# Munza -> land, land
 	link = { vic2 = 3238 hoi4 = 13173 }	# Lake Mweru -> lake
 	# 
 	# ## Angola
 	# # North Angola
-	link = { vic2 = 1999 vic2 = 2002 hoi4 = 8248 hoi4 = 5158 }	# MANY-TO-MANY: Luanda, Quibala -> land, land
+	link = { vic2 = 1999 hoi4 = 8248 }	# Luanda -> land
 	link = { vic2 = 2001 hoi4 = 8219 }	# Mbanza -> land
+	link = { vic2 = 2002 hoi4 = 5158 }	# Quibala -> land
 	link = { vic2 = 2009 hoi4 = 12981 }	# Malanje -> land
 	# # South Angola
 	link = { vic2 = 2003 hoi4 = 12958 }	# Benguela -> land
 	link = { vic2 = 2004 hoi4 = 12985 }	# Moçâmedes -> land
-	link = { vic2 = 2005 hoi4 = 8138 hoi4 = 8202 }	# Huambo -> land, land
-	link = { vic2 = 2008 hoi4 = 12391 }	# Ondjiva -> land
+	link = { vic2 = 2005 hoi4 = 10966 hoi4 = 8138 }	# Huambo -> land, land
+	link = { vic2 = 2008 hoi4 = 12391 hoi4 = 8202 }	# Ondjiva -> land, land
 	# # East Angola
-	link = { vic2 = 2006 hoi4 = 2126 hoi4 = 10966 }	# Kuito -> land, land
+	link = { vic2 = 2006 hoi4 = 2126 }	# Kuito -> land
 	link = { vic2 = 2007 hoi4 = 4735 hoi4 = 1552 }	# Mavinga -> land, land
 	link = { vic2 = 2010 hoi4 = 7548 }	# Saurimo -> land
 	link = { vic2 = 2011 hoi4 = 8054 }	# Kubanda -> land
@@ -1210,8 +1211,8 @@
 	# # Sudd
 	link = { vic2 = 1832 hoi4 = 12800 }	# Fashoda -> land
 	link = { vic2 = 1844 hoi4 = 10877 hoi4 = 10908 }	# Bor -> land, land
-	link = { vic2 = 1845 hoi4 = 7996 hoi4 = 1953 }	# Yambio -> land, land
-	link = { vic2 = 1846 hoi4 = 2096 }	# Lado -> land
+	link = { vic2 = 1845 hoi4 = 1953 hoi4 = 10764 }	# Yambio -> land, land
+	link = { vic2 = 1846 hoi4 = 2096 hoi4 = 7996 }	# Lado -> land, land
 	link = { vic2 = 1847 hoi4 = 10859 }	# Kapoeta -> land
 	# 
 	# ## Ethiopia
@@ -1254,7 +1255,7 @@
 	# # Uganda
 	link = { vic2 = 2019 hoi4 = 12989 }	# Entebbe -> land
 	link = { vic2 = 2020 hoi4 = 3854 }	# Mbarara -> land
-	link = { vic2 = 2021 hoi4 = 7088 }	# Masindi -> land
+	link = { vic2 = 2021 hoi4 = 7088 hoi4 = 7133 }	# Masindi -> land, land
 	link = { vic2 = 2022 hoi4 = 8223 }	# Kitgum -> land
 	link = { vic2 = 2023 hoi4 = 12929 }	# Jinja -> land
 	link = { vic2 = 3102 hoi4 = 2308 }	# Lake Victoria -> lake
