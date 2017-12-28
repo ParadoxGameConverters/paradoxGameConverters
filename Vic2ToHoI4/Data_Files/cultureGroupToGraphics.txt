@@ -124,6 +124,27 @@ british = {
 	graphical_culture = { commonwealth_gfx }
 	graphical_culture_2d = { commonwealth_2d }
 }
+british_group = {
+	leader_portraits = {
+		communism = { "gfx/leaders/ENG/Portrait_Britain_Generic_1.dds" }
+		democratic = { "gfx/leaders/ENG/Portrait_Britain_Generic_2.dds" }
+		fascism = { "gfx/leaders/ENG/Portrait_Britain_Generic_3.dds" }
+		absolutist = { "gfx/interface/ideas/idea_george_vi.dds" }
+		neutrality = { "gfx/leaders/ENG/Portrait_Britain_Generic_2.dds" }
+		radical = { "gfx/leaders/ENG/Portrait_Britain_Generic_3.dds" }
+	}
+	ideology_minister_portraits = 
+	{
+		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+		absolutist = { "gfx/leaders/ENG/Portrait_Britain_George_VI.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
+	}
+	graphical_culture = { commonwealth_gfx }
+	graphical_culture_2d = { commonwealth_2d }
+}
 celtic = {
 	leader_portraits = {
 		communism = { "gfx/leaders/ENG/Portrait_Britain_Generic_1.dds" }
@@ -503,6 +524,27 @@ southeast_asian = {
 	graphical_culture_2d = { asian_2d }
 }
 east_asian = {
+	leader_portraits = {
+		communism = { "gfx/leaders/Asia/Portrait_Asia_Generic_1.dds" }
+		democratic = { "gfx/leaders/Asia/Portrait_Asia_Generic_2.dds" }
+		fascism = { "gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" }
+		absolutist = { "gfx/leaders/JAP/Portrait_Japan_Hirohito.dds" }
+		neutrality = { "gfx/leaders/Asia/Portrait_Asia_Generic_2.dds" }
+		radical = { "gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" }
+	}
+	ideology_minister_portraits = 
+	{
+		communism = { "gfx/interface/ideas/idea_generic_communist_asia.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_asia.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_asia.dds" }
+		absolutist = { "gfx/interface/ideas/idea_generic_army_asia_1.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_asia.dds" }
+	}
+	graphical_culture = { asian_gfx }
+	graphical_culture_2d = { asian_2d }
+}
+chinese = {
 	leader_portraits = {
 		communism = { "gfx/leaders/Asia/Portrait_Asia_Generic_1.dds" }
 		democratic = { "gfx/leaders/Asia/Portrait_Asia_Generic_2.dds" }
