@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "../Mappers/Mapper.h"
 #include "Object.h"
+#include <optional>
 #include <string>
 #include <vector>
 using namespace std;
@@ -44,7 +45,7 @@ class V2World
 	public:
 		explicit V2World(const string& filename);
 
-		const V2Province* getProvince(int provNum) const;
+		optional<const V2Province*> getProvince(int provNum) const;
 		
 		map<string, V2Country*> getCountries() const { return countries; }
 		const V2Diplomacy* getDiplomacy() const { return diplomacy; }
@@ -90,7 +91,7 @@ class V2World
 		void readCountryColor(shared_ptr<Object> countryData, const string& line);
 		void inputPartyInformation(const vector<shared_ptr<Object>>& leaves);
 
-		V2Country* getCountry(const string& tag) const;
+		optional<V2Country*> getCountry(const string& tag) const;
 
 
 		map<int, V2Province*> provinces;

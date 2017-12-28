@@ -477,25 +477,32 @@ void V2World::overallMergeNations()
 
 void V2World::mergeNations(const string& masterTag, const vector<string>& slaveTags)
 {
-	V2Country* master = getCountry(masterTag);
-	if (master != nullptr)
+	auto master = getCountry(masterTag);
+	if (master)
 	{
 		for (auto slaveTag: slaveTags)
 		{
-			V2Country* slave = getCountry(slaveTag);
-			if (slave != nullptr)
+			auto slave = getCountry(slaveTag);
+			if (slave)
 			{
-				master->eatCountry(slave);
+				(*master)->eatCountry(*slave);
 			}
 		}
 	}
 }
 
 
-V2Country* V2World::getCountry(const string& tag) const
+optional<V2Country*> V2World::getCountry(const string& tag) const
 {
 	auto countryItr = countries.find(tag);
-	return (countryItr != countries.end()) ? countryItr->second : nullptr;
+	if (countryItr != countries.end())
+	{
+		return countryItr->second;
+	}
+	else
+	{
+		return {};
+	}
 }
 
 
@@ -518,10 +525,17 @@ void V2World::handleMissingCountryCultures()
 }
 
 
-const V2Province* V2World::getProvince(int provNum) const
+optional<const V2Province*> V2World::getProvince(int provNum) const
 {
 	auto provinceItr = provinces.find(provNum);
-	return (provinceItr != provinces.end()) ? provinceItr->second : nullptr;
+	if (provinceItr != provinces.end())
+	{
+		return provinceItr->second;
+	}
+	else
+	{
+		return {};
+	}
 }
 
 

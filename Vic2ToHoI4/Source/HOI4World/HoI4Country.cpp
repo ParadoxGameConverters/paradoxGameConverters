@@ -174,12 +174,16 @@ void HoI4Country::determineFilename()
 
 void HoI4Country::convertGovernment(const V2World& sourceWorld)
 {
-	rulingParty = srcCountry->getRulingParty(sourceWorld.getParties());
-	if (rulingParty == nullptr)
+	auto possibleRulingParty = srcCountry->getRulingParty(sourceWorld.getParties());
+	if (!possibleRulingParty)
 	{
 		LOG(LogLevel::Error) << "Could not find the ruling party for " << srcCountry->getTag() << ". Most likely a mod was not included.";
 		LOG(LogLevel::Error) << "Double-check your settings, and remember to include EU4 to Vic2 mods. See the FAQ for more information.";
 		exit(-1);
+	}
+	else
+	{
+		rulingParty = *possibleRulingParty;
 	}
 
 	governmentIdeology = governmentMapper::getIdeologyForCountry(srcCountry, rulingParty->ideology);

@@ -107,19 +107,19 @@ map<const V2Country*, pair<int, int>> HoI4States::determinePotentialOwners(const
 	for (auto srcProvNum: sourceProvinceNums)
 	{
 		auto srcProvince = sourceWorld->getProvince(srcProvNum);
-		if (srcProvince == nullptr)
+		if (!srcProvince)
 		{
 			LOG(LogLevel::Warning) << "Old province " << srcProvNum << " does not exist (bad mapping?)";
 			continue;
 		}
-		const V2Country* owner = srcProvince->getOwner();
+		const V2Country* owner = (*srcProvince)->getOwner();
 
 		if (potentialOwners.find(owner) == potentialOwners.end())
 		{
 			potentialOwners[owner] = make_pair(0, 0);
 		}
 		potentialOwners[owner].first++;
-		potentialOwners[owner].second += srcProvince->getTotalPopulation();
+		potentialOwners[owner].second += (*srcProvince)->getTotalPopulation();
 	}
 
 	return potentialOwners;
@@ -156,12 +156,12 @@ vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, co
 	for (auto sourceProvinceNum: sourceProvinces)
 	{
 		auto sourceProvince = sourceWorld->getProvince(sourceProvinceNum);
-		if (sourceProvince == nullptr)
+		if (!sourceProvince)
 		{
 			continue;
 		}
 
-		for (auto Vic2Core: sourceProvince->getCores())
+		for (auto Vic2Core: (*sourceProvince)->getCores())
 		{
 			// skip this core if the country is the owner of the V2 province but not the HoI4 province
 			// (i.e. "avoid boundary conflicts that didn't exist in V2").

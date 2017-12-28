@@ -510,7 +510,9 @@ double V2Country::getUpperHousePercentage(const string& ideology) const
 {
 	map<string, double>::const_iterator itr = upperHouseComposition.find(ideology);
 	if (itr == upperHouseComposition.end())
+	{
 		return 0.0;
+	}
 
 	return itr->second;
 }
@@ -528,7 +530,7 @@ long V2Country::getEmployedWorkers() const
 }
 
 
-const V2Party* V2Country::getRulingParty(const vector<const V2Party*>& allParties) const
+optional<const V2Party*> V2Country::getRulingParty(const vector<const V2Party*>& allParties) const
 {
 	if ((rulingPartyID <= allParties.size()) && (rulingPartyID > 0))
 	{
@@ -536,7 +538,7 @@ const V2Party* V2Country::getRulingParty(const vector<const V2Party*>& allPartie
 	}
 	else
 	{
-		return nullptr;
+		return {};
 	}
 }
 

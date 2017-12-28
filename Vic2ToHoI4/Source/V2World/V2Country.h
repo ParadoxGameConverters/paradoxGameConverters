@@ -101,7 +101,7 @@ class V2Country
 		optional<string> getAdjective(const string& language) const;
 		double getUpperHousePercentage(const string& ideology) const;
 		long getEmployedWorkers() const;
-		const V2Party* getRulingParty(const vector<const V2Party*>& allParties) const;
+		optional<const V2Party*> getRulingParty(const vector<const V2Party*>& allParties) const;
 		set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> getActiveParties(const vector<const V2Party*>& allParties) const;
 		bool hasCoreOnCapital() const;
 
