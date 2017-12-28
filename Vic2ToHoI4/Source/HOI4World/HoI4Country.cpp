@@ -76,8 +76,8 @@ HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, c
 	ministers(),
 	rulingMinisters(),
 	leaders(),
-	graphicalCulture("Generic"),
-	graphicalCulture2d(""),
+	graphicalCulture("western_european_gfx"),
+	graphicalCulture2d("western_european_2d"),
 	majorNation(false),
 	civilized(false),
 	brigs(),
@@ -123,7 +123,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	}
 	else
 	{
-		graphicalCulture = "";
+		graphicalCulture = "western_european_gfx";
 	}
 	auto possibleGraphicalCulture2d = graphicsMapper::get2dGraphicalCulture(srcCountry->getPrimaryCultureGroup());
 	if (possibleGraphicalCulture2d)
@@ -132,7 +132,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	}
 	else
 	{
-		graphicalCulture2d = "";
+		graphicalCulture2d = "western_european_2d";
 	}
 	lastElection = srcCountry->getLastElection();
 	initIdeas();
