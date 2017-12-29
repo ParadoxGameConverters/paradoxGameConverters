@@ -77,7 +77,7 @@ const char* hoi4Suffixes[FLAG_END] = {
 
 
 vector<string> getSourceFlagPaths(const string& Vic2Tag);
-tga_image* readFlag(string path);
+optional<tga_image*> readFlag(string path);
 tga_image* createNewFlag(const tga_image* sourceFlag, unsigned int sizeX, unsigned int sizeY);
 void createBigFlag(tga_image* sourceFlag, const string& filename);
 void createMediumFlag(tga_image* sourceFlag, const string& filename);
@@ -89,18 +89,18 @@ void processFlagsForCountry(const pair<string, HoI4Country*>& country)
 	{
 		if (sourcePath[i] != "")
 		{
-			tga_image* sourceFlag = readFlag(sourcePath[i]);
-			if (sourceFlag == nullptr)
+			auto sourceFlag = readFlag(sourcePath[i]);
+			if (!sourceFlag)
 			{
 				return;
 			}
 
-			createBigFlag(sourceFlag, country.first + hoi4Suffixes[i]);
-			createMediumFlag(sourceFlag, country.first + hoi4Suffixes[i]);
-			createSmallFlag(sourceFlag, country.first + hoi4Suffixes[i]);
+			createBigFlag(*sourceFlag, country.first + hoi4Suffixes[i]);
+			createMediumFlag(*sourceFlag, country.first + hoi4Suffixes[i]);
+			createSmallFlag(*sourceFlag, country.first + hoi4Suffixes[i]);
 
-			tga_free_buffers(sourceFlag);
-			delete sourceFlag;
+			tga_free_buffers(*sourceFlag);
+			delete *sourceFlag;
 		}
 	}
 }
@@ -211,13 +211,13 @@ optional<string> getAllowModFlags(const string& flagFilename)
 }
 
 
-tga_image* readFlag(string path)
+optional<tga_image*> readFlag(string path)
 {
 	FILE* flagFile;
 	if (fopen_s(&flagFile, path.c_str(), "r+b") != 0)
 	{
 		LOG(LogLevel::Warning) << "Could not open " << path;
-		return nullptr;
+		return {};
 	}
 
 	tga_image* flag = new tga_image;
@@ -226,7 +226,7 @@ tga_image* readFlag(string path)
 	{
 		LOG(LogLevel::Warning) << "Could not read flag " << path << ": " << tga_error(result) << ". FEOF: " << feof(flagFile) << ". Ferror: " << ferror(flagFile) << ".";
 		delete flag;
-		flag = nullptr;
+		flag = {};
 	}
 
 	fclose(flagFile);

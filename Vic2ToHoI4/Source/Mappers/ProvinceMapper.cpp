@@ -140,20 +140,20 @@ void provinceMapper::checkAllHoI4ProvinesMapped() const
 
 	while (true)
 	{
-		int provNum = getNextProvinceNumFromFile(definitions);
-		if (provNum == -1)
+		auto provNum = getNextProvinceNumFromFile(definitions);
+		if (!provNum)
 		{
 			break;
 		}
 
-		verifyProvinceIsMapped(provNum);
+		verifyProvinceIsMapped(*provNum);
 	}
 
 	definitions.close();
 }
 
 
-int provinceMapper::getNextProvinceNumFromFile(ifstream& definitions) const
+optional<int> provinceMapper::getNextProvinceNumFromFile(ifstream& definitions) const
 {
 	string line;
 	getline(definitions, line);
@@ -164,7 +164,7 @@ int provinceMapper::getNextProvinceNumFromFile(ifstream& definitions) const
 	}
 	else
 	{
-		return -1;
+		return {};
 	}
 }
 

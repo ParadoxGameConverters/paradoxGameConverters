@@ -157,10 +157,8 @@ optional<vector<string>> graphicsMapper::GetLeaderPortraits(const string& cultur
 			return portraits->second;
 		}
 	}
-	else
-	{
-		return {};
-	}
+
+	return {};
 }
 
 

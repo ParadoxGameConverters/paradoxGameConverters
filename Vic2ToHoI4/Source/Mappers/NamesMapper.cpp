@@ -184,8 +184,10 @@ optional<vector<string>> namesMapper::GetFemaleNames(const string& culture) cons
 	{
 		return namesItr->second;
 	}
-
-	return {};
+	else
+	{
+		return {};
+	}
 }
 
 
@@ -196,8 +198,10 @@ optional<vector<string>> namesMapper::GetSurnames(const string& culture) const
 	{
 		return namesItr->second;
 	}
-
-	return {};
+	else
+	{
+		return {};
+	}
 }
 
 
@@ -208,8 +212,10 @@ optional<vector<string>> namesMapper::GetCallsigns(const string& culture) const
 	{
 		return namesItr->second;
 	}
-
-	return {};
+	else
+	{
+		return {};
+	}
 }
 
 
