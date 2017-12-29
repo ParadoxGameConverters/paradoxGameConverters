@@ -48,7 +48,6 @@ class V2Party;
 class HoI4Advisor;
 class HoI4Faction;
 class HoI4Leader;
-class HoI4Minister;
 class HoI4World;
 struct advisorCompare;
 
@@ -197,8 +196,6 @@ class HoI4Country
 		set<string> puppets;
 		string puppetMaster;
 		map<string, double>				practicals;
-		vector<HoI4Minister>				ministers;
-		vector<HoI4Minister>				rulingMinisters;
 		vector<HoI4Leader>				leaders;
 		string graphicalCulture;
 		string graphicalCulture2d;

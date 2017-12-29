@@ -84,7 +84,7 @@ class HoI4World
 		void convertNavalBases();
 
 		void convertCountries();
-		void convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, governmentJobsMap governmentJobs, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+		void convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
 
 		void importIdeologies();
 		void importIdeologyFile(const string& filename);
@@ -212,7 +212,6 @@ class HoI4World
 		vector<HoI4DivisionTemplateType> divisionTemplates;
 
 		leaderTraitsMap leaderTraits;
-		portraitMapping portraitMap;
 };
 
 

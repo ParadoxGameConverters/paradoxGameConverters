@@ -70,8 +70,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld):
 	events(new HoI4Events),
 	onActions(new HoI4OnActions),
 	divisionTemplates(),
-	leaderTraits(),
-	portraitMap()
+	leaderTraits()
 {
 	LOG(LogLevel::Info) << "Parsing HoI4 data";
 
@@ -135,9 +134,6 @@ void HoI4World::convertCountries()
 	LOG(LogLevel::Info) << "Converting countries";
 
 	//initLeaderTraitsMap(leaderTraits);
-	governmentJobsMap governmentJobs;
-	//initGovernmentJobTypes(governmentJobs);
-
 	personalityMap landPersonalityMap;
 	personalityMap seaPersonalityMap;
 	//initLeaderPersonalityMap(landPersonalityMap, seaPersonalityMap);
@@ -146,20 +142,18 @@ void HoI4World::convertCountries()
 	backgroundMap seaBackgroundMap;
 	//initLeaderBackgroundMap(obj->getLeaves()[0], landBackgroundMap, seaBackgroundMap);
 
-	initPortraitMapping(portraitMap);
-
 	map<int, int> leaderMap;
 
 	for (auto sourceItr : sourceWorld->getCountries())
 	{
-		convertCountry(sourceItr, leaderMap, governmentJobs, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
+		convertCountry(sourceItr, leaderMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
 	}
 
 	HoI4Localisation::addNonenglishCountryLocalisations();
 }
 
 
-void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, governmentJobsMap governmentJobs, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& leaderMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
 {
 	// don't convert rebels
 	if (country.first == "REB")

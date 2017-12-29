@@ -29,7 +29,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Faction.h"
 #include "HoI4Leader.h"
 #include "HoI4Localisation.h"
-#include "HoI4Minister.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/GovernmentMapper.h"
 #include "../Mappers/NamesMapper.h"
@@ -73,8 +72,6 @@ HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, c
 	puppets(),
 	puppetMaster(""),
 	practicals(),
-	ministers(),
-	rulingMinisters(),
 	leaders(),
 	graphicalCulture("western_european_gfx"),
 	graphicalCulture2d("western_european_2d"),
