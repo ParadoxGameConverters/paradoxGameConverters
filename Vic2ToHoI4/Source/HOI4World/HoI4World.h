@@ -75,7 +75,7 @@ class HoI4World
 		HoI4Events* getEvents() const { return events; }
 		set<string> getMajorIdeologies() const { return majorIdeologies; }
 
-		HoI4Country* findCountry(const string& countryTag);
+		optional<HoI4Country*> findCountry(const string& countryTag);
 
 	private:
 		HoI4World(const HoI4World&) = delete;
@@ -124,7 +124,7 @@ class HoI4World
 		void convertStrategicRegions();
 		map<int, int> importStrategicRegions();
 		map<int, int> determineUsedRegions(const HoI4State* state, map<int, int>& provinceToStrategicRegionMap);
-		int determineMostUsedRegion(const map<int, int>& usedRegions) const;
+		optional<int> determineMostUsedRegion(const map<int, int>& usedRegions) const;
 		void addProvincesToRegion(const HoI4State* state, int regionNum);
 		void addLeftoverProvincesToRegions(const map<int, int>& provinceToStrategicRegionMap);
 

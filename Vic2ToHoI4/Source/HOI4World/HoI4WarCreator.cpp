@@ -92,7 +92,7 @@ void HoI4WarCreator::addTargetsToWorldTargetMap(HoI4Country* country)
 					if (GC.second != country)
 					{
 						auto relations = country->getRelations(GC.second->getTag());
-						if ((relations != nullptr) && (relations->getRelations() < 0))
+						if ((relations) && ((*relations)->getRelations() < 0))
 						{
 							vector<HoI4Country*> tempvector;
 							if (WorldTargetMap.find(GC.second) == WorldTargetMap.end())
@@ -126,9 +126,11 @@ map<double, HoI4Country*> HoI4WarCreator::getDistancesToGreatPowers(HoI4Country*
 		set<string> Allies = country->getAllies();
 		if (std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
 		{
-			double distance = getDistanceBetweenCountries(country, GC);
-			if (distance < 2200)
-				GCDistance.insert(make_pair(distance, GC));
+			auto distance = getDistanceBetweenCountries(country, GC);
+			if (distance && (*distance < 2200))
+			{
+				GCDistance.insert(make_pair(*distance, GC));
+			}
 		}
 	}
 
@@ -390,12 +392,14 @@ vector<HoI4Country*> HoI4WarCreator::GetMorePossibleAllies(const HoI4Country* Co
 		if (country.second->getProvinceCount() != 0)
 		{
 			HoI4Country* country2 = country.second;
-			if (getDistanceBetweenCountries(CountryThatWantsAllies, country2) <= 1000
-				&& country2 != CountryThatWantsAllies)
+			auto distance = getDistanceBetweenCountries(CountryThatWantsAllies, country2);
+			if (distance && (*distance <= 1000)	&& (country2 != CountryThatWantsAllies))
+			{
 				if (std::find(currentAllies.begin(), currentAllies.end(), country2->getTag()) == currentAllies.end())
 				{
 					CountriesWithin1000Miles.push_back(country2);
 				}
+			}
 		}
 	}
 	string yourIdeology = CountryThatWantsAllies->getGovernmentIdeology();
@@ -415,34 +419,37 @@ vector<HoI4Country*> HoI4WarCreator::GetMorePossibleAllies(const HoI4Country* Co
 			{
 				//FIXME
 				//check if we are friendly at all?
-				const HoI4Relations* relationswithposally = CountryThatWantsAllies->getRelations(CountriesWithin1000Miles[i]->getTag());
+				auto relationsWithPossibleAlly = CountryThatWantsAllies->getRelations(CountriesWithin1000Miles[i]->getTag());
 				//for now can only ally with people not in a faction, and must be worth adding
-				if ((relationswithposally != nullptr) && (relationswithposally->getRelations() >= -50) && (findFaction(CountriesWithin1000Miles[i])->getMembers().size() <= 1))
+				if (relationsWithPossibleAlly)
 				{
-					//ok we dont hate each other, lets check how badly we need each other, well I do, the only reason I am here is im trying to conquer a neighbor and am not strong enough!
-					//if (GetFactionStrength(findFaction(country)) < 20000) //maybe also check if he has any fascist/comm neighbors he doesnt like later?
-
-					//well that ally is weak, he probably wants some friends
-					if (relationswithposally->getRelations() >= -50 && relationswithposally->getRelations() < 0)
+					int relationsValue = (*relationsWithPossibleAlly)->getRelations();
+					if ((relationsValue >= -50) && (findFaction(CountriesWithin1000Miles[i])->getMembers().size() <= 1))
 					{
-						//will take some NF to ally
-						newPossibleAllies.push_back(CountriesWithin1000Miles[i]);
-						maxcountries++;
+						//ok we dont hate each other, lets check how badly we need each other, well I do, the only reason I am here is im trying to conquer a neighbor and am not strong enough!
+						//if (GetFactionStrength(findFaction(country)) < 20000) //maybe also check if he has any fascist/comm neighbors he doesnt like later?
+
+						//well that ally is weak, he probably wants some friends
+						if ((relationsValue >= -50) && (relationsValue < 0))
+						{
+							//will take some NF to ally
+							newPossibleAllies.push_back(CountriesWithin1000Miles[i]);
+							maxcountries++;
+						}
+						if (relationsValue >= 0)
+						{
+							//well we are positive, 1 NF to add to ally should be fine
+							newPossibleAllies.push_back(CountriesWithin1000Miles[i]);
+							maxcountries++;
+						}
+
+						/*else if (relationsValue > 0)
+						{
+							//we are friendly, add 2 NF for ally? Good way to decide how many alliances there will be
+							newPossibleAllies.push_back(country);
+							i++;
+						}*/
 					}
-					if (relationswithposally->getRelations() >= 0)
-					{
-						//well we are positive, 1 NF to add to ally should be fine
-						newPossibleAllies.push_back(CountriesWithin1000Miles[i]);
-						maxcountries++;
-					}
-
-					/*else if (relationswithposally->getRelations() > 0)
-					{
-					//we are friendly, add 2 NF for ally? Good way to decide how many alliances there will be
-					newPossibleAllies.push_back(country);
-					i++;
-					}*/
-
 				}
 			}
 
@@ -452,11 +459,11 @@ vector<HoI4Country*> HoI4WarCreator::GetMorePossibleAllies(const HoI4Country* Co
 }
 
 
-double HoI4WarCreator::getDistanceBetweenCountries(const HoI4Country* country1, const HoI4Country* country2)
+optional<double> HoI4WarCreator::getDistanceBetweenCountries(const HoI4Country* country1, const HoI4Country* country2)
 {
 	if (!bothCountriesHaveCapitals(country1, country2))
 	{
-		return 100000;
+		return {};
 	}
 
 	pair<int, int> country1Position = getCapitalPosition(country1);
@@ -562,27 +569,27 @@ double HoI4WarCreator::GetFactionStrengthWithDistance(const HoI4Country* HomeCou
 	for (auto country: Faction)
 	{
 		double distanceMulti = 1;
-		if (country == HomeCountry)
+		if (country != HomeCountry)
 		{
-			distanceMulti = 1;
+			auto distance = getDistanceBetweenCountries(HomeCountry, country);
+			if (distance)
+			{
+				if (*distance < 300)
+					distanceMulti = 1;
+				else if (*distance < 500)
+					distanceMulti = 0.9;
+				else if (*distance < 750)
+					distanceMulti = 0.8;
+				else if (*distance < 1000)
+					distanceMulti = 0.7;
+				else if (*distance < 1500)
+					distanceMulti = 0.5;
+				else if (*distance < 2000)
+					distanceMulti = 0.3;
+				else
+					distanceMulti = 0.2;
+			}
 		}
-		else
-			distanceMulti = getDistanceBetweenCountries(HomeCountry, country);
-
-		if (distanceMulti < 300)
-			distanceMulti = 1;
-		else if (distanceMulti < 500)
-			distanceMulti = 0.9;
-		else if (distanceMulti < 750)
-			distanceMulti = 0.8;
-		else if (distanceMulti < 1000)
-			distanceMulti = 0.7;
-		else if (distanceMulti < 1500)
-			distanceMulti = 0.5;
-		else if (distanceMulti < 2000)
-			distanceMulti = 0.3;
-		else
-			distanceMulti = 0.2;
 
 		strength += country->getStrengthOverTime(time) * distanceMulti;
 	}
@@ -664,8 +671,8 @@ map<string, HoI4Country*> HoI4WarCreator::getNearbyCountries(const HoI4Country* 
 		{
 			//IMPROVE
 			//need to get further neighbors, as well as countries without capital in an area
-			double distance = getDistanceBetweenCountries(checkingCountry, country);
-			if (distance <= 500 && country->getProvinceCount() > 0)
+			auto distance = getDistanceBetweenCountries(checkingCountry, country);
+			if (distance && (*distance <= 500) && (country->getProvinceCount() > 0))
 			{
 				neighbors.insert(countryItr);
 			}
@@ -728,9 +735,11 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 		{
 			//IMPROVE
 			//need to get further neighbors, as well as countries without capital in an area
-			double distance = getDistanceBetweenCountries(Leader, neigh.second);
-			if (distance <= 500)
+			auto distance = getDistanceBetweenCountries(Leader, neigh.second);
+			if (distance && (distance <= 500))
+			{
 				CloseNeighbors.insert(neigh);
+			}
 		}
 	}
 
@@ -887,7 +896,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 				auto allyName = GC->getSourceCountry()->getName("english");
 
 				auto relations = Leader->getRelations(GC->getTag());
-				if ((relations != nullptr) && (relations->getRelations() > 0) && (maxGCAlliance < 1))
+				if ((relations) && ((*relations)->getRelations() > 0) && (maxGCAlliance < 1))
 				{
 					if (Configuration::getDebug())
 					{
@@ -935,8 +944,11 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 	//get great countries with a distance
 	for (auto GC: theWorld->getGreatPowers())
 	{
-		double distance = getDistanceBetweenCountries(Leader, GC);
-		GCDistance.insert(make_pair(distance, GC));
+		auto distance = getDistanceBetweenCountries(Leader, GC);
+		if (distance)
+		{
+			GCDistance.insert(make_pair(*distance, GC));
+		}
 	}
 	//put them into a vector so we know their order
 	for (auto iterator = GCDistance.begin(); iterator != GCDistance.end(); ++iterator)
@@ -951,7 +963,7 @@ vector<HoI4Faction*> HoI4WarCreator::fascistWarMaker(HoI4Country* Leader, ofstre
 		if (HowToTakeGC == "noactionneeded" || HowToTakeGC == "factionneeded" || HowToTakeGC == "morealliesneeded")
 		{
 			auto relations = Leader->getRelations(GC->getTag());
-			if ((GC != Leader) && (relations != nullptr) && (relations->getRelations() < 0))
+			if ((GC != Leader) && (relations) && ((*relations)->getRelations() < 0))
 			{
 				if (GCTargets.size() < maxGCWars)
 				{
@@ -991,9 +1003,11 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 		{
 			//IMPROVE
 			//need to get further neighbors, as well as countries without capital in an area
-			double distance = getDistanceBetweenCountries(Leader, neigh.second);
-			if (distance <= 400)
+			auto distance = getDistanceBetweenCountries(Leader, neigh.second);
+			if (distance && (distance <= 400))
+			{
 				Neighbors.insert(neigh);
+			}
 		}
 	}
 	set<string> Allies = Leader->getAllies();
@@ -1107,9 +1121,11 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 	vector<HoI4Country*> GCDistanceSorted;
 	for (auto GC : theWorld->getGreatPowers())
 	{
-		double distance = getDistanceBetweenCountries(Leader, GC);
-		if (distance < 1200)
-			GCDistance.insert(make_pair(distance, GC));
+		auto distance = getDistanceBetweenCountries(Leader, GC);
+		if (distance && (distance < 1200))
+		{
+			GCDistance.insert(make_pair(*distance, GC));
+		}
 	}
 	//put them into a vector so we know their order
 	for (auto iterator = GCDistance.begin(); iterator != GCDistance.end(); ++iterator)
@@ -1136,7 +1152,7 @@ vector<HoI4Faction*> HoI4WarCreator::communistWarCreator(HoI4Country* Leader, of
 	for (auto GC : GCTargets)
 	{
 		auto relations = Leader->getRelations(GC->getTag());
-		if ((relations != nullptr) && (relations->getRelations() < 0))
+		if ((relations) && ((*relations)->getRelations() < 0))
 		{
 			GCTargets.push_back(GC);
 		}
@@ -1165,9 +1181,9 @@ vector<HoI4Faction*> HoI4WarCreator::democracyWarCreator(HoI4Country* Leader)
 	for (auto GC: theWorld->getGreatPowers())
 	{
 		auto relations = Leader->getRelations(GC->getTag());
-		if (relations != nullptr)
+		if (relations)
 		{
-			double relationVal = relations->getRelations();
+			double relationVal = (*relations)->getRelations();
 			if (relationVal < 100 && GC->getGovernmentIdeology() != "democratic" && std::find(Allies.begin(), Allies.end(), GC->getTag()) == Allies.end())
 			{
 				CountriesAtWar.push_back(findFaction(Leader));
@@ -1248,10 +1264,10 @@ vector<HoI4Faction*> HoI4WarCreator::neighborWarCreator(HoI4Country * country, o
 		}
 
 		int relations = 0;
-		const HoI4Relations* relationsObj = country->getRelations(target->getTag());
-		if (relationsObj != nullptr)
+		auto relationsObj = country->getRelations(target->getTag());
+		if (relationsObj)
 		{
-			relations = relationsObj->getRelations();
+			relations = (*relationsObj)->getRelations();
 		}
 
 		if (relations >= 0)
@@ -1432,8 +1448,8 @@ map<string, HoI4Country*> HoI4WarCreator::findCloseNeighbors(const HoI4Country* 
 	{
 		if (neighbor.second->getCapitalStateNum() != 0)
 		{
-			double distance = getDistanceBetweenCountries(country, neighbor.second);
-			if (distance <= 500)
+			auto distance = getDistanceBetweenCountries(country, neighbor.second);
+			if (distance && (*distance <= 500))
 			{
 				closeNeighbors.insert(neighbor);
 			}
@@ -1483,8 +1499,8 @@ map<string, HoI4Country*> HoI4WarCreator::findFarNeighbors(const HoI4Country* co
 	{
 		if (neighbor.second->getCapitalStateNum() != 0)
 		{
-			double distance = getDistanceBetweenCountries(country, neighbor.second);
-			if (distance > 500)
+			auto distance = getDistanceBetweenCountries(country, neighbor.second);
+			if (distance && (*distance > 500))
 			{
 				farNeighbors.insert(neighbor);
 			}
@@ -1497,8 +1513,8 @@ map<string, HoI4Country*> HoI4WarCreator::findFarNeighbors(const HoI4Country* co
 		{
 			if (otherCountry.second->getCapitalStateNum() != 0)
 			{
-				double distance = getDistanceBetweenCountries(country, otherCountry.second);
-				if ((distance <= 1000) && (otherCountry.second->getProvinceCount() > 0))
+				auto distance = getDistanceBetweenCountries(country, otherCountry.second);
+				if (distance && (*distance <= 1000) && (otherCountry.second->getProvinceCount() > 0))
 				{
 					farNeighbors.insert(otherCountry);
 				}
@@ -1538,10 +1554,10 @@ map<double, HoI4Country*> HoI4WarCreator::getGPsByDistance(const HoI4Country* co
 	map<double, HoI4Country*> distanceToGPMap;
 	for (auto greatPower: theWorld->getGreatPowers())
 	{
-		double distance = getDistanceBetweenCountries(country, greatPower);
-		if (distance < 1200)
+		auto distance = getDistanceBetweenCountries(country, greatPower);
+		if (distance && (*distance < 1200))
 		{
-			distanceToGPMap.insert(make_pair(distance, greatPower));
+			distanceToGPMap.insert(make_pair(*distance, greatPower));
 		}
 	}
 
@@ -1562,7 +1578,7 @@ vector<HoI4Faction*> HoI4WarCreator::addGreatPowerWars(HoI4Country* country, HoI
 		}
 
 		auto relations = country->getRelations(target->getTag());
-		if ((relations == nullptr) || (relations->getRelations() >= 0))
+		if ((!relations) || ((*relations)->getRelations() >= 0))
 		{
 			continue;
 		}
@@ -1635,7 +1651,7 @@ void HoI4WarCreator::addTradeEvents(const HoI4Country* country, const vector<con
 	for (auto greatPowerTarget: greatPowerTargets)
 	{
 		auto relations = country->getRelations(greatPowerTarget->getTag());
-		if ((relations == nullptr) || (relations->getRelations() >= 0))
+		if ((!relations) || ((*relations)->getRelations() >= 0))
 		{
 			continue;
 		}

@@ -152,10 +152,10 @@ void HoI4State::convertNavalBases()
 			continue;
 		}
 
-		int navalBaseLocation = determineNavalBaseLocation(sourceProvince);
-		if (navalBaseLocation != -1)
+		auto navalBaseLocation = determineNavalBaseLocation(sourceProvince);
+		if (navalBaseLocation)
 		{
-			addNavalBase(navalBaseLevel, navalBaseLocation);
+			addNavalBase(navalBaseLevel, *navalBaseLocation);
 		}
 	}
 }
@@ -173,7 +173,7 @@ int HoI4State::determineNavalBaseLevel(const V2Province* sourceProvince)
 }
 
 
-int HoI4State::determineNavalBaseLocation(const V2Province* sourceProvince)
+optional<int> HoI4State::determineNavalBaseLocation(const V2Province* sourceProvince)
 {
 	auto provinceMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(sourceProvince->getNumber());
 	if (provinceMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
@@ -187,7 +187,7 @@ int HoI4State::determineNavalBaseLocation(const V2Province* sourceProvince)
 		}
 	}
 
-	return -1;
+	return {};
 }
 
 
@@ -239,9 +239,9 @@ void HoI4State::assignVP(int location)
 }
 
 
-int HoI4State::getMainNavalLocation() const
+optional<int> HoI4State::getMainNavalLocation() const
 {
-	int mainLocation = 0;
+	optional<int> mainLocation;
 	int mainSize = 0;
 	for (auto navalBase: navalBases)
 	{

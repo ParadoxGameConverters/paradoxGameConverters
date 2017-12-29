@@ -130,7 +130,7 @@ class HoI4Localisation
 		void addLocalisationsInAllLanguages(const string& destTag, const pair<const string&, const string&>& suffixes, const string& HoI4GovernmentIdeology, const keyToLocalisationMap& namesInLanguage);
 		languageToLocalisationsMap::iterator getExistingLocalisationsInLanguage(const string& language);
 		void addLocalisation(const string& newKey, languageToLocalisationsMap::iterator& existingLanguage, const string& localisation, const string& HoI4Suffix);
-		int addNeutralLocalisation(const pair<const string&, const string&>& tags, const pair<const string&, const string&>& suffixes);
+		bool addNeutralLocalisation(const pair<const string&, const string&>& tags, const pair<const string&, const string&>& suffixes);
 
 		void CopyFocusLocalisations(const string& oldKey, const string& newKey);
 

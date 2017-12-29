@@ -26,10 +26,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include <vector>
-#include <string>
 #include <map>
+#include <optional>
 #include <set>
+#include <string>
+#include <vector>
 using namespace std;
 
 
@@ -71,7 +72,7 @@ class HoI4State
 		set<int> getDebugVPs() const { return debugVictoryPoints; }
 		set<int> getSecondaryDebugVPs() const { return secondaryDebugVictoryPoints; }
 
-		int getMainNavalLocation() const;
+		optional<int> getMainNavalLocation() const;
 
 		void tryToCreateVP();
 		void addManpower();
@@ -90,7 +91,7 @@ class HoI4State
 		bool amICoastal();
 
 		int determineNavalBaseLevel(const V2Province* sourceProvince);
-		int determineNavalBaseLocation(const V2Province* sourceProvince);
+		optional<int> determineNavalBaseLocation(const V2Province* sourceProvince);
 
 		bool assignVPFromVic2Province(int Vic2ProvinceNumber);
 		void assignVP(int location);

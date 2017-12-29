@@ -110,12 +110,12 @@ HoI4World::HoI4World(const V2World* _sourceWorld):
 }
 
 
-HoI4Country* HoI4World::findCountry(const string& countryTag)
+optional<HoI4Country*> HoI4World::findCountry(const string& countryTag)
 {
 	auto country = countries.find(countryTag);
 	if (country == countries.end())
 	{
-		return nullptr;
+		return {};
 	}
 
 	return country->second;
@@ -698,8 +698,11 @@ void HoI4World::convertStrategicRegions()
 	for (auto state : states->getStates())
 	{
 		map<int, int> usedRegions = determineUsedRegions(state.second, provinceToStrategicRegionMap);
-		int bestRegion = determineMostUsedRegion(usedRegions);
-		addProvincesToRegion(state.second, bestRegion);
+		auto bestRegion = determineMostUsedRegion(usedRegions);
+		if (bestRegion)
+		{
+			addProvincesToRegion(state.second, *bestRegion);
+		}
 	}
 	addLeftoverProvincesToRegions(provinceToStrategicRegionMap);
 }
@@ -756,10 +759,10 @@ map<int, int> HoI4World::determineUsedRegions(const HoI4State* state, map<int, i
 }
 
 
-int HoI4World::determineMostUsedRegion(const map<int, int>& usedRegions) const
+optional<int> HoI4World::determineMostUsedRegion(const map<int, int>& usedRegions) const
 {
 	int mostProvinces = 0;
-	int bestRegion = 0;
+	optional<int> bestRegion;
 	for (auto region: usedRegions)
 	{
 		if (region.second > mostProvinces)
@@ -1461,13 +1464,13 @@ void HoI4World::createFactions()
 
 		for (auto allyTag : alliesAndPuppets)
 		{
-			HoI4Country* allycountry = findCountry(allyTag);
+			auto allycountry = findCountry(allyTag);
 			if (!allycountry)
 			{
 				continue;
 			}
-			string allygovernment = allycountry->getGovernmentIdeology();
-			auto possibleSphereLeader = returnSphereLeader(allycountry);
+			string allygovernment = (*allycountry)->getGovernmentIdeology();
+			auto possibleSphereLeader = returnSphereLeader(*allycountry);
 
 			if (
 					((possibleSphereLeader) && (*possibleSphereLeader == leader->getTag())) ||
@@ -1476,23 +1479,23 @@ void HoI4World::createFactions()
 			{
 				if (Configuration::getDebug())
 				{
-					logFactionMember(factionsLog, allycountry);
+					logFactionMember(factionsLog, *allycountry);
 				}
-				factionMembers.push_back(allycountry);
+				factionMembers.push_back(*allycountry);
 
-				factionMilStrength += allycountry->getStrengthOverTime(1.0);
+				factionMilStrength += (*allycountry)->getStrengthOverTime(1.0);
 				//also add the allies' puppets to the faction
-				for (auto puppetTag : allycountry->getPuppets())
+				for (auto puppetTag : (*allycountry)->getPuppets())
 				{
-					HoI4Country* puppetcountry = findCountry(puppetTag);
+					auto puppetcountry = findCountry(puppetTag);
 					if (!puppetcountry)
 					{
 						continue;
 					}
-					logFactionMember(factionsLog, puppetcountry);
-					factionMembers.push_back(puppetcountry);
+					logFactionMember(factionsLog, *puppetcountry);
+					factionMembers.push_back(*puppetcountry);
 
-					factionMilStrength += puppetcountry->getStrengthOverTime(1.0);
+					factionMilStrength += (*puppetcountry)->getStrengthOverTime(1.0);
 				}
 			}
 		}

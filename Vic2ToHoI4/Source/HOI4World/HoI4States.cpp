@@ -56,42 +56,42 @@ void HoI4States::determineOwnersAndCores()
 	for (auto provinceNumber: provinceDefinitions::getLandProvinces())
 	{
 		auto sourceProvinceNums = retrieveSourceProvinceNums(provinceNumber);
-
-		map<const V2Country*, pair<int, int>> potentialOwners = determinePotentialOwners(sourceProvinceNums);
-
-		const V2Country* oldOwner = selectProvinceOwner(potentialOwners);
-		if (oldOwner == nullptr)
+		if (sourceProvinceNums)
 		{
-			continue;
-		}
+			map<const V2Country*, pair<int, int>> potentialOwners = determinePotentialOwners(*sourceProvinceNums);
 
-		auto HoI4Tag = CountryMapper::getHoI4Tag(oldOwner->getTag());
-		if (!HoI4Tag)
-		{
-			LOG(LogLevel::Warning) << "Could not map states owned by " << oldOwner->getTag() << " in Vic2, as there is no mathcing HoI4 country.";
-			continue;
-		}
-		ownersMap.insert(make_pair(provinceNumber, *HoI4Tag));
+			auto oldOwner = selectProvinceOwner(potentialOwners);
+			if (!oldOwner)
+			{
+				continue;
+			}
 
-		vector<string> cores = determineCores(sourceProvinceNums, oldOwner);
-		coresMap.insert(make_pair(provinceNumber, cores));
+			auto HoI4Tag = CountryMapper::getHoI4Tag((*oldOwner)->getTag());
+			if (!HoI4Tag)
+			{
+				LOG(LogLevel::Warning) << "Could not map states owned by " << (*oldOwner)->getTag() << " in Vic2, as there is no mathcing HoI4 country.";
+				continue;
+			}
+			ownersMap.insert(make_pair(provinceNumber, *HoI4Tag));
+
+			vector<string> cores = determineCores(*sourceProvinceNums, (*oldOwner));
+			coresMap.insert(make_pair(provinceNumber, cores));
+		}
 	}
 }
 
 
-vector<int> HoI4States::retrieveSourceProvinceNums(int provNum) const
+optional<vector<int>> HoI4States::retrieveSourceProvinceNums(int provNum) const
 {
-	vector<int> none;
-
 	auto provinceLink = provinceMapper::getHoI4ToVic2ProvinceMapping().find(provNum);
 	if ((provinceLink == provinceMapper::getHoI4ToVic2ProvinceMapping().end()) || (provinceLink->second.size() == 0))
 	{
 		LOG(LogLevel::Warning) << "No source for HoI4 land province " << provNum;
-		return none;
+		return {};
 	}
 	else if (provinceLink->second[0] == 0)
 	{
-		return none;
+		return {};
 	}
 	else
 	{
@@ -126,18 +126,18 @@ map<const V2Country*, pair<int, int>> HoI4States::determinePotentialOwners(const
 }
 
 
-const V2Country* HoI4States::selectProvinceOwner(const map<const V2Country*, pair<int, int>>& potentialOwners) const
+optional<const V2Country*> HoI4States::selectProvinceOwner(const map<const V2Country*, pair<int, int>>& potentialOwners) const
 {
-	const V2Country* oldOwner = nullptr;
+	optional<const V2Country*> oldOwner;
 	for (auto potentialOwner: potentialOwners)
 	{
 		// I am the new owner if there is no current owner, or I have more provinces than the current owner,
 		// or I have the same number of provinces, but more population, than the current owner
-		if (	(oldOwner == nullptr) ||
-				(potentialOwner.second.first > potentialOwners.find(oldOwner)->second.first) ||
+		if (	(!oldOwner) ||
+				(potentialOwner.second.first > potentialOwners.find(*oldOwner)->second.first) ||
 				(
-					(potentialOwner.second.first == potentialOwners.find(oldOwner)->second.first) &&
-					(potentialOwner.second.second > potentialOwners.find(oldOwner)->second.second)
+					(potentialOwner.second.first == potentialOwners.find(*oldOwner)->second.first) &&
+					(potentialOwner.second.second > potentialOwners.find(*oldOwner)->second.second)
 				)
 			)
 		{

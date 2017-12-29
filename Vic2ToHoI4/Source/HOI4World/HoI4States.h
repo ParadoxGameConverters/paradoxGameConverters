@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "../Mappers/ProvinceMapper.h"
 #include <map>
+#include <optional>
 #include <set>
 #include <string>
 #include <vector>
@@ -57,9 +58,9 @@ class HoI4States
 		HoI4States& operator=(const HoI4States&) = delete;
 
 		void determineOwnersAndCores();
-		vector<int> retrieveSourceProvinceNums(int provNum) const;
+		optional<vector<int>> retrieveSourceProvinceNums(int provNum) const;
 		map<const V2Country*, pair<int, int>> determinePotentialOwners(const vector<int>& sourceProvinceNums) const;
-		const V2Country* selectProvinceOwner(const map<const V2Country*, pair<int, int>>& potentialOwners) const;
+		optional<const V2Country*> selectProvinceOwner(const map<const V2Country*, pair<int, int>>& potentialOwners) const;
 		vector<string> determineCores(const vector<int>& sourceProvinces, const V2Country* oldOwner) const;
 
 		void createStates();

@@ -514,12 +514,16 @@ void HoI4Country::convertNavy(const map<string, HoI4UnitMap>& unitMap)
 		}
 	}
 
-	for (auto state : states)
+	for (auto state: states)
 	{
-		if ((state.second->getOwner() == tag) && (state.second->getMainNavalLocation() != 0))
+		if (state.second->getOwner() == tag)
 		{
-			// Mapped ships will be placed in a single large fleet
-			navalLocation = state.second->getMainNavalLocation();
+			auto mainNavalLocation = state.second->getMainNavalLocation();
+			if (mainNavalLocation)
+			{
+				// Mapped ships will be placed in a single large fleet
+				navalLocation = *mainNavalLocation;
+			}
 		}
 	}
 }
@@ -1125,7 +1129,7 @@ void HoI4Country::addProvince(int _province)
 }
 
 
-const HoI4Relations* HoI4Country::getRelations(string withWhom) const
+optional<const HoI4Relations*> HoI4Country::getRelations(string withWhom) const
 {
 	map<string, HoI4Relations*>::const_iterator i = relations.find(withWhom);
 	if (i != relations.end())
@@ -1134,7 +1138,7 @@ const HoI4Relations* HoI4Country::getRelations(string withWhom) const
 	}
 	else
 	{
-		return nullptr;
+		return {};
 	}
 }
 

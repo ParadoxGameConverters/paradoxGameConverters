@@ -22,6 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <fstream>
+#include <optional>
 #include <map>
 #include <string>
 #include "HoI4Country.h"
@@ -81,7 +82,7 @@ class HoI4WarCreator
 		double    GetFactionStrength(const HoI4Faction* Faction, int years) const;
 		string HowToTakeLand(HoI4Country* TargetCountry, HoI4Country* AttackingCountry, double time);
 		vector<HoI4Country*> GetMorePossibleAllies(const HoI4Country* CountryThatWantsAllies);
-		double getDistanceBetweenCountries(const HoI4Country* Country1, const HoI4Country* Country2);
+		optional<double> getDistanceBetweenCountries(const HoI4Country* Country1, const HoI4Country* Country2);
 		bool bothCountriesHaveCapitals(const HoI4Country* Country1, const HoI4Country* Country2) const;
 		pair<int, int> getCapitalPosition(const HoI4Country* country);
 		pair<int, int> getProvincePosition(int provinceNum);

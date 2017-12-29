@@ -87,7 +87,7 @@ class HoI4Country
 		void addNationalFocus(const HoI4FocusTree* NF) { nationalFocus = NF; }
 		void setGreatPower() { greatPower = true; }
 
-		const HoI4Relations*								getRelations(string withWhom) const;
+		optional<const HoI4Relations*> getRelations(string withWhom) const;
 		double getStrengthOverTime(double years) const;
 		double getMilitaryStrength() const;
 		double getEconomicStrength(double years) const;
