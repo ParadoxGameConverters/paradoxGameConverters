@@ -191,10 +191,8 @@ optional<vector<string>> graphicsMapper::GetIdeologyMinisterPortraits(const stri
 			return portraits->second;
 		}
 	}
-	else
-	{
-		return {};
-	}
+
+	return {};
 }
 
 
