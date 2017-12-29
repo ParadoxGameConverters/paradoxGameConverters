@@ -70,7 +70,7 @@ date::date(const date& _init)
 }
 
 
-date& date::operator=(const date& _rhs)
+const date& date::operator=(const date& _rhs)
 {
 	year = _rhs.year;
 	month = _rhs.month;

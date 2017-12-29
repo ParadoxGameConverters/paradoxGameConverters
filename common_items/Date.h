@@ -44,7 +44,7 @@ struct date
 	date(const date& _init);
 	explicit date(const shared_ptr<Object> _init);
 
-	date& operator=(const date& _rhs);
+	const date& operator=(const date& _rhs);
 	bool operator==(const date& _rhs) const;
 	bool operator!=(const date& _rhs) const;
 	bool operator<(const date& _rhs) const;
