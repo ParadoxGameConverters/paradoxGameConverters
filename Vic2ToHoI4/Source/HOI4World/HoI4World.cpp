@@ -963,11 +963,12 @@ map<string, vector<pair<string, int>>> HoI4World::importTechMap() const
 			vector<pair<string, int> > targetTechs;
 			string tech = "";
 
-			for (auto key: link->getKeys())
+			for (auto leaf: link->getLeaves())
 			{
+				string key = leaf->getKey();
 				if (key == "vic2")
 				{
-					tech = link->getLeaf("vic2");
+					tech = leaf->getLeaf();
 				}
 				else
 				{
@@ -1007,11 +1008,12 @@ map<string, vector<pair<string, int>>> HoI4World::importResearchBonusMap() const
 			vector<pair<string, int> > targetTechs;
 			string tech = "";
 
-			for (auto key : link->getKeys())
+			for (auto leaf: link->getLeaves())
 			{
+				string key = leaf->getKey();
 				if (key == "vic2")
 				{
-					tech = link->getLeaf("vic2");
+					tech = leaf->getLeaf();
 				}
 				else
 				{

@@ -216,13 +216,13 @@ vector<string> Object::getKeys()
 }
 
 
-string Object::getLeaf(const string& leaf) const
+optional<string> Object::getLeaf(const string& leaf) const
 {
 	vector<shared_ptr<Object>> leaves = getValue(leaf); // the objects to return
 	if (0 == leaves.size())
 	{
-		LOG(LogLevel::Error) << "Error: Cannot find leaf " << leaf << " in object\n" << *this;
-		assert(leaves.size());
+		LOG(LogLevel::Warning) << "Error: Cannot find leaf " << leaf << " in object\n" << *this;
+		return {};
 	}
 	return leaves[0]->getLeaf();
 }
@@ -460,7 +460,7 @@ shared_ptr<Object> Object::safeGetObject(const string& k, shared_ptr<Object> def
 vector<string> Object::safeGetTokens(const string& k)
 {
 	auto obj = safeGetObject(k);
-	if (obj != nullptr)
+	if (obj)
 	{
 		return obj->getTokens();
 	}
@@ -474,8 +474,8 @@ vector<string> Object::safeGetTokens(const string& k)
 
 string Object::toString() const
 {
-	ostringstream blah;	// the output string
-	blah << *(this);
-	return blah.str();
+	ostringstream outputStringStream;
+	outputStringStream << *(this);
+	return outputStringStream.str();
 }
 

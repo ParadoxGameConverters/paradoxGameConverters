@@ -66,15 +66,29 @@ class Object
 	  ~Object(); 
 	  explicit Object(shared_ptr<Object> other);
 
+	  string getKey() const { return key; }
+	  string getLeaf() const { return strVal; }
+	  vector<shared_ptr<Object>> getLeaves() { return objects; }
+	  vector<string> getTokens() { return tokens; }
+	  inline bool isLeaf() { return leaf; }
+
+	  void setObjList(const bool l = true) { isObjList = l; }
+
+	  optional<string> getLeaf(const string& leaf) const;
+	  vector<string> getKeys();
+	  vector<shared_ptr<Object>> getValue(const string& key) const;
+	  optional<string> getToken(int index);
+	  int numTokens();
+	  double safeGetFloat(const string& k, double def = 0.0);
+	  string safeGetString(const string& k, string def = "");
+	  int safeGetInt(const string& k, int def = 0);
+	  shared_ptr<Object> safeGetObject(const string& k, shared_ptr<Object> def = {});
+	  vector<string> safeGetTokens(const string& k);
+	  string toString() const;
+
 	  void setValue(shared_ptr<Object> val);
 	  void setValue(const string& val);
 	  void setValue(const vector<shared_ptr<Object>>& val);
-	  string getKey() const { return key; }
-	  vector<string> getKeys(); 
-	  vector<shared_ptr<Object>> getValue(const string& key) const;
-	  string getLeaf() const { return strVal; }
-	  string getLeaf(const string& leaf) const;
-	  vector<shared_ptr<Object>> getLeaves() { return objects; }
 	  void removeObject(shared_ptr<Object> target); 
 	  void addObject(shared_ptr<Object> target); 
 	  void addObjectAfter(shared_ptr<Object> target, const string& key);
@@ -82,20 +96,9 @@ class Object
 	  void unsetValue(const string& val);
 	  void keyCount();
 	  void keyCount(map<string, int>& counter);
-	  void setObjList(const bool l = true) {isObjList = l;}
-	  optional<string> getToken(int index);
-	  vector<string> getTokens() { return tokens; }
-	  int numTokens(); 
 	  void addToList(string val); 
 	  void addToList(vector<string>::iterator begin, vector<string>::iterator end);
 	  void printTopLevel();
-	  inline bool isLeaf() {return leaf;}
-	  double safeGetFloat(const string& k, double def = 0.0);
-	  string safeGetString(const string& k, string def = ""); 
-	  int safeGetInt(const string& k, int def = 0);
-	  shared_ptr<Object> safeGetObject(const string& k, shared_ptr<Object> def = nullptr);
-	  vector<string> safeGetTokens(const string& k);
-	  string toString() const; 
   
 	private:
 	  string key;						// the higher level or LHS key for this object
@@ -109,9 +112,9 @@ class Object
 
 extern ostream& operator<< (ostream& os, const Object& i);
 extern shared_ptr<Object> br; 
-extern void setVal (string name, const string& val, shared_ptr<Object> branch = 0);
-extern void setInt (string name, int val, shared_ptr<Object> branch = 0);
-extern void setFlt (string name, double val, shared_ptr<Object> branch = 0);
+extern void setVal (string name, const string& val, shared_ptr<Object> branch = {});
+extern void setInt (string name, int val, shared_ptr<Object> branch = {});
+extern void setFlt (string name, double val, shared_ptr<Object> branch = {});
 typedef vector<shared_ptr<Object>>::iterator objiter;
 typedef vector<shared_ptr<Object>> objvec; 
 typedef map<string, shared_ptr<Object>> stobmap;
