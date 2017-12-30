@@ -50,6 +50,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Object.h"
+#include <memory>
 #include <string>
 using namespace std;
 
@@ -57,9 +58,6 @@ using namespace std;
 
 namespace parser_UTF8
 {
-	shared_ptr<Object> getTopLevel();
-	void	clearStack(); 
-	void	initParser();
 	shared_ptr<Object> doParseFile(string filename);
 }
 

@@ -40,14 +40,16 @@ provinceMapper::provinceMapper():
 	Vic2ToHoI4ProvinceMap()
 {
 	LOG(LogLevel::Info) << "Parsing province mappings";
-	shared_ptr<Object> parsedMappingsFile = parser_8859_15::doParseFile("province_mappings.txt");
-	if (parsedMappingsFile == NULL)
+	auto parsedMappingsFile = parser_8859_15::doParseFile("province_mappings.txt");
+	if (parsedMappingsFile)
+	{
+		initProvinceMap(parsedMappingsFile);
+	}
+	else
 	{
 		LOG(LogLevel::Error) << "Could not parse file province_mappings.txt";
 		exit(-1);
 	}
-
-	initProvinceMap(parsedMappingsFile);
 }
 
 

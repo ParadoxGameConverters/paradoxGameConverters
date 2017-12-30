@@ -46,8 +46,8 @@ stateMapper::stateMapper():
 	{
 		if (Utils::DoesFileExist(Configuration::getV2Path() + "/mod/" + itr + "/map/region.txt"))
 		{
-			shared_ptr<Object> parsedMappingsFile = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/map/region.txt"));
-			if (parsedMappingsFile != NULL)
+			auto parsedMappingsFile = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/map/region.txt"));
+			if (parsedMappingsFile)
 			{
 				initStateMap(parsedMappingsFile);
 				stateMapInitialized = true;
@@ -57,14 +57,15 @@ stateMapper::stateMapper():
 	}
 	if (!stateMapInitialized)
 	{
-		shared_ptr<Object> parsedMappingsFile = parser_8859_15::doParseFile((Configuration::getV2Path() + "/map/region.txt"));
-		if (parsedMappingsFile != NULL)
+		auto parsedMappingsFile = parser_8859_15::doParseFile((Configuration::getV2Path() + "/map/region.txt"));
+		if (parsedMappingsFile)
 		{
 			initStateMap(parsedMappingsFile);
 		}
 		else
 		{
 			LOG(LogLevel::Error) << "Could not import " << Configuration::getV2Path() << "/map/region.txt";
+			exit(-1);
 		}
 	}
 }

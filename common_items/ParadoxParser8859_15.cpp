@@ -54,6 +54,8 @@ using namespace boost::spirit;
 
 namespace parser_8859_15
 {
+	void clearStack();
+
 	static void setLHS(wstring key);
 	static void pushObj();
 	static void setRHSleaf(wstring val);
@@ -84,8 +86,6 @@ namespace parser_8859_15
 	template <typename Iterator>
 	struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> >
 	{
-		static shared_ptr<Object> topLevel;
-
 		// leaf: either left or right side of assignment.  unquoted keyword.
 		// example: leaf
 		qi::rule<Iterator, wstring(), SkipComment<Iterator> >	leaf;
@@ -175,10 +175,6 @@ namespace parser_8859_15
 		}
 	};
 
-	shared_ptr<Object> getTopLevel()
-	{
-		return topLevel;
-	}
 
 	void initParser()
 	{
@@ -190,7 +186,7 @@ namespace parser_8859_15
 	{
 		int openBraces = 0;				// the number of braces deep we are
 		wstring currObject;				// the current object being built
-		bool topLevel = true;			// whether or not we're at the top level
+		bool isTopLevel = true;			// whether or not we're at the top level
 		while (read.good())
 		{
 			string buffer;
@@ -248,7 +244,7 @@ namespace parser_8859_15
 
 			if (openBraces > 0)
 			{
-				topLevel = false;
+				isTopLevel = false;
 				continue;
 			}
 
@@ -265,7 +261,7 @@ namespace parser_8859_15
 			// Not a problem for non-top-level objects since these will have
 			// nonzero openBraces anyway.
 			// But don't continue if the object was all on one line.
-			if (topLevel && !opened)
+			if (isTopLevel && !opened)
 			{
 				continue;
 			}
@@ -460,7 +456,6 @@ namespace parser_8859_15
 		*/
 
 		initParser();
-		shared_ptr<Object> obj = getTopLevel();	// the top level object
 		ifstream read(filename);
 		if (!read.is_open())
 		{
@@ -470,7 +465,7 @@ namespace parser_8859_15
 		read.close();
 		read.clear();
 
-		return obj;
+		return topLevel;
 #endif
 	}
 } // namespace parser_8859_15

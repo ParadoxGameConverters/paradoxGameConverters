@@ -51,24 +51,26 @@ void initLeaderTraitsMap(leaderTraitsMap& leaderTraits)
 {
 	LOG(LogLevel::Info) << "Parsing government jobs";
 
-	shared_ptr<Object> obj = parser_UTF8::doParseFile("leader_traits.txt");
-	if (obj == NULL)
+	auto obj = parser_UTF8::doParseFile("leader_traits.txt");
+	if (obj)
+	{
+		vector<shared_ptr<Object>> typesObj = obj->getLeaves();
+		for (auto typeItr: typesObj)
+		{
+			string type = typeItr->getKey();
+			vector<string> traits;
+			auto traitsObj = typeItr->getLeaves();
+			for (auto trait: traitsObj)
+			{
+				traits.push_back(trait->getLeaf());
+			}
+			leaderTraits.insert(make_pair(type, traits));
+		}
+	}
+	else
 	{
 		LOG(LogLevel::Error) << "Could not parse file leader_traits.txt";
 		exit(-1);
-	}
-
-	vector<shared_ptr<Object>> typesObj = obj->getLeaves();
-	for (auto typeItr: typesObj)
-	{
-		string type = typeItr->getKey();
-		vector<string> traits;
-		auto traitsObj = typeItr->getLeaves();
-		for (auto trait: traitsObj)
-		{
-			traits.push_back(trait->getLeaf());
-		}
-		leaderTraits.insert(make_pair(type, traits));
 	}
 }
 
@@ -76,38 +78,36 @@ void initLeaderTraitsMap(leaderTraitsMap& leaderTraits)
 void initLeaderPersonalityMap(personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap)
 {
 	LOG(LogLevel::Info) << "Parsing personality mappings";
-	shared_ptr<Object> obj = parser_UTF8::doParseFile("personality_map.txt");
-	if (obj == NULL)
+
+	auto obj = parser_UTF8::doParseFile("personality_map.txt");
+	if (obj)
+	{
+		vector<shared_ptr<Object>> personalitiesObj = obj->getLeaves();
+		for (auto personalityItr: personalitiesObj)
+		{
+			string personality = personalityItr->getKey();
+			vector<string> landTraits;
+			vector<string> seaTraits;
+			auto traitsObj = personalityItr->getLeaves();
+			for (auto trait: traitsObj)
+			{
+				if (trait->getKey() == "land")
+				{
+					landTraits.push_back(trait->getLeaf());
+				}
+				else if (trait->getKey() == "sea")
+				{
+					seaTraits.push_back(trait->getLeaf());
+				}
+			}
+			landPersonalityMap.insert(make_pair(personality, landTraits));
+			seaPersonalityMap.insert(make_pair(personality, seaTraits));
+		}
+	}
+	else
 	{
 		LOG(LogLevel::Error) << "Could not parse file personality_map.txt";
 		exit(-1);
-	}
-	if (obj->getLeaves().size() < 1)
-	{
-		LOG(LogLevel::Error) << "Failed to parse personality_map.txt";
-		exit(-1);
-	}
-
-	vector<shared_ptr<Object>> personalitiesObj = obj->getLeaves();
-	for (auto personalityItr: personalitiesObj)
-	{
-		string personality = personalityItr->getKey();
-		vector<string> landTraits;
-		vector<string> seaTraits;
-		auto traitsObj = personalityItr->getLeaves();
-		for (auto trait: traitsObj)
-		{
-			if (trait->getKey() == "land")
-			{
-				landTraits.push_back(trait->getLeaf());
-			}
-			else if (trait->getKey() == "sea")
-			{
-				seaTraits.push_back(trait->getLeaf());
-			}
-		}
-		landPersonalityMap.insert(make_pair(personality, landTraits));
-		seaPersonalityMap.insert(make_pair(personality, seaTraits));
 	}
 }
 
@@ -115,37 +115,35 @@ void initLeaderPersonalityMap(personalityMap& landPersonalityMap, personalityMap
 void initLeaderBackgroundMap(backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
 {
 	LOG(LogLevel::Info) << "Parsing background mappings";
-	shared_ptr<Object> obj = parser_UTF8::doParseFile("background_map.txt");
-	if (obj == NULL)
+
+	auto obj = parser_UTF8::doParseFile("background_map.txt");
+	if (obj)
+	{
+		vector<shared_ptr<Object>> backgroundObj = obj->getLeaves();
+		for (auto backgroundItr: backgroundObj)
+		{
+			string background = backgroundItr->getKey();
+			vector<string> landTraits;
+			vector<string> seaTraits;
+			auto traitsObj = backgroundItr->getLeaves();
+			for (auto trait: traitsObj)
+			{
+				if (trait->getKey() == "land")
+				{
+					landTraits.push_back(trait->getLeaf());
+				}
+				else if (trait->getKey() == "sea")
+				{
+					seaTraits.push_back(trait->getLeaf());
+				}
+			}
+			landBackgroundMap.insert(make_pair(background, landTraits));
+			seaBackgroundMap.insert(make_pair(background, seaTraits));
+		}
+	}
+	else
 	{
 		LOG(LogLevel::Error) << "Could not parse file background_map.txt";
 		exit(-1);
-	}
-	if (obj->getLeaves().size() < 1)
-	{
-		LOG(LogLevel::Error) << "Failed to parse background_map.txt";
-		exit(-1);
-	}
-
-	vector<shared_ptr<Object>> backgroundObj = obj->getLeaves();
-	for (auto backgroundItr: backgroundObj)
-	{
-		string background = backgroundItr->getKey();
-		vector<string> landTraits;
-		vector<string> seaTraits;
-		auto traitsObj = backgroundItr->getLeaves();
-		for (auto trait: traitsObj)
-		{
-			if (trait->getKey() == "land")
-			{
-				landTraits.push_back(trait->getLeaf());
-			}
-			else if (trait->getKey() == "sea")
-			{
-				seaTraits.push_back(trait->getLeaf());
-			}
-		}
-		landBackgroundMap.insert(make_pair(background, landTraits));
-		seaBackgroundMap.insert(make_pair(background, seaTraits));
 	}
 }

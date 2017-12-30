@@ -438,15 +438,17 @@ void HoI4Country::initFromHistory()
 	}
 
 	LOG(LogLevel::Debug) << "Parsing " << fullFilename;
-	shared_ptr<Object> obj = parser_UTF8::doParseFile(fullFilename);
-	if (obj == nullptr)
+	auto obj = parser_UTF8::doParseFile(fullFilename);
+	if (obj)
+	{
+		governmentIdeology = obj->safeGetString("ideology", governmentIdeology);
+		capitalStateNum = obj->safeGetInt("capital", capitalStateNum);
+	}
+	else
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << fullFilename;
 		exit(-1);
 	}
-
-	governmentIdeology = obj->safeGetString("ideology", governmentIdeology);
-	capitalStateNum = obj->safeGetInt("capital", capitalStateNum);
 }
 
 

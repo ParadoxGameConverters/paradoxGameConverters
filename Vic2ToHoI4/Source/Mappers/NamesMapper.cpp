@@ -66,58 +66,66 @@ namesMapper::namesMapper():
 
 void namesMapper::processVic2CulturesFile(const string& filename)
 {
-	shared_ptr<Object> obj = parser_8859_15::doParseFile(filename);
-	if (obj == nullptr)
+	auto obj = parser_8859_15::doParseFile(filename);
+	if (obj)
+	{
+		vector<shared_ptr<Object>> groupsObj = obj->getLeaves();
+		for (auto groupsItr: groupsObj)
+		{
+			vector<shared_ptr<Object>> culturesObj = groupsItr->getLeaves();
+			for (auto culturesItr: culturesObj)
+			{
+				string key = culturesItr->getKey();
+				if ((key == "union") || (key == "leader") || (key == "unit") || (key == "is_overseas"))
+				{
+					continue;
+				}
+
+				auto firstNamesObj = culturesItr->safeGetObject("first_names");
+				auto lastNamesObj = culturesItr->safeGetObject("last_names");
+				if ((firstNamesObj != nullptr) && (lastNamesObj != nullptr))
+				{
+					maleNamesMap.insert(make_pair(key, firstNamesObj->getTokens()));
+					surnamesMap.insert(make_pair(key, lastNamesObj->getTokens()));
+				}
+				else
+				{
+					LOG(LogLevel::Error) << "No names for " << key;
+				}
+			}
+		}
+	}
+	else
 	{
 		return;
-	}
-
-	vector<shared_ptr<Object>> groupsObj = obj->getLeaves();
-	for (auto groupsItr: groupsObj)
-	{
-		vector<shared_ptr<Object>> culturesObj = groupsItr->getLeaves();
-		for (auto culturesItr: culturesObj)
-		{
-			string key = culturesItr->getKey();
-			if ((key == "union") || (key == "leader") || (key == "unit") || (key == "is_overseas"))
-			{
-				continue;
-			}
-
-			auto firstNamesObj = culturesItr->safeGetObject("first_names");
-			auto lastNamesObj = culturesItr->safeGetObject("last_names");
-			if ((firstNamesObj != nullptr) && (lastNamesObj != nullptr))
-			{
-				maleNamesMap.insert(make_pair(key, firstNamesObj->getTokens()));
-				surnamesMap.insert(make_pair(key, lastNamesObj->getTokens()));
-			}
-			else
-			{
-				LOG(LogLevel::Error) << "No names for " << key;
-			}	
-		}
 	}
 }
 
 
 void namesMapper::processNamesFile()
 {
-	shared_ptr<Object> obj = parser_UTF8::doParseFile("names.txt");
-	for (auto cultureObj: obj->getLeaves())
+	auto obj = parser_UTF8::doParseFile("names.txt");
+	if (obj)
 	{
-		string culture = cultureObj->getKey();
+		for (auto cultureObj: obj->getLeaves())
+		{
+			string culture = cultureObj->getKey();
 
-		femaleNamesMap.insert(make_pair(culture, cultureObj->safeGetTokens("female_names")));
-		callsignsMap.insert(make_pair(culture, cultureObj->safeGetTokens("callsigns")));
-		carCompanyNames.insert(make_pair(culture, cultureObj->safeGetTokens("car_companies")));
-		weaponCompanyNames.insert(make_pair(culture, cultureObj->safeGetTokens("weapon_companies")));
-		aircraftCompanyNames.insert(make_pair(culture, cultureObj->safeGetTokens("aircraft_companies")));
-		navalCompanyNames.insert(make_pair(culture, cultureObj->safeGetTokens("naval_companies")));
-		industryCompanyNames.insert(make_pair(culture, cultureObj->safeGetTokens("industry_companies")));
-		electronicCompanyNames.insert(make_pair(culture, cultureObj->safeGetTokens("electronic_companies")));
+			femaleNamesMap.insert(make_pair(culture, cultureObj->safeGetTokens("female_names")));
+			callsignsMap.insert(make_pair(culture, cultureObj->safeGetTokens("callsigns")));
+			carCompanyNames.insert(make_pair(culture, cultureObj->safeGetTokens("car_companies")));
+			weaponCompanyNames.insert(make_pair(culture, cultureObj->safeGetTokens("weapon_companies")));
+			aircraftCompanyNames.insert(make_pair(culture, cultureObj->safeGetTokens("aircraft_companies")));
+			navalCompanyNames.insert(make_pair(culture, cultureObj->safeGetTokens("naval_companies")));
+			industryCompanyNames.insert(make_pair(culture, cultureObj->safeGetTokens("industry_companies")));
+			electronicCompanyNames.insert(make_pair(culture, cultureObj->safeGetTokens("electronic_companies")));
+		}
 	}
-
-
+	else
+	{
+		LOG(LogLevel::Error) << "Could not parse names.txt";
+		exit(-1);
+	}
 }
 
 

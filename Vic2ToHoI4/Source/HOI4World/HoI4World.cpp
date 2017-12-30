@@ -222,56 +222,74 @@ void HoI4World::importIdeologies()
 
 void HoI4World::importIdeologyFile(const string& filename)
 {
-	shared_ptr<Object> fileObject = parser_UTF8::doParseFile(filename);
-	auto ideologiesObjects = fileObject->getLeaves();
-	if (ideologiesObjects.size() > 0)
+	auto fileObject = parser_UTF8::doParseFile(filename);
+	if (fileObject)
 	{
-		for (auto ideologyObject: ideologiesObjects[0]->getLeaves())
+		auto ideologiesObjects = fileObject->getLeaves();
+		if (ideologiesObjects.size() > 0)
 		{
-			string ideologyName = ideologyObject->getKey();
-			HoI4Ideology* newIdeology = new HoI4Ideology(ideologyObject);
-			ideologies.insert(make_pair(ideologyName, newIdeology));
+			for (auto ideologyObject: ideologiesObjects[0]->getLeaves())
+			{
+				string ideologyName = ideologyObject->getKey();
+				HoI4Ideology* newIdeology = new HoI4Ideology(ideologyObject);
+				ideologies.insert(make_pair(ideologyName, newIdeology));
+			}
 		}
+	}
+	else
+	{
+		LOG(LogLevel::Error) << "Could not parse " << filename;
+		exit(-1);
 	}
 }
 
 
 void HoI4World::importLeaderTraits()
 {
-	shared_ptr<Object> fileObject = parser_UTF8::doParseFile("converterLeaderTraits.txt");
-	auto ideologyObjects = fileObject->getLeaves();
-	for (auto ideologyObject: ideologyObjects)
+	auto fileObject = parser_UTF8::doParseFile("converterLeaderTraits.txt");
+	if (fileObject)
 	{
-		string ideaName = ideologyObject->getKey();
-		ideologicalLeaderTraits.insert(make_pair(ideaName, ideologyObject->getLeaves()));
+		auto ideologyObjects = fileObject->getLeaves();
+		for (auto ideologyObject: ideologyObjects)
+		{
+			string ideaName = ideologyObject->getKey();
+			ideologicalLeaderTraits.insert(make_pair(ideaName, ideologyObject->getLeaves()));
+		}
+	}
+	else
+	{
+		LOG(LogLevel::Error) << "Could not parse converterLeaderTraits.txt";
 	}
 }
 
 
 void HoI4World::importIdeologicalMinisters()
 {
-	shared_ptr<Object> fileObject = parser_UTF8::doParseFile("ideologicalAdvisors.txt");
-	auto ideologyObjects = fileObject->getLeaves();
-	for (auto ideologyObject: ideologyObjects)
+	auto fileObject = parser_UTF8::doParseFile("ideologicalAdvisors.txt");
+	if (fileObject)
 	{
-		string ideaName = ideologyObject->getKey();
-		HoI4Advisor* newAdvisor = new HoI4Advisor(ideologyObject->getLeaves()[0]);
-		ideologicalAdvisors.insert(make_pair(ideaName, newAdvisor));
-	}
+		auto ideologyObjects = fileObject->getLeaves();
+		for (auto ideologyObject: ideologyObjects)
+		{
+			string ideaName = ideologyObject->getKey();
+			HoI4Advisor* newAdvisor = new HoI4Advisor(ideologyObject->getLeaves()[0]);
+			ideologicalAdvisors.insert(make_pair(ideaName, newAdvisor));
+		}
 
-	int ministerEventNum = 1;
-	for (auto ideology: majorIdeologies)
-	{
-		if (ideology == "neutrality")
+		int ministerEventNum = 1;
+		for (auto ideology: majorIdeologies)
 		{
-			continue;
+			if (ideology == "neutrality")
+			{
+				continue;
+			}
+			auto advisor = ideologicalAdvisors.find(ideology);
+			if (advisor != ideologicalAdvisors.end())
+			{
+				advisor->second->addEventNum(ministerEventNum);
+			}
+			ministerEventNum += 6;
 		}
-		auto advisor = ideologicalAdvisors.find(ideology);
-		if (advisor != ideologicalAdvisors.end())
-		{
-			advisor->second->addEventNum(ministerEventNum);
-		}
-		ministerEventNum += 6;
 	}
 }
 
@@ -296,12 +314,15 @@ void HoI4World::convertParties()
 
 void HoI4World::importIdeologicalIdeas()
 {
-	shared_ptr<Object> fileObject = parser_UTF8::doParseFile("ideologicalIdeas.txt");
-	auto ideologyObjects = fileObject->getLeaves();
-	for (auto ideologyObject: ideologyObjects)
+	auto fileObject = parser_UTF8::doParseFile("ideologicalIdeas.txt");
+	if (fileObject)
 	{
-		string ideaName = ideologyObject->getKey();
-		ideologicalIdeas.insert(make_pair(ideaName, ideologyObject->getLeaves()));
+		auto ideologyObjects = fileObject->getLeaves();
+		for (auto ideologyObject: ideologyObjects)
+		{
+			string ideaName = ideologyObject->getKey();
+			ideologicalIdeas.insert(make_pair(ideaName, ideologyObject->getLeaves()));
+		}
 	}
 }
 
@@ -583,31 +604,34 @@ void HoI4World::reportDefaultIndustry()
 
 pair<string, array<int, 3>> HoI4World::getDefaultStateIndustry(const string& stateFilename)
 {
-	shared_ptr<Object> fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/history/states/" + stateFilename);
-	if (fileObj == nullptr)
+	auto fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/history/states/" + stateFilename);
+	if (fileObj)
+	{
+		auto stateObj = fileObj->safeGetObject("state");
+		auto historyObj = stateObj->safeGetObject("history");
+		auto buildingsObj = historyObj->safeGetObject("buildings");
+
+		int civilianFactories = 0;
+		int militaryFactories = 0;
+		int dockyards = 0;
+		if (buildingsObj != nullptr)
+		{
+			civilianFactories = buildingsObj->safeGetInt("industrial_complex");
+			militaryFactories = buildingsObj->safeGetInt("arms_factory");
+			dockyards = buildingsObj->safeGetInt("dockyard");
+		}
+
+		string owner = historyObj->safeGetString("owner");
+
+		array<int, 3> industry = { militaryFactories, civilianFactories, dockyards };
+		pair<string, array<int, 3>> stateData = make_pair(owner, industry);
+		return stateData;
+	}
+	else
 	{
 		LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/history/states/" << stateFilename;
 		exit(-1);
 	}
-	auto stateObj = fileObj->safeGetObject("state");
-	auto historyObj = stateObj->safeGetObject("history");
-	auto buildingsObj = historyObj->safeGetObject("buildings");
-
-	int civilianFactories = 0;
-	int militaryFactories = 0;
-	int dockyards = 0;
-	if (buildingsObj != nullptr)
-	{
-		civilianFactories = buildingsObj->safeGetInt("industrial_complex");
-		militaryFactories = buildingsObj->safeGetInt("arms_factory");
-		dockyards = buildingsObj->safeGetInt("dockyard");
-	}
-
-	string owner = historyObj->safeGetString("owner");
-
-	array<int, 3> industry = { militaryFactories, civilianFactories, dockyards };
-	pair<string, array<int, 3>> stateData = make_pair(owner, industry);
-	return stateData;
 }
 
 
@@ -654,31 +678,33 @@ map<int, map<string, double>> HoI4World::importResourceMap() const
 {
 	map<int, map<string, double>> resourceMap;
 
-	shared_ptr<Object> fileObj = parser_UTF8::doParseFile("resources.txt");
-	if (fileObj == nullptr)
+	auto fileObj = parser_UTF8::doParseFile("resources.txt");
+	if (fileObj)
+	{
+		auto resourcesObj = fileObj->safeGetObject("resources");
+		for (auto linkObj: resourcesObj->getValue("link"))
+		{
+			int provinceNumber = linkObj->safeGetInt("province");
+			auto mapping = resourceMap.find(provinceNumber);
+			if (mapping == resourceMap.end())
+			{
+				map<string, double> resources;
+				resourceMap.insert(make_pair(provinceNumber, resources));
+				mapping = resourceMap.find(provinceNumber);
+			}
+
+			auto resourcesObj = linkObj->safeGetObject("resources");
+			for (auto resource: resourcesObj->getLeaves())
+			{
+				string resourceName = resource->getKey();
+				mapping->second[resourceName] += stof(resource->getLeaf());
+			}
+		}
+	}
+	else
 	{
 		LOG(LogLevel::Error) << "Could not read resources.txt";
 		exit(-1);
-	}
-
-	auto resourcesObj = fileObj->safeGetObject("resources");
-	for (auto linkObj: resourcesObj->getValue("link"))
-	{
-		int provinceNumber = linkObj->safeGetInt("province");
-		auto mapping = resourceMap.find(provinceNumber);
-		if (mapping == resourceMap.end())
-		{
-			map<string, double> resources;
-			resourceMap.insert(make_pair(provinceNumber, resources));
-			mapping = resourceMap.find(provinceNumber);
-		}
-
-		auto resourcesObj = linkObj->safeGetObject("resources");
-		for (auto resource: resourcesObj->getLeaves())
-		{
-			string resourceName = resource->getKey();
-			mapping->second[resourceName] += stof(resource->getLeaf());
-		}
 	}
 
 	return resourceMap;
@@ -923,74 +949,87 @@ map<string, vector<pair<string, int>>> HoI4World::importTechMap() const
 {
 	map<string, vector<pair<string, int>>> techMap;
 
-	shared_ptr<Object> fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
-
-	auto mapObj = fileObj->safeGetObject("tech_map");
-	if (mapObj == nullptr)
+	auto fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
+	if (fileObj)
 	{
-		LOG(LogLevel::Error) << "Could not read tech map";
-		exit(-1);
-	}
-
-	for (auto link: mapObj->getValue("link"))
-	{
-		vector<pair<string, int> > targetTechs;
-		string tech = "";
-
-		for (auto key: link->getKeys())
+		auto mapObj = fileObj->safeGetObject("tech_map");
+		if (mapObj == nullptr)
 		{
-			if (key == "vic2")
+			LOG(LogLevel::Error) << "Could not read tech map";
+			exit(-1);
+		}
+		for (auto link: mapObj->getValue("link"))
+		{
+			vector<pair<string, int> > targetTechs;
+			string tech = "";
+
+			for (auto key: link->getKeys())
 			{
-				tech = link->getLeaf("vic2");
+				if (key == "vic2")
+				{
+					tech = link->getLeaf("vic2");
+				}
+				else
+				{
+					int value = link->safeGetInt(key);
+					targetTechs.push_back(pair<string, int>(key, value));
+				}
 			}
-			else
-			{
-				int value = link->safeGetInt(key);
-				targetTechs.push_back(pair<string, int>(key, value));
-			}
+
+			techMap[tech] = targetTechs;
 		}
 
-		techMap[tech] = targetTechs;
+		return techMap;
 	}
-
-	return techMap;
+	else
+	{
+		LOG(LogLevel::Error) << "Could not parse tech_mapping.txt";
+		exit(-1);
+	}
 }
 
 map<string, vector<pair<string, int>>> HoI4World::importResearchBonusMap() const
 {
 	map<string, vector<pair<string, int>>> researchBonusMap;
 
-	shared_ptr<Object> fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
-
-	auto mapObj = fileObj->safeGetObject("bonus_map");
-	if (mapObj == nullptr)
+	auto fileObj = parser_UTF8::doParseFile("tech_mapping.txt");
+	if (fileObj)
 	{
-		LOG(LogLevel::Error) << "Could not read bonus map";
-		exit(-1);
-	}
-
-	for (auto link : mapObj->getValue("link"))
-	{
-		vector<pair<string, int> > targetTechs;
-		string tech = "";
-
-		for (auto key : link->getKeys())
+		auto mapObj = fileObj->safeGetObject("bonus_map");
+		if (mapObj == nullptr)
 		{
-			if (key == "vic2")
-			{
-				tech = link->getLeaf("vic2");
-			}
-			else
-			{
-				int value = link->safeGetInt(key);
-				targetTechs.push_back(pair<string, int>(key, value));
-			}
+			LOG(LogLevel::Error) << "Could not read bonus map";
+			exit(-1);
 		}
 
-		researchBonusMap[tech] = targetTechs;
-	}
+		for (auto link : mapObj->getValue("link"))
+		{
+			vector<pair<string, int> > targetTechs;
+			string tech = "";
 
-	return researchBonusMap;
+			for (auto key : link->getKeys())
+			{
+				if (key == "vic2")
+				{
+					tech = link->getLeaf("vic2");
+				}
+				else
+				{
+					int value = link->safeGetInt(key);
+					targetTechs.push_back(pair<string, int>(key, value));
+				}
+			}
+
+			researchBonusMap[tech] = targetTechs;
+		}
+
+		return researchBonusMap;
+	}
+	else
+	{
+		LOG(LogLevel::Error) << "Could not parse tech_mapping.txt";
+		exit(-1);
+	}
 }
 
 void HoI4World::addTechs(HoI4Country* country, const string& oldTech, const map<string, vector<pair<string, int>>>& techMap)

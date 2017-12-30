@@ -64,20 +64,23 @@ void CountryMapper::readRules()
 
 vector<shared_ptr<Object>> CountryMapper::getRules() const
 {
-	shared_ptr<Object> countryMappingsFile = parser_UTF8::doParseFile("country_mappings.txt");
-	if (!countryMappingsFile)
+	auto countryMappingsFile = parser_UTF8::doParseFile("country_mappings.txt");
+	if (countryMappingsFile)
+	{
+		vector<shared_ptr<Object>> nodes = countryMappingsFile->getLeaves();
+		if (nodes.empty())
+		{
+			LOG(LogLevel::Error) << "country_mappings.txt does not contain a mapping";
+			exit(-1);
+		}
+
+		return nodes[0]->getLeaves();
+	}
+	else
 	{
 		LOG(LogLevel::Error) << "Failed to parse country_mappings.txt";
 		exit(-1);
 	}
-	vector<shared_ptr<Object>> nodes = countryMappingsFile->getLeaves();
-	if (nodes.empty())
-	{
-		LOG(LogLevel::Error) << "country_mappings.txt does not contain a mapping";
-		exit(-1);
-	}
-
-	return nodes[0]->getLeaves();
 }
 
 

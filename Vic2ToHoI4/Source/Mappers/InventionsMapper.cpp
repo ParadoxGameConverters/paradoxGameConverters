@@ -68,13 +68,21 @@ void inventionsMapper::generateNums(string path)
 
 void inventionsMapper::processTechFile(string filename)
 {
-	shared_ptr<Object> obj = parser_8859_15::doParseFile(filename);
-	vector<shared_ptr<Object>> techObjs = obj->getLeaves();
-
-	for (auto techObj: techObjs)
+	auto obj = parser_8859_15::doParseFile(filename);
+	if (obj)
 	{
-		string name = techObj->getKey();
-		inventionNumsToNames.insert(make_pair(inventionNumsToNames.size() + 1, name));
+		vector<shared_ptr<Object>> techObjs = obj->getLeaves();
+
+		for (auto techObj: techObjs)
+		{
+			string name = techObj->getKey();
+			inventionNumsToNames.insert(make_pair(inventionNumsToNames.size() + 1, name));
+		}
+	}
+	else
+	{
+		LOG(LogLevel::Error) << "Could not parse " << filename;
+		exit(-1);
 	}
 }
 

@@ -42,30 +42,32 @@ graphicsMapper::graphicsMapper():
 	LOG(LogLevel::Info) << "Reading graphics mappings";
 
 	auto fileObj = parser_UTF8::doParseFile("cultureGroupToGraphics.txt");
-	if (fileObj == nullptr)
+	if (fileObj)
+	{
+		auto cultureGroupObjs = fileObj->getLeaves();
+		for (auto cultureGroupObj: cultureGroupObjs)
+		{
+			string cultureGroup = cultureGroupObj->getKey();
+
+			auto leaderPortraitObjs = cultureGroupObj->safeGetObject("leader_portraits");
+			if (leaderPortraitObjs != nullptr)
+			{
+				loadLeaderPortraitMappings(cultureGroup, leaderPortraitObjs);
+			}
+
+			auto ideologyMinisterPortraitObjs = cultureGroupObj->safeGetObject("ideology_minister_portraits");
+			if (ideologyMinisterPortraitObjs != nullptr)
+			{
+				loadIdeologyMinisterPortraitMappings(cultureGroup, ideologyMinisterPortraitObjs);
+			}
+
+			graphicalCultureMap[cultureGroup] = cultureGroupObj->safeGetString("graphical_culture");
+			graphicalCulture2dMap[cultureGroup] = cultureGroupObj->safeGetString("graphical_culture_2d");
+		}
+	}
+	else
 	{
 		return;
-	}
-
-	auto cultureGroupObjs = fileObj->getLeaves();
-	for (auto cultureGroupObj: cultureGroupObjs)
-	{
-		string cultureGroup = cultureGroupObj->getKey();
-
-		auto leaderPortraitObjs = cultureGroupObj->safeGetObject("leader_portraits");
-		if (leaderPortraitObjs != nullptr)
-		{
-			loadLeaderPortraitMappings(cultureGroup, leaderPortraitObjs);
-		}
-
-		auto ideologyMinisterPortraitObjs = cultureGroupObj->safeGetObject("ideology_minister_portraits");
-		if (ideologyMinisterPortraitObjs != nullptr)
-		{
-			loadIdeologyMinisterPortraitMappings(cultureGroup, ideologyMinisterPortraitObjs);
-		}
-
-		graphicalCultureMap[cultureGroup] = cultureGroupObj->safeGetString("graphical_culture");
-		graphicalCulture2dMap[cultureGroup] = cultureGroupObj->safeGetString("graphical_culture_2d");
 	}
 }
 
