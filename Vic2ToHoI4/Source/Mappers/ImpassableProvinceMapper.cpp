@@ -22,7 +22,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "ImpassableProvinceMapper.h"
+#include "../Configuration.h"
 #include "Log.h"
+#include "OSCompatibilityLayer.h"
+#include "ParadoxParserUTF8.h"
 
 
 
@@ -33,7 +36,35 @@ impassableProvinceMapper* impassableProvinceMapper::instance = nullptr;
 impassableProvinceMapper::impassableProvinceMapper()
 {
 	LOG(LogLevel::Info) << "Finding impassable provinces";
-	impassibleProvinces.insert(5095);
+
+	set<string> statesFiles;
+	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/history/states", statesFiles);
+	for (auto stateFile: statesFiles)
+	{
+		int num = stoi(stateFile.substr(0, stateFile.find_first_of('-')));
+
+		auto fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/history/states/" + stateFile);
+		if (fileObj)
+		{
+			auto stateObj = fileObj->safeGetObject("state");
+			auto impassable = stateObj->safeGetString("impassable", "no");
+			if (impassable == "yes")
+			{
+				auto provincesObj = stateObj->safeGetObject("provinces");
+				auto tokens = provincesObj->getTokens();
+
+				for (auto provinceNumString: tokens)
+				{
+					impassibleProvinces.insert(stoi(provinceNumString));
+				}
+			}
+		}
+		else
+		{
+			LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/history/states/" << stateFile;
+			exit(-1);
+		}
+	}
 }
 
 
