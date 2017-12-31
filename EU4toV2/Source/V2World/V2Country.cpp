@@ -477,18 +477,7 @@ void V2Country::outputTech(FILE* output) const
 
 void V2Country::outputElection(FILE* output) const
 {
-	date electionDate = date("1836.1.1");
-
-	if (electionDate.month == 12)
-	{
-		electionDate.month = 1;
-		electionDate.year++;
-	}
-	else
-	{
-		electionDate.month++;
-	}
-	electionDate.year -= 4;
+	date electionDate = date("1832.1.1");
 	fprintf(output, "	last_election=%s\n", electionDate.toString().c_str());
 }
 

@@ -176,6 +176,12 @@ void date::delayedByMonths(const int _months)
 }
 
 
+void date::subtractYears(const int _years)
+{
+	year -= _years;
+}
+
+
 bool date::isSet() const
 {
 	const date default_date;	// an instance with the default date
