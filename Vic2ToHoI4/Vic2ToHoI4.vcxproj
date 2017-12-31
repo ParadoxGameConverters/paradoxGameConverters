@@ -158,6 +158,7 @@
     <ClCompile Include="Source\Mappers\CultureGroupMapper.cpp" />
     <ClCompile Include="Source\Mappers\GovernmentMapper.cpp" />
     <ClCompile Include="Source\Mappers\GraphicsMapper.cpp" />
+    <ClCompile Include="Source\Mappers\ImpassableProvinceMapper.cpp" />
     <ClCompile Include="Source\Mappers\InventionsMapper.cpp" />
     <ClCompile Include="Source\Mappers\Mapper.cpp" />
     <ClCompile Include="Source\Mappers\NamesMapper.cpp" />
@@ -223,6 +224,7 @@
     <ClInclude Include="Source\HOI4World\HoI4World.h" />
     <ClInclude Include="Source\Mappers\CoastalHoI4Provinces.h" />
     <ClInclude Include="Source\Mappers\GraphicsMapper.h" />
+    <ClInclude Include="Source\Mappers\ImpassableProvinceMapper.h" />
     <ClInclude Include="Source\Mappers\InventionsMapper.h" />
     <ClInclude Include="Source\Mappers\NamesMapper.h" />
     <ClInclude Include="Source\Mappers\ProvinceDefinitions.h" />

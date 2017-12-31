@@ -43,6 +43,7 @@ HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, const string& _owne
 	ownerTag(_ownerTag),
 	cores(),
 	capitalState(false),
+	impassable(false),
 	manpower(0),
 	civFactories(0),
 	milFactories(0),
@@ -84,6 +85,10 @@ void HoI4State::output(const string& _filename) const
 		out << "\t}\n";
 	}
 	out << "\tstate_category = "<< category << "\n";
+	if (impassable)
+	{
+		out << "\timpassable = yes\n";
+	}
 	out << "\n";
 	out << "\thistory={\n";
 	out << "\t\towner = " << ownerTag << "\n";

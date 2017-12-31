@@ -64,8 +64,9 @@ class HoI4States
 		vector<string> determineCores(const vector<int>& sourceProvinces, const V2Country* oldOwner) const;
 
 		void createStates();
-		bool createMatchingHoI4State(const Vic2State* vic2State, int stateID, const string& stateOwner);
-		void addProvincesAndCoresToNewState(HoI4State* newState);
+		void createMatchingHoI4State(const Vic2State* vic2State, const string& stateOwner);
+		unordered_set<int> getProvincesInState(const Vic2State* vic2State, const string& owner);
+		void addProvincesAndCoresToNewState(HoI4State* newState, unordered_set<int> provinces);
 		bool isProvinceValid(int provNum) const;
 		bool isProvinceOwnedByCountry(int provNum, const string& stateOwner) const;
 		bool isProvinceNotAlreadyAssigned(int provNum) const;
@@ -79,6 +80,7 @@ class HoI4States
 
 		map<int, HoI4State*> states;
 		map<int, int> provinceToStateIDMap;
+		int nextStateID;
 };
 
 
