@@ -178,7 +178,7 @@ optional<string> Object::getToken(const int index)
 	{
 		return {};
 	}
-	if (index >= (int)tokens.size())
+	if (index >= static_cast<int>(tokens.size()))
 	{
 		return {};
 	}
@@ -394,10 +394,10 @@ void setInt(string name, const int val, shared_ptr<Object> branch)
 	{
 		br = branch;
 	}
-	static char strbuffer[1000];	// the text to add to the branch
-	sprintf_s(strbuffer, 1000, "%i", val);
+
+	string str = to_string(val);
 	shared_ptr<Object> b = make_shared<Object>(name);
-	b->setValue(strbuffer);
+	b->setValue(str);
 	br->setValue(b);
 }
 
@@ -408,10 +408,10 @@ void setFlt(string name, const double val, shared_ptr<Object> branch)
 	{
 		br = branch;
 	}
-	static char strbuffer[1000];	// the text to add to the branch
-	sprintf_s(strbuffer, 1000, "%.3f", val);
+
+	string str = to_string(val);
 	shared_ptr<Object> b = make_shared<Object>(name);
-	b->setValue(strbuffer);
+	b->setValue(str);
 	br->setValue(b);
 }
 

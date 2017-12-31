@@ -27,8 +27,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 string CardinalToOrdinal(int cardinal)
 {
-	int hundredRem = cardinal % 100;
-	int tenRem = cardinal % 10;
+	const int hundredRem = cardinal % 100;
+	const int tenRem = cardinal % 10;
 	if (hundredRem - tenRem == 10)
 	{
 		return "th";
