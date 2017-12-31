@@ -375,7 +375,7 @@ void Object::addObjectAfter(shared_ptr<Object> target, const string& key)
 
 
 
-shared_ptr<Object> br = nullptr;	// the branch being set
+shared_ptr<Object> br;	// the branch being set
 void setVal(string name, const string& val, shared_ptr<Object> branch)
 {
 	if ((branch) && (br != branch))

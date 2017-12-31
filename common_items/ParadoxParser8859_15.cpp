@@ -65,7 +65,7 @@ namespace parser_8859_15
 	static void setEpsilon();
 	static void setAssign();
 
-	static shared_ptr<Object>	topLevel = nullptr;  // a top level object
+	static shared_ptr<Object> topLevel;  // a top level object
 	vector<shared_ptr<Object>>	stack;						// a stack of objects
 	vector<shared_ptr<Object>>	objstack;					// a stack of objects
 	bool					epsilon = false;		// if we've tried an episilon for an assign
@@ -459,7 +459,7 @@ namespace parser_8859_15
 		ifstream read(filename);
 		if (!read.is_open())
 		{
-			return nullptr;
+			return {};
 		}
 		readFile(read);
 		read.close();

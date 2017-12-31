@@ -82,7 +82,7 @@ const date& date::operator=(const date& _rhs)
 date::date(const shared_ptr<Object> _init)
 {
 	auto dateSubObj = _init->safeGetObject("year");	// the date within the larger object
-	if (dateSubObj != nullptr)
+	if (dateSubObj)
 	{
 		// date specified by year=, month=, day=
 		year	= _init->safeGetInt("year");
