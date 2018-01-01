@@ -217,18 +217,19 @@ void HoI4State::addCores(const vector<string>& newCores)
 bool HoI4State::assignVPFromVic2Province(int Vic2ProvinceNumber)
 {
 	auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(Vic2ProvinceNumber);
-	if (
-		(provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end()) &&
-		(isProvinceInState(provMapping->second[0]))
-		)
+	if (provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
 	{
-		assignVP(provMapping->second[0]);
-		return true;
+		for (auto province: provMapping->second)
+		{
+			if (isProvinceInState(province))
+			{
+				assignVP(province);
+				return true;
+			}
+		}
 	}
-	else
-	{
-		return false;
-	}
+
+	return false;
 }
 
 
@@ -273,9 +274,9 @@ void HoI4State::tryToCreateVP()
 
 	if (!VPCreated)
 	{
-		if (!sourceState->isPartialState())
+		if (Configuration::getDebug() && !sourceState->isPartialState() && !impassable)
 		{
-			LOG(LogLevel::Warning) << "Could not initially create VP for state " << ID << ", but state is not split";
+			LOG(LogLevel::Warning) << "Could not initially create VP for state " << ID << ", but state is not split (or was the passable part of a partially passable state).";
 		}
 		for (auto province: sourceState->getProvinces())
 		{
@@ -308,7 +309,7 @@ void HoI4State::tryToCreateVP()
 
 	if (!VPCreated)
 	{
-		LOG(LogLevel::Warning) << "Could not create VP for state";
+		LOG(LogLevel::Warning) << "Could not create VP for state " << ID;
 	}
 
 	addDebugVPs();

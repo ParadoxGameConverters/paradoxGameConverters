@@ -225,11 +225,6 @@ void HoI4States::createMatchingHoI4State(const Vic2State* vic2State, const strin
 	{
 		HoI4State* newState = new HoI4State(vic2State, nextStateID, stateOwner);
 		addProvincesAndCoresToNewState(newState, passableProvinces);
-		if (newState->getProvinces().size() == 0)
-		{
-			delete newState;
-		}
-
 		newState->tryToCreateVP();
 		newState->addManpower();
 		states.insert(make_pair(nextStateID, newState));
@@ -240,14 +235,9 @@ void HoI4States::createMatchingHoI4State(const Vic2State* vic2State, const strin
 	{
 		HoI4State* newState = new HoI4State(vic2State, nextStateID, stateOwner);
 		addProvincesAndCoresToNewState(newState, impassableProvinces);
-		if (newState->getProvinces().size() == 0)
-		{
-			delete newState;
-		}
-
+		newState->makeImpassable();
 		newState->tryToCreateVP();
 		newState->addManpower();
-		newState->makeImpassable();
 		states.insert(make_pair(nextStateID, newState));
 		nextStateID++;
 	}
