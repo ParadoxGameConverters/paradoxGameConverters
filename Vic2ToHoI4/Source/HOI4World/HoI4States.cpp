@@ -246,6 +246,7 @@ void HoI4States::createMatchingHoI4State(const Vic2State* vic2State, const strin
 		}
 
 		newState->tryToCreateVP();
+		newState->addManpower();
 		newState->makeImpassable();
 		states.insert(make_pair(nextStateID, newState));
 		nextStateID++;

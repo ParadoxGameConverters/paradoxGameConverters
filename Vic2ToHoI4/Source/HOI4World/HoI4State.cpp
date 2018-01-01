@@ -339,7 +339,24 @@ void HoI4State::addManpower()
 {
 	for (auto sourceProvince: sourceState->getProvinces())
 	{
-		manpower += static_cast<int>(sourceProvince->getTotalPopulation() * 4 * Configuration::getManpowerFactor());
+		bool provinceIsInState = false;
+		auto mapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(sourceProvince->getNumber());
+		if (mapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
+		{
+			for (auto HoI4Province: mapping->second)
+			{
+				if (isProvinceInState(HoI4Province))
+				{
+					provinceIsInState = true;
+					break;
+				}
+			}
+		}
+
+		if (provinceIsInState)
+		{
+			manpower += static_cast<int>(sourceProvince->getTotalPopulation() * 4 * Configuration::getManpowerFactor());
+		}
 	}
 }
 
@@ -497,5 +514,5 @@ bool HoI4State::amICoastal()
 
 bool HoI4State::isProvinceInState(int provinceNum)
 {
-	return (provinces.find(provinceNum) != provinces.end());
+	return (provinces.count(provinceNum) > 0);
 }
