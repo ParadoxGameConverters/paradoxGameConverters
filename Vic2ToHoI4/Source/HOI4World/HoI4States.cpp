@@ -61,22 +61,22 @@ void HoI4States::determineOwnersAndCores()
 		if (sourceProvinceNums)
 		{
 			map<const V2Country*, pair<int, int>> potentialOwners = determinePotentialOwners(*sourceProvinceNums);
-
-			auto oldOwner = selectProvinceOwner(potentialOwners);
-			if (!oldOwner)
+			if (potentialOwners.size() == 0)
 			{
 				continue;
 			}
+			auto oldOwner = selectProvinceOwner(potentialOwners);
 
-			auto HoI4Tag = CountryMapper::getHoI4Tag((*oldOwner)->getTag());
+
+			auto HoI4Tag = CountryMapper::getHoI4Tag(oldOwner->getTag());
 			if (!HoI4Tag)
 			{
-				LOG(LogLevel::Warning) << "Could not map states owned by " << (*oldOwner)->getTag() << " in Vic2, as there is no mathcing HoI4 country.";
+				LOG(LogLevel::Warning) << "Could not map states owned by " << oldOwner->getTag() << " in Vic2, as there is no mathcing HoI4 country.";
 				continue;
 			}
 			ownersMap.insert(make_pair(provinceNumber, *HoI4Tag));
 
-			vector<string> cores = determineCores(*sourceProvinceNums, (*oldOwner));
+			vector<string> cores = determineCores(*sourceProvinceNums, oldOwner);
 			coresMap.insert(make_pair(provinceNumber, cores));
 		}
 	}
@@ -128,18 +128,18 @@ map<const V2Country*, pair<int, int>> HoI4States::determinePotentialOwners(const
 }
 
 
-optional<const V2Country*> HoI4States::selectProvinceOwner(const map<const V2Country*, pair<int, int>>& potentialOwners) const
+const V2Country* HoI4States::selectProvinceOwner(const map<const V2Country*, pair<int, int>>& potentialOwners) const
 {
-	optional<const V2Country*> oldOwner;
+	const V2Country* oldOwner = nullptr;
 	for (auto potentialOwner: potentialOwners)
 	{
 		// I am the new owner if there is no current owner, or I have more provinces than the current owner,
 		// or I have the same number of provinces, but more population, than the current owner
-		if (	(!oldOwner) ||
-				(potentialOwner.second.first > potentialOwners.find(*oldOwner)->second.first) ||
+		if (	(oldOwner == nullptr) ||
+				(potentialOwner.second.first > potentialOwners.find(oldOwner)->second.first) ||
 				(
-					(potentialOwner.second.first == potentialOwners.find(*oldOwner)->second.first) &&
-					(potentialOwner.second.second > potentialOwners.find(*oldOwner)->second.second)
+					(potentialOwner.second.first == potentialOwners.find(oldOwner)->second.first) &&
+					(potentialOwner.second.second > potentialOwners.find(oldOwner)->second.second)
 				)
 			)
 		{

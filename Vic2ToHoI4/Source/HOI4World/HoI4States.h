@@ -60,7 +60,7 @@ class HoI4States
 		void determineOwnersAndCores();
 		optional<vector<int>> retrieveSourceProvinceNums(int provNum) const;
 		map<const V2Country*, pair<int, int>> determinePotentialOwners(const vector<int>& sourceProvinceNums) const;
-		optional<const V2Country*> selectProvinceOwner(const map<const V2Country*, pair<int, int>>& potentialOwners) const;
+		const V2Country* selectProvinceOwner(const map<const V2Country*, pair<int, int>>& potentialOwners) const;
 		vector<string> determineCores(const vector<int>& sourceProvinces, const V2Country* oldOwner) const;
 
 		void createStates();
