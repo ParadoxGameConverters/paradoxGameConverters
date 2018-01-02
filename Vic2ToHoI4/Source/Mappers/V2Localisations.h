@@ -78,6 +78,8 @@ class V2Localisations
 		typedef map<string, string> LanguageToLocalisationMap;
 		typedef unordered_map<string, LanguageToLocalisationMap> KeyToLocalisationsMap;
 		KeyToLocalisationsMap localisations;
+
+		map<string, string> localisationToKeyMap;
 };
 
 
