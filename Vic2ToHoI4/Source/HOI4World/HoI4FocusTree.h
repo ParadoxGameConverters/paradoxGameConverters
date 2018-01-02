@@ -42,24 +42,24 @@ class HoI4FocusTree
 {
 	public:
 		HoI4FocusTree();
-		explicit HoI4FocusTree(const HoI4Country* country);
+		explicit HoI4FocusTree(shared_ptr<HoI4Country> country);
 
-		HoI4FocusTree* makeCustomizedCopy(const HoI4Country* country) const;
+		shared_ptr<HoI4FocusTree> makeCustomizedCopy(shared_ptr<HoI4Country> country) const;
 		void setNextFreeColumn(int newFreeColumn) { nextFreeColumn = newFreeColumn; };
 
 		void addGenericFocusTree(const set<string>& majorIdeologies);
 
-		void addDemocracyNationalFocuses(const HoI4Country* Home, const vector<const HoI4Country*>& CountriesToContain);
-		void addAbsolutistEmpireNationalFocuses(const HoI4Country* country, const vector<HoI4Country*>& targetColonies, const vector<HoI4Country*>& annexationTargets);
-		void addCommunistCoupBranch(const HoI4Country* Home, const vector<HoI4Country*>& coupTargets);
-		void addCommunistWarBranch(const HoI4Country* Home, const vector<HoI4Country*>& warTargets, HoI4Events* events);
-		void addFascistAnnexationBranch(const HoI4Country* Home, const vector<const HoI4Country*>& annexationTargets, HoI4Events* events);
-		void addFascistSudetenBranch(const HoI4Country* Home, const vector<const HoI4Country*>& sudetenTargets, const vector<vector<int>>& demandedStates, const HoI4World* world);
-		void addGPWarBranch(const HoI4Country* Home, const vector<HoI4Country*>& newAllies, const vector<const HoI4Country*>& GCTargets, const string& ideology, HoI4Events* events);
+		void addDemocracyNationalFocuses(shared_ptr<HoI4Country> Home, vector<shared_ptr<HoI4Country>>& CountriesToContain);
+		void addAbsolutistEmpireNationalFocuses(shared_ptr<HoI4Country> country, const vector<shared_ptr<HoI4Country>>& targetColonies, const vector<shared_ptr<HoI4Country>>& annexationTargets);
+		void addCommunistCoupBranch(shared_ptr<HoI4Country> Home, const vector<shared_ptr<HoI4Country>>& coupTargets);
+		void addCommunistWarBranch(shared_ptr<HoI4Country> Home, const vector<shared_ptr<HoI4Country>>& warTargets, HoI4Events* events);
+		void addFascistAnnexationBranch(shared_ptr<HoI4Country> Home, const vector<shared_ptr<HoI4Country>>& annexationTargets, HoI4Events* events);
+		void addFascistSudetenBranch(shared_ptr<HoI4Country> Home, const vector<shared_ptr<HoI4Country>>& sudetenTargets, const vector<vector<int>>& demandedStates, const HoI4World* world);
+		void addGPWarBranch(shared_ptr<HoI4Country> Home, const vector<shared_ptr<HoI4Country>>& newAllies, const vector<shared_ptr<HoI4Country>>& GCTargets, const string& ideology, HoI4Events* events);
 
 		void output(const string& filename) const;
 
-		void addFocus(HoI4Focus* newFocus) { focuses.push_back(newFocus); }
+		void addFocus(shared_ptr<HoI4Focus> newFocus) { focuses.push_back(newFocus); }
 
 	private:
 		HoI4FocusTree(const HoI4FocusTree&) = delete;
@@ -74,7 +74,7 @@ class HoI4FocusTree
 
 		string srcCountryTag;
 		string dstCountryTag;
-		vector<HoI4Focus*> focuses;
+		vector<shared_ptr<HoI4Focus>> focuses;
 		int nextFreeColumn;
 
 		string fascistMutualExlusions;

@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Airforce.h"
 #include "HoI4Army.h"
 #include "HoI4FocusTree.h"
+#include "HoI4Leader.h"
 #include "HoI4Navy.h"
 #include "HoI4Province.h"
 #include "HoI4Relations.h"
@@ -47,7 +48,6 @@ class V2Country;
 class V2Party;
 class HoI4Advisor;
 class HoI4Faction;
-class HoI4Leader;
 class HoI4World;
 struct advisorCompare;
 
@@ -81,9 +81,9 @@ class HoI4Country
 		void outputIdeaGraphics(ofstream& ideasFile) const;
 
 		void		setSphereLeader(const string& SphereLeader) { sphereLeader == SphereLeader; }
-		void		setFaction(const HoI4Faction* newFaction) { faction = newFaction; }
+		void		setFaction(shared_ptr<const HoI4Faction> newFaction) { faction = newFaction; }
 		void		setFactionLeader() { factionLeader = true; }
-		void addNationalFocus(const HoI4FocusTree* NF) { nationalFocus = NF; }
+		void addNationalFocus(shared_ptr<const HoI4FocusTree> NF) { nationalFocus = NF; }
 		void setGreatPower() { greatPower = true; }
 
 		optional<const HoI4Relations*> getRelations(string withWhom) const;
@@ -96,7 +96,7 @@ class HoI4Country
 		set<int>									getProvinces() const { return provinces; }
 		string										getTag() const { return tag; }
 		const V2Country*							getSourceCountry() const { return srcCountry; }
-		const HoI4Faction*								getFaction() const { return faction; }
+		shared_ptr<const HoI4Faction> getFaction() const { return faction; }
 		string getGovernmentIdeology() const { return governmentIdeology; }
 		map<string, int> getIdeologySupport() const { return ideologySupport; }
 		const set<string>&						getAllies() const { return allies; }
@@ -190,7 +190,7 @@ class HoI4Country
 		map<string, HoI4Relations*>	relations;
 		ConverterColor::Color color;
 		double								nationalUnity;
-		const HoI4Faction*						faction;
+		shared_ptr<const HoI4Faction>	faction;
 		bool									factionLeader;
 		set<string>							allies;
 		set<string> puppets;
@@ -229,7 +229,7 @@ class HoI4Country
 		int											navalLocation;
 		map<string, int>							equipmentStockpile;
 
-		const HoI4FocusTree* nationalFocus;
+		shared_ptr<const HoI4FocusTree> nationalFocus;
 };
 
 #endif	// HoI4COUNTRY_H_

@@ -1558,7 +1558,7 @@ bool HoI4Country::areElectionsAllowed(void) const
 
 void HoI4Country::outputFactions(ofstream& output) const
 {
-	if ((faction != nullptr) && (faction->getLeader() == this))
+	if ((faction != nullptr) && (faction->getLeader()->getTag() == tag))
 	{
 		string allianceName;
 		auto possibleLeaderName = getSourceCountry()->getName("english");

@@ -162,7 +162,7 @@ const optional<string> V2Localisations::ActuallyGetTextInLanguage(const string& 
 }
 
 
-const map<string, string>& V2Localisations::ActuallyGetTextInEachLanguage(const string& key) const
+const map<string, string> V2Localisations::ActuallyGetTextInEachLanguage(const string& key) const
 {
 	static const map<string, string> noLocalisations;
 

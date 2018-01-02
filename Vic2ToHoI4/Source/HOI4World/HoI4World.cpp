@@ -109,7 +109,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld):
 }
 
 
-optional<HoI4Country*> HoI4World::findCountry(const string& countryTag)
+shared_ptr<HoI4Country> HoI4World::findCountry(const string& countryTag)
 {
 	auto country = countries.find(countryTag);
 	if (country == countries.end())
@@ -850,8 +850,8 @@ void HoI4World::convertAgreements()
 			continue;
 		}
 
-		map<string, HoI4Country*>::iterator HoI4Country1 = countries.find(*possibleHoI4Tag1);
-		map<string, HoI4Country*>::iterator HoI4Country2 = countries.find(*possibleHoI4Tag2);
+		auto HoI4Country1 = countries.find(*possibleHoI4Tag1);
+		auto HoI4Country2 = countries.find(*possibleHoI4Tag2);
 		if (HoI4Country1 == countries.end())
 		{
 			LOG(LogLevel::Warning) << "HoI4 country " << *possibleHoI4Tag1 << " used in diplomatic agreement doesn't exist";
@@ -1034,7 +1034,7 @@ map<string, vector<pair<string, int>>> HoI4World::importResearchBonusMap() const
 	}
 }
 
-void HoI4World::addTechs(HoI4Country* country, const string& oldTech, const map<string, vector<pair<string, int>>>& techMap)
+void HoI4World::addTechs(shared_ptr<HoI4Country> country, const string& oldTech, const map<string, vector<pair<string, int>>>& techMap)
 {
 	auto mapItr = techMap.find(oldTech);
 	if (mapItr == techMap.end())
@@ -1050,7 +1050,7 @@ void HoI4World::addTechs(HoI4Country* country, const string& oldTech, const map<
 	}
 }
 
-void HoI4World::addResearchBonuses(HoI4Country* country, const string& oldTech, const map<string, vector<pair<string, int>>>& researchBonusMap)
+void HoI4World::addResearchBonuses(shared_ptr<HoI4Country> country, const string& oldTech, const map<string, vector<pair<string, int>>>& researchBonusMap)
 {
 	auto mapItr = researchBonusMap.find(oldTech);
 	if (mapItr == researchBonusMap.end())
@@ -1403,7 +1403,7 @@ double HoI4World::getStrongestCountryStrength() const
 }
 
 
-int HoI4World::calculateStrengthVPs(const HoI4Country* country, double greatestStrength) const
+int HoI4World::calculateStrengthVPs(shared_ptr<HoI4Country> country, double greatestStrength) const
 {
 	double relativeStrength = country->getStrengthOverTime(1.0) / greatestStrength;
 	return static_cast<int>(relativeStrength * 30.0);
@@ -1481,7 +1481,7 @@ void HoI4World::createFactions()
 			factionsLog << "\n";
 		}
 
-		vector<HoI4Country*> factionMembers;
+		vector<shared_ptr<HoI4Country>> factionMembers;
 		factionMembers.push_back(leader);
 
 		string leaderIdeology = leader->getGovernmentIdeology();
@@ -1504,8 +1504,8 @@ void HoI4World::createFactions()
 			{
 				continue;
 			}
-			string allygovernment = (*allycountry)->getGovernmentIdeology();
-			auto possibleSphereLeader = returnSphereLeader(*allycountry);
+			string allygovernment = allycountry->getGovernmentIdeology();
+			auto possibleSphereLeader = returnSphereLeader(allycountry);
 
 			if (
 					((possibleSphereLeader) && (*possibleSphereLeader == leader->getTag())) ||
@@ -1514,30 +1514,30 @@ void HoI4World::createFactions()
 			{
 				if (Configuration::getDebug())
 				{
-					logFactionMember(factionsLog, *allycountry);
+					logFactionMember(factionsLog, allycountry);
 				}
-				factionMembers.push_back(*allycountry);
+				factionMembers.push_back(allycountry);
 
-				factionMilStrength += (*allycountry)->getStrengthOverTime(1.0);
+				factionMilStrength += (allycountry)->getStrengthOverTime(1.0);
 				//also add the allies' puppets to the faction
-				for (auto puppetTag : (*allycountry)->getPuppets())
+				for (auto puppetTag : (allycountry)->getPuppets())
 				{
 					auto puppetcountry = findCountry(puppetTag);
 					if (!puppetcountry)
 					{
 						continue;
 					}
-					logFactionMember(factionsLog, *puppetcountry);
-					factionMembers.push_back(*puppetcountry);
+					logFactionMember(factionsLog, puppetcountry);
+					factionMembers.push_back(puppetcountry);
 
-					factionMilStrength += (*puppetcountry)->getStrengthOverTime(1.0);
+					factionMilStrength += (puppetcountry)->getStrengthOverTime(1.0);
 				}
 			}
 		}
 
 		if (factionMembers.size() > 1)
 		{
-			HoI4Faction* newFaction = new HoI4Faction(leader, factionMembers);
+			auto newFaction = make_shared<HoI4Faction>(leader, factionMembers);
 			for (auto member : factionMembers)
 			{
 				member->setFaction(newFaction);
@@ -1558,7 +1558,7 @@ void HoI4World::createFactions()
 }
 
 
-void HoI4World::logFactionMember(ofstream& factionsLog, const HoI4Country* member) const
+void HoI4World::logFactionMember(ofstream& factionsLog, shared_ptr<HoI4Country> member) const
 {
 	auto possibleName = member->getSourceCountry()->getName("english");
 	if (possibleName)
@@ -1576,7 +1576,7 @@ void HoI4World::logFactionMember(ofstream& factionsLog, const HoI4Country* membe
 }
 
 
-optional<string> HoI4World::returnSphereLeader(const HoI4Country* possibleSphereling) const
+optional<string> HoI4World::returnSphereLeader(shared_ptr<HoI4Country> possibleSphereling) const
 {
 	for (auto greatPower: greatPowers)
 	{

@@ -30,8 +30,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-void processFlagsForCountry(const pair<string, HoI4Country*>& country);
-void copyFlags(const map<string, HoI4Country*>& countries)
+void processFlagsForCountry(const pair<string, shared_ptr<HoI4Country>>& country);
+void copyFlags(const map<string, shared_ptr<HoI4Country>>& countries)
 {
 	LOG(LogLevel::Info) << "Copying flags";
 
@@ -82,7 +82,7 @@ tga_image* createNewFlag(const tga_image* sourceFlag, unsigned int sizeX, unsign
 void createBigFlag(tga_image* sourceFlag, const string& filename);
 void createMediumFlag(tga_image* sourceFlag, const string& filename);
 void createSmallFlag(tga_image* sourceFlag, const string& filename);
-void processFlagsForCountry(const pair<string, HoI4Country*>& country)
+void processFlagsForCountry(const pair<string, shared_ptr<HoI4Country>>& country)
 {
 	vector<string> sourcePath = getSourceFlagPaths(country.second->getSourceCountry()->getTag());
 	for (unsigned int i = BASE_FLAG; i < FLAG_END; i++)

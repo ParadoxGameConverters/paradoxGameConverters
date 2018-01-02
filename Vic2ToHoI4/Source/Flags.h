@@ -33,7 +33,7 @@ using namespace std;
 
 
 
-void copyFlags(const map<string, HoI4Country*>& countries);
+void copyFlags(const map<string, shared_ptr<HoI4Country>>& countries);
 
 
 

@@ -72,9 +72,9 @@ HoI4Focus::HoI4Focus(shared_ptr<Object> obj):
 }
 
 
-HoI4Focus* HoI4Focus::makeCustomizedCopy(const string& country) const
+shared_ptr<HoI4Focus> HoI4Focus::makeCustomizedCopy(const string& country) const
 {
-	HoI4Focus* newFocus = new HoI4Focus(*this);
+	auto newFocus = make_shared<HoI4Focus>(*this);
 
 	newFocus->id += country;
 
@@ -95,7 +95,7 @@ HoI4Focus* HoI4Focus::makeCustomizedCopy(const string& country) const
 }
 
 
-void HoI4Focus::customizeMutualExclusion(HoI4Focus* newFocus, const string& country) const
+void HoI4Focus::customizeMutualExclusion(shared_ptr<HoI4Focus> newFocus, const string& country) const
 {
 	//have to account for several foci in one mututal exclusion, so need to look for occurences of " focus" and insert country before that
 	unsigned int stringPosition = 0;
@@ -117,7 +117,7 @@ void HoI4Focus::customizeMutualExclusion(HoI4Focus* newFocus, const string& coun
 }
 
 
-void HoI4Focus::customizePrerequisite(HoI4Focus* newFocus, string& prerequisite, const string& country) const
+void HoI4Focus::customizePrerequisite(shared_ptr<HoI4Focus> newFocus, string& prerequisite, const string& country) const
 {
 	//have to account for several foci in one prerequisite, so need to look for occurences of " focus" and insert country before that
 	unsigned int stringPosition = 0;

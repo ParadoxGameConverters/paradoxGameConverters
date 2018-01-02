@@ -165,7 +165,7 @@ void HoI4Events::outputElectionEvents() const
 }
 
 
-void HoI4Events::createFactionEvents(const HoI4Country* Leader, const HoI4Country* newAlly)
+void HoI4Events::createFactionEvents(shared_ptr<HoI4Country> Leader, shared_ptr<HoI4Country> newAlly)
 {
 	auto possibleLeaderName = Leader->getSourceCountry()->getName("english");
 	string leaderName;
@@ -254,7 +254,7 @@ void HoI4Events::createFactionEvents(const HoI4Country* Leader, const HoI4Countr
 }
 
 
-void HoI4Events::createAnnexEvent(const HoI4Country* Annexer, const HoI4Country* Annexed)
+void HoI4Events::createAnnexEvent(shared_ptr<HoI4Country> Annexer, shared_ptr<HoI4Country> Annexed)
 {
 	auto possibleAnnexerName = Annexer->getSourceCountry()->getName("english");
 	string annexerName;
@@ -387,7 +387,7 @@ void HoI4Events::createAnnexEvent(const HoI4Country* Annexer, const HoI4Country*
 }
 
 
-void HoI4Events::createSudetenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const vector<int>& claimedStates)
+void HoI4Events::createSudetenEvent(shared_ptr<HoI4Country> Annexer, shared_ptr<HoI4Country> Annexed, const vector<int>& claimedStates)
 {
 	//flesh out this event more, possibly make it so allies have a chance to help?
 	auto possibleAnnexerName = Annexer->getSourceCountry()->getName("english");
@@ -525,7 +525,7 @@ void HoI4Events::createSudetenEvent(const HoI4Country* Annexer, const HoI4Countr
 }
 
 
-void HoI4Events::createTradeEvent(const HoI4Country* leader, const HoI4Country* GC)
+void HoI4Events::createTradeEvent(shared_ptr<HoI4Country> leader, shared_ptr<HoI4Country> GC)
 {
 	auto possibleAggressorName = GC->getSourceCountry()->getName("english");
 	string aggressorName;
