@@ -115,6 +115,10 @@ map<const V2Country*, pair<int, int>> HoI4States::determinePotentialOwners(const
 			continue;
 		}
 		const V2Country* owner = (*srcProvince)->getOwner();
+		if (owner == nullptr)
+		{
+			continue;
+		}
 
 		if (potentialOwners.find(owner) == potentialOwners.end())
 		{
