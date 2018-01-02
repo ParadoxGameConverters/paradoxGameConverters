@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "HoI4Event.h"
 #include <functional>
+#include <memory>
 #include <set>
 #include <string>
 using namespace std;
