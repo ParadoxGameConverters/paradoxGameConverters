@@ -2731,36 +2731,36 @@
 	# 
 	# ## Afghanistan
 	# # Khandar
-	link = { vic2 = 1211 hoi4 = 10476 hoi4 = 7584 hoi4 = 7448 hoi4 = 10896 hoi4 = 12877 hoi4 = 7984 hoi4 = 7916 }	# Balkh -> land, land, land, land, land, land, land
-	link = { vic2 = 1212 hoi4 = 4893 hoi4 = 12871 hoi4 = 8053 }	# Herat -> land, land, land
-	link = { vic2 = 1213 hoi4 = 2078 hoi4 = 12788 hoi4 = 1995 hoi4 = 10789 }	# Bamyan -> land, land, land, land
-	link = { vic2 = 1214 hoi4 = 2062 hoi4 = 1948 hoi4 = 2101 hoi4 = 2017 }	# Farrah -> land, land, land, land
-	link = { vic2 = 1215 hoi4 = 4949 hoi4 = 5064 hoi4 = 5020 hoi4 = 8090 }	# Kandahar -> land, land, land, land
+	link = { vic2 = 1211 hoi4 = 12877 hoi4 = 7584 hoi4 = 7448 hoi4 = 12248 hoi4 = 10852 hoi4 = 7984 }	# Balkh -> land, land, land, land, land, land
+	link = { vic2 = 1212 hoi4 = 4893 hoi4 = 12871 hoi4 = 8053 hoi4 = 10476 }	# Herat -> land, land, land, land
+	link = { vic2 = 1213 hoi4 = 1995 hoi4 = 12788 hoi4 = 2078 hoi4 = 10896 hoi4 = 7916 }	# Bamyan -> land, land, land, land, land
+	link = { vic2 = 1214 hoi4 = 2017 hoi4 = 1948 hoi4 = 2101 hoi4 = 2062 }	# Farrah -> land, land, land, land
+	link = { vic2 = 1215 hoi4 = 5020 hoi4 = 5064 hoi4 = 4949 }	# Kandahar -> land, land, land
 	# # Kabul
-	link = { vic2 = 1209 hoi4 = 10737 hoi4 = 10781 hoi4 = 10852 }	# Kabul -> land, land, land
-	link = { vic2 = 1210 hoi4 = 12653 hoi4 = 7519 hoi4 = 12314 hoi4 = 12248 }	# Faizabad -> land, land, land, land
+	link = { vic2 = 1209 hoi4 = 10737 }	# Kabul -> land
+	link = { vic2 = 1210 hoi4 = 12314 hoi4 = 7519 hoi4 = 10781 hoi4 = 12653 }	# Faizabad -> land, land, land, land
 	link = { vic2 = 1216 hoi4 = 10826 hoi4 = 12831 }	# Jalalabad -> land, land
-	link = { vic2 = 1217 hoi4 = 5082 hoi4 = 12769 }	# Ghazni -> land, land
-	link = { vic2 = 1218 hoi4 = 1978 hoi4 = 4998 hoi4 = 12717 }	# Peshawar -> land, land, land
-	link = { vic2 = 1219 hoi4 = 8098 hoi4 = 7975 hoi4 = 5105 hoi4 = 7847 hoi4 = 4990 hoi4 = 10813 hoi4 = 8044 hoi4 = 7903 hoi4 = 1107 }	# Quetta -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1223 hoi4 = 12763 hoi4 = 4558 hoi4 = 2084 }	# Chitral -> land, land, land
+	link = { vic2 = 1217 hoi4 = 12769 hoi4 = 5082 hoi4 = 10789 hoi4 = 8090 }	# Ghazni -> land, land, land, land
+	link = { vic2 = 1218 hoi4 = 12717 hoi4 = 4998 hoi4 = 1978 }	# Peshawar -> land, land, land
+	link = { vic2 = 1219 hoi4 = 5105 hoi4 = 8044 hoi4 = 7847 hoi4 = 7975 hoi4 = 4990 }	# Quetta -> land, land, land, land, land
+	link = { vic2 = 1223 hoi4 = 12763 hoi4 = 4558 hoi4 = 1910 }	# Chitral -> land, land, land
 	# 
 	# ## Pakistan
 	# # Baluchistan
 	link = { vic2 = 1220 hoi4 = 5075 hoi4 = 12761 hoi4 = 8013 }	# Dalbandin -> land, land, land
-	link = { vic2 = 1221 hoi4 = 5043 hoi4 = 8066 }	# Kalat -> land, land
-	link = { vic2 = 1222 hoi4 = 12774 hoi4 = 7917 hoi4 = 1179 }	# Bela -> land, land, land
+	link = { vic2 = 1221 hoi4 = 8098 hoi4 = 10813 hoi4 = 8066 hoi4 = 5043 }	# Kalat -> land, land, land, land
+	link = { vic2 = 1222 hoi4 = 1179 hoi4 = 7917 hoi4 = 12774 }	# Bela -> land, land, land
 	# # Sind
 	link = { vic2 = 1288 hoi4 = 3456 hoi4 = 10108 hoi4 = 4003 }	# Karachi -> land, land, land
-	link = { vic2 = 1289 hoi4 = 1971 hoi4 = 7049 hoi4 = 10735 }	# Sukkur -> land, land, land
-	link = { vic2 = 1290 hoi4 = 1147 hoi4 = 1980 hoi4 = 4110 hoi4 = 7084 hoi4 = 4382 }	# Umarkot -> land, land, land, land, land
+	link = { vic2 = 1289 hoi4 = 10735 hoi4 = 7049 hoi4 = 1971 hoi4 = 4382 hoi4 = 7084 }	# Sukkur -> land, land, land, land, land
+	link = { vic2 = 1290 hoi4 = 1980 hoi4 = 1147 hoi4 = 4110 }	# Umarkot -> land, land, land
 	# # Punjab
 	link = { vic2 = 1227 hoi4 = 10772 hoi4 = 10066 hoi4 = 9084 }	# Lahore -> land, land, land
-	link = { vic2 = 1228 hoi4 = 10139 hoi4 = 8007 }	# Multan -> land, land
-	link = { vic2 = 1229 hoi4 = 12822 hoi4 = 10887 hoi4 = 12005 hoi4 = 12754 }	# Sialkot -> land, land, land, land
-	link = { vic2 = 1230 hoi4 = 10905 hoi4 = 4979 hoi4 = 8022 hoi4 = 1910 }	# Attock -> land, land, land, land
-	link = { vic2 = 1231 hoi4 = 10898 hoi4 = 12792 hoi4 = 10843 }	# Bahawalpur -> land, land, land
-	link = { vic2 = 1232 hoi4 = 8106 hoi4 = 10173 }	# Shahpur -> land, land
+	link = { vic2 = 1228 hoi4 = 8007 hoi4 = 7903 hoi4 = 1107 hoi4 = 10139 }	# Multan -> land, land, land, land
+	link = { vic2 = 1229 hoi4 = 10887 hoi4 = 12005 hoi4 = 12822 }	# Sialkot -> land, land, land
+	link = { vic2 = 1230 hoi4 = 8022 hoi4 = 10173 hoi4 = 4979 }	# Attock -> land, land, land
+	link = { vic2 = 1231 hoi4 = 10843 hoi4 = 12792 hoi4 = 10898 }	# Bahawalpur -> land, land, land
+	link = { vic2 = 1232 hoi4 = 8106 }	# Shahpur -> land
 	# 
 	# ## India
 	# # Rajputana
@@ -2778,8 +2778,8 @@
 	link = { vic2 = 1295 hoi4 = 11952 hoi4 = 7165 }	# Baroda -> land, land
 	link = { vic2 = 1296 hoi4 = 4187 hoi4 = 7150 }	# Surat -> land, land
 	# # Kashmir
-	link = { vic2 = 1224 hoi4 = 12884 hoi4 = 7316 }	# Srinagar -> land, land
-	link = { vic2 = 1225 hoi4 = 10821 hoi4 = 2041 }	# Gilgit -> land, land
+	link = { vic2 = 1224 hoi4 = 12884 hoi4 = 7316 hoi4 = 10905 hoi4 = 12754 }	# Srinagar -> land, land, land, land
+	link = { vic2 = 1225 hoi4 = 10821 hoi4 = 2041 hoi4 = 2084 }	# Gilgit -> land, land, land
 	link = { vic2 = 1226 hoi4 = 8005 hoi4 = 7273 hoi4 = 5042 }	# Leh -> land, land, land
 	# # Amritsar
 	link = { vic2 = 1233 hoi4 = 1129 hoi4 = 7106 hoi4 = 2076 }	# Amritsar -> land, land, land
