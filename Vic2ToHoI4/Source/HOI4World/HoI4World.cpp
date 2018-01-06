@@ -106,6 +106,8 @@ HoI4World::HoI4World(const V2World* _sourceWorld):
 	createFactions();
 
 	HoI4WarCreator warCreator(this);
+
+	adjustResearchFocuses();
 }
 
 
@@ -1620,6 +1622,15 @@ bool HoI4World::governmentsAllowFaction(const string& leaderIdeology, const stri
 	else
 	{
 		return false;
+	}
+}
+
+
+void HoI4World::adjustResearchFocuses()
+{
+	for (auto country: countries)
+	{
+		country.second->adjustResearchFocuses(majorIdeologies);
 	}
 }
 

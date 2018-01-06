@@ -42,9 +42,9 @@ class HoI4FocusTree
 {
 	public:
 		HoI4FocusTree();
-		explicit HoI4FocusTree(shared_ptr<HoI4Country> country);
+		explicit HoI4FocusTree(const HoI4Country& country);
 
-		shared_ptr<HoI4FocusTree> makeCustomizedCopy(shared_ptr<HoI4Country> country) const;
+		shared_ptr<HoI4FocusTree> makeCustomizedCopy(const HoI4Country& country) const;
 		void setNextFreeColumn(int newFreeColumn) { nextFreeColumn = newFreeColumn; };
 
 		void addGenericFocusTree(const set<string>& majorIdeologies);
@@ -56,6 +56,7 @@ class HoI4FocusTree
 		void addFascistAnnexationBranch(shared_ptr<HoI4Country> Home, const vector<shared_ptr<HoI4Country>>& annexationTargets, HoI4Events* events);
 		void addFascistSudetenBranch(shared_ptr<HoI4Country> Home, const vector<shared_ptr<HoI4Country>>& sudetenTargets, const vector<vector<int>>& demandedStates, const HoI4World* world);
 		void addGPWarBranch(shared_ptr<HoI4Country> Home, const vector<shared_ptr<HoI4Country>>& newAllies, const vector<shared_ptr<HoI4Country>>& GCTargets, const string& ideology, HoI4Events* events);
+		void removeFocus(const string& id);
 
 		void output(const string& filename) const;
 

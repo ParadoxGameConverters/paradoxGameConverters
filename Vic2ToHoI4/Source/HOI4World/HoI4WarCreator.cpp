@@ -818,7 +818,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::fascistWarMaker(shared_ptr<HoI4C
 		}
 	}
 	//gives us generic focus tree start
-	auto FocusTree = genericFocusTree->makeCustomizedCopy(Leader);
+	auto FocusTree = genericFocusTree->makeCustomizedCopy(*Leader);
 
 	FocusTree->addFascistAnnexationBranch(Leader, nan, theWorld->getEvents());
 	nan.clear();
@@ -1158,7 +1158,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::communistWarCreator(shared_ptr<H
 		if (GCTargets.size() >= maxGCWars) break;
 	}
 
-	auto FocusTree = genericFocusTree->makeCustomizedCopy(Leader);
+	auto FocusTree = genericFocusTree->makeCustomizedCopy(*Leader);
 	FocusTree->addCommunistCoupBranch(Leader, forcedtakeover);
 	FocusTree->addCommunistWarBranch(Leader, TargetsByTech, theWorld->getEvents());
 	FocusTree->addGPWarBranch(Leader, newAllies, GCTargets, "Communist", theWorld->getEvents());
@@ -1176,7 +1176,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::democracyWarCreator(shared_ptr<H
 	set<string> Allies = Leader->getAllies();
 	int v1 = rand() % 100;
 	v1 = v1 / 100;
-	auto FocusTree = genericFocusTree->makeCustomizedCopy(Leader);
+	auto FocusTree = genericFocusTree->makeCustomizedCopy(*Leader);
 	for (auto GC: theWorld->getGreatPowers())
 	{
 		auto relations = Leader->getRelations(GC->getTag());
@@ -1207,7 +1207,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::democracyWarCreator(shared_ptr<H
 
 vector<shared_ptr<HoI4Faction>> HoI4WarCreator::absolutistWarCreator(shared_ptr<HoI4Country> country)
 {
-	auto focusTree = genericFocusTree->makeCustomizedCopy(country);
+	auto focusTree = genericFocusTree->makeCustomizedCopy(*country);
 
 	auto name = country->getSourceCountry()->getName("english");
 	if (name)
@@ -1341,7 +1341,7 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::neighborWarCreator(shared_ptr<Ho
 
 	if (numWarsWithNeighbors > 0)
 	{
-		auto focusTree = genericFocusTree->makeCustomizedCopy(country);
+		auto focusTree = genericFocusTree->makeCustomizedCopy(*country);
 		for (auto newFocus: newFocuses)
 		{
 			focusTree->addFocus(newFocus);

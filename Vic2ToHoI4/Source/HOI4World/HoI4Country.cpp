@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "ParadoxParserUTF8.h"
 #include "HoI4Faction.h"
+#include "HoI4Focus.h"
 #include "HoI4Leader.h"
 #include "HoI4Localisation.h"
 #include "../Mappers/CountryMapping.h"
@@ -1195,6 +1196,22 @@ void HoI4Country::addVPsToCapital(int VPs)
 }
 
 
+void HoI4Country::adjustResearchFocuses(const set<string>& majorIdeologies)
+{
+	if (greatPower)
+	{
+		if (!nationalFocus)
+		{
+			HoI4FocusTree genericNationalFocus(*this);
+			genericNationalFocus.addGenericFocusTree(majorIdeologies);
+			nationalFocus = genericNationalFocus.makeCustomizedCopy(*this);
+		}
+
+		nationalFocus->removeFocus("extra_tech_slot_2" + tag);
+	}
+}
+
+
 double HoI4Country::getStrengthOverTime(double years) const
 {
 	return getMilitaryStrength() + getEconomicStrength(years);
@@ -1354,9 +1371,17 @@ void HoI4Country::outputCapital(ofstream& output) const
 
 void HoI4Country::outputResearchSlots(ofstream& output) const
 {
-	if (majorNation)
+	if (greatPower)
 	{
 		output << "set_research_slots = 4\n";
+	}
+	else if (civilized)
+	{
+		output << "set_research_slots = 3\n";
+	}
+	else
+	{
+		output << "set_research_slots = 2\n";
 	}
 }
 

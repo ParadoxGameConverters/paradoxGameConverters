@@ -48,9 +48,9 @@ HoI4FocusTree::HoI4FocusTree():
 }
 
 
-HoI4FocusTree::HoI4FocusTree(shared_ptr<HoI4Country> country):
-	srcCountryTag(country->getSourceCountry()->getTag()),
-	dstCountryTag(country->getTag()),
+HoI4FocusTree::HoI4FocusTree(const HoI4Country& country):
+	srcCountryTag(country.getSourceCountry()->getTag()),
+	dstCountryTag(country.getTag()),
 	focuses(),
 	nextFreeColumn(0),
 	fascistMutualExlusions(""),
@@ -2098,7 +2098,7 @@ void HoI4FocusTree::addRadicalGenericFocuses()
 }
 
 
-shared_ptr<HoI4FocusTree> HoI4FocusTree::makeCustomizedCopy(shared_ptr<HoI4Country> country) const
+shared_ptr<HoI4FocusTree> HoI4FocusTree::makeCustomizedCopy(const HoI4Country& country) const
 {
 	auto newFocusTree = make_shared<HoI4FocusTree>(country);
 
@@ -3620,6 +3620,19 @@ void HoI4FocusTree::addGPWarBranch(shared_ptr<HoI4Country> Home, const vector<sh
 		i++;
 	}
 	nextFreeColumn += 2 * max(newAllies.size(), GCTargets.size());
+}
+
+
+void HoI4FocusTree::removeFocus(const string& id)
+{
+	for (auto itr = focuses.begin(); itr != focuses.end(); itr++)
+	{
+		if ((*itr)->id == id)
+		{
+			focuses.erase(itr);
+			break;
+		}
+	}
 }
 
 
