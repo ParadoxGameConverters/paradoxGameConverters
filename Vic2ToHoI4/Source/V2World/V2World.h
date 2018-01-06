@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "../Mappers/Mapper.h"
 #include "Object.h"
+#include "V2Party.h"
 #include <optional>
 #include <string>
 #include <vector>
@@ -37,7 +38,7 @@ using namespace std;
 class V2Country;
 class V2Diplomacy;
 class V2Province;
-class V2Party;
+
 
 
 class V2World
@@ -50,7 +51,7 @@ class V2World
 		map<string, V2Country*> getCountries() const { return countries; }
 		const V2Diplomacy* getDiplomacy() const { return diplomacy; }
 		vector<string> getGreatPowers() const	{ return greatPowers; }
-		vector<const V2Party*> getParties() const { return parties; }
+		vector<V2Party> getParties() const { return parties; }
 
 	private:
 		V2World(const V2World&) = delete;
@@ -97,7 +98,7 @@ class V2World
 		map<int, V2Province*> provinces;
 		map<string, V2Country*>	countries;
 		const V2Diplomacy* diplomacy;
-		vector<const V2Party*> parties;
+		vector<V2Party> parties;
 		vector<string> greatPowers;
 };
 

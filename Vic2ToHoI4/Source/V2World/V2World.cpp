@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -425,7 +425,7 @@ void V2World::inputPartyInformation(const vector<shared_ptr<Object>>& leaves)
 		string key = leaf->getKey();
 		if (key == "party")
 		{
-			parties.push_back(new V2Party(leaf));
+			parties.push_back(createParty(leaf));
 		}
 	}
 }

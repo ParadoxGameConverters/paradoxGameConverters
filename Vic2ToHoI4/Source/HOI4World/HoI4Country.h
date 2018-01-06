@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -37,6 +37,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Color.h"
 #include "Date.h"
 #include "../V2World/V2Army.h"
+#include "../V2World/V2Party.h"
 #include <optional>
 #include <set>
 #include <vector>
@@ -45,11 +46,11 @@ using namespace std;
 
 
 class V2Country;
-class V2Party;
 class HoI4Advisor;
 class HoI4Faction;
 class HoI4World;
 struct advisorCompare;
+struct V2Party;
 
 
 
@@ -107,8 +108,8 @@ class HoI4Country
 		HoI4State* getCapitalState() const { return capitalState; }
 		int											getCapitalStateNum() const { return capitalStateNum; }
 		const string									getSphereLeader() const { return sphereLeader; }
-		const V2Party* getRulingParty() const { return rulingParty; }
-		set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> getParties() const { return parties; }
+		const V2Party getRulingParty() const { return rulingParty; }
+		set<V2Party, function<bool (const V2Party&, const V2Party&)>> getParties() const { return parties; }
 		map<int, HoI4State*> getStates() const { return states; }
 		bool isInFaction() const { return faction != nullptr; }
 		bool isCivilized() const { return civilized; }
@@ -173,8 +174,8 @@ class HoI4Country
 
 		string governmentIdeology;
 		string leaderIdeology;
-		const V2Party* rulingParty;
-		set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> parties;
+		V2Party rulingParty;
+		set<V2Party, function<bool (const V2Party&, const V2Party&)>> parties;
 		map<string, int> ideologySupport;
 		date lastElection;
 

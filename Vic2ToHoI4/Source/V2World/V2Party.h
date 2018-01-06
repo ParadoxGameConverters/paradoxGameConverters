@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -32,11 +32,8 @@ using namespace std;
 
 
 
-class V2Party
+struct V2Party
 {
-	public:
-		explicit V2Party(shared_ptr<Object> party_obj);
-
 		string name;
 		string ideology;
 		string economic_policy;
@@ -44,11 +41,11 @@ class V2Party
 		string religious_policy;
 		string citizenship_policy;
 		string war_policy;
-
-	private:
-		V2Party(const V2Party&) = delete;
-		V2Party& operator=(const V2Party&) = delete;
 };
+
+
+
+V2Party createParty(shared_ptr<Object> party_obj);
 
 
 

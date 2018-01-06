@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -530,7 +530,7 @@ long V2Country::getEmployedWorkers() const
 }
 
 
-optional<const V2Party*> V2Country::getRulingParty(const vector<const V2Party*>& allParties) const
+optional<const V2Party> V2Country::getRulingParty(const vector<V2Party>& allParties) const
 {
 	if ((rulingPartyID <= allParties.size()) && (rulingPartyID > 0))
 	{
@@ -543,10 +543,10 @@ optional<const V2Party*> V2Country::getRulingParty(const vector<const V2Party*>&
 }
 
 
-set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> V2Country::getActiveParties(const vector<const V2Party*>& allParties) const
+set<V2Party, function<bool (const V2Party&, const V2Party&)>> V2Country::getActiveParties(const vector<V2Party>& allParties) const
 {
-	set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> activeParties([](const V2Party* first, const V2Party* second)
-		{ return first->name < second->name; }
+	set<V2Party, function<bool (const V2Party&, const V2Party&)>> activeParties([](const V2Party& first, const V2Party& second)
+		{ return first.name < second.name; }
 	);
 
 	for (auto ID : activePartyIDs)

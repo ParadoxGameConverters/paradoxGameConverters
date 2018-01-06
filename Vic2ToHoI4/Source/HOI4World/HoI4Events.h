@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -37,7 +37,7 @@ using namespace std;
 
 class HoI4Country;
 class HoI4OnActions;
-class V2Party;
+struct V2Party;
 
 
 
@@ -54,7 +54,7 @@ class HoI4Events
 		void createPoliticalEvents(const set<string>& majorIdeologies);
 		void createWarJustificationEvents(const set<string>& majorIdeologies);
 		void createElectionEvents(const set<string>& majorIdeologies, HoI4OnActions* onActions);
-		void addPartyChoiceEvent(const string& countryTag, set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> parties, HoI4OnActions* onActions, const set<string>& majorIdeologies);
+		void addPartyChoiceEvent(const string& countryTag, const set<V2Party, function<bool (const V2Party&, const V2Party&)>>& parties, HoI4OnActions* onActions, const set<string>& majorIdeologies);
 
 		int getCurrentNationFocusEventNum() const { return nationalFocusEventNumber; }
 

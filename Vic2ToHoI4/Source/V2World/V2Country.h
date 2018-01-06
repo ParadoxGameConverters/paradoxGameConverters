@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -42,10 +42,10 @@ using namespace std;
 
 class V2Army;
 class V2Leader;
-class V2Party;
 class V2Province;
 class V2Relations;
 class Vic2State;
+struct V2Party;
 
 
 
@@ -101,8 +101,8 @@ class V2Country
 		optional<string> getAdjective(const string& language) const;
 		double getUpperHousePercentage(const string& ideology) const;
 		long getEmployedWorkers() const;
-		optional<const V2Party*> getRulingParty(const vector<const V2Party*>& allParties) const;
-		set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> getActiveParties(const vector<const V2Party*>& allParties) const;
+		optional<const V2Party> getRulingParty(const vector<V2Party>& allParties) const;
+		set<V2Party, function<bool (const V2Party&, const V2Party&)>> getActiveParties(const vector<V2Party>& allParties) const;
 		bool hasCoreOnCapital() const;
 
 	private:

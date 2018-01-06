@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -50,7 +50,7 @@ HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, c
 	human(false),
 	governmentIdeology("neutrality"),
 	leaderIdeology("neutrality"),
-	rulingParty(nullptr),
+	rulingParty(),
 	parties(),
 	ideologySupport(),
 	lastElection(),
@@ -183,13 +183,13 @@ void HoI4Country::convertGovernment(const V2World& sourceWorld)
 		rulingParty = *possibleRulingParty;
 	}
 
-	governmentIdeology = governmentMapper::getIdeologyForCountry(srcCountry, rulingParty->ideology);
-	leaderIdeology = governmentMapper::getLeaderIdeologyForCountry(srcCountry, rulingParty->ideology);
+	governmentIdeology = governmentMapper::getIdeologyForCountry(srcCountry, rulingParty.ideology);
+	leaderIdeology = governmentMapper::getLeaderIdeologyForCountry(srcCountry, rulingParty.ideology);
 	parties = srcCountry->getActiveParties(sourceWorld.getParties());
 	for (auto party: parties)
 	{
-		string trimmedName = party->name.substr(4, party->name.size());
-		HoI4Localisation::addPoliticalPartyLocalisation(party->name, tag + "_" + trimmedName + "_party");
+		string trimmedName = party.name.substr(4, party.name.size());
+		HoI4Localisation::addPoliticalPartyLocalisation(party.name, tag + "_" + trimmedName + "_party");
 	}
 }
 
@@ -200,13 +200,13 @@ void HoI4Country::convertParties(const set<string>& majorIdeologies)
 	{
 		for (auto party: parties)
 		{
-			if (governmentMapper::getSupportedIdeology(governmentIdeology, party->ideology, majorIdeologies) == HoI4Ideology)
+			if (governmentMapper::getSupportedIdeology(governmentIdeology, party.ideology, majorIdeologies) == HoI4Ideology)
 			{
-				HoI4Localisation::addPoliticalPartyLocalisation(party->name, tag + "_" + HoI4Ideology + "_party");
+				HoI4Localisation::addPoliticalPartyLocalisation(party.name, tag + "_" + HoI4Ideology + "_party");
 			}
 		}
 	}
-	HoI4Localisation::addPoliticalPartyLocalisation(rulingParty->name, tag + "_" + governmentIdeology + "_party");
+	HoI4Localisation::addPoliticalPartyLocalisation(rulingParty.name, tag + "_" + governmentIdeology + "_party");
 }
 
 
@@ -454,8 +454,8 @@ void HoI4Country::initFromHistory()
 
 void HoI4Country::setGovernmentToExistingIdeology(const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies)
 {
-	governmentIdeology = governmentMapper::getExistingIdeologyForCountry(srcCountry, rulingParty->ideology, majorIdeologies, ideologies);
-	leaderIdeology = governmentMapper::getExistingLeaderIdeologyForCountry(srcCountry, rulingParty->ideology, majorIdeologies, ideologies);
+	governmentIdeology = governmentMapper::getExistingIdeologyForCountry(srcCountry, rulingParty.ideology, majorIdeologies, ideologies);
+	leaderIdeology = governmentMapper::getExistingLeaderIdeologyForCountry(srcCountry, rulingParty.ideology, majorIdeologies, ideologies);
 }
 
 
@@ -1593,11 +1593,11 @@ void HoI4Country::outputIdeas(ofstream& output) const
 	{
 		output << "\tuncivilized\n";
 	}
-	if (rulingParty->war_policy == "jingoism")
+	if (rulingParty.war_policy == "jingoism")
 	{
 		output << "\tpartial_economic_mobilisation\n";
 	}
-	if (rulingParty->war_policy == "pro_military")
+	if (rulingParty.war_policy == "pro_military")
 	{
 		output << "\tlow_economic_mobilisation\n";
 	}

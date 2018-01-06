@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -1694,7 +1694,7 @@ void HoI4Events::addGovernmentContestedEvent(const set<string>& majorIdeologies,
 }
 
 
-void HoI4Events::addPartyChoiceEvent(const string& countryTag, set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> parties, HoI4OnActions* onActions, const set<string>& majorIdeologies)
+void HoI4Events::addPartyChoiceEvent(const string& countryTag, const set<V2Party, function<bool (const V2Party&, const V2Party&)>>& parties, HoI4OnActions* onActions, const set<string>& majorIdeologies)
 {
 	HoI4Event partyChoiceEvent;
 
@@ -1722,9 +1722,9 @@ void HoI4Events::addPartyChoiceEvent(const string& countryTag, set<const V2Party
 	char optionLetter = 'a';
 	for (auto party: parties)
 	{
-		if ((party->ideology == "conservative") || (party->ideology == "liberal") || (party->ideology == "socialist"))
+		if ((party.ideology == "conservative") || (party.ideology == "liberal") || (party.ideology == "socialist"))
 		{
-			string trimmedName = party->name.substr(4, party->name.size());
+			string trimmedName = party.name.substr(4, party.name.size());
 
 			string optionName = "election." + to_string(electionEventNumber) + optionLetter;
 			string option = "name = " + optionName + "\n";
@@ -1738,7 +1738,7 @@ void HoI4Events::addPartyChoiceEvent(const string& countryTag, set<const V2Party
 			}
 			option += "		retire_country_leader = yes";
 			partyChoiceEvent.options.push_back(option);
-			HoI4Localisation::addEventLocalisationFromVic2(party->name, optionName);
+			HoI4Localisation::addEventLocalisationFromVic2(party.name, optionName);
 			optionLetter++;
 		}
 	}

@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -269,13 +269,13 @@ vector<shared_ptr<HoI4Country>> HoI4WarCreator::findEvilCountries() const
 			evilness += 3;
 		if (country.second->getGovernmentIdeology() == "anarcho_liberal")
 			evilness += 3;
-		const V2Party* countryrulingparty = country.second->getRulingParty();
+		const V2Party countryrulingparty = country.second->getRulingParty();
 	
-		if (countryrulingparty->war_policy == "jingoism")
+		if (countryrulingparty.war_policy == "jingoism")
 			evilness += 3;
-		else if (countryrulingparty->war_policy == "pro_military")
+		else if (countryrulingparty.war_policy == "pro_military")
 			evilness += 2;
-		else if (countryrulingparty->war_policy == "anti_military")
+		else if (countryrulingparty.war_policy == "anti_military")
 			evilness -= 1;
 	
 		if (evilness > 2)
@@ -1038,13 +1038,13 @@ vector<shared_ptr<HoI4Faction>> HoI4WarCreator::communistWarCreator(shared_ptr<H
 				if ((party.first == "socialist") || (party.first == "communist") || (party.first == "anarcho_liberal"))
 					com += party.second;
 			}
-			if (com > 25 && neigh.second->getRulingParty()->ideology != "communist" && HowToTakeLand(neigh.second, Leader, 2.5) == "coup")
+			if (com > 25 && neigh.second->getRulingParty().ideology != "communist" && HowToTakeLand(neigh.second, Leader, 2.5) == "coup")
 			{
 				//look for neighboring countries to spread communism too(Need 25 % or more Communism support), Prioritizing those with "Communism Allowed" Flags, prioritizing those who are weakest
 				//	Method() Influence Ideology and Attempt Coup
 				coups.push_back(neigh.second);
 			}
-			else if (neighFaction->getMembers().size() == 1 && neigh.second->getRulingParty()->ideology != "communist")
+			else if (neighFaction->getMembers().size() == 1 && neigh.second->getRulingParty().ideology != "communist")
 			{
 				//	Then look for neighboring countries to spread communism by force, prioritizing weakest first
 				forcedtakeover.push_back(neigh.second);
