@@ -2903,100 +2903,101 @@
 	# 
 	# ## Myanmar
 	# # Kachin
-	link = { vic2 = 1339 hoi4 = 12335 hoi4 = 10486 hoi4 = 4087 hoi4 = 4588 hoi4 = 8063 hoi4 = 1197 }	# Haka -> land, land, land, land, land, land
-	link = { vic2 = 1341 hoi4 = 4318 hoi4 = 1934 hoi4 = 4996 }	# Putao -> land, land, land
-	link = { vic2 = 1342 hoi4 = 4425 hoi4 = 1082 hoi4 = 10920 hoi4 = 12464 hoi4 = 7469 hoi4 = 12492 }	# Myitkyina -> land, land, land, land, land, land
+	link = { vic2 = 1339 hoi4 = 12335 hoi4 = 10486 hoi4 = 4087 hoi4 = 4588 hoi4 = 4454 hoi4 = 7534 hoi4 = 3999 hoi4 = 11966 hoi4 = 10033 hoi4 = 7163 hoi4 = 4541 hoi4 = 7190 }	# Haka -> land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 1341 hoi4 = 4318 hoi4 = 1934 hoi4 = 4996 hoi4 = 1197 }	# Putao -> land, land, land, land
+	link = { vic2 = 1342 hoi4 = 4425 hoi4 = 1082 hoi4 = 10920 hoi4 = 12464 hoi4 = 8063 }	# Myitkyina -> land, land, land, land, land
 	# # Shan States
-	link = { vic2 = 1333 hoi4 = 4293 hoi4 = 7441 hoi4 = 1417 }	# Toungoo -> land, land, land
-	link = { vic2 = 1334 hoi4 = 4202 hoi4 = 4541 hoi4 = 7190 hoi4 = 7163 hoi4 = 10033 hoi4 = 11966 hoi4 = 3999 hoi4 = 7534 hoi4 = 4454 }	# Ava -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1335 hoi4 = 12256 hoi4 = 12449 hoi4 = 4626 }	# Kyaukse -> land, land, land
-	link = { vic2 = 1336 hoi4 = 1650 hoi4 = 4019 hoi4 = 4059 hoi4 = 7034 }	# Magwe -> land, land, land, land
-	link = { vic2 = 1337 hoi4 = 12284 hoi4 = 10344 hoi4 = 10283 hoi4 = 1333 }	# Prome -> land, land, land, land
+	link = { vic2 = 1333 hoi4 = 12256 hoi4 = 7441 hoi4 = 1417 hoi4 = 4293 }	# Toungoo -> land, land, land, land
+	link = { vic2 = 1334 hoi4 = 1492 hoi4 = 10386 hoi4 = 12404 hoi4 = 12492 hoi4 = 7469 }	# Ava -> land, land, land, land, land
+	link = { vic2 = 1335 hoi4 = 4585 hoi4 = 4626 hoi4 = 12449 }	# Kyaukse -> land, land, land
+	link = { vic2 = 1336 hoi4 = 7034 hoi4 = 4019 hoi4 = 4202 }	# Magwe -> land, land, land
+	link = { vic2 = 1337 hoi4 = 10344 hoi4 = 1650 hoi4 = 4059 hoi4 = 1333 hoi4 = 12284 hoi4 = 10283 }	# Prome -> land, land, land, land, land, land
 	# # Shan
-	link = { vic2 = 1338 hoi4 = 4175 hoi4 = 1607 hoi4 = 4654 hoi4 = 12317 hoi4 = 7647 hoi4 = 7974 hoi4 = 7909 hoi4 = 7603 hoi4 = 4585 }	# Taunggyi -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1340 hoi4 = 12363 hoi4 = 1566 hoi4 = 2061 hoi4 = 7400 hoi4 = 4210 hoi4 = 7562 hoi4 = 1170 hoi4 = 1492 hoi4 = 10386 hoi4 = 12404 }	# Lashio -> land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1355 hoi4 = 1488 hoi4 = 7675 hoi4 = 1253 }	# Chiang Mai -> land, land, land
-	link = { vic2 = 2572 hoi4 = 1990 hoi4 = 10371 hoi4 = 4496 hoi4 = 7492 }	# Nan -> land, land, land, land
+	link = { vic2 = 1338 hoi4 = 1607 hoi4 = 4654 hoi4 = 12317 hoi4 = 7647 hoi4 = 7603 hoi4 = 4175 hoi4 = 7974 hoi4 = 7909 }	# Taunggyi -> land, land, land, land, land, land, land, land
+	link = { vic2 = 1340 hoi4 = 1170 hoi4 = 1566 hoi4 = 2061 hoi4 = 7400 hoi4 = 4210 hoi4 = 7562 hoi4 = 12363 }	# Lashio -> land, land, land, land, land, land, land
 	# # Pegu
-	link = { vic2 = 1330 hoi4 = 1330 hoi4 = 10267 hoi4 = 12197 hoi4 = 12267 hoi4 = 7382 }	# Rangoon -> land, land, land, land, land
-	link = { vic2 = 1331 hoi4 = 10223 hoi4 = 7254 hoi4 = 10182 }	# Bassein -> land, land, land
-	link = { vic2 = 1332 hoi4 = 4336 hoi4 = 12127 hoi4 = 10154 }	# Pegu -> land, land, land
-	link = { vic2 = 1345 hoi4 = 1142 hoi4 = 4147 hoi4 = 7122 hoi4 = 1014 hoi4 = 3651 hoi4 = 12090 }	# Sittwe -> land, land, land, land, land, land
+	link = { vic2 = 1330 hoi4 = 1330 hoi4 = 10267 hoi4 = 12197 hoi4 = 12267 }	# Rangoon -> land, land, land, land
+	link = { vic2 = 1331 hoi4 = 7254 hoi4 = 10223 hoi4 = 7382 }	# Bassein -> land, land, land
+	link = { vic2 = 1332 hoi4 = 10154 hoi4 = 12127 hoi4 = 4336 }	# Pegu -> land, land, land
+	link = { vic2 = 1345 hoi4 = 12090 hoi4 = 4147 hoi4 = 7122 hoi4 = 1014 hoi4 = 3651 hoi4 = 1142 hoi4 = 10182 }	# Sittwe -> land, land, land, land, land, land, land
 	# # Tenasserim
-	link = { vic2 = 1343 hoi4 = 1315 hoi4 = 12125 hoi4 = 4408 hoi4 = 1403 hoi4 = 12238 hoi4 = 1385 hoi4 = 7295 }	# Moulmein -> land, land, land, land, land, land, land
+	link = { vic2 = 1343 hoi4 = 1403 hoi4 = 12238 hoi4 = 4408 hoi4 = 12125 hoi4 = 7295 hoi4 = 1315 hoi4 = 1385 }	# Moulmein -> land, land, land, land, land, land, land
 	link = { vic2 = 1344 hoi4 = 12292 hoi4 = 1296 hoi4 = 10217 hoi4 = 4275 }	# Mergui -> land, land, land, land
 	# 
 	# ## Thailand
 	# # Ayutthaya
-	link = { vic2 = 1346 hoi4 = 1427 hoi4 = 7408 }	# Bangkok -> land, land
-	link = { vic2 = 1347 hoi4 = 7367 hoi4 = 10221 hoi4 = 10250 }	# Lopburi -> land, land, land
-	link = { vic2 = 1348 hoi4 = 7338 hoi4 = 7312 hoi4 = 7544 hoi4 = 4566 hoi4 = 7559 }	# Nakhon Sawan -> land, land, land, land, land
-	link = { vic2 = 1349 hoi4 = 12345 hoi4 = 7353 hoi4 = 7572 hoi4 = 10411 hoi4 = 10398 hoi4 = 12173 }	# Sukhothai -> land, land, land, land, land, land
-	link = { vic2 = 1351 hoi4 = 7225 hoi4 = 10293 hoi4 = 12224 hoi4 = 12264 hoi4 = 12195 }	# Prachinburi -> land, land, land, land, land
-	link = { vic2 = 1353 hoi4 = 7587 hoi4 = 4319 hoi4 = 4348 hoi4 = 10193 }	# Ratchaburi -> land, land, land, land
+	link = { vic2 = 1346 hoi4 = 7408 hoi4 = 1427 hoi4 = 10250 }	# Bangkok -> land, land, land
+	link = { vic2 = 1347 hoi4 = 7367 hoi4 = 10221 }	# Lopburi -> land, land
+	link = { vic2 = 1348 hoi4 = 7544 hoi4 = 7338 hoi4 = 4566 hoi4 = 7559 hoi4 = 7312 }	# Nakhon Sawan -> land, land, land, land, land
+	link = { vic2 = 1349 hoi4 = 7572 hoi4 = 7353 hoi4 = 12345 hoi4 = 10398 hoi4 = 10411 hoi4 = 12173 }	# Sukhothai -> land, land, land, land, land, land
+	link = { vic2 = 1351 hoi4 = 12224 hoi4 = 10293 hoi4 = 7225 hoi4 = 4433 }	# Prachinburi -> land, land, land, land
+	link = { vic2 = 1353 hoi4 = 7587 hoi4 = 4348 hoi4 = 10193 hoi4 = 4319 hoi4 = 4392 hoi4 = 12122 hoi4 = 12220 hoi4 = 4388 }	# Ratchaburi -> land, land, land, land, land, land, land, land
+	# # Shan
+	link = { vic2 = 1355 hoi4 = 1488 hoi4 = 7675 hoi4 = 1253 }	# Chiang Mai -> land, land, land
+	link = { vic2 = 2572 hoi4 = 4496 hoi4 = 7531 hoi4 = 8045 hoi4 = 1990 hoi4 = 10371 hoi4 = 7492 }	# Nan -> land, land, land, land, land, land
 	# # Isan
-	link = { vic2 = 1350 hoi4 = 10438 hoi4 = 12388 hoi4 = 4582 hoi4 = 10425 hoi4 = 12373 hoi4 = 1357 }	# Nakhon Ratchasima -> land, land, land, land, land, land
-	link = { vic2 = 1358 hoi4 = 12402 hoi4 = 4511 hoi4 = 1535 hoi4 = 10384 hoi4 = 7516 hoi4 = 1548 hoi4 = 12360 }	# Udon Thani -> land, land, land, land, land, land, land
-	link = { vic2 = 1359 hoi4 = 12431 hoi4 = 7601 hoi4 = 12417 }	# Sisaket -> land, land, land
+	link = { vic2 = 1350 hoi4 = 10438 hoi4 = 12388 hoi4 = 4582 hoi4 = 12195 hoi4 = 12264 }	# Nakhon Ratchasima -> land, land, land, land, land
+	link = { vic2 = 1358 hoi4 = 12360 hoi4 = 4511 hoi4 = 1535 hoi4 = 10384 hoi4 = 7516 hoi4 = 12402 hoi4 = 10425 hoi4 = 12373 hoi4 = 1357 }	# Udon Thani -> land, land, land, land, land, land, land, land, land
+	link = { vic2 = 1359 hoi4 = 7601 hoi4 = 12431 hoi4 = 12417 hoi4 = 1548 }	# Sisaket -> land, land, land, land
 	# # Pattani
-	link = { vic2 = 1352 hoi4 = 10158 hoi4 = 12286 hoi4 = 10156 hoi4 = 12230 hoi4 = 1366 }	# Phuket -> land, land, land, land, land
-	link = { vic2 = 1354 hoi4 = 4371 hoi4 = 1394 hoi4 = 12201 hoi4 = 1308 hoi4 = 1281 hoi4 = 1337 hoi4 = 4312 hoi4 = 4388 hoi4 = 12220 hoi4 = 12122 hoi4 = 4392 }	# Nakhon Si Thammarat -> land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1392 hoi4 = 1279 hoi4 = 12131 hoi4 = 4297 hoi4 = 7236 }	# Pattani -> land, land, land, land
+	link = { vic2 = 1352 hoi4 = 12230 hoi4 = 10158 hoi4 = 1366 hoi4 = 12286 hoi4 = 10156 }	# Phuket -> land, land, land, land, land
+	link = { vic2 = 1354 hoi4 = 4312 hoi4 = 1394 hoi4 = 12201 hoi4 = 1308 hoi4 = 1281 hoi4 = 1337 hoi4 = 4371 }	# Nakhon Si Thammarat -> land, land, land, land, land, land, land
+	link = { vic2 = 1392 hoi4 = 12131 hoi4 = 7236 hoi4 = 4297 hoi4 = 1279 }	# Pattani -> land, land, land, land
 	# 
 	# ## Laos
 	# # Laos
-	link = { vic2 = 1356 hoi4 = 12392 hoi4 = 4613 hoi4 = 12433 hoi4 = 7218 hoi4 = 9961 hoi4 = 4339 hoi4 = 4568 hoi4 = 7103 hoi4 = 10456 hoi4 = 7075 }	# Luang Prabang -> land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1357 hoi4 = 1464 hoi4 = 1507 hoi4 = 1390 hoi4 = 1362 hoi4 = 12332 hoi4 = 10356 hoi4 = 10330 hoi4 = 10496 hoi4 = 7356 }	# Vientiane -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1360 hoi4 = 8045 hoi4 = 7531 }	# Xiangabouli -> land, land
-	link = { vic2 = 1361 hoi4 = 10238 hoi4 = 10326 hoi4 = 4260 hoi4 = 10195 hoi4 = 4539 hoi4 = 1520 }	# Savannakhet -> land, land, land, land, land, land
-	link = { vic2 = 1362 hoi4 = 1374 hoi4 = 12210 hoi4 = 4554 hoi4 = 1577 hoi4 = 7426 hoi4 = 1563 }	# Salavan -> land, land, land, land, land, land
-	link = { vic2 = 1363 hoi4 = 10453 hoi4 = 1592 }	# Pakche -> land, land
+	link = { vic2 = 1356 hoi4 = 4613 hoi4 = 12433 hoi4 = 7218 hoi4 = 9961 hoi4 = 4339 hoi4 = 4568 hoi4 = 7103 hoi4 = 7075 hoi4 = 12392 hoi4 = 7356 hoi4 = 10496 }	# Luang Prabang -> land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 1357 hoi4 = 1464 hoi4 = 1507 hoi4 = 1390 hoi4 = 1362 hoi4 = 12332 }	# Vientiane -> land, land, land, land, land
+	link = { vic2 = 1360 hoi4 = 10330 hoi4 = 10356 hoi4 = 10456 }	# Xiangabouli -> land, land, land
+	link = { vic2 = 1361 hoi4 = 1520 hoi4 = 10326 hoi4 = 4260 hoi4 = 10195 hoi4 = 4539 }	# Savannakhet -> land, land, land, land, land
+	link = { vic2 = 1362 hoi4 = 1563 hoi4 = 1374 hoi4 = 10238 hoi4 = 12210 hoi4 = 7426 hoi4 = 4554 hoi4 = 1577 }	# Salavan -> land, land, land, land, land, land, land
+	link = { vic2 = 1363 hoi4 = 1592 hoi4 = 10453 }	# Pakche -> land, land
 	# 
 	# ## Cambodia
 	# # Cambodia
-	link = { vic2 = 1364 hoi4 = 12191 hoi4 = 7376 hoi4 = 10289 hoi4 = 7319 hoi4 = 1324 hoi4 = 12260 hoi4 = 4330 hoi4 = 12475 hoi4 = 4639 }	# Oudong -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1365 hoi4 = 7292 hoi4 = 1244 hoi4 = 4433 }	# Chanthaburi -> land, land, land
-	link = { vic2 = 1366 hoi4 = 12460 hoi4 = 10467 hoi4 = 4251 hoi4 = 10177 hoi4 = 10134 hoi4 = 5236 hoi4 = 4302 hoi4 = 12447 }	# Battambang -> land, land, land, land, land, lake, land, land
-	link = { vic2 = 1367 hoi4 = 7432 hoi4 = 4359 hoi4 = 7404 hoi4 = 1353 }	# Kampot -> land, land, land, land
-	link = { vic2 = 1368 hoi4 = 12167 hoi4 = 7645 hoi4 = 12150 hoi4 = 10204 hoi4 = 1620 }	# Stongtreng -> land, land, land, land, land
+	link = { vic2 = 1364 hoi4 = 7376 hoi4 = 10289 hoi4 = 7319 hoi4 = 1324 hoi4 = 12260 hoi4 = 4330 hoi4 = 12475 hoi4 = 4639 hoi4 = 12191 }	# Oudong -> land, land, land, land, land, land, land, land, land
+	link = { vic2 = 1365 hoi4 = 1244 hoi4 = 7292 }	# Chanthaburi -> land, land
+	link = { vic2 = 1366 hoi4 = 10177 hoi4 = 10134 hoi4 = 4251 hoi4 = 10467 hoi4 = 4302 hoi4 = 12460 hoi4 = 12447 hoi4 = 5236 }	# Battambang -> land, land, land, land, land, land, land, lake
+	link = { vic2 = 1367 hoi4 = 7432 hoi4 = 7404 hoi4 = 4359 hoi4 = 1353 hoi4 = 10317 }	# Kampot -> land, land, land, land, land
+	link = { vic2 = 1368 hoi4 = 7645 hoi4 = 12150 hoi4 = 10204 hoi4 = 1620 hoi4 = 12167 hoi4 = 4596 }	# Stongtreng -> land, land, land, land, land, land
 	# 
 	# ## Vietnam
 	# # Tonkin
 	link = { vic2 = 1369 hoi4 = 4075 hoi4 = 12048 hoi4 = 10129 }	# Hanoi -> land, land, land
 	link = { vic2 = 1370 hoi4 = 1185 hoi4 = 4119 }	# Hai Phong -> land, land
-	link = { vic2 = 1371 hoi4 = 7015 hoi4 = 12065 hoi4 = 9948 hoi4 = 7518 }	# Cao Bang -> land, land, land, land
-	link = { vic2 = 1372 hoi4 = 10075 hoi4 = 4529 hoi4 = 12319 hoi4 = 12008 hoi4 = 10103 hoi4 = 12075 hoi4 = 1073 }	# Son La -> land, land, land, land, land, land, land
-	link = { vic2 = 1373 hoi4 = 1157 hoi4 = 7093 }	# Lang Son -> land, land
-	link = { vic2 = 1374 hoi4 = 10016 hoi4 = 9988 hoi4 = 11936 hoi4 = 11909 }	# Thanh Hoa -> land, land, land, land
+	link = { vic2 = 1371 hoi4 = 12065 hoi4 = 7518 hoi4 = 7015 hoi4 = 1073 hoi4 = 12008 }	# Cao Bang -> land, land, land, land, land
+	link = { vic2 = 1372 hoi4 = 10075 hoi4 = 4529 hoi4 = 12319 hoi4 = 10103 hoi4 = 12075 }	# Son La -> land, land, land, land, land
+	link = { vic2 = 1373 hoi4 = 1157 hoi4 = 7093 hoi4 = 9948 }	# Lang Son -> land, land, land
+	link = { vic2 = 1374 hoi4 = 11936 hoi4 = 11909 hoi4 = 10016 hoi4 = 9988 }	# Thanh Hoa -> land, land, land, land
 	# # Hue
 	link = { vic2 = 1375 hoi4 = 4379 hoi4 = 1302 }	# Hue -> land, land
-	link = { vic2 = 1376 hoi4 = 7280 hoi4 = 4397 hoi4 = 12297 }	# Vinh -> land, land, land
-	link = { vic2 = 1377 hoi4 = 4255 hoi4 = 10309 hoi4 = 7229 hoi4 = 10180 hoi4 = 1248 hoi4 = 10137 }	# Tourane -> land, land, land, land, land, land
-	link = { vic2 = 1378 hoi4 = 4596 hoi4 = 7380 hoi4 = 12109 hoi4 = 1605 hoi4 = 1328 hoi4 = 4363 hoi4 = 1400 }	# Pleiku -> land, land, land, land, land, land, land
-	link = { vic2 = 1379 hoi4 = 1300 hoi4 = 4334 hoi4 = 10162 hoi4 = 4405 }	# Qui Nhon -> land, land, land, land
+	link = { vic2 = 1376 hoi4 = 4397 hoi4 = 12297 hoi4 = 7280 }	# Vinh -> land, land, land
+	link = { vic2 = 1377 hoi4 = 10309 hoi4 = 7229 hoi4 = 10137 hoi4 = 4255 }	# Tourane -> land, land, land, land
+	link = { vic2 = 1378 hoi4 = 4363 hoi4 = 1248 hoi4 = 10180 hoi4 = 1328 hoi4 = 7380 hoi4 = 1400 hoi4 = 12109 hoi4 = 1605 }	# Pleiku -> land, land, land, land, land, land, land, land
+	link = { vic2 = 1379 hoi4 = 4334 hoi4 = 1300 hoi4 = 4405 hoi4 = 10162 }	# Qui Nhon -> land, land, land, land
 	# # Saigon
 	link = { vic2 = 1380 hoi4 = 4401 hoi4 = 12232 hoi4 = 1396 }	# Saigon -> land, land, land
-	link = { vic2 = 1381 hoi4 = 7238 hoi4 = 12204 hoi4 = 1285 hoi4 = 12176 hoi4 = 7271 hoi4 = 7347 hoi4 = 10232 }	# Dong Quai -> land, land, land, land, land, land, land
-	link = { vic2 = 1382 hoi4 = 4223 hoi4 = 10261 hoi4 = 10317 hoi4 = 12288 }	# Hatien -> land, land, land, land
-	link = { vic2 = 1383 hoi4 = 4341 hoi4 = 7331 hoi4 = 7303 hoi4 = 4284 hoi4 = 1423 hoi4 = 12133 }	# Vinhlong -> land, land, land, land, land, land
+	link = { vic2 = 1381 hoi4 = 10232 hoi4 = 12204 hoi4 = 1285 hoi4 = 7271 hoi4 = 12176 hoi4 = 7347 hoi4 = 7238 }	# Dong Quai -> land, land, land, land, land, land, land
+	link = { vic2 = 1382 hoi4 = 4223 hoi4 = 10261 hoi4 = 12288 hoi4 = 4284 hoi4 = 12133 }	# Hatien -> land, land, land, land, land
+	link = { vic2 = 1383 hoi4 = 4341 hoi4 = 7331 hoi4 = 7303 hoi4 = 1423 }	# Vinhlong -> land, land, land, land
 	# 
 	# ## Malaysia
 	# # Kota Bahru
-	link = { vic2 = 1388 hoi4 = 12215 hoi4 = 7342 }	# Penang -> land, land
+	link = { vic2 = 1388 hoi4 = 7342 }	# Penang -> land
 	link = { vic2 = 1389 hoi4 = 12144 hoi4 = 1291 }	# Alor Setar -> land, land
-	link = { vic2 = 1390 hoi4 = 7399 hoi4 = 1392 hoi4 = 1348 hoi4 = 12255 hoi4 = 12271 hoi4 = 10227 }	# Kuantan -> land, land, land, land, land, land
-	link = { vic2 = 1391 hoi4 = 7329 hoi4 = 12199 hoi4 = 4355 }	# Kota Bahru -> land, land, land
-	link = { vic2 = 2575 hoi4 = 4384 hoi4 = 1364 hoi4 = 4310 hoi4 = 1376 }	# Ipoh -> land, land, land, land
+	link = { vic2 = 1390 hoi4 = 7399 hoi4 = 1392 hoi4 = 12255 hoi4 = 12271 hoi4 = 4367 hoi4 = 4384 }	# Kuantan -> land, land, land, land, land, land
+	link = { vic2 = 1391 hoi4 = 7329 hoi4 = 12199 hoi4 = 4355 hoi4 = 1348 hoi4 = 10227 }	# Kota Bahru -> land, land, land, land, land
+	link = { vic2 = 2575 hoi4 = 1364 hoi4 = 4310 hoi4 = 12215 hoi4 = 1376 }	# Ipoh -> land, land, land, land
 	# # Southern Malaya
-	link = { vic2 = 1385 hoi4 = 10313 hoi4 = 4424 hoi4 = 4367 }	# Johor Bahru -> land, land, land
+	link = { vic2 = 1385 hoi4 = 10313 hoi4 = 4424 }	# Johor Bahru -> land, land
 	link = { vic2 = 1386 hoi4 = 7427 }	# Malacca -> land
 	link = { vic2 = 1387 hoi4 = 10297 hoi4 = 4412 }	# Kuala Lumpur -> land, land
 	# # West Borneo
-	link = { vic2 = 1394 vic2 = 2576 hoi4 = 12905 hoi4 = 4216 hoi4 = 12283 hoi4 = 1208 }	# MANY-TO-MANY: Kuching, Natuna -> land, land, land, land
-	link = { vic2 = 1395 hoi4 = 1335 hoi4 = 10285 hoi4 = 10269 hoi4 = 2117 hoi4 = 4396 hoi4 = 8091 hoi4 = 7443 }	# Bintulu -> land, land, land, land, land, land, land
+	link = { vic2 = 1394 vic2 = 2576 hoi4 = 1208 hoi4 = 12905 hoi4 = 4216 hoi4 = 7443 }	# MANY-TO-MANY: Kuching, Natuna -> land, land, land, land
+	link = { vic2 = 1395 hoi4 = 4396 hoi4 = 12283 hoi4 = 2117 hoi4 = 8091 hoi4 = 10285 hoi4 = 10269 hoi4 = 1335 }	# Bintulu -> land, land, land, land, land, land, land
 	# # Sabah
-	link = { vic2 = 1396 hoi4 = 10143 hoi4 = 12171 hoi4 = 4282 hoi4 = 10212 }	# Api -> land, land, land, land
-	link = { vic2 = 1397 hoi4 = 1306 hoi4 = 10199 hoi4 = 12228 hoi4 = 7358 hoi4 = 4338 hoi4 = 10240 hoi4 = 12186 }	# Sandakan -> land, land, land, land, land, land, land
+	link = { vic2 = 1396 hoi4 = 10212 hoi4 = 12171 hoi4 = 4282 hoi4 = 10143 }	# Api -> land, land, land, land
+	link = { vic2 = 1397 hoi4 = 10199 hoi4 = 12186 hoi4 = 4338 hoi4 = 7358 hoi4 = 10240 hoi4 = 1306 hoi4 = 12228 }	# Sandakan -> land, land, land, land, land, land, land
 	# 
 	# ## Singapore
 	# # Southern Malaya
@@ -3005,60 +3006,59 @@
 	# ## Indonesia
 	# # Aceh
 	link = { vic2 = 1405 hoi4 = 7658 hoi4 = 10509 }	# Banda Aceh -> land, land
-	link = { vic2 = 1406 hoi4 = 1648 hoi4 = 7673 hoi4 = 4652 }	# Medan -> land, land, land
+	link = { vic2 = 1406 hoi4 = 4652 hoi4 = 7673 hoi4 = 1648 }	# Medan -> land, land, land
 	link = { vic2 = 1407 hoi4 = 12488 hoi4 = 8360 }	# Tapaktuan -> land, land
 	link = { vic2 = 1409 hoi4 = 10522 hoi4 = 4446 hoi4 = 1460 }	# Sibolga -> land, land, land
 	# # Siak
 	link = { vic2 = 1400 hoi4 = 10209 hoi4 = 12343 hoi4 = 10225 hoi4 = 12184 }	# Inderagiri -> land, land, land, land
-	link = { vic2 = 1401 hoi4 = 12168 hoi4 = 12181 hoi4 = 7327 hoi4 = 7463 hoi4 = 12302 hoi4 = 1277 }	# Siak -> land, land, land, land, land, land
+	link = { vic2 = 1401 hoi4 = 12168 hoi4 = 1277 hoi4 = 7463 hoi4 = 12181 hoi4 = 7327 hoi4 = 12302 }	# Siak -> land, land, land, land, land, land
 	link = { vic2 = 1402 hoi4 = 12113 }	# Tanjungpinang -> land
-	link = { vic2 = 1408 hoi4 = 10194 hoi4 = 10354 hoi4 = 7368 hoi4 = 12415 hoi4 = 1533 hoi4 = 10382 }	# Padang -> land, land, land, land, land, land
+	link = { vic2 = 1408 hoi4 = 10382 hoi4 = 10354 hoi4 = 7368 hoi4 = 10194 hoi4 = 12415 hoi4 = 1533 }	# Padang -> land, land, land, land, land, land
 	link = { vic2 = 1411 hoi4 = 12126 hoi4 = 1428 }	# Gunungsitoli -> land, land
 	# # Sumatra
-	link = { vic2 = 1398 hoi4 = 1345 hoi4 = 1373 hoi4 = 12212 hoi4 = 1332 hoi4 = 4364 hoi4 = 10294 hoi4 = 4381 }	# Jambi -> land, land, land, land, land, land, land
-	link = { vic2 = 1399 hoi4 = 12268 hoi4 = 10322 hoi4 = 12296 hoi4 = 1401 hoi4 = 1246 hoi4 = 1274 hoi4 = 4276 hoi4 = 10150 hoi4 = 1313 }	# Palembang -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1403 hoi4 = 1342 hoi4 = 12209 hoi4 = 12165 hoi4 = 4361 hoi4 = 4320 }	# Lampung -> land, land, land, land, land
-	link = { vic2 = 1404 hoi4 = 7396 hoi4 = 4211 hoi4 = 7384 }	# Palak Pinang -> land, land, land
-	link = { vic2 = 1410 hoi4 = 7440 hoi4 = 7308 hoi4 = 12138 }	# Bencoolen -> land, land, land
+	link = { vic2 = 1398 hoi4 = 1345 hoi4 = 1373 hoi4 = 12212 hoi4 = 1332 hoi4 = 4364 hoi4 = 10294 }	# Jambi -> land, land, land, land, land, land
+	link = { vic2 = 1399 hoi4 = 12268 hoi4 = 10322 hoi4 = 12296 hoi4 = 1401 hoi4 = 1246 hoi4 = 1274 hoi4 = 4276 hoi4 = 10150 hoi4 = 1313 hoi4 = 4381 }	# Palembang -> land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 1403 hoi4 = 4361 hoi4 = 1342 hoi4 = 12165 hoi4 = 4320 hoi4 = 12209 }	# Lampung -> land, land, land, land, land
+	link = { vic2 = 1404 hoi4 = 7384 hoi4 = 7396 hoi4 = 4211 }	# Palak Pinang -> land, land, land
+	link = { vic2 = 1410 hoi4 = 12138 hoi4 = 7308 hoi4 = 7440 }	# Bencoolen -> land, land, land
 	# # West Java
-	link = { vic2 = 1413 hoi4 = 10279 hoi4 = 12249 hoi4 = 7381 }	# Batavia -> land, land, land
-	link = { vic2 = 1414 hoi4 = 4621 hoi4 = 1425 hoi4 = 4406 hoi4 = 1398 hoi4 = 7421 hoi4 = 10307 }	# Bogor -> land, land, land, land, land, land
+	link = { vic2 = 1413 hoi4 = 7381 hoi4 = 12249 hoi4 = 10279 }	# Batavia -> land, land, land
+	link = { vic2 = 1414 hoi4 = 4406 hoi4 = 1398 hoi4 = 10307 hoi4 = 1425 hoi4 = 7421 hoi4 = 4621 hoi4 = 4434 }	# Bogor -> land, land, land, land, land, land, land
 	link = { vic2 = 1415 hoi4 = 1386 hoi4 = 7223 }	# Cirebon -> land, land
-	link = { vic2 = 1416 hoi4 = 4434 hoi4 = 7642 }	# Yogyakarta -> land, land
+	link = { vic2 = 1416 hoi4 = 7642 }	# Yogyakarta -> land
 	link = { vic2 = 1417 hoi4 = 12277 hoi4 = 1413 }	# Semarang -> land, land
 	# # Surabaya
-	link = { vic2 = 1418 hoi4 = 4390 hoi4 = 4608 }	# Surabaya -> land, land
-	link = { vic2 = 1419 hoi4 = 10135 hoi4 = 10491 hoi4 = 12293 }	# Surakarta -> land, land, land
-	link = { vic2 = 1420 hoi4 = 7654 hoi4 = 10479 hoi4 = 12472 hoi4 = 1209 }	# Probolinggo -> land, land, land, land
+	link = { vic2 = 1418 hoi4 = 4608 hoi4 = 4390 }	# Surabaya -> land, land
+	link = { vic2 = 1419 hoi4 = 12293 hoi4 = 10491 hoi4 = 10135 }	# Surakarta -> land, land, land
+	link = { vic2 = 1420 hoi4 = 12472 hoi4 = 10479 hoi4 = 1209 hoi4 = 7654 }	# Probolinggo -> land, land, land, land
 	link = { vic2 = 1421 hoi4 = 4306 }	# Madura -> land
 	# # Sunda Islands
 	link = { vic2 = 1438 hoi4 = 4273 }	# Bali -> land
-	link = { vic2 = 1440 hoi4 = 12162 hoi4 = 10191 }	# Sumbawa -> land, land
+	link = { vic2 = 1440 hoi4 = 10191 hoi4 = 12162 }	# Sumbawa -> land, land
 	link = { vic2 = 1441 hoi4 = 12234 hoi4 = 12219 }	# Sumba -> land, land
 	link = { vic2 = 1442 hoi4 = 7293 }	# Lombok -> land
 	# # Timor
-	link = { vic2 = 1439 hoi4 = 7321 hoi4 = 1298 hoi4 = 4301 hoi4 = 10175 }	# Flores -> land, land, land, land
-	link = { vic2 = 1443 hoi4 = 1355 }	# Roti -> land
+	link = { vic2 = 1439 hoi4 = 7321 hoi4 = 4301 hoi4 = 10175 hoi4 = 1298 }	# Flores -> land, land, land, land
 	link = { vic2 = 1444 hoi4 = 10219 hoi4 = 12151 }	# Alor -> land, land
-	link = { vic2 = 1445 hoi4 = 4358 hoi4 = 1339 }	# Kaupeng -> land, land
+	link = { vic2 = 1445 vic2 = 1443 hoi4 = 1355 hoi4 = 4358 hoi4 = 12206 hoi4 = 1339 }	# MANY-TO-MANY: Kaupeng, Roti -> land, land, land, land
 	# # South Borneo
 	link = { vic2 = 1426 hoi4 = 1316 hoi4 = 1304 hoi4 = 1230 hoi4 = 4335 hoi4 = 12129 hoi4 = 4279 }	# Pontianak -> land, land, land, land, land, land
-	link = { vic2 = 1427 hoi4 = 10282 hoi4 = 12955 hoi4 = 8221 hoi4 = 10310 hoi4 = 7227 hoi4 = 4409 }	# Kota Waringin -> land, land, land, land, land, land
+	link = { vic2 = 1427 hoi4 = 7227 hoi4 = 10310 hoi4 = 8221 hoi4 = 12955 hoi4 = 10282 hoi4 = 4409 hoi4 = 12280 }	# Kota Waringin -> land, land, land, land, land, land, land
 	link = { vic2 = 1428 hoi4 = 2170 hoi4 = 2222 hoi4 = 7424 }	# Sintang -> land, land, land
 	# # East Borneo
 	link = { vic2 = 1422 hoi4 = 2184 hoi4 = 5176 hoi4 = 10266 }	# Muraleve -> land, land, land
-	link = { vic2 = 1423 hoi4 = 12280 hoi4 = 7296 hoi4 = 12110 hoi4 = 10138 hoi4 = 1225 }	# Banjarmasin -> land, land, land, land, land
-	link = { vic2 = 1424 hoi4 = 10178 hoi4 = 1416 hoi4 = 12252 }	# Pasir -> land, land, land
-	link = { vic2 = 1425 hoi4 = 7231 hoi4 = 4236 hoi4 = 5226 hoi4 = 2047 hoi4 = 1404 hoi4 = 7415 hoi4 = 12243 hoi4 = 10181 hoi4 = 1252 hoi4 = 10325 }	# Tarakan -> land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1429 hoi4 = 12225 hoi4 = 12196 hoi4 = 7355 hoi4 = 4323 hoi4 = 7299 hoi4 = 10237 }	# Samarinda -> land, land, land, land, land, land
+	link = { vic2 = 1423 hoi4 = 7296 hoi4 = 1225 hoi4 = 12110 hoi4 = 10138 }	# Banjarmasin -> land, land, land, land
+	link = { vic2 = 1424 hoi4 = 12252 hoi4 = 1416 hoi4 = 10178 }	# Pasir -> land, land, land
+	link = { vic2 = 1425 hoi4 = 7415 hoi4 = 1404 hoi4 = 10325 hoi4 = 4236 hoi4 = 7231 hoi4 = 1252 hoi4 = 10181 hoi4 = 12243 hoi4 = 2047 hoi4 = 5226 }	# Tarakan -> land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 1429 hoi4 = 12196 hoi4 = 4323 hoi4 = 7299 hoi4 = 10237 hoi4 = 12225 hoi4 = 7355 }	# Samarinda -> land, land, land, land, land, land
 	# # Celebes
-	link = { vic2 = 1430 hoi4 = 10263 }	# Makassar -> land
-	link = { vic2 = 1431 hoi4 = 10464 hoi4 = 1589 hoi4 = 4349 }	# Bone -> land, land, land
-	link = { vic2 = 1432 hoi4 = 1561 hoi4 = 12330 hoi4 = 4308 hoi4 = 7598 }	# Mamuju -> land, land, land, land
-	link = { vic2 = 1433 hoi4 = 10153 hoi4 = 7311 hoi4 = 10169 hoi4 = 10197 hoi4 = 1289 hoi4 = 1351 }	# Menado -> land, land, land, land, land, land
+	link = { vic2 = 1430 hoi4 = 10263 hoi4 = 4349 }	# Makassar -> land, land
+	link = { vic2 = 1431 hoi4 = 12330 hoi4 = 10464 hoi4 = 1589 }	# Bone -> land, land, land
+	link = { vic2 = 1432 hoi4 = 7598 hoi4 = 4308 hoi4 = 1561 }	# Mamuju -> land, land, land
+	link = { vic2 = 1433 hoi4 = 10153 hoi4 = 10197 hoi4 = 7311 hoi4 = 10169 hoi4 = 1289 }	# Menado -> land, land, land, land, land
 	link = { vic2 = 1434 hoi4 = 1518 hoi4 = 1484 hoi4 = 1505 hoi4 = 4537 hoi4 = 4493 }	# Luwuk -> land, land, land, land, land
-	link = { vic2 = 1435 hoi4 = 4262 hoi4 = 1098 hoi4 = 4307 hoi4 = 12358 }	# Palu -> land, land, land, land
-	link = { vic2 = 1436 hoi4 = 10450 hoi4 = 4564 hoi4 = 7336 hoi4 = 12444 }	# Kendari -> land, land, land, land
+	link = { vic2 = 1435 hoi4 = 12358 hoi4 = 1098 hoi4 = 4307 hoi4 = 4262 }	# Palu -> land, land, land, land
+	link = { vic2 = 1436 hoi4 = 4564 hoi4 = 12444 hoi4 = 10450 hoi4 = 7336 }	# Kendari -> land, land, land, land
 	link = { vic2 = 1437 hoi4 = 10222 }	# Bulon -> land
 	# # Moluccas
 	link = { vic2 = 1447 hoi4 = 10342 hoi4 = 1437 hoi4 = 7369 }	# Ternate -> land, land, land
@@ -3068,24 +3068,24 @@
 	link = { vic2 = 1451 hoi4 = 4579 }	# Aru -> land
 	# # Western New Guinea
 	link = { vic2 = 1452 hoi4 = 7542 }	# Biak -> land
-	link = { vic2 = 1453 hoi4 = 4468 hoi4 = 12315 hoi4 = 7487 hoi4 = 4524 hoi4 = 12386 hoi4 = 7585 hoi4 = 7512 }	# Sorong -> land, land, land, land, land, land, land
-	link = { vic2 = 1454 hoi4 = 10990 hoi4 = 10396 hoi4 = 7570 hoi4 = 4552 hoi4 = 10436 hoi4 = 1546 hoi4 = 7269 hoi4 = 7529 hoi4 = 10369 hoi4 = 4509 hoi4 = 12371 }	# Merah -> land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1560 hoi4 = 12457 hoi4 = 1602 hoi4 = 4593 hoi4 = 1617 hoi4 = 10505 hoi4 = 1629 hoi4 = 8250 hoi4 = 8235 hoi4 = 7627 }	# Merauke -> land, land, land, land, land, land, land, land, land
+	link = { vic2 = 1453 hoi4 = 4468 hoi4 = 7512 hoi4 = 12315 hoi4 = 7487 hoi4 = 4524 hoi4 = 12386 hoi4 = 7585 }	# Sorong -> land, land, land, land, land, land, land
+	link = { vic2 = 1454 hoi4 = 12371 hoi4 = 7529 hoi4 = 10369 hoi4 = 4509 hoi4 = 10396 hoi4 = 4552 hoi4 = 10990 hoi4 = 7570 hoi4 = 8250 hoi4 = 8235 hoi4 = 10436 hoi4 = 1546 hoi4 = 7269 }	# Merah -> land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 1560 hoi4 = 10505 hoi4 = 1629 hoi4 = 12457 hoi4 = 1617 hoi4 = 7627 hoi4 = 1602 hoi4 = 4593 }	# Merauke -> land, land, land, land, land, land, land
 	# 
 	# # The Philippines
 	# # Luzon
-	link = { vic2 = 1455 hoi4 = 12236 hoi4 = 1221 hoi4 = 10236 hoi4 = 1288 hoi4 = 7323 hoi4 = 7351 hoi4 = 7275 hoi4 = 10165 hoi4 = 10265 }	# Manila -> land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1456 hoi4 = 12213 hoi4 = 4350 hoi4 = 4368 hoi4 = 10241 hoi4 = 10298 hoi4 = 4101 hoi4 = 7325 hoi4 = 10252 hoi4 = 7439 hoi4 = 4233 hoi4 = 1388 hoi4 = 4423 hoi4 = 12253 hoi4 = 10167 hoi4 = 4214 hoi4 = 1415 hoi4 = 10280 }	# Vigan -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 1455 hoi4 = 10265 hoi4 = 1221 hoi4 = 12236 hoi4 = 10236 hoi4 = 7351 hoi4 = 7323 hoi4 = 1288 hoi4 = 7275 hoi4 = 10165 hoi4 = 1415 hoi4 = 10280 }	# Manila -> land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 1456 hoi4 = 12213 hoi4 = 4350 hoi4 = 4368 hoi4 = 10241 hoi4 = 10298 hoi4 = 4101 hoi4 = 7325 hoi4 = 10252 hoi4 = 7439 hoi4 = 4233 hoi4 = 1388 hoi4 = 4423 hoi4 = 12253 hoi4 = 10167 hoi4 = 4214 }	# Vigan -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1457 hoi4 = 4228 hoi4 = 1372 hoi4 = 12279 hoi4 = 4377 hoi4 = 10306 }	# Legazpi -> land, land, land, land, land
 	link = { vic2 = 1458 hoi4 = 4288 hoi4 = 10272 }	# Mindoro -> land, land
 	# # Visayas
-	link = { vic2 = 1459 hoi4 = 4429 hoi4 = 7419 hoi4 = 10145 }	# Palawan -> land, land, land
+	link = { vic2 = 1459 hoi4 = 7419 hoi4 = 4429 hoi4 = 10145 }	# Palawan -> land, land, land
 	link = { vic2 = 1460 hoi4 = 10302 hoi4 = 12112 hoi4 = 1261 hoi4 = 7423 hoi4 = 1368 hoi4 = 10186 }	# Iloilo -> land, land, land, land, land, land
-	link = { vic2 = 1461 hoi4 = 7307 hoi4 = 1311 hoi4 = 4373 hoi4 = 1224 hoi4 = 4269 hoi4 = 1340 }	# Tacloban -> land, land, land, land, land, land
-	link = { vic2 = 2565 hoi4 = 12153 hoi4 = 7385 hoi4 = 12118 }	# Cebu -> land, land, land
+	link = { vic2 = 1461 hoi4 = 1224 hoi4 = 4269 hoi4 = 4373 hoi4 = 1340 hoi4 = 1311 hoi4 = 7307 }	# Tacloban -> land, land, land, land, land, land
+	link = { vic2 = 2565 hoi4 = 12118 hoi4 = 7385 hoi4 = 12153 }	# Cebu -> land, land, land
 	# # Mindanao
 	link = { vic2 = 1462 hoi4 = 1421 hoi4 = 4399 hoi4 = 7389 hoi4 = 7417 hoi4 = 7360 hoi4 = 10300 hoi4 = 4427 hoi4 = 12273 hoi4 = 10243 hoi4 = 12217 hoi4 = 10214 }	# Zamboanga -> land, land, land, land, land, land, land, land, land, land, land
-	link = { vic2 = 1463 hoi4 = 1293 hoi4 = 12158 hoi4 = 1234 hoi4 = 12116 hoi4 = 4266 hoi4 = 7284 hoi4 = 10328 hoi4 = 1407 hoi4 = 7445 hoi4 = 1379 hoi4 = 12245 hoi4 = 12188 hoi4 = 12160 hoi4 = 4241 }	# Davao -> land, land, land, land, land, land, land, land, land, land, land, land, land, land
+	link = { vic2 = 1463 hoi4 = 4241 hoi4 = 12158 hoi4 = 1234 hoi4 = 12116 hoi4 = 4266 hoi4 = 7284 hoi4 = 10328 hoi4 = 1407 hoi4 = 7445 hoi4 = 1379 hoi4 = 12245 hoi4 = 12188 hoi4 = 12160 hoi4 = 1293 hoi4 = 1351 }	# Davao -> land, land, land, land, land, land, land, land, land, land, land, land, land, land, land
 	link = { vic2 = 1464 hoi4 = 10184 }	# Sulu -> land
 	# 
 	# # Brunei
@@ -3094,7 +3094,7 @@
 	# 
 	# ## Timor-Leste
 	# # Timor
-	link = { vic2 = 1446 hoi4 = 12178 hoi4 = 12190 hoi4 = 13001 hoi4 = 1326 hoi4 = 12206 }	# Dili -> land, land, land, land, land
+	link = { vic2 = 1446 hoi4 = 12190 hoi4 = 13001 hoi4 = 1326 hoi4 = 12178 }	# Dili -> land, land, land, land
 	# 
 	# ## Mongolia
 	# # Western Mongolia
