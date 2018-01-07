@@ -132,7 +132,7 @@ class HoI4Country
 
 		void determineFilename();
 		void initIdeas();
-		//void convertLaws();
+		void convertLaws();
 		//void convertLeaders(portraitMapping& portraitMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
 		void convertRelations();
 		void determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states);
@@ -214,13 +214,9 @@ class HoI4Country
 		double threat;
 
 		// laws
-		string				civil_law;
-		string				conscription_law;
-		string				economic_law;
-		string				educational_investment_law;
-		string				industrial_policy_laws;
-		string				press_laws;
-		string				training_laws;
+		string mobilizationLaw;
+		string economicLaw;
+		string tradeLaw;
 
 		bool greatPower;
 

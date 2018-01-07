@@ -86,13 +86,9 @@ HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, c
 	civilianFactories(0.0),
 	dockyards(0.0),
 	threat(0.0),
-	civil_law("limited_restrictions"),
-	conscription_law("volunteer_army"),
-	economic_law("full_civilian_economy"),
-	educational_investment_law("minimal_education_investment"),
-	industrial_policy_laws("consumer_product_orientation"),
-	press_laws("censored_press"),
-	training_laws("minimal_training"),
+	mobilizationLaw("volunteer_only"),
+	economicLaw("civilian_economy"),
+	tradeLaw("export_focus"),
 	greatPower(false),
 	divisions(),
 	ships(),
@@ -137,7 +133,7 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	nationalUnity = 0.70 + (srcCountry->getRevanchism() / 5.0) - (srcCountry->getWarExhaustion() / 100.0 / 2.5);
 
-	//convertLaws();
+	convertLaws();
 	//convertLeaders(portraitMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
 	convertRelations();
 
@@ -227,97 +223,29 @@ void HoI4Country::initIdeas()
 }
 
 
-/*void HoI4Country::convertLaws()
+void HoI4Country::convertLaws()
 {
-	// civil law - democracies get open society, communist dicatorships get totalitarian, everyone else gets limited restrictions
-	string srcGovernment = srcCountry->getGovernment();
-	if (srcGovernment == "democracy" || srcGovernment == "hms_government")
+	// mobilization laws are based on the ruling party's war policy
+	if (rulingParty.war_policy == "jingoism")
 	{
-		civil_law = "open_society";
+		mobilizationLaw = "limited_conscription";
 	}
-	else if (srcGovernment == "proletarian_dictatorship")
+	else if (rulingParty.war_policy == "pacifism")
 	{
-		civil_law = "totalitarian_system";
-	}
-	else
-	{
-		if (nationalUnity > 50.0)
-		{
-			civil_law = "limited_restrictions";
-		}
-		else
-		{
-			civil_law = "open_society";
-		}
+		mobilizationLaw = "disarmed_nation";
 	}
 
-	// conscription law - everyone starts with volunteer armies
-	conscription_law = "volunteer_army";
-
-	// economic law - everyone starts with full civilian economy
-	economic_law = "full_civilian_economy";
-
-	// educational investment law - from educational spending
-	if (srcCountry->getEducationSpending() > 0.90)
+	// some ideologies have non-default laws
+	if (governmentIdeology == "fascism")
 	{
-		educational_investment_law = "big_education_investment";
+		economicLaw = "partial_economic_mobilisation";
+		tradeLaw = "limited_exports";
 	}
-	else if (srcCountry->getEducationSpending() > 0.70)
+	else if (governmentIdeology == "radical")
 	{
-		educational_investment_law = "medium_large_education_investment";
+		tradeLaw = "free_trade";
 	}
-	else if (srcCountry->getEducationSpending() > 0.40)
-	{
-		educational_investment_law = "average_education_investment";
-	}
-	else
-	{
-		educational_investment_law = "minimal_education_investment";
-	}
-
-	// industrial policy laws - everyone starts with consumer product orientation
-	industrial_policy_laws = "consumer_product_orientation";
-
-	// press laws - set from press reforms
-	if (srcCountry->getReform("press_rights") == "free_press")
-	{
-		press_laws = "free_press";
-	}
-	else if (srcCountry->getReform("press_rights") == "censored_press")
-	{
-		press_laws = "censored_press";
-	}
-	else // press_rights == state_press
-	{
-		if ((srcGovernment == "proletarian_dictatorship") ||
-			(srcGovernment == "fascist_dictatorship"))
-		{
-			press_laws = "propaganda_press";
-		}
-		else
-		{
-			press_laws = "state_press";
-		}
-	}
-
-	// training laws - from military spending
-	if (srcCountry->getMilitarySpending() > 0.90)
-	{
-		training_laws = "specialist_training";
-	}
-	else if (srcCountry->getMilitarySpending() > 0.70)
-	{
-		training_laws = "advanced_training";
-	}
-	else if (srcCountry->getMilitarySpending() > 0.40)
-	{
-		training_laws = "basic_training";
-	}
-	else
-	{
-		training_laws = "minimal_training";
-	}
-}*/
+}
 
 
 /*void HoI4Country::convertLeaders(portraitMapping& portraitMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
@@ -1618,14 +1546,11 @@ void HoI4Country::outputIdeas(ofstream& output) const
 	{
 		output << "\tuncivilized\n";
 	}
-	if (rulingParty.war_policy == "jingoism")
-	{
-		output << "\tpartial_economic_mobilisation\n";
-	}
-	if (rulingParty.war_policy == "pro_military")
-	{
-		output << "\tlow_economic_mobilisation\n";
-	}
+
+	output << "\t" << mobilizationLaw << "\n";
+	output << "\t" << economicLaw << "\n";
+	output << "\t" << tradeLaw << "\n";
+
 	output << "}\n";
 }
 
