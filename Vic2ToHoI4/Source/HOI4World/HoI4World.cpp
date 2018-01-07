@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -841,12 +841,12 @@ void HoI4World::convertAgreements()
 {
 	for (auto agreement : sourceWorld->getDiplomacy()->getAgreements())
 	{
-		auto possibleHoI4Tag1 = CountryMapper::getHoI4Tag(agreement->country1);
+		auto possibleHoI4Tag1 = CountryMapper::getHoI4Tag(agreement->getCountry1());
 		if (!possibleHoI4Tag1)
 		{
 			continue;
 		}
-		auto possibleHoI4Tag2 = CountryMapper::getHoI4Tag(agreement->country2);
+		auto possibleHoI4Tag2 = CountryMapper::getHoI4Tag(agreement->getCountry2());
 		if (!possibleHoI4Tag2)
 		{
 			continue;
@@ -865,19 +865,19 @@ void HoI4World::convertAgreements()
 			continue;
 		}
 
-		if ((agreement->type == "alliance") || (agreement->type == "vassal"))
+		if ((agreement->getType() == "alliance") || (agreement->getType() == "vassal"))
 		{
 			HoI4Agreement* HoI4a = new HoI4Agreement(*possibleHoI4Tag1, *possibleHoI4Tag2, agreement);
 			diplomacy->addAgreement(HoI4a);
 		}
 
-		if (agreement->type == "alliance")
+		if (agreement->getType() == "alliance")
 		{
 			HoI4Country1->second->editAllies().insert(*possibleHoI4Tag2);
 			HoI4Country2->second->editAllies().insert(*possibleHoI4Tag1);
 		}
 
-		if (agreement->type == "vassal")
+		if (agreement->getType() == "vassal")
 		{
 			HoI4Country1->second->addPuppet(*possibleHoI4Tag2);
 			HoI4Country2->second->setPuppetmaster(*possibleHoI4Tag1);
