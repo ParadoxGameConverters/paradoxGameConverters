@@ -425,7 +425,7 @@ void V2World::inputPartyInformation(const vector<shared_ptr<Object>>& leaves)
 		string key = leaf->getKey();
 		if (key == "party")
 		{
-			parties.push_back(createParty(leaf));
+			parties.emplace_back(leaf);
 		}
 	}
 }

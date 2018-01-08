@@ -50,7 +50,6 @@ class HoI4Advisor;
 class HoI4Faction;
 class HoI4World;
 struct advisorCompare;
-struct V2Party;
 
 
 

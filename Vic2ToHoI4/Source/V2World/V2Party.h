@@ -32,20 +32,25 @@ using namespace std;
 
 
 
-struct V2Party
+class V2Party
 {
+	public:
+		V2Party() = default;
+		V2Party(shared_ptr<Object> party_obj);
+
+		string getName() const { return name; }
+		string getIdeology() const { return ideology; }
+		string getWarPolicy() const { return warPolicy; }
+
+	private:
 		string name;
 		string ideology;
 		string economic_policy;
 		string trade_policy;
 		string religious_policy;
 		string citizenship_policy;
-		string war_policy;
+		string warPolicy;
 };
-
-
-
-V2Party createParty(shared_ptr<Object> party_obj);
 
 
 

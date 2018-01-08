@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4Event.h"
+#include "../V2World/V2Party.h"
 #include <functional>
 #include <memory>
 #include <set>
@@ -37,7 +38,6 @@ using namespace std;
 
 class HoI4Country;
 class HoI4OnActions;
-struct V2Party;
 
 
 

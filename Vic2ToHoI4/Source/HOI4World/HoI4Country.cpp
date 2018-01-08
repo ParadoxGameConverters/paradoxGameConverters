@@ -180,13 +180,14 @@ void HoI4Country::convertGovernment(const V2World& sourceWorld)
 		rulingParty = *possibleRulingParty;
 	}
 
-	governmentIdeology = governmentMapper::getIdeologyForCountry(srcCountry, rulingParty.ideology);
-	leaderIdeology = governmentMapper::getLeaderIdeologyForCountry(srcCountry, rulingParty.ideology);
+	governmentIdeology = governmentMapper::getIdeologyForCountry(srcCountry, rulingParty.getIdeology());
+	leaderIdeology = governmentMapper::getLeaderIdeologyForCountry(srcCountry, rulingParty.getIdeology());
 	parties = srcCountry->getActiveParties(sourceWorld.getParties());
 	for (auto party: parties)
 	{
-		string trimmedName = party.name.substr(4, party.name.size());
-		HoI4Localisation::addPoliticalPartyLocalisation(party.name, tag + "_" + trimmedName + "_party");
+		string partyName = party.getName();
+		string trimmedName = partyName.substr(4, partyName.size());
+		HoI4Localisation::addPoliticalPartyLocalisation(partyName, tag + "_" + trimmedName + "_party");
 	}
 }
 
@@ -197,13 +198,13 @@ void HoI4Country::convertParties(const set<string>& majorIdeologies)
 	{
 		for (auto party: parties)
 		{
-			if (governmentMapper::getSupportedIdeology(governmentIdeology, party.ideology, majorIdeologies) == HoI4Ideology)
+			if (governmentMapper::getSupportedIdeology(governmentIdeology, party.getIdeology(), majorIdeologies) == HoI4Ideology)
 			{
-				HoI4Localisation::addPoliticalPartyLocalisation(party.name, tag + "_" + HoI4Ideology + "_party");
+				HoI4Localisation::addPoliticalPartyLocalisation(party.getName(), tag + "_" + HoI4Ideology + "_party");
 			}
 		}
 	}
-	HoI4Localisation::addPoliticalPartyLocalisation(rulingParty.name, tag + "_" + governmentIdeology + "_party");
+	HoI4Localisation::addPoliticalPartyLocalisation(rulingParty.getName(), tag + "_" + governmentIdeology + "_party");
 }
 
 
@@ -226,11 +227,11 @@ void HoI4Country::initIdeas()
 void HoI4Country::convertLaws()
 {
 	// mobilization laws are based on the ruling party's war policy
-	if (rulingParty.war_policy == "jingoism")
+	if (rulingParty.getWarPolicy() == "jingoism")
 	{
 		mobilizationLaw = "limited_conscription";
 	}
-	else if (rulingParty.war_policy == "pacifism")
+	else if (rulingParty.getWarPolicy() == "pacifism")
 	{
 		mobilizationLaw = "disarmed_nation";
 	}
@@ -383,8 +384,8 @@ void HoI4Country::initFromHistory()
 
 void HoI4Country::setGovernmentToExistingIdeology(const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies)
 {
-	governmentIdeology = governmentMapper::getExistingIdeologyForCountry(srcCountry, rulingParty.ideology, majorIdeologies, ideologies);
-	leaderIdeology = governmentMapper::getExistingLeaderIdeologyForCountry(srcCountry, rulingParty.ideology, majorIdeologies, ideologies);
+	governmentIdeology = governmentMapper::getExistingIdeologyForCountry(srcCountry, rulingParty.getIdeology(), majorIdeologies, ideologies);
+	leaderIdeology = governmentMapper::getExistingLeaderIdeologyForCountry(srcCountry, rulingParty.getIdeology(), majorIdeologies, ideologies);
 }
 
 

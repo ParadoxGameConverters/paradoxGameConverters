@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/Mapper.h"
 #include "../Color.h"
 #include "Date.h"
+#include "V2Party.h"
 #include <functional>
 #include <map>
 #include <memory>
@@ -45,7 +46,6 @@ class V2Leader;
 class V2Province;
 class V2Relations;
 class Vic2State;
-struct V2Party;
 
 
 

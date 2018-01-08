@@ -2120,7 +2120,7 @@ void HoI4FocusTree::addDemocracyNationalFocuses(shared_ptr<HoI4Country> Home, ve
 	double WTModifier = 1;
 	if (Home->getGovernmentIdeology() == "democratic")
 	{
-		string warPol = Home->getRulingParty().war_policy;
+		string warPol = Home->getRulingParty().getWarPolicy();
 		if (warPol == "jingoism")
 			WTModifier = 0;
 		if (warPol == "pro_military")

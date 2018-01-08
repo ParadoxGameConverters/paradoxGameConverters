@@ -1722,9 +1722,10 @@ void HoI4Events::addPartyChoiceEvent(const string& countryTag, const set<V2Party
 	char optionLetter = 'a';
 	for (auto party: parties)
 	{
-		if ((party.ideology == "conservative") || (party.ideology == "liberal") || (party.ideology == "socialist"))
+		if ((party.getIdeology() == "conservative") || (party.getIdeology() == "liberal") || (party.getIdeology() == "socialist"))
 		{
-			string trimmedName = party.name.substr(4, party.name.size());
+			string partyName = party.getName();
+			string trimmedName = partyName.substr(4, partyName.size());
 
 			string optionName = "election." + to_string(electionEventNumber) + optionLetter;
 			string option = "name = " + optionName + "\n";
@@ -1738,7 +1739,7 @@ void HoI4Events::addPartyChoiceEvent(const string& countryTag, const set<V2Party
 			}
 			option += "		retire_country_leader = yes";
 			partyChoiceEvent.options.push_back(option);
-			HoI4Localisation::addEventLocalisationFromVic2(party.name, optionName);
+			HoI4Localisation::addEventLocalisationFromVic2(partyName, optionName);
 			optionLetter++;
 		}
 	}

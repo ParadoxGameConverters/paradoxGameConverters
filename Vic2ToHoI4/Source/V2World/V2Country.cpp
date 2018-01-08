@@ -546,7 +546,7 @@ optional<const V2Party> V2Country::getRulingParty(const vector<V2Party>& allPart
 set<V2Party, function<bool (const V2Party&, const V2Party&)>> V2Country::getActiveParties(const vector<V2Party>& allParties) const
 {
 	set<V2Party, function<bool (const V2Party&, const V2Party&)>> activeParties([](const V2Party& first, const V2Party& second)
-		{ return first.name < second.name; }
+		{ return first.getName() < second.getName(); }
 	);
 
 	for (auto ID : activePartyIDs)
