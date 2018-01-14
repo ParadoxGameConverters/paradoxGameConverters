@@ -39,31 +39,33 @@ governmentMapper::governmentMapper():
 {
 	LOG(LogLevel::Info) << "Parsing governments mappings";
 	auto obj = parser_UTF8::doParseFile("governmentMapping.txt");
-	if (obj == nullptr)
+	if (obj)
+	{
+		auto governmentObjects = obj->safeGetObject("government_mappings");
+		if (governmentObjects != nullptr)
+		{
+			importGovernmentMappings(governmentObjects);
+		}
+		else
+		{
+			LOG(LogLevel::Error) << "governmentMapping.txt did not contain government mappings";
+			exit(-1);
+		}
+
+		auto partyObjects = obj->safeGetObject("party_mappings");
+		if (partyObjects != nullptr)
+		{
+			importPartyMappings(partyObjects);
+		}
+		else
+		{
+			LOG(LogLevel::Error) << "governmentMapping.txt did not contain party mappings";
+			exit(-1);
+		}
+	}
+	else
 	{
 		LOG(LogLevel::Error) << "Could not parse file governmentMapping.txt";
-		exit(-1);
-	}
-
-	auto governmentObjects = obj->safeGetObject("government_mappings");
-	if (governmentObjects != nullptr)
-	{
-		importGovernmentMappings(governmentObjects);
-	}
-	else
-	{
-		LOG(LogLevel::Error) << "governmentMapping.txt did not contain government mappings";
-		exit(-1);
-	}
-
-	auto partyObjects = obj->safeGetObject("party_mappings");
-	if (partyObjects != nullptr)
-	{
-		importPartyMappings(partyObjects);
-	}
-	else
-	{
-		LOG(LogLevel::Error) << "governmentMapping.txt did not contain party mappings";
 		exit(-1);
 	}
 }

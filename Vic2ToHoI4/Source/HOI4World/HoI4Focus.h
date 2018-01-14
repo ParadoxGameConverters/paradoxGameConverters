@@ -42,7 +42,7 @@ class HoI4Focus
 
 		friend ostream& operator << (ostream& output, const HoI4Focus& focus);
 
-		HoI4Focus* makeCustomizedCopy(const string& country) const;
+		shared_ptr<HoI4Focus> makeCustomizedCopy(const string& country) const;
 
 		string id;
 		string icon;
@@ -64,8 +64,8 @@ class HoI4Focus
 	private:
 		HoI4Focus& operator=(const HoI4Focus&) = delete;
 
-		void customizeMutualExclusion(HoI4Focus* newFocus, const string& country) const;
-		void customizePrerequisite(HoI4Focus* newFocus, string& prerequisite, const string& country) const;
+		void customizeMutualExclusion(shared_ptr<HoI4Focus> newFocus, const string& country) const;
+		void customizePrerequisite(shared_ptr<HoI4Focus> newFocus, string& prerequisite, const string& country) const;
 };
 
 

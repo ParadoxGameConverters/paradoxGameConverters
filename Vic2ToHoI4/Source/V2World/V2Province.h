@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "V2Rgo.h"
 #include <map>
+#include <optional>
 #include <set>
 #include <string>
 #include <vector>
@@ -49,8 +50,8 @@ class V2Province
 		void setCores(const map<string, V2Country*>& countries);
 
 		int getTotalPopulation() const;
-		int getPopulation(const string& type = "") const;
-		int getLiteracyWeightedPopulation(const string& type = "") const;
+		int getPopulation(optional<string> type = {}) const;
+		int getLiteracyWeightedPopulation(optional<string> type = {}) const;
 		double getPercentageWithCultures(const set<string>& cultures) const;
 
 		void setOwner(const V2Country* _owner) { owner = _owner; }

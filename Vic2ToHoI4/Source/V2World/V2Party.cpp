@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -32,6 +32,5 @@ V2Party::V2Party(shared_ptr<Object> party_obj):
 	trade_policy(party_obj->safeGetString("trade_policy")),
 	religious_policy(party_obj->safeGetString("religious_policy")),
 	citizenship_policy(party_obj->safeGetString("citizenship_policy")),
-	war_policy(party_obj->safeGetString("war_policy"))
-{
-}
+	warPolicy(party_obj->safeGetString("war_policy"))
+{}

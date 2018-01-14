@@ -281,16 +281,20 @@ void V2World::logPopsInProvince(shared_ptr<Object> provinceObj, map<string, map<
 void V2World::logPop(shared_ptr<Object> pop, map<string, map<string, long int>>::iterator countryPopItr) const
 {
 	string popType = pop->getKey();
-	int popSize = stoi(pop->getLeaf("size"));
-
-	auto popItr = countryPopItr->second.find(pop->getKey());
-	if (popItr == countryPopItr->second.end())
+	auto possibleSizeStr = pop->getLeaf("size");
+	if (possibleSizeStr)
 	{
-		long int newPopSize = 0;
-		pair<map<string, long int>::iterator, bool> newIterator = countryPopItr->second.insert(make_pair(popType, newPopSize));
-		popItr = newIterator.first;
+		int popSize = stoi(*possibleSizeStr);
+
+		auto popItr = countryPopItr->second.find(pop->getKey());
+		if (popItr == countryPopItr->second.end())
+		{
+			long int newPopSize = 0;
+			pair<map<string, long int>::iterator, bool> newIterator = countryPopItr->second.insert(make_pair(popType, newPopSize));
+			popItr = newIterator.first;
+		}
+		popItr->second += popSize;
 	}
-	popItr->second += popSize;
 }
 
 
@@ -1676,8 +1680,11 @@ void V2World::convertArmies(const EU4World& sourceWorld)
 	}
 	for (int i = 0; i < num_reg_categories; ++i)
 	{
-		string regiment_cost = objTop[0]->getLeaf(RegimentCategoryNames[i]);
-		cost_per_regiment[i] = atoi(regiment_cost.c_str());
+		auto possibleRegimentCost = objTop[0]->getLeaf(RegimentCategoryNames[i]);
+		if (possibleRegimentCost)
+		{
+			cost_per_regiment[i] = stoi(*possibleRegimentCost);
+		}
 	}
 
 	// convert armies

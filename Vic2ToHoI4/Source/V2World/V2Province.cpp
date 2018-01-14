@@ -168,16 +168,16 @@ void V2Province::setCores(const map<string, V2Country*>& countries)
 
 int V2Province::getTotalPopulation() const
 {
-	return getPopulation("");
+	return getPopulation();
 }
 
 
-int V2Province::getPopulation(const string& type) const
+int V2Province::getPopulation(optional<string> type) const
 {
 	int totalPopulation = 0;
 	for (auto pop: pops)
 	{
-		if (type == "" || type == pop->getType())
+		if (!type || *type == pop->getType())
 		{
 			totalPopulation += pop->getSize();
 		}
@@ -187,19 +187,17 @@ int V2Province::getPopulation(const string& type) const
 }
 
 
-int V2Province::getLiteracyWeightedPopulation(const string& type) const
+int V2Province::getLiteracyWeightedPopulation(optional<string> type) const
 {
 	int totalPopulation = 0;
 	for (auto pop: pops)
 	{
-		if (type == "" || type == pop->getType())
+		if (!type || *type == pop->getType())
 		{
 			totalPopulation += calculateLiteracyWeightedPop(pop);
 		}
 	}
 	return totalPopulation;
-
-	return 0;
 }
 
 
@@ -217,7 +215,14 @@ double V2Province::getPercentageWithCultures(const set<string>& cultures) const
 		}
 	}
 
-	return 1.0 * populationOfCultures / totalPopulation;
+	if (totalPopulation > 0)
+	{
+		return 1.0 * populationOfCultures / totalPopulation;
+	}
+	else
+	{
+		return 0.0;
+	}
 }
 
 

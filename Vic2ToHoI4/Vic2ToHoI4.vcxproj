@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Analysis|Win32">
+      <Configuration>Analysis</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
@@ -20,6 +24,13 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Analysis|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -28,12 +39,27 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Analysis|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IntDir>$(SolutionDir)\ReleaseIntermediate\</IntDir>
     <IncludePath>$(UniversalCRT_IncludePath);$(BOOST_INCLUDE);$(VCInstallDir)include;$(WindowsSdkDir)include;..\common_items;$(IncludePath)</IncludePath>
     <TargetName>V2ToHoI4Converter</TargetName>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <EnableCppCoreCheck>false</EnableCppCoreCheck>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Analysis|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(SolutionDir)\AnalysisIntermediate\</IntDir>
+    <IncludePath>$(UniversalCRT_IncludePath);$(BOOST_INCLUDE);$(VCInstallDir)include;$(WindowsSdkDir)include;..\common_items;$(IncludePath)</IncludePath>
+    <TargetName>V2ToHoI4Converter</TargetName>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <EnableCppCoreCheck>true</EnableCppCoreCheck>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -45,6 +71,34 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(BOOST_INCLUDE); $(DEVIL_SDK_INCLUDE)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <EnablePREfast>false</EnablePREfast>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(BOOST_LIB);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>Copy_Files.bat</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copying Data Files</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Analysis|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(BOOST_INCLUDE); $(DEVIL_SDK_INCLUDE)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <EnablePREfast>true</EnablePREfast>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -87,7 +141,6 @@
     <ClCompile Include="Source\HOI4World\HOI4Ideology.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Leader.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Localisation.cpp" />
-    <ClCompile Include="Source\HOI4World\HoI4Minister.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Navy.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4OnActions.cpp" />
     <ClCompile Include="Source\HOI4World\HoI4Province.cpp" />
@@ -105,6 +158,7 @@
     <ClCompile Include="Source\Mappers\CultureGroupMapper.cpp" />
     <ClCompile Include="Source\Mappers\GovernmentMapper.cpp" />
     <ClCompile Include="Source\Mappers\GraphicsMapper.cpp" />
+    <ClCompile Include="Source\Mappers\ImpassableProvinceMapper.cpp" />
     <ClCompile Include="Source\Mappers\InventionsMapper.cpp" />
     <ClCompile Include="Source\Mappers\Mapper.cpp" />
     <ClCompile Include="Source\Mappers\NamesMapper.cpp" />
@@ -156,7 +210,6 @@
     <ClInclude Include="Source\HOI4World\HOI4Ideology.h" />
     <ClInclude Include="Source\HOI4World\HoI4Leader.h" />
     <ClInclude Include="Source\HOI4World\HoI4Localisation.h" />
-    <ClInclude Include="Source\HOI4World\HoI4Minister.h" />
     <ClInclude Include="Source\HOI4World\HoI4Navy.h" />
     <ClInclude Include="Source\HOI4World\HoI4OnActions.h" />
     <ClInclude Include="Source\HOI4World\HoI4Province.h" />
@@ -171,6 +224,7 @@
     <ClInclude Include="Source\HOI4World\HoI4World.h" />
     <ClInclude Include="Source\Mappers\CoastalHoI4Provinces.h" />
     <ClInclude Include="Source\Mappers\GraphicsMapper.h" />
+    <ClInclude Include="Source\Mappers\ImpassableProvinceMapper.h" />
     <ClInclude Include="Source\Mappers\InventionsMapper.h" />
     <ClInclude Include="Source\Mappers\NamesMapper.h" />
     <ClInclude Include="Source\Mappers\ProvinceDefinitions.h" />

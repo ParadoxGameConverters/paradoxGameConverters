@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -39,14 +39,19 @@ class V2Agreement
 	public:
 		explicit V2Agreement(shared_ptr<Object> obj);
 
-		string type;
-		string country1;
-		string country2;
-		date start_date;
+		string getType() const { return type; }
+		string getCountry1() const { return country1; }
+		string getCountry2() const { return country2; }
+		date getDate() const { return startDate; }
 
 	private:
 		V2Agreement(const V2Agreement&) = delete;
 		V2Agreement& operator=(const V2Agreement&) = delete;
+
+		string type;
+		string country1;
+		string country2;
+		date startDate;
 };
 
 

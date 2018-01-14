@@ -419,14 +419,14 @@ void EU4Province::buildPopRatios()
 	{
 		endDate = date("1821.1.1");
 	}
-	date cutoffDate	 = endDate;
-	cutoffDate.year	-= 200;
+	date cutoffDate = endDate;
+	cutoffDate.subtractYears(200);
 
 	// fast-forward to 200 years before the end date (200 year decay means any changes before then will be at 100%)
 	string curCulture		= "";	// the current culture
 	string curReligion	= "";	// the current religion
 	vector< pair<date, string> >::iterator cItr = cultureHistory.begin();	// the culture under consideration
-	while (cItr != cultureHistory.end() && cItr->first.year < cutoffDate.year)
+	while ((cItr != cultureHistory.end()) && (cItr->first < cutoffDate))
 	{
 		curCulture = cItr->second;
 		++cItr;
@@ -437,7 +437,7 @@ void EU4Province::buildPopRatios()
 		curCulture = cItr->second;
 	}
 	vector< pair<date, string> >::iterator rItr = religionHistory.begin();	// the religion under consideration
-	while (rItr != religionHistory.end() && rItr->first.year < cutoffDate.year)
+	while ((rItr != religionHistory.end()) && (rItr->first < cutoffDate))
 	{
 		curReligion = rItr->second;
 		++rItr;
@@ -543,27 +543,21 @@ void	EU4Province::decayPopRatios(date oldDate, date newDate, EU4PopRatio& curren
 		return;
 	}
 
-	// quick out for same year (we do decay at year end)
-	if (oldDate.year == newDate.year)
-	{
-		return;
-	}
-
 	// drop all non-current pops by a total of .0025 per year, divided proportionally
-	double upperNonCurrentRatio	= (1.0 - currentPop.upperPopRatio);
-	double middleNonCurrentRatio	= (1.0 - currentPop.middlePopRatio);
-	double lowerNonCurrentRatio	= (1.0 - currentPop.lowerPopRatio);
+	double upperNonCurrentRatio = (1.0 - currentPop.upperPopRatio);
+	double middleNonCurrentRatio = (1.0 - currentPop.middlePopRatio);
+	double lowerNonCurrentRatio = (1.0 - currentPop.lowerPopRatio);
 	for (auto itr: popRatios)
 	{
-		itr.upperPopRatio		-= .0025 * (newDate.year - oldDate.year) * itr.upperPopRatio	/ upperNonCurrentRatio;
-		itr.middlePopRatio	-= .0025 * (newDate.year - oldDate.year) * itr.middlePopRatio	/ middleNonCurrentRatio;
-		itr.lowerPopRatio		-= .0025 * (newDate.year - oldDate.year) * itr.lowerPopRatio	/ lowerNonCurrentRatio;
+		itr.upperPopRatio -= .0025 * newDate.diffInYears(oldDate) * itr.upperPopRatio	/ upperNonCurrentRatio;
+		itr.middlePopRatio -= .0025 * newDate.diffInYears(oldDate) * itr.middlePopRatio / middleNonCurrentRatio;
+		itr.lowerPopRatio -= .0025 * newDate.diffInYears(oldDate) * itr.lowerPopRatio	/ lowerNonCurrentRatio;
 	}
 	
 	// increase current pop by .0025 per year
-	currentPop.upperPopRatio	+= .0025 * (newDate.year - oldDate.year);
-	currentPop.middlePopRatio	+= .0025 * (newDate.year - oldDate.year);
-	currentPop.lowerPopRatio	+= .0025 * (newDate.year - oldDate.year);
+	currentPop.upperPopRatio += .0025 * newDate.diffInYears(oldDate);
+	currentPop.middlePopRatio += .0025 * newDate.diffInYears(oldDate);
+	currentPop.lowerPopRatio += .0025 * newDate.diffInYears(oldDate);
 }
 
 

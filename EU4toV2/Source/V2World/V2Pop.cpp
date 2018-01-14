@@ -39,9 +39,9 @@ V2Pop::V2Pop(string _type, int _size, string _culture, string _religion)
 V2Pop::V2Pop(shared_ptr<Object> popObj)
 {
 	type = popObj->getKey();
-	size = stoi(popObj->getLeaf("size"));
-	culture = popObj->getLeaf("culture");
-	religion = popObj->getLeaf("religion");
+	size = popObj->safeGetInt("size");
+	culture = popObj->safeGetString("culture");
+	religion = popObj->safeGetString("religion");
 	supportedRegiments	= 0;
 }
 

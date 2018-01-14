@@ -32,7 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 //HoI4RegimentType::HoI4RegimentType(string type)
 //{
 //	/*string	filename	= Configuration::getHoI4Path() + "/tfh/units/" + type + ".txt";
-//	shared_ptr<Object>	obj		= parser_UTF8::doParseFile(filename);
+//	auto	obj		= parser_UTF8::doParseFile(filename);
 //	obj					= obj->getLeaves()[0];
 //	name					= obj->getKey();
 //

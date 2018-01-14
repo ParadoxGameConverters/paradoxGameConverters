@@ -31,7 +31,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <set>
 #include <string>
 #include <vector>
-#include <boost/bimap.hpp>
 #include "ColonialTagsMapper.h"
 using namespace std;
 
@@ -107,7 +106,8 @@ class CountryMapping
 		string GetCK2Title(const string& EU4Tag, const string& countryName, const set<string>& availableFlags);
 
 		map<string, vector<string>> EU4TagToV2TagsRules;
-		boost::bimap<string, string> EU4TagToV2TagMap;
+		map<string, string> EU4TagToV2TagMap;
+		map<string, string> V2TagToEU4TagMap;
 		map<string, set<int>> EU4ColonialRegions;
 		map<string, set<int>> Vic2Regions;
 

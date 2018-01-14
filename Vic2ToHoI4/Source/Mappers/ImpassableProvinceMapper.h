@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,38 +21,41 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef HoI4MINISTER_H_
-#define HoI4MINISTER_H_
+#ifndef IMPASSABLE_PROVINCE_MAPPER_H
+#define IMPASSABLE_PROVINCE_MAPPER_H
 
 
-#include <stdio.h>
-#include <string>
-#include <vector>
-#include "../Mappers/Mapper.h"
-using namespace std;
+
+#include <unordered_set>
 
 
-class HoI4Minister
+
+class impassableProvinceMapper
 {
 	public:
-		HoI4Minister(vector<string>& firstNames, vector<string>& lastNames, const string& _ideology, governmentJob job, governmentJobsMap& jobMap, vector<string>& portraits);
-		void output(FILE* output);
+		static bool isProvinceImpassable(int provinceNumber)
+		{
+			return getInstance()->IsProvinceImpassable(provinceNumber);
+		}
 
-		string			getFirstJob()	const { return roles[0].first; }
-		unsigned int	getID()			const { return ID; }
+	public:
+		static impassableProvinceMapper* instance;
+		static impassableProvinceMapper* getInstance()
+		{
+			if (instance == nullptr)
+			{
+				instance = new impassableProvinceMapper();
+			}
+			return instance;
+		}
 
-	private:
-		HoI4Minister(const HoI4Minister&) = delete;
-		HoI4Minister& operator=(const HoI4Minister&) = delete;
+		impassableProvinceMapper();
 
-		unsigned int	ID;
-		string			name;
-		string			ideology;
-		double			loyalty;
-		string			picture;
-		vector<pair<string, string>>	roles;	
+		bool IsProvinceImpassable(int provinceNumber) const;
+
+		std::unordered_set<int> impassibleProvinces;
 };
 
 
+#endif // !IMPASSABLE_PROVINCE_MAPPER_H
 
-#endif	// HoI4MINISTER_H_

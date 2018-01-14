@@ -172,19 +172,19 @@ vector<shared_ptr<Object>> Object::getValue(const string& key) const
 }
 
 
-string Object::getToken(const int index)
+optional<string> Object::getToken(const int index)
 {
 	if (!isObjList)
 	{
-		return "";
+		return {};
 	}
-	if (index >= (int)tokens.size())
+	if (index >= static_cast<int>(tokens.size()))
 	{
-		return "";
+		return {};
 	}
 	if (index < 0)
 	{
-		return "";
+		return {};
 	}
 	return tokens[index];
 }
@@ -216,13 +216,13 @@ vector<string> Object::getKeys()
 }
 
 
-string Object::getLeaf(const string& leaf) const
+optional<string> Object::getLeaf(const string& leaf) const
 {
 	vector<shared_ptr<Object>> leaves = getValue(leaf); // the objects to return
 	if (0 == leaves.size())
 	{
-		LOG(LogLevel::Error) << "Error: Cannot find leaf " << leaf << " in object\n" << *this;
-		assert(leaves.size());
+		LOG(LogLevel::Warning) << "Error: Cannot find leaf " << leaf << " in object\n" << *this;
+		return {};
 	}
 	return leaves[0]->getLeaf();
 }
@@ -375,7 +375,7 @@ void Object::addObjectAfter(shared_ptr<Object> target, const string& key)
 
 
 
-shared_ptr<Object> br = nullptr;	// the branch being set
+shared_ptr<Object> br;	// the branch being set
 void setVal(string name, const string& val, shared_ptr<Object> branch)
 {
 	if ((branch) && (br != branch))
@@ -394,10 +394,10 @@ void setInt(string name, const int val, shared_ptr<Object> branch)
 	{
 		br = branch;
 	}
-	static char strbuffer[1000];	// the text to add to the branch
-	sprintf_s(strbuffer, 1000, "%i", val);
+
+	string str = to_string(val);
 	shared_ptr<Object> b = make_shared<Object>(name);
-	b->setValue(strbuffer);
+	b->setValue(str);
 	br->setValue(b);
 }
 
@@ -408,10 +408,10 @@ void setFlt(string name, const double val, shared_ptr<Object> branch)
 	{
 		br = branch;
 	}
-	static char strbuffer[1000];	// the text to add to the branch
-	sprintf_s(strbuffer, 1000, "%.3f", val);
+
+	string str = to_string(val);
 	shared_ptr<Object> b = make_shared<Object>(name);
-	b->setValue(strbuffer);
+	b->setValue(str);
 	br->setValue(b);
 }
 
@@ -460,7 +460,7 @@ shared_ptr<Object> Object::safeGetObject(const string& k, shared_ptr<Object> def
 vector<string> Object::safeGetTokens(const string& k)
 {
 	auto obj = safeGetObject(k);
-	if (obj != nullptr)
+	if (obj)
 	{
 		return obj->getTokens();
 	}
@@ -474,8 +474,8 @@ vector<string> Object::safeGetTokens(const string& k)
 
 string Object::toString() const
 {
-	ostringstream blah;	// the output string
-	blah << *(this);
-	return blah.str();
+	ostringstream outputStringStream;
+	outputStringStream << *(this);
+	return outputStringStream.str();
 }
 

@@ -184,11 +184,11 @@ void HoI4Localisation::CreateCountryLocalisations(const pair<const string&, cons
 	addLocalisationsForAllGovernments(tags, make_pair(string(""), string("_DEF")));
 	addLocalisationsForAllGovernments(tags, make_pair(string("_ADJ"), string("")));
 
-	if (addNeutralLocalisation(tags, make_pair(string(""), string("_DEF"))) == 0)
+	if (!addNeutralLocalisation(tags, make_pair(string(""), string("_DEF"))))
 	{
 		LOG(LogLevel::Warning) << "Could not find plain localisation for " << tags.first;
 	}
-	if (addNeutralLocalisation(tags, make_pair(string("_ADJ"), string(""))) == 0)
+	if (!addNeutralLocalisation(tags, make_pair(string("_ADJ"), string(""))))
 	{
 		LOG(LogLevel::Warning) << "Could not find plain adjective localisation for " << tags.first;
 	}
@@ -221,18 +221,24 @@ void HoI4Localisation::addLocalisationsInAllLanguages(const string& destTag, con
 }
 
 
-int HoI4Localisation::addNeutralLocalisation(const pair<const string&, const string&>& tags, const pair<const string&, const string&>& suffixes)
+bool HoI4Localisation::addNeutralLocalisation(const pair<const string&, const string&>& tags, const pair<const string&, const string&>& suffixes)
 {
 	auto plainLocalisation = V2Localisations::GetTextInEachLanguage(tags.first + suffixes.first);
-	for (auto nameInLanguage: plainLocalisation)
+	if (plainLocalisation.size() > 0)
 	{
-		auto existingLanguage = getExistingLocalisationsInLanguage(nameInLanguage.first);
+		for (auto nameInLanguage: plainLocalisation)
+		{
+			auto existingLanguage = getExistingLocalisationsInLanguage(nameInLanguage.first);
 
-		string newKey = tags.second + "_neutrality" + suffixes.first;
-		addLocalisation(newKey, existingLanguage, nameInLanguage.second, suffixes.second);
+			string newKey = tags.second + "_neutrality" + suffixes.first;
+			addLocalisation(newKey, existingLanguage, nameInLanguage.second, suffixes.second);
+		}
+		return true;
 	}
-
-	return plainLocalisation.size();
+	else
+	{
+		return false;
+	}
 }
 
 

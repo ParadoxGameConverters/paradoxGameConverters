@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -29,6 +29,6 @@ V2Agreement::V2Agreement(shared_ptr<Object> obj):
 	type(obj->getKey()),
 	country1(obj->safeGetString("first")),
 	country2(obj->safeGetString("second")),
-	start_date(obj->safeGetString("start_date"))
+	startDate(obj->safeGetString("start_date"))
 {
 }

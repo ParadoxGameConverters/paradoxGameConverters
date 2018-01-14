@@ -58,9 +58,6 @@ using namespace std;
 
 namespace parser_8859_15
 {
-	shared_ptr<Object> getTopLevel();
-	void	clearStack(); 
-	void	initParser();
 	shared_ptr<Object> doParseFile(string filename);
 }
 

@@ -22,9 +22,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "CountryMapping.h"
+#include <algorithm>
 #include <iomanip>
 #include <sstream>
-#include <boost/algorithm/string.hpp>
 #include "../Configuration.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Country.h"
@@ -92,14 +92,18 @@ void CountryMapping::importRule(shared_ptr<Object> rule)
 	vector<string>	V2Tags;
 	for (auto item: ruleItems)
 	{
-		string key = boost::to_upper_copy(item->getKey());
+		string key = item->getKey();
+		std::transform(key.begin(), key.end(), key.begin(), ::toupper);
 		if (key == "EU4")
 		{
-			newEU4Tag = boost::to_upper_copy(item->getLeaf());
+			newEU4Tag = item->getLeaf();
+			std::transform(newEU4Tag.begin(), newEU4Tag.end(), newEU4Tag.begin(), ::toupper);
 		}
 		else if (key == "V2")
 		{
-			V2Tags.push_back(boost::to_upper_copy(item->getLeaf()));
+			string V2Tag = item->getLeaf();
+			std::transform(V2Tag.begin(), V2Tag.end(), V2Tag.begin(), ::toupper);
+			V2Tags.push_back(V2Tag);
 		}
 		else
 		{
@@ -324,7 +328,8 @@ bool CountryMapping::mapToExistingVic2Country(const vector<string>& possibleVic2
 	{
 		if ((Vic2Countries.find(possibleVic2Tag) != Vic2Countries.end()) && (!tagIsAlreadyAssigned(possibleVic2Tag)))
 		{
-			EU4TagToV2TagMap.left.insert(make_pair(EU4Tag, possibleVic2Tag));
+			EU4TagToV2TagMap.insert(make_pair(EU4Tag, possibleVic2Tag));
+			V2TagToEU4TagMap.insert(make_pair(possibleVic2Tag, EU4Tag));
 			logMapping(EU4Tag, possibleVic2Tag, "default V2 country");
 
 			return true;
@@ -341,7 +346,8 @@ bool CountryMapping::mapToFirstUnusedVic2Tag(const vector<string>& possibleVic2T
 	{
 		if (!tagIsAlreadyAssigned(possibleVic2Tag))
 		{
-			EU4TagToV2TagMap.left.insert(make_pair(EU4Tag, possibleVic2Tag));
+			EU4TagToV2TagMap.insert(make_pair(EU4Tag, possibleVic2Tag));
+			V2TagToEU4TagMap.insert(make_pair(possibleVic2Tag, EU4Tag));
 			logMapping(EU4Tag, possibleVic2Tag, "mapping rule, not a V2 country");
 
 			return true;
@@ -371,7 +377,8 @@ string CountryMapping::generateNewTag()
 
 void CountryMapping::mapToNewTag(const string& EU4Tag, const string& Vic2Tag)
 {
-	EU4TagToV2TagMap.left.insert(make_pair(EU4Tag, Vic2Tag));
+	EU4TagToV2TagMap.insert(make_pair(EU4Tag, Vic2Tag));
+	V2TagToEU4TagMap.insert(make_pair(Vic2Tag, EU4Tag));
 	logMapping(EU4Tag, Vic2Tag, "generated tag");
 }
 
@@ -383,7 +390,8 @@ map<string, vector<string>>::iterator CountryMapping::ifValidGetCK2MappingRule(c
 		string CK2Title = GetCK2Title(country->getTag(), country->getName("english"), availableFlags);
 		if (CK2Title != "")
 		{
-			mappingRule = EU4TagToV2TagsRules.find(boost::to_upper_copy(CK2Title));
+			std::transform(CK2Title.begin(), CK2Title.end(), CK2Title.begin(), ::toupper);
+			mappingRule = EU4TagToV2TagsRules.find(CK2Title);
 		}
 	}
 
@@ -423,7 +431,8 @@ bool CountryMapping::attemptColonialReplacement(EU4Country* country, const EU4Wo
 
 		if (tagIsAvailable(colony, Vic2Countries))
 		{
-			EU4TagToV2TagMap.left.insert(make_pair(country->getTag(), colony.tag));
+			EU4TagToV2TagMap.insert(make_pair(country->getTag(), colony.tag));
+			V2TagToEU4TagMap.insert(make_pair(colony.tag, country->getTag()));
 			logMapping(country->getTag(), colony.tag, "colonial replacement");
 			return true;
 		}
@@ -525,7 +534,7 @@ void CountryMapping::logMapping(const string& EU4Tag, const string& V2Tag, const
 
 bool CountryMapping::tagIsAlreadyAssigned(const string& Vic2Tag)
 {
-	return (EU4TagToV2TagMap.right.find(Vic2Tag) != EU4TagToV2TagMap.right.end());
+	return (V2TagToEU4TagMap.find(Vic2Tag) != V2TagToEU4TagMap.end());
 }
 
 
@@ -538,8 +547,8 @@ const string CountryMapping::GetV2Tag(const string& EU4Tag) const
 		return V2RebelTag;
 	}
 
-	auto findIter = EU4TagToV2TagMap.left.find(EU4Tag);
-	if (findIter != EU4TagToV2TagMap.left.end())
+	auto findIter = EU4TagToV2TagMap.find(EU4Tag);
+	if (findIter != EU4TagToV2TagMap.end())
 	{
 		return findIter->second;
 	}

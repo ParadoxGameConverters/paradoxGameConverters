@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -466,19 +466,19 @@ void V2Country::setLocalisationAdjective(const string& language, const string& a
 }
 
 
-std::string V2Country::getReform(const string& reform) const
+optional<string> V2Country::getReform(const string& reform) const
 {
 	map<string, string>::const_iterator itr = reformsArray.find(reform);
 	if (itr == reformsArray.end())
 	{
-		return "";
+		return {};
 	}
 
 	return itr->second;
 }
 
 
-string V2Country::getName(const string& language) const
+optional<string> V2Country::getName(const string& language) const
 {
 	map<string, string>::const_iterator findIter = namesByLanguage.find(language);
 	if (findIter != namesByLanguage.end())
@@ -487,12 +487,12 @@ string V2Country::getName(const string& language) const
 	}
 	else
 	{
-		return "";
+		return {};
 	}
 }
 
 
-string V2Country::getAdjective(const string& language) const
+optional<string> V2Country::getAdjective(const string& language) const
 {
 	map<string, string>::const_iterator findIter = adjectivesByLanguage.find(language);
 	if (findIter != adjectivesByLanguage.end())
@@ -501,7 +501,7 @@ string V2Country::getAdjective(const string& language) const
 	}
 	else
 	{
-		return "";
+		return {};
 	}
 }
 
@@ -510,7 +510,9 @@ double V2Country::getUpperHousePercentage(const string& ideology) const
 {
 	map<string, double>::const_iterator itr = upperHouseComposition.find(ideology);
 	if (itr == upperHouseComposition.end())
+	{
 		return 0.0;
+	}
 
 	return itr->second;
 }
@@ -528,7 +530,7 @@ long V2Country::getEmployedWorkers() const
 }
 
 
-const V2Party* V2Country::getRulingParty(const vector<const V2Party*>& allParties) const
+optional<const V2Party> V2Country::getRulingParty(const vector<V2Party>& allParties) const
 {
 	if ((rulingPartyID <= allParties.size()) && (rulingPartyID > 0))
 	{
@@ -536,15 +538,15 @@ const V2Party* V2Country::getRulingParty(const vector<const V2Party*>& allPartie
 	}
 	else
 	{
-		return nullptr;
+		return {};
 	}
 }
 
 
-set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> V2Country::getActiveParties(const vector<const V2Party*>& allParties) const
+set<V2Party, function<bool (const V2Party&, const V2Party&)>> V2Country::getActiveParties(const vector<V2Party>& allParties) const
 {
-	set<const V2Party*, function<bool (const V2Party*, const V2Party*)>> activeParties([](const V2Party* first, const V2Party* second)
-		{ return first->name < second->name; }
+	set<V2Party, function<bool (const V2Party&, const V2Party&)>> activeParties([](const V2Party& first, const V2Party& second)
+		{ return first.getName() < second.getName(); }
 	);
 
 	for (auto ID : activePartyIDs)

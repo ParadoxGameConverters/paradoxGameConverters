@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -27,11 +27,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 HoI4Agreement::HoI4Agreement(const string& _country1, const string& _country2, const V2Agreement* oldAgreement):
-	type(oldAgreement->type),
+	type(oldAgreement->getType()),
 	country1(_country1),
 	country2(_country2),
 	relationshipValue(0),
-	startDate(oldAgreement->start_date)
+	startDate(oldAgreement->getDate())
 {
 }
 

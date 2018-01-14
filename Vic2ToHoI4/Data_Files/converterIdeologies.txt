@@ -50,6 +50,8 @@ ideologies = {
 			}
 			dictatorship = {
 			}
+			theocracy = {
+			}
 		}
 		
 		dynamic_faction_names = {
@@ -89,6 +91,8 @@ ideologies = {
 			prussian_const_neutral = {
 			}
 			dictatorship_neutral = {
+			}
+			theocracy_neutral = {
 			}
 			conservatism_neutral = {
 			}

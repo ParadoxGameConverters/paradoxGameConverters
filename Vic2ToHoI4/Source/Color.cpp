@@ -45,9 +45,10 @@ Color::Color(shared_ptr<Object> colorObject)
 	initialized = (colorObject->numTokens() >= 3);
 	for (size_t i = 0; i < 3; ++i)
 	{
-		if (!colorObject->getToken(i).empty())
+		auto possibleToken = colorObject->getToken(i);
+		if (possibleToken)
 		{
-			c[i] = stoi(colorObject->getToken(i));
+			c[i] = stoi(*possibleToken);
 		}
 	}
 }

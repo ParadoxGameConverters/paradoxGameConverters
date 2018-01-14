@@ -26,11 +26,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "Configuration.h"
 #include "OSCompatibilityLayer.h"
+#include <optional>
 
 
 
-void processFlagsForCountry(const pair<string, HoI4Country*>& country);
-void copyFlags(const map<string, HoI4Country*>& countries)
+void processFlagsForCountry(const pair<string, shared_ptr<HoI4Country>>& country);
+void copyFlags(const map<string, shared_ptr<HoI4Country>>& countries)
 {
 	LOG(LogLevel::Info) << "Copying flags";
 
@@ -76,36 +77,36 @@ const char* hoi4Suffixes[FLAG_END] = {
 
 
 vector<string> getSourceFlagPaths(const string& Vic2Tag);
-tga_image* readFlag(string path);
+optional<tga_image*> readFlag(string path);
 tga_image* createNewFlag(const tga_image* sourceFlag, unsigned int sizeX, unsigned int sizeY);
 void createBigFlag(tga_image* sourceFlag, const string& filename);
 void createMediumFlag(tga_image* sourceFlag, const string& filename);
 void createSmallFlag(tga_image* sourceFlag, const string& filename);
-void processFlagsForCountry(const pair<string, HoI4Country*>& country)
+void processFlagsForCountry(const pair<string, shared_ptr<HoI4Country>>& country)
 {
 	vector<string> sourcePath = getSourceFlagPaths(country.second->getSourceCountry()->getTag());
 	for (unsigned int i = BASE_FLAG; i < FLAG_END; i++)
 	{
 		if (sourcePath[i] != "")
 		{
-			tga_image* sourceFlag = readFlag(sourcePath[i]);
-			if (sourceFlag == nullptr)
+			auto sourceFlag = readFlag(sourcePath[i]);
+			if (!sourceFlag)
 			{
 				return;
 			}
 
-			createBigFlag(sourceFlag, country.first + hoi4Suffixes[i]);
-			createMediumFlag(sourceFlag, country.first + hoi4Suffixes[i]);
-			createSmallFlag(sourceFlag, country.first + hoi4Suffixes[i]);
+			createBigFlag(*sourceFlag, country.first + hoi4Suffixes[i]);
+			createMediumFlag(*sourceFlag, country.first + hoi4Suffixes[i]);
+			createSmallFlag(*sourceFlag, country.first + hoi4Suffixes[i]);
 
-			tga_free_buffers(sourceFlag);
-			delete sourceFlag;
+			tga_free_buffers(*sourceFlag);
+			delete *sourceFlag;
 		}
 	}
 }
 
 
-string getSourceFlagPath(const string& Vic2Tag, const string& sourceSuffix);
+optional<string> getSourceFlagPath(const string& Vic2Tag, const string& sourceSuffix);
 vector<string> getSourceFlagPaths(const string& Vic2Tag)
 {
 	vector<string> paths;
@@ -114,15 +115,15 @@ vector<string> getSourceFlagPaths(const string& Vic2Tag)
 
 	for (unsigned int i = BASE_FLAG; i < FLAG_END; i++)
 	{
-		string path = getSourceFlagPath(Vic2Tag, vic2Suffixes[i]);
-		if (path == "")
+		auto path = getSourceFlagPath(Vic2Tag, vic2Suffixes[i]);
+		if (path)
 		{
-			LOG(LogLevel::Warning) << "Could not find source flag: " << Vic2Tag << vic2Suffixes[i];
-			paths[i] = paths[BASE_FLAG];
+			paths[i] = *path;
 		}
 		else
 		{
-			paths[i] = path;
+			LOG(LogLevel::Warning) << "Could not find source flag: " << Vic2Tag << vic2Suffixes[i];
+			paths[i] = paths[BASE_FLAG];
 		}
 	}
 
@@ -131,30 +132,41 @@ vector<string> getSourceFlagPaths(const string& Vic2Tag)
 
 
 bool isThisAConvertedTag(const string& Vic2Tag);
-string getConversionModFlag(const string& flagFilename);
-string getAllowModFlags(const string& flagFilename);
-string getSourceFlagPath(const string& Vic2Tag, const string& sourceSuffix)
+optional<string> getConversionModFlag(const string& flagFilename);
+optional<string> getAllowModFlags(const string& flagFilename);
+optional<string> getSourceFlagPath(const string& Vic2Tag, const string& sourceSuffix)
 {
 	string path = "flags/" + Vic2Tag + sourceSuffix;
+
 	if (!Utils::DoesFileExist(path))
 	{
-		
-		
-			if (isThisAConvertedTag(Vic2Tag))
+		if (isThisAConvertedTag(Vic2Tag))
+		{
+			auto possiblePath = getConversionModFlag(Vic2Tag + sourceSuffix);
+			if (possiblePath)
 			{
-				path = getConversionModFlag(Vic2Tag + sourceSuffix);
+				path = *possiblePath;
 			}
-			if (!Utils::DoesFileExist(path))
-			{
-				path = getAllowModFlags(Vic2Tag + sourceSuffix);
-			}
-			if (!Utils::DoesFileExist(path))
-			{
-				return "";
-			}
-		
+		}
 	}
-	return path;
+
+	if (!Utils::DoesFileExist(path))
+	{
+		auto possiblePath = getAllowModFlags(Vic2Tag + sourceSuffix);
+		if (possiblePath)
+		{
+			path = *possiblePath;
+		}
+	}
+		
+	if (Utils::DoesFileExist(path))
+	{
+		return path;
+	}
+	else
+	{
+		return {};
+	}
 }
 
 
@@ -164,7 +176,7 @@ bool isThisAConvertedTag(const string& Vic2Tag)
 }
 
 
-string getConversionModFlag(const string& flagFilename)
+optional<string> getConversionModFlag(const string& flagFilename)
 {
 	for (auto mod: Configuration::getVic2Mods())
 	{
@@ -175,12 +187,12 @@ string getConversionModFlag(const string& flagFilename)
 		}
 	}
 
-	return "";
+	return {};
 }
 
 
 static set<string> allowedMods = { "PDM", "NNM", "Divergences of Darkness" };
-string getAllowModFlags(const string& flagFilename)
+optional<string> getAllowModFlags(const string& flagFilename)
 {
 	for (auto mod: Configuration::getVic2Mods())
 	{
@@ -195,17 +207,17 @@ string getAllowModFlags(const string& flagFilename)
 		}
 	}
 
-	return "";
+	return {};
 }
 
 
-tga_image* readFlag(string path)
+optional<tga_image*> readFlag(string path)
 {
 	FILE* flagFile;
 	if (fopen_s(&flagFile, path.c_str(), "r+b") != 0)
 	{
 		LOG(LogLevel::Warning) << "Could not open " << path;
-		return nullptr;
+		return {};
 	}
 
 	tga_image* flag = new tga_image;
@@ -214,7 +226,7 @@ tga_image* readFlag(string path)
 	{
 		LOG(LogLevel::Warning) << "Could not read flag " << path << ": " << tga_error(result) << ". FEOF: " << feof(flagFile) << ". Ferror: " << ferror(flagFile) << ".";
 		delete flag;
-		flag = nullptr;
+		flag = {};
 	}
 
 	fclose(flagFile);

@@ -51,8 +51,17 @@ coastalHoI4ProvincesMapper::coastalHoI4ProvincesMapper():
 			auto adjProvince = provinces.find(adjProvinceNum);
 			if ((adjProvince != provinces.end()) && (adjProvince->second.type == "ocean"))
 			{
-				coastalProvinces.insert(make_pair(province.first, adjProvince->first));
-				break;
+				auto coastalProvince = coastalProvinces.find(province.first);
+				if (coastalProvince == coastalProvinces.end())
+				{
+					vector<int> seaProvince;
+					seaProvince.push_back(adjProvinceNum);
+					coastalProvinces.insert(make_pair(province.first, seaProvince));
+				}
+				else
+				{
+					coastalProvince->second.push_back(adjProvinceNum);
+				}
 			}
 		}
 	}

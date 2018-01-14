@@ -64,20 +64,23 @@ void CountryMapper::readRules()
 
 vector<shared_ptr<Object>> CountryMapper::getRules() const
 {
-	shared_ptr<Object> countryMappingsFile = parser_UTF8::doParseFile("country_mappings.txt");
-	if (!countryMappingsFile)
+	auto countryMappingsFile = parser_UTF8::doParseFile("country_mappings.txt");
+	if (countryMappingsFile)
+	{
+		vector<shared_ptr<Object>> nodes = countryMappingsFile->getLeaves();
+		if (nodes.empty())
+		{
+			LOG(LogLevel::Error) << "country_mappings.txt does not contain a mapping";
+			exit(-1);
+		}
+
+		return nodes[0]->getLeaves();
+	}
+	else
 	{
 		LOG(LogLevel::Error) << "Failed to parse country_mappings.txt";
 		exit(-1);
 	}
-	vector<shared_ptr<Object>> nodes = countryMappingsFile->getLeaves();
-	if (nodes.empty())
-	{
-		LOG(LogLevel::Error) << "country_mappings.txt does not contain a mapping";
-		exit(-1);
-	}
-
-	return nodes[0]->getLeaves();
 }
 
 
@@ -201,11 +204,11 @@ void CountryMapper::LogMapping(const string& sourceTag, const string& targetTag,
 
 bool CountryMapper::tagIsAlreadyAssigned(const string& HoI4Tag) const
 {
-	return (HoI4TagToV2TagMap.find(HoI4Tag) != V2TagToHoI4TagMap.end());
+	return (HoI4TagToV2TagMap.find(HoI4Tag) != HoI4TagToV2TagMap.end());
 }
 
 
-const string CountryMapper::GetHoI4Tag(const string& V2Tag) const
+optional<string> CountryMapper::GetHoI4Tag(const string& V2Tag) const
 {
 	auto findIter = V2TagToHoI4TagMap.find(V2Tag);
 	if (findIter != V2TagToHoI4TagMap.end())
@@ -214,12 +217,12 @@ const string CountryMapper::GetHoI4Tag(const string& V2Tag) const
 	}
 	else
 	{
-		return "";
+		return {};
 	}
 }
 
 
-const string CountryMapper::GetVic2Tag(const string& HoI4Tag) const
+optional<string> CountryMapper::GetVic2Tag(const string& HoI4Tag) const
 {
 	auto findIter = HoI4TagToV2TagMap.find(HoI4Tag);
 	if (findIter != HoI4TagToV2TagMap.end())
@@ -228,6 +231,6 @@ const string CountryMapper::GetVic2Tag(const string& HoI4Tag) const
 	}
 	else
 	{
-		return "";
+		return {};
 	}
 }
