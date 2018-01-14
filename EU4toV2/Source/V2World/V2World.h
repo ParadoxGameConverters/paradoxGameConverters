@@ -35,7 +35,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../EU4World/EU4Army.h"
 #include "../EU4World/EU4Province.h"
 #include <list>
+#include <memory>
 #include <set>
+
+
 
 class V2Country;
 class V2Army;
@@ -58,17 +61,17 @@ class V2World
 
 		void importDefaultPops();
 		void importPopsFromFile(const string& filename);
-		void importPopsFromProvince(Object* provinceObj);
+		void importPopsFromProvince(shared_ptr<Object> provinceObj);
 
 		void logPopsByCountry() const;
 		void logPopsFromFile(string filename, map<string, map<string, long int>>& popsByCountry) const;
-		void logPopsInProvince(Object* provinceObj, map<string, map<string, long int>>& popsByCountry) const;
+		void logPopsInProvince(shared_ptr<Object> provinceObj, map<string, map<string, long int>>& popsByCountry) const;
 		map<string, map<string, long int>>::iterator getCountryForPopLogging(string country, map<string, map<string, long int>>& popsByCountry) const;
-		void logPop(Object* pop, map<string, map<string, long int>>::iterator countryPopItr) const;
+		void logPop(shared_ptr<Object> pop, map<string, map<string, long int>>::iterator countryPopItr) const;
 		void outputLog(const map<string, map<string, long int>>& popsByCountry) const;
 
 		void findCoastalProvinces();
-		void determineIfProvinceIsCoastal(Object* provinceObj);
+		void determineIfProvinceIsCoastal(shared_ptr<Object> provinceObj);
 
 		void importPotentialCountries();
 		void importPotentialCountry(const string& line, bool dynamicCountry);

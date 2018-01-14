@@ -37,14 +37,13 @@ Configuration::Configuration()
 {
 	LOG(LogLevel::Info) << "Reading configuration file";
 
-	Object* configObj = parser_UTF8::doParseFile("configuration.txt");
+	shared_ptr<Object> configObj = parser_UTF8::doParseFile("configuration.txt");
 	if (configObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not open configuration.txt";
 		exit(-1);
 	}
-
-	vector<Object*> obj = configObj->getValue("configuration");
+	vector<shared_ptr<Object>> obj = configObj->getValue("configuration");
 	if (obj.size() != 1)
 	{
 		LOG(LogLevel::Error) << "Configuration file must contain exactly one configuration section";
@@ -62,6 +61,7 @@ Configuration::Configuration()
 		LOG(LogLevel::Error) << "The Europa Universalis 4 path specified in configuration.txt does not contain Europa Universalis 4";
 		exit(-1);
 	}
+
 	else if (!Utils::DoesFileExist(EU4Path + "/map/positions.txt"))
 	{
 		LOG(LogLevel::Error) << EU4Path << " does not appear to be a valid EU4 install";
@@ -87,6 +87,7 @@ Configuration::Configuration()
 		LOG(LogLevel::Error) << "The Victoria 2 path specified in configuration.txt does not contain Victoria 2";
 		exit(-1);
 	}
+
 	else
 	{
 		LOG(LogLevel::Debug) << "Victoria 2 install path is " << V2Path;

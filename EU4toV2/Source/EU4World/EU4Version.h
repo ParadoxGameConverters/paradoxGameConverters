@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -25,8 +25,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #define EU4VERSION_H_
 
 
+
 #include "Object.h"
 #include <string>
+#include <memory>
 using namespace std;
 
 
@@ -35,7 +37,7 @@ class EU4Version
 {
 	public:
 		EU4Version();
-		EU4Version(Object* obj);
+		EU4Version(shared_ptr<Object> obj);
 		EU4Version(string version);
 		bool operator >= (EU4Version& rhs) const;
 	private:

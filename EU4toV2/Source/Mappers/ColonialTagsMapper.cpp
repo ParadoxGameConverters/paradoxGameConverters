@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -35,7 +35,7 @@ colonialTagMapper* colonialTagMapper::instance = nullptr;
 colonialTagMapper::colonialTagMapper()
 {
 	LOG(LogLevel::Info) << "Parsing colony naming rules.";
-	Object* colonialObj = parser_UTF8::doParseFile("colonial_tags.txt");
+	shared_ptr<Object> colonialObj = parser_UTF8::doParseFile("colonial_tags.txt");
 	if (colonialObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse colonial.txt";
@@ -46,9 +46,9 @@ colonialTagMapper::colonialTagMapper()
 
 
 
-void colonialTagMapper::initColonyMap(Object* obj)
+void colonialTagMapper::initColonyMap(shared_ptr<Object> obj)
 {
-	vector<Object*> colonialRules	= obj->getLeaves();
+	vector<shared_ptr<Object>> colonialRules	= obj->getLeaves();
 	for (auto ruleObj: colonialRules[0]->getLeaves())
 	{
 		colonyStruct rule;

@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -42,7 +42,7 @@ continentMapper::continentMapper()
 		string continentFile = mod + "/map/continent.txt";
 		if (Utils::DoesFileExist(continentFile))
 		{
-			Object* continentObject = parser_UTF8::doParseFile(continentFile);
+			shared_ptr<Object> continentObject = parser_UTF8::doParseFile(continentFile);
 			if ((continentObject != NULL) && (continentObject->getLeaves().size() > 0))
 			{
 				initContinentMap(continentObject);
@@ -52,7 +52,7 @@ continentMapper::continentMapper()
 
 	if (continentMap.empty())
 	{
-		Object* continentObject = parser_UTF8::doParseFile(Configuration::getEU4Path() + "/map/continent.txt");
+		shared_ptr<Object> continentObject = parser_UTF8::doParseFile(Configuration::getEU4Path() + "/map/continent.txt");
 		if (continentObject == NULL)
 		{
 			LOG(LogLevel::Error) << "Could not parse file " << Configuration::getEU4Path() << "/map/continent.txt";
@@ -74,11 +74,11 @@ continentMapper::continentMapper()
 
 
 
-void continentMapper::initContinentMap(Object* obj)
+void continentMapper::initContinentMap(shared_ptr<Object> obj)
 {
 	continentMap.clear();
 
-	vector<Object*> continentObjs = obj->getLeaves();
+	vector<shared_ptr<Object>> continentObjs = obj->getLeaves();
 	for (auto continentObj: continentObjs)
 	{
 		string continent = continentObj->getKey();

@@ -1,4 +1,4 @@
-/*Copyright(c) 2014 The Paradox Game Converters Project
+/*Copyright(c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -19,6 +19,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
 
+
 #ifndef EU4ARMY_H_
 #define EU4ARMY_H_
 
@@ -26,8 +27,11 @@ THE SOFTWARE. */
 
 #include <string>
 #include <map>
+#include <memory>
 #include <vector>
 using namespace std;
+
+
 
 class Object;
 
@@ -66,7 +70,7 @@ typedef map<string, pair<RegimentCategory, int> > RegimentTypeMap;	// regiment c
 class EU4Regiment // also Ship
 {
 	public:
-		EU4Regiment(Object* obj);
+		EU4Regiment(shared_ptr<Object> obj);
 
 		void						setCategory(const RegimentCategory cat) { category = cat; }
 		void						setTypeStrength(const int typeStrength) { type_strength = typeStrength; }
@@ -90,7 +94,7 @@ class EU4Regiment // also Ship
 class EU4Army // also Navy
 {
 	public:
-		EU4Army(Object* obj);
+		EU4Army(shared_ptr<Object> obj);
 		void					resolveRegimentTypes(const RegimentTypeMap& regimentTypeMap);
 		double					getAverageStrength(RegimentCategory category) const;
 		int						getTotalTypeStrength(RegimentCategory category) const;
@@ -111,7 +115,7 @@ class EU4Army // also Navy
 };
 
 
-void AddCategoryToRegimentTypeMap(Object* obj, RegimentCategory category, string categoryName, RegimentTypeMap& rtm);
+void AddCategoryToRegimentTypeMap(shared_ptr<Object> obj, RegimentCategory category, string categoryName, RegimentTypeMap& rtm);
 void AddUnitFileToRegimentTypeMap(string directory, string name, RegimentTypeMap& rtm);
 
 

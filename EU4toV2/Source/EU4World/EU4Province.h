@@ -1,4 +1,4 @@
-/*Copyright(c) 2014 The Paradox Game Converters Project
+/*Copyright(c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -19,22 +19,28 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
 
+
 #ifndef EU4PROVINCE_H_
 #define EU4PROVINCE_H_
+
 
 
 #include "Date.h"
 #include <string>
 #include <vector>
 #include <map>
+#include <memory>
 using namespace std;
+
+
 
 class Object;
 class EU4Country;
 
 
 
-struct EU4PopRatio {
+struct EU4PopRatio
+{
 	string culture;			// the culture
 	string religion;			// the religion
 	double upperPopRatio;	// the percent of the total upper-class population this represents
@@ -43,9 +49,10 @@ struct EU4PopRatio {
 };
 
 
-class EU4Province {
+class EU4Province
+{
 	public:
-		EU4Province(Object* obj);
+		EU4Province(shared_ptr<Object> obj);
 
 		void						addCore(string tag);
 		void						removeCore(string tag);
@@ -84,7 +91,7 @@ class EU4Province {
 		string					getTradeGoods() const { return tradeGoods; }
 
 	private:
-		void	checkBuilding(const Object* provinceObj, string building);
+		void	checkBuilding(const shared_ptr<Object> provinceObj, string building);
 		void	buildPopRatios();
 		void	decayPopRatios(date oldDate, date newDate, EU4PopRatio& currentPop);
 
@@ -124,6 +131,7 @@ class EU4Province {
 		std::vector<double>				provProductionVec;
 
 };
+
 
 
 #endif // EU4PROVINCE_H_
