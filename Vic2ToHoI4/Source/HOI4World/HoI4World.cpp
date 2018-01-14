@@ -175,8 +175,7 @@ void HoI4World::convertCountry(pair<string, V2Country*> country, map<int, int>& 
 		}
 		else
 		{
-			LOG(LogLevel::Error) << "Could not set country name when converting country";
-			exit(-1);
+			LOG(LogLevel::Warning) << "Could not set country name when converting country";
 		}
 
 		std::string countryFileName = Utils::convert8859_15ToUTF8(countryName) + ".txt";
