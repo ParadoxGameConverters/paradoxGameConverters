@@ -1,4 +1,3 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -57,6 +56,11 @@ Configuration::Configuration()
 		LOG(LogLevel::Error) << "No Europa Universalis 4 path was specified in configuration.txt, or the path was invalid";
 		exit(-1);
 	}
+	else if (!Utils::DoesFileExist(EU4Path + "/eu4.exe"))
+	{
+		LOG(LogLevel::Error) << "The Europa Universalis 4 path specified in configuration.txt does not contain Europa Universalis 4";
+		exit(-1);
+	}
 	else if (!Utils::DoesFileExist(EU4Path + "/map/positions.txt"))
 	{
 		LOG(LogLevel::Error) << EU4Path << " does not appear to be a valid EU4 install";
@@ -75,6 +79,11 @@ Configuration::Configuration()
 	if (Utils::DoesFileExist(V2Path))
 	{
 		LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
+		exit(-1);
+	}
+	else if (!Utils::DoesFileExist(V2Path + "/v2game.exe"))
+	{
+		LOG(LogLevel::Error) << "The Victoria 2 path specified in configuration.txt does not contain Victoria 2";
 		exit(-1);
 	}
 	else
