@@ -37,7 +37,7 @@ class Object;
 class V2Relations
 {
 	public:
-		V2Relations(shared_ptr<Object> relationsObj);
+		explicit V2Relations(shared_ptr<Object> relationsObj);
 
 		string getTag() const { return tag; }
 		int getRelations() const { return value; }
@@ -52,12 +52,9 @@ class V2Relations
 		V2Relations(const V2Relations&) = delete;
 		V2Relations& operator=(const V2Relations&) = delete;
 
-		void setValue(shared_ptr<Object> relationsObj);
-		void setMilitaryAccess(shared_ptr<Object> relationsObj);
 		void setLastDiplomat(shared_ptr<Object> relationsObj);
 		void setLastWar(shared_ptr<Object> relationsObj);
 		void setTruce(shared_ptr<Object> relationsObj);
-		void setLevel(shared_ptr<Object> relationsObj);
 
 		string tag;
 		int value;

@@ -25,3 +25,6 @@ A: This is an HoI4 bug, with a temporary solution here: https://forum.paradoxpla
 
 Q: My nations are mostly flagless. I only used the Vic2 random generator world
 A: Tags differ from Vanilla, that's why. The solution is to paste the flags of the generated mod in the converter's flag folder
+
+Q: Most of my map is blank? What's wrong and how do I fix it?
+A: HoI4 has an occasional problem with mods replacing default files. Paradox is aware and aiming to fix it, so this should go away. In the meanwhile, try moving your mod from Steam/steamapps/common/Hearts of Iron IV/mod to Documents/Paradox Interactive/Hearts of Iron IV/mod.

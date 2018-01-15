@@ -61,18 +61,18 @@ provinceDefinitions::provinceDefinitions():
 		line = line.substr(pos + 1, line.length());
 
 		pos = line.find_first_of(';');
-		int red = stoi(line.substr(0, pos));
+		ConverterColor::red red(stoi(line.substr(0, pos)));
 		line = line.substr(pos + 1, line.length());
 
 		pos = line.find_first_of(';');
-		int green = stoi(line.substr(0, pos));
+		ConverterColor::green green(stoi(line.substr(0, pos)));
 		line = line.substr(pos + 1, line.length());
 
 		pos = line.find_first_of(';');
-		int blue = stoi(line.substr(0, pos));
+		ConverterColor::blue blue(stoi(line.substr(0, pos)));
 		line = line.substr(pos + 1, line.length());
 
-		Color provinceColor(red, green, blue);
+		ConverterColor::Color provinceColor(red, green, blue);
 		int colorInt = getIntFromColor(provinceColor);
 		colorToProvinceMap.insert(make_pair(colorInt, provNum));
 
@@ -86,7 +86,7 @@ provinceDefinitions::provinceDefinitions():
 }
 
 
-int provinceDefinitions::GetProvinceFromColor(const Color& color) const
+optional<int> provinceDefinitions::GetProvinceFromColor(const ConverterColor::Color& color) const
 {
 	int colorInt = getIntFromColor(color);
 
@@ -97,18 +97,20 @@ int provinceDefinitions::GetProvinceFromColor(const Color& color) const
 	}
 	else
 	{
-		return 0;
+		return {};
 	}
 }
 
 
-int provinceDefinitions::getIntFromColor(const Color& color) const
+int provinceDefinitions::getIntFromColor(const ConverterColor::Color& color) const
 {
-	int red, green, blue;
+	ConverterColor::red red;
+	ConverterColor::green green;
+	ConverterColor::blue blue;
 	color.GetRGB(red, green, blue);
-	int colorInt = ((red & 0xFF) << 16) +
-						((green & 0xFF) << 8) +
-						(blue & 0xFF);
+	int colorInt = ((red.Red & 0xFF) << 16) +
+						((green.Green & 0xFF) << 8) +
+						(blue.Blue & 0xFF);
 
 	return colorInt;
 }

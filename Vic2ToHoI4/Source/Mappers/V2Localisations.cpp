@@ -35,7 +35,8 @@ V2Localisations* V2Localisations::instance = NULL;
 
 
 V2Localisations::V2Localisations():
-	localisations()
+	localisations(),
+	localisationToKeyMap()
 {
 	LOG(LogLevel::Info) << "Reading localisation";
 
@@ -89,7 +90,13 @@ void V2Localisations::processLine(string line)
 	{
 		string result = getNextLocalisation(line, division);
 		result = replaceBadCharacters(result);
-		localisations[key][language] = Utils::convert8859_15ToUTF8(result);
+		auto UTF8Result = Utils::convert8859_15ToUTF8(result);
+
+		if (language == "english")
+		{
+			localisationToKeyMap[UTF8Result] = key;
+		}
+		localisations[key][language] = UTF8Result;
 	}
 }
 
@@ -123,8 +130,23 @@ string V2Localisations::replaceBadCharacters(string localisation)
 	return localisation;
 }
 
-void V2Localisations::ActuallyUpdateDomainCountry(const string & tag, const string & domainName)
+
+void V2Localisations::ActuallyUpdateDomainCountry(const string& tag, const string& domainName)
 {
+	LanguageToLocalisationMap regionLocalisations;
+	const auto domainKey = localisationToKeyMap.find(domainName);
+	if (domainKey != localisationToKeyMap.end())
+	{
+		const auto domainLocalisations = localisations.find(domainKey->second);
+		if (domainLocalisations != localisations.end())
+		{
+			for (auto regionInLanguage: domainLocalisations->second)
+			{
+				regionLocalisations.insert(regionInLanguage);
+			}
+		}
+	}
+
 	const auto KeyToLocalisationsMappings = localisations.find(tag);
 	if (KeyToLocalisationsMappings == localisations.end())
 	{
@@ -134,35 +156,46 @@ void V2Localisations::ActuallyUpdateDomainCountry(const string & tag, const stri
 
 	for (auto nameInLanguage : nameInAllLanguages)
 	{
+		string replacementName = domainName;
+		auto replacementLocalisation = regionLocalisations.find(nameInLanguage.first);
+		if (replacementLocalisation != regionLocalisations.end())
+		{
+			replacementName = replacementLocalisation->second;
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Could not find regions localisation for " << domainName << " in " << nameInLanguage.first;
+		}
 		string updatedName = nameInLanguage.second;
 		size_t regionPos = updatedName.find("$REGION$");
 		if (regionPos != string::npos)
 		{
-			updatedName.replace(regionPos, 8, domainName);
+			updatedName.replace(regionPos, 8, replacementName);
 			KeyToLocalisationsMappings->second[nameInLanguage.first] = updatedName;
 		}
 	}
 }
 
-const string V2Localisations::ActuallyGetTextInLanguage(const string& key, const string& language) const
+
+const optional<string> V2Localisations::ActuallyGetTextInLanguage(const string& key, const string& language) const
 {
 	const auto KeyToLocalisationsMapping = localisations.find(key);
 	if (KeyToLocalisationsMapping == localisations.end())
 	{
-		return "";
+		return {};
 	}
 
 	const auto LanguageToLocalisationMapping = KeyToLocalisationsMapping->second.find(language);
 	if (LanguageToLocalisationMapping == KeyToLocalisationsMapping->second.end())
 	{
-		return "";
+		return {};
 	}
 
 	return LanguageToLocalisationMapping->second;
 }
 
 
-const map<string, string>& V2Localisations::ActuallyGetTextInEachLanguage(const string& key) const
+const map<string, string> V2Localisations::ActuallyGetTextInEachLanguage(const string& key) const
 {
 	static const map<string, string> noLocalisations;
 

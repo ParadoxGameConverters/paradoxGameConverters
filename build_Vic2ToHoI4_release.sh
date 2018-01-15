@@ -8,7 +8,7 @@ cd Vic2ToHoI4
 rm -rf build
 rm -rf Release-Linux
 cmake -H. -Bbuild
-cmake --build build -- -j3
+cmake --build ./build -- -j3
 cp -rf "Release-Linux" "../Vic2ToHoI4-$version"
 cd ..
 

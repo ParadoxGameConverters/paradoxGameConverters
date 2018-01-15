@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <ctime>
 #include <fstream>
 #include <iostream>
+#include <map>
 
 
 
@@ -41,6 +42,7 @@ Log::Log(LogLevel level)
 	{
 		std::ofstream logFile("log.txt", std::ofstream::trunc);
 		logFileCreated = true;
+		logFile.close();
 	}
 }
 
@@ -54,40 +56,30 @@ Log::~Log()
 }
 
 
+static std::map<LogLevel, std::string> logLevelStrings = {
+	{LogLevel::Error, "  [ERROR] "},
+	{LogLevel::Warning, "[WARNING] "},
+	{LogLevel::Info, "   [INFO] "},
+	{LogLevel::Debug, "  [DEBUG]     "}
+};
 void Log::WriteToFile(LogLevel level, const std::string& logMessage)
 {
 	std::ofstream logFile("log.txt", std::ofstream::app);
-
-	time_t rawtime;	// the raw time data
-	time(&rawtime);
-	tm* timeInfo = localtime(&rawtime); // the processed time data
-	if (timeInfo) // whether or not there was an error
-	{
-		char timeBuffer[64];	// the formatted time
-		size_t bytesWritten = strftime(timeBuffer, 64, "%Y-%m-%d %H:%M:%S ", timeInfo);	// the number of digits for the time stamp
-		if (bytesWritten != 0)
-		{
-			logFile << timeBuffer;
-		}
-	}
-
-	switch (level)
-	{
-		case LogLevel::Error:
-			logFile << "  [ERROR] ";
-			break;
-
-		case LogLevel::Warning:
-			logFile << "[WARNING] ";
-			break;
-
-		case LogLevel::Info:
-			logFile << "   [INFO] ";
-			break;
-
-		case LogLevel::Debug:
-			logFile << "  [DEBUG]     ";	// Debug messages are extra indented to further de-emphasize them.
-			break;
-	}
+	WriteTheTime(logFile);
+	logFile << logLevelStrings[level];
 	logFile << logMessage;
+}
+
+
+void Log::WriteTheTime(std::ofstream& logFile)
+{
+	time_t rawtime;
+	time(&rawtime);
+	const tm* timeInfo = localtime(&rawtime);
+	char timeBuffer[64];
+	const size_t bytesWritten = strftime(timeBuffer, sizeof(timeBuffer), "%Y-%m-%d %H:%M:%S ", timeInfo);
+	if (bytesWritten != 0)
+	{
+		logFile << timeBuffer;
+	}
 }

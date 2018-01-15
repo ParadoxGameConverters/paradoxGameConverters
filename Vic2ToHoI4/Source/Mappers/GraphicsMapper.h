@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <map>
 #include <memory>
+#include <optional>
 #include <random>
 #include <string>
 #include <vector>
@@ -68,12 +69,12 @@ class graphicsMapper
 			return getInstance()->GetIdeologyMinisterPortrait(cultureGroup, ideology);
 		}
 
-		static string getGraphicalCulture(const string& cultureGroup)
+		static optional<string> getGraphicalCulture(const string& cultureGroup)
 		{
 			return getInstance()->GetGraphicalCulture(cultureGroup);
 		}
 
-		static string get2dGraphicalCulture(const string& cultureGroup)
+		static optional<string> get2dGraphicalCulture(const string& cultureGroup)
 		{
 			return getInstance()->Get2dGraphicalCulture(cultureGroup);
 		}
@@ -91,18 +92,16 @@ class graphicsMapper
 		graphicsMapper();
 		void loadLeaderPortraitMappings(const string& cultureGroup, shared_ptr<Object> portraitMappings);
 		void loadIdeologyMinisterPortraitMappings(const string& cultureGroup, shared_ptr<Object> portraitMappings);
-		void loadGraphicalCultureMappings(const string& cultureGroup, shared_ptr<Object> graphicalCultureMappings);
-		void loadGraphicalCulture2dMappings(const string& cultureGroup, shared_ptr<Object> graphicalCulture2dMappings);
 
 		graphicsMapper(const graphicsMapper&) = delete;
 		graphicsMapper& operator=(const graphicsMapper&) = delete;
 
 		string GetLeaderPortrait(const string& cultureGroup, const string& ideology);
-		vector<string> GetLeaderPortraits(const string& cultureGroup, const string& ideology) const;
+		optional<vector<string>> GetLeaderPortraits(const string& cultureGroup, const string& ideology) const;
 		string GetIdeologyMinisterPortrait(const string& cultureGroup, const string& ideology);
-		vector<string> GetIdeologyMinisterPortraits(const string& cultureGroup, const string& ideology) const;
-		string GetGraphicalCulture(const string& cultureGroup) const;
-		string Get2dGraphicalCulture(const string& cultureGroup) const;
+		optional<vector<string>> GetIdeologyMinisterPortraits(const string& cultureGroup, const string& ideology) const;
+		optional<string> GetGraphicalCulture(const string& cultureGroup) const;
+		optional<string> Get2dGraphicalCulture(const string& cultureGroup) const;
 
 		ideologyToPortraitsMap leaderPortraitMappings;
 		ideologyToPortraitsMap ideologyMinisterMappings;

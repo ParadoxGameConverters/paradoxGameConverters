@@ -46,8 +46,8 @@ stateMapper::stateMapper():
 	{
 		if (Utils::DoesFileExist(Configuration::getV2Path() + "/mod/" + itr + "/map/region.txt"))
 		{
-			shared_ptr<Object> parsedMappingsFile = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/map/region.txt"));
-			if (parsedMappingsFile != NULL)
+			auto parsedMappingsFile = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/map/region.txt"));
+			if (parsedMappingsFile)
 			{
 				initStateMap(parsedMappingsFile);
 				stateMapInitialized = true;
@@ -57,14 +57,15 @@ stateMapper::stateMapper():
 	}
 	if (!stateMapInitialized)
 	{
-		shared_ptr<Object> parsedMappingsFile = parser_8859_15::doParseFile((Configuration::getV2Path() + "/map/region.txt"));
-		if (parsedMappingsFile != NULL)
+		auto parsedMappingsFile = parser_8859_15::doParseFile((Configuration::getV2Path() + "/map/region.txt"));
+		if (parsedMappingsFile)
 		{
 			initStateMap(parsedMappingsFile);
 		}
 		else
 		{
 			LOG(LogLevel::Error) << "Could not import " << Configuration::getV2Path() << "/map/region.txt";
+			exit(-1);
 		}
 	}
 }
@@ -78,10 +79,10 @@ void stateMapper::initStateMap(shared_ptr<Object> parsedMappingsFile)
 	for (auto leafObj: leafObjs)
 	{
 		string ID = leafObj->getKey();
-		vector<string> provinces = leafObj->getTokens();
+		vector<string> provinceNums = leafObj->getTokens();
 		unordered_set<int> neighbors;
 
-		for (auto provNum: provinces)
+		for (auto provNum: provinceNums)
 		{
 			neighbors.insert(stoi(provNum));
 			stateIdMap.insert(make_pair(stoi(provNum), ID));
@@ -92,15 +93,15 @@ void stateMapper::initStateMap(shared_ptr<Object> parsedMappingsFile)
 			stateMap.insert(make_pair(neighbor, neighbors));
 		}
 
-		if (provinces.size() > 0)
+		if (provinceNums.size() > 0)
 		{
-			stateToCapitalMap.insert(make_pair(ID, stoi(provinces.front())));
+			stateToCapitalMap.insert(make_pair(ID, stoi(provinceNums.front())));
 		}
 	}
 }
 
 
-int stateMapper::GetCapitalProvince(const string& stateID) const
+optional<int> stateMapper::GetCapitalProvince(const string& stateID) const
 {
 	auto mapping = stateToCapitalMap.find(stateID);
 	if (mapping != stateToCapitalMap.end())
@@ -109,6 +110,6 @@ int stateMapper::GetCapitalProvince(const string& stateID) const
 	}
 	else
 	{
-		return -1;
+		return {};
 	}
 }

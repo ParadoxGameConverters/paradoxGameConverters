@@ -29,7 +29,10 @@ using namespace std;
 
 
 
-date::date(string _init)
+date::date(string _init):
+	year(1),
+	month(1),
+	day(1)
 {
 	if (_init.length() < 1)
 	{
@@ -67,7 +70,7 @@ date::date(const date& _init)
 }
 
 
-date& date::operator=(const date& _rhs)
+const date& date::operator=(const date& _rhs)
 {
 	year = _rhs.year;
 	month = _rhs.month;
@@ -78,13 +81,13 @@ date& date::operator=(const date& _rhs)
 
 date::date(const shared_ptr<Object> _init)
 {
-	vector<shared_ptr<Object>> dateSubObj = _init->getValue("year");	// the date within the larger object
-	if (dateSubObj.size() > 0)
+	auto dateSubObj = _init->safeGetObject("year");	// the date within the larger object
+	if (dateSubObj)
 	{
 		// date specified by year=, month=, day=
-		year	= stoi(_init->getLeaf("year"));
-		month	= stoi(_init->getLeaf("month"));
-		day	= stoi(_init->getLeaf("day"));
+		year	= _init->safeGetInt("year");
+		month	= _init->safeGetInt("month");
+		day	= _init->safeGetInt("day");
 	}
 	else
 	{
@@ -146,95 +149,17 @@ ostream& operator<<(ostream& out, const date& d)
 
 float date::diffInYears(const date& _rhs) const
 {
-	float years = float(year - _rhs.year);	// the difference in years
-
-	int lhsDays;	// the number of says into the year on the left-hand side
-	switch (month)
-	{
-		case 1:
-			lhsDays = day;
-			break;
-		case 2:
-			lhsDays = day + 31;
-			break;
-		case 3:
-			lhsDays = day + 59;
-			break;
-		case 4:
-			lhsDays = day + 90;
-			break;
-		case 5:
-			lhsDays = day + 120;
-			break;
-		case 6:
-			lhsDays = day + 151;
-			break;
-		case 7:
-			lhsDays = day + 181;
-			break;
-		case 8:
-			lhsDays = day + 212;
-			break;
-		case 9:
-			lhsDays = day + 243;
-			break;
-		case 10:
-			lhsDays = day + 273;
-			break;
-		case 11:
-			lhsDays = day + 304;
-			break;
-		case 12:
-		default:
-			lhsDays = day + 334;
-			break;
-	}
-
-	int rhsDays;	// the number of says into the year on the right-hand side
-	switch (month)
-	{
-		case 1:
-			rhsDays = day;
-			break;
-		case 2:
-			rhsDays = day + 31;
-			break;
-		case 3:
-			rhsDays = day + 59;
-			break;
-		case 4:
-			rhsDays = day + 90;
-			break;
-		case 5:
-			rhsDays = day + 120;
-			break;
-		case 6:
-			rhsDays = day + 151;
-			break;
-		case 7:
-			rhsDays = day + 181;
-			break;
-		case 8:
-			rhsDays = day + 212;
-			break;
-		case 9:
-			rhsDays = day + 243;
-			break;
-		case 10:
-			rhsDays = day + 273;
-			break;
-		case 11:
-			rhsDays = day + 304;
-			break;
-		case 12:
-		default:
-			rhsDays = day + 334;
-			break;
-	}
-
-	years += (lhsDays - rhsDays) / 365;
+	float years = static_cast<float>(year - _rhs.year);	// the difference in years
+	years += (calculateDayInYear() - _rhs.calculateDayInYear()) / 365;
 
 	return years;
+}
+
+
+const int daysByMonth[] = { 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334 };
+int date::calculateDayInYear() const
+{
+	return day + daysByMonth[month - 1];
 }
 
 
@@ -251,6 +176,12 @@ void date::delayedByMonths(const int _months)
 }
 
 
+void date::subtractYears(const int _years)
+{
+	year -= _years;
+}
+
+
 bool date::isSet() const
 {
 	const date default_date;	// an instance with the default date
@@ -260,7 +191,7 @@ bool date::isSet() const
 
 string date::toString() const
 {
-	char buf[16];	// a buffer to temporarily hold the formatted string
-	sprintf_s(buf, 16, "%d.%d.%d", year, month, day);
-	return string(buf);
+	stringstream buf;
+	buf << year << '.' << month << '.' << day;
+	return buf.str();
 }

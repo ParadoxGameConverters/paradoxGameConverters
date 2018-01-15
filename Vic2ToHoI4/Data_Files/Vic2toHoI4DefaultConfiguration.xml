@@ -85,20 +85,64 @@
 						<maxValue>100.0</maxValue>
 					</preference>
 					<preference>
-						<name>drop_minor_ideologies</name>
-						<friendlyName>Drop Minor Ideologies</friendlyName>
-						<description>Convert only major ideologies.</description>
+						<name>ideologies</name>
+						<friendlyName>Ideologies Options</friendlyName>
+						<description>Which ideologies end up in the conversion</description>
 						<entryOptions>
 							<entryOption>
-								<name>true</name>
-								<friendlyName>Yes</friendlyName>
+								<name>keep_major</name>
+								<friendlyName>Keep major</friendlyName>
 								<description>Keep only major ideologies.</description>
 								<isDefault>true</isDefault>
 							</entryOption>
 							<entryOption>
-							<name>false</name>
+								<name>keep_all</name>
+								<friendlyName>Keep all ideologies</friendlyName>
+								<description>Keep all ideologies (democratic, fascist, communist, absolutist, radical).</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>keep_default</name>
+								<friendlyName>Keep default ideologies</friendlyName>
+								<description>Keep default ideologies (democratic, fascist, communist).</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+						</entryOptions>
+					</preference>
+					<preference>
+						<name>remove_cores</name>
+						<friendlyName>Remove cores</friendlyName>
+						<description>Should some cores be removed during conversion</description>
+						<entryOptions>
+							<entryOption>
+								<name>true</name>
+								<friendlyName>True</friendlyName>
+								<description>Remove cores that should be removed.</description>
+								<isDefault>true</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>false</name>
+								<friendlyName>False</friendlyName>
+								<description>Don't remove cores that should be removed.</description>
+								<isDefault>false</isDefault>
+							</entryOption>
+						</entryOptions>
+					</preference>
+					<preference>
+						<name>debug</name>
+						<friendlyName>Debug?</friendlyName>
+						<description>Whether or not to output a debug mod</description>
+						<entryOptions>
+							<entryOption>
+								<name>no</name>
 								<friendlyName>No</friendlyName>
-								<description>Keep all ideologies.</description>
+								<description>Output a normal mod</description>
+								<isDefault>true</isDefault>
+							</entryOption>
+							<entryOption>
+								<name>yes</name>
+								<friendlyName>Yes</friendlyName>
+								<description>Output a debug mod</description>
 								<isDefault>false</isDefault>
 							</entryOption>
 						</entryOptions>

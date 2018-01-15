@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -25,7 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Leader::HoI4Leader(vector<string>& firstNames, vector<string>& lastNames, string _country, string _type, leaderTraitsMap& _traitsMap, vector<string>& portraits):
+HoI4Leader::HoI4Leader(vector<string>& firstNames, vector<string>& lastNames, const string& _country, const string& _type, leaderTraitsMap& _traitsMap, vector<string>& portraits):
 	ID(Configuration::getNextLeaderID()),
 	name(firstNames[rand() % firstNames.size()] + " " + lastNames[rand() % lastNames.size()]),
 	country(_country),
@@ -55,7 +55,7 @@ HoI4Leader::HoI4Leader(vector<string>& firstNames, vector<string>& lastNames, st
 }
 
 
-HoI4Leader::HoI4Leader(V2Leader* srcLeader, string _country, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, vector<string>& portraits):
+HoI4Leader::HoI4Leader(V2Leader* srcLeader, const string& _country, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, vector<string>& portraits):
 	ID(Configuration::getNextLeaderID()),
 	name(srcLeader->getName()),
 	country(_country),
@@ -112,7 +112,7 @@ HoI4Leader::HoI4Leader(V2Leader* srcLeader, string _country, personalityMap& lan
 
 void HoI4Leader::output(FILE * output)
 {
-	fprintf(output, "%d = {\n", ID);
+	fprintf(output, "%u = {\n", ID);
 	fprintf(output, "\tname = \"%s\"\n", name.c_str());
 	fprintf(output, "\tcountry = %s\n", country.c_str());
 	fprintf(output, "\ttype = %s\n", type.c_str());

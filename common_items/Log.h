@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2017 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -48,11 +48,10 @@ enum class LogLevel
 class Log
 {
 	public:
-		Log(LogLevel);
+		explicit Log(LogLevel);
 		~Log();
 
-		template<class T>
-		Log& operator<<(T t)
+		template<class T>	Log& operator<<(T t)
 		{
 			logMessageStream << t;
 			return *this;
@@ -60,9 +59,12 @@ class Log
 
 	private:
 		static void WriteToFile(LogLevel, const std::string& logMessage);
+		static void WriteTheTime(std::ofstream& logFile);
 
-		LogLevel logLevel;							// the current log level
-		std::ostringstream logMessageStream;	// the output stream to the log file
+		LogLevel logLevel;
+		std::ostringstream logMessageStream;
 };
+
+
 
 #endif // LOG_H_

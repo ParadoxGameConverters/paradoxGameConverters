@@ -36,7 +36,7 @@ using namespace std;
 class HoI4StrategicRegion
 {
 	public:
-		HoI4StrategicRegion(const string& _filename);
+		explicit HoI4StrategicRegion(const string& _filename);
 		void output(const string& path) const;
 
 		int			getID() const				{ return ID; }

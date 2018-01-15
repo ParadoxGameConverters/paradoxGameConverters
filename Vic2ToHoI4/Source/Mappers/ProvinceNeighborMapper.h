@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include <optional>
 #include <map>
 #include <set>
 #include "../bitmap_image.hpp"
@@ -48,9 +49,14 @@ class provinceNeighborMapper
 			return getInstance()->GetNeighbors(province);
 		}
 
-		static const point getBorderCenter(int mainProvince, int neighbor)
+		static const optional<point> getBorderCenter(int mainProvince, int neighbor)
 		{
 			return getInstance()->GetBorderCenter(mainProvince, neighbor);
+		}
+
+		static optional<int> getProvinceNumber(double x, double y)
+		{
+			return getInstance()->GetProvinceNumber(x, y);
 		}
 
 	private:
@@ -69,20 +75,23 @@ class provinceNeighborMapper
 		provinceNeighborMapper(const provinceNeighborMapper&) = delete;
 		provinceNeighborMapper& operator=(const provinceNeighborMapper&) = delete;
 
-		Color getCenterColor(bitmap_image& provinces, point position) const;
-		Color getAboveColor(bitmap_image& provinces, point position, int height) const;
-		Color getBelowColor(bitmap_image& provinces, point position, int height) const;
-		Color getLeftColor(bitmap_image& provinces, point position, int width) const;
-		Color getRightColor(bitmap_image& provinces, point position, int width) const;
-		void handleNeighbor(Color centerColor, Color otherColor, point position);
+		ConverterColor::Color getCenterColor(point position);
+		ConverterColor::Color getAboveColor(point position, int height);
+		ConverterColor::Color getBelowColor(point position, int height);
+		ConverterColor::Color getLeftColor(point position, int width);
+		ConverterColor::Color getRightColor(point position, int width);
+		void handleNeighbor(ConverterColor::Color centerColor, ConverterColor::Color otherColor, const point& position);
 		void addNeighbor(int mainProvince, int neighborProvince);
 		void addPointToBorder(int mainProvince, int neighborProvince, point position);
 
 		const set<int> GetNeighbors(int province) const;
-		const point GetBorderCenter(int mainProvince, int neighbor) const;
+		const optional<point> GetBorderCenter(int mainProvince, int neighbor) const;
+		optional<int> GetProvinceNumber(double x, double y);
 
 		map<int, set<int>> provinceNeighbors;
 		map<int, bordersWith> borders;
+
+		bitmap_image provinceMap;
 };
 
 

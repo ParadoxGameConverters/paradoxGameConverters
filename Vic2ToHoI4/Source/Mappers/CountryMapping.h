@@ -28,8 +28,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Object.h"
 #include <map>
+#include <optional>
 #include <string>
-#include <boost/bimap.hpp>
 using namespace std;
 
 
@@ -47,12 +47,12 @@ class CountryMapper
 			getInstance()->CreateMappings(srcWorld);
 		}
 
-		static const string getHoI4Tag(const string& V2Tag)
+		static optional<string> getHoI4Tag(const string& V2Tag)
 		{
 			return getInstance()->GetHoI4Tag(V2Tag);
 		}
 
-		static const string getVic2Tag(const string& HoI4Tag)
+		static optional<string> getVic2Tag(const string& HoI4Tag)
 		{
 			return getInstance()->GetVic2Tag(HoI4Tag);
 		}
@@ -86,11 +86,12 @@ class CountryMapper
 		void LogMapping(const string& sourceTag, const string& targetTag, const string& reason) const;
 		bool tagIsAlreadyAssigned(const string& HoI4Tag) const;
 
-		const string GetHoI4Tag(const string& V2Tag) const;
-		const string GetVic2Tag(const string& HoI4Tag) const;
+		optional<string> GetHoI4Tag(const string& V2Tag) const;
+		optional<string> GetVic2Tag(const string& HoI4Tag) const;
 
 		map<string, vector<string>> Vic2TagToHoI4TagsRules;
-		boost::bimap<string, string> V2TagToHoI4TagMap;
+		map<string, string> V2TagToHoI4TagMap;
+		map<string, string> HoI4TagToV2TagMap;
 
 		char generatedHoI4TagPrefix;
 		int generatedHoI4TagSuffix;

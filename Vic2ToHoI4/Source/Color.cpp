@@ -24,8 +24,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Color.h"
 #include <chrono>
 #include <random>
-#include <boost/lexical_cast.hpp>
 #include "Object.h"
+using namespace ConverterColor;
 
 
 
@@ -34,21 +34,21 @@ Color::Color()
 {}
 
 
-Color::Color(const int r, const int g, const int b)
-: initialized(true), c({ r, g, b })
+Color::Color(const red r, const green g, const blue b)
+: initialized(true), c({ r.Red, g.Green, b.Blue })
 {}
 
 
 Color::Color(shared_ptr<Object> colorObject)
 : initialized(false), c({ 0, 0, 0 })
 {
-	auto colorTokens = colorObject->getTokens();	// the colors held by the object
-	initialized = (colorTokens.size() >= 3);
+	initialized = (colorObject->numTokens() >= 3);
 	for (size_t i = 0; i < 3; ++i)
 	{
-		if (!colorTokens[i].empty())
+		auto possibleToken = colorObject->getToken(i);
+		if (possibleToken)
 		{
-			c[i] = boost::lexical_cast<int>(colorTokens[i]);
+			c[i] = stoi(*possibleToken);
 		}
 	}
 }
@@ -76,18 +76,18 @@ void Color::RandomlyFlunctuate(const int stdDev)
 }
 
 
-ostream& operator<<(ostream& out, const Color& color)
+ostream& ConverterColor::operator<<(ostream& out, const Color& color)
 {
 	out << color.c[0] << ' ' << color.c[1] << ' ' << color.c[2];
 	return out;
 }
 
 
-void Color::GetRGB(int& r, int& g, int& b) const
+void Color::GetRGB(red& r, green& g, blue& b) const
 {
-	r = c[0];
-	g = c[1];
-	b = c[2];
+	r.Red = c[0];
+	g.Green = c[1];
+	b.Blue = c[2];
 }
 
 

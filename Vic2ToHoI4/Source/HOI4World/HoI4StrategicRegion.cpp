@@ -37,20 +37,26 @@ HoI4StrategicRegion::HoI4StrategicRegion(const string& _filename):
 	newProvinces(),
 	weatherObj()
 {
-	shared_ptr<Object> fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/map/strategicregions/" + filename);
-	vector<shared_ptr<Object>> regionObjs = fileObj->getValue("strategic_region");
-
-	vector<shared_ptr<Object>> IDObjs = regionObjs[0]->getValue("id");
-	ID = stoi(IDObjs[0]->getLeaf());
-
-	vector<shared_ptr<Object>>	provincesObjs = regionObjs[0]->getValue("provinces");
-	vector<string> provinceStrings = provincesObjs[0]->getTokens();
-	for (auto provinceString: provinceStrings)
+	auto fileObj = parser_UTF8::doParseFile(Configuration::getHoI4Path() + "/map/strategicregions/" + filename);
+	if (fileObj)
 	{
-		oldProvinces.push_back(stoi(provinceString));
-	}
+		auto regionObj = fileObj->safeGetObject("strategic_region");
+		if (regionObj != nullptr)
+		{
+			ID = regionObj->safeGetInt("id", ID);
 
-	weatherObj = regionObjs[0]->getValue("weather")[0];
+			for (auto provinceString: regionObj->safeGetTokens("provinces"))
+			{
+				oldProvinces.push_back(stoi(provinceString));
+			}
+
+			weatherObj = regionObj->safeGetObject("weather");
+		}
+	}
+	else
+	{
+		LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI4Path() << "/map/strategicregions/" << filename;
+	}
 }
 
 

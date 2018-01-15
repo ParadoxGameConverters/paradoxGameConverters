@@ -43,6 +43,7 @@ HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, const string& _owne
 	ownerTag(_ownerTag),
 	cores(),
 	capitalState(false),
+	impassable(false),
 	manpower(0),
 	civFactories(0),
 	milFactories(0),
@@ -54,7 +55,8 @@ HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, const string& _owne
 	resources(),
 	victoryPointPosition(0),
 	victoryPointValue(0),
-	debugVictoryPoints()
+	debugVictoryPoints(),
+	secondaryDebugVictoryPoints()
 {}
 
 
@@ -83,22 +85,29 @@ void HoI4State::output(const string& _filename) const
 		out << "\t}\n";
 	}
 	out << "\tstate_category = "<< category << "\n";
+	if (impassable)
+	{
+		out << "\timpassable = yes\n";
+	}
 	out << "\n";
 	out << "\thistory={\n";
 	out << "\t\towner = " << ownerTag << "\n";
 	if ((victoryPointValue > 0) && (victoryPointPosition != 0))
 	{
-		out << "\t\tvictory_points = { " << victoryPointPosition << " " << victoryPointValue << " }\n";
 		if (Configuration::getDebug())
 		{
 			for (auto VP: debugVictoryPoints)
 			{
-				if (VP == victoryPointPosition)
-				{
-					continue;
-				}
+				out << "\t\tvictory_points = { " << VP << " 10 }\n";
+			}
+			for (auto VP: secondaryDebugVictoryPoints)
+			{
 				out << "\t\tvictory_points = { " << VP << " 1 }\n";
 			}
+		}
+		else
+		{
+			out << "\t\tvictory_points = { " << victoryPointPosition << " " << victoryPointValue << " }\n";
 		}
 	}
 	out << "\t\tbuildings = {\n";
@@ -148,10 +157,10 @@ void HoI4State::convertNavalBases()
 			continue;
 		}
 
-		int navalBaseLocation = determineNavalBaseLocation(sourceProvince);
-		if (navalBaseLocation != -1)
+		auto navalBaseLocation = determineNavalBaseLocation(sourceProvince);
+		if (navalBaseLocation)
 		{
-			addNavalBase(navalBaseLevel, navalBaseLocation);
+			addNavalBase(navalBaseLevel, *navalBaseLocation);
 		}
 	}
 }
@@ -169,7 +178,7 @@ int HoI4State::determineNavalBaseLevel(const V2Province* sourceProvince)
 }
 
 
-int HoI4State::determineNavalBaseLocation(const V2Province* sourceProvince)
+optional<int> HoI4State::determineNavalBaseLocation(const V2Province* sourceProvince)
 {
 	auto provinceMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(sourceProvince->getNumber());
 	if (provinceMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
@@ -183,7 +192,7 @@ int HoI4State::determineNavalBaseLocation(const V2Province* sourceProvince)
 		}
 	}
 
-	return -1;
+	return {};
 }
 
 
@@ -208,18 +217,19 @@ void HoI4State::addCores(const vector<string>& newCores)
 bool HoI4State::assignVPFromVic2Province(int Vic2ProvinceNumber)
 {
 	auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(Vic2ProvinceNumber);
-	if (
-		(provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end()) &&
-		(isProvinceInState(provMapping->second[0]))
-		)
+	if (provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
 	{
-		assignVP(provMapping->second[0]);
-		return true;
+		for (auto province: provMapping->second)
+		{
+			if (isProvinceInState(province))
+			{
+				assignVP(province);
+				return true;
+			}
+		}
 	}
-	else
-	{
-		return false;
-	}
+
+	return false;
 }
 
 
@@ -235,9 +245,9 @@ void HoI4State::assignVP(int location)
 }
 
 
-int HoI4State::getMainNavalLocation() const
+optional<int> HoI4State::getMainNavalLocation() const
 {
-	int mainLocation = 0;
+	optional<int> mainLocation;
 	int mainSize = 0;
 	for (auto navalBase: navalBases)
 	{
@@ -254,14 +264,19 @@ int HoI4State::getMainNavalLocation() const
 
 void HoI4State::tryToCreateVP()
 {
+	bool VPCreated = false;
+
 	auto vic2CapitalProvince = stateMapper::getCapitalProvince(sourceState->getStateID());
-	bool VPCreated = assignVPFromVic2Province(vic2CapitalProvince);
+	if (vic2CapitalProvince)
+	{
+		VPCreated = assignVPFromVic2Province(*vic2CapitalProvince);
+	}
 
 	if (!VPCreated)
 	{
-		if (!sourceState->isPartialState())
+		if (Configuration::getDebug() && !sourceState->isPartialState() && !impassable)
 		{
-			LOG(LogLevel::Warning) << "Could not initially create VP for state " << ID << ", but state is not split";
+			LOG(LogLevel::Warning) << "Could not initially create VP for state " << ID << ", but state is not split (or was the passable part of a partially passable state).";
 		}
 		for (auto province: sourceState->getProvinces())
 		{
@@ -294,7 +309,7 @@ void HoI4State::tryToCreateVP()
 
 	if (!VPCreated)
 	{
-		LOG(LogLevel::Warning) << "Could not create VP for state";
+		LOG(LogLevel::Warning) << "Could not create VP for state " << ID;
 	}
 
 	addDebugVPs();
@@ -307,11 +322,15 @@ void HoI4State::addDebugVPs()
 	{
 		auto provMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(sourceProvinceNum);
 		if (
-			(provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end()) &&
-			(isProvinceInState(provMapping->second[0]))
+				(provMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end()) &&
+				(isProvinceInState(provMapping->second[0]))
 			)
 		{
 			debugVictoryPoints.insert(provMapping->second[0]);
+		}
+		for (unsigned int i = 1; i < provMapping->second.size(); i++)
+		{
+			secondaryDebugVictoryPoints.insert(provMapping->second[i]);
 		}
 	}
 }
@@ -321,7 +340,24 @@ void HoI4State::addManpower()
 {
 	for (auto sourceProvince: sourceState->getProvinces())
 	{
-		manpower += static_cast<int>(sourceProvince->getTotalPopulation() * 4 * Configuration::getManpowerFactor());
+		bool provinceIsInState = false;
+		auto mapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(sourceProvince->getNumber());
+		if (mapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
+		{
+			for (auto HoI4Province: mapping->second)
+			{
+				if (isProvinceInState(HoI4Province))
+				{
+					provinceIsInState = true;
+					break;
+				}
+			}
+		}
+
+		if (provinceIsInState)
+		{
+			manpower += static_cast<int>(sourceProvince->getTotalPopulation() * 4 * Configuration::getManpowerFactor());
+		}
 	}
 }
 
@@ -463,7 +499,7 @@ void HoI4State::setIndustry(int factories)
 
 bool HoI4State::amICoastal()
 {
-	map<int, int> coastalProvinces = coastalHoI4ProvincesMapper::getCoastalProvinces();
+	auto coastalProvinces = coastalHoI4ProvincesMapper::getCoastalProvinces();
 	for (auto province: provinces)
 	{
 		auto itr = coastalProvinces.find(province);
@@ -479,5 +515,5 @@ bool HoI4State::amICoastal()
 
 bool HoI4State::isProvinceInState(int provinceNum)
 {
-	return (provinces.find(provinceNum) != provinces.end());
+	return (provinces.count(provinceNum) > 0);
 }

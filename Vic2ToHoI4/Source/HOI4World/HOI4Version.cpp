@@ -27,36 +27,18 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 HOI4Version::HOI4Version():
-	first(0),
-	second(0),
-	third(0)
+	first(1),
+	second(4),
+	third(2)
 {
 }
 
 
 HOI4Version::HOI4Version(shared_ptr<Object> obj):
-	first(0),
-	second(0),
-	third(0)
+	first(obj->safeGetInt("first")),
+	second(obj->safeGetInt("second")),
+	third(obj->safeGetInt("third"))
 {
-	vector<shared_ptr<Object>> numberObj;
-	numberObj = obj->getValue("first");
-	if (numberObj.size() > 0)
-	{
-		first = stoi(numberObj[0]->getLeaf());
-	}
-
-	numberObj = obj->getValue("second");
-	if (numberObj.size() > 0)
-	{
-		second = stoi(numberObj[0]->getLeaf());
-	}
-
-	numberObj = obj->getValue("third");
-	if (numberObj.size() > 0)
-	{
-		third = stoi(numberObj[0]->getLeaf());
-	}
 }
 
 

@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -28,19 +28,21 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "../Mappers/Mapper.h"
 #include "../Color.h"
-#include "V2Inventions.h"
-#include <vector>
+#include "Date.h"
+#include "V2Party.h"
+#include <functional>
 #include <map>
 #include <memory>
+#include <optional>
 #include <set>
 #include <string>
+#include <vector>
 using namespace std;
 
 
 
 class V2Army;
 class V2Leader;
-class V2Party;
 class V2Province;
 class V2Relations;
 class Vic2State;
@@ -50,10 +52,10 @@ class Vic2State;
 class V2Country
 {
 	public:
-		V2Country(shared_ptr<Object> obj);
+		explicit V2Country(shared_ptr<Object> obj);
 
 		void addProvince(const pair<const int, V2Province*>& province) { provinces.insert(province); }
-		void setColor(const Color& newColor) { color = newColor; }
+		void setColor(const ConverterColor::Color& newColor) { color = newColor; }
 		void setAsGreatNation() { greatNation = true; }
 		void addCore(V2Province* core) { cores.push_back(core); }
 		void replaceCores(vector<V2Province*> newCores) { cores.swap(newCores); }
@@ -63,6 +65,7 @@ class V2Country
 		void determineEmployedWorkers();
 		void setLocalisationNames();
 		void setLocalisationAdjectives();
+		void handleMissingCulture();
 
 		map<string, const V2Relations*> getRelations() const { return relations; }
 		vector<Vic2State*> getStates() const { return states; }
@@ -73,9 +76,10 @@ class V2Country
 		bool isAnAcceptedCulture(const string& culture) const { return (acceptedCultures.count(culture) > 0); }
 		set<string> getInventions() const { return inventions; }
 		string getGovernment() const { return government; }
+		date getLastElection() const { return lastElection; }
 		int getCapital() const { return capital; }
 		set<string> getTechs() const { return techs; }
-		const Color& getColor() const { return color; }
+		const ConverterColor::Color& getColor() const { return color; }
 		double getEducationSpending() const { return educationSpending; }
 		double getMilitarySpending() const { return militarySpending; }
 		vector<const V2Army*> getArmies() const { return armies; }
@@ -92,32 +96,25 @@ class V2Country
 		bool isHuman() const { return human; }
 		map<string, double> getUpperHouseComposition() const { return upperHouseComposition; }
 
-		string getReform(const string& reform) const;
-		string getName(const string& language) const;
-		string getAdjective(const string& language) const;
+		optional<string> getReform(const string& reform) const;
+		optional<string> getName(const string& language) const;
+		optional<string> getAdjective(const string& language) const;
 		double getUpperHousePercentage(const string& ideology) const;
 		long getEmployedWorkers() const;
-		const V2Party* getRulingParty(const vector<const V2Party*>& allParties) const;
-		set<const V2Party*> getActiveParties(const vector<const V2Party*>& allParties) const;
+		optional<const V2Party> getRulingParty(const vector<V2Party>& allParties) const;
+		set<V2Party, function<bool (const V2Party&, const V2Party&)>> getActiveParties(const vector<V2Party>& allParties) const;
 		bool hasCoreOnCapital() const;
 
 	private:
 		V2Country(const V2Country&) = delete;
 		V2Country& operator=(const V2Country&) = delete;
 
-		void readInDomainNameAndAdjective(shared_ptr<Object> countryObj);
-		void readInCapital(shared_ptr<Object> countryObj);
 		void readInCultures(shared_ptr<Object> countryObj);
-		void readInCivilized(shared_ptr<Object> countryObj);
 		void readInTechnology(shared_ptr<Object> countryObj);
 		void readInInventions(shared_ptr<Object> countryObj);
 		void readInPoliticalParties(shared_ptr<Object> countryObj);
 		void readInSpending(shared_ptr<Object> countryObj);
-		void readInRevanchism(shared_ptr<Object> countryObj);
-		void readInWarExhaustion(shared_ptr<Object> countryObj);
-		void readInBadBoy(shared_ptr<Object> countryObj);
 		void readInReforms(shared_ptr<Object> countryObj);
-		void readInGovernment(shared_ptr<Object> countryObj);
 		void readInUpperHouse(shared_ptr<Object> countryObj);
 		void readInRelations(shared_ptr<Object> countryObj);
 		bool isCountryTag(const string& potentialTag);
@@ -125,13 +122,15 @@ class V2Country
 		void readInLeaders(shared_ptr<Object> countryObj);
 		void readInStates(shared_ptr<Object> countryObj);
 		void createNewState(shared_ptr<Object> stateObj);
-		void detectIfHuman(shared_ptr<Object> stateObj);
 
 		void setLocalisationName(const string& language, const string& name);
 		void setLocalisationAdjective(const string& language, const string& adjective);
 
+		map<string, int> determineCultureSizes();
+		string selectLargestCulture(const map<string, int>& cultureSizes);
+
 		string tag;
-		Color color;
+		ConverterColor::Color color;
 
 		vector<Vic2State*> states;
 		map<int, V2Province*> provinces;
@@ -164,6 +163,7 @@ class V2Country
 		map<string, double> upperHouseComposition;
 		unsigned	int rulingPartyID;
 		vector<unsigned int> activePartyIDs;
+		date lastElection;
 
 		string domainName;
 		string domainAdjective;

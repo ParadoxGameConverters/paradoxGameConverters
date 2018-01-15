@@ -27,17 +27,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/ProvinceNeighborMapper.h"
 #include "Log.h"
 #include "HoI4Province.h"
+#include <fstream>
+#include <iomanip>
+#include <regex>
 #include <string>
 using namespace std;
 
 
 
-HoI4Building::HoI4Building(int _stateID, double _xCoordinate, double _zCoordinate):
+HoI4Building::HoI4Building(int _stateID, const buildingPosition& _position):
 	stateID(_stateID),
-	xCoordinate(_xCoordinate),
-	yCoordinate(10.0),
-	zCoordinate(_zCoordinate),
-	rotation(0.0)
+	position(_position)
 {
 }
 
@@ -54,8 +54,8 @@ ostream& HoI4Building::print(ostream& out) const
 }
 
 
-HoI4NavalBase::HoI4NavalBase(int _stateID, double _xCoordinate, double _zCoordinate, int _connectingSeaProvince):
-	HoI4Building(_stateID, _xCoordinate, _zCoordinate),
+HoI4NavalBase::HoI4NavalBase(int _stateID, const buildingPosition& _position, int _connectingSeaProvince):
+	HoI4Building(_stateID, _position),
 	connectingSeaProvince(_connectingSeaProvince)
 {
 }
@@ -63,8 +63,9 @@ HoI4NavalBase::HoI4NavalBase(int _stateID, double _xCoordinate, double _zCoordin
 
 ostream& HoI4NavalBase::print(ostream& out) const
 {
-	out << stateID << ";naval_base;" << xCoordinate << ';' << 11/*yCoordinate*/ << ';' << zCoordinate << ';';
-	out << rotation << ';' << connectingSeaProvince << endl;
+	out << stateID << ";naval_base;";
+	out << fixed << setprecision(2) << position.xCoordinate << ';' << position.yCoordinate << ';' << position.zCoordinate << ';' << position.rotation << ';';
+	out << connectingSeaProvince << '\n';
 
 	return out;
 }
@@ -74,22 +75,68 @@ HoI4Buildings::HoI4Buildings(const map<int, int>& provinceToStateIDMap):
 	buildings()
 {
 	LOG(LogLevel::Info) << "Creating buildings";
+
+	importDefaultBuildings();
 	placeNavalBases(provinceToStateIDMap);
+}
+
+
+void HoI4Buildings::importDefaultBuildings()
+{
+	ifstream buildingsFile(Configuration::getHoI4Path() + "/map/buildings.txt");
+	if (!buildingsFile.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not open " << Configuration::getHoI4Path() << "/map/buildings.txt";
+		exit(-1);
+	}
+
+	while (!buildingsFile.eof())
+	{
+		string line;
+		getline(buildingsFile, line);
+		importDefaultBuilding(line);
+	}
+}
+
+
+void HoI4Buildings::importDefaultBuilding(const string& line)
+{
+	regex pattern("(.+);(.+);(.+);(.+);(.+);(.+);(.+)");
+	smatch matches;
+	if (regex_match(line, matches, pattern))
+	{
+		buildingPosition position;
+		position.xCoordinate = stof(matches[3].str());
+		position.yCoordinate = stof(matches[4].str());
+		position.zCoordinate = stof(matches[5].str());
+		position.rotation = stof(matches[6].str());
+
+		if (matches[2] == "naval_base")
+		{
+			importDefaultNavalBase(position, matches);
+		}
+	}
+}
+
+
+void HoI4Buildings::importDefaultNavalBase(const buildingPosition& position, const smatch& matches)
+{
+	int connectingSeaProvince = stoi(matches[7].str());
+
+	auto province = provinceNeighborMapper::getProvinceNumber(position.xCoordinate, position.zCoordinate);
+	if (province)
+	{
+		auto key = make_pair(*province, connectingSeaProvince);
+		defaultNavalBases[key] = position;
+	}
 }
 
 
 void HoI4Buildings::placeNavalBases(const map<int, int>& provinceToStateIDMap)
 {
-	map<int, int> coastalProvinces = coastalHoI4ProvincesMapper::getCoastalProvinces();
+	auto coastalProvinces = coastalHoI4ProvincesMapper::getCoastalProvinces();
 	for (auto province: coastalProvinces)
 	{
-		auto position = provinceNeighborMapper::getBorderCenter(province.first, province.second);
-		if (position.first == -1)
-		{
-			LOG(LogLevel::Warning) << "Could not find position for province " << province.first << ". Naval base not set.";
-			continue;
-		}
-
 		auto provinceToStateMapping = provinceToStateIDMap.find(province.first);
 		if (provinceToStateMapping == provinceToStateIDMap.end())
 		{
@@ -97,7 +144,42 @@ void HoI4Buildings::placeNavalBases(const map<int, int>& provinceToStateIDMap)
 			continue;
 		}
 
-		HoI4NavalBase* newNavalBase = new HoI4NavalBase(provinceToStateMapping->second, position.first, position.second, province.second);
+		buildingPosition position;
+		bool positionUnset = true;
+		int connectingSeaProvince = 0;
+		for (auto seaProvince: province.second)
+		{
+			auto defaultNavalBase = defaultNavalBases.find(make_pair(province.first, seaProvince));
+			if (defaultNavalBase != defaultNavalBases.end())
+			{
+				position = defaultNavalBase->second;
+				connectingSeaProvince = seaProvince;
+				positionUnset = false;
+			}
+		}
+
+		if (positionUnset)
+		{
+			connectingSeaProvince = province.second[0];
+			auto possiblePosition = provinceNeighborMapper::getBorderCenter(province.first, province.second[0]);
+			if (!possiblePosition)
+			{
+				LOG(LogLevel::Warning) << "Could not find position for province " << province.first << ". Naval base not set.";
+				continue;
+			}
+
+			position.xCoordinate = possiblePosition->first;
+			position.yCoordinate = 11.0;
+			position.zCoordinate = possiblePosition->second;
+			position.rotation = 0.0;
+
+			if (Configuration::getDebug())
+			{
+				LOG(LogLevel::Warning) << "The naval base from " << province.first << " to " << connectingSeaProvince << " at (" << position.xCoordinate << ", " << position.zCoordinate << ") did not have a location in default HoI4.";
+			}
+		}
+
+		HoI4NavalBase* newNavalBase = new HoI4NavalBase(provinceToStateMapping->second, position, connectingSeaProvince);
 		buildings.insert(make_pair(provinceToStateMapping->second, newNavalBase));
 	}
 }

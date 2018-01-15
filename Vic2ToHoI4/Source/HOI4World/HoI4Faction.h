@@ -39,18 +39,18 @@ class HoI4Faction
 {
 
 	public:
-		HoI4Faction(const HoI4Country* leader, vector<HoI4Country*> members): Factionleader(leader), Factionmembers(members) {}
+		HoI4Faction(shared_ptr<HoI4Country> leader, const vector<shared_ptr<HoI4Country>>& members): Factionleader(leader), Factionmembers(members) {}
 
-		const HoI4Country* getLeader() const { return Factionleader; }
-		vector<HoI4Country*> getMembers() const { return Factionmembers; }
-		void addMember(HoI4Country* addedCon) { Factionmembers.push_back(addedCon); }
+		shared_ptr<HoI4Country> getLeader() const { return Factionleader; }
+		vector<shared_ptr<HoI4Country>> getMembers() const { return Factionmembers; }
+		void addMember(shared_ptr<HoI4Country> addedCon) { Factionmembers.push_back(addedCon); }
 
 	private:
 		HoI4Faction(const HoI4Faction&) = delete;
 		HoI4Faction& operator=(const HoI4Faction&) = delete;
 
-		const HoI4Country* Factionleader;
-		vector<HoI4Country*> Factionmembers;
+		shared_ptr<HoI4Country> Factionleader;
+		vector<shared_ptr<HoI4Country>> Factionmembers;
 
 };
 

@@ -1002,13 +1002,13 @@ namespace Utils
 		return to;
 	}
 
-	std::string convertUTF8ToASCII(std::string UTF8)
+	std::string convertUTF8ToASCII(const std::string& UTF8)
 	{
 	        using namespace std;
 		return ConvertString<string, string>("UTF-8", "ASCII", UTF8);
 	}
 
-	std::string convertUTF8To8859_15(std::string UTF8)
+	std::string convertUTF8To8859_15(const std::string& UTF8)
 	{
 		using namespace std;
 		return ConvertString<string, string>("UTF−8", "ISO−8859−15", UTF8);
@@ -1024,7 +1024,7 @@ namespace Utils
 		return ConvertString<wstring, string>("wchar_t", "UTF-8", UTF16);
 	}
 
-	std::string convert8859_15ToUTF8(std::string input)
+	std::string convert8859_15ToUTF8(const std::string& input)
 	{
 		using namespace std;
 		return ConvertString<string, string>("ISO−8859−15", "UTF-8", input);

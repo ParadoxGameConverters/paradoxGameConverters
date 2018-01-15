@@ -35,16 +35,16 @@ provinceNeighborMapper* provinceNeighborMapper::instance = nullptr;
 
 provinceNeighborMapper::provinceNeighborMapper():
 	provinceNeighbors(),
-	borders()
+	borders(),
+	provinceMap(Configuration::getHoI4Path() + "/map/provinces.bmp")
 {
-	bitmap_image provinces(Configuration::getHoI4Path() + "/map/provinces.bmp");
-	if (!provinces)
+	if (!provinceMap)
 	{
 		LOG(LogLevel::Error) << "Could not open " << Configuration::getHoI4Path() << "/map/provinces.bmp";
 	}
 
-	unsigned int height = provinces.height();
-	unsigned int width = provinces.width();
+	unsigned int height = provinceMap.height();
+	unsigned int width = provinceMap.width();
 
 	for (unsigned int y = 0; y < height; y++)
 	{
@@ -52,11 +52,11 @@ provinceNeighborMapper::provinceNeighborMapper():
 		{
 			point position = { x, y };
 
-			Color centerColor = getCenterColor(provinces, position);
-			Color aboveColor = getAboveColor(provinces, position, height);
-			Color belowColor = getBelowColor(provinces, position, height);
-			Color leftColor = getLeftColor(provinces, position, width);
-			Color rightColor = getRightColor(provinces, position, width);
+			ConverterColor::Color centerColor = getCenterColor(position);
+			ConverterColor::Color aboveColor = getAboveColor(position, height);
+			ConverterColor::Color belowColor = getBelowColor(position, height);
+			ConverterColor::Color leftColor = getLeftColor(position, width);
+			ConverterColor::Color rightColor = getRightColor(position, width);
 
 			position.second = height - position.second - 1;
 			if (centerColor != aboveColor)
@@ -80,17 +80,17 @@ provinceNeighborMapper::provinceNeighborMapper():
 }
 
 
-Color provinceNeighborMapper::getCenterColor(bitmap_image& provinces, point position) const
+ConverterColor::Color provinceNeighborMapper::getCenterColor(point position)
 {
 	rgb_t color;
-	provinces.get_pixel(position.first, position.second, color);
+	provinceMap.get_pixel(position.first, position.second, color);
 
-	Color theColor(color.red, color.green, color.blue);
+	ConverterColor::Color theColor(ConverterColor::red(color.red), ConverterColor::green(color.green), ConverterColor::blue(color.blue));
 	return theColor;
 }
 
 
-Color provinceNeighborMapper::getAboveColor(bitmap_image& provinces, point position, int height) const
+ConverterColor::Color provinceNeighborMapper::getAboveColor(point position, int height)
 {
 	if (position.second > 0)
 	{
@@ -98,14 +98,14 @@ Color provinceNeighborMapper::getAboveColor(bitmap_image& provinces, point posit
 	}
 
 	rgb_t color;
-	provinces.get_pixel(position.first, position.second, color);
+	provinceMap.get_pixel(position.first, position.second, color);
 
-	Color theColor(color.red, color.green, color.blue);
+	ConverterColor::Color theColor(color.red, color.green, color.blue);
 	return theColor;
 }
 
 
-Color provinceNeighborMapper::getBelowColor(bitmap_image& provinces, point position, int height) const
+ConverterColor::Color provinceNeighborMapper::getBelowColor(point position, int height)
 {
 	if (position.second < height - 1)
 	{
@@ -113,14 +113,14 @@ Color provinceNeighborMapper::getBelowColor(bitmap_image& provinces, point posit
 	}
 
 	rgb_t color;
-	provinces.get_pixel(position.first, position.second, color);
+	provinceMap.get_pixel(position.first, position.second, color);
 
-	Color theColor(color.red, color.green, color.blue);
+	ConverterColor::Color theColor(color.red, color.green, color.blue);
 	return theColor;
 }
 
 
-Color provinceNeighborMapper::getLeftColor(bitmap_image& provinces, point position, int width) const
+ConverterColor::Color provinceNeighborMapper::getLeftColor(point position, int width)
 {
 	if (position.first > 0)
 	{
@@ -132,14 +132,14 @@ Color provinceNeighborMapper::getLeftColor(bitmap_image& provinces, point positi
 	}
 
 	rgb_t color;
-	provinces.get_pixel(position.first, position.second, color);
+	provinceMap.get_pixel(position.first, position.second, color);
 
-	Color theColor(color.red, color.green, color.blue);
+	ConverterColor::Color theColor(color.red, color.green, color.blue);
 	return theColor;
 }
 
 
-Color provinceNeighborMapper::getRightColor(bitmap_image& provinces, point position, int width) const
+ConverterColor::Color provinceNeighborMapper::getRightColor(point position, int width)
 {
 	if (position.first < width - 1)
 	{
@@ -151,20 +151,23 @@ Color provinceNeighborMapper::getRightColor(bitmap_image& provinces, point posit
 	}
 
 	rgb_t color;
-	provinces.get_pixel(position.first, position.second, color);
+	provinceMap.get_pixel(position.first, position.second, color);
 
-	Color theColor(color.red, color.green, color.blue);
+	ConverterColor::Color theColor(color.red, color.green, color.blue);
 	return theColor;
 }
 
 
-void provinceNeighborMapper::handleNeighbor(Color centerColor, Color otherColor, point position)
+void provinceNeighborMapper::handleNeighbor(ConverterColor::Color centerColor, ConverterColor::Color otherColor, const point& position)
 {
-	int centerProvince = provinceDefinitions::getProvinceFromColor(centerColor);
-	int otherProvince = provinceDefinitions::getProvinceFromColor(otherColor);
+	auto centerProvince = provinceDefinitions::getProvinceFromColor(centerColor);
+	auto otherProvince = provinceDefinitions::getProvinceFromColor(otherColor);
 
-	addNeighbor(centerProvince, otherProvince);
-	addPointToBorder(centerProvince, otherProvince, position);
+	if (centerProvince && otherProvince)
+	{
+		addNeighbor(*centerProvince, *otherProvince);
+		addPointToBorder(*centerProvince, *otherProvince, position);
+	}
 }
 
 
@@ -231,7 +234,7 @@ const set<int> provinceNeighborMapper::GetNeighbors(int province) const
 }
 
 
-const point provinceNeighborMapper::GetBorderCenter(int mainProvince, int neighbor) const
+const optional<point> provinceNeighborMapper::GetBorderCenter(int mainProvince, int neighbor) const
 {
 	auto bordersWithNeighbors = borders.find(mainProvince);
 	if (bordersWithNeighbors == borders.end())
@@ -247,4 +250,13 @@ const point provinceNeighborMapper::GetBorderCenter(int mainProvince, int neighb
 	}
 
 	return border->second[(border->second.size() / 2)];
+}
+
+
+optional<int> provinceNeighborMapper::GetProvinceNumber(double x, double y)
+{
+	rgb_t color;
+	provinceMap.get_pixel(static_cast<unsigned int>(x), (provinceMap.height() - 1) - static_cast<unsigned int>(y), color);
+	ConverterColor::Color theColor(color.red, color.green, color.blue);
+	return provinceDefinitions::getProvinceFromColor(theColor);
 }

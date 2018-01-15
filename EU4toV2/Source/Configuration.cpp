@@ -50,7 +50,7 @@ Configuration::Configuration()
 		exit (-1);
 	}
 
-	EU4Path = obj[0]->getLeaf("EU4directory");
+	EU4Path = obj[0]->safeGetString("EU4directory");
 	if (!Utils::doesFolderExist(EU4Path))
 	{
 		LOG(LogLevel::Error) << "No Europa Universalis 4 path was specified in configuration.txt, or the path was invalid";
@@ -73,10 +73,10 @@ Configuration::Configuration()
 	}
 
 
-	EU4DocumentsPath	= obj[0]->getLeaf("EU4DocumentsDirectory");
-	CK2ExportPath		= obj[0]->getLeaf("CK2ExportDirectory");
+	EU4DocumentsPath	= obj[0]->safeGetString("EU4DocumentsDirectory");
+	CK2ExportPath		= obj[0]->safeGetString("CK2ExportDirectory");
 
-	V2Path = obj[0]->getLeaf("V2directory");
+	V2Path = obj[0]->safeGetString("V2directory");
 	if (Utils::DoesFileExist(V2Path))
 	{
 		LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
@@ -93,7 +93,7 @@ Configuration::Configuration()
 		LOG(LogLevel::Debug) << "Victoria 2 install path is " << V2Path;
 	}
 
-	V2DocumentsPath = obj[0]->getLeaf("V2Documentsdirectory");
+	V2DocumentsPath = obj[0]->safeGetString("V2Documentsdirectory");
 	if (Utils::DoesFileExist(V2DocumentsPath))
 	{
 		LOG(LogLevel::Error) << "No Victoria 2 documents directory was specified in configuration.txt, or the path was invalid";
@@ -104,11 +104,11 @@ Configuration::Configuration()
 		LOG(LogLevel::Debug) << "Victoria 2 documents directory is " << V2DocumentsPath;
 	}
 
-	V2Gametype			= obj[0]->getLeaf("V2gametype");
-	resetProvinces		= "no";//obj[0]->getLeaf("resetProvinces");
-	MaxLiteracy			= stof(obj[0]->getLeaf("max_literacy"));
-	Removetype			= obj[0]->getLeaf("Removetype");
-	libertyThreshold	= stof(obj[0]->getLeaf("libertyThreshold"));
-	convertPopTotals	= (obj[0]->getLeaf("convertPopTotals") == "yes");
+	V2Gametype			= obj[0]->safeGetString("V2gametype");
+	resetProvinces		= "no";//obj[0]->safeGetString("resetProvinces");
+	MaxLiteracy			= obj[0]->safeGetFloat("max_literacy");
+	Removetype			= obj[0]->safeGetString("Removetype");
+	libertyThreshold	= obj[0]->safeGetFloat("libertyThreshold");
+	convertPopTotals	= obj[0]->safeGetString("convertPopTotals") == "yes";
 	outputName			= "";
 }

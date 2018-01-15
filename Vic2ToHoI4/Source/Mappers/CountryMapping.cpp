@@ -28,7 +28,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <set>
 #include <sstream>
 #include <utility>
-#include <boost/algorithm/string.hpp>
 #include "ParadoxParserUTF8.h"
 #include "../V2World/V2World.h"
 #include "../HOI4World/HoI4World.h"
@@ -65,20 +64,23 @@ void CountryMapper::readRules()
 
 vector<shared_ptr<Object>> CountryMapper::getRules() const
 {
-	shared_ptr<Object> countryMappingsFile = parser_UTF8::doParseFile("country_mappings.txt");
-	if (!countryMappingsFile)
+	auto countryMappingsFile = parser_UTF8::doParseFile("country_mappings.txt");
+	if (countryMappingsFile)
+	{
+		vector<shared_ptr<Object>> nodes = countryMappingsFile->getLeaves();
+		if (nodes.empty())
+		{
+			LOG(LogLevel::Error) << "country_mappings.txt does not contain a mapping";
+			exit(-1);
+		}
+
+		return nodes[0]->getLeaves();
+	}
+	else
 	{
 		LOG(LogLevel::Error) << "Failed to parse country_mappings.txt";
 		exit(-1);
 	}
-	vector<shared_ptr<Object>> nodes = countryMappingsFile->getLeaves();
-	if (nodes.empty())
-	{
-		LOG(LogLevel::Error) << "country_mappings.txt does not contain a mapping";
-		exit(-1);
-	}
-
-	return nodes[0]->getLeaves();
 }
 
 
@@ -90,14 +92,19 @@ void CountryMapper::importRule(shared_ptr<Object> rule)
 	vector<string>	HoI4Tags;
 	for (auto item: ruleItems)
 	{
-		string key = boost::to_upper_copy(item->getKey());
+		string key = item->getKey();
+		std::transform(key.begin(), key.end(), key.begin(), ::toupper);
+
 		if (key == "VIC")
 		{
-			newVic2Tag = boost::to_upper_copy(item->getLeaf());
+			newVic2Tag = item->getLeaf();
+			std::transform(newVic2Tag.begin(), newVic2Tag.end(), newVic2Tag.begin(), ::toupper);
 		}
 		else if (key == "HOI")
 		{
-			HoI4Tags.push_back(boost::to_upper_copy(item->getLeaf()));
+			string newHoI4Tag = item->getLeaf();
+			std::transform(newHoI4Tag.begin(), newHoI4Tag.end(), newHoI4Tag.begin(), ::toupper);
+			HoI4Tags.push_back(newHoI4Tag);
 		}
 		else
 		{
@@ -152,7 +159,8 @@ bool CountryMapper::mapToFirstUnusedVic2Tag(const vector<string>& possibleHoI4Ta
 	{
 		if (!tagIsAlreadyAssigned(possibleHoI4Tag))
 		{
-			V2TagToHoI4TagMap.left.insert(make_pair(Vic2Tag, possibleHoI4Tag));
+			V2TagToHoI4TagMap.insert(make_pair(Vic2Tag, possibleHoI4Tag));
+			HoI4TagToV2TagMap.insert(make_pair(possibleHoI4Tag, Vic2Tag));
 			LogMapping(Vic2Tag, possibleHoI4Tag, "mapping rule");
 
 			return true;
@@ -182,7 +190,8 @@ string CountryMapper::generateNewHoI4Tag(const string& Vic2Tag)
 
 void CountryMapper::mapToNewTag(const string& Vic2Tag, const string& HoI4Tag)
 {
-	V2TagToHoI4TagMap.left.insert(make_pair(Vic2Tag, HoI4Tag));
+	V2TagToHoI4TagMap.insert(make_pair(Vic2Tag, HoI4Tag));
+	HoI4TagToV2TagMap.insert(make_pair(HoI4Tag, Vic2Tag));
 	LogMapping(Vic2Tag, HoI4Tag, "generated tag");
 }
 
@@ -195,33 +204,33 @@ void CountryMapper::LogMapping(const string& sourceTag, const string& targetTag,
 
 bool CountryMapper::tagIsAlreadyAssigned(const string& HoI4Tag) const
 {
-	return (V2TagToHoI4TagMap.right.find(HoI4Tag) != V2TagToHoI4TagMap.right.end());
+	return (HoI4TagToV2TagMap.find(HoI4Tag) != HoI4TagToV2TagMap.end());
 }
 
 
-const string CountryMapper::GetHoI4Tag(const string& V2Tag) const
+optional<string> CountryMapper::GetHoI4Tag(const string& V2Tag) const
 {
-	boost::bimap<string, string>::left_const_iterator findIter = V2TagToHoI4TagMap.left.find(V2Tag);
-	if (findIter != V2TagToHoI4TagMap.left.end())
+	auto findIter = V2TagToHoI4TagMap.find(V2Tag);
+	if (findIter != V2TagToHoI4TagMap.end())
 	{
 		return findIter->second;
 	}
 	else
 	{
-		return "";
+		return {};
 	}
 }
 
 
-const string CountryMapper::GetVic2Tag(const string& HoI4Tag) const
+optional<string> CountryMapper::GetVic2Tag(const string& HoI4Tag) const
 {
-	boost::bimap<string, string>::right_const_iterator findIter = V2TagToHoI4TagMap.right.find(HoI4Tag);
-	if (findIter != V2TagToHoI4TagMap.right.end())
+	auto findIter = HoI4TagToV2TagMap.find(HoI4Tag);
+	if (findIter != HoI4TagToV2TagMap.end())
 	{
 		return findIter->second;
 	}
 	else
 	{
-		return "";
+		return {};
 	}
 }

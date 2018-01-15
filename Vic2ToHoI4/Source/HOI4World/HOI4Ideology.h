@@ -30,11 +30,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <map>
 #include <memory>
 #include <vector>
+#include "../Color.h"
 using namespace std;
 
 
 
-class Color;
 class Object;
 
 
@@ -42,8 +42,10 @@ class Object;
 class HoI4Ideology
 {
 	public:
-		HoI4Ideology(shared_ptr<Object> obj);
+		explicit HoI4Ideology(shared_ptr<Object> obj);
 		void output(ofstream& file) const;
+
+		vector<string> getTypes() const { return types; }
 
 	private:
 		HoI4Ideology(const HoI4Ideology&) = delete;
@@ -62,7 +64,7 @@ class HoI4Ideology
 		string ideologyName;
 		vector<string> types;
 		vector<string> dynamicFactionNames;
-		Color* theColor;
+		ConverterColor::Color* theColor;
 		map<string, string> rules;
 		float warImpactOnWorldTension;
 		float factionImpactOnWorldTension;

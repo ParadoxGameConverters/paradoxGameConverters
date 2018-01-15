@@ -56,6 +56,8 @@ using namespace boost::spirit;
 
 namespace parser_UTF8
 {
+	void	clearStack();
+
 	static void setLHS(string key);
 	static void pushObj();
 	static void setRHSleaf(string val);
@@ -65,7 +67,7 @@ namespace parser_UTF8
 	static void setEpsilon();
 	static void setAssign();
 
-	static shared_ptr<Object>	topLevel = nullptr;  // a top level object
+	static shared_ptr<Object> topLevel;  // a top level object
 	vector<shared_ptr<Object>>	stack;						// a stack of objects
 	vector<shared_ptr<Object>>	objstack;					// a stack of objects
 	bool					epsilon = false;		// if we've tried an episilon for an assign
@@ -86,8 +88,6 @@ namespace parser_UTF8
 	template <typename Iterator>
 	struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> >
 	{
-		static shared_ptr<Object> topLevel;
-
 		// leaf: either left or right side of assignment.  unquoted keyword.
 		// example: leaf
 		qi::rule<Iterator, string(), SkipComment<Iterator> >	leaf;
@@ -177,11 +177,6 @@ namespace parser_UTF8
 		}
 	};
 
-	shared_ptr<Object> getTopLevel()
-	{
-		return topLevel;
-	}
-
 	void initParser()
 	{
 		topLevel = make_shared<Object>("topLevel");
@@ -192,7 +187,7 @@ namespace parser_UTF8
 	{
 		int openBraces = 0;				// the number of braces deep we are
 		string currObject, buffer;		// the current object and the tect under consideration
-		bool topLevel = true;			// whether or not we're at the top level
+		bool isTopLevel = true;			// whether or not we're at the top level
 		while (read.good())
 		{
 			getline(read, buffer);
@@ -248,7 +243,7 @@ namespace parser_UTF8
 
 			if (openBraces > 0)
 			{
-				topLevel = false;
+				isTopLevel = false;
 				continue;
 			}
 
@@ -265,7 +260,7 @@ namespace parser_UTF8
 			// Not a problem for non-top-level objects since these will have
 			// nonzero openBraces anyway.
 			// But don't continue if the object was all on one line.
-			if (topLevel && !opened)
+			if (isTopLevel && !opened)
 			{
 				continue;
 			}
@@ -443,18 +438,17 @@ namespace parser_UTF8
 		*/
 
 		initParser();
-		shared_ptr<Object> obj = getTopLevel();	// the top level object
 		ifstream read(filename);
 		if (!read.is_open())
 		{
-			return nullptr;
+			return {};
 		}
 		//read.imbue(std::locale(std::locale(), new std::codecvt_utf8<wchar_t, 0x10ffff, std::consume_header>));
 		readFile(read);
 		read.close();
 		read.clear();
 
-		return obj;
+		return topLevel;
 #endif
 	}
 } // namespace parser_UTF8

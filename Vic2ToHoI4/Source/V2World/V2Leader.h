@@ -33,7 +33,7 @@ using namespace std;
 class V2Leader
 {
 	public:
-		V2Leader(shared_ptr<Object> obj);
+		explicit V2Leader(shared_ptr<Object> obj);
 
 		string getName() const { return name; }
 		string getType() const { return type; }

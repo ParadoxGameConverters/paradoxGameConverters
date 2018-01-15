@@ -34,41 +34,37 @@ HoI4Ideology::HoI4Ideology(shared_ptr<Object> obj):
 	dynamicFactionNames(),
 	theColor(nullptr),
 	rules(),
-	warImpactOnWorldTension(0.0f),
-	factionImpactOnWorldTension(0.0f),
+	warImpactOnWorldTension(static_cast<float>(obj->safeGetFloat("war_impact_on_world_tension"))),
+	factionImpactOnWorldTension(static_cast<float>(obj->safeGetFloat("faction_impact_on_world_tension"))),
 	modifiers(),
 	factionModifiers(),
 	cans(),
 	AI("")
 {
-	auto typesObj = obj->getValue("types");
-	if (typesObj.size() > 0)
+	auto typesObj = obj->safeGetObject("types");
+	if (typesObj != nullptr)
 	{
-		for (auto typeObj: typesObj[0]->getLeaves())
+		for (auto typeObj: typesObj->getLeaves())
 		{
 			types.push_back(typeObj->getKey());
 		}
 	}
 
-	auto dynamicFactionNamesObj = obj->getValue("dynamic_faction_names");
-	if (dynamicFactionNamesObj.size() > 0)
+	for (auto dynamicFactionNameObj: obj->safeGetTokens("dynamic_faction_names"))
 	{
-		for (auto dynamicFactionNameObj: dynamicFactionNamesObj[0]->getTokens())
-		{
-			dynamicFactionNames.push_back(dynamicFactionNameObj);
-		}
+		dynamicFactionNames.push_back(dynamicFactionNameObj);
 	}
 
-	auto colorsObj = obj->getValue("color");
-	if (colorsObj.size() > 0)
+	auto colorsObj = obj->safeGetObject("color");
+	if (colorsObj != nullptr)
 	{
-		theColor = new Color(colorsObj[0]);
+		theColor = new ConverterColor::Color(colorsObj);
 	}
 
-	auto rulesObj = obj->getValue("rules");
-	if (rulesObj.size() > 0)
+	auto rulesObj = obj->safeGetObject("rules");
+	if (rulesObj != nullptr)
 	{
-		for (auto ruleObj: rulesObj[0]->getLeaves())
+		for (auto ruleObj: rulesObj->getLeaves())
 		{
 			auto rule = ruleObj->getKey();
 			auto onOff = ruleObj->getLeaf();
@@ -76,22 +72,10 @@ HoI4Ideology::HoI4Ideology(shared_ptr<Object> obj):
 		}
 	}
 
-	auto warTensionObj = obj->getValue("war_impact_on_world_tension");
-	if (warTensionObj.size() > 0)
+	auto modifiersObj = obj->safeGetObject("modifiers");
+	if (modifiersObj != nullptr)
 	{
-		warImpactOnWorldTension = stof(warTensionObj[0]->getLeaf());
-	}
-
-	auto factionTensionObj = obj->getValue("faction_impact_on_world_tension");
-	if (factionTensionObj.size() > 0)
-	{
-		factionImpactOnWorldTension = stof(factionTensionObj[0]->getLeaf());
-	}
-
-	auto modifiersObj = obj->getValue("modifiers");
-	if (modifiersObj.size() > 0)
-	{
-		for (auto modifierObj: modifiersObj[0]->getLeaves())
+		for (auto modifierObj: modifiersObj->getLeaves())
 		{
 			auto modifier = modifierObj->getKey();
 			auto value = stof(modifierObj->getLeaf());
@@ -99,10 +83,10 @@ HoI4Ideology::HoI4Ideology(shared_ptr<Object> obj):
 		}
 	}
 
-	auto factionModifiersObj = obj->getValue("faction_modifiers");
-	if (factionModifiersObj.size() > 0)
+	auto factionModifiersObj = obj->safeGetObject("faction_modifiers");
+	if (factionModifiersObj != nullptr)
 	{
-		for (auto factionModifierObj: factionModifiersObj[0]->getLeaves())
+		for (auto factionModifierObj: factionModifiersObj->getLeaves())
 		{
 			auto modifier = factionModifierObj->getKey();
 			auto value = stof(factionModifierObj->getLeaf());

@@ -47,8 +47,7 @@ Vic2State::Vic2State(shared_ptr<Object> stateObj, const string& ownerTag):
 
 void Vic2State::addProvinceNums(shared_ptr<Object> stateObj)
 {
-	const vector<string> provinceIDs = getProvinceIDs(stateObj);
-	for (auto provinceItr: provinceIDs)
+	for (auto provinceItr: stateObj->safeGetTokens("provinces"))
 	{
 		provinceNums.insert(stoi(provinceItr));
 	}
@@ -69,35 +68,11 @@ void Vic2State::setID()
 }
 
 
-vector<string> Vic2State::getProvinceIDs(shared_ptr<Object> stateObj) const
-{
-	vector<string> provinceIDs;
-
-	const vector<shared_ptr<Object>> provinceObjs = stateObj->getValue("provinces");
-	if (provinceObjs.size() > 0)
-	{
-		provinceIDs = provinceObjs[0]->getTokens();
-	}
-
-	return provinceIDs;
-}
-
-
 void Vic2State::setFactoryLevel(shared_ptr<Object> stateObj)
 {
 	for (auto buildingObj: stateObj->getValue("state_buildings"))
 	{
-		addBuildingLevel(buildingObj);
-	}
-}
-
-
-void Vic2State::addBuildingLevel(shared_ptr<Object> buildingObj)
-{
-	const vector<shared_ptr<Object>> levelObjs = buildingObj->getValue("level");
-	if (levelObjs.size() > 0)
-	{
-		factoryLevel += stoi(levelObjs[0]->getLeaf());
+		factoryLevel += buildingObj->safeGetInt("level");
 	}
 }
 
@@ -210,5 +185,12 @@ int Vic2State::getAverageRailLevel() const
 		totalRailLevel += province->getRailLevel();
 	}
 
-	return (totalRailLevel / provinces.size());
+	if (provinces.size() > 0)
+	{
+		return (totalRailLevel / provinces.size());
+	}
+	else
+	{
+		return 0;
+	}
 }

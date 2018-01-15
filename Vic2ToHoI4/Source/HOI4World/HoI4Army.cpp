@@ -32,21 +32,16 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 //HoI4RegimentType::HoI4RegimentType(string type)
 //{
 //	/*string	filename	= Configuration::getHoI4Path() + "/tfh/units/" + type + ".txt";
-//	shared_ptr<Object>	obj		= parser_UTF8::doParseFile(filename);
+//	auto	obj		= parser_UTF8::doParseFile(filename);
 //	obj					= obj->getLeaves()[0];
 //	name					= obj->getKey();
 //
-//	vector<shared_ptr<Object>> usableByObject = obj->getValue("usable_by");
-//	if (usableByObject.size() > 0)
+//	for (auto tokensItr: obj->safeGetTokens("usable_by"))
 //	{
-//		vector<string> tokens = usableByObject[0]->getTokens();
-//		for (auto tokensItr: tokens)
-//		{
-//			usableBy.insert(tokensItr);
-//		}
+//		usableBy.insert(tokensItr);
 //	}
 //
-//	string unit_type = obj->getLeaf("type");
+//	string unit_type = obj->safeGetString("type");
 //	if (unit_type == "air")
 //	{
 //		force_type = air;
@@ -55,7 +50,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 //	{
 //		force_type = land;
 //	}
-//	else if (unit_type == "nava")
+//	else if (unit_type == "naval")
 //	{
 //		force_type = navy;
 //	}
@@ -64,9 +59,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 //		LOG(LogLevel::Error) << "Possible bad unit type in " << filename << "!";
 //	}
 //
-//	max_strength			= stoi(obj->getLeaf("max_strength"));
-//	practicalBonus			= obj->getLeaf("on_completion");
-//	practicalBonusFactor	= stof(obj->getLeaf("completion_size"));*/
+//	max_strength			= obj->safeGetInt("max_strength");
+//	practicalBonus			= obj->safeGetString("on_completion");
+//	practicalBonusFactor	= obj->safeGetFloat("completion_size");*/
 //}
 //
 //
@@ -258,32 +253,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 //void HoI4RegGroup::resetHQCounts()
 //{
 //	hqCount = 0;
-//}
-//
-//
-//static string CardinalToOrdinal(int cardinal)
-//{
-//	int hundredRem	= cardinal % 100;
-//	int tenRem		= cardinal % 10;
-//	if (hundredRem - tenRem == 10)
-//	{
-//		return "th";
-//	}
-//
-//	switch (tenRem)
-//	{
-//		case 1:
-//			return "st";
-//			break;
-//		case 2:
-//			return "nd";
-//			break;
-//		case 3:
-//			return "rd";
-//			break;
-//		default:
-//			return "th";
-//	}
 //}
 //
 //

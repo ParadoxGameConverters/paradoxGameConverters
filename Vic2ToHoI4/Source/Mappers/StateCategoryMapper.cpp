@@ -54,14 +54,21 @@ void stateCategoryMapper::readCategoriesFromDirectory(const string& directory)
 void stateCategoryMapper::readCategoriesFromFile(const string& file)
 {
 	shared_ptr<Object> parsedFile = parser_UTF8::doParseFile(file);
-	vector<shared_ptr<Object>> StateCategoryObjs = parsedFile->getLeaves();
-	vector<shared_ptr<Object>> categoryObjs = StateCategoryObjs[0]->getLeaves();
-
-	for (auto categoryObj: categoryObjs)
+	if (parsedFile)
 	{
-		string category = categoryObj->getKey();
-		string slotsString = categoryObj->getLeaf("local_building_slots");
-		int slots = stoi(slotsString);
-		stateCategories.insert(make_pair(slots, category));
+		vector<shared_ptr<Object>> StateCategoryObjs = parsedFile->getLeaves();
+		vector<shared_ptr<Object>> categoryObjs = StateCategoryObjs[0]->getLeaves();
+
+		for (auto categoryObj: categoryObjs)
+		{
+			string category = categoryObj->getKey();
+			int slots = categoryObj->safeGetInt("local_building_slots");
+			stateCategories.insert(make_pair(slots, category));
+		}
+	}
+	else
+	{
+		LOG(LogLevel::Error) << "Could not parse " << file;
+		exit(-1);
 	}
 }

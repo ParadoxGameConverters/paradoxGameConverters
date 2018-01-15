@@ -28,17 +28,104 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 V2Party::V2Party(shared_ptr<Object> party_obj)
 {
-	name = party_obj->getLeaf("name");
-	ideology = party_obj->getLeaf("ideology");
+	auto leaf = party_obj->getLeaf("name");
+	if (leaf)
+	{
+		name = *leaf;
+	}
+	else
+	{
+		LOG(LogLevel::Error) << "Party did not have a name";
+		exit(-1);
+	}
 
-	start_date = date(party_obj->getLeaf("start_date"));
-	end_date = date(party_obj->getLeaf("end_date"));
+	leaf = party_obj->getLeaf("ideology");
+	if (leaf)
+	{
+		ideology = *leaf;
+	}
+	else
+	{
+		LOG(LogLevel::Error) << "Party " << name << " did not have an ideology";
+		exit(-1);
+	}
 
-	economic_policy = party_obj->getLeaf("economic_policy");
-	trade_policy = party_obj->getLeaf("trade_policy");
-	religious_policy = party_obj->getLeaf("religious_policy");
-	citizenship_policy = party_obj->getLeaf("citizenship_policy");
-	war_policy = party_obj->getLeaf("war_policy");
+	leaf = party_obj->getLeaf("start_date");
+	if (leaf)
+	{
+		start_date = date(*leaf);
+	}
+	else
+	{
+		LOG(LogLevel::Error) << "Party " << name << " did not have a start date";
+		exit(-1);
+	}
+
+	leaf = party_obj->getLeaf("end_date");
+	if (leaf)
+	{
+		end_date = date(*leaf);
+	}
+	else
+	{
+		LOG(LogLevel::Error) << "Party " << name << " did not have an end date";
+		exit(-1);
+	}
+
+	leaf = party_obj->getLeaf("economic_policy");
+	if (leaf)
+	{
+		economic_policy = *leaf;
+	}
+	else
+	{
+		LOG(LogLevel::Error) << "Party " << name << " did not have an economic policy";
+		exit(-1);
+	}
+
+	leaf = party_obj->getLeaf("trade_policy");
+	if (leaf)
+	{
+		trade_policy = *leaf;
+	}
+	else
+	{
+		LOG(LogLevel::Error) << "Party " << name << " did not have a trade policy";
+		exit(-1);
+	}
+
+	leaf = party_obj->getLeaf("religious_policy");
+	if (leaf)
+	{
+		religious_policy = *leaf;
+	}
+	else
+	{
+		LOG(LogLevel::Error) << "Party " << name << " did not have a religious policy";
+		exit(-1);
+	}
+
+	leaf = party_obj->getLeaf("citizenship_policy");
+	if (leaf)
+	{
+		citizenship_policy = *leaf;
+	}
+	else
+	{
+		LOG(LogLevel::Error) << "Party " << name << " did not have a citizenship policy";
+		exit(-1);
+	}
+
+	leaf = party_obj->getLeaf("war_policy");
+	if (leaf)
+	{
+		war_policy = *leaf;
+	}
+	else
+	{
+		LOG(LogLevel::Error) << "Party " << name << " did not have a war policy";
+		exit(-1);
+	}
 }
 
 

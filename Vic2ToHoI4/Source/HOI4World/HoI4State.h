@@ -26,10 +26,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include <vector>
-#include <string>
 #include <map>
+#include <optional>
 #include <set>
+#include <string>
+#include <vector>
 using namespace std;
 
 
@@ -48,6 +49,7 @@ class HoI4State
 
 		void addProvince(int province) { provinces.insert(province); }
 		void setAsCapitalState() { capitalState = true; civFactories++; }
+		void makeImpassable() { impassable = true; }
 		void addResource(const string& resource, double amount)	{ resources[resource] += amount; }
 		void addAirBase(int newAirBase) { airbaseLevel += newAirBase; if (airbaseLevel > 10) airbaseLevel = 10; }
 		void addVictoryPointValue(int additionalValue) { victoryPointValue += additionalValue; }
@@ -69,8 +71,9 @@ class HoI4State
 		int getManpower() const { return manpower; }
 		int getVPLocation() const { return victoryPointPosition; }
 		set<int> getDebugVPs() const { return debugVictoryPoints; }
+		set<int> getSecondaryDebugVPs() const { return secondaryDebugVictoryPoints; }
 
-		int getMainNavalLocation() const;
+		optional<int> getMainNavalLocation() const;
 
 		void tryToCreateVP();
 		void addManpower();
@@ -89,7 +92,7 @@ class HoI4State
 		bool amICoastal();
 
 		int determineNavalBaseLevel(const V2Province* sourceProvince);
-		int determineNavalBaseLocation(const V2Province* sourceProvince);
+		optional<int> determineNavalBaseLocation(const V2Province* sourceProvince);
 
 		bool assignVPFromVic2Province(int Vic2ProvinceNumber);
 		void assignVP(int location);
@@ -103,6 +106,7 @@ class HoI4State
 		string ownerTag;
 		set<string> cores;
 		bool capitalState;
+		bool impassable;
 
 		int manpower;
 
@@ -121,6 +125,7 @@ class HoI4State
 		int victoryPointPosition;
 		int victoryPointValue;
 		set<int> debugVictoryPoints;
+		set<int> secondaryDebugVictoryPoints;
 };
 
 

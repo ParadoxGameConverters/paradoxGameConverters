@@ -26,57 +26,63 @@
 
 tech_map =
 {
+	# ========================
+	# === HOI4 BASIC TECHS ===
+	# ========================
+	
+	# Trivial Mapping Ensuring All Nations Receive These Techs	
+	link = {
+		vic2 = flintlock_rifles		
+		infantry_weapons = 1	
+		gw_artillery = 1
+		early_destroyer = 1
+		early_light_cruiser = 1
+		early_heavy_cruiser = 1
+		early_battleship = 1
+		early_submarine = 1
+		early_fighter = 1
+		early_bomber = 1
+	}
+
 	# ============================
 	# === HOI4 INFANTRY FOLDER ===
 	# ============================
 
-	# HoI4 Basic Infantry Equipment <- Vic2 Flintlock Rifles
+	# HoI4 Infantry Equipment I <- Vic2 Invention Army/Light Armament/Modern Divisional Structure/Interwar Cavalry
 	link = {
-		vic2 = flintlock_rifles
-		infantry_weapons = 1		
+		vic2 = interwar_cavalry
+		infantry_weapons1 = 1		
 	}
 
-	# HoI4 Support Weapons I <- Vic2 Machine Gun Armament Invention
+	# HoI4 Support Weapons I <- Vic2 Invention Army/Light Armament/Modern Divisional Structure/Interwar Infantry
 	link = {
-		vic2 = machine_gun_armament
+		vic2 = interwar_infantry
 		support_weapons = 1
-	}
+	}	
 
-	# HoI4 Motorized <- Daimler's Automobile Invention
-	link = {
-		vic2 = daimlers_automobile
-		motorised_infantry = 1
-	}
-
-	# HoI4 Marines I <- Vic2 Amphibious Warfare Training Invention
+	# HoI4 Marines I <- Vic2 Invention Navy/Naval Leadership/Modern Naval Training/Amphibious Warfare Training
 	link = {
 		vic2 = amphibious_warfare_training
 		marines = 1
 	}	
 
-	# HoI4 Mountain Infantry I <- Vic2 Flintlock Rifles
-	link = {
-		vic2 = flintlock_rifles		
-		tech_mountaineers = 1
-	}
-
 	# =========================
 	# === HOI4 ARMOR FOLDER ===
 	# =========================
 
-	# HoI4 Great War Tank <- Vic2 Tank Experiments Invention
+	# HoI4 Great War Tank <- Vic2 Invention Army/Army Doctrine/Infiltration/Tank Experiments
 	link = {
-		vic2 = tank_experiments
+		vic2 = tank_exploits
 		gwtank = 1
 	}
 
-	# HoI4 Light Tank I <- Vic2 Tankette Invention
+	# HoI4 Light Tank I <- Vic2 Invention Army/Heavy Armament/Heavy Armament/Tankette
 	link = {
 		vic2 = tankette
 		basic_light_tank = 1
 	}
 
-	# HoI4 Light Tank II <- Vic2 Light Tank Invention
+	# HoI4 Light Tank II <- Vic2 Invention Army/Heavy Armament/Heavy Armament/Light Tank
 	link = {
 		vic2 = light_tank
 		improved_light_tank = 1
@@ -84,73 +90,37 @@ tech_map =
 
 	# =============================
 	# === HOI4 ARTILLERY FOLDER ===
-	# =============================
+	# =============================	
 
-	# HoI4 Towed Artillery <- Vic2 Bronze Muzzle-loaded Artillery
-	link = {
-		vic2 = bronze_muzzle_loaded_artillery
-		gw_artillery = 1
-	}
-
-	# HoI4 Interwar Artillery <- Vic2 Heavy Artillery Invention
+	# HoI4 Interwar Artillery <- Vic2 Invention Army/Heavy Armament/Heavy Armament/Heavy Artillery
 	link = {
 		vic2 = heavy_artillery
 		interwar_artillery = 1
-	}
-
-	# HoI4 Towed Anti-Air <- Vic2 Improved Anti-Aircraft Artillery Invention
-	link = {
-		vic2 = improved_anti_aircraft_artillery
-		interwar_antiair = 1
-	}
-
-	# HoI4 Towed Anti-Tank <- Vic2 Light Tank Invention
-	link = {
-		vic2 = light_tank
-		interwar_antitank = 1
-	}
+	}	
 
 	# ========================
 	# === HOI4 NAVY FOLDER ===
 	# ========================
 
-	# HoI4 Destroyer I <- Vic2 Commerce Raiders Invention
+	# HoI4 Destroyer II <- Vic2 Invention Navy/Ship Construction/Oil Driven Ships/Advanced Cruisers
 	link = {
-		vic2 = commerce_raiders
-		early_destroyer = 1
-	}
+		vic2 = advanced_cruisers
+		basic_destroyer = 1
+	}	
 
-	# HoI4 Light Cruiser I <- Vic2 Protected Cruisers Invention
-	link = {
-		vic2 = protected_cruisers
-		early_light_cruiser = 1
-	}
-
-	# HoI4 Light Cruiser II <- Vic2 Modern Cruisers Invention
+	# HoI4 Light Cruiser II <- Vic2 Invention Navy/Ship Construction/Oil Driven Ships/Modern Cruisers
 	link = {
 		vic2 = modern_cruisers
 		basic_light_cruiser = 1
-	}
+	}	
 
-	# HoI4 Heavy Cruiser I <- Vic2 Pre-Dreadnought Invention
+	# HoI4 Heavy Cruiser II <- Vic2 Invention Navy/Ship Construction/Oil Driven Ships/Advanced Battleships
 	link = {
-		vic2 = pre_dreadnought
-		early_heavy_cruiser = 1
-	}
-
-	# HoI4 Heavy Cruiser II <- Vic2 Modern Battleships Invention
-	link = {
-		vic2 = modern_battleships
+		vic2 = advanced_battleships
 		basic_heavy_cruiser = 1
-	}
+	}	
 
-	# HoI4 Battleship I <- Vic2 Dreadnought Invention
-	link = {
-		vic2 = dreadnoughts
-		early_battleship = 1
-	}
-
-	# HoI4 Battleship II <- Vic2 Modern Battleships Invention
+	# HoI4 Battleship II <- Vic2 Invention Navy/Ship Construction/Oil Driven Ships/Modern Battleships
 	link = {
 		vic2 = modern_battleships
 		basic_battleship = 1
@@ -158,27 +128,15 @@ tech_map =
 
 	# ============================
 	# === HOI4 AIRCRAFT FOLDER ===
-	# ============================
+	# ============================	
 
-	# HoI4 Interwar Fighter <- Vic2 Early Interwar Fighters Invention
-	link = {
-		vic2 = early_interwar_fighters
-		early_fighter = 1
-	}
-
-	# HoI4 Fighter I <- Vic2 Late Interwar Fighters Invention
+	# HoI4 Fighter I <- Vic2 Invention Army/Military Science/Aeronautics/Late Interwar Fighters
 	link = {
 		vic2 = late_interwar_fighters
 		fighter1 = 1
-	}
+	}	
 
-	# HoI4 Interwar Bomber <- Vic2 Early Interwar Bomber Invention
-	link = {
-		vic2 = early_interwar_bombers
-		early_bomber = 1
-	}
-
-	# HoI4 Tactical Bomber I <- Vic2 Late Interwar Bomber Invention
+	# HoI4 Tactical Bomber I <- Vic2 Invention Army/Military Science/Aeronautics/Late Interwar Bombers
 	link = {
 		vic2 = late_interwar_bombers
 		tactical_bomber1 = 1

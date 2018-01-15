@@ -1,19 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Vic2ToHoI4", "Vic2ToHoI4.vcxproj", "{F5433A7A-723C-4E55-AC01-9D146820C7B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Analysis|Win32 = Analysis|Win32
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5433A7A-723C-4E55-AC01-9D146820C7B4}.Analysis|Win32.ActiveCfg = Analysis|Win32
+		{F5433A7A-723C-4E55-AC01-9D146820C7B4}.Analysis|Win32.Build.0 = Analysis|Win32
 		{F5433A7A-723C-4E55-AC01-9D146820C7B4}.Release|Win32.ActiveCfg = Release|Win32
 		{F5433A7A-723C-4E55-AC01-9D146820C7B4}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {83C432E8-8577-4BB1-8E01-6C6157250FA7}
 	EndGlobalSection
 EndGlobal

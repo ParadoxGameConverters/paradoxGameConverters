@@ -21,11 +21,14 @@
 
 
 government_mappings = {
-	mapping = { vic = proletarian_dictatorship hoi_gov = communism hoi_leader = leninism }
-	mapping = { vic = presidential_dictatorship hoi_gov = absolutist hoi_leader = dictatorship }
-	mapping = { vic = bourgeois_dictatorship hoi_gov = radical hoi_leader = minarchism }
-	mapping = { vic = fascist_dictatorship hoi_gov = fascism hoi_leader = fascism_ideology }
-	mapping = { vic = absolute_monarchy hoi_gov = absolutist hoi_leader = absolute_monarchy }
+	## Main Forms
+	mapping = { vic = prussian_constitutionalism ruling_party = liberal hoi_gov = democratic hoi_leader = liberalism }
+	mapping = { vic = prussian_constitutionalism ruling_party = socialist hoi_gov = democratic hoi_leader = socialism }
+	mapping = { vic = prussian_constitutionalism ruling_party = conservative hoi_gov = absolutist hoi_leader = prussian_const }
+	mapping = { vic = prussian_constitutionalism ruling_party = reactionary hoi_gov = absolutist hoi_leader = absolute_monarchy }
+	mapping = { vic = prussian_constitutionalism ruling_party = fascist hoi_gov = fascism hoi_leader = fascism_ideology }
+	mapping = { vic = prussian_constitutionalism ruling_party = anarcho_liberal hoi_gov = radical hoi_leader = minarchism }
+	mapping = { vic = prussian_constitutionalism ruling_party = communist hoi_gov = communism hoi_leader = leninism }
 	mapping = { vic = hms_government ruling_party = liberal hoi_gov = democratic hoi_leader = liberalism }
 	mapping = { vic = hms_government ruling_party = socialist hoi_gov = democratic hoi_leader = socialism }
 	mapping = { vic = hms_government ruling_party = conservative hoi_gov = democratic hoi_leader = conservatism }
@@ -40,13 +43,70 @@ government_mappings = {
 	mapping = { vic = democracy ruling_party = communist hoi_gov = communism hoi_leader = leninism }
 	mapping = { vic = democracy ruling_party = anarcho_liberal hoi_gov = radical hoi_leader = minarchism }
 	mapping = { vic = democracy ruling_party = fascist hoi_gov = fascism hoi_leader = fascism_ideology }
+	mapping = { vic = proletarian_dictatorship hoi_gov = communism hoi_leader = leninism }
+	mapping = { vic = presidential_dictatorship hoi_gov = absolutist hoi_leader = dictatorship }
+	mapping = { vic = bourgeois_dictatorship hoi_gov = radical hoi_leader = minarchism }
+	mapping = { vic = fascist_dictatorship hoi_gov = fascism hoi_leader = fascism_ideology }
+	mapping = { vic = absolute_monarchy hoi_gov = absolutist hoi_leader = absolute_monarchy }
+	mapping = { vic = theocracy hoi_gov = absolutist hoi_leader = theocracy } ## From HPM
+
+	## neutrality Forms (for when minor ideologies are dropped)
+	mapping = { vic = prussian_constitutionalism ruling_party = liberal hoi_gov = neutrality hoi_leader = liberalism_neutral }
+	mapping = { vic = prussian_constitutionalism ruling_party = socialist hoi_gov = neutrality hoi_leader = socialism_neutral }
+	mapping = { vic = prussian_constitutionalism ruling_party = conservative hoi_gov = neutrality hoi_leader = prussian_const_neutral }
+	mapping = { vic = prussian_constitutionalism ruling_party = reactionary hoi_gov = neutrality hoi_leader = absolute_monarchy_neutral }
+	mapping = { vic = prussian_constitutionalism ruling_party = fascist hoi_gov = neutrality hoi_leader = fascism_ideology_neutral }
+	mapping = { vic = prussian_constitutionalism ruling_party = anarcho_liberal hoi_gov = neutrality hoi_leader = minarchism_neutral }
+	mapping = { vic = prussian_constitutionalism ruling_party = communist hoi_gov = neutrality hoi_leader = leninism_neutral }
+	mapping = { vic = hms_government ruling_party = liberal hoi_gov = neutrality hoi_leader = liberalism_neutral }
+	mapping = { vic = hms_government ruling_party = socialist hoi_gov = neutrality hoi_leader = socialism_neutral }
+	mapping = { vic = hms_government ruling_party = conservative hoi_gov = neutrality hoi_leader = conservatism_neutral }
+	mapping = { vic = hms_government ruling_party = reactionary hoi_gov = neutrality hoi_leader = conservatism_neutral }
+	mapping = { vic = hms_government ruling_party = communist hoi_gov = neutrality hoi_leader = leninism_neutral }
+	mapping = { vic = hms_government ruling_party = anarcho_liberal hoi_gov = neutrality hoi_leader = minarchism_neutral }
+	mapping = { vic = hms_government ruling_party = fascist hoi_gov = neutrality hoi_leader = fascism_ideology_neutral }
+	mapping = { vic = democracy ruling_party = liberal hoi_gov = neutrality hoi_leader = liberalism_neutral }
+	mapping = { vic = democracy ruling_party = socialist hoi_gov = neutrality hoi_leader = socialism_neutral }
+	mapping = { vic = democracy ruling_party = conservative hoi_gov = neutrality hoi_leader = conservatism_neutral }
+	mapping = { vic = democracy ruling_party = reactionary hoi_gov = neutrality hoi_leader = conservatism_neutral }
+	mapping = { vic = democracy ruling_party = communist hoi_gov = neutrality hoi_leader = leninism_neutral }
+	mapping = { vic = democracy ruling_party = anarcho_liberal hoi_gov = neutrality hoi_leader = minarchism_neutral }
+	mapping = { vic = democracy ruling_party = fascist hoi_gov = neutrality hoi_leader = fascism_ideology_neutral }
+	mapping = { vic = proletarian_dictatorship hoi_gov = neutrality hoi_leader = leninism_neutral }
+	mapping = { vic = presidential_dictatorship hoi_gov = neutrality hoi_leader = dictatorship_neutral }
+	mapping = { vic = bourgeois_dictatorship hoi_gov = neutrality hoi_leader = minarchism_neutral }
+	mapping = { vic = fascist_dictatorship hoi_gov = neutrality hoi_leader = fascism_ideology_neutral }
+	mapping = { vic = absolute_monarchy hoi_gov = neutrality hoi_leader = absolute_monarchy_neutral }
+	mapping = { vic = theocracy hoi_gov = neutrality hoi_leader = theocracy_neutral } ## From HPM
+
+	## Limited Forms (for when only default ideologies are used)
 	mapping = { vic = prussian_constitutionalism ruling_party = liberal hoi_gov = democratic hoi_leader = liberalism }
 	mapping = { vic = prussian_constitutionalism ruling_party = socialist hoi_gov = democratic hoi_leader = socialism }
-	mapping = { vic = prussian_constitutionalism ruling_party = conservative hoi_gov = absolutist hoi_leader = prussian_const }
-	mapping = { vic = prussian_constitutionalism ruling_party = reactionary hoi_gov = absolutist hoi_leader = absolute_monarchy }
+	mapping = { vic = prussian_constitutionalism ruling_party = conservative hoi_gov = neutrality hoi_leader = despotism }
+	mapping = { vic = prussian_constitutionalism ruling_party = reactionary hoi_gov = neutrality hoi_leader = despotism }
 	mapping = { vic = prussian_constitutionalism ruling_party = fascist hoi_gov = fascism hoi_leader = fascism_ideology }
-	mapping = { vic = prussian_constitutionalism ruling_party = anarcho_liberal hoi_gov = radical hoi_leader = minarchism }
+	mapping = { vic = prussian_constitutionalism ruling_party = anarcho_liberal hoi_gov = neutrality hoi_leader = oligarchism }
 	mapping = { vic = prussian_constitutionalism ruling_party = communist hoi_gov = communism hoi_leader = leninism }
+	mapping = { vic = hms_government ruling_party = liberal hoi_gov = democratic hoi_leader = liberalism }
+	mapping = { vic = hms_government ruling_party = socialist hoi_gov = democratic hoi_leader = socialism }
+	mapping = { vic = hms_government ruling_party = conservative hoi_gov = democratic hoi_leader = conservatism }
+	mapping = { vic = hms_government ruling_party = reactionary hoi_gov = democratic hoi_leader = conservatism }
+	mapping = { vic = hms_government ruling_party = communist hoi_gov = communism hoi_leader = leninism }
+	mapping = { vic = hms_government ruling_party = anarcho_liberal hoi_gov = neutrality hoi_leader = oligarchism }
+	mapping = { vic = hms_government ruling_party = fascist hoi_gov = fascism hoi_leader = fascism_ideology }
+	mapping = { vic = democracy ruling_party = liberal hoi_gov = democratic hoi_leader = liberalism }
+	mapping = { vic = democracy ruling_party = socialist hoi_gov = democratic hoi_leader = socialism }
+	mapping = { vic = democracy ruling_party = conservative hoi_gov = democratic hoi_leader = conservatism }
+	mapping = { vic = democracy ruling_party = reactionary hoi_gov = democratic hoi_leader = conservatism }
+	mapping = { vic = democracy ruling_party = communist hoi_gov = communism hoi_leader = leninism }
+	mapping = { vic = democracy ruling_party = anarcho_liberal hoi_gov = neutrality hoi_leader = oligarchism }
+	mapping = { vic = democracy ruling_party = fascist hoi_gov = fascism hoi_leader = fascism_ideology }
+	mapping = { vic = proletarian_dictatorship hoi_gov = communism hoi_leader = leninism }
+	mapping = { vic = presidential_dictatorship hoi_gov = neutrality hoi_leader = despotism }
+	mapping = { vic = bourgeois_dictatorship hoi_gov = neutrality hoi_leader = oligarchism }
+	mapping = { vic = fascist_dictatorship hoi_gov = fascism hoi_leader = fascism_ideology }
+	mapping = { vic = absolute_monarchy hoi_gov = neutrality hoi_leader = despotism }
+	mapping = { vic = theocracy hoi_gov = neutrality hoi_leader = despotism } ## From HPM
 }
 
 party_mappings = {
@@ -85,4 +145,11 @@ party_mappings = {
 	mapping = { ruling_ideology = democratic vic2_ideology = communist supported_ideology = communism }
 	mapping = { ruling_ideology = democratic vic2_ideology = socialist supported_ideology = democratic }
 	mapping = { ruling_ideology = democratic vic2_ideology = fascist supported_ideology = fascism }
+	mapping = { ruling_ideology = neutrality vic2_ideology = reactionary supported_ideology = absolutist }
+	mapping = { ruling_ideology = neutrality vic2_ideology = conservative supported_ideology = democratic }
+	mapping = { ruling_ideology = neutrality vic2_ideology = anarcho_liberal supported_ideology = radical }
+	mapping = { ruling_ideology = neutrality vic2_ideology = liberal supported_ideology = democratic }
+	mapping = { ruling_ideology = neutrality vic2_ideology = communist supported_ideology = communism }
+	mapping = { ruling_ideology = neutrality vic2_ideology = socialist supported_ideology = democratic }
+	mapping = { ruling_ideology = neutrality vic2_ideology = fascist supported_ideology = fascism }
 }

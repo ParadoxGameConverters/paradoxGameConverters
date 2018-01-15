@@ -39,7 +39,7 @@ ideologies = {
 		faction_modifiers = {
 			faction_trade_opinion_factor = 0.50 #plus 50% trade opinion
 		}
-		ai_neutral = yes # 
+		ai_communist = yes # 
 	}
 
 	absolutist = {
@@ -49,6 +49,8 @@ ideologies = {
 			prussian_const = {
 			}
 			dictatorship = {
+			}
+			theocracy = {
 			}
 		}
 		
@@ -76,7 +78,7 @@ ideologies = {
 			justify_war_goal_when_in_major_war_time = -0.80
 		}
 
-		ai_neutral = yes # 
+		ai_fascist = yes # 
 	}
 
 	neutrality = {
@@ -89,6 +91,8 @@ ideologies = {
 			prussian_const_neutral = {
 			}
 			dictatorship_neutral = {
+			}
+			theocracy_neutral = {
 			}
 			conservatism_neutral = {
 			}

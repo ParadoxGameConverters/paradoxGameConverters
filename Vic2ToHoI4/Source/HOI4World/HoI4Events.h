@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -27,6 +27,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI4Event.h"
+#include "../V2World/V2Party.h"
+#include <functional>
+#include <memory>
 #include <set>
 #include <string>
 using namespace std;
@@ -34,6 +37,7 @@ using namespace std;
 
 
 class HoI4Country;
+class HoI4OnActions;
 
 
 
@@ -43,12 +47,14 @@ class HoI4Events
 		HoI4Events();
 
 		void output() const;
-		void createFactionEvents(const HoI4Country* Leader, const HoI4Country* newAlly);
-		void createAnnexEvent(const HoI4Country* Annexer, const HoI4Country* Annexed);
-		void createSudetenEvent(const HoI4Country* Annexer, const HoI4Country* Annexed, const set<string>& claimedStates);
-		void createTradeEvent(const HoI4Country* leader, const HoI4Country* GC);
+		void createFactionEvents(shared_ptr<HoI4Country> Leader, shared_ptr<HoI4Country> newAlly);
+		void createAnnexEvent(shared_ptr<HoI4Country> Annexer, shared_ptr<HoI4Country> Annexed);
+		void createSudetenEvent(shared_ptr<HoI4Country> Annexer, shared_ptr<HoI4Country> Annexed, const vector<int>& claimedStates);
+		void createTradeEvent(shared_ptr<HoI4Country> leader, shared_ptr<HoI4Country> GC);
 		void createPoliticalEvents(const set<string>& majorIdeologies);
 		void createWarJustificationEvents(const set<string>& majorIdeologies);
+		void createElectionEvents(const set<string>& majorIdeologies, HoI4OnActions* onActions);
+		void addPartyChoiceEvent(const string& countryTag, const set<V2Party, function<bool (const V2Party&, const V2Party&)>>& parties, HoI4OnActions* onActions, const set<string>& majorIdeologies);
 
 		int getCurrentNationFocusEventNum() const { return nationalFocusEventNumber; }
 
@@ -61,6 +67,7 @@ class HoI4Events
 		void outputNewsEvents() const;
 		void outputPoliticalEvents() const;
 		void outputWarJustificationEvents() const;
+		void outputElectionEvents() const;
 
 		void addMinisterRevolutionEvents(const set<string>& majorIdeologies);
 		void addDemocraticMinisterRevolutionEvents(const set<string>& majorIdeologies);
@@ -69,6 +76,13 @@ class HoI4Events
 		void addSuppressedEvents(const set<string>& majorIdeologies);
 		string getIdeologicalPicture(const string& ideology) const;
 
+		void addIdeologyInGovernmentEvents(const set<string>& majorIdeologies, HoI4OnActions* onActions);
+		void addIdeologyInfluenceForeignPolicyEvents(const set<string>& majorIdeologies);
+		void addDemocraticPartiesInMinorityEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions);
+		void addIdeologicalMajorityEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions);
+		void addWartimeExceptionEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions);
+		void addGovernmentContestedEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions);
+
 		vector<HoI4Event> newsEvents;
 		int newsEventNumber;
 		vector<HoI4Event> nationalFocusEvents;
@@ -76,6 +90,8 @@ class HoI4Events
 		vector<HoI4Event> politicalEvents;
 		int politicalEventNumber;
 		vector<HoI4Event> warJustificationEvents;
+		vector<HoI4Event> electionEvents;
+		int electionEventNumber;
 };
 
 

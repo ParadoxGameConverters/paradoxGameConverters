@@ -27,17 +27,27 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <fstream>
 #include <map>
+#include <regex>
 #include <set>
 #include <vector>
 using namespace std;
 
 
 
+struct buildingPosition
+{
+	double xCoordinate;
+	double yCoordinate;
+	double zCoordinate;
+	double rotation;
+};
+
+
 
 class HoI4Building
 {
 	public:
-		HoI4Building(int _stateID, double _xCoordinate, double _zCoordinate);
+		explicit HoI4Building(int _stateID, const buildingPosition& _position);
 
 		friend ostream& operator << (ostream& out, const HoI4Building& building);
 
@@ -45,10 +55,7 @@ class HoI4Building
 
 	protected:
 		int stateID;
-		double xCoordinate;
-		double yCoordinate;
-		double zCoordinate;
-		double rotation;
+		buildingPosition position;
 
 	private:
 		HoI4Building(const HoI4Building&) = delete;
@@ -59,7 +66,7 @@ class HoI4Building
 class HoI4NavalBase: public HoI4Building
 {
 	public:
-		HoI4NavalBase(int _stateID, double _xCoordinate, double _zCoordinate, int _connectingSeaProvince);
+		HoI4NavalBase(int _stateID, const buildingPosition& _position, int _connectingSeaProvince);
 
 		ostream& print(ostream& out) const;
 
@@ -77,7 +84,7 @@ class HoI4NavalBase: public HoI4Building
 class HoI4Buildings
 {
 	public:
-		HoI4Buildings(const map<int, int>& provinceToStateIDMap);
+		explicit HoI4Buildings(const map<int, int>& provinceToStateIDMap);
 
 		void output() const;
 
@@ -85,9 +92,14 @@ class HoI4Buildings
 		HoI4Buildings(const HoI4Buildings&) = delete;
 		HoI4Buildings& operator=(const HoI4Buildings&) = delete;
 
+		void importDefaultBuildings();
+		void importDefaultBuilding(const string& line);
+		void importDefaultNavalBase(const buildingPosition& position, const smatch& matches);
+
 		void placeNavalBases(const map<int, int>& provinceToStateIDMap);
 
 		multimap<int, HoI4Building*> buildings;
+		map<pair<int, int>, buildingPosition> defaultNavalBases;
 };
 
 

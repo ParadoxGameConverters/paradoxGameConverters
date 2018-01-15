@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Airforce.h"
 #include "HoI4Army.h"
 #include "HoI4FocusTree.h"
+#include "HoI4Leader.h"
 #include "HoI4Navy.h"
 #include "HoI4Province.h"
 #include "HoI4Relations.h"
@@ -36,18 +37,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Color.h"
 #include "Date.h"
 #include "../V2World/V2Army.h"
-#include <vector>
+#include "../V2World/V2Party.h"
+#include <optional>
 #include <set>
+#include <vector>
 using namespace std;
 
 
 
 class V2Country;
-class V2Party;
 class HoI4Advisor;
 class HoI4Faction;
-class HoI4Leader;
-class HoI4Minister;
 class HoI4World;
 struct advisorCompare;
 
@@ -60,7 +60,9 @@ class HoI4Country
 
 		void initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const map<int, int>& stateMap, const map<int, HoI4State*>& states);
 		void initFromHistory();
-		void setGovernmentToNeutral();
+		void setGovernmentToExistingIdeology(const set<string>& majorIdeologies, const map<string, HoI4Ideology*>& ideologies);
+		void convertGovernment(const V2World& _srcWorld);
+		void convertParties(const set<string>& majorIdeologies);
 		void convertIdeologySupport(const set<string>& majorIdeologies);
 		void		convertNavy(const map<string, HoI4UnitMap>& unitMap);
 		void		convertConvoys(const map<string, HoI4UnitMap>& unitMap);
@@ -72,6 +74,7 @@ class HoI4Country
 		void calculateIndustry();
 		void reportIndustry(ofstream& out);
 		void addVPsToCapital(int VPs);
+		void adjustResearchFocuses(const set<string>& majorIdeologies);
 		void outputToCommonCountriesFile(ofstream& countriesFile) const;
 		void outputColors(ofstream& out) const;
 		void outputToNamesFiles(ofstream& namesFile) const;
@@ -79,12 +82,12 @@ class HoI4Country
 		void outputIdeaGraphics(ofstream& ideasFile) const;
 
 		void		setSphereLeader(const string& SphereLeader) { sphereLeader == SphereLeader; }
-		void		setFaction(const HoI4Faction* newFaction) { faction = newFaction; }
+		void		setFaction(shared_ptr<const HoI4Faction> newFaction) { faction = newFaction; }
 		void		setFactionLeader() { factionLeader = true; }
-		void addNationalFocus(const HoI4FocusTree* NF) { nationalFocus = NF; }
+		void addNationalFocus(shared_ptr<HoI4FocusTree> NF) { nationalFocus = NF; }
 		void setGreatPower() { greatPower = true; }
 
-		const HoI4Relations*								getRelations(string withWhom) const;
+		optional<const HoI4Relations*> getRelations(string withWhom) const;
 		double getStrengthOverTime(double years) const;
 		double getMilitaryStrength() const;
 		double getEconomicStrength(double years) const;
@@ -94,7 +97,7 @@ class HoI4Country
 		set<int>									getProvinces() const { return provinces; }
 		string										getTag() const { return tag; }
 		const V2Country*							getSourceCountry() const { return srcCountry; }
-		const HoI4Faction*								getFaction() const { return faction; }
+		shared_ptr<const HoI4Faction> getFaction() const { return faction; }
 		string getGovernmentIdeology() const { return governmentIdeology; }
 		map<string, int> getIdeologySupport() const { return ideologySupport; }
 		const set<string>&						getAllies() const { return allies; }
@@ -105,8 +108,8 @@ class HoI4Country
 		HoI4State* getCapitalState() const { return capitalState; }
 		int											getCapitalStateNum() const { return capitalStateNum; }
 		const string									getSphereLeader() const { return sphereLeader; }
-		const V2Party* getRulingParty() const { return rulingParty; }
-		set<const V2Party*> getParties() const { return parties; }
+		const V2Party getRulingParty() const { return rulingParty; }
+		set<V2Party, function<bool (const V2Party&, const V2Party&)>> getParties() const { return parties; }
 		map<int, HoI4State*> getStates() const { return states; }
 		bool isInFaction() const { return faction != nullptr; }
 		bool isCivilized() const { return civilized; }
@@ -127,9 +130,8 @@ class HoI4Country
 		HoI4Country& operator=(const HoI4Country&) = delete;
 
 		void determineFilename();
-		void convertGovernment(const V2World& _srcWorld);
 		void initIdeas();
-		//void convertLaws();
+		void convertLaws();
 		//void convertLeaders(portraitMapping& portraitMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
 		void convertRelations();
 		void determineCapitalFromVic2(const map<int, int>& provinceToStateIDMap, const map<int, HoI4State*>& states);
@@ -141,7 +143,7 @@ class HoI4Country
 
 		void addProvince(int _province);
 
-		void outputNamesSet(ofstream& namesFile, const vector<string>& names, const string& tabs) const;
+		void outputNamesSet(ofstream& namesFile, const optional<vector<string>>& names, const string& tabs) const;
 		void outputHistory() const;
 		void outputCapital(ofstream& output) const;
 		void outputResearchSlots(ofstream& output) const;
@@ -172,9 +174,10 @@ class HoI4Country
 
 		string governmentIdeology;
 		string leaderIdeology;
-		const V2Party* rulingParty;
-		set<const V2Party*> parties;
+		V2Party rulingParty;
+		set<V2Party, function<bool (const V2Party&, const V2Party&)>> parties;
 		map<string, int> ideologySupport;
+		date lastElection;
 
 		const string						sphereLeader = "";
 		string								tag;
@@ -186,16 +189,14 @@ class HoI4Country
 		map<string, int>					technologies;
 		map<string, int>					researchBonuses;
 		map<string, HoI4Relations*>	relations;
-		Color									color;
+		ConverterColor::Color color;
 		double								nationalUnity;
-		const HoI4Faction*						faction;
+		shared_ptr<const HoI4Faction>	faction;
 		bool									factionLeader;
 		set<string>							allies;
 		set<string> puppets;
 		string puppetMaster;
 		map<string, double>				practicals;
-		vector<HoI4Minister>				ministers;
-		vector<HoI4Minister>				rulingMinisters;
 		vector<HoI4Leader>				leaders;
 		string graphicalCulture;
 		string graphicalCulture2d;
@@ -212,13 +213,9 @@ class HoI4Country
 		double threat;
 
 		// laws
-		string				civil_law;
-		string				conscription_law;
-		string				economic_law;
-		string				educational_investment_law;
-		string				industrial_policy_laws;
-		string				press_laws;
-		string				training_laws;
+		string mobilizationLaw;
+		string economicLaw;
+		string tradeLaw;
 
 		bool greatPower;
 
@@ -229,7 +226,7 @@ class HoI4Country
 		int											navalLocation;
 		map<string, int>							equipmentStockpile;
 
-		const HoI4FocusTree* nationalFocus;
+		shared_ptr<HoI4FocusTree> nationalFocus;
 };
 
 #endif	// HoI4COUNTRY_H_

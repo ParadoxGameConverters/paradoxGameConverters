@@ -49,31 +49,33 @@ cultureGroupMapper::cultureGroupMapper():
 
 void cultureGroupMapper::processVic2CulturesFile(string culturesFile)
 {
-	shared_ptr<Object> obj = parser_8859_15::doParseFile(culturesFile);
-	if (obj == nullptr)
+	auto obj = parser_8859_15::doParseFile(culturesFile);
+	if (obj)
 	{
-		return;
-	}
-
-	vector<shared_ptr<Object>> groupsObj = obj->getLeaves();
-	for (auto groupsItr: groupsObj)
-	{
-		string group = groupsItr->getKey();
-
-		vector<shared_ptr<Object>> culturesObj = groupsItr->getLeaves();
-		for (auto culturesItr: culturesObj)
+		vector<shared_ptr<Object>> groupsObj = obj->getLeaves();
+		for (auto groupsItr: groupsObj)
 		{
-			string key = culturesItr->getKey();
-			if ((key != "union") && (key != "leader") && (key != "unit") && (key != "is_overseas") && (mappings.find(key) == mappings.end()))
+			string group = groupsItr->getKey();
+
+			vector<shared_ptr<Object>> culturesObj = groupsItr->getLeaves();
+			for (auto culturesItr: culturesObj)
 			{
-				mappings.insert(make_pair(key, group));
+				string key = culturesItr->getKey();
+				if ((key != "union") && (key != "leader") && (key != "unit") && (key != "is_overseas") && (mappings.find(key) == mappings.end()))
+				{
+					mappings.insert(make_pair(key, group));
+				}
 			}
 		}
+	}
+	else
+	{
+		return;
 	}
 }
 
 
-string cultureGroupMapper::GetCultureGroup(const string& culture) const
+optional<string> cultureGroupMapper::GetCultureGroup(const string& culture) const
 {
 	auto mapping = mappings.find(culture);
 	if (mapping != mappings.end())
@@ -82,6 +84,6 @@ string cultureGroupMapper::GetCultureGroup(const string& culture) const
 	}
 	else
 	{
-		return "";
+		return {};
 	}
 }

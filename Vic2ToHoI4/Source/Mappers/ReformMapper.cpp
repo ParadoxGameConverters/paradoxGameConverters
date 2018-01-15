@@ -52,7 +52,7 @@ reformMapper::reformMapper():
 		if (Utils::DoesFileExist(Configuration::getV2Path() + "/mod/" + itr + "/common/issues.txt"))
 		{
 			auto obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/mod/" + itr + "/common/issues.txt"));
-			if (obj != nullptr)
+			if (obj)
 			{
 				initReforms(obj);
 				break;
@@ -61,10 +61,15 @@ reformMapper::reformMapper():
 	}
 	if (!reformsInitialized)
 	{
-		auto obj = parser_8859_15::doParseFile((Configuration::getV2Path() + "/common/issues.txt"));
-		if (obj != nullptr)
+		auto obj = parser_8859_15::doParseFile(Configuration::getV2Path() + "/common/issues.txt");
+		if (obj)
 		{
 			initReforms(obj);
+		}
+		else
+		{
+			LOG(LogLevel::Error) << "Could not parse " << Configuration::getV2Path() << "/common/issues.txt";
+			exit(-1);
 		}
 	}
 }

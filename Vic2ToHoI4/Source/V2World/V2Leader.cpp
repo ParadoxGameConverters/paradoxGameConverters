@@ -26,11 +26,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 V2Leader::V2Leader(shared_ptr<Object> obj):
-	name(obj->getLeaf("name")),
-	type(obj->getLeaf("type")),
-	personality(obj->getLeaf("personality")),
-	background(obj->getLeaf("background")),
-	prestige(stof(obj->getLeaf("prestige")))
+	name(obj->safeGetString("name")),
+	type(obj->safeGetString("type")),
+	personality(obj->safeGetString("personality")),
+	background(obj->safeGetString("background")),
+	prestige(obj->safeGetFloat("prestige"))
 {
 	if (name[0] == '\"')
 	{

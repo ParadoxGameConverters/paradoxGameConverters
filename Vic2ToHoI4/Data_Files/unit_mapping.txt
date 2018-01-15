@@ -260,7 +260,7 @@ default = {
 				type = land
 				unit = light_armor
 				equipment = gw_tank_equipment
-				size = 1
+				size = 50
 			}
 		}
 		
@@ -271,7 +271,7 @@ default = {
 				type = air
 				unit = fighter
 				equipment = fighter_equipment_0
-				size = 10
+				size = 50
 			}			
 		}
 		
@@ -351,73 +351,7 @@ default = {
 		}
 	}
 	
-	division_templates = {
-	
-		division_template = {
-			name = "Armored Division"
-		
-			regiments = {
-				light_armor = { x = 0 y = 0 }
-				light_armor = { x = 0 y = 1 }
-				light_armor = { x = 0 y = 2 }			
-							
-				light_armor = { x = 1 y = 0 }
-				light_armor = { x = 1 y = 1 }
-				light_armor = { x = 1 y = 2 }
-				
-				motorized = { x = 2 y = 0 }
-				motorized = { x = 2 y = 1 }
-				motorized = { x = 2 y = 2 }				
-				
-				support = { artillery = { x = 0 y = 0} }
-			}		
-			
-			priority = 2
-		}
-		
-		division_template = {
-			name = "Mechanized Division"
-		
-			regiments = {
-				light_armor = { x = 0 y = 0 }
-				light_armor = { x = 0 y = 1 }
-				light_armor = { x = 0 y = 2 }			
-							
-				motorized = { x = 1 y = 0 }
-				motorized = { x = 1 y = 1 }
-				motorized = { x = 1 y = 2 }
-				
-				motorized = { x = 2 y = 0 }
-				motorized = { x = 2 y = 1 }
-				motorized = { x = 2 y = 2 }				
-				
-				support = { artillery = { x = 0 y = 0} }
-			}		
-			
-			priority = 1
-		}
-		
-		division_template = {
-			name = "Motorized Division"
-		
-			regiments = {
-				motorized = { x = 0 y = 0 }
-				motorized = { x = 0 y = 1 }
-				motorized = { x = 0 y = 2 }			
-							
-				motorized = { x = 1 y = 0 }
-				motorized = { x = 1 y = 1 }
-				motorized = { x = 1 y = 2 }
-				
-				motorized = { x = 2 y = 0 }
-				motorized = { x = 2 y = 1 }
-				motorized = { x = 2 y = 2 }				
-				
-				support = { artillery = { x = 0 y = 0} }
-			}		
-			
-			priority = 0
-		}
+	division_templates = {		
 	
 		division_template = {
 			name = "Assault Division"
@@ -440,6 +374,8 @@ default = {
 				artillery_brigade = { x = 3 y = 2 }
 				
 				light_armor = { x = 4 y = 0 }
+				light_armor = { x = 4 y = 1 }
+				light_armor = { x = 4 y = 2 }
 			}		
 			
 			priority = 2
