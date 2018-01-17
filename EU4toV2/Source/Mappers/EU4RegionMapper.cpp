@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "ParadoxParserUTF8.h"
 #include "../Configuration.h"
 #include <fstream>
+#include <string>
 #include <vector>
 using namespace std;
 
@@ -180,11 +181,10 @@ void EU4RegionMapper::makeWorkingAreaTxt(const string& path)
 	ifstream original(path + "/map/area.txt");
 	ofstream copy("area.txt");
 
-	char buffer[256];
 	while (!original.eof())
 	{
-		original.getline(buffer, sizeof(buffer));
-		string line(buffer);
+		string line;
+		getline(original, line);
 
 		if (line.find("color =") == string::npos)
 		{
