@@ -162,6 +162,12 @@
     <ClCompile Include="..\common_items\CardinalToOrdinal.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EU4World\MapAreas.cpp">
+      <Filter>EU4 World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common_items\newParser.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Color.h" />
@@ -323,6 +329,15 @@
     </ClInclude>
     <ClInclude Include="..\common_items\CardinalToOrdinal.h">
       <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\newParser.h">
+      <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="Header.h">
+      <Filter>EU4 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU4World\MapAreas.h">
+      <Filter>EU4 World</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

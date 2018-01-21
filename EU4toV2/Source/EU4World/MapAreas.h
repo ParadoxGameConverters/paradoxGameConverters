@@ -21,63 +21,47 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef EU4REGION_MAPPER_H
-#define EU4REGION_MAPPER_H
+#ifndef MAPAREAS_H_
+#define MAPAREAS_H_
 
 
 
+#include "newParser.h"
+#include <fstream>
 #include <map>
-#include <memory>
-#include <set>
 #include <string>
 #include <vector>
-using namespace std;
 
 
 
-class Object;
 namespace EU4World
 {
-	class mapAreas;
+	class mapAreas: commonItems::parser
+	{
+		public:
+			mapAreas(const std::string& filename);
+
+			const std::vector<int> getProvincesInArea(const std::string& area) const;
+
+		private:
+			void importArea(std::ifstream& areasFile);
+
+			std::map<std::string, std::vector<int>> areaToProvincesMapping;
+	};
+
+
+	class mapArea: commonItems::parser
+	{
+		public:
+			mapArea(std::ifstream& theStream);
+
+			const std::vector<int> getProvinces() const { return provinces; }
+
+		private:
+			std::vector<int> provinces;
+	};
 }
 
 
 
-class EU4RegionMapper
-{
-	public:
-		static bool provinceInRegion(int province, const string& region)
-		{
-			return getInstance()->ProvinceInRegion(province, region);
-		}
-
-	private:
-		static EU4RegionMapper* instance;
-		static EU4RegionMapper* getInstance()
-		{
-			if (instance == nullptr)
-			{
-				instance = new EU4RegionMapper;
-			}
-			return instance;
-		}
-
-		EU4RegionMapper();
-
-		void attemptOldVersion();
-		void initEU4RegionMapOldVersion(shared_ptr<Object> obj);
-		void insertMapping(int provinceNumber, string regionName);
-
-		void doNewVersion();
-		void initEU4RegionMap(const EU4World::mapAreas& areas, shared_ptr<Object> regionsObj);
-		map<string, vector<int>> getAreaToProvincesMapping(shared_ptr<Object> areasObj);
-
-		bool ProvinceInRegion(int province, const string& region);
-		set<string> getRegions(int province);
-
-		map<int, set<string>> EU4RegionsMap;
-};
-
-
-
-#endif //EU4REGION_MAPPER_H
+#endif // MAPAREA_H_

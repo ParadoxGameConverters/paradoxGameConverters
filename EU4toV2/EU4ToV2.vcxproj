@@ -168,6 +168,7 @@
     <ClCompile Include="..\common_items\CommonUtils.cpp" />
     <ClCompile Include="..\common_items\Date.cpp" />
     <ClCompile Include="..\common_items\Log.cpp" />
+    <ClCompile Include="..\common_items\newParser.cpp" />
     <ClCompile Include="..\common_items\Object.cpp" />
     <ClCompile Include="..\common_items\ParadoxParser8859_15.cpp" />
     <ClCompile Include="..\common_items\ParadoxParserUTF8.cpp" />
@@ -185,6 +186,7 @@
     <ClCompile Include="Source\EU4World\EU4Religion.cpp" />
     <ClCompile Include="Source\EU4World\EU4Version.cpp" />
     <ClCompile Include="Source\EU4World\EU4World.cpp" />
+    <ClCompile Include="Source\EU4World\MapAreas.cpp" />
     <ClCompile Include="Source\FlagUtils.cpp" />
     <ClCompile Include="Source\Mappers\AdjacencyMapper.cpp" />
     <ClCompile Include="Source\Mappers\CK2TitleMapper.cpp" />
@@ -226,10 +228,12 @@
     <ClInclude Include="..\common_items\CardinalToOrdinal.h" />
     <ClInclude Include="..\common_items\Date.h" />
     <ClInclude Include="..\common_items\Log.h" />
+    <ClInclude Include="..\common_items\newParser.h" />
     <ClInclude Include="..\common_items\Object.h" />
     <ClInclude Include="..\common_items\OSCompatibilityLayer.h" />
     <ClInclude Include="..\common_items\ParadoxParser8859_15.h" />
     <ClInclude Include="..\common_items\ParadoxParserUTF8.h" />
+    <ClInclude Include="Header.h" />
     <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\EU4World\EU4Army.h" />
@@ -242,6 +246,7 @@
     <ClInclude Include="Source\EU4World\EU4Religion.h" />
     <ClInclude Include="Source\EU4World\EU4Version.h" />
     <ClInclude Include="Source\EU4World\EU4World.h" />
+    <ClInclude Include="Source\EU4World\MapAreas.h" />
     <ClInclude Include="Source\FlagUtils.h" />
     <ClInclude Include="Source\Mappers\AdjacencyMapper.h" />
     <ClInclude Include="Source\Mappers\CK2TitleMapper.h" />
