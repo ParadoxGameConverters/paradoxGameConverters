@@ -28,6 +28,7 @@ set(COMMON_SOURCES ${COMMON_SOURCES} "../common_items/ParadoxParser8859_15.cpp")
 set(COMMON_SOURCES ${COMMON_SOURCES} "../common_items/ParadoxParserUTF8.cpp")
 set(COMMON_SOURCES ${COMMON_SOURCES} "../common_items/ParadoxParserGeneric.cpp")
 set(COMMON_SOURCES ${COMMON_SOURCES} "../common_items/Encoding.cpp")
+set(COMMON_SOURCES ${COMMON_SOURCES} "../common_items/newParser.cpp")
 
 set(Boost_USE_STATIC_LIBS       OFF)
 set(Boost_USE_MULTITHREADED     OFF)
