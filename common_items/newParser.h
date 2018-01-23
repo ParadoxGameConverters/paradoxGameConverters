@@ -22,9 +22,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <istream>
-#include <map>
+#include <list>
 #include <optional>
+#include <regex>
 #include <string>
+#include <utility>
 
 
 
@@ -41,14 +43,14 @@ namespace commonItems
 			parser(const parser&) = default;
 			parser& operator=(const parser&) = default;
 
-			void registerKeyword(const std::string& keyword, parsingFunction);
+			void registerKeyword(std::regex keyword, parsingFunction);
 			void parseStream(std::istream& theStream);
 			void parseFile(const std::string& filename);
 
 			std::optional<std::string> getNextToken(std::istream& theStream);
 
 		private:
-			std::map<std::string, parsingFunction> registeredKeywords;
+			std::list<std::pair<std::regex, parsingFunction>> registeredKeywords;
 			std::string nextToken;
 			int braceDepth;
 	};

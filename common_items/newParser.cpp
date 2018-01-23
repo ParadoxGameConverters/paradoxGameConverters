@@ -35,9 +35,9 @@ commonItems::parser::parser():
 }
 			
 
-void commonItems::parser::registerKeyword(const std::string& keyword, parsingFunction function)
+void commonItems::parser::registerKeyword(std::regex keyword, parsingFunction function)
 {
-	registeredKeywords.insert(make_pair(keyword, function));
+	registeredKeywords.push_back(make_pair(keyword, function));
 }
 
 
@@ -50,15 +50,14 @@ void commonItems::parser::parseStream(std::istream& theStream)
 		auto token = getNextToken(theStream);
 		if (token)
 		{
-			auto registration = registeredKeywords.find(*token);
-			if (registration != registeredKeywords.end())
+			for (auto registration: registeredKeywords)
 			{
-				registration->second(theStream);
-				continue;
-			}
-			else
-			{
-				LOG(LogLevel::Warning) << "Unknown token while parsing stream: " << *token;
+				std::smatch match;
+				if (std::regex_match(*token, match, registration.first))
+				{
+					registration.second(theStream);
+					continue;
+				}
 			}
 
 			if (*token == "=")
@@ -66,18 +65,23 @@ void commonItems::parser::parseStream(std::istream& theStream)
 				continue;
 			}
 
-			if (*token == "{")
+			else if (*token == "{")
 			{
 				braceDepth++;
 			}
 
-			if (*token == "}")
+			else if (*token == "}")
 			{
 				braceDepth--;
 				if (braceDepth == 0)
 				{
 					break;
 				}
+			}
+
+			else
+			{
+				LOG(LogLevel::Warning) << "Unknown token while parsing stream: " << *token;
 			}
 		}
 	}
@@ -116,12 +120,19 @@ std::optional<std::string> commonItems::parser::getNextToken(std::istream& theSt
 		}
 		else
 		{
-			auto registration = registeredKeywords.find(toReturn);
-			if (registration != registeredKeywords.end())
+			bool matched = false;
+			for (auto registration: registeredKeywords)
 			{
-				registration->second(theStream);
+				std::smatch match;
+				if (std::regex_match(toReturn, match, registration.first))
+				{
+					registration.second(theStream);
+					matched = true;
+					break;
+				}
 			}
-			else
+
+			if (!matched)
 			{
 				gotToken = true;
 			}

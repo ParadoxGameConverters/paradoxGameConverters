@@ -74,7 +74,7 @@ const std::vector<int> EU4World::mapAreas::getProvincesInArea(const std::string&
 
 EU4World::mapArea::mapArea(std::ifstream& theStream)
 {
-	registerKeyword("color", commonItems::ignoreObject);
+	registerKeyword(std::regex("color"), commonItems::ignoreObject);
 
 	auto token = getNextToken(theStream);
 	while (token && (*token != "}"))
