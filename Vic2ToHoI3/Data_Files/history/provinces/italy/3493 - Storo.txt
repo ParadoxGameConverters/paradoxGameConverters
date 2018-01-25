@@ -1,0 +1,11 @@
+owner = ITA
+controller = ITA
+add_core = ITA
+add_core = AUS
+
+infra = 6
+1943.9.23 = {
+	owner = RSI
+	controller = RSI
+	add_core = RSI
+}

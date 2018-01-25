@@ -1,0 +1,15 @@
+owner = YUG
+controller = YUG
+add_core = YUG
+add_core = BUL
+
+points = 1
+metal = 2.00
+energy = 1.00
+industry = 1
+infra = 6
+manpower = 1.00
+leadership = 0.10
+1941.6.22 = {
+	controller = BUL
+}

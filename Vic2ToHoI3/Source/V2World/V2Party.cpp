@@ -22,7 +22,7 @@
 
 
 #include "V2Party.h"
-#include "..\Log.h"
+#include "Log.h"
 
 
 

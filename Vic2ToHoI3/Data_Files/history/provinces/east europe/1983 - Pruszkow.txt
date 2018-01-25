@@ -1,0 +1,12 @@
+owner = POL
+controller = POL
+add_core = POL
+
+infra = 8
+
+anti_air = 1
+land_fort = 1
+
+1940.5.10 = {
+	controller = GER
+}

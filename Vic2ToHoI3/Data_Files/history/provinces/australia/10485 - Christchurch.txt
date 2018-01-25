@@ -1,0 +1,7 @@
+owner = NZL
+controller = NZL
+add_core = NZL
+points = 1
+energy = 4.00
+infra = 8
+naval_base = 3

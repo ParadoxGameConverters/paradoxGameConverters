@@ -50,9 +50,9 @@ local UnitTypes = {
 	infantry_brigade = {
 		Index = 4,
 		Serial = 4,
-		Size = 2,
+		Size = 3,
 		Support = 1,
-		SecondaryMain = "anti_tank_brigade",
+		--SecondaryMain = "anti_tank_brigade",
 		SupportGroup = "Infantry",
 		Type = "Land",
 		SubType = "Infantry"},
@@ -92,7 +92,7 @@ local UnitTypes = {
 	light_armor_brigade = {
 		Index = 10,
 		Serial = 2,
-		Size = 1,
+		Size = 2,
 		Support = 2,
 		SecondaryMain = "motorized_brigade",
 		SupportGroup = "Armor",
@@ -101,7 +101,7 @@ local UnitTypes = {
 	armor_brigade = {
 		Index = 11,
 		Serial = 2,
-		Size = 1,
+		Size = 2,
 		Support = 2,
 		SecondaryMain = "motorized_brigade",
 		SupportGroup = "Armor",
@@ -657,6 +657,10 @@ function ProductionMinister_Tick(minister)
 		BuiltRocketSite = false,
 		UnitTypes = UnitTypes}
 	
+	if math.random(2) == 1 then
+	
+		return	
+	end
 	-- Initialize Production Object
 	-- #################
 	ProductionData.ministerTag = minister:GetCountryTag()
@@ -689,7 +693,10 @@ function ProductionMinister_Tick(minister)
 	ProductionData.IsMajor = ProductionData.ministerCountry:IsMajor()
 	ProductionData.IsExile = ProductionData.ministerCountry:IsGovernmentInExile()
 	ProductionData.TechStatus = ProductionData.ministerCountry:GetTechnologyStatus()
+	
+	
 	ProductionData.IsFirepower = (ProductionData.TechStatus:GetLevel(CTechnologyDataBase.GetTechnology("superior_firepower")) ~= 0)
+	
 	ProductionData.ManpowerMobilize = ProductionData.ministerCountry:HasExtraManpowerLeft()
 	ProductionData.PortsTotal = ProductionData.ministerCountry:GetNumOfPorts()
 	ProductionData.AirfieldsTotal = ProductionData.ministerCountry:GetNumOfAirfields()
@@ -699,7 +706,15 @@ function ProductionMinister_Tick(minister)
 	-- End Initialize Production Object
 	-- #################
 	
-	-- Build Convoys first above all (they count against Other toward the end
+
+	--random hoi Build naval bases if < 5
+	if ProductionData.ministerCountry:GetTotalIC() > 15 then	
+		if ProductionData.icAvailable > 4 then
+			ProductionData.icAvailable = ConstructBuildings_ports(ProductionData.ministerAI , ProductionData.ministerTag, ProductionData.ministerCountry, ProductionData.icAvailable )
+		end
+	end
+	
+		-- Build Convoys first above all (they count against Other toward the end
 	ProductionData.icAvailable = ConstructConvoys(ProductionData.icAvailable)
 	
 	-- Check to make sure they have Manpower
@@ -741,7 +756,8 @@ function ProductionMinister_Tick(minister)
 		local laLandRatio = IsUnitsAvailable(GetBuildRatio("LandRatio"))
 		local laAirRatio = GetBuildRatio("AirRatio")
 		local laNavalRatio = GetBuildRatio("NavalRatio")
-		local laEliteUnits = GetEliteUnitBuildCount(GetBuildRatio("EliteUnits"))
+		local laUnits = {"ranger_brigade","guards_brigade","waffen_brigade","imperial_brigade","alpins_brigade","alpini_brigade","gurkha_brigade" };
+		local laEliteUnits = GetEliteUnitBuildCount(laUnits)
 		local laSpecialForcesRatio, laSpecialRatio = GetBuildRatio("SpecialForcesRatio")
 		local laProdWeights = GetBuildRatio("ProductionWeights")
 		local laRocketRatio = GetBuildRatio("RocketRatio")
@@ -1202,13 +1218,13 @@ function BuildUnit(vIC, vsType, vaFirePower)
 			if ProductionData.IsFirepower and vaFirePower ~= nil and loType.Support > 0 then
 				for i = 0, table.getn(vaFirePower) do
 					if vaFirePower[i] == vsType then
-						loType.Support = loType.Support + 1
+						loType.Support = loType.Support + 1 
 					end
 				end
 			end
 		
 			local lsMethodOveride = "Build_" .. vsType
-		
+			--Utils.LUA_DEBUGOUT(	tostring(lsMethodOveride))	
 			-- Check to see if the Country AI file has an overide or Defaults Do
 			local loFunRef = Utils.GetFunctionReference(ProductionData.ministerTag, ProductionData.IsNaval, lsMethodOveride)
 			if loFunRef then
@@ -1900,3 +1916,52 @@ end
 -- END Convoy Building
 -- #######################
 	
+	--old code of SF and random hoi
+	function ConstructBuildings_ports( ai,ministerTag, ministerCountry, ic)
+	
+		if ministerCountry:GetNumOfPorts() < 5 then
+
+			local naval_base = CBuildingDataBase.GetBuilding("naval_base" )
+			local naval_baseCost = ministerCountry:GetBuildCost(naval_base):Get()
+
+			if (ic - naval_baseCost) >= 0 then
+				local totalbuilt = 0
+				local TotalBeingBuilt = 0
+			
+				for provinceId in ministerCountry:GetOwnedProvinces() do
+					local province = CCurrentGameState.GetProvince(provinceId)
+					
+					if (province:GetCurrentConstructionLevel(naval_base) > 0) then
+						TotalBeingBuilt = TotalBeingBuilt + 1
+						
+						if TotalBeingBuilt >= 1 then
+								break
+						end
+					end
+				end
+			
+			
+				if TotalBeingBuilt < 1 then
+					totalbuilt = TotalBeingBuilt
+			
+					for provinceId in ministerCountry:GetOwnedProvinces() do
+						local province = CCurrentGameState.GetProvince(provinceId)
+						local provinceBuilding = province:GetBuilding(naval_base)
+						
+						local constructCommand = CConstructBuildingCommand(ministerTag, naval_base, provinceId, 1 )
+
+						if constructCommand:IsValid() then
+							ai:Post( constructCommand )
+							totalbuilt = totalbuilt + 1
+							ic = ic - naval_baseCost
+
+							if totalbuilt >= 1 or (ic - naval_baseCost) <= 0 then
+								break 
+							end
+						end						
+					end
+				end
+			end
+		end
+	return ic
+ end

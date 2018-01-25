@@ -1,0 +1,8 @@
+owner = PER
+controller = PER
+add_core = PER
+points = 1
+anti_air = 2
+infra = 6
+air_base = 1
+naval_base = 3

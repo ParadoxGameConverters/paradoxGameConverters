@@ -1,0 +1,37 @@
+﻿###########################
+# Political Events
+###########################
+
+add_namespace = political
+
+# Country has same ideology as revolter
+country_event = {
+	id = political.28
+	title = political.28.t
+	desc = political.28.d
+
+	picture = GFX_report_event_journalists_speech
+
+	trigger = {
+		any_other_country = {
+			NOT = { tag = ROOT }
+			original_tag = ROOT
+			has_government = ROOT
+		}
+	}
+
+	mean_time_to_happen = {
+		days = 2
+	}
+
+	option = {
+		name = political.28.a
+		random_other_country = {
+			limit = {
+				original_tag = ROOT
+				NOT = { tag = ROOT }
+			}
+			ROOT = { annex_country = { target = PREV transfer_troops = yes } }
+		}
+	}
+}

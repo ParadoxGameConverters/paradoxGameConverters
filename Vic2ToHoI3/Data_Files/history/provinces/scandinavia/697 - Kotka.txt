@@ -1,0 +1,11 @@
+owner = FIN
+controller = FIN
+add_core = FIN
+infra = 6
+
+terrain = woods
+
+1940.3.12 = {
+	land_fort = 6
+	anti_air = 1
+}

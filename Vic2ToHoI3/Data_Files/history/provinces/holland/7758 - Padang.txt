@@ -1,0 +1,5 @@
+owner = HOLcontroller = HOL
+add_core = HOLadd_core = INO
+rare_materials = 10.00
+infra = 4naval_base = 4
+1942.6.4 = {	controller = JAP}

@@ -1,0 +1,15 @@
+owner = CAN
+controller = CAN
+add_core = CAN
+points = 1
+metal = 1.00
+energy = 10.00
+industry = 1
+anti_air = 3
+infra = 8
+air_base = 10
+naval_base = 10
+
+1939.1.1 = {
+	radar_station = 1
+}

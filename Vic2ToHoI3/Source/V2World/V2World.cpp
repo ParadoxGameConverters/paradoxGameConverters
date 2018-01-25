@@ -24,8 +24,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2World.h"
 #include <fstream>
 #include <sys/stat.h>
-#include "../Parsers/Parser.h"
-#include "../Log.h"
+#include "ParadoxParser.h"
+#include "Log.h"
 #include "../Configuration.h"
 #include "../WinUtils.h"
 #include "V2Province.h"
@@ -38,7 +38,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2World::V2World(Object* obj)
+V2World::V2World(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs, const continentMapping& continentMap)
 {
 	provinces.clear();
 	countries.clear();
@@ -93,13 +93,13 @@ V2World::V2World(Object* obj)
 			)
 		)
 		{
-			countries[key] = new V2Country(leaves[i]);
+			countries[key] = new V2Country(leaves[i], iNumToName, armyTechs, navyTechs, continentMap);
 
 			map<int, int>::iterator rankingItr = greatNationIndices.find(countriesIndex++);
 			if (rankingItr != greatNationIndices.end())
 			{
 				LOG(LogLevel::Debug) << "Set " << key << " as Great Power #" << rankingItr->second + 1;
-				countries[key]->setGreatNationRanking(rankingItr->second);
+				countries[key]->setGreatNation(true);
 				greatCountries[rankingItr->second] = key;
 			}
 		}
@@ -111,7 +111,7 @@ V2World::V2World(Object* obj)
 		map<string, V2Country*>::iterator j = countries.find(i->second->getOwnerString());
 		if (j != countries.end())
 		{
-			j->second->addProvince(i->second);
+			j->second->addProvince(i->first, i->second);
 			i->second->setOwner(j->second);
 		}
 	}
@@ -126,7 +126,13 @@ V2World::V2World(Object* obj)
 		}
 	}
 
-	// BE: Cull countries with neither cores nor owned provinces (i.e. dead countries and uncreated dominions)
+	// apply workers to provinces
+	for (auto country : countries)
+	{
+		country.second->putWorkersInProvinces();
+	}
+
+	// Cull countries with neither cores nor owned provinces (i.e. dead countries and uncreated dominions)
 	removeEmptyNations();
 
 	// Diplomacy
@@ -187,7 +193,7 @@ void V2World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProvi
 		inverseProvinceMapping::const_iterator j = inverseProvinceMap.find(i->first);
 		if (j == inverseProvinceMap.end())
 		{
-			LOG(LogLevel::Warning) << "No mapping for province " << i->first;
+			LOG(LogLevel::Warning) << "No mapping for Vic2 province " << i->first;
 		}
 	}
 }

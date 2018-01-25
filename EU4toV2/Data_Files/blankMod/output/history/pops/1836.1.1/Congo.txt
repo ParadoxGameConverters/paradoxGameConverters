@@ -1,0 +1,182 @@
+#Middle Congo Region (148000)
+#uncolonized in 1836/ruled by Teke in 1836
+#Nkuna (40000/10000 POPS)
+1977 = {
+	aristocrats = {
+		culture = bakongo
+		religion = animist
+		size = 175
+	}
+
+	clergymen = {
+		culture = bakongo
+		religion = animist
+		size = 100
+	}
+
+	artisans = {
+		culture = bakongo
+		religion = animist
+		size = 400
+	}
+
+	soldiers = {
+		culture = bakongo
+		religion = animist
+		size = 100
+	}
+
+	farmers = {
+		culture = bakongo
+		religion = animist
+		size = 7225
+	}
+
+	slaves = {
+		culture = bakongo
+		religion = animist
+		size = 2000
+	}
+}
+#Madingou (16000/4000 POPS)
+1978 = {
+	aristocrats = {
+		culture = bakongo
+		religion = animist
+		size = 75
+	}
+
+	clergymen = {
+		culture = bakongo
+		religion = animist
+		size = 50
+	}
+
+	artisans = {
+		culture = bakongo
+		religion = animist
+		size = 175
+	}
+
+	soldiers = {
+		culture = bakongo
+		religion = animist
+		size = 50
+	}
+
+	farmers = {
+		culture = bakongo
+		religion = animist
+		size = 2650
+	}
+
+	slaves = {
+		culture = bakongo
+		religion = animist
+		size = 1100
+	}
+}
+#Loango (32000/8000 POPS)
+2624 = {
+	aristocrats = {
+		culture = bakongo
+		religion = animist
+		size = 150
+	}
+
+	clergymen = {
+		culture = bakongo
+		religion = animist
+		size = 75
+	}
+
+	artisans = {
+		culture = bakongo
+		religion = animist
+		size = 325
+	}
+
+	soldiers = {
+		culture = bakongo
+		religion = animist
+		size = 100
+	}
+
+	farmers = {
+		culture = bakongo
+		religion = animist
+		size = 5350
+	}
+
+	slaves = {
+		culture = bakongo
+		religion = animist
+		size = 2000
+	}
+}
+#uncolonized in 1836 
+#Djambala (28000/7000 POPS)
+1980 = {
+	aristocrats = {
+		culture = african_minor
+		religion = animist
+		size = 125
+	}
+
+	clergymen = {
+		culture = african_minor
+		religion = animist
+		size = 75
+	}
+
+	artisans = {
+		culture = african_minor
+		religion = animist
+		size = 350
+	}
+
+	soldiers = {
+		culture = african_minor
+		religion = animist
+		size = 75
+	}
+
+	farmers = {
+		culture = african_minor
+		religion = animist
+		size = 6375
+	}
+}
+#Impfondo (32000/8000 POPS)
+1981 = {
+	aristocrats = {
+		culture = african_minor
+		religion = animist
+		size = 150
+	}
+
+	clergymen = {
+		culture = african_minor
+		religion = animist
+		size = 75
+	}
+
+	artisans = {
+		culture = african_minor
+		religion = animist
+		size = 400
+	}
+
+	soldiers = {
+		culture = african_minor
+		religion = animist
+		size = 75
+	}
+
+	farmers = {
+		culture = african_minor
+		religion = animist
+		size = 7300
+	}
+
+}

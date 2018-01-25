@@ -1,0 +1,7 @@
+owner = BUL
+controller = BUL
+add_core = BUL
+
+infra = 6
+
+infra = 6

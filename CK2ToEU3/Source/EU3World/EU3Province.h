@@ -1,5 +1,5 @@
 /*Copyright (c) 2013 The CK2 to EU3 Converter Project
- 
+
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
  "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
  distribute, sublicense, and/or sell copies of the Software, and to
  permit persons to whom the Software is furnished to do so, subject to
  the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -28,7 +28,7 @@
 #include <string>
 #include <vector>
 #include <map>
-#include "..\Date.h"
+#include "Common\Date.h"
 #include "..\Mappers.h"
 using namespace std;
 
@@ -45,8 +45,8 @@ class EU3Country;
 class EU3Province
 {
 	public:
-		EU3Province(int _num, Object* obj, date startDate);
-		
+		EU3Province(int _num, Object* obj, common::date startDate);
+
 		void		output(FILE*);
 
 		void		convert(int _num, bool _inHRE, const vector<CK2Province*>& _srcProvinces, const vector<int>& _srcProvinceNums, const vector<EU3Country*>& _cores);
@@ -107,7 +107,7 @@ class EU3Province
 
 		vector<CK2Province*>		srcProvinces;
 		vector<int>					srcProvinceNums;
-		date							startDate;
+		common::date				startDate;
 
 		int							num;
 		bool							land;

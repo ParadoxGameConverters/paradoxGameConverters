@@ -1,0 +1,682 @@
+﻿# Copyright (c) 2017 The Paradox Game Converters Project
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+#The ones listed below are taken from HoI4 Vanilla \common\names\00_names.txt
+#They have been linked from tags to cultures
+#e.g. Germany has been linked to North German and South German
+#Industries' names are taken from countries' ideas. Not all countries have industries, nor do all countries have all industries
+
+##Majors
+
+north_german = {
+	female_names = { Jessica Emma Hanna Sofia Marie }
+	callsigns = { "Bubi" "Assi" "The Black Devil" "The Blond Knight Of Germany" "Dolfo" "Fighter of Libau" "Petit Rouge" "Pritzl" "The Red Baron" "The Red Battle-flyer" "The Red knight" "Reeste" }
+	industry_companies = { "IG Farben" Krupp }
+	electronic_companies = { Siemens }
+	car_companies = { Porsche Henschel MAN }
+	naval_companies = { Germaniawerft "Blohm & Voss" }
+	weapon_companies = { Rheinmetall Mauser Opel }
+	aircraft_companies = { Messerschmitt Junkers "Focke Wulf" Heinkel Dornier }
+}
+
+south_german = {
+	female_names = { Jessica Emma Hanna Sofia Marie Sandra }
+	callsigns = { "Bubi" "Assi" "The Black Devil" "The Blond Knight Of Germany" "Dolfo" "Fighter of Libau" "Petit Rouge" "Pritzl" "The Red Baron" "The Red Battle-flyer" "The Red knight" "Reeste" }
+	car_companies = { Steyr-Daimler-Puch }
+	weapon_companies = { Hirtenberger }
+}
+
+german = {
+	female_names = { Jessica Emma Hanna Sofia Marie }
+	callsigns = { "Bubi" "Assi" "The Black Devil" "The Blond Knight Of Germany" "Dolfo" "Fighter of Libau" "Petit Rouge" "Pritzl" "The Red Baron" "The Red Battle-flyer" "The Red knight" "Reeste" }
+	industry_companies = { "IG Farben" Krupp }
+	electronic_companies = { Siemens }
+	car_companies = { Porsche Henschel MAN }
+	naval_companies = { Germaniawerft "Blohm & Voss" }
+	weapon_companies = { Rheinmetall Mauser Opel }
+	aircraft_companies = { Messerschmitt Junkers "Focke Wulf" Heinkel Dornier }
+}
+
+british = {
+	female_names = { Elizabeth Anne }
+	callsigns = { Stubborn Arrow "The King" Eagle Hangover Striker Chase "One Wing" Pickle Thief Thunder Lightning Storm Target Hawk Fox Dog Sparrow Sunrise "Night Owl" Butcher Cocky Hawkeye Killer Mick Brandy "The Baron" }
+	industry_companies = { AIOC }
+	electronic_companies = { "English Electric" }
+	car_companies = { Vickers-Armstrong }
+	naval_companies = { "Yarrow Shipbuilders" "Harland & Wolff" "Cammell Laird" "John Brown & Company" }
+	weapon_companies = { "RSAF Enfield" Vauxhall "Royal Arsenal" }
+	aircraft_companies = { Supermarine "Hawker Aircraft" "De Havilland" Avro "Fairey Aviation" }
+}
+
+english = {
+	female_names = { Elizabeth Anne }
+	callsigns = { Stubborn Arrow "The King" Eagle Hangover Striker Chase "One Wing" Pickle Thief Thunder Lightning Storm Target Hawk Fox Dog Sparrow Sunrise "Night Owl" Butcher Cocky Hawkeye Killer Mick Brandy "The Baron" }
+	industry_companies = { AIOC }
+	electronic_companies = { "English Electric" }
+	car_companies = { Vickers-Armstrong }
+	naval_companies = { "Yarrow Shipbuilders" "Harland & Wolff" "Cammell Laird" "John Brown & Company" }
+	weapon_companies = { "RSAF Enfield" Vauxhall "Royal Arsenal" }
+	aircraft_companies = { Supermarine "Hawker Aircraft" "De Havilland" Avro "Fairey Aviation" }
+}
+
+anglo_saxon = {
+	female_names = { Elizabeth Anne }
+	callsigns = { Stubborn Arrow "The King" Eagle Hangover Striker Chase "One Wing" Pickle Thief Thunder Lightning Storm Target Hawk Fox Dog Sparrow Sunrise "Night Owl" Butcher Cocky Hawkeye Killer Mick Brandy "The Baron" }
+	industry_companies = { AIOC }
+	electronic_companies = { "English Electric" }
+	car_companies = { Vickers-Armstrong }
+	naval_companies = { "Yarrow Shipbuilders" "Harland & Wolff" "Cammell Laird" "John Brown & Company" }
+	weapon_companies = { "RSAF Enfield" Vauxhall "Royal Arsenal" }
+	aircraft_companies = { Supermarine "Hawker Aircraft" "De Havilland" Avro "Fairey Aviation" }
+}
+
+russian = {
+	female_names = { Jelena Ludmila }
+	callsigns = { Anvil Hammer Fury Arrow Storm Bear "White Lily" Devil Eagle Falcon Fox Snowflake Greasy Guardian Gunman Hawk Hardball Howl Blizzard Husky Ice Killer Steel Iron Skull Striker Thunder Warrior Wardog Vodka }
+	industry_companies = { "Stalingrad Tractor Factory" }
+	electronic_companies = { "Leningrad Industrial Institute" }
+	car_companies = { "Morozov Design Bureau" "Astrov Design Bureau" OKMO }
+	naval_companies = { "Nevskoye Design Bureau" }
+	weapon_companies = { "Grabin Design Bureau" "Tula Arms Plant" GAZ }
+	aircraft_companies = { "MiG Design Bureau" "Ilyushin Design Bureau" "Tupolev Design Bureau" "Yakovlev Design Bureau" }
+}
+
+byelorussian = {
+	female_names = { Jelena Ludmila }
+	callsigns = { Anvil Hammer Fury Arrow Storm Bear "White Lily" Devil Eagle Falcon Fox Snowflake Greasy Guardian Gunman Hawk Hardball Howl Blizzard Husky Ice Killer Steel Iron Skull Striker Thunder Warrior Wardog Vodka }
+}
+
+ukrainian = {
+	female_names = { Jelena Ludmila }
+	callsigns = { Anvil Hammer Fury Arrow Storm Bear "White Lily" Devil Eagle Falcon Fox Snowflake Greasy Guardian Gunman Hawk Hardball Howl Blizzard Husky Ice Killer Steel Iron Skull Striker Thunder Warrior Wardog Vodka }
+}
+
+
+french = {
+	female_names = { Anne Marie }
+	callsigns = { "Draco" "Fast" "Tiger" "Sparrow" "Ripper" "Sundance" "Toad" "Twitch" "Farmer" "Weasel" "Target Practice" "Invisible" "Beach Boy" "Princess" "The Mute" "Carpenter" }
+	industry_companies = { FAMH }
+	car_companies = { Renault AMX }
+	naval_companies = { FCM }
+	weapon_companies = { SOMUA MAS Schneider }
+	aircraft_companies = { Morane-Saulnier Bloch Amiot Levasseur }
+}
+
+occitain = {
+	female_names = { Anne Marie }
+	callsigns = { "Draco" "Fast" "Tiger" "Sparrow" "Ripper" "Sundance" "Toad" "Twitch" "Farmer" "Weasel" "Target Practice" "Invisible" "Beach Boy" "Princess" "The Mute" "Carpenter" }
+	industry_companies = { FAMH }
+	car_companies = { Renault AMX }
+	naval_companies = { FCM }
+	weapon_companies = { SOMUA MAS Schneider }
+	aircraft_companies = { Morane-Saulnier Bloch Amiot Levasseur }
+}
+
+breton = {
+	female_names = { Anne Marie }
+	callsigns = { "Draco" "Fast" "Tiger" "Sparrow" "Ripper" "Sundance" "Toad" "Twitch" "Farmer" "Weasel" "Target Practice" "Invisible" "Beach Boy" "Princess" "The Mute" "Carpenter" }
+	industry_companies = { FAMH }
+	car_companies = { Renault AMX }
+	naval_companies = { FCM }
+	weapon_companies = { SOMUA MAS Schneider }
+	aircraft_companies = { Morane-Saulnier Bloch Amiot Levasseur }
+}
+
+
+north_italian = {
+	female_names = { Maria Anna }
+	callsigns = { Buzzard Dusty Falcon Hawk Hammer Viper Banshee "The Baron" Lightning Duce Raven "Two Shot" Rosso }
+	industry_companies = { Danieli }
+	car_companies = { Fiat }
+	naval_companies = { CRDA }
+	weapon_companies = { Beretta Lancia Breda }
+	aircraft_companies = { Macchi Savoia-Marchetti Caproni Biaggio }
+}
+
+south_italian = {
+	female_names = { Maria Anna }
+	callsigns = { Buzzard Dusty Falcon Hawk Hammer Viper Banshee "The Baron" Lightning Duce Raven "Two Shot" Rosso }
+	industry_companies = { Danieli }
+	car_companies = { Fiat }
+	naval_companies = { CRDA }
+	weapon_companies = { Beretta Lancia Breda }
+	aircraft_companies = { Macchi Savoia-Marchetti Caproni Biaggio }
+}
+
+maltese = {
+	female_names = { Maria Anna }
+	callsigns = { Buzzard Dusty Falcon Hawk Hammer Viper Banshee "The Baron" Lightning Duce Raven "Two Shot" Rosso }
+	industry_companies = { Danieli }
+	car_companies = { Fiat }
+	naval_companies = { CRDA }
+	weapon_companies = { Beretta Lancia Breda }
+	aircraft_companies = { Macchi Savoia-Marchetti Caproni Biaggio }
+}
+
+lombard = {
+	female_names = { Maria Anna }
+	callsigns = { Buzzard Dusty Falcon Hawk Hammer Viper Banshee "The Baron" Lightning Duce Raven "Two Shot" Rosso }
+	industry_companies = { Danieli }
+	car_companies = { Fiat }
+	naval_companies = { CRDA }
+	weapon_companies = { Beretta Lancia Breda }
+	aircraft_companies = { Macchi Savoia-Marchetti Caproni Biaggio }
+}
+
+all_italian = {
+	female_names = { Maria Anna }
+	callsigns = { Buzzard Dusty Falcon Hawk Hammer Viper Banshee "The Baron" Lightning Duce Raven "Two Shot" Rosso }
+	industry_companies = { Danieli }
+	car_companies = { Fiat }
+	naval_companies = { CRDA }
+	weapon_companies = { Beretta Lancia Breda }
+	aircraft_companies = { Macchi Savoia-Marchetti Caproni Biaggio }
+}
+
+yankee = {
+	female_names = { Mary Jane }
+	callsigns = { "Goose" "Iceman" "Maverick" "Apollo" "Animal" "Boom-Boom" "Badger" "Brick" "Cajun" "Challenger" "Chip" "Eagle" "Ghost" "Hawk" "Jaws" "Moses" "Mad Dog" }
+	industry_companies = { "Standard Oil of California" }
+	electronic_companies = { "General Electric" }
+	car_companies = { Marmon-Herrington Chrysler "Army Ordnance Department" }
+	naval_companies = { "Norfolk Naval Yard" "Brooklyn Naval Yard" "Electric Boat Company" "Newport News Shipbuilding" }
+	weapon_companies = { "Springfield Armory" "Ford Motor Company" "Rock Island Arsenal" }
+	aircraft_companies = { "North American Aviation" Bell Lockheed "Douglas Aircraft Company" Boeing "Consolidated Aircraft" Grumman }
+}
+
+dixie = {
+	female_names = { Mary Jane }
+	callsigns = { "Goose" "Iceman" "Maverick" "Apollo" "Animal" "Boom-Boom" "Badger" "Brick" "Cajun" "Challenger" "Chip" "Eagle" "Ghost" "Hawk" "Jaws" "Moses" "Mad Dog" }
+	industry_companies = { "Standard Oil of California" }
+	electronic_companies = { "General Electric" }
+	car_companies = { Marmon-Herrington Chrysler "Army Ordnance Department" }
+	naval_companies = { "Norfolk Naval Yard" "Brooklyn Naval Yard" "Electric Boat Company" "Newport News Shipbuilding" }
+	weapon_companies = { "Springfield Armory" "Ford Motor Company" "Rock Island Arsenal" }
+	aircraft_companies = { "North American Aviation" Bell Lockheed "Douglas Aircraft Company" Boeing "Consolidated Aircraft" Grumman }
+}
+
+texan = {
+	female_names = { Mary Jane }
+	callsigns = { "Goose" "Iceman" "Maverick" "Apollo" "Animal" "Boom-Boom" "Badger" "Brick" "Cajun" "Challenger" "Chip" "Eagle" "Ghost" "Hawk" "Jaws" "Moses" "Mad Dog" }
+	industry_companies = { "Standard Oil of California" }
+	electronic_companies = { "General Electric" }
+	car_companies = { Marmon-Herrington Chrysler "Army Ordnance Department" }
+	naval_companies = { "Norfolk Naval Yard" "Brooklyn Naval Yard" "Electric Boat Company" "Newport News Shipbuilding" }
+	weapon_companies = { "Springfield Armory" "Ford Motor Company" "Rock Island Arsenal" }
+	aircraft_companies = { "North American Aviation" Bell Lockheed "Douglas Aircraft Company" Boeing "Consolidated Aircraft" Grumman }
+}
+
+australian = {
+	car_companies = { "New South Wales Railway Company" }
+	weapon_companies = { "Lysagth Works" "Lithgow Small Arms Factory" }
+	aircraft_companies = { "Commonwealth Aircraft Corporation" }
+	naval_companies = { "Cockatoo Docks and Engineering" "Evans Deakin & Company" }
+	industry_companies = { "BHP Steel" }
+}
+
+japanese = {
+	female_names = { Aimi Asami Asuka }
+	callsigns = { Viper Lightning Devil Dragon Fury Bat Beer Sake Demon Dirty Lance Panther Shogun Vampire "War Lord" }
+	industry_companies = { Kawasaki "Idemitsu Kosan" }
+	electronic_companies = { Sumitomo }
+	car_companies = { "Osaka Army Arsenal" }
+	naval_companies = { "Kure Naval Arsenal" "Yokosuka Naval Arsenal" "Maizuru Naval Arsenal" "Sasebo Naval Arsenal" }
+	weapon_companies = { "Tokyo Arsenal" Nissan }
+	aircraft_companies = { Mitsubishi Aichi Nakajima Yokosuka }
+}
+
+ainu = {
+	female_names = { Aimi Asami Asuka }
+	callsigns = { Viper Lightning Devil Dragon Fury Bat Beer Sake Demon Dirty Lance Panther Shogun Vampire "War Lord" }
+	industry_companies = { Kawasaki "Idemitsu Kosan" }
+	electronic_companies = { Sumitomo }
+	car_companies = { "Osaka Army Arsenal" }
+	naval_companies = { "Kure Naval Arsenal" "Yokosuka Naval Arsenal" "Maizuru Naval Arsenal" "Sasebo Naval Arsenal" }
+	weapon_companies = { "Tokyo Arsenal" Nissan }
+	aircraft_companies = { Mitsubishi Aichi Nakajima Yokosuka }
+}
+
+swedish = {
+	female_names = { Anna Linda Sara Caroline Eira }
+	naval_companies = { Marinverkstäderna "AB Götaverken" Kockums }
+	weapon_companies = { Bofors "Husqvarna Vapenfabriks AB" Scania-Vabis }
+}
+
+norwegian = {
+	female_names = { Trine Kajsa }
+	industry_companies = { "Norsk Hydro" }
+	electronic_companies = { "Tandbergs Radiofabrikk" }
+	naval_companies = { "Horten Naval Yard" }
+	weapon_companies = { "Kongsberg Våpenfabrikk" "Raufoss Ammunisjonsfabrikker" "Hønefoss Karosserifabrikk" }
+	aircraft_companies = { "Marinens Flyvebaatfabrikk" "Kjeller Flyfabrikk" }
+}
+
+finnish = {
+	female_names = { Anna }
+	naval_companies = { "Crichton-Vulcan OY" }
+	aircraft_companies = { "Valtion lentokonetehdas" }
+}
+sami = {
+	female_names = { Anna }
+}
+
+danish = {
+	female_names = { Karen Alma Elsa Else Monica }
+	naval_companies = { "Burmeister & Wain" }
+	weapon_companies = { DISA }
+	aircraft_companies = { "HTK Orlogsvaerftet" }
+}
+
+icelandic = {
+	female_names = { Árný Arnfrithur Bjarnhildur Boghildur Dómhildur Drótt Freydís Gunnrún Rafney }
+}
+
+lithuanian = {
+	female_names = { Birute Morta }
+	aircraft_companies = { ANBO }
+}
+
+estonian = {
+	female_names = { Anna }
+	naval_companies = { "Paldiski Port" }
+	weapon_companies = { "Arsenal Tallinn" }
+}
+
+latvian = {
+	female_names = { Anna }
+	naval_companies = { LKOD }
+	aircraft_companies = { VEF }
+}
+
+hungarian = {
+	industry_companies = { MÁVAG }
+	naval_companies = { "Ganz Danubius" }
+	weapon_companies = { "Fegyver- és Gépgyár" }
+	aircraft_companies = { "M.W. Aircraft" }
+}
+
+romanian = {
+	female_names = { Andrea }
+	industry_companies = { ROMLOC }
+	car_companies = { PZinż "Leonidas Works" }
+	naval_companies = { "Constanta Shipyard" "Coastal Defense Ships" "Braila Shipyards" }
+	weapon_companies = { "Vauxhall Romania" "Atelierele Ford Bucuresti" "Nicolae Malaxa" "Cugir Small Arms" "Resita Works" "Opel Abt. Rumänien" }
+	aircraft_companies = { IAR ICAR SET }
+}
+
+slovak = {
+	female_names = { "Maria" "Anna" "Hana" "Božena" "Alžbeta" "Marta" }
+}
+
+polish = {
+	female_names = { "Zofia" "Wiktoria" "Natalia" "Renata" "Elżbieta" }
+	industry_companies = { PKP }
+	electronic_companies = { AVA }
+	car_companies = { PZinż }
+	naval_companies = { "Stocznia Gdynia" }
+	weapon_companies = { FB LRL SMPA }
+	aircraft_companies = { PWS PZL }
+}
+
+flemish = {
+	female_names = { Marie }
+	car_companies = { Renault Vickers-Armstrong }
+	naval_companies = { Cockerill }
+	weapon_companies = { "Fabrique Nationale d'Armes de Guerre" }
+	aircraft_companies = { "Avions Fairey" "Renard Constructions Aéronatiques" }
+}
+
+wallonian = {
+	female_names = { Marie }
+	car_companies = { Renault Vickers-Armstrong }
+	naval_companies = { Cockerill }
+	weapon_companies = { "Fabrique Nationale d'Armes de Guerre" }
+	aircraft_companies = { "Avions Fairey" "Renard Constructions Aéronatiques" }
+}
+
+dutch = {
+	female_names = { Coba Corrie Frieda Hannie Helena Ina Jet Joke Miep Reina Truus }
+	industry_companies = { "Royal Dutch Shell" }
+	electronic_companies = { Philips }
+	naval_companies = { "NSM Amsterdam" "Wilton Fijenoord" }
+	weapon_companies = { "DAF Trucks" "A. I. Hembrug" "HIH Siderius" }
+	aircraft_companies = { Fokker Koolhoven }
+}
+
+boer = {
+	female_names = { Coba Corrie Frieda Hannie Helena Ina Jet Joke Miep Reina Truus }
+	car_companies = { Iscor }
+}
+
+czech = {
+	female_names = { "Marie" "Anna" "Hana" "Božena" "Alžběta" "Marta" }
+	industry_companies = { Skoda }
+	electronic_companies = { Elektra }
+	car_companies = { CKD Tatra "Skoda Armor" }
+	naval_companies = { "Skoda Shipyards" }
+	weapon_companies = { "Zbrojovka Brno" "Skoda Artillery" Praga }
+	aircraft_companies = { CKD-Praga Avia Aero LETOV }
+}
+
+persian = {
+	female_names = { Mehrnaz Farnaz }
+}
+
+javan = {
+	female_names = { Diah Siti }
+}
+
+assamese = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+bengali = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+bihari = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+manipuri = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+nepali = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+oriya = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+sinhala = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+avadhi = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+kanauji = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+panjabi = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+kashmiri = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+gujarati = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+marathi = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+sindi = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+rajput = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+kannada = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+malayalam = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+tamil = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+telegu = {
+	female_names = { Indira }
+	naval_companies = { "Mazagon Dock Limited" "Garden Reach Shipbuilders" "Scindia Shipyard" }
+	weapon_companies = { "Ishapore Rifle Factory" "Ordnance Factories Board" }
+	aircraft_companies = { "Hindustan Aircraft Corporation" }
+}
+
+north_andean = {
+	female_names = { Amaranta Úrsula Rebeca Remedios Sofía }
+}
+
+#Industry-only names
+
+bulgarian = {
+	aircraft_companies = { DAR }
+}
+
+anglo_canadian = {
+	industry_companies = { "Polymer Corporation" }
+	electronic_companies = { "Montreal Lab" }
+	car_companies = { Vickers-Armstrong }
+	naval_companies = { "Kingston Shipbuilding Co" "Halifax Shipyard Limited" }
+	weapon_companies = { "John Inglis and Company" "Small Arms Limited" }
+	aircraft_companies = { "de Havilland Canada" "Canadian Car & Foundry" "Fairchild Aircraft Ltd." "Handley Page" }
+}
+
+french_canadian = {
+	industry_companies = { "Polymer Corporation" }
+	electronic_companies = { "Montreal Lab" }
+	car_companies = { Vickers-Armstrong }
+	naval_companies = { "Kingston Shipbuilding Co" "Halifax Shipyard Limited" }
+	weapon_companies = { "John Inglis and Company" "Small Arms Limited" }
+	aircraft_companies = { "de Havilland Canada" "Canadian Car & Foundry" "Fairchild Aircraft Ltd." "Handley Page" }
+}
+
+manchu = {
+	naval_companies = { "Jiangnan Shipyard Group" }
+	aircraft_companies = { CAMCO }
+}
+
+beifaren = {
+	naval_companies = { "Jiangnan Shipyard Group" }
+	aircraft_companies = { CAMCO }
+}
+
+nanfaren = {
+	naval_companies = { "Jiangnan Shipyard Group" }
+	aircraft_companies = { CAMCO }
+}
+
+hakka = {
+	naval_companies = { "Jiangnan Shipyard Group" }
+	aircraft_companies = { CAMCO }
+}
+
+miao = {
+	naval_companies = { "Jiangnan Shipyard Group" }
+	aircraft_companies = { CAMCO }
+}
+
+min = {
+	naval_companies = { "Jiangnan Shipyard Group" }
+	aircraft_companies = { CAMCO }
+}
+
+zhuang = {
+	naval_companies = { "Jiangnan Shipyard Group" }
+	aircraft_companies = { CAMCO }
+}
+
+yi = {
+	naval_companies = { "Jiangnan Shipyard Group" }
+	aircraft_companies = { CAMCO }
+}
+
+yue = {
+	naval_companies = { "Jiangnan Shipyard Group" }
+	aircraft_companies = { CAMCO }
+}
+
+greek = {
+	aircraft_companies = { GNAF }
+	naval_companies = { "Royal Hellenic Naval Shipyard" }
+}
+
+mexican = {
+	weapon_companies = { "Fabrica Nacional de Armas" COMESA }
+	aircraft_companies = { TGA }
+}
+
+#New Zealand (no Vic2 culture) = {
+#	industry_companies = { "Wairarapa Ranches" }
+#	car_companies = { "New Zealand Railways" "Christchurch Workshops" }
+#	naval_companies = { "Saint Mary's Bay Shipbuilding" "Port Chalmers Shipbuilding" }
+#	weapon_companies = { "Charlton Motor Workshops" }
+#}
+
+portuguese = { 
+	naval_companies = { "Arsenal do Alfeite" }
+	weapon_companies = { "Fabrica de Material de Guerra" }
+	aircraft_companies = { OGMA }
+}
+
+spanish = {
+	naval_companies = { SECN }
+	aircraft_companies = { CASA }
+}
+
+turkish = {
+	naval_companies = { "Gölcük NSY" }
+	weapon_companies = { "Istanbul Military Industries" }
+	aircraft_companies = { THK KTF }
+}
+
+croatian = {
+	naval_companies = { "Jadransko Brodogradiliste" }
+	weapon_companies = { "Zastava Arms" }
+	aircraft_companies = { Ikarus Rogozarski Zmaj }
+}
+
+serbian = {
+	naval_companies = { "Jadransko Brodogradiliste" }
+	weapon_companies = { "Zastava Arms" }
+	aircraft_companies = { Ikarus Rogozarski Zmaj }
+}
+
+slovene = {
+	naval_companies = { "Jadransko Brodogradiliste" }
+	weapon_companies = { "Zastava Arms" }
+	aircraft_companies = { Ikarus Rogozarski Zmaj }
+}
+
+bosniak = {
+	naval_companies = { "Jadransko Brodogradiliste" }
+	weapon_companies = { "Zastava Arms" }
+	aircraft_companies = { Ikarus Rogozarski Zmaj }
+}
+
+aborigine = {
+	female_names = { Alinta Bindi Jedda Kirra Marlee Merindah Lowanna Rianna
+		Talia Allira Tarni Mia Merri Maya Kalina Kalinda Allora Koori Cardinia
+		Darana Anmanari Brindabella Angoona Alkawari Myaree Karri Maroochy Lenah
+		Ellin Elanora Inala Jannali Kareela
+	}
+	callsigns = { "Black Magic" }
+	car_companies = { Monaro Torana Camira Maloo }
+	weapon_companies = { Woomera Miru Boomerang }
+	aircraft_companies = { "Ngaanyatjarra Air" "Ngurrajuta Air" "Janami Air" "PY Air" }
+	naval_companies = { "Bungaree Shipyards" }
+	industry_companies = { Barpa ICRG Intract }
+}
+
+afro_american = {
+	female_names = { Mary Jane Katherine Dorothy }
+	callsigns = { Chief Chappie Tuskegee "Red Tail" "Goose" "Iceman" "Maverick" "Apollo" "Animal" "Boom-Boom" "Badger" "Brick" "Cajun" "Challenger" "Chip" "Eagle" "Ghost" "Hawk" "Jaws" "Moses" "Mad Dog" }
+	car_companies = { "Patterson & Sons Company" "Bridgewater Interiors LLC" "MV Transportation Inc" }
+	weapon_companies = { "Civilian Force Arms" }
+	aircraft_companies = { "Bessie Coleman Aero" }
+	naval_companies = { "Chesapeake Marine Railway and Dry Dock Co" }
+	industry_companies = { "SLR Contracting & Service Company" "Coleman Construction" "ENVIRO AgScience, Inc." "H.J. Russel & Company" "Thor Construction" "Powers & Sons Construction Company" }
+}
+
+afro_antillean = {
+	female_names = { Stéphanie Fabiola Esther Tamara Roseline Cassandra Farah Lovelie Darline Samentha Vanessa Nadège Rachelle Judith Manoucheca Mardochée Beatrice Fabienne Mirlande Natacha Wideline Johanne Madeleine }
+	callsigns = { Ludovic Phillipe Raymond Eberle Nicolas Alix Tuskegee }
+	weapon_companies = { "Armería San Cristóbal Weapon Factory" }
+	aircraft_companies = { Aerodomca "Aerolíneas Mas" "Servicios Aéreos Profesionales" "Air Haïti" }
+	naval_companies = { "Ciramar Shipyards" }
+	industry_companies = { "Grupo Estrella" }
+	electronic_companies = { Handxom Sûrtab }
+}

@@ -1,0 +1,15 @@
+owner = BEL
+controller = BEL
+add_core = BEL
+
+terrain = woods
+
+manpower = 0.40
+infra = 9
+1940.5.28 = {
+	controller = GER
+}
+1944.12.01 = {
+	controller = USA
+}
+#Leuven

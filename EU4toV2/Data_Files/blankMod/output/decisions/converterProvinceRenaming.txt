@@ -1,0 +1,930 @@
+political_decisions = {
+	## renaming of provinces based on culture
+	greek_830 = {
+		potential = {
+			OR = {
+				culture = greek
+				is_culture_group = italian
+				tag = RME
+				tag = BYZ
+			}
+			NOT = { has_global_flag = 830_be_greek }
+			830 = { #Dedeagatch
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		allow = {
+			830 = { #Dedeagatch
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			830 = {
+				change_province_name = "Alexandropolis"
+			}
+			set_global_flag = 830_be_greek
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	turk_830 = {
+		potential = {
+			OR = {
+				is_culture_group = turko_semitic
+				is_culture_group = arab
+			}
+			has_global_flag = 830_be_greek
+		}
+		allow = {
+			830 = { #Dedeagatch
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			830 = {
+				change_province_name = "Dedeagatch"
+			}
+			clr_global_flag = 830_be_greek
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	greek_thrace = {
+		potential = {
+			OR = {
+				culture = greek
+				is_culture_group = italian
+				tag = RME
+				tag = BYZ
+			}
+			NOT = { has_global_flag = thrace_be_greek }
+			TUR_1860 = { #Thrace
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		allow = {
+			TUR_1860 = { #Thrace
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			858 = {
+				change_province_name = "Saranta Ekklisies"
+			}
+			860 = {
+				change_province_name = "Constantinopolis"
+			}
+			861 = {
+				change_province_name = "Scutarion"
+			}
+			set_global_flag = thrace_be_greek
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	turk_thrace = {
+		potential = {
+			OR = {
+				is_culture_group = turko_semitic
+				is_culture_group = arab
+			}
+			has_global_flag = thrace_be_greek
+		}
+		allow = {
+			TUR_1860 = { #Thrace
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			858 = {
+				change_province_name = "Kirklareli"
+			}
+			860 = {
+				change_province_name = "Istanbul"
+			}
+			861 = {
+				change_province_name = "Üsküdar"
+			}
+			clr_global_flag = thrace_be_greek
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	greek_hudav = {
+		potential = {
+			OR = {
+				culture = greek
+				is_culture_group = italian
+				tag = RME
+				tag = BYZ
+			}
+			NOT = { has_global_flag = hudav_be_greek }
+			TUR_863 = { #Hudavendigar
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		allow = {
+			TUR_863 = { #Hudavendigar
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			862 = {
+				change_province_name = "Nikomedia"
+				state_scope = {
+					change_region_name = "Prusa"
+				}
+			}
+			866 = {
+				change_province_name = "Nikopolis"
+			}
+			867 = {
+				change_province_name = "Cotyaeum"
+			}
+			868 = {
+				change_province_name = "Dorylaeum"
+			}
+			set_global_flag = hudav_be_greek
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	turk_hudav = {
+		potential = {
+			OR = {
+				is_culture_group = turko_semitic
+				is_culture_group = arab
+			}
+			has_global_flag = hudav_be_greek
+		}
+		allow = {
+			TUR_863 = { #Hudavendigar
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			862 = {
+				change_province_name = "Izmit"
+				state_scope = {
+					change_region_name = "Hudavendigar"
+				}
+			}
+			866 = {
+				change_province_name = "Afyon"
+			}
+			867 = {
+				change_province_name = "Kütahya"
+			}
+			868 = {
+				change_province_name = "Eskishehir"
+			}
+			clr_global_flag = hudav_be_greek
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	greek_aydin = {
+		potential = {
+			OR = {
+				culture = greek
+				is_culture_group = italian
+				tag = RME
+				tag = BYZ
+			}
+			NOT = { has_global_flag = aydin_be_greek }
+			TUR_869 = { #Aydin
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		allow = {
+			TUR_869 = { #Aydin
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			865 = {
+				change_province_name = "Dardanellion"
+				state_scope = {
+					change_region_name = "Tralles"
+				}
+			}
+			869 = {
+				change_province_name = "Smyrne"
+			}
+			set_global_flag = aydin_be_greek
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	turk_aydin = {
+		potential = {
+			OR = {
+				is_culture_group = turko_semitic
+				is_culture_group = arab
+			}
+			has_global_flag = aydin_be_greek
+		}
+		allow = {
+			TUR_869 = { #Aydin
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			865 = {
+				change_province_name = "Canakkale"
+				state_scope = {
+					change_region_name = "Aydin"
+				}
+			}
+			869 = {
+				change_province_name = "Izmir"
+			}
+			clr_global_flag = aydin_be_greek
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	greek_konya = {
+		potential = {
+			OR = {
+				culture = greek
+				is_culture_group = italian
+				tag = RME
+				tag = BYZ
+			}
+			NOT = { has_global_flag = konya_be_greek }
+			TUR_873 = { #Konya
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		allow = {
+			TUR_873 = { #Konya
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			873 = {
+				change_province_name = "Ikonion"
+				state_scope = {
+					change_region_name = "Ikonion"
+				}
+			}
+			874 = {
+				change_province_name = "Polydorion"
+			}
+			875 = {
+				change_province_name = "Attalia"
+			}
+			set_global_flag = konya_be_greek
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	turk_konya = {
+		potential = {
+			OR = {
+				is_culture_group = turko_semitic
+				is_culture_group = arab
+			}
+			has_global_flag = konya_be_greek
+		}
+		allow = {
+			TUR_873 = { #Konya
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			873 = {
+				change_province_name = "Konya"
+				state_scope = {
+					change_region_name = "Konya"
+				}
+			}
+			874 = {
+				change_province_name = "Burdur"
+			}
+			875 = {
+				change_province_name = "Antalya"
+			}
+			clr_global_flag = konya_be_greek
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	greek_ankara = {
+		potential = {
+			OR = {
+				culture = greek
+				is_culture_group = italian
+				tag = RME
+				tag = BYZ
+			}
+			NOT = { has_global_flag = ankara_be_greek }
+			NOT = { tag = PAP }
+			TUR_876 = { #Ankara
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		allow = {
+			TUR_876 = { #Ankara
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			876 = {
+				change_province_name = "Ancyra"
+				state_scope = {
+					change_region_name = "Ancyra and Antioch"
+				}
+			}
+			878 = {
+				change_province_name = "Caesarea"
+			}
+			894 = {
+				change_province_name = "Antioch"
+			}
+			set_global_flag = ankara_be_greek
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	turk_ankara = {
+		potential = {
+			OR = {
+				is_culture_group = turko_semitic
+				is_culture_group = arab
+			}
+			has_global_flag = ankara_be_greek
+		}
+		allow = {
+			NOT = { tag = EGY }
+			TUR_876 = { #Ankara
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+					owner = EGY
+				}
+			}
+		}
+		effect = {
+			876 = {
+				change_province_name = "Ankara"
+				state_scope = {
+					change_region_name = "Ankara and Adana"
+				}
+			}
+			878 = {
+				change_province_name = "Kayseri"
+			}
+			894 = {
+				change_province_name = "Adana"
+			}
+			clr_global_flag = ankara_be_greek
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	greek_trabzon = {
+		potential = {
+			OR = {
+				culture = greek
+				is_culture_group = italian
+				tag = RME
+				tag = BYZ
+			}
+			NOT = { has_global_flag = trabzon_be_greek }
+			TUR_884 = { #Trabzon
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		allow = {
+			TUR_884 = { #Trabzon
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			879 = {
+				change_province_name = "Sebastia"
+			}
+			887 = {
+				change_province_name = "Theodosiopolis"
+			}
+			888 = {
+				change_province_name = "Acisilene"
+			}
+			set_global_flag = trabzon_be_greek
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	turk_trabzon = {
+		potential = {
+			OR = {
+				is_culture_group = turko_semitic
+				is_culture_group = arab
+			}
+			has_global_flag = trabzon_be_greek
+		}
+		allow = {
+			TUR_884 = { #Trabzon
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			879 = {
+				change_province_name = "Sivas"
+			}
+			887 = {
+				change_province_name = "Erzurum"
+			}
+			888 = {
+				change_province_name = "Erzincan"
+			}
+			clr_global_flag = trabzon_be_greek
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	### Decisions to change New York City name if ahistorical
+	french_nyc = {
+		potential = {
+			OR = {
+				is_culture_group = french
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = nyc_changed }
+		}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "Nouvelle-Anjou"
+				state_scope = {
+					change_region_name = "Nouvelle-Angevin"
+				}
+			}
+			set_global_flag = nyc_changed
+
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	german_nyc = {
+		potential = {
+			OR = {
+				is_culture_group = german
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = nyc_changed }
+
+		}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "Neupreuࠥn"
+				state_scope = {
+					change_region_name = "Neupreuࠥn"
+				}
+			}
+			set_global_flag = nyc_changed
+
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	dutch_nyc = {
+		potential = {
+			OR = {
+				is_culture_group = beneluxian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = nyc_changed }
+		}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "Nieuw Amsterdam"
+				state_scope = {
+					change_region_name = "Nieuw Amsterdam"
+				}
+			}
+			set_global_flag = nyc_changed
+			
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	italian_nyc = {
+		potential = {
+			OR = {
+				is_culture_group = italian
+			}
+			NOT = { year = 1840 }
+			NOT = { has_global_flag = nyc_changed }
+			
+		}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "Nuova Milano"
+				state_scope = {
+					change_region_name = "Nuova Lombardia"
+				}
+			}
+			set_global_flag = nyc_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	arab_nyc = {
+		potential = {
+			OR = {
+				is_culture_group = arab
+				is_culture_group = turko_semitic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = nyc_changed }			
+		}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "Jadid al-Makkah"
+				state_scope = {
+					change_region_name = "Jadid al-Makkah"
+				}
+			}
+			set_global_flag = nyc_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	swedish_nyc = { #To localize - I'm aware Vinland is a bit more to North
+		potential = {
+			is_culture_group = scandinavian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = nyc_changed }			
+		}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "Vorg"
+				state_scope = {
+					change_region_name = "Vand"
+				}
+			}
+			set_global_flag = nyc_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	spanish_nyc = { #To localize
+		potential = {
+			is_culture_group = iberian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = nyc_changed }
+			}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "Nueva Arag󮢠"#It was the only one not in OTL...
+				state_scope = {
+					change_region_name = "Nueva Arag󮢍"
+				}
+			}
+			set_global_flag = nyc_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	### Decisions to change New Orlꢮs name if ahistorical
+	french_neworleans = {
+		potential = {
+			OR = {
+				is_culture_group = french
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = new_orl_changed }			
+
+		}
+		allow = {
+			139 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			139 = {
+				change_province_name = "Nouvelle Orlꢮs"
+#				state_scope = { #No name change, actually
+#					change_region_name = "Louisiana"
+#				}
+			}
+			set_global_flag = new_orl_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	german_neworleans = {
+		potential = {
+			OR = {
+				is_culture_group = german
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = new_orl_changed }	
+		}
+		allow = {
+			139 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			139 = {
+				change_province_name = "Neum��h"
+				state_scope = {
+					change_region_name = "Ludwigsland"
+				}
+			}
+			set_global_flag = new_orl_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	dutch_neworleans = {
+		potential = {
+			OR = {
+				is_culture_group = beneluxian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = new_orl_changed }	
+		}
+		allow = {
+			139 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			139 = {
+				change_province_name = "Nieuw Antwerp"
+				state_scope = {
+					change_region_name = "Lodewijkland"
+				}
+			}
+			set_global_flag = new_orl_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	italian_neworleans = {
+		potential = {
+			OR = {
+				is_culture_group = italian
+			}
+			NOT = { year = 1840 }
+			NOT = { has_global_flag = new_orl_changed }	
+		}
+		allow = {
+			139 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			139 = {
+				change_province_name = "Nuova Crotone"
+				state_scope = {
+					change_region_name = "Ludovicia"
+				}
+			}
+			set_global_flag = new_orl_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	arab_neworleans = {
+		potential = {
+			OR = {
+				is_culture_group = arab
+				is_culture_group = turko_semitic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = new_orl_changed }	
+		}
+		allow = {
+			139 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			139 = {
+				change_province_name = "Jadid al-Baghdad"
+				state_scope = {
+					change_region_name = "'Ard-Luis"
+				}
+			}
+			set_global_flag = new_orl_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	swedish_neworleans = { #To localize
+		potential = {
+			is_culture_group = scandinavian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = new_orl_changed }	
+		}
+		allow = {
+			139 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			139 = {
+				change_province_name = "N��Stockholm" #I had no idea...
+				state_scope = {
+					change_region_name = "L򰶭kurland"
+				}
+			}
+			set_global_flag = new_orl_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	spanish_neworleans = { #To localize
+		potential = {
+			is_culture_group = iberian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = new_orl_changed }	
+		}
+		allow = {
+			139 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			139 = {
+				change_province_name = "Nueva Algarve"
+				state_scope = {
+					change_region_name = "Nueva Algarve"
+				}
+			}
+			set_global_flag = new_orl_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

@@ -1,0 +1,10 @@
+owner = CAN
+controller = CAN
+add_core = CAN
+metal = 2.00
+energy = 3.00
+rare_materials = 2.00
+industry = 3
+infra = 6
+manpower = 2.00
+leadership = 0.20

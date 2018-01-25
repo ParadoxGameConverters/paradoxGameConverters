@@ -1,0 +1,5 @@
+owner = USA
+controller = USA
+add_core = USA
+points = 1
+infra = 6

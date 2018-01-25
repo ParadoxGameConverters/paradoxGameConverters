@@ -1,0 +1,17 @@
+owner = POL
+controller = POL
+add_core = POL
+energy = 4.00
+metal = 2.00
+industry = 1
+anti_air = 2
+infra = 9
+manpower = 2.00
+leadership = 0.20
+air_base = 1
+1939.9.1 = {
+	add_core = GER
+}
+1940.5.10 = {
+	controller = GER
+}

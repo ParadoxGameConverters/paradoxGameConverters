@@ -1,0 +1,10 @@
+owner = USA
+controller = USA
+add_core = USA
+metal = 1.00
+energy = 2.00
+industry = 2
+anti_air = 1
+infra = 8
+air_base = 4
+manpower = 1.00

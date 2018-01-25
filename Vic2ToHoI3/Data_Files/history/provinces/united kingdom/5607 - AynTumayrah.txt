@@ -1,0 +1,9 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+add_core = EGY
+infra = 1
+
+infra = 1
+
+infra = 1

@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -59,11 +59,6 @@ class Configuration // Singleton
 		static vector<string> getVic2Mods()
 		{
 			return getInstance()->Vic2Mods;
-		}
-
-		static string getResetProvinces()
-		{
-			return getInstance()->resetProvinces;
 		}
 
 		static void setOutputName(string name)
@@ -169,7 +164,6 @@ class Configuration // Singleton
 		string			V2Path;					// the install directory for V2
 		string			V2DocumentsPath;		// V2's directory under My Documents
 		vector<string>	Vic2Mods;
-		string			resetProvinces;		// whether or not to reset allowed provinces back to V2 defaults
 		string			outputName;				// the name the outputted mod should have
 
 		string			factionLeaderAlgorithm;

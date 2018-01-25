@@ -1,0 +1,21 @@
+owner = BEL
+controller = BEL
+add_core = BEL
+
+points = 3
+energy = 1.00
+rare_materials = 3.00
+industry = 5
+anti_air = 1
+infra = 10
+air_base = 6
+manpower = 3.00
+leadership = 1.50
+terrain = plains
+
+1940.5.28 = {
+	controller = GER
+}
+1944.12.01 = {
+	controller = USA
+}

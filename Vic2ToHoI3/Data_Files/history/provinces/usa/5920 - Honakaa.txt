@@ -1,0 +1,13 @@
+owner = AST
+controller = AST
+add_core = AST
+infra = 4
+naval_base = 2
+1942.6.4 = {
+	controller = JAP
+}
+1943.2.1 = {
+	owner = USA
+	controller = USA
+	add_core = USA
+}

@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<gameConfigurations>
+
+  <!-- Crusader Kings 2 -->
+  <gameConfiguration>
+    <!--Misc-->
+    <name>CrusaderKings2</name>
+    <friendlyName>Crusader Kings 2</friendlyName>
+    <steamId>203770</steamId>
+    <saveGameExtension>.ck2</saveGameExtension>
+    <installationDirectoryTagName>CK2directory</installationDirectoryTagName>
+
+    <!--Save game-->
+    <defaultSaveGameLocationType>WindowsUsersFolder</defaultSaveGameLocationType>
+    <defaultSaveGameSubLocation>\Paradox Interactive\Crusader Kings II\save games</defaultSaveGameSubLocation>
+
+    <!--Mod related-->
+    <defaultModFolderLocationType>WindowsUsersFolder</defaultModFolderLocationType>
+    <defaultModFolderLocation>\Paradox Interactive\Crusader Kings II\mod</defaultModFolderLocation>
+    <configurationFileModDirectoryTagName>CK2ModPath</configurationFileModDirectoryTagName>
+    <currentModTagName>CK2Mod</currentModTagName>
+    <supportedMods>
+      <supportedMod>
+        <modName>CK2Plus</modName>
+      </supportedMod>
+    </supportedMods>
+  </gameConfiguration>
+
+  <!-- Europa Universalis 3 -->
+  <gameConfiguration>
+    <!--Misc-->
+    <name>EuropaUniversalis3</name>
+    <friendlyName>Europa Universalis 3</friendlyName>
+    <steamId>25800</steamId>
+    <saveGameExtension>.eu3</saveGameExtension>
+    <installationDirectoryTagName>EU3directory</installationDirectoryTagName>
+    <!--<nonsteamRegistryName>Europa Universalis III</nonsteamRegistryName>-->
+
+    <!--Save game-->
+    <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
+    <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
+
+    <!--Mod related-->
+    <defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
+    <defaultModFolderLocation>\mod</defaultModFolderLocation>
+  </gameConfiguration>
+
+  <!-- Europa Universalis 4 -->
+  <gameConfiguration>
+    <!--Misc-->
+    <name>EuropaUniversalis4</name>
+    <friendlyName>Europa Universalis 4</friendlyName>
+    <!--<steamId>236850</steamId>-->
+    <!--<saveGameExtension>.eu4</saveGameExtension>-->
+
+    <!--<requiredItems>
+      <requiredFolder>
+        <folderTag>EU4directory</folderTag>
+        --><!--<defaultLocationType>SteamFolder</defaultLocationType>
+          <subFolderLocation>\Europa Universalis IV</subFolderLocation>--><!--
+        <autoDetectFromSteamId>236850</autoDetectFromSteamId>
+      </requiredFolder>
+
+      <requiredFolder>
+        <folderTag>EU4ModDirectory</folderTag>
+        <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+          <subFolderLocation>\Paradox Interactive\Europa Universalis IV\mod</subFolderLocation>
+      </requiredFolder>
+    </requiredItems>-->
+
+    <!--<installationDirectoryTagName>EU4directory</installationDirectoryTagName>-->
+
+    <!--Save game-->
+    <!--<defaultSaveGameLocationType>WindowsUsersFolder</defaultSaveGameLocationType>
+    <defaultSaveGameSubLocation>\Paradox Interactive\Europa Universalis IV\save games</defaultSaveGameSubLocation>-->
+
+    <!--Mod related-->
+    <!--<defaultModFolderLocationType>WindowsUsersFolder</defaultModFolderLocationType>
+    <defaultModFolderLocation>\Paradox Interactive\Europa Universalis IV\mod</defaultModFolderLocation>
+    <modDirectoryTagName>EU4ModDirectory</modDirectoryTagName>-->
+
+    <!--Abandoned-->
+    <!--<defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
+    <defaultModFolderLocation>\mod</defaultModFolderLocation>-->
+  </gameConfiguration>
+
+  <!--Victoria 2-->
+  <gameConfiguration>
+    <!--Misc-->
+    <name>Victoria2</name>
+    <friendlyName>Victoria 2</friendlyName>
+    <!--<steamId>42960</steamId>-->
+    <!--<saveGameExtension>.v2</saveGameExtension>-->
+    <!--<installationDirectoryTagName>V2directory</installationDirectoryTagName>-->
+
+    <!--<requiredItems>
+      <requiredFolder>
+        <folderTag>V2directory</folderTag>
+        --><!--<defaultLocationType>SteamFolder</defaultLocationType>
+          <subFolderLocation>\Europa Universalis IV</subFolderLocation>--><!--
+        <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+      </requiredFolder>
+    
+    </requiredItems>-->
+
+    <!--Save game-->
+    <!--<defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
+    <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>-->
+
+    <!--Mod related-->
+    <!--<defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
+    <defaultModFolderLocation>\mod</defaultModFolderLocation>-->
+
+    <!--Temp files-->
+    <!--<defaultTempDirectoryLocationType>WindowsUsersFolder</defaultTempDirectoryLocationType>
+    <defaultTempFolderLocation>\Paradox Interactive\Victoria II</defaultTempFolderLocation>
+    <tempDirectoryTagName>V2Documentsdirectory</tempDirectoryTagName>-->
+  </gameConfiguration>
+  
+  <!--Hearts of Iron 3-->
+  <gameConfiguration>
+    <!--Misc-->
+    <name>HeartsOfIron3</name>
+    <friendlyName>Hearts of Iron 3</friendlyName>
+    <!--<steamId>25890</steamId>-->
+    <!--<saveGameExtension>.hoi3</saveGameExtension>-->
+    <!--<installationDirectoryTagName>HoI3directory</installationDirectoryTagName>-->
+
+    <!--<requiredItems>
+      <requiredFolder>
+        <folderTag>HoI3directory</folderTag>
+        --><!--<defaultLocationType>SteamFolder</defaultLocationType>
+          <subFolderLocation>\Hearts of Iron III</subFolderLocation>--><!--
+        <autoDetectFromSteamId>25890</autoDetectFromSteamId>
+      </requiredFolder>
+    
+    </requiredItems>-->
+
+    <!--Save game-->
+    <!--<defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
+    <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>-->
+
+    <!--Mod related-->
+    <!--<defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
+    <defaultModFolderLocation>\mod</defaultModFolderLocation>-->
+
+    <!--Temp files-->
+    <!--<defaultTempDirectoryLocationType>WindowsUsersFolder</defaultTempDirectoryLocationType>
+    <defaultTempFolderLocation>\Paradox Interactive\Hearts of Iron III</defaultTempFolderLocation>
+    <tempDirectoryTagName>HoI3Documentsdirectory</tempDirectoryTagName>-->
+  </gameConfiguration>
+  <gameConfiguration>
+    <!--Misc-->
+    <name>HeartsOfIron4</name>
+    <friendlyName>Hearts of Iron 4</friendlyName>
+  </gameConfiguration>
+</gameConfigurations>

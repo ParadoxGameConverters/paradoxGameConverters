@@ -1,3 +1,49 @@
+/*Copyright (c) 2014 The Paradox Game Converters Project
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
+
+
+
+/*Copyright (c) 2010 Rolf Andreassen
+ 
+ Permission is hereby granted, free of charge, to any person obtaining
+ a copy of this software and associated documentation files (the
+ "Software"), to deal in the Software without restriction, including
+ without limitation the rights to use, copy, modify, merge, publish,
+ distribute, sublicense, and/or sell copies of the Software, and to
+ permit persons to whom the Software is furnished to do so, subject to
+ the following conditions:
+ 
+ The above copyright notice and this permission notice shall be included
+ in all copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
+
+
+
 #ifndef OBJECT_H
 #define OBJECT_H
 
@@ -16,8 +62,6 @@ public:
   ~Object (); 
   Object (Object* other);
 
-  static bool debug;
-
   void setValue (Object* val);
   void setValue (string val);
   void setValue (vector<Object*> val);
@@ -34,7 +78,7 @@ public:
   void unsetValue (string val);
   void keyCount ();
   void keyCount (map<string, int>& counter);
-  void setObjList (bool l = true) {isObjList = l;}
+  void setObjList (const bool l = true) {isObjList = l;}
   string getToken (int index); 
   vector<string> getTokens() { return tokens; }
   int numTokens (); 
@@ -49,12 +93,12 @@ public:
   string toString () const; 
   
 private:
-  string key;
-  string strVal;
-  vector<Object*> objects;     
-  bool leaf; 
-  bool isObjList;
-  vector<string> tokens; // For use in lists. 
+  string key;						// the higher level or LHS key for this object
+  string strVal;					// the textual value for this object
+  vector<Object*> objects;		// any sub-objects
+  bool leaf;						// whether or not this is a leaf object
+  bool isObjList;					// whether or not this is an object list object
+  vector<string> tokens;		// The tokens if this is a list object 
 };
 
 extern ostream& operator<< (ostream& os, const Object& i);

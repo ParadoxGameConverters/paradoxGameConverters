@@ -1,0 +1,6 @@
+owner = SAU
+controller = SAU
+add_core = SAU
+crude_oil = 12.00
+infra = 4
+naval_base = 3

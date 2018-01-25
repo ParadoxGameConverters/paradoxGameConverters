@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -54,7 +54,7 @@ void HoI3Minister::output(FILE * output)
 	fprintf(output, "\t%d = {\n", ID);
 	fprintf(output, "\t\tname = \"%s\"\n", name.c_str());
 	fprintf(output, "\t\tideology = %s\n", ideology.c_str());
-	fprintf(output, "\t\tloyalty = %f\n", loyalty);
+	fprintf(output, "\t\tloyalty = %.2f\n", loyalty);
 	fprintf(output, "\t\tpicture = %s\n", picture.c_str());
 	for (auto role: roles)
 	{

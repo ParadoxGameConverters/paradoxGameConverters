@@ -1,0 +1,10 @@
+owner = PHI
+controller = PHI
+add_core = PHI
+points = 1
+anti_air = 4
+infra = 6
+air_base = 5
+1942.6.4 = {
+	controller = JAP
+}

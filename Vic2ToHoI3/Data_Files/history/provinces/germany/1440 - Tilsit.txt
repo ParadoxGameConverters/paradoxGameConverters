@@ -1,0 +1,16 @@
+owner = LIT
+controller = LIT
+add_core = LIT
+add_core = GER
+
+infra = 8
+
+1939.3.22 = {
+
+	owner = GER
+
+	controller = GER
+
+	add_core = GER
+
+}

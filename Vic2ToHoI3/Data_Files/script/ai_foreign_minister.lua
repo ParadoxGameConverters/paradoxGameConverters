@@ -1,3 +1,5 @@
+--modificado para randomhoi
+
 require('ai_diplomacy')
 
 local ForeignMinisterData = {}
@@ -84,26 +86,18 @@ function ForeignMinister_Tick(minister)
 	end
 
 	-- Ask for Military Access
-	if math.random(8) == 1 then
+	if math.random(16) == 1 then
 		lbDataFilled = Fill_ForeignMinisterData(minister, lbDataFilled)
 		ForeignMinister_MilitaryAccess()
 	end
 	
-	-- Propose Wars
-	if math.random(4) == 1 then
-		local loFunRef = Utils.HasCountryAIFunction(minister:GetCountryTag(), "ForeignMinister_ProposeWar")
-		
-		if loFunRef then
-			lbDataFilled = Fill_ForeignMinisterData(minister, lbDataFilled)
-			loFunRef(ForeignMinisterData)
-		end
-	end
+
 
 	-- Never Run Peace and Influence on same tick
-	if math.random(10) == 1 then
+	if math.random(16) == 1 then
 		lbDataFilled = Fill_ForeignMinisterData(minister, lbDataFilled)		
 		ForeignMinister_HandlePeace()
-	elseif math.random(8) == 1 then
+	elseif math.random(12) == 1 then
 		lbDataFilled = Fill_ForeignMinisterData(minister, lbDataFilled)
 		
 		-- Only Major Powers perform this action
@@ -113,11 +107,12 @@ function ForeignMinister_Tick(minister)
 	end
 	
 	-- Alignment
-	if math.random(10) == 1 then
+	if math.random(12) == 1 then
 		lbDataFilled = Fill_ForeignMinisterData(minister, lbDataFilled)		
 		ForeignMinister_Alignment()
 	end	
 end
+
 
 
 function ForeignMinister_MilitaryAccess()
@@ -263,9 +258,9 @@ function ForeignMinister_Alignment()
 			local loCommand = CInfluenceAllianceLeader(ForeignMinisterData.ministerTag, loLeaderTag)
 			
 			-- We are to far from our normal alignment so drift back
-			if loCommand:IsSelectable() and liAlignment > 250 then
+			if loCommand:IsSelectable() and liAlignment > 150 then
 				ForeignMinisterData.ministerAI:PostAction(loCommand)
-			elseif liAlignment < 175 then
+			elseif liAlignment < 100 then
 				-- To Cancel the Influence
 				loCommand:SetValue(false)
 				if loCommand:IsSelectable() then
@@ -539,8 +534,11 @@ function ForeignMinister_HandlePeace()
 					end			
 				end
 
-				-- Form Alliance
-				--    note: only countries that are not part of a faction will offer alliances
+				
+			end
+			-- END OF MAJOR POWER ONLY
+			
+			--randomhoi all alliance
 				if not(ForeignMinisterData.HasFaction) then
 					if not(loRelation:HasAlliance()) and tonumber(tostring(loRelation:GetValue():GetTruncated())) > 0 then
 						local liScore = DiploScore_Alliance(ForeignMinisterData.ministerAI, ForeignMinisterData.ministerTag, loTargetCountryTag, loTargetCountryTag)
@@ -551,9 +549,76 @@ function ForeignMinister_HandlePeace()
 							end
 						end
 					end	
+					
+				else
+					if ForeignMinisterData.ministerCountry:IsPuppet()  then --ally with your master, ALWAYS
+						if not(loRelation:HasAlliance()) then
+							if ForeignMinisterData.ministerCountry:IsPuppet() then
+								local overlord = ForeignMinisterData.ministerCountry:GetOverlord():GetCountry()
+								if loTargetCountryTag == overlord:GetCountryTag() then
+									local loAction = CAllianceAction(ForeignMinisterData.ministerTag, loTargetCountryTag)	
+									if loAction:IsSelectable() then
+										ai:PostAction(loAction)
+									end
+								end
+							end
+						end
+					end		
+					
+				end
+
+		--randomhoi  Wars
+			local loStrategy =  ForeignMinisterData.ministerCountry:GetStrategy()
+			local warDesirability = -1
+			
+			local blAtWar=false
+			
+			for loTargetCountryWars in ForeignMinisterData.ministerCountry:GetCurrentAtWarWith() do
+				if not loTargetCountryWars:GetCountry():IsGovernmentInExile() then
+					blAtWar = true
+					break;
 				end
 			end
-			-- END OF MAJOR POWER ONLY
+			
+			if not blAtWar and not loStrategy:IsPreparingWar() and not loTargetCountry:IsGovernmentInExile() then 
+				for loRelation in ForeignMinisterData.ministerCountry:GetDiplomacy() do
+					local loTargetTag = loRelation:GetTarget()
+				 	
+				 	--Utils.LUA_DEBUGOUT(tostring(loTargetTag))
+				 	if math.random(4) == 1 then
+				 		warDesirability = CalculateWarDesirability( ForeignMinisterData.ministerAI, 	ForeignMinisterData.ministerCountry, loTargetCountry  )
+					end
+						
+				 	if warDesirability == 100 then
+						loStrategy:PrepareWar( loTargetCountryTag, 100 )
+						
+						break
+				 	end
+			
+			 	end
+			 		 	
+			else
+			
+				if ForeignMinisterData.Strategy:IsPreparingWarWith(loTargetCountryTag) and not 	ForeignMinisterData.ministerCountry:IsPuppet()  then -- if we are at war, cancel any declare war pending
+							loStrategy:CancelPrepareWar( loTargetCountryTag )
+				end		
+						
+			end
+			
+			if 	ForeignMinisterData.ministerCountry:IsPuppet() and not ForeignMinisterData.ministerCountry:IsAtWar() then --if you are a puppet, declare war to your master enemies. dont enter here if you are at war or you arent a puppet
+				local overlord = ForeignMinisterData.ministerCountry:GetOverlord():GetCountry()
+				if overlord:IsAtWar() then
+					for loTargetCountryMW in overlord:GetCurrentAtWarWith() do -- we will save the day!
+						 if not ForeignMinisterData.Strategy:IsPreparingWarWith(loTargetCountryMW) then
+						 	loStrategy:PrepareWar( loTargetCountryMW, 100 )
+						else
+							break;	
+						 end
+
+					end
+				end
+
+			end
 
 			-- Offer Military Access
 			if ForeignMinisterData.ministerCountry:IsNonExileNeighbour(loTargetCountryTag) then

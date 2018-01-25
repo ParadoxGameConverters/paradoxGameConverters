@@ -1,0 +1,253 @@
+# Copyright (c) 2015 The Paradox Game Converters Project
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+# Notes:
+# - Each V2 tech and invention is linked to zero or more HoI tech levels.
+# - More than one V2 tech or invention may grant a given HoI tech level.
+# - If a higher level is earned, it will be granted even if the lower level was not earned.
+# - The "bonus_map" section grants HoI research speed bonuses instead of HoI tech levels.
+
+tech_map =
+{
+	# ============================
+	# === HOI4 INFANTRY FOLDER ===
+	# ============================
+
+	# HoI4 Basic Infantry Equipment <- Vic2 Flintlock Rifles
+	link = {
+		vic2 = flintlock_rifles
+		infantry_weapons = 1		
+	}
+
+	# HoI4 Support Weapons I <- Vic2 Machine Gun Armament Invention
+	link = {
+		vic2 = machine_gun_armament
+		support_weapons = 1
+	}
+
+	# HoI4 Motorized <- Daimler's Automobile Invention
+	link = {
+		vic2 = daimlers_automobile
+		motorised_infantry = 1
+	}
+
+	# HoI4 Marines I <- Vic2 Amphibious Warfare Training Invention
+	link = {
+		vic2 = amphibious_warfare_training
+		marines = 1
+	}	
+
+	# HoI4 Mountain Infantry I <- Vic2 Flintlock Rifles
+	link = {
+		vic2 = flintlock_rifles		
+		tech_mountaineers = 1
+	}
+
+	# =========================
+	# === HOI4 ARMOR FOLDER ===
+	# =========================
+
+	# HoI4 Great War Tank <- Vic2 Tank Experiments Invention
+	link = {
+		vic2 = tank_experiments
+		gwtank = 1
+	}
+
+	# HoI4 Light Tank I <- Vic2 Tankette Invention
+	link = {
+		vic2 = tankette
+		basic_light_tank = 1
+	}
+
+	# HoI4 Light Tank II <- Vic2 Light Tank Invention
+	link = {
+		vic2 = light_tank
+		improved_light_tank = 1
+	}
+
+	# =============================
+	# === HOI4 ARTILLERY FOLDER ===
+	# =============================
+
+	# HoI4 Towed Artillery <- Vic2 Bronze Muzzle-loaded Artillery
+	link = {
+		vic2 = bronze_muzzle_loaded_artillery
+		gw_artillery = 1
+	}
+
+	# HoI4 Interwar Artillery <- Vic2 Heavy Artillery Invention
+	link = {
+		vic2 = heavy_artillery
+		interwar_artillery = 1
+	}
+
+	# HoI4 Towed Anti-Air <- Vic2 Improved Anti-Aircraft Artillery Invention
+	link = {
+		vic2 = improved_anti_aircraft_artillery
+		interwar_antiair = 1
+	}
+
+	# HoI4 Towed Anti-Tank <- Vic2 Light Tank Invention
+	link = {
+		vic2 = light_tank
+		interwar_antitank = 1
+	}
+
+	# ========================
+	# === HOI4 NAVY FOLDER ===
+	# ========================
+
+	# HoI4 Destroyer I <- Vic2 Commerce Raiders Invention
+	link = {
+		vic2 = commerce_raiders
+		early_destroyer = 1
+	}
+
+	# HoI4 Light Cruiser I <- Vic2 Protected Cruisers Invention
+	link = {
+		vic2 = protected_cruisers
+		early_light_cruiser = 1
+	}
+
+	# HoI4 Light Cruiser II <- Vic2 Modern Cruisers Invention
+	link = {
+		vic2 = modern_cruisers
+		basic_light_cruiser = 1
+	}
+
+	# HoI4 Heavy Cruiser I <- Vic2 Pre-Dreadnought Invention
+	link = {
+		vic2 = pre_dreadnought
+		early_heavy_cruiser = 1
+	}
+
+	# HoI4 Heavy Cruiser II <- Vic2 Modern Battleships Invention
+	link = {
+		vic2 = modern_battleships
+		basic_heavy_cruiser = 1
+	}
+
+	# HoI4 Battleship I <- Vic2 Dreadnought Invention
+	link = {
+		vic2 = dreadnoughts
+		early_battleship = 1
+	}
+
+	# HoI4 Battleship II <- Vic2 Modern Battleships Invention
+	link = {
+		vic2 = modern_battleships
+		basic_battleship = 1
+	}
+
+	# ============================
+	# === HOI4 AIRCRAFT FOLDER ===
+	# ============================
+
+	# HoI4 Interwar Fighter <- Vic2 Early Interwar Fighters Invention
+	link = {
+		vic2 = early_interwar_fighters
+		early_fighter = 1
+	}
+
+	# HoI4 Fighter I <- Vic2 Late Interwar Fighters Invention
+	link = {
+		vic2 = late_interwar_fighters
+		fighter1 = 1
+	}
+
+	# HoI4 Interwar Bomber <- Vic2 Early Interwar Bomber Invention
+	link = {
+		vic2 = early_interwar_bombers
+		early_bomber = 1
+	}
+
+	# HoI4 Tactical Bomber I <- Vic2 Late Interwar Bomber Invention
+	link = {
+		vic2 = late_interwar_bombers
+		tactical_bomber1 = 1
+	}
+
+	# ===============================
+	# === HOI4 ENGINEERING FOLDER ===
+	# ===============================
+
+	# HoI4 Electronic Mechanical Engineering <- Vic2 Vacuum Tube Invention
+	link = {
+		vic2 = vacuum_tube
+		electronic_mechanical_engineering = 1
+	}
+
+	# ============================
+	# === HOI4 INDUSTRY FOLDER ===
+	# ============================
+
+	# HoI4 Synthetic Oil Experiments <- Vic2 Synthetic Polymers
+	link = {
+		vic2 = synthetic_polymers
+		synth_oil_experiments = 1
+	}
+}
+
+bonus_map = {
+
+	# =================================
+	# === HOI4 LAND DOCTRINE FOLDER ===
+	# =================================
+		
+	link = {
+		vic2 = human_wave_vs_spearhead
+		cat_mobile_warfare = 90
+		cat_mass_assault = 90
+	}
+	
+	link = {
+		vic2 = grand_battle_plan_vs_superior_firepower
+		cat_superior_firepower = 90
+		cat_grand_battle_plan = 90
+	}
+	
+	# ================================
+	# === HOI4 AIR DOCTRINE FOLDER ===
+	# ================================
+	
+	link = {
+		vic2 = battlefield_destruction_doctrine
+		cat_battlefield_support = 90		
+	}
+	
+	link = {
+		vic2 = operational_destruction_doctrine
+		cat_operational_integrity = 90		
+	}
+	
+	link = {
+		vic2 = strategic_destruction_doctrine
+		cat_strategic_destruction = 90		
+	}
+	
+	# ==================================
+	# === HOI4 NAVAL DOCTRINE FOLDER ===
+	# ==================================
+	
+	link = {
+		vic2 = naval_firepower_doctrine
+		naval_doctrine = 90		
+	}
+}

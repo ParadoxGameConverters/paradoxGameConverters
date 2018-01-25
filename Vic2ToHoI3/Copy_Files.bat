@@ -12,9 +12,18 @@ copy "Data_Files\tech_mapping.txt" "release\tech_mapping.txt"
 copy "Data_Files\unit_mapping.txt" "release\unit_mapping.txt"
 copy "Data_Files\portraits.txt" "release\portraits.txt"
 copy "Data_Files\culture_map.txt" "release\culture_map.txt"
+copy "Data_Files\personality_map.txt" "release\personality_map.txt"
+copy "Data_Files\background_map.txt" "release\background_map.txt"
+copy "Data_Files\FAQ.txt" "release\FAQ.txt"
+copy "Data_Files\airTEMPLATE.lua" "release\airTEMPLATE.lua"
+copy "Data_Files\autoexecTEMPLATE.lua" "release\autoexecTEMPLATE.lua"
+copy "Data_Files\infatryTEMPLATE.lua" "release\infatryTEMPLATE.lua"
+copy "Data_Files\shipTemplate.lua" "release\shipTemplate.lua"
+copy "Data_Files\tankTemplate.lua" "release\tankTemplate.lua"
+copy "Data_Files\ai_focus.txt" "release\ai_focus.txt"
 
-rem hg log > Release/log.txt
-hg log --template "Change:\t\t{rev}: {node}\nAuthor:\t\t{author}\nDescription:\t{desc}\nDate:\t\t{date|isodate}\nBranch:\t\t{branch}\n***\n" > Release/log.txt
+del release\changelog.txt
+git log --oneline --decorate >> release/log.txt
 (for /f "delims=" %%i in (release/log.txt) do @echo %%i)>release/changelog.txt
 del release\log.txt
 
@@ -24,36 +33,17 @@ mkdir "release\blankMod"
 mkdir "release\blankMod\output"
 mkdir "release\blankMod\output\history"
 mkdir "release\blankMod\output\history\provinces"
-mkdir "release\blankMod\output\history\provinces\africa"
-mkdir "release\blankMod\output\history\provinces\asia"
-mkdir "release\blankMod\output\history\provinces\australia"
-mkdir "release\blankMod\output\history\provinces\balkan"
-mkdir "release\blankMod\output\history\provinces\belgium"
-mkdir "release\blankMod\output\history\provinces\canada"
-mkdir "release\blankMod\output\history\provinces\carribean"
-mkdir "release\blankMod\output\history\provinces\china"
-mkdir "release\blankMod\output\history\provinces\east europe"
-mkdir "release\blankMod\output\history\provinces\france"
-mkdir "release\blankMod\output\history\provinces\germany"
-mkdir "release\blankMod\output\history\provinces\holland"
-mkdir "release\blankMod\output\history\provinces\italy"
-mkdir "release\blankMod\output\history\provinces\japan"
-mkdir "release\blankMod\output\history\provinces\Mongolia"
-mkdir "release\blankMod\output\history\provinces\portugal"
-mkdir "release\blankMod\output\history\provinces\scandinavia"
-mkdir "release\blankMod\output\history\provinces\siberia"
-mkdir "release\blankMod\output\history\provinces\south america"
-mkdir "release\blankMod\output\history\provinces\soviet"
-mkdir "release\blankMod\output\history\provinces\spain"
-mkdir "release\blankMod\output\history\provinces\united kingdom"
-mkdir "release\blankMod\output\history\provinces\usa"
 mkdir "release\blankMod\output\history\countries"
 mkdir "release\blankMod\output\history\diplomacy"
+mkdir "release\blankMod\output\history\leaders"
 mkdir "release\blankMod\output\history\units"
 mkdir "release\blankMod\output\history\wars"
 mkdir "release\blankMod\output\events"
 mkdir "release\blankMod\output\decisions"
+mkdir "release\blankMod\output\script"
+mkdir "release\blankMod\output\script\country"
 
+xcopy "Data_Files\history\provinces" "release\blankmod\output\history\provinces" /Y /E /I
 xcopy "Data_Files\countries" "release\blankmod\output\common\countries" /Y /E /I
 xcopy "Data_files\localisation" "release\blankmod\output\localisation" /Y /E /I
 xcopy "Data_files\script" "release\blankmod\output\script" /Y /E /I
@@ -62,3 +52,5 @@ copy "Data_Files\country_colors.txt" "release\blankMod\output\common\country_col
 xcopy "Data_files\wars" "release\blankmod\output\history\wars" /Y /E /I
 xcopy "Data_Files\events" "release\blankMod\output\events"
 xcopy "Data_Files\decisions" "release\blankMod\output\decisions"
+copy "Data_Files\triggered_modifiers.txt" "release\blankMod\output\common\triggered_modifiers.txt"
+copy "Data_Files\governments.txt" "release\blankMod\output\common\governments.txt"

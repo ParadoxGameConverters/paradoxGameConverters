@@ -28,29 +28,29 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <io.h>
 #include <fstream>
 #include <sstream>
-#include "../Log.h"
+#include "Log.h"
 #include "../Configuration.h"
-#include "../Parsers/Parser.h"
-#include "V2World.h"
-#include "V2Province.h"
-#include "V2Factory.h"
-#include "V2Relations.h"
+#include "ParadoxParser.h"
 #include "V2Army.h"
+#include "V2Factory.h"
+#include "V2Leader.h"
 #include "V2Party.h"
+#include "V2Province.h"
+#include "V2Relations.h"
+#include "V2World.h"
 
 
 
-V2Country::V2Country(Object* obj)
+V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs, const continentMapping& continentMap)
 {
 	tag = obj->getKey();
-
 	provinces.clear();
-
+	cores.clear();
 	adjective = tag;
 
-	greatNationRanking = -1; // BE: Default to not great nation. This is set later in V2World.
+	greatNation = false; // Default to not great nation. This is set later in V2World.
 
-	vector<Object*> nameObj = obj->getValue("domain_region");	// BE: the region name for dynamically generated dominions
+	vector<Object*> nameObj = obj->getValue("domain_region");	// the region name for dynamically generated dominions
 	if (!nameObj.empty())
 	{
 		name = nameObj[0]->getLeaf().c_str();
@@ -65,6 +65,12 @@ V2Country::V2Country(Object* obj)
 	vector<Object*> capitalObj = obj->getValue("capital");	// the object holding the capital
 	(capitalObj.size() > 0) ? capital = atoi(capitalObj[0]->getLeaf().c_str()) : capital = 0;
 
+	auto continent = continentMap.find(capital);
+	if (continent != continentMap.end())
+	{
+		capitalContinent = continent->second;
+	}
+
 	vector<Object*> primaryCultureObj = obj->getValue("primary_culture");	// the object holding the primary culture
 	(primaryCultureObj.size() > 0) ? primaryCulture = primaryCultureObj[0]->getLeaf().c_str() : primaryCulture = "";
 
@@ -73,16 +79,21 @@ V2Country::V2Country(Object* obj)
 	{
 		techs = techsObj[0]->getKeys();
 	}
-
-	for (int i = 0; i <= HOD_naval_exercises; ++i)
+	numArmyTechs	= 0;
+	numNavyTechs	= 0;
+	for (auto tech: techs)
 	{
-		HODInventions[i] = illegal; // we don't care if they're possible or not
+		if (armyTechs.find(tech) != armyTechs.end())
+		{
+			 numArmyTechs++;
+		}
+		if (navyTechs.find(tech) != navyTechs.end())
+		{
+			 numNavyTechs++;
+		}
 	}
-	//for (int i = 0; i <= VANILLA_naval_exercises; ++i)
-	//{
-	//	vanillaInventions[i] = illegal; // we don't care if they're possible or not
-	//}
 
+	inventions.clear();
 	techsObj = obj->getValue("active_inventions");
 	if (techsObj.size() > 0)
 	{
@@ -90,25 +101,37 @@ V2Country::V2Country(Object* obj)
 		for (vector<string>::iterator itr = active_inventions.begin(); itr != active_inventions.end(); ++itr)
 		{
 			int i = atoi(itr->c_str());
-			HODInventions[i] = active; // BE: TODO: Generalize for non-HOD
+			auto jtr = iNumToName.find(i);
+			if (jtr == iNumToName.end())
+			{
+				LOG(LogLevel::Warning) << tag << " has an invalid invention. Is this using a mod that changed inventions?";
+			}
+			else
+			{
+				inventions.push_back(jtr->second);
+			}
 		}
 	}
 
-	vector<Object*> partyObj = obj->getValue("ruling_party");
+	activeParties.clear();
+	vector<Object*> partyObj = obj->getValue("active_party");
+	for (auto party: partyObj)
+	{
+		activeParties.push_back(atoi(party->getLeaf().c_str()));
+	}
+
+	partyObj = obj->getValue("ruling_party");
 	if (partyObj.size() > 0)
 	{
 		rulingPartyId = atoi(partyObj[0]->getLeaf().c_str()); // Numerical ID
 	}
+	else if (activeParties.size() > 0)
+	{
+		rulingPartyId = activeParties[0];
+	}
 	else
 	{
 		rulingPartyId = 0; // Bad value. For Rebel faction.
-	}
-
-	activeParties.clear();
-	partyObj = obj->getValue("active_party");
-	for (auto party: partyObj)
-	{
-		activeParties.push_back(atoi(party->getLeaf().c_str()));
 	}
 
 	// Read spending
@@ -147,16 +170,14 @@ V2Country::V2Country(Object* obj)
 	}
 
 	// Read reforms
+	map<string, string> reformTypes = governmentMapper::getInstance()->getReformTypes();
+
 	vector<Object*> leaves = obj->getLeaves();
 	for (unsigned int i = 0; i < leaves.size(); ++i)
 	{
 		string key = leaves[i]->getKey();
 
-		if (key == "slavery" || key == "vote_franchise" || key == "upper_house_composition" ||
-			key == "voting_system" || key == "public_meetings" || key == "press_rights" ||
-			key == "trade_unions" || key == "political_parties" || key == "wage_reform" ||
-			key == "work_hours" || key == "safety_regulations" || key == "unemployment_subsidies" ||
-			key == "pensions" || key == "health_care" || key == "school_reforms")
+		if (reformTypes.find(key) != reformTypes.end())
 		{
 			reformsArray[key] = leaves[i]->getLeaf();
 		}
@@ -226,16 +247,69 @@ V2Country::V2Country(Object* obj)
 
 	armies.clear();
 	vector<Object*> armyObj = obj->getValue("army");	// the object sholding the armies
-	for (std::vector<Object*>::iterator itr = armyObj.begin(); itr != armyObj.end(); ++itr)
+	for (auto armyItr: armyObj)
 	{
-		V2Army* army = new V2Army(*itr);
+		V2Army* army = new V2Army(armyItr);
 		armies.push_back(army);
 	}
 	vector<Object*> navyObj = obj->getValue("navy");	// the objects holding the navies
-	for (std::vector<Object*>::iterator itr = navyObj.begin(); itr != navyObj.end(); ++itr)
+	for (auto navyItr: navyObj)
 	{
-		V2Army* navy = new V2Army(*itr);
+		V2Army* navy = new V2Army(navyItr);
 		armies.push_back(navy);
+
+		// get transported armies
+		vector<Object*> armyObj = navyItr->getValue("army");	// the object sholding the armies
+		for (auto armyItr: armyObj)
+		{
+			V2Army* army = new V2Army(armyItr);
+			armies.push_back(army);
+		}
+	}
+
+	leaders.clear();
+	vector<Object*> leaderObj = obj->getValue("leader");	// the objects holding the leaders
+	for (auto itr: leaderObj)
+	{
+		V2Leader* leader = new V2Leader(itr);
+		leaders.push_back(leader);
+	}
+
+	vector<Object*> techSchoolObj = obj->getValue("schools");	// the objects holding the tech school
+	if (techSchoolObj.size() > 0)
+	{
+		techSchool = techSchoolObj[0]->getLeaf();
+	}
+
+	// read in states
+	vector<Object*> statesObj = obj->getValue("state"); // each state in the country
+	for (auto statesItr : statesObj)
+	{
+		V2State newState;
+		// get the provinces in the state
+		vector<Object*> provinceObj = statesItr[0].getValue("provinces");
+		if (provinceObj.size() > 0)
+		{
+			vector<string> provinceIDs = provinceObj[0]->getTokens();
+			for (auto provinceItr: provinceIDs)
+			{
+				newState.provinces.push_back(atoi(provinceItr.c_str()));
+			}
+		}
+
+		// count the employees in the state (for factory conversion)
+		int levelCount = 0;
+		vector<Object*> buildingsObj = statesItr[0].getValue("state_buildings"); // each factory in the state
+		for (auto buildingsItr : buildingsObj)
+		{
+			vector<Object*> levelObj = buildingsItr[0].getValue("level"); // each employment entry in the factory.
+			if (levelObj.size() > 0)
+			{
+				levelCount += atoi(levelObj[0]->getLeaf().c_str());
+			}
+		}
+		newState.factoryLevels = levelCount;
+		states.push_back(newState);
 	}
 }
 
@@ -274,10 +348,10 @@ void V2Country::eatCountry(V2Country* target)
 	if (target->provinces.size() > 0)
 	{
 		// acquire target's provinces
-		for (unsigned int j = 0; j < target->provinces.size(); j++)
+		for (auto provinceItr: target->provinces)
 		{
-			addProvince(target->provinces[j]);
-			target->provinces[j]->setOwner(this);
+			addProvince(provinceItr.first, provinceItr.second);
+			provinceItr.second->setOwner(this);
 		}
 
 		// acquire target's armies, navies, admirals, and generals
@@ -293,9 +367,10 @@ void V2Country::eatCountry(V2Country* target)
 		}
 
 		// and do the same with inventions
-		for (int i = HODInventionType::HOD_post_napoleonic_army_doctrine; i < HODInventionType::HOD_naval_exercises; ++i)
+		auto targetInventions = target->getInventions();
+		for (auto itr: targetInventions)
 		{
-			HODInventions[i] = std::max(HODInventions[i], target->getInventionState(HODInventionType(i)));
+			inventions.push_back(itr);
 		}
 	}
 
@@ -317,11 +392,60 @@ void V2Country::clearCores()
 	cores.clear();
 }
 
+
+void V2Country::putWorkersInProvinces()
+{
+	for (auto state : states)
+	{
+		// get the employable workers
+		int craftsmen		= 0;
+		int clerks			= 0;
+		int artisans		= 0;
+		int capitalists	= 0;
+		for (auto provinceNum : state.provinces)
+		{
+			auto province = provinces.find(provinceNum);
+			if (province != provinces.end())
+			{
+				craftsmen	+= province->second->getPopulation("craftsmen");
+				clerks		+= province->second->getPopulation("clerks");
+				artisans		+= province->second->getPopulation("aristans");
+				capitalists	+= province->second->getLiteracyWeightedPopulation("capitalists");
+			}
+		}
+
+		// limit craftsmen and clerks by factory levels
+		if ((craftsmen + clerks) > (state.factoryLevels * 10000))
+		{
+			float newCraftsmen	= (state.factoryLevels * 10000.0f) / (craftsmen + clerks) * craftsmen;
+			float newClerks		= (state.factoryLevels * 10000.0f) / (craftsmen + clerks) * clerks;
+
+			craftsmen	= static_cast<int>(newCraftsmen);
+			clerks		= static_cast<int>(newClerks);
+		}
+
+		// determine an actual 'employed workers' score
+		int employedWorkers = craftsmen + (clerks * 2) + static_cast<int>(artisans * 0.5) + (capitalists * 2);
+
+		if (state.provinces.size() > 0)
+		{
+			auto employmentProvince = provinces.find(state.provinces.front());
+			if (employmentProvince != provinces.end())
+			{
+				employmentProvince->second->setEmployedWorkers(employedWorkers);
+			}
+		}
+	}
+}
+
+
 std::string V2Country::getReform(std::string reform) const
 {
 	map<string, string>::const_iterator itr = reformsArray.find(reform);
 	if (itr == reformsArray.end())
+	{
 		return "";
+	}
 
 	return itr->second;
 }

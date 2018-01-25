@@ -1,0 +1,11 @@
+owner = OMN
+
+controller = OMN
+add_core = OMN
+points = 2
+anti_air = 2
+infra = 4
+air_base = 1
+naval_base = 3
+manpower = 2.00
+leadership = 0.20

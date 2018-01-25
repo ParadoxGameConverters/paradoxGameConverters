@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -24,7 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Mapper.h"
 #include "Log.h"
 #include "Configuration.h"
-#include "Parsers\Object.h"
+#include "Object.h"
 #include "V2World\V2World.h"
 #include "V2World\V2Country.h"
 #include "V2World\V2Province.h"
@@ -117,16 +117,10 @@ vector<int> getHoI3ProvinceNums(inverseProvinceMapping invProvMap, const int v2P
 }
 
 
-adjacencyMapping initAdjacencyMap()
+HoI3AdjacencyMapping initHoI3AdjacencyMap()
 {
 	FILE* adjacenciesBin = NULL;	// the adjacencies.bin file
-	string filename = Configuration::getV2DocumentsPath() + "\\map\\cache\\adjacencies.bin";	// the path and filename for adjacencies.bin
-	struct _stat st;	// the data structure telling us if the file exists
-	if ((_stat(filename.c_str(), &st) != 0))
-	{
-		LOG(LogLevel::Warning) << "Could not find " << filename << " - looking in install folder";
-		filename = Configuration::getV2Path() + "\\map\\cache\\adjacencies.bin";
-	}
+	string filename = Configuration::getHoI3Path() + "\\tfh\\map\\cache\\adjacencies.bin";
 	fopen_s(&adjacenciesBin, filename.c_str(), "rb");
 	if (adjacenciesBin == NULL)
 	{
@@ -134,7 +128,7 @@ adjacencyMapping initAdjacencyMap()
 		exit(1);
 	}
 
-	adjacencyMapping adjacencyMap;	// the adjacency mapping
+	HoI3AdjacencyMapping adjacencyMap;	// the adjacency mapping
 	while (!feof(adjacenciesBin))
 	{
 		int numAdjacencies;	// the total number of adjacencies
@@ -156,13 +150,13 @@ adjacencyMapping initAdjacencyMap()
 	// optional code to output data from the adjacencies map
 	/*FILE* adjacenciesData;
 	fopen_s(&adjacenciesData, "adjacenciesData.csv", "w");
-	fprintf(adjacenciesData, "From,Type,To,Via,Unknown1,Unknown2,PathX,PathY\n");
+	fprintf(adjacenciesData, "From,Type,To,Via,Unknown1,Unknown2\n");
 	for (unsigned int from = 0; from < adjacencyMap.size(); from++)
 	{
 		vector<adjacency> adjacencies = adjacencyMap[from];
 		for (unsigned int i = 0; i < adjacencies.size(); i++)
 		{
-			fprintf(adjacenciesData, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n", from, adjacencies[i].type, adjacencies[i].to, adjacencies[i].via, adjacencies[i].unknown1, adjacencies[i].unknown2, adjacencies[i].pathX, adjacencies[i].pathY, adjacencies[i].unknown3, adjacencies[i].unknown4);
+			fprintf(adjacenciesData, "%d,%d,%d,%d,%d,%d\n", from, adjacencies[i].type, adjacencies[i].to, adjacencies[i].via, adjacencies[i].unknown1, adjacencies[i].unknown2);
 		}
 	}
 	fclose(adjacenciesData);*/
@@ -175,13 +169,13 @@ void initContinentMap(Object* obj, continentMapping& continentMap)
 {
 	continentMap.clear();
 	vector<Object*> continentObjs = obj->getLeaves();	// the continents
-	for (unsigned int i = 0; i < continentObjs.size(); i++)
+	for (auto continentObj: continentObjs)
 	{
-		string continent = continentObjs[i]->getKey();	// the current continent
-		vector<string> provinceNums = continentObjs[i]->getTokens();	// the province numbers in this continent
-		for (unsigned int j = 0; j < provinceNums.size(); j++)
+		string continent = continentObj->getKey();	// the current continent
+		vector<Object*> provinceObjs = continentObj->getValue("provinces");	// the province numbers in this continent
+		for (auto provinceStr: provinceObjs[0]->getTokens())
 		{
-			const int province = atoi(provinceNums[j].c_str());	// the current province
+			const int province = atoi(provinceStr.c_str());	// the current province num
 			continentMap.insert( make_pair(province, continent) );
 		}
 	}
@@ -235,7 +229,7 @@ void removeEmptyNations(V2World& world)
 	map<string, V2Country*> countries = world.getCountries();	// all V2 countries
 	for (map<string, V2Country*>::iterator i = countries.begin(); i != countries.end(); i++)
 	{
-		vector<V2Province*> provinces	= i->second->getProvinces();	// the provinces for the nation
+		map<int, V2Province*> provinces	= i->second->getProvinces();	// the provinces for the nation
 		vector<V2Province*> cores			= i->second->getCores();		// the cores for the nation
 		if ( (provinces.size()) == 0 && (cores.size() == 0) )
 		{
@@ -294,47 +288,6 @@ unionMapping initUnionMap(Object* obj)
 	}
 
 	return unionMap;
-}
-
-
-governmentMapping initGovernmentMap(Object* obj)
-{
-	governmentMapping governmentMap;				// the government mapping
-	vector<Object*> links = obj->getValue("link");
-	for (vector<Object*>::iterator itr = links.begin(); itr != links.end(); ++itr)
-	{
-		GovernmentMap gov(*itr);
-		governmentMap.push_back(gov);
-	}
-
-	//governmentMapping governmentMap;				// the government mapping
-
-	//vector<Object*> links = obj->getLeaves();	// rules for the government mapping
-	//for (vector<Object*>::iterator i = links.begin(); i != links.end(); i++)
-	//{
-	//	vector<Object*>	governments	= (*i)->getLeaves();	// the items for this rule
-	//	string				dstGovernment;							// the HoI3 government
-	//	vector<string>		srcGovernments;						// the V2 governments
-
-	//	for (vector<Object*>::iterator j = governments.begin(); j != governments.end(); j++)
-	//	{
-	//		if ( (*j)->getKey() == "hoi" )
-	//		{
-	//			dstGovernment = (*j)->getLeaf();
-	//		}
-	//		if ( (*j)->getKey() == "vic" )
-	//		{
-	//			srcGovernments.push_back( (*j)->getLeaf() );
-	//		}
-	//	}
-
-	//	for (vector<string>::iterator j = srcGovernments.begin(); j != srcGovernments.end(); j++)
-	//	{
-	//		governmentMap.insert(make_pair((*j), dstGovernment));
-	//	}
-	//}
-
-	return governmentMap;
 }
 
 
@@ -490,6 +443,75 @@ void initGovernmentJobTypes(Object* obj, governmentJobsMap& governmentJobs)
 }
 
 
+void initLeaderTraitsMap(Object* obj, leaderTraitsMap& leaderTraits)
+{
+	vector<Object*> typesObj = obj->getLeaves();
+	for (auto typeItr: typesObj)
+	{
+		string type = typeItr->getKey();
+		vector<string> traits;
+		auto traitsObj = typeItr->getLeaves();
+		for (auto trait: traitsObj)
+		{
+			traits.push_back(trait->getLeaf());
+		}
+		leaderTraits.insert(make_pair(type, traits));
+	}
+}
+
+
+void initLeaderPersonalityMap(Object* obj, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap)
+{
+	vector<Object*> personalitiesObj = obj->getLeaves();
+	for (auto personalityItr: personalitiesObj)
+	{
+		string personality = personalityItr->getKey();
+		vector<string> landTraits;
+		vector<string> seaTraits;
+		auto traitsObj = personalityItr->getLeaves();
+		for (auto trait: traitsObj)
+		{
+			if (trait->getKey() == "land")
+			{
+				landTraits.push_back(trait->getLeaf());
+			}
+			else if (trait->getKey() == "sea")
+			{
+				seaTraits.push_back(trait->getLeaf());
+			}
+		}
+		landPersonalityMap.insert(make_pair(personality, landTraits));
+		seaPersonalityMap.insert(make_pair(personality, seaTraits));
+	}
+}
+
+
+void initLeaderBackgroundMap(Object* obj, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
+{
+	vector<Object*> backgroundObj = obj->getLeaves();
+	for (auto backgroundItr: backgroundObj)
+	{
+		string background = backgroundItr->getKey();
+		vector<string> landTraits;
+		vector<string> seaTraits;
+		auto traitsObj = backgroundItr->getLeaves();
+		for (auto trait: traitsObj)
+		{
+			if (trait->getKey() == "land")
+			{
+				landTraits.push_back(trait->getLeaf());
+			}
+			else if (trait->getKey() == "sea")
+			{
+				seaTraits.push_back(trait->getLeaf());
+			}
+		}
+		landBackgroundMap.insert(make_pair(background, landTraits));
+		seaBackgroundMap.insert(make_pair(background, seaTraits));
+	}
+}
+
+
 void initNamesMapping(Object* obj, namesMapping& namesMap)
 {
 	vector<Object*> groupsObj = obj->getLeaves();
@@ -527,5 +549,55 @@ void initPortraitMapping(Object* obj, portraitMapping& portraitMap)
 	{
 		vector<string> portraits = groupsItr->getTokens();
 		portraitMap.insert(make_pair(groupsItr->getKey(), portraits));
+	}
+}
+
+
+void initAIFocusModifiers(Object* obj, AIFocusModifiers& modifiers)
+{
+	vector<Object*> focusesObj = obj->getLeaves();
+	for (auto focusesItr: focusesObj)
+	{
+		pair<AIFocusType, vector<AIFocusModifier>> newFocus;
+		string focusName = focusesItr->getKey();
+		if (focusName == "sea_focus")
+		{
+			newFocus.first = SEA_FOCUS;
+		}
+		else if (focusName == "tank_focus")
+		{
+			newFocus.first = TANK_FOCUS;
+		}
+		else if (focusName == "air_focus")
+		{
+			newFocus.first = AIR_FOCUS;
+		}
+		else if (focusName == "inf_focus")
+		{
+			newFocus.first = INF_FOCUS;
+		}
+
+		vector<Object*> modifiersObj = focusesItr->getLeaves();
+		for (auto modifiersItr: modifiersObj)
+		{
+			AIFocusModifier newModifier;
+
+			vector<Object*> modifierItems = modifiersItr->getLeaves();
+
+			if (modifierItems.size() > 0)
+			{
+				string factorStr = modifierItems[0]->getLeaf();
+				newModifier.modifierAmount = atof(factorStr.c_str());
+			}
+			if (modifierItems.size() > 1)
+			{
+				newModifier.modifierType			= modifierItems[1]->getKey();
+				newModifier.modifierRequirement	= modifierItems[1]->getLeaf();
+			}
+
+			newFocus.second.push_back(newModifier);
+		}
+
+		modifiers.insert(newFocus);
 	}
 }

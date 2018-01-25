@@ -1,4 +1,4 @@
-# Copyright (c) 2014 The Paradox Game Converters Project
+# Copyright (c) 2015 The Paradox Game Converters Project
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -26,10 +26,6 @@ merge_nations =
 	# You may add your own entries here if you wish, or find the ones you like and set "merge = yes".
 	# Each entry contains ONE master and N slave tags, and a "merge" statement which can be "yes" (enabled) or "no" (disabled).
 	# ALL TAGS ARE V2 TAGS!  Merging is done BEFORE conversion!  "master" should have a one-to-one mapping for best results.
-
-	# WARNING: if converting from a game previously converted from EU3 to Vic2, you may have misplaced tags
-	# (for example, German minor tags in SE Asia), either as extant nations or cores only.
-	# If you merge these tags, you will get unexpected results!  Examine your world carefully to avoid problems.
 
 	soviet_union =
 	{

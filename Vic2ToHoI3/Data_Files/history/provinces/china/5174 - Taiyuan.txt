@@ -1,0 +1,16 @@
+owner = CSX controller = CSX
+
+add_core = CSX
+add_core = CHI
+add_core = CHC
+points = 2
+metal = 6.00
+energy = 11.00
+rare_materials = 3.00
+industry = 7
+infra = 7
+manpower = 9.00
+leadership = 0.90
+
+1937.11.11 = { 	controller = JAP }
+1938.9.1 = { owner = JAP }

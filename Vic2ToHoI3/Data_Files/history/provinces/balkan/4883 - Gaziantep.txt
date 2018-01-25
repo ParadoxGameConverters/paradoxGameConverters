@@ -1,0 +1,8 @@
+owner = TUR
+controller = TUR
+add_core = TUR
+points = 1
+metal = 2.00
+energy = 5.00
+industry = 2
+infra = 6

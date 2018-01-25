@@ -1,0 +1,25 @@
+owner = EST
+controller = EST
+add_core = EST
+
+
+infra = 8
+naval_base = 2
+1940.5.10 = {
+	owner = SOV
+	controller = SOV
+
+	add_core = SOV
+}
+
+1941.8.17 = { #precise date
+	controller = GER
+}
+
+1944.6.20 = {
+	land_fort = 2
+}
+
+1944.7.26 = { #precise date
+	controller = SOV
+}

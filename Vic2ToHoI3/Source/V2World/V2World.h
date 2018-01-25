@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include "V2Inventions.h"
 #include "V2Localisation.h"
 #include "V2Diplomacy.h"
 #include "../Mapper.h"
@@ -43,7 +44,7 @@ struct	V2Party;
 class V2World
 {
 	public:
-		V2World(Object* obj);
+		V2World(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs, const continentMapping& continentMap);
 
 		V2Country*					getCountry(string tag) const;
 		void							removeCountry(string tag);
@@ -54,7 +55,7 @@ class V2World
 		vector<V2Party*>			getActiveParties(const V2Country* country) const;
 		
 		map<string, V2Country*>	getCountries()	const			{ return countries; }
-		V2Diplomacy*				getDiplomacy()					{ return &diplomacy; }
+		const V2Diplomacy*		getDiplomacy()	const			{ return &diplomacy; }
 		const vector<string>&	getGreatCountries() const	{ return greatCountries; }
 	private:
 		void							readCountryFiles(string countryListFile, string mod);

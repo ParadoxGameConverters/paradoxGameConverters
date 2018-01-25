@@ -1,0 +1,19 @@
+owner = DEN
+controller = DEN
+add_core = DEN
+points = 1
+metal = 1.00
+energy = 12.00
+rare_materials = 1.00
+industry = 9
+anti_air = 2
+infra = 10
+air_base = 10
+naval_base = 10
+manpower = 7.00
+leadership = 0.70
+
+1940.4.10 = {
+	controller = GER
+
+}

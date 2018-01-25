@@ -1,0 +1,11 @@
+owner = USA
+controller = USA
+add_core = USA
+points = 2
+anti_air = 3
+infra = 6
+air_base = 4
+naval_base = 4
+1941.12.10 = {
+	controller = JAP
+}

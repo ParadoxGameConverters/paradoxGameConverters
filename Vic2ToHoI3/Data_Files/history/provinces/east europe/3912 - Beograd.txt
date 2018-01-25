@@ -1,0 +1,17 @@
+owner = YUG
+controller = YUG
+add_core = YUG
+
+points = 2
+metal = 7.00
+energy = 14.00
+rare_materials = 4.00
+industry = 9
+anti_air = 3
+infra = 8
+air_base = 6
+manpower = 8.00
+leadership = 0.80
+1941.6.22 = {
+	controller = GER
+}

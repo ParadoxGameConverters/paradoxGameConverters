@@ -1,0 +1,7 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+anti_air = 1
+infra = 6
+air_base = 4
+naval_base = 4

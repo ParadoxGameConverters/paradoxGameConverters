@@ -1,0 +1,31 @@
+owner = FIN
+controller = FIN
+add_core = FIN
+
+points = 1
+industry = 1
+anti_air = 3
+infra = 7
+manpower = 1.00
+leadership = 0.10
+coastal_fort = 1
+land_fort = 1
+air_base = 3
+strategic_resource = fur
+
+1939.8.23 = {
+	add_core = SOV
+}
+1940.3.12 = {
+	owner = SOV
+	controller = SOV
+}
+
+1941.12.7 = {
+	controller = FIN
+	owner = FIN
+}
+
+1944.6.20 = {
+	land_fort = 1
+}

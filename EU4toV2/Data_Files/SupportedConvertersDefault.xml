@@ -1,0 +1,685 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Explanation: TODO:
+
+Topics to explain:
+
+tag vs internalTag: 
+* "tag" is for things that should be exported to the final configuration.txt file. It is essentially the name of a property in configuration.txt - examples being "CK2ExportDirectory", "V2Gametype", etc. 
+* "internalTag" is for tags the frontend needs, but which aren't part of configuration.txt. Still, I needed some way to find these in a generic way from code, which I can using internalTag. 
+  Example usage can be: "targetGameModPath". This lets me find the target game save game path, for instance, regardless of what the target game is. 
+
+
+-->
+
+
+<configuration>
+  <gameConfigurationFile>Configuration\GameConfigurations.xml</gameConfigurationFile>
+  <supportedConverters>
+    <converter>
+      <name>Eu3ToVic2</name>
+      <friendlyName>From Europa Universalis 3 to Victoria 2</friendlyName>
+      <defaultConfigurationFile>Configuration\Eu3ToVic2DefaultConfiguration.xml</defaultConfigurationFile>
+      <userConfigurationFile></userConfigurationFile>
+      <converterExeName>EU3toV2Converter.exe</converterExeName>
+      <!--<isDefault>true</isDefault>-->
+      <sourceGame>EuropaUniversalis3</sourceGame>
+      <targetGame>Victoria2</targetGame>
+      <subfolderName>eu3tovic2</subfolderName>
+      <isEnabled>false</isEnabled>
+      
+	  <requiredItems>
+
+        <requiredFolder>
+          <tag>EU3directory</tag>
+          <friendlyName>Europa Universalis 3 directory</friendlyName>
+          <description>A path on your computer where Europa Universalis 3 is installed</description>
+          <isMandatory>true</isMandatory>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <!--<subFolderLocation>\Europa Universalis IV</subFolderLocation>-->
+              <autoDetectFromSteamId>25800</autoDetectFromSteamId>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFolder>
+          <tag>v2directory</tag>
+          <friendlyName>Victoria 2 directory</friendlyName>
+          <description>A path on your computer where Victoria 2 is installed</description>
+          <isMandatory>true</isMandatory>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <!--<subFolderLocation>\Europa Universalis IV</subFolderLocation>-->
+              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFolder>
+          <tag>V2Documentsdirectory</tag>
+          <friendlyName>Victoria 2 Documents directory</friendlyName>
+          <description>A path on your computer where Victoria 2 keeps temporary files</description>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Victoria II</subFolderLocation>
+              <subFolderLocation>map\cache</subFolderLocation>
+            </alternative>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+              <subFolderLocation>map\cache</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <subFolderLocation>map\cache</subFolderLocation>
+        </requiredFolder>
+
+        <requiredFolder>
+          <internalTag>targetGameModPath</internalTag>
+          <friendlyName>Victoria 2 mod directory</friendlyName>
+          <description>A path on your computer where Victoria 2 is installed</description>
+          <alternatives>
+            <!--<alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Victoria II\save games</subFolderLocation>
+            </alternative>-->
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+              <subFolderLocation>mod</subFolderLocation>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFile>
+          <tag>ConverterExe</tag>
+          <friendlyName>Converter .exe</friendlyName>
+          <description>The converter command line tool</description>
+          <isMandatory>true</isMandatory>
+          <extension>.exe</extension>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>ConverterFolder</defaultLocationType>
+              <subFolderLocation>eu3tovic2</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <extension>*.exe</extension>
+          <predefinedFileName>EU3toV2Converter.exe</predefinedFileName>
+        </requiredFile>
+
+        <requiredFile>
+          <tag>SaveGame</tag>
+          <friendlyName>Savegame</friendlyName>
+          <description>The savegame to convert</description>
+          <extension>.eu3</extension>
+          <isMandatory>true</isMandatory>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Europa Universalis III\save games</subFolderLocation>
+            </alternative>
+          </alternatives>
+        </requiredFile>
+
+        <!--<requiredFolder>
+        <tag>EU4ModDirectory</tag>
+        <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+        <subFolderLocation>\Paradox Interactive\Europa Universalis IV\mod</subFolderLocation>
+      </requiredFolder>-->
+      </requiredItems>
+    </converter>
+
+	<converter>
+      <name>Eu4ToVic2</name>
+      <friendlyName>From Europa Universalis 4 to Victoria 2</friendlyName>
+      <defaultConfigurationFile>Configuration\Eu4ToVic2DefaultConfiguration.xml</defaultConfigurationFile>
+      <userConfigurationFile></userConfigurationFile>
+      <!--<converterExeName>EU4toV2Converter.exe</converterExeName>-->
+      <!--<isDefault>false</isDefault>-->
+      <sourceGame>EuropaUniversalis4</sourceGame>
+      <targetGame>Victoria2</targetGame>
+      <!--<subfolderName>eu4tovic2</subfolderName>-->
+      <isEnabled>true</isEnabled>
+
+      <requiredItems>
+	  
+		<requiredFile>
+          <tag>faq</tag>
+          <internalTag>faq</internalTag>
+          <friendlyName>faq</friendlyName>
+          <description>The faq .txt</description>
+          <isMandatory>false</isMandatory>
+          <hidden>true</hidden>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>ConverterFolder</defaultLocationType>
+              <subFolderLocation>EU4ToVic2</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <predefinedFileName>FAQ.txt</predefinedFileName>
+        </requiredFile>
+        
+        <requiredFile>
+          <tag>log</tag>
+          <internalTag>log</internalTag>
+          <friendlyName>log</friendlyName>
+          <description>The log .txt</description>
+          <isMandatory>false</isMandatory>
+          <hidden>true</hidden>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>ConverterFolder</defaultLocationType>
+              <subFolderLocation>EU4ToVic2</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <predefinedFileName>log.txt</predefinedFileName>
+        </requiredFile>
+
+        <requiredFolder>
+          <tag>EU4directory</tag>
+          <friendlyName>Europa Universalis 4 directory</friendlyName>
+          <description>A path on your computer where Europa Universalis 4 is installed</description>
+          <isMandatory>true</isMandatory>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <!--<subFolderLocation>\Europa Universalis IV</subFolderLocation>-->
+              <autoDetectFromSteamId>236850</autoDetectFromSteamId>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFolder>
+          <tag>EU4DocumentsDirectory</tag>
+          <friendlyName>EU4 Documents Directory</friendlyName>
+          <description>A path on your computer where Europa Universalis 4 keeps temporary files</description>
+		  <isMandatory>true</isMandatory>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Europa Universalis IV</subFolderLocation>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFolder>
+          <tag>CK2ExportDirectory</tag>
+          <friendlyName>CK2 Export Directory</friendlyName>
+          <description>A path on your computer where Crusader Kings 2 keeps exported games</description>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Crusader Kings II\eu4_export\mod</subFolderLocation>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFolder>
+          <tag>V2directory</tag>
+          <friendlyName>Victoria 2 directory</friendlyName>
+          <description>A path on your computer where Victoria 2 is installed</description>
+          <isMandatory>true</isMandatory>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <!--<subFolderLocation>\Europa Universalis IV</subFolderLocation>-->
+              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFolder>
+          <tag>V2Documentsdirectory</tag>
+          <friendlyName>Victoria 2 Documents directory</friendlyName>
+          <description>A path on your computer where Victoria 2 keeps temporary files</description>
+		  <isMandatory>true</isMandatory>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Victoria II</subFolderLocation>
+              <subFolderLocation>map\cache</subFolderLocation>
+            </alternative>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+              <subFolderLocation>map\cache</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <subFolderLocation>map\cache</subFolderLocation>
+        </requiredFolder>
+
+        <requiredFolder>
+          <internalTag>targetGameModPath</internalTag>
+          <friendlyName>Victoria 2 mod directory</friendlyName>
+          <description>A path on your computer where Victoria 2 is installed</description>
+		  <isMandatory>true</isMandatory>
+          <alternatives>
+            <!--<alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Victoria II\save games</subFolderLocation>
+            </alternative>-->
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+              <subFolderLocation>mod</subFolderLocation>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFile>
+          <tag>ConverterExe</tag>
+          <friendlyName>Converter .exe</friendlyName>
+          <description>The converter command line tool</description>
+          <isMandatory>true</isMandatory>
+          <extension>.exe</extension>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>ConverterFolder</defaultLocationType>
+              <subFolderLocation>eu4tovic2</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <extension>*.exe</extension>
+          <predefinedFileName>EU4toV2Converter.exe</predefinedFileName>
+        </requiredFile>
+
+        <requiredFile>
+          <tag>SaveGame</tag>
+          <friendlyName>Savegame</friendlyName>
+          <description>The savegame to convert</description>
+          <extension>.eu4</extension>
+          <isMandatory>true</isMandatory>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Europa Universalis IV\save games</subFolderLocation>
+            </alternative>
+          </alternatives>
+        </requiredFile>
+        
+        <requiredFile>
+          <tag>faq</tag>
+          <internalTag>faq</internalTag>
+          <friendlyName>faq</friendlyName>
+          <description>The faq .txt</description>
+          <isMandatory>false</isMandatory>
+          <hidden>true</hidden>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>ConverterFolder</defaultLocationType>
+              <subFolderLocation>EU4ToVic2</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <predefinedFileName>FAQ.txt</predefinedFileName>
+        </requiredFile>
+
+        <!--<requiredFolder>
+        <tag>EU4ModDirectory</tag>
+        <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+        <subFolderLocation>\Paradox Interactive\Europa Universalis IV\mod</subFolderLocation>
+      </requiredFolder>-->
+      </requiredItems>
+    </converter>
+
+	<converter>
+      <name>Vic2ToHoI3</name>
+      <friendlyName>From Victoria 2 to Hearts of Iron 3</friendlyName>
+      <defaultConfigurationFile>Configuration\Vic2ToHoI3DefaultConfiguration.xml</defaultConfigurationFile>
+      <userConfigurationFile></userConfigurationFile>
+      <!--<converterExeName>V2ToHoI3Converter.exe</converterExeName>-->
+      <!--<isDefault>false</isDefault>-->
+      <sourceGame>Victoria2</sourceGame>
+      <targetGame>HeartsOfIron3</targetGame>
+      <!--<subfolderName>Vic2ToHoI3</subfolderName>-->
+      <isEnabled>false</isEnabled>
+
+      <requiredItems>
+        
+        <requiredFile>
+          <tag>faq</tag>
+          <internalTag>faq</internalTag>
+          <friendlyName>faq</friendlyName>
+          <description>The faq .txt</description>
+          <isMandatory>false</isMandatory>
+          <hidden>true</hidden>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>ConverterFolder</defaultLocationType>
+              <subFolderLocation>Vic2ToHoI3</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <predefinedFileName>FAQ.txt</predefinedFileName>
+        </requiredFile>
+        
+        <requiredFile>
+          <tag>log</tag>
+          <internalTag>log</internalTag>
+          <friendlyName>log</friendlyName>
+          <description>The log .txt</description>
+          <isMandatory>false</isMandatory>
+          <hidden>true</hidden>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>ConverterFolder</defaultLocationType>
+              <subFolderLocation>Vic2ToHoI3</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <predefinedFileName>log.txt</predefinedFileName>
+        </requiredFile>
+
+        <requiredFolder>
+          <tag>V2directory</tag>
+          <friendlyName>Victoria 2 directory</friendlyName>
+          <description>A path on your computer where Victoria 2 is installed</description>
+          <isMandatory>true</isMandatory>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <!--<subFolderLocation>\Europa Universalis IV</subFolderLocation>-->
+              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFolder>
+          <tag>V2Documentsdirectory</tag>
+          <friendlyName>Victoria 2 Documents directory</friendlyName>
+          <description>A path on your computer where Victoria 2 keeps temporary files</description>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Victoria II</subFolderLocation>
+              <subFolderLocation>map\cache</subFolderLocation>
+            </alternative>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+              <subFolderLocation>map\cache</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <subFolderLocation>map\cache</subFolderLocation>
+        </requiredFolder>
+		
+		<requiredFolder>
+          <tag>HoI3directory</tag>
+          <friendlyName>Hearts of Iron 3 directory</friendlyName>
+          <description>A path on your computer where Hearts of Iron 3 is installed</description>
+          <isMandatory>true</isMandatory>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <!--<subFolderLocation>\Europa Universalis IV</subFolderLocation>-->
+              <autoDetectFromSteamId>25890</autoDetectFromSteamId>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFolder>
+          <tag>HoI3Documentsdirectory</tag>
+          <friendlyName>Hearts of Iron 3 Documents directory</friendlyName>
+          <description>A path on your computer where Hearts of Iron 3 keeps temporary files</description>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Hearts of Iron III</subFolderLocation>
+              <subFolderLocation>map\cache</subFolderLocation>
+            </alternative>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <autoDetectFromSteamId>25890</autoDetectFromSteamId>
+              <subFolderLocation>map\cache</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <subFolderLocation>map\cache</subFolderLocation>
+        </requiredFolder>
+
+        <requiredFolder>
+          <internalTag>sourceGameModPath</internalTag>
+          <friendlyName>Victoria 2 mod directory</friendlyName>
+          <description>A path on your computer where Victoria 2 is installed</description>
+          <alternatives>
+            <!--<alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Victoria II\save games</subFolderLocation>
+            </alternative>-->
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+              <subFolderLocation>mod</subFolderLocation>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFolder>
+          <internalTag>targetGameModPath</internalTag>
+          <friendlyName>HoI3 mod directory</friendlyName>
+          <description>A path on your computer where HoI3 ttemp files are kept</description>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <autoDetectFromSteamId>25890</autoDetectFromSteamId>
+              <subFolderLocation>mod</subFolderLocation>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFile>
+          <tag>ConverterExe</tag>
+          <friendlyName>Converter .exe</friendlyName>
+          <description>The converter command line tool</description>
+          <isMandatory>true</isMandatory>
+          <extension>.exe</extension>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>ConverterFolder</defaultLocationType>
+              <subFolderLocation>Vic2ToHoI3</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <extension>*.exe</extension>
+          <predefinedFileName>V2ToHoI3Converter.exe</predefinedFileName>
+        </requiredFile>
+
+        <requiredFile>
+          <tag>SaveGame</tag>
+          <friendlyName>Savegame</friendlyName>
+          <description>The savegame to convert</description>
+          <extension>.v2</extension>
+          <isMandatory>true</isMandatory>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Victoria II\save games</subFolderLocation>
+            </alternative>
+          </alternatives>
+        </requiredFile>
+
+        <!--<requiredFolder>
+        <tag>EU4ModDirectory</tag>
+        <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+        <subFolderLocation>\Paradox Interactive\Europa Universalis IV\mod</subFolderLocation>
+      </requiredFolder>-->
+      </requiredItems>
+    </converter>
+	<converter>
+      <name>Vic2ToHoI4</name>
+      <friendlyName>From Victoria 2 to Hearts of Iron 4</friendlyName>
+      <defaultConfigurationFile>Configuration\Vic2ToHoI4DefaultConfiguration.xml</defaultConfigurationFile>
+      <userConfigurationFile></userConfigurationFile>
+      <!--<converterExeName>V2ToHoI4Converter.exe</converterExeName>-->
+      <!--<isDefault>false</isDefault>-->
+      <sourceGame>Victoria2</sourceGame>
+      <targetGame>HeartsOfIron4</targetGame>
+      <!--<subfolderName>Vic2ToHoI4</subfolderName>-->
+      <isEnabled>false</isEnabled>
+
+      <requiredItems>
+        
+        <requiredFile>
+          <tag>faq</tag>
+          <internalTag>faq</internalTag>
+          <friendlyName>faq</friendlyName>
+          <description>The faq .txt</description>
+          <isMandatory>false</isMandatory>
+          <hidden>true</hidden>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>ConverterFolder</defaultLocationType>
+              <subFolderLocation>Vic2ToHoI4</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <predefinedFileName>FAQ.txt</predefinedFileName>
+        </requiredFile>
+        
+        <requiredFile>
+          <tag>log</tag>
+          <internalTag>log</internalTag>
+          <friendlyName>log</friendlyName>
+          <description>The log .txt</description>
+          <isMandatory>false</isMandatory>
+          <hidden>true</hidden>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>ConverterFolder</defaultLocationType>
+              <subFolderLocation>Vic2ToHoI4</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <predefinedFileName>log.txt</predefinedFileName>
+        </requiredFile>
+
+        <requiredFolder>
+          <tag>V2directory</tag>
+          <friendlyName>Victoria 2 directory</friendlyName>
+          <description>A path on your computer where Victoria 2 is installed</description>
+          <isMandatory>true</isMandatory>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <!--<subFolderLocation>\Europa Universalis IV</subFolderLocation>-->
+              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFolder>
+          <tag>V2Documentsdirectory</tag>
+          <friendlyName>Victoria 2 Documents directory</friendlyName>
+          <description>A path on your computer where Victoria 2 keeps temporary files</description>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Victoria II</subFolderLocation>
+              <subFolderLocation>map\cache</subFolderLocation>
+            </alternative>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+              <subFolderLocation>map\cache</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <subFolderLocation>map\cache</subFolderLocation>
+        </requiredFolder>
+		
+		<requiredFolder>
+          <tag>HoI4directory</tag>
+          <friendlyName>Hearts of Iron 4 directory</friendlyName>
+          <description>A path on your computer where Hearts of Iron 4 is installed</description>
+          <isMandatory>true</isMandatory>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <!--<subFolderLocation>\Hearts of Iron IV</subFolderLocation>-->
+              <autoDetectFromSteamId>394360</autoDetectFromSteamId>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFolder>
+          <tag>HoI4Documentsdirectory</tag>
+          <friendlyName>Hearts of Iron 4 Documents directory</friendlyName>
+          <description>A path on your computer where Hearts of Iron 4 keeps temporary files</description>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Hearts of Iron IV</subFolderLocation>
+              <subFolderLocation>map\cache</subFolderLocation>
+            </alternative>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <autoDetectFromSteamId>394360</autoDetectFromSteamId>
+              <subFolderLocation>map\cache</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <subFolderLocation>map\cache</subFolderLocation>
+        </requiredFolder>
+
+        <requiredFolder>
+          <internalTag>sourceGameModPath</internalTag>
+          <friendlyName>Victoria 2 mod directory</friendlyName>
+          <description>A path on your computer where Victoria 2 is installed</description>
+          <alternatives>
+            <!--<alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Victoria II\save games</subFolderLocation>
+            </alternative>-->
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+              <subFolderLocation>mod</subFolderLocation>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFolder>
+          <internalTag>targetGameModPath</internalTag>
+          <friendlyName>HoI4 mod directory</friendlyName>
+          <description>A path on your computer where HoI4 temp files are kept</description>
+          <alternatives>
+				<alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Hearts of Iron IV\mod</subFolderLocation>
+            </alternative>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <autoDetectFromSteamId>394360</autoDetectFromSteamId>
+              <subFolderLocation>mod</subFolderLocation>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFile>
+          <tag>ConverterExe</tag>
+          <friendlyName>Converter .exe</friendlyName>
+          <description>The converter command line tool</description>
+          <isMandatory>true</isMandatory>
+          <extension>.exe</extension>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>ConverterFolder</defaultLocationType>
+              <subFolderLocation>Vic2ToHoI4</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <extension>*.exe</extension>
+          <predefinedFileName>V2ToHoI4Converter.exe</predefinedFileName>
+        </requiredFile>
+
+        <requiredFile>
+          <tag>SaveGame</tag>
+          <friendlyName>Savegame</friendlyName>
+          <description>The savegame to convert</description>
+          <extension>.v2</extension>
+          <isMandatory>true</isMandatory>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Victoria II\save games</subFolderLocation>
+            </alternative>
+          </alternatives>
+        </requiredFile>
+      </requiredItems>
+    </converter>
+
+	</supportedConverters>
+</configuration>

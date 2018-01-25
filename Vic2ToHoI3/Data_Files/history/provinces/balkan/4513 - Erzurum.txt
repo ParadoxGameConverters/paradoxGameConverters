@@ -1,0 +1,5 @@
+owner = TUR
+controller = TUR
+add_core = TUR
+rare_materials = 3.00
+infra = 4

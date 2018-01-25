@@ -1,0 +1,5 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+metal = 2.00
+infra = 4

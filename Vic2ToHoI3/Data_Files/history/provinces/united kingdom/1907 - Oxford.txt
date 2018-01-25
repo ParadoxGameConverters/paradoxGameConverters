@@ -1,0 +1,7 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+leadership = 2.69
+
+infra = 9
+strategic_resource = antibiotics

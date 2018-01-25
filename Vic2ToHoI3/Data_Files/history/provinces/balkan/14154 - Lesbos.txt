@@ -1,0 +1,10 @@
+owner = GRE
+controller = GRE
+add_core = GRE
+
+naval_base = 1
+infra = 6
+
+1941.4.30 = {
+	controller = GER
+}

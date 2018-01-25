@@ -1,0 +1,11 @@
+owner = FRA
+controller = FRA
+add_core = FRA
+points = 1
+rare_materials = 10.00
+infra = 4
+naval_base = 2
+1944.6.20 = { air_base = 2 }
+1944.12.01 = {
+	controller = USA
+}

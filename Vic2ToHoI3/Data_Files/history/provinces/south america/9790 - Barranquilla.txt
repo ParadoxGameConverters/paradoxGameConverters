@@ -1,0 +1,13 @@
+owner = COL
+controller = COL
+add_core = COL
+points = 2
+metal = 1.00
+energy = 2.00
+industry = 2
+anti_air = 2
+infra = 6
+air_base = 1
+naval_base = 2
+manpower = 1.00
+leadership = 0.10

@@ -1,0 +1,37 @@
+dist: trusty
+sudo: required
+language:
+  - cpp
+compiler:
+  - gcc
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-7
+      - g++-7
+      - cmake
+      - cmake-data
+      - libboost1.55-all-dev
+before_install:
+  - mkdir $HOME/usr
+  - export PATH="$HOME/usr/bin:$PATH"
+  - wget https://cmake.org/files/v3.10/cmake-3.10.0-rc1-Linux-x86_64.sh
+  - chmod +x cmake-3.10.0-rc1-Linux-x86_64.sh
+  - ./cmake-3.10.0-rc1-Linux-x86_64.sh --prefix=$HOME/usr --exclude-subdir --skip-license
+script:
+  # Export CC and CXX to tell cmake which compiler to use
+  - export CC=/usr/bin/gcc-7
+  - export CXX=/usr/bin/g++-7
+  # Check versions of gcc, g++ and cmake
+  - gcc -v && g++ -v && cmake --version
+  # Run your build commands next
+  - cd Vic2ToHoI4
+  - cmake -H. -Bbuild
+  - ls
+  - ls build
+  - cmake --build ./build
+  - cd ../EU4toV2
+  - cmake -H. -Bbuild
+  - cmake --build ./build -- -j3

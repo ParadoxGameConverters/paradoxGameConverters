@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -30,18 +30,19 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Configuration.h"
 #include "Log.h"
-#include "Parsers\Parser.h"
+#include "ParadoxParser.h"
 #include "HOI3World\HoI3World.h"
 #include "V2World\V2World.h"
 #include "V2World\V2Factory.h"
 #include "V2World\V2Localisation.h"
 #include "WinUtils.h"
 
-#pragma optimize("", off)
+
 // Converts the given V2 save into a HOI3 mod.
 // Returns 0 on success or a non-zero failure code on error.
 int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 {
+	LOG(LogLevel::Info) << "Converter version 1.2";
 	Object*	obj;					// generic object
 
 	Configuration::getInstance();
@@ -51,7 +52,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	LOG(LogLevel::Debug) << "Current directory is " << curDir;
 
 	// Get HoI3 install location
-	LOG(LogLevel::Info) << "Get HoI3 Install Path";
+	LOG(LogLevel::Debug) << "Get HoI3 Install Path";
 	string HoI3Loc = Configuration::getHoI3Path();	// the HOI3 install location as stated in the configuration file
 	struct _stat st;										// the file info
 	if (HoI3Loc.empty() || (_stat(HoI3Loc.c_str(), &st) != 0))
@@ -61,7 +62,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	}
 	else
 	{
-		LOG(LogLevel::Debug) << "No HoI3 path install path is " << HoI3Loc;
+		LOG(LogLevel::Debug) << "HoI3 path install path is " << HoI3Loc;
 	}
 
 	// Get HOI3 Documents Directory
@@ -127,6 +128,41 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 		}
 	}
 
+	// get inventions
+	LOG(LogLevel::Info) << "Getting inventions";
+	inventionNumToName iNumToname;
+	getInventionNums(iNumToname);
+
+	// parse technologies
+	LOG(LogLevel::Info) << "Parsing Vic2 technologies";
+	map<string, string> armyTechs;
+	obj = doParseFile((Configuration::getV2Path() + "\\technologies\\army_tech.txt").c_str());
+	if (obj != NULL)
+	{
+		for (auto tech: obj->getLeaves())
+		{
+			armyTechs.insert(make_pair(tech->getKey(), tech->getKey()));
+		}
+	}
+	map<string, string> navyTechs;
+	obj = doParseFile((Configuration::getV2Path() + "\\technologies\\navy_tech.txt").c_str());
+	if (obj != NULL)
+	{
+		for (auto tech: obj->getLeaves())
+		{
+			navyTechs.insert(make_pair(tech->getKey(), tech->getKey()));
+		}
+	}
+
+	// parse continents
+	LOG(LogLevel::Info) << "Parsing continents";
+	continentMapping continentMap;
+	obj = doParseFile((Configuration::getV2Path() + "\\map\\continent.txt").c_str());
+	if (obj != NULL)
+	{
+		initContinentMap(obj, continentMap);
+	}
+
 	//get output name
 	const int slash	= V2SaveFileName.find_last_of("\\");				// the last slash in the save's filename
 	string outputName = V2SaveFileName.substr(slash + 1, V2SaveFileName.length());
@@ -147,6 +183,47 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	Configuration::setOutputName(outputName);
 	LOG(LogLevel::Info) << "Using output name " << outputName;
 
+	string outputFolder = string(curDir) + "\\output\\" + Configuration::getOutputName();
+	if (WinUtils::doesFolderExist(outputFolder.c_str()))
+	{
+		LOG(LogLevel::Error) << "Output folder " << Configuration::getOutputName() << " already exists! Clear the output folder before running again!";
+		exit(0);
+	}
+
+	// Parse government mapping
+	LOG(LogLevel::Info) << "Parsing governments mappings";
+	initParser();
+	obj = doParseFile("governmentMapping.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file governmentMapping.txt";
+		exit(-1);
+	}
+	governmentMapper::getInstance()->initGovernmentMap(obj->getLeaves()[0]);
+
+	// Parse issues
+	LOG(LogLevel::Info) << "Parsing governments reforms";
+	for (auto itr : vic2Mods)
+	{
+		if (WinUtils::DoesFileExist(Configuration::getV2Path() + "\\mod\\" + itr + "\\common\\issues.txt"))
+		{
+			obj = doParseFile((Configuration::getV2Path() + "\\mod\\" + itr + "\\common\\issues.txt").c_str());
+			if (obj != NULL)
+			{
+				governmentMapper::getInstance()->initReforms(obj);
+				break;
+			}
+		}
+	}
+	if (!governmentMapper::getInstance()->areReformsInitialized())
+	{
+		obj = doParseFile((Configuration::getV2Path() + "\\common\\issues.txt").c_str());
+		if (obj != NULL)
+		{
+			governmentMapper::getInstance()->initReforms(obj);
+		}
+	}
+
 	LOG(LogLevel::Info) << "* Importing V2 save *";
 
 	//	Parse V2 Save
@@ -160,7 +237,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 
 	// Construct world from V2 save.
 	LOG(LogLevel::Info) << "Building world";
-	V2World sourceWorld(obj);
+	V2World sourceWorld(obj, iNumToname, armyTechs, navyTechs, continentMap);
 
 	// Read all localisations.
 	LOG(LogLevel::Info) << "Reading localisation";
@@ -174,53 +251,6 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 
 	sourceWorld.setLocalisations(localisation);
 
-	//// Resolve unit types
-	///*log("Resolving unit types.\n");
-	//printf("Resolving unit types.\n");
-	//RegimentTypeMap rtm;
-	//read.open("unit_strength.txt");
-	//if (read.is_open())
-	//{
-	//	read.close();
-	//	read.clear();
-	//	log("\tReading unit strengths from unit_strength.txt\n");
-	//	obj = doParseFile("unit_strength.txt");
-	//	if (obj == NULL)
-	//	{
-	//		log("Could not parse file unit_strength.txt\n");
-	//		exit(-1);
-	//	}
-	//	for (int i = 0; i < num_reg_categories; ++i)
-	//	{
-	//		AddCategoryToRegimentTypeMap(obj, (RegimentCategory)i, RegimentCategoryNames[i], rtm);
-	//	}
-	//}
-	//else
-	//{
-	//	log("	Reading unit strengths from EU4 installation folder\n");
-	//	struct _finddata_t unitFileData;
-	//	intptr_t fileListing;
-	//	if ( (fileListing = _findfirst( (EU4Loc + "\\common\\units\\*.txt").c_str(), &unitFileData)) == -1L)
-	//	{
-	//		log("	Could not open units directory.\n");
-	//		return -1;
-	//	}
-	//	do
-	//	{
-	//		if (strcmp(unitFileData.name, ".") == 0 || strcmp(unitFileData.name, "..") == 0 )
-	//		{
-	//			continue;
-	//		}
-	//		string unitFilename = unitFileData.name;
-	//		string unitName = unitFilename.substr(0, unitFilename.find_first_of('.'));
-	//		AddUnitFileToRegimentTypeMap((EU4Loc + "\\common\\units"), unitName, rtm);
-	//	} while(_findnext(fileListing, &unitFileData) == 0);
-	//	_findclose(fileListing);
-	//}
-	//read.close();
-	//read.clear();
-	//sourceWorld.resolveRegimentTypes(rtm);*/
-
 
 	// Merge nations
 	LOG(LogLevel::Info) << "Merging nations";
@@ -231,10 +261,6 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 		exit(-1);
 	}
 	mergeNations(sourceWorld, obj);
-	
-	// Parse HoI3 data files
-	LOG(LogLevel::Info) << "Parsing HoI3 data";
-	HoI3World destWorld;
 
 	// Parse province mappings
 	LOG(LogLevel::Info) << "Parsing province mappings";
@@ -250,26 +276,21 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	initProvinceMap(obj, provinceMap, inverseProvinceMap, resettableProvinces);
 	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
 
+	// Parse HoI3 data files
+	LOG(LogLevel::Info) << "Parsing HoI3 data";
+	HoI3World destWorld;
+	destWorld.importProvinces(provinceMap);
+	destWorld.checkCoastalProvinces();
+
 	// Get country mappings
 	CountryMapping countryMap;
 	countryMap.ReadRules("country_mappings.txt");
+	destWorld.importPotentialCountries();
 	countryMap.CreateMapping(sourceWorld, destWorld);
 
-	//// Get adjacencies
-	//LOG(LogLevel::Info) << "Importing adjacencies";
-	//adjacencyMapping adjacencyMap = initAdjacencyMap();
-
-	// Parse government mapping
-	LOG(LogLevel::Info) << "Parsing governments mappings";
-	initParser();
-	obj = doParseFile("governmentMapping.txt");
-	if (obj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file governmentMapping.txt";
-		exit(-1);
-	}
-	governmentMapping governmentMap;
-	governmentMap = initGovernmentMap(obj->getLeaves()[0]);
+	// Get adjacencies
+	LOG(LogLevel::Info) << "Importing HoI3 adjacencies";
+	HoI3AdjacencyMapping HoI3AdjacencyMap = initHoI3AdjacencyMap();
 
 	// Leaders
 	map<int, int> leaderIDMap; // <V2, HoI3>
@@ -285,6 +306,18 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	}
 	governmentJobsMap governmentJobs;
 	initGovernmentJobTypes(obj->getLeaves()[0], governmentJobs);
+
+	// Parse leader traits
+	LOG(LogLevel::Info) << "Parsing government jobs";
+	initParser();
+	obj = doParseFile("leader_traits.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file leader_traits.txt";
+		exit(-1);
+	}
+	leaderTraitsMap leaderTraits;
+	initLeaderTraitsMap(obj->getLeaves()[0], leaderTraits);
 
 	// parse names
 	LOG(LogLevel::Info) << "Parsing names";
@@ -330,19 +363,80 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	cultureMapping cultureMap;
 	cultureMap = initCultureMap(obj->getLeaves()[0]);
 
+	// parse personality mapping
+	LOG(LogLevel::Info) << "Parsing personality mappings";
+	obj = doParseFile("personality_map.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file personality_map.txt";
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse personality_map.txt";
+		return 1;
+	}
+	personalityMap landPersonalityMap;
+	personalityMap seaPersonalityMap;
+	initLeaderPersonalityMap(obj->getLeaves()[0], landPersonalityMap, seaPersonalityMap);
+
+	// parse background mapping
+	LOG(LogLevel::Info) << "Parsing background mappings";
+	obj = doParseFile("background_map.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file background_map.txt";
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse background_map.txt";
+		return 1;
+	}
+	backgroundMap landBackgroundMap;
+	backgroundMap seaBackgroundMap;
+	initLeaderBackgroundMap(obj->getLeaves()[0], landBackgroundMap, seaBackgroundMap);
+
+	// parse AI focus data
+	LOG(LogLevel::Info) << "Parsing AI focuses";
+	obj = doParseFile("ai_focus.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file ai_focus.txt";
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse ai_focus.txt";
+		return 1;
+	}
+	AIFocusModifiers focusModifiers;
+	initAIFocusModifiers(obj, focusModifiers);
+
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, namesMap, portraitMap, cultureMap);
+	destWorld.convertCountries(sourceWorld, countryMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
 	LOG(LogLevel::Info) << "Converting provinces";
-	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap);
+	destWorld.convertProvinceOwners(sourceWorld, provinceMap, countryMap);
+	destWorld.convertNavalBases(sourceWorld, inverseProvinceMap);
+	destWorld.convertProvinceItems(sourceWorld, provinceMap, inverseProvinceMap, countryMap, HoI3AdjacencyMap);
+	destWorld.consolidateProvinceItems(inverseProvinceMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Converting techs";
 	destWorld.convertTechs(sourceWorld);
+	LOG(LogLevel::Info) << "Adding minimal levels of airbase and port";
+	destWorld.addMinimalItems(inverseProvinceMap);
 	LOG(LogLevel::Info) << "Converting armies and navies";
-	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap);
+	destWorld.convertArmies(sourceWorld, inverseProvinceMap, HoI3AdjacencyMap);
 	LOG(LogLevel::Info) << "Setting up factions";
 	destWorld.configureFactions(sourceWorld, countryMap);
+	LOG(LogLevel::Info) << "Generating Leaders";
+	destWorld.generateLeaders(leaderTraits, namesMap, portraitMap);
+	LOG(LogLevel::Info) << "Converting victory points";
+	destWorld.convertVictoryPoints(sourceWorld, countryMap);
+	LOG(LogLevel::Info) << "Setting AI focuses";
+	destWorld.setAIFocuses(focusModifiers);
 
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";
@@ -355,8 +449,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 		exit(-1);
 	}
 	fprintf(modFile, "name = \"Converted - %s\"\n", Configuration::getOutputName().c_str());
-	// BE: Use full path for people whose mod directory is in different drive from HoI3 installation directory. i.e., me.
-	fprintf(modFile, "path = \"%s/mod/%s\"\n", Configuration::getHoI3DocumentsPath().c_str(), Configuration::getOutputName().c_str());
+	fprintf(modFile, "path = mod/%s\"\n", Configuration::getOutputName().c_str());
 	fprintf(modFile, "user_dir = \"%s_user_dir\"\n", Configuration::getOutputName().c_str());
 	fprintf(modFile, "replace = \"history/countries\"\n");
 	fprintf(modFile, "replace = \"history/diplomacy\"\n");
@@ -376,7 +469,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "* Conversion complete *";
 	return 0;
 }
-#pragma optimize("", on)
+
 
 int main(const int argc, const char * argv[])
 {

@@ -1,0 +1,5 @@
+owner = JAP
+controller = JAP
+add_core = JAP
+points = 2
+infra = 6

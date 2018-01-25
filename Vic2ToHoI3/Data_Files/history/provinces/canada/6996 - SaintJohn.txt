@@ -1,0 +1,7 @@
+owner = CAN
+controller = CAN
+add_core = CAN
+anti_air = 2
+infra = 6
+air_base = 6
+naval_base = 4

@@ -1,0 +1,8 @@
+owner = AST
+controller = AST
+add_core = AST
+infra = 4
+metal = 2.00
+air_base = 1
+naval_base = 1
+

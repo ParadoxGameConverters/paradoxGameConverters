@@ -1,0 +1,7 @@
+owner = FIN
+controller = FIN
+add_core = FIN
+
+terrain = woods
+
+infra = 6

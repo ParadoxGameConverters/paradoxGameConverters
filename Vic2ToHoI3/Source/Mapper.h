@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "Parsers\Object.h"
+#include "Object.h"
 #include "GovernmentMapper.h"
 #include <map>
 #include <vector>
@@ -52,16 +52,12 @@ typedef struct {
 	int via;				// the straight (if any) this crosses
 	int unknown1;		// still unknown
 	int unknown2;		// still unknown
-	int pathX;			// the midpoint on the path srawn between provinces
-	int pathY;			// the midpoint on the path srawn between provinces
-	int unknown3;		// still unknown
-	int unknown4;		// still unknown
 } adjacency;			// an entry in the adjacencies.bin format
-typedef vector< vector<adjacency> > adjacencyMapping;
-adjacencyMapping initAdjacencyMap();
+typedef vector< vector<adjacency> > HoI3AdjacencyMapping;
+HoI3AdjacencyMapping initHoI3AdjacencyMap();
 
 
-typedef map<int, string>	continentMapping;	// <province, continent>
+typedef map<int, string> continentMapping;	// <province, continent>
 void initContinentMap(Object* obj, continentMapping& continentMap);
 
 
@@ -87,10 +83,6 @@ typedef vector< pair<string, string> > unionMapping;	// <cultures, tag>
 unionMapping initUnionMap(Object* obj);
 
 
-// Government Mappings
-governmentMapping initGovernmentMap(Object* obj);
-
-
 // Cultural Union Nation mappings
 typedef map< string, vector<string> > unionCulturesMap; // <culture group, cultures>
 void initUnionCultures(Object* obj, unionCulturesMap& unionCultures);
@@ -109,6 +101,15 @@ typedef map<string, vector<string>> governmentJobsMap;
 void initGovernmentJobTypes(Object* obj, governmentJobsMap& governmentJobs);
 
 
+// leaderTraits
+typedef map<string, vector<string>> leaderTraitsMap; // <leader type, possible traits>
+void initLeaderTraitsMap(Object* obj, leaderTraitsMap& leaderTraits);
+typedef map<string, vector<string>> personalityMap;	// <V2 personality, possible HoI3 traits>
+void initLeaderPersonalityMap(Object* obj, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap);
+typedef map<string, vector<string>> backgroundMap;		// <V2 background, possible HoI3 traits>
+void initLeaderBackgroundMap(Object* obj, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+
+
 // names
 typedef map<string, pair<vector<string>, vector<string>>> namesMapping;
 void initNamesMapping(Object* obj, namesMapping& namesMap);
@@ -116,6 +117,21 @@ void initNamesMapping(Object* obj, namesMapping& namesMap);
 // portraits
 typedef map<string, vector<string>> portraitMapping; // <graphical culture, valid portraits>
 void initPortraitMapping(Object* obj, portraitMapping& portraitMap);
+
+// AI focus
+typedef enum {
+	SEA_FOCUS,
+	TANK_FOCUS,
+	AIR_FOCUS,
+	INF_FOCUS
+} AIFocusType;
+typedef struct {
+	double	modifierAmount;
+	string	modifierType;
+	string	modifierRequirement;
+} AIFocusModifier;
+typedef map<AIFocusType, vector<AIFocusModifier>> AIFocusModifiers;
+void initAIFocusModifiers(Object* obj, AIFocusModifiers& modifiers);
 
 
 #endif // MAPPER_H

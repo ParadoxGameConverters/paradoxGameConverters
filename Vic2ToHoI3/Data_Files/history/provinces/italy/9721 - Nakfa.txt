@@ -1,0 +1,10 @@
+owner = ITA
+controller = ITA
+add_core = ITA
+infra = 2
+1941.4.1 = {
+	controller = ENG
+} # Battle of Keren
+1943.9.3 = {
+	owner = ENG
+}

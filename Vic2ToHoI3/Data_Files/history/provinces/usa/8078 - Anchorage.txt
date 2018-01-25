@@ -1,0 +1,9 @@
+owner = USA
+controller = USA
+add_core = USA
+strategic_resource = fur
+points = 1
+anti_air = 1
+infra = 4
+air_base = 4
+naval_base = 4

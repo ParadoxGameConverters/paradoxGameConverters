@@ -28,46 +28,62 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../CountryMapping.h"
 #include "../Mapper.h"
 #include "../Color.h"
-#include "../Date.h"
+#include "Date.h"
 #include "V2Inventions.h"
 #include "V2Localisation.h"
+#include "V2Province.h"
 #include <vector>
+#include <map>
 #include <set>
+#include <string>
 using namespace std;
 
-class V2World;
-class V2Province;
-class V2Relations;
-class V2Army;
-class V2Reforms;
-class V2Factory;
-struct V2Party;
+
+class		V2Army;
+class		V2Factory;
+class		V2Leader;
+struct	V2Party;
+class		V2Province;
+class		V2Reforms;
+class		V2Relations;
+class		V2World;
+
+
+typedef struct V2State
+{
+	vector<int>		provinces;
+	int				factoryLevels;
+} V2State;
 
 
 
 class V2Country
 {
 	public:
-		V2Country(Object* obj);
+		V2Country(Object* obj, const inventionNumToName& iNumToName, map<string, string>& armyTechs, map<string, string>& navyTechs, const continentMapping& continentMap);
 
-		void								addProvince(V2Province* _province)		{ provinces.push_back(_province); }
-		void								setColor(Color newColor)					{ color = newColor; }
-		void								setGreatNationRanking(int newRanking)	{ greatNationRanking = newRanking; }
+		void								addProvince(int num, V2Province* _province)		{ provinces.insert(make_pair(num, _province)); }
+		void								setColor(Color newColor)								{ color = newColor; }
+		void								setGreatNation(bool _greatNation)					{ greatNation = _greatNation; }
 
 		void								addCore(V2Province*);
 		void								eatCountry(V2Country* target);
 		void								clearProvinces();
 		void								clearCores();
+		void								putWorkersInProvinces();
 
 		map<string, V2Relations*>	getRelations()													const { return relations; }
-		vector<V2Province*>			getProvinces()													const { return provinces; }
+		vector<V2State>				getStates()														const { return states; }
+		map<int, V2Province*>		getProvinces()													const { return provinces; }
 		vector<V2Province*>			getCores()														const { return cores; }
 		string							getTag()															const { return tag; }
 		string							getPrimaryCulture()											const { return primaryCulture; }
-		inventionStatus				getInventionState(vanillaInventionType invention)	const { return vanillaInventions[invention]; }
-		inventionStatus				getInventionState(HODInventionType invention)		const { return HODInventions[invention]; }
+		vector<string>					getInventions()												const { return inventions; }
+		int								getNumArmyTechs()												const { return numArmyTechs; }
+		int								getNumNavyTechs()												const { return numNavyTechs; }
 		string							getGovernment()												const { return government; }
 		int								getCapital()													const { return capital; }
+		string							getCapitalContinent()										const { return capitalContinent; }
 		vector<string>					getTechs()														const { return techs; }
 		Color								getColor()														const { return color; }
 		string							getName()														const { return name; }
@@ -77,8 +93,12 @@ class V2Country
 		unsigned	int					getRulingPartyId()											const { return rulingPartyId; }
 		vector<unsigned int>			getActiveParties()											const { return activeParties; };
 		vector<V2Army*>				getArmies()														const { return armies; }
+		vector<V2Leader*>				getLeaders()													const { return leaders; }
 		double							getRevanchism()												const { return revanchism; }
 		double							getWarExhaustion()											const { return warExhaustion; }
+		string							getTechSchool()												const { return techSchool; }
+		map<string, string>			getAllReforms()												const { return reformsArray; }
+		bool								getGreatNation()												const { return greatNation; }
 
 		string							getReform(string reform) const;
 		string							getName(const string& language) const;
@@ -87,7 +107,7 @@ class V2Country
 
 		void setLocalisationName(const string& language, const string& name)
 		{
-			if (this->name != "") // BE: Domains have their name set from domain_region
+			if (this->name != "") // Domains have their name set from domain_region
 			{
 				namesByLanguage[language] = this->name;
 			}
@@ -99,7 +119,7 @@ class V2Country
 		}
 		void setLocalisationAdjective(const string& language, const string& adjective)
 		{
-			if (this->adjective != "") // BE: Domains have their adjective set from domain_region
+			if (this->adjective != "") // Domains have their adjective set from domain_region
 			{
 				adjectivesByLanguage[language] = this->adjective;
 			}
@@ -112,16 +132,20 @@ class V2Country
 
 	private:
 		string							tag;
-		vector<V2Province*>			provinces;
+		vector<V2State>				states;
+		map<int, V2Province*>		provinces;	// ID, province
 		vector<V2Province*>			cores;
 		int								capital;
+		string							capitalContinent;
 		string							primaryCulture;
 		vector<string>					techs;
-		inventionStatus				vanillaInventions[VANILLA_naval_exercises];
-		inventionStatus				HODInventions[HOD_naval_exercises];
+		vector<string>					inventions;
+		int								numArmyTechs;
+		int								numNavyTechs;
 		string							government;
 		map<string,V2Relations*>	relations;
 		vector<V2Army*>				armies;
+		vector<V2Leader*>				leaders;
 		Color								color;	
 		map<string, double>			upperHouseComposition;
 		double							educationSpending;
@@ -132,7 +156,8 @@ class V2Country
 		string							flagFile;
 		unsigned	int					rulingPartyId;
 		vector<unsigned int>			activeParties;
-		int								greatNationRanking;
+		bool								greatNation;
+		string							techSchool;
 
 		// Localisation attributes
 		string name;			// the name of this country

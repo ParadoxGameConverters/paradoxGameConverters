@@ -1,0 +1,12 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+
+energy = 1.00
+infra = 6
+manpower = 1.00
+leadership = 0.08
+
+1942.8.3 = {	controller = GER }
+1943.2.1 = {	controller = SOV }
+

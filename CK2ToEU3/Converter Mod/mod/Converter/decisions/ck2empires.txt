@@ -592,13 +592,19 @@ country_decisions = {
 			NOT = { exists = ABY }
 		}
 		allow = {
-			OR = {
-				NOT = { exists = ETH }
-				tag = ETH
-			}
-			OR = {
-				NOT = { exists = ADA }
-				tag = ADA
+			AND = {
+				OR = {
+					NOT = { exists = ETH }
+					tag = ETH
+				}
+				OR = {
+					NOT = { exists = ADA }
+					tag = ADA
+				}
+				OR = {
+					NOT = { government = imperial_government }
+					NOT = { tag = ETH }
+				}
 			}
 			owns = 1206 # Majerteen
 			owns = 1224 # Gonder

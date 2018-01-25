@@ -1,0 +1,12 @@
+owner = CHI
+
+controller = CHI
+
+add_core = CHI
+add_core = CHC
+points = 2
+metal = 2.00
+energy = 12.00
+rare_materials = 6.00
+infra = 5
+industry = 2

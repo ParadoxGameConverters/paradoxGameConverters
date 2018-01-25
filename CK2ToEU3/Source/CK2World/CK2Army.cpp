@@ -1,5 +1,5 @@
 /*Copyright (c) 2013 The CK2 to EU3 Converter Project
- 
+
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
  "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
  distribute, sublicense, and/or sell copies of the Software, and to
  permit persons to whom the Software is furnished to do so, subject to
  the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -26,7 +26,7 @@
 
 
 
-CK2Subunit::CK2Subunit(const Object* obj)
+CK2Subunit::CK2Subunit(const IObject* obj)
 {
 	home = atoi( obj->getLeaf("home").c_str() );
 
@@ -38,7 +38,7 @@ CK2Subunit::CK2Subunit(const Object* obj)
 	currentShips			= 0.0F;
 	maxShips					= 0.0F;
 
-	vector<Object*> troopsObjs = obj->getValue("troops")[0]->getLeaves();
+	vector<IObject*> troopsObjs = obj->getValue("troops")[0]->getLeaves();
 	for (unsigned int i = 0; i < troopsObjs.size(); i++)
 	{
 		if (troopsObjs[i]->getKey() == "light_infantry")
@@ -93,16 +93,16 @@ CK2Subunit::CK2Subunit(const Object* obj)
 }
 
 
-CK2Army::CK2Army(const Object* obj)
+CK2Army::CK2Army(const IObject* obj)
 {
 	name = obj->getLeaf("name");
-	vector<Object*> subunitObjs = obj->getValue("sub_unit");
+	vector<IObject*> subunitObjs = obj->getValue("sub_unit");
 	for (unsigned int i = 0; i < subunitObjs.size(); i++)
 	{
 		CK2Subunit* newSubunit = new CK2Subunit(subunitObjs[i]);
 		subunits.push_back(newSubunit);
 	}
-	vector<Object*> movementObj = obj->getValue("movement_progress");
+	vector<IObject*> movementObj = obj->getValue("movement_progress");
 	if (movementObj.size() > 0)
 	{
 		movementProgress = atof( movementObj[0]->getLeaf().c_str() );
@@ -111,8 +111,8 @@ CK2Army::CK2Army(const Object* obj)
 	{
 		movementProgress = 0.0F;
 	}
-	
-	vector<Object*> pathObj = obj->getValue("path");
+
+	vector<IObject*> pathObj = obj->getValue("path");
 	if (pathObj.size() > 0)
 	{
 		vector<string> pathStrs = pathObj[0]->getTokens();
@@ -125,7 +125,7 @@ CK2Army::CK2Army(const Object* obj)
 	location = atoi( obj->getLeaf("location").c_str() );
 
 	transportedArmies.clear();
-	vector<Object*> armyObjs = obj->getValue("army");
+	vector<IObject*> armyObjs = obj->getValue("army");
 	for (unsigned int i = 0; i < armyObjs.size(); i++)
 	{
 		CK2Army* newArmy = new CK2Army(armyObjs[i]);

@@ -1,0 +1,10 @@
+owner = CZE
+controller = CZE
+add_core = CZE
+
+infra = 8
+1939.3.14 = {
+	owner = SLO
+	controller = SLO
+	add_core = SLO
+}

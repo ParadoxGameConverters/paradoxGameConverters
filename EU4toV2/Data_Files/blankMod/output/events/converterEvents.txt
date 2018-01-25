@@ -1,0 +1,222 @@
+country_event = { 
+	id = 250001 
+	title = EVTNAME250001
+	desc = EVTDESC250001
+	is_triggered_only = yes 
+
+	option = { 
+		name = EVTOPTA250001
+		FROM = { inherit = THIS }
+    }
+}
+
+country_event = { 
+	id = 250002
+	title = EVTNAME250002
+	desc = EVTDESC250002
+
+	trigger = { 
+		has_country_flag = emperor_hre 
+		has_global_flag = liberal_revolutions_should_now_fire 
+	}
+
+	mean_time_to_happen = { months = 1 }
+
+	option = { 
+		name = EVTOPTA250002
+		clr_country_flag = emperor_hre 
+		any_province = { remove_core = HRE }
+	}
+}
+
+country_event = {
+    id = 250003
+    title = EVTNAME250003
+    desc = EVTDESC250003
+
+    is_triggered_only = yes
+
+    option = {
+		name = EVTOPTA250003
+        FROM = { inherit = THIS }
+   
+        ai_chance = {
+            factor = 50
+            modifier = {
+                factor = 0
+                OR = {
+                    war = yes
+                    is_greater_power = yes
+                    is_secondary_power = yes
+                    involved_in_crisis = yes
+                    AND = {
+                        is_vassal = yes
+                        NOT = {
+                            is_our_vassal = FROM
+                        }
+                    }
+                    NOT = {
+                        relation = { who = FROM value = 25 }
+                    }
+                    AND = {
+                        part_of_sphere = yes
+                        NOT = {
+                            in_sphere = FROM
+                        }
+                    }
+                }
+            }
+            modifier = {
+                factor = 0.5
+				relation = { who = FROM value = 25 }
+				NOT = {
+					relation = { who = FROM value = 50 }
+				}
+            }
+            modifier = {
+                factor = 2
+                OR = {
+                    average_militancy = 4
+                    average_consciousness = 4
+                    relation = { who = FROM value = 75 }
+                    AND = {
+                        relation = { who = FROM value = 25 }
+                        neighbour = FROM
+                    }
+                }
+            }
+        }
+    }
+    option = {
+		name = EVTOPTB250003
+        THIS = { prestige = 25 }
+        FROM = { prestige = -25 }
+        any_owned = {
+            limit = {
+                is_core = HRE
+            }
+            remove_core = HRE
+        }
+           
+        ai_chance = {
+            factor = 50
+        }
+    }
+}
+
+country_event = { 
+	id = 250004 
+	title = EVTNAME250004
+	desc = EVTDESC250004
+	is_triggered_only = yes
+	
+	option = { 
+		name = EVTOPTA250004
+		release_vassal = XIN
+		release_vassal = XBI
+		release_vassal = TIB
+		release_vassal = MGL
+		release_vassal = MCK
+		release_vassal = KOR
+		release_vassal = YNN
+		release_vassal = GXI
+		release_vassal = DAI
+		ai_chance = {
+			factor = 100
+		}
+    }
+}
+
+country_event = {
+    id = 350001
+    title = EVTNAME350001
+    desc = EVTDESC350001
+
+    is_triggered_only = yes
+
+    option = {
+		name = EVTOPTA350001
+        FROM = { inherit = THIS }
+		any_owned = {
+			add_core = FROM
+			}
+   
+        ai_chance = {
+            factor = 50
+            modifier = {
+                factor = 0
+                OR = {
+                    war = yes
+                    is_greater_power = yes
+                    is_secondary_power = yes
+                    involved_in_crisis = yes
+                    AND = {
+                        is_vassal = yes
+                        NOT = {
+                            is_our_vassal = FROM
+                        }
+                    }
+                    NOT = {
+                        relation = { who = FROM value = 25 }
+                    }
+                    AND = {
+                        part_of_sphere = yes
+                        NOT = {
+                            in_sphere = FROM
+                        }
+                    }
+                }
+            }
+            modifier = {
+                factor = 0.5
+				relation = { who = FROM value = 25 }
+				NOT = {
+					relation = { who = FROM value = 50 }
+				}
+            }
+            modifier = {
+                factor = 2
+                OR = {
+                    average_militancy = 4
+                    average_consciousness = 4
+                    relation = { who = FROM value = 75 }
+                    AND = {
+                        relation = { who = FROM value = 25 }
+                        neighbour = FROM
+                    }
+                }
+            }
+        }
+    }
+    option = {
+		name = EVTOPTB350001
+        THIS = { prestige = 25 }
+        FROM = { prestige = -25 }
+		any_owned = {
+				add_core = FROM
+				}
+           
+        ai_chance = {
+            factor = 50
+        }
+    }
+}
+
+country_event = { 
+	id = 350002
+	title = EVTNAME350002
+	desc = EVTDESC350002
+
+	trigger = { 
+		has_country_flag = emperor_heaven
+		NOT = { is_year = 1880 }
+	}
+
+	mean_time_to_happen = { months = 1 }
+
+	option = { 
+		name = EVTOPTA350002
+		clr_country_flag = emperor_heaven
+	}
+}
+

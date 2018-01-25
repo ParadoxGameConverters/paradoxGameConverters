@@ -36,6 +36,11 @@ function TechMinister_Tick(minister, vbSliders, vbResearch)
 		PortsTotal = 0, -- Total amount of ports
 		AirfieldsTotal = 0} -- Total amount of airfields
 
+			
+	if math.random(2) == 1 then
+	
+		
+
 	-- Initialize Production Object 
 	--   only the ones that are used for the slider
 	-- #################
@@ -76,6 +81,8 @@ function TechMinister_Tick(minister, vbSliders, vbResearch)
 			Process_Tech((CCurrentGameState.GetCurrentDate():GetYear()), liMaxTechYear, ResearchSlotsAllowed, ResearchSlotsNeeded)
 		end
 	end
+	
+		end
 end
 
 -- Balances the research sliders	
@@ -346,17 +353,25 @@ function Process_Tech(pYear, pMaxYear, ResearchSlotsAllowed, ResearchSlotsNeeded
 	--    does the country have country specific weights
 	else
 		local laTechWeights
+		local countryResearch = TechnologyData.ministerCountry:GetTotalLeadership():Get() --research
 		
-		if Utils.HasCountryAIFunction(TechnologyData.ministerTag, "TechWeights") then
-			laTechWeights = Utils.CallCountryAI(TechnologyData.ministerTag, "TechWeights", TechnologyData)
-		elseif TechnologyData.IsNaval then
-			laTechWeights = Utils.CallCountryAI("DEFAULT_MIXED", "TechWeights", TechnologyData)
+		--TODO RANDOMHOI checks if we need more resources to research resource-related industry
+		
+		if (countryResearch > 60) then --research ALL 
+				laTechWeights = Utils.CallCountryAI("DEFAULT_ALL", "TechWeights", TechnologyData)	
 		else
-			laTechWeights = Utils.CallCountryAI("DEFAULT_LAND", "TechWeights", TechnologyData)
-		end
-		
-		for i = 1, _RESEARCH_UNKNOWN_ do
-			laPrimeTechAreas[i].ResearchWeight = laTechWeights[i]
+			
+			if Utils.HasCountryAIFunction(TechnologyData.ministerTag, "TechWeights") then
+				laTechWeights = Utils.CallCountryAI(TechnologyData.ministerTag, "TechWeights", TechnologyData)
+			elseif TechnologyData.IsNaval then
+				laTechWeights = Utils.CallCountryAI("DEFAULT_MIXED", "TechWeights", TechnologyData)
+			else
+				laTechWeights = Utils.CallCountryAI("DEFAULT_LAND", "TechWeights", TechnologyData)
+			end
+			
+			for i = 1, _RESEARCH_UNKNOWN_ do
+				laPrimeTechAreas[i].ResearchWeight = laTechWeights[i]
+			end
 		end
 	end	
 	
@@ -531,6 +546,10 @@ end
 -- Decide if the tech is to be ignored or not
 function TechIgnore(viTechLevel, vsTechName, vaIgnoreTechs)
 	local lbIgnoreTech = false
+	
+	if (vaIgnoreTechs == nil) then
+		return lbIgnoreTech
+	end
 	
 	local i = 1
 	local TableLength = table.getn(vaIgnoreTechs)

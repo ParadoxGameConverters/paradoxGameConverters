@@ -1,0 +1,25 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+
+strategic_resource = antibiotics
+points = 20
+metal = 3.00
+energy = 3.00
+rare_materials = 1.00
+industry = 5
+coastal_fort = 5
+anti_air = 5
+infra = 8
+air_base = 10
+naval_base = 10
+manpower = 6.00
+leadership = 0.23
+
+1941.9.8 = {
+	land_fort = 1
+}
+
+1945.6.7 = {
+	controller = SOV
+}

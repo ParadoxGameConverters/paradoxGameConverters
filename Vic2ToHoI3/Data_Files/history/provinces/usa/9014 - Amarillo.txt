@@ -1,0 +1,7 @@
+owner = USA
+controller = USA
+add_core = USA
+metal = 11.00
+infra = 8
+strategic_resource = helium
+

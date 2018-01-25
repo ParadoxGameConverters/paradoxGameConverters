@@ -1,0 +1,5 @@
+owner = USA
+controller = USA
+add_core = USA
+crude_oil = 24.00
+infra = 6

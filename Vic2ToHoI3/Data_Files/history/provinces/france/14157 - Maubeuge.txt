@@ -1,0 +1,21 @@
+owner = FRA
+controller = FRA
+add_core = FRA
+
+terrain = forest
+
+infra = 9
+metal = 0.50
+energy = 13
+
+1939.1.1 = {
+	land_fort = 1
+}
+
+leadership = 0.10
+1941.6.22 = {
+	controller = GER
+}
+1944.12.01 = {
+	controller = USA
+}

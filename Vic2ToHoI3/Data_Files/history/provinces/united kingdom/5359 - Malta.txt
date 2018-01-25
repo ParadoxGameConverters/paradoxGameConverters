@@ -1,0 +1,14 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+points = 3
+coastal_fort = 1
+land_fort = 0
+anti_air = 2
+infra = 8
+air_base = 4
+naval_base = 5
+
+1939.1.1 = {
+	radar_station = 1
+}

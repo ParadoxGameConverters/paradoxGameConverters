@@ -1,5 +1,5 @@
 /*Copyright (c) 2013 The CK2 to EU3 Converter Project
- 
+
  Permission is hereby granted, free of charge, to any person obtaining
  a copy of this software and associated documentation files (the
  "Software"), to deal in the Software without restriction, including
@@ -7,10 +7,10 @@
  distribute, sublicense, and/or sell copies of the Software, and to
  permit persons to whom the Software is furnished to do so, subject to
  the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included
  in all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -26,21 +26,21 @@
 #include "CK2Building.h"
 #include "CK2Barony.h"
 #include "CK2Title.h"
-#include "CK2Character.h"
+#include "CK2World\Character\CK2Character.h"
 #include "CK2Religion.h"
 #include "CK2Version.h"
 #include "..\Log.h"
 
 
 
-CK2Province::CK2Province(Object* obj, map<string, CK2Title*>& titles, map<int, CK2Character*>& characters, const CK2BuildingFactory* buildingFactory, CK2Version& version)
+CK2Province::CK2Province(IObject* obj, map<string, CK2Title*>& titles, map<int, std::shared_ptr<CK2Character>>& characters, const CK2BuildingFactory* buildingFactory, CK2Version& version)
 {
 	number			= atoi( obj->getKey().c_str() );
 	tradePost		= false;
 	tpGarrisonSize	= 0;
 	tpOwner			= NULL;
 
-	vector<Object*> leaves = obj->getLeaves();
+	vector<IObject*> leaves = obj->getLeaves();
 	for (unsigned int i = 0; i < leaves.size(); i++)
 	{
 		string key = leaves[i]->getKey();
@@ -52,7 +52,8 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*>& titles, map<int, C
 				log("Error: baron-level title %s is used in your save, but does not exist in your CK2 install.\n", key.c_str());
 				continue;
 			}
-			CK2Barony* newBarony = new CK2Barony( leaves[i], title->second, this, buildingFactory);
+			CK2Barony* newBarony = new CK2Barony( static_cast<Object*>(leaves[i]), title->second, this,
+				buildingFactory);
 			if (newBarony->getTitle()->getHolder()->getCapitalString() == newBarony->getTitle()->getTitleString())
 			{
 				newBarony->getTitle()->getHolder()->setCapital(this);
@@ -65,22 +66,22 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*>& titles, map<int, C
 		{
 			tradePost = true;
 			int ownerNum = atoi(leaves[i]->getLeaf("owner").c_str());
-			map<int, CK2Character*>::iterator owner = characters.find(ownerNum);
+			auto owner = characters.find(ownerNum);
 			if (owner != characters.end())
 			{
 				tpOwner = owner->second->getPrimaryTitle();
 			}
-			vector<Object*> garrison1Obj = leaves[i]->getValue("tr_garrison_1");
+			vector<IObject*> garrison1Obj = leaves[i]->getValue("tr_garrison_1");
 			if (garrison1Obj.size() > 0)
 			{
 				tpGarrisonSize += 2;
 			}
-			vector<Object*> garrison2Obj = leaves[i]->getValue("tr_garrison_2");
+			vector<IObject*> garrison2Obj = leaves[i]->getValue("tr_garrison_2");
 			if (garrison2Obj.size() > 0)
 			{
 				tpGarrisonSize += 3;
 			}
-			vector<Object*> garrison3Obj = leaves[i]->getValue("tr_garrison_3");
+			vector<IObject*> garrison3Obj = leaves[i]->getValue("tr_garrison_3");
 			if (garrison3Obj.size() > 0)
 			{
 				tpGarrisonSize += 4;
@@ -88,7 +89,7 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*>& titles, map<int, C
 		}
 	}
 
-	vector<Object*> cultureObj	= obj->getValue("culture");
+	vector<IObject*> cultureObj	= obj->getValue("culture");
 	if (cultureObj.size() > 0)
 	{
 		culture  = cultureObj[0]->getLeaf();
@@ -98,7 +99,7 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*>& titles, map<int, C
 		culture = "";
 	}
 
-	vector<Object*> religionObj = obj->getValue("religion");
+	vector<IObject*> religionObj = obj->getValue("religion");
 	if (religionObj.size() > 0)
 	{
 		religion  = CK2Religion::getReligion(religionObj[0]->getLeaf());
@@ -111,10 +112,10 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*>& titles, map<int, C
 	techLevels.clear();
 	if (CK2Version("1.10") > version)
 	{
-		vector<Object*> techObj = obj->getValue("technology");
+		vector<IObject*> techObj = obj->getValue("technology");
 		if (techObj.size() > 0)
 		{
-			vector<Object*> levelObj = techObj[0]->getValue("level");
+			vector<IObject*> levelObj = techObj[0]->getValue("level");
 			if (levelObj.size() > 0)
 			{
 				vector<string> levelStrings = levelObj[0]->getTokens();
@@ -123,7 +124,7 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*>& titles, map<int, C
 					techLevels.push_back( atoi(levelStrings[i].c_str()) );
 				}
 			}
-			vector<Object*> progressObj = techObj[0]->getValue("progress");
+			vector<IObject*> progressObj = techObj[0]->getValue("progress");
 			if (progressObj.size() > 0)
 			{
 				vector<string> progressStrings = progressObj[0]->getTokens();
@@ -136,10 +137,10 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*>& titles, map<int, C
 	}
 	else
 	{
-		vector<Object*> techObj = obj->getValue("technology");
+		vector<IObject*> techObj = obj->getValue("technology");
 		if (techObj.size() > 0)
 		{
-			vector<Object*> levelObj = techObj[0]->getValue("tech_levels");
+			vector<IObject*> levelObj = techObj[0]->getValue("tech_levels");
 			if (levelObj.size() > 0)
 			{
 				vector<string> levelStrings = levelObj[0]->getTokens();

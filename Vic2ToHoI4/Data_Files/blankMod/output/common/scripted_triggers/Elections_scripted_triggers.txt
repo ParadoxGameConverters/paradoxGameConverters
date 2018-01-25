@@ -1,0 +1,24 @@
+#	Example:
+# 
+#	example_trigger = {
+#		tag = GER
+#		is_ai = no
+#	}
+#
+#
+#	In a script file:
+#
+#	trigger = {
+#		exampel_trigger = yes
+#	}
+#
+can_lose_unity = {
+	has_national_unity > 60
+	OR = {
+		has_war = no
+		AND = {
+			has_war = yes
+			surrender_progress < 0.1
+		}
+	}
+}

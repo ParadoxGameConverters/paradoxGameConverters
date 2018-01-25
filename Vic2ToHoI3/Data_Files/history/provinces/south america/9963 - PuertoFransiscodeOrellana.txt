@@ -1,0 +1,5 @@
+owner = ECU
+controller = ECU
+add_core = ECU
+crude_oil = 2.00
+infra = 4

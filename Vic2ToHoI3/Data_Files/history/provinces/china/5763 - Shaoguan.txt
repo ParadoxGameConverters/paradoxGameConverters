@@ -1,0 +1,16 @@
+owner = CGX
+
+controller = CGX
+
+add_core = CGX
+
+add_core = CHC
+add_core = CHI
+infra = 3
+industry = 2
+1936.5.12 = { 	owner = CHI} 
+1938.9.1 = {
+	controller = CHI
+}
+1944.6.20 = {
+	controller = JAP }

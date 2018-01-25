@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -32,8 +32,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <boost/algorithm/string.hpp>
 
-#include "Parsers\Object.h"
-#include "Parsers\Parser.h"
+#include "Object.h"
+#include "paradoxParser.h"
 #include "V2World\V2World.h"
 #include "HoI3World\HoI3World.h"
 #include "Log.h"
@@ -130,22 +130,6 @@ void CountryMapping::CreateMapping(const V2World& srcWorld, const HoI3World& des
 					LogMapping(V2Tag, HoI3Tag, "default HoI3 country");
 				}
 			}
-			// 10/10/2014 BE: Commented out the following, as I don't like it.
-			//if (!mapped)
-			//{	// None of the HoI3 tags in our rule correspond to an actual HoI3 country, so we just use the first unused HoI3 tag.
-			//	for (vector<string>::const_iterator j = possibleHoI3Tags.begin(); j != possibleHoI3Tags.end() && !mapped; ++j)
-			//	{
-			//		const std::string& HoI3Tag = *j;
-			//		if (V2TagToHoI3TagMap.right.find(HoI3Tag) == V2TagToHoI3TagMap.right.end())
-			//		{
-			//			mapped = true;
-			//			V2TagToHoI3TagMap.left.insert(make_pair(V2Tag, HoI3Tag));
-			//			LogMapping(V2Tag, HoI3Tag, "mapping rule, not a HoI3 country");
-			//		}
-			//	}
-			//	// It's possible to get here if all the HoI3 tags for this V2 tag have already been used - we fallback
-			//	// on the same case as V2 tags without rules.
-			//}
 		}
 		if (!mapped)
 		{	// Either the V2 tag had no mapping rule or no HoI3 tag from its mapping rule could be used. 
@@ -182,23 +166,9 @@ const std::string& CountryMapping::GetHoI3Tag(const std::string& V2Tag) const
 	}
 }
 
-const std::string& CountryMapping::GetEU4Tag(const std::string& V2Tag) const
+const std::string& CountryMapping::GetVic2Tag(const std::string& HoI3Tag) const
 {
-	boost::bimap<std::string, std::string>::right_const_iterator findIter = EU4TagToV2TagMap.right.find(V2Tag);	// the mapping with this V2 tag
-	if (findIter != EU4TagToV2TagMap.right.end())
-	{
-		return findIter->second;
-	}
-	else
-	{
-		static const std::string V2TagNotFound = "";	// an empty string for unfound tags
-		return V2TagNotFound;
-	}
-}
-
-const std::string& CountryMapping::GetV2Tag(const std::string& HoI3Tag) const
-{
-	boost::bimap<std::string, std::string>::right_const_iterator findIter = V2TagToHoI3TagMap.right.find(HoI3Tag);	// the mapping with this V2 tag
+	boost::bimap<std::string, std::string>::right_const_iterator findIter = V2TagToHoI3TagMap.right.find(HoI3Tag);	// the mapping with this HoI3 tag
 	if (findIter != V2TagToHoI3TagMap.right.end())
 	{
 		return findIter->second;

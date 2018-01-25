@@ -1,0 +1,21 @@
+owner = USA
+controller = USA
+add_core = USA
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 6
+
+infra = 8

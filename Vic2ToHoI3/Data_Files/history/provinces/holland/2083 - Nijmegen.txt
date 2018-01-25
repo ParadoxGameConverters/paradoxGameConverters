@@ -1,0 +1,14 @@
+owner = HOL
+controller = HOL
+add_core = HOL
+
+industry = 4
+infra = 9
+leadership = 0.1
+
+1940.5.28 = {
+	controller = GER
+}
+1944.12.01 = {
+	controller = USA
+}

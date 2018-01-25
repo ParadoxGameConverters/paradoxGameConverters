@@ -1,0 +1,29 @@
+owner = FRA
+controller = FRA
+add_core = FRA
+add_core = IDC
+metal = 1.00
+energy = 2.00
+rare_materials = 1.00
+industry = 2
+infra = 6
+manpower = 3.00
+leadership = 0.45
+
+infra = 6
+1940.6.22 = {
+	owner = VIC
+	controller = VIC
+	add_core = VIC
+}
+1941.6.22 = {
+	owner = JAP
+	controller = JAP
+}
+1941.7.1 = {
+	owner = JAP
+	controller = JAP
+}
+1944.12.01 = {
+	controller = USA
+}

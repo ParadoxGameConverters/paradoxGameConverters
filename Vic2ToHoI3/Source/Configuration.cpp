@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -22,8 +22,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Configuration.h"
-#include "Parsers/Parser.h"
-#include "Parsers/Object.h"
+#include "ParadoxParser.h"
+#include "Object.h"
 #include "Log.h"
 #include <vector>
 using namespace std;
@@ -54,7 +54,6 @@ Configuration::Configuration()
 	V2DocumentsPath	= obj[0]->getLeaf("V2Documentsdirectory");
 	HoI3Path				= obj[0]->getLeaf("HoI3directory");
 	HoI3DocumentsPath = obj[0]->getLeaf("HoI3Documentsdirectory");
-	resetProvinces		= obj[0]->getLeaf("resetProvinces");
 	outputName			= "";
 
 	vector<Object*> modsObj = obj[0]->getValue("Vic2Mods");

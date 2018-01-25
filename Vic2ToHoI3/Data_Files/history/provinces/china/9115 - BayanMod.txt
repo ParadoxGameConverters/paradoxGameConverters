@@ -1,0 +1,9 @@
+owner = CXB
+controller = CXB
+add_core = CXB
+add_core = CHC
+add_core = CHI
+
+infra = 2
+
+

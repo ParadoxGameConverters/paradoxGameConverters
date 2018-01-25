@@ -24,9 +24,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Localisation.h"
 #include <Windows.h>
 #include <fstream>
-#include "..\Log.h"
+#include "Log.h"
 #include "..\WinUtils.h"
-#include "..\Parsers\Object.h"
+#include "Object.h"
 
 
 
@@ -158,6 +158,14 @@ void V2Localisation::ReadFromFile(const std::string& fileName)
 			int frontDivision = division + 1;
 			division = line.find_first_of(';', frontDivision);
 			localisations[key][language] = line.substr(frontDivision, division - frontDivision);
+
+			// dash characters other than 0x2D break HoI3
+			int dash = localisations[key][language].find_first_of('–');									// the first (if any) dask in the output name
+			while (dash != string::npos)
+			{
+				localisations[key][language].replace(dash, 1, "-");
+				dash = localisations[key][language].find_first_of('–');
+			}
 		}
 	}
 }

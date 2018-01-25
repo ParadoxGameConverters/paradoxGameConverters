@@ -1,0 +1,8 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+add_core = IND
+industry = 1
+infra = 4
+manpower = 5.00
+leadership = 0.25

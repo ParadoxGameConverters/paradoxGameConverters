@@ -1,0 +1,18 @@
+owner = BEL
+controller = BEL
+add_core = BEL
+metal = 4
+
+points = 1
+
+industry = 4
+infra = 9
+manpower = 0.60
+leadership = 0.10
+1940.5.28 = {
+	controller = GER
+
+}
+1944.12.01 = {
+	controller = USA
+}

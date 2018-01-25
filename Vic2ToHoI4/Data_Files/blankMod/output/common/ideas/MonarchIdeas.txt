@@ -1,0 +1,40 @@
+ideas = {
+	country = {
+		border_buildup = {
+			allowed = {}
+			picture = generic_wall_line
+			removal_cost = -1
+			modifier = {
+				production_speed_bunker_factor = 0.2
+				production_speed_coastal_bunker_factor = 0.2
+				production_speed_anti_air_building_factor = 0.2
+			}
+		}
+
+		established_traders = {
+			allowed = {}
+			picture = idea_can_wartime_prices_and_trade_board
+			removal_cost = -1
+			modifier = {
+				trade_opinion_factor = 0.1
+			}
+		}
+
+		improved_resource_industry = {
+			allowed = {}
+			picture = generic_production_bonus
+			removal_cost = -1
+			modifier = {
+				local_resources_factor = 0.05
+			}
+		}
+		national_college = {
+			allowed = {}
+			picture = generic_research_bonus
+			removal_cost = -1
+			modifier = {
+				research_time_factor = -0.03
+			}
+		}
+	}
+}

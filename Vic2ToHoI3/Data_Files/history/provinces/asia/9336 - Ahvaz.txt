@@ -1,0 +1,7 @@
+owner = PER
+controller = PER
+add_core = PER
+points = 1
+energy = 10.00
+crude_oil = 40.00
+infra = 6

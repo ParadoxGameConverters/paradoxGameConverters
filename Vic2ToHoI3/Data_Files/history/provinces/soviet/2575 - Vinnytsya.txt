@@ -1,0 +1,19 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+
+metal = 3.00
+energy = 3.00
+rare_materials = 1.00
+industry = 1
+infra = 7
+anti_air = 1
+manpower = 3.00
+leadership = 0.23
+
+1941.12.7 = {
+	controller = GER
+}
+1944.4.30 = {
+	controller = SOV
+}

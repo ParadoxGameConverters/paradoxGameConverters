@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -29,10 +29,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI3Army.h"
 #include "HoI3Localisation.h"
 #include "HoI3Province.h"
+#include "HoI3Relations.h"
 #include "../CountryMapping.h"
 #include "../Mapper.h"
 #include "../Color.h"
-#include "../Date.h"
+#include "Date.h"
 #include "../V2World/V2Army.h"
 #include <vector>
 #include <set>
@@ -41,8 +42,8 @@ using namespace std;
 
 class HoI3World;
 class V2Country;
-class HoI3Relations;
 class HoI3Minister;
+class HoI3Leader;
 
 
 
@@ -60,48 +61,48 @@ class HoI3Country
 {
 	public:
 		HoI3Country(string _tag, string _commonCountryFile, HoI3World* _theWorld, bool _newCountry = false);
-		void								output() const;
-		void								outputToCommonCountriesFile(FILE*) const;
-		void								outputOOB() const;
-		void								initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitsMap, const cultureMapping& cultureMap);
-		void								initFromHistory();
-		void								convertArmies(const map<int,int>& leaderIDMap, const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist);
-		void								addRelation(HoI3Relations* newRelation);
-		void								addProvince(HoI3Province* _province);
-
-		HoI3Relations*					getRelations(string withWhom) const;
-		void								getNationalValueScores(int& liberty, int& equality, int& order, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas);
+		void	output() const;
+		void	outputToCommonCountriesFile(FILE*) const;
+		void	outputLocalisation(FILE*) const;
+		void	outputAIScript() const;
+		void	initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, vector<string> outputOrder, const CountryMapping& countryMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
+		void	initFromHistory();
+		void	consolidateProvinceItems(const inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry);
+		void	generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
+		void	setAIFocuses(const AIFocusModifiers& focusModifiers);
+		void	addMinimalItems(const inverseProvinceMapping& inverseProvinceMap);
 		
-		void								isANewCountry(void)							{ newCountry = true; };
+		void	setTechnology(string tech, int level);
+		void	addProvince(HoI3Province* _province);
+		void	addArmy(HoI3RegGroup* army);
+		void	lowerNeutrality(double amount);
 
-		vector<HoI3Province*>		getProvinces() const { return provinces; };
-		string							getTag() const { return tag; };
-		const V2Country*				getSourceCountry() const { return srcCountry; };
-		string							getGovernment() const { return government; };
-		int								getCapital() const { return capital; };
-		bool								isNewCountry() const { return newCountry; };
+		void	setFaction(string newFaction)	{ faction = newFaction; }
+		void	setFactionLeader()				{ factionLeader = true; }
 
-		void								outputLocalisation(FILE*) const;
+		HoI3Relations*								getRelations(string withWhom) const;
+		HoI3Province*								getCapital();
 		
-		string removeAccented(string str);
-		const std::map<string, HoI3Relations*> &getRelations() const;
-		string getFaction() const { return faction; };
-		void setFaction(string newFaction) { faction = newFaction; };
-		HoI3Alignment* getAlignment() { return &alignment; };
-		string getIdeology() const { return ideology; };
-		const set<string> &getAllies() const { return allies; };
-		set<string> &editAllies() { return allies; };
-		void setTechnology(string tech, int level);
-
-		void addArmy(HoI3RegGroup army);
-		map<string, double>& getPracticals() { return practicals; };
-		const vector<HoI3RegGroup>& getArmies() const { return armies; };
+		const map<string, HoI3Relations*>&	getRelations() const			{ return relations; }
+		map<int, HoI3Province*>					getProvinces() const			{ return provinces; }
+		string										getTag() const					{ return tag; }
+		const V2Country*							getSourceCountry() const	{ return srcCountry; }
+		string										getGovernment() const		{ return government; }
+		bool											isNewCountry() const			{ return newCountry; }
+		string										getFaction() const			{ return faction; }
+		HoI3Alignment*								getAlignment()					{ return &alignment; }
+		string										getIdeology() const			{ return ideology; }
+		const set<string>&						getAllies() const				{ return allies; }
+		set<string>&								editAllies()					{ return allies; }
+		map<string, double>&						getPracticals()				{ return practicals; }
+		const vector<HoI3RegGroup*>&			getArmies() const				{ return armies; }
 
 	private:
-		void			outputPracticals(FILE*)	const;
-		void			outputTech(FILE*)			const;
-		void			outputElection(FILE*)	const;
-		void			outputParties(FILE*)		const;
+		void			outputOOB()						const;
+		void			outputPracticals(FILE*)		const;
+		void			outputTech(FILE*)				const;
+		void			outputParties(FILE*)			const;
+		void			outputLeaders()				const;
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, HoI3Province*> allProvinces);
 		void			convertParties(const V2Country* srcCountry, vector<V2Party*> V2Parties, V2Party* rulingParty, string& rulingIdeology);
 
@@ -111,7 +112,7 @@ class HoI3Country
 		bool									newCountry;	// true if this country is being added by the converter, i.e. doesn't already exist in HoI3
 
 		string								tag;
-		vector<HoI3Province*>			provinces;
+		map<int, HoI3Province*>			provinces;
 		int									capital;
 		string								commonCountryFile;
 		map<string, int>					technologies;
@@ -119,21 +120,27 @@ class HoI3Country
 		HoI3Alignment						alignment;
 		string								ideology;
 		map<string, HoI3Relations*>	relations;
-		vector<HoI3RegGroup>				armies;
-		double								money;
-		double								diploPoints;
-		double								badboy;
+		vector<HoI3RegGroup*>			armies;
 		Color									color;
 		double								neutrality;
 		double								nationalUnity;
 		HoI3Localisation					localisation;
 		string								faction;
+		bool									factionLeader;
 		set<string>							allies;
 		map<string, double>				practicals;
 		vector<HoI3Party>					parties;
 		vector<HoI3Minister>				ministers;
 		vector<HoI3Minister>				rulingMinisters;
+		vector<HoI3Leader>				leaders;
 		string								graphicalCulture;
+		bool									majorNation;
+
+		// AI focus modifiers
+		double	seaModifier;
+		double	tankModifier;
+		double	airModifier;
+		double	infModifier;
 
 		// laws
 		string				civil_law;

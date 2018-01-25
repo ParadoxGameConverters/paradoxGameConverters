@@ -1,0 +1,17 @@
+owner = SWE
+controller = SWE
+add_core = SWE
+
+points = 4
+metal = 10.00
+energy = 12.00
+rare_materials = 2.00
+industry = 9
+coastal_fort = 3
+land_fort = 0
+anti_air = 2
+infra = 9
+air_base = 4
+naval_base = 7
+manpower = 6.00
+leadership = 1.50

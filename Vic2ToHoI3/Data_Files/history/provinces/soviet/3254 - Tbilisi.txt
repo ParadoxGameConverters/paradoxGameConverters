@@ -1,0 +1,14 @@
+owner = SOV
+controller = SOV
+add_core = SOV
+
+metal = 6.00
+energy = 15.00
+rare_materials = 3.00
+industry = 1
+infra = 6
+anti_air = 1
+air_base = 2
+manpower = 3.00
+leadership = 0.15
+points = 2

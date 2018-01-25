@@ -1,0 +1,26 @@
+owner = EST
+controller = EST
+add_core = EST
+
+infra = 6
+air_base = 1 #SU have strategically bombed Berlin from this islands in 1941
+
+1940.5.10 = {
+	owner = SOV
+	controller = SOV
+
+	add_core = SOV
+}
+1941.6.22 = {
+	owner = SOV
+	controller = SOV
+
+	add_core = SOV
+}
+1941.12.7 = {
+	controller = GER
+
+}
+1945.6.7 = {
+	controller = SOV
+}

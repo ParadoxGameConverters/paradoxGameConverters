@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -30,64 +30,61 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../V2World/V2World.h"
 #include "../V2World/V2Country.h"
 
+
+
 class HoI3Province
 {
 	public:
 		HoI3Province(string _filename);
 		void output() const;
 		void convertFromOldProvince(const V2Province* oldProvince);
-		void determineColonial();
 		void addCore(string);
+		void addFilename(string _filename);
 
-		void				clearCores()								{ cores.clear(); };
-		void				setCoastal(bool _coastal)				{ coastal = _coastal; };
-		void				setName(string _name)					{ name = _name; };
-		void				setOwner(string _owner)					{ owner = _owner; };
-		void				setLandConnection(bool _connection)	{ landConnection = _connection; };
-		void				setSameContinent(bool _same)			{ sameContinent = _same; };
+		void clearCores()										{ cores.clear(); }
+		void setCoastal(bool _coastal)					{ coastal = _coastal; }
+		void setName(string _name)							{ name = _name; }
+		void setOwner(string _owner)						{ owner = _owner; }
+		void addManpower(double newManpower)			{ manpower += newManpower; }
+		void setManpower(double newManpower)			{ manpower = newManpower; }
+		void addLeadership(double newLeadership)		{ leadership += newLeadership; }
+		void setLeadership(double newLeadership)		{ leadership = newLeadership; }
+		void addRawIndustry(double newRawIndustry)	{ rawIndustry += newRawIndustry; }
+		void setRawIndustry(double newRawIndustry)	{ rawIndustry = newRawIndustry; }
+		void setActualIndustry(int newIndustry)		{ industry = newIndustry; }
+		void setPoints(int newPoints)						{ points = newPoints; }
+		void addPoints(int newPoints)						{ points += newPoints; }
 
-		const V2Province*	getSrcProvince()		const { return srcProvince; };
-		string					getOwner()				const { return owner; };
-		int						getNum()					const { return num; };
-		string					getName()				const { return name; };
-		bool						isCoastal()				const { return coastal; };
-		bool						hasNavalBase()			const { return (naval_base > 0); };
+		string	getOwner()				const { return owner; }
+		int		getNum()					const { return num; }
+		string	getName()				const { return name; }
+		bool		hasNavalBase()			const { return (naval_base > 0); }
+		bool		isLand()					const { return is_land; }
+		int		getAirBase()			const { return air_base; }
+		int		getNavalBase()			const { return naval_base; }
+		double	getManpower()			const { return manpower; }
+		double	getLeadership()		const { return leadership; }
+		double	getRawIndustry()		const { return rawIndustry; }
+		int		getActualIndustry()	const { return industry; }
+		
+		vector<string>	getCores() const	{ return cores; }
 
 		void		requireNavalBase(int min);
 		void		requireAirBase(int min);
 		void		requireIndustry(int min);
 		void		requireLandFort(int min);
 		void		requireCoastalFort(int min);
-		void		requireAntiAir(int min);
 		void		requireInfrastructure(int min);
 
-		void		setAvgMil(double mil) { avg_mil = mil; };
-
-		void		setNCrafts(int nc);
-		void setManpower(double newManpower) { manpower = newManpower; };
-		void setLeadership(double newLeadership) { leadership = newLeadership; };
-		bool isLand() const { return is_land; };
-
-		int getAirBase() const { return air_base; };
-		int getNavalBase() const { return naval_base; };
 	private:
-		void outputUnits(FILE*) const;
+		map<string, string>	filenames;
+		bool						coastal;
+		int						num;
+		string					name;
+		string					owner;
+		vector<string>			cores;
+		bool						is_land;
 
-		const V2Province*			srcProvince;
-		
-		string							filename;
-		bool								coastal;
-		int								num;
-		string							name;
-		string							owner;
-		vector<string>					cores;
-		bool								landConnection;
-		bool								sameContinent;
-		string							terrain;
-		bool			is_land;
-		bool			is_blacklisted_port;
-
-		double			avg_mil;
 		int				ncrafts;
 
 		int				points;
@@ -97,13 +94,13 @@ class HoI3Province
 		double			rare_materials;
 		double			manpower;
 		double			leadership;
+		double			rawIndustry;
 
 		int				naval_base;
 		int				air_base;
 		int				industry;
 		int				coastal_fort;
 		int				land_fort;
-		int				anti_air;
 		int				infrastructure;
 };
 

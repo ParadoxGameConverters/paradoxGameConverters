@@ -1,0 +1,280 @@
+# Copyright (c) 2015 The Paradox Game Converters Project
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+backgrounds = {
+	no_background = {
+		land = old_guard
+		sea = old_guard
+	}
+	war_college = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	cavalry_school = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	engineer = {
+		sea = blockade_runner
+		land = engineer
+	}
+	armchair_general = {
+		sea = blockade_runner
+		land = trickster
+	}
+	bureaucrat_speed = {
+		sea = blockade_runner
+		land = trickster
+	}
+	generals_aide = {
+		land = defensive_doctrine
+		sea = blockade_runner
+	}
+	amateur = {
+		land = old_guard
+		sea = old_guard
+	}
+	madman = {
+		land = old_guard
+		sea = old_guard
+	}
+	aristocrat = {
+		land = logistics_wizard
+	}
+	drillmaster = {
+		land = logistics_wizard
+	}
+	butcher = {
+		land = old_guard
+		sea = old_guard
+	}
+	exranker = {
+		land = old_guard
+		sea = old_guard
+	}
+	adventurer = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	debutante = {
+		land = old_guard
+		sea = old_guard
+	}
+	colonial_b = {
+		sea = blockade_runner
+		land = trickster
+	}
+	disgraced = {
+		land = winter_specialist
+		land = panzer_leader
+		land = engineer
+		sea = seawolf
+		sea = superior_tactician
+	}
+	priest = {
+		land = winter_specialist
+		land = panzer_leader
+		land = engineer
+		sea = seawolf
+		sea = superior_tactician
+	}
+	rising_star = {
+		land = winter_specialist
+		land = panzer_leader
+		land = engineer
+		sea = seawolf
+		sea = superior_tactician
+	}
+	politician = {
+		land = winter_specialist
+		land = panzer_leader
+		land = engineer
+		sea = seawolf
+		sea = superior_tactician
+	}
+	poet = {
+		land = logistics_wizard
+	}
+	cartographer = {
+		sea = blockade_runner
+		land = trickster
+	}
+	professor = {
+		land = logistics_wizard
+	}
+	old_school = {
+		land = offensive_doctrine
+		sea = superior_tactician
+		land = logistics_wizard
+	}
+	eccentric_genius = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	gifted_administrator = {
+		land = logistics_wizard
+		land = commando
+	}
+	innovative_tactician = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	expert_raider = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	natural_born_leader = {
+		land = offensive_doctrine
+		sea = superior_tactician
+		land = trickster
+		land = fortress_buster
+		sea = spotter
+		land = logistics_wizard
+	}
+	megalomaniac = {
+		land = old_guard
+		sea = old_guard
+	}
+	hated = {
+		land = offensive_doctrine
+		sea = superior_tactician
+		land = defensive_doctrine
+		sea = blockade_runner
+	}
+	cursed_luck = {
+		land = offensive_doctrine
+		sea = superior_tactician
+		land = defensive_doctrine
+		sea = blockade_runner
+	}
+	clueless = {
+		land = old_guard
+		sea = old_guard
+	}
+	diplomat = {
+		land = old_guard
+		sea = old_guard
+	}
+	powerful_friends = {
+		land = commando
+	}
+	immoral = {
+		land = old_guard
+		sea = old_guard
+	}
+	womanizer = {
+		land = logistics_wizard
+	}
+	warmonger = {
+		sea = blockade_runner
+		land = trickster
+	}
+	corrupt = {
+		land = old_guard
+		sea = old_guard
+	}
+	bootlicker = {
+		land = defensive_doctrine
+		sea = blockade_runner
+		land = commando
+	}
+	sycophant = {
+		land = logistics_wizard
+	}
+	toady = {
+		land = offensive_doctrine
+		sea = superior_tactician
+		land = logistics_wizard
+	}
+	yesman = {
+		land = old_guard
+		sea = old_guard
+		land = commando
+	}
+	brownnoser = {
+		land = offensive_doctrine
+		sea = superior_tactician
+		land = commando
+	}
+	spoiled = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	school_of_defense = {
+		land = offensive_doctrine
+		sea = superior_tactician
+	}
+	school_of_offense = {
+		land = offensive_doctrine
+		sea = superior_tactician
+		land = logistics_wizard
+		sea = blockade_runner
+		land = trickster
+	}
+	school_of_the_bayonet = {
+		land = offensive_doctrine
+		sea = superior_tactician
+		land = defensive_doctrine
+		sea = blockade_runner
+		land = trickster
+	}
+	school_of_firepower = {
+		land = offensive_doctrine
+		sea = superior_tactician
+		land = logistics_wizard
+	}
+	artillerist = {
+		land = defensive_doctrine
+		sea = blockade_runner
+		land = logistics_wizard
+	}
+	uncommonly_young = {
+		land = defensive_doctrine
+		sea = blockade_runner
+		land = defensive_doctrine
+		sea = blockade_runner
+	}
+	sucker = {
+		land = old_guard
+		sea = old_guard
+	}
+	sad_sack = {
+		land = old_guard
+		sea = old_guard
+	}
+	unfit = {
+		land = old_guard
+		sea = old_guard
+	}
+	unqualified = {
+		land = old_guard
+		sea = old_guard
+	}
+	pawn = {
+		land = commando
+	}
+	elderly = {
+		land = commando
+	}
+	incompetent = {
+		land = old_guard
+		sea = old_guard
+	}
+}

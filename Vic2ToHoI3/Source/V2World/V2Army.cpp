@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -22,8 +22,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Army.h"
-#include "../Log.h"
-#include "../Parsers/Parser.h"
+#include "Log.h"
+#include "ParadoxParser.h"
 
 
 
@@ -103,12 +103,14 @@ V2Army::V2Army (Object* obj)
 	std::vector<Object*> objRegs = obj->getValue ("regiment");
 	for (vector<Object*>::iterator itr = objRegs.begin (); itr != objRegs.end (); ++itr)
 	{
-		regiments.push_back(V2Regiment(*itr));
+		V2Regiment* newRegiment = new V2Regiment(*itr);
+		regiments.push_back(newRegiment);
 	}
 	std::vector<Object*> objShips = obj->getValue ("ship");
 	for (vector<Object*>::iterator itr = objShips.begin (); itr != objShips.end (); ++itr)
 	{
-		regiments.push_back (V2Regiment (*itr));
+		V2Regiment* newShip = new V2Regiment(*itr);
+		regiments.push_back (newShip);
 	}
 
 	std::vector<Object*> objSupp = obj->getValue ("supplies");

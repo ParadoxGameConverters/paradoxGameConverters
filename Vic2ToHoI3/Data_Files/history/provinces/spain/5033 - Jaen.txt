@@ -1,0 +1,11 @@
+owner = SPR
+controller = SPR
+add_core = SPR
+energy = 11.00
+rare_materials = 6.00
+infra = 6
+1939.4.1 = {
+	owner = SPA
+	controller = SPA
+	add_core = SPA
+}

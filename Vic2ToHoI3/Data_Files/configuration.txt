@@ -14,18 +14,15 @@ configuration =
 
 	# Vic2Mods: Vic2 mods to use for conversion
 	# Example: Vic2Mods = { modname1 modname2 }
-	Vic2Mods = {  }
-
-	# Reset Provinces: Whether or not to reset resettable HoI3 provinces
-	resetProvinces = "no"
+	Vic2Mods = { }
 
 	# Faction Leader: how the converter determines who the faction leaders are
 	#	auto
-	#	manual		Uncomment axis_faction, etc, and fill with Vicky tags.  First tag in each list is leader, others are members.
+	#	manual		Fill the factions with the proper Vicky tags.  First tag in each list is leader, others are members.
 	faction_leader = "auto"
-	# axis_faction = { GER ITA }
-	# allies_faction = { ENG FRA CAN HND SAF }
-	# comintern_faction = { RUS }
+	axis_faction = { GER ITA }
+	allies_faction = { ENG FRA CAN HND SAF }
+	comintern_faction = { RUS }
 
 	# Minimum Infrastructure: every land province will have at least this much infrastructure
 	#	Default: 3.0 (minimum required to move armies)
@@ -34,10 +31,10 @@ configuration =
 	# IC Conversion: Set to "no" if you want to use the original HoI3 IC values. Options are:
 	#	"squareroot": sqrt(artisan/2 + craftsman + capitalists*2 + clerks*2) * 0.002 * factor
 	#	"linear": (artisan/2 + craftsman + capitalists*2 + clerks*2) * 0.000008 * factor
-	#	"logarithmic": log((nc - 70000) / 8000.0) * factor
+	#	"logarithmic": log((artisan/2 + craftsman + capitalists*2 + clerks*2) / 70000) * 1.75 * factor
 	#	"no"
 	#	Default: "squareroot"
-	ic_conversion = "squareroot"
+	ic_conversion = "linear"
 	ic_factor = 1.0
 
 	# Manpower Conversion: Set to "no" if you want to use the original HoI3 manpower values. Options are:
@@ -46,15 +43,15 @@ configuration =
 	#	"no"
 	#	Default: "linear"
 	manpower_conversion = "linear"
-	manpower_factor = 0.000008
+	manpower_factor = 1.0
 
 	# Leadership Conversion: Set to "no" if you want to use the original HoI3 leadership values. Options are:
 	#	"squareroot": sqrt(officers + clerks + capitalists/2 + clergymen/2 + bureaucrats/4 + aristocrats/4) * factor
 	#	"linear": (officers + clerks + capitalists/2 + clergymen/2 + bureaucrats/4 + aristocrats/4) * factor
 	#	"no"
 	#	Default: "no"
-	leadership_conversion = "no"
-	leadership_factor = 0.00001
+	leadership_conversion = "linear"
+	leadership_factor = 1.0
 
 	# This value affects how much the POP's literacy affects the weighting of the educated classes in leadership and IC
 	#  conversion calculations
