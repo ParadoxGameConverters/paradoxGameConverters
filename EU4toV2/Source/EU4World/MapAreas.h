@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "newParser.h"
+#include "../Color.h"
 #include <istream>
 #include <map>
 #include <string>
@@ -36,18 +37,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 namespace EU4World
 {
-	class mapAreas: commonItems::parser
-	{
-		public:
-			mapAreas(const std::string& filename);
-
-			const std::vector<int> getProvincesInArea(const std::string& area) const;
-
-		private:
-			std::map<std::string, std::vector<int>> areaToProvincesMapping;
-	};
-
-
 	class mapArea: commonItems::parser
 	{
 		public:
@@ -57,6 +46,18 @@ namespace EU4World
 
 		private:
 			std::vector<int> provinces;
+			Color color;
+	};
+
+	class mapAreas: commonItems::parser
+	{
+		public:
+			mapAreas(const std::string& filename);
+
+			const std::vector<int> getProvincesInArea(const std::string& area) const;
+
+		private:
+			std::map<std::string, mapArea> theAreas;
 	};
 }
 

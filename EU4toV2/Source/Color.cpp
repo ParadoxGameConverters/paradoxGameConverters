@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -28,18 +28,21 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-Color::Color()
-: initialized(false), c({ 0, 0, 0 })
+Color::Color():
+	initialized(false),
+	c({ 0, 0, 0 })
 {}
 
 
-Color::Color(const int r, const int g, const int b)
-: initialized(true), c({ r, g, b })
+Color::Color(const int r, const int g, const int b):
+	initialized(true),
+	c({ r, g, b })
 {}
 
 
-Color::Color(shared_ptr<Object> colorObject)
-: initialized(false), c({ 0, 0, 0 })
+Color::Color(std::shared_ptr<Object> colorObject):
+	initialized(false),
+	c({ 0, 0, 0 })
 {
 	auto colorTokens = colorObject->getTokens();	// the colors held by the object
 	initialized = (colorTokens.size() >= 3);
@@ -50,6 +53,27 @@ Color::Color(shared_ptr<Object> colorObject)
 			c[i] = stoi(colorTokens[i]);
 		}
 	}
+}
+
+
+Color::Color(std::istream& theStream):
+	initialized(false),
+	c({ 0, 0, 0 })
+{
+	unsigned int colorsInitialized = 0;
+
+	auto token = getNextToken(theStream);
+	while (token && (*token != "}"))
+	{
+		if ((token->find('=') == std::string::npos) && (token->find('{') == std::string::npos))
+		{
+			c[colorsInitialized] = std::stoi(*token);
+			colorsInitialized++;
+		}
+		token = getNextToken(theStream);
+	}
+
+	initialized = (colorsInitialized > 2);
 }
 
 

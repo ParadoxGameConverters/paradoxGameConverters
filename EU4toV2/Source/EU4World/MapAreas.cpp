@@ -29,12 +29,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 EU4World::mapAreas::mapAreas(const std::string& filename):
-	areaToProvincesMapping()
+	theAreas()
 {
-	registerKeyword(std::regex("[\\w_]+"), [this](const std::string& areaName, std::istream& areasFile){
-		mapArea newArea(areasFile);
-		areaToProvincesMapping.insert(make_pair(areaName, newArea.getProvinces()));
-	});
+	registerKeyword(std::regex("[\\w_]+"), [this](const std::string& areaName, std::istream& areasFile)
+		{
+			mapArea newArea(areasFile);
+			theAreas.insert(make_pair(areaName, newArea));
+		}
+	);
 
 	parseFile(filename);
 }
@@ -42,10 +44,10 @@ EU4World::mapAreas::mapAreas(const std::string& filename):
 
 const std::vector<int> EU4World::mapAreas::getProvincesInArea(const std::string& area) const
 {
-	auto areaItr(areaToProvincesMapping.find(area));
-	if (areaItr != areaToProvincesMapping.end())
+	auto areaItr(theAreas.find(area));
+	if (areaItr != theAreas.end())
 	{
-		return areaItr->second;
+		return areaItr->second.getProvinces();
 	}
 	else
 	{
@@ -56,7 +58,12 @@ const std::vector<int> EU4World::mapAreas::getProvincesInArea(const std::string&
 
 EU4World::mapArea::mapArea(std::istream& theStream)
 {
-	registerKeyword(std::regex("color"), commonItems::ignoreObject);
+	registerKeyword(std::regex("color"), [this](const std::string& colorToken, std::istream& areaFile)
+		{
+			Color newColor(areaFile);
+			color = newColor;
+		}
+	);
 
 	auto token = getNextToken(theStream);
 	while (token && (*token != "}"))

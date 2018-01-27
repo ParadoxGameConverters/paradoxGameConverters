@@ -21,6 +21,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#ifndef NEW_PARSER_H
+#define NEW_PARSER_H
+
+
+
 #include <istream>
 #include <functional>
 #include <list>
@@ -58,3 +63,7 @@ namespace commonItems
 
 	void ignoreObject(const std::string&, std::istream& theStream);
 }
+
+
+
+#endif // NEW_PARSER_H
