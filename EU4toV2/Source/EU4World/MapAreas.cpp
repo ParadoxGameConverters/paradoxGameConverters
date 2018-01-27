@@ -31,16 +31,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 EU4World::mapAreas::mapAreas(const std::string& filename):
 	areaToProvincesMapping()
 {
-	commonItems::parsingFunction areaFunction = std::bind(&EU4World::mapAreas::importArea, this, std::placeholders::_1, std::placeholders::_2);
-	registerKeyword(std::regex("[\\w_]+"), areaFunction);
+	registerKeyword(std::regex("[\\w_]+"), [this](const std::string& areaName, std::istream& areasFile){
+		mapArea newArea(areasFile);
+		areaToProvincesMapping.insert(make_pair(areaName, newArea.getProvinces()));
+	});
+
 	parseFile(filename);
-}
-
-
-void EU4World::mapAreas::importArea(const std::string& areaName, std::istream& areasFile)
-{
-	mapArea newArea(areasFile);
-	areaToProvincesMapping.insert(make_pair(areaName, newArea.getProvinces()));
 }
 
 

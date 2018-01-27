@@ -44,8 +44,6 @@ namespace EU4World
 			const std::vector<int> getProvincesInArea(const std::string& area) const;
 
 		private:
-			void importArea(const std::string& areaName, std::istream& areasFile);
-
 			std::map<std::string, std::vector<int>> areaToProvincesMapping;
 	};
 
