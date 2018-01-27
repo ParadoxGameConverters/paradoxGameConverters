@@ -22,6 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <istream>
+#include <functional>
 #include <list>
 #include <optional>
 #include <regex>
@@ -32,7 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 namespace commonItems
 {
-	typedef void (*parsingFunction)(std::istream&);
+	typedef std::function<void(const std::string&, std::istream&)> parsingFunction;
 
 	class parser
 	{
@@ -55,5 +56,5 @@ namespace commonItems
 			int braceDepth;
 	};
 
-	void ignoreObject(std::istream& theStream);
+	void ignoreObject(const std::string&, std::istream& theStream);
 }

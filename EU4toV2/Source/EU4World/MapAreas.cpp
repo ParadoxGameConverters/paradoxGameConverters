@@ -23,7 +23,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "MapAreas.h"
 #include "Log.h"
-
+#include <fstream>
+#include <functional>
 
 
 
@@ -37,24 +38,18 @@ EU4World::mapAreas::mapAreas(const std::string& filename):
 		exit(-1);
 	}
 
-	while (!areasFile.eof())
-	{
-		importArea(areasFile);
-	}
+	commonItems::parsingFunction areaFunction = std::bind(&EU4World::mapAreas::importArea, this, std::placeholders::_1, std::placeholders::_2);
+	registerKeyword(std::regex("[\\w_]+"), areaFunction);
+	parseStream(areasFile);
 
 	areasFile.close();
 }
 
 
-
-void EU4World::mapAreas::importArea(std::ifstream& areasFile)
+void EU4World::mapAreas::importArea(const std::string& areaName, std::istream& areasFile)
 {
-	auto possibleAreaName = getNextToken(areasFile);
-	if (possibleAreaName && (possibleAreaName->size() >= 4) && (possibleAreaName->substr(possibleAreaName->size() - 4, 4) == "area"))
-	{
-		mapArea newArea(areasFile);
-		areaToProvincesMapping.insert(make_pair(*possibleAreaName, newArea.getProvinces()));
-	}
+	mapArea newArea(areasFile);
+	areaToProvincesMapping.insert(make_pair(areaName, newArea.getProvinces()));
 }
 
 
@@ -72,7 +67,7 @@ const std::vector<int> EU4World::mapAreas::getProvincesInArea(const std::string&
 }
 
 
-EU4World::mapArea::mapArea(std::ifstream& theStream)
+EU4World::mapArea::mapArea(std::istream& theStream)
 {
 	registerKeyword(std::regex("color"), commonItems::ignoreObject);
 

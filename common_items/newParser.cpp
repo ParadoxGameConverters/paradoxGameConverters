@@ -50,16 +50,6 @@ void commonItems::parser::parseStream(std::istream& theStream)
 		auto token = getNextToken(theStream);
 		if (token)
 		{
-			for (auto registration: registeredKeywords)
-			{
-				std::smatch match;
-				if (std::regex_match(*token, match, registration.first))
-				{
-					registration.second(theStream);
-					continue;
-				}
-			}
-
 			if (*token == "=")
 			{
 				continue;
@@ -84,6 +74,10 @@ void commonItems::parser::parseStream(std::istream& theStream)
 				LOG(LogLevel::Warning) << "Unknown token while parsing stream: " << *token;
 			}
 		}
+		else
+		{
+			break;
+		}
 	}
 }
 
@@ -103,15 +97,15 @@ void commonItems::parser::parseFile(const std::string& filename)
 
 std::optional<std::string> commonItems::parser::getNextToken(std::istream& theStream)
 {
-	if (theStream.eof())
-	{
-		return {};
-	}
-
 	std::string toReturn;
 	bool gotToken = false;
 	while (!gotToken)
 	{
+		if (theStream.eof())
+		{
+			return {};
+		}
+
 		theStream >> toReturn;
 		if (toReturn.substr(0, 1) == "#")
 		{
@@ -126,7 +120,7 @@ std::optional<std::string> commonItems::parser::getNextToken(std::istream& theSt
 				std::smatch match;
 				if (std::regex_match(toReturn, match, registration.first))
 				{
-					registration.second(theStream);
+					registration.second(toReturn, theStream);
 					matched = true;
 					break;
 				}
@@ -143,7 +137,7 @@ std::optional<std::string> commonItems::parser::getNextToken(std::istream& theSt
 }
 
 
-void commonItems::ignoreObject(std::istream& theStream)
+void commonItems::ignoreObject(const std::string& token, std::istream& theStream)
 {
 	int braceDepth = 0;
 	while (true)

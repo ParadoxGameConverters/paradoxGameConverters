@@ -27,7 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "newParser.h"
-#include <fstream>
+#include <istream>
 #include <map>
 #include <string>
 #include <vector>
@@ -44,7 +44,7 @@ namespace EU4World
 			const std::vector<int> getProvincesInArea(const std::string& area) const;
 
 		private:
-			void importArea(std::ifstream& areasFile);
+			void importArea(const std::string& areaName, std::istream& areasFile);
 
 			std::map<std::string, std::vector<int>> areaToProvincesMapping;
 	};
@@ -53,7 +53,7 @@ namespace EU4World
 	class mapArea: commonItems::parser
 	{
 		public:
-			mapArea(std::ifstream& theStream);
+			mapArea(std::istream& theStream);
 
 			const std::vector<int> getProvinces() const { return provinces; }
 
