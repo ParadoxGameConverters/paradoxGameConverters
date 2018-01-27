@@ -31,18 +31,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 EU4World::mapAreas::mapAreas(const std::string& filename):
 	areaToProvincesMapping()
 {
-	std::ifstream areasFile(filename);
-	if (!areasFile.is_open())
-	{
-		LOG(LogLevel::Error) << "Could not open " << filename;
-		exit(-1);
-	}
-
 	commonItems::parsingFunction areaFunction = std::bind(&EU4World::mapAreas::importArea, this, std::placeholders::_1, std::placeholders::_2);
 	registerKeyword(std::regex("[\\w_]+"), areaFunction);
-	parseStream(areasFile);
-
-	areasFile.close();
+	parseFile(filename);
 }
 
 
