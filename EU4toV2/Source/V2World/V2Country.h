@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,7 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "../Color.h"
+#include "Color.h"
 #include "Date.h"
 #include "../EU4World/EU4Army.h"
 #include "V2Localisation.h"
@@ -183,7 +183,7 @@ class V2Country
 		vector<V2Leader*>				leaders;
 		double							literacy;
 		V2Localisation					localisation;
-		Color								color;
+		commonItems::Color			color;
 		int								unitNameCount[num_reg_categories];
 		int								numFactories;
 		vector<string>					decisions;

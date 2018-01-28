@@ -26,8 +26,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include "Color.h"
 #include "newParser.h"
-#include "../Color.h"
 #include <istream>
 #include <map>
 #include <string>
@@ -46,7 +46,7 @@ namespace EU4World
 
 		private:
 			std::vector<int> provinces;
-			Color color;
+			commonItems::Color color;
 	};
 
 	class mapAreas: commonItems::parser

@@ -29,19 +29,19 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-Color::Color():
+commonItems::Color::Color():
 	initialized(false),
 	c({ 0, 0, 0 })
 {}
 
 
-Color::Color(const int r, const int g, const int b):
+commonItems::Color::Color(const int r, const int g, const int b):
 	initialized(true),
 	c({ r, g, b })
 {}
 
 
-Color::Color(std::shared_ptr<Object> colorObject):
+commonItems::Color::Color(std::shared_ptr<Object> colorObject):
 	initialized(false),
 	c({ 0, 0, 0 })
 {
@@ -52,7 +52,7 @@ Color::Color(std::shared_ptr<Object> colorObject):
 }
 
 
-Color::Color(std::istream& theStream):
+commonItems::Color::Color(std::istream& theStream):
 	initialized(false),
 	c({ 0, 0, 0 })
 {
@@ -77,7 +77,7 @@ Color::Color(std::istream& theStream):
 }
 
 
-void Color::RandomlyFlunctuate(const int stdDev)
+void commonItems::Color::RandomlyFlunctuate(const int stdDev)
 {
 	// All three color components will go up or down by the some amount (according to stdDev), 
 	// and then each is tweaked a bit more (with a much smaller standard deviation).
@@ -99,14 +99,14 @@ void Color::RandomlyFlunctuate(const int stdDev)
 }
 
 
-std::ostream& operator<<(std::ostream& out, const Color& color)
+std::ostream& commonItems::operator<<(std::ostream& out, const commonItems::Color& color)
 {
 	out << color.c[0] << ' ' << color.c[1] << ' ' << color.c[2];
 	return out;
 }
 
 
-void Color::GetRGB(int& r, int& g, int& b) const
+void commonItems::Color::GetRGB(int& r, int& g, int& b) const
 {
 	r = c[0];
 	g = c[1];
@@ -114,7 +114,7 @@ void Color::GetRGB(int& r, int& g, int& b) const
 }
 
 
-Color::operator bool() const
+commonItems::Color::operator bool() const
 {
 	return initialized;
 }

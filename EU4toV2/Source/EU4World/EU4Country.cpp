@@ -1,4 +1,4 @@
-/*Copyright(c) 2017 The Paradox Game Converters Project
+/*Copyright(c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -56,7 +56,7 @@ EU4Country::EU4Country(shared_ptr<Object> obj, EU4Version* version)
 	vector<shared_ptr<Object>> colorObjs = obj->getValue("map_color");
 	if (!colorObjs.empty())
 	{
-		color = Color(colorObjs[0]);
+		color = commonItems::Color(colorObjs[0]);
 		// Countries whose colors are included in the object here tend to be generated countries,
 		// i.e. colonial nations which take on the color of their parent. To help distinguish 
 		// these countries from their parent's other colonies we randomly adjust the color.
@@ -70,7 +70,7 @@ EU4Country::EU4Country(shared_ptr<Object> obj, EU4Version* version)
 			vector<shared_ptr<Object>> countryColorObjs = colorObjs[0]->getValue("country_color");
 			if (countryColorObjs.size() > 0)
 			{
-				color = Color(countryColorObjs[0]);
+				color = commonItems::Color(countryColorObjs[0]);
 				// Countries whose colors are included in the object here tend to be generated countries,
 				// i.e. colonial nations which take on the color of their parent. To help distinguish 
 				// these countries from their parent's other colonies we randomly adjust the color.
@@ -488,7 +488,7 @@ void EU4Country::readFromCommonCountry(const string& fileName, shared_ptr<Object
 		const auto colorObj = obj->getValue("color");
 		if (colorObj[0])
 		{
-			color = Color(colorObj[0]);
+			color = commonItems::Color(colorObj[0]);
 		}
 	}
 }

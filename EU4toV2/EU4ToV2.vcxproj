@@ -165,6 +165,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\common_items\CardinalToOrdinal.cpp" />
+    <ClCompile Include="..\common_items\Color.cpp" />
     <ClCompile Include="..\common_items\CommonUtils.cpp" />
     <ClCompile Include="..\common_items\Date.cpp" />
     <ClCompile Include="..\common_items\Log.cpp" />
@@ -173,7 +174,6 @@
     <ClCompile Include="..\common_items\ParadoxParser8859_15.cpp" />
     <ClCompile Include="..\common_items\ParadoxParserUTF8.cpp" />
     <ClCompile Include="..\common_items\WinUtils.cpp" />
-    <ClCompile Include="Source\Color.cpp" />
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\EU4toV2Converter.cpp" />
     <ClCompile Include="Source\EU4World\EU4Army.cpp" />
@@ -226,6 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\CardinalToOrdinal.h" />
+    <ClInclude Include="..\common_items\Color.h" />
     <ClInclude Include="..\common_items\Date.h" />
     <ClInclude Include="..\common_items\Log.h" />
     <ClInclude Include="..\common_items\newParser.h" />
@@ -234,7 +235,6 @@
     <ClInclude Include="..\common_items\ParadoxParser8859_15.h" />
     <ClInclude Include="..\common_items\ParadoxParserUTF8.h" />
     <ClInclude Include="Header.h" />
-    <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\EU4World\EU4Army.h" />
     <ClInclude Include="Source\EU4World\EU4Country.h" />

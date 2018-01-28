@@ -60,7 +60,7 @@ EU4World::mapArea::mapArea(std::istream& theStream)
 {
 	registerKeyword(std::regex("color"), [this](const std::string& colorToken, std::istream& areaFile)
 		{
-			Color newColor(areaFile);
+			commonItems::Color newColor(areaFile);
 			color = newColor;
 		}
 	);

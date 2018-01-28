@@ -1,4 +1,4 @@
-/*Copyright(c) 2017 The Paradox Game Converters Project
+/*Copyright(c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -25,7 +25,7 @@ THE SOFTWARE. */
 
 
 #include "EU4Army.h"
-#include "../Color.h"
+#include "Color.h"
 #include "Date.h"
 #include "../Mappers/CustomFlagMapper.h"
 #include <memory>
@@ -114,7 +114,7 @@ class EU4Country
 		string	getName() const { return name; }
 		string	getName(const string& language) const;
 		string	getAdjective(const string& language) const;
-		Color		getColor() const { return color; }
+		commonItems::Color getColor() const { return color; }
 
 	private:
 		void							determineInvestments();
@@ -170,7 +170,7 @@ class EU4Country
 		// Localisation attributes
 		string	name;			// the name of this country
 		string	adjective;	// the adjective for this country
-		Color		color;		// the color of this country
+		commonItems::Color color;
 
 		map<string, string> namesByLanguage;		// the names of this country in different localisations
 		map<string, string> adjectivesByLanguage;	// the adjectives for this country in different localisations

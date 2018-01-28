@@ -37,27 +37,29 @@ class Object;
 
 
 
-// An RGB color triplet.
-class Color: commonItems::parser
+namespace commonItems
 {
-	public:
-		Color();
-		Color(int r, int g, int b);
-		Color(std::shared_ptr<Object> colorObject);
-		Color(std::istream& theStream);
+	class Color: parser
+	{
+		public:
+			Color();
+			Color(int r, int g, int b);
+			Color(std::shared_ptr<Object> colorObject);
+			Color(std::istream& theStream);
 
-		void RandomlyFlunctuate(int stdDev);
+			void RandomlyFlunctuate(int stdDev);
 
-		friend std::ostream& operator<<(std::ostream&, const Color&);
+			friend std::ostream& operator<<(std::ostream&, const Color&);
 
-		void GetRGB(int& r, int& g, int& b) const;
+			void GetRGB(int& r, int& g, int& b) const;
 
-		operator bool() const; // Returns true if the color has been initialized with an RGB triplet.
+			operator bool() const; // Returns true if the color has been initialized with an RGB triplet.
 
-	private:
-		bool initialized;
-		std::array<int, 3> c;
-};
+		private:
+			bool initialized;
+			std::array<int, 3> c;
+	};
+}
 
 
 
