@@ -24,6 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Color.h"
 #include <chrono>
 #include <random>
+#include <sstream>
 #include "Object.h"
 
 
@@ -44,15 +45,10 @@ Color::Color(std::shared_ptr<Object> colorObject):
 	initialized(false),
 	c({ 0, 0, 0 })
 {
-	auto colorTokens = colorObject->getTokens();	// the colors held by the object
-	initialized = (colorTokens.size() >= 3);
-	for (size_t i = 0; i < 3; ++i)
-	{
-		if (!colorTokens[i].empty())
-		{
-			c[i] = stoi(colorTokens[i]);
-		}
-	}
+	std::stringstream colorStream;
+	colorStream << *colorObject;
+	auto unneeded = getNextToken(colorStream);
+	*this = Color::Color(colorStream);
 }
 
 
@@ -67,6 +63,10 @@ Color::Color(std::istream& theStream):
 	{
 		if ((token->find('=') == std::string::npos) && (token->find('{') == std::string::npos))
 		{
+			if (token->substr(0,1) == "\"")
+			{
+				token = token->substr(1, token->length() - 2);
+			}
 			c[colorsInitialized] = std::stoi(*token);
 			colorsInitialized++;
 		}
