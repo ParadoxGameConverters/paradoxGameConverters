@@ -31,6 +31,7 @@ EU4World::region::region(std::istream& theStream)
 {
 	commonItems::parsingFunction areasFunction = std::bind(&EU4World::region::importAreas, this, std::placeholders::_1, std::placeholders::_2);
 	registerKeyword(std::regex("areas"), areasFunction);
+	registerKeyword(std::regex("discover_if"), commonItems::ignoreObject);
 	parseStream(theStream);
 }
 

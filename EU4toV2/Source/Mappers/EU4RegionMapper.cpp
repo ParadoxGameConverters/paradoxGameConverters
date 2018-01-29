@@ -150,14 +150,14 @@ void EU4RegionMapper::initEU4RegionMap(const EU4World::areas& areas, const std::
 		}
 	);
 
+	parseFile(regionsFilename);
+
 	auto theAreas = areas.getAreas();
 	std::for_each(theAreas.begin(), theAreas.end(), [this](const std::pair<std::string, EU4World::area>& theArea)
 		{
 			regions.insert(make_pair(theArea.first, EU4World::region(theArea.second.getProvinces())));
 		}
 	);
-
-	parseFile(regionsFilename);
 }
 
 
