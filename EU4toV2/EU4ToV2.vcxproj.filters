@@ -161,14 +161,17 @@
     <ClCompile Include="..\common_items\CardinalToOrdinal.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EU4World\MapAreas.cpp">
-      <Filter>EU4 World</Filter>
-    </ClCompile>
     <ClCompile Include="..\common_items\newParser.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
     <ClCompile Include="..\common_items\Color.cpp">
       <Filter>CommonItems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU4World\Region.cpp">
+      <Filter>EU4 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU4World\Areas.cpp">
+      <Filter>EU4 World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -334,14 +337,14 @@
     <ClInclude Include="..\common_items\newParser.h">
       <Filter>CommonItems</Filter>
     </ClInclude>
-    <ClInclude Include="Header.h">
-      <Filter>EU4 World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EU4World\MapAreas.h">
-      <Filter>EU4 World</Filter>
-    </ClInclude>
     <ClInclude Include="..\common_items\Color.h">
       <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU4World\Region.h">
+      <Filter>EU4 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU4World\Areas.h">
+      <Filter>EU4 World</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

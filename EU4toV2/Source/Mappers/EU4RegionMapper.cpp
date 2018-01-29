@@ -22,12 +22,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "EU4RegionMapper.h"
-#include "../EU4World/MapAreas.h"
+#include "../EU4World/Areas.h"
+#include "../EU4World/Region.h"
 #include "Log.h"
 #include "Object.h"
 #include "OSCompatibilityLayer.h"
 #include "ParadoxParserUTF8.h"
 #include "../Configuration.h"
+#include <algorithm>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -120,96 +122,66 @@ void EU4RegionMapper::insertMapping(int provinceNumber, string regionName)
 
 void EU4RegionMapper::doNewVersion()
 {
-	EU4World::mapAreas installedAreas(Configuration::getEU4Path() + "/map/area.txt");
-
-	shared_ptr<Object> regionsObj = parser_UTF8::doParseFile((Configuration::getEU4Path() + "/map/region.txt").c_str());
-	if (regionsObj == nullptr)
-	{
-		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getEU4Path() << "/map/region.txt";
-		exit(-1);
-	}
-	if (regionsObj->getLeaves().size() < 1)
-	{
-		LOG(LogLevel::Error) << "Failed to parse region.txt";
-		exit (-1);
-	}
-	initEU4RegionMap(installedAreas, regionsObj);
+	EU4World::areas installedAreas(Configuration::getEU4Path() + "/map/area.txt");
+	initEU4RegionMap(installedAreas, (Configuration::getEU4Path() + "/map/region.txt"));
 
 	for (auto itr: Configuration::getEU4Mods())
 	{
-		if (!Utils::DoesFileExist(itr + "/map/area.txt") && !Utils::DoesFileExist(itr + "/map/region.txt"))
+		if (!Utils::DoesFileExist(itr + "/map/area.txt") || !Utils::DoesFileExist(itr + "/map/region.txt"))
 		{
 			continue;
 		}
 
-		EU4World::mapAreas modAreas(itr + "/map/area.txt");
-
-		regionsObj = parser_UTF8::doParseFile(itr + "/map/region.txt");
-		if (regionsObj == nullptr)
-		{
-			LOG(LogLevel::Error) << "Could not parse file " << itr << "/map/region.txt";
-			exit(-1);
-		}
-		initEU4RegionMap(modAreas, regionsObj);
+		EU4World::areas modAreas(itr + "/map/area.txt");
+		initEU4RegionMap(modAreas, (itr + "/map/region.txt"));
 	}
 }
 
 
-void EU4RegionMapper::initEU4RegionMap(const EU4World::mapAreas& areas, shared_ptr<Object> regionsObj)
+void EU4RegionMapper::initEU4RegionMap(const EU4World::areas& areas, const std::string& regionsFilename)
 {
-	EU4RegionsMap.clear();
-	vector<shared_ptr<Object>> regionObjs = regionsObj->getLeaves();
-	for (auto regionObj: regionObjs)
+	regions.clear();
+
+	registerKeyword(std::regex("\\w+_region"), [this, areas](const std::string& areaName, std::istream& areasFile)
+		{
+			EU4World::region newRegion(areasFile);
+			newRegion.addProvinces(areas);
+			regions.insert(make_pair(areaName, newRegion));
+		}
+	);
+
+	auto theAreas = areas.getAreas();
+	std::for_each(theAreas.begin(), theAreas.end(), [this](const std::pair<std::string, EU4World::area>& theArea)
+		{
+			regions.insert(make_pair(theArea.first, EU4World::region(theArea.second.getProvinces())));
+		}
+	);
+
+	parseFile(regionsFilename);
+}
+
+
+bool EU4RegionMapper::ProvinceInRegion(int province, const string& regionName)
+{
+	auto candidateRegions = getRegionsForProvince(province);
+	if (candidateRegions.count(regionName) > 0)
 	{
-		string regionName = regionObj->getKey();
-		vector<shared_ptr<Object>> areasObj = regionObj->getValue("areas");
-		if (areasObj.size() > 0)
-		{
-			vector<string> areaNames = areasObj[0]->getTokens();
-			for (auto areaName: areaNames)
-			{
-				auto areaMapping = areas.getProvincesInArea(areaName);
-				for (auto provinceNum: areaMapping)
-				{
-					insertMapping(provinceNum, areaName);
-					insertMapping(provinceNum, regionName);
-				}
-			}
-		}
+		return true;
 	}
-}
 
-
-map<string, vector<int>> EU4RegionMapper::getAreaToProvincesMapping(shared_ptr<Object> areasObj)
-{
-	map<string, vector<int>> areaToProvincesMapping;
-
-	for (auto areaObj: areasObj->getLeaves())
+	auto region = regions.find(regionName);
+	if (region != regions.end())
 	{
-		string areaName = areaObj->getKey();
-
-		vector<int> provinces;
-		for (auto provinceString: areaObj->getTokens())
-		{
-			int provinceNum = stoi(provinceString);
-			provinces.push_back(provinceNum);
-		}
-
-		areaToProvincesMapping.insert(make_pair(areaName, provinces));
+		return region->second.containsProvince(province);
 	}
-
-	return areaToProvincesMapping;
+	else
+	{
+		return false;
+	}
 }
 
 
-bool EU4RegionMapper::ProvinceInRegion(int province, const string& region)
-{
-	auto regions = getRegions(province);
-	return (regions.count(region) > 0);
-}
-
-
-set<string> EU4RegionMapper::getRegions(int province)
+set<string> EU4RegionMapper::getRegionsForProvince(int province)
 {
 	auto mapping = EU4RegionsMap.find(province);
 	if (mapping != EU4RegionsMap.end())

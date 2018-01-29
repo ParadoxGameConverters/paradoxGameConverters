@@ -21,46 +21,57 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef MAPAREAS_H_
-#define MAPAREAS_H_
+#include "Areas.h"
+#include "Log.h"
+#include <fstream>
+#include <functional>
 
 
 
-#include "Color.h"
-#include "newParser.h"
-#include <istream>
-#include <map>
-#include <string>
-#include <vector>
-
-
-
-namespace EU4World
+EU4World::areas::areas(const std::string& filename):
+	theAreas()
 {
-	class mapArea: commonItems::parser
-	{
-		public:
-			mapArea(std::istream& theStream);
+	registerKeyword(std::regex("[\\w_]+"), [this](const std::string& areaName, std::istream& areasFile)
+		{
+			area newArea(areasFile);
+			theAreas.insert(make_pair(areaName, newArea));
+		}
+	);
 
-			const std::vector<int> getProvinces() const { return provinces; }
-
-		private:
-			std::vector<int> provinces;
-			commonItems::Color color;
-	};
-
-	class mapAreas: commonItems::parser
-	{
-		public:
-			mapAreas(const std::string& filename);
-
-			const std::vector<int> getProvincesInArea(const std::string& area) const;
-
-		private:
-			std::map<std::string, mapArea> theAreas;
-	};
+	parseFile(filename);
 }
 
 
+const std::set<int> EU4World::areas::getProvincesInArea(const std::string& area) const
+{
+	auto areaItr(theAreas.find(area));
+	if (areaItr != theAreas.end())
+	{
+		return areaItr->second.getProvinces();
+	}
+	else
+	{
+		return {};
+	}
+}
 
-#endif // MAPAREA_H_
+
+EU4World::area::area(std::istream& theStream)
+{
+	registerKeyword(std::regex("color"), [this](const std::string& colorToken, std::istream& areaFile)
+		{
+			commonItems::Color newColor(areaFile);
+			color = newColor;
+		}
+	);
+
+	auto token = getNextToken(theStream);
+	while (token && (*token != "}"))
+	{
+		if ((token->find('=') == std::string::npos) && (token->find('{') == std::string::npos))
+		{
+			provinces.insert(std::stoi(*token));
+		}
+		token = getNextToken(theStream);
+	}
+}
