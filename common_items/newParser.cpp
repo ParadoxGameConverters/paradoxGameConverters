@@ -23,6 +23,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "newParser.h"
 #include "Log.h"
+#include <cctype>
 #include <fstream>
 
 
@@ -97,7 +98,10 @@ void commonItems::parser::parseFile(const std::string& filename)
 
 std::optional<std::string> commonItems::parser::getNextToken(std::istream& theStream)
 {
+	theStream >> std::noskipws;
+
 	std::string toReturn;
+
 	bool gotToken = false;
 	while (!gotToken)
 	{
@@ -106,30 +110,52 @@ std::optional<std::string> commonItems::parser::getNextToken(std::istream& theSt
 			return {};
 		}
 
-		theStream >> toReturn;
-		if (toReturn.substr(0, 1) == "#")
+		toReturn = "";
+		while (true)
 		{
-			std::string bitbucket;
-			std::getline(theStream, bitbucket);
-		}
-		else
-		{
-			bool matched = false;
-			for (auto registration: registeredKeywords)
+			char inputChar;
+			theStream >> inputChar;
+			if (theStream.eof())
 			{
-				std::smatch match;
-				if (std::regex_match(toReturn, match, registration.first))
+				break;
+			}
+			else if (inputChar == '#')
+			{
+				std::string bitbucket;
+				std::getline(theStream, bitbucket);
+				if (toReturn.size() > 0)
 				{
-					registration.second(toReturn, theStream);
-					matched = true;
 					break;
 				}
 			}
-
-			if (!matched)
+			else if (std::isspace(inputChar))
 			{
-				gotToken = true;
+				if (toReturn.size() > 0)
+				{
+					break;
+				}
 			}
+			else
+			{
+				toReturn += inputChar;
+			}
+		}
+
+		bool matched = false;
+		for (auto registration: registeredKeywords)
+		{
+			std::smatch match;
+			if (std::regex_match(toReturn, match, registration.first))
+			{
+				registration.second(toReturn, theStream);
+				matched = true;
+				break;
+			}
+		}
+
+		if (!matched)
+		{
+			gotToken = true;
 		}
 	}
 
