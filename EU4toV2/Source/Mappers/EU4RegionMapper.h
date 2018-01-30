@@ -64,15 +64,12 @@ class EU4RegionMapper: commonItems::parser
 
 		EU4RegionMapper();
 
-		void attemptOldVersion();
-		void initEU4RegionMapOldVersion(std::shared_ptr<Object> obj);
-		void insertMapping(int provinceNumber, std::string regionName);
+		void initEU4RegionsOldVersion();
 
-		void doNewVersion();
-		void initEU4RegionMap(const EU4World::areas& areas, const std::string& regionsFilename);
+		void initEU4RegionsNewVersion();
+		void initEU4RegionsFile(const EU4World::areas& areas, const std::string& regionsFilename);
 
 		bool ProvinceInRegion(int province, const std::string& regionName);
-		std::set<std::string> getRegionsForProvince(int province);
 
 		std::map<int, std::set<std::string>> EU4RegionsMap;
 		std::map<std::string, EU4World::region> regions;
