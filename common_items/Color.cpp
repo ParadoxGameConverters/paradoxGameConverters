@@ -48,7 +48,8 @@ commonItems::Color::Color(std::shared_ptr<Object> colorObject):
 	std::stringstream colorStream;
 	colorStream << *colorObject;
 	auto unneeded = getNextToken(colorStream);
-	*this = Color::Color(colorStream);
+	Color newColor(colorStream);
+	newColor.GetRGB(c[0], c[1], c[2]);
 }
 
 
