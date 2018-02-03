@@ -21,13 +21,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef EU4REGION_MAPPER_H
-#define EU4REGION_MAPPER_H
+#ifndef REGIONS_H
+#define REGIONS_H
 
 
 
 #include "newParser.h"
-#include "../EU4World/Region.h"
+#include "Region.h"
 #include <map>
 #include <memory>
 #include <set>
@@ -39,42 +39,40 @@ class Object;
 namespace EU4World
 {
 	class areas;
+
+	class Regions: commonItems::parser
+	{
+		public:
+			static bool provinceInRegion(int province, const std::string& regionName)
+			{
+				return getInstance()->ProvinceInRegion(province, regionName);
+			}
+
+		private:
+			static Regions* instance;
+			static Regions* getInstance()
+			{
+				if (instance == nullptr)
+				{
+					instance = new Regions;
+				}
+				return instance;
+			}
+
+			Regions();
+
+			void initEU4RegionsOldVersion();
+
+			void initEU4RegionsNewVersion();
+			void initEU4RegionsFile(const EU4World::areas& areas, const std::string& regionsFilename);
+
+			bool ProvinceInRegion(int province, const std::string& regionName);
+
+			std::map<int, std::set<std::string>> EU4RegionsMap;
+			std::map<std::string, EU4World::region> regions;
+	};
 }
 
 
 
-class EU4RegionMapper: commonItems::parser
-{
-	public:
-		static bool provinceInRegion(int province, const std::string& regionName)
-		{
-			return getInstance()->ProvinceInRegion(province, regionName);
-		}
-
-	private:
-		static EU4RegionMapper* instance;
-		static EU4RegionMapper* getInstance()
-		{
-			if (instance == nullptr)
-			{
-				instance = new EU4RegionMapper;
-			}
-			return instance;
-		}
-
-		EU4RegionMapper();
-
-		void initEU4RegionsOldVersion();
-
-		void initEU4RegionsNewVersion();
-		void initEU4RegionsFile(const EU4World::areas& areas, const std::string& regionsFilename);
-
-		bool ProvinceInRegion(int province, const std::string& regionName);
-
-		std::map<int, std::set<std::string>> EU4RegionsMap;
-		std::map<std::string, EU4World::region> regions;
-};
-
-
-
-#endif //EU4REGION_MAPPER_H
+#endif //REGIONS_H

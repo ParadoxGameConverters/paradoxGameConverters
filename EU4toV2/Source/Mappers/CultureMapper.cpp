@@ -22,7 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "CultureMapper.h"
-#include "EU4RegionMapper.h"
+#include "../EU4World/Regions.h"
 #include "Log.h"
 #include "ParadoxParserUTF8.h"
 
@@ -177,7 +177,7 @@ bool cultureMapper::distinguishersMatch(const map<string, string>& distinguisher
 		}
 		else if (currentDistinguisher.first == "region")
 		{
-			if (!EU4RegionMapper::provinceInRegion(EU4Province, currentDistinguisher.second))
+			if (!EU4World::Regions::provinceInRegion(EU4Province, currentDistinguisher.second))
 			{
 				return false;
 			}

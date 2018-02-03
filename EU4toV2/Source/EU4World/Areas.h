@@ -21,8 +21,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef MAPAREAS_H_
-#define MAPAREAS_H_
+#ifndef AREAS_H_
+#define AREAS_H_
 
 
 
@@ -65,4 +65,4 @@ namespace EU4World
 
 
 
-#endif // MAPAREA_H_
+#endif // AREA_H_

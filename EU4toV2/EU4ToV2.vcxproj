@@ -188,6 +188,7 @@
     <ClCompile Include="Source\EU4World\EU4Version.cpp" />
     <ClCompile Include="Source\EU4World\EU4World.cpp" />
     <ClCompile Include="Source\EU4World\Region.cpp" />
+    <ClCompile Include="Source\EU4World\Regions.cpp" />
     <ClCompile Include="Source\FlagUtils.cpp" />
     <ClCompile Include="Source\Mappers\AdjacencyMapper.cpp" />
     <ClCompile Include="Source\Mappers\CK2TitleMapper.cpp" />
@@ -197,7 +198,6 @@
     <ClCompile Include="Source\Mappers\CultureMapper.cpp" />
     <ClCompile Include="Source\Mappers\ColonyFlagsetMapper.cpp" />
     <ClCompile Include="Source\Mappers\EU4CultureGroupMapper.cpp" />
-    <ClCompile Include="Source\Mappers\EU4RegionMapper.cpp" />
     <ClCompile Include="Source\Mappers\FlagColorMapper.cpp" />
     <ClCompile Include="Source\Mappers\GovermentMapper.cpp" />
     <ClCompile Include="Source\Mappers\IdeaEffectMapper.cpp" />
@@ -248,6 +248,7 @@
     <ClInclude Include="Source\EU4World\EU4Version.h" />
     <ClInclude Include="Source\EU4World\EU4World.h" />
     <ClInclude Include="Source\EU4World\Region.h" />
+    <ClInclude Include="Source\EU4World\Regions.h" />
     <ClInclude Include="Source\FlagUtils.h" />
     <ClInclude Include="Source\Mappers\AdjacencyMapper.h" />
     <ClInclude Include="Source\Mappers\CK2TitleMapper.h" />
@@ -258,7 +259,6 @@
     <ClInclude Include="Source\Mappers\CultureMapper.h" />
     <ClInclude Include="Source\Mappers\CustomFlagMapper.h" />
     <ClInclude Include="Source\Mappers\EU4CultureGroupMapper.h" />
-    <ClInclude Include="Source\Mappers\EU4RegionMapper.h" />
     <ClInclude Include="Source\Mappers\FlagColorMapper.h" />
     <ClInclude Include="Source\Mappers\GovernmentMapper.h" />
     <ClInclude Include="Source\Mappers\IdeaEffectMapper.h" />

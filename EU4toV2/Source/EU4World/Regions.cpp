@@ -21,28 +21,26 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "EU4RegionMapper.h"
-#include "../EU4World/Areas.h"
-#include "../EU4World/Region.h"
-#include "Log.h"
-#include "Object.h"
-#include "OSCompatibilityLayer.h"
-#include "ParadoxParserUTF8.h"
+#include "Regions.h"
 #include "../Configuration.h"
+#include "Areas.h"
+#include "Region.h"
+#include "Log.h"
+#include "OSCompatibilityLayer.h"
 #include <algorithm>
 #include <fstream>
-#include <string>
-#include <vector>
 using namespace std;
 
 
 
 
-EU4RegionMapper* EU4RegionMapper::instance = nullptr;
+EU4World::Regions* EU4World::Regions::instance = nullptr;
 
 
 
-EU4RegionMapper::EU4RegionMapper()
+EU4World::Regions::Regions():
+	EU4RegionsMap(),
+	regions()
 {
 	LOG(LogLevel::Info) << "Parsing EU4 regions";
 
@@ -59,7 +57,7 @@ EU4RegionMapper::EU4RegionMapper()
 }
 
 
-void EU4RegionMapper::initEU4RegionsOldVersion()
+void EU4World::Regions::initEU4RegionsOldVersion()
 {
 	regions.clear();
 
@@ -93,7 +91,7 @@ void EU4RegionMapper::initEU4RegionsOldVersion()
 }
 
 
-void EU4RegionMapper::initEU4RegionsNewVersion()
+void EU4World::Regions::initEU4RegionsNewVersion()
 {
 	EU4World::areas installedAreas(Configuration::getEU4Path() + "/map/area.txt");
 	initEU4RegionsFile(installedAreas, (Configuration::getEU4Path() + "/map/region.txt"));
@@ -111,7 +109,7 @@ void EU4RegionMapper::initEU4RegionsNewVersion()
 }
 
 
-void EU4RegionMapper::initEU4RegionsFile(const EU4World::areas& areas, const std::string& regionsFilename)
+void EU4World::Regions::initEU4RegionsFile(const EU4World::areas& areas, const std::string& regionsFilename)
 {
 	regions.clear();
 
@@ -134,7 +132,7 @@ void EU4RegionMapper::initEU4RegionsFile(const EU4World::areas& areas, const std
 }
 
 
-bool EU4RegionMapper::ProvinceInRegion(int province, const string& regionName)
+bool EU4World::Regions::ProvinceInRegion(int province, const string& regionName)
 {
 	auto region = regions.find(regionName);
 	if (region != regions.end())
