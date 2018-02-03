@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -387,11 +387,11 @@ map<string, vector<string>>::iterator CountryMapping::ifValidGetCK2MappingRule(c
 {
 	if ((mappingRule == EU4TagToV2TagsRules.end()) || (country->isCustom()))
 	{
-		string CK2Title = GetCK2Title(country->getTag(), country->getName("english"), availableFlags);
-		if (CK2Title != "")
+		auto CK2Title = GetCK2Title(country->getTag(), country->getName("english"), availableFlags);
+		if (CK2Title)
 		{
-			std::transform(CK2Title.begin(), CK2Title.end(), CK2Title.begin(), ::toupper);
-			mappingRule = EU4TagToV2TagsRules.find(CK2Title);
+			std::transform(CK2Title->begin(), CK2Title->end(), CK2Title->begin(), ::toupper);
+			mappingRule = EU4TagToV2TagsRules.find(*CK2Title);
 		}
 	}
 
@@ -559,33 +559,33 @@ const string CountryMapping::GetV2Tag(const string& EU4Tag) const
 }
 
 
-string CountryMapping::GetCK2Title(const string& EU4Tag, const string& countryName, const set<string>& availableFlags)
+std::optional<std::string> CountryMapping::GetCK2Title(const string& EU4Tag, const string& countryName, const set<string>& availableFlags)
 {
 	if (!tagIsAlphaDigitDigit(EU4Tag))
 	{
-		return "";
+		return {};
 	}
 
 	string name = V2Localisation::Convert(countryName);
 	transform(name.begin(), name.end(), name.begin(), ::tolower);
 
-	auto ck2title = CK2TitleMapper::getTitle(name);
-	if (ck2title == "")
+	auto ck2title = mappers::CK2TitleMapper::getTitle(name);
+	if (!ck2title)
 	{
 		string titlename = V2Localisation::StripAccents(name);
 		string c_name = "c_" + titlename;
 		string d_name = "d_" + titlename;
 		string k_name = "k_" + titlename;
 
-		if (CK2TitleMapper::doesTitleExist(c_name))
+		if (mappers::CK2TitleMapper::doesTitleExist(c_name))
 		{
 			ck2title = c_name;
 		}
-		else if (CK2TitleMapper::doesTitleExist(d_name))
+		else if (mappers::CK2TitleMapper::doesTitleExist(d_name))
 		{
 			ck2title = d_name;
 		}
-		else if (CK2TitleMapper::doesTitleExist(k_name))
+		else if (mappers::CK2TitleMapper::doesTitleExist(k_name))
 		{
 			ck2title = k_name;
 		}
@@ -610,11 +610,10 @@ string CountryMapping::GetCK2Title(const string& EU4Tag, const string& countryNa
 		}
 	}
 
-	if (ck2title != "")
+	if (ck2title)
 	{
-		LOG(LogLevel::Debug) << "Country " << EU4Tag << " (" << name << ") has the CK2 title " << ck2title;
-		return ck2title;
+		LOG(LogLevel::Debug) << "Country " << EU4Tag << " (" << name << ") has the CK2 title " << *ck2title;
 	}
 
-	return ""; 
+	return ck2title;
 }

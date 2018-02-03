@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <map>
 #include <memory>
+#include <optional>
 #include <set>
 #include <string>
 #include <vector>
@@ -57,7 +58,7 @@ class CountryMapping
 			return getInstance()->GetV2Tag(EU4Tag);
 		}
 
-		static string getCK2Title(const string& EU4Tag, const string& countryName, const set<string>& availableFlags)
+		static std::optional<std::string> getCK2Title(const string& EU4Tag, const string& countryName, const set<string>& availableFlags)
 		{
 			return getInstance()->GetCK2Title(EU4Tag, countryName, availableFlags);
 		}
@@ -103,7 +104,7 @@ class CountryMapping
 
 		const string GetV2Tag(const string& EU4Tag) const;
 
-		string GetCK2Title(const string& EU4Tag, const string& countryName, const set<string>& availableFlags);
+		std::optional<std::string> GetCK2Title(const string& EU4Tag, const string& countryName, const set<string>& availableFlags);
 
 		map<string, vector<string>> EU4TagToV2TagsRules;
 		map<string, string> EU4TagToV2TagMap;

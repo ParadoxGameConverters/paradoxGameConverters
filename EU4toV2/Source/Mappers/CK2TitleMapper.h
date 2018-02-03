@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -27,67 +27,65 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include <map>
-#include <memory>
+#include <optional>
 #include <random>
 #include <set>
 #include <string>
 #include <vector>
-using namespace std;
+#include "newParser.h"
 
 
 
-class Object;
-
-
-
-class CK2TitleMapper
+namespace mappers
 {
-	public:
-		static const string getTitle(string name)
-		{
-			return getInstance()->GetTitle(name);
-		}
-
-		static bool doesTitleExist(string title)
-		{
-			return getInstance()->DoesTitleExist(title);
-		}
-
-		static const string getRandomIslamicFlag()
-		{
-			return getInstance()->GetRandomIslamicFlag();
-		}
-
-		static const string getRandomIndianFlag()
-		{
-			return getInstance()->GetRandomIndianFlag();
-		}
-
-	private:
-		static CK2TitleMapper* instance;
-		static CK2TitleMapper* getInstance()
-		{
-			if (instance == NULL)
+	class CK2TitleMapper: commonItems::parser
+	{
+		public:
+			static const std::optional<std::string> getTitle(std::string name)
 			{
-				instance = new CK2TitleMapper;
+				return getInstance()->GetTitle(name);
 			}
-			return instance;
-		}
 
-		CK2TitleMapper();
-		void initCK2TitleMap(shared_ptr<Object> obj);
+			static bool doesTitleExist(std::string title)
+			{
+				return getInstance()->DoesTitleExist(title);
+			}
 
-		string GetTitle(string name);
-		bool DoesTitleExist(string title);
-		string GetRandomIslamicFlag();
-		string GetRandomIndianFlag();
+			static const std::optional<std::string> getRandomIslamicFlag()
+			{
+				return getInstance()->GetRandomIslamicFlag();
+			}
 
-		map<string, string> titleMap; // <name, title>
-		set<string> titles;
-		vector<string> islamicFlags;
-		vector<string> indianFlags;
-		mt19937 generator;
-};
+			static const std::optional<std::string> getRandomIndianFlag()
+			{
+				return getInstance()->GetRandomIndianFlag();
+			}
+
+		private:
+			static CK2TitleMapper* instance;
+			static CK2TitleMapper* getInstance()
+			{
+				if (instance == nullptr)
+				{
+					instance = new CK2TitleMapper;
+				}
+				return instance;
+			}
+
+			CK2TitleMapper();
+
+			std::optional<std::string> GetTitle(std::string name);
+			bool DoesTitleExist(std::string title);
+			std::optional<std::string> GetRandomIslamicFlag();
+			std::optional<std::string> GetRandomIndianFlag();
+
+			std::map<std::string, std::string> titleMap; // <name, title>
+			std::set<std::string> titles;
+			std::vector<std::string> islamicFlags;
+			std::vector<std::string> indianFlags;
+			std::mt19937 generator;
+	};
+}
 
 
 

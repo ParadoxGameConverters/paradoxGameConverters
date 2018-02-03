@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -66,11 +66,11 @@ void V2Flags::SetV2Tags(const map<string, V2Country*>& V2Countries)
 		if (i->second->getSourceCountry()
 			&& requiredTags.find(i->first) != requiredTags.end())
 		{
-			string ck2title = CountryMapping::getCK2Title(i->first,i->second->getLocalName(),usableFlagTags);
-			if ((ck2title != "") && (usableFlagTags.find(ck2title) != usableFlagTags.end()))
+			auto ck2title = CountryMapping::getCK2Title(i->first,i->second->getLocalName(),usableFlagTags);
+			if ((ck2title) && (usableFlagTags.find(*ck2title) != usableFlagTags.end()))
 			{
-				tagMap[i->first] = ck2title;
-				usableFlagTags.erase(ck2title);
+				tagMap[i->first] = *ck2title;
+				usableFlagTags.erase(*ck2title);
 				requiredTags.erase(i->first);
 			}
 			else // try something patronymic
@@ -79,23 +79,23 @@ void V2Flags::SetV2Tags(const map<string, V2Country*>& V2Countries)
 					continue;
 
 				string religion = i->second->getReligion();
-				string randomCK2title = "";
+				std::optional<std::string> randomCK2title;
 
 				// Yay hardcoded paths. If I get round to it, I'll point these at religion.txt instead.
 				if (religion == "sunni" || religion == "shiite" || religion == "ibadi")
 				{
-					randomCK2title = CK2TitleMapper::getRandomIslamicFlag();
+					randomCK2title = mappers::CK2TitleMapper::getRandomIslamicFlag();
 				}
 				else if (religion == "mahayana" || religion == "gelugpa" || religion == "theravada" || religion == "sikh" || religion == "hindu" || religion == "jain")
 				{
-					randomCK2title = CK2TitleMapper::getRandomIndianFlag();
+					randomCK2title = mappers::CK2TitleMapper::getRandomIndianFlag();
 				}
 
-				if (usableFlagTags.find(randomCK2title) != usableFlagTags.end())
+				if (randomCK2title && (usableFlagTags.find(*randomCK2title) != usableFlagTags.end()))
 				{
-					LOG(LogLevel::Info) << "Country " << i->first << " (" << i->second->getLocalName() << ") has been given the CK2 flag " << randomCK2title;
-					tagMap[i->first] = randomCK2title;
-					usableFlagTags.erase(randomCK2title);
+					LOG(LogLevel::Info) << "Country " << i->first << " (" << i->second->getLocalName() << ") has been given the CK2 flag " << *randomCK2title;
+					tagMap[i->first] =* randomCK2title;
+					usableFlagTags.erase(*randomCK2title);
 					requiredTags.erase(i->first);
 				}
 			}
