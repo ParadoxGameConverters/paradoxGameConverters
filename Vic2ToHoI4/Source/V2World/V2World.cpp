@@ -433,8 +433,6 @@ void V2World::readShipNames(shared_ptr<Object> countryData, const string& line)
 			auto unitTypes = leaf->getLeaves();
 			for (auto unitType : unitTypes)
 			{
-				string shipType = unitType->getKey();
-				vector<string> shipNames = unitType->getTokens();
 				countries[tag]->setShipNames(unitType->getKey(), unitType->getTokens());
 			}
 		}
