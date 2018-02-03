@@ -236,7 +236,7 @@ ostream& operator<< (ostream& os, const Object& obj)
 		os << "\t";
 	}
 	if (obj.leaf) {
-		os << obj.key << " = " << obj.strVal << "\n";
+		os << obj.key << " = \"" << obj.strVal << "\"\n";
 		return os;
 	}
 	if (obj.isObjList)

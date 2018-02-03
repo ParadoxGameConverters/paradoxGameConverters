@@ -111,6 +111,7 @@ std::optional<std::string> commonItems::parser::getNextToken(std::istream& theSt
 		}
 
 		toReturn = "";
+		bool inString = false;
 		while (true)
 		{
 			char inputChar;
@@ -119,7 +120,7 @@ std::optional<std::string> commonItems::parser::getNextToken(std::istream& theSt
 			{
 				break;
 			}
-			else if (inputChar == '#')
+			else if (!inString && (inputChar == '#'))
 			{
 				std::string bitbucket;
 				std::getline(theStream, bitbucket);
@@ -128,7 +129,23 @@ std::optional<std::string> commonItems::parser::getNextToken(std::istream& theSt
 					break;
 				}
 			}
-			else if (std::isspace(inputChar))
+			else if (inputChar == '\n')
+			{
+				if (toReturn.size() > 0)
+				{
+					break;
+				}
+			}
+			else if ((inputChar == '\"') && !inString && (toReturn.size() == 0))
+			{
+				inString = true;
+			}
+			else if ((inputChar == '\"') && inString)
+			{
+				inString = false;
+				break;
+			}
+			else if (!inString && std::isspace(inputChar))
 			{
 				if (toReturn.size() > 0)
 				{
@@ -159,7 +176,14 @@ std::optional<std::string> commonItems::parser::getNextToken(std::istream& theSt
 		}
 	}
 
-	return toReturn;
+	if (toReturn.size() > 0)
+	{
+		return toReturn;
+	}
+	else
+	{
+		return {};
+	}
 }
 
 
