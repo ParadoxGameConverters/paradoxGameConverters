@@ -343,6 +343,7 @@ bool V2World::processCountriesDotTxt(const string& countryListFile, const string
 			continue;
 		}
 		readCountryColor(countryData, line);
+		readShipNames(countryData, line);
 		inputPartyInformation(countryData->getLeaves());
 	}
 
@@ -413,6 +414,29 @@ void V2World::readCountryColor(shared_ptr<Object> countryData, const string& lin
 		if (countries.find(tag) != countries.end())
 		{
 			countries[tag]->setColor(ConverterColor::Color(stoi(rgb[0]), stoi(rgb[1]), stoi(rgb[2])));
+		}
+	}
+}
+
+
+void V2World::readShipNames(shared_ptr<Object> countryData, const string& line)
+{
+	string tag = line.substr(0, 3);
+	if (countries.find(tag) == countries.end()) return;
+
+	auto leaves = countryData->getLeaves();
+	for (auto leaf : leaves)
+	{
+		string key = leaf->getKey();
+		if (key == "unit_names")
+		{
+			auto unitTypes = leaf->getLeaves();
+			for (auto unitType : unitTypes)
+			{
+				string shipType = unitType->getKey();
+				vector<string> shipNames = unitType->getTokens();
+				countries[tag]->setShipNames(unitType->getKey(), unitType->getTokens());
+			}
 		}
 	}
 }
