@@ -70,7 +70,21 @@ EU4World::area::area(std::istream& theStream)
 	{
 		if ((token->find('=') == std::string::npos) && (token->find('{') == std::string::npos))
 		{
-			provinces.insert(std::stoi(*token));
+			try
+			{
+				provinces.insert(std::stoi(*token));
+			}
+			catch (const std::exception& e)
+			{
+				if (!token)
+				{
+					LOG(LogLevel::Warning) << "Missing token when parsing areas";
+				}
+				else
+				{
+					LOG(LogLevel::Warning) << "Unexpected token when parsing areas: " << *token;
+				}
+			}
 		}
 		token = getNextToken(theStream);
 	}
