@@ -1656,6 +1656,7 @@ void HoI4World::output() const
 	outputCommonCountries();
 	outputColorsfile();
 	outputNames();
+	outputUnitNames();
 	HoI4Localisation::output();
 	states->output();
 	diplomacy->output();
@@ -1746,6 +1747,23 @@ void HoI4World::outputNames() const
 	for (auto country: countries)
 	{
 		country.second->outputToNamesFiles(namesFile);
+	}
+}
+
+void HoI4World::outputUnitNames() const
+{
+	ofstream namesFile("output/" + Configuration::getOutputName() + "/common/units/names/01_names.txt");
+	namesFile << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
+
+	if (!namesFile.is_open())
+	{
+		Log(LogLevel::Error) << "Could not open output/" << Configuration::getOutputName() << "/common/units/names/01_names.txt";
+		exit(-1);
+	}
+
+	for (auto country : countries)
+	{
+		country.second->outputToUnitNamesFiles(namesFile);
 	}
 }
 

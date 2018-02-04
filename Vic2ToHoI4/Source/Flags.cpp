@@ -158,6 +158,20 @@ optional<string> getSourceFlagPath(const string& Vic2Tag, const string& sourceSu
 			path = *possiblePath;
 		}
 	}
+
+	if (isThisAConvertedTag(Vic2Tag))
+	{
+		auto possiblePath = getConversionModFlag(Vic2Tag + ".tga");
+		if (possiblePath)
+		{
+			path = *possiblePath;
+		}
+	}
+
+	if (!Utils::DoesFileExist(path))
+	{
+		path = "flags/" + Vic2Tag + ".tga";
+	}
 		
 	if (Utils::DoesFileExist(path))
 	{

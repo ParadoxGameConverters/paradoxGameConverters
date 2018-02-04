@@ -171,6 +171,7 @@ class HoI4World
 		void outputCommonCountries() const;
 		void outputColorsfile() const;
 		void outputNames() const;
+		void outputUnitNames() const;
 		void outputMap() const;
 		void outputGenericFocusTree() const;
 		void outputCountries() const;

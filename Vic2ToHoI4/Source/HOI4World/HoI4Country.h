@@ -78,6 +78,7 @@ class HoI4Country
 		void outputToCommonCountriesFile(ofstream& countriesFile) const;
 		void outputColors(ofstream& out) const;
 		void outputToNamesFiles(ofstream& namesFile) const;
+		void outputToUnitNamesFiles(ofstream& unitNamesFile) const;
 		void output(const set<const HoI4Advisor*, advisorCompare>& ideologicalMinisters, const vector<HoI4DivisionTemplateType>& divisionTemplates) const;
 		void outputIdeaGraphics(ofstream& ideasFile) const;
 
@@ -164,6 +165,7 @@ class HoI4Country
 		void outputOOBLine(ofstream& output) const;
 		void outputCommonCountryFile() const;
 		void outputIdeas(const set<const HoI4Advisor*, advisorCompare>& ideologicalAdvisors) const;
+		void outputUnitType(ofstream& unitNamesFile, string sourceUnitType, string destUnitType, string defaultName) const;
 
 
 		const HoI4World* theWorld;
