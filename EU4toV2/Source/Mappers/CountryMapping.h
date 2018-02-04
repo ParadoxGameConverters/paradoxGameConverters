@@ -95,10 +95,10 @@ class CountryMapping
 		string generateNewTag();
 		void mapToNewTag(const string& EU4Tag, const string& Vic2Tag);
 		bool attemptColonialReplacement(EU4Country* country, const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries);
-		bool capitalInRightEU4Region(const colonyStruct& colony, int EU4Capital);
-		bool capitalInRightVic2Region(const colonyStruct& colony, int Vic2Capital, const EU4World& srcWorld, const string& EU4Tag);
-		bool inCorrectCultureGroup(const colonyStruct& colony, const string& primaryCulture);
-		bool tagIsAvailable(const colonyStruct& colony, const map<string, V2Country*>& Vic2Countries);
+		bool capitalInRightEU4Region(const mappers::colonyStruct& colony, int EU4Capital);
+		bool capitalInRightVic2Region(const mappers::colonyStruct& colony, int Vic2Capital, const EU4World& srcWorld, const string& EU4Tag);
+		bool inCorrectCultureGroup(const mappers::colonyStruct& colony, const string& primaryCulture);
+		bool tagIsAvailable(const mappers::colonyStruct& colony, const map<string, V2Country*>& Vic2Countries);
 		void logMapping(const string& EU4Tag, const string& V2Tag, const string& reason);
 		bool tagIsAlreadyAssigned(const string& Vic2Tag);
 

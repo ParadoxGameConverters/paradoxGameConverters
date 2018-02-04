@@ -411,7 +411,7 @@ bool CountryMapping::attemptColonialReplacement(EU4Country* country, const EU4Wo
 		Vic2Capital = potentialVic2Capitals[0];
 	}
 
-	for (auto colony: colonialTagMapper::getColonyMap())
+	for (auto colony: mappers::colonialTagMapper::getColonyMap())
 	{
 		if (!capitalInRightEU4Region(colony, EU4Capital))
 		{
@@ -442,7 +442,7 @@ bool CountryMapping::attemptColonialReplacement(EU4Country* country, const EU4Wo
 }
 
 
-bool CountryMapping::capitalInRightEU4Region(const colonyStruct& colony, int EU4Capital)
+bool CountryMapping::capitalInRightEU4Region(const mappers::colonyStruct& colony, int EU4Capital)
 {
 	if (colony.EU4Region != "")
 	{
@@ -462,7 +462,7 @@ bool CountryMapping::capitalInRightEU4Region(const colonyStruct& colony, int EU4
 }
 
 
-bool CountryMapping::capitalInRightVic2Region(const colonyStruct& colony, int Vic2Capital, const EU4World& srcWorld, const string& EU4Tag)
+bool CountryMapping::capitalInRightVic2Region(const mappers::colonyStruct& colony, int Vic2Capital, const EU4World& srcWorld, const string& EU4Tag)
 {
 	if (colony.V2Region != "")
 	{
@@ -497,7 +497,7 @@ bool CountryMapping::capitalInRightVic2Region(const colonyStruct& colony, int Vi
 }
 
 
-bool CountryMapping::inCorrectCultureGroup(const colonyStruct& colony, const string& primaryCulture)
+bool CountryMapping::inCorrectCultureGroup(const mappers::colonyStruct& colony, const string& primaryCulture)
 {
 	if (colony.cultureGroup != "")
 	{
@@ -511,7 +511,7 @@ bool CountryMapping::inCorrectCultureGroup(const colonyStruct& colony, const str
 }
 
 
-bool CountryMapping::tagIsAvailable(const colonyStruct& colony, const map<string, V2Country*>& Vic2Countries)
+bool CountryMapping::tagIsAvailable(const mappers::colonyStruct& colony, const map<string, V2Country*>& Vic2Countries)
 {
 	if (Vic2Countries.find(colony.tag) == Vic2Countries.end())
 	{

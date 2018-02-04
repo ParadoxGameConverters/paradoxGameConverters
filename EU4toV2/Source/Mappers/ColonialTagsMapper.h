@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,50 +26,48 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include <memory>
+#include "newParser.h"
 #include <string>
 #include <vector>
-using namespace std;
-
-
-class Object;
 
 
 
-typedef struct
+namespace mappers
 {
-	string tag;
-	string EU4Region;
-	string V2Region;
-	string cultureGroup;
-} colonyStruct;
+	typedef struct
+	{
+		std::string tag;
+		std::string EU4Region;
+		std::string V2Region;
+		std::string cultureGroup;
+	} colonyStruct;
 
 
-
-class colonialTagMapper
-{
-	public:
-		static const vector<colonyStruct>& getColonyMap()
-		{
-			return getInstance()->colonyMap;
-		}
-
-	private:
-		static colonialTagMapper* instance;
-		static colonialTagMapper* getInstance()
-		{
-			if (instance == nullptr)
+	class colonialTagMapper: commonItems::parser
+	{
+		public:
+			static const std::vector<colonyStruct>& getColonyMap()
 			{
-				instance = new colonialTagMapper;
+				return getInstance()->colonyMap;
 			}
-			return instance;
-		}
 
-		colonialTagMapper();
-		void initColonyMap(shared_ptr<Object> obj);
+		private:
+			static colonialTagMapper* instance;
+			static colonialTagMapper* getInstance()
+			{
+				if (instance == nullptr)
+				{
+					instance = new colonialTagMapper;
+				}
+				return instance;
+			}
 
-		vector<colonyStruct> colonyMap;
-};
+			colonialTagMapper();
+			void initMapping(const std::string& unused, std::istream& theStream);
+
+			std::vector<colonyStruct> colonyMap;
+	};
+}
 
 
 
