@@ -114,7 +114,7 @@ mappers::CK2TitleMapper::CK2TitleMapper():
 			}
 
 			titleMap[newMapping.getName()] = newMapping.getID();
-			//titles.insert(newMapping.getID());
+			titles.insert(newMapping.getID());
 		}
 	);
 
