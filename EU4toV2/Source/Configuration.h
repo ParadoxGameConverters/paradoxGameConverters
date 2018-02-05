@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -122,6 +122,11 @@ class Configuration
 			return getInstance()->convertPopTotals;
 		}
 
+		static bool getDebug()
+		{
+			return getInstance()->debug;
+		}
+
 		static void setOutputName(string name)
 		{
 			getInstance()->outputName = name;
@@ -185,6 +190,7 @@ class Configuration
 		string Removetype;
 		double libertyThreshold;
 		bool convertPopTotals;
+		bool debug;
 	
 		// items set during conversion
 		EU4Version version;

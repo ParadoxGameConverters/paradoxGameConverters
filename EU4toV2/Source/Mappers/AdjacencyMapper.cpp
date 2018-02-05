@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,34 +26,37 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include <fstream>
+#include <cstdint>
 
 
 
-adjacencyMapper* adjacencyMapper::instance = NULL;
+mappers::adjacencyMapper* mappers::adjacencyMapper::instance = nullptr;
 
 
 
-adjacencyMapper::adjacencyMapper()
+mappers::adjacencyMapper::adjacencyMapper()
 {
 	LOG(LogLevel::Info) << "Importing province adjacencies";
 	string filename = getAdjacencyFilename();
 
-	FILE* adjacenciesFile = NULL;
-	fopen_s(&adjacenciesFile, filename.c_str(), "rb");
-	if (adjacenciesFile == NULL)
+	ifstream adjacenciesFile(filename, std::ios_base::binary);
+	if (!adjacenciesFile.is_open())
 	{
 		LOG(LogLevel::Error) << "Could not open " << filename;
-		exit(1);
+		exit(-1);
 	}
 
 	inputAdjacencies(adjacenciesFile);
-	fclose(adjacenciesFile);
+	adjacenciesFile.close();
 
-	//outputAdjacenciesMapData();
+	if (Configuration::getDebug())
+	{
+		outputAdjacenciesMapData();
+	}
 }
 
 
-string adjacencyMapper::getAdjacencyFilename()
+std::string mappers::adjacencyMapper::getAdjacencyFilename()
 {
 	string filename = Configuration::getV2DocumentsPath() + "/map/cache/adjacencies.bin";
 	if (!Utils::DoesFileExist(filename))
@@ -71,16 +74,13 @@ string adjacencyMapper::getAdjacencyFilename()
 }
 
 
-void adjacencyMapper::inputAdjacencies(FILE* adjacenciesFile)
+void mappers::adjacencyMapper::inputAdjacencies(std::istream& adjacenciesFile)
 {
 	int current_province = 0;
-	while (!feof(adjacenciesFile))
+	while (!adjacenciesFile.eof())
 	{
-		int numAdjacencies;
-		if (fread(&numAdjacencies, sizeof(numAdjacencies), 1, adjacenciesFile) != 1)
-		{
-			break;
-		}
+		uint32_t numAdjacencies;
+		adjacenciesFile.read(reinterpret_cast<char*>(&numAdjacencies), 4);
 
 		vector<int> adjacencies = readAnAdjacenciesSet(adjacenciesFile, numAdjacencies);
 		adjacencyMap.insert(make_pair(current_province, adjacencies));
@@ -89,57 +89,100 @@ void adjacencyMapper::inputAdjacencies(FILE* adjacenciesFile)
 }
 
 
-typedef struct {
-	int type;			// the type of adjacency 0 = normal, 1 = ford, 2 = river crossing
-	int to;				// the province this one is adjacent to (expect one pointing back to this province)
-	int via;				// the straight (if any) this crosses
-	int unknown1;		// still unknown
-	int unknown2;		// still unknown
-	int pathX;			// the midpoint on the path drawn between provinces
-	int pathY;			// the midpoint on the path drawn between provinces
-	int unknown3;		// still unknown
-	int unknown4;		// still unknown
+typedef struct
+{
+	uint32_t type;			// the type of adjacency 0 = normal, 1 = ford, 2 = river crossing
+	uint32_t to;				// the province this one is adjacent to (expect one pointing back to this province)
+	uint32_t via;				// the straight (if any) this crosses
+	uint32_t unknown1;		// still unknown
+	uint32_t unknown2;		// still unknown
+	uint32_t pathX;			// the midpoint on the path drawn between provinces
+	uint32_t pathY;			// the midpoint on the path drawn between provinces
+	uint32_t unknown3;		// still unknown
+	uint32_t unknown4;		// still unknown
 } HODAdjacency;		// an entry in the HOD adjacencies.bin format
 
-typedef struct {
-	int type;			// the type of adjacency 0 = normal, 1 = ford, 2 = river crossing
-	int to;				// the province this one is adjacent to (expect one pointing back to this province)
-	int via;				// the straight (if any) this crosses
-	int unknown1;		// still unknown
-	int unknown2;		// still unknown
-	int pathX;			// the midpoint on the path drawn between provinces
-	int pathY;			// the midpoint on the path drawn between provinces
+std::istream& operator >> (std::istream& stream, HODAdjacency& adjacency)
+{
+	stream.read(reinterpret_cast<char*>(&adjacency.type), 4);
+	stream.read(reinterpret_cast<char*>(&adjacency.to), 4);
+	stream.read(reinterpret_cast<char*>(&adjacency.via), 4);
+	stream.read(reinterpret_cast<char*>(&adjacency.unknown1), 4);
+	stream.read(reinterpret_cast<char*>(&adjacency.unknown2), 4);
+	stream.read(reinterpret_cast<char*>(&adjacency.pathX), 4);
+	stream.read(reinterpret_cast<char*>(&adjacency.pathY), 4);
+	stream.read(reinterpret_cast<char*>(&adjacency.unknown3), 4);
+	stream.read(reinterpret_cast<char*>(&adjacency.unknown4), 4);
+
+	return stream;
+};
+
+typedef struct
+{
+	uint32_t type;			// the type of adjacency 0 = normal, 1 = ford, 2 = river crossing
+	uint32_t to;				// the province this one is adjacent to (expect one pointing back to this province)
+	uint32_t via;				// the straight (if any) this crosses
+	uint32_t unknown1;		// still unknown
+	uint32_t unknown2;		// still unknown
+	uint32_t pathX;			// the midpoint on the path drawn between provinces
+	uint32_t pathY;			// the midpoint on the path drawn between provinces
 } AHDAdjacency;		// an entry in the AHD adjacencies.bin format
 
-typedef struct {
-	int type;			// the type of adjacency 0 = normal, 1 = ford, 2 = river crossing
-	int to;				// the province this one is adjacent to (expect one pointing back to this province)
-	int via;				// the straight (if any) this crosses
-	int unknown1;		// still unknown
-	int unknown2;		// still unknown
+std::istream& operator >> (std::istream& stream, AHDAdjacency& adjacency)
+{
+	stream.read(reinterpret_cast<char*>(&adjacency.type), 4);
+	stream.read(reinterpret_cast<char*>(&adjacency.to), 4);
+	stream.read(reinterpret_cast<char*>(&adjacency.via), 4);
+	stream.read(reinterpret_cast<char*>(&adjacency.unknown1), 4);
+	stream.read(reinterpret_cast<char*>(&adjacency.unknown2), 4);
+	stream.read(reinterpret_cast<char*>(&adjacency.pathX), 4);
+	stream.read(reinterpret_cast<char*>(&adjacency.pathY), 4);
+
+	return stream;
+}
+
+typedef struct
+{
+	uint32_t type;			// the type of adjacency 0 = normal, 1 = ford, 2 = river crossing
+	uint32_t to;				// the province this one is adjacent to (expect one pointing back to this province)
+	uint32_t via;				// the straight (if any) this crosses
+	uint32_t unknown1;		// still unknown
+	uint32_t unknown2;		// still unknown
 } VanillaAdjacency;	// an entry in the vanilla adjacencies.bin format
 
-vector<int> adjacencyMapper::readAnAdjacenciesSet(FILE* adjacenciesFile, int numAdjacencies)
+std::istream& operator >> (std::istream& stream, VanillaAdjacency& adjacency)
+{
+	stream.read(reinterpret_cast<char*>(&adjacency.type), 4);
+	stream.read(reinterpret_cast<char*>(&adjacency.to), 4);
+	stream.read(reinterpret_cast<char*>(&adjacency.via), 4);
+	stream.read(reinterpret_cast<char*>(&adjacency.unknown1), 4);
+	stream.read(reinterpret_cast<char*>(&adjacency.unknown2), 4);
+
+	return stream;
+}
+
+
+std::vector<int> mappers::adjacencyMapper::readAnAdjacenciesSet(std::istream& adjacenciesFile, unsigned int numAdjacencies)
 {
 	vector<int> adjacencies;
-	for (int i = 0; i < numAdjacencies; i++)
+	for (unsigned int i = 0; i < numAdjacencies; i++)
 	{
 		if (Configuration::getV2Gametype() == "vanilla")
 		{
 			VanillaAdjacency readAdjacency;
-			fread(&readAdjacency, sizeof(readAdjacency), 1, adjacenciesFile);
+			adjacenciesFile >> readAdjacency;
 			adjacencies.push_back(readAdjacency.to);
 		}
 		else if (Configuration::getV2Gametype() == "AHD")
 		{
 			AHDAdjacency readAdjacency;
-			fread(&readAdjacency, sizeof(readAdjacency), 1, adjacenciesFile);
+			adjacenciesFile >> readAdjacency;
 			adjacencies.push_back(readAdjacency.to);
 		}
 		if ((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM"))
 		{
 			HODAdjacency readAdjacency;
-			fread(&readAdjacency, sizeof(readAdjacency), 1, adjacenciesFile);
+			adjacenciesFile >> readAdjacency;
 			adjacencies.push_back(readAdjacency.to);
 		}
 	}
@@ -148,7 +191,7 @@ vector<int> adjacencyMapper::readAnAdjacenciesSet(FILE* adjacenciesFile, int num
 }
 
 
-void adjacencyMapper::outputAdjacenciesMapData()
+void mappers::adjacencyMapper::outputAdjacenciesMapData()
 {
 	ofstream adjacenciesData("adjacenciesData.csv");
 
@@ -165,8 +208,14 @@ void adjacencyMapper::outputAdjacenciesMapData()
 }
 
 
-vector<int> adjacencyMapper::GetVic2Adjacencies(int Vic2Province)
+std::optional<std::vector<int>> mappers::adjacencyMapper::GetVic2Adjacencies(int Vic2Province)
 {
 	if(adjacencyMap.find(Vic2Province) != adjacencyMap.end())
+	{
 		return adjacencyMap.at(Vic2Province);
+	}
+	else
+	{
+		return {};
+	}
 }

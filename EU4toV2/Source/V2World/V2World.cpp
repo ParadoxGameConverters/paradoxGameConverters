@@ -1014,21 +1014,24 @@ void V2World::setupColonies()
 		{
 			int currentProvince = goodProvinces.front();
 			goodProvinces.pop();
-			vector<int> adjacencies = adjacencyMapper::getVic2Adjacencies(currentProvince);
-			for (unsigned int i = 0; i < adjacencies.size(); i++)
+			auto adjacencies = mappers::adjacencyMapper::getVic2Adjacencies(currentProvince);
+			if (adjacencies)
 			{
-				map<int, V2Province*>::iterator openItr = openProvinces.find(adjacencies[i]);
-				if (openItr == openProvinces.end())
+				for (auto adjacency: *adjacencies)
 				{
-					continue;
+					auto openItr = openProvinces.find(adjacency);
+					if (openItr == openProvinces.end())
+					{
+						continue;
+					}
+					if (openItr->second->getOwner() != countryItr->first)
+					{
+						continue;
+					}
+					openItr->second->setLandConnection(true);
+					goodProvinces.push(openItr->first);
+					openProvinces.erase(openItr);
 				}
-				if (openItr->second->getOwner() != countryItr->first)
-				{
-					continue;
-				}
-				openItr->second->setLandConnection(true);
-				goodProvinces.push(openItr->first);
-				openProvinces.erase(openItr);
 			}
 		} while (goodProvinces.size() > 0);
 
