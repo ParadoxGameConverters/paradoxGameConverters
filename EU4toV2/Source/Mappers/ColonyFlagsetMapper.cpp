@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -23,88 +23,111 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "ColonyFlagsetMapper.h"
 #include "Log.h"
-#include "ParadoxParserUTF8.h"
-#include "../V2World/V2Localisation.h"
-#include <set>
-#include <algorithm>
+#include "OSCompatibilityLayer.h"
 
 
 
-colonyFlagsetMapper* colonyFlagsetMapper::instance = nullptr;
+mappers::colonyFlagsetMapper* mappers::colonyFlagsetMapper::instance = nullptr;
+
+
+mappers::colonyFlag::colonyFlag(std::istream& theStream, const std::string& region):
+	name(),
+	region(region),
+	unique(false),
+	overlord()
+{
+	registerKeyword(std::regex("name"), [this](const std::string& unused, std::istream& theStream)
+		{
+			auto equals = getNextToken(theStream);
+			auto possibleName = getNextToken(theStream);
+			if (possibleName)
+			{
+				name = Utils::convertUTF8To8859_15(*possibleName);
+				std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+			}
+		}
+	);
+	registerKeyword(std::regex("unique"), [this](const std::string& unused, std::istream& theStream)
+		{
+			auto equals = getNextToken(theStream);
+			auto uniqueness = getNextToken(theStream);
+			if (uniqueness && (*uniqueness == "true"))
+			{
+				unique = true;
+			}
+		}
+	);
+
+	parseStream(theStream);
+}
+
+
+mappers::colonyFlagsetRegion::colonyFlagsetRegion(std::istream& theStream, const std::string& region, std::map<std::string, std::shared_ptr<colonyFlag>>& colonyFlagset)
+{
+	registerKeyword(std::regex("flag"), [region, &colonyFlagset](const std::string& unused, std::istream& theStream)
+		{
+			std::shared_ptr<colonyFlag> flag = std::make_shared<colonyFlag>(theStream, region);
+			colonyFlagset[flag->getName()] =  flag;
+		}
+	);
+
+	parseStream(theStream);
+}
 
 
 
-colonyFlagsetMapper::colonyFlagsetMapper()
+mappers::colonyFlagsetMapper::colonyFlagsetMapper()
 {
 	LOG(LogLevel::Info) << "Parsing colony naming rules.";
 
-	shared_ptr<Object> colonialObj = parser_UTF8::doParseFile("colonial_flags.txt");
-	if (colonialObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse colonial_flags.txt";
-		exit(-1);
-	}
+	registerKeyword(std::regex("[\\w_]+"), [this](const std::string& region, std::istream& theStream)
+		{
+			colonyFlagsetRegion newRegion(theStream, region, colonyFlagset);
+		}
+	);
 
-	initColonyFlagset(colonialObj);
-	removeDuplicates();
+	parseFile("colonial_flags.txt");
 }
 
 
-void colonyFlagsetMapper::initColonyFlagset(shared_ptr<Object> obj)
+std::shared_ptr<mappers::colonyFlag> mappers::colonyFlagsetMapper::GetFlag(const std::string& name)
 {
-	vector<shared_ptr<Object>> colonialFlagRules = obj->getLeaves();
-	vector<shared_ptr<Object>> regionObjs = colonialFlagRules[0]->getLeaves();
-
-	for (auto regionObj: regionObjs)
+	auto possibleFlag = colonyFlagset.find(name);
+	if (possibleFlag != colonyFlagset.end())
 	{
-		string region = regionObj->getKey();
-		vector<shared_ptr<Object>> flagObjs = regionObj->getLeaves();
-		for (auto flagObj: flagObjs)
+		return possibleFlag->second;
+	}
+	else
+	{
+		for (auto flag: colonyFlagset)
 		{
-			shared_ptr<colonyFlag> flag(new colonyFlag());
-			flag->region = region;
-			flag->unique = false;
-			flag->overlord = "";
-
-			for (auto item : flagObj->getLeaves())
+			if (name.find(flag.first) != std::string::npos)
 			{
-				if (item->getKey() == "name")
-				{
-					string name = item->getLeaf();
-					name = V2Localisation::Convert(name);
-					std::transform(name.begin(), name.end(), name.begin(), ::tolower);
-					if (flag->name == "")
-					{
-						flag->name = name;
-					}
-
-					colonyFlagset[name] = flag;
-				}
-				if (item->getKey() == "unique")
-				{
-					flag->unique = true;
-				}
+				return flag.second;
 			}
 		}
+		return {};
 	}
 }
 
 
-void colonyFlagsetMapper::removeDuplicates()
+std::vector<std::string> mappers::colonyFlagsetMapper::GetNames()
 {
-	set<string> duplicateColonyFlag;
+	std::vector<std::string> names;
 
-	for (auto colonialtitle = colonyFlagset.begin(); colonialtitle != colonyFlagset.end();)
+	for (auto flag: colonyFlagset)
 	{
-		if (duplicateColonyFlag.find(colonialtitle->second->name) != duplicateColonyFlag.end())
+		if (!flag.second->isUnique())
 		{
-			LOG(LogLevel::Info) << "Duplicate " << colonialtitle->second->name;
-			colonyFlagset.erase(colonialtitle++);
-		}
-		else
-		{
-			duplicateColonyFlag.insert(colonialtitle->second->name);
-			++colonialtitle;
+			names.push_back(flag.first);
 		}
 	}
+
+	return names;
+}
+
+
+void mappers::colonyFlagsetMapper::RemoveFlag(const std::string& name)
+{
+	colonyFlagset.erase(name);
 }

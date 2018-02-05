@@ -130,7 +130,6 @@ void V2Flags::SetV2Tags(const map<string, V2Country*>& V2Countries)
 		}
 	}
 
-	auto colonyFlags = colonyFlagsetMapper::getFlagset();
 	for (auto country: V2Countries)
 	{
 		V2Country* overlord = country.second->getColonyOverlord();
@@ -138,67 +137,54 @@ void V2Flags::SetV2Tags(const map<string, V2Country*>& V2Countries)
 			continue;
 
 		string name = country.second->getLocalName();
-		name = V2Localisation::Convert(name);
-
+		name = Utils::convertUTF8To8859_15(name);
 		transform(name.begin(), name.end(), name.begin(), ::tolower);
 
-		auto colonialtitle = colonyFlags.begin();
-		for (; colonialtitle != colonyFlags.end(); ++colonialtitle)
-		{
-			if (name.find(colonialtitle->second->name) != string::npos)
-			{
-				break;
-			}
-		}
-
-		if (colonialtitle == colonyFlags.end())
+		auto colonialtitle = mappers::colonyFlagsetMapper::getFlag(name);
+		if (!colonialtitle)
 		{
 			colonialFail.push_back(country.second);
 			continue;
 		}
 
-		colonialtitle->second->overlord = overlord->getTag();
-		colonialFlagMapping[country.first] = colonialtitle->second;
-		LOG(LogLevel::Info) << "Country with tag " << country.first << " is " << colonialtitle->second->name << ", ruled by " << colonialtitle->second->overlord;
+		colonialtitle->setOverlord(overlord->getTag());
+		colonialFlagMapping[country.first] = colonialtitle;
+		LOG(LogLevel::Info) << "Country with tag " << country.first << " is " << colonialtitle->getName() << ", ruled by " << colonialtitle->getOverlord();
 
-		usableFlagTags.erase(colonialtitle->second->name);
+		usableFlagTags.erase(colonialtitle->getName());
 		requiredTags.erase(country.first); 
-		colonyFlags.erase(colonialtitle);
+		mappers::colonyFlagsetMapper::removeFlag(colonialtitle->getName());
 	}
 
 	if (colonialFail.size() != 0)
 	{
-		vector<string> colonyFlagsKeys;
-		for (auto flag : colonyFlags)
-		{
-			colonyFlagsKeys.push_back(flag.first);
-		}
+		vector<string> colonyFlagsKeys = mappers::colonyFlagsetMapper::getNames();
+
 		std::random_device rd;
 		std::mt19937 g(rd());
 		std::shuffle(colonyFlagsKeys.begin(), colonyFlagsKeys.end(), g);
 
 		for (string key : colonyFlagsKeys)
 		{
-			shared_ptr<colonyFlag> flag = colonyFlags[key];
+			auto flag = mappers::colonyFlagsetMapper::getFlag(key);
 
-			if (false == flag->overlord.empty())
+			if (false == flag->getOverlord().empty())
+			{
 				continue;
-
-			if (flag->unique)
-				continue;
+			}
 
 			for (vector<V2Country*>::iterator v2c = colonialFail.begin(); v2c != colonialFail.end(); ++v2c)
 			{
 				bool success = false;
 				string region = (*v2c)->getColonialRegion();
-				if (flag->region == region || region == "")
+				if ((region == "") || (flag->getRegion() == region))
 				{
 					success = true;
 					colonialFlagMapping[(*v2c)->getTag()] = flag;
-					flag->overlord = (*v2c)->getColonyOverlord()->getTag();
-					LOG(LogLevel::Info) << "Country with tag " << (*v2c)->getTag() << " is now " << flag->name << ", ruled by " << flag->overlord;
+					flag->getOverlord() = (*v2c)->getColonyOverlord()->getTag();
+					LOG(LogLevel::Info) << "Country with tag " << (*v2c)->getTag() << " is now " << key << ", ruled by " << flag->getOverlord();
 
-					usableFlagTags.erase(flag->name);
+					usableFlagTags.erase(flag->getName());
 					requiredTags.erase((*v2c)->getTag());
 					colonialFail.erase(v2c);
 					break;
@@ -449,11 +435,11 @@ void V2Flags::createColonialFlags() const
 	for (auto i : colonialFlagMapping)
 	{
 		string V2Tag = i.first;
-		string baseFlag = i.second->name;
+		string baseFlag = i.second->getName();
 		transform(baseFlag.begin(), baseFlag.end(), baseFlag.begin(), ::tolower);
 		baseFlag.erase(remove_if(baseFlag.begin(), baseFlag.end(), [](const char ch) { return !isalpha(ch); }), baseFlag.end());
 
-		string overlord = i.second->overlord;
+		string overlord = i.second->getOverlord();
 
 		for (int i = 0; i < 5; i++)
 		{

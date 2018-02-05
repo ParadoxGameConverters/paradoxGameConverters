@@ -1,4 +1,4 @@
-# Copyright (c) 2017 The Paradox Game Converters Project
+# Copyright (c) 2018 The Paradox Game Converters Project
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -19,124 +19,123 @@
 # THE SOFTWARE.
 
 
-colonial_flags = {
-	colonial_alaska = {
-		flag = { name = "Alaska" }
-		flag = { name = "Aleutia" }
-		flag = { name = "Alyeska" unique = "true" }
-		flag = { name = "Pacifico Norte" }
-	}
-	colonial_australia = {
-		flag = { name = "Australia" }
-		flag = { name = "Tierra Austral" }
-		flag = { name = "Terre Australe" }
-		flag = { name = "New Holland" unique = "true" }
-	}
-	
-	colonial_brazil = {
-		flag = { name = "Brazil" }
-		flag = { name = "Vera Cruz" }
-		flag = { name = "Granada Al-Jadida" unique = "true" }
-	}
+colonial_alaska = {
+	flag = { name = "Alaska" }
+	flag = { name = "Aleutia" }
+	flag = { name = "Alyeska" unique = "true" }
+	flag = { name = "Pacifico Norte" }
+}
+colonial_australia = {
+	flag = { name = "Australia" }
+	flag = { name = "Tierra Austral" }
+	flag = { name = "Terre Australe" }
+	flag = { name = "New Holland" unique = "true" }
+}
 
-	colonial_california = {
-		flag = { name = "California" }
-		flag = { name = "Cascadia" }
-		flag = { name = "New Albion" }
-		flag = { name = "Oregon" }
-	}
+colonial_brazil = {
+	flag = { name = "Brazil" }
+	flag = { name = "Vera Cruz" }
+	flag = { name = "Granada Al-Jadida" unique = "true" }
+}
 
-	colonial_canada = {
-		flag = { name = "Canada" name = "Canadá" }
-		flag = { name = "Acadia" unique = "true" }
-		flag = { name = "Borealia" }
-		flag = { name = "Hudson Bay" }
-		flag = { name = "Kanata" unique = "true" }
-		flag = { name = "Labrador" }
-		flag = { name = "Laurentia" }
-		flag = { name = "Lavrador" }
-		flag = { name = "Newfoundland" }
-		flag = { name = "Nova Scotia" unique = "true" }
-		flag = { name = "Nova Hollandia" unique = "true" }
-		flag = { name = "Nouvelle Ecosse" }
-		flag = { name = "Quebec" }
-		flag = { name = "Rupert's Land" }
-		flag = { name = "Vinland" unique = "true" }
-	}
+colonial_california = {
+	flag = { name = "California" }
+	flag = { name = "Cascadia" }
+	flag = { name = "New Albion" }
+	flag = { name = "Oregon" }
+}
 
-	colonial_columbia = {
-		flag = { name = "Columbia" }
-		flag = { name = "New Granada" }
-	}
+colonial_canada = {
+	flag = { name = "Canada" }
+	flag = { name = "Canadá" }
+	flag = { name = "Acadia" unique = "true" }
+	flag = { name = "Borealia" }
+	flag = { name = "Hudson Bay" }
+	flag = { name = "Kanata" unique = "true" }
+	flag = { name = "Labrador" }
+	flag = { name = "Laurentia" }
+	flag = { name = "Lavrador" }
+	flag = { name = "Newfoundland" }
+	flag = { name = "Nova Scotia" unique = "true" }
+	flag = { name = "Nova Hollandia" unique = "true" }
+	flag = { name = "Nouvelle Ecosse" }
+	flag = { name = "Quebec" }
+	flag = { name = "Rupert's Land" }
+	flag = { name = "Vinland" unique = "true" }
+}
 
-	colonial_eastern_america = {
-		flag = { name = "Eastern America" }
-		flag = { name = "Florida" }
-		flag = { name = "Floride" }
-		flag = { name = "Nouvelle Flandre" }
-		flag = { name = "Thirteen Colonies" }
-		flag = { name = "Virginia" }
-	}
+colonial_columbia = {
+	flag = { name = "Columbia" }
+	flag = { name = "New Granada" }
+}
 
-	colonial_guyana = {
-		flag = { name = "Guyana" }
-		flag = { name = "Guyane" }
-		flag = { name = "Las Guayanas" }
-		flag = { name = "Suriname" }
-	}
+colonial_eastern_america = {
+	flag = { name = "Eastern America" }
+	flag = { name = "Florida" }
+	flag = { name = "Floride" }
+	flag = { name = "Nouvelle Flandre" }
+	flag = { name = "Thirteen Colonies" }
+	flag = { name = "Virginia" }
+}
 
-	colonial_la_plata = {
-		flag = { name = "La Plata" }
-		flag = { name = "Argentina" }
-		flag = { name = "Argentine" }
-		flag = { name = "Rio da Prata" }
-		flag = { name = "Chile" }
-		flag = { name = "Paraguay" }
-		flag = { name = "Transplatina" }
-	}
+colonial_guyana = {
+	flag = { name = "Guyana" }
+	flag = { name = "Guyane" }
+	flag = { name = "Las Guayanas" }
+	flag = { name = "Suriname" }
+}
 
-	colonial_louisiana = {
-		flag = { name = "Louisiana" }
-		flag = { name = "Arkansas" }
-		flag = { name = "Manitounie" }
-		flag = { name = "Mississippi" }
-		flag = { name = "Nebraska" }
-		flag = { name = "Wisconsin" }
-	}
+colonial_la_plata = {
+	flag = { name = "La Plata" }
+	flag = { name = "Argentina" }
+	flag = { name = "Argentine" }
+	flag = { name = "Rio da Prata" }
+	flag = { name = "Chile" }
+	flag = { name = "Paraguay" }
+	flag = { name = "Transplatina" }
+}
 
-	colonial_mexico = {
-		flag = { name = "Mexico" }
-		flag = { name = "Guatemala" }
-		flag = { name = "New Spain" unique = "true" }
-		flag = { name = "Texas" }
-		flag = { name = "Yucatan" }
-	}
+colonial_louisiana = {
+	flag = { name = "Louisiana" }
+	flag = { name = "Arkansas" }
+	flag = { name = "Manitounie" }
+	flag = { name = "Mississippi" }
+	flag = { name = "Nebraska" }
+	flag = { name = "Wisconsin" }
+}
 
-	colonial_peru = {
-		flag = { name = "Peru" }
-		flag = { name = "Cajamarca" }
-		flag = { name = "Lima" }
-		flag = { name = "Cuzco" }
-	}
+colonial_mexico = {
+	flag = { name = "Mexico" }
+	flag = { name = "Guatemala" }
+	flag = { name = "New Spain" unique = "true" }
+	flag = { name = "Texas" }
+	flag = { name = "Yucatan" }
+}
 
-	colonial_the_carribean = {
-		flag = { name = "Caribbean" }
-		flag = { name = "Antilhas" }
-		flag = { name = "Antilles" }
-		flag = { name = "Caraibas" }
-		flag = { name = "Cuba" }
-		flag = { name = "Hispaniola" }
-		flag = { name = "Isla Juana" }
-		flag = { name = "West Indies" }
-	}
-	#M&T
-	colonial_c_america = {
-		flag = { name = "Guatemala" }
-	}
-	colonial_guyana = {
-		flag = { name = "Las Guayanas" }
-		flag = { name = "Guyane" }
-		flag = { name = "Suriname" }
-		flag = { name = "Guyana" }
-	}
+colonial_peru = {
+	flag = { name = "Peru" }
+	flag = { name = "Cajamarca" }
+	flag = { name = "Lima" }
+	flag = { name = "Cuzco" }
+}
+
+colonial_the_carribean = {
+	flag = { name = "Caribbean" }
+	flag = { name = "Antilhas" }
+	flag = { name = "Antilles" }
+	flag = { name = "Caraibas" }
+	flag = { name = "Cuba" }
+	flag = { name = "Hispaniola" }
+	flag = { name = "Isla Juana" }
+	flag = { name = "West Indies" }
+}
+#M&T
+colonial_c_america = {
+	flag = { name = "Guatemala" }
+}
+colonial_guyana = {
+	flag = { name = "Las Guayanas" }
+	flag = { name = "Guyane" }
+	flag = { name = "Suriname" }
+	flag = { name = "Guyana" }
 }
