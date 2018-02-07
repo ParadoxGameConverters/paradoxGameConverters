@@ -27,22 +27,22 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-EU4World::region::region(std::istream& theStream)
+EU4::region::region(std::istream& theStream)
 {
-	commonItems::parsingFunction areasFunction = std::bind(&EU4World::region::importAreas, this, std::placeholders::_1, std::placeholders::_2);
+	commonItems::parsingFunction areasFunction = std::bind(&EU4::region::importAreas, this, std::placeholders::_1, std::placeholders::_2);
 	registerKeyword(std::regex("areas"), areasFunction);
 	registerKeyword(std::regex("discover_if"), commonItems::ignoreObject);
 	parseStream(theStream);
 }
 
 
-EU4World::region::region(std::set<int> _provinces):
+EU4::region::region(std::set<int> _provinces):
 	provinces(_provinces)
 {
 }
 
 
-void EU4World::region::importAreas(const std::string& unused, std::istream& theStream)
+void EU4::region::importAreas(const std::string& unused, std::istream& theStream)
 {
 	registerKeyword(std::regex("\\w+"), [this](const std::string& areaName, std::istream& areasFile)
 		{
@@ -53,13 +53,13 @@ void EU4World::region::importAreas(const std::string& unused, std::istream& theS
 }
 
 
-bool EU4World::region::containsProvince(unsigned int province) const
+bool EU4::region::containsProvince(unsigned int province) const
 {
 	return (provinces.count(province) > 0);
 }
 
 
-void EU4World::region::addProvinces(const EU4World::areas& areas)
+void EU4::region::addProvinces(const EU4::areas& areas)
 {
 	for (auto areaName: areaNames)
 	{

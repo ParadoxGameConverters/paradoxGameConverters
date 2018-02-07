@@ -34,11 +34,11 @@ using namespace std;
 
 
 
-EU4World::Regions* EU4World::Regions::instance = nullptr;
+EU4::Regions* EU4::Regions::instance = nullptr;
 
 
 
-EU4World::Regions::Regions():
+EU4::Regions::Regions():
 	EU4RegionsMap(),
 	regions()
 {
@@ -57,16 +57,16 @@ EU4World::Regions::Regions():
 }
 
 
-void EU4World::Regions::initEU4RegionsOldVersion()
+void EU4::Regions::initEU4RegionsOldVersion()
 {
 	regions.clear();
 
-	EU4World::areas installedAreas(Configuration::getEU4Path() + "/map/region.txt");
+	EU4::areas installedAreas(Configuration::getEU4Path() + "/map/region.txt");
 
 	auto theAreas = installedAreas.getAreas();
-	std::for_each(theAreas.begin(), theAreas.end(), [this](const std::pair<std::string, EU4World::area>& theArea)
+	std::for_each(theAreas.begin(), theAreas.end(), [this](const std::pair<std::string, EU4::area>& theArea)
 		{
-			regions.insert(make_pair(theArea.first, EU4World::region(theArea.second.getProvinces())));
+			regions.insert(make_pair(theArea.first, EU4::region(theArea.second.getProvinces())));
 		}
 	);
 
@@ -79,21 +79,21 @@ void EU4World::Regions::initEU4RegionsOldVersion()
 
 		regions.clear();
 
-		EU4World::areas modAreas(itr + "/map/region.txt");
+		EU4::areas modAreas(itr + "/map/region.txt");
 
 		auto theAreas = modAreas.getAreas();
-		std::for_each(theAreas.begin(), theAreas.end(), [this](const std::pair<std::string, EU4World::area>& theArea)
+		std::for_each(theAreas.begin(), theAreas.end(), [this](const std::pair<std::string, EU4::area>& theArea)
 			{
-				regions.insert(make_pair(theArea.first, EU4World::region(theArea.second.getProvinces())));
+				regions.insert(make_pair(theArea.first, EU4::region(theArea.second.getProvinces())));
 			}
 		);
 	}
 }
 
 
-void EU4World::Regions::initEU4RegionsNewVersion()
+void EU4::Regions::initEU4RegionsNewVersion()
 {
-	EU4World::areas installedAreas(Configuration::getEU4Path() + "/map/area.txt");
+	EU4::areas installedAreas(Configuration::getEU4Path() + "/map/area.txt");
 	initEU4RegionsFile(installedAreas, (Configuration::getEU4Path() + "/map/region.txt"));
 
 	for (auto itr: Configuration::getEU4Mods())
@@ -103,19 +103,19 @@ void EU4World::Regions::initEU4RegionsNewVersion()
 			continue;
 		}
 
-		EU4World::areas modAreas(itr + "/map/area.txt");
+		EU4::areas modAreas(itr + "/map/area.txt");
 		initEU4RegionsFile(modAreas, (itr + "/map/region.txt"));
 	}
 }
 
 
-void EU4World::Regions::initEU4RegionsFile(const EU4World::areas& areas, const std::string& regionsFilename)
+void EU4::Regions::initEU4RegionsFile(const EU4::areas& areas, const std::string& regionsFilename)
 {
 	regions.clear();
 
 	registerKeyword(std::regex("\\w+_region"), [this, areas](const std::string& areaName, std::istream& areasFile)
 		{
-			EU4World::region newRegion(areasFile);
+			EU4::region newRegion(areasFile);
 			newRegion.addProvinces(areas);
 			regions.insert(make_pair(areaName, newRegion));
 		}
@@ -124,15 +124,15 @@ void EU4World::Regions::initEU4RegionsFile(const EU4World::areas& areas, const s
 	parseFile(regionsFilename);
 
 	auto theAreas = areas.getAreas();
-	std::for_each(theAreas.begin(), theAreas.end(), [this](const std::pair<std::string, EU4World::area>& theArea)
+	std::for_each(theAreas.begin(), theAreas.end(), [this](const std::pair<std::string, EU4::area>& theArea)
 		{
-			regions.insert(make_pair(theArea.first, EU4World::region(theArea.second.getProvinces())));
+			regions.insert(make_pair(theArea.first, EU4::region(theArea.second.getProvinces())));
 		}
 	);
 }
 
 
-bool EU4World::Regions::ProvinceInRegion(int province, const string& regionName)
+bool EU4::Regions::ProvinceInRegion(int province, const string& regionName)
 {
 	auto region = regions.find(regionName);
 	if (region != regions.end())

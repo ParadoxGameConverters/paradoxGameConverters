@@ -28,7 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-EU4World::areas::areas(const std::string& filename):
+EU4::areas::areas(const std::string& filename):
 	theAreas()
 {
 	registerKeyword(std::regex("[\\w_]+"), [this](const std::string& areaName, std::istream& areasFile)
@@ -42,7 +42,7 @@ EU4World::areas::areas(const std::string& filename):
 }
 
 
-const std::set<int> EU4World::areas::getProvincesInArea(const std::string& area) const
+const std::set<int> EU4::areas::getProvincesInArea(const std::string& area) const
 {
 	auto areaItr(theAreas.find(area));
 	if (areaItr != theAreas.end())
@@ -56,7 +56,7 @@ const std::set<int> EU4World::areas::getProvincesInArea(const std::string& area)
 }
 
 
-EU4World::area::area(std::istream& theStream)
+EU4::area::area(std::istream& theStream)
 {
 	registerKeyword(std::regex("color"), [this](const std::string& colorToken, std::istream& areaFile)
 		{

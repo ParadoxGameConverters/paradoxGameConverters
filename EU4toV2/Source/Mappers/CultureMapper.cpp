@@ -177,7 +177,7 @@ bool cultureMapper::distinguishersMatch(const map<string, string>& distinguisher
 		}
 		else if (currentDistinguisher.first == "region")
 		{
-			if (!EU4World::Regions::provinceInRegion(EU4Province, currentDistinguisher.second))
+			if (!EU4::Regions::provinceInRegion(EU4Province, currentDistinguisher.second))
 			{
 				return false;
 			}

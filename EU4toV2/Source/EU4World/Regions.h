@@ -36,7 +36,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 class Object;
-namespace EU4World
+namespace EU4
 {
 	class areas;
 
@@ -64,12 +64,12 @@ namespace EU4World
 			void initEU4RegionsOldVersion();
 
 			void initEU4RegionsNewVersion();
-			void initEU4RegionsFile(const EU4World::areas& areas, const std::string& regionsFilename);
+			void initEU4RegionsFile(const EU4::areas& areas, const std::string& regionsFilename);
 
 			bool ProvinceInRegion(int province, const std::string& regionName);
 
 			std::map<int, std::set<std::string>> EU4RegionsMap;
-			std::map<std::string, EU4World::region> regions;
+			std::map<std::string, EU4::region> regions;
 	};
 }
 

@@ -31,7 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-namespace EU4World
+namespace EU4
 {
 	class areas;
 
@@ -43,7 +43,7 @@ namespace EU4World
 
 			bool containsProvince(unsigned int province) const;
 
-			void addProvinces(const EU4World::areas& areas);
+			void addProvinces(const EU4::areas& areas);
 
 		private:
 			void importAreas(const std::string& unused, std::istream& theStream);
