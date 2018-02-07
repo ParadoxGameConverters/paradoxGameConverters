@@ -177,6 +177,7 @@
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\EU4toV2Converter.cpp" />
     <ClCompile Include="Source\EU4World\Areas.cpp" />
+    <ClCompile Include="Source\EU4World\Continents.cpp" />
     <ClCompile Include="Source\EU4World\EU4Army.cpp" />
     <ClCompile Include="Source\EU4World\EU4Country.cpp" />
     <ClCompile Include="Source\EU4World\EU4Diplomacy.cpp" />
@@ -193,7 +194,6 @@
     <ClCompile Include="Source\Mappers\AdjacencyMapper.cpp" />
     <ClCompile Include="Source\Mappers\CK2TitleMapper.cpp" />
     <ClCompile Include="Source\Mappers\ColonialTagsMapper.cpp" />
-    <ClCompile Include="Source\Mappers\ContinentMapper.cpp" />
     <ClCompile Include="Source\Mappers\CountryMapping.cpp" />
     <ClCompile Include="Source\Mappers\CultureMapper.cpp" />
     <ClCompile Include="Source\Mappers\ColonyFlagsetMapper.cpp" />
@@ -237,6 +237,7 @@
     <ClInclude Include="..\common_items\ParadoxParserUTF8.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\EU4World\Areas.h" />
+    <ClInclude Include="Source\EU4World\Continents.h" />
     <ClInclude Include="Source\EU4World\EU4Army.h" />
     <ClInclude Include="Source\EU4World\EU4Country.h" />
     <ClInclude Include="Source\EU4World\EU4Diplomacy.h" />
@@ -254,7 +255,6 @@
     <ClInclude Include="Source\Mappers\CK2TitleMapper.h" />
     <ClInclude Include="Source\Mappers\ColonialTagsMapper.h" />
     <ClInclude Include="Source\Mappers\ColonyFlagsetMapper.h" />
-    <ClInclude Include="Source\Mappers\ContinentMapper.h" />
     <ClInclude Include="Source\Mappers\CountryMapping.h" />
     <ClInclude Include="Source\Mappers\CultureMapper.h" />
     <ClInclude Include="Source\Mappers\CustomFlagMapper.h" />

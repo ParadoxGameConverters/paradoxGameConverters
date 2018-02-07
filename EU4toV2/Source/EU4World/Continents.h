@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,56 +21,60 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef CONTINENT_MAPPER_H
-#define CONTINENT_MAPPER_H
+#ifndef CONTINENTS_H
+#define CONTINENTS_H
 
 
 
+#include "newParser.h"
 #include <map>
-#include <memory>
 #include <string>
-#include <vector>
-using namespace std;
 
 
 
-class Object;
-
-
-
-class continentMapper
+namespace EU4
 {
-	public:
-		static string getEU4Continent(int EU4Province)
-		{
-			return getInstance()->GetEU4Continent(EU4Province);
-		}
+	class continent: commonItems::parser
+	{
+		public:
+			continent(std::istream& theStream);
 
-	private:
-		static continentMapper* instance;
-		static continentMapper* getInstance()
-		{
-			if (instance == NULL)
+			std::vector<int> getProvinces() const { return provinces; }
+
+		private:
+			std::vector<int> provinces;
+	};
+
+	class continents: commonItems::parser
+	{
+		public:
+			static std::optional<std::string> getEU4Continent(int EU4Province)
 			{
-				instance = new continentMapper;
+				return getInstance()->GetEU4Continent(EU4Province);
 			}
 
-			return instance;
-		}
+		private:
+			static continents* instance;
+			static continents* getInstance()
+			{
+				if (instance == nullptr)
+				{
+					instance = new continents;
+				}
 
-		continentMapper();
-		void initContinentMap(shared_ptr<Object> obj);
+				return instance;
+			}
 
-		string GetEU4Continent(int EU4Province);
+			continents();
+			void initContinentMap(const std::string& filename);
 
-
-		map<int, string> continentMap;
-};
-
+			std::optional<std::string> GetEU4Continent(int EU4Province);
 
 
+			std::map<int, std::string> continentMap;
+	};
+}
 
 
 
-
-#endif // CONTINENT_MAPPER_H
+#endif // CONTINENTS_H

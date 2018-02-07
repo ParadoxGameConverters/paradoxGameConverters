@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -36,7 +36,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "../Mappers/AdjacencyMapper.h"
-#include "../Mappers/ContinentMapper.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/CultureMapper.h"
 #include "../Mappers/IdeaEffectMapper.h"
@@ -46,6 +45,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/StateMapper.h"
 #include "../Mappers/Vic2CultureUnionMapper.h"
 #include "../Configuration.h"
+#include "../EU4World/Continents.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Relations.h"
 #include "../EU4World/EU4Leader.h"
@@ -831,8 +831,8 @@ vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRat
 		matched = cultureMapper::slaveCultureMatch(prItr.culture, slaveCulture, prItr.religion, eProv->getNum(), oldOwner->getTag());;
 		if (!matched)
 		{
-			string thisContinent = continentMapper::getEU4Continent(eProv->getNum());
-			if (thisContinent == "asia" || thisContinent == "oceania")
+			auto thisContinent = EU4::continents::getEU4Continent(eProv->getNum());
+			if ((thisContinent) && ((thisContinent == "asia") || (thisContinent == "oceania")))
 			{
 				//LOG(LogLevel::Warning) << "No mapping for slave culture in province " << destNum << " - using native culture (" << prItr.culture << ").";
 				slaveCulture = prItr.culture;
@@ -1036,7 +1036,7 @@ void V2World::setupColonies()
 		} while (goodProvinces.size() > 0);
 
 		// find all provinces on the same continent as the owner's capital
-		string capitalContinent = "";
+		std::optional<std::string> capitalContinent;
 		map<int, V2Province*>::iterator capital = provinces.find(countryItr->second->getCapital());
 		if (capital != provinces.end())
 		{
@@ -1045,8 +1045,8 @@ void V2World::setupColonies()
 				continue;
 
 			int capitalSrc = capitalSrcProv->getNum();
-			capitalContinent = continentMapper::getEU4Continent(capitalSrc);
-			if (capitalContinent == "")
+			capitalContinent = EU4::continents::getEU4Continent(capitalSrc);
+			if (!capitalContinent)
 			{
 				continue;
 			}
@@ -1063,8 +1063,8 @@ void V2World::setupColonies()
 				continue;
 
 			int provSrc = provSrcProv->getNum();
-			string continent = continentMapper::getEU4Continent(provSrc);
-			if ((continent != "") && (continent == capitalContinent))
+			std::optional<std::string> continent = EU4::continents::getEU4Continent(provSrc);
+			if ((continent) && (continent == capitalContinent))
 			{
 				provItr->second->setSameContinent(true);
 			}

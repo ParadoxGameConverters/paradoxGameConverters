@@ -122,9 +122,6 @@
     <ClCompile Include="Source\Mappers\AdjacencyMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mappers\ContinentMapper.cpp">
-      <Filter>Mappers</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Mappers\StateMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
@@ -171,6 +168,9 @@
       <Filter>EU4 World</Filter>
     </ClCompile>
     <ClCompile Include="Source\EU4World\Regions.cpp">
+      <Filter>EU4 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU4World\Continents.cpp">
       <Filter>EU4 World</Filter>
     </ClCompile>
   </ItemGroup>
@@ -292,9 +292,6 @@
     <ClInclude Include="Source\Mappers\AdjacencyMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Mappers\ContinentMapper.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Mappers\StateMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
@@ -344,6 +341,9 @@
       <Filter>EU4 World</Filter>
     </ClInclude>
     <ClInclude Include="Source\EU4World\Regions.h">
+      <Filter>EU4 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU4World\Continents.h">
       <Filter>EU4 World</Filter>
     </ClInclude>
   </ItemGroup>
