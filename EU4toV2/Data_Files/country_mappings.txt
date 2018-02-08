@@ -756,6 +756,7 @@ link = { eu4 = UES v2 = UES } # Uesugi
 link = { eu4 = YMN v2 = YMN } # Yamana
 link = { eu4 = RFR v2 = RFR } # Nanbu
 link = { eu4 = ASK v2 = ASK } # Ashikaga
+link = { eu4 = KTB v2 = KTB } # Kitabatake
 
 link = { eu4 = ANU v2 = ANU } # Ainu
 
@@ -1068,6 +1069,12 @@ link = { eu4 = LUW v2 = LUW } # Luwu
 link = { eu4 = MGD v2 = MGD } # Maguindanao
 link = { eu4 = TER v2 = TNT } # Ternate
 link = { eu4 = TID v2 = TID } # Tidore
+link = { eu4 = MAS v2 = MAS } # Madya-as
+link = { eu4 = PGS v2 = PGS } # Pangasinan
+link = { eu4 = TDO v2 = TDO } # Tondo
+link = { eu4 = MNA v2 = MNA } # Maynila
+link = { eu4 = CEB v2 = CEB } # Cebu
+link = { eu4 = BTU v2 = BTU } # Butuan
 
 #South American Additions
 link = { eu4 = CSU v2 = CSU } # Cusco
