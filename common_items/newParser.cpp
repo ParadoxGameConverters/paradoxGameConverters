@@ -28,6 +28,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+namespace commonItems
+{
+	std::string getNextLexeme(std::istream& theStream);
+}
+
+
 commonItems::parser::parser():
 	registeredKeywords(),
 	nextToken(),
@@ -110,53 +116,7 @@ std::optional<std::string> commonItems::parser::getNextToken(std::istream& theSt
 			return {};
 		}
 
-		toReturn = "";
-		bool inString = false;
-		while (true)
-		{
-			char inputChar;
-			theStream >> inputChar;
-			if (theStream.eof())
-			{
-				break;
-			}
-			else if (!inString && (inputChar == '#'))
-			{
-				std::string bitbucket;
-				std::getline(theStream, bitbucket);
-				if (toReturn.size() > 0)
-				{
-					break;
-				}
-			}
-			else if (inputChar == '\n')
-			{
-				if (toReturn.size() > 0)
-				{
-					break;
-				}
-			}
-			else if ((inputChar == '\"') && !inString && (toReturn.size() == 0))
-			{
-				inString = true;
-			}
-			else if ((inputChar == '\"') && inString)
-			{
-				inString = false;
-				break;
-			}
-			else if (!inString && std::isspace(inputChar))
-			{
-				if (toReturn.size() > 0)
-				{
-					break;
-				}
-			}
-			else
-			{
-				toReturn += inputChar;
-			}
-		}
+		toReturn = getNextLexeme(theStream);
 
 		bool matched = false;
 		for (auto registration: registeredKeywords)
@@ -187,7 +147,62 @@ std::optional<std::string> commonItems::parser::getNextToken(std::istream& theSt
 }
 
 
-void commonItems::ignoreObject(const std::string& token, std::istream& theStream)
+std::string commonItems::getNextLexeme(std::istream& theStream)
+{
+	std::string toReturn;
+
+	bool inString = false;
+	while (true)
+	{
+		char inputChar;
+		theStream >> inputChar;
+		if (theStream.eof())
+		{
+			break;
+		}
+		else if (!inString && (inputChar == '#'))
+		{
+			std::string bitbucket;
+			std::getline(theStream, bitbucket);
+			if (toReturn.size() > 0)
+			{
+				break;
+			}
+		}
+		else if (inputChar == '\n')
+		{
+			if (toReturn.size() > 0)
+			{
+				break;
+			}
+		}
+		else if ((inputChar == '\"') && !inString && (toReturn.size() == 0))
+		{
+			inString = true;
+		}
+		else if ((inputChar == '\"') && inString)
+		{
+			inString = false;
+			break;
+		}
+		else if (!inString && std::isspace(inputChar))
+		{
+			if (toReturn.size() > 0)
+			{
+				break;
+			}
+		}
+		else
+		{
+			toReturn += inputChar;
+		}
+	}
+
+	return toReturn;
+}
+
+
+void commonItems::ignoreObject(const std::string& unused, std::istream& theStream)
 {
 	int braceDepth = 0;
 	while (true)
@@ -197,8 +212,7 @@ void commonItems::ignoreObject(const std::string& token, std::istream& theStream
 			return;
 		}
 
-		std::string token;
-		theStream >> token;
+		std::string token = getNextLexeme(theStream);
 		if (token == "{")
 		{
 			braceDepth++;
@@ -212,4 +226,17 @@ void commonItems::ignoreObject(const std::string& token, std::istream& theStream
 			}
 		}
 	}
+}
+
+
+commonItems::intList::intList(std::istream& theStream):
+	ints()
+{
+	registerKeyword(std::regex("\\d+"), [this](const std::string& theInt, std::istream& theStream)
+		{
+			ints.push_back(std::stoi(theInt));
+		}
+	);
+
+	parseStream(theStream);
 }

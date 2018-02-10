@@ -33,19 +33,6 @@ EU4::continents* EU4::continents::instance = nullptr;
 
 
 
-EU4::continent::continent(std::istream& theStream):
-	provinces()
-{
-	registerKeyword(std::regex("\\d+"), [this](const std::string& province, std::istream& theStream)
-		{
-			provinces.push_back(std::stoi(province));
-		}
-	);
-
-	parseStream(theStream);
-}
-
-
 EU4::continents::continents()
 {
 	LOG(LogLevel::Info) << "Finding Continents";
@@ -78,8 +65,8 @@ void EU4::continents::initContinentMap(const std::string& filename)
 	registerKeyword(std::regex("\\w+"), [this](const std::string& continentName, std::istream& theStream)
 		{
 			auto equals = getNextToken(theStream);
-			continent newContinent(theStream);
-			auto provinces = newContinent.getProvinces();
+			commonItems::intList newContinent(theStream);
+			auto provinces = newContinent.getInts();
 			std::for_each(provinces.begin(), provinces.end(), [this, continentName](const int& province)
 				{
 					continentMap.insert(make_pair(province, continentName));

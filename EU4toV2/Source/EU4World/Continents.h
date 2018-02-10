@@ -34,17 +34,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 namespace EU4
 {
-	class continent: commonItems::parser
-	{
-		public:
-			continent(std::istream& theStream);
-
-			std::vector<int> getProvinces() const { return provinces; }
-
-		private:
-			std::vector<int> provinces;
-	};
-
 	class continents: commonItems::parser
 	{
 		public:
