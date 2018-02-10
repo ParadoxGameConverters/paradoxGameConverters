@@ -28,43 +28,43 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.label1 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.Instructions = new System.Windows.Forms.Label();
+			this.commentText = new System.Windows.Forms.TextBox();
 			this.btnOK = new System.Windows.Forms.Button();
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
-			// label1
+			// Instructions
 			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(12, 9);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(153, 13);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Comment Text (omit leading #):";
+			this.Instructions.AutoSize = true;
+			this.Instructions.Location = new System.Drawing.Point(12, 9);
+			this.Instructions.Name = "Instructions";
+			this.Instructions.Size = new System.Drawing.Size(153, 13);
+			this.Instructions.TabIndex = 0;
+			this.Instructions.Text = "Comment Text (omit leading #):";
 			// 
-			// textBox1
+			// commentText
 			// 
-			this.textBox1.Location = new System.Drawing.Point(15, 25);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(257, 20);
-			this.textBox1.TabIndex = 1;
+			this.commentText.Location = new System.Drawing.Point(12, 25);
+			this.commentText.Name = "commentText";
+			this.commentText.Size = new System.Drawing.Size(257, 20);
+			this.commentText.TabIndex = 1;
 			// 
 			// btnOK
 			// 
 			this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.btnOK.Location = new System.Drawing.Point(197, 51);
+			this.btnOK.Location = new System.Drawing.Point(194, 52);
 			this.btnOK.Name = "btnOK";
 			this.btnOK.Size = new System.Drawing.Size(75, 23);
 			this.btnOK.TabIndex = 2;
 			this.btnOK.Text = "OK";
 			this.btnOK.UseVisualStyleBackColor = true;
-			this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+			this.btnOK.Click += new System.EventHandler(this.BtnOK_Click);
 			// 
 			// btnCancel
 			// 
 			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnCancel.Location = new System.Drawing.Point(116, 51);
+			this.btnCancel.Location = new System.Drawing.Point(113, 52);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
 			this.btnCancel.TabIndex = 3;
@@ -80,8 +80,8 @@
 			this.ClientSize = new System.Drawing.Size(284, 87);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnOK);
-			this.Controls.Add(this.textBox1);
-			this.Controls.Add(this.label1);
+			this.Controls.Add(this.commentText);
+			this.Controls.Add(this.Instructions);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -95,8 +95,8 @@
 
 		#endregion
 
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.Label Instructions;
+		private System.Windows.Forms.TextBox commentText;
 		private System.Windows.Forms.Button btnOK;
 		private System.Windows.Forms.Button btnCancel;
 	}

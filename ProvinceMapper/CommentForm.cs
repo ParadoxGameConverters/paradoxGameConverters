@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace ProvinceMapper
@@ -17,10 +11,10 @@ namespace ProvinceMapper
 		}
 
 		private CommentMapping editingComment;
-		internal void SetComment(CommentMapping cmt)
+		internal void SetComment(CommentMapping comment)
 		{
-			editingComment = cmt;
-			textBox1.Text = editingComment.commentLine;
+			editingComment = comment;
+			commentText.Text = editingComment.commentLine;
 		}
 
 		private void CommentForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -28,9 +22,9 @@ namespace ProvinceMapper
 			editingComment = null;
 		}
 
-		private void btnOK_Click(object sender, EventArgs e)
+		private void BtnOK_Click(object sender, EventArgs e)
 		{
-			editingComment.commentLine = textBox1.Text;
+			editingComment.commentLine = commentText.Text;
 		}
 	}
 }
