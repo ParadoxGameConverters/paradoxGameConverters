@@ -177,6 +177,7 @@
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\EU4toV2Converter.cpp" />
     <ClCompile Include="Source\EU4World\Areas.cpp" />
+    <ClCompile Include="Source\EU4World\ColonialRegions.cpp" />
     <ClCompile Include="Source\EU4World\Continents.cpp" />
     <ClCompile Include="Source\EU4World\EU4Army.cpp" />
     <ClCompile Include="Source\EU4World\EU4Country.cpp" />
@@ -237,6 +238,7 @@
     <ClInclude Include="..\common_items\ParadoxParserUTF8.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\EU4World\Areas.h" />
+    <ClInclude Include="Source\EU4World\ColonialRegions.h" />
     <ClInclude Include="Source\EU4World\Continents.h" />
     <ClInclude Include="Source\EU4World\EU4Army.h" />
     <ClInclude Include="Source\EU4World\EU4Country.h" />
