@@ -21,8 +21,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef REGION_H_
-#define REGION_H_
+#ifndef EU4_REGION_H_
+#define EU4_REGION_H_
 
 
 
@@ -55,4 +55,4 @@ namespace EU4
 
 
 
-#endif // REGION_H_
+#endif // EU4_REGION_H_

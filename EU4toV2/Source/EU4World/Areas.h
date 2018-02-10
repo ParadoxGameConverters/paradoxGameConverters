@@ -21,8 +21,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef AREAS_H_
-#define AREAS_H_
+#ifndef EU4_AREAS_H_
+#define EU4_AREAS_H_
 
 
 
@@ -65,4 +65,4 @@ namespace EU4
 
 
 
-#endif // AREA_H_
+#endif // EU4_AREAS_H_

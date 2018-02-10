@@ -21,8 +21,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef CONTINENTS_H
-#define CONTINENTS_H
+#ifndef EU4_CONTINENTS_H
+#define EU4_CONTINENTS_H
 
 
 
@@ -66,4 +66,4 @@ namespace EU4
 
 
 
-#endif // CONTINENTS_H
+#endif // EU4_CONTINENTS_H
