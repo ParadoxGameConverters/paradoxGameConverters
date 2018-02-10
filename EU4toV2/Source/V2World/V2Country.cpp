@@ -665,7 +665,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const vector<V2TechS
 	{
 		for (auto itr: srcRelations)
 		{
-			const std::string& V2Tag = CountryMapping::getVic2Tag(itr.second->getCountry());
+			const std::string& V2Tag = mappers::CountryMappings::getVic2Tag(itr.second->getCountry());
 			if (!V2Tag.empty())
 			{
 				V2Relations* v2r = new V2Relations(V2Tag, itr.second);

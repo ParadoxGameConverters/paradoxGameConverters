@@ -66,7 +66,7 @@ void V2Flags::SetV2Tags(const map<string, V2Country*>& V2Countries)
 		if (i->second->getSourceCountry()
 			&& requiredTags.find(i->first) != requiredTags.end())
 		{
-			auto ck2title = CountryMapping::getCK2Title(i->first,i->second->getLocalName(),usableFlagTags);
+			auto ck2title = mappers::CountryMappings::getCK2Title(i->first,i->second->getLocalName(),usableFlagTags);
 			if ((ck2title) && (usableFlagTags.find(*ck2title) != usableFlagTags.end()))
 			{
 				tagMap[i->first] = *ck2title;

@@ -75,7 +75,7 @@ V2World::V2World(const EU4World& sourceWorld)
 	importTechSchools();
 	isRandomWorld = sourceWorld.isRandomWorld();
 
-	CountryMapping::createMappings(sourceWorld, potentialCountries);
+	mappers::CountryMappings::createMappings(sourceWorld, potentialCountries);
 
 	LOG(LogLevel::Info) << "Converting world";
 	convertCountries(sourceWorld);
@@ -440,7 +440,7 @@ void V2World::initializeCountries(const EU4World& sourceWorld)
 {
 	for (auto sourceCountry: sourceWorld.getCountries())
 	{
-		const string& V2Tag = CountryMapping::getVic2Tag(sourceCountry.first);
+		const string& V2Tag = mappers::CountryMappings::getVic2Tag(sourceCountry.first);
 		if (V2Tag == "")
 		{
 			LOG(LogLevel::Error) << "EU4 tag " << sourceCountry.first << " is unmapped and cannot be converted.";
@@ -749,7 +749,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 			continue;
 		}
 
-		const std::string& V2Tag = CountryMapping::getVic2Tag(oldOwner->getTag());
+		const std::string& V2Tag = mappers::CountryMappings::getVic2Tag(oldOwner->getTag());
 		if (V2Tag.empty())
 		{
 			LOG(LogLevel::Warning) << "Could not map provinces owned by " << oldOwner->getTag();
@@ -781,7 +781,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 							continue;
 						}
 
-						const std::string& coreV2Tag = CountryMapping::getVic2Tag(coreEU4Tag);
+						const std::string& coreV2Tag = mappers::CountryMappings::getVic2Tag(coreEU4Tag);
 						if (!coreV2Tag.empty())
 						{
 							Vic2Province.second->addCore(coreV2Tag);
@@ -869,13 +869,13 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld)
 	for (vector<EU4Agreement>::iterator itr = agreements.begin(); itr != agreements.end(); ++itr)
 	{
 		const std::string& EU4Tag1 = itr->country1;
-		const std::string& V2Tag1 = CountryMapping::getVic2Tag(EU4Tag1);
+		const std::string& V2Tag1 = mappers::CountryMappings::getVic2Tag(EU4Tag1);
 		if (V2Tag1.empty())
 		{
 			continue;
 		}
 		const std::string& EU4Tag2 = itr->country2;
-		const std::string& V2Tag2 = CountryMapping::getVic2Tag(EU4Tag2);
+		const std::string& V2Tag2 = mappers::CountryMappings::getVic2Tag(EU4Tag2);
 		if (V2Tag2.empty())
 		{
 			continue;
