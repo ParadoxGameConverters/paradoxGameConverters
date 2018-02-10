@@ -1,33 +1,33 @@
 ﻿namespace ProvinceMapper
 {
-    partial class Form1
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class Form1
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 			this.VerticalSplit = new System.Windows.Forms.SplitContainer();
@@ -102,7 +102,7 @@
 			// statusStrip1
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StatusLabel});
+				this.StatusLabel});
 			this.statusStrip1.Location = new System.Drawing.Point(0, 445);
 			this.statusStrip1.Name = "statusStrip1";
 			this.statusStrip1.Size = new System.Drawing.Size(235, 22);
@@ -127,16 +127,16 @@
 			// toolStrip1
 			// 
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tbSave,
-            this.toolStripSeparator1,
-            this.tbMoveUp,
-            this.tbMoveDown,
-            this.toolStripSeparator2,
-            this.tbSelection,
-            this.tbUnmapped,
-            this.tbFitSelection,
-            this.toolStripSeparator3,
-            this.cbZoom});
+				this.tbSave,
+				this.toolStripSeparator1,
+				this.tbMoveUp,
+				this.tbMoveDown,
+				this.toolStripSeparator2,
+				this.tbSelection,
+				this.tbUnmapped,
+				this.tbFitSelection,
+				this.toolStripSeparator3,
+				this.cbZoom});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 24);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.Size = new System.Drawing.Size(235, 25);
@@ -224,11 +224,11 @@
 			this.cbZoom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbZoom.DropDownWidth = 50;
 			this.cbZoom.Items.AddRange(new object[] {
-            "1x",
-            "2x",
-            "3x",
-            "4x",
-            "6x"});
+				"1x",
+				"2x",
+				"3x",
+				"4x",
+				"6x"});
 			this.cbZoom.Name = "cbZoom";
 			this.cbZoom.Size = new System.Drawing.Size(40, 23);
 			this.cbZoom.ToolTipText = "Zoom Factor";
@@ -237,9 +237,9 @@
 			// menuStrip1
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.createToolStripMenuItem,
-            this.viewToolStripMenuItem});
+				this.toolStripMenuItem1,
+				this.createToolStripMenuItem,
+				this.viewToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(235, 24);
@@ -249,8 +249,8 @@
 			// toolStripMenuItem1
 			// 
 			this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveToolStripMenuItem,
-            this.exitToolStripMenuItem});
+				this.saveToolStripMenuItem,
+				this.exitToolStripMenuItem});
 			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
 			this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
 			this.toolStripMenuItem1.Text = "&File";
@@ -272,12 +272,12 @@
 			// createToolStripMenuItem
 			// 
 			this.createToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createCommentsF2ToolStripMenuItem,
-            this.toolStripMenuItem2,
-            this.createMappingF4ToolStripMenuItem,
-            this.toolStripMenuItem3,
-            this.moveUpToolStripMenuItem,
-            this.moveDownToolStripMenuItem});
+				this.createCommentsF2ToolStripMenuItem,
+				this.toolStripMenuItem2,
+				this.createMappingF4ToolStripMenuItem,
+				this.toolStripMenuItem3,
+				this.moveUpToolStripMenuItem,
+				this.moveDownToolStripMenuItem});
 			this.createToolStripMenuItem.Name = "createToolStripMenuItem";
 			this.createToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
 			this.createToolStripMenuItem.Text = "&Create";
@@ -327,9 +327,9 @@
 			// viewToolStripMenuItem
 			// 
 			this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.selectedMappingToolStripMenuItem,
-            this.unmappedToolStripMenuItem,
-            this.moveToSelectedToolStripMenuItem});
+				this.selectedMappingToolStripMenuItem,
+				this.unmappedToolStripMenuItem,
+				this.moveToSelectedToolStripMenuItem});
 			this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
 			this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
 			this.viewToolStripMenuItem.Text = "&View";
@@ -439,29 +439,29 @@
 			((System.ComponentModel.ISupportInitialize)(this.pbTarget)).EndInit();
 			this.ResumeLayout(false);
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private System.Windows.Forms.SplitContainer VerticalSplit;
-        private System.Windows.Forms.SplitContainer HorizontalSplit;
-        private System.Windows.Forms.PictureBox pbSource;
-        private System.Windows.Forms.PictureBox pbTarget;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton tbSelection;
-        private System.Windows.Forms.ToolStripButton tbUnmapped;
-        private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.ToolStripButton tbFitSelection;
-        private System.Windows.Forms.ToolStripButton tbSave;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton tbMoveUp;
-        private System.Windows.Forms.ToolStripButton tbMoveDown;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripComboBox cbZoom;
-        private System.Windows.Forms.TabControl mappingsTabs;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
+		private System.Windows.Forms.SplitContainer VerticalSplit;
+		private System.Windows.Forms.SplitContainer HorizontalSplit;
+		private System.Windows.Forms.PictureBox pbSource;
+		private System.Windows.Forms.PictureBox pbTarget;
+		private System.Windows.Forms.ToolStrip toolStrip1;
+		private System.Windows.Forms.ToolStripButton tbSelection;
+		private System.Windows.Forms.ToolStripButton tbUnmapped;
+		private System.Windows.Forms.ToolTip toolTip1;
+		private System.Windows.Forms.ToolStripButton tbFitSelection;
+		private System.Windows.Forms.ToolStripButton tbSave;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripButton tbMoveUp;
+		private System.Windows.Forms.ToolStripButton tbMoveDown;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+		private System.Windows.Forms.ToolStripComboBox cbZoom;
+		private System.Windows.Forms.TabControl mappingsTabs;
+		private System.Windows.Forms.StatusStrip statusStrip1;
+		private System.Windows.Forms.ToolStripStatusLabel StatusLabel;
 		private System.Windows.Forms.MenuStrip menuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;

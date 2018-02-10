@@ -509,36 +509,36 @@ namespace ProvinceMapper
 			}
 		}
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F2)
-            {
-					editCommentText();
-            }
-            else if (e.KeyCode == Keys.F3)
-            {
-					createNewComment();
-            }
-            else if (e.KeyCode == Keys.F4)
-            {
-					createNewMapping();
-            }
-            else if ((e.KeyCode == Keys.F5) || (e.KeyCode == Keys.Delete))
-            {
-					delete();
-            }
-            else if (e.Control)
-            {
-                if (e.KeyCode == Keys.Oemplus)
-                {
-                    tbMoveUp_Click(sender, e);
-                }
-                else if (e.KeyCode == Keys.OemMinus)
-                {
-                    tbMoveDown_Click(sender, e);
-                }
-            }
-        }
+		private void Form1_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.F2)
+			{
+				editCommentText();
+			}
+			else if (e.KeyCode == Keys.F3)
+			{
+				createNewComment();
+			}
+			else if (e.KeyCode == Keys.F4)
+			{
+				createNewMapping();
+			}
+			else if ((e.KeyCode == Keys.F5) || (e.KeyCode == Keys.Delete))
+			{
+				delete();
+			}
+			else if (e.Control)
+			{
+				if (e.KeyCode == Keys.Oemplus)
+				{
+					tbMoveUp_Click(sender, e);
+				}
+				else if (e.KeyCode == Keys.OemMinus)
+				{
+					tbMoveDown_Click(sender, e);
+				}
+			}
+		}
 
 		private void saveToolStripMenuItem_Click(object sender, EventArgs e)
 		{
