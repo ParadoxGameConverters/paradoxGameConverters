@@ -192,6 +192,30 @@ std::string commonItems::getNextLexeme(std::istream& theStream)
 				break;
 			}
 		}
+		else if (!inString && (inputChar == '{'))
+		{
+			if (toReturn.size() == 0)
+			{
+				toReturn += inputChar;
+			}
+			else
+			{
+				theStream.putback('{');
+			}
+			break;
+		}
+		else if (!inString && (inputChar == '}'))
+		{
+			if (toReturn.size() == 0)
+			{
+				toReturn += inputChar;
+			}
+			else
+			{
+				theStream.putback('}');
+			}
+			break;
+		}
 		else
 		{
 			toReturn += inputChar;
