@@ -1,5 +1,6 @@
 color = { 146  108  146 }
-graphical_culture = Generic
+graphical_culture = EuropeanGC
+
 party = {
 	name = "LOM_reactionary"
 	start_date = 1830.1.1
