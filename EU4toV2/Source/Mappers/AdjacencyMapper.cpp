@@ -165,8 +165,8 @@ void adjacencyMapper::outputAdjacenciesMapData()
 }
 
 
-vector<int> adjacencyMapper::GetVic2Adjacencies()
+vector<int> adjacencyMapper::GetVic2Adjacencies(int Vic2Province)
 {
-	vector<int> empty;
-	return empty;
+	if(adjacencyMap.find(Vic2Province) != adjacencyMap.end())
+		return adjacencyMap.at(Vic2Province);
 }

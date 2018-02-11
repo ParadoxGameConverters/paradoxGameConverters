@@ -42,9 +42,18 @@ christian = {
 		icon = 32
 		color = {0.9 0.1 0.1}
 	}
+	mormon = { #NNM
+		icon = 32
+		color = {0 0 0.5}
+	}
 
 	orthodox = {
 		icon = 3
+		color = { 0.7 0.5 0 }
+	}
+	
+	pre_schism = {
+		icon = 55
 		color = { 0.7 0.5 0 }
 	}
 
@@ -268,6 +277,26 @@ pagan = {
 	inti = {
 		icon = 50
 		color = { 1.0 0.8 0.0 }
+	}
+	kemetic = {
+		icon = 52
+		color = { 0.4 0.6 0.6 }
+	}
+	arab_pagan = {
+		icon = 53
+		color = { 0.6 0.1 0.2 }
+	}
+	druidist = {
+		icon = 54
+		color = { 0.9 0.6 0.9 }
+	}
+	tibet_bon = {
+		icon = 56
+		color = { 0.1 0.3 0.85 }
+	}
+	muism = {
+		icon = 57
+		color = { 0.1 0.3 0.85 }
 	}
 }
 

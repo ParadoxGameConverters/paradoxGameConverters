@@ -24,6 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "EU4World.h"
 #include <algorithm>
 #include <fstream>
+#include <string>
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "../Configuration.h"
@@ -115,14 +116,52 @@ void EU4World::verifySave(const string& EU4SaveFileName)
 shared_ptr<Object> EU4World::parseSave(const string& EU4SaveFileName)
 {
 	LOG(LogLevel::Info) << "Parsing save";
-	shared_ptr<Object> obj = parser_UTF8::doParseFile(EU4SaveFileName.c_str());
-	if (obj == NULL)
+	makeWorkingSave(EU4SaveFileName);
+	shared_ptr<Object> obj = parser_UTF8::doParseFile("goodsave.eu4");
+	if (!obj)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << EU4SaveFileName;
 		exit(-1);
 	}
 
 	return obj;
+}
+
+
+void EU4World::makeWorkingSave(const string& EU4SaveFileName)
+{
+	ifstream original(EU4SaveFileName);
+	ofstream copy("goodsave.eu4");
+
+	bool badArea = false;
+	int bracesLevel = 0;
+
+	while (!original.eof())
+	{
+		string line;
+		getline(original, line);
+
+		if (line.find("map_area_data") != string::npos)
+		{
+			badArea = true;
+		}
+		if (!badArea)
+		{
+			copy << line << "\n";
+		}
+		else
+		{
+			bracesLevel += count(line.begin(), line.end(), '{');
+			bracesLevel -= count(line.begin(), line.end(), '}');
+			if (bracesLevel <= 0)
+			{
+				badArea = false;
+			}
+		}
+	}
+
+	original.close();
+	copy.close();
 }
 
 

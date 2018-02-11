@@ -36,6 +36,15 @@ link = { v2 = afro_american eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 =
 link = { v2 = afro_american eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = anglosaxon eu4 = pictish eu4 = american region = central_america_region }
 link = { v2 = afro_caribbean eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = anglosaxon eu4 = pictish }
 
+# Afro-Arab (match cultures from Turko-Semitic and Iranian groups in cultureMap.txt)
+link = { v2 = african_minor eu4 = maghreb_arabic eu4 = moroccan eu4 = al_misr_arabic eu4 = egyptian_arabic eu4 = al_iraqiya_arabic eu4 = al_suryah_arabic eu4 = levantine_arabic region = mashriq_region}
+link = { v2 = african_minor eu4 = maghreb_arabic eu4 = moroccan eu4 = al_misr_arabic eu4 = egyptian_arabic eu4 = al_iraqiya_arabic eu4 = al_suryah_arabic eu4 = levantine_arabic region = arabia_region}
+link = { v2 = african_minor eu4 = bedouin_arabic eu4 = omani_culture eu4 = yemeni_culture eu4 = berber eu4 = tunisian eu4 = algerian eu4 = berber eu4 = turkish eu4 = pecheneg region = mashriq_region}
+link = { v2 = african_minor eu4 = bedouin_arabic eu4 = omani_culture eu4 = yemeni_culture eu4 = berber eu4 = tunisian eu4 = algerian eu4 = berber eu4 = turkish eu4 = pecheneg region = arabia_region}
+
+link = { v2 = african_minor eu4 = persian eu4 = khorasani eu4 = mazandarani eu4 = east_persian eu4 = afghani eu4 = afghan eu4 = baluchi eu4 = baloch region = mashriq_region}
+link = { v2 = african_minor eu4 = persian eu4 = khorasani eu4 = mazandarani eu4 = east_persian eu4 = afghani eu4 = afghan eu4 = baluchi eu4 = baloch region = arabia_region}
+
 # Natives (match native culture)
 link = { v2 = zapotec eu4 = zapotek eu4 = mixtec eu4 = tlapanec }
 link = { v2 = tarascan eu4 = purepecha eu4 = tecos }

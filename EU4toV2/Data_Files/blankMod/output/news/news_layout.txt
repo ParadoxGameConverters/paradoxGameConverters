@@ -1,11 +1,9 @@
-##This file differs from Vanilla adding special news headers for the Roman Empire
-
 #How much printing tension gives every type of news.
 #(if not specified on the list, default value is 1)
 article_tensions =
 {
 	PEACE_OFFER_ACCEPT = 100
-	GAME_EVENT = 5
+	GAME_EVENT = 30
 	PROVINCE_CHANGE_CONTROLLER = 5
 	PROVINCE_CHANGE_OWNER = 10
 	CONSTRUCTION_COMPLETE = 5
@@ -19,7 +17,7 @@ article_tensions =
 	CRISIS_BACKER = 10
 	CRISIS_SIDE_JOINED = 10
 	CRISIS_RESOLVED = 50
-	DECISION = 20
+	DECISION = 30
 
 	# The following are ignored, as those are built on pre-printing stage.
 	#GOODS_PRICE_CHANGE = 0
@@ -380,6 +378,7 @@ style =
 			picture = "news/GBR_default_newspaper_title.dds"
 		}
 
+
 		# Roman Empire ###################
 		case = {
 			trigger = { 
@@ -527,6 +526,7 @@ style =
 			}
 			picture = "news/RME_default_newspaper_title.dds"
 		}		
+		
 		
 		# ITA ###################
 		case = {
@@ -1404,6 +1404,7 @@ style =
 			trigger = { 
 				or = {
 					and = {
+						is_culture_group = far_east_asian
 						tag = JAP
 						ruling_party_ideology = communist 
 					}
@@ -1412,6 +1413,7 @@ style =
 						part_of_sphere = yes
 
 						sphere_owner = {
+							is_culture_group = far_east_asian
 							tag = JAP 
 							ruling_party_ideology = communist 
 						}
@@ -1421,6 +1423,7 @@ style =
 						is_vassal = yes
 
 						overlord = {
+							is_culture_group = far_east_asian
 							tag = JAP
 							ruling_party_ideology = communist 
 						}
@@ -1434,6 +1437,7 @@ style =
 			trigger = { 
 				or = {
 					and = {
+						is_culture_group = far_east_asian
 						tag = JAP
 						ruling_party_ideology = fascist 
 					}
@@ -1442,7 +1446,8 @@ style =
 						part_of_sphere = yes
 
 						sphere_owner = {
-							tag = JAP 
+							is_culture_group = far_east_asian 
+							tag = JAP
 							ruling_party_ideology = fascist 
 						}
 					}
@@ -1451,6 +1456,7 @@ style =
 						is_vassal = yes
 
 						overlord = {
+							is_culture_group = far_east_asian 
 							tag = JAP
 							ruling_party_ideology = fascist
 						}
@@ -1464,6 +1470,7 @@ style =
 			trigger = { 
 				or = {
 					and = {
+						is_culture_group = far_east_asian 
 						tag = JAP
 						ruling_party_ideology = reactionary
 					}
@@ -1472,7 +1479,8 @@ style =
 						part_of_sphere = yes
 
 						sphere_owner = {
-							tag = JAP 
+							is_culture_group = far_east_asian 
+							tag = JAP
 							ruling_party_ideology = reactionary 
 						}
 					}
@@ -1481,6 +1489,7 @@ style =
 						is_vassal = yes
 
 						overlord = {
+							is_culture_group = far_east_asian 
 							tag = JAP
 							ruling_party_ideology = reactionary 
 						}
@@ -1494,6 +1503,7 @@ style =
 			trigger = { 
 				or = {
 					and = {
+						is_culture_group = far_east_asian 
 						tag = JAP
 					}
 					and = {
@@ -1501,7 +1511,8 @@ style =
 						part_of_sphere = yes
 
 						sphere_owner = {
-							tag = JAP 
+							is_culture_group = far_east_asian  
+							tag = JAP
 						}
 					}
 					and = {
@@ -1509,6 +1520,7 @@ style =
 						is_vassal = yes
 
 						overlord = {
+							is_culture_group = far_east_asian 
 							tag = JAP
 						}
 					}					
@@ -1622,6 +1634,7 @@ style =
 						OR = {
 							tag = AUS
 							tag = KUK
+							tag = DNB
 						}
 						ruling_party_ideology = communist
 					}
@@ -1633,6 +1646,7 @@ style =
 							OR = {
 								tag = AUS
 								tag = KUK
+								tag = DNB
 							}
 							ruling_party_ideology = communist
 						}
@@ -1645,6 +1659,7 @@ style =
 							OR = {
 								tag = AUS
 								tag = KUK
+								tag = DNB
 							}
 							ruling_party_ideology = communist
 						}
@@ -1661,6 +1676,7 @@ style =
 						OR = {
 							tag = AUS
 							tag = KUK
+							tag = DNB
 						}
 						ruling_party_ideology = fascist
 					}
@@ -1672,6 +1688,7 @@ style =
 							OR = {
 								tag = AUS
 								tag = KUK
+								tag = DNB
 							}
 							ruling_party_ideology = fascist
 						}
@@ -1684,6 +1701,7 @@ style =
 							OR = {
 								tag = AUS
 								tag = KUK
+								tag = DNB
 							}
 							ruling_party_ideology = fascist
 						}
@@ -1700,6 +1718,7 @@ style =
 						OR = {
 							tag = AUS
 							tag = KUK
+							tag = DNB
 						}
 						ruling_party_ideology = reactionary
 					}
@@ -1711,6 +1730,7 @@ style =
 							OR = {
 								tag = AUS
 								tag = KUK
+								tag = DNB
 							}
 							ruling_party_ideology = reactionary
 						}
@@ -1723,6 +1743,7 @@ style =
 							OR = {
 								tag = AUS
 								tag = KUK
+								tag = DNB
 							}
 							ruling_party_ideology = reactionary
 						}
@@ -1739,6 +1760,7 @@ style =
 						OR = {
 							tag = AUS
 							tag = KUK
+							tag = DNB
 						}
 					}
 					and = {
@@ -1749,6 +1771,7 @@ style =
 							OR = {
 								tag = AUS
 								tag = KUK
+								tag = DNB
 							}
 						}
 					}
@@ -1760,6 +1783,7 @@ style =
 							OR = {
 								tag = AUS
 								tag = KUK
+								tag = DNB
 							}
 						}
 					}					
@@ -1894,6 +1918,7 @@ style =
 			}
 			picture = "news/GER_default_newspaper_title.dds"
 		}
+
 
 		# Ruling ideology generics ########
 		case =	{

@@ -55,6 +55,7 @@ class EU4World
 	private:
 		void verifySave(const string& EU4SaveFileName);
 		shared_ptr<Object> parseSave(const string& EU4SaveFileName);
+		void makeWorkingSave(const string& EU4SaveFileName);
 
 		void loadUsedMods(const shared_ptr<Object> EU4SaveObj);
 		map<string, string> loadPossibleMods();
