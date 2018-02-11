@@ -1,4 +1,4 @@
-/*Copyright(c) 2017 The Paradox Game Converters Project
+/*Copyright(c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -241,6 +241,12 @@ EU4Country::EU4Country(shared_ptr<Object> obj, EU4Version* version)
 
 	vector<shared_ptr<Object>> governmentObj = obj->getValue("government");	// the object holding the government
 	(governmentObj.size() > 0) ? government = governmentObj[0]->getLeaf() : government = "";
+	if (government == "" && governmentObj.size() > 0)
+	{
+		vector<shared_ptr<Object>> subGovernmentObj = governmentObj[0]->getValue("government");
+		(subGovernmentObj.size() > 0) ? government = subGovernmentObj[0]->getLeaf() : government = "";
+
+	}
 	if (government == "daimyo") 
 	{
 		possibleDaimyo = true;
