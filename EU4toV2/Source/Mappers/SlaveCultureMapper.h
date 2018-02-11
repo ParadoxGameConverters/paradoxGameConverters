@@ -21,45 +21,47 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "CultureMapper.h"
-#include "CultureMappingRule.h"
-#include "Log.h"
+#ifndef SLAVE_CULTURE_MAPPER_H
+#define SLAVE_CULTURE_MAPPER_H
 
 
 
-mappers::cultureMapper* mappers::cultureMapper::instance = nullptr;
+#include "newParser.h"
+#include "CultureMapping.h"
+#include <string>
+#include <vector>
 
 
 
-mappers::cultureMapper::cultureMapper():
-	cultureMap()
+namespace mappers
 {
-	LOG(LogLevel::Info) << "Parsing culture mappings";
-
-	registerKeyword(std::regex("link"), [this](const std::string& unused, std::istream& theStream)
-		{
-			CultureMappingRule rule(theStream);
-			auto newRules = rule.getMappings();
-			for (auto newRule: newRules)
-			{
-				cultureMap.push_back(newRule);
-			}
-		}
-	);
-
-	parseFile("cultureMap.txt");
-}
-
-
-bool mappers::cultureMapper::CultureMatch(const std::string& srcCulture, std::string& dstCulture, const std::string& religion, int EU4Province, const std::string& ownerTag)
-{
-	for (auto cultureMapping: cultureMap)
+	class slaveCultureMapper: commonItems::parser
 	{
-		if (cultureMapping.cultureMatch(srcCulture, dstCulture, religion, EU4Province, ownerTag))
-		{
-			return true;
-		}
-	}
+		public:
+			static bool cultureMatch(const std::string& srcCulture, std::string& dstCulture, const std::string& religion = "", int EU4Province = -1, const std::string& ownerTag = "")
+			{
+				return getInstance()->CultureMatch(srcCulture, dstCulture, religion, EU4Province, ownerTag);
+			}
 
-	return false;
+		private:
+			static slaveCultureMapper* instance;
+			static slaveCultureMapper* getInstance()
+			{
+				if (instance == nullptr)
+				{
+					instance = new slaveCultureMapper;
+				}
+				return instance;
+			}
+
+			slaveCultureMapper();
+
+			bool CultureMatch(const std::string& srcCulture, std::string& dstCulture, const std::string& religion = "", int EU4Province = -1, const std::string& ownerTag = "");
+
+			std::vector<cultureMapping> cultureMap;
+	};
 }
+
+
+
+#endif // SLAVE_CULTURE_MAPPER_H

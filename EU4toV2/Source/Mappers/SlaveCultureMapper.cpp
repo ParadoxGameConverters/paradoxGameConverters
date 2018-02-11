@@ -21,20 +21,20 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "CultureMapper.h"
+#include "SlaveCultureMapper.h"
 #include "CultureMappingRule.h"
 #include "Log.h"
 
 
 
-mappers::cultureMapper* mappers::cultureMapper::instance = nullptr;
+mappers::slaveCultureMapper* mappers::slaveCultureMapper::instance = nullptr;
 
 
 
-mappers::cultureMapper::cultureMapper():
+mappers::slaveCultureMapper::slaveCultureMapper():
 	cultureMap()
 {
-	LOG(LogLevel::Info) << "Parsing culture mappings";
+	LOG(LogLevel::Info) << "Parsing slave culture mappings";
 
 	registerKeyword(std::regex("link"), [this](const std::string& unused, std::istream& theStream)
 		{
@@ -47,11 +47,11 @@ mappers::cultureMapper::cultureMapper():
 		}
 	);
 
-	parseFile("cultureMap.txt");
+	parseFile("slaveCultureMap.txt");
 }
 
 
-bool mappers::cultureMapper::CultureMatch(const std::string& srcCulture, std::string& dstCulture, const std::string& religion, int EU4Province, const std::string& ownerTag)
+bool mappers::slaveCultureMapper::CultureMatch(const std::string& srcCulture, std::string& dstCulture, const std::string& religion, int EU4Province, const std::string& ownerTag)
 {
 	for (auto cultureMapping: cultureMap)
 	{

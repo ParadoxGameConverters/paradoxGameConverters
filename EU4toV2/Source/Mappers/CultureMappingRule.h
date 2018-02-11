@@ -21,45 +21,32 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "CultureMapper.h"
-#include "CultureMappingRule.h"
-#include "Log.h"
+#ifndef CULTURE_MAPPING_RULE_H_
+#define CULTURE_MAPPING_RULE_H_
 
 
 
-mappers::cultureMapper* mappers::cultureMapper::instance = nullptr;
+#include "newParser.h"
+#include "CultureMapping.h"
+#include <string>
+#include <vector>
 
 
 
-mappers::cultureMapper::cultureMapper():
-	cultureMap()
+namespace mappers
 {
-	LOG(LogLevel::Info) << "Parsing culture mappings";
-
-	registerKeyword(std::regex("link"), [this](const std::string& unused, std::istream& theStream)
-		{
-			CultureMappingRule rule(theStream);
-			auto newRules = rule.getMappings();
-			for (auto newRule: newRules)
-			{
-				cultureMap.push_back(newRule);
-			}
-		}
-	);
-
-	parseFile("cultureMap.txt");
-}
-
-
-bool mappers::cultureMapper::CultureMatch(const std::string& srcCulture, std::string& dstCulture, const std::string& religion, int EU4Province, const std::string& ownerTag)
-{
-	for (auto cultureMapping: cultureMap)
+	class CultureMappingRule: commonItems::parser
 	{
-		if (cultureMapping.cultureMatch(srcCulture, dstCulture, religion, EU4Province, ownerTag))
-		{
-			return true;
-		}
-	}
+		public:
+			CultureMappingRule(std::istream& theStream);
 
-	return false;
+			std::vector<cultureMapping> getMappings() const { return mappings; }
+
+		private:
+			std::vector<cultureMapping> mappings;
+	};
 }
+
+
+
+#endif // CULTURE_MAPPING_RULE_H_

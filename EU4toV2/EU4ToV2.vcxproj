@@ -198,6 +198,8 @@
     <ClCompile Include="Source\Mappers\CountryMapping.cpp" />
     <ClCompile Include="Source\Mappers\CultureMapper.cpp" />
     <ClCompile Include="Source\Mappers\ColonyFlagsetMapper.cpp" />
+    <ClCompile Include="Source\Mappers\CultureMapping.cpp" />
+    <ClCompile Include="Source\Mappers\CultureMappingRule.cpp" />
     <ClCompile Include="Source\Mappers\EU4CultureGroupMapper.cpp" />
     <ClCompile Include="Source\Mappers\FlagColorMapper.cpp" />
     <ClCompile Include="Source\Mappers\GovermentMapper.cpp" />
@@ -205,6 +207,7 @@
     <ClCompile Include="Source\Mappers\MinorityPopMapper.cpp" />
     <ClCompile Include="Source\Mappers\ProvinceMapper.cpp" />
     <ClCompile Include="Source\Mappers\ReligionMapper.cpp" />
+    <ClCompile Include="Source\Mappers\SlaveCultureMapper.cpp" />
     <ClCompile Include="Source\Mappers\StateMapper.cpp" />
     <ClCompile Include="Source\Mappers\Vic2CultureUnionMapper.cpp" />
     <ClCompile Include="Source\targa.cpp" />
@@ -260,6 +263,8 @@
     <ClInclude Include="Source\Mappers\ColonyFlagsetMapper.h" />
     <ClInclude Include="Source\Mappers\CountryMapping.h" />
     <ClInclude Include="Source\Mappers\CultureMapper.h" />
+    <ClInclude Include="Source\Mappers\CultureMapping.h" />
+    <ClInclude Include="Source\Mappers\CultureMappingRule.h" />
     <ClInclude Include="Source\Mappers\CustomFlagMapper.h" />
     <ClInclude Include="Source\Mappers\EU4CultureGroupMapper.h" />
     <ClInclude Include="Source\Mappers\FlagColorMapper.h" />
@@ -268,6 +273,7 @@
     <ClInclude Include="Source\Mappers\MinorityPopMapper.h" />
     <ClInclude Include="Source\Mappers\ProvinceMapper.h" />
     <ClInclude Include="Source\Mappers\ReligionMapper.h" />
+    <ClInclude Include="Source\Mappers\SlaveCultureMapper.h" />
     <ClInclude Include="Source\Mappers\StateMapper.h" />
     <ClInclude Include="Source\Mappers\Vic2CultureUnionMapper.h" />
     <ClInclude Include="Source\targa.h" />

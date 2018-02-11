@@ -581,7 +581,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const vector<V2TechS
 
 	if (srcCulture.size() > 0)
 	{
-		bool matched = cultureMapper::cultureMatch(srcCulture, primaryCulture, religion, oldCapital, srcCountry->getTag());
+		bool matched = mappers::cultureMapper::cultureMatch(srcCulture, primaryCulture, religion, oldCapital, srcCountry->getTag());
 		if (!matched)
 		{
 			LOG(LogLevel::Warning) << "No culture mapping defined for " << srcCulture << " (" << srcCountry->getTag() << " -> " << tag << ')';
@@ -600,7 +600,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const vector<V2TechS
 	for (auto srcCulture: srcAceptedCultures)
 	{
 		string dstCulture;
-		bool matched = cultureMapper::cultureMatch(srcCulture, dstCulture, religion, oldCapital, srcCountry->getTag());
+		bool matched = mappers::cultureMapper::cultureMatch(srcCulture, dstCulture, religion, oldCapital, srcCountry->getTag());
 		if (matched)
 		{
 			if (primaryCulture != dstCulture)

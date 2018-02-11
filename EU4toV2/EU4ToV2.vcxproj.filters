@@ -107,9 +107,6 @@
     <ClCompile Include="..\common_items\CommonUtils.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mappers\CountryMapping.cpp">
-      <Filter>Mappers</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Mappers\FlagColorMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
@@ -178,6 +175,18 @@
     </ClCompile>
     <ClCompile Include="Source\V2World\Vic2Regions.cpp">
       <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\CountryMapping.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\CultureMappingRule.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\CultureMapping.cpp">
+      <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mappers\SlaveCultureMapper.cpp">
+      <Filter>Mappers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -283,9 +292,6 @@
     <ClInclude Include="..\common_items\OSCompatibilityLayer.h">
       <Filter>CommonItems</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Mappers\CountryMapping.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Mappers\FlagColorMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
@@ -357,6 +363,18 @@
     </ClInclude>
     <ClInclude Include="Source\V2World\Vic2Regions.h">
       <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\CountryMapping.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\CultureMappingRule.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\CultureMapping.h">
+      <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mappers\SlaveCultureMapper.h">
+      <Filter>Mappers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
