@@ -97,6 +97,13 @@ void commonItems::parser::parseFile(const std::string& filename)
 		LOG(LogLevel::Error) << "Could not open " << filename << " for parsing.";
 	}
 
+	char firstChar = theFile.peek();
+	if (firstChar == (char)0xEF)
+	{
+		char bitBucket[3];
+		theFile.read(bitBucket, 3);
+	}
+
 	parseStream(theFile);
 	theFile.close();
 }
