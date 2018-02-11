@@ -43,7 +43,7 @@ mappers::CountryMappings* mappers::CountryMappings::instance = nullptr;
 
 
 
-mappers::CountryMapping::CountryMapping(istream& theStream)
+mappers::CountryMapping::CountryMapping(std::istream& theStream)
 {
 	registerKeyword(std::regex("EU4"), [this](const std::string& unused, std::istream& theStream)
 		{
@@ -346,10 +346,8 @@ bool mappers::CountryMappings::capitalInRightVic2Region(const mappers::colonyStr
 			}
 		}
 	}
-	else
-	{
-		return true;
-	}
+
+	return true;
 }
 
 
