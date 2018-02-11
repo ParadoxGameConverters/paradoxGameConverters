@@ -3239,66 +3239,66 @@
 	link = { vic2 = 1508 hoi4 = 7656 hoi4 = 10364 }	# Kaifeng -> land, land
 	link = { vic2 = 1509 hoi4 = 10098 hoi4 = 9995 hoi4 = 7085 }	# Guide -> land, land, land
 	link = { vic2 = 1512 hoi4 = 7126 hoi4 = 4066 }	# Chenzhou -> land, land
-	link = { vic2 = 1514 hoi4 = 10064 hoi4 = 4158 hoi4 = 4203 hoi4 = 10017 hoi4 = 7540 hoi4 = 10434 }	# Runing -> land, land, land, land, land, land
+	link = { vic2 = 1514 hoi4 = 10434 hoi4 = 7540 hoi4 = 4158 hoi4 = 12426 hoi4 = 10446 }	# Runing -> land, land, land, land, land
 	# # North Jiangsu
-	link = { vic2 = 1536 hoi4 = 4031 hoi4 = 7142 hoi4 = 4082 hoi4 = 4123 hoi4 = 4005 hoi4 = 12067 }	# Huaian -> land, land, land, land, land, land
+	link = { vic2 = 1536 hoi4 = 4123 hoi4 = 4005 hoi4 = 4082 hoi4 = 7142 hoi4 = 4031 hoi4 = 12067 }	# Huaian -> land, land, land, land, land, land
 	link = { vic2 = 1540 hoi4 = 11928 }	# Taicangzhou -> land
-	link = { vic2 = 1541 hoi4 = 1089 hoi4 = 4091 }	# Tongzhou -> land, land
-	link = { vic2 = 1542 hoi4 = 7025 hoi4 = 1076 hoi4 = 12055 hoi4 = 1029 hoi4 = 7200 }	# Xuzhou -> land, land, land, land, land
-	link = { vic2 = 1543 hoi4 = 9953 hoi4 = 10095 hoi4 = 4001 hoi4 = 7181 hoi4 = 4148 }	# Yangzhou -> land, land, land, land, land
+	link = { vic2 = 1541 hoi4 = 4091 hoi4 = 1089 }	# Tongzhou -> land, land
+	link = { vic2 = 1542 hoi4 = 7200 hoi4 = 7025 hoi4 = 12055 hoi4 = 1076 hoi4 = 1029 }	# Xuzhou -> land, land, land, land, land
+	link = { vic2 = 1543 hoi4 = 9953 hoi4 = 10095 hoi4 = 4001 hoi4 = 7181 }	# Yangzhou -> land, land, land, land
 	# # North Anhui
-	link = { vic2 = 1472 hoi4 = 10040 hoi4 = 12036 hoi4 = 7094 hoi4 = 11916 }	# Fengyang -> land, land, land, land
-	link = { vic2 = 1474 hoi4 = 7222 hoi4 = 11994 hoi4 = 12061 }	# Luzhou -> land, land, land
-	link = { vic2 = 1476 hoi4 = 1121 hoi4 = 1161 hoi4 = 11973 hoi4 = 1001 hoi4 = 13144 }	# Sizhou -> land, land, land, land, lake
-	link = { vic2 = 1477 hoi4 = 10008 hoi4 = 1146 }	# Taiping -> land, land
+	link = { vic2 = 1472 hoi4 = 11916 hoi4 = 12036 hoi4 = 7094 hoi4 = 10040 hoi4 = 11973 }	# Fengyang -> land, land, land, land, land
+	link = { vic2 = 1474 hoi4 = 7222 hoi4 = 11994 hoi4 = 4203 hoi4 = 10064 hoi4 = 10017 }	# Luzhou -> land, land, land, land, land
+	link = { vic2 = 1476 hoi4 = 1001 hoi4 = 1161 hoi4 = 1121 hoi4 = 13144 }	# Sizhou -> land, land, land, lake
+	link = { vic2 = 1477 hoi4 = 1146 hoi4 = 10008 }	# Taiping -> land, land
 	link = { vic2 = 1478 hoi4 = 9937 hoi4 = 10079 hoi4 = 4079 }	# Yingzhou -> land, land, land
 	# # South Jiangsu
-	link = { hoi4 = 13142 }	# NOTHING -> lake
+	link = { vic2 = 1537 hoi4 = 11982 hoi4 = 13142 }	# Changzhou -> land, lake
 	link = { vic2 = 1538 hoi4 = 7014 hoi4 = 12076 }	# Shanghai -> land, land
 	link = { vic2 = 1539 hoi4 = 10076 hoi4 = 12052 hoi4 = 10034 }	# Suzhou -> land, land, land
-	link = { vic2 = 1544 vic2 = 1537 hoi4 = 996 hoi4 = 11982 }	# MANY-TO-MANY: Zhenjiang, Changzhou -> land, land
+	link = { vic2 = 1544 hoi4 = 4148 }	# Zhenjiang -> land
 	link = { vic2 = 2221 hoi4 = 11913 }	# Nanjing -> land
 	# # East Hubei
-	link = { vic2 = 1516 hoi4 = 12467 hoi4 = 7167 hoi4 = 10462 hoi4 = 12426 }	# Hanyang -> land, land, land, land
-	link = { vic2 = 1517 hoi4 = 7580 hoi4 = 10446 }	# Dean -> land, land
+	link = { vic2 = 1516 hoi4 = 12467 hoi4 = 7167 hoi4 = 10462 }	# Hanyang -> land, land, land
+	link = { vic2 = 1517 hoi4 = 7580 }	# Dean -> land
 	link = { vic2 = 1518 hoi4 = 7637 hoi4 = 9959 }	# Huangzhou -> land, land
-	link = { vic2 = 1522 hoi4 = 4619 hoi4 = 1036 }	# Wuchang -> land, land
+	link = { vic2 = 1522 hoi4 = 4619 hoi4 = 1036 hoi4 = 4631 }	# Wuchang -> land, land, land
 	# # South Anhui
-	link = { vic2 = 1470 hoi4 = 1083 hoi4 = 7035 }	# Anqing -> land, land
-	link = { vic2 = 1471 hoi4 = 11937 hoi4 = 10044 }	# Chizhou -> land, land
+	link = { vic2 = 1470 hoi4 = 7035 hoi4 = 1083 hoi4 = 12061 }	# Anqing -> land, land, land
+	link = { vic2 = 1471 hoi4 = 10044 hoi4 = 11937 }	# Chizhou -> land, land
 	link = { vic2 = 1473 hoi4 = 12019 hoi4 = 1125 hoi4 = 7104 }	# Huizhou -> land, land, land
-	link = { vic2 = 1475 hoi4 = 4105 hoi4 = 4173 hoi4 = 1099 hoi4 = 1171 }	# Ningguo -> land, land, land, land
+	link = { vic2 = 1475 hoi4 = 4105 hoi4 = 1171 hoi4 = 4173 hoi4 = 1099 hoi4 = 996 }	# Ningguo -> land, land, land, land, land
 	# # North Zhejiang
-	link = { vic2 = 1604 hoi4 = 7191 hoi4 = 10014 hoi4 = 10101 }	# Hangzhou -> land, land, land
-	link = { vic2 = 1605 hoi4 = 7120 }	# Huzhou -> land
+	link = { vic2 = 1604 hoi4 = 7191 hoi4 = 10014 }	# Hangzhou -> land, land
+	link = { vic2 = 1605 hoi4 = 7120 hoi4 = 10101 }	# Huzhou -> land, land
 	link = { vic2 = 1606 hoi4 = 4042 }	# Jiaxing -> land
-	link = { vic2 = 1608 hoi4 = 9974 }	# Ningbo -> land
-	link = { vic2 = 1609 hoi4 = 7058 hoi4 = 11991 hoi4 = 1096 }	# Shaoxing -> land, land, land
+	link = { vic2 = 1608 hoi4 = 9974 hoi4 = 7058 }	# Ningbo -> land, land
+	link = { vic2 = 1609 hoi4 = 1096 hoi4 = 11991 }	# Shaoxing -> land, land
 	# # Nanchang
-	link = { vic2 = 1545 hoi4 = 3992 hoi4 = 7653 hoi4 = 10501 hoi4 = 10114 hoi4 = 11988 hoi4 = 4083 hoi4 = 4631 }	# Nanchang -> land, land, land, land, land, land, land
-	link = { vic2 = 1546 hoi4 = 1110 hoi4 = 11961 hoi4 = 1066 hoi4 = 7054 }	# Guangxin -> land, land, land, land
-	link = { vic2 = 1549 hoi4 = 1628 }	# Jiujiang -> land
-	link = { vic2 = 1551 hoi4 = 9984 hoi4 = 4038 hoi4 = 1153 hoi4 = 4185 hoi4 = 7007 }	# Raozhou -> land, land, land, land, land
+	link = { vic2 = 1545 hoi4 = 3992 hoi4 = 7653 hoi4 = 10501 hoi4 = 10114 hoi4 = 11988 }	# Nanchang -> land, land, land, land, land
+	link = { vic2 = 1546 hoi4 = 7054 hoi4 = 7007 }	# Guangxin -> land, land
+	link = { vic2 = 1549 hoi4 = 1628 hoi4 = 1153 }	# Jiujiang -> land, land
+	link = { vic2 = 1551 hoi4 = 4185 hoi4 = 4038 }	# Raozhou -> land, land
 	link = { vic2 = 3235 hoi4 = 13141 }	# Lake Poyang -> lake
 	# # Taizhou
-	link = { vic2 = 1607 hoi4 = 12059 hoi4 = 10086 hoi4 = 7174 }	# Jinhua -> land, land, land
-	link = { vic2 = 1610 hoi4 = 1168 hoi4 = 10058 hoi4 = 7146 hoi4 = 4013 }	# Taizhou -> land, land, land, land
-	link = { vic2 = 1611 hoi4 = 1055 hoi4 = 1195 hoi4 = 7086 hoi4 = 9972 hoi4 = 11947 hoi4 = 9944 hoi4 = 4099 hoi4 = 11920 }	# Wenzhou -> land, land, land, land, land, land, land, land
+	link = { vic2 = 1607 hoi4 = 12059 hoi4 = 10086 hoi4 = 7174 hoi4 = 11920 }	# Jinhua -> land, land, land, land
+	link = { vic2 = 1610 hoi4 = 1168 hoi4 = 10058 hoi4 = 7146 }	# Taizhou -> land, land, land
+	link = { vic2 = 1611 hoi4 = 1055 hoi4 = 7086 hoi4 = 9972 hoi4 = 11947 hoi4 = 1195 hoi4 = 9944 hoi4 = 4013 }	# Wenzhou -> land, land, land, land, land, land, land
 	# # South Jiangxi
-	link = { vic2 = 1547 hoi4 = 12495 hoi4 = 4156 }	# Jian -> land, land
-	link = { vic2 = 1548 hoi4 = 7172 hoi4 = 7199 hoi4 = 12030 }	# Jianchang -> land, land, land
-	link = { vic2 = 1550 hoi4 = 10057 hoi4 = 1053 hoi4 = 4081 hoi4 = 11945 hoi4 = 9942 hoi4 = 7004 hoi4 = 4183 hoi4 = 10112 }	# Ganzhou -> land, land, land, land, land, land, land, land
+	link = { vic2 = 1547 hoi4 = 4156 hoi4 = 12495 }	# Jian -> land, land
+	link = { vic2 = 1548 hoi4 = 9984 hoi4 = 4083 hoi4 = 7172 }	# Jianchang -> land, land, land
+	link = { vic2 = 1550 hoi4 = 10057 hoi4 = 4183 hoi4 = 7199 hoi4 = 7004 hoi4 = 9942 hoi4 = 1053 hoi4 = 11945 hoi4 = 4081 hoi4 = 10112 hoi4 = 12030 }	# Ganzhou -> land, land, land, land, land, land, land, land, land, land
 	# # Fujian
-	link = { vic2 = 1482 hoi4 = 4196 hoi4 = 4169 hoi4 = 10069 }	# Fuzhou -> land, land, land
-	link = { vic2 = 1483 hoi4 = 1094 hoi4 = 4070 hoi4 = 4113 hoi4 = 10012 }	# Jianning -> land, land, land, land
-	link = { vic2 = 1484 hoi4 = 7027 hoi4 = 7131 hoi4 = 11986 hoi4 = 1166 }	# Quanzhou -> land, land, land, land
-	link = { vic2 = 1486 hoi4 = 4053 hoi4 = 7099 hoi4 = 12084 hoi4 = 12057 hoi4 = 1138 hoi4 = 1193 hoi4 = 10084 hoi4 = 1006 hoi4 = 10042 }	# Tingzhou -> land, land, land, land, land, land, land, land, land
+	link = { vic2 = 1482 hoi4 = 4196 hoi4 = 1166 hoi4 = 4169 hoi4 = 10069 hoi4 = 1094 hoi4 = 4099 }	# Fuzhou -> land, land, land, land, land, land
+	link = { vic2 = 1483 hoi4 = 1110 hoi4 = 11961 hoi4 = 4113 hoi4 = 10012 hoi4 = 1066 hoi4 = 4070 hoi4 = 10042 }	# Jianning -> land, land, land, land, land, land, land
+	link = { vic2 = 1484 hoi4 = 11986 hoi4 = 7131 hoi4 = 7027 }	# Quanzhou -> land, land, land
+	link = { vic2 = 1486 hoi4 = 1006 hoi4 = 4053 hoi4 = 7099 hoi4 = 12084 hoi4 = 12057 hoi4 = 10084 hoi4 = 1193 hoi4 = 1138 }	# Tingzhou -> land, land, land, land, land, land, land, land
 	link = { vic2 = 1487 hoi4 = 7071 hoi4 = 10093 hoi4 = 10054 hoi4 = 10010 }	# Zhangzhou -> land, land, land, land
 	# # Canton
-	link = { vic2 = 1493 hoi4 = 1047 hoi4 = 11938 hoi4 = 7152 }	# Canton -> land, land, land
-	link = { vic2 = 1494 hoi4 = 9978 hoi4 = 7182 hoi4 = 9938 hoi4 = 7141 hoi4 = 4165 hoi4 = 1078 }	# Chaozhou -> land, land, land, land, land, land
-	link = { vic2 = 1497 hoi4 = 7108 hoi4 = 1202 hoi4 = 7067 hoi4 = 4207 hoi4 = 1162 hoi4 = 12095 hoi4 = 4050 hoi4 = 1120 }	# Huizhou -> land, land, land, land, land, land, land, land
-	link = { vic2 = 1500 hoi4 = 9997 hoi4 = 12014 hoi4 = 10121 hoi4 = 9970 hoi4 = 10080 }	# Shaozhou -> land, land, land, land, land
+	link = { vic2 = 1493 hoi4 = 1047 hoi4 = 11938 hoi4 = 7152 hoi4 = 12095 hoi4 = 10080 }	# Canton -> land, land, land, land, land
+	link = { vic2 = 1494 hoi4 = 4165 hoi4 = 9978 hoi4 = 9938 hoi4 = 7182 hoi4 = 7141 }	# Chaozhou -> land, land, land, land, land
+	link = { vic2 = 1497 hoi4 = 4050 hoi4 = 7108 hoi4 = 1202 hoi4 = 1162 hoi4 = 1078 hoi4 = 4207 hoi4 = 7067 }	# Huizhou -> land, land, land, land, land, land, land
+	link = { vic2 = 1500 hoi4 = 12014 hoi4 = 9997 hoi4 = 10121 hoi4 = 9970 hoi4 = 1120 }	# Shaozhou -> land, land, land, land, land
 	# 
 	# ## Macau
 	# # Canton
@@ -4213,6 +4213,7 @@
 	# 
 	# ## Dropped Vic2 provinces
 	link = { vic2 = 3241 }	# Arctic Ocean -> DROPPED
+	# 
 }
 0.0.0 = {
 	# ##########
