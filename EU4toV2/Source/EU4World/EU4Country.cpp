@@ -241,6 +241,12 @@ EU4Country::EU4Country(shared_ptr<Object> obj, EU4Version* version)
 
 	vector<shared_ptr<Object>> governmentObj = obj->getValue("government");	// the object holding the government
 	(governmentObj.size() > 0) ? government = governmentObj[0]->getLeaf() : government = "";
+	if (government == "" && governmentObj.size() > 0)
+	{
+		vector<shared_ptr<Object>> subGovernmentObj = governmentObj[0]->getValue("government");
+		(subGovernmentObj.size() > 0) ? government = subGovernmentObj[0]->getLeaf() : government = "";
+
+	}
 	if (government == "daimyo") 
 	{
 		possibleDaimyo = true;

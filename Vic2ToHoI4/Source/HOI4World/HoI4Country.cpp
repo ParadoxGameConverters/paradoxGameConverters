@@ -1204,6 +1204,41 @@ void HoI4Country::outputToNamesFiles(ofstream& namesFile) const
 	namesFile << "}\n";
 }
 
+void HoI4Country::outputUnitType(ofstream& unitNamesFile, string sourceUnitType, string destUnitType, string defaultName) const
+{
+	unitNamesFile << "\t" << destUnitType << " = {\n";
+	unitNamesFile << "\t\tprefix = \"\"\n";
+	unitNamesFile << "\t\tgeneric = { \""<< defaultName <<"\" }\n";
+	unitNamesFile << "\t\tunique = {\n";
+
+	unitNamesFile << "\t\t\t";
+	for (string shipName : srcCountry->getShipNames(sourceUnitType))
+	{
+		unitNamesFile << "\"" << shipName << "\" ";
+	}
+	unitNamesFile << "\n";
+
+	unitNamesFile << "\t\t}\n";
+	unitNamesFile << "\t}\n";
+	unitNamesFile << "\n";
+}
+
+void HoI4Country::outputToUnitNamesFiles(ofstream& unitNamesFile) const
+{
+	unitNamesFile << tag << " = {\n";
+
+	outputUnitType(unitNamesFile, "frigate", "submarine", "Submarine");
+	outputUnitType(unitNamesFile, "monitor", "carrier", "Carrier");
+
+	outputUnitType(unitNamesFile, "dreadnought", "battleship", "Battleship");
+	outputUnitType(unitNamesFile, "ironclad", "battle_cruiser", "Battlecruiser");
+	outputUnitType(unitNamesFile, "manowar", "heavy_cruiser", "Heavy Cruiser");
+
+	outputUnitType(unitNamesFile, "cruiser", "destroyer", "Destroyer");
+	outputUnitType(unitNamesFile, "commerce_raider", "light_cruiser", "Light Cruiser");
+
+	unitNamesFile << "}\n\n";
+}
 
 void HoI4Country::outputNamesSet(ofstream& namesFile, const optional<vector<string>>& names, const string& tabs) const
 {

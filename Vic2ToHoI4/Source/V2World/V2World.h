@@ -90,6 +90,7 @@ class V2World
 		string extractCountryFileName(const string& countryFileLine) const;
 		shared_ptr<Object> readCountryFile(const string& countryFileName, const string& mod) const;
 		void readCountryColor(shared_ptr<Object> countryData, const string& line);
+		void readShipNames(shared_ptr<Object> countryData, const string& line);
 		void inputPartyInformation(const vector<shared_ptr<Object>>& leaves);
 
 		optional<V2Country*> getCountry(const string& tag) const;

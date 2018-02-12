@@ -577,3 +577,13 @@ bool V2Country::hasCoreOnCapital() const
 
 	return false;
 }
+
+vector<string> V2Country::getShipNames(string category) const
+{
+	auto foundShipNames = shipNames.find(category);
+	if (foundShipNames == shipNames.end())
+	{
+		return vector<string>();
+	}
+	return foundShipNames->second;
+}
