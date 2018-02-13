@@ -241,6 +241,7 @@
     <ClInclude Include="..\common_items\ParadoxParser8859_15.h" />
     <ClInclude Include="..\common_items\ParadoxParserUTF8.h" />
     <ClInclude Include="Source\Configuration.h" />
+    <ClInclude Include="Source\CustomFlagMapper.h" />
     <ClInclude Include="Source\EU4World\Areas.h" />
     <ClInclude Include="Source\EU4World\ColonialRegions.h" />
     <ClInclude Include="Source\EU4World\Continents.h" />
@@ -265,7 +266,6 @@
     <ClInclude Include="Source\Mappers\CultureMapper.h" />
     <ClInclude Include="Source\Mappers\CultureMapping.h" />
     <ClInclude Include="Source\Mappers\CultureMappingRule.h" />
-    <ClInclude Include="Source\Mappers\CustomFlagMapper.h" />
     <ClInclude Include="Source\Mappers\EU4CultureGroupMapper.h" />
     <ClInclude Include="Source\Mappers\FlagColorMapper.h" />
     <ClInclude Include="Source\Mappers\GovernmentMapper.h" />

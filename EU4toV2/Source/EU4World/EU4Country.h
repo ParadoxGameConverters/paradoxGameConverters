@@ -27,7 +27,7 @@ THE SOFTWARE. */
 #include "EU4Army.h"
 #include "Color.h"
 #include "Date.h"
-#include "../Mappers/CustomFlagMapper.h"
+#include "../CustomFlagMapper.h"
 #include <memory>
 
 

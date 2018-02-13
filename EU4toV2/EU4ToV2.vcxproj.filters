@@ -334,9 +334,6 @@
     <ClInclude Include="Source\Mappers\ColonyFlagsetMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Mappers\CustomFlagMapper.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
     <ClInclude Include="..\common_items\CardinalToOrdinal.h">
       <Filter>CommonItems</Filter>
     </ClInclude>
@@ -376,6 +373,7 @@
     <ClInclude Include="Source\Mappers\SlaveCultureMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
+    <ClInclude Include="Source\CustomFlagMapper.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="EU4 World">

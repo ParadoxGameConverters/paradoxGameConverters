@@ -29,7 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <string>
 #include <vector>
 #include "../Mappers/ColonyFlagsetMapper.h"
-#include "../Mappers/CustomFlagMapper.h"
+#include "../CustomFlagMapper.h"
 using namespace std;
 
 
