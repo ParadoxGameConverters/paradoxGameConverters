@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -33,7 +33,8 @@ using namespace std;
 
 Configuration* Configuration::instance = NULL;
 
-Configuration::Configuration()
+Configuration::Configuration():
+	debug(false)
 {
 	LOG(LogLevel::Info) << "Reading configuration file";
 
@@ -102,6 +103,11 @@ Configuration::Configuration()
 	else
 	{
 		LOG(LogLevel::Debug) << "Victoria 2 documents directory is " << V2DocumentsPath;
+	}
+
+	if (obj[0]->safeGetString("debug") == "yes")
+	{
+		debug = true;
 	}
 
 	V2Gametype			= obj[0]->safeGetString("V2gametype");

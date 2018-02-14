@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,60 +21,58 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef EU4REGION_MAPPER_H
-#define EU4REGION_MAPPER_H
+#ifndef EU4_REGIONS_H
+#define EU4_REGIONS_H
 
 
 
+#include "newParser.h"
+#include "Region.h"
 #include <map>
 #include <memory>
 #include <set>
 #include <string>
-#include <vector>
-using namespace std;
 
 
 
 class Object;
-
-
-
-class EU4RegionMapper
+namespace EU4
 {
-	public:
-		static bool provinceInRegion(int province, const string& region)
-		{
-			return getInstance()->ProvinceInRegion(province, region);
-		}
+	class areas;
 
-	private:
-		static EU4RegionMapper* instance;
-		static EU4RegionMapper* getInstance()
-		{
-			if (instance == nullptr)
+	class Regions: commonItems::parser
+	{
+		public:
+			static bool provinceInRegion(int province, const std::string& regionName)
 			{
-				instance = new EU4RegionMapper;
+				return getInstance()->ProvinceInRegion(province, regionName);
 			}
-			return instance;
-		}
 
-		EU4RegionMapper();
+		private:
+			static Regions* instance;
+			static Regions* getInstance()
+			{
+				if (instance == nullptr)
+				{
+					instance = new Regions;
+				}
+				return instance;
+			}
 
-		void attemptOldVersion();
-		void initEU4RegionMapOldVersion(shared_ptr<Object> obj);
-		void insertMapping(int provinceNumber, string regionName);
+			Regions();
 
-		void doNewVersion();
-		void makeWorkingAreaTxt(const string& path);
-		void initEU4RegionMap(shared_ptr<Object> areasObj, shared_ptr<Object> regionsObj);
-		map<string, vector<int>> getAreaToProvincesMapping(shared_ptr<Object> areasObj);
+			void initEU4RegionsOldVersion();
 
-		bool ProvinceInRegion(int province, const string& region);
-		set<string> getRegions(int province);
+			void initEU4RegionsNewVersion();
+			void initEU4RegionsFile(const EU4::areas& areas, const std::string& regionsFilename);
 
-		map<int, set<string>> EU4RegionsMap;
-};
+			bool ProvinceInRegion(int province, const std::string& regionName);
 
+			std::map<int, std::set<std::string>> EU4RegionsMap;
+			std::map<std::string, EU4::region> regions;
+	};
+}
 
 
-#endif //EU4REGION_MAPPER_H
+
+#endif //EU4_REGIONS_H

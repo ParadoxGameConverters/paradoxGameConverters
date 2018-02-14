@@ -21,45 +21,49 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "CultureMapper.h"
-#include "CultureMappingRule.h"
-#include "Log.h"
+#include "Region.h"
+#include "Areas.h"
+#include <algorithm>
 
 
 
-mappers::cultureMapper* mappers::cultureMapper::instance = nullptr;
-
-
-
-mappers::cultureMapper::cultureMapper():
-	cultureMap()
+EU4::region::region(std::istream& theStream)
 {
-	LOG(LogLevel::Info) << "Parsing culture mappings";
-
-	registerKeyword(std::regex("link"), [this](const std::string& unused, std::istream& theStream)
-		{
-			CultureMappingRule rule(theStream);
-			auto newRules = rule.getMappings();
-			for (auto newRule: newRules)
-			{
-				cultureMap.push_back(newRule);
-			}
-		}
-	);
-
-	parseFile("cultureMap.txt");
+	commonItems::parsingFunction areasFunction = std::bind(&EU4::region::importAreas, this, std::placeholders::_1, std::placeholders::_2);
+	registerKeyword(std::regex("areas"), areasFunction);
+	registerKeyword(std::regex("discover_if"), commonItems::ignoreObject);
+	parseStream(theStream);
 }
 
 
-bool mappers::cultureMapper::CultureMatch(const std::string& srcCulture, std::string& dstCulture, const std::string& religion, int EU4Province, const std::string& ownerTag)
+EU4::region::region(std::set<int> _provinces):
+	provinces(_provinces)
 {
-	for (auto cultureMapping: cultureMap)
-	{
-		if (cultureMapping.cultureMatch(srcCulture, dstCulture, religion, EU4Province, ownerTag))
-		{
-			return true;
-		}
-	}
+}
 
-	return false;
+
+void EU4::region::importAreas(const std::string& unused, std::istream& theStream)
+{
+	registerKeyword(std::regex("\\w+"), [this](const std::string& areaName, std::istream& areasFile)
+		{
+			areaNames.insert(areaName);
+		}
+	);
+	parseStream(theStream);
+}
+
+
+bool EU4::region::containsProvince(unsigned int province) const
+{
+	return (provinces.count(province) > 0);
+}
+
+
+void EU4::region::addProvinces(const EU4::areas& areas)
+{
+	for (auto areaName: areaNames)
+	{
+		auto newProvinces = areas.getProvincesInArea(areaName);
+		provinces.insert(newProvinces.begin(), newProvinces.end());
+	}
 }

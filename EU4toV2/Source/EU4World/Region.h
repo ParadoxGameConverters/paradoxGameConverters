@@ -21,45 +21,38 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "CultureMapper.h"
-#include "CultureMappingRule.h"
-#include "Log.h"
+#ifndef EU4_REGION_H_
+#define EU4_REGION_H_
 
 
 
-mappers::cultureMapper* mappers::cultureMapper::instance = nullptr;
+#include "newParser.h"
+#include <set>
 
 
 
-mappers::cultureMapper::cultureMapper():
-	cultureMap()
+namespace EU4
 {
-	LOG(LogLevel::Info) << "Parsing culture mappings";
+	class areas;
 
-	registerKeyword(std::regex("link"), [this](const std::string& unused, std::istream& theStream)
-		{
-			CultureMappingRule rule(theStream);
-			auto newRules = rule.getMappings();
-			for (auto newRule: newRules)
-			{
-				cultureMap.push_back(newRule);
-			}
-		}
-	);
-
-	parseFile("cultureMap.txt");
-}
-
-
-bool mappers::cultureMapper::CultureMatch(const std::string& srcCulture, std::string& dstCulture, const std::string& religion, int EU4Province, const std::string& ownerTag)
-{
-	for (auto cultureMapping: cultureMap)
+	class region: commonItems::parser
 	{
-		if (cultureMapping.cultureMatch(srcCulture, dstCulture, religion, EU4Province, ownerTag))
-		{
-			return true;
-		}
-	}
+		public:
+			region(std::istream& theStream);
+			region(std::set<int> _provinces);
 
-	return false;
+			bool containsProvince(unsigned int province) const;
+
+			void addProvinces(const EU4::areas& areas);
+
+		private:
+			void importAreas(const std::string& unused, std::istream& theStream);
+
+			std::set<std::string> areaNames;
+			std::set<int> provinces;
+	};
 }
+
+
+
+#endif // EU4_REGION_H_

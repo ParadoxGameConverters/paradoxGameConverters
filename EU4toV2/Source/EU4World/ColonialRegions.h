@@ -21,72 +21,48 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef CK2_TITLE_MAPPER_H
-#define CK2_TITLE_MAPPER_H
+#ifndef EU4_COLONIAL_REGIONS_H_
+#define EU4_COLONIAL_REGIONS_H_
 
 
 
+#include "newParser.h"
 #include <map>
-#include <optional>
-#include <random>
 #include <set>
 #include <string>
-#include <vector>
-#include "newParser.h"
 
 
 
-namespace mappers
+namespace EU4
 {
-	class CK2TitleMapper: commonItems::parser
+	class colonialRegions: commonItems::parser
 	{
 		public:
-			static const std::optional<std::string> getTitle(std::string name)
+			static bool provinceIsInRegion(int province, const std::string& region)
 			{
-				return getInstance()->GetTitle(name);
-			}
-
-			static bool doesTitleExist(std::string title)
-			{
-				return getInstance()->DoesTitleExist(title);
-			}
-
-			static const std::optional<std::string> getRandomIslamicFlag()
-			{
-				return getInstance()->GetRandomIslamicFlag();
-			}
-
-			static const std::optional<std::string> getRandomIndianFlag()
-			{
-				return getInstance()->GetRandomIndianFlag();
+				return getInstance()->ProvinceIsInRegion(province, region);
 			}
 
 		private:
-			static CK2TitleMapper* instance;
-			static CK2TitleMapper* getInstance()
+			static colonialRegions* instance;
+			static colonialRegions* getInstance()
 			{
 				if (instance == nullptr)
 				{
-					instance = new CK2TitleMapper;
+					instance = new colonialRegions();
 				}
+
 				return instance;
 			}
 
-			CK2TitleMapper();
+			colonialRegions();
 
-			std::optional<std::string> GetTitle(std::string name);
-			bool DoesTitleExist(std::string title);
-			std::optional<std::string> GetRandomIslamicFlag();
-			std::optional<std::string> GetRandomIndianFlag();
+			bool ProvinceIsInRegion(int province, const std::string& region) const;
 
-			std::map<std::string, std::string> titleMap; // <name, title>
-			std::set<std::string> titles;
-			std::vector<std::string> islamicFlags;
-			std::vector<std::string> indianFlags;
-			std::mt19937 generator;
+			std::map<int, std::string> provinceToColonialRegions;
 	};
 }
 
 
 
-#endif // CK2_TITLE_MAPPER_H
+#endif // EU4_COLONIAL_REGIONS_H_

@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,52 +26,79 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include "newParser.h"
 #include <map>
 #include <memory>
 #include <string>
-using namespace std;
 
 
 
-class Object;
-
-
-typedef struct
+namespace mappers
 {
-	string name;
-	string region;
-	bool unique;
-	string overlord;
-} colonyFlag;
+	class colonyFlag: commonItems::parser
+	{
+		public:
+			colonyFlag(std::istream& theStream, const std::string& region);
+
+			std::string getName() const { return name; }
+			std::string getRegion() const { return region; }
+			bool isUnique() const { return unique; }
+			std::string getOverlord() const { return overlord; }
+
+			void setOverlord(const std::string& newOverlord) { overlord = newOverlord; }
+
+		private:
+			std::string name;
+			std::string region;
+			bool unique;
+			std::string overlord;
+	};
 
 
+	class colonyFlagsetRegion: commonItems::parser
+	{
+		public:
+			colonyFlagsetRegion(std::istream& theStream, const std::string& region, std::map<std::string, std::shared_ptr<colonyFlag>>& colonyFlagset);
+	};
 
-class colonyFlagsetMapper
-{
-	public:
-		static map<string, shared_ptr<colonyFlag>>& getFlagset()
-		{
-			return getInstance()->colonyFlagset;
-		}
 
-	private:
-		static colonyFlagsetMapper* instance;
-		static colonyFlagsetMapper* getInstance()
-		{
-			if (instance == nullptr)
+	class colonyFlagsetMapper: commonItems::parser
+	{
+		public:
+			static std::shared_ptr<colonyFlag> getFlag(const std::string& name)
 			{
-				instance = new colonyFlagsetMapper;
+				return getInstance()->GetFlag(name);
 			}
-			return instance;
-		}
 
-		colonyFlagsetMapper();
-		void initColonyFlagset(shared_ptr<Object> obj);
-		void removeDuplicates();
+			static std::vector<std::string> getNames()
+			{
+				return getInstance()->GetNames();
+			}
 
+			static void removeFlag(const std::string& name)
+			{
+				getInstance()->RemoveFlag(name);
+			}
 
-		map<string, shared_ptr<colonyFlag>> colonyFlagset; // <name, flag>
-};
+		private:
+			static colonyFlagsetMapper* instance;
+			static colonyFlagsetMapper* getInstance()
+			{
+				if (instance == nullptr)
+				{
+					instance = new colonyFlagsetMapper;
+				}
+				return instance;
+			}
+			colonyFlagsetMapper();
+
+			std::shared_ptr<colonyFlag> GetFlag(const std::string& name);
+			std::vector<std::string> GetNames();
+			void RemoveFlag(const std::string& name);
+
+			std::map<std::string, std::shared_ptr<colonyFlag>> colonyFlagset;
+	};
+}
 
 
 

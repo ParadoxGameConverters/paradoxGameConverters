@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -61,7 +61,7 @@ class V2Flags
 		static const vector<string> flagFileSuffixes;
 
 		typedef map<string, string> V2TagToFlagTagMap;
-		typedef map<string, shared_ptr<colonyFlag> > V2TagToColonyFlagMap; // tag, {base,overlordtag}
+		typedef map<string, shared_ptr<mappers::colonyFlag> > V2TagToColonyFlagMap; // tag, {base,overlordtag}
 		typedef map<string, CustomFlag> V2TagToCustomFlagMap;
 
 		V2TagToFlagTagMap tagMap;

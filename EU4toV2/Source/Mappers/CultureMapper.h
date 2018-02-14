@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,62 +26,41 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include <map>
-#include <memory>
+#include "newParser.h"
+#include "CultureMapping.h"
 #include <string>
 #include <vector>
-using namespace std;
 
 
 
-class Object;
-
-
-
-typedef struct
+namespace mappers
 {
-	string srcCulture;
-	string dstCulture;
-	map<string, string> distinguishers;	// type, details
-} cultureStruct;
-
-
-
-class cultureMapper
-{
-	public:
-		static bool cultureMatch(const string& srcCulture, string& dstCulture, const string& religion = "", int EU4Province = -1, const string& ownerTag = "")
-		{
-			return getInstance()->CultureMatch(srcCulture, dstCulture, religion, EU4Province, ownerTag);
-		}
-
-		static bool slaveCultureMatch(const string& srcCulture, string& dstCulture, const string& religion = "", int EU4Province = -1, const string& ownerTag = "")
-		{
-			return getInstance()->SlaveCultureMatch(srcCulture, dstCulture, religion, EU4Province, ownerTag);
-		}
-
-	private:
-		static cultureMapper* instance;
-		static cultureMapper* getInstance()
-		{
-			if (instance == nullptr)
+	class cultureMapper: commonItems::parser
+	{
+		public:
+			static bool cultureMatch(const std::string& srcCulture, std::string& dstCulture, const std::string& religion = "", int EU4Province = -1, const std::string& ownerTag = "")
 			{
-				instance = new cultureMapper;
+				return getInstance()->CultureMatch(srcCulture, dstCulture, religion, EU4Province, ownerTag);
 			}
-			return instance;
-		}
 
-		cultureMapper();
-		void initCultureMap(shared_ptr<Object> cultureMapObj, shared_ptr<Object> slaveCultureMapObj);
-		vector<cultureStruct> createNewRules(shared_ptr<Object> ruleObj);
+		private:
+			static cultureMapper* instance;
+			static cultureMapper* getInstance()
+			{
+				if (instance == nullptr)
+				{
+					instance = new cultureMapper;
+				}
+				return instance;
+			}
 
-		bool CultureMatch(const string& srcCulture, string& dstCulture, const string& religion = "", int EU4Province = -1, const string& ownerTag = "");
-		bool SlaveCultureMatch(const string& srcCulture, string& dstCulture, const string& religion = "", int EU4Province = -1, const string& ownerTag = "");
-		bool distinguishersMatch(const map<string, string>& distinguishers, const string& religion = "", int EU4Province = -1, const string& ownerTag = "");
+			cultureMapper();
 
-		vector<cultureStruct> cultureMap;
-		vector<cultureStruct> slaveCultureMap;
-};
+			bool CultureMatch(const std::string& srcCulture, std::string& dstCulture, const std::string& religion = "", int EU4Province = -1, const std::string& ownerTag = "");
+
+			std::vector<cultureMapping> cultureMap;
+	};
+}
 
 
 

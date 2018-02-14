@@ -21,72 +21,53 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef CK2_TITLE_MAPPER_H
-#define CK2_TITLE_MAPPER_H
+#ifndef VIC2_REGIONS_H_
+#define VIC2_REGIONS_H_
 
 
 
+#include "newParser.h"
 #include <map>
-#include <optional>
-#include <random>
 #include <set>
 #include <string>
-#include <vector>
-#include "newParser.h"
 
 
 
-namespace mappers
+namespace Vic2
 {
-	class CK2TitleMapper: commonItems::parser
+	class regions: commonItems::parser
 	{
 		public:
-			static const std::optional<std::string> getTitle(std::string name)
+			static bool provinceIsInRegion(int province, const std::string& region)
 			{
-				return getInstance()->GetTitle(name);
+				return getInstance()->ProvinceIsInRegion(province, region);
 			}
 
-			static bool doesTitleExist(std::string title)
+			static std::set<int> getProvincesInRegion(const std::string& region)
 			{
-				return getInstance()->DoesTitleExist(title);
-			}
-
-			static const std::optional<std::string> getRandomIslamicFlag()
-			{
-				return getInstance()->GetRandomIslamicFlag();
-			}
-
-			static const std::optional<std::string> getRandomIndianFlag()
-			{
-				return getInstance()->GetRandomIndianFlag();
+				return getInstance()->GetProvincesInRegion(region);
 			}
 
 		private:
-			static CK2TitleMapper* instance;
-			static CK2TitleMapper* getInstance()
+			static regions* instance;
+			static regions* getInstance()
 			{
 				if (instance == nullptr)
 				{
-					instance = new CK2TitleMapper;
+					instance = new regions();
 				}
+
 				return instance;
 			}
+			regions();
 
-			CK2TitleMapper();
+			bool ProvinceIsInRegion(int province, const std::string& region);
+			std::set<int> GetProvincesInRegion(const std::string& region);
 
-			std::optional<std::string> GetTitle(std::string name);
-			bool DoesTitleExist(std::string title);
-			std::optional<std::string> GetRandomIslamicFlag();
-			std::optional<std::string> GetRandomIndianFlag();
-
-			std::map<std::string, std::string> titleMap; // <name, title>
-			std::set<std::string> titles;
-			std::vector<std::string> islamicFlags;
-			std::vector<std::string> indianFlags;
-			std::mt19937 generator;
+			std::map<std::string, std::set<int>> theRegions;
 	};
 }
 
 
 
-#endif // CK2_TITLE_MAPPER_H
+#endif // VIC2_REGIONS_H_

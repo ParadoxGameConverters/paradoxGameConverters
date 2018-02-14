@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -24,36 +24,61 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Color.h"
 #include <chrono>
 #include <random>
+#include <sstream>
 #include "Object.h"
 
 
 
-Color::Color()
-: initialized(false), c({ 0, 0, 0 })
+commonItems::Color::Color():
+	initialized(false),
+	c({ 0, 0, 0 })
 {}
 
 
-Color::Color(const int r, const int g, const int b)
-: initialized(true), c({ r, g, b })
+commonItems::Color::Color(const int r, const int g, const int b):
+	initialized(true),
+	c({ r, g, b })
 {}
 
 
-Color::Color(shared_ptr<Object> colorObject)
-: initialized(false), c({ 0, 0, 0 })
+commonItems::Color::Color(std::shared_ptr<Object> colorObject):
+	initialized(false),
+	c({ 0, 0, 0 })
 {
-	auto colorTokens = colorObject->getTokens();	// the colors held by the object
-	initialized = (colorTokens.size() >= 3);
-	for (size_t i = 0; i < 3; ++i)
-	{
-		if (!colorTokens[i].empty())
-		{
-			c[i] = stoi(colorTokens[i]);
-		}
-	}
+	std::stringstream colorStream;
+	colorStream << *colorObject;
+	auto unneeded = getNextToken(colorStream);
+	Color newColor(colorStream);
+	newColor.GetRGB(c[0], c[1], c[2]);
 }
 
 
-void Color::RandomlyFlunctuate(const int stdDev)
+commonItems::Color::Color(std::istream& theStream):
+	initialized(false),
+	c({ 0, 0, 0 })
+{
+	unsigned int colorsInitialized = 0;
+
+	auto token = getNextToken(theStream);
+	while (token && (*token != "}"))
+	{
+		if ((token->find('=') == std::string::npos) && (token->find('{') == std::string::npos))
+		{
+			if (token->substr(0,1) == "\"")
+			{
+				token = token->substr(1, token->length() - 2);
+			}
+			c[colorsInitialized] = std::stoi(*token);
+			colorsInitialized++;
+		}
+		token = getNextToken(theStream);
+	}
+
+	initialized = (colorsInitialized > 2);
+}
+
+
+void commonItems::Color::RandomlyFlunctuate(const int stdDev)
 {
 	// All three color components will go up or down by the some amount (according to stdDev), 
 	// and then each is tweaked a bit more (with a much smaller standard deviation).
@@ -75,14 +100,14 @@ void Color::RandomlyFlunctuate(const int stdDev)
 }
 
 
-std::ostream& operator<<(std::ostream& out, const Color& color)
+std::ostream& commonItems::operator<<(std::ostream& out, const commonItems::Color& color)
 {
 	out << color.c[0] << ' ' << color.c[1] << ' ' << color.c[2];
 	return out;
 }
 
 
-void Color::GetRGB(int& r, int& g, int& b) const
+void commonItems::Color::GetRGB(int& r, int& g, int& b) const
 {
 	r = c[0];
 	g = c[1];
@@ -90,7 +115,7 @@ void Color::GetRGB(int& r, int& g, int& b) const
 }
 
 
-Color::operator bool() const
+commonItems::Color::operator bool() const
 {
 	return initialized;
 }

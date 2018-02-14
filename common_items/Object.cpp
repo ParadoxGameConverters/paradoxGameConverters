@@ -236,18 +236,18 @@ ostream& operator<< (ostream& os, const Object& obj)
 		os << "\t";
 	}
 	if (obj.leaf) {
-		os << obj.key << "=" << obj.strVal << "\n";
+		os << obj.key << " = \"" << obj.strVal << "\"\n";
 		return os;
 	}
 	if (obj.isObjList)
 	{
-		os << obj.key << "={" << obj.strVal << " }\n";
+		os << obj.key << " = { " << obj.strVal << " }\n";
 		return os;
 	}
 
 	if (obj.getKey() != "topLevel")
 	{
-		os << obj.key << "=\n";
+		os << obj.key << " =\n";
 		for (int i = 0; i < indent; i++)
 		{
 			os << "\t";

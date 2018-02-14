@@ -21,72 +21,47 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef CK2_TITLE_MAPPER_H
-#define CK2_TITLE_MAPPER_H
+#ifndef SLAVE_CULTURE_MAPPER_H
+#define SLAVE_CULTURE_MAPPER_H
 
 
 
-#include <map>
-#include <optional>
-#include <random>
-#include <set>
+#include "newParser.h"
+#include "CultureMapping.h"
 #include <string>
 #include <vector>
-#include "newParser.h"
 
 
 
 namespace mappers
 {
-	class CK2TitleMapper: commonItems::parser
+	class slaveCultureMapper: commonItems::parser
 	{
 		public:
-			static const std::optional<std::string> getTitle(std::string name)
+			static bool cultureMatch(const std::string& srcCulture, std::string& dstCulture, const std::string& religion = "", int EU4Province = -1, const std::string& ownerTag = "")
 			{
-				return getInstance()->GetTitle(name);
-			}
-
-			static bool doesTitleExist(std::string title)
-			{
-				return getInstance()->DoesTitleExist(title);
-			}
-
-			static const std::optional<std::string> getRandomIslamicFlag()
-			{
-				return getInstance()->GetRandomIslamicFlag();
-			}
-
-			static const std::optional<std::string> getRandomIndianFlag()
-			{
-				return getInstance()->GetRandomIndianFlag();
+				return getInstance()->CultureMatch(srcCulture, dstCulture, religion, EU4Province, ownerTag);
 			}
 
 		private:
-			static CK2TitleMapper* instance;
-			static CK2TitleMapper* getInstance()
+			static slaveCultureMapper* instance;
+			static slaveCultureMapper* getInstance()
 			{
 				if (instance == nullptr)
 				{
-					instance = new CK2TitleMapper;
+					instance = new slaveCultureMapper;
 				}
 				return instance;
 			}
 
-			CK2TitleMapper();
+			slaveCultureMapper();
 
-			std::optional<std::string> GetTitle(std::string name);
-			bool DoesTitleExist(std::string title);
-			std::optional<std::string> GetRandomIslamicFlag();
-			std::optional<std::string> GetRandomIndianFlag();
+			bool CultureMatch(const std::string& srcCulture, std::string& dstCulture, const std::string& religion = "", int EU4Province = -1, const std::string& ownerTag = "");
 
-			std::map<std::string, std::string> titleMap; // <name, title>
-			std::set<std::string> titles;
-			std::vector<std::string> islamicFlags;
-			std::vector<std::string> indianFlags;
-			std::mt19937 generator;
+			std::vector<cultureMapping> cultureMap;
 	};
 }
 
 
 
-#endif // CK2_TITLE_MAPPER_H
+#endif // SLAVE_CULTURE_MAPPER_H

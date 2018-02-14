@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -23,72 +23,106 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "CK2TitleMapper.h"
 #include "Log.h"
-#include "Object.h"
-#include "ParadoxParserUTF8.h"
-#include "../V2World/V2Localisation.h"
+#include "OSCompatibilityLayer.h"
 
 
 
-CK2TitleMapper* CK2TitleMapper::instance = NULL;
+mappers::CK2TitleMapper* mappers::CK2TitleMapper::instance = nullptr;
 
 
-CK2TitleMapper::CK2TitleMapper()
+
+class titleMapping: commonItems::parser
+{
+	public:
+		titleMapping(std::istream& theSteam);
+
+		bool hasIslamicRegion() const;
+		bool hasIndianRegion() const;
+
+		std::string getName() const { return name; }
+		std::string getID() const { return ID; }
+
+	private:
+		std::string name;
+		std::string ID;
+		std::string region = "";
+};
+
+
+titleMapping::titleMapping(std::istream& theStream):
+	name(),
+	ID(),
+	region()
+{
+	registerKeyword(std::regex("name"), [this](const std::string& unused, std::istream& theStream)
+		{
+			auto equals = getNextToken(theStream);
+			auto temp = getNextToken(theStream);
+			name = Utils::convertUTF8To8859_15(*temp);
+		}
+	);
+	registerKeyword(std::regex("title"), [this](const std::string& unused, std::istream& theStream)
+		{
+			auto equals = getNextToken(theStream);
+			auto temp = getNextToken(theStream);
+			ID = *temp;
+		}
+	);
+	registerKeyword(std::regex("region"), [this](const std::string& unused, std::istream& theStream)
+		{
+			auto equals = getNextToken(theStream);
+			auto temp = getNextToken(theStream);
+			region = *temp;
+		}
+	);
+
+	parseStream(theStream);
+}
+
+
+bool titleMapping::hasIslamicRegion() const
+{
+	return ((region == "e_persia") || (region == "e_arabia"));
+}
+
+
+bool titleMapping::hasIndianRegion() const
+{
+	return ((region == "e_rajastan") || (region == "e_bengal") || (region == "e_deccan"));
+}
+
+
+mappers::CK2TitleMapper::CK2TitleMapper():
+	titleMap(),
+	titles(),
+	islamicFlags(),
+	indianFlags(),
+	generator()
 {
 	LOG(LogLevel::Info) << "Getting CK2 titles";
-	shared_ptr<Object> CK2TitleObj = parser_UTF8::doParseFile("ck2titlemap.txt");
-	initCK2TitleMap(CK2TitleObj);
+
+	registerKeyword(std::regex("link"), [this](const std::string& unused, std::istream& theStream)
+		{
+			titleMapping newMapping(theStream);
+			if (newMapping.hasIslamicRegion())
+			{
+				islamicFlags.push_back(newMapping.getID());
+			}
+			else if (newMapping.hasIndianRegion())
+			{
+				indianFlags.push_back(newMapping.getID());
+			}
+
+			titleMap[newMapping.getName()] = newMapping.getID();
+			titles.insert(newMapping.getID());
+		}
+	);
+
+	parseFile("ck2titlemap.txt");
 }
 
 
-void CK2TitleMapper::initCK2TitleMap(shared_ptr<Object> obj)
-{
-	generator();
-
-	vector<shared_ptr<Object>> titles = obj->getLeaves();
-	if (titles.size() == 0)
-	{
-		LOG(LogLevel::Error) << "Could not process ck2titlemap.txt";
-		exit(-1);
-	}
-
-	for (auto link: titles[0]->getLeaves())
-	{
-		vector<shared_ptr<Object>> titles = link->getLeaves();
-		string name;
-		string titleID;
-		string region = "";
-
-		for (auto title: titles)
-		{
-			if (title->getKey() == "name" )
-			{
-				name = title->getLeaf();
-				name = V2Localisation::Convert(name);
-			}
-			if (title->getKey() == "title" )
-			{
-				titleID = title->getLeaf();
-			}
-			if (title->getKey() == "region")
-			{
-				region = title->getLeaf();
-			}
-		}
-		if (region == "e_persia" || region == "e_arabia")
-		{
-			islamicFlags.push_back(titleID);
-		}
-		else if (region == "e_rajastan" || region == "e_bengal" || region == "e_deccan")
-		{
-			indianFlags.push_back(titleID);
-		}
-
-		titleMap[name] = titleID;
-	}
-}
-
-
-string CK2TitleMapper::GetTitle(string name)
+std::optional<std::string> mappers::CK2TitleMapper::GetTitle(std::string name)
 {
 	auto mapping = titleMap.find(name);
 	if (mapping != titleMap.end())
@@ -97,33 +131,40 @@ string CK2TitleMapper::GetTitle(string name)
 	}
 	else
 	{
-		return "";
+		return {};
 	}
 }
 
 
-bool CK2TitleMapper::DoesTitleExist(string title)
+bool mappers::CK2TitleMapper::DoesTitleExist(std::string title)
 {
-	if (titles.count(title) > 0)
+	return (titles.count(title) > 0);
+}
+
+
+std::optional<std::string> mappers::CK2TitleMapper::GetRandomIslamicFlag()
+{
+	if (islamicFlags.size() > 0)
 	{
-		return true;
+		size_t randomTagIndex = std::uniform_int_distribution<size_t>(0, islamicFlags.size() - 1)(generator);
+		return islamicFlags[randomTagIndex];
 	}
 	else
 	{
-		return false;
+		return {};
 	}
 }
 
 
-string CK2TitleMapper::GetRandomIslamicFlag()
+std::optional<std::string> mappers::CK2TitleMapper::GetRandomIndianFlag()
 {
-	size_t randomTagIndex = uniform_int_distribution<size_t>(0, islamicFlags.size() - 1)(generator);
-	return islamicFlags[randomTagIndex];
-}
-
-
-string CK2TitleMapper::GetRandomIndianFlag()
-{
-	size_t randomTagIndex = uniform_int_distribution<size_t>(0, indianFlags.size() - 1)(generator);
-	return indianFlags[randomTagIndex];
+	if (islamicFlags.size() > 0)
+	{
+		size_t randomTagIndex = std::uniform_int_distribution<size_t>(0, indianFlags.size() - 1)(generator);
+		return indianFlags[randomTagIndex];
+	}
+	else
+	{
+		return {};
+	}
 }

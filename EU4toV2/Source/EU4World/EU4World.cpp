@@ -701,7 +701,7 @@ void EU4World::checkAllEU4CulturesMapped() const
 		string Vi2Culture;
 
 		string	EU4Culture	= cultureItr.first;
-		bool		matched		= cultureMapper::cultureMatch(EU4Culture, Vi2Culture);
+		bool		matched		= mappers::cultureMapper::cultureMatch(EU4Culture, Vi2Culture);
 		if (!matched)
 		{
 			LOG(LogLevel::Warning) << "No culture mapping for EU4 culture " << EU4Culture;

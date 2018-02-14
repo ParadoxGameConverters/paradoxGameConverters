@@ -21,45 +21,49 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "CultureMapper.h"
-#include "CultureMappingRule.h"
-#include "Log.h"
+#ifndef EU4_CONTINENTS_H
+#define EU4_CONTINENTS_H
 
 
 
-mappers::cultureMapper* mappers::cultureMapper::instance = nullptr;
+#include "newParser.h"
+#include <map>
+#include <string>
 
 
 
-mappers::cultureMapper::cultureMapper():
-	cultureMap()
+namespace EU4
 {
-	LOG(LogLevel::Info) << "Parsing culture mappings";
-
-	registerKeyword(std::regex("link"), [this](const std::string& unused, std::istream& theStream)
-		{
-			CultureMappingRule rule(theStream);
-			auto newRules = rule.getMappings();
-			for (auto newRule: newRules)
-			{
-				cultureMap.push_back(newRule);
-			}
-		}
-	);
-
-	parseFile("cultureMap.txt");
-}
-
-
-bool mappers::cultureMapper::CultureMatch(const std::string& srcCulture, std::string& dstCulture, const std::string& religion, int EU4Province, const std::string& ownerTag)
-{
-	for (auto cultureMapping: cultureMap)
+	class continents: commonItems::parser
 	{
-		if (cultureMapping.cultureMatch(srcCulture, dstCulture, religion, EU4Province, ownerTag))
-		{
-			return true;
-		}
-	}
+		public:
+			static std::optional<std::string> getEU4Continent(int EU4Province)
+			{
+				return getInstance()->GetEU4Continent(EU4Province);
+			}
 
-	return false;
+		private:
+			static continents* instance;
+			static continents* getInstance()
+			{
+				if (instance == nullptr)
+				{
+					instance = new continents;
+				}
+
+				return instance;
+			}
+
+			continents();
+			void initContinentMap(const std::string& filename);
+
+			std::optional<std::string> GetEU4Continent(int EU4Province);
+
+
+			std::map<int, std::string> continentMap;
+	};
 }
+
+
+
+#endif // EU4_CONTINENTS_H

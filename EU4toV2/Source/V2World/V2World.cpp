@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -36,16 +36,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "../Mappers/AdjacencyMapper.h"
-#include "../Mappers/ContinentMapper.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/CultureMapper.h"
 #include "../Mappers/IdeaEffectMapper.h"
 #include "../Mappers/MinorityPopMapper.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "../Mappers/ReligionMapper.h"
+#include "../Mappers/SlaveCultureMapper.h"
 #include "../Mappers/StateMapper.h"
 #include "../Mappers/Vic2CultureUnionMapper.h"
 #include "../Configuration.h"
+#include "../EU4World/Continents.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Relations.h"
 #include "../EU4World/EU4Leader.h"
@@ -75,7 +76,7 @@ V2World::V2World(const EU4World& sourceWorld)
 	importTechSchools();
 	isRandomWorld = sourceWorld.isRandomWorld();
 
-	CountryMapping::createMappings(sourceWorld, potentialCountries);
+	mappers::CountryMappings::createMappings(sourceWorld, potentialCountries);
 
 	LOG(LogLevel::Info) << "Converting world";
 	convertCountries(sourceWorld);
@@ -440,7 +441,7 @@ void V2World::initializeCountries(const EU4World& sourceWorld)
 {
 	for (auto sourceCountry: sourceWorld.getCountries())
 	{
-		const string& V2Tag = CountryMapping::getVic2Tag(sourceCountry.first);
+		const string& V2Tag = mappers::CountryMappings::getVic2Tag(sourceCountry.first);
 		if (V2Tag == "")
 		{
 			LOG(LogLevel::Error) << "EU4 tag " << sourceCountry.first << " is unmapped and cannot be converted.";
@@ -749,7 +750,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 			continue;
 		}
 
-		const std::string& V2Tag = CountryMapping::getVic2Tag(oldOwner->getTag());
+		const std::string& V2Tag = mappers::CountryMappings::getVic2Tag(oldOwner->getTag());
 		if (V2Tag.empty())
 		{
 			LOG(LogLevel::Warning) << "Could not map provinces owned by " << oldOwner->getTag();
@@ -781,7 +782,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 							continue;
 						}
 
-						const std::string& coreV2Tag = CountryMapping::getVic2Tag(coreEU4Tag);
+						const std::string& coreV2Tag = mappers::CountryMappings::getVic2Tag(coreEU4Tag);
 						if (!coreV2Tag.empty())
 						{
 							Vic2Province.second->addCore(coreV2Tag);
@@ -815,7 +816,7 @@ vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRat
 	for (auto prItr : popRatios)
 	{
 		string dstCulture = "no_culture";
-		bool matched = cultureMapper::cultureMatch(prItr.culture, dstCulture, prItr.religion, eProv->getNum(), oldOwner->getTag());
+		bool matched = mappers::cultureMapper::cultureMatch(prItr.culture, dstCulture, prItr.religion, eProv->getNum(), oldOwner->getTag());
 		if (!matched)
 		{
 			LOG(LogLevel::Warning) << "Could not set culture for pops in Vic2 province " << destNum;
@@ -828,11 +829,11 @@ vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRat
 		}
 
 		string slaveCulture = "";
-		matched = cultureMapper::slaveCultureMatch(prItr.culture, slaveCulture, prItr.religion, eProv->getNum(), oldOwner->getTag());;
+		matched = mappers::slaveCultureMapper::cultureMatch(prItr.culture, slaveCulture, prItr.religion, eProv->getNum(), oldOwner->getTag());;
 		if (!matched)
 		{
-			string thisContinent = continentMapper::getEU4Continent(eProv->getNum());
-			if (thisContinent == "asia" || thisContinent == "oceania")
+			auto thisContinent = EU4::continents::getEU4Continent(eProv->getNum());
+			if ((thisContinent) && ((thisContinent == "asia") || (thisContinent == "oceania")))
 			{
 				//LOG(LogLevel::Warning) << "No mapping for slave culture in province " << destNum << " - using native culture (" << prItr.culture << ").";
 				slaveCulture = prItr.culture;
@@ -869,13 +870,13 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld)
 	for (vector<EU4Agreement>::iterator itr = agreements.begin(); itr != agreements.end(); ++itr)
 	{
 		const std::string& EU4Tag1 = itr->country1;
-		const std::string& V2Tag1 = CountryMapping::getVic2Tag(EU4Tag1);
+		const std::string& V2Tag1 = mappers::CountryMappings::getVic2Tag(EU4Tag1);
 		if (V2Tag1.empty())
 		{
 			continue;
 		}
 		const std::string& EU4Tag2 = itr->country2;
-		const std::string& V2Tag2 = CountryMapping::getVic2Tag(EU4Tag2);
+		const std::string& V2Tag2 = mappers::CountryMappings::getVic2Tag(EU4Tag2);
 		if (V2Tag2.empty())
 		{
 			continue;
@@ -1014,26 +1015,29 @@ void V2World::setupColonies()
 		{
 			int currentProvince = goodProvinces.front();
 			goodProvinces.pop();
-			vector<int> adjacencies = adjacencyMapper::getVic2Adjacencies(currentProvince);
-			for (unsigned int i = 0; i < adjacencies.size(); i++)
+			auto adjacencies = mappers::adjacencyMapper::getVic2Adjacencies(currentProvince);
+			if (adjacencies)
 			{
-				map<int, V2Province*>::iterator openItr = openProvinces.find(adjacencies[i]);
-				if (openItr == openProvinces.end())
+				for (auto adjacency: *adjacencies)
 				{
-					continue;
+					auto openItr = openProvinces.find(adjacency);
+					if (openItr == openProvinces.end())
+					{
+						continue;
+					}
+					if (openItr->second->getOwner() != countryItr->first)
+					{
+						continue;
+					}
+					openItr->second->setLandConnection(true);
+					goodProvinces.push(openItr->first);
+					openProvinces.erase(openItr);
 				}
-				if (openItr->second->getOwner() != countryItr->first)
-				{
-					continue;
-				}
-				openItr->second->setLandConnection(true);
-				goodProvinces.push(openItr->first);
-				openProvinces.erase(openItr);
 			}
 		} while (goodProvinces.size() > 0);
 
 		// find all provinces on the same continent as the owner's capital
-		string capitalContinent = "";
+		std::optional<std::string> capitalContinent;
 		map<int, V2Province*>::iterator capital = provinces.find(countryItr->second->getCapital());
 		if (capital != provinces.end())
 		{
@@ -1042,8 +1046,8 @@ void V2World::setupColonies()
 				continue;
 
 			int capitalSrc = capitalSrcProv->getNum();
-			capitalContinent = continentMapper::getEU4Continent(capitalSrc);
-			if (capitalContinent == "")
+			capitalContinent = EU4::continents::getEU4Continent(capitalSrc);
+			if (!capitalContinent)
 			{
 				continue;
 			}
@@ -1060,8 +1064,8 @@ void V2World::setupColonies()
 				continue;
 
 			int provSrc = provSrcProv->getNum();
-			string continent = continentMapper::getEU4Continent(provSrc);
-			if ((continent != "") && (continent == capitalContinent))
+			std::optional<std::string> continent = EU4::continents::getEU4Continent(provSrc);
+			if ((continent) && (continent == capitalContinent))
 			{
 				provItr->second->setSameContinent(true);
 			}

@@ -21,45 +21,60 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "CultureMapper.h"
-#include "CultureMappingRule.h"
-#include "Log.h"
+#ifndef NEW_PARSER_H
+#define NEW_PARSER_H
 
 
 
-mappers::cultureMapper* mappers::cultureMapper::instance = nullptr;
+#include <istream>
+#include <functional>
+#include <list>
+#include <optional>
+#include <regex>
+#include <string>
+#include <utility>
 
 
 
-mappers::cultureMapper::cultureMapper():
-	cultureMap()
+namespace commonItems
 {
-	LOG(LogLevel::Info) << "Parsing culture mappings";
+	typedef std::function<void(const std::string&, std::istream&)> parsingFunction;
 
-	registerKeyword(std::regex("link"), [this](const std::string& unused, std::istream& theStream)
-		{
-			CultureMappingRule rule(theStream);
-			auto newRules = rule.getMappings();
-			for (auto newRule: newRules)
-			{
-				cultureMap.push_back(newRule);
-			}
-		}
-	);
-
-	parseFile("cultureMap.txt");
-}
-
-
-bool mappers::cultureMapper::CultureMatch(const std::string& srcCulture, std::string& dstCulture, const std::string& religion, int EU4Province, const std::string& ownerTag)
-{
-	for (auto cultureMapping: cultureMap)
+	class parser
 	{
-		if (cultureMapping.cultureMatch(srcCulture, dstCulture, religion, EU4Province, ownerTag))
-		{
-			return true;
-		}
-	}
+		public:
+			parser();
 
-	return false;
+			~parser() = default;
+			parser(const parser&) = default;
+			parser& operator=(const parser&) = default;
+
+			void registerKeyword(std::regex keyword, parsingFunction);
+			void parseStream(std::istream& theStream);
+			void parseFile(const std::string& filename);
+
+			std::optional<std::string> getNextToken(std::istream& theStream);
+
+		private:
+			std::list<std::pair<std::regex, parsingFunction>> registeredKeywords;
+			std::string nextToken;
+			int braceDepth;
+	};
+
+	void ignoreObject(const std::string& unused, std::istream& theStream);
+
+	class intList: commonItems::parser
+	{
+		public:
+			intList(std::istream& theStream);
+
+			std::vector<int> getInts() const { return ints; }
+
+		private:
+			std::vector<int> ints;
+	};
 }
+
+
+
+#endif // NEW_PARSER_H

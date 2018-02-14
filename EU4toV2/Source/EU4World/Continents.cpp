@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,20 +21,19 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "ContinentMapper.h"
+#include "Continents.h"
 #include "../Configuration.h"
 #include "Log.h"
-#include "Object.h"
 #include "OSCompatibilityLayer.h"
-#include "ParadoxParserUTF8.h"
+#include <algorithm>
 
 
 
-continentMapper* continentMapper::instance = NULL;
+EU4::continents* EU4::continents::instance = nullptr;
 
 
 
-continentMapper::continentMapper()
+EU4::continents::continents()
 {
 	LOG(LogLevel::Info) << "Finding Continents";
 	for (auto mod: Configuration::getEU4Mods())
@@ -42,28 +41,13 @@ continentMapper::continentMapper()
 		string continentFile = mod + "/map/continent.txt";
 		if (Utils::DoesFileExist(continentFile))
 		{
-			shared_ptr<Object> continentObject = parser_UTF8::doParseFile(continentFile);
-			if ((continentObject != NULL) && (continentObject->getLeaves().size() > 0))
-			{
-				initContinentMap(continentObject);
-			}
+			initContinentMap(continentFile);
 		}
 	}
 
 	if (continentMap.empty())
 	{
-		shared_ptr<Object> continentObject = parser_UTF8::doParseFile(Configuration::getEU4Path() + "/map/continent.txt");
-		if (continentObject == NULL)
-		{
-			LOG(LogLevel::Error) << "Could not parse file " << Configuration::getEU4Path() << "/map/continent.txt";
-			exit(-1);
-		}
-		if (continentObject->getLeaves().size() < 1)
-		{
-			LOG(LogLevel::Error) << "Failed to parse continent.txt";
-			exit(-1);
-		}
-		initContinentMap(continentObject);
+		initContinentMap(Configuration::getEU4Path() + "/map/continent.txt");
 	}
 
 	if (continentMap.empty())
@@ -74,25 +58,28 @@ continentMapper::continentMapper()
 
 
 
-void continentMapper::initContinentMap(shared_ptr<Object> obj)
+void EU4::continents::initContinentMap(const std::string& filename)
 {
 	continentMap.clear();
 
-	vector<shared_ptr<Object>> continentObjs = obj->getLeaves();
-	for (auto continentObj: continentObjs)
-	{
-		string continent = continentObj->getKey();
-		vector<string> provinceNums = continentObj->getTokens();
-		for (auto provinceNum: provinceNums)
+	registerKeyword(std::regex("\\w+"), [this](const std::string& continentName, std::istream& theStream)
 		{
-			const int province = stoi(provinceNum);
-			continentMap.insert(make_pair(province, continent));
+			auto equals = getNextToken(theStream);
+			commonItems::intList newContinent(theStream);
+			auto provinces = newContinent.getInts();
+			std::for_each(provinces.begin(), provinces.end(), [this, continentName](const int& province)
+				{
+					continentMap.insert(make_pair(province, continentName));
+				}
+			);
 		}
-	}
+	);
+
+	parseFile(filename);
 }
 
 
-string continentMapper::GetEU4Continent(int EU4Province)
+std::optional<std::string> EU4::continents::GetEU4Continent(int EU4Province)
 {
 	auto mapping = continentMap.find(EU4Province);
 	if (mapping != continentMap.end())
@@ -101,6 +88,6 @@ string continentMapper::GetEU4Continent(int EU4Province)
 	}
 	else
 	{
-		return "";
+		return {};
 	}
 }

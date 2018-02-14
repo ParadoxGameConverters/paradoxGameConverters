@@ -21,45 +21,41 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "CultureMapper.h"
 #include "CultureMappingRule.h"
-#include "Log.h"
 
 
 
-mappers::cultureMapper* mappers::cultureMapper::instance = nullptr;
-
-
-
-mappers::cultureMapper::cultureMapper():
-	cultureMap()
+mappers::CultureMappingRule::CultureMappingRule(std::istream& theStream):
+	mappings()
 {
-	LOG(LogLevel::Info) << "Parsing culture mappings";
-
-	registerKeyword(std::regex("link"), [this](const std::string& unused, std::istream& theStream)
+	std::string destinationCulture;
+	registerKeyword(std::regex("vic2"), [this, &destinationCulture](const std::string& unused, std::istream& theStream)
 		{
-			CultureMappingRule rule(theStream);
-			auto newRules = rule.getMappings();
-			for (auto newRule: newRules)
-			{
-				cultureMap.push_back(newRule);
-			}
+			auto equals = getNextToken(theStream);
+			destinationCulture = *getNextToken(theStream);
 		}
 	);
 
-	parseFile("cultureMap.txt");
-}
-
-
-bool mappers::cultureMapper::CultureMatch(const std::string& srcCulture, std::string& dstCulture, const std::string& religion, int EU4Province, const std::string& ownerTag)
-{
-	for (auto cultureMapping: cultureMap)
-	{
-		if (cultureMapping.cultureMatch(srcCulture, dstCulture, religion, EU4Province, ownerTag))
+	std::vector<std::string> sourceCultures;
+	registerKeyword(std::regex("eu4"), [this, &sourceCultures](const std::string& unused, std::istream& theStream)
 		{
-			return true;
+			auto equals = getNextToken(theStream);
+			sourceCultures.push_back(*getNextToken(theStream));
 		}
-	}
+	);
 
-	return false;
+	std::map<std::string, std::string> distinguishers;
+	registerKeyword(std::regex("(?:region)|(?:religion)|(?:owner)|(?:provinceid)"), [this, &distinguishers](const std::string& type, std::istream& theStream)
+		{
+			auto equals = getNextToken(theStream);
+			distinguishers.insert(make_pair(type, *getNextToken(theStream)));
+		}
+	);
+
+	parseStream(theStream);
+	for (auto sourceCulture: sourceCultures)
+	{
+		cultureMapping rule(sourceCulture, destinationCulture, distinguishers);
+		mappings.push_back(rule);
+	}
 }

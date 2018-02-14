@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,56 +21,32 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef CONTINENT_MAPPER_H
-#define CONTINENT_MAPPER_H
+#ifndef CULTURE_MAPPING_RULE_H_
+#define CULTURE_MAPPING_RULE_H_
 
 
 
-#include <map>
-#include <memory>
+#include "newParser.h"
+#include "CultureMapping.h"
 #include <string>
 #include <vector>
-using namespace std;
 
 
 
-class Object;
-
-
-
-class continentMapper
+namespace mappers
 {
-	public:
-		static string getEU4Continent(int EU4Province)
-		{
-			return getInstance()->GetEU4Continent(EU4Province);
-		}
+	class CultureMappingRule: commonItems::parser
+	{
+		public:
+			CultureMappingRule(std::istream& theStream);
 
-	private:
-		static continentMapper* instance;
-		static continentMapper* getInstance()
-		{
-			if (instance == NULL)
-			{
-				instance = new continentMapper;
-			}
+			std::vector<cultureMapping> getMappings() const { return mappings; }
 
-			return instance;
-		}
-
-		continentMapper();
-		void initContinentMap(shared_ptr<Object> obj);
-
-		string GetEU4Continent(int EU4Province);
-
-
-		map<int, string> continentMap;
-};
+		private:
+			std::vector<cultureMapping> mappings;
+	};
+}
 
 
 
-
-
-
-
-#endif // CONTINENT_MAPPER_H
+#endif // CULTURE_MAPPING_RULE_H_

@@ -21,45 +21,48 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "CultureMapper.h"
-#include "CultureMappingRule.h"
-#include "Log.h"
+#ifndef EU4_AREAS_H_
+#define EU4_AREAS_H_
 
 
 
-mappers::cultureMapper* mappers::cultureMapper::instance = nullptr;
+#include "Color.h"
+#include "newParser.h"
+#include <istream>
+#include <map>
+#include <set>
+#include <string>
 
 
 
-mappers::cultureMapper::cultureMapper():
-	cultureMap()
+namespace EU4
 {
-	LOG(LogLevel::Info) << "Parsing culture mappings";
-
-	registerKeyword(std::regex("link"), [this](const std::string& unused, std::istream& theStream)
-		{
-			CultureMappingRule rule(theStream);
-			auto newRules = rule.getMappings();
-			for (auto newRule: newRules)
-			{
-				cultureMap.push_back(newRule);
-			}
-		}
-	);
-
-	parseFile("cultureMap.txt");
-}
-
-
-bool mappers::cultureMapper::CultureMatch(const std::string& srcCulture, std::string& dstCulture, const std::string& religion, int EU4Province, const std::string& ownerTag)
-{
-	for (auto cultureMapping: cultureMap)
+	class area: commonItems::parser
 	{
-		if (cultureMapping.cultureMatch(srcCulture, dstCulture, religion, EU4Province, ownerTag))
-		{
-			return true;
-		}
-	}
+		public:
+			area(std::istream& theStream);
 
-	return false;
+			const std::set<int> getProvinces() const { return provinces; }
+
+		private:
+			std::set<int> provinces;
+			commonItems::Color color;
+	};
+
+	class areas: commonItems::parser
+	{
+		public:
+			areas(const std::string& filename);
+
+			const std::set<int> getProvincesInArea(const std::string& area) const;
+
+			const std::map<std::string, area> getAreas() const { return theAreas; }
+
+		private:
+			std::map<std::string, area> theAreas;
+	};
 }
+
+
+
+#endif // EU4_AREAS_H_

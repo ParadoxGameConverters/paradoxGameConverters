@@ -581,7 +581,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const vector<V2TechS
 
 	if (srcCulture.size() > 0)
 	{
-		bool matched = cultureMapper::cultureMatch(srcCulture, primaryCulture, religion, oldCapital, srcCountry->getTag());
+		bool matched = mappers::cultureMapper::cultureMatch(srcCulture, primaryCulture, religion, oldCapital, srcCountry->getTag());
 		if (!matched)
 		{
 			LOG(LogLevel::Warning) << "No culture mapping defined for " << srcCulture << " (" << srcCountry->getTag() << " -> " << tag << ')';
@@ -600,7 +600,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const vector<V2TechS
 	for (auto srcCulture: srcAceptedCultures)
 	{
 		string dstCulture;
-		bool matched = cultureMapper::cultureMatch(srcCulture, dstCulture, religion, oldCapital, srcCountry->getTag());
+		bool matched = mappers::cultureMapper::cultureMatch(srcCulture, dstCulture, religion, oldCapital, srcCountry->getTag());
 		if (matched)
 		{
 			if (primaryCulture != dstCulture)
@@ -665,7 +665,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const vector<V2TechS
 	{
 		for (auto itr: srcRelations)
 		{
-			const std::string& V2Tag = CountryMapping::getVic2Tag(itr.second->getCountry());
+			const std::string& V2Tag = mappers::CountryMappings::getVic2Tag(itr.second->getCountry());
 			if (!V2Tag.empty())
 			{
 				V2Relations* v2r = new V2Relations(V2Tag, itr.second);
@@ -1983,20 +1983,23 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, map<int, V2P
 				{
 					int currentProvince = goodProvinces.front();
 					goodProvinces.pop();
-					vector<int> adjacencies = adjacencyMapper::getVic2Adjacencies(currentProvince);
-					for (unsigned int i = 0; i < adjacencies.size(); i++)
+					auto adjacencies = mappers::adjacencyMapper::getVic2Adjacencies(currentProvince);
+					if (adjacencies)
 					{
-						map<int, V2Province*>::iterator openItr = openProvinces.find(adjacencies[i]);
-						if (openItr == openProvinces.end())
+						for (auto adjacency: *adjacencies)
 						{
-							continue;
+							auto openItr = openProvinces.find(adjacency);
+							if (openItr == openProvinces.end())
+							{
+								continue;
+							}
+							if (openItr->second->getOwner() == tag)
+							{
+								homeProvince = openItr->second;
+							}
+							goodProvinces.push(openItr->first);
+							openProvinces.erase(openItr);
 						}
-						if (openItr->second->getOwner() == tag)
-						{
-							homeProvince = openItr->second;
-						}
-						goodProvinces.push(openItr->first);
-						openProvinces.erase(openItr);
 					}
 				} while ((goodProvinces.size() > 0) && (homeProvince == nullptr));
 			}

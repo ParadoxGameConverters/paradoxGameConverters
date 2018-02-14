@@ -1,4 +1,4 @@
-/*Copyright (c) 2016 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,45 +26,49 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include <fstream>
 #include <map>
+#include <optional>
 #include <string>
 #include <vector>
-using namespace std;
 
 
 
-class adjacencyMapper
+namespace mappers
 {
-	public:
-		static vector<int> getVic2Adjacencies(int Vic2Province)
-		{
-			return getInstance()->GetVic2Adjacencies(Vic2Province);
-		}
-
-	private:
-		static adjacencyMapper* instance;
-		static adjacencyMapper* getInstance()
-		{
-			if (instance == NULL)
+	class adjacencyMapper
+	{
+		public:
+			static std::optional<std::vector<int>> getVic2Adjacencies(int Vic2Province)
 			{
-				instance = new adjacencyMapper;
+				return getInstance()->GetVic2Adjacencies(Vic2Province);
 			}
 
-			return instance;
-		}
+		private:
+			static adjacencyMapper* instance;
+			static adjacencyMapper* getInstance()
+			{
+				if (instance == nullptr)
+				{
+					instance = new adjacencyMapper;
+				}
 
-		adjacencyMapper();
-		string getAdjacencyFilename();
-		void inputAdjacencies(FILE* adjacenciesFile);
-		vector<int> readAnAdjacenciesSet(FILE* adjacenciesFile, int numAdjacencies);
+				return instance;
+			}
 
-		void outputAdjacenciesMapData();
+			adjacencyMapper();
+			std::string getAdjacencyFilename();
+			void inputAdjacencies(std::istream& adjacenciesFile);
+			std::vector<int> readAnAdjacenciesSet(std::istream& adjacenciesFile, unsigned int numAdjacencies);
 
-		vector<int> GetVic2Adjacencies(int Vic2Province);
+			void outputAdjacenciesMapData();
+
+			std::optional<std::vector<int>> GetVic2Adjacencies(int Vic2Province);
 
 
-		map<int, vector<int>> adjacencyMap;
-};
+			std::map<int, std::vector<int>> adjacencyMap;
+	};
+}
 
 
 
