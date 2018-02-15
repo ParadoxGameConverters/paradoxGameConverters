@@ -271,3 +271,24 @@ commonItems::intList::intList(std::istream& theStream):
 
 	parseStream(theStream);
 }
+
+
+commonItems::stringList::stringList(std::istream& theStream):
+	strings()
+{
+	registerKeyword(std::regex("\\w+"), [this](const std::string& theString, std::istream& theStream)
+		{
+			strings.push_back(theString);
+		}
+	);
+
+	parseStream(theStream);
+}
+
+
+commonItems::singleString::singleString(std::istream& theStream):
+	theString()
+{
+	auto equals = getNextToken(theStream);
+	theString = *getNextToken(theStream);
+}

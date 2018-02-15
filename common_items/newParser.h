@@ -61,7 +61,9 @@ namespace commonItems
 			int braceDepth;
 	};
 
+
 	void ignoreObject(const std::string& unused, std::istream& theStream);
+
 
 	class intList: commonItems::parser
 	{
@@ -72,6 +74,30 @@ namespace commonItems
 
 		private:
 			std::vector<int> ints;
+	};
+
+
+	class stringList: commonItems::parser
+	{
+		public:
+			stringList(std::istream& theStream);
+
+			std::vector<std::string> getStrings() const { return strings; }
+
+		private:
+			std::vector<std::string> strings;
+	};
+
+
+	class singleString: commonItems::parser
+	{
+		public:
+			singleString(std::istream& theStream);
+
+			std::string getString() const { return theString; }
+
+		private:
+			std::string theString;
 	};
 }
 
