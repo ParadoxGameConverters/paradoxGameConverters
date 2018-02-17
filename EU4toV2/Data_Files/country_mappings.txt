@@ -756,7 +756,6 @@ link = { EU4 = YMN Vic2 = YMN } # Yamana
 link = { EU4 = RFR Vic2 = RFR } # Nanbu
 link = { EU4 = ASK Vic2 = ASK } # Ashikaga
 link = { EU4 = KTB Vic2 = KTB } # Kitabatake
-
 link = { EU4 = ANU Vic2 = ANU } # Ainu
 
 #New Daimyos 1.20
