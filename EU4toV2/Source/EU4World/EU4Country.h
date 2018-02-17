@@ -28,7 +28,9 @@ THE SOFTWARE. */
 #include "Color.h"
 #include "Date.h"
 #include "../CustomFlagMapper.h"
+#include "CultureGroups.h"
 #include <memory>
+#include <optional>
 
 
 
@@ -83,7 +85,7 @@ class EU4Country
 		int								getIsolationism()						const { return isolationism; }
 		string							getPrimaryCulture()						const { return primaryCulture; }
 		vector<string>					getAcceptedCultures()					const { return acceptedCultures; }
-		string							getCulturalUnion()						const { return culturalUnion; }
+		std::optional<EU4::cultureGroup> getCulturalUnion() const { return culturalUnion; }
 		string							getReligion()								const { return religion; }
 		double							getScore()									const { return score; }
 		double							getStability()								const { return stability; }
@@ -135,7 +137,7 @@ class EU4Country
 		int								isolationism;			// the isolationism of the country (for Shinto nations with Mandate of Heaven)
 		string							primaryCulture;		// the primary EU4 culture of this nation
 		vector<string>					acceptedCultures;		// the accepted EU4 cultures for this nation
-		string							culturalUnion;			// the culture group this nation is a union for
+		std::optional<EU4::cultureGroup> culturalUnion;
 		string							religion;				// the accepted religion of this country
 		double							score;					// this country's EU4 score
 		double							stability;				// the stability of this nation

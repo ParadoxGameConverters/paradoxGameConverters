@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -29,11 +29,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "OSCompatibilityLayer.h"
 #include "../Configuration.h"
 #include "../Mappers/CultureMapper.h"
-#include "../Mappers/EU4CultureGroupMapper.h"
 #include "../Mappers/ProvinceMapper.h"
 #include "../Mappers/ReligionMapper.h"
 #include "Object.h"
 #include "ParadoxParserUTF8.h"
+#include "CultureGroups.h"
 #include "EU4Province.h"
 #include "EU4Country.h"
 #include "EU4Diplomacy.h"
@@ -696,7 +696,7 @@ void EU4World::determineProvinceWeights()
 
 void EU4World::checkAllEU4CulturesMapped() const
 {
-	for (auto cultureItr: EU4CultureGroupMapper::getCultureToGroupMap())
+	for (auto cultureItr: EU4::cultureGroups::getCultureToGroupMap())
 	{
 		string Vi2Culture;
 

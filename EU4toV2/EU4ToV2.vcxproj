@@ -179,6 +179,7 @@
     <ClCompile Include="Source\EU4World\Areas.cpp" />
     <ClCompile Include="Source\EU4World\ColonialRegions.cpp" />
     <ClCompile Include="Source\EU4World\Continents.cpp" />
+    <ClCompile Include="Source\EU4World\CultureGroups.cpp" />
     <ClCompile Include="Source\EU4World\EU4Army.cpp" />
     <ClCompile Include="Source\EU4World\EU4Country.cpp" />
     <ClCompile Include="Source\EU4World\EU4Diplomacy.cpp" />
@@ -200,7 +201,6 @@
     <ClCompile Include="Source\Mappers\ColonyFlagsetMapper.cpp" />
     <ClCompile Include="Source\Mappers\CultureMapping.cpp" />
     <ClCompile Include="Source\Mappers\CultureMappingRule.cpp" />
-    <ClCompile Include="Source\Mappers\EU4CultureGroupMapper.cpp" />
     <ClCompile Include="Source\Mappers\FlagColorMapper.cpp" />
     <ClCompile Include="Source\Mappers\GovermentMapper.cpp" />
     <ClCompile Include="Source\Mappers\IdeaEffectMapper.cpp" />
@@ -245,6 +245,7 @@
     <ClInclude Include="Source\EU4World\Areas.h" />
     <ClInclude Include="Source\EU4World\ColonialRegions.h" />
     <ClInclude Include="Source\EU4World\Continents.h" />
+    <ClInclude Include="Source\EU4World\CultureGroups.h" />
     <ClInclude Include="Source\EU4World\EU4Army.h" />
     <ClInclude Include="Source\EU4World\EU4Country.h" />
     <ClInclude Include="Source\EU4World\EU4Diplomacy.h" />
@@ -266,7 +267,6 @@
     <ClInclude Include="Source\Mappers\CultureMapper.h" />
     <ClInclude Include="Source\Mappers\CultureMapping.h" />
     <ClInclude Include="Source\Mappers\CultureMappingRule.h" />
-    <ClInclude Include="Source\Mappers\EU4CultureGroupMapper.h" />
     <ClInclude Include="Source\Mappers\FlagColorMapper.h" />
     <ClInclude Include="Source\Mappers\GovernmentMapper.h" />
     <ClInclude Include="Source\Mappers\IdeaEffectMapper.h" />

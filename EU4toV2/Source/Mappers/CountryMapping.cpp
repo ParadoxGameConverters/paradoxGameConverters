@@ -26,11 +26,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <iomanip>
 #include "../Configuration.h"
 #include "../EU4World/ColonialRegions.h"
+#include "../EU4World/CultureGroups.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Country.h"
 #include "../EU4World/EU4Province.h"
 #include "CK2TitleMapper.h"
-#include "EU4CultureGroupMapper.h"
 #include "ProvinceMapper.h"
 #include "../V2World/Vic2Regions.h"
 #include "../V2World/V2Country.h"
@@ -355,7 +355,8 @@ bool mappers::CountryMappings::inCorrectCultureGroup(const mappers::colonyStruct
 {
 	if (colony.cultureGroup != "")
 	{
-		if (EU4CultureGroupMapper::getCulturalGroup(primaryCulture) != colony.cultureGroup)
+		auto culturalGroup = EU4::cultureGroups::getCulturalGroup(primaryCulture);
+		if ((culturalGroup) && (culturalGroup->getName() != colony.cultureGroup))
 		{
 			return false;
 		}

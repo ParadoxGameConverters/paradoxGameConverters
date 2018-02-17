@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -34,6 +34,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "CardinalToOrdinal.h"
 #include "ParadoxParser8859_15.h"
 #include "OSCompatibilityLayer.h"
+#include "../EU4World/CultureGroups.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Country.h"
 #include "../EU4World/EU4Province.h"
@@ -42,7 +43,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/AdjacencyMapper.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/CultureMapper.h"
-#include "../Mappers/EU4CultureGroupMapper.h"
 #include "../Mappers/GovernmentMapper.h"
 #include "../Mappers/IdeaEffectMapper.h"
 #include "../Mappers/ProvinceMapper.h"
@@ -590,11 +590,12 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const vector<V2TechS
 
 	//accepted cultures
 	vector<string> srcAceptedCultures = srcCountry->getAcceptedCultures();
-	if (srcCountry->getCulturalUnion() != "")
+	auto culturalUnion = srcCountry->getCulturalUnion();
+	if (culturalUnion)
 	{
-		for (auto unionCulture: EU4CultureGroupMapper::getCulturesInGroup(srcCountry->getCulturalUnion()))
+		for (auto unionCulture: culturalUnion->getCultures())
 		{
-			srcAceptedCultures.push_back(unionCulture);
+			srcAceptedCultures.push_back(unionCulture.first);
 		}
 	}
 	for (auto srcCulture: srcAceptedCultures)

@@ -137,9 +137,6 @@
     <ClCompile Include="Source\Mappers\Vic2CultureUnionMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Mappers\EU4CultureGroupMapper.cpp">
-      <Filter>Mappers</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Mappers\IdeaEffectMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
@@ -187,6 +184,9 @@
     </ClCompile>
     <ClCompile Include="Source\Mappers\SlaveCultureMapper.cpp">
       <Filter>Mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU4World\CultureGroups.cpp">
+      <Filter>EU4 World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -322,9 +322,6 @@
     <ClInclude Include="Source\Mappers\GovernmentMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Mappers\EU4CultureGroupMapper.h">
-      <Filter>Mappers</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Mappers\IdeaEffectMapper.h">
       <Filter>Mappers</Filter>
     </ClInclude>
@@ -374,6 +371,9 @@
       <Filter>Mappers</Filter>
     </ClInclude>
     <ClInclude Include="Source\CustomFlagMapper.h" />
+    <ClInclude Include="Source\EU4World\CultureGroups.h">
+      <Filter>EU4 World</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="EU4 World">

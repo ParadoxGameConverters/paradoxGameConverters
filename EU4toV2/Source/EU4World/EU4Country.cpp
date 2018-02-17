@@ -23,11 +23,11 @@ THE SOFTWARE. */
 #include "../Configuration.h"
 #include "Log.h"
 #include "Object.h"
+#include "CultureGroups.h"
 #include "EU4Province.h"
 #include "EU4Relations.h"
 #include "EU4Leader.h"
 #include "EU4Version.h"
-#include "../Mappers/EU4CultureGroupMapper.h"
 #include "../Mappers/IdeaEffectMapper.h"
 #include "../V2World/V2Localisation.h"
 #include <algorithm>
@@ -145,13 +145,17 @@ EU4Country::EU4Country(shared_ptr<Object> obj, EU4Version* version)
 		}
 		if (wasUnion)
 		{
-			culturalUnion = EU4CultureGroupMapper::getCulturalGroup(primaryCulture);
+			auto culturalUnion = EU4::cultureGroups::getCulturalGroup(primaryCulture);
 		}
 	}
 	else
 	{
 		vector<shared_ptr<Object>> unionCultureObj = obj->getValue("culture_group_union");	// the object holding the cultural union group
-		(unionCultureObj.size() > 0) ? culturalUnion = unionCultureObj[0]->getLeaf() : culturalUnion = "";
+		std::stringstream unionCultureStream;
+		unionCultureStream << *(unionCultureObj[0]);
+
+		EU4::cultureGroup newUnion(tag + "_union", unionCultureStream);
+		culturalUnion = newUnion;
 	}
 
 	vector<shared_ptr<Object>> religionObj = obj->getValue("religion");	// the object holding the religion
