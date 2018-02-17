@@ -223,6 +223,18 @@ std::string commonItems::getNextLexeme(std::istream& theStream)
 			}
 			break;
 		}
+		else if (!inString && (inputChar == '='))
+		{
+			if (toReturn.size() == 0)
+			{
+				toReturn += inputChar;
+			}
+			else
+			{
+				theStream.putback('=');
+			}
+			break;
+		}
 		else
 		{
 			toReturn += inputChar;
@@ -276,7 +288,8 @@ commonItems::intList::intList(std::istream& theStream):
 commonItems::stringList::stringList(std::istream& theStream):
 	strings()
 {
-	registerKeyword(std::regex("\\w+"), [this](const std::string& theString, std::istream& theStream)
+	std::string iso8859_15("[\\w\\x20\\x27\\x2C-\\x2E\\x3A\\x3F\\x60\\x8A\\x92\\x9A\\x9E\\xA0\\xA6\\xA8\\xB4\\xB8\\xBC-\\xBE\\xC0-\\xD6\\xD8-\\xF6\\xF8-\\xFF\\xED]+");
+	registerKeyword(std::regex(iso8859_15), [this](const std::string& theString, std::istream& theStream)
 		{
 			strings.push_back(theString);
 		}
