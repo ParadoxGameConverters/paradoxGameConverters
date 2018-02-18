@@ -272,6 +272,12 @@ void commonItems::ignoreObject(const std::string& unused, std::istream& theStrea
 }
 
 
+void commonItems::ignoreString(const std::string& unused, std::istream& theStream)
+{
+	commonItems::singleString ignore(theStream);
+}
+
+
 commonItems::intList::intList(std::istream& theStream):
 	ints()
 {

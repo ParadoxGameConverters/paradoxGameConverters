@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -37,7 +37,7 @@ void V2Localisation::SetTag(const std::string& newTag)
 	tag = newTag;
 }
 
-void V2Localisation::ReadFromCountry(const EU4Country& source)
+void V2Localisation::ReadFromCountry(const EU4::Country& source)
 {
 	for (size_t i = 0; i < numLanguages; ++i)
 	{

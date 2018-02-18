@@ -34,7 +34,7 @@ THE SOFTWARE. */
 
 
 
-EU4Country::EU4Country(shared_ptr<Object> obj, EU4Version* version)
+EU4::Country::Country(shared_ptr<Object> obj, EU4Version* version)
 {
 	tag = obj->getKey();
 
@@ -429,7 +429,7 @@ EU4Country::EU4Country(shared_ptr<Object> obj, EU4Version* version)
 }
 
 
-void EU4Country::determineInvestments()
+void EU4::Country::determineInvestments()
 {
 	armyInvestment = 32.0;
 	navyInvestment = 32.0;
@@ -448,7 +448,7 @@ void EU4Country::determineInvestments()
 }
 
 
-void EU4Country::determineFlagsAndModifiers(shared_ptr<Object> obj)
+void EU4::Country::determineFlagsAndModifiers(shared_ptr<Object> obj)
 {
 	flags.clear();
 	vector<shared_ptr<Object>> flagObject = obj->getValue("flags");	// the object holding the flags set for this country
@@ -483,7 +483,7 @@ void EU4Country::determineFlagsAndModifiers(shared_ptr<Object> obj)
 }
 
 
-void EU4Country::readFromCommonCountry(const string& fileName, shared_ptr<Object> obj)
+void EU4::Country::readFromCommonCountry(const std::string& fileName, const std::string& fullFilename)
 {
 	if (name.empty())
 	{
@@ -494,48 +494,63 @@ void EU4Country::readFromCommonCountry(const string& fileName, shared_ptr<Object
 
 	if (!color)
 	{
-		// Read country color.
-		const auto colorObj = obj->getValue("color");
-		if (colorObj[0])
-		{
-			color = commonItems::Color(colorObj[0]);
-		}
+		registerKeyword(std::regex("graphical_culture"), commonItems::ignoreString);
+		registerKeyword(std::regex("color"), [this](const std::string& unused, std::istream& theStream)
+			{
+				color = commonItems::Color(theStream);
+			}
+		);
+		registerKeyword(std::regex("revolutionary_colors"), commonItems::ignoreObject);
+		registerKeyword(std::regex("historical_score"), commonItems::ignoreString);
+		registerKeyword(std::regex("preferred_religion"), commonItems::ignoreString);
+		registerKeyword(std::regex("historical_idea_groups"), commonItems::ignoreObject);
+		registerKeyword(std::regex("historical_units"), commonItems::ignoreObject);
+		registerKeyword(std::regex("monarch_names"), commonItems::ignoreObject);
+		registerKeyword(std::regex("leader_names"), commonItems::ignoreObject);
+		registerKeyword(std::regex("ship_names"), commonItems::ignoreObject);
+		registerKeyword(std::regex("army_names"), commonItems::ignoreObject);
+		registerKeyword(std::regex("fleet_names"), commonItems::ignoreObject);
+		registerKeyword(std::regex("colonial_parent"), commonItems::ignoreString);
+		registerKeyword(std::regex("random_nation_chance"), commonItems::ignoreString);
+		registerKeyword(std::regex("random_nation_extra_size"), commonItems::ignoreString);
+		registerKeyword(std::regex("right_to_bear_arms"), commonItems::ignoreString);
+		parseFile(fullFilename);
 	}
 }
 
 
-void EU4Country::setLocalisationName(const string& language, const string& name)
+void EU4::Country::setLocalisationName(const string& language, const string& name)
 {
 	namesByLanguage[language] = name;
 }
 
 
-void EU4Country::setLocalisationAdjective(const string& language, const string& adjective)
+void EU4::Country::setLocalisationAdjective(const string& language, const string& adjective)
 {
 	adjectivesByLanguage[language] = adjective;
 }
 
 
-void EU4Country::addProvince(EU4Province* province)
+void EU4::Country::addProvince(EU4Province* province)
 {
 	provinces.push_back(province);
 }
 
 
-void EU4Country::addCore(EU4Province* core)
+void EU4::Country::addCore(EU4Province* core)
 {
 	cores.push_back(core);
 }
 
 
-bool EU4Country::hasModifier(string modifier) const
+bool EU4::Country::hasModifier(string modifier) const
 {
 	map<string, bool>::const_iterator itr = modifiers.find(modifier);
 	return (itr != modifiers.end());
 }
 
 
-int EU4Country::hasNationalIdea(string ni) const
+int EU4::Country::hasNationalIdea(string ni) const
 {
 	map<string, int>::const_iterator itr = nationalIdeas.find(ni);
 	if (itr != nationalIdeas.end())
@@ -549,14 +564,14 @@ int EU4Country::hasNationalIdea(string ni) const
 }
 
 
-bool EU4Country::hasFlag(string flag) const
+bool EU4::Country::hasFlag(string flag) const
 {
 	map<string, bool>::const_iterator itr = flags.find(flag);
 	return (itr != flags.end());
 }
 
 
-void EU4Country::resolveRegimentTypes(const RegimentTypeMap& map)
+void EU4::Country::resolveRegimentTypes(const RegimentTypeMap& map)
 {
 	for (vector<EU4Army*>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
 	{
@@ -565,7 +580,7 @@ void EU4Country::resolveRegimentTypes(const RegimentTypeMap& map)
 }
 
 
-int EU4Country::getManufactoryCount() const
+int EU4::Country::getManufactoryCount() const
 {
 	int retval = 0;	// the number of manus
 	for (vector<EU4Province*>::const_iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
@@ -579,7 +594,7 @@ int EU4Country::getManufactoryCount() const
 }
 
 
-void EU4Country::eatCountry(EU4Country* target)
+void EU4::Country::eatCountry(EU4::Country* target)
 {
 	// autocannibalism is forbidden
 	if (target->getTag() == tag)
@@ -638,7 +653,7 @@ void EU4Country::eatCountry(EU4Country* target)
 }
 
 
-void EU4Country::takeArmies(EU4Country* target)
+void EU4::Country::takeArmies(EU4::Country* target)
 {
 	// acquire target's armies, navies, admirals, and generals
 	armies.insert(armies.end(), target->armies.begin(), target->armies.end());
@@ -647,14 +662,14 @@ void EU4Country::takeArmies(EU4Country* target)
 }
 
 
-void EU4Country::clearArmies()
+void EU4::Country::clearArmies()
 {
 	armies.clear();
 	leaders.clear();
 }
 
 
-bool EU4Country::cultureSurvivesInCores()
+bool EU4::Country::cultureSurvivesInCores()
 {
 	for (auto core: cores)
 	{
@@ -677,7 +692,7 @@ bool EU4Country::cultureSurvivesInCores()
 }
 
 
-string EU4Country::getName(const string& language) const
+string EU4::Country::getName(const string& language) const
 {
 	if (!randomName.empty())
 	{
@@ -701,7 +716,7 @@ string EU4Country::getName(const string& language) const
 }
 
 
-string EU4Country::getAdjective(const string& language) const
+string EU4::Country::getAdjective(const string& language) const
 {
 	if (!randomName.empty())
 	{
@@ -724,7 +739,7 @@ string EU4Country::getAdjective(const string& language) const
 	}
 }
 
-int EU4Country::numEmbracedInstitutions() const {
+int EU4::Country::numEmbracedInstitutions() const {
 	int total = 0;
 	for (unsigned int i = 0; i < embracedInstitutions.size(); i++) {
 		if (embracedInstitutions[i]) total++;
@@ -733,13 +748,13 @@ int EU4Country::numEmbracedInstitutions() const {
 }
 
 
-void EU4Country::clearProvinces()
+void EU4::Country::clearProvinces()
 {
 	provinces.clear();
 }
 
 
-void EU4Country::clearCores()
+void EU4::Country::clearCores()
 {
 	cores.clear();
 }

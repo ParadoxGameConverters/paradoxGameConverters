@@ -32,7 +32,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-class EU4Country;
+namespace EU4
+{
+	class Country;
+}
+
 class EU4Province;
 class EU4Version;
 
@@ -46,7 +50,7 @@ class EU4World
 		EU4Province* getProvince(int provNum) const;
 
 		EU4Version* getVersion() const { return version; };
-		map<string, EU4Country*> getCountries() const { return countries; };
+		map<string, EU4::Country*> getCountries() const { return countries; };
 		vector<EU4Agreement> getDiplomaticAgreements() const { return diplomacy->getAgreements(); };
 		double getWorldWeightSum() const { return worldWeightSum; };
 
@@ -98,12 +102,12 @@ class EU4World
 		void removeDeadLandlessNations();
 		void removeLandlessNations();
 
-		EU4Country* getCountry(string tag) const;
+		EU4::Country* getCountry(string tag) const;
 
 		string holyRomanEmperor;
 		string celestialEmperor;
 		map<int, EU4Province*> provinces;
-		map<string, EU4Country*> countries;
+		map<string, EU4::Country*> countries;
 		EU4Diplomacy* diplomacy;
 		EU4Version* version;
 		double worldWeightSum;

@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -80,7 +80,7 @@ class V2World
 
 		void convertCountries(const EU4World& sourceWorld);
 		void initializeCountries(const EU4World& sourceWorld);
-		V2Country* createOrLocateCountry(const string& V2Tag, const EU4Country* sourceCountry);
+		V2Country* createOrLocateCountry(const string& V2Tag, const EU4::Country* sourceCountry);
 		void convertNationalValues();
 		void convertPrestige();
 		void addAllPotentialCountries();
@@ -88,7 +88,7 @@ class V2World
 		void editDefines(int numCivilisedNations);
 
 		void convertProvinces(const EU4World& sourceWorld);
-		vector<V2Demographic> determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, EU4Country* oldOwner, int destNum, double provPopRatio);
+		vector<V2Demographic> determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, EU4::Country* oldOwner, int destNum, double provPopRatio);
 
 		void convertDiplomacy(const EU4World& sourceWorld);
 		void setupColonies();

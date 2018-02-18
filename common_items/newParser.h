@@ -63,6 +63,7 @@ namespace commonItems
 
 
 	void ignoreObject(const std::string& unused, std::istream& theStream);
+	void ignoreString(const std::string& unused, std::istream& theStream);
 
 
 	class intList: commonItems::parser
