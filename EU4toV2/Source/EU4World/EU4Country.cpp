@@ -34,7 +34,8 @@ THE SOFTWARE. */
 
 
 
-EU4::Country::Country(shared_ptr<Object> obj, EU4Version* version)
+EU4::Country::Country(shared_ptr<Object> obj, EU4Version* version):
+	militaryLeaders()
 {
 	tag = obj->getKey();
 
@@ -192,8 +193,7 @@ EU4::Country::Country(shared_ptr<Object> obj, EU4Version* version)
 
 	possibleDaimyo = false;
 	possibleShogun = false;
-	leaders.clear();
-	vector<shared_ptr<Object>> historyObj = obj->getValue("history");	// the object holding the history for this country
+	vector<shared_ptr<Object>> historyObj = obj->getValue("history");
 	if (historyObj.size() > 0)
 	{
 		/*vector<shared_ptr<Object>> daimyoObj = historyObj[0]->getValue("daimyo");	// the object holding the daimyo information for this country
@@ -203,19 +203,19 @@ EU4::Country::Country(shared_ptr<Object> obj, EU4Version* version)
 		}*/
 
 		vector<shared_ptr<Object>> historyLeaves = historyObj[0]->getLeaves();	// the object holding the individual histories for this country
-		date hundredYearsOld = date("1740.1.1");							// one hundred years before conversion
 		for (vector<shared_ptr<Object>>::iterator itr = historyLeaves.begin(); itr != historyLeaves.end(); ++itr)
 		{
 			if(((*itr)->getKey()).find(".") != -1)	//historyObj contains some non-date leaves for initial config. Avoid trying to parse them as dates.
 			{
-				// grab leaders from history, ignoring those that are more than 100 years old...
-				if (date((*itr)->getKey()) > hundredYearsOld)
+				vector<shared_ptr<Object>> leaderObjs = (*itr)->getValue("leader");
+				for (vector<shared_ptr<Object>>::iterator litr = leaderObjs.begin(); litr != leaderObjs.end(); ++litr)
 				{
-					vector<shared_ptr<Object>> leaderObjs = (*itr)->getValue("leader");	// the leaders in this history
-					for (vector<shared_ptr<Object>>::iterator litr = leaderObjs.begin(); litr != leaderObjs.end(); ++litr)
+					std::stringstream leaderStream;
+					leaderStream << **litr;
+					EU4::leader* leader = new EU4::leader(leaderStream);
+					if (leader->isAlive())
 					{
-						EU4Leader* leader = new EU4Leader(*litr);	// a new leader
-						leaders.push_back(leader);
+						militaryLeaders.push_back(leader);
 					}
 				}
 			}
@@ -223,9 +223,9 @@ EU4::Country::Country(shared_ptr<Object> obj, EU4Version* version)
 	}
 
 	// figure out which leaders are active, and ditch the rest
-	vector<shared_ptr<Object>> activeLeaderObj = obj->getValue("leader");	// the object holding the active leaders
-	vector<int> activeIds;													// the ids for the active leaders
-	vector<EU4Leader*> activeLeaders;									// the active leaders themselves
+	vector<shared_ptr<Object>> activeLeaderObj = obj->getValue("leader");
+	vector<int> activeIds;
+	vector<EU4::leader*> activeLeaders;
 	for (vector<shared_ptr<Object>>::iterator itr = activeLeaderObj.begin(); itr != activeLeaderObj.end(); ++itr)
 	{
 		auto possibleIdStr = (*itr)->getLeaf("id");
@@ -234,14 +234,14 @@ EU4::Country::Country(shared_ptr<Object> obj, EU4Version* version)
 			activeIds.push_back(stoi(*possibleIdStr));
 		}
 	}
-	for (vector<EU4Leader*>::iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
+	for (auto militaryLeader: militaryLeaders)
 	{
-		if (find(activeIds.begin(), activeIds.end(), (*itr)->getID()) != activeIds.end())
+		if (find(activeIds.begin(), activeIds.end(), militaryLeader->getID()) != activeIds.end())
 		{
-			activeLeaders.push_back(*itr);
+			activeLeaders.push_back(militaryLeader);
 		}
 	}
-	leaders.swap(activeLeaders);
+	militaryLeaders.swap(activeLeaders);
 
 	vector<shared_ptr<Object>> governmentObj = obj->getValue("government");	// the object holding the government
 	(governmentObj.size() > 0) ? government = governmentObj[0]->getLeaf() : government = "";
@@ -631,7 +631,7 @@ void EU4::Country::eatCountry(EU4::Country* target)
 
 		// acquire target's armies, navies, admirals, and generals
 		armies.insert(armies.end(), target->armies.begin(), target->armies.end());
-		leaders.insert(leaders.end(), target->leaders.begin(), target->leaders.end());
+		militaryLeaders.insert(militaryLeaders.end(), target->militaryLeaders.begin(), target->militaryLeaders.end());
 
 		// rebalance prestige, badboy, inflation and techs from weighted average
 		score						= myWeight * score						+ targetWeight * target->score;
@@ -657,7 +657,7 @@ void EU4::Country::takeArmies(EU4::Country* target)
 {
 	// acquire target's armies, navies, admirals, and generals
 	armies.insert(armies.end(), target->armies.begin(), target->armies.end());
-	leaders.insert(leaders.end(), target->leaders.begin(), target->leaders.end());
+	militaryLeaders.insert(militaryLeaders.end(), target->militaryLeaders.begin(), target->militaryLeaders.end());
 	target->clearArmies();
 }
 
@@ -665,7 +665,7 @@ void EU4::Country::takeArmies(EU4::Country* target)
 void EU4::Country::clearArmies()
 {
 	armies.clear();
-	leaders.clear();
+	militaryLeaders.clear();
 }
 
 

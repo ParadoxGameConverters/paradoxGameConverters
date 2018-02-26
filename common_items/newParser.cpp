@@ -291,6 +291,23 @@ commonItems::intList::intList(std::istream& theStream):
 }
 
 
+commonItems::singleInt::singleInt(std::istream& theStream):
+	theInt()
+{
+	auto equals = getNextToken(theStream);
+	auto token = *getNextToken(theStream);
+	try
+	{
+		theInt = stoi(token);
+	}
+	catch (std::exception& e)
+	{
+		LOG(LogLevel::Warning) << "Expected an int, but instead got " << token;
+		theInt = 0;
+	}
+}
+
+
 commonItems::stringList::stringList(std::istream& theStream):
 	strings()
 {

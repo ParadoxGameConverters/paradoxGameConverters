@@ -20,50 +20,26 @@ THE SOFTWARE. */
 
 
 
-#ifndef EU4_LEADER_H_
-#define EU4_LEADER_H_
+#include "ID.h"
 
 
 
-#include "Date.h"
-#include "newParser.h"
-
-
-
-namespace EU4
+EU4::ID::ID(std::istream& theStream):
+	IDNum(),
+	type()
 {
-	class leader: commonItems::parser
-	{
-		public:
-			leader(std::istream& theStream);
+	registerKeyword(std::regex("id"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleInt theNum(theStream);
+			IDNum = theNum.getInt();
+		}
+	);
+	registerKeyword(std::regex("type"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleInt theNum(theStream);
+			type = theNum.getInt();
+		}
+	);
 
-			std::string getName() const { return name; }
-			int getFire() const { return fire; }
-			int getShock() const { return shock; }
-			int getManuever() const { return manuever; }
-			int getSiege() const { return siege; }
-			date getActivationDate() const { return activationDate; }
-			int getID() const { return id; }
-
-			bool isLand() const;
-			bool isAlive() const;
-
-		private:
-			std::string name;
-			std::string type;
-			bool female;
-			int fire;
-			int shock;
-			int manuever;
-			int siege;
-			std::string country;
-			std::string personality;
-			date activationDate;
-			date deathDate;
-			int id;
-	};
+	parseStream(theStream);
 }
-
-
-
-#endif // EU4_LEADER_H_

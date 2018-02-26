@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -28,13 +28,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Leader::V2Leader(const EU4Leader* oldLeader, const V2LeaderTraits& traits)
+V2Leader::V2Leader(const EU4::leader* oldLeader, const V2LeaderTraits& traits)
 {
-	name				= oldLeader->getName();
+	name = oldLeader->getName();
 	activationDate	= oldLeader->getActivationDate();
-	isLand			= oldLeader->isLand();
-	personality		= traits.getPersonality( oldLeader->getFire(), oldLeader->getShock(), oldLeader->getManuever(), oldLeader->getSiege() );
-	background		= traits.getBackground(  oldLeader->getFire(), oldLeader->getShock(), oldLeader->getManuever(), oldLeader->getSiege() );
+	isLand = oldLeader->isLand();
+	personality = traits.getPersonality(oldLeader->getFire(), oldLeader->getShock(), oldLeader->getManuever(), oldLeader->getSiege());
+	background = traits.getBackground(oldLeader->getFire(), oldLeader->getShock(), oldLeader->getManuever(), oldLeader->getSiege());
 }
 
 

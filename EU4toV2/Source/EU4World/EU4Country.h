@@ -35,8 +35,11 @@ THE SOFTWARE. */
 
 
 
+namespace EU4
+{
+	class leader;
+}
 class EU4Loan;
-class EU4Leader;
 class EU4Province;
 class EU4Relations;
 class EU4Version;
@@ -105,7 +108,6 @@ namespace EU4
 			string							getGovernment()							const { return government; }
 			map<string, EU4Relations*>	getRelations()								const { return relations; }
 			vector<EU4Army*>				getArmies()									const { return armies; }
-			vector<EU4Leader*>			getLeaders()								const { return leaders; }
 			bool								isCustom()									const { return customNation; }
 			bool								isColony()									const { return colony; }
 			string							getColonialRegion()						const { return colonialRegion; }
@@ -156,7 +158,7 @@ namespace EU4
 			map<string, bool>				modifiers;				// any modifiers set for this country
 			bool								possibleDaimyo;		// if this country is possibly a daimyo
 			bool							possibleShogun;			// if this country is the shogun
-			vector<EU4Leader*>			leaders;					// the military leaders in this country
+			vector<EU4::leader*> militaryLeaders;
 			string							government;				// the government type
 			map<string, EU4Relations*>	relations;				// the relations with other nations
 			vector<EU4Army*>				armies;					// this nation's armies and navies

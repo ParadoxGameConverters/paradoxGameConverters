@@ -78,6 +78,18 @@ namespace commonItems
 	};
 
 
+	class singleInt: commonItems::parser
+	{
+		public:
+			singleInt(std::istream& theStream);
+
+		int getInt() const { return theInt; }
+
+		private:
+			int theInt;
+	};
+
+
 	class stringList: commonItems::parser
 	{
 		public:
