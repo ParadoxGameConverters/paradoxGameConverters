@@ -315,8 +315,9 @@ EU4Country::EU4Country(shared_ptr<Object> obj, EU4Version* version)
 	}
 
 	libertyDesire = 0.0;
+	vector<shared_ptr<Object>> colonialParentObj = obj->getValue("colonial_parent");
 	vector<shared_ptr<Object>> colonialSubjectObj = obj->getValue("is_colonial_subject");
-	if (colonialSubjectObj.size() > 0)
+	if (colonialSubjectObj.size() > 0 || colonialParentObj.size() > 0)
 	{
 		string overlord;
 		vector<shared_ptr<Object>> overlordObj = obj->getValue("overlord");
