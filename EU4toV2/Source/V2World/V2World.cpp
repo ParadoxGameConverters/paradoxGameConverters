@@ -455,7 +455,7 @@ void V2World::initializeCountries(const EU4World& sourceWorld)
 }
 
 
-V2Country* V2World::createOrLocateCountry(const string& V2Tag, const EU4Country* sourceCountry)
+V2Country* V2World::createOrLocateCountry(const string& V2Tag, const EU4::Country* sourceCountry)
 {
 	V2Country* destCountry = nullptr;
 
@@ -552,7 +552,7 @@ void V2World::convertPrestige()
 	for (map<string, V2Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
 	{
 		double score = 0.0;
-		const EU4Country* srcCountry = countryItr->second->getSourceCountry();
+		const EU4::Country* srcCountry = countryItr->second->getSourceCountry();
 		if (srcCountry != nullptr)
 		{
 			score = srcCountry->getScore();
@@ -565,7 +565,7 @@ void V2World::convertPrestige()
 	for (map<string, V2Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
 	{
 		double score = 0.0;
-		const EU4Country* srcCountry = countryItr->second->getSourceCountry();
+		const EU4::Country* srcCountry = countryItr->second->getSourceCountry();
 		if (srcCountry != nullptr)
 		{
 			score = srcCountry->getScore();
@@ -678,7 +678,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 		Vic2Province.second->clearCores();
 
 		EU4Province*	oldProvince = nullptr;
-		EU4Country*		oldOwner = nullptr;
+		EU4::Country*		oldOwner = nullptr;
 		// determine ownership by province count, or total population (if province count is tied)
 		map<string, MTo1ProvinceComp> provinceBins;
 		double newProvinceTotalBaseTax = 0;
@@ -690,7 +690,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 				LOG(LogLevel::Warning) << "Old province " << EU4ProvinceNumber << " does not exist (bad mapping?)";
 				continue;
 			}
-			EU4Country* owner = province->getOwner();
+			EU4::Country* owner = province->getOwner();
 			string tag;
 			if (owner != nullptr)
 			{
@@ -770,8 +770,8 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 				for (vector<EU4Province*>::iterator vitr = mitr->second.provinces.begin(); vitr != mitr->second.provinces.end(); ++vitr)
 				{
 					// assign cores
-					vector<EU4Country*> oldCores = (*vitr)->getCores(sourceWorld.getCountries());
-					for (vector<EU4Country*>::iterator j = oldCores.begin(); j != oldCores.end(); j++)
+					vector<EU4::Country*> oldCores = (*vitr)->getCores(sourceWorld.getCountries());
+					for (vector<EU4::Country*>::iterator j = oldCores.begin(); j != oldCores.end(); j++)
 					{
 						std::string coreEU4Tag = (*j)->getTag();
 						// skip this core if the country is the owner of the EU4 province but not the V2 province
@@ -810,7 +810,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld)
 	}
 }
 
-vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, EU4Country* oldOwner, int destNum, double provPopRatio)
+vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, EU4::Country* oldOwner, int destNum, double provPopRatio)
 {
 	vector<V2Demographic> demographics;
 	for (auto prItr : popRatios)
@@ -1157,15 +1157,15 @@ void V2World::convertUncivReforms(const EU4World& sourceWorld)
 
 		// Find global max tech and institutions embraced
 
-		map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
+		map<string, EU4::Country*> sourceCountries = sourceWorld.getCountries();
 
 
-		map<string, EU4Country*>::iterator i = sourceCountries.begin();
+		map<string, EU4::Country*>::iterator i = sourceCountries.begin();
 		while (i->second->getProvinces().size() == 0)
 			i++;
 
 		// Take max from the first country
-		EU4Country* currCountry = i->second;
+		EU4::Country* currCountry = i->second;
 
 		double totalTechs = currCountry->getMilTech() + currCountry->getAdmTech() + currCountry->getDipTech();
 		topTech = totalTechs;
@@ -1226,30 +1226,30 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Converting techs";
 
-	map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
+	map<string, EU4::Country*> sourceCountries = sourceWorld.getCountries();
 
 	// Helper functions
-	auto getCountryArmyTech = [&](EU4Country* country)
+	auto getCountryArmyTech = [&](EU4::Country* country)
 	{
 		return country->getMilTech() + country->getAdmTech() + ideaEffectMapper::getArmyTechFromIdeas(country->getNationalIdeas());
 	};
 
-	auto getCountryNavyTech = [&](EU4Country* country)
+	auto getCountryNavyTech = [&](EU4::Country* country)
 	{
 		return country->getMilTech() + country->getDipTech() + ideaEffectMapper::getNavyTechFromIdeas(country->getNationalIdeas());
 	};
 
-	auto getCountryCommerceTech = [&](EU4Country* country)
+	auto getCountryCommerceTech = [&](EU4::Country* country)
 	{
 		return country->getAdmTech() + country->getDipTech() + ideaEffectMapper::getCommerceTechFromIdeas(country->getNationalIdeas());
 	};
 
-	auto getCountryCultureTech = [&](EU4Country* country)
+	auto getCountryCultureTech = [&](EU4::Country* country)
 	{
 		return country->getDipTech() + ideaEffectMapper::getCultureTechFromIdeas(country->getNationalIdeas());
 	};
 
-	auto getCountryIndustryTech = [&](EU4Country* country)
+	auto getCountryIndustryTech = [&](EU4::Country* country)
 	{
 		return country->getAdmTech() + country->getDipTech() + country->getMilTech() + ideaEffectMapper::getIndustryTechFromIdeas(country->getNationalIdeas());
 	};
@@ -1260,12 +1260,12 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 	double cultureMax, cultureMean;
 	double industryMax, industryMean;
 
-	map<string, EU4Country*>::iterator i = sourceCountries.begin();
+	map<string, EU4::Country*>::iterator i = sourceCountries.begin();
 	while (i->second->getProvinces().size() == 0)
 		i++;
 
 	// Take mean and max from the first country
-	EU4Country* currCountry = i->second;
+	EU4::Country* currCountry = i->second;
 	armyMax = armyMean = getCountryArmyTech(currCountry);
 	navyMax = navyMean = getCountryNavyTech(currCountry);
 	commerceMax = commerceMean = getCountryCommerceTech(currCountry);
@@ -1312,7 +1312,7 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 		if ((Configuration::getV2Gametype() != "vanilla") && !country->isCivilized())
 			continue;
 
-		EU4Country* srcCountry = country->getSourceCountry();
+		EU4::Country* srcCountry = country->getSourceCountry();
 		if (!srcCountry)
 			continue;
 
@@ -1333,10 +1333,10 @@ void V2World::allocateFactories(const EU4World& sourceWorld)
 	LOG(LogLevel::Info) << "Allocating starting factories";
 
 	// determine average production tech
-	map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
+	map<string, EU4::Country*> sourceCountries = sourceWorld.getCountries();
 	double admMean = 0.0f;
 	int num = 1;
-	for (map<string, EU4Country*>::iterator itr = sourceCountries.begin(); itr != sourceCountries.end(); ++itr)
+	for (map<string, EU4::Country*>::iterator itr = sourceCountries.begin(); itr != sourceCountries.end(); ++itr)
 	{
 		if ((itr)->second->getProvinces().size() == 0)
 		{
@@ -1357,7 +1357,7 @@ void V2World::allocateFactories(const EU4World& sourceWorld)
 			continue;
 		}
 
-		const EU4Country* sourceCountry = itr->second->getSourceCountry();
+		const EU4::Country* sourceCountry = itr->second->getSourceCountry();
 		if (sourceCountry == nullptr)
 		{
 			continue;

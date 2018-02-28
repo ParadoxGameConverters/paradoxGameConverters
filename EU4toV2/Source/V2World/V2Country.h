@@ -39,7 +39,10 @@ using namespace std;
 
 
 class EU4World;
-class EU4Country;
+namespace EU4
+{
+	class Country;
+}
 class V2World;
 class V2State;
 class V2Province;
@@ -65,7 +68,7 @@ class V2Country
 		void								outputToCommonCountriesFile(FILE*) const;
 		void								outputLocalisation(FILE*) const;
 		void								outputOOB() const;
-		void								initFromEU4Country(EU4Country* _srcCountry, const vector<V2TechSchool>& techSchools, const map<int, int>& leaderMap);
+		void								initFromEU4Country(EU4::Country* _srcCountry, const vector<V2TechSchool>& techSchools, const map<int, int>& leaderMap);
 		void								initFromHistory();
 		void								addProvince(V2Province* _province);
 		void								addState(V2State* newState);
@@ -104,7 +107,7 @@ class V2Country
 		bool								isCivilized() const { return civilized; }
 		string							getPrimaryCulture() const { return primaryCulture; }
 		set<string>						getAcceptedCultures() const { return acceptedCultures; }
-		EU4Country*						getSourceCountry() const { return srcCountry; }
+		EU4::Country*						getSourceCountry() const { return srcCountry; }
 		double							getReactionary() const { return upperHouseReactionary; }
 		double							getConservative() const { return upperHouseConservative; }
 		double							getLiberal() const { return upperHouseLiberal; }
@@ -133,7 +136,7 @@ class V2Country
 		string		getRegimentName(RegimentCategory rc);
 
 		const V2World* theWorld;
-		EU4Country* srcCountry;
+		EU4::Country* srcCountry;
 		string							filename;
 		bool								newCountry;			// true if this country is being added by the converter, i.e. doesn't already exist in Vic2
 		bool								dynamicCountry;	// true if this country is a Vic2 dynamic country

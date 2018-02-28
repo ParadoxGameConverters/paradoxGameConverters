@@ -272,6 +272,12 @@ void commonItems::ignoreObject(const std::string& unused, std::istream& theStrea
 }
 
 
+void commonItems::ignoreString(const std::string& unused, std::istream& theStream)
+{
+	commonItems::singleString ignore(theStream);
+}
+
+
 commonItems::intList::intList(std::istream& theStream):
 	ints()
 {
@@ -282,6 +288,23 @@ commonItems::intList::intList(std::istream& theStream):
 	);
 
 	parseStream(theStream);
+}
+
+
+commonItems::singleInt::singleInt(std::istream& theStream):
+	theInt()
+{
+	auto equals = getNextToken(theStream);
+	auto token = *getNextToken(theStream);
+	try
+	{
+		theInt = stoi(token);
+	}
+	catch (std::exception& e)
+	{
+		LOG(LogLevel::Warning) << "Expected an int, but instead got " << token;
+		theInt = 0;
+	}
 }
 
 

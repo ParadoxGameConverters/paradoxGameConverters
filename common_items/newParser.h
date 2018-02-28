@@ -63,6 +63,7 @@ namespace commonItems
 
 
 	void ignoreObject(const std::string& unused, std::istream& theStream);
+	void ignoreString(const std::string& unused, std::istream& theStream);
 
 
 	class intList: commonItems::parser
@@ -74,6 +75,18 @@ namespace commonItems
 
 		private:
 			std::vector<int> ints;
+	};
+
+
+	class singleInt: commonItems::parser
+	{
+		public:
+			singleInt(std::istream& theStream);
+
+		int getInt() const { return theInt; }
+
+		private:
+			int theInt;
 	};
 
 

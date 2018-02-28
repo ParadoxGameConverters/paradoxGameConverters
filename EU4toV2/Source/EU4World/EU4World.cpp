@@ -496,7 +496,7 @@ void EU4World::loadCountries(const shared_ptr<Object> EU4SaveObj)
 			}
 			else
 			{
-				EU4Country* country = new EU4Country(countriesLeaves[j], version);	// the country in our format
+				EU4::Country* country = new EU4::Country(countriesLeaves[j], version);	// the country in our format
 				countries.insert(make_pair(country->getTag(), country));
 
 				// set HRE stuff
@@ -539,7 +539,7 @@ void EU4World::addProvinceInfoToCountries()
 	// add province owner info to countries
 	for (map<int, EU4Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
-		map<string, EU4Country*>::iterator j = countries.find( i->second->getOwnerString() );
+		map<string, EU4::Country*>::iterator j = countries.find( i->second->getOwnerString() );
 		if (j != countries.end())
 		{
 			j->second->addProvince(i->second);
@@ -550,8 +550,8 @@ void EU4World::addProvinceInfoToCountries()
 	// add province core info to countries
 	for (map<int, EU4Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
-		vector<EU4Country*> cores = i->second->getCores(countries);	// the cores held on this province
-		for (vector<EU4Country*>::iterator j = cores.begin(); j != cores.end(); j++)
+		vector<EU4::Country*> cores = i->second->getCores(countries);	// the cores held on this province
+		for (vector<EU4::Country*>::iterator j = cores.begin(); j != cores.end(); j++)
 		{
 			(*j)->addCore(i->second);
 		}
@@ -746,10 +746,10 @@ void EU4World::readCommonCountriesFile(istream& in, const std::string& rootPath)
 		{
 			// First three characters must be the tag.
 			std::string tag = countryLine.substr(0, 3);
-			map<string, EU4Country*>::iterator findIter = countries.find(tag);
+			map<string, EU4::Country*>::iterator findIter = countries.find(tag);
 			if (findIter != countries.end())
 			{
-				EU4Country* country = findIter->second;
+				EU4::Country* country = findIter->second;
 
 				// The country file name is all the text after the equals sign (possibly in quotes).
 				size_t commentPos	= countryLine.find('#', 3);
@@ -768,10 +768,10 @@ void EU4World::readCommonCountriesFile(istream& in, const std::string& rootPath)
 				std::replace(fileName.begin(), fileName.end(), '/', '/');
 
 				// Parse the country file.
-				std::string path = rootPath + "/common/" + fileName;
-				size_t lastPathSeparatorPos = path.find_last_of('/');
-				std::string localFileName = path.substr(lastPathSeparatorPos + 1, string::npos);
-				country->readFromCommonCountry(localFileName, parser_UTF8::doParseFile(path.c_str()));
+				std::string fullFilename = rootPath + "/common/" + fileName;
+				size_t lastPathSeparatorPos = fullFilename.find_last_of('/');
+				std::string localFileName = fullFilename.substr(lastPathSeparatorPos + 1, string::npos);
+				country->readFromCommonCountry(localFileName, fullFilename);
 			}
 		}
 	}
@@ -789,7 +789,7 @@ void EU4World::setLocalisations()
 		localisation.ReadFromAllFilesInFolder(itr + "/localisation");
 	}
 
-	for (map<string, EU4Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	for (map<string, EU4::Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
 	{
 		const auto& nameLocalisations = localisation.GetTextInEachLanguage(countryItr->second->getTag());	// the names in all languages
 		for (const auto& nameLocalisation : nameLocalisations)	// the name under consideration
@@ -845,7 +845,7 @@ void EU4World::resolveRegimentTypes()
 	read.close();
 	read.clear();
 
-	for (map<string, EU4Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	for (map<string, EU4::Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
 		itr->second->resolveRegimentTypes(rtm);
 	}
@@ -901,7 +901,7 @@ void EU4World::mergeNations()
 			}
 		}
 
-		EU4Country* master = getCountry(masterTag);
+		EU4::Country* master = getCountry(masterTag);
 		if (enabled && (master != NULL))
 		{
 			for (auto slaveTag: slaveTags)
@@ -919,7 +919,7 @@ void EU4World::mergeNations()
 
 void EU4World::uniteJapan()
 {
-	EU4Country* japan = nullptr;
+	EU4::Country* japan = nullptr;
 
 	auto version20 = EU4Version("1.20.0.0");
 	if (*version >= version20)
@@ -995,7 +995,7 @@ void EU4World::checkAllEU4ReligionsMapped() const
 
 void EU4World::removeEmptyNations()
 {
-	map<string, EU4Country*> survivingCountries;
+	map<string, EU4::Country*> survivingCountries;
 
 	for (auto country: countries)
 	{
@@ -1017,7 +1017,7 @@ void EU4World::removeEmptyNations()
 
 void EU4World::removeDeadLandlessNations()
 {
-	map<string, EU4Country*> landlessCountries;
+	map<string, EU4::Country*> landlessCountries;
 	for (auto country: countries)
 	{
 		vector<EU4Province*> provinces = country.second->getProvinces();
@@ -1040,7 +1040,7 @@ void EU4World::removeDeadLandlessNations()
 
 void EU4World::removeLandlessNations()
 {
-	map<string, EU4Country*> survivingCountries;
+	map<string, EU4::Country*> survivingCountries;
 
 	for (auto country: countries)
 	{
@@ -1059,9 +1059,9 @@ void EU4World::removeLandlessNations()
 }
 
 
-EU4Country* EU4World::getCountry(string tag) const
+EU4::Country* EU4World::getCountry(string tag) const
 {
-	map<string, EU4Country*>::const_iterator i = countries.find(tag);
+	map<string, EU4::Country*>::const_iterator i = countries.find(tag);
 	return (i != countries.end()) ? i->second : NULL;
 }
 

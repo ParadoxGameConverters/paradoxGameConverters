@@ -20,50 +20,30 @@ THE SOFTWARE. */
 
 
 
-#ifndef EU4_LEADER_H_
-#define EU4_LEADER_H_
+#ifndef EU4_ID_H
+#define EU4_ID_H
 
 
 
-#include "Date.h"
 #include "newParser.h"
 
 
 
 namespace EU4
 {
-	class leader: commonItems::parser
+	class ID: commonItems::parser
 	{
 		public:
-			leader(std::istream& theStream);
+			ID(std::istream& theStream);
 
-			std::string getName() const { return name; }
-			int getFire() const { return fire; }
-			int getShock() const { return shock; }
-			int getManuever() const { return manuever; }
-			int getSiege() const { return siege; }
-			date getActivationDate() const { return activationDate; }
-			int getID() const { return id; }
-
-			bool isLand() const;
-			bool isAlive() const;
+			int getIDNum() { return IDNum; }
 
 		private:
-			std::string name;
-			std::string type;
-			bool female;
-			int fire;
-			int shock;
-			int manuever;
-			int siege;
-			std::string country;
-			std::string personality;
-			date activationDate;
-			date deathDate;
-			int id;
+			int IDNum;
+			int type;
 	};
 }
 
 
 
-#endif // EU4_LEADER_H_
+#endif // EU4_ID_H
