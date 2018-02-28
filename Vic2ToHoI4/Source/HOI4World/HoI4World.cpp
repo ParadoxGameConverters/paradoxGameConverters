@@ -1673,6 +1673,7 @@ void HoI4World::output() const
 	outputIdeologicalIdeas();
 	outputScriptedTriggers();
 	outputOnActions();
+	outputBookmarks();
 }
 
 
@@ -2106,6 +2107,55 @@ void HoI4World::outputOnActions() const
 	onActionsFile << "	}\n";
 	onActionsFile << "}\n";
 	onActionsFile.close();
+}
+
+
+void HoI4World::outputBookmarks() const
+{
+	ofstream bookmarkFile("output/" + Configuration::getOutputName() + "/common/bookmarks/the_gathering_storm.txt");
+
+	bookmarkFile << "bookmarks = {\n";
+	bookmarkFile << "	bookmark = {\n";
+	bookmarkFile << "		name = ""GATHERING_STORM_NAME""\n";
+	bookmarkFile << "		desc = ""GATHERING_STORM_DESC""\n";
+	bookmarkFile << "		date = 1936.1.1.12\n";
+	bookmarkFile << "		picture = ""GFX_select_date_1936""\n";
+	bookmarkFile << "		default = yes\n";
+
+	for (auto greatPower : greatPowers)
+	{
+		//Vic2 Great powers become majors in bookmark
+		bookmarkFile << "		" + greatPower->getTag() + "={\n";
+		bookmarkFile << "			history = ""OTHER_GATHERING_STORM_DESC""\n";
+		bookmarkFile << "			ideology = Yes\n";
+		bookmarkFile << "			ideas = {great_power}\n";
+		bookmarkFile << "		}\n";
+	}
+
+	for (auto country : countries)
+	{
+		if (country.second->isGreatPower() != true)
+		{
+			if (country.second->getStrengthOverTime(3) > 4500)
+			{
+				//add minor countries to the bookmark, only those with custom focustree are visible due to Hoi4 limitations
+				//Bookmark window has room for 22 minor countries, going over this seems to not cause any issues however
+				bookmarkFile << "		" + country.second->getTag() + " = {\n";
+				bookmarkFile << "			minor = yes\n";
+				bookmarkFile << "			history = ""OTHER_GATHERING_STORM_DESC""\n";
+				bookmarkFile << "		ideology = Yes\n";
+				bookmarkFile << "		ideas = {}\n";
+				bookmarkFile << "		}\n";
+			}
+		}
+	}
+
+	bookmarkFile << "effect = {\n";
+	bookmarkFile << "randomize_weather = 22345 # <-Obligatory in every bookmark !\n";
+	bookmarkFile << "#123 = { rain_light = yes }\n";
+	bookmarkFile << "	}\n";
+	bookmarkFile << "}\n";
+	bookmarkFile.close();
 }
 
 
