@@ -44,6 +44,7 @@ HoI4State::HoI4State(const Vic2State* _sourceState, int _ID, const string& _owne
 	cores(),
 	capitalState(false),
 	impassable(false),
+	hadImpassablePart(false),
 	manpower(0),
 	civFactories(0),
 	milFactories(0),
@@ -274,9 +275,9 @@ void HoI4State::tryToCreateVP()
 
 	if (!VPCreated)
 	{
-		if (Configuration::getDebug() && !sourceState->isPartialState() && !impassable)
+		if (Configuration::getDebug() && !sourceState->isPartialState() && !impassable && !hadImpassablePart)
 		{
-			LOG(LogLevel::Warning) << "Could not initially create VP for state " << ID << ", but state is not split (or was the passable part of a partially passable state).";
+			LOG(LogLevel::Warning) << "Could not initially create VP for state " << ID << ", but state is not split.";
 		}
 		for (auto province: sourceState->getProvinces())
 		{

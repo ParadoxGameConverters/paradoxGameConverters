@@ -50,6 +50,7 @@ class HoI4State
 		void addProvince(int province) { provinces.insert(province); }
 		void setAsCapitalState() { capitalState = true; civFactories++; }
 		void makeImpassable() { impassable = true; }
+		void markHadImpassablePart() { hadImpassablePart = true; }
 		void addResource(const string& resource, double amount)	{ resources[resource] += amount; }
 		void addAirBase(int newAirBase) { airbaseLevel += newAirBase; if (airbaseLevel > 10) airbaseLevel = 10; }
 		void addVictoryPointValue(int additionalValue) { victoryPointValue += additionalValue; }
@@ -107,6 +108,7 @@ class HoI4State
 		set<string> cores;
 		bool capitalState;
 		bool impassable;
+		bool hadImpassablePart;
 
 		int manpower;
 

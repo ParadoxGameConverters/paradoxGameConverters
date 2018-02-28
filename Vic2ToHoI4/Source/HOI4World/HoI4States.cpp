@@ -231,6 +231,10 @@ void HoI4States::createMatchingHoI4State(const Vic2State* vic2State, const strin
 		addProvincesAndCoresToNewState(newState, passableProvinces);
 		newState->tryToCreateVP();
 		newState->addManpower();
+		if (impassableProvinces.size() > 0)
+		{
+			newState->markHadImpassablePart();
+		}
 		states.insert(make_pair(nextStateID, newState));
 		nextStateID++;
 	}
