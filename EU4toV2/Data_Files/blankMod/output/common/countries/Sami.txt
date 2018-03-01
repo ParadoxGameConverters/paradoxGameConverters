@@ -2,7 +2,7 @@ color = { 252  209  22 }
 graphical_culture = EuropeanGC
 
 party = {
-	name = "SAM_conservative"
+	name = "FIN_conservative"
 	start_date = 1830.1.1
 	end_date = 1918.1.1
 
@@ -16,7 +16,7 @@ party = {
 }
 
 party = {
-	name = "SAM_conservative_2"
+	name = "FIN_conservative_2"
 	start_date = 1830.1.1
 	end_date = 1905.1.1
 
@@ -30,7 +30,7 @@ party = {
 }
 
 party = {
-	name = "SAM_liberal"
+	name = "FIN_liberal"
 	start_date = 1894.1.1
 	end_date = 1917.1.1
 
@@ -44,7 +44,7 @@ party = {
 }
 
 party = {
-	name = "SAM_liberal_2"
+	name = "FIN_liberal_2"
 	start_date = 1918.1.1
 	end_date = 2000.1.1
 
@@ -58,7 +58,7 @@ party = {
 }
 
 party = {
-	name = "SAM_reactionary"
+	name = "FIN_reactionary"
 	start_date = 1918.1.1
 	end_date = 2000.1.1
 
@@ -72,7 +72,7 @@ party = {
 }
 
 party = {
-	name = "SAM_socialist"
+	name = "FIN_socialist"
 	start_date = 1848.1.1
 	end_date = 1920.1.1
 
@@ -86,7 +86,7 @@ party = {
 }
 
 party = {
-	name = "SAM_conservative_3"
+	name = "FIN_conservative_3"
 	start_date = 1905.1.1
 	end_date = 2000.1.1
 
@@ -100,7 +100,7 @@ party = {
 }
 
 party = {
-	name = "SAM_conservative_4"
+	name = "FIN_conservative_4"
 	start_date = 1905.1.1
 	end_date = 2000.1.1
 
@@ -114,7 +114,7 @@ party = {
 }
 
 party = {
-	name = "SAM_anarcho_liberal"
+	name = "FIN_anarcho_liberal"
 	start_date = 1830.1.1
 	end_date = 2000.1.1
 
@@ -128,7 +128,7 @@ party = {
 }
 
 party = {
-	name = "SAM_liberal_3"
+	name = "FIN_liberal_3"
 	start_date = 1830.1.1
 	end_date = 1894.1.1
 
@@ -142,7 +142,7 @@ party = {
 }
 
 party = {
-	name = "SAM_reactionary_2"
+	name = "FIN_reactionary_2"
 	start_date = 1830.1.1
 	end_date = 1918.1.1
 
@@ -156,7 +156,7 @@ party = {
 }
 
 party = {
-	name = "SAM_communist"
+	name = "FIN_communist"
 	start_date = 1848.1.1
 	end_date = 1920.1.1
 
@@ -170,7 +170,7 @@ party = {
 }
 
 party = {
-	name = "SAM_fascist"
+	name = "FIN_fascist"
 	start_date = 1905.1.1
 	end_date = 2000.1.1
 

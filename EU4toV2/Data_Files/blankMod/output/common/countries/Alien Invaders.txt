@@ -1,0 +1,135 @@
+color = { 40 40 40 }
+graphical_culture = EuropeanGC
+
+party = {
+	name = "ALI_reactionary"
+	start_date = 1830.1.1
+	end_date = 2000.1.1
+
+	ideology = reactionary
+	
+	economic_policy = state_capitalism
+	trade_policy = protectionism
+	religious_policy = pluralism
+	citizenship_policy = residency
+	war_policy = jingoism
+}
+
+party = {
+	name = "ALI_liberal"
+	start_date = 1830.1.1
+	end_date = 2000.1.1
+
+	ideology = liberal
+
+	economic_policy = laissez_faire
+	trade_policy = protectionism
+	religious_policy = pluralism
+	citizenship_policy = residency
+	war_policy = jingoism
+}
+
+party = {
+	name = "ALI_conservative"
+	start_date = 1830.1.1
+	end_date = 2000.1.1
+
+	ideology = conservative
+
+	economic_policy = laissez_faire
+	trade_policy = free_trade
+	religious_policy = pluralism
+	citizenship_policy = residency
+	war_policy = pro_military
+}
+
+party = {
+	name = "ALI_socialist"
+	start_date = 1848.1.1
+	end_date = 2000.1.1
+
+	ideology = socialist
+
+	economic_policy = planned_economy
+	trade_policy = protectionism
+	religious_policy = pro_atheism
+	citizenship_policy = residency
+	war_policy = pro_military
+}
+
+party = {
+	name = "ALI_anarcho_liberal"
+	start_date = 1830.1.1
+	end_date = 2000.1.1
+
+	ideology = anarcho_liberal
+
+	economic_policy = laissez_faire
+	trade_policy = free_trade
+	religious_policy = pro_atheism
+	citizenship_policy = residency
+	war_policy = pro_military
+}
+
+party = {
+	name = "ALI_communist"
+	start_date = 1848.1.1
+	end_date = 2000.1.1
+
+	ideology = communist
+
+	economic_policy = planned_economy
+	trade_policy = protectionism
+	religious_policy = pro_atheism
+	citizenship_policy = residency
+	war_policy = pro_military
+}
+
+party = {
+	name = "ALI_fascist"
+	start_date = 1905.1.1
+	end_date = 2000.1.1
+
+	ideology = fascist
+
+	economic_policy = state_capitalism
+	trade_policy = protectionism
+	religious_policy = moralism
+	citizenship_policy = residency
+	war_policy = jingoism
+}
+
+unit_names = {
+	dreadnought = {
+		Xad-Nyak Xederex Zadhadex Xontex Xadamach Xedleetha Xiin Zadakhat Ximang Zaraxes Ziinaxad Xadara Xischmi Zongax Zaraxim Zidix Zadaxon Zixim Ciimixin Ceremax Casarax Codvox Xiad Xomba Cardaxes Cardix Xobbon Zidinix Zarakh Zidrimax Zymtarax Cidjax Ximpa Xarxa Xogor Xanar Zilgar Deltox Zinivar Zendjax Zorixon Derazix Dolzor Dargaxor Darbix Daraxa Diinorzo Debar-Zax Zor-Kalos Zur-Talax Xom-Buruk Xol-Remok Xar-Corox Zel-Dotor Zod-Garax Diigarzak Zebarax Cyntharzo Conobax Carox Dez-Hilam Dax-Endiv Zablinnox Zapozor Zakithor Zadamak Zikrax Zuuldorox Zaximock Zaatrix Xoldagoros Xurinzaga Xorbozhaga Caldorix Cathrox Dexirama Dezuzarix Dirixiz Descorax Difirixamon Canix Zakarax Zithrix Cablarex Xarkaz Xeplaz Xevarex Damonix Decorza Daxarim Zakardim
+		Xodarciz Zimizar Zulxari Zib-Korox Xuv-Xanim Xol-Irix Xam-Zevon Zed-Kevlax
+	}
+	ironclad = {
+		Xad-Nyak Xederex Zadhadex Xontex Xadamach Xedleetha Xiin Zadakhat Ximang Zaraxes Ziinaxad Xadara Xischmi Zongax Zaraxim Zidix Zadaxon Zixim Ciimixin Ceremax Casarax Codvox Xiad Xomba Cardaxes Cardix Xobbon Zidinix Zarakh Zidrimax Zymtarax Cidjax Ximpa Xarxa Xogor Xanar Zilgar Deltox Zinivar Zendjax Zorixon Derazix Dolzor Dargaxor Darbix Daraxa Diinorzo Debar-Zax Zor-Kalos Zur-Talax Xom-Buruk Xol-Remok Xar-Corox Zel-Dotor Zod-Garax Diigarzak Zebarax Cyntharzo Conobax Carox Dez-Hilam Dax-Endiv Zablinnox Zapozor Zakithor Zadamak Zikrax Zuuldorox Zaximock Zaatrix Xoldagoros Xurinzaga Xorbozhaga Caldorix Cathrox Dexirama Dezuzarix Dirixiz Descorax Difirixamon Canix Zakarax Zithrix Cablarex Xarkaz Xeplaz Xevarex Damonix Decorza Daxarim Zakardim
+		Xodarciz Zimizar Zulxari Zib-Korox Xuv-Xanim Xol-Irix Xam-Zevon Zed-Kevlax
+	}
+	manowar = {
+		Xad-Nyak Xederex Zadhadex Xontex Xadamach Xedleetha Xiin Zadakhat Ximang Zaraxes Ziinaxad Xadara Xischmi Zongax Zaraxim Zidix Zadaxon Zixim Ciimixin Ceremax Casarax Codvox Xiad Xomba Cardaxes Cardix Xobbon Zidinix Zarakh Zidrimax Zymtarax Cidjax Ximpa Xarxa Xogor Xanar Zilgar Deltox Zinivar Zendjax Zorixon Derazix Dolzor Dargaxor Darbix Daraxa Diinorzo Debar-Zax Zor-Kalos Zur-Talax Xom-Buruk Xol-Remok Xar-Corox Zel-Dotor Zod-Garax Diigarzak Zebarax Cyntharzo Conobax Carox Dez-Hilam Dax-Endiv Zablinnox Zapozor Zakithor Zadamak Zikrax Zuuldorox Zaximock Zaatrix Xoldagoros Xurinzaga Xorbozhaga Caldorix Cathrox Dexirama Dezuzarix Dirixiz Descorax Difirixamon Canix Zakarax Zithrix Cablarex Xarkaz Xeplaz Xevarex Damonix Decorza Daxarim Zakardim
+		Xodarciz Zimizar Zulxari Zib-Korox Xuv-Xanim Xol-Irix Xam-Zevon Zed-Kevlax
+	}
+	cruiser = {
+		Xad-Nyak Xederex Zadhadex Xontex Xadamach Xedleetha Xiin Zadakhat Ximang Zaraxes Ziinaxad Xadara Xischmi Zongax Zaraxim Zidix Zadaxon Zixim Ciimixin Ceremax Casarax Codvox Xiad Xomba Cardaxes Cardix Xobbon Zidinix Zarakh Zidrimax Zymtarax Cidjax Ximpa Xarxa Xogor Xanar Zilgar Deltox Zinivar Zendjax Zorixon Derazix Dolzor Dargaxor Darbix Daraxa Diinorzo Debar-Zax Zor-Kalos Zur-Talax Xom-Buruk Xol-Remok Xar-Corox Zel-Dotor Zod-Garax Diigarzak Zebarax Cyntharzo Conobax Carox Dez-Hilam Dax-Endiv Zablinnox Zapozor Zakithor Zadamak Zikrax Zuuldorox Zaximock Zaatrix Xoldagoros Xurinzaga Xorbozhaga Caldorix Cathrox Dexirama Dezuzarix Dirixiz Descorax Difirixamon Canix Zakarax Zithrix Cablarex Xarkaz Xeplaz Xevarex Damonix Decorza Daxarim Zakardim
+		Xodarciz Zimizar Zulxari Zib-Korox Xuv-Xanim Xol-Irix Xam-Zevon Zed-Kevlax
+	}
+	frigate = {
+		Xad-Nyak Xederex Zadhadex Xontex Xadamach Xedleetha Xiin Zadakhat Ximang Zaraxes Ziinaxad Xadara Xischmi Zongax Zaraxim Zidix Zadaxon Zixim Ciimixin Ceremax Casarax Codvox Xiad Xomba Cardaxes Cardix Xobbon Zidinix Zarakh Zidrimax Zymtarax Cidjax Ximpa Xarxa Xogor Xanar Zilgar Deltox Zinivar Zendjax Zorixon Derazix Dolzor Dargaxor Darbix Daraxa Diinorzo Debar-Zax Zor-Kalos Zur-Talax Xom-Buruk Xol-Remok Xar-Corox Zel-Dotor Zod-Garax Diigarzak Zebarax Cyntharzo Conobax Carox Dez-Hilam Dax-Endiv Zablinnox Zapozor Zakithor Zadamak Zikrax Zuuldorox Zaximock Zaatrix Xoldagoros Xurinzaga Xorbozhaga Caldorix Cathrox Dexirama Dezuzarix Dirixiz Descorax Difirixamon Canix Zakarax Zithrix Cablarex Xarkaz Xeplaz Xevarex Damonix Decorza Daxarim Zakardim
+		Xodarciz Zimizar Zulxari Zib-Korox Xuv-Xanim Xol-Irix Xam-Zevon Zed-Kevlax
+	}
+	monitor = {
+		Xad-Nyak Xederex Zadhadex Xontex Xadamach Xedleetha Xiin Zadakhat Ximang Zaraxes Ziinaxad Xadara Xischmi Zongax Zaraxim Zidix Zadaxon Zixim Ciimixin Ceremax Casarax Codvox Xiad Xomba Cardaxes Cardix Xobbon Zidinix Zarakh Zidrimax Zymtarax Cidjax Ximpa Xarxa Xogor Xanar Zilgar Deltox Zinivar Zendjax Zorixon Derazix Dolzor Dargaxor Darbix Daraxa Diinorzo Debar-Zax Zor-Kalos Zur-Talax Xom-Buruk Xol-Remok Xar-Corox Zel-Dotor Zod-Garax Diigarzak Zebarax Cyntharzo Conobax Carox Dez-Hilam Dax-Endiv Zablinnox Zapozor Zakithor Zadamak Zikrax Zuuldorox Zaximock Zaatrix Xoldagoros Xurinzaga Xorbozhaga Caldorix Cathrox Dexirama Dezuzarix Dirixiz Descorax Difirixamon Canix Zakarax Zithrix Cablarex Xarkaz Xeplaz Xevarex Damonix Decorza Daxarim Zakardim
+		Xodarciz Zimizar Zulxari Zib-Korox Xuv-Xanim Xol-Irix Xam-Zevon Zed-Kevlax
+	}
+	clipper_transport = {
+	}
+	steam_transport = { 
+	}
+	commerce_raider = {
+		Xad-Nyak Xederex Zadhadex Xontex Xadamach Xedleetha Xiin Zadakhat Ximang Zaraxes Ziinaxad Xadara Xischmi Zongax Zaraxim Zidix Zadaxon Zixim Ciimixin Ceremax Casarax Codvox Xiad Xomba Cardaxes Cardix Xobbon Zidinix Zarakh Zidrimax Zymtarax Cidjax Ximpa Xarxa Xogor Xanar Zilgar Deltox Zinivar Zendjax Zorixon Derazix Dolzor Dargaxor Darbix Daraxa Diinorzo Debar-Zax Zor-Kalos Zur-Talax Xom-Buruk Xol-Remok Xar-Corox Zel-Dotor Zod-Garax Diigarzak Zebarax Cyntharzo Conobax Carox Dez-Hilam Dax-Endiv Zablinnox Zapozor Zakithor Zadamak Zikrax Zuuldorox Zaximock Zaatrix Xoldagoros Xurinzaga Xorbozhaga Caldorix Cathrox Dexirama Dezuzarix Dirixiz Descorax Difirixamon Canix Zakarax Zithrix Cablarex Xarkaz Xeplaz Xevarex Damonix Decorza Daxarim Zakardim
+		Xodarciz Zimizar Zulxari Zib-Korox Xuv-Xanim Xol-Irix Xam-Zevon Zed-Kevlax
+	}
+}
