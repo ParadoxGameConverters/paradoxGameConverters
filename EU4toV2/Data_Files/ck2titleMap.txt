@@ -18,7 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-
+ck2Titles = {
 
 link = { name = "a' charraig" 	 title = "c_carrick" 	 region = "e_britannia" }
 link = { name = "abbasid" 	 title = "d_abbasid" 	 region = "e_mali" }
@@ -1085,6 +1085,7 @@ link = { name = "eaglais" 	 title = "c_faereyar" 	 region = "e_scandinavia" }
 link = { name = "eas géitine" 	 title = "c_thomond" 	 region = "e_britannia" }
 link = { name = "east anglia" 	 title = "d_norfolk" 	 region = "e_britannia" }
 link = { name = "east francia" 	 title = "k_germany" 	 region = "e_hre" }
+link = { name = "eastern roman empire" 	 title = "e_byzantium" 	 region = "e_byzantium" }
 link = { name = "ebithan" 	 title = "c_argyll" 	 region = "e_britannia" }
 link = { name = "ecclesbrith" 	 title = "c_lothian" 	 region = "e_britannia" }
 link = { name = "ecclescbret" 	 title = "c_lothian" 	 region = "e_britannia" }
@@ -1150,6 +1151,8 @@ link = { name = "empire latin" 	 title = "e_latin_empire" 	 region = "e_latin_em
 link = { name = "empire mongol" 	 title = "e_mongol_empire" 	 region = "e_mongol_empire" }
 link = { name = "empire perse" 	 title = "e_persia" 	 region = "e_persia" }
 link = { name = "empire romain" 	 title = "e_roman_empire" 	 region = "e_roman_empire" }
+link = { name = "empire romain d'occident" 	 title = "e_roman_empire" 	 region = "e_roman_empire" }
+link = { name = "empire romain d'orient" 	 title = "e_byzantium" 	 region = "e_byzantium" }
 link = { name = "empire seldjouk" 	 title = "k_seljuk_turks" 	 region = "e_mali" }
 link = { name = "empire wende" 	 title = "e_wendish_empire" 	 region = "e_wendish_empire" }
 link = { name = "england" 	 title = "k_england" 	 region = "e_britannia" }
@@ -1537,6 +1540,8 @@ link = { name = "imperio mongol" 	 title = "e_mongol_empire" 	 region = "e_mongo
 link = { name = "imperio otomano" 	 title = "k_ottoman" 	 region = "e_mali" }
 link = { name = "imperio persa" 	 title = "e_persia" 	 region = "e_persia" }
 link = { name = "imperio romano" 	 title = "e_roman_empire" 	 region = "e_roman_empire" }
+link = { name = "imperio romano de occidente" 	 title = "e_roman_empire" 	 region = "e_roman_empire" }
+link = { name = "imperio romano de oriente" 	 title = "e_byzantium" 	 region = "e_byzantium" }
 link = { name = "imperio wendo" 	 title = "e_wendish_empire" 	 region = "e_wendish_empire" }
 link = { name = "inbhear beg" 	 title = "c_ulster" 	 region = "e_britannia" }
 link = { name = "inbhir Àir" 	 title = "c_carrick" 	 region = "e_britannia" }
@@ -2476,6 +2481,7 @@ link = { name = "Østkarelen" 	 title = "c_karelen" 	 region = "e_scandinavia" }
 link = { name = "ostlandet" 	 title = "d_ostlandet" 	 region = "e_scandinavia" }
 link = { name = "ostrihom" 	 title = "c_esztergom" 	 region = "e_carpathia" }
 link = { name = "ostrogon" 	 title = "c_esztergom" 	 region = "e_carpathia" }
+link = { name = "oströmisches reich" 	 title = "e_byzantium" 	 region = "e_byzantium" }
 link = { name = "ottoman turks" 	 title = "k_ottoman" 	 region = "e_mali" }
 link = { name = "ottoman" 	 title = "k_ottoman" 	 region = "e_mali" }
 link = { name = "ottomans" 	 title = "k_ottoman" 	 region = "e_mali" }
@@ -3400,8 +3406,10 @@ link = { name = "wepsen" 	 title = "d_veps" 	 region = "e_mali" }
 link = { name = "wessex" 	 title = "d_somerset" 	 region = "e_britannia" }
 link = { name = "west francia" 	 title = "k_france" 	 region = "e_france" }
 link = { name = "Western Protectorate" 	 title = "e_china_west_governor" 	 region = "e_china_west_governor" }
+link = { name = "western roman empire" 	 title = "e_roman_empire" 	 region = "e_roman_empire" }
 link = { name = "westfranken" 	 title = "k_france" 	 region = "e_france" }
 link = { name = "Westliches Protektorat" 	 title = "e_china_west_governor" 	 region = "e_china_west_governor" }
+link = { name = "weströmisches reich" 	 title = "e_roman_empire" 	 region = "e_roman_empire" }
 link = { name = "white company" 	 title = "d_white_company" 	 region = "d_white_company" }
 link = { name = "widin" 	 title = "d_vidin" 	 region = "e_byzantium" }
 link = { name = "wielkopolska" 	 title = "d_wielkopolska" 	 region = "e_mali" }
@@ -3567,3 +3575,5 @@ link = { name = "tschechoslowakei" title = "CZH" region = "e_carpathia" }
 link = { name = "macedonia" title = "MKD" region = "e_byzantium" }
 link = { name = "macédoine" title = "MKD" region = "e_byzantium" }
 link = { name = "mazedonien" title = "MKD" region = "e_byzantium" }
+link = { name = "alaska" title = "LSK" region = "e_russia" }
+}
