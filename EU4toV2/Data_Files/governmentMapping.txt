@@ -1,4 +1,4 @@
-# Copyright (c) 2017 The Paradox Game Converters Project
+# Copyright (c) 2018 The Paradox Game Converters Project
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -23,16 +23,17 @@
 # Republics - merchant_republic, oligarchic_republic, noble_republic, administrative_republic, republican_dictatorship, constitutional_republic, bureaucratic_despotism, revolutionary_republic, imperial_city
 # Religious - theocratic_government, papal_government, monastic_order_government
 # Tribal Governments - steppe_horde, tribal_despotism, tribal_kingdom, tribal_federation, tribal_democracy, native_council, siberian_native_council, tribal_council
-# Unique Governments - elective_monarchy, ambrosian_republic, dutch_republic, archduchy, celestial_empire, iqta, daimyo, indep_daimyo, shogunate, imperial_government, colonial_government, american_republic, federal_republic, english_monarchy
+# Unique Governments - elective_monarchy, ambrosian_republic, dutch_republic, archduchy, celestial_empire, iqta, daimyo, shogunate, imperial_government, colonial_government, american_republic, federal_republic, english_monarchy
 
 mapping = {
 
-link = { v2 = absolute_monarchy eu4 = despotic_monarchy eu4 = feudal_monarchy eu4 = absolute_monarchy eu4 = enlightened_despotism eu4 = revolutionary_empire eu4 = theocratic_government eu4 = papal_government eu4 = monastic_order_government eu4 = steppe_horde eu4 = tribal_despotism eu4 = tribal_federation eu4 = archduchy eu4 = celestial_empire eu4 = iqta eu4 = daimyo eu4 = shogunate eu4 = indep_daimyo eu4 = imperial_government eu4 = oligarchic_republic eu4 = tribal_kingdom eu4 = ottoman_government eu4 = tsardom eu4 = mamluk_government eu4 = feudal_theocracy }
+link = { v2 = absolute_monarchy eu4 = despotic_monarchy eu4 = feudal_monarchy eu4 = absolute_monarchy eu4 = enlightened_despotism eu4 = revolutionary_empire eu4 = steppe_horde eu4 = tribal_despotism eu4 = tribal_federation eu4 = archduchy eu4 = celestial_empire eu4 = iqta eu4 = daimyo eu4 = shogunate eu4 = indep_daimyo eu4 = imperial_government eu4 = oligarchic_republic eu4 = tribal_kingdom eu4 = ottoman_government eu4 = tsardom eu4 = mamluk_government eu4 = feudal_theocracy }
 link = { v2 = democracy eu4 = merchant_republic eu4 = noble_republic eu4 = administrative_republic eu4 = constitutional_republic eu4 = revolutionary_republic eu4 = tribal_democracy eu4 = ambrosian_republic eu4 = dutch_republic eu4 = american_republic eu4 = federal_republic eu4 = colonial_government eu4 = american_republic eu4 = federal_republic eu4 = tribal_council eu4 = native_council eu4 = siberian_native_council eu4 = imperial_city eu4 = trading_city eu4 = veche_republic eu4 = american_republic eu4 = federal_republic }
 link = { v2 = presidential_dictatorship eu4 = republican_dictatorship eu4 = bureaucratic_despotism }
 link = { v2 = hms_government eu4 = english_monarchy eu4 = constitutional_monarchy eu4 = administrative_monarchy eu4 = elective_monarchy eu4 = principality }
 link = { v2 = prussian_constitutionalism eu4 = prussian_monarchy }
 link = { v2 = proletarian_dictatorship eu4 = peasants_republic } #Dithmarschen special
+link = { v2 = theocracy eu4 = theocratic_government eu4 = papal_government eu4 = monastic_order_government }
 
 #Monarchies with absolutist mechanics
 #link = { v2 = hms_government absolutism_level < 20 eu4 = english_monarchy eu4 = constitutional_monarchy eu4 = administrative_monarchy eu4 = elective_monarchy }
