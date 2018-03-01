@@ -13,7 +13,7 @@ political_decisions = {
 				has_country_flag = post_colonial_country
 				exists = SGF
 				exists = GER
-				tag = DNB
+				#tag = DNB
 				AND = {
 					tag = AUS
 					NOT = { has_country_flag = austrian_greater_germany }
@@ -92,7 +92,7 @@ political_decisions = {
 						tag = THIS
 						tag = KUK
 						tag = AUS
-						tag = DNB
+						#tag = DNB
 						tag = BAN
 					}
 					OR = {
@@ -304,6 +304,8 @@ political_decisions = {
 					OR = {
 						OR = {
 							owned_by = THIS
+							owned_by = RUS
+							owned_by = PLC
 							owner = {
 								in_sphere = THIS
 								OR = {
@@ -377,7 +379,7 @@ political_decisions = {
 				capital_scope = { continent = north_america }
 				capital_scope = { continent = south_america }
 				capital_scope = { continent = oceania }
-				tag = FSA
+				#tag = FSA
 				tag = CSA
 			}
 		}
@@ -460,6 +462,9 @@ political_decisions = {
 					OR = {
 						owned_by = THIS
 						owned_by = AUS
+						owned_by = KUK
+						owned_by = RUS
+						owned_by = PLC
 						owner = {
 							in_sphere = THIS
 							OR = {
@@ -541,7 +546,7 @@ political_decisions = {
 					exists = no
 					NOT = { tag = AUS }
 					NOT = { tag = KUK }
-					NOT = { tag = DNB }
+					#NOT = { tag = DNB }
 					NOT = { tag = PRU }
 					NOT = { tag = BAN }
 					NOT = { has_country_flag = post_colonial_country }
@@ -558,7 +563,7 @@ political_decisions = {
 					OR = {
 						tag = AUS
 						tag = KUK
-						tag = DNB
+						#tag = DNB
 					}
 					exists = no
 					THIS = { capital = 619 }
@@ -583,7 +588,7 @@ political_decisions = {
 					NOT = { 
 						tag = KUK
 						tag = AUS
-						tag = DNB
+						#tag = DNB
 						tag = BAN
 					}
 					OR = {
@@ -1344,7 +1349,7 @@ unite_moldavia_wallachia = {
 				exists = GER
 				tag = AUS
 				tag = KUK
-				tag = DNB
+				#tag = DNB
 			}
 			revolution_n_counterrevolution = 1
 		}	
@@ -1401,7 +1406,7 @@ unite_moldavia_wallachia = {
 					in_sphere = THIS
 					NOT = { tag = THIS }
 					NOT = { tag = KUK }
-					NOT = { tag = DNB }
+					#NOT = { tag = DNB }
 					NOT = { tag = BAN }
 					NOT = { has_country_flag = post_colonial_country }
 					NOT = {
@@ -1437,76 +1442,76 @@ unite_moldavia_wallachia = {
 		}
 	}
 	
-	become_holstein = {
-		picture = gtfo
-		potential = {
-			tag = SWH
-			any_owned_province = { is_core = HOL }
-			NOT = {
-				any_owned_province = {
-					is_core = GER
-					NOT = { is_core = HOL }
-				}
-			}
-		}
-		
-		allow = {
-			owns = 369
-		}
-		
-		effect = {
-			capital = 369
-			prestige = -5
-			all_core = { remove_core = THIS }
-			random_owned = {
-				limit = {
-					HOL = { exists = no }
-				}
-				owner = { change_tag = HOL }
-			}
-			random_owned = {
-				limit = {
-					HOL = { exists = yes }
-				}
-				owner = { annex_to = HOL }
-			}
-			clr_country_flag = crown_from_the_gutter
-			clr_country_flag = secondary_union_formation
-			any_pop = {
-				limit = { is_primary_culture = yes }
-				militancy = -6
-			}
-			random_country = {
-				limit = {
-					is_greater_power = yes
-					primary_culture = north_german
-				}
-				diplomatic_influence = { who = THIS value = 100 }
-			}
-		}
-		
-		ai_will_do = {
-			factor = 1
-		}
-	}
+#	become_holstein = {
+#		picture = gtfo
+#		potential = {
+#			tag = SWH
+#			any_owned_province = { is_core = HOL }
+#			NOT = {
+#				any_owned_province = {
+#					is_core = GER
+#					NOT = { is_core = HOL }
+#				}
+#			}
+#		}
+#		
+#		allow = {
+#			owns = 369
+#		}
+#		
+#		effect = {
+#			capital = 369
+#			prestige = -5
+#			all_core = { remove_core = THIS }
+#			random_owned = {
+#				limit = {
+#					HOL = { exists = no }
+#				}
+#				owner = { change_tag = HOL }
+#			}
+#			random_owned = {
+#				limit = {
+#					HOL = { exists = yes }
+#				}
+#				owner = { annex_to = HOL }
+#			}
+#			clr_country_flag = crown_from_the_gutter
+#			clr_country_flag = secondary_union_formation
+#			any_pop = {
+#				limit = { is_primary_culture = yes }
+#				militancy = -6
+#			}
+#			random_country = {
+#				limit = {
+#					is_greater_power = yes
+#					primary_culture = north_german
+#				}
+#				diplomatic_influence = { who = THIS value = 100 }
+#			}
+#		}
+#		
+#		ai_will_do = {
+#			factor = 1
+#		}
+#	}
 	
-	become_yemen = {
-		potential = {
-			tag = NYE
-		}
-		
-		allow = {
-			owns = 1178
-			owns = 1173
-			YEM = { exists = no }
-		}
-		
-		effect = {
-			prestige = 10
-			all_core = { add_core = YEM }
-			change_tag = YEM
-			any_pop = { militancy = -4 }
-		}
-	}
+#	become_yemen = {
+#		potential = {
+#			tag = NYE
+#		}
+#		
+#		allow = {
+#			owns = 1178
+#			owns = 1173
+#			YEM = { exists = no }
+#		}
+#		
+#		effect = {
+#			prestige = 10
+#			all_core = { add_core = YEM }
+#			change_tag = YEM
+#			any_pop = { militancy = -4 }
+#		}
+#	}
 }
 	
