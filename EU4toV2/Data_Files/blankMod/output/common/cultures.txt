@@ -579,7 +579,7 @@ italian = {
 		first_names = { Alfonso Ambrogio Amedeo Andrea Angelo Antonio Armando Augusto Benito Camillo Carlo Cesare Corrado Costanzo Domenico Enrico Fabio Fabrizio Faustino Felice Ferdinando Fiorenzo Francesco Gaetano Gennaro Giacomo Giovanni Giulio Giuseppe Guglielmo Lorenzo Luigi Marino Matteo Nicola Paolo Pasquale Prospero Raffaele Roberto Ruggiero Sigismondo Silvio Simone Tancredi Tommasso Ugo Umberto Vincenzo Vittorio }
 		last_names = { "de Liguori" "della Rovere" "di Borbone di Parma" "di Robilant" "di Savoia" "di Savoia-Aosta" "La Màrmora" "Pacoret de Saint Bon" "Thaon di Revel" Albricci Anfora Baratieri Bava-Beccaris Bonaccorsi Cadorna Cagni Canevaro Caraga Caviglia Ceccherini Clary Colonna d'Absburgo-Toscana Dezza Diaz Filomarino Giardino Gironda Govone Gravina Lanza Lombardo Lunardi Molinelli Orengo Orsini Pecori-Giraldi Perruchetti Pianelli Pironti Porro Ramorino Ricotti-Magnani Sanna Scammacca Solari Torlonia Turrisi Vaccari Zunica }
 	}
-	americano = {
+	italoamericano = {
 		color = {119 194 190}
 
 		first_names = { Alfonso Ambrogio Amedeo Andrea Angelo Antonio Armando Augusto Benito Camillo Carlo Cesare Corrado Costanzo Domenico Enrico Fabio Fabrizio Faustino Felice Ferdinando Fiorenzo Francesco Gaetano Gennaro Giacomo Giovanni Giulio Giuseppe Guglielmo Lorenzo Luigi Marino Matteo Nicola Paolo Pasquale Prospero Raffaele Roberto Ruggiero Sigismondo Silvio Simone Tancredi Tommasso Ugo Umberto Vincenzo Vittorio }
@@ -785,7 +785,12 @@ south_slavic = {
 		Dobri Ferdinand Fyodor Georgi Hristo Ilya Ivan Kalin Kardam Kimon Kiril
 		Kliment Konstantin Krastyu Leonid Mihail Nikifor Niloa Pencho Petar Petko
 		Petur Pravoslav Racho Radko Radoy Sava Simeon Sotir Stanislav Stanko
-		Stefan Stiliyan Stoyu Teodosi Todor Trifon Valko Vasil Veselin Velizar Vulko		
+		Stefan Stiliyan Stoyu Teodosi Todor Trifon Valko Vasil Veselin Velizar Vulko
+		Alaksandar Blagoje Bozidar Branko Danilo Dejan Djordje Dragan Dragisa Dragoljub
+		Dragutin Draza Dusan Gavrilo Goran Janko Jovan Koca Kosta Krsto
+		Ljubisa Mihailo Milan Miliutin Milivoje Milojko Milos Miodrag Mirko Miroslav
+		Momcilo Nebojsa Nikola Pavle Peko Petar Radomir Ratko Sava Slobodan
+		Stepa Stojan Veljko Vaselien Vladimir Vojislav Zivojin Zivota Zoran Zvezdan	
 		}
 
 		last_names = { Agura Balabanoski Balkanski Battemberg Blaskoski Boyadzhiev Bradistiloski Charakchiev Daskaloski Dikoski
@@ -793,6 +798,11 @@ south_slavic = {
 		Kutinchev Lazaroski Lukoski Marinkoski Marinoski Mutkoroski Naydenoski Nazlamoski Nikiforoski Nikolaev
 		Pakoski Petroski Radev Saksokoburggotski Savoski Sirakoski Solaroski Stoyanoski Tenev Todoroski
 		Tsaklev Valkoski Valnaroski Vasilev Vazoski Velchev Veselinov Zafiroski Zhekoski Zlatarev Zlatev
+		Adzic Arandelovic Belimarkovic Blaznacac Bojovic Bozanovic Bozinovic Brankovic Damjanic Dapcevic
+		Dragutinovic Grujic Hadzilic Horvatovic Isakovic Jankovic Jokic Jovanovic Kadijevic Karadjordjevic
+		Lesjanin Ljubicic Maric Mihailovic Miliutinovic Miloradovic Misic Nad Nedic Novak
+		Obrenovic Ojdanic Panic Paskas Pavkovic Pesic Petrovic Popovic Putnik Radulovic
+		Rasic Sijan Simovic Sokolovic Stepanovic Vasiljevic Veric Vojvodic Vukotic Zivkovic
 		}
 		radicalism = 15
 	}
@@ -3012,6 +3022,21 @@ native_north_american = {
 			Wazhaze Tsishu Pasueli Wahakolin Sansueli Wyota Picayune Koholo Neodesha Owasso Pawhuska Niukonska Doppike Neosho Chetopa Hominy Pahusan 			
 		}
 	}
+	cherokee = {
+		color = {105  145  40}
+		first_names = {Sequoyah Attakullaculla Guwisguwi Moytoy Yonaguska Tsiyu Gansini Agi It Boudinot Lach'n Koatohee 
+			Scholauetta Tuskegatahu Ooskwha Kolakusta Newota Konatota Tuckasee Toostaka Untoola Unsuokanail 
+			Chonosta Chescoonwho Chesetoa Chesecotetona Sketaloska Chokasatahe Onanoota Ookoseta Umatooetha 
+			Necatee Amokontakona Kowetatahee Keukuck Tulatiska Wooaluka Tatliusta Skeleak Akonoluchta Cheanoka 
+			Ostaiah Oortlokecteh Chockonnistaller Noothoietah Kunnateelah Utturah Weelee Oolassoteh Tlorene 
+			Jonnurteekee Oonatakoteekee Kanowsurhee Yonah Oolah Tunksalenee Oorkullaukee Kumamah Chattakuteehee 
+			Kettegiskie Tauuotihee Chuquilataque Salleekookoolah Tallotuskee Chellokee Tuskeegatee Neekaanneah 
+			Kulsateehee Keetakeuskah Akooh Sawanooekee Yonahequah Keenahkunnah Kaweesoolaskee Teekalohenah 
+			Chochuchee Kostayeak Ookouseteeh Kanitta Nemetuah Wyuka Tulco
+		}
+		last_names = {Mohe Diwali Waya Tsiyi Onacona Atagulkalu Degataga Cheasequah Adahy Atagulkalu
+		}
+	}
 	iroquoian = {
 		color = {136 114 173}
 		first_names = { Dahadaghesa Waskanecqua Kagoregago Saraqundett Uwhanhierelera Waddon Hago Andra Sonque Wastahanda 
@@ -4327,28 +4352,52 @@ southern_african = {
 	}
 }
 
-bears = {
+non_human = {
 	leader = polar_bear
 	unit = SwedishGC
 	polar_bears = {
+		radicalism = 100
+		primary = JAN
 		color = { 200 200 200}
 
 		first_names = { Nanuk Ursus Isbjorn Grrrowr Bjorn Grrgrrr Rawr Bamse }
 		
 		last_names = { Beliy Medved Bjorn Rawrrorr Rrrrr Grrr Gyp Qoi Styrbjorn Blomstfjellet }
 	}
-	union = JAN
-}
-
-equine = {
-	leader = equine
-	unit = MiddleEasternGC
 	horse = {
 		color = { 255 111 94}
+		radicalism = 100
+		primary = TRL
 
 		first_names = { Spot Star Spirit Blaze Lucky Chief Rain Stormy Duke Traveler "Clever Hans" Dreamer Midnight Twilight Arion Carlos Triumph }
 
 		last_names = { Glitterhoof Sparklemane Moontail Opaleye Silvercoat Goldmuzzle }
 	}
-	union = TRL
+	cat = {
+		color = { 25 75 25}
+		radicalism = 100
+		primary = MIA/Khawitmau
+
+		first_names = { Mittens Fluffy Tom Smudge Shadow }
+
+		last_names = { Miyau Nyan Meow Miao Goro Purr Puss Cat Chat }
+	}
+	undead = {
+		color = { 30 30 30 }
+		radicalism = 100
+		primary = UND
+
+		first_names = { General Doctor Leader Beknown Bespectacled Buried Befeared "Human-eater" }
+
+		last_names = { Banshee Ghost Poltergeist Draugr Ghoul Jiangshi Lich Mummy Revenant Spirit Skeleton Vampire Wight Zombie "the Undead" }
+	}
+	alien = {
+		color = { 0 150 0 }
+		radicalism = 100
+		primary = ALI
+
+		first_names = { Xirgliss Cathiox Zir Zarax Rekaxir Cax Zidlaxi Cabroxi Xidlor Zeraxim Moz Zoz Xaz Zax Zacadliss Cothaxir Xoblagiss Rezicax Morezac Midloxec }
+
+		last_names = { Flatwood Grey Gray Green Reptilian Martian Venusian Stargazer "Ford Prefect" "the AI" Blorg Demogorgon }
+	}
 }
