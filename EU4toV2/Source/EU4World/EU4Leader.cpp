@@ -116,7 +116,6 @@ EU4::leader::leader(std::istream& theStream):
 		}
 	);
 
-	auto leaderString = getNextToken(theStream); // temporary measure to remove the 'leader' token, until the higher-level objects are modified
 	parseStream(theStream);
 }
 

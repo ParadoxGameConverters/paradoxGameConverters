@@ -28,6 +28,7 @@ THE SOFTWARE. */
 #include "EU4Relations.h"
 #include "EU4Leader.h"
 #include "EU4Version.h"
+#include "CountryHistory.h"
 #include "../Mappers/IdeaEffectMapper.h"
 #include "../V2World/V2Localisation.h"
 #include <algorithm>
@@ -196,52 +197,25 @@ EU4::Country::Country(shared_ptr<Object> obj, EU4Version* version):
 	vector<shared_ptr<Object>> historyObj = obj->getValue("history");
 	if (historyObj.size() > 0)
 	{
+		std::stringstream historyStream;
+		historyStream << *historyObj[0];
+		EU4::countryHistory theCountryHistory(historyStream);
+
+		for (auto& leader: theCountryHistory.getItemsOfType("leader"))
+		{
+			auto actualLeader = std::static_pointer_cast<EU4::historyLeader>(leader)->getTheLeader();
+			if (actualLeader->isAlive())
+			{
+				militaryLeaders.push_back(actualLeader);
+			}
+		}
+
 		/*vector<shared_ptr<Object>> daimyoObj = historyObj[0]->getValue("daimyo");	// the object holding the daimyo information for this country
 		if (daimyoObj.size() > 0)
 		{
 			possibleDaimyo = true;
 		}*/
-
-		vector<shared_ptr<Object>> historyLeaves = historyObj[0]->getLeaves();	// the object holding the individual histories for this country
-		for (vector<shared_ptr<Object>>::iterator itr = historyLeaves.begin(); itr != historyLeaves.end(); ++itr)
-		{
-			if(((*itr)->getKey()).find(".") != -1)	//historyObj contains some non-date leaves for initial config. Avoid trying to parse them as dates.
-			{
-				vector<shared_ptr<Object>> leaderObjs = (*itr)->getValue("leader");
-				for (vector<shared_ptr<Object>>::iterator litr = leaderObjs.begin(); litr != leaderObjs.end(); ++litr)
-				{
-					std::stringstream leaderStream;
-					leaderStream << **litr;
-					EU4::leader* leader = new EU4::leader(leaderStream);
-					if (leader->isAlive())
-					{
-						militaryLeaders.push_back(leader);
-					}
-				}
-			}
-		}
 	}
-
-	// figure out which leaders are active, and ditch the rest
-	vector<shared_ptr<Object>> activeLeaderObj = obj->getValue("leader");
-	vector<int> activeIds;
-	vector<EU4::leader*> activeLeaders;
-	for (vector<shared_ptr<Object>>::iterator itr = activeLeaderObj.begin(); itr != activeLeaderObj.end(); ++itr)
-	{
-		auto possibleIdStr = (*itr)->getLeaf("id");
-		if (possibleIdStr)
-		{
-			activeIds.push_back(stoi(*possibleIdStr));
-		}
-	}
-	for (auto militaryLeader: militaryLeaders)
-	{
-		if (find(activeIds.begin(), activeIds.end(), militaryLeader->getID()) != activeIds.end())
-		{
-			activeLeaders.push_back(militaryLeader);
-		}
-	}
-	militaryLeaders.swap(activeLeaders);
 
 	vector<shared_ptr<Object>> governmentObj = obj->getValue("government");	// the object holding the government
 	(governmentObj.size() > 0) ? government = governmentObj[0]->getLeaf() : government = "";
