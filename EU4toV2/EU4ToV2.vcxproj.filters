@@ -188,9 +188,6 @@
     <ClCompile Include="Source\EU4World\CultureGroups.cpp">
       <Filter>EU4 World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EU4World\History.cpp">
-      <Filter>EU4 World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\EU4World\ID.cpp">
       <Filter>EU4 World</Filter>
     </ClCompile>
