@@ -23,6 +23,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "newParser.h"
 #include "Log.h"
+#include "ParadoxParser8859_15.h"
+#include "ParadoxParserUTF8.h"
 #include <cctype>
 #include <fstream>
 
@@ -186,10 +188,12 @@ std::string commonItems::getNextLexeme(std::istream& theStream)
 		else if ((inputChar == '\"') && !inString && (toReturn.size() == 0))
 		{
 			inString = true;
+			toReturn += inputChar;
 		}
 		else if ((inputChar == '\"') && inString)
 		{
 			inString = false;
+			toReturn += inputChar;
 			break;
 		}
 		else if (!inString && std::isspace(inputChar))
@@ -278,10 +282,105 @@ void commonItems::ignoreString(const std::string& unused, std::istream& theStrea
 }
 
 
+std::shared_ptr<Object> commonItems::convert8859Object(const std::string& top, std::istream& theStream)
+{
+	stringstream objectStream;
+	objectStream << top << ' ';
+
+	int braceDepth = 0;
+	while (true)
+	{
+		if (theStream.eof())
+		{
+			break;
+		}
+
+		std::string token = getNextLexeme(theStream);
+		objectStream << token << ' ';
+
+		if (token == "{")
+		{
+			braceDepth++;
+		}
+		else if (token == "}")
+		{
+			braceDepth--;
+			if (braceDepth == 0)
+			{
+				break;
+			}
+		}
+	}
+
+	return parser_8859_15::doParseStream(objectStream);
+}
+
+
+std::shared_ptr<Object> commonItems::convert8859String(const std::string& top, std::istream& theStream)
+{
+	stringstream objectStream;
+	objectStream << top << ' ';
+	objectStream << getNextLexeme(theStream) << ' ';
+	objectStream << getNextLexeme(theStream) << ' ';
+
+	return parser_8859_15::doParseStream(objectStream);
+}
+
+
+std::shared_ptr<Object> commonItems::convertUTF8String(const std::string& top, std::istream& theStream)
+{
+	stringstream objectStream;
+	objectStream << top << ' ';
+	objectStream << getNextLexeme(theStream) << ' ';
+	objectStream << getNextLexeme(theStream) << ' ';
+
+	return parser_8859_15::doParseStream(objectStream);
+}
+
+
+std::shared_ptr<Object> commonItems::convertUTF8Object(const std::string& top, std::istream& theStream)
+{
+	stringstream objectStream;
+	objectStream << top;
+
+	int braceDepth = 0;
+	while (true)
+	{
+		if (theStream.eof())
+		{
+			break;
+		}
+
+		std::string token = getNextLexeme(theStream);
+		objectStream << token << ' ';
+
+		if (token == "{")
+		{
+			braceDepth++;
+		}
+		else if (token == "}")
+		{
+			braceDepth--;
+			if (braceDepth == 0)
+			{
+				break;
+			}
+		}
+	}
+
+	return parser_UTF8::doParseStream(objectStream);
+}
+
+
 commonItems::intList::intList(std::istream& theStream):
 	ints()
 {
 	registerKeyword(std::regex("\\d+"), [this](const std::string& theInt, std::istream& theStream)
+		{
+			ints.push_back(std::stoi(theInt));
+		}
+	);
+	registerKeyword(std::regex("\\\"\\d+\\\""), [this](const std::string& theInt, std::istream& theStream)
 		{
 			ints.push_back(std::stoi(theInt));
 		}
@@ -296,6 +395,10 @@ commonItems::singleInt::singleInt(std::istream& theStream):
 {
 	auto equals = getNextToken(theStream);
 	auto token = *getNextToken(theStream);
+	if (token.substr(0,1) == "\"")
+	{
+		token = token.substr(1, token.length() - 2);
+	}
 	try
 	{
 		theInt = stoi(token);
@@ -313,6 +416,11 @@ commonItems::stringList::stringList(std::istream& theStream):
 {
 	std::string iso8859_15("[\\w\\x20\\x27\\x2C-\\x2E\\x3A\\x3F\\x60\\x8A\\x92\\x9A\\x9E\\xA0\\xA6\\xA8\\xB4\\xB8\\xBC-\\xBE\\xC0-\\xD6\\xD8-\\xF6\\xF8-\\xFF\\xED]+");
 	registerKeyword(std::regex(iso8859_15), [this](const std::string& theString, std::istream& theStream)
+		{
+			strings.push_back(theString);
+		}
+	);
+	registerKeyword(std::regex("\\\"" + iso8859_15 + "\\\""), [this](const std::string& theString, std::istream& theStream)
 		{
 			strings.push_back(theString);
 		}

@@ -38,10 +38,10 @@ using namespace std;
 
 
 
-class EU4World;
 namespace EU4
 {
 	class Country;
+	class world;
 }
 class V2World;
 class V2State;
