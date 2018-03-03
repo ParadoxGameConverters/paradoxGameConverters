@@ -429,7 +429,7 @@ namespace parser_UTF8
 // While the Generic parser is still being tested it will only be used on Linux (where USE_GENERIC_PARADOX_PARSER is set to 1 by default)
 // On Windows, it can be enabled from CMake / VC++ compiler args to test it
 #ifdef USE_GENERIC_PARADOX_PARSER
-		return parser_generic::parseUTF_8(filename);
+		return parser_generic::parseUTF_8(theStream);
 #else
 		/* - when using parser debugging, also ensure that the parser object is non-static!
 		debugme = false;
