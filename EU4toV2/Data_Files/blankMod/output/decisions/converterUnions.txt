@@ -46,6 +46,9 @@ political_decisions = {
 			primary_culture = south_italian
 			NOT = { exists = SIC }
 			NOT = { exists = ITA }
+			NOT = { tag = RME }
+			NOT = { tag = BYZ }
+			NOT = { tag = PAP }
 		}
 
 		allow = {
@@ -143,7 +146,115 @@ political_decisions = {
 			USA_129 = { add_core = CSA } #Dixieland for the ACW
 			
 			CHI_1476 = { add_core = TPG } #Taiping Heavenly Kingdom (for event)
-			
+			any_country = { #Trapalandia
+				limit = {
+					tag = TRL
+					NOT = { exists = TRL }
+				}
+				primary_culture = horse
+				religion = animist
+				government = theocracy
+				civilized = yes
+				capital = 2131
+			}
+			any_country = { #Alaska
+				limit = {
+					tag = LSK
+					NOT = { exists = LSK }
+				}
+				primary_culture = yankee
+				religion = protestant
+				government = democracy
+				civilized = yes
+				capital = 3
+			}
+			any_country = { #Macedonia
+				limit = {
+					tag = MKD
+					NOT = { exists = MKD }
+				}
+				primary_culture = macedonian
+				religion = orthodox
+				government = democracy
+				civilized = yes
+				capital = 806
+			}
+			any_country = { #Alien Invaders
+				limit = {
+					tag = ALI
+					NOT = { exists = ALI }
+				}
+				primary_culture = alien
+				religion = noreligion
+				government = theocracy
+				civilized = yes
+				capital = 1077
+			}
+			any_country = { #Cats
+				limit = {
+					tag = MIA
+					NOT = { exists = MIA }
+				}
+				primary_culture = cat
+				religion = kemetic
+				government = theocracy
+				civilized = yes
+				capital = 1767
+			}
+			any_country = { #Undead Horde
+				limit = {
+					tag = UND
+					NOT = { exists = UND }
+				}
+				primary_culture = undead
+				religion = noreligion
+				government = theocracy
+				civilized = yes
+				capital = 744
+			}
+			any_country = { #Kurdistan
+				limit = {
+					tag = BHT
+					NOT = { exists = BHT }
+				}
+				primary_culture = kurdish
+				religion = sunni
+				government = democracy
+				civilized = yes
+				capital = 924
+			}
+			any_country = { #Andalusia
+				limit = {
+					tag = ADU
+					NOT = { exists = ADU }
+				}
+				primary_culture = andalucian
+				religion = sunni
+				government = theocracy
+				civilized = yes
+				capital = 510
+			}
+			any_country = { #Malta
+				limit = {
+					tag = MLT
+					NOT = { exists = MLT }
+				}
+				primary_culture = maltese
+				religion = catholic
+				government = democracy
+				civilized = yes
+				capital = 854
+			}
+			any_country = { #Langobardia
+				limit = {
+					tag = LGB
+					NOT = { exists = LGB }
+				}
+				primary_culture = lombard
+				religion = catholic
+				civilized = yes
+				capital = 726
+			}
 			set_global_flag = taiping_and_csa
 		}
 		ai_will_do = {
@@ -387,6 +498,7 @@ political_decisions = {
 			NOT = {
 				exists = NET
 				tag = FRA
+				tag = RME
 			}
 		}	
 		allow = {
@@ -441,6 +553,7 @@ political_decisions = {
 				exists = FLA
 				exists = WLL
 				tag = LUX
+				tag = RME
 			}
 		}	
 		allow = {
@@ -494,6 +607,7 @@ political_decisions = {
 			NOT = {
 				exists = SPA
 				tag = CAT
+				tag = RME
 			}
 		}	
 		allow = {
@@ -547,6 +661,7 @@ political_decisions = {
 				exists = UKR
 				tag = RUS
 				tag = CRI
+				tag = RME
 			}
 		}	
 		allow = {
@@ -1046,7 +1161,7 @@ political_decisions = {
 		allow = {
 			war = no
 			prestige = 5
-			is_great_power = yes
+			is_greater_power = yes
 		}
 		
 		effect = {
@@ -1328,7 +1443,7 @@ political_decisions = {
 						vassal_of = THIS
 					}
 				}
-				FROM = { inherit = THIS }
+				LGB = { inherit = THIS }
 			}
 			any_country = {
 				limit = {
@@ -1338,6 +1453,252 @@ political_decisions = {
 					add_core = LGB
 				}
 			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	form_japan = {
+		potential = {
+			NOT = { exists = JAP }
+			NOT = { has_global_flag = united_japan }
+			primary_culture = japanese
+		}	
+		allow = {
+			war = no
+			prestige = 5
+			JAP = {
+				all_core = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+							primary_culture = japanese
+						}
+						owner = {
+							NOT = { primary_culture = japanese }
+						}
+					}
+				}
+			}
+		}
+		
+		effect = {
+			prestige = 10
+			any_country = {
+				limit = {
+					in_sphere = THIS
+					NOT = {
+						tag = THIS
+					}
+					capital_scope = { continent = asia }
+					primary_culture = japanese
+				}
+				annex_to = THIS
+			}
+			any_owned = {
+				add_core = JAP
+			}			
+			set_global_flag = united_japan
+			change_tag = JAP
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	form_the_undeads = {
+		potential = {
+			tag = ZOM
+			NOT = { exists = UND }
+			NOT = { has_global_flag = oh_fuck }
+		}	
+		allow = {
+			war = no
+			prestige = 5
+		}
+		
+		effect = {
+			prestige = 10
+			any_owned = {
+				add_core = UND
+				remove_core = ZOM
+				assimilate = yes
+			}			
+			set_global_flag = oh_fuck
+			change_tag = UND
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	go_away_undeads = {
+		potential = {
+			NOT = {
+				culture = polar_bears
+				culture = horse
+				culture = cat
+				culture = undead
+				culture = alien
+			}
+			any_pop = {
+				OR = {
+					culture = polar_bears
+					culture = horse
+					culture = cat
+					culture = undead
+					culture = alien
+				}
+			}
+		}	
+		allow = {
+			always = yes
+		}
+		
+		effect = {
+			any_pop = {
+				limit = {
+					OR = {
+						culture = polar_bears
+						culture = horse
+						culture = cat
+						culture = undead
+						culture = alien
+					}
+				}
+				reduce_pop = 0
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	we_are_the_undeads = {
+		potential = {
+			OR = {
+				culture = polar_bears
+				culture = horse
+				culture = cat
+				culture = undead
+				culture = alien
+			}
+			any_pop = {
+				is_primary_culture = no
+			}
+		}	
+		allow = {
+			always = yes
+		}
+		
+		effect = {
+			any_pop = {
+				limit = {
+					is_primary_culture = no
+				}
+				reduce_pop = 0
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	form_ireland = {
+		potential = {
+			primary_culture = irish
+			NOT = {
+				exists = IRE
+				tag = ENG
+				tag = ENL
+				tag = SCO
+			}
+		}	
+		allow = {
+			war = no
+			prestige = 5
+			IRE = {
+				all_core = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+						owned_by = ENG
+						owned_by = ENL
+						owned_by = SCO
+					}
+				}
+			}
+		}
+		
+		effect = {
+			prestige = 10
+			any_country = {
+				limit = {
+					in_sphere = THIS
+					NOT = {
+						tag = THIS
+					}
+					capital_scope = { continent = europe }
+					primary_culture = irish
+				}
+				annex_to = THIS
+			}
+			any_owned = {
+				add_core = IRE
+			}			
+			
+			change_tag = IRE
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	form_greece = {
+		potential = {
+			primary_culture = greek
+			NOT = {
+				exists = BYZ
+				exists = RME
+				exists = GRE
+				tag = TUR
+				tag = ITA
+				tag = MKD
+			}
+		}	
+		allow = {
+			war = no
+			prestige = 5
+			GRE = {
+				all_core = {
+					OR = {
+						owned_by = THIS
+						owner = {
+							in_sphere = THIS
+						}
+						owned_by = TUR
+						owned_by = MKD
+					}
+				}
+			}
+		}
+		
+		effect = {
+			prestige = 10
+			any_country = {
+				limit = {
+					in_sphere = THIS
+					NOT = {
+						tag = THIS
+					}
+					capital_scope = { continent = europe }
+					primary_culture = greek
+				}
+				annex_to = THIS
+			}
+			any_owned = {
+				add_core = GRE
+			}			
+			
+			change_tag = GRE
 		}
 		ai_will_do = {
 			factor = 1

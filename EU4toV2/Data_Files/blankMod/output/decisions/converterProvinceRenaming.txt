@@ -124,7 +124,7 @@ political_decisions = {
 				change_province_name = "Istanbul"
 			}
 			861 = {
-				change_province_name = "√úsk√ºdar"
+				change_province_name = "‹sk¸dar"
 			}
 			clr_global_flag = thrace_be_greek
 		}
@@ -205,7 +205,7 @@ political_decisions = {
 				change_province_name = "Afyon"
 			}
 			867 = {
-				change_province_name = "K√ºtahya"
+				change_province_name = "K¸tahya"
 			}
 			868 = {
 				change_province_name = "Eskishehir"
@@ -274,7 +274,7 @@ political_decisions = {
 		}
 		effect = {
 			865 = {
-				change_province_name = "Canakkale"
+				change_province_name = "«anakkale"
 				state_scope = {
 					change_region_name = "Aydin"
 				}
@@ -521,7 +521,7 @@ political_decisions = {
 	}
 	### Decisions to change New York City name if ahistorical
 ##################
-# 70 ÷†Prince Edward Island/Epekwitk
+# 70 ?Prince Edward Island/Epekwitk
 ##################
 
 	german_70 = {
@@ -841,7 +841,7 @@ political_decisions = {
 		}
 	}
 ##################
-# 139 ÷†New Orleans/Chitimacha
+# 139 ?New Orleans/Chitimacha
 # Louisiana/Shreveport
 ##################
 
@@ -864,7 +864,7 @@ political_decisions = {
 		}
 		effect = {
 			139 = {
-				change_province_name = "NeumÆ©£h"
+				change_province_name = "Neum¸nich"
 				state_scope = {
 					change_region_name = "Ludwigsland"
 				}
@@ -921,9 +921,9 @@ political_decisions = {
 		}
 		effect = {
 			139 = {
-				change_province_name = "NÒ™°†Stockholm"
+				change_province_name = "N˝ Stockholm"
 				state_scope = {
-					change_region_name = "LÚ∞∂≠kurland"
+					change_region_name = "Lovekurland"
 				}
 			}
 			set_global_flag = 139_changed
@@ -1036,7 +1036,7 @@ political_decisions = {
 		}
 		effect = {
 			139 = {
-				change_province_name = "Nouvelle OrlÍ¢Æs"
+				change_province_name = "Nouvelle OrlÈans"
 				state_scope = {
 					change_region_name = "Louisiana"
 				}
@@ -1069,7 +1069,7 @@ political_decisions = {
 			139 = {
 				change_province_name = "Jadid al-Baghdad"
 				state_scope = {
-					change_region_name = "”Ård-Luis"
+					change_region_name = "'Ard-Luis"
 				}
 			}
 			set_global_flag = 139_changed
@@ -1198,7 +1198,7 @@ political_decisions = {
 		}
 	}
 ##################
-# 232 ÷†New York/Manhattan
+# 232 ?New York/Manhattan
 ##################
 
 	german_232 = {
@@ -1220,9 +1220,9 @@ political_decisions = {
 		}
 		effect = {
 			232 = {
-				change_province_name = "Neupreu‡†•n"
+				change_province_name = "Neupreuﬂen"
 				state_scope = {
-					change_region_name = "Neupreu‡†•n"
+					change_region_name = "Neupreuﬂen"
 				}
 			}
 			set_global_flag = 232_changed
@@ -1277,9 +1277,9 @@ political_decisions = {
 		}
 		effect = {
 			232 = {
-				change_province_name = "VÓØ¢org"
+				change_province_name = "VÌnborg"
 				state_scope = {
-					change_region_name = "VÓØ¨and"
+					change_region_name = "VÌnland"
 				}
 			}
 			set_global_flag = 232_changed
@@ -1367,7 +1367,7 @@ political_decisions = {
 			232 = {
 				change_province_name = "Nueva Barcelona"
 				state_scope = {
-					change_region_name = "Nueva CataluÒ°¢ç
+					change_region_name = "Nueva CataluÒa"
 				}
 			}
 			set_global_flag = 232_changed
@@ -1554,7 +1554,7 @@ political_decisions = {
 		}
 	}
 ##################
-# 244 ÷†New Bedford/Wampanoag
+# 244 ?New Bedford/Wampanoag
 ##################
 
 	german_244 = {
@@ -1627,7 +1627,8 @@ political_decisions = {
 		}
 		effect = {
 			244 = {
-				change_province_name = "NÒ†ç°lmÚ¢çä			}
+				change_province_name = "N˝ Malmˆ"
+				}
 			set_global_flag = 244_changed
 		}
 		ai_will_do = {
@@ -1705,7 +1706,7 @@ political_decisions = {
 		}
 		effect = {
 			244 = {
-				change_province_name = "Nueva C‚•©z"
+				change_province_name = "Nueva C·diz"
 			}
 			set_global_flag = 244_changed
 		}
@@ -1873,7 +1874,7 @@ political_decisions = {
 		}
 	}
 ##################
-# 2510 ÷†New Plymouth/Taranaki, probably uncolonized
+# 2510 ?New Plymouth/Taranaki, probably uncolonized
 ##################
 
 	german_2510 = {
@@ -1946,7 +1947,7 @@ political_decisions = {
 		}
 		effect = {
 			2510 = {
-				change_province_name = "NÒ†ñ≥tersund"
+				change_province_name = "N˝ ÷stersund"
 			}
 			set_global_flag = 2510_changed
 		}
@@ -2193,7 +2194,7 @@ political_decisions = {
 		}
 	}
 ##################
-# 220 ÷†Washington DC/Conoy
+# 220 ?Washington DC/Conoy
 ##################
 
 	german_220 = {
@@ -2215,7 +2216,7 @@ political_decisions = {
 		}
 		effect = {
 			220 = {
-				change_province_name = "WÂ¥£her"
+				change_province_name = "W‰scher"
 			}
 			set_global_flag = 220_changed
 		}
@@ -2345,7 +2346,7 @@ political_decisions = {
 		}
 		effect = {
 			220 = {
-				change_province_name = "JuassÍ∫¢
+				change_province_name = "JuassÈz"
 			}
 			set_global_flag = 220_changed
 		}
@@ -2513,7 +2514,7 @@ political_decisions = {
 		}
 	}
 ##################
-# 89 ÷†Los Angeles/Chumash
+# 89 ?Los Angeles/Chumash
 ##################
 
 	german_89 = {
@@ -2586,7 +2587,7 @@ political_decisions = {
 		}
 		effect = {
 			89 = {
-				change_province_name = "≈Æglarborg"
+				change_province_name = "Uglarborg"
 			}
 			set_global_flag = 89_changed
 		}
@@ -2665,7 +2666,7 @@ political_decisions = {
 		}
 		effect = {
 			89 = {
-				change_province_name = "Los ¬Ægeles"
+				change_province_name = "Los ¡ngeles"
 			}
 			set_global_flag = 89_changed
 		}
@@ -2800,7 +2801,7 @@ political_decisions = {
 		}
 		effect = {
 			89 = {
-				change_province_name = "Kongzi Cheng" #Confucius“†City
+				change_province_name = "Kongzi Cheng" #Confucius?City
 			}
 			set_global_flag = 89_changed
 		}
@@ -2824,7 +2825,7 @@ political_decisions = {
 		}
 		effect = {
 			89 = {
-				change_province_name = "Gaayonka" #Cows“†City
+				change_province_name = "Gaayonka" #Cows?City
 			}
 			set_global_flag = 89_changed
 		}
@@ -2833,7 +2834,7 @@ political_decisions = {
 		}
 	}
 ##################
-# 84 ÷†San Francisco/Miwok
+# 84 ?San Francisco/Miwok
 ##################
 
 	german_84 = {
@@ -2934,7 +2935,7 @@ political_decisions = {
 		}
 		effect = {
 			84 = {
-				change_province_name = "Saint Francis“¢
+				change_province_name = "Saint Francis'"
 			}
 			set_global_flag = 84_changed
 		}
@@ -3009,7 +3010,7 @@ political_decisions = {
 		}
 		effect = {
 			84 = {
-				change_province_name = "Saint-FranË∞©s"
+				change_province_name = "Saint-FranÁois"
 			}
 			set_global_flag = 84_changed
 		}
@@ -3153,7 +3154,7 @@ political_decisions = {
 		}
 	}
 ##################
-# 2131 ÷†Falklands-Malvinas dispute
+# 2131 ?Falklands-Malvinas dispute
 ##################
 	english_2131 = { #This is the Vanilla
 		potential = {
@@ -3226,7 +3227,7 @@ political_decisions = {
 		}
 		effect = {
 			2131 = {
-				change_province_name = "œ¨es Malouines"
+				change_province_name = "Œles Malouines"
 			}
 			set_global_flag = 2131_changed
 		}
@@ -3235,7 +3236,7 @@ political_decisions = {
 		}
 	}
 ##################
-# 2447 ÷†Rio de Janeiro/Kara”©woka
+# 2447 ?Rio de Janeiro/Kara?woka
 ##################
 
 	german_2447 = {
@@ -3314,9 +3315,9 @@ political_decisions = {
 		}
 		effect = {
 			2447 = {
-				change_province_name = "JanÚ°≤°in"
+				change_province_name = "Jan˙ar·in"
 				state_scope = {
-					change_region_name = "JanÚ°≤°in"
+					change_region_name = "Jan˙ar·in"
 				}
 			}
 			set_global_flag = 2447_changed
@@ -3591,7 +3592,7 @@ political_decisions = {
 		}
 	}
 ##################
-# 2450 ÷†S‰Ø†Paulo/Tupi-Guaran
+# 2450 ?S?Paulo/Tupi-Guaran
 ##################
 
 	german_2450 = {
@@ -3701,9 +3702,9 @@ political_decisions = {
 		}
 		effect = {
 			2450 = {
-				change_province_name = "Saint Paul”≥"
+				change_province_name = "Saint Paul's"
 				state_scope = {
-					change_region_name = "Saint Paul”≥"
+					change_region_name = "Saint Paul's"
 				}
 			}
 			set_global_flag = 2450_changed
@@ -3758,9 +3759,9 @@ political_decisions = {
 		}
 		effect = {
 			2450 = {
-				change_province_name = "S‰Ø†Paulo"
+				change_province_name = "S„o Paulo"
 				state_scope = {
-					change_region_name = "S‰Ø†Paulo"
+					change_region_name = "S„o Paulo"
 				}
 			}
 			set_global_flag = 2450_changed
@@ -3947,7 +3948,7 @@ political_decisions = {
 		}
 	}
 ##################
-# 2348 ÷†Buenos Aires/Portenya
+# 2348 ?Buenos Aires/Portenya
 ##################
 
 	german_2348 = {

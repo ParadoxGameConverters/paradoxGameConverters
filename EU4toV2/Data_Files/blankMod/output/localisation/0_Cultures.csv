@@ -1,4 +1,4 @@
-ï»¿KEY;ENGLISH;FRENCH;GERMAN;POLISH;SPANISH;ITALIAN;HUNGARIAN;CZECH;HUNGARIAN;DUTCH;PORTUGUESE;RUSSIAN;FINNISH;X
+KEY;ENGLISH;FRENCH;GERMAN;POLISH;SPANISH;ITALIAN;HUNGARIAN;CZECH;HUNGARIAN;DUTCH;PORTUGUESE;RUSSIAN;FINNISH;X
 alan;Alan;Alan;Alan;Alan;Alano;Alano;Alan;Alan;Alan;Alan;Alan;????;Alan;x
 all_italian;Neo-Italian;Néo-Italien;Neu-Italienisch;Neo-Wloski;Neo-Italiano;Neo-Italiano;Neo-Olasz;Neo-Italský;Neo-Olasz;Neo-Italiaanse;Neo-Italiano;???-???????????;Neo-Italialainen;x
 andalucian;Andalucian;Andalucien;Andalusischen;Andaluzyjczyk;Andaluz;Andaluso;Andalúz;Andaluský;Andalúz;Andalusische;Andaluz;???????;Andalusian;x
@@ -11,8 +11,10 @@ bornean;Bornean;Bornéen;Bornean;Bornean;Borneano;Borneese;Borneói;Bornean;Borneó
 breton;Breton;Breton;Bretonisch;Breton;Breton;Bretone;Breton;Breton;Breton;Breton;Bretão;??????????;Breton;x
 caddoan;Caddoan;Caddoan;Caddoan;Caddoan;Caddoano;Caddoano;Caddoan;Caddoan;Caddoan;Caddoan;Caddoan;???????;Caddoan;x
 carribean;Carribean;Caribéen;Karibik;Karaiby;Caribe;Caraibico;Karib;Carribean;Karib;Carribean;Caraíbas;??????;Karibian;x
+native_carribean;Carribean;Caribéen;Karibik;Karaiby;Caribe;Caraibico;Karib;Carribean;Karib;Carribean;Caraíbas;??????;Karibian;x
 central_algonquian;Central Algonquian;Algonquien Central;Zentrales Algonkin;Central Algonquian;Algonquino Central;Algonchino Centrale;Közép-Algonquian;Centrální Algonquian;Közép-Algonquian;Centraal Algonquian;Algonquian Central;??????????? ????????;Keski Algonquian;x
 chacoan;Chacoan;Chacoan;Chacoan;Chacoan;Chacoano;Chacoano;Chaco;Chacoan;Chaco;Chacoan;Chacoan;??????;Chacoan;x
+cherokee;Cherokee;Cherokee;Cherokee;Cherokee;Cherokeeo;Cherokeeo;Cherokee;Cherokee;Cherokee;Cherokee;Cherokee;???????;Cherokee;x
 chibchan;Chibchan;Chibchan;Chibchan;Chibchan;Chibchano;Chibchano;Chibchan;Chibchan;Chibchan;Chibcha;Chibchan;??????;Chibchan;x
 dummy;No Culture;Pas Culture;Keine Kultur;Brak Kultury;Sin Cultura;Senza Cultura;Nincs Kultúra;Žádná Kultura;Nincs Kultúra;Geen Cultuur;Nenhuma Cultura;??? ????????;Ei Kulttuuria;x
 eastern_algonquian;Eastern Algonquian;Algonquin Oriental;Östlichen Algonkin;Algonquin Wschodni;Algonquino Oriental;Algonchino Orientale;Keleti Algonquian;Východní Algonquian;Keleti Algonquian;Oost-Algonquian;Algonquian Oriental;????????? ????????;Itäinen Algonquian;x
@@ -77,18 +79,18 @@ nouvellien;Nouvellien;Nouvellien;Nouvellien;Nouvellien;Nouvellien;Nouvellien;Nou
 australienne;Australienne;Australienne;Australienne;Australienne;Australienne;Australienne;Australienne;Australienne;Australienne;Australienne;Australienne;Australienne;Australienne;x
 africaine;Africaine;Africaine;Africaine;Africaine;Africaine;Africaine;Africaine;Africaine;Africaine;Africaine;Africaine;Africaine;Africaine;x
 amerikaner;Amerikaner;Amerikaner;Amerikaner;Amerikaner;Amerikaner;Amerikaner;Amerikaner;Amerikaner;Amerikaner;Amerikaner;Amerikaner;Amerikaner;Amerikaner;x
-sudreicher;S??icher;S??icher;S??icher;S??icher;S??icher;S??icher;S??icher;S??icher;S??icher;S??icher;S??icher;S??icher;S??icher;x
+sudreicher;Südreicher;Südreicher;Südreicher;Südreicher;Südreicher;Südreicher;Südreicher;Südreicher;Südreicher;Südreicher;Südreicher;Südreicher;Südreicher;x
 schwarzreicher;Schwarzreicher;Schwarzreicher;Schwarzreicher;Schwarzreicher;Schwarzreicher;Schwarzreicher;Schwarzreicher;Schwarzreicher;Schwarzreicher;Schwarzreicher;Schwarzreicher;Schwarzreicher;Schwarzreicher;x
 ujvilag;Ujvilag;Ujvilag;Ujvilag;Ujvilag;Ujvilag;Ujvilag;Ujvilag;Ujvilag;Ujvilag;Ujvilag;Ujvilag;Ujvilag;Ujvilag;x
 delian;Delian;Delian;Delian;Delian;Delian;Delian;Delian;Delian;Delian;Delian;Delian;Delian;Delian;x
 fekete;Fekete;Fekete;Fekete;Fekete;Fekete;Fekete;Fekete;Fekete;Fekete;Fekete;Fekete;Fekete;Fekete;x
-americano;Americano;Americano;Americano;Americano;Americano;Americano;Americano;Americano;Americano;Americano;Americano;Americano;Americano;x
-sureno;Sure??ure??ure??ure??ure??ure??ure??ure??ure??ure??ure??ure??ure??
+sureno;Sureño;Sureño;Sureño;Sureño;Sureño;Sureño;Sureño;Sureño;Sureño;Sureño;Sureño;Sureño;Sureño;x
 morado;Morado;Morado;Morado;Morado;Morado;Morado;Morado;Morado;Morado;Morado;Morado;Morado;Morado;x
 dinajidad;Dinajidad;Dinajidad;Dinajidad;Dinajidad;Dinajidad;Dinajidad;Dinajidad;Dinajidad;Dinajidad;Dinajidad;Dinajidad;Dinajidad;Dinajidad;x
 janub;Janub;Janub;Janub;Janub;Janub;Janub;Janub;Janub;Janub;Janub;Janub;Janub;Janub;x
 saahi;Saahi;Saahi;Saahi;Saahi;Saahi;Saahi;Saahi;Saahi;Saahi;Saahi;Saahi;Saahi;Saahi;x
 americano;Americano;Americano;Americano;Americano;Americano;Americano;Americano;Americano;Americano;Americano;Americano;Americano;Americano;x
+italoamericano;Italo-Americano;Italo-Americano;Italo-Americano;Italo-Americano;Italo-Americano;Italo-Americano;Italo-Americano;Italo-Americano;Italo-Americano;Italo-Americano;Italo-Americano;Italo-Americano;Italo-Americano;x
 australiano;Australiano;Australiano;Australiano;Australiano;Australiano;Australiano;Australiano;Australiano;Australiano;Australiano;Australiano;Australiano;Australiano;x
 africano;Africano;Africano;Africano;Africano;Africano;Africano;Africano;Africano;Africano;Africano;Africano;Africano;Africano;x
 neokosmi;Neokosmi;Neokosmi;Neokosmi;Neokosmi;Neokosmi;Neokosmi;Neokosmi;Neokosmi;Neokosmi;Neokosmi;Neokosmi;Neokosmi;Neokosmi;x
@@ -112,7 +114,12 @@ crni;Crni;Crni;Crni;Crni;Crni;Crni;Crni;Crni;Crni;Crni;Crni;Crni;Crni;x
 thegioimoi;Thegioimoi;Thegioimoi;Thegioimoi;Thegioimoi;Thegioimoi;Thegioimoi;Thegioimoi;Thegioimoi;Thegioimoi;Thegioimoi;Thegioimoi;Thegioimoi;Thegioimoi;x
 phianam;Phianam;Phianam;Phianam;Phianam;Phianam;Phianam;Phianam;Phianam;Phianam;Phianam;Phianam;Phianam;Phianam;x
 dhen;Dhen;Dhen;Dhen;Dhen;Dhen;Dhen;Dhen;Dhen;Dhen;Dhen;Dhen;Dhen;Dhen;x
-yenidun;Yenid??enid??enid??enid??enid??enid??enid??enid??enid??enid??enid??enid??enid??
-guney;G??;G??;G??;G??;G??;G??;G??;G??;G??;G??;G??;G??;G??;x
+yenidun;Yenidün;Yenidün;Yenidün;Yenidün;Yenidün;Yenidün;Yenidün;Yenidün;Yenidün;Yenidün;Yenidün;Yenidün;Yenidün;x
+guney;Güney;Güney;Güney;Güney;Güney;Güney;Güney;Güney;Güney;Güney;Güney;Güney;Güney;x
 esmer;Esmer;Esmer;Esmer;Esmer;Esmer;Esmer;Esmer;Esmer;Esmer;Esmer;Esmer;Esmer;Esmer;x
-macedonian;Macedonian;MacÃ©dionien;Mazedonier;MacedoÅ„ski;Macedonio;Macedone;MacedÃ³n;MacedoniÃ«r;MacedÃ´nio;ÐœÐ°ÐºÐµÐ´Ð¾Ð½ÐµÑ†;Makedonian;x
+ealimi;Ealimi;Ealimi;Ealimi;Ealimi;Ealimi;Ealimi;Ealimi;Ealimi;Ealimi;Ealimi;Ealimi;Ealimi;Ealimi;x
+macedonian;Macedonian;Macédonien;Mazedonier;Macedonski;Macedonio;Macedone;MacedÃ³n;MacedoniÃ«r;MacedÃ´nio;ÐœÐ°ÐºÐµÐ´Ð¾Ð½ÐµÑ†;Makedonian;x
+non_human;Non-Human;Non humain;Nicht-menschlich;Nieczlowiecze;No humano;Non umano;Nem emberi;Ne clovek;Nem emberi;Niet menselijk;Não humano;???????;Ei ihminen;x
+cat;Feline;Félin;Katzen;koci;felino;felino;macskaféle;kockovitý;macskaféle;katachtig;felino;???????;kissaeläin;x
+undead;Undead;Mort-Vivant;Untot;Undead;Muerto viviente;Undead;Undead;Undead;Undead;undead;mortos-vivos;??????;Undead;x
+alien;Extraterrestrial;Extraterrestre;Ausländer;obcy;extranjero;alieno;idegen;cizinec;idegen;vreemdeling;alienígena;??????????;ulkomaalainen;x

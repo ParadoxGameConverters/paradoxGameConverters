@@ -179,7 +179,6 @@
     <ClCompile Include="Source\EU4World\Areas.cpp" />
     <ClCompile Include="Source\EU4World\ColonialRegions.cpp" />
     <ClCompile Include="Source\EU4World\Continents.cpp" />
-    <ClCompile Include="Source\EU4World\CountryHistory.cpp" />
     <ClCompile Include="Source\EU4World\CultureGroups.cpp" />
     <ClCompile Include="Source\EU4World\EU4Army.cpp" />
     <ClCompile Include="Source\EU4World\EU4Country.cpp" />
@@ -191,7 +190,6 @@
     <ClCompile Include="Source\EU4World\EU4Religion.cpp" />
     <ClCompile Include="Source\EU4World\EU4Version.cpp" />
     <ClCompile Include="Source\EU4World\EU4World.cpp" />
-    <ClCompile Include="Source\EU4World\History.cpp" />
     <ClCompile Include="Source\EU4World\ID.cpp" />
     <ClCompile Include="Source\EU4World\Region.cpp" />
     <ClCompile Include="Source\EU4World\Regions.cpp" />
@@ -248,7 +246,6 @@
     <ClInclude Include="Source\EU4World\Areas.h" />
     <ClInclude Include="Source\EU4World\ColonialRegions.h" />
     <ClInclude Include="Source\EU4World\Continents.h" />
-    <ClInclude Include="Source\EU4World\CountryHistory.h" />
     <ClInclude Include="Source\EU4World\CultureGroups.h" />
     <ClInclude Include="Source\EU4World\EU4Army.h" />
     <ClInclude Include="Source\EU4World\EU4Country.h" />

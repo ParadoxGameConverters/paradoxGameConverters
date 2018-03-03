@@ -1,4 +1,4 @@
-# Copyright (c) 2014 The Paradox Game Converters Project
+# Copyright (c) 2018 The Paradox Game Converters Project
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -146,5 +146,13 @@ link = { v2 = jewish eu4 = tzadikite }
 link = { v2 = jewish_heresy eu4 = bosporan_faith } #Hypsistarians
 
 link = { v2 = noreligion eu4 = r_zombie } #Zombie mod
+
+#CK2 Mythos mod - not exporting to EU4
+#link = { v2 = shamanism eu4 = voodoo }
+#link = { v2 = animist eu4 = draconic_pagan_reformed eu4 = draconic_pagan }
+#link = { v2 = druidist eu4 = druidic_reformed eu4 = druidic }
+#link = { v2 = kemetic eu4 = kemetic_pagan_reformed eu4 = kemetic_pagan }
+#link = { v2 = norse_pagan_reformed eu4 = jotnar_reformed eu4 = jotnar }
+#link = { v2 = catholic_heresy eu4 = satanist }
 
 }

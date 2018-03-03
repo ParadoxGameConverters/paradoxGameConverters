@@ -13,11 +13,21 @@ political_decisions = {
 
 		effect = {
 			ENG_58 = {	#Quebec
-				limit = { is_culture = french }
+				limit = {
+					OR = {
+						is_primary_culture = french
+						is_primary_culture = french_canadian
+					}
+				}
 				add_core = QUE
 			}
 			ENG_13 = {	#Columbia
-				limit = { is_culture_group = british }
+				limit = {
+					OR = {
+						is_primary_culture = english
+						is_primary_culture = anglo_canadian
+					}
+				}
 				add_core = COL
 			}
 			ENG_74 = { add_core = NEW } #Newfoundland
@@ -34,7 +44,12 @@ political_decisions = {
 			ENG_9 = { add_core = CAN }
 			USA_1 = { add_core = LSK } #Alaska
 			USA_247 = {	#New England
-				limit = { is_culture_group = british }
+				limit = {
+					OR = {
+						is_primary_culture = english
+						is_primary_culture = yankee
+					}
+				}
 				add_core = NEN
 			}
 			USA_232 = { add_core = MAN } #Manhattan
@@ -78,7 +93,7 @@ political_decisions = {
 			USA_185 = { add_core = CSA }
 			USA_211 = { add_core = CSA }
 			USA_188 = { add_core = CSA }
-			USA_2566 = { add_core = CSA }
+			#USA_2566 = { add_core = CSA }
 			USA_201 = { add_core = CSA }
 			USA_196 = { add_core = CSA }
 			USA_194 = { add_core = CSA }
@@ -86,11 +101,21 @@ political_decisions = {
 			MEX_85 = { add_core = CAL } #California
 			SPA_2209 = { add_core = CUB } #Cuba
 			HAI_2213 = { #Haiti
-				limit = { NOT = { is_culture_group = spanish } }
+				limit = {
+					NOT = {
+						is_primary_culture = spanish
+						is_primary_culture = caribeno
+					}
+				}
 				add_core = HAI
 			}
 			HAI_2213 = { #Santo Domingo
-				limit = { is_culture_group = spanish }
+				limit = {
+					OR = {
+						is_primary_culture = spanish
+						is_primary_culture = caribeno
+					}
+				}
 				add_core = DOM
 			}
 			UCA_2201 = { #Costa Rica
@@ -189,9 +214,10 @@ political_decisions = {
 			BEL_1987 = { add_core = CNG }
 			BEL_1990 = { add_core = CNG }
 			BEL_1992 = { add_core = CNG }
-			3246 = { add_core = JMN } #Jan Mayen
+			3246 = { add_core = JAN } #Jan Mayen
 			EGY_921 = { add_core = ISR } #Israel
 			CHI_1476 = { add_core = TPG } #Taiping Heavenly Kingdom (for event)
+			TUR_806 = { add_core = MKD } #FYR Macedonia (if not working properly)
 			
 			set_global_flag = der_postcolonialism
 		}

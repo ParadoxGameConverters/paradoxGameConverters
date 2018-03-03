@@ -113,24 +113,7 @@ void V2Flags::SetV2Tags(const map<string, V2Country*>& V2Countries)
 		}
 	}
 
-	// All the remaining tags now need one of the usable flags.
-	size_t mappingsMade = 0;
-	for (set<string>::const_iterator i = requiredTags.cbegin(); i != requiredTags.cend(); ++i)
-	{
-		const string& V2Tag = *i;
-		size_t randomTagIndex = uniform_int_distribution<size_t>(0, usableFlagTags.size() - 1)(generator);
-		set<string>::const_iterator randomTagIter = usableFlagTags.cbegin();
-		advance(randomTagIter, randomTagIndex);
-		const string& flagTag = *randomTagIter;
-		tagMap[V2Tag] = flagTag;
-		LOG(LogLevel::Debug) << "Country with tag " << V2Tag << " has no flag and will use the flag for " << flagTag << " instead";
-		if (usableFlagTags.size() > requiredTags.size() - tagMap.size())
-		{
-			usableFlagTags.erase(flagTag);
-		}
-	}
-
-	for (auto country: V2Countries)
+	for (auto country : V2Countries)
 	{
 		V2Country* overlord = country.second->getColonyOverlord();
 		if (NULL == overlord)
@@ -152,7 +135,7 @@ void V2Flags::SetV2Tags(const map<string, V2Country*>& V2Countries)
 		LOG(LogLevel::Info) << "Country with tag " << country.first << " is " << colonialtitle->getName() << ", ruled by " << colonialtitle->getOverlord();
 
 		usableFlagTags.erase(colonialtitle->getName());
-		requiredTags.erase(country.first); 
+		requiredTags.erase(country.first);
 		mappers::colonyFlagsetMapper::removeFlag(colonialtitle->getName());
 	}
 
@@ -181,8 +164,10 @@ void V2Flags::SetV2Tags(const map<string, V2Country*>& V2Countries)
 				{
 					success = true;
 					colonialFlagMapping[(*v2c)->getTag()] = flag;
-					flag->getOverlord() = (*v2c)->getColonyOverlord()->getTag();
-					LOG(LogLevel::Info) << "Country with tag " << (*v2c)->getTag() << " is now " << key << ", ruled by " << flag->getOverlord();
+					V2Country* overlord = (*v2c)->getColonyOverlord();
+					string overlordName = overlord->getTag();
+					flag->setOverlord(overlordName);
+					LOG(LogLevel::Info) << "Country with tag " << (*v2c)->getTag() << " is now " << key << ", ruled by " << overlordName;
 
 					usableFlagTags.erase(flag->getName());
 					requiredTags.erase((*v2c)->getTag());
@@ -193,6 +178,22 @@ void V2Flags::SetV2Tags(const map<string, V2Country*>& V2Countries)
 		}
 	}
 
+	// All the remaining tags now need one of the usable flags.
+	size_t mappingsMade = 0;
+	for (set<string>::const_iterator i = requiredTags.cbegin(); i != requiredTags.cend(); ++i)
+	{
+		const string& V2Tag = *i;
+		size_t randomTagIndex = uniform_int_distribution<size_t>(0, usableFlagTags.size() - 1)(generator);
+		set<string>::const_iterator randomTagIter = usableFlagTags.cbegin();
+		advance(randomTagIter, randomTagIndex);
+		const string& flagTag = *randomTagIter;
+		tagMap[V2Tag] = flagTag;
+		LOG(LogLevel::Debug) << "Country with tag " << V2Tag << " has no flag and will use the flag for " << flagTag << " instead";
+		if (usableFlagTags.size() > requiredTags.size() - tagMap.size())
+		{
+			usableFlagTags.erase(flagTag);
+		}
+	}
 
 	for (map<string, V2Country*>::const_iterator i = V2Countries.begin(); i != V2Countries.end(); i++)
 	{

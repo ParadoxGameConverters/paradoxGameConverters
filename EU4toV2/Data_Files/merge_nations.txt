@@ -41,6 +41,7 @@ merge_nations =
 		merge = no	# Change to yes to enable merging
 
 		master = FRA
+		slave = ALE # Alençon
 		slave = ALS	# Alsace
 		slave = AMG	# Armagnac
 		slave = AUV	# Auvergne
@@ -56,14 +57,15 @@ merge_nations =
 		slave = NEV	# Nevers
 		slave = NRM	# Normandy
 		slave = ORL	# Orleans
+		slave = PIC # Picardy
 		slave = PRO	# Provence
-		slave = RFR	# Revolutionary France (proper)
 		slave = TOU	# Toulouse
 		slave = BER	# Berry
 
 		# Uncomment these lines to include Corsica and/or Savoy in merged France
 		# slave = COR	# Corsica
 		# slave = SAV	# Savoy
+		# slave = SPI   # Sardinia-Piedmont
 	}	
 
 	ireland =
@@ -76,6 +78,11 @@ merge_nations =
 		slave = IRE	# Ireland (proper)
 		slave = MNS	# Munster (Ireland, not Germany)
 		slave = TYR	# Tyrone
+		slave = MTH # Meath
+		slave = ULS # Ulster
+		slave = DMS # Desmond
+		slave = SLN # Sligo
+		slave = KID # Kildare
 	}
 
 	spain =
@@ -84,6 +91,7 @@ merge_nations =
 
 		master = SPA
 		slave = CAS	# Castille
+		slave = LON # León
 		slave = GAL	# Galicia
 		slave = GRA	# Granada
 		slave = NAV	# Navarra
@@ -92,6 +100,7 @@ merge_nations =
 		# Uncomment these lines to include Aragon/Catalunya in merged Spain
 		# slave = ARA	# Aragon
 		# slave = CAT	# Catalunya
+		# slave = ADU   # Andalusia
 	}
 
 	holland =
@@ -125,11 +134,16 @@ merge_nations =
 		slave = PSK	# Pskov
 		slave = QAS	# Qasim Khanate
 		slave = RUS	# Russia (proper)
+		slave = RYA # Ryazan
 		slave = TVE	# Tver
 		slave = YAR	# Yaroslavl
 		slave = NOG	# Nogai
 		slave = SIB	# Sibir
 		slave = PLT	# Polotsk
+		slave = PRM # Perm
+		slave = BLO # Beloozero
+		slave = RSO # Rostov
+		slave = GLH # Actual Golden Horde
 
 		# Uncomment these lines to include Georgia and Armenia in merged Russia
 		# slave = GEO	# Georgia
@@ -155,6 +169,22 @@ merge_nations =
 		slave = PER	# Persia (proper)
 		slave = QAR	# Qara Koyunlu
 		slave = TIM	# The Timurids
+		slave = KRY # Gilan
+		slave = TAB # Tabarestan
+		slave = LRI # Luristan
+		slave = SIS # Sistan
+		slave = BPI # Biapas
+		slave = FRS # Fars
+		slave = KRM # Kerman
+		slave = YZD # Yazd
+		slave = ISF # Isfahan
+		slave = TBR # Tabriz
+		slave = MGR # Maregh
+		slave = QOM # Qom
+
+		# Uncomment the lines you want to be joined as well
+		# slave = TRS # Transoxiana
+		# slave = ORM # Ormuz
 	}
 
 	morocco =
@@ -164,6 +194,8 @@ merge_nations =
 		master = MOR
 		slave = FEZ	# Fez
 		slave = MOR	# Morocco (proper)
+		slave = TFL # Tafilalt
+		slave = SOS # Sus
 	}
 
 	metis =
