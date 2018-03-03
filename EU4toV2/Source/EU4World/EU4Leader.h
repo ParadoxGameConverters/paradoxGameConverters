@@ -61,6 +61,7 @@ namespace EU4
 			date activationDate;
 			date deathDate;
 			int id;
+			int monarchID;
 	};
 }
 

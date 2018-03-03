@@ -115,6 +115,13 @@ EU4::leader::leader(std::istream& theStream):
 			id = theID.getIDNum();
 		}
 	);
+	registerKeyword(std::regex("monarch_id"), [this](const std::string& unused, std::istream& theStream)
+		{
+			ID theID(theStream);
+			monarchID = theID.getIDNum();
+		}
+	);
+	registerKeyword(std::regex("dynasty"), commonItems::ignoreString);
 
 	auto leaderString = getNextToken(theStream); // temporary measure to remove the 'leader' token, until the higher-level objects are modified
 	parseStream(theStream);

@@ -84,6 +84,7 @@ EU4::world::world(const string& EU4SaveFileName)
 	registerKeyword(std::regex("campaign_length"), commonItems::ignoreString);
 	registerKeyword(std::regex("campaign_stats"), commonItems::ignoreObject);
 	registerKeyword(std::regex("gameplaysettings"), commonItems::ignoreObject);
+	registerKeyword(std::regex("used_client_names"), commonItems::ignoreObject);
 	registerKeyword(std::regex("speed"), commonItems::ignoreString);
 	registerKeyword(std::regex("multiplayer_random_seed"), commonItems::ignoreString);
 	registerKeyword(std::regex("multiplayer_random_count"), commonItems::ignoreString);
@@ -109,6 +110,7 @@ EU4::world::world(const string& EU4SaveFileName)
 	registerKeyword(std::regex("institutions"), commonItems::ignoreObject);
 	registerKeyword(std::regex("institutions_penalties"), commonItems::ignoreObject);
 	registerKeyword(std::regex("trade"), commonItems::ignoreObject);
+	registerKeyword(std::regex("unit_templates"), commonItems::ignoreObject);
 	registerKeyword(std::regex("production_leader_tag"), commonItems::ignoreObject);
 	registerKeyword(std::regex("dynamic_countries"), commonItems::ignoreObject);
 	registerKeyword(std::regex("tradegoods_total_produced"), commonItems::ignoreObject);
