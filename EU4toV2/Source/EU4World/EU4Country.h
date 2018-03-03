@@ -117,7 +117,6 @@ namespace EU4
 			tuple<int, int, int>			getRevolutionaryTricolour()			const { return revolutionaryTricolour; }
 			string							getRandomName()							const { return randomName; }
 			const map<string, int>& getNationalIdeas() const { return nationalIdeas; }
-			std::vector<std::shared_ptr<EU4::leader>> getMilitaryLeaders() const { return militaryLeaders; }
 
 			string	getName() const { return name; }
 			string	getName(const string& language) const;
@@ -159,7 +158,7 @@ namespace EU4
 			map<string, bool>				modifiers;				// any modifiers set for this country
 			bool								possibleDaimyo;		// if this country is possibly a daimyo
 			bool							possibleShogun;			// if this country is the shogun
-			std::vector<std::shared_ptr<EU4::leader>> militaryLeaders;
+			vector<EU4::leader*> militaryLeaders;
 			string							government;				// the government type
 			map<string, EU4Relations*>	relations;				// the relations with other nations
 			vector<EU4Army*>				armies;					// this nation's armies and navies

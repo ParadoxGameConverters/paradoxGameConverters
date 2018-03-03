@@ -194,9 +194,6 @@
     <ClCompile Include="Source\EU4World\ID.cpp">
       <Filter>EU4 World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EU4World\CountryHistory.cpp">
-      <Filter>EU4 World</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Configuration.h" />
@@ -387,9 +384,6 @@
       <Filter>EU4 World</Filter>
     </ClInclude>
     <ClInclude Include="Source\EU4World\ID.h">
-      <Filter>EU4 World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EU4World\CountryHistory.h">
       <Filter>EU4 World</Filter>
     </ClInclude>
   </ItemGroup>
