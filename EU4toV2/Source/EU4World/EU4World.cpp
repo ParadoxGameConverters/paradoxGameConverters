@@ -88,6 +88,7 @@ EU4::world::world(const string& EU4SaveFileName)
 	registerKeyword(std::regex("gameplaysettings"), commonItems::ignoreObject);
 	registerKeyword(std::regex("used_client_names"), commonItems::ignoreObject);
 	registerKeyword(std::regex("speed"), commonItems::ignoreString);
+	registerKeyword(std::regex("ignore_end_date"), commonItems::ignoreString);
 	registerKeyword(std::regex("multiplayer_random_seed"), commonItems::ignoreString);
 	registerKeyword(std::regex("multiplayer_random_count"), commonItems::ignoreString);
 	registerKeyword(std::regex("monarch"), commonItems::ignoreString);
