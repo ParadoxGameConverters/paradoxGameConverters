@@ -48,10 +48,10 @@ class EU4Version;
 
 namespace EU4
 {
-	class Country: commonItems::parser
+	class Country: public commonItems::parser
 	{
 		public:
-			Country(shared_ptr<Object> obj, EU4Version* version);
+			Country(shared_ptr<Object> obj);
 
 			// Add any additional information available from the specified country file.
 			void readFromCommonCountry(const std::string& fileName, const std::string& fullFilename);
@@ -70,9 +70,9 @@ namespace EU4
 			void						resolveRegimentTypes(const RegimentTypeMap& map);
 			int						getManufactoryCount() const;
 			int						numEmbracedInstitutions() const;
-			void						eatCountry(EU4::Country* target);
+			void eatCountry(std::shared_ptr<Country> target, std::shared_ptr<Country> self);
 			void						setColonialRegion(const string& region)		{ colonialRegion = region; }
-			void						takeArmies(EU4::Country*);
+			void						takeArmies(std::shared_ptr<Country>);
 			void						clearArmies();
 			const void				viveLaRevolution(bool revolting)					{ revolutionary = revolting; }
 

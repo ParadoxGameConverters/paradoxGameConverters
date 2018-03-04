@@ -47,7 +47,7 @@ struct V2Demographic
 	double								middleRatio;
 	double								lowerRatio;
 	EU4Province*						oldProvince;
-	EU4::Country*							oldCountry;
+	std::shared_ptr<EU4::Country> oldCountry;
 };
 
 

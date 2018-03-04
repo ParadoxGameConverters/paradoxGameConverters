@@ -66,11 +66,11 @@ namespace commonItems
 	void ignoreObject(const std::string& unused, std::istream& theStream);
 	void ignoreString(const std::string& unused, std::istream& theStream);
 
-	std::shared_ptr<Object> convert8859Object(const std::string& unused, std::istream& theStream);
-	std::shared_ptr<Object> convertUTF8Object(const std::string& unused, std::istream& theStream);
+	std::shared_ptr<Object> convert8859Object(const std::string& top, std::istream& theStream);
+	std::shared_ptr<Object> convertUTF8Object(const std::string& top, std::istream& theStream);
 
-	std::shared_ptr<Object> convert8859String(const std::string& unused, std::istream& theStream);
-	std::shared_ptr<Object> convertUTF8String(const std::string& unused, std::istream& theStream);
+	std::shared_ptr<Object> convert8859String(const std::string& top, std::istream& theStream);
+	std::shared_ptr<Object> convertUTF8String(const std::string& top, std::istream& theStream);
 
 
 	class intList: commonItems::parser

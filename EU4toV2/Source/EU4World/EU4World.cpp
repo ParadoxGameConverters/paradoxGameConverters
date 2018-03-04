@@ -33,6 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/ReligionMapper.h"
 #include "Object.h"
 #include "ParadoxParserUTF8.h"
+#include "Countries.h"
 #include "CultureGroups.h"
 #include "EU4Province.h"
 #include "EU4Country.h"
@@ -44,7 +45,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-EU4::world::world(const string& EU4SaveFileName)
+EU4::world::world(const string& EU4SaveFileName):
+	theCountries()
 {
 	registerKeyword(std::regex("EU4txt"), [this](const std::string& unused, std::istream& theStream)
 		{}
@@ -166,12 +168,7 @@ EU4::world::world(const string& EU4SaveFileName)
 			loadProvinces(provincesObject);
 		}
 	);
-	registerKeyword(std::regex("countries"), [this](const std::string& countriesText, std::istream& theStream)
-		{
-			auto countriesObject = commonItems::convert8859Object(countriesText, theStream);
-			loadCountries(countriesObject);
-		}
-	);
+	registerKeyword(std::regex("countries"), [this](const std::string& countriesText, std::istream& theStream) { loadCountries(theStream);	} );
 	registerKeyword(std::regex("active_advisors"), commonItems::ignoreObject);
 	registerKeyword(std::regex("diplomacy"), [this](const std::string& diplomacyText, std::istream& theStream)
 		{
@@ -199,6 +196,7 @@ EU4::world::world(const string& EU4SaveFileName)
 	parseFile("goodsave.eu4");
 
 	LOG(LogLevel::Info) << "Building world";
+	setEmpires();
 	addProvinceInfoToCountries();
 	determineProvinceWeights();
 	checkAllEU4CulturesMapped();
@@ -590,44 +588,10 @@ map<int, int> EU4::world::determineValidProvinces()
 }
 
 
-void EU4::world::loadCountries(const shared_ptr<Object> EU4SaveObj)
+void EU4::world::loadCountries(istream& theStream)
 {
-	// Get Countries
-	countries.clear();
-	vector<shared_ptr<Object>> countriesObj = EU4SaveObj->getValue("countries");				// the object holding the countries
-	if (countriesObj.size() > 0)
-	{
-		vector<shared_ptr<Object>> countriesLeaves = countriesObj[0]->getLeaves();	// the objects holding the countries themselves
-		for (unsigned int j = 0; j < countriesLeaves.size(); j++)
-		{
-			string keyCoun = countriesLeaves[j]->getKey();						// the key for this country
-
-			if ((keyCoun == "---") || (keyCoun == "REB") || (keyCoun == "PIR") || (keyCoun == "NAT"))
-			{
-				continue;
-			}
-			else
-			{
-				EU4::Country* country = new EU4::Country(countriesLeaves[j], version);	// the country in our format
-				countries.insert(make_pair(country->getTag(), country));
-
-				// set HRE stuff
-				auto capitalItr = provinces.find(country->getCapital());
-				if ((capitalItr != provinces.end()) && (capitalItr->second->getInHRE()))
-				{
-					country->setInHRE(true);
-				}
-				if (country->getTag() == holyRomanEmperor)
-				{
-					country->setEmperor(true);
-				}
-				if (country->getTag() == celestialEmperor)
-				{
-					country->setCelestialEmperor(true);
-				}
-			}
-		}
-	}
+	countries processedCountries(theStream);
+	theCountries.swap(processedCountries.getTheCountries());
 }
 
 
@@ -645,8 +609,8 @@ void EU4::world::loadRevolutionTarget()
 {
 	if (revolutionTargetString != "")
 	{
-		auto country = countries.find(revolutionTargetString);
-		if (country != countries.end())
+		auto country = theCountries.find(revolutionTargetString);
+		if (country != theCountries.end())
 		{
 			country->second->viveLaRevolution(true);
 		}
@@ -659,8 +623,8 @@ void EU4::world::addProvinceInfoToCountries()
 	// add province owner info to countries
 	for (map<int, EU4Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
-		map<string, EU4::Country*>::iterator j = countries.find( i->second->getOwnerString() );
-		if (j != countries.end())
+		auto j = theCountries.find( i->second->getOwnerString() );
+		if (j != theCountries.end())
 		{
 			j->second->addProvince(i->second);
 			i->second->setOwner(j->second);
@@ -668,12 +632,12 @@ void EU4::world::addProvinceInfoToCountries()
 	}
 
 	// add province core info to countries
-	for (map<int, EU4Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
+	for (auto province: provinces)
 	{
-		vector<EU4::Country*> cores = i->second->getCores(countries);	// the cores held on this province
-		for (vector<EU4::Country*>::iterator j = cores.begin(); j != cores.end(); j++)
+		auto cores = province.second->getCores(theCountries);	// the cores held on this province
+		for (auto core: cores)
 		{
-			(*j)->addCore(i->second);
+			core->addCore(province.second);
 		}
 	}
 }
@@ -866,10 +830,10 @@ void EU4::world::readCommonCountriesFile(istream& in, const std::string& rootPat
 		{
 			// First three characters must be the tag.
 			std::string tag = countryLine.substr(0, 3);
-			map<string, EU4::Country*>::iterator findIter = countries.find(tag);
-			if (findIter != countries.end())
+			auto findIter = theCountries.find(tag);
+			if (findIter != theCountries.end())
 			{
-				EU4::Country* country = findIter->second;
+				auto country = findIter->second;
 
 				// The country file name is all the text after the equals sign (possibly in quotes).
 				size_t commentPos	= countryLine.find('#', 3);
@@ -909,21 +873,21 @@ void EU4::world::setLocalisations()
 		localisation.ReadFromAllFilesInFolder(itr + "/localisation");
 	}
 
-	for (map<string, EU4::Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	for (auto theCountry: theCountries)
 	{
-		const auto& nameLocalisations = localisation.GetTextInEachLanguage(countryItr->second->getTag());	// the names in all languages
+		const auto& nameLocalisations = localisation.GetTextInEachLanguage(theCountry.second->getTag());	// the names in all languages
 		for (const auto& nameLocalisation : nameLocalisations)	// the name under consideration
 		{
 			const std::string& language = nameLocalisation.first;	// the language
 			const std::string& name = nameLocalisation.second;		// the name of the country in this language
-			countryItr->second->setLocalisationName(language, name);
+			theCountry.second->setLocalisationName(language, name);
 		}
-		const auto& adjectiveLocalisations = localisation.GetTextInEachLanguage(countryItr->second->getTag() + "_ADJ");	// the adjectives in all languages
+		const auto& adjectiveLocalisations = localisation.GetTextInEachLanguage(theCountry.second->getTag() + "_ADJ");	// the adjectives in all languages
 		for (const auto& adjectiveLocalisation : adjectiveLocalisations)	// the adjective under consideration
 		{
 			const std::string& language = adjectiveLocalisation.first;		// the language
 			const std::string& adjective = adjectiveLocalisation.second;	// the adjective for the country in this language
-			countryItr->second->setLocalisationAdjective(language, adjective);
+			theCountry.second->setLocalisationAdjective(language, adjective);
 		}
 	}
 }
@@ -965,7 +929,7 @@ void EU4::world::resolveRegimentTypes()
 	read.close();
 	read.clear();
 
-	for (map<string, EU4::Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	for (auto itr = theCountries.begin(); itr != theCountries.end(); ++itr)
 	{
 		itr->second->resolveRegimentTypes(rtm);
 	}
@@ -1021,15 +985,15 @@ void EU4::world::mergeNations()
 			}
 		}
 
-		EU4::Country* master = getCountry(masterTag);
-		if (enabled && (master != NULL))
+		auto master = getCountry(masterTag);
+		if (enabled && master)
 		{
 			for (auto slaveTag: slaveTags)
 			{
 				auto slave = getCountry(slaveTag);
-				if (slave != NULL)
+				if (slave)
 				{
-					master->eatCountry(slave);
+					master->eatCountry(slave, master);
 				}
 			}
 		}
@@ -1039,21 +1003,20 @@ void EU4::world::mergeNations()
 
 void EU4::world::uniteJapan()
 {
-	EU4::Country* japan = nullptr;
+	shared_ptr<EU4::Country> japan;
 
 	auto version20 = EU4Version("1.20.0.0");
 	if (*version >= version20)
 	{
-		for (auto country : countries)
+		for (auto country : theCountries)
 		{
 			if (country.second->getPossibleShogun())
 			{
 				string tag = country.first;
-				japan=getCountry(tag);
+				japan = getCountry(tag);
 			}
 		}
 	}
-
 	else 
 	{
 		japan = getCountry("JAP");
@@ -1067,11 +1030,11 @@ void EU4::world::uniteJapan()
 		return;
 	}
 
-	for (auto country: countries)
+	for (auto country: theCountries)
 	{
 		if (country.second->getPossibleDaimyo())
 		{
-			japan->eatCountry(country.second);
+			japan->eatCountry(country.second, japan);
 		}
 	}
 }
@@ -1115,9 +1078,9 @@ void EU4::world::checkAllEU4ReligionsMapped() const
 
 void EU4::world::removeEmptyNations()
 {
-	map<string, EU4::Country*> survivingCountries;
+	std::map<std::string, std::shared_ptr<EU4::Country>> survivingCountries;
 
-	for (auto country: countries)
+	for (auto country: theCountries)
 	{
 		vector<EU4Province*> provinces = country.second->getProvinces();
 		vector<EU4Province*> cores = country.second->getCores();
@@ -1131,14 +1094,14 @@ void EU4::world::removeEmptyNations()
 		}
 	}
 
-	countries.swap(survivingCountries);
+	theCountries.swap(survivingCountries);
 }
 
 
 void EU4::world::removeDeadLandlessNations()
 {
-	map<string, EU4::Country*> landlessCountries;
-	for (auto country: countries)
+	std::map<std::string, std::shared_ptr<EU4::Country>> landlessCountries;
+	for (auto country: theCountries)
 	{
 		vector<EU4Province*> provinces = country.second->getProvinces();
 		if (provinces.size() == 0)
@@ -1151,7 +1114,7 @@ void EU4::world::removeDeadLandlessNations()
 	{
 		if (!country.second->cultureSurvivesInCores())
 		{
-			countries.erase(country.first);
+			theCountries.erase(country.first);
 			LOG(LogLevel::Debug) << "Removing dead landless nation " << country.first;
 		}
 	}
@@ -1160,9 +1123,9 @@ void EU4::world::removeDeadLandlessNations()
 
 void EU4::world::removeLandlessNations()
 {
-	map<string, EU4::Country*> survivingCountries;
+	std::map<std::string, std::shared_ptr<EU4::Country>> survivingCountries;
 
-	for (auto country: countries)
+	for (auto country: theCountries)
 	{
 		auto provinces = country.second->getProvinces();
 		if (provinces.size() == 0)
@@ -1175,14 +1138,43 @@ void EU4::world::removeLandlessNations()
 		}
 	}
 
-	countries.swap(survivingCountries);
+	theCountries.swap(survivingCountries);
 }
 
 
-EU4::Country* EU4::world::getCountry(string tag) const
+void EU4::world::setEmpires()
 {
-	map<string, EU4::Country*>::const_iterator i = countries.find(tag);
-	return (i != countries.end()) ? i->second : NULL;
+	for (auto country: theCountries)
+	{
+		// set HRE stuff
+		auto capitalItr = provinces.find(country.second->getCapital());
+		if ((capitalItr != provinces.end()) && (capitalItr->second->getInHRE()))
+		{
+			country.second->setInHRE(true);
+		}
+		if (country.second->getTag() == holyRomanEmperor)
+		{
+			country.second->setEmperor(true);
+		}
+		if (country.second->getTag() == celestialEmperor)
+		{
+			country.second->setCelestialEmperor(true);
+		}
+	}
+}
+
+
+std::shared_ptr<EU4::Country> EU4::world::getCountry(std::string tag) const
+{
+	auto i = theCountries.find(tag);
+	if (i != theCountries.end())
+	{
+		return i->second;
+	}
+	else
+	{
+		return {};
+	}
 }
 
 
@@ -1197,7 +1189,7 @@ bool EU4::world::isRandomWorld() const
 {
 	bool isRandomWorld = true;
 
-	for (auto sourceCountry: countries)
+	for (auto sourceCountry: theCountries)
 	{
 		if (sourceCountry.first[0] != 'D' && sourceCountry.second->getRandomName().empty())
 		{

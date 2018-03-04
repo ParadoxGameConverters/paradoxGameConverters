@@ -80,7 +80,7 @@ class V2World
 
 		void convertCountries(const EU4::world& sourceWorld);
 		void initializeCountries(const EU4::world& sourceWorld);
-		V2Country* createOrLocateCountry(const string& V2Tag, const EU4::Country* sourceCountry);
+		V2Country* createOrLocateCountry(const string& V2Tag, const shared_ptr<EU4::Country> sourceCountry);
 		void convertNationalValues();
 		void convertPrestige();
 		void addAllPotentialCountries();
@@ -88,7 +88,7 @@ class V2World
 		void editDefines(int numCivilisedNations);
 
 		void convertProvinces(const EU4::world& sourceWorld);
-		vector<V2Demographic> determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, EU4::Country* oldOwner, int destNum, double provPopRatio);
+		vector<V2Demographic> determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, shared_ptr<EU4::Country> oldOwner, int destNum, double provPopRatio);
 
 		void convertDiplomacy(const EU4::world& sourceWorld);
 		void setupColonies();

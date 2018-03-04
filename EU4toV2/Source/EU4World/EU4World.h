@@ -51,7 +51,7 @@ namespace EU4
 			EU4Province* getProvince(int provNum) const;
 
 			EU4Version* getVersion() const { return version; };
-			map<string, EU4::Country*> getCountries() const { return countries; };
+			std::map<std::string, std::shared_ptr<EU4::Country>> getCountries() const { return theCountries; };
 			vector<EU4Agreement> getDiplomaticAgreements() const { return diplomacy->getAgreements(); };
 			double getWorldWeightSum() const { return worldWeightSum; };
 
@@ -76,7 +76,7 @@ namespace EU4
 			void loadProvinces(const shared_ptr<Object> EU4SaveObj);
 			map<int, int> determineValidProvinces();
 
-			void loadCountries(const shared_ptr<Object> EU4SaveObj);
+			void loadCountries(istream& theStream);
 			void loadRevolutionTargetString(const shared_ptr<Object> EU4SaveObj);
 			void loadRevolutionTarget();
 			void addProvinceInfoToCountries();
@@ -102,12 +102,14 @@ namespace EU4
 			void removeDeadLandlessNations();
 			void removeLandlessNations();
 
-			EU4::Country* getCountry(string tag) const;
+			void setEmpires();
+
+			std::shared_ptr<EU4::Country> getCountry(string tag) const;
 
 			string holyRomanEmperor;
 			string celestialEmperor;
 			map<int, EU4Province*> provinces;
-			map<string, EU4::Country*> countries;
+			std::map<std::string, std::shared_ptr<EU4::Country>> theCountries;
 			EU4Diplomacy* diplomacy;
 			EU4Version* version;
 			double worldWeightSum;

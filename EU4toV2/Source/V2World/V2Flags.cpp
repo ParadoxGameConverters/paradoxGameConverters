@@ -197,7 +197,7 @@ void V2Flags::SetV2Tags(const map<string, V2Country*>& V2Countries)
 
 	for (map<string, V2Country*>::const_iterator i = V2Countries.begin(); i != V2Countries.end(); i++)
 	{
-		EU4::Country* eu4country = i->second->getSourceCountry();
+		auto eu4country = i->second->getSourceCountry();
 		if (!eu4country)
 			continue;
 
