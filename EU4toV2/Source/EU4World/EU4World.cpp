@@ -58,6 +58,8 @@ EU4::world::world(const string& EU4SaveFileName)
 	);
 	registerKeyword(std::regex("save_game"), commonItems::ignoreString);
 	registerKeyword(std::regex("player"), commonItems::ignoreString);
+	registerKeyword(std::regex("colonial_father"), commonItems::ignoreString);
+	registerKeyword(std::regex("colonial_flag_color"), commonItems::ignoreObject);
 	registerKeyword(std::regex("country_colors"), commonItems::ignoreObject);
 	registerKeyword(std::regex("displayed_country_name"), commonItems::ignoreString);
 	registerKeyword(std::regex("savegame_version"), [this](const std::string& versionText, std::istream& theStream)
