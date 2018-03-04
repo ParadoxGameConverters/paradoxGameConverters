@@ -81,6 +81,7 @@ EU4::world::world(const string& EU4SaveFileName)
 	);
 	registerKeyword(std::regex("multi_player"), commonItems::ignoreString);
 	registerKeyword(std::regex("not_observer"), commonItems::ignoreString);
+	registerKeyword(std::regex("players_countries"), commonItems::ignoreObject);
 	registerKeyword(std::regex("campaign_id"), commonItems::ignoreString);
 	registerKeyword(std::regex("campaign_length"), commonItems::ignoreString);
 	registerKeyword(std::regex("campaign_stats"), commonItems::ignoreObject);
