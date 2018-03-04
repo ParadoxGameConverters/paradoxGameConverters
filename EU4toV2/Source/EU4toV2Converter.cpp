@@ -77,7 +77,7 @@ void ConvertEU4ToV2(const string& EU4SaveFileName)
 	setOutputName(EU4SaveFileName);
 	deleteExistingOutputFolder();
 
-	EU4World sourceWorld(EU4SaveFileName);
+	EU4::world sourceWorld(EU4SaveFileName);
 	V2World destWorld(sourceWorld);
 
 	LOG(LogLevel::Info) << "* Conversion complete *";

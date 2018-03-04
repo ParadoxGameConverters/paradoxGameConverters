@@ -65,7 +65,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2World::V2World(const EU4World& sourceWorld)
+V2World::V2World(const EU4::world& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Parsing Vicky2 data";
 	importProvinces();
@@ -427,7 +427,7 @@ void V2World::importTechSchools()
 }
 
 
-void V2World::convertCountries(const EU4World& sourceWorld)
+void V2World::convertCountries(const EU4::world& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Converting countries";
 	initializeCountries(sourceWorld);
@@ -437,7 +437,7 @@ void V2World::convertCountries(const EU4World& sourceWorld)
 }
 
 
-void V2World::initializeCountries(const EU4World& sourceWorld)
+void V2World::initializeCountries(const EU4::world& sourceWorld)
 {
 	for (auto sourceCountry: sourceWorld.getCountries())
 	{
@@ -653,7 +653,7 @@ struct MTo1ProvinceComp
 	vector<EU4Province*> provinces;
 };
 
-void V2World::convertProvinces(const EU4World& sourceWorld)
+void V2World::convertProvinces(const EU4::world& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Converting provinces";
 
@@ -862,7 +862,7 @@ vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRat
 	return demographics;
 }
 
-void V2World::convertDiplomacy(const EU4World& sourceWorld)
+void V2World::convertDiplomacy(const EU4::world& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Converting diplomacy";
 
@@ -1139,7 +1139,7 @@ void V2World::setupStates()
 	}
 }
 
-void V2World::convertUncivReforms(const EU4World& sourceWorld)
+void V2World::convertUncivReforms(const EU4::world& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Setting unciv reforms";
 
@@ -1222,7 +1222,7 @@ void V2World::convertUncivReforms(const EU4World& sourceWorld)
 	}
 }
 
-void V2World::convertTechs(const EU4World& sourceWorld)
+void V2World::convertTechs(const EU4::world& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Converting techs";
 
@@ -1324,7 +1324,7 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 	}
 }
 
-void V2World::allocateFactories(const EU4World& sourceWorld)
+void V2World::allocateFactories(const EU4::world& sourceWorld)
 {
 	// Construct factory factory
 	LOG(LogLevel::Info) << "Determining factory allocation rules.";
@@ -1454,7 +1454,7 @@ void V2World::allocateFactories(const EU4World& sourceWorld)
 	}
 }
 
-void V2World::setupPops(const EU4World& sourceWorld)
+void V2World::setupPops(const EU4::world& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Creating pops";
 
@@ -1659,7 +1659,7 @@ void V2World::addUnions()
 
 
 //#define TEST_V2_PROVINCES
-void V2World::convertArmies(const EU4World& sourceWorld)
+void V2World::convertArmies(const EU4::world& sourceWorld)
 {
 	LOG(LogLevel::Info) << "Converting armies and navies";
 

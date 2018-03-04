@@ -18,8 +18,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-ck2Titles = {
-
 link = { name = "a' charraig" 	 title = "c_carrick" 	 region = "e_britannia" }
 link = { name = "abbasid" 	 title = "d_abbasid" 	 region = "e_mali" }
 link = { name = "abbaside" 	 title = "d_abbasid" 	 region = "e_mali" }
@@ -3576,4 +3574,3 @@ link = { name = "macedonia" title = "MKD" region = "e_byzantium" }
 link = { name = "macédoine" title = "MKD" region = "e_byzantium" }
 link = { name = "mazedonien" title = "MKD" region = "e_byzantium" }
 link = { name = "alaska" title = "LSK" region = "e_russia" }
-}

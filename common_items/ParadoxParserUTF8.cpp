@@ -183,7 +183,7 @@ namespace parser_UTF8
 		epsilon = false;
 	}
 
-	string bufferOneObject(ifstream& read)
+	string bufferOneObject(istream& read)
 	{
 		int openBraces = 0;				// the number of braces deep we are
 		string currObject, buffer;		// the current object and the tect under consideration
@@ -270,7 +270,7 @@ namespace parser_UTF8
 		return currObject;
 	}
 
-	bool readFile(ifstream& read)
+	bool readStream(istream& read)
 	{
 		clearStack();
 		read.unsetf(std::ios::skipws);
@@ -423,13 +423,13 @@ namespace parser_UTF8
 		epsilon = false;
 	}
 
-	shared_ptr<Object> doParseFile(string filename)
+	shared_ptr<Object> doParseStream(std::istream& theStream)
 	{
 // This switch is made to ensure no problems arise with the other projects
 // While the Generic parser is still being tested it will only be used on Linux (where USE_GENERIC_PARADOX_PARSER is set to 1 by default)
 // On Windows, it can be enabled from CMake / VC++ compiler args to test it
 #ifdef USE_GENERIC_PARADOX_PARSER
-		return parser_generic::parseUTF_8(filename);
+		return parser_generic::parseUTF_8(theStream);
 #else
 		/* - when using parser debugging, also ensure that the parser object is non-static!
 		debugme = false;
@@ -438,17 +438,28 @@ namespace parser_UTF8
 		*/
 
 		initParser();
+
+		//read.imbue(std::locale(std::locale(), new std::codecvt_utf8<wchar_t, 0x10ffff, std::consume_header>));
+		readStream(theStream);
+
+		return topLevel;
+#endif
+	}
+
+
+	shared_ptr<Object> doParseFile(const std::string& filename)
+	{
 		ifstream read(filename);
 		if (!read.is_open())
 		{
 			return {};
 		}
-		//read.imbue(std::locale(std::locale(), new std::codecvt_utf8<wchar_t, 0x10ffff, std::consume_header>));
-		readFile(read);
+
+		auto temp = doParseStream(read);
+
 		read.close();
 		read.clear();
 
-		return topLevel;
-#endif
+		return temp;
 	}
 } // namespace parser_UTF8

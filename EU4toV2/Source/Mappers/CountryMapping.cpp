@@ -116,7 +116,7 @@ void mappers::CountryMappings::getAvailableFlags()
 }
 
 
-void mappers::CountryMappings::CreateMappings(const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries)
+void mappers::CountryMappings::CreateMappings(const EU4::world& srcWorld, const map<string, V2Country*>& Vic2Countries)
 {
 	LOG(LogLevel::Info) << "Creating country mappings";
 
@@ -262,7 +262,7 @@ map<string, string>::iterator mappers::CountryMappings::ifValidGetCK2MappingRule
 }
 
 
-bool mappers::CountryMappings::attemptColonialReplacement(EU4::Country* country, const EU4World& srcWorld, const map<string, V2Country*>& Vic2Countries)
+bool mappers::CountryMappings::attemptColonialReplacement(EU4::Country* country, const EU4::world& srcWorld, const map<string, V2Country*>& Vic2Countries)
 {
 	bool mapped = false;
 
@@ -318,7 +318,7 @@ bool mappers::CountryMappings::capitalInRightEU4Region(const mappers::colonyStru
 }
 
 
-bool mappers::CountryMappings::capitalInRightVic2Region(const mappers::colonyStruct& colony, int Vic2Capital, const EU4World& srcWorld, const string& EU4Tag)
+bool mappers::CountryMappings::capitalInRightVic2Region(const mappers::colonyStruct& colony, int Vic2Capital, const EU4::world& srcWorld, const string& EU4Tag)
 {
 	if (colony.V2Region != "")
 	{
