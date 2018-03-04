@@ -58,6 +58,7 @@ EU4::world::world(const string& EU4SaveFileName)
 	);
 	registerKeyword(std::regex("save_game"), commonItems::ignoreString);
 	registerKeyword(std::regex("player"), commonItems::ignoreString);
+	registerKeyword(std::regex("country_colors"), commonItems::ignoreObject);
 	registerKeyword(std::regex("displayed_country_name"), commonItems::ignoreString);
 	registerKeyword(std::regex("savegame_version"), [this](const std::string& versionText, std::istream& theStream)
 		{
@@ -88,6 +89,10 @@ EU4::world::world(const string& EU4SaveFileName)
 	registerKeyword(std::regex("speed"), commonItems::ignoreString);
 	registerKeyword(std::regex("multiplayer_random_seed"), commonItems::ignoreString);
 	registerKeyword(std::regex("multiplayer_random_count"), commonItems::ignoreString);
+	registerKeyword(std::regex("monarch"), commonItems::ignoreString);
+	registerKeyword(std::regex("leader"), commonItems::ignoreString);
+	registerKeyword(std::regex("advisor"), commonItems::ignoreString);
+	registerKeyword(std::regex("rebel"), commonItems::ignoreString);
 	registerKeyword(std::regex("current_age"), commonItems::ignoreString);
 	registerKeyword(std::regex("next_age_progress"), commonItems::ignoreString);
 	registerKeyword(std::regex("id_counters"), commonItems::ignoreObject);
@@ -118,6 +123,14 @@ EU4::world::world(const string& EU4SaveFileName)
 	registerKeyword(std::regex("id"), commonItems::ignoreObject);
 	registerKeyword(std::regex("dynasty"), commonItems::ignoreObject);
 	registerKeyword(std::regex("rebel_faction"), commonItems::ignoreObject);
+	registerKeyword(std::regex("continent"), commonItems::ignoreString);
+	registerKeyword(std::regex("imperial_ban_allowed"), commonItems::ignoreString);
+	registerKeyword(std::regex("internal_hre_cb"), commonItems::ignoreString);
+	registerKeyword(std::regex("hre_inheritable"), commonItems::ignoreString);
+	registerKeyword(std::regex("allows_female_emperor"), commonItems::ignoreString);
+	registerKeyword(std::regex("hre_leagues_status"), commonItems::ignoreString);
+	registerKeyword(std::regex("hre_religion_status"), commonItems::ignoreString);
+	registerKeyword(std::regex("old_emperor"), commonItems::ignoreObject);
 	registerKeyword(std::regex("great_powers"), commonItems::ignoreObject);
 	registerKeyword(std::regex("empire"), [this](const std::string& empireText, std::istream& theStream)
 		{
@@ -169,6 +182,7 @@ EU4::world::world(const string& EU4SaveFileName)
 	registerKeyword(std::regex("nation_size_statistics"), commonItems::ignoreObject);
 	registerKeyword(std::regex("score_statistics"), commonItems::ignoreObject);
 	registerKeyword(std::regex("inflation_statistics"), commonItems::ignoreObject);
+	registerKeyword(std::regex("expanded_dip_action_groups"), commonItems::ignoreObject);
 	registerKeyword(std::regex("achievement_ok"), commonItems::ignoreString);
 	registerKeyword(std::regex("unit_manager"), commonItems::ignoreObject);
 	registerKeyword(std::regex("trade_company_manager"), commonItems::ignoreObject);
