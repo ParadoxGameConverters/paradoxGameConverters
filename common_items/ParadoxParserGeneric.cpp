@@ -71,7 +71,7 @@ shared_ptr<Object> parser_generic::parseStream(std::istream& input, Encoding str
 	input.unsetf(std::ios::skipws);
 
 	//create a new local based on the old one, but using the codecvt facet to decode the file encoding to the system dependant WCHAR encoding
-	locale loc{input.getloc(), new ConversionFacet<wchar_t,char>{file_encoding, WCHAR}};
+	locale loc{input.getloc(), new ConversionFacet<wchar_t,char>{stream_encoding, WCHAR}};
 
 	/*
 	input will now interpret the file as encoded by the specified encoding and transform the output into wide characters using the system dependentencoding
