@@ -17,11 +17,11 @@
 using namespace parser_generic;
 
 shared_ptr<Object> parser_generic::parseUTF_8File(const std::string &file_path){
-	return parser_generic::parse(file_path, UTF_8);
+	return parser_generic::parseFile(file_path, UTF_8);
 }
 
 shared_ptr<Object> parser_generic::parseISO_8859_15File(const std::string &file_path){
-	return parser_generic::parse(file_path, ISO_8859_15);
+	return parser_generic::parseFile(file_path, ISO_8859_15);
 }
 
 shared_ptr<Object> parser_generic::parseFile(const std::string &file_path, Encoding file_encoding){
@@ -55,14 +55,14 @@ shared_ptr<Object> parser_generic::parseFile(const std::string &file_path, Encod
 }
 
 shared_ptr<Object> parser_generic::parseUTF_8(std::istream& input){
-	return parser_generic::parse(input, UTF_8);
+	return parser_generic::parseStream(input, UTF_8);
 }
 
 shared_ptr<Object> parser_generic::parseISO_8859_15(std::istream& input){
-	return parser_generic::parse(input, ISO_8859_15);
+	return parser_generic::parseStream(input, ISO_8859_15);
 }
 
-shared_ptr<Object> parser_generic::parse(std::istream& input, Encoding stream_encoding){
+shared_ptr<Object> parser_generic::parseStream(std::istream& input, Encoding stream_encoding){
 	using namespace std;
 
 	LOG(LogLevel::Debug) << "parsing stream";

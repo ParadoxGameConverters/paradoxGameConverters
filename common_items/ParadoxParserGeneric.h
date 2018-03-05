@@ -42,7 +42,7 @@ namespace parser_generic{
 	/*
 	Parses the provided stream, assuming the specified encoding
 	*/
-	shared_ptr<Object> parse(std::istream& input, Encoding stream_encoding);
+	shared_ptr<Object> parseStream(std::istream& input, Encoding stream_encoding);
 
 }
 
