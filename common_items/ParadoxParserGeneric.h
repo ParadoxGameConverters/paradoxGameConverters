@@ -32,17 +32,17 @@ namespace parser_generic{
 	/*
 	Parses the provided stream, assuming UTF-8 encoding
 	*/
-	shared_ptr<Object> parser_generic::parseUTF_8(std::istream& input);
+	shared_ptr<Object> parseUTF_8(std::istream& input);
 
 	/*
 	Parses the provided stream, assuming ISO 8859 15 encoding
 	*/
-	shared_ptr<Object> parser_generic::parseISO_8859_15(std::istream& input);
+	shared_ptr<Object> parseISO_8859_15(std::istream& input);
 
 	/*
 	Parses the provided stream, assuming the specified encoding
 	*/
-	shared_ptr<Object> parser_generic::parse(std::istream& input, Encoding stream_encoding);
+	shared_ptr<Object> parse(std::istream& input, Encoding stream_encoding);
 
 }
 
