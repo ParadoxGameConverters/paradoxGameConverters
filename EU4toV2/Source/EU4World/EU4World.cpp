@@ -591,7 +591,8 @@ map<int, int> EU4::world::determineValidProvinces()
 void EU4::world::loadCountries(istream& theStream)
 {
 	countries processedCountries(theStream);
-	theCountries.swap(processedCountries.getTheCountries());
+	auto theProcessedCountries = processedCountries.getTheCountries();
+	theCountries.swap(theProcessedCountries);
 }
 
 
