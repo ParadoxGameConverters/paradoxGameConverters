@@ -47,9 +47,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <boost/spirit/include/support_istream_iterator.hpp>
 #include <boost/spirit/include/qi.hpp>
 #include "Log.h"
-
-#include "ParadoxParserGenericSupport.h"
-
 using namespace boost::spirit;
 
 
@@ -425,12 +422,6 @@ namespace parser_UTF8
 
 	shared_ptr<Object> doParseStream(std::istream& theStream)
 	{
-// This switch is made to ensure no problems arise with the other projects
-// While the Generic parser is still being tested it will only be used on Linux (where USE_GENERIC_PARADOX_PARSER is set to 1 by default)
-// On Windows, it can be enabled from CMake / VC++ compiler args to test it
-#ifdef USE_GENERIC_PARADOX_PARSER
-		return parser_generic::parseUTF_8(theStream);
-#else
 		/* - when using parser debugging, also ensure that the parser object is non-static!
 		debugme = false;
 		if (string(filename) == "D:/Victoria 2/technologies/commerce_tech.txt")
@@ -443,7 +434,6 @@ namespace parser_UTF8
 		readStream(theStream);
 
 		return topLevel;
-#endif
 	}
 
 
