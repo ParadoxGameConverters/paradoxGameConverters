@@ -372,12 +372,12 @@ bool EU4Province::hasBuilding(string building) const
 }
 
 
-vector<EU4::Country*> EU4Province::getCores(const map<string, EU4::Country*>& countries) const
+vector<std::shared_ptr<EU4::Country>> EU4Province::getCores(const map<string, std::shared_ptr<EU4::Country>>& countries) const
 {
-	vector<EU4::Country*> coreOwners;	// the core holders
+	std::vector<std::shared_ptr<EU4::Country>> coreOwners;	// the core holders
 	for (vector<string>::const_iterator i = cores.begin(); i != cores.end(); i++)
 	{
-		map<string, EU4::Country*>::const_iterator j = countries.find(*i);
+		auto j = countries.find(*i);
 		if (j != countries.end())
 		{
 			coreOwners.push_back(j->second);

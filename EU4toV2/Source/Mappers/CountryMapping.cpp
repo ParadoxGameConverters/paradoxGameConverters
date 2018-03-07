@@ -123,7 +123,7 @@ void mappers::CountryMappings::CreateMappings(const EU4::world& srcWorld, const 
 	generatedV2TagPrefix = 'X';
 	generatedV2TagSuffix = 0;
 
-	set<EU4::Country*> colonialCountries;
+	set<std::shared_ptr<EU4::Country>> colonialCountries;
 	for (auto EU4Country: srcWorld.getCountries())
 	{
 		if (isPotentialColonialReplacement(EU4Country))
@@ -147,7 +147,7 @@ void mappers::CountryMappings::CreateMappings(const EU4::world& srcWorld, const 
 }
 
 
-bool mappers::CountryMappings::isPotentialColonialReplacement(const pair<string, EU4::Country*>& country)
+bool mappers::CountryMappings::isPotentialColonialReplacement(const pair<string, std::shared_ptr<EU4::Country>>& country)
 {
 	if (country.second->isColony() && tagIsAlphaDigitDigit(country.first))
 	{
@@ -166,7 +166,7 @@ bool mappers::CountryMappings::tagIsAlphaDigitDigit(const string& tag)
 }
 
 
-void mappers::CountryMappings::makeOneMapping(EU4::Country* country, const map<string, V2Country*>& Vic2Countries)
+void mappers::CountryMappings::makeOneMapping(std::shared_ptr<EU4::Country> country, const map<string, V2Country*>& Vic2Countries)
 {
 	string EU4Tag = country->getTag();
 
@@ -246,7 +246,7 @@ void mappers::CountryMappings::mapToNewTag(const string& EU4Tag, const string& V
 }
 
 
-map<string, string>::iterator mappers::CountryMappings::ifValidGetCK2MappingRule(const EU4::Country* country, map<string, string>::iterator mappingRule)
+map<string, string>::iterator mappers::CountryMappings::ifValidGetCK2MappingRule(const std::shared_ptr<EU4::Country> country, map<string, string>::iterator mappingRule)
 {
 	if ((mappingRule == EU4TagToV2TagsRules.end()) || (country->isCustom()))
 	{
@@ -262,7 +262,7 @@ map<string, string>::iterator mappers::CountryMappings::ifValidGetCK2MappingRule
 }
 
 
-bool mappers::CountryMappings::attemptColonialReplacement(EU4::Country* country, const EU4::world& srcWorld, const map<string, V2Country*>& Vic2Countries)
+bool mappers::CountryMappings::attemptColonialReplacement(std::shared_ptr<EU4::Country> country, const EU4::world& srcWorld, const map<string, V2Country*>& Vic2Countries)
 {
 	bool mapped = false;
 

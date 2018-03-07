@@ -12,7 +12,7 @@
 
 #ifdef __linux__
 
-#define USE_GENERIC_PARADOX_PARSER 1
+//#define USE_GENERIC_PARADOX_PARSER 1
 
 #endif
 

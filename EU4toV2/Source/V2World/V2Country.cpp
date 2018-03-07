@@ -516,7 +516,7 @@ void V2Country::outputOOB() const
 }
 
 
-void V2Country::initFromEU4Country(EU4::Country* _srcCountry, const vector<V2TechSchool>& techSchools, const map<int, int>& leaderMap)
+void V2Country::initFromEU4Country(std::shared_ptr<EU4::Country> _srcCountry, const vector<V2TechSchool>& techSchools, const map<int, int>& leaderMap)
 {
 	srcCountry = _srcCountry;
 

@@ -35,7 +35,7 @@ THE SOFTWARE. */
 
 
 
-EU4::Country::Country(shared_ptr<Object> obj, EU4Version* version):
+EU4::Country::Country(shared_ptr<Object> obj):
 	militaryLeaders()
 {
 	tag = obj->getKey();
@@ -109,7 +109,7 @@ EU4::Country::Country(shared_ptr<Object> obj, EU4Version* version):
 	}
 
 	auto version20 = EU4Version("1.20.0.0");
-	if (*version >= version20)
+	if (Configuration::getEU4Version() >= version20)
 	{
 		vector<shared_ptr<Object>> isolationismObj = obj->getValue("isolationism"); // the object holding the isolationism
 		(isolationismObj.size() > 0) ? isolationism = stoi(isolationismObj[0]->getLeaf()) : isolationism = 1;
@@ -126,7 +126,7 @@ EU4::Country::Country(shared_ptr<Object> obj, EU4Version* version):
 	}
 
 	auto version14 = EU4Version("1.14.0.0");
-	if (*version >= version14)
+	if (Configuration::getEU4Version() >= version14)
 	{
 		bool wasUnion = false;
 		if (Configuration::wasDLCActive("The Cossacks"))
@@ -569,7 +569,7 @@ int EU4::Country::getManufactoryCount() const
 }
 
 
-void EU4::Country::eatCountry(EU4::Country* target)
+void EU4::Country::eatCountry(std::shared_ptr<EU4::Country> target, std::shared_ptr<Country> self)
 {
 	// autocannibalism is forbidden
 	if (target->getTag() == tag)
@@ -601,7 +601,7 @@ void EU4::Country::eatCountry(EU4::Country* target)
 		for (unsigned int j = 0; j < target->provinces.size(); j++)
 		{
 			addProvince(target->provinces[j]);
-			target->provinces[j]->setOwner(this);
+			target->provinces[j]->setOwner(self);
 		}
 
 		// acquire target's armies, navies, admirals, and generals
@@ -628,7 +628,7 @@ void EU4::Country::eatCountry(EU4::Country* target)
 }
 
 
-void EU4::Country::takeArmies(EU4::Country* target)
+void EU4::Country::takeArmies(std::shared_ptr<Country> target)
 {
 	// acquire target's armies, navies, admirals, and generals
 	armies.insert(armies.end(), target->armies.begin(), target->armies.end());

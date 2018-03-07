@@ -31,7 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Reforms::V2Reforms(const V2Country* dstCountry, const EU4::Country* srcCountry)
+V2Reforms::V2Reforms(const V2Country* dstCountry, const std::shared_ptr<EU4::Country> srcCountry)
 {
 	slavery							= 0;
 	vote_franchise					= 0;

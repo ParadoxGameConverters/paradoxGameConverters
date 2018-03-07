@@ -16,18 +16,18 @@
 
 using namespace parser_generic;
 
-shared_ptr<Object> parser_generic::parseUTF_8(const std::string &file_path){
-	return parser_generic::parse(file_path, UTF_8);
+shared_ptr<Object> parser_generic::parseUTF_8File(const std::string &file_path){
+	return parser_generic::parseFile(file_path, UTF_8);
 }
 
-shared_ptr<Object> parser_generic::parseISO_8859_15(const std::string &file_path){
-	return parser_generic::parse(file_path, ISO_8859_15);
+shared_ptr<Object> parser_generic::parseISO_8859_15File(const std::string &file_path){
+	return parser_generic::parseFile(file_path, ISO_8859_15);
 }
 
-shared_ptr<Object> parser_generic::parse(const std::string &file_path, Encoding file_encoding){
+shared_ptr<Object> parser_generic::parseFile(const std::string &file_path, Encoding file_encoding){
 	using namespace std;
-		
-	LOG(LogLevel::Debug) << "parsing file " << file_path;	
+
+	LOG(LogLevel::Debug) << "parsing file " << file_path;
 
 	//open the file as a wide character stream
 	basic_ifstream<wchar_t> input{file_path};
@@ -37,7 +37,7 @@ shared_ptr<Object> parser_generic::parse(const std::string &file_path, Encoding 
 
 	//create a new local based on the old one, but using the codecvt facet to decode the file encoding to the system dependant WCHAR encoding
 	locale loc{input.getloc(), new ConversionFacet<wchar_t,char>{file_encoding, WCHAR}};
-	
+
 	/*
 	input will now interpret the file as encoded by the specified encoding and transform the output into wide characters using the system dependentencoding
 	this will be UCS (4 byte codepoints) in most linux distro's and UTF-16 LE on windows
@@ -52,6 +52,36 @@ shared_ptr<Object> parser_generic::parse(const std::string &file_path, Encoding 
 	
 	//delegate to parse, which won't need to care about the encoding anymore 
 	return parser_generic::parse(input);	
+}
+
+shared_ptr<Object> parser_generic::parseUTF_8(std::istream& input){
+	return parser_generic::parseStream(input, UTF_8);
+}
+
+shared_ptr<Object> parser_generic::parseISO_8859_15(std::istream& input){
+	return parser_generic::parseStream(input, ISO_8859_15);
+}
+
+shared_ptr<Object> parser_generic::parseStream(std::istream& input, Encoding stream_encoding){
+	using namespace std;
+
+	LOG(LogLevel::Debug) << "parsing stream";
+
+	//unset skipping of whitespace
+	input.unsetf(std::ios::skipws);
+
+	//create a new local based on the old one, but using the codecvt facet to decode the file encoding to the system dependant WCHAR encoding
+	locale loc{input.getloc(), new ConversionFacet<wchar_t,char>{stream_encoding, WCHAR}};
+
+	/*
+	input will now interpret the file as encoded by the specified encoding and transform the output into wide characters using the system dependentencoding
+	this will be UCS (4 byte codepoints) in most linux distro's and UTF-16 LE on windows
+	because the system encoding is not specifically named, the parser is portable if the ConversionFacet codecvt facet is implemented on all target systems
+	*/
+	input.imbue(loc);
+
+	//delegate to parse, which won't need to care about the encoding anymore
+	return parser_generic::parse(input);
 }
 
 // forward declaration of the parse function to keep things clean

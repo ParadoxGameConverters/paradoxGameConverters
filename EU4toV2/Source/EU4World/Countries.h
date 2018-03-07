@@ -21,53 +21,36 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef V2REFORMS_H_
-#define V2REFORMS_H_
+#ifndef EU4_COUNTRIES_H_
+#define EU4_COUNTRIES_H_
 
 
 
+#include "newParser.h"
+#include <map>
 #include <memory>
-#include <stdio.h>
 #include <string>
-using namespace std;
 
 
 
 namespace EU4
 {
 	class Country;
+
+
+
+	class countries: public commonItems::parser
+	{
+		public:
+			countries(std::istream& theStream);
+
+			std::map<std::string, std::shared_ptr<EU4::Country>> getTheCountries() const { return theCountries; }
+
+		private:
+			std::map<std::string, std::shared_ptr<EU4::Country>> theCountries;
+	};
 }
 
-class V2Country;
 
 
-
-class V2Reforms {
-	public:
-		V2Reforms(const V2Country*, const std::shared_ptr<EU4::Country>);
-		void output(FILE*) const;
-	private:
-		void governmentEffects(const V2Country*);
-		void upperHouseEffects(const V2Country*);
-
-		double slavery;
-		double vote_franchise;
-		double upper_house_composition;
-		double voting_system;
-		double public_meetings;
-		double press_rights;
-		double trade_unions;
-		double political_parties;
-};
-
-
-class V2UncivReforms {
-	public:
-		V2UncivReforms(int westernizationProgress, double milFocus, double socioEcoFocus, V2Country* country);
-		void output(FILE*) const;
-	private:
-		bool reforms[16];
-};
-
-
-#endif // V2REFORMS_H_
+#endif // EU4_COUNTRIES_H_
