@@ -392,11 +392,10 @@
     <ClInclude Include="Source\EU4World\ID.h">
       <Filter>EU4 World</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="Source\EU4World\CountryHistory.h">
-=======
+	  <Filter>EU4 World</Filter>
+	</ClInclude>
     <ClInclude Include="Source\EU4World\Countries.h">
->>>>>>> Idhrendur/newParser
       <Filter>EU4 World</Filter>
     </ClInclude>
   </ItemGroup>

@@ -249,11 +249,8 @@
     <ClInclude Include="Source\EU4World\Areas.h" />
     <ClInclude Include="Source\EU4World\ColonialRegions.h" />
     <ClInclude Include="Source\EU4World\Continents.h" />
-<<<<<<< HEAD
     <ClInclude Include="Source\EU4World\CountryHistory.h" />
-=======
     <ClInclude Include="Source\EU4World\Countries.h" />
->>>>>>> Idhrendur/newParser
     <ClInclude Include="Source\EU4World\CultureGroups.h" />
     <ClInclude Include="Source\EU4World\EU4Army.h" />
     <ClInclude Include="Source\EU4World\EU4Country.h" />
