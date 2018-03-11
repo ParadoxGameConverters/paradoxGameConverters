@@ -401,6 +401,7 @@ void EU4::Country::getGovernmentFromStream(const std::string& unused, std::istre
 		}
 		equals = getNextTokenWithoutMatching(theStream);
 		government = *getNextTokenWithoutMatching(theStream);
+		auto closingBracket = getNextTokenWithoutMatching(theStream);
 	}
 	else
 	{
