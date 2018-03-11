@@ -156,6 +156,35 @@ std::optional<std::string> commonItems::parser::getNextToken(std::istream& theSt
 }
 
 
+std::optional<std::string> commonItems::parser::getNextTokenWithoutMatching(std::istream& theStream)
+{
+	theStream >> std::noskipws;
+
+	std::string toReturn;
+
+	bool gotToken = false;
+	while (!gotToken)
+	{
+		if (theStream.eof())
+		{
+			return {};
+		}
+
+		toReturn = getNextLexeme(theStream);
+		gotToken = true;
+	}
+
+	if (toReturn.size() > 0)
+	{
+		return toReturn;
+	}
+	else
+	{
+		return {};
+	}
+}
+
+
 std::string commonItems::getNextLexeme(std::istream& theStream)
 {
 	std::string toReturn;

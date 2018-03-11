@@ -275,13 +275,8 @@ EU4::Country::Country(const std::string& countryTag, std::istream& theStream):
 			}
 		}
 	);
-	registerKeyword(std::regex("government"), [this](const std::string& unused, std::istream& theStream)
-		{
-			auto governmentObj = commonItems::convert8859Object(unused, theStream);
-			vector<shared_ptr<Object>> subGovernmentObj = governmentObj->getLeaves()[0]->getValue("government");
-			(subGovernmentObj.size() > 0) ? government = subGovernmentObj[0]->getLeaf() : government = "";
-		}
-	);
+	commonItems::parsingFunction governmentFunction = std::bind(&EU4::Country::getGovernmentFromStream, this, std::placeholders::_1, std::placeholders::_2);
+	registerKeyword(std::regex("government"), governmentFunction);
 	registerKeyword(std::regex("active_relations"), [this](const std::string& unused, std::istream& theStream)
 		{
 			auto relationLeaves = commonItems::convert8859Object(unused, theStream);
@@ -391,6 +386,26 @@ EU4::Country::Country(const std::string& countryTag, std::istream& theStream):
 	determineJapaneseRelations();
 	determineInvestments();
 	determineLibertyDesire();
+}
+
+
+void EU4::Country::getGovernmentFromStream(const std::string& unused, std::istream& theStream)
+{
+	auto equals = getNextTokenWithoutMatching(theStream);
+	auto next = getNextTokenWithoutMatching(theStream);
+	if (next == "{")
+	{
+		while (next != "government")
+		{
+			next = getNextTokenWithoutMatching(theStream);
+		}
+		equals = getNextTokenWithoutMatching(theStream);
+		government = *getNextTokenWithoutMatching(theStream);
+	}
+	else
+	{
+		government = *next;
+	}
 }
 
 

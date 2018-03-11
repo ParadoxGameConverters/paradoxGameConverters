@@ -55,6 +55,7 @@ namespace commonItems
 			void parseFile(const std::string& filename);
 
 			std::optional<std::string> getNextToken(std::istream& theStream);
+			std::optional<std::string> getNextTokenWithoutMatching(std::istream& theStream);
 
 		private:
 			std::list<std::pair<std::regex, parsingFunction>> registeredKeywords;
