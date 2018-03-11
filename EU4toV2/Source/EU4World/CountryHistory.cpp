@@ -29,35 +29,17 @@ EU4::countryHistory::countryHistory(std::istream& theStream):
 {
 	auto ignore = getNextToken(theStream);
 
-	registerKeyword(std::regex("government"), commonItems::ignoreString);
-	registerKeyword(std::regex("government_rank"), commonItems::ignoreString);
-	registerKeyword(std::regex("mercantilism"), commonItems::ignoreString);
-	registerKeyword(std::regex("technology_group"), commonItems::ignoreString);
-	registerKeyword(std::regex("historical_friend"), commonItems::ignoreString);
-	registerKeyword(std::regex("historical_rival"), commonItems::ignoreString);
-	registerKeyword(std::regex("unit_type"), commonItems::ignoreString);
-	registerKeyword(std::regex("primary_culture"), commonItems::ignoreString);
-	registerKeyword(std::regex("religion"), commonItems::ignoreString);
-	registerKeyword(std::regex("religious_school"), commonItems::ignoreString);
-	registerKeyword(std::regex("secondary_religion"), commonItems::ignoreString);
-	registerKeyword(std::regex("add_harmonized_religion"), commonItems::ignoreString);
-	registerKeyword(std::regex("add_accepted_culture"), commonItems::ignoreString);
-	registerKeyword(std::regex("capital"), commonItems::ignoreString);
-	registerKeyword(std::regex("national_focus"), commonItems::ignoreString);
-	registerKeyword(std::regex("fixed_capital"), commonItems::ignoreString);
-	registerKeyword(std::regex("mercantilism"), commonItems::ignoreString);
-	registerKeyword(std::regex("unlock_cult"), commonItems::ignoreString);
-	registerKeyword(std::regex("elector"), commonItems::ignoreString);
-	registerKeyword(std::regex("unit_type"), commonItems::ignoreString);
 	registerKeyword(std::regex("\\d+\\.\\d+\\.\\d+"), [this](const std::string& date, std::istream& theStream)
-	{
-		countryHistoryDate theDate(theStream);
-		for (auto& item: theDate.getItems())
 		{
-			items.emplace_back(std::dynamic_pointer_cast<historyItem>(item));
+			countryHistoryDate theDate(theStream);
+			for (auto& item: theDate.getItems())
+			{
+				items.emplace_back(std::dynamic_pointer_cast<historyItem>(item));
+			}
 		}
-	}
 	);
+
+	registerKeyword(std::regex("[a-z\\_]+"), commonItems::ignoreItem);
 
 	parseStream(theStream);
 }
@@ -66,41 +48,14 @@ EU4::countryHistory::countryHistory(std::istream& theStream):
 EU4::countryHistoryDate::countryHistoryDate(std::istream& theStream):
 	items()
 {
-	registerKeyword(std::regex("monarch"), commonItems::ignoreObject);
-	registerKeyword(std::regex("queen"), commonItems::ignoreObject);
-	registerKeyword(std::regex("heir"), commonItems::ignoreObject);
 	registerKeyword(std::regex("leader"), [this](const std::string& date, std::istream& theStream)
-	{
-		shared_ptr<historyLeader> newLeader = make_unique<historyLeader>(theStream);
-		items.emplace_back(newLeader);
-	}
+		{
+			shared_ptr<historyLeader> newLeader = make_unique<historyLeader>(theStream);
+			items.emplace_back(newLeader);
+		}
 	);
-	registerKeyword(std::regex("changed_country_mapcolor_from"), commonItems::ignoreObject);
-	registerKeyword(std::regex("government"), commonItems::ignoreString);
-	registerKeyword(std::regex("religion"), commonItems::ignoreString);
-	registerKeyword(std::regex("add_accepted_culture"), commonItems::ignoreString);
-	registerKeyword(std::regex("adm_tech"), commonItems::ignoreString);
-	registerKeyword(std::regex("dip_tech"), commonItems::ignoreString);
-	registerKeyword(std::regex("mil_tech"), commonItems::ignoreString);
-	registerKeyword(std::regex("capital"), commonItems::ignoreString);
-	registerKeyword(std::regex("changed_tag_from"), commonItems::ignoreString);
-	registerKeyword(std::regex("changed_country_name_from"), commonItems::ignoreString);
-	registerKeyword(std::regex("changed_country_adjective_from"), commonItems::ignoreString);
-	registerKeyword(std::regex("set_country_flag"), commonItems::ignoreString);
-	registerKeyword(std::regex("clr_country_flag"), commonItems::ignoreString);
-	registerKeyword(std::regex("set_global_flag"), commonItems::ignoreString);
-	registerKeyword(std::regex("union"), commonItems::ignoreString);
-	registerKeyword(std::regex("primary_culture"), commonItems::ignoreString);
-	registerKeyword(std::regex("religion"), commonItems::ignoreString);
-	registerKeyword(std::regex("government_rank"), commonItems::ignoreString);
-	registerKeyword(std::regex("decision"), commonItems::ignoreString);
-	registerKeyword(std::regex("remove_accepted_culture"), commonItems::ignoreString);
-	registerKeyword(std::regex("mercantilism"), commonItems::ignoreString);
-	registerKeyword(std::regex("elector"), commonItems::ignoreString);
-	registerKeyword(std::regex("revolution_target"), commonItems::ignoreString);
-	registerKeyword(std::regex("religious_school"), commonItems::ignoreString);
-	registerKeyword(std::regex("technology_group"), commonItems::ignoreString);
-	registerKeyword(std::regex("unit_type"), commonItems::ignoreString);
+
+	registerKeyword(std::regex("[a-z\\_]+"), commonItems::ignoreItem);
 
 	parseStream(theStream);
 }

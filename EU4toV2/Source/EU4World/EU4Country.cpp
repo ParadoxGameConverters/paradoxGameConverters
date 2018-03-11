@@ -142,6 +142,12 @@ EU4::Country::Country(const std::string& countryTag, std::istream& theStream):
 			techGroup = theTechGroup.getString();
 		}
 	);
+	registerKeyword(std::regex("liberty_desire"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleDouble theLibertyDesire(theStream);
+			libertyDesire = theLibertyDesire.getDouble();
+		}
+	);
 	registerKeyword(std::regex("institutions"), [this](const std::string& unused, std::istream& theStream)
 		{
 			commonItems::intList theInstitutions(theStream);
@@ -260,6 +266,15 @@ EU4::Country::Country(const std::string& countryTag, std::istream& theStream):
 			}
 		}
 	);
+	registerKeyword(std::regex("variables"), [this](const std::string& unused, std::istream& theStream)
+		{
+			auto variablesObj = commonItems::convert8859Object(unused, theStream);
+			for (auto variableObject: variablesObj->getLeaves()[0]->getLeaves())
+			{
+				flags[variableObject->getKey()] = true;
+			}
+		}
+	);
 	registerKeyword(std::regex("government"), [this](const std::string& unused, std::istream& theStream)
 		{
 			auto governmentObj = commonItems::convert8859Object(unused, theStream);
@@ -369,208 +384,7 @@ EU4::Country::Country(const std::string& countryTag, std::istream& theStream):
 		}
 	);
 
-	// ignored items
-	registerKeyword(std::regex("human"), commonItems::ignoreString);
-	registerKeyword(std::regex("was_player"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_age_objectives"), commonItems::ignoreString);
-	registerKeyword(std::regex("technology_cost"), commonItems::ignoreString);
-	registerKeyword(std::regex("is_primitive"), commonItems::ignoreString);
-	registerKeyword(std::regex("fixed_capital"), commonItems::ignoreString);
-	registerKeyword(std::regex("original_capital"), commonItems::ignoreString);
-	registerKeyword(std::regex("trade_port"), commonItems::ignoreString);
-	registerKeyword(std::regex("base_tax"), commonItems::ignoreString);
-	registerKeyword(std::regex("development"), commonItems::ignoreString);
-	registerKeyword(std::regex("raw_development"), commonItems::ignoreString);
-	registerKeyword(std::regex("capped_development"), commonItems::ignoreString);
-	registerKeyword(std::regex("treasure_fleet_gold"), commonItems::ignoreString);
-	registerKeyword(std::regex("last_month_treasure_fleet_gold"), commonItems::ignoreString);
-	registerKeyword(std::regex("potential_incidents"), commonItems::ignoreObject);
-	registerKeyword(std::regex("incident_variables"), commonItems::ignoreObject);
-	registerKeyword(std::regex("harmonized_religions"), commonItems::ignoreObject);
-	registerKeyword(std::regex("initialized_rivals"), commonItems::ignoreString);
-	registerKeyword(std::regex("recalculate_strategy"), commonItems::ignoreString);
-	registerKeyword(std::regex("dirty_colony"), commonItems::ignoreString);
-	registerKeyword(std::regex("national_focus"), commonItems::ignoreString);
-	registerKeyword(std::regex("dominant_culture"), commonItems::ignoreString);
-	registerKeyword(std::regex("graphical_culture"), commonItems::ignoreString);
-	registerKeyword(std::regex("religious_school"), commonItems::ignoreString);
-	registerKeyword(std::regex("secondary_religion"), commonItems::ignoreString);
-	registerKeyword(std::regex("dominant_religion"), commonItems::ignoreString);
-	registerKeyword(std::regex("fervor"), commonItems::ignoreObject);
-	registerKeyword(std::regex("unit_type"), commonItems::ignoreString);
-	registerKeyword(std::regex("estate"), commonItems::ignoreObject);
-	registerKeyword(std::regex("rival"), commonItems::ignoreObject);
-	registerKeyword(std::regex("faction"), commonItems::ignoreObject);
-	registerKeyword(std::regex("top_faction"), commonItems::ignoreString);
-	registerKeyword(std::regex("highest_possible_fort"), commonItems::ignoreString);
-	registerKeyword(std::regex("highest_possible_fort_building"), commonItems::ignoreString);
-	registerKeyword(std::regex("transfer_home_bonus"), commonItems::ignoreString);
-	registerKeyword(std::regex("enemy"), commonItems::ignoreString);
-	registerKeyword(std::regex("rebel_threat"), commonItems::ignoreString);
-	registerKeyword(std::regex("goldtype"), commonItems::ignoreString);
-	registerKeyword(std::regex("luck"), commonItems::ignoreString);
-	registerKeyword(std::regex("is_at_war"), commonItems::ignoreString);
-	registerKeyword(std::regex("new_monarch"), commonItems::ignoreString);
-	registerKeyword(std::regex("last_election"), commonItems::ignoreString);
-	registerKeyword(std::regex("current_power_projection"), commonItems::ignoreString);
-	registerKeyword(std::regex("great_power_score"), commonItems::ignoreString);
-	registerKeyword(std::regex("power_projection"), commonItems::ignoreObject);
-	registerKeyword(std::regex("navy_strength"), commonItems::ignoreString);
-	registerKeyword(std::regex("tariff"), commonItems::ignoreString);
-	registerKeyword(std::regex("parliament"), commonItems::ignoreObject);
-	registerKeyword(std::regex("total_war_worth"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_rebel_controlled_provinces"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_rebel_armies"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_owned_home_cores"), commonItems::ignoreString);
-	registerKeyword(std::regex("government_name"), commonItems::ignoreString);
-	registerKeyword(std::regex("subject_focus"), commonItems::ignoreString);
-	registerKeyword(std::regex("trade_mission"), commonItems::ignoreString);
-	registerKeyword(std::regex("blockade_mission"), commonItems::ignoreString);
-	registerKeyword(std::regex("continent"), commonItems::ignoreObject);
-	registerKeyword(std::regex("non_overseas_development"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_controlled_cities"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_ports"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_non_cores"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_core_ports"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_total_ports"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_cardinals"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_regulars"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_cities"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_provinces_in_states"), commonItems::ignoreString);
-	registerKeyword(std::regex("forts"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_overseas"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_allies"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_royal_marriages"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_heathen_provs"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_heretic_provs"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_subjects"), commonItems::ignoreString);
-	registerKeyword(std::regex("inland_sea_ratio"), commonItems::ignoreString);
-	registerKeyword(std::regex("has_friendly_reformation_center"), commonItems::ignoreString);
-	registerKeyword(std::regex("average_unrest"), commonItems::ignoreString);
-	registerKeyword(std::regex("average_effective_unrest"), commonItems::ignoreString);
-	registerKeyword(std::regex("average_autonomy"), commonItems::ignoreString);
-	registerKeyword(std::regex("average_autonomy_above_min"), commonItems::ignoreString);
-	registerKeyword(std::regex("average_home_autonomy"), commonItems::ignoreString);
-	registerKeyword(std::regex("update_supply_range"), commonItems::ignoreString);
-	registerKeyword(std::regex("friend_bools"), commonItems::ignoreObject);
-	registerKeyword(std::regex("num_of_buildings_indexed"), commonItems::ignoreObject);
-	registerKeyword(std::regex("produced_goods_value"), commonItems::ignoreObject);
-	registerKeyword(std::regex("num_of_goods_produced"), commonItems::ignoreObject);
-	registerKeyword(std::regex("traded"), commonItems::ignoreObject);
-	registerKeyword(std::regex("num_of_religions_indexed"), commonItems::ignoreObject);
-	registerKeyword(std::regex("num_of_leaders"), commonItems::ignoreObject);
-	registerKeyword(std::regex("num_of_leaders_with_traits"), commonItems::ignoreObject);
-	registerKeyword(std::regex("num_of_free_leaders"), commonItems::ignoreObject);
-	registerKeyword(std::regex("num_of_provinces_in_territories"), commonItems::ignoreString);
-	registerKeyword(std::regex("tribute_type"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_of_subject_count_indexed"), commonItems::ignoreObject);
-	registerKeyword(std::regex("border_pct"), commonItems::ignoreObject);
-	registerKeyword(std::regex("border_sit"), commonItems::ignoreObject);
-	registerKeyword(std::regex("border_provinces"), commonItems::ignoreObject);
-	registerKeyword(std::regex("range_cache"), commonItems::ignoreObject);
-	registerKeyword(std::regex("neighbours"), commonItems::ignoreObject);
-	registerKeyword(std::regex("home_neighbours"), commonItems::ignoreObject);
-	registerKeyword(std::regex("core_neighbours"), commonItems::ignoreObject);
-	registerKeyword(std::regex("transfer_trade_power_to"), commonItems::ignoreObject);
-	registerKeyword(std::regex("current_at_war_with"), commonItems::ignoreObject);
-	registerKeyword(std::regex("current_war_allies"), commonItems::ignoreObject);
-	registerKeyword(std::regex("friends"), commonItems::ignoreObject);
-	registerKeyword(std::regex("allies"), commonItems::ignoreObject);
-	registerKeyword(std::regex("extended_allies"), commonItems::ignoreObject);
-	registerKeyword(std::regex("subjects"), commonItems::ignoreObject);
-	registerKeyword(std::regex("transfer_trade_power_from"), commonItems::ignoreObject);
-	registerKeyword(std::regex("score_rating"), commonItems::ignoreObject);
-	registerKeyword(std::regex("score_rank"), commonItems::ignoreObject);
-	registerKeyword(std::regex("age_score"), commonItems::ignoreObject);
-	registerKeyword(std::regex("score_place"), commonItems::ignoreString);
-	registerKeyword(std::regex("prestige"), commonItems::ignoreString);
-	registerKeyword(std::regex("treasury"), commonItems::ignoreString);
-	registerKeyword(std::regex("estimated_monthly_income"), commonItems::ignoreString);
-	registerKeyword(std::regex("inflation"), commonItems::ignoreString);
-	registerKeyword(std::regex("inflation_history"), commonItems::ignoreObject);
-	registerKeyword(std::regex("opinion_cache"), commonItems::ignoreObject);
-	registerKeyword(std::regex("under_construction"), commonItems::ignoreObject);
-	registerKeyword(std::regex("under_construction_queued"), commonItems::ignoreObject);
-	registerKeyword(std::regex("total_count"), commonItems::ignoreObject);
-	registerKeyword(std::regex("state"), commonItems::ignoreObject);
-	registerKeyword(std::regex("owned_provinces"), commonItems::ignoreObject);
-	registerKeyword(std::regex("controlled_provinces"), commonItems::ignoreObject);
-	registerKeyword(std::regex("core_provinces"), commonItems::ignoreObject);
-	registerKeyword(std::regex("claim_provinces"), commonItems::ignoreObject);
-	registerKeyword(std::regex("idea_may_cache"), commonItems::ignoreObject);
-	registerKeyword(std::regex("update_opinion_cache"), commonItems::ignoreString);
-	registerKeyword(std::regex("needs_refresh"), commonItems::ignoreString);
-	registerKeyword(std::regex("casus_bellis_refresh"), commonItems::ignoreString);
-	registerKeyword(std::regex("needs_rebel_unit_refresh"), commonItems::ignoreString);
-	registerKeyword(std::regex("rebels_in_country"), commonItems::ignoreObject);
-	registerKeyword(std::regex("war_exhaustion"), commonItems::ignoreString);
-	registerKeyword(std::regex("can_take_wartaxes"), commonItems::ignoreString);
-	registerKeyword(std::regex("land_maintenance"), commonItems::ignoreString);
-	registerKeyword(std::regex("naval_maintenance"), commonItems::ignoreString);
-	registerKeyword(std::regex("colonial_maintenance"), commonItems::ignoreString);
-	registerKeyword(std::regex("missionary_maintenance"), commonItems::ignoreString);
-	registerKeyword(std::regex("army_tradition"), commonItems::ignoreString);
-	registerKeyword(std::regex("navy_tradition"), commonItems::ignoreString);
-	registerKeyword(std::regex("last_war_ended"), commonItems::ignoreString);
-	registerKeyword(std::regex("num_uncontested_cores"), commonItems::ignoreString);
-	registerKeyword(std::regex("ledger"), commonItems::ignoreObject);
-	registerKeyword(std::regex("loan_size"), commonItems::ignoreString);
-	registerKeyword(std::regex("estimated_loan"), commonItems::ignoreString);
-	registerKeyword(std::regex("religious_unity"), commonItems::ignoreString);
-	registerKeyword(std::regex("republican_tradition"), commonItems::ignoreString);
-	registerKeyword(std::regex("devotion"), commonItems::ignoreString);
-	registerKeyword(std::regex("meritocracy"), commonItems::ignoreString);
-	registerKeyword(std::regex("papal_influence"), commonItems::ignoreString);
-	registerKeyword(std::regex("buffer"), commonItems::ignoreString);
-	registerKeyword(std::regex("piety"), commonItems::ignoreString);
-	registerKeyword(std::regex("root_out_corruption_slider"), commonItems::ignoreString);
-	registerKeyword(std::regex("unlock_cult"), commonItems::ignoreObject);
-	registerKeyword(std::regex("horde_unity"), commonItems::ignoreString);
-	registerKeyword(std::regex("mercantilism"), commonItems::ignoreString);
-	registerKeyword(std::regex("splendor"), commonItems::ignoreString);
-	registerKeyword(std::regex("absolutism"), commonItems::ignoreString);
-	registerKeyword(std::regex("army_professionalism"), commonItems::ignoreString);
-	registerKeyword(std::regex("max_historic_army_professionalism"), commonItems::ignoreString);
-	registerKeyword(std::regex("church"), commonItems::ignoreObject);
-	registerKeyword(std::regex("disaster_progress"), commonItems::ignoreObject);
-	registerKeyword(std::regex("disaster_started"), commonItems::ignoreObject);
-	registerKeyword(std::regex("colonists"), commonItems::ignoreObject);
-	registerKeyword(std::regex("merchants"), commonItems::ignoreObject);
-	registerKeyword(std::regex("missionaries"), commonItems::ignoreObject);
-	registerKeyword(std::regex("diplomats"), commonItems::ignoreObject);
-	registerKeyword(std::regex("manpower"), commonItems::ignoreString);
-	registerKeyword(std::regex("active_religious_reform"), commonItems::ignoreObject);
-	registerKeyword(std::regex("active_native_advancement"), commonItems::ignoreObject);
-	registerKeyword(std::regex("max_manpower"), commonItems::ignoreString);
-	registerKeyword(std::regex("sailors"), commonItems::ignoreString);
-	registerKeyword(std::regex("max_sailors"), commonItems::ignoreString);
-	registerKeyword(std::regex("sub_unit"), commonItems::ignoreObject);
-	registerKeyword(std::regex("overextension_percentage"), commonItems::ignoreString);
-	registerKeyword(std::regex("leader"), commonItems::ignoreObject);
-	registerKeyword(std::regex("monarch"), commonItems::ignoreObject);
-	registerKeyword(std::regex("queen"), commonItems::ignoreObject);
-	registerKeyword(std::regex("heir"), commonItems::ignoreObject);
-	registerKeyword(std::regex("decision_seed"), commonItems::ignoreString);
-	registerKeyword(std::regex("original_dynasty"), commonItems::ignoreString);
-	registerKeyword(std::regex("is_great_power"), commonItems::ignoreString);
-	registerKeyword(std::regex("wants_to_be_great_power"), commonItems::ignoreString);
-	registerKeyword(std::regex("wants_to_be_great_power_next"), commonItems::ignoreString);
-	registerKeyword(std::regex("inauguration"), commonItems::ignoreString);
-	registerKeyword(std::regex("previous_monarch"), commonItems::ignoreObject);
-	registerKeyword(std::regex("last_major_mission_pick"), commonItems::ignoreString);
-	registerKeyword(std::regex("last_major_mission_cancel"), commonItems::ignoreString);
-	registerKeyword(std::regex("last_major_mission"), commonItems::ignoreString);
-	registerKeyword(std::regex("ai"), commonItems::ignoreObject);
-	registerKeyword(std::regex("assigned_estates"), commonItems::ignoreString);
-	registerKeyword(std::regex("traded_bonus"), commonItems::ignoreObject);
-	registerKeyword(std::regex("historical_friends"), commonItems::ignoreObject);
-	registerKeyword(std::regex("historical_rivals"), commonItems::ignoreObject);
-	registerKeyword(std::regex("powers"), commonItems::ignoreObject);
-	registerKeyword(std::regex("delayed_event"), commonItems::ignoreObject);
-	registerKeyword(std::regex("interesting_countries"), commonItems::ignoreObject);
-	registerKeyword(std::regex("blockaded_percent"), commonItems::ignoreString);
-	registerKeyword(std::regex("colonial_name_source"), commonItems::ignoreString);
-	registerKeyword(std::regex("losses"), commonItems::ignoreObject);
+	registerKeyword(std::regex("[a-z\\_]+"), commonItems::ignoreItem);
 
 	parseStream(theStream);
 
@@ -609,7 +423,7 @@ void EU4::Country::determineInvestments()
 
 void EU4::Country::determineLibertyDesire()
 {
-	if (colony)
+	if ((colony) && (libertyDesire != 0.0))
 	{
 		auto relationship = relations.find(overlord);
 		if (relationship != relations.end())

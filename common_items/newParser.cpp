@@ -249,6 +249,38 @@ std::string commonItems::getNextLexeme(std::istream& theStream)
 }
 
 
+void commonItems::ignoreItem(const std::string& unused, std::istream& theStream)
+{
+	std::string equals = getNextLexeme(theStream);
+	std::string next = getNextLexeme(theStream);
+	if (next == "{")
+	{
+		int braceDepth = 1;
+		while (true)
+		{
+			if (theStream.eof())
+			{
+				return;
+			}
+
+			std::string token = getNextLexeme(theStream);
+			if (token == "{")
+			{
+				braceDepth++;
+			}
+			else if (token == "}")
+			{
+				braceDepth--;
+				if (braceDepth == 0)
+				{
+					return;
+				}
+			}
+		}
+	}
+}
+
+
 void commonItems::ignoreObject(const std::string& unused, std::istream& theStream)
 {
 	int braceDepth = 0;
