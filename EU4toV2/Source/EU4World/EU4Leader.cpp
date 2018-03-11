@@ -123,7 +123,6 @@ EU4::leader::leader(std::istream& theStream):
 	);
 	registerKeyword(std::regex("dynasty"), commonItems::ignoreString);
 
-	auto leaderString = getNextToken(theStream); // temporary measure to remove the 'leader' token, until the higher-level objects are modified
 	parseStream(theStream);
 }
 

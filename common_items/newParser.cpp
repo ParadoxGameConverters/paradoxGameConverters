@@ -411,6 +411,27 @@ commonItems::singleInt::singleInt(std::istream& theStream):
 }
 
 
+commonItems::singleDouble::singleDouble(std::istream& theStream):
+	theDouble()
+{
+	auto equals = getNextToken(theStream);
+	auto token = *getNextToken(theStream);
+	if (token.substr(0,1) == "\"")
+	{
+		token = token.substr(1, token.length() - 2);
+	}
+	try
+	{
+		theDouble = stof(token);
+	}
+	catch (std::exception& e)
+	{
+		LOG(LogLevel::Warning) << "Expected a double, but instead got " << token;
+		theDouble = 0.0;
+	}
+}
+
+
 commonItems::stringList::stringList(std::istream& theStream):
 	strings()
 {

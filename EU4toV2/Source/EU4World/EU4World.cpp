@@ -48,9 +48,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 EU4::world::world(const string& EU4SaveFileName):
 	theCountries()
 {
-	registerKeyword(std::regex("EU4txt"), [this](const std::string& unused, std::istream& theStream)
-		{}
-	);
+	registerKeyword(std::regex("EU4txt"), [this](const std::string& unused, std::istream& theStream){});
 	registerKeyword(std::regex("date"), [this](const std::string& dateText, std::istream& theStream)
 		{
 			commonItems::singleString dateString(theStream);

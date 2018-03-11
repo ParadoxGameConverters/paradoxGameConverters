@@ -97,6 +97,18 @@ namespace commonItems
 	};
 
 
+	class singleDouble: commonItems::parser
+	{
+		public:
+			singleDouble(std::istream& theStream);
+
+			int getDouble() const { return theDouble; }
+
+		private:
+			int theDouble;
+	};
+
+
 	class stringList: commonItems::parser
 	{
 		public:

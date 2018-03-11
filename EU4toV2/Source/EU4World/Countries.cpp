@@ -35,17 +35,13 @@ EU4::countries::countries(istream& theStream):
 	registerKeyword(std::regex("NAT"), commonItems::ignoreObject);
 	registerKeyword(std::regex("[A-Z]{3}"), [this](const std::string& tag, std::istream& theStream)
 		{
-			auto topLevelObject = commonItems::convert8859Object(tag, theStream);
-			auto countryObject = topLevelObject->getLeaves()[0];
-			auto country = make_shared<EU4::Country>(countryObject);
+			auto country = make_shared<EU4::Country>(tag, theStream);
 			theCountries.insert(make_pair(country->getTag(), country));
 		}
 	);
 	registerKeyword(std::regex("[A-Z][0-9]{2}"), [this](const std::string& tag, std::istream& theStream)
 		{
-			auto topLevelObject = commonItems::convert8859Object(tag, theStream);
-			auto countryObject = topLevelObject->getLeaves()[0];
-			auto country = make_shared<EU4::Country>(countryObject);
+			auto country = make_shared<EU4::Country>(tag, theStream);
 			theCountries.insert(make_pair(country->getTag(), country));
 		}
 	);

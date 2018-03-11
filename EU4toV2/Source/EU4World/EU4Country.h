@@ -51,7 +51,7 @@ namespace EU4
 	class Country: public commonItems::parser
 	{
 		public:
-			Country(shared_ptr<Object> obj);
+			Country(const std::string& countryTag, std::istream& theStream);
 
 			// Add any additional information available from the specified country file.
 			void readFromCommonCountry(const std::string& fileName, const std::string& fullFilename);
@@ -85,7 +85,6 @@ namespace EU4
 			bool							getInHRE()									const { return inHRE; }
 			bool							getHolyRomanEmperor()					const { return holyRomanEmperor; }
 			bool							getCelestialEmperor()					const { return celestialEmperor; }
-			int								getNationalFocus()						const { return nationalFocus; }
 			string							getTechGroup()								const { return techGroup; }
 			vector<bool>					getEmbracedInstitutions()				const { return embracedInstitutions; }
 			int								getIsolationism()						const { return isolationism; }
@@ -117,6 +116,7 @@ namespace EU4
 			tuple<int, int, int>			getRevolutionaryTricolour()			const { return revolutionaryTricolour; }
 			string							getRandomName()							const { return randomName; }
 			const map<string, int>& getNationalIdeas() const { return nationalIdeas; }
+			std::vector<std::shared_ptr<EU4::leader>> getMilitaryLeaders() const { return militaryLeaders; }
 
 			string	getName() const { return name; }
 			string	getName(const string& language) const;
@@ -124,8 +124,9 @@ namespace EU4
 			commonItems::Color getColor() const { return color; }
 
 		private:
-			void							determineInvestments();
-			void							determineFlagsAndModifiers(shared_ptr<Object> obj);
+			void determineJapaneseRelations();
+			void determineInvestments();
+			void determineLibertyDesire();
 			void							clearProvinces();
 			void							clearCores();
 
@@ -136,7 +137,6 @@ namespace EU4
 			bool							holyRomanEmperor;		// if this country is the emperor of the HRE
 			bool							celestialEmperor;		// if this country is the celestial emperor
 			int								capital;					// the EU4 province that is this nation's capital
-			int								nationalFocus;			// the location of this country's national focus
 			string							techGroup;				// the tech group for this nation
 			vector<bool>					embracedInstitutions; // the institutions this nation has embraced
 			int								isolationism;			// the isolationism of the country (for Shinto nations with Mandate of Heaven)
@@ -158,7 +158,7 @@ namespace EU4
 			map<string, bool>				modifiers;				// any modifiers set for this country
 			bool								possibleDaimyo;		// if this country is possibly a daimyo
 			bool							possibleShogun;			// if this country is the shogun
-			vector<EU4::leader*> militaryLeaders;
+			std::vector<std::shared_ptr<EU4::leader>> militaryLeaders;
 			string							government;				// the government type
 			map<string, EU4Relations*>	relations;				// the relations with other nations
 			vector<EU4Army*>				armies;					// this nation's armies and navies
@@ -166,6 +166,7 @@ namespace EU4
 			double							legitimacy;				// the legitimacy of this nation
 			bool								customNation;			// whether or not this is a custom or random nation
 			bool								colony;					// whether or not this country is a colony
+			std::string overlord;
 			string							colonialRegion;		// the colonial region, if this country is a colony
 			double							libertyDesire;			// the amount of liberty desire
 			string							randomName;				// the new name of this nation in Random World
