@@ -39,7 +39,7 @@ EU4::countryHistory::countryHistory(std::istream& theStream):
 		}
 	);
 
-	registerKeyword(std::regex("[a-z\\_]+"), commonItems::ignoreItem);
+	registerKeyword(std::regex("[a-z0-9\\_]+"), commonItems::ignoreItem);
 
 	parseStream(theStream);
 }
@@ -55,7 +55,7 @@ EU4::countryHistoryDate::countryHistoryDate(std::istream& theStream):
 		}
 	);
 
-	registerKeyword(std::regex("[a-z\\_]+"), commonItems::ignoreItem);
+	registerKeyword(std::regex("[a-z0-9\\_]+"), commonItems::ignoreItem);
 
 	parseStream(theStream);
 }

@@ -379,7 +379,7 @@ EU4::Country::Country(const std::string& countryTag, std::istream& theStream):
 		}
 	);
 
-	registerKeyword(std::regex("[a-z\\_]+"), commonItems::ignoreItem);
+	registerKeyword(std::regex("[a-z0-9\\_]+"), commonItems::ignoreItem);
 
 	parseStream(theStream);
 
