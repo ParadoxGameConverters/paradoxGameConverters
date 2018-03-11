@@ -104,10 +104,10 @@ namespace commonItems
 		public:
 			singleDouble(std::istream& theStream);
 
-			int getDouble() const { return theDouble; }
+			double getDouble() const { return theDouble; }
 
 		private:
-			int theDouble;
+			double theDouble;
 	};
 
 
