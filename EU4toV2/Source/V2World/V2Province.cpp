@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -476,7 +476,7 @@ struct V2Province::pop_points
 V2Province::pop_points V2Province::getPopPoints_1(const V2Demographic& demographic, double newPopulation, const V2Country* _owner)
 {
 	const EU4Province*	oldProvince = demographic.oldProvince;
-	const EU4Country*		oldCountry = demographic.oldCountry;
+	auto oldCountry = demographic.oldCountry;
 
 	pop_points pts;
 
@@ -653,7 +653,7 @@ V2Province::pop_points V2Province::getPopPoints_1(const V2Demographic& demograph
 V2Province::pop_points V2Province::getPopPoints_2(const V2Demographic& demographic, double newPopulation, const V2Country* _owner)
 {
 	const EU4Province*	oldProvince = demographic.oldProvince;
-	const EU4Country*		oldCountry = demographic.oldCountry;
+	auto oldCountry = demographic.oldCountry;
 
 	pop_points pts;
 
@@ -792,7 +792,7 @@ V2Province::pop_points V2Province::getPopPoints_2(const V2Demographic& demograph
 void V2Province::createPops(const V2Demographic& demographic, double popWeightRatio, const V2Country* _owner, int popConversionAlgorithm)
 {
 	const EU4Province*	oldProvince = demographic.oldProvince;
-	const EU4Country*		oldCountry = demographic.oldCountry;
+	auto oldCountry = demographic.oldCountry;
 
 	long newPopulation = 0;
 	if (Configuration::getConvertPopTotals())

@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -22,179 +22,44 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "CultureMapper.h"
-#include "EU4RegionMapper.h"
+#include "CultureMappingRule.h"
 #include "Log.h"
-#include "ParadoxParserUTF8.h"
 
 
 
-cultureMapper* cultureMapper::instance = nullptr;
+mappers::cultureMapper* mappers::cultureMapper::instance = nullptr;
 
 
 
-cultureMapper::cultureMapper()
+mappers::cultureMapper::cultureMapper():
+	cultureMap()
 {
 	LOG(LogLevel::Info) << "Parsing culture mappings";
-	shared_ptr<Object> cultureObj = parser_UTF8::doParseFile("cultureMap.txt");
-	if (cultureObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file cultureMap.txt";
-		exit(-1);
-	}
-	if (cultureObj->getLeaves().size() < 1)
-	{
-		LOG(LogLevel::Error) << "Failed to parse cultureMap.txt";
-		exit(-1);
-	}
 
-	shared_ptr<Object> slaveCultureObj = parser_UTF8::doParseFile("slaveCultureMap.txt");
-	if (slaveCultureObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file slaveCultureMap.txt";
-		exit(-1);
-	}
-	if (slaveCultureObj->getLeaves().size() < 1)
-	{
-		LOG(LogLevel::Error) << "Failed to parse slaveCultureMap.txt";
-		exit(-1);
-	}
+	registerKeyword(std::regex("link"), [this](const std::string& unused, std::istream& theStream)
+		{
+			CultureMappingRule rule(theStream);
+			auto newRules = rule.getMappings();
+			for (auto newRule: newRules)
+			{
+				cultureMap.push_back(newRule);
+			}
+		}
+	);
 
-	initCultureMap(cultureObj->getLeaves()[0], slaveCultureObj->getLeaves()[0]);
+	parseFile("cultureMap.txt");
 }
 
 
-void cultureMapper::initCultureMap(shared_ptr<Object> cultureMapObj, shared_ptr<Object> slaveCultureMapObj)
-{
-	for (auto rule: cultureMapObj->getLeaves())
-	{
-		vector<cultureStruct> newRules = createNewRules(rule);
-		for (auto newRule: newRules)
-		{
-			cultureMap.push_back(newRule);
-		}
-	}
-
-	for (auto rule: slaveCultureMapObj->getLeaves())
-	{
-		vector<cultureStruct> newRules = createNewRules(rule);
-		for (auto newRule: newRules)
-		{
-			slaveCultureMap.push_back(newRule);
-		}
-	}
-}
-
-
-vector<cultureStruct> cultureMapper::createNewRules(shared_ptr<Object> ruleObj)
-{
-	vector<cultureStruct> newRules;
-
-	vector<string> srcCultures;
-	string dstCulture;
-	map<string, string> distinguishers;
-	for (auto item: ruleObj->getLeaves())
-	{
-		if (item->getKey() == "v2")
-		{
-			dstCulture = item->getLeaf();
-		}
-		else if (item->getKey() == "eu4")
-		{
-			srcCultures.push_back(item->getLeaf());
-		}
-		else
-		{
-			distinguishers.insert(make_pair(item->getKey(), item->getLeaf()));
-		}
-	}
-
-	for (auto srcCulture: srcCultures)
-	{
-		cultureStruct rule;
-		rule.srcCulture = srcCulture;
-		rule.dstCulture = dstCulture;
-		rule.distinguishers = distinguishers;
-		newRules.push_back(rule);
-	}
-
-	return newRules;
-}
-
-
-bool cultureMapper::CultureMatch(const string& srcCulture, string& dstCulture, const string& religion, int EU4Province, const string& ownerTag)
+bool mappers::cultureMapper::CultureMatch(const std::string& srcCulture, std::string& dstCulture, const std::string& religion, int EU4Province, const std::string& ownerTag)
 {
 	for (auto cultureMapping: cultureMap)
 	{
-		if (cultureMapping.srcCulture == srcCulture)
+		if (cultureMapping.cultureMatch(srcCulture, dstCulture, religion, EU4Province, ownerTag))
 		{
-			if (distinguishersMatch(cultureMapping.distinguishers, religion, EU4Province, ownerTag))
-			{
-				dstCulture = cultureMapping.dstCulture;
-				return true;
-			}
+			return true;
 		}
 	}
 
 	return false;
-}
-
-
-bool cultureMapper::SlaveCultureMatch(const string& srcCulture, string& dstCulture, const string& religion, int EU4Province, const string& ownerTag)
-{
-	for (auto cultureMapping: slaveCultureMap)
-	{
-		if (cultureMapping.srcCulture == srcCulture)
-		{
-			if (distinguishersMatch(cultureMapping.distinguishers, religion, EU4Province, ownerTag))
-			{
-				dstCulture = cultureMapping.dstCulture;
-				return true;
-			}
-		}
-	}
-
-	return false;
-}
-
-
-bool cultureMapper::distinguishersMatch(const map<string, string>& distinguishers, const string& religion, int EU4Province, const string& ownerTag)
-{
-	for (auto currentDistinguisher: distinguishers)
-	{
-		if (currentDistinguisher.first == "owner")
-		{
-			if (ownerTag != currentDistinguisher.second)
-			{
-				return false;
-			}
-		}
-		else if (currentDistinguisher.first == "religion")
-		{
-			if (religion != currentDistinguisher.second)
-			{
-				return false;
-			}
-		}
-		else if (currentDistinguisher.first == "region")
-		{
-			if (!EU4RegionMapper::provinceInRegion(EU4Province, currentDistinguisher.second))
-			{
-				return false;
-			}
-		}
-		else if (currentDistinguisher.first == "provinceid")
-		{
-			if (stoi(currentDistinguisher.second) != EU4Province)
-			{
-				return false;
-			}
-		}
-		else
-		{
-			LOG(LogLevel::Warning) << "Unhandled distinguisher type in culture rules: " << currentDistinguisher.first;
-			return false;
-		}
-	}
-
-	return true;
 }

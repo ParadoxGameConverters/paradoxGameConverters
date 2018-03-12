@@ -1,4 +1,4 @@
-# Copyright (c) 2017 The Paradox Game Converters Project
+# Copyright (c) 2018 The Paradox Game Converters Project
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -22,16 +22,16 @@ unions = {
 #Ashkenazi and Sephardi are removed since they can pop up anywhere, but they should lead to ISR
 
 #Germanics
-link = { tag = NGF tag = GER culture = north_german } # North Germany
-link = { tag = SGF tag = GER culture = south_german } #South Germany
+link = { tag = GER culture = north_german } # North Germany
+link = { tag = GER culture = south_german } #South Germany
 link = { tag = GER culture = german } #CK2 converted - generic Germany
 link = { tag = FRA culture = frankish } #CK2 converted - Francia=>France?
 #no cultural union for Suebi, Ostrogothic
 
 #Beneluxian
 link = { tag = NET culture = dutch } #Netherlands
-link = { tag = BEL culture = flemish } #Flanders and Belgium
-link = { tag = BEL culture = wallonian } #Wallonia and Belgium
+link = { tag = BEL tag = FLA culture = flemish } #Flanders and Belgium
+link = { tag = BEL tag = WLL culture = wallonian } #Wallonia and Belgium
 
 #Swiss
 link = { tag = SWI culture = swiss } #Switzerland
@@ -57,15 +57,15 @@ link = { tag = ENG tag = WLS culture = welsh } #Wales
 link = { tag = ITA culture = north_italian }
 link = { tag = ITA tag = SIC culture = south_italian } #Two Sicilies = South Italy
 link = { tag = MLT culture = maltese } #Malta, not Italy
-#link = { tag = ITA culture = all_italian } #All-Italian is outside Italy...
-#link = { tag = ITA culture = lombard } #Longobards being Italy?
+#link = { tag = ITA culture = all_italian } #All-Italian
+link = { tag = LGB culture = lombard } #Longobardia
 
 #Iberian => Spain
 link = { tag = SPA tag = NAV culture = basque } #Navarre as Basque
 link = { tag = SPA culture = spanish }
 link = { tag = SPA tag = CAT culture = catalan } #and Catalonia
 link = { tag = SPA tag = GAL culture = galician } #and Galicia
-link = { tag = POR culture = portuguese } #Portugal (don't add Spain, be realistic)
+link = { tag = POR culture = portuguese } #Portugal
 #no cultural union for Visigothic
 
 #French => France
@@ -76,6 +76,7 @@ link = { tag = FRA tag = BRI culture = breton } #and Brittany
 #South Slavic => Yugoslavia (and own nationstates)
 link = { tag = YUG tag = CRO culture = croat }
 link = { tag = YUG tag = SER culture = serb }
+link = { tag = YUG tag = MKD culture = macedonian }
 link = { tag = BUL culture = bulgarian }
 link = { tag = ALB culture = albanian }
 link = { tag = YUG tag = SLO culture = slovene }
@@ -133,7 +134,7 @@ link = { tag = XIN culture = uighur } #Xinjiang => Uyghurs
 #link = { tag = AFG culture = hazara } #Afghanistan
 #link = { tag = KAL culture = baluchi } #Kalat
 #link = { tag = KHI culture = turkmen } #Khiva
-#link = { tag = ARD culture = kurdish } #Ardalan
+link = { tag = BHT culture = kurdish } #Bohtan/Soran/Kurdistan
 #link = { tag = CRI tag = RUS culture = tatar } #Crimea and Russia
 
 #Central Asian
@@ -225,4 +226,7 @@ link = { tag = ZUL culture = zulu } #Zulu
 #Easter Eggs
 link = { tag = JAN link = polar_bears } #Jan Mayen
 link = { tag = TRL link = horse } #(CK2) Trapalandia
+link = { tag = MIA link = cat } # Khawitmau
+link = { tag = UND link = undead } # the Undead Horde
+link = { tag = ALI link = alien } # the Alien Invaders
 }

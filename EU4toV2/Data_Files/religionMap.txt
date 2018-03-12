@@ -1,4 +1,4 @@
-# Copyright (c) 2014 The Paradox Game Converters Project
+# Copyright (c) 2018 The Paradox Game Converters Project
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -107,14 +107,52 @@ link = { v2 = jewish_heresy eu4 = jewish_heresy }
 link = { v2 = noreligion eu4 = noreligion }
 
 #CK2Plus mod religions
-link = { v2 = orthodox eu4 = chalcedonian eu4 = apostolic eu4 = apostolic_heresy }
+link = { v2 = pre_schism eu4 = chalcedonian eu4 = apostolic eu4 = apostolic_heresy }
 link = { v2 = west_african_pagan_reformed eu4 = berber_pagan }
 link = { v2 = hellenic_pagan eu4 = jewish_pagan }
 link = { v2 = nestorian eu4 = nestorian_mod }
 link = { v2 = messalian eu4 = messalian_mod }
 link = { v2 = jewish_heresy eu4 = mandaean }
 link = { v2 = zoroastrian_heresy eu4 = zurvanist }
-link = { v2 = zun_pagan_reformed eu4 = egyptian_pagan eu4 = egyptian_pagan_heresy eu4 = arab_pagan }
-link = { v2 = norse_pagan_reformed eu4 = german_pagan_reformed eu4 = celtic_pagan_reformed }
+link = { v2 = kemetic eu4 = egyptian_pagan eu4 = egyptian_pagan_heresy eu4 = khurmazta }
+link = { v2 = arab_pagan eu4 = arab_pagan }
+link = { v2 = norse_pagan_reformed eu4 = german_pagan_reformed }
+link = { v2 = druidist eu4 = celtic_pagan_reformed }
+
+#M&T religions
+link = { v2 = pre_schism eu4 = chalcedonism }
+link = { v2 = nestorian eu4 = chaldean }
+link = { v2 = cathar eu4 = gnostic }
+link = { v2 = arian eu4 = arianism }
+link = { v2 = lollard eu4 = hussite }
+link = { v2 = sunni eu4 = wahhabi }
+link = { v2 = jain eu4 = jainism }
+link = { v2 = animist eu4 = pantheism eu4 = adi_dharam eu4 = polynesian_religion }
+link = { v2 = tibet_bon eu4 = tibetan_bon eu4 = bon }
+link = { v2 = muism eu4 = muism }
+link = { v2 = zun_pagan_reformed eu4 = zunism }
+
+#WTWSMS religions
+link = { v2 = catholic_heresy eu4 = aquileian eu4 = total_depravity eu4 = eutychian eu4 = binitarian eu4 = georgian_orthodox eu4 = insular eu4 = pelagianism eu4 = antinomianism eu4 = ebionites eu4 = marcionism eu4 = montanist eu4 = sethian eu4 = valentinianism eu4 = apollinarian eu4 = adoptionism eu4 = docetic eu4 = pneumatomachians eu4 = melchisedechianism eu4 = patripassianism eu4 = sabellianism eu4 = psilanthropism eu4 = audianistic eu4 = monarchianism eu4 = donatism eu4 = priscillianism }
+link = { v2 = pre_schism eu4 = nicene }
+link = { v2 = sunni eu4 = islamic } #Before Shia schism
+link = { v2 = sunni_heresy eu4 = abadites eu4 = quranism eu4 = qadariyya eu4 = khawariji eu4 = haruriyyah eu4 = wahhabi eu4 = mahdi eu4 = salafi eu4 = twelver eu4 = zayid eu4 = ismaili eu4 = uwaisi eu4 = quamatian }
+link = { v2 = arab_pagan eu4 = semitic_pagan_reformed }
+link = { v2 = druidist eu4 = druidist }
+link = { v2 = kemetic eu4 = kemetic }
+link = { v2 = hellenic_pagan eu4 = hellenic_pagan_reformed }
+link = { v2 = animist eu4 = vasconic }
+link = { v2 = jewish eu4 = tzadikite }
+link = { v2 = jewish_heresy eu4 = bosporan_faith } #Hypsistarians
+
+link = { v2 = noreligion eu4 = r_zombie } #Zombie mod
+
+#CK2 Mythos mod - not exporting to EU4
+#link = { v2 = shamanism eu4 = voodoo }
+#link = { v2 = animist eu4 = draconic_pagan_reformed eu4 = draconic_pagan }
+#link = { v2 = druidist eu4 = druidic_reformed eu4 = druidic }
+#link = { v2 = kemetic eu4 = kemetic_pagan_reformed eu4 = kemetic_pagan }
+#link = { v2 = norse_pagan_reformed eu4 = jotnar_reformed eu4 = jotnar }
+#link = { v2 = catholic_heresy eu4 = satanist }
 
 }

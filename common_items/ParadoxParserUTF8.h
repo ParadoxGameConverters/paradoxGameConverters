@@ -50,15 +50,16 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Object.h"
+#include <istream>
 #include <memory>
 #include <string>
-using namespace std;
 
 
 
 namespace parser_UTF8
 {
-	shared_ptr<Object> doParseFile(string filename);
+	shared_ptr<Object> doParseStream(std::istream& theStream);
+	shared_ptr<Object> doParseFile(const std::string& filename);
 }
 
 

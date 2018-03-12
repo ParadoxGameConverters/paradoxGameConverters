@@ -1,4 +1,4 @@
-/*Copyright(c) 2017 The Paradox Game Converters Project
+/*Copyright(c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -19,42 +19,52 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
 
-#ifndef EU4LEADER_H_
-#define EU4LEADER_H_
+
+#ifndef EU4_LEADER_H_
+#define EU4_LEADER_H_
 
 
-#include <memory>
+
 #include "Date.h"
+#include "newParser.h"
 
 
 
-class Object;
-
-
-
-class EU4Leader
+namespace EU4
 {
-	public:
-		EU4Leader(shared_ptr<Object> obj);
-		string	getName() const { return name; };
-		int		getFire() const { return fire; };
-		int		getShock() const { return shock; };
-		int		getManuever() const { return manuever; };
-		int		getSiege() const { return siege; };
-		int		getID() const { return id; };
-		bool		isLand() const;
-		date		getActivationDate() const { return activationDate; }
-	private:
-		string	name;					// the leader's name
-		int		fire;					// the fire ability
-		int		shock;				// the shock ability
-		int		manuever;			// the manuever ability
-		int		siege;				// the seige ability
-		int		id;					// the id number
-		string	type;					// the type of leader
-		date		activationDate;	// the date this leader was activated
-};
+	class leader: commonItems::parser
+	{
+		public:
+			leader(std::istream& theStream);
+
+			std::string getName() const { return name; }
+			int getFire() const { return fire; }
+			int getShock() const { return shock; }
+			int getManuever() const { return manuever; }
+			int getSiege() const { return siege; }
+			date getActivationDate() const { return activationDate; }
+			int getID() const { return id; }
+
+			bool isLand() const;
+			bool isAlive() const;
+
+		private:
+			std::string name;
+			std::string type;
+			bool female;
+			int fire;
+			int shock;
+			int manuever;
+			int siege;
+			std::string country;
+			std::string personality;
+			date activationDate;
+			date deathDate;
+			int id;
+			int monarchID;
+	};
+}
 
 
 
-#endif // EU4LEADER_H_
+#endif // EU4_LEADER_H_

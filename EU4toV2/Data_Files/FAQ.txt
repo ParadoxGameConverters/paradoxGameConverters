@@ -2,6 +2,9 @@ Q: I have an ironman save. Can it be converted?
 A: Yes! But you need to convert it to a non-ironman save. The easiest way to do so is to use this tool on your save:
 https://forum.paradoxplaza.com/forum/index.php?threads/utility-java-save-game-replayer.722493/
 
+Q: The converter says my save is ironman. What do I do?
+A: Use the technique listed above.
+
 Q: I loaded my mod, but nothing changed. What's wrong?
 A: You probably placed the mod in the My Documents mod folder. It needs to go in the Vic2 install location's mod folder.
 
@@ -15,13 +18,20 @@ Q: Vic2's map is all blue. What do I do?
 A: Clear your map cache by deleting the cache folder inside ".../victoria 2/map/" in both My Documents and the Victoria 2 install location.
 
 Q: The converter crashes after no time with no errors and no log.txt (when running through the frontend). What went wrong?
-A: You may need to install this if you are not on Windows 10: https://support.microsoft.com/en-us/kb/2999226
+A: You may need to install this if you are not on Windows 10: https://support.microsoft.com/en-us/kb/2999226 .   If you are on Windows 10 and are observing this bug there is unfortunately no known fix at present.
 
 Q: The converter says my save is compressed. What do I do?
 A: You'll need to save it again in EU4. When you do, the save dialog has an option to compress the save. Make sure it is not selected.
 
-Q: The converter says my save is ironman. What do I do?
-A: Use the technique listed above.
-
 Q: How can I customize my game after converting?
 A: Use the guide in after_converting.txt in the converter subdirectory.
+
+Q: The generated mod was in a different language than my savegame.
+A: Go in the mod of the converted save, then in setting.txt and change the line "language=l_english" to the language you need, e.g. "language=l_french"
+
+Q: Some/all country names appear as X25, FRA etc.
+A: This is an issue with the localisation.  See above if you may have changed the language, if not check the localisation files in the converter for the offending countries.
+
+Q: The country crashes upon selecting a country and pressing play (at 
+A: Your converted game does not have enough civilised nations (there should be at least 8).  Either increase the tech level of enough nations in EU4 or modify the defines.lua file in the converter mod (change the number on the line GREAT_NATIONS_COUNT=8).
+

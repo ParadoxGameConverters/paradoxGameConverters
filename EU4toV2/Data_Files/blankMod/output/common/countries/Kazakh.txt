@@ -1,5 +1,5 @@
-color = { 112  194  63 }
-graphical_culture = MiddleEasternGC
+color = { 52 181 208 }
+graphical_culture = RussianGC
 
 party = {
 	name = "KOK_conservative"

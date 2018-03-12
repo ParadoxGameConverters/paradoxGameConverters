@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -24,12 +24,21 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #ifndef V2LOCALISATION_H_
 #define V2LOCALISATION_H_
 
+
+
 #include <array>
 #include <iostream>
 #include <string>
 #include <vector>
 
-class EU4Country;
+
+
+namespace EU4
+{
+	class Country;
+}
+
+
 
 // Holds translations for attributes of a specific V2 country.
 class V2Localisation
@@ -38,7 +47,7 @@ public:
 	// Sets the tag to use for creating the name and adjective key to use in the localisation output.
 	void SetTag(const std::string& tag);
 	// Populates the localised names and adjectives using information from the EU4 country.
-	void ReadFromCountry(const EU4Country&);
+	void ReadFromCountry(const EU4::Country&);
 
 	// Sets the key to use for the specified party in the localisation output.
 	void SetPartyKey(size_t partyIndex, const std::string& partyKey);

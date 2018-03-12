@@ -206,6 +206,7 @@ SXI		="countries/Shanxi.txt"
 YNN		="countries/Yunnan.txt"
 XBI		="countries/Xibei San Ma.txt"
 XIN		="countries/Xinjiang.txt"
+YUA		="countries/Yuan.txt"
 
 # North America
 CAL		="countries/Californian Republic.txt"
@@ -253,6 +254,7 @@ NZL		="countries/New Zealand.txt"
 #new for 1.2
 ISR		="countries/Israel.txt"
 BYZ		="countries/Byzantium.txt"
+LTN		="countries/LatinEmpire.txt"
 ICL		="countries/Iceland.txt"
 BAB		="countries/Babylonia.txt"
 
@@ -272,6 +274,11 @@ TRL 	= "countries/Trapalandia.txt"
 
 
 ## Converter Mod Countries
+
+#Easter eggs
+ALI		="countries/Alien Invaders.txt"
+MIA		="countries/Khawitmau.txt"
+UND		="countries/Undead Horde.txt"
 
 # Germany (HRE)
 AAC 		="countries/Aachen.txt"##
@@ -298,6 +305,7 @@ TER		="countries/Trier.txt"##
 ULM 		="countries/Ulm.txt"##
 WBG		="countries/Wurzburg.txt"##
 WES		="countries/Westfalia.txt"##
+CAR		="countries/Carinthia.txt"
 
 # Italy
 AQU		="countries/Aquileia.txt"##
@@ -313,6 +321,8 @@ SII		="countries/Sicily.txt"##
 SNA		="countries/Siena.txt"##
 URB		="countries/Urbino.txt"##
 MFA 	="countries/Montferrat.txt"
+LGB		="countries/Longobardia.txt"
+MLT		="countries/Malta.txt"
 
 # Eastern Europe
 LIV		="countries/Livonian Order.txt"##
@@ -346,6 +356,7 @@ KNI		="countries/Knights.txt"##
 MOE		="countries/Morea.txt"##
 NAX		="countries/Naxos.txt"##
 RAG		="countries/Ragusa.txt"##
+MKD		="countries/Macedonia.txt"##
 
 # Maghreb
 FEZ		="countries/Fez.txt"##
@@ -427,6 +438,7 @@ CAS		="countries/Castille.txt"##
 GRA		="countries/Granada.txt"##
 NAV		="countries/Navarra.txt"##
 GAL		="countries/Galicia.txt"	##
+ADU		="countries/Andalucia.txt"
 
 # The Low Countries
 BRB		="countries/Brabant.txt"##
@@ -528,6 +540,7 @@ IRO		="countries/Iroquois.txt"##
 MAY		="countries/Maya.txt"##
 SHA		="countries/Shawnee.txt"##
 ZAP		="countries/Zapotec.txt"##
+LSK		= "countries/Alaska.txt"##
 
 #Arabia
 ALH		="countries/Haasa.txt"##
@@ -551,6 +564,7 @@ JAL		="countries/Jalayirid.txt"
 QAR		="countries/QaraKoyunlu.txt"
 TIM		="countries/Timurid.txt"
 KZH		="countries/Kazakh.txt"
+BHT		="countries/Kurdistan.txt"
 
 # Japan
 TAC		="countries/Tachibana.txt"

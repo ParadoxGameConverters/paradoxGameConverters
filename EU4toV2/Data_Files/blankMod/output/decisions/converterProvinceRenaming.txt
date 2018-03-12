@@ -124,7 +124,7 @@ political_decisions = {
 				change_province_name = "Istanbul"
 			}
 			861 = {
-				change_province_name = "√úsk√ºdar"
+				change_province_name = "‹sk¸dar"
 			}
 			clr_global_flag = thrace_be_greek
 		}
@@ -205,7 +205,7 @@ political_decisions = {
 				change_province_name = "Afyon"
 			}
 			867 = {
-				change_province_name = "K√ºtahya"
+				change_province_name = "K¸tahya"
 			}
 			868 = {
 				change_province_name = "Eskishehir"
@@ -274,7 +274,7 @@ political_decisions = {
 		}
 		effect = {
 			865 = {
-				change_province_name = "Canakkale"
+				change_province_name = "«anakkale"
 				state_scope = {
 					change_region_name = "Aydin"
 				}
@@ -520,16 +520,21 @@ political_decisions = {
 		}
 	}
 	### Decisions to change New York City name if ahistorical
-	french_nyc = {
+##################
+# 70 ?Prince Edward Island/Epekwitk
+##################
+
+	german_70 = {
 		potential = {
 			OR = {
-				is_culture_group = french
+				is_culture_group = germanic
+				is_culture_group = pan_swiss
 			}
 			NOT = { year = 1837 }
-			NOT = { has_global_flag = nyc_changed }
+			NOT = { has_global_flag = 70_changed }	
 		}
 		allow = {
-			232 = {
+			70 = {
 				OR = {
 					owned_by = THIS
 					owner = { in_sphere = THIS }
@@ -537,30 +542,50 @@ political_decisions = {
 			}
 		}
 		effect = {
-			232 = {
-				change_province_name = "Nouvelle-Anjou"
-				state_scope = {
-					change_region_name = "Nouvelle-Angevin"
-				}
+			70 = {
+				change_province_name = "Prinz Friedrich Island"
 			}
-			set_global_flag = nyc_changed
-
+			set_global_flag = 70_changed
 		}
 		ai_will_do = {
 			factor = 1
 		}
 	}
-	german_nyc = {
+	dutch_70 = {
+		potential = {
+			is_culture_group = beneluxian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 70_changed }	
+		}
+		allow = {
+			70 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			70 = {
+				change_province_name = "Prins Leopold Island"
+			}
+			set_global_flag = 70_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	nordic_70 = {
 		potential = {
 			OR = {
-				is_culture_group = german
+				is_culture_group = scandinavian
+				is_culture_group = baltic
 			}
 			NOT = { year = 1837 }
-			NOT = { has_global_flag = nyc_changed }
-
+			NOT = { has_global_flag = 70_changed }	
 		}
 		allow = {
-			232 = {
+			70 = {
 				OR = {
 					owned_by = THIS
 					owner = { in_sphere = THIS }
@@ -568,29 +593,27 @@ political_decisions = {
 			}
 		}
 		effect = {
-			232 = {
-				change_province_name = "Neupreu‡†•n"
-				state_scope = {
-					change_region_name = "Neupreu‡†•n"
-				}
+			70 = {
+				change_province_name = "Princen Oskar Island"
 			}
-			set_global_flag = nyc_changed
-
+			set_global_flag = 70_changed
 		}
 		ai_will_do = {
 			factor = 1
 		}
 	}
-	dutch_nyc = {
+	english_70 = { #Vanilla, but we changed it
 		potential = {
 			OR = {
-				is_culture_group = beneluxian
+				is_culture_group = british
+				is_culture_group = neo_european_cultures
+				is_culture_group = american_cultures
 			}
 			NOT = { year = 1837 }
-			NOT = { has_global_flag = nyc_changed }
+			NOT = { has_global_flag = 70_changed }	
 		}
 		allow = {
-			232 = {
+			70 = {
 				OR = {
 					owned_by = THIS
 					owner = { in_sphere = THIS }
@@ -598,30 +621,23 @@ political_decisions = {
 			}
 		}
 		effect = {
-			232 = {
-				change_province_name = "Nieuw Amsterdam"
-				state_scope = {
-					change_region_name = "Nieuw Amsterdam"
-				}
+			70 = {
+				change_province_name = "Prince Edward Island"
 			}
-			set_global_flag = nyc_changed
-			
+			set_global_flag = 70_changed
 		}
 		ai_will_do = {
 			factor = 1
 		}
 	}
-	italian_nyc = {
+	italian_70 = {
 		potential = {
-			OR = {
-				is_culture_group = italian
-			}
-			NOT = { year = 1840 }
-			NOT = { has_global_flag = nyc_changed }
-			
+			is_culture_group = italian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 70_changed }	
 		}
 		allow = {
-			232 = {
+			70 = {
 				OR = {
 					owned_by = THIS
 					owner = { in_sphere = THIS }
@@ -629,29 +645,78 @@ political_decisions = {
 			}
 		}
 		effect = {
-			232 = {
-				change_province_name = "Nuova Milano"
-				state_scope = {
-					change_region_name = "Nuova Lombardia"
-				}
+			70 = {
+				change_province_name = "Principe Emmanuele Island"
 			}
-			set_global_flag = nyc_changed
+			set_global_flag = 70_changed
 		}
 		ai_will_do = {
 			factor = 1
 		}
 	}
-	arab_nyc = {
+	spanish_70 = {
 		potential = {
 			OR = {
-				is_culture_group = arab
+				is_culture_group = iberian
+				is_culture_group = latin_american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 70_changed }	
+		}
+		allow = {
+			70 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			70 = {
+				change_province_name = "Princesa Isabella Island"
+			}
+			set_global_flag = 70_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	french_70 = {
+		potential = {
+			is_culture_group = french
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 70_changed }	
+		}
+		allow = {
+			70 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			70 = {
+				change_province_name = "Prince Louis Island"
+			}
+			set_global_flag = 70_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	arab_70 = {
+		potential = {
+			OR = {
 				is_culture_group = turko_semitic
+				is_culture_group = arab
+				is_culture_group = iranian_turanian
 			}
 			NOT = { year = 1837 }
-			NOT = { has_global_flag = nyc_changed }			
+			NOT = { has_global_flag = 70_changed }	
 		}
 		allow = {
-			232 = {
+			70 = {
 				OR = {
 					owned_by = THIS
 					owner = { in_sphere = THIS }
@@ -659,110 +724,135 @@ political_decisions = {
 			}
 		}
 		effect = {
-			232 = {
-				change_province_name = "Jadid al-Makkah"
-				state_scope = {
-					change_region_name = "Jadid al-Makkah"
-				}
+			70 = {
+				change_province_name = "Prens Uthman Island"
 			}
-			set_global_flag = nyc_changed
+			set_global_flag = 70_changed
 		}
 		ai_will_do = {
 			factor = 1
 		}
 	}
-	swedish_nyc = { #To localize - I'm aware Vinland is a bit more to North
-		potential = {
-			is_culture_group = scandinavian
-			NOT = { year = 1837 }
-			NOT = { has_global_flag = nyc_changed }			
-		}
-		allow = {
-			232 = {
-				OR = {
-					owned_by = THIS
-					owner = { in_sphere = THIS }
-				}
-			}
-		}
-		effect = {
-			232 = {
-				change_province_name = "VÓØ¢org"
-				state_scope = {
-					change_region_name = "VÓØ¨and"
-				}
-			}
-			set_global_flag = nyc_changed
-		}
-		ai_will_do = {
-			factor = 1
-		}
-	}
-	spanish_nyc = { #To localize
-		potential = {
-			is_culture_group = iberian
-			NOT = { year = 1837 }
-			NOT = { has_global_flag = nyc_changed }
-			}
-		allow = {
-			232 = {
-				OR = {
-					owned_by = THIS
-					owner = { in_sphere = THIS }
-				}
-			}
-		}
-		effect = {
-			232 = {
-				change_province_name = "Nueva AragÛÆ¢†"#It was the only one not in OTL...
-				state_scope = {
-					change_region_name = "Nueva AragÛÆ¢ç"
-				}
-			}
-			set_global_flag = nyc_changed
-		}
-		ai_will_do = {
-			factor = 1
-		}
-	}
-	### Decisions to change New OrlÍ¢Æs name if ahistorical
-	french_neworleans = {
+	slavic_70 = {
 		potential = {
 			OR = {
-				is_culture_group = french
+				is_culture_group = south_slavic
+				is_culture_group = pan_romanian
+				is_culture_group = hungarian_culture_group
+				is_culture_group = polish_culture_group
+				is_culture_group = czecho_slovak_culture_group
+				is_culture_group = east_slavic
 			}
 			NOT = { year = 1837 }
-			NOT = { has_global_flag = new_orl_changed }			
+			NOT = { has_global_flag = 70_changed }	
+		}
+		allow = {
+			70 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			70 = {
+				change_province_name = "Pravitel Ivan Island"
+			}
+			set_global_flag = 70_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	greek_70 = {
+		potential = {
+			is_culture_group = levantine
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 70_changed }	
+		}
+		allow = {
+			70 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			70 = {
+				change_province_name = "Igemon Constantinos Island"
+			}
+			set_global_flag = 70_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	chinese_70 = {
+		potential = {
+			OR = {
+				is_culture_group = central_asian
+				is_culture_group = southeast_asian
+				is_culture_group = east_asian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 70_changed }	
+		}
+		allow = {
+			70 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			70 = {
+				change_province_name = "Wangzi Island"
+			}
+			set_global_flag = 70_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	indian_70 = {
+		potential = {
+			is_culture_group = south_asian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 70_changed }	
+		}
+		allow = {
+			70 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			70 = {
+				change_province_name = "Raajasee Island"
+			}
+			set_global_flag = 70_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+##################
+# 139 ?New Orleans/Chitimacha
+# Louisiana/Shreveport
+##################
 
-		}
-		allow = {
-			139 = {
-				OR = {
-					owned_by = THIS
-					owner = { in_sphere = THIS }
-				}
-			}
-		}
-		effect = {
-			139 = {
-				change_province_name = "Nouvelle OrlÍ¢Æs"
-#				state_scope = { #No name change, actually
-#					change_region_name = "Louisiana"
-#				}
-			}
-			set_global_flag = new_orl_changed
-		}
-		ai_will_do = {
-			factor = 1
-		}
-	}
-	german_neworleans = {
+	german_139 = {
 		potential = {
 			OR = {
-				is_culture_group = german
+				is_culture_group = germanic
+				is_culture_group = pan_swiss
 			}
 			NOT = { year = 1837 }
-			NOT = { has_global_flag = new_orl_changed }	
+			NOT = { has_global_flag = 139_changed }	
 		}
 		allow = {
 			139 = {
@@ -774,24 +864,22 @@ political_decisions = {
 		}
 		effect = {
 			139 = {
-				change_province_name = "NeumÔøΩÔøΩh"
+				change_province_name = "Neum¸nich"
 				state_scope = {
 					change_region_name = "Ludwigsland"
 				}
 			}
-			set_global_flag = new_orl_changed
+			set_global_flag = 139_changed
 		}
 		ai_will_do = {
 			factor = 1
 		}
 	}
-	dutch_neworleans = {
+	dutch_139 = {
 		potential = {
-			OR = {
-				is_culture_group = beneluxian
-			}
+			is_culture_group = beneluxian
 			NOT = { year = 1837 }
-			NOT = { has_global_flag = new_orl_changed }	
+			NOT = { has_global_flag = 139_changed }	
 		}
 		allow = {
 			139 = {
@@ -808,19 +896,78 @@ political_decisions = {
 					change_region_name = "Lodewijkland"
 				}
 			}
-			set_global_flag = new_orl_changed
+			set_global_flag = 139_changed
 		}
 		ai_will_do = {
 			factor = 1
 		}
 	}
-	italian_neworleans = {
+	nordic_139 = {
 		potential = {
 			OR = {
-				is_culture_group = italian
+				is_culture_group = scandinavian
+				is_culture_group = baltic
 			}
-			NOT = { year = 1840 }
-			NOT = { has_global_flag = new_orl_changed }	
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 139_changed }	
+		}
+		allow = {
+			139 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			139 = {
+				change_province_name = "N˝ Stockholm"
+				state_scope = {
+					change_region_name = "Lovekurland"
+				}
+			}
+			set_global_flag = 139_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	english_139 = { #Vanilla, but we changed it
+		potential = {
+			OR = {
+				is_culture_group = british
+				is_culture_group = neo_european_cultures
+				is_culture_group = american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 139_changed }	
+		}
+		allow = {
+			139 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			139 = {
+				change_province_name = "New Orleans"
+				state_scope = {
+					change_region_name = "Louisiana"
+				}
+			}
+			set_global_flag = 139_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	italian_139 = {
+		potential = {
+			is_culture_group = italian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 139_changed }	
 		}
 		allow = {
 			139 = {
@@ -837,74 +984,20 @@ political_decisions = {
 					change_region_name = "Ludovicia"
 				}
 			}
-			set_global_flag = new_orl_changed
+			set_global_flag = 139_changed
 		}
 		ai_will_do = {
 			factor = 1
 		}
 	}
-	arab_neworleans = {
+	spanish_139 = {
 		potential = {
 			OR = {
-				is_culture_group = arab
-				is_culture_group = turko_semitic
+				is_culture_group = iberian
+				is_culture_group = latin_american_cultures
 			}
 			NOT = { year = 1837 }
-			NOT = { has_global_flag = new_orl_changed }	
-		}
-		allow = {
-			139 = {
-				OR = {
-					owned_by = THIS
-					owner = { in_sphere = THIS }
-				}
-			}
-		}
-		effect = {
-			139 = {
-				change_province_name = "Jadid al-Baghdad"
-				state_scope = {
-					change_region_name = "'Ard-Luis"
-				}
-			}
-			set_global_flag = new_orl_changed
-		}
-		ai_will_do = {
-			factor = 1
-		}
-	}
-	swedish_neworleans = { #To localize
-		potential = {
-			is_culture_group = scandinavian
-			NOT = { year = 1837 }
-			NOT = { has_global_flag = new_orl_changed }	
-		}
-		allow = {
-			139 = {
-				OR = {
-					owned_by = THIS
-					owner = { in_sphere = THIS }
-				}
-			}
-		}
-		effect = {
-			139 = {
-				change_province_name = "NÔøΩÔøΩStockholm" #I had no idea...
-				state_scope = {
-					change_region_name = "LÚ∞∂≠kurland"
-				}
-			}
-			set_global_flag = new_orl_changed
-		}
-		ai_will_do = {
-			factor = 1
-		}
-	}
-	spanish_neworleans = { #To localize
-		potential = {
-			is_culture_group = iberian
-			NOT = { year = 1837 }
-			NOT = { has_global_flag = new_orl_changed }	
+			NOT = { has_global_flag = 139_changed }	
 		}
 		allow = {
 			139 = {
@@ -921,10 +1014,3292 @@ political_decisions = {
 					change_region_name = "Nueva Algarve"
 				}
 			}
-			set_global_flag = new_orl_changed
+			set_global_flag = 139_changed
 		}
 		ai_will_do = {
 			factor = 1
 		}
 	}
-}
+	french_139 = {
+		potential = {
+			is_culture_group = french
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 139_changed }	
+		}
+		allow = {
+			139 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			139 = {
+				change_province_name = "Nouvelle OrlÈans"
+				state_scope = {
+					change_region_name = "Louisiana"
+				}
+			}
+			set_global_flag = 139_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	arab_139 = {
+		potential = {
+			OR = {
+				is_culture_group = turko_semitic
+				is_culture_group = arab
+				is_culture_group = iranian_turanian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 139_changed }	
+		}
+		allow = {
+			139 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			139 = {
+				change_province_name = "Jadid al-Baghdad"
+				state_scope = {
+					change_region_name = "'Ard-Luis"
+				}
+			}
+			set_global_flag = 139_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	slavic_139 = {
+		potential = {
+			OR = {
+				is_culture_group = south_slavic
+				is_culture_group = pan_romanian
+				is_culture_group = hungarian_culture_group
+				is_culture_group = polish_culture_group
+				is_culture_group = czecho_slovak_culture_group
+				is_culture_group = east_slavic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 139_changed }	
+		}
+		allow = {
+			139 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			139 = {
+				change_province_name = "Novy Gdansk"
+				state_scope = {
+					change_region_name = "Lyudovyukzemlya"
+				}
+			}
+			set_global_flag = 139_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	greek_139 = {
+		potential = {
+			is_culture_group = levantine
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 139_changed }	
+		}
+		allow = {
+			139 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			139 = {
+				change_province_name = "Neo-Sparti"
+				state_scope = {
+					change_region_name = "Louisgi"
+				}
+			}
+			set_global_flag = 139_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	chinese_139 = {
+		potential = {
+			OR = {
+				is_culture_group = central_asian
+				is_culture_group = southeast_asian
+				is_culture_group = east_asian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 139_changed }	
+		}
+		allow = {
+			139 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			139 = {
+				change_province_name = "Xin Ming"
+				state_scope = {
+					change_region_name = "Luyisi"
+				}
+			}
+			set_global_flag = 139_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	indian_139 = {
+		potential = {
+			is_culture_group = south_asian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 139_changed }	
+		}
+		allow = {
+			139 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			139 = {
+				change_province_name = "Naya Maisoor" #New Mysore
+				state_scope = {
+					change_region_name = "Luiskee Bhoomi"
+				}
+			}
+			set_global_flag = 139_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+##################
+# 232 ?New York/Manhattan
+##################
+
+	german_232 = {
+		potential = {
+			OR = {
+				is_culture_group = germanic
+				is_culture_group = pan_swiss
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 232_changed }	
+		}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "Neupreuﬂen"
+				state_scope = {
+					change_region_name = "Neupreuﬂen"
+				}
+			}
+			set_global_flag = 232_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	dutch_232 = {
+		potential = {
+			is_culture_group = beneluxian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 232_changed }	
+		}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "Nieuw Amsterdam"
+				state_scope = {
+					change_region_name = "Nieuw Amsterdam"
+				}
+			}
+			set_global_flag = 232_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	nordic_232 = {
+		potential = {
+			OR = {
+				is_culture_group = scandinavian
+				is_culture_group = baltic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 232_changed }	
+		}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "VÌnborg"
+				state_scope = {
+					change_region_name = "VÌnland"
+				}
+			}
+			set_global_flag = 232_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	english_232 = { #Vanilla, but we changed it
+		potential = {
+			OR = {
+				is_culture_group = british
+				is_culture_group = neo_european_cultures
+				is_culture_group = american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 232_changed }	
+		}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "New York"
+				state_scope = {
+					change_region_name = "New York"
+				}
+			}
+			set_global_flag = 232_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	italian_232 = {
+		potential = {
+			is_culture_group = italian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 232_changed }	
+		}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "Nuova Milano"
+				state_scope = {
+					change_region_name = "Nuova Lombardia"
+				}
+			}
+			set_global_flag = 232_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	spanish_232 = {
+		potential = {
+			OR = {
+				is_culture_group = iberian
+				is_culture_group = latin_american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 232_changed }	
+		}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "Nueva Barcelona"
+				state_scope = {
+					change_region_name = "Nueva CataluÒa"
+				}
+			}
+			set_global_flag = 232_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	french_232 = {
+		potential = {
+			is_culture_group = french
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 232_changed }	
+		}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "Nouvelle-Anjou"
+				state_scope = {
+					change_region_name = "Nouvelle-Angevin"
+				}
+			}
+			set_global_flag = 232_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	arab_232 = {
+		potential = {
+			OR = {
+				is_culture_group = turko_semitic
+				is_culture_group = arab
+				is_culture_group = iranian_turanian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 232_changed }	
+		}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "Jadid al-Makkah"
+				state_scope = {
+					change_region_name = "Jadid al-Makkah"
+				}
+			}
+			set_global_flag = 232_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	slavic_232 = {
+		potential = {
+			OR = {
+				is_culture_group = south_slavic
+				is_culture_group = pan_romanian
+				is_culture_group = hungarian_culture_group
+				is_culture_group = polish_culture_group
+				is_culture_group = czecho_slovak_culture_group
+				is_culture_group = east_slavic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 232_changed }	
+		}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "Novy Romanov"
+				state_scope = {
+					change_region_name = "Novy Romanov"
+				}
+			}
+			set_global_flag = 232_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	greek_232 = {
+		potential = {
+			is_culture_group = levantine
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 232_changed }	
+		}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "Neo-Alexandreia"
+				state_scope = {
+					change_region_name = "Neo-Alexandreia"
+				}
+			}
+			set_global_flag = 232_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	chinese_232 = {
+		potential = {
+			OR = {
+				is_culture_group = central_asian
+				is_culture_group = southeast_asian
+				is_culture_group = east_asian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 232_changed }	
+		}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "Xin Yuan"
+				state_scope = {
+					change_region_name = "Xin Yuan"
+				}
+			}
+			set_global_flag = 232_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	indian_232 = {
+		potential = {
+			is_culture_group = south_asian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 232_changed }	
+		}
+		allow = {
+			232 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			232 = {
+				change_province_name = "Naee Mumbee" #New Bombai
+				state_scope = {
+					change_region_name = "Naee Mumbee"
+				}
+			}
+			set_global_flag = 232_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+##################
+# 244 ?New Bedford/Wampanoag
+##################
+
+	german_244 = {
+		potential = {
+			OR = {
+				is_culture_group = germanic
+				is_culture_group = pan_swiss
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 244_changed }	
+		}
+		allow = {
+			244 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			244 = {
+				change_province_name = "Neu-Ulm"
+			}
+			set_global_flag = 244_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	dutch_244 = {
+		potential = {
+			is_culture_group = beneluxian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 244_changed }	
+		}
+		allow = {
+			244 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			244 = {
+				change_province_name = "Nieuw Utrecht"
+			}
+			set_global_flag = 244_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	nordic_244 = {
+		potential = {
+			OR = {
+				is_culture_group = scandinavian
+				is_culture_group = baltic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 244_changed }	
+		}
+		allow = {
+			244 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			244 = {
+				change_province_name = "N˝ Malmˆ"
+				}
+			set_global_flag = 244_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	english_244 = { #Vanilla, but we changed it
+		potential = {
+			OR = {
+				is_culture_group = british
+				is_culture_group = neo_european_cultures
+				is_culture_group = american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 244_changed }	
+		}
+		allow = {
+			244 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			244 = {
+				change_province_name = "New Bedford"
+			}
+			set_global_flag = 244_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	italian_244 = {
+		potential = {
+			is_culture_group = italian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 244_changed }	
+		}
+		allow = {
+			244 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			244 = {
+				change_province_name = "Nuova Spoleto"
+			}
+			set_global_flag = 244_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	spanish_244 = {
+		potential = {
+			OR = {
+				is_culture_group = iberian
+				is_culture_group = latin_american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 244_changed }	
+		}
+		allow = {
+			244 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			244 = {
+				change_province_name = "Nueva C·diz"
+			}
+			set_global_flag = 244_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	french_244 = {
+		potential = {
+			is_culture_group = french
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 244_changed }	
+		}
+		allow = {
+			244 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			244 = {
+				change_province_name = "Nouvelle Soissons"
+			}
+			set_global_flag = 244_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	arab_244 = {
+		potential = {
+			OR = {
+				is_culture_group = turko_semitic
+				is_culture_group = arab
+				is_culture_group = iranian_turanian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 244_changed }	
+		}
+		allow = {
+			244 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			244 = {
+				change_province_name = "Jadid al-Quds"
+			}
+			set_global_flag = 244_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	slavic_244 = {
+		potential = {
+			OR = {
+				is_culture_group = south_slavic
+				is_culture_group = pan_romanian
+				is_culture_group = hungarian_culture_group
+				is_culture_group = polish_culture_group
+				is_culture_group = czecho_slovak_culture_group
+				is_culture_group = east_slavic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 244_changed }	
+		}
+		allow = {
+			244 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			244 = {
+				change_province_name = "Novy Pskov"
+			}
+			set_global_flag = 244_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	greek_244 = {
+		potential = {
+			is_culture_group = levantine
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 244_changed }	
+		}
+		allow = {
+			244 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			244 = {
+				change_province_name = "Nee-Thees" #New Thebes
+			}
+			set_global_flag = 244_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	chinese_244 = {
+		potential = {
+			OR = {
+				is_culture_group = central_asian
+				is_culture_group = southeast_asian
+				is_culture_group = east_asian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 244_changed }	
+		}
+		allow = {
+			244 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			244 = {
+				change_province_name = "Xin Guangdong"
+			}
+			set_global_flag = 244_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	indian_244 = {
+		potential = {
+			is_culture_group = south_asian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 244_changed }	
+		}
+		allow = {
+			244 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			244 = {
+				change_province_name = "Naya Karachee" #New Karachi
+			}
+			set_global_flag = 244_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+##################
+# 2510 ?New Plymouth/Taranaki, probably uncolonized
+##################
+
+	german_2510 = {
+		potential = {
+			OR = {
+				is_culture_group = germanic
+				is_culture_group = pan_swiss
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2510_changed }	
+		}
+		allow = {
+			2510 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2510 = {
+				change_province_name = "Neu-Stettin"
+			}
+			set_global_flag = 2510_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	dutch_2510 = {
+		potential = {
+			is_culture_group = beneluxian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2510_changed }	
+		}
+		allow = {
+			2510 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2510 = {
+				change_province_name = "Nieuw Leeuwarden"
+			}
+			set_global_flag = 2510_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	nordic_2510 = {
+		potential = {
+			OR = {
+				is_culture_group = scandinavian
+				is_culture_group = baltic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2510_changed }	
+		}
+		allow = {
+			2510 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2510 = {
+				change_province_name = "N˝ ÷stersund"
+			}
+			set_global_flag = 2510_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	english_2510 = { #Vanilla, but we changed it
+		potential = {
+			OR = {
+				is_culture_group = british
+				is_culture_group = neo_european_cultures
+				is_culture_group = american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2510_changed }	
+		}
+		allow = {
+			2510 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2510 = {
+				change_province_name = "New Plymouth"
+			}
+			set_global_flag = 2510_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	italian_2510 = {
+		potential = {
+			is_culture_group = italian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2510_changed }	
+		}
+		allow = {
+			2510 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2510 = {
+				change_province_name = "Nuova Girgenti"
+			}
+			set_global_flag = 2510_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	spanish_2510 = {
+		potential = {
+			OR = {
+				is_culture_group = iberian
+				is_culture_group = latin_american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2510_changed }	
+		}
+		allow = {
+			2510 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2510 = {
+				change_province_name = "Nueva Oviedo"
+			}
+			set_global_flag = 2510_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	french_2510 = {
+		potential = {
+			is_culture_group = french
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2510_changed }	
+		}
+		allow = {
+			2510 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2510 = {
+				change_province_name = "Nouvelle Rouen"
+			}
+			set_global_flag = 2510_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	arab_2510 = {
+		potential = {
+			OR = {
+				is_culture_group = turko_semitic
+				is_culture_group = arab
+				is_culture_group = iranian_turanian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2510_changed }	
+		}
+		allow = {
+			2510 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2510 = {
+				change_province_name = "Jadid ash-Sharjah"
+			}
+			set_global_flag = 2510_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	slavic_2510 = {
+		potential = {
+			OR = {
+				is_culture_group = south_slavic
+				is_culture_group = pan_romanian
+				is_culture_group = hungarian_culture_group
+				is_culture_group = polish_culture_group
+				is_culture_group = czecho_slovak_culture_group
+				is_culture_group = east_slavic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2510_changed }	
+		}
+		allow = {
+			2510 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2510 = {
+				change_province_name = "Novy Belgrad"
+			}
+			set_global_flag = 2510_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	greek_2510 = {
+		potential = {
+			is_culture_group = levantine
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2510_changed }	
+		}
+		allow = {
+			2510 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2510 = {
+				change_province_name = "Nea-Kerkyra"
+			}
+			set_global_flag = 2510_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	chinese_2510 = {
+		potential = {
+			OR = {
+				is_culture_group = central_asian
+				is_culture_group = southeast_asian
+				is_culture_group = east_asian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2510_changed }	
+		}
+		allow = {
+			2510 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2510 = {
+				change_province_name = "Xin Tokyo"
+			}
+			set_global_flag = 2510_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	indian_2510 = {
+		potential = {
+			is_culture_group = south_asian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2510_changed }	
+		}
+		allow = {
+			2510 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2510 = {
+				change_province_name = "Naya Haidaraabaad" #New Hyderabad
+			}
+			set_global_flag = 2510_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+##################
+# 220 ?Washington DC/Conoy
+##################
+
+	german_220 = {
+		potential = {
+			OR = {
+				is_culture_group = germanic
+				is_culture_group = pan_swiss
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 220_changed }	
+		}
+		allow = {
+			220 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			220 = {
+				change_province_name = "W‰scher"
+			}
+			set_global_flag = 220_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	dutch_220 = {
+		potential = {
+			is_culture_group = beneluxian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 220_changed }	
+		}
+		allow = {
+			220 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			220 = {
+				change_province_name = "Wasees"
+			}
+			set_global_flag = 220_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	nordic_220 = {
+		potential = {
+			OR = {
+				is_culture_group = scandinavian
+				is_culture_group = baltic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 220_changed }	
+		}
+		allow = {
+			220 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			220 = {
+				change_province_name = "Avvassa"
+			}
+			set_global_flag = 220_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	english_220 = { #Vanilla, but we changed it
+		potential = {
+			OR = {
+				is_culture_group = british
+				is_culture_group = neo_european_cultures
+				is_culture_group = american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 220_changed }	
+		}
+		allow = {
+			220 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			220 = {
+				change_province_name = "Washington"
+			}
+			set_global_flag = 220_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	italian_220 = {
+		potential = {
+			is_culture_group = italian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 220_changed }	
+		}
+		allow = {
+			220 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			220 = {
+				change_province_name = "Guassese"
+			}
+			set_global_flag = 220_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	spanish_220 = {
+		potential = {
+			OR = {
+				is_culture_group = iberian
+				is_culture_group = latin_american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 220_changed }	
+		}
+		allow = {
+			220 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			220 = {
+				change_province_name = "JuassÈz"
+			}
+			set_global_flag = 220_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	french_220 = {
+		potential = {
+			is_culture_group = french
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 220_changed }	
+		}
+		allow = {
+			220 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			220 = {
+				change_province_name = "Ouassais"
+			}
+			set_global_flag = 220_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	arab_220 = {
+		potential = {
+			OR = {
+				is_culture_group = turko_semitic
+				is_culture_group = arab
+				is_culture_group = iranian_turanian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 220_changed }	
+		}
+		allow = {
+			220 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			220 = {
+				change_province_name = "Al-Vashi"
+			}
+			set_global_flag = 220_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	slavic_220 = {
+		potential = {
+			OR = {
+				is_culture_group = south_slavic
+				is_culture_group = pan_romanian
+				is_culture_group = hungarian_culture_group
+				is_culture_group = polish_culture_group
+				is_culture_group = czecho_slovak_culture_group
+				is_culture_group = east_slavic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 220_changed }	
+		}
+		allow = {
+			220 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			220 = {
+				change_province_name = "Vashiskiy"
+			}
+			set_global_flag = 220_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	greek_220 = {
+		potential = {
+			is_culture_group = levantine
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 220_changed }	
+		}
+		allow = {
+			220 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			220 = {
+				change_province_name = "Ouassiki"
+			}
+			set_global_flag = 220_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	chinese_220 = {
+		potential = {
+			OR = {
+				is_culture_group = central_asian
+				is_culture_group = southeast_asian
+				is_culture_group = east_asian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 220_changed }	
+		}
+		allow = {
+			220 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			220 = {
+				change_province_name = "Wa Sha"
+			}
+			set_global_flag = 220_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	indian_220 = {
+		potential = {
+			is_culture_group = south_asian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 220_changed }	
+		}
+		allow = {
+			220 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			220 = {
+				change_province_name = "Vasayava"
+			}
+			set_global_flag = 220_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+##################
+# 89 ?Los Angeles/Chumash
+##################
+
+	german_89 = {
+		potential = {
+			OR = {
+				is_culture_group = germanic
+				is_culture_group = pan_swiss
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 89_changed }	
+		}
+		allow = {
+			89 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			89 = {
+				change_province_name = "Engelstadt"
+			}
+			set_global_flag = 89_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	dutch_89 = {
+		potential = {
+			is_culture_group = beneluxian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 89_changed }	
+		}
+		allow = {
+			89 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			89 = {
+				change_province_name = "Angelsstaat"
+			}
+			set_global_flag = 89_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	nordic_89 = {
+		potential = {
+			OR = {
+				is_culture_group = scandinavian
+				is_culture_group = baltic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 89_changed }	
+		}
+		allow = {
+			89 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			89 = {
+				change_province_name = "Uglarborg"
+			}
+			set_global_flag = 89_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	english_89 = {
+		potential = {
+			OR = {
+				is_culture_group = british
+				is_culture_group = neo_european_cultures
+				is_culture_group = american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 89_changed }	
+		}
+		allow = {
+			89 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			89 = {
+				change_province_name = "Angelsville"
+			}
+			set_global_flag = 89_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	italian_89 = {
+		potential = {
+			is_culture_group = italian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 89_changed }	
+		}
+		allow = {
+			89 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			89 = {
+				change_province_name = "Angelica"
+			}
+			set_global_flag = 89_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	spanish_89 = { #Vanilla, but we changed it
+		potential = {
+			OR = {
+				is_culture_group = iberian
+				is_culture_group = latin_american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 89_changed }	
+		}
+		allow = {
+			89 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			89 = {
+				change_province_name = "Los ¡ngeles"
+			}
+			set_global_flag = 89_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	french_89 = {
+		potential = {
+			is_culture_group = french
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 89_changed }	
+		}
+		allow = {
+			89 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			89 = {
+				change_province_name = "Angesville"
+			}
+			set_global_flag = 89_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	arab_89 = {
+		potential = {
+			OR = {
+				is_culture_group = turko_semitic
+				is_culture_group = arab
+				is_culture_group = iranian_turanian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 89_changed }	
+		}
+		allow = {
+			89 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			89 = {
+				change_province_name = "Almalakiya"
+			}
+			set_global_flag = 89_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	slavic_89 = {
+		potential = {
+			OR = {
+				is_culture_group = south_slavic
+				is_culture_group = pan_romanian
+				is_culture_group = hungarian_culture_group
+				is_culture_group = polish_culture_group
+				is_culture_group = czecho_slovak_culture_group
+				is_culture_group = east_slavic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 89_changed }	
+		}
+		allow = {
+			89 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			89 = {
+				change_province_name = "Angelygorod"
+			}
+			set_global_flag = 89_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	greek_89 = {
+		potential = {
+			is_culture_group = levantine
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 89_changed }	
+		}
+		allow = {
+			89 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			89 = {
+				change_province_name = "Angelopolis"
+			}
+			set_global_flag = 89_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	chinese_89 = {
+		potential = {
+			OR = {
+				is_culture_group = central_asian
+				is_culture_group = southeast_asian
+				is_culture_group = east_asian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 89_changed }	
+		}
+		allow = {
+			89 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			89 = {
+				change_province_name = "Kongzi Cheng" #Confucius?City
+			}
+			set_global_flag = 89_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	indian_89 = {
+		potential = {
+			is_culture_group = south_asian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 89_changed }	
+		}
+		allow = {
+			89 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			89 = {
+				change_province_name = "Gaayonka" #Cows?City
+			}
+			set_global_flag = 89_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+##################
+# 84 ?San Francisco/Miwok
+##################
+
+	german_84 = {
+		potential = {
+			OR = {
+				is_culture_group = germanic
+				is_culture_group = pan_swiss
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 84_changed }	
+		}
+		allow = {
+			84 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			84 = {
+				change_province_name = "Sankt-Franz"
+			}
+			set_global_flag = 84_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	dutch_84 = {
+		potential = {
+			is_culture_group = beneluxian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 84_changed }	
+		}
+		allow = {
+			84 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			84 = {
+				change_province_name = "Sint-Frans"
+			}
+			set_global_flag = 84_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	nordic_84 = {
+		potential = {
+			OR = {
+				is_culture_group = scandinavian
+				is_culture_group = baltic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 84_changed }	
+		}
+		allow = {
+			84 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			84 = {
+				change_province_name = "Helige Franciskus"
+			}
+			set_global_flag = 84_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	english_84 = {
+		potential = {
+			OR = {
+				is_culture_group = british
+				is_culture_group = neo_european_cultures
+				is_culture_group = american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 84_changed }	
+		}
+		allow = {
+			84 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			84 = {
+				change_province_name = "Saint Francis'"
+			}
+			set_global_flag = 84_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	italian_84 = {
+		potential = {
+			is_culture_group = italian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 84_changed }	
+		}
+		allow = {
+			84 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			84 = {
+				change_province_name = "San Francesco"
+			}
+			set_global_flag = 84_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	spanish_84 = { #Vanilla, but we changed it
+		potential = {
+			OR = {
+				is_culture_group = iberian
+				is_culture_group = latin_american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 84_changed }	
+		}
+		allow = {
+			84 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			84 = {
+				change_province_name = "San Francisco"
+			}
+			set_global_flag = 84_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	french_84 = {
+		potential = {
+			is_culture_group = french
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 84_changed }	
+		}
+		allow = {
+			84 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			84 = {
+				change_province_name = "Saint-FranÁois"
+			}
+			set_global_flag = 84_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	arab_84 = {
+		potential = {
+			OR = {
+				is_culture_group = turko_semitic
+				is_culture_group = arab
+				is_culture_group = iranian_turanian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 84_changed }	
+		}
+		allow = {
+			84 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			84 = {
+				change_province_name = "Al-Murtada" #Caliph Ali
+			}
+			set_global_flag = 84_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	slavic_84 = {
+		potential = {
+			OR = {
+				is_culture_group = south_slavic
+				is_culture_group = pan_romanian
+				is_culture_group = hungarian_culture_group
+				is_culture_group = polish_culture_group
+				is_culture_group = czecho_slovak_culture_group
+				is_culture_group = east_slavic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 84_changed }	
+		}
+		allow = {
+			84 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			84 = {
+				change_province_name = "Svyatoy Frantsisk"
+			}
+			set_global_flag = 84_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	greek_84 = {
+		potential = {
+			is_culture_group = levantine
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 84_changed }	
+		}
+		allow = {
+			84 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			84 = {
+				change_province_name = "Agios Frankis"
+			}
+			set_global_flag = 84_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	chinese_84 = {
+		potential = {
+			OR = {
+				is_culture_group = central_asian
+				is_culture_group = southeast_asian
+				is_culture_group = east_asian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 84_changed }	
+		}
+		allow = {
+			84 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			84 = {
+				change_province_name = "Daojiao Cheng" #Taoism City
+			}
+			set_global_flag = 84_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	indian_84 = {
+		potential = {
+			is_culture_group = south_asian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 84_changed }	
+		}
+		allow = {
+			84 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			84 = {
+				change_province_name = "Buddhshahar" #Buddha City
+			}
+			set_global_flag = 84_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+##################
+# 2131 ?Falklands-Malvinas dispute
+##################
+	english_2131 = { #This is the Vanilla
+		potential = {
+			OR = {
+				is_culture_group = british
+				is_culture_group = neo_european_cultures
+				is_culture_group = american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2131_changed }	
+		}
+		allow = {
+			2131 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2131 = {
+				change_province_name = "Fakland Islands"
+			}
+			set_global_flag = 2131_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	spanish_2131 = {
+		potential = {
+			OR = {
+				is_culture_group = iberian
+				is_culture_group = latin_american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2131_changed }	
+		}
+		allow = {
+			2131 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2131 = {
+				change_province_name = "Islas Malvinas"
+			}
+			set_global_flag = 2131_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	french_2131 = {
+		potential = {
+			is_culture_group = french
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2131_changed }	
+		}
+		allow = {
+			2131 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2131 = {
+				change_province_name = "Œles Malouines"
+			}
+			set_global_flag = 2131_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+##################
+# 2447 ?Rio de Janeiro/Kara?woka
+##################
+
+	german_2447 = {
+		potential = {
+			OR = {
+				is_culture_group = germanic
+				is_culture_group = pan_swiss
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2447_changed }	
+		}
+		allow = {
+			2447 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2447 = {
+				change_province_name = "Januarfluss"
+				state_scope = {
+					change_region_name = "Januarfluss"
+				}
+			}
+			set_global_flag = 2447_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	dutch_2447 = {
+		potential = {
+			is_culture_group = beneluxian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2447_changed }	
+		}
+		allow = {
+			2447 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2447 = {
+				change_province_name = "Januaririvier"
+				state_scope = {
+					change_region_name = "Januaririvier"
+				}
+			}
+			set_global_flag = 2447_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	nordic_2447 = {
+		potential = {
+			OR = {
+				is_culture_group = scandinavian
+				is_culture_group = baltic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2447_changed }	
+		}
+		allow = {
+			2447 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2447 = {
+				change_province_name = "Jan˙ar·in"
+				state_scope = {
+					change_region_name = "Jan˙ar·in"
+				}
+			}
+			set_global_flag = 2447_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	english_2447 = {
+		potential = {
+			OR = {
+				is_culture_group = british
+				is_culture_group = neo_european_cultures
+				is_culture_group = american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2447_changed }	
+		}
+		allow = {
+			2447 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2447 = {
+				change_province_name = "January City"
+				state_scope = {
+					change_region_name = "January City"
+				}
+			}
+			set_global_flag = 2447_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	italian_2447 = {
+		potential = {
+			is_culture_group = italian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2447_changed }	
+		}
+		allow = {
+			2447 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2447 = {
+				change_province_name = "Fiume San Gennaro"
+				state_scope = {
+					change_region_name = "Fiume San Gennaro"
+				}
+			}
+			set_global_flag = 2447_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	spanish_2447 = { #Vanilla, but we changed it
+		potential = {
+			OR = {
+				is_culture_group = iberian
+				is_culture_group = latin_american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2447_changed }	
+		}
+		allow = {
+			2447 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2447 = {
+				change_province_name = "Rio de Janeiro"
+				state_scope = {
+					change_region_name = "Rio de Janeiro"
+				}
+			}
+			set_global_flag = 2447_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	french_2447 = {
+		potential = {
+			is_culture_group = french
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2447_changed }	
+		}
+		allow = {
+			2447 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2447 = {
+				change_province_name = "Paris Antarctique"
+				state_scope = {
+					change_region_name = "France Antarctique"
+				}
+			}
+			set_global_flag = 2447_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	arab_2447 = {
+		potential = {
+			OR = {
+				is_culture_group = turko_semitic
+				is_culture_group = arab
+				is_culture_group = iranian_turanian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2447_changed }	
+		}
+		allow = {
+			2447 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2447 = {
+				change_province_name = "Yanayirnahr"
+				state_scope = {
+					change_region_name = "Yanayirnahr"
+				}
+			}
+			set_global_flag = 2447_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	slavic_2447 = {
+		potential = {
+			OR = {
+				is_culture_group = south_slavic
+				is_culture_group = pan_romanian
+				is_culture_group = hungarian_culture_group
+				is_culture_group = polish_culture_group
+				is_culture_group = czecho_slovak_culture_group
+				is_culture_group = east_slavic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2447_changed }	
+		}
+		allow = {
+			2447 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2447 = {
+				change_province_name = "Yanvarya"
+				state_scope = {
+					change_region_name = "Yanvarya"
+				}
+			}
+			set_global_flag = 2447_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	greek_2447 = {
+		potential = {
+			is_culture_group = levantine
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2447_changed }	
+		}
+		allow = {
+			2447 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2447 = {
+				change_province_name = "Ianouariou"
+				state_scope = {
+					change_region_name = "Ianouariou"
+				}
+			}
+			set_global_flag = 2447_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	chinese_2447 = {
+		potential = {
+			OR = {
+				is_culture_group = central_asian
+				is_culture_group = southeast_asian
+				is_culture_group = east_asian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2447_changed }	
+		}
+		allow = {
+			2447 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2447 = {
+				change_province_name = "Yuefenhe"
+				state_scope = {
+					change_region_name = "Yuefenhe"
+				}
+			}
+			set_global_flag = 2447_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	indian_2447 = {
+		potential = {
+			is_culture_group = south_asian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2447_changed }	
+		}
+		allow = {
+			2447 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2447 = {
+				change_province_name = "Janavareeka"
+				state_scope = {
+					change_region_name = "Janavareeka"
+				}
+			}
+			set_global_flag = 2447_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+##################
+# 2450 ?S?Paulo/Tupi-Guaran
+##################
+
+	german_2450 = {
+		potential = {
+			OR = {
+				is_culture_group = germanic
+				is_culture_group = pan_swiss
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2450_changed }	
+		}
+		allow = {
+			2450 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2450 = {
+				change_province_name = "Sankt-Paulus"
+				state_scope = {
+					change_region_name = "Sankt-Paulus"
+				}
+			}
+			set_global_flag = 2450_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	dutch_2450 = {
+		potential = {
+			is_culture_group = beneluxian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2450_changed }	
+		}
+		allow = {
+			2450 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2450 = {
+				change_province_name = "Sint-Paulus"
+				state_scope = {
+					change_region_name = "Sint-Paulus"
+				}
+			}
+			set_global_flag = 2450_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	nordic_2450 = {
+		potential = {
+			OR = {
+				is_culture_group = scandinavian
+				is_culture_group = baltic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2450_changed }	
+		}
+		allow = {
+			2450 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2450 = {
+				change_province_name = "Helige Paulus"
+				state_scope = {
+					change_region_name = "Helige Paulus"
+				}
+			}
+			set_global_flag = 2450_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	english_2450 = {
+		potential = {
+			OR = {
+				is_culture_group = british
+				is_culture_group = neo_european_cultures
+				is_culture_group = american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2450_changed }	
+		}
+		allow = {
+			2450 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2450 = {
+				change_province_name = "Saint Paul's"
+				state_scope = {
+					change_region_name = "Saint Paul's"
+				}
+			}
+			set_global_flag = 2450_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	italian_2450 = {
+		potential = {
+			is_culture_group = italian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2450_changed }	
+		}
+		allow = {
+			2450 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2450 = {
+				change_province_name = "San Paolo"
+				state_scope = {
+					change_region_name = "San Paolo"
+				}
+			}
+			set_global_flag = 2450_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	spanish_2450 = { #Vanilla, but we changed it
+		potential = {
+			OR = {
+				is_culture_group = iberian
+				is_culture_group = latin_american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2450_changed }	
+		}
+		allow = {
+			2450 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2450 = {
+				change_province_name = "S„o Paulo"
+				state_scope = {
+					change_region_name = "S„o Paulo"
+				}
+			}
+			set_global_flag = 2450_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	french_2450 = {
+		potential = {
+			is_culture_group = french
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2450_changed }	
+		}
+		allow = {
+			2450 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2450 = {
+				change_province_name = "Saint-Paul"
+				state_scope = {
+					change_region_name = "Saint-Paul"
+				}
+			}
+			set_global_flag = 2450_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	arab_2450 = {
+		potential = {
+			OR = {
+				is_culture_group = turko_semitic
+				is_culture_group = arab
+				is_culture_group = iranian_turanian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2450_changed }	
+		}
+		allow = {
+			2450 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2450 = {
+				change_province_name = "Al-Siddiq" #Caliph Abu Bakr
+				state_scope = {
+					change_region_name = "Al-Siddiq"
+				}
+			}
+			set_global_flag = 2450_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	slavic_2450 = {
+		potential = {
+			OR = {
+				is_culture_group = south_slavic
+				is_culture_group = pan_romanian
+				is_culture_group = hungarian_culture_group
+				is_culture_group = polish_culture_group
+				is_culture_group = czecho_slovak_culture_group
+				is_culture_group = east_slavic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2450_changed }	
+		}
+		allow = {
+			2450 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2450 = {
+				change_province_name = "Svyatoy Pavel"
+				state_scope = {
+					change_region_name = "Svyatoy Pavel"
+				}
+			}
+			set_global_flag = 2450_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	greek_2450 = {
+		potential = {
+			is_culture_group = levantine
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2450_changed }	
+		}
+		allow = {
+			2450 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2450 = {
+				change_province_name = "Agiou Pavlou"
+				state_scope = {
+					change_region_name = "Agiou Pavlou"
+				}
+			}
+			set_global_flag = 2450_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	chinese_2450 = {
+		potential = {
+			OR = {
+				is_culture_group = central_asian
+				is_culture_group = southeast_asian
+				is_culture_group = east_asian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2450_changed }	
+		}
+		allow = {
+			2450 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2450 = {
+				change_province_name = "Shendao Chieng" #Shinto City
+				state_scope = {
+					change_region_name = "Shendao Chieng"
+				}
+			}
+			set_global_flag = 2450_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	indian_2450 = {
+		potential = {
+			is_culture_group = south_asian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2450_changed }	
+		}
+		allow = {
+			2450 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2450 = {
+				change_province_name = "Vishnushahar"
+				state_scope = {
+					change_region_name = "Vishnushahar"
+				}
+			}
+			set_global_flag = 2450_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+##################
+# 2348 ?Buenos Aires/Portenya
+##################
+
+	german_2348 = {
+		potential = {
+			OR = {
+				is_culture_group = germanic
+				is_culture_group = pan_swiss
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2348_changed }	
+		}
+		allow = {
+			2348 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2348 = {
+				change_province_name = "Gutluftburg"
+				state_scope = {
+					change_region_name = "Gutluftburg"
+				}
+			}
+			set_global_flag = 2348_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	dutch_2348 = {
+		potential = {
+			is_culture_group = beneluxian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2348_changed }	
+		}
+		allow = {
+			2348 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2348 = {
+				change_province_name = "Goedluchtstad"
+				state_scope = {
+					change_region_name = "Goedluchtstad"
+				}
+			}
+			set_global_flag = 2348_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	nordic_2348 = {
+		potential = {
+			OR = {
+				is_culture_group = scandinavian
+				is_culture_group = baltic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2348_changed }	
+		}
+		allow = {
+			2348 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2348 = {
+				change_province_name = "Gottloftborg"
+				state_scope = {
+					change_region_name = "Gottloftborg"
+				}
+			}
+			set_global_flag = 2348_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	english_2348 = {
+		potential = {
+			OR = {
+				is_culture_group = british
+				is_culture_group = neo_european_cultures
+				is_culture_group = american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2348_changed }	
+		}
+		allow = {
+			2348 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2348 = {
+				change_province_name = "Goodheavens"
+				state_scope = {
+					change_region_name = "Goodheavens"
+				}
+			}
+			set_global_flag = 2348_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	italian_2348 = {
+		potential = {
+			is_culture_group = italian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2348_changed }	
+		}
+		allow = {
+			2348 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2348 = {
+				change_province_name = "Bonaria"
+				state_scope = {
+					change_region_name = "Bonaria"
+				}
+			}
+			set_global_flag = 2348_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	spanish_2348 = { #Vanilla, but we changed it
+		potential = {
+			OR = {
+				is_culture_group = iberian
+				is_culture_group = latin_american_cultures
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2348_changed }	
+		}
+		allow = {
+			2348 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2348 = {
+				change_province_name = "Buenos Aires"
+				state_scope = {
+					change_region_name = "Buenos Aires"
+				}
+			}
+			set_global_flag = 2348_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	french_2348 = {
+		potential = {
+			is_culture_group = french
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2348_changed }	
+		}
+		allow = {
+			2348 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2348 = {
+				change_province_name = "Bons-Airs"
+				state_scope = {
+					change_region_name = "Bons-Airs"
+				}
+			}
+			set_global_flag = 2348_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	arab_2348 = {
+		potential = {
+			OR = {
+				is_culture_group = turko_semitic
+				is_culture_group = arab
+				is_culture_group = iranian_turanian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2348_changed }	
+		}
+		allow = {
+			2348 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2348 = {
+				change_province_name = "Jayid-Hawa"
+				state_scope = {
+					change_region_name = "Jayid-Hawa"
+				}
+			}
+			set_global_flag = 2348_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	slavic_2348 = {
+		potential = {
+			OR = {
+				is_culture_group = south_slavic
+				is_culture_group = pan_romanian
+				is_culture_group = hungarian_culture_group
+				is_culture_group = polish_culture_group
+				is_culture_group = czecho_slovak_culture_group
+				is_culture_group = east_slavic
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2348_changed }	
+		}
+		allow = {
+			2348 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2348 = {
+				change_province_name = "Khorosharii"
+				state_scope = {
+					change_region_name = "Khorosharii"
+				}
+			}
+			set_global_flag = 2348_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	greek_2348 = {
+		potential = {
+			is_culture_group = levantine
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2348_changed }	
+		}
+		allow = {
+			2348 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2348 = {
+				change_province_name = "Kalosaira"
+				state_scope = {
+					change_region_name = "Kalosaira"
+				}
+			}
+			set_global_flag = 2348_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	chinese_2348 = {
+		potential = {
+			OR = {
+				is_culture_group = central_asian
+				is_culture_group = southeast_asian
+				is_culture_group = east_asian
+			}
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2348_changed }	
+		}
+		allow = {
+			2348 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2348 = {
+				change_province_name = "Haoqi"
+				state_scope = {
+					change_region_name = "Haoqi"
+				}
+			}
+			set_global_flag = 2348_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	indian_2348 = {
+		potential = {
+			is_culture_group = south_asian
+			NOT = { year = 1837 }
+			NOT = { has_global_flag = 2348_changed }	
+		}
+		allow = {
+			2348 = {
+				OR = {
+					owned_by = THIS
+					owner = { in_sphere = THIS }
+				}
+			}
+		}
+		effect = {
+			2348 = {
+				change_province_name = "Acchaeyar"
+				state_scope = {
+					change_region_name = "Acchaeyar"
+				}
+			}
+			set_global_flag = 2348_changed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}

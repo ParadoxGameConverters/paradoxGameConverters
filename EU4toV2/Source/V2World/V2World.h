@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -49,7 +49,7 @@ class V2LeaderTraits;
 class V2World
 {
 	public:
-		V2World(const EU4World& sourceWorld);
+		V2World(const EU4::world& sourceWorld);
 		V2Province* getProvince(int provNum) const;
 		V2Country* getCountry(string tag) const;
 
@@ -78,27 +78,27 @@ class V2World
 
 		void importTechSchools();
 
-		void convertCountries(const EU4World& sourceWorld);
-		void initializeCountries(const EU4World& sourceWorld);
-		V2Country* createOrLocateCountry(const string& V2Tag, const EU4Country* sourceCountry);
+		void convertCountries(const EU4::world& sourceWorld);
+		void initializeCountries(const EU4::world& sourceWorld);
+		V2Country* createOrLocateCountry(const string& V2Tag, const shared_ptr<EU4::Country> sourceCountry);
 		void convertNationalValues();
 		void convertPrestige();
 		void addAllPotentialCountries();
 		void checkForCivilizedNations();
 		void editDefines(int numCivilisedNations);
 
-		void convertProvinces(const EU4World& sourceWorld);
-		vector<V2Demographic> determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, EU4Country* oldOwner, int destNum, double provPopRatio);
+		void convertProvinces(const EU4::world& sourceWorld);
+		vector<V2Demographic> determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, shared_ptr<EU4::Country> oldOwner, int destNum, double provPopRatio);
 
-		void convertDiplomacy(const EU4World& sourceWorld);
+		void convertDiplomacy(const EU4::world& sourceWorld);
 		void setupColonies();
 		void setupStates();
-		void convertUncivReforms(const EU4World& sourceWorld);
-		void convertTechs(const EU4World& sourceWorld);
-		void allocateFactories(const EU4World& sourceWorld);
-		void setupPops(const EU4World& sourceWorld);
+		void convertUncivReforms(const EU4::world& sourceWorld);
+		void convertTechs(const EU4::world& sourceWorld);
+		void allocateFactories(const EU4::world& sourceWorld);
+		void setupPops(const EU4::world& sourceWorld);
 		void addUnions();
-		void convertArmies(const EU4World& sourceWorld);
+		void convertArmies(const EU4::world& sourceWorld);
 
 		void output() const;
 		void createModFile() const;

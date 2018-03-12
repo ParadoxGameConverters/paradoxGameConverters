@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -33,7 +33,8 @@ using namespace std;
 
 Configuration* Configuration::instance = NULL;
 
-Configuration::Configuration()
+Configuration::Configuration():
+	debug(false)
 {
 	LOG(LogLevel::Info) << "Reading configuration file";
 
@@ -43,7 +44,6 @@ Configuration::Configuration()
 		LOG(LogLevel::Error) << "Could not open configuration.txt";
 		exit(-1);
 	}
-
 	vector<shared_ptr<Object>> obj = configObj->getValue("configuration");
 	if (obj.size() != 1)
 	{
@@ -57,6 +57,12 @@ Configuration::Configuration()
 		LOG(LogLevel::Error) << "No Europa Universalis 4 path was specified in configuration.txt, or the path was invalid";
 		exit(-1);
 	}
+	else if (!Utils::DoesFileExist(EU4Path + "/eu4.exe"))
+	{
+		LOG(LogLevel::Error) << "The Europa Universalis 4 path specified in configuration.txt does not contain Europa Universalis 4";
+		exit(-1);
+	}
+
 	else if (!Utils::DoesFileExist(EU4Path + "/map/positions.txt"))
 	{
 		LOG(LogLevel::Error) << EU4Path << " does not appear to be a valid EU4 install";
@@ -77,6 +83,12 @@ Configuration::Configuration()
 		LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
 		exit(-1);
 	}
+	else if (!Utils::DoesFileExist(V2Path + "/v2game.exe"))
+	{
+		LOG(LogLevel::Error) << "The Victoria 2 path specified in configuration.txt does not contain Victoria 2";
+		exit(-1);
+	}
+
 	else
 	{
 		LOG(LogLevel::Debug) << "Victoria 2 install path is " << V2Path;
@@ -91,6 +103,11 @@ Configuration::Configuration()
 	else
 	{
 		LOG(LogLevel::Debug) << "Victoria 2 documents directory is " << V2DocumentsPath;
+	}
+
+	if (obj[0]->safeGetString("debug") == "yes")
+	{
+		debug = true;
 	}
 
 	V2Gametype			= obj[0]->safeGetString("V2gametype");

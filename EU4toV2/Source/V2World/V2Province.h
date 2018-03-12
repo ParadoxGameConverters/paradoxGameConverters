@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -30,6 +30,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Country.h"
 
+
+
 class V2Pop;
 class V2Factory;
 class V2Country;
@@ -45,7 +47,7 @@ struct V2Demographic
 	double								middleRatio;
 	double								lowerRatio;
 	EU4Province*						oldProvince;
-	EU4Country*							oldCountry;
+	std::shared_ptr<EU4::Country> oldCountry;
 };
 
 
@@ -71,7 +73,7 @@ class V2Province
 		string			getRegimentName(RegimentCategory rc);
 		bool				hasCulture(string culture, float percentOfPopulation) const;
 		vector<string> getCulturesOverThreshold(float percentOfPopulation) const;
-		
+
 		void				clearCores()									{ cores.clear(); }
 		void				setCoastal(bool _coastal)					{ coastal = _coastal; }
 		void				setName(string _name)						{ name = _name; }

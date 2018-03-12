@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -31,7 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Reforms::V2Reforms(const V2Country* dstCountry, const EU4Country* srcCountry)
+V2Reforms::V2Reforms(const V2Country* dstCountry, const std::shared_ptr<EU4::Country> srcCountry)
 {
 	slavery							= 0;
 	vote_franchise					= 0;

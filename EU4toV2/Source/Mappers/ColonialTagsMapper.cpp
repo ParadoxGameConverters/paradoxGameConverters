@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -28,50 +28,54 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-colonialTagMapper* colonialTagMapper::instance = nullptr;
+mappers::colonialTagMapper* mappers::colonialTagMapper::instance = nullptr;
 
 
 
-colonialTagMapper::colonialTagMapper()
+mappers::colonialTagMapper::colonialTagMapper()
 {
 	LOG(LogLevel::Info) << "Parsing colony naming rules.";
-	shared_ptr<Object> colonialObj = parser_UTF8::doParseFile("colonial_tags.txt");
-	if (colonialObj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse colonial.txt";
-		exit(-1);
-	}
-	initColonyMap(colonialObj);
+
+	commonItems::parsingFunction mappingFunction = std::bind(&mappers::colonialTagMapper::initMapping, this, std::placeholders::_1, std::placeholders::_2);
+	registerKeyword(std::regex("link"), mappingFunction);
+
+	parseFile("colonial_tags.txt");
 }
 
 
-
-void colonialTagMapper::initColonyMap(shared_ptr<Object> obj)
+void mappers::colonialTagMapper::initMapping(const std::string& unused, std::istream& theStream)
 {
-	vector<shared_ptr<Object>> colonialRules	= obj->getLeaves();
-	for (auto ruleObj: colonialRules[0]->getLeaves())
-	{
-		colonyStruct rule;
-		for (auto item: ruleObj->getLeaves())
-		{
-			if (item->getKey() == "tag")
-			{
-				rule.tag = item->getLeaf();
-			}
-			if (item->getKey() == "EU4_region")
-			{
-				rule.EU4Region = item->getLeaf();
-			}
-			if (item->getKey() == "V2_region")
-			{
-				rule.V2Region = item->getLeaf();
-			}
-			if (item->getKey() == "is_culture_group")
-			{
-				rule.cultureGroup = item->getLeaf();
-			}
-		}
+	colonyStruct rule;
 
-		colonyMap.push_back(rule);
-	}
+	registerKeyword(std::regex("tag"), [this, &rule](const std::string& unused, std::istream& theStream)
+		{
+			auto equals = getNextToken(theStream);
+			auto temp = getNextToken(theStream);
+			rule.tag = *temp;
+		}
+	);
+	registerKeyword(std::regex("EU4_region"), [this, &rule](const std::string& unused, std::istream& theStream)
+		{
+			auto equals = getNextToken(theStream);
+			auto temp = getNextToken(theStream);
+			rule.EU4Region = *temp;
+		}
+	);
+	registerKeyword(std::regex("V2_region"), [this, &rule](const std::string& unused, std::istream& theStream)
+		{
+			auto equals = getNextToken(theStream);
+			auto temp = getNextToken(theStream);
+			rule.V2Region = *temp;
+		}
+	);
+	registerKeyword(std::regex("is_culture_group"), [this, &rule](const std::string& unused, std::istream& theStream)
+		{
+			auto equals = getNextToken(theStream);
+			auto temp = getNextToken(theStream);
+			rule.cultureGroup = *temp;
+		}
+	);
+
+	parseStream(theStream);
+	colonyMap.push_back(rule);
 }

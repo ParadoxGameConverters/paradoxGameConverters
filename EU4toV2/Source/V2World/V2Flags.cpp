@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -66,11 +66,11 @@ void V2Flags::SetV2Tags(const map<string, V2Country*>& V2Countries)
 		if (i->second->getSourceCountry()
 			&& requiredTags.find(i->first) != requiredTags.end())
 		{
-			string ck2title = CountryMapping::getCK2Title(i->first,i->second->getLocalName(),usableFlagTags);
-			if ((ck2title != "") && (usableFlagTags.find(ck2title) != usableFlagTags.end()))
+			auto ck2title = mappers::CountryMappings::getCK2Title(i->first,i->second->getLocalName(),usableFlagTags);
+			if ((ck2title) && (usableFlagTags.find(*ck2title) != usableFlagTags.end()))
 			{
-				tagMap[i->first] = ck2title;
-				usableFlagTags.erase(ck2title);
+				tagMap[i->first] = *ck2title;
+				usableFlagTags.erase(*ck2title);
 				requiredTags.erase(i->first);
 			}
 			else // try something patronymic
@@ -79,23 +79,23 @@ void V2Flags::SetV2Tags(const map<string, V2Country*>& V2Countries)
 					continue;
 
 				string religion = i->second->getReligion();
-				string randomCK2title = "";
+				std::optional<std::string> randomCK2title;
 
 				// Yay hardcoded paths. If I get round to it, I'll point these at religion.txt instead.
 				if (religion == "sunni" || religion == "shiite" || religion == "ibadi")
 				{
-					randomCK2title = CK2TitleMapper::getRandomIslamicFlag();
+					randomCK2title = mappers::CK2TitleMapper::getRandomIslamicFlag();
 				}
 				else if (religion == "mahayana" || religion == "gelugpa" || religion == "theravada" || religion == "sikh" || religion == "hindu" || religion == "jain")
 				{
-					randomCK2title = CK2TitleMapper::getRandomIndianFlag();
+					randomCK2title = mappers::CK2TitleMapper::getRandomIndianFlag();
 				}
 
-				if (usableFlagTags.find(randomCK2title) != usableFlagTags.end())
+				if (randomCK2title && (usableFlagTags.find(*randomCK2title) != usableFlagTags.end()))
 				{
-					LOG(LogLevel::Info) << "Country " << i->first << " (" << i->second->getLocalName() << ") has been given the CK2 flag " << randomCK2title;
-					tagMap[i->first] = randomCK2title;
-					usableFlagTags.erase(randomCK2title);
+					LOG(LogLevel::Info) << "Country " << i->first << " (" << i->second->getLocalName() << ") has been given the CK2 flag " << *randomCK2title;
+					tagMap[i->first] =* randomCK2title;
+					usableFlagTags.erase(*randomCK2title);
 					requiredTags.erase(i->first);
 				}
 			}
@@ -110,6 +110,71 @@ void V2Flags::SetV2Tags(const map<string, V2Country*>& V2Countries)
 		}
 		else {
 			++i;
+		}
+	}
+
+	for (auto country : V2Countries)
+	{
+		V2Country* overlord = country.second->getColonyOverlord();
+		if (NULL == overlord)
+			continue;
+
+		string name = country.second->getLocalName();
+		name = Utils::convertUTF8To8859_15(name);
+		transform(name.begin(), name.end(), name.begin(), ::tolower);
+
+		auto colonialtitle = mappers::colonyFlagsetMapper::getFlag(name);
+		if (!colonialtitle)
+		{
+			colonialFail.push_back(country.second);
+			continue;
+		}
+
+		colonialtitle->setOverlord(overlord->getTag());
+		colonialFlagMapping[country.first] = colonialtitle;
+		LOG(LogLevel::Info) << "Country with tag " << country.first << " is " << colonialtitle->getName() << ", ruled by " << colonialtitle->getOverlord();
+
+		usableFlagTags.erase(colonialtitle->getName());
+		requiredTags.erase(country.first);
+		mappers::colonyFlagsetMapper::removeFlag(colonialtitle->getName());
+	}
+
+	if (colonialFail.size() != 0)
+	{
+		vector<string> colonyFlagsKeys = mappers::colonyFlagsetMapper::getNames();
+
+		std::random_device rd;
+		std::mt19937 g(rd());
+		std::shuffle(colonyFlagsKeys.begin(), colonyFlagsKeys.end(), g);
+
+		for (string key : colonyFlagsKeys)
+		{
+			auto flag = mappers::colonyFlagsetMapper::getFlag(key);
+
+			if (false == flag->getOverlord().empty())
+			{
+				continue;
+			}
+
+			for (vector<V2Country*>::iterator v2c = colonialFail.begin(); v2c != colonialFail.end(); ++v2c)
+			{
+				bool success = false;
+				string region = (*v2c)->getColonialRegion();
+				if ((region == "") || (flag->getRegion() == region))
+				{
+					success = true;
+					colonialFlagMapping[(*v2c)->getTag()] = flag;
+					V2Country* overlord = (*v2c)->getColonyOverlord();
+					string overlordName = overlord->getTag();
+					flag->setOverlord(overlordName);
+					LOG(LogLevel::Info) << "Country with tag " << (*v2c)->getTag() << " is now " << key << ", ruled by " << overlordName;
+
+					usableFlagTags.erase(flag->getName());
+					requiredTags.erase((*v2c)->getTag());
+					colonialFail.erase(v2c);
+					break;
+				}
+			}
 		}
 	}
 
@@ -130,87 +195,9 @@ void V2Flags::SetV2Tags(const map<string, V2Country*>& V2Countries)
 		}
 	}
 
-	auto colonyFlags = colonyFlagsetMapper::getFlagset();
-	for (auto country: V2Countries)
-	{
-		V2Country* overlord = country.second->getColonyOverlord();
-		if (NULL == overlord)
-			continue;
-
-		string name = country.second->getLocalName();
-		name = V2Localisation::Convert(name);
-
-		transform(name.begin(), name.end(), name.begin(), ::tolower);
-
-		auto colonialtitle = colonyFlags.begin();
-		for (; colonialtitle != colonyFlags.end(); ++colonialtitle)
-		{
-			if (name.find(colonialtitle->second->name) != string::npos)
-			{
-				break;
-			}
-		}
-
-		if (colonialtitle == colonyFlags.end())
-		{
-			colonialFail.push_back(country.second);
-			continue;
-		}
-
-		colonialtitle->second->overlord = overlord->getTag();
-		colonialFlagMapping[country.first] = colonialtitle->second;
-		LOG(LogLevel::Info) << "Country with tag " << country.first << " is " << colonialtitle->second->name << ", ruled by " << colonialtitle->second->overlord;
-
-		usableFlagTags.erase(colonialtitle->second->name);
-		requiredTags.erase(country.first); 
-		colonyFlags.erase(colonialtitle);
-	}
-
-	if (colonialFail.size() != 0)
-	{
-		vector<string> colonyFlagsKeys;
-		for (auto flag : colonyFlags)
-		{
-			colonyFlagsKeys.push_back(flag.first);
-		}
-		std::random_device rd;
-		std::mt19937 g(rd());
-		std::shuffle(colonyFlagsKeys.begin(), colonyFlagsKeys.end(), g);
-
-		for (string key : colonyFlagsKeys)
-		{
-			shared_ptr<colonyFlag> flag = colonyFlags[key];
-
-			if (false == flag->overlord.empty())
-				continue;
-
-			if (flag->unique)
-				continue;
-
-			for (vector<V2Country*>::iterator v2c = colonialFail.begin(); v2c != colonialFail.end(); ++v2c)
-			{
-				bool success = false;
-				string region = (*v2c)->getColonialRegion();
-				if (flag->region == region || region == "")
-				{
-					success = true;
-					colonialFlagMapping[(*v2c)->getTag()] = flag;
-					flag->overlord = (*v2c)->getColonyOverlord()->getTag();
-					LOG(LogLevel::Info) << "Country with tag " << (*v2c)->getTag() << " is now " << flag->name << ", ruled by " << flag->overlord;
-
-					usableFlagTags.erase(flag->name);
-					requiredTags.erase((*v2c)->getTag());
-					colonialFail.erase(v2c);
-					break;
-				}
-			}
-		}
-	}
-
-
 	for (map<string, V2Country*>::const_iterator i = V2Countries.begin(); i != V2Countries.end(); i++)
 	{
-		EU4Country* eu4country = i->second->getSourceCountry();
+		auto eu4country = i->second->getSourceCountry();
 		if (!eu4country)
 			continue;
 
@@ -449,11 +436,11 @@ void V2Flags::createColonialFlags() const
 	for (auto i : colonialFlagMapping)
 	{
 		string V2Tag = i.first;
-		string baseFlag = i.second->name;
+		string baseFlag = i.second->getName();
 		transform(baseFlag.begin(), baseFlag.end(), baseFlag.begin(), ::tolower);
 		baseFlag.erase(remove_if(baseFlag.begin(), baseFlag.end(), [](const char ch) { return !isalpha(ch); }), baseFlag.end());
 
-		string overlord = i.second->overlord;
+		string overlord = i.second->getOverlord();
 
 		for (int i = 0; i < 5; i++)
 		{

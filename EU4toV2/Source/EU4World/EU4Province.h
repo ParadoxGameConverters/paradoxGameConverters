@@ -1,4 +1,4 @@
-/*Copyright(c) 2017 The Paradox Game Converters Project
+/*Copyright(c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -35,7 +35,11 @@ using namespace std;
 
 
 class Object;
-class EU4Country;
+
+namespace EU4
+{
+	class Country;
+}
 
 
 
@@ -61,21 +65,21 @@ class EU4Province
 		bool						wasColonised() const;
 		bool						wasInfidelConquest() const;
 		bool						hasBuilding(string building) const;
-		vector<EU4Country*>	getCores(const map<string, EU4Country*>& countries) const;
+		std::vector<std::shared_ptr<EU4::Country>>	getCores(const std::map<std::string, std::shared_ptr<EU4::Country>>& countries) const;
 		date						getLastPossessedDate(string tag) const;
 		double getCulturePercent(string culture);
 
 		int						getNum()					const { return num; }
 		double					getBaseTax()			const { return baseTax; }
 		string					getOwnerString()		const { return ownerString; }
-		EU4Country*				getOwner()				const { return owner; }
+		std::shared_ptr<EU4::Country> getOwner() const { return owner; }
 		bool						getInHRE()				const { return inHRE; }
 		bool						isColony()				const { return colony; }
 		vector<EU4PopRatio>	getPopRatios()			const { return popRatios; }
 		double					getTotalWeight()		const { return totalWeight; }
 		int						getNumDestV2Provs()	const { return numV2Provs; }
 
-		void						setOwner(EU4Country* newOwner)		{ owner = newOwner; }
+		void						setOwner(std::shared_ptr<EU4::Country> newOwner) { owner = newOwner; }
 		void						setNumDestV2Provs(int _numV2Provs)	{ numV2Provs = _numV2Provs; }
 		string					getProvName() const { return provName; }
 
@@ -106,7 +110,7 @@ class EU4Province
 		double								totalWeight;
 		string								ownerString;			// a string with the owner's tag
 		string								provName;
-		EU4Country*							owner;					// the owner
+		std::shared_ptr<EU4::Country> owner;
 		vector<string>						cores;					// strings of the tags of all cores
 		bool									inHRE;					// whether or not this province is in the HRE
 		bool									colony;					// whether or not this is a colony

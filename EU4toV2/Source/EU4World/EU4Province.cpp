@@ -1,4 +1,4 @@
-/*Copyright(c) 2017 The Paradox Game Converters Project
+/*Copyright(c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files(the "Software"), to deal
@@ -70,11 +70,25 @@ EU4Province::EU4Province(shared_ptr<Object> obj)
 
 	cores.clear();
 	vector<shared_ptr<Object>> coreObjs;				// the object holding the cores
-	coreObjs = obj->getValue("core");
-	for (unsigned int i = 0; i < coreObjs.size(); i++)
+	coreObjs = obj->getValue("cores");					
+	if (coreObjs.size() != 1)
 	{
-		cores.push_back(coreObjs[i]->getLeaf());
+		coreObjs = obj->getValue("core");				// pre 1.23 cores
+		for (unsigned int i = 0; i < coreObjs.size(); i++)
+		{
+			cores.push_back(coreObjs[i]->getLeaf());
+		}
 	}
+	else
+	{
+		vector<string> coreStrs = coreObjs[0]->getTokens();// 1.23 onwards
+		for (auto coreStr : coreStrs)
+		{
+			cores.push_back(coreStr);
+		}
+	}
+
+
 
 	vector<shared_ptr<Object>> hreObj = obj->getValue("hre");
 	if ((hreObj.size() > 0) && (hreObj[0]->getLeaf() == "yes"))
@@ -358,12 +372,12 @@ bool EU4Province::hasBuilding(string building) const
 }
 
 
-vector<EU4Country*> EU4Province::getCores(const map<string, EU4Country*>& countries) const
+vector<std::shared_ptr<EU4::Country>> EU4Province::getCores(const map<string, std::shared_ptr<EU4::Country>>& countries) const
 {
-	vector<EU4Country*> coreOwners;	// the core holders
+	std::vector<std::shared_ptr<EU4::Country>> coreOwners;	// the core holders
 	for (vector<string>::const_iterator i = cores.begin(); i != cores.end(); i++)
 	{
-		map<string, EU4Country*>::const_iterator j = countries.find(*i);
+		auto j = countries.find(*i);
 		if (j != countries.end())
 		{
 			coreOwners.push_back(j->second);

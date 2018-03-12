@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -34,6 +34,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "CardinalToOrdinal.h"
 #include "ParadoxParser8859_15.h"
 #include "OSCompatibilityLayer.h"
+#include "../EU4World/CultureGroups.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Country.h"
 #include "../EU4World/EU4Province.h"
@@ -42,7 +43,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/AdjacencyMapper.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/CultureMapper.h"
-#include "../Mappers/EU4CultureGroupMapper.h"
 #include "../Mappers/GovernmentMapper.h"
 #include "../Mappers/IdeaEffectMapper.h"
 #include "../Mappers/ProvinceMapper.h"
@@ -516,7 +516,7 @@ void V2Country::outputOOB() const
 }
 
 
-void V2Country::initFromEU4Country(EU4Country* _srcCountry, const vector<V2TechSchool>& techSchools, const map<int, int>& leaderMap)
+void V2Country::initFromEU4Country(std::shared_ptr<EU4::Country> _srcCountry, const vector<V2TechSchool>& techSchools, const map<int, int>& leaderMap)
 {
 	srcCountry = _srcCountry;
 
@@ -581,7 +581,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const vector<V2TechS
 
 	if (srcCulture.size() > 0)
 	{
-		bool matched = cultureMapper::cultureMatch(srcCulture, primaryCulture, religion, oldCapital, srcCountry->getTag());
+		bool matched = mappers::cultureMapper::cultureMatch(srcCulture, primaryCulture, religion, oldCapital, srcCountry->getTag());
 		if (!matched)
 		{
 			LOG(LogLevel::Warning) << "No culture mapping defined for " << srcCulture << " (" << srcCountry->getTag() << " -> " << tag << ')';
@@ -590,17 +590,18 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const vector<V2TechS
 
 	//accepted cultures
 	vector<string> srcAceptedCultures = srcCountry->getAcceptedCultures();
-	if (srcCountry->getCulturalUnion() != "")
+	auto culturalUnion = srcCountry->getCulturalUnion();
+	if (culturalUnion)
 	{
-		for (auto unionCulture: EU4CultureGroupMapper::getCulturesInGroup(srcCountry->getCulturalUnion()))
+		for (auto unionCulture: culturalUnion->getCultures())
 		{
-			srcAceptedCultures.push_back(unionCulture);
+			srcAceptedCultures.push_back(unionCulture.first);
 		}
 	}
 	for (auto srcCulture: srcAceptedCultures)
 	{
 		string dstCulture;
-		bool matched = cultureMapper::cultureMatch(srcCulture, dstCulture, religion, oldCapital, srcCountry->getTag());
+		bool matched = mappers::cultureMapper::cultureMatch(srcCulture, dstCulture, religion, oldCapital, srcCountry->getTag());
 		if (matched)
 		{
 			if (primaryCulture != dstCulture)
@@ -665,7 +666,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const vector<V2TechS
 	{
 		for (auto itr: srcRelations)
 		{
-			const std::string& V2Tag = CountryMapping::getVic2Tag(itr.second->getCountry());
+			const std::string& V2Tag = mappers::CountryMappings::getVic2Tag(itr.second->getCountry());
 			if (!V2Tag.empty())
 			{
 				V2Relations* v2r = new V2Relations(V2Tag, itr.second);
@@ -1983,20 +1984,23 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, map<int, V2P
 				{
 					int currentProvince = goodProvinces.front();
 					goodProvinces.pop();
-					vector<int> adjacencies = adjacencyMapper::getVic2Adjacencies(currentProvince);
-					for (unsigned int i = 0; i < adjacencies.size(); i++)
+					auto adjacencies = mappers::adjacencyMapper::getVic2Adjacencies(currentProvince);
+					if (adjacencies)
 					{
-						map<int, V2Province*>::iterator openItr = openProvinces.find(adjacencies[i]);
-						if (openItr == openProvinces.end())
+						for (auto adjacency: *adjacencies)
 						{
-							continue;
+							auto openItr = openProvinces.find(adjacency);
+							if (openItr == openProvinces.end())
+							{
+								continue;
+							}
+							if (openItr->second->getOwner() == tag)
+							{
+								homeProvince = openItr->second;
+							}
+							goodProvinces.push(openItr->first);
+							openProvinces.erase(openItr);
 						}
-						if (openItr->second->getOwner() == tag)
-						{
-							homeProvince = openItr->second;
-						}
-						goodProvinces.push(openItr->first);
-						openProvinces.erase(openItr);
 					}
 				} while ((goodProvinces.size() > 0) && (homeProvince == nullptr));
 			}
