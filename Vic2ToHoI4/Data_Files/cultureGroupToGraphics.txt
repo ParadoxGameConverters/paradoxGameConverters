@@ -24,7 +24,7 @@ germanic = {
 		communism = { "gfx/leaders/GER/Portrait_Germany_Generic_1.dds" }
 		democratic = { "gfx/leaders/GER/Portrait_Germany_Generic_2.dds" }
 		fascism = { "gfx/leaders/GER/Portrait_Germany_Generic_3.dds" }
-		absolutist = { "gfx/leaders/ENG/Portrait_Britain_George_VI.dds" }
+		absolutist = { "GFX_portrait_ger_wilhelm_iii" }
 		neutrality = { "gfx/leaders/GER/Portrait_Germany_Generic_2.dds" }
 		radical = { "gfx/leaders/GER/Portrait_Germany_Generic_3.dds" }
 	}
@@ -33,7 +33,7 @@ germanic = {
 		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
 		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
 		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
-		absolutist = { "gfx/interface/ideas/idea_george_v.dds" }
+		absolutist = { "GFX_portrait_ger_wilhelm_iii" }
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
@@ -45,7 +45,7 @@ beneluxian = {
 		communism = { "gfx/leaders/Europe/Portrait_Europe_Generic_1.dds" }
 		democratic = { "gfx/leaders/Europe/Portrait_Europe_Generic_2.dds" }
 		fascism = { "gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" }
-		absolutist = { "gfx/leaders/ENG/Portrait_Britain_George_VI.dds" }
+		absolutist = { "GFX_portrait_ger_wilhelm_iii" }
 		neutrality = { "gfx/leaders/Europe/Portrait_Europe_Generic_2.dds" }
 		radical = { "gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" }
 	}
@@ -54,7 +54,7 @@ beneluxian = {
 		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
 		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
 		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
-		absolutist = { "gfx/interface/ideas/idea_george_v.dds" }
+		absolutist = { "GFX_portrait_ger_wilhelm_iii" }
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
@@ -65,7 +65,7 @@ pan_swiss = {
 	leader_portraits = {
 		communism = { "gfx/leaders/GER/Portrait_Germany_Generic_1.dds" }
 		democratic = { "gfx/leaders/SWI/Portrait_Switzerland_Federal_council.dds" }
-		fascism = { "gfx/leaders/GER/Portrait_Germany_Generic_3.dds" }
+		fascism = { "GFX_portrait_ger_wilhelm_iii" }
 		absolutist = { "gfx/leaders/ENG/Portrait_Britain_George_VI.dds" }
 		neutrality = { "gfx/leaders/SWI/Portrait_Switzerland_Federal_council.dds" }
 		radical = { "gfx/leaders/GER/Portrait_Germany_Generic_3.dds" }
@@ -75,7 +75,7 @@ pan_swiss = {
 		communism = { "gfx/interface/ideas/idea_generic_communist_europe.dds" }
 		democratic = { "gfx/interface/ideas/idea_generic_democratic_europe.dds" }
 		fascism = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
-		absolutist = { "gfx/interface/ideas/idea_george_v.dds" }
+		absolutist = { "GFX_portrait_ger_wilhelm_iii" }
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
 		radical = { "gfx/interface/ideas/idea_generic_fascist_europe.dds" }
 	}
@@ -234,7 +234,7 @@ south_slavic = {
 		communism = { "gfx/leaders/SOV/Portrait_Soviet_Generic_1.dds" }
 		democratic = { "gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds" }
 		fascism = { "gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds" }
-		absolutist = { "gfx/leaders/ENG/Portrait_Britain_George_VI.dds" }
+		absolutist = { "gfx/leaders/YUG/Portrait_Yugoslavia_Peter_II.dds" }
 		neutrality = { "gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds" }
 		radical = { "gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds" }
 	}
@@ -255,7 +255,7 @@ pan_romanian = {
 		communism = { "gfx/leaders/Europe/Portrait_Europe_Generic_1.dds" }
 		democratic = { "gfx/leaders/Europe/Portrait_Europe_Generic_2.dds" }
 		fascism = { "gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" }
-		absolutist = { "gfx/leaders/ENG/Portrait_Britain_George_VI.dds" }
+		absolutist = { "gfx/leaders/BUL/Portrait_Bulgaria_Boris_III.dds" }
 		neutrality = { "gfx/leaders/Europe/Portrait_Europe_Generic_2.dds" }
 		radical = { "gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" }
 	}
@@ -276,7 +276,7 @@ hungarian_culture_group = {
 		communism = { "gfx/leaders/Europe/Portrait_Europe_Generic_1.dds" }
 		democratic = { "gfx/leaders/Europe/Portrait_Europe_Generic_2.dds" }
 		fascism = { "gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" }
-		absolutist = { "gfx/leaders/ENG/Portrait_Britain_George_VI.dds" }
+		absolutist = { "gfx/leaders/BUL/Portrait_Bulgaria_Boris_III.dds" }
 		neutrality = { "gfx/leaders/Europe/Portrait_Europe_Generic_2.dds" }
 		radical = { "gfx/leaders/Europe/Portrait_Europe_Generic_3.dds" }
 	}
@@ -297,7 +297,7 @@ polish_culture_group = {
 		communism = { "gfx/leaders/SOV/Portrait_Soviet_Generic_1.dds" }
 		democratic = { "gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds" }
 		fascism = { "gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds" }
-		absolutist = { "gfx/leaders/ENG/Portrait_Britain_George_VI.dds" }
+		absolutist = { "gfx/leaders/BUL/Portrait_Bulgaria_Boris_III.dds" }
 		neutrality = { "gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds" }
 		radical = { "gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds" }
 	}
@@ -318,7 +318,7 @@ czecho_slovak_culture_group = {
 		communism = { "gfx/leaders/SOV/Portrait_Soviet_Generic_1.dds" }
 		democratic = { "gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds" }
 		fascism = { "gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds" }
-		absolutist = { "gfx/interface/ideas/idea_george_v.dds" }
+		absolutist = { "gfx/leaders/BUL/Portrait_Bulgaria_Boris_III.dds" }
 		neutrality = { "gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds" }
 		radical = { "gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds" }
 	}
@@ -339,7 +339,7 @@ east_slavic = {
 		communism = { "gfx/leaders/SOV/Portrait_Soviet_Generic_1.dds" }
 		democratic = { "gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds" }
 		fascism = { "gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds" }
-		absolutist = { "gfx/interface/ideas/idea_george_v.dds" }
+		absolutist = { "gfx/leaders/BUL/Portrait_Bulgaria_Boris_III.dds" }
 		neutrality = { "gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds" }
 		radical = { "gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds" }
 	}
@@ -360,7 +360,7 @@ baltic = {
 		communism = { "gfx/leaders/SOV/Portrait_Soviet_Generic_1.dds" }
 		democratic = { "gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds" }
 		fascism = { "gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds" }
-		absolutist = { "gfx/leaders/ENG/Portrait_Britain_George_VI.dds" }
+		absolutist = { "gfx/leaders/BUL/Portrait_Bulgaria_Boris_III.dds" }
 		neutrality = { "gfx/leaders/SOV/Portrait_Soviet_Generic_2.dds" }
 		radical = { "gfx/leaders/SOV/Portrait_Soviet_Generic_3.dds" }
 	}
@@ -444,7 +444,7 @@ iranian_turanian = {
 		communism = { "gfx/leaders/SAU/Portrait_Arabia_Generic_1.dds" }
 		democratic = { "gfx/leaders/SAU/Portrait_Arabia_Generic_2.dds" }
 		fascism = { "gfx/leaders/SAU/Portrait_Arabia_Generic_3.dds" }
-		absolutist = { "gfx/leaders/SAU/Portrait_Saudi_arabia_Abdulazis_Ibn_Saud.dds" }
+		absolutist = { "gfx/leaders/PER/Portrait_Iran_Reza_Shah_Pahlavi.dds" }
 		neutrality = { "gfx/leaders/SAU/Portrait_Arabia_Generic_2.dds" }
 		radical = { "gfx/leaders/SAU/Portrait_Arabia_Generic_3.dds" }
 	}
@@ -465,21 +465,21 @@ central_asian = {
 		communism = { "gfx/leaders/Asia/Portrait_Asia_Generic_1.dds" }
 		democratic = { "gfx/leaders/Asia/Portrait_Asia_Generic_2.dds" }
 		fascism = { "gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" }
-		absolutist = { "gfx/leaders/SAU/Portrait_Saudi_arabia_Abdulazis_Ibn_Saud.dds" }
+		absolutist = { "gfx/leaders/BHU/portrait_bhu_jigme_wangchuk.dds" }
 		neutrality = { "gfx/leaders/Asia/Portrait_Asia_Generic_2.dds" }
 		radical = { "gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" }
 	}
 	ideology_minister_portraits = 
 	{
-		communism = { "gfx/interface/ideas/idea_generic_communist_arab.dds" }
-		democratic = { "gfx/interface/ideas/idea_generic_democratic_arab.dds" }
-		fascism = { "gfx/interface/ideas/idea_generic_fascist_arab.dds" }
-		absolutist = { "gfx/interface/ideas/idea_generic_army_arab_1.dds" }
+		communism = { "gfx/interface/ideas/idea_generic_communist_asia.dds" }
+		democratic = { "gfx/interface/ideas/idea_generic_democratic_asia.dds" }
+		fascism = { "gfx/interface/ideas/idea_generic_fascist_asia.dds" }
+		absolutist = { "gfx/interface/ideas/idea_generic_army_asia_1.dds" }
 		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
-		radical = { "gfx/interface/ideas/idea_generic_fascist_arab.dds" }
+		radical = { "gfx/interface/ideas/idea_generic_fascist_asia.dds" }
 	}
-	graphical_culture = { middle_eastern_gfx }
-	graphical_culture_2d = { middle_eastern_2d }
+	graphical_culture = { asian_gfx }
+	graphical_culture_2d = { asian_2d }
 }
 south_asian = {
 	leader_portraits = {
@@ -507,7 +507,7 @@ southeast_asian = {
 		communism = { "gfx/leaders/Asia/Portrait_Asia_Generic_1.dds" }
 		democratic = { "gfx/leaders/Asia/Portrait_Asia_Generic_2.dds" }
 		fascism = { "gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" }
-		absolutist = { "gfx/leaders/JAP/Portrait_Japan_Hirohito.dds" }
+		absolutist = { "gfx/leaders/SIA/Portrait_Siam_Phraya_Phahon.dds" }
 		neutrality = { "gfx/leaders/Asia/Portrait_Asia_Generic_2.dds" }
 		radical = { "gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" }
 	}
@@ -528,7 +528,7 @@ east_asian = {
 		communism = { "gfx/leaders/Asia/Portrait_Asia_Generic_1.dds" }
 		democratic = { "gfx/leaders/Asia/Portrait_Asia_Generic_2.dds" }
 		fascism = { "gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" }
-		absolutist = { "gfx/leaders/JAP/Portrait_Japan_Hirohito.dds" }
+		absolutist = { "gfx/leaders/MAN/Portrait_Manchuria_Henry_Pu_Yi.dds" }
 		neutrality = { "gfx/leaders/Asia/Portrait_Asia_Generic_2.dds" }
 		radical = { "gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" }
 	}
@@ -549,7 +549,7 @@ chinese = {
 		communism = { "gfx/leaders/Asia/Portrait_Asia_Generic_1.dds" }
 		democratic = { "gfx/leaders/Asia/Portrait_Asia_Generic_2.dds" }
 		fascism = { "gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" }
-		absolutist = { "gfx/leaders/JAP/Portrait_Japan_Hirohito.dds" }
+		absolutist = { "gfx/leaders/MAN/Portrait_Manchuria_Henry_Pu_Yi.dds" }
 		neutrality = { "gfx/leaders/Asia/Portrait_Asia_Generic_2.dds" }
 		radical = { "gfx/leaders/Asia/Portrait_Asia_Generic_3.dds" }
 	}
@@ -890,6 +890,27 @@ equine = {
 		radical = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" }
 	}
 	ideology_minister_portraits = 
+	{
+		communism = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
+		democratic = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
+		fascism = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
+		absolutist = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
+		neutrality = { "gfx/interface/ideas/neutrality_idea.dds" }
+		radical = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
+	}
+	graphical_culture = { western_european_gfx }
+	graphical_culture_2d = { western_european_2d }
+}
+non_human = {
+	leader_portraits = {
+		communism = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" }
+		democratic = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" }
+		fascism = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" }
+		absolutist = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" }
+		neutrality = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" }
+		radical = { "gfx/leaders/Portrait_Chancellor_Glitterhoof.dds" }
+	}
+	ideology_minister_portraits =
 	{
 		communism = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
 		democratic = { "gfx/interface/ideas/idea_heinrich_himmler.dds" }
