@@ -108,7 +108,15 @@ fascist_peace = {
 		}
 		modifier = {
 			factor = 0
-			NOT = { is_owner_neighbor_of = FROM }
+			NOT = { 
+				any_owned_state = {
+					any_neighbor_state = {
+						NOT = { is_owned_by = FROM }
+						NOT = { is_owned_by = ROOT }
+						is_controlled_by = ROOT
+					}
+				}
+			}
 			NOT = {
 				FROM = {
 					any_neighbor_country = {
@@ -298,11 +306,32 @@ fascist_peace = {
 			}
 			any_country = {
 				is_in_faction_with = ROOT
-				#is_puppet = no
+				NOT = { is_puppet_of = ROOT }
 				FROM = {
 					OR = {
 						is_claimed_by = PREV
 						is_core_of = PREV
+					}
+				}
+			}
+		}
+
+		modifier = {
+			factor = 0
+			is_subject = no # Puppets should clean up the crap mother country doesn't want
+			any_country = {
+				is_puppet_of = ROOT
+				FROM = {
+					state_and_terrain_strategic_value < 8
+					OR = {
+						num_owned_neighbour_states = {
+							count > 0
+							owner = PREV
+						}
+						num_claimed_peace_conference_neighbour_states = {
+							count > 0
+							owner = PREV
+						}
 					}
 				}
 			}
