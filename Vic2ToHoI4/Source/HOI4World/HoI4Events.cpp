@@ -1271,7 +1271,7 @@ void HoI4Events::createWarJustificationEvents(const set<string>& majorIdeologies
 		string option = "name = war_justification.301." + string(1, letter) + "\n";
 		option += "		trigger = { has_government = " + ideology + " }\n";
 		option += "		add_political_power = -30\n";
-		option += "		add_national_unity = -0.03\n";
+		option += "		add_war_support = -0.03\n";
 		if (ideology != "neutrality")
 		{
 			option += "		add_popularity = {\n";
@@ -1350,7 +1350,7 @@ void HoI4Events::addIdeologyInGovernmentEvents(const set<string>& majorIdeologie
 		optionB += "				can_lose_unity = yes\n";
 		optionB += "			}\n";
 		optionB += "		}\n";
-		optionB += "		add_national_unity = -0.05\n";
+		optionB += "		add_stability = -0.05\n";
 		optionB += "		add_popularity = {\n";
 		optionB += "			ideology = democratic\n";
 		optionB += "			popularity = 0.03\n";
@@ -1428,7 +1428,7 @@ void HoI4Events::addIdeologyInfluenceForeignPolicyEvents(const set<string>& majo
 		optionB += "				can_lose_unity = no\n";
 		optionB += "			}\n";
 		optionB += "		}\n";
-		optionB += "		add_national_unity = -0.05\n";
+		optionB += "		add_stability = -0.05\n";
 		optionB += "		add_popularity = {\n";
 		optionB += "			ideology = democratic\n";
 		optionB += "			popularity = 0.03\n";
@@ -1586,7 +1586,7 @@ void HoI4Events::addWartimeExceptionEvent(const set<string>& majorIdeologies, Ho
 	optionA += "				can_lose_unity = yes\n";
 	optionA += "			}\n";
 	optionA += "		}\n";
-	optionA += "		add_national_unity = 0.05";
+	optionA += "		add_stability = 0.05";
 	wartimeException.options.push_back(optionA);
 	HoI4Localisation::copyEventLocalisations("wartime_exception.a", optionAName);
 
@@ -1604,7 +1604,7 @@ void HoI4Events::addWartimeExceptionEvent(const set<string>& majorIdeologies, Ho
 	optionB += "			}\n";
 	optionB += "		}\n";
 	optionB += "		add_political_power = 20\n";
-	optionB += "		add_national_unity = -0.05";
+	optionB += "		add_stability = -0.05";
 	for (auto ideology: majorIdeologies)
 	{
 		if ((ideology == "democratic") || (ideology == "neutrality"))
@@ -1653,7 +1653,7 @@ void HoI4Events::addGovernmentContestedEvent(const set<string>& majorIdeologies,
 	optionA += "			}\n";
 	optionA += "		}\n";
 	optionA += "		add_political_power = -50\n";
-	optionA += "		add_national_unity = -0.05";
+	optionA += "		add_stability = -0.05";
 	governmentContested.options.push_back(optionA);
 	HoI4Localisation::copyEventLocalisations("government_contested.a", optionAName);
 
@@ -1671,7 +1671,7 @@ void HoI4Events::addGovernmentContestedEvent(const set<string>& majorIdeologies,
 	optionB += "			}\n";
 	optionB += "		}\n";
 	optionB += "		add_political_power = 25\n";
-	optionB += "		add_national_unity = 0.05";
+	optionB += "		add_stability = 0.05";
 	for (auto ideology: majorIdeologies)
 	{
 		if ((ideology == "democratic") || (ideology == "neutrality"))

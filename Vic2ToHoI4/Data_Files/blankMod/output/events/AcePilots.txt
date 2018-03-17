@@ -28,7 +28,7 @@ country_event = {
 	
 	option = {
 		name = ace_promoted.1.a
-		#add_national_unity = 0.02		
+		add_war_support = 0.02		
 	}
 }
 
@@ -51,7 +51,7 @@ country_event = {
 	
 	option = {
 		name = ace_promoted.1.a
-		#add_national_unity = 0.02		
+		add_war_support = 0.02		
 	}
 }
 
@@ -75,7 +75,7 @@ country_event = {
 	
 	option = {
 		name = ace_died.1.a
-		#add_national_unity = -0.02
+		add_war_support = -0.02
 	}
 }
 
@@ -123,7 +123,7 @@ country_event = {
 	
 	option = {
 		name = ace_killed_by_ace.1.a
-		#add_national_unity = -0.03
+		add_war_support = -0.03
 	}
 }
 
@@ -171,7 +171,7 @@ country_event = {
 	
 	option = {
 		name = ace_killed_other_ace.1.a
-		#add_national_unity = 0.03
+		add_war_support = 0.03
 	}
 }
 
@@ -219,6 +219,6 @@ country_event = {
 	
 	option = {
 		name = aces_killed_each_other.1.a
-		#add_national_unity = -0.01
+		add_war_support = -0.01
 	}
 }
