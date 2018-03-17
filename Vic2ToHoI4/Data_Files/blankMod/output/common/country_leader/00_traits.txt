@@ -19,14 +19,6 @@ leader_traits = {
 		}
 	}
 
-	imperial_sanction = {
-		random = no
-
-		ai_will_do = {
-			factor = 1
-		}
-	}
-
 	emperor_showa = {
 		random = no
 		stability_factor = 0.6 #FOR THE EMPERAH
@@ -2005,7 +1997,7 @@ leader_traits = {
 	navy_chief_naval_aviation_1 = {
 		sprite = 1
 		navy_carrier_air_attack_factor = 0.03
-		navy_carrier_air_targetting_factor 0.03
+		navy_carrier_air_targetting_factor = 0.03
 		navy_carrier_air_agility_factor = 0.04
 		
 		ai_will_do = {
@@ -2016,7 +2008,7 @@ leader_traits = {
 	navy_chief_naval_aviation_2 = {
 		sprite = 1
 		navy_carrier_air_attack_factor = 0.06
-		navy_carrier_air_targetting_factor 0.07
+		navy_carrier_air_targetting_factor = 0.07
 		navy_carrier_air_agility_factor = 0.08
 		
 		ai_will_do = {
@@ -2027,7 +2019,7 @@ leader_traits = {
 	navy_chief_naval_aviation_3 = {
 		sprite = 1
 		navy_carrier_air_attack_factor = 0.1
-		navy_carrier_air_targetting_factor 0.12
+		navy_carrier_air_targetting_factor = 0.12
 		navy_carrier_air_agility_factor = 0.15
 		
 		ai_will_do = {
