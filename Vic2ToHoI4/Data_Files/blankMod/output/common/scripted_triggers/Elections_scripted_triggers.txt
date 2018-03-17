@@ -13,7 +13,7 @@
 #	}
 #
 can_lose_unity = {
-	has_national_unity > 60
+	has_stability > 60
 	OR = {
 		has_war = no
 		AND = {
