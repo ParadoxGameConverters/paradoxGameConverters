@@ -84,7 +84,7 @@ guiTypes = {
 			verticalScrollbar = "right_vertical_slider"
 			margin = { top = 3 bottom = 2}
 			moveable = yes
-			clipping = no
+			clipping = yes
 			Orientation = UPPER_LEFT
 
 #			background = {
