@@ -33,71 +33,90 @@ ideas = {
 			equipment_bonus = {
 				fighter_equipment = {
 					instant = yes
-					build_cost_ic = -0.20
+					build_cost_ic = -0.10
 				}
 				cv_fighter_equipment = {
 					instant = yes
-					build_cost_ic = -0.20
+					build_cost_ic = -0.10
 				}
 				jet_fighter_equipment = {
 					instant = yes
-					build_cost_ic = -0.20
+					build_cost_ic = -0.10
 				}
 				cv_CAS_equipment = {
 					instant = yes
-					build_cost_ic = -0.20
+					build_cost_ic = -0.10
 				}
 				CAS_equipment = {
 					instant = yes
-					build_cost_ic = -0.20
+					build_cost_ic = -0.10
 				}
 				nav_bomber_equipment = {
 					instant = yes
-					build_cost_ic = -0.20
+					build_cost_ic = -0.10
 				}
 				cv_nav_bomber_equipment = {
 					instant = yes
-					build_cost_ic = -0.20
+					build_cost_ic = -0.10
 				}
 				rocket_interceptor_equipment = {
 					instant = yes
-					build_cost_ic = -0.20
+					build_cost_ic = -0.10
 				}
 				tac_bomber_equipment = {
 					instant = yes
-					build_cost_ic = -0.20
+					build_cost_ic = -0.10
 				}
 				jet_tac_bomber_equipment = {
 					instant = yes
-					build_cost_ic = -0.20
+					build_cost_ic = -0.10
 				}
 				jet_strat_bomber_equipment = {
 					instant = yes
-					build_cost_ic = -0.20
+					build_cost_ic = -0.10
 				}
 				heavy_fighter_equipment = {
 					instant = yes
-					build_cost_ic = -0.20
+					build_cost_ic = -0.10
 				}
 				strat_bomber_equipment = {
 					instant = yes
-					build_cost_ic = -0.20
+					build_cost_ic = -0.10
 				}
 				transport_plane_equipment = {
 					instant = yes
-					build_cost_ic = -0.20
+					build_cost_ic = -0.10
 				}
 				guided_missile_equipment = {
 					instant = yes
-					build_cost_ic = -0.20
+					build_cost_ic = -0.10
 				}
 			}		
 		}
 	}
-	
+
 	# Special ones that can be applied on other countries through focus system.
 	country = {
 		# Generic Focus Ideas
+
+		special_forces = {
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			
+			removal_cost = -1
+
+			picture = FRA_scw_intervention_nationalists_focus
+			
+			modifier = {
+				special_forces_cap = 0.02
+			}
+		}
+		
 		limited_interventionism = {
 			
 			
@@ -119,9 +138,10 @@ ideas = {
 				
 			}
 		}
-		
+	
 		liberty_ethos_focus = {
-						
+			
+			
 			allowed = {
 				always = no
 			}
@@ -225,7 +245,7 @@ ideas = {
 			picture = generic_pp_unity_bonus
 	
 			modifier = {
-				unity_factor = 0.05
+				stability_factor = 0.05
 			}
 		}
 	
@@ -249,12 +269,12 @@ ideas = {
 			}
 	
 			modifier = {
-				unity_factor = 0.05
+				war_support_factor = 0.05
 				army_core_attack_factor = 0.1
 				army_core_defence_factor = 0.1
 			}
 		}
-
+	
 		political_commissars_focus = {
 			
 			
@@ -477,7 +497,8 @@ ideas = {
 			picture = generic_pp_unity_bonus
 			
 			modifier = {
-				unity_factor = 0.10
+				stability_factor = 0.10
+				war_support_factor = 0.1
 			}
 		}	
 
@@ -498,6 +519,278 @@ ideas = {
 				foreign_subversive_activites = -0.75
 			}			
 		}
+
+		race_for_the_bomb = {
+			
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			
+			removal_cost = -1
+
+			picture = generic_research_bonus
+	
+			modifier = {
+				production_speed_nuclear_reactor_factor = 0.2
+			}
+			research_bonus = {
+				nuclear = 0.10
+			}
+		}
+
+		race_for_the_bomb_outclassed = {
+			
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			
+			removal_cost = -1
+
+			picture = generic_research_bonus
+	
+			modifier = {
+				production_speed_nuclear_reactor_factor = 0.25
+				political_power_factor = -0.5
+			}
+			research_bonus = {
+				nuclear = 0.15
+			}
+		}
+		
+		received_attache = {
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+			
+			modifier = {
+				army_org_factor = 0.02
+				planning_speed = 0.10
+			}
+		}
+		draft_dodging = {
+			
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_manpower_bonus
+			
+			modifier = {
+				conscription_factor = -0.2
+			}
+		}
+
+		draft_dodging_2 = {
+			
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_manpower_bonus
+			
+			modifier = {
+				conscription_factor = -0.3
+			}
+		}
+
+		draft_dodging_3 = {
+			
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_manpower_bonus
+			
+			modifier = {
+				conscription_factor = -0.4
+			}
+		}
+
+		strikes_1 = {
+			
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_production_bonus
+			
+			modifier = {
+				consumer_goods_factor = 0.2
+				local_resources_factor = -0.2
+				industrial_capacity_factory = -0.2
+				industrial_capacity_dockyard = -0.2
+			}
+		}
+		strikes_2 = {
+			
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_production_bonus
+			
+			modifier = {
+				consumer_goods_factor = 0.3
+				local_resources_factor = -0.3
+				industrial_capacity_factory = -0.3
+				industrial_capacity_dockyard = -0.3
+			}
+		}
+		strikes_3 = {
+			
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_production_bonus
+			
+			modifier = {
+				consumer_goods_factor = 0.5
+				local_resources_factor = -0.5
+				industrial_capacity_factory = -0.5
+				industrial_capacity_dockyard = -0.5
+			}
+		}
+		mutiny_1 = {
+			
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_army_problems
+			
+			modifier = {
+				army_morale_factor = -0.2
+				training_time_factor = 0.2
+				army_attack_factor = -0.25
+				experience_gain_army = -0.1
+				army_org_factor = -0.1
+			}
+		}
+		mutiny_2 = {
+			
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_army_problems
+			
+			modifier = {
+				army_morale_factor = -0.35
+				training_time_factor = 0.35
+				army_attack_factor = -0.5
+				experience_gain_army = -0.2
+				army_org_factor = -0.20
+			}
+		}
+		mutiny_3 = {
+			
+			allowed = {
+				always = no
+			}
+			
+			removal_cost = -1
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_army_problems
+			
+			modifier = {
+				army_morale_factor = -0.5
+				training_time_factor = 0.5
+				army_attack_factor = -0.75
+				experience_gain_army = -0.3
+				army_org_factor = -0.5
+			}
+		}
+
+		# Civil War Ideas
+		civil_war_surprise_attack_plan = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			
+			removal_cost = -1
+
+			picture = generic_manpower_bonus
+			
+			modifier = {
+				army_core_attack_factor = 0.25 
+			}
+		}	
+	}
 	}
 		
 	

@@ -67,7 +67,7 @@ fascism = {
 			picture = generic_fascism_drift_bonus
 			
 			modifier = {
-				unity_factor = -0.05
+				stability_factor = -0.05
 				conscription = 0.002
 				fascism_drift = 0.05
 			}
@@ -88,7 +88,7 @@ fascism = {
 			picture = generic_fascism_drift_bonus
 
 			modifier = {
-				unity_factor = -0.1
+				stability_factor = -0.1
 			}
 		}
 
@@ -214,7 +214,7 @@ communism = {
 			picture = generic_fascism_drift_bonus
 
 			modifier = {
-				unity_factor = -0.1
+				stability_factor = -0.1
 			}
 		}
 }
@@ -289,7 +289,7 @@ absolutist = {
 			picture = generic_democratic_drift_bonus
 
 			modifier = {
-				unity_factor = 0.1
+				stability_factor = 0.1
 			}
 		}
 
@@ -342,7 +342,7 @@ absolutist = {
 			picture = generic_fascism_drift_bonus
 
 			modifier = {
-				unity_factor = -0.1
+				stability_factor = -0.1
 			}
 		}
 
@@ -376,7 +376,7 @@ radical = {
 			picture = generic_democratic_drift_bonus
 
 			modifier = {
-				unity_factor = 0.1
+				stability_factor = 0.1
 			}
 		}
 
@@ -428,7 +428,7 @@ radical = {
 			picture = generic_fascism_drift_bonus
 
 			modifier = {
-				unity_factor = -0.1
+				stability_factor = -0.1
 			}
 		}
 

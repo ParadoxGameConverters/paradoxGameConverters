@@ -11,7 +11,7 @@ ideas = {
 			removal_cost = -1
 		
 			modifier = {
-				consumer_goods_factor = 0.40
+				consumer_goods_factor = 0.50
 				production_speed_industrial_complex_factor = -0.5
 				production_speed_arms_factory_factor = -0.5
 				conversion_cost_civ_to_mil_factor = 0.5
@@ -25,7 +25,7 @@ ideas = {
 			
 			allowed_to_remove = {
 				OR = {
-					threat > 0.5
+					has_war_support > 0.5
 					has_war = yes
 				}
 			}
@@ -43,7 +43,7 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				consumer_goods_factor = 0.35
+				consumer_goods_factor = 0.4
 				production_speed_industrial_complex_factor = -0.4
 				production_speed_arms_factory_factor = -0.4
 				conversion_cost_civ_to_mil_factor= 0.4
@@ -55,7 +55,7 @@ ideas = {
 			}
 			allowed_to_remove = {
 				OR = {
-					threat > 0.75
+					has_war_support > 0.75
 					has_war = yes					
 				}
 			}
@@ -70,7 +70,7 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				consumer_goods_factor = 0.30
+				consumer_goods_factor = 0.35
 				production_speed_industrial_complex_factor = -0.3
 				production_speed_arms_factory_factor = -0.3
 				conversion_cost_civ_to_mil_factor= 0.3
@@ -85,22 +85,14 @@ ideas = {
 		low_economic_mobilisation = {
 			
 			available = {
-				OR = {
-					has_government = fascism
-					has_government = communism
-					has_government = autocratic
-					has_government = syndicalism
-					has_war = yes
-					threat > 0.05
-				}
+					has_war_support > 0.15
 			}
 			
 			cost = 150
 			removal_cost = -1
 			
 			modifier = {
-				consumer_goods_factor = 0.25
-
+				consumer_goods_factor = 0.3
 				production_speed_industrial_complex_factor = -0.1
 				production_speed_arms_factory_factor = -0.1
 			}
@@ -121,21 +113,15 @@ ideas = {
 		partial_economic_mobilisation = {
 			
 			available = {
-				OR = {
-					has_government = fascism
-					has_government = communism
-					has_government = autocratic
-					has_government = syndicalism
-					has_war = yes
-					threat > 0.15
-				}
+				has_war_support > 0.25
+
 			}
 
 			cost = 150
 			removal_cost = -1
 			
 			modifier = {
-				consumer_goods_factor = 0.20
+				consumer_goods_factor = 0.25
 				production_speed_arms_factory_factor = 0.1
 				conversion_cost_civ_to_mil_factor= -0.1
 				conversion_cost_mil_to_civ_factor = -0.1
@@ -158,7 +144,7 @@ ideas = {
 			
 			
 			available = {
-				threat > 0.15
+				has_war_support > 0.5
 				OR = {
 					has_government = fascism
 					has_government = communism
@@ -181,7 +167,7 @@ ideas = {
 			removal_cost = -1
 			
 			modifier = {
-				consumer_goods_factor = 0.15
+				consumer_goods_factor = 0.2
 				production_speed_arms_factory_factor = 0.2
 				conversion_cost_civ_to_mil_factor= -0.2
 				conversion_cost_mil_to_civ_factor = -0.2
@@ -205,7 +191,7 @@ ideas = {
 			
 			available = {
 				has_war = yes
-				threat > 0.2
+				has_war_support > 0.8
 				any_enemy_country = {
 					ic_ratio = { 
 						tag = ROOT 
@@ -344,6 +330,14 @@ ideas = {
 					is_in_faction = yes
 					has_war = yes
 				}
+
+				# minors not at war should want to get the bonuses from free trade
+				modifier = {
+					factor = 0
+					
+					is_major = no
+					has_war = no
+				}
    			}
 		}
 		
@@ -385,6 +379,14 @@ ideas = {
 					is_major = no
 					is_in_faction = yes
 					has_war = yes
+				}
+
+				# minors not at war should want to get the bonuses from free trade
+				modifier = {
+					factor = 0
+					
+					is_major = no
+					has_war = no
 				}
    			}
 		}
