@@ -123,7 +123,7 @@ link = { vic = PNM hoi = PAN } # Panama
 link = { vic = PRG hoi = PAR } # Paraguay
 link = { vic = PER hoi = PER } # Persia
 link = { vic = PHI hoi = PHI } # Philippines
-link = { vic = POL vic = PLC hoi = POL } # Poland(-Lithuania)
+link = { vic = POL hoi = POL } # Poland
 #link = { vic = ? hoi = PNG } # Papua New Guinea
 link = { vic = POR hoi = POR } # Portugal
 #link = { vic = CHI hoi = PRC } # China (already used)
