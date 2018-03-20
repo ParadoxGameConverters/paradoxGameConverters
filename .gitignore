@@ -9,6 +9,7 @@ AnalysisIntermediate
 testResults
 *testResults*
 V2ToHoI3.zip
+changelog.txt
 *.opensdf
 *.opendb
 *.sdf
