@@ -34,32 +34,32 @@ namespace EU4
 	class historyLeader: public historyItem
 	{
 		public:
-			historyLeader(std::istream& theStream);
+		historyLeader(std::istream& theStream);
 
-			std::shared_ptr<EU4::leader> getTheLeader() { return theLeader; }
+		std::shared_ptr<EU4::leader> getTheLeader() { return theLeader; }
 
 		private:
-			std::shared_ptr<EU4::leader> theLeader;
+		std::shared_ptr<EU4::leader> theLeader;
 	};
 
 
 	class countryHistoryDate: public historyDate
 	{
 		public:
-			countryHistoryDate(std::istream& theStream);
+		countryHistoryDate(std::istream& theStream);
 
 		private:
-			std::vector<std::shared_ptr<historyItem>> items;
+		std::vector<std::shared_ptr<historyItem>> items;
 	};
 
 
 	class countryHistory: public history
 	{
 		public:
-			countryHistory(std::istream& theStream);
+		countryHistory(std::istream& theStream);
 
 		private:
-			std::vector<std::shared_ptr<historyItem>> items;
+		std::vector<std::shared_ptr<historyItem>> items;
 	};
 }
 

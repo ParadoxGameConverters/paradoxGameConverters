@@ -38,38 +38,38 @@ namespace EU4
 	class historyItem
 	{
 		public:
-			historyItem();
+		historyItem();
 
-			std::string getType() const { return type; }
+		std::string getType() const { return type; }
 
 		protected:
-			std::string type;
+		std::string type;
 	};
 
 
 	class historyDate: public commonItems::parser
 	{
 		public:
-			historyDate();
+		historyDate();
 
-			std::vector<std::shared_ptr<historyItem>> getItems() { return items; }
+		std::vector<std::shared_ptr<historyItem>> getItems() { return items; }
 
 		private:
-			std::vector<std::shared_ptr<historyItem>> items;
+		std::vector<std::shared_ptr<historyItem>> items;
 	};
 
 
 	class history: public commonItems::parser
 	{
 		public:
-			history();
+		history();
 
-			std::vector<std::shared_ptr<historyItem>> getItems() const { return items; }
+		std::vector<std::shared_ptr<historyItem>> getItems() const { return items; }
 
-			std::vector<std::shared_ptr<historyItem>> getItemsOfType(const std::string& type) const;
+		std::vector<std::shared_ptr<historyItem>> getItemsOfType(const std::string& type) const;
 
 		private:
-			std::vector<std::shared_ptr<historyItem>> items;
+		std::vector<std::shared_ptr<historyItem>> items;
 	};
 }
 

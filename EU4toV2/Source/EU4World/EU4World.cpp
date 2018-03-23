@@ -48,9 +48,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 EU4::world::world(const string& EU4SaveFileName):
 	theCountries()
 {
-	registerKeyword(std::regex("EU4txt"), [this](const std::string& unused, std::istream& theStream)
-		{}
-	);
+	registerKeyword(std::regex("EU4txt"), [this](const std::string& unused, std::istream& theStream){});
 	registerKeyword(std::regex("date"), [this](const std::string& dateText, std::istream& theStream)
 		{
 			commonItems::singleString dateString(theStream);
@@ -192,8 +190,7 @@ EU4::world::world(const string& EU4SaveFileName):
 
 	LOG(LogLevel::Info) << "* Importing EU4 save *";
 	verifySave(EU4SaveFileName);
-	makeWorkingSave(EU4SaveFileName);
-	parseFile("goodsave.eu4");
+	parseFile(EU4SaveFileName);
 
 	LOG(LogLevel::Info) << "Building world";
 	setEmpires();
@@ -246,43 +243,6 @@ void EU4::world::verifySave(const string& EU4SaveFileName)
 			exit(-1);
 		}
 	}
-}
-
-
-void EU4::world::makeWorkingSave(const string& EU4SaveFileName)
-{
-	ifstream original(EU4SaveFileName);
-	ofstream copy("goodsave.eu4");
-
-	bool badArea = false;
-	int bracesLevel = 0;
-
-	while (!original.eof())
-	{
-		string line;
-		getline(original, line);
-
-		if (line.find("gained_casus_bellis_cache") != string::npos)
-		{
-			badArea = true;
-		}
-		if (!badArea)
-		{
-			copy << line << "\n";
-		}
-		else
-		{
-			bracesLevel += count(line.begin(), line.end(), '{');
-			bracesLevel -= count(line.begin(), line.end(), '}');
-			if (bracesLevel <= 0)
-			{
-				badArea = false;
-			}
-		}
-	}
-
-	original.close();
-	copy.close();
 }
 
 

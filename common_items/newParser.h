@@ -55,6 +55,7 @@ namespace commonItems
 			void parseFile(const std::string& filename);
 
 			std::optional<std::string> getNextToken(std::istream& theStream);
+			std::optional<std::string> getNextTokenWithoutMatching(std::istream& theStream);
 
 		private:
 			std::list<std::pair<std::regex, parsingFunction>> registeredKeywords;
@@ -63,6 +64,7 @@ namespace commonItems
 	};
 
 
+	void ignoreItem(const std::string& unused, std::istream& theStream);
 	void ignoreObject(const std::string& unused, std::istream& theStream);
 	void ignoreString(const std::string& unused, std::istream& theStream);
 
@@ -94,6 +96,18 @@ namespace commonItems
 
 		private:
 			int theInt;
+	};
+
+
+	class singleDouble: commonItems::parser
+	{
+		public:
+			singleDouble(std::istream& theStream);
+
+			double getDouble() const { return theDouble; }
+
+		private:
+			double theDouble;
 	};
 
 

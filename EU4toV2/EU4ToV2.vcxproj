@@ -181,6 +181,7 @@
     <ClCompile Include="Source\EU4World\Continents.cpp" />
     <ClCompile Include="Source\EU4World\CountryHistory.cpp" />
     <ClCompile Include="Source\EU4World\Countries.cpp" />
+    <ClCompile Include="Source\EU4World\CountryHistory.cpp" />
     <ClCompile Include="Source\EU4World\CultureGroups.cpp" />
     <ClCompile Include="Source\EU4World\EU4Army.cpp" />
     <ClCompile Include="Source\EU4World\EU4Country.cpp" />
@@ -251,6 +252,7 @@
     <ClInclude Include="Source\EU4World\Continents.h" />
     <ClInclude Include="Source\EU4World\CountryHistory.h" />
     <ClInclude Include="Source\EU4World\Countries.h" />
+    <ClInclude Include="Source\EU4World\CountryHistory.h" />
     <ClInclude Include="Source\EU4World\CultureGroups.h" />
     <ClInclude Include="Source\EU4World\EU4Army.h" />
     <ClInclude Include="Source\EU4World\EU4Country.h" />

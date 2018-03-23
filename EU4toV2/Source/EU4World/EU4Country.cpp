@@ -35,41 +35,91 @@ THE SOFTWARE. */
 
 
 
-EU4::Country::Country(shared_ptr<Object> obj):
-	militaryLeaders()
+EU4::Country::Country(const std::string& countryTag, std::istream& theStream):
+	tag(countryTag),
+	provinces(),
+	cores(),
+	inHRE(false),
+	holyRomanEmperor(false),
+	celestialEmperor(false),
+	capital(0),
+	techGroup(),
+	embracedInstitutions(),
+	isolationism(1),
+	primaryCulture(),
+	acceptedCultures(),
+	culturalUnion({}),
+	religion(),
+	score(0.0),
+	stability(-3.0),
+	admTech(0.0),
+	dipTech(0.0),
+	milTech(0.0),
+	armyInvestment(32.0),
+	navyInvestment(32.0),
+	commerceInvestment(32.0),
+	industryInvestment(32.0),
+	cultureInvestment(32.0),
+	flags(),
+	modifiers(),
+	possibleDaimyo(false),
+	possibleShogun(false),
+	militaryLeaders(),
+	government(),
+	relations(),
+	armies(),
+	nationalIdeas(),
+	legitimacy(1.0),
+	customNation(false),
+	colony(false),
+	colonialRegion(),
+	libertyDesire(0.0),
+	randomName(),
+	customFlag({ "-1", 0, { 0, 0, 0}}),
+	revolutionary(false),
+	revolutionaryTricolour({0,0,0}),
+	name(),
+	adjective(),
+	color(),
+	namesByLanguage(),
+	adjectivesByLanguage()
 {
-	tag = obj->getKey();
-
-	provinces.clear();
-	cores.clear();
-	inHRE					= false;
-	holyRomanEmperor	= false;
-	celestialEmperor	= false;
-
-	vector<shared_ptr<Object>> nameObj = obj->getValue("name");	// the object holding the name
-	(!nameObj.empty()) ? name = nameObj[0]->getLeaf() : name = "";
-
-	vector<shared_ptr<Object>> customNameObj = obj->getValue("custom_name");	// the object holding the name
-	(!customNameObj.empty()) ? randomName = V2Localisation::Convert(customNameObj[0]->getLeaf()) : randomName = "";
-
-	vector<shared_ptr<Object>> adjectiveObj = obj->getValue("adjective");	// the object holding the adjective
-	(!adjectiveObj.empty()) ? adjective = adjectiveObj[0]->getLeaf() : adjective = "";
-
-	vector<shared_ptr<Object>> colorObjs = obj->getValue("map_color");
-	if (!colorObjs.empty())
-	{
-		color = commonItems::Color(colorObjs[0]);
-		// Countries whose colors are included in the object here tend to be generated countries,
-		// i.e. colonial nations which take on the color of their parent. To help distinguish 
-		// these countries from their parent's other colonies we randomly adjust the color.
-		color.RandomlyFlunctuate(30);
-	}
-	else
-	{
-		vector<shared_ptr<Object>> colorObjs = obj->getValue("colors");
-		if (colorObjs.size() > 0)
+	registerKeyword(std::regex("name"), [this](const std::string& unused, std::istream& theStream)
 		{
-			vector<shared_ptr<Object>> countryColorObjs = colorObjs[0]->getValue("country_color");
+			commonItems::singleString theName(theStream);
+			name = theName.getString();
+			if (name.substr(0,1) == "\"")
+			{
+				name = name.substr(1, name.size() - 2);
+			}
+		}
+	);
+	registerKeyword(std::regex("custom_name"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleString theName(theStream);
+			randomName = V2Localisation::Convert(theName.getString());
+			customNation = true;
+		}
+	);
+	registerKeyword(std::regex("adjective"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleString theAdjective(theStream);
+			adjective = theAdjective.getString();
+		}
+	);
+	registerKeyword(std::regex("map_color"), [this](const std::string& unused, std::istream& theStream)
+		{
+			color = commonItems::Color(theStream);
+			// Countries whose colors are included in the object here tend to be generated countries,
+			// i.e. colonial nations which take on the color of their parent. To help distinguish 
+			// these countries from their parent's other colonies we randomly adjust the color.
+			color.RandomlyFlunctuate(30);
+		}
+	);
+	registerKeyword(std::regex("colors"), [this](const std::string& colorsString, std::istream& theStream)
+		{
+			auto colorObj = commonItems::convert8859Object(colorsString, theStream);
+			vector<shared_ptr<Object>> countryColorObjs = colorObj->getLeaves()[0]->getValue("country_color");
 			if (countryColorObjs.size() > 0)
 			{
 				color = commonItems::Color(countryColorObjs[0]);
@@ -79,152 +129,288 @@ EU4::Country::Country(shared_ptr<Object> obj):
 				//color.RandomlyFlunctuate(30);
 			}
 		}
-	}
-
-	vector<shared_ptr<Object>> capitalObj = obj->getValue("capital");	// the object holding the capital
-	(capitalObj.size() > 0) ? capital = atoi( capitalObj[0]->getLeaf().c_str() ) : capital = 0;
-
-	vector<shared_ptr<Object>> nfObj = obj->getValue("national_focus");	// the object holding the national focus
-	(nfObj.size() > 0) ? nationalFocus = atoi( nfObj[0]->getLeaf().c_str() ) : nationalFocus = 0;
-
-	vector<shared_ptr<Object>> techGroupObj = obj->getValue("technology_group");	// the object holding the technology group
-	(techGroupObj.size() > 0) ? techGroup = techGroupObj[0]->getLeaf().c_str() : techGroup = "";
-
-	embracedInstitutions.clear();
-	vector<shared_ptr<Object>> institutionsObj = obj->getValue("institutions"); // the object holding the institutions
-	if (institutionsObj.size() > 0)
-	{
-		vector<string> institutionTokens = institutionsObj[0]->getTokens();
-		for (unsigned int i = 0; i < institutionTokens.size(); i++)
+	);
+	registerKeyword(std::regex("capital"), [this](const std::string& unused, std::istream& theStream)
 		{
-			if (institutionTokens[i] == "1")
-			{
-				embracedInstitutions.push_back(true);
-			}
-			else
-			{
-				embracedInstitutions.push_back(false);
-			}
+			commonItems::singleInt theCapital(theStream);
+			capital = theCapital.getInt();
 		}
-	}
-
-	auto version20 = EU4Version("1.20.0.0");
-	if (Configuration::getEU4Version() >= version20)
-	{
-		vector<shared_ptr<Object>> isolationismObj = obj->getValue("isolationism"); // the object holding the isolationism
-		(isolationismObj.size() > 0) ? isolationism = stoi(isolationismObj[0]->getLeaf()) : isolationism = 1;
-	}
-
-	vector<shared_ptr<Object>> primaryCultureObj = obj->getValue("primary_culture");	// the object holding the primary culture
-	(primaryCultureObj.size() > 0) ? primaryCulture = primaryCultureObj[0]->getLeaf().c_str() : primaryCulture = "";
-
-	acceptedCultures.clear();
-	vector<shared_ptr<Object>> acceptedCultureObj = obj->getValue("accepted_culture");	// the object holding the accepted cultures
-	for (unsigned int i = 0; i < acceptedCultureObj.size(); i++)
-	{
-		acceptedCultures.push_back(acceptedCultureObj[i]->getLeaf().c_str());
-	}
-
-	auto version14 = EU4Version("1.14.0.0");
-	if (Configuration::getEU4Version() >= version14)
-	{
-		bool wasUnion = false;
-		if (Configuration::wasDLCActive("The Cossacks"))
+	);
+	registerKeyword(std::regex("technology_group"), [this](const std::string& unused, std::istream& theStream)
 		{
-			vector <shared_ptr<Object>> govRankObjs = obj->getValue("government_rank");
-			if (atoi(govRankObjs[0]->getLeaf().c_str()) > 2)
+			commonItems::singleString theTechGroup(theStream);
+			techGroup = theTechGroup.getString();
+		}
+	);
+	registerKeyword(std::regex("liberty_desire"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleDouble theLibertyDesire(theStream);
+			libertyDesire = theLibertyDesire.getDouble();
+		}
+	);
+	registerKeyword(std::regex("institutions"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::intList theInstitutions(theStream);
+			for (auto institution: theInstitutions.getInts())
 			{
-				wasUnion = true;
+				if (institution == 1)
+				{
+					embracedInstitutions.push_back(true);
+				}
+				else
+				{
+					embracedInstitutions.push_back(false);
+				}
 			}
 		}
-		else
+	);
+	registerKeyword(std::regex("isolationism"), [this](const std::string& unused, std::istream& theStream)
 		{
-			vector <shared_ptr<Object>> developmentObj = obj->getValue("realm_development");
-			if (atof(developmentObj[0]->getLeaf().c_str()) >= 1000)
+			commonItems::singleInt isolationismValue(theStream);
+			isolationism = isolationismValue.getInt();
+		}
+	);
+	registerKeyword(std::regex("primary_culture"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleString thePrimaryCulture(theStream);
+			primaryCulture = thePrimaryCulture.getString();
+		}
+	);
+	registerKeyword(std::regex("accepted_culture"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleString theAcceptedCulture(theStream);
+			acceptedCultures.push_back(theAcceptedCulture.getString());
+		}
+	);
+	registerKeyword(std::regex("government_rank"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleInt theGovernmentRank(theStream);
+			if ((theGovernmentRank.getInt() > 2) && (Configuration::wasDLCActive("The Cossacks")))
 			{
-				wasUnion = true;
+				culturalUnion = EU4::cultureGroups::getCulturalGroup(primaryCulture);
 			}
 		}
-		if (wasUnion)
+	);
+	registerKeyword(std::regex("realm_development"), [this](const std::string& unused, std::istream& theStream)
 		{
-			auto culturalUnion = EU4::cultureGroups::getCulturalGroup(primaryCulture);
+			commonItems::singleInt theDevelopment(theStream);
+			if ((theDevelopment.getInt() >= 1000) && (!Configuration::wasDLCActive("The Cossacks")))
+			{
+				culturalUnion = EU4::cultureGroups::getCulturalGroup(primaryCulture);
+			}
 		}
+	);
+	registerKeyword(std::regex("culture_group_union"), [this](const std::string& unused, std::istream& theStream)
+		{
+			EU4::cultureGroup newUnion(tag + "_union", theStream);
+			culturalUnion = newUnion;
+		}
+	);
+	registerKeyword(std::regex("religion"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleString theReligion(theStream);
+			religion = theReligion.getString();
+		}
+	);
+	registerKeyword(std::regex("score"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleDouble theScore(theStream);
+			score = theScore.getDouble();
+		}
+	);
+	registerKeyword(std::regex("stability"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleDouble theStability(theStream);
+			stability = theStability.getDouble();
+		}
+	);
+	registerKeyword(std::regex("technology"), [this](const std::string& unused, std::istream& theStream)
+		{
+			auto topObj = commonItems::convert8859Object(unused, theStream);
+			auto techsObj = topObj->getLeaves();
+			auto techObj = techsObj[0]->getValue("adm_tech");
+			admTech = stof(techObj[0]->getLeaf());
+
+			techObj = techsObj[0]->getValue("dip_tech");
+			dipTech = stof(techObj[0]->getLeaf());
+
+			techObj = techsObj[0]->getValue("mil_tech");
+			milTech = stof(techObj[0]->getLeaf());
+		}
+	);
+	registerKeyword(std::regex("flags"), [this](const std::string& unused, std::istream& theStream)
+		{
+			auto flagsObj = commonItems::convert8859Object(unused, theStream);
+			for (auto flagObject: flagsObj->getLeaves()[0]->getLeaves())
+			{
+				flags[flagObject->getKey()] = true;
+			}
+		}
+	);
+	registerKeyword(std::regex("hidden_flags"), [this](const std::string& unused, std::istream& theStream)
+		{
+			auto flagsObj = commonItems::convert8859Object(unused, theStream);
+			for (auto flagObject: flagsObj->getLeaves()[0]->getLeaves())
+			{
+				flags[flagObject->getKey()] = true;
+			}
+		}
+	);
+	registerKeyword(std::regex("modifier"), [this](const std::string& unused, std::istream& theStream)
+		{
+			auto modifierObj = commonItems::convert8859Object(unused, theStream);
+			vector<shared_ptr<Object>> subModifierObj = modifierObj->getLeaves()[0]->getValue("modifier");
+			if (subModifierObj.size() > 0)
+			{
+				modifiers[subModifierObj[0]->getLeaf()] = true;
+			}
+		}
+	);
+	registerKeyword(std::regex("variables"), [this](const std::string& unused, std::istream& theStream)
+		{
+			auto variablesObj = commonItems::convert8859Object(unused, theStream);
+			for (auto variableObject: variablesObj->getLeaves()[0]->getLeaves())
+			{
+				flags[variableObject->getKey()] = true;
+			}
+		}
+	);
+	commonItems::parsingFunction governmentFunction = std::bind(&EU4::Country::getGovernmentFromStream, this, std::placeholders::_1, std::placeholders::_2);
+	registerKeyword(std::regex("government"), governmentFunction);
+	registerKeyword(std::regex("active_relations"), [this](const std::string& unused, std::istream& theStream)
+		{
+			auto relationLeaves = commonItems::convert8859Object(unused, theStream);
+			for (auto relationLeaf: relationLeaves->getLeaves()[0]->getLeaves())
+			{
+				string key = relationLeaf->getKey();
+				EU4Relations* rel = new EU4Relations(relationLeaf);
+				relations.insert(make_pair(key, rel));
+			}
+		}
+	);
+	registerKeyword(std::regex("army"), [this](const std::string& unused, std::istream& theStream)
+		{
+			auto armyObj = commonItems::convert8859Object(unused, theStream);
+			EU4Army* army = new EU4Army(armyObj->getLeaves()[0]);
+			armies.push_back(army);
+		}
+	);
+	registerKeyword(std::regex("navy"), [this](const std::string& unused, std::istream& theStream)
+		{
+			auto armyObj = commonItems::convert8859Object(unused, theStream);
+			EU4Army* navy = new EU4Army(armyObj->getLeaves()[0]);
+			armies.push_back(navy);
+		}
+	);
+	registerKeyword(std::regex("active_idea_groups"), [this](const std::string& unused, std::istream& theStream)
+		{
+			auto topObject = commonItems::convert8859Object(unused, theStream);
+			auto activeIdeasObjs = topObject->getLeaves();
+			for (auto ideasObj: activeIdeasObjs[0]->getLeaves())
+			{
+				nationalIdeas.insert(make_pair(ideasObj->getKey(), stoi(ideasObj->getLeaf())));
+			}
+		}
+	);
+	registerKeyword(std::regex("legitimacy"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleDouble theLegitimacy(theStream);
+			legitimacy = theLegitimacy.getDouble();
+		}
+	);
+	registerKeyword(std::regex("parent"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleString alsoUnused(theStream);
+			colony = true;
+		}
+	);
+	registerKeyword(std::regex("colonial_parent"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleString alsoUnused(theStream);
+			colony = true;
+		}
+	);
+	registerKeyword(std::regex("overlord"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleString theOverlord(theStream);
+			overlord = theOverlord.getString();
+		}
+	);
+	registerKeyword(std::regex("country_colors"), [this](const std::string& unused, std::istream& theStream)
+		{
+			auto customFlagObj = commonItems::convert8859Object(unused, theStream);
+			vector<shared_ptr<Object>> flag = customFlagObj->getValue("flag");
+			vector<shared_ptr<Object>> emblem = customFlagObj->getValue("subject_symbol_index");
+			vector<shared_ptr<Object>> colours = customFlagObj->getValue("flag_colors");
+
+			if (flag.size() > 0 && emblem.size() > 0 && colours.size() > 0)
+			{
+				customFlag.flag = to_string(1+stoi(flag[0]->getLeaf()));
+				customFlag.emblem = stoi(emblem[0]->getLeaf())+1;
+				vector<string> colourtokens = colours[0]->getTokens();
+				customFlag.colours = std::make_tuple(stoi(colourtokens[0]), stoi(colourtokens[1]), stoi(colourtokens[2]));
+			}
+		}
+	);
+	registerKeyword(std::regex("revolutionary_colors"), [this](const std::string& unused, std::istream& theStream)
+		{
+			auto colorTokens = commonItems::intList(theStream).getInts();
+			revolutionaryTricolour = std::make_tuple(colorTokens[0], colorTokens[1], colorTokens[2]);
+		}
+	);
+	registerKeyword(std::regex("history"), [this](const std::string& unused, std::istream& theStream)
+		{
+			EU4::countryHistory theCountryHistory(theStream);
+
+			for (auto& leader: theCountryHistory.getItemsOfType("leader"))
+			{
+				auto actualLeader = std::static_pointer_cast<EU4::historyLeader>(leader)->getTheLeader();
+				if (actualLeader->isAlive())
+				{
+					militaryLeaders.push_back(actualLeader);
+				}
+			}
+			/*vector<shared_ptr<Object>> daimyoObj = historyObj[0]->getValue("daimyo");	// the object holding the daimyo information for this country
+			if (daimyoObj.size() > 0)
+			{
+				possibleDaimyo = true;
+			}*/
+		}
+	);
+
+	registerKeyword(std::regex("[a-z0-9\\_]+"), commonItems::ignoreItem);
+
+	parseStream(theStream);
+
+	determineJapaneseRelations();
+	determineInvestments();
+	determineLibertyDesire();
+}
+
+
+void EU4::Country::getGovernmentFromStream(const std::string& unused, std::istream& theStream)
+{
+	auto equals = getNextTokenWithoutMatching(theStream);
+	auto next = getNextTokenWithoutMatching(theStream);
+	if (next == "{")
+	{
+		while (next != "government")
+		{
+			next = getNextTokenWithoutMatching(theStream);
+		}
+		equals = getNextTokenWithoutMatching(theStream);
+		government = *getNextTokenWithoutMatching(theStream);
+		auto closingBracket = getNextTokenWithoutMatching(theStream);
 	}
 	else
 	{
-		vector<shared_ptr<Object>> unionCultureObj = obj->getValue("culture_group_union");	// the object holding the cultural union group
-		std::stringstream unionCultureStream;
-		unionCultureStream << *(unionCultureObj[0]);
-
-		EU4::cultureGroup newUnion(tag + "_union", unionCultureStream);
-		culturalUnion = newUnion;
+		government = *next;
 	}
+}
 
-	vector<shared_ptr<Object>> religionObj = obj->getValue("religion");	// the object holding the religion
-	(religionObj.size() > 0) ? religion = religionObj[0]->getLeaf().c_str() : religion = "";
 
-	vector<shared_ptr<Object>> scoreObj = obj->getValue("score");	// the object holding the score
-	(scoreObj.size() > 0) ? score = 100 * atof(scoreObj[0]->getLeaf().c_str()) : score = 0.0;
-
-	vector<shared_ptr<Object>> stabilityObj = obj->getValue("stability");	// the object holding the stability
-	(stabilityObj.size() > 0) ? stability = atof( stabilityObj[0]->getLeaf().c_str() ) : stability = -3.0;
-
-	vector<shared_ptr<Object>> techsObj = obj->getValue("technology");	// the object holding the technology levels
-	if (techsObj.size() > 0)
-	{
-		vector<shared_ptr<Object>> techObj = techsObj[0]->getValue("adm_tech");	// the object holding the technology under consideration
-		admTech = atof( techObj[0]->getLeaf().c_str() );
-
-		techsObj = obj->getValue("technology");
-		techObj = techsObj[0]->getValue("dip_tech");
-		dipTech = atof( techObj[0]->getLeaf().c_str() );
-
-		techsObj = obj->getValue("technology");
-		techObj = techsObj[0]->getValue("mil_tech");
-		milTech = atof( techObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		admTech		= 0.0;
-		dipTech		= 0.0;
-		milTech		= 0.0;
-	}
-
-	determineFlagsAndModifiers(obj);
-
-	possibleDaimyo = false;
-	possibleShogun = false;
-	vector<shared_ptr<Object>> historyObj = obj->getValue("history");
-	if (historyObj.size() > 0)
-	{
-		std::stringstream historyStream;
-		historyStream << *historyObj[0];
-		EU4::countryHistory theCountryHistory(historyStream);
-
-		for (auto& leader: theCountryHistory.getItemsOfType("leader"))
-		{
-			auto actualLeader = std::static_pointer_cast<EU4::historyLeader>(leader)->getTheLeader();
-			if (actualLeader->isAlive())
-			{
-				militaryLeaders.push_back(actualLeader);
-			}
-		}
-
-		/*vector<shared_ptr<Object>> daimyoObj = historyObj[0]->getValue("daimyo");	// the object holding the daimyo information for this country
-		if (daimyoObj.size() > 0)
-		{
-			possibleDaimyo = true;
-		}*/
-	}
-
-	vector<shared_ptr<Object>> governmentObj = obj->getValue("government");	// the object holding the government
-	(governmentObj.size() > 0) ? government = governmentObj[0]->getLeaf() : government = "";
-	if (government == "" && governmentObj.size() > 0)
-	{
-		vector<shared_ptr<Object>> subGovernmentObj = governmentObj[0]->getValue("government");
-		(subGovernmentObj.size() > 0) ? government = subGovernmentObj[0]->getLeaf() : government = "";
-
-	}
+void EU4::Country::determineJapaneseRelations()
+{
 	if (government == "daimyo") 
 	{
 		possibleDaimyo = true;
@@ -234,72 +420,26 @@ EU4::Country::Country(shared_ptr<Object> obj):
 	{
 		possibleShogun = true;
 	}
-	// Read international relations leaves
-	vector<shared_ptr<Object>> relationLeaves = obj->getValue("active_relations");	// the object holding the active relationships
-	vector<shared_ptr<Object>> relationsLeaves = relationLeaves[0]->getLeaves();		// the objects holding the relationships themselves
-	for (unsigned int i = 0; i < relationsLeaves.size(); ++i)
+}
+
+
+void EU4::Country::determineInvestments()
+{
+	for (auto idea: nationalIdeas)
 	{
-		string key = relationsLeaves[i]->getKey();
-		EU4Relations* rel = new EU4Relations(relationsLeaves[i]);
-		relations.insert(make_pair(key, rel));
+		armyInvestment += ideaEffectMapper::getArmyInvestmentFromIdea(idea.first, idea.second);
+		commerceInvestment += ideaEffectMapper::getCommerceInvestmentFromIdea(idea.first, idea.second);
+		cultureInvestment += ideaEffectMapper::getCultureInvestmentFromIdea(idea.first, idea.second);
+		industryInvestment += ideaEffectMapper::getIndustryInvestmentFromIdea(idea.first, idea.second);
+		navyInvestment += ideaEffectMapper::getNavyInvestmentFromIdea(idea.first, idea.second);
 	}
+}
 
-	armies.clear();
-	vector<shared_ptr<Object>> armyObj = obj->getValue("army");	// the object sholding the armies
-	for (std::vector<shared_ptr<Object>>::iterator itr = armyObj.begin(); itr != armyObj.end(); ++itr)
+
+void EU4::Country::determineLibertyDesire()
+{
+	if ((colony) && (libertyDesire != 0.0))
 	{
-		EU4Army* army = new EU4Army(*itr);
-		armies.push_back(army);
-	}
-	vector<shared_ptr<Object>> navyObj = obj->getValue("navy");	// the objects holding the navies
-	for (std::vector<shared_ptr<Object>>::iterator itr = navyObj.begin(); itr != navyObj.end(); ++itr)
-	{
-		EU4Army* navy = new EU4Army(*itr);
-		armies.push_back(navy);
-	}
-
-	determineInvestments();
-
-	nationalIdeas.clear();
-	vector<shared_ptr<Object>> activeIdeasObj = obj->getValue("active_idea_groups");	// the objects holding the national ideas
-	if (activeIdeasObj.size() > 0)
-	{
-		vector<shared_ptr<Object>> ideasObj = activeIdeasObj[0]->getLeaves();		// the individual idea objects
-		for (vector<shared_ptr<Object>>::iterator ideaItr = ideasObj.begin(); ideaItr != ideasObj.end(); ideaItr++)
-		{
-			nationalIdeas.insert(make_pair((*ideaItr)->getKey(), atoi((*ideaItr)->getLeaf().c_str())));
-		}
-	}
-
-	vector<shared_ptr<Object>> legitObj = obj->getValue("legitimacy");	// the object holding the legitimacy
-	(legitObj.size() > 0) ?	legitimacy = atof(legitObj[0]->getLeaf().c_str()) : legitimacy = 1.0;
-
-	colony = false;
-	vector<shared_ptr<Object>> colonyObj = obj->getValue("parent");	// the object handling the colony flag
-	if (colonyObj.size() > 0)
-	{
-		colony = true;
-	}
-
-	customNation = false;
-	vector<shared_ptr<Object>> customNationObj = obj->getValue("custom_name");	// the object handling the custom name (if there is one)
-	if (customNationObj.size() > 0)
-	{
-		customNation = true;
-	}
-
-	libertyDesire = 0.0;
-	vector<shared_ptr<Object>> colonialParentObj = obj->getValue("colonial_parent");
-	vector<shared_ptr<Object>> colonialSubjectObj = obj->getValue("is_colonial_subject");
-	if (colonialSubjectObj.size() > 0 || colonialParentObj.size() > 0)
-	{
-		string overlord;
-		vector<shared_ptr<Object>> overlordObj = obj->getValue("overlord");
-		if (overlordObj.size() > 0)
-		{
-			overlord = overlordObj[0]->getLeaf();
-		}
-
 		auto relationship = relations.find(overlord);
 		if (relationship != relations.end())
 		{
@@ -373,86 +513,6 @@ EU4::Country::Country(shared_ptr<Object> obj):
 				LOG(LogLevel::Warning) << "Unknown attitude type " << attitude << " while setting liberty desire for " << tag;
 				libertyDesire = 95.0;
 			}
-		}
-	}
-
-	customFlag.flag = "-1";
-	vector<shared_ptr<Object>> customFlagObj = obj->getValue("country_colors");
-	if (customFlagObj.size() > 0)
-	{
-		vector<shared_ptr<Object>> flag = customFlagObj[0]->getValue("flag");
-		vector<shared_ptr<Object>> emblem = customFlagObj[0]->getValue("subject_symbol_index");
-		vector<shared_ptr<Object>> colours = customFlagObj[0]->getValue("flag_colors");
-
-		if (flag.size() > 0 && emblem.size() > 0 && colours.size() > 0)
-		{
-			customFlag.flag = to_string(1+stoi(flag[0]->getLeaf()));
-			customFlag.emblem = stoi(emblem[0]->getLeaf())+1;
-			
-			vector<string> colourtokens = colours[0]->getTokens();
-			customFlag.colours = std::make_tuple(stoi(colourtokens[0]), stoi(colourtokens[1]), stoi(colourtokens[2]));
-		}
-	}
-
-	vector<shared_ptr<Object>> revolutionaryFlagObj = obj->getValue("revolutionary_colors");
-	if (revolutionaryFlagObj.size() > 0)
-	{
-		vector<string> colourtokens = revolutionaryFlagObj[0]->getTokens();
-		revolutionaryTricolour = std::make_tuple(stoi(colourtokens[0]), stoi(colourtokens[1]), stoi(colourtokens[2]));
-	}
-	revolutionary = false;
-}
-
-
-void EU4::Country::determineInvestments()
-{
-	armyInvestment = 32.0;
-	navyInvestment = 32.0;
-	commerceInvestment = 32.0;
-	industryInvestment = 32.0;
-	cultureInvestment = 32.0;
-
-	for (auto idea: nationalIdeas)
-	{
-		armyInvestment += ideaEffectMapper::getArmyInvestmentFromIdea(idea.first, idea.second);
-		commerceInvestment += ideaEffectMapper::getCommerceInvestmentFromIdea(idea.first, idea.second);
-		cultureInvestment += ideaEffectMapper::getCultureInvestmentFromIdea(idea.first, idea.second);
-		industryInvestment += ideaEffectMapper::getIndustryInvestmentFromIdea(idea.first, idea.second);
-		navyInvestment += ideaEffectMapper::getNavyInvestmentFromIdea(idea.first, idea.second);
-	}
-}
-
-
-void EU4::Country::determineFlagsAndModifiers(shared_ptr<Object> obj)
-{
-	flags.clear();
-	vector<shared_ptr<Object>> flagObject = obj->getValue("flags");	// the object holding the flags set for this country
-	if (flagObject.size() > 0)
-	{
-		vector<shared_ptr<Object>> flagObjects = flagObject[0]->getLeaves();	// the individual flag objects
-		for (unsigned int i = 0; i < flagObjects.size(); i++)
-		{
-			flags[flagObjects[i]->getKey()] = true;
-		}
-	}
-	flagObject = obj->getValue("hidden_flags");	// the object holding the hidden flags set for this country
-	if (flagObject.size() > 0)
-	{
-		vector<shared_ptr<Object>> flagObjects = flagObject[0]->getLeaves();	// the individual hidden flag objects
-		for (unsigned int i = 0; i < flagObjects.size(); i++)
-		{
-			flags[flagObjects[i]->getKey()] = true;
-		}
-	}
-
-	modifiers.clear();
-	vector<shared_ptr<Object>> modifierObject = obj->getValue("modifier");	// the object holding the modifiers for this country
-	for (unsigned int i = 0; i < modifierObject.size(); i++)
-	{
-		vector<shared_ptr<Object>> nameObject = modifierObject[i]->getLeaves();	// the individual modifier objects
-		if (nameObject.size() > 0)
-		{
-			modifiers[nameObject[0]->getLeaf()] = true;
 		}
 	}
 }

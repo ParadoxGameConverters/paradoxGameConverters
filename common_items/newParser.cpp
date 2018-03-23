@@ -156,6 +156,35 @@ std::optional<std::string> commonItems::parser::getNextToken(std::istream& theSt
 }
 
 
+std::optional<std::string> commonItems::parser::getNextTokenWithoutMatching(std::istream& theStream)
+{
+	theStream >> std::noskipws;
+
+	std::string toReturn;
+
+	bool gotToken = false;
+	while (!gotToken)
+	{
+		if (theStream.eof())
+		{
+			return {};
+		}
+
+		toReturn = getNextLexeme(theStream);
+		gotToken = true;
+	}
+
+	if (toReturn.size() > 0)
+	{
+		return toReturn;
+	}
+	else
+	{
+		return {};
+	}
+}
+
+
 std::string commonItems::getNextLexeme(std::istream& theStream)
 {
 	std::string toReturn;
@@ -246,6 +275,38 @@ std::string commonItems::getNextLexeme(std::istream& theStream)
 	}
 
 	return toReturn;
+}
+
+
+void commonItems::ignoreItem(const std::string& unused, std::istream& theStream)
+{
+	std::string equals = getNextLexeme(theStream);
+	std::string next = getNextLexeme(theStream);
+	if (next == "{")
+	{
+		int braceDepth = 1;
+		while (true)
+		{
+			if (theStream.eof())
+			{
+				return;
+			}
+
+			std::string token = getNextLexeme(theStream);
+			if (token == "{")
+			{
+				braceDepth++;
+			}
+			else if (token == "}")
+			{
+				braceDepth--;
+				if (braceDepth == 0)
+				{
+					return;
+				}
+			}
+		}
+	}
 }
 
 
@@ -407,6 +468,27 @@ commonItems::singleInt::singleInt(std::istream& theStream):
 	{
 		LOG(LogLevel::Warning) << "Expected an int, but instead got " << token;
 		theInt = 0;
+	}
+}
+
+
+commonItems::singleDouble::singleDouble(std::istream& theStream):
+	theDouble()
+{
+	auto equals = getNextToken(theStream);
+	auto token = *getNextToken(theStream);
+	if (token.substr(0,1) == "\"")
+	{
+		token = token.substr(1, token.length() - 2);
+	}
+	try
+	{
+		theDouble = stof(token);
+	}
+	catch (std::exception& e)
+	{
+		LOG(LogLevel::Warning) << "Expected a double, but instead got " << token;
+		theDouble = 0.0;
 	}
 }
 

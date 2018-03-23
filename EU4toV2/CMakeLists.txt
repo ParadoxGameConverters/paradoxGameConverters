@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.5)
 #set(CMAKE_VERBOSE_MAKEFILE on)
 
 project(EU4ToVic2)
@@ -27,8 +27,6 @@ set(COMMON_SOURCES ${COMMON_SOURCES} "../common_items/Log.cpp")
 set(COMMON_SOURCES ${COMMON_SOURCES} "../common_items/Object.cpp")
 set(COMMON_SOURCES ${COMMON_SOURCES} "../common_items/ParadoxParser8859_15.cpp")
 set(COMMON_SOURCES ${COMMON_SOURCES} "../common_items/ParadoxParserUTF8.cpp")
-set(COMMON_SOURCES ${COMMON_SOURCES} "../common_items/ParadoxParserGeneric.cpp")
-set(COMMON_SOURCES ${COMMON_SOURCES} "../common_items/Encoding.cpp")
 set(COMMON_SOURCES ${COMMON_SOURCES} "../common_items/newParser.cpp")
 
 set(Boost_USE_STATIC_LIBS       OFF)
