@@ -203,6 +203,9 @@
     <ClCompile Include="Source\Mappers\ImpassableProvinceMapper.cpp">
       <Filter>Mappers</Filter>
     </ClCompile>
+    <ClCompile Include="..\common_items\newParser.cpp">
+      <Filter>CommonItems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -395,6 +398,9 @@
     </ClInclude>
     <ClInclude Include="Source\Mappers\ImpassableProvinceMapper.h">
       <Filter>Mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common_items\newParser.h">
+      <Filter>CommonItems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
