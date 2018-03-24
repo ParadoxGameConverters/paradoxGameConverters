@@ -1,0 +1,165 @@
+focus = {
+		id = absolutism_focus
+		icon = GFX_focus_hun_elect_a_king
+		prerequisite = { focus = collectivist_ethos }
+		y = 1
+		relative_position_id = collectivist_ethos
+		cost = 10
+		available_if_capitulated = yes
+		available = {
+			OR = {
+				has_government = absolutist
+				has_government = neutrality
+			}
+		}
+		completion_reward = {
+			add_ideas = absolutism
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 2
+				any_neighbor_country = {
+					is_major = yes
+					has_government = absolutist
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					is_historical_focus_on = yes
+					NOT = { has_government = absolutist }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = royal_dictatorship_focus
+		icon = GFX_focus_rom_royal_dictatorship
+		prerequisite = { focus = absolutism_focus }
+		x = 0
+		y = 1
+		relative_position_id = absolutism_focus
+		cost = 10
+		available_if_capitulated = yes
+		completion_reward = {
+			add_political_power = 200
+				add_popularity = {
+					ideology = absolutist
+					popularity = 0.2
+				}
+				add_ideas = royal_dictatorship_focus
+		}
+	}
+
+	focus = {
+		id = royal_army_tradition_focus
+		icon = GFX_goal_generic_special_forces
+		prerequisite = { focus = royal_dictatorship_focus }
+		x = 0
+		y = 1
+		relative_position_id = royal_dictatorship_focus
+		cost = 10
+		available_if_capitulated = yes
+		completion_reward = {
+			army_experience = 40
+			# add a elite division template?
+		}
+	}
+
+	focus = {
+		id = historical_claims_focus
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = royal_army_tradition_focus }
+		x = 0
+		y = 1
+		relative_position_id = royal_army_tradition_focus
+		cost = 10
+		available_if_capitulated = yes
+		completion_reward = {
+			add_ideas = historical_claims_focus
+		}
+	}
+	
+	focus = {
+		id = radical_focus
+		icon = GFX_goal_generic_consumer_goods
+		prerequisite = { focus = collectivist_ethos }
+		y = 1
+		relative_position_id = collectivist_ethos
+		cost = 10
+		available_if_capitulated = yes
+		available = {
+			OR = {
+				has_government = radical
+				has_government = neutrality
+			}
+		}
+		completion_reward = {
+			add_ideas = radicalism
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 2
+				any_neighbor_country = {
+					is_major = yes
+					has_government = radical
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					is_historical_focus_on = yes
+					NOT = { has_government = radical }
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = private_channels_focus
+		icon = GFX_goal_generic_intelligence_exchange
+		prerequisite = { focus = radical_focus }
+		x = 0
+		y = 1
+		relative_position_id = radical_focus
+		cost = 10
+		available_if_capitulated = yes
+		completion_reward = {
+			every_country = {
+				add_opinion_modifier = {
+					target = ROOT modifier = private_channels_trade
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = hardfought_market_focus
+		icon = GFX_focus_generic_license_production
+		prerequisite = { focus = private_channels_focus }
+		x = 0
+		y = 1
+		relative_position_id = private_channels_focus
+		cost = 10
+		available_if_capitulated = yes
+		completion_reward = {
+			add_ideas = hardfought_market_focus
+		}
+	}
+
+	focus = {
+		id = army_provides_focus
+		icon = GFX_focus_generic_concessions
+		prerequisite = { focus = hardfought_market_focus }
+		x = 0
+		y = 1
+		relative_position_id = hardfought_market_focus
+		cost = 10
+		available_if_capitulated = yes
+		completion_reward = {
+			add_ideas = army_provides_focus
+		}
+	}
