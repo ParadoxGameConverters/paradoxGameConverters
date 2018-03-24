@@ -133,6 +133,18 @@ namespace commonItems
 		private:
 			std::string theString;
 	};
+
+
+	class stringOfObject: commonItems::parser
+	{
+		public:
+			stringOfObject(std::istream& theStream);
+
+			std::string getString() const { return theString; }
+
+		private:
+			std::string theString;
+	};
 }
 
 
