@@ -24,6 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4FocusTree.h"
 #include "HoI4Country.h"
 #include "HoI4Focus.h"
+#include "HoI4Localisation.h"
 #include "../Configuration.h"
 #include "../V2World/V2Party.h"
 #include "Log.h"
@@ -339,6 +340,8 @@ void HoI4FocusTree::addGenericFocusTree(const set<string>& majorIdeologies)
 	}
 	newFocus->xPos = numCollectovistIdeologies;
 	focuses.push_back(newFocus);
+
+	nextFreeColumn = static_cast<int>(numCollectovistIdeologies * 1.5) + ((numCollectovistIdeologies + 1) / 2) + 20;
 }
 
 
@@ -546,80 +549,51 @@ shared_ptr<HoI4FocusTree> HoI4FocusTree::makeCustomizedCopy(const HoI4Country& c
 
 void HoI4FocusTree::addDemocracyNationalFocuses(shared_ptr<HoI4Country> Home, vector<shared_ptr<HoI4Country>>& CountriesToContain)
 {
-	nextFreeColumn += 3;
-
 	double WTModifier = 1;
 	if (Home->getGovernmentIdeology() == "democratic")
 	{
 		string warPol = Home->getRulingParty().getWarPolicy();
 		if (warPol == "jingoism")
+		{
 			WTModifier = 0;
+		}
 		if (warPol == "pro_military")
+		{
 			WTModifier = 0.25;
+		}
 		if (warPol == "anti_military")
+		{
 			WTModifier = 0.5;
+		}
 		if (warPol == "pacifism" || warPol == "pacifist")
+		{
 			WTModifier = 0.5;
+		}
 	}
 
-	//War Propaganda
-	shared_ptr<HoI4Focus> newFocus = make_shared<HoI4Focus>();
-	newFocus->id = "WarProp" + Home->getTag();
-	newFocus->icon = "GFX_goal_generic_propaganda";
-	newFocus->text += "War Propaganda";
-	newFocus->available += "			threat > " + to_string(0.2*WTModifier);
-	newFocus->xPos = nextFreeColumn;
-	newFocus->yPos = 0;
-	newFocus->cost = 10;
-	newFocus->aiWillDo += "			factor = 10";
-	newFocus->completionReward += "			add_national_unity = 0.05";
+	shared_ptr<HoI4Focus> newFocus = loadedFocuses.find("WarProp")->second.makeCustomizedCopy(Home->getTag());
+	newFocus->available = "= {\n";
+	newFocus->available += "			threat > " + to_string(0.20 * WTModifier) + "\n";
+	newFocus->available += "		}";
+	newFocus->xPos = nextFreeColumn + (CountriesToContain.size() * 2) - 1;
 	focuses.push_back(newFocus);
 
-	//Prepare Intervention
-	newFocus = make_shared<HoI4Focus>();
-	newFocus->id = "PrepInter" + Home->getTag();
-	newFocus->icon = "GFX_goal_generic_occupy_states_ongoing_war";
-	newFocus->text += "Prepare Intervention";
-	newFocus->prerequisites.push_back("focus = WarProp" + Home->getTag());
-	newFocus->available += "			threat > " + to_string(0.3 * WTModifier);
-	newFocus->xPos = nextFreeColumn;
-	newFocus->yPos = 1;
-	newFocus->cost = 10;
-	newFocus->aiWillDo += "			factor = 10";
-	newFocus->completionReward += "			add_political_power = 120";
-	newFocus->completionReward += "			set_rule = { can_send_volunteers = yes }";
+	newFocus = loadedFocuses.find("PrepInter")->second.makeCustomizedCopy(Home->getTag());
+	newFocus->available = "= {\n";
+	newFocus->available += "			threat > " + to_string(0.30 * WTModifier) + "\n";
+	newFocus->available += "		}";
 	focuses.push_back(newFocus);
 
-	if (CountriesToContain.size() >= 2)
-	{
-		nextFreeColumn += -3;
-	}
-	if (CountriesToContain.size() == 1)
-	{
-		nextFreeColumn += -2;
-	}
-
-	//Limited Intervention
-	newFocus = make_shared<HoI4Focus>();
-	newFocus->id = "Lim" + Home->getTag();
-	newFocus->icon = "GFX_goal_generic_more_territorial_claims";
-	newFocus->text += "Limited Intervention";
-	newFocus->prerequisites.push_back("focus = PrepInter" + Home->getTag());
-	newFocus->available += "			threat > " + to_string(0.5 * WTModifier);
-	newFocus->xPos = nextFreeColumn;
-	newFocus->yPos = 3;
-	newFocus->cost = 10;
-	newFocus->aiWillDo += "			factor = 10";
-	newFocus->completionReward += "			add_ideas = limited_interventionism";
+	newFocus = loadedFocuses.find("Lim")->second.makeCustomizedCopy(Home->getTag());
+	newFocus->available = "= {\n";
+	newFocus->available += "			threat > " + to_string(50 * WTModifier) + "\n";
+	newFocus->available += "		}";
 	focuses.push_back(newFocus);
 
-	nextFreeColumn += 2;
-
-	for (int i = CountriesToContain.size() - 1; i >= 0; i--)
+	int relavtivePos = 1 - (CountriesToContain.size() * 2);
+	for (auto country: CountriesToContain)
 	{
-		auto Country = CountriesToContain[i];
-
-		auto possibleContainedCountryName = Country->getSourceCountry()->getName("english");
+		auto possibleContainedCountryName = country->getSourceCountry()->getName("english");
 		string containedCountryName;
 		if (possibleContainedCountryName)
 		{
@@ -631,89 +605,92 @@ void HoI4FocusTree::addDemocracyNationalFocuses(shared_ptr<HoI4Country> Home, ve
 			containedCountryName = "";
 		}
 
-		//War Plan
-		newFocus = make_shared<HoI4Focus>();
-		newFocus->id = "WarPlan" + Home->getTag() + Country->getTag();
-		newFocus->icon = "GFX_goal_generic_position_armies";
+		newFocus = loadedFocuses.find("WarPlan")->second.makeCustomizedCopy(Home->getTag());
+		newFocus->id += country->getTag();
 		newFocus->text += "War Plan " + containedCountryName;
-		newFocus->prerequisites.push_back("focus = PrepInter" + Home->getTag());
-		newFocus->available += "			any_other_country = {";
-		newFocus->available += "						original_tag = " + Country->getTag();
-		newFocus->available += "						exists = yes";
-		newFocus->available += "						NOT = { is_in_faction_with = " + Home->getTag() + " }\n";
-		newFocus->available += "						OR = {";
-		newFocus->available += "							has_offensive_war = yes";
-		newFocus->available += "							has_added_tension_amount > 30";
-		newFocus->available += "							}";
-		newFocus->available += "			}";
-		newFocus->xPos = nextFreeColumn;
-		newFocus->yPos = 2;
-		newFocus->cost = 10;
-		newFocus->bypass += "					has_war_with = " + Country->getTag() + "\n";
-		newFocus->aiWillDo += "			factor = 10";
-		newFocus->completionReward += "			army_experience = 20\n";
-		newFocus->completionReward += "			add_tech_bonus = {\n";
-		newFocus->completionReward += "				name = land_doc_bonus\n";
-		newFocus->completionReward += "				bonus = 0.5\n";
-		newFocus->completionReward += "				uses = 1\n";
-		newFocus->completionReward += "				category = land_doctrine\n";
-		newFocus->completionReward += "			}";
+		newFocus->bypass = "= {\n";
+		newFocus->bypass += "			has_war_with = " + country->getTag() + "\n";
+		newFocus->bypass += "		}";
+		newFocus->xPos = relavtivePos;
+		newFocus->available  = "= {\n";
+		newFocus->available += "			any_other_country = {\n";
+		newFocus->available += "				original_tag = " + country->getTag() + "\n";
+		newFocus->available += "				exists = yes\n";
+		newFocus->available += "				NOT = { is_in_faction_with = " + Home->getTag() + " }\n";
+		newFocus->available += "				OR = {\n";
+		newFocus->available += "					has_offensive_war = yes\n";
+		newFocus->available += "					has_added_tension_amount > 30\n";
+		newFocus->available += "				}\n";
+		newFocus->available += "			}\n";
+		newFocus->available += "		}";
 		focuses.push_back(newFocus);
+		HoI4Localisation::copyFocusLocalisations("WarPlan", newFocus->id);
 
-		//Embargo
-		newFocus = make_shared<HoI4Focus>();
-		newFocus->id = "Embargo" + Home->getTag() + Country->getTag();
-		newFocus->icon = "GFX_goal_generic_trade";
-		newFocus->text += "Embargo " + containedCountryName;
-		newFocus->prerequisites.push_back("focus =  WarPlan" + Home->getTag() + Country->getTag());
-		newFocus->available += "			any_other_country = {";
-		newFocus->available += "						original_tag = " + Country->getTag();
-		newFocus->available += "						exists = yes";
-		newFocus->available += "						NOT = { is_in_faction_with = " + Home->getTag() + " }\n";
-		newFocus->available += "						OR = {";
-		newFocus->available += "							has_offensive_war = yes";
-		newFocus->available += "							has_added_tension_amount > 30";
-		newFocus->available += "							threat > 0.6";
-		newFocus->available += "							}";
-		newFocus->available += "			}";
-		newFocus->xPos = nextFreeColumn;
-		newFocus->yPos = 3;
-		newFocus->cost = 10;
-		newFocus->bypass += "					has_war_with = " + Country->getTag() + "\n";
-		newFocus->aiWillDo += "			factor = 10";
-		newFocus->completionReward += "			" + Country->getTag() + " = {\n";
+		newFocus = loadedFocuses.find("Embargo")->second.makeCustomizedCopy(Home->getTag());
+		newFocus->id += country->getTag();
+		newFocus->text = "Embargo " + containedCountryName;
+		newFocus->prerequisites.clear();
+		newFocus->prerequisites.push_back("= { focus =  WarPlan" + Home->getTag() + country->getTag() + " }");
+		newFocus->bypass = "= {\n";
+		newFocus->bypass += "			has_war_with = " + country->getTag() + "\n";
+		newFocus->bypass += "		}";
+		newFocus->relativePositionId += country->getTag();
+		newFocus->available  = "= {\n";
+		newFocus->available += "			any_other_country = {\n";
+		newFocus->available += "				original_tag = " + country->getTag() + "\n";
+		newFocus->available += "				exists = yes\n";
+		newFocus->available += "				NOT = { is_in_faction_with = " + Home->getTag() + " }\n";
+		newFocus->available += "				OR = {\n";
+		newFocus->available += "					has_offensive_war = yes\n";
+		newFocus->available += "					has_added_tension_amount > 30\n";
+		newFocus->available += "					threat > 0.6\n";
+		newFocus->available += "				}\n";
+		newFocus->available += "			}\n";
+		newFocus->available += "		}";
+		newFocus->completionReward  = "= {\n";
+		newFocus->completionReward += "			" + country->getTag() + " = {\n";
 		newFocus->completionReward += "				add_opinion_modifier = { target = " + Home->getTag() + " modifier = embargo }\n";
-		newFocus->completionReward += "			}";
+		newFocus->completionReward += "			}\n";
+		newFocus->completionReward += "		}";
 		focuses.push_back(newFocus);
+		HoI4Localisation::copyFocusLocalisations("Embargo", newFocus->id);
 
-		//WAR
-		newFocus = make_shared<HoI4Focus>();
-		newFocus->id = "WAR" + Home->getTag() + Country->getTag();
-		newFocus->icon = "GFX_goal_support_democracy";
-		newFocus->text += "Enact War Plan " + containedCountryName;
-		newFocus->available += "						has_war = no\n";
-		newFocus->available += "			any_other_country = {";
-		newFocus->available += "						original_tag = " + Country->getTag();
-		newFocus->available += "						exists = yes";
-		newFocus->available += "						NOT = { is_in_faction_with = " + Home->getTag() + " }\n";
-		newFocus->available += "						OR = {";
-		newFocus->available += "							has_offensive_war = yes";
-		newFocus->available += "							has_added_tension_amount > 30";
-		newFocus->available += "							threat > 0.6";
-		newFocus->available += "							}";
-		newFocus->available += "			}";
-		newFocus->prerequisites.push_back("focus =  Embargo" + Home->getTag() + Country->getTag());
-		newFocus->prerequisites.push_back("focus =  Lim" + Home->getTag());
-		newFocus->xPos = nextFreeColumn;
-		newFocus->yPos = 4;
-		newFocus->cost = 10;
-		newFocus->bypass += "					has_war_with = " + Country->getTag() + "\n";
-		newFocus->aiWillDo += "			factor = 10";
+		newFocus = loadedFocuses.find("WAR")->second.makeCustomizedCopy(Home->getTag());
+		newFocus->id += country->getTag();
+		newFocus->text = "Enact War Plan " + containedCountryName;
+		newFocus->prerequisites.clear();
+		newFocus->prerequisites.push_back("= { focus =  Embargo" + Home->getTag() + country->getTag() + " }");
+		newFocus->prerequisites.push_back("= { focus =  Lim" + Home->getTag() + " }");
+		newFocus->bypass = "= {\n";
+		newFocus->bypass += "			has_war_with = " + country->getTag() + "\n";
+		newFocus->bypass += "		}";
+		newFocus->relativePositionId += country->getTag();
+		newFocus->available  = "= {\n";
+		newFocus->available += "			has_war = no\n";
+		newFocus->available += "			any_other_country = {\n";
+		newFocus->available += "				original_tag = " + country->getTag() + "\n";
+		newFocus->available += "				exists = yes\n";
+		newFocus->available += "				NOT = { is_in_faction_with = " + Home->getTag() + " }\n";
+		newFocus->available += "				OR = {\n";
+		newFocus->available += "					has_offensive_war = yes\n";
+		newFocus->available += "					has_added_tension_amount > 30\n";
+		newFocus->available += "					threat > 0.6\n";
+		newFocus->available += "				}\n";
+		newFocus->available += "			}\n";
+		newFocus->available += "		}";
+		newFocus->aiWillDo  = "= {\n";
+		newFocus->aiWillDo += "			factor = 10\n";
+		newFocus->aiWillDo += "		}";
+		newFocus->completionReward  = "= {\n";
 		newFocus->completionReward += "			declare_war_on = {\n";
 		newFocus->completionReward += "				type = puppet_wargoal_focus\n";
-		newFocus->completionReward += "				target = " + Country->getTag() + "\n";
-		newFocus->completionReward += "			}";
+		newFocus->completionReward += "				target = " + country->getTag() + "\n";
+		newFocus->completionReward += "			}\n";
+		newFocus->completionReward += "		}";
 		focuses.push_back(newFocus);
+		HoI4Localisation::copyFocusLocalisations("WAR", newFocus->id);
+
+		relavtivePos += 4;
 	}
 }
 

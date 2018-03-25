@@ -141,6 +141,10 @@ std::shared_ptr<HoI4Focus> HoI4Focus::makeCustomizedCopy(const std::string& coun
 
 	newFocus->id += country;
 
+	if (newFocus->relativePositionId != "")
+	{
+		newFocus->relativePositionId += country;
+	}
 	if (newFocus->mutuallyExclusive != "")
 	{
 		customizeMutualExclusion(newFocus, country);

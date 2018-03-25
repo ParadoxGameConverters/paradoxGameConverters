@@ -163,3 +163,132 @@ focus = {
 			add_ideas = army_provides_focus
 		}
 	}
+
+	focus = {
+		id = WarProp
+		icon = GFX_goal_generic_propaganda
+		y = 0
+		cost = 10
+		available = {
+			threat > 10 # determined in code from Vic2 war policy
+		}
+		completion_reward = {
+			add_national_unity = 0.05
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = PrepInter
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = WarProp }
+		x = 0
+		y = 1
+		relative_position_id = WarProp
+		cost = 10
+		available = {
+			threat > 15 # determined in code from Vic2 war policy
+		}
+		completion_reward = {
+			add_political_power = 120
+			set_rule = { can_send_volunteers = yes }
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = Lim
+		icon = GFX_goal_generic_more_territorial_claims
+		prerequisite = { focus = PrepInter }
+		x = 0
+		y = 1
+		relative_position_id = PrepInter
+		cost = 10
+		available = {
+			threat > 25 # determined in code from Vic2 war policy
+		}
+		completion_reward = {
+			add_ideas = limited_interventionism
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = WarPlan
+		icon = GFX_goal_generic_position_armies
+		text = "War Plan "
+		prerequisite = { focus = Lim }
+		bypass = {
+			# determined in code
+		}
+		y = 1
+		relative_position_id = Lim
+		cost = 10
+		available = {
+			# determined in code
+		}
+		completion_reward = {
+			army_experience = 20
+			add_tech_bonus = {
+				name = land_doc_bonus
+				bonus = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = Embargo
+		icon = GFX_goal_generic_trade
+		text = "Embargo "
+		prerequisite = { focus = WarPlan }
+		bypass = {
+			# determined in code
+		}
+		y = 1
+		relative_position_id = WarPlan
+		cost = 10
+		available = {
+			# determined in code
+		}
+		completion_reward = {
+			# determined in code
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = WAR
+		icon = GFX_goal_support_democracy
+		text = "Enact War Plan "
+		prerequisite = { focus = Embargo }
+		prerequisite = { focus = Lim }
+		bypass = {
+			# determined in code
+		}
+		x = 2
+		y = 1
+		relative_position_id = Embargo
+		cost = 10
+		available = {
+			# determined in code
+		}
+		completion_reward = {
+			# determined in code
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	}
