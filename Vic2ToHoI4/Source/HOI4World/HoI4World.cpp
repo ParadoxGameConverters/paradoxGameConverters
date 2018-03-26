@@ -2014,6 +2014,7 @@ void HoI4World::outputIdeologicalIdeas() const
 void HoI4World::outputScriptedTriggers() const
 {
 	ofstream triggersFile("output/" + Configuration::getOutputName() + "/common/scripted_triggers/convertedTriggers.txt");
+
 	triggersFile << "can_lose_democracy_support = {\n";
 	for (auto ideology: majorIdeologies)
 	{
@@ -2027,6 +2028,64 @@ void HoI4World::outputScriptedTriggers() const
 		}
 	}
 	triggersFile << "}\n";
+
+	triggersFile << "has_unsupported_manpower_law = {\n";
+	triggersFile << "	if = {\n";
+	triggersFile << "		limit = {\n";
+	triggersFile << "			has_idea = limited_conscription\n";
+	triggersFile << "		}\n";
+	triggersFile << "		has_idea = limited_conscription\n";
+	triggersFile << "		has_war_support < 0.1\n";
+	triggersFile << "	}\n";
+	triggersFile << "	else_if = {\n";
+	triggersFile << "		limit = {\n";
+	triggersFile << "			has_idea = extensive_conscription\n";
+	triggersFile << "		}\n";
+	triggersFile << "		has_idea = extensive_conscription\n";
+	triggersFile << "		has_war_support < 0.2\n";
+	for (auto majorIdeology: majorIdeologies)
+	{
+		if ((majorIdeology == "democratic") || (majorIdeology == "neutrality"))
+		{
+			 continue;
+		}
+
+		triggersFile << "		NOT = { has_government = " << majorIdeology << " }\n";
+	}
+	triggersFile << "	}\n";
+	triggersFile << "	else_if = {\n";
+	triggersFile << "		limit = {\n";
+	triggersFile << "			has_idea = service_by_requirement\n";
+	triggersFile << "		}\n";
+	triggersFile << "		has_idea = service_by_requirement\n";
+	triggersFile << "		has_war_support < 0.6\n";
+	for (auto majorIdeology: majorIdeologies)
+	{
+		if ((majorIdeology == "democratic") || (majorIdeology == "neutrality"))
+		{
+			continue;
+		}
+
+		triggersFile << "		NOT = { has_government = " << majorIdeology << " }\n";
+	}
+	triggersFile << "	}\n";
+	triggersFile << "	else_if = {\n";
+	triggersFile << "		limit = {\n";
+	triggersFile << "			has_idea = all_adults_serve\n";
+	triggersFile << "		}\n";
+	triggersFile << "		has_idea = all_adults_serve\n";
+	triggersFile << "	}\n";
+	triggersFile << "	else_if = {\n";
+	triggersFile << "		limit = {\n";
+	triggersFile << "			has_idea = scraping_the_barrel\n";
+	triggersFile << "		}\n";
+	triggersFile << "		has_idea = scraping_the_barrel\n";
+	triggersFile << "	}\n";
+	triggersFile << "	else = {\n";
+	triggersFile << "		always = no\n";
+	triggersFile << "	}\n";
+	triggersFile << "}\n";
+
 	triggersFile.close();
 }
 
