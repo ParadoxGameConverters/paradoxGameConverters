@@ -321,21 +321,6 @@ on_actions = {
 		effect = {			
 	}
 
-	on_coup_succeeded = {
-		effect = {
-			#Turn elections on for democracies created from coup
-			random_other_country = {
-				limit = {
-					has_government = democratic
-					original_tag = ROOT
-				}
-				set_politics = {
-					elections_allowed = yes
-				}
-			}
-		}
-	}
-
 	#ROOT is winner #FROM gets annexed - This will also fire on_annex
 	on_civil_war_end = {
 		effect = {

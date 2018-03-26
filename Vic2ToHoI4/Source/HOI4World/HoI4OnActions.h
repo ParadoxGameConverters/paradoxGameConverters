@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,9 +26,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include <set>
 #include <string>
 #include <vector>
-using namespace std;
 
 
 
@@ -37,15 +37,15 @@ class HoI4OnActions
 	public:
 		HoI4OnActions();
 
-		void output() const;
+		void output(const std::set<std::string>& majorIdeologies) const;
 
-		void addElectionEvent(string electionEvent) { electionEvents.push_back(electionEvent); }
+		void addElectionEvent(std::string electionEvent) { electionEvents.push_back(electionEvent); }
 
 	private:
 		HoI4OnActions(const HoI4OnActions&) = delete;
 		HoI4OnActions& operator=(const HoI4OnActions&) = delete;
 
-		vector<string> electionEvents;
+		std::vector<std::string> electionEvents;
 };
 
 
