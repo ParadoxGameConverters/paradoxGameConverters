@@ -32,7 +32,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <memory>
 #include <set>
 #include <string>
-using namespace std;
 
 
 
@@ -47,14 +46,13 @@ class HoI4Events
 		HoI4Events();
 
 		void output() const;
-		void createFactionEvents(shared_ptr<HoI4Country> Leader, shared_ptr<HoI4Country> newAlly);
-		void createAnnexEvent(shared_ptr<HoI4Country> Annexer, shared_ptr<HoI4Country> Annexed);
-		void createSudetenEvent(shared_ptr<HoI4Country> Annexer, shared_ptr<HoI4Country> Annexed, const vector<int>& claimedStates);
-		void createTradeEvent(shared_ptr<HoI4Country> leader, shared_ptr<HoI4Country> GC);
-		void createPoliticalEvents(const set<string>& majorIdeologies);
-		void createWarJustificationEvents(const set<string>& majorIdeologies);
-		void createElectionEvents(const set<string>& majorIdeologies, HoI4OnActions* onActions);
-		void addPartyChoiceEvent(const string& countryTag, const set<V2Party, function<bool (const V2Party&, const V2Party&)>>& parties, HoI4OnActions* onActions, const set<string>& majorIdeologies);
+		void createFactionEvents(std::shared_ptr<HoI4Country> Leader, std::shared_ptr<HoI4Country> newAlly);
+		void createAnnexEvent(std::shared_ptr<HoI4Country> Annexer, std::shared_ptr<HoI4Country> Annexed);
+		void createSudetenEvent(std::shared_ptr<HoI4Country> Annexer, std::shared_ptr<HoI4Country> Annexed, const std::vector<int>& claimedStates);
+		void createTradeEvent(std::shared_ptr<HoI4Country> leader, std::shared_ptr<HoI4Country> GC);
+		void createPoliticalEvents(const std::set<std::string>& majorIdeologies);
+		void createWarJustificationEvents(const std::set<std::string>& majorIdeologies);
+		void addPartyChoiceEvent(const std::string& countryTag, const std::set<V2Party, std::function<bool (const V2Party&, const V2Party&)>>& parties, HoI4OnActions* onActions, const std::set<std::string>& majorIdeologies);
 
 		int getCurrentNationFocusEventNum() const { return nationalFocusEventNumber; }
 
@@ -69,28 +67,21 @@ class HoI4Events
 		void outputWarJustificationEvents() const;
 		void outputElectionEvents() const;
 
-		void addMinisterRevolutionEvents(const set<string>& majorIdeologies);
-		void addDemocraticMinisterRevolutionEvents(const set<string>& majorIdeologies);
-		void addFiftyPercentEvents(const set<string>& majorIdeologies);
-		void addRevolutionEvents(const set<string>& majorIdeologies);
-		void addSuppressedEvents(const set<string>& majorIdeologies);
-		string getIdeologicalPicture(const string& ideology) const;
+		void addMinisterRevolutionEvents(const std::set<std::string>& majorIdeologies);
+		void addDemocraticMinisterRevolutionEvents(const std::set<std::string>& majorIdeologies);
+		void addFiftyPercentEvents(const std::set<std::string>& majorIdeologies);
+		void addRevolutionEvents(const std::set<std::string>& majorIdeologies);
+		void addSuppressedEvents(const std::set<std::string>& majorIdeologies);
+		std::string getIdeologicalPicture(const std::string& ideology) const;
 
-		void addIdeologyInGovernmentEvents(const set<string>& majorIdeologies, HoI4OnActions* onActions);
-		void addIdeologyInfluenceForeignPolicyEvents(const set<string>& majorIdeologies);
-		void addDemocraticPartiesInMinorityEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions);
-		void addIdeologicalMajorityEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions);
-		void addWartimeExceptionEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions);
-		void addGovernmentContestedEvent(const set<string>& majorIdeologies, HoI4OnActions* onActions);
-
-		vector<HoI4Event> newsEvents;
+		std::vector<HoI4Event> newsEvents;
 		int newsEventNumber;
-		vector<HoI4Event> nationalFocusEvents;
+		std::vector<HoI4Event> nationalFocusEvents;
 		int nationalFocusEventNumber;
-		vector<HoI4Event> politicalEvents;
+		std::vector<HoI4Event> politicalEvents;
 		int politicalEventNumber;
-		vector<HoI4Event> warJustificationEvents;
-		vector<HoI4Event> electionEvents;
+		std::vector<HoI4Event> warJustificationEvents;
+		std::vector<HoI4Event> electionEvents;
 		int electionEventNumber;
 };
 

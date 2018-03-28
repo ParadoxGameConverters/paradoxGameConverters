@@ -97,7 +97,6 @@ HoI4World::HoI4World(const V2World* _sourceWorld):
 	convertParties();
 	events->createPoliticalEvents(majorIdeologies);
 	events->createWarJustificationEvents(majorIdeologies);
-	events->createElectionEvents(majorIdeologies, onActions);
 	addCountryElectionEvents(majorIdeologies);
 	addNeutrality();
 	convertIdeologySupport();

@@ -46,7 +46,8 @@ country_event = {
 				can_lose_unity = yes
 			}
 		}
-		add_national_unity = -0.05
+		add_stability = -0.05
+		add_war_support = -0.05
 	}
 }
 
@@ -107,6 +108,7 @@ country_event = {
 			limit = { has_idea = disarmed_nation }
 			add_ideas = volunteer_only
 		}
+		add_war_support = 0.05
 	}
 
 	option = {
@@ -114,6 +116,6 @@ country_event = {
 		ai_chance = {
 			base = 0
 		}
-		add_national_unity = -0.05
+		add_stability = -0.05
 	}
 }
