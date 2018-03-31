@@ -276,21 +276,6 @@ void HoI4World::importIdeologicalMinisters()
 			HoI4Advisor* newAdvisor = new HoI4Advisor(ideologyObject->getLeaves()[0]);
 			ideologicalAdvisors.insert(make_pair(ideaName, newAdvisor));
 		}
-
-		int ministerEventNum = 1;
-		for (auto ideology: majorIdeologies)
-		{
-			if (ideology == "neutrality")
-			{
-				continue;
-			}
-			auto advisor = ideologicalAdvisors.find(ideology);
-			if (advisor != ideologicalAdvisors.end())
-			{
-				advisor->second->addEventNum(ministerEventNum);
-			}
-			ministerEventNum += 6;
-		}
 	}
 }
 

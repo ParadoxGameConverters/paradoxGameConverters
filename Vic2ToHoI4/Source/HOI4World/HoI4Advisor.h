@@ -42,7 +42,6 @@ class HoI4Advisor
 	public:
 		explicit HoI4Advisor(shared_ptr<Object> object);
 		void output(ofstream& output, const string& tag) const;
-		void addEventNum(const int num);
 
 		string getIdeology() const { return ideology; }
 

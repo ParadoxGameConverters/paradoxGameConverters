@@ -13,10 +13,6 @@ radical = {
 		
 		traits = { radical_minister }
 
-		on_add = {
-			country_event = conv.political.radical.
-		}
-
 		do_effect = {
 			NOT = {
 				has_government = radical
@@ -63,10 +59,6 @@ absolutist = {
 		
 		picture = triumphant_will
 
-		on_add = {
-			country_event = conv.political.absolutist.
-		}
-
 		do_effect = {
 			NOT = {
 				has_government = absolutist
@@ -89,10 +81,6 @@ communism = {
 		}
 		
 		traits = { communism_minister }
-
-		on_add = {
-			country_event = conv.political.communist.
-		}
 
 		do_effect = {
 			NOT = {
@@ -119,10 +107,6 @@ democratic = {
 		
 		traits = { democratic_minister }
 
-		on_add = {
-			country_event = conv.political.democratic.
-		}
-
 		do_effect = {
 			NOT = {
 				has_government = democratic
@@ -146,10 +130,6 @@ fascism = {
 		
 		
 		traits = { fascism_minister }
-
-		on_add = {
-			country_event = conv.political.fascist.
-		}
 
 		do_effect = {
 			NOT = {
