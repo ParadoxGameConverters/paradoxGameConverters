@@ -30,7 +30,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <string>
 using namespace std;
 
+class HOI4Version;
 
+std::ostream& operator << (std::ostream& out, const HOI4Version& version);
 
 class HOI4Version
 {
@@ -49,6 +51,8 @@ class HOI4Version
 		int second;
 		int third;
 };
+
+
 
 
 
