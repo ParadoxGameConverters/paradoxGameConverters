@@ -42,7 +42,6 @@ class HoI4Buildings;
 class HoI4Country;
 class HoI4Diplomacy;
 class HoI4DivisionTemplateType;
-class HoI4Events;
 class HoI4Faction;
 class HoI4Ideology;
 class HoI4OnActions;
@@ -52,6 +51,10 @@ class HoI4States;
 class HoI4StrategicRegion;
 class HoI4SupplyZones;
 class HoI4UnitMap;
+namespace HoI4
+{
+	class Events;
+}
 class V2Country;
 class V2World;
 
@@ -72,7 +75,7 @@ class HoI4World
 		map<int, HoI4State*> getStates() const { return states->getStates(); }
 		const map<int, int>& getProvinceToStateIDMap() const { return states->getProvinceToStateIDMap(); }
 		vector<shared_ptr<HoI4Faction>> getFactions() const { return factions; }
-		HoI4Events* getEvents() const { return events; }
+		HoI4::Events* getEvents() const { return events; }
 		set<string> getMajorIdeologies() const { return majorIdeologies; }
 
 		shared_ptr<HoI4Country> findCountry(const string& countryTag);
@@ -210,7 +213,7 @@ class HoI4World
 		
 		vector<shared_ptr<HoI4Faction>> factions;
 		HoI4Diplomacy* diplomacy;
-		HoI4Events* events;
+		HoI4::Events* events;
 		HoI4OnActions* onActions;
 
 		vector<HoI4DivisionTemplateType> divisionTemplates;

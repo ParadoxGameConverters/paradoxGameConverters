@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -26,35 +26,41 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+#include "newParser.h"
 #include <fstream>
 #include <string>
 #include <vector>
-using namespace std;
 
 
 
-class HoI4Event
+namespace HoI4
 {
-	public:
-		HoI4Event();
-		friend ofstream& operator << (ofstream& out, const HoI4Event& theEvent);
-		HoI4Event(const HoI4Event&) = default;
+	class Event: commonItems::parser
+	{
+		public:
+			Event() = default;
+			Event(std::istream& theStream);
+			Event(const Event&) = default;
 
-		string type;
-		string id;
-		string title;
-		string description;
-		string picture;
-		bool majorEvent;
-		bool triggeredOnly;
-		string trigger;
-		string meanTimeToHappen;
-		string immediate;
-		vector<string> options;
+			friend std::ofstream& operator << (std::ofstream& out, const Event& theEvent);
 
-	private:
-		HoI4Event& operator=(const HoI4Event&) = delete;
-};
+			std::string type = "";
+			std::string id = "";
+			std::string title = "";
+			std::vector<std::string> descriptions;
+			std::string picture = "";
+			bool majorEvent = false;
+			bool triggeredOnly = false;
+			bool hidden = false;
+			std::string trigger = "";
+			std::string meanTimeToHappen = "";
+			std::string immediate = "";
+			std::vector<std::string> options;
+
+		private:
+			Event& operator=(const Event&) = delete;
+	};
+}
 
 
 

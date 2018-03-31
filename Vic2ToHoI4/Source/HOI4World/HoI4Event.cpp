@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -25,29 +25,88 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Event::HoI4Event():
-	type(""),
-	id(""),
-	title(""),
-	description(""),
-	picture(""),
-	majorEvent(false),
-	triggeredOnly(false),
-	trigger(""),
-	meanTimeToHappen(""),
-	immediate(""),
-	options()
+HoI4::Event::Event(std::istream& theStream)
 {
+	registerKeyword(std::regex("id"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleString idString(theStream);
+			id = idString.getString();
+		}
+	);
+	registerKeyword(std::regex("title"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleString titleString(theStream);
+			title = titleString.getString();
+		}
+	);
+	registerKeyword(std::regex("desc"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::stringOfItem descriptionString(theStream);
+			descriptions.push_back(descriptionString.getString());
+		}
+	);
+	registerKeyword(std::regex("picture"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleString pictureString(theStream);
+			picture = pictureString.getString();
+		}
+	);
+	registerKeyword(std::regex("major"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleString majorString(theStream);
+			majorEvent = (majorString.getString() == "yes");
+		}
+	);
+	registerKeyword(std::regex("is_triggered_only"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleString triggeredString(theStream);
+			triggeredOnly = (triggeredString.getString() == "yes");
+		}
+	);
+	registerKeyword(std::regex("hidden"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::singleString hiddenString(theStream);
+			hidden = (hiddenString.getString() == "yes");
+		}
+	);
+	registerKeyword(std::regex("trigger"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::stringOfObject triggerString(theStream);
+			trigger = triggerString.getString();
+		}
+	);
+	registerKeyword(std::regex("mean_time_to_happen"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::stringOfObject MTTHString(theStream);
+			meanTimeToHappen = MTTHString.getString();
+		}
+	);
+	registerKeyword(std::regex("immediate"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::stringOfObject immediateString(theStream);
+			immediate = immediateString.getString();
+		}
+	);
+	registerKeyword(std::regex("option"), [this](const std::string& unused, std::istream& theStream)
+		{
+			commonItems::stringOfObject optionString(theStream);
+			options.push_back(optionString.getString());
+		}
+	);
+
+	parseStream(theStream);
 }
 	
 	
-	
-ofstream& operator << (ofstream& out, const HoI4Event& theEvent)
+std::ofstream& HoI4::operator << (std::ofstream& out, const Event& theEvent)
 {
 	out << theEvent.type << " = {\n";
 	out << "	id = " << theEvent.id << "\n";
 	out << "	title = " << theEvent.title << "\n";
-	out << "	desc = " << theEvent.description << "\n";
+	for (auto description: theEvent.descriptions)
+	{
+		out << "\t" << description << "\n";
+	}
 	out << "	picture = " << theEvent.picture << "\n";
 	if (theEvent.majorEvent)
 	{
@@ -59,37 +118,33 @@ ofstream& operator << (ofstream& out, const HoI4Event& theEvent)
 	{
 		out << "	is_triggered_only = yes\n";
 	}
+	if (theEvent.hidden)
+	{
+		out << "	hidden = yes\n";
+	}
 
 	if (theEvent.trigger != "")
 	{
 		out << "\n";
-		out << "	trigger = {\n";
-		out << "\t\t" << theEvent.trigger << "\n";
-		out << "	}\n";
+		out << "	trigger " << theEvent.trigger << "\n";
 	}
 
 	if (theEvent.meanTimeToHappen != "")
 	{
 		out << "\n";
-		out << "	mean_time_to_happen = {\n";
-		out << "\t\t" << theEvent.meanTimeToHappen << "\n";
-		out << "	}\n";
+		out << "	mean_time_to_happen " << theEvent.meanTimeToHappen << "\n";
 	}
 
 	if (theEvent.immediate != "")
 	{
 		out << "\n";
-		out << "	immediate = {\n";
-		out << "\t\t" << theEvent.immediate << "\n";
-		out << "	}\n";
+		out << "	immediate " << theEvent.immediate << "\n";
 	}
 
 	for (auto option: theEvent.options)
 	{
 		out << "\n";
-		out << "	option = {\n";
-		out << "\t\t" << option << "\n";
-		out << "	}\n";
+		out << "	option " << option << "\n";
 	}
 
 	out << "}\n";

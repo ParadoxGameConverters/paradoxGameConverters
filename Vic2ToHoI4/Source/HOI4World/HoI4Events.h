@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "HoI4Event.h"
 #include "../V2World/V2Party.h"
+#include "newParser.h"
 #include <functional>
 #include <memory>
 #include <set>
@@ -40,50 +41,53 @@ class HoI4OnActions;
 
 
 
-class HoI4Events
+namespace HoI4
 {
-	public:
-		HoI4Events();
+	class Events: commonItems::parser
+	{
+		public:
+			Events();
 
-		void output() const;
-		void createFactionEvents(std::shared_ptr<HoI4Country> Leader, std::shared_ptr<HoI4Country> newAlly);
-		void createAnnexEvent(std::shared_ptr<HoI4Country> Annexer, std::shared_ptr<HoI4Country> Annexed);
-		void createSudetenEvent(std::shared_ptr<HoI4Country> Annexer, std::shared_ptr<HoI4Country> Annexed, const std::vector<int>& claimedStates);
-		void createTradeEvent(std::shared_ptr<HoI4Country> leader, std::shared_ptr<HoI4Country> GC);
-		void createPoliticalEvents(const std::set<std::string>& majorIdeologies);
-		void createWarJustificationEvents(const std::set<std::string>& majorIdeologies);
-		void addPartyChoiceEvent(const std::string& countryTag, const std::set<V2Party, std::function<bool (const V2Party&, const V2Party&)>>& parties, HoI4OnActions* onActions, const std::set<std::string>& majorIdeologies);
+			void output() const;
+			void createFactionEvents(std::shared_ptr<HoI4Country> Leader, std::shared_ptr<HoI4Country> newAlly);
+			void createAnnexEvent(std::shared_ptr<HoI4Country> Annexer, std::shared_ptr<HoI4Country> Annexed);
+			void createSudetenEvent(std::shared_ptr<HoI4Country> Annexer, std::shared_ptr<HoI4Country> Annexed, const std::vector<int>& claimedStates);
+			void createTradeEvent(std::shared_ptr<HoI4Country> leader, std::shared_ptr<HoI4Country> GC);
+			void createPoliticalEvents(const std::set<std::string>& majorIdeologies);
+			void createWarJustificationEvents(const std::set<std::string>& majorIdeologies);
+			void addPartyChoiceEvent(const std::string& countryTag, const std::set<V2Party, std::function<bool (const V2Party&, const V2Party&)>>& parties, HoI4OnActions* onActions, const std::set<std::string>& majorIdeologies);
 
-		int getCurrentNationFocusEventNum() const { return nationalFocusEventNumber; }
+			int getCurrentNationFocusEventNum() const { return nationalFocusEventNumber; }
 
 
-	private:
-		HoI4Events(const HoI4Events&) = delete;
-		HoI4Events& operator=(const HoI4Events&) = delete;
+		private:
+			Events(const Events&) = delete;
+			Events& operator=(const Events&) = delete;
 
-		void outputNationalFocusEvents() const;
-		void outputNewsEvents() const;
-		void outputPoliticalEvents() const;
-		void outputWarJustificationEvents() const;
-		void outputElectionEvents() const;
+			void outputNationalFocusEvents() const;
+			void outputNewsEvents() const;
+			void outputPoliticalEvents() const;
+			void outputWarJustificationEvents() const;
+			void outputElectionEvents() const;
 
-		void addMinisterRevolutionEvents(const std::set<std::string>& majorIdeologies);
-		void addDemocraticMinisterRevolutionEvents(const std::set<std::string>& majorIdeologies);
-		void addFiftyPercentEvents(const std::set<std::string>& majorIdeologies);
-		void addRevolutionEvents(const std::set<std::string>& majorIdeologies);
-		void addSuppressedEvents(const std::set<std::string>& majorIdeologies);
-		std::string getIdeologicalPicture(const std::string& ideology) const;
+			void addMinisterRevolutionEvents(const std::set<std::string>& majorIdeologies);
+			void addDemocraticMinisterRevolutionEvents(const std::set<std::string>& majorIdeologies);
+			void addFiftyPercentEvents(const std::set<std::string>& majorIdeologies);
+			void addRevolutionEvents(const std::set<std::string>& majorIdeologies);
+			void addSuppressedEvents(const std::set<std::string>& majorIdeologies);
+			std::string getIdeologicalPicture(const std::string& ideology) const;
 
-		std::vector<HoI4Event> newsEvents;
-		int newsEventNumber;
-		std::vector<HoI4Event> nationalFocusEvents;
-		int nationalFocusEventNumber;
-		std::vector<HoI4Event> politicalEvents;
-		int politicalEventNumber;
-		std::vector<HoI4Event> warJustificationEvents;
-		std::vector<HoI4Event> electionEvents;
-		int electionEventNumber;
-};
+			std::vector<Event> newsEvents;
+			int newsEventNumber;
+			std::vector<Event> nationalFocusEvents;
+			int nationalFocusEventNumber;
+			std::vector<Event> politicalEvents;
+			int politicalEventNumber;
+			std::vector<Event> warJustificationEvents;
+			std::vector<Event> electionEvents;
+			int electionEventNumber;
+	};
+}
 
 
 

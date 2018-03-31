@@ -36,7 +36,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 class HoI4Country;
 class HoI4Focus;
-class HoI4Events;
+namespace HoI4
+{
+	class Events;
+}
 
 
 
@@ -54,10 +57,10 @@ class HoI4FocusTree: commonItems::parser
 		void addDemocracyNationalFocuses(std::shared_ptr<HoI4Country> Home, std::vector<std::shared_ptr<HoI4Country>>& CountriesToContain);
 		void addAbsolutistEmpireNationalFocuses(std::shared_ptr<HoI4Country> country, const std::vector<std::shared_ptr<HoI4Country>>& targetColonies, const std::vector<std::shared_ptr<HoI4Country>>& annexationTargets);
 		void addCommunistCoupBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& coupTargets);
-		void addCommunistWarBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& warTargets, HoI4Events* events);
-		void addFascistAnnexationBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& annexationTargets, HoI4Events* events);
+		void addCommunistWarBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& warTargets, HoI4::Events* events);
+		void addFascistAnnexationBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& annexationTargets, HoI4::Events* events);
 		void addFascistSudetenBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& sudetenTargets, const std::vector<std::vector<int>>& demandedStates, const HoI4World* world);
-		void addGPWarBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& newAllies, const std::vector<std::shared_ptr<HoI4Country>>& GCTargets, const std::string& ideology, HoI4Events* events);
+		void addGPWarBranch(std::shared_ptr<HoI4Country> Home, const std::vector<std::shared_ptr<HoI4Country>>& newAllies, const std::vector<std::shared_ptr<HoI4Country>>& GCTargets, const std::string& ideology, HoI4::Events* events);
 		void removeFocus(const std::string& id);
 
 		void output(const std::string& filename) const;

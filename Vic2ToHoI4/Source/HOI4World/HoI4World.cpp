@@ -67,7 +67,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld):
 	ideologicalIdeas(),
 	factions(),
 	diplomacy(new HoI4Diplomacy),
-	events(new HoI4Events),
+	events(new HoI4::Events),
 	onActions(new HoI4OnActions),
 	divisionTemplates(),
 	leaderTraits()

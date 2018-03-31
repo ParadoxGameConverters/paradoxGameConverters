@@ -34,7 +34,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4Events::HoI4Events():
+HoI4::Events::Events():
 	newsEvents(),
 	newsEventNumber(237),
 	nationalFocusEvents(),
@@ -48,7 +48,7 @@ HoI4Events::HoI4Events():
 }
 
 
-void HoI4Events::output() const
+void HoI4::Events::output() const
 {
 	std::string eventpath = "output/" + Configuration::getOutputName() + "/events";
 	if (!Utils::TryCreateFolder(eventpath))
@@ -62,10 +62,11 @@ void HoI4Events::output() const
 	outputPoliticalEvents();
 	outputWarJustificationEvents();
 	outputElectionEvents();
+	outputStabilityEvents();
 }
 
 
-void HoI4Events::outputNationalFocusEvents() const
+void HoI4::Events::outputNationalFocusEvents() const
 {
 	std::ofstream outEvents("output/" + Configuration::getOutputName() + "/events/NF_events.txt");
 	if (!outEvents.is_open())
@@ -86,7 +87,7 @@ void HoI4Events::outputNationalFocusEvents() const
 }
 
 
-void HoI4Events::outputNewsEvents() const
+void HoI4::Events::outputNewsEvents() const
 {
 	std::ofstream outNewsEvents("output/" + Configuration::getOutputName() + "/events/newsEvents.txt");
 	if (!outNewsEvents.is_open())
@@ -107,7 +108,7 @@ void HoI4Events::outputNewsEvents() const
 }
 
 
-void HoI4Events::outputPoliticalEvents() const
+void HoI4::Events::outputPoliticalEvents() const
 {
 	std::ofstream outPoliticalEvents("output/" + Configuration::getOutputName() + "/events/converterPoliticalEvents.txt");
 	if (!outPoliticalEvents.is_open())
@@ -128,7 +129,7 @@ void HoI4Events::outputPoliticalEvents() const
 }
 
 
-void HoI4Events::outputWarJustificationEvents() const
+void HoI4::Events::outputWarJustificationEvents() const
 {
 	std::ofstream outWarJustificationEvents("output/" + Configuration::getOutputName() + "/events/WarJustification.txt", std::ios_base::app);
 	if (!outWarJustificationEvents.is_open())
@@ -147,7 +148,7 @@ void HoI4Events::outputWarJustificationEvents() const
 }
 
 
-void HoI4Events::outputElectionEvents() const
+void HoI4::Events::outputElectionEvents() const
 {
 	std::ofstream outElectionEvents("output/" + Configuration::getOutputName() + "/events/ElectionEvents.txt", std::ios_base::app);
 	if (!outElectionEvents.is_open())
@@ -166,7 +167,7 @@ void HoI4Events::outputElectionEvents() const
 }
 
 
-void HoI4Events::createFactionEvents(std::shared_ptr<HoI4Country> Leader, std::shared_ptr<HoI4Country> newAlly)
+void HoI4::Events::createFactionEvents(std::shared_ptr<HoI4Country> Leader, std::shared_ptr<HoI4Country> newAlly)
 {
 	auto possibleLeaderName = Leader->getSourceCountry()->getName("english");
 	std::string leaderName;
@@ -192,15 +193,16 @@ void HoI4Events::createFactionEvents(std::shared_ptr<HoI4Country> Leader, std::s
 		newAllyName = *possibleNewAllyName;
 	}
 
-	HoI4Event nfEvent;
+	Event nfEvent;
 	nfEvent.type = "country_event";
 	nfEvent.id = "NFEvents." + std::to_string(nationalFocusEventNumber++);
 	nfEvent.title = "\"Alliance?\"";
-	nfEvent.description = "\"Alliance with " + leaderName + "?\"";
+	nfEvent.descriptions.push_back("desc = \"Alliance with " + leaderName + "?\"");
 	nfEvent.picture = "news_event_generic_sign_treaty1";
 	nfEvent.majorEvent = false;
 	nfEvent.triggeredOnly = true;
-	std::string yesOption = "name = \"Yes\"\n";
+	std::string yesOption = "= {\n";
+	yesOption += "		name = \"Yes\"\n";
 	if (Leader->getFaction() != nullptr)
 	{
 		yesOption += "		" + newAlly->getTag() + " = {\n";
@@ -218,36 +220,43 @@ void HoI4Events::createFactionEvents(std::shared_ptr<HoI4Country> Leader, std::s
 	yesOption += "		hidden_effect = {\n";
 	yesOption += "			news_event = { id = news." + to_string(newsEventNumber) + " }\n";
 	yesOption += "		}\n";
+	yesOption += "	}";
 	nfEvent.options.push_back(yesOption);
-	std::string noOption = "name = \"No\"\n";
+	std::string noOption = "= {\n";
+	noOption += "		name = \"No\"\n";
 	noOption += "		ai_chance = { factor = 0 }\n";
 	noOption += "		hidden_effect = {\n";
 	noOption += "			news_event = { id = news." + to_string(newsEventNumber + 1) + " }\n";
 	noOption += "		}\n";
+	noOption += "	}";
 	nfEvent.options.push_back(noOption);
 	nationalFocusEvents.push_back(nfEvent);
 
-	HoI4Event newsEventYes;
+	Event newsEventYes;
 	newsEventYes.type = "news_event";
 	newsEventYes.id = "news." + to_string(newsEventNumber);
 	newsEventYes.title = "\"" + newAllyName + " Now an Ally with " + leaderName + "!\"";
-	newsEventYes.description = "\"They are now allies\"";
+	newsEventYes.descriptions.push_back("desc = \"They are now allies\"");
 	newsEventYes.picture = "news_event_generic_sign_treaty1";
 	newsEventYes.majorEvent = true;
 	newsEventYes.triggeredOnly = true;
-	std::string interestingOption = "name = \"Interesting\"\n";
+	std::string interestingOption = "= {\n";
+	interestingOption += "		name = \"Interesting\"\n";
+	interestingOption += "	}";
 	newsEventYes.options.push_back(interestingOption);
 	newsEvents.push_back(newsEventYes);
 
-	HoI4Event newsEventNo;
+	Event newsEventNo;
 	newsEventNo.type = "news_event";
 	newsEventNo.id = "news." + to_string(newsEventNumber + 1);
 	newsEventNo.title = "\"" + newAllyName + " Refused the Alliance offer of " + leaderName + "!\"";
-	newsEventNo.description = "\"They are not allies\"";
+	newsEventNo.descriptions.push_back("desc = \"They are not allies\"");
 	newsEventNo.picture = "news_event_generic_sign_treaty1";
 	newsEventNo.majorEvent = true;
 	newsEventNo.triggeredOnly = true;
-	interestingOption = "name = \"Interesting\"\n";
+	interestingOption = "= {\n";
+	interestingOption += "		name = \"Interesting\"\n";
+	interestingOption += "	}";
 	newsEventNo.options.push_back(interestingOption);
 	newsEvents.push_back(newsEventNo);
 
@@ -255,7 +264,7 @@ void HoI4Events::createFactionEvents(std::shared_ptr<HoI4Country> Leader, std::s
 }
 
 
-void HoI4Events::createAnnexEvent(std::shared_ptr<HoI4Country> Annexer, std::shared_ptr<HoI4Country> Annexed)
+void HoI4::Events::createAnnexEvent(std::shared_ptr<HoI4Country> Annexer, std::shared_ptr<HoI4Country> Annexed)
 {
 	auto possibleAnnexerName = Annexer->getSourceCountry()->getName("english");
 	std::string annexerName;
@@ -281,17 +290,19 @@ void HoI4Events::createAnnexEvent(std::shared_ptr<HoI4Country> Annexer, std::sha
 		annexedName = "";
 	}
 
-	HoI4Event annexEvent;
+	Event annexEvent;
 	annexEvent.type = "country_event";
 	annexEvent.id = "NFEvents." + to_string(nationalFocusEventNumber);
 	annexEvent.title = "\"" + annexerName + " Demands " + annexedName + "!\"";
-	annexEvent.description = "\"Today " + annexerName + " sent an envoy to us with a proposition of an union. We are alone and in this world, and a union with " + annexerName + " might prove to be fruiteful.";
-	annexEvent.description += " Our people would be safe with the mighty army of " + annexerName + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!\"";
+	std::string description = "desc = \"Today " + annexerName + " sent an envoy to us with a proposition of an union. We are alone and in this world, and a union with " + annexerName + " might prove to be fruiteful.";
+	description += " Our people would be safe with the mighty army of " + annexerName + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!\"";
+	annexEvent.descriptions.push_back(description);
 	annexEvent.picture = "GFX_report_event_hitler_parade";
 	annexEvent.majorEvent = false;
 	annexEvent.triggeredOnly = true;
 
-	std::string acceptOption = "name = \"We accept the Union\"\n";
+	std::string acceptOption = "= {\n";
+	acceptOption += "		name = \"We accept the Union\"\n";
 	acceptOption += "		ai_chance = {\n";
 	acceptOption += "			base = 30\n";
 	acceptOption += "			modifier = {\n";
@@ -307,9 +318,11 @@ void HoI4Events::createAnnexEvent(std::shared_ptr<HoI4Country> Annexer, std::sha
 	acceptOption += "			country_event = { hours = 2 id = NFEvents." + to_string(nationalFocusEventNumber + 1) + " }\n";//+1 accept
 	acceptOption += "		}\n";
 	acceptOption += "		custom_effect_tooltip = GAME_OVER_TT\n";
+	acceptOption += "	}";
 	annexEvent.options.push_back(acceptOption);
 
-	std::string refuseOption = "name = \"We Refuse!\"\n";
+	std::string refuseOption = "= {\n";
+	refuseOption += "		name = \"We Refuse!\"\n";
 	refuseOption += "		ai_chance = {\n";
 	refuseOption += "			base = 10\n";
 	refuseOption += "\n";
@@ -323,47 +336,50 @@ void HoI4Events::createAnnexEvent(std::shared_ptr<HoI4Country> Annexer, std::sha
 	refuseOption += "			}\n";
 	refuseOption += "		}\n";
 	refuseOption += "		" + Annexer->getTag() + " = {\n";
-	//refuseOption += "			add_opinion_modifier = { target = ROOT modifier = " + Annexer->getTag() + "_anschluss_rejected }\n";
 	refuseOption += "			country_event = { hours = 2 id = NFEvents." + to_string(nationalFocusEventNumber + 2) + " }\n";//+2 refuse
 	refuseOption += "			if = {\n";
 	refuseOption += "				limit = { is_in_faction_with = " + Annexed->getTag() + " }\n";
 	refuseOption += "				remove_from_faction = " + Annexed->getTag() + "\n";
 	refuseOption += "			}\n";
 	refuseOption += "		}\n";
+	refuseOption += "	}";
 	annexEvent.options.push_back(refuseOption);
 
 	nationalFocusEvents.push_back(annexEvent);
 
 
-	HoI4Event refusedEvent;
+	Event refusedEvent;
 	refusedEvent.type = "country_event";
 	refusedEvent.id = "NFEvents." + to_string(nationalFocusEventNumber + 2);
 	refusedEvent.title = "\"" + annexedName + " Refuses!\"";
-	refusedEvent.description = "\"" + annexedName + " Refused our proposed union! This is an insult to us that cannot go unanswered!\"";
+	refusedEvent.descriptions.push_back("desc = \"" + annexedName + " Refused our proposed union! This is an insult to us that cannot go unanswered!\"");
 	refusedEvent.picture = "GFX_report_event_german_troops";
 	refusedEvent.majorEvent = false;
 	refusedEvent.triggeredOnly = true;
 
-	std::string refusedOption = "name = \"It's time for war\"\n";
+	std::string refusedOption = "= {\n";
+	refusedOption += "		name = \"It's time for war\"\n";
 	refusedOption += "		create_wargoal = {\n";
 	refusedOption += "			type = annex_everything\n";
 	refusedOption += "			target = " + Annexed->getTag() + "\n";
 	refusedOption += "		}\n";
+	refusedOption += "	}";
 	refusedEvent.options.push_back(refusedOption);
 
 	nationalFocusEvents.push_back(refusedEvent);
 
 
-	HoI4Event acceptedEvent;
+	Event acceptedEvent;
 	acceptedEvent.type = "country_event";
 	acceptedEvent.id = "NFEvents." + to_string(nationalFocusEventNumber + 1);
 	acceptedEvent.title = "\"" + annexedName + " accepts!\"";
-	acceptedEvent.description = "\"" + annexedName + " accepted our proposed union, their added strength will push us to greatness!\"";
+	acceptedEvent.descriptions.push_back("desc = \"" + annexedName + " accepted our proposed union, their added strength will push us to greatness!\"");
 	acceptedEvent.picture = "GFX_report_event_german_speech";
 	acceptedEvent.majorEvent = false;
 	acceptedEvent.triggeredOnly = true;
 
-	std::string acceptedOption = "name = \"A stronger Union!\"\n";
+	std::string acceptedOption = "= {\n";
+	acceptedOption += "		name = \"A stronger Union!\"\n";
 	for (auto state: Annexed->getStates())
 	{
 		acceptedOption += "		" + to_string(state.first) + " = {\n";
@@ -379,6 +395,7 @@ void HoI4Events::createAnnexEvent(std::shared_ptr<HoI4Country> Annexer, std::sha
 	acceptedOption += "		add_political_power = 50\n";
 	acceptedOption += "		add_named_threat = { threat = 2 name = \"" + annexedName + " annexed " + annexedName + "\" }\n";
 	acceptedOption += "		set_country_flag = " + Annexed->getTag() + "_annexed\n";
+	acceptedOption += "	}";
 	acceptedEvent.options.push_back(acceptedOption);
 
 	nationalFocusEvents.push_back(acceptedEvent);
@@ -388,7 +405,7 @@ void HoI4Events::createAnnexEvent(std::shared_ptr<HoI4Country> Annexer, std::sha
 }
 
 
-void HoI4Events::createSudetenEvent(std::shared_ptr<HoI4Country> Annexer, std::shared_ptr<HoI4Country> Annexed, const std::vector<int>& claimedStates)
+void HoI4::Events::createSudetenEvent(std::shared_ptr<HoI4Country> Annexer, std::shared_ptr<HoI4Country> Annexed, const std::vector<int>& claimedStates)
 {
 	//flesh out this event more, possibly make it so allies have a chance to help?
 	auto possibleAnnexerName = Annexer->getSourceCountry()->getName("english");
@@ -427,19 +444,21 @@ void HoI4Events::createSudetenEvent(std::shared_ptr<HoI4Country> Annexer, std::s
 		annexedName = "";
 	}
 
-	HoI4Event sudetenEvent;
+	Event sudetenEvent;
 	sudetenEvent.type = "country_event";
 	sudetenEvent.id = "NFEvents." + to_string(nationalFocusEventNumber);
 	sudetenEvent.title = annexerName + " Demands " + annexedName + "!";
-	sudetenEvent.description = "\"" + annexerName + " has recently been making claims to our bordering states, saying that these states are full of " + annexerAdjctive + " people and that the territory should be given to them. Although it ";
-	sudetenEvent.description += "is true that recently our neighboring states have had an influx of " + annexerAdjctive + " people in the recent years, we cannot give up our lands because a few " + annexerAdjctive + " settled down in our land. ";
-	sudetenEvent.description += "In response " + annexerName + " has called for a conference, demanding their territory in exchange for peace. How do we resond? ";
-	sudetenEvent.description += " Our people would be safe with the mighty army of " + annexerName + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!\"";
+	std::string description = "desc = \"" + annexerName + " has recently been making claims to our bordering states, saying that these states are full of " + annexerAdjctive + " people and that the territory should be given to them. Although it ";
+	description += "is true that recently our neighboring states have had an influx of " + annexerAdjctive + " people in the recent years, we cannot give up our lands because a few " + annexerAdjctive + " settled down in our land. ";
+	description += "In response " + annexerName + " has called for a conference, demanding their territory in exchange for peace. How do we resond? ";
+	description += " Our people would be safe with the mighty army of " + annexerName + " and we could possibly flourish with their established economy. Or we could refuse the union which would surely lead to war, but maybe we can hold them off!\"";
+	sudetenEvent.descriptions.push_back(description);
 	sudetenEvent.picture = "GFX_report_event_hitler_parade";
 	sudetenEvent.majorEvent = false;
 	sudetenEvent.triggeredOnly = true;
 
-	std::string acceptOption = "name = \"We Accept\"\n";
+	std::string acceptOption = "= {\n";
+	acceptOption += "		name = \"We Accept\"\n";
 	acceptOption += "		ai_chance = {\n";
 	acceptOption += "			base = 30\n";
 	acceptOption += "			modifier = {\n";
@@ -454,9 +473,11 @@ void HoI4Events::createSudetenEvent(std::shared_ptr<HoI4Country> Annexer, std::s
 	acceptOption += "		" + Annexer->getTag() + " = {\n";
 	acceptOption += "			country_event = { hours = 2 id = NFEvents." + to_string(nationalFocusEventNumber + 1) + " }\n";
 	acceptOption += "		}\n";
+	acceptOption += "	}";
 	sudetenEvent.options.push_back(acceptOption);
 
-	std::string refuseOption = "name = \"We Refuse!\"\n";
+	std::string refuseOption = "= {\n";
+	refuseOption += "		name = \"We Refuse!\"\n";
 	refuseOption += "		ai_chance = {\n";
 	refuseOption += "			base = 10\n";
 	refuseOption += "\n";
@@ -477,46 +498,51 @@ void HoI4Events::createSudetenEvent(std::shared_ptr<HoI4Country> Annexer, std::s
 	refuseOption += "				remove_from_faction = " + Annexed->getTag() + "\n";
 	refuseOption += "			}\n";
 	refuseOption += "		}\n";
+	refuseOption += "	}";
 	sudetenEvent.options.push_back(refuseOption);
 
 	nationalFocusEvents.push_back(sudetenEvent);
 
 
-	HoI4Event refusedEvent;
+	Event refusedEvent;
 	refusedEvent.type = "country_event";
 	refusedEvent.id = "NFEvents." + to_string(nationalFocusEventNumber + 2);
 	refusedEvent.title = "\"" + annexedName + " Refuses!\"";
-	refusedEvent.description = "\"" + annexedName + " Refused our proposed proposition! This is an insult to us that cannot go unanswered!\"";
+	refusedEvent.descriptions.push_back("desc = \"" + annexedName + " Refused our proposed proposition! This is an insult to us that cannot go unanswered!\"");
 	refusedEvent.picture = "GFX_report_event_german_troops";
 	refusedEvent.majorEvent = false;
 	refusedEvent.triggeredOnly = true;
 
-	std::string refusedOption = "name = \"It's time for war\"\n";
+	std::string refusedOption = "= {\n";
+	refusedOption += "		name = \"It's time for war\"\n";
 	refusedOption += "		create_wargoal = {\n";
 	refusedOption += "				type = annex_everything\n";
 	refusedOption += "			target = " + Annexed->getTag() + "\n";
 	refusedOption += "		}\n";
+	refusedOption += "	}";
 	refusedEvent.options.push_back(refusedOption);
 
 	nationalFocusEvents.push_back(refusedEvent);
 
 
-	HoI4Event acceptedEvent;
+	Event acceptedEvent;
 	acceptedEvent.type = "country_event";
 	acceptedEvent.id = "NFEvents." + to_string(nationalFocusEventNumber + 1);
 	acceptedEvent.title = "\"" + annexedName + " accepts!\"";
-	acceptedEvent.description = "\"" + annexedName + " accepted our proposed demands, the added lands will push us to greatness!\"";
+	acceptedEvent.descriptions.push_back("desc = \"" + annexedName + " accepted our proposed demands, the added lands will push us to greatness!\"");
 	acceptedEvent.picture = "GFX_report_event_german_speech";
 	acceptedEvent.majorEvent = false;
 	acceptedEvent.triggeredOnly = true;
 
-	std::string acceptedOption = "name = \"A stronger Union!\"\n";
+	std::string acceptedOption = "= {\n";
+	acceptedOption += "		name = \"A stronger Union!\"\n";
 	for (unsigned int i = 0; i <= 1 && i < claimedStates.size(); i++)
 	{
 		acceptedOption += "		" + to_string(claimedStates[i]) + " = { add_core_of = " + Annexer->getTag() + " }\n";
 		acceptedOption += "		" + Annexer->getTag() + " = { transfer_state =  " + to_string(claimedStates[i]) + " }\n";
 	}
 	acceptedOption += "		set_country_flag = " + Annexed->getTag() + "_demanded\n";
+	acceptedOption += "	}";
 	acceptedEvent.options.push_back(acceptedOption);
 
 	nationalFocusEvents.push_back(acceptedEvent);
@@ -526,7 +552,7 @@ void HoI4Events::createSudetenEvent(std::shared_ptr<HoI4Country> Annexer, std::s
 }
 
 
-void HoI4Events::createTradeEvent(std::shared_ptr<HoI4Country> leader, std::shared_ptr<HoI4Country> GC)
+void HoI4::Events::createTradeEvent(std::shared_ptr<HoI4Country> leader, std::shared_ptr<HoI4Country> GC)
 {
 	auto possibleAggressorName = GC->getSourceCountry()->getName("english");
 	std::string aggressorName;
@@ -540,18 +566,21 @@ void HoI4Events::createTradeEvent(std::shared_ptr<HoI4Country> leader, std::shar
 		aggressorName = "";
 	}
 
-	HoI4Event tradeIncidentEvent;
+	Event tradeIncidentEvent;
 	tradeIncidentEvent.type = "country_event";
 	tradeIncidentEvent.id = "NFEvents." + std::to_string(nationalFocusEventNumber++);
 	tradeIncidentEvent.title = "\"Trade Incident\"";
-	tradeIncidentEvent.description = "\"One of our convoys was sunk by " + aggressorName + "\"";
+	tradeIncidentEvent.descriptions.push_back("desc = \"One of our convoys was sunk by " + aggressorName + "\"");
 	tradeIncidentEvent.picture = "GFX_report_event_chinese_soldiers_fighting";
 	tradeIncidentEvent.majorEvent = false;
 	tradeIncidentEvent.triggeredOnly = true;
-	tradeIncidentEvent.trigger = "has_country_flag = established_traders\n";
-	tradeIncidentEvent.trigger += "		NOT = { has_country_flag = established_traders_activated }";
+	tradeIncidentEvent.trigger = "= {\n";
+	tradeIncidentEvent.trigger += "		has_country_flag = established_traders\n";
+	tradeIncidentEvent.trigger += "		NOT = { has_country_flag = established_traders_activated }\n";
+	tradeIncidentEvent.trigger += "	}";
 
-	std::string option = "name = \"They will Pay!\"\n";
+	std::string option = "= {\n";
+	option += "		name = \"They will Pay!\"\n";
 	option += "		ai_chance = { factor = 85 }\n";
 	option += "		effect_tooltip = {\n";
 	option += "			" + leader->getTag() + " = {\n";
@@ -561,14 +590,15 @@ void HoI4Events::createTradeEvent(std::shared_ptr<HoI4Country> leader, std::shar
 	option += "					target = " + GC->getTag() + "\n";
 	option += "				}\n";
 	option += "			}\n";
-	option += "		}";
+	option += "		}\n";
+	option += "	}";
 	tradeIncidentEvent.options.push_back(option);
 
 	nationalFocusEvents.push_back(tradeIncidentEvent);
 }
 
 
-void HoI4Events::createPoliticalEvents(const std::set<std::string>& majorIdeologies)
+void HoI4::Events::createPoliticalEvents(const std::set<std::string>& majorIdeologies)
 {
 	addMinisterRevolutionEvents(majorIdeologies);
 	addFiftyPercentEvents(majorIdeologies);
@@ -577,7 +607,7 @@ void HoI4Events::createPoliticalEvents(const std::set<std::string>& majorIdeolog
 }
 
 
-void HoI4Events::addMinisterRevolutionEvents(const std::set<std::string>& majorIdeologies)
+void HoI4::Events::addMinisterRevolutionEvents(const std::set<std::string>& majorIdeologies)
 {
 	for (auto ideology: majorIdeologies)
 	{
@@ -586,25 +616,132 @@ void HoI4Events::addMinisterRevolutionEvents(const std::set<std::string>& majorI
 			continue;
 		}
 
-		HoI4Event addPopularity;
+		Event onTheRise;
+		onTheRise.type = "country_event";
+		onTheRise.id = "conv.political." + to_string(politicalEventNumber);
+		onTheRise.title = "conv.political." + to_string(politicalEventNumber) + ".t";
+		HoI4Localisation::copyEventLocalisations(ideology + "_on_the_rise.t", onTheRise.title);
+		std::string description = "conv.political." + to_string(politicalEventNumber) + ".d";
+		onTheRise.descriptions.push_back("desc = " + description);
+		HoI4Localisation::copyEventLocalisations(ideology + "_on_the_rise.d", description);
+		onTheRise.picture = getIdeologicalPicture(ideology);
+		onTheRise.majorEvent = false;
+		onTheRise.triggeredOnly = true;
+		onTheRise.trigger = "NOT = { has_government = " + ideology + " }";
+		string optionA = "name = ";
+		string optionName = "conv.political." + to_string(politicalEventNumber) + ".a";
+		HoI4Localisation::copyEventLocalisations(ideology + "_on_the_rise.a", optionName);
+		HoI4Localisation::copyEventLocalisations(ideology + "_on_the_rise.a.tt", optionName + ".tt");
+		optionA += optionName + "\n";
+		optionA += "		custom_effect_tooltip = conv.political." + to_string(politicalEventNumber) + ".a.tt\n";
+		optionA += "		clr_country_flag = " + ideology + "_popular_movement\n";
+		optionA += "		set_country_flag = " + ideology + "_political_movement";
+		onTheRise.options.push_back(optionA);
+		string optionB = "name = ";
+		optionName = "conv.political." + to_string(politicalEventNumber) + ".b";
+		HoI4Localisation::copyEventLocalisations(ideology + "_on_the_rise.b", optionName);
+		HoI4Localisation::copyEventLocalisations(ideology + "_on_the_rise.b.tt", optionName + ".tt");
+		optionB += optionName + "\n";
+		optionB += "		custom_effect_tooltip = conv.political." + to_string(politicalEventNumber) + ".b.tt\n";
+		optionB += "		clr_country_flag = " + ideology + "_political_movement\n";
+		optionB += "		clr_country_flag = " + ideology + "_government_support\n";
+		optionB += "		set_country_flag = " + ideology + "_popular_movement";
+		onTheRise.options.push_back(optionB);
+		politicalEvents.push_back(onTheRise);
+		politicalEventNumber++;
+
+		Event ideologicalSympathies;
+		ideologicalSympathies.type = "country_event";
+		ideologicalSympathies.id = "conv.political." + to_string(politicalEventNumber);
+		ideologicalSympathies.title = "conv.political." + to_string(politicalEventNumber) + ".t";
+		HoI4Localisation::copyEventLocalisations(ideology + "_ideological_sympathies.t", ideologicalSympathies.title);
+		description = "conv.political." + to_string(politicalEventNumber) + ".d";
+		ideologicalSympathies.descriptions.push_back("desc = "  + description);
+		HoI4Localisation::copyEventLocalisations(ideology + "_ideological_sympathies.d", description);
+		ideologicalSympathies.picture = getIdeologicalPicture(ideology);
+		ideologicalSympathies.majorEvent = false;
+		ideologicalSympathies.triggeredOnly = false;
+		ideologicalSympathies.trigger = "has_idea_with_trait = " + ideology + "_minister\n";
+		ideologicalSympathies.trigger += "		NOT = { has_government = " + ideology + " }\n";
+		ideologicalSympathies.trigger += "		NOT = { has_country_flag = " + ideology + "_government_support }";
+		ideologicalSympathies.meanTimeToHappen = "days = 500\n";
+		ideologicalSympathies.meanTimeToHappen += "		modifier = {\n";
+		ideologicalSympathies.meanTimeToHappen += "			factor = 0.5\n";
+		ideologicalSympathies.meanTimeToHappen += "			has_country_flag = " + ideology + "_political_movement\n";
+		ideologicalSympathies.meanTimeToHappen += "		}";
+		optionA = "name = ";
+		optionName = "conv.political." + to_string(politicalEventNumber) + ".a";
+		HoI4Localisation::copyEventLocalisations(ideology + "_ideological_sympathies.a", optionName);
+		HoI4Localisation::copyEventLocalisations(ideology + "_ideological_sympathies.a.tt", optionName + ".tt");
+		optionA += optionName + "\n";
+		optionA += "		custom_effect_tooltip = conv.political." + to_string(politicalEventNumber) + ".a.tt\n";
+		optionA += "		clr_country_flag = " + ideology + "_political_movement\n";
+		optionA += "		set_country_flag = " + ideology + "_government_support";
+		ideologicalSympathies.options.push_back(optionA);
+		politicalEvents.push_back(ideologicalSympathies);
+		politicalEventNumber++;
+
+		Event coup;
+		coup.type = "country_event";
+		coup.id = "conv.political." + to_string(politicalEventNumber);
+		coup.title = "conv.political." + to_string(politicalEventNumber) + ".t";
+		HoI4Localisation::copyEventLocalisations(ideology + "_coup.t", coup.title);
+		description = "conv.political." + to_string(politicalEventNumber) + ".d";
+		coup.descriptions.push_back("desc = " + description);
+		HoI4Localisation::copyEventLocalisations(ideology + "_coup.d", description);
+		coup.picture = getIdeologicalPicture(ideology);
+		coup.majorEvent = false;
+		coup.triggeredOnly = false;
+		coup.trigger = "has_idea_with_trait = " + ideology + "_minister\n";
+		coup.trigger += "		NOT = { has_government = " + ideology + " }\n";
+		coup.trigger += "		has_country_flag = " + ideology + "_government_support\n";
+		coup.trigger += "		" + ideology + " > 0.4\n";
+		coup.trigger += "		is_major = no\n";
+		coup.trigger += "		is_puppet = no";
+		coup.meanTimeToHappen = "days = 100\n";
+		coup.meanTimeToHappen += "		modifier = {\n";
+		coup.meanTimeToHappen += "			factor = 0.5\n";
+		coup.meanTimeToHappen += "			" + ideology + " > 0.5\n";
+		coup.meanTimeToHappen += "		}";
+		coup.immediate = "hidden_effect = { remove_ideas = " + ideology + "_revolutionaries }";
+		optionA = "name = ";
+		optionName = "conv.political." + to_string(politicalEventNumber) + ".a";
+		HoI4Localisation::copyEventLocalisations(ideology + "_coup.a", optionName);
+		optionA += optionName + "\n";
+		optionA += "		set_politics = {\n";
+		optionA += "			ruling_party = " + ideology + "\n";
+		optionA += "			elections_allowed = no\n";
+		optionA += "		}\n";
+		optionA += "		add_timed_idea = { idea = reign_of_terror days = 730 }";
+		coup.options.push_back(optionA);
+		politicalEvents.push_back(coup);
+		politicalEventNumber++;
+
+		Event addPopularity;
 		addPopularity.type = "country_event";
 		addPopularity.id = "conv.political." + std::to_string(politicalEventNumber);
 		addPopularity.title = "conv.political." + std::to_string(politicalEventNumber) + ".t";
 		HoI4Localisation::copyEventLocalisations(ideology + "_add_popularity.t", addPopularity.title);
-		addPopularity.description = "conv.political." + std::to_string(politicalEventNumber) + ".d";
-		HoI4Localisation::copyEventLocalisations(ideology + "_add_popularity.d", addPopularity.description);
+		std::string description = "conv.political." + std::to_string(politicalEventNumber) + ".d";
+		addPopularity.descriptions.push_back("desc = " + description);
+		HoI4Localisation::copyEventLocalisations(ideology + "_add_popularity.d", description);
 		addPopularity.picture = getIdeologicalPicture(ideology);
 		addPopularity.majorEvent = false;
 		addPopularity.triggeredOnly = false;
-		addPopularity.trigger = "has_idea_with_trait = " + ideology + "_minister\n";
+		addPopularity.trigger = "= {\n";
+		addPopularity.trigger += "		has_idea_with_trait = " + ideology + "_minister\n";
 		addPopularity.trigger += "		NOT = { has_government = " + ideology + " }\n";
-		addPopularity.trigger += "		" + ideology + " > 0.2";
-		addPopularity.meanTimeToHappen = "days = 365\n";
+		addPopularity.trigger += "		" + ideology + " > 0.2\n";
+		addPopularity.trigger += "	}";
+		addPopularity.meanTimeToHappen = "= {\n";
+		addPopularity.meanTimeToHappen += "		days = 365\n";
 		addPopularity.meanTimeToHappen += "		modifier = {\n";
 		addPopularity.meanTimeToHappen += "			factor = 0.5\n";
 		addPopularity.meanTimeToHappen += "			has_country_flag = " + ideology + "_popular_movement\n";
-		addPopularity.meanTimeToHappen += "		}";
-		std::string optionA = "name = ";
+		addPopularity.meanTimeToHappen += "		}\n";
+		addPopularity.meanTimeToHappen += "	}";
+		std::string optionA = "= {\n";
+		optionA += "		name = ";
 		std::string optionName = "conv.political." + std::to_string(politicalEventNumber) + ".a";
 		HoI4Localisation::copyEventLocalisations(ideology + "_add_popularity.a", optionName);
 		optionA += optionName + "\n";
@@ -612,31 +749,38 @@ void HoI4Events::addMinisterRevolutionEvents(const std::set<std::string>& majorI
 		optionA += "			ideology = " + ideology + "\n";
 		optionA += "			popularity = 0.05\n";
 		optionA += "		}\n";
-		optionA += "		add_stability = -0.05";
+		optionA += "		add_stability = -0.05\n";
+		optionA += "	}";
 		addPopularity.options.push_back(optionA);
 		politicalEvents.push_back(addPopularity);
 		politicalEventNumber++;
 
-		HoI4Event militaryDefections;
+		Event militaryDefections;
 		militaryDefections.type = "country_event";
 		militaryDefections.id = "conv.political." + std::to_string(politicalEventNumber);
 		militaryDefections.title = "conv.political." + std::to_string(politicalEventNumber) + ".t";
 		HoI4Localisation::copyEventLocalisations(ideology + "_military_defections.t", militaryDefections.title);
-		militaryDefections.description = "conv.political." + std::to_string(politicalEventNumber) + ".d";
-		HoI4Localisation::copyEventLocalisations(ideology + "_military_defections.d", militaryDefections.description);
+		std::string description2 = "conv.political." + std::to_string(politicalEventNumber) + ".d";
+		militaryDefections.descriptions.push_back("desc = " + description2);
+		HoI4Localisation::copyEventLocalisations(ideology + "_military_defections.d", description2);
 		militaryDefections.picture = getIdeologicalPicture(ideology);
 		militaryDefections.majorEvent = false;
 		militaryDefections.triggeredOnly = false;
-		militaryDefections.trigger = "has_idea_with_trait = " + ideology + "_minister\n";
+		militaryDefections.trigger = "= {\n";
+		militaryDefections.trigger += "		has_idea_with_trait = " + ideology + "_minister\n";
 		militaryDefections.trigger += "		NOT = { has_government = " + ideology + " }\n";
 		militaryDefections.trigger += "		" + ideology + " > 0.3\n";
-		militaryDefections.trigger += "		NOT = { has_idea = " + ideology + "_partisans_recruiting }";
-		militaryDefections.meanTimeToHappen = "days = 365\n";
+		militaryDefections.trigger += "		NOT = { has_idea = " + ideology + "_partisans_recruiting }\n";
+		militaryDefections.trigger += "	}";
+		militaryDefections.meanTimeToHappen = "= {\n";
+		militaryDefections.meanTimeToHappen += "		days = 365\n";
 		militaryDefections.meanTimeToHappen += "		modifier = {\n";
 		militaryDefections.meanTimeToHappen += "			factor = 0.5\n";
 		militaryDefections.meanTimeToHappen += "			has_country_flag = " + ideology + "_popular_movement\n";
 		militaryDefections.meanTimeToHappen += "		}\n";
-		optionA = "name = ";
+		militaryDefections.meanTimeToHappen += "	}";
+		optionA = "= {\n";
+		optionA += "		name = ";
 		optionName = "conv.political." + std::to_string(politicalEventNumber) + ".a";
 		HoI4Localisation::copyEventLocalisations(ideology + "_military_defections.a", optionName);
 		optionA += optionName + "\n";
@@ -644,7 +788,8 @@ void HoI4Events::addMinisterRevolutionEvents(const std::set<std::string>& majorI
 		optionA += "			ideology = " + ideology + "\n";
 		optionA += "			popularity = 0.05\n";
 		optionA += "		}\n";
-		optionA += "		add_ideas = " + ideology + "_partisans_recruiting";
+		optionA += "		add_ideas = " + ideology + "_partisans_recruiting\n";
+		optionA += "	}";
 		militaryDefections.options.push_back(optionA);
 		politicalEvents.push_back(militaryDefections);
 		politicalEventNumber++;
@@ -657,28 +802,34 @@ void HoI4Events::addMinisterRevolutionEvents(const std::set<std::string>& majorI
 }
 
 
-void HoI4Events::addDemocraticMinisterRevolutionEvents(const std::set<std::string>& majorIdeologies)
+void HoI4::Events::addDemocraticMinisterRevolutionEvents(const std::set<std::string>& majorIdeologies)
 {
-	HoI4Event opposition;
+	Event opposition;
 	opposition.type = "country_event";
 	opposition.id = "conv.political." + std::to_string(politicalEventNumber);
 	opposition.title = "conv.political." + std::to_string(politicalEventNumber) + ".t";
 	HoI4Localisation::copyEventLocalisations("democratic_opposition_forming.t", opposition.title);
-	opposition.description = "conv.political." + std::to_string(politicalEventNumber) + ".d";
-	HoI4Localisation::copyEventLocalisations("democratic_opposition_forming.d", opposition.description);
+	std::string description = "conv.political." + std::to_string(politicalEventNumber) + ".d";
+	opposition.descriptions.push_back("desc = " + description);
+	HoI4Localisation::copyEventLocalisations("democratic_opposition_forming.d", description);
 	opposition.picture = getIdeologicalPicture("democratic");
 	opposition.majorEvent = false;
 	opposition.triggeredOnly = false;
-	opposition.trigger = "has_idea_with_trait = democratic_reformer\n";
+	opposition.trigger = "= {\n";
+	opposition.trigger += "		has_idea_with_trait = democratic_reformer\n";
 	opposition.trigger += "		NOT = { has_government = democratic }\n";
 	opposition.trigger += "		NOT = { has_country_flag = democracy_opposition_formed }\n";
-	opposition.trigger += "		is_puppet = no";
-	opposition.meanTimeToHappen = "days = 300\n";
+	opposition.trigger += "		is_puppet = no\n";
+	opposition.trigger += "	}";
+	opposition.meanTimeToHappen = "= {\n";
+	opposition.meanTimeToHappen += "		days = 300\n";
 	opposition.meanTimeToHappen += "		modifier = {\n";
 	opposition.meanTimeToHappen += "			factor = 0.5\n";
 	opposition.meanTimeToHappen += "			has_country_flag = democracy_popular_movement\n";
-	opposition.meanTimeToHappen += "		}";
-	std::string optionA = "name = ";
+	opposition.meanTimeToHappen += "		}\n";
+	opposition.meanTimeToHappen += "	}";
+	std::string optionA = "= {\n";
+	optionA += "		name = ";
 	std::string optionName = "conv.political." + std::to_string(politicalEventNumber) + ".a";
 	optionA += optionName + "\n";
 	HoI4Localisation::copyEventLocalisations("democratic_opposition_forming.a", optionName);
@@ -687,44 +838,54 @@ void HoI4Events::addDemocraticMinisterRevolutionEvents(const std::set<std::strin
 	optionA += "			popularity = 0.05\n";
 	optionA += "		}\n";
 	optionA += "		add_stability = -0.05\n";
-	optionA += "		set_country_flag = democracy_opposition_formed";
+	optionA += "		set_country_flag = democracy_opposition_formed\n";
+	optionA += "	}";
 	opposition.options.push_back(optionA);
 	politicalEvents.push_back(opposition);
 	politicalEventNumber++;
 
-	HoI4Event callForElections;
+	Event callForElections;
 	callForElections.type = "country_event";
 	callForElections.id = "conv.political." + std::to_string(politicalEventNumber);
 	callForElections.title = "conv.political." + to_string(politicalEventNumber) + ".t";
 	HoI4Localisation::copyEventLocalisations("democratic_call_for_elections.t", callForElections.title);
-	callForElections.description = "conv.political." + to_string(politicalEventNumber) + ".d";
-	HoI4Localisation::copyEventLocalisations("democratic_call_for_elections.d", callForElections.description);
+	std::string description2 = "conv.political." + to_string(politicalEventNumber) + ".d";
+	callForElections.descriptions.push_back("desc = " + description2);
+	HoI4Localisation::copyEventLocalisations("democratic_call_for_elections.d", description2);
 	callForElections.picture = getIdeologicalPicture("democratic");
 	callForElections.majorEvent = false;
 	callForElections.triggeredOnly = false;
-	callForElections.trigger = "has_idea_with_trait = democratic_reformer\n";
+	callForElections.trigger = "= {\n";
+	callForElections.trigger += "		has_idea_with_trait = democratic_reformer\n";
 	callForElections.trigger += "		NOT = { has_government = democratic }\n";
 	callForElections.trigger += "		has_country_flag = democracy_opposition_formed\n";
-	callForElections.trigger += "		NOT = { has_idea = democratic_opposition_voicing_protests }";
-	callForElections.meanTimeToHappen = "days = 150";
-	optionA = "name = ";
+	callForElections.trigger += "		NOT = { has_idea = democratic_opposition_voicing_protests }\n";
+	callForElections.trigger += "	}";
+	callForElections.meanTimeToHappen = "= {\n";
+	callForElections.meanTimeToHappen += "		days = 150\n";
+	callForElections.meanTimeToHappen += "	}";
+	optionA = "= {\n";
+	optionA += "		name = ";
 	optionName = "conv.political." + to_string(politicalEventNumber) + ".a";
-	optionA += optionName;
+	optionA += optionName + "\n";
 	HoI4Localisation::copyEventLocalisations("democratic_call_for_elections.a", optionName);
+	optionA += "	}";
 	callForElections.options.push_back(optionA);
-	std::string optionB = "name = ";
+	std::string optionB = "= {\n";
+	optionB += "		name = ";
 	optionName = "conv.political." + to_string(politicalEventNumber) + ".b";
 	optionB += optionName + "\n";
 	HoI4Localisation::copyEventLocalisations("democratic_call_for_elections.b", optionName);
 	optionB += "		add_political_power = -20\n";
-	optionB += "		add_ideas = democratic_opposition_voicing_protests";
+	optionB += "		add_ideas = democratic_opposition_voicing_protests\n";
+	optionB += "	}";
 	callForElections.options.push_back(optionB);
 	politicalEvents.push_back(callForElections);
 	politicalEventNumber++;
 }
 
 
-void HoI4Events::addFiftyPercentEvents(const std::set<std::string>& majorIdeologies)
+void HoI4::Events::addFiftyPercentEvents(const std::set<std::string>& majorIdeologies)
 {
 	for (auto ideology: majorIdeologies)
 	{
@@ -733,17 +894,19 @@ void HoI4Events::addFiftyPercentEvents(const std::set<std::string>& majorIdeolog
 			continue;
 		}
 
-		HoI4Event fiftyPercentEvent;
+		Event fiftyPercentEvent;
 		fiftyPercentEvent.type = "country_event";
 		fiftyPercentEvent.id = "conv.political." + std::to_string(politicalEventNumber);
 		fiftyPercentEvent.title = "conv.political." + std::to_string(politicalEventNumber) + ".t";
 		HoI4Localisation::copyEventLocalisations(ideology + "_fifty_percent.t", fiftyPercentEvent.title);
-		fiftyPercentEvent.description = "conv.political." + std::to_string(politicalEventNumber) + ".d";
-		HoI4Localisation::copyEventLocalisations(ideology + "_fifty_percent.d", fiftyPercentEvent.description);
+		std::string description = "conv.political." + std::to_string(politicalEventNumber) + ".d";
+		fiftyPercentEvent.descriptions.push_back("desc = " + description);
+		HoI4Localisation::copyEventLocalisations(ideology + "_fifty_percent.d", description);
 		fiftyPercentEvent.picture = getIdeologicalPicture(ideology);
 		fiftyPercentEvent.majorEvent = false;
 		fiftyPercentEvent.triggeredOnly = true;
-		std::string optionC = "name = ";
+		std::string optionC = "= {\n";
+		optionC += "		name = ";
 		std::string optionName = "conv.political." + std::to_string(politicalEventNumber) + ".c";
 		optionC += optionName + "\n";
 		HoI4Localisation::copyEventLocalisations(ideology + "_fifty_percent.c", optionName);
@@ -771,6 +934,7 @@ void HoI4Events::addFiftyPercentEvents(const std::set<std::string>& majorIdeolog
 			optionC += "		hold_election = ROOT\n";
 		}
 		optionC += "		add_stability = -0.05\n";
+		optionC += "	}";
 		fiftyPercentEvent.options.push_back(optionC);
 		politicalEvents.push_back(fiftyPercentEvent);
 		politicalEventNumber++;
@@ -778,7 +942,7 @@ void HoI4Events::addFiftyPercentEvents(const std::set<std::string>& majorIdeolog
 }
 
 
-void HoI4Events::addRevolutionEvents(const std::set<std::string>& majorIdeologies)
+void HoI4::Events::addRevolutionEvents(const std::set<std::string>& majorIdeologies)
 {
 	for (auto ideology: majorIdeologies)
 	{
@@ -787,24 +951,32 @@ void HoI4Events::addRevolutionEvents(const std::set<std::string>& majorIdeologie
 			continue;
 		}
 
-		HoI4Event revolutionEvent;
+		Event revolutionEvent;
 		revolutionEvent.type = "country_event";
 		revolutionEvent.id = "conv.political." + std::to_string(politicalEventNumber);
 		revolutionEvent.title = "conv.political." + std::to_string(politicalEventNumber) + ".t";
 		HoI4Localisation::copyEventLocalisations(ideology + "_revolution_event.t", revolutionEvent.title);
-		revolutionEvent.description = "conv.political." + std::to_string(politicalEventNumber) + ".d";
-		HoI4Localisation::copyEventLocalisations(ideology + "_revolution_event.d", revolutionEvent.description);
+		std::string description = "conv.political." + std::to_string(politicalEventNumber) + ".d";
+		revolutionEvent.descriptions.push_back("desc = " + description);
+		HoI4Localisation::copyEventLocalisations(ideology + "_revolution_event.d", description);
 		revolutionEvent.picture = getIdeologicalPicture(ideology);
 		revolutionEvent.majorEvent = false;
 		revolutionEvent.triggeredOnly = false;
-		revolutionEvent.trigger = ideology + " > 0.7\n";
-		revolutionEvent.trigger += "				NOT = { has_government = " + ideology + " }\n";
-		revolutionEvent.trigger += "				has_civil_war = no\n";
-		revolutionEvent.trigger += "				check_has_focus_tree_to_switch_to_" + ideology + " = yes\n";
+		revolutionEvent.trigger = "= {\n";
+		revolutionEvent.trigger += "		" + ideology + " > 0.7\n";
+		revolutionEvent.trigger += "		NOT = { has_government = " + ideology + " }\n";
+		revolutionEvent.trigger += "		has_civil_war = no\n";
+		revolutionEvent.trigger += "		check_has_focus_tree_to_switch_to_" + ideology + " = yes\n";
+		revolutionEvent.trigger += "	}";
 
-		revolutionEvent.meanTimeToHappen = "days = 2";
-		revolutionEvent.immediate = "hidden_effect = { remove_ideas = " + ideology + "_revolutionaries }";
-		std::string optionA = "name = ";
+		revolutionEvent.meanTimeToHappen = "= {\n";
+		revolutionEvent.meanTimeToHappen += "		days = 2\n";
+		revolutionEvent.meanTimeToHappen += "	}";
+		revolutionEvent.immediate = "= {\n";
+		revolutionEvent.immediate += "		hidden_effect = { remove_ideas = " + ideology + "_revolutionaries }\n";
+		revolutionEvent.immediate += "	}";
+		std::string optionA = "= {\n";
+		optionA += "		name = ";
 		string optionName = "conv.political." + to_string(politicalEventNumber) + ".a";
 		optionA += optionName + "\n";
 		HoI4Localisation::copyEventLocalisations(ideology + "_revolution_event.a", optionName);
@@ -814,9 +986,11 @@ void HoI4Events::addRevolutionEvents(const std::set<std::string>& majorIdeologie
 		optionA += "		start_civil_war = {\n";
 		optionA += "			ideology = " + ideology + "\n";
 		optionA += "			size = 0.5\n";
-		optionA += "		}";
+		optionA += "		}\n";
+		optionA += "	}";
 		revolutionEvent.options.push_back(optionA);
-		std::string optionB = "name = ";
+		std::string optionB = "= {\n";
+		optionB += "		name = ";
 		optionName = "conv.political." + std::to_string(politicalEventNumber) + ".b";
 		optionB += optionName + "\n";
 		HoI4Localisation::copyEventLocalisations(ideology + "_revolution_event.b", optionName);
@@ -845,6 +1019,7 @@ void HoI4Events::addRevolutionEvents(const std::set<std::string>& majorIdeologie
 			}
 			optionB += "		}\n";
 		}
+		optionB += "	}";
 		revolutionEvent.options.push_back(optionB);
 		politicalEvents.push_back(revolutionEvent);
 		politicalEventNumber++;
@@ -852,7 +1027,7 @@ void HoI4Events::addRevolutionEvents(const std::set<std::string>& majorIdeologie
 }
 
 
-void HoI4Events::addSuppressedEvents(const std::set<std::string>& majorIdeologies)
+void HoI4::Events::addSuppressedEvents(const std::set<std::string>& majorIdeologies)
 {
 	for (auto ideology: majorIdeologies)
 	{
@@ -860,24 +1035,31 @@ void HoI4Events::addSuppressedEvents(const std::set<std::string>& majorIdeologie
 		{
 			continue;
 		}
-		HoI4Event suppressedEvent;
+		Event suppressedEvent;
 		suppressedEvent.type = "country_event";
 		suppressedEvent.id = "conv.political." + std::to_string(politicalEventNumber);
 		suppressedEvent.title = "conv.political." + std::to_string(politicalEventNumber) + ".t";
 		HoI4Localisation::copyEventLocalisations(ideology + "_suppressed_event.t", suppressedEvent.title);
-		suppressedEvent.description = "conv.political." + std::to_string(politicalEventNumber) + ".d";
-		HoI4Localisation::copyEventLocalisations(ideology + "_suppressed_event.d", suppressedEvent.description);
+		std::string description = "conv.political." + std::to_string(politicalEventNumber) + ".d";
+		suppressedEvent.descriptions.push_back("desc = " + description);
+		HoI4Localisation::copyEventLocalisations(ideology + "_suppressed_event.d", description);
 		suppressedEvent.picture = getIdeologicalPicture(ideology);
 		suppressedEvent.majorEvent = false;
 		suppressedEvent.triggeredOnly = false;
-		suppressedEvent.trigger = ideology + " < 0.3\n";
-		suppressedEvent.trigger += "		has_idea = " + ideology + "_revolutionaries";
-		suppressedEvent.meanTimeToHappen = "days = 2";
-		std::string option = "name = ";
+		suppressedEvent.trigger = "= {\n";
+		suppressedEvent.trigger += "		" + ideology + " < 0.3\n";
+		suppressedEvent.trigger += "		has_idea = " + ideology + "_revolutionaries\n";
+		suppressedEvent.trigger += "	}";
+		suppressedEvent.meanTimeToHappen = "= {\n";
+		suppressedEvent.meanTimeToHappen += "		days = 2\n";
+		suppressedEvent.meanTimeToHappen += "	}";
+		std::string option = "= {\n";
+		option += "		name = ";
 		std::string optionName = "conv.political." + std::to_string(politicalEventNumber) + ".a";
 		option += optionName + "\n";
 		HoI4Localisation::copyEventLocalisations(ideology + "_suppressed_event.a", optionName);
 		option += "		remove_ideas = " + ideology + "_revolutionaries\n";
+		option += "	}";
 		suppressedEvent.options.push_back(option);
 		politicalEvents.push_back(suppressedEvent);
 		politicalEventNumber++;
@@ -894,7 +1076,7 @@ void HoI4Events::addSuppressedEvents(const std::set<std::string>& majorIdeologie
 	}
 	if (numRelevantIdeologies > 0)
 	{
-		HoI4Event removeNeutral;
+		Event removeNeutral;
 		removeNeutral.type = "country_event";
 		removeNeutral.id = "conv.political." + std::to_string(politicalEventNumber);
 		removeNeutral.title = "conv.political." + std::to_string(politicalEventNumber) + ".t";
@@ -905,20 +1087,22 @@ void HoI4Events::addSuppressedEvents(const std::set<std::string>& majorIdeologie
 			{
 				continue;
 			}
-			removeNeutral.description += "	desc = {\n";
-			removeNeutral.description += "		text = political." + std::to_string(politicalEventNumber) + ".d_" + ideology + "\n";
-			removeNeutral.description += "		trigger = { has_government = " + ideology + " }\n";
-			removeNeutral.description += "	}\n";
+			std::string description = "desc = {\n";
+			description += "		text = political." + std::to_string(politicalEventNumber) + ".d_" + ideology + "\n";
+			description += "		trigger = { has_government = " + ideology + " }\n";
+			description += "	}";
+			removeNeutral.descriptions.push_back(description);
 			HoI4Localisation::copyEventLocalisations("abandon_neutral.d_" + ideology, "conv.political." + std::to_string(politicalEventNumber) + "_" + ideology);
 		}
-		if (removeNeutral.description.size() > 0)
+		/*if (removeNeutral.description.size() > 0)
 		{
 			removeNeutral.description = removeNeutral.description.substr(8, removeNeutral.description.size() - 9);
-		}
+		}*/
 		removeNeutral.picture = "GFX_report_event_journalists_speech";
 		removeNeutral.majorEvent = false;
 		removeNeutral.triggeredOnly = false;
-		removeNeutral.trigger = "OR = {\n";
+		removeNeutral.trigger = "= {\n";
+		removeNeutral.trigger += "		OR = {\n";
 		for (auto ideology: majorIdeologies)
 		{
 			if ((ideology == "democratic") || (ideology == "neutrality"))
@@ -928,20 +1112,25 @@ void HoI4Events::addSuppressedEvents(const std::set<std::string>& majorIdeologie
 			removeNeutral.trigger += "			has_government = " + ideology + "\n";
 		}
 		removeNeutral.trigger += "		}\n";
-		removeNeutral.trigger += "		has_idea = neutrality_idea";
-		removeNeutral.meanTimeToHappen = "days = 2";
-		std::string option = "name = ";
+		removeNeutral.trigger += "		has_idea = neutrality_idea\n";
+		removeNeutral.trigger += "	}";
+		removeNeutral.meanTimeToHappen = "= {\n";
+		removeNeutral.meanTimeToHappen += "		days = 2\n";
+		removeNeutral.meanTimeToHappen += "	}";
+		std::string option = "= {\n";
+		option += "		name = ";
 		std::string optionName = "conv.political." + std::to_string(politicalEventNumber) + ".a";
 		option += optionName + "\n";
 		HoI4Localisation::copyEventLocalisations("abandon_neutral.a", optionName);
-		option += "		remove_ideas = neutrality_idea";
+		option += "		remove_ideas = neutrality_idea\n";
+		option += "	}";
 		removeNeutral.options.push_back(option);
 		politicalEvents.push_back(removeNeutral);
 	}
 }
 
 
-std::string HoI4Events::getIdeologicalPicture(const std::string& ideology) const
+std::string HoI4::Events::getIdeologicalPicture(const std::string& ideology) const
 {
 	if (ideology == "communism")
 	{
@@ -970,22 +1159,25 @@ std::string HoI4Events::getIdeologicalPicture(const std::string& ideology) const
 }
 
 
-void HoI4Events::createWarJustificationEvents(const std::set<std::string>& majorIdeologies)
+void HoI4::Events::createWarJustificationEvents(const std::set<std::string>& majorIdeologies)
 {
-	HoI4Event wargoalExpired;
+	Event wargoalExpired;
 	wargoalExpired.type = "country_event";
 	wargoalExpired.id = "war_justification.301";
 	wargoalExpired.title = "war_justification.301.t";
-	wargoalExpired.description = "war_justification.301.d";
+	wargoalExpired.descriptions.push_back("desc = war_justification.301.d");
 	wargoalExpired.picture = "GFX_report_event_iww_demonstration";
 	wargoalExpired.majorEvent = false;
 	wargoalExpired.triggeredOnly = true;
-	wargoalExpired.trigger = "has_war = no";
+	wargoalExpired.trigger = "= {\n";
+	wargoalExpired.trigger += "		has_war = no\n";
+	wargoalExpired.trigger += "	}";
 
 	char letter = 'a';
 	for (auto ideology: majorIdeologies)
 	{
-		std::string option = "name = war_justification.301." + std::string(1, letter) + "\n";
+		std::string option = "= {\n";
+		option += "		name = war_justification.301." + std::string(1, letter) + "\n";
 		option += "		trigger = { has_government = " + ideology + " }\n";
 		option += "		add_political_power = -30\n";
 		option += "		add_war_support = -0.03\n";
@@ -994,8 +1186,9 @@ void HoI4Events::createWarJustificationEvents(const std::set<std::string>& major
 			option += "		add_popularity = {\n";
 			option += "			ideology = " + ideology + "\n";
 			option += "			popularity = -0.05\n";
-			option += "		}";
+			option += "		}\n";
 		}
+		option += "	}";
 		wargoalExpired.options.push_back(option);
 		letter++;
 	}
@@ -1003,30 +1196,33 @@ void HoI4Events::createWarJustificationEvents(const std::set<std::string>& major
 }
 
 
-void HoI4Events::addPartyChoiceEvent(const std::string& countryTag, const std::set<V2Party, std::function<bool (const V2Party&, const V2Party&)>>& parties, HoI4OnActions* onActions, const set<string>& majorIdeologies)
+void HoI4::Events::addPartyChoiceEvent(const std::string& countryTag, const std::set<V2Party, std::function<bool (const V2Party&, const V2Party&)>>& parties, HoI4OnActions* onActions, const set<string>& majorIdeologies)
 {
-	HoI4Event partyChoiceEvent;
+	Event partyChoiceEvent;
 
 	partyChoiceEvent.type = "country_event";
 	partyChoiceEvent.id = "election." + std::to_string(electionEventNumber);
 	partyChoiceEvent.title = "election." + std::to_string(electionEventNumber) + ".t";
 	HoI4Localisation::copyEventLocalisations("party_choice.t", partyChoiceEvent.title);
-	partyChoiceEvent.description = "election." + std::to_string(electionEventNumber) + ".d";
-	HoI4Localisation::copyEventLocalisations("party_choice.d", partyChoiceEvent.description);
+	std::string description = "election." + std::to_string(electionEventNumber) + ".d";
+	partyChoiceEvent.descriptions.push_back("desc = " + description);
+	HoI4Localisation::copyEventLocalisations("party_choice.d", description);
 	partyChoiceEvent.picture = "GFX_report_event_usa_election_generic";
 	partyChoiceEvent.triggeredOnly = true;
-	partyChoiceEvent.trigger = "tag = " + countryTag + "\n";
+	partyChoiceEvent.trigger = "= {\n";
+	partyChoiceEvent.trigger += "		tag = " + countryTag + "\n";
 	if (majorIdeologies.count("democratic") > 0)
 	{
 		partyChoiceEvent.trigger += "		OR = {\n";
 		partyChoiceEvent.trigger += "			democratic > 0.5\n";
 		partyChoiceEvent.trigger += "			neutrality > 0.5\n";
-		partyChoiceEvent.trigger += "		}";
+		partyChoiceEvent.trigger += "		}\n";
 	}
 	else
 	{
-		partyChoiceEvent.trigger += "		neutrality > 0.5";
+		partyChoiceEvent.trigger += "		neutrality > 0.5\n";
 	}
+	partyChoiceEvent.trigger += "	}";
 
 	char optionLetter = 'a';
 	for (auto party: parties)
@@ -1037,7 +1233,8 @@ void HoI4Events::addPartyChoiceEvent(const std::string& countryTag, const std::s
 			std::string trimmedName = partyName.substr(4, partyName.size());
 
 			std::string optionName = "election." + std::to_string(electionEventNumber) + optionLetter;
-			std::string option = "name = " + optionName + "\n";
+			std::string option = "= {\n";
+			option += "		name = " + optionName + "\n";
 			if (majorIdeologies.count("democratic") > 0)
 			{
 				option += "		set_party_name = { ideology = democratic long_name = " + countryTag + "_" + trimmedName + "_party " + "name = " + countryTag + "_" + trimmedName + "_party }\n";
@@ -1046,7 +1243,8 @@ void HoI4Events::addPartyChoiceEvent(const std::string& countryTag, const std::s
 			{
 				option += "		set_party_name = { ideology = neutrality long_name = " + countryTag + "_" + trimmedName + "_party " + "name = " + countryTag + "_" + trimmedName + "_party }\n";
 			}
-			option += "		retire_country_leader = yes";
+			option += "		retire_country_leader = yes\n";
+			option += "	}";
 			partyChoiceEvent.options.push_back(option);
 			HoI4Localisation::addEventLocalisationFromVic2(partyName, optionName);
 			optionLetter++;
@@ -1057,3 +1255,74 @@ void HoI4Events::addPartyChoiceEvent(const std::string& countryTag, const std::s
 	electionEvents.push_back(partyChoiceEvent);
 	electionEventNumber++;
 }
+
+#pragma optimize("", off)
+void HoI4::Events::createStabilityEvents(const std::set<std::string>& majorIdeologies)
+{
+	registerKeyword(std::regex("add_namespace"), commonItems::ignoreString);
+	registerKeyword(std::regex("country_event"), [this](const std::string& type, std::istream& theStream)
+		{
+			Event newEvent(theStream);
+			newEvent.type = type;
+			stabilityEvents.insert(make_pair(newEvent.id, newEvent));
+		}
+	);
+
+	parseFile(Configuration::getHoI4Path() + "/events/stability_events.txt");
+
+	auto conscriptionRebellion = stabilityEvents.find("stability.33");
+	conscriptionRebellion->second.options.clear();
+	std::string option = "= {\n";
+	option += "		name = stability.33.a\n";
+	option += "		if = {\n";
+	if (majorIdeologies.count("democratic") > 0)
+	{
+		option += "			limit = { has_government = democratic }\n";
+	}
+	else
+	{
+		option += "			limit = { has_government = neutrality }\n";
+	}
+	if (majorIdeologies.count("communism") > 0)
+	{
+		option += "			start_civil_war = { ideology = communism size = 0.35 }\n";
+	}
+	else if (majorIdeologies.count("radical") > 0)
+	{
+		option += "			start_civil_war = { ideology = radical size = 0.35 }\n";
+	}
+	else if (majorIdeologies.count("fascism") > 0)
+	{
+		option += "			start_civil_war = { ideology = fascism size = 0.35 }\n";
+	}
+	else if (majorIdeologies.count("absolutist") > 0)
+	{
+		option += "			start_civil_war = { ideology = absolutist size = 0.35 }\n";
+	}
+	option += "		}\n";
+	if (majorIdeologies.count("democratic") > 0)
+	{
+		option += "		if = {\n";
+		option += "			limit = { \n";
+		option += "				OR = {\n";
+		for (auto majorIdeology: majorIdeologies)
+		{
+			if ((majorIdeology == "democratic") || (majorIdeology == "neutrality"))
+			{
+				continue;
+			}
+
+			option += "					has_government = " + majorIdeology + "\n";
+		}
+		option += "				} \n";
+		option += "			}\n";
+		option += "			start_civil_war = { ideology = democratic size = 0.45 }\n";
+		option += "		}\n";
+	}
+	option += "		clr_country_flag = crisis_in_progress\n";
+	option += "		clr_country_flag = crisis_solution_in_progress\n";
+	option += "		set_country_flag = { flag = draft_dodging_resolved days = 90 }\n";
+	option += "	}";
+	conscriptionRebellion->second.options.push_back(option);
+}
+#pragma optimize("", on)
