@@ -555,9 +555,10 @@ commonItems::stringOfItem::stringOfItem(std::istream& theStream)
 {
 	auto equals = getNextLexeme(theStream);
 	auto next = getNextLexeme(theStream);
+	theString = equals + " " + next;
+
 	if (next == "{")
 	{
-		theString = equals + " {";
 		int braceDepth = 1;
 		while (true)
 		{
@@ -584,9 +585,5 @@ commonItems::stringOfItem::stringOfItem(std::istream& theStream)
 				}
 			}
 		}
-	}
-	else
-	{
-		theString = next;
 	}
 }
