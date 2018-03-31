@@ -167,6 +167,46 @@ void HoI4::Events::outputElectionEvents() const
 }
 
 
+void HoI4::Events::outputStabilityEvents() const
+{
+	std::ofstream outStabilityEvents("output/" + Configuration::getOutputName() + "/events/stability_events.txt");
+	if (!outStabilityEvents.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not open StabilityEvents.txt";
+		exit(-1);
+	}
+
+	outStabilityEvents << "###########################\n";
+	outStabilityEvents << "#stability events\n";
+	outStabilityEvents << "###########################\n";
+	outStabilityEvents << "\n";
+	outStabilityEvents << "add_namespace = stability\n";
+	outStabilityEvents << "\n";
+
+	for (auto& theEvent: stabilityEvents)
+	{
+		outStabilityEvents << "\n";
+		outStabilityEvents << theEvent.second;
+	}
+
+	outStabilityEvents << "add_namespace = strikes_event\n";
+	for (auto& theEvent: strikesEvents)
+	{
+		outStabilityEvents << "\n";
+		outStabilityEvents << theEvent.second;
+	}
+
+	outStabilityEvents << "add_namespace = mutiny_event\n";
+	for (auto& theEvent: mutinyEvents)
+	{
+		outStabilityEvents << "\n";
+		outStabilityEvents << theEvent.second;
+	}
+
+	outStabilityEvents.close();
+}
+
+
 void HoI4::Events::createFactionEvents(std::shared_ptr<HoI4Country> Leader, std::shared_ptr<HoI4Country> newAlly)
 {
 	auto possibleLeaderName = Leader->getSourceCountry()->getName("english");
@@ -1155,7 +1195,7 @@ void HoI4::Events::addPartyChoiceEvent(const std::string& countryTag, const std:
 	electionEventNumber++;
 }
 
-#pragma optimize("", off)
+
 void HoI4::Events::createStabilityEvents(const std::set<std::string>& majorIdeologies)
 {
 	registerKeyword(std::regex("add_namespace"), commonItems::ignoreString);
@@ -1163,7 +1203,18 @@ void HoI4::Events::createStabilityEvents(const std::set<std::string>& majorIdeol
 		{
 			Event newEvent(theStream);
 			newEvent.type = type;
-			stabilityEvents.insert(make_pair(newEvent.id, newEvent));
+			if (newEvent.id.substr(0, 9) == "stability")
+			{
+				stabilityEvents.insert(make_pair(newEvent.id, newEvent));
+			}
+			else if (newEvent.id.substr(0, 6) == "mutiny")
+			{
+				mutinyEvents.insert(make_pair(newEvent.id, newEvent));
+			}
+			else
+			{
+				strikesEvents.insert(make_pair(newEvent.id, newEvent));
+			}
 		}
 	);
 
@@ -1224,4 +1275,3 @@ void HoI4::Events::createStabilityEvents(const std::set<std::string>& majorIdeol
 	option += "	}";
 	conscriptionRebellion->second.options.push_back(option);
 }
-#pragma optimize("", on)

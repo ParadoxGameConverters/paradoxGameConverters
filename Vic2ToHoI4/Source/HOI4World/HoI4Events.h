@@ -56,6 +56,7 @@ namespace HoI4
 			void createPoliticalEvents(const std::set<std::string>& majorIdeologies);
 			void createWarJustificationEvents(const std::set<std::string>& majorIdeologies);
 			void addPartyChoiceEvent(const std::string& countryTag, const std::set<V2Party, std::function<bool (const V2Party&, const V2Party&)>>& parties, HoI4OnActions* onActions, const std::set<std::string>& majorIdeologies);
+			void createStabilityEvents(const std::set<std::string>& majorIdeologies);
 
 			int getCurrentNationFocusEventNum() const { return nationalFocusEventNumber; }
 
@@ -69,6 +70,7 @@ namespace HoI4
 			void outputPoliticalEvents() const;
 			void outputWarJustificationEvents() const;
 			void outputElectionEvents() const;
+			void outputStabilityEvents() const;
 
 			void addMinisterRevolutionEvents(const std::set<std::string>& majorIdeologies);
 			void addDemocraticMinisterRevolutionEvents(const std::set<std::string>& majorIdeologies);
@@ -86,6 +88,9 @@ namespace HoI4
 			std::vector<Event> warJustificationEvents;
 			std::vector<Event> electionEvents;
 			int electionEventNumber;
+			std::map<std::string, Event> stabilityEvents;
+			std::map<std::string, Event> strikesEvents;
+			std::map<std::string, Event> mutinyEvents;
 	};
 }
 
