@@ -549,3 +549,44 @@ commonItems::stringOfObject::stringOfObject(std::istream& theStream)
 		}
 	}
 }
+
+
+commonItems::stringOfItem::stringOfItem(std::istream& theStream)
+{
+	auto equals = getNextLexeme(theStream);
+	auto next = getNextLexeme(theStream);
+	if (next == "{")
+	{
+		theString = equals + " {";
+		int braceDepth = 1;
+		while (true)
+		{
+			if (theStream.eof())
+			{
+				return;
+			}
+
+			char inputChar;
+			theStream >> inputChar;
+
+			theString += inputChar;
+
+			if (inputChar == '{')
+			{
+				braceDepth++;
+			}
+			else if (inputChar == '}')
+			{
+				braceDepth--;
+				if (braceDepth == 0)
+				{
+					return;
+				}
+			}
+		}
+	}
+	else
+	{
+		theString = next;
+	}
+}
