@@ -12,7 +12,7 @@ ideas = {
 			picture = generic_fascism_drift_bonus
 			
 			modifier = {
-				unity_factor = -0.1
+				stability_factor = -0.1
 			}
 		}
 
@@ -27,7 +27,7 @@ ideas = {
 			picture = generic_communism_drift_bonus
 			
 			modifier = {
-				unity_factor = -0.1
+				stability_factor = -0.1
 			}
 		}
 
@@ -42,7 +42,7 @@ ideas = {
 			picture = generic_democratic_drift_bonus
 			
 			modifier = {
-				unity_factor = -0.1
+				stability_factor = -0.1
 			}
 		}
 
@@ -57,7 +57,7 @@ ideas = {
 			picture = generic_democratic_drift_bonus
 			
 			modifier = {
-				unity_factor = 0.1
+				stability_factor = 0.1
 			}
 		}
 
@@ -71,7 +71,7 @@ ideas = {
 			picture = generic_democratic_drift_bonus
 			
 			modifier = {
-				unity_factor = 0.1
+				stability_factor = 0.1
 			}
 		}
 		
@@ -112,7 +112,7 @@ ideas = {
 			picture = generic_democratic_drift_bonus
 			
 			modifier = {
-				unity_factor = -0.1
+				stability_factor = -0.1
 			}
 		}
 	}
