@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "V2Rgo.h"
 #include <map>
+#include <memory>
 #include <optional>
 #include <set>
 #include <string>
@@ -39,7 +40,9 @@ using namespace std;
 
 class Object;
 class V2Country;
-class V2Pop;
+namespace Vic2 {
+	class Pop;
+}
 
 
 
@@ -66,7 +69,7 @@ class V2Province
 		int getRailLevel() const { return railLevel; }
 		int getFortLevel() const { return fortLevel; }
 		int getNavalBaseLevel() const { return navalBaseLevel; }
-		vector<const V2Pop*> getPops() const { return pops; }
+		std::vector<std::shared_ptr<const Vic2::Pop>> getPops() const { return pops; }
 
 	private:
 		V2Province(const V2Province&) = delete;
@@ -79,7 +82,7 @@ class V2Province
 		void readRgo(shared_ptr<Object> obj);
 		void readPops(shared_ptr<Object> obj);
 		bool isPopObject(shared_ptr<Object> obj);
-		int calculateLiteracyWeightedPop(const V2Pop* thePop) const;
+		int calculateLiteracyWeightedPop(const std::shared_ptr<const Vic2::Pop> thePop) const;
 
 		int number;
 
@@ -89,7 +92,7 @@ class V2Province
 		set<string> coreStrings;
 		set<V2Country*> cores;
 
-		vector<const V2Pop*> pops;
+		std::vector<std::shared_ptr<const Vic2::Pop>> pops;
 		V2Rgo rgo;
 
 		int fortLevel;

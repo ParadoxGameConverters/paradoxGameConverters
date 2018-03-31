@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -23,8 +23,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "V2Province.h"
 #include "Log.h"
+#include "newParser.h"
 #include "Object.h"
 #include "V2Pop.h"
+#include <memory>
 using namespace std;
 
 
@@ -112,6 +114,7 @@ void V2Province::readRgo(shared_ptr<Object> obj)
 	rgo = V2Rgo(goods, workers);
 }
 
+
 void V2Province::readPops(shared_ptr<Object> obj)
 {
 	vector<shared_ptr<Object>> children = obj->getLeaves();
@@ -119,7 +122,9 @@ void V2Province::readPops(shared_ptr<Object> obj)
 	{
 		if (isPopObject(child))
 		{
-			V2Pop* pop = new V2Pop(child);
+			std::stringstream popStream;
+			popStream << *child;
+			std::shared_ptr<Vic2::Pop> pop = make_shared<Vic2::Pop>(child->getKey(), popStream);
 			pops.push_back(pop);
 		}
 	}
@@ -226,7 +231,7 @@ double V2Province::getPercentageWithCultures(const set<string>& cultures) const
 }
 
 
-int V2Province::calculateLiteracyWeightedPop(const V2Pop* thePop) const
+int V2Province::calculateLiteracyWeightedPop(const shared_ptr<const Vic2::Pop> thePop) const
 {
 	return int(thePop->getSize() * (thePop->getLiteracy() * 0.9 + 0.1));
 }

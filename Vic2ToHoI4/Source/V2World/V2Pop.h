@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -21,40 +21,43 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef V2POP_H_
-#define V2POP_H_
+#ifndef VIC2_POP_H_
+#define VIC2_POP_H_
 
 
 
+#include "newParser.h"
 #include <memory>
 #include <string>
-using namespace std;
-
-
-class Object;
 
 
 
-class V2Pop
+namespace Vic2
 {
-	public:
-		explicit V2Pop(shared_ptr<Object> obj);
+	class Pop: commonItems::parser
+	{
+		public:
+			explicit Pop(const std::string& typeString, std::istream& theStream);
 
-		int getSize() const { return size; }
-		string getType() const { return type; }
-		string getCulture() const { return culture; }
-		double getLiteracy() const { return literacy; }
+			int getSize() const { return size; }
+			std::string getType() const { return type; }
+			std::string getCulture() const { return culture; }
+			double getLiteracy() const { return literacy; }
 
-	private:
-		V2Pop(const V2Pop&) = delete;
-		V2Pop& operator=(const V2Pop&) = delete;
+		private:
+			Pop(const Pop&) = delete;
+			Pop& operator=(const Pop&) = delete;
 
-		int size;
-		string type;
-		string culture;
-		double literacy;
-};
+			int size = 0;
+			std::string type = "";
+			std::string culture = "no_culture";
+			std::string religion = "";
+			double literacy = 0.0;
+			double consciousness = 0.0;
+			double militancy = 0.0;
+	};
+}
 
 
 
-#endif // V2POP_H_
+#endif // VIC2_POP_H_
