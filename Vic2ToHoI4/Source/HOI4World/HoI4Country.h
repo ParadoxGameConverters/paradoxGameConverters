@@ -160,7 +160,8 @@ class HoI4Country
 		bool areElectionsAllowed(void) const;
 		void outputFactions(ofstream& output) const;
 		void outputIdeas(ofstream& output) const;
-		void outputNationalUnity(ofstream& output) const;
+		void outputStability(ofstream& output) const;
+		void outputWarSupport(ofstream& output) const;
 		void outputCountryLeader(ofstream& output) const;
 		void outputOOBLine(ofstream& output) const;
 		void outputCommonCountryFile() const;
@@ -192,7 +193,8 @@ class HoI4Country
 		map<string, int>					researchBonuses;
 		map<string, HoI4Relations*>	relations;
 		ConverterColor::Color color;
-		double								nationalUnity;
+		double stability = 0.50;
+		double warSupport = 0.50;
 		shared_ptr<const HoI4Faction>	faction;
 		bool									factionLeader;
 		set<string>							allies;

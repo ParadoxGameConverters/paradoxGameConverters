@@ -66,7 +66,6 @@ HoI4Country::HoI4Country(const string& _tag, const string& _commonCountryFile, c
 	researchBonuses(),
 	relations(),
 	color(),
-	nationalUnity(0.70),
 	faction(nullptr),
 	factionLeader(false),
 	allies(),
@@ -131,7 +130,8 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	lastElection = srcCountry->getLastElection();
 	initIdeas();
 
-	nationalUnity = 0.70 + (srcCountry->getRevanchism() / 5.0) - (srcCountry->getWarExhaustion() / 100.0 / 2.5);
+	stability = 0.5; //0.70 + (srcCountry->getRevanchism() / 5.0) - (srcCountry->getWarExhaustion() / 100.0 / 2.5);
+	warSupport = 0.5;
 
 	convertLaws();
 	//convertLeaders(portraitMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
@@ -1309,7 +1309,8 @@ void HoI4Country::outputHistory() const
 	outputRelations(output);
 	outputFactions(output);
 	outputIdeas(output);
-	outputNationalUnity(output);
+	outputStability(output);
+	outputWarSupport(output);
 	outputCountryLeader(output);
 
 	output.close();
@@ -1591,11 +1592,20 @@ void HoI4Country::outputIdeas(ofstream& output) const
 }
 
 
-void HoI4Country::outputNationalUnity(ofstream& output) const
+void HoI4Country::outputStability(ofstream& output) const
 {
 	if (states.size() > 0)
 	{
-		output << "set_national_unity = " << nationalUnity << "\n";
+		output << "set_stability = " << stability << "\n";
+	}
+}
+
+
+void HoI4Country::outputWarSupport(ofstream& output) const
+{
+	if (states.size() > 0)
+	{
+		output << "set_war_support = " << warSupport << "\n";
 	}
 }
 
