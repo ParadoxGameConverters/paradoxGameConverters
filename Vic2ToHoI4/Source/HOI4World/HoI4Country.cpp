@@ -131,7 +131,24 @@ void HoI4Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	initIdeas();
 
 	stability = 0.5; //0.70 + (srcCountry->getRevanchism() / 5.0) - (srcCountry->getWarExhaustion() / 100.0 / 2.5);
+	LOG(LogLevel::Debug) << "stability," << tag << "," << stability;
+
 	warSupport = 0.5;
+	if (srcCountry->getProvinces().size() > 0)
+	{
+		float warAttitude = srcCountry->getAverageIssueSupport("jingoism");
+		warAttitude += srcCountry->getAverageIssueSupport("pro_military") / 2;
+		warAttitude -= srcCountry->getAverageIssueSupport("anti_military") / 2;
+		warAttitude -= srcCountry->getAverageIssueSupport("pacifism");
+		if (warAttitude > 0)
+		{
+			warSupport += warAttitude * 0.00375;
+		}
+		else
+		{
+			warSupport = 0.1;
+		}
+	}
 
 	convertLaws();
 	//convertLeaders(portraitMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
