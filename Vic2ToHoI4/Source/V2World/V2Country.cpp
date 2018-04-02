@@ -587,3 +587,41 @@ vector<string> V2Country::getShipNames(string category) const
 	}
 	return foundShipNames->second;
 }
+
+
+double V2Country::getAverageMilitancy() const
+{
+	int totalPopulation = 0;
+	double totalMilitancy = 0.0;
+	for (auto province: provinces)
+	{
+		auto pops = province.second->getPops();
+		for (auto pop: pops)
+		{
+			int size = pop->getSize();
+			totalMilitancy += pop->getMilitancy() * size;
+			totalPopulation += size;
+		}
+	}
+
+	return totalMilitancy / totalPopulation;
+}
+
+
+float V2Country::getAverageIssueSupport(const std::string& issueName) const
+{
+	int totalPopulation = 0;
+	float totalSupport = 0.0;
+	for (auto province: provinces)
+	{
+		auto pops = province.second->getPops();
+		for (auto pop: pops)
+		{
+			int size = pop->getSize();
+			totalSupport += pop->getIssue(issueName) * size;
+			totalPopulation += size;
+		}
+	}
+
+	return totalSupport / totalPopulation;
+}

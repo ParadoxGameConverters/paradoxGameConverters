@@ -23,10 +23,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "V2World.h"
 #include <fstream>
-#include "ParadoxParser8859_15.h"
-#include "ParadoxParserUTF8.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
+#include "ParadoxParser8859_15.h"
+#include "ParadoxParserUTF8.h"
+#include "Issues.h"
 #include "V2Country.h"
 #include "V2Diplomacy.h"
 #include "V2Party.h"
@@ -44,6 +45,8 @@ V2World::V2World(const string& filename):
 	parties(),
 	greatPowers()
 {
+	Vic2::issuesInstance.instantiate();
+
 	LOG(LogLevel::Info) << "* Importing V2 save *";
 
 	LOG(LogLevel::Info) << "Parsing save";

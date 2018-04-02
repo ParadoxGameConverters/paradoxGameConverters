@@ -106,6 +106,8 @@ class V2Country
 		set<V2Party, function<bool (const V2Party&, const V2Party&)>> getActiveParties(const vector<V2Party>& allParties) const;
 		bool hasCoreOnCapital() const;
 		vector<string> getShipNames(string category) const;
+		double getAverageMilitancy() const;
+		float getAverageIssueSupport(const std::string& issueName) const;
 
 	private:
 		V2Country(const V2Country&) = delete;
