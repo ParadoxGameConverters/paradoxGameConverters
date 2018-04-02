@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "newParser.h"
+#include <map>
 #include <memory>
 #include <string>
 
@@ -43,6 +44,10 @@ namespace Vic2
 			std::string getType() const { return type; }
 			std::string getCulture() const { return culture; }
 			double getLiteracy() const { return literacy; }
+			double getMilitancy() const { return militancy; }
+			std::map<std::string, float> getIssues() const { return popIssues; }
+
+			float getIssue(const std::string& issueName) const;
 
 		private:
 			Pop(const Pop&) = delete;
@@ -55,6 +60,7 @@ namespace Vic2
 			double literacy = 0.0;
 			double consciousness = 0.0;
 			double militancy = 0.0;
+			std::map<std::string, float> popIssues;
 	};
 }
 

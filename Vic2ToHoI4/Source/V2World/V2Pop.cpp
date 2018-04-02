@@ -23,6 +23,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "V2Pop.h"
 #include "Log.h"
+#include "Issues.h"
 
 
 
@@ -49,6 +50,28 @@ Vic2::Pop::Pop(const std::string& typeString, std::istream& theStream):
 		commonItems::singleDouble sizeInt(theStream);
 		militancy = sizeInt.getDouble();
 	});
+	registerKeyword(std::regex("issues"), [this](const std::string& unused, std::istream& theStream)
+	{
+		auto equals = getNextToken(theStream);
+		auto openBrace = getNextToken(theStream);
+
+		auto possibleIssue = getNextToken(theStream);
+		while (possibleIssue != "}")
+		{
+			auto equals = getNextToken(theStream);
+			auto issueSupport = getNextToken(theStream);
+			if (issueSupport->substr(0,1) == "\"")
+			{
+				issueSupport = issueSupport->substr(1, issueSupport->size() - 2);
+			}
+
+			std::string issueName = issuesInstance.getIssueName(std::stoi(*possibleIssue));
+			popIssues.insert(std::make_pair(issueName, std::stof(*issueSupport)));
+
+			possibleIssue = getNextToken(theStream);
+		}
+	});
+
 	registerKeyword(std::regex("id"), commonItems::ignoreString);
 	registerKeyword(std::regex("money"), commonItems::ignoreString);
 	registerKeyword(std::regex("bank"), commonItems::ignoreString);
@@ -78,7 +101,6 @@ Vic2::Pop::Pop(const std::string& typeString, std::istream& theStream):
 	registerKeyword(std::regex("movement_tag"), commonItems::ignoreString);
 	registerKeyword(std::regex("assimilated"), commonItems::ignoreString);
 	registerKeyword(std::regex("ideology"), commonItems::ignoreObject);
-	registerKeyword(std::regex("issues"), commonItems::ignoreObject);
 	registerKeyword(std::regex("stockpile"), commonItems::ignoreObject);
 	registerKeyword(std::regex("need"), commonItems::ignoreObject);
 	registerKeyword(std::regex("size_changes"), commonItems::ignoreObject);
@@ -99,4 +121,18 @@ Vic2::Pop::Pop(const std::string& typeString, std::istream& theStream):
 
 	getNextTokenWithoutMatching(theStream); // temporary to handle the type included in the stream
 	parseStream(theStream);
+}
+
+
+float Vic2::Pop::getIssue(const std::string& issueName) const
+{
+	auto issue = popIssues.find(issueName);
+	if (issue != popIssues.end())
+	{
+		return issue->second;
+	}
+	else
+	{
+		return 0.0f;
+	}
 }
