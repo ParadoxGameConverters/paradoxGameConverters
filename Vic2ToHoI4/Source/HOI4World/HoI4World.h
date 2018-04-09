@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -53,6 +53,7 @@ class HoI4SupplyZones;
 class HoI4UnitMap;
 namespace HoI4
 {
+	class decisions;
 	class Events;
 }
 class V2Country;
@@ -67,6 +68,7 @@ class HoI4World
 {
 	public:
 		explicit HoI4World(const V2World* sourceWorld);
+		~HoI4World();
 
 		void output() const;
 
@@ -213,6 +215,7 @@ class HoI4World
 		
 		vector<shared_ptr<HoI4Faction>> factions;
 		HoI4Diplomacy* diplomacy;
+		std::unique_ptr<HoI4::decisions> decisions;
 		HoI4::Events* events;
 		HoI4OnActions* onActions;
 

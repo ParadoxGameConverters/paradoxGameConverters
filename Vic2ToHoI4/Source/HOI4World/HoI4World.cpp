@@ -32,6 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI4Agreement.h"
 #include "HoI4Buildings.h"
 #include "HoI4Country.h"
+#include "Decisions.h"
 #include "HoI4Diplomacy.h"
 #include "HoI4Events.h"
 #include "HoI4Faction.h"
@@ -66,6 +67,7 @@ HoI4World::HoI4World(const V2World* _sourceWorld):
 	ideologicalAdvisors(),
 	ideologicalIdeas(),
 	factions(),
+	decisions(make_unique<HoI4::decisions>()),
 	diplomacy(new HoI4Diplomacy),
 	events(new HoI4::Events),
 	onActions(new HoI4OnActions),
@@ -109,6 +111,9 @@ HoI4World::HoI4World(const V2World* _sourceWorld):
 
 	adjustResearchFocuses();
 }
+
+
+HoI4World::~HoI4World() = default;
 
 
 shared_ptr<HoI4Country> HoI4World::findCountry(const string& countryTag)
@@ -1651,8 +1656,10 @@ void HoI4World::output() const
 	outputGenericFocusTree();
 	outputCountries();
 	buildings->output();
+	decisions->output();
 	events->output();
 	onActions->output(majorIdeologies);
+	decisions->output();
 	outputIdeologies();
 	outputLeaderTraits();
 	outputIdeologicalIdeas();

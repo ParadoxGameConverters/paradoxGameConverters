@@ -209,6 +209,12 @@
     <ClCompile Include="Source\V2World\Issues.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\HOI4World\Decisions.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\HOI4World\Decision.cpp">
+      <Filter>HoI4World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -407,6 +413,12 @@
     </ClInclude>
     <ClInclude Include="Source\V2World\Issues.h">
       <Filter>Vic2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\Decision.h">
+      <Filter>HoI4World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI4World\Decisions.h">
+      <Filter>HoI4World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
