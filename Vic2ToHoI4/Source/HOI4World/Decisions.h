@@ -27,6 +27,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "newParser.h"
 #include "Decision.h"
+#include <algorithm>
+#include <set>
+#include <string>
+#include <vector>
+#include <utility>
 
 
 
@@ -38,8 +43,12 @@ namespace HoI4
 			decisionsCategory(const std::string& categoryName, std::istream& theStream);
 
 			std::vector<decision> getDecisions() const { return theDecisions; }
+			std::string getName() const { return name; }
+
+			void replaceDecision(decision theDecision) { std::replace(theDecisions.begin(), theDecisions.end(), theDecision, theDecision); }
 
 			friend ostream& operator<<(ostream& outStream, const decisionsCategory& outCategory);
+			friend bool operator==(const decisionsCategory& categoryOne, const decisionsCategory& categoryTwo);
 
 		private:
 			std::string name = "";
@@ -52,9 +61,16 @@ namespace HoI4
 		public:
 			decisions();
 
+			void updateDecisions(const std::set<std::string>& majorIdeologies);
+
 			void output();
 
 		private:
+			void updateStabilityDecisions(const std::set<std::string>& majorIdeologies);
+			bool stabilityDecisionToUpdate(const std::string& decisionName);
+			std::pair<std::string, std::string> determineIdeologiesForStabilityDecisions(const std::set<std::string>& majorIdeologies);
+			std::string updateTimeoutEffect(std::string& originalEffect, const std::pair<std::string, std::string>& ideologiesForStabilityDecisions);
+
 			std::vector<decisionsCategory> stabilityDecisions;
 	};
 }

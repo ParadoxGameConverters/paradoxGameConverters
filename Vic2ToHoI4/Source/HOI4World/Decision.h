@@ -38,7 +38,13 @@ namespace HoI4
 		public:
 			decision(const std::string& decisionName, std::istream& theStream);
 
+			std::string getName() const { return name; }
+			std::string getTimeoutEffect() const { return timeoutEffect; }
+
+			void setTimeoutEffect(const std::string& newEffect) { timeoutEffect = newEffect; }
+
 			friend std::ostream& operator<<(std::ostream& outStream, const HoI4::decision& outDecision);
+			friend bool operator==(const HoI4::decision& decisionOne, const HoI4::decision& decisionTwo);
 
 		private:
 			std::string name = "";

@@ -203,3 +203,9 @@ std::ostream& HoI4::operator<<(std::ostream& outStream, const decision& outDecis
 
 	return outStream;
 }
+
+
+bool HoI4::operator==(const HoI4::decision& decisionOne, const HoI4::decision& decisionTwo)
+{
+	return (decisionOne.name == decisionTwo.name);
+}

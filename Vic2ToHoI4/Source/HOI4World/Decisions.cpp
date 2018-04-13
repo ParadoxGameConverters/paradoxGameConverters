@@ -28,23 +28,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-HoI4::decisions::decisions()
-{
-	std::vector<decisionsCategory> tempDecisionCategories;
-
-	registerKeyword(std::regex("[A-Za-z\\_]+"), [this, &tempDecisionCategories](const std::string& categoryName, std::istream& theStream)
-	{
-		decisionsCategory category(categoryName, theStream);
-		tempDecisionCategories.push_back(category);
-	});
-
-	parseFile("blankmod/output/common/decisions/stability_war_support.txt");
-	stabilityDecisions.insert(stabilityDecisions.end(), tempDecisionCategories.begin(), tempDecisionCategories.end());
-
-	tempDecisionCategories.clear();
-}
-
-
 HoI4::decisionsCategory::decisionsCategory(const std::string& categoryName, std::istream& theStream):
 	name(categoryName)
 {
@@ -73,6 +56,134 @@ ostream& HoI4::operator<<(ostream& outStream, const decisionsCategory& outCatego
 	outStream << "\n";
 
 	return outStream;
+}
+
+
+bool HoI4::operator==(const decisionsCategory& categoryOne, const decisionsCategory& categoryTwo)
+{
+	return (categoryOne.name == categoryTwo.name);
+}
+
+
+HoI4::decisions::decisions()
+{
+	std::vector<decisionsCategory> tempDecisionCategories;
+
+	registerKeyword(std::regex("[A-Za-z\\_]+"), [this, &tempDecisionCategories](const std::string& categoryName, std::istream& theStream)
+	{
+		decisionsCategory category(categoryName, theStream);
+		tempDecisionCategories.push_back(category);
+	});
+
+	parseFile("blankmod/output/common/decisions/stability_war_support.txt");
+	stabilityDecisions.insert(stabilityDecisions.end(), tempDecisionCategories.begin(), tempDecisionCategories.end());
+
+	tempDecisionCategories.clear();
+}
+
+
+void HoI4::decisions::updateDecisions(const std::set<std::string>& majorIdeologies)
+{
+	updateStabilityDecisions(majorIdeologies);
+}
+
+
+void HoI4::decisions::updateStabilityDecisions(const std::set<std::string>& majorIdeologies)
+{
+	auto ideologiesForStabilityDecisions = determineIdeologiesForStabilityDecisions(majorIdeologies);
+
+	for (auto category: stabilityDecisions)
+	{
+		bool updated = false;
+		for (auto decision: category.getDecisions())
+		{
+			if (stabilityDecisionToUpdate(decision.getName()))
+			{
+				auto timeoutEffect = decision.getTimeoutEffect();
+				timeoutEffect = updateTimeoutEffect(timeoutEffect, ideologiesForStabilityDecisions);
+				decision.setTimeoutEffect(timeoutEffect);
+				category.replaceDecision(decision);
+				updated = true;
+			}
+		}
+		if (updated)
+		{
+			std::replace(stabilityDecisions.begin(), stabilityDecisions.end(), category, category);
+		}
+	}
+}
+
+
+bool HoI4::decisions::stabilityDecisionToUpdate(const std::string& decisionName)
+{
+	if (
+			(decisionName == "draft_dodging_mission") || 
+			(decisionName == "strikes_mission") || 
+			(decisionName == "mutiny_mission") || 
+			(decisionName == "demob_economic_mission") || 
+			(decisionName == "demob_manpower_mission")
+		)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+
+std::pair<std::string, std::string> HoI4::decisions::determineIdeologiesForStabilityDecisions(const std::set<std::string>& majorIdeologies)
+{
+	std::pair<std::string, std::string> theIdeologies;
+
+	if (majorIdeologies.count("communism") > 0)
+	{
+		theIdeologies.first = "communism";
+	}
+	else if (majorIdeologies.count("absolutist") > 0)
+	{
+		theIdeologies.first = "absolutist";
+	}
+	else
+	{
+		theIdeologies.first = "neutrality";
+	}
+
+	if (majorIdeologies.count("democratic") > 0)
+	{
+		theIdeologies.second = "democratic";
+	}
+	else if (majorIdeologies.count("radical") > 0)
+	{
+		theIdeologies.second = "radical";
+	}
+	else
+	{
+		theIdeologies.second = "neutrality";
+	}
+
+	return theIdeologies;
+}
+
+
+std::string HoI4::decisions::updateTimeoutEffect(std::string& originalEffect, const std::pair<std::string, std::string>& ideologiesForStabilityDecisions)
+{
+	auto index = originalEffect.find("communism");
+	while (index != std::string::npos)
+	{
+		originalEffect.replace(index, 9, ideologiesForStabilityDecisions.first);
+		index = originalEffect.find("communism", index + ideologiesForStabilityDecisions.first.length());
+	}
+
+	index = originalEffect.find("democratic");
+	while (index != std::string::npos)
+	{
+		originalEffect.replace(index, 10, ideologiesForStabilityDecisions.second);
+		index = originalEffect.find("democratic", index + ideologiesForStabilityDecisions.second.length());
+	}
+
+	return originalEffect;
 }
 
 
