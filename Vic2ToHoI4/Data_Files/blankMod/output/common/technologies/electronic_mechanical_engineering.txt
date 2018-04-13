@@ -177,6 +177,8 @@ technologies = {
 			building = radar_station
 			level = 4
 		}
+
+		static_anti_air_hit_chance_factor = 0.2
 		
 		path = {
 			leads_to_tech = improved_centimetric_radar 
@@ -208,6 +210,8 @@ technologies = {
 			building = radar_station
 			level = 5
 		}
+
+		static_anti_air_hit_chance_factor = 0.2
 		
 		path = {
 			leads_to_tech = advanced_centimetric_radar 
@@ -238,7 +242,9 @@ technologies = {
 		enable_building = {
 			building = radar_station
 			level = 6
-		}		
+		}
+
+		static_anti_air_hit_chance_factor = 0.2
 		
 		research_cost = 2.5
 		start_year = 1942

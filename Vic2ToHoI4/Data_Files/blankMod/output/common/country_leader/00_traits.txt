@@ -737,7 +737,7 @@ leader_traits = {
 		}
 	}
 
-	light_aircraft_manufacturer_2 = { #TODO_WTT_CD come up with better name
+	light_aircraft_manufacturer_2 = {
 		random = no
 		equipment_bonus = {
 			fighter_equipment = {

@@ -1050,7 +1050,7 @@ economy_decisions = {
 						size > 1
 						include_locked = yes
 					}
-					NOT = { has_state_flag = infrastructure_building_slot_flag }
+					NOT = { has_state_flag = war_building_slot_flag }
 				}
 				add_extra_state_shared_building_slots = 1
 				set_state_flag = war_building_slot_flag

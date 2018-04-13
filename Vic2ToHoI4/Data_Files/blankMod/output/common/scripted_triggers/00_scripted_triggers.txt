@@ -56,10 +56,13 @@ has_ROOT_at_least_1_div_in_current_state_scope = {
 
 #State scope
 is_controlled_by_ROOT_or_subject = {
-	CONTROLLER = {
-		OR = {
-			tag = ROOT
-			is_subject_of = ROOT
+	custom_trigger_tooltip = {
+		tooltip = is_controlled_by_ROOT_or_subject
+		CONTROLLER = {
+			OR = {
+				tag = ROOT
+				is_subject_of = ROOT
+			}
 		}
 	}
 }
@@ -69,5 +72,19 @@ is_free_or_subject_of_root = {
 	OR = {
 		is_subject = no
 		is_subject_of = ROOT
+	}
+}
+
+#State scope
+is_controlled_by_ROOT_or_ally = {
+	custom_trigger_tooltip = {
+		tooltip = is_controlled_by_ROOT_or_ally
+		CONTROLLER = {
+			OR = {
+				tag = ROOT
+				is_subject_of = ROOT
+				is_in_faction_with = ROOT
+			}
+		}
 	}
 }
