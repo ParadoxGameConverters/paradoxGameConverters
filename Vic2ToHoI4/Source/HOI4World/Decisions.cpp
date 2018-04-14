@@ -44,10 +44,7 @@ HoI4::decisionsCategory::decisionsCategory(const std::string& categoryName, std:
 ostream& HoI4::operator<<(ostream& outStream, const decisionsCategory& outCategory)
 {
 	outStream << outCategory.name << " = {\n";
-	for (auto decision: outCategory.theDecisions)
-	{
-		outStream << decision << "\n";
-	}
+	std::for_each(outCategory.theDecisions.begin(), outCategory.theDecisions.end(), [&outStream](auto decision){ outStream << decision << "\n"; });
 	if (outCategory.theDecisions.size() == 0)
 	{
 		outStream << "\n";
@@ -190,10 +187,10 @@ std::string HoI4::decisions::updateTimeoutEffect(std::string& originalEffect, co
 void HoI4::decisions::output()
 {
 	std::ofstream outStream("output/" + Configuration::getOutputName() + "/common/decisions/stability_war_support.txt");
-	for (auto category: stabilityDecisions)
-	{
-		outStream << category;
-	}
+	std::for_each(stabilityDecisions.begin(), stabilityDecisions.end(), [&outStream](auto category) { outStream << category; });
+	outStream.close();
 
+	outStream.open("output/" + Configuration::getOutputName() + "/common/decisions/political_decisions.txt");
+	std::for_each(politicalDecisions.begin(), politicalDecisions.end(), [&outStream](auto category) { outStream << category; });
 	outStream.close();
 }
