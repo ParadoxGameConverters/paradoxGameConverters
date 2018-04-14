@@ -1,3 +1,5 @@
+fascism = {
+
 fascism_on_the_rise = {
 	prepare_for_fascist_civil_war = {
 
@@ -497,6 +499,115 @@ fascism_on_the_rise = {
 	}
 }
 
+political_actions = {
+	anti_fascist_raids = {
+
+    	icon = generic_civil_support
+
+    	visible = {
+			NOT = { has_government = fascism }
+		}
+
+		available = {
+            fascism > 0.1
+        }
+	
+		modifier = {
+			fascism_drift = -0.05
+			stability_weekly = 0.007
+		}
+	
+		days_remove = 120
+		cost = 50
+
+		complete_effect = {
+			add_stability = -0.1
+		}
+		
+		remove_effect = {
+		}
+		
+		ai_will_do = {
+			base = 0
+		}
+    }
+
+	ban_fascist_party = {
+
+		icon = generic_civil_support
+
+		available = {
+			fascism < 0.2
+		}
+
+		visible = {
+			NOT = { has_government = fascism }
+			fascism > 0
+		}
+
+		remove_trigger = {
+			hidden_trigger = {
+				has_government = fascism
+			}
+		}
+	
+		modifier = {
+			fascism_drift = -0.02
+		}
+	
+		days_remove = -1
+		cost = 100
+		
+		complete_effect = {
+			hidden_effect = {
+				set_temp_variable = {
+					var = ban_ideology_var
+					value = party_popularity@fascism
+				}
+				multiply_temp_variable = {
+					var = ban_ideology_var
+					value = -1
+				}
+				add_popularity = {
+					ideology = fascism
+					popularity = ban_ideology_var
+				}
+				multiply_temp_variable = {
+					var = ban_ideology_var
+					value = 0.66
+				}				
+			}
+			custom_effect_tooltip = ban_fascist_party_tt
+			add_stability = ban_ideology_var
+		}
+	}
+
+	institute_press_censorship_fascist_state = {
+
+		icon = generic_political_discourse
+
+		visible = {
+			has_government = fascism
+		}
+	
+		modifier = {
+			communism_drift = -0.01
+			fascism_drift = 0.03
+			democratic_drift = -0.01
+			neutrality_drift = -0.01
+		}
+	
+		days_remove = 360
+		cost = 150
+	
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+}
+
+democratic = {
 democratic_on_the_rise = {
 	prepare_for_democratic_civil_war = {
 
@@ -995,6 +1106,115 @@ democratic_on_the_rise = {
 	}
 }
 
+political_actions = {
+	 anti_democratic_raids = {
+
+    	icon = generic_civil_support
+
+    	visible = {
+			NOT = { has_government = democratic }
+		}
+
+		available = {
+            democratic > 0.1
+        }
+	
+		modifier = {
+			democratic_drift = -0.05
+			stability_weekly = 0.007
+		}
+	
+		days_remove = 120
+		cost = 50
+
+		complete_effect = {
+			add_stability = -0.1
+		}
+		
+		remove_effect = {
+		}
+		
+		ai_will_do = {
+			factor = 0
+		}
+    }
+	 
+	ban_democratic_party = {
+
+		icon = generic_civil_support
+
+		available = {
+			democratic < 0.2
+		}
+
+		visible = {
+			NOT = { has_government = democratic }
+			democratic > 0
+		}
+
+		remove_trigger = {
+			hidden_trigger = {
+				has_government = democratic
+			}
+		}
+	
+		modifier = {
+			democratic_drift = -0.02
+		}
+	
+		days_remove = -1
+		cost = 100
+		
+		complete_effect = {
+			hidden_effect = {
+				set_temp_variable = {
+					var = ban_ideology_var
+					value = party_popularity@democratic
+				}
+				multiply_temp_variable = {
+					var = ban_ideology_var
+					value = -1
+				}
+				add_popularity = {
+					ideology = democratic
+					popularity = ban_ideology_var
+				}
+				multiply_temp_variable = {
+					var = ban_ideology_var
+					value = 0.66
+				}				
+			}
+			custom_effect_tooltip = ban_democratic_party_tt
+			add_stability = ban_ideology_var
+		}
+	}
+	
+	institute_press_censorship_democratic_state = {
+
+		icon = generic_political_discourse
+
+		visible = {
+			has_government = democratic
+		}
+		
+		modifier = {
+			communism_drift = -0.01
+			fascism_drift = -0.01
+			democratic_drift = 0.03
+			neutrality_drift = -0.01
+		}
+	
+		days_remove = 360
+		cost = 150
+	
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+}
+
+communism = {
 communism_on_the_rise = {
 	prepare_for_communist_civil_war = {
 
@@ -1493,73 +1713,9 @@ communism_on_the_rise = {
 	}
 }
 
-political_actions = {
-
-    anti_fascist_raids = {
-
-    	icon = generic_civil_support
-
-    	visible = {
-			NOT = { has_government = fascism }
-		}
-
-		available = {
-            fascism > 0.1
-        }
-	
-		modifier = {
-			fascism_drift = -0.05
-			stability_weekly = 0.007
-		}
-	
-		days_remove = 120
-		cost = 50
-
-		complete_effect = {
-			add_stability = -0.1
-		}
-		
-		remove_effect = {
-		}
-		
-		ai_will_do = {
-			base = 0
-		}
-    }
-
-    anti_democratic_raids = {
-
-    	icon = generic_civil_support
-
-    	visible = {
-			NOT = { has_government = democratic }
-		}
-
-		available = {
-            democratic > 0.1
-        }
-	
-		modifier = {
-			democratic_drift = -0.05
-			stability_weekly = 0.007
-		}
-	
-		days_remove = 120
-		cost = 50
-
-		complete_effect = {
-			add_stability = -0.1
-		}
-		
-		remove_effect = {
-		}
-		
-		ai_will_do = {
-			factor = 0
-		}
-    }
-
-    anti_communist_raids = {
+political_actions = 
+{
+	anti_communist_raids = {
 
     	icon = generic_civil_support
 
@@ -1590,106 +1746,6 @@ political_actions = {
 			factor = 0
 		}
     }
-    
-	ban_fascist_party = {
-
-		icon = generic_civil_support
-
-		available = {
-			fascism < 0.2
-		}
-
-		visible = {
-			NOT = { has_government = fascism }
-			fascism > 0
-		}
-
-		remove_trigger = {
-			hidden_trigger = {
-				has_government = fascism
-			}
-		}
-	
-		modifier = {
-			fascism_drift = -0.02
-		}
-	
-		days_remove = -1
-		cost = 100
-		
-		complete_effect = {
-			hidden_effect = {
-				set_temp_variable = {
-					var = ban_ideology_var
-					value = party_popularity@fascism
-				}
-				multiply_temp_variable = {
-					var = ban_ideology_var
-					value = -1
-				}
-				add_popularity = {
-					ideology = fascism
-					popularity = ban_ideology_var
-				}
-				multiply_temp_variable = {
-					var = ban_ideology_var
-					value = 0.66
-				}				
-			}
-			custom_effect_tooltip = ban_fascist_party_tt
-			add_stability = ban_ideology_var
-		}
-	}
-
-	ban_democratic_party = {
-
-		icon = generic_civil_support
-
-		available = {
-			democratic < 0.2
-		}
-
-		visible = {
-			NOT = { has_government = democratic }
-			democratic > 0
-		}
-
-		remove_trigger = {
-			hidden_trigger = {
-				has_government = democratic
-			}
-		}
-	
-		modifier = {
-			democratic_drift = -0.02
-		}
-	
-		days_remove = -1
-		cost = 100
-		
-		complete_effect = {
-			hidden_effect = {
-				set_temp_variable = {
-					var = ban_ideology_var
-					value = party_popularity@democratic
-				}
-				multiply_temp_variable = {
-					var = ban_ideology_var
-					value = -1
-				}
-				add_popularity = {
-					ideology = democratic
-					popularity = ban_ideology_var
-				}
-				multiply_temp_variable = {
-					var = ban_ideology_var
-					value = 0.66
-				}				
-			}
-			custom_effect_tooltip = ban_democratic_party_tt
-			add_stability = ban_ideology_var
-		}
-	}
 	
 	ban_communist_party = {
 
@@ -1745,52 +1801,6 @@ political_actions = {
 		}
 	}
 	
-	institute_press_censorship_fascist_state = {
-
-		icon = generic_political_discourse
-
-		visible = {
-			has_government = fascism
-		}
-	
-		modifier = {
-			communism_drift = -0.01
-			fascism_drift = 0.03
-			democratic_drift = -0.01
-			neutrality_drift = -0.01
-		}
-	
-		days_remove = 360
-		cost = 150
-	
-		ai_will_do = {
-			factor = 0
-		}
-	}
-	
-	institute_press_censorship_democratic_state = {
-
-		icon = generic_political_discourse
-
-		visible = {
-			has_government = democratic
-		}
-		
-		modifier = {
-			communism_drift = -0.01
-			fascism_drift = -0.01
-			democratic_drift = 0.03
-			neutrality_drift = -0.01
-		}
-	
-		days_remove = 360
-		cost = 150
-	
-		ai_will_do = {
-			factor = 0
-		}
-	}
-	
 	institute_press_censorship_communist_state = {
 
 		icon = generic_political_discourse
@@ -1813,7 +1823,11 @@ political_actions = {
 			factor = 0
 		}
 	}
-	
+}
+}
+
+neutrality = {
+political_actions = {	
 	institute_press_censorship_neutrality_state = {
 
 		icon = generic_political_discourse
@@ -1836,4 +1850,5 @@ political_actions = {
 			factor = 0
 		}
 	}
+}
 }

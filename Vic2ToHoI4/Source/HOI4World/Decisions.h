@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "newParser.h"
 #include "Decision.h"
 #include <algorithm>
+#include <map>
 #include <set>
 #include <string>
 #include <vector>
@@ -72,6 +73,9 @@ namespace HoI4
 			std::string updateTimeoutEffect(std::string& originalEffect, const std::pair<std::string, std::string>& ideologiesForStabilityDecisions);
 
 			std::vector<decisionsCategory> stabilityDecisions;
+			std::vector<decisionsCategory> politicalDecisions;
+
+			std::multimap<std::string, decisionsCategory> ideologicalDecisions;
 	};
 }
 

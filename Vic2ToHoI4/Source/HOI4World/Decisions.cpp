@@ -62,20 +62,49 @@ bool HoI4::operator==(const decisionsCategory& categoryOne, const decisionsCateg
 }
 
 
+namespace HoI4
+{
+	class decisionsCategorySet: commonItems::parser
+	{
+		public:
+			decisionsCategorySet(std::istream& theStream)
+			{
+				registerKeyword(std::regex("[A-Za-z\\_]+"), [this](const std::string& categoryName, std::istream& theStream)
+				{
+					decisionsCategory category(categoryName, theStream);
+					theCategories.push_back(category);
+				});
+				parseStream(theStream);
+			}
+
+			std::vector<decisionsCategory> takeCategories() { return std::move(theCategories); }
+
+		private:
+			std::vector<decisionsCategory> theCategories;
+	};
+}
+
+
 HoI4::decisions::decisions()
 {
-	std::vector<decisionsCategory> tempDecisionCategories;
-
-	registerKeyword(std::regex("[A-Za-z\\_]+"), [this, &tempDecisionCategories](const std::string& categoryName, std::istream& theStream)
+	registerKeyword(std::regex("[A-Za-z\\_]+"), [this](const std::string& categoryName, std::istream& theStream)
 	{
 		decisionsCategory category(categoryName, theStream);
-		tempDecisionCategories.push_back(category);
+		stabilityDecisions.push_back(category);
 	});
-
 	parseFile("blankmod/output/common/decisions/stability_war_support.txt");
-	stabilityDecisions.insert(stabilityDecisions.end(), tempDecisionCategories.begin(), tempDecisionCategories.end());
 
-	tempDecisionCategories.clear();
+	clearRegisteredKeywords();
+
+	registerKeyword(std::regex("[A-Za-z\\_]+"), [this](const std::string& ideologyName, std::istream& theStream)
+	{
+		decisionsCategorySet categorySet(theStream);
+		auto categories = categorySet.takeCategories();
+		std::for_each(categories.begin(), categories.end(), [this, ideologyName](auto& category){
+			ideologicalDecisions.insert(std::make_pair(ideologyName, category));
+		});
+	});
+	parseFile("ideologicalDecisions.txt");
 }
 
 
