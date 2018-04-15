@@ -68,6 +68,16 @@ HoI4::decision::decision(const std::string& decisionName, std::istream& theStrea
 		commonItems::stringOfObject theVisible(theStream);
 		visible = theVisible.getString();
 	});
+	registerKeyword(std::regex("cancel_trigger"), [this](const std::string& unused, std::istream& theStream)
+	{
+		commonItems::stringOfObject theCancelTrigger(theStream);
+		cancelTrigger = theCancelTrigger.getString();
+	});
+	registerKeyword(std::regex("remove_trigger"), [this](const std::string& unused, std::istream& theStream)
+	{
+		commonItems::stringOfObject theRemoveTrigger(theStream);
+		removeTrigger = theRemoveTrigger.getString();
+	});
 	registerKeyword(std::regex("remove"), [this](const std::string& unused, std::istream& theStream)
 	{
 		commonItems::stringOfObject theRemove(theStream);
@@ -157,6 +167,14 @@ std::ostream& HoI4::operator<<(std::ostream& outStream, const decision& outDecis
 	if (outDecision.visible != "")
 	{
 		outStream << "\n\t\tvisible " << outDecision.visible << "\n";
+	}
+	if (outDecision.cancelTrigger != "")
+	{
+		outStream << "\n\t\tcancel_trigger " << outDecision.cancelTrigger << "\n";
+	}
+	if (outDecision.removeTrigger != "")
+	{
+		outStream << "\n\t\tremove_trigger " << outDecision.removeTrigger << "\n";
 	}
 	if (outDecision.remove != "")
 	{

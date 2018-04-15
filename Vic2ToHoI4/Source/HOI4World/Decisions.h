@@ -47,6 +47,7 @@ namespace HoI4
 			std::string getName() const { return name; }
 
 			void replaceDecision(decision theDecision) { std::replace(theDecisions.begin(), theDecisions.end(), theDecision, theDecision); }
+			void addDecision(decision& theDecision) { theDecisions.push_back(theDecision); }
 
 			friend ostream& operator<<(ostream& outStream, const decisionsCategory& outCategory);
 			friend bool operator==(const decisionsCategory& categoryOne, const decisionsCategory& categoryTwo);
@@ -71,6 +72,8 @@ namespace HoI4
 			bool stabilityDecisionToUpdate(const std::string& decisionName);
 			std::pair<std::string, std::string> determineIdeologiesForStabilityDecisions(const std::set<std::string>& majorIdeologies);
 			std::string updateTimeoutEffect(std::string& originalEffect, const std::pair<std::string, std::string>& ideologiesForStabilityDecisions);
+
+			void updatePoliticalDecisions(const std::set<std::string>& majorIdeologies);
 
 			std::vector<decisionsCategory> stabilityDecisions;
 			std::vector<decisionsCategory> politicalDecisions;

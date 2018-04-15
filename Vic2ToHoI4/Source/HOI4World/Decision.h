@@ -55,7 +55,9 @@ namespace HoI4
 			std::string daysMissionTimeout = "";
 			std::string activation = "";
 			std::string targetTrigger = "";
+			std::string removeTrigger = "";
 			std::string visible = "";
+			std::string cancelTrigger = "";
 			std::string remove = "";
 			std::string completeEffect = "";
 			std::string removeEffect = "";

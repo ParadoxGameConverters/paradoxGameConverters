@@ -111,6 +111,7 @@ HoI4::decisions::decisions()
 void HoI4::decisions::updateDecisions(const std::set<std::string>& majorIdeologies)
 {
 	updateStabilityDecisions(majorIdeologies);
+	updatePoliticalDecisions(majorIdeologies);
 }
 
 
@@ -210,6 +211,28 @@ std::string HoI4::decisions::updateTimeoutEffect(std::string& originalEffect, co
 	}
 
 	return originalEffect;
+}
+
+
+void HoI4::decisions::updatePoliticalDecisions(const std::set<std::string>& majorIdeologies)
+{
+	std::for_each(majorIdeologies.begin(), majorIdeologies.end(), [this](auto ideology){
+		auto categories = ideologicalDecisions.equal_range(ideology);
+		std::for_each(categories.first, categories.second, [this](auto category){
+			auto existingCategory = std::find(politicalDecisions.begin(), politicalDecisions.end(), category.second);
+			if (existingCategory == politicalDecisions.end())
+			{
+				politicalDecisions.push_back(category.second);
+			}
+			else
+			{
+				auto theDecisions = category.second.getDecisions();
+				std::for_each(theDecisions.begin(), theDecisions.end(), [&existingCategory](auto& theDecision){
+					existingCategory->addDecision(theDecision);
+				});
+			}
+		});
+	});
 }
 
 
