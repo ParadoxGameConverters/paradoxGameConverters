@@ -2098,10 +2098,10 @@ void HoI4World::outputBookmarks() const
 	for (auto greatPower : greatPowers)
 	{
 		//Vic2 Great powers become majors in bookmark
-		bookmarkFile << "		" + greatPower->getTag() + "={\n";
-		bookmarkFile << "			history = ""OTHER_GATHERING_STORM_DESC""\n";
-		bookmarkFile << "			ideology = Yes\n";
-		bookmarkFile << "			ideas = {great_power}\n";
+		bookmarkFile << "		" + greatPower->getTag() + "= {\n";
+		bookmarkFile << "			history = \"OTHER_GATHERING_STORM_DESC\"\n";
+		bookmarkFile << "			ideology = " + greatPower->getGovernmentIdeology() + "\n";
+		bookmarkFile << "			ideas = { great_power }\n";
 		bookmarkFile << "		}\n";
 	}
 
@@ -2115,9 +2115,9 @@ void HoI4World::outputBookmarks() const
 				//Bookmark window has room for 22 minor countries, going over this seems to not cause any issues however
 				bookmarkFile << "		" + country.second->getTag() + " = {\n";
 				bookmarkFile << "			minor = yes\n";
-				bookmarkFile << "			history = ""OTHER_GATHERING_STORM_DESC""\n";
-				bookmarkFile << "		ideology = Yes\n";
-				bookmarkFile << "		ideas = {}\n";
+				bookmarkFile << "			history = \"OTHER_GATHERING_STORM_DESC\"\n";
+				bookmarkFile << "			ideology = " + country.second->getGovernmentIdeology() + "\n";
+				bookmarkFile << "			ideas = { }\n";
 				bookmarkFile << "		}\n";
 			}
 		}
