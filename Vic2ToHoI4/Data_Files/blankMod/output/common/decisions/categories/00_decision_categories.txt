@@ -53,6 +53,19 @@ fascism_on_the_rise = {
 	#}
 }
 
+absolutist_on_the_rise = {
+	icon = generic_fascism
+
+	allowed = {
+		always = yes
+	}
+	
+	#visible = {
+	#	NOT = { has_government = absolutist }
+	#	has_idea_with_trait = absolutist_demagogue
+	#}
+}
+
 democratic_on_the_rise = {
 	icon = generic_democracy
 
@@ -76,6 +89,19 @@ communism_on_the_rise = {
 	#visible = {
 	#	NOT = { has_government = communism }
 	#	has_idea_with_trait = communist_revolutionary
+	#}
+}
+
+radical_on_the_rise = {
+	icon = generic_communism
+
+	allowed = {
+		always = yes
+	}
+	
+	#visible = {
+	#	NOT = { has_government = radical }
+	#	has_idea_with_trait = radical_revolutionary
 	#}
 }
 
