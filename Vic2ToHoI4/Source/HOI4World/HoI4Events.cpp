@@ -176,6 +176,8 @@ void HoI4::Events::outputStabilityEvents() const
 		exit(-1);
 	}
 
+	outStabilityEvents << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy
+
 	outStabilityEvents << "###########################\n";
 	outStabilityEvents << "#stability events\n";
 	outStabilityEvents << "###########################\n";
@@ -905,7 +907,6 @@ void HoI4::Events::addRevolutionEvents(const std::set<std::string>& majorIdeolog
 		revolutionEvent.trigger += "		" + ideology + " > 0.7\n";
 		revolutionEvent.trigger += "		NOT = { has_government = " + ideology + " }\n";
 		revolutionEvent.trigger += "		has_civil_war = no\n";
-		revolutionEvent.trigger += "		check_has_focus_tree_to_switch_to_" + ideology + " = yes\n";
 		revolutionEvent.trigger += "	}";
 
 		revolutionEvent.meanTimeToHappen = "= {\n";
