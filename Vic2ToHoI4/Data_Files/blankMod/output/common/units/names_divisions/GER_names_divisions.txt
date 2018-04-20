@@ -1,0 +1,60 @@
+﻿# blanked in conversions
+
+# if this one isn't removed, HoI4 crashes
+GER_SS_01 = 
+{
+	name = "SS Divisions"
+
+	for_countries = { GER }
+
+	can_use = { 
+		has_government = fascism
+	}
+
+	division_types = { "infantry" "motorized" "medium_armor" "mechanized" }
+
+	fallback_name = "%d. SS-Division"
+
+	# Names with numbers (only one number per entry)
+	ordered =
+	{
+		1 = { "%d. SS-Division 'Leibstandarte Adolf Hitler'" }
+		2 = { "%d. SS-Division 'Das Reich'" }
+		3 = { "%d. SS-Division 'Totenkopf'" }
+		4 = { "%d. SS-Division 'Polizei'" }
+		6 = { "%d. SS-Division 'Nord'" }
+		7 = { "%d. SS-Division 'Prinz Eugen'" }
+		8 = { "%d. SS-Division 'Florian Geyer'" }
+		9 = { "%d. SS-Division 'Hohenstaufen'" }
+		10 = { "%d. SS-Division 'Frundsberg'" }
+		11 = { "%d. SS-Division 'Nordland'" }
+		12 = { "%d. SS-Division 'Hitlerjugend'" }
+		13 = { "%d. SS-Division 'Handschar'" }
+		14 = { "%d. SS-Division (ukrain. Nr. 1)" }
+		16 = { "%d. SS-Division 'Reichsführer-SS'" }
+		17 = { "%d. SS-Division 'Götz von Berlichingen'" }
+		18 = { "%d. SS-Division 'Horst Wessel'" }
+		21 = { "%d. SS-Division 'Skanderbeg'" }
+		22 = { "%d. SS-Division 'Maria Theresia'" }
+		24 = { "%d. SS-Division 'Karstjäger'" }
+		25 = { "%d. SS-Division 'Hunyadi' (ungarische Nr. 1)" }
+		26 = { "%d. SS-Division (ungarische Nr. 2)" }
+		29 = { "%d. SS-Division RONA (russische Nr. 1)" }
+		30 = { "%d. SS-Division (russisch Nr. 2)" }
+		31 = { "%d. SS-Division" }
+		32 = { "%d. SS-Division '30. Januar'" }
+		34 = { "%d. SS-Division 'Landstorm Nederland'" }
+		35 = { "%d. SS- und Polizei-Division" }
+		36 = { "%d. SS-Division 'Dirlewanger'" }
+		37 = { "%d. SS-Division 'Lützow'" }
+		38 = { "%d. SS-Division 'Nibelungen'" }
+		
+		# to avoid massively bloating the names list with alternate lists, the final/most representative divisional name was used. Das Reich held no less than 6 different names during the war and providing variant name lists for all of them was not feasible. The tools to rename/reconfigure divisions are in the hands of the player, however.
+		# left out divisional type names (Panzer, Gebirgs, etc) to allow the player to use the SS name list for any type of division they choose
+		# diverged from the ordering based on historical formation date as this to a large degree would depend on the divisional type, which is not fixed
+		# put in non-German formations contrary to the regular Heer lists
+
+	}
+}
+
+
