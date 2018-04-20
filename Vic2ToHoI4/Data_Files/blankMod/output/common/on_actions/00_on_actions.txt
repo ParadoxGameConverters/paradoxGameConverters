@@ -318,7 +318,8 @@ on_actions = {
 	}
 
 	on_government_change = {
-		effect = {			
+		effect = {	
+		}
 	}
 
 	#ROOT is winner #FROM gets annexed - This will also fire on_annex
