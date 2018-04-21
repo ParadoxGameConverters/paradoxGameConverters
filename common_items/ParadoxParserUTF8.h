@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -58,8 +58,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 namespace parser_UTF8
 {
-	shared_ptr<Object> doParseStream(std::istream& theStream);
-	shared_ptr<Object> doParseFile(const std::string& filename);
+	std::shared_ptr<Object> doParseStream(std::istream& theStream);
+	std::shared_ptr<Object> doParseFile(const std::string& filename);
 }
 
 
