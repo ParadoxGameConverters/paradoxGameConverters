@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -171,8 +171,8 @@ void createModFile()
 		exit(-1);
 	}
 
-	HOI4Version versionThatWantsBOM("1.3.3");
-	HOI4Version thisVersion = Configuration::getHOI4Version();
+	HoI4::Version versionThatWantsBOM("1.3.3");
+	HoI4::Version thisVersion = Configuration::getHOI4Version();
 	if (thisVersion >= versionThatWantsBOM)
 	{
 		modFile << "\xEF\xBB\xBF";    // add the BOM to make HoI4 happy

@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -121,11 +121,11 @@ Configuration::Configuration():
 		}
 		else if (versionMethod == "manualEntry")
 		{
-			version = HOI4Version(obj->safeGetString("HoI4Version"));
+			version = HoI4::Version(obj->safeGetString("HoI4Version"));
 		}
 		else // (versionMethod == "hardcoded")
 		{
-			version = HOI4Version();
+			version = HoI4::Version();
 		}
 		Log(LogLevel::Debug) << "HoI4 version is " << version;
 
@@ -161,7 +161,7 @@ Configuration::Configuration():
 }
 
 
-HOI4Version Configuration::getAutomaticHoI4Version()
+HoI4::Version Configuration::getAutomaticHoI4Version()
 {
 	ifstream systemLog(HoI4DocumentsPath + "/logs/system.log");
 	if (systemLog.is_open())
@@ -178,11 +178,11 @@ HOI4Version Configuration::getAutomaticHoI4Version()
 				int position2 = line.find_first_of(' ', position1 + 1) + 2;
 				int position3 = line.find_first_of(' ', position2 + 1);
 				string versionString = line.substr(position2, position3 - position2);
-				return HOI4Version(versionString);
+				return HoI4::Version(versionString);
 			}
 		}
 	}
 
 	LOG(LogLevel::Warning) << "Could not automatically set HoI4 version. Using the hardcoded version setting instead.";
-	return HOI4Version();
+	return HoI4::Version();
 }

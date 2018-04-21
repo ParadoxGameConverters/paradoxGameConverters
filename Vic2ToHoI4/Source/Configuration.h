@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -113,7 +113,7 @@ class Configuration // Singleton
 			getInstance()->leaderID = 1000 * getInstance()->leaderIDCountryIdx;	
 		}
 
-		static HOI4Version& getHOI4Version()
+		static HoI4::Version& getHOI4Version()
 		{
 			return getInstance()->version;
 		}
@@ -147,7 +147,7 @@ class Configuration // Singleton
 		Configuration(const Configuration&) = delete;
 		Configuration& operator=(const Configuration&) = delete;
 
-		HOI4Version getAutomaticHoI4Version();
+		HoI4::Version getAutomaticHoI4Version();
 
 		string			HoI4Path;				// the install directory for HoI4
 		string			HoI4DocumentsPath;	// HoI4's directory under My Documents
@@ -168,7 +168,7 @@ class Configuration // Singleton
 		unsigned int	leaderID;
 		unsigned int	leaderIDCountryIdx;
 
-		HOI4Version version;
+		HoI4::Version version;
 };
 
 
