@@ -21,51 +21,18 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef NEW_PARSER_H
-#define NEW_PARSER_H
-
-
-
-#include <istream>
-#include <functional>
-#include <list>
-#include <optional>
-#include <regex>
-#include <string>
-#include <utility>
 #include "Object.h"
+#include <memory>
 
 
 
 namespace commonItems
 {
-	typedef std::function<void(const std::string&, std::istream&)> parsingFunction;
 
-	class parser
-	{
-		public:
-			parser();
+std::shared_ptr<Object> convert8859Object(const std::string& top, std::istream& theStream);
+std::shared_ptr<Object> convertUTF8Object(const std::string& top, std::istream& theStream);
 
-			~parser() = default;
-			parser(const parser&) = default;
-			parser& operator=(const parser&) = default;
+std::shared_ptr<Object> convert8859String(const std::string& top, std::istream& theStream);
+std::shared_ptr<Object> convertUTF8String(const std::string& top, std::istream& theStream);
 
-			void registerKeyword(std::regex keyword, parsingFunction);
-			void parseStream(std::istream& theStream);
-			void parseFile(const std::string& filename);
-
-			void clearRegisteredKeywords() { registeredKeywords.clear(); }
-
-			std::optional<std::string> getNextToken(std::istream& theStream);
-			std::optional<std::string> getNextTokenWithoutMatching(std::istream& theStream);
-
-		private:
-			std::list<std::pair<std::regex, parsingFunction>> registeredKeywords;
-			std::string nextToken;
-			int braceDepth;
-	};
 }
-
-
-
-#endif // NEW_PARSER_H
