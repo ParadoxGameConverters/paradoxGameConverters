@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/ImpassableProvinceMapper.h"
 #include "../Mappers/ProvinceDefinitions.h"
+#include "../Mappers/StateMapper.h"
 #include "../Mappers/V2Localisations.h"
 #include "../V2World/V2Country.h"
 #include "../V2World/V2Province.h"
@@ -63,6 +64,7 @@ void HoI4States::determineOwnersAndCores()
 			map<const V2Country*, pair<int, int>> potentialOwners = determinePotentialOwners(*sourceProvinceNums);
 			if (potentialOwners.size() == 0)
 			{
+				ownersMap.insert(make_pair(provinceNumber, ""));
 				continue;
 			}
 			auto oldOwner = selectProvinceOwner(potentialOwners);
@@ -191,6 +193,8 @@ vector<string> HoI4States::determineCores(const vector<int>& sourceProvinces, co
 
 void HoI4States::createStates()
 {
+	std::set<int> ownedProvinces;
+
 	for (auto country: sourceWorld->getCountries())
 	{
 		for (auto vic2State: country.second->getStates())
@@ -199,8 +203,46 @@ void HoI4States::createStates()
 			if (possibleHoI4Owner)
 			{
 				createMatchingHoI4State(vic2State, *possibleHoI4Owner);
+				for (auto province: vic2State->getProvinces())
+				{
+					ownedProvinces.insert(province->getNumber());
+				}
 			}
 		}
+	}
+
+	std::map<int, V2Province*> unownedProvinces;
+	for (auto vic2Province: sourceWorld->getProvinces())
+	{
+		if (ownedProvinces.count(vic2Province.first) == 0)
+		{
+			unownedProvinces.insert(vic2Province);
+		}
+	}
+
+	auto stateMapping = stateMapper::getStateMapping();
+	while (unownedProvinces.size() > 0)
+	{
+		std::set<std::pair<int, V2Province*>> stateProvinces;
+
+		auto stateProvinceNums = stateMapping.find(unownedProvinces.begin()->first);
+		if (stateProvinceNums == stateMapping.end())
+		{
+			unownedProvinces.erase(unownedProvinces.begin());
+			continue;
+		}
+		for (auto provinceNum: stateProvinceNums->second)
+		{
+			auto province = unownedProvinces.find(provinceNum);
+			if (province != unownedProvinces.end())
+			{
+				stateProvinces.insert(*province);
+				unownedProvinces.erase(province);
+			}
+		}
+
+		Vic2State* newState = new Vic2State(stateProvinces);
+		createMatchingHoI4State(newState, "");
 	}
 
 	unsigned int manpower = getTotalManpower();
@@ -286,7 +328,11 @@ void HoI4States::addProvincesAndCoresToNewState(HoI4State* newState, unordered_s
 	{
 		newState->addProvince(province);
 		provinceToStateIDMap.insert(make_pair(province, newState->getID()));
-		newState->addCores(coresMap.find(province)->second);
+		auto coresMapping = coresMap.find(province);
+		if (coresMapping != coresMap.end())
+		{
+			newState->addCores(coresMap.find(province)->second);
+		}
 	}
 }
 

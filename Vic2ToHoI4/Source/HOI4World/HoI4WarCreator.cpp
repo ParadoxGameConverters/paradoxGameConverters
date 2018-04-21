@@ -212,6 +212,7 @@ double HoI4WarCreator::calculatePercentOfWorldAtWar(ofstream& AILog, const set<s
 	return percentOfWorldAtWar;
 }
 
+
 void HoI4WarCreator::generateAdditionalWars(ofstream& AILog, set<shared_ptr<HoI4Faction>>& factionsAtWar, double worldStrength)
 {
 	auto countriesEvilnessSorted = findEvilCountries();
@@ -242,6 +243,7 @@ void HoI4WarCreator::generateAdditionalWars(ofstream& AILog, set<shared_ptr<HoI4
 	}
 }
 
+
 bool HoI4WarCreator::isImportantCountry(shared_ptr<HoI4Country> country)
 {
 	if (country->isGreatPower() || country->isHuman())
@@ -250,6 +252,7 @@ bool HoI4WarCreator::isImportantCountry(shared_ptr<HoI4Country> country)
 	}
 	return false;
 }
+
 
 vector<shared_ptr<HoI4Country>> HoI4WarCreator::findEvilCountries() const
 {
@@ -1408,6 +1411,7 @@ vector<int> HoI4WarCreator::sortStatesByCapitalDistance(set<int> stateList, shar
 	return sortedStates;
 }
 
+
 vector<shared_ptr<HoI4Country>> HoI4WarCreator::findWeakNeighbors(shared_ptr<HoI4Country> country)
 {
 	vector<shared_ptr<HoI4Country>> weakNeighbors;
@@ -1445,7 +1449,7 @@ map<string, shared_ptr<HoI4Country>> HoI4WarCreator::findCloseNeighbors(shared_p
 
 	for (auto neighbor: getNeighbors(country))
 	{
-		if (neighbor.second->getCapitalStateNum() != 0)
+		if ((neighbor.second->getCapitalStateNum() != 0) && (neighbor.first != ""))
 		{
 			auto distance = getDistanceBetweenCountries(country, neighbor.second);
 			if (distance && (*distance <= 500))

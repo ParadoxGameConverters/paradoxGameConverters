@@ -52,6 +52,7 @@ class V2World
 		const V2Diplomacy* getDiplomacy() const { return diplomacy; }
 		vector<string> getGreatPowers() const	{ return greatPowers; }
 		vector<V2Party> getParties() const { return parties; }
+		auto getProvinces() const { return provinces; }
 
 	private:
 		V2World(const V2World&) = delete;

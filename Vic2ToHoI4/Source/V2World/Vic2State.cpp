@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -31,17 +31,23 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 Vic2State::Vic2State(shared_ptr<Object> stateObj, const string& ownerTag):
-	owner(ownerTag),
-	stateID(""),
-	partialState(false),
-	provinceNums(),
-	provinces(),
-	factoryLevel(0),
-	employedWorkers(0)
+	owner(ownerTag)
 {
 	addProvinceNums(stateObj);
 	setID();
 	setFactoryLevel(stateObj);
+}
+
+
+Vic2State::Vic2State(std::set<std::pair<int, V2Province*>> theProvinces)
+{
+	for (auto province: theProvinces)
+	{
+		provinceNums.insert(province.first);
+		provinces.insert(province.second);
+	}
+	setID();
+	determineIfPartialState();
 }
 
 
