@@ -1,4 +1,4 @@
-/*Copyright (c) 2017 The Paradox Game Converters Project
+/*Copyright (c) 2018 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -25,11 +25,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <vector>
 #include "Object.h"
 #include "OSCompatibilityLayer.h"
-using namespace std;
 
 
 
-date::date(string _init):
+date::date(std::string _init):
 	year(1),
 	month(1),
 	day(1)
@@ -79,7 +78,7 @@ const date& date::operator=(const date& _rhs)
 }
 
 
-date::date(const shared_ptr<Object> _init)
+date::date(const std::shared_ptr<Object> _init)
 {
 	auto dateSubObj = _init->safeGetObject("year");	// the date within the larger object
 	if (dateSubObj)
@@ -140,7 +139,7 @@ bool date::operator>=(const date& _rhs) const
 }
 
 
-ostream& operator<<(ostream& out, const date& d)
+std::ostream& operator<<(std::ostream& out, const date& d)
 {
 	out << d.year << '.' << d.month << '.' << d.day;
 	return out;
@@ -189,9 +188,9 @@ bool date::isSet() const
 }
 
 
-string date::toString() const
+std::string date::toString() const
 {
-	stringstream buf;
+	std::stringstream buf;
 	buf << year << '.' << month << '.' << day;
 	return buf.str();
 }

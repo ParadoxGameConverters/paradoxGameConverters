@@ -21,17 +21,18 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef CARDINAL_TO_ORDINAL
-#define CARDINAL_TO_ORDINAL
+#include "Object.h"
+#include <memory>
 
 
 
-#include <string>
+namespace commonItems
+{
 
+std::shared_ptr<Object> convert8859Object(const std::string& top, std::istream& theStream);
+std::shared_ptr<Object> convertUTF8Object(const std::string& top, std::istream& theStream);
 
+std::shared_ptr<Object> convert8859String(const std::string& top, std::istream& theStream);
+std::shared_ptr<Object> convertUTF8String(const std::string& top, std::istream& theStream);
 
-std::string CardinalToOrdinal(int cardinal);
-
-
-
-#endif // CARDINAL_TO_ORDINAL
+}
