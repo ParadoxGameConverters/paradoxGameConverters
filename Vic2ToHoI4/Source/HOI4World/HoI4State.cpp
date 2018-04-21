@@ -92,7 +92,10 @@ void HoI4State::output(const string& _filename) const
 	}
 	out << "\n";
 	out << "\thistory={\n";
-	out << "\t\towner = " << ownerTag << "\n";
+	if (ownerTag != "")
+	{
+		out << "\t\towner = " << ownerTag << "\n";
+	}
 	if ((victoryPointValue > 0) && (victoryPointPosition != 0))
 	{
 		if (Configuration::getDebug())
