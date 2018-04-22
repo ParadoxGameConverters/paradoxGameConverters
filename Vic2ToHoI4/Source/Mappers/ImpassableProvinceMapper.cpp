@@ -37,7 +37,7 @@ impassableProvinceMapper::impassableProvinceMapper()
 {
 	LOG(LogLevel::Info) << "Finding impassable provinces";
 
-	set<string> statesFiles;
+	std::set<std::string> statesFiles;
 	Utils::GetAllFilesInFolder(Configuration::getHoI4Path() + "/history/states", statesFiles);
 	for (auto stateFile: statesFiles)
 	{

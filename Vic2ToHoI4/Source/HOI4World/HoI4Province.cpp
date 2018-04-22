@@ -182,7 +182,7 @@ void HoI4Province::output() const
 }
 
 
-void HoI4Province::convertFromOldProvince(const V2Province* oldProvince)
+void HoI4Province::convertFromOldProvince(const Vic2::Province* oldProvince)
 {
 }
 

@@ -120,7 +120,6 @@ Vic2::Pop::Pop(const std::string& typeString, std::istream& theStream):
 		}
 	});
 
-	getNextTokenWithoutMatching(theStream); // temporary to handle the type included in the stream
 	parseStream(theStream);
 }
 

@@ -40,10 +40,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 using namespace std;
 
 
-
+namespace Vic2
+{
+class Province;
+}
 class V2Army;
 class V2Leader;
-class V2Province;
 class V2Relations;
 class Vic2State;
 
@@ -54,11 +56,11 @@ class V2Country
 	public:
 		explicit V2Country(shared_ptr<Object> obj);
 
-		void addProvince(const pair<const int, V2Province*>& province) { provinces.insert(province); }
+		void addProvince(const std::pair<const int, Vic2::Province*>& province) { provinces.insert(province); }
 		void setColor(const ConverterColor::Color& newColor) { color = newColor; }
 		void setAsGreatNation() { greatNation = true; }
-		void addCore(V2Province* core) { cores.push_back(core); }
-		void replaceCores(vector<V2Province*> newCores) { cores.swap(newCores); }
+		void addCore(Vic2::Province* core) { cores.push_back(core); }
+		void replaceCores(std::vector<Vic2::Province*> newCores) { cores.swap(newCores); }
 		void setShipNames(string category, vector<string> newShipNames) { shipNames[category] = newShipNames; }
 
 		void eatCountry(V2Country* target);
@@ -90,8 +92,8 @@ class V2Country
 		double getBadBoy() const { return badboy; }
 		map<string, string> getAllReforms() const { return reformsArray; }
 		bool isGreatNation() const { return greatNation; }
-		map<int, V2Province*> getProvinces() const { return provinces; }
-		vector<V2Province*> getCores() const { return cores; }
+		std::map<int, Vic2::Province*> getProvinces() const { return provinces; }
+		std::vector<Vic2::Province*> getCores() const { return cores; }
 		bool isEmpty() const { return ((cores.size() == 0) && (provinces.size() == 0)); }
 		bool isCivilized() const { return civilized; }
 		bool isHuman() const { return human; }
@@ -137,8 +139,8 @@ class V2Country
 		ConverterColor::Color color;
 
 		vector<Vic2State*> states;
-		map<int, V2Province*> provinces;
-		vector<V2Province*> cores;
+		map<int, Vic2::Province*> provinces;
+		std::vector<Vic2::Province*> cores;
 		int capital;
 
 		string primaryCulture;

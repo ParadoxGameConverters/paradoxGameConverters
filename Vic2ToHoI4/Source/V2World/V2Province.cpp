@@ -22,143 +22,136 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Province.h"
-#include "Log.h"
-#include "newParser.h"
-#include "Object.h"
 #include "V2Pop.h"
+#include "Log.h"
+#include "ParserHelpers.h"
 #include <memory>
-using namespace std;
 
 
 
-V2Province::V2Province(shared_ptr<Object> obj):
-	number(stoi(obj->getKey())),
-	ownerString(obj->safeGetString("owner")),
-	owner(nullptr),
-	coreStrings(),
-	cores(),
-	pops(),
-	rgo(),
-	fortLevel(0),
-	navalBaseLevel(0),
-	railLevel(0)
+Vic2::Province::Province(const std::string& numberString, std::istream& theStream):
+	number(stoi(numberString))
 {
-	readCores(obj);
-	readForts(obj);
-	readNavalBases(obj);
-	readRails(obj);
-	readPops(obj);
-	readRgo(obj);
-}
-
-
-void V2Province::readCores(shared_ptr<Object> obj)
-{
-	for (auto coreObj: obj->getValue("core"))
+	registerKeyword(std::regex("owner"), [this](const std::string& unused, std::istream& theStream)
 	{
-		coreStrings.insert(coreObj->getLeaf());
-	}
-}
-
-
-void V2Province::readForts(shared_ptr<Object> obj)
-{
-	auto tokens = obj->safeGetTokens("fort");
-	if (tokens.size() > 0)
-	{
-		fortLevel = stoi(tokens[0]);
-	}
-}
-
-
-void V2Province::readNavalBases(shared_ptr<Object> obj)
-{
-	auto tokens = obj->safeGetTokens("naval_base");
-	if (tokens.size() > 0)
-	{
-		navalBaseLevel = stoi(tokens[0]);
-	}
-}
-
-
-void V2Province::readRails(shared_ptr<Object> obj)
-{
-	auto tokens = obj->safeGetTokens("railroad");
-	if (tokens.size() > 0)
-	{
-		railLevel = stoi(tokens[0]);
-	}
-}
-
-
-void V2Province::readRgo(shared_ptr<Object> obj)
-{
-	shared_ptr<Object> rgoObj = obj->safeGetObject("rgo");
-	if (rgoObj == nullptr) return;
-
-	string goods = rgoObj->safeGetString("goods_type");
-
-	shared_ptr<Object> employment = rgoObj->safeGetObject("employment");
-	if (employment == nullptr) return;
-
-	shared_ptr<Object> employees = employment->safeGetObject("employees");
-	if (employees == nullptr) return;
-
-	vector<shared_ptr<Object>> pops = employees->getLeaves();
-	int workers = 0;
-	for (const auto& pop : pops)
-	{
-		workers += pop->safeGetInt("count");
-	}
-
-	rgo = V2Rgo(goods, workers);
-}
-
-
-void V2Province::readPops(shared_ptr<Object> obj)
-{
-	vector<shared_ptr<Object>> children = obj->getLeaves();
-	for (auto child: children)
-	{
-		if (isPopObject(child))
+		commonItems::singleString ownerSingleString(theStream);
+		ownerString = ownerSingleString.getString();
+		if (ownerString.substr(0,1) == "\"")
 		{
-			std::stringstream popStream;
-			popStream << *child;
-			std::shared_ptr<Vic2::Pop> pop = make_shared<Vic2::Pop>(child->getKey(), popStream);
-			pops.push_back(pop);
+			ownerString = ownerString.substr(1, ownerString.size() - 2);
 		}
-	}
+	});
+	registerKeyword(std::regex("core"), [this](const std::string& unused, std::istream& theStream)
+	{
+		commonItems::singleString coreString(theStream);
+		auto newCoreString = coreString.getString();
+		if (newCoreString.substr(0,1) == "\"")
+		{
+			newCoreString = newCoreString.substr(1, newCoreString.size() - 2);
+		}
+		coreStrings.insert(newCoreString);
+	});
+	registerKeyword(std::regex("fort"), [this](const std::string& unused, std::istream& theStream)
+	{
+		commonItems::doubleList fortSizeList(theStream);
+		fortLevel = static_cast<int>(fortSizeList.getDoubles()[0]);
+	});
+	registerKeyword(std::regex("naval_base"), [this](const std::string& unused, std::istream& theStream)
+	{
+		commonItems::doubleList navalBaseSizeList(theStream);
+		navalBaseLevel = static_cast<int>(navalBaseSizeList.getDoubles()[0]);
+	});
+	registerKeyword(std::regex("railroad"), [this](const std::string& unused, std::istream& theStream)
+	{
+		commonItems::doubleList railSizeList(theStream);
+		railLevel = static_cast<int>(railSizeList.getDoubles()[0]);
+	});
+	registerKeyword(std::regex("aristocrats"), [this](const std::string& popType, std::istream& theStream)
+	{
+		std::shared_ptr<Pop> pop = std::make_shared<Pop>(popType, theStream);
+		pops.push_back(pop);
+	});
+	registerKeyword(std::regex("artisans"), [this](const std::string& popType, std::istream& theStream)
+	{
+		std::shared_ptr<Pop> pop = std::make_shared<Pop>(popType, theStream);
+		pops.push_back(pop);
+	});
+	registerKeyword(std::regex("bureaucrats"), [this](const std::string& popType, std::istream& theStream)
+	{
+		std::shared_ptr<Pop> pop = std::make_shared<Pop>(popType, theStream);
+		pops.push_back(pop);
+	});
+	registerKeyword(std::regex("capitalists"), [this](const std::string& popType, std::istream& theStream)
+	{
+		std::shared_ptr<Pop> pop = std::make_shared<Pop>(popType, theStream);
+		pops.push_back(pop);
+	});
+	registerKeyword(std::regex("clergymen"), [this](const std::string& popType, std::istream& theStream)
+	{
+		std::shared_ptr<Pop> pop = std::make_shared<Pop>(popType, theStream);
+		pops.push_back(pop);
+	});
+	registerKeyword(std::regex("craftsmen"), [this](const std::string& popType, std::istream& theStream)
+	{
+		std::shared_ptr<Pop> pop = std::make_shared<Pop>(popType, theStream);
+		pops.push_back(pop);
+	});
+	registerKeyword(std::regex("clerks"), [this](const std::string& popType, std::istream& theStream)
+	{
+		std::shared_ptr<Pop> pop = std::make_shared<Pop>(popType, theStream);
+		pops.push_back(pop);
+	});
+	registerKeyword(std::regex("farmers"), [this](const std::string& popType, std::istream& theStream)
+	{
+		std::shared_ptr<Pop> pop = std::make_shared<Pop>(popType, theStream);
+		pops.push_back(pop);
+	});
+	registerKeyword(std::regex("soldiers"), [this](const std::string& popType, std::istream& theStream)
+	{
+		std::shared_ptr<Pop> pop = std::make_shared<Pop>(popType, theStream);
+		pops.push_back(pop);
+	});
+	registerKeyword(std::regex("officers"), [this](const std::string& popType, std::istream& theStream)
+	{
+		std::shared_ptr<Pop> pop = std::make_shared<Pop>(popType, theStream);
+		pops.push_back(pop);
+	});
+	registerKeyword(std::regex("labourers"), [this](const std::string& popType, std::istream& theStream)
+	{
+		std::shared_ptr<Pop> pop = std::make_shared<Pop>(popType, theStream);
+		pops.push_back(pop);
+	});
+	registerKeyword(std::regex("slaves"), [this](const std::string& popType, std::istream& theStream)
+	{
+		std::shared_ptr<Pop> pop = std::make_shared<Pop>(popType, theStream);
+		pops.push_back(pop);
+	});
+
+	// ignored items
+	registerKeyword(std::regex("name"), commonItems::ignoreItem);
+	registerKeyword(std::regex("controller"), commonItems::ignoreItem);
+	registerKeyword(std::regex("garrison"), commonItems::ignoreItem);
+	registerKeyword(std::regex("building_construction"), commonItems::ignoreItem);
+	registerKeyword(std::regex("life_rating"), commonItems::ignoreItem);
+	registerKeyword(std::regex("infrastructure"), commonItems::ignoreItem);
+	registerKeyword(std::regex("last_imigration"), commonItems::ignoreItem);
+	registerKeyword(std::regex("last_controller_change"), commonItems::ignoreItem);
+	registerKeyword(std::regex("unit_names"), commonItems::ignoreItem);
+	registerKeyword(std::regex("party_loyalty"), commonItems::ignoreItem);
+	registerKeyword(std::regex("modifier"), commonItems::ignoreItem);
+	registerKeyword(std::regex("military_construction"), commonItems::ignoreItem);
+	registerKeyword(std::regex("crime"), commonItems::ignoreItem);
+	registerKeyword(std::regex("nationalism"), commonItems::ignoreItem);
+	registerKeyword(std::regex("colonial"), commonItems::ignoreItem);
+	registerKeyword(std::regex("flags"), commonItems::ignoreItem);
+	registerKeyword(std::regex("rgo"), commonItems::ignoreItem);
+
+	getNextToken(theStream);	// temporary to clear from caller converting an Object
+	parseStream(theStream);
 }
 
 
-bool V2Province::isPopObject(shared_ptr<Object> obj)
-{
-	string key = obj->getKey();
-
-	if ( key == "aristocrats" ||
-		  key == "artisans" ||
-		  key == "bureaucrats" ||
-		  key == "capitalists" ||
-		  key == "clergymen"	||
-		  key == "craftsmen" ||
-		  key == "clerks" ||
-		  key == "farmers" ||
-		  key == "soldiers" ||
-		  key == "officers" ||
-		  key == "labourers" ||
-		  key == "slaves"
-		)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-
-void V2Province::setCores(const map<string, V2Country*>& countries)
+void Vic2::Province::setCores(const std::map<std::string, V2Country*>& countries)
 {
 	for (auto coreString: coreStrings)
 	{
@@ -171,13 +164,13 @@ void V2Province::setCores(const map<string, V2Country*>& countries)
 }
 
 
-int V2Province::getTotalPopulation() const
+int Vic2::Province::getTotalPopulation() const
 {
 	return getPopulation();
 }
 
 
-int V2Province::getPopulation(optional<string> type) const
+int Vic2::Province::getPopulation(std::optional<std::string> type) const
 {
 	int totalPopulation = 0;
 	for (auto pop: pops)
@@ -192,7 +185,7 @@ int V2Province::getPopulation(optional<string> type) const
 }
 
 
-int V2Province::getLiteracyWeightedPopulation(optional<string> type) const
+int Vic2::Province::getLiteracyWeightedPopulation(std::optional<std::string> type) const
 {
 	int totalPopulation = 0;
 	for (auto pop: pops)
@@ -206,7 +199,7 @@ int V2Province::getLiteracyWeightedPopulation(optional<string> type) const
 }
 
 
-double V2Province::getPercentageWithCultures(const set<string>& cultures) const
+double Vic2::Province::getPercentageWithCultures(const std::set<std::string>& cultures) const
 {
 	int totalPopulation = 0;
 	int populationOfCultures = 0;
@@ -231,7 +224,7 @@ double V2Province::getPercentageWithCultures(const set<string>& cultures) const
 }
 
 
-int V2Province::calculateLiteracyWeightedPop(const shared_ptr<const Vic2::Pop> thePop) const
+int Vic2::Province::calculateLiteracyWeightedPop(const std::shared_ptr<const Pop> thePop) const
 {
 	return int(thePop->getSize() * (thePop->getLiteracy() * 0.9 + 0.1));
 }

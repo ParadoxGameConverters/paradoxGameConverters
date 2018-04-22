@@ -34,8 +34,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 using namespace std;
 
 
-
-class V2Province;
+namespace Vic2
+{
+class Province;
+}
 class Vic2State;
 
 
@@ -92,8 +94,8 @@ class HoI4State
 		void setIndustry(int factories);
 		bool amICoastal();
 
-		int determineNavalBaseLevel(const V2Province* sourceProvince);
-		optional<int> determineNavalBaseLocation(const V2Province* sourceProvince);
+		int determineNavalBaseLevel(const Vic2::Province* sourceProvince);
+		optional<int> determineNavalBaseLocation(const Vic2::Province* sourceProvince);
 
 		bool assignVPFromVic2Province(int Vic2ProvinceNumber);
 		void assignVP(int location);

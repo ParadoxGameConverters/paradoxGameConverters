@@ -29,7 +29,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <string>
 #include <vector>
 #include "HOI4World/HOI4Version.h"
-using namespace std;
 
 
 
@@ -47,22 +46,22 @@ class Configuration // Singleton
 	public:
 		Configuration();
 
-		static string getHoI4Path()
+		static std::string getHoI4Path()
 		{
 			return getInstance()->HoI4Path;
 		}
 
-		static string getHoI4DocumentsPath()
+		static std::string getHoI4DocumentsPath()
 		{
 			return getInstance()->HoI4DocumentsPath;
 		}
 
-		static string getV2Path()
+		static std::string getV2Path()
 		{
 			return getInstance()->V2Path;
 		}
 
-		static vector<string> getVic2Mods()
+		static std::vector<std::string> getVic2Mods()
 		{
 			return getInstance()->Vic2Mods;
 		}
@@ -72,7 +71,7 @@ class Configuration // Singleton
 			getInstance()->forceMultiplier = mult;
 		}
 
-		static void setOutputName(const string& name)
+		static void setOutputName(const std::string& name)
 		{
 			getInstance()->outputName = name;
 		}
@@ -82,7 +81,7 @@ class Configuration // Singleton
 			return getInstance()->forceMultiplier;
 		}
 
-		static string getOutputName()
+		static std::string getOutputName()
 		{
 			return getInstance()->outputName;
 		}
@@ -149,11 +148,11 @@ class Configuration // Singleton
 
 		HoI4::Version getAutomaticHoI4Version();
 
-		string			HoI4Path;				// the install directory for HoI4
-		string			HoI4DocumentsPath;	// HoI4's directory under My Documents
-		string			V2Path;					// the install directory for V2
-		vector<string>	Vic2Mods;
-		string			outputName;				// the name the outputted mod should have
+		std::string			HoI4Path;				// the install directory for HoI4
+		std::string			HoI4DocumentsPath;	// HoI4's directory under My Documents
+		std::string			V2Path;					// the install directory for V2
+		std::vector<std::string>	Vic2Mods;
+		std::string			outputName;				// the name the outputted mod should have
 
 		double			forceMultiplier;
 		double			manpowerFactor;

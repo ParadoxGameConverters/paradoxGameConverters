@@ -33,7 +33,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 using namespace std;
 
 
-class V2Province;
+namespace Vic2
+{
+class Province;
+}
 
 
 
@@ -51,7 +54,7 @@ class Vic2State
 {
 	public:
 		Vic2State(shared_ptr<Object> stateObj, const string& ownerTag);
-		Vic2State(std::set<std::pair<int, V2Province*>> theProvinces);
+		Vic2State(std::set<std::pair<int, Vic2::Province*>> theProvinces);
 
 		void determineEmployedWorkers();
 		void determineIfPartialState();
@@ -59,9 +62,9 @@ class Vic2State
 		int getPopulation() const;
 		int getAverageRailLevel() const;
 
-		void addProvince(const V2Province* province) { provinces.insert(province); }
+		void addProvince(const Vic2::Province* province) { provinces.insert(province); }
 
-		set<const V2Province*> getProvinces() const { return provinces; }
+		std::set<const Vic2::Province*> getProvinces() const { return provinces; }
 		set<int> getProvinceNums() const { return provinceNums; }
 		string getOwner() const { return owner; }
 		string getStateID() const { return stateID; }
@@ -88,7 +91,7 @@ class Vic2State
 		bool partialState = false;
 
 		set<int> provinceNums;
-		set<const V2Province*> provinces;
+		std::set<const Vic2::Province*> provinces;
 
 		int factoryLevel = 0;
 		int employedWorkers = 0;

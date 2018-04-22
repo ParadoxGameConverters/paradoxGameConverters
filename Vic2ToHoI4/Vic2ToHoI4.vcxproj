@@ -259,7 +259,6 @@
     <ClInclude Include="Source\V2World\V2Party.h" />
     <ClInclude Include="Source\V2World\V2Pop.h" />
     <ClInclude Include="Source\V2World\V2Province.h" />
-    <ClInclude Include="Source\V2World\V2Rgo.h" />
     <ClInclude Include="Source\V2World\V2Relations.h" />
     <ClInclude Include="Source\V2World\V2World.h" />
     <ClInclude Include="Source\V2World\Vic2State.h" />

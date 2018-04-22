@@ -64,7 +64,9 @@ V2World::V2World(const string& filename):
 			string key = leaf->getKey();
 			if (isProvinceKey(key))
 			{
-				provinces[stoi(key)] = new V2Province(leaf);
+				std::stringstream provinceStream;
+				provinceStream << *leaf;
+				provinces[stoi(key)] = new Vic2::Province(leaf->getKey(), provinceStream);
 			}
 			else if (isCountryKey(key))
 			{
@@ -201,7 +203,7 @@ void V2World::removeSimpleLandlessNations()
 			continue;
 		}
 
-		vector<V2Province*> coresToKeep;
+		std::vector<Vic2::Province*> coresToKeep;
 		for (auto core: country.second->getCores())
 		{
 			if (shouldCoreBeRemoved(core, country.second))
@@ -218,14 +220,14 @@ void V2World::removeSimpleLandlessNations()
 
 		if (!country.second->hasCoreOnCapital())
 		{
-			vector<V2Province*> emptyCores;
+			std::vector<Vic2::Province*> emptyCores;
 			country.second->replaceCores(emptyCores);
 		}
 	}
 }
 
 
-bool V2World::shouldCoreBeRemoved(const V2Province* core, const V2Country* country) const
+bool V2World::shouldCoreBeRemoved(const Vic2::Province* core, const V2Country* country) const
 {
 	if (core->getOwner() == nullptr)
 	{
@@ -554,7 +556,7 @@ void V2World::handleMissingCountryCultures()
 }
 
 
-optional<const V2Province*> V2World::getProvince(int provNum) const
+std::optional<const Vic2::Province*> V2World::getProvince(int provNum) const
 {
 	auto provinceItr = provinces.find(provNum);
 	if (provinceItr != provinces.end())

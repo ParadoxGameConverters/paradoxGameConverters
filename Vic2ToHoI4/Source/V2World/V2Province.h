@@ -27,78 +27,69 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "../Configuration.h"
-#include "V2Rgo.h"
+#include "newParser.h"
 #include <map>
 #include <memory>
 #include <optional>
 #include <set>
 #include <string>
 #include <vector>
-using namespace std;
 
 
 
-class Object;
 class V2Country;
 namespace Vic2 {
-	class Pop;
-}
+
+class Pop;
 
 
-
-class V2Province
+class Province: commonItems::parser
 {
 	public:
-		explicit V2Province(shared_ptr<Object> obj);
-		void setCores(const map<string, V2Country*>& countries);
+		explicit Province(const std::string& numberString, std::istream& theStream);
+		void setCores(const std::map<std::string, V2Country*>& countries);
 
 		int getTotalPopulation() const;
-		int getPopulation(optional<string> type = {}) const;
-		int getLiteracyWeightedPopulation(optional<string> type = {}) const;
-		double getPercentageWithCultures(const set<string>& cultures) const;
+		int getPopulation(std::optional<std::string> type = {}) const;
+		int getLiteracyWeightedPopulation(std::optional<std::string> type = {}) const;
+		double getPercentageWithCultures(const std::set<std::string>& cultures) const;
 
 		void setOwner(const V2Country* _owner) { owner = _owner; }
-		void addCoreString(const string& coreString) { coreStrings.insert(coreString); }
-		void removeCoreString(const string& coreString) { coreStrings.erase(coreString); }
+		void addCoreString(const std::string& coreString) { coreStrings.insert(coreString); }
+		void removeCoreString(const std::string& coreString) { coreStrings.erase(coreString); }
 		void removeCore(V2Country* core) { cores.erase(core); }
 
 		int getNumber() const { return number; }
-		string getOwnerString() const { return ownerString; }
+		std::string getOwnerString() const { return ownerString; }
 		const V2Country* getOwner() const { return owner; }
-		set<V2Country*> getCores() const { return cores; }
+		std::set<V2Country*> getCores() const { return cores; }
 		int getRailLevel() const { return railLevel; }
 		int getFortLevel() const { return fortLevel; }
 		int getNavalBaseLevel() const { return navalBaseLevel; }
-		std::vector<std::shared_ptr<const Vic2::Pop>> getPops() const { return pops; }
+		std::vector<std::shared_ptr<const Pop>> getPops() const { return pops; }
 
 	private:
-		V2Province(const V2Province&) = delete;
-		V2Province& operator=(const V2Province&) = delete;
+		Province(const Province&) = delete;
+		Province& operator=(const Province&) = delete;
 
-		void readCores(shared_ptr<Object> obj);
-		void readForts(shared_ptr<Object> obj);
-		void readNavalBases(shared_ptr<Object> obj);
-		void readRails(shared_ptr<Object> obj);
-		void readRgo(shared_ptr<Object> obj);
-		void readPops(shared_ptr<Object> obj);
-		bool isPopObject(shared_ptr<Object> obj);
-		int calculateLiteracyWeightedPop(const std::shared_ptr<const Vic2::Pop> thePop) const;
+		int calculateLiteracyWeightedPop(const std::shared_ptr<const Pop> thePop) const;
 
 		int number;
 
-		string ownerString;
-		const V2Country* owner;
+		std::string ownerString = "";
+		const V2Country* owner = nullptr;
 
-		set<string> coreStrings;
-		set<V2Country*> cores;
+		std::set<std::string> coreStrings;
+		std::set<V2Country*> cores;
 
-		std::vector<std::shared_ptr<const Vic2::Pop>> pops;
-		V2Rgo rgo;
+		std::vector<std::shared_ptr<const Pop>> pops;
 
-		int fortLevel;
-		int navalBaseLevel;
-		int railLevel;
+		int fortLevel = 0;
+		int navalBaseLevel = 0;
+		int railLevel = 0;
 };
+
+}
 
 
 

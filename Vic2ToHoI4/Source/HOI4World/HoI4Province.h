@@ -37,7 +37,7 @@ class HoI4Province
 	public:
 		HoI4Province(const string& Owner, int State);
 		void output() const;
-		void convertFromOldProvince(const V2Province* oldProvince);
+		void convertFromOldProvince(const Vic2::Province* oldProvince);
 		void addCore(const string& core);
 		void addFilename(const string& _filename);
 

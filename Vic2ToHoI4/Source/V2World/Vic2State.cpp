@@ -39,7 +39,7 @@ Vic2State::Vic2State(shared_ptr<Object> stateObj, const string& ownerTag):
 }
 
 
-Vic2State::Vic2State(std::set<std::pair<int, V2Province*>> theProvinces)
+Vic2State::Vic2State(std::set<std::pair<int, Vic2::Province*>> theProvinces)
 {
 	for (auto province: theProvinces)
 	{

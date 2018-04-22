@@ -37,7 +37,10 @@ using namespace std;
 
 class V2Country;
 class V2Diplomacy;
-class V2Province;
+namespace Vic2
+{
+class Province;
+}
 
 
 
@@ -46,7 +49,7 @@ class V2World
 	public:
 		explicit V2World(const string& filename);
 
-		optional<const V2Province*> getProvince(int provNum) const;
+		std::optional<const Vic2::Province*> getProvince(int provNum) const;
 		
 		map<string, V2Country*> getCountries() const { return countries; }
 		const V2Diplomacy* getDiplomacy() const { return diplomacy; }
@@ -74,7 +77,7 @@ class V2World
 		void setProvinceOwners();
 		void addProvinceCoreInfoToCountries();
 		void removeSimpleLandlessNations();
-		bool shouldCoreBeRemoved(const V2Province* core, const V2Country* country) const;
+		bool shouldCoreBeRemoved(const Vic2::Province* core, const V2Country* country) const;
 		void determineEmployedWorkers();
 		void removeEmptyNations();
 		void determinePartialStates();
@@ -97,7 +100,7 @@ class V2World
 		optional<V2Country*> getCountry(const string& tag) const;
 
 
-		map<int, V2Province*> provinces;
+		std::map<int, Vic2::Province*> provinces;
 		map<string, V2Country*>	countries;
 		const V2Diplomacy* diplomacy;
 		vector<V2Party> parties;

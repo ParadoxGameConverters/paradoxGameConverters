@@ -211,7 +211,7 @@ void HoI4States::createStates()
 		}
 	}
 
-	std::map<int, V2Province*> unownedProvinces;
+	std::map<int, Vic2::Province*> unownedProvinces;
 	for (auto vic2Province: sourceWorld->getProvinces())
 	{
 		if (ownedProvinces.count(vic2Province.first) == 0)
@@ -223,7 +223,7 @@ void HoI4States::createStates()
 	auto stateMapping = stateMapper::getStateMapping();
 	while (unownedProvinces.size() > 0)
 	{
-		std::set<std::pair<int, V2Province*>> stateProvinces;
+		std::set<std::pair<int, Vic2::Province*>> stateProvinces;
 
 		auto stateProvinceNums = stateMapping.find(unownedProvinces.begin()->first);
 		if (stateProvinceNums == stateMapping.end())

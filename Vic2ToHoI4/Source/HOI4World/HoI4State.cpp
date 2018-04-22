@@ -170,7 +170,7 @@ void HoI4State::convertNavalBases()
 }
 
 
-int HoI4State::determineNavalBaseLevel(const V2Province* sourceProvince)
+int HoI4State::determineNavalBaseLevel(const Vic2::Province* sourceProvince)
 {
 	int navalBaseLevel = sourceProvince->getNavalBaseLevel() * 2;
 	if (navalBaseLevel > 10)
@@ -182,7 +182,7 @@ int HoI4State::determineNavalBaseLevel(const V2Province* sourceProvince)
 }
 
 
-optional<int> HoI4State::determineNavalBaseLocation(const V2Province* sourceProvince)
+optional<int> HoI4State::determineNavalBaseLocation(const Vic2::Province* sourceProvince)
 {
 	auto provinceMapping = provinceMapper::getVic2ToHoI4ProvinceMapping().find(sourceProvince->getNumber());
 	if (provinceMapping != provinceMapper::getVic2ToHoI4ProvinceMapping().end())
