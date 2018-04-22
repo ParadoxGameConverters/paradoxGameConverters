@@ -23,8 +23,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "newParser.h"
 #include "Log.h"
-#include "ParadoxParser8859_15.h"
-#include "ParadoxParserUTF8.h"
 #include <cctype>
 #include <fstream>
 
