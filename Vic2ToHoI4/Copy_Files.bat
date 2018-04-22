@@ -25,6 +25,7 @@ copy "Data_Files\converterLeaderTraits.txt" "release\converterLeaderTraits.txt"
 copy "Data_Files\ideologicalAdvisors.txt" "release\ideologicalAdvisors.txt"
 copy "Data_Files\ideologicalDecisions.txt" "release\ideologicalDecisions.txt"
 copy "Data_Files\ideologicalIdeas.txt" "release\ideologicalIdeas.txt"
+copy "Data_Files\converterFocuses.txt" "release\converterFocuses.txt"
 
 rem **Copy flags**
 del "Release\flags" /Q /S /F
