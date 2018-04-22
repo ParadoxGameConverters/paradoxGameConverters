@@ -31,7 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Country.h"
 #include "V2Diplomacy.h"
 #include "V2Party.h"
-#include "V2Province.h"
+#include "Province.h"
 #include "Vic2State.h"
 #include "../Mappers/CountryMapping.h"
 #include "../Mappers/ProvinceMapper.h"

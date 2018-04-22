@@ -23,7 +23,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Vic2State.h"
 #include "V2Country.h"
-#include "V2Province.h"
+#include "Province.h"
 #include "V2World.h"
 #include "../Mappers/StateMapper.h"
 #include "Log.h"
