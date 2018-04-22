@@ -45,9 +45,6 @@
     <ClCompile Include="Source\V2World\V2Pop.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\V2World\V2Province.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\V2World\V2Relations.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
@@ -221,6 +218,9 @@
     <ClCompile Include="..\common_items\ParserHelpers.cpp">
       <Filter>CommonItems</Filter>
     </ClCompile>
+    <ClCompile Include="Source\V2World\Province.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\common_items\Date.h">
@@ -251,9 +251,6 @@
       <Filter>Vic2World</Filter>
     </ClInclude>
     <ClInclude Include="Source\V2World\V2Pop.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2Province.h">
       <Filter>Vic2World</Filter>
     </ClInclude>
     <ClInclude Include="Source\V2World\V2Relations.h">
@@ -428,6 +425,9 @@
     </ClInclude>
     <ClInclude Include="..\common_items\ParserHelpers.h">
       <Filter>CommonItems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2World\Province.h">
+      <Filter>Vic2World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
